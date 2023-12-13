@@ -13,40 +13,40 @@
 #
 # $Log: Makefile,v $
 # Revision 1.12  2004/09/10 11:04:35  terui
-# wm.c‚Ì•ªŠ„‚É”º‚¤C³B
+# wm.cã®åˆ†å‰²ã«ä¼´ã†ä¿®æ­£ã€‚
 #
 # Revision 1.11  2004/09/09 01:56:58  terui
-# wm.cƒtƒ@ƒCƒ‹•ªŠ„‚É”º‚¢SRCS‚Éwm_asyncApi.c‚ð’Ç‰ÁB
+# wm.cãƒ•ã‚¡ã‚¤ãƒ«åˆ†å‰²ã«ä¼´ã„SRCSã«wm_asyncApi.cã‚’è¿½åŠ ã€‚
 #
 # Revision 1.10  2004/08/27 09:22:05  yasu
 # Fix around NITRO_CODEGEN_ALL
 #
 # Revision 1.9  2004/08/19 04:32:32  yosiokat
-# NITRO_CODEGEN_ALL = True‚ð—LŒø‚ÉB
+# NITRO_CODEGEN_ALL = Trueã‚’æœ‰åŠ¹ã«ã€‚
 #
 # Revision 1.8  2004/07/24 02:25:38  yasu
 # Dechain wm_lib subdirectory
 #
 # Revision 1.7  2004/07/20 10:50:36  terui
-# wm_lib‚Æwm‚Ì•Êƒ‰ƒCƒuƒ‰ƒŠ‰»‚É”º‚¤•ÏX
+# wm_libã¨wmã®åˆ¥ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåŒ–ã«ä¼´ã†å¤‰æ›´
 #
 # Revision 1.6  2004/07/20 07:53:14  terui
-# wm_lib.c wm_tool.c ni.c‚ðŽb’è‚ÅSRCS‚É’Ç‰Á
+# wm_lib.c wm_tool.c ni.cã‚’æš«å®šã§SRCSã«è¿½åŠ 
 #
 # Revision 1.5  2004/07/20 01:26:43  terui
-# SRCS‚©‚çãˆÊƒ‰ƒCƒuƒ‰ƒŠ‚ðˆê’Uíœ
+# SRCSã‹ã‚‰ä¸Šä½ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ä¸€æ—¦å‰Šé™¤
 #
 # Revision 1.4  2004/07/14 14:12:07  yasu
 # Change NITRO_CODEGEN=ALL -> NITRO_CODEGEN_ALL=True
 #
 # Revision 1.3  2004/07/08 10:07:34  terui
-# WM7‰ü‘¢ŠJŽn‚É”º‚¤•ÏX
+# WM7æ”¹é€ é–‹å§‹ã«ä¼´ã†å¤‰æ›´
 #
 # Revision 1.2  2004/06/18 10:22:02  yasu
 # fix typo
 #
 # Revision 1.1  2004/05/26 08:54:51  terui
-# –³ü‘g‚Ýž‚Ý‚É”º‚¤’Ç‰Á
+# ç„¡ç·šçµ„ã¿è¾¼ã¿ã«ä¼´ã†è¿½åŠ 
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

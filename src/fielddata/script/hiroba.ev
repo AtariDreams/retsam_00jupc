@@ -1,7 +1,7 @@
 //====================================================================
 //								hiroba
 //
-//	LOCALWORK3�g�p��
+//	LOCALWORK3使用中
 //====================================================================
 
 	.text
@@ -11,11 +11,11 @@
 	.include	"../eventdata/zone_hirobaevc.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_hiroba_go
 _EVENT_DATA_END
@@ -24,14 +24,14 @@ _EVENT_DATA_END
 /********************************************************************/
 /*						FLAG_CHANGE_LABEL 							*/
 /*
- * ���ӁI(06.02.09����)
- * EV_SCRIPT_WORK���m�ۂ��Ă��Ȃ��̂ŁA
- * SCWK_ANSWER�Ȃǂ̃��[�N�͎g�p���邱�Ƃ��o���Ȃ��I
- * LOCALWORK0�Ȃǂ��g�p����悤�ɂ���I
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
  *
- * ���ʃX�N���v�g�ɂ��Ă͌���g�p�s�I
- * �Ή��\�肾���A�]�[�����܂��������ɏ����������邩���H
- * ���܂����Ȃ������H
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
  */
 /********************************************************************/
 //ev_hiroba_flag_change:
@@ -44,7 +44,7 @@ _EVENT_DATA_END
 ev_hiroba_go:
 	_EVENT_START
 
-	/*���[�v�O�ɍs���A�j���������_���ɂ���*/
+	/*ワープ前に行くアニメをランダムにする*/
 	_GET_RND		SCWK_PARAM0,5
 	_SWITCH			SCWK_PARAM0
 	_CASE_JUMP		0,ev_hiroba_go_02
@@ -54,7 +54,7 @@ ev_hiroba_go:
 	_CASE_JUMP		4,ev_hiroba_go_06
 	_END
 
-/*����*/
+/*歩く*/
 ev_hiroba_go_02:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_hiroba_player_11
 	_OBJ_ANIME		HIROBA_WIFISW,anm_hiroba_wifisw_11
@@ -91,12 +91,12 @@ ev_hiroba_go_06:
 	_END
 
 ev_hiroba_go_common_01:
-	/*�u����ł͂����Ă�����Ⴂ�v*/
+	/*「それではいってらっしゃい」*/
 	_TALK_KEYWAIT	msg_hiroba_staff_01
 	_AB_KEYWAIT
 	_TALK_CLOSE
 
-	/*���[�v�ɏ���čL���*/
+	/*ワープに乗って広場へ*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_hiroba_player_30
 	_OBJ_ANIME		HIROBA_WIFISW,anm_hiroba_wifisw_30
 	_OBJ_ANIME_WAIT
@@ -112,41 +112,41 @@ ev_hiroba_go_common_01:
 	_LDVAL			LOCALWORK3,1
 
 	/*
-	��t�ŃZ�[�u�������̎�l���̍��W���L�^����Ă��āA
-	�����ŁA�}�b�v��O�ɖ߂��Ă���Z�[�u���āA
-	�\�t�g���Z�b�g��������ƁA
-	�]�[���͎�t�ŁA���W����t�ʒu�ɂȂ��Ă���
+	受付でセーブした時の主人公の座標が記録されていて、
+	ここで、マップを前に戻してからセーブして、
+	ソフトリセットをかけると、
+	ゾーンは受付で、座標も受付位置になっている
 
-	�\�t�g���Z�b�g�����ɐi�߂�ƁA
-	�}�b�v�J�ڃR�}���h�Ŏw�肵�����W����A
-	�h�A���J���ďo�Ă���A�j�����n�܂�
+	ソフトリセットせずに進めると、
+	マップ遷移コマンドで指定した座標から、
+	ドアを開けて出てくるアニメが始まる
 	*/
 
-	/*�|�P�Z���n���ɖ߂�*/
+	/*ポケセン地下に戻る*/
 	//_MAP_CHANGE_NONE_FADE	SYS_WORK_PC_UG_ZONE_ID,0,5,6,DIR_DOWN
 	_MAP_CHANGE_NONE_FADE	SYS_WORK_PC_UG_ZONE_ID,0,5,2,DIR_DOWN
 #endif
 
 	_FINISH_MAP_PROC
 
-	/*WIFI�ڑ�������ID�擾*/
+	/*WIFI接続し初回ID取得*/
 	_DPW_INIT_PROC	SCWK_ANSWER
-	_LDWK			SCWK_TEMP0,SCWK_ANSWER						/*�ޔ�*/
+	_LDWK			SCWK_TEMP0,SCWK_ANSWER						/*退避*/
 
-	/*WIFI�L��J�n*/
+	/*WIFI広場開始*/
 	_WIFILOBBY_SET_PROC	SCWK_TEMP0
 	_SET_MAP_PROC
 
 #if 0	//timing off
-	/*�ꉞ�A�����X�N���v�g���N�����Ȃ��悤�ɒl��ς���*/
+	/*一応、強制スクリプトが起動しないように値を変える*/
 	_LDVAL			LOCALWORK3,1
 #endif
 
-	/*�|�P�Z���n���ɖ߂��Ă������ɃX�N���v�g�N������悤����(�L��ł̓Z�[�u�͂Ȃ��炵��)*/
+	/*ポケセン地下に戻ってきた時にスクリプト起動するようする(広場ではセーブはないらしい)*/
 	_LDVAL			WK_SCENE_PC_UG_HIROBA,1
 
 #if 0	//timing off
-	/*�|�P�Z���n���ɖ߂�*/
+	/*ポケセン地下に戻る*/
 	//_MAP_CHANGE_NONE_FADE	SYS_WORK_PC_UG_ZONE_ID,0,5,6,DIR_DOWN
 	_MAP_CHANGE_NONE_FADE	SYS_WORK_PC_UG_ZONE_ID,0,5,2,DIR_DOWN
 #endif
@@ -160,7 +160,7 @@ ev_hiroba_go_common_01:
 	_END
 
 //--------------------------------------------------------------------
-//��l��	���[�v�O�܂ňړ�
+//主人公	ワープ前まで移動
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_hiroba_player_11
 	_ANIME_DATA	AC_WALK_U_8F,7
@@ -188,11 +188,11 @@ _ANIME_LABEL	anm_hiroba_player_15
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//��l��	���[�v�ɏ���čL���
+//主人公	ワープに乗って広場へ
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_hiroba_player_30
 	_ANIME_DATA	AC_WALK_U_8F,1
-	//��]
+	//回転
 	_ANIME_DATA	AC_DIR_L,1
 	_ANIME_DATA	AC_WAIT_2F,1
 	_ANIME_DATA	AC_DIR_D,1
@@ -219,12 +219,12 @@ _ANIME_LABEL	anm_hiroba_player_30
 	_ANIME_DATA	ACMD_END,0
 
 _ANIME_LABEL	anm_hiroba_player_30_2
-	//�㏸
+	//上昇
 	_ANIME_DATA	AC_WARP_UP,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//��t	���[�v�O�܂ňړ�
+//受付	ワープ前まで移動
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_hiroba_wifisw_11
 	_ANIME_DATA	AC_WALK_U_8F,6
@@ -257,7 +257,7 @@ _ANIME_LABEL	anm_hiroba_wifisw_15
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//��t	������
+//受付	見送る
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_hiroba_wifisw_30
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1

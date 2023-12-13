@@ -1,25 +1,25 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <BASE target="main">
-<TITLE>FX �@�\�ꗗ</TITLE>
+<TITLE>FX 機能一覧</TITLE>
 <LINK rel="stylesheet" href="../css/titles.css">
 </HEAD>
 <BODY>
-<H3>�Œ菬���֘A(FX)</H3>
-<P>[<B><A href="list_fx.html">�@�\�ꗗ</A></B>]</P>
-<H4>�f�[�^�^</H4>
+<H3>固定小数関連(FX)</H3>
+<P>[<B><A href="list_fx.html">機能一覧</A></B>]</P>
+<H4>データ型</H4>
 <DL>
-<DT>�Œ菬���^
+<DT>固定小数型
 <DD><A href="fx16.html">fx16</A>
 <DD><A href="fx32.html">fx32</A>
 <DD><A href="fx64.html">fx64</A>
 <DD><A href="fx64c.html">fx64c</A></DL>
 <DL>
-<DT>�s��E�x�N�g���^
+<DT>行列・ベクトル型
 <DD><A href="mtx/MtxFx22.html">MtxFx22</A>
 <DD><A href="mtx/MtxFx33.html">MtxFx33</A>
 <DD><A href="mtx/MtxFx43.html">MtxFx43</A>
@@ -27,12 +27,12 @@
 <DD><A href="vec/VecFx32.html">VecFx32</A>
   <DD><A href="vec/VecFx16.html">VecFx16</A>
 </DL>
-<H4>������</H4>
-<DL><DT>������
+<H4>初期化</H4>
+<DL><DT>初期化
 <DD><A href="FX_Init.html">FX_Init</A>
 </DL>
-<H4>�v�Z</H4>
-<DL><DT>�Œ菬���̌v�Z
+<H4>計算</H4>
+<DL><DT>固定小数の計算
 <DD><A href="FX_Whole.html">FX_Whole</A>
 <DD><A href="FX_Floor.html">FX_Floor</A>
   <DD><A href="FX_Modf.html">FX_Modf</A>
@@ -56,7 +56,7 @@
   <DD><A href="FX_AsinIdx.html">FX_AsinIdx</A>
   <DD><A href="FX_AcosIdx.html">FX_AcosIdx</A>
   <DL>
-    <DT>�Œ菬���̌v�Z�i�񓯊��Łj
+    <DT>固定小数の計算（非同期版）
     <DD><A href="FX_DivAsync.html">FX_DivAsync</A>
     <DD><A href="FX_DivAsyncImm.html">FX_DivAsyncImm</A>
     <DD><A href="FX_GetDivResultFx64c.html">FX_GetDivResultFx64c</A>
@@ -70,7 +70,7 @@
     <DD><A href="FX_GetSqrtResult.html">FX_GetSqrtResult</A>
   </DL>
   <DL>
-    <DT>2x2�s��v�Z
+    <DT>2x2行列計算
     <DD><A href="mtx/MTX_Identity22.html">MTX_Identity22</A>
     <DD><A href="mtx/MTX_Transpose22.html">MTX_Transpose22</A>
     <DD><A href="mtx/MTX_Scale22.html">MTX_Scale22</A>
@@ -81,7 +81,7 @@
     <DD><A href="mtx/MTX_Copy22.html">MTX_Copy22</A>
   </DL>
   <DL>
-    <DT>3x3�s��v�Z
+    <DT>3x3行列計算
     <DD><A href="mtx/MTX_Identity33.html">MTX_Identity33</A>
     <DD><A href="mtx/MTX_Copy33To43.html">MTX_Copy33To43</A>
     <DD><A href="mtx/MTX_Copy33To44.html">MTX_Copy33To44</A>
@@ -98,7 +98,7 @@
     <DD><A href="mtx/MTX_Copy33.html">MTX_Copy33</A>
   </DL>
   <DL>
-    <DT>4x3�s��v�Z
+    <DT>4x3行列計算
     <DD><A href="mtx/MTX_Identity43.html">MTX_Identity43</A>
     <DD><A href="mtx/MTX_Copy43To33.html">MTX_Copy43To33</A>
     <DD><A href="mtx/MTX_Copy43To44.html">MTX_Copy43To44</A>
@@ -117,7 +117,7 @@
     <DD><A href="mtx/MTX_Copy43.html">MTX_Copy43</A>
   </DL>
   <DL>
-    <DT>4x4�s��v�Z
+    <DT>4x4行列計算
     <DD><A href="mtx/MTX_Identity44.html">MTX_Identity44</A>
     <DD><A href="mtx/MTX_Copy44To33.html">MTX_Copy44To33</A>
     <DD><A href="mtx/MTX_Copy44To43.html">MTX_Copy44To43</A>
@@ -139,7 +139,7 @@
     <DD><A href="mtx/MTX_Copy44.html">MTX_Copy44</A>
   </DL>
   <DL>
-    <DT>�x�N�g���v�Z
+    <DT>ベクトル計算
     <DD><A href="vec/VEC_Set.html">VEC_Set</A>
     <DD><A href="vec/VEC_Add.html">VEC_Add</A>
     <DD><A href="vec/VEC_Subtract.html">VEC_Subtract</A>
@@ -161,19 +161,19 @@
   </DL>
   <DD>
   <DL>
-    <DT>���̑�
+    <DT>その他
     <DD><A href="FX_DivS32.html">FX_DivS32</A>
     <DD><A href="FX_ModS32.html">FX_ModS32</A>
   </DL>
-  <H4>�}�N��</H4>
-  <P><A href="fx16_macros.html">fx16�^�p�̃}�N��</A></P>
-  <P><A href="fx32_macros.html">fx32�^�p�̃}�N��</A></P>
-  <P><A href="fx64_macros.html">fx64�^�p�̃}�N��</A></P>
-  <P><A href="fx64c_macros.html">fx64c�^�p�̃}�N��</A></P>
-  <H4><B>�萔</B></H4>
-  <P><A href="fx16_const.html">fx16�^�̒萔�}�N��</A></P>
-  <P><A href="fx32_const.html">fx32�^�̒萔�}�N��</A></P>
-  <P><A href="fx64c_const.html">fx64c�^�̒萔�}�N��</A></P>
+  <H4>マクロ</H4>
+  <P><A href="fx16_macros.html">fx16型用のマクロ</A></P>
+  <P><A href="fx32_macros.html">fx32型用のマクロ</A></P>
+  <P><A href="fx64_macros.html">fx64型用のマクロ</A></P>
+  <P><A href="fx64c_macros.html">fx64c型用のマクロ</A></P>
+  <H4><B>定数</B></H4>
+  <P><A href="fx16_const.html">fx16型の定数マクロ</A></P>
+  <P><A href="fx32_const.html">fx32型の定数マクロ</A></P>
+  <P><A href="fx64c_const.html">fx64c型の定数マクロ</A></P>
 </DL>
 </BODY>
 </HTML>

@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_hkemuri.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ‰B‚ê–ª“y‰Œ
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJéš ã‚Œè“‘åœŸç…™
  * @author	kagaya
  * @data	05.07.13
  *
@@ -18,30 +18,30 @@
 //==============================================================================
 //	define
 //==============================================================================
-#define HKEMURI_ANIME_FRAME (7)				///<‰B‚ê–ª“y‰ŒƒAƒjƒƒtƒŒ[ƒ€
+#define HKEMURI_ANIME_FRAME (7)				///<éš ã‚Œè“‘åœŸç…™ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-#define HKEMURI_DRAW_Z_OFFS (NUM_FX32(8))	///<•\¦À•WZƒIƒtƒZƒbƒg
+#define HKEMURI_DRAW_Z_OFFS (NUM_FX32(8))	///<è¡¨ç¤ºåº§æ¨™Zã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_HKEMURI_PTRŒ^
+///	FE_HKEMURI_PTRå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_HKEMURI * FE_HKEMURI_PTR;
 
 //--------------------------------------------------------------
-///	FE_HKEMURI\‘¢‘Ì
+///	FE_HKEMURIæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_HKEMURI
 {
 	FE_SYS *fes;
 }FE_HKEMURI;
 
-#define FE_HKEMURI_SIZE (sizeof(FE_HKEMURI))	///<FE_HKEMURIƒTƒCƒY
+#define FE_HKEMURI_SIZE (sizeof(FE_HKEMURI))	///<FE_HKEMURIã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	HKEMURI_ADD_H\‘¢‘Ì
+///	HKEMURI_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -52,7 +52,7 @@ typedef struct
 }HKEMURI_ADD_H;
 
 //--------------------------------------------------------------
-///	HKEMURI_WORK\‘¢‘Ì
+///	HKEMURI_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -67,7 +67,7 @@ typedef struct
 #define HKEMURI_WORK_SIZE (sizeof(HKEMURI_WORK))
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void HKemuri_GraphicInit( FE_HKEMURI_PTR hkemu );
 static void HKemuri_GraphicDelete( FE_HKEMURI_PTR hkemu );
@@ -76,11 +76,11 @@ static const EOA_H_NPP DATA_EoaH_HKemuri;
 const BLACT_ANIME_TBL DATA_BlActAnmTbl_HKemuri[];
 
 //==============================================================================
-//	‰B‚ê–ª“y‰Œ	ƒVƒXƒeƒ€
+//	éš ã‚Œè“‘åœŸç…™	ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰B‚ê–ª“y‰Œ‰Šú‰»
+ * éš ã‚Œè“‘åœŸç…™åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_HKEMURI_PTR FE_HKEMURI_PTR
  */
@@ -98,7 +98,7 @@ void * FE_HKemuri_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ‰B‚ê–ª“y‰Œíœ
+ * éš ã‚Œè“‘åœŸç…™å‰Šé™¤
  * @param	kusa		FE_HKEMURI_PTR
  * @retval	nothing
  */
@@ -112,11 +112,11 @@ void FE_HKemuri_Delete( void *work )
 }
 
 //==============================================================================
-//	‰B‚ê–ª“y‰Œ@ƒOƒ‰ƒtƒBƒbƒN
+//	éš ã‚Œè“‘åœŸç…™ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰B‚ê–ª“y‰Œ@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * éš ã‚Œè“‘åœŸç…™ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	hkemu	FE_GRASS_PTR
  * @retval	nothing
  */
@@ -136,7 +136,7 @@ static void HKemuri_GraphicInit( FE_HKEMURI_PTR hkemu )
 
 //--------------------------------------------------------------
 /**
- * ‰B‚ê–ª“y‰Œ@ƒOƒ‰ƒtƒBƒbƒNíœ
+ * éš ã‚Œè“‘åœŸç…™ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	hkemu	FE_HKEMURI_PTR
  * @retval	nothing
  */
@@ -151,11 +151,11 @@ static void HKemuri_GraphicDelete( FE_HKEMURI_PTR hkemu )
 }
 
 //==============================================================================
-//	EOA ‰B‚ê–ª“y‰Œ
+//	EOA éš ã‚Œè“‘åœŸç…™
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ—p‰B‚ê–ª“y‰Œ’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨éš ã‚Œè“‘åœŸç…™è¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -185,10 +185,10 @@ void FE_FldOBJHKemuri_Add( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰B‚ê–ª“y‰Œ@‰Šú‰»
+ * EOA éš ã‚Œè“‘åœŸç…™ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaHKemuri_Init( EOA_PTR eoa, void *wk )
@@ -212,7 +212,7 @@ static int EoaHKemuri_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰B‚ê–ª“y‰Œ@íœ
+ * EOA éš ã‚Œè“‘åœŸç…™ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -228,7 +228,7 @@ static void EoaHKemuri_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰B‚ê–ª“y‰Œ@“®ì
+ * EOA éš ã‚Œè“‘åœŸç…™ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -244,7 +244,7 @@ static void EoaHKemuri_Move( EOA_PTR eoa, void *wk )
 	fldobj = work->head.fldobj;
 	
 	switch( work->seq_no ){
-	case 0:													//—h‚ê
+	case 0:													//æºã‚Œ
 		BLACT_AnmFrameChg( work->act, FX32_ONE );
 		frame = BLACT_AnmFrameGetOffs( work->act ) / FX32_ONE;
 		
@@ -259,7 +259,7 @@ static void EoaHKemuri_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰B‚ê–ª“y‰Œ@•`‰æ
+ * EOA éš ã‚Œè“‘åœŸç…™ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -283,7 +283,7 @@ static void EoaHKemuri_Draw( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	‰B‚ê–ª“y‰ŒEOA_H
+///	éš ã‚Œè“‘åœŸç…™EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_HKemuri =
 {
@@ -295,7 +295,7 @@ static const EOA_H_NPP DATA_EoaH_HKemuri =
 };
 
 //--------------------------------------------------------------
-///	‰B‚ê–ª“y‰ŒƒAƒjƒ
+///	éš ã‚Œè“‘åœŸç…™ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_BlActAnmTbl_HKemuri[] =
 {

@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	wpcb_struct.h
- * @brief	Šî–{\‘¢‘Ì wpcb_xxx.c ‚µ‚©Ainclude‚µ‚Ä‚Í‚¢‚¯‚È‚¢
+ * @brief	åŸºæœ¬æ§‹é€ ä½“ wpcb_xxx.c ã—ã‹ã€includeã—ã¦ã¯ã„ã‘ãªã„
  * @author	goto
- * @date	2006.02.12(“ú)
+ * @date	2006.02.12(æ—¥)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -17,17 +17,17 @@
 
 // -----------------------------------------
 //
-//	  ƒ‚[ƒh—ñ‹“
+//	â–¡ ãƒ¢ãƒ¼ãƒ‰åˆ—æŒ™
 //
 // -----------------------------------------
 enum ECB_OPERATOR_MODE {
 	
-	ECB_MODE_PRI	= 0,	///< —Dæ“x
-	ECB_MODE_TARGET,		///< ‘ÎÛ
-	ECB_MODE_POS,			///< À•W
-	ECB_MODE_AXIS,			///< Ž²•ûŒü
-	ECB_MODE_FIELD,			///< ƒtƒB[ƒ‹ƒh
-	ECB_MODE_CAMERA,		///< ƒJƒƒ‰
+	ECB_MODE_PRI	= 0,	///< å„ªå…ˆåº¦
+	ECB_MODE_TARGET,		///< å¯¾è±¡
+	ECB_MODE_POS,			///< åº§æ¨™
+	ECB_MODE_AXIS,			///< è»¸æ–¹å‘
+	ECB_MODE_FIELD,			///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+	ECB_MODE_CAMERA,		///< ã‚«ãƒ¡ãƒ©
 	
 	ECB_MODE_MAX,
 	ECB_MODE_NUM = ECB_MODE_MAX,
@@ -38,7 +38,7 @@ enum ECB_OPERATOR_MODE {
 //------------------------------------------
 /**
  *
- * @brief	operator\‘¢‘Ì
+ * @brief	operatoræ§‹é€ ä½“
  *
  */
 //------------------------------------------
@@ -46,12 +46,12 @@ typedef struct {
 	
 	WE_SYS_PTR	wsp;				///< we_sys
 	PTC_PTR		ptc;				///< ptc
-	s8	reverce_flag;				///< ”½“]ƒtƒ‰ƒO
+	s8	reverce_flag;				///< åè»¢ãƒ•ãƒ©ã‚°
 	int mode[ ECB_MODE_NUM ];		///< mode
-	int s_client;					///< ŠJŽnƒNƒ‰ƒCƒAƒ“ƒg
-	int e_client;					///< I—¹ƒNƒ‰ƒCƒAƒ“ƒg
+	int s_client;					///< é–‹å§‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
+	int e_client;					///< çµ‚äº†ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
 	
-	VecFx32		pos;				///< ŽÀÛ‚ÌÀ•W
+	VecFx32		pos;				///< å®Ÿéš›ã®åº§æ¨™
 	
 } ECB_OPERATOR_DATA;
 

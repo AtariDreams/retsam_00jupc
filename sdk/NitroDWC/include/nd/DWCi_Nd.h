@@ -6,8 +6,8 @@
 
   $Log: DWCi_Nd.h,v $
   Revision 1.14  2007/02/21 04:38:01  takayama
-  DlLibs_20070116 ‚Æ“¯ŠúB
-  ‚½‚¾‚µAŽÀŽ¿•ÏX‚È‚µB
+  DlLibs_20070116 ã¨åŒæœŸã€‚
+  ãŸã ã—ã€å®Ÿè³ªå¤‰æ›´ãªã—ã€‚
 
   Revision 1.24  2006/06/23 06:54:22  aida
   replaced DWC_ND_COUNTBUFFER_LENGTH by DWC_ND_RECVBUF_MIN
@@ -96,53 +96,53 @@ extern "C" {
 
 //////////////////////////////////////////////////////////////
 
-// NHTTPƒ‰ƒCƒuƒ‰ƒŠ‚É—^‚¦‚éˆø”  HTTP’ÊMƒXƒŒƒbƒh‚Ì—Dæ“x
+// NHTTPãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ä¸Žãˆã‚‹å¼•æ•°  HTTPé€šä¿¡ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆåº¦
 #define DWC_ND_NHTTP_THREAD_PRIORITY		10
 
-// ŽóMƒoƒbƒtƒ@‚ÌÅ’á’·
+// å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®æœ€ä½Žé•·
 #define DWC_ND_RECVBUF_MIN						128		// [byte]	
 
-// ƒtƒ@ƒCƒ‹ƒŠƒXƒgŽóM—pƒoƒbƒtƒ@
-// DWCi_NdGetFileListAsync()‚ÅŽg—p
+// ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆå—ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡
+// DWCi_NdGetFileListAsync()ã§ä½¿ç”¨
 #define DWC_ND_LISTBUFFER_PERNUM			256  // [byte]
 
-// DWCi_NdStartup()‚É“n‚³‚ê‚éDLƒQ[ƒ€ƒR[ƒh(gamecd)‚ÌƒoƒCƒg’·
+// DWCi_NdStartup()ã«æ¸¡ã•ã‚Œã‚‹DLã‚²ãƒ¼ãƒ ã‚³ãƒ¼ãƒ‰(gamecd)ã®ãƒã‚¤ãƒˆé•·
 #define DWC_ND_LENGTH_GAMECODE				4
 
-// DWCi_NdStartup()‚É“n‚³‚ê‚é”é–§Œ®(passwd)‚ÌƒoƒCƒg’·
+// DWCi_NdStartup()ã«æ¸¡ã•ã‚Œã‚‹ç§˜å¯†éµ(passwd)ã®ãƒã‚¤ãƒˆé•·
 #define DWC_ND_LENGTH_PASSWORD				16
 
 
 typedef enum {
-	DWC_ND_ERROR_NONE,     // ƒGƒ‰[‚È‚µ
-	DWC_ND_ERROR_ALLOC,    // ƒq[ƒvƒƒ‚ƒŠŠm•Û‚ÉŽ¸”s
-	DWC_ND_ERROR_BUSY,     // ƒ_ƒEƒ“ƒ[ƒh’†‚ÉV‹KƒŠƒNƒGƒXƒg‚ð—v‹‚µ‚½
-	DWC_ND_ERROR_HTTP,     // HTTP’ÊM‚ÉŽ¸”s
-	DWC_ND_ERROR_BUFFULL,  // ŽóMƒoƒbƒtƒ@‚ª‘«‚è‚È‚¢
-	DWC_ND_ERROR_DLSERVER, // ƒT[ƒo‚ªƒGƒ‰[ƒR[ƒh‚ð•Ô‚µ‚Ä‚«‚½
-	DWC_ND_ERROR_CANCELED, // ƒ_ƒEƒ“ƒ[ƒh‚ªƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½
-	DWC_ND_ERROR_PARAM,		 // •s³‚Èƒpƒ‰ƒ[ƒ^
-	DWC_ND_ERROR_FATAL,		 // –¢’è‹`‚Ì’v–½“I‚ÈƒGƒ‰[
+	DWC_ND_ERROR_NONE,     // ã‚¨ãƒ©ãƒ¼ãªã—
+	DWC_ND_ERROR_ALLOC,    // ãƒ’ãƒ¼ãƒ—ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—
+	DWC_ND_ERROR_BUSY,     // ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­ã«æ–°è¦ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¦æ±‚ã—ãŸ
+	DWC_ND_ERROR_HTTP,     // HTTPé€šä¿¡ã«å¤±æ•—
+	DWC_ND_ERROR_BUFFULL,  // å—ä¿¡ãƒãƒƒãƒ•ã‚¡ãŒè¶³ã‚Šãªã„
+	DWC_ND_ERROR_DLSERVER, // ã‚µãƒ¼ãƒãŒã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã—ã¦ããŸ
+	DWC_ND_ERROR_CANCELED, // ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ
+	DWC_ND_ERROR_PARAM,		 // ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	DWC_ND_ERROR_FATAL,		 // æœªå®šç¾©ã®è‡´å‘½çš„ãªã‚¨ãƒ©ãƒ¼
 	DWC_ND_ERROR_MAX
 } DWCNdError;
 
 typedef enum {
-	DWC_ND_CBREASON_INITIALIZE,			// ‰Šú‰»ˆ—I—¹ (DWCi_Nd‚Å‚ÍŽg—p‚µ‚È‚¢)
-	DWC_ND_CBREASON_GETFILELISTNUM, // ƒtƒ@ƒCƒ‹ƒŠƒXƒgƒGƒ“ƒgƒŠ”Žæ“¾ˆ—I—¹
-	DWC_ND_CBREASON_GETFILELIST,    // ƒtƒ@ƒCƒ‹ƒŠƒXƒgŽæ“¾ˆ—I—¹
-	DWC_ND_CBREASON_GETFILE,        // ƒtƒ@ƒCƒ‹Žæ“¾ˆ—I—¹
+	DWC_ND_CBREASON_INITIALIZE,			// åˆæœŸåŒ–å‡¦ç†çµ‚äº† (DWCi_Ndã§ã¯ä½¿ç”¨ã—ãªã„)
+	DWC_ND_CBREASON_GETFILELISTNUM, // ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆã‚¨ãƒ³ãƒˆãƒªæ•°å–å¾—å‡¦ç†çµ‚äº†
+	DWC_ND_CBREASON_GETFILELIST,    // ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆå–å¾—å‡¦ç†çµ‚äº†
+	DWC_ND_CBREASON_GETFILE,        // ãƒ•ã‚¡ã‚¤ãƒ«å–å¾—å‡¦ç†çµ‚äº†
 	DWC_ND_CBREASON_MAX
 } DWCNdCallbackReason;
 
 #define DWC_ND_FILEATTR_LEN	10
 
 typedef struct {
-	char name[32+1];			// ƒRƒ“ƒeƒ“ƒc–¼(NULLI’[ASCII•¶Žš—ñ)
-	short explain[50+1];	// à–¾•¶(UTF16 LE•¶Žš—ñ)
-	char param1[DWC_ND_FILEATTR_LEN+1];	// ‘®«1
-	char param2[DWC_ND_FILEATTR_LEN+1];	// ‘®«2
-	char param3[DWC_ND_FILEATTR_LEN+1];	// ‘®«3
-	unsigned int size;	// ƒtƒ@ƒCƒ‹ƒTƒCƒY
+	char name[32+1];			// ã‚³ãƒ³ãƒ†ãƒ³ãƒ„å(NULLçµ‚ç«¯ASCIIæ–‡å­—åˆ—)
+	short explain[50+1];	// èª¬æ˜Žæ–‡(UTF16 LEæ–‡å­—åˆ—)
+	char param1[DWC_ND_FILEATTR_LEN+1];	// å±žæ€§1
+	char param2[DWC_ND_FILEATTR_LEN+1];	// å±žæ€§2
+	char param3[DWC_ND_FILEATTR_LEN+1];	// å±žæ€§3
+	unsigned int size;	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
 } DWCNdFileInfo;
 
 typedef void* (*DWCNdAlloc)( u32 size, int align );

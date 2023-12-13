@@ -15,19 +15,19 @@
   do-indent
 
   Revision 1.41  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL �̔��蕔���� SDK_WIN32 �ł̔�����ǉ�
+  SDK_FROM_TOOL の判定部分に SDK_WIN32 での判定も追加
 
   Revision 1.40  2005/02/28 05:26:13  yosizaki
   do-indent.
 
   Revision 1.39  2005/02/15 08:10:02  terui
-  GX_TrySetBankFor* �֐���ǉ��B
+  GX_TrySetBankFor* 関数を追加。
 
   Revision 1.38  2005/02/09 09:14:50  terui
-  VRAM��ID��`��OS�̒�`�ɍ��킹��悤�ɕύX�B
+  VRAMのID定義をOSの定義に合わせるように変更。
 
   Revision 1.37  2004/12/06 07:43:24  takano_makoto
-  GX_SetBankForBGEx�̈�����GX_VRAM_BG_NONE���w��ł��Ȃ��悤�ɏC��
+  GX_SetBankForBGExの引数にGX_VRAM_BG_NONEが指定できないように修正
 
   Revision 1.36  2004/11/25 11:12:13  takano_makoto
   add GX_SetBankForBGEx

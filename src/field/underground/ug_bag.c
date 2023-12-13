@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_bag.c
- * @brief	’n‰º‚Ì‚©‚Î‚ñ‚Ì’†g‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+ * @brief	åœ°ä¸‹ã®ã‹ã°ã‚“ã®ä¸­èº«ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author	Katsumi Ohno
  * @date    2005.12.21
  */
@@ -47,13 +47,13 @@
 #include "ug_shop.h"
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 
 
-#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-//#define	_SUB_MENU_MAX		( 7 )					// €–ÚÅ‘å”
+//#define	_SUB_MENU_MAX		( 7 )					// é …ç›®æœ€å¤§æ•°
 
 #define	_TRAP_BAG_MAX      (20)
 #define	_STONE_BAG_MAX     (20)
@@ -65,28 +65,28 @@
 #define _GOODS_COMPUTER_MAX     (200)
 #define _TREASURE_COMPUTER_MAX  (200)
 
-// ƒXƒ^[ƒgƒƒjƒ…[‚ÌƒLƒƒƒ‰ˆÊ’u
+// ã‚¹ã‚¿ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚­ãƒ£ãƒ©ä½ç½®
 #define	BMPWIN_STARTMENU_CGX	( MENU_WIN_CGX_NUM-FLD_MENU_WIN_SX*FLD_MENU_WIN_SY )
 
-// Šeƒƒjƒ…[€–Ú‚ÌƒEƒBƒ“ƒhƒEXƒTƒCƒY
+// å„ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Xã‚µã‚¤ã‚º
 #define	BMPWIN_PARAMMENU_SX		( _TRAPMENU_SIZE_X )
-// Šeƒƒjƒ…[€–Ú‚ÌƒEƒBƒ“ƒhƒEYƒTƒCƒY
+// å„ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Yã‚µã‚¤ã‚º
 #define	BMPWIN_PARAMMENU_SY		( _FIELD_MENU_MAX * 2 )
-// Šeƒƒjƒ…[€–Ú‚ÌƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ˆÊ’u
+// å„ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ä½ç½®
 #define	BMPWIN_PARAMMENU_CGX	( BMPWIN_STARTMENU_CGX-BMPWIN_PARAMMENU_SX*BMPWIN_PARAMMENU_SY )
-// Šeƒƒjƒ…[€–Ú‚©‚ç‚Ìs“®ƒƒjƒ…[
-#define	BMPWIN_FUNCMENU_CGX		( BMPWIN_STARTMENU_CGX )	// ‚±‚±‚©‚çƒXƒ^[ƒgƒƒjƒ…[‚É–ß‚é‚±‚Æ‚Í‚È‚¢‚Ì‚ÅA“¯‚¶—Ìˆæ‚Åok
+// å„ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã‹ã‚‰ã®è¡Œå‹•ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+#define	BMPWIN_FUNCMENU_CGX		( BMPWIN_STARTMENU_CGX )	// ã“ã“ã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«æˆ»ã‚‹ã“ã¨ã¯ãªã„ã®ã§ã€åŒã˜é ˜åŸŸã§ok
 
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 
 typedef struct{
-    UNDERGROUNDDATA* pUGData; // ’n‰ºƒZ[ƒuƒf[ƒ^
-    u8 deleteIndex;   // Á‚·ƒAƒCƒeƒ€‚ª“ü‚Á‚Ä‚¢‚éindex
-    u8 deleteItem;    // Á‚·ƒAƒCƒeƒ€”Ô†
+    UNDERGROUNDDATA* pUGData; // åœ°ä¸‹ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+    u8 deleteIndex;   // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ãŒå…¥ã£ã¦ã„ã‚‹index
+    u8 deleteItem;    // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
 } _UNDER_ITEM;
 
 
@@ -99,16 +99,16 @@ static const BMPWIN_DAT _yesNoBmpDat = {
     };
 
 //==============================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //==============================================================================
 typedef void (*pStartFunc)(_START_WORK *);
 
 
 //==============================================================================
-//	static’è‹`
+//	staticå®šç¾©
 //==============================================================================
 
-// ƒAƒCƒRƒ“ŠÖ˜A
+// ã‚¢ã‚¤ã‚³ãƒ³é–¢é€£
 static void _CellActDelete( _START_WORK * wk );
 static void CellActAnm( _START_WORK * wk );
 static void CursorMove( CLACT_WORK_PTR cwp, u32 cur_pos );
@@ -116,7 +116,7 @@ static void IconAnmChange( CLACT_WORK_PTR cwp, u16 anm, u16 pal );
 static void MoveIconAnmChg( _START_WORK * wk, u16 old_pos, u16 new_pos );
 static void SelectIconAnmCheck( CLACT_WORK_PTR cwp );
 
-// ƒƒjƒ…[ŠÖ˜A
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢é€£
 static void _bagProcess(TCB_PTR tcb, void* work);
 static BOOL _startMenuFunc(TCB_PTR tcb, void* work);
 static void _cardStart(_START_WORK* pStart);
@@ -141,14 +141,14 @@ static void _statusList( _START_WORK* pStart );
 static BOOL _trapSubMenuFunc(TCB_PTR tcb, void* work);
 static BOOL _goodsSubMenuFunc(TCB_PTR tcb, void* work);
 
-// ŠøÁ‹ƒƒjƒ…[ŠÖ˜A
+// æ——æ¶ˆå»ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢é€£
 static void _flagProcess(TCB_PTR tcb, void* work);
 
 static void _goodsMenuStart(_START_WORK* pStart,CHANGE_UG_ITEM_FUNC pChangeFunc);
 static BOOL _goodsMenuFunc(TCB_PTR tcb, void* work);
 static BOOL _goodsMenuFuncSub2(TCB_PTR tcb, void* work);
 
-// ’nã‚É–ß‚é
+// åœ°ä¸Šã«æˆ»ã‚‹
 static void _exitTalkFunc(TCB_PTR tcb, void* work);
 static void _exitTalkFunc2(TCB_PTR tcb, void* work);
 static void _exitTalkFunc3(TCB_PTR tcb, void* work);
@@ -157,7 +157,7 @@ static void _exitTalkFunc4(TCB_PTR tcb, void* work);
 static void _delEnd(TCB_PTR tcb, _START_WORK* pStart, BOOL bHold);
 
 //==============================================================================
-//	STARTƒƒjƒ…[ƒŠƒXƒg—pƒf[ƒ^“™
+//	STARTãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿ç­‰
 //==============================================================================
 
 static const struct {
@@ -175,51 +175,51 @@ static const struct {
 
 
 /*
-///START‘I‘ğƒƒjƒ…[‚ÌƒŠƒXƒg
+///STARTé¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆ
 static const BMPLIST_HEADER StartMenuListHeader = {
-    NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,					// 
-    NELEMS(MenuParamList),	// ƒŠƒXƒg€–Ú”
-    NELEMS(MenuParamList),	// •\¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-    8,						// €–Ú•\¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-    0,						// •\¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶šF
-    FBMP_COL_WHITE,			// ”wŒiF
-    FBMP_COL_BLK_SDW,		// •¶š‰eF
-    0,						// •¶šŠÔŠu‚w
-    16,						// •¶šŠÔŠu‚x
-    BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,				// •¶šw’è
-    0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
-    NULL,                   // ƒ[ƒN
+    NELEMS(MenuParamList),	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    NELEMS(MenuParamList),	// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,				// æ–‡å­—æŒ‡å®š
+    0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
+    NULL,                   // ãƒ¯ãƒ¼ã‚¯
 };
 */
    
-///”Ä—p‘I‘ğƒƒjƒ…[‚ÌƒŠƒXƒg
+///æ±ç”¨é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆ
 static const BMPLIST_HEADER MenuListHeader = {
-    NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,					// 
-    _TRAP_BAG_MAX,	// ƒŠƒXƒg€–Ú”
-    _TRAP_BAG_MAX,	// •\¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-    8,						// €–Ú•\¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-    0,						// •\¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶šF
-    FBMP_COL_WHITE,			// ”wŒiF
-    FBMP_COL_BLK_SDW,		// •¶š‰eF
-    0,						// •¶šŠÔŠu‚w
-    16,						// •¶šŠÔŠu‚x
-    BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,			// •¶šw’è
-    0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
-    NULL,                   // ƒ[ƒN
+    _TRAP_BAG_MAX,	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    _TRAP_BAG_MAX,	// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,			// æ–‡å­—æŒ‡å®š
+    0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
+    NULL,                   // ãƒ¯ãƒ¼ã‚¯
 };
 
 
@@ -236,20 +236,20 @@ enum {
 	MENU_POS_CHAT,
 };
 enum {
-	ICON_ZUKAN,		// }ŠÓƒAƒCƒRƒ“
-	ICON_POKEMON,	// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒAƒCƒRƒ“
-	ICON_BAG,		// ƒoƒbƒOƒAƒCƒRƒ“
-	ICON_HERO,		// ƒgƒŒ[ƒi[ƒJ[ƒhƒAƒCƒRƒ“
-	ICON_REPORT,	// ƒŒƒ|[ƒgƒAƒCƒRƒ“
-	ICON_CONFIG,	// İ’èƒAƒCƒRƒ“
-	ICON_CLOSE,		// •Â‚¶‚éƒAƒCƒRƒ“
-	ICON_BAG_F,		// ƒoƒbƒOi—j
-	ICON_CHAT,		// ƒ`ƒƒƒbƒg
+	ICON_ZUKAN,		// å›³é‘‘ã‚¢ã‚¤ã‚³ãƒ³
+	ICON_POKEMON,	// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚¢ã‚¤ã‚³ãƒ³
+	ICON_BAG,		// ãƒãƒƒã‚°ã‚¢ã‚¤ã‚³ãƒ³
+	ICON_HERO,		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ã‚¢ã‚¤ã‚³ãƒ³
+	ICON_REPORT,	// ãƒ¬ãƒãƒ¼ãƒˆã‚¢ã‚¤ã‚³ãƒ³
+	ICON_CONFIG,	// è¨­å®šã‚¢ã‚¤ã‚³ãƒ³
+	ICON_CLOSE,		// é–‰ã˜ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
+	ICON_BAG_F,		// ãƒãƒƒã‚°ï¼ˆå¥³ï¼‰
+	ICON_CHAT,		// ãƒãƒ£ãƒƒãƒˆ
 };
 
-// ƒZƒ‹ƒAƒNƒ^[“o˜^êŠ
-#define	CLA_SET_CURSOR	( 0 )	// ‘I‘ğƒJ[ƒ\ƒ‹
-#define	CLA_SET_ICON	( 1 )	// ƒAƒCƒRƒ“
+// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²å ´æ‰€
+#define	CLA_SET_CURSOR	( 0 )	// é¸æŠã‚«ãƒ¼ã‚½ãƒ«
+#define	CLA_SET_ICON	( 1 )	// ã‚¢ã‚¤ã‚³ãƒ³
 
 #define	CLA_CURSOR_PX	( 204 )
 #define	CLA_CURSOR_PY	( 20 )
@@ -281,7 +281,7 @@ enum {
 
 static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 {
-	{	// ƒJ[ƒ\ƒ‹
+	{	// ã‚«ãƒ¼ã‚½ãƒ«
 		CLA_CURSOR_PX, CLA_CURSOR_PY, 0,
 		0, 1, 1, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{
@@ -290,7 +290,7 @@ static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 		},
 		0, 0
 	},
-	{	// ƒAƒCƒRƒ“‚P
+	{	// ã‚¢ã‚¤ã‚³ãƒ³ï¼‘
 		CLA_ICON_PX, CLA_ICON_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{
@@ -307,7 +307,7 @@ static const TCATS_OBJECT_ADD_PARAM_S ActAddParam_S[] =
 #define	FLDMENU_CLA_ANM_RES_MAX		( 2 )
 
 //==============================================================================
-// ŠÖ”
+// é–¢æ•°
 //==============================================================================
 
 static void CellActSet( _START_WORK * wk, u8 * list, u32 max )
@@ -436,7 +436,7 @@ static void SelectIconAnmCheck( CLACT_WORK_PTR cwp )
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚Æ©•ª‚ÌƒoƒbƒO‚Ì—ÌˆæŠm•Û
+ * ãƒ‘ã‚½ã‚³ãƒ³ã¨è‡ªåˆ†ã®ãƒãƒƒã‚°ã®é ˜åŸŸç¢ºä¿
  * @param   none
  * @retval  none
  */
@@ -446,15 +446,15 @@ void CommUnderBagInitialize(UNDERGROUNDDATA* pUGData)
 {
     _pUnderItem = sys_AllocMemory(HEAPID_COMMUNICATION, sizeof(_UNDER_ITEM));
     MI_CpuClear8(_pUnderItem,sizeof(_UNDER_ITEM));
-    _pUnderItem->deleteIndex = 0;   // Á‚·ƒAƒCƒeƒ€‚ª“ü‚Á‚Ä‚¢‚éindex
-    _pUnderItem->deleteItem = 0;    // Á‚·ƒAƒCƒeƒ€”Ô†
+    _pUnderItem->deleteIndex = 0;   // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ãŒå…¥ã£ã¦ã„ã‚‹index
+    _pUnderItem->deleteItem = 0;    // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
     _pUnderItem->pUGData = pUGData;
     OHNO_PRINT("CommUnderBagInitialize\n");
 }
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚Æ©•ª‚ÌƒoƒbƒO‚Ì—ÌˆæŠJ•ú
+ * ãƒ‘ã‚½ã‚³ãƒ³ã¨è‡ªåˆ†ã®ãƒãƒƒã‚°ã®é ˜åŸŸé–‹æ”¾
  * @param   none
  * @retval  none
  */
@@ -462,15 +462,15 @@ void CommUnderBagInitialize(UNDERGROUNDDATA* pUGData)
 
 void CommUnderBagFinalize(void)
 {
-    // ƒZ[ƒu‚·‚é•K—v‚ª‚ ‚é
+    // ã‚»ãƒ¼ãƒ–ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
     sys_FreeMemoryEz(_pUnderItem);
 }
 
 //==============================================================================
 /**
- * ©•ª‚ÌƒoƒbƒO‚Ìã©‚Ì”‚ğ“¾‚é
+ * è‡ªåˆ†ã®ãƒãƒƒã‚°ã®ç½ ã®æ•°ã‚’å¾—ã‚‹
  * @param   none
- * @retval  ã©‚Ì”
+ * @retval  ç½ ã®æ•°
  */
 //==============================================================================
 
@@ -484,9 +484,9 @@ static int _underBagGetTrapNum(void* work)
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚ÌTRAP‚Ì”‚ğ“¾‚é
+ * ãƒ‘ã‚½ã‚³ãƒ³ã®TRAPã®æ•°ã‚’å¾—ã‚‹
  * @param   work
- * @retval  TRAP‚Ì”
+ * @retval  TRAPã®æ•°
  */
 //==============================================================================
 
@@ -500,8 +500,8 @@ static int _underPcGetTrapNum(void* work)
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚ÌTRAPTYPE‚ğ•Ô‚·
- * @param   index    ‰½”Ô–Ú‚ÌTRAP‚ğ“¾‚é‚©
+ * ãƒ‘ã‚½ã‚³ãƒ³ã®TRAPTYPEã‚’è¿”ã™
+ * @param   index    ä½•ç•ªç›®ã®TRAPã‚’å¾—ã‚‹ã‹
  * @retval  TRAPTYPE
  */
 //==============================================================================
@@ -516,9 +516,9 @@ int _underPcGetTrapType(int index, void* work)
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚ÌGOODS‚Ì”‚ğ“¾‚é
+ * ãƒ‘ã‚½ã‚³ãƒ³ã®GOODSã®æ•°ã‚’å¾—ã‚‹
  * @param   work
- * @retval  GOODS‚Ì”
+ * @retval  GOODSã®æ•°
  */
 //==============================================================================
 
@@ -532,8 +532,8 @@ static int _underPcGetGoodsNum(void* work)
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚ÌGOODSID‚ğ•Ô‚·
- * @param   index    ‰½”Ô–Ú‚ÌGOODS‚ğ“¾‚é‚©
+ * ãƒ‘ã‚½ã‚³ãƒ³ã®GOODSIDã‚’è¿”ã™
+ * @param   index    ä½•ç•ªç›®ã®GOODSã‚’å¾—ã‚‹ã‹
  * @retval  goodsID
  */
 //==============================================================================
@@ -548,9 +548,9 @@ int _underPcGetGoodsID(int index, void* work)
 
 //==============================================================================
 /**
- * ©•ª‚ÌƒoƒbƒO‚ÌGOODS‚Ì”‚ğ“¾‚é
+ * è‡ªåˆ†ã®ãƒãƒƒã‚°ã®GOODSã®æ•°ã‚’å¾—ã‚‹
  * @param   none
- * @retval  GOODS‚Ì”
+ * @retval  GOODSã®æ•°
  */
 //==============================================================================
 
@@ -564,8 +564,8 @@ static int _underBagGetGoodsNum(void* work)
 
 //==============================================================================
 /**
- * ©•ª‚ÌƒoƒbƒO‚ÌGOODSID‚ğ•Ô‚·
- * @param   index    ‰½”Ô–Ú‚ÌGOODS‚ğ“¾‚é‚©
+ * è‡ªåˆ†ã®ãƒãƒƒã‚°ã®GOODSIDã‚’è¿”ã™
+ * @param   index    ä½•ç•ªç›®ã®GOODSã‚’å¾—ã‚‹ã‹
  * @retval  goodsID
  */
 //==============================================================================
@@ -580,7 +580,7 @@ int _underBagGetGoodsID(int index, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒbƒO‚ÌGOODS‚ğÁ‚·
+ * @brief   ãƒãƒƒã‚°ã®GOODSã‚’æ¶ˆã™
  * @param   type   GOODSTYPE
  * @retval  none
  */
@@ -593,9 +593,9 @@ void UgBagDeleteGoods(int type)
 
 //==============================================================================
 /**
- * ©•ª‚ÌƒoƒbƒO‚Ìƒ^ƒ}‚Ì”‚ğ“¾‚é
+ * è‡ªåˆ†ã®ãƒãƒƒã‚°ã®ã‚¿ãƒã®æ•°ã‚’å¾—ã‚‹
  * @param   none
- * @retval  ‚½‚Ü‚Ì”
+ * @retval  ãŸã¾ã®æ•°
  */
 //==============================================================================
 
@@ -609,8 +609,8 @@ static int _underBagGetStoneNum(void* work)
 
 //==============================================================================
 /**
- * ©•ª‚ÌƒoƒbƒO‚Ìã©ID‚ğ•Ô‚·
- * @param   index    ‰½”Ô–Ú‚Ìã©‚ğ“¾‚é‚©
+ * è‡ªåˆ†ã®ãƒãƒƒã‚°ã®ç½ IDã‚’è¿”ã™
+ * @param   index    ä½•ç•ªç›®ã®ç½ ã‚’å¾—ã‚‹ã‹
  * @retval  trapID
  */
 //==============================================================================
@@ -625,8 +625,8 @@ int _underBagGetTrapID(int index,void* work)
 
 //==============================================================================
 /**
- * ©•ª‚ÌƒoƒbƒO‚Ìƒ^ƒ}ID‰½‚©‚ğ•Ô‚·
- * @param   index    ‰½”Ô–Ú‚Ì‚½‚Ü‚ğ“¾‚é‚©
+ * è‡ªåˆ†ã®ãƒãƒƒã‚°ã®ã‚¿ãƒIDä½•ã‹ã‚’è¿”ã™
+ * @param   index    ä½•ç•ªç›®ã®ãŸã¾ã‚’å¾—ã‚‹ã‹
  * @retval  stoneID
  */
 //==============================================================================
@@ -641,8 +641,8 @@ int _underBagGetStoneID(int index, void* work)
 
 //==============================================================================
 /**
- * ©•ª‚ÌƒoƒbƒO‚Ìƒ^ƒ}Carat‰½‚©‚ğ•Ô‚·
- * @param   index    ‰½”Ô–Ú‚Ì‚½‚Ü‚ğ“¾‚é‚©
+ * è‡ªåˆ†ã®ãƒãƒƒã‚°ã®ã‚¿ãƒCaratä½•ã‹ã‚’è¿”ã™
+ * @param   index    ä½•ç•ªç›®ã®ãŸã¾ã‚’å¾—ã‚‹ã‹
  * @retval  Carat
  */
 //==============================================================================
@@ -657,9 +657,9 @@ int _underBagGetStoneCarat(int index, void* work)
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚Ìƒ^ƒ}‚Ì”‚ğ“¾‚é
+ * ãƒ‘ã‚½ã‚³ãƒ³ã®ã‚¿ãƒã®æ•°ã‚’å¾—ã‚‹
  * @param   none
- * @retval  ‚½‚Ü‚Ì”
+ * @retval  ãŸã¾ã®æ•°
  */
 //==============================================================================
 
@@ -673,8 +673,8 @@ static int _underPcGetStoneNum(void* work)
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚Ìƒ^ƒ}ID‰½‚©‚ğ•Ô‚·
- * @param   index    ‰½”Ô–Ú‚Ì‚½‚Ü‚ğ“¾‚é‚©
+ * ãƒ‘ã‚½ã‚³ãƒ³ã®ã‚¿ãƒIDä½•ã‹ã‚’è¿”ã™
+ * @param   index    ä½•ç•ªç›®ã®ãŸã¾ã‚’å¾—ã‚‹ã‹
  * @retval  stoneID
  */
 //==============================================================================
@@ -689,8 +689,8 @@ int _underPcGetStoneType(int index, void* work)
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚Ìƒ^ƒ}‚ª‰½ƒJƒ‰ƒbƒg‚©‚ğ•Ô‚·
- * @param   index    ‰½”Ô–Ú‚Ì‚½‚Ü‚ğ“¾‚é‚©
+ * ãƒ‘ã‚½ã‚³ãƒ³ã®ã‚¿ãƒãŒä½•ã‚«ãƒ©ãƒƒãƒˆã‹ã‚’è¿”ã™
+ * @param   index    ä½•ç•ªç›®ã®ãŸã¾ã‚’å¾—ã‚‹ã‹
  * @retval  stoneID
  */
 //==============================================================================
@@ -705,9 +705,9 @@ int _underPcGetStoneCarat(int index, void* work)
 
 //==============================================================================
 /**
- * ©•ª‚ÌƒoƒbƒO‚Ì‚¨•ó‚Ì”‚ğ“¾‚é
+ * è‡ªåˆ†ã®ãƒãƒƒã‚°ã®ãŠå®ã®æ•°ã‚’å¾—ã‚‹
  * @param   none
- * @retval  ‚½‚Ü‚Ì”
+ * @retval  ãŸã¾ã®æ•°
  */
 //==============================================================================
 
@@ -721,8 +721,8 @@ static int _underBagGetTreasureNum(void* work)
 
 //==============================================================================
 /**
- * ©•ª‚ÌƒoƒbƒO‚Ìƒ^ƒ}ID‰½‚©‚ğ•Ô‚·
- * @param   index    ‰½”Ô–Ú‚Ì‚½‚Ü‚ğ“¾‚é‚©
+ * è‡ªåˆ†ã®ãƒãƒƒã‚°ã®ã‚¿ãƒIDä½•ã‹ã‚’è¿”ã™
+ * @param   index    ä½•ç•ªç›®ã®ãŸã¾ã‚’å¾—ã‚‹ã‹
  * @retval  stoneID
  */
 //==============================================================================
@@ -737,10 +737,10 @@ int _underBagGetTreasureID(int index, void* work)
 
 //==============================================================================
 /**
- * ƒoƒbƒO‚É‚½‚Ü‚ğ“ü‚ê‚é
- * @param   no      ‚½‚Üƒ^ƒCƒv
- * @param   carat   ƒJƒ‰ƒbƒg
- * @retval  ‚½‚Ü‚ğ“ü‚ê‚½‚çTRUE
+ * ãƒãƒƒã‚°ã«ãŸã¾ã‚’å…¥ã‚Œã‚‹
+ * @param   no      ãŸã¾ã‚¿ã‚¤ãƒ—
+ * @param   carat   ã‚«ãƒ©ãƒƒãƒˆ
+ * @retval  ãŸã¾ã‚’å…¥ã‚ŒãŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -760,9 +760,9 @@ BOOL CommUnderBagAddStone(int no, int carat)
 
 //==============================================================================
 /**
- * ‚¨‚½‚©‚ç‚ğƒoƒbƒO‚É“ü‚ê‚é
- * @param   no      •óƒ^ƒCƒv
- * @retval  •ó‚ğ“ü‚ê‚½‚çTRUE
+ * ãŠãŸã‹ã‚‰ã‚’ãƒãƒƒã‚°ã«å…¥ã‚Œã‚‹
+ * @param   no      å®ã‚¿ã‚¤ãƒ—
+ * @retval  å®ã‚’å…¥ã‚ŒãŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -774,9 +774,9 @@ BOOL CommUnderBagAddTreasure(int no)
 
 //==============================================================================
 /**
- * ã©‚ğ‚©‚Î‚ñ‚É’Ç‰Á
- * @param   no    ã©ƒ^ƒCƒv”Ô†
- * @retval  ’Ç‰Á‚Å‚«‚½‚çTRUE
+ * ç½ ã‚’ã‹ã°ã‚“ã«è¿½åŠ 
+ * @param   no    ç½ ã‚¿ã‚¤ãƒ—ç•ªå·
+ * @retval  è¿½åŠ ã§ããŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -787,9 +787,9 @@ BOOL CommUnderBagAddTrap(int no)
 
 //==============================================================================
 /**
- * GOODS‚ğ‚©‚Î‚ñ‚É’Ç‰Á
- * @param   no    GOODSƒ^ƒCƒv”Ô†
- * @retval  ’Ç‰Á‚Å‚«‚½‚çTRUE
+ * GOODSã‚’ã‹ã°ã‚“ã«è¿½åŠ 
+ * @param   no    GOODSã‚¿ã‚¤ãƒ—ç•ªå·
+ * @retval  è¿½åŠ ã§ããŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -800,7 +800,7 @@ BOOL CommUnderBagAddGoods(int no)
 
 //==============================================================================
 /**
- * ’n‰ºƒoƒbƒO‰Šú‰»
+ * åœ°ä¸‹ãƒãƒƒã‚°åˆæœŸåŒ–
  * @param   none
  * @retval  none
  */
@@ -828,12 +828,12 @@ void CommUnderBagInit(pBagEndFunc func, FIELDSYS_WORK* pFSys)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ƒŠƒXƒgì¬
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	event	ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg—pƒpƒ‰ƒ[ƒ^
- * @param	list	ƒŠƒXƒgì¬êŠ
+ * @param	event	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	list	ãƒªã‚¹ãƒˆä½œæˆå ´æ‰€
  *
- * @return	€–Ú”
+ * @return	é …ç›®æ•°
  */
 //--------------------------------------------------------------------------------------------
 static u32 _menuListMake( u8 * list )
@@ -860,8 +860,8 @@ static u32 _menuListMake( u8 * list )
 
 //==============================================================================
 /**
- * ˜b‚µ‚©‚¯‚Ì‹N“®‚ğs‚¤
- * @param   targetID   ˜b‚µ‘Šè‚ÌINDEX
+ * è©±ã—ã‹ã‘ã®èµ·å‹•ã‚’è¡Œã†
+ * @param   targetID   è©±ã—ç›¸æ‰‹ã®INDEX
  * @retval  none
  */
 //==============================================================================
@@ -878,7 +878,7 @@ static void _startMenuInit(_START_WORK* pStart)
     
     //FieldOBJSys_MoveStopAll( pStart->pFSys->fldobjsys );
     
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     pStart->menulist = BMP_MENULIST_Create( NELEMS(MenuParamList), HEAPID_FIELD );
     GF_BGL_BmpWinAdd(pStart->pFSys->bgl,&pStart->win,
                      GF_BGL_FRAME3_M, FLD_MENU_WIN_PX, FLD_MENU_WIN_PY, FLD_MENU_WIN_SX,
@@ -934,9 +934,9 @@ static void _startMenuInit(_START_WORK* pStart)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯‚ğŒˆ‚ß‚éƒƒjƒ…[Às•”•ª
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è©±ã—ã‹ã‘ã‚’æ±ºã‚ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼å®Ÿè¡Œéƒ¨åˆ†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1071,7 +1071,7 @@ static BOOL _startMenuFunc(TCB_PTR tcb, void* work)
 	}
 	SelectIconAnmCheck( pStart->cap[CLA_SET_ICON+pStart->pos]->act );
     
-    if(CommIsError()){  // ƒGƒ‰[‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
         pStart->ret = BMPLIST_CANCEL;
     }
     switch(pStart->ret){
@@ -1086,7 +1086,7 @@ static BOOL _startMenuFunc(TCB_PTR tcb, void* work)
 		if( (pStart->ret == (u32)_trapMenuStart_Bag) ||
 			(pStart->ret == (u32)_stoneMenuStart_Bag) ||
 			(pStart->ret == (u32)_goodsMenuStart_Bag) ||
-			(pStart->ret == (u32)_treasureMenuStart_Bag) ){ // ƒJ[ƒ\ƒ‹ƒAƒNƒ^[‰Šú‰»
+			(pStart->ret == (u32)_treasureMenuStart_Bag) ){ // ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 			pStart->fca = FComAct_Init(HEAPID_FIELD);
 			FComAct_CursorPosSet(pStart->fca,200,20,122);
 			FComAct_SetDrawFlg(pStart->fca,FCA_UCURSOR,FALSE);
@@ -1101,7 +1101,7 @@ static BOOL _startMenuFunc(TCB_PTR tcb, void* work)
 
         {
             pStartFunc func = (pStartFunc)pStart->ret;
-            func(pStart);  // ŠÖ”ƒWƒƒƒ“ƒv
+            func(pStart);  // é–¢æ•°ã‚¸ãƒ£ãƒ³ãƒ—
         }
         break;
     }
@@ -1110,9 +1110,9 @@ static BOOL _startMenuFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒjƒ…[ƒŠƒXƒg‚ğ•Â‚¶‚é
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã‚’é–‰ã˜ã‚‹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1149,9 +1149,9 @@ void _startMenuEnd(_START_WORK* pStart)
 
 //--------------------------------------------------------------
 /**
- * @brief   SUBƒƒjƒ…[ƒŠƒXƒg‚ğì‚é 2s‚©‚Rs
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   SUBãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã‚’ä½œã‚‹ 2è¡Œã‹ï¼“è¡Œ
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1248,9 +1248,9 @@ static void _subMenuStart(_START_WORK* pStart, int type)
 
 //--------------------------------------------------------------
 /**
- * @brief   SUBƒƒjƒ…[ƒŠƒXƒg‚ğ•Â‚¶‚é
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   SUBãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã‚’é–‰ã˜ã‚‹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1271,8 +1271,8 @@ static void _subMenuEnd(_START_WORK* pStart)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒjƒ…[ƒLƒƒƒ“ƒZƒ‹{ƒƒCƒ“ƒƒjƒ…[ˆÚ“®
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚­ãƒ£ãƒ³ã‚»ãƒ«ï¼‹ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç§»å‹•
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1291,22 +1291,22 @@ static void _menuCancel2MainMenu(_START_WORK* pStart)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒ‰ƒbƒvƒƒjƒ…[‚Åã©‚ğ‚¨‚¢‚½ê‡‚ÌƒR[ƒ‹ƒoƒbƒN
- * @param   type  ƒgƒ‰ƒbƒvƒ^ƒCƒv
+ * @brief   ãƒˆãƒ©ãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ç½ ã‚’ãŠã„ãŸå ´åˆã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ * @param   type  ãƒˆãƒ©ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
  * @retval  none
  */
 //--------------------------------------------------------------
 void CommUnderBagDeleteTrap(int type)
 {
-    if(_pUnderItem->deleteItem == type){    // ã©‚ğÁ‚·
+    if(_pUnderItem->deleteItem == type){    // ç½ ã‚’æ¶ˆã™
         UnderGroundDelTrapBagItem(_pUnderItem->pUGData, _pUnderItem->deleteIndex);
     }
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒ‰ƒbƒvƒƒjƒ…[à–¾•¶
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãƒˆãƒ©ãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼èª¬æ˜æ–‡
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1329,8 +1329,8 @@ void _trapMenuLineSelect(BMPLIST_WORK * wk,u32 param,u8 mode)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒ‰ƒbƒvƒƒjƒ…[ƒXƒ^[ƒg
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãƒˆãƒ©ãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1341,7 +1341,7 @@ void _trapMenuLineSelect(BMPLIST_WORK * wk,u32 param,u8 mode)
 
 void _trapMenuStart_Shop(_START_WORK* pStart )
 {
-    pStart->getNumFunc = _underBagGetTrapNum; // BAG—pæ“¾ŠÖ”‚ğƒZƒbƒg
+    pStart->getNumFunc = _underBagGetTrapNum; // BAGç”¨å–å¾—é–¢æ•°ã‚’ã‚»ãƒƒãƒˆ
     pStart->getTypeFunc = _underBagGetTrapID;
     pStart->pIconCallBack = NULL;
     _trapMenuStart(pStart,NULL);
@@ -1351,7 +1351,7 @@ void _trapMenuStart_Bag(_START_WORK* pStart )
 {
     pStart->cursor = UgMgrGetRecordKeyCursor(_KEY_MENU_BAG_TRAP);
     pStart->line = UgMgrGetRecordKeyLine(_KEY_MENU_BAG_TRAP);
-    pStart->getNumFunc = _underBagGetTrapNum; // BAG—pæ“¾ŠÖ”‚ğƒZƒbƒg
+    pStart->getNumFunc = _underBagGetTrapNum; // BAGç”¨å–å¾—é–¢æ•°ã‚’ã‚»ãƒƒãƒˆ
     pStart->getTypeFunc = _underBagGetTrapID;
     pStart->pLineCallBack = _trapMenuLineSelect;
     pStart->pIconCallBack = NULL;
@@ -1369,7 +1369,7 @@ static void _trapMenuStart(_START_WORK* pStart,CHANGE_UG_ITEM_FUNC pChangeFunc)
 
     _startMenuEnd(pStart);
     CommMsgChangeMSGMAN(CommUnderGetMsgUnderItem(), NARC_msg_undergroundtrap_dat, MSGMAN_TYPE_NORMAL);
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     pStart->menulist = BMP_MENULIST_Create( count+1, HEAPID_FIELD );
     GF_BGL_BmpWinAdd(pStart->pFSys->bgl,&pStart->win,
                      GF_BGL_FRAME3_M, _TRAPMENU_POSX, _TRAPMENU_POSY,
@@ -1409,8 +1409,8 @@ static void _trapMenuStart(_START_WORK* pStart,CHANGE_UG_ITEM_FUNC pChangeFunc)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒ‰ƒbƒvƒƒjƒ…[ˆ—
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãƒˆãƒ©ãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1425,7 +1425,7 @@ static BOOL _trapMenuFunc(TCB_PTR tcb, void* work)
     BmpListPosGet( pStart->pUGlw->pBmpList, &line, &cursor );
     UgMgrSetRecordKey(_KEY_MENU_BAG_TRAP, cursor, line);
     
-    if(CommIsError()){  // ƒGƒ‰[‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
         ret = BMPLIST_CANCEL;
     }
     if(ret == _MENURETURN_EXIT){
@@ -1441,9 +1441,9 @@ static BOOL _trapMenuFunc(TCB_PTR tcb, void* work)
     default:
         {
             CommMsgTalkWindowEnd(CommUnderGetMsgUnderItem());
-            _pUnderItem->deleteIndex = ret;   // Á‚·ƒAƒCƒeƒ€‚ª“ü‚Á‚Ä‚¢‚éindex
-            _pUnderItem->deleteItem = _underBagGetTrapID(ret,pStart);    // Á‚·ƒAƒCƒeƒ€”Ô†
-            if( _pUnderItem->deleteItem == UG_TRAPTYPE_DRILL){  // ƒhƒŠƒ‹‚Í”é–§Šî’n§Œä—p
+            _pUnderItem->deleteIndex = ret;   // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ãŒå…¥ã£ã¦ã„ã‚‹index
+            _pUnderItem->deleteItem = _underBagGetTrapID(ret,pStart);    // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+            if( _pUnderItem->deleteItem == UG_TRAPTYPE_DRILL){  // ãƒ‰ãƒªãƒ«ã¯ç§˜å¯†åŸºåœ°åˆ¶å¾¡ç”¨
                 CommSecretBaseDrillStart();
                 pStart->seq = _START_DRILL_END;
             }
@@ -1472,11 +1472,11 @@ static BOOL _trapSubMenuFunc(TCB_PTR tcb, void* work)
     ret = BmpListMain(pStart->subLw);
 
 #if 1
-	//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ğæ“¾
-	tmp_pos_bak = pStart->pos_bak2;		//‘Ş”ğ
+	//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+	tmp_pos_bak = pStart->pos_bak2;		//é€€é¿
 	BmpListDirectPosGet( pStart->subLw, &pStart->pos_bak2 );
 
-	//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+	//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tmp_pos_bak != pStart->pos_bak2 ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
@@ -1493,13 +1493,13 @@ static BOOL _trapSubMenuFunc(TCB_PTR tcb, void* work)
         break;
     default:
         _subMenuEnd(pStart);
-        if(ret == _DIG_COMMAND){  // –„‚ß‚é
+        if(ret == _DIG_COMMAND){  // åŸ‹ã‚ã‚‹
             CommTrapInfoAddTrap(_underBagGetTrapID(_pUnderItem->deleteIndex,pStart));
-            Snd_SePlay(UG_SE_BURY);  // –„‚ß‚½
+            Snd_SePlay(UG_SE_BURY);  // åŸ‹ã‚ãŸ
 //            pStart->seq = _START_END;
             pStart->seq = _START_DRILL_END;
         }
-        else if(ret == _TRASH_COMMAND){  // ‚·‚Ä‚é
+        else if(ret == _TRASH_COMMAND){  // ã™ã¦ã‚‹
 			Snd_SePlay( SEQ_SE_DP_SELECT );
             CommUnderBagDeleteTrap(_pUnderItem->deleteItem);
             CommMsgRegisterUGTrapNameIndex(CommUnderGetMsgUnderWorld(), 2, _pUnderItem->deleteItem);
@@ -1517,8 +1517,8 @@ static BOOL _trapSubMenuFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚½‚Üƒƒjƒ…[‚ÅÎ‚ğ‚¨‚¢‚½ê‡‚ÌƒR[ƒ‹ƒoƒbƒN
- * @param   type  Îƒ^ƒCƒv
+ * @brief   ãŸã¾ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§çŸ³ã‚’ãŠã„ãŸå ´åˆã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ * @param   type  çŸ³ã‚¿ã‚¤ãƒ—
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1530,8 +1530,8 @@ void CommUnderBagDeleteStone(int type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚¢‚µƒƒjƒ…[à–¾•¶
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ã„ã—ãƒ¡ãƒ‹ãƒ¥ãƒ¼èª¬æ˜æ–‡
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1554,8 +1554,8 @@ static void _stoneMenuLineSelect(BMPLIST_WORK * wk,u32 param,u8 mode)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚¢‚µƒƒjƒ…[ƒXƒ^[ƒg
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ã„ã—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1566,7 +1566,7 @@ static void _stoneMenuLineSelect(BMPLIST_WORK * wk,u32 param,u8 mode)
 
 void _stoneMenuStart_ShopBag(_START_WORK* pStart)
 {
-    pStart->getNumFunc = _underBagGetStoneNum; // BAG—pæ“¾ŠÖ”‚ğƒZƒbƒg
+    pStart->getNumFunc = _underBagGetStoneNum; // BAGç”¨å–å¾—é–¢æ•°ã‚’ã‚»ãƒƒãƒˆ
     pStart->getTypeFunc = _underBagGetStoneID;
     pStart->getCaratFunc = _underBagGetStoneCarat;
     pStart->pLineCallBack = _stoneMenuLineSelect;
@@ -1577,7 +1577,7 @@ static void _stoneMenuStart_Bag(_START_WORK* pStart)
 {
     pStart->cursor = UgMgrGetRecordKeyCursor(_KEY_MENU_BAG_STONE);
     pStart->line = UgMgrGetRecordKeyLine(_KEY_MENU_BAG_STONE);
-    pStart->getNumFunc = _underBagGetStoneNum; // BAG—pæ“¾ŠÖ”‚ğƒZƒbƒg
+    pStart->getNumFunc = _underBagGetStoneNum; // BAGç”¨å–å¾—é–¢æ•°ã‚’ã‚»ãƒƒãƒˆ
     pStart->getTypeFunc = _underBagGetStoneID;
     pStart->getCaratFunc = _underBagGetStoneCarat;
     pStart->pLineCallBack = _stoneMenuLineSelect;
@@ -1596,7 +1596,7 @@ static void _stoneMenuStart(_START_WORK* pStart,CHANGE_UG_ITEM_FUNC pChangeFunc)
 
     _startMenuEnd(pStart);
     CommMsgChangeMSGMAN(CommUnderGetMsgUnderItem(), NARC_msg_undergrounditem_dat, MSGMAN_TYPE_NORMAL);
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     pStart->menulist = BMP_MENULIST_Create( count+1, HEAPID_FIELD );
 
 
@@ -1657,7 +1657,7 @@ static BOOL _stoneMenuFunc(TCB_PTR tcb, void* work)
     BmpListPosGet( pStart->pUGlw->pBmpList, &line, &cursor );
     UgMgrSetRecordKey(_KEY_MENU_BAG_STONE, cursor, line);
 
-    if(CommIsError()){  // ƒGƒ‰[‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
         ret = BMPLIST_CANCEL;
     }
     if(ret == _MENURETURN_EXIT){
@@ -1672,8 +1672,8 @@ static BOOL _stoneMenuFunc(TCB_PTR tcb, void* work)
         break;
     default:
         _startMenuEnd(pStart);
-        _pUnderItem->deleteIndex = ret;   // Á‚·ƒAƒCƒeƒ€‚ª“ü‚Á‚Ä‚¢‚éindex
-        _pUnderItem->deleteItem = _underBagGetStoneID(ret,pStart);    // Á‚·ƒAƒCƒeƒ€”Ô†
+        _pUnderItem->deleteIndex = ret;   // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ãŒå…¥ã£ã¦ã„ã‚‹index
+        _pUnderItem->deleteItem = _underBagGetStoneID(ret,pStart);    // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
         _subMenuStart(pStart, _DIG_COMMAND);
         pStart->seq = _START_STONE_WAIT_SUB;
         CommMsgRegisterUGItemNameIndex(CommUnderGetMsgUnderWorld(), 2, _pUnderItem->deleteItem);
@@ -1694,11 +1694,11 @@ static BOOL _stoneSubMenuFunc(TCB_PTR tcb, void* work)
     ret = BmpListMain(pStart->subLw);
 
 #if 1
-	//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ğæ“¾
-	tmp_pos_bak = pStart->pos_bak2;		//‘Ş”ğ
+	//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+	tmp_pos_bak = pStart->pos_bak2;		//é€€é¿
 	BmpListDirectPosGet( pStart->subLw, &pStart->pos_bak2 );
 
-	//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+	//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tmp_pos_bak != pStart->pos_bak2 ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
@@ -1715,7 +1715,7 @@ static BOOL _stoneSubMenuFunc(TCB_PTR tcb, void* work)
         break;
     default:
         _subMenuEnd(pStart);
-        if(ret == _DIG_COMMAND){  // –„‚ß‚é
+        if(ret == _DIG_COMMAND){  // åŸ‹ã‚ã‚‹
             int netID = CommGetCurrentID();
             int x = CommPlayerGetPosXDirAdd(netID);
             int z = CommPlayerGetPosZDirAdd(netID);
@@ -1724,7 +1724,7 @@ static BOOL _stoneSubMenuFunc(TCB_PTR tcb, void* work)
                                   _underBagGetStoneCarat(_pUnderItem->deleteIndex, pStart),
                                   x,z);
         }
-        else if(ret == _TRASH_COMMAND){  // ‚·‚Ä‚é
+        else if(ret == _TRASH_COMMAND){  // ã™ã¦ã‚‹
 			Snd_SePlay( SEQ_SE_DP_SELECT );
             CommUnderBagDeleteStone(_pUnderItem->deleteItem);
             CommMsgRegisterUGItemNameIndex(CommUnderGetMsgUnderWorld(), 2, _pUnderItem->deleteItem);
@@ -1741,8 +1741,8 @@ static BOOL _stoneSubMenuFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚½‚©‚çƒƒjƒ…[à–¾•¶
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãŸã‹ã‚‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼èª¬æ˜æ–‡
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1765,8 +1765,8 @@ void _treasureMenuLineSelect(BMPLIST_WORK * wk,u32 param,u8 mode)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚½‚©‚çƒƒjƒ…[ƒXƒ^[ƒg
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãŸã‹ã‚‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1777,7 +1777,7 @@ void _treasureMenuLineSelect(BMPLIST_WORK * wk,u32 param,u8 mode)
 
 void _treasureMenuStart_Shop(_START_WORK* pStart)
 {
-    pStart->getNumFunc = _underBagGetTreasureNum; // BAG—pæ“¾ŠÖ”‚ğƒZƒbƒg
+    pStart->getNumFunc = _underBagGetTreasureNum; // BAGç”¨å–å¾—é–¢æ•°ã‚’ã‚»ãƒƒãƒˆ
     pStart->getTypeFunc = _underBagGetTreasureID;
     _treasureMenuStart(pStart,NULL);
 }
@@ -1786,7 +1786,7 @@ void _treasureMenuStart_Bag(_START_WORK* pStart)
 {
     pStart->cursor = UgMgrGetRecordKeyCursor(_KEY_MENU_BAG_TREASURE);
     pStart->line = UgMgrGetRecordKeyLine(_KEY_MENU_BAG_TREASURE);
-    pStart->getNumFunc = _underBagGetTreasureNum; // BAG—pæ“¾ŠÖ”‚ğƒZƒbƒg
+    pStart->getNumFunc = _underBagGetTreasureNum; // BAGç”¨å–å¾—é–¢æ•°ã‚’ã‚»ãƒƒãƒˆ
     pStart->getTypeFunc = _underBagGetTreasureID;
     pStart->pLineCallBack = _treasureMenuLineSelect;
 	pStart->pos_bak2 = pStart->cursor;
@@ -1803,7 +1803,7 @@ static void _treasureMenuStart(_START_WORK* pStart, CHANGE_UG_ITEM_FUNC pChangeF
 
     _startMenuEnd(pStart);
     CommMsgChangeMSGMAN(CommUnderGetMsgUnderItem(), NARC_msg_undergrounditem_dat, MSGMAN_TYPE_NORMAL);
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     pStart->menulist = BMP_MENULIST_Create( count+1, HEAPID_FIELD );
     GF_BGL_BmpWinAdd(pStart->pFSys->bgl,&pStart->win,
                      GF_BGL_FRAME3_M, _TREASUREMENU_POSX, _TREASUREMENU_POSY,
@@ -1841,8 +1841,8 @@ static void _treasureMenuStart(_START_WORK* pStart, CHANGE_UG_ITEM_FUNC pChangeF
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚½‚©‚çƒƒjƒ…[ˆ—
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãŸã‹ã‚‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1857,7 +1857,7 @@ static BOOL _treasureMenuFunc(TCB_PTR tcb, void* work)
     BmpListPosGet( pStart->pUGlw->pBmpList, &line, &cursor );
     UgMgrSetRecordKey(_KEY_MENU_BAG_TREASURE, cursor, line);
     
-    if(CommIsError()){  // ƒGƒ‰[‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
         ret = BMPLIST_CANCEL;
     }
     if(ret == _MENURETURN_EXIT){
@@ -1873,8 +1873,8 @@ static BOOL _treasureMenuFunc(TCB_PTR tcb, void* work)
     default:
         _startMenuEnd(pStart);
         
-        _pUnderItem->deleteIndex = ret;   // Á‚·ƒAƒCƒeƒ€‚ª“ü‚Á‚Ä‚¢‚éindex
-        _pUnderItem->deleteItem = _underBagGetTreasureID(ret,pStart);    // Á‚·ƒAƒCƒeƒ€”Ô†
+        _pUnderItem->deleteIndex = ret;   // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ãŒå…¥ã£ã¦ã„ã‚‹index
+        _pUnderItem->deleteItem = _underBagGetTreasureID(ret,pStart);    // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
         _subMenuStart(pStart, _IN_COMMAND);
         CommMsgRegisterUGItemNameIndex(CommUnderGetMsgUnderWorld(), 2, _pUnderItem->deleteItem);
         CommMsgTalkWindowAllWrite(CommUnderGetMsgUnderWorld(),mes_uw_item_06,FALSE,NULL);
@@ -1897,11 +1897,11 @@ static BOOL _treasureSubMenuFunc(TCB_PTR tcb, void* work)
     ret = BmpListMain(pStart->subLw);
 
 #if 1
-	//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ğæ“¾
-	tmp_pos_bak = pStart->pos_bak2;		//‘Ş”ğ
+	//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+	tmp_pos_bak = pStart->pos_bak2;		//é€€é¿
 	BmpListDirectPosGet( pStart->subLw, &pStart->pos_bak2 );
 
-	//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+	//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tmp_pos_bak != pStart->pos_bak2 ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
@@ -1918,7 +1918,7 @@ static BOOL _treasureSubMenuFunc(TCB_PTR tcb, void* work)
         break;
     default:
         _subMenuEnd(pStart);
-        if(ret == _IN_COMMAND){  // ’nã‚É—A‘—
+        if(ret == _IN_COMMAND){  // åœ°ä¸Šã«è¼¸é€
             int item = UnderGroundTreasureItem2Item(_pUnderItem->deleteItem);
             MYITEM* myitem = SaveData_GetMyItem(pStart->pFSys->savedata);
 			Snd_SePlay( SEQ_SE_DP_SELECT );
@@ -1937,7 +1937,7 @@ static BOOL _treasureSubMenuFunc(TCB_PTR tcb, void* work)
                 CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_80, FALSE, NULL);
             }
         }
-        else if(ret == _TRASH_COMMAND){  // ‚·‚Ä‚é
+        else if(ret == _TRASH_COMMAND){  // ã™ã¦ã‚‹
 			Snd_SePlay( SEQ_SE_DP_SELECT );
             UnderGroundDelTreasureBagItem(_pUnderItem->pUGData, _pUnderItem->deleteIndex);
             CommMsgRegisterUGItemNameIndex(CommUnderGetMsgUnderWorld(), 2, _pUnderItem->deleteItem);
@@ -1953,8 +1953,8 @@ static BOOL _treasureSubMenuFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜b‚ğ‚â‚ß‚é
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ä¼šè©±ã‚’ã‚„ã‚ã‚‹
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1966,8 +1966,8 @@ static void _startExit( _START_WORK* pStart )
 
 //--------------------------------------------------------------
 /**
- * @brief   ’nã‚É–ß‚é
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   åœ°ä¸Šã«æˆ»ã‚‹
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1978,7 +1978,7 @@ static void _underExit( _START_WORK* pStart )
 
     if(UgSecretBaseIsSecretBasePlace(Player_NowGPosXGet( pStart->pFSys->player ),
                                      Player_NowGPosZGet( pStart->pFSys->player ))){
-        // ”é–§Šî’n‚Ì’†‚©‚ç‚Í–ß‚ê‚È‚¢
+        // ç§˜å¯†åŸºåœ°ã®ä¸­ã‹ã‚‰ã¯æˆ»ã‚Œãªã„
         CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(),
                                msg_underworld_66, FALSE, NULL);
         pStart->seq = _START_QUIT;
@@ -1993,8 +1993,8 @@ static void _underExit( _START_WORK* pStart )
 
 //--------------------------------------------------------------
 /**
- * @brief   ’nã‚É–ß‚é‚©‚Ç‚¤‚©‚ğYESNO‚ÅŠm”F
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   åœ°ä¸Šã«æˆ»ã‚‹ã‹ã©ã†ã‹ã‚’YESNOã§ç¢ºèª
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2014,8 +2014,8 @@ static void _exitTalkFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’nã‚É–ß‚é‚©‚Ç‚¤‚©‚ğYESNO‚ÅŠm”F
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   åœ°ä¸Šã«æˆ»ã‚‹ã‹ã©ã†ã‹ã‚’YESNOã§ç¢ºèª
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2024,12 +2024,12 @@ static void _exitTalkFunc2(TCB_PTR tcb, void* work)
 {
     _START_WORK* pStart = work;
     int ret = BmpYesNoSelectMain(pStart->pYesNoWork, HEAPID_FIELD);
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return;
-    }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
-        pStart->seq = _START_EXIT_UNDERGROUND;  // ’nã‚Ö
+    }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
+        pStart->seq = _START_EXIT_UNDERGROUND;  // åœ°ä¸Šã¸
     }
-    else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+    else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
         CommMsgTalkWindowEnd(CommUnderGetMsgUnderWorld());
         _menuCancel2MainMenu(pStart);
     }
@@ -2038,8 +2038,8 @@ static void _exitTalkFunc2(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO—pƒƒjƒ…[ƒR[ƒ‹ƒoƒbƒN
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2065,9 +2065,9 @@ static void _statusList( _START_WORK* pStart )
 
 //--------------------------------------------------------------
 /**
- * @brief   Šø‚ÌÁ‹‚ÉŠÖ‚·‚éƒƒjƒ…[‹N“®
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ——ã®æ¶ˆå»ã«é–¢ã™ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼èµ·å‹•
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2096,7 +2096,7 @@ void CommUnderBagFlagStart(pBagEndFunc func, FIELDSYS_WORK* pFSys)
     pStart->pStrBuf2 = STRBUF_Create( _EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );
     pStart->pWordSet = WORDSET_Create( HEAPID_FIELD );
 
-    // ƒtƒB[ƒ‹ƒh‚Ì“®‚«‚ğ~‚ß‚é
+    // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®å‹•ãã‚’æ­¢ã‚ã‚‹
     CommPlayerHold();
 
     CommMsgTalkWindowStart(CommUnderGetMsgUnderFlag(),mes_uw_flag_01,FALSE,NULL);
@@ -2108,8 +2108,8 @@ void CommUnderBagFlagStart(pBagEndFunc func, FIELDSYS_WORK* pFSys)
 
 //==============================================================================
 /**
- * ƒnƒ^‚ğÁ‚·‚©‚Ç‚¤‚©–â‚¢‡‚í‚¹‚é
- * @param   targetID   ˜b‚µ‘Šè‚ÌINDEX
+ * ãƒã‚¿ã‚’æ¶ˆã™ã‹ã©ã†ã‹å•ã„åˆã‚ã›ã‚‹
+ * @param   targetID   è©±ã—ç›¸æ‰‹ã®INDEX
  * @retval  none
  */
 //==============================================================================
@@ -2117,7 +2117,7 @@ void CommUnderBagFlagStart(pBagEndFunc func, FIELDSYS_WORK* pFSys)
 static void _delWait(_START_WORK* pStart)
 {
     if( CommMsgIsOutputing(CommUnderGetMsgUnderFlag()) == 0 ){
-        // ‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ğo‚·
+        // ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
         pStart->pYesNoWork =
             BmpYesNoSelectInit( pStart->pFSys->bgl,
                                 &_yesNoBmpDat,
@@ -2129,12 +2129,12 @@ static void _delWait(_START_WORK* pStart)
 static void _delYesNoWait(_START_WORK* pStart)
 {
     int ret = BmpYesNoSelectMain(pStart->pYesNoWork, HEAPID_FIELD);
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return;
-    }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+    }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
         pStart->seq = _DELETE_FLAG_END;
     }
-    else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+    else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
         pStart->seq = _DEL_END;
     }
     pStart->pYesNoWork = NULL;
@@ -2142,9 +2142,9 @@ static void _delYesNoWait(_START_WORK* pStart)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒEƒCƒ“ƒhƒEÁ‹
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ¶ˆå»
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2179,9 +2179,9 @@ static void _delEnd(TCB_PTR tcb, _START_WORK* pStart,BOOL bHold)
 
 //--------------------------------------------------------------
 /**
- * @brief   Šø‚ÌÁ‹‚ÉŠÖ‚·‚éƒƒjƒ…[‚ÌŠÇ—ƒvƒƒZƒX
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ——ã®æ¶ˆå»ã«é–¢ã™ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ç®¡ç†ãƒ—ãƒ­ã‚»ã‚¹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2190,7 +2190,7 @@ static void _flagProcess(TCB_PTR tcb, void* work)
 {
     _START_WORK* pStart = work;
 
-    if(!CommPlayerIsFlagData(CommGetCurrentID())){ // ƒnƒ^‚ª‚È‚­‚È‚Á‚½ê‡
+    if(!CommPlayerIsFlagData(CommGetCurrentID())){ // ãƒã‚¿ãŒãªããªã£ãŸå ´åˆ
         if((pStart->seq == _DELMSG_WAIT) || (pStart->seq == _DEL_YESNO_WAIT)){
             pStart->seq = _DEL_END;
         }
@@ -2211,7 +2211,7 @@ static void _flagProcess(TCB_PTR tcb, void* work)
         _delEnd(tcb, work, TRUE);
         {
             u8 state = UNDER_FLAG_DEL;
-            CommSendFixSizeData(CF_FLAG_STATE,&state);// ‚Í‚½‚·‚Ä‘—M
+            CommSendFixSizeData(CF_FLAG_STATE,&state);// ã¯ãŸã™ã¦é€ä¿¡
         }
         return;
       case _WAIT_END:
@@ -2226,8 +2226,8 @@ static void _flagProcess(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒOƒbƒYƒƒjƒ…[à–¾•¶
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ã‚°ãƒƒã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼èª¬æ˜æ–‡
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2250,8 +2250,8 @@ void _goodsMenuLineSelect(BMPLIST_WORK * wk,u32 param,u8 mode)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒOƒbƒYƒƒjƒ…[à–¾•¶ƒpƒ\ƒRƒ“—p
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ã‚°ãƒƒã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼èª¬æ˜æ–‡ãƒ‘ã‚½ã‚³ãƒ³ç”¨
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2262,24 +2262,24 @@ static void _goodsPcMenuLineSelect(BMPLIST_WORK * wk,u32 param,u8 mode)
     int idx = param;
     UNDERGROUNDDATA* pUGData = SaveData_GetUnderGroundData(GameSystem_GetSaveData(pStart->pFSys));
 
-    if (!UnderGroundIsEntryGoodsPCItem(pUGData , idx)){ // ”z’u‚³‚ê‚Ä‚¢‚È‚¢
+    if (!UnderGroundIsEntryGoodsPCItem(pUGData , idx)){ // é…ç½®ã•ã‚Œã¦ã„ãªã„
         BmpListTmpColorChange( wk, FBMP_COL_BLACK, FBMP_COL_WHITE , FBMP_COL_BLK_SDW );
-    }else{		//”z’uÏ‚İ
+    }else{		//é…ç½®æ¸ˆã¿
         BmpListTmpColorChange( wk, FBMP_COL_BLK_SDW, FBMP_COL_WHITE , FBMP_COL_BLK_SDW );
     }
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒOƒbƒYƒƒjƒ…[ƒXƒ^[ƒg
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ã‚°ãƒƒã‚ºãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
 
 void _goodsMenuStart_Shop(_START_WORK* pStart)
 {
-    pStart->getNumFunc = _underBagGetGoodsNum; // BAG—pæ“¾ŠÖ”‚ğƒZƒbƒg
+    pStart->getNumFunc = _underBagGetGoodsNum; // BAGç”¨å–å¾—é–¢æ•°ã‚’ã‚»ãƒƒãƒˆ
     pStart->getTypeFunc = _underBagGetGoodsID;
     pStart->pIconCallBack = NULL;
     _goodsMenuStart(pStart,NULL);
@@ -2289,7 +2289,7 @@ void _goodsMenuStart_Bag(_START_WORK* pStart)
 {
     pStart->cursor = UgMgrGetRecordKeyCursor(_KEY_MENU_BAG_GOODS);
     pStart->line = UgMgrGetRecordKeyLine(_KEY_MENU_BAG_GOODS);
-    pStart->getNumFunc = _underBagGetGoodsNum; // BAG—pæ“¾ŠÖ”‚ğƒZƒbƒg
+    pStart->getNumFunc = _underBagGetGoodsNum; // BAGç”¨å–å¾—é–¢æ•°ã‚’ã‚»ãƒƒãƒˆ
     pStart->getTypeFunc = _underBagGetGoodsID;
     pStart->pLineCallBack = _goodsMenuLineSelect;
     pStart->pIconCallBack = NULL;
@@ -2300,7 +2300,7 @@ void _goodsMenuStart_Bag(_START_WORK* pStart)
 
 void _goodsMenuStart_BagPc(_START_WORK* pStart)
 {
-    pStart->getNumFunc = _underBagGetGoodsNum; // BAG—pæ“¾ŠÖ”‚ğƒZƒbƒg
+    pStart->getNumFunc = _underBagGetGoodsNum; // BAGç”¨å–å¾—é–¢æ•°ã‚’ã‚»ãƒƒãƒˆ
     pStart->getTypeFunc = _underBagGetGoodsID;
     pStart->pLineCallBack = _goodsMenuLineSelect;
     pStart->pIconCallBack = NULL;
@@ -2309,7 +2309,7 @@ void _goodsMenuStart_BagPc(_START_WORK* pStart)
 
 void _goodsMenuStart_Pc(_START_WORK* pStart)
 {
-    pStart->getNumFunc = _underPcGetGoodsNum; // PC—pæ“¾ŠÖ”‚ğƒZƒbƒg
+    pStart->getNumFunc = _underPcGetGoodsNum; // PCç”¨å–å¾—é–¢æ•°ã‚’ã‚»ãƒƒãƒˆ
     pStart->getTypeFunc = _underPcGetGoodsID;
     pStart->pLineCallBack = _goodsMenuLineSelect;
     pStart->pIconCallBack = _goodsPcMenuLineSelect;
@@ -2326,7 +2326,7 @@ static void _goodsMenuStart(_START_WORK* pStart, CHANGE_UG_ITEM_FUNC pChangeFunc
 
     _startMenuEnd(pStart);
     CommMsgChangeMSGMAN(CommUnderGetMsgUnderItem(), NARC_msg_undergroundgoods_dat, MSGMAN_TYPE_NORMAL);
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     pStart->menulist = BMP_MENULIST_Create( count+1, HEAPID_FIELD );
     GF_BGL_BmpWinAdd(pStart->pFSys->bgl,&pStart->win,
                      GF_BGL_FRAME3_M, _TRAPMENU_POSX, _TRAPMENU_POSY,
@@ -2366,8 +2366,8 @@ static void _goodsMenuStart(_START_WORK* pStart, CHANGE_UG_ITEM_FUNC pChangeFunc
 
 //--------------------------------------------------------------
 /**
- * @brief   GOODSƒƒjƒ…[ˆ—
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   GOODSãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2382,7 +2382,7 @@ static BOOL _goodsMenuFunc(TCB_PTR tcb, void* work)
     BmpListPosGet( pStart->pUGlw->pBmpList, &line, &cursor );
     UgMgrSetRecordKey(_KEY_MENU_BAG_GOODS, cursor, line);
 
-    if(CommIsError()){  // ƒGƒ‰[‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
         ret = BMPLIST_CANCEL;
     }
     if(ret == _MENURETURN_EXIT){
@@ -2398,8 +2398,8 @@ static BOOL _goodsMenuFunc(TCB_PTR tcb, void* work)
         break;
     default:
         _startMenuEnd(pStart);
-        _pUnderItem->deleteIndex = ret;   // Á‚·ƒAƒCƒeƒ€‚ª“ü‚Á‚Ä‚¢‚éindex
-        _pUnderItem->deleteItem = _underBagGetGoodsID(ret,pStart);    // Á‚·ƒAƒCƒeƒ€”Ô†
+        _pUnderItem->deleteIndex = ret;   // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ãŒå…¥ã£ã¦ã„ã‚‹index
+        _pUnderItem->deleteItem = _underBagGetGoodsID(ret,pStart);    // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
         _subMenuStart(pStart, _TRASH_COMMAND);
         CommMsgRegisterUGGoodsNameIndex(CommUnderGetMsgUnderWorld(), 2, _pUnderItem->deleteItem);
         CommMsgTalkWindowAllWrite(CommUnderGetMsgUnderWorld(),mes_uw_item_06,FALSE,NULL);
@@ -2420,11 +2420,11 @@ static BOOL _goodsSubMenuFunc(TCB_PTR tcb, void* work)
     ret = BmpListMain(pStart->subLw);
 
 #if 1
-	//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ğæ“¾
-	tmp_pos_bak = pStart->pos_bak2;		//‘Ş”ğ
+	//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+	tmp_pos_bak = pStart->pos_bak2;		//é€€é¿
 	BmpListDirectPosGet( pStart->subLw, &pStart->pos_bak2 );
 
-	//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+	//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tmp_pos_bak != pStart->pos_bak2 ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
@@ -2441,7 +2441,7 @@ static BOOL _goodsSubMenuFunc(TCB_PTR tcb, void* work)
         break;
     default:
         _subMenuEnd(pStart);
-        if(ret == _TRASH_COMMAND){  // ‚·‚Ä‚é
+        if(ret == _TRASH_COMMAND){  // ã™ã¦ã‚‹
 			Snd_SePlay( SEQ_SE_DP_SELECT );
             UnderGroundDelGoodsBagItem(_pUnderItem->pUGData, _pUnderItem->deleteIndex);
             CommMsgRegisterUGGoodsNameIndex(CommUnderGetMsgUnderWorld(), 2, _pUnderItem->deleteItem);
@@ -2459,8 +2459,8 @@ static BOOL _goodsSubMenuFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   GOODSƒƒjƒ…[‹­§I—¹ˆ—
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   GOODSãƒ¡ãƒ‹ãƒ¥ãƒ¼å¼·åˆ¶çµ‚äº†å‡¦ç†
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2473,7 +2473,7 @@ void UgGoodsMenuForceDelete(void* work, u32 ret)
 
     UgMgrSetMyTrapRadarDisp();
     UnderRecordReset();
-    UgTrapRecvNatureRadarEnd();  // I—¹ˆ—
+    UgTrapRecvNatureRadarEnd();  // çµ‚äº†å‡¦ç†
     UgFossilPcRadarEnd();
     UgStonePcRadarEnd();
 
@@ -2494,7 +2494,7 @@ void UgGoodsMenuForceDelete(void* work, u32 ret)
     }
     if(pStart->endfunc != NULL){
         _pUnderItem->deleteIndex = ret;
-        _pUnderItem->deleteItem = _underBagGetGoodsID(ret,pStart); //UG_GOODS_NONE;   // Á‚·ƒAƒCƒeƒ€”Ô†
+        _pUnderItem->deleteItem = _underBagGetGoodsID(ret,pStart); //UG_GOODS_NONE;   // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
         pStart->endfunc(UG_GOODS_NONE);
         pStart->endfunc = NULL;
     }
@@ -2513,8 +2513,8 @@ void UgGoodsMenuForceDelete(void* work, u32 ret)
 
 //--------------------------------------------------------------
 /**
- * @brief   GOODSƒƒjƒ…[ˆ—
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   GOODSãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2526,7 +2526,7 @@ static BOOL _goodsMenuFuncSub2(TCB_PTR tcb, void* work)
 
     ret = Ug_BmpListMain(pStart->pUGlw);
 //    ret = BmpListMain(pStart->lw);
-    if(CommIsError()){  // ƒGƒ‰[‚ÍƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+    if(CommIsError()){  // ã‚¨ãƒ©ãƒ¼æ™‚ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
         ret = BMPLIST_CANCEL;
     }
     if(ret == _MENURETURN_EXIT){
@@ -2538,7 +2538,7 @@ static BOOL _goodsMenuFuncSub2(TCB_PTR tcb, void* work)
     case BMPLIST_CANCEL:
         if(pStart->endfunc != NULL){
             _pUnderItem->deleteIndex = ret;
-            _pUnderItem->deleteItem = UG_GOODS_NONE;   // Á‚·ƒAƒCƒeƒ€”Ô†
+            _pUnderItem->deleteItem = UG_GOODS_NONE;   // æ¶ˆã™ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
             pStart->endfunc(_pUnderItem->deleteItem);
             pStart->endfunc = NULL;
         }
@@ -2565,7 +2565,7 @@ static BOOL _goodsMenuFuncSub2(TCB_PTR tcb, void* work)
 
 //==============================================================================
 /**
- * ’n‰ºƒOƒbƒYƒoƒbƒO‰Šú‰»
+ * åœ°ä¸‹ã‚°ãƒƒã‚ºãƒãƒƒã‚°åˆæœŸåŒ–
  * @param   none
  * @retval  none
  */
@@ -2597,7 +2597,7 @@ void* UgBagGoodsMenuStart(pBagEndFunc func, FIELDSYS_WORK* pFSys)
 
 //==============================================================================
 /**
- * ƒJ[ƒ\ƒ‹ˆÊ’u’²®
+ * ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®èª¿æ•´
  * @param   none
  * @retval  none
  */
@@ -2621,8 +2621,8 @@ void UgBagCursorLineLimit(_START_WORK* pStart, int line,int count)
 
 //--------------------------------------------------------------
 /**
- * @brief   GOODSƒƒjƒ…[‹­§I—¹ˆ—
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   GOODSãƒ¡ãƒ‹ãƒ¥ãƒ¼å¼·åˆ¶çµ‚äº†å‡¦ç†
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------

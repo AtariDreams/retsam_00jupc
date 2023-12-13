@@ -14,9 +14,9 @@
 /**
  * @file
  *
- * @brief Wi-Fi ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ ƒwƒbƒ_
+ * @brief Wi-Fi ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª ãƒ˜ãƒƒãƒ€
  * 
- * Wi-Fi ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ
+ * Wi-Fi ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
  */
 
 #ifndef DWCi_LOBBY_H_
@@ -34,348 +34,348 @@ extern "C"
 #pragma pack(push, 4)
 #endif
 
-// –³Œø‚Èƒ`ƒƒƒ“ƒlƒ‹ID
+// ç„¡åŠ¹ãªãƒãƒ£ãƒ³ãƒãƒ«ID
 #define DWCi_LOBBY_INVALID_CHANNEL_ID       0xffffffff
 
-// Å‘åƒjƒbƒNƒl[ƒ€ƒTƒCƒY
+// æœ€å¤§ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚µã‚¤ã‚º
 #define DWCi_MAX_CHAT_NICK_SIZE             20
 
-// Ú‘±Œã‚É‘Ò‚ÂƒtƒŒ[ƒ€B
+// æŽ¥ç¶šå¾Œã«å¾…ã¤ãƒ•ãƒ¬ãƒ¼ãƒ ã€‚
 #define DWCi_LOBBY_CONNECTINGWAIT_TIME      60
 
-// ƒ`ƒƒƒ“ƒlƒ‹–¼‚Ì‹æØ‚è•¶Žš
+// ãƒãƒ£ãƒ³ãƒãƒ«åã®åŒºåˆ‡ã‚Šæ–‡å­—
 #define DWCi_LOBBY_CHANNEL_NAME_SEPARATOR   "!"
 
-// ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‚ÅŽg—p‚·‚éƒGƒ‰[ƒR[ƒh‚ÌŠî€”Ô†
+// ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ä½¿ç”¨ã™ã‚‹ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åŸºæº–ç•ªå·
 #define DWCi_LOBBY_ERROR_CODE_BASE          42000
 
-// ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‚ÅŽg—p‚·‚éƒ`ƒƒƒbƒgƒT[ƒoƒhƒƒCƒ“
+// ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ä½¿ç”¨ã™ã‚‹ãƒãƒ£ãƒƒãƒˆã‚µãƒ¼ãƒãƒ‰ãƒ¡ã‚¤ãƒ³
 #define DWCi_LOBBY_SERVER_DOMAIN            "peerchat.gs.nintendowifi.net"
 
-/// ó‘Ôƒtƒ‰ƒO
+/// çŠ¶æ…‹ãƒ•ãƒ©ã‚°
 typedef enum DWCi_LOBBY_STATE
 {
-    DWCi_LOBBY_STATE_NOTINITIALIZED,        ///< ƒ‰ƒCƒuƒ‰ƒŠ‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢B
-    DWCi_LOBBY_STATE_CONNECTING,            ///< ƒT[ƒo‚ÉÚ‘±’†
-    DWCi_LOBBY_STATE_CONNECTINGWAIT,        ///< ƒT[ƒo‚ÉÚ‘±Œãˆ—
-    DWCi_LOBBY_STATE_CONNECTED,             ///< ƒT[ƒo‚ÉÚ‘±Š®—¹
-    DWCi_LOBBY_STATE_CLOSING,               ///< ƒ‰ƒCƒuƒ‰ƒŠI—¹ˆ—’†B
-    DWCi_LOBBY_STATE_ERROR                  ///< ƒ‰ƒCƒuƒ‰ƒŠ‚É’v–½“I‚ÈƒGƒ‰[‚ª”­¶’†B::DWCi_LobbyGetLastErrorŠÖ”‚ÅƒGƒ‰[‚ðŽæ“¾ŒãƒVƒƒƒbƒgƒ_ƒEƒ“‚µ‚Ä‚­‚¾‚³‚¢B
+    DWCi_LOBBY_STATE_NOTINITIALIZED,        ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ã€‚
+    DWCi_LOBBY_STATE_CONNECTING,            ///< ã‚µãƒ¼ãƒã«æŽ¥ç¶šä¸­
+    DWCi_LOBBY_STATE_CONNECTINGWAIT,        ///< ã‚µãƒ¼ãƒã«æŽ¥ç¶šå¾Œå‡¦ç†
+    DWCi_LOBBY_STATE_CONNECTED,             ///< ã‚µãƒ¼ãƒã«æŽ¥ç¶šå®Œäº†
+    DWCi_LOBBY_STATE_CLOSING,               ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªçµ‚äº†å‡¦ç†ä¸­ã€‚
+    DWCi_LOBBY_STATE_ERROR                  ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«è‡´å‘½çš„ãªã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿä¸­ã€‚::DWCi_LobbyGetLastErroré–¢æ•°ã§ã‚¨ãƒ©ãƒ¼ã‚’å–å¾—å¾Œã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã—ã¦ãã ã•ã„ã€‚
 }
 DWCi_LOBBY_STATE;
 
-/// ˆ—Œ‹‰Êƒtƒ‰ƒOB
+/// å‡¦ç†çµæžœãƒ•ãƒ©ã‚°ã€‚
 typedef enum DWCi_LOBBY_RESULT
 {
-    DWCi_LOBBY_RESULT_SUCCESS,              ///< ¬Œ÷B
-    DWCi_LOBBY_RESULT_ERROR_ALLOC,          ///< ƒƒ‚ƒŠŠm•Û‚ÉŽ¸”sB
-    DWCi_LOBBY_RESULT_ERROR_SESSION,        ///< ’ÊMƒGƒ‰[B
-    DWCi_LOBBY_RESULT_ERROR_PARAM,          ///< Žw’è‚µ‚½ˆø”‚ª•s³B
-    DWCi_LOBBY_RESULT_ERROR_STATE,          ///< ŒÄ‚Ño‚µ‚Ä‚Í‚¢‚¯‚È‚¢ó‘Ô‚ÅŠÖ”‚ðŒÄ‚Ño‚µ‚½B
-    DWCi_LOBBY_RESULT_ERROR_CHANNEL,        ///< Žw’è‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚È‚¢B
-    DWCi_LOBBY_RESULT_ERROR_NODATA,         ///< Žw’è‚µ‚½î•ñ‚Í‘¶Ý‚µ‚È‚¢B
-    DWCi_LOBBY_RESULT_ERROR_CONDITION,      ///< ’v–½“IƒGƒ‰[‚ª”­¶’†‚È‚Ì‚Å‚±‚ÌŠÖ”‚ðŒÄ‚Ño‚¹‚È‚¢B
-    DWCi_LOBBY_RESULT_MAX                   ///< ƒ‰ƒCƒuƒ‰ƒŠ“à•”‚ÅŽg—p‚³‚ê‚Ü‚·B
+    DWCi_LOBBY_RESULT_SUCCESS,              ///< æˆåŠŸã€‚
+    DWCi_LOBBY_RESULT_ERROR_ALLOC,          ///< ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã€‚
+    DWCi_LOBBY_RESULT_ERROR_SESSION,        ///< é€šä¿¡ã‚¨ãƒ©ãƒ¼ã€‚
+    DWCi_LOBBY_RESULT_ERROR_PARAM,          ///< æŒ‡å®šã—ãŸå¼•æ•°ãŒä¸æ­£ã€‚
+    DWCi_LOBBY_RESULT_ERROR_STATE,          ///< å‘¼ã³å‡ºã—ã¦ã¯ã„ã‘ãªã„çŠ¶æ…‹ã§é–¢æ•°ã‚’å‘¼ã³å‡ºã—ãŸã€‚
+    DWCi_LOBBY_RESULT_ERROR_CHANNEL,        ///< æŒ‡å®šã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ãªã„ã€‚
+    DWCi_LOBBY_RESULT_ERROR_NODATA,         ///< æŒ‡å®šã—ãŸæƒ…å ±ã¯å­˜åœ¨ã—ãªã„ã€‚
+    DWCi_LOBBY_RESULT_ERROR_CONDITION,      ///< è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿä¸­ãªã®ã§ã“ã®é–¢æ•°ã‚’å‘¼ã³å‡ºã›ãªã„ã€‚
+    DWCi_LOBBY_RESULT_MAX                   ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
 }
 DWCi_LOBBY_RESULT;
 
-/// ƒGƒ‰[ƒtƒ‰ƒO
+/// ã‚¨ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°
 typedef enum DWCi_LOBBY_ERROR
 {
-    DWCi_LOBBY_ERROR_NONE,                  ///< ƒGƒ‰[–³‚µB
-    DWCi_LOBBY_ERROR_UNKNOWN,               ///< •s–¾‚ÈƒGƒ‰[B
-    DWCi_LOBBY_ERROR_ALLOC,                 ///< ƒƒ‚ƒŠŠm•Û‚ÉŽ¸”sB
-    DWCi_LOBBY_ERROR_SESSION,               ///< ’v–½“I‚È’ÊMƒGƒ‰[B
-    DWCi_LOBBY_ERROR_MAX                    ///< ƒ‰ƒCƒuƒ‰ƒŠ“à•”‚ÅŽg—p‚³‚ê‚Ü‚·B
+    DWCi_LOBBY_ERROR_NONE,                  ///< ã‚¨ãƒ©ãƒ¼ç„¡ã—ã€‚
+    DWCi_LOBBY_ERROR_UNKNOWN,               ///< ä¸æ˜Žãªã‚¨ãƒ©ãƒ¼ã€‚
+    DWCi_LOBBY_ERROR_ALLOC,                 ///< ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã€‚
+    DWCi_LOBBY_ERROR_SESSION,               ///< è‡´å‘½çš„ãªé€šä¿¡ã‚¨ãƒ©ãƒ¼ã€‚
+    DWCi_LOBBY_ERROR_MAX                    ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
 }
 DWCi_LOBBY_ERROR;
 
-/// ƒ`ƒƒƒ“ƒlƒ‹“üŽºŒ‹‰Ê
+/// ãƒãƒ£ãƒ³ãƒãƒ«å…¥å®¤çµæžœ
 typedef enum
 {
-	DWCi_LOBBY_ENTER_RESULT_SUCCESS,            ///< ¬Œ÷B
-	DWCi_LOBBY_ENTER_RESULT_BAD_CHANNEL_NAME,   ///< ƒ`ƒƒƒ“ƒlƒ‹–¼‚ª•s³‚Å‚·B
-	DWCi_LOBBY_ENTER_RESULT_FULL,               ///< –žˆõB
-	DWCi_LOBBY_ENTER_RESULT_INVITE_ONLY,        ///< ‚±‚Ìƒ`ƒƒƒ“ƒlƒ‹‚Íµ‘Ò‚Å‚Ì‚Ý“ü‚ê‚Ü‚·B
-	DWCi_LOBBY_ENTER_RESULT_BANNED,             ///< ‚±‚Ìƒ`ƒƒƒ“ƒlƒ‹‚©‚çBan‚³‚ê‚Ä‚¢‚Ü‚·B
-	DWCi_LOBBY_ENTER_RESULT_BAD_PASSWORD,       ///< ‚±‚Ìƒ`ƒƒƒ“ƒlƒ‹‚É‚ÍƒpƒXƒ[ƒh‚ª‚©‚¯‚ç‚ê‚Ä‚¢‚Ü‚·B‚à‚µ‚­‚ÍƒpƒXƒ[ƒh‚ªˆá‚¢‚Ü‚·B
-	DWCi_LOBBY_ENTER_RESULT_TOO_MANY_CHANNELS,  ///< ‚±‚êˆÈã‚Ì‘½‚­‚Ìƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚ê‚Ü‚¹‚ñB
-	DWCi_LOBBY_ENTER_RESULT_TIME_OUT,           ///< ƒ^ƒCƒ€ƒAƒEƒgB
-	DWCi_LOBBY_ENTER_RESULT_MAX                 ///< ƒ‰ƒCƒuƒ‰ƒŠ“à•”‚ÅŽg—p‚³‚ê‚Ü‚·B
+	DWCi_LOBBY_ENTER_RESULT_SUCCESS,            ///< æˆåŠŸã€‚
+	DWCi_LOBBY_ENTER_RESULT_BAD_CHANNEL_NAME,   ///< ãƒãƒ£ãƒ³ãƒãƒ«åãŒä¸æ­£ã§ã™ã€‚
+	DWCi_LOBBY_ENTER_RESULT_FULL,               ///< æº€å“¡ã€‚
+	DWCi_LOBBY_ENTER_RESULT_INVITE_ONLY,        ///< ã“ã®ãƒãƒ£ãƒ³ãƒãƒ«ã¯æ‹›å¾…ã§ã®ã¿å…¥ã‚Œã¾ã™ã€‚
+	DWCi_LOBBY_ENTER_RESULT_BANNED,             ///< ã“ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‹ã‚‰Banã•ã‚Œã¦ã„ã¾ã™ã€‚
+	DWCi_LOBBY_ENTER_RESULT_BAD_PASSWORD,       ///< ã“ã®ãƒãƒ£ãƒ³ãƒãƒ«ã«ã¯ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒã‹ã‘ã‚‰ã‚Œã¦ã„ã¾ã™ã€‚ã‚‚ã—ãã¯ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé•ã„ã¾ã™ã€‚
+	DWCi_LOBBY_ENTER_RESULT_TOO_MANY_CHANNELS,  ///< ã“ã‚Œä»¥ä¸Šã®å¤šãã®ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã‚Œã¾ã›ã‚“ã€‚
+	DWCi_LOBBY_ENTER_RESULT_TIME_OUT,           ///< ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã€‚
+	DWCi_LOBBY_ENTER_RESULT_MAX                 ///< ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ä½¿ç”¨ã•ã‚Œã¾ã™ã€‚
 }
 DWCi_LOBBY_ENTER_RESULT;
 
-/// ƒ`ƒƒƒ“ƒlƒ‹ƒ‚[ƒh
+/// ãƒãƒ£ãƒ³ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰
 typedef struct DWCi_LobbyChannelMode
 {
-    BOOL inviteOnly;                        ///< ƒ`ƒƒƒ“ƒlƒ‹‚Ö‚ÌŽQ‰Á‚ðµ‘Ò‚Ì‚Ý‚É‚·‚éBFALSE‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢B
-    BOOL privateMode;                       ///< ƒ`ƒƒƒ“ƒlƒ‹ŒŸõ‚É‘Î‚µ‚Äƒ`ƒƒƒ“ƒlƒ‹–¼‚ð•š‚¹‚éBsecretMode‚Æ•¹—p‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
-    BOOL secretMode;                        ///< ƒ`ƒƒƒ“ƒlƒ‹ŒŸõ‚É‘Î‚µ‚Äƒ`ƒƒƒ“ƒlƒ‹‚ðŠ®‘S‚É‰B‚·BprivateMode‚Æ•¹—p‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
-    BOOL moderated;                         ///< ƒ`ƒƒƒ“ƒlƒ‹ƒIƒyƒŒ[ƒ^‚µ‚©”­Œ¾‚Å‚«‚È‚­‚·‚éB
-    BOOL noExternalMessages;                ///< ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚È‚¢l‚Ì”­Œ¾‚ð‹‘”Û‚·‚éB
-    BOOL onlyOpsChangeTopic;                ///< ƒ`ƒƒƒ“ƒlƒ‹ƒIƒyƒŒ[ƒ^‚µ‚©ƒgƒsƒbƒN‚ð•ÏX‚Å‚«‚È‚­‚·‚éBTRUE‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢B
-    BOOL opsObeyChannelLimit;               ///< ƒ`ƒƒƒ“ƒlƒ‹ƒIƒyƒŒ[ƒ^‚É‚àl”§ŒÀ‚ð“K—p‚·‚éBTRUE‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢B
-    s32 limit;                              ///< ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚ê‚él”‚ð§ŒÀ‚·‚éB0ˆÈ‰º‚Ìê‡‚Í§ŒÀ‚µ‚Ü‚¹‚ñB
+    BOOL inviteOnly;                        ///< ãƒãƒ£ãƒ³ãƒãƒ«ã¸ã®å‚åŠ ã‚’æ‹›å¾…ã®ã¿ã«ã™ã‚‹ã€‚FALSEã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚
+    BOOL privateMode;                       ///< ãƒãƒ£ãƒ³ãƒãƒ«æ¤œç´¢ã«å¯¾ã—ã¦ãƒãƒ£ãƒ³ãƒãƒ«åã‚’ä¼ã›ã‚‹ã€‚secretModeã¨ä½µç”¨ã—ãªã„ã§ãã ã•ã„ã€‚
+    BOOL secretMode;                        ///< ãƒãƒ£ãƒ³ãƒãƒ«æ¤œç´¢ã«å¯¾ã—ã¦ãƒãƒ£ãƒ³ãƒãƒ«ã‚’å®Œå…¨ã«éš ã™ã€‚privateModeã¨ä½µç”¨ã—ãªã„ã§ãã ã•ã„ã€‚
+    BOOL moderated;                         ///< ãƒãƒ£ãƒ³ãƒãƒ«ã‚ªãƒšãƒ¬ãƒ¼ã‚¿ã—ã‹ç™ºè¨€ã§ããªãã™ã‚‹ã€‚
+    BOOL noExternalMessages;                ///< ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ãªã„äººã®ç™ºè¨€ã‚’æ‹’å¦ã™ã‚‹ã€‚
+    BOOL onlyOpsChangeTopic;                ///< ãƒãƒ£ãƒ³ãƒãƒ«ã‚ªãƒšãƒ¬ãƒ¼ã‚¿ã—ã‹ãƒˆãƒ”ãƒƒã‚¯ã‚’å¤‰æ›´ã§ããªãã™ã‚‹ã€‚TRUEã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚
+    BOOL opsObeyChannelLimit;               ///< ãƒãƒ£ãƒ³ãƒãƒ«ã‚ªãƒšãƒ¬ãƒ¼ã‚¿ã«ã‚‚äººæ•°åˆ¶é™ã‚’é©ç”¨ã™ã‚‹ã€‚TRUEã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚
+    s32 limit;                              ///< ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã‚Œã‚‹äººæ•°ã‚’åˆ¶é™ã™ã‚‹ã€‚0ä»¥ä¸‹ã®å ´åˆã¯åˆ¶é™ã—ã¾ã›ã‚“ã€‚
 }
 DWCi_LobbyChannelMode;
 
 
-// ƒR[ƒ‹ƒoƒbƒNŒ^éŒ¾
+// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯åž‹å®£è¨€
 
 /**
- * @brief Ž©•ª‚ªƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * @brief è‡ªåˆ†ãŒãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * Ž©•ª‚ªƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * è‡ªåˆ†ãŒãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * @param[in] success “üŽº‚É¬Œ÷‚µ‚½‚©B
- * @param[in] result “üŽºŒ‹‰Êƒtƒ‰ƒOB
- * @param[in] channelName “üŽº‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚Ì–¼‘OB
- * @param[in] param ::DWCi_LobbyJoinChannel*AsyncŠÖ”‚Ìparamƒpƒ‰ƒ[ƒ^‚ÉŽw’è‚µ‚½’lB
+ * @param[in] success å…¥å®¤ã«æˆåŠŸã—ãŸã‹ã€‚
+ * @param[in] result å…¥å®¤çµæžœãƒ•ãƒ©ã‚°ã€‚
+ * @param[in] channelName å…¥å®¤ã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ã®åå‰ã€‚
+ * @param[in] param ::DWCi_LobbyJoinChannel*Asyncé–¢æ•°ã®paramãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«æŒ‡å®šã—ãŸå€¤ã€‚
  */
 typedef void (*DWCi_LobbyJoinChannelCallback)(BOOL success, DWCi_LOBBY_ENTER_RESULT result, const char* channelName, void* param);
 
 /**
- * @brief ‘¼‚Ìl‚ªƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * @brief ä»–ã®äººãŒãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * ‘¼‚Ìl‚ªƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * ä»–ã®äººãŒãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * @param[in] channelName “üŽº‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚Ì–¼‘OB
- * @param[in] userId “üŽº‚µ‚½l‚Ìƒ†[ƒUIDB
- * @param[in] param ::DWCi_LobbyChannelCallbacks\‘¢‘Ì‚Ìparamƒƒ“ƒo‚ÉŽw’è‚µ‚½’lB
+ * @param[in] channelName å…¥å®¤ã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ã®åå‰ã€‚
+ * @param[in] userId å…¥å®¤ã—ãŸäººã®ãƒ¦ãƒ¼ã‚¶IDã€‚
+ * @param[in] param ::DWCi_LobbyChannelCallbacksæ§‹é€ ä½“ã®paramãƒ¡ãƒ³ãƒã«æŒ‡å®šã—ãŸå€¤ã€‚
  */
 typedef void (*DWCi_LobbyPlayerConnectedCallback)(const char* channelName, s32 userId, void* param);
 
 /**
- * @brief ‘¼‚Ìl‚ªƒ`ƒƒƒ“ƒlƒ‹‚©‚ç‘ÞŽº‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * @brief ä»–ã®äººãŒãƒãƒ£ãƒ³ãƒãƒ«ã‹ã‚‰é€€å®¤ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * ‘¼‚Ìl‚ªƒ`ƒƒƒ“ƒlƒ‹‚©‚ç‘ÞŽº‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * ä»–ã®äººãŒãƒãƒ£ãƒ³ãƒãƒ«ã‹ã‚‰é€€å®¤ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * @param[in] channelName ‘ÞŽº‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚Ì–¼‘OB
- * @param[in] userId ‘ÞŽº‚µ‚½l‚Ìƒ†[ƒUIDB
- * @param[in] param ::DWCi_LobbyChannelCallbacks\‘¢‘Ì‚Ìparamƒƒ“ƒo‚ÉŽw’è‚µ‚½’lB
+ * @param[in] channelName é€€å®¤ã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ã®åå‰ã€‚
+ * @param[in] userId é€€å®¤ã—ãŸäººã®ãƒ¦ãƒ¼ã‚¶IDã€‚
+ * @param[in] param ::DWCi_LobbyChannelCallbacksæ§‹é€ ä½“ã®paramãƒ¡ãƒ³ãƒã«æŒ‡å®šã—ãŸå€¤ã€‚
  */
 typedef void (*DWCi_LobbyPlayerDisconnectedCallback)(const char* channelName, s32 userId, void* param);
 
 /**
- * @brief ƒ`ƒƒƒ“ƒlƒ‹‚Ö‚ÌƒƒbƒZ[ƒW‚ðŽóM‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * @brief ãƒãƒ£ãƒ³ãƒãƒ«ã¸ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ä¿¡ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * ƒ`ƒƒƒ“ƒlƒ‹‚Ö‚ÌƒƒbƒZ[ƒW‚ðŽóM‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * ãƒãƒ£ãƒ³ãƒãƒ«ã¸ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ä¿¡ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * @param[in] channelName ŽóM‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚Ì–¼‘OB
- * @param[in] userId ‘—M‚µ‚½l‚Ìƒ†[ƒUIDB
- * @param[in] message ŽóM‚µ‚½ƒƒbƒZ[ƒWB
- * @param[in] param ::DWCi_LobbyChannelCallbacks\‘¢‘Ì‚Ìparamƒƒ“ƒo‚ÉŽw’è‚µ‚½’lB
+ * @param[in] channelName å—ä¿¡ã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ã®åå‰ã€‚
+ * @param[in] userId é€ä¿¡ã—ãŸäººã®ãƒ¦ãƒ¼ã‚¶IDã€‚
+ * @param[in] message å—ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€‚
+ * @param[in] param ::DWCi_LobbyChannelCallbacksæ§‹é€ ä½“ã®paramãƒ¡ãƒ³ãƒã«æŒ‡å®šã—ãŸå€¤ã€‚
  */
 typedef void (*DWCi_LobbyChannelMassageReceivedCallback)(const char* channelName, s32 userId, const char* message, void* param);
 
 /**
- * @brief ŒÂlˆ¶‚ÌƒƒbƒZ[ƒW‚ðŽóM‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * @brief å€‹äººå®›ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ä¿¡ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * ŒÂlˆ¶‚ÌƒƒbƒZ[ƒW‚ðŽóM‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * å€‹äººå®›ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ä¿¡ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * @param[in] userId ‘—M‚µ‚½l‚Ìƒ†[ƒUIDB
- * @param[in] message ŽóM‚µ‚½ƒƒbƒZ[ƒWB
- * @param[in] param ::DWCi_LobbyGlobalCallbacks\‘¢‘Ì‚Ìparamƒƒ“ƒo‚ÉŽw’è‚µ‚½’lB
+ * @param[in] userId é€ä¿¡ã—ãŸäººã®ãƒ¦ãƒ¼ã‚¶IDã€‚
+ * @param[in] message å—ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€‚
+ * @param[in] param ::DWCi_LobbyGlobalCallbacksæ§‹é€ ä½“ã®paramãƒ¡ãƒ³ãƒã«æŒ‡å®šã—ãŸå€¤ã€‚
  */
 typedef void (*DWCi_LobbyUserMassageReceivedCallback)(s32 userId, const char* message, void* param);
 
 /**
- * @brief ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ðŽóM‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * @brief ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ðŽóM‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
- * ::DWCi_LobbyGetChannelDataAsyncŠÖ”‚ÌŒ‹‰Ê‚ª’Ê’m‚³‚ê‚Ü‚·B
+ * ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
+ * ::DWCi_LobbyGetChannelDataAsyncé–¢æ•°ã®çµæžœãŒé€šçŸ¥ã•ã‚Œã¾ã™ã€‚
  * 
- * @param[in] success ¬Œ÷‚µ‚½‚©B
- * @param[in] channelName ŽóM‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ÉŠÖ˜A‚Ã‚¯‚ç‚ê‚Ä‚¢‚éƒ`ƒƒƒ“ƒlƒ‹–¼B
- * @param[in] userId ŽóM‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ÉŠÖ˜A‚Ã‚¯‚ç‚ê‚Ä‚¢‚éƒ†[ƒUIDB
- * @param[in] key ŽóM‚µ‚½ƒL[•¶Žš—ñB
- * @param[in] value key‚ÉŠÖ˜A‚Ã‚¯‚ç‚ê‚½ƒf[ƒ^B
- * @param[in] param ::DWCi_LobbyGetChannelDataAsyncŠÖ”‚Ìparamƒpƒ‰ƒ[ƒ^‚ÉŽw’è‚µ‚½’lB
+ * @param[in] success æˆåŠŸã—ãŸã‹ã€‚
+ * @param[in] channelName å—ä¿¡ã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«é–¢é€£ã¥ã‘ã‚‰ã‚Œã¦ã„ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«åã€‚
+ * @param[in] userId å—ä¿¡ã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«é–¢é€£ã¥ã‘ã‚‰ã‚Œã¦ã„ã‚‹ãƒ¦ãƒ¼ã‚¶IDã€‚
+ * @param[in] key å—ä¿¡ã—ãŸã‚­ãƒ¼æ–‡å­—åˆ—ã€‚
+ * @param[in] value keyã«é–¢é€£ã¥ã‘ã‚‰ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã€‚
+ * @param[in] param ::DWCi_LobbyGetChannelDataAsyncé–¢æ•°ã®paramãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«æŒ‡å®šã—ãŸå€¤ã€‚
  */
 typedef void (*DWCi_LobbyGetChannelDataCallback)(BOOL success, const char* channelName, s32 userId,
                                                  const char* key, const char* value, void* param);
 
 /**
- * @brief ƒuƒ[ƒhƒLƒƒƒXƒg‚³‚ê‚½ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ðŽóM‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * @brief ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆã•ã‚ŒãŸãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * ƒuƒ[ƒhƒLƒƒƒXƒg‚³‚ê‚½ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ðŽóM‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆã•ã‚ŒãŸãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * @param[in] channelName ŽóM‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ÉŠÖ˜A‚Ã‚¯‚ç‚ê‚Ä‚¢‚éƒ`ƒƒƒ“ƒlƒ‹–¼B
- * @param[in] userId ƒuƒ[ƒhƒLƒƒƒXƒg‚ðs‚Á‚½ƒ†[ƒUIDB
- * @param[in] key ŽóM‚µ‚½ƒL[•¶Žš—ñB
- * @param[in] value key‚ÉŠÖ˜A‚Ã‚¯‚ç‚ê‚½ƒf[ƒ^B
- * @param[in] param ::DWCi_LobbyChannelCallbacks\‘¢‘Ì‚Ìparamƒƒ“ƒo‚ÉŽw’è‚µ‚½’lB
+ * @param[in] channelName å—ä¿¡ã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã«é–¢é€£ã¥ã‘ã‚‰ã‚Œã¦ã„ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«åã€‚
+ * @param[in] userId ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆã‚’è¡Œã£ãŸãƒ¦ãƒ¼ã‚¶IDã€‚
+ * @param[in] key å—ä¿¡ã—ãŸã‚­ãƒ¼æ–‡å­—åˆ—ã€‚
+ * @param[in] value keyã«é–¢é€£ã¥ã‘ã‚‰ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã€‚
+ * @param[in] param ::DWCi_LobbyChannelCallbacksæ§‹é€ ä½“ã®paramãƒ¡ãƒ³ãƒã«æŒ‡å®šã—ãŸå€¤ã€‚
  */
 typedef void (*DWCi_LobbyBroadcastDataCallback)(const char* channelName, s32 userId,
                                                  const char* key, const char* value, void* param);
 
 /**
- * @brief ƒ`ƒƒƒ“ƒlƒ‹‚Ì—ñ‹“‚ªŠ®—¹‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * @brief ãƒãƒ£ãƒ³ãƒãƒ«ã®åˆ—æŒ™ãŒå®Œäº†ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * ƒ`ƒƒƒ“ƒlƒ‹‚Ì—ñ‹“‚ªŠ®—¹‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
- * ::DWCi_LobbyEnumChannelsAsyncŠÖ”‚ÌŒ‹‰Ê‚ª’Ê’m‚³‚ê‚Ü‚·B
+ * ãƒãƒ£ãƒ³ãƒãƒ«ã®åˆ—æŒ™ãŒå®Œäº†ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
+ * ::DWCi_LobbyEnumChannelsAsyncé–¢æ•°ã®çµæžœãŒé€šçŸ¥ã•ã‚Œã¾ã™ã€‚
  * 
- * @param[in] success ¬Œ÷‚µ‚½‚©B
- * @param[in] numChannels —ñ‹“‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹”B
- * @param[in] channels numChannel•ª‚Ìƒ`ƒƒƒ“ƒlƒ‹–¼‚Ì”z—ñB
- * @param[in] topics channels‚É‘Î‰ž‚·‚éƒgƒsƒbƒN‚Ì”z—ñB
- * @param[in] numUsers channels‚É‘Î‰ž‚·‚éƒ`ƒƒƒ“ƒlƒ‹‚ÉŽQ‰Á‚µ‚Ä‚¢‚él‚Ìl”B
- * @param[in] param ::DWCi_LobbyEnumChannelsAsyncŠÖ”‚Ìparamƒpƒ‰ƒ[ƒ^‚ÉŽw’è‚µ‚½’lB
+ * @param[in] success æˆåŠŸã—ãŸã‹ã€‚
+ * @param[in] numChannels åˆ—æŒ™ã—ãŸãƒãƒ£ãƒ³ãƒãƒ«æ•°ã€‚
+ * @param[in] channels numChannelåˆ†ã®ãƒãƒ£ãƒ³ãƒãƒ«åã®é…åˆ—ã€‚
+ * @param[in] topics channelsã«å¯¾å¿œã™ã‚‹ãƒˆãƒ”ãƒƒã‚¯ã®é…åˆ—ã€‚
+ * @param[in] numUsers channelsã«å¯¾å¿œã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«ã«å‚åŠ ã—ã¦ã„ã‚‹äººã®äººæ•°ã€‚
+ * @param[in] param ::DWCi_LobbyEnumChannelsAsyncé–¢æ•°ã®paramãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«æŒ‡å®šã—ãŸå€¤ã€‚
  */
 typedef void (*DWCi_LobbyEnumChannelsCallback)(BOOL success, s32 numChannels, const char** channels, const char** topics, const s32* numUsers, void* param);
 
 /**
- * @brief ƒ`ƒƒƒ“ƒlƒ‹‚ÉŽQ‰Á‚µ‚Ä‚¢‚él‚Ì—ñ‹“‚ªŠ®—¹‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * @brief ãƒãƒ£ãƒ³ãƒãƒ«ã«å‚åŠ ã—ã¦ã„ã‚‹äººã®åˆ—æŒ™ãŒå®Œäº†ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * ƒ`ƒƒƒ“ƒlƒ‹‚ÉŽQ‰Á‚µ‚Ä‚¢‚él‚Ì—ñ‹“‚ªŠ®—¹‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
- * ::DWCi_LobbyEnumUsersAsyncŠÖ”‚ÌŒ‹‰Ê‚ª’Ê’m‚³‚ê‚Ü‚·B
+ * ãƒãƒ£ãƒ³ãƒãƒ«ã«å‚åŠ ã—ã¦ã„ã‚‹äººã®åˆ—æŒ™ãŒå®Œäº†ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
+ * ::DWCi_LobbyEnumUsersAsyncé–¢æ•°ã®çµæžœãŒé€šçŸ¥ã•ã‚Œã¾ã™ã€‚
  * 
- * @param[in] success ¬Œ÷‚µ‚½‚©B
- * @param[in] channelName —ñ‹“‚µ‚½‘ÎÛ‚Ìƒ`ƒƒƒ“ƒlƒ‹–¼B
- * @param[in] numUsers ƒ`ƒƒƒ“ƒlƒ‹‚ÉŽQ‰Á‚µ‚Ä‚¢‚él”B
- * @param[in] userIds ƒ`ƒƒƒ“ƒlƒ‹‚ÉŽQ‰Á‚µ‚Ä‚¢‚él‚Ìƒ†[ƒUID‚Ì”z—ñB
- * @param[in] param ::DWCi_LobbyEnumUsersAsyncŠÖ”‚Ìparamƒpƒ‰ƒ[ƒ^‚ÉŽw’è‚µ‚½’lB
+ * @param[in] success æˆåŠŸã—ãŸã‹ã€‚
+ * @param[in] channelName åˆ—æŒ™ã—ãŸå¯¾è±¡ã®ãƒãƒ£ãƒ³ãƒãƒ«åã€‚
+ * @param[in] numUsers ãƒãƒ£ãƒ³ãƒãƒ«ã«å‚åŠ ã—ã¦ã„ã‚‹äººæ•°ã€‚
+ * @param[in] userIds ãƒãƒ£ãƒ³ãƒãƒ«ã«å‚åŠ ã—ã¦ã„ã‚‹äººã®ãƒ¦ãƒ¼ã‚¶IDã®é…åˆ—ã€‚
+ * @param[in] param ::DWCi_LobbyEnumUsersAsyncé–¢æ•°ã®paramãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«æŒ‡å®šã—ãŸå€¤ã€‚
  */
 typedef void (*DWCi_LobbyEnumUsersCallback)(BOOL success, const char* channelName, s32 numUsers, const s32* userIds, void* param);
 
 /**
- * @brief ƒ`ƒƒƒ“ƒlƒ‹ƒ‚[ƒh‚ðŽæ“¾‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * @brief ãƒãƒ£ãƒ³ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * ƒ`ƒƒƒ“ƒlƒ‹ƒ‚[ƒh‚ðŽæ“¾‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
- * ::DWCi_LobbyGetChannelModeAsyncŠÖ”‚ÌŒ‹‰Ê‚ª’Ê’m‚³‚ê‚Ü‚·B\n
- * ::DWCi_LobbySetChannelModeŠÖ”‚ðŒÄ‚ñ‚¾’¼Œã‚É–{ŠÖ”‚É‚æ‚Á‚Äƒ`ƒƒƒ“ƒlƒ‹ƒ‚[ƒh‚ðŽæ“¾‚µ‚½ê‡A
- * ŽÀÛ‚Éƒ‚[ƒh‚ªƒZƒbƒg‚³‚ê‚é‚Ü‚Å‚ÉŽáŠ±‚Ìƒ^ƒCƒ€ƒ‰ƒO‚ª‚ ‚é‚½‚ßA•ÏX‘O‚Ìƒ`ƒƒƒ“ƒlƒ‹ƒ‚[ƒh‚ªŽæ“¾‚³‚ê‚éê‡‚ª‚ ‚è‚Ü‚·B
+ * ãƒãƒ£ãƒ³ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
+ * ::DWCi_LobbyGetChannelModeAsyncé–¢æ•°ã®çµæžœãŒé€šçŸ¥ã•ã‚Œã¾ã™ã€‚\n
+ * ::DWCi_LobbySetChannelModeé–¢æ•°ã‚’å‘¼ã‚“ã ç›´å¾Œã«æœ¬é–¢æ•°ã«ã‚ˆã£ã¦ãƒãƒ£ãƒ³ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã—ãŸå ´åˆã€
+ * å®Ÿéš›ã«ãƒ¢ãƒ¼ãƒ‰ãŒã‚»ãƒƒãƒˆã•ã‚Œã‚‹ã¾ã§ã«è‹¥å¹²ã®ã‚¿ã‚¤ãƒ ãƒ©ã‚°ãŒã‚ã‚‹ãŸã‚ã€å¤‰æ›´å‰ã®ãƒãƒ£ãƒ³ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ãŒå–å¾—ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚Šã¾ã™ã€‚
  * 
- * @param[in] success ¬Œ÷‚µ‚½‚©B
- * @param[in] channelName Žæ“¾‚µ‚½‘ÎÛ‚Ìƒ`ƒƒƒ“ƒlƒ‹–¼B
- * @param[in] mode ƒ`ƒƒƒ“ƒlƒ‹ƒ‚[ƒhB
- * @param[in] param ::DWCi_LobbyGetChannelModeAsyncŠÖ”‚Ìparamƒpƒ‰ƒ[ƒ^‚ÉŽw’è‚µ‚½’lB
+ * @param[in] success æˆåŠŸã—ãŸã‹ã€‚
+ * @param[in] channelName å–å¾—ã—ãŸå¯¾è±¡ã®ãƒãƒ£ãƒ³ãƒãƒ«åã€‚
+ * @param[in] mode ãƒãƒ£ãƒ³ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã€‚
+ * @param[in] param ::DWCi_LobbyGetChannelModeAsyncé–¢æ•°ã®paramãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«æŒ‡å®šã—ãŸå€¤ã€‚
  */
 typedef void (*DWCi_LobbyGetChannelModeCallback)(BOOL success, const char* channelName, const DWCi_LobbyChannelMode* mode, void* param);
 
 /**
- * @brief ƒ`ƒƒƒ“ƒlƒ‹ƒgƒsƒbƒN‚ª•ÏX‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * @brief ãƒãƒ£ãƒ³ãƒãƒ«ãƒˆãƒ”ãƒƒã‚¯ãŒå¤‰æ›´ã•ã‚ŒãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * ƒ`ƒƒƒ“ƒlƒ‹ƒgƒsƒbƒN‚ª•ÏX‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * ãƒãƒ£ãƒ³ãƒãƒ«ãƒˆãƒ”ãƒƒã‚¯ãŒå¤‰æ›´ã•ã‚ŒãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * @param[in] channelName Žæ“¾‚µ‚½‘ÎÛ‚Ìƒ`ƒƒƒ“ƒlƒ‹–¼B
- * @param[in] topic •ÏXŒã‚ÌƒgƒsƒbƒNB
- * @param[in] param ::DWCi_LobbyChannelCallbacks\‘¢‘Ì‚Ìparamƒƒ“ƒo‚ÉŽw’è‚µ‚½’lB
+ * @param[in] channelName å–å¾—ã—ãŸå¯¾è±¡ã®ãƒãƒ£ãƒ³ãƒãƒ«åã€‚
+ * @param[in] topic å¤‰æ›´å¾Œã®ãƒˆãƒ”ãƒƒã‚¯ã€‚
+ * @param[in] param ::DWCi_LobbyChannelCallbacksæ§‹é€ ä½“ã®paramãƒ¡ãƒ³ãƒã«æŒ‡å®šã—ãŸå€¤ã€‚
  */
 typedef void (*DWCi_LobbyTopicChangedCallback)(const char* channelName, const char* topic, void* param);
 
 /**
- * @brief ƒT[ƒo‚Æ‚Ì’ÊM‚ð‰ßè‚És‚Á‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
+ * @brief ã‚µãƒ¼ãƒã¨ã®é€šä¿¡ã‚’éŽå‰°ã«è¡Œã£ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
  * 
- * ƒT[ƒo‚Æ‚Ì’ÊM‚ð‰ßè‚És‚Á‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^B
- * floodWeight‚Í’ÊM‚ð”­¶‚³‚¹‚éƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‚ÌŠÖ”‚ÌŒÄ‚Ño‚µ‚É‚æ‚Á‚Äã¸‚µA
- * 300‚ð’´‚¦‚é‚Æ::DWCi_LobbyGetChannelDataAsyncŠÖ”‚ª–³Ž‹‚³‚ê‚é‚æ‚¤‚É‚È‚èA600‚ð’´‚¦‚é‚ÆƒT[ƒo‚©‚çØ’f‚³‚ê‚Ü‚·B
- * floodWeight‚Í1•b‚É5Œ¸­‚µ‚Ü‚·B
- * ‚½‚¾‚µDWCi_LobbySend*MessageŠÖ”‚ÌŒÄ‚Ño‚µ‚ÍfloodWeight‚ðã¸‚³‚¹‚Ü‚¹‚ñB
- * ‚±‚ÌƒR[ƒ‹ƒoƒbƒN‚ª”­¶‚µ‚½‚Æ‚«‚Íƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^ƒZƒbƒg‚âŽæ“¾‚ðT‚¦‚é‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢B
+ * ã‚µãƒ¼ãƒã¨ã®é€šä¿¡ã‚’éŽå‰°ã«è¡Œã£ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€‚
+ * floodWeightã¯é€šä¿¡ã‚’ç™ºç”Ÿã•ã›ã‚‹ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®é–¢æ•°ã®å‘¼ã³å‡ºã—ã«ã‚ˆã£ã¦ä¸Šæ˜‡ã—ã€
+ * 300ã‚’è¶…ãˆã‚‹ã¨::DWCi_LobbyGetChannelDataAsyncé–¢æ•°ãŒç„¡è¦–ã•ã‚Œã‚‹ã‚ˆã†ã«ãªã‚Šã€600ã‚’è¶…ãˆã‚‹ã¨ã‚µãƒ¼ãƒã‹ã‚‰åˆ‡æ–­ã•ã‚Œã¾ã™ã€‚
+ * floodWeightã¯1ç§’ã«5æ¸›å°‘ã—ã¾ã™ã€‚
+ * ãŸã ã—DWCi_LobbySend*Messageé–¢æ•°ã®å‘¼ã³å‡ºã—ã¯floodWeightã‚’ä¸Šæ˜‡ã•ã›ã¾ã›ã‚“ã€‚
+ * ã“ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒç™ºç”Ÿã—ãŸã¨ãã¯ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆã‚„å–å¾—ã‚’æŽ§ãˆã‚‹ã‚ˆã†ã«ã—ã¦ãã ã•ã„ã€‚
  * 
- * @param[in] floodWeight ’ÊM‰ß‘½‚ÌŠ„‡‚ðŽ¦‚·d‚ÝB
- * @param[in] param ::DWCi_LobbyGlobalCallbacks\‘¢‘Ì‚Ìparamƒƒ“ƒo‚ÉŽw’è‚µ‚½’lB
+ * @param[in] floodWeight é€šä¿¡éŽå¤šã®å‰²åˆã‚’ç¤ºã™é‡ã¿ã€‚
+ * @param[in] param ::DWCi_LobbyGlobalCallbacksæ§‹é€ ä½“ã®paramãƒ¡ãƒ³ãƒã«æŒ‡å®šã—ãŸå€¤ã€‚
  */
 typedef void (*DWCi_LobbyExcessFloodCallback)(u32 floodWeight, void* param);
 
-/// ƒOƒ[ƒoƒ‹ƒR[ƒ‹ƒoƒbƒN“o˜^—p\‘¢‘Ì
+/// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç™»éŒ²ç”¨æ§‹é€ ä½“
 typedef struct DWCi_LobbyGlobalCallbacks
 {
-    /// ŒÂlˆ¶‚ÌƒƒbƒZ[ƒW‚ðŽóM‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+    /// å€‹äººå®›ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ä¿¡ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
     DWCi_LobbyUserMassageReceivedCallback lobbyUserMassageReceivedCallback;
-    /// ƒT[ƒo‚Æ‚Ì’ÊM‚ð‰ßè‚És‚Á‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+    /// ã‚µãƒ¼ãƒã¨ã®é€šä¿¡ã‚’éŽå‰°ã«è¡Œã£ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
     DWCi_LobbyExcessFloodCallback lobbyExcessFloodCallback;
-    /// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ìparamƒpƒ‰ƒ[ƒ^‚É“n‚³‚ê‚é’lB
+    /// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®paramãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«æ¸¡ã•ã‚Œã‚‹å€¤ã€‚
     void* param;
 }
 DWCi_LobbyGlobalCallbacks;
 
-/// ƒ`ƒƒƒ“ƒlƒ‹ƒR[ƒ‹ƒoƒbƒN“o˜^—p\‘¢‘Ì
+/// ãƒãƒ£ãƒ³ãƒãƒ«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç™»éŒ²ç”¨æ§‹é€ ä½“
 typedef struct DWCi_LobbyChannelCallbacks
 {
-    /// ‘¼‚Ìl‚ªƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+    /// ä»–ã®äººãŒãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
     DWCi_LobbyPlayerConnectedCallback lobbyPlayerConnectedCallback;
-    /// ‘¼‚Ìl‚ªƒ`ƒƒƒ“ƒlƒ‹‚©‚ç‘ÞŽº‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+    /// ä»–ã®äººãŒãƒãƒ£ãƒ³ãƒãƒ«ã‹ã‚‰é€€å®¤ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
     DWCi_LobbyPlayerDisconnectedCallback lobbyPlayerDisconnectedCallback;
-    /// ƒ`ƒƒƒ“ƒlƒ‹‚Ö‚ÌƒƒbƒZ[ƒW‚ðŽóM‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+    /// ãƒãƒ£ãƒ³ãƒãƒ«ã¸ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ä¿¡ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
     DWCi_LobbyChannelMassageReceivedCallback lobbyChannelMassageReceivedCallback;
-    /// ƒuƒ[ƒhƒLƒƒƒXƒg‚³‚ê‚½ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ðŽóM‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+    /// ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆã•ã‚ŒãŸãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
     DWCi_LobbyBroadcastDataCallback lobbyBroadcastDataCallback;
-    /// ƒ`ƒƒƒ“ƒlƒ‹ƒgƒsƒbƒN‚ª•ÏX‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+    /// ãƒãƒ£ãƒ³ãƒãƒ«ãƒˆãƒ”ãƒƒã‚¯ãŒå¤‰æ›´ã•ã‚ŒãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
     DWCi_LobbyTopicChangedCallback lobbyTopicChangedCallback;
-    /// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ìparamƒpƒ‰ƒ[ƒ^‚É“n‚³‚ê‚é’lB
+    /// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®paramãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«æ¸¡ã•ã‚Œã‚‹å€¤ã€‚
     void* param;
 }
 DWCi_LobbyChannelCallbacks;
 
-// ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‚ð‰Šú‰»B
+// ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’åˆæœŸåŒ–ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbyInitializeAsync(const char* gameName, const char* secretKey, DWC_LOBBY_CHANNEL_PREFIX prefix,
                                          const DWCi_LobbyGlobalCallbacks* globalCallbacks, const DWCUserData* userdata);
 
-// ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‚ðŽw’è‚µ‚½PID‚Å‰Šú‰»B
+// ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’æŒ‡å®šã—ãŸPIDã§åˆæœŸåŒ–ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbyInitializePidAsync(const char* gameName, const char* secretKey, DWC_LOBBY_CHANNEL_PREFIX prefix,
                                          const DWCi_LobbyGlobalCallbacks* globalCallbacks, s32 pid);
-// ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‚ðI—¹B
+// ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’çµ‚äº†ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbyShutdownAsync();
 
-// ƒvƒƒZƒXŠÖ”B
+// ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ã€‚
 DWCi_LOBBY_STATE    DWCi_LobbyProcess();
 
-// ƒGƒ‰[î•ñŽæ“¾B
+// ã‚¨ãƒ©ãƒ¼æƒ…å ±å–å¾—ã€‚
 DWCi_LOBBY_ERROR    DWCi_LobbyGetLastError();
 
-// ”­¶‚µ‚½ƒGƒ‰[(::DWCi_LOBBY_ERROR)‚©‚ç•\Ž¦‚·‚×‚«ƒGƒ‰[ƒR[ƒh‚ð“¾‚éB
+// ç™ºç”Ÿã—ãŸã‚¨ãƒ©ãƒ¼(::DWCi_LOBBY_ERROR)ã‹ã‚‰è¡¨ç¤ºã™ã¹ãã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’å¾—ã‚‹ã€‚
 s32                 DWCi_LobbyToErrorCode(DWCi_LOBBY_ERROR err);
 
-// Ž©•ª‚Ìƒ†[ƒUID‚ðŽæ“¾B
+// è‡ªåˆ†ã®ãƒ¦ãƒ¼ã‚¶IDã‚’å–å¾—ã€‚
 s32                 DWCi_LobbyGetMyUserId();
 
-// Žw’è‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚é‚©’²‚×‚éB
+// æŒ‡å®šã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹ã€‚
 BOOL                DWCi_LobbyInChannel(const char* channelName);
 
-// ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚éB
+// ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã‚‹ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbyJoinChannelAsync(const char* channelName, const char* password, const DWCi_LobbyChannelCallbacks* channelCallbacks,
                                                DWCi_LobbyJoinChannelCallback callback, void* param);
 
-// Å‘ål”‚ðŽw’è‚µ‚Äƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚éB
+// æœ€å¤§äººæ•°ã‚’æŒ‡å®šã—ã¦ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã‚‹ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbyJoinChannelLimitAsync(const char* channelName, const char* password, s32 limit, const DWCi_LobbyChannelCallbacks* channelCallbacks,
                                                   DWCi_LobbyJoinChannelCallback callback, void* param);
     
-// ƒ`ƒƒƒ“ƒlƒ‹‚©‚ço‚éB
+// ãƒãƒ£ãƒ³ãƒãƒ«ã‹ã‚‰å‡ºã‚‹ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbyLeaveChannel(const char* channelName);
 
-// ƒ`ƒƒƒ“ƒlƒ‹‚ÉŽQ‰Á‚µ‚Ä‚¢‚él‚ÉƒƒbƒZ[ƒW‚ð‘—M‚·‚éB
+// ãƒãƒ£ãƒ³ãƒãƒ«ã«å‚åŠ ã—ã¦ã„ã‚‹äººã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã™ã‚‹ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbySendChannelMessage(const char* channelName, const char* message);
 
-// Žw’è‚µ‚½ƒ†[ƒU‚ÖƒƒbƒZ[ƒW‚ð‘—M‚·‚éB
+// æŒ‡å®šã—ãŸãƒ¦ãƒ¼ã‚¶ã¸ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã™ã‚‹ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbySendUserMessage(s32 userId, const char* message);
 
-// ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ðƒZƒbƒg‚·‚éB
+// ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbySetChannelData(const char* channelName, s32 userId, const char* key, const char* value);
 
-// ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ðŽæ“¾‚·‚éB
+// ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbyGetChannelDataAsync(const char* channelName, s32 userId, const char* key, DWCi_LobbyGetChannelDataCallback callback, void* param);
 
-// ƒ`ƒƒƒ“ƒlƒ‹‚ð—ñ‹“‚·‚éB
+// ãƒãƒ£ãƒ³ãƒãƒ«ã‚’åˆ—æŒ™ã™ã‚‹ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbyEnumChannelsAsync(const char* filter, DWCi_LobbyEnumChannelsCallback callback, void* param);
 
-// ƒ`ƒƒƒ“ƒlƒ‹‚ÉŽQ‰Á‚µ‚Ä‚¢‚él‚ð—ñ‹“‚·‚éB
+// ãƒãƒ£ãƒ³ãƒãƒ«ã«å‚åŠ ã—ã¦ã„ã‚‹äººã‚’åˆ—æŒ™ã™ã‚‹ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbyEnumUsersAsync(const char* channelName, DWCi_LobbyEnumUsersCallback callback, void* param);
 
-// ƒ`ƒƒƒ“ƒlƒ‹‚ÉŽQ‰Á‚µ‚Ä‚¢‚él‚ð—ñ‹“‚·‚éB
+// ãƒãƒ£ãƒ³ãƒãƒ«ã«å‚åŠ ã—ã¦ã„ã‚‹äººã‚’åˆ—æŒ™ã™ã‚‹ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbyEnumUsers(const char* channelName, s32* userIds, u32* userIdNum);
 
-// ƒ`ƒƒƒ“ƒlƒ‹ƒ‚[ƒh‚ðƒZƒbƒg‚·‚éB
+// ãƒãƒ£ãƒ³ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbySetChannelMode(const char* channelName, const DWCi_LobbyChannelMode* mode);
 
-// ƒ`ƒƒƒ“ƒlƒ‹ƒ‚[ƒh‚ðŽæ“¾‚·‚éB
+// ãƒãƒ£ãƒ³ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbyGetChannelModeAsync(const char* channelName, DWCi_LobbyGetChannelModeCallback callback, void* param);
 
-// ƒ`ƒƒƒ“ƒlƒ‹ƒgƒsƒbƒN‚ðƒZƒbƒg‚·‚éB
+// ãƒãƒ£ãƒ³ãƒãƒ«ãƒˆãƒ”ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
 DWCi_LOBBY_RESULT   DWCi_LobbySetChannelTopic(const char* channelName, const char* topic);
 
-// ƒ`ƒƒƒ“ƒlƒ‹ƒpƒXƒ[ƒh‚ðƒZƒbƒg‚·‚éB
+// ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
 DWCi_LOBBY_RESULT DWCi_LobbySetChannelPassword(const char* channelName, BOOL enable, const char* password);
 
 // MatchComment: add this prototype

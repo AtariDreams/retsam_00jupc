@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	poke_anm_b015_1.s
- * @brief	�ːi
+ * @brief	突進
  * @author	
  * @date	
  *
@@ -18,7 +18,7 @@
 // =============================================================================
 //
 //
-//	�w��	�ːi1
+//	背面	突進1
 //
 //
 // =============================================================================
@@ -29,27 +29,27 @@
 #define SHAKE_WIDTH	(4)
 #define SHAKE_NUM	(15)
 PAST_ANIME_B015_1:
-	//���
+	//後退
 	CALL_MF_LINE_DST		APPLY_SET,0,TARGET_DX,BACK_SPD,0,-MOVE_WIDTH
 	HOLD_CMD
-	//�ːi
+	//突進
 	CALL_MF_LINE_DST		APPLY_ADD,0,TARGET_DX,START_SPD,ADD_SPD,MOVE_WIDTH
 	HOLD_CMD
 
 	SET_ADD_PARAM	PARAM_DX,USE_VAL,MOVE_WIDTH,PARAM_SET
 	APPLY_TRANS
 	
-	//�U��
-	SET_WORK_VAL		WORK0,SHAKE_WIDTH		//�U����
+	//振動
+	SET_WORK_VAL		WORK0,SHAKE_WIDTH		//振動幅
 	START_LOOP		SHAKE_NUM
 		SET_ADD_PARAM	PARAM_DX,USE_WORK,WORK0,PARAM_ADD
 		APPLY_TRANS
 		MUL_WORK_VAL	WORK0,CALC_VAL,WORK0,-1
-		//�`�惊�N�G�X�g
+		//描画リクエスト
 		SET_REQUEST
 	END_LOOP
 
-	//���
+	//後退
 	SET_ADD_PARAM	PARAM_DX,USE_VAL,MOVE_WIDTH,PARAM_SET
 	APPLY_TRANS
 	CALL_MF_LINE_DST		APPLY_ADD,0,TARGET_DX,BACK_SPD,0,0

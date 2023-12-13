@@ -16,25 +16,25 @@
 	.include	"../eventdata/zone_c07r0201evd.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c07r0206_counterw
 _EVENT_DATA_END
 
 /********************************************************************/
-//						ƒGƒŒƒx[ƒ^[ƒK[ƒ‹
+//						ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ãƒ¼ã‚¬ãƒ¼ãƒ«
 /********************************************************************/
 ev_c07r0206_counterw:
 	_TALK_OBJ_START
 
-	//“ÁŽêÚ‘±æ‚©‚çAŒ»Ý‚ÌƒtƒƒAƒiƒ“ƒo[‚ðŽæ“¾
+	//ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‹ã‚‰ã€ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	_ELEVATOR_FLOOR_GET	WK_ELEVATOR_FLOOR
 
-	//u›‚©‚¢v•¶Žš—ñƒZƒbƒg
+	//ã€Œâ—‹ã‹ã„ã€æ–‡å­—åˆ—ã‚»ãƒƒãƒˆ
 	_SWITCH			WK_ELEVATOR_FLOOR
 	_CASE_JUMP		FLOOR_C07R0206_5F,case5_c07r0206_elevator_01
 	_CASE_JUMP		FLOOR_C07R0206_4F,case4_c07r0206_elevator_01
@@ -45,7 +45,7 @@ ev_c07r0206_counterw:
 	_END
 
 //--------------------------------------------------------------------
-//u›‚©‚¢v•¶Žš—ñƒZƒbƒg
+//ã€Œâ—‹ã‹ã„ã€æ–‡å­—åˆ—ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------------
 case5_c07r0206_elevator_01:
 	_NUMBER_NAME	0,5
@@ -73,15 +73,15 @@ case0_c07r0206_elevator_01:
 	_END
 
 //--------------------------------------------------------------------
-//	Œ»Ý‚ÌƒtƒƒA‚ðo‚·
+//	ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ã‚’å‡ºã™
 //--------------------------------------------------------------------
 ev_c07r0206_elevator_02:
 	_ELEVATOR_FLOOR_WRITE	20,1,WK_ELEVATOR_FLOOR,WK_ELEVATOR_FLOOR
 
-	//u‚È‚ñ‚©‚¢‚Ö‚¢‚«‚Ü‚·‚©Hv
+	//ã€Œãªã‚“ã‹ã„ã¸ã„ãã¾ã™ã‹ï¼Ÿã€
 	_TALKMSG		msg_c07r0206_counterw_01
 	
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 	_BMPMENU_MAKE_LIST	msg_ev_win_117,0
 	_BMPMENU_MAKE_LIST	msg_ev_win_116,1
 	_BMPMENU_MAKE_LIST	msg_ev_win_115,2
@@ -101,153 +101,153 @@ ev_c07r0206_elevator_02:
 	_JUMP			cancel_c07r0206_elevator_01
 
 //--------------------------------------------------------------------
-//	‘I‚ñ‚¾ƒtƒƒA‚É‚æ‚Á‚Ä•ªŠò
+//	é¸ã‚“ã ãƒ•ãƒ­ã‚¢ã«ã‚ˆã£ã¦åˆ†å²
 //--------------------------------------------------------------------
 case5_c07r0206_elevator_02:
-	//ƒtƒƒAƒEƒBƒ“ƒhƒE‚ðÁ‚·ƒEƒFƒCƒg
+	//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ã‚¦ã‚§ã‚¤ãƒˆ
 	_TIME_WAIT		1,SCWK_ANSWER
 
-	//“ÁŽêÚ‘±æ‚©‚çAŒ»Ý‚ÌƒtƒƒAƒiƒ“ƒo[‚ðŽæ“¾
+	//ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‹ã‚‰ã€ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	_ELEVATOR_FLOOR_GET	WK_ELEVATOR_FLOOR
 
-	/*“ÁŽêÚ‘±æ‚ðƒZƒbƒg*/
+	/*ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‚’ã‚»ãƒƒãƒˆ*/
 	_SP_LOCATION_SET	ZONE_ID_C07R0207,C07R0207_MAT03,18,2,DIR_DOWN
 
-	/*“¯‚¶ŠK‚ð‘I‘ð‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*åŒã˜éšŽã‚’é¸æŠžã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_IFVAL_JUMP		WK_ELEVATOR_FLOOR,EQ,FLOOR_C07R0206_B1F,end_c07r0206_elevator_01
 
-	/*‚±‚±‚ð”»•Ê‚µ‚È‚¢‚Æƒ_ƒ*/
+	/*ã“ã“ã‚’åˆ¤åˆ¥ã—ãªã„ã¨ãƒ€ãƒ¡*/
 	_IFVAL_CALL		WK_ELEVATOR_FLOOR,GT,FLOOR_C07R0206_B1F,common_c07r0206_elevator_dir_up
 	_IFVAL_CALL		WK_ELEVATOR_FLOOR,LT,FLOOR_C07R0206_B1F,common_c07r0206_elevator_dir_down
 
 	_CALL			common_c07r0206_01
 
-	//ˆÚ“®‚µ‚½ŠK‚ð‘ã“ü
+	//ç§»å‹•ã—ãŸéšŽã‚’ä»£å…¥
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_C07R0206_B1F
 
 	_JUMP			ev_c07r0206_elevator_03
 
 case4_c07r0206_elevator_02:
-	//ƒtƒƒAƒEƒBƒ“ƒhƒE‚ðÁ‚·ƒEƒFƒCƒg
+	//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ã‚¦ã‚§ã‚¤ãƒˆ
 	_TIME_WAIT		1,SCWK_ANSWER
 
-	//“ÁŽêÚ‘±æ‚©‚çAŒ»Ý‚ÌƒtƒƒAƒiƒ“ƒo[‚ðŽæ“¾
+	//ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‹ã‚‰ã€ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	_ELEVATOR_FLOOR_GET	WK_ELEVATOR_FLOOR
 
-	/*“ÁŽêÚ‘±æ‚ðƒZƒbƒg*/
+	/*ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‚’ã‚»ãƒƒãƒˆ*/
 	_SP_LOCATION_SET	ZONE_ID_C07R0201,C07R0201_MAT03,18,2,DIR_DOWN
 
-	/*“¯‚¶ŠK‚ð‘I‘ð‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*åŒã˜éšŽã‚’é¸æŠžã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_IFVAL_JUMP		WK_ELEVATOR_FLOOR,EQ,FLOOR_C07R0206_1F,end_c07r0206_elevator_01
 
-	/*‚±‚±‚ð”»•Ê‚µ‚È‚¢‚Æƒ_ƒ*/
+	/*ã“ã“ã‚’åˆ¤åˆ¥ã—ãªã„ã¨ãƒ€ãƒ¡*/
 	_IFVAL_CALL		WK_ELEVATOR_FLOOR,GT,FLOOR_C07R0206_1F,common_c07r0206_elevator_dir_up
 	_IFVAL_CALL		WK_ELEVATOR_FLOOR,LT,FLOOR_C07R0206_1F,common_c07r0206_elevator_dir_down
 
 	_CALL			common_c07r0206_01
 
-	//ˆÚ“®‚µ‚½ŠK‚ð‘ã“ü
+	//ç§»å‹•ã—ãŸéšŽã‚’ä»£å…¥
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_C07R0206_1F
 
 	_JUMP			ev_c07r0206_elevator_03
 
 case3_c07r0206_elevator_02:
-	//ƒtƒƒAƒEƒBƒ“ƒhƒE‚ðÁ‚·ƒEƒFƒCƒg
+	//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ã‚¦ã‚§ã‚¤ãƒˆ
 	_TIME_WAIT		1,SCWK_ANSWER
 
-	//“ÁŽêÚ‘±æ‚©‚çAŒ»Ý‚ÌƒtƒƒAƒiƒ“ƒo[‚ðŽæ“¾
+	//ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‹ã‚‰ã€ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	_ELEVATOR_FLOOR_GET	WK_ELEVATOR_FLOOR
 
-	/*“ÁŽêÚ‘±æ‚ðƒZƒbƒg*/
+	/*ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‚’ã‚»ãƒƒãƒˆ*/
 	_SP_LOCATION_SET	ZONE_ID_C07R0202,C07R0202_MAT03,18,2,DIR_DOWN
 
-	/*“¯‚¶ŠK‚ð‘I‘ð‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*åŒã˜éšŽã‚’é¸æŠžã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_IFVAL_JUMP		WK_ELEVATOR_FLOOR,EQ,FLOOR_C07R0206_2F,end_c07r0206_elevator_01
 
-	/*‚±‚±‚ð”»•Ê‚µ‚È‚¢‚Æƒ_ƒ*/
+	/*ã“ã“ã‚’åˆ¤åˆ¥ã—ãªã„ã¨ãƒ€ãƒ¡*/
 	_IFVAL_CALL		WK_ELEVATOR_FLOOR,GT,FLOOR_C07R0206_2F,common_c07r0206_elevator_dir_up
 	_IFVAL_CALL		WK_ELEVATOR_FLOOR,LT,FLOOR_C07R0206_2F,common_c07r0206_elevator_dir_down
 
 	_CALL			common_c07r0206_01
 
-	//ˆÚ“®‚µ‚½ŠK‚ð‘ã“ü
+	//ç§»å‹•ã—ãŸéšŽã‚’ä»£å…¥
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_C07R0206_2F
 
 	_JUMP			ev_c07r0206_elevator_03
 
 case2_c07r0206_elevator_02:
-	//ƒtƒƒAƒEƒBƒ“ƒhƒE‚ðÁ‚·ƒEƒFƒCƒg
+	//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ã‚¦ã‚§ã‚¤ãƒˆ
 	_TIME_WAIT		1,SCWK_ANSWER
 
-	//“ÁŽêÚ‘±æ‚©‚çAŒ»Ý‚ÌƒtƒƒAƒiƒ“ƒo[‚ðŽæ“¾
+	//ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‹ã‚‰ã€ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	_ELEVATOR_FLOOR_GET	WK_ELEVATOR_FLOOR
 
-	/*“ÁŽêÚ‘±æ‚ðƒZƒbƒg*/
+	/*ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‚’ã‚»ãƒƒãƒˆ*/
 	_SP_LOCATION_SET	ZONE_ID_C07R0203,C07R0203_MAT03,18,2,DIR_DOWN
 
-	/*“¯‚¶ŠK‚ð‘I‘ð‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*åŒã˜éšŽã‚’é¸æŠžã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_IFVAL_JUMP		WK_ELEVATOR_FLOOR,EQ,FLOOR_C07R0206_3F,end_c07r0206_elevator_01
 
-	/*‚±‚±‚ð”»•Ê‚µ‚È‚¢‚Æƒ_ƒ*/
+	/*ã“ã“ã‚’åˆ¤åˆ¥ã—ãªã„ã¨ãƒ€ãƒ¡*/
 	_IFVAL_CALL		WK_ELEVATOR_FLOOR,GT,FLOOR_C07R0206_3F,common_c07r0206_elevator_dir_up
 	_IFVAL_CALL		WK_ELEVATOR_FLOOR,LT,FLOOR_C07R0206_3F,common_c07r0206_elevator_dir_down
 
 	_CALL			common_c07r0206_01
 
-	//ˆÚ“®‚µ‚½ŠK‚ð‘ã“ü
+	//ç§»å‹•ã—ãŸéšŽã‚’ä»£å…¥
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_C07R0206_3F
 
 	_JUMP			ev_c07r0206_elevator_03
 
 case1_c07r0206_elevator_02:
-	//ƒtƒƒAƒEƒBƒ“ƒhƒE‚ðÁ‚·ƒEƒFƒCƒg
+	//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ã‚¦ã‚§ã‚¤ãƒˆ
 	_TIME_WAIT		1,SCWK_ANSWER
 
-	//“ÁŽêÚ‘±æ‚©‚çAŒ»Ý‚ÌƒtƒƒAƒiƒ“ƒo[‚ðŽæ“¾
+	//ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‹ã‚‰ã€ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	_ELEVATOR_FLOOR_GET	WK_ELEVATOR_FLOOR
 
-	/*“ÁŽêÚ‘±æ‚ðƒZƒbƒg*/
+	/*ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‚’ã‚»ãƒƒãƒˆ*/
 	_SP_LOCATION_SET	ZONE_ID_C07R0204,C07R0204_MAT03,18,2,DIR_DOWN
 
-	/*“¯‚¶ŠK‚ð‘I‘ð‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*åŒã˜éšŽã‚’é¸æŠžã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_IFVAL_JUMP		WK_ELEVATOR_FLOOR,EQ,FLOOR_C07R0206_4F,end_c07r0206_elevator_01
 
-	/*‚±‚±‚ð”»•Ê‚µ‚È‚¢‚Æƒ_ƒ*/
+	/*ã“ã“ã‚’åˆ¤åˆ¥ã—ãªã„ã¨ãƒ€ãƒ¡*/
 	_IFVAL_CALL		WK_ELEVATOR_FLOOR,GT,FLOOR_C07R0206_4F,common_c07r0206_elevator_dir_up
 	_IFVAL_CALL		WK_ELEVATOR_FLOOR,LT,FLOOR_C07R0206_4F,common_c07r0206_elevator_dir_down
 
 	_CALL			common_c07r0206_01
 
-	//ˆÚ“®‚µ‚½ŠK‚ð‘ã“ü
+	//ç§»å‹•ã—ãŸéšŽã‚’ä»£å…¥
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_C07R0206_4F
 
 	_JUMP			ev_c07r0206_elevator_03
 
 case0_c07r0206_elevator_02:
-	//ƒtƒƒAƒEƒBƒ“ƒhƒE‚ðÁ‚·ƒEƒFƒCƒg
+	//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ã‚¦ã‚§ã‚¤ãƒˆ
 	_TIME_WAIT		1,SCWK_ANSWER
 
-	//“ÁŽêÚ‘±æ‚©‚çAŒ»Ý‚ÌƒtƒƒAƒiƒ“ƒo[‚ðŽæ“¾
+	//ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‹ã‚‰ã€ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	_ELEVATOR_FLOOR_GET	WK_ELEVATOR_FLOOR
 
-	/*“ÁŽêÚ‘±æ‚ðƒZƒbƒg*/
+	/*ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‚’ã‚»ãƒƒãƒˆ*/
 	_SP_LOCATION_SET	ZONE_ID_C07R0205,C07R0205_MAT02,18,2,DIR_DOWN
 
-	/*“¯‚¶ŠK‚ð‘I‘ð‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*åŒã˜éšŽã‚’é¸æŠžã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_IFVAL_JUMP		WK_ELEVATOR_FLOOR,EQ,FLOOR_C07R0206_5F,end_c07r0206_elevator_01
 
-	/*‚±‚±‚ð”»•Ê‚µ‚È‚¢‚Æƒ_ƒ*/
+	/*ã“ã“ã‚’åˆ¤åˆ¥ã—ãªã„ã¨ãƒ€ãƒ¡*/
 	_IFVAL_CALL		WK_ELEVATOR_FLOOR,GT,FLOOR_C07R0206_5F,common_c07r0206_elevator_dir_up
 	_IFVAL_CALL		WK_ELEVATOR_FLOOR,LT,FLOOR_C07R0206_5F,common_c07r0206_elevator_dir_down
 
 	_CALL			common_c07r0206_01
 
-	//ˆÚ“®‚µ‚½ŠK‚ð‘ã“ü
+	//ç§»å‹•ã—ãŸéšŽã‚’ä»£å…¥
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_C07R0206_5F
 
 	_JUMP			ev_c07r0206_elevator_03
 
-/*s‚«æ•ûŒü‚ðƒZƒbƒg*/
+/*è¡Œãå…ˆæ–¹å‘ã‚’ã‚»ãƒƒãƒˆ*/
 common_c07r0206_elevator_dir_up:
 	_TALK_KEYWAIT	msg_c07r0206_counterw_03
 	_LDVAL			SCWK_TEMP0,DIR_UP
@@ -259,26 +259,26 @@ common_c07r0206_elevator_dir_down:
 	_RET
 
 //--------------------------------------------------------------------
-//	ƒGƒŒƒx[ƒ^‰‰o
+//	ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿æ¼”å‡º
 //--------------------------------------------------------------------
 common_c07r0206_01:
-	//ˆÚ“®‰‰o‚Ì‘O‚ÉŒ»Ý‚ÌƒtƒƒAƒEƒBƒ“ƒhƒE‚ðíœ
+	//ç§»å‹•æ¼”å‡ºã®å‰ã«ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‰Šé™¤
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_NOTHING
 
 	_TALK_CLOSE
 
-	//ƒGƒŒƒx[ƒ^ƒK[ƒ‹‚ª‰º‚ðŒü‚­
+	//ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ã‚¬ãƒ¼ãƒ«ãŒä¸‹ã‚’å‘ã
 	_OBJ_ANIME		C07R0206_CONTERW_01,anm_c07r0206_turn_d
 	_OBJ_ANIME_WAIT
 
-	//‘I‘ð‰¹‚ÌI—¹‘Ò‚¿
+	//é¸æŠžéŸ³ã®çµ‚äº†å¾…ã¡
 	_SE_WAIT		SEQ_SE_DP_SELECT
 	_ELEVATOR_ANM	SCWK_TEMP0,C07R0206_ELEVATOR_LOOP
 
 	_RET
 
 //--------------------------------------------------------------------
-//	ƒGƒŒƒx[ƒ^‰‰oŒãAI—¹
+//	ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿æ¼”å‡ºå¾Œã€çµ‚äº†
 //--------------------------------------------------------------------
 ev_c07r0206_elevator_03:
 	_SWITCH			WK_ELEVATOR_FLOOR
@@ -327,13 +327,13 @@ common_c07r0206_elevator_03:
 	_END
 
 //--------------------------------------------------------------------
-//	“¯‚¶ŠK‚ð‘I‘ð‚µ‚ÄI—¹
+//	åŒã˜éšŽã‚’é¸æŠžã—ã¦çµ‚äº†
 //--------------------------------------------------------------------
 end_c07r0206_elevator_01:
-	//ˆÚ“®‰‰o‚Ì‘O‚ÉŒ»Ý‚ÌƒtƒƒAƒEƒBƒ“ƒhƒE‚ðíœ
+	//ç§»å‹•æ¼”å‡ºã®å‰ã«ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‰Šé™¤
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_NOTHING
 
-	//ƒtƒƒAƒEƒBƒ“ƒhƒE‚ðÁ‚·ƒEƒFƒCƒg
+	//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ã‚¦ã‚§ã‚¤ãƒˆ
 	_TIME_WAIT		1,SCWK_ANSWER
 
 	_TALKMSG		msg_c07r0206_counterw_05
@@ -343,13 +343,13 @@ end_c07r0206_elevator_01:
 	_END
 
 //--------------------------------------------------------------------
-//	‚â‚ß‚é
+//	ã‚„ã‚ã‚‹
 //--------------------------------------------------------------------
 cancel_c07r0206_elevator_01:
-	//ˆÚ“®‰‰o‚Ì‘O‚ÉŒ»Ý‚ÌƒtƒƒAƒEƒBƒ“ƒhƒE‚ðíœ
+	//ç§»å‹•æ¼”å‡ºã®å‰ã«ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‰Šé™¤
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_NOTHING
 
-	//ƒtƒƒAƒEƒBƒ“ƒhƒE‚ðÁ‚·ƒEƒFƒCƒg
+	//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ã‚¦ã‚§ã‚¤ãƒˆ
 	_TIME_WAIT		1,SCWK_ANSWER
 
 	_TALKMSG		msg_c07r0206_counterw_02
@@ -359,7 +359,7 @@ cancel_c07r0206_elevator_01:
 	_END
 
 //--------------------------------------------------------------------
-//‰º‚ðŒü‚­
+//ä¸‹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c07r0206_turn_d
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1

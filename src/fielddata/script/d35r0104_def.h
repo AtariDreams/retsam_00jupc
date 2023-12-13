@@ -1,7 +1,7 @@
 #ifndef _D35R0104_DEF_H_
 #define _D35R0104_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D35R0104_FLAG_CHANGE		(1)
 #define	SCRID_D35R0104_LEGEND_01		(2)
 #define	SCRID_POS_D35R0104_FLOOR_01		(3)
@@ -11,6 +11,6 @@
 #define	SCRID_POS_D35R0104_FLOOR_05		(7)
 #define	SCRID_POS_D35R0104_FLOOR_06		(8)
 #define	SCRID_POS_D35R0104_FLOOR_07		(9)
-#define	SCRID_D35R0104_DATA_MAX		(9)		//最大数
+#define	SCRID_D35R0104_DATA_MAX		(9)		//譛螟ｧ謨ｰ
 
 #endif //_D35R0104_DEF_H_

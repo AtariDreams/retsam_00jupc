@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	b_bag_main.c
- * @brief	í“¬—pƒoƒbƒO‰æ–Ê
+ * @brief	æˆ¦é—˜ç”¨ãƒãƒƒã‚°ç”»é¢
  * @author	Hiroyuki Nakamura
  * @date	05.02.10
  */
@@ -55,38 +55,38 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// ƒƒCƒ“ƒV[ƒPƒ“ƒX
+// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
-	SEQ_BBAG_INIT = 0,		// ‰Šú‰»
-	SEQ_BBAG_POCKET,		// ƒ|ƒPƒbƒg‘I‘ğ
-	SEQ_BBAG_ITEM,			// ƒAƒCƒeƒ€‘I‘ğ
-	SEQ_BBAG_USE,			// ƒAƒCƒeƒ€g—p
+	SEQ_BBAG_INIT = 0,		// åˆæœŸåŒ–
+	SEQ_BBAG_POCKET,		// ãƒã‚±ãƒƒãƒˆé¸æŠ
+	SEQ_BBAG_ITEM,			// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠ
+	SEQ_BBAG_USE,			// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨
 
-	SEQ_BBAG_PAGE1_CHG,		// ƒ|ƒPƒbƒg‘I‘ğ‚Ö
-	SEQ_BBAG_PAGE2_CHG,		// ƒAƒCƒeƒ€‘I‘ğ‚Ö
-	SEQ_BBAG_PAGE3_CHG,		// ƒAƒCƒeƒ€g—p‚Ö
+	SEQ_BBAG_PAGE1_CHG,		// ãƒã‚±ãƒƒãƒˆé¸æŠã¸
+	SEQ_BBAG_PAGE2_CHG,		// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠã¸
+	SEQ_BBAG_PAGE3_CHG,		// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ã¸
 
-	SEQ_BBAG_ITEMSEL_NEXT,	// Ÿ‚ÌƒAƒCƒeƒ€ƒy[ƒW‚Ö
+	SEQ_BBAG_ITEMSEL_NEXT,	// æ¬¡ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒšãƒ¼ã‚¸ã¸
 
-	SEQ_BBAG_ERR,			// ƒGƒ‰[ƒƒbƒZ[ƒWI—¹‘Ò‚¿
-	SEQ_BBAG_MSG_WAIT,		// ƒƒbƒZ[ƒW•\¦
-	SEQ_BBAG_TRG_WAIT,		// ƒgƒƒK[ƒEƒFƒCƒg
+	SEQ_BBAG_ERR,			// ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
+	SEQ_BBAG_MSG_WAIT,		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	SEQ_BBAG_TRG_WAIT,		// ãƒˆãƒ­ã‚¬ãƒ¼ã‚¦ã‚§ã‚¤ãƒˆ
 
-	SEQ_BBAG_BUTTON_WAIT,	// ƒ{ƒ^ƒ“ƒAƒjƒI—¹‘Ò‚¿
+	SEQ_BBAG_BUTTON_WAIT,	// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 
-	SEQ_BBAG_GETDEMO,		// •ßŠlƒfƒ‚—p
+	SEQ_BBAG_GETDEMO,		// æ•ç²ãƒ‡ãƒ¢ç”¨
 
-	SEQ_BBAG_ENDSET,		// I—¹ƒtƒF[ƒhƒZƒbƒg
-	SEQ_BBAG_END			// I—¹
+	SEQ_BBAG_ENDSET,		// çµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+	SEQ_BBAG_END			// çµ‚äº†
 };
 
-#define	TMP_MSG_BUF_SIZ		( 512 )		// ƒeƒ“ƒ|ƒ‰ƒŠƒƒbƒZ[ƒWƒTƒCƒY
+#define	TMP_MSG_BUF_SIZ		( 512 )		// ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚µã‚¤ã‚º
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void BattleBag_Main( TCB_PTR tcb, void * work );
 
@@ -122,40 +122,40 @@ static void BattleBag_SubItem( BATTLE_WORK * bw, u16 item, u16 page, u32 heap );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// ƒ|ƒPƒbƒg‘I‘ğ‰æ–Ê‚Ìƒ^ƒbƒ`ƒpƒlƒ‹À•W
+// ãƒã‚±ãƒƒãƒˆé¸æŠç”»é¢ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™
 static const RECT_HIT_TBL Page1_HitRect[] =
 {
-	{  1*8, 10*8-1,  0*8, 16*8-1 },	// HP‰ñ•œƒ|ƒPƒbƒg
-	{ 10*8, 19*8-1,  0*8, 16*8-1 },	// ó‘Ô‰ñ•œƒ|ƒPƒbƒg
-	{  1*8, 10*8-1, 16*8, 32*8-1 },	// ƒ{[ƒ‹ƒ|ƒPƒbƒg
-	{ 10*8, 19*8-1, 16*8, 32*8-1 },	// í“¬—pƒ|ƒPƒbƒg
-	{ 19*8, 24*8-1,  0*8, 26*8-1 },	// ÅŒã‚Ég—p‚µ‚½“¹‹ï
-	{ 19*8, 24*8-1, 27*8, 32*8-1 },	// –ß‚é
+	{  1*8, 10*8-1,  0*8, 16*8-1 },	// HPå›å¾©ãƒã‚±ãƒƒãƒˆ
+	{ 10*8, 19*8-1,  0*8, 16*8-1 },	// çŠ¶æ…‹å›å¾©ãƒã‚±ãƒƒãƒˆ
+	{  1*8, 10*8-1, 16*8, 32*8-1 },	// ãƒœãƒ¼ãƒ«ãƒã‚±ãƒƒãƒˆ
+	{ 10*8, 19*8-1, 16*8, 32*8-1 },	// æˆ¦é—˜ç”¨ãƒã‚±ãƒƒãƒˆ
+	{ 19*8, 24*8-1,  0*8, 26*8-1 },	// æœ€å¾Œã«ä½¿ç”¨ã—ãŸé“å…·
+	{ 19*8, 24*8-1, 27*8, 32*8-1 },	// æˆ»ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
-// ƒAƒCƒeƒ€‘I‘ğ‰æ–Ê‚Ìƒ^ƒbƒ`ƒpƒlƒ‹À•W
+// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠç”»é¢ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™
 static const RECT_HIT_TBL Page2_HitRect[] =
 {
-	{  1*8,  7*8-1,  0*8, 16*8-1 },	// ƒAƒCƒeƒ€‚P
-	{  1*8,  7*8-1, 16*8, 32*8-1 },	// ƒAƒCƒeƒ€‚Q
-	{  7*8, 13*8-1,  0*8, 16*8-1 },	// ƒAƒCƒeƒ€‚R
-	{  7*8, 13*8-1, 16*8, 32*8-1 },	// ƒAƒCƒeƒ€‚S
-	{ 13*8, 19*8-1,  0*8, 16*8-1 },	// ƒAƒCƒeƒ€‚T
-	{ 13*8, 19*8-1, 16*8, 32*8-1 },	// ƒAƒCƒeƒ€‚U
-	{ 19*8, 24*8-1,  0*8,  5*8-1 },	// ‘O‚Ö
-	{ 19*8, 24*8-1,  5*8, 10*8-1 },	// Ÿ‚Ö
-	{ 19*8, 24*8-1, 27*8, 32*8-1 },	// –ß‚é
+	{  1*8,  7*8-1,  0*8, 16*8-1 },	// ã‚¢ã‚¤ãƒ†ãƒ ï¼‘
+	{  1*8,  7*8-1, 16*8, 32*8-1 },	// ã‚¢ã‚¤ãƒ†ãƒ ï¼’
+	{  7*8, 13*8-1,  0*8, 16*8-1 },	// ã‚¢ã‚¤ãƒ†ãƒ ï¼“
+	{  7*8, 13*8-1, 16*8, 32*8-1 },	// ã‚¢ã‚¤ãƒ†ãƒ ï¼”
+	{ 13*8, 19*8-1,  0*8, 16*8-1 },	// ã‚¢ã‚¤ãƒ†ãƒ ï¼•
+	{ 13*8, 19*8-1, 16*8, 32*8-1 },	// ã‚¢ã‚¤ãƒ†ãƒ ï¼–
+	{ 19*8, 24*8-1,  0*8,  5*8-1 },	// å‰ã¸
+	{ 19*8, 24*8-1,  5*8, 10*8-1 },	// æ¬¡ã¸
+	{ 19*8, 24*8-1, 27*8, 32*8-1 },	// æˆ»ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
-// ƒAƒCƒeƒ€‘I‘ğ‰æ–Ê‚Ìƒ^ƒbƒ`ƒpƒlƒ‹À•W
+// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠç”»é¢ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™
 static const RECT_HIT_TBL Page3_HitRect[] =
 {
-	{ 19*8, 24*8-1,  0*8, 26*8-1 },	// g‚¤
-	{ 19*8, 24*8-1, 27*8, 32*8-1 },	// –ß‚é
+	{ 19*8, 24*8-1,  0*8, 26*8-1 },	// ä½¿ã†
+	{ 19*8, 24*8-1, 27*8, 32*8-1 },	// æˆ»ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
@@ -163,9 +163,9 @@ static const RECT_HIT_TBL Page3_HitRect[] =
 
 //--------------------------------------------------------------------------------------------
 /**
- * í“¬—pƒoƒbƒOƒ^ƒXƒN’Ç‰Á
+ * æˆ¦é—˜ç”¨ãƒãƒƒã‚°ã‚¿ã‚¹ã‚¯è¿½åŠ 
  *
- * @param	dat		ƒoƒbƒOƒf[ƒ^
+ * @param	dat		ãƒãƒƒã‚°ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -200,7 +200,7 @@ void BattleBag_TaskAdd( BBAG_DATA * dat )
 		wk->dat->mode = BBAG_MODE_GETDEMO;
 	}
 
-/** ƒfƒoƒbƒOˆ— **/
+/** ãƒ‡ãƒãƒƒã‚°å‡¦ç† **/
 //	wk->dat->myitem = MyItem_AllocWork( wk->dat->heap );
 //	Debug_MyItem_MakeBag( wk->dat->myitem, wk->dat->heap );
 //	wk->dat->mode = BBAG_MODE_GETDEMO;
@@ -208,7 +208,7 @@ void BattleBag_TaskAdd( BBAG_DATA * dat )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒ^ƒXƒN
+ * ãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
  *
  * @param	tcb
  * @param	work
@@ -221,63 +221,63 @@ static void BattleBag_Main( TCB_PTR tcb, void * work )
 	BBAG_WORK * wk = (BBAG_WORK *)work;
 
 	switch( wk->seq ){
-	case SEQ_BBAG_INIT:		// ‰Šú‰»
+	case SEQ_BBAG_INIT:		// åˆæœŸåŒ–
 		wk->seq = BBAG_SeqInit( wk );
 		break;
 
-	case SEQ_BBAG_POCKET:	// ƒ|ƒPƒbƒg‘I‘ğ
+	case SEQ_BBAG_POCKET:	// ãƒã‚±ãƒƒãƒˆé¸æŠ
 		wk->seq = BBAG_SeqPokeSelect( wk );
 		break;
 
-	case SEQ_BBAG_ITEM:		// ƒAƒCƒeƒ€‘I‘ğ
+	case SEQ_BBAG_ITEM:		// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠ
 		wk->seq = BBAG_SeqItemSelect( wk );
 		break;
 
-	case SEQ_BBAG_USE:		// ƒAƒCƒeƒ€g—p
+	case SEQ_BBAG_USE:		// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨
 		wk->seq = BBAG_SeqUseSelect( wk );
 		break;
 
-	case SEQ_BBAG_PAGE1_CHG:	// ƒ|ƒPƒbƒg‘I‘ğ‚Ö
+	case SEQ_BBAG_PAGE1_CHG:	// ãƒã‚±ãƒƒãƒˆé¸æŠã¸
 		wk->seq = BBAG_SeqPage1Chg( wk );
 		break;
 	
-	case SEQ_BBAG_PAGE2_CHG:	// ƒAƒCƒeƒ€‘I‘ğ‚Ö
+	case SEQ_BBAG_PAGE2_CHG:	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠã¸
 		wk->seq = BBAG_SeqPage2Chg( wk );
 		break;
 
-	case SEQ_BBAG_PAGE3_CHG:	// ƒAƒCƒeƒ€g—p‚Ö
+	case SEQ_BBAG_PAGE3_CHG:	// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ã¸
 		wk->seq = BBAG_SeqPage3Chg( wk );
 		break;
 
-	case SEQ_BBAG_ITEMSEL_NEXT:	// Ÿ‚ÌƒAƒCƒeƒ€ƒy[ƒW‚Ö
+	case SEQ_BBAG_ITEMSEL_NEXT:	// æ¬¡ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒšãƒ¼ã‚¸ã¸
 		wk->seq = BBAG_SeqItemSelNext( wk );
 		break;
 
-	case SEQ_BBAG_ERR:			// ƒGƒ‰[ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+	case SEQ_BBAG_ERR:			// ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		wk->seq = BBAG_SeqError( wk );
 		break;
 
-	case SEQ_BBAG_MSG_WAIT:		// ƒƒbƒZ[ƒW•\¦
+	case SEQ_BBAG_MSG_WAIT:		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		wk->seq = BBAG_SeqMsgWait( wk );
 		break;
 
-	case SEQ_BBAG_TRG_WAIT:		// ƒgƒŠƒK[ƒEƒFƒCƒg
+	case SEQ_BBAG_TRG_WAIT:		// ãƒˆãƒªã‚¬ãƒ¼ã‚¦ã‚§ã‚¤ãƒˆ
 		wk->seq = BBAG_SeqTrgWait( wk );
 		break;
 
-	case SEQ_BBAG_BUTTON_WAIT:	// ƒ{ƒ^ƒ“ƒAƒjƒI—¹‘Ò‚¿
+	case SEQ_BBAG_BUTTON_WAIT:	// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 		wk->seq = BBAG_SeqButtonWait( wk );
 		break;
 
-	case SEQ_BBAG_GETDEMO:		// •ßŠlƒfƒ‚—p
+	case SEQ_BBAG_GETDEMO:		// æ•ç²ãƒ‡ãƒ¢ç”¨
 		wk->seq = BBAG_SeqGetDemoMain( wk );
 		break;
 
-	case SEQ_BBAG_ENDSET:		// I—¹ƒtƒF[ƒhƒZƒbƒg
+	case SEQ_BBAG_ENDSET:		// çµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 		wk->seq = BBAG_SeqEndSet( wk );
 		break;
 
-	case SEQ_BBAG_END:		// I—¹
+	case SEQ_BBAG_END:		// çµ‚äº†
 		if( BBAG_SeqEnd( tcb, wk ) == TRUE ){
 			return;
 		}
@@ -290,11 +290,11 @@ static void BattleBag_Main( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰Šú‰»ƒV[ƒPƒ“ƒX
+ * åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqInit( BBAG_WORK * wk )
@@ -340,11 +340,11 @@ static u8 BBAG_SeqInit( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚P‚ÌƒRƒ“ƒgƒ[ƒ‹ƒV[ƒPƒ“ƒX
+ * ãƒšãƒ¼ã‚¸ï¼‘ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqPokeSelect( BBAG_WORK * wk )
@@ -364,10 +364,10 @@ static u8 BBAG_SeqPokeSelect( BBAG_WORK * wk )
 		}
 
 		switch( ret ){
-		case BBAG_POKE_HPRCV:		// HP‰ñ•œƒ|ƒPƒbƒg
-		case BBAG_POKE_STRCV:		// ó‘Ô‰ñ•œƒ|ƒPƒbƒg
-		case BBAG_POKE_BALL:		// ƒ{[ƒ‹ƒ|ƒPƒbƒg
-		case BBAG_POKE_BATTLE:		// í“¬—pƒ|ƒPƒbƒg
+		case BBAG_POKE_HPRCV:		// HPå›å¾©ãƒã‚±ãƒƒãƒˆ
+		case BBAG_POKE_STRCV:		// çŠ¶æ…‹å›å¾©ãƒã‚±ãƒƒãƒˆ
+		case BBAG_POKE_BALL:		// ãƒœãƒ¼ãƒ«ãƒã‚±ãƒƒãƒˆ
+		case BBAG_POKE_BATTLE:		// æˆ¦é—˜ç”¨ãƒã‚±ãƒƒãƒˆ
 			Snd_SePlay( SEQ_SE_DP_DECIDE );
 			wk->poke_id = (u8)ret;
 			wk->ret_seq = SEQ_BBAG_PAGE2_CHG;
@@ -375,7 +375,7 @@ static u8 BBAG_SeqPokeSelect( BBAG_WORK * wk )
 				wk, BBAG_BTNANM_PAGE1+ret-BBAG_POKE_HPRCV, BBAG_BTNANM_MODE_END );
 			return SEQ_BBAG_BUTTON_WAIT;
 
-		case BBAG_P1_LASTITEM:		// ÅŒã‚Ég—p‚µ‚½“¹‹ï
+		case BBAG_P1_LASTITEM:		// æœ€å¾Œã«ä½¿ç”¨ã—ãŸé“å…·
 			if( wk->dat->used_item != 0 ){
 				Snd_SePlay( SEQ_SE_DP_DECIDE );
 				wk->poke_id = wk->dat->used_poke;
@@ -386,7 +386,7 @@ static u8 BBAG_SeqPokeSelect( BBAG_WORK * wk )
 			}
 			break;
 
-		case BBAG_P1_RETURN:		// –ß‚é
+		case BBAG_P1_RETURN:		// æˆ»ã‚‹
 			Snd_SePlay( SEQ_SE_DP_DECIDE );
 			wk->dat->ret_item = 0;
 			wk->dat->ret_page = BBAG_POKE_MAX;
@@ -400,11 +400,11 @@ static u8 BBAG_SeqPokeSelect( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚Q‚ÌƒRƒ“ƒgƒ[ƒ‹ƒV[ƒPƒ“ƒX
+ * ãƒšãƒ¼ã‚¸ï¼’ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqItemSelect( BBAG_WORK * wk )
@@ -422,12 +422,12 @@ static u8 BBAG_SeqItemSelect( BBAG_WORK * wk )
 		}
 
 		switch( ret ){
-		case 0:		// ƒAƒCƒeƒ€‚P
-		case 1:		// ƒAƒCƒeƒ€‚Q
-		case 2:		// ƒAƒCƒeƒ€‚R
-		case 3:		// ƒAƒCƒeƒ€‚S
-		case 4:		// ƒAƒCƒeƒ€‚T
-		case 5:		// ƒAƒCƒeƒ€‚U
+		case 0:		// ã‚¢ã‚¤ãƒ†ãƒ ï¼‘
+		case 1:		// ã‚¢ã‚¤ãƒ†ãƒ ï¼’
+		case 2:		// ã‚¢ã‚¤ãƒ†ãƒ ï¼“
+		case 3:		// ã‚¢ã‚¤ãƒ†ãƒ ï¼”
+		case 4:		// ã‚¢ã‚¤ãƒ†ãƒ ï¼•
+		case 5:		// ã‚¢ã‚¤ãƒ†ãƒ ï¼–
 			if( BattleBag_PosItemCheck( wk, ret ) != 0 ){
 				Snd_SePlay( SEQ_SE_DP_DECIDE );
 				wk->dat->item_pos[wk->poke_id] = (u8)ret;
@@ -437,7 +437,7 @@ static u8 BBAG_SeqItemSelect( BBAG_WORK * wk )
 			}
 			break;
 
-		case 6:		// ‘O‚Ö
+		case 6:		// å‰ã¸
 			if( wk->scr_max[wk->poke_id] != 0 ){
 				Snd_SePlay( SEQ_SE_DP_DECIDE );
 				wk->ret_seq = SEQ_BBAG_ITEMSEL_NEXT;
@@ -447,7 +447,7 @@ static u8 BBAG_SeqItemSelect( BBAG_WORK * wk )
 			}
 			break;
 
-		case 7:		// Ÿ‚Ö
+		case 7:		// æ¬¡ã¸
 			if( wk->scr_max[wk->poke_id] != 0 ){
 				Snd_SePlay( SEQ_SE_DP_DECIDE );
 				wk->ret_seq = SEQ_BBAG_ITEMSEL_NEXT;
@@ -457,7 +457,7 @@ static u8 BBAG_SeqItemSelect( BBAG_WORK * wk )
 			}
 			break;
 
-		case 8:		// –ß‚é
+		case 8:		// æˆ»ã‚‹
 			Snd_SePlay( SEQ_SE_DP_DECIDE );
 			wk->ret_seq = SEQ_BBAG_PAGE1_CHG;
 			BattleBag_ButtonAnmInit( wk, BBAG_BTNANM_RET2, BBAG_BTNANM_MODE_END );
@@ -470,11 +470,11 @@ static u8 BBAG_SeqItemSelect( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ÿ‚ÌƒAƒCƒeƒ€ƒy[ƒW‚Ö
+ * æ¬¡ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒšãƒ¼ã‚¸ã¸
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqItemSelNext( BBAG_WORK * wk )
@@ -501,11 +501,11 @@ static u8 BBAG_SeqItemSelNext( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚R‚ÌƒRƒ“ƒgƒ[ƒ‹ƒV[ƒPƒ“ƒX
+ * ãƒšãƒ¼ã‚¸ï¼“ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqUseSelect( BBAG_WORK * wk )
@@ -523,14 +523,14 @@ static u8 BBAG_SeqUseSelect( BBAG_WORK * wk )
 		}
 
 		switch( ret ){
-		case 0:		// g‚¤
+		case 0:		// ä½¿ã†
 			Snd_SePlay( SEQ_SE_DP_DECIDE );
 			wk->dat->ret_item = BattleBag_PosItemCheck( wk, wk->dat->item_pos[wk->poke_id] );
 			wk->dat->ret_page = wk->poke_id;
 			BattleBag_ButtonAnmInit( wk, BBAG_BTNANM_USE, BBAG_BTNANM_MODE_END );
 			return BBAG_ItemUse( wk );
 
-		case 1:		// –ß‚é
+		case 1:		// æˆ»ã‚‹
 			Snd_SePlay( SEQ_SE_DP_DECIDE );
 			wk->ret_seq = SEQ_BBAG_PAGE2_CHG;
 			BattleBag_ButtonAnmInit( wk, BBAG_BTNANM_RET3, BBAG_BTNANM_MODE_END );
@@ -543,11 +543,11 @@ static u8 BBAG_SeqUseSelect( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—p
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_ItemUse( BBAG_WORK * wk )
@@ -558,7 +558,7 @@ static u8 BBAG_ItemUse( BBAG_WORK * wk )
 		int	smn = BattleBag_SelMonsNoGet( wk );
 		u32	prm = ItemParamGet( dat->ret_item, ITEM_PRM_BATTLE, dat->heap );
 
-		// ‚³‚µ‚¨‚³‚¦
+		// ã•ã—ãŠã•ãˆ
 		if( dat->skill_item_use != 0 && dat->ret_item != ITEM_EFEKUTOGAADO && prm != ITEMUSE_BTL_ESCAPE ){
 
 			POKEMON_PARAM * pp;
@@ -602,7 +602,7 @@ static u8 BBAG_ItemUse( BBAG_WORK * wk )
 			return SEQ_BBAG_MSG_WAIT;
 		}
 	}else if( wk->poke_id == BBAG_POKE_BALL ){
-		// –ì¶ƒ_ƒuƒ‹
+		// é‡ç”Ÿãƒ€ãƒ–ãƒ«
 		if( dat->enc_double == 1 ){
 			MSGMAN_GetString( wk->mman, mes_b_bag_m11, wk->msg_buf );
 			BattleBag_TalkMsgSet( wk );
@@ -610,7 +610,7 @@ static u8 BBAG_ItemUse( BBAG_WORK * wk )
 			return SEQ_BBAG_MSG_WAIT;
 		}
 
-		// ‹ó‚ğ”ò‚Ô‚Æ‚©
+		// ç©ºã‚’é£›ã¶ã¨ã‹
 		if( dat->waza_vanish == 1 ){
 			MSGMAN_GetString( wk->mman, mes_b_bag_m14, wk->msg_buf );
 			BattleBag_TalkMsgSet( wk );
@@ -618,7 +618,7 @@ static u8 BBAG_ItemUse( BBAG_WORK * wk )
 			return SEQ_BBAG_MSG_WAIT;
 		}
 
-		// g‘ã‚í‚è
+		// èº«ä»£ã‚ã‚Š
 		if( dat->waza_migawari == 1 ){
 			MSGMAN_GetString( wk->mman, mes_b_bag_m15, wk->msg_buf );
 			BattleBag_TalkMsgSet( wk );
@@ -626,7 +626,7 @@ static u8 BBAG_ItemUse( BBAG_WORK * wk )
 			return SEQ_BBAG_MSG_WAIT;
 		}
 
-		{	// è‚¿Eƒ{ƒbƒNƒX‚¢‚Á‚Ï‚¢
+		{	// æ‰‹æŒã¡ãƒ»ãƒœãƒƒã‚¯ã‚¹ã„ã£ã±ã„
 			POKEPARTY * party = BattleWorkPokePartyGet( dat->bw, dat->client_no );
 			BOX_DATA * box = BattleWorkBoxDataGet( dat->bw );
 
@@ -645,11 +645,11 @@ static u8 BBAG_ItemUse( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦Fƒ|ƒPƒbƒg‘I‘ğƒy[ƒW‚Ö
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆï¼šãƒã‚±ãƒƒãƒˆé¸æŠãƒšãƒ¼ã‚¸ã¸
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqPage1Chg( BBAG_WORK * wk )
@@ -660,11 +660,11 @@ static u8 BBAG_SeqPage1Chg( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦FƒAƒCƒeƒ€‘I‘ğƒy[ƒW‚Ö
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆï¼šã‚¢ã‚¤ãƒ†ãƒ é¸æŠãƒšãƒ¼ã‚¸ã¸
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqPage2Chg( BBAG_WORK * wk )
@@ -675,11 +675,11 @@ static u8 BBAG_SeqPage2Chg( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦FƒAƒCƒeƒ€g—pƒy[ƒW‚Ö
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆï¼šã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸ã¸
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqPage3Chg( BBAG_WORK * wk )
@@ -691,11 +691,11 @@ static u8 BBAG_SeqPage3Chg( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ü‚ê‘Ö‚¦ƒGƒ‰[ƒƒbƒZ[ƒWI—¹‘Ò‚¿ƒV[ƒPƒ“ƒX
+ * å…¥ã‚Œæ›¿ãˆã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqError( BBAG_WORK * wk )
@@ -706,11 +706,11 @@ static u8 BBAG_SeqError( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒW•\¦ƒV[ƒPƒ“ƒX
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqMsgWait( BBAG_WORK * wk )
@@ -723,11 +723,11 @@ static u8 BBAG_SeqMsgWait( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŠƒK[ƒEƒFƒCƒgƒV[ƒPƒ“ƒX
+ * ãƒˆãƒªã‚¬ãƒ¼ã‚¦ã‚§ã‚¤ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqTrgWait( BBAG_WORK * wk )
@@ -740,11 +740,11 @@ static u8 BBAG_SeqTrgWait( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒjƒI—¹‘Ò‚¿ƒV[ƒPƒ“ƒX
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqButtonWait( BBAG_WORK * wk )
@@ -762,11 +762,11 @@ static u8 BBAG_SeqButtonWait( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * I—¹ƒtƒF[ƒhƒZƒbƒgƒV[ƒPƒ“ƒX
+ * çµ‚äº†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqEndSet( BBAG_WORK * wk )
@@ -777,12 +777,12 @@ static u8 BBAG_SeqEndSet( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * I—¹ƒV[ƒPƒ“ƒX
+ * çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = I—¹"
- * @retval	"FALSE = ƒtƒF[ƒh’†"
+ * @retval	"TRUE = çµ‚äº†"
+ * @retval	"FALSE = ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­"
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqEnd( TCB_PTR tcb, BBAG_WORK * wk )
@@ -820,15 +820,15 @@ static u8 BBAG_SeqEnd( TCB_PTR tcb, BBAG_WORK * wk )
 
 
 
-#define	BBAG_GETDEMO_WAIT_COUNT		( 60 )		// •ßŠlƒfƒ‚ƒEƒFƒCƒg
+#define	BBAG_GETDEMO_WAIT_COUNT		( 60 )		// æ•ç²ãƒ‡ãƒ¢ã‚¦ã‚§ã‚¤ãƒˆ
 
 //--------------------------------------------------------------------------------------------
 /**
- * •ßŠlƒfƒ‚ƒƒCƒ“
+ * æ•ç²ãƒ‡ãƒ¢ãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 BBAG_SeqGetDemoMain( BBAG_WORK * wk )
@@ -908,7 +908,7 @@ static u8 BBAG_SeqGetDemoMain( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAM‰Šú‰»
+ * VRAMåˆæœŸåŒ–
  *
  * @param	none
  *
@@ -919,16 +919,16 @@ static u8 BBAG_SeqGetDemoMain( BBAG_WORK * wk )
 static void BBAG_VramInit(void)
 {
 	GF_BGL_DISPVRAM	tbl = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 }
@@ -936,9 +936,9 @@ static void BBAG_VramInit(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰Šú‰»
+ * BGåˆæœŸåŒ–
  *
- * @param	dat		ƒŠƒXƒgƒf[ƒ^
+ * @param	dat		ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -988,9 +988,9 @@ static void BBAG_BgInit( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ğ•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1007,9 +1007,9 @@ static void BBAG_BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1048,18 +1048,18 @@ static void BBAG_BgGraphicSet( BBAG_WORK * wk )
 		wk->dat->heap, FADE_SUB_BG, 0x20*12, 0 );
 
 /*
-	// ƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒpƒŒƒbƒgƒZƒbƒg
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	PaletteWorkSet_Arc(
 		wk->pfd, ARC_FONT, NARC_font_system_ncrl,
 		wk->dat->heap, FADE_SUB_BG, 0x20, BBAG_PAL_SYS_FONT*16 );
 */
 
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒgƒZƒbƒg
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	PaletteWorkSet_Arc(
 		wk->pfd, ARC_FONT, NARC_font_talk_ncrl,
 		wk->dat->heap, FADE_SUB_BG, 0x20, BBAG_PAL_TALK_FONT*16 );
 
-	// ‰ï˜bƒEƒBƒ“ƒhƒEƒZƒbƒg
+	// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 	{
 		WINTYPE	wt = BattleWorkConfigWinTypeGet( wk->dat->bw );
 
@@ -1074,9 +1074,9 @@ static void BBAG_BgGraphicSet( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWŠÖ˜AƒZƒbƒg
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1092,9 +1092,9 @@ static void BBAG_MsgManSet( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWŠÖ˜Aíœ
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1123,10 +1123,10 @@ static void BBAG_MsgManExit( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGƒXƒNƒ[ƒ‹
+ * BGã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  *
- * @param	wk		ƒ[ƒN
- * @param	page	Ÿ‚Ìƒy[ƒW
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	page	æ¬¡ã®ãƒšãƒ¼ã‚¸
  *
  * @return	none
  */
@@ -1134,15 +1134,15 @@ static void BBAG_MsgManExit( BBAG_WORK * wk )
 static void BBAG_PageChgBgScroll( BBAG_WORK * wk, u8 page )
 {
 	switch( page ){
-	case BBAG_PAGE_POCKET:		// ƒ|ƒPƒbƒg‘I‘ğƒy[ƒW
+	case BBAG_PAGE_POCKET:		// ãƒã‚±ãƒƒãƒˆé¸æŠãƒšãƒ¼ã‚¸
 		GF_BGL_ScrollReq( wk->bgl, GF_BGL_FRAME2_S, GF_BGL_SCROLL_X_SET, 0 );
 		GF_BGL_ScrollReq( wk->bgl, GF_BGL_FRAME2_S, GF_BGL_SCROLL_Y_SET, 0 );
 		break;
-	case BBAG_PAGE_MAIN:		// ƒAƒCƒeƒ€‘I‘ğƒy[ƒW
+	case BBAG_PAGE_MAIN:		// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠãƒšãƒ¼ã‚¸
 		GF_BGL_ScrollReq( wk->bgl, GF_BGL_FRAME2_S, GF_BGL_SCROLL_X_SET, 256 );
 		GF_BGL_ScrollReq( wk->bgl, GF_BGL_FRAME2_S, GF_BGL_SCROLL_Y_SET, 0 );
 		break;
-	case BBAG_PAGE_ITEM:		// ƒAƒCƒeƒ€g—pƒy[ƒW
+	case BBAG_PAGE_ITEM:		// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸
 		GF_BGL_ScrollReq( wk->bgl, GF_BGL_FRAME2_S, GF_BGL_SCROLL_X_SET, 0 );
 		GF_BGL_ScrollReq( wk->bgl, GF_BGL_FRAME2_S, GF_BGL_SCROLL_Y_SET, 256 );
 		break;
@@ -1160,12 +1160,12 @@ static void BBAG_PageChgBgScroll( BBAG_WORK * wk, u8 page )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pƒy[ƒW‚ÌBGƒpƒŒƒbƒg•ÏX
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸ã®BGãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
  *
- * @param	wk		ƒ[ƒN
- * @param	page	ƒy[ƒWID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	page	ãƒšãƒ¼ã‚¸ID
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static void BBAG_PageBgPalChg( BBAG_WORK * wk, u8 page )
@@ -1183,10 +1183,10 @@ static void BBAG_PageBgPalChg( BBAG_WORK * wk, u8 page )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk			ƒ[ƒN
- * @param	next_page	Ÿ‚Ìƒy[ƒW
+ * @param	wk			ãƒ¯ãƒ¼ã‚¯
+ * @param	next_page	æ¬¡ã®ãƒšãƒ¼ã‚¸
  *
  * @return	none
  */
@@ -1215,13 +1215,13 @@ static void BBAG_PageChange( BBAG_WORK * wk, u8 next_page )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ{ƒ^ƒ“‰Ÿ‚µ”»’è
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ãƒœã‚¿ãƒ³æŠ¼ã—åˆ¤å®š
  *
- * @param	wk		ƒ[ƒN
- * @param	tbl		TPƒf[ƒ^ƒe[ƒuƒ‹
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	tbl		TPãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  *
- * @retval	"RECT_HIT_NONE = ‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢"
- * @retval	"RECT_HIT_NONE != ‰Ÿ‚µ‚½ƒ{ƒ^ƒ“”Ô†"
+ * @retval	"RECT_HIT_NONE = æŠ¼ã•ã‚Œã¦ã„ãªã„"
+ * @retval	"RECT_HIT_NONE != æŠ¼ã—ãŸãƒœã‚¿ãƒ³ç•ªå·"
  */
 //--------------------------------------------------------------------------------------------
 static int BBAG_TPCheck( BBAG_WORK * wk, const RECT_HIT_TBL * tbl )
@@ -1245,11 +1245,11 @@ static int BBAG_TPCheck( BBAG_WORK * wk, const RECT_HIT_TBL * tbl )
 
 //--------------------------------------------------------------------------------------------
 /**
- * g—p‚·‚éƒ|ƒPƒ‚ƒ“‚ğæ“¾
+ * ä½¿ç”¨ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’å–å¾—
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ƒ|ƒPƒ‚ƒ“ˆÊ’u
+ * @return	ãƒã‚±ãƒ¢ãƒ³ä½ç½®
  */
 //--------------------------------------------------------------------------------------------
 int BattleBag_SelMonsNoGet( BBAG_WORK * wk )
@@ -1264,12 +1264,12 @@ int BattleBag_SelMonsNoGet( BBAG_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€‚ğŒ¸‚ç‚·
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ¸›ã‚‰ã™
  *
- * @param	bw		í“¬‚Ìƒ[ƒN
- * @param	item	ƒAƒCƒeƒ€”Ô†
- * @param	page	ƒ|ƒPƒbƒg”Ô†
- * @param	heap	ƒq[ƒvID
+ * @param	bw		æˆ¦é—˜ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param	page	ãƒã‚±ãƒƒãƒˆç•ªå·
+ * @param	heap	ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */

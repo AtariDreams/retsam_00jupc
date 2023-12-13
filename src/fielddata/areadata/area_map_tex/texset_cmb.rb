@@ -20,7 +20,7 @@ File.open(area_tbl,"r"){ |file|
 	tmp = column[4].sub(/\.xls/,".imd")
 	src2 = imd_path + tmp 
 	
-	#ŠO•”ƒRƒ}ƒ“ƒhŒÄ‚Ño‚µ
+	#å¤–éƒ¨ã‚³ãƒãƒ³ãƒ‰å‘¼ã³å‡ºã—
 	exe_cmd = cmd_path + " -q -o " + dist + " " + src1 + " " + src2 + " imd_files/tex_griddmy.imd"
 	#	exe_cmd = cmd_path + " -q -o " + dist + " " + src1 + " " + src2
 	puts exe_cmd

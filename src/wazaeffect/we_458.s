@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_001.s
- * @brief	‚Ν‚½‚­
+ * @brief	γ―γγ
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(ζ°΄)
  *
- * ‚±‚±‚ΙFX‚Θ‰πΰ“™‚π‘‚Ά‚Δ‚ΰ‚ζ‚Ά
+ * γ“γ“γ«θ‰²γ€…γªθ§£θª¬η­‰γ‚’ζ›Έγ„γ¦γ‚‚γ‚γ„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	΅‚Ν‚½‚­
+//	β– γ―γγ
 //
 //
 // =============================================================================
@@ -27,7 +27,7 @@ WEST_Hataku:
 
 	LOAD_PARTICLE_DROP	0,W_458_SPA
 	
-	///< ¶
+	///< ε·¦
 	SE_R			SEQ_SE_DP_030
 	ADD_PARTICLE		0, W_458_458_HIT_MARK01A,	EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_EP_OFS, OPERATOR_AXIS_NONE, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
@@ -42,7 +42,7 @@ WEST_Hataku:
 	
 	WAIT				15
 	
-	///< ‰E
+	///< ε³
 	SE_R			SEQ_SE_DP_030
 	ADD_PARTICLE		0, W_458_458_HIT_MARK01B,	EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_EP_OFS, OPERATOR_AXIS_NONE, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE

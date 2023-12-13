@@ -1,12 +1,12 @@
 //====================================================================
 //								d31r0201
 //
-//	LOCALWORK0	d31r0206‚ÅŸ‚Á‚Ä–ß‚é‚©A•‰‚¯‚Ä–ß‚é‚©‚ð‘ã“ü‚µ‚Ä‚é‚Á‚Û‚¢‚ªA
-//				ŒÄ‚Î‚ê‚éev_tower_ret_local_01‚Ì’†‚Å‚Ì”»’è‚Í•Ê‚Ìˆ—‚ðŽg—p‚µ‚Ä‚¢‚é
+//	LOCALWORK0	d31r0206ã§å‹ã£ã¦æˆ»ã‚‹ã‹ã€è² ã‘ã¦æˆ»ã‚‹ã‹ã‚’ä»£å…¥ã—ã¦ã‚‹ã£ã½ã„ãŒã€
+//				å‘¼ã°ã‚Œã‚‹ev_tower_ret_local_01ã®ä¸­ã§ã®åˆ¤å®šã¯åˆ¥ã®å‡¦ç†ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹
 //				_BTOWER_TOOLS		BTWR_SUB_IS_CLEAR,BTWR_NULL_PARAM,SCWK_ANSWER
-//	LOCALWORK1	ƒgƒƒtƒB[ŠÖ˜AA’ÊMŠÖ˜A‚ÅŽg—p‚µ‚Ä‚¢‚é‚Ì‚ÅG‚ç‚È‚¢‚æ‚¤‚É‚·‚é
-//	LOCALWORK2	ƒgƒƒtƒB[ŠÖ˜A‚ÅŽg—p‚µ‚Ä‚¢‚é‚Ì‚ÅG‚ç‚È‚¢‚æ‚¤‚É‚·‚é
-//	LOCALWORK9	d31r0207‚Éˆø‚«Œp‚¢‚Å‚¢‚éH
+//	LOCALWORK1	ãƒˆãƒ­ãƒ•ã‚£ãƒ¼é–¢é€£ã€é€šä¿¡é–¢é€£ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§è§¦ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹
+//	LOCALWORK2	ãƒˆãƒ­ãƒ•ã‚£ãƒ¼é–¢é€£ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§è§¦ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹
+//	LOCALWORK9	d31r0207ã«å¼•ãç¶™ã„ã§ã„ã‚‹ï¼Ÿ
 //====================================================================
 
 	.text
@@ -20,48 +20,48 @@
 	.include	"../../../src/field/b_tower_scr_def.h"
 	.include	"../../../include/application/wbtower_def.h"
 
-	/*aftermasterƒoƒOfix070112 iwasawa*/
+	/*aftermasterãƒã‚°fix070112 iwasawa*/
 	.include	"../../../include/bugfix.h"
 
 //--------------------------------------------------------------------
-//					    ƒfƒoƒbƒN’è‹`
+//					    ãƒ‡ãƒãƒƒã‚¯å®šç¾©
 //--------------------------------------------------------------------
-//#define	DEBUG_SAVE_OFF			//ƒZ[ƒu‚È‚µ
+//#define	DEBUG_SAVE_OFF			//ã‚»ãƒ¼ãƒ–ãªã—
 
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 //#define DEB_AI_ONLY
 //#define DEB_PARENT_ONLY
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
-//ŠO•”ŒÄo‚µ—L‚è(entry)
+//å¤–éƒ¨å‘¼å‡ºã—æœ‰ã‚Š(entry)
 _EVENT_DATA		ev_tower_gate_local_01
 _EVENT_DATA		ev_tower_gate_multi_01
 _EVENT_DATA		ev_tower_gate_wifi_01
 
-//ŠO•”ŒÄo‚µ—L‚è(return)
+//å¤–éƒ¨å‘¼å‡ºã—æœ‰ã‚Š(return)
 _EVENT_DATA		ev_tower_ret_local_01
 _EVENT_DATA		ev_tower_continue_local_01
 _EVENT_DATA		ev_tower_gate_common_continue_ng
 
-//ƒgƒƒtƒB[‚ð‚­‚ê‚é‚¨Žo‚³‚ñ
+//ãƒˆãƒ­ãƒ•ã‚£ãƒ¼ã‚’ãã‚Œã‚‹ãŠå§‰ã•ã‚“
 _EVENT_DATA		ev_tower_gate_prize_get
 
-//ƒTƒƒ“‚©‚çƒp[ƒgƒi[‚ð‘I‚Î‚·‚É‹A‚Á‚½‚Æ‚«
+//ã‚µãƒ­ãƒ³ã‹ã‚‰ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã‚’é¸ã°ã™ã«å¸°ã£ãŸã¨ã
 _EVENT_DATA		ev_tower_ret_cancel_01
 
-//ƒoƒgƒ‹ƒƒbƒZ[ƒWƒ{[ƒC‚ÆPC
+//ãƒãƒˆãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒ¼ã‚¤ã¨PC
 _EVENT_DATA		ev_d31r0201_btlmsg_boy_01
 _EVENT_DATA		ev_d31r0201_pc_score_single
 _EVENT_DATA		ev_d31r0201_pc_score_multi
 _EVENT_DATA		ev_d31r0201_pc_score_wifi
 _EVENT_DATA		ev_d31r0201_pc_score_leader
 
-//ƒXƒ^ƒ“ƒhƒAƒ[ƒ“
+//ã‚¹ã‚¿ãƒ³ãƒ‰ã‚¢ãƒ­ãƒ¼ãƒ³
 _EVENT_DATA		ev_d31r0201_woman1
 _EVENT_DATA		ev_d31r0201_gorggeousm1a
 _EVENT_DATA		ev_d31r0201_idol
@@ -81,17 +81,17 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d31r0201_flag_change:
-	//ƒ|ƒPƒbƒ`•œ‹Aƒ`ƒFƒbƒN
+	//ãƒã‚±ãƒƒãƒå¾©å¸°ãƒã‚§ãƒƒã‚¯
 	_IFVAL_CALL		WK_SCENE_D31R0201,EQ,1,ev_d31r0202_poketch_hook_reset
 	_IFVAL_CALL		WK_SCENE_D31R0201,EQ,3,ev_d31r0202_poketch_hook_reset
 	_IFVAL_CALL		WK_SCENE_D31R0201,EQ,255,ev_d31r0202_poketch_hook_reset
 	
-	/*(ƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µ)ƒCƒ“ƒ^ƒrƒ…ƒA[ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é‚©*/
+	/*(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—)ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã‹*/
 	_TV_INTERVIEWER_CHECK	19,LOCALWORK0
 	_IFVAL_CALL			LOCALWORK0,EQ,0,ev_d32r0501_flagchange_vanish_reset
 	_IFVAL_CALL			LOCALWORK0,NE,0,ev_d32r0501_flagchange_vanish_set
 
-	/*prize getƒtƒ‰ƒO‚ªon‚È‚ç‚¨Žo‚³‚ñ•\Ž¦*/
+	/*prize getãƒ•ãƒ©ã‚°ãŒonãªã‚‰ãŠå§‰ã•ã‚“è¡¨ç¤º*/
 	_BTOWER_PRIZEMAN_SET	LOCALWORK0	
 	_IFVAL_JUMP		LOCALWORK0,NE,0,ev_d31r0201_flag_prizeman_on
 	_FLAG_SET		FV_D31R0201_PRIZEMAN
@@ -99,29 +99,29 @@ ev_d31r0201_flag_change:
 	_END
 
 ev_d31r0201_flag_interviewer:
-	//ƒCƒ“ƒ^ƒrƒ…ƒA[‚ªoŒ»‚·‚é‚©‚Ç‚¤‚©H
+	//ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼ãŒå‡ºç¾ã™ã‚‹ã‹ã©ã†ã‹ï¼Ÿ
 	_TV_INTERVIEWER_CHECK	2,LOCALWORK0
 	_IFVAL_JUMP		LOCALWORK0,NE,0,ev_d31r0201_flag_interviewer_on
 	_FLAG_SET		FV_TV_INTERVIEW_02
 	_END
 
-//ƒvƒ‰ƒCƒY‚¨Žo‚³‚ñoŒ»
+//ãƒ—ãƒ©ã‚¤ã‚ºãŠå§‰ã•ã‚“å‡ºç¾
 ev_d31r0201_flag_prizeman_on:
 	_FLAG_RESET		FV_D31R0201_PRIZEMAN
 	_JUMP			ev_d31r0201_flag_interviewer
 	_END
-//ƒCƒ“ƒ^ƒrƒ…ƒA[oŒ»
+//ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ã‚¢ãƒ¼å‡ºç¾
 ev_d31r0201_flag_interviewer_on:
 	_FLAG_RESET		FV_TV_INTERVIEW_02
 	_END
 
-//ƒ|ƒPƒbƒ`ƒtƒbƒNƒŠƒZƒbƒg
+//ãƒã‚±ãƒƒãƒãƒ•ãƒƒã‚¯ãƒªã‚»ãƒƒãƒˆ
 ev_d31r0202_poketch_hook_reset:
 	_POKETCH_HOOK_RESET
 	_RET
 
 ev_d31r0201_obj_change:
-	//ƒV[ƒ“‚É‚æ‚Á‚Ä‚¨Žo‚³‚ñ‚ÌŒü‚«‚ð•Ï‚¦‚é
+	//ã‚·ãƒ¼ãƒ³ã«ã‚ˆã£ã¦ãŠå§‰ã•ã‚“ã®å‘ãã‚’å¤‰ãˆã‚‹
 	_IFVAL_JUMP		WK_SCENE_D31R0201,NE,1,ev_d31r0201_obj_change_end
 	_BTOWER_PRIZEMAN_SET	LOCALWORK0
 	_IFVAL_JUMP		LOCALWORK0,NE,0,ev_d31r0201_obj_prizeman_dir_set
@@ -135,7 +135,7 @@ ev_d31r0201_obj_prizeman_dir_set:
 	_OBJ_DIR_CHANGE	D31R0201_PRIZEMAN,DIR_LEFT
 	_END
 
-/*ƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µ*/
+/*ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—*/
 ev_d32r0501_flagchange_vanish_reset:
 	_FLAG_SET			FV_TV_INTERVIEW_19
 	_RET
@@ -146,9 +146,9 @@ ev_d32r0501_flagchange_vanish_set:
 
 
 /********************************************************************/
-/*							–¢Žg—pH								*/
+/*							æœªä½¿ç”¨ï¼Ÿ								*/
 /********************************************************************/
-//ƒ[ƒNŠm•ÛƒRƒ‚ƒ“Fnew game
+//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿ã‚³ãƒ¢ãƒ³ï¼šnew game
 ev_tower_gate_common_work_init_newgame:
 	_BTOWER_WORK_INIT	BTWR_PLAY_NEW,BTWR_MODE_DOUBLE
 	_RET
@@ -157,7 +157,7 @@ ev_tower_gate_common_work_init_newgame:
 /********************************************************************/
 /*	*/
 /********************************************************************/
-//new gameŽž‚ÌƒV[ƒ“ƒ[ƒN‰Šú‰»ˆ—@ƒRƒ‚ƒ“
+//new gameæ™‚ã®ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–å‡¦ç†ã€€ã‚³ãƒ¢ãƒ³
 ev_tower_gate_common_newgame_sd_wkset:
 	_LDVAL			WK_SCENE_D31R0201,255	
 	_LDVAL			WK_SCENE_D31R0202,1	
@@ -165,7 +165,7 @@ ev_tower_gate_common_newgame_sd_wkset:
 	_LDVAL			WK_SCENE_D31R0205,1	
 	_RET
 
-//new gameŽž‚ÌƒV[ƒ“ƒ[ƒN‰Šú‰»ˆ—@ƒ}ƒ‹ƒ`ƒRƒ‚ƒ“
+//new gameæ™‚ã®ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–å‡¦ç†ã€€ãƒžãƒ«ãƒã‚³ãƒ¢ãƒ³
 ev_tower_gate_common_newgame_multi_wkset:
 	_LDVAL			WK_SCENE_D31R0201,255	
 	_LDVAL			WK_SCENE_D31R0202,3
@@ -174,7 +174,7 @@ ev_tower_gate_common_newgame_multi_wkset:
 	_LDVAL			WK_SCENE_D31R0207,1	
 	_RET
 
-//continueŽž‚ÌƒV[ƒ“ƒ[ƒN‰Šú‰»ˆ—@ƒRƒ‚ƒ“
+//continueæ™‚ã®ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–å‡¦ç†ã€€ã‚³ãƒ¢ãƒ³
 ev_tower_gate_common_continue_sd_wkset:
 	_LDVAL			WK_SCENE_D31R0201,255	
 	_LDVAL			WK_SCENE_D31R0202,1	
@@ -184,9 +184,9 @@ ev_tower_gate_common_continue_sd_wkset:
 
 
 /********************************************************************/
-/*						¡ƒgƒƒtƒB[Žæ“¾							*/
+/*						â– ãƒˆãƒ­ãƒ•ã‚£ãƒ¼å–å¾—							*/
 /********************************************************************/
-//ƒgƒƒtƒB[Žö—^ƒ`ƒFƒbƒN(˜b‚µŠ|‚¯)
+//ãƒˆãƒ­ãƒ•ã‚£ãƒ¼æŽˆä¸Žãƒã‚§ãƒƒã‚¯(è©±ã—æŽ›ã‘)
 ev_tower_gate_prize_get:
 	_TALK_OBJ_START
 	_LDVAL				LOCALWORK1,0
@@ -201,7 +201,7 @@ ev_tower_gate_prize_check:
 	_CASE_JUMP			3,ev_tower_gate_prize_get100
 	_CASE_JUMP			4,ev_tower_gate_prize_goods_full
 
-	//‚à‚ç‚¦‚È‚¢
+	//ã‚‚ã‚‰ãˆãªã„
 	_TALK_KEYWAIT		msg_tower_16
 	_JUMP				ev_tower_gate_prize_get_end
 	_END
@@ -213,40 +213,40 @@ ev_tower_gate_prize_get_end:
 	_TALK_OBJ_END
 	_END
 
-//ƒgƒƒtƒB[Žö—^ƒ`ƒFƒbƒNI—¹(ƒQ[ƒ€I—¹ˆ—ž‚Ý)
+//ãƒˆãƒ­ãƒ•ã‚£ãƒ¼æŽˆä¸Žãƒã‚§ãƒƒã‚¯çµ‚äº†(ã‚²ãƒ¼ãƒ çµ‚äº†å‡¦ç†è¾¼ã¿)
 ev_tower_common_single_play_exit:
 	_CALL				ev_tower_gate_common_playend_wkset
 	_JUMP				ev_tower_gate_common_exit_mclose
 	_END
 
-//ƒOƒbƒY‚ª‚¢‚Á‚Ï‚¢‚Å‚à‚ç‚¦‚È‚¢
+//ã‚°ãƒƒã‚ºãŒã„ã£ã±ã„ã§ã‚‚ã‚‰ãˆãªã„
 ev_tower_gate_prize_goods_full:
 	_TALK_KEYWAIT		msg_d31r0201_goods_05
 	_JUMP				ev_tower_gate_prize_get_end
 	_END
 
-//20˜AŸ
+//20é€£å‹
 ev_tower_gate_prize_get20:
 	_NUMBER_NAME		0,20
 	_LDVAL				SCWK_TEMP0,BTWR_GOODS_COPPER
 	_JUMP				ev_tower_gate_prize_get_common
 	_END
 
-//50˜AŸ
+//50é€£å‹
 ev_tower_gate_prize_get50:
 	_NUMBER_NAME		0,50
 	_LDVAL				SCWK_TEMP0,BTWR_GOODS_SILVER
 	_JUMP				ev_tower_gate_prize_get_common
 	_END
 
-//100˜AŸ
+//100é€£å‹
 ev_tower_gate_prize_get100:
 	_NUMBER_NAME		0,100
 	_LDVAL				SCWK_TEMP0,BTWR_GOODS_GOLD
 	_JUMP				ev_tower_gate_prize_get_common
 	_END
 
-//‹¤’Ê
+//å…±é€š
 ev_tower_gate_prize_get_common:
 	_TALK_KEYWAIT		msg_d31r0201_goods_04
 
@@ -259,7 +259,7 @@ ev_tower_gate_prize_get_common:
 
 
 /********************************************************************/
-/*						¡ƒVƒ“ƒOƒ‹/ƒ_ƒuƒ‹Žó•t						*/
+/*						â– ã‚·ãƒ³ã‚°ãƒ«/ãƒ€ãƒ–ãƒ«å—ä»˜						*/
 /********************************************************************/
 ev_tower_gate_local_01:
 	_EVENT_START
@@ -272,175 +272,175 @@ ev_tower_gate_local_01:
 	_END
 
 ev_tower_gate_local_02:
-	/*u‚¿‚å‚¤‚¹‚ñ‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã¡ã‚‡ã†ã›ã‚“ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_TALKMSG			msg_tower_02
 	_CALL				ev_tower_gate_common_cmenu01_set	
 
-	//SCWK_ANSER‚É‘I‘ðŒ‹‰Ê‚ª•Ô‚é
+	//SCWK_ANSERã«é¸æŠžçµæžœãŒè¿”ã‚‹
 	_SWITCH				SCWK_ANSWER
-	_CASE_JUMP			0,ev_tower_gate_local_03		//‚¿‚å‚¤‚¹‚ñ‚·‚é
-	_CASE_JUMP			1,ev_tower_gate_exp01			//à–¾‚ð•·‚­
-	_CASE_JUMP			2,ev_tower_gate_common_exit		//‚â‚ß‚é
+	_CASE_JUMP			0,ev_tower_gate_local_03		//ã¡ã‚‡ã†ã›ã‚“ã™ã‚‹
+	_CASE_JUMP			1,ev_tower_gate_exp01			//èª¬æ˜Žã‚’èžã
+	_CASE_JUMP			2,ev_tower_gate_common_exit		//ã‚„ã‚ã‚‹
 	_JUMP				ev_tower_gate_common_exit
 	_END
 
-//ƒVƒ“ƒOƒ‹Eƒ_ƒuƒ‹à–¾
+//ã‚·ãƒ³ã‚°ãƒ«ãƒ»ãƒ€ãƒ–ãƒ«èª¬æ˜Ž
 ev_tower_gate_exp01:
 	_TALK_KEYWAIT		msg_tower_04
 	_JUMP				ev_tower_gate_local_02
 	_END
 
-//u‚¿‚å‚¤‚¹‚ñ‚·‚éA‚¹‚Â‚ß‚¢‚ð‚«‚­A‚â‚ß‚évƒƒjƒ…[
+//ã€Œã¡ã‚‡ã†ã›ã‚“ã™ã‚‹ã€ã›ã¤ã‚ã„ã‚’ããã€ã‚„ã‚ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 ev_tower_gate_common_cmenu01_set:
-	_BMPMENU_INIT		20,11,0,1,SCWK_ANSWER		/*BƒLƒƒƒ“ƒZƒ‹—LŒø*/
-	_BMPMENU_MAKE_LIST	msg_tower_choice_01,0		/*‚¿‚å‚¤‚¹‚ñ‚·‚é*/
-	_BMPMENU_MAKE_LIST	msg_tower_choice_02,1		/*‚¹‚Â‚ß‚¢‚ð‚«‚­*/
-	_BMPMENU_MAKE_LIST	msg_tower_choice_03,2		/*‚â‚ß‚é*/
+	_BMPMENU_INIT		20,11,0,1,SCWK_ANSWER		/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹*/
+	_BMPMENU_MAKE_LIST	msg_tower_choice_01,0		/*ã¡ã‚‡ã†ã›ã‚“ã™ã‚‹*/
+	_BMPMENU_MAKE_LIST	msg_tower_choice_02,1		/*ã›ã¤ã‚ã„ã‚’ãã*/
+	_BMPMENU_MAKE_LIST	msg_tower_choice_03,2		/*ã‚„ã‚ã‚‹*/
 	_BMPMENU_START
 	_RET
 
 
 /********************************************************************/
-/*						ƒVƒ“ƒOƒ‹Eƒ_ƒuƒ‹‘I‘ð						*/
+/*						ã‚·ãƒ³ã‚°ãƒ«ãƒ»ãƒ€ãƒ–ãƒ«é¸æŠž						*/
 /********************************************************************/
 ev_tower_gate_local_03:
-	/*uƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹‚Ç‚Á‚¿Hv*/
+	/*ã€Œã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã©ã£ã¡ï¼Ÿã€*/
 	_TALKMSG			msg_tower_05
-	_BMPMENU_INIT		20,11,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_007,0				//ƒVƒ“ƒOƒ‹
-	_BMPMENU_MAKE_LIST	msg_ev_win_008,1				//ƒ_ƒuƒ‹
-	_BMPMENU_MAKE_LIST	msg_ev_win_091,2				//‚â‚ß‚é
+	_BMPMENU_INIT		20,11,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_007,0				//ã‚·ãƒ³ã‚°ãƒ«
+	_BMPMENU_MAKE_LIST	msg_ev_win_008,1				//ãƒ€ãƒ–ãƒ«
+	_BMPMENU_MAKE_LIST	msg_ev_win_091,2				//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 
 	_SWITCH				SCWK_ANSWER
-	_CASE_JUMP			0,ev_tower_gate_local_pchk_s	//ƒVƒ“ƒOƒ‹ƒ|ƒPƒ`ƒFƒbƒN
-	_CASE_JUMP			1,ev_tower_gate_local_pchk_d	//ƒ_ƒuƒ‹ƒ|ƒPƒ`ƒFƒbƒN
-	_CASE_JUMP			2,ev_tower_gate_common_exit		//‚â‚ß‚é
+	_CASE_JUMP			0,ev_tower_gate_local_pchk_s	//ã‚·ãƒ³ã‚°ãƒ«ãƒã‚±ãƒã‚§ãƒƒã‚¯
+	_CASE_JUMP			1,ev_tower_gate_local_pchk_d	//ãƒ€ãƒ–ãƒ«ãƒã‚±ãƒã‚§ãƒƒã‚¯
+	_CASE_JUMP			2,ev_tower_gate_common_exit		//ã‚„ã‚ã‚‹
 	_JUMP				ev_tower_gate_common_exit
 	_END
 
 
 /********************************************************************/
-/*						ƒVƒ“ƒOƒ‹ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN					*/
+/*						ã‚·ãƒ³ã‚°ãƒ«ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯					*/
 /********************************************************************/
 ev_tower_gate_local_pchk_s:
-	/*ƒ[ƒNŠm•Û&‰Šú‰»*/
+	/*ãƒ¯ãƒ¼ã‚¯ç¢ºä¿&åˆæœŸåŒ–*/
 	_BTOWER_WORK_INIT	BTWR_PLAY_NEW,BTWR_MODE_SINGLE
 	_JUMP				ev_tower_gate_wifi_pchk_s
 	_END
 
 ev_tower_gate_wifi_pchk_s:
-	/*ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN*/
+	/*æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯*/
 	_BTOWER_TOOLS		BTWR_TOOL_CHK_ENTRY_POKE_NUM,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_gate_local_pokesel				//OK
 	
-	/*uŽQ‰Áo—ˆ‚éƒ|ƒPƒ‚ƒ“‚ª‘«‚è‚È‚¢v*/
+	/*ã€Œå‚åŠ å‡ºæ¥ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒè¶³ã‚Šãªã„ã€*/
 	_TALKMSG_NG_POKE_NAME	msg_tower_94,3,0,0
 	_JUMP				ev_tower_gate_common_exit_mclose2
 	_END
 
 
 /********************************************************************/
-/*						ƒ_ƒuƒ‹ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN						*/
+/*						ãƒ€ãƒ–ãƒ«ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯						*/
 /********************************************************************/
 ev_tower_gate_local_pchk_d:
-	/*ƒ[ƒNŠm•Û&‰Šú‰»*/
+	/*ãƒ¯ãƒ¼ã‚¯ç¢ºä¿&åˆæœŸåŒ–*/
 	_BTOWER_WORK_INIT	BTWR_PLAY_NEW,BTWR_MODE_DOUBLE
 
-	/*ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN*/
+	/*æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯*/
 	_BTOWER_TOOLS		BTWR_TOOL_CHK_ENTRY_POKE_NUM,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_gate_local_pokesel				//OK
 	
-	/*uŽQ‰Áo—ˆ‚éƒ|ƒPƒ‚ƒ“‚ª‘«‚è‚È‚¢v*/
+	/*ã€Œå‚åŠ å‡ºæ¥ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒè¶³ã‚Šãªã„ã€*/
 	_TALKMSG_NG_POKE_NAME	msg_tower_94,4,0,0
 	_JUMP				ev_tower_gate_common_exit_mclose2
 	_END
 
 
 /********************************************************************/
-/*							ƒ|ƒPƒ‚ƒ“‘I‘ð							*/
+/*							ãƒã‚±ãƒ¢ãƒ³é¸æŠž							*/
 /********************************************************************/
 ev_tower_gate_local_pokesel:
-	/*u‚»‚ê‚Å‚ÍŽQ‰Á‚·‚éƒ|ƒPƒ‚ƒ“‚ð‘I‚ñ‚Å‚­‚¾‚³‚¢v*/
+	/*ã€Œãã‚Œã§ã¯å‚åŠ ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã‚“ã§ãã ã•ã„ã€*/
 	_TALK_KEYWAIT		msg_tower_09
 	_CALL				ev_tower_gate_common_select_poke
 
-	/*ƒ|ƒPƒ‚ƒ“‚ð‘I‚ñ‚Å‹A‚Á‚Ä‚«‚½‚©ƒ`ƒFƒbƒN*/
+	/*ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã‚“ã§å¸°ã£ã¦ããŸã‹ãƒã‚§ãƒƒã‚¯*/
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_common_exit
 
-	/*‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚ÌðŒƒ`ƒFƒbƒN*/
+	/*é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ã®æ¡ä»¶ãƒã‚§ãƒƒã‚¯*/
 	_BTOWER_TOOLS		BTWR_SUB_CHK_ENTRY_POKE,BTWR_NULL_PARAM,SCWK_ANSWER
 
 	_SWITCH				SCWK_ANSWER
-	_CASE_JUMP			1,ev_tower_gate_common_same_poke	//“¯‚¶ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é
-	_CASE_JUMP			2,ev_tower_gate_common_same_item	//“¯‚¶ƒAƒCƒeƒ€‚ª‚ ‚é
+	_CASE_JUMP			1,ev_tower_gate_common_same_poke	//åŒã˜ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹
+	_CASE_JUMP			2,ev_tower_gate_common_same_item	//åŒã˜ã‚¢ã‚¤ãƒ†ãƒ ãŒã‚ã‚‹
 
-	/*‚Í‚Á‚«‚ñ‚¾‚Üƒ`ƒFƒbƒN*/
+	/*ã¯ã£ãã‚“ã ã¾ãƒã‚§ãƒƒã‚¯*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_SELPOKE_IDX,0,SCWK_ANSWER
 	_SODATEYA_POKE_FORM_RETURN	SCWK_ANSWER,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0xff,ev_tower_gira_ng
 
-	/*‚Í‚Á‚«‚ñ‚¾‚Üƒ`ƒFƒbƒN*/
+	/*ã¯ã£ãã‚“ã ã¾ãƒã‚§ãƒƒã‚¯*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_SELPOKE_IDX,1,SCWK_ANSWER
 	_SODATEYA_POKE_FORM_RETURN	SCWK_ANSWER,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0xff,ev_tower_gira_ng
 
-	/*‚Í‚Á‚«‚ñ‚¾‚Üƒ`ƒFƒbƒN*/
+	/*ã¯ã£ãã‚“ã ã¾ãƒã‚§ãƒƒã‚¯*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_SELPOKE_IDX,2,SCWK_ANSWER
 	_SODATEYA_POKE_FORM_RETURN	SCWK_ANSWER,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0xff,ev_tower_gira_ng
 
-	/*WIFIƒ‚[ƒhŽž‚Í“ÁŽê*/
+	/*WIFIãƒ¢ãƒ¼ãƒ‰æ™‚ã¯ç‰¹æ®Š*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,SCWK_ANSWER
-	_IFVAL_JUMP			SCWK_ANSWER,EQ,BTWR_MODE_WIFI,ev_tower_gate_wifi_entry	//WIFI‚Ö
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,BTWR_MODE_WIFI,ev_tower_gate_wifi_entry	//WIFIã¸
 
 	_JUMP				ev_tower_gate_local_savechk			//OK
 	_END
 
 
 /********************************************************************/
-/*							Žó•tƒŒƒ|[ƒg							*/
+/*							å—ä»˜ãƒ¬ãƒãƒ¼ãƒˆ							*/
 /********************************************************************/
 ev_tower_gate_local_savechk:
-	//ƒ[ƒNƒZƒbƒg
+	//ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
 	_CALL				ev_tower_gate_common_newgame_sd_wkset
 
-	//Œ»ÝˆÊ’uPush
+	//ç¾åœ¨ä½ç½®Push
 	_BTOWER_TOOLS		BTWR_TOOL_PUSH_NOW_LOCATION,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 
-	//‰ñ•œ
+	//å›žå¾©
 	_PC_KAIFUKU
 
-	//ƒZ[ƒu
+	//ã‚»ãƒ¼ãƒ–
 #ifndef	DEBUG_SAVE_OFF	/********************************************/
 	_CALL				ev_tower_gate_common_save
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_common_exit_play
 #endif	/************************************************************/
 	
-	//ƒgƒŒ[ƒi[’Š‘I
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŠ½é¸
 	_BTOWER_TOOLS		BTWR_SUB_UPDATE_RANDOM,BTWR_NULL_PARAM,SCWK_ANSWER
 	_BTOWER_TOOLS		BTWR_SUB_BTL_TRAINER_SET,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 
-	/*u‚»‚ê‚Å‚Íƒoƒgƒ‹ƒ‹[ƒ€‚Ö‚²ˆÄ“à‚¢‚½‚µ‚Ü‚·v*/
+	/*ã€Œãã‚Œã§ã¯ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã¸ã”æ¡ˆå†…ã„ãŸã—ã¾ã™ã€*/
 	_TALKMSG			msg_tower_12
 	_AB_KEYWAIT
 	_JUMP				ev_tower_gate_local_entry
 	_END
 
-//ˆÄ“à‘O‚ÌƒŒƒ|[ƒg@ƒRƒ‚ƒ“
+//æ¡ˆå†…å‰ã®ãƒ¬ãƒãƒ¼ãƒˆã€€ã‚³ãƒ¢ãƒ³
 ev_tower_gate_common_save:
-	//ƒZ[ƒu‚µ‚Ü‚·‚©H(LOCALWORK0‚ÉŒ‹‰Ê‚ª‘ã“ü‚³‚ê‚é)
+	//ã‚»ãƒ¼ãƒ–ã—ã¾ã™ã‹ï¼Ÿ(LOCALWORK0ã«çµæžœãŒä»£å…¥ã•ã‚Œã‚‹)
 	_CHG_COMMON_SCR		SCRID_REPORT_CALL
 	_LDWK				SCWK_ANSWER,LOCALWORK0
 	_RET
 
-//“¯‚¶ƒ|ƒPƒ‚ƒ“‚ª‘I‚Î‚ê‚½‚Æ‚«
+//åŒã˜ãƒã‚±ãƒ¢ãƒ³ãŒé¸ã°ã‚ŒãŸã¨ã
 ev_tower_gate_common_same_poke:
 	_TALK_KEYWAIT		msg_tower_10
 	_JUMP				ev_tower_gate_common_exit
 	_END
 
-//“¯‚¶ƒAƒCƒeƒ€‚ª‚ ‚é‚Æ‚«
+//åŒã˜ã‚¢ã‚¤ãƒ†ãƒ ãŒã‚ã‚‹ã¨ã
 ev_tower_gate_common_same_item:
 	_TALK_KEYWAIT	msg_tower_11
 	_JUMP			ev_tower_gate_common_exit
@@ -448,7 +448,7 @@ ev_tower_gate_common_same_item:
 
 
 /********************************************************************/
-/*		ŽQ‰Áƒ|ƒPƒ‚ƒ“‚ð‘I‘ð‚·‚é(SCWK_ANSWER‚É‘I‘ð‚µ‚½‚©‚Ç‚¤‚©•Ô‚·)	*/
+/*		å‚åŠ ãƒã‚±ãƒ¢ãƒ³ã‚’é¸æŠžã™ã‚‹(SCWK_ANSWERã«é¸æŠžã—ãŸã‹ã©ã†ã‹è¿”ã™)	*/
 /********************************************************************/
 ev_tower_gate_common_select_poke:
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -456,13 +456,13 @@ ev_tower_gate_common_select_poke:
 
 	_TALK_CLOSE
 
-	/*ƒ|ƒPƒ‚ƒ“‘I‘ðŒÄ‚Ño‚µ*/
+	/*ãƒã‚±ãƒ¢ãƒ³é¸æŠžå‘¼ã³å‡ºã—*/
 	_BTOWER_TOOLS		BTWR_SUB_SELECT_POKE,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 
-	/*ƒtƒB[ƒ‹ƒh•œ‹A*/
+	/*ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°*/
 	_SET_MAP_PROC
 	
-	/*‘I‘ð‚³‚ê‚½ƒ|ƒPƒ‚ƒ“Žæ“¾*/
+	/*é¸æŠžã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³å–å¾—*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_ENTRY_POKE,BTWR_NULL_PARAM,SCWK_ANSWER
 
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -471,38 +471,38 @@ ev_tower_gate_common_select_poke:
 
 
 /********************************************************************/
-/*				‹x‚Þ‚ð‘I‘ð‚µ‚ÄA‘±‚«‚©‚çÄŠJ‚·‚éŽž(SCENE)			*/
+/*				ä¼‘ã‚€ã‚’é¸æŠžã—ã¦ã€ç¶šãã‹ã‚‰å†é–‹ã™ã‚‹æ™‚(SCENE)			*/
 /********************************************************************/
 ev_tower_continue_local_01:
 	_EVENT_START
 
-	//ƒXƒe[ƒgƒNƒŠƒA
+	//ã‚¹ãƒ†ãƒ¼ãƒˆã‚¯ãƒªã‚¢
 	_LDVAL				WK_SCENE_D31R0201,0
 
-	//ƒZ[ƒuƒf[ƒ^‚ª—LŒø‚©ƒ`ƒFƒbƒN
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ãƒã‚§ãƒƒã‚¯
 	_BTOWER_TOOLS		BTWR_TOOL_IS_SAVE_DATA_ENABLE,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_common_continue_ng
 
-	//—LŒø‚¾‚Á‚½(‚¨‚Ü‚¿‚µ‚Ä‚¨‚è‚Ü‚µ‚½I)
+	//æœ‰åŠ¹ã ã£ãŸ(ãŠã¾ã¡ã—ã¦ãŠã‚Šã¾ã—ãŸï¼)
 	_TALK_KEYWAIT		msg_tower_17
 
-	//ƒ[ƒNŠm•Û&‰Šú‰»
+	//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿&åˆæœŸåŒ–
 	_BTOWER_WORK_INIT	BTWR_PLAY_CONTINUE,BTWR_MODE_NULL
 
-	//ƒvƒŒƒCƒ‚[ƒhŽæ“¾
+	//ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰å–å¾—
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,BTWR_MODE_MULTI,ev_tower_continue_aimulti_01
 	
-	//ƒVƒ“ƒOƒ‹/ƒ_ƒuƒ‹/Wifi ƒV[ƒ“ƒ[ƒNƒZƒbƒg
+	//ã‚·ãƒ³ã‚°ãƒ«/ãƒ€ãƒ–ãƒ«/Wifi ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
 	_CALL				ev_tower_gate_common_continue_sd_wkset	
 
-	//Œ»ÝˆÊ’uƒZ[ƒu
+	//ç¾åœ¨ä½ç½®ã‚»ãƒ¼ãƒ–
 	_BTOWER_TOOLS		BTWR_TOOL_PUSH_NOW_LOCATION,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 
-	//ƒZ[ƒu
+	//ã‚»ãƒ¼ãƒ–
 	_CALL				ev_tower_gate_common_auto_save
 
-	//‚»‚ê‚Å‚Íƒoƒgƒ‹ƒ‹[ƒ€‚Ö
+	//ãã‚Œã§ã¯ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã¸
 	_TALK_KEYWAIT		msg_tower_12
 	_AB_KEYWAIT
 
@@ -510,27 +510,27 @@ ev_tower_continue_local_01:
 	_END
 
 ev_tower_continue_aimulti_01:
-	//AIƒ}ƒ‹ƒ` ƒV[ƒ“ƒ[ƒNƒZƒbƒg
+	//AIãƒžãƒ«ãƒ ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
 	_CALL				ev_tower_gate_common_continue_multi_wkset	
 
-	//Œ»ÝˆÊ’uƒZ[ƒu
+	//ç¾åœ¨ä½ç½®ã‚»ãƒ¼ãƒ–
 	_BTOWER_TOOLS		BTWR_TOOL_PUSH_NOW_LOCATION,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 
-	//ƒZ[ƒu
+	//ã‚»ãƒ¼ãƒ–
 	_CALL				ev_tower_gate_common_auto_save
 
-	//ƒp[ƒgƒi[OBJŽw’è
+	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼OBJæŒ‡å®š
 	_BTOWER_TOOLS		BTWR_SUB_GET_PARTNER_NO,BTWR_NULL_PARAM,SCWK_ANSWER
 	_LDWK				LOCALWORK9,SCWK_ANSWER
 
-	//‚»‚ê‚Å‚Íƒ}ƒ‹ƒ`ƒoƒgƒ‹ƒ‹[ƒ€‚Ö
+	//ãã‚Œã§ã¯ãƒžãƒ«ãƒãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã¸
 	_TALK_KEYWAIT		msg_tower_33
 	_AB_KEYWAIT
 
 	_JUMP				ev_tower_gate_local_entry
 	_END
 
-//continueŽž‚ÌƒV[ƒ“ƒ[ƒN‰Šú‰»ˆ—@ƒ}ƒ‹ƒ`ƒRƒ‚ƒ“
+//continueæ™‚ã®ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–å‡¦ç†ã€€ãƒžãƒ«ãƒã‚³ãƒ¢ãƒ³
 ev_tower_gate_common_continue_multi_wkset:
 	_LDVAL				WK_SCENE_D31R0201,255	
 	_LDVAL				WK_SCENE_D31R0202,2
@@ -541,18 +541,18 @@ ev_tower_gate_common_continue_multi_wkset:
 
 
 /********************************************************************/
-/*				¡ƒŒƒ|[ƒg‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚Æ‚«‚ÌI—¹ƒRƒ‚ƒ“			*/
+/*				â– ãƒ¬ãƒãƒ¼ãƒˆã•ã‚Œã¦ã„ãªã‹ã£ãŸã¨ãã®çµ‚äº†ã‚³ãƒ¢ãƒ³			*/
 /********************************************************************/
 ev_tower_gate_common_continue_ng:
 	_EVENT_START
 
-	//‚¨‹q—lI
+	//ãŠå®¢æ§˜ï¼
 	_TALK_KEYWAIT		msg_tower_20
 
-	//•s³I—¹Žž‚Ìƒpƒ‰ƒ[ƒ^ˆ—
+	//ä¸æ­£çµ‚äº†æ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å‡¦ç†
 	_BTOWER_TOOLS		BTWR_TOOL_SET_NG_SCORE,BTWR_NULL_PARAM,SCWK_ANSWER
 
-	//ƒvƒŒƒC‚µ‚Ä‚¢‚½ƒ‚[ƒh‚ªWifi‚È‚ç•ªŠò
+	//ãƒ—ãƒ¬ã‚¤ã—ã¦ã„ãŸãƒ¢ãƒ¼ãƒ‰ãŒWifiãªã‚‰åˆ†å²
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,BTWR_MODE_WIFI,ev_tower_gate_common_exit_wifi_ng
 
 	_JUMP				ev_tower_gate_common_exit_play
@@ -560,13 +560,13 @@ ev_tower_gate_common_continue_ng:
 
 
 /********************************************************************/
-/*						Wifi‚Ì•s³I—¹Žžˆ—						*/
+/*						Wifiã®ä¸æ­£çµ‚äº†æ™‚å‡¦ç†						*/
 /********************************************************************/
 ev_tower_gate_common_exit_wifi_ng:
 	_BTOWER_TOOLS		BTWR_TOOL_WIFI_RANK_DOWN,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_common_exit_play
 
-	/*ƒ‰ƒ“ƒNƒ_ƒEƒ“ƒƒbƒZ[ƒW•\Ž¦*/
+	/*ãƒ©ãƒ³ã‚¯ãƒ€ã‚¦ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º*/
 	_BTOWER_TOOLS		BTWR_TOOL_GET_WIFI_RANK,BTWR_NULL_PARAM,SCWK_ANSWER
 	_LDWK				SCWK_PARAM0,SCWK_ANSWER
 	_NUMBER_NAME		0,SCWK_PARAM0
@@ -582,7 +582,7 @@ ev_tower_gate_common_exit_wifi_ng:
 ev_tower_gate_local_entry:
 	_TALK_CLOSE
 
-	//Žó•t‰œ‚Ö
+	//å—ä»˜å¥¥ã¸
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,SCWK_ANSWER
 
 	_SWITCH				SCWK_ANSWER
@@ -621,7 +621,7 @@ ev_tower_gate_comanm_in04:
 	_JUMP				ev_tower_gate_local_comm_multi_in
 	_END
 
-//ƒ}ƒbƒv‘JˆÚ
+//ãƒžãƒƒãƒ—é·ç§»
 ev_tower_gate_local_comm_multi_in:
 	_LDVAL				WK_SCENE_D31R0202,2
 	_JUMP				ev_tower_gate_common_move_ev
@@ -629,14 +629,14 @@ ev_tower_gate_local_comm_multi_in:
 
 
 /********************************************************************/
-/*					ƒoƒgƒ‹ƒ^ƒ[Žó•tƒAƒjƒ‹¤’Ê						*/
+/*					ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å—ä»˜ã‚¢ãƒ‹ãƒ¡å…±é€š						*/
 /********************************************************************/
 ev_tower_gate_comanm_in:
 	_OBJ_ANIME			LOCALWORK2,anm_d31r0201_pcwoman2_01
 	_OBJ_ANIME			FLDOBJ_ID_PLAYER,anm_d31r0201_player_01
 	_OBJ_ANIME_WAIT
 
-	//ƒGƒŒƒx[ƒ^ƒhƒAopen
+	//ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ãƒ‰ã‚¢open
 	_SET_UP_DOOR_ANIME	0,0,LOCALWORK3,2,77
 	_SEQ_OPEN_DOOR		77
 	_WAIT_3D_ANIME		77
@@ -645,50 +645,50 @@ ev_tower_gate_comanm_in:
 	_OBJ_ANIME			FLDOBJ_ID_PLAYER,anm_d31r0201_player_01_01
 	_OBJ_ANIME_WAIT
 
-	_SEQ_CLOSE_DOOR		77	//ƒhƒA•Â‚ß‚é
-	_WAIT_3D_ANIME		77	//ƒAƒjƒI—¹‘Ò‚¿
-	_FREE_3D_ANIME		77	//ƒhƒAƒAƒjƒ‰ð•ú
+	_SEQ_CLOSE_DOOR		77	//ãƒ‰ã‚¢é–‰ã‚ã‚‹
+	_WAIT_3D_ANIME		77	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
+	_FREE_3D_ANIME		77	//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡è§£æ”¾
 	_RET
 
-//ƒ}ƒbƒv‘JˆÚ
+//ãƒžãƒƒãƒ—é·ç§»
 ev_tower_gate_local_aimulti_in:
 	_JUMP				ev_tower_gate_common_move_ev
 	_END
 
 
 /********************************************************************/
-/*			ƒTƒƒ“‚©‚çƒp[ƒgƒi[‚ð‘I‚Î‚·‚É‹A‚Á‚½‚Æ‚«(SCENE)			*/
+/*			ã‚µãƒ­ãƒ³ã‹ã‚‰ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã‚’é¸ã°ã™ã«å¸°ã£ãŸã¨ã(SCENE)			*/
 /********************************************************************/
 ev_tower_ret_cancel_01:
 	_EVENT_START
 
 	////////////////////////////////////////////////////////
-	/*V‹K*/
+	/*æ–°è¦*/
 	//_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	//_WIPE_FADE_END_CHECK
 	////////////////////////////////////////////////////////
 
-	//ƒXƒe[ƒgƒNƒŠƒA
+	//ã‚¹ãƒ†ãƒ¼ãƒˆã‚¯ãƒªã‚¢
 	_CALL				ev_tower_gate_common_return_stset
 
-	//ƒfƒoƒbƒOƒGƒ‰[ˆ—
+	//ãƒ‡ãƒãƒƒã‚°ã‚¨ãƒ©ãƒ¼å‡¦ç†
 	_BTOWER_TOOLS		BTWR_DEB_IS_WORK_NULL,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_gate_common_exit
 
-	//‚¹‚¢‚¹‚«‚ðƒŒƒ|[ƒg‚É
+	//ã›ã„ã›ãã‚’ãƒ¬ãƒãƒ¼ãƒˆã«
 	_TALKMSG			msg_tower_57
 	_CALL				ev_tower_gate_common_auto_save
 	
 	_JUMP				ev_tower_gate_common_exit_play
 	_END
 
-//Žó‚¯•t‚¯‚É–ß‚Á‚Ä‚«‚½’¼Œã‚ÌƒV[ƒ“ƒXƒe[ƒgƒNƒŠƒAˆ—
+//å—ã‘ä»˜ã‘ã«æˆ»ã£ã¦ããŸç›´å¾Œã®ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã‚¯ãƒªã‚¢å‡¦ç†
 ev_tower_gate_common_return_stset:
 	_CALL				ev_tower_gate_common_exit_wkset
 	_BTOWER_TOOLS		BTWR_TOOL_POP_NOW_LOCATION,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	_RET
 
-//‹­§ƒŒƒ|[ƒg@ƒRƒ‚ƒ“
+//å¼·åˆ¶ãƒ¬ãƒãƒ¼ãƒˆã€€ã‚³ãƒ¢ãƒ³
 ev_tower_gate_common_auto_save:
 	_ADD_WAITICON
 
@@ -700,28 +700,28 @@ ev_tower_gate_common_auto_save:
 
 
 /********************************************************************/
-/*						ƒGƒŒƒx[ƒ^‚ÉˆÚ“®							*/
+/*						ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ã«ç§»å‹•							*/
 /********************************************************************/
 ev_tower_gate_common_move_ev:
 
 	_RECORD_INC			RECID_FRONTIER_COUNT
 	_FNOTE_DATA_MAKE	FNOTE_ID_PL_TOWER,0,0,0,0
 
-	//ƒTƒƒ“‚Åƒƒjƒ…[‚ªŠJ‚¯‚é‚Ì‚ÅA
-	//‚±‚Ìæ‚Ìƒ}ƒbƒv(r0202)‚ÅA
-	//ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€‚ÉØ‚è‘Ö‚¦‚é‚©‚ðŒˆ’è‚·‚éI
+	//ã‚µãƒ­ãƒ³ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒé–‹ã‘ã‚‹ã®ã§ã€
+	//ã“ã®å…ˆã®ãƒžãƒƒãƒ—(r0202)ã§ã€
+	//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã«åˆ‡ã‚Šæ›¿ãˆã‚‹ã‹ã‚’æ±ºå®šã™ã‚‹ï¼
 	_MAP_CHANGE			ZONE_ID_D31R0202,0,SB_EV_PLAYER_SX,SB_EV_PLAYER_SY,DIR_UP
 	_EVENT_END
 	_END
 
 
 /********************************************************************/
-/*						ƒvƒŒƒCI—¹Žž‚Ì‹¤’Êˆ—						*/
+/*						ãƒ—ãƒ¬ã‚¤çµ‚äº†æ™‚ã®å…±é€šå‡¦ç†						*/
 /********************************************************************/
 ev_tower_gate_common_exit_play:
 	_CALL				ev_tower_gate_common_playend_wkset
 ev_tower_gate_common_exit:
-	/*u‚Ü‚½‚Ì‚²—˜—p‚ð‚¨‚Ü‚¿‚µ‚Ä‚¨‚è‚Ü‚·v*/
+	/*ã€Œã¾ãŸã®ã”åˆ©ç”¨ã‚’ãŠã¾ã¡ã—ã¦ãŠã‚Šã¾ã™ã€*/
 	_TALKMSG			msg_tower_03
 ev_tower_gate_common_exit_mclose2:
 	_LAST_KEYWAIT
@@ -733,23 +733,23 @@ ev_tower_gate_common_exit_direct:
 	_EVENT_END
 	_END
 
-//ƒvƒŒƒCI—¹Žž‚ÌƒV[ƒ“ƒ[ƒN‰Šú‰»ˆ—@ƒRƒ‚ƒ“
+//ãƒ—ãƒ¬ã‚¤çµ‚äº†æ™‚ã®ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–å‡¦ç†ã€€ã‚³ãƒ¢ãƒ³
 ev_tower_gate_common_playend_wkset:
 	_BTOWER_TOOLS		BTWR_TOOL_POP_NOW_LOCATION,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	_CALL				ev_tower_gate_common_playdata_clear
 	_RET
 
-//ƒvƒŒƒCƒf[ƒ^ƒNƒŠƒAƒRƒ‚ƒ“
+//ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢ã‚³ãƒ¢ãƒ³
 ev_tower_gate_common_playdata_clear:
 	_BTOWER_TOOLS		BTWR_TOOL_CLEAR_PLAY_DATA,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	_RET
 
-//ƒ[ƒN‰ð•úƒRƒ‚ƒ“
+//ãƒ¯ãƒ¼ã‚¯è§£æ”¾ã‚³ãƒ¢ãƒ³
 ev_tower_gate_common_work_release:
 	_BTOWER_WORK_RELEASE
 	_RET
 
-//ƒQ[ƒgoêŽž‚ÌƒV[ƒ“ƒ[ƒNˆ—@ƒRƒ‚ƒ“
+//ã‚²ãƒ¼ãƒˆå‡ºå ´æ™‚ã®ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯å‡¦ç†ã€€ã‚³ãƒ¢ãƒ³
 ev_tower_gate_common_exit_wkset:
 	_LDVAL				WK_SCENE_D31R0201,0	
 	_LDVAL				WK_SCENE_D31R0202,0	
@@ -763,17 +763,17 @@ ev_tower_gate_common_exit_wkset:
 
 /********************************************************************/
 /********************************************************************/
-/*							¡WIFIŽó•t								*/
+/*							â– WIFIå—ä»˜								*/
 /********************************************************************/
 /********************************************************************/
-//Žó‚¯•t‚¯‚É˜b‚µ‚©‚¯‚½‚Æ‚«(WiFiƒVƒ“ƒOƒ‹)
+//å—ã‘ä»˜ã‘ã«è©±ã—ã‹ã‘ãŸã¨ã(WiFiã‚·ãƒ³ã‚°ãƒ«)
 ev_tower_gate_wifi_01:
 	_EVENT_START
 	_SE_PLAY			SEQ_SE_DP_SELECT
 
 	_BTOWER_WORK_CLEAR
 
-	//ƒAƒbƒvƒ[ƒh‚µ‚Ä‚¢‚È‚¢ƒf[ƒ^‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ãªã„ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_BTOWER_TOOLS		BTWR_TOOL_GET_WIFI_UPLOAD_FLAG,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_gate_wifi_reupload_01
 
@@ -781,77 +781,77 @@ ev_tower_gate_wifi_01:
 	_JUMP				ev_tower_gate_wifi_01_01
 	_END
 
-//ƒf[ƒ^ƒAƒbƒvƒ[ƒh‚©‚çŽn‚Ü‚é‚Æ‚±‚±‚©‚ç
+//ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã‹ã‚‰å§‹ã¾ã‚‹ã¨ã“ã“ã‹ã‚‰
 ev_tower_gate_wifi_01_01:
 	_JUMP				ev_tower_gate_wifi_02
 	_END
 
 ev_tower_gate_wifi_02:
-	//DLƒf[ƒ^‚ª‚ ‚é‚©‚Ç‚¤‚©H
+	//DLãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ã©ã†ã‹ï¼Ÿ
 	_BTOWER_TOOLS		BTWR_TOOL_IS_PLAYER_DATA_ENABLE,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_gate_wifi_existdata_01
 	_JUMP				ev_tower_gate_wifi_nodata_01
 	_END
 
-//DLƒf[ƒ^‚ª‚È‚¢Žž‚Ìƒƒjƒ…[ˆ—
+//DLãƒ‡ãƒ¼ã‚¿ãŒãªã„æ™‚ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
 ev_tower_gate_wifi_nodata_01:
 	_TALKMSG			msg_tower_38
 	_CALL				ev_tower_gate_common_cmenu02_set	
 
-	//SCWK_ANSER‚É‘I‘ðŒ‹‰Ê‚ª•Ô‚é
+	//SCWK_ANSERã«é¸æŠžçµæžœãŒè¿”ã‚‹
 	_SWITCH				SCWK_ANSWER
-	_CASE_JUMP			0,ev_tower_gate_wifi_1st			//‚¿‚å‚¤‚¹‚ñ‚·‚é
-	_CASE_JUMP			1,ev_tower_gate_wifi_get_leader		//—ð‘ãƒŠ[ƒ_[Žæ“¾
-	_CASE_JUMP			2,ev_tower_gate_exp_wifi			//à–¾‚ð•·‚­
-	_CASE_JUMP			3,ev_tower_gate_common_exit			//‚â‚ß‚é
+	_CASE_JUMP			0,ev_tower_gate_wifi_1st			//ã¡ã‚‡ã†ã›ã‚“ã™ã‚‹
+	_CASE_JUMP			1,ev_tower_gate_wifi_get_leader		//æ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼å–å¾—
+	_CASE_JUMP			2,ev_tower_gate_exp_wifi			//èª¬æ˜Žã‚’èžã
+	_CASE_JUMP			3,ev_tower_gate_common_exit			//ã‚„ã‚ã‚‹
 	_JUMP				ev_tower_gate_common_exit
 	_END
 
-//’§í‚µ‚Ü‚·‚©H WIFIƒf[ƒ^–³‚µƒRƒ‚ƒ“
+//æŒ‘æˆ¦ã—ã¾ã™ã‹ï¼Ÿ WIFIãƒ‡ãƒ¼ã‚¿ç„¡ã—ã‚³ãƒ¢ãƒ³
 ev_tower_gate_common_cmenu02_set:
-	_BMPMENU_INIT		16,9,0,1,SCWK_ANSWER		//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_tower_choice_01,0		//‚¿‚å‚¤‚¹‚ñ‚·‚é
-	_BMPMENU_MAKE_LIST	msg_tower_choice_11,1		//‚ê‚«‚¾‚¢ƒŠ[ƒ_[
-	_BMPMENU_MAKE_LIST	msg_tower_choice_02,2		//‚¹‚Â‚ß‚¢‚ð•·‚­
-	_BMPMENU_MAKE_LIST	msg_tower_choice_03,3		//‚â‚ß‚é
+	_BMPMENU_INIT		16,9,0,1,SCWK_ANSWER		//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_tower_choice_01,0		//ã¡ã‚‡ã†ã›ã‚“ã™ã‚‹
+	_BMPMENU_MAKE_LIST	msg_tower_choice_11,1		//ã‚Œãã ã„ãƒªãƒ¼ãƒ€ãƒ¼
+	_BMPMENU_MAKE_LIST	msg_tower_choice_02,2		//ã›ã¤ã‚ã„ã‚’èžã
+	_BMPMENU_MAKE_LIST	msg_tower_choice_03,3		//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 	_RET
 
-//WIFIà–¾
+//WIFIèª¬æ˜Ž
 ev_tower_gate_exp_wifi:
 	_TALK_KEYWAIT		msg_tower_39
 	_JUMP				ev_tower_gate_wifi_02
 	_END
 
-//DLƒf[ƒ^‚ª‚ ‚é‚Æ‚«‚Ìƒƒjƒ…[ˆ—
+//DLãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã¨ãã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
 ev_tower_gate_wifi_existdata_01:
 	_TALKMSG			msg_tower_38
 	_CALL				ev_tower_gate_common_cmenu03_set	
 
-	//SCWK_ANSER‚É‘I‘ðŒ‹‰Ê‚ª•Ô‚é
+	//SCWK_ANSERã«é¸æŠžçµæžœãŒè¿”ã‚‹
 	_SWITCH				SCWK_ANSWER
-	_CASE_JUMP			0,ev_tower_gate_wifi_1st		//‚¿‚å‚¤‚¹‚ñ‚·‚é
-	_CASE_JUMP			1,ev_tower_gate_wifi_get_leader	//—ð‘ãƒŠ[ƒ_[Žæ“¾
-	_CASE_JUMP			2,ev_tower_gate_wifi_2nd		//DLƒf[ƒ^‚É’§í
-	_CASE_JUMP			3,ev_tower_gate_exp_wifi		//à–¾‚ð•·‚­
-	_CASE_JUMP			4,ev_tower_gate_common_exit		//‚â‚ß‚é
+	_CASE_JUMP			0,ev_tower_gate_wifi_1st		//ã¡ã‚‡ã†ã›ã‚“ã™ã‚‹
+	_CASE_JUMP			1,ev_tower_gate_wifi_get_leader	//æ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼å–å¾—
+	_CASE_JUMP			2,ev_tower_gate_wifi_2nd		//DLãƒ‡ãƒ¼ã‚¿ã«æŒ‘æˆ¦
+	_CASE_JUMP			3,ev_tower_gate_exp_wifi		//èª¬æ˜Žã‚’èžã
+	_CASE_JUMP			4,ev_tower_gate_common_exit		//ã‚„ã‚ã‚‹
 	_JUMP				ev_tower_gate_common_exit
 	_END
 
-//’§í‚µ‚Ü‚·‚©H WIFIƒf[ƒ^—L‚èƒRƒ‚ƒ“
+//æŒ‘æˆ¦ã—ã¾ã™ã‹ï¼Ÿ WIFIãƒ‡ãƒ¼ã‚¿æœ‰ã‚Šã‚³ãƒ¢ãƒ³
 ev_tower_gate_common_cmenu03_set:
-	_BMPMENU_INIT		12,7,0,1,SCWK_ANSWER		//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_tower_choice_01,0		//‚¿‚å‚¤‚¹‚ñ‚·‚é
-	_BMPMENU_MAKE_LIST	msg_tower_choice_11,1		//‚ê‚«‚¾‚¢ƒŠ[ƒ_[
-	_BMPMENU_MAKE_LIST	msg_tower_choice_12,2		//‘O‚Ì•”‰®
-	_BMPMENU_MAKE_LIST	msg_tower_choice_02,3		//‚¹‚Â‚ß‚¢‚ð•·‚­
-	_BMPMENU_MAKE_LIST	msg_tower_choice_03,4		//‚â‚ß‚é
+	_BMPMENU_INIT		12,7,0,1,SCWK_ANSWER		//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_tower_choice_01,0		//ã¡ã‚‡ã†ã›ã‚“ã™ã‚‹
+	_BMPMENU_MAKE_LIST	msg_tower_choice_11,1		//ã‚Œãã ã„ãƒªãƒ¼ãƒ€ãƒ¼
+	_BMPMENU_MAKE_LIST	msg_tower_choice_12,2		//å‰ã®éƒ¨å±‹
+	_BMPMENU_MAKE_LIST	msg_tower_choice_02,3		//ã›ã¤ã‚ã„ã‚’èžã
+	_BMPMENU_MAKE_LIST	msg_tower_choice_03,4		//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 	_RET
 
 
 /********************************************************************/
-/*					WIFIÄƒAƒbƒvƒ[ƒhˆ—							*/
+/*					WIFIå†ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰å‡¦ç†							*/
 /********************************************************************/
 ev_tower_gate_wifi_reupload_01:
 	_TALKMSG			msg_tower_62
@@ -859,41 +859,41 @@ ev_tower_gate_wifi_reupload_01:
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_gate_wifi_reupload_cancel
 
 #if AFTERMASTER_070112_WIFI_MAP_BUG_FIX
-	/*ƒQ[ƒ€‹¤’ÊƒŒƒ|[ƒgˆ—*/
+	/*ã‚²ãƒ¼ãƒ å…±é€šãƒ¬ãƒãƒ¼ãƒˆå‡¦ç†*/
 	_CALL				ev_tower_gate_common_save
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_common_exit
 //	_TALK_CLOSE
 #endif
 
-	//ƒAƒbƒvƒ[ƒhˆ—
+	//ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰å‡¦ç†
 	_CALL				ev_tower_gate_common_wifi_upload
 	_IFVAL_JUMP			SCWK_ANSWER,NE,WIFI_BTOWER_RESULT_SUCCESS,ev_tower_gate_common_exit
 	
-	//¬Ñ‚ðWIFIƒRƒlƒNƒVƒ‡ƒ“‚É‘—‚è‚Ü‚µ‚½
+	//æˆç¸¾ã‚’WIFIã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã«é€ã‚Šã¾ã—ãŸ
 	_TALK_KEYWAIT		msg_tower_61
 
-	//’UI—¹
+	//æ—¦çµ‚äº†
 	_JUMP				ev_tower_gate_common_exit
 	_END
 
-//ÄƒAƒbƒvƒ[ƒhƒLƒƒƒ“ƒZƒ‹
+//å†ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_tower_gate_wifi_reupload_cancel:
-	//‹¤’Êˆ—‚Ö–ß‚é
+	//å…±é€šå‡¦ç†ã¸æˆ»ã‚‹
 	_JUMP				ev_tower_gate_wifi_01_01
 	_END
 
-//WIFI¬ÑƒAƒbƒvƒ[ƒhˆ—ƒRƒ‚ƒ“(SCWK_ANSWER‚É³íI—¹‚µ‚½‚©‚Ç‚¤‚©•Ô‚·)
+//WIFIæˆç¸¾ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰å‡¦ç†ã‚³ãƒ¢ãƒ³(SCWK_ANSWERã«æ­£å¸¸çµ‚äº†ã—ãŸã‹ã©ã†ã‹è¿”ã™)
 ev_tower_gate_common_wifi_upload:
 	_TALK_CLOSE
 	
-	//WIFIÚ‘±ˆ—ƒR[ƒ‹
+	//WIFIæŽ¥ç¶šå‡¦ç†ã‚³ãƒ¼ãƒ«
 	_LDVAL				LOCALWORK1,1
 	_CALL				ev_tower_gate_common_wifi_connect
 	_RET
 
 
 /********************************************************************/
-/*			WIFIÚ‘±ˆ—ƒRƒ‚ƒ“ LOCALWORK1‚Éƒpƒ‰ƒ[ƒ^‘ã“ü			*/
+/*			WIFIæŽ¥ç¶šå‡¦ç†ã‚³ãƒ¢ãƒ³ LOCALWORK1ã«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥			*/
 /********************************************************************/
 ev_tower_gate_common_wifi_connect:
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -909,46 +909,46 @@ ev_tower_gate_common_wifi_connect:
 
 
 /********************************************************************/
-/*							WIFIŠÖ˜A								*/
+/*							WIFIé–¢é€£								*/
 /********************************************************************/
-//WIFIƒf[ƒ^DL
+//WIFIãƒ‡ãƒ¼ã‚¿DL
 ev_tower_gate_wifi_entry:
 	_PC_KAIFUKU
-	//’ÊMƒZ[ƒu
+	//é€šä¿¡ã‚»ãƒ¼ãƒ–
 	_CALL				ev_tower_gate_common_save
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_common_exit_play
 
-	//ƒQ[ƒ€ƒXƒe[ƒ^ƒX‚ðƒZƒbƒg‚µ‚Ä‚¨‚­
+	//ã‚²ãƒ¼ãƒ ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 	_CALL				ev_tower_gate_common_newgame_sd_wkset
 	_BTOWER_TOOLS		BTWR_TOOL_PUSH_NOW_LOCATION,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	_PC_KAIFUKU
 	_TALK_CLOSE
 
-	//WIFIÚ‘±ˆ—ƒR[ƒ‹
+	//WIFIæŽ¥ç¶šå‡¦ç†ã‚³ãƒ¼ãƒ«
 	_LDVAL				LOCALWORK1,0
 	_CALL				ev_tower_gate_common_wifi_connect
-	//Ž¸”s‚¾‚Á‚½‚ç”²‚¯‚é
+	//å¤±æ•—ã ã£ãŸã‚‰æŠœã‘ã‚‹
 	_IFVAL_JUMP			SCWK_ANSWER,NE,WIFI_BTOWER_RESULT_SUCCESS,ev_tower_gate_common_exit_play
 
 	_JUMP				ev_tower_gate_wifi_entry_chk
 	_END
 
-//WIFIƒ‚[ƒhŽž‚É‚·‚®‚ÉŽn‚ß‚Ä—Ç‚¢‚©ƒ`ƒFƒbƒN
+//WIFIãƒ¢ãƒ¼ãƒ‰æ™‚ã«ã™ãã«å§‹ã‚ã¦è‰¯ã„ã‹ãƒã‚§ãƒƒã‚¯
 ev_tower_gate_wifi_entry_chk:
-	//¡‚·‚®‚²ˆÄ“à‚µ‚Ä‚¢‚¢‚Å‚·‚©H
+	//ä»Šã™ãã”æ¡ˆå†…ã—ã¦ã„ã„ã§ã™ã‹ï¼Ÿ
 	_TALKMSG			msg_tower_48
 	_YES_NO_WIN			SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_local_entry
 
-	//ƒŒƒ|[ƒg‚ð‘‚¢‚Ä’†’f‚µ‚Ü‚·‚©H
+	//ãƒ¬ãƒãƒ¼ãƒˆã‚’æ›¸ã„ã¦ä¸­æ–­ã—ã¾ã™ã‹ï¼Ÿ
 	_TALKMSG			msg_tower_49
 	_YES_NO_WIN			SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_gate_wifi_entry_chk
 
-	//’†’fˆ—
+	//ä¸­æ–­å‡¦ç†
 	_LDVAL				WK_SCENE_D31R0201,2
 
-	//ƒvƒŒƒCƒf[ƒ^ƒZ[ƒu
+	//ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 	_BTOWER_TOOLS		BTWR_SUB_SAVE_REST_PLAY_DATA,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	_BTOWER_WORK_RELEASE
 
@@ -961,31 +961,31 @@ ev_tower_gate_wifi_entry_chk:
 	_WIPE_FADE_END_CHECK
 	_TALK_CLOSE
 
-	//ƒŠƒZƒbƒgƒRƒ}ƒ“ƒh
+	//ãƒªã‚»ãƒƒãƒˆã‚³ãƒžãƒ³ãƒ‰
 	_BTOWER_TOOLS		BTWR_TOOL_SYSTEM_RESET,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	_EVENT_END
 	_END
 
 
 /********************************************************************/
-/*						WIFI—ð‘ãƒŠ[ƒ_[Žæ“¾						*/
+/*						WIFIæ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼å–å¾—						*/
 /********************************************************************/
 ev_tower_gate_wifi_get_leader:
-	/*ƒQ[ƒ€‹¤’ÊƒŒƒ|[ƒgˆ—*/
+	/*ã‚²ãƒ¼ãƒ å…±é€šãƒ¬ãƒãƒ¼ãƒˆå‡¦ç†*/
 //	_TALKMSG			msg_tower_50
 	_CALL				ev_tower_gate_common_save
 
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_common_exit
 	_TALK_CLOSE
 
-	//WIFIÚ‘±ˆ—ƒR[ƒ‹
+	//WIFIæŽ¥ç¶šå‡¦ç†ã‚³ãƒ¼ãƒ«
 	_LDVAL				LOCALWORK1,2
 	_CALL				ev_tower_gate_common_wifi_connect
 
-	//Ž¸”s‚È‚ç”²‚¯‚é
+	//å¤±æ•—ãªã‚‰æŠœã‘ã‚‹
 	_IFVAL_JUMP			SCWK_ANSWER,NE,WIFI_BTOWER_RESULT_SUCCESS,ev_tower_gate_common_exit
 	
-	//ƒŠ[ƒ_[ƒf[ƒ^‚ðŽæ“¾‚µ‚Ü‚µ‚½
+	//ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ã¾ã—ãŸ
 	_BTOWER_GET_LEADER_ROOMID	SCWK_TEMP0,SCWK_TEMP1
 	_NUMBER_NAME		0,SCWK_TEMP0	
 	_NUMBER_NAME_EX		1,SCWK_TEMP1,2,3
@@ -997,25 +997,25 @@ ev_tower_gate_wifi_get_leader:
 
 
 /********************************************************************/
-/*						WIFI‰‰ñƒ`ƒƒƒŒƒ“ƒW							*/
+/*						WIFIåˆå›žãƒãƒ£ãƒ¬ãƒ³ã‚¸							*/
 /********************************************************************/
 ev_tower_gate_wifi_1st:
-	//ƒ[ƒNŠm•Û&‰Šú‰»
+	//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿&åˆæœŸåŒ–
 	_BTOWER_WORK_INIT	BTWR_PLAY_NEW,BTWR_MODE_WIFI
 
-	//ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒNˆÈ~‚ÍƒVƒ“ƒOƒ‹‚Æ“¯‚¶ƒtƒ[
+	//ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯ä»¥é™ã¯ã‚·ãƒ³ã‚°ãƒ«ã¨åŒã˜ãƒ•ãƒ­ãƒ¼
 	_JUMP				ev_tower_gate_wifi_pchk_s
 	_END
 
 
 /********************************************************************/
-/*						WIFI2‰ñ–ÚˆÈ~ƒ`ƒƒƒŒƒ“ƒW						*/
+/*						WIFI2å›žç›®ä»¥é™ãƒãƒ£ãƒ¬ãƒ³ã‚¸						*/
 /********************************************************************/
 ev_tower_gate_wifi_2nd:
-	//ƒ[ƒNŠm•Û&‰Šú‰»
+	//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿&åˆæœŸåŒ–
 	_BTOWER_WORK_INIT	BTWR_PLAY_NEW,BTWR_MODE_RETRY
 
-	//ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒNˆÈ~‚ÍƒVƒ“ƒOƒ‹‚Æ“¯‚¶ƒtƒ[
+	//ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯ä»¥é™ã¯ã‚·ãƒ³ã‚°ãƒ«ã¨åŒã˜ãƒ•ãƒ­ãƒ¼
 	_JUMP				ev_tower_gate_wifi_pchk_s
 	_END
 
@@ -1027,7 +1027,7 @@ ev_tower_gate_comanm_hero_right:
 
 /********************************************************************/
 /********************************************************************/
-/*					¡AIƒ}ƒ‹ƒ`^’ÊMƒ}ƒ‹ƒ`Žó•t						*/
+/*					â– AIãƒžãƒ«ãƒï¼é€šä¿¡ãƒžãƒ«ãƒå—ä»˜						*/
 /********************************************************************/
 /********************************************************************/
 ev_tower_gate_multi_01:
@@ -1044,19 +1044,19 @@ ev_tower_gate_multi_02:
 	_TALKMSG			msg_tower_22
 	_CALL				ev_tower_gate_common_cmenu01_set
 	
-	//SCWK_ANSER‚É‘I‘ðŒ‹‰Ê‚ª•Ô‚é
+	//SCWK_ANSERã«é¸æŠžçµæžœãŒè¿”ã‚‹
 	_SWITCH				SCWK_ANSWER
-	_CASE_JUMP			0,ev_tower_gate_multi_03		//‚¿‚å‚¤‚¹‚ñ‚·‚é
-	_CASE_JUMP			1,ev_tower_gate_exp_multi		//à–¾‚ð•·‚­
-	_CASE_JUMP			2,ev_tower_gate_common_exit		//‚â‚ß‚é
+	_CASE_JUMP			0,ev_tower_gate_multi_03		//ã¡ã‚‡ã†ã›ã‚“ã™ã‚‹
+	_CASE_JUMP			1,ev_tower_gate_exp_multi		//èª¬æ˜Žã‚’èžã
+	_CASE_JUMP			2,ev_tower_gate_common_exit		//ã‚„ã‚ã‚‹
 	_JUMP				ev_tower_gate_common_exit
 	_END
 
 
 /********************************************************************/
-/*							à–¾‚ð•·‚­								*/
+/*							èª¬æ˜Žã‚’èžã								*/
 /********************************************************************/
-//ƒ}ƒ‹ƒ`à–¾
+//ãƒžãƒ«ãƒèª¬æ˜Ž
 ev_tower_gate_exp_multi:
 	_TALK_KEYWAIT		msg_tower_24
 	_JUMP				ev_tower_gate_multi_02
@@ -1064,19 +1064,19 @@ ev_tower_gate_exp_multi:
 
 
 /********************************************************************/
-/*							’§í‚·‚é								*/
+/*							æŒ‘æˆ¦ã™ã‚‹								*/
 /********************************************************************/
 ev_tower_gate_multi_03:
-	//ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN
+	//ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯
 	_BTOWER_TOOLS		BTWR_TOOL_CHK_ENTRY_POKE_NUM,2,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_gate_multi_modesel
 
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ª‘«‚è‚È‚¢
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãŒè¶³ã‚Šãªã„
 	_TALKMSG_NG_POKE_NAME	msg_tower_94,2,0,0
 	_JUMP				ev_tower_gate_common_exit_mclose2
 	_END
 
-//ƒ}ƒ‹ƒ`ƒvƒŒƒCƒ‚[ƒh‘I‘ð
+//ãƒžãƒ«ãƒãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰é¸æŠž
 ev_tower_gate_multi_modesel:
 	_TALKMSG			msg_tower_27
 	_YES_NO_WIN			SCWK_ANSWER
@@ -1087,78 +1087,78 @@ ev_tower_gate_multi_modesel:
 	_JUMP				ev_tower_gate_ai_multi01
 	_END
 
-//AIƒ}ƒ‹ƒ`
+//AIãƒžãƒ«ãƒ
 ev_tower_gate_ai_multi01:
-	//ƒ[ƒNŠm•Û&‰Šú‰»
+	//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿&åˆæœŸåŒ–
 	_BTOWER_WORK_INIT	BTWR_PLAY_NEW,BTWR_MODE_MULTI
 	_LDVAL				LOCALWORK1,0
 	_JUMP				ev_tower_gate_multi_04
 	_END
 
-//’ÊMƒ}ƒ‹ƒ`
+//é€šä¿¡ãƒžãƒ«ãƒ
 ev_tower_gate_comm_multi01:
-	//ƒ[ƒNŠm•Û&‰Šú‰»
+	//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿&åˆæœŸåŒ–
 	_BTOWER_WORK_INIT	BTWR_PLAY_NEW,BTWR_MODE_COMM_MULTI
 	_LDVAL				LOCALWORK1,1
 	_JUMP				ev_tower_gate_multi_04
 	_END
 
-//‹¤’Êƒ|ƒPƒ‚ƒ“‘I‘ðˆ—
+//å…±é€šãƒã‚±ãƒ¢ãƒ³é¸æŠžå‡¦ç†
 ev_tower_gate_multi_04:
-	//‚»‚ê‚Å‚ÍŽQ‰Á‚·‚éƒ|ƒPƒ‚ƒ“‚ð‘I‚ñ‚Å‚­‚¾‚³‚¢
+	//ãã‚Œã§ã¯å‚åŠ ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã‚“ã§ãã ã•ã„
 	_TALK_KEYWAIT		msg_tower_09
 	_CALL				ev_tower_gate_common_select_poke
 	
-	//ƒ|ƒPƒ‚ƒ“‚ð‘I‚ñ‚Å‹A‚Á‚Ä‚«‚½‚©ƒ`ƒFƒbƒN
+	//ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã‚“ã§å¸°ã£ã¦ããŸã‹ãƒã‚§ãƒƒã‚¯
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_common_exit
 
-	//‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN
+	//é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯
 	_BTOWER_TOOLS		BTWR_SUB_CHK_ENTRY_POKE,BTWR_NULL_PARAM,SCWK_ANSWER
 
 	_SWITCH				SCWK_ANSWER
-	_CASE_JUMP			1,ev_tower_gate_common_same_poke	//“¯‚¶ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é
-	_CASE_JUMP			2,ev_tower_gate_common_same_item	//“¯‚¶ƒAƒCƒeƒ€‚ª‚ ‚é
+	_CASE_JUMP			1,ev_tower_gate_common_same_poke	//åŒã˜ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹
+	_CASE_JUMP			2,ev_tower_gate_common_same_item	//åŒã˜ã‚¢ã‚¤ãƒ†ãƒ ãŒã‚ã‚‹
 	
-	/*‚Í‚Á‚«‚ñ‚¾‚Üƒ`ƒFƒbƒN*/
+	/*ã¯ã£ãã‚“ã ã¾ãƒã‚§ãƒƒã‚¯*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_SELPOKE_IDX,0,SCWK_ANSWER
 	_SODATEYA_POKE_FORM_RETURN	SCWK_ANSWER,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0xff,ev_tower_gira_ng
 
-	/*‚Í‚Á‚«‚ñ‚¾‚Üƒ`ƒFƒbƒN*/
+	/*ã¯ã£ãã‚“ã ã¾ãƒã‚§ãƒƒã‚¯*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_SELPOKE_IDX,1,SCWK_ANSWER
 	_SODATEYA_POKE_FORM_RETURN	SCWK_ANSWER,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0xff,ev_tower_gira_ng
 
-	//ƒ‚[ƒh•Êˆ—
+	//ãƒ¢ãƒ¼ãƒ‰åˆ¥å‡¦ç†
 	_IFVAL_JUMP			LOCALWORK1,EQ,1,ev_tower_gate_comm_multi02
 
-	//AIƒ}ƒ‹ƒ`‚È‚çƒ[ƒN‚Æ–ß‚èæƒZƒbƒg
+	//AIãƒžãƒ«ãƒãªã‚‰ãƒ¯ãƒ¼ã‚¯ã¨æˆ»ã‚Šå…ˆã‚»ãƒƒãƒˆ
 	_CALL				ev_tower_gate_common_newgame_multi_wkset
 	_BTOWER_TOOLS		BTWR_TOOL_PUSH_NOW_LOCATION,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 
 	_PC_KAIFUKU
 
-	//ƒZ[ƒu
+	//ã‚»ãƒ¼ãƒ–
 #ifndef	DEBUG_SAVE_OFF	/********************************************/
 	_CALL				ev_tower_gate_common_save
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_common_exit_play
 #endif	/************************************************************/
 	
-	//ƒgƒŒ[ƒi[’Š‘I
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŠ½é¸
 	_BTOWER_TOOLS		BTWR_SUB_UPDATE_RANDOM,BTWR_NULL_PARAM,SCWK_ANSWER
 	_BTOWER_TOOLS		BTWR_SUB_BTL_TRAINER_SET,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	
-	//‚»‚ê‚Å‚ÍƒTƒƒ“‚Ö
+	//ãã‚Œã§ã¯ã‚µãƒ­ãƒ³ã¸
 	_TALK_KEYWAIT		msg_tower_36
 	_JUMP				ev_tower_gate_local_entry
 	_END
 
 
 /********************************************************************/
-/*						’ÊMƒ}ƒ‹ƒ`Ú‘±ˆ—							*/
+/*						é€šä¿¡ãƒžãƒ«ãƒæŽ¥ç¶šå‡¦ç†							*/
 /********************************************************************/
 ev_tower_gate_comm_multi02:
-	//ƒZ[ƒu
+	//ã‚»ãƒ¼ãƒ–
 	_PC_KAIFUKU
 #ifndef	DEBUG_SAVE_OFF	/********************************************/
 	_CALL				ev_tower_gate_common_save
@@ -1167,11 +1167,11 @@ ev_tower_gate_comm_multi02:
 	_JUMP				ev_tower_gate_comm_multi03
 	_END
 
-//e‚É‚È‚é‚©Žq‚É‚È‚é‚©H
+//è¦ªã«ãªã‚‹ã‹å­ã«ãªã‚‹ã‹ï¼Ÿ
 ev_tower_gate_comm_multi03:
 	_TALKMSG			msg_tower_28
 	
-	_BMPMENU_INIT		18,1,0,1,SCWK_ANSWER	//BƒLƒƒƒ“ƒZƒ‹—LŒø
+	_BMPMENU_INIT		18,1,0,1,SCWK_ANSWER	//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 	_BMPMENU_MAKE_LIST	msg_ev_win_014,0
 	_BMPMENU_MAKE_LIST	msg_ev_win_015,1
 	_BMPMENU_MAKE_LIST	msg_ev_win_006,2
@@ -1179,47 +1179,47 @@ ev_tower_gate_comm_multi03:
 
 	_SWITCH				SCWK_ANSWER
 
-	//‚±‚Ì‰º‚Ì0‚Æ1‚ð“ü‚ê‘Ö‚¦‚é‚ÆA‚»‚ê‚¼‚êeê—pAŽqê—p‚É‚È‚è‚Ü‚·
-	//e—p‚Ìexe‚ÆŽq—p‚Ìexe‚ð—¼•ûì‚Á‚ÄA“ñ‘ä‚Å‚»‚ê‚¼‚ê“Ç‚Ýž‚ñ‚Å‚¢‚Ü‚· iwasawa
+	//ã“ã®ä¸‹ã®0ã¨1ã‚’å…¥ã‚Œæ›¿ãˆã‚‹ã¨ã€ãã‚Œãžã‚Œè¦ªå°‚ç”¨ã€å­å°‚ç”¨ã«ãªã‚Šã¾ã™
+	//è¦ªç”¨ã®exeã¨å­ç”¨ã®exeã‚’ä¸¡æ–¹ä½œã£ã¦ã€äºŒå°ã§ãã‚Œãžã‚Œèª­ã¿è¾¼ã‚“ã§ã„ã¾ã™ iwasawa
 #ifdef DEB_PARENT_ONLY
-	_CASE_JUMP			1,ev_tower_gate_connect_group		//ƒOƒ‹[ƒv
-	_CASE_JUMP			0,ev_tower_gate_connect_leader		//ƒŠ[ƒ_[
-	_JUMP				ev_tower_gate_common_exit_play		//I—¹‚Ö
+	_CASE_JUMP			1,ev_tower_gate_connect_group		//ã‚°ãƒ«ãƒ¼ãƒ—
+	_CASE_JUMP			0,ev_tower_gate_connect_leader		//ãƒªãƒ¼ãƒ€ãƒ¼
+	_JUMP				ev_tower_gate_common_exit_play		//çµ‚äº†ã¸
 	_END
 #else
-	_CASE_JUMP			0,ev_tower_gate_connect_group		//ƒOƒ‹[ƒv
-	_CASE_JUMP			1,ev_tower_gate_connect_leader		//ƒŠ[ƒ_[
-	_JUMP				ev_tower_gate_common_exit_play		//I—¹‚Ö
+	_CASE_JUMP			0,ev_tower_gate_connect_group		//ã‚°ãƒ«ãƒ¼ãƒ—
+	_CASE_JUMP			1,ev_tower_gate_connect_leader		//ãƒªãƒ¼ãƒ€ãƒ¼
+	_JUMP				ev_tower_gate_common_exit_play		//çµ‚äº†ã¸
 	_END
 #endif	
 
 
 /********************************************************************/
-/*							ƒOƒ‹[ƒv‚É“ü‚é							*/
+/*							ã‚°ãƒ«ãƒ¼ãƒ—ã«å…¥ã‚‹							*/
 /********************************************************************/
 ev_tower_gate_connect_group:
-	//DSƒƒCƒ„ƒŒƒX’ÊM‚ðŽn‚ß‚Ü‚·‚©H
+	//DSãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã‚’å§‹ã‚ã¾ã™ã‹ï¼Ÿ
 	_TALKMSG			msg_keikoku_01
 	_YES_NO_WIN			SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_gate_comm_multi03
 
 	_TALK_CLOSE
 
-	//e‹@‚ð‘I‘ð‚·‚éƒEƒBƒ“ƒhƒE‚ðŠJ‚­
+	//è¦ªæ©Ÿã‚’é¸æŠžã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
 	_SEL_PARENT_WIN	COMM_MODE_TOWER_MULTI,0,0,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_tower_gate_connect_group_cancel//cancel
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_tower_gate_connect_group_error  //error
 
-	//‚»‚êˆÈŠO
-	_JUMP				ev_tower_gate_connect_pokechk	//¬Œ÷
+	//ãã‚Œä»¥å¤–
+	_JUMP				ev_tower_gate_connect_pokechk	//æˆåŠŸ
 	_END
 
-//ƒOƒ‹[ƒvƒLƒƒƒ“ƒZƒ‹
+//ã‚°ãƒ«ãƒ¼ãƒ—ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_tower_gate_connect_group_cancel:
 	_JUMP				ev_tower_gate_comm_multi03
 	_END
 
-//ƒOƒ‹[ƒv’ÊMƒGƒ‰[
+//ã‚°ãƒ«ãƒ¼ãƒ—é€šä¿¡ã‚¨ãƒ©ãƒ¼
 ev_tower_gate_connect_group_error:
 	_COMM_DIRECT_END
 	_JUMP				ev_tower_gate_comm_multi03
@@ -1227,34 +1227,34 @@ ev_tower_gate_connect_group_error:
 
 
 /********************************************************************/
-/*						ƒŠ[ƒ_[‚É‚È‚é								*/
+/*						ãƒªãƒ¼ãƒ€ãƒ¼ã«ãªã‚‹								*/
 /********************************************************************/
 ev_tower_gate_connect_leader:
-	//DSƒƒCƒ„ƒŒƒX’ÊM‚ðŽn‚ß‚Ü‚·‚©H
+	//DSãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã‚’å§‹ã‚ã¾ã™ã‹ï¼Ÿ
 	_TALKMSG			msg_keikoku_01
 	_YES_NO_WIN			SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_gate_comm_multi03
 
 	_TALK_CLOSE
 
-	//Žq‹@‚ð‘I‘ð‚·‚éƒEƒBƒ“ƒhƒE‚ðŠJ‚­
+	//å­æ©Ÿã‚’é¸æŠžã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
 	_SEL_CHILD_WIN		COMM_MODE_TOWER_MULTI,0,0,SCWK_ANSWER
 
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_tower_gate_connect_leader_cancel//cance
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_tower_gate_connect_leader_error  //error
 
-	//‚»‚êˆÈŠO
+	//ãã‚Œä»¥å¤–
 	_JUMP				ev_tower_gate_connect_pokechk		
 	_END
 
-//ƒŠ[ƒ_[ƒLƒƒƒ“ƒZƒ‹
+//ãƒªãƒ¼ãƒ€ãƒ¼ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_tower_gate_connect_leader_cancel:
 	_JUMP				ev_tower_gate_comm_multi03
 //	_COMM_DIRECT_END
 //	_JUMP				ev_tower_gate_common_exit_play	
 	_END
 
-//ƒŠ[ƒ_[’ÊMƒGƒ‰[
+//ãƒªãƒ¼ãƒ€ãƒ¼é€šä¿¡ã‚¨ãƒ©ãƒ¼
 ev_tower_gate_connect_leader_error:
 	_COMM_DIRECT_END
 	_JUMP				ev_tower_gate_comm_multi03
@@ -1262,21 +1262,21 @@ ev_tower_gate_connect_leader_error:
 
 
 /********************************************************************/
-/*						ŒÝ‚¢‚Ìƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN						*/
+/*						äº’ã„ã®ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯						*/
 /********************************************************************/
 ev_tower_gate_connect_pokechk:
-	//’ÊM“¯Šú(‚¨—F’B‚Ì‘I‘ð‚ð‘Ò‚Á‚Ä‚¢‚Ü‚·)
+	//é€šä¿¡åŒæœŸ(ãŠå‹é”ã®é¸æŠžã‚’å¾…ã£ã¦ã„ã¾ã™)
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	TOWER_COMM_MULTI_POKE_SELECT
 
-	/*ŽóMƒoƒbƒtƒ@ƒNƒŠƒA*/
+	/*å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢*/
 	_BTOWER_TOOLS		BTWR_SUB_RECV_BUF_CLEAR,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	_JUMP				ev_tower_gate_connect_pokechk_retry
 	_END
 	
-/*(DP‚ªŠÜ‚Ü‚ê‚Ä‚¢‚½‚ç‚È‚µ)PL‚Ì‚Ý‚ÌŽž‚Í‘—MŽ¸”s‚ÌƒPƒA‚ð‚·‚é*/
+/*(DPãŒå«ã¾ã‚Œã¦ã„ãŸã‚‰ãªã—)PLã®ã¿ã®æ™‚ã¯é€ä¿¡å¤±æ•—ã®ã‚±ã‚¢ã‚’ã™ã‚‹*/
 ev_tower_gate_connect_pokechk_retry:
-	//‚¨ŒÝ‚¢‚ª‘I‚ñ‚¾ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ðŒðŠ·
+	//ãŠäº’ã„ãŒé¸ã‚“ã ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’äº¤æ›
 	_BTOWER_SEND_BUF	TOWER_COMM_PLAYER_DATA,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_connect_pokechk_retry
 
@@ -1290,20 +1290,20 @@ ev_tower_gate_connect_pokechk_retry:
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	TOWER_COMM_MULTI_BTL_TRAINER_SET
 
-	//e‚Å‚àŽq‚Å‚àƒ‰ƒ“ƒ_ƒ€XV
+	//è¦ªã§ã‚‚å­ã§ã‚‚ãƒ©ãƒ³ãƒ€ãƒ æ›´æ–°
 	_BTOWER_TOOLS		BTWR_SUB_UPDATE_RANDOM,BTWR_NULL_PARAM,SCWK_TEMP0
 
-	//e‹@‚È‚ç‘ÎíƒgƒŒ[ƒi[’Š‘I
+	//è¦ªæ©Ÿãªã‚‰å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŠ½é¸
 	_COMM_GET_CURRENT_ID	SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_connect_btl_trainer_set
 
-	//Žq‹@‚Íe‚©‚çƒf[ƒ^‚ðŽó‚¯Žæ‚é
+	//å­æ©Ÿã¯è¦ªã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
 	_BTOWER_RECV_BUF	1,LOCALWORK0
 
 	_JUMP				ev_tower_gate_connect_sio_save
 	_END
 	
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C”í‚Á‚Ä‚¢‚é‚Æ‚«(ˆê•C–Ú)
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹è¢«ã£ã¦ã„ã‚‹ã¨ã(ä¸€åŒ¹ç›®)
 ev_tower_gate_connect_poke_same01:
 	_CALL				ev_tower_gate_common_sioend
 	_BTOWER_TOOLS		BTWR_SUB_GET_SELPOKE_IDX,0,SCWK_ANSWER
@@ -1312,7 +1312,7 @@ ev_tower_gate_connect_poke_same01:
 	_JUMP				ev_tower_gate_common_exit_play
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C”í‚Á‚Ä‚¢‚é‚Æ‚«(“ñ•C–Ú)
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹è¢«ã£ã¦ã„ã‚‹ã¨ã(äºŒåŒ¹ç›®)
 ev_tower_gate_connect_poke_same02:
 	_CALL				ev_tower_gate_common_sioend
 	_BTOWER_TOOLS		BTWR_SUB_GET_SELPOKE_IDX,1,SCWK_ANSWER
@@ -1321,7 +1321,7 @@ ev_tower_gate_connect_poke_same02:
 	_JUMP				ev_tower_gate_common_exit_play
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ª“ñ•C”í‚Á‚Ä‚¢‚é‚Æ‚«
+//ãƒã‚±ãƒ¢ãƒ³ãŒäºŒåŒ¹è¢«ã£ã¦ã„ã‚‹ã¨ã
 ev_tower_gate_connect_poke_same03:
 	_CALL				ev_tower_gate_common_sioend
 	_BTOWER_TOOLS		BTWR_SUB_GET_SELPOKE_IDX,0,SCWK_ANSWER
@@ -1334,7 +1334,7 @@ ev_tower_gate_connect_poke_same03:
 
 
 /********************************************************************/
-/*						’ÊMØ’fˆ—ƒR[ƒ‹							*/
+/*						é€šä¿¡åˆ‡æ–­å‡¦ç†ã‚³ãƒ¼ãƒ«							*/
 /********************************************************************/
 ev_tower_gate_common_sioend:
 	_COMM_RESET
@@ -1344,51 +1344,51 @@ ev_tower_gate_common_sioend:
 
 
 /********************************************************************/
-/*			ƒgƒŒ[ƒi[ƒf[ƒ^‚ªƒZƒbƒg‚³‚ê‚½‚ç’ÊM“¯Šú‚µ‚Äæ‚Ö		*/
+/*			ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ãŒã‚»ãƒƒãƒˆã•ã‚ŒãŸã‚‰é€šä¿¡åŒæœŸã—ã¦å…ˆã¸		*/
 /********************************************************************/
 ev_tower_gate_connect_sio_save:
-	//ƒ[ƒNƒZƒbƒg
+	//ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
 	_CALL				ev_tower_gate_common_newgame_multi_wkset
 
-	//Œ»ÝˆÊ’uPush
+	//ç¾åœ¨ä½ç½®Push
 	_BTOWER_TOOLS		BTWR_TOOL_PUSH_NOW_LOCATION,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 
 	_PC_KAIFUKU
 
-	//ƒI[ƒgƒZ[ƒu
-	_TALKMSG			msg_tower_75	//ƒŒƒ|[ƒg‚ð‘‚¢‚Ä‚Ü‚·
+	//ã‚ªãƒ¼ãƒˆã‚»ãƒ¼ãƒ–
+	_TALKMSG			msg_tower_75	//ãƒ¬ãƒãƒ¼ãƒˆã‚’æ›¸ã„ã¦ã¾ã™
 
 #ifndef	DEBUG_SAVE_OFF	/********************************************/
 	_CALL				ev_tower_gate_common_auto_save
 #endif	/************************************************************/
 	
-	/*’n‹…‹V“o˜^*/
+	/*åœ°çƒå„€ç™»éŒ²*/
 	_WIFI_HISTORY
 
-	//‚»‚ê‚Å‚Íƒoƒgƒ‹ƒ‹[ƒ€‚Ö‚²ˆÄ“à
+	//ãã‚Œã§ã¯ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã¸ã”æ¡ˆå†…
 	_TALKMSG			msg_tower_33
 	_TIME_WAIT			30,SCWK_ANSWER
 
-	//’ÊM“¯Šú
+	//é€šä¿¡åŒæœŸ
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	TOWER_COMM_MULTI_AUTO_SAVE
 
 	_JUMP				ev_tower_gate_local_entry
 	_END
 
-//e‹@‚È‚ç‘ÎíƒgƒŒ[ƒi[ƒZƒbƒg
+//è¦ªæ©Ÿãªã‚‰å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚»ãƒƒãƒˆ
 ev_tower_gate_connect_btl_trainer_set:
-	//ƒgƒŒ[ƒi[’Š‘I
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŠ½é¸
 	_BTOWER_TOOLS		BTWR_SUB_BTL_TRAINER_SET,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 
-	/*ŽóMƒoƒbƒtƒ@ƒNƒŠƒA*/
+	/*å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢*/
 	_BTOWER_TOOLS		BTWR_SUB_RECV_BUF_CLEAR,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 	_JUMP				ev_tower_gate_connect_btl_trainer_set_retry
 	_END
 
-/*(DP‚ªŠÜ‚Ü‚ê‚Ä‚¢‚½‚ç‚È‚µ)PL‚Ì‚Ý‚ÌŽž‚Í‘—MŽ¸”s‚ÌƒPƒA‚ð‚·‚é*/
+/*(DPãŒå«ã¾ã‚Œã¦ã„ãŸã‚‰ãªã—)PLã®ã¿ã®æ™‚ã¯é€ä¿¡å¤±æ•—ã®ã‚±ã‚¢ã‚’ã™ã‚‹*/
 ev_tower_gate_connect_btl_trainer_set_retry:
-	//Žq‹@‚É‘I‚ñ‚¾ƒf[ƒ^‚ð‘—M
+	//å­æ©Ÿã«é¸ã‚“ã ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡
 	_BTOWER_SEND_BUF	TOWER_COMM_TR_DATA,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_connect_btl_trainer_set_retry
 
@@ -1397,70 +1397,70 @@ ev_tower_gate_connect_btl_trainer_set_retry:
 
 
 /********************************************************************/
-/*				d31r0205,d31r0206‚©‚ç–ß‚Á‚Ä‚«‚½Žž(SCENE)			*/
+/*				d31r0205,d31r0206ã‹ã‚‰æˆ»ã£ã¦ããŸæ™‚(SCENE)			*/
 /********************************************************************/
 ev_tower_ret_local_01:
 	_EVENT_START
 
 	////////////////////////////////////////////////////////
-	/*V‹K*/
+	/*æ–°è¦*/
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 	////////////////////////////////////////////////////////
 
-	//ƒXƒe[ƒgƒNƒŠƒA
+	//ã‚¹ãƒ†ãƒ¼ãƒˆã‚¯ãƒªã‚¢
 	_CALL				ev_tower_gate_common_return_stset
 
-	//ƒfƒoƒbƒOƒGƒ‰[ˆ—
+	//ãƒ‡ãƒãƒƒã‚°ã‚¨ãƒ©ãƒ¼å‡¦ç†
 	_BTOWER_TOOLS		BTWR_DEB_IS_WORK_NULL,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_gate_common_exit
 
-	//ƒNƒŠƒAƒ`ƒFƒbƒN
+	//ã‚¯ãƒªã‚¢ãƒã‚§ãƒƒã‚¯
 	_BTOWER_TOOLS		BTWR_SUB_IS_CLEAR,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_ret_local_clear_01
 	_JUMP				ev_tower_ret_local_lose_01
 	_END
 
-//•‰‚¯‚½‚Æ‚«
+//è² ã‘ãŸã¨ã
 ev_tower_ret_local_lose_01:
-	_TALK_KEYWAIT		msg_tower_54	//‚¨‚Â‚©‚ê‚³‚Ü‚Å‚µ‚½
+	_TALK_KEYWAIT		msg_tower_54	//ãŠã¤ã‹ã‚Œã•ã¾ã§ã—ãŸ
 	
-	//ƒvƒŒƒCƒ‚[ƒhŽæ“¾
+	//ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰å–å¾—
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,SCWK_ANSWER
 	_LDWK				LOCALWORK0,SCWK_ANSWER
 
 	_SWITCH				LOCALWORK0
 
-	//ƒŠƒgƒ‰ƒCƒ‚[ƒh‚Í‚±‚Ì‚ ‚Æ‚·‚®ƒZ[ƒu
+	//ãƒªãƒˆãƒ©ã‚¤ãƒ¢ãƒ¼ãƒ‰ã¯ã“ã®ã‚ã¨ã™ãã‚»ãƒ¼ãƒ–
 	_CASE_JUMP			BTWR_MODE_RETRY,ev_tower_lose_local_normal
 
-	//WIFIƒ‚[ƒh‚Íê—pˆ—
+	//WIFIãƒ¢ãƒ¼ãƒ‰ã¯å°‚ç”¨å‡¦ç†
 	_CASE_JUMP			BTWR_MODE_WIFI,ev_tower_lose_local_wifi
 
-	//’ÊMƒ}ƒ‹ƒ`‚ÍØ’fˆ—
+	//é€šä¿¡ãƒžãƒ«ãƒã¯åˆ‡æ–­å‡¦ç†
 //	_IFVAL_CALL			LOCALWORK0,EQ,BTWR_MODE_COMM_MULTI,ev_tower_gate_common_sioend
 
-	//ƒvƒ‰ƒCƒYƒtƒ‰ƒO‚ªON‚Ìê‡‚ÍƒŠƒ{ƒ“‚ð‚Â‚¯‚éˆ—
+	//ãƒ—ãƒ©ã‚¤ã‚ºãƒ•ãƒ©ã‚°ãŒONã®å ´åˆã¯ãƒªãƒœãƒ³ã‚’ã¤ã‘ã‚‹å‡¦ç†
 	_BTOWER_TOOLS		BTWR_SUB_RENSHOU_RIBBON_SET,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_CALL			SCWK_ANSWER,EQ,1,ev_tower_lose_local_renshou
 	_JUMP				ev_tower_lose_local_normal
 	_END
 
 ev_tower_lose_local_normal:
-	//•‰‚¯‚½‚Æ‚«‚Ìˆ—
-	_TALKMSG			msg_tower_57	//‚¹‚¢‚¹‚«‚ðƒŒƒ|[ƒg‚É
+	//è² ã‘ãŸã¨ãã®å‡¦ç†
+	_TALKMSG			msg_tower_57	//ã›ã„ã›ãã‚’ãƒ¬ãƒãƒ¼ãƒˆã«
 	_CALL				ev_tower_gate_common_auto_save
 
 	_TALK_CLOSE
 
-	//SINGLEƒ‚[ƒh‚Íê—pˆ—
+	//SINGLEãƒ¢ãƒ¼ãƒ‰ã¯å°‚ç”¨å‡¦ç†
 	_IFVAL_JUMP			LOCALWORK0,EQ,BTWR_MODE_SINGLE,ev_tower_lose_local_single
 	_JUMP				ev_tower_gate_common_exit_play
 	_END
 
-//˜AŸƒŠƒ{ƒ“ˆ—
+//é€£å‹ãƒªãƒœãƒ³å‡¦ç†
 ev_tower_lose_local_renshou:
-	//ƒ|ƒPƒ‚ƒ“‚ÉƒŠƒ{ƒ“‚ð
+	//ãƒã‚±ãƒ¢ãƒ³ã«ãƒªãƒœãƒ³ã‚’
 	_TALK_KEYWAIT		msg_tower_92
 	_ME_PLAY			SEQ_FANFA1
 	_ME_WAIT
@@ -1468,53 +1468,53 @@ ev_tower_lose_local_renshou:
 
 
 /********************************************************************/
-/*					ƒ[ƒJƒ‹ƒNƒŠƒA‹¤’Êˆ—							*/
+/*					ãƒ­ãƒ¼ã‚«ãƒ«ã‚¯ãƒªã‚¢å…±é€šå‡¦ç†							*/
 /********************************************************************/
 ev_tower_ret_local_clear_01:
-	//ƒvƒŒƒCƒ‚[ƒhŽæ“¾
+	//ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰å–å¾—
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,SCWK_ANSWER
 	_LDWK				LOCALWORK0,SCWK_ANSWER
 
-	//ƒŠƒgƒ‰ƒCƒ‚[ƒh‚Íê—pˆ—
+	//ãƒªãƒˆãƒ©ã‚¤ãƒ¢ãƒ¼ãƒ‰ã¯å°‚ç”¨å‡¦ç†
 	_IFVAL_JUMP			LOCALWORK0,EQ,BTWR_MODE_RETRY,ev_tower_clear_local_retry
 
-	//ƒVƒ“ƒOƒ‹‚ÍƒVƒ“ƒOƒ‹—p‚Ìƒ`ƒFƒbƒN‚ð‘–‚ç‚¹‚é
+	//ã‚·ãƒ³ã‚°ãƒ«ã¯ã‚·ãƒ³ã‚°ãƒ«ç”¨ã®ãƒã‚§ãƒƒã‚¯ã‚’èµ°ã‚‰ã›ã‚‹
 	_IFVAL_JUMP			LOCALWORK0,EQ,BTWR_MODE_SINGLE,ev_tower_clear_single_check
 
-	//WIFI‚ÍWIFI—p‚Ìˆ—‚ð‘–‚ç‚¹‚é
+	//WIFIã¯WIFIç”¨ã®å‡¦ç†ã‚’èµ°ã‚‰ã›ã‚‹
 	_IFVAL_JUMP			LOCALWORK0,EQ,BTWR_MODE_WIFI,ev_tower_clear_wifi_check
 
-	//’ÊMƒ}ƒ‹ƒ`‚ÍØ’fˆ—
+	//é€šä¿¡ãƒžãƒ«ãƒã¯åˆ‡æ–­å‡¦ç†
 //	_IFVAL_CALL			LOCALWORK0,EQ,BTWR_MODE_COMM_MULTI,ev_tower_gate_common_sioend
 
-	//˜AŸƒŠƒ{ƒ“‚ð“n‚·‚©‚Ç‚¤‚©H
+	//é€£å‹ãƒªãƒœãƒ³ã‚’æ¸¡ã™ã‹ã©ã†ã‹ï¼Ÿ
 	_BTOWER_TOOLS		BTWR_SUB_RENSHOU_RIBBON_SET,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,NE,0,ev_tower_clear_local_renshou
 
-	//’ÊíƒNƒŠƒA
+	//é€šå¸¸ã‚¯ãƒªã‚¢
 	_CALL				ev_tower_clear_local_btp_get
 	_JUMP				ev_tower_clear_local_save
 	_END
 	
-//˜AŸ‚¨‚ß‚Å‚Æ‚¤ˆ—
+//é€£å‹ãŠã‚ã§ã¨ã†å‡¦ç†
 ev_tower_clear_local_renshou:
-	//‚¨‚ß‚Å‚Æ‚¤‚²‚´‚¢‚Ü‚·I
+	//ãŠã‚ã§ã¨ã†ã”ã–ã„ã¾ã™ï¼
 	_TALK_KEYWAIT		msg_tower_13
 
 #if 0
-	//ƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ð
+	//ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’
 	_BTOWER_TOOLS		BTWR_SUB_ADD_BATTLE_POINT,BTWR_NULL_PARAM,SCWK_ANSWER
 	_LDWK				SCWK_TEMP0,SCWK_ANSWER
 	_PLAYER_NAME		0
 	_NUMBER_NAME		1,SCWK_TEMP0
 	_TALK_KEYWAIT		msg_tower_59
 
-	//ƒtƒ@ƒ“ƒtƒ@[ƒŒ
+	//ãƒ•ã‚¡ãƒ³ãƒ•ã‚¡ãƒ¼ãƒ¬
 	_ME_PLAY			SEQ_FANFA4
 	_ME_WAIT
 #endif
 
-	//ƒ|ƒPƒ‚ƒ“‚ÉƒŠƒ{ƒ“‚ð
+	//ãƒã‚±ãƒ¢ãƒ³ã«ãƒªãƒœãƒ³ã‚’
 	_TALK_KEYWAIT		msg_tower_92
 	_ME_PLAY			SEQ_FANFA1
 	_ME_WAIT
@@ -1524,14 +1524,14 @@ ev_tower_clear_local_renshou:
 
 
 /********************************************************************/
-/*						wifiƒ`ƒFƒbƒNˆ—							*/
+/*						wifiãƒã‚§ãƒƒã‚¯å‡¦ç†							*/
 /********************************************************************/
 ev_tower_clear_wifi_check:
-	//‚¨‚ß‚Å‚Æ‚¤‚²‚´‚¢‚Ü‚·I
+	//ãŠã‚ã§ã¨ã†ã”ã–ã„ã¾ã™ï¼
 	_TALK_KEYWAIT		msg_tower_13
 	
 #if 0
-	//ƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ð
+	//ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’
 	_BTOWER_TOOLS		BTWR_SUB_ADD_BATTLE_POINT,BTWR_NULL_PARAM,SCWK_ANSWER
 	_LDWK				SCWK_TEMP0,SCWK_ANSWER
 	_PLAYER_NAME		0
@@ -1542,36 +1542,36 @@ ev_tower_clear_wifi_check:
 	_ME_WAIT
 #endif
 
-	//ƒ‰ƒ“ƒNƒAƒbƒv‚·‚é‚©‚Ç‚¤‚©H
+	//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã™ã‚‹ã‹ã©ã†ã‹ï¼Ÿ
 	_BTOWER_TOOLS		BTWR_SUB_WIFI_RANK_UP,BTWR_NULL_PARAM,SCWK_ANSWER
-	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_clear_wifi_runkup_ribbon2	//ƒŠƒ{ƒ“ˆ—‚ÖƒWƒƒƒ“ƒv
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_clear_wifi_runkup_ribbon2	//ãƒªãƒœãƒ³å‡¦ç†ã¸ã‚¸ãƒ£ãƒ³ãƒ—
 	_JUMP				ev_tower_clear_wifi_runkup
 	_END
 	
-//wifiƒ‰ƒ“ƒNƒAƒbƒv‚¨‚ß‚Å‚Æ‚¤ˆ—
+//wifiãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ãŠã‚ã§ã¨ã†å‡¦ç†
 ev_tower_clear_wifi_runkup:
-	//Œ»Ý‚Ìƒ‰ƒ“ƒNŽæ“¾
+	//ç¾åœ¨ã®ãƒ©ãƒ³ã‚¯å–å¾—
 	_BTOWER_TOOLS		BTWR_TOOL_GET_WIFI_RANK,BTWR_NULL_PARAM,SCWK_ANSWER
 	_LDWK				LOCALWORK0,SCWK_ANSWER
 
-	//‚»‚µ‚Ä››‚³‚ñ‚Íƒ‰ƒ“ƒNH‚É
+	//ãã—ã¦â—‹â—‹ã•ã‚“ã¯ãƒ©ãƒ³ã‚¯ï¼Ÿã«
 	_PLAYER_NAME		0
 	_NUMBER_NAME		1,LOCALWORK0
 	_TALK_KEYWAIT		msg_tower_56
 	_JUMP				ev_tower_clear_wifi_runkup_ribbon
 	_END
 
-//ƒŠƒ{ƒ“ˆ—
+//ãƒªãƒœãƒ³å‡¦ç†
 ev_tower_clear_wifi_runkup_ribbon:
-	//ƒŠƒ{ƒ“‚ª‚Â‚­‚©ƒ`ƒFƒbƒN
+	//ãƒªãƒœãƒ³ãŒã¤ãã‹ãƒã‚§ãƒƒã‚¯
 	_BTOWER_TOOLS		BTWR_SUB_RENSHOU_RIBBON_SET,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_common_wifi_upload_exit
 	_JUMP				ev_tower_clear_wifi_ribbon_set
 	_END
 
-//WIFIƒŠƒ{ƒ“‚ð‚ ‚°‚Ü‚·ˆ—
+//WIFIãƒªãƒœãƒ³ã‚’ã‚ã’ã¾ã™å‡¦ç†
 ev_tower_clear_wifi_ribbon_set:
-	//ƒ|ƒPƒ‚ƒ“‚ÉƒŠƒ{ƒ“‚ð
+	//ãƒã‚±ãƒ¢ãƒ³ã«ãƒªãƒœãƒ³ã‚’
 	_NUMBER_NAME		0,LOCALWORK0
 	_TALK_KEYWAIT		msg_tower_89
 
@@ -1582,17 +1582,17 @@ ev_tower_clear_wifi_ribbon_set:
 	_END
 
 ////////////////////////////////////////////////////////////////////////////////
-//ƒŠƒ{ƒ“ˆ—(ƒ‰ƒ“ƒN‚ªã‚ª‚ç‚È‚¢Žž)
+//ãƒªãƒœãƒ³å‡¦ç†(ãƒ©ãƒ³ã‚¯ãŒä¸ŠãŒã‚‰ãªã„æ™‚)
 ev_tower_clear_wifi_runkup_ribbon2:
-	//ƒŠƒ{ƒ“‚ª‚Â‚­‚©ƒ`ƒFƒbƒN
+	//ãƒªãƒœãƒ³ãŒã¤ãã‹ãƒã‚§ãƒƒã‚¯
 	_BTOWER_TOOLS		BTWR_SUB_RENSHOU_RIBBON_SET,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_common_wifi_upload_exit
 	_JUMP				ev_tower_clear_wifi_ribbon_set2
 	_END
 
-//WIFIƒŠƒ{ƒ“‚ð‚ ‚°‚Ü‚·ˆ—
+//WIFIãƒªãƒœãƒ³ã‚’ã‚ã’ã¾ã™å‡¦ç†
 ev_tower_clear_wifi_ribbon_set2:
-	//ƒ|ƒPƒ‚ƒ“‚ÉƒŠƒ{ƒ“‚ð
+	//ãƒã‚±ãƒ¢ãƒ³ã«ãƒªãƒœãƒ³ã‚’
 	_NUMBER_NAME		0,LOCALWORK0
 	_TALK_KEYWAIT		msg_tower_89_1
 
@@ -1604,10 +1604,10 @@ ev_tower_clear_wifi_ribbon_set2:
 
 
 /********************************************************************/
-/*					ƒVƒ“ƒOƒ‹ƒ‚[ƒh‚ÌÜ•iƒ`ƒFƒbƒN					*/
+/*					ã‚·ãƒ³ã‚°ãƒ«ãƒ¢ãƒ¼ãƒ‰ã®è³žå“ãƒã‚§ãƒƒã‚¯					*/
 /********************************************************************/
 ev_tower_clear_single_check:
-	//ƒŠ[ƒ_[‚ÉŸ‚Á‚½‚©H
+	//ãƒªãƒ¼ãƒ€ãƒ¼ã«å‹ã£ãŸã‹ï¼Ÿ
 	_BTOWER_TOOLS		BTWR_SUB_GET_LEADER_CLEAR_FLAG,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_clear_single_btp_get
 	_JUMP				ev_tower_clear_leader
@@ -1615,65 +1615,65 @@ ev_tower_clear_single_check:
 
 
 /********************************************************************/
-/*					ƒVƒ“ƒOƒ‹ƒ‚[ƒhƒNƒŠƒAˆ—‹¤’Ê					*/
+/*					ã‚·ãƒ³ã‚°ãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚¯ãƒªã‚¢å‡¦ç†å…±é€š					*/
 /********************************************************************/
 ev_tower_clear_single_btp_get:
 	_CALL			ev_tower_clear_local_btp_get
 	_JUMP			ev_tower_clear_single_save
 	_END
 
-//ƒVƒ“ƒOƒ‹ƒ‚[ƒhƒZ[ƒuˆ—
+//ã‚·ãƒ³ã‚°ãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚»ãƒ¼ãƒ–å‡¦ç†
 ev_tower_clear_single_save:
-	//ƒZ[ƒu
+	//ã‚»ãƒ¼ãƒ–
 	_TALKMSG		msg_tower_15
 	_CALL			ev_tower_gate_common_auto_save
 
-	//ƒgƒƒtƒB[‚ð‚à‚ç‚¦‚é‚©‚Ç‚¤‚©H
+	//ãƒˆãƒ­ãƒ•ã‚£ãƒ¼ã‚’ã‚‚ã‚‰ãˆã‚‹ã‹ã©ã†ã‹ï¼Ÿ
 	_BTOWER_PRIZE_GET	SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_common_exit_play
 	
-	//‚»‚ê‚Å‚Í‚Ü‚½‚Ì‚²—˜—p‚ðcc
+	//ãã‚Œã§ã¯ã¾ãŸã®ã”åˆ©ç”¨ã‚’â€¦â€¦
 	_TALK_KEYWAIT		msg_tower_300
 	_TALK_CLOSE
-	//ƒgƒƒtƒB[Žö—^ƒ`ƒFƒbƒN(Žó•t‚©‚ç)
+	//ãƒˆãƒ­ãƒ•ã‚£ãƒ¼æŽˆä¸Žãƒã‚§ãƒƒã‚¯(å—ä»˜ã‹ã‚‰)
 	_LDWK				LOCALWORK2,SCWK_ANSWER
 	_LDVAL				LOCALWORK1,1
-	//Ž©‹@U‚èŒü‚«
+	//è‡ªæ©ŸæŒ¯ã‚Šå‘ã
 	_CALL				ev_tower_gate_comanm_hero_right
 	_JUMP				ev_tower_gate_prize_check
 	_END
 
-//ƒŠ[ƒ_[‚ÉŸ‚Á‚½Žž‹¤’Êˆ—
+//ãƒªãƒ¼ãƒ€ãƒ¼ã«å‹ã£ãŸæ™‚å…±é€šå‡¦ç†
 ev_tower_clear_leader:
 #if 0
-	//ƒoƒgƒ‹ƒ|ƒCƒ“ƒgƒZƒbƒg
+	//ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚»ãƒƒãƒˆ
 	_BTOWER_TOOLS		BTWR_SUB_ADD_BATTLE_POINT,BTWR_NULL_PARAM,SCWK_ANSWER
 	_LDWK				LOCALWORK0,SCWK_ANSWER
 
-	//Œ©Ž–ƒ^ƒ[ƒ^ƒCƒN[ƒ“‚ð`ƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ð
+	//è¦‹äº‹ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³ã‚’ã€œãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’
 	_PLAYER_NAME		0
 	_NUMBER_NAME		1,LOCALWORK0
 	_TALK_KEYWAIT		msg_tower_14
 #endif
 
-	/*‹L”OƒŠƒ{ƒ“‚ð‚ ‚°‚é*/
+	/*è¨˜å¿µãƒªãƒœãƒ³ã‚’ã‚ã’ã‚‹*/
 	_IFVAL_CALL		SYS_WORK_MEMORY_PRINT_TOWER,EQ,MEMORY_PRINT_PUT_1ST,tower_m_print_put_1st
 	_IFVAL_CALL		SYS_WORK_MEMORY_PRINT_TOWER,EQ,MEMORY_PRINT_PUT_2ND,tower_m_print_put_2nd
 
-	//ƒŠƒ{ƒ“ƒZƒbƒg
+	//ãƒªãƒœãƒ³ã‚»ãƒƒãƒˆ
 	_BTOWER_TOOLS		BTWR_SUB_LEADER_RIBBON_SET,BTWR_NULL_PARAM,SCWK_ANSWER
 
-	//ƒŠƒ{ƒ“‚ðŽÀÛ‚É‚ ‚°‚½‚©‚Ç‚¤‚©H
+	//ãƒªãƒœãƒ³ã‚’å®Ÿéš›ã«ã‚ã’ãŸã‹ã©ã†ã‹ï¼Ÿ
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_clear_single_save
 
-	//‹L”O‚ÉƒŠƒ{ƒ“‚ð
+	//è¨˜å¿µã«ãƒªãƒœãƒ³ã‚’
 	_TALK_KEYWAIT		msg_d31r0201_goods_03
 	_ME_PLAY			SEQ_FANFA1
 	_ME_WAIT
 	_JUMP				ev_tower_clear_single_save
 	_END
 
-/*‹L”OƒŠƒ{ƒ“‚ð‚ ‚°‚é*/
+/*è¨˜å¿µãƒªãƒœãƒ³ã‚’ã‚ã’ã‚‹*/
 tower_m_print_put_1st:
 	_TALK_KEYWAIT	msg_d31r0201_goods_03_01
 
@@ -1694,26 +1694,26 @@ tower_m_print_put_2nd:
 	_ME_WAIT
 
 	_LDVAL			SYS_WORK_MEMORY_PRINT_TOWER,MEMORY_PRINT_PUT_OK_2ND
-	_CHG_COMMON_SCR	SCRID_MEMORY_PRINT_CHECK	/*‘S‚ÄŽæ“¾‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚µ‚ÄƒXƒRƒA‰ÁŽZ*/
+	_CHG_COMMON_SCR	SCRID_MEMORY_PRINT_CHECK	/*å…¨ã¦å–å¾—ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦ã‚¹ã‚³ã‚¢åŠ ç®—*/
 	_RET
 
 
 /********************************************************************/
-/*				Ÿ‚Á‚½ŽžAƒoƒgƒ‹ƒ|ƒCƒ“ƒgŽó‚¯“n‚µƒR[ƒ‹				*/
+/*				å‹ã£ãŸæ™‚ã€ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆå—ã‘æ¸¡ã—ã‚³ãƒ¼ãƒ«				*/
 /********************************************************************/
 ev_tower_clear_local_btp_get:
-	//‚¨‚ß‚Å‚Æ‚¤‚²‚´‚¢‚Ü‚·I
+	//ãŠã‚ã§ã¨ã†ã”ã–ã„ã¾ã™ï¼
 	_TALK_KEYWAIT		msg_tower_13
 	
 #if 0
-	//ƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ð
+	//ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’
 	_BTOWER_TOOLS		BTWR_SUB_ADD_BATTLE_POINT,BTWR_NULL_PARAM,SCWK_ANSWER
 	_LDWK				SCWK_TEMP0,SCWK_ANSWER
 	_PLAYER_NAME		0
 	_NUMBER_NAME		1,SCWK_TEMP0
 	_TALK_KEYWAIT		msg_tower_59
 
-	//ƒtƒ@ƒ“ƒtƒ@[ƒŒ
+	//ãƒ•ã‚¡ãƒ³ãƒ•ã‚¡ãƒ¼ãƒ¬
 	_ME_PLAY			SEQ_FANFA4
 	_ME_WAIT
 #endif
@@ -1721,7 +1721,7 @@ ev_tower_clear_local_btp_get:
 
 
 /********************************************************************/
-/*					ƒŠƒgƒ‰ƒCƒ‚[ƒh‚ÌI—¹ˆ—						*/
+/*					ãƒªãƒˆãƒ©ã‚¤ãƒ¢ãƒ¼ãƒ‰ã®çµ‚äº†å‡¦ç†						*/
 /********************************************************************/
 ev_tower_clear_local_retry:
 	_TALK_KEYWAIT		msg_tower_55
@@ -1730,48 +1730,48 @@ ev_tower_clear_local_retry:
 
 
 /********************************************************************/
-/*						ƒNƒŠƒAŒãƒZ[ƒu								*/
+/*						ã‚¯ãƒªã‚¢å¾Œã‚»ãƒ¼ãƒ–								*/
 /********************************************************************/
 ev_tower_clear_local_save:
-	//ƒZ[ƒu
+	//ã‚»ãƒ¼ãƒ–
 	_TALKMSG			msg_tower_15
 	_CALL				ev_tower_gate_common_auto_save
 	_TALK_CLOSE
 	_JUMP				ev_tower_gate_common_exit_play
 	_END
 
-//ƒVƒ“ƒOƒ‹ƒ`ƒFƒbƒN
+//ã‚·ãƒ³ã‚°ãƒ«ãƒã‚§ãƒƒã‚¯
 ev_tower_lose_local_single:
-	//ƒgƒƒtƒB[‚à‚ç‚¦‚é‚©ƒ`ƒFƒbƒN
+	//ãƒˆãƒ­ãƒ•ã‚£ãƒ¼ã‚‚ã‚‰ãˆã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_BTOWER_PRIZE_GET	SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_tower_gate_common_exit_play
 	
-	//‚»‚ê‚Å‚Í‚Ü‚½‚Ì‚²—˜—p‚ðcc
+	//ãã‚Œã§ã¯ã¾ãŸã®ã”åˆ©ç”¨ã‚’â€¦â€¦
 	_TALK_KEYWAIT		msg_tower_300
 	_TALK_CLOSE
 
-	//ƒgƒƒtƒB[Žö—^ƒ`ƒFƒbƒN(Žó•t‚©‚ç)
+	//ãƒˆãƒ­ãƒ•ã‚£ãƒ¼æŽˆä¸Žãƒã‚§ãƒƒã‚¯(å—ä»˜ã‹ã‚‰)
 	_LDWK				LOCALWORK2,SCWK_ANSWER
 	_LDVAL				LOCALWORK1,1
 
-	//Ž©‹@U‚èŒü‚«
+	//è‡ªæ©ŸæŒ¯ã‚Šå‘ã
 	_CALL				ev_tower_gate_comanm_hero_right
-	_JUMP				ev_tower_gate_prize_check			/*‚±‚Ìæ‚ÅLOCALWORK1‚Å•ªŠò‚·‚é*/
+	_JUMP				ev_tower_gate_prize_check			/*ã“ã®å…ˆã§LOCALWORK1ã§åˆ†å²ã™ã‚‹*/
 	_END
 
-//WIFIƒ`ƒFƒbƒN
+//WIFIãƒã‚§ãƒƒã‚¯
 ev_tower_lose_local_wifi:
-	//ƒ‰ƒ“ƒNƒ_ƒEƒ“ƒ`ƒFƒbƒN
+	//ãƒ©ãƒ³ã‚¯ãƒ€ã‚¦ãƒ³ãƒã‚§ãƒƒã‚¯
 	_BTOWER_TOOLS		BTWR_TOOL_WIFI_RANK_DOWN,BTWR_NULL_PARAM,SCWK_ANSWER
 
-	//ƒ‰ƒ“ƒNƒ_ƒEƒ“ƒ`ƒFƒbƒNˆ—
+	//ãƒ©ãƒ³ã‚¯ãƒ€ã‚¦ãƒ³ãƒã‚§ãƒƒã‚¯å‡¦ç†
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_lose_wifi_rankdown
 	_JUMP				ev_tower_gate_common_wifi_upload_exit
 	_END
 
-//ƒ‰ƒ“ƒNƒ_ƒEƒ“
+//ãƒ©ãƒ³ã‚¯ãƒ€ã‚¦ãƒ³
 ev_tower_lose_wifi_rankdown:
-	//Œ»Ý‚Ìƒ‰ƒ“ƒNŽæ“¾
+	//ç¾åœ¨ã®ãƒ©ãƒ³ã‚¯å–å¾—
 	_BTOWER_TOOLS		BTWR_TOOL_GET_WIFI_RANK,BTWR_NULL_PARAM,SCWK_ANSWER
 	_LDWK				SCWK_PARAM0,SCWK_ANSWER
 	_NUMBER_NAME		0,SCWK_PARAM0
@@ -1781,11 +1781,11 @@ ev_tower_lose_wifi_rankdown:
 
 
 /********************************************************************/
-/*			WIFI¬Ñ‚ðƒAƒbƒvƒ[ƒh‚·‚é‚©ƒ`ƒFƒbƒN‚µ‚ÄI—¹			*/
+/*			WIFIæˆç¸¾ã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦çµ‚äº†			*/
 /********************************************************************/
 ev_tower_gate_common_wifi_upload_exit:
 
-	//–¢ƒAƒbƒvƒ[ƒhƒtƒ‰ƒOON
+	//æœªã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ON
 	_BTOWER_TOOLS		BTWR_TOOL_SET_WIFI_UPLOAD_FLAG,1,BTWR_NULL_PARAM
 
 	_JUMP				ev_tower_gate_common_wifi_upload_exit_round_0
@@ -1793,36 +1793,36 @@ ev_tower_gate_common_wifi_upload_exit:
 
 ev_tower_gate_common_wifi_upload_exit_round_0:
 
-	//ƒV[ƒ“ƒtƒ‰ƒO‘¼ƒNƒŠƒA
+	//ã‚·ãƒ¼ãƒ³ãƒ•ãƒ©ã‚°ä»–ã‚¯ãƒªã‚¢
 	_CALL				ev_tower_gate_common_playend_wkset
 
-	//¬Ñ‚ðƒŒƒ|[ƒg‚É‘‚«o‚·
+	//æˆç¸¾ã‚’ãƒ¬ãƒãƒ¼ãƒˆã«æ›¸ãå‡ºã™
 	_TALKMSG			msg_tower_57
 	_CALL				ev_tower_gate_common_auto_save
 
-	//ƒAƒbƒvƒ[ƒh‚·‚é‚©H
+	//ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‹ï¼Ÿ
 	_TALKMSG			msg_tower_58
 	_YES_NO_WIN			SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_tower_gate_common_exit
 
-	//ƒAƒbƒvƒ[ƒhˆ—
+	//ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰å‡¦ç†
 	_CALL				ev_tower_gate_common_wifi_upload
 
-	//ƒAƒbƒvƒ[ƒh¬Œ÷orŽ¸”sƒ`ƒFƒbƒN
+	//ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰æˆåŠŸorå¤±æ•—ãƒã‚§ãƒƒã‚¯
 	_IFVAL_JUMP			SCWK_ANSWER,NE,WIFI_BTOWER_RESULT_SUCCESS,ev_tower_gate_common_exit
 
-	//ƒAƒbƒvƒ[ƒh¬Œ÷
+	//ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰æˆåŠŸ
 	_TALK_KEYWAIT		msg_tower_61
 	_JUMP				ev_tower_gate_common_exit
 	_END
 
 
 /********************************************************************/
-/*								ƒAƒjƒ								*/
+/*								ã‚¢ãƒ‹ãƒ¡								*/
 /********************************************************************/
 
 //--------------------------------------------------------------------
-//Žó‚¯•t‚¯ì@ƒQ[ƒg‰œ‚ÖˆÚ“®
+//å—ã‘ä»˜ã‘å¬¢ã€€ã‚²ãƒ¼ãƒˆå¥¥ã¸ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0201_pcwoman2_01
 	_ANIME_DATA	AC_WAIT_4F,1
@@ -1835,7 +1835,7 @@ _ANIME_LABEL	anm_d31r0201_pcwoman2_01_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Ž©‹@@ƒQ[ƒg‰œ‚ÖˆÚ“®
+//è‡ªæ©Ÿã€€ã‚²ãƒ¼ãƒˆå¥¥ã¸ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0201_player_01
 	_ANIME_DATA	AC_WAIT_4F,1
@@ -1848,7 +1848,7 @@ _ANIME_LABEL	anm_d31r0201_player_01_01
 	_ANIME_DATA	ACMD_END,0
 	
 //--------------------------------------------------------------------
-//Ž©‹@ ‰EU‚èŒü‚«@
+//è‡ªæ©Ÿ å³æŒ¯ã‚Šå‘ãã€€
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0201_player_dir_right
 	_ANIME_DATA	AC_DIR_R,1
@@ -1856,7 +1856,7 @@ _ANIME_LABEL	anm_d31r0201_player_dir_right
 
 
 /********************************************************************/
-/*						ƒXƒRƒAƒ‚ƒjƒ^								*/
+/*						ã‚¹ã‚³ã‚¢ãƒ¢ãƒ‹ã‚¿								*/
 /********************************************************************/
 ev_d31r0201_pc_score_single:
 	_TALK_START
@@ -1891,7 +1891,7 @@ ev_d31r0201_pc_score_leader:
 	_CALL				ev_pc_score_common_call
 	_END
 
-//ƒŠ[ƒ_[ƒf[ƒ^‚ª‚È‚¢
+//ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ãŒãªã„
 ev_pc_score_leader_ng:
 	_TALK_KEYWAIT		msg_seiseki_01
 	_LAST_KEYWAIT
@@ -1913,7 +1913,7 @@ ev_pc_score_common_call:
 
 
 /********************************************************************/
-/*							ƒgƒŒ[ƒi[—							*/
+/*							ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å¥³							*/
 /********************************************************************/
 ev_d31r0201_woman1:
 	_EASY_OBJ_MSG		msg_d31r0201_woman1_01
@@ -1921,7 +1921,7 @@ ev_d31r0201_woman1:
 
 
 /********************************************************************/
-/*							‚¨–V‚¿‚á‚Ü								*/
+/*							ãŠåŠã¡ã‚ƒã¾								*/
 /********************************************************************/
 ev_d31r0201_gorggeousm1a:
 	_EASY_OBJ_MSG		msg_d31r0201_gorggeousm1a_01
@@ -1929,7 +1929,7 @@ ev_d31r0201_gorggeousm1a:
 
 
 /********************************************************************/
-/*							ƒAƒCƒhƒ‹								*/
+/*							ã‚¢ã‚¤ãƒ‰ãƒ«								*/
 /********************************************************************/
 ev_d31r0201_idol:
 	_EASY_OBJ_MSG		msg_d31r0201_idol_01
@@ -1937,7 +1937,7 @@ ev_d31r0201_idol:
 
 
 /********************************************************************/
-/*							‚¨–V‚¿‚á‚Ü‚Q							*/
+/*							ãŠåŠã¡ã‚ƒã¾ï¼’							*/
 /********************************************************************/
 ev_d31r0201_gorggeousm1b:
 	_EASY_OBJ_MSG		msg_d31r0201_gorggeousm1b_01
@@ -1945,7 +1945,7 @@ ev_d31r0201_gorggeousm1b:
 
 
 /********************************************************************/
-/*							ƒsƒJƒ`ƒ…ƒE								*/
+/*							ãƒ”ã‚«ãƒãƒ¥ã‚¦								*/
 /********************************************************************/
 ev_d31r0201_pokemona:
 	_EASY_OBJ_MSG		msg_d31r0201_pokemona_01
@@ -1953,7 +1953,7 @@ ev_d31r0201_pokemona:
 
 
 /********************************************************************/
-/*							 Œ|p‰Æ									*/
+/*							 èŠ¸è¡“å®¶									*/
 /********************************************************************/
 ev_d31r0201_artist:
 	_EASY_OBJ_MSG		msg_d31r0201_artist_01
@@ -1961,7 +1961,7 @@ ev_d31r0201_artist:
 
 
 /********************************************************************/
-/*							’j‚ÌŽq									*/
+/*							ç”·ã®å­									*/
 /********************************************************************/
 ev_d31r0201_boy1:
 	_EASY_OBJ_MSG		msg_d31r0201_boy1_01
@@ -1969,21 +1969,21 @@ ev_d31r0201_boy1:
 
 
 /********************************************************************/
-/*					ƒoƒgƒ‹ƒƒbƒZ[ƒW­”N							*/
+/*					ãƒãƒˆãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å°‘å¹´							*/
 /********************************************************************/
 ev_d31r0201_btlmsg_boy_01:
 	_END
 
 
 /********************************************************************/
-/* ƒsƒJƒ`ƒ…ƒE														*/
+/* ãƒ”ã‚«ãƒãƒ¥ã‚¦														*/
 /********************************************************************/
 ev_d31r0201_pokemonb:
 	_EASY_VOICE_MSG		msg_d31r0201_pokemonb_01,MONSNO_PIKATYUU,0
 	_END
 
 
-/*uƒoƒbƒN‚ª‚¢‚Á‚Ï‚¢B‚Í‚Á‚«‚ñ‚¾‚Ü‚ðŠO‚¹‚Ü‚¹‚ñv*/
+/*ã€Œãƒãƒƒã‚¯ãŒã„ã£ã±ã„ã€‚ã¯ã£ãã‚“ã ã¾ã‚’å¤–ã›ã¾ã›ã‚“ã€*/
 ev_tower_gira_ng:
 	_CALL			ev_tower_gate_common_work_release
 	_CALL			ev_tower_gate_common_exit_wkset
@@ -1992,27 +1992,27 @@ ev_tower_gira_ng:
 
 
 /********************************************************************/
-/*						ŒÂ‘Ì”»’è‚Ìl								*/
+/*						å€‹ä½“åˆ¤å®šã®äºº								*/
 //
-//	SCWK_PARAM0	‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“ˆÊ’u
-//	SCWK_TEMP0	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+//	SCWK_PARAM0	é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ä½ç½®
+//	SCWK_TEMP0	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
 /********************************************************************/
 ev_tower_judge:
 	_TALK_OBJ_START
 
-	/*‰‚ß‚Ä‰ï‚Á‚½‚©ƒ`ƒFƒbƒN*/
-	_IF_FLAGOFF_CALL	FE_D31R0201_JUDGE_TALK,ev_oldman2_01_p03_park_r0101	/*‰‚ß‚Ä*/
-	_IF_FLAGON_CALL		FE_D31R0201_JUDGE_TALK,ev_oldman2_01_p04_park_r0101	/*ˆá‚¤*/
+	/*åˆã‚ã¦ä¼šã£ãŸã‹ãƒã‚§ãƒƒã‚¯*/
+	_IF_FLAGOFF_CALL	FE_D31R0201_JUDGE_TALK,ev_oldman2_01_p03_park_r0101	/*åˆã‚ã¦*/
+	_IF_FLAGON_CALL		FE_D31R0201_JUDGE_TALK,ev_oldman2_01_p04_park_r0101	/*é•ã†*/
 	
-	_FLAG_SET		FE_D31R0201_JUDGE_TALK		/*‰ï˜b‚µ‚½*/
+	_FLAG_SET		FE_D31R0201_JUDGE_TALK		/*ä¼šè©±ã—ãŸ*/
 
-	/*ƒ|ƒPƒ‚ƒ“‚ð‘I‚Ô‰æ–Ê‚Ö*/
+	/*ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã¶ç”»é¢ã¸*/
 	_JUMP			ev_oldman2_01_poke_list_park_r0101
 	_END
 
 
 /********************************************************************/
-/*					ƒ^ƒ}ƒS‚ð‘I‚ñ‚¾Žž‚É–ß‚Á‚Ä‚­‚é					*/
+/*					ã‚¿ãƒžã‚´ã‚’é¸ã‚“ã æ™‚ã«æˆ»ã£ã¦ãã‚‹					*/
 /********************************************************************/
 ev_oldman2_01_poke_list_park_r0101:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -2020,29 +2020,29 @@ ev_oldman2_01_poke_list_park_r0101:
 
 	_TALK_CLOSE
 
-	/*ƒ|ƒPƒ‚ƒ“‘I‘ð*/
+	/*ãƒã‚±ãƒ¢ãƒ³é¸æŠž*/
 	_POKELIST_SET_PROC
 
-	/*‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì•À‚Ñ”Ô†Žæ“¾*/
+	/*é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ä¸¦ã³ç•ªå·å–å¾—*/
 	_POKELIST_GET_RESULT	SCWK_ANSWER
 	_SET_MAP_PROC
 
-	/*‘Þ”ð*/
+	/*é€€é¿*/
 	_LDWK			SCWK_PARAM0,SCWK_ANSWER
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½H*/
+	/*ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸï¼Ÿ*/
 	_IFVAL_JUMP		SCWK_PARAM0,EQ,0xff,no_oldman2_01_p01_park_r0101
 
-	/*‘I‚ñ‚¾ƒ|ƒPƒ‚ƒ“‚ªƒ^ƒ}ƒS‚¾‚Á‚½‚©ƒ`ƒFƒbƒN({ƒ|ƒPƒ‚ƒ“”Ô†‚Ö•ÏŠ·)*/
+	/*é¸ã‚“ã ãƒã‚±ãƒ¢ãƒ³ãŒã‚¿ãƒžã‚´ã ã£ãŸã‹ãƒã‚§ãƒƒã‚¯(ï¼‹ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã¸å¤‰æ›)*/
 	_TEMOTI_MONSNO	SCWK_PARAM0,SCWK_TEMP0
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,0,tamago_oldman2_01_p01_park_r0101
 
 	_TOP_BREEDER_POW_RND_GET	SCWK_PARAM0,SCWK_PARAM1,SCWK_PARAM2,SCWK_PARAM3
 
-	/*‘‡’l‚É‚æ‚Á‚ÄƒƒbƒZ[ƒW‚ð•ÏX‚·‚é*/
+	/*ç·åˆå€¤ã«ã‚ˆã£ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰æ›´ã™ã‚‹*/
 	_IFVAL_JUMP		SCWK_PARAM1,LE,90,case1_oldman2_01_p01_park_r0101
 	_IFVAL_JUMP		SCWK_PARAM1,LE,120,case2_oldman2_01_p01_park_r0101
 	_IFVAL_JUMP		SCWK_PARAM1,LE,150,case3_oldman2_01_p01_park_r0101
@@ -2051,39 +2051,39 @@ ev_oldman2_01_poke_list_park_r0101:
 
 
 /********************************************************************/
-/*						‰‚ß‚Ä‰ï‚Á‚½‚©ƒ`ƒFƒbƒN						*/
+/*						åˆã‚ã¦ä¼šã£ãŸã‹ãƒã‚§ãƒƒã‚¯						*/
 /********************************************************************/
-ev_oldman2_01_p03_park_r0101:		/*‰‚ß‚Ä*/
+ev_oldman2_01_p03_park_r0101:		/*åˆã‚ã¦*/
 	_TALK_KEYWAIT	msg_tower_judge_01
 	_RET
 
-ev_oldman2_01_p04_park_r0101:		/*ˆá‚¤*/
+ev_oldman2_01_p04_park_r0101:		/*é•ã†*/
 	_TALK_KEYWAIT	msg_tower_judge_02
 	_RET
 
 
 /********************************************************************/
-/*						‘I‚ñ‚¾ƒ|ƒPƒ‚ƒ“‚ªƒ^ƒ}ƒS‚©					*/
+/*						é¸ã‚“ã ãƒã‚±ãƒ¢ãƒ³ãŒã‚¿ãƒžã‚´ã‹					*/
 /********************************************************************/
 tamago_oldman2_01_p01_park_r0101:
 	_TALK_KEYWAIT	msg_tower_judge_13
 
-	/*ƒ|ƒPƒ‚ƒ“‚ð‘I‚Ô‰æ–Ê‚Ö*/
+	/*ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã¶ç”»é¢ã¸*/
 	_JUMP			ev_oldman2_01_poke_list_park_r0101
 	_END
 
 
 /********************************************************************/
-/*	Å‚àƒpƒ[—”‚Ì‚‚¢ƒpƒ‰ƒ[ƒ^‚É‚æ‚Á‚ÄƒƒbƒZ[ƒW‚ð•ÏX‚·‚é		*/
+/*	æœ€ã‚‚ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã®é«˜ã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«ã‚ˆã£ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰æ›´ã™ã‚‹		*/
 /********************************************************************/
 common_oldman2_01_p01_park_r0101:
-	_TALKMSG_SP		SCWK_PARAM2		/*ƒ[ƒNƒƒbƒZ[ƒW•\Ž¦*/
+	_TALKMSG_SP		SCWK_PARAM2		/*ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º*/
 	_JUMP			common_oldman2_02_p01_park_r0101
 	_END
 
 
 /********************************************************************/
-/*	Å‚àƒpƒ[—”‚Ì‚‚¢ƒpƒ‰ƒ[ƒ^‚Ì’l‚É‚æ‚Á‚ÄƒƒbƒZ[ƒW‚ð•ÏX‚·‚é	*/
+/*	æœ€ã‚‚ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã®é«˜ã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã«ã‚ˆã£ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰æ›´ã™ã‚‹	*/
 /********************************************************************/
 common_oldman2_02_p01_park_r0101:
 	_IFVAL_JUMP		SCWK_PARAM3,LE,15,case1_oldman2_03_p01_park_r0101
@@ -2094,7 +2094,7 @@ common_oldman2_02_p01_park_r0101:
 
 
 /********************************************************************/
-/*				‘‡’l‚É‚æ‚Á‚ÄƒƒbƒZ[ƒW‚ð•ÏX‚·‚é					*/
+/*				ç·åˆå€¤ã«ã‚ˆã£ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰æ›´ã™ã‚‹					*/
 /********************************************************************/
 case1_oldman2_01_p01_park_r0101:
 	_TALK_KEYWAIT	msg_tower_judge_04
@@ -2118,7 +2118,7 @@ case4_oldman2_01_p01_park_r0101:
 
 
 /********************************************************************/
-/*	Å‚àƒpƒ[—”‚Ì‚‚¢ƒpƒ‰ƒ[ƒ^‚Ì’l‚É‚æ‚Á‚ÄƒƒbƒZ[ƒW‚ð•ÏX‚·‚é	*/
+/*	æœ€ã‚‚ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã®é«˜ã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å€¤ã«ã‚ˆã£ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¤‰æ›´ã™ã‚‹	*/
 /********************************************************************/
 case1_oldman2_03_p01_park_r0101:
 	_TALK_KEYWAIT	msg_tower_judge_09
@@ -2142,7 +2142,7 @@ case4_oldman2_03_p01_park_r0101:
 
 
 /********************************************************************/
-/*						ƒCƒxƒ“ƒgI—¹ˆ—							*/
+/*						ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†å‡¦ç†							*/
 /********************************************************************/
 common_oldman2_03_p01_park_r0101:
 	_LAST_KEYWAIT
@@ -2150,7 +2150,7 @@ common_oldman2_03_p01_park_r0101:
 	_TALK_OBJ_END
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_oldman2_01_p01_park_r0101:
 	_TALK_KEYWAIT	msg_tower_judge_03
 	_LAST_KEYWAIT

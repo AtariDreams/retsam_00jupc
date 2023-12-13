@@ -1,95 +1,95 @@
-�����l�ł��B
+お疲れ様です。
 
-�V���b�v�̃A�C�e���ɂ��Ăł��B
-�i���͂͒����ł����A��Ƃ͂ƂĂ��ȒP�ł��j
-
-
------------------------------------------------------------------
-���܂���Ɗ���SVN�o�^���Ăق����ł��B
-
-�@M:\staff\nohara\shopdata�@��Ɗ����A�b�v���܂����B
-
-�@�v���`�i�ł́Aconvert�t�H���_�̒��ɒǉ����Ă��܂��B
-�@��@C:\home\platinum\pokemon_pl\convert\shopdata
+ショップのアイテムについてです。
+（文章は長いですが、作業はとても簡単です）
 
 
 -----------------------------------------------------------------
-���O�b�Y�X�̍X�V�ɂ��ā@fs_goods.xls
-�@�E�e���ڂɂ��Ăł��B
-�@�@�}�b�v���̓����ł��B
-�@�@���x���̓R���o�[�g���Đ��������X�N���v�g�h�c�ɉe�����܂��B
-�@�@���X��������ꍇ�͏c�ɍ��ڂ𑝂₵�Ă�������
-�@�@�����Ă����ނ𑝂₷�ꍇ�͉��ɃO�b�Y���𑝂₵�Ă�������
+●まず作業環境をSVN登録してほしいです。
+
+　M:\staff\nohara\shopdata　作業環境をアップしました。
+
+　プラチナでは、convertフォルダの中に追加しています。
+　例　C:\home\platinum\pokemon_pl\convert\shopdata
 
 
 -----------------------------------------------------------------
-���V�[���X�̍X�V�ɂ��� fs_seal.xls
-�@�E�O�b�Y�Ɠ����ł��B
+●グッズ店の更新について　fs_goods.xls
+　・各項目についてです。
+　　マップ名はメモです。
+　　ラベルはコンバートして生成されるスクリプトＩＤに影響します。
+　　お店が増える場合は縦に項目を増やしてください
+　　売っている種類を増やす場合は横にグッズ名を増やしてください
 
 
 -----------------------------------------------------------------
-���Œ�A�C�e���X�̍X�V�ɂ��� fs_item.xls
-�@�E�O�b�Y�Ɠ����ł��B
+●シール店の更新について fs_seal.xls
+　・グッズと同じです。
 
 
 -----------------------------------------------------------------
-���ϓ��A�C�e���X�̍X�V�ɂ��� shop_item.xls
-�@�E�����Ă����ނ𑝂₷�ꍇ�͏c�ɍ��ڂ𑝂₵�Ă�������
-�@�E�i�K�́A�o�b�W�̐������Ă��X�ɕ��Ԃ��𔻕ʂ���̂Ɏg�p���Ă��܂��B
-�@�@���̒l���o�b�`�̐��ł͂���܂���B�c�o�ł͂U�i�K�̃V���b�v���x���ɂȂ��Ă��܂����B
-�@�@�V���b�v���x���̔��ʂ́Asrc/field/scr_shop.c�̒��ɒ��ڂ����Ă���܂��iEvCmdShopCall)
-�@�@�����܂��񂪁A�����̓v���O���}�̕��ɑΉ����Ă�����Ă��������B
+●固定アイテム店の更新について fs_item.xls
+　・グッズと同じです。
 
 
 -----------------------------------------------------------------
-���R���o�[�g�̕��@�ɂ���
-�@�E��Ɗ���o�^�����f�B���N�g���Ɉړ����āA
-�@�@��@C:\home\platinum\pokemon_pl\convert\shopdata
-
-�@�@fs_goods�@�@�O�b�Y
-�@�@fs_item�@�@�@�Œ�A�C�e��
-�@�@fs_seal�@�@�@�V�[��
-�@�@shop_item�@�ϓ��A�C�e��
-
-�@�@�Ƒł����ނƁA���ꂼ��R���o�[�g����܂��B
+●変動アイテム店の更新について shop_item.xls
+　・売っている種類を増やす場合は縦に項目を増やしてください
+　・段階は、バッジの数を見てお店に並ぶかを判別するのに使用しています。
+　　この値がバッチの数ではありません。ＤＰでは６段階のショップレベルになっていました。
+　　ショップレベルの判別は、src/field/scr_shop.cの中に直接かいてあります（EvCmdShopCall)
+　　すいませんが、ここはプログラマの方に対応してもらってください。
 
 
 -----------------------------------------------------------------
-�����������X�N���v�gID�ɂ���
-�@�E�G�N�Z���̃��x���̕�����啶���ɂ��Ďg�p���Ă��܂�
+●コンバートの方法について
+　・作業環境を登録したディレクトリに移動して、
+　　例　C:\home\platinum\pokemon_pl\convert\shopdata
 
-�@�@�O�b�Y�Ȃ�A
-�@�@ID_SHOP_GOODS_���x��
-�@
-�@�@�V�[���Ȃ�A
-�@�@ID_SHOP_SEAL_���x��
+　　fs_goods　　グッズ
+　　fs_item　　　固定アイテム
+　　fs_seal　　　シール
+　　shop_item　変動アイテム
 
-�@�@�Œ�V���b�v�Ȃ�A
-    ID_SHOP_ITEM_���x��
+　　と打ち込むと、それぞれコンバートされます。
 
-�@�Ɛ�������܂��B
 
-�@C:\home\platinum\pokemon_pl\src\fielddata\shopdata
-�@fs_goods_def.h
+-----------------------------------------------------------------
+●生成されるスクリプトIDについて
+　・エクセルのラベルの文字を大文字にして使用しています
+
+　　グッズなら、
+　　ID_SHOP_GOODS_ラベル
+　
+　　シールなら、
+　　ID_SHOP_SEAL_ラベル
+
+　　固定ショップなら、
+    ID_SHOP_ITEM_ラベル
+
+　と生成されます。
+
+　C:\home\platinum\pokemon_pl\src\fielddata\shopdata
+　fs_goods_def.h
   fs_seal_def.h
   fs_item_def.h
-�@���X�N���v�gID�������Ă���t�@�C���ɂȂ�܂��B�@
+　がスクリプトIDが書いてあるファイルになります。　
 
 
 -----------------------------------------------------------------
-�����ۂɓǂݍ���ł���f�[�^
-�@�EC:\home\platinum\pokemon_pl\src\fielddata\shopdata
-�@�@�R���o�[�g����ƁA���̃f�B���N�g���Ƀf�[�^���R�s�[����܂��B
+●実際に読み込んでいるデータ
+　・C:\home\platinum\pokemon_pl\src\fielddata\shopdata
+　　コンバートすると、このディレクトリにデータがコピーされます。
 
-�@�@�Ȃ̂ŁA
-�@�@�R���o�[�g���t�@�C��������f�B���N�g���ƁA�iconvert\shopdata�j
-�@�@�R���o�[�g��t�@�C��������f�B���N�g���ifielddata\shopdata)
+　　なので、
+　　コンバート元ファイルがあるディレクトリと、（convert\shopdata）
+　　コンバート後ファイルがあるディレクトリ（fielddata\shopdata)
 
-�@�@�̓���Acommit����K�v������܂��B
+　　の二つを、commitする必要があります。
 
 
-�ȏ�ɂȂ�܂��B��낵�����肢���܂��B
+以上になります。よろしくお願いします。
 
-�쌴
+野原
 
 

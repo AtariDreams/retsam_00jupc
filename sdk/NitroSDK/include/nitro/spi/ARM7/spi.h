@@ -24,19 +24,19 @@
   do-indent.
 
   Revision 1.7  2004/09/06 13:04:34  terui
-  SPI_Init‚Ìˆø”‚ğ•ÏXB
+  SPI_Initã®å¼•æ•°ã‚’å¤‰æ›´ã€‚
 
   Revision 1.6  2004/06/03 11:14:46  terui
-  SPIƒfƒoƒCƒX–ˆ‚ÉƒXƒŒƒbƒh—Dæ“x‚ğ’²®‚·‚é‰ü‘¢B
+  SPIãƒ‡ãƒã‚¤ã‚¹æ¯ã«ã‚¹ãƒ¬ãƒƒãƒ‰å„ªå…ˆåº¦ã‚’èª¿æ•´ã™ã‚‹æ”¹é€ ã€‚
 
   Revision 1.5  2004/05/19 09:19:31  takano_makoto
   Add SPIClockMode for SDK_TS.
 
   Revision 1.4  2004/05/14 05:04:21  yosiokat
-  TEG‚ÆTS‚Ì—¼•û‚É‘Î‰‚·‚é‚æ‚¤•ÏX‚Q
+  TEGã¨TSã®ä¸¡æ–¹ã«å¯¾å¿œã™ã‚‹ã‚ˆã†å¤‰æ›´ï¼’
 
   Revision 1.3  2004/05/14 04:51:24  yosiokat
-  TEG‚ÆTS‚Ì—¼•û‚É‘Î‰‚·‚é‚æ‚¤•ÏX
+  TEGã¨TSã®ä¸¡æ–¹ã«å¯¾å¿œã™ã‚‹ã‚ˆã†å¤‰æ›´
 
   Revision 1.2  2004/05/12 05:54:55  terui
   Add SPI_Init routine definition.
@@ -45,7 +45,7 @@
   move to spi/ARM7/spi.h.
 
   Revision 1.2  2004/03/10 09:04:32  yada
-  ASSERTC³
+  ASSERTä¿®æ­£
 
   Revision 1.1  2004/03/10 05:35:25  yada
   firstRelease

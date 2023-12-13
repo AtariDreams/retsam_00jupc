@@ -15,85 +15,85 @@
   do-indent.
 
   Revision 1.91  2004/09/13 00:20:35  terui
-  •Êƒtƒ@ƒCƒ‹ŒQ‚Ö‚Ì•ªŠ„Š®—¹‚É”º‚¢AXV—š—ğ‚Ì‚İ‚ğc‚µ‚ÄƒR[ƒh‚ğíœB
+  åˆ¥ãƒ•ã‚¡ã‚¤ãƒ«ç¾¤ã¸ã®åˆ†å‰²å®Œäº†ã«ä¼´ã„ã€æ›´æ–°å±¥æ­´ã®ã¿ã‚’æ®‹ã—ã¦ã‚³ãƒ¼ãƒ‰ã‚’å‰Šé™¤ã€‚
 
   Revision 1.90  2004/09/10 12:05:40  seiki_masashi
-  ƒL[ƒVƒFƒAƒŠƒ“ƒO‚Ì‘—MƒoƒCƒg”‚ğƒ‰ƒCƒuƒ‰ƒŠ“à‚Å‰B•Á‚·‚é‚æ‚¤‚É•ÏX
+  ã‚­ãƒ¼ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°ã®é€ä¿¡ãƒã‚¤ãƒˆæ•°ã‚’ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…ã§éš è”½ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.89  2004/09/10 04:55:36  seiki_masashi
-  WM_GetReceiveBufferSize ‚ğ³Šm‚È’l‚É•ÏX
+  WM_GetReceiveBufferSize ã‚’æ­£ç¢ºãªå€¤ã«å¤‰æ›´
 
   Revision 1.88  2004/09/09 05:54:00  seiki_masashi
-  SetMPData ‚Ì callback ‚Éˆø”‚ğ“n‚¹‚é‚æ‚¤‚É•ÏX
+  SetMPData ã® callback ã«å¼•æ•°ã‚’æ¸¡ã›ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.87  2004/09/09 01:56:11  terui
-  wm.cƒtƒ@ƒCƒ‹‚Ì•ªŠ„’…è‚É”º‚¢ˆê•”ŠÖ”‚ğ•Êƒtƒ@ƒCƒ‹‚ÖˆÚ“®B
-  •Êƒtƒ@ƒCƒ‹‚©‚çQÆ‚·‚é‹¤’ÊŠÖ”‚ğ‚¢‚­‚Â‚©’Ç‰ÁB
-  static•Ï”AstaticŠÖ”‚É‚Â‚¢‚ÄA–½–¼‹K–ñ‚ÉŠî‚Ã‚¢‚½–¼Ì‚ÉRenameB
-  WM_InitAWM_FinishŠÖ”‚Ì’Ç‰ÁB
+  wm.cãƒ•ã‚¡ã‚¤ãƒ«ã®åˆ†å‰²ç€æ‰‹ã«ä¼´ã„ä¸€éƒ¨é–¢æ•°ã‚’åˆ¥ãƒ•ã‚¡ã‚¤ãƒ«ã¸ç§»å‹•ã€‚
+  åˆ¥ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰å‚ç…§ã™ã‚‹å…±é€šé–¢æ•°ã‚’ã„ãã¤ã‹è¿½åŠ ã€‚
+  staticå¤‰æ•°ã€staticé–¢æ•°ã«ã¤ã„ã¦ã€å‘½åè¦ç´„ã«åŸºã¥ã„ãŸåç§°ã«Renameã€‚
+  WM_Initã€WM_Finishé–¢æ•°ã®è¿½åŠ ã€‚
 
   Revision 1.86  2004/09/03 07:15:24  terui
-  ƒfƒoƒbƒO—p‚ÉCheckParentParameterŠÖ”‚ğ’Ç‰ÁB
+  ãƒ‡ãƒãƒƒã‚°ç”¨ã«CheckParentParameteré–¢æ•°ã‚’è¿½åŠ ã€‚
 
   Revision 1.85  2004/09/03 05:05:30  seiki_masashi
-  SetMPDataToPort ‚Ì NO_CHILD ”»’èğŒ‚ğ child_bitmap==0 ‚É•ÏX
+  SetMPDataToPort ã® NO_CHILD åˆ¤å®šæ¡ä»¶ã‚’ child_bitmap==0 ã«å¤‰æ›´
 
   Revision 1.84  2004/09/03 04:46:49  seiki_masashi
-  WMStatus.mp_readyBitmap ‚ğ—˜—p‚·‚é‚æ‚¤‚É•ÏX
+  WMStatus.mp_readyBitmap ã‚’åˆ©ç”¨ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.83  2004/09/02 09:27:00  seiki_masashi
   fix typo.
 
   Revision 1.82  2004/09/02 09:24:42  seiki_masashi
-  MPEND_IND ‚æ‚è port óMƒR[ƒ‹ƒoƒbƒN‚ª‘‚­‚È‚Á‚½‚±‚Æ‚É”º‚¢AƒLƒƒƒbƒVƒ…ˆ—‚Ì’Ç‰Á(Ä)
+  MPEND_IND ã‚ˆã‚Š port å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒæ—©ããªã£ãŸã“ã¨ã«ä¼´ã„ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥å‡¦ç†ã®è¿½åŠ (å†)
 
   Revision 1.81  2004/09/02 09:15:13  terui
-  WMi_GetStatusAddressŠÖ”‚ğ’Ç‰ÁB
+  WMi_GetStatusAddressé–¢æ•°ã‚’è¿½åŠ ã€‚
 
   Revision 1.78  2004/08/30 01:59:46  seiki_masashi
-  WM_STATECODE_CHILD_CONNECTED ‚ğ WM_STATECODE_CONNECTED ‚É“ˆê
+  WM_STATECODE_CHILD_CONNECTED ã‚’ WM_STATECODE_CONNECTED ã«çµ±ä¸€
 
   Revision 1.77  2004/08/30 01:58:23  ooe
   small fix
 
   Revision 1.76  2004/08/30 00:58:51  terui
-  ƒŠƒ“ƒN‹­“x‚ğARM7‘¤‚ÅˆêŒ³ŠÇ—‚·‚é‚æ‚¤‚ÉC³B
+  ãƒªãƒ³ã‚¯å¼·åº¦ã‚’ARM7å´ã§ä¸€å…ƒç®¡ç†ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£ã€‚
 
   Revision 1.75  2004/08/27 08:14:14  seiki_masashi
   small fix.
 
   Revision 1.74  2004/08/27 06:43:50  seiki_masashi
-  WM_StartMPEx ‚Ìˆø”‚É defaultRetryCount, fixFreqMode ‚ğ’Ç‰Á
+  WM_StartMPEx ã®å¼•æ•°ã« defaultRetryCount, fixFreqMode ã‚’è¿½åŠ 
 
   Revision 1.73  2004/08/27 04:42:20  terui
-  WM_Disconnect‚Ìƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN‚ğC³B
+  WM_Disconnectã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯ã‚’ä¿®æ­£ã€‚
 
   Revision 1.72  2004/08/27 04:25:37  terui
-  WM_Disconnect‚É‚¨‚¢‚ÄAq‹@‚Å‚ ‚éê‡‚Ìƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN‚ğC³B
+  WM_Disconnectã«ãŠã„ã¦ã€å­æ©Ÿã§ã‚ã‚‹å ´åˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯ã‚’ä¿®æ­£ã€‚
 
   Revision 1.71  2004/08/27 02:16:27  terui
   Only fix comment.
 
   Revision 1.70  2004/08/25 08:17:32  seiki_masashi
-  WM_StatMPEx ‚Ì’Ç‰Á
+  WM_StatMPEx ã®è¿½åŠ 
 
   Revision 1.69  2004/08/25 05:52:44  terui
   Rename parentRssi to lastRssi.
 
   Revision 1.68  2004/08/24 13:21:32  terui
-  ƒŠƒ“ƒN‹­“xæ“¾ŠÖ”‚ğ’Ç‰ÁB
+  ãƒªãƒ³ã‚¯å¼·åº¦å–å¾—é–¢æ•°ã‚’è¿½åŠ ã€‚
 
   Revision 1.67  2004/08/23 04:42:45  ooe
-  WM_StartConnect()‚Ìd—l•ÏX‚É‘Î‰B
+  WM_StartConnect()ã®ä»•æ§˜å¤‰æ›´ã«å¯¾å¿œã€‚
 
   Revision 1.66  2004/08/21 06:56:50  ooe
-  WMStartConnectReqŒ^‚ğg—p‚·‚é‚æ‚¤‚É•ÏX
+  WMStartConnectReqå‹ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.65  2004/08/20 11:55:28  terui
   Childs -> Children
 
   Revision 1.64  2004/08/20 06:48:17  terui
-  WM_DisconnectChilds‚ğ’Ç‰ÁB
+  WM_DisconnectChildsã‚’è¿½åŠ ã€‚
 
   Revision 1.63  2004/08/19 15:25:07  miya
   modified SetGameInfo function.
@@ -102,59 +102,59 @@
   WM_SetGameInfo
 
   Revision 1.61  2004/08/19 02:53:48  terui
-  WM_SetEntryŠÖ”‚ğ’Ç‰ÁB
+  WM_SetEntryé–¢æ•°ã‚’è¿½åŠ ã€‚
 
   Revision 1.60  2004/08/18 12:39:49  yosiokat
-  WM_SetGameInfo‚ÌgameInfoƒTƒCƒYƒ`ƒFƒbƒN‚ğ64‚©‚çWM_SIZE_USER_GAMEINFO‚ÉC³B
+  WM_SetGameInfoã®gameInfoã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯ã‚’64ã‹ã‚‰WM_SIZE_USER_GAMEINFOã«ä¿®æ­£ã€‚
 
   Revision 1.59  2004/08/18 06:45:09  terui
-  WM_GetAllowedChannelŠÖ”‚ğ’Ç‰ÁB
+  WM_GetAllowedChannelé–¢æ•°ã‚’è¿½åŠ ã€‚
 
   Revision 1.58  2004/08/18 00:22:30  seiki_masashi
-  WM_StartMP ‚Ìˆø”‚Ì”÷’²®
+  WM_StartMP ã®å¼•æ•°ã®å¾®èª¿æ•´
 
   Revision 1.57  2004/08/17 12:43:13  seiki_masashi
-  WM_StartMP ‚Ìˆø”‚É‘—Mƒoƒbƒtƒ@‚ğw’è‚·‚é‚æ‚¤‚É•ÏX
-  WM_ERRCODE_FRAME_GAP ‚Ì”p~‚É”º‚¤C³
+  WM_StartMP ã®å¼•æ•°ã«é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
+  WM_ERRCODE_FRAME_GAP ã®å»ƒæ­¢ã«ä¼´ã†ä¿®æ­£
 
   Revision 1.56  2004/08/16 06:00:21  seiki_masashi
-  DataSharing ‚Ì“®“IÚ‘±EØ’f‘Î‰‚ÌC³
+  DataSharing ã®å‹•çš„æ¥ç¶šãƒ»åˆ‡æ–­å¯¾å¿œã®ä¿®æ­£
 
   Revision 1.55  2004/08/12 14:22:37  seiki_masashi
-  DataSharing ‚Ì“¯Šú‚¸‚ê‚Ö‚Ì‘Î‰
+  DataSharing ã®åŒæœŸãšã‚Œã¸ã®å¯¾å¿œ
 
   Revision 1.54  2004/08/11 10:26:55  seiki_masashi
-  óMƒoƒbƒtƒ@‚ÌƒLƒƒƒbƒVƒ…‚ğARM7 ‚É“n‚·‘O‚É‘‚«o‚·‚æ‚¤‚ÉC³
+  å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ARM7 ã«æ¸¡ã™å‰ã«æ›¸ãå‡ºã™ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.53  2004/08/11 10:03:03  seiki_masashi
-  DataSharing ŠJn‚Ìˆ—‚ğC³
+  DataSharing é–‹å§‹æ™‚ã®å‡¦ç†ã‚’ä¿®æ­£
 
   Revision 1.52  2004/08/11 07:26:00  seiki_masashi
-  DataSharing ŠJn‚Ìˆ—‚ğC³
+  DataSharing é–‹å§‹æ™‚ã®å‡¦ç†ã‚’ä¿®æ­£
 
   Revision 1.51  2004/08/11 04:26:13  seiki_masashi
-  StartDataSharing ‚Ìˆø”‚É doubleMode ‚ğ’Ç‰Á
-  DataSharing ŠJn‚Ìˆ—‚ÌˆÀ’è‰»
+  StartDataSharing ã®å¼•æ•°ã« doubleMode ã‚’è¿½åŠ 
+  DataSharing é–‹å§‹æ™‚ã®å‡¦ç†ã®å®‰å®šåŒ–
 
   Revision 1.50  2004/08/10 14:16:52  seiki_masashi
-  q‹@‚©‚ç‚Ì Data ‚Í 2 ‚Â‚Ü‚Åƒoƒbƒtƒ@ƒŠƒ“ƒO‚·‚é‚æ‚¤‚É‚·‚é‚Ì‚ğˆêæ‚è‚â‚ß
+  å­æ©Ÿã‹ã‚‰ã® Data ã¯ 2 ã¤ã¾ã§ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ã®ã‚’ä¸€æ™‚å–ã‚Šã‚„ã‚
 
   Revision 1.49  2004/08/10 12:08:12  seiki_masashi
-  WmDataSharingReceiveData ‚©‚ç WmDataSharingSendDataSet ‚Ì•ª—£
-  q‹@‚©‚ç‚Ì Data ‚Í 2 ‚Â‚Ü‚Åƒoƒbƒtƒ@ƒŠƒ“ƒO‚·‚é‚æ‚¤‚É
+  WmDataSharingReceiveData ã‹ã‚‰ WmDataSharingSendDataSet ã®åˆ†é›¢
+  å­æ©Ÿã‹ã‚‰ã® Data ã¯ 2 ã¤ã¾ã§ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°ã™ã‚‹ã‚ˆã†ã«
 
   Revision 1.48  2004/08/10 10:12:33  terui
-  ƒRƒƒ“ƒg’Ç‰ÁAƒ\[ƒX®Œ`‚Ì‚İB
+  ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ ã€ã‚½ãƒ¼ã‚¹æ•´å½¢ã®ã¿ã€‚
 
   Revision 1.47  2004/08/10 04:14:35  seiki_masashi
-  port óM’Ê’m‚Ì callback ‚É CONNECT, DISCONNECT ‚à’Ê’m‚·‚é‚æ‚¤‚É•ÏX
-  DataSharing ‚É“®“I‚Éq‹@‚ª—‚¿‚Ä‚à“®ì‚ğŒp‘±‚·‚é‚æ‚¤‚É•ÏX
+  port å—ä¿¡é€šçŸ¥ã® callback ã« CONNECT, DISCONNECT ã‚‚é€šçŸ¥ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
+  DataSharing æ™‚ã«å‹•çš„ã«å­æ©ŸãŒè½ã¡ã¦ã‚‚å‹•ä½œã‚’ç¶™ç¶šã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.46  2004/08/10 01:40:34  seiki_masashi
-  q‹@‚ª‚¢‚È‚¢ó‘Ô‚Å StepDataSharing ‚ğŒÄ‚ñ‚Å‚à³í“®ì‚·‚é‚æ‚¤‚ÉC³
+  å­æ©ŸãŒã„ãªã„çŠ¶æ…‹ã§ StepDataSharing ã‚’å‘¼ã‚“ã§ã‚‚æ­£å¸¸å‹•ä½œã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.45  2004/08/09 10:29:33  seiki_masashi
-  DataSharing ‚É aidBitmap ‚ª©•ªˆ¶‚Å‚È‚¢ DataSet ‚Íó‚¯æ‚ç‚È‚¢‚æ‚¤‚É•ÏX
+  DataSharing æ™‚ã« aidBitmap ãŒè‡ªåˆ†å®›ã§ãªã„ DataSet ã¯å—ã‘å–ã‚‰ãªã„ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.44  2004/08/07 13:39:39  terui
   DmaCopy32->CpuCopyFast in WM_ReadStatus.
@@ -163,66 +163,66 @@
   Undefine WM_USE_TEMP_STATUS_BUF switch
 
   Revision 1.42  2004/08/07 10:23:19  seiki_masashi
-  óMƒoƒbƒtƒ@‚ÌƒLƒƒƒbƒVƒ…–³Œø‰»‚ğ MPEND.ind, MP.ind ‚Å©“®“I‚És‚¤‚æ‚¤‚É•ÏX
-  WMDataSharingInfo ‚É DataSet ‚Ì seq ”Ô†‚ğ•Û‘¶
+  å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç„¡åŠ¹åŒ–ã‚’ MPEND.ind, MP.ind ã§è‡ªå‹•çš„ã«è¡Œã†ã‚ˆã†ã«å¤‰æ›´
+  WMDataSharingInfo ã« DataSet ã® seq ç•ªå·ã‚’ä¿å­˜
 
   Revision 1.41  2004/08/07 08:43:16  seiki_masashi
-  DataSharing ‚Ì‘—Mƒf[ƒ^‚ğ 32-byte align ‚É
+  DataSharing ã®é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ 32-byte align ã«
 
   Revision 1.40  2004/08/07 07:04:25  seiki_masashi
-  WM_StepDataSharing ‚Ìˆø”‚ğ•ÏX
+  WM_StepDataSharing ã®å¼•æ•°ã‚’å¤‰æ›´
 
   Revision 1.39  2004/08/07 06:51:18  seiki_masashi
-  7 ‚©‚ç‚ÌóMƒf[ƒ^‚ÌƒLƒƒƒbƒVƒ…ˆ—‚ğs‚¤
+  7 ã‹ã‚‰ã®å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥å‡¦ç†ã‚’è¡Œã†
 
   Revision 1.38  2004/08/07 05:16:20  seiki_masashi
   small fix
 
   Revision 1.37  2004/08/07 04:09:02  seiki_masashi
-  DataSharing ‚É receivedBitmap, aidBitmap ‚à‘—M‚·‚é‚æ‚¤‚É•ÏX
-  DataSharing ‚Ì‘—Mƒoƒbƒtƒ@‚Ì‰Šú‰»–Y‚ê‚ğC³
+  DataSharing æ™‚ã« receivedBitmap, aidBitmap ã‚‚é€ä¿¡ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
+  DataSharing ã®é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ–å¿˜ã‚Œã‚’ä¿®æ­£
 
   Revision 1.36  2004/08/07 02:58:28  terui
-  ƒR[ƒ‹ƒoƒbƒN”r‘¼§Œäƒtƒ‰ƒO‚ğ‚ğshared—Ìˆæ‚ÉˆÚ“®
-  WM_USE_BUF_REMAINƒXƒCƒbƒ`‚ğíœ
+  ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯æ’ä»–åˆ¶å¾¡ãƒ•ãƒ©ã‚°ã‚’ã‚’sharedé ˜åŸŸã«ç§»å‹•
+  WM_USE_BUF_REMAINã‚¹ã‚¤ãƒƒãƒã‚’å‰Šé™¤
 
   Revision 1.35  2004/08/07 00:19:40  seiki_masashi
-  dataSharing ‚ÌÀ‘•
+  dataSharing ã®å®Ÿè£…
 
   Revision 1.34  2004/08/05 10:01:59  seiki_masashi
-  SetMPDataToPort() ‚ª tmptt ‚ğó‚¯‚Æ‚ç‚È‚¢‚æ‚¤‚É•ÏX
+  SetMPDataToPort() ãŒ tmptt ã‚’å—ã‘ã¨ã‚‰ãªã„ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.33  2004/08/05 08:25:54  seiki_masashi
-  sendQueue ‚ÌÀ‘•‚É”º‚¤•ÏX
+  sendQueue ã®å®Ÿè£…ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.32  2004/08/04 07:12:39  seiki_masashi
-  WMi_DebugPrintAllSendQueue ‚Ì’Ç‰Á
+  WMi_DebugPrintAllSendQueue ã®è¿½åŠ 
 
   Revision 1.31  2004/08/04 06:20:50  ooe
-  InitWirelessCounter‹y‚ÑGetWirelessCounter‚ğ’Ç‰Á
+  InitWirelessCounteråŠã³GetWirelessCounterã‚’è¿½åŠ 
 
   Revision 1.30  2004/08/04 05:16:29  seiki_masashi
   small fix
 
   Revision 1.29  2004/08/04 01:45:09  seiki_masashi
-  port “±“ü‚Ì‘O€”õ
-  WM_SetMPDataToPort, WM_SetPortCallback ‚Ì’Ç‰Á
+  port å°å…¥ã®å‰æº–å‚™
+  WM_SetMPDataToPort, WM_SetPortCallback ã®è¿½åŠ 
 
   Revision 1.28  2004/08/03 12:25:08  ooe
-  WL‚ÌTestModeƒRƒ}ƒ“ƒh•ÏX‚É‘Î‰
+  WLã®TestModeã‚³ãƒãƒ³ãƒ‰å¤‰æ›´ã«å¯¾å¿œ
 
   Revision 1.27  2004/08/02 06:29:47  terui
-  WMbssDesc -> WMBssDesc‚É“ˆê
-  WMstatus -> WMStatus‚É“ˆê
+  WMbssDesc -> WMBssDescã«çµ±ä¸€
+  WMstatus -> WMStatusã«çµ±ä¸€
 
   Revision 1.26  2004/08/02 02:52:51  terui
-  \‘¢‘Ì–¼‚ğ–½–¼‹K–ñ‚ÉŠî‚Ã‚«“ˆê
+  æ§‹é€ ä½“åã‚’å‘½åè¦ç´„ã«åŸºã¥ãçµ±ä¸€
 
   Revision 1.25  2004/07/30 05:20:17  ooe
-  MeasureChannelƒRƒ}ƒ“ƒh‚ğ”­s‚Å‚«‚é‚æ‚¤‚É‚µ‚½
+  MeasureChannelã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã§ãã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.24  2004/07/29 12:09:59  ooe
-  WM_MeasureChannel‚ğ’Ç‰Á
+  WM_MeasureChannelã‚’è¿½åŠ 
 
   Revision 1.23  2004/07/29 07:37:59  miya
   add error message
@@ -243,21 +243,21 @@
   add functions about ggid & tgid
 
   Revision 1.17  2004/07/27 00:06:26  terui
-  APIŒÄ‚Ño‚µ‚ÌƒXƒe[ƒgƒ`ƒFƒbƒN‚ğ‹­‰»
+  APIå‘¼ã³å‡ºã—æ™‚ã®ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯ã‚’å¼·åŒ–
 
   Revision 1.16  2004/07/23 14:43:48  terui
-  WM_ReadStatusŠÖ”‚É‚¨‚¯‚éDMAƒRƒs[ƒTƒCƒY‚ğ•ÏXB
+  WM_ReadStatusé–¢æ•°ã«ãŠã‘ã‚‹DMAã‚³ãƒ”ãƒ¼ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã€‚
 
   Revision 1.15  2004/07/20 01:52:52  terui
   small fix
 
   Revision 1.14  2004/07/20 01:16:20  terui
-  ŠÖ”à–¾ƒRƒƒ“ƒg‚ğ‘å•‚É’Ç‰ÁB
-  src‚Æ‚µ‚Ä‚Ìƒ|ƒCƒ“ƒ^ˆø”‚ğconst‚É“ˆêB
-  ƒƒCƒ“ƒƒ‚ƒŠ‚ğ‰î‚µ‚ÄARM7‚Æƒf[ƒ^‚â‚èæ‚è‚·‚é•”•ª‚Å‚ÌƒLƒƒƒbƒVƒ…‘€ì‚Ì“O’êB
-  •s—v‚ÈŠÖ”íœB
-  WM_SetGameInfo‚Ìd—l‚ğƒ†[ƒU[GameInfo‚Ì‚İXV‰Â”\‚Èd—l‚É•ÏXB
-  ‚»‚Ì‘¼ŠeŠC³B
+  é–¢æ•°èª¬æ˜ã‚³ãƒ¡ãƒ³ãƒˆã‚’å¤§å¹…ã«è¿½åŠ ã€‚
+  srcã¨ã—ã¦ã®ãƒã‚¤ãƒ³ã‚¿å¼•æ•°ã‚’constã«çµ±ä¸€ã€‚
+  ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ¢ãƒªã‚’ä»‹ã—ã¦ARM7ã¨ãƒ‡ãƒ¼ã‚¿ã‚„ã‚Šå–ã‚Šã™ã‚‹éƒ¨åˆ†ã§ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥æ“ä½œã®å¾¹åº•ã€‚
+  ä¸è¦ãªé–¢æ•°å‰Šé™¤ã€‚
+  WM_SetGameInfoã®ä»•æ§˜ã‚’ãƒ¦ãƒ¼ã‚¶ãƒ¼GameInfoã®ã¿æ›´æ–°å¯èƒ½ãªä»•æ§˜ã«å¤‰æ›´ã€‚
+  ãã®ä»–å„æ‰€ä¿®æ­£ã€‚
 
   Revision 1.13  2004/07/16 11:26:09  terui
   Add CheckStateEx.
@@ -267,7 +267,7 @@
   fix a small bug
 
   Revision 1.11  2004/07/14 09:41:24  ooe
-  StartScan‚Ìˆø”‚ğ•ÏX
+  StartScanã®å¼•æ•°ã‚’å¤‰æ›´
 
   Revision 1.10  2004/07/14 05:47:23  seiki_masashi
   fix a bug.
@@ -279,49 +279,49 @@
   let WM_sp_init() return WM_ERRCODE_WM_DISABLE when WMsp is not ready
 
   Revision 1.7  2004/07/12 10:37:26  terui
-  ScanŠJn‚ÌƒXƒe[ƒgƒ`ƒFƒbƒN‚ğ•ÏX
+  Scané–‹å§‹æ™‚ã®ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯ã‚’å¤‰æ›´
 
   Revision 1.6  2004/07/12 01:31:25  ooe
   small fix
 
   Revision 1.5  2004/07/11 03:03:33  ooe
-  WM_SetBeaconIndicationŠÖŒW‚Ì’Ç‰Á‚È‚Ç
+  WM_SetBeaconIndicationé–¢ä¿‚ã®è¿½åŠ ãªã©
 
   Revision 1.4  2004/07/08 10:07:50  terui
-  WM7‰ü‘¢ŠJn‚É”º‚¤•ÏX
+  WM7æ”¹é€ é–‹å§‹ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.15  2004/07/06 08:37:46  Ooe
-  g—p‚µ‚Ä‚¢‚È‚¢•Ï”‚ğíœ
+  ä½¿ç”¨ã—ã¦ã„ãªã„å¤‰æ•°ã‚’å‰Šé™¤
 
   Revision 1.14  2004/07/06 01:53:33  Ooe
-  fifoFlag‚Ì‰Šú‰»•”•ª‚ğC³
+  fifoFlagã®åˆæœŸåŒ–éƒ¨åˆ†ã‚’ä¿®æ­£
 
   Revision 1.13  2004/07/05 13:01:22  Ooe
-  ƒLƒƒƒbƒVƒ…§Œä‚ğC³
+  ã‚­ãƒ£ãƒƒã‚·ãƒ¥åˆ¶å¾¡ã‚’ä¿®æ­£
 
   Revision 1.12  2004/07/02 04:53:01  Miya
-  ƒLƒƒƒbƒVƒ…§Œä‚ÌC³
+  ã‚­ãƒ£ãƒƒã‚·ãƒ¥åˆ¶å¾¡ã®ä¿®æ­£
 
   Revision 1.11  2004/06/30 03:08:53  ikedae
-  fifoBuf@‚ÌƒAƒ‰ƒCƒ“ƒƒ“ƒgC³
+  fifoBufã€€ã®ã‚¢ãƒ©ã‚¤ãƒ³ãƒ¡ãƒ³ãƒˆä¿®æ­£
 
   Revision 1.10  2004/06/25 09:18:27  Ooe
-  Marionea-1.52.00‚É‘Î‰
+  Marionea-1.52.00ã«å¯¾å¿œ
 
   Revision 1.9  2004/06/25 06:18:06  Ooe
-  WM_SetMPData()‚Ìˆø”’Ç‰Á (pollbmp)
+  WM_SetMPData()ã®å¼•æ•°è¿½åŠ  (pollbmp)
 
   Revision 1.8  2004/06/24 11:22:03  Ooe
-  WM_SetGameInfo()‚ÌƒGƒ‰[ˆ—‚ğ’Ç‰ÁB
+  WM_SetGameInfo()ã®ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¿½åŠ ã€‚
 
   Revision 1.7  2004/06/24 10:04:00  Ooe
-  WM_SetGameInfo()‚ğ’Ç‰Á
+  WM_SetGameInfo()ã‚’è¿½åŠ 
 
   Revision 1.6  2004/06/22 09:28:06  Ikedae
   (none)
 
   Revision 1.5  2004/06/22 05:19:16  Ikedae
-  WM_lib_MainíœŠÖ˜A‚Ì•ÏX
+  WM_lib_Mainå‰Šé™¤é–¢é€£ã®å¤‰æ›´
 
   Revision 1.4  2004/06/19 05:56:29  Miya
   modified header file reference
@@ -333,7 +333,7 @@
   ver. up
 
   Revision 1.1  2004/05/26 08:55:07  terui
-  –³ü‘g‚İ‚İ‚É”º‚¤’Ç‰Á
+  ç„¡ç·šçµ„ã¿è¾¼ã¿ã«ä¼´ã†è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

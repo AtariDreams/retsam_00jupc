@@ -4,8 +4,8 @@
 #include "fieldmap_mem_def.h"
 
 
-#define	FIELD_GROUND_DATA_SIZE (0xf000)		///<’nŒ`ƒf[ƒ^1ƒuƒƒbƒN‚ ‚½‚è‚Ìƒƒ‚ƒŠƒTƒCƒY
-#define	FIELD_HEIGHT_DATA_SIZE (0x9000)		///<‚‚³ƒf[ƒ^1ƒuƒƒbƒN‚ ‚½‚è‚Ìƒƒ‚ƒŠƒTƒCƒY
+#define	FIELD_GROUND_DATA_SIZE (0xf000)		///<åœ°å½¢ãƒ‡ãƒ¼ã‚¿1ãƒ–ãƒ­ãƒƒã‚¯ã‚ãŸã‚Šã®ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
+#define	FIELD_HEIGHT_DATA_SIZE (0x9000)		///<é«˜ã•ãƒ‡ãƒ¼ã‚¿1ãƒ–ãƒ­ãƒƒã‚¯ã‚ãŸã‚Šã®ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
 
 
 extern FMM_PTR AllocFldMapMem(const BOOL inHeightDataValid);

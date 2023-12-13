@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_reflect.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ‰f‚è‚±‚İ
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJæ˜ ã‚Šã“ã¿
  * @author	kagaya
  * @data	05.07.13
  *
@@ -26,22 +26,22 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_GRASS_PTRŒ^
+///	FE_GRASS_PTRå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_REFLECT * FE_REFLECT_PTR;
 
 //--------------------------------------------------------------
-///	FE_REFLECT\‘¢‘Ì
+///	FE_REFLECTæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_REFLECT
 {
 	FE_SYS *fes;
 }FE_REFLECT;
 
-#define FE_REFLECT_SIZE (sizeof(FE_REFLECT))	///<FE_REFLECTƒTƒCƒY
+#define FE_REFLECT_SIZE (sizeof(FE_REFLECT))	///<FE_REFLECTã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	REF_ADD_H\‘¢‘Ì
+///	REF_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -51,10 +51,10 @@ typedef struct
 	FIELD_OBJ_PTR fldobj;
 }REF_ADD_H;
 
-#define REF_ADD_H_SIZE (sizeof(REF_ADD_H))		///<REF_ADD_HƒTƒCƒY
+#define REF_ADD_H_SIZE (sizeof(REF_ADD_H))		///<REF_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	REF_WORK\‘¢‘Ì
+///	REF_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -69,10 +69,10 @@ typedef struct
 	fx32 scale_val_x;
 }REF_WORK;
 
-#define REF_WORK_SIZE (sizeof(REF_WORK))		///<REF_WORKƒTƒCƒY
+#define REF_WORK_SIZE (sizeof(REF_WORK))		///<REF_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Reflect_GraphicInit( FE_REFLECT_PTR ref );
 static void Reflect_GraphicDelete( FE_REFLECT_PTR ref );
@@ -83,13 +83,13 @@ static void EoaReflectVecGet( REF_WORK *work, FIELD_OBJ_PTR fldobj, VecFx32 *vec
 static void EoaReflectAddAct( EOA_PTR eoa, REF_WORK *work );
 
 //==============================================================================
-//	‰f‚è‚±‚İ	ƒVƒXƒeƒ€
+//	æ˜ ã‚Šã“ã¿	ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰f‚è‚±‚İ‰Šú‰»
+ * æ˜ ã‚Šã“ã¿åˆæœŸåŒ–
  * @param	fes		FE_SYS *
- * @retval	void*	ƒGƒtƒFƒNƒgg—pƒ[ƒN
+ * @retval	void*	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 void * FE_Reflect_Init( FE_SYS *fes )
@@ -104,8 +104,8 @@ void * FE_Reflect_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ‰f‚è‚±‚İíœ
- * @param	void	ƒGƒtƒFƒNƒgg—pƒ[ƒN
+ * æ˜ ã‚Šã“ã¿å‰Šé™¤
+ * @param	void	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -117,11 +117,11 @@ void FE_Reflect_Delete( void *work )
 }
 
 //==============================================================================
-//	‰f‚è‚±‚İ@ƒOƒ‰ƒtƒBƒbƒN
+//	æ˜ ã‚Šã“ã¿ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * è‰ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	ref		FE_REFLECT_PTR
  * @retval	nothing
  */
@@ -133,7 +133,7 @@ static void Reflect_GraphicInit( FE_REFLECT_PTR ref )
 
 //--------------------------------------------------------------
 /**
- * ‰f‚è‚±‚İ@ƒOƒ‰ƒtƒBƒbƒNíœ
+ * æ˜ ã‚Šã“ã¿ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	ref		FE_REFLECT_PTR
  * @retval	nothing
  */
@@ -144,12 +144,12 @@ static void Reflect_GraphicDelete( FE_REFLECT_PTR ref )
 }
 
 //==============================================================================
-//	‰f‚è‚±‚İ@EOA
+//	æ˜ ã‚Šã“ã¿ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰f‚è‚±‚İ’Ç‰Á
- * @param	fldobj	‘ÎÛFIELD_OBJ_PTR
+ * æ˜ ã‚Šã“ã¿è¿½åŠ 
+ * @param	fldobj	å¯¾è±¡FIELD_OBJ_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -172,10 +172,10 @@ void FE_FldOBJReflect_Add( FIELD_OBJ_PTR fldobj, REFTYPE type )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰f‚è‚±‚İ@‰Šú‰»
+ * EOA æ˜ ã‚Šã“ã¿ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹ FALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº† FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaReflect_Init( EOA_PTR eoa, void *wk )
@@ -202,8 +202,8 @@ static int EoaReflect_Init( EOA_PTR eoa, void *wk )
 	work->scale.z = FX32_ONE;
 	work->scale_val_x = REF_SCALE_X_SPEED;
 	
-	if( work->type == REFTYPE_MIRROR ){	//Lk–³‚µ
-		work->scale_val_x = 0;			//Šgk’l0
+	if( work->type == REFTYPE_MIRROR ){	//ä¼¸ç¸®ç„¡ã—
+		work->scale_val_x = 0;			//æ‹¡ç¸®å€¤0
 	}
 	
 	EoaReflectVecGet( work, work->head.fldobj, &mtx );
@@ -215,7 +215,7 @@ static int EoaReflect_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰f‚è‚±‚İ@íœ
+ * EOA æ˜ ã‚Šã“ã¿ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -234,7 +234,7 @@ static void EoaReflect_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰f‚è‚±‚İ@“®ì
+ * EOA æ˜ ã‚Šã“ã¿ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -286,7 +286,7 @@ static void EoaReflect_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰f‚è‚±‚İ@•`‰æ
+ * EOA æ˜ ã‚Šã“ã¿ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -338,7 +338,7 @@ static void EoaReflect_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	‰f‚è‚±‚İEOA_H
+///	æ˜ ã‚Šã“ã¿EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Reflect =
 {
@@ -351,9 +351,9 @@ static const EOA_H_NPP DATA_EoaH_Reflect =
 
 //--------------------------------------------------------------
 /**
- * ‰f‚è‚±‚İÀ•WƒZƒbƒg
- * @param	fldobj	‘ÎÛ‚ÌFIELD_OBJ_PTR	
- * @param	vec		À•WŠi”[æ
+ * æ˜ ã‚Šã“ã¿åº§æ¨™ã‚»ãƒƒãƒˆ
+ * @param	fldobj	å¯¾è±¡ã®FIELD_OBJ_PTR	
+ * @param	vec		åº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -367,7 +367,7 @@ static void EoaReflectVecGet( REF_WORK *work, FIELD_OBJ_PTR fldobj, VecFx32 *vec
 		NUM_FX32(12),	//MIRROR
 	};
 	
-#if 0	//ƒIƒtƒZƒbƒg‚ğl—¶‚µ‚È‚¢
+#if 0	//ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è€ƒæ…®ã—ãªã„
 	FieldOBJ_VecPosGet( fldobj, vec );
 	
 	ret = FieldOBJTool_GetHeight( work->head.fsys, vec );
@@ -394,7 +394,7 @@ static void EoaReflectVecGet( REF_WORK *work, FIELD_OBJ_PTR fldobj, VecFx32 *vec
 
 //--------------------------------------------------------------
 /**
- * ‰f‚è‚±‚İ‘ÎÛ‚Ìƒwƒbƒ_‚ğæ“¾‚µƒAƒNƒ^[ƒZƒbƒg
+ * æ˜ ã‚Šã“ã¿å¯¾è±¡ã®ãƒ˜ãƒƒãƒ€ã‚’å–å¾—ã—ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  * @param	work	REF_WORK
  * @retval	nothing
  */
@@ -427,10 +427,10 @@ static void EoaReflectAddAct( EOA_PTR eoa, REF_WORK *work )
 }
 
 //==============================================================================
-//	ƒrƒ‹ƒ{[ƒh‚©‚ç‰f‚è‚İ	
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‹ã‚‰æ˜ ã‚Šè¾¼ã¿	
 //==============================================================================
 //--------------------------------------------------------------
-///	REFSOLE_ADD_H\‘¢‘Ì
+///	REFSOLE_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -442,7 +442,7 @@ typedef struct
 }REFSOLE_ADD_H;
 
 //--------------------------------------------------------------
-///	REFSOLE_WORK\‘¢‘Ì
+///	REFSOLE_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -458,7 +458,7 @@ static const EOA_H_NPP DATA_EoaH_ReflectSole;
 
 //--------------------------------------------------------------
 /**
- * ‰f‚è‚±‚İ‘ÎÛ‚Ìƒwƒbƒ_‚ğæ“¾‚µƒAƒNƒ^[ƒZƒbƒg
+ * æ˜ ã‚Šã“ã¿å¯¾è±¡ã®ãƒ˜ãƒƒãƒ€ã‚’å–å¾—ã—ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
  * @param	work	REF_WORK
  * @retval	nothing
  */
@@ -488,9 +488,9 @@ static void EoaReflectSoleAddAct( EOA_PTR eoa, REFSOLE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‰f‚è‚±‚İÀ•WƒZƒbƒg
+ * æ˜ ã‚Šã“ã¿åº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	work	REFSOLE_WORK
- * @param	vec		À•WŠi”[æ
+ * @param	vec		åº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -518,12 +518,12 @@ static void EoaReflectSoleVecGet( REFSOLE_WORK *work, VecFx32 *vec )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰f‚è‚±‚İƒZƒbƒg
+ * EOA æ˜ ã‚Šã“ã¿ã‚»ãƒƒãƒˆ
  * @param	fes		FE_SYS *
- * @param	head	‰f‚è‚İBLACT_HEADER
- * @param	act		‰f‚è‚İ‘ÎÛBLACT_WORK_PTR
+ * @param	head	æ˜ ã‚Šè¾¼ã¿BLACT_HEADER
+ * @param	act		æ˜ ã‚Šè¾¼ã¿å¯¾è±¡BLACT_WORK_PTR
  * @param	type	REFTYPE
- * @param	mtx		‰f‚è‚İÀ•W
+ * @param	mtx		æ˜ ã‚Šè¾¼ã¿åº§æ¨™
  * @retval	EOA_PTR	EOA_PTR
  */
 //--------------------------------------------------------------
@@ -546,10 +546,10 @@ EOA_PTR FE_EoaReflectSole_Add( FE_SYS *fes,
 
 //--------------------------------------------------------------
 /**
- * EOA ‰f‚è‚±‚İ@‰Šú‰»
+ * EOA æ˜ ã‚Šã“ã¿ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹ FALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº† FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaReflectSole_Init( EOA_PTR eoa, void *wk )
@@ -568,8 +568,8 @@ static int EoaReflectSole_Init( EOA_PTR eoa, void *wk )
 	work->scale.z = FX32_ONE;
 	work->scale_val_x = REF_SCALE_X_SPEED;
 	
-	if( work->type == REFTYPE_MIRROR ){	//Lk–³‚µ
-		work->scale_val_x = 0;			//Šgk’l0
+	if( work->type == REFTYPE_MIRROR ){	//ä¼¸ç¸®ç„¡ã—
+		work->scale_val_x = 0;			//æ‹¡ç¸®å€¤0
 	}
 	
 	EOA_MatrixGet( eoa, &work->mtx );
@@ -584,7 +584,7 @@ static int EoaReflectSole_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰f‚è‚±‚İ@íœ
+ * EOA æ˜ ã‚Šã“ã¿ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -599,7 +599,7 @@ static void EoaReflectSole_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰f‚è‚±‚İ@“®ì
+ * EOA æ˜ ã‚Šã“ã¿ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -628,7 +628,7 @@ static void EoaReflectSole_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰f‚è‚±‚İ@•`‰æ
+ * EOA æ˜ ã‚Šã“ã¿ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -648,7 +648,7 @@ static void EoaReflectSole_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	‰f‚è‚±‚İEOA_H
+///	æ˜ ã‚Šã“ã¿EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_ReflectSole =
 {

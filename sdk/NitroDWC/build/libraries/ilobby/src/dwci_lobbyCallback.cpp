@@ -14,19 +14,19 @@
 /**
  * @file
  *
- * @brief ƒAƒƒP[ƒ^ƒ\[ƒX
+ * @brief ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‚½ãƒ¼ã‚¹
  */
 
 #include "dwci_lobbyCallback.h"
 
 
 /** 
- * @brief w’è‚µ‚½ƒIƒyƒŒ[ƒVƒ‡ƒ“ID‚ÌƒR[ƒ‹ƒoƒbƒN‚ğíœ‚µ‚Ü‚·B
+ * @brief æŒ‡å®šã—ãŸã‚ªãƒšãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³IDã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‰Šé™¤ã—ã¾ã™ã€‚
  * 
- * @param[in] operationId ƒIƒyƒŒ[ƒVƒ‡ƒ“IDB
+ * @param[in] operationId ã‚ªãƒšãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³IDã€‚
  * 
- * @retval TRUE ¬Œ÷B
- * @retval FALSE Œ©‚Â‚©‚ç‚È‚©‚Á‚½B
+ * @retval TRUE æˆåŠŸã€‚
+ * @retval FALSE è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã€‚
  */
 BOOL DWCi_CallbackManager::RemoveCallback(u32 operationId)
 {
@@ -42,7 +42,7 @@ BOOL DWCi_CallbackManager::RemoveCallback(u32 operationId)
 }
 
 /** 
- * @brief ƒR[ƒ‹ƒoƒbƒN‚ğ‘S‚Äíœ‚µ‚Ü‚·B
+ * @brief ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å…¨ã¦å‰Šé™¤ã—ã¾ã™ã€‚
  */
 void DWCi_CallbackManager::ClearCallback()
 {

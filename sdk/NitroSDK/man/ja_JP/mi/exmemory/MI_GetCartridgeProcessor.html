@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>MI_GetCartridgePriority</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MI_GetCartridgeProcessor</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -20,37 +20,37 @@
   <BR>
   <CODE>MIProcessor MI_GetCartridgeProcessor( void )</CODE></dd>
 </dl>
-<h2>����</h2>
-<P>�Ȃ��B</P>
-<h2>�Ԃ�l</h2>
-<p>�J�[�g���b�W�ւ̃A�N�Z�X���ݒ�B</p>
+<h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>カートリッジへのアクセス権設定。</p>
 
-<H2>����</H2>
-<P>AGB�݊�32�s���J�[�g���b�W�X���b�g�p�n�[�h�E�F�A�ւ̃A�N�Z�X���̐ݒ���擾���܂��B<BR>
-�Ԃ�l�� <CODE>MIProcessor</CODE> �񋓌^�ŁA�ȉ��̈Ӗ��������܂��B</P>
+<H2>説明</H2>
+<P>AGB互換32ピンカートリッジスロット用ハードウェアへのアクセス権の設定を取得します。<BR>
+返り値は <CODE>MIProcessor</CODE> 列挙型で、以下の意味を持ちます。</P>
 <TABLE>
   <TBODY>
     <TR>
       <TD bgcolor="#e0e0e0"><CODE>MI_PROCESSOR_ARM9</CODE></TD>
-      <TD bgcolor="#e0e0e0">ARM9�ɃA�N�Z�X����ݒ肷��</TD>
+      <TD bgcolor="#e0e0e0">ARM9にアクセス権を設定する</TD>
     </TR>
     <TR>
       <TD bgcolor="#e0e0e0"><CODE>MI_PROCESSOR_ARM7</CODE></TD>
-      <TD bgcolor="#e0e0e0">ARM7�ɃA�N�Z�X����ݒ肷��</TD>
+      <TD bgcolor="#e0e0e0">ARM7にアクセス権を設定する</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>��������</h2>
-<P>IO���W�X�^�́AEXMEMCNT(0x4000204)�ɃA�N�Z�X���Ă��܂��B</P>
+<h2>内部動作</h2>
+<P>IOレジスタの、EXMEMCNT(0x4000204)にアクセスしています。</P>
 
-<h2>�Q��</h2>
-<p><CODE>�Ȃ��B<br>
+<h2>参照</h2>
+<p><CODE>なし。<br>
 </CODE></p>
 
-<H2>����</H2>
-<P>2004/01/14 �֐�����<CODE>MI_GetCartridgePriority </CODE>����ύX<BR>
-2004/01/14 enum����<CODE>MIProcessor</CODE> �ɕύX<BR>
-2003/12/18 ����</P>
+<H2>履歴</H2>
+<P>2004/01/14 関数名を<CODE>MI_GetCartridgePriority </CODE>から変更<BR>
+2004/01/14 enum名を<CODE>MIProcessor</CODE> に変更<BR>
+2003/12/18 初版</P>
 </body>
 </html>

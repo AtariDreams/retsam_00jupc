@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndArcGetFileSize</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,13 +11,13 @@
 <div></div>
 </div>
 <h1>NNS_SndArcGetFileSize</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">u32 NNS_SndArcGetFileSize( u32 <var>fileId</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAWLWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -25,32 +25,32 @@
 <tbody>
 <tr>
 <td><em><strong><code>fileId</code></strong></em></td>
-<td>�t�@�C��ID�ł��B</td>
+<td>ファイルIDです。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAFMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�t�@�C���T�C�Y��Ԃ��܂��B�t�@�C��ID�������̎��́A0��Ԃ��܂��B</p>
+      <p>ファイルサイズを返します。ファイルIDが無効の時は、0を返します。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAMMWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�T�E���h�A�[�J�C�u���̃t�@�C���̃t�@�C���T�C�Y���擾���܂��B
+サウンドアーカイブ中のファイルのファイルサイズを取得します。
 </p>
       <p>
-�t�@�C��ID<em><strong><code>fileId</code></strong></em>�́A
-<tt class="function"><a href="NNS_SndArcGetSeqInfo.html">NNS_SndArcGetSeqInfo</a></tt>�֐��Ȃǂ�
-�����T�E���h�f�[�^�̏��\���̂���擾���邱�Ƃ��ł��܂��B
+ファイルID<em><strong><code>fileId</code></strong></em>は、
+<tt class="function"><a href="NNS_SndArcGetSeqInfo.html">NNS_SndArcGetSeqInfo</a></tt>関数などで
+得たサウンドデータの情報構造体から取得することができます。
 </p>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndArcGetSeqInfo.html">NNS_SndArcGetSeqInfo</a></p>
-<h2>����</h2>
-<p>2004/06/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
 </div>
 </body>
 </html>

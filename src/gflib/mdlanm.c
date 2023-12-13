@@ -1,6 +1,6 @@
 /**
  *	@file	mdlanm.c
- *	@brief	”Ä—p3Dƒ‚ƒfƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒXŠÇ—•â•ƒ‰ƒCƒuƒ‰ƒŠ
+ *	@brief	æ±ç”¨3Dãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†è£œåŠ©ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
  *	@author	Miyuki Iwasawa
  *	@date	05.11.09
  */
@@ -9,16 +9,16 @@
 #include "gflib/heapsys.h"
 #include "gflib/mdlanm.h"
 
-//ƒvƒƒgƒ^ƒCƒv
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 static void* SMAnm_LoadAnmFile(MDLANM_DATA* pData,const char* path,int heapID);
 
 /**
- *	@brief	ƒ‚ƒfƒ‹ƒAƒjƒƒ}ƒl[ƒWƒƒ‰Šú‰»
+ *	@brief	ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
  *
- *	@param	num	s16:Šm•Û‚µ‚½‚¢ƒAƒjƒƒf[ƒ^\‘¢‘Ì‚Ì”
- *	@param	heapID	int:g—p‚·‚éƒq[ƒv‚ÌID
+ *	@param	num	s16:ç¢ºä¿ã—ãŸã„ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã®æ•°
+ *	@param	heapID	int:ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ID
  
- *	@return	MDLANM_MAN*:Šm•Û‚µ‚½MDLANM_MAN\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@return	MDLANM_MAN*:ç¢ºä¿ã—ãŸMDLANM_MANæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 MDLANM_MAN* MAnm_Init(s16 num,int heapID) 
 {
@@ -39,20 +39,20 @@ MDLANM_MAN* MAnm_Init(s16 num,int heapID)
 		return NULL;
 	}
 
-	//ƒf[ƒ^—Ìˆæ‰Šú‰»
+	//ãƒ‡ãƒ¼ã‚¿é ˜åŸŸåˆæœŸåŒ–
 	for(i = 0;i < wk->dat_num;i++){
 		MAnm_ClearData(&wk->pData[i]);
 	}
 	
-	//ƒAƒƒP[ƒ^‰Šú‰»
+	//ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿åˆæœŸåŒ–
 	sys_InitAllocator(&wk->allocator,heapID,4);
 
 	return wk;
 }
 
 /**
- *	@brief	ƒ‚ƒfƒ‹ƒAƒjƒƒ}ƒl[ƒWƒƒƒGƒŠƒA‰ğ•ú
- *	@param	wk	MDLANM_MAN*:Šeƒ‚ƒWƒ…[ƒ‹‚Å—pˆÓ‚µ‚½MDLANM_MAN\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@brief	ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã‚¨ãƒªã‚¢è§£æ”¾
+ *	@param	wk	MDLANM_MAN*:å„ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã§ç”¨æ„ã—ãŸMDLANM_MANæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 void MAnm_End(MDLANM_MAN* wk) 
 {
@@ -69,11 +69,11 @@ void MAnm_End(MDLANM_MAN* wk)
 }
 
 /**
- *	@brief	3Dƒ‚ƒfƒ‹ƒAƒjƒ@ƒƒCƒ“ƒRƒ“ƒgƒ[ƒ‰
+ *	@brief	3Dãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡ã€€ãƒ¡ã‚¤ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
  *
- *	@param	wk	MDLANM_MAN*@ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	wk	MDLANM_MAN*ã€€ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	ƒƒCƒ“ƒV[ƒPƒ“ƒX“à‚ÅŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢	
+ *	ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å†…ã§å‘¼ã³å‡ºã—ã¦ãã ã•ã„	
  */
 void MAnm_AnimeMain(MDLANM_MAN* wk)
 {
@@ -105,11 +105,11 @@ void MAnm_AnimeMain(MDLANM_MAN* wk)
 }
 
 /**
- *	@brief	ƒ‚ƒfƒ‹ƒAƒjƒ”z—ñ‚©‚ç‹ó‚«ƒf[ƒ^NO‚ğ•Ô‚·
- *	@param	wk	MDLANM_MAN*:Šeƒ‚ƒWƒ…[ƒ‹‚Å—pˆÓ‚µ‚½MDLANM_MAN\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@brief	ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡é…åˆ—ã‹ã‚‰ç©ºããƒ‡ãƒ¼ã‚¿NOã‚’è¿”ã™
+ *	@param	wk	MDLANM_MAN*:å„ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã§ç”¨æ„ã—ãŸMDLANM_MANæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	MDLANM_DATA_NULL:-1	‹ó‚«‚ª‚È‚¢
- *	@retval	‚»‚êˆÈŠO:”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒXNO
+ *	@retval	MDLANM_DATA_NULL:-1	ç©ºããŒãªã„
+ *	@retval	ãã‚Œä»¥å¤–:é…åˆ—ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹NO
  *
  */
 s16	MAnm_SearchNullDataNo(MDLANM_MAN* wk)
@@ -127,11 +127,11 @@ s16	MAnm_SearchNullDataNo(MDLANM_MAN* wk)
 	return MDLANM_DATA_NULL;
 }
 /**
- *	@brief	ID‚©‚ç”z—ñ‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
- *	@param	wk	MDLANM_MAN*:Šeƒ‚ƒWƒ…[ƒ‹‚Å—pˆÓ‚µ‚½MDLANM_MAN\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@brief	IDã‹ã‚‰é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
+ *	@param	wk	MDLANM_MAN*:å„ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã§ç”¨æ„ã—ãŸMDLANM_MANæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	NULL	Œ©‚Â‚©‚ç‚È‚¢
- *	@retval	MDLANM_DATA* \‘¢‘ÌƒAƒhƒŒƒX
+ *	@retval	NULL	è¦‹ã¤ã‹ã‚‰ãªã„
+ *	@retval	MDLANM_DATA* æ§‹é€ ä½“ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 MDLANM_DATA* MAnm_SearchDataByID(MDLANM_MAN* wk,s16 no)
@@ -153,9 +153,9 @@ MDLANM_DATA* MAnm_SearchDataByID(MDLANM_MAN* wk,s16 no)
 }
 
 /**
- *	@brief	ƒ‚ƒfƒ‹ƒAƒjƒƒf[ƒ^\‘¢‘ÌƒNƒŠƒA
+ *	@brief	ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã‚¯ãƒªã‚¢
  *
- *	@param	pData	ƒNƒŠƒA‚µ‚½‚¢MDLANM_DATAŒ^\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	pData	ã‚¯ãƒªã‚¢ã—ãŸã„MDLANM_DATAå‹æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 void MAnm_ClearData(MDLANM_DATA* pData)
 {
@@ -171,11 +171,11 @@ void MAnm_ClearData(MDLANM_DATA* pData)
 }
 
 /**
- *	@brief	ƒ‚ƒfƒ‹ƒAƒjƒ’Ç‰Á
- *	@param	wk	MDLANM_MAN*:Šeƒ‚ƒWƒ…[ƒ‹‚Å—pˆÓ‚µ‚½MDLANM_MAN\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	inName	ƒAƒjƒƒf[ƒ^ƒtƒ@ƒCƒ‹–¼
- *	@param	inType	ƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒv
- *	@param	pModel	ŠÖ˜A•t‚¯‚éƒ‚ƒfƒ‹ƒŠƒ\[ƒX
+ *	@brief	ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡è¿½åŠ 
+ *	@param	wk	MDLANM_MAN*:å„ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã§ç”¨æ„ã—ãŸMDLANM_MANæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	inName	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«å
+ *	@param	inType	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—
+ *	@param	pModel	é–¢é€£ä»˜ã‘ã‚‹ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
  */
 MDLANM_DATA* MAnm_AddAnime(MDLANM_MAN* wk,const char* inName,const u8 inType,
 		NNSG3dResMdl* pModel,NNSG3dResTex* pTex)
@@ -186,74 +186,74 @@ MDLANM_DATA* MAnm_AddAnime(MDLANM_MAN* wk,const char* inName,const u8 inType,
 	
 	ret = MAnm_SearchNullDataNo(wk);
 	if(ret == MDLANM_DATA_NULL){
-		return NULL;	//‹ó‚«‚ª‚È‚¢‚Ì‚Å’Ç‰Á‚Å‚«‚È‚¢
+		return NULL;	//ç©ºããŒãªã„ã®ã§è¿½åŠ ã§ããªã„
 	}
 	
-	wp = &wk->pData[ret];	//ƒ|ƒCƒ“ƒ^æ“¾
-	MAnm_ClearData(wp);	//ˆê’UƒNƒŠƒA
+	wp = &wk->pData[ret];	//ãƒã‚¤ãƒ³ã‚¿å–å¾—
+	MAnm_ClearData(wp);	//ä¸€æ—¦ã‚¯ãƒªã‚¢
 
-	//ƒtƒ@ƒCƒ‹ƒ[ƒh
+	//ãƒ•ã‚¡ã‚¤ãƒ«ãƒ­ãƒ¼ãƒ‰
 	anmRes = SMAnm_LoadAnmFile(wp,inName,wk->heapID);
 	GF_ASSERT((anmRes != NULL) && "model anime file load failed");
 
-	// •K—v—Ê‚Ìƒƒ‚ƒŠ‚ğƒAƒƒP[ƒg‚·‚éBƒCƒjƒVƒƒƒ‰ƒCƒY‚Í•Ê“r•K—v‚É‚È‚éB
-    wp->pAnmObj = NNS_G3dAllocAnmObj(&(wk->allocator),	// g—p‚·‚éƒAƒƒP[ƒ^‚ğw’è
-                                     wp->pAnmRes,	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒX‚ğw’è
-                                     pModel);		// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ğw’è
+	// å¿…è¦é‡ã®ãƒ¡ãƒ¢ãƒªã‚’ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã™ã‚‹ã€‚ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚ºã¯åˆ¥é€”å¿…è¦ã«ãªã‚‹ã€‚
+    wp->pAnmObj = NNS_G3dAllocAnmObj(&(wk->allocator),	// ä½¿ç”¨ã™ã‚‹ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‚’æŒ‡å®š
+                                     wp->pAnmRes,	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã‚’æŒ‡å®š
+                                     pModel);		// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’æŒ‡å®š
 	SDK_NULL_ASSERT(wp->pAnmObj);
 
-	// AnmObj ‚ğ‰Šú‰»‚·‚éBƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ˆÈŠO‚à“¯—l
+	// AnmObj ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä»¥å¤–ã‚‚åŒæ§˜
 	//
-	NNS_G3dAnmObjInit(	wp->pAnmObj, // ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-						wp->pAnmRes, // ƒAƒjƒƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
-						pModel,  // NNSG3dResMdl‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                        pTex);  // NNSG3dResTex‚Ö‚Ìƒ|ƒCƒ“ƒ^(ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒˆÈŠO‚È‚ç‚ÎNULL‚Å‚à‚æ‚¢)
+	NNS_G3dAnmObjInit(	wp->pAnmObj, // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+						wp->pAnmRes, // ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+						pModel,  // NNSG3dResMdlã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                        pTex);  // NNSG3dResTexã¸ã®ãƒã‚¤ãƒ³ã‚¿(ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ä»¥å¤–ãªã‚‰ã°NULLã§ã‚‚ã‚ˆã„)
 
 	wp->frm_max =  (NNS_G3dAnmObjGetNumFrame(wp->pAnmObj) >> FX32_SHIFT);
 	wp->type = inType;
 	if(wp->type == AMTYPE_AUTOLOOP){
 		wp->roop_f = 1;
 	}
-	//—LŒø‚É‚·‚é
+	//æœ‰åŠ¹ã«ã™ã‚‹
 	wp->valid = 1;
 	wp->no = ret;
 	return wp;
 }
 
 /**
- *	@brief	MDLANM_DATA\‘¢‘Ì‚ÌƒŠƒ\[ƒX‚ğ‰ğ•ú
- *	@param	pData	MDLANM_DATA*@ƒAƒjƒƒf[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	allocator	NNSFncAllocator*@ƒ}ƒl[ƒWƒƒ‚ÌƒAƒƒP[ƒ^
+ *	@brief	MDLANM_DATAæ§‹é€ ä½“ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾
+ *	@param	pData	MDLANM_DATA*ã€€ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	allocator	NNSFncAllocator*ã€€ãƒãƒãƒ¼ã‚¸ãƒ£ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
  *
- *	@retval	TRUE	‰ğ•ú¬Œ÷
- *	@retval FLASE	‰ğ•ú¸”s
+ *	@retval	TRUE	è§£æ”¾æˆåŠŸ
+ *	@retval FLASE	è§£æ”¾å¤±æ•—
  */
 BOOL MAnm_ReleaseAnmData(MDLANM_DATA* pData,NNSFndAllocator* allocator)
 {
 	if(pData->connect  != 0){
-		//‚±‚ÌƒAƒjƒ‚ªƒRƒlƒNƒg‚³‚ê‚Ä‚¢‚éƒIƒuƒWƒF‚ª‚¢‚é‚Ì‚Å‰ğ•ú‚·‚é‚×‚«‚Å‚Í‚È‚¢
-		GF_ASSERT("3Dƒ‚ƒfƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ªƒRƒlƒNƒg‚³‚ê‚½‚Ü‚Ü‚Å‚·\n");
+		//ã“ã®ã‚¢ãƒ‹ãƒ¡ãŒã‚³ãƒã‚¯ãƒˆã•ã‚Œã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ãŒã„ã‚‹ã®ã§è§£æ”¾ã™ã‚‹ã¹ãã§ã¯ãªã„
+		GF_ASSERT("3Dãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒã‚³ãƒã‚¯ãƒˆã•ã‚ŒãŸã¾ã¾ã§ã™\n");
 //		return FALSE;
 	}
 	
-	//ƒAƒjƒƒIƒuƒWƒFƒŠƒ\[ƒX‰ğ•ú
+	//ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	NNS_G3dFreeAnmObj(allocator,pData->pAnmObj);
-	//ƒtƒ@ƒCƒ‹ƒŠƒ\[ƒX‰ğ•ú
+	//ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	sys_FreeMemoryEz(pData->pFile);
 
-	//ƒf[ƒ^ƒGƒŠƒAƒNƒŠƒA
+	//ãƒ‡ãƒ¼ã‚¿ã‚¨ãƒªã‚¢ã‚¯ãƒªã‚¢
 	MAnm_ClearData(pData);
 
 	return TRUE;
 }
 
 /**
- *	@brief	ƒ‚ƒfƒ‹ƒAƒjƒ‰ğ•ú(IndexNo ver) 
- *	@param	wk	MDLANM_MAN*:Šeƒ‚ƒWƒ…[ƒ‹‚Å—pˆÓ‚µ‚½MDLANM_MAN\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	no	‰ğ•ú‚µ‚½‚¢ƒAƒjƒƒf[ƒ^‚ÌIndexNo
+ *	@brief	ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡è§£æ”¾(IndexNo ver) 
+ *	@param	wk	MDLANM_MAN*:å„ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã§ç”¨æ„ã—ãŸMDLANM_MANæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	no	è§£æ”¾ã—ãŸã„ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã®IndexNo
  *
- *	@retval	1	‰ğ•ú¬Œ÷
- *	@retval 0	‰ğ•ú¸”s(‰ğ•ú‚·‚é‚×‚«‚à‚Ì‚ªŒ©‚Â‚©‚ç‚È‚¢)
+ *	@retval	1	è§£æ”¾æˆåŠŸ
+ *	@retval 0	è§£æ”¾å¤±æ•—(è§£æ”¾ã™ã‚‹ã¹ãã‚‚ã®ãŒè¦‹ã¤ã‹ã‚‰ãªã„)
  */
 BOOL MAnm_ReleaseAnimeByID(MDLANM_MAN* wk,s16 no)
 {
@@ -261,19 +261,19 @@ BOOL MAnm_ReleaseAnimeByID(MDLANM_MAN* wk,s16 no)
 	
 	wp = MAnm_SearchDataByID(wk,no);
 	if(wp == NULL){
-		return FALSE;	//Œ©‚Â‚©‚ç‚È‚¢
+		return FALSE;	//è¦‹ã¤ã‹ã‚‰ãªã„
 	}
 	return MAnm_ReleaseAnmData(wp,&(wk->allocator));
 }
 
 /**
- *	@brief	ƒAƒjƒƒf[ƒ^ƒRƒlƒNƒg(ƒAƒhƒŒƒXVer)
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã‚³ãƒã‚¯ãƒˆ(ã‚¢ãƒ‰ãƒ¬ã‚¹Ver)
  *
  *	@param	pData	MDLANM_DATA*
- *	@param	render	NNSG3dRenderObj‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	render	NNSG3dRenderObjã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval FALSE	¸”s
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval FALSE	å¤±æ•—
  */
 BOOL MAnm_ConnectAnimeByAdrs(MDLANM_DATA* pData,NNSG3dRenderObj* render)
 {
@@ -289,13 +289,13 @@ BOOL MAnm_ConnectAnimeByAdrs(MDLANM_DATA* pData,NNSG3dRenderObj* render)
 }
 
 /**
- *	@brief	ƒAƒjƒƒf[ƒ^ƒfƒBƒXƒRƒlƒNƒg(ƒAƒhƒŒƒXVer)
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒ‡ã‚£ã‚¹ã‚³ãƒã‚¯ãƒˆ(ã‚¢ãƒ‰ãƒ¬ã‚¹Ver)
  *
  *	@param	pData	MDLANM_DATA*
- *	@param	render	NNSG3dRenderObj‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	render	NNSG3dRenderObjã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval FALSE	¸”s
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval FALSE	å¤±æ•—
  */
 BOOL MAnm_DisconnectAnimeByAdrs(MDLANM_DATA* pData,NNSG3dRenderObj* render)
 {
@@ -311,13 +311,13 @@ BOOL MAnm_DisconnectAnimeByAdrs(MDLANM_DATA* pData,NNSG3dRenderObj* render)
 }
 
 /**
- *	@brief	ƒAƒjƒƒf[ƒ^ ƒtƒŒ[ƒ€NoƒZƒbƒg(ƒAƒhƒŒƒXVer)
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ ãƒ•ãƒ¬ãƒ¼ãƒ Noã‚»ãƒƒãƒˆ(ã‚¢ãƒ‰ãƒ¬ã‚¹Ver)
  *
  *	@param	pData	MDLANM_DATA*
- *	@param	no		ƒAƒjƒƒtƒŒ[ƒ€No	
+ *	@param	no		ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ No	
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval FALSE	¸”s
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval FALSE	å¤±æ•—
  */
 BOOL MAnm_SetAnimeFrameByAdrs(MDLANM_DATA* pData,u16 no)
 {
@@ -331,14 +331,14 @@ BOOL MAnm_SetAnimeFrameByAdrs(MDLANM_DATA* pData,u16 no)
 }
 
 /**
- *	@brief	ƒ‚ƒfƒ‹ƒAƒjƒ@ƒtƒ@ƒCƒ‹ƒ[ƒh
+ *	@brief	ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ‹ãƒ¡ã€€ãƒ•ã‚¡ã‚¤ãƒ«ãƒ­ãƒ¼ãƒ‰
  *
- *	@param	MDLANM_DATA*	pData	ƒAƒjƒ‚ğ“o˜^‚·‚é\‘¢‘ÌƒAƒhƒŒƒX
- *	@param	const char*		path	ƒtƒ@ƒCƒ‹ƒpƒX
- *	@param	NNSFndAllocator*	allocator	ƒAƒƒP[ƒ^ƒ|ƒCƒ“ƒ^
- *	@param	heapID	g—p‚·‚éƒq[ƒvID
+ *	@param	MDLANM_DATA*	pData	ã‚¢ãƒ‹ãƒ¡ã‚’ç™»éŒ²ã™ã‚‹æ§‹é€ ä½“ã‚¢ãƒ‰ãƒ¬ã‚¹
+ *	@param	const char*		path	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+ *	@param	NNSFndAllocator*	allocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ *	@param	heapID	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return æ“¾‚µ‚½ƒAƒjƒƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@return å–å¾—ã—ãŸã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 static void* SMAnm_LoadAnmFile(MDLANM_DATA* pData,const char* path,int heapID)
 {
@@ -353,7 +353,7 @@ static void* SMAnm_LoadAnmFile(MDLANM_DATA* pData,const char* path,int heapID)
 		return NULL;
 	}
 
-	//ƒŠƒ\[ƒXæ“¾
+	//ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	pData->pAnmRes = NNS_G3dGetAnmByIdx(pData->pFile,0);
 	if(pData->pAnmRes == NULL){
 		return NULL;

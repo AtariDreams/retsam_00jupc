@@ -1,6 +1,6 @@
 /**
  *	@file	mail_param.h
- *	@brief	ƒ[ƒ‹ƒVƒXƒeƒ€@ŒÄ‚Ño‚µ‚ÌˆøŒp‚¬ƒf[ƒ^\‘¢‘ÌŒ^’è‹`
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã€€å‘¼ã³å‡ºã—æ™‚ã®å¼•ç¶™ããƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“å‹å®šç¾©
  *	@author	Miyuki Iwasawa
  *	@date	06.02.08
  */
@@ -11,22 +11,22 @@
 #include "savedata/mail_util.h"
 
 typedef struct _MAIL_PARAM{
-	u16	mode;		///<ƒ[ƒ‹ƒ‚ƒWƒ…[ƒ‹ŒÄ‚Ño‚µƒ^ƒCƒv
-	u16	id;			///<ŒÄ‚Ño‚µID
+	u16	mode;		///<ãƒ¡ãƒ¼ãƒ«ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‘¼ã³å‡ºã—ã‚¿ã‚¤ãƒ—
+	u16	id;			///<å‘¼ã³å‡ºã—ID
 	
-	int	ret_val;	///<–ß‚è’l
+	int	ret_val;	///<æˆ»ã‚Šå€¤
 
 	int	blockID;
 	u16 dataID;
 	u8	poke_pos;
 	u8	designNo;
 	
-	SAVEDATA*	savedata;	///<ƒZ[ƒuƒf[ƒ^‚ÌQÆƒ|ƒCƒ“ƒ^
-	MAIL_DATA*	pDat;	///MAIL_DATA‚Ì\’zƒ[ƒNQÆƒ|ƒCƒ“ƒ^
+	SAVEDATA*	savedata;	///<ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+	MAIL_DATA*	pDat;	///MAIL_DATAã®æ§‹ç¯‰ãƒ¯ãƒ¼ã‚¯å‚ç…§ãƒã‚¤ãƒ³ã‚¿
 	MAIL_BLOCK* pBlock;
 }MAIL_PARAM;
 
-///ƒ[ƒ‹ƒ‚ƒWƒ…[ƒ‹ŒÄ‚Ño‚µƒ‚[ƒh
+///ãƒ¡ãƒ¼ãƒ«ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰
 enum{
  MAIL_MODE_VIEW,
  MAIL_MODE_CREATE,

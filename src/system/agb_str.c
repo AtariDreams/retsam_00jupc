@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	agb_str.c
- * @brief	AGB -> DP ������ϊ�
+ * @brief	AGB -> DP 文字列変換
  * @author	taya
  * @date	2006.06.15
  */
@@ -17,7 +17,7 @@
 static const STRCODE CodeTable[][2] = {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/10/12
-	// �C�O���̃X�y�[�X�����������p�ɂȂ�悤�ɏC��
+	// 海外名のスペースが正しく半角になるように修正
 
     // MatchComment: actually ignore this localization change
 	{ spc_, spc_ },	// 0x00
@@ -274,7 +274,7 @@ static const STRCODE CodeTable[][2] = {
 
 //------------------------------------------------------------------
 /**
- * �e����̃X�y�[�X�����R�[�h���擾
+ * 各国語のスペース文字コードを取得
  *
  * @param   langCode		
  *
@@ -288,7 +288,7 @@ static STRCODE get_spc_code( u32 langCode )
 
 //------------------------------------------------------------------
 /**
- * �e����̈��p���i�J���j�R�[�h���擾
+ * 各国語の引用符（開き）コードを取得
  *
  * @param   langCode		
  *
@@ -317,7 +317,7 @@ static STRCODE get_kako2_code( u32 langCode )
 
 //------------------------------------------------------------------
 /**
- * �e����̈��p���i���j�R�[�h���擾
+ * 各国語の引用符（閉じ）コードを取得
  *
  * @param   langCode		
  *
@@ -351,7 +351,7 @@ static STRCODE get_kakot2_code( u32 langCode )
 #define AGB_EOM_CODE	(0xff)
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/12
-// �C�O�ŕs�������������Ă����ꍇ�́A10�����܂ł̔��p"?"�ɂȂ�悤�ɕύX�B
+// 海外で不正文字が入っていた場合は、10文字までの半角"?"になるように変更。
 #if (PM_LANG == LANG_JAPAN)
 #define ALTERNATIVE_CODE	(hate_)
 #define UNKNOWN_STR_LEN		(5)
@@ -363,14 +363,14 @@ static STRCODE get_kakot2_code( u32 langCode )
 
 //------------------------------------------------------------------
 /**
- * AGB -> DP ������ϊ�
+ * AGB -> DP 文字列変換
  *
- * @param   src				AGB������|�C���^
- * @param   dst				�ϊ�������̊i�[��o�b�t�@
- * @param   dst_arysize		dst�̗v�f��
- * @param   langCode		����R�[�h
+ * @param   src				AGB文字列ポインタ
+ * @param   dst				変換文字列の格納先バッファ
+ * @param   dst_arysize		dstの要素数
+ * @param   langCode		言語コード
  *
- * @retval	TRUE���Ɛ���I���^FALSE���ƕϊ��ł��Ȃ��������܂܂�Ă����i"?????"�ɂȂ�j
+ * @retval	TRUEだと正常終了／FALSEだと変換できない文字が含まれていた（"?????"になる）
  */
 //------------------------------------------------------------------
 BOOL AGBSTR_to_DSSTR( const u8* src, STRCODE* dst, u32 dst_arysize, u32 langCode )
@@ -394,7 +394,7 @@ BOOL AGBSTR_to_DSSTR( const u8* src, STRCODE* dst, u32 dst_arysize, u32 langCode
 			{
 				// ----------------------------------------------------------------------------
 				// localize_spec_mark(LANG_ALL) imatake 2006/10/12
-				// �C�O�ŕs�������������Ă����ꍇ�́A10�����܂ł̔��p"?"�ɂȂ�悤�ɕύX�B
+				// 海外で不正文字が入っていた場合は、10文字までの半角"?"になるように変更。
 				dst[p] = ALTERNATIVE_CODE;
 				// ----------------------------------------------------------------------------
 			}

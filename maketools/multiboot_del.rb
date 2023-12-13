@@ -1,13 +1,13 @@
 #!/usr/bin/ruby
 #
-#      Nitro‚©‚çmultiboot lib ‚ğœ‹‚·‚é   2006.05.03
+#      Nitroã‹ã‚‰multiboot lib ã‚’é™¤å»ã™ã‚‹   2006.05.03
 #
 #puts "#{ARGV.length}"
 #ARGV.each{|a| puts"#{a}"}
 
 
 #--
-# ŠÂ‹«•Ï”‚©‚ç–Ú“Iƒtƒ@ƒCƒ‹‚ÌˆÊ’u‚ğì¬‚·‚é
+# ç’°å¢ƒå¤‰æ•°ã‹ã‚‰ç›®çš„ãƒ•ã‚¡ã‚¤ãƒ«ã®ä½ç½®ã‚’ä½œæˆã™ã‚‹
 #--
 def getCommondefsFileName
 
@@ -17,7 +17,7 @@ def getCommondefsFileName
 end
 
 #--
-# ƒtƒ@ƒCƒ‹‚ğŠJ‚«Aˆø”‚Ìlib‚ğ’T‚·
+# ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã€å¼•æ•°ã®libã‚’æ¢ã™
 #--
 def searchTargetLib( filenName , libName )
 
@@ -35,7 +35,7 @@ end
 
 
 #--
-# •Ê‚Ìƒtƒ@ƒCƒ‹‚Éƒ‰ƒCƒuƒ‰ƒŠ‚ª–³‚¢‚à‚Ì‚ğì‚é
+# åˆ¥ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒç„¡ã„ã‚‚ã®ã‚’ä½œã‚‹
 #--
 def createRemoveFile( filenName , libName , newFileName)
 
@@ -55,7 +55,7 @@ def createRemoveFile( filenName , libName , newFileName)
 end
 
 #--
-# ƒtƒ@ƒCƒ‹‚ğ•Ï‚¦‚Ä‚µ‚Ü‚¤   ‘O‚Ì‚ÍEEEc‚µ‚Ä‚¨‚­
+# ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å¤‰ãˆã¦ã—ã¾ã†   å‰ã®ã¯ãƒ»ãƒ»ãƒ»æ®‹ã—ã¦ãŠã
 #--
 
 def replaceFile(fileName, newFileName, oldFileName)

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <imd version="1.6.0">
 
@@ -5750,7 +5750,7 @@
 	triangle_size="34" quad_size="262"/>
 
 <ex_nns_3dme>
-	<ex_model_info scene_name="新規シー" disp_pos="0.000000 60.000000"/>
+	<ex_model_info scene_name="譁ｰ隕上す繝ｼ" disp_pos="0.000000 60.000000"/>
 	<ex_tex_image_array size="61">
 		<ex_tex_image index="0" disp_pos="0.000000 0.000000"/>
 		<ex_tex_image index="1" disp_pos="0.000000 0.000000"/>

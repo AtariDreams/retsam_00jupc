@@ -16,17 +16,17 @@
 
 // ----------------------------------------
 //
-//	w’èƒTƒCƒY•ªƒAƒhƒŒƒX‚ği‚ß‚éƒ}ƒNƒ
-//		i‚ß‚éƒAƒhƒŒƒX‚ÌŒ^‚ÉˆË‘¶‚·‚é
+//	æŒ‡å®šã‚µã‚¤ã‚ºåˆ†ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’é€²ã‚ã‚‹ãƒã‚¯ãƒ­
+//		é€²ã‚ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å‹ã«ä¾å­˜ã™ã‚‹
 //
 // -----------------------------------------
 #define ADRS_CMD(n, m)			((n) += (m))
 
 // -----------------------------------------
 //
-//	Œ^ƒTƒCƒY•ªƒAƒhƒŒƒX‚ği‚ß‚éƒ}ƒNƒ
-//		Å¬’PˆÊ‚ÅƒAƒhƒŒƒX‚ªi‚Ş
-//		ADRS_CMD ‚ğ—˜—p‚·‚é‚Ì‚ÅŒ^‚ÉˆË‘¶‚·‚é
+//	å‹ã‚µã‚¤ã‚ºåˆ†ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’é€²ã‚ã‚‹ãƒã‚¯ãƒ­
+//		æœ€å°å˜ä½ã§ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒé€²ã‚€
+//		ADRS_CMD ã‚’åˆ©ç”¨ã™ã‚‹ã®ã§å‹ã«ä¾å­˜ã™ã‚‹
 //
 // -----------------------------------------
 #define ADRS_SHIFT(n)			(ADRS_CMD(n, 1))
@@ -37,85 +37,85 @@ typedef struct MOVE_FUNC_DATA_tag *MOVE_FUNC_DATA_PTR;
 typedef void (*pAnmFunc)( POKE_ANM_PTR );
 typedef void (*MoveFunc)( MOVE_FUNC_DATA_PTR, POKE_ANM_PTR);
 
-static TAP  GetAdrsParamEx(u32* adrs, u8 s_byte, u8 byte);	///< ƒf[ƒ^æ“¾
-static TAP  GetAdrsParam(u32* adrs, u8 byte);					///< ƒf[ƒ^æ“¾
+static TAP  GetAdrsParamEx(u32* adrs, u8 s_byte, u8 byte);	///< ãƒ‡ãƒ¼ã‚¿å–å¾—
+static TAP  GetAdrsParam(u32* adrs, u8 byte);					///< ãƒ‡ãƒ¼ã‚¿å–å¾—
 static TAP  GetSeqAdrs(u32* adrs);
 
 typedef struct MOVE_FUNC_DATA_tag
 {
-	BOOL Valid;		//ŠÖ”—LŒøƒtƒ‰ƒO
-	int Work[MOVE_FUNC_WORK_MAX];	//ƒ[ƒN
-	int *Target;			//“®ìŠÖ”ƒf[ƒ^“à‚Ì•ÏX‘ÎÛŒ³
-	int *ApplyTarget;		//ƒAƒjƒƒf[ƒ^“à‚Ì•ÏX‘ÎÛæ
+	BOOL Valid;		//é–¢æ•°æœ‰åŠ¹ãƒ•ãƒ©ã‚°
+	int Work[MOVE_FUNC_WORK_MAX];	//ãƒ¯ãƒ¼ã‚¯
+	int *Target;			//å‹•ä½œé–¢æ•°ãƒ‡ãƒ¼ã‚¿å†…ã®å¤‰æ›´å¯¾è±¡å…ƒ
+	int *ApplyTarget;		//ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å†…ã®å¤‰æ›´å¯¾è±¡å…ˆ
 	
-	u8	ApplyType;		//’l‚ğƒZƒbƒg‚·‚é‚©A¡‚Ì’l‚É’l‚ğãæ‚¹‚·‚é‚©‚Ìƒtƒ‰ƒO
+	u8	ApplyType;		//å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã‹ã€ä»Šã®å€¤ã«å€¤ã‚’ä¸Šä¹—ã›ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
 
-	u8	Wait;			//“®ìŠÖ”Às‚Ü‚Å‚ÌƒEƒFƒCƒg
-	int StartVal;		//APPLY_ADD‚ÌŠî€‚Æ‚È‚é’l
-	int TransX;			//‚wˆÚ“®’l
-	int TransY;			//‚xˆÚ“®’l
-	int dx;				//‚wˆÚ“®’liƒIƒtƒZƒbƒgj
-	int dy;				//‚xˆÚ“®’liƒIƒtƒZƒbƒgj
-	int rx;				//Šgk‚w
-	int ry;				//Šgk‚x
-	int Rot;			//‰ñ“]
-	MoveFunc	Func;	//“®ìŠÖ”
+	u8	Wait;			//å‹•ä½œé–¢æ•°å®Ÿè¡Œã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
+	int StartVal;		//APPLY_ADDæ™‚ã®åŸºæº–ã¨ãªã‚‹å€¤
+	int TransX;			//ï¼¸ç§»å‹•å€¤
+	int TransY;			//ï¼¹ç§»å‹•å€¤
+	int dx;				//ï¼¸ç§»å‹•å€¤ï¼ˆã‚ªãƒ•ã‚»ãƒƒãƒˆï¼‰
+	int dy;				//ï¼¹ç§»å‹•å€¤ï¼ˆã‚ªãƒ•ã‚»ãƒƒãƒˆï¼‰
+	int rx;				//æ‹¡ç¸®ï¼¸
+	int ry;				//æ‹¡ç¸®ï¼¹
+	int Rot;			//å›è»¢
+	MoveFunc	Func;	//å‹•ä½œé–¢æ•°
 }MOVE_FUNC_DATA;
 
 typedef struct POKE_ANIME_tag
 {
-	SOFT_SPRITE *SoftSprite;	//ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	TCB_PTR Task;		//“o˜^ƒ^ƒXƒNiƒAƒjƒ’†’f‰ğ•ú—pj
-	void *ArcData;		//ƒA[ƒJƒCƒuƒf[ƒ^
-	u32 *SeqAdrs;		//ƒf[ƒ^ƒV[ƒPƒ“ƒXƒAƒhƒŒƒX
+	SOFT_SPRITE *SoftSprite;	//ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	TCB_PTR Task;		//ç™»éŒ²ã‚¿ã‚¹ã‚¯ï¼ˆã‚¢ãƒ‹ãƒ¡ä¸­æ–­æ™‚è§£æ”¾ç”¨ï¼‰
+	void *ArcData;		//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿
+	u32 *SeqAdrs;		//ãƒ‡ãƒ¼ã‚¿ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-	BOOL Valid;			//ƒf[ƒ^—LŒøƒtƒ‰ƒO
-//	int MonsNo;	//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[	i‚¢‚ç‚È‚¢‚©‚àj
-	int AnimeNo;	//ƒAƒjƒƒiƒ“ƒo[(‚¢‚ç‚È‚¢‚©‚à)
-	int Request;		//ƒAƒjƒ”½‰fƒtƒ‰ƒO
-	int End;			//ƒAƒjƒƒRƒ}ƒ“ƒhI—¹ƒtƒ‰ƒO
-	BOOL EndComp;		//ƒAƒjƒI—¹ƒtƒ‰ƒO
-	int Work[ANM_WORK_MAX];	//ƒ[ƒN
+	BOOL Valid;			//ãƒ‡ãƒ¼ã‚¿æœ‰åŠ¹ãƒ•ãƒ©ã‚°
+//	int MonsNo;	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼	ï¼ˆã„ã‚‰ãªã„ã‹ã‚‚ï¼‰
+	int AnimeNo;	//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼(ã„ã‚‰ãªã„ã‹ã‚‚)
+	int Request;		//ã‚¢ãƒ‹ãƒ¡åæ˜ ãƒ•ãƒ©ã‚°
+	int End;			//ã‚¢ãƒ‹ãƒ¡ã‚³ãƒãƒ³ãƒ‰çµ‚äº†ãƒ•ãƒ©ã‚°
+	BOOL EndComp;		//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒ•ãƒ©ã‚°
+	int Work[ANM_WORK_MAX];	//ãƒ¯ãƒ¼ã‚¯
 	int ReqCount;		//
 	
-	int LoopMax;			//ƒ‹[ƒv‰ñ”
-	int LoopCount;			//Œ»İƒ‹[ƒv‰ñ”
-	u32 *LoopStartAdrs;		//ƒ‹[ƒvŠJnƒAƒhƒŒƒX
+	int LoopMax;			//ãƒ«ãƒ¼ãƒ—å›æ•°
+	int LoopCount;			//ç¾åœ¨ãƒ«ãƒ¼ãƒ—å›æ•°
+	u32 *LoopStartAdrs;		//ãƒ«ãƒ¼ãƒ—é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-	int Wait;			//ƒAƒjƒŠJn‚Ü‚Å‚ÌƒEƒFƒCƒg
+	int Wait;			//ã‚¢ãƒ‹ãƒ¡é–‹å§‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 
-	int OrgX;			//ƒXƒvƒ‰ƒCƒg‚wÀ•W
-	int OrgY;			//ƒXƒvƒ‰ƒCƒg‚xÀ•W
-	int TransX;			//‚wˆÚ“®’l
-	int TransY;			//‚xˆÚ“®’l
-	int dx;				//‚wˆÚ“®’liƒIƒtƒZƒbƒgj
-	int dy;				//‚xˆÚ“®’liƒIƒtƒZƒbƒgj
-	int rx;				//Šgk‚w
-	int ry;				//Šgk‚x
-	int Rot;			//‰ñ“]
+	int OrgX;			//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆï¼¸åº§æ¨™
+	int OrgY;			//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆï¼¹åº§æ¨™
+	int TransX;			//ï¼¸ç§»å‹•å€¤
+	int TransY;			//ï¼¹ç§»å‹•å€¤
+	int dx;				//ï¼¸ç§»å‹•å€¤ï¼ˆã‚ªãƒ•ã‚»ãƒƒãƒˆï¼‰
+	int dy;				//ï¼¹ç§»å‹•å€¤ï¼ˆã‚ªãƒ•ã‚»ãƒƒãƒˆï¼‰
+	int rx;				//æ‹¡ç¸®ï¼¸
+	int ry;				//æ‹¡ç¸®ï¼¹
+	int Rot;			//å›è»¢
 
 	MOVE_FUNC_DATA			MoveFuncData[MOVE_FUNC_ENTRY_MAX];
 
-	u8 PokeReverse;	//ƒ|ƒPƒ‚ƒ“‚²‚Æ‚Ì”½“]ƒtƒ‰ƒO(ƒ|ƒPƒ‚ƒ“‚É‚æ‚Á‚Ä‚Í”½“]‚µ‚È‚¢)@0F”½“]‚µ‚È‚¢@1F”½“]‚·‚é
-	u8 CommandHold;	//“®ìŠÖ”‹N“®’†ƒz[ƒ‹ƒhƒtƒ‰ƒO
-	u8 CorrectDy;	//dy•â³—LŒøƒtƒ‰ƒO
-	u8 PalFadeWaitFlg;	//ƒpƒŒƒbƒgƒtƒF[ƒhI—¹‘Ò‚¿ƒtƒ‰ƒO
+	u8 PokeReverse;	//ãƒã‚±ãƒ¢ãƒ³ã”ã¨ã®åè»¢ãƒ•ãƒ©ã‚°(ãƒã‚±ãƒ¢ãƒ³ã«ã‚ˆã£ã¦ã¯åè»¢ã—ãªã„)ã€€0ï¼šåè»¢ã—ãªã„ã€€1ï¼šåè»¢ã™ã‚‹
+	u8 CommandHold;	//å‹•ä½œé–¢æ•°èµ·å‹•ä¸­ãƒ›ãƒ¼ãƒ«ãƒ‰ãƒ•ãƒ©ã‚°
+	u8 CorrectDy;	//dyè£œæ­£æœ‰åŠ¹ãƒ•ãƒ©ã‚°
+	u8 PalFadeWaitFlg;	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡ãƒ•ãƒ©ã‚°
 
 }POKE_ANIME;
 
 typedef struct POKE_ANIME_SYS_tag
 {
 	POKE_ANIME *PokeAnime;
-	int HeapID;		//ƒq[ƒv‚h‚c
-	u8 Reverse;		//ƒAƒjƒ‚ğ”½“]‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO@0F”½“]‚µ‚È‚¢	1F”½“]‚·‚é
+	int HeapID;		//ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
+	u8 Reverse;		//ã‚¢ãƒ‹ãƒ¡ã‚’åè»¢ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã€€0ï¼šåè»¢ã—ãªã„	1ï¼šåè»¢ã™ã‚‹
 	u8 AnimeNum;
 }POKE_ANIME_SYS;
 
 typedef struct MOVE_FUNC_P_DATA_tag
 {
-	MoveFunc	Func;	//“®ìŠÖ”
-	int ParamNum;		//ƒpƒ‰ƒ[ƒ^”
-	int TargetWorkIdx;	//•ÏX‘ÎÛ‚ğŠi”[‚µ‚½ƒ[ƒN‚ÌƒCƒ“ƒfƒbƒNƒX
+	MoveFunc	Func;	//å‹•ä½œé–¢æ•°
+	int ParamNum;		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°
+	int TargetWorkIdx;	//å¤‰æ›´å¯¾è±¡ã‚’æ ¼ç´ã—ãŸãƒ¯ãƒ¼ã‚¯ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 }MOVE_FUNC_P_DATA;
 
 static void CallMoveFuc(POKE_ANIME *pAnm, const int inMoveFuncNo);
@@ -135,13 +135,13 @@ static void PAnm_DivWorkVal(POKE_ANIME *pAnm);
 static void PAnm_ModWorkVal(POKE_ANIME *pAnm);
 static void	PAnm_StartLoop(POKE_ANIME *pAnm);
 static void	PAnm_EndLoop(POKE_ANIME *pAnm);
-static void	PAnm_SetVal(POKE_ANIME *pAnm);		//ƒ•Ê‚ÌƒRƒ}ƒ“ƒh‚ğg‚¤‚æ‚¤‚É(Šú“I‚Él‚¦‚ÄƒRƒ}ƒ“ƒh‚ÍÁ‚µ‚Ü‚¹‚ñ) 20060801
-static void	PAnm_AddVal(POKE_ANIME *pAnm);		//ƒ•Ê‚ÌƒRƒ}ƒ“ƒh‚ğg‚¤‚æ‚¤‚É(Šú“I‚Él‚¦‚ÄƒRƒ}ƒ“ƒh‚ÍÁ‚µ‚Ü‚¹‚ñ) 20060801
+static void	PAnm_SetVal(POKE_ANIME *pAnm);		//ï¼œåˆ¥ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ä½¿ã†ã‚ˆã†ã«(æ™‚æœŸçš„ã«è€ƒãˆã¦ã‚³ãƒãƒ³ãƒ‰ã¯æ¶ˆã—ã¾ã›ã‚“) 20060801
+static void	PAnm_AddVal(POKE_ANIME *pAnm);		//ï¼œåˆ¥ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ä½¿ã†ã‚ˆã†ã«(æ™‚æœŸçš„ã«è€ƒãˆã¦ã‚³ãƒãƒ³ãƒ‰ã¯æ¶ˆã—ã¾ã›ã‚“) 20060801
 static void PAnm_SetAddVal(POKE_ANIME *pAnm);
 static void PAnm_SetWorkValSin(POKE_ANIME *pAnm);
 static void PAnm_SetWorkValCos(POKE_ANIME *pAnm);
-static void PAnm_SetTrans(POKE_ANIME *pAnm);	//ƒ•Ê‚ÌƒRƒ}ƒ“ƒh‚ğg‚¤‚æ‚¤‚É(Šú“I‚Él‚¦‚ÄƒRƒ}ƒ“ƒh‚ÍÁ‚µ‚Ü‚¹‚ñ) 20060801
-static void PAnm_AddTrans(POKE_ANIME *pAnm);	//ƒ•Ê‚ÌƒRƒ}ƒ“ƒh‚ğg‚¤‚æ‚¤‚É(Šú“I‚Él‚¦‚ÄƒRƒ}ƒ“ƒh‚ÍÁ‚µ‚Ü‚¹‚ñ) 20060801
+static void PAnm_SetTrans(POKE_ANIME *pAnm);	//ï¼œåˆ¥ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ä½¿ã†ã‚ˆã†ã«(æ™‚æœŸçš„ã«è€ƒãˆã¦ã‚³ãƒãƒ³ãƒ‰ã¯æ¶ˆã—ã¾ã›ã‚“) 20060801
+static void PAnm_AddTrans(POKE_ANIME *pAnm);	//ï¼œåˆ¥ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ä½¿ã†ã‚ˆã†ã«(æ™‚æœŸçš„ã«è€ƒãˆã¦ã‚³ãƒãƒ³ãƒ‰ã¯æ¶ˆã—ã¾ã›ã‚“) 20060801
 static void PAnm_SetAddParam(POKE_ANIME *pAnm);
 static void PAnm_ApplyTrans(POKE_ANIME *pAnm);
 static void PAnm_ApplyAffine(POKE_ANIME *pAnm);
@@ -165,33 +165,33 @@ static void PMove_LineDivTime(MOVE_FUNC_DATA_PTR pMFD, POKE_ANM_PTR pAnm);
 static void PMove_LineDst(MOVE_FUNC_DATA_PTR pMFD, POKE_ANM_PTR pAnm);
 
 #define CHARA_MAX	(25)
-//«Ši•ÊƒAƒjƒƒnƒbƒVƒ…ƒe[ƒuƒ‹i0F”hè‚È“®‚«@1F•’Ê@2FT‚¦‚ß‚È“®‚«j
+//æ€§æ ¼åˆ¥ã‚¢ãƒ‹ãƒ¡ãƒãƒƒã‚·ãƒ¥ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆ0ï¼šæ´¾æ‰‹ãªå‹•ãã€€1ï¼šæ™®é€šã€€2ï¼šæ§ãˆã‚ãªå‹•ãï¼‰
 static const u8 PesrsonalityTbl[CHARA_MAX] = {
-	0,	//‚ª‚ñ‚Î‚è‚â
-	2,	//‚³‚İ‚µ‚ª‚è
-	0,	//‚ä‚¤‚©‚ñ
-	0,	//‚¢‚¶‚Á‚Ï‚è
-	0,	//‚â‚ñ‚¿‚á
-	1,	//‚¸‚Ô‚Æ‚¢
-	1,	//‚·‚È‚¨
-	1,	//‚Ì‚ñ‚«
-	0,	//‚í‚ñ‚Ï‚­
-	1,	//‚Ì‚¤‚Ä‚ñ‚«
-	2,	//‚¨‚­‚Ñ‚å‚¤
-	0,	//‚¹‚Á‚©‚¿
-	1,	//‚Ü‚¶‚ß
-	0,	//‚æ‚¤‚«
-	0,	//‚Ş‚¶‚á‚«
-	2,	//‚Ğ‚©‚¦‚ß
-	2,	//‚¨‚Á‚Æ‚è
-	2,	//‚ê‚¢‚¹‚¢
-	2,	//‚Ä‚ê‚â
-	1,	//‚¤‚Á‚©‚è‚â
-	1,	//‚¨‚¾‚â‚©
-	2,	//‚¨‚Æ‚È‚µ‚¢
-	1,	//‚È‚Ü‚¢‚«
-	2,	//‚µ‚ñ‚¿‚å‚¤
-	1,	//‚«‚Ü‚®‚ê
+	0,	//ãŒã‚“ã°ã‚Šã‚„
+	2,	//ã•ã¿ã—ãŒã‚Š
+	0,	//ã‚†ã†ã‹ã‚“
+	0,	//ã„ã˜ã£ã±ã‚Š
+	0,	//ã‚„ã‚“ã¡ã‚ƒ
+	1,	//ãšã¶ã¨ã„
+	1,	//ã™ãªãŠ
+	1,	//ã®ã‚“ã
+	0,	//ã‚ã‚“ã±ã
+	1,	//ã®ã†ã¦ã‚“ã
+	2,	//ãŠãã³ã‚‡ã†
+	0,	//ã›ã£ã‹ã¡
+	1,	//ã¾ã˜ã‚
+	0,	//ã‚ˆã†ã
+	0,	//ã‚€ã˜ã‚ƒã
+	2,	//ã²ã‹ãˆã‚
+	2,	//ãŠã£ã¨ã‚Š
+	2,	//ã‚Œã„ã›ã„
+	2,	//ã¦ã‚Œã‚„
+	1,	//ã†ã£ã‹ã‚Šã‚„
+	1,	//ãŠã ã‚„ã‹
+	2,	//ãŠã¨ãªã—ã„
+	1,	//ãªã¾ã„ã
+	2,	//ã—ã‚“ã¡ã‚‡ã†
+	1,	//ãã¾ãã‚Œ
 };
 
 static const pAnmFunc PokeAnmCmdList[ANM_CMD_MAX] = {
@@ -208,13 +208,13 @@ static const pAnmFunc PokeAnmCmdList[ANM_CMD_MAX] = {
 	PAnm_ModWorkVal,
 	PAnm_StartLoop,
 	PAnm_EndLoop,
-	PAnm_SetVal,		//ƒ•Ê‚ÌƒRƒ}ƒ“ƒh‚ğg‚¤‚æ‚¤‚É(Šú“I‚Él‚¦‚ÄƒRƒ}ƒ“ƒh‚ÍÁ‚µ‚Ü‚¹‚ñ) 20060801
-	PAnm_AddVal,		//ƒ•Ê‚ÌƒRƒ}ƒ“ƒh‚ğg‚¤‚æ‚¤‚É(Šú“I‚Él‚¦‚ÄƒRƒ}ƒ“ƒh‚ÍÁ‚µ‚Ü‚¹‚ñ) 20060801
+	PAnm_SetVal,		//ï¼œåˆ¥ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ä½¿ã†ã‚ˆã†ã«(æ™‚æœŸçš„ã«è€ƒãˆã¦ã‚³ãƒãƒ³ãƒ‰ã¯æ¶ˆã—ã¾ã›ã‚“) 20060801
+	PAnm_AddVal,		//ï¼œåˆ¥ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ä½¿ã†ã‚ˆã†ã«(æ™‚æœŸçš„ã«è€ƒãˆã¦ã‚³ãƒãƒ³ãƒ‰ã¯æ¶ˆã—ã¾ã›ã‚“) 20060801
 	PAnm_SetAddVal,
 	PAnm_SetWorkValSin,
 	PAnm_SetWorkValCos,
-	PAnm_SetTrans,	//ƒ•Ê‚ÌƒRƒ}ƒ“ƒh‚ğg‚¤‚æ‚¤‚É(Šú“I‚Él‚¦‚ÄƒRƒ}ƒ“ƒh‚ÍÁ‚µ‚Ü‚¹‚ñ) 20060801
-	PAnm_AddTrans,	//ƒ•Ê‚ÌƒRƒ}ƒ“ƒh‚ğg‚¤‚æ‚¤‚É(Šú“I‚Él‚¦‚ÄƒRƒ}ƒ“ƒh‚ÍÁ‚µ‚Ü‚¹‚ñ) 20060801
+	PAnm_SetTrans,	//ï¼œåˆ¥ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ä½¿ã†ã‚ˆã†ã«(æ™‚æœŸçš„ã«è€ƒãˆã¦ã‚³ãƒãƒ³ãƒ‰ã¯æ¶ˆã—ã¾ã›ã‚“) 20060801
+	PAnm_AddTrans,	//ï¼œåˆ¥ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ä½¿ã†ã‚ˆã†ã«(æ™‚æœŸçš„ã«è€ƒãˆã¦ã‚³ãƒãƒ³ãƒ‰ã¯æ¶ˆã—ã¾ã›ã‚“) 20060801
 	PAnm_SetAddParam,
 	PAnm_ApplyTrans,
 	PAnm_ApplyAffine,
@@ -241,11 +241,11 @@ enum{
 	MOVE_LINE_DST,
 };
 
-#define F_PARAM_NUM_CURVE			(6)	//ƒJ[ƒuƒ^ƒCƒvA‘ÎÛAU•A‰ÁZŠp“xAˆÊ‘ŠAŒvZ‰ñ”	Œv6
-#define F_PARAM_NUM_CURVE_DIVTIME	(6)	//ƒJ[ƒuƒ^ƒCƒvA‘ÎÛAU•AŠp“xAˆÊ‘ŠAŒvZ‰ñ”	Œv6
-#define F_PARAM_NUM_LINE			(4)	//‘ÎÛA‰‘¬“xA‰Á‘¬“xAŒvZ‰ñ”	Œv4
-#define F_PARAM_NUM_LINE_DIVTIME	(3)	//‘ÎÛAˆÚ“®’lAŒvZ‰ñ”	Œv3
-#define F_PARAM_NUM_LINE_DST		(4)	//‘ÎÛA‰‘¬“xA‰Á‘¬“xA–Ú“I’l	Œv4
+#define F_PARAM_NUM_CURVE			(6)	//ã‚«ãƒ¼ãƒ–ã‚¿ã‚¤ãƒ—ã€å¯¾è±¡ã€æŒ¯å¹…ã€åŠ ç®—è§’åº¦ã€ä½ç›¸ã€è¨ˆç®—å›æ•°	è¨ˆ6
+#define F_PARAM_NUM_CURVE_DIVTIME	(6)	//ã‚«ãƒ¼ãƒ–ã‚¿ã‚¤ãƒ—ã€å¯¾è±¡ã€æŒ¯å¹…ã€è§’åº¦ã€ä½ç›¸ã€è¨ˆç®—å›æ•°	è¨ˆ6
+#define F_PARAM_NUM_LINE			(4)	//å¯¾è±¡ã€åˆé€Ÿåº¦ã€åŠ é€Ÿåº¦ã€è¨ˆç®—å›æ•°	è¨ˆ4
+#define F_PARAM_NUM_LINE_DIVTIME	(3)	//å¯¾è±¡ã€ç§»å‹•å€¤ã€è¨ˆç®—å›æ•°	è¨ˆ3
+#define F_PARAM_NUM_LINE_DST		(4)	//å¯¾è±¡ã€åˆé€Ÿåº¦ã€åŠ é€Ÿåº¦ã€ç›®çš„å€¤	è¨ˆ4
 
 static const MOVE_FUNC_P_DATA MoveFuncTbl[] = {
 	{PMove_Curve, F_PARAM_NUM_CURVE, 1},
@@ -257,10 +257,10 @@ static const MOVE_FUNC_P_DATA MoveFuncTbl[] = {
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒeƒBƒ“ƒOƒpƒ‰ƒ[ƒ^‚Ìì¬
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä½œæˆ
  *
- * @param	inMonsNo	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param	outParam	ƒpƒ‰ƒ[ƒ^Ši”[ƒoƒbƒtƒ@
+ * @param	inMonsNo	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param	outParam	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none
  */
@@ -269,22 +269,22 @@ void PokeAnm_CreateSettingParam(const int inMonsNo, P_ANM_SETTING_PARAM *outPara
 {
 	GF_ASSERT(outParam!=NULL&&"ERROR:paramater is NULL");
 	
-	outParam->AnimeNo = 0;	//0‚ğƒZƒbƒg
-	outParam->Wait = 0;		//0‚ğƒZƒbƒg
-	outParam->Reverse = PokePersonalParaGet(inMonsNo, ID_PER_reverse);	//ƒp[ƒ\ƒiƒ‹‚©‚ç”½“]ƒtƒ‰ƒO‚ğæ“¾
+	outParam->AnimeNo = 0;	//0ã‚’ã‚»ãƒƒãƒˆ
+	outParam->Wait = 0;		//0ã‚’ã‚»ãƒƒãƒˆ
+	outParam->Reverse = PokePersonalParaGet(inMonsNo, ID_PER_reverse);	//ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ã‹ã‚‰åè»¢ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 	outParam->Reverse ^= 1;
 }
 
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“—pŠÇ—ƒƒ‚ƒŠ‚ÌŠm•Û
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ç®¡ç†ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
  *
- * @param	inHeapID	ƒq[ƒvID
- * @param	inAllocNum	ƒAƒjƒŠm•Û”
- * @param	inReverse	”½“]‹–‰Âƒtƒ‰ƒO
+ * @param	inHeapID	ãƒ’ãƒ¼ãƒ—ID
+ * @param	inAllocNum	ã‚¢ãƒ‹ãƒ¡ç¢ºä¿æ•°
+ * @param	inReverse	åè»¢è¨±å¯ãƒ•ãƒ©ã‚°
  *
- * @retval	POKE_ANM_S_PTR	Šm•Û‚µ‚½ƒ|ƒPƒ‚ƒ“ƒAƒjƒŠÇ——Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	POKE_ANM_S_PTR	ç¢ºä¿ã—ãŸãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ç®¡ç†é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 POKE_ANM_SYS_PTR PokeAnm_AllocMemory(const int inHeapID, const int inAllocNum, const u8 inReverse)
@@ -295,7 +295,7 @@ POKE_ANM_SYS_PTR PokeAnm_AllocMemory(const int inHeapID, const int inAllocNum, c
 	ptr->AnimeNum = inAllocNum;
 	ptr->HeapID = inHeapID;
 	ptr->PokeAnime = sys_AllocMemory(inHeapID, sizeof(POKE_ANIME)*inAllocNum);
-	//ƒNƒŠƒA
+	//ã‚¯ãƒªã‚¢
 	MI_CpuClear8(ptr->PokeAnime,sizeof(POKE_ANIME)*inAllocNum);
 	
 	return  ptr;
@@ -303,9 +303,9 @@ POKE_ANM_SYS_PTR PokeAnm_AllocMemory(const int inHeapID, const int inAllocNum, c
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“—pŠÇ—ƒƒ‚ƒŠ‰ğ•ú
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ç®¡ç†ãƒ¡ãƒ¢ãƒªè§£æ”¾
  *
- * @param	ptr				ƒ|ƒPƒ‚ƒ“ƒAƒjƒ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ptr				ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -317,11 +317,11 @@ void PokeAnm_FreeMemory(POKE_ANM_SYS_PTR ptr)
 }
 //--------------------------------------------------------------
 /**
- * «Ši‚©‚ç”w–Êƒ|ƒPƒ‚ƒ“ƒAƒjƒ‚ÌƒXƒƒbƒg”Ô†‚ğ•Ô‚·i0`2j
+ * æ€§æ ¼ã‹ã‚‰èƒŒé¢ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ã®ã‚¹ãƒ­ãƒƒãƒˆç•ªå·ã‚’è¿”ã™ï¼ˆ0ã€œ2ï¼‰
  *
- * @param	inChar			ƒ|ƒPƒ‚ƒ“‚Ì«Ši
+ * @param	inChar			ãƒã‚±ãƒ¢ãƒ³ã®æ€§æ ¼
  *
- * @retval	u8			Ì—p‚·‚éƒXƒƒbƒg”Ô†i0`2j
+ * @retval	u8			æ¡ç”¨ã™ã‚‹ã‚¹ãƒ­ãƒƒãƒˆç•ªå·ï¼ˆ0ã€œ2ï¼‰
  */
 //--------------------------------------------------------------
 u8 PokeAnm_GetBackAnmSlotNo(	const u8 inChar )
@@ -335,12 +335,12 @@ u8 PokeAnm_GetBackAnmSlotNo(	const u8 inChar )
 
 //--------------------------------------------------------------
 /**
- * ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚Æƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ğƒZƒbƒg‚·‚é
+ * ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã¨ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param	ptr				ƒ|ƒPƒ‚ƒ“ƒAƒjƒ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	ss				ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inParam			ƒAƒjƒƒZƒbƒeƒBƒ“ƒOƒpƒ‰ƒ[ƒ^
- * @param	inEntryIndex	“o˜^ƒCƒ“ƒfƒbƒNƒX
+ * @param	ptr				ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ss				ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inParam			ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	inEntryIndex	ç™»éŒ²ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @retval	none
  */
@@ -356,16 +356,16 @@ void PokeAnm_SetPokeAnime(	POKE_ANM_SYS_PTR ptr, SOFT_SPRITE *ss,
 	GF_ASSERT((idx<ptr->AnimeNum)&&"ERROR:IndexOver");
 	GF_ASSERT(ptr->PokeAnime[idx].Valid==FALSE&&"ERROR:PokeAnime Entry already");
 
-	//ƒNƒŠƒA
+	//ã‚¯ãƒªã‚¢
 	MI_CpuClear8(&ptr->PokeAnime[idx],sizeof(POKE_ANIME));
 
-	//ƒf[ƒ^—LŒø
+	//ãƒ‡ãƒ¼ã‚¿æœ‰åŠ¹
 	ptr->PokeAnime[idx].Valid = TRUE;
 
-	//ƒXƒvƒ‰ƒCƒgƒZƒbƒg
+	//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚»ãƒƒãƒˆ
 	ptr->PokeAnime[idx].SoftSprite = ss;
 #ifdef PM_DEBUG	
-	//Šgk—¦‚ğƒ`ƒFƒbƒN
+	//æ‹¡ç¸®ç‡ã‚’ãƒã‚§ãƒƒã‚¯
 	{
 		int aff_x,aff_y;
 		aff_x = SoftSpriteParaGet(ss, SS_PARA_AFF_X);
@@ -373,42 +373,42 @@ void PokeAnm_SetPokeAnime(	POKE_ANM_SYS_PTR ptr, SOFT_SPRITE *ss,
 		GF_ASSERT( (aff_x==0x100)&&(aff_y==0x100) );
 	}
 #endif	
-	//ƒAƒjƒƒiƒ“ƒo[”ÍˆÍŠO‘Îˆ
+	//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ç¯„å›²å¤–å¯¾å‡¦
 	if (anime_no >= POKE_ANIME_MAX){
 		anime_no = 0;
 		wait = 0;
-		OS_Printf( " Å‘å’´‚¦‚½\n" );
+		OS_Printf( " æœ€å¤§è¶…ãˆãŸ\n" );
 	}
 	
-	//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚©‚çƒAƒjƒ[ƒVƒ‡ƒ“‚ğ“Á’è
+	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ç‰¹å®š
 	ptr->PokeAnime[idx].AnimeNo = anime_no;
 
-	//”½“]ƒtƒ‰ƒOƒZƒbƒg
+	//åè»¢ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 	if (ptr->Reverse){
-		//ƒ‚ƒ“ƒXƒ^[‚²‚Æ‚É”½“]‚ğŒ©‚é
+		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã”ã¨ã«åè»¢ã‚’è¦‹ã‚‹
 		ptr->PokeAnime[idx].PokeReverse = inParam->Reverse;
 	}else{
 		ptr->PokeAnime[idx].PokeReverse = 0;
 	}
 
-	//ƒAƒjƒƒA[ƒJƒCƒuƒf[ƒ^ƒZƒbƒg
+	//ã‚¢ãƒ‹ãƒ¡ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	ptr->PokeAnime[idx].ArcData =
 		ArchiveDataLoadMallocLo(ARC_POKE_ANM, ptr->PokeAnime[idx].AnimeNo, ptr->HeapID );
 	ptr->PokeAnime[idx].SeqAdrs = (u32*)ptr->PokeAnime[idx].ArcData;
 	
-	//ƒAƒjƒI—¹ƒtƒ‰ƒOƒIƒt
+	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒ•ãƒ©ã‚°ã‚ªãƒ•
 	ptr->PokeAnime[idx].End = 0;
 	ptr->PokeAnime[idx].EndComp = FALSE;
-	//ƒz[ƒ‹ƒhƒNƒŠƒA
+	//ãƒ›ãƒ¼ãƒ«ãƒ‰ã‚¯ãƒªã‚¢
 	ptr->PokeAnime[idx].CommandHold = 0;
-	//dy•â³–³Œø
+	//dyè£œæ­£ç„¡åŠ¹
 	ptr->PokeAnime[idx].CorrectDy = CORRECT_OFF;
-	//ƒpƒŒƒbƒg‘Ò‚¿ó‘ÔƒNƒŠƒA
+	//ãƒ‘ãƒ¬ãƒƒãƒˆå¾…ã¡çŠ¶æ…‹ã‚¯ãƒªã‚¢
 	ptr->PokeAnime[idx].PalFadeWaitFlg = 0;
-	//ƒAƒjƒ“o˜^iƒ^ƒXƒN“o˜^j‚Æƒ^ƒXƒN‹L‰¯
+	//ã‚¢ãƒ‹ãƒ¡ç™»éŒ²ï¼ˆã‚¿ã‚¹ã‚¯ç™»éŒ²ï¼‰ã¨ã‚¿ã‚¹ã‚¯è¨˜æ†¶
 	ptr->PokeAnime[idx].Task = TCB_Add(PokemonAnimeTask, &ptr->PokeAnime[idx], 0);
 
-	//ƒAƒjƒŠJnƒEƒFƒCƒg‚ğƒZƒbƒg
+	//ã‚¢ãƒ‹ãƒ¡é–‹å§‹ã‚¦ã‚§ã‚¤ãƒˆã‚’ã‚»ãƒƒãƒˆ
 	ptr->PokeAnime[idx].Wait = wait;		
 
 	ptr->PokeAnime[idx].OrgX = SoftSpriteParaGet(ss,SS_PARA_POS_X);
@@ -426,12 +426,12 @@ void PokeAnm_SetPokeAnime(	POKE_ANM_SYS_PTR ptr, SOFT_SPRITE *ss,
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“I—¹‚ğŒŸo
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ã‚’æ¤œå‡º
  *
- * @param	ptr				ƒ|ƒPƒ‚ƒ“ƒAƒjƒ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inEntryIndex	‚O`‚R‚Ü‚Å‚Ì“o˜^ƒCƒ“ƒfƒbƒNƒX
+ * @param	ptr				ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inEntryIndex	ï¼ã€œï¼“ã¾ã§ã®ç™»éŒ²ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @retval	BOOL	TRUE:I—¹		FALSE:Œp‘±
+ * @retval	BOOL	TRUE:çµ‚äº†		FALSE:ç¶™ç¶š
  */
 //--------------------------------------------------------------
 BOOL PokeAnm_IsFinished(POKE_ANM_SYS_PTR ptr, const u8 inEntryIndex)
@@ -443,10 +443,10 @@ BOOL PokeAnm_IsFinished(POKE_ANM_SYS_PTR ptr, const u8 inEntryIndex)
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“‹­§I—¹(ƒ^ƒXƒNíœ)
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å¼·åˆ¶çµ‚äº†(ã‚¿ã‚¹ã‚¯å‰Šé™¤)
  *
- * @param	ptr				ƒ|ƒPƒ‚ƒ“ƒAƒjƒ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inEntryIndex	‚O`‚R‚Ü‚Å‚Ì“o˜^ƒCƒ“ƒfƒbƒNƒX
+ * @param	ptr				ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inEntryIndex	ï¼ã€œï¼“ã¾ã§ã®ç™»éŒ²ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @retval	none
  */
@@ -457,18 +457,18 @@ void PokeAnm_EndAnimeForce(POKE_ANM_SYS_PTR ptr, const u8 inEntryIndex)
 		TCB_Delete(ptr->PokeAnime[inEntryIndex].Task);
 		ptr->PokeAnime[inEntryIndex].Task = NULL;
 		ptr->PokeAnime[inEntryIndex].EndComp = TRUE;
-		ptr->PokeAnime[inEntryIndex].Valid = FALSE;		//ƒAƒjƒ–³Œø
-		//ƒAƒjƒƒf[ƒ^‰ğ•ú
+		ptr->PokeAnime[inEntryIndex].Valid = FALSE;		//ã‚¢ãƒ‹ãƒ¡ç„¡åŠ¹
+		//ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 		sys_FreeMemoryEz(ptr->PokeAnime[inEntryIndex].ArcData);
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒXƒN
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¹ã‚¯
  *
- * @param	tcb		ƒ^ƒXƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	work	ƒ^ƒXƒNƒ[ƒN
+ * @param	tcb		ã‚¿ã‚¹ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -484,20 +484,20 @@ static void	PokemonAnimeTask(TCB_PTR tcb, void *work)
 	
 	if (anime->End){
 		anime->EndComp = TRUE;
-		anime->Valid = FALSE;		//ƒAƒjƒ–³Œø
-		//ƒ^ƒXƒN”jŠü
+		anime->Valid = FALSE;		//ã‚¢ãƒ‹ãƒ¡ç„¡åŠ¹
+		//ã‚¿ã‚¹ã‚¯ç ´æ£„
 		TCB_Delete(tcb);
 		anime->Task = NULL;
-		//ƒAƒjƒƒf[ƒ^‰ğ•ú
+		//ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 		sys_FreeMemoryEz(anime->ArcData);
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhÀsŠÖ”
+ * ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œé–¢æ•°
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -512,13 +512,13 @@ static void ExecutePokeAnime(POKE_ANIME *pAnm)
 		u8 i;
 		u8 invalid;
 		MOVE_FUNC_DATA_PTR mfd_ptr;
-		//“®ìŠÖ”ˆ—
+		//å‹•ä½œé–¢æ•°å‡¦ç†
 		invalid = 0;
 		for(i=0;i<MOVE_FUNC_ENTRY_MAX;i++){
 			mfd_ptr = &(pAnm->MoveFuncData[i]);
 			if (mfd_ptr->Valid){
 				if (mfd_ptr->Wait == 0){
-					///“®ìŠÖ”Às
+					///å‹•ä½œé–¢æ•°å®Ÿè¡Œ
 					mfd_ptr->Func(mfd_ptr,pAnm);
 				}else{
 					mfd_ptr->Wait--;
@@ -527,33 +527,33 @@ static void ExecutePokeAnime(POKE_ANIME *pAnm)
 				invalid++;
 			}
 		}
-		if (invalid == MOVE_FUNC_ENTRY_MAX){	//“®ìŠÖ”‚ª‘S‚ÄI—¹‚µ‚Ä‚¢‚é‚È‚ç‚Î
-			//ƒRƒ}ƒ“ƒh‰ğßƒz[ƒ‹ƒh‚ğ‰ğœ
+		if (invalid == MOVE_FUNC_ENTRY_MAX){	//å‹•ä½œé–¢æ•°ãŒå…¨ã¦çµ‚äº†ã—ã¦ã„ã‚‹ãªã‚‰ã°
+			//ã‚³ãƒãƒ³ãƒ‰è§£é‡ˆãƒ›ãƒ¼ãƒ«ãƒ‰ã‚’è§£é™¤
 			pAnm->CommandHold = 0;
 		}
 	}
 
-	if (pAnm->CommandHold){	//“®ìŠÖ”‚É‚æ‚èƒRƒ}ƒ“ƒh‰ğß‚ğƒz[ƒ‹ƒh‚µ‚Ä‚¢‚é‚È‚ç‚Î
-		//Œ»İ‚Ü‚Å‚ÌŒvZŒ‹‰Ê‚ğƒXƒvƒ‰ƒCƒg‚É”½‰f‚³‚¹‚ÄAƒAƒjƒ[ƒVƒ‡ƒ“‚ğÀs
+	if (pAnm->CommandHold){	//å‹•ä½œé–¢æ•°ã«ã‚ˆã‚Šã‚³ãƒãƒ³ãƒ‰è§£é‡ˆã‚’ãƒ›ãƒ¼ãƒ«ãƒ‰ã—ã¦ã„ã‚‹ãªã‚‰ã°
+		//ç¾åœ¨ã¾ã§ã®è¨ˆç®—çµæœã‚’ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«åæ˜ ã•ã›ã¦ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å®Ÿè¡Œ
 		PAnm_ApplyTrans(pAnm);
 		PAnm_ApplyAffine(pAnm);
 		return;
 	}
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhI—¹‘Ò‚¿ó‘Ô‚È‚ç
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡çŠ¶æ…‹ãªã‚‰
 	if (pAnm->PalFadeWaitFlg){
-		//I‚í‚é‚Ü‚ÅŸ‚ÌƒRƒ}ƒ“ƒh‚ğÀs‚µ‚È‚¢
-		if( !SoftSpritePalFadeExist(pAnm->SoftSprite) ){//ƒtƒF[ƒh‚Ìó‹µ‚ğ‚İ‚é
-			pAnm->PalFadeWaitFlg = 0;//ƒtƒF[ƒhI—¹
+		//çµ‚ã‚ã‚‹ã¾ã§æ¬¡ã®ã‚³ãƒãƒ³ãƒ‰ã‚’å®Ÿè¡Œã—ãªã„
+		if( !SoftSpritePalFadeExist(pAnm->SoftSprite) ){//ãƒ•ã‚§ãƒ¼ãƒ‰ã®çŠ¶æ³ã‚’ã¿ã‚‹
+			pAnm->PalFadeWaitFlg = 0;//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
 		}else{
-			return ;//ƒtƒF[ƒhŒp‘±‚µ‚Ä‚é‚Ì‚ÅA•Ô‚·
+			return ;//ãƒ•ã‚§ãƒ¼ãƒ‰ç¶™ç¶šã—ã¦ã‚‹ã®ã§ã€è¿”ã™
 		}
 	}
 
-	while(1) {	//ƒAƒjƒ”½‰fƒŠƒNƒGƒXƒg‚ª‚©‚©‚é‚Ü‚ÅÀs
+	while(1) {	//ã‚¢ãƒ‹ãƒ¡åæ˜ ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‹ã‹ã‚‹ã¾ã§å®Ÿè¡Œ
 ///		OS_Printf("val=%d\n",(u32)(*pAnm->SeqAdrs));
 		pAnm->ReqCount++;
-		//ÀsŠÖ”
+		//å®Ÿè¡Œé–¢æ•°
 		GF_ASSERT((u32)*(pAnm->SeqAdrs)<ANM_CMD_MAX&&"ERROR:AnimeCmdOver");
 		func = PokeAnmCmdList[(u32)*(pAnm->SeqAdrs)];
 		func(pAnm);
@@ -566,18 +566,18 @@ static void ExecutePokeAnime(POKE_ANIME *pAnm)
 ///				OS_Printf("pos = %d\n",SoftSpriteParaGet(pAnm->SoftSprite,SS_PARA_POS_Y));
 				break;
 			}else if(pAnm->CommandHold){
-				//“®ìŠÖ”‰‰ñ•Ï‰»‚ğ”½‰f
+				//å‹•ä½œé–¢æ•°åˆå›å¤‰åŒ–ã‚’åæ˜ 
 				PAnm_ApplyTrans(pAnm);
 				PAnm_ApplyAffine(pAnm);
 				break;
 			}
 		}
 
-		//–³ŒÀƒ‹[ƒv‰ñ”ğ
+		//ç„¡é™ãƒ«ãƒ¼ãƒ—å›é¿
 		if (pAnm->ReqCount >= REQUEST_MAX)
 		{
 			GF_ASSERT(0&&"Request too long");
-			//ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u–ß‚µ‚Æ‚­H
+			//ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®æˆ»ã—ã¨ãï¼Ÿ
 			pAnm->End = 1;
 			break;
 		}
@@ -586,13 +586,13 @@ static void ExecutePokeAnime(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * @brief	w’èƒoƒCƒg”ƒf[ƒ^‚ğæ“¾
+ * @brief	æŒ‡å®šãƒã‚¤ãƒˆæ•°ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	adrs	æ“¾‚·‚é‘ÎÛƒAƒhƒŒƒX
- * @param	s_byte	ŠJn‚·‚éƒoƒCƒgˆÊ’u
- * @param	byte	æ“¾‚·‚éƒoƒCƒg”
+ * @param	adrs	å–å¾—ã™ã‚‹å¯¾è±¡ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	s_byte	é–‹å§‹ã™ã‚‹ãƒã‚¤ãƒˆä½ç½®
+ * @param	byte	å–å¾—ã™ã‚‹ãƒã‚¤ãƒˆæ•°
  *
- * @retval	TAP	’l
+ * @retval	TAP	å€¤
  *
  */
 //--------------------------------------------------------------
@@ -608,12 +608,12 @@ static TAP GetAdrsParamEx(u32* adrs, u8 s_byte, u8 byte)
 
 //--------------------------------------------------------------
 /**
- * @brief	w’èƒoƒCƒg”ƒf[ƒ^‚ğæ“¾
+ * @brief	æŒ‡å®šãƒã‚¤ãƒˆæ•°ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	adrs	æ“¾‚·‚é‘ÎÛƒAƒhƒŒƒX
- * @param	byte	æ“¾‚·‚éƒoƒCƒg”
+ * @param	adrs	å–å¾—ã™ã‚‹å¯¾è±¡ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	byte	å–å¾—ã™ã‚‹ãƒã‚¤ãƒˆæ•°
  *
- * @retval	TAP		’l
+ * @retval	TAP		å€¤
  *
  */
 //--------------------------------------------------------------
@@ -628,11 +628,11 @@ static TAP GetAdrsParam(u32* adrs, u8 byte)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXƒAƒhƒŒƒX‚ğæ“¾
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- * @param	adrs	æ“¾‚·‚é‘ÎÛƒAƒhƒŒƒX
+ * @param	adrs	å–å¾—ã™ã‚‹å¯¾è±¡ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * @retval	TAP		’l
+ * @retval	TAP		å€¤
  *
  */
 //--------------------------------------------------------------
@@ -643,10 +643,10 @@ static TAP GetSeqAdrs(u32* adrs)
 
 //--------------------------------------------------------------
 /**
- * “®ìŠÖ”‚ÌƒZƒbƒg
+ * å‹•ä½œé–¢æ•°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
- * @param	inMoveFuncNo	“®ìŠÖ””Ô†(256‚Í’´‚¦‚È‚¢‚Æv‚¤)
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMoveFuncNo	å‹•ä½œé–¢æ•°ç•ªå·(256ã¯è¶…ãˆãªã„ã¨æ€ã†)
  *
  * @retval	none
  */
@@ -655,13 +655,13 @@ static MOVE_FUNC_DATA_PTR SetMoveFunc(POKE_ANIME *pAnm, const u8 inMoveFuncNo)
 {
 	MOVE_FUNC_DATA_PTR ptr;
 	u8 i;
-	//‹ó‚¢‚Ä‚¢‚é‚Æ‚±‚ë‚ğ’T‚·
+	//ç©ºã„ã¦ã„ã‚‹ã¨ã“ã‚ã‚’æ¢ã™
 	for(i=0;i<MOVE_FUNC_ENTRY_MAX;i++){
 		ptr = &(pAnm->MoveFuncData[i]);
 		if (ptr->Valid == FALSE){
-			//ƒNƒŠƒA
+			//ã‚¯ãƒªã‚¢
 			MI_CpuClear8(ptr,sizeof(MOVE_FUNC_DATA));	
-			//ƒZƒbƒg
+			//ã‚»ãƒƒãƒˆ
 			ptr->Valid = TRUE;
 			ptr->Func = MoveFuncTbl[inMoveFuncNo].Func;
 			return ptr;
@@ -675,10 +675,10 @@ static MOVE_FUNC_DATA_PTR SetMoveFunc(POKE_ANIME *pAnm, const u8 inMoveFuncNo)
 
 //--------------------------------------------------------------
 /**
- * intŒ^’l‚ğæ“¾
+ * intå‹å€¤ã‚’å–å¾—
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
- * @param	outVal			Ši”[ƒoƒbƒtƒ@
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
+ * @param	outVal			æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none
  */
@@ -691,10 +691,10 @@ static void GetInt(POKE_ANIME *pAnm, int *outVal)
 
 //--------------------------------------------------------------
 /**
- * u8Œ^’l‚ğæ“¾
+ * u8å‹å€¤ã‚’å–å¾—
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
- * @param	outVal			Ši”[ƒoƒbƒtƒ@
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
+ * @param	outVal			æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none
  */
@@ -707,10 +707,10 @@ static void GetU8(POKE_ANIME *pAnm, u8 *outVal)
 
 //--------------------------------------------------------------
 /**
- * ƒ[ƒNƒCƒ“ƒfƒbƒNƒXæ“¾
+ * ãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
- * @param	outIdx			æ“¾ƒCƒ“ƒfƒbƒNƒXŠi”[ƒoƒbƒtƒ@
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
+ * @param	outIdx			å–å¾—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none
  */
@@ -724,11 +724,11 @@ static void GetIdx(POKE_ANIME *pAnm, u8 *outIdx)
 
 //--------------------------------------------------------------
 /**
- * ƒ[ƒNƒCƒ“ƒfƒbƒNƒXæ“¾(ƒCƒ“ƒfƒbƒNƒX‚ª2‚Â˜A‘±‚µ‚Ä‚é‚Æ‚«)
+ * ãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒ2ã¤é€£ç¶šã—ã¦ã‚‹ã¨ã)
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
- * @param	outIdx1			1‚Â‚ßæ“¾ƒCƒ“ƒfƒbƒNƒXŠi”[ƒoƒbƒtƒ@
- * @param	outIdx2			2‚Â‚ßæ“¾ƒCƒ“ƒfƒbƒNƒXŠi”[ƒoƒbƒtƒ@
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
+ * @param	outIdx1			1ã¤ã‚å–å¾—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ ¼ç´ãƒãƒƒãƒ•ã‚¡
+ * @param	outIdx2			2ã¤ã‚å–å¾—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none
  */
@@ -741,12 +741,12 @@ static void GetTwoIdx(POKE_ANIME *pAnm, u8 *outIdx1, u8 *outIdx2)
 
 //--------------------------------------------------------------
 /**
- * ‰ÁZEæZ‹¤’Êˆ—
+ * åŠ ç®—ãƒ»ä¹—ç®—å…±é€šå‡¦ç†
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
- * @param	outDstIdx		Ši”[æƒ[ƒNƒCƒ“ƒfƒbƒNƒX
- * @param	outVal1			1‚Â‚ß’lŠi”[ƒoƒbƒtƒ@
- * @param	outVal2			2‚Â‚ß’lŠi”[ƒoƒbƒtƒ@
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
+ * @param	outDstIdx		æ ¼ç´å…ˆãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	outVal1			1ã¤ã‚å€¤æ ¼ç´ãƒãƒƒãƒ•ã‚¡
+ * @param	outVal2			2ã¤ã‚å€¤æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none
  */
@@ -756,18 +756,18 @@ static void CalcCommonAddMul(POKE_ANIME *pAnm, u8 *outDstIdx, int *outVal1, int 
 	u8 idx1,idx2;
 	u8 calc;
 	
-	//Ši”[æƒ[ƒNƒCƒ“ƒfƒbƒNƒXæ“¾
+	//æ ¼ç´å…ˆãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 	GetIdx(pAnm,outDstIdx);
-	//ŒvZƒ^ƒCƒvæ“¾
+	//è¨ˆç®—ã‚¿ã‚¤ãƒ—å–å¾—
 	GetU8(pAnm,&calc);
 	
 	if (calc == CALC_VAL){
-		//ƒ[ƒN‚Æ’¼’l‚ÌŒvZ
+		//ãƒ¯ãƒ¼ã‚¯ã¨ç›´å€¤ã®è¨ˆç®—
 		GetIdx(pAnm,&idx1);
 		(*outVal1) = pAnm->Work[idx1];
 		GetInt(pAnm,outVal2);
 	}else if (calc == CALC_WORK){
-		//ƒ[ƒN“¯m‚ÌŒvZ
+		//ãƒ¯ãƒ¼ã‚¯åŒå£«ã®è¨ˆç®—
 		GetTwoIdx(pAnm, &idx1, &idx2);
 		(*outVal1) = pAnm->Work[idx1];
 		(*outVal2) = pAnm->Work[idx2];
@@ -778,12 +778,12 @@ static void CalcCommonAddMul(POKE_ANIME *pAnm, u8 *outDstIdx, int *outVal1, int 
 
 //--------------------------------------------------------------
 /**
- * Œ¸ZEœZE—]‚èŒvZ‹¤’Êˆ—
+ * æ¸›ç®—ãƒ»é™¤ç®—ãƒ»ä½™ã‚Šè¨ˆç®—å…±é€šå‡¦ç†
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
- * @param	outDstIdx		Ši”[æƒ[ƒNƒCƒ“ƒfƒbƒNƒX
- * @param	outVal1			1‚Â‚ß’lŠi”[ƒoƒbƒtƒ@
- * @param	outVal2			2‚Â‚ß’lŠi”[ƒoƒbƒtƒ@
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
+ * @param	outDstIdx		æ ¼ç´å…ˆãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	outVal1			1ã¤ã‚å€¤æ ¼ç´ãƒãƒƒãƒ•ã‚¡
+ * @param	outVal2			2ã¤ã‚å€¤æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none
  */
@@ -792,17 +792,17 @@ static void CalcCommonSubDivMod(POKE_ANIME *pAnm, u8 *outDstIdx, int *outVal1, i
 {
 	u8 idx1,idx2;
 	u8 calc1,calc2;
-	//Ši”[æƒ[ƒNƒCƒ“ƒfƒbƒNƒXæ“¾
+	//æ ¼ç´å…ˆãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 	GetIdx(pAnm,outDstIdx);
-	//ŒvZƒ^ƒCƒvæ“¾
+	//è¨ˆç®—ã‚¿ã‚¤ãƒ—å–å¾—
 	GetU8(pAnm,&calc1);
 	GetU8(pAnm,&calc2);
 	
 	if (calc1 == CALC_VAL){
-		//’¼’l
+		//ç›´å€¤
 		GetInt(pAnm,outVal1);
 	}else if(calc1 == CALC_WORK){
-		//ƒ[ƒN
+		//ãƒ¯ãƒ¼ã‚¯
 		GetIdx(pAnm,&idx1);
 		(*outVal1) = pAnm->Work[idx1];
 	}else{
@@ -810,10 +810,10 @@ static void CalcCommonSubDivMod(POKE_ANIME *pAnm, u8 *outDstIdx, int *outVal1, i
 	}
 
 	if (calc2 == CALC_VAL){
-		//’¼’l
+		//ç›´å€¤
 		GetInt(pAnm,outVal2);
 	}else if(calc2 == CALC_WORK){
-		//ƒ[ƒN
+		//ãƒ¯ãƒ¼ã‚¯
 		GetIdx(pAnm,&idx2);
 		(*outVal2) = pAnm->Work[idx2];
 	}else{
@@ -823,14 +823,14 @@ static void CalcCommonSubDivMod(POKE_ANIME *pAnm, u8 *outDstIdx, int *outVal1, i
 
 //--------------------------------------------------------------
 /**
- * ƒTƒCƒ“EƒRƒTƒCƒ“‹¤’Ê
+ * ã‚µã‚¤ãƒ³ãƒ»ã‚³ã‚µã‚¤ãƒ³å…±é€š
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
- * @param	outDstIdx		Ši”[æƒ[ƒNƒCƒ“ƒfƒbƒNƒX
- * @param	outRad			ƒ‰ƒWƒAƒ“’lŠi”[ƒoƒbƒtƒ@
- * @param	outL			U•’lŠi”[ƒoƒbƒtƒ@
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
+ * @param	outDstIdx		æ ¼ç´å…ˆãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	outRad			ãƒ©ã‚¸ã‚¢ãƒ³å€¤æ ¼ç´ãƒãƒƒãƒ•ã‚¡
+ * @param	outL			æŒ¯å¹…å€¤æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  * 
- * @retval	COMP_MINUS:¬‚³‚¢@COMP_PULS:‘å‚«‚¢@COMP_EQUAL	“¯‚¶
+ * @retval	COMP_MINUS:å°ã•ã„ã€€COMP_PULS:å¤§ãã„ã€€COMP_EQUAL	åŒã˜
  */
 //--------------------------------------------------------------
 static void CalcCommonSinCos(POKE_ANIME *pAnm, u8 *outDstIdx, int *outRad, int *outL)
@@ -840,13 +840,13 @@ static void CalcCommonSinCos(POKE_ANIME *pAnm, u8 *outDstIdx, int *outRad, int *
 	int ofs;
 	u8 use;
 	
-	//ƒ[ƒNƒCƒ“ƒfƒbƒNƒXæ“¾
-	//ƒ‰ƒWƒAƒ“æ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
+	//ãƒ©ã‚¸ã‚¢ãƒ³å–å¾—
 	GetTwoIdx(pAnm, outDstIdx, &rad_idx);
 	
 	rad = pAnm->Work[rad_idx];
 
-	//U•æ“¾
+	//æŒ¯å¹…å–å¾—
 	GetU8(pAnm,&use);
 	if (use == USE_VAL){
 		GetInt(pAnm,outL);
@@ -857,7 +857,7 @@ static void CalcCommonSinCos(POKE_ANIME *pAnm, u8 *outDstIdx, int *outRad, int *
 		GF_ASSERT(0);
 	}
 
-	//ˆÊ‘Šæ“¾
+	//ä½ç›¸å–å¾—
 	GetU8(pAnm,&use);
 	if (use == USE_VAL){
 		GetInt(pAnm,&ofs);
@@ -875,12 +875,12 @@ static void CalcCommonSinCos(POKE_ANIME *pAnm, u8 *outDstIdx, int *outRad, int *
 
 //--------------------------------------------------------------
 /**
- * ’l”äŠr	‚Q‚Â–Ú‚Ì’l‚É‘Î‚µ‚Ä‚P‚Â–Ú‚Ì’l‚ª‚Ç‚ñ‚È’l‚Å‚ ‚é‚©‚ğ•Ô‚·
+ * å€¤æ¯”è¼ƒ	ï¼’ã¤ç›®ã®å€¤ã«å¯¾ã—ã¦ï¼‘ã¤ç›®ã®å€¤ãŒã©ã‚“ãªå€¤ã§ã‚ã‚‹ã‹ã‚’è¿”ã™
  *
- * @param	inVal1		’l‚P‚Â–Ú
- * @param	inVal2		’l‚Q‚Â–Ú
+ * @param	inVal1		å€¤ï¼‘ã¤ç›®
+ * @param	inVal2		å€¤ï¼’ã¤ç›®
  *
- * @retval	COMP_MINUS:¬‚³‚¢@COMP_PULS:‘å‚«‚¢@COMP_EQUAL	“¯‚¶
+ * @retval	COMP_MINUS:å°ã•ã„ã€€COMP_PULS:å¤§ãã„ã€€COMP_EQUAL	åŒã˜
  */
 //--------------------------------------------------------------
 static u8 CompVal(const int *inVal1, const int *inVal2)
@@ -898,9 +898,9 @@ static u8 CompVal(const int *inVal1, const int *inVal2)
 
 //--------------------------------------------------------------
 /**
- * Šgk‚É‚æ‚é‚c‚x•â³
+ * æ‹¡ç¸®ã«ã‚ˆã‚‹ï¼¤ï¼¹è£œæ­£
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -913,20 +913,20 @@ static void CorrectDy(POKE_ANIME *pAnm)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
-//ƒRƒ}ƒ“ƒh
+//ã‚³ãƒãƒ³ãƒ‰
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒI—¹
+ * ã‚¢ãƒ‹ãƒ¡çµ‚äº†
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static void PAnm_End(POKE_ANIME *pAnm)
 {
-	//ƒXƒvƒ‰ƒCƒg‚ğŒ³‚ÌˆÊ’u‚Ö
+	//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’å…ƒã®ä½ç½®ã¸
 	PAnm_SetDefault(pAnm);
 	
 	pAnm->Request = 1;
@@ -935,9 +935,9 @@ static void PAnm_End(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ”½‰f	(¡‚Ü‚Ås‚Á‚½ŒvZŒ‹‰Ê‚ğ•`‰æ‚É”½‰f‚·‚é)
+ * ã‚¢ãƒ‹ãƒ¡åæ˜ 	(ä»Šã¾ã§è¡Œã£ãŸè¨ˆç®—çµæœã‚’æç”»ã«åæ˜ ã™ã‚‹)
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -949,16 +949,16 @@ static void PAnm_SetRequest(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒXƒvƒ‰ƒCƒg‚ğƒAƒjƒ‘O‚Ìó‘Ô‚É–ß‚·i‰ñ“]AŠgk‚É‘Î‚µ‚Ä‚ÍA–³‰ñ“]A”{—¦1‚ğƒZƒbƒgj
+ * ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’ã‚¢ãƒ‹ãƒ¡å‰ã®çŠ¶æ…‹ã«æˆ»ã™ï¼ˆå›è»¢ã€æ‹¡ç¸®ã«å¯¾ã—ã¦ã¯ã€ç„¡å›è»¢ã€å€ç‡1ã‚’ã‚»ãƒƒãƒˆï¼‰
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static void PAnm_SetDefault(POKE_ANIME *pAnm)
 {
-	//ˆÊ’uA‰ñ“]AŠgk‚ğŒ³‚É–ß‚·
+	//ä½ç½®ã€å›è»¢ã€æ‹¡ç¸®ã‚’å…ƒã«æˆ»ã™
 	SoftSpriteParaSet(pAnm->SoftSprite, SS_PARA_POS_X, pAnm->OrgX);
 	SoftSpriteParaSet(pAnm->SoftSprite, SS_PARA_POS_Y, pAnm->OrgY);
 
@@ -971,10 +971,10 @@ static void PAnm_SetDefault(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒ[ƒNŠÔ‚Ì’l‚ÌƒRƒs[	
- * 1‚Â–Ú‚ÌƒCƒ“ƒfƒbƒNƒX‚Åw’è‚³‚ê‚éƒ[ƒN‚ÉA2‚Â–Ú‚ÌƒCƒ“ƒfƒbƒNƒX‚Åw’è‚³‚ê‚éƒ[ƒN‚ğƒRƒs[
+ * ãƒ¯ãƒ¼ã‚¯é–“ã®å€¤ã®ã‚³ãƒ”ãƒ¼	
+ * 1ã¤ç›®ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§æŒ‡å®šã•ã‚Œã‚‹ãƒ¯ãƒ¼ã‚¯ã«ã€2ã¤ç›®ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§æŒ‡å®šã•ã‚Œã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’ã‚³ãƒ”ãƒ¼
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -989,9 +989,9 @@ static void PAnm_CopyWorkVal(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒ[ƒN‚Ì‰ÁZ
+ * ãƒ¯ãƒ¼ã‚¯ã®åŠ ç®—
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1008,9 +1008,9 @@ static void PAnm_AddWorkVal(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒ[ƒN‚ÌæZ
+ * ãƒ¯ãƒ¼ã‚¯ã®ä¹—ç®—
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1028,9 +1028,9 @@ static void PAnm_MulWorkVal(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒ[ƒN‚ÌŒ¸Z
+ * ãƒ¯ãƒ¼ã‚¯ã®æ¸›ç®—
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1048,9 +1048,9 @@ static void PAnm_SubWorkVal(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒ[ƒN‚ÌœZ
+ * ãƒ¯ãƒ¼ã‚¯ã®é™¤ç®—
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1068,9 +1068,9 @@ static void PAnm_DivWorkVal(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒ[ƒN‚Ì—]‚è‚ğ‚ğŒvZ
+ * ãƒ¯ãƒ¼ã‚¯ã®ä½™ã‚Šã‚’ã‚’è¨ˆç®—
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1087,9 +1087,9 @@ static void PAnm_ModWorkVal(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ’l”äŠrŒã‚Éƒ[ƒNƒZƒbƒg
+ * å€¤æ¯”è¼ƒå¾Œã«ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1118,7 +1118,7 @@ static void PAnm_SetIfWorkVal(POKE_ANIME *pAnm)
 		GetU8(pAnm,&comp);
 	
 		GF_ASSERT((comp<=COMP_EQUAL)&&"ERROR:COMP_ERROR");
-		//”äŠr
+		//æ¯”è¼ƒ
 		comp_result = CompVal(&val1, &val2);
 	}
 	
@@ -1143,9 +1143,9 @@ static void PAnm_SetIfWorkVal(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒ[ƒN‚É’l‚ğƒZƒbƒg
+ * ãƒ¯ãƒ¼ã‚¯ã«å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1161,9 +1161,9 @@ static void PAnm_SetWorkVal(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒ‹[ƒvŠJn
+ * ãƒ«ãƒ¼ãƒ—é–‹å§‹
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1173,18 +1173,18 @@ static void PAnm_StartLoop(POKE_ANIME *pAnm)
 	GF_ASSERT(pAnm->LoopStartAdrs==NULL&&"ERROR:Loop is moving");
 	
 	ADRS_SHIFT(pAnm->SeqAdrs);
-	//ƒ‹[ƒvŠJnƒAƒhƒŒƒX‚ğ•Û‘¶
+	//ãƒ«ãƒ¼ãƒ—é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜
 	pAnm->LoopStartAdrs = pAnm->SeqAdrs;
-	//Å‘åƒ‹[ƒv‰ñ”•Û‘¶
+	//æœ€å¤§ãƒ«ãƒ¼ãƒ—å›æ•°ä¿å­˜
 	pAnm->LoopMax = (int)GetSeqAdrs(pAnm->SeqAdrs);
 	pAnm->LoopCount = 0;
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ‹[ƒvI—¹
+ * ãƒ«ãƒ¼ãƒ—çµ‚äº†
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1193,21 +1193,21 @@ static void PAnm_EndLoop(POKE_ANIME *pAnm)
 {
 	pAnm->LoopCount++;
 	if (pAnm->LoopCount >= pAnm->LoopMax){
-		//ƒ‹[ƒvI—¹
+		//ãƒ«ãƒ¼ãƒ—çµ‚äº†
 		pAnm->LoopStartAdrs = NULL;
 		pAnm->LoopCount = 0;
 		pAnm->LoopMax = 0;
 	}else{
-		//ƒ‹[ƒvŒp‘±
-		pAnm->SeqAdrs = pAnm->LoopStartAdrs;	//ƒAƒhƒŒƒX‚ğ–ß‚·
+		//ãƒ«ãƒ¼ãƒ—ç¶™ç¶š
+		pAnm->SeqAdrs = pAnm->LoopStartAdrs;	//ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æˆ»ã™
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ƒXƒvƒ‰ƒCƒg‚É’l‚ğƒZƒbƒg
+ * ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1216,7 +1216,7 @@ static void PAnm_SetVal(POKE_ANIME *pAnm)
 {
 	u8 idx;
 	int ss_param;
-	//•ÏXƒpƒ‰ƒ[ƒ^æ“¾
+	//å¤‰æ›´ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	GetInt(pAnm,&ss_param);
 /**
 	GetInt(pAnm,&use);
@@ -1230,15 +1230,15 @@ static void PAnm_SetVal(POKE_ANIME *pAnm)
 */	
 	GetIdx(pAnm, &idx);
 	
-	//ƒZƒbƒg
+	//ã‚»ãƒƒãƒˆ
 	SoftSpriteParaSet(pAnm->SoftSprite, ss_param, pAnm->Work[idx]);
 }
 
 //--------------------------------------------------------------
 /**
- * ƒXƒvƒ‰ƒCƒg‚É’l‚ğƒAƒbƒh
+ * ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«å€¤ã‚’ã‚¢ãƒƒãƒ‰
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1247,20 +1247,20 @@ static void PAnm_AddVal(POKE_ANIME *pAnm)
 {
 	u8 idx;
 	int ss_param;
-	//•ÏXƒpƒ‰ƒ[ƒ^æ“¾
+	//å¤‰æ›´ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	GetInt(pAnm,&ss_param);
 	
 	GetIdx(pAnm, &idx);
 	
-	//ƒAƒbƒh
+	//ã‚¢ãƒƒãƒ‰
 	SoftSpriteParaCalc(pAnm->SoftSprite, ss_param, pAnm->Work[idx]);
 }
 
 //--------------------------------------------------------------
 /**
- * ƒXƒvƒ‰ƒCƒg‚É’l‚ğƒZƒbƒgEƒAƒbƒh‚·‚é
+ * ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«å€¤ã‚’ã‚»ãƒƒãƒˆãƒ»ã‚¢ãƒƒãƒ‰ã™ã‚‹
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  * @param	
  * @param	
  *
@@ -1272,7 +1272,7 @@ static void PAnm_SetAddVal(POKE_ANIME *pAnm)
 	int ss_param;
 	int val;
 	
-	//•ÏXƒpƒ‰ƒ[ƒ^æ“¾
+	//å¤‰æ›´ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	GetInt(pAnm,&ss_param);
 	{
 		u8 idx;
@@ -1303,9 +1303,9 @@ static void PAnm_SetAddVal(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒTƒCƒ“ŒvZ
+ * ã‚µã‚¤ãƒ³è¨ˆç®—
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1324,9 +1324,9 @@ static void PAnm_SetWorkValSin(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒRƒTƒCƒ“ŒvZ
+ * ã‚³ã‚µã‚¤ãƒ³è¨ˆç®—
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1344,9 +1344,9 @@ static void PAnm_SetWorkValCos(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®’l‚ğƒAƒjƒƒf[ƒ^“àƒgƒ‰ƒ“ƒX’l‚ÉƒZƒbƒg
+ * ç§»å‹•å€¤ã‚’ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å†…ãƒˆãƒ©ãƒ³ã‚¹å€¤ã«ã‚»ãƒƒãƒˆ
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1356,10 +1356,10 @@ static void PAnm_SetTrans(POKE_ANIME *pAnm)
 	u8 idx;
 	u8 trans;
 	
-	//ƒ[ƒNƒCƒ“ƒfƒbƒNƒXæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 	GetIdx(pAnm, &idx);
 
-	//•ÏX‘ÎÛæ“¾
+	//å¤‰æ›´å¯¾è±¡å–å¾—
 	GetU8(pAnm,&trans);
 
 	if (trans == PARAM_X){
@@ -1373,9 +1373,9 @@ static void PAnm_SetTrans(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®’l‚ğƒAƒjƒƒf[ƒ^“àƒgƒ‰ƒ“ƒX’l‚ÉƒAƒbƒh
+ * ç§»å‹•å€¤ã‚’ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å†…ãƒˆãƒ©ãƒ³ã‚¹å€¤ã«ã‚¢ãƒƒãƒ‰
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1385,10 +1385,10 @@ static void PAnm_AddTrans(POKE_ANIME *pAnm)
 	u8 idx;
 	u8 trans;
 	
-	//ƒ[ƒNƒCƒ“ƒfƒbƒNƒXæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 	GetIdx(pAnm, &idx);
 
-	//•ÏX‘ÎÛæ“¾
+	//å¤‰æ›´å¯¾è±¡å–å¾—
 	GetU8(pAnm,&trans);
 
 	if (trans == PARAM_X){
@@ -1402,9 +1402,9 @@ static void PAnm_AddTrans(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ’l‚ğƒAƒjƒƒf[ƒ^“à’l‚ÉƒZƒbƒgEƒAƒbƒh
+ * å€¤ã‚’ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å†…å€¤ã«ã‚»ãƒƒãƒˆãƒ»ã‚¢ãƒƒãƒ‰
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1417,7 +1417,7 @@ static void PAnm_SetAddParam(POKE_ANIME *pAnm)
 	{
 		u8 param;
 
-		//•ÏXƒpƒ‰ƒ[ƒ^æ“¾
+		//å¤‰æ›´ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 		GetU8(pAnm,&param);
 		if (param == PARAM_X){
 			target = &pAnm->TransX; 
@@ -1468,9 +1468,9 @@ static void PAnm_SetAddParam(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒf[ƒ^“àƒgƒ‰ƒ“ƒX’l‚ğƒXƒvƒ‰ƒCƒg‚É”½‰f
+ * ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å†…ãƒˆãƒ©ãƒ³ã‚¹å€¤ã‚’ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«åæ˜ 
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1490,9 +1490,9 @@ static void PAnm_ApplyTrans(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒf[ƒ^“à‰ñ“]AŠgk’l‚ğƒXƒvƒ‰ƒCƒg‚É”½‰f
+ * ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å†…å›è»¢ã€æ‹¡ç¸®å€¤ã‚’ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«åæ˜ 
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1505,14 +1505,14 @@ static void PAnm_ApplyAffine(POKE_ANIME *pAnm)
 
 	{
 		int correct;
-		//d‚™•â³‚·‚é‚©H
+		//dï½™è£œæ­£ã™ã‚‹ã‹ï¼Ÿ
 		if (pAnm->CorrectDy == CORRECT_ON_MINUS){
-			//Šgk—¦‚ªƒ}ƒCƒiƒX‚Ì‚Æ‚«‚É•â³‚·‚é
+			//æ‹¡ç¸®ç‡ãŒãƒã‚¤ãƒŠã‚¹ã®ã¨ãã«è£œæ­£ã™ã‚‹
 			if (pAnm->ry < 0){
 				CorrectDy(pAnm);
 			}
 		}else if (pAnm->CorrectDy == CORRECT_ON_NOT_EQ){
-			//Šgk—¦‚ª“–”{‚Å‚Í‚È‚¢‚Æ‚«‚É•â³‚·‚é
+			//æ‹¡ç¸®ç‡ãŒå½“å€ã§ã¯ãªã„ã¨ãã«è£œæ­£ã™ã‚‹
 			if (pAnm->ry != 0){
 				CorrectDy(pAnm);
 			}
@@ -1526,9 +1526,9 @@ static void PAnm_ApplyAffine(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®’l(dx.dy)‚ğƒAƒjƒƒf[ƒ^“àD’l‚ÉƒZƒbƒg
+ * ç§»å‹•å€¤(dx.dy)ã‚’ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å†…Då€¤ã«ã‚»ãƒƒãƒˆ
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1538,10 +1538,10 @@ static void PAnm_SetD(POKE_ANIME *pAnm)
 	u8 idx;
 	u8 trans;
 	
-	//ƒ[ƒNƒCƒ“ƒfƒbƒNƒXæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 	GetIdx(pAnm, &idx);
 	
-	//•ÏX‘ÎÛæ“¾
+	//å¤‰æ›´å¯¾è±¡å–å¾—
 	ADRS_SHIFT(pAnm->SeqAdrs);
 	trans =  (int)GetSeqAdrs(pAnm->SeqAdrs);
 	if ((trans == PARAM_X)||(trans == PARAM_DX)){
@@ -1555,25 +1555,25 @@ static void PAnm_SetD(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒEƒFƒCƒg‚ÉƒZƒbƒg
+ * ã‚¦ã‚§ã‚¤ãƒˆã«ã‚»ãƒƒãƒˆ
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static void PAnm_SetWait(POKE_ANIME *pAnm)
 {
-	//ƒ[ƒNƒCƒ“ƒfƒbƒNƒXæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 	GetInt(pAnm, &pAnm->Wait);
 	pAnm->Request = 1;
 }
 
 //--------------------------------------------------------------
 /**
- *@ƒpƒŒƒbƒgƒtƒF[ƒh
+ *ã€€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1594,9 +1594,9 @@ static void PAnm_PaletteFade(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- *@ƒpƒŒƒbƒgƒtƒF[ƒhƒEƒFƒCƒg
+ *ã€€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚¦ã‚§ã‚¤ãƒˆ
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1605,8 +1605,8 @@ static void PAnm_WaitPaletteFade(POKE_ANIME *pAnm)
 {
 	u8 start,end,wait;
 
-	if( SoftSpritePalFadeExist(pAnm->SoftSprite) ){//ƒtƒF[ƒh‚Ìó‹µ‚ğ‚İ‚é
-		//ƒtƒF[ƒhŒp‘±
+	if( SoftSpritePalFadeExist(pAnm->SoftSprite) ){//ãƒ•ã‚§ãƒ¼ãƒ‰ã®çŠ¶æ³ã‚’ã¿ã‚‹
+		//ãƒ•ã‚§ãƒ¼ãƒ‰ç¶™ç¶š
 		pAnm->PalFadeWaitFlg = 1;
 		pAnm->Request = 1;
 	}
@@ -1614,13 +1614,13 @@ static void PAnm_WaitPaletteFade(POKE_ANIME *pAnm)
 
 
 ////////////////////////////////////////////////////////////////////////////////
-//“®ìŠÖ”ƒZƒbƒgƒRƒ}ƒ“ƒh
+//å‹•ä½œé–¢æ•°ã‚»ãƒƒãƒˆã‚³ãƒãƒ³ãƒ‰
 
 //--------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒh‰ğßƒz[ƒ‹ƒh
+ * ã‚³ãƒãƒ³ãƒ‰è§£é‡ˆãƒ›ãƒ¼ãƒ«ãƒ‰
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1632,9 +1632,9 @@ static void PAnm_HoldAnmCommand(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * DY•â³—LŒøƒtƒ‰ƒOƒRƒ“ƒgƒ[ƒ‹
+ * DYè£œæ­£æœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1650,9 +1650,9 @@ static void PAnm_SetDyCorrect(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒJ[ƒuŠÖ”‚ğƒR[ƒ‹
+ * ã‚«ãƒ¼ãƒ–é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1664,9 +1664,9 @@ static void PAnm_CallMoveFuncCurve(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- *@ƒJ[ƒu‰ñ”•ªŠ„ŠÖ”‚ğƒR[ƒ‹
+ *ã€€ã‚«ãƒ¼ãƒ–å›æ•°åˆ†å‰²é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1678,9 +1678,9 @@ static void PAnm_CallMoveFuncCurveDivTime(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- * ƒ‰ƒCƒ“ŠÖ”‚ğƒR[ƒ‹
+ * ãƒ©ã‚¤ãƒ³é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1692,9 +1692,9 @@ static void PAnm_CallMoveFuncLine(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- *@ƒ‰ƒCƒ“‰ñ”•ªŠ„ŠÖ”‚ğƒR[ƒ‹
+ *ã€€ãƒ©ã‚¤ãƒ³å›æ•°åˆ†å‰²é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1706,9 +1706,9 @@ static void PAnm_CallMoveFuncLineDivTime(POKE_ANIME *pAnm)
 
 //--------------------------------------------------------------
 /**
- *@ƒ‰ƒCƒ“–Ú“I’lw’èŠÖ”‚ğƒR[ƒ‹
+ *ã€€ãƒ©ã‚¤ãƒ³ç›®çš„å€¤æŒ‡å®šé–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«
  *
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1720,26 +1720,26 @@ static void PAnm_CallMoveFuncLineDst(POKE_ANIME *pAnm)
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-//ƒAƒjƒ“®ìŠÖ”ŠÖ˜A
+//ã‚¢ãƒ‹ãƒ¡å‹•ä½œé–¢æ•°é–¢é€£
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒf[ƒ^“à“®ì•Ï”‚É“®ìŠÖ”“à“®ì’l‚ğ”½‰f
+ * ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å†…å‹•ä½œå¤‰æ•°ã«å‹•ä½œé–¢æ•°å†…å‹•ä½œå€¤ã‚’åæ˜ 
  *
- * @param	inType			“K—p•û–@
- * @param	inApplyVal		“K—p’l
- * @param	outTarget		“K—p‘ÎÛ
+ * @param	inType			é©ç”¨æ–¹æ³•
+ * @param	inApplyVal		é©ç”¨å€¤
+ * @param	outTarget		é©ç”¨å¯¾è±¡
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 static void ApplyMoveVal(const u8 inType, const int *inStartVal, const int *inApplyVal, int *outTarget )
 {
-	if (inType == APPLY_SET){			//ƒZƒbƒg
+	if (inType == APPLY_SET){			//ã‚»ãƒƒãƒˆ
 		(*outTarget) = (*inApplyVal);
-	}else if(inType == APPLY_ADD){		//ŠJn’l‚É‰ÁZ
+	}else if(inType == APPLY_ADD){		//é–‹å§‹å€¤ã«åŠ ç®—
 		(*outTarget) = (*inStartVal) + (*inApplyVal);
-	}else if(inType == APPLY_SYNTHE){	//Œ»İ’l‚É‰ÁZ(‡¬)
+	}else if(inType == APPLY_SYNTHE){	//ç¾åœ¨å€¤ã«åŠ ç®—(åˆæˆ)
 		(*outTarget) += (*inApplyVal);
 	}else{
 		GF_ASSERT(0);
@@ -1748,11 +1748,11 @@ static void ApplyMoveVal(const u8 inType, const int *inStartVal, const int *inAp
 
 //--------------------------------------------------------------
 /**
- *	•ÏX‘ÎÛæ“¾
+ *	å¤‰æ›´å¯¾è±¡å–å¾—
  *
- * @param	inTarget		“K—p‘ÎÛ
- * @param	pMFD			“®ìŠÖ”ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	pAnm			ƒAƒjƒƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inTarget		é©ç”¨å¯¾è±¡
+ * @param	pMFD			å‹•ä½œé–¢æ•°ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1792,11 +1792,11 @@ static void GetTarget(	const u8 inTarget, MOVE_FUNC_DATA_PTR pMFD, POKE_ANM_PTR 
 
 //--------------------------------------------------------------
 /**
- * “®ìŠÖ”ƒR[ƒ‹
- * “®ìŠÖ”‚Ìƒ[ƒN‚Í‚Â‚ß‚Äg‚¤‚±‚Æ
+ * å‹•ä½œé–¢æ•°ã‚³ãƒ¼ãƒ«
+ * å‹•ä½œé–¢æ•°ã®ãƒ¯ãƒ¼ã‚¯ã¯ã¤ã‚ã¦ä½¿ã†ã“ã¨
  *
- * @param	pAnm				ƒAƒjƒƒ|ƒCƒ“ƒ^
- * @param	inMoveFuncNo		“®ìŠÖ””Ô†
+ * @param	pAnm				ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMoveFuncNo		å‹•ä½œé–¢æ•°ç•ªå·
  *
  * @retval	none
  */
@@ -1805,16 +1805,16 @@ static void CallMoveFuc(POKE_ANIME *pAnm, const int inMoveFuncNo)
 {
 	u8 i;
 	MOVE_FUNC_DATA_PTR ptr;	
-	//‹ó‚¢‚Ä‚¢‚éŠÇ—êŠ‚É“®ìŠÖ”‚ğƒZƒbƒg
+	//ç©ºã„ã¦ã„ã‚‹ç®¡ç†å ´æ‰€ã«å‹•ä½œé–¢æ•°ã‚’ã‚»ãƒƒãƒˆ
 	ptr = SetMoveFunc(pAnm,inMoveFuncNo);
 
-	//ŒvZŒ‹‰Ê“K—p•û–@‚ğƒZƒbƒg
+	//è¨ˆç®—çµæœé©ç”¨æ–¹æ³•ã‚’ã‚»ãƒƒãƒˆ
 	GetU8(pAnm,&ptr->ApplyType);
 
-	//ŠÖ”Às‘Ò‹@ŠÔƒZƒbƒg
+	//é–¢æ•°å®Ÿè¡Œå¾…æ©Ÿæ™‚é–“ã‚»ãƒƒãƒˆ
 	GetU8(pAnm,&ptr->Wait);
 	
-	//“®ì‚É•K—v‚Èƒpƒ‰ƒ[ƒ^‚ÌƒZƒbƒg
+	//å‹•ä½œã«å¿…è¦ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
 	for(i=0;i<MoveFuncTbl[inMoveFuncNo].ParamNum;i++){
 		GetInt(pAnm,&ptr->Work[i]);
 ///		OS_Printf("param=%d\n",ptr->Work[i]);
@@ -1825,12 +1825,12 @@ static void CallMoveFuc(POKE_ANIME *pAnm, const int inMoveFuncNo)
 		idx = MoveFuncTbl[inMoveFuncNo].TargetWorkIdx;
 
 ///		OS_Printf("workidx = %d:%d\n",idx,ptr->Work[idx]);
-		//•ÏX‘ÎÛ‚Ìæ“¾
+		//å¤‰æ›´å¯¾è±¡ã®å–å¾—
 		GetTarget(ptr->Work[idx], ptr, pAnm);
 	}
 
 	if (ptr->Wait == 0){
-		//‰‰ñÀs
+		//åˆå›å®Ÿè¡Œ
 		ptr->Func(ptr,pAnm);
 	}else{
 		ptr->Wait--;
@@ -1839,17 +1839,17 @@ static void CallMoveFuc(POKE_ANIME *pAnm, const int inMoveFuncNo)
 
 //--------------------------------------------------------------
 /**
- * ƒJ[ƒuˆÚ“®
- * work0:ƒJ[ƒuƒ^ƒCƒviƒZƒbƒgÏj
- * work1:‘ÎÛ  (ƒZƒbƒgÏ)
- * work2:U•iƒZƒbƒgÏj
- * work3:‰ÁZŠp“xiƒZƒbƒgÏj
- * work4:ˆÊ‘ŠiƒZƒbƒgÏj
- * work5:ŒvZ‰ñ”iƒZƒbƒgÏj
- * work6:‰ñ”‚ÌƒJƒEƒ“ƒg
+ * ã‚«ãƒ¼ãƒ–ç§»å‹•
+ * work0:ã‚«ãƒ¼ãƒ–ã‚¿ã‚¤ãƒ—ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work1:å¯¾è±¡  (ã‚»ãƒƒãƒˆæ¸ˆ)
+ * work2:æŒ¯å¹…ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work3:åŠ ç®—è§’åº¦ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work4:ä½ç›¸ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work5:è¨ˆç®—å›æ•°ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work6:å›æ•°ã®ã‚«ã‚¦ãƒ³ãƒˆ
  *
- * @param	pMFD			“®ìŠÖ”ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pMFD			å‹•ä½œé–¢æ•°ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1896,24 +1896,24 @@ static void PMove_Curve(MOVE_FUNC_DATA_PTR pMFD, POKE_ANM_PTR pAnm)
 	work[6]++;
 
 	if (work[6] >= work[5]){
-		//I—¹
+		//çµ‚äº†
 		pMFD->Valid = FALSE;
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ƒJ[ƒuˆÚ“®	‰ñ”•ªŠ„(Œˆ‚ß‚ç‚ê‚½Às‰ñ”“à‚ÅAw’è’l•ª‚ÌˆÚ“®‚ğ‚·‚é@“–‘R“™‘¬)
- * work0:ƒJ[ƒuƒ^ƒCƒviƒZƒbƒgÏj
- * work1:‘ÎÛ (ƒZƒbƒgÏ)
- * work2:U•iƒZƒbƒgÏj
- * work3:Šp“xiƒZƒbƒgÏj
- * work4:ˆÊ‘ŠiƒZƒbƒgÏj
- * work5:ŒvZ‰ñ”iƒZƒbƒgÏj
- * work6:‰ñ”‚ÌƒJƒEƒ“ƒg
+ * ã‚«ãƒ¼ãƒ–ç§»å‹•	å›æ•°åˆ†å‰²(æ±ºã‚ã‚‰ã‚ŒãŸå®Ÿè¡Œå›æ•°å†…ã§ã€æŒ‡å®šå€¤åˆ†ã®ç§»å‹•ã‚’ã™ã‚‹ã€€å½“ç„¶ç­‰é€Ÿ)
+ * work0:ã‚«ãƒ¼ãƒ–ã‚¿ã‚¤ãƒ—ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work1:å¯¾è±¡ (ã‚»ãƒƒãƒˆæ¸ˆ)
+ * work2:æŒ¯å¹…ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work3:è§’åº¦ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work4:ä½ç›¸ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work5:è¨ˆç®—å›æ•°ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work6:å›æ•°ã®ã‚«ã‚¦ãƒ³ãƒˆ
  *
- * @param	pMFD			“®ìŠÖ”ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pMFD			å‹•ä½œé–¢æ•°ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1950,22 +1950,22 @@ static void PMove_CurveDivTime(MOVE_FUNC_DATA_PTR pMFD, POKE_ANM_PTR pAnm)
 	work[6]++;
 
 	if (work[6] >= work[5]){
-		//I—¹
+		//çµ‚äº†
 		pMFD->Valid = FALSE;
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ’¼üˆÚ“®
- * work0:‘ÎÛ  (ƒZƒbƒgÏ)
- * work1:‰‘¬“xiƒZƒbƒgÏj
- * work2:‰Á‘¬“xiƒZƒbƒgÏj
- * work3:ŒvZ‰ñ”iƒZƒbƒgÏj
- * work4:‰ñ”‚ÌƒJƒEƒ“ƒg
+ * ç›´ç·šç§»å‹•
+ * work0:å¯¾è±¡  (ã‚»ãƒƒãƒˆæ¸ˆ)
+ * work1:åˆé€Ÿåº¦ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work2:åŠ é€Ÿåº¦ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work3:è¨ˆç®—å›æ•°ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work4:å›æ•°ã®ã‚«ã‚¦ãƒ³ãƒˆ
  *
- * @param	pMFD			“®ìŠÖ”ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pMFD			å‹•ä½œé–¢æ•°ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1988,21 +1988,21 @@ static void PMove_Line(MOVE_FUNC_DATA_PTR pMFD, POKE_ANM_PTR pAnm)
 	work[4]++;
 
 	if (work[4] >= work[3]){
-		//I—¹
+		//çµ‚äº†
 		pMFD->Valid = FALSE;
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ’¼üˆÚ“®@‰ñ”•ªŠ„(Œˆ‚ß‚ç‚ê‚½Às‰ñ”“à‚ÅAw’è’l•ª‚ÌˆÚ“®‚ğ‚·‚é@“–‘R“™‘¬)
- * work0:‘ÎÛ (ƒZƒbƒgÏ)
- * work1:ˆÚ“®’liƒZƒbƒgÏj
- * work2:ŒvZ‰ñ”iƒZƒbƒgÏj
- * work3:‰ñ”‚ÌƒJƒEƒ“ƒg
+ * ç›´ç·šç§»å‹•ã€€å›æ•°åˆ†å‰²(æ±ºã‚ã‚‰ã‚ŒãŸå®Ÿè¡Œå›æ•°å†…ã§ã€æŒ‡å®šå€¤åˆ†ã®ç§»å‹•ã‚’ã™ã‚‹ã€€å½“ç„¶ç­‰é€Ÿ)
+ * work0:å¯¾è±¡ (ã‚»ãƒƒãƒˆæ¸ˆ)
+ * work1:ç§»å‹•å€¤ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work2:è¨ˆç®—å›æ•°ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work3:å›æ•°ã®ã‚«ã‚¦ãƒ³ãƒˆ
  *
- * @param	pMFD			“®ìŠÖ”ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pMFD			å‹•ä½œé–¢æ•°ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -2023,22 +2023,22 @@ static void PMove_LineDivTime(MOVE_FUNC_DATA_PTR pMFD, POKE_ANM_PTR pAnm)
 	work[3]++;
 
 	if (work[3] >= work[2]){
-		//I—¹
+		//çµ‚äº†
 		pMFD->Valid = FALSE;
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ’¼üˆÚ“®–Ú“I’lw’è
- * work0:‘ÎÛ  (ƒZƒbƒgÏ)
- * work1:‰‘¬“xiƒZƒbƒgÏj
- * work2:‰Á‘¬“xiƒZƒbƒgÏj
- * work3:–Ú“I’liƒZƒbƒgÏj
- * work4:‰ñ”‚ÌƒJƒEƒ“ƒg
+ * ç›´ç·šç§»å‹•ç›®çš„å€¤æŒ‡å®š
+ * work0:å¯¾è±¡  (ã‚»ãƒƒãƒˆæ¸ˆ)
+ * work1:åˆé€Ÿåº¦ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work2:åŠ é€Ÿåº¦ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work3:ç›®çš„å€¤ï¼ˆã‚»ãƒƒãƒˆæ¸ˆï¼‰
+ * work4:å›æ•°ã®ã‚«ã‚¦ãƒ³ãƒˆ
  *
- * @param	pMFD			“®ìŠÖ”ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	pAnm			ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @param	pMFD			å‹•ä½œé–¢æ•°ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	pAnm			ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -2055,28 +2055,28 @@ static void PMove_LineDst(MOVE_FUNC_DATA_PTR pMFD, POKE_ANM_PTR pAnm)
 	(*pMFD->Target)+=move;
 
 	if ( (pMFD->ApplyType == APPLY_SET) ||
-		 (pMFD->ApplyType == APPLY_SYNTHE) ){			//ƒZƒbƒg
-		if (move < 0){		//‘«‚µ‚±‚ñ‚¾’l‚ªƒ}ƒCƒiƒX‚Ìê‡
-			if ((*pMFD->Target) <= work[3]){	//Œ»İ’l‚Ì‚Ù‚¤‚ª–Ú“I’l‚æ‚è¬‚³‚¯‚ê‚ÎI—¹
-				(*pMFD->Target) = work[3];	//–Ú“I’lƒZƒbƒg
+		 (pMFD->ApplyType == APPLY_SYNTHE) ){			//ã‚»ãƒƒãƒˆ
+		if (move < 0){		//è¶³ã—ã“ã‚“ã å€¤ãŒãƒã‚¤ãƒŠã‚¹ã®å ´åˆ
+			if ((*pMFD->Target) <= work[3]){	//ç¾åœ¨å€¤ã®ã»ã†ãŒç›®çš„å€¤ã‚ˆã‚Šå°ã•ã‘ã‚Œã°çµ‚äº†
+				(*pMFD->Target) = work[3];	//ç›®çš„å€¤ã‚»ãƒƒãƒˆ
 				pMFD->Valid = FALSE;
 			}
-		}else{				//‘«‚µ‚±‚ñ‚¾’l‚ªƒvƒ‰ƒX‚Ìê‡
-			if ((*pMFD->Target) >= work[3]){	//Œ»İ’l‚Ì‚Ù‚¤‚ª–Ú“I’l‚æ‚è‘å‚«‚¯‚ê‚ÎI—¹
-				(*pMFD->Target) = work[3];	//–Ú“I’lƒZƒbƒg
+		}else{				//è¶³ã—ã“ã‚“ã å€¤ãŒãƒ—ãƒ©ã‚¹ã®å ´åˆ
+			if ((*pMFD->Target) >= work[3]){	//ç¾åœ¨å€¤ã®ã»ã†ãŒç›®çš„å€¤ã‚ˆã‚Šå¤§ãã‘ã‚Œã°çµ‚äº†
+				(*pMFD->Target) = work[3];	//ç›®çš„å€¤ã‚»ãƒƒãƒˆ
 				pMFD->Valid = FALSE;
 			}
 		}
-	}else if(pMFD->ApplyType == APPLY_ADD){		//ŠJn’l‚É‰ÁZ
+	}else if(pMFD->ApplyType == APPLY_ADD){		//é–‹å§‹å€¤ã«åŠ ç®—
 		int val = pMFD->StartVal+(*pMFD->Target);
-		if (move < 0){		//‘«‚µ‚±‚ñ‚¾’l‚ªƒ}ƒCƒiƒX‚Ìê‡
-			if (val <= work[3]){	//Œ»İ’l‚Ì‚Ù‚¤‚ª–Ú“I’l‚æ‚è¬‚³‚¯‚ê‚ÎI—¹
-				(*pMFD->Target) += (work[3]- val);	//–Ú“I’lƒZƒbƒg
+		if (move < 0){		//è¶³ã—ã“ã‚“ã å€¤ãŒãƒã‚¤ãƒŠã‚¹ã®å ´åˆ
+			if (val <= work[3]){	//ç¾åœ¨å€¤ã®ã»ã†ãŒç›®çš„å€¤ã‚ˆã‚Šå°ã•ã‘ã‚Œã°çµ‚äº†
+				(*pMFD->Target) += (work[3]- val);	//ç›®çš„å€¤ã‚»ãƒƒãƒˆ
 				pMFD->Valid = FALSE;
 			}
-		}else{				//‘«‚µ‚±‚ñ‚¾’l‚ªƒvƒ‰ƒX‚Ìê‡
-			if (val >= work[3]){	//Œ»İ’l‚Ì‚Ù‚¤‚ª–Ú“I’l‚æ‚è‘å‚«‚¯‚ê‚ÎI—¹
-				(*pMFD->Target) -= (val - work[3]);	//–Ú“I’lƒZƒbƒg
+		}else{				//è¶³ã—ã“ã‚“ã å€¤ãŒãƒ—ãƒ©ã‚¹ã®å ´åˆ
+			if (val >= work[3]){	//ç¾åœ¨å€¤ã®ã»ã†ãŒç›®çš„å€¤ã‚ˆã‚Šå¤§ãã‘ã‚Œã°çµ‚äº†
+				(*pMFD->Target) -= (val - work[3]);	//ç›®çš„å€¤ã‚»ãƒƒãƒˆ
 				pMFD->Valid = FALSE;
 			}
 		}

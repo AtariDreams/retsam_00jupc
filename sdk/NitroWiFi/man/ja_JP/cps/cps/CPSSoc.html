@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CPSSoc</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">CPSSoc</h1>
 
 
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
@@ -47,68 +47,68 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p>�\�P�b�g���`����\���̂ł��BOSThread���̃t�B�[���h����|�C���g����܂��B<BR>
-�w�ǂ̃t�B�[���h�̓V�X�e�����ݒ肵�܂����A�o�b�t�@�̈擙�̓A�v���P�[�V�������ݒ肵�Ȃ���΂����܂���B</p>
+<p>ソケットを定義する構造体です。OSThread内のフィールドからポイントされます。<BR>
+殆どのフィールドはシステムが設定しますが、バッファ領域等はアプリケーションが設定しなければいけません。</p>
 <TABLE border="1">
 	<TBODY>
 		<TR>
 			<TD width="25%"><EM><STRONG><CODE>rcvbuf</CODE></STRONG></EM></TD>
-			<TD width="75%">�K�{�B<CODE><A href="CPS_SocRead.html">CPS_SocRead</A></CODE>()�ŕԂ�����M�o�b�t�@�̈�<BR>
-                                       TCP�̃E�B���h�E�T�C�Y�́A���̗̈�̃T�C�Y�Ɉˑ����܂��B<BR>
-                                       ������傫��UDP�p�P�b�g�AICMP echo reply�p�P�b�g�͐؂�l�߂��܂��B</TD>
+			<TD width="75%">必須。<CODE><A href="CPS_SocRead.html">CPS_SocRead</A></CODE>()で返される受信バッファ領域<BR>
+                                       TCPのウィンドウサイズは、この領域のサイズに依存します。<BR>
+                                       これより大きなUDPパケット、ICMP echo replyパケットは切り詰められます。</TD>
 		</TR>
 		<TR>
 			<TD><EM><STRONG><CODE>sndbuf</CODE></STRONG></EM></TD>
-			<TD>�K�{�BARM7�ɓn�����M�p�P�b�g�o�b�t�@<BR>
-                            �X���b�h���ɂ��̃A�v���P�[�V�������o�͂���p�P�b�g(IP�w�b�_�����܂�)�̍ő咷+14�o�C�g�p�ӂ���K�v������܂��B<BR>
-                            �ʏ��1514�o�C�g�ɂ��Ă��������B</TD>
+			<TD>必須。ARM7に渡す送信パケットバッファ<BR>
+                            スレッド毎にそのアプリケーションが出力するパケット(IPヘッダ等を含む)の最大長+14バイト用意する必要があります。<BR>
+                            通常は1514バイトにしてください。</TD>
 		</TR>
 		<TR>
 			<TD><EM><STRONG><CODE>linbuf</CODE></STRONG></EM></TD>
-			<TD>�C�ӁB<CODE><A href="CPS_SocGets.html">CPS_SocGets</A></CODE>()���g�p����ꍇ�̂݁A�����s�̍ő�̒���+1�o�C�g�p�ӂ���K�v������܂��B</TD>
+			<TD>任意。<CODE><A href="CPS_SocGets.html">CPS_SocGets</A></CODE>()を使用する場合のみ、扱う行の最大の長さ+1バイト用意する必要があります。</TD>
 		</TR>
 		<TR>
 			<TD><EM><STRONG><CODE>outbuf</CODE></STRONG></EM></TD>
-			<TD>�C�ӁB<CODE><A href="CPS_SocPutChar.html">CPS_SocPutChar</A></CODE>()�A<CODE><A href="CPS_SocPuts.html">CPS_SocPuts</A></CODE>()�A<CODE><A href="CPS_SocPrintf.html">CPS_SocPrintf</A></CODE>()���g�p����ꍇ�̂݁A�K���ȑ傫���Ŋm�ۂ��܂��B<BR>
-                            mymss��2�{�ɂ���ƌ������ǂ��g�p���邱�Ƃ��ł��܂��B</TD>
+			<TD>任意。<CODE><A href="CPS_SocPutChar.html">CPS_SocPutChar</A></CODE>()、<CODE><A href="CPS_SocPuts.html">CPS_SocPuts</A></CODE>()、<CODE><A href="CPS_SocPrintf.html">CPS_SocPrintf</A></CODE>()を使用する場合のみ、適当な大きさで確保します。<BR>
+                            mymssの2倍にすると効率が良く使用することができます。</TD>
 		</TR>
 		<TR>
 			<TD><EM><STRONG><CODE>con</CODE></STRONG></EM></TD>
-			<TD>SSL���g�p����ۂ�<CODE><A href="CPSSslConnection.html">CPSSslConnection</A></CODE>�\���̂ւ̃|�C���^��ݒ肵�܂��B</TD>
+			<TD>SSLを使用する際は<CODE><A href="CPSSslConnection.html">CPSSslConnection</A></CODE>構造体へのポインタを設定します。</TD>
 		</TR>
 	</TBODY>
 </TABLE>
-<p>�ȉ��̃t�B�[���h�́AUDP�ʐM�̍ۂ̃|�[�g�EIP�A�h���X�̃o�C���h��Ԃ��R���g���[�����邽�߂ɂ�udpread_callback()���Ŏg�p���邱�Ƃ��o���܂��B<BR>
-�ڍׂ�<CODE><A href="CPS_SetUdpCallback.html">CPS_SetUdpCallback</A></CODE>()�A<CODE><A href="CPS_SocBind.html">CPS_SocBind</A></CODE>()���Q�Ƃ��Ă��������B</p>
+<p>以下のフィールドは、UDP通信の際のポート・IPアドレスのバインド状態をコントロールするためにはudpread_callback()内で使用することが出来ます。<BR>
+詳細は<CODE><A href="CPS_SetUdpCallback.html">CPS_SetUdpCallback</A></CODE>()、<CODE><A href="CPS_SocBind.html">CPS_SocBind</A></CODE>()を参照してください。</p>
 <TABLE border="1">
 	<TBODY>
 		<TR>
 			<TD><EM><STRONG><CODE>remote_port</CODE></STRONG></EM></TD>
-			<TD>���ۂ̑���|�[�g�ԍ��B</TD>
+			<TD>実際の相手ポート番号。</TD>
 		</TR>
 		<TR>
 			<TD><EM><STRONG><CODE>remote_ip</CODE></STRONG></EM></TD>
-			<TD>���ۂ̑���IPv4�A�h���X�B</TD>
+			<TD>実際の相手IPv4アドレス。</TD>
 		</TR>
 		<TR>
 			<TD><EM><STRONG><CODE>remote_port_bound</CODE></STRONG></EM></TD>
-			<TD>CPS_SocBind()�Ŏw�肵������|�[�g�ԍ��B</TD>
+			<TD>CPS_SocBind()で指定した相手ポート番号。</TD>
 		</TR>
 		<TR>
 			<TD><EM><STRONG><CODE>remote_ip_bound</CODE></STRONG></EM></TD>
-			<TD>CPS_SocBind()�Ŏw�肵������IPv4�A�h���X�B</TD>
+			<TD>CPS_SocBind()で指定した相手IPv4アドレス。</TD>
 		</TR>
 	</TBODY>
 </TABLE>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P>
-<CODE><A href="CPS_SocRegister.html">CPS_SocRegister</A></CODE>, <CODE><A href="CPS_SocUse.html">CPS_SocUse</A></CODE>, <CODE><A href="CPS_SocRelease.html">CPS_SocRelease</A></CODE>, <CODE><A href="CPS_SetUdpCallback.html">CPS_SetUdpCallback</A></CODE>, <CODE><A href="CPS_SocBind.html">CPS_SocBind</A></CODE>, <CODE><A href="CPS_SocWrite.html">CPS_SocWrite</A></CODE>, <CODE><A href="CPSSocBuf.html">CPSSocBuf</A></CODE>, <CODE><A href="CPSSslConnection.html">CPSSslConnection</A></CODE>, <CODE><A href="CPS_CONSTANT_TYPE.html">CPS���C�u�����^</A></CODE>
+<CODE><A href="CPS_SocRegister.html">CPS_SocRegister</A></CODE>, <CODE><A href="CPS_SocUse.html">CPS_SocUse</A></CODE>, <CODE><A href="CPS_SocRelease.html">CPS_SocRelease</A></CODE>, <CODE><A href="CPS_SetUdpCallback.html">CPS_SetUdpCallback</A></CODE>, <CODE><A href="CPS_SocBind.html">CPS_SocBind</A></CODE>, <CODE><A href="CPS_SocWrite.html">CPS_SocWrite</A></CODE>, <CODE><A href="CPSSocBuf.html">CPSSocBuf</A></CODE>, <CODE><A href="CPSSslConnection.html">CPSSslConnection</A></CODE>, <CODE><A href="CPS_CONSTANT_TYPE.html">CPSライブラリ型</A></CODE>
 </P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-Ver. 2005/10/24 ����</P>
+Ver. 2005/10/24 初版</P>
 </body>
 </html>

@@ -3,7 +3,7 @@
  * @file	seedbed.c
  * @author	tamada
  * @date	2005.02.01
- * @brief	‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘€ì
+ * @brief	ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿æ“ä½œ
  */
 //============================================================================================
 
@@ -27,19 +27,19 @@
 #endif
 
 //============================================================================================
-//				’è‹`
+//				å®šç¾©
 //============================================================================================
 enum {
-		///¬’·‚ðŒJ‚è•Ô‚·Å‘å”
+		///æˆé•·ã‚’ç¹°ã‚Šè¿”ã™æœ€å¤§æ•°
 		SEED_ROUND_MAX		=	10,
 
-		///ŽÀ‚ª‚È‚Á‚½ó‘Ô‚Å‚Ì¬’·ŽžŠÔŒW”
+		///å®ŸãŒãªã£ãŸçŠ¶æ…‹ã§ã®æˆé•·æ™‚é–“ä¿‚æ•°
 		FRUIT_TIME_RATE		=	4,
 
-		///	“y‚ÌHPÅ‘å’l
+		///	åœŸã®HPæœ€å¤§å€¤
 		GROUND_HP_MAX	= 100,
 
-		///	‚«‚Ì‚ÝHP‚ÌÅ‘å’l
+		///	ãã®ã¿HPã®æœ€å¤§å€¤
 		SEED_HP_BASE = 5,
 		SEED_HP_MID	= 3,
 };
@@ -49,14 +49,14 @@ static int get_grow_time(const SEED_TABLE * prm, int type, int compost);
 //============================================================================================
 //
 //
-//		ƒZ[ƒuƒf[ƒ^ƒCƒ“ƒ^[ƒtƒFƒCƒX
+//		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹
 //
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ýó‘Ôƒf[ƒ^ƒTƒCƒY‚ÌŽæ“¾
- * @return	int		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‚ÌƒTƒCƒY
+ * @brief	ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã®å–å¾—
+ * @return	int		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
  */
 //----------------------------------------------------------
 int SEEDBED_GetWorkSize(void)
@@ -66,9 +66,9 @@ int SEEDBED_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ýó‘Ôƒf[ƒ^—pƒƒ‚ƒŠŠm•Û
- * @param	heapID		Šm•Û‚·‚éƒq[ƒv‚ÌŽw’è
- * @return	SEEDBED		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿ç”¨ãƒ¡ãƒ¢ãƒªç¢ºä¿
+ * @param	heapID		ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @return	SEEDBED		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 SEEDBED * SEEDBED_AllocWork(u32 heapID)
@@ -80,8 +80,8 @@ SEEDBED * SEEDBED_AllocWork(u32 heapID)
 
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ì‰Šú‰»
- * @param	SEEDBED		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã®åˆæœŸåŒ–
+ * @param	SEEDBED		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void SEEDBED_Init(SEEDBED * sbed)
@@ -100,8 +100,8 @@ void SEEDBED_Init(SEEDBED * sbed)
 
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ý‚Ì‰Šúó‘ÔƒZƒbƒg
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãã®ã¿ã®åˆæœŸçŠ¶æ…‹ã‚»ãƒƒãƒˆ
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	heapID
  * @param	init_data
  * @param	max
@@ -129,7 +129,7 @@ void SEEDBED_SetDefaultData(SEEDBED * sbed, int heapID, const u16 * init_data, i
 
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ý¬’·ˆ—”»’è—pƒe[ƒuƒ‹‚Ì¶¬
+ * @brief	ãã®ã¿æˆé•·å‡¦ç†åˆ¤å®šç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç”Ÿæˆ
  * @param	heapID
  */
 //----------------------------------------------------------
@@ -159,13 +159,13 @@ SEED_TABLE * SEEDBED_CreateParamTable(int heapID)
 
 //============================================================================================
 //
-//		“à•”ƒc[ƒ‹ŠÖ”
+//		å†…éƒ¨ãƒ„ãƒ¼ãƒ«é–¢æ•°
 //
 //============================================================================================
 #ifdef	DEBUG_SEED_INFO
 //----------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOî•ñ‚Ì•\Ž¦
+ * @brief	ãƒ‡ãƒãƒƒã‚°æƒ…å ±ã®è¡¨ç¤º
  * @param	bed
  * @param	i
  */
@@ -187,8 +187,8 @@ static void PrintSeedInfo(const SEEDBED * bed, int i)
 
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ýƒf[ƒ^‰Šú‰»
- * @param	s	‚«‚Ì‚Ýó‘Ôƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãã®ã¿ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
+ * @param	s	ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 static void InitSeed(SEEDBED * s)
@@ -209,7 +209,7 @@ static void InitSeed(SEEDBED * s)
 //-------------------------------------------------------------------------
 static int count_nuts(SEEDBED * s, const SEED_TABLE * prm)
 {
-	//–Ø‚ÌŽÀHP@~@ŽÀ‚Ì”{—¦
+	//æœ¨ã®å®ŸHPã€€Ã—ã€€å®Ÿã®å€çŽ‡
 	return	prm[s->type -1].nuts_rate * s->seed_hp;
 }
 
@@ -243,7 +243,7 @@ static int get_root_power(const SEED_TABLE * prm, int type, int compost)
 //-------------------------------------------------------------------------
 static int get_nuts_time_rate(const SEEDBED * s)
 {
-	//ƒ~ƒi[ƒ‹ƒRƒ„ƒV‚ðŽg‚Á‚Ä‚¢‚é‚Æ‚«AŽÀ‚ª¶‚Á‚Ä‚¢‚éŽžŠÔ‚ª1.5”{‚É‚È‚é
+	//ãƒŸãƒŠãƒ¼ãƒ«ã‚³ãƒ¤ã‚·ã‚’ä½¿ã£ã¦ã„ã‚‹ã¨ãã€å®ŸãŒç”Ÿã£ã¦ã„ã‚‹æ™‚é–“ãŒ1.5å€ã«ãªã‚‹
 	if (s->compost == SEEDCOMPOST_MINAARU) {
 		return FRUIT_TIME_RATE + 2;
 	} else {
@@ -254,7 +254,7 @@ static int get_nuts_time_rate(const SEEDBED * s)
 //-------------------------------------------------------------------------
 static int get_round_max(const SEEDBED * s)
 {
-	//‚Ë‚Î‚è‚±‚â‚µ‚ðŽg‚Á‚Ä‚¢‚é‚Æ‚«AŽõ–½‚ª‚T‰ñ‘‚¦‚é
+	//ã­ã°ã‚Šã“ã‚„ã—ã‚’ä½¿ã£ã¦ã„ã‚‹ã¨ãã€å¯¿å‘½ãŒï¼•å›žå¢—ãˆã‚‹
 	if (s->compost == SEEDCOMPOST_NEBARI) {
 		return SEED_ROUND_MAX + 5;
 	} else {
@@ -266,8 +266,8 @@ static int get_round_max(const SEEDBED * s)
 //-------------------------------------------------------------------------
 static int get_life_time(SEEDBED * s)
 {
-	//¬’·‚ðŒJ‚è•Ô‚µ‚ÄÁ‚¦‚é‚Ü‚Å‚Ì’·‚³
-	//Å‰‚Ì“y‚Ì’†+i‰è+Œs+‰Ô+ŽÀ) * SEED_ROUND_MAX;
+	//æˆé•·ã‚’ç¹°ã‚Šè¿”ã—ã¦æ¶ˆãˆã‚‹ã¾ã§ã®é•·ã•
+	//æœ€åˆã®åœŸã®ä¸­+ï¼ˆèŠ½+èŒŽ+èŠ±+å®Ÿ) * SEED_ROUND_MAX;
 	//LIFE_TIME_LEN		=	1+(1+1+1+FRUIT_TIME_RATE) * SEED_ROUND_MAX,
 	return 1 + (1+1+1+get_nuts_time_rate(s)) * get_round_max(s);
 }
@@ -277,17 +277,17 @@ static int get_life_time(SEEDBED * s)
 //============================================================================================
 //
 //
-//		‚«‚Ì‚Ýó‘ÔƒAƒNƒZƒX—pŠO•”ŒöŠJŠÖ”
+//		ãã®ã¿çŠ¶æ…‹ã‚¢ã‚¯ã‚»ã‚¹ç”¨å¤–éƒ¨å…¬é–‹é–¢æ•°
 //
 //
 //============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ý‚Ìó‘ÔŽæ“¾
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			‚«‚Ì‚Ý‚ðŽw’è‚·‚éID
- * @return	SEEDSTAT	‚«‚Ì‚Ý‚Ìó‘Ôiseedbed.h‚Ì’è‹`‚ðŽQÆj
+ * @brief	ãã®ã¿ã®çŠ¶æ…‹å–å¾—
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ãã®ã¿ã‚’æŒ‡å®šã™ã‚‹ID
+ * @return	SEEDSTAT	ãã®ã¿ã®çŠ¶æ…‹ï¼ˆseedbed.hã®å®šç¾©ã‚’å‚ç…§ï¼‰
  */
 //----------------------------------------------------------
 SEEDSTAT SEEDBED_GetSeedStatus(const SEEDBED * sbed, int id)
@@ -296,10 +296,10 @@ SEEDSTAT SEEDBED_GetSeedStatus(const SEEDBED * sbed, int id)
 }
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ý‚ÌŽí—Þ‚ðŽæ“¾
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			‚«‚Ì‚Ý‚ðŽw’è‚·‚éID
- * @return	int			‚«‚Ì‚Ý‚ÌŽí—Þi‚O`ITEM_NUTS_MAX)
+ * @brief	ãã®ã¿ã®ç¨®é¡žã‚’å–å¾—
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ãã®ã¿ã‚’æŒ‡å®šã™ã‚‹ID
+ * @return	int			ãã®ã¿ã®ç¨®é¡žï¼ˆï¼ã€œITEM_NUTS_MAX)
  */
 //----------------------------------------------------------
 int SEEDBED_GetSeedType(const SEEDBED * sbed, int id)
@@ -308,10 +308,10 @@ int SEEDBED_GetSeedType(const SEEDBED * sbed, int id)
 }
 //----------------------------------------------------------
 /**
- * @brief	…‚â‚è‚Ìó‘Ô‚ðŽæ“¾
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			‚«‚Ì‚Ý‚ðŽw’è‚·‚éID
- * @return	SEEDGROUND	…‚â‚èó‘Ôiseedbed.h‚Ì’è‹`‚ðŽQÆj
+ * @brief	æ°´ã‚„ã‚Šã®çŠ¶æ…‹ã‚’å–å¾—
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ãã®ã¿ã‚’æŒ‡å®šã™ã‚‹ID
+ * @return	SEEDGROUND	æ°´ã‚„ã‚ŠçŠ¶æ…‹ï¼ˆseedbed.hã®å®šç¾©ã‚’å‚ç…§ï¼‰
  */
 //----------------------------------------------------------
 SEEDGROUND SEEDBED_GetGroundStatus(const SEEDBED * sbed, int id)
@@ -329,10 +329,10 @@ SEEDGROUND SEEDBED_GetGroundStatus(const SEEDBED * sbed, int id)
 }
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ý‚ÌHP‚ðŽæ“¾
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			‚«‚Ì‚Ý‚ðŽw’è‚·‚éID
- * @return	int			‚«‚Ì‚Ý‚ÌHPi‚O`‚P‚Oj
+ * @brief	ãã®ã¿ã®HPã‚’å–å¾—
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ãã®ã¿ã‚’æŒ‡å®šã™ã‚‹ID
+ * @return	int			ãã®ã¿ã®HPï¼ˆï¼ã€œï¼‘ï¼ï¼‰
  */
 //----------------------------------------------------------
 int SEEDBED_GetSeedHP(const SEEDBED * sbed, int id)
@@ -343,11 +343,11 @@ int SEEDBED_GetSeedHP(const SEEDBED * sbed, int id)
 
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ý‚ðA‚¦‚é
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			‚«‚Ì‚Ý‚ðŽw’è‚·‚éID
- * @param	prm			‚«‚Ì‚Ý‚ÌŽí—Þ–ˆƒpƒ‰ƒ[ƒ^ƒe[ƒuƒ‹
- * @param	type		‚«‚Ì‚Ý‚ÌŽí—Þ
+ * @brief	ãã®ã¿ã‚’æ¤ãˆã‚‹
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ãã®ã¿ã‚’æŒ‡å®šã™ã‚‹ID
+ * @param	prm			ãã®ã¿ã®ç¨®é¡žæ¯Žãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	type		ãã®ã¿ã®ç¨®é¡ž
  */
 //----------------------------------------------------------
 void SEEDBED_SetNuts(SEEDBED * sbed, int id, const SEED_TABLE * prm, int type)
@@ -372,9 +372,9 @@ void SEEDBED_SetNuts(SEEDBED * sbed, int id, const SEED_TABLE * prm, int type)
 
 //----------------------------------------------------------
 /**
- * @brief	…‚ð‚ ‚°‚é
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			‚«‚Ì‚Ý‚ðŽw’è‚·‚éID
+ * @brief	æ°´ã‚’ã‚ã’ã‚‹
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ãã®ã¿ã‚’æŒ‡å®šã™ã‚‹ID
  */
 //----------------------------------------------------------
 void SEEDBED_SetSeedWater(SEEDBED * sbed, int id)
@@ -388,10 +388,10 @@ void SEEDBED_SetSeedWater(SEEDBED * sbed, int id)
 
 //----------------------------------------------------------
 /**
- * @brief	¬’·ƒtƒ‰ƒO‚ÌŽæ“¾
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			‚«‚Ì‚Ý‚ðŽw’è‚·‚éID
- * @return	BOOL		TRUE‚Ì‚Æ‚«A¬’·‚·‚é
+ * @brief	æˆé•·ãƒ•ãƒ©ã‚°ã®å–å¾—
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ãã®ã¿ã‚’æŒ‡å®šã™ã‚‹ID
+ * @return	BOOL		TRUEã®ã¨ãã€æˆé•·ã™ã‚‹
  */
 //----------------------------------------------------------
 BOOL SEEDBED_GetGrowthFlag(const SEEDBED * sbed, int id)
@@ -401,10 +401,10 @@ BOOL SEEDBED_GetGrowthFlag(const SEEDBED * sbed, int id)
 
 //----------------------------------------------------------
 /**
- * @brief	¬’·ƒtƒ‰ƒO‚ÌƒZƒbƒg
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			‚«‚Ì‚Ý‚ðŽw’è‚·‚éID
- * @param	flag		TRUE‚Ì‚Æ‚«A¬’·‚·‚é
+ * @brief	æˆé•·ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ãã®ã¿ã‚’æŒ‡å®šã™ã‚‹ID
+ * @param	flag		TRUEã®ã¨ãã€æˆé•·ã™ã‚‹
  */
 //----------------------------------------------------------
 void SEEDBED_SetGrowthFlag(SEEDBED * sbed, int id, BOOL flag)
@@ -420,10 +420,10 @@ void SEEDBED_SetGrowthFlag(SEEDBED * sbed, int id, BOOL flag)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒRƒ„ƒV‚ÌŽí—Þ‚ðŽæ“¾
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			‚«‚Ì‚Ý‚ðŽw’è‚·‚éID
- * @param	compost		ƒRƒ„ƒV‚ÌŽw’è
+ * @brief	ã‚³ãƒ¤ã‚·ã®ç¨®é¡žã‚’å–å¾—
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ãã®ã¿ã‚’æŒ‡å®šã™ã‚‹ID
+ * @param	compost		ã‚³ãƒ¤ã‚·ã®æŒ‡å®š
  */
 //----------------------------------------------------------
 SEEDCOMPOST SEEDBED_GetCompost(const SEEDBED * sbed, int id)
@@ -433,10 +433,10 @@ SEEDCOMPOST SEEDBED_GetCompost(const SEEDBED * sbed, int id)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒRƒ„ƒV‚ðƒZƒbƒg‚·‚é
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			‚«‚Ì‚Ý‚ðŽw’è‚·‚éID
- * @param	compost		ƒRƒ„ƒV‚ÌŽw’è
+ * @brief	ã‚³ãƒ¤ã‚·ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ãã®ã¿ã‚’æŒ‡å®šã™ã‚‹ID
+ * @param	compost		ã‚³ãƒ¤ã‚·ã®æŒ‡å®š
  */
 //----------------------------------------------------------
 void SEEDBED_SetCompost(SEEDBED * sbed, int id, SEEDCOMPOST compost)
@@ -449,9 +449,9 @@ void SEEDBED_SetCompost(SEEDBED * sbed, int id, SEEDCOMPOST compost)
 }
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ý‚Ì”‚ðŽæ“¾
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			‚«‚Ì‚Ý‚ðŽw’è‚·‚éID
+ * @brief	ãã®ã¿ã®æ•°ã‚’å–å¾—
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ãã®ã¿ã‚’æŒ‡å®šã™ã‚‹ID
  */
 //----------------------------------------------------------
 int SEEDBED_GetSeedCount(const SEEDBED * sbed, int id)
@@ -462,9 +462,9 @@ int SEEDBED_GetSeedCount(const SEEDBED * sbed, int id)
 
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ý‚ðŽûŠn
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			‚«‚Ì‚Ý‚ðŽw’è‚·‚éID
+ * @brief	ãã®ã¿ã‚’åŽç©«
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ãã®ã¿ã‚’æŒ‡å®šã™ã‚‹ID
  */
 //----------------------------------------------------------
 int SEEDBED_GetHarvest(SEEDBED * sbed, int id)
@@ -481,35 +481,35 @@ int SEEDBED_GetHarvest(SEEDBED * sbed, int id)
 
 //-------------------------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ý‚ðˆç‚Ä‚é
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	prm		‚«‚Ì‚Ý‚ÌŽí—Þ–ˆƒpƒ‰ƒ[ƒ^ƒe[ƒuƒ‹
+ * @brief	ãã®ã¿ã‚’è‚²ã¦ã‚‹
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	prm		ãã®ã¿ã®ç¨®é¡žæ¯Žãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //-------------------------------------------------------------------------
 static void SeedGrowth(SEEDBED *s, const SEED_TABLE * prm)
 {
 	switch (s->stat) {
 
-	case SEEDSTAT_NOTHING:		// A‚¦‚Ä‚¢‚È‚¢
+	case SEEDSTAT_NOTHING:		// æ¤ãˆã¦ã„ãªã„
 		GF_ASSERT(0);
 		break;
 
-	case SEEDSTAT_UNDERGROUND:	// A‚¦‚½’¼Œã
-	case SEEDSTAT_HUTABA:		// ‘o—tA”­‰è’¼Œã
-	case SEEDSTAT_MIKI:			// Š²A¬’·Œã
+	case SEEDSTAT_UNDERGROUND:	// æ¤ãˆãŸç›´å¾Œ
+	case SEEDSTAT_HUTABA:		// åŒè‘‰ã€ç™ºèŠ½ç›´å¾Œ
+	case SEEDSTAT_MIKI:			// å¹¹ã€æˆé•·å¾Œ
 		s->stat ++;
 		break;
 
-	case SEEDSTAT_FLOWER:		// ‰Ô
+	case SEEDSTAT_FLOWER:		// èŠ±
 		s->nuts_count = count_nuts(s, prm);
 		if (s->nuts_count < 2) {
-			//Å’á2ŒÂ‚ÍŽÀ‚ª‚È‚é
+			//æœ€ä½Ž2å€‹ã¯å®ŸãŒãªã‚‹
 			s->nuts_count = 2;
 		}
 		s->stat ++;
 		break;
 
-	case SEEDSTAT_FRUIT:		// ŽÀ‚ª‚È‚Á‚½ó‘Ô
+	case SEEDSTAT_FRUIT:		// å®ŸãŒãªã£ãŸçŠ¶æ…‹
 		s->nuts_count = 0;
 		s->stat = SEEDSTAT_HUTABA;
 		//s->ground_hp = GROUND_HP_MAX;
@@ -524,10 +524,10 @@ static void SeedGrowth(SEEDBED *s, const SEED_TABLE * prm)
 
 //----------------------------------------------------------
 /**
- * @brief	…‚Ì‹zŽûˆ—
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	prm			‚«‚Ì‚Ý‚ÌŽí—Þ–ˆƒpƒ‰ƒ[ƒ^ƒe[ƒuƒ‹
- * @param	minute		i‚ñ‚¾ŽžŠÔi•ª’PˆÊj
+ * @brief	æ°´ã®å¸åŽå‡¦ç†
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	prm			ãã®ã¿ã®ç¨®é¡žæ¯Žãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	minute		é€²ã‚“ã æ™‚é–“ï¼ˆåˆ†å˜ä½ï¼‰
  */
 //----------------------------------------------------------
 static void AbsorbWater(SEEDBED * s, const SEED_TABLE * prm, int count)
@@ -536,13 +536,13 @@ static void AbsorbWater(SEEDBED * s, const SEED_TABLE * prm, int count)
 	int root_pow;
 	int rest_count;
 	if (s->stat == SEEDSTAT_FRUIT) {
-		//ŽÀ‚ª‚È‚Á‚Ä‚¢‚éó‘Ô‚Å‚Í‚g‚o‚Í•Ï‰»‚µ‚È‚¢
+		//å®ŸãŒãªã£ã¦ã„ã‚‹çŠ¶æ…‹ã§ã¯ï¼¨ï¼°ã¯å¤‰åŒ–ã—ãªã„
 		return;
 	}
 	root_pow = get_root_power(prm, s->type, s->compost);
 	count += s->dry_time;
-	dec_count = count / 60;		//1ŽžŠÔ‚Pƒ|ƒCƒ“ƒg
-	s->dry_time = count % 60;	//‚ ‚Ü‚è‚ÍWŒv‚µ‚Ä‚¨‚­
+	dec_count = count / 60;		//1æ™‚é–“ï¼ï¼‘ãƒã‚¤ãƒ³ãƒˆ
+	s->dry_time = count % 60;	//ã‚ã¾ã‚Šã¯é›†è¨ˆã—ã¦ãŠã
 	if (dec_count == 0) {
 		return;
 	}
@@ -552,13 +552,13 @@ static void AbsorbWater(SEEDBED * s, const SEED_TABLE * prm, int count)
 	}
 
 	if (s->ground_hp > 0) {
-		//“y‚ÌHP‚ðŒ¸‚ç‚·‚Ì‚É‰½ŽžŠÔ•K—v‚©iØ‚èã‚°j‚ÅŒvŽZ
+		//åœŸã®HPã‚’æ¸›ã‚‰ã™ã®ã«ä½•æ™‚é–“å¿…è¦ã‹ï¼ˆåˆ‡ã‚Šä¸Šã’ï¼‰ã§è¨ˆç®—
 		rest_count = (s->ground_hp + (root_pow - 1)) / root_pow;
 		dec_count -= rest_count;
 		s->ground_hp = 0;
 	}
 
-	//…‚É—]’n‚ª‚È‚­‚È‚Á‚½‚Ì‚Åƒ|ƒCƒ“ƒg‚¾‚¯‚«‚Ì‚ÝHP‚ðŒ¸‚ç‚·
+	//æ°´ã«ä½™åœ°ãŒãªããªã£ãŸã®ã§ãƒã‚¤ãƒ³ãƒˆã ã‘ãã®ã¿HPã‚’æ¸›ã‚‰ã™
 	if (s->seed_hp > dec_count) {
 		s->seed_hp -= dec_count;
 	} else {
@@ -568,10 +568,10 @@ static void AbsorbWater(SEEDBED * s, const SEED_TABLE * prm, int count)
 
 //----------------------------------------------------------
 /**
- * @brief	‚«‚Ì‚Ý‚ð¬’·‚³‚¹‚é
- * @param	sbed		‚«‚Ì‚Ýó‘Ôƒf[ƒ^‘S‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	prm		‚«‚Ì‚Ý‚ÌŽí—Þ–ˆƒpƒ‰ƒ[ƒ^ƒe[ƒuƒ‹
- * @param	minute		i‚ñ‚¾ŽžŠÔi•ª’PˆÊj
+ * @brief	ãã®ã¿ã‚’æˆé•·ã•ã›ã‚‹
+ * @param	sbed		ãã®ã¿çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	prm		ãã®ã¿ã®ç¨®é¡žæ¯Žãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	minute		é€²ã‚“ã æ™‚é–“ï¼ˆåˆ†å˜ä½ï¼‰
  */
 //----------------------------------------------------------
 void SEEDBED_Growth(SEEDBED * sbed, const SEED_TABLE * prm, int minute)
@@ -585,31 +585,31 @@ void SEEDBED_Growth(SEEDBED * sbed, const SEED_TABLE * prm, int minute)
 		if ( s->type == 0
 				|| s->stat == SEEDSTAT_NOTHING
 				|| s->growth_flag == FALSE) {
-			//Ží—ÞŽw’è‚ª‚È‚¢A–Ø‚ÌŽÀ‚ªA‚¦‚ç‚ê‚Ä‚¢‚È‚¢A¬’·‚µ‚È‚¢ê‡‚ÍŽŸ‚Ö
+			//ç¨®é¡žæŒ‡å®šãŒãªã„ã€æœ¨ã®å®ŸãŒæ¤ãˆã‚‰ã‚Œã¦ã„ãªã„ã€æˆé•·ã—ãªã„å ´åˆã¯æ¬¡ã¸
 			continue;
 		}
 		if (minute >= get_grow_time(prm, s->type, s->compost) * get_life_time(s)) {
-			//Žõ–½ˆÈã‚ÌŽžŠÔ‚ªŒo‰ß‚µ‚½ê‡‚Í‰Šú‰»‚·‚é
+			//å¯¿å‘½ä»¥ä¸Šã®æ™‚é–“ãŒçµŒéŽã—ãŸå ´åˆã¯åˆæœŸåŒ–ã™ã‚‹
 			InitSeed(s);
 			continue;
 		}
 
-		//¬’·ƒJƒEƒ“ƒgˆ—
+		//æˆé•·ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 		count = minute;
 
 		while (s->stat != SEEDSTAT_NOTHING && count != 0) {
 			if (s->grow_time > count) {
-				//…‹zŽûƒJƒEƒ“ƒgˆ—
+				//æ°´å¸åŽã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 				AbsorbWater(s, prm, count);
 				s->grow_time -= count;
 				count = 0;
 				break;
 			}else{
-				//…‹zŽûƒJƒEƒ“ƒgˆ—
+				//æ°´å¸åŽã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 				AbsorbWater(s, prm, s->grow_time);
-				//¬’·‚·‚é
+				//æˆé•·ã™ã‚‹
 				SeedGrowth(s, prm);
-				//ŽŸ‚Ì’iŠK‚Ü‚Å‚ÌƒJƒEƒ“ƒg‚ðƒZƒbƒg
+				//æ¬¡ã®æ®µéšŽã¾ã§ã®ã‚«ã‚¦ãƒ³ãƒˆã‚’ã‚»ãƒƒãƒˆ
 				count -= s->grow_time;
 				s->grow_time = get_grow_time(prm, s->type, s->compost);
 				if (s->stat == SEEDSTAT_FRUIT) {

@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		lobby_news.c
- *	@brief		ƒƒr[ƒjƒ…[ƒX
+ *	@brief		ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹
  *	@author		tomoya takahashi
  *	@data		2007.10.09
  *
@@ -39,19 +39,19 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 #ifdef PM_DEBUG
@@ -65,19 +65,19 @@ static u32 sc_WFLBY_DEBUG_LOBBY_NEWS_TOPIC_MAKE_TOPIC = NEWS_TOPICTYPE_CONNECT;
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	Vram“]‘—ƒ}ƒl[ƒWƒƒ@ƒ^ƒXƒN”
+///	Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ã€€ã‚¿ã‚¹ã‚¯æ•°
 //=====================================
 #define NEWSDRAW_VRAMTRANS_TASKNUM	( 48 )
 
 //-------------------------------------
-///	OAMÝ’è
+///	OAMè¨­å®š
 //=====================================
 #define NEWSDRAW_OAM_CONTNUM	( 32 )
-#define NEWSDRAW_RESMAN_NUM		( 4 )	// OAMƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”
+#define NEWSDRAW_RESMAN_NUM		( 4 )	// OAMãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£æ•°
 #define NEWSDRAW_SF_MAT_Y		( FX32_CONST(256) )
 static const CHAR_MANAGER_MAKE sc_NEWSDRAW_CHARMAN_INIT = {
 	NEWSDRAW_OAM_CONTNUM,
@@ -88,23 +88,23 @@ static const CHAR_MANAGER_MAKE sc_NEWSDRAW_CHARMAN_INIT = {
 
 
 //-------------------------------------
-///	BANKÝ’è
+///	BANKè¨­å®š
 //=====================================
 static const GF_BGL_DISPVRAM sc_NEWSDRAW_BANK = {
-	GX_VRAM_BG_256_AB,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_OBJ_96_EFG,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-	GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+	GX_VRAM_BG_256_AB,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_OBJ_96_EFG,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+	GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 };
 
 //-------------------------------------
-///	BGÝ’è
+///	BGè¨­å®š
 //=====================================
 static const GF_BGL_SYS_HEADER sc_BGINIT = {
 	GX_DISPMODE_GRAPHICS,
@@ -115,9 +115,9 @@ static const GF_BGL_SYS_HEADER sc_BGINIT = {
 
 
 //-------------------------------------
-///	‚a‚fƒRƒ“ƒgƒ[ƒ‹ƒf[ƒ^
+///	ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
 //=====================================
-#define NEWSDRAW_BGCNT_NUM	( 5 )	// ‚a‚fƒRƒ“ƒgƒ[ƒ‹ƒe[ƒuƒ‹”
+#define NEWSDRAW_BGCNT_NUM	( 5 )	// ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
 static const u32 sc_NEWSDRAW_BGCNT_FRM[ NEWSDRAW_BGCNT_NUM ] = {
 	GF_BGL_FRAME0_M,
 	GF_BGL_FRAME1_M,
@@ -126,28 +126,28 @@ static const u32 sc_NEWSDRAW_BGCNT_FRM[ NEWSDRAW_BGCNT_NUM ] = {
 	GF_BGL_FRAME0_S,
 };
 static const GF_BGL_BGCNT_HEADER sc_NEWSDRAW_BGCNT_DATA[ NEWSDRAW_BGCNT_NUM ] = {
-	{	// GF_BGL_FRAME0_M	ƒƒbƒZ[ƒW–Ê
+	{	// GF_BGL_FRAME0_M	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é¢
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0xe800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
 		0, 0, 0, FALSE
 	},
-	{	// GF_BGL_FRAME1_M	ƒtƒŒ[ƒ€–Ê
+	{	// GF_BGL_FRAME1_M	ãƒ•ãƒ¬ãƒ¼ãƒ é¢
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0xe000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
 		1, 0, 0, FALSE
 	},
-	{	// GF_BGL_FRAME2_M	”wŒi
+	{	// GF_BGL_FRAME2_M	èƒŒæ™¯
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0xd800, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
 		3, 0, 0, FALSE
 	},
-	{	// GF_BGL_FRAME3_M	‚¢‚ë‚¢‚ëƒf[ƒ^•\Ž¦
+	{	// GF_BGL_FRAME3_M	ã„ã‚ã„ã‚ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0xd000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
 		2, 0, 0, FALSE
 	},
 	
-	// ƒTƒu
+	// ã‚µãƒ–
 	{	// GF_BGL_FRAME0_S
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0xe800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -156,7 +156,7 @@ static const GF_BGL_BGCNT_HEADER sc_NEWSDRAW_BGCNT_DATA[ NEWSDRAW_BGCNT_NUM ] = 
 };
 
 //-------------------------------------
-///	ƒpƒŒƒbƒgƒiƒ“ƒo[
+///	ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 //=====================================
 enum {
 	NEWS_PLTT_BACK,
@@ -173,41 +173,41 @@ enum {
 } ;
 
 //-------------------------------------
-///	ƒƒbƒZ[ƒWƒpƒŒƒbƒg“à“Ç‚Ýž‚ÝŽžƒJƒ‰[ƒIƒtƒZƒbƒg
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‘ãƒ¬ãƒƒãƒˆå†…èª­ã¿è¾¼ã¿æ™‚ã‚«ãƒ©ãƒ¼ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //=====================================
 enum {
-	NEWS_PLTT_FONT_BACK,	// ”wŒiƒJƒ‰[
-	NEWS_PLTT_FONT_NORM,	// ’Êí•¶ŽšF
-	NEWS_PLTT_FONT_NORM_B,	// ’Êí•¶ŽšF”wŒi
-	NEWS_PLTT_FONT_RED,		// ‹­’²•¶ŽšF
-	NEWS_PLTT_FONT_RED_B,	// ‹­’²•¶ŽšF”wŒi
-	NEWS_PLTT_FONT_TRN,		// ’ÊíƒgƒŒ[ƒi[•¶ŽšF
-	NEWS_PLTT_FONT_TRN_B,	// ’ÊíƒgƒŒ[ƒi[•¶ŽšF”wŒi
-	NEWS_PLTT_FONT_FONT,	// ’Êí•¶ŽšF
-	NEWS_PLTT_FONT_FONT_B,	// ’Êí•¶ŽšF”wŒi
-	NEWS_PLTT_FONT_TRVIP,	// VIPƒgƒŒ[ƒi[•¶ŽšF
-	NEWS_PLTT_FONT_TRVIP_B,	// VIPƒgƒŒ[ƒi[•¶ŽšF”wŒi
+	NEWS_PLTT_FONT_BACK,	// èƒŒæ™¯ã‚«ãƒ©ãƒ¼
+	NEWS_PLTT_FONT_NORM,	// é€šå¸¸æ–‡å­—è‰²
+	NEWS_PLTT_FONT_NORM_B,	// é€šå¸¸æ–‡å­—è‰²èƒŒæ™¯
+	NEWS_PLTT_FONT_RED,		// å¼·èª¿æ–‡å­—è‰²
+	NEWS_PLTT_FONT_RED_B,	// å¼·èª¿æ–‡å­—è‰²èƒŒæ™¯
+	NEWS_PLTT_FONT_TRN,		// é€šå¸¸ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ–‡å­—è‰²
+	NEWS_PLTT_FONT_TRN_B,	// é€šå¸¸ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ–‡å­—è‰²èƒŒæ™¯
+	NEWS_PLTT_FONT_FONT,	// é€šå¸¸æ–‡å­—è‰²
+	NEWS_PLTT_FONT_FONT_B,	// é€šå¸¸æ–‡å­—è‰²èƒŒæ™¯
+	NEWS_PLTT_FONT_TRVIP,	// VIPãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ–‡å­—è‰²
+	NEWS_PLTT_FONT_TRVIP_B,	// VIPãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ–‡å­—è‰²èƒŒæ™¯
 } ;
 
 //-------------------------------------
-///	ƒƒbƒZ[ƒWƒpƒŒƒbƒg“à“]‘—ŽžƒJƒ‰[ƒIƒtƒZƒbƒg
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‘ãƒ¬ãƒƒãƒˆå†…è»¢é€æ™‚ã‚«ãƒ©ãƒ¼ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //=====================================
 enum {
-	NEWS_PLTT_FONTTR_BACK,		// ”wŒiƒJƒ‰[
-	NEWS_PLTT_FONTTR_NORM,		// ’Êí•¶ŽšF
-	NEWS_PLTT_FONTTR_NORM_B,	// ’Êí•¶ŽšF”wŒi
-	NEWS_PLTT_FONTTR_RED,		// ‹­’²•¶ŽšF
-	NEWS_PLTT_FONTTR_RED_B,		// ‹­’²•¶ŽšF”wŒi
-	NEWS_PLTT_FONTTR_TR_00,		// ƒgƒŒ[ƒi[0•¶ŽšF
-	NEWS_PLTT_FONTTR_TR_00_B,	// ƒgƒŒ[ƒi[0•¶ŽšF”wŒi
-	NEWS_PLTT_FONTTR_TR_01,		// ƒgƒŒ[ƒi[1•¶ŽšF
-	NEWS_PLTT_FONTTR_TR_01_B,	// ƒgƒŒ[ƒi[1•¶ŽšF”wŒi
-	NEWS_PLTT_FONTTR_TR_02,		// ƒgƒŒ[ƒi[2•¶ŽšF
-	NEWS_PLTT_FONTTR_TR_02_B,	// ƒgƒŒ[ƒi[2•¶ŽšF”wŒi
-	NEWS_PLTT_FONTTR_TR_03,		// ƒgƒŒ[ƒi[3•¶ŽšF
-	NEWS_PLTT_FONTTR_TR_03_B,	// ƒgƒŒ[ƒi[3•¶ŽšF”wŒi
-	NEWS_PLTT_FONTTR_FONT,		// ’Êí•¶ŽšF
-	NEWS_PLTT_FONTTR_FONT_B,	// ’Êí•¶ŽšF”wŒi
+	NEWS_PLTT_FONTTR_BACK,		// èƒŒæ™¯ã‚«ãƒ©ãƒ¼
+	NEWS_PLTT_FONTTR_NORM,		// é€šå¸¸æ–‡å­—è‰²
+	NEWS_PLTT_FONTTR_NORM_B,	// é€šå¸¸æ–‡å­—è‰²èƒŒæ™¯
+	NEWS_PLTT_FONTTR_RED,		// å¼·èª¿æ–‡å­—è‰²
+	NEWS_PLTT_FONTTR_RED_B,		// å¼·èª¿æ–‡å­—è‰²èƒŒæ™¯
+	NEWS_PLTT_FONTTR_TR_00,		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼0æ–‡å­—è‰²
+	NEWS_PLTT_FONTTR_TR_00_B,	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼0æ–‡å­—è‰²èƒŒæ™¯
+	NEWS_PLTT_FONTTR_TR_01,		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼1æ–‡å­—è‰²
+	NEWS_PLTT_FONTTR_TR_01_B,	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼1æ–‡å­—è‰²èƒŒæ™¯
+	NEWS_PLTT_FONTTR_TR_02,		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼2æ–‡å­—è‰²
+	NEWS_PLTT_FONTTR_TR_02_B,	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼2æ–‡å­—è‰²èƒŒæ™¯
+	NEWS_PLTT_FONTTR_TR_03,		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼3æ–‡å­—è‰²
+	NEWS_PLTT_FONTTR_TR_03_B,	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼3æ–‡å­—è‰²èƒŒæ™¯
+	NEWS_PLTT_FONTTR_FONT,		// é€šå¸¸æ–‡å­—è‰²
+	NEWS_PLTT_FONTTR_FONT_B,	// é€šå¸¸æ–‡å­—è‰²èƒŒæ™¯
 } ;
 
 
@@ -223,7 +223,7 @@ enum {
 
 
 //-------------------------------------
-///	ƒƒCƒ“ƒV[ƒPƒ“ƒX
+///	ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	NEWSDRAW_SEQ_FADEIN,
@@ -234,7 +234,7 @@ enum{
 };
 
 //-------------------------------------
-///	ƒXƒNƒŠ[ƒ“ƒZƒbƒg
+///	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚»ãƒƒãƒˆ
 //=====================================
 enum{
 	NEWSDRAW_TIME_BLOCKTYPE_NORMAL,
@@ -245,38 +245,38 @@ enum{
 	NEWSDRAW_TIME_BLOCKTYPE_ICON2,
 	NEWSDRAW_TIME_BLOCKTYPE_ICON3,
 };
-#define NEWSDRAW_SCRN_TIMEBLOCK_X	( 6 )	// ƒXƒNƒŠ[ƒ“Ø‚èŽæ‚èæ
+#define NEWSDRAW_SCRN_TIMEBLOCK_X	( 6 )	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åˆ‡ã‚Šå–ã‚Šå…ˆ
 #define NEWSDRAW_SCRN_TIMEBLOCK_Y	( 0 )
-#define NEWSDRAW_TIME_BLOCK_SIZX		(1)		// ƒuƒƒbƒNƒTƒCƒYX
-#define NEWSDRAW_TIME_BLOCK_SIZY		(2)		// ƒuƒƒbƒNƒTƒCƒYY
-#define NEWSDRAW_TIME_SCRN_DRAWX		(5)		// ‘‚«ž‚ÝŠJŽn¶ãƒLƒƒƒ‰ˆÊ’u
-#define NEWSDRAW_TIME_SCRN_DRAWY		(4)		// ‘‚«ž‚ÝŠJŽn¶ãƒLƒƒƒ‰ˆÊ’u
+#define NEWSDRAW_TIME_BLOCK_SIZX		(1)		// ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºX
+#define NEWSDRAW_TIME_BLOCK_SIZY		(2)		// ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºY
+#define NEWSDRAW_TIME_SCRN_DRAWX		(5)		// æ›¸ãè¾¼ã¿é–‹å§‹å·¦ä¸Šã‚­ãƒ£ãƒ©ä½ç½®
+#define NEWSDRAW_TIME_SCRN_DRAWY		(4)		// æ›¸ãè¾¼ã¿é–‹å§‹å·¦ä¸Šã‚­ãƒ£ãƒ©ä½ç½®
 enum{
 	NEWSDRAW_PLAYERTYPE_NML,
 	NEWSDRAW_PLAYERTYPE_OUT,
 	NEWSDRAW_PLAYERTYPE_IN,
 };
-#define NEWSDRAW_SCRN_PLAYERBLOCK_X	(0)		// ƒXƒNƒŠ[ƒ“Ø‚èŽæ‚èæ
+#define NEWSDRAW_SCRN_PLAYERBLOCK_X	(0)		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åˆ‡ã‚Šå–ã‚Šå…ˆ
 #define NEWSDRAW_SCRN_PLAYERBLOCK_Y	(0)
-#define NEWSDRAW_PLAYER_BLOCK_SIZX		(2)		// ƒuƒƒbƒNƒTƒCƒYX
-#define NEWSDRAW_PLAYER_BLOCK_SIZY		(2)		// ƒuƒƒbƒNƒTƒCƒYY
-#define NEWSDRAW_PLAYER_SCRN_DRAWX		(21)	// ‘‚«ž‚ÝŠJŽn¶ãƒLƒƒƒ‰ˆÊ’u
-#define NEWSDRAW_PLAYER_SCRN_DRAWY		(4)		// ‘‚«ž‚ÝŠJŽn¶ãƒLƒƒƒ‰ˆÊ’u
-#define NEWSDRAW_PLAYER_SCRN_PAT_X		(3)		// ƒXƒNƒŠ[ƒ“‚É‘‚«ž‚Ü‚ê‚Ä‚¢‚él‚Ìƒpƒ^[ƒ“‚Ì—ñ
+#define NEWSDRAW_PLAYER_BLOCK_SIZX		(2)		// ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºX
+#define NEWSDRAW_PLAYER_BLOCK_SIZY		(2)		// ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºY
+#define NEWSDRAW_PLAYER_SCRN_DRAWX		(21)	// æ›¸ãè¾¼ã¿é–‹å§‹å·¦ä¸Šã‚­ãƒ£ãƒ©ä½ç½®
+#define NEWSDRAW_PLAYER_SCRN_DRAWY		(4)		// æ›¸ãè¾¼ã¿é–‹å§‹å·¦ä¸Šã‚­ãƒ£ãƒ©ä½ç½®
+#define NEWSDRAW_PLAYER_SCRN_PAT_X		(3)		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æ›¸ãè¾¼ã¾ã‚Œã¦ã„ã‚‹äººã®ãƒ‘ã‚¿ãƒ¼ãƒ³ã®åˆ—
 #define NEWSDRAW_PLAYER_SCRN_PAT_Y		(4)
-#define NEWSDRAW_PLAYER_SCRN_OLDPAT_Y	(2)		// ŒÃ‚¢l•\Ž¦ƒpƒ^[ƒ“ŠJŽnˆÊ’u
+#define NEWSDRAW_PLAYER_SCRN_OLDPAT_Y	(2)		// å¤ã„äººè¡¨ç¤ºãƒ‘ã‚¿ãƒ¼ãƒ³é–‹å§‹ä½ç½®
 
 
 //-------------------------------------
-///	ƒgƒsƒbƒNƒEƒBƒ“ƒhƒE
+///	ãƒˆãƒ”ãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
-#define	NEWSDRAW_TOPIC_NUM		( 3 )		// •\Ž¦‚·‚éƒgƒsƒbƒNƒX‚Ì”
-#define NEWSDRAW_TOPIC_STRNUM	( 256 )		// •¶Žš—ñ”
-#define NEWSDRAW_TOPIC_COUNT1	( 7 )		// ‚P•¶Žš•ª‚ÌƒJƒEƒ“ƒg
-#define NEWSDRAW_TOPIC_COUNT2	( 6 )		// ‚P•¶Žš•ª‚ÌƒJƒEƒ“ƒg
-#define NEWSDRAW_TOPIC_COUNT3	( 5 )		// ‚P•¶Žš•ª‚ÌƒJƒEƒ“ƒg
-#define NEWSDRAW_TOPIC_CHARSIZ	( 12 )		// ‚P•¶Žš‚ÌƒTƒCƒY
-#define NEWSDRAW_TOPIC_YOHAKU	( 256 )		// •¶Žš‚ð•\Ž¦‚·‚é‚Æ‚«‚Ì—]”’iã‰º‚É‚Â‚­j
+#define	NEWSDRAW_TOPIC_NUM		( 3 )		// è¡¨ç¤ºã™ã‚‹ãƒˆãƒ”ãƒƒã‚¯ã‚¹ã®æ•°
+#define NEWSDRAW_TOPIC_STRNUM	( 256 )		// æ–‡å­—åˆ—æ•°
+#define NEWSDRAW_TOPIC_COUNT1	( 7 )		// ï¼‘æ–‡å­—åˆ†ã®ã‚«ã‚¦ãƒ³ãƒˆ
+#define NEWSDRAW_TOPIC_COUNT2	( 6 )		// ï¼‘æ–‡å­—åˆ†ã®ã‚«ã‚¦ãƒ³ãƒˆ
+#define NEWSDRAW_TOPIC_COUNT3	( 5 )		// ï¼‘æ–‡å­—åˆ†ã®ã‚«ã‚¦ãƒ³ãƒˆ
+#define NEWSDRAW_TOPIC_CHARSIZ	( 12 )		// ï¼‘æ–‡å­—ã®ã‚µã‚¤ã‚º
+#define NEWSDRAW_TOPIC_YOHAKU	( 256 )		// æ–‡å­—ã‚’è¡¨ç¤ºã™ã‚‹ã¨ãã®ä½™ç™½ï¼ˆä¸Šä¸‹ã«ã¤ãï¼‰
 static const u8 NEWSDRAW_TOPIC_DRAW_Y[ NEWSDRAW_TOPIC_NUM ] = {
 	15,
 	18,
@@ -288,34 +288,34 @@ static const u8 NEWSDRAW_TOPIC_COUNT[ NEWSDRAW_TOPIC_NUM ] = {
 	NEWSDRAW_TOPIC_COUNT2,
 	NEWSDRAW_TOPIC_COUNT3,
 };//*/
-// BTS’ÊMƒoƒO601‚Ì‘Îˆ	tomoya
+// BTSé€šä¿¡ãƒã‚°601ã®å¯¾å‡¦	tomoya
 #define NEWSDRAW_TOPIC_COUNT_STRNUM	( 48 )
 static const u32 NEWSDRAW_TOPIC_COUNT[ NEWSDRAW_TOPIC_NUM ] = {
 	NEWSDRAW_TOPIC_COUNT1*NEWSDRAW_TOPIC_COUNT_STRNUM,
 	NEWSDRAW_TOPIC_COUNT2*NEWSDRAW_TOPIC_COUNT_STRNUM,
 	NEWSDRAW_TOPIC_COUNT3*NEWSDRAW_TOPIC_COUNT_STRNUM,
 };
-#define NEWSDRAW_TOPIC_BMP_X	( 1 )		// ƒrƒbƒgƒ}ƒbƒvX
-#define NEWSDRAW_TOPIC_BMP_SX	( 30 )		// ƒrƒbƒgƒ}ƒbƒvƒTƒCƒYX
-#define NEWSDRAW_TOPIC_BMP_SY	( 2 )		// ƒrƒbƒgƒ}ƒbƒvƒTƒCƒYY
+#define NEWSDRAW_TOPIC_BMP_X	( 1 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—X
+#define NEWSDRAW_TOPIC_BMP_SX	( 30 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚ºX
+#define NEWSDRAW_TOPIC_BMP_SY	( 2 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚ºY
 #define NEWSDRAW_TOPIC_BMP_CGX		( 0x300 )	// CGX
 #define NEWSDRAW_TOPIC_BMP_CGXSIZ	( NEWSDRAW_TOPIC_BMP_SX*NEWSDRAW_TOPIC_BMP_SY )
-#define NEWSDRAW_TOPIC_BMP_PAL	( NEWS_PLTT_FONT )	// ƒpƒŒƒbƒg
-#define NEWSDRAW_TOPIC_DMBMP_SX	( 180 )		// ƒrƒbƒgƒ}ƒbƒvƒTƒCƒYX(120•¶Žš“ü‚é)
-#define NEWSDRAW_TOPIC_DMBMP_SY	( 2 )		// ƒrƒbƒgƒ}ƒbƒvƒTƒCƒYY
+#define NEWSDRAW_TOPIC_BMP_PAL	( NEWS_PLTT_FONT )	// ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define NEWSDRAW_TOPIC_DMBMP_SX	( 180 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚ºX(120æ–‡å­—å…¥ã‚‹)
+#define NEWSDRAW_TOPIC_DMBMP_SY	( 2 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚ºY
 
 
 
 //-------------------------------------
-///	ŽžŠÔƒEƒBƒ“ƒhƒE
+///	æ™‚é–“ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
-#define NEWSDRAW_TIME_EFFECT_COUNT		(16)	// ƒ‚ƒUƒCƒNƒGƒtƒFƒNƒgƒEƒGƒCƒg
-#define NEWSDRAW_TIME_TIME_EFFECT_COUNT	(32)	// ƒ‚ƒUƒCƒNƒGƒtƒFƒNƒgƒEƒGƒCƒg
-#define NEWSDRAW_TIME_Y_SIZ				(4)		// •`‰æƒGƒŠƒAƒuƒƒbƒNƒTƒCƒY
-#define NEWSDRAW_TIME_X_SIZ				(10)	// •`‰æƒGƒŠƒAƒuƒƒbƒNƒTƒCƒY
-#define NEWSDRAW_TIME_BLOCKNUM		(NEWSDRAW_TIME_Y_SIZ*NEWSDRAW_TIME_X_SIZ)	// •`‰æƒGƒŠƒAƒuƒƒbƒNƒTƒCƒY
+#define NEWSDRAW_TIME_EFFECT_COUNT		(16)	// ãƒ¢ã‚¶ã‚¤ã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¦ã‚¨ã‚¤ãƒˆ
+#define NEWSDRAW_TIME_TIME_EFFECT_COUNT	(32)	// ãƒ¢ã‚¶ã‚¤ã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¦ã‚¨ã‚¤ãƒˆ
+#define NEWSDRAW_TIME_Y_SIZ				(4)		// æç”»ã‚¨ãƒªã‚¢ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
+#define NEWSDRAW_TIME_X_SIZ				(10)	// æç”»ã‚¨ãƒªã‚¢ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
+#define NEWSDRAW_TIME_BLOCKNUM		(NEWSDRAW_TIME_Y_SIZ*NEWSDRAW_TIME_X_SIZ)	// æç”»ã‚¨ãƒªã‚¢ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
 typedef struct{
-	u32 icon;			// •\Ž¦‚·‚éƒAƒCƒRƒ“
+	u32 icon;			// è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
 } NEWSDRAW_TIME_EFF_ANM;
 #define NEWSDRAW_TIME_EFF_DATA_NUM		( 4 )
 static const NEWSDRAW_TIME_EFF_ANM NEWSDRAW_TIME_EFF_ANM_DATA[ NEWSDRAW_TIME_EFF_DATA_NUM ] = {
@@ -327,80 +327,80 @@ static const NEWSDRAW_TIME_EFF_ANM NEWSDRAW_TIME_EFF_ANM_DATA[ NEWSDRAW_TIME_EFF
 
 
 //-------------------------------------
-///	ƒvƒŒƒCƒ„[ƒEƒBƒ“ƒhƒE
+///	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 enum{
-	NEWSDRAW_PLAYERWIN_SEQ_WAIT,		// ‘Ò‹@ó‘Ô
-	NEWSDRAW_PLAYERWIN_SEQ_INSIDE,		// l‚ª“ü‚Á‚Ä‚«‚½
-	NEWSDRAW_PLAYERWIN_SEQ_INSIDEMAIN,	// l‚ª“ü‚Á‚Ä‚«‚½
-	NEWSDRAW_PLAYERWIN_SEQ_OUTSIDE,		// l‚ª“ü‚Á‚Ä‚«‚½
-	NEWSDRAW_PLAYERWIN_SEQ_OUTSIDEMAIN,	// l‚ª“ü‚Á‚Ä‚«‚½
+	NEWSDRAW_PLAYERWIN_SEQ_WAIT,		// å¾…æ©ŸçŠ¶æ…‹
+	NEWSDRAW_PLAYERWIN_SEQ_INSIDE,		// äººãŒå…¥ã£ã¦ããŸ
+	NEWSDRAW_PLAYERWIN_SEQ_INSIDEMAIN,	// äººãŒå…¥ã£ã¦ããŸ
+	NEWSDRAW_PLAYERWIN_SEQ_OUTSIDE,		// äººãŒå…¥ã£ã¦ããŸ
+	NEWSDRAW_PLAYERWIN_SEQ_OUTSIDEMAIN,	// äººãŒå…¥ã£ã¦ããŸ
 };
-#define	NEWSDRAW_PLAYERWIN_COUNT_INSIDE		( 32 )	// “üŽºƒJƒEƒ“ƒg
-#define	NEWSDRAW_PLAYERWIN_COUNT_OUTSIDE	( 32 )	// ‘ÞŽºƒJƒEƒ“ƒg
-#define NEWSDRAW_PLAYERWIN_ANIME_NUM		( 4 )	// ‚±‚Ì‰ñ”ŠG‚ªØ‚è‘Ö‚í‚é
-#define	NEWSDRAW_PLAYERWIN_INSIDE_ONEFRAME	( NEWSDRAW_PLAYERWIN_COUNT_INSIDE/4 )	// “üŽºƒJƒEƒ“ƒg
-#define	NEWSDRAW_PLAYERWIN_OUTSIDE_ONEFRAME	( NEWSDRAW_PLAYERWIN_COUNT_OUTSIDE/4 )	// ‘ÞŽºƒJƒEƒ“ƒg
-#define NEWSDRAW_PLAYERWIN_DRAW_X			( 5 )	// •\Ž¦l”
-#define NEWSDRAW_PLAYERWIN_DRAW_Y			( 4 )	// •\Ž¦l”
+#define	NEWSDRAW_PLAYERWIN_COUNT_INSIDE		( 32 )	// å…¥å®¤ã‚«ã‚¦ãƒ³ãƒˆ
+#define	NEWSDRAW_PLAYERWIN_COUNT_OUTSIDE	( 32 )	// é€€å®¤ã‚«ã‚¦ãƒ³ãƒˆ
+#define NEWSDRAW_PLAYERWIN_ANIME_NUM		( 4 )	// ã“ã®å›žæ•°çµµãŒåˆ‡ã‚Šæ›¿ã‚ã‚‹
+#define	NEWSDRAW_PLAYERWIN_INSIDE_ONEFRAME	( NEWSDRAW_PLAYERWIN_COUNT_INSIDE/4 )	// å…¥å®¤ã‚«ã‚¦ãƒ³ãƒˆ
+#define	NEWSDRAW_PLAYERWIN_OUTSIDE_ONEFRAME	( NEWSDRAW_PLAYERWIN_COUNT_OUTSIDE/4 )	// é€€å®¤ã‚«ã‚¦ãƒ³ãƒˆ
+#define NEWSDRAW_PLAYERWIN_DRAW_X			( 5 )	// è¡¨ç¤ºäººæ•°
+#define NEWSDRAW_PLAYERWIN_DRAW_Y			( 4 )	// è¡¨ç¤ºäººæ•°
 
 
 //-------------------------------------
-///	ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE
+///	ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
-#define NEWSDRAW_TITLEWIN_STRNUM	( 128 )	// STRBUF‚Ì•¶Žš”
-#define NEWSDRAW_TITLEWIN_COL		( GF_PRINTCOLOR_MAKE( NEWS_PLTT_FONTTR_FONT, NEWS_PLTT_FONTTR_FONT_B, 0 ) )	// •¶ŽšƒJƒ‰[
-#define NEWSDRAW_TITLEWIN_APL_COL	( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )	// •¶ŽšƒJƒ‰[
+#define NEWSDRAW_TITLEWIN_STRNUM	( 128 )	// STRBUFã®æ–‡å­—æ•°
+#define NEWSDRAW_TITLEWIN_COL		( GF_PRINTCOLOR_MAKE( NEWS_PLTT_FONTTR_FONT, NEWS_PLTT_FONTTR_FONT_B, 0 ) )	// æ–‡å­—ã‚«ãƒ©ãƒ¼
+#define NEWSDRAW_TITLEWIN_APL_COL	( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )	// æ–‡å­—ã‚«ãƒ©ãƒ¼
 enum {
-	NEWSDRAW_TITLEWIN_APLNAME,	// ‚±‚Ì—V‚Ñ‚Ì–¼‘O
-	NEWSDRAW_TITLEWIN_TIME,		// ŽžŠÔ
-	NEWSDRAW_TITLEWIN_PLAYER,	// ƒvƒŒƒCƒ„[•\Ž¦
-	NEWSDRAW_TITLEWIN_TOPIC,	// ƒgƒsƒbƒN
+	NEWSDRAW_TITLEWIN_APLNAME,	// ã“ã®éŠã³ã®åå‰
+	NEWSDRAW_TITLEWIN_TIME,		// æ™‚é–“
+	NEWSDRAW_TITLEWIN_PLAYER,	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¡¨ç¤º
+	NEWSDRAW_TITLEWIN_TOPIC,	// ãƒˆãƒ”ãƒƒã‚¯
 	NEWSDRAW_TITLEWIN_NUM,
 } ;
-// ƒAƒvƒŠ–¼
-#define NEWSDRAW_TITLEWIN_APLNAME_X		( 6 )		// ƒrƒbƒgƒ}ƒbƒvX
-#define NEWSDRAW_TITLEWIN_APLNAME_Y		( 0 )		// ƒrƒbƒgƒ}ƒbƒvY
-#define NEWSDRAW_TITLEWIN_APLNAME_SX	( 20 )		// ƒrƒbƒgƒ}ƒbƒvƒTƒCƒYX
-#define NEWSDRAW_TITLEWIN_APLNAME_SY	( 8 )		// ƒrƒbƒgƒ}ƒbƒvƒTƒCƒYY
+// ã‚¢ãƒ—ãƒªå
+#define NEWSDRAW_TITLEWIN_APLNAME_X		( 6 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—X
+#define NEWSDRAW_TITLEWIN_APLNAME_Y		( 0 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—Y
+#define NEWSDRAW_TITLEWIN_APLNAME_SX	( 20 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚ºX
+#define NEWSDRAW_TITLEWIN_APLNAME_SY	( 8 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚ºY
 #define NEWSDRAW_TITLEWIN_APLNAME_CGX	( 0x1 )	// CGX
-#define NEWSDRAW_TITLEWIN_APLNAME_PAL	( NEWS_PLTT_TALKFONT )	// ƒpƒŒƒbƒg
+#define NEWSDRAW_TITLEWIN_APLNAME_PAL	( NEWS_PLTT_TALKFONT )	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define NEWSDRAW_TITLEWIN_APLNAME_DRAW_X	( 80 )
 #define NEWSDRAW_TITLEWIN_APLNAME_DRAW_Y	( 6 )
 #define NEWSDRAW_TITLEWIN_APLNAME_ALIGN     ( NEWSDRAW_ALIGN_CENTER )
 #define NEWSDRAW_TITLEWIN_APLNAME_COLOR     ( NEWSDRAW_TITLEWIN_APL_COL )
 
-// ŽžŠÔ
-#define NEWSDRAW_TITLEWIN_TIME_X		( 0 )		// ƒrƒbƒgƒ}ƒbƒvX
-#define NEWSDRAW_TITLEWIN_TIME_Y		( 6 )		// ƒrƒbƒgƒ}ƒbƒvY
-#define NEWSDRAW_TITLEWIN_TIME_SX		( 6 )		// ƒrƒbƒgƒ}ƒbƒvƒTƒCƒYX
-#define NEWSDRAW_TITLEWIN_TIME_SY		( 3 )		// ƒrƒbƒgƒ}ƒbƒvƒTƒCƒYY
+// æ™‚é–“
+#define NEWSDRAW_TITLEWIN_TIME_X		( 0 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—X
+#define NEWSDRAW_TITLEWIN_TIME_Y		( 6 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—Y
+#define NEWSDRAW_TITLEWIN_TIME_SX		( 6 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚ºX
+#define NEWSDRAW_TITLEWIN_TIME_SY		( 3 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚ºY
 #define NEWSDRAW_TITLEWIN_TIME_CGX		( NEWSDRAW_TITLEWIN_APLNAME_CGX + (NEWSDRAW_TITLEWIN_APLNAME_SX*NEWSDRAW_TITLEWIN_APLNAME_SY) )	// CGX
-#define NEWSDRAW_TITLEWIN_TIME_PAL		( NEWS_PLTT_FONT )	// ƒpƒŒƒbƒg
+#define NEWSDRAW_TITLEWIN_TIME_PAL		( NEWS_PLTT_FONT )	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define NEWSDRAW_TITLEWIN_TIME_DRAW_X	( 16 )
 #define NEWSDRAW_TITLEWIN_TIME_DRAW_Y	( 4 )
 #define NEWSDRAW_TITLEWIN_TIME_ALIGN    ( NEWSDRAW_ALIGN_CENTER )
 #define NEWSDRAW_TITLEWIN_TIME_COLOR    ( NEWSDRAW_TITLEWIN_COL )
 
-// ƒvƒŒƒCƒ„[•\Ž¦
-#define NEWSDRAW_TITLEWIN_PLAYER_X		( 15 )		// ƒrƒbƒgƒ}ƒbƒvX
-#define NEWSDRAW_TITLEWIN_PLAYER_Y		( 6 )		// ƒrƒbƒgƒ}ƒbƒvY
-#define NEWSDRAW_TITLEWIN_PLAYER_SX		( 6 )		// ƒrƒbƒgƒ}ƒbƒvƒTƒCƒYX
-#define NEWSDRAW_TITLEWIN_PLAYER_SY		( 5 )		// ƒrƒbƒgƒ}ƒbƒvƒTƒCƒYY
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¡¨ç¤º
+#define NEWSDRAW_TITLEWIN_PLAYER_X		( 15 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—X
+#define NEWSDRAW_TITLEWIN_PLAYER_Y		( 6 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—Y
+#define NEWSDRAW_TITLEWIN_PLAYER_SX		( 6 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚ºX
+#define NEWSDRAW_TITLEWIN_PLAYER_SY		( 5 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚ºY
 #define NEWSDRAW_TITLEWIN_PLAYER_CGX	( NEWSDRAW_TITLEWIN_TIME_CGX + (NEWSDRAW_TITLEWIN_TIME_SX*NEWSDRAW_TITLEWIN_TIME_SY) )	// CGX
-#define NEWSDRAW_TITLEWIN_PLAYER_PAL	( NEWS_PLTT_FONT )	// ƒpƒŒƒbƒg
+#define NEWSDRAW_TITLEWIN_PLAYER_PAL	( NEWS_PLTT_FONT )	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define NEWSDRAW_TITLEWIN_PLAYER_DRAW_X	( 24 )
 #define NEWSDRAW_TITLEWIN_PLAYER_DRAW_Y	( 4 )
 #define NEWSDRAW_TITLEWIN_PLAYER_ALIGN  ( NEWSDRAW_ALIGN_CENTER )
 #define NEWSDRAW_TITLEWIN_PLAYER_COLOR  ( NEWSDRAW_TITLEWIN_COL )
 
-// ƒgƒsƒbƒN•\Ž¦
-#define NEWSDRAW_TITLEWIN_TOPIC_X		( 4 )		// ƒrƒbƒgƒ}ƒbƒvX
-#define NEWSDRAW_TITLEWIN_TOPIC_Y		( 12 )		// ƒrƒbƒgƒ}ƒbƒvY
-#define NEWSDRAW_TITLEWIN_TOPIC_SX		( 18 )		// ƒrƒbƒgƒ}ƒbƒvƒTƒCƒYX
-#define NEWSDRAW_TITLEWIN_TOPIC_SY		( 3 )		// ƒrƒbƒgƒ}ƒbƒvƒTƒCƒYY
+// ãƒˆãƒ”ãƒƒã‚¯è¡¨ç¤º
+#define NEWSDRAW_TITLEWIN_TOPIC_X		( 4 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—X
+#define NEWSDRAW_TITLEWIN_TOPIC_Y		( 12 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—Y
+#define NEWSDRAW_TITLEWIN_TOPIC_SX		( 18 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚ºX
+#define NEWSDRAW_TITLEWIN_TOPIC_SY		( 3 )		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚µã‚¤ã‚ºY
 #define NEWSDRAW_TITLEWIN_TOPIC_CGX		( NEWSDRAW_TITLEWIN_PLAYER_CGX + (NEWSDRAW_TITLEWIN_PLAYER_SX*NEWSDRAW_TITLEWIN_PLAYER_SY) )	// CGX
-#define NEWSDRAW_TITLEWIN_TOPIC_PAL		( NEWS_PLTT_FONT )	// ƒpƒŒƒbƒg
+#define NEWSDRAW_TITLEWIN_TOPIC_PAL		( NEWS_PLTT_FONT )	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define NEWSDRAW_TITLEWIN_TOPIC_DRAW_X	( 4 )
 #define NEWSDRAW_TITLEWIN_TOPIC_DRAW_Y	( 4 )
 #define NEWSDRAW_TITLEWIN_TOPIC_ALIGN   ( NEWSDRAW_ALIGN_LEFT )
@@ -466,31 +466,31 @@ static const NEWSDRAW_BMPDATA NEWSDRAW_TITLE_BMPDATA[ NEWSDRAW_TITLEWIN_NUM ] = 
     },
 };
 
-// ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+// ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
 static u16 NEWSDRAW_TITLEWIN_PLTT_OFFS[ NEWSDRAW_TITLEWIN_NUM ] = {
 	0, 0xc*2, 0xd*2, 0xf*2
 };
-// ‰¹
+// éŸ³
 static u32 NEWSDRAW_TITLEWIN_SND_TBL[ NEWSDRAW_TITLEWIN_NUM ] = {
 	0, NEWSDRAW_NEWTIME, NEWSDRAW_NEWPLAYER, NEWSDRAW_NEWTOPIC
 };
-#define NEWSDRAW_TITLEWIN_EFFECT_COUNT		( 28 )	// ƒpƒŒƒbƒgƒtƒF[ƒh‚ÌƒVƒ“ƒN”
-#define NEWSDRAW_TITLEWIN_EFFECT_COUNT_HF	( 2 )	// ƒpƒŒƒbƒgƒtƒF[ƒh‚Ì–¾‚é‚­‚È‚é‚Ü‚Å‚ÌƒVƒ“ƒN”
-#define NEWSDRAW_TITLEWIN_EFFECT_COUNT_WT	( 12 )	// ƒEƒGƒCƒg
-#define NEWSDRAW_TITLEWIN_EFFECT_COUNT_HF2	( NEWSDRAW_TITLEWIN_EFFECT_COUNT - (NEWSDRAW_TITLEWIN_EFFECT_COUNT_HF+NEWSDRAW_TITLEWIN_EFFECT_COUNT_WT) )	// Á‚¦‚éƒVƒ“ƒN”
-#define NEWSDRAW_TITLEWIN_EFFECT_COL		( 0x000e )	// Šî–{ƒpƒŒƒbƒgƒJƒ‰[
-#define NEWSDRAW_TITLEWIN_EFFECT_COL_END	( 0x0019 )	// •ÏXŒã
-#define NEWSDRAW_TITLEWIN_EFFECT_SND_PLY	( 0 )	// ‰¹‚ð–Â‚ç‚·ƒ^ƒCƒ~ƒ“ƒO
+#define NEWSDRAW_TITLEWIN_EFFECT_COUNT		( 28 )	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã®ã‚·ãƒ³ã‚¯æ•°
+#define NEWSDRAW_TITLEWIN_EFFECT_COUNT_HF	( 2 )	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã®æ˜Žã‚‹ããªã‚‹ã¾ã§ã®ã‚·ãƒ³ã‚¯æ•°
+#define NEWSDRAW_TITLEWIN_EFFECT_COUNT_WT	( 12 )	// ã‚¦ã‚¨ã‚¤ãƒˆ
+#define NEWSDRAW_TITLEWIN_EFFECT_COUNT_HF2	( NEWSDRAW_TITLEWIN_EFFECT_COUNT - (NEWSDRAW_TITLEWIN_EFFECT_COUNT_HF+NEWSDRAW_TITLEWIN_EFFECT_COUNT_WT) )	// æ¶ˆãˆã‚‹ã‚·ãƒ³ã‚¯æ•°
+#define NEWSDRAW_TITLEWIN_EFFECT_COL		( 0x000e )	// åŸºæœ¬ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼
+#define NEWSDRAW_TITLEWIN_EFFECT_COL_END	( 0x0019 )	// å¤‰æ›´å¾Œ
+#define NEWSDRAW_TITLEWIN_EFFECT_SND_PLY	( 0 )	// éŸ³ã‚’é³´ã‚‰ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+///	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 //=====================================
 typedef struct {
 	void*				p_buff;
@@ -499,33 +499,33 @@ typedef struct {
 
 
 //-------------------------------------
-///	ŽžŠÔƒEƒBƒ“ƒhƒE
+///	æ™‚é–“ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 typedef struct {
-	// ƒf[ƒ^
-	WFLBY_TIME	last_rest_time;	// ˆÈ‘OXV‚µ‚½Žc‚èŽžŠÔ
-	u8			effect_flag;	// ƒ‚ƒUƒCƒNƒGƒtƒFƒNƒgƒtƒ‰ƒO
-	u8			updata;			// XVƒtƒ‰ƒO
-	u16			count;			// ƒJƒEƒ“ƒ^
-	u32			change_second;	// ƒuƒƒbƒN•`‰æ‚ð•ÏX‚·‚éŠÔŠui•bj
+	// ãƒ‡ãƒ¼ã‚¿
+	WFLBY_TIME	last_rest_time;	// ä»¥å‰æ›´æ–°ã—ãŸæ®‹ã‚Šæ™‚é–“
+	u8			effect_flag;	// ãƒ¢ã‚¶ã‚¤ã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ•ãƒ©ã‚°
+	u8			updata;			// æ›´æ–°ãƒ•ãƒ©ã‚°
+	u16			count;			// ã‚«ã‚¦ãƒ³ã‚¿
+	u32			change_second;	// ãƒ–ãƒ­ãƒƒã‚¯æç”»ã‚’å¤‰æ›´ã™ã‚‹é–“éš”ï¼ˆç§’ï¼‰
 	
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 } NEWSDRAW_TIMEWIN;
 
 //-------------------------------------
-///	ƒvƒŒƒCƒ„[ƒEƒBƒ“ƒhƒE
+///	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 typedef struct {
-	// ƒf[ƒ^
+	// ãƒ‡ãƒ¼ã‚¿
 	s16 count;
 	u16 seq;
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 } NEWSDRAW_PLAYERWIN;
 
 //-------------------------------------
-///	ƒgƒsƒbƒN@ƒgƒŒ[ƒiƒJƒ‰[ƒf[ƒ^
+///	ãƒˆãƒ”ãƒƒã‚¯ã€€ãƒˆãƒ¬ãƒ¼ãƒŠã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	u8	trcol[ WFLBY_MINIGAME_MAX ];
@@ -533,11 +533,11 @@ typedef struct {
 
 
 //-------------------------------------
-///	ƒgƒsƒbƒNƒXƒEƒBƒ“ƒhƒE
+///	ãƒˆãƒ”ãƒƒã‚¯ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
-// 1ƒgƒsƒbƒNƒXƒf[ƒ^
+// 1ãƒˆãƒ”ãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
 typedef struct {
-	// ƒf[ƒ^	
+	// ãƒ‡ãƒ¼ã‚¿	
 	u8				move;
 	u8				pal;	
 	u16				count;
@@ -546,84 +546,84 @@ typedef struct {
 	STRBUF*			p_str;
 	GF_BGL_BMPWIN	bmp;
 
-	// ƒgƒsƒbƒNƒJƒ‰[ƒf[ƒ^
+	// ãƒˆãƒ”ãƒƒã‚¯ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿
 	NEWSDRAW_TOPIC_TRCOL trcol;
 } NEWSDRAW_TOPIC;
 typedef struct {
-	// ƒf[ƒ^
-	NEWSDRAW_TOPIC			topic[NEWSDRAW_TOPIC_NUM];	// ƒgƒsƒbƒNƒf[ƒ^
+	// ãƒ‡ãƒ¼ã‚¿
+	NEWSDRAW_TOPIC			topic[NEWSDRAW_TOPIC_NUM];	// ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	GF_BGL_BMPWIN	bmp[NEWSDRAW_TOPIC_NUM];
 	STRBUF*			p_str;
 
-	//  ƒpƒŒƒbƒgƒf[ƒ^
+	//  ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 	void*				p_plttbuff;
 	NNSG2dPaletteData*	p_pltt;
 } NEWSDRAW_TOPICWIN;
 
 
 //-------------------------------------
-///	ƒ^ƒCƒgƒ‹ƒ[ƒN
+///	ã‚¿ã‚¤ãƒˆãƒ«ãƒ¯ãƒ¼ã‚¯
 //=====================================
-// ƒGƒtƒFƒNƒgƒ[ƒN
+// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 typedef struct {
-	u16		on;			// ƒGƒtƒFƒNƒgí‘Ô‚©
-	u16		col_count;	// ƒJƒEƒ“ƒ^
-	u16		buff;		// ƒpƒŒƒbƒgƒoƒbƒtƒ@
-	u16		offs;		// ƒpƒŒƒbƒg“WŠJƒIƒtƒZƒbƒg
-	u32		sound;		// ‰¹
+	u16		on;			// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¸¸æ…‹ã‹
+	u16		col_count;	// ã‚«ã‚¦ãƒ³ã‚¿
+	u16		buff;		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡
+	u16		offs;		// ãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32		sound;		// éŸ³
 } NEWSDRAW_TITLEEFF;
-// ƒ[ƒN
+// ãƒ¯ãƒ¼ã‚¯
 typedef struct {
 	GF_BGL_BMPWIN		bmp[ NEWSDRAW_TITLEWIN_NUM ];
-	NEWSDRAW_TITLEEFF	eff[ NEWSDRAW_TITLEWIN_NUM ];	// ƒGƒtƒFƒNƒgƒ[ƒN
+	NEWSDRAW_TITLEEFF	eff[ NEWSDRAW_TITLEWIN_NUM ];	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 } NEWSDRAW_TITLEWIN;
 
 
 
 
 //-------------------------------------
-///	•\Ž¦ƒVƒXƒeƒ€
+///	è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct {
 	// BG
 	GF_BGL_INI*				p_bgl;
 
 	// OAM
-    CLACT_SET_PTR           p_clactset;		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-    CLACT_U_EASYRENDER_DATA renddata;       // ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-    CLACT_U_RES_MANAGER_PTR p_resman[NEWSDRAW_RESMAN_NUM]; // ƒLƒƒƒ‰EƒpƒŒƒbƒgƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+    CLACT_SET_PTR           p_clactset;		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+    CLACT_U_EASYRENDER_DATA renddata;       // ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+    CLACT_U_RES_MANAGER_PTR p_resman[NEWSDRAW_RESMAN_NUM]; // ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
 
-	// ƒA[ƒJƒCƒu
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 	ARCHANDLE* p_handle;
 } NEWSDRAW_DRAWSYS;
 
 
 //-------------------------------------
-///	ƒ[ƒN
+///	ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	NEWS_DATA*			p_data;
 	const WFLBY_TIME*	cp_nowtime;
 
-	// •`‰æƒVƒXƒeƒ€
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ 
 	NEWSDRAW_DRAWSYS	draw;
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒXƒNƒŠ[ƒ“ƒZƒbƒg
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚»ãƒƒãƒˆ
 	NEWSDRAW_SCRNSET	scrn;
 
-	// ŽžŠÔƒEƒBƒ“ƒhƒE
+	// æ™‚é–“ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	NEWSDRAW_TIMEWIN	time;
 
-	// ƒvƒŒƒCƒ„[ƒEƒBƒ“ƒhƒE
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	NEWSDRAW_PLAYERWIN	player;
 
-	// ƒgƒsƒbƒNƒEƒBƒ“ƒhƒE
+	// ãƒˆãƒ”ãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	NEWSDRAW_TOPICWIN	topic;
 
-	// ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE
+	// ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	NEWSDRAW_TITLEWIN	title;
 
 } NEWSDRAW_WK;
@@ -632,17 +632,17 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
-// ‘S‘Ì
+// å…¨ä½“
 static void NEWSDRAW_WkVBlank( void* p_work );
 static void NEWSDRAW_WkDraw( NEWSDRAW_WK* p_wk, const WFLBY_SYSTEM* cp_system );
 
 
 
-// •`‰æƒVƒXƒeƒ€
+// æç”»ã‚·ã‚¹ãƒ†ãƒ 
 static void NEWSDRAW_DrawSysInit( NEWSDRAW_DRAWSYS* p_wk, u32 heapID );
 static void NEWSDRAW_DrawSysExit( NEWSDRAW_DRAWSYS* p_wk );
 static void NEWSDRAW_DrawSysDraw( NEWSDRAW_DRAWSYS* p_wk );
@@ -652,13 +652,13 @@ static void NEWSDRAW_DrawSysBgExit( NEWSDRAW_DRAWSYS* p_wk );
 static void NEWSDRAW_DrawSysOamInit( NEWSDRAW_DRAWSYS* p_wk, u32 heapID );
 static void NEWSDRAW_DrawSysOamExit( NEWSDRAW_DRAWSYS* p_wk );
 
-// ƒXƒNƒŠ[ƒ“ƒZƒbƒg
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚»ãƒƒãƒˆ
 static void NEWSDRAW_ScrnSetInit( NEWSDRAW_SCRNSET* p_wk, NEWSDRAW_DRAWSYS* p_draw, u32 heapID );
 static void NEWSDRAW_ScrnSetExit( NEWSDRAW_SCRNSET* p_wk );
 static void NEWSDRAW_ScrnWriteTimeBlock( NEWSDRAW_SCRNSET* p_wk, NEWSDRAW_DRAWSYS* p_draw, u32 block_type, u8 x, u8 y );
 static void NEWSDRAW_ScrnWritePlayer( NEWSDRAW_SCRNSET* p_wk, NEWSDRAW_DRAWSYS* p_draw, u8 x, u8 y, u32 player_type, u32 sex, BOOL mydata, BOOL olddata, BOOL vip );
 
-// ŽžŠÔƒEƒBƒ“ƒhƒE
+// æ™‚é–“ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 static void NEWSDRAW_TimeWinInit( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_DRAWSYS* p_draw, NEWSDRAW_SCRNSET* p_scrn, const NEWS_DATA* cp_data, const WFLBY_TIME* cp_nowtime, const WFLBY_SYSTEM* cp_system, u32 heapID );
 static void NEWSDRAW_TimeWinExit( NEWSDRAW_TIMEWIN* p_wk );
 static BOOL NEWSDRAW_TimeWinMain( NEWSDRAW_TIMEWIN* p_wk, const NEWS_DATA* cp_data, const WFLBY_TIME* cp_nowtime );
@@ -666,7 +666,7 @@ static void NEWSDRAW_TimeWinDraw( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET* p_sc
 static void NEWSDRAW_TimeWinDrawMosaic( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRAWSYS* p_draw );
 static void NEWSDRAW_TimeWinDrawUpdate( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRAWSYS* p_draw );
 
-// ƒvƒŒƒCƒ„[ƒEƒBƒ“ƒhƒE
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 static void NEWSDRAW_PlayerWinInit( NEWSDRAW_PLAYERWIN* p_wk, NEWSDRAW_DRAWSYS* p_draw, NEWSDRAW_SCRNSET* p_scrn, const NEWS_DATA* cp_data, const WFLBY_SYSTEM* cp_system, u32 heapID );
 static void NEWSDRAW_PlayerWinExit( NEWSDRAW_PLAYERWIN* p_wk );
 static BOOL NEWSDRAW_PlayerWinMain( NEWSDRAW_PLAYERWIN* p_wk, const NEWS_DATA* cp_data );
@@ -676,11 +676,11 @@ static void NEWSDRAW_PlayerWinInsideAnim( NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRA
 static void NEWSDRAW_PlayerWinOutsideAnim( NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRAWSYS* p_draw, const NEWS_DATA* cp_data, const WFLBY_SYSTEM* cp_system, u32 count );
 
 
-// ƒgƒsƒbƒNƒf[ƒ^‚©‚çƒgƒsƒbƒNƒJƒ‰[ƒf[ƒ^‚ðŽæ“¾‚·‚é
+// ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒˆãƒ”ãƒƒã‚¯ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 static void NEWSDRAW_TopicTrColDataGet( NEWSDRAW_TOPIC_TRCOL* p_wk, const NEWS_DATA* cp_data, NEWS_TOPICTYPE type, const WFLBY_SYSTEM* cp_system );
 static void NEWSDRAW_TopicTrColDataTrans( const NEWSDRAW_TOPIC_TRCOL* cp_wk, const NNSG2dPaletteData* cp_pltt, u32 plttidx );
 
-// ƒgƒsƒbƒNƒXƒEƒBƒ“ƒhƒE
+// ãƒˆãƒ”ãƒƒã‚¯ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 static void NEWSDRAW_TopicWinInit( NEWSDRAW_TOPICWIN* p_wk, NEWSDRAW_DRAWSYS* p_draw, u32 heapID );
 static void NEWSDRAW_TopicWinExit( NEWSDRAW_TOPICWIN* p_wk );
 static BOOL NEWSDRAW_TopicWinMain( NEWSDRAW_TOPICWIN* p_wk, NEWS_DATA* p_data, const WFLBY_SYSTEM* cp_system, u32 heapID );
@@ -693,7 +693,7 @@ static BOOL NEWSDRAW_TopicMain( NEWSDRAW_TOPIC* p_wk );
 static void NEWSDRAW_TopicDraw( const NEWSDRAW_TOPIC* cp_wk, GF_BGL_BMPWIN* p_bmp );
 
 
-// ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE
+// ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 static void NEWSDRAW_TitleWinInit( NEWSDRAW_TITLEWIN* p_wk, NEWSDRAW_DRAWSYS* p_draw, u32 heapID );
 static void NEWSDRAW_TitleWinExit( NEWSDRAW_TITLEWIN* p_wk );
 static void NEWSDRAW_TitleWinDraw( NEWSDRAW_TITLEWIN* p_wk );
@@ -714,13 +714,13 @@ static void NEWSDRAW_DEBUG_TopicMake( NEWSDRAW_WK* p_wk, WFLBY_SYSTEM* p_system,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[ƒjƒ…[ƒX	‰Šú‰»
+ *	@brief	ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹	åˆæœŸåŒ–
  *
- *	@param	p_proc		ƒvƒƒbƒNƒ[ƒN
- *	@param	p_seq		ƒV[ƒPƒ“ƒX
+ *	@param	p_proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@retval	PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *	@retval	PROC_RES_FINISH,			///<“®ìI—¹
+ *	@retval	PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *	@retval	PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT NEWS_DRAW_Init(PROC* p_proc, int* p_seq)
@@ -730,38 +730,38 @@ PROC_RESULT NEWS_DRAW_Init(PROC* p_proc, int* p_seq)
 	
 	p_param = PROC_GetParentWork( p_proc );
 
-	//ƒq[ƒvƒGƒŠƒAì¬
+	//ãƒ’ãƒ¼ãƒ—ã‚¨ãƒªã‚¢ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_NEWSDRAW, 0x50000 );
 
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_wk = PROC_AllocWork( p_proc, sizeof(NEWSDRAW_WK), HEAPID_NEWSDRAW );
 	memset( p_wk, 0, sizeof(NEWSDRAW_WK) );
 
-	// ƒf[ƒ^Ši”[
+	// ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	p_wk->p_data		= p_param->p_data;
 	p_wk->cp_nowtime	= p_param->cp_nowtime;
 
-	// •\Ž¦ƒVƒXƒeƒ€‰Šú‰»
+	// è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	NEWSDRAW_DrawSysInit( &p_wk->draw, HEAPID_NEWSDRAW );
 
-	// ƒXƒNƒŠ[ƒ“ƒZƒbƒg‰Šú‰»
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚»ãƒƒãƒˆåˆæœŸåŒ–
 	NEWSDRAW_ScrnSetInit( &p_wk->scrn, &p_wk->draw, HEAPID_NEWSDRAW );
 
-	// ŽžŠÔƒEƒBƒ“ƒhƒE‰Šú‰»
+	// æ™‚é–“ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 	NEWSDRAW_TimeWinInit( &p_wk->time, &p_wk->draw, &p_wk->scrn, p_wk->p_data, p_wk->cp_nowtime, p_param->p_system, HEAPID_NEWSDRAW );
 
-	// ƒvƒŒƒCƒ„[ƒEƒBƒ“ƒhƒE‰Šú‰»
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 	NEWSDRAW_PlayerWinInit( &p_wk->player, &p_wk->draw, &p_wk->scrn, p_wk->p_data, p_param->p_system, HEAPID_NEWSDRAW );
 
-	// ƒgƒsƒbƒNƒEƒBƒ“ƒhƒE‰Šú‰»
+	// ãƒˆãƒ”ãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 	NEWSDRAW_TopicWinInit( &p_wk->topic, &p_wk->draw, HEAPID_NEWSDRAW );
 
-	// ƒ^ƒCƒgƒ‹ì¬
+	// ã‚¿ã‚¤ãƒˆãƒ«ä½œæˆ
 	NEWSDRAW_TitleWinInit( &p_wk->title, &p_wk->draw, HEAPID_NEWSDRAW );
 
-	// Š„‚èž‚ÝÝ’è
+	// å‰²ã‚Šè¾¼ã¿è¨­å®š
 	sys_VBlankFuncChange( NEWSDRAW_WkVBlank, p_wk );
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	
 	return PROC_RES_FINISH;
@@ -769,7 +769,7 @@ PROC_RESULT NEWS_DRAW_Init(PROC* p_proc, int* p_seq)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[ƒjƒ…[ƒX	ƒƒCƒ“
+ *	@brief	ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹	ãƒ¡ã‚¤ãƒ³
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT NEWS_DRAW_Main(PROC* p_proc, int* p_seq)
@@ -793,10 +793,10 @@ PROC_RESULT NEWS_DRAW_Main(PROC* p_proc, int* p_seq)
 				WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 				WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_NEWSDRAW );
 
-		// BGM‚ðƒtƒF[ƒhƒAƒEƒg
+		// BGMã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		WFLBY_SYSTEM_SetBGMVolumeDown( p_param->p_system, TRUE );
 
-		// ƒƒr[‚É“ü‚Á‚Ä‚«‚½‰¹‚ðo‚·
+		// ãƒ­ãƒ“ãƒ¼ã«å…¥ã£ã¦ããŸéŸ³ã‚’å‡ºã™
 //		Snd_SePlay( WFLBY_SND_NEWSIN );
 
 		(*p_seq) ++;
@@ -828,19 +828,19 @@ PROC_RESULT NEWS_DRAW_Main(PROC* p_proc, int* p_seq)
 			
 			
 
-			// ŽžŠÔƒEƒBƒ“ƒhƒEˆ—
+			// æ™‚é–“ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‡¦ç†
 			result = NEWSDRAW_TimeWinMain( &p_wk->time, p_wk->p_data, p_wk->cp_nowtime );
 			if( result == TRUE ){
 				NEWSDRAW_TitleWinEffectStart( &p_wk->title, NEWSDRAW_TITLEWIN_TIME );
 			}
 
-			// ƒvƒŒƒCƒ„[ƒEƒBƒ“ƒhƒEˆ—
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‡¦ç†
 			result = NEWSDRAW_PlayerWinMain( &p_wk->player, p_wk->p_data );
 			if( result == TRUE ){
 				NEWSDRAW_TitleWinEffectStart( &p_wk->title, NEWSDRAW_TITLEWIN_PLAYER );
 			}
 
-			// ƒgƒsƒbƒNƒEƒBƒ“ƒhƒEˆ—
+			// ãƒˆãƒ”ãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‡¦ç†
 			result = NEWSDRAW_TopicWinMain( &p_wk->topic, p_wk->p_data, p_param->p_system, HEAPID_NEWSDRAW );
 			if( result == TRUE ){
 				NEWSDRAW_TitleWinEffectStart( &p_wk->title, NEWSDRAW_TITLEWIN_TOPIC );
@@ -865,7 +865,7 @@ PROC_RESULT NEWS_DRAW_Main(PROC* p_proc, int* p_seq)
 	}
 
 
-	// •`‰æ
+	// æç”»
 	NEWSDRAW_WkDraw( p_wk, p_param->p_system );
 
 	return PROC_RES_CONTINUE;
@@ -873,7 +873,7 @@ PROC_RESULT NEWS_DRAW_Main(PROC* p_proc, int* p_seq)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[ƒjƒ…[ƒX	”jŠü
+ *	@brief	ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹	ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT NEWS_DRAW_Exit(PROC* p_proc, int* p_seq)
@@ -884,33 +884,33 @@ PROC_RESULT NEWS_DRAW_Exit(PROC* p_proc, int* p_seq)
 	p_wk	= PROC_GetWork( p_proc );
 	p_param = PROC_GetParentWork( p_proc );
 
-	// ƒ^ƒCƒgƒ‹”jŠü
+	// ã‚¿ã‚¤ãƒˆãƒ«ç ´æ£„
 	NEWSDRAW_TitleWinExit( &p_wk->title );
 
-	// ŽžŠÔƒEƒBƒ“ƒhƒE”jŠü
+	// æ™‚é–“ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	NEWSDRAW_TimeWinExit( &p_wk->time );
 
-	// ƒvƒŒƒCƒ„[ƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	NEWSDRAW_PlayerWinExit( &p_wk->player );
 
-	// ƒgƒsƒbƒNƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒˆãƒ”ãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	NEWSDRAW_TopicWinExit( &p_wk->topic );
 
-	// ƒXƒNƒŠ[ƒ“ƒZƒbƒg”jŠü
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚»ãƒƒãƒˆç ´æ£„
 	NEWSDRAW_ScrnSetExit( &p_wk->scrn );
 
-	// Š„‚èž‚ÝÝ’è
+	// å‰²ã‚Šè¾¼ã¿è¨­å®š
 	sys_VBlankFuncChange( NULL, NULL );
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 
-	// •`‰æƒVƒXƒeƒ€”jŠü
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	NEWSDRAW_DrawSysExit( &p_wk->draw );
 
-	//ƒ[ƒN”jŠü
+	//ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	PROC_FreeWork( p_proc );
 	
-	//ƒq[ƒv”jŠü
+	//ãƒ’ãƒ¼ãƒ—ç ´æ£„
 	sys_DeleteHeap( HEAPID_NEWSDRAW );
 
 	return PROC_RES_FINISH;
@@ -922,12 +922,12 @@ PROC_RESULT NEWS_DRAW_Exit(PROC* p_proc, int* p_seq)
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBLANKˆ—
+ *	@brief	VBLANKå‡¦ç†
  *
  *	@param	p_work 
  */
@@ -941,85 +941,85 @@ static void NEWSDRAW_WkVBlank( void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦ˆ—
+ *	@brief	è¡¨ç¤ºå‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_system	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_system	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_WkDraw( NEWSDRAW_WK* p_wk, const WFLBY_SYSTEM* cp_system )
 {
-	// ŽžŠÔƒEƒBƒ“ƒhƒE•\Ž¦ˆ—
+	// æ™‚é–“ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºå‡¦ç†
 	NEWSDRAW_TimeWinDraw( &p_wk->time, &p_wk->scrn, &p_wk->draw );
 
-	// ƒvƒŒƒCƒ„[ƒEƒBƒ“ƒhƒE•\Ž¦ˆ—
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºå‡¦ç†
 	NEWSDRAW_PlayerWinDraw( &p_wk->player, &p_wk->scrn, &p_wk->draw, p_wk->p_data, cp_system );
 
-	// ƒgƒsƒbƒN‚Ì•`‰æ
+	// ãƒˆãƒ”ãƒƒã‚¯ã®æç”»
 	NEWSDRAW_TopicWinDraw( &p_wk->topic );
 
-	// ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒEˆ—
+	// ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‡¦ç†
 	NEWSDRAW_TitleWinDraw( &p_wk->title );
 	
-	// •`‰æƒVƒXƒeƒ€•`‰æ
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ æç”»
 	NEWSDRAW_DrawSysDraw( &p_wk->draw );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦•¨‚Ì‰Šú‰»
+ *	@brief	è¡¨ç¤ºç‰©ã®åˆæœŸåŒ–
  *
- *	@param	p_wk		•\Ž¦ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_DrawSysInit( NEWSDRAW_DRAWSYS* p_wk, u32 heapID )
 {
-	// ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
 	p_wk->p_handle = ArchiveDataHandleOpen( ARC_LOBBY_NEWS, heapID );
 
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒì¬
+	// Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	initVramTransferManagerHeap( NEWSDRAW_VRAMTRANS_TASKNUM, heapID );
 	
-	// ƒoƒ“ƒNÝ’è
+	// ãƒãƒ³ã‚¯è¨­å®š
 	GF_Disp_SetBank( &sc_NEWSDRAW_BANK );
 
-	// BGÝ’è
+	// BGè¨­å®š
 	NEWSDRAW_DrawSysBgInit( p_wk, heapID );
 
-	// OAMÝ’è
+	// OAMè¨­å®š
 	NEWSDRAW_DrawSysOamInit( p_wk, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦•¨‚Ì”jŠü
+ *	@brief	è¡¨ç¤ºç‰©ã®ç ´æ£„
  *
- *	@param	p_wk		•\Ž¦ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk		è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_DrawSysExit( NEWSDRAW_DRAWSYS* p_wk )
 {
-	// ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
 	ArchiveDataHandleClose( p_wk->p_handle );
 
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒ”jŠü
+	// Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	DellVramTransferManager();
 	
-	// BGÝ’è
+	// BGè¨­å®š
 	NEWSDRAW_DrawSysBgExit( p_wk );
 
-	// OAMÝ’è
+	// OAMè¨­å®š
 	NEWSDRAW_DrawSysOamExit( p_wk );
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æˆ—
+ *	@brief	æç”»å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_DrawSysDraw( NEWSDRAW_DRAWSYS* p_wk )
@@ -1029,38 +1029,38 @@ static void NEWSDRAW_DrawSysDraw( NEWSDRAW_DRAWSYS* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlankˆ—
+ *	@brief	VBlankå‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_DrawSysVBlank( NEWSDRAW_DRAWSYS* p_wk )
 {
-    // BG‘‚«Š·‚¦
+    // BGæ›¸ãæ›ãˆ
     GF_BGL_VBlankFunc( p_wk->p_bgl );
 
-    // ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+    // ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
     REND_OAMTrans();
 
-	// Vram“]‘—
+	// Vramè»¢é€
 	DoVramTransferManager();
 }
 
 // BG
 static void NEWSDRAW_DrawSysBgInit( NEWSDRAW_DRAWSYS* p_wk, u32 heapID )
 {
-	// BGÝ’è
+	// BGè¨­å®š
 	GF_BGL_InitBG(&sc_BGINIT);
 	
-	// BGLì¬
+	// BGLä½œæˆ
 	p_wk->p_bgl = GF_BGL_BglIniAlloc( heapID );
 
-	// ƒƒCƒ“‚ÆƒTƒu‚ðØ‚è‘Ö‚¦‚é
+	// ãƒ¡ã‚¤ãƒ³ã¨ã‚µãƒ–ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 
 
-	// BGƒRƒ“ƒgƒ[ƒ‹Ý’è
+	// BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
 	{
 		int i;
 
@@ -1073,21 +1073,21 @@ static void NEWSDRAW_DrawSysBgInit( NEWSDRAW_DRAWSYS* p_wk, u32 heapID )
 		}
 	}
 
-	// BGÝ’è
+	// BGè¨­å®š
 	{
-		// ƒpƒŒƒbƒg
+		// ãƒ‘ãƒ¬ãƒƒãƒˆ
 		ArcUtil_HDL_PalSet( p_wk->p_handle, NARC_lobby_news_lobby_news_bg_NCLR, 
 				PALTYPE_MAIN_BG, 0, 0, heapID );
 
-		//  ƒtƒHƒ“ƒgƒJƒ‰[Ý’è
+		//  ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼è¨­å®š
 		TalkFontPaletteLoad( PALTYPE_MAIN_BG, NEWS_PLTT_TALKFONT*32, heapID );
 
-		// ƒLƒƒƒ‰ƒNƒ^
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 		ArcUtil_HDL_BgCharSet( p_wk->p_handle,
 				NARC_lobby_news_lobby_news_bg_NCGR, 
 				p_wk->p_bgl, GF_BGL_FRAME1_M, 0, 0, FALSE, heapID );
 
-		// ƒXƒNƒŠ[ƒ“
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 		ArcUtil_HDL_ScrnSet(p_wk->p_handle, 
 				NARC_lobby_news_lobby_news_bg1_NSCR, 
 				p_wk->p_bgl, GF_BGL_FRAME1_M, 0, 0, FALSE, heapID);
@@ -1097,30 +1097,30 @@ static void NEWSDRAW_DrawSysBgInit( NEWSDRAW_DRAWSYS* p_wk, u32 heapID )
 
 	}
 
-	// ƒTƒu‰æ–ÊÝ’è
+	// ã‚µãƒ–ç”»é¢è¨­å®š
 	{
-		// ƒpƒŒƒbƒg
+		// ãƒ‘ãƒ¬ãƒƒãƒˆ
 		ArcUtil_HDL_PalSet( p_wk->p_handle, NARC_lobby_news_lobby_news_bg_NCLR, 
 				PALTYPE_SUB_BG, 0, 0, heapID );
 
-		// ƒLƒƒƒ‰ƒNƒ^
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 		ArcUtil_HDL_BgCharSet( p_wk->p_handle,
 				NARC_lobby_news_wifi_mark_bg_NCGR, 
 				p_wk->p_bgl, GF_BGL_FRAME0_S, 0, 0, FALSE, heapID );
 
-		// ƒXƒNƒŠ[ƒ“
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 		ArcUtil_HDL_ScrnSet(p_wk->p_handle, 
 				NARC_lobby_news_wifi_mark_bg_NSCR, 
 				p_wk->p_bgl, GF_BGL_FRAME0_S, 0, 0, FALSE, heapID);
 	}
 
-	// Šî–{ƒLƒƒƒ‰ƒNƒ^ƒpƒŒƒbƒgƒtƒŒ[ƒ€
-	// ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒJƒ‰[Ý’è
+	// åŸºæœ¬ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
+	// ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚«ãƒ©ãƒ¼è¨­å®š
 //	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, GX_RGB( 0,0,0 ) );
 }
 static void NEWSDRAW_DrawSysBgExit( NEWSDRAW_DRAWSYS* p_wk )
 {
-	// ‚a‚fƒRƒ“ƒgƒ[ƒ‹”jŠü
+	// ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ç ´æ£„
 	{
 		int i;
 
@@ -1129,10 +1129,10 @@ static void NEWSDRAW_DrawSysBgExit( NEWSDRAW_DRAWSYS* p_wk )
 		}
 	}
 	
-	// BGL”jŠü
+	// BGLç ´æ£„
 	sys_FreeMemoryEz( p_wk->p_bgl );
 
-	// ƒƒCƒ“‚ÆƒTƒu‚ðŒ³‚É–ß‚·
+	// ãƒ¡ã‚¤ãƒ³ã¨ã‚µãƒ–ã‚’å…ƒã«æˆ»ã™
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 }
@@ -1142,49 +1142,49 @@ static void NEWSDRAW_DrawSysOamInit( NEWSDRAW_DRAWSYS* p_wk, u32 heapID )
 {
     int i;
 
-    // OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+    // OAMãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
     NNS_G2dInitOamManagerModule();
 
-    // ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-    // ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-    // ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
+    // å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
     REND_OAMInit(
-        0, 126,     // ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,      // ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-        0, 126,     // ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,      // ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+        0, 126,     // ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,      // ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+        0, 126,     // ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,      // ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
         heapID);
 
 
-    // ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
     InitCharManagerReg(&sc_NEWSDRAW_CHARMAN_INIT, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K );
-    // ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
     InitPlttManager(NEWSDRAW_OAM_CONTNUM, heapID);
 
-    // “Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+    // èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
     CharLoadStartAll();
     PlttLoadStartAll();
 
-    //’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+    //é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
     CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
     CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
     
 
-    // ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
     p_wk->p_clactset = CLACT_U_SetEasyInit( NEWSDRAW_OAM_CONTNUM, &p_wk->renddata, heapID );
 
-    // ƒT[ƒtƒF[ƒXˆÊ’u‚ðˆÚ“®‚³‚¹‚é
+    // ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ä½ç½®ã‚’ç§»å‹•ã•ã›ã‚‹
     CLACT_U_SetSubSurfaceMatrix( &p_wk->renddata, 0, NEWSDRAW_SF_MAT_Y );
     
-    // ƒLƒƒƒ‰‚ÆƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+    // ã‚­ãƒ£ãƒ©ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
     for( i=0; i<NEWSDRAW_RESMAN_NUM; i++ ){
         p_wk->p_resman[i] = CLACT_U_ResManagerInit(NEWSDRAW_OAM_CONTNUM, i, heapID);
     }
 
-	// ‰º‰æ–Ê‚É’ÊMƒAƒCƒRƒ“‚ðo‚·
-	WirelessIconEasy();  // Ú‘±’†‚È‚Ì‚ÅƒAƒCƒRƒ“•\Ž¦
+	// ä¸‹ç”»é¢ã«é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚’å‡ºã™
+	WirelessIconEasy();  // æŽ¥ç¶šä¸­ãªã®ã§ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 
-	// •\Ž¦ŠJŽn
+	// è¡¨ç¤ºé–‹å§‹
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 }
@@ -1192,18 +1192,18 @@ static void NEWSDRAW_DrawSysOamExit( NEWSDRAW_DRAWSYS* p_wk )
 {
     int i;
 
-    // ƒAƒNƒ^[‚Ì”jŠü
+    // ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç ´æ£„
     CLACT_DestSet( p_wk->p_clactset );
 
     for( i=0; i<NEWSDRAW_RESMAN_NUM; i++ ){
         CLACT_U_ResManagerDelete( p_wk->p_resman[i] );
     }
 
-    // ƒŠƒ\[ƒX‰ð•ú
+    // ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
     DeleteCharManager();
     DeletePlttManager();
 
-    //OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+    //OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
     REND_OAM_Delete();
 }
 
@@ -1212,11 +1212,11 @@ static void NEWSDRAW_DrawSysOamExit( NEWSDRAW_DRAWSYS* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠ[ƒ“ƒZƒbƒg‰Šú‰»
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚»ãƒƒãƒˆåˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_ScrnSetInit( NEWSDRAW_SCRNSET* p_wk, NEWSDRAW_DRAWSYS* p_draw, u32 heapID )
@@ -1228,9 +1228,9 @@ static void NEWSDRAW_ScrnSetInit( NEWSDRAW_SCRNSET* p_wk, NEWSDRAW_DRAWSYS* p_dr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠ[ƒ“ƒZƒbƒg”jŠü
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚»ãƒƒãƒˆç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_ScrnSetExit( NEWSDRAW_SCRNSET* p_wk )
@@ -1240,22 +1240,22 @@ static void NEWSDRAW_ScrnSetExit( NEWSDRAW_SCRNSET* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒuƒƒbƒN‚ð‘‚«ž‚Þ
+ *	@brief	ã‚¿ã‚¤ãƒ ãƒ–ãƒ­ãƒƒã‚¯ã‚’æ›¸ãè¾¼ã‚€
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_draw		•`‰æƒVƒXƒeƒ€
- *	@param	block_type	ƒuƒƒbƒNƒ^ƒCƒv
- *	@param	x			XƒuƒƒbƒNˆÊ’u{0`NEWSDRAW_TIME_X_SIZ-1}
- *	@param	y 			YƒuƒƒbƒNˆÊ’u{0`NEWSDRAW_TIME_Y_SIZ-1}
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_draw		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	block_type	ãƒ–ãƒ­ãƒƒã‚¯ã‚¿ã‚¤ãƒ—
+ *	@param	x			Xãƒ–ãƒ­ãƒƒã‚¯ä½ç½®{0ã€œNEWSDRAW_TIME_X_SIZ-1}
+ *	@param	y 			Yãƒ–ãƒ­ãƒƒã‚¯ä½ç½®{0ã€œNEWSDRAW_TIME_Y_SIZ-1}
  *
  *	block_type
- *		NEWSDRAW_TIME_BLOCKTYPE_NORMAL,	// ’Êí
- *		NEWSDRAW_TIME_BLOCKTYPE_ICON,	// ƒAƒCƒRƒ“
- *		NEWSDRAW_TIME_BLOCKTYPE_RED,	// ƒŒƒbƒh
- *		NEWSDRAW_TIME_BLOCKTYPE_NONE,	// ‰½‚à‚È‚µ
- *		NEWSDRAW_TIME_BLOCKTYPE_ICON1,	// ƒAƒCƒRƒ“@ƒAƒjƒ‚P
- *		NEWSDRAW_TIME_BLOCKTYPE_ICON2,	// ƒAƒCƒRƒ“@ƒAƒjƒ‚Q
- *		NEWSDRAW_TIME_BLOCKTYPE_ICON3,	// ƒAƒCƒRƒ“@ƒAƒjƒ‚R
+ *		NEWSDRAW_TIME_BLOCKTYPE_NORMAL,	// é€šå¸¸
+ *		NEWSDRAW_TIME_BLOCKTYPE_ICON,	// ã‚¢ã‚¤ã‚³ãƒ³
+ *		NEWSDRAW_TIME_BLOCKTYPE_RED,	// ãƒ¬ãƒƒãƒ‰
+ *		NEWSDRAW_TIME_BLOCKTYPE_NONE,	// ä½•ã‚‚ãªã—
+ *		NEWSDRAW_TIME_BLOCKTYPE_ICON1,	// ã‚¢ã‚¤ã‚³ãƒ³ã€€ã‚¢ãƒ‹ãƒ¡ï¼‘
+ *		NEWSDRAW_TIME_BLOCKTYPE_ICON2,	// ã‚¢ã‚¤ã‚³ãƒ³ã€€ã‚¢ãƒ‹ãƒ¡ï¼’
+ *		NEWSDRAW_TIME_BLOCKTYPE_ICON3,	// ã‚¢ã‚¤ã‚³ãƒ³ã€€ã‚¢ãƒ‹ãƒ¡ï¼“
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_ScrnWriteTimeBlock( NEWSDRAW_SCRNSET* p_wk, NEWSDRAW_DRAWSYS* p_draw, u32 block_type, u8 x, u8 y )
@@ -1275,17 +1275,17 @@ static void NEWSDRAW_ScrnWriteTimeBlock( NEWSDRAW_SCRNSET* p_wk, NEWSDRAW_DRAWSY
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[ƒf[ƒ^•\Ž¦
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_draw			•`‰æƒVƒXƒeƒ€
- *	@param	x				‚˜•`‰æˆÊ’u
- *	@param	y				‚™•`‰æˆÊ’u
- *	@param	player_type		ƒvƒŒƒCƒ„[ƒ^ƒCƒv
- *	@param	sex				«•Ê
- *	@param	mydata			Ž©•ª‚Ìƒf[ƒ^‚©
- *	@param	olddata			Ì‚Ìƒf[ƒ^‚©
- *	@param	vip				VIP‚©‚Ç‚¤‚©
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_draw			æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	x				ï½˜æç”»ä½ç½®
+ *	@param	y				ï½™æç”»ä½ç½®
+ *	@param	player_type		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¿ã‚¤ãƒ—
+ *	@param	sex				æ€§åˆ¥
+ *	@param	mydata			è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‹
+ *	@param	olddata			æ˜”ã®ãƒ‡ãƒ¼ã‚¿ã‹
+ *	@param	vip				VIPã‹ã©ã†ã‹
  *
  *	player_type
 			NEWSDRAW_PLAYERTYPE_NML,
@@ -1300,12 +1300,12 @@ static void NEWSDRAW_ScrnWritePlayer( NEWSDRAW_SCRNSET* p_wk, NEWSDRAW_DRAWSYS* 
 	r_x = player_type % NEWSDRAW_PLAYER_SCRN_PAT_X;
 	r_y = player_type / NEWSDRAW_PLAYER_SCRN_PAT_X;
 
-	// ŒÃ‚¢l‚Ì‘‚¢‚Ä‚ ‚éƒXƒNƒŠ[ƒ“ˆÊ’u‚ÉˆÚ“®
+	// å¤ã„äººã®æ›¸ã„ã¦ã‚ã‚‹ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½ç½®ã«ç§»å‹•
 	if( olddata ){
 		r_y += NEWSDRAW_PLAYER_SCRN_OLDPAT_Y;
 	}
 
-	// «•Ê•ª“®‚©‚·
+	// æ€§åˆ¥åˆ†å‹•ã‹ã™
 	if( sex == PM_FEMALE ){
 		r_y ++;
 	}
@@ -1320,7 +1320,7 @@ static void NEWSDRAW_ScrnWritePlayer( NEWSDRAW_SCRNSET* p_wk, NEWSDRAW_DRAWSYS* 
 			p_wk->p_scrn->screenWidth/8,
 			p_wk->p_scrn->screenHeight/8 );
 
-	// vip‚ÍÂ‚­‚·‚é
+	// vipã¯é’ãã™ã‚‹
 	if( vip ){
 		GF_BGL_ScrPalChange( p_draw->p_bgl, GF_BGL_FRAME3_M,
 				NEWSDRAW_PLAYER_SCRN_DRAWX+(x*NEWSDRAW_PLAYER_BLOCK_SIZX), 
@@ -1329,7 +1329,7 @@ static void NEWSDRAW_ScrnWritePlayer( NEWSDRAW_SCRNSET* p_wk, NEWSDRAW_DRAWSYS* 
 				NEWS_PLTT_VIP );
 	}else{
 
-		// Ž©•ª‚Ìƒf[ƒ^‚ÍƒIƒŒƒ“ƒW‚­‚·‚é
+		// è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯ã‚ªãƒ¬ãƒ³ã‚¸ãã™ã‚‹
 		if( mydata ){
 			GF_BGL_ScrPalChange( p_draw->p_bgl, GF_BGL_FRAME3_M,
 					NEWSDRAW_PLAYER_SCRN_DRAWX+(x*NEWSDRAW_PLAYER_BLOCK_SIZX), 
@@ -1348,15 +1348,15 @@ static void NEWSDRAW_ScrnWritePlayer( NEWSDRAW_SCRNSET* p_wk, NEWSDRAW_DRAWSYS* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽžŠÔƒEƒBƒ“ƒhƒE	‰Šú‰»
+ *	@brief	æ™‚é–“ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_draw		•`‰æƒVƒXƒeƒ€
- *	@param	p_scrn		ƒXƒNƒŠ[ƒ“ƒZƒbƒg
- *	@pamra	cp_data		ƒf[ƒ^
- *	@param	cp_nowtime	¡‚ÌŽžŠÔ
- *	@param	cp_system	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_draw		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_scrn		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚»ãƒƒãƒˆ
+ *	@pamra	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_nowtime	ä»Šã®æ™‚é–“
+ *	@param	cp_system	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TimeWinInit( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_DRAWSYS* p_draw, NEWSDRAW_SCRNSET* p_scrn, const NEWS_DATA* cp_data, const WFLBY_TIME* cp_nowtime, const WFLBY_SYSTEM* cp_system, u32 heapID )
@@ -1364,55 +1364,55 @@ static void NEWSDRAW_TimeWinInit( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_DRAWSYS* p_dr
 	u32 closetime;
 	u32 closetime_minute;
 	
-	// Žc‚èŽžŠÔ‰Šú’l
-	// ƒƒbƒNŒã‚ÌŽžŠÔ{‚P•ª
+	// æ®‹ã‚Šæ™‚é–“åˆæœŸå€¤
+	// ãƒ­ãƒƒã‚¯å¾Œã®æ™‚é–“ï¼‹ï¼‘åˆ†
 	closetime = WFLBY_SYSTEM_GetCloseTime( cp_system );	
-	closetime_minute = closetime / 60;	// •b’PˆÊ‚È‚Ì‚Å•ª’PˆÊ‚É
+	closetime_minute = closetime / 60;	// ç§’å˜ä½ãªã®ã§åˆ†å˜ä½ã«
 	p_wk->last_rest_time.hour	= 0;
 	p_wk->last_rest_time.minute = closetime_minute + 1;
 	p_wk->last_rest_time.second	= 0;
 
-	// ƒuƒƒbƒN‚Ì•`‰æ‚ð‘‚«Š·‚¦‚éŠÔŠu
+	// ãƒ–ãƒ­ãƒƒã‚¯ã®æç”»ã‚’æ›¸ãæ›ãˆã‚‹é–“éš”
 	p_wk->change_second = closetime / NEWSDRAW_TIME_BLOCKNUM;	
 
 //	OS_TPrintf( "closetime %d minute %d change %d\n", closetime, closetime_minute, p_wk->change_second );
 
-	// ƒ‚ƒUƒCƒNƒAƒjƒÝ’èON
+	// ãƒ¢ã‚¶ã‚¤ã‚¯ã‚¢ãƒ‹ãƒ¡è¨­å®šON
 	p_wk->effect_flag	= TRUE;
 	p_wk->count			= 0;
 
-	// •`‰æXV
+	// æç”»æ›´æ–°
 	p_wk->updata		= FALSE;
 
-	// 1“xŽÀs
+	// 1åº¦å®Ÿè¡Œ
 	NEWSDRAW_TimeWinMain( p_wk, cp_data, cp_nowtime );
 	
-	// •`‰æƒf[ƒ^‰Šú‰»
+	// æç”»ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	NEWSDRAW_TimeWinDraw( p_wk, p_scrn, p_draw );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽžŠÔƒEƒBƒ“ƒhƒE	”jŠü
+ *	@brief	æ™‚é–“ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TimeWinExit( NEWSDRAW_TIMEWIN* p_wk )
 {
-	// •`‰æƒf[ƒ^”jŠü
+	// æç”»ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽžŠÔƒEƒBƒ“ƒhƒE	ƒƒCƒ“
+ *	@brief	æ™‚é–“ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
- *	@param	cp_nowtime	Œ»ÝŽžŠÔ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_nowtime	ç¾åœ¨æ™‚é–“
  *
- *	@retval	TRUE	•\Ž¦XV‚µ‚½
- *	@retval	FALSE	•\Ž¦XV‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	è¡¨ç¤ºæ›´æ–°ã—ãŸ
+ *	@retval	FALSE	è¡¨ç¤ºæ›´æ–°ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWSDRAW_TimeWinMain( NEWSDRAW_TIMEWIN* p_wk, const NEWS_DATA* cp_data, const WFLBY_TIME* cp_nowtime )
@@ -1423,39 +1423,39 @@ static BOOL NEWSDRAW_TimeWinMain( NEWSDRAW_TIMEWIN* p_wk, const NEWS_DATA* cp_da
 	WFLBY_TIME rest_sum;
 	BOOL ret = FALSE;
 	
-	// LOCK‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// LOCKã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	result = NEWS_DSET_GetLockTime( cp_data, &time );	
 	if( result == FALSE ){
-		// ƒ‚ƒUƒCƒNƒAƒjƒ
+		// ãƒ¢ã‚¶ã‚¤ã‚¯ã‚¢ãƒ‹ãƒ¡
 		return ret;
 	}
 
-	// ƒ‚ƒUƒCƒNƒAƒjƒ’†‚È‚ç’âŽ~‚·‚é
+	// ãƒ¢ã‚¶ã‚¤ã‚¯ã‚¢ãƒ‹ãƒ¡ä¸­ãªã‚‰åœæ­¢ã™ã‚‹
 	if( p_wk->effect_flag == TRUE ){
 		p_wk->effect_flag = FALSE;
 		
-		// ‘‚«Š·‚¦‚é
+		// æ›¸ãæ›ãˆã‚‹
 		p_wk->updata	= TRUE;
 		ret				= TRUE;
 	}
 
-	// ¡‚ÌLOCK‚©‚ç‚ÌŒo‰ß‚ÅƒXƒNƒŠ[ƒ“‚É‘‚«ž‚Þ
+	// ä»Šã®LOCKã‹ã‚‰ã®çµŒéŽã§ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æ›¸ãè¾¼ã‚€
 	WFLBY_TIME_Sub( cp_nowtime, &time, &rest_time );
 
-	// Žc‚èŽžŠÔ‚Æ‚P‚Â‘O‚ÌŽc‚èŽžŠÔ‚Ép_wk->change_second•b
-	// ˆÈã‚Ì•‚ª‚ ‚ê‚ÎA‘‚«’¼‚·
+	// æ®‹ã‚Šæ™‚é–“ã¨ï¼‘ã¤å‰ã®æ®‹ã‚Šæ™‚é–“ã«p_wk->change_secondç§’
+	// ä»¥ä¸Šã®å¹…ãŒã‚ã‚Œã°ã€æ›¸ãç›´ã™
 	WFLBY_TIME_Sub( &rest_time, &p_wk->last_rest_time, &rest_sum );
 	if( (rest_sum.second >= p_wk->change_second) ||
 		(rest_sum.minute > 0) ||
 		(rest_sum.hour	 > 0) ){
 
-		// ‘‚«Š·‚¦‚é
+		// æ›¸ãæ›ãˆã‚‹
 		p_wk->updata = TRUE;
 
-		// ‘‚«Š·‚¦‚½ŽžŠÔ‚ð•Û‘¶
+		// æ›¸ãæ›ãˆãŸæ™‚é–“ã‚’ä¿å­˜
 		p_wk->last_rest_time = rest_time;
 
-		// ‘‚«Š·‚¦‚½
+		// æ›¸ãæ›ãˆãŸ
 		ret = TRUE;
 	}
 
@@ -1464,11 +1464,11 @@ static BOOL NEWSDRAW_TimeWinMain( NEWSDRAW_TIMEWIN* p_wk, const NEWS_DATA* cp_da
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽžŠÔƒEƒBƒ“ƒhƒE•`‰æˆ—
+ *	@brief	æ™‚é–“ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_scrn	ƒXƒNƒŠ[ƒ“ƒZƒbƒg
- *	@param	p_draw	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_scrn	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚»ãƒƒãƒˆ
+ *	@param	p_draw	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TimeWinDraw( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRAWSYS* p_draw )
@@ -1483,11 +1483,11 @@ static void NEWSDRAW_TimeWinDraw( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET* p_sc
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽžŠÔƒf[ƒ^•`‰æƒAƒbƒvƒf[ƒg	ƒGƒtƒFƒNƒgŽž
+ *	@brief	æ™‚é–“ãƒ‡ãƒ¼ã‚¿æç”»ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ™‚
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_scrn		ƒXƒNƒŠ[ƒ“
- *	@param	p_draw		•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_scrn		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
+ *	@param	p_draw		æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TimeWinDrawMosaic( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRAWSYS* p_draw )
@@ -1500,11 +1500,11 @@ static void NEWSDRAW_TimeWinDrawMosaic( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽžŠÔƒf[ƒ^•`‰æƒAƒbƒvƒf[ƒg
+ *	@brief	æ™‚é–“ãƒ‡ãƒ¼ã‚¿æç”»ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_scrn		ƒXƒNƒŠ[ƒ“
- *	@param	p_draw		•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_scrn		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
+ *	@param	p_draw		æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TimeWinDrawUpdate( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRAWSYS* p_draw )
@@ -1519,18 +1519,18 @@ static void NEWSDRAW_TimeWinDrawUpdate( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET
 	block += p_wk->last_rest_time.minute * 60;
 	block += p_wk->last_rest_time.hour * 3600;
 
-	// •\Ž¦ƒuƒƒbƒN”
+	// è¡¨ç¤ºãƒ–ãƒ­ãƒƒã‚¯æ•°
 	block /= p_wk->change_second;
 
-	// ƒAƒbƒvƒf[ƒgƒtƒ‰ƒO‚Å‘‚«Š·‚¦‚é
+	// ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãƒ•ãƒ©ã‚°ã§æ›¸ãæ›ãˆã‚‹
 	if( p_wk->updata ){
 
-		// ƒJƒEƒ“ƒ^‰Šú‰»
+		// ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 		p_wk->count = 0;
 
 		p_wk->updata = FALSE;
 
-		// ƒXƒNƒŠ[ƒ“—Ìˆæ‚ðClean
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³é ˜åŸŸã‚’Clean
 		GF_BGL_ScrFill( p_draw->p_bgl, GF_BGL_FRAME3_M, 0,
 				NEWSDRAW_TIME_SCRN_DRAWX, NEWSDRAW_TIME_SCRN_DRAWY,
 				NEWSDRAW_TIME_X_SIZ*NEWSDRAW_TIME_BLOCK_SIZX,
@@ -1539,7 +1539,7 @@ static void NEWSDRAW_TimeWinDrawUpdate( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET
 		GF_BGL_LoadScreenV_Req( p_draw->p_bgl, GF_BGL_FRAME3_M );
 		
 		
-		// Žc‚èŽžŠÔ‚ÅƒXƒNƒŠ[ƒ“‚ð•\Ž¦‚·‚é
+		// æ®‹ã‚Šæ™‚é–“ã§ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹
 		for( i=0; i<NEWSDRAW_TIME_Y_SIZ; i++ ){
 			
 			y = (NEWSDRAW_TIME_Y_SIZ-1)-i;
@@ -1559,7 +1559,7 @@ static void NEWSDRAW_TimeWinDrawUpdate( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET
 					}else{
 						block_type = NEWSDRAW_TIME_BLOCKTYPE_NORMAL;
 					}
-					// ‘‚«ž‚Ý
+					// æ›¸ãè¾¼ã¿
 					NEWSDRAW_ScrnWriteTimeBlock( p_scrn, p_draw, block_type, 
 							x, y );
 				}
@@ -1568,30 +1568,30 @@ static void NEWSDRAW_TimeWinDrawUpdate( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET
 		
 	}else{
 
-		// BLOCK’l‚ÌƒI[ƒo[ƒ`ƒFƒbƒN
+		// BLOCKå€¤ã®ã‚ªãƒ¼ãƒãƒ¼ãƒã‚§ãƒƒã‚¯
 		if( block < NEWSDRAW_TIME_BLOCKNUM ){
 			u32 eff_count;
 			u32 icon_anm;
 			u32 icon_one_time;
 			
-			// ƒGƒtƒFƒNƒgƒJƒEƒ“ƒgˆ—
+			// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 			p_wk->count ++;
 
-			// ƒGƒtƒFƒNƒgƒJƒEƒ“ƒg’lŒvŽZ
+			// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ãƒˆå€¤è¨ˆç®—
 			eff_count = p_wk->count % NEWSDRAW_TIME_TIME_EFFECT_COUNT;
 
-			// À•W
+			// åº§æ¨™
 			x = block % NEWSDRAW_TIME_X_SIZ;
 			y = block / NEWSDRAW_TIME_X_SIZ;
 
-			// ƒJƒEƒ“ƒg
+			// ã‚«ã‚¦ãƒ³ãƒˆ
 			if( eff_count == 0 ){
 //				OS_Printf( "icon eff x[%d] y[%d] block[%d]\n", x, y, block );
 
-				// icon‚ð‚P‚ÂŒ¸‚ç‚·ƒ^ƒCƒ~ƒ“ƒO	change_second‚Í•b’PˆÊ‚È‚Ì‚Å•`‰æƒtƒŒ[ƒ€’PˆÊ‚É‚·‚é
+				// iconã‚’ï¼‘ã¤æ¸›ã‚‰ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°	change_secondã¯ç§’å˜ä½ãªã®ã§æç”»ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½ã«ã™ã‚‹
 				icon_one_time = (p_wk->change_second * 30) / NEWSDRAW_TIME_EFF_DATA_NUM;
 
-				// ‘‚«ž‚ÞƒAƒCƒRƒ“‚Ìƒ^ƒCƒv‚ðŽæ“¾
+				// æ›¸ãè¾¼ã‚€ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
 				icon_anm = NEWSDRAW_TIME_BLOCKTYPE_ICON3;
 				for( i=0; i<NEWSDRAW_TIME_EFF_DATA_NUM; i++ ){
 					if( icon_one_time*(i+1) > p_wk->count ){
@@ -1599,11 +1599,11 @@ static void NEWSDRAW_TimeWinDrawUpdate( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET
 						break;
 					}
 				}
-				// ‘‚«ž‚Ý
+				// æ›¸ãè¾¼ã¿
 				NEWSDRAW_ScrnWriteTimeBlock( p_scrn, p_draw, 
 						icon_anm, x, y );
 			}else if( eff_count == (NEWSDRAW_TIME_TIME_EFFECT_COUNT/2) ){
-				// ‘‚«ž‚Ý
+				// æ›¸ãè¾¼ã¿
 				NEWSDRAW_ScrnWriteTimeBlock( p_scrn, p_draw, 
 						NEWSDRAW_TIME_BLOCKTYPE_NONE, x, y );
 			}
@@ -1618,45 +1618,45 @@ static void NEWSDRAW_TimeWinDrawUpdate( NEWSDRAW_TIMEWIN* p_wk, NEWSDRAW_SCRNSET
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[ƒEƒBƒ“ƒhƒE	‰Šú‰»
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_draw		•`‰æƒVƒXƒeƒ€
- *	@param	p_scrn		ƒXƒNƒŠ[ƒ“ƒf[ƒ^
- *	@param	cp_data		•`‰æƒf[ƒ^
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_draw		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_scrn		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_data		æç”»ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_PlayerWinInit( NEWSDRAW_PLAYERWIN* p_wk, NEWSDRAW_DRAWSYS* p_draw, NEWSDRAW_SCRNSET* p_scrn, const NEWS_DATA* cp_data, const WFLBY_SYSTEM* cp_system, u32 heapID )
 {
-	// •`‰æ‰Šú‰»
+	// æç”»åˆæœŸåŒ–
 	{
-		// ‰Šúƒf[ƒ^‚Ì•`‰æ
+		// åˆæœŸãƒ‡ãƒ¼ã‚¿ã®æç”»
 		NEWSDRAW_PlayerWinWrite( p_scrn, p_draw, cp_data, cp_system, NEWSDRAW_PLAYERTYPE_NML );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[ƒEƒBƒ“ƒhƒE	”jŠü
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_PlayerWinExit( NEWSDRAW_PLAYERWIN* p_wk )
 {
-	// •`‰æ”jŠü
+	// æç”»ç ´æ£„
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[ƒEƒBƒ“ƒhƒE	ƒƒCƒ“
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ãƒ¡ã‚¤ãƒ³
  *	
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	XV‚µ‚½
- *	@retval	FALSE	XV‚µ‚È‚©‚Á‚½
+ *	@retval	TRUE	æ›´æ–°ã—ãŸ
+ *	@retval	FALSE	æ›´æ–°ã—ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWSDRAW_PlayerWinMain( NEWSDRAW_PLAYERWIN* p_wk, const NEWS_DATA* cp_data )
@@ -1664,20 +1664,20 @@ static BOOL NEWSDRAW_PlayerWinMain( NEWSDRAW_PLAYERWIN* p_wk, const NEWS_DATA* c
 	u32 event;
 	BOOL ret = FALSE;
 	
-	// ƒCƒxƒ“ƒg‚ª‹N‚±‚Á‚½‚çÄ•`‰æ‚·‚é
+	// ã‚¤ãƒ™ãƒ³ãƒˆãŒèµ·ã“ã£ãŸã‚‰å†æç”»ã™ã‚‹
 	event = NEWS_DSET_GetPlayerEvent( cp_data );
 	switch( event ){
 	case NEWS_ROOMEV_NONE:
 		break;
 		
-	case NEWS_ROOMEV_IN:		// ’N‚©“ü‚Á‚Ä‚«‚½
-		// l‚ª“ü‚Á‚Ä‚«‚½ƒV[ƒPƒ“ƒX‚Ö
+	case NEWS_ROOMEV_IN:		// èª°ã‹å…¥ã£ã¦ããŸ
+		// äººãŒå…¥ã£ã¦ããŸã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 		p_wk->seq = NEWSDRAW_PLAYERWIN_SEQ_INSIDE;
 		ret = TRUE;
 		break;
 		
-	case NEWS_ROOMEV_OUT:	// ’N‚©o‚Äs‚Á‚½
-		// l‚ªo‚Ä‚Á‚½ƒV[ƒPƒ“ƒX‚Ö
+	case NEWS_ROOMEV_OUT:	// èª°ã‹å‡ºã¦è¡Œã£ãŸ
+		// äººãŒå‡ºã¦ã£ãŸã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 		p_wk->seq = NEWSDRAW_PLAYERWIN_SEQ_OUTSIDE;
 		ret = TRUE;
 		break;
@@ -1688,27 +1688,27 @@ static BOOL NEWSDRAW_PlayerWinMain( NEWSDRAW_PLAYERWIN* p_wk, const NEWS_DATA* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[ƒEƒBƒ“ƒhƒE@ƒAƒjƒ
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_scrn		ƒXƒNƒŠ[ƒ“ƒZƒbƒg
- *	@param	p_draw		•`‰æƒVƒXƒeƒ€
- *	@param	cp_data		ƒf[ƒ^
- *	@param	cp_system	ƒVƒXƒeƒ€ƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_scrn		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚»ãƒƒãƒˆ
+ *	@param	p_draw		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_system	ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_PlayerWinDraw( NEWSDRAW_PLAYERWIN* p_wk, NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRAWSYS* p_draw, const NEWS_DATA* cp_data, const WFLBY_SYSTEM* cp_system )
 {
 	switch( p_wk->seq ){
-	case NEWSDRAW_PLAYERWIN_SEQ_WAIT:		// ‘Ò‹@ó‘Ô
+	case NEWSDRAW_PLAYERWIN_SEQ_WAIT:		// å¾…æ©ŸçŠ¶æ…‹
 		break;
 		
-	case NEWSDRAW_PLAYERWIN_SEQ_INSIDE:		// l‚ª“ü‚Á‚Ä‚«‚½
+	case NEWSDRAW_PLAYERWIN_SEQ_INSIDE:		// äººãŒå…¥ã£ã¦ããŸ
 		p_wk->seq = NEWSDRAW_PLAYERWIN_SEQ_INSIDEMAIN;
 		p_wk->count = 0;
 		break;
 		
-	case NEWSDRAW_PLAYERWIN_SEQ_INSIDEMAIN:	// l‚ª“ü‚Á‚Ä‚«‚½
+	case NEWSDRAW_PLAYERWIN_SEQ_INSIDEMAIN:	// äººãŒå…¥ã£ã¦ããŸ
 		NEWSDRAW_PlayerWinInsideAnim( p_scrn, p_draw, cp_data, cp_system, p_wk->count );
 		p_wk->count ++;
 		if( p_wk->count >= NEWSDRAW_PLAYERWIN_COUNT_INSIDE ){
@@ -1716,12 +1716,12 @@ static void NEWSDRAW_PlayerWinDraw( NEWSDRAW_PLAYERWIN* p_wk, NEWSDRAW_SCRNSET* 
 		}
 		break;
 		
-	case NEWSDRAW_PLAYERWIN_SEQ_OUTSIDE:		// l‚ª“ü‚Á‚Ä‚«‚½
+	case NEWSDRAW_PLAYERWIN_SEQ_OUTSIDE:		// äººãŒå…¥ã£ã¦ããŸ
 		p_wk->seq = NEWSDRAW_PLAYERWIN_SEQ_OUTSIDEMAIN;
 		p_wk->count = 0;
 		break;
 
-	case NEWSDRAW_PLAYERWIN_SEQ_OUTSIDEMAIN:	// l‚ª“ü‚Á‚Ä‚«‚½
+	case NEWSDRAW_PLAYERWIN_SEQ_OUTSIDEMAIN:	// äººãŒå…¥ã£ã¦ããŸ
 		NEWSDRAW_PlayerWinOutsideAnim( p_scrn, p_draw, cp_data, cp_system, p_wk->count );
 		p_wk->count ++;
 		if( p_wk->count >= NEWSDRAW_PLAYERWIN_COUNT_OUTSIDE ){
@@ -1733,12 +1733,12 @@ static void NEWSDRAW_PlayerWinDraw( NEWSDRAW_PLAYERWIN* p_wk, NEWSDRAW_SCRNSET* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l‚ÌŠG‚ð•\Ž¦‚·‚é
+ *	@brief	äººã®çµµã‚’è¡¨ç¤ºã™ã‚‹
  *
- *	@param	p_scrn		ƒXƒNƒŠ[ƒ“ƒ[ƒN
- *	@param	p_draw		•`‰æƒVƒXƒeƒ€
- *	@param	cp_data		•`‰æƒf[ƒ^
- *	@param	player_type	•\Ž¦ƒvƒŒƒCƒ„[ƒ^ƒCƒv
+ *	@param	p_scrn		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_draw		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_data		æç”»ãƒ‡ãƒ¼ã‚¿
+ *	@param	player_type	è¡¨ç¤ºãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_PlayerWinWrite( NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRAWSYS* p_draw, const NEWS_DATA* cp_data, const WFLBY_SYSTEM* cp_system, u32 player_type )
@@ -1753,14 +1753,14 @@ static void NEWSDRAW_PlayerWinWrite( NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRAWSYS*
 	u32 player;
 	u32 draw_player_type;
 
-	// ƒXƒNƒŠ[ƒ“—Ìˆæ‚ðClean
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³é ˜åŸŸã‚’Clean
 	GF_BGL_ScrFill( p_draw->p_bgl, GF_BGL_FRAME3_M, 0,
 			NEWSDRAW_PLAYER_SCRN_DRAWX, NEWSDRAW_PLAYER_SCRN_DRAWY,
 			NEWSDRAW_PLAYERWIN_DRAW_X*NEWSDRAW_PLAYER_BLOCK_SIZX,
 			NEWSDRAW_PLAYERWIN_DRAW_Y*NEWSDRAW_PLAYER_BLOCK_SIZY,
 			0 );
 
-	// ‘SƒvƒŒƒCƒ„[‚ð•\Ž¦‚·‚é
+	// å…¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
 	for( i=0; i<NEWSDRAW_PLAYERWIN_DRAW_Y; i++ ){
 		for( j=0; j<NEWSDRAW_PLAYERWIN_DRAW_X; j++ ){
 			
@@ -1769,21 +1769,21 @@ static void NEWSDRAW_PlayerWinWrite( NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRAWSYS*
 			inside	= NEWS_DSET_CheckPlayerInside( cp_data, player );
 			if( inside ){
 				
-				// •\Ž¦ƒpƒ‰ƒ[ƒ^‚ÌŽæ“¾
+				// è¡¨ç¤ºãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å–å¾—
 				sex		= NEWS_DSET_GetPlayerSex( cp_data, player );
 				mydata	= NEWS_DSET_GetPlayerSpecialMy( cp_data, player );
 				olddata	= NEWS_DSET_GetPlayerSpecialOld( cp_data, player );
 				newdata	= NEWS_DSET_GetPlayerNewPlayer( cp_data, player );
 				vip		= WFLBY_SYSTEM_GetUserVipFlag( cp_system, player );
 
-				// V‚µ‚­“ü‚Á‚Ä‚«‚½l‚Ì•\Ž¦‚Ìê‡‚Íí‚É’ÊíƒtƒŒ[ƒ€‚ð•\Ž¦‚·‚é
+				// æ–°ã—ãå…¥ã£ã¦ããŸäººã®è¡¨ç¤ºã®å ´åˆã¯å¸¸ã«é€šå¸¸ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¡¨ç¤ºã™ã‚‹
 				if( (player_type == NEWSDRAW_PLAYERTYPE_IN) && (newdata == TRUE) ){
 					draw_player_type = NEWSDRAW_PLAYERTYPE_NML;
 				}else{
 					draw_player_type = player_type;
 				}
 
-				// •\Ž¦
+				// è¡¨ç¤º
 				NEWSDRAW_ScrnWritePlayer( p_scrn, p_draw,
 						j, i, draw_player_type, sex, mydata, olddata, vip );
 			}
@@ -1794,20 +1794,20 @@ static void NEWSDRAW_PlayerWinWrite( NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRAWSYS*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[ƒCƒ“ƒTƒCƒhƒAƒjƒ•`‰æ
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ã‚µã‚¤ãƒ‰ã‚¢ãƒ‹ãƒ¡æç”»
  *
- *	@param	p_scrn		ƒXƒNƒŠ[ƒ“ƒ[ƒN
- *	@param	p_draw		•`‰æƒVƒXƒeƒ€
- *	@param	cp_data		ƒf[ƒ^
- *	@param	cp_system	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	count		ƒJƒEƒ“ƒ^
+ *	@param	p_scrn		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_draw		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_system	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	count		ã‚«ã‚¦ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_PlayerWinInsideAnim( NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRAWSYS* p_draw, const NEWS_DATA* cp_data, const WFLBY_SYSTEM* cp_system, u32 count )
 {	
 	u32 player_type;
 	
-	// ŠG•ÏXƒ^ƒCƒ~ƒ“ƒOƒ`ƒFƒbƒN
+	// çµµå¤‰æ›´ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãƒã‚§ãƒƒã‚¯
 	if( (count % NEWSDRAW_PLAYERWIN_INSIDE_ONEFRAME) == 0 ){
 
 		player_type = count / NEWSDRAW_PLAYERWIN_INSIDE_ONEFRAME;
@@ -1822,20 +1822,20 @@ static void NEWSDRAW_PlayerWinInsideAnim( NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[ƒAƒEƒgƒTƒCƒhƒAƒjƒ•`‰æ
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¢ã‚¦ãƒˆã‚µã‚¤ãƒ‰ã‚¢ãƒ‹ãƒ¡æç”»
  *
- *	@param	p_scrn		ƒXƒNƒŠ[ƒ“ƒ[ƒN
- *	@param	p_draw		•`‰æƒVƒXƒeƒ€
- *	@param	cp_data		ƒf[ƒ^
- *	@param	cp_system	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	count		ƒJƒEƒ“ƒ^
+ *	@param	p_scrn		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_draw		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_system	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	count		ã‚«ã‚¦ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_PlayerWinOutsideAnim( NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DRAWSYS* p_draw, const NEWS_DATA* cp_data, const WFLBY_SYSTEM* cp_system, u32 count )
 {
 	u32 player_type;
 	
-	// ŠG•ÏXƒ^ƒCƒ~ƒ“ƒOƒ`ƒFƒbƒN
+	// çµµå¤‰æ›´ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãƒã‚§ãƒƒã‚¯
 	if( (count % NEWSDRAW_PLAYERWIN_INSIDE_ONEFRAME) == 0 ){
 
 		player_type = count / NEWSDRAW_PLAYERWIN_OUTSIDE_ONEFRAME;
@@ -1854,12 +1854,12 @@ static void NEWSDRAW_PlayerWinOutsideAnim( NEWSDRAW_SCRNSET* p_scrn, NEWSDRAW_DR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒJƒ‰[ƒf[ƒ^Žæ“¾
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
- *	@param	type		ƒ^ƒCƒv
- *	@param	cp_system	ƒVƒXƒeƒ€ƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	type		ã‚¿ã‚¤ãƒ—
+ *	@param	cp_system	ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TopicTrColDataGet( NEWSDRAW_TOPIC_TRCOL* p_wk, const NEWS_DATA* cp_data, NEWS_TOPICTYPE type, const WFLBY_SYSTEM* cp_system )
@@ -1874,9 +1874,9 @@ static void NEWSDRAW_TopicTrColDataGet( NEWSDRAW_TOPIC_TRCOL* p_wk, const NEWS_D
 
 			vip = WFLBY_SYSTEM_GetUserVipFlag( cp_system, pl_idx );
 			if( vip == TRUE ){
-				p_wk->trcol[i] = NEWS_PLTT_FONT_TRVIP;	// ‚»‚¢‚Â‚ÍVIPI
+				p_wk->trcol[i] = NEWS_PLTT_FONT_TRVIP;	// ãã„ã¤ã¯VIPï¼
 			}else{
-				p_wk->trcol[i] = NEWS_PLTT_FONT_TRN;	// ‚±‚¢‚Â‚Í•’Ê
+				p_wk->trcol[i] = NEWS_PLTT_FONT_TRN;	// ã“ã„ã¤ã¯æ™®é€š
 			}
 		}
 	}
@@ -1884,11 +1884,11 @@ static void NEWSDRAW_TopicTrColDataGet( NEWSDRAW_TOPIC_TRCOL* p_wk, const NEWS_D
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒg“]‘—ˆ—
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å‡¦ç†
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	cp_pltt		ƒpƒŒƒbƒgƒf[ƒ^
- *	@param	plttidx		“]‘—æƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_pltt		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	plttidx		è»¢é€å…ˆãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TopicTrColDataTrans( const NEWSDRAW_TOPIC_TRCOL* cp_wk, const NNSG2dPaletteData* cp_pltt, u32 plttidx )
@@ -1900,10 +1900,10 @@ static void NEWSDRAW_TopicTrColDataTrans( const NEWSDRAW_TOPIC_TRCOL* cp_wk, con
 	cp_plttdata = cp_pltt->pRawData;
 	
 	for( i=0; i<WFLBY_MINIGAME_MAX; i++ ){
-		// ƒgƒŒ[ƒi[ƒJƒ‰[‚É‡‚Á‚½F‚ð“]‘—‚·‚éƒ^ƒXƒN‚ðì¬
+		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ©ãƒ¼ã«åˆã£ãŸè‰²ã‚’è»¢é€ã™ã‚‹ã‚¿ã‚¹ã‚¯ã‚’ä½œæˆ
 		result = AddVramTransferManager( 
 				NNS_GFD_DST_2D_BG_PLTT_MAIN,
-				(plttidx*0x20)+(NEWS_PLTT_FONTTR_TR_00*2)+(i*0x4),	// “]‘—æ
+				(plttidx*0x20)+(NEWS_PLTT_FONTTR_TR_00*2)+(i*0x4),	// è»¢é€å…ˆ
 				(void*)(&cp_plttdata[ (NEWS_PLTT_FONT*0x20)+(cp_wk->trcol[i]*2) ]), 
 				0x4 );
 		GF_ASSERT( result );
@@ -1914,22 +1914,22 @@ static void NEWSDRAW_TopicTrColDataTrans( const NEWSDRAW_TOPIC_TRCOL* cp_wk, con
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNƒEƒBƒ“ƒhƒE	‰Šú‰»
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_draw		•`‰æƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_draw		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TopicWinInit( NEWSDRAW_TOPICWIN* p_wk, NEWSDRAW_DRAWSYS* p_draw, u32 heapID )
 {
 	int i;
 
-	// ƒgƒsƒbƒNƒ[ƒN‰Šú‰»
+	// ãƒˆãƒ”ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	for( i=0; i<NEWSDRAW_TOPIC_NUM; i++ ){
 		NEWSDRAW_TopicInit( &p_wk->topic[i], p_draw, i, heapID );
 
-		// ƒrƒbƒgƒ}ƒbƒv‰Šú‰»
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—åˆæœŸåŒ–
 		GF_BGL_BmpWinAdd(
 					p_draw->p_bgl, &p_wk->bmp[i], GF_BGL_FRAME3_M,
 					NEWSDRAW_TOPIC_BMP_X, NEWSDRAW_TOPIC_DRAW_Y[i],
@@ -1942,17 +1942,17 @@ static void NEWSDRAW_TopicWinInit( NEWSDRAW_TOPICWIN* p_wk, NEWSDRAW_DRAWSYS* p_
 		GF_BGL_BmpWinOnVReq( &p_wk->bmp[i] );
 	}
 
-	// •¶Žš—ñŽæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	p_wk->p_str = STRBUF_Create( NEWSDRAW_TOPIC_STRNUM, heapID );
 	
 
-	// ƒpƒŒƒbƒgƒf[ƒ^
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 	p_wk->p_plttbuff = ArcUtil_HDL_PalDataGet( p_draw->p_handle, 
 			NARC_lobby_news_lobby_news_bg_NCLR,
 			&p_wk->p_pltt, heapID);
 
 
-	// ’Êí‚Ì•¶ŽšF‚ð‚PƒpƒŒƒbƒg“à‚Ì0xDA0xE‚É“]‘—‚·‚é
+	// é€šå¸¸ã®æ–‡å­—è‰²ã‚’ï¼‘ãƒ‘ãƒ¬ãƒƒãƒˆå†…ã®0xDã€0xEã«è»¢é€ã™ã‚‹
 	GF_BGL_PaletteSet( GF_BGL_FRAME0_M, 
 			&((u8*)p_wk->p_pltt->pRawData)[ (NEWS_PLTT_FONT*0x20)+(NEWS_PLTT_FONT_FONT*2) ],
 			0x4, (NEWS_PLTT_FONT*0x20)+(NEWS_PLTT_FONTTR_FONT*2) );
@@ -1968,24 +1968,24 @@ static void NEWSDRAW_TopicWinInit( NEWSDRAW_TOPICWIN* p_wk, NEWSDRAW_DRAWSYS* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNƒEƒBƒ“ƒhƒE	”jŠü
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TopicWinExit( NEWSDRAW_TOPICWIN* p_wk )
 {
 	int i;
 	
-	// ƒpƒŒƒbƒgƒf[ƒ^”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	sys_FreeMemoryEz( p_wk->p_plttbuff );
 	
-	// •¶Žš—ñ”jŠü
+	// æ–‡å­—åˆ—ç ´æ£„
 	STRBUF_Delete( p_wk->p_str );
 
-	// ƒgƒsƒbƒNƒf[ƒ^”jŠü
+	// ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	for( i=0; i<NEWSDRAW_TOPIC_NUM; i++ ){
-		// ƒrƒbƒgƒ}ƒbƒv”jŠü
+		// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ç ´æ£„
 		GF_BGL_BmpWinDel( &p_wk->bmp[i] );
 		
 		NEWSDRAW_TopicExit( &p_wk->topic[i] );
@@ -1994,15 +1994,15 @@ static void NEWSDRAW_TopicWinExit( NEWSDRAW_TOPICWIN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNƒEƒBƒ“ƒhƒE	ƒƒCƒ“
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_data		ƒf[ƒ^
- *	@param	cp_system	LêƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_system	åºƒå ´ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval	TRUE	•ÏX‚ª‚ ‚Á‚½
- *	@retval	FALSE	•ÏX‚ª‚È‚©‚Á‚½
+ *	@retval	TRUE	å¤‰æ›´ãŒã‚ã£ãŸ
+ *	@retval	FALSE	å¤‰æ›´ãŒãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWSDRAW_TopicWinMain( NEWSDRAW_TOPICWIN* p_wk, NEWS_DATA* p_data, const WFLBY_SYSTEM* cp_system, u32 heapID )
@@ -2013,15 +2013,15 @@ static BOOL NEWSDRAW_TopicWinMain( NEWSDRAW_TOPICWIN* p_wk, NEWS_DATA* p_data, c
 	NEWSDRAW_TOPIC_TRCOL trcol;
 	WFLBY_VIPFLAG vip_flag;
 
-	// VIPƒtƒ‰ƒOŽæ“¾
+	// VIPãƒ•ãƒ©ã‚°å–å¾—
 	WFLBY_SYSTEM_GetVipFlagWk( cp_system, &vip_flag );
 	
-	// ‰º’i‚ÌƒgƒsƒbƒN‚©‚ç“®‚©‚·
+	// ä¸‹æ®µã®ãƒˆãƒ”ãƒƒã‚¯ã‹ã‚‰å‹•ã‹ã™
 	for( i=NEWSDRAW_TOPIC_NUM-1; i>=0; i-- ){
 		if( p_wk->topic[i].move ){
 			result = NEWSDRAW_TopicMain( &p_wk->topic[i] );
 			if( result == TRUE ){
-				// ‚P‚Â‰º‚Ì’i‚Éƒf[ƒ^‚ðŽÊ‚·
+				// ï¼‘ã¤ä¸‹ã®æ®µã«ãƒ‡ãƒ¼ã‚¿ã‚’å†™ã™
 				if( (i+1) < NEWSDRAW_TOPIC_NUM ){
 					NEWSDRAW_TopicStart( &p_wk->topic[i+1], p_wk->topic[i].p_str, NEWSDRAW_TOPIC_COUNT[i+1], &p_wk->topic[i].trcol, p_wk->p_pltt );
 				}
@@ -2030,26 +2030,26 @@ static BOOL NEWSDRAW_TopicWinMain( NEWSDRAW_TOPICWIN* p_wk, NEWS_DATA* p_data, c
 		}
 	}
 
-	// 1’i–Ú‚ÌƒgƒsƒbƒN‚ª‹ó‚¢‚Ä‚½‚çV‹KƒgƒsƒbƒN’Ç‰Á
+	// 1æ®µç›®ã®ãƒˆãƒ”ãƒƒã‚¯ãŒç©ºã„ã¦ãŸã‚‰æ–°è¦ãƒˆãƒ”ãƒƒã‚¯è¿½åŠ 
 	if( p_wk->topic[0].move == FALSE ){
 
-		// ƒgƒsƒbƒN‚ª‚ ‚éŒÀ‚èA¶¬‚Å‚«‚éƒgƒsƒbƒN‚ð‚P‚ÂÄ¶‚·‚é
+		// ãƒˆãƒ”ãƒƒã‚¯ãŒã‚ã‚‹é™ã‚Šã€ç”Ÿæˆã§ãã‚‹ãƒˆãƒ”ãƒƒã‚¯ã‚’ï¼‘ã¤å†ç”Ÿã™ã‚‹
 		while( NEWS_DSET_CheckToppic( p_data ) == TRUE ){
 			type = NEWS_DSET_GetTopicType( p_data ); 
-			// æ“ªƒf[ƒ^Žæ“¾
+			// å…ˆé ­ãƒ‡ãƒ¼ã‚¿å–å¾—
 			result = NEWS_DSET_GetTopicData( p_data, &vip_flag, type, p_wk->p_str, heapID );
 			if( result == TRUE ){
 
-				// ƒgƒsƒbƒN‚ð’Ç‰Á‚Å‚«‚½‚Ì‚ÅƒIƒƒŠ
+				// ãƒˆãƒ”ãƒƒã‚¯ã‚’è¿½åŠ ã§ããŸã®ã§ã‚ªãƒ¯ãƒª
 				NEWSDRAW_TopicTrColDataGet( &trcol, p_data, type, cp_system );
 				NEWSDRAW_TopicStart( &p_wk->topic[0], p_wk->p_str, NEWSDRAW_TOPIC_COUNT[0], &trcol, p_wk->p_pltt );
 
-				// æ“ª‚Ìƒf[ƒ^‚ðÁ‚·
+				// å…ˆé ­ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã™
 				NEWS_DSET_RemoveTopTopic( p_data );
 				return TRUE;
 			}
 
-			// æ“ª‚Ìƒf[ƒ^‚ðÁ‚·
+			// å…ˆé ­ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã™
 			NEWS_DSET_RemoveTopTopic( p_data );
 		}
 	}
@@ -2058,9 +2058,9 @@ static BOOL NEWSDRAW_TopicWinMain( NEWSDRAW_TOPICWIN* p_wk, NEWS_DATA* p_data, c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNƒEƒBƒ“ƒhƒE	•`‰æ
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	æç”»
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TopicWinDraw( NEWSDRAW_TOPICWIN* p_wk )
@@ -2068,10 +2068,10 @@ static void NEWSDRAW_TopicWinDraw( NEWSDRAW_TOPICWIN* p_wk )
 	int i;
 
 	
-	// ƒgƒsƒbƒNî•ñ‚ðƒrƒbƒgƒ}ƒbƒv‚É‘‚«ž‚Þ
+	// ãƒˆãƒ”ãƒƒã‚¯æƒ…å ±ã‚’ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã«æ›¸ãè¾¼ã‚€
 	for( i=0; i<NEWSDRAW_TOPIC_NUM; i++ ){
 		if( p_wk->topic[i].move == TRUE ){
-			// ‘‚«ž‚Þ
+			// æ›¸ãè¾¼ã‚€
 			NEWSDRAW_TopicDraw( &p_wk->topic[i], &p_wk->bmp[i] );
 		} 
 	}
@@ -2079,12 +2079,12 @@ static void NEWSDRAW_TopicWinDraw( NEWSDRAW_TOPICWIN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒN	‰Šú‰»
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯	åˆæœŸåŒ–
  *	
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_draw		•`‰æƒVƒXƒeƒ€
- *	@param	idx			‚±‚ÌƒgƒsƒbƒN‚ÌƒCƒ“ƒfƒbƒNƒX’l
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_draw		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx			ã“ã®ãƒˆãƒ”ãƒƒã‚¯ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TopicInit( NEWSDRAW_TOPIC* p_wk, NEWSDRAW_DRAWSYS* p_draw, u32 idx, u32 heapID )
@@ -2095,7 +2095,7 @@ static void NEWSDRAW_TopicInit( NEWSDRAW_TOPIC* p_wk, NEWSDRAW_DRAWSYS* p_draw, 
 
 	p_wk->pal	= NEWS_PLTT_FONT + idx;
 
-	// ƒ_ƒ~[BMPWINì¬
+	// ãƒ€ãƒŸãƒ¼BMPWINä½œæˆ
 	GF_BGL_BmpWinAdd(
 				p_draw->p_bgl, &p_wk->bmp, GF_BGL_FRAME3_M,
 				0, 0,
@@ -2105,66 +2105,66 @@ static void NEWSDRAW_TopicInit( NEWSDRAW_TOPIC* p_wk, NEWSDRAW_DRAWSYS* p_draw, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒN	”jŠü
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯	ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TopicExit( NEWSDRAW_TOPIC* p_wk )
 {
 	STRBUF_Delete( p_wk->p_str );
 
-	//  ƒ_ƒ~[BMPWIN”jŠü
+	//  ãƒ€ãƒŸãƒ¼BMPWINç ´æ£„
 	GF_BGL_BmpWinDel( &p_wk->bmp );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒN	ŠJŽn
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯	é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_str		•¶Žš—ñ
- *	@param	speed		ƒXƒNƒ[ƒ‹‚ÉŽg—p‚·‚éƒVƒ“ƒN”
- *	@param	cp_trcol	ƒgƒŒ[ƒi[ƒJƒ‰[
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_str		æ–‡å­—åˆ—
+ *	@param	speed		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã«ä½¿ç”¨ã™ã‚‹ã‚·ãƒ³ã‚¯æ•°
+ *	@param	cp_trcol	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ©ãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TopicStart( NEWSDRAW_TOPIC* p_wk, const STRBUF* cp_str, u32 speed, const NEWSDRAW_TOPIC_TRCOL* cp_trcol, const NNSG2dPaletteData* cp_pltt )
 {
-	// •¶ÍƒRƒs[
+	// æ–‡ç« ã‚³ãƒ”ãƒ¼
 	STRBUF_Copy( p_wk->p_str, cp_str );
 	p_wk->move		= TRUE;
 	p_wk->count		= 0;
 
-// BTS’ÊMƒoƒO601‚Ì‘Îˆ	tomoya
-//	p_wk->count_max	= speed * STRBUF_GetLen( cp_str );	// •¶Žš”‚©‚çÅ‘åƒJƒEƒ“ƒg‚ð‹‚ß‚é
+// BTSé€šä¿¡ãƒã‚°601ã®å¯¾å‡¦	tomoya
+//	p_wk->count_max	= speed * STRBUF_GetLen( cp_str );	// æ–‡å­—æ•°ã‹ã‚‰æœ€å¤§ã‚«ã‚¦ãƒ³ãƒˆã‚’æ±‚ã‚ã‚‹
 	p_wk->count_max	= speed;
 	p_wk->str_siz	= FontProc_GetPrintStrWidth( FONT_TALK, cp_str, 0 );
-	p_wk->str_siz	+= NEWSDRAW_TOPIC_YOHAKU;	// ã‚Ì—]”’•”•ª
+	p_wk->str_siz	+= NEWSDRAW_TOPIC_YOHAKU;	// ä¸Šã®ä½™ç™½éƒ¨åˆ†
 
-	// •¶Žš—ñ’·‚³ƒI[ƒo[
+	// æ–‡å­—åˆ—é•·ã•ã‚ªãƒ¼ãƒãƒ¼
 	GF_ASSERT( (NEWSDRAW_TOPIC_DMBMP_SX*8) >= p_wk->str_siz );
 
-	// ƒ_ƒ~[ƒrƒbƒgƒ}ƒbƒv‚É‘‚«ž‚Þ
+	// ãƒ€ãƒŸãƒ¼ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã«æ›¸ãè¾¼ã‚€
 	GF_BGL_BmpWinDataFill( &p_wk->bmp, 0 );
 
-	// •¶Žš‚ð‘‚«ž‚Þ
+	// æ–‡å­—ã‚’æ›¸ãè¾¼ã‚€
 	GF_STR_PrintSimple( &p_wk->bmp, FONT_TALK, p_wk->p_str,
 			0, 0,
 			MSG_NO_PUT, NULL);
 
-	// ƒgƒŒ[ƒi[ƒJƒ‰[ƒf[ƒ^‚ð•Û‘¶
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	p_wk->trcol = *cp_trcol;
 
 
-	// ƒgƒŒ[ƒi‚Ì•¶ŽšF‚ð‡‚í‚¹‚é
+	// ãƒˆãƒ¬ãƒ¼ãƒŠã®æ–‡å­—è‰²ã‚’åˆã‚ã›ã‚‹
 	NEWSDRAW_TopicTrColDataTrans( &p_wk->trcol, cp_pltt, p_wk->pal );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNI—¹
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯çµ‚äº†
  *	
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TopicEnd( NEWSDRAW_TOPIC* p_wk )
@@ -2174,9 +2174,9 @@ static void NEWSDRAW_TopicEnd( NEWSDRAW_TOPIC* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒN	ƒƒCƒ“
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static BOOL NEWSDRAW_TopicMain( NEWSDRAW_TOPIC* p_wk )
@@ -2193,30 +2193,30 @@ static BOOL NEWSDRAW_TopicMain( NEWSDRAW_TOPIC* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒN‚Ì•`‰æ	
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ã®æç”»	
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	p_bmp	•`‰ææƒrƒbƒgƒ}ƒbƒv
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_bmp	æç”»å…ˆãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TopicDraw( const NEWSDRAW_TOPIC* cp_wk, GF_BGL_BMPWIN* p_bmp )
 {
-	s32	x;	// Šî€‚Æ‚È‚é‚˜À•W
-	s32 wx;	// ‘‚«ž‚Ýæ‚˜
-	s32 rx;	// “Ç‚Ýž‚Ýæ‚˜
-	s32 sx;	// “Ç‚Ýž‚ÝƒTƒCƒY‚˜
+	s32	x;	// åŸºæº–ã¨ãªã‚‹ï½˜åº§æ¨™
+	s32 wx;	// æ›¸ãè¾¼ã¿å…ˆï½˜
+	s32 rx;	// èª­ã¿è¾¼ã¿å…ˆï½˜
+	s32 sx;	// èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚ºï½˜
 
-	// Šî€‚˜À•WŽæ“¾
+	// åŸºæº–ï½˜åº§æ¨™å–å¾—
 	x = ( cp_wk->count * cp_wk->str_siz ) / cp_wk->count_max;
 
-	// —]”’•”•ªA–{•¶‘S•\Ž¦•”•ª‚Å‘‚­‚˜‚Ì’l‚ª•Ï‚í‚é
+	// ä½™ç™½éƒ¨åˆ†ã€æœ¬æ–‡å…¨è¡¨ç¤ºéƒ¨åˆ†ã§æ›¸ãï½˜ã®å€¤ãŒå¤‰ã‚ã‚‹
 	if( x < NEWSDRAW_TOPIC_YOHAKU ){
-		// —]”’•”•ª
+		// ä½™ç™½éƒ¨åˆ†
 		wx = 255 - x;
 		rx = 0;
 		sx = x;
 	}else{
-		// Œã‚ë‚ª‹ó”’‚Ì•”•ª
+		// å¾Œã‚ãŒç©ºç™½ã®éƒ¨åˆ†
 		wx = 0;
 		rx = x - NEWSDRAW_TOPIC_YOHAKU;
 		sx = (cp_wk->str_siz - x);
@@ -2225,19 +2225,19 @@ static void NEWSDRAW_TopicDraw( const NEWSDRAW_TOPIC* cp_wk, GF_BGL_BMPWIN* p_bm
 		}
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒvƒNƒŠ[ƒ“
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinFill( p_bmp, 0,
 			0, 0,
 			255, NEWSDRAW_TOPIC_DMBMP_SY*8 );	
 
-	// ‘‚«ž‚Þ
+	// æ›¸ãè¾¼ã‚€
 	GF_BGL_BmpWinPrintEx( p_bmp,
-			cp_wk->bmp.chrbuf,		// ƒLƒƒƒ‰ƒNƒ^ƒoƒbƒtƒ@
-			rx, 0,					//  chrbuf“Ç‚Ýž‚ÝŠJŽnˆÊ’u
-			NEWSDRAW_TOPIC_DMBMP_SX*8,	// chrbuf‚ÌƒTƒCƒY
-			NEWSDRAW_TOPIC_DMBMP_SY*8,	// chrbuf‚ÌƒTƒCƒY
-			wx, 0,						// ‘‚«ž‚ÝæˆÊ’u
-			sx, NEWSDRAW_TOPIC_DMBMP_SY*8, 15 );// ‘‚«ž‚ÝƒTƒCƒY
+			cp_wk->bmp.chrbuf,		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ•ã‚¡
+			rx, 0,					//  chrbufèª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®
+			NEWSDRAW_TOPIC_DMBMP_SX*8,	// chrbufã®ã‚µã‚¤ã‚º
+			NEWSDRAW_TOPIC_DMBMP_SY*8,	// chrbufã®ã‚µã‚¤ã‚º
+			wx, 0,						// æ›¸ãè¾¼ã¿å…ˆä½ç½®
+			sx, NEWSDRAW_TOPIC_DMBMP_SY*8, 15 );// æ›¸ãè¾¼ã¿ã‚µã‚¤ã‚º
 
 	GF_BGL_BmpWinOnVReq( p_bmp );
 }
@@ -2248,11 +2248,11 @@ static void NEWSDRAW_TopicDraw( const NEWSDRAW_TOPIC* cp_wk, GF_BGL_BMPWIN* p_bm
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE	•`‰æ‰Šú‰»
+ *	@brief	ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	æç”»åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_draw		•`‰æƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_draw		æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TitleWinInit( NEWSDRAW_TITLEWIN* p_wk, NEWSDRAW_DRAWSYS* p_draw, u32 heapID )
@@ -2263,16 +2263,16 @@ static void NEWSDRAW_TitleWinInit( NEWSDRAW_TITLEWIN* p_wk, NEWSDRAW_DRAWSYS* p_
 
 	memset( p_wk, 0, sizeof(NEWSDRAW_TITLEWIN) );
 
-	// ƒƒbƒZ[ƒWƒf[ƒ^‰Šú‰»
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	p_msgman	= MSGMAN_Create(MSGMAN_TYPE_NORMAL,ARC_MSG,NARC_msg_wflby_news_dat,heapID );
 	p_str		= STRBUF_Create( NEWSDRAW_TITLEWIN_STRNUM, heapID );
 
 	for( i=0; i<NEWSDRAW_TITLEWIN_NUM; i++ ){
 
-		// ƒ^ƒCƒgƒ‹ƒGƒtƒFƒNƒg‰Šú‰»
+		// ã‚¿ã‚¤ãƒˆãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
 		NEWSDRAW_TitleEffInit( &p_wk->eff[i], NEWSDRAW_TITLEWIN_PLTT_OFFS[i], NEWSDRAW_TITLEWIN_SND_TBL[i] );
 
-		// ƒƒbƒZ[ƒW
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		GF_BGL_BmpWinAdd(
 				p_draw->p_bgl, &p_wk->bmp[i], GF_BGL_FRAME0_M,
 				NEWSDRAW_TITLE_BMPDATA[i].x, NEWSDRAW_TITLE_BMPDATA[i].y,
@@ -2281,19 +2281,19 @@ static void NEWSDRAW_TitleWinInit( NEWSDRAW_TITLEWIN* p_wk, NEWSDRAW_DRAWSYS* p_
 
 		GF_BGL_BmpWinDataFill( &p_wk->bmp[i], 0 );
 
-		// ƒ^ƒCƒgƒ‹‚ð‘‚«ž‚Þ
+		// ã‚¿ã‚¤ãƒˆãƒ«ã‚’æ›¸ãè¾¼ã‚€
 		MSGMAN_GetString( p_msgman, wflby_news_00+i, p_str );
 		
 
 /*
 		if( i==NEWSDRAW_TITLEWIN_APLNAME ){
-			FontProc_LoadFont( FONT_BUTTON, heapID );	//ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg‚Ìƒ[ƒh
+			FontProc_LoadFont( FONT_BUTTON, heapID );	//ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆã®ãƒ­ãƒ¼ãƒ‰
 			
 			GF_STR_PrintColor(
 				&p_wk->bmp[i], FONT_BUTTON, p_str, NEWSDRAW_TITLE_BMPDATA[i].dx,
 				NEWSDRAW_TITLE_BMPDATA[i].dy, MSG_NO_PUT, NEWSDRAW_TITLEWIN_COL, NULL );
 
-			FontProc_UnloadFont( FONT_BUTTON );				//ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg‚Ì”jŠü
+			FontProc_UnloadFont( FONT_BUTTON );				//ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆã®ç ´æ£„
 		}else{
 			GF_STR_PrintColor(
 				&p_wk->bmp[i], FONT_SYSTEM, p_str, NEWSDRAW_TITLE_BMPDATA[i].dx,
@@ -2344,15 +2344,15 @@ static void NEWSDRAW_TitleWinInit( NEWSDRAW_TITLEWIN* p_wk, NEWSDRAW_DRAWSYS* p_
         GF_BGL_BmpWinOnVReq( &p_wk->bmp[i] );
     }
 
-	// ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	STRBUF_Delete( p_str );
 	MSGMAN_Delete( p_msgman );
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TitleWinExit( NEWSDRAW_TITLEWIN* p_wk )
@@ -2363,16 +2363,16 @@ static void NEWSDRAW_TitleWinExit( NEWSDRAW_TITLEWIN* p_wk )
 	for( i=0; i<NEWSDRAW_TITLEWIN_NUM; i++ ){
 		GF_BGL_BmpWinDel( &p_wk->bmp[i] );
 
-		// ƒ^ƒCƒgƒ‹ƒGƒtƒFƒNƒg”jŠü
+		// ã‚¿ã‚¤ãƒˆãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç ´æ£„
 		NEWSDRAW_TitleEffExit( &p_wk->eff[i] );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒEƒƒCƒ“
+ *	@brief	ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TitleWinDraw( NEWSDRAW_TITLEWIN* p_wk )
@@ -2386,13 +2386,13 @@ static void NEWSDRAW_TitleWinDraw( NEWSDRAW_TITLEWIN* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE		ƒGƒtƒFƒNƒgŠJŽn
+ *	@brief	ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	title_no	ƒ^ƒCƒgƒ‹NO
-	NEWSDRAW_TITLEWIN_TIME,		// ŽžŠÔ
-	NEWSDRAW_TITLEWIN_PLAYER,	// ƒvƒŒƒCƒ„[•\Ž¦
-	NEWSDRAW_TITLEWIN_TOPIC,	// ƒgƒsƒbƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	title_no	ã‚¿ã‚¤ãƒˆãƒ«NO
+	NEWSDRAW_TITLEWIN_TIME,		// æ™‚é–“
+	NEWSDRAW_TITLEWIN_PLAYER,	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¡¨ç¤º
+	NEWSDRAW_TITLEWIN_TOPIC,	// ãƒˆãƒ”ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TitleWinEffectStart( NEWSDRAW_TITLEWIN* p_wk, u32 title_no )
@@ -2405,11 +2405,11 @@ static void NEWSDRAW_TitleWinEffectStart( NEWSDRAW_TITLEWIN* p_wk, u32 title_no 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE	ƒGƒtƒFƒNƒg‰Šú‰»
+ *	@brief	ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	offs		ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
- *	@param	snd			ƒTƒEƒ“ƒhNO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	offs		ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	snd			ã‚µã‚¦ãƒ³ãƒ‰NO
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TitleEffInit( NEWSDRAW_TITLEEFF* p_wk, u16 offs, u32 snd )
@@ -2421,9 +2421,9 @@ static void NEWSDRAW_TitleEffInit( NEWSDRAW_TITLEEFF* p_wk, u16 offs, u32 snd )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE	ƒGƒtƒFƒNƒg”jŠü
+ *	@brief	ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TitleEffExit( NEWSDRAW_TITLEEFF* p_wk )
@@ -2433,9 +2433,9 @@ static void NEWSDRAW_TitleEffExit( NEWSDRAW_TITLEEFF* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE	ƒGƒtƒFƒNƒgŠJŽn
+ *	@brief	ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TitleEffStart( NEWSDRAW_TITLEEFF* p_wk )
@@ -2446,9 +2446,9 @@ static void NEWSDRAW_TitleEffStart( NEWSDRAW_TITLEEFF* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE	ƒGƒtƒFƒNƒgƒƒCƒ“
+ *	@brief	ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NEWSDRAW_TitleEffDraw( NEWSDRAW_TITLEEFF* p_wk )
@@ -2456,7 +2456,7 @@ static void NEWSDRAW_TitleEffDraw( NEWSDRAW_TITLEEFF* p_wk )
 	u32 evy;
 	u16 col;
 
-	// I—¹ƒ`ƒFƒbƒN
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( p_wk->col_count > NEWSDRAW_TITLEWIN_EFFECT_COUNT ){
 		p_wk->on = FALSE;
 	}
@@ -2466,37 +2466,37 @@ static void NEWSDRAW_TitleEffDraw( NEWSDRAW_TITLEEFF* p_wk )
 		return ;
 	}
 
-	// ‰¹‚ð–Â‚ç‚·ƒ^ƒCƒ~ƒ“ƒO
+	// éŸ³ã‚’é³´ã‚‰ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 	if( p_wk->col_count == NEWSDRAW_TITLEWIN_EFFECT_SND_PLY ){
 		Snd_SePlay( p_wk->sound );
 	}
 
-	// ƒJƒ‰[ŒW”‚ð‹‚ß‚é
+	// ã‚«ãƒ©ãƒ¼ä¿‚æ•°ã‚’æ±‚ã‚ã‚‹
 	if( p_wk->col_count < NEWSDRAW_TITLEWIN_EFFECT_COUNT_HF ){
 		evy = (p_wk->col_count * 16) / NEWSDRAW_TITLEWIN_EFFECT_COUNT_HF;
 	
-	// ‘Ò‹@’†
+	// å¾…æ©Ÿä¸­
 	}else if( p_wk->col_count < NEWSDRAW_TITLEWIN_EFFECT_COUNT_HF+NEWSDRAW_TITLEWIN_EFFECT_COUNT_WT ){
 		evy = 16;
 		
-	// Á‚¦‚Ä‚¢‚­
+	// æ¶ˆãˆã¦ã„ã
 	}else {
 		evy = ((p_wk->col_count - (NEWSDRAW_TITLEWIN_EFFECT_COUNT_HF+NEWSDRAW_TITLEWIN_EFFECT_COUNT_WT)) * 16) / NEWSDRAW_TITLEWIN_EFFECT_COUNT_HF2;
 		evy = 16 - evy;
 	}
 
-	//  Ý’è
+	//  è¨­å®š
 	col = NEWSDRAW_TITLEWIN_EFFECT_COL;
 	SoftFade( &col, &p_wk->buff, 1, evy, NEWSDRAW_TITLEWIN_EFFECT_COL_END );
 
-	// “]‘—
+	// è»¢é€
 	DC_FlushRange( &p_wk->buff, 2 );
 	GX_LoadBGPltt( 
 			&p_wk->buff,
 			p_wk->offs,
 			2 );
 	
-	// ƒJƒEƒ“ƒg
+	// ã‚«ã‚¦ãƒ³ãƒˆ
 	p_wk->col_count ++;
 }
 
@@ -2513,7 +2513,7 @@ static void NEWSDRAW_DEBUG_TopicMake( NEWSDRAW_WK* p_wk, WFLBY_SYSTEM* p_system,
 	WFLBY_SYSTEM_GetProfileMyStatus( cp_profile, p_status, heapID );
 	
 	switch( sc_WFLBY_DEBUG_LOBBY_NEWS_TOPIC_MAKE_TOPIC ){
-	case NEWS_TOPICTYPE_CONNECT:			// ˆ¥ŽA
+	case NEWS_TOPICTYPE_CONNECT:			// æŒ¨æ‹¶
 		{
 			NEWS_DATA_SET_CONNECT data;
 			data.cp_p1	= p_status;
@@ -2524,7 +2524,7 @@ static void NEWSDRAW_DEBUG_TopicMake( NEWSDRAW_WK* p_wk, WFLBY_SYSTEM* p_system,
 		}
 		break;
 
-	case NEWS_TOPICTYPE_ITEM:			// ƒKƒWƒFƒbƒg‚ÌŒðŠ·
+	case NEWS_TOPICTYPE_ITEM:			// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã®äº¤æ›
 		{
 			NEWS_DATA_SET_ITEM data;
 			data.cp_p1	= p_status;
@@ -2536,7 +2536,7 @@ static void NEWSDRAW_DEBUG_TopicMake( NEWSDRAW_WK* p_wk, WFLBY_SYSTEM* p_system,
 		}
 		break;
 
-	case NEWS_TOPICTYPE_MINIGAME:		// ƒ~ƒjƒQ[ƒ€
+	case NEWS_TOPICTYPE_MINIGAME:		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
 		{
 			NEWS_DATA_SET_MINIGAME data;
 			data.minigame = gf_mtRand() % 3;
@@ -2554,7 +2554,7 @@ static void NEWSDRAW_DEBUG_TopicMake( NEWSDRAW_WK* p_wk, WFLBY_SYSTEM* p_system,
 		}
 		break;
 
-	case NEWS_TOPICTYPE_FOOTBOARD:		// ‚ ‚µ‚ ‚Æƒ{[ƒh
+	case NEWS_TOPICTYPE_FOOTBOARD:		// ã‚ã—ã‚ã¨ãƒœãƒ¼ãƒ‰
 		{
 			NEWS_DATA_SET_FOOTBOARD data;
 			data.board = WFLBY_GAME_FOOTWHITE;
@@ -2565,7 +2565,7 @@ static void NEWSDRAW_DEBUG_TopicMake( NEWSDRAW_WK* p_wk, WFLBY_SYSTEM* p_system,
 		}
 		break;
 
-	case NEWS_TOPICTYPE_WORLDTIMER:		// ¢ŠEŽžŒv
+	case NEWS_TOPICTYPE_WORLDTIMER:		// ä¸–ç•Œæ™‚è¨ˆ
 		{
 			NEWS_DATA_SET_WORLDTIMER	data;
 			data.num	= 4;
@@ -2581,7 +2581,7 @@ static void NEWSDRAW_DEBUG_TopicMake( NEWSDRAW_WK* p_wk, WFLBY_SYSTEM* p_system,
 		}
 		break;
 
-	case NEWS_TOPICTYPE_LOBBYNEWS:		// ƒƒr[ƒjƒ…[ƒX
+	case NEWS_TOPICTYPE_LOBBYNEWS:		// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹
 		{
 			NEWS_DATA_SET_LOBBYNEWS	data;
 			data.num	= 4;
@@ -2597,7 +2597,7 @@ static void NEWSDRAW_DEBUG_TopicMake( NEWSDRAW_WK* p_wk, WFLBY_SYSTEM* p_system,
 		}
 		break;
 
-	case NEWS_TOPICTYPE_TIMEEVENT:		// ŽžŠÔƒCƒxƒ“ƒg
+	case NEWS_TOPICTYPE_TIMEEVENT:		// æ™‚é–“ã‚¤ãƒ™ãƒ³ãƒˆ
 		{
 			NEWS_DATA_SET_TIMEEVENT	data;
 			data.cp_time	= p_wk->cp_nowtime;
@@ -2606,7 +2606,7 @@ static void NEWSDRAW_DEBUG_TopicMake( NEWSDRAW_WK* p_wk, WFLBY_SYSTEM* p_system,
 		}
 		break;
 
-	case NEWS_TOPICTYPE_VIPIN:			// VIP‚ª“üŽº‚µ‚½‚Æ‚«‚Ìƒjƒ…[ƒX
+	case NEWS_TOPICTYPE_VIPIN:			// VIPãŒå…¥å®¤ã—ãŸã¨ãã®ãƒ‹ãƒ¥ãƒ¼ã‚¹
 		{
 			NEWS_DATA_SET_TIMEEVENT	data;
 			data.cp_time	= p_wk->cp_nowtime;

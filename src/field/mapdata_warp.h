@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	mapdata_warp.c
- * @brief	ƒ[ƒv—pƒf[ƒ^ŠÖ˜Aƒwƒbƒ_
+ * @brief	ãƒ¯ãƒ¼ãƒ—ç”¨ãƒ‡ãƒ¼ã‚¿é–¢é€£ãƒ˜ãƒƒãƒ€
  * @date	2005.12.19
  */
 //============================================================================================
@@ -13,7 +13,7 @@
 #include "field/location.h"
 
 //--------------------------------------------------------------------------------------------
-//	ƒ[ƒv‚Æ‚Ñæ
+//	ãƒ¯ãƒ¼ãƒ—ã¨ã³å…ˆ
 //--------------------------------------------------------------------------------------------
 extern void WARPDATA_GetWarpLocation(int warp_id, LOCATION_WORK * loc);
 extern void WARPDATA_GetRevivalLocation(int warp_id, LOCATION_WORK * loc);
@@ -23,7 +23,7 @@ extern int WARPDATA_GetInitializeID(void);
 extern int WARPDATA_SearchForFly(int zone_id, int gx, int gz);
 
 //--------------------------------------------------------------------------------------------
-//	“’…ƒtƒ‰ƒO
+//	åˆ°ç€ãƒ•ãƒ©ã‚°
 //--------------------------------------------------------------------------------------------
 extern void ARRIVEDATA_SetArriveFlag( FIELDSYS_WORK * fsys, int zone_id);
 extern BOOL ARRIVEDATA_GetArriveFlag(FIELDSYS_WORK * fsys, int warp_id);

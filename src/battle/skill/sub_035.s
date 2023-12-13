@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_035.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			‚ª‚Ü‚ñƒV[ƒPƒ“ƒX
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			ãŒã¾ã‚“ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  *@author	HisashiSogabe
  *@data		2005.12.06

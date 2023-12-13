@@ -12,321 +12,321 @@
 
   $Log: wm.h,v $
   Revision 1.172  2007/11/09 13:08:09  seiki_masashi
-  �d�g�̎�M�̂݉\�ȏ�Ԃɖ���������������֐���ǉ�
+  電波の受信のみ可能な状態に無線を初期化する関数を追加
 
   Revision 1.171  2007/05/02 08:42:57  seiki_masashi
-  WM_StartMPEx �֐��ł̒ǉ��ݒ�p�����[�^�̉e�����ꎞ�I�ɂȂ�悤�ύX
+  WM_StartMPEx 関数での追加設定パラメータの影響が一時的になるよう変更
 
   Revision 1.170  2007/02/20 00:28:08  kitase_hirotake
   indent source
 
   Revision 1.169  2006/07/06 12:53:18  seiki_masashi
-  WMGameInfo �\���̂� platform ��ǉ����Aver �� 2 �֕ύX
+  WMGameInfo 構造体に platform を追加し、ver を 2 へ変更
 
   Revision 1.168  2006/07/06 11:46:30  okubata_ryoma
   undo
 
   Revision 1.166  2006/02/20 06:47:38  seiki_masashi
-  WM_GAMEINFO_LENGTH_MIN �̒ǉ�
+  WM_GAMEINFO_LENGTH_MIN の追加
 
   Revision 1.165  2006/02/20 02:24:45  seiki_masashi
-  WMGameInfo.version ��p�~���AmagicNumber �� ver ��ǉ�
-  WMGameInfo.gameNameCount_attribute �� attribute �ɖ��O�ύX
-  WM_GAMEINFO_TYPE_OLD �̃T�|�[�g��p�~
+  WMGameInfo.version を廃止し、magicNumber と ver を追加
+  WMGameInfo.gameNameCount_attribute を attribute に名前変更
+  WM_GAMEINFO_TYPE_OLD のサポートを廃止
 
   Revision 1.164  2006/01/18 02:12:39  kitase_hirotake
   do-indent
 
   Revision 1.163  2005/12/01 15:06:09  seiki_masashi
-  WMPortSend/RecvCallback �\���̂� maxSend/RecvDataSize �t�B�[���h��ǉ�
-  WMStartParent/ConenctCallback �\���̂� parent/childSize �t�B�[���h��ǉ�
+  WMPortSend/RecvCallback 構造体に maxSend/RecvDataSize フィールドを追加
+  WMStartParent/ConenctCallback 構造体に parent/childSize フィールドを追加
 
   Revision 1.162  2005/12/01 13:43:37  seiki_masashi
-  WMMPParam �\���̂� maxFrequency, ignoreSizePrecheckMode ��ǉ�
+  WMMPParam 構造体に maxFrequency, ignoreSizePrecheckMode を追加
 
   Revision 1.161  2005/11/25 13:04:32  seiki_masashi
-  WMStatus.mp_parentInterval, mp_childInterval, mp_parentSize, mp_childSize �̒ǉ�
+  WMStatus.mp_parentInterval, mp_childInterval, mp_parentSize, mp_childSize の追加
 
   Revision 1.160  2005/11/25 03:01:58  seiki_masashi
-  mp_ackAlarm �̒�`�ꏊ�� WMStatus ���� WMSPWork �\���̓��Ɉړ�
+  mp_ackAlarm の定義場所を WMStatus から WMSPWork 構造体内に移動
 
   Revision 1.159  2005/11/25 02:34:26  seiki_masashi
-  VAlarm �\���̂̒�`�ꏊ�� WMArm7Buf ���� WMSPWork �\���̓��Ɉړ�
+  VAlarm 構造体の定義場所を WMArm7Buf から WMSPWork 構造体内に移動
 
   Revision 1.158  2005/11/25 00:46:31  seiki_masashi
-  mask �� WMMPParam �\���̓��Ɉړ�
+  mask を WMMPParam 構造体内に移動
 
   Revision 1.157  2005/11/24 13:04:17  seiki_masashi
-  parentVCount, childVCount �͈̔͐�����ǉ�
+  parentVCount, childVCount の範囲制限を追加
 
   Revision 1.156  2005/11/24 12:21:23  seiki_masashi
-  WM_MP_PARAM_MUST_SET_BEFORE_MP �̓��e��ύX
+  WM_MP_PARAM_MUST_SET_BEFORE_MP の内容を変更
 
   Revision 1.155  2005/11/24 03:58:15  seiki_masashi
-  WMStatus.mp_parentVCount, mp_childVCount �t�B�[���h��ǉ�
+  WMStatus.mp_parentVCount, mp_childVCount フィールドを追加
 
   Revision 1.154  2005/11/24 03:02:19  seiki_masashi
-  WM_SetMPParameter �֐��Ɗ֘A�����`��ǉ�
+  WM_SetMPParameter 関数と関連する定義を追加
 
   Revision 1.153  2005/11/11 04:23:45  terui
   Fix comment.
 
   Revision 1.152  2005/11/02 01:31:37  ooe
-  WM_StartTestRxMode, WM_StopTestRxMode�֘A�ŁA
-  APIID(WM_APIID_START_TESTRXMODE,WM_APIID_STOP_TESTRXMODE)��ǉ��B
-  �X�e�[�g�R�[�h(WM_STATE_TESTMODE_RX)��ǉ��B
-  ���N�G�X�g�̈����\����(WMStartTestRxModeReq)��ǉ��B
-  �R�[���o�b�N�̈����\����(WMStopTestRxModeCallback)��ǉ��B
+  WM_StartTestRxMode, WM_StopTestRxMode関連で、
+  APIID(WM_APIID_START_TESTRXMODE,WM_APIID_STOP_TESTRXMODE)を追加。
+  ステートコード(WM_STATE_TESTMODE_RX)を追加。
+  リクエストの引数構造体(WMStartTestRxModeReq)を追加。
+  コールバックの引数構造体(WMStopTestRxModeCallback)を追加。
 
   Revision 1.151  2005/11/01 08:59:06  seiki_masashi
-  WMPortRecvCallback.connectedAidBitmap �̒ǉ�
-  WMArm9Buf.myAid, connectedAidBitmap �̒ǉ�
-  WM_INDBUF_SIZE �̍폜
+  WMPortRecvCallback.connectedAidBitmap の追加
+  WMArm9Buf.myAid, connectedAidBitmap の追加
+  WM_INDBUF_SIZE の削除
 
   Revision 1.150  2005/10/31 07:01:45  ooe
-  WMStartTestModeCallback��ǉ��B
+  WMStartTestModeCallbackを追加。
 
   Revision 1.149  2005/10/28 11:21:07  seiki_masashi
-  �萔 WM_STATECODE_DISCONNECTED_FROM_MYSELF �̒ǉ�
-  �萔 WM_STATECODE_PORT_INIT �̒ǉ�
-  WMDisconnectReason �񋓌^�̒ǉ�
-  WMStartConnectCallback �\���̂� macAddress �����o��ǉ�
-  WMPortRecvCallback �\���̂̃����o�� aidBitmap ���p�̂� reason ��ǉ�
+  定数 WM_STATECODE_DISCONNECTED_FROM_MYSELF の追加
+  定数 WM_STATECODE_PORT_INIT の追加
+  WMDisconnectReason 列挙型の追加
+  WMStartConnectCallback 構造体に macAddress メンバを追加
+  WMPortRecvCallback 構造体のメンバに aidBitmap 共用体と reason を追加
 
   Revision 1.148  2005/09/08 02:54:59  terui
-  WMScanExParam,WMStartScanExReq �\���̓��̃����o�̕��я��A�^�𒲐�
+  WMScanExParam,WMStartScanExReq 構造体内のメンバの並び順、型を調整
 
   Revision 1.147  2005/09/08 00:42:07  terui
-  WM_SCANTYPE_*_CUSTOM �萔��ǉ�
+  WM_SCANTYPE_*_CUSTOM 定数を追加
 
   Revision 1.146  2005/09/08 00:38:06  terui
-  WMStartScanExReq�\���̂�ssidMatchLength�����o��ǉ�
+  WMStartScanExReq構造体にssidMatchLengthメンバを追加
 
   Revision 1.145  2005/09/08 00:36:18  terui
-  WMScanExParam�\���̂̉������R���p�C���X�C�b�`�Ő��䂷��悤�ɏC��
+  WMScanExParam構造体の改造をコンパイルスイッチで制御するように修正
 
   Revision 1.144  2005/09/08 00:21:31  terui
-  WMScanExParam�\���̂�ssidMatchLength�����o��ǉ�
+  WMScanExParam構造体にssidMatchLengthメンバを追加
 
   Revision 1.143  2005/09/01 01:15:29  ooe
-  WMStartConnectCallback�\���̂ɁAwlStatus��ǉ��B
+  WMStartConnectCallback構造体に、wlStatusを追加。
 
   Revision 1.142  2005/07/29 04:00:48  seiki_masashi
   small fix.
 
   Revision 1.141  2005/07/27 07:46:41  seiki_masashi
-  WM_STATECODE_INFORMATION �̒ǉ�
+  WM_STATECODE_INFORMATION の追加
 
   Revision 1.140  2005/07/27 06:53:28  ooe
-  WM_APIID_SET_PS_MODE��ǉ��B
+  WM_APIID_SET_PS_MODEを追加。
 
   Revision 1.139  2005/06/08 08:40:29  seiki_masashi
-  WMStatus.mp_limitCount ��ǉ�
+  WMStatus.mp_limitCount を追加
 
   Revision 1.138  2005/06/07 05:44:19  seiki_masashi
-  Key Sharing �Ɋւ�����ʈ�����ጸ
+  Key Sharing に関する特別扱いを低減
 
   Revision 1.137  2005/03/18 01:39:22  terui
-  WM_NUM_MAX_AP_AID �萔��ǉ�
+  WM_NUM_MAX_AP_AID 定数を追加
 
   Revision 1.136  2005/03/17 05:08:48  ooe
-  otherElement�ő吔(WM_SCAN_OTHER_ELEMENT_MAX)���`�B
-  WMBssDesc�\���̂ɁAotherElementCount�����o��ǉ��B
-  WMBssDescWMOtherElements�\���̂�ǉ��B
+  otherElement最大数(WM_SCAN_OTHER_ELEMENT_MAX)を定義。
+  WMBssDesc構造体に、otherElementCountメンバを追加。
+  WMBssDescWMOtherElements構造体を追加。
 
   Revision 1.135  2005/03/08 06:44:18  terui
-  WMStatus�\���̂�pwrMgtMode�����o��ǉ��B
+  WMStatus構造体にpwrMgtModeメンバを追加。
 
   Revision 1.134  2005/03/04 08:51:19  seiki_masashi
-  WMPortSendCallback �� size �t�B�[���h�� length �ł��Q�Ƃł���悤�ɕύX
+  WMPortSendCallback の size フィールドを length でも参照できるように変更
 
   Revision 1.133  2005/03/03 14:44:37  seiki_masashi
-  ���M�L���[�̒i���� 64 ���� 32 �֕ύX
-  WMPortSendQueueData �\���̂� restBitmap ����ǉ�
-  WM_DISABLE_KEYSHARING �X�C�b�`�̒ǉ�
-  WMStatus �Ƀ��W���[���֘A�� mp_resumeFlag ����ǉ�
-  WMPortSendCallback �\���̂� destBitmap ����ǉ�
+  送信キューの段数を 64 から 32 へ変更
+  WMPortSendQueueData 構造体に restBitmap 他を追加
+  WM_DISABLE_KEYSHARING スイッチの追加
+  WMStatus にレジューム関連の mp_resumeFlag 他を追加
+  WMPortSendCallback 構造体に destBitmap 他を追加
 
   Revision 1.132  2005/02/28 05:26:35  yosizaki
   do-indent.
 
   Revision 1.131  2005/02/24 14:25:29  seiki_masashi
-  �萔 WMi_DISCONNECT_REASON_* ��ǉ�
+  定数 WMi_DISCONNECT_REASON_* を追加
 
   Revision 1.130  2005/02/14 13:39:42  seiki_masashi
-  WM_STATECODE_UNKNOWN ��ǉ�
+  WM_STATECODE_UNKNOWN を追加
 
   Revision 1.129  2005/02/08 06:45:05  ooe
-  WM_StartScanEx�̎d�l�ύX�ɔ����C���B
+  WM_StartScanExの仕様変更に伴う修正。
 
   Revision 1.128  2005/02/07 06:52:57  terui
-  WMStatus�\���̂�beaconIndicateFlag�����o��ǉ��B
-  WMStatus�\���̂�wepKeyId�����o�̔z�u��ύX�B
+  WMStatus構造体にbeaconIndicateFlagメンバを追加。
+  WMStatus構造体のwepKeyIdメンバの配置を変更。
 
   Revision 1.127  2005/02/03 11:41:25  ooe
-  WM_SetWEPKeyEx��ǉ��ɔ����ύX�B
+  WM_SetWEPKeyExを追加に伴う変更。
 
   Revision 1.126  2005/01/26 05:31:58  takano_makoto
-  WMArm9Buf����32�o�C�g���̖��ʂȃp�f�B���O�������Ă����̂��폜
+  WMArm9Buf中に32バイト分の無駄なパディングが入っていたのを削除
 
   Revision 1.125  2005/01/26 01:36:15  seiki_masashi
-  WMARM9Buf.scanOnlyFlag ��V��
+  WMARM9Buf.scanOnlyFlag を新設
 
   Revision 1.124  2005/01/18 13:00:26  seiki_masashi
-  WM_PACKED_PACKET_MAX �̒ǉ�
+  WM_PACKED_PACKET_MAX の追加
 
   Revision 1.123  2005/01/17 01:07:32  ooe
-  WM_StartConnectEx�̈����p�ɁAAUTH���[�h�̒�`��ǉ��B
-  MaData�̓]���T�C�Y�w��p�萔��ǉ��B
-  API�����\����WMStartConnectReq�ɁApowerSave��authMode��ǉ��B
+  WM_StartConnectExの引数用に、AUTHモードの定義を追加。
+  MaDataの転送サイズ指定用定数を追加。
+  API引数構造体WMStartConnectReqに、powerSaveとauthModeを追加。
 
   Revision 1.122  2005/01/11 07:54:58  takano_makoto
   fix copyright header.
 
   Revision 1.121  2005/01/07 11:04:47  terui
-  ARM7�p�o�b�t�@�T�C�Y���g�����A�����I�Ƀ��N�G�X�g��񓯊��I�ɔ��s����ׂ̃o�b�t�@���m�ہB
+  ARM7用バッファサイズを拡張し、内部的にリクエストを非同期的に発行する為のバッファを確保。
 
   Revision 1.120  2004/12/27 09:06:21  ooe
-  ���ۂɂ͑��݂��Ȃ�����"WM_WEPMODE_232BIT"���폜�B
+  実際には存在しなかった"WM_WEPMODE_232BIT"を削除。
 
   Revision 1.119  2004/12/27 05:30:41  terui
-  WM_API_REQUEST_ACCEPTED��`��ǉ��B
+  WM_API_REQUEST_ACCEPTED定義を追加。
 
   Revision 1.118  2004/11/10 13:02:51  takano_makoto
-  include�t�@�C�����C��
+  includeファイルを修正
 
   Revision 1.117  2004/11/09 02:45:23  seiki_masashi
-  Null �����ɂ��^�C���A�E�g������
-  �����̎��s�L���[�ł� VAlarm �����҂��������ɕ������܂�Ȃ��悤�ɕύX
+  Null 応答によるタイムアウトを実装
+  無線の実行キューでの VAlarm 処理待ちが同時に複数溜まらないように変更
 
   Revision 1.116  2004/11/08 04:16:46  terui
-  MWStartScanExCallback�\���̂�linkLevel�����o��ǉ��B
+  MWStartScanExCallback構造体にlinkLevelメンバを追加。
 
   Revision 1.115  2004/11/04 12:14:28  terui
-  WMStartScanExCallback��channel�����o��ǉ��B
+  WMStartScanExCallbackにchannelメンバを追加。
 
   Revision 1.114  2004/11/02 09:12:56  seiki_masashi
-  �X�C�b�`�p�̃}�N���萔 WM_DS_DATA_SIZE_252 ���g�p����悤�ɕύX
+  スイッチ用のマクロ定数 WM_DS_DATA_SIZE_252 を使用するように変更
 
   Revision 1.113  2004/11/02 07:28:42  terui
-  �R�����g�C���B
+  コメント修正。
 
   Revision 1.112  2004/10/30 04:31:02  yasu
   comment out '#undef WM_ENABLE_TESTMODE'
 
   Revision 1.111  2004/10/27 04:29:57  ooe
-  StartScanEx�̃R�[���o�b�N������ύX�B
+  StartScanExのコールバック引数を変更。
 
   Revision 1.110  2004/10/26 08:23:39  ooe
-  WM_StartScanEx��ǉ��BWM_SIZE_SCAN_EX_BUF���`�B
+  WM_StartScanExを追加。WM_SIZE_SCAN_EX_BUFを定義。
 
   Revision 1.109  2004/10/26 00:53:57  terui
-  WMDisconnectCallback�\���̂�V�K�ǉ��B
+  WMDisconnectCallback構造体を新規追加。
 
   Revision 1.108  2004/10/22 09:31:58  seiki_masashi
-  Resume �p�ϐ��EAPIID�̒ǉ�
+  Resume 用変数・APIIDの追加
 
   Revision 1.107  2004/10/22 01:54:42  seiki_masashi
-  �f�[�^�V�F�A�����O�̍ő�T�C�Y�� 252 �o�C�g���� 508 �o�C�g�Ɋg��
+  データシェアリングの最大サイズを 252 バイトから 508 バイトに拡張
 
   Revision 1.106  2004/10/05 09:45:29  terui
-  MAC�A�h���X��u8�^�̔z��ɓ���B
+  MACアドレスをu8型の配列に統一。
 
   Revision 1.105  2004/10/04 13:40:25  terui
-  �Q�[���O���[�vID��u32�^�ɓ���B
+  ゲームグループIDをu32型に統一。
 
   Revision 1.104  2004/10/04 11:43:54  terui
-  WM_SIZE_MP_DATA_MAX��`���X�V�B
+  WM_SIZE_MP_DATA_MAX定義を更新。
 
   Revision 1.103  2004/10/04 00:51:47  terui
-  WM_SIZE_MP_DATA_MAX�� 510 -> 508 �֕ύX�B(514-header(2)-footer(4))
+  WM_SIZE_MP_DATA_MAXを 510 -> 508 へ変更。(514-header(2)-footer(4))
 
   Revision 1.102  2004/10/03 07:52:54  ooe
-  ipl_branch�ƃ}�[�W�B ignoreFatalError�t���O�y�сAFlash�G���[�ɑΉ��B
+  ipl_branchとマージ。 ignoreFatalErrorフラグ及び、Flashエラーに対応。
 
   Revision 1.101  2004/10/01 13:22:26  seiki_masashi
-  LinkLevel �̌v�Z������ύX
+  LinkLevel の計算処理を変更
 
   Revision 1.100  2004/10/01 04:11:23  terui
-  WM_ENABLE_TESTMODE�X�C�b�`��V�݁B�f�t�H���g��undef�ɁB
-  �����g�p���`�����l�����Ɍv�Z����@�\��؂�ւ���X�C�b�`��ǉ��B
+  WM_ENABLE_TESTMODEスイッチを新設。デフォルトはundefに。
+  無線使用許可チャンネルを先に計算する機能を切り替えるスイッチを追加。
 
   Revision 1.99  2004/09/24 08:22:31  seiki_masashi
   fix comment
 
   Revision 1.98  2004/09/24 04:52:16  seiki_masashi
-  WM_STATECODE_FIFO_ERROR �̒ǉ�
-  WMIndCallback �� reason ��ǉ�
+  WM_STATECODE_FIFO_ERROR の追加
+  WMIndCallback に reason を追加
 
   Revision 1.97  2004/09/24 01:22:42  ooe
-  WMMpRecvHeader�ɁAerrBitmap��ǉ�(WL-2.05.00�ȍ~)
+  WMMpRecvHeaderに、errBitmapを追加(WL-2.05.00以降)
 
   Revision 1.96  2004/09/23 12:17:05  ooe
-  AutoDisconnect��ǉ��B
-  ����ɕK�v��WMStatus�̃����o"curr_tgid"���ǉ��B
+  AutoDisconnectを追加。
+  それに必要なWMStatusのメンバ"curr_tgid"も追加。
 
   Revision 1.95  2004/09/23 09:40:39  seiki_masashi
-  WMDataSharingInfo �� state �t�B�[���h��ǉ�
+  WMDataSharingInfo に state フィールドを追加
 
   Revision 1.94  2004/09/20 10:30:39  ooe
-  WM_APIID_SET_BEACON_PERIOD��ǉ��B
+  WM_APIID_SET_BEACON_PERIODを追加。
 
   Revision 1.93  2004/09/17 06:36:40  seiki_masashi
-  WMPortRecvCallback �� ssid ����� myAid �t�B�[���h��ǉ�
+  WMPortRecvCallback に ssid および myAid フィールドを追加
 
   Revision 1.92  2004/09/15 07:33:50  seiki_masashi
-  WMStatus.mp_bufferEmptyFlag �̒ǉ�
+  WMStatus.mp_bufferEmptyFlag の追加
 
   Revision 1.91  2004/09/15 06:38:31  seiki_masashi
-  WMStatus.mp_ping* �̒ǉ�
+  WMStatus.mp_ping* の追加
 
   Revision 1.90  2004/09/15 05:40:27  ooe
-  WMBeaconRecvIndCallback�̃����o�ɁA
-  gameInfo��gameInfoLength��ǉ��B
+  WMBeaconRecvIndCallbackのメンバに、
+  gameInfoとgameInfoLengthを追加。
 
   Revision 1.89  2004/09/13 04:22:06  seiki_masashi
   small fix.
 
   Revision 1.88  2004/09/13 04:09:16  seiki_masashi
-  WM_SetMPFrequency �̒ǉ�
+  WM_SetMPFrequency の追加
 
   Revision 1.87  2004/09/10 12:04:37  seiki_masashi
-  �L�[�V�F�A�����O�̑��M�o�C�g�������C�u�������ŉB������悤�ɕύX
+  キーシェアリングの送信バイト数をライブラリ内で隠蔽するように変更
 
   Revision 1.86  2004/09/09 12:39:45  seiki_masashi
-  WM_HEADER_SIZE �̒ǉ�
+  WM_HEADER_SIZE の追加
 
   Revision 1.85  2004/09/09 07:24:11  seiki_masashi
-  WM_SetMPDataToPortEx �̒ǉ�
+  WM_SetMPDataToPortEx の追加
 
   Revision 1.84  2004/09/09 02:00:57  terui
-  �g�p���Ă��Ȃ�Indication�p�o�b�t�@�̍폜�B
-  APIID�̖��̂��ꕔ�ύX�B
-  �����X�e�[�g��WM_STATE_READY(WM_Enable�O)��ǉ��B
+  使用していないIndication用バッファの削除。
+  APIIDの名称を一部変更。
+  内部ステートにWM_STATE_READY(WM_Enable前)を追加。
 
   Revision 1.83  2004/09/08 04:25:54  terui
-  WMApiid�̒�`��ύX�AEnable�ADisable�AIdlize�AStop�p��ID��ǉ��B
-  WMArm9Buf���̃p�f�B���O�T�C�Y��ύX�B
+  WMApiidの定義を変更、Enable、Disable、Idlize、Stop用のIDを追加。
+  WMArm9Buf内のパディングサイズを変更。
 
   Revision 1.82  2004/09/03 04:36:41  seiki_masashi
-  WM_ERRCODE_SEND_FAILED �̒ǉ�
-  WMStatus.mp_readyBitmap �̒ǉ�
+  WM_ERRCODE_SEND_FAILED の追加
+  WMStatus.mp_readyBitmap の追加
 
   Revision 1.81  2004/09/02 08:39:28  terui
-  WM_SIZE_MP_DATA_MAX��`��ǉ��B
+  WM_SIZE_MP_DATA_MAX定義を追加。
 
   Revision 1.80  2004/09/01 07:00:36  terui
-  WMState�񋓌^��WM_STATE_MAX��ǉ��B
+  WMState列挙型にWM_STATE_MAXを追加。
 
   Revision 1.79  2004/08/31 09:26:07  seiki_masashi
-  WMStatus.mp_setDataFlag, mp_sentDataFlag, WM_ERRCODE_NO_DATA �̒ǉ�
+  WMStatus.mp_setDataFlag, mp_sentDataFlag, WM_ERRCODE_NO_DATA の追加
 
   Revision 1.78  2004/08/30 08:37:39  seiki_masashi
-  WMStatus.mp_dataSettingFlag, mp_isPolledFlag �̒ǉ�
-  WM_ERRCODE_INVALID_POLLBITMAP �̒ǉ�
+  WMStatus.mp_dataSettingFlag, mp_isPolledFlag の追加
+  WM_ERRCODE_INVALID_POLLBITMAP の追加
 
   Revision 1.77  2004/08/30 01:58:59  seiki_masashi
-  WM_STATECODE_CHILD_CONNECTED �� WM_STATECODE_CONNECTED �ɓ���
+  WM_STATECODE_CHILD_CONNECTED を WM_STATECODE_CONNECTED に統一
 
   Revision 1.76  2004/08/30 00:53:51  terui
   Add definition about LinkLevel
@@ -335,38 +335,38 @@
   Change pass to version_wl.h
 
   Revision 1.74  2004/08/27 06:46:33  seiki_masashi
-  WMStatus.mp_newFrameFlag, mp_fixFreqMode, mp_defaultRetryCount �̒ǉ�
-  WMSendQueueData.retryCount �̒ǉ�
+  WMStatus.mp_newFrameFlag, mp_fixFreqMode, mp_defaultRetryCount の追加
+  WMSendQueueData.retryCount の追加
 
   Revision 1.73  2004/08/26 09:42:35  ooe
-  BeaconRecv�̃R�[���o�b�N�Ɉ����ǉ�
+  BeaconRecvのコールバックに引数追加
 
   Revision 1.72  2004/08/26 07:02:41  terui
   Include NITRO_WL_VERSION.
 
   Revision 1.71  2004/08/25 08:18:24  seiki_masashi
-  status->mp_minPollBmpMode �� mp_singlePacketMode �̒ǉ�
+  status->mp_minPollBmpMode と mp_singlePacketMode の追加
 
   Revision 1.70  2004/08/25 05:51:25  terui
   Rename parentRssi to lastRssi.
 
   Revision 1.69  2004/08/24 13:19:32  terui
-  WMStatus��parentRssi�����o��ǉ��B
+  WMStatusにparentRssiメンバを追加。
 
   Revision 1.68  2004/08/23 04:39:43  ooe
-  WM_StartConnect()�̎d�l�ύX�B
+  WM_StartConnect()の仕様変更。
 
   Revision 1.67  2004/08/21 11:08:41  ooe
-  WL-1.71.00�Ή�
+  WL-1.71.00対応
 
   Revision 1.66  2004/08/21 06:56:01  ooe
-  WMStartConnectReq�^���쐬
+  WMStartConnectReq型を作成
 
   Revision 1.65  2004/08/21 06:14:52  ooe
-  WMStartParentCallback�̈�����ssid��ssidLength��ǉ��B
+  WMStartParentCallbackの引数にssidとssidLengthを追加。
 
   Revision 1.64  2004/08/20 04:29:17  terui
-  �G���[�R�[�h��WM_ERRCODE_OVER_MAX_ENTRY��ǉ��B
+  エラーコードにWM_ERRCODE_OVER_MAX_ENTRYを追加。
 
   Revision 1.63  2004/08/19 16:24:19  miya
   switch GAMEINFO_TYPE
@@ -378,132 +378,132 @@
   add GAMEINFO_VERSION
 
   Revision 1.60  2004/08/19 06:37:34  seiki_masashi
-  Key Sharing �p�� DataSharingInfo �\���̂� 32-Byte align �ɍ����悤�C��
+  Key Sharing 用の DataSharingInfo 構造体が 32-Byte align に合うよう修正
 
   Revision 1.59  2004/08/19 02:41:36  terui
-  Entry�ۂɂ�鎩���ؒf�pAPIID��ǉ��B
-  �q�@��Entry�󂯕t�����ۂ��ꂽ�ꍇ�̃G���[�R�[�h��ǉ��B
+  Entry可否による自動切断用APIIDを追加。
+  子機がEntry受け付け拒否された場合のエラーコードを追加。
 
   Revision 1.58  2004/08/18 13:12:01  yosiokat
-  WM_GAMEINFO_TYPE_OLD���`�B
+  WM_GAMEINFO_TYPE_OLDを定義。
 
   Revision 1.57  2004/08/18 09:01:38  miya
   modified WMGameInfo format
 
   Revision 1.56  2004/08/18 06:34:34  terui
-  WM_SetEntry�pAPIID��ǉ��B
-  WMStatus�\���̂�allowedChannel�����o��ǉ�(�p�f�B���O�ƍ��ւ�)�B
+  WM_SetEntry用APIIDを追加。
+  WMStatus構造体にallowedChannelメンバを追加(パディングと差替え)。
 
   Revision 1.55  2004/08/18 00:24:15  seiki_masashi
-  �ꕔ�萔�� wm_private.h ����ړ�
+  一部定数を wm_private.h から移動
 
   Revision 1.54  2004/08/17 12:50:45  seiki_masashi
-  ���M�o�b�t�@�����[�U�v���O�����w��̂��̂��g�p����悤�ɕύX
-  status->maxReceiveSize �̒ǉ�
+  送信バッファをユーザプログラム指定のものを使用するように変更
+  status->maxReceiveSize の追加
 
   Revision 1.53  2004/08/16 06:50:50  ooe
-  WMBeaconRecvIndCallback��ǉ�
+  WMBeaconRecvIndCallbackを追加
 
   Revision 1.52  2004/08/12 14:28:11  seiki_masashi
-  WM_ERRCODE_FRAME_GAP �̒ǉ���
+  WM_ERRCODE_FRAME_GAP の追加等
 
   Revision 1.51  2004/08/11 04:26:45  seiki_masashi
-  WMDataSharingInfo �� doubleMode �t�B�[���h��ǉ�
+  WMDataSharingInfo に doubleMode フィールドを追加
 
   Revision 1.50  2004/08/11 00:19:42  terui
-  �|�[�g�ɗ\���ǉ�
+  ポートに予約を追加
 
   Revision 1.49  2004/08/10 09:10:57  terui
-  ARM9��p�̊֐��Q��`��wm_api.h�ɐ؂�o��
+  ARM9専用の関数群定義をwm_api.hに切り出し
 
   Revision 1.48  2004/08/10 04:12:13  seiki_masashi
-  WMPortRecvCallback �ɐڑ��E�ؒf�ʒm�p�� macAddress �t�B�[���h��ǉ�
+  WMPortRecvCallback に接続・切断通知用の macAddress フィールドを追加
 
   Revision 1.47  2004/08/09 10:19:47  seiki_masashi
-  ���M���I���܂� senqQueue �̍Đݒ���ł��Ȃ��悤�ɔr�����������
+  送信が終わるまで senqQueue の再設定をできないように排他制御を実装
 
   Revision 1.46  2004/08/07 14:15:44  seiki_masashi
-  �A������ WMSP_SendMaMP, SendMaKeyData �̋N�������֐���ǉ�
+  連続した WMSP_SendMaMP, SendMaKeyData の起動処理関数を追加
 
   Revision 1.45  2004/08/07 10:19:46  seiki_masashi
-  WMDataSharingInfo �� DataSet �� seq �ԍ���ۑ�
+  WMDataSharingInfo に DataSet の seq 番号を保存
 
   Revision 1.44  2004/08/07 08:45:49  seiki_masashi
-  DataSharing �̑��M�f�[�^�� 32-byte align ��
+  DataSharing の送信データを 32-byte align に
 
   Revision 1.43  2004/08/07 07:04:40  seiki_masashi
-  WM_StepDataSharing �̈�����ύX
+  WM_StepDataSharing の引数を変更
 
   Revision 1.42  2004/08/07 04:06:44  seiki_masashi
-  WMDataSet �� receivedBitmap �t�B�[���h��ǉ�
+  WMDataSet に receivedBitmap フィールドを追加
 
   Revision 1.41  2004/08/07 02:55:56  terui
-  �R�[���o�b�N�r������t���O����shared�̈�Ɉړ�
+  コールバック排他制御フラグををshared領域に移動
 
   Revision 1.40  2004/08/07 01:22:47  seiki_masashi
-  WMStatus.sendQueueMutex �̒ǉ�
+  WMStatus.sendQueueMutex の追加
 
   Revision 1.39  2004/08/07 00:23:10  seiki_masashi
-  dataSharing �̒ǉ�
+  dataSharing の追加
 
   Revision 1.38  2004/08/06 05:10:44  seiki_masashi
   small fix
 
   Revision 1.37  2004/08/05 11:59:16  ooe
-  GetWirelessCounter�̍��ڐ������ɑΉ�
+  GetWirelessCounterの項目数増加に対応
 
   Revision 1.36  2004/08/05 10:03:13  seiki_masashi
-  SetMPDataToPort() �� tmptt ���󂯂Ƃ�Ȃ��悤�ɕύX
+  SetMPDataToPort() が tmptt を受けとらないように変更
 
   Revision 1.35  2004/08/05 08:26:14  seiki_masashi
-  sendQueue �̎����ɔ����ύX
+  sendQueue の実装に伴う変更
 
   Revision 1.34  2004/08/04 06:57:03  seiki_masashi
-  WMStatus �� portSeqNo ��ǉ�
+  WMStatus に portSeqNo を追加
 
   Revision 1.33  2004/08/04 06:48:04  seiki_masashi
-  ���M queue �����̏���
-  WM_STATUS_BUF_SIZE �� 512 ���� 2048 ��
+  送信 queue 実装の準備
+  WM_STATUS_BUF_SIZE を 512 から 2048 に
 
   Revision 1.32  2004/08/04 06:21:33  ooe
-  InitWirelessCounter�y��GetWirelessCounter��ǉ�
+  InitWirelessCounter及びGetWirelessCounterを追加
 
   Revision 1.31  2004/08/04 02:29:39  seiki_masashi
-  WMPortSendQueue �\���̂̒�`�̒ǉ�
+  WMPortSendQueue 構造体の定義の追加
 
   Revision 1.30  2004/08/04 01:44:30  seiki_masashi
-  port �����̑O����
+  port 導入の前準備
 
   Revision 1.29  2004/08/03 12:22:28  ooe
-  WL��TestMode�R�}���h�ύX�ɑΉ�
+  WLのTestModeコマンド変更に対応
 
   Revision 1.28  2004/08/03 00:52:58  yosiokat
-  WM_SIZE_SYSTEM_GAMEINFO��"40"�ɏC���B�i���̏ꂵ�̂��j
+  WM_SIZE_SYSTEM_GAMEINFOを"40"に修正。（その場しのぎ）
 
   Revision 1.27  2004/08/02 06:29:15  terui
-  WMbssDesc -> WMBssDesc�ɓ���
-  WMstatus -> WMStatus�ɓ���
+  WMbssDesc -> WMBssDescに統一
+  WMstatus -> WMStatusに統一
 
   Revision 1.26  2004/08/02 05:42:46  ooe
   small fix
 
   Revision 1.25  2004/08/02 05:34:49  ooe
-  WMstartMPCallback�\���̂ɁAMPACK�p�̃����o��ǉ�
+  WMstartMPCallback構造体に、MPACK用のメンバを追加
 
   Revision 1.24  2004/08/02 02:52:32  terui
-  �\���̖��𖽖��K��Ɋ�Â�����
+  構造体名を命名規約に基づき統一
 
   Revision 1.23  2004/07/31 09:03:41  sato_masaki
-  WMgameInfo�\���̒���userGameInfo�����o��4byte�A���C�������g�Ŋm�ۂ��邽��
+  WMgameInfo構造体中のuserGameInfoメンバを4byteアラインメントで確保するため
 
   Revision 1.22  2004/07/30 05:20:57  ooe
-  MeasureChannel�֌W�̒ǉ��ύX
+  MeasureChannel関係の追加変更
 
   Revision 1.21  2004/07/29 12:11:00  ooe
-  WM_MeasureChannel��ǉ�
+  WM_MeasureChannelを追加
 
   Revision 1.20  2004/07/29 07:54:19  ikedae
-  �ؒf����reasonCode�ǉ�
+  切断時のreasonCode追加
 
   Revision 1.19  2004/07/29 07:38:46  miya
   modified callback table size
@@ -518,16 +518,16 @@
   add SetLifeTime function
 
   Revision 1.15  2004/07/28 07:35:20  terui
-  WM_EndConnect�֐��̒�`���폜
+  WM_EndConnect関数の定義を削除
 
   Revision 1.14  2004/07/28 04:23:18  miya
   add functions about ggid & tgid
 
   Revision 1.13  2004/07/28 02:54:16  terui
-  �\���̂̃p�f�B���O�C���B
-  enum�Ƀ^�C�v����ǉ��B
-  WM_APIID_*��enum�^�ɕύX�B
-  WMState��`��wm_private.h����ړ��B
+  構造体のパディング修正。
+  enumにタイプ名を追加。
+  WM_APIID_*をenum型に変更。
+  WMState定義をwm_private.hから移動。
 
   Revision 1.12  2004/07/27 07:32:24  yasu
   Add #pragma  warn_padding off
@@ -536,67 +536,67 @@
   Fix alignment 32 on WMpparam
 
   Revision 1.10  2004/07/20 01:24:34  terui
-  indicate�pSTATECODE�̒ǉ��B
-  indicate�p�R�[���o�b�N�x�N�g���ޔ�ϐ���ǉ��B
-  �e�@���ɐڑ��q�@�ő吔�����o��ǉ��B
-  scan_continue�Ascanning_ch�����o���폜�B
-  WM_getIndBuf�֐����폜�B
-  WM_SetGameInfo�֐��̎d�l��ύX�B
-  src�Ƃ��ă|�C���^�������ɂƂ�֐���const�ɓ���B
+  indicate用STATECODEの追加。
+  indicate用コールバックベクトル退避変数を追加。
+  親機情報に接続子機最大数メンバを追加。
+  scan_continue、scanning_chメンバを削除。
+  WM_getIndBuf関数を削除。
+  WM_SetGameInfo関数の仕様を変更。
+  srcとしてポインタを引数にとる関数をconstに統一。
 
   Revision 1.9  2004/07/14 09:42:50  ooe
-  StartScan�̈����ύX�ɔ����C��
+  StartScanの引数変更に伴う修正
 
   Revision 1.8  2004/07/11 02:59:30  ooe
-  WM_SetBeaconIndication()�̒ǉ�
+  WM_SetBeaconIndication()の追加
 
   Revision 1.7  2004/07/10 12:52:39  miya
-  �r�[�R���n�ǉ�
+  ビーコン系追加
 
   Revision 1.6  2004/07/10 12:45:08  terui
   Modify comments.
 
   Revision 1.5  2004/07/10 09:30:30  ooe
-  #define WM_APIID_VALARM_MP 23 ��ǉ�
+  #define WM_APIID_VALARM_MP 23 を追加
 
   Revision 1.4  2004/07/08 09:50:35  terui
-  WM7�̉����J�n�ɔ����ύX
+  WM7の改造開始に伴う変更
 
   Revision 1.17  2004/07/06 08:04:27  Ooe
-  WL-1.56.00�ւ̑Ή�
+  WL-1.56.00への対応
 
   Revision 1.16  2004/07/06 05:49:05  Ooe
-  FIFO�o�b�t�@�̃T�C�Y��256Byte�ɖ߂���
+  FIFOバッファのサイズを256Byteに戻した
 
   Revision 1.15  2004/07/06 02:08:24  Ooe
-  WM_ATTR_FLAG_CS �̒�`��ǉ�
+  WM_ATTR_FLAG_CS の定義を追加
 
   Revision 1.14  2004/07/06 01:51:28  Ooe
-  FIFO�o�b�t�@�T�C�Y��ύX
+  FIFOバッファサイズを変更
 
   Revision 1.13  2004/07/05 13:01:47  Ooe
-  SYSTEM_BUF_SIZE�ɃJ�b�R��ǉ�
+  SYSTEM_BUF_SIZEにカッコを追加
 
   Revision 1.12  2004/07/03 07:28:43  Ooe
-  �T�C�Y�̒�`�Ȃǂ��X�V
+  サイズの定義などを更新
 
   Revision 1.11  2004/07/02 04:51:46  Miya
-  �L���b�V������T�C�Y�̏C��
+  キャッシュ制御サイズの修正
 
   Revision 1.10  2004/06/29 06:50:27  Ooe
-  BssDesc�\���̂��C��
+  BssDesc構造体を修正
 
   Revision 1.9  2004/06/29 06:41:43  Miya
-  �f�[�^�T�C�Y�̃n�[�h�R�[�f�B���O���ł��邾���}�N����
+  データサイズのハードコーディングをできるだけマクロ化
 
   Revision 1.8  2004/06/25 06:18:27  Ooe
-  WM_SetMPData()�̈����ǉ� (pollbmp)
+  WM_SetMPData()の引数追加 (pollbmp)
 
   Revision 1.7  2004/06/25 02:15:27  Ooe
-  WM_SetGameInfo()�̎����ɂ��I������DMA����݂̃o�O���C���B
+  WM_SetGameInfo()の実装により露見したDMAがらみのバグを修正。
 
   Revision 1.6  2004/06/24 10:02:44  Ooe
-  WM_SetGameInfo()��ǉ�
+  WM_SetGameInfo()を追加
 
   Revision 1.5  2004/06/21 06:39:42  Ooe
   (none)
@@ -611,7 +611,7 @@
   (none)
 
   Revision 1.1  2004/05/26 08:47:17  terui
-  �����g�ݍ��݂ɔ����ǉ�
+  無線組み込みに伴う追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -630,18 +630,18 @@ extern "C" {
 
 
 /*---------------------------------------------------------------------------*
-    �萔��`
+    定数定義
  *---------------------------------------------------------------------------*/
 
-#undef WM_GAMEINFO_TYPE_OLD            // WMGameInfo �̋��`���ւ̑Ή��͔p�~����܂���
+#undef WM_GAMEINFO_TYPE_OLD            // WMGameInfo の旧形式への対応は廃止されました
 
-// Data Sharing �̍ő�T�C�Y�� 252 �o�C�g�ɂ��� WMDataSharingInfo �\���̂��X�����ɂ���X�C�b�`
+// Data Sharing の最大サイズを 252 バイトにして WMDataSharingInfo 構造体をスリムにするスイッチ
 //#define WM_DS_DATA_SIZE_252
 
-// TEST���[�h�L�����X�C�b�`
+// TESTモード有効化スイッチ
 //#define WM_ENABLE_TESTMODE
 
-// �g�p�\�`�����l�����Ɍv�Z���Ă����R���p�C���X�C�b�`
+// 使用可能チャンネルを先に計算しておくコンパイルスイッチ
 #if ( SDK_VERSION_WL >= 15600 )
 #ifdef  SDK_TEG
 #undef  WM_PRECALC_ALLOWEDCHANNEL
@@ -655,9 +655,9 @@ extern "C" {
 #define WM_SSID_MASK_CUSTOMIZE  1
 
 
-// WM API�֘A ===========================================================================
+// WM API関連 ===========================================================================
 
-// �eAPI��ID
+// 各APIのID
 typedef enum WMApiid
 {
     WM_APIID_INITIALIZE = 0,           //  0 : WM_Initialize()
@@ -683,57 +683,57 @@ typedef enum WMApiid
     WM_APIID_SET_DCF_DATA,             // 18 : WM_SetDCFData()
     WM_APIID_END_DCF,                  // 19 : WM_EndDCF()
     WM_APIID_SET_WEPKEY,               // 20 : WM_SetWEPKey()
-    WM_APIID_START_KS,                 // 21 : WM_StartKeySharing() ���ʌ݊��̂��ߎc���Ă��܂�
-    WM_APIID_END_KS,                   // 22 : WM_EndKeySharing()   ���ʌ݊��̂��ߎc���Ă��܂�
+    WM_APIID_START_KS,                 // 21 : WM_StartKeySharing() 下位互換のため残しています
+    WM_APIID_END_KS,                   // 22 : WM_EndKeySharing()   下位互換のため残しています
     WM_APIID_GET_KEYSET,               // 23 : WM_GetKeySet()
     WM_APIID_SET_GAMEINFO,             // 24 : WM_SetGameInfo()
     WM_APIID_SET_BEACON_IND,           // 25 : WM_SetBeaconIndication()
     WM_APIID_START_TESTMODE,           // 26 : WM_StartTestMode()
     WM_APIID_STOP_TESTMODE,            // 27 : WM_StopTestMode()
-    WM_APIID_VALARM_MP,                // 28 : ARM7����VAlarm�����MP�N���p(����)
+    WM_APIID_VALARM_MP,                // 28 : ARM7内のVAlarmからのMP起動用(特殊)
     WM_APIID_SET_LIFETIME,             // 29 : WM_SetLifeTime()
     WM_APIID_MEASURE_CHANNEL,          // 30 : WM_MeasureChannel()
     WM_APIID_INIT_W_COUNTER,           // 31 : WM_InitWirelessCounter()
     WM_APIID_GET_W_COUNTER,            // 32 : WM_GetWirelessCounter()
     WM_APIID_SET_ENTRY,                // 33 : WM_SetEntry()
-    WM_APIID_AUTO_DEAUTH,              // 34 : ARM7����indicate����̎����ؒf�N���p(����)
+    WM_APIID_AUTO_DEAUTH,              // 34 : ARM7内のindicateからの自動切断起動用(特殊)
     WM_APIID_SET_MP_PARAMETER,         // 35 : WM_SetMPParameter()
     WM_APIID_SET_BEACON_PERIOD,        // 36 : WM_SetBeaconPeriod()
-    WM_APIID_AUTO_DISCONNECT,          // 37 : ARM7����indicate����̎����ؒf�N���p(����)
+    WM_APIID_AUTO_DISCONNECT,          // 37 : ARM7内のindicateからの自動切断起動用(特殊)
     WM_APIID_START_SCAN_EX,            // 38 : WM_StartScanEx()
     WM_APIID_SET_WEPKEY_EX,            // 39 : WM_SetWEPKeyEx()
     WM_APIID_SET_PS_MODE,              // 40 : WM_SetPowerSaveMode()
     WM_APIID_START_TESTRXMODE,         // 41 : WM_StartTestRxMode()
     WM_APIID_STOP_TESTRXMODE,          // 42 : WM_StopTestRxMode()
 
-    WM_APIID_KICK_MP_PARENT,           // 43 : MP�N���p(ARM7�����g�p)
-    WM_APIID_KICK_MP_CHILD,            // 44 : MP�N���p(ARM7�����g�p)
-    WM_APIID_KICK_MP_RESUME,           // 45 : MP�N���p(ARM7�����g�p)
+    WM_APIID_KICK_MP_PARENT,           // 43 : MP起動用(ARM7内部使用)
+    WM_APIID_KICK_MP_CHILD,            // 44 : MP起動用(ARM7内部使用)
+    WM_APIID_KICK_MP_RESUME,           // 45 : MP起動用(ARM7内部使用)
 
-    WM_APIID_ASYNC_KIND_MAX,           // 46 : �񓯊������̎��
+    WM_APIID_ASYNC_KIND_MAX,           // 46 : 非同期処理の種類
 
-    WM_APIID_INDICATION = 128,         // 128 : Indication�R�[���o�b�N�p
-    WM_APIID_PORT_SEND,                // 129 : port �ւ̃f�[�^���M�ʒm
-    WM_APIID_PORT_RECV,                // 130 : port �ւ̃f�[�^��M�ʒm
+    WM_APIID_INDICATION = 128,         // 128 : Indicationコールバック用
+    WM_APIID_PORT_SEND,                // 129 : port へのデータ送信通知
+    WM_APIID_PORT_RECV,                // 130 : port へのデータ受信通知
     WM_APIID_READ_STATUS,              // 131 : WM_ReadStatus()
 
-    WM_APIID_UNKNOWN = 255             // 255 : �s���̃R�}���h�ԍ�����ARM7����Ԃ��l
+    WM_APIID_UNKNOWN = 255             // 255 : 不明のコマンド番号時にARM7から返す値
 }
 WMApiid;
 
 // for backward compatibility
 //#define WM_APIID_SET_MP_FREQ    WM_APIID_SET_MP_PARAMETER
 
-// ARM7���ł�API�v����t�����t���O
+// ARM7側でのAPI要求受付完了フラグ
 #define WM_API_REQUEST_ACCEPTED 0x8000
 
-// WEP���[�h
+// WEPモード
 #define WM_WEPMODE_NO           0
 #define WM_WEPMODE_40BIT        1
 #define WM_WEPMODE_104BIT       2
 #define WM_WEPMODE_128BIT       3
 
-// AUTH���[�h (WM_StartConnectEx�Ŏg�p����)
+// AUTHモード (WM_StartConnectExで使用する)
 #define WM_AUTHMODE_OPEN_SYSTEM 0
 #define WM_AUTHMODE_SHARED_KEY  1
 
@@ -746,33 +746,33 @@ WMApiid;
 #define WM_SCANTYPE_PASSIVE_CUSTOM  3
 #endif
 
-// BSS�ЂƂɂ��ڑ��\�Ȏq�@�ő吔
-#define WM_NUM_MAX_CHILD        15     // NITRO �e�@����^����ꂤ�� AssociationID �̍ő�l
-#define WM_NUM_MAX_AP_AID       2007   // �������[�^����^����ꂤ�� AssociationID �̍ő�l
+// BSSひとつにつき接続可能な子機最大数
+#define WM_NUM_MAX_CHILD        15     // NITRO 親機から与えられうる AssociationID の最大値
+#define WM_NUM_MAX_AP_AID       2007   // 無線ルータから与えられうる AssociationID の最大値
 
-// port ��
-#define WM_NUM_OF_PORT          16     // port �̌�
-#define WM_NUM_OF_SEQ_PORT      8      // sequential �ȏ������s�� port �̌�
+// port 数
+#define WM_NUM_OF_PORT          16     // port の個数
+#define WM_NUM_OF_SEQ_PORT      8      // sequential な処理を行う port の個数
 typedef enum WMPort
 {
-    // Sequential �Ȑ�����s��Ȃ��|�[�g�Q
-    WM_PORT_RAWDATA = 0,               // ���ʌ݊��p�̃|�[�g
-    WM_PORT_BT = 1,                    // �u���b�N�]���p�|�[�g
-    WM_PORT_RESERVE_02 = 2,            // �\��
-    WM_PORT_RESERVE_03 = 3,            // �\��
+    // Sequential な制御を行わないポート群
+    WM_PORT_RAWDATA = 0,               // 下位互換用のポート
+    WM_PORT_BT = 1,                    // ブロック転送用ポート
+    WM_PORT_RESERVE_02 = 2,            // 予約
+    WM_PORT_RESERVE_03 = 3,            // 予約
 
-    // Sequential �Ȑ�����s���|�[�g�Q
-    WM_PORT_RESERVE_10 = 8,            // �\��
-    WM_PORT_RESERVE_11 = 9,            // �\��
-    WM_PORT_RESERVE_12 = 10,           // �\��
-    WM_PORT_RESERVE_13 = 11            // �\��
+    // Sequential な制御を行うポート群
+    WM_PORT_RESERVE_10 = 8,            // 予約
+    WM_PORT_RESERVE_11 = 9,            // 予約
+    WM_PORT_RESERVE_12 = 10,           // 予約
+    WM_PORT_RESERVE_13 = 11            // 予約
 }
 WMPort;
 
-// ���M queue �֘A
-#define WM_SEND_QUEUE_NUM       32     // ���v 32 �i�� queue list
-#define WM_SEND_QUEUE_END       ((u16)0xffff)   // tail ��\���l
-#define WM_PRIORITY_LEVEL       4      // �D��x�� 4 �i�K
+// 送信 queue 関連
+#define WM_SEND_QUEUE_NUM       32     // 合計 32 段の queue list
+#define WM_SEND_QUEUE_END       ((u16)0xffff)   // tail を表す値
+#define WM_PRIORITY_LEVEL       4      // 優先度は 4 段階
 typedef enum WMPriorityLevel
 {
     WM_PRIORITY_URGENT = 0,
@@ -782,34 +782,34 @@ typedef enum WMPriorityLevel
 }
 WMPriorityLevel;
 
-// ARM7 ���� MP ���M�������n�܂�f�t�H���g�� V Count �l
-#define WM_VALARM_COUNT_CHILD_MP  240  // �q�@MP����
-#define WM_VALARM_COUNT_PARENT_MP 260  // �e�@MP����
-#define WM_VALARM_COUNT_RANGE_TOP    220        // parentVCount, childVCount �̐ݒ�\��� (220�`262, 0�`190)
-#define WM_VALARM_COUNT_RANGE_BOTTOM 190        // parentVCount, childVCount �̐ݒ�\����
+// ARM7 側の MP 送信処理が始まるデフォルトの V Count 値
+#define WM_VALARM_COUNT_CHILD_MP  240  // 子機MP処理
+#define WM_VALARM_COUNT_PARENT_MP 260  // 親機MP処理
+#define WM_VALARM_COUNT_RANGE_TOP    220        // parentVCount, childVCount の設定可能上限 (220〜262, 0〜190)
+#define WM_VALARM_COUNT_RANGE_BOTTOM 190        // parentVCount, childVCount の設定可能下限
 
-// ���M�Ԋu
-#define WM_MP_FREQ_CONT         16     // �A�����M�ɂȂ鑗�M�p�x
-#define WM_MP_COUNT_LIMIT       256    // �c�著�M�񐔃J�E���^�̏���l
-#define WM_DEFAULT_MP_FREQ_LIMIT 6     // �f�t�H���g�� MP �p�x���
-#define WM_DEFAULT_MP_PARENT_INTERVAL 1000      // �f�t�H���g�̐e�@�� MP �Ԋu (us)
-#define WM_DEFAULT_MP_CHILD_INTERVAL  0 // �f�t�H���g�̎q�@�� MP �Ԋu (us)
+// 送信間隔
+#define WM_MP_FREQ_CONT         16     // 連続送信になる送信頻度
+#define WM_MP_COUNT_LIMIT       256    // 残り送信回数カウンタの上限値
+#define WM_DEFAULT_MP_FREQ_LIMIT 6     // デフォルトの MP 頻度上限
+#define WM_DEFAULT_MP_PARENT_INTERVAL 1000      // デフォルトの親機の MP 間隔 (us)
+#define WM_DEFAULT_MP_CHILD_INTERVAL  0 // デフォルトの子機の MP 間隔 (us)
 
-// �e��f�[�^�T�C�Y(�T�C�Y�̒P�ʂ̓o�C�g)
+// 各種データサイズ(サイズの単位はバイト)
 #define WM_SIZE_BSSID           6
 #define WM_SIZE_SSID            32
 
-#define WM_SIZE_GAMEINFO        128    // �ő�T�C�Y
+#define WM_SIZE_GAMEINFO        128    // 最大サイズ
 
-#define WM_SIZE_SCAN_EX_BUF     1024   // StartScanEx�p�o�b�t�@�T�C�Y
+#define WM_SIZE_SCAN_EX_BUF     1024   // StartScanEx用バッファサイズ
 
-#define WM_GAMEINFO_LENGTH_MIN  16     // �L���� GameInfo �̍Œ�T�C�Y
-#define WM_GAMEINFO_MAGIC_NUMBER 0x0001 // DS �p GameInfo �̎��ʗp magic number
-#define WM_GAMEINFO_VERSION_NUMBER 1   // GameInfo �̃o�[�W�����ԍ�
-#define WM_GAMEINFO_PLATFORM_ID_NITRO       0   // �e�@�� DS �ł���
-#define WM_GAMEINFO_PLATFORM_ID_REVOLUTION  8   // �e�@�� Wii �ł���
-#define WM_SIZE_SYSTEM_GAMEINFO 16     // userGameInfoLength�܂ł̃T�C�Y
-#define WM_SIZE_USER_GAMEINFO   112    // GameInfo�̃��[�U�[�̈�̍ő�T�C�Y
+#define WM_GAMEINFO_LENGTH_MIN  16     // 有効な GameInfo の最低サイズ
+#define WM_GAMEINFO_MAGIC_NUMBER 0x0001 // DS 用 GameInfo の識別用 magic number
+#define WM_GAMEINFO_VERSION_NUMBER 1   // GameInfo のバージョン番号
+#define WM_GAMEINFO_PLATFORM_ID_NITRO       0   // 親機は DS である
+#define WM_GAMEINFO_PLATFORM_ID_REVOLUTION  8   // 親機は Wii である
+#define WM_SIZE_SYSTEM_GAMEINFO 16     // userGameInfoLengthまでのサイズ
+#define WM_SIZE_USER_GAMEINFO   112    // GameInfoのユーザー領域の最大サイズ
 
 #define WM_SIZE_SCAN_PARAM      32
 
@@ -833,16 +833,16 @@ WMPriorityLevel;
 
 #define WM_SIZE_MADATA_HEADER   44
 
-// �e�@�������̃p�P�b�g��1���MP�ʐM�ɓ����ۂɃp�P�b�g�ԂɕK�v�ȃo�C�g��
+// 親機が複数のパケットを1回のMP通信に入れる際にパケット間に必要なバイト数
 #define WM_SIZE_MP_PARENT_PADDING   (WM_HEADER_SIZE + WM_HEADER_PARENT_MAX_SIZE)
-// �q�@�������̃p�P�b�g��1���MP�ʐM�ɓ����ۂɃp�P�b�g�ԂɕK�v�ȃo�C�g��
+// 子機が複数のパケットを1回のMP通信に入れる際にパケット間に必要なバイト数
 #define WM_SIZE_MP_CHILD_PADDING    (WM_HEADER_SIZE + WM_HEADER_CHILD_MAX_SIZE)
 
 #define WM_SIZE_DS_PARENT_HEADER    4
 #define WM_SIZE_KS_PARENT_DATA  (2*16+WM_SIZE_DS_PARENT_HEADER)
 #define WM_SIZE_KS_CHILD_DATA   2
 
-// �A�g���r���[�g�t���O
+// アトリビュートフラグ
 
 #define WM_ATTR_ENTRY_SHIFT     0
 #define WM_ATTR_MB_SHIFT        1
@@ -854,22 +854,22 @@ WMPriorityLevel;
 #define WM_ATTR_FLAG_KS         (1 << WM_ATTR_KS_SHIFT)
 #define WM_ATTR_FLAG_CS         (1 << WM_ATTR_CS_SHIFT)
 
-// �R�[���o�b�N�r������p
+// コールバック排他制御用
 #define WM_EXCEPTION_CB_MASK    0x0001
 
 // wmHeader
-#define WM_HEADER_SIZE          2      // �e�q���� wmHeader �̃o�C�g��
+#define WM_HEADER_SIZE          2      // 親子共通 wmHeader のバイト数
 
 //#define WM_HEADER_MP        0x0001
 #define WM_HEADER_KS        0x4000
 #define WM_HEADER_VSYNC     0x8000
 
 // packetHeader
-#define WM_HEADER_PARENT_MAX_SIZE   4  // �w�b�_�Ƃ��čő�ŕt�������o�C�g�� (wmHeader 2byte ���͏���)
-                                        // ���݂� Sequence Number �� Destination Bitmap ���t�������ꍇ������
+#define WM_HEADER_PARENT_MAX_SIZE   4  // ヘッダとして最大で付加されるバイト数 (wmHeader 2byte 分は除く)
+                                        // 現在は Sequence Number と Destination Bitmap が付加される場合がある
 
-#define WM_HEADER_CHILD_MAX_SIZE    2  // �w�b�_�Ƃ��čő�ŕt�������o�C�g�� (wmHeader 2byte ���͏���)
-                                        // ���݂� Sequence Number ���t�������ꍇ������
+#define WM_HEADER_CHILD_MAX_SIZE    2  // ヘッダとして最大で付加されるバイト数 (wmHeader 2byte 分は除く)
+                                        // 現在は Sequence Number が付加される場合がある
 
 #define WM_HEADER_PORT_MASK     0x0f00
 #define WM_HEADER_PORT_SHIFT    8
@@ -881,15 +881,15 @@ WMPriorityLevel;
 #define WM_SEQ_PORT_FLAG        0x0008
 #define WM_SEQ_PORT_MASK        0x0007
 
-// packetHeader Seq No Field ( 2byte�� )
+// packetHeader Seq No Field ( 2byte目 )
 #define WM_HEADER_SEQ_RETRY     0x8000
 #define WM_HEADER_SEQ_NUM_MASK  0x7fff
 
-// 1�̃G���x���[�u�Ƀp�b�N�\�ȍő�p�P�b�g��(>= WM_SIZE_MP_DATA_MAX/WM_SIZE_MP_PARENT_PADDING + 1)
+// 1つのエンベローブにパック可能な最大パケット数(>= WM_SIZE_MP_DATA_MAX/WM_SIZE_MP_PARENT_PADDING + 1)
 #define WM_PACKED_PACKET_MAX    128
 
 
-// API�̃��U���g�R�[�h
+// APIのリザルトコード
 typedef enum WMErrCode
 {
     WM_ERRCODE_SUCCESS = 0,
@@ -898,7 +898,7 @@ typedef enum WMErrCode
     WM_ERRCODE_ILLEGAL_STATE = 3,
     WM_ERRCODE_WM_DISABLE = 4,
     WM_ERRCODE_NO_KEYSET = 5,
-    WM_ERRCODE_NO_DATASET = 5,         // NO_KEYSET �Ɠ����l
+    WM_ERRCODE_NO_DATASET = 5,         // NO_KEYSET と同じ値
     WM_ERRCODE_INVALID_PARAM = 6,
     WM_ERRCODE_NO_CHILD = 7,
     WM_ERRCODE_FIFO_ERROR = 8,
@@ -910,79 +910,79 @@ typedef enum WMErrCode
     WM_ERRCODE_NO_DATA = 14,
     WM_ERRCODE_SEND_FAILED = 15,
 
-    WM_ERRCODE_DCF_TEST,               // �f�o�b�O�p
-    WM_ERRCODE_WL_INVALID_PARAM,       // �f�o�b�O�p (�폜��)
-    WM_ERRCODE_WL_LENGTH_ERR,          // �f�o�b�O�p (�폜��)
+    WM_ERRCODE_DCF_TEST,               // デバッグ用
+    WM_ERRCODE_WL_INVALID_PARAM,       // デバッグ用 (削除可)
+    WM_ERRCODE_WL_LENGTH_ERR,          // デバッグ用 (削除可)
 
-    WM_ERRCODE_FLASH_ERROR,            // WL�̃t���b�V���p�����[�^�G���[(�v���I�Ȃ̂Ńt���[�Y����)
+    WM_ERRCODE_FLASH_ERROR,            // WLのフラッシュパラメータエラー(致命的なのでフリーズする)
     WM_ERRCODE_MAX
 }
 WMErrCode;
 
-// API�̃R�[���o�b�N�ŕԂ��X�e�[�g�R�[�h
+// APIのコールバックで返すステートコード
 typedef enum WMStateCode
 {
-    WM_STATECODE_PARENT_START = 0,     // StartParent�p �e�@����J�n
-    WM_STATECODE_BEACON_SENT = 2,      // StartParent�p Beacon���M����
+    WM_STATECODE_PARENT_START = 0,     // StartParent用 親機動作開始
+    WM_STATECODE_BEACON_SENT = 2,      // StartParent用 Beacon送信完了
 
-    WM_STATECODE_SCAN_START = 3,       // StartScan�p Scan����J�n
-    WM_STATECODE_PARENT_NOT_FOUND = 4, // StartScan�p �e�@�𔭌��ł��Ȃ�
-    WM_STATECODE_PARENT_FOUND = 5,     // StartScan�p �e�@�𔭌�����
+    WM_STATECODE_SCAN_START = 3,       // StartScan用 Scan動作開始
+    WM_STATECODE_PARENT_NOT_FOUND = 4, // StartScan用 親機を発見できない
+    WM_STATECODE_PARENT_FOUND = 5,     // StartScan用 親機を発見した
 
-    WM_STATECODE_CONNECT_START = 6,    // StartConnect�p �ڑ������J�n
-    WM_STATECODE_BEACON_LOST = 8,      // StartConnect�p �e�@�̃r�[�R������������
+    WM_STATECODE_CONNECT_START = 6,    // StartConnect用 接続処理開始
+    WM_STATECODE_BEACON_LOST = 8,      // StartConnect用 親機のビーコンを見失った
 
-    WM_STATECODE_CONNECTED = 7,        // StartParent�y��StartConnect, port �p �ڑ�����
-    WM_STATECODE_CHILD_CONNECTED = 7,  // WM_STATECODE_CONNECTED �Ɠ����l
-    WM_STATECODE_DISCONNECTED = 9,     // StartParent�y��StartConnect, port �p �ؒf�ʒm
-    WM_STATECODE_DISCONNECTED_FROM_MYSELF = 26, // StartParent�y��StartConnect, port �p ��������̐ؒf�ʒm
+    WM_STATECODE_CONNECTED = 7,        // StartParent及びStartConnect, port 用 接続完了
+    WM_STATECODE_CHILD_CONNECTED = 7,  // WM_STATECODE_CONNECTED と同じ値
+    WM_STATECODE_DISCONNECTED = 9,     // StartParent及びStartConnect, port 用 切断通知
+    WM_STATECODE_DISCONNECTED_FROM_MYSELF = 26, // StartParent及びStartConnect, port 用 自分からの切断通知
 
-    WM_STATECODE_MP_START = 10,        // StartMP�p MP�ʐM���[�h�J�n
-    WM_STATECODE_MPEND_IND = 11,       // StartMP�p �e�@MP�V�[�P���X����(��M)
-    WM_STATECODE_MP_IND = 12,          // StartMP�p �q�@MP��M
-    WM_STATECODE_MPACK_IND = 13,       // StartMP�p �q�@MPACK��M
+    WM_STATECODE_MP_START = 10,        // StartMP用 MP通信モード開始
+    WM_STATECODE_MPEND_IND = 11,       // StartMP用 親機MPシーケンス完了(受信)
+    WM_STATECODE_MP_IND = 12,          // StartMP用 子機MP受信
+    WM_STATECODE_MPACK_IND = 13,       // StartMP用 子機MPACK受信
 
-    WM_STATECODE_DCF_START = 14,       // StartDCF�p DCF�ʐM���[�h�J�n
-    WM_STATECODE_DCF_IND = 15,         // StartDCF�p DCF�f�[�^��M
+    WM_STATECODE_DCF_START = 14,       // StartDCF用 DCF通信モード開始
+    WM_STATECODE_DCF_IND = 15,         // StartDCF用 DCFデータ受信
 
-    WM_STATECODE_BEACON_RECV = 16,     // Beacon��Mindicate
-    WM_STATECODE_DISASSOCIATE = 17,    // �ڑ��ؒfindicate
-    WM_STATECODE_REASSOCIATE = 18,     // �Đڑ�indicate
-    WM_STATECODE_AUTHENTICATE = 19,    // �F�؊m�Findicate
+    WM_STATECODE_BEACON_RECV = 16,     // Beacon受信indicate
+    WM_STATECODE_DISASSOCIATE = 17,    // 接続切断indicate
+    WM_STATECODE_REASSOCIATE = 18,     // 再接続indicate
+    WM_STATECODE_AUTHENTICATE = 19,    // 認証確認indicate
 
-    WM_STATECODE_PORT_INIT = 25,       // port ������
-    WM_STATECODE_PORT_SEND = 20,       // port �փf�[�^���M
-    WM_STATECODE_PORT_RECV = 21,       // port �փf�[�^��M
+    WM_STATECODE_PORT_INIT = 25,       // port 初期化
+    WM_STATECODE_PORT_SEND = 20,       // port へデータ送信
+    WM_STATECODE_PORT_RECV = 21,       // port へデータ受信
 
-    WM_STATECODE_FIFO_ERROR = 22,      // ARM7��FIFO�G���[�����ʒm
-    WM_STATECODE_INFORMATION = 23,     // ���ʒm
-    WM_STATECODE_UNKNOWN = 24,         // �s����̒ʒm
+    WM_STATECODE_FIFO_ERROR = 22,      // ARM7でFIFOエラー発生通知
+    WM_STATECODE_INFORMATION = 23,     // 情報通知
+    WM_STATECODE_UNKNOWN = 24,         // 不特定の通知
 
     WM_STATECODE_MAX = 27
 }
 WMStateCode;
 
-// WM�̃X�e�[�g�R�[�h
+// WMのステートコード
 typedef enum WMState
 {
-    WM_STATE_READY = 0,                // READY�X�e�[�g(Init�O�ALED�ʏ�_�����)
-    WM_STATE_STOP,                     // STOP�X�e�[�g (Initialize�O�ALED�_�ŏ��)
-    WM_STATE_IDLE,                     // IDLE�X�e�[�g (Initialize��, Reset��Ȃ�)
-    WM_STATE_CLASS1,                   // CLASS1�X�e�[�g
-    WM_STATE_TESTMODE,                 // TESTMODE(�\���p)
-    WM_STATE_SCAN,                     // StartScan��
-    WM_STATE_CONNECT,                  // StartConnect��
-    WM_STATE_PARENT,                   // StartParent��
-    WM_STATE_CHILD,                    // �ڑ�������̎q�@
-    WM_STATE_MP_PARENT,                // StartMP��̐e�@
-    WM_STATE_MP_CHILD,                 // StartMP��̎q�@
-    WM_STATE_DCF_CHILD,                // StartDCF��̎q�@
+    WM_STATE_READY = 0,                // READYステート(Init前、LED通常点灯状態)
+    WM_STATE_STOP,                     // STOPステート (Initialize前、LED点滅状態)
+    WM_STATE_IDLE,                     // IDLEステート (Initialize後, Reset後など)
+    WM_STATE_CLASS1,                   // CLASS1ステート
+    WM_STATE_TESTMODE,                 // TESTMODE(申請用)
+    WM_STATE_SCAN,                     // StartScan中
+    WM_STATE_CONNECT,                  // StartConnect中
+    WM_STATE_PARENT,                   // StartParent中
+    WM_STATE_CHILD,                    // 接続完了後の子機
+    WM_STATE_MP_PARENT,                // StartMP後の親機
+    WM_STATE_MP_CHILD,                 // StartMP後の子機
+    WM_STATE_DCF_CHILD,                // StartDCF後の子機
     WM_STATE_TESTMODE_RX,              // TESTMODE_RX
     WM_STATE_MAX
 }
 WMState;
 
-// �����N���x
+// リンク強度
 typedef enum WMLinkLevel
 {
     WM_LINK_LEVEL_0 = 0,
@@ -993,52 +993,52 @@ typedef enum WMLinkLevel
 }
 WMLinkLevel;
 
-// Data Sharing �̓������
+// Data Sharing の内部状態
 typedef enum WMDataSharingState
 {
-    WM_DS_STATE_READY = 0,             // WM_StartDataSharing �O
-    WM_DS_STATE_START,                 // WM_StepDataSharing ��
-    WM_DS_STATE_PAUSING,               // Pause ��Ԃւ̑J�ڒ�
-    WM_DS_STATE_PAUSED,                // WM_StartDataSharing ����܂��� Pause ��
-    WM_DS_STATE_RETRY_SEND,            // SEND_QUEUE_FULL �������̂ōđ����K�v
-    WM_DS_STATE_ERROR                  // Error ����
+    WM_DS_STATE_READY = 0,             // WM_StartDataSharing 前
+    WM_DS_STATE_START,                 // WM_StepDataSharing 中
+    WM_DS_STATE_PAUSING,               // Pause 状態への遷移中
+    WM_DS_STATE_PAUSED,                // WM_StartDataSharing 直後または Pause 中
+    WM_DS_STATE_RETRY_SEND,            // SEND_QUEUE_FULL だったので再送が必要
+    WM_DS_STATE_ERROR                  // Error 発生
 }
 WMDataSharingState;
 
-// �ؒf���� reason �R�[�h
+// 切断時の reason コード
 typedef enum WMDisconnectReason
 {
-    // �O���v���ɂ��ؒf�Ɋւ��� reason �l
-    WM_DISCONNECT_REASON_RESERVED = 0, // �\��
-    WM_DISCONNECT_REASON_UNSPECIFIED = 1,       // ����ł��Ȃ��G���[
-    WM_DISCONNECT_REASON_PREV_AUTH_INVALID = 2, // ���O�̔F�؂͂��͂�L���ł���܂���
-    WM_DISCONNECT_REASON_DEAUTH_LEAVING = 3,    // BSS ���痣�ꂽ���ߔF�؂��������܂���
-    WM_DISCONNECT_REASON_INACTIVE = 4, // �s�����̂��ߐڑ����������܂���
-    WM_DISCONNECT_REASON_UNABLE_HANDLE = 5,     // AP �ɏ\���Ȏ������Ȃ����ߐڑ����������܂���
-    WM_DISCONNECT_REASON_RX_CLASS2_FROM_NONAUTH_STA = 6,        // �F�؂���Ă��Ȃ� STA ���� Class2 �̃t���[������M���܂���
-    WM_DISCONNECT_REASON_RX_CLASS3_FROM_NONASSOC_STA = 7,       // �ڑ�����Ă��Ȃ� STA ���� Class3 �̃t���[������M���܂���
-    WM_DISCONNECT_REASON_DISASSOC_LEAVING = 8,  // BSS ���痣�ꂽ���߃A�\�V�G�[�V�������������܂���
-    WM_DISCONNECT_REASON_ASSOC_STA_NOTAUTHED = 9,       // �ڑ��v������ STA �͂܂��F�؂��󂯂Ă��܂���
-    // DS �̃��[�J���ʐM�ŗL�� reason �l
-    WM_DISCONNECT_REASON_NO_ENTRY = 19, // DS �̐e�@�͌��݃G���g���[���󂯕t���Ă��܂���
-    // ���C�u������������̎����ؒf�Ɋւ��� reason �l
-    WM_DISCONNECT_REASON_MP_LIFETIME = 0x8001,  // MP �ʐM���C�t�^�C�����؂�܂���
-    WM_DISCONNECT_REASON_TGID_CHANGED = 0x8002, // ��M beacon ���� TGID ���ω����܂���
-    WM_DISCONNECT_REASON_FATAL_ERROR = 0x8003,  // ���C�u�������ŉ񕜕s�\�ȃG���[���������܂���
-    // ���C�u�����ɂ��ؒf�Ɋւ��� reason �l
-    WM_DISCONNECT_REASON_FROM_MYSELF = 0xf001   // WM �� API ���g�p���A��������ؒf���܂���
+    // 外部要因による切断に関する reason 値
+    WM_DISCONNECT_REASON_RESERVED = 0, // 予約
+    WM_DISCONNECT_REASON_UNSPECIFIED = 1,       // 特定できないエラー
+    WM_DISCONNECT_REASON_PREV_AUTH_INVALID = 2, // 直前の認証はもはや有効でありません
+    WM_DISCONNECT_REASON_DEAUTH_LEAVING = 3,    // BSS から離れたため認証を解除しました
+    WM_DISCONNECT_REASON_INACTIVE = 4, // 不活性のため接続を解除しました
+    WM_DISCONNECT_REASON_UNABLE_HANDLE = 5,     // AP に十分な資源がないため接続を解除しました
+    WM_DISCONNECT_REASON_RX_CLASS2_FROM_NONAUTH_STA = 6,        // 認証されていない STA から Class2 のフレームを受信しました
+    WM_DISCONNECT_REASON_RX_CLASS3_FROM_NONASSOC_STA = 7,       // 接続されていない STA から Class3 のフレームを受信しました
+    WM_DISCONNECT_REASON_DISASSOC_LEAVING = 8,  // BSS から離れたためアソシエーションを解除しました
+    WM_DISCONNECT_REASON_ASSOC_STA_NOTAUTHED = 9,       // 接続要求した STA はまだ認証を受けていません
+    // DS のローカル通信固有の reason 値
+    WM_DISCONNECT_REASON_NO_ENTRY = 19, // DS の親機は現在エントリーを受け付けていません
+    // ライブラリ内部からの自動切断に関する reason 値
+    WM_DISCONNECT_REASON_MP_LIFETIME = 0x8001,  // MP 通信ライフタイムが切れました
+    WM_DISCONNECT_REASON_TGID_CHANGED = 0x8002, // 受信 beacon 中の TGID が変化しました
+    WM_DISCONNECT_REASON_FATAL_ERROR = 0x8003,  // ライブラリ内で回復不能なエラーが発生しました
+    // ライブラリによる切断に関する reason 値
+    WM_DISCONNECT_REASON_FROM_MYSELF = 0xf001   // WM の API を使用し、自分から切断しました
 }
 WMDisconnectReason;
 
-// �e��ʒm
+// 各種通知
 typedef enum WMInfoCode
 {
     WM_INFOCODE_NONE = 0,
-    WM_INFOCODE_FATAL_ERROR            // Fatal Error �����ʒm
+    WM_INFOCODE_FATAL_ERROR            // Fatal Error 発生通知
 }
 WMInfoCode;
 
-// WM_SetMPParameter �֐��� mask �p�萔
+// WM_SetMPParameter 関数の mask 用定数
 #define WM_MP_PARAM_MIN_FREQUENCY              0x0001
 #define WM_MP_PARAM_FREQUENCY                  0x0002
 #define WM_MP_PARAM_MAX_FREQUENCY              0x0004
@@ -1054,10 +1054,10 @@ WMInfoCode;
 #define WM_MP_PARAM_IGNORE_FATAL_ERROR_MODE    0x1000
 #define WM_MP_PARAM_IGNORE_SIZE_PRECHECK_MODE  0x2000
 
-// MP �ʐM���ɂ͐ݒ�ł��Ȃ��p�����[�^�̃��X�g
+// MP 通信中には設定できないパラメータのリスト
 #define WM_MP_PARAM_MUST_SET_BEFORE_MP      (WM_MP_PARAM_MIN_POLL_BMP_MODE|WM_MP_PARAM_SINGLE_PACKET_MODE|WM_MP_PARAM_IGNORE_SIZE_PRECHECK_MODE)
 
-// WMMPTmpParam.mask �p�萔
+// WMMPTmpParam.mask 用定数
 #define WM_MP_TMP_PARAM_MIN_FREQUENCY              0x0001
 #define WM_MP_TMP_PARAM_FREQUENCY                  0x0002
 #define WM_MP_TMP_PARAM_MAX_FREQUENCY              0x0004
@@ -1066,114 +1066,114 @@ WMInfoCode;
 #define WM_MP_TMP_PARAM_SINGLE_PACKET_MODE         0x0800
 #define WM_MP_TMP_PARAM_IGNORE_FATAL_ERROR_MODE    0x1000
 
-// �p�����[�^�̌��E�l
-#define WM_MP_PARAM_INTERVAL_MAX 10000 // interval �ɐݒ�\�Ȓl�� 10000us �ȉ�
+// パラメータの限界値
+#define WM_MP_PARAM_INTERVAL_MAX 10000 // interval に設定可能な値は 10000us 以下
 
-// miscFlags �p�萔
+// miscFlags 用定数
 #define WM_MISC_FLAG_LISTEN_ONLY               0x0001
 #define WM_MISC_FLAG_NO_BLINK                  0x0002
 
-// WM API�̃R�[���o�b�N�̌^
-typedef void (*WMcallbackFunc) (void *arg);     // WM API�̃R�[���o�b�N�^
-typedef void (*WMCallbackFunc) (void *arg);     // WM API�̃R�[���o�b�N�^
+// WM APIのコールバックの型
+typedef void (*WMcallbackFunc) (void *arg);     // WM APIのコールバック型
+typedef void (*WMCallbackFunc) (void *arg);     // WM APIのコールバック型
 
-// �o�b�t�@�T�C�Y =======================================================================
+// バッファサイズ =======================================================================
 
-//������������������������
-//�� WM9 variable       �� 512
-//������������������������
-//�� WM7 variable       �� 256 + 512
-//������������������������
-//�� WM status          �� 2048
-//������������������������
-//�� FIFO buf (9 �� 7)  �� 256
-//������������������������
-//�� FIFO buf (9 �� 7)  �� 256
-//������������������������
+//┌──────────┐
+//│ WM9 variable       │ 512
+//├──────────┤
+//│ WM7 variable       │ 256 + 512
+//├──────────┤
+//│ WM status          │ 2048
+//├──────────┤
+//│ FIFO buf (9 → 7)  │ 256
+//├──────────┤
+//│ FIFO buf (9 ← 7)  │ 256
+//└──────────┘
 
-// WM�Ŏg�p����o�b�t�@�̃T�C�Y -------------------
+// WMで使用するバッファのサイズ -------------------
 
-#define WM_ARM9WM_BUF_SIZE      512    // ARM9��WM�̕ϐ��̈�̃T�C�Y
-#define WM_ARM7WM_BUF_SIZE      ( 256 + 512 )   // ARM7��WM�̕ϐ��̈�̃T�C�Y
-#define WM_STATUS_BUF_SIZE      2048   // WM�̃X�e�[�^�X�̈�̃T�C�Y
-#define WM_FIFO_BUF_SIZE        256    // ARM9,7�Ԃ�FIFO�R�}���h�o�b�t�@�T�C�Y
+#define WM_ARM9WM_BUF_SIZE      512    // ARM9側WMの変数領域のサイズ
+#define WM_ARM7WM_BUF_SIZE      ( 256 + 512 )   // ARM7側WMの変数領域のサイズ
+#define WM_STATUS_BUF_SIZE      2048   // WMのステータス領域のサイズ
+#define WM_FIFO_BUF_SIZE        256    // ARM9,7間のFIFOコマンドバッファサイズ
 
-// ���[�U�[���m�ۂ���o�b�t�@�̃T�C�Y -------------
-//   WM�V�X�e���Ŏg�p����S�o�b�t�@�̃T�C�Y 512 + 256 + 512 + 2048 + 256 + 256 = 0xf00 (FIFO_BIF * 2 �ł��邱�Ƃɒ���)
+// ユーザーが確保するバッファのサイズ -------------
+//   WMシステムで使用する全バッファのサイズ 512 + 256 + 512 + 2048 + 256 + 256 = 0xf00 (FIFO_BIF * 2 であることに注意)
 #define WM_SYSTEM_BUF_SIZE      (WM_ARM9WM_BUF_SIZE + WM_ARM7WM_BUF_SIZE + WM_STATUS_BUF_SIZE + WM_FIFO_BUF_SIZE + WM_FIFO_BUF_SIZE)
-#define WM_BSS_DESC_SIZE        192    // WM_StartScan()�ň����n���A�e�@���i�[�p�o�b�t�@�̃T�C�Y
+#define WM_BSS_DESC_SIZE        192    // WM_StartScan()で引き渡す、親機情報格納用バッファのサイズ
 
-#define WM_DCF_MAX_SIZE         1508   // DCF�Ŏ�M�ł���ő�T�C�Y
-#define WM_KEYSET_SIZE          36     // KeySet�̃T�C�Y
-#define WM_KEYDATA_SIZE         2      // KeyData�̃T�C�Y
+#define WM_DCF_MAX_SIZE         1508   // DCFで受信できる最大サイズ
+#define WM_KEYSET_SIZE          36     // KeySetのサイズ
+#define WM_KEYDATA_SIZE         2      // KeyDataのサイズ
 
 #define WM_DS_HEADER_SIZE       4
 
-#ifdef WM_DS_DATA_SIZE_252             // WM_DS_DATA_SIZE == 252 �ō\��Ȃ��ꍇ
+#ifdef WM_DS_DATA_SIZE_252             // WM_DS_DATA_SIZE == 252 で構わない場合
 #define WM_DS_DATA_SIZE         252
-#else  // WM_DS_DATA_SIZE == 508 �̏ꍇ�i�f�t�H���g�j
-#define WM_DS_DATA_SIZE         508    // 1�� WMDataSet �̍ő�f�[�^�T�C�Y(512-4)
-                                       // WM_DS_DATA_SIZE+WM_DS_HEADER_SIZE �� 32 �̔{���̕K�v�L
+#else  // WM_DS_DATA_SIZE == 508 の場合（デフォルト）
+#define WM_DS_DATA_SIZE         508    // 1つの WMDataSet の最大データサイズ(512-4)
+                                       // WM_DS_DATA_SIZE+WM_DS_HEADER_SIZE が 32 の倍数の必要有
 #endif
 
-#define WM_DS_DATASET_NUM       4      // WMDataSetBuf �ɂ����� WMDataSet ��ێ����邩(�Œ�l)
-#define WM_DS_INFO_SIZE         (sizeof(WMDataSharingInfo))     // DataSharing�p�o�b�t�@�T�C�Y
+#define WM_DS_DATASET_NUM       4      // WMDataSetBuf にいくつの WMDataSet を保持するか(固定値)
+#define WM_DS_INFO_SIZE         (sizeof(WMDataSharingInfo))     // DataSharing用バッファサイズ
 
-#define WM_SCAN_EX_PARENT_MAX   16     // 1���ScanEx�Ŕ����\�ȍő�e�@�䐔
-#define WM_SCAN_OTHER_ELEMENT_MAX 16   // �ʒm�\��otherElement�̍ő吔
+#define WM_SCAN_EX_PARENT_MAX   16     // 1回のScanExで発見可能な最大親機台数
+#define WM_SCAN_OTHER_ELEMENT_MAX 16   // 通知可能なotherElementの最大数
 
 /*---------------------------------------------------------------------------*
-    �\���̒�`
+    構造体定義
  *---------------------------------------------------------------------------*/
 
-// �o�b�t�@�\���� =======================================================================
+// バッファ構造体 =======================================================================
 
-// �f�[�^�Z�b�g�\����
+// データセット構造体
 typedef struct WMDataSet
 {
-//    u16 seqNum;                 // �f�[�^�Z�b�g�̃V�[�P���V�����i���o�[
+//    u16 seqNum;                 // データセットのシーケンシャルナンバー
     u16     aidBitmap;
-    u16     receivedBitmap;            // ��M��Ԃ̃r�b�g�}�b�v
-    u16     data[WM_DS_DATA_SIZE / sizeof(u16)];        // ���L�f�[�^
+    u16     receivedBitmap;            // 受信状態のビットマップ
+    u16     data[WM_DS_DATA_SIZE / sizeof(u16)];        // 共有データ
 
 }
 WMDataSet;
 
-// DataSharing ���\����
+// DataSharing 情報構造体
 typedef struct WMDataSharingInfo
 {
     WMDataSet ds[WM_DS_DATASET_NUM];
     u16     seqNum[WM_DS_DATASET_NUM]; // Sequential Number
-    u16     writeIndex;                // ���ɏ������݂��s�� Index
-    u16     sendIndex;                 // ���ݑ��M���� Index
-    u16     readIndex;                 // ���ɓǂݏo����� Index
-    u16     aidBitmap;                 // �f�[�^���L�̒��Ԃ� bitmap�i�����܂ށj
-    u16     dataLength;                // 1��ӂ�̋��L�f�[�^��
-    u16     stationNumber;             // �f�[�^���L�ɎQ�����Ă���䐔 (aidBitmap �̗����Ă���r�b�g�̐�)
+    u16     writeIndex;                // 次に書き込みを行う Index
+    u16     sendIndex;                 // 現在送信中の Index
+    u16     readIndex;                 // 次に読み出される Index
+    u16     aidBitmap;                 // データ共有の仲間の bitmap（自分含む）
+    u16     dataLength;                // 1台辺りの共有データ量
+    u16     stationNumber;             // データ共有に参加している台数 (aidBitmap の立っているビットの数)
     u16     dataSetLength;             // dataLength * stationNumber
-    u16     port;                      // �g�p���Ă��� port (8�Ԉȏ�)
-    u16     doubleMode;                // ���t���[������M�\�Ȍ��ݒʐM���[�h���ǂ���
-    u16     currentSeqNum;             // ���O�ɓǂݏo���� DataSet �� SeqNum
-    u16     state;                     // ���݂� DataSharing �̏��(WMDataSharingState)
+    u16     port;                      // 使用している port (8番以上)
+    u16     doubleMode;                // 毎フレーム送受信可能な交互通信モードかどうか
+    u16     currentSeqNum;             // 直前に読み出した DataSet の SeqNum
+    u16     state;                     // 現在の DataSharing の状態(WMDataSharingState)
     u16     reserved[1];               // for 32Byte Alignment
 }
 WMDataSharingInfo;
 
-// �L�[�Z�b�g�\����
+// キーセット構造体
 typedef struct WMKeySet
 {
-    u16     seqNum;                    // �L�[�Z�b�g�̃V�[�P���V�����i���o�[
+    u16     seqNum;                    // キーセットのシーケンシャルナンバー
     u16     rsv;
-    u16     key[16];                   // �L�[�f�[�^
+    u16     key[16];                   // キーデータ
 
 }
 WMKeySet, WMkeySet;
 
-// �L�[�Z�b�g�ۑ��p�����O�o�b�t�@
+// キーセット保存用リングバッファ
 typedef WMDataSharingInfo WMKeySetBuf, WMkeySetBuf;
 
 //---------------------------------------
-// �e�q���� MP port ���M�L���[�\����
+// 親子共通 MP port 送信キュー構造体
 typedef struct
 {
     u16     next;
@@ -1200,7 +1200,7 @@ typedef struct
 WMPortSendQueue;
 
 //---------------------------------------
-// �q�@ MP��M�o�b�t�@�\����
+// 子機 MP受信バッファ構造体
 typedef struct WMMpRecvBuf
 {
     u16     rsv1[3];
@@ -1227,7 +1227,7 @@ typedef struct WMMpRecvBuf
 WMMpRecvBuf, WMmpRecvBuf;
 
 //---------------------------------------
-// �e�@ MP��M�o�b�t�@�\����
+// 親機 MP受信バッファ構造体
 typedef struct WMMpRecvData
 {
     u16     length;
@@ -1255,7 +1255,7 @@ typedef struct WMMpRecvHeader
 WMMpRecvHeader, WMmpRecvHeader;
 
 //---------------------------------------
-// �q�@ DCF��M�o�b�t�@�\����
+// 子機 DCF受信バッファ構造体
 typedef struct WMDcfRecvBuf
 {
     u16     frameID;
@@ -1275,34 +1275,34 @@ typedef struct WMDcfRecvBuf
 WMDcfRecvBuf, WMdcfRecvBuf;
 
 //---------------------------------------
-// WM �e�@�p�����[�^�\����
+// WM 親機パラメータ構造体
 typedef struct WMParentParam
 {
-    u16    *userGameInfo;              // ���[�U�[�̈�ɃZ�b�g����f�[�^�̃|�C���^
-    u16     userGameInfoLength;        // ���[�U�[�̈�̒���
+    u16    *userGameInfo;              // ユーザー領域にセットするデータのポインタ
+    u16     userGameInfoLength;        // ユーザー領域の長さ
     u16     padding;
 
     u32     ggid;
-    u16     tgid;                      // �e���|������GameID(���[�U�[������e�@�ɂȂ�Ƃ��ɐ�������)
-    u16     entryFlag;                 // 1:�ڑ���, 0:�ڑ��s��
-    u16     maxEntry;                  // �ڑ��\�q�@�䐔
-    u16     multiBootFlag;             // 1:�}���`�u�[�g��, 0:�}���`�u�[�g�s��
-    u16     KS_Flag;                   // 1:KeySharing����, 0:KeySharing����
-    u16     CS_Flag;                   // 1:�A�����M, 0:1�t���[�����̑��M
-    u16     beaconPeriod;              // Beacon�Ԋu(ms)
+    u16     tgid;                      // テンポラリのGameID(ユーザーが毎回親機になるときに生成する)
+    u16     entryFlag;                 // 1:接続可, 0:接続不可
+    u16     maxEntry;                  // 接続可能子機台数
+    u16     multiBootFlag;             // 1:マルチブート可, 0:マルチブート不可
+    u16     KS_Flag;                   // 1:KeySharingあり, 0:KeySharing無し
+    u16     CS_Flag;                   // 1:連続送信, 0:1フレーム毎の送信
+    u16     beaconPeriod;              // Beacon間隔(ms)
     u16     rsv1[WM_SIZE_USERNAME / sizeof(u16)];       //
     u16     rsv2[WM_SIZE_GAMENAME / sizeof(u16)];       //
-    u16     channel;                   // �`�����l��
-    u16     parentMaxSize;             // �e�@�ő呗�M�T�C�Y
-    u16     childMaxSize;              // �q�@�ő呗�M�T�C�Y
+    u16     channel;                   // チャンネル
+    u16     parentMaxSize;             // 親機最大送信サイズ
+    u16     childMaxSize;              // 子機最大送信サイズ
 
-    u16     rsv[4];                    // 32�o�C�g�A���C�����g�̂���
+    u16     rsv[4];                    // 32バイトアライメントのため
 
 }
 WMParentParam, WMpparam;
 
 //---------------------------------------
-// WM GameInfo�\����
+// WM GameInfo構造体
 
 typedef struct WMGameInfo
 {
@@ -1311,31 +1311,31 @@ typedef struct WMGameInfo
     u8      platform;                  // DS: 0, Wii: 8
     u32     ggid;
     u16     tgid;
-    u8      userGameInfoLength;        // ���[�U�[�̈�̒���
+    u8      userGameInfoLength;        // ユーザー領域の長さ
     union
     {
         // (CS_Flag):1, (KS_Flag):1, multibootFlag:1, entryFlag:1
-        u8      gameNameCount_attribute;        // �݊��̂��߂̋���
+        u8      gameNameCount_attribute;        // 互換のための旧名
         u8      attribute;
     };
-    u16     parentMaxSize;             //�e�@�ő呗�M�T�C�Y
-    u16     childMaxSize;              //�q�@�ő呗�M�T�C�Y
+    u16     parentMaxSize;             //親機最大送信サイズ
+    u16     childMaxSize;              //子機最大送信サイズ
     union
     {
-        u16     userGameInfo[WM_SIZE_USER_GAMEINFO / sizeof(u16)];      // ���[�U�[�̈�(�ő�112�o�C�g (�b��))
+        u16     userGameInfo[WM_SIZE_USER_GAMEINFO / sizeof(u16)];      // ユーザー領域(最大112バイト (暫定))
         struct
         {
             u16     userName[WM_SIZE_USERNAME / sizeof(u16)];   // WM_SIZE_USERNAME -> 8
             u16     gameName[WM_SIZE_GAMENAME / sizeof(u16)];   // WM_SIZE_GAMENAME -> 16
             u16     padd1[44];         // pad -> 88 
         }
-        old_type;                      // �v 112�o�C�g
+        old_type;                      // 計 112バイト
     };
 }
 WMGameInfo, WMgameInfo;
 
 //---------------------------------------
-// BSSDescription �e�@���\����(Scan�Ŋl�����AConnect�ł̎w��Ɏg�p����)
+// BSSDescription 親機情報構造体(Scanで獲得し、Connectでの指定に使用する)
 #if SDK_VERSION_WL < 17100
 typedef struct WMBssDesc
 {
@@ -1391,7 +1391,7 @@ WMBssDesc, WMbssDesc;
 #endif
 
 //---------------------------------------
-// WM �r�[�R�����g���G�������g�\����
+// WM ビーコン内拡張エレメント構造体
 typedef struct WMOtherElements
 {
     u8      count;
@@ -1408,30 +1408,30 @@ typedef struct WMOtherElements
 WMOtherElements;
 
 //---------------------------------------
-// WM Scan�p�����[�^�\����
+// WM Scanパラメータ構造体
 typedef struct WMScanParam
 {
-    WMBssDesc *scanBuf;                // �e�@�����i�[���邽�߂̃o�b�t�@
-    u16     channel;                   // Scan���s��channel
-    u16     maxChannelTime;            // �ő�Scan����
-    u8      bssid[WM_SIZE_BSSID];      // Scan�Ώېe�@MacAddress(0xff�Ȃ�S�e�@�Ώ�)
+    WMBssDesc *scanBuf;                // 親機情報を格納するためのバッファ
+    u16     channel;                   // Scanを行うchannel
+    u16     maxChannelTime;            // 最大Scan時間
+    u8      bssid[WM_SIZE_BSSID];      // Scan対象親機MacAddress(0xffなら全親機対象)
     u16     rsv[9];
 
 }
 WMScanParam, WMscanParam;
 
 //---------------------------------------
-// WM ScanEx�p�����[�^�\����
+// WM ScanExパラメータ構造体
 typedef struct WMScanExParam
 {
-    WMBssDesc *scanBuf;                // �e�@�����i�[���邽�߂̃o�b�t�@
-    u16     scanBufSize;               // scanBuf�̃T�C�Y
-    u16     channelList;               // Scan���s��channel���X�g(�����w��� WM_GetAllowedChannel�̖߂�l�Ɠ��l�̌`��)
-    u16     maxChannelTime;            // �ő�Scan����
-    u8      bssid[WM_SIZE_BSSID];      // Scan�Ώېe�@MacAddress(0xff�Ȃ�S�e�@�Ώ�)
-    u16     scanType;                  // �ʏ��WM_SCANTYPE_PASSIVE�BActiveScan����WM_SCANTYPE_ACTIVE�B
-    u16     ssidLength;                // �Ώېe�@��SSID��(0�̏ꍇ�͑S�e�@���ΏۂɂȂ�)
-    u8      ssid[WM_SIZE_SSID];        // Scan�Ώېe�@��SSID
+    WMBssDesc *scanBuf;                // 親機情報を格納するためのバッファ
+    u16     scanBufSize;               // scanBufのサイズ
+    u16     channelList;               // Scanを行うchannelリスト(複数指定可 WM_GetAllowedChannelの戻り値と同様の形式)
+    u16     maxChannelTime;            // 最大Scan時間
+    u8      bssid[WM_SIZE_BSSID];      // Scan対象親機MacAddress(0xffなら全親機対象)
+    u16     scanType;                  // 通常はWM_SCANTYPE_PASSIVE。ActiveScan時はWM_SCANTYPE_ACTIVE。
+    u16     ssidLength;                // 対象親機のSSID長(0の場合は全親機が対象になる)
+    u8      ssid[WM_SIZE_SSID];        // Scan対象親機のSSID
 #if WM_SSID_MASK_CUSTOMIZE
     u16     ssidMatchLength;
     u16     rsv2[7];
@@ -1443,198 +1443,198 @@ typedef struct WMScanExParam
 WMScanExParam, WMscanExParam;
 
 //---------------------------------------
-// WM SetMPParameter �p�����[�^�\����
+// WM SetMPParameter パラメータ構造体
 typedef struct WMMPParam
 {
-    u32     mask;                      // �ȉ��̂ǂ̃t�B�[���h���L�������r�b�g�Ŏw�肷��
+    u32     mask;                      // 以下のどのフィールドが有効かをビットで指定する
 
-    u16     minFrequency;              // 1�s�N�`���t���[��������� MP ��(�ŏ��l)(������)
-    u16     frequency;                 // 1�s�N�`���t���[��������� MP ��
-    u16     maxFrequency;              // 1�s�N�`���t���[��������� MP ��(����l)
-    u16     parentSize;                // ���݂̐e�@���M�T�C�Y
-    u16     childSize;                 // ���݂̎q�@���M�T�C�Y
-    u16     parentInterval;            // 1�t���[�����ɘA�����čs���ꍇ�̐e�@�� MP �ʐM�Ԋu (us)
-    u16     childInterval;             // 1�t���[�����ɘA�����čs���ꍇ�̎q�@�� MP �ʐM����������Ԋu (us)
-    u16     parentVCount;              // �t���[�������ʐM���̐e�@�����̊J�n V Count
-    u16     childVCount;               // �t���[�������ʐM���̎q�@�����̊J�n V Count
-    u16     defaultRetryCount;         // Raw �ʐM port �ł̒ʐM�̃f�t�H���g���g���C��
-    u8      minPollBmpMode;            // PollBitmap �𑗐M����p�P�b�g�̑��M��ɍ��킹�čŏ��ɂ��郂�[�h
-    u8      singlePacketMode;          // 1MP �� 1packet ��������Ȃ��Ȃ郂�[�h
-    u8      ignoreFatalErrorMode;      // Fatal Error �𖳎����郂�[�h
-    u8      ignoreSizePrecheckMode;    // �ʐM�J�n���̑���M�T�C�Y�̎��O�`�F�b�N�𖳎����郂�[�h
+    u16     minFrequency;              // 1ピクチャフレームあたりの MP 回数(最小値)(未実装)
+    u16     frequency;                 // 1ピクチャフレームあたりの MP 回数
+    u16     maxFrequency;              // 1ピクチャフレームあたりの MP 回数(上限値)
+    u16     parentSize;                // 現在の親機送信サイズ
+    u16     childSize;                 // 現在の子機送信サイズ
+    u16     parentInterval;            // 1フレーム中に連続して行う場合の親機の MP 通信間隔 (us)
+    u16     childInterval;             // 1フレーム中に連続して行う場合の子機が MP 通信を準備する間隔 (us)
+    u16     parentVCount;              // フレーム同期通信時の親機処理の開始 V Count
+    u16     childVCount;               // フレーム同期通信時の子機処理の開始 V Count
+    u16     defaultRetryCount;         // Raw 通信 port での通信のデフォルトリトライ回数
+    u8      minPollBmpMode;            // PollBitmap を送信するパケットの送信先に合わせて最小にするモード
+    u8      singlePacketMode;          // 1MP に 1packet しか送らなくなるモード
+    u8      ignoreFatalErrorMode;      // Fatal Error を無視するモード
+    u8      ignoreSizePrecheckMode;    // 通信開始時の送受信サイズの事前チェックを無視するモード
 }
 WMMPParam;
 
 //---------------------------------------
-// WM StartMP �p�ꎞ�p�����[�^�\����
+// WM StartMP 用一時パラメータ構造体
 typedef struct WMMPTmpParam
 {
-    u32     mask;                      // �ȉ��̂ǂ̃t�B�[���h���L�������r�b�g�Ŏw�肷��
+    u32     mask;                      // 以下のどのフィールドが有効かをビットで指定する
 
-    u16     minFrequency;              // 1�s�N�`���t���[��������� MP ��(�ŏ��l)(������)
-    u16     frequency;                 // 1�s�N�`���t���[��������� MP ��
-    u16     maxFrequency;              // 1�s�N�`���t���[��������� MP ��(����l)
-    u16     defaultRetryCount;         // Raw �ʐM port �ł̒ʐM�̃f�t�H���g���g���C��
-    u8      minPollBmpMode;            // PollBitmap �𑗐M����p�P�b�g�̑��M��ɍ��킹�čŏ��ɂ��郂�[�h
-    u8      singlePacketMode;          // 1MP �� 1packet ��������Ȃ��Ȃ郂�[�h
-    u8      ignoreFatalErrorMode;      // Fatal Error �𖳎����郂�[�h
+    u16     minFrequency;              // 1ピクチャフレームあたりの MP 回数(最小値)(未実装)
+    u16     frequency;                 // 1ピクチャフレームあたりの MP 回数
+    u16     maxFrequency;              // 1ピクチャフレームあたりの MP 回数(上限値)
+    u16     defaultRetryCount;         // Raw 通信 port での通信のデフォルトリトライ回数
+    u8      minPollBmpMode;            // PollBitmap を送信するパケットの送信先に合わせて最小にするモード
+    u8      singlePacketMode;          // 1MP に 1packet しか送らなくなるモード
+    u8      ignoreFatalErrorMode;      // Fatal Error を無視するモード
     u8      reserved[1];
 }
 WMMPTmpParam;
 
 //---------------------------------------
-// WM �X�e�[�^�X�o�b�t�@�\���� (����������ARM7�ōs���BARM9�͓ǂݏo���̂݉�)
+// WM ステータスバッファ構造体 (書き換えはARM7で行う。ARM9は読み出しのみ可)
 typedef struct WMStatus
 {
-    // �X�e�[�g��� (4Byte)
-    u16     state;                     // WM�̃X�e�[�g���
-    u16     BusyApiid;                 // ���s��APIID
+    // ステート情報 (4Byte)
+    u16     state;                     // WMのステート情報
+    u16     BusyApiid;                 // 実行中APIID
 
-    // �t���O (32Byte) 36
-    BOOL    apiBusy;                   // API���s���t���O(FIFO�ɂ��API���s�֎~�t���O)
-    BOOL    scan_continue;             // Scan�p���t���O(2004/07/19���݁A���g�p)
-    BOOL    mp_flag;                   // MP���s���t���O
-    BOOL    dcf_flag;                  // DCF���s���t���O
-    BOOL    ks_flag;                   // KeySharing���s���t���O
-    BOOL    dcf_sendFlag;              // DCF���M�҂��t���O
-    BOOL    VSyncFlag;                 // VBlank����OK�t���O
+    // フラグ (32Byte) 36
+    BOOL    apiBusy;                   // API実行中フラグ(FIFOによるAPI発行禁止フラグ)
+    BOOL    scan_continue;             // Scan継続フラグ(2004/07/19現在、未使用)
+    BOOL    mp_flag;                   // MP実行中フラグ
+    BOOL    dcf_flag;                  // DCF実行中フラグ
+    BOOL    ks_flag;                   // KeySharing実行中フラグ
+    BOOL    dcf_sendFlag;              // DCF送信待ちフラグ
+    BOOL    VSyncFlag;                 // VBlank同期OKフラグ
 
-    // �o�[�W������� (16Byte) 52
-    u8      wlVersion[WM_SIZE_WL_VERSION];      // WL�̃o�[�W����
-    u16     macVersion;                // MAC�̃o�[�W����
-    u16     rfVersion;                 // RF�̃o�[�W����
-    u16     bbpVersion[WM_SIZE_BBP_VERSION / sizeof(u16)];      // BBP�̃o�[�W����
+    // バージョン情報 (16Byte) 52
+    u8      wlVersion[WM_SIZE_WL_VERSION];      // WLのバージョン
+    u16     macVersion;                // MACのバージョン
+    u16     rfVersion;                 // RFのバージョン
+    u16     bbpVersion[WM_SIZE_BBP_VERSION / sizeof(u16)];      // BBPのバージョン
 
-    // MP�֌W (106Byte) 158
-    u16     mp_parentSize;             // �e�@��1��� MP �ʐM�ł̑��M�T�C�Y
-    u16     mp_childSize;              // �q�@��1��� MP �ʐM�ł̑��M�T�C�Y
-    u16     mp_parentMaxSize;          // �e�@��1��� MP �ʐM�ł̑��M�T�C�Y�̍ő�l
-    u16     mp_childMaxSize;           // �q�@��1��� MP �ʐM�ł̑��M�T�C�Y�̍ő�l
-    u16     mp_sendSize;               // ���݂̐ڑ��ł̍ő呗�M�T�C�Y
-    u16     mp_recvSize;               // ���݂̐ڑ��ł̍ő��M�T�C�Y
-    u16     mp_maxSendSize;            // ���݂̐ڑ��ł̍ő呗�M�T�C�Y (parentMaxSize+4 or childMaxSize+2)
-    u16     mp_maxRecvSize;            // ���݂̐ڑ��ł̍ő��M�T�C�Y (childMaxSize+2 or parentMaxSize+4)
-    u16     mp_parentVCount;           // �e�@���� MP �����J�n VCount
-    u16     mp_childVCount;            // �q�@���� MP �����J�n VCount
-    u16     mp_parentInterval;         // �e�@���g�p���� MP �ʐM�Ԋu (us)
-    u16     mp_childInterval;          // �q�@���g�p���� MP �ʐM�Ԋu (us)
+    // MP関係 (106Byte) 158
+    u16     mp_parentSize;             // 親機の1回の MP 通信での送信サイズ
+    u16     mp_childSize;              // 子機の1回の MP 通信での送信サイズ
+    u16     mp_parentMaxSize;          // 親機の1回の MP 通信での送信サイズの最大値
+    u16     mp_childMaxSize;           // 子機の1回の MP 通信での送信サイズの最大値
+    u16     mp_sendSize;               // 現在の接続での最大送信サイズ
+    u16     mp_recvSize;               // 現在の接続での最大受信サイズ
+    u16     mp_maxSendSize;            // 現在の接続での最大送信サイズ (parentMaxSize+4 or childMaxSize+2)
+    u16     mp_maxRecvSize;            // 現在の接続での最大受信サイズ (childMaxSize+2 or parentMaxSize+4)
+    u16     mp_parentVCount;           // 親機側の MP 処理開始 VCount
+    u16     mp_childVCount;            // 子機側の MP 処理開始 VCount
+    u16     mp_parentInterval;         // 親機が使用する MP 通信間隔 (us)
+    u16     mp_childInterval;          // 子機が使用する MP 通信間隔 (us)
 
-    OSTick  mp_parentIntervalTick;     // �e�@���g�p���� MP �ʐM�Ԋu (tick)
-    OSTick  mp_childIntervalTick;      // �q�@���g�p���� MP �ʐM�Ԋu (tick)
+    OSTick  mp_parentIntervalTick;     // 親機が使用する MP 通信間隔 (tick)
+    OSTick  mp_childIntervalTick;      // 子機が使用する MP 通信間隔 (tick)
 
-    u16     mp_minFreq;                // 1�s�N�`���t���[��������� MP �񐔁i�ŏ��l�j(������)
-    u16     mp_freq;                   // 1�s�N�`���t���[��������� MP �񐔁i�W���l�j
-    u16     mp_maxFreq;                // 1�s�N�`���t���[��������� MP �񐔁i�ő�l�j
+    u16     mp_minFreq;                // 1ピクチャフレームあたりの MP 回数（最小値）(未実装)
+    u16     mp_freq;                   // 1ピクチャフレームあたりの MP 回数（標準値）
+    u16     mp_maxFreq;                // 1ピクチャフレームあたりの MP 回数（最大値）
 
-    u16     mp_vsyncOrderedFlag;       // ���� MP �� vsync �Ɠ������čs���悤�e�@����w�����󂯂���
-    u16     mp_vsyncFlag;              // ���� MP �� vsync �Ɠ������čs����̂�
-    s16     mp_count;                  // ���݂̃s�N�`���t���[���ł��Ɖ��� MP ������̂�
-    s16     mp_limitCount;             // ���݂̃s�N�`���t���[���ōđ����܂߂Ă��Ɖ��� MP �����Ă������̂�
-    u16     mp_resumeFlag;             // Resume ���s���t���O
-    u16     mp_prevPollBitmap;         // ���O�� MP �ł� PollBitmap
-    u16     mp_prevWmHeader;           // ���O�� MP �ł� wmHeader
-    u16     mp_prevTxop;               // ���O�� MP �ł� txop
-    u16     mp_prevDataLength;         // ���O�� MP �ł� dataLength
-    u16     mp_recvBufSel;             // MP��M�o�b�t�@�̑I���t���O
-    u16     mp_recvBufSize;            // MP��M�o�b�t�@�̃T�C�Y
-    WMMpRecvBuf *mp_recvBuf[2];        // MP��M�o�b�t�@�̃|�C���^
-    u32    *mp_sendBuf;                // MP���M�o�b�t�@�̃|�C���^
-    u16     mp_sendBufSize;            // MP���M�o�b�t�@�̃T�C�Y
+    u16     mp_vsyncOrderedFlag;       // 次の MP が vsync と同期して行うよう親機から指示を受けたか
+    u16     mp_vsyncFlag;              // 次の MP は vsync と同期して行われるのか
+    s16     mp_count;                  // 現在のピクチャフレームであと何回 MP をするのか
+    s16     mp_limitCount;             // 現在のピクチャフレームで再送も含めてあと何回 MP をしてもいいのか
+    u16     mp_resumeFlag;             // Resume 実行中フラグ
+    u16     mp_prevPollBitmap;         // 直前の MP での PollBitmap
+    u16     mp_prevWmHeader;           // 直前の MP での wmHeader
+    u16     mp_prevTxop;               // 直前の MP での txop
+    u16     mp_prevDataLength;         // 直前の MP での dataLength
+    u16     mp_recvBufSel;             // MP受信バッファの選択フラグ
+    u16     mp_recvBufSize;            // MP受信バッファのサイズ
+    WMMpRecvBuf *mp_recvBuf[2];        // MP受信バッファのポインタ
+    u32    *mp_sendBuf;                // MP送信バッファのポインタ
+    u16     mp_sendBufSize;            // MP送信バッファのサイズ
 
-    u16     mp_ackTime;                // MPACK �̓����\�莞��
-    u16     mp_waitAckFlag;            // MPACK ��҂��Ă���
+    u16     mp_ackTime;                // MPACK の到着予定時間
+    u16     mp_waitAckFlag;            // MPACK を待っている
 
-    u16     mp_readyBitmap;            // MP �̏����������Ă���q�@�� bitmap (�e�@�p)
+    u16     mp_readyBitmap;            // MP の準備が整っている子機の bitmap (親機用)
 
-    u16     mp_newFrameFlag;           // �V�����s�N�`���t���[��������� TRUE �ɂȂ�t���O
-    u16     mp_setDataFlag;            // �ԐM�f�[�^�Z�b�g�ς݃t���O�i�q�@�p�j
-    u16     mp_sentDataFlag;           // �ԐM�f�[�^���M�ς݃t���O�i�q�@�p�j
-    u16     mp_bufferEmptyFlag;        // �ԐM�f�[�^�p�o�b�t�@��t���O�i�q�@�p�j
-    u16     mp_isPolledFlag;           // ���O�� MP �͎����� poll ����Ă������i�q�@�p�j
+    u16     mp_newFrameFlag;           // 新しいピクチャフレームが来ると TRUE になるフラグ
+    u16     mp_setDataFlag;            // 返信データセット済みフラグ（子機用）
+    u16     mp_sentDataFlag;           // 返信データ送信済みフラグ（子機用）
+    u16     mp_bufferEmptyFlag;        // 返信データ用バッファ空フラグ（子機用）
+    u16     mp_isPolledFlag;           // 直前の MP は自分が poll されていたか（子機用）
 
-    u16     mp_minPollBmpMode;         // PollBitmap �𑗐M����p�P�b�g�̑��M��ɍ��킹�čŏ��ɂ��郂�[�h
-    u16     mp_singlePacketMode;       // 1MP �� 1packet ��������Ȃ��Ȃ郂�[�h
+    u16     mp_minPollBmpMode;         // PollBitmap を送信するパケットの送信先に合わせて最小にするモード
+    u16     mp_singlePacketMode;       // 1MP に 1packet しか送らなくなるモード
     u8      reserved_c[2];
-    u16     mp_defaultRetryCount;      // Seq ��������Ȃ��|�[�g�ł̒ʐM�̃f�t�H���g���g���C��
-    u16     mp_ignoreFatalErrorMode;   // FatalError�𖳎����邩�ǂ���
-    u16     mp_ignoreSizePrecheckMode; // �ʐM�J�n���̑���M�T�C�Y�̎��O�`�F�b�N�𖳌��ɂ���
+    u16     mp_defaultRetryCount;      // Seq 制御をしないポートでの通信のデフォルトリトライ回数
+    u16     mp_ignoreFatalErrorMode;   // FatalErrorを無視するかどうか
+    u16     mp_ignoreSizePrecheckMode; // 通信開始時の送受信サイズの事前チェックを無効にする
 
-    u16     mp_pingFlag;               // ping ��ł^�C�~���O�ŗ��t���O
-    u16     mp_pingCounter;            // ping �܂ł̎c��t���[�����̃J�E���^
+    u16     mp_pingFlag;               // ping を打つタイミングで立つフラグ
+    u16     mp_pingCounter;            // ping までの残りフレーム数のカウンタ
 
-    // DCF�֌W (26Byte) 184
-    u8      dcf_destAdr[WM_SIZE_MACADDR];       // DCF���M��MAC�A�h���X
-    u16    *dcf_sendData;              // DCF���M�f�[�^�̃|�C���^
-    u16     dcf_sendSize;              // DCF���M�f�[�^�T�C�Y
-    u16     dcf_recvBufSel;            // DCF��M�o�b�t�@�̑I���t���O
-    WMDcfRecvBuf *dcf_recvBuf[2];      // DCF��M�o�b�t�@�̃|�C���^
-    u16     dcf_recvBufSize;           // DCF��M�o�b�t�@�̃T�C�Y
+    // DCF関係 (26Byte) 184
+    u8      dcf_destAdr[WM_SIZE_MACADDR];       // DCF送信先MACアドレス
+    u16    *dcf_sendData;              // DCF送信データのポインタ
+    u16     dcf_sendSize;              // DCF送信データサイズ
+    u16     dcf_recvBufSel;            // DCF受信バッファの選択フラグ
+    WMDcfRecvBuf *dcf_recvBuf[2];      // DCF受信バッファのポインタ
+    u16     dcf_recvBufSize;           // DCF受信バッファのサイズ
 
-    u16     curr_tgid;                 // ���ݐڑ����Ă���e�@��TGID(BeaconRecv.Ind�Ŏg�p)
+    u16     curr_tgid;                 // 現在接続している親機のTGID(BeaconRecv.Indで使用)
 
-    // RSSI�֌W (4Byte) 206
+    // RSSI関係 (4Byte) 206
     u16     linkLevel;
     u16     minRssi;
     u16     rssiCounter;
 
-    // �ǉ��̃p�����[�^�Q
-    u16     beaconIndicateFlag;        // �r�[�R���֘A�ʒm���t���O
-    u16     wepKeyId;                  // WEP key ID (0�`3)
-    u16     pwrMgtMode;                // �p���[�}�l�W�����g���[�h
-    u32     miscFlags;                 // �ׁX�Ƃ����t���O
+    // 追加のパラメータ群
+    u16     beaconIndicateFlag;        // ビーコン関連通知許可フラグ
+    u16     wepKeyId;                  // WEP key ID (0〜3)
+    u16     pwrMgtMode;                // パワーマネジメントモード
+    u32     miscFlags;                 // 細々としたフラグ
 
-    u16     VSyncBitmap;               // V-Blank���������Ă���q�@�̃r�b�g�}�b�v
-    u16     valarm_queuedFlag;         // V-Alarm���������s�L���[�ɐς܂�Ă���
+    u16     VSyncBitmap;               // V-Blank同期が取れている子機のビットマップ
+    u16     valarm_queuedFlag;         // V-Alarm処理が実行キューに積まれている
 
-    // V-Blank�����֌W (14Byte) 218
-    u32     v_tsf;                     // V-Blank�����p V_TSF�l
-    u32     v_tsf_bak;                 // V-Blank�����p �O��擾����V_TSF�l
-    u32     v_remain;                  // V-Blank�����p �����c��
-    u16     valarm_counter;            // V-Alarm���荞�݂̔����񐔃J�E���g�p
+    // V-Blank同期関係 (14Byte) 218
+    u32     v_tsf;                     // V-Blank同期用 V_TSF値
+    u32     v_tsf_bak;                 // V-Blank同期用 前回取得したV_TSF値
+    u32     v_remain;                  // V-Blank同期用 調整残り
+    u16     valarm_counter;            // V-Alarm割り込みの発生回数カウント用
 
-    // �ǂݏo���҂��t���O (2Byte) 220
-//    u16             indbuf_read_wait;       // Indication�o�b�t�@�ǂݏo���҂��t���O
+    // 読み出し待ちフラグ (2Byte) 220
+//    u16             indbuf_read_wait;       // Indicationバッファ読み出し待ちフラグ
 
     u8      reserved_e[2];
 
-    // ���g�̃X�e�[�^�X (8Byte) 228
+    // 自身のステータス (8Byte) 228
     u8      MacAddress[WM_SIZE_MACADDR];
-    u16     mode;                      // �e�@:WL_CMDLABEL_MODE_PARENT �q�@:WL_CMDLABEL_MODE_CHILD
+    u16     mode;                      // 親機:WL_CMDLABEL_MODE_PARENT 子機:WL_CMDLABEL_MODE_CHILD
 
-    // �e�@�̂Ƃ��Ɏg�p������ ( 64 + 90 + 2 = 156Byte) 384
-    WMParentParam pparam;              // �e�@�p�����[�^
+    // 親機のときに使用する情報 ( 64 + 90 + 2 = 156Byte) 384
+    WMParentParam pparam;              // 親機パラメータ
     u8      childMacAddress[WM_NUM_MAX_CHILD][WM_SIZE_MACADDR];
-    u16     child_bitmap;              // �q�@�ڑ���(poll bitmap�Ƃ��Ďg�p����)
+    u16     child_bitmap;              // 子機接続状況(poll bitmapとして使用する)
 
-    // �q�@�̂Ƃ��Ɏg�p������ (14Byte) 398
-    WMBssDesc *pInfoBuf;               // Scan�����e�@���i�[�p�o�b�t�@�̃|�C���^(ARM9API�̈����ł��炤)
-    u16     aid;                       // ���݂�AID
+    // 子機のときに使用する情報 (14Byte) 398
+    WMBssDesc *pInfoBuf;               // Scanした親機情報格納用バッファのポインタ(ARM9APIの引数でもらう)
+    u16     aid;                       // 現在のAID
     u8      parentMacAddress[WM_SIZE_MACADDR];
-    u16     scan_channel;              // ����Scan���̃`�����l��
+    u16     scan_channel;              // 現在Scan中のチャンネル
 
     u8      reserved_f[4];
 
-    // WEP �֌W(86Byte) 488
-    u16     wepMode;                   // WEP mode (���r�b�g��WEP��)
-    BOOL    wep_flag;                  // ���肪WEP��v�����Ă��邩�ǂ���������
+    // WEP 関係(86Byte) 488
+    u16     wepMode;                   // WEP mode (何ビットのWEPか)
+    BOOL    wep_flag;                  // 相手がWEPを要求しているかどうかを示す
     u16     wepKey[WM_SIZE_WEPKEY / sizeof(u16)];       // WEP key (20Byte * 4)
-    /* wepKeyId�ɂ��Ă�40�s�قǏ�ɔz�u�������܂���(2005/02/07 terui) */
+    /* wepKeyIdについては40行ほど上に配置し直しました(2005/02/07 terui) */
 
-    // ���̑�(4Byte) 492
-    u16     rate;                      // �g�prate(WL_CMDLABEL_RATE_AUTO, 1M, 2M)
+    // その他(4Byte) 492
+    u16     rate;                      // 使用rate(WL_CMDLABEL_RATE_AUTO, 1M, 2M)
     u16     preamble;                  // Long:0, Short:1
 
-    // �e��p�����[�^ (4Byte) 496
+    // 各種パラメータ (4Byte) 496
     u16     tmptt;
     u16     retryLimit;
 
-    // ���p�\�`�����l�� (2Byte) 498
+    // 利用可能チャンネル (2Byte) 498
     u16     enableChannel;
 
-    // ���p���`�����l��(2Byte) 500
+    // 利用許可チャンネル(2Byte) 500
     u16     allowedChannel;
 
-    // port �֌W ( 1316+256+20+4+256Byte ) 1816+256+20+4+256
+    // port 関係 ( 1316+256+20+4+256Byte ) 1816+256+20+4+256
     u16     portSeqNo[WM_NUM_MAX_CHILD + 1][WM_NUM_OF_SEQ_PORT];        // 16*8*2=256Byte
 
     WMPortSendQueueData sendQueueData[WM_SEND_QUEUE_NUM];       // 32*32=1024Byte
@@ -1642,75 +1642,75 @@ typedef struct WMStatus
     WMPortSendQueue sendQueue[WM_PRIORITY_LEVEL];       // 16Byte
     WMPortSendQueue readyQueue[WM_PRIORITY_LEVEL];      // 16Byte
     OSMutex sendQueueMutex;            // 20 byte
-    BOOL    sendQueueInUse;            // MP���M�҂��t���O
+    BOOL    sendQueueInUse;            // MP送信待ちフラグ
 
-    // Null Ack �^�C���A�E�g ( 128 + 8 Byte )
+    // Null Ack タイムアウト ( 128 + 8 Byte )
     OSTick  mp_lastRecvTick[1 + WM_NUM_MAX_CHILD];
     OSTick  mp_lifeTimeTick;
 
-    // ���ݗL���� MP �ݒ�l
-    // WM_StartMPEx �֐��Ŏw�肵���ǉ��p�����[�^��
-    // �i�������������Ȃ��悤�ɂ��邽�߂ɁA�����̐ݒ�l��
-    // WM_SetMPParameter �֐��Őݒ肳���i���I�Ȓl��
-    // WM_StartMPEx �֐��Őݒ肳���ꎞ�I�Ȓl�ƁA��d�Ɏ�����Ă���
-    u16     mp_current_minFreq;                // 1�s�N�`���t���[��������� MP �񐔁i�ŏ��l�j(������)
-    u16     mp_current_freq;                   // 1�s�N�`���t���[��������� MP �񐔁i�W���l�j
-    u16     mp_current_maxFreq;                // 1�s�N�`���t���[��������� MP �񐔁i�ő�l�j
-    u16     mp_current_minPollBmpMode;         // PollBitmap �𑗐M����p�P�b�g�̑��M��ɍ��킹�čŏ��ɂ��郂�[�h
-    u16     mp_current_singlePacketMode;       // 1MP �� 1packet ��������Ȃ��Ȃ郂�[�h
-    u16     mp_current_defaultRetryCount;      // Seq ��������Ȃ��|�[�g�ł̒ʐM�̃f�t�H���g���g���C��
-    u16     mp_current_ignoreFatalErrorMode;   // FatalError�𖳎����邩�ǂ���
+    // 現在有効な MP 設定値
+    // WM_StartMPEx 関数で指定した追加パラメータに
+    // 永続性を持たせないようにするために、これらの設定値は
+    // WM_SetMPParameter 関数で設定される永続的な値と
+    // WM_StartMPEx 関数で設定される一時的な値と、二重に持たれている
+    u16     mp_current_minFreq;                // 1ピクチャフレームあたりの MP 回数（最小値）(未実装)
+    u16     mp_current_freq;                   // 1ピクチャフレームあたりの MP 回数（標準値）
+    u16     mp_current_maxFreq;                // 1ピクチャフレームあたりの MP 回数（最大値）
+    u16     mp_current_minPollBmpMode;         // PollBitmap を送信するパケットの送信先に合わせて最小にするモード
+    u16     mp_current_singlePacketMode;       // 1MP に 1packet しか送らなくなるモード
+    u16     mp_current_defaultRetryCount;      // Seq 制御をしないポートでの通信のデフォルトリトライ回数
+    u16     mp_current_ignoreFatalErrorMode;   // FatalErrorを無視するかどうか
     u8      reserved_g[2];
 }
 WMStatus, WMstatus;
 
 //---------------------------------------
-// WM ARM7���̕ϐ��̈�p�o�b�t�@�\����
+// WM ARM7側の変数領域用バッファ構造体
 typedef struct WMArm7Buf
 {
-    WMStatus *status;                  // WM�̃X�e�[�^�X�o�b�t�@
-//    u32         *indbuf;        // Indication�o�b�t�@�̃|�C���^
+    WMStatus *status;                  // WMのステータスバッファ
+//    u32         *indbuf;        // Indicationバッファのポインタ
     u8      reserved_a[4];
-    u32    *fifo7to9;                  // FIFO(ARM7��9)�p�o�b�t�@�̃|�C���^
-//    BOOL        *fifoFlag;      // ARM7��ARM9��FIFO���M���t���O
+    u32    *fifo7to9;                  // FIFO(ARM7→9)用バッファのポインタ
+//    BOOL        *fifoFlag;      // ARM7→ARM9のFIFO送信許可フラグ
     u8      reserved_b[4];
 
-    WMBssDesc connectPInfo;            // �ڑ���e�@���(190byte)
+    WMBssDesc connectPInfo;            // 接続先親機情報(190byte)
 
-    // ARM7�������甭�s���郊�N�G�X�g�p�o�b�t�@
+    // ARM7内部から発行するリクエスト用バッファ
     u32     requestBuf[512 / sizeof(u32)];
 
 }
 WMArm7Buf, WMarm7Buf;
 
 //---------------------------------------
-// CallbackTable�̗v�f��
+// CallbackTableの要素数
 #define WM_NUM_OF_CALLBACK      ( WM_APIID_ASYNC_KIND_MAX - 2 )
-// WM ARM9���̕ϐ��̈�p�o�b�t�@�\����
+// WM ARM9側の変数領域用バッファ構造体
 typedef struct WMArm9Buf
 {
-    // �e��|�C���^(20Byte)
-    WMArm7Buf *WM7;                    // ARM7��WM�̕ϐ��̈� (ARM9����̓A�N�Z�X���Ȃ�)
-    WMStatus *status;                  // WM�̃X�e�[�^�X�o�b�t�@(ARM9����̓��[�h�I�����[)
-    u32    *indbuf;                    // Indication�o�b�t�@
-    u32    *fifo9to7;                  // FIFO(ARM9��7)�p�o�b�t�@
-    u32    *fifo7to9;                  // FIFO(ARM7��9)�p�o�b�t�@
+    // 各種ポインタ(20Byte)
+    WMArm7Buf *WM7;                    // ARM7側WMの変数領域 (ARM9からはアクセスしない)
+    WMStatus *status;                  // WMのステータスバッファ(ARM9からはリードオンリー)
+    u32    *indbuf;                    // Indicationバッファ
+    u32    *fifo9to7;                  // FIFO(ARM9→7)用バッファ
+    u32    *fifo7to9;                  // FIFO(ARM7→9)用バッファ
 
-    // ���̑�(4Byte)
-    u16     dmaNo;                     // WM���g�p����DMA�ԍ�
-    u16     scanOnlyFlag;              // Scan �������Ȃ����샂�[�h�t���O
+    // その他(4Byte)
+    u16     dmaNo;                     // WMが使用するDMA番号
+    u16     scanOnlyFlag;              // Scan しかしない動作モードフラグ
 
-    // Callback �֌W(172Byte)
-    WMCallbackFunc CallbackTable[WM_NUM_OF_CALLBACK];   // �R�[���o�b�N�e�[�u��(42*4 = 168Byte)
+    // Callback 関係(172Byte)
+    WMCallbackFunc CallbackTable[WM_NUM_OF_CALLBACK];   // コールバックテーブル(42*4 = 168Byte)
     WMCallbackFunc indCallback;
 
-    // port �֌W(134Byte)
+    // port 関係(134Byte)
     WMCallbackFunc portCallbackTable[WM_NUM_OF_PORT];   // 16*4 = 64Byte
     void   *portCallbackArgument[WM_NUM_OF_PORT];       // 16*4 = 64Byte
-    u32     connectedAidBitmap;        // �ڑ���ꗗ(�r�b�g���삪�������� u32 �Ŋm��)
-    u16     myAid;                     // ���݂� AID
+    u32     connectedAidBitmap;        // 接続先一覧(ビット操作が多いため u32 で確保)
+    u16     myAid;                     // 現在の AID
 
-    /* �v 20+4+172+134 Byte */
+    /* 計 20+4+172+134 Byte */
 
     u8      reserved1[WM_ARM9WM_BUF_SIZE -
                       (20 + 4 + 4 * WM_NUM_OF_CALLBACK + 4 + (4 + 4) * WM_NUM_OF_PORT + 6)];
@@ -1720,7 +1720,7 @@ WMArm9Buf, WMarm9Buf;
 
 //==========================================================================================
 
-// API�̈���
+// APIの引数
 typedef struct WMStartScanReq
 {
     u16     apiid;
@@ -1819,7 +1819,7 @@ WMStartTestRxModeReq, WMstartTestRxModeReq;
 
 //==========================================================================================
 
-// �ʏ�̃R�[���o�b�N�̈���
+// 通常のコールバックの引数
 typedef struct WMCallback
 {
     u16     apiid;
@@ -1830,7 +1830,7 @@ typedef struct WMCallback
 }
 WMCallback;
 
-// WM_StartParent()�̃R�[���o�b�N�̈���
+// WM_StartParent()のコールバックの引数
 typedef struct WMStartParentCallback
 {
     u16     apiid;
@@ -1838,17 +1838,17 @@ typedef struct WMStartParentCallback
     u16     wlCmdID;
     u16     wlResult;
     u16     state;                     // PARENT_START, BEACON_SENT, CHILD_CONNECTED, DISCONNECTED
-    u8      macAddress[WM_SIZE_MACADDR];        // �ڑ������e�q�@��MAC�A�h���X
+    u8      macAddress[WM_SIZE_MACADDR];        // 接続した各子機のMACアドレス
     u16     aid;
-    u16     reason;                    // �ؒf����reasonCode
-    u8      ssid[WM_SIZE_CHILD_SSID];  // SSID (�q�@���)
+    u16     reason;                    // 切断時のreasonCode
+    u8      ssid[WM_SIZE_CHILD_SSID];  // SSID (子機情報)
     u16     parentSize;
     u16     childSize;
 
 }
 WMStartParentCallback, WMstartParentCallback;
 
-// WM_StartScan()�̃R�[���o�b�N�̈���
+// WM_StartScan()のコールバックの引数
 typedef struct WMStartScanCallback
 {
     u16     apiid;
@@ -1856,7 +1856,7 @@ typedef struct WMStartScanCallback
     u16     wlCmdID;
     u16     wlResult;
     u16     state;                     // SCAN_START, PARENT_NOT_FOUND, PARENT_FOUND
-    u8      macAddress[WM_SIZE_MACADDR];        // ���������e�@��MAC�A�h���X
+    u8      macAddress[WM_SIZE_MACADDR];        // 見つかった親機のMACアドレス
     u16     channel;
     u16     linkLevel;
     u16     ssidLength;
@@ -1867,7 +1867,7 @@ typedef struct WMStartScanCallback
 }
 WMStartScanCallback, WMstartScanCallback;
 
-// WM_StartScanEx()�̃R�[���o�b�N�̈���
+// WM_StartScanEx()のコールバックの引数
 typedef struct WMStartScanExCallback
 {
     u16     apiid;
@@ -1875,25 +1875,25 @@ typedef struct WMStartScanExCallback
     u16     wlCmdID;
     u16     wlResult;
     u16     state;                     // SCAN_START, PARENT_NOT_FOUND, PARENT_FOUND
-    u16     channelList;               // �����E�������Ɋւ�炸�A�X�L���������`�����l�����X�g
+    u16     channelList;               // 発見・未発見に関わらず、スキャンしたチャンネルリスト
     u8      reserved[2];               // padding
-    u16     bssDescCount;              // �������ꂽ�e�@�̐�
-    WMBssDesc *bssDesc[WM_SCAN_EX_PARENT_MAX];  // �e�@���̐擪�A�h���X
-    u16     linkLevel[WM_SCAN_EX_PARENT_MAX];   // ��M�d�g���x
+    u16     bssDescCount;              // 発見された親機の数
+    WMBssDesc *bssDesc[WM_SCAN_EX_PARENT_MAX];  // 親機情報の先頭アドレス
+    u16     linkLevel[WM_SCAN_EX_PARENT_MAX];   // 受信電波強度
 
 }
 WMStartScanExCallback, WMstartScanExCallback;
 
-// WM_StartConnect()�̃R�[���o�b�N�̈���
+// WM_StartConnect()のコールバックの引数
 typedef struct WMStartConnectCallback
 {
     u16     apiid;
-    u16     errcode;                   // PARENT_NOT_FOUND(�^�C���A�E�g)
+    u16     errcode;                   // PARENT_NOT_FOUND(タイムアウト)
     u16     wlCmdID;
     u16     wlResult;
     u16     state;                     // CONNECT_START, BEACON_LOST, CONNECTED, DISCONNECTED
-    u16     aid;                       // CONNECTED�̂Ƃ��̂݁A���g�Ɋ��蓖�Ă�ꂽAID
-    u16     reason;                    // �ؒf����reasonCode
+    u16     aid;                       // CONNECTEDのときのみ、自身に割り当てられたAID
+    u16     reason;                    // 切断時のreasonCode
     u16     wlStatus;
     u8      macAddress[WM_SIZE_MACADDR];
     u16     parentSize;
@@ -1902,7 +1902,7 @@ typedef struct WMStartConnectCallback
 }
 WMStartConnectCallback, WMstartConnectCallback;
 
-// WM_Disconnect()�y��WM_DisconnectChildren�̃R�[���o�b�N
+// WM_Disconnect()及びWM_DisconnectChildrenのコールバック
 typedef struct WMDisconnectCallback
 {
     u16     apiid;
@@ -1914,7 +1914,7 @@ typedef struct WMDisconnectCallback
 }
 WMDisconnectCallback;
 
-// WM_SetMPParameter()�̃R�[���o�b�N�̈���
+// WM_SetMPParameter()のコールバックの引数
 typedef struct WMSetMPParameterCallback
 {
     u16     apiid;
@@ -1924,16 +1924,16 @@ typedef struct WMSetMPParameterCallback
 }
 WMSetMPParameterCallback;
 
-// WM_StartMP()�̃R�[���o�b�N�̈���
+// WM_StartMP()のコールバックの引数
 typedef struct WMStartMPCallback
 {
     u16     apiid;
     u16     errcode;
     u16     state;
     u8      reserved[2];               // for padding 4byte align
-    WMMpRecvBuf *recvBuf;              // ��M�o�b�t�@
+    WMMpRecvBuf *recvBuf;              // 受信バッファ
 
-    // �ȉ��AMPACK.Ind�̂Ƃ��̂ݎg�p
+    // 以下、MPACK.Indのときのみ使用
     u16     timeStamp;
     u16     rate_rssi;
     u8      destAdrs[6];
@@ -1945,19 +1945,19 @@ typedef struct WMStartMPCallback
 }
 WMStartMPCallback, WMstartMPCallback;
 
-// WM_StartDCF()�̃R�[���o�b�N�̈���
+// WM_StartDCF()のコールバックの引数
 typedef struct WMStartDCFCallback
 {
     u16     apiid;
     u16     errcode;
     u16     state;
     u8      reserved[2];               // for padding 4byte align
-    WMDcfRecvBuf *recvBuf;             // ��M�o�b�t�@
+    WMDcfRecvBuf *recvBuf;             // 受信バッファ
 
 }
 WMStartDCFCallback, WMstartDCFCallback;
 
-// WM_MeasureChannel()�̃R�[���o�b�N�̈���
+// WM_MeasureChannel()のコールバックの引数
 typedef struct WMMeasureChannelCallback
 {
     u16     apiid;
@@ -1969,53 +1969,53 @@ typedef struct WMMeasureChannelCallback
 }
 WMMeasureChannelCallback, WMmeasureChannelCallback;
 
-// WM_GetWirelessCounter()�̃R�[���o�b�N�̈���
+// WM_GetWirelessCounter()のコールバックの引数
 typedef struct WMGetWirelessCounterCallback
 {
     u16     apiid;
     u16     errcode;
     u16     wlCmdID;
     u16     wlResult;
-    u32     TX_Success;                // ����ɑ��M���s������
-    u32     TX_Failed;                 // ����ɑ��M���s���Ȃ�������
-    u32     TX_Retry;                  // �đ����s������
-    u32     TX_AckError;               // ��]����ACK�t���[������M�ł��Ȃ�������
-    u32     TX_Unicast;                // ����ɑ��M���s����Unicast���t���[���̐�
-    u32     TX_Multicast;              // ����ɑ��M���s����Multicast���t���[���̐�
-    u32     TX_WEP;                    // ����ɑ��M���s�����Í��t���[���̐�
-    u32     TX_Beacon;                 // ����ɑ��M���s����Beacon�t���[���̐�
-    u32     RX_RTS;                    // (��) RTS����M����CTS�̉������s������
-    u32     RX_Fragment;               // �t���O�����g���ꂽ�t���[������M������
-    u32     RX_Unicast;                // Unicast���̃t���[������M������
-    u32     RX_Multicast;              // Multicast���̃t���[������M������
-    u32     RX_WEP;                    // (��) ����ɕ������s�����Í��t���[���̎�M��
-    u32     RX_Beacon;                 // Beacon�t���[������M������
-    u32     RX_FCSError;               // (��) FCS�G���[������������
-    u32     RX_DuplicateError;         // (��) �d���G���[������������
-    u32     RX_MPDuplicateError;       // (��) MP�t���[���̏d���G���[������������
-    u32     RX_ICVError;               // (��) ICV�G���[������������
-    u32     RX_FrameCtrlError;         // (��) �s����FrameCtrl�����t���[������M������
-    u32     RX_LengthError;            // (��) �K��̒������Z�����邢�͒����t���[������M������
-    u32     RX_PLCPError;              // (��) PLCP��CRC�G���[������������
-    u32     RX_BufferOverflowError;    // (��) ��M�o�b�t�@���I�[�o�[�t���[������
-    u32     RX_PathError;              // (��) ��M�u���b�N�����̃G���[������������
-    u32     RX_RateError;              // (��) ��M���[�g���s���ȃt���[������M������
-    u32     RX_FCSOK;                  // (��) �����FCS�����t���[������M������
-    u32     TX_MP;                     // MP�t���[���𑗐M������
-    u32     TX_KeyData;                // MP-KeyData�t���[���𑗐M������
-    u32     TX_NullKey;                // MP-NullKey�t���[���𑗐M������
-    u32     RX_MP;                     // �����MP�t���[������M������
-    u32     RX_MPACK;                  // �����MPACK�t���[������M������
-    u32     MPKeyResponseError[15];    // Key�v���ɑ΂��Đ���ɉ������Ȃ�������
+    u32     TX_Success;                // 正常に送信が行えた回数
+    u32     TX_Failed;                 // 正常に送信が行えなかった回数
+    u32     TX_Retry;                  // 再送を行った回数
+    u32     TX_AckError;               // 希望するACKフレームを受信できなかった回数
+    u32     TX_Unicast;                // 正常に送信が行えたUnicast宛フレームの数
+    u32     TX_Multicast;              // 正常に送信が行えたMulticast宛フレームの数
+    u32     TX_WEP;                    // 正常に送信が行えた暗号フレームの数
+    u32     TX_Beacon;                 // 正常に送信が行えたBeaconフレームの数
+    u32     RX_RTS;                    // (注) RTSを受信してCTSの応答を行った回数
+    u32     RX_Fragment;               // フラグメントされたフレームを受信した回数
+    u32     RX_Unicast;                // Unicast宛のフレームを受信した回数
+    u32     RX_Multicast;              // Multicast宛のフレームを受信した回数
+    u32     RX_WEP;                    // (注) 正常に復号を行えた暗号フレームの受信回数
+    u32     RX_Beacon;                 // Beaconフレームを受信した回数
+    u32     RX_FCSError;               // (注) FCSエラーが発生した回数
+    u32     RX_DuplicateError;         // (注) 重複エラーが発生した回数
+    u32     RX_MPDuplicateError;       // (注) MPフレームの重複エラーが発生した回数
+    u32     RX_ICVError;               // (注) ICVエラーが発生した回数
+    u32     RX_FrameCtrlError;         // (注) 不正なFrameCtrlを持つフレームを受信した回数
+    u32     RX_LengthError;            // (注) 規定の長さより短いあるいは長いフレームを受信した回数
+    u32     RX_PLCPError;              // (注) PLCPのCRCエラーが発生した回数
+    u32     RX_BufferOverflowError;    // (注) 受信バッファがオーバーフローした回数
+    u32     RX_PathError;              // (注) 受信ブロック内部のエラーが発生した回数
+    u32     RX_RateError;              // (注) 受信レートが不正なフレームを受信した回数
+    u32     RX_FCSOK;                  // (注) 正常なFCSを持つフレームを受信した回数
+    u32     TX_MP;                     // MPフレームを送信した回数
+    u32     TX_KeyData;                // MP-KeyDataフレームを送信した回数
+    u32     TX_NullKey;                // MP-NullKeyフレームを送信した回数
+    u32     RX_MP;                     // 正常なMPフレームを受信した回数
+    u32     RX_MPACK;                  // 正常なMPACKフレームを受信した回数
+    u32     MPKeyResponseError[15];    // Key要求に対して正常に応答しなかった回数
     /*
-     * (��) �����n�[�h�E�F�A���̃��W�X�^���s���ɃN���A����邱�Ƃ����邽�߁A
-     * �n�[�h�E�F�A�̃J�E���g���W�X�^�����Z���Ă����\�t�g�J�E���^�͎��ۂ̍��v�l��
-     * �����Ȃ��ꍇ������B(��)�̂��Ă���J�E���^�ɂ̂݉e��������B
+     * (注) 無線ハードウェア内のレジスタが不正にクリアされることがあるため、
+     * ハードウェアのカウントレジスタを加算していくソフトカウンタは実際の合計値に
+     * 満たない場合がある。(注)のついているカウンタにのみ影響がある。
      */
 }
 WMGetWirelessCounterCallback, WMgetWirelessCounterCallback;
 
-// Indication�R�[���o�b�N�̈���
+// Indicationコールバックの引数
 typedef struct WMIndCallback
 {
     u16     apiid;
@@ -2026,7 +2026,7 @@ typedef struct WMIndCallback
 }
 WMIndCallback, WMindCallback;
 
-// MP port �ʐM���M�R�[���o�b�N�̈���
+// MP port 通信送信コールバックの引数
 typedef struct WMPortSendCallback
 {
     u16     apiid;
@@ -2054,32 +2054,32 @@ typedef struct WMPortSendCallback
 }
 WMPortSendCallback;
 
-// MP port �ʐM��M�R�[���o�b�N�̈���
+// MP port 通信受信コールバックの引数
 typedef struct WMPortRecvCallback
 {
     u16     apiid;
     u16     errcode;
     u16     state;
-    u16     port;                      // �|�[�g�ԍ�
-    WMMpRecvBuf *recvBuf;              // ��M�o�b�t�@ // WMStartMPCallback �Ƃ̌݊����̂���
-    u16    *data;                      // ��M�f�[�^ (port ���Ă̎�M�f�[�^�͂�������Q�Ƃ��邱��)
-    u16     length;                    // ��M�f�[�^��
-    u16     aid;                       // ���M�� AID
+    u16     port;                      // ポート番号
+    WMMpRecvBuf *recvBuf;              // 受信バッファ // WMStartMPCallback との互換性のため
+    u16    *data;                      // 受信データ (port 宛ての受信データはこちらを参照すること)
+    u16     length;                    // 受信データ長
+    u16     aid;                       // 送信元 AID
     u8      macAddress[WM_SIZE_MACADDR];
     u16     seqNo;                     // seqNo
-    void   *arg;                       // callback �ɓn������ (WM9 ���ŒǋL)
-    u16     myAid;                     // ������ AID
-    u16     connectedAidBitmap;        // �ڑ��� AID Bitmap
-    u8      ssid[WM_SIZE_CHILD_SSID];  // SSID (�q�@���)
-    u16     reason;                    // �ؒf����reasonCode
+    void   *arg;                       // callback に渡す引数 (WM9 側で追記)
+    u16     myAid;                     // 自分の AID
+    u16     connectedAidBitmap;        // 接続中 AID Bitmap
+    u8      ssid[WM_SIZE_CHILD_SSID];  // SSID (子機情報)
+    u16     reason;                    // 切断時のreasonCode
     u16     rsv;                       // reserved
-    u16     maxSendDataSize;           // ���݂̑��M�\�T�C�Y
-    u16     maxRecvDataSize;           // ���݂̎�M�\�T�C�Y
+    u16     maxSendDataSize;           // 現在の送信可能サイズ
+    u16     maxRecvDataSize;           // 現在の受信可能サイズ
 
 }
 WMPortRecvCallback;
 
-// BeaconRecv.Ind�R�[���o�b�N�̈���
+// BeaconRecv.Indコールバックの引数
 typedef struct WMBeaconRecvIndCallback
 {
     u16     apiid;
@@ -2092,7 +2092,7 @@ typedef struct WMBeaconRecvIndCallback
 }
 WMBeaconRecvIndCallback;
 
-// WM_StartTestMode()�̃R�[���o�b�N�̈���
+// WM_StartTestMode()のコールバックの引数
 typedef struct WMStartTestModeCallback
 {
     u16     apiid;
@@ -2105,7 +2105,7 @@ typedef struct WMStartTestModeCallback
 }
 WMStartTestModeCallback;
 
-// WM_StopTestRxMode()�̃R�[���o�b�N�̈���
+// WM_StopTestRxMode()のコールバックの引数
 typedef struct WMStopTestRxModeCallback
 {
     u16     apiid;

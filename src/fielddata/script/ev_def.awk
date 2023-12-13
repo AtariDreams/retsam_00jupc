@@ -2,38 +2,38 @@
 #
 #	050826 Satoshi Nohara
 #
-#	*.ev�t�@�C������A�X�N���v�g��ID�𐶐����āA*_def.h�ɏ�������
+#	*.evファイルから、スクリプトのIDを生成して、*_def.hに書き込む
 #
 #===========================================================================================
 BEGIN{
-	#�R�}���h���C���̈���1
-	name = ARGV[1]												#�t�@�C�����擾(�� r203.ev)
-	sub(/\..*$/,"",name)										#"."�ȍ~���폜(�� r203)
+	#コマンドラインの引数1
+	name = ARGV[1]												#ファイル名取得(例 r203.ev)
+	sub(/\..*$/,"",name)										#"."以降を削除(例 r203)
 
 	#=================================================================
 	#
-	#�X�N���v�g�I�t�Z�b�g��`�t�@�C���ǂݍ���
+	#スクリプトオフセット定義ファイル読み込み
 	#
 	#=================================================================
 	SCR_OFFSET_H = "../../field/scr_offset.h"
 
 	offset_i = 0
 
-	#getline = �P�s�ǂݍ���
-	#�P�͖߂�l
+	#getline = １行読み込み
+	#１は戻り値
 	while ( 1 == getline < SCR_OFFSET_H ) {
 		if ( NF == 4 && $1 =="#define" ) {
 
 			if( $2 ~ "_END" ){
-				#�������Ȃ�
+				#何もしない
 			}else{
-				#�X�N���v�g�t�@�C����
+				#スクリプトファイル名
 				temp = tolower( $2 )
 				sub( "id_", "", temp );
 				sub( "_offset", "", temp );
 				OffsetName[offset_i] = temp
 	
-				#�I�t�Z�b�gID
+				#オフセットID
 				temp = $3
 				sub( /[(]/,"", temp );
 				sub( /[)]/,"", temp );
@@ -44,22 +44,22 @@ BEGIN{
 	}
 	close(SCR_OFFSET_H)
 
-	#���d�C���N���[�h�`�F�b�N
-	name2 = toupper(name)										#�啶���ɓ���
+	#多重インクルードチェック
+	name2 = toupper(name)										#大文字に統一
 	print "#ifndef _" name2 "_DEF_H_" > name "_def.h"
 	print "#define _" name2 "_DEF_H_\n" > name "_def.h"	
 
-	#����R���o�[�g��������ƁA��ɍ������o��̂ŊO�����I
-	#print strftime( "//%Y %m %d %H:%M:%S\n" ) > name "_def.h"	#�R���o�[�g�������t
+	#毎回コンバートをかけると、常に差分が出るので外した！
+	#print strftime( "//%Y %m %d %H:%M:%S\n" ) > name "_def.h"	#コンバートした日付
 	#printf( "//2005 10 14 19:49:31\n\n" ) > name "_def.h"
 
-	printf( "//�X�N���v�g�f�[�^ID��` \n" ) > name "_def.h"		#�^�C�g��
+	printf( "//スクリプトデータID定義 \n" ) > name "_def.h"		#タイトル
 
 	#####################################################################################
 
-	#�Y������t�@�C����T��
+	#該当するファイルを探す
 	j = 0
-	start = 1									#"0"��SCRID_NULL�Ŏg�p����̂�1�ɂ���I(06.01.20)
+	start = 1									#"0"はSCRID_NULLで使用するので1にする！(06.01.20)
 	print name
 
 	for( j=0; j < offset_i ;j++ ){
@@ -77,25 +77,25 @@ BEGIN{
 }
 
 {
-	#�e�[�u���I�����`�F�b�N
+	#テーブル終了をチェック
 	if( $1 ~ "EVENT_DATA_END" ){
-		exit	#�I��
+		exit	#終了
 	}
 
-	#�e�[�u������
+	#テーブル検索
 	if( $1 ~ "EVENT_DATA" ){
 
-		#ID�p�̖��O
+		#ID用の名前
 		id_name = $2
-		#sub(/^[ev_]*/,"",id_name)				#�擪��"ev_"���폜(ev_egg �� gg �ɂȂ��Ă��܂�)
-		sub( "ev_", "", id_name)									#�擪��"ev_"���폜
+		#sub(/^[ev_]*/,"",id_name)				#先頭の"ev_"を削除(ev_egg → gg になってしまう)
+		sub( "ev_", "", id_name)									#先頭の"ev_"を削除
 
-		id_name2 = toupper(id_name)									#�啶���ɓ���
-		name2 = toupper(name)										#�啶���ɓ���
+		id_name2 = toupper(id_name)									#大文字に統一
+		name2 = toupper(name)										#大文字に統一
 
 		#05.12.06
-		#�g���[�i�[�̓_�u���o�g���̂��߂�ID��2�I�t�Z�b�g��ς��ďo�͂���(+2000)
-		#SXY�Ɏw�肷�鎞�ɁA�o�q�̍��E�ł��ꂼ��g��(_2)
+		#トレーナーはダブルバトルのためにIDを2つオフセットを変えて出力する(+2000)
+		#SXYに指定する時に、双子の左右でそれぞれ使う(_2)
 		if( name ~ "trainer" ){											#trainer.ev
 			print "#define\tSCRID_" id_name2 "\t\t" "(" count ")" > name "_def.h"	#ID_??
 			print "#define\tSCRID_" id_name2 "_2\t" "(" count+2000 ")" > name "_def.h"	#ID_??
@@ -108,11 +108,11 @@ BEGIN{
 }
 
 END{
-	#�ő吔�̒�`��ǉ�����
+	#最大数の定義を追加する
 	count = count - start
-	print "#define\tSCRID_" name2 "_DATA_MAX\t\t" "(" count ")\t\t\/\/�ő吔" > name "_def.h"#ID_??
+	print "#define\tSCRID_" name2 "_DATA_MAX\t\t" "(" count ")\t\t\/\/最大数" > name "_def.h"#ID_??
 
-	#���d�C���N���[�h�`�F�b�N
+	#多重インクルードチェック
 	print "\n#endif //_" name2 "_DEF_H_" > name "_def.h"#ID_??
 }
 

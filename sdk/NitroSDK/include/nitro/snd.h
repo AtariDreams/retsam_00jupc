@@ -15,22 +15,22 @@
   do-indent
 
   Revision 1.20  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL �̔��蕔���� SDK_WIN32 �ł̔�����ǉ�
+  SDK_FROM_TOOL の判定部分に SDK_WIN32 での判定も追加
 
   Revision 1.19  2005/04/12 06:15:11  ida
-  SND��NITRO-SDK�ֈڐ�
+  SNDをNITRO-SDKへ移設
 
   Revision 1.10  2005/04/12 00:53:19  ida
-  midiplayer.h�ǉ�
+  midiplayer.h追加
 
   Revision 1.9  2005/02/02 05:10:10  ida
   for SDK_FROM_TOOL
 
   Revision 1.8  2005/01/19 06:24:31  ida
-  bank.h���c�[��������Q�Ƃł���悤�ɕύX
+  bank.hをツールからも参照できるように変更
 
   Revision 1.7  2004/12/09 02:01:49  ida
-  init.h��#include���폜
+  init.hの#includeを削除
 
   Revision 1.6  2004/09/06 07:25:27  ida
   for SDK_FROM_TOOL
@@ -82,10 +82,10 @@
   Initial version
 
   Revision 1.2  2004/01/06 07:11:48  ida
-  ���쌠�\�L�̏C��
+  著作権表記の修正
 
   Revision 1.1  2003/12/22 04:01:21  ida
-  �V�K�쐬
+  新規作成
   
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

@@ -29,18 +29,18 @@ extern "C" {
 #endif
 
 /*---------------------------------------------------------------------------*
-    �A�j���[�V�����̓���T��:
+    アニメーションの動作概略:
 
-    matID, nodeID�Ɋւ��ăA�j���[�V�����������s���ꍇ�A
-    SBC�C���^�v���^����NNSG3dRenderObj�ɓo�^����Ă���Blend�֐����Ă΂��B
-    NNSG3d[Mat|Jnt]AnmResult*�ɂ́A����(���e�ɂ�BlendMat���ӔC�𕉂�)��
-    �i�[����邱�ƂɂȂ�ANNSG3dAnmObj*��NNSG3dRenderObj�̃f�[�^�����o�ł���A
-    �A�j���[�V�����I�u�W�F�N�g�̃��X�g�ł���B
+    matID, nodeIDに関してアニメーション処理を行う場合、
+    SBCインタプリタからNNSG3dRenderObjに登録されているBlend関数が呼ばれる。
+    NNSG3d[Mat|Jnt]AnmResult*には、結果(内容にはBlendMatが責任を負う)が
+    格納されることになり、NNSG3dAnmObj*はNNSG3dRenderObjのデータメンバである、
+    アニメーションオブジェクトのリストである。
  *---------------------------------------------------------------------------*/
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// �\���̒�`�y��typedef
+// 構造体定義及びtypedef
 //
 
 
@@ -48,8 +48,8 @@ struct NNSG3dResMdl_;
 /*---------------------------------------------------------------------------*
     NNSG3dAnimInitFunc
 
-    NNSG3dAnmObj������������֐��̌^�Bvoid*�̓A�j���[�V�������\�[�X�ւ̃|�C���^�B
-    �A�j���[�V�������\�[�X�̎�ނɂ����NNSG3dAnmObj�̏��������@�͈قȂ邽�߁B
+    NNSG3dAnmObjを初期化する関数の型。void*はアニメーションリソースへのポインタ。
+    アニメーションリソースの種類によってNNSG3dAnmObjの初期化方法は異なるため。
  *---------------------------------------------------------------------------*/
 typedef void (*NNSG3dAnimInitFunc)(NNSG3dAnmObj*,
                                    void*,
@@ -63,7 +63,7 @@ typedef void (*NNSG3dAnimInitFunc)(NNSG3dAnmObj*,
 /*---------------------------------------------------------------------------*
     NNSG3dAnmObjInitFunc
 
-    category0��category1��NNSG3dResAnmHeader�̂��̂Ɠ����ł���B
+    category0とcategory1はNNSG3dResAnmHeaderのものと同じである。
  *---------------------------------------------------------------------------*/
 typedef struct
 {
@@ -76,10 +76,10 @@ NNSG3dAnmObjInitFunc;
 
 
 /*---------------------------------------------------------------------------*
-    �}�e���A���A�j���[�V�����̓���ɂ���
+    マテリアルアニメーションの動作について
 
-    �}�e���A���A�j���[�V�����̌v�Z��NNSG3dMatAnmResult�Ɏ��X�ƒl���㏑�����Ă����A
-    �Ō�ɃW�I���g���G���W���Ƀf�[�^�𑗐M���邱�Ƃōs����B
+    マテリアルアニメーションの計算はNNSG3dMatAnmResultに次々と値を上書きしていき、
+    最後にジオメトリエンジンにデータを送信することで行われる。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
@@ -97,8 +97,8 @@ NNSG3dMatAnmResultFlag;
 /*---------------------------------------------------------------------------*
     NNSG3dMatAnmResult
 
-    �v�Z���ꂽ�}�e���A�������i�[���邽�߂̍\���́B
-    SBC��MAT�R�}���h�����Ōv�Z�����B
+    計算されたマテリアル情報を格納するための構造体。
+    SBCのMATコマンド内部で計算される。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dMatAnmResult_
 {
@@ -109,8 +109,8 @@ typedef struct NNSG3dMatAnmResult_
     u32                    prmTexImage;
     u32                    prmTexPltt;
 
-    // flag��SCALEONE/ROTZERO/TRANSZERO�̏ꍇ��
-    // �Ή�����l�̓Z�b�g����Ă��Ȃ��B
+    // flagのSCALEONE/ROTZERO/TRANSZEROの場合は
+    // 対応する値はセットされていない。
     fx32                   scaleS, scaleT;
     fx16                   sinR, cosR;
     fx32                   transS, transT;
@@ -122,9 +122,9 @@ NNSG3dMatAnmResult;
 
 
 /*---------------------------------------------------------------------------*
-    �W���C���g�A�j���[�V�����̓���ɂ���
+    ジョイントアニメーションの動作について
 
-    �N�H�[�^�j�I���̓T�|�[�g����Ă��Ȃ��B
+    クォータニオンはサポートされていない。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
@@ -142,10 +142,10 @@ NNSG3dJntAnmResultFlag;
 /*---------------------------------------------------------------------------*
     NNSG3dJntAnmResult
 
-    �v�Z���ꂽ�m�[�h�����i�[���邽�߂̍\���́B
-    SBC��NODEDESC�R�}���h�����Ōv�Z�����B
-    scaleEx0��scaleEx1��Maya��SSC,Si3d��Classic Scale off�̏ꍇ��
-    �t���I�ȃX�P�[�������i�[���邽�߂Ɏg�p�����B
+    計算されたノード情報を格納するための構造体。
+    SBCのNODEDESCコマンド内部で計算される。
+    scaleEx0とscaleEx1はMayaのSSC,Si3dのClassic Scale offの場合に
+    付加的なスケール情報を格納するために使用される。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dJntAnmResult_
 {
@@ -160,16 +160,16 @@ NNSG3dJntAnmResult;
 
 
 /*---------------------------------------------------------------------------*
-    �r�W�r���e�B�A�j���[�V�����̓���ɂ���
+    ビジビリティアニメーションの動作について
 
-    �W���C���g���ۂ��ƌ������茩���Ȃ��Ȃ����肵�܂��B
+    ジョイントが丸ごと見えたり見えなくなったりします。
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
     NNSG3dVisAnmResult
 
-    �v�Z���ꂽ�r�W�r���e�B�����i�[���邽�߂̍\���́B
-    SBC��NODE�R�}���h�����Ōv�Z�����B
+    計算されたビジビリティ情報を格納するための構造体。
+    SBCのNODEコマンド内部で計算される。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dVisAnmResult_
 {
@@ -178,17 +178,17 @@ typedef struct NNSG3dVisAnmResult_
 NNSG3dVisAnmResult;
 
 
-// �}�e���A���A�j���[�V�����v�Z�֐�
+// マテリアルアニメーション計算関数
 typedef void (*NNSG3dFuncAnmMat)(NNSG3dMatAnmResult*,
                                  const NNSG3dAnmObj*,
                                  u32);
 
-// �W���C���g�A�j���[�V�����v�Z�֐�
+// ジョイントアニメーション計算関数
 typedef void (*NNSG3dFuncAnmJnt)(NNSG3dJntAnmResult*,
                                  const NNSG3dAnmObj*,
                                  u32);
 
-// �r�W�r���e�B�A�j���[�V�����v�Z�֐�
+// ビジビリティアニメーション計算関数
 typedef void (*NNSG3dFuncAnmVis)(NNSG3dVisAnmResult*,
                                  const NNSG3dAnmObj*,
                                  u32);
@@ -196,12 +196,12 @@ typedef void (*NNSG3dFuncAnmVis)(NNSG3dVisAnmResult*,
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// �֐��̐錾
+// 関数の宣言
 //
 
 //
-// �}�e���A���A�j���[�V�����u�����h�֐��̃f�t�H���g
-// �P���ɁA��Ōv�Z���ꂽ�A�j���[�V�������ʂ��D�悷��B
+// マテリアルアニメーションブレンド関数のデフォルト
+// 単純に、後で計算されたアニメーション結果が優先する。
 //
 BOOL NNSi_G3dAnmBlendMat(NNSG3dMatAnmResult* pResult,
                          const NNSG3dAnmObj* pAnmObj,
@@ -217,20 +217,20 @@ BOOL NNSi_G3dAnmBlendVis(NNSG3dVisAnmResult*,
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// �O���[�o���ϐ�
+// グローバル変数
 //
 
 //
-// �f�t�H���g�̃A�j���[�V�����u�����h�֐��ւ̃|�C���^
-// NNS_G3dRenderObjInit�ɂ�����NNSG3dRenderObj�������ݒ肷�邽�߂Ɏg�p�����B
+// デフォルトのアニメーションブレンド関数へのポインタ
+// NNS_G3dRenderObjInitにおいてNNSG3dRenderObjを初期設定するために使用される。
 //
 extern NNSG3dFuncAnmBlendMat NNS_G3dFuncBlendMatDefault;
 extern NNSG3dFuncAnmBlendJnt NNS_G3dFuncBlendJntDefault;
 extern NNSG3dFuncAnmBlendVis NNS_G3dFuncBlendVisDefault;
 
 //
-// �f�t�H���g�̃A�j���[�V�����v�Z�֐��ւ̃|�C���^
-// NNS_G3dAnmObjInit�ɂ�����NNSG3dAnmObj�������ݒ肷�邽�߂Ɏg�p�����B
+// デフォルトのアニメーション計算関数へのポインタ
+// NNS_G3dAnmObjInitにおいてNNSG3dAnmObjを初期設定するために使用される。
 //
 extern NNSG3dFuncAnmMat NNS_G3dFuncAnmMatNsBmaDefault;
 extern NNSG3dFuncAnmMat NNS_G3dFuncAnmMatNsBtpDefault;

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FSDirEntry</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FSDirEntry</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -34,48 +34,48 @@ typedef  struct
   </dd>
 </dl>
 
-<H2>����</H2>
-<P>FS_ReadDir�֐��ɂ���ăf�B���N�g���G���g�������擾���邽�߂̍\���̂ł��B<BR>
-�e�����o�̓��e�͈ȉ��̒ʂ�ł��B<BR>
+<H2>説明</H2>
+<P>FS_ReadDir関数によってディレクトリエントリ情報を取得するための構造体です。<BR>
+各メンバの内容は以下の通りです。<BR>
 <TABLE border="0">
   <TBODY>
     <TR>
       <TD>file_id</TD>
-      <TD>is_directory��0�̏ꍇ�Ɍ���A�L���ȃt�@�C��ID��\���܂��B<BR>
-	  ���̒l�́AFS_OpenFileFast�֐��Ŏg�p���܂��B</TD>
+      <TD>is_directoryが0の場合に限り、有効なファイルIDを表します。<BR>
+	  この値は、FS_OpenFileFast関数で使用します。</TD>
     </TR>
     <TR>
       <TD>dir_id</TD>
-      <TD>is_directory��1�̏ꍇ�Ɍ���A�L���ȃf�B���N�g�����X�g�ʒu��\���܂��B<BR>
-	  ���̒l�́AFS_SeekDir�֐��Ŏg�p���܂��B</TD>
+      <TD>is_directoryが1の場合に限り、有効なディレクトリリスト位置を表します。<BR>
+	  この値は、FS_SeekDir関数で使用します。</TD>
     </TR>
     <TR>
       <TD>is_directory</TD>
-      <TD>FS_ReadDir�֐��ɂ���Ă��̍\���̂֊i�[���ꂽ���̎�ނ�\���܂��B<BR>
-	  ���̒l��0�ł���΃t�@�C�����A1�ł���΃f�B���N�g����\���܂��B</TD>
+      <TD>FS_ReadDir関数によってこの構造体へ格納された情報の種類を表します。<BR>
+	  この値が0であればファイルを、1であればディレクトリを表します。</TD>
     </TR>
     <TR>
       <TD>name_len</TD>
-      <TD>name�֊i�[���ꂽ�t�@�C�����܂��̓f�B���N�g�����̕�������\���܂��B<BR>
-	  ���̕������ɂ͏I�[��NUL�͊܂܂�܂���B</TD>
+      <TD>nameへ格納されたファイル名またはディレクトリ名の文字数を表します。<BR>
+	  この文字数には終端のNULは含まれません。</TD>
     </TR>
     <TR>
       <TD>name</TD>
-      <TD>�t�@�C�����܂��̓f�B���N�g�����̕������\���܂��B<BR>
-	  FS_ReadDir�֐��͂��̕�����֏I�[��"\0"��t�����܂��B</TD>
+      <TD>ファイル名またはディレクトリ名の文字列を表します。<BR>
+	  FS_ReadDir関数はこの文字列へ終端の"\0"を付加します。</TD>
     </TR>
   </TBODY>
 </TABLE>
 <BR>
 </P>
-<H2>����</H2>
-<P>���̌^�̃T�C�Y�͏����̊g���ŕύX�����\��������܂��B<BR>
-���݂̎����ɂ�����T�C�Y�Ɉˑ������v���O���~���O�͔����Ă��������B<BR>
+<H2>注意</H2>
+<P>この型のサイズは将来の拡張で変更される可能性があります。<BR>
+現在の実装におけるサイズに依存したプログラミングは避けてください。<BR>
 <BR>
 </P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
-2004/11/02 �\���̒�`���w�b�_�t�@�C���Ɠ���ɒ���<br>
+2004/11/02 構造体定義をヘッダファイルと同一に訂正<br>
 <A href="fs_dir_pos_type.html">FSDirPos</A> 
 <A href="file/FS_OpenFileFast.html">FS_OpenFileFast</A> 
 <A href="file/FS_ReadDir.html">FS_ReadDir</A> 
@@ -83,8 +83,8 @@ typedef  struct
 <A href="fs_file_name_max_const.html">FS_FILE_NAME_MAX</A> 
 </CODE></p>
 
-<H2>����</H2>
-<P>2004/05/14 file_id�̌^��u32����FSFileID�֕ύX</P>
-<P>2004/04/01 ����</P>
+<H2>履歴</H2>
+<P>2004/05/14 file_idの型をu32からFSFileIDへ変更</P>
+<P>2004/04/01 初版</P>
 </body>
 </html>

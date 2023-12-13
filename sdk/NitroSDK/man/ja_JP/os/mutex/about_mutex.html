@@ -1,22 +1,22 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<TITLE>�r������(Mutex) (overview) </TITLE>
+<TITLE>排他制御(Mutex) (overview) </TITLE>
 <LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </HEAD>
 <BODY>
-<H1 align="left">�r������(Mutex) (overview)</H1>
-<H2>����</H2>
-<P>mutex (�~���[�e�b�N�Amutual exclusion (service) ) �́A�X���b�h�Ԃ̔r������̂��߂̋@�\�ł��B�v���O�����̓���̌��ɂ��ĕ����̃X���b�h����̓������s��}�����A�f�[�^�⃌�W�X�^�Ȃǂ̃��\�[�X�������ɕ����̃X���b�h����A�N�Z�X����Ȃ��悤�ɂ��܂��B</P>
+<H1 align="left">排他制御(Mutex) (overview)</H1>
+<H2>説明</H2>
+<P>mutex (ミューテック、mutual exclusion (service) ) は、スレッド間の排他制御のための機構です。プログラムの特定の個所について複数のスレッドからの同時実行を抑制し、データやレジスタなどのリソースが同時に複数のスレッドからアクセスされないようにします。</P>
 <HR>
-<P><B>mutex �̏�����</B></P>
-<P>mutex �̏������� <CODE><A href="OS_InitMutex.html">OS_InitMutex()</A></CODE> �ōs�Ȃ��܂��B 1�� OSMutex �\���̂̃I�u�W�F�N�g��1�� mutex ��ݒ肷�邱�Ƃ��o���܂��B</P>
+<P><B>mutex の初期化</B></P>
+<P>mutex の初期化は <CODE><A href="OS_InitMutex.html">OS_InitMutex()</A></CODE> で行ないます。 1つの OSMutex 構造体のオブジェクトに1つの mutex を設定することが出来ます。</P>
 <HR>
-<P><B>mutex �̍\��</B></P>
-<P>OSMutex �\���̂́A</P>
+<P><B>mutex の構造</B></P>
+<P>OSMutex 構造体は、</P>
 <TABLE border="1">
   <TBODY>
     <TR>
@@ -37,67 +37,67 @@ struct OSMutex
   </TBODY>
 </TABLE>
 <P><BR>
-�ƂȂ��Ă��܂��B���̂����Aprev �� next �� mutex �����X�g�\���ŊǗ����邽�߂̃����o�ŁA�����I��
-mutex �̋@�\���ׂ����̂� queue �� thread �� count �ł��B</P>
-<P>queue �́A���� mutex �ɂ���đ҂�����Ă���X���b�h���o�^�����X���b�h�L���[�ł��B</P>
-<P>thread �́A���� mutex �ő��̃X���b�h�����b�N���Ă���J�����g�X���b�h��o�^���郁���o�ł��B</P>
-<P>count �́A���� mutex �ɑ΂��郍�b�N�̃l�X�g���Ǘ����郁���o�ł��B</P>
-<P>Mutex �������������Ƃ��A�e�����o�͈ȉ��̒l�ɂȂ��Ă��܂��B</P>
+となっています。このうち、prev と next は mutex をリスト構造で管理するためのメンバで、実質的に
+mutex の機能を為すものは queue と thread と count です。</P>
+<P>queue は、この mutex によって待たされているスレッドが登録されるスレッドキューです。</P>
+<P>thread は、この mutex で他のスレッドをロックしているカレントスレッドを登録するメンバです。</P>
+<P>count は、この mutex に対するロックのネストを管理するメンバです。</P>
+<P>Mutex を初期化したとき、各メンバは以下の値になっています。</P>
 <BLOCKQUOTE><IMG src="image_initial_member.gif" border="0"></BLOCKQUOTE>
 <HR>
-<P><B>mutex �̃��b�N</B></P>
-<P>mutex �ɂ�� ���b�N���s�Ȃ��֐��� <CODE><A href="OS_LockMutex.html">OS_LockMutex()</A></CODE> �ł��B</P>
-<P>�v���O�����̂������ <CODE><A href="OS_LockMutex.html">OS_LockMutex()</A></CODE> ���L�q����ƁA�w�肵��mutex �����̎��_�Ń��b�N�Ɏg�p����Ă��Ȃ��ꍇ�A�J�����g�X���b�h���L�����ă��b�N�������܂��B</P>
-<P>���łɃ��b�N����Ă��� mutex ���w�肵�� <CODE><A href="OS_LockMutex.html">OS_LockMutex()</A></CODE> �����s�����ƁAmutex �����݂̃X���b�h�Ɠ����X���b�h�ɂ���ă��b�N����Ă���ꍇ��
-mutex �� count ���C���N�������g������Ŋ֐�����߂�A�قȂ�X���b�h�ł������ꍇ�̓��b�N�����������܂Ō��݂̃X���b�h�͈ꎞ��~��ԂɂȂ�܂��B���̂Ƃ��X���b�h�̃��X�P�W���[�����O���������܂��B</P>
-<P>�Ⴆ�΁A���}�̂悤�� Mutex1 �ƁA������g���ă��b�N��������v���O����������ꍇ���l���܂��B</P>
+<P><B>mutex のロック</B></P>
+<P>mutex による ロックを行なう関数は <CODE><A href="OS_LockMutex.html">OS_LockMutex()</A></CODE> です。</P>
+<P>プログラムのある個所に <CODE><A href="OS_LockMutex.html">OS_LockMutex()</A></CODE> を記述すると、指定したmutex がその時点でロックに使用されていない場合、カレントスレッドを記憶してロックをかけます。</P>
+<P>すでにロックされている mutex を指定した <CODE><A href="OS_LockMutex.html">OS_LockMutex()</A></CODE> が実行されると、mutex が現在のスレッドと同じスレッドによってロックされている場合は
+mutex の count をインクリメントした上で関数から戻り、異なるスレッドであった場合はロックが解除されるまで現在のスレッドは一時停止状態になります。このときスレッドのリスケジューリングが発生します。</P>
+<P>例えば、下図のように Mutex1 と、それを使ってロックをかけるプログラムがある場合を考えます。</P>
 <BLOCKQUOTE><IMG src="image_mutex_l1.gif" border="0"></BLOCKQUOTE>
-<P>���̃v���O������ thread1 �����s���悤�Ƃ��܂��Bthread1 �� mutex �̃��b�N�֐�
-<CODE>OS_LockMutex( &amp;Mutex1 )</CODE> �����s���܂����AMutex1 �͂��̎��_�ł܂��g���Ă��Ȃ��̂� ( �g���Ă��Ȃ��Ƃ������f��
-Mutex1 �� owner thread �� NULL �ł��邱�Ƃ𗘗p���Ă��܂��B)�A thread1
-�� Mutex1 �� owner thread �ł��邱�Ƃ��L�����Acount �� 1 �ɂ��ă��b�N�֐�����߂�܂��B</P>
+<P>このプログラムを thread1 が実行しようとします。thread1 は mutex のロック関数
+<CODE>OS_LockMutex( &amp;Mutex1 )</CODE> を実行しますが、Mutex1 はこの時点でまだ使われていないので ( 使われていないという判断は
+Mutex1 の owner thread が NULL であることを利用しています。)、 thread1
+が Mutex1 の owner thread であることを記憶し、count を 1 にしてロック関数から戻ります。</P>
 <BLOCKQUOTE><IMG src="image_mutex_l2.gif" border="0"></BLOCKQUOTE>
-<P>�����ŕʂ̃X���b�h thread2 �������v���O���������s���悤�Ƃ����ꍇ���l���܂��Bthread2
-�� <CODE>OS_LockMutex( &amp;Mutex1 )</CODE> �����s���܂����AMutex1 �͂��łɃ��b�N�Ɏg�p����Ă��܂��BMutex1 �� owner
-thread�@�� thread2 �ł͂Ȃ��̂� thread2 �͂��������ɐi�ނ��Ƃ��o���܂���B���ʁAthread2
-�͈ꎞ��~��Ԃɓ���܂��B���̎��AMutex1 ���� thread queue�@�ɂ��̃��b�N�̉�����҂��Ă���X���b�h�Ƃ��āA
-thread2 ��o�^���Ă����܂��B<BLOCKQUOTE><IMG src="image_mutex_l3.gif" border="0"></BLOCKQUOTE>
-<P>����Atherad1 ���Ăтǂ�����(�����s�ł����Ă��A�ʂ̍s�ł����Ă�) <CODE>OS_LockMutex( &amp;Mutex1 )</CODE> �����s����ꍇ���l���܂��BMutex1 �͂��łɃ��b�N�Ɏg�p����Ă��܂��� Mutex1�@��
-owner thread �͌��݂̃X���b�h thread1 �Ɠ������̂ŁA���̂܂ܒʉ߂��邱�Ƃ��o���܂��B���̎�
-Mutex1 ���� count ���C���N�������g���܂��B<BLOCKQUOTE><IMG src="image_mutex_l4.gif" border="0"></BLOCKQUOTE>
-<P>�Ȃ��A�����̃X���b�h����� mutex �� thread queue �ɓo�^����邱�Ƃ�����܂��B�����͂��ׂĂ���
-mutex �ɂ���ă��b�N����Ă���X���b�h�ł��B���ׂẴX���b�h�������s�ňꎞ��~��ԂɂȂ��Ă���Ƃ͌���܂���Bmutex
-�̃��b�N�����������ƁA�o�^����Ă���S�ẴX���b�h�͎��s�\��ԂɂȂ�܂��B<BLOCKQUOTE><IMG src="image_mutex_l5.gif" border="0"></BLOCKQUOTE>
+<P>ここで別のスレッド thread2 が同じプログラムを実行しようとした場合を考えます。thread2
+も <CODE>OS_LockMutex( &amp;Mutex1 )</CODE> を実行しますが、Mutex1 はすでにロックに使用されています。Mutex1 の owner
+thread　は thread2 ではないので thread2 はここから先に進むことが出来ません。結果、thread2
+は一時停止状態に入ります。この時、Mutex1 内の thread queue　にこのロックの解除を待っているスレッドとして、
+thread2 を登録しておきます。<BLOCKQUOTE><IMG src="image_mutex_l3.gif" border="0"></BLOCKQUOTE>
+<P>一方、therad1 が再びどこかの(同じ行であっても、別の行であっても) <CODE>OS_LockMutex( &amp;Mutex1 )</CODE> を実行する場合を考えます。Mutex1 はすでにロックに使用されていますが Mutex1　の
+owner thread は現在のスレッド thread1 と等しいので、そのまま通過することが出来ます。この時
+Mutex1 内の count をインクリメントします。<BLOCKQUOTE><IMG src="image_mutex_l4.gif" border="0"></BLOCKQUOTE>
+<P>なお、複数のスレッドが一つの mutex の thread queue に登録されることもあります。これらはすべてその
+mutex によってロックされているスレッドです。すべてのスレッドが同じ行で一時停止状態になっているとは限りません。mutex
+のロックが解除されると、登録されている全てのスレッドは実行可能状態になります。<BLOCKQUOTE><IMG src="image_mutex_l5.gif" border="0"></BLOCKQUOTE>
 <HR>
-<P><B>mutex �̃��b�N�̉��</B></P>
-<P>mutex �ɂ�� ���b�N���������֐��� <CODE><A href="OS_UnlockMutex.html">OS_UnlockMutex()</A>�ł��B</CODE></P>
-<P>�������A�K���������킯�ł͂Ȃ��Amutex ������ count �l���f�N�������g�������ʂ�
-0 �ł���Ƃ��̂݃��b�N��������܂��B0 �łȂ��ꍇ�́Acount �l���f�N�������g����݂̂Ŋ֐�����߂�܂��B<P>�Ⴆ�΁A���}�̂悤�� thread1 �� Mutex1 ��p���� thread2 �����b�N���Ă����ԂŁAthread1
-�� <CODE>OS_UnlockMutex( &amp;Mutex1 )</CODE> �����s����ꍇ���l���܂��B<BLOCKQUOTE><IMG src="image_mutex_u1.gif" border="0"></BLOCKQUOTE>
-<P>���̎��Acount ���f�N�������g��������0 �ƂȂ�̂ŁAthread queue �ɓo�^����Ă���X���b�h�����s�\��Ԃɂ��ă��X�P�W���[�����O���܂��B���̏ꍇ
-thread2 �����s�\��ԂɂȂ�܂��B</P>
+<P><B>mutex のロックの解放</B></P>
+<P>mutex による ロックを解放する関数は <CODE><A href="OS_UnlockMutex.html">OS_UnlockMutex()</A>です。</CODE></P>
+<P>ただし、必ず解放するわけではなく、mutex 内部の count 値をデクリメントした結果が
+0 であるときのみロックを解放します。0 でない場合は、count 値をデクリメントするのみで関数から戻ります。<P>例えば、下図のように thread1 が Mutex1 を用いて thread2 をロックしている状態で、thread1
+が <CODE>OS_UnlockMutex( &amp;Mutex1 )</CODE> を実行する場合を考えます。<BLOCKQUOTE><IMG src="image_mutex_u1.gif" border="0"></BLOCKQUOTE>
+<P>この時、count をデクリメントした結果0 となるので、thread queue に登録されているスレッドを実行可能状態にしてリスケジューリングします。この場合
+thread2 が実行可能状態になります。</P>
 <BLOCKQUOTE><IMG src="image_mutex_u2.gif" border="0"></BLOCKQUOTE>
-<P>������ thread2 �� thread1 ���D��x�̍����X���b�h�ł���΁Athread1 ���ꎞ��~��ԂƂȂ��āA
-thread2 �����s��ԂƂȂ�܂��Bthread2 �� <CODE><A href="OS_LockMutex.html">OS_LockMutex( &amp;Mutex1 )</A></CODE> �����s���悤�Ƃ��� thread1 �Ƀ��b�N����Ă����̂ł����AMutex1 �͏���������Ă��܂��̂ŁA���x��
-thread2 �� Mutex1 ��p���đ��̃X���b�h�����b�N���邱�ƂɂȂ�܂��B<BLOCKQUOTE><IMG src="image_mutex_u3.gif" border="0"><BR>
+<P>もしも thread2 が thread1 より優先度の高いスレッドであれば、thread1 が一時停止状態となって、
+thread2 が実行状態となります。thread2 は <CODE><A href="OS_LockMutex.html">OS_LockMutex( &amp;Mutex1 )</A></CODE> を実行しようとして thread1 にロックされていたのですが、Mutex1 は初期化されていますので、今度は
+thread2 が Mutex1 を用いて他のスレッドをロックすることになります。<BLOCKQUOTE><IMG src="image_mutex_u3.gif" border="0"><BR>
 </BLOCKQUOTE>
-<P>thread1 �� <CODE><A href="OS_UnlockMutex.html">OS_UnlockMutex()</A></CODE> �����s���āAcount �l���f�N�������g���Ă� 0 �łȂ��ꍇ�͂܂����̃��b�N����������Ă��Ȃ����̂ƍl���A���̂܂܃X���[���܂��B���̎��̓X���b�h�̃��X�P�W���[�����O�͔������܂���B���̂悤�ɁA���b�N�ƃ��b�N�̉���̓l�X�g(����q)�\���ɂȂ��Ă��Ă��\���܂���B<BLOCKQUOTE><IMG src="image_mutex_u4.gif" border="0"></BLOCKQUOTE>
+<P>thread1 が <CODE><A href="OS_UnlockMutex.html">OS_UnlockMutex()</A></CODE> を実行して、count 値をデクリメントしても 0 でない場合はまだ他のロックが解除されていないものと考え、そのままスルーします。この時はスレッドのリスケジューリングは発生しません。このように、ロックとロックの解放はネスト(入れ子)構造になっていても構いません。<BLOCKQUOTE><IMG src="image_mutex_u4.gif" border="0"></BLOCKQUOTE>
 <HR>
-<P><B>mutex �̃��b�N���s</B></P>
-<P><CODE><A href="OS_LockMutex.html">OS_LockMutex()</A></CODE> �̓��b�N�o����܂Ŋ֐�����߂�܂��񂪁A����ɑ΂��A���b�N�ł���΂��邪�o���Ȃ���΂����ɖ߂�Ƃ����֐���
-<CODE><A href="OS_TryLockMutex.html">OS_TryLockMutex() </A></CODE>�ł��B
+<P><B>mutex のロック試行</B></P>
+<P><CODE><A href="OS_LockMutex.html">OS_LockMutex()</A></CODE> はロック出来るまで関数から戻りませんが、それに対し、ロックできればするが出来なければすぐに戻るという関数が
+<CODE><A href="OS_TryLockMutex.html">OS_TryLockMutex() </A></CODE>です。
 
-<P><CODE><A href="OS_TryLockMutex.html">OS_TryLockMutex()</A></CODE> �́A���̕Ԃ�l�ɂ�胍�b�N�ɐ����������ǂ�����m�邱�Ƃ��o���܂��B
+<P><CODE><A href="OS_TryLockMutex.html">OS_TryLockMutex()</A></CODE> は、その返り値によりロックに成功したかどうかを知ることが出来ます。
 
 <HR>
-<P><B>�X���b�h�I�����̏���</B></P>
-<P>�X���b�h���I������Ƃ��́A���̃X���b�h�����b�N���Ă��� mutex �͂��ׂĉ������܂��B</P>
-<H2>�Q��</H2>
+<P><B>スレッド終了時の処理</B></P>
+<P>スレッドが終了するときは、そのスレッドがロックしていた mutex はすべて解放されます。</P>
+<H2>参照</H2>
 <P><CODE>
-<A href="../list_os.html#Mutex">OS�֐��ꗗ(�r������)<BR>
+<A href="../list_os.html#Mutex">OS関数一覧(排他制御)<BR>
 </A></CODE></P>
-<H2>����</H2>
-<P>2004/12/14 �p������ȂǏC��<BR>
-2004/11/11 ����</P>
+<H2>履歴</H2>
+<P>2004/12/14 用語や語尾など修正<BR>
+2004/11/11 初版</P>
 </BODY>
 </HTML>

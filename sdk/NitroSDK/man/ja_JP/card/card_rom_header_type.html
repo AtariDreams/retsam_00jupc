@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>CARDRomHeader</title>
@@ -12,66 +12,66 @@
 <body>
 
 <h1 align="left">CARDRomHeader</h1>
-<h2>’è‹`</h2>
+<h2>å®šç¾©</h2>
 
 <dl>
   <dd>
 <CODE>#include &lt;nitro/card.h&gt;</CODE><br>
   <br>
   <pre>
-/* ROM ƒwƒbƒ_ \‘¢‘Ì */
+/* ROM ãƒ˜ãƒƒãƒ€ æ§‹é€ ä½“ */
 typedef struct
 {
 
-    /* 0x000-0x020 [ƒVƒXƒeƒ€—\–ñ—Ìˆæ] */
-    char            game_name[12];      /* ƒ\ƒtƒgƒ^ƒCƒgƒ‹–¼ */
-    u32             game_code;          /* ƒCƒjƒVƒƒƒ‹ƒR[ƒh */
-    u16             maker_code;         /* ƒ[ƒJ[ƒR[ƒh */
-    u8              product_id;         /* –{‘ÌƒR[ƒh */
-    u8              device_type;        /* ƒfƒoƒCƒXƒ^ƒCƒv */
-    u8              device_size;        /* ƒfƒoƒCƒX—e—Ê */
-    u8              reserved_A[9];      /* ƒVƒXƒeƒ€—\–ñ A */
-    u8              game_version;       /* ƒ\ƒtƒgƒo[ƒWƒ‡ƒ“ */
-    u8              property;           /* “à•”g—pƒtƒ‰ƒO */
+    /* 0x000-0x020 [ã‚·ã‚¹ãƒ†ãƒ äºˆç´„é ˜åŸŸ] */
+    char            game_name[12];      /* ã‚½ãƒ•ãƒˆã‚¿ã‚¤ãƒˆãƒ«å */
+    u32             game_code;          /* ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ */
+    u16             maker_code;         /* ãƒ¡ãƒ¼ã‚«ãƒ¼ã‚³ãƒ¼ãƒ‰ */
+    u8              product_id;         /* æœ¬ä½“ã‚³ãƒ¼ãƒ‰ */
+    u8              device_type;        /* ãƒ‡ãƒã‚¤ã‚¹ã‚¿ã‚¤ãƒ— */
+    u8              device_size;        /* ãƒ‡ãƒã‚¤ã‚¹å®¹é‡ */
+    u8              reserved_A[9];      /* ã‚·ã‚¹ãƒ†ãƒ äºˆç´„ A */
+    u8              game_version;       /* ã‚½ãƒ•ãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³ */
+    u8              property;           /* å†…éƒ¨ä½¿ç”¨ãƒ•ãƒ©ã‚° */
 
-    /* 0x020-0x040 [í’“ƒ‚ƒWƒ…[ƒ‹—pƒpƒ‰ƒ[ƒ^] */
-    void*           main_rom_offset;    /* ARM9 “]‘—Œ³ ROM ƒIƒtƒZƒbƒg */
-    void*           main_entry_address; /* ARM9 ÀsŠJnƒAƒhƒŒƒX(–¢À‘•) */
-    void*           main_ram_address;   /* ARM9 “]‘—æ RAM ƒIƒtƒZƒbƒg */
-    u32             main_size;          /* ARM9 “]‘—ƒTƒCƒY */
-    void*           sub_rom_offset;     /* ARM7 “]‘—Œ³ ROM ƒIƒtƒZƒbƒg */
-    void*           sub_entry_address;  /* ARM7 ÀsŠJnƒAƒhƒŒƒX(–¢À‘•) */
-    void*           sub_ram_address;    /* ARM7 “]‘—æ RAM ƒIƒtƒZƒbƒg */
-    u32             sub_size;           /* ARM7 “]‘—ƒTƒCƒY */
+    /* 0x020-0x040 [å¸¸é§ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿] */
+    void*           main_rom_offset;    /* ARM9 è»¢é€å…ƒ ROM ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
+    void*           main_entry_address; /* ARM9 å®Ÿè¡Œé–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹(æœªå®Ÿè£…) */
+    void*           main_ram_address;   /* ARM9 è»¢é€å…ˆ RAM ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
+    u32             main_size;          /* ARM9 è»¢é€ã‚µã‚¤ã‚º */
+    void*           sub_rom_offset;     /* ARM7 è»¢é€å…ƒ ROM ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
+    void*           sub_entry_address;  /* ARM7 å®Ÿè¡Œé–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹(æœªå®Ÿè£…) */
+    void*           sub_ram_address;    /* ARM7 è»¢é€å…ˆ RAM ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
+    u32             sub_size;           /* ARM7 è»¢é€ã‚µã‚¤ã‚º */
 
-    /* 0x040-0x050 [ƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹—pƒpƒ‰ƒ[ƒ^] */
-    <A href="card_rom_region_type.html">CARDRomRegion</a>   fnt;                /* ƒtƒ@ƒCƒ‹ƒl[ƒ€ƒe[ƒuƒ‹ */
-    <A href="card_rom_region_type.html">CARDRomRegion</a>   fat;                /* ƒtƒ@ƒCƒ‹ƒAƒƒP[ƒVƒ‡ƒ“ƒe[ƒuƒ‹ */
+    /* 0x040-0x050 [ãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿] */
+    <A href="card_rom_region_type.html">CARDRomRegion</a>   fnt;                /* ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ ãƒ†ãƒ¼ãƒ–ãƒ« */
+    <A href="card_rom_region_type.html">CARDRomRegion</a>   fat;                /* ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ« */
 
-    /* 0x050-0x060 [ƒI[ƒo[ƒŒƒCƒwƒbƒ_ƒe[ƒuƒ‹—pƒpƒ‰ƒ[ƒ^] */
-    <A href="card_rom_region_type.html">CARDRomRegion</a>   main_ovt;           /* ARM9 ƒI[ƒo[ƒŒƒCƒwƒbƒ_ƒe[ƒuƒ‹ */
-    <A href="card_rom_region_type.html">CARDRomRegion</a>   sub_ovt;            /* ARM7 ƒI[ƒo[ƒŒƒCƒwƒbƒ_ƒe[ƒuƒ‹ */
+    /* 0x050-0x060 [ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ˜ãƒƒãƒ€ãƒ†ãƒ¼ãƒ–ãƒ«ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿] */
+    <A href="card_rom_region_type.html">CARDRomRegion</a>   main_ovt;           /* ARM9 ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ˜ãƒƒãƒ€ãƒ†ãƒ¼ãƒ–ãƒ« */
+    <A href="card_rom_region_type.html">CARDRomRegion</a>   sub_ovt;            /* ARM7 ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ˜ãƒƒãƒ€ãƒ†ãƒ¼ãƒ–ãƒ« */
 
-    /* 0x060-0x070 [ƒVƒXƒeƒ€—\–ñ—Ìˆæ] */
-    u8              rom_param_A[8];     /* ƒ}ƒXƒN ROM ƒRƒ“ƒgƒ[ƒ‹ƒpƒ‰ƒ[ƒ^ A */
-    u32             banner_offset;      /* ƒoƒi[ƒtƒ@ƒCƒ‹ ROM ƒIƒtƒZƒbƒg */
-    u16             secure_crc;         /* ƒZƒLƒ…ƒA—Ìˆæ CRC */
-    u8              rom_param_B[2];     /* ƒ}ƒXƒN ROM ƒRƒ“ƒgƒ[ƒ‹ƒpƒ‰ƒ[ƒ^ B */
+    /* 0x060-0x070 [ã‚·ã‚¹ãƒ†ãƒ äºˆç´„é ˜åŸŸ] */
+    u8              rom_param_A[8];     /* ãƒã‚¹ã‚¯ ROM ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ A */
+    u32             banner_offset;      /* ãƒãƒŠãƒ¼ãƒ•ã‚¡ã‚¤ãƒ« ROM ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
+    u16             secure_crc;         /* ã‚»ã‚­ãƒ¥ã‚¢é ˜åŸŸ CRC */
+    u8              rom_param_B[2];     /* ãƒã‚¹ã‚¯ ROM ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ B */
 
-    /* 0x070-0x078 [ƒI[ƒgƒ[ƒhƒpƒ‰ƒ[ƒ^] */
-    void*           main_autoload_done; /* ARM9 ƒI[ƒgƒ[ƒhƒtƒbƒNƒAƒhƒŒƒX */
-    void*           sub_autoload_done;  /* ARM7 ƒI[ƒgƒ[ƒhƒtƒbƒNƒAƒhƒŒƒX */
+    /* 0x070-0x078 [ã‚ªãƒ¼ãƒˆãƒ­ãƒ¼ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿] */
+    void*           main_autoload_done; /* ARM9 ã‚ªãƒ¼ãƒˆãƒ­ãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ */
+    void*           sub_autoload_done;  /* ARM7 ã‚ªãƒ¼ãƒˆãƒ­ãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ */
 
-    /* 0x078-0x0C0 [ƒVƒXƒeƒ€—\–ñ—Ìˆæ] */
-    u8              rom_param_C[8];     /* ƒ}ƒXƒN ROM ƒRƒ“ƒgƒ[ƒ‹ƒpƒ‰ƒ[ƒ^ C */
-    u32             rom_size;           /* ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ÅI ROM ƒIƒtƒZƒbƒg */
-    u32             header_size;        /* ROM ƒwƒbƒ_ƒTƒCƒY */
-    u8              reserved_B[0x38];   /* ƒVƒXƒeƒ€—\–ñ B */
+    /* 0x078-0x0C0 [ã‚·ã‚¹ãƒ†ãƒ äºˆç´„é ˜åŸŸ] */
+    u8              rom_param_C[8];     /* ãƒã‚¹ã‚¯ ROM ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ C */
+    u32             rom_size;           /* ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³æœ€çµ‚ ROM ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
+    u32             header_size;        /* ROM ãƒ˜ãƒƒãƒ€ã‚µã‚¤ã‚º */
+    u8              reserved_B[0x38];   /* ã‚·ã‚¹ãƒ†ãƒ äºˆç´„ B */
 
-    /* 0x0C0-0x160 [ƒVƒXƒeƒ€—\–ñ—Ìˆæ] */
-    u8              logo_data[0x9C];    /* NINTENDO ƒƒSƒCƒ[ƒWƒf[ƒ^ */
-    u16             logo_crc;           /* NINTENDO ƒƒS CRC */
-    u16             header_crc;         /* ROM “à“o˜^ƒf[ƒ^ CRC */
+    /* 0x0C0-0x160 [ã‚·ã‚¹ãƒ†ãƒ äºˆç´„é ˜åŸŸ] */
+    u8              logo_data[0x9C];    /* NINTENDO ãƒ­ã‚´ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ */
+    u16             logo_crc;           /* NINTENDO ãƒ­ã‚´ CRC */
+    u16             header_crc;         /* ROM å†…ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ CRC */
 
 } CARDRomHeader;
 </pre><br>
@@ -79,20 +79,20 @@ typedef struct
   </dd>
 </dl>
 
-<H2>à–¾</H2>
-<P>ROM “à“o˜^ƒf[ƒ^‚Ìî•ñ‚ğ•\‚·\‘¢‘Ì‚Å‚·B<br>
-Šeƒƒ“ƒo‚Ì“à—e‚É‚Â‚¢‚Ä‚Í, ƒvƒƒOƒ‰ƒ~ƒ“ƒOƒ}ƒjƒ…ƒAƒ‹‚É‹Lq‚³‚ê‚½Œµ–§‚È’è‹`‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B<br>
+<H2>èª¬æ˜</H2>
+<P>ROM å†…ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ã®æƒ…å ±ã‚’è¡¨ã™æ§‹é€ ä½“ã§ã™ã€‚<br>
+å„ãƒ¡ãƒ³ãƒã®å†…å®¹ã«ã¤ã„ã¦ã¯, ãƒ—ãƒ­ã‚°ãƒ©ãƒŸãƒ³ã‚°ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ã«è¨˜è¿°ã•ã‚ŒãŸå³å¯†ãªå®šç¾©ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚<br>
 <br>
 </P>
-<h2>QÆ</h2>
+<h2>å‚ç…§</h2>
 <p><CODE>
 <A href="rom/CARD_GetRomRegionFNT.html">CARD_GetRomRegionFNT</A> 
 <A href="rom/CARD_GetRomRegionFAT.html">CARD_GetRomRegionFAT</A> 
 </CODE></p>
 
-<H2>—š—ğ</H2>
+<H2>å±¥æ­´</H2>
 <P>
-2005/03/18 ‰”Å<br>
+2005/03/18 åˆç‰ˆ<br>
 </P>
 </body>
 </html>

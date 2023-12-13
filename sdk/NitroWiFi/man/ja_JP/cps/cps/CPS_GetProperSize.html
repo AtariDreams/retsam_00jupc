@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CPS_GetProperSize</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">CPS_GetProperSize</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
@@ -20,26 +20,26 @@
   </dd>
 </dl>
 
-<h2>����</h2>
-<P>�Ȃ��B</P>
+<h2>引数</h2>
+<P>なし。</P>
 
-<h2>�Ԃ�l</h2>
-<P>TCP���M�p�P�b�g�T�C�Y�����߂�̂Ɏg�p�����l</P>
+<h2>返り値</h2>
+<P>TCP送信パケットサイズを求めるのに使用される値</P>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p>���̎��_�ł̍œK��TCP���M�p�P�b�g�T�C�Y�����߂�̂Ɏg�p�����l��Ԃ��܂��B<BR>
-	���̒l�̐����{�ő��M����ƁA�����̗ǂ��ꍇ�������Ȃ�܂��B<BR>
-	0���Ԃ��Ă����ꍇ�́A����̃E�C���h�E�T�C�Y��0�ł��鎖�������܂��B<BR>
-	TCP�R�l�N�V�������m�����Ă��Ȃ��ꍇ��-1��Ԃ��܂��B</p>
+<p>その時点での最適なTCP送信パケットサイズを求めるのに使用される値を返します。<BR>
+	この値の整数倍で送信すると、効率の良い場合が多くなります。<BR>
+	0が返ってきた場合は、相手のウインドウサイズが0である事を示します。<BR>
+	TCPコネクションが確立していない場合は-1を返します。</p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P>
 <CODE><A href="CPS_SocWrite.html">CPS_SocWrite</A></CODE>
 </P>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/10/21 ����</P>
+2005/10/21 初版</P>
 </body>
 </html>

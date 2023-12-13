@@ -1,6 +1,6 @@
 //====================================================================
 //						t01r0101.gmm
-//						ƒ‰ƒCƒoƒ‹‚Ì‰Æ‚P‚e
+//						ãƒ©ã‚¤ãƒãƒ«ã®å®¶ï¼‘ï¼¦
 //====================================================================
 
 	.text
@@ -10,62 +10,62 @@
 	.include	"../eventdata/zone_t01r0101evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_t01r0101_rivalmama
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
-/*						@ƒ‰ƒCƒoƒ‹•êe								*/
+/*						ã€€ãƒ©ã‚¤ãƒãƒ«æ¯è¦ª								*/
 /********************************************************************/
 ev_t01r0101_rivalmama:
 	_TALK_OBJ_START
 
-	//}ŠÓ“üŽè‚µ‚Ä‚¢‚½‚ç
+	//å›³é‘‘å…¥æ‰‹ã—ã¦ã„ãŸã‚‰
 	_IF_FLAGON_JUMP	FE_ZUKAN_GET,ev_t01r0101_rivalmama_zukan
 
-	//ƒ|ƒPƒ‚ƒ““üŽè‚µ‚Ä‚¢‚½‚ç
+	//ãƒã‚±ãƒ¢ãƒ³å…¥æ‰‹ã—ã¦ã„ãŸã‚‰
 	_IFVAL_JUMP		WK_SCENE_D27R0101,GE,1,ev_t01r0101_rivalmama_poke_get
 
-	//ˆê“x‰ï˜b‚µ‚½
+	//ä¸€åº¦ä¼šè©±ã—ãŸ
 	_IF_FLAGON_JUMP	FE_T01R0101_RIVALMAMA_TALK,ev_t01r0101_rivalmama_talk
 
-	//‚QŠK‚Ìƒ‰ƒCƒoƒ‹‚Æ‰ï˜b‚µ‚½Œã
+	//ï¼’éšŽã®ãƒ©ã‚¤ãƒãƒ«ã¨ä¼šè©±ã—ãŸå¾Œ
 	_IF_FLAGON_JUMP	FE_T01R0102_RIVAL_TALK,ev_t01r0101_rivalmama_rivaltalk
 
-	/*«•Ê•ªŠò*/
+	/*æ€§åˆ¥åˆ†å²*/
 	_GET_MY_SEX		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,t01r0101_rivalmama_male	//ŽålŒö’j
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,t01r0101_rivalmama_female	//ŽålŒö—
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,t01r0101_rivalmama_male	//ä¸»äººå…¬ç”·
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,t01r0101_rivalmama_female	//ä¸»äººå…¬å¥³
 	_END
 
-/*ŽålŒö’j*/
+/*ä¸»äººå…¬ç”·*/
 t01r0101_rivalmama_male:
 	_PLAYER_NAME	0
 	_RIVAL_NAME		1
 	_TALKMSG		msg_t01r0101_rivalmama_01
 	_JUMP			common_t01r0101_rivalmama_01
 
-/*ŽålŒö—*/
+/*ä¸»äººå…¬å¥³*/
 t01r0101_rivalmama_female:
 	_PLAYER_NAME	0
 	_RIVAL_NAME		1
 	_TALKMSG		msg_t01r0101_rivalmama_04
 	_JUMP			common_t01r0101_rivalmama_01
 
-/*‹¤’Êˆ—*/
+/*å…±é€šå‡¦ç†*/
 common_t01r0101_rivalmama_01:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ““üŽè‚µ‚Ä‚¢‚½‚ç
+//ãƒã‚±ãƒ¢ãƒ³å…¥æ‰‹ã—ã¦ã„ãŸã‚‰
 ev_t01r0101_rivalmama_poke_get:
 	_RIVAL_NAME		1
 	_TALKMSG		msg_t01r0101_rivalmama_03
@@ -74,7 +74,7 @@ ev_t01r0101_rivalmama_poke_get:
 	_TALK_OBJ_END
 	_END
 
-//ˆê“x‰ï˜b‚µ‚½
+//ä¸€åº¦ä¼šè©±ã—ãŸ
 ev_t01r0101_rivalmama_talk:
 	_RIVAL_NAME		1
 	_TALKMSG		msg_t01r0101_rivalmama_02
@@ -83,9 +83,9 @@ ev_t01r0101_rivalmama_talk:
 	_TALK_OBJ_END
 	_END
 
-//‚QŠK‚Ìƒ‰ƒCƒoƒ‹‚Æ‰ï˜b‚µ‚½Œã
+//ï¼’éšŽã®ãƒ©ã‚¤ãƒãƒ«ã¨ä¼šè©±ã—ãŸå¾Œ
 ev_t01r0101_rivalmama_rivaltalk:
-	//ˆê“x‰ï˜b‚µ‚½
+	//ä¸€åº¦ä¼šè©±ã—ãŸ
 	_FLAG_SET		FE_T01R0101_RIVALMAMA_TALK
 
 	_RIVAL_NAME		1
@@ -95,7 +95,7 @@ ev_t01r0101_rivalmama_rivaltalk:
 	_TALK_OBJ_END
 	_END
 
-//}ŠÓ“üŽè‚µ‚Ä‚¢‚½‚ç
+//å›³é‘‘å…¥æ‰‹ã—ã¦ã„ãŸã‚‰
 ev_t01r0101_rivalmama_zukan:
 	_RIVAL_NAME		1
 	_TALKMSG		msg_t01r0101_rivalmama_06

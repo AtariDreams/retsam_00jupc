@@ -125,40 +125,40 @@
 #include "../include/card_common.h"
 #include "../include/card_spi.h"
 
-/* CARD-SPI �̐��� */
+/* CARD-SPI の制御 */
 
 
 /******************************************************************************/
-/* �萔 */
+/* 定数 */
 
-/* reg_MI_MCCNT0 �e�r�b�g*/
+/* reg_MI_MCCNT0 各ビット*/
 
-#define MCCNT0_SPI_CLK_MASK	0x0003 /* �{�[���[�g�ݒ�}�X�N */
-#define MCCNT0_SPI_CLK_4M	0x0000 /* �{�[���[�g 4.19MHz */
-#define MCCNT0_SPI_CLK_2M	0x0001 /* �{�[���[�g 2.10MHz */
-#define MCCNT0_SPI_CLK_1M	0x0002 /* �{�[���[�g 1.05MHz */
-#define MCCNT0_SPI_CLK_524K	0x0003 /* �{�[���[�g 524kHz */
-#define MCCNT0_SPI_BUSY		0x0080 /* SPI �r�W�[�t���O */
-#define	MMCNT0_SEL_MASK		0x2000 /* CARD ROM / SPI �I���}�X�N */
-#define	MMCNT0_SEL_CARD		0x0000 /* CARD ROM �I�� */
-#define	MMCNT0_SEL_SPI		0x2000 /* CARD SPI �I�� */
-#define MCCNT0_INT_MASK		0x4000 /* �]���������荞�݃}�X�N */
-#define MCCNT0_INT_ON		0x4000 /* �]���������荞�ݗL�� */
-#define MCCNT0_INT_OFF		0x0000 /* �]���������荞�ݖ��� */
-#define MCCNT0_MASTER_MASK	0x8000 /* CARD �}�X�^�[�}�X�N */
-#define MCCNT0_MASTER_ON	0x8000 /* CARD �}�X�^�[ ON */
-#define MCCNT0_MASTER_OFF	0x0000 /* CARD �}�X�^�[ OFF */
+#define MCCNT0_SPI_CLK_MASK	0x0003 /* ボーレート設定マスク */
+#define MCCNT0_SPI_CLK_4M	0x0000 /* ボーレート 4.19MHz */
+#define MCCNT0_SPI_CLK_2M	0x0001 /* ボーレート 2.10MHz */
+#define MCCNT0_SPI_CLK_1M	0x0002 /* ボーレート 1.05MHz */
+#define MCCNT0_SPI_CLK_524K	0x0003 /* ボーレート 524kHz */
+#define MCCNT0_SPI_BUSY		0x0080 /* SPI ビジーフラグ */
+#define	MMCNT0_SEL_MASK		0x2000 /* CARD ROM / SPI 選択マスク */
+#define	MMCNT0_SEL_CARD		0x0000 /* CARD ROM 選択 */
+#define	MMCNT0_SEL_SPI		0x2000 /* CARD SPI 選択 */
+#define MCCNT0_INT_MASK		0x4000 /* 転送完了割り込みマスク */
+#define MCCNT0_INT_ON		0x4000 /* 転送完了割り込み有効 */
+#define MCCNT0_INT_OFF		0x0000 /* 転送完了割り込み無効 */
+#define MCCNT0_MASTER_MASK	0x8000 /* CARD マスターマスク */
+#define MCCNT0_MASTER_ON	0x8000 /* CARD マスター ON */
+#define MCCNT0_MASTER_OFF	0x0000 /* CARD マスター OFF */
 
 
 /******************************************************************************/
-/* �ϐ� */
+/* 変数 */
 
 typedef struct
-{                                      /* SPI �����Ǘ��p�����[�^. */
-    u32     rest_comm;                 /* �S���M�o�C�g���̎c��. */
-    u32     src;                       /* �]���� */
-    u32     dst;                       /* �]���� */
-    BOOL    cmp;                       /* ��r���� */
+{                                      /* SPI 内部管理パラメータ. */
+    u32     rest_comm;                 /* 全送信バイト数の残り. */
+    u32     src;                       /* 転送元 */
+    u32     dst;                       /* 転送先 */
+    BOOL    cmp;                       /* 比較結果 */
 }
 CARDiParam;
 
@@ -166,7 +166,7 @@ static CARDiParam cardi_param;
 
 
 /******************************************************************************/
-/* �֐� */
+/* 関数 */
 
 static BOOL CARDi_CommandCheckBusy(void);
 static void CARDi_CommArray(const void *src, void *dst, u32 n, void (*func) (CARDiParam *));
@@ -177,10 +177,10 @@ static void CARDi_CommVerifyCore(CARDiParam * p);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_CommArrayRead
 
-  Description:  ���[�h�R�}���h�̌㑱�ǂݏo������.
+  Description:  リードコマンドの後続読み出し処理.
 
-  Arguments:    dst               �ǂݏo���惁����.
-                len               �ǂݏo���T�C�Y.
+  Arguments:    dst               読み出し先メモリ.
+                len               読み出しサイズ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -192,10 +192,10 @@ SDK_INLINE void CARDi_CommArrayRead(void *dst, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_CommArrayWrite
 
-  Description:  ���C�g�R�}���h�̌㑱�������ݏ���.
+  Description:  ライトコマンドの後続書き込み処理.
 
-  Arguments:    dst               �������݌�������.
-                len               �������݃T�C�Y.
+  Arguments:    dst               書き込み元メモリ.
+                len               書き込みサイズ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -207,10 +207,10 @@ SDK_INLINE void CARDi_CommArrayWrite(const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_CommArrayVerify
 
-  Description:  (��r�̂��߂�)���[�h�R�}���h�̌㑱��r����.
+  Description:  (比較のための)リードコマンドの後続比較処理.
 
-  Arguments:    src               ��r��������.
-                len               ��r�T�C�Y.
+  Arguments:    src               比較元メモリ.
+                len               比較サイズ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -222,17 +222,17 @@ SDK_INLINE void CARDi_CommArrayVerify(const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_EnableSpi
 
-  Description:  CARD-SPI ��L���ɂ���.
+  Description:  CARD-SPI を有効にする.
 
-  Arguments:    cont              �A���]���t���O. (CSPI_CONTINUOUS_ON or OFF)
+  Arguments:    cont              連続転送フラグ. (CSPI_CONTINUOUS_ON or OFF)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 SDK_INLINE void CARDi_EnableSpi(u32 cont)
 {
     /*
-     * �����N���b�N�X�s�[�h���x���f�o�C�X���o�ꂵ����
-     * MCCNT0_SPI_CLK_4M ���v���p�e�B�z��ɒǉ����ē��I�ύX.
+     * 将来クロックスピードが遅いデバイスが登場したら
+     * MCCNT0_SPI_CLK_4M をプロパティ配列に追加して動的変更.
      */
     const u16 ctrl = (u16)(MCCNT0_MASTER_ON |
                            MCCNT0_INT_OFF | MMCNT0_SEL_SPI | MCCNT0_SPI_CLK_4M | cont);
@@ -242,7 +242,7 @@ SDK_INLINE void CARDi_EnableSpi(u32 cont)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_WaitBusy
 
-  Description:  CARD-SPI �̊�����҂�.
+  Description:  CARD-SPI の完了を待つ.
 
   Arguments:    None
 
@@ -258,9 +258,9 @@ SDK_INLINE void CARDi_WaitBusy(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_CommandBegin
 
-  Description:  �R�}���h���s�J�n�̐錾.
+  Description:  コマンド発行開始の宣言.
 
-  Arguments:    len               ���s����R�}���h��.
+  Arguments:    len               発行するコマンド長.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -272,10 +272,10 @@ static void CARDi_CommandBegin(int len)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_CommandEnd
 
-  Description:  �R�}���h���M��������.
+  Description:  コマンド送信完了処理.
 
-  Arguments:    force_wait     �����E�F�C�g���� [ms]
-                timeout        �^�C���A�E�g���� [ms]
+  Arguments:    force_wait     強制ウェイト時間 [ms]
+                timeout        タイムアウト時間 [ms]
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -284,8 +284,8 @@ static void CARDi_CommandEnd(u32 force_wait, u32 timeout)
     if (force_wait + timeout > 0)
     {
         /*
-         * �����E�F�C�g���Ԃ�����΂��̕������ҋ@.
-         * �ŏ��̘b�ƈ���� FLASH ���E�F�C�g���������ꂽ.
+         * 強制ウェイト時間があればその分だけ待機.
+         * 最初の話と違って FLASH もウェイトが強制された.
          */
         if (force_wait > 0)
         {
@@ -294,8 +294,8 @@ static void CARDi_CommandEnd(u32 force_wait, u32 timeout)
         if (timeout > 0)
         {
             /*
-             * PageWrite �R�}���h�̂݁u�O�����������E�F�C�g�v
-             * �Ȃ̂ł��̂悤�ȓ���ȃ��[�v�ɂȂ�.
+             * PageWrite コマンドのみ「前半だけ強制ウェイト」
+             * なのでこのような特殊なループになる.
              */
             int     rest = (int)(timeout - force_wait);
             while (!CARDi_CommandCheckBusy() && (rest > 0))
@@ -306,10 +306,10 @@ static void CARDi_CommandEnd(u32 force_wait, u32 timeout)
             }
         }
         /*
-         * ���̑��̃R�}���h�͎w�莞�ԃE�F�C�g�ς݂Ȃ̂�
-         * ReadStatus �� 1 �񂾂��ŗǂ�.
+         * その他のコマンドは指定時間ウェイト済みなので
+         * ReadStatus は 1 回だけで良い.
          */
-        /* �����܂ł��ăr�W�[�Ȃ�^�C���A�E�g */
+        /* ここまできてビジーならタイムアウト */
         if (!CARDi_CommandCheckBusy())
         {
             cardi_common.cmd->result = CARD_RESULT_TIMEOUT;
@@ -320,11 +320,11 @@ static void CARDi_CommandEnd(u32 force_wait, u32 timeout)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_CommandReadStatus
 
-  Description:  ���[�h�X�e�[�^�X
+  Description:  リードステータス
 
   Arguments:    None
 
-  Returns:      �X�e�[�^�X�l
+  Returns:      ステータス値
  *---------------------------------------------------------------------------*/
 u8 CARDi_CommandReadStatus(void)
 {
@@ -340,11 +340,11 @@ u8 CARDi_CommandReadStatus(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_CommandCheckBusy
 
-  Description:  �f�o�C�X�̃r�W�[���������ꂽ�����[�h�X�e�[�^�X�R�}���h�Ŕ���.
+  Description:  デバイスのビジーが解消されたかリードステータスコマンドで判定.
 
   Arguments:    None
 
-  Returns:      �r�W�[�łȂ���� TRUE.
+  Returns:      ビジーでなければ TRUE.
  *---------------------------------------------------------------------------*/
 static BOOL CARDi_CommandCheckBusy(void)
 {
@@ -354,18 +354,18 @@ static BOOL CARDi_CommandCheckBusy(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_WaitPrevCommand
 
-  Description:  �R�}���h���s�O�̃r�W�[�`�F�b�N.
-                �O��̃R�}���h�ɂ���ăr�W�[��Ԃł���� 50[ms] �܂ő҂�.
-                (���C�u�����̎����ƃJ�[�h�̐ڐG������Ȍ���ʏ킠�肦�Ȃ�)
+  Description:  コマンド発行前のビジーチェック.
+                前回のコマンドによってビジー状態であれば 50[ms] まで待つ.
+                (ライブラリの実装とカードの接触が正常な限り通常ありえない)
 
   Arguments:    None.
 
-  Returns:      �R�}���h�����������s�\�ł���� TRUE.
+  Returns:      コマンドが正しく発行可能であれば TRUE.
  *---------------------------------------------------------------------------*/
 static BOOL CARDi_WaitPrevCommand(void)
 {
     CARDi_CommandEnd(0, 50);
-    /* �����Ń^�C���A�E�g�̏ꍇ�͖����� */
+    /* ここでタイムアウトの場合は無応答 */
     if (cardi_common.cmd->result == CARD_RESULT_TIMEOUT)
     {
         cardi_common.cmd->result = CARD_RESULT_NO_RESPONSE;
@@ -377,12 +377,12 @@ static BOOL CARDi_WaitPrevCommand(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_CommArray
 
-  Description:  �R�}���h���s�̋��ʏ���.
+  Description:  コマンド発行の共通処理.
 
-  Arguments:    src               �������̃�����. (�s�g�p�Ȃ�NULL)
-                dst               ������̃�����. (�s�g�p�Ȃ�NULL)
-                len               �����T�C�Y.
-                func              �������e.
+  Arguments:    src               処理元のメモリ. (不使用ならNULL)
+                dst               処理先のメモリ. (不使用ならNULL)
+                len               処理サイズ.
+                func              処理内容.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -410,9 +410,9 @@ void CARDi_CommArray(const void *src, void *dst, u32 len, void (*func) (CARDiPar
 /*---------------------------------------------------------------------------*
   Name:         CARDi_CommReadCore
 
-  Description:  1�o�C�g���[�h����.
+  Description:  1バイトリード処理.
 
-  Arguments:    p                 �R�}���h�p�����[�^.
+  Arguments:    p                 コマンドパラメータ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -427,9 +427,9 @@ void CARDi_CommReadCore(CARDiParam * p)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_CommWriteCore
 
-  Description:  1�o�C�g���C�g����.
+  Description:  1バイトライト処理.
 
-  Arguments:    p                 �R�}���h�p�����[�^.
+  Arguments:    p                 コマンドパラメータ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -445,9 +445,9 @@ void CARDi_CommWriteCore(CARDiParam * p)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_CommVerifyCore
 
-  Description:  1�o�C�g��r����.
+  Description:  1バイト比較処理.
 
-  Arguments:    p                 �R�}���h�p�����[�^.
+  Arguments:    p                 コマンドパラメータ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -456,9 +456,9 @@ void CARDi_CommVerifyCore(CARDiParam * p)
     reg_MI_MCD0 = 0;
     CARDi_WaitBusy();
     /*
-     * ���[�h���Ĉ�v���Ȃ���Β��f.
-     * �������A���]���𔲂��Ȃ���΂����Ȃ��̂�
-     * ���Ȃ��Ƃ� 1 �񂾂��]�v�ɓǂޕK�v������.
+     * リードして一致しなければ中断.
+     * ただし連続転送を抜けなければいけないので
+     * 少なくとも 1 回だけ余計に読む必要がある.
      */
     if ((u8)reg_MI_MCD0 != MI_ReadByte((void *)p->src))
     {
@@ -474,7 +474,7 @@ void CARDi_CommVerifyCore(CARDiParam * p)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_WriteEnable
 
-  Description:  �f�o�C�X�̏������ݑ���L����. (Write �n�R�}���h�̑O�ɖ���K�v)
+  Description:  デバイスの書き込み操作有効化. (Write 系コマンドの前に毎回必要)
 
   Arguments:    None.
 
@@ -491,10 +491,10 @@ static void CARDi_WriteEnable(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_SendSpiAddressingCommand
 
-  Description:  �A�h���X�w��R�}���h�̐ݒ�.
+  Description:  アドレス指定コマンドの設定.
 
-  Arguments:    addr              �{���ΏۂƂȂ�f�o�C�X��̃A�h���X.
-                mode              ���s����R�}���h.
+  Arguments:    addr              捜査対象となるデバイス上のアドレス.
+                mode              発行するコマンド.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -505,7 +505,7 @@ static void CARDi_SendSpiAddressingCommand(u32 addr, u32 mode)
     switch (width)
     {
     case 1:
-        /* 4kbit �f�o�C�X�� [A:8] ���R�}���h�̈ꕔ�ɂȂ� */
+        /* 4kbit デバイスは [A:8] がコマンドの一部になる */
         addr_cmd = (u32)(mode | ((addr >> 5) & 0x8) | ((addr & 0xFF) << 8));
         break;
     case 2:
@@ -525,9 +525,9 @@ static void CARDi_SendSpiAddressingCommand(u32 addr, u32 mode)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_InitStatusRegister
 
-  Description:  FRAM/EEPROM �̏ꍇ, �N�����ɃX�e�[�^�X���W�X�^�̕␳�������s��.
-                �EFRAM �͓d���������Ƀ��C�g�v���e�N�g�̕ω����N���肤�邽��.
-                �EEEPROM �͔[�����ɏ����l�s�������肤�邽��.
+  Description:  FRAM/EEPROM の場合, 起動時にステータスレジスタの補正処理を行う.
+                ・FRAM は電源投入時にライトプロテクトの変化が起こりうるため.
+                ・EEPROM は納入時に初期値不正がありうるため.
 
   Arguments:    None.
 
@@ -536,8 +536,8 @@ static void CARDi_SendSpiAddressingCommand(u32 addr, u32 mode)
 void CARDi_InitStatusRegister(void)
 {
     /*
-     * �X�e�[�^�X���W�X�^���ُ�ȏ����l����肤��f�o�C�X�ɑ΂��Ă�
-     * ����g�p���ɓK�X�␳����.
+     * ステータスレジスタが異常な初期値を取りうるデバイスに対しては
+     * 初回使用時に適宜補正する.
      */
     const u8 stat = cardi_common.cmd->spec.initial_status;
     if (stat != 0xFF)
@@ -557,39 +557,39 @@ void CARDi_InitStatusRegister(void)
 
 /********************************************************************/
 /*
- * �������ڏ���.
- * ���̒i�K�ł͂��łɔr���⃊�N�G�X�g�����S�Ċ������Ă���.
- * �T�C�Y�̐����ɂ��Ă����łɍl���ς݂̂��̂Ƃ���.
+ * 内部直接処理.
+ * この段階ではすでに排他やリクエスト等が全て完了している.
+ * サイズの制限についてもすでに考慮済みのものとする.
  */
 
 /*---------------------------------------------------------------------------*
   Name:         CARDi_IdentifyBackupCore
 
-  Description:  �f�o�C�X�^�C�v����.
+  Description:  デバイスタイプ特定.
 
-  Arguments:    type              ���肷��f�o�C�X�^�C�v.
+  Arguments:    type              特定するデバイスタイプ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void CARDi_IdentifyBackupCore(CARDBackupType type)
 {
     /*
-     * �擾�����p�����[�^�� CARDiCommandArg �֕ۑ�.
-     * ����͍ŏI�I�Ƀe�[�u����p�~���邱�ƂŊ�������.
+     * 取得したパラメータを CARDiCommandArg へ保存.
+     * これは最終的にテーブルを廃止することで完成する.
      */
     {
         CARDiCommandArg *const p = cardi_common.cmd;
 
-        /* �܂��S�p�����[�^���N���A���� NOT_USE ��Ԃɂ��� */
+        /* まず全パラメータをクリアして NOT_USE 状態にする */
         MI_CpuFill8(&p->spec, 0, sizeof(p->spec));
         p->type = type;
         p->spec.caps = (CARD_BACKUP_CAPS_AVAILABLE | CARD_BACKUP_CAPS_READ_STATUS);
         if (type != CARD_BACKUP_TYPE_NOT_USE)
         {
             /*
-             * �f�o�C�X�^�C�v, ���e��, �x���_�� type ����擾�\.
-             * �x���_�ԍ���, ����^�C�v�ŕ������[�J�[���̗p����
-             * ���s��Ȃǂ̗��R�ŋ�ʂ���K�v���������ꍇ�ȊO 0.
+             * デバイスタイプ, 総容量, ベンダは type から取得可能.
+             * ベンダ番号は, 同一タイプで複数メーカーが採用され
+             * かつ不具合などの理由で区別する必要が生じた場合以外 0.
              */
             const u32 size = (u32)(1 << ((type >> CARD_BACKUP_TYPE_SIZEBIT_SHIFT) &
                                          CARD_BACKUP_TYPE_SIZEBIT_MASK));
@@ -599,7 +599,7 @@ void CARDi_IdentifyBackupCore(CARDBackupType type)
                 ((type >> CARD_BACKUP_TYPE_VENDER_SHIFT) & CARD_BACKUP_TYPE_VENDER_MASK);
 
             p->spec.total_size = size;
-            /* �X�e�[�^�X���W�X�^�̕␳���s�v�Ȃ� 0xFF. (���ꂪ�ʏ�) */
+            /* ステータスレジスタの補正が不要なら 0xFF. (これが通常) */
             p->spec.initial_status = 0xFF;
             if (device == CARD_BACKUP_TYPE_DEVICE_EEPROM)
             {
@@ -747,11 +747,11 @@ void CARDi_IdentifyBackupCore(CARDBackupType type)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadBackupCore
 
-  Description:  �f�o�C�X�ւ̃��[�h�R�}���h�S��.
+  Description:  デバイスへのリードコマンド全体.
 
-  Arguments:    src               �ǂݏo�����̃f�o�C�X�I�t�Z�b�g.
-                dst               �ǂݏo����̃������A�h���X.
-                len               �ǂݏo���T�C�Y.
+  Arguments:    src               読み出し元のデバイスオフセット.
+                dst               読み出し先のメモリアドレス.
+                len               読み出しサイズ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -760,7 +760,7 @@ void CARDi_ReadBackupCore(u32 src, void *dst, u32 len)
     if (CARDi_WaitPrevCommand())
     {
         CARDiCommandArg *const cmd = cardi_common.cmd;
-        /* ���[�h�Ɋւ��Ă̓y�[�W���E�̐����������̂ňꊇ���� */
+        /* リードに関してはページ境界の制限が無いので一括処理 */
         CARDi_CommandBegin((int)(1 + cmd->spec.addr_width + len));
         CARDi_SendSpiAddressingCommand(src, COMM_READ_ARRAY);
         CARDi_CommArrayRead(dst, len);
@@ -771,11 +771,11 @@ void CARDi_ReadBackupCore(u32 src, void *dst, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ProgramBackupCore
 
-  Description:  �f�o�C�X�ւ̃v���O����(����������������)�R�}���h�S��.
+  Description:  デバイスへのプログラム(消去無し書き込み)コマンド全体.
 
-  Arguments:    dst               �������ݐ�̃f�o�C�X�I�t�Z�b�g.
-                src               �������݌��̃������A�h���X.
-                len               �������݃T�C�Y.
+  Arguments:    dst               書き込み先のデバイスオフセット.
+                src               書き込み元のメモリアドレス.
+                len               書き込みサイズ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -784,7 +784,7 @@ void CARDi_ProgramBackupCore(u32 dst, const void *src, u32 len)
     if (CARDi_WaitPrevCommand())
     {
         CARDiCommandArg *const cmd = cardi_common.cmd;
-        /* ���C�g�̓y�[�W���E���܂����Ȃ��悤�ɕ������� */
+        /* ライトはページ境界をまたがないように分割処理 */
         const u32 page = cmd->spec.page_size;
         while (len > 0)
         {
@@ -813,11 +813,11 @@ void CARDi_ProgramBackupCore(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_WriteBackupCore
 
-  Description:  �f�o�C�X�ւ̃��C�g(���� + �v���O����)�R�}���h�S��.
+  Description:  デバイスへのライト(消去 + プログラム)コマンド全体.
 
-  Arguments:    dst               �������ݐ�̃f�o�C�X�I�t�Z�b�g.
-                src               �������݌��̃������A�h���X.
-                len               �������݃T�C�Y.
+  Arguments:    dst               書き込み先のデバイスオフセット.
+                src               書き込み元のメモリアドレス.
+                len               書き込みサイズ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -826,7 +826,7 @@ void CARDi_WriteBackupCore(u32 dst, const void *src, u32 len)
     if (CARDi_WaitPrevCommand())
     {
         CARDiCommandArg *const cmd = cardi_common.cmd;
-        /* ���C�g�̓y�[�W���E���܂����Ȃ��悤�ɕ������� */
+        /* ライトはページ境界をまたがないように分割処理 */
         const u32 page = cmd->spec.page_size;
         while (len > 0)
         {
@@ -855,11 +855,11 @@ void CARDi_WriteBackupCore(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_VerifyBackupCore
 
-  Description:  �f�o�C�X�ւ̃x���t�@�C(���ۂ̓��[�h + ��r����)�R�}���h�S��.
+  Description:  デバイスへのベリファイ(実際はリード + 比較処理)コマンド全体.
 
-  Arguments:    dst               ��r��̃f�o�C�X�I�t�Z�b�g.
-                src               ��r���̃������A�h���X.
-                len               ��r�T�C�Y.
+  Arguments:    dst               比較先のデバイスオフセット.
+                src               比較元のメモリアドレス.
+                len               比較サイズ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -868,7 +868,7 @@ void CARDi_VerifyBackupCore(u32 dst, const void *src, u32 len)
     if (CARDi_WaitPrevCommand())
     {
         CARDiCommandArg *const cmd = cardi_common.cmd;
-        /* ���[�h�Ɋւ��Ă̓y�[�W���E�̐����������̂ňꊇ���� */
+        /* リードに関してはページ境界の制限が無いので一括処理 */
         cardi_param.cmp = TRUE;
         CARDi_CommandBegin((int)(1 + cmd->spec.addr_width + len));
         CARDi_SendSpiAddressingCommand(dst, COMM_READ_ARRAY);
@@ -884,10 +884,10 @@ void CARDi_VerifyBackupCore(u32 dst, const void *src, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_EraseBackupSectorCore
 
-  Description:  �f�o�C�X�ւ̃Z�N�^�����R�}���h�S��.
+  Description:  デバイスへのセクタ消去コマンド全体.
 
-  Arguments:    dst               ������̃f�o�C�X�I�t�Z�b�g.
-                len               �����T�C�Y.
+  Arguments:    dst               消去先のデバイスオフセット.
+                len               消去サイズ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -895,14 +895,14 @@ void CARDi_EraseBackupSectorCore(u32 dst, u32 len)
 {
     CARDiCommandArg *const cmd = cardi_common.cmd;
     const u32 sector = cmd->spec.sect_size;
-    /* �����͈͂��Z�N�^�̐����{�ɐ������Ă��Ȃ��ꍇ�͏��������Ȃ� */
+    /* 処理範囲がセクタの整数倍に整合していない場合は処理をしない */
     if (((dst | len) & (sector - 1)) != 0)
     {
         cmd->result = CARD_RESULT_INVALID_PARAM;
     }
     else if (CARDi_WaitPrevCommand())
     {
-        /* �Z�N�^���E�P�ʂŏ��� */
+        /* セクタ境界単位で処理 */
         while (len > 0)
         {
             CARDi_WriteEnable();
@@ -922,10 +922,10 @@ void CARDi_EraseBackupSectorCore(u32 dst, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_EraseBackupSubSectorCore
 
-  Description:  �f�o�C�X�ւ̃T�u�Z�N�^�����R�}���h�S��.
+  Description:  デバイスへのサブセクタ消去コマンド全体.
 
-  Arguments:    dst               ������̃f�o�C�X�I�t�Z�b�g.
-                len               �����T�C�Y.
+  Arguments:    dst               消去先のデバイスオフセット.
+                len               消去サイズ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -933,14 +933,14 @@ void CARDi_EraseBackupSubSectorCore(u32 dst, u32 len)
 {
     CARDiCommandArg *const cmd = cardi_common.cmd;
     const u32 sector = cmd->spec.subsect_size;
-    /* �����͈͂��T�u�Z�N�^�̐����{�ɐ������Ă��Ȃ��ꍇ�͏��������Ȃ� */
+    /* 処理範囲がサブセクタの整数倍に整合していない場合は処理をしない */
     if (((dst | len) & (sector - 1)) != 0)
     {
         cmd->result = CARD_RESULT_INVALID_PARAM;
     }
     else if (CARDi_WaitPrevCommand())
     {
-        /* �Z�N�^���E�P�ʂŏ��� */
+        /* セクタ境界単位で処理 */
         while (len > 0)
         {
             CARDi_WriteEnable();
@@ -960,7 +960,7 @@ void CARDi_EraseBackupSubSectorCore(u32 dst, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_EraseChipCore
 
-  Description:  �f�o�C�X�ւ̃`�b�v�����R�}���h�S��.
+  Description:  デバイスへのチップ消去コマンド全体.
 
   Arguments:    None.
 
@@ -982,9 +982,9 @@ void CARDi_EraseChipCore(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_SetWriteProtectCore
 
-  Description:  �f�o�C�X�ւ̃��C�g�v���e�N�g�R�}���h�S��.
+  Description:  デバイスへのライトプロテクトコマンド全体.
 
-  Arguments:    stat              �ݒ肷��v���e�N�g�t���O.
+  Arguments:    stat              設定するプロテクトフラグ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1013,30 +1013,30 @@ void CARDi_SetWriteProtectCore(u16 stat)
 
 /********************************************************************/
 /********************************************************************/
-/* ���ؒ��f�o�C�X�ŗL�R�}���h ***************************************/
+/* 検証中デバイス固有コマンド ***************************************/
 /********************************************************************/
 /********************************************************************/
 
 
-/* ID ���[�h */
+/* ID リード */
 static void CARDi_ReadIdCore(void)
 {
     /*
-     * EEPROM, FRAM �ɂ͂��̃R�}���h������.
-     * ST �� 2Mbit FLASH �ɂ����̃R�}���h������?
-     * �Ή��O�̃R�}���h�o�C�g���o���̓����`����������Ȃ�.
-     * �Ƃ����, ���̃R�}���h�� 2Mbit ���͏�Ɏg�p�s�Ƃ��邩
-     * CARD_BACKUP_TYPE_FLASH_2MBITS_SANYO �Ȃǂƍו������邩.
-     * ������ɂ��悻���܂Ŏ��O�ɋ敪���Ă���̂�
-     * ID ���K�v�ɂȂ�V�[��������̂��낤��...?
-     * �]�͂�����Γ����Ő���������Ɏg�p�\��.
+     * EEPROM, FRAM にはこのコマンドが無い.
+     * ST 製 2Mbit FLASH にもこのコマンドが無い?
+     * 対応外のコマンドバイト送出時の動作定義が見当たらない.
+     * とすると, このコマンドは 2Mbit 時は常に使用不可とするか
+     * CARD_BACKUP_TYPE_FLASH_2MBITS_SANYO などと細分化するか.
+     * いずれにせよそこまで事前に区分しているのに
+     * ID が必要になるシーンがあるのだろうか...?
+     * 余力があれば内部で正当性判定に使用予定.
      */
     cardi_common.cmd->result = CARD_RESULT_UNSUPPORTED;
 }
 
-/* 2M FLASH �̂ݎg�p�\�ȃR�}���h **********************************/
+/* 2M FLASH のみ使用可能なコマンド **********************************/
 
-/* �y�[�W���� (FLASH) */
+/* ページ消去 (FLASH) */
 static void CARDi_ErasePageCore(u32 dst)
 {
     CARDi_WriteEnable();

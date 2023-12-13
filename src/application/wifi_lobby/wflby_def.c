@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_def.c
- *	@brief		WiFiƒƒr[	‹¤’Ê’ÊMƒ[ƒNƒAƒNƒZƒXŠÖ”
+ *	@brief		WiFiãƒ­ãƒ“ãƒ¼	å…±é€šé€šä¿¡ãƒ¯ãƒ¼ã‚¯ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
  *	@author		tomoya takahashi
  *	@data		2007.09.18
  *
@@ -24,19 +24,19 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
@@ -51,15 +51,15 @@ BOOL WFLBY_DEBUG_ROOM_MINIGAME_AUTO_FLAG = FALSE;
 
 //-----------------------------------------------------------------------------
 /**
- *				ŠÔƒf[ƒ^
+ *				æ™‚é–“ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÔ‚ğİ’è
+ *	@brief	æ™‚é–“ã‚’è¨­å®š
  *
- *	@param	p_time			ƒ^ƒCƒ€
- *	@param	cp_settime		ŠÔ
+ *	@param	p_time			ã‚¿ã‚¤ãƒ 
+ *	@param	cp_settime		æ™‚é–“
  */
 //-----------------------------------------------------------------------------
 void WFLBY_TIME_Set( WFLBY_TIME* p_time, const s64* cp_settime )
@@ -74,11 +74,11 @@ void WFLBY_TIME_Set( WFLBY_TIME* p_time, const s64* cp_settime )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÔ‚Ì‘«‚µZ	
+ *	@brief	æ™‚é–“ã®è¶³ã—ç®—	
  *
- *	@param	cp_time		‘€ì‚·‚éŠÔ
- *	@param	cp_add		‘«‚µ‚±‚ŞŠÔ
- *	@param	p_ans		“š‚¦
+ *	@param	cp_time		æ“ä½œã™ã‚‹æ™‚é–“
+ *	@param	cp_add		è¶³ã—ã“ã‚€æ™‚é–“
+ *	@param	p_ans		ç­”ãˆ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_TIME_Add( const WFLBY_TIME* cp_time, const WFLBY_TIME* cp_add, WFLBY_TIME* p_ans )
@@ -90,19 +90,19 @@ void WFLBY_TIME_Add( const WFLBY_TIME* cp_time, const WFLBY_TIME* cp_add, WFLBY_
 	time = *cp_time;
 	addtime = *cp_add;
 	
-	// •b‚Ì‘«‚µZ
+	// ç§’ã®è¶³ã—ç®—
 	time.second		+= addtime.second;
 	add				= time.second / 60;
 	time.minute		+= add;
 	p_ans->second	= time.second	% 60;
 
-	// •ª‚Ì‘«‚µZ
+	// åˆ†ã®è¶³ã—ç®—
 	time.minute		+= addtime.minute;
 	add				= time.minute / 60;
 	time.hour		+= add;
 	p_ans->minute	= time.minute	% 60;
 
-	// ‚Ì‘«‚µZ
+	// æ™‚ã®è¶³ã—ç®—
 	time.hour	+= addtime.hour;
 	p_ans->hour	= time.hour	% 24;
 
@@ -110,11 +110,11 @@ void WFLBY_TIME_Add( const WFLBY_TIME* cp_time, const WFLBY_TIME* cp_add, WFLBY_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÔ‚Ìˆø‚«Z	
+ *	@brief	æ™‚é–“ã®å¼•ãç®—	
  *
- *	@param	p_time		‘€ì‚·‚éŠÔ
- *	@param	cp_sub		ˆø‚­ŠÔ
- *	@param	p_ans		“š‚¦
+ *	@param	p_time		æ“ä½œã™ã‚‹æ™‚é–“
+ *	@param	cp_sub		å¼•ãæ™‚é–“
+ *	@param	p_ans		ç­”ãˆ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_TIME_Sub( const WFLBY_TIME* cp_time, const WFLBY_TIME* cp_sub, WFLBY_TIME* p_ans )
@@ -127,7 +127,7 @@ void WFLBY_TIME_Sub( const WFLBY_TIME* cp_time, const WFLBY_TIME* cp_sub, WFLBY_
 	time	= *cp_time;
 	subtime	= *cp_sub;
 
-	// •b‚Ìˆø‚«Z
+	// ç§’ã®å¼•ãç®—
 	sum = ((s8)time.second - (s8)subtime.second);
 	if( sum < 0  ){
 		sub = ((-sum) / 60) + 1;
@@ -137,19 +137,19 @@ void WFLBY_TIME_Sub( const WFLBY_TIME* cp_time, const WFLBY_TIME* cp_sub, WFLBY_
 	p_ans->second = time.second - subtime.second;
 
 
-	// •ª‚Ìˆø‚«Z
+	// åˆ†ã®å¼•ãç®—
 	sum = ((s8)time.minute - (s8)subtime.minute);
 	if( sum < 0 ){
-		sub = ((-sum) / 60) + 1;	// Å’á‚Å‚à‚P‚Â‚Íˆø‚­‚©‚ç+1
+		sub = ((-sum) / 60) + 1;	// æœ€ä½ã§ã‚‚ï¼‘ã¤ã¯å¼•ãã‹ã‚‰+1
 		time.minute	+= 60*sub;
 		time.hour	-= sub;
 	}
 	p_ans->minute = time.minute - subtime.minute;
 
-	// 
+	// æ™‚
 	sum = ((s8)time.hour - (s8)subtime.hour);
 	if( sum < 0 ){
-		sub = ((-sum) / 24) + 1;	// Å’á‚Å‚à‚P‚Â‚Íˆø‚­‚©‚ç+1
+		sub = ((-sum) / 24) + 1;	// æœ€ä½ã§ã‚‚ï¼‘ã¤ã¯å¼•ãã‹ã‚‰+1
 		time.hour	+= 24*sub;
 	}
 	p_ans->hour = time.hour - subtime.hour;
@@ -161,17 +161,17 @@ void WFLBY_TIME_Sub( const WFLBY_TIME* cp_time, const WFLBY_TIME* cp_sub, WFLBY_
 
 //-----------------------------------------------------------------------------
 /**
- *				¢ŠE’n}ƒf[ƒ^
+ *				ä¸–ç•Œåœ°å›³ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒf[ƒ^İ’è
+ *	@brief	ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_data		ƒ[ƒN
- *	@param	nation		‘ID
- *	@param	area		’nˆæID
- *	@param	outside		‘ŞºÒ‚©‚Ç‚¤‚©
+ *	@param	p_data		ãƒ¯ãƒ¼ã‚¯
+ *	@param	nation		å›½ID
+ *	@param	area		åœ°åŸŸID
+ *	@param	outside		é€€å®¤è€…ã‹ã©ã†ã‹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_WLDTIMER_SetData( WFLBY_WLDTIMER* p_data, u16 nation, u8 area, BOOL outside )
@@ -180,14 +180,14 @@ void WFLBY_WLDTIMER_SetData( WFLBY_WLDTIMER* p_data, u16 nation, u8 area, BOOL o
 	BOOL set_data;
 	u32 area_max;
 
-	// ‘ƒf[ƒ^‚È‚µ‚È‚ç“ü‚ê‚È‚¢
+	// å›½ãƒ‡ãƒ¼ã‚¿ãªã—ãªã‚‰å…¥ã‚Œãªã„
 	if( nation == WFLBY_WLDDATA_NATION_NONE ){
 		return ;
 	}
 
 	area_max = WIFI_COUNTRY_CountryCodeToPlaceIndexMax( nation );
 
-	// •s–¾‚È‘‚È‚ç“ü‚ê‚È‚¢
+	// ä¸æ˜ãªå›½ãªã‚‰å…¥ã‚Œãªã„
 	if( area > area_max ){
 		return ;
 	}
@@ -195,11 +195,11 @@ void WFLBY_WLDTIMER_SetData( WFLBY_WLDTIMER* p_data, u16 nation, u8 area, BOOL o
 	set_data = FALSE;
 	for( i=0; i<WFLBY_WLDTIMER_DATA_MAX; i++ ){
 		
-		// ƒf[ƒ^‚ª‚È‚¢‚Æ‚±‚ë‚Ü‚Å‚«‚½‚ç‚»‚±‚É“ü‚ê‚é
+		// ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã¨ã“ã‚ã¾ã§ããŸã‚‰ãã“ã«å…¥ã‚Œã‚‹
 		if( p_data->data[ i ].flag == FALSE){
 			set_data = TRUE;
 		}else{
-			// ‘‚ÆƒGƒŠƒA‚ª‚©‚Ô‚Á‚Ä‚½‚çA©•ª‚ª‘ŞºÒ‚Å‚È‚¢‚Æ‚«‚¾‚¯İ’è‚·‚é
+			// å›½ã¨ã‚¨ãƒªã‚¢ãŒã‹ã¶ã£ã¦ãŸã‚‰ã€è‡ªåˆ†ãŒé€€å®¤è€…ã§ãªã„ã¨ãã ã‘è¨­å®šã™ã‚‹
 			if( (p_data->data[i].nation == nation) &&
 				(p_data->data[i].area	== area)){
 				if( outside == TRUE ){
@@ -210,7 +210,7 @@ void WFLBY_WLDTIMER_SetData( WFLBY_WLDTIMER* p_data, u16 nation, u8 area, BOOL o
 			}
 		}
 		
-		// İ’è
+		// è¨­å®š
 		if( set_data ){
 			p_data->data[i].nation	= nation;
 			p_data->data[i].area	= area;
@@ -223,7 +223,7 @@ void WFLBY_WLDTIMER_SetData( WFLBY_WLDTIMER* p_data, u16 nation, u8 area, BOOL o
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘ID‚Ìæ“¾
+ *	@brief	å›½IDã®å–å¾—
  */
 //-----------------------------------------------------------------------------
 u16 WFLBY_WLDTIMER_GetNation( const WFLBY_WLDTIMER* cp_data, u8 index )
@@ -235,7 +235,7 @@ u16 WFLBY_WLDTIMER_GetNation( const WFLBY_WLDTIMER* cp_data, u8 index )
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	’nˆæID‚Ìæ“¾
+ *	@brief	åœ°åŸŸIDã®å–å¾—
  */
 //-----------------------------------------------------------------------------
 u8 WFLBY_WLDTIMER_GetArea( const WFLBY_WLDTIMER* cp_data, u8 index )
@@ -247,7 +247,7 @@ u8 WFLBY_WLDTIMER_GetArea( const WFLBY_WLDTIMER* cp_data, u8 index )
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘Şºƒtƒ‰ƒO‚Ìæ“¾
+ *	@brief	é€€å®¤ãƒ•ãƒ©ã‚°ã®å–å¾—
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_WLDTIMER_GetOutSide( const WFLBY_WLDTIMER* cp_data, u8 index )
@@ -259,7 +259,7 @@ BOOL WFLBY_WLDTIMER_GetOutSide( const WFLBY_WLDTIMER* cp_data, u8 index )
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒf[ƒ^—L–³ƒtƒ‰ƒO‚Ìæ“¾
+ *	@brief	ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡ãƒ•ãƒ©ã‚°ã®å–å¾—
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_WLDTIMER_GetDataFlag( const WFLBY_WLDTIMER* cp_data, u8 index )
@@ -278,13 +278,13 @@ BOOL WFLBY_WLDTIMER_GetDataFlag( const WFLBY_WLDTIMER* cp_data, u8 index )
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒ‰ƒCƒgƒŠƒ\[ƒX‘€ì
- *				ƒ‰ƒCƒg‚Ì‰e‹¿‚ğó‚¯‚éƒ‚ƒfƒ‹‚Í‚±‚±‚ğ’Ê‚·
+ *			ãƒ©ã‚¤ãƒˆãƒªã‚½ãƒ¼ã‚¹æ“ä½œ
+ *				ãƒ©ã‚¤ãƒˆã®å½±éŸ¿ã‚’å—ã‘ã‚‹ãƒ¢ãƒ‡ãƒ«ã¯ã“ã“ã‚’é€šã™
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒCƒgƒŠƒ\[ƒX‘€ì		ƒ‰ƒCƒg‚Ì‰e‹¿‚ğó‚¯‚éƒ‚ƒfƒ‹‚Í‚±‚±‚ğ’Ê‚·
+ *	@brief	ãƒ©ã‚¤ãƒˆãƒªã‚½ãƒ¼ã‚¹æ“ä½œ		ãƒ©ã‚¤ãƒˆã®å½±éŸ¿ã‚’å—ã‘ã‚‹ãƒ¢ãƒ‡ãƒ«ã¯ã“ã“ã‚’é€šã™
  */
 //-----------------------------------------------------------------------------
 void WFLBY_LIGHT_SetUpMdl( void* p_file )
@@ -305,35 +305,35 @@ void WFLBY_LIGHT_SetUpMdl( void* p_file )
 
 //-----------------------------------------------------------------------------
 /**
- *			’nˆæ‚ª‚ ‚é‚Ì‚©ƒ`ƒFƒbƒN
+ *			åœ°åŸŸãŒã‚ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	’nˆæ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	åœ°åŸŸãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	nation		‘ƒR[ƒh
- *	@param	area		’nˆæƒR[ƒh
+ *	@param	nation		å›½ã‚³ãƒ¼ãƒ‰
+ *	@param	area		åœ°åŸŸã‚³ãƒ¼ãƒ‰
  *	
- *	@retval	TRUE	‚ ‚é
- *	@retval	FALSE	‚È‚¢
+ *	@retval	TRUE	ã‚ã‚‹
+ *	@retval	FALSE	ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_AREA_Check( u16 nation, u16 area )
 {
 	u32 area_max;
 
-	// ’nˆæ‚à‚ ‚Á‚Ä‚¢‚é‚Ì‚©ƒ`ƒFƒbƒN
+	// åœ°åŸŸã‚‚ã‚ã£ã¦ã„ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
 	area_max = WIFI_COUNTRY_CountryCodeToPlaceIndexMax( nation );
 
-	// ’nˆæ”0‚Ìê‡0‚È‚çOK
+	// åœ°åŸŸæ•°0ã®å ´åˆ0ãªã‚‰OK
 	if( area_max == 0 ){
 		if( area == 0 ){
 			return TRUE;
 		}
 	}
 	
-	// ‘’nˆæ”0‚æ‚è‘å‚«‚¢‚Æ‚«‚Í1`‚»‚Ì’l‚Ü‚ÅOK
+	// ç·åœ°åŸŸæ•°0ã‚ˆã‚Šå¤§ãã„ã¨ãã¯1ã€œãã®å€¤ã¾ã§OK
 	if( (area >= 1) && (area <= area_max) ){
 		return TRUE;
 	}
@@ -347,13 +347,13 @@ BOOL WFLBY_AREA_Check( u16 nation, u16 area )
 
 //-----------------------------------------------------------------------------
 /**
- *			Lê“à‹Zƒ^ƒCƒv’è”‚©‚çí“¬—p‹Zƒ^ƒCƒv’è”‚ğ‹‚ß‚éŠÖ”
+ *			åºƒå ´å†…æŠ€ã‚¿ã‚¤ãƒ—å®šæ•°ã‹ã‚‰æˆ¦é—˜ç”¨æŠ€ã‚¿ã‚¤ãƒ—å®šæ•°ã‚’æ±‚ã‚ã‚‹é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_BattleWazaType_Get( WFLBY_POKEWAZA_TYPE type )
 {
 	static const u8 sc_BATTLE_WAZA_TYPE_DATA[ WFLBY_POKEWAZA_TYPE_NUM ] = {
-		HATE_TYPE,			//	WFLBY_POKEWAZA_TYPE_NONE,	// ‘I‚Î‚È‚¢
+		HATE_TYPE,			//	WFLBY_POKEWAZA_TYPE_NONE,	// é¸ã°ãªã„
 		NORMAL_TYPE,		//	WFLBY_POKEWAZA_TYPE_NORMAL,
 		BATTLE_TYPE,		//	WFLBY_POKEWAZA_TYPE_BATTLE,
 		HIKOU_TYPE,			//	WFLBY_POKEWAZA_TYPE_HIKOU,
@@ -380,16 +380,16 @@ u32 WFLBY_BattleWazaType_Get( WFLBY_POKEWAZA_TYPE type )
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒGƒ‰[ˆ—
+ *			ã‚¨ãƒ©ãƒ¼å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ‰[ƒiƒ“ƒo[‚©‚çƒGƒ‰[ƒƒbƒZ[ƒW‚ğæ“¾
+ *	@brief	ã‚¨ãƒ©ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å–å¾—
  *
- *	@param	errno	ƒGƒ‰[ƒiƒ“ƒo[	CommStateGetWifiErrNo
+ *	@param	errno	ã‚¨ãƒ©ãƒ¼ãƒŠãƒ³ãƒãƒ¼	CommStateGetWifiErrNo
  *	
- *	@return	ƒƒbƒZ[ƒWƒiƒ“ƒo[
+ *	@return	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 int WFLBY_ERR_GetStrID( int errno,int errtype )
@@ -418,11 +418,11 @@ int WFLBY_ERR_GetStrID( int errno,int errtype )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ‰[ƒiƒ“ƒo[‚©‚çƒGƒ‰[ƒƒbƒZ[ƒW‚ğæ“¾
+ *	@brief	ã‚¨ãƒ©ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å–å¾—
  *
- *	@param	errno	ƒGƒ‰[ƒiƒ“ƒo[
+ *	@param	errno	ã‚¨ãƒ©ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	ƒGƒ‰[ƒ^ƒCƒv
+ *	@return	ã‚¨ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 WFLBY_ERR_TYPE WFLBY_ERR_GetErrType( int errno,int errtype )
@@ -465,10 +465,10 @@ WFLBY_ERR_TYPE WFLBY_ERR_GetErrType( int errno,int errtype )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Wi-FiƒGƒ‰[ƒ`ƒFƒbƒN
+ *	@brief	Wi-Fiã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
  *
- *	@retval	TRUE	ƒGƒ‰[”­¶
- *	@retval	FALSE	ƒGƒ‰[‚È‚µ
+ *	@retval	TRUE	ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ
+ *	@retval	FALSE	ã‚¨ãƒ©ãƒ¼ãªã—
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_ERR_CheckError( void )

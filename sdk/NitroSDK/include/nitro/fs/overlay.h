@@ -18,7 +18,7 @@
   do-indent.
 
   Revision 1.10  2005/01/24 06:34:45  yosizaki
-  copyright ”N•\‹LC³.
+  copyright å¹´è¡¨è¨˜ä¿®æ­£.
 
   Revision 1.9  2005/01/19 11:36:09  yosizaki
   delete pragma `pack'.

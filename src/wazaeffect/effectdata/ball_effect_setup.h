@@ -1,236 +1,236 @@
-//---- 僐儞僶乕僞丗SPAConv.exe  Version 1.13
+//---- 銈炽兂銉愩兗銈匡細SPAConv.exe  Version 1.13
 
 #ifndef __BALL_EFFECT_SETUP_H__
 #define __BALL_EFFECT_SETUP_H__
 
-//p_ball_effect.h偺spr儕僜乕僗掕媊
+//p_ball_effect.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_EFFECT_BALL_NORMAL_1		0
 #define P_BALL_EFFECT_BALL_NORMAL_2		1
 #define P_BALL_EFFECT_BALL_NORMAL_3		2
-//p_ball_effect.spa撪偺儕僜乕僗屄悢
+//p_ball_effect.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_EFFECT_SPAMAX	(3)
 
-//p_ball_01.h偺spr儕僜乕僗掕媊
+//p_ball_01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_01_BALL_001_1		0
 #define P_BALL_01_BALL_001_2		1
 #define P_BALL_01_BALL_001_3		2
 #define P_BALL_01_BALL_001_4		3
 #define P_BALL_01_BALL_001_5		4
-//p_ball_01.spa撪偺儕僜乕僗屄悢
+//p_ball_01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_01_SPAMAX	(5)
 
-//p_ball_02.h偺spr儕僜乕僗掕媊
+//p_ball_02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_02_BALL_002_1		0
 #define P_BALL_02_BALL_002_2		1
 #define P_BALL_02_BALL_002_3		2
 #define P_BALL_02_BALL_002_4		3
-//p_ball_02.spa撪偺儕僜乕僗屄悢
+//p_ball_02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_02_SPAMAX	(4)
 
-//p_ball_03.h偺spr儕僜乕僗掕媊
+//p_ball_03.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_03_BALL_003_1		0
 #define P_BALL_03_BALL_003_2		1
 #define P_BALL_03_BALL_003_3		2
-//p_ball_03.spa撪偺儕僜乕僗屄悢
+//p_ball_03.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_03_SPAMAX	(3)
 
-//p_ball_04.h偺spr儕僜乕僗掕媊
+//p_ball_04.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_04_BALL_NORMAL_1		0
 #define P_BALL_04_BALL_NORMAL_2		1
 #define P_BALL_04_BALL_NORMAL_3		2
-//p_ball_04.spa撪偺儕僜乕僗屄悢
+//p_ball_04.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_04_SPAMAX	(3)
 
-//p_ball_05.h偺spr儕僜乕僗掕媊
+//p_ball_05.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_05_BALL_004_1		0
 #define P_BALL_05_BALL_004_2		1
 #define P_BALL_05_BALL_004_3		2
-//p_ball_05.spa撪偺儕僜乕僗屄悢
+//p_ball_05.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_05_SPAMAX	(3)
 
-//p_ball_06.h偺spr儕僜乕僗掕媊
+//p_ball_06.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_06_BALL_005_1		0
 #define P_BALL_06_BALL_005_2		1
 #define P_BALL_06_BALL_005_3		2
 #define P_BALL_06_BALL_005_4		3
-//p_ball_06.spa撪偺儕僜乕僗屄悢
+//p_ball_06.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_06_SPAMAX	(4)
 
-//p_ball_07.h偺spr儕僜乕僗掕媊
+//p_ball_07.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_07_BALL_006_1		0
 #define P_BALL_07_BALL_006_2		1
 #define P_BALL_07_BALL_006_3		2
-//p_ball_07.spa撪偺儕僜乕僗屄悢
+//p_ball_07.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_07_SPAMAX	(3)
 
-//p_ball_08.h偺spr儕僜乕僗掕媊
+//p_ball_08.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_08_BALL_007_1		0
 #define P_BALL_08_BALL_007_2		1
 #define P_BALL_08_BALL_007_3		2
 #define P_BALL_08_BALL_NORMAL_1		3
-//p_ball_08.spa撪偺儕僜乕僗屄悢
+//p_ball_08.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_08_SPAMAX	(4)
 
-//p_ball_09.h偺spr儕僜乕僗掕媊
+//p_ball_09.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_09_BALL_008_1		0
 #define P_BALL_09_BALL_008_2		1
 #define P_BALL_09_BALL_008_3		2
-//p_ball_09.spa撪偺儕僜乕僗屄悢
+//p_ball_09.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_09_SPAMAX	(3)
 
-//p_ball_10.h偺spr儕僜乕僗掕媊
+//p_ball_10.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_10_BALL_009_1		0
 #define P_BALL_10_BALL_009_2		1
 #define P_BALL_10_BALL_009_3		2
 #define P_BALL_10_BALL_009_4		3
 #define P_BALL_10_BALL_009_5		4
-//p_ball_10.spa撪偺儕僜乕僗屄悢
+//p_ball_10.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_10_SPAMAX	(5)
 
-//p_ball_11.h偺spr儕僜乕僗掕媊
+//p_ball_11.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_11_BALL_010_1		0
 #define P_BALL_11_BALL_010_2		1
 #define P_BALL_11_BALL_010_3		2
 #define P_BALL_11_BALL_010_4		3
-//p_ball_11.spa撪偺儕僜乕僗屄悢
+//p_ball_11.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_11_SPAMAX	(4)
 
-//p_ball_12.h偺spr儕僜乕僗掕媊
+//p_ball_12.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_12_BALL_011_1		0
 #define P_BALL_12_BALL_011_2		1
 #define P_BALL_12_BALL_011_3		2
-//p_ball_12.spa撪偺儕僜乕僗屄悢
+//p_ball_12.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_12_SPAMAX	(3)
 
-//p_ball_13.h偺spr儕僜乕僗掕媊
+//p_ball_13.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_13_BALL_012_1		0
 #define P_BALL_13_BALL_012_2		1
 #define P_BALL_13_BALL_012_3		2
-//p_ball_13.spa撪偺儕僜乕僗屄悢
+//p_ball_13.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_13_SPAMAX	(3)
 
-//p_ball_14.h偺spr儕僜乕僗掕媊
+//p_ball_14.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_14_BALL_013_1		0
 #define P_BALL_14_BALL_013_2		1
 #define P_BALL_14_BALL_013_3		2
-//p_ball_14.spa撪偺儕僜乕僗屄悢
+//p_ball_14.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_14_SPAMAX	(3)
 
-//p_ball_15.h偺spr儕僜乕僗掕媊
+//p_ball_15.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_15_BALL_014_1		0
 #define P_BALL_15_BALL_014_2		1
 #define P_BALL_15_BALL_014_3		2
 #define P_BALL_15_BALL_NORMAL_1		3
-//p_ball_15.spa撪偺儕僜乕僗屄悢
+//p_ball_15.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_15_SPAMAX	(4)
 
-//p_ball_16.h偺spr儕僜乕僗掕媊
+//p_ball_16.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_16_BALL_015_1		0
 #define P_BALL_16_BALL_015_2		1
 #define P_BALL_16_BALL_015_3		2
 #define P_BALL_16_BALL_015_4		3
-//p_ball_16.spa撪偺儕僜乕僗屄悢
+//p_ball_16.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_16_SPAMAX	(4)
 
-//p_ball_17.h偺spr儕僜乕僗掕媊
+//p_ball_17.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BALL_17_BALL_NORMAL_1		0
 #define P_BALL_17_BALL_NORMAL_2		1
 #define P_BALL_17_BALL_NORMAL_3		2
-//p_ball_17.spa撪偺儕僜乕僗屄悢
+//p_ball_17.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BALL_17_SPAMAX	(3)
 
-//p_get_effect.h偺spr儕僜乕僗掕媊
+//p_get_effect.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_EFFECT_BALL_GET1		0
 #define P_GET_EFFECT_BALL_GET2		1
 #define P_GET_EFFECT_BALL_GET3		2
 #define P_GET_EFFECT_BALL_STAR1		3
 #define P_GET_EFFECT_GET_NORMAL1		4
-//p_get_effect.spa撪偺儕僜乕僗屄悢
+//p_get_effect.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_EFFECT_SPAMAX	(5)
 
-//p_get_01.h偺spr儕僜乕僗掕媊
+//p_get_01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_01_BALL_STAR1		0
 #define P_GET_01_GET_001_1		1
 #define P_GET_01_GET_001_2		2
 #define P_GET_01_GET_001_3		3
 #define P_GET_01_GET_NORMAL1		4
-//p_get_01.spa撪偺儕僜乕僗屄悢
+//p_get_01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_01_SPAMAX	(5)
 
-//p_get_02.h偺spr儕僜乕僗掕媊
+//p_get_02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_02_BALL_GET2		0
 #define P_GET_02_BALL_GET3		1
 #define P_GET_02_BALL_STAR1		2
 #define P_GET_02_GET_002_1		3
 #define P_GET_02_GET_NORMAL1		4
-//p_get_02.spa撪偺儕僜乕僗屄悢
+//p_get_02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_02_SPAMAX	(5)
 
-//p_get_03.h偺spr儕僜乕僗掕媊
+//p_get_03.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_03_BALL_GET2		0
 #define P_GET_03_BALL_STAR1		1
 #define P_GET_03_GET_003_1		2
 #define P_GET_03_GET_003_3		3
 #define P_GET_03_GET_NORMAL1		4
-//p_get_03.spa撪偺儕僜乕僗屄悢
+//p_get_03.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_03_SPAMAX	(5)
 
-//p_get_04.h偺spr儕僜乕僗掕媊
+//p_get_04.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_04_BALL_GET1		0
 #define P_GET_04_BALL_GET2		1
 #define P_GET_04_BALL_GET3		2
 #define P_GET_04_BALL_STAR1		3
 #define P_GET_04_GET_NORMAL1		4
-//p_get_04.spa撪偺儕僜乕僗屄悢
+//p_get_04.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_04_SPAMAX	(5)
 
-//p_get_05.h偺spr儕僜乕僗掕媊
+//p_get_05.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_05_BALL_GET2		0
 #define P_GET_05_BALL_STAR1		1
 #define P_GET_05_GET_004_1		2
 #define P_GET_05_GET_004_3		3
 #define P_GET_05_GET_NORMAL1		4
-//p_get_05.spa撪偺儕僜乕僗屄悢
+//p_get_05.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_05_SPAMAX	(5)
 
-//p_get_06.h偺spr儕僜乕僗掕媊
+//p_get_06.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_06_BALL_GET2		0
 #define P_GET_06_BALL_STAR1		1
 #define P_GET_06_GET_003_3		2
 #define P_GET_06_GET_005_1		3
 #define P_GET_06_GET_005_5		4
 #define P_GET_06_GET_NORMAL1		5
-//p_get_06.spa撪偺儕僜乕僗屄悢
+//p_get_06.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_06_SPAMAX	(6)
 
-//p_get_07.h偺spr儕僜乕僗掕媊
+//p_get_07.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_07_BALL_GET2		0
 #define P_GET_07_BALL_STAR1		1
 #define P_GET_07_GET_003_3		2
 #define P_GET_07_GET_006_1		3
 #define P_GET_07_GET_NORMAL1		4
-//p_get_07.spa撪偺儕僜乕僗屄悢
+//p_get_07.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_07_SPAMAX	(5)
 
-//p_get_08.h偺spr儕僜乕僗掕媊
+//p_get_08.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_08_BALL_GET2		0
 #define P_GET_08_BALL_STAR1		1
 #define P_GET_08_GET_004_3		2
 #define P_GET_08_GET_007_1		3
 #define P_GET_08_GET_NORMAL1		4
-//p_get_08.spa撪偺儕僜乕僗屄悢
+//p_get_08.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_08_SPAMAX	(5)
 
-//p_get_09.h偺spr儕僜乕僗掕媊
+//p_get_09.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_09_BALL_GET2		0
 #define P_GET_09_BALL_GET3		1
 #define P_GET_09_BALL_STAR1		2
 #define P_GET_09_GET_008_1		3
 #define P_GET_09_GET_NORMAL1		4
-//p_get_09.spa撪偺儕僜乕僗屄悢
+//p_get_09.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_09_SPAMAX	(5)
 
-//p_get_10.h偺spr儕僜乕僗掕媊
+//p_get_10.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_10_BALL_009_4		0
 #define P_GET_10_BALL_009_5		1
 #define P_GET_10_BALL_GET2		2
@@ -238,484 +238,484 @@
 #define P_GET_10_GET_009_1		4
 #define P_GET_10_GET_009_3		5
 #define P_GET_10_GET_NORMAL1		6
-//p_get_10.spa撪偺儕僜乕僗屄悢
+//p_get_10.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_10_SPAMAX	(7)
 
-//p_get_11.h偺spr儕僜乕僗掕媊
+//p_get_11.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_11_BALL_GET1		0
 #define P_GET_11_BALL_STAR1		1
 #define P_GET_11_GET_009_3		2
 #define P_GET_11_GET_010_2		3
 #define P_GET_11_GET_010_5		4
 #define P_GET_11_GET_NORMAL1		5
-//p_get_11.spa撪偺儕僜乕僗屄悢
+//p_get_11.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_11_SPAMAX	(6)
 
-//p_get_12.h偺spr儕僜乕僗掕媊
+//p_get_12.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_12_BALL_STAR1		0
 #define P_GET_12_GET_011_1		1
 #define P_GET_12_GET_011_2		2
 #define P_GET_12_GET_011_3		3
 #define P_GET_12_GET_NORMAL1		4
-//p_get_12.spa撪偺儕僜乕僗屄悢
+//p_get_12.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_12_SPAMAX	(5)
 
-//p_get_13.h偺spr儕僜乕僗掕媊
+//p_get_13.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_13_BALL_GET3		0
 #define P_GET_13_BALL_STAR1		1
 #define P_GET_13_GET_012_1		2
 #define P_GET_13_GET_012_2		3
 #define P_GET_13_GET_NORMAL1		4
-//p_get_13.spa撪偺儕僜乕僗屄悢
+//p_get_13.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_13_SPAMAX	(5)
 
-//p_get_14.h偺spr儕僜乕僗掕媊
+//p_get_14.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_14_BALL_STAR1		0
 #define P_GET_14_GET_011_2		1
 #define P_GET_14_GET_011_3		2
 #define P_GET_14_GET_013_1		3
 #define P_GET_14_GET_NORMAL1		4
-//p_get_14.spa撪偺儕僜乕僗屄悢
+//p_get_14.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_14_SPAMAX	(5)
 
-//p_get_15.h偺spr儕僜乕僗掕媊
+//p_get_15.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_15_BALL_GET2		0
 #define P_GET_15_BALL_STAR1		1
 #define P_GET_15_GET_009_1		2
 #define P_GET_15_GET_009_3		3
 #define P_GET_15_GET_014_5		4
 #define P_GET_15_GET_NORMAL1		5
-//p_get_15.spa撪偺儕僜乕僗屄悢
+//p_get_15.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_15_SPAMAX	(6)
 
-//p_get_16.h偺spr儕僜乕僗掕媊
+//p_get_16.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_16_BALL_015_4		0
 #define P_GET_16_BALL_STAR1		1
 #define P_GET_16_GET_011_1		2
 #define P_GET_16_GET_011_2		3
 #define P_GET_16_GET_011_3		4
 #define P_GET_16_GET_NORMAL1		5
-//p_get_16.spa撪偺儕僜乕僗屄悢
+//p_get_16.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_16_SPAMAX	(6)
 
-//p_get_17.h偺spr儕僜乕僗掕媊
+//p_get_17.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_GET_17_BALL_GET1		0
 #define P_GET_17_BALL_GET2		1
 #define P_GET_17_BALL_GET3		2
 #define P_GET_17_BALL_STAR1		3
 #define P_GET_17_GET_NORMAL1		4
-//p_get_17.spa撪偺儕僜乕僗屄悢
+//p_get_17.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_GET_17_SPAMAX	(5)
 
-//p_back.h偺spr儕僜乕僗掕媊
+//p_back.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_BACK_BALL_CLOSE1		0
 #define P_BACK_BALL_CLOSE2		1
-//p_back.spa撪偺儕僜乕僗屄悢
+//p_back.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_BACK_SPAMAX	(2)
 
-//p_cb_hart01.h偺spr儕僜乕僗掕媊
+//p_cb_hart01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_HART01_CB_HART01		0
-//p_cb_hart01.spa撪偺儕僜乕僗屄悢
+//p_cb_hart01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_HART01_SPAMAX	(1)
 
-//p_cb_hart02.h偺spr儕僜乕僗掕媊
+//p_cb_hart02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_HART02_CB_HART02		0
-//p_cb_hart02.spa撪偺儕僜乕僗屄悢
+//p_cb_hart02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_HART02_SPAMAX	(1)
 
-//p_cb_hart03.h偺spr儕僜乕僗掕媊
+//p_cb_hart03.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_HART03_CB_HART03		0
-//p_cb_hart03.spa撪偺儕僜乕僗屄悢
+//p_cb_hart03.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_HART03_SPAMAX	(1)
 
-//p_cb_hart04.h偺spr儕僜乕僗掕媊
+//p_cb_hart04.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_HART04_CB_HART04		0
-//p_cb_hart04.spa撪偺儕僜乕僗屄悢
+//p_cb_hart04.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_HART04_SPAMAX	(1)
 
-//p_cb_hart05.h偺spr儕僜乕僗掕媊
+//p_cb_hart05.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_HART05_CB_HART05		0
-//p_cb_hart05.spa撪偺儕僜乕僗屄悢
+//p_cb_hart05.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_HART05_SPAMAX	(1)
 
-//p_cb_hart06.h偺spr儕僜乕僗掕媊
+//p_cb_hart06.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_HART06_CB_HART06		0
-//p_cb_hart06.spa撪偺儕僜乕僗屄悢
+//p_cb_hart06.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_HART06_SPAMAX	(1)
 
-//p_cb_star01.h偺spr儕僜乕僗掕媊
+//p_cb_star01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_STAR01_CB_STAR01		0
-//p_cb_star01.spa撪偺儕僜乕僗屄悢
+//p_cb_star01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_STAR01_SPAMAX	(1)
 
-//p_cb_star02.h偺spr儕僜乕僗掕媊
+//p_cb_star02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_STAR02_CB_STAR02		0
-//p_cb_star02.spa撪偺儕僜乕僗屄悢
+//p_cb_star02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_STAR02_SPAMAX	(1)
 
-//p_cb_star03.h偺spr儕僜乕僗掕媊
+//p_cb_star03.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_STAR03_CB_STAR03		0
-//p_cb_star03.spa撪偺儕僜乕僗屄悢
+//p_cb_star03.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_STAR03_SPAMAX	(1)
 
-//p_cb_star04.h偺spr儕僜乕僗掕媊
+//p_cb_star04.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_STAR04_CB_STAR04		0
-//p_cb_star04.spa撪偺儕僜乕僗屄悢
+//p_cb_star04.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_STAR04_SPAMAX	(1)
 
-//p_cb_star05.h偺spr儕僜乕僗掕媊
+//p_cb_star05.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_STAR05_CB_STAR05		0
-//p_cb_star05.spa撪偺儕僜乕僗屄悢
+//p_cb_star05.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_STAR05_SPAMAX	(1)
 
-//p_cb_star06.h偺spr儕僜乕僗掕媊
+//p_cb_star06.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_STAR06_CB_STAR06		0
-//p_cb_star06.spa撪偺儕僜乕僗屄悢
+//p_cb_star06.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_STAR06_SPAMAX	(1)
 
-//p_cb_line01.h偺spr儕僜乕僗掕媊
+//p_cb_line01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_LINE01_CB_LINE01		0
-//p_cb_line01.spa撪偺儕僜乕僗屄悢
+//p_cb_line01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_LINE01_SPAMAX	(1)
 
-//p_cb_line02.h偺spr儕僜乕僗掕媊
+//p_cb_line02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_LINE02_CB_LINE02		0
-//p_cb_line02.spa撪偺儕僜乕僗屄悢
+//p_cb_line02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_LINE02_SPAMAX	(1)
 
-//p_cb_line03.h偺spr儕僜乕僗掕媊
+//p_cb_line03.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_LINE03_CB_LINE03		0
-//p_cb_line03.spa撪偺儕僜乕僗屄悢
+//p_cb_line03.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_LINE03_SPAMAX	(1)
 
-//p_cb_line04.h偺spr儕僜乕僗掕媊
+//p_cb_line04.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_LINE04_CB_LINE04		0
-//p_cb_line04.spa撪偺儕僜乕僗屄悢
+//p_cb_line04.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_LINE04_SPAMAX	(1)
 
-//p_cb_tunder01.h偺spr儕僜乕僗掕媊
+//p_cb_tunder01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_TUNDER01_CB_TUNDER01		0
-//p_cb_tunder01.spa撪偺儕僜乕僗屄悢
+//p_cb_tunder01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_TUNDER01_SPAMAX	(1)
 
-//p_cb_tunder02.h偺spr儕僜乕僗掕媊
+//p_cb_tunder02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_TUNDER02_CB_TUNDER02		0
-//p_cb_tunder02.spa撪偺儕僜乕僗屄悢
+//p_cb_tunder02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_TUNDER02_SPAMAX	(1)
 
-//p_cb_tunder03.h偺spr儕僜乕僗掕媊
+//p_cb_tunder03.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_TUNDER03_CB_TUNDER03		0
-//p_cb_tunder03.spa撪偺儕僜乕僗屄悢
+//p_cb_tunder03.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_TUNDER03_SPAMAX	(1)
 
-//p_cb_tunder04.h偺spr儕僜乕僗掕媊
+//p_cb_tunder04.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_TUNDER04_CB_TUNDER04		0
-//p_cb_tunder04.spa撪偺儕僜乕僗屄悢
+//p_cb_tunder04.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_TUNDER04_SPAMAX	(1)
 
-//p_cb_kemuri01.h偺spr儕僜乕僗掕媊
+//p_cb_kemuri01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_KEMURI01_CB_KEMURI01		0
-//p_cb_kemuri01.spa撪偺儕僜乕僗屄悢
+//p_cb_kemuri01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_KEMURI01_SPAMAX	(1)
 
-//p_cb_kemuri02.h偺spr儕僜乕僗掕媊
+//p_cb_kemuri02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_KEMURI02_CB_KEMURI02		0
-//p_cb_kemuri02.spa撪偺儕僜乕僗屄悢
+//p_cb_kemuri02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_KEMURI02_SPAMAX	(1)
 
-//p_cb_kemuri03.h偺spr儕僜乕僗掕媊
+//p_cb_kemuri03.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_KEMURI03_CB_KEMURI03		0
-//p_cb_kemuri03.spa撪偺儕僜乕僗屄悢
+//p_cb_kemuri03.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_KEMURI03_SPAMAX	(1)
 
-//p_cb_kemuri04.h偺spr儕僜乕僗掕媊
+//p_cb_kemuri04.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_KEMURI04_CB_KEMURI04		0
-//p_cb_kemuri04.spa撪偺儕僜乕僗屄悢
+//p_cb_kemuri04.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_KEMURI04_SPAMAX	(1)
 
-//p_cb_ball01.h偺spr儕僜乕僗掕媊
+//p_cb_ball01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_BALL01_CB_BALL01		0
-//p_cb_ball01.spa撪偺儕僜乕僗屄悢
+//p_cb_ball01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_BALL01_SPAMAX	(1)
 
-//p_cb_ball02.h偺spr儕僜乕僗掕媊
+//p_cb_ball02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_BALL02_CB_BALL02		0
-//p_cb_ball02.spa撪偺儕僜乕僗屄悢
+//p_cb_ball02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_BALL02_SPAMAX	(1)
 
-//p_cb_ball03.h偺spr儕僜乕僗掕媊
+//p_cb_ball03.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_BALL03_CB_BALL03		0
-//p_cb_ball03.spa撪偺儕僜乕僗屄悢
+//p_cb_ball03.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_BALL03_SPAMAX	(1)
 
-//p_cb_ball04.h偺spr儕僜乕僗掕媊
+//p_cb_ball04.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_BALL04_CB_BALL04		0
-//p_cb_ball04.spa撪偺儕僜乕僗屄悢
+//p_cb_ball04.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_BALL04_SPAMAX	(1)
 
-//p_cb_fire01.h偺spr儕僜乕僗掕媊
+//p_cb_fire01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_FIRE01_CB_FIRE01		0
-//p_cb_fire01.spa撪偺儕僜乕僗屄悢
+//p_cb_fire01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_FIRE01_SPAMAX	(1)
 
-//p_cb_fire02.h偺spr儕僜乕僗掕媊
+//p_cb_fire02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_FIRE02_CB_FIRE02		0
-//p_cb_fire02.spa撪偺儕僜乕僗屄悢
+//p_cb_fire02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_FIRE02_SPAMAX	(1)
 
-//p_cb_fire03.h偺spr儕僜乕僗掕媊
+//p_cb_fire03.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_FIRE03_CB_FIRE03		0
-//p_cb_fire03.spa撪偺儕僜乕僗屄悢
+//p_cb_fire03.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_FIRE03_SPAMAX	(1)
 
-//p_cb_fire04.h偺spr儕僜乕僗掕媊
+//p_cb_fire04.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_FIRE04_CB_FIRE04		0
-//p_cb_fire04.spa撪偺儕僜乕僗屄悢
+//p_cb_fire04.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_FIRE04_SPAMAX	(1)
 
-//p_cb_paper01.h偺spr儕僜乕僗掕媊
+//p_cb_paper01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_PAPER01_CB_PAPER01		0
-//p_cb_paper01.spa撪偺儕僜乕僗屄悢
+//p_cb_paper01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_PAPER01_SPAMAX	(1)
 
-//p_cb_paper02.h偺spr儕僜乕僗掕媊
+//p_cb_paper02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_PAPER02_CB_PAPER02		0
-//p_cb_paper02.spa撪偺儕僜乕僗屄悢
+//p_cb_paper02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_PAPER02_SPAMAX	(1)
 
-//p_cb_paper03.h偺spr儕僜乕僗掕媊
+//p_cb_paper03.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_PAPER03_CB_PAPER03		0
-//p_cb_paper03.spa撪偺儕僜乕僗屄悢
+//p_cb_paper03.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_PAPER03_SPAMAX	(1)
 
-//p_cb_paper04.h偺spr儕僜乕僗掕媊
+//p_cb_paper04.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_PAPER04_CB_PAPER04		0
-//p_cb_paper04.spa撪偺儕僜乕僗屄悢
+//p_cb_paper04.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_PAPER04_SPAMAX	(1)
 
-//p_cb_hana01.h偺spr儕僜乕僗掕媊
+//p_cb_hana01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_HANA01_CB_HANA01		0
-//p_cb_hana01.spa撪偺儕僜乕僗屄悢
+//p_cb_hana01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_HANA01_SPAMAX	(1)
 
-//p_cb_hana02.h偺spr儕僜乕僗掕媊
+//p_cb_hana02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_HANA02_CB_HANA02		0
-//p_cb_hana02.spa撪偺儕僜乕僗屄悢
+//p_cb_hana02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_HANA02_SPAMAX	(1)
 
-//p_cb_hana03.h偺spr儕僜乕僗掕媊
+//p_cb_hana03.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_HANA03_CB_HANA03		0
-//p_cb_hana03.spa撪偺儕僜乕僗屄悢
+//p_cb_hana03.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_HANA03_SPAMAX	(1)
 
-//p_cb_hana04.h偺spr儕僜乕僗掕媊
+//p_cb_hana04.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_HANA04_CB_HANA04		0
-//p_cb_hana04.spa撪偺儕僜乕僗屄悢
+//p_cb_hana04.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_HANA04_SPAMAX	(1)
 
-//p_cb_hana05.h偺spr儕僜乕僗掕媊
+//p_cb_hana05.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_HANA05_CB_HANA05		0
-//p_cb_hana05.spa撪偺儕僜乕僗屄悢
+//p_cb_hana05.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_HANA05_SPAMAX	(1)
 
-//p_cb_hana06.h偺spr儕僜乕僗掕媊
+//p_cb_hana06.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_HANA06_CB_HANA06		0
-//p_cb_hana06.spa撪偺儕僜乕僗屄悢
+//p_cb_hana06.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_HANA06_SPAMAX	(1)
 
-//p_cb_onpu01.h偺spr儕僜乕僗掕媊
+//p_cb_onpu01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ONPU01_CB_ONPU01		0
-//p_cb_onpu01.spa撪偺儕僜乕僗屄悢
+//p_cb_onpu01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ONPU01_SPAMAX	(1)
 
-//p_cb_onpu02.h偺spr儕僜乕僗掕媊
+//p_cb_onpu02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ONPU02_CB_ONPU02		0
-//p_cb_onpu02.spa撪偺儕僜乕僗屄悢
+//p_cb_onpu02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ONPU02_SPAMAX	(1)
 
-//p_cb_onpu03.h偺spr儕僜乕僗掕媊
+//p_cb_onpu03.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ONPU03_CB_ONPU03		0
-//p_cb_onpu03.spa撪偺儕僜乕僗屄悢
+//p_cb_onpu03.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ONPU03_SPAMAX	(1)
 
-//p_cb_onpu04.h偺spr儕僜乕僗掕媊
+//p_cb_onpu04.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ONPU04_CB_ONPU04		0
-//p_cb_onpu04.spa撪偺儕僜乕僗屄悢
+//p_cb_onpu04.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ONPU04_SPAMAX	(1)
 
-//p_cb_onpu05.h偺spr儕僜乕僗掕媊
+//p_cb_onpu05.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ONPU05_CB_ONPU05		0
-//p_cb_onpu05.spa撪偺儕僜乕僗屄悢
+//p_cb_onpu05.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ONPU05_SPAMAX	(1)
 
-//p_cb_onpu06.h偺spr儕僜乕僗掕媊
+//p_cb_onpu06.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ONPU06_CB_ONPU06		0
-//p_cb_onpu06.spa撪偺儕僜乕僗屄悢
+//p_cb_onpu06.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ONPU06_SPAMAX	(1)
 
-//p_cb_onpu07.h偺spr儕僜乕僗掕媊
+//p_cb_onpu07.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ONPU07_CB_ONPU07		0
-//p_cb_onpu07.spa撪偺儕僜乕僗屄悢
+//p_cb_onpu07.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ONPU07_SPAMAX	(1)
 
-//p_cb_alpha_a.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_a.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_A_CB_ALPHA_A		0
-//p_cb_alpha_a.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_a.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_A_SPAMAX	(1)
 
-//p_cb_alpha_b.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_b.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_B_CB_ALPHA_B		0
-//p_cb_alpha_b.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_b.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_B_SPAMAX	(1)
 
-//p_cb_alpha_c.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_c.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_C_CB_ALPHA_C		0
-//p_cb_alpha_c.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_c.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_C_SPAMAX	(1)
 
-//p_cb_alpha_d.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_d.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_D_CB_ALPHA_D		0
-//p_cb_alpha_d.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_d.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_D_SPAMAX	(1)
 
-//p_cb_alpha_e.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_e.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_E_CB_ALPHA_E		0
-//p_cb_alpha_e.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_e.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_E_SPAMAX	(1)
 
-//p_cb_alpha_f.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_f.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_F_CB_ALPHA_F		0
-//p_cb_alpha_f.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_f.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_F_SPAMAX	(1)
 
-//p_cb_alpha_g.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_g.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_G_CB_ALPHA_G		0
-//p_cb_alpha_g.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_g.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_G_SPAMAX	(1)
 
-//p_cb_alpha_h.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_h.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_H_CB_ALPHA_H		0
-//p_cb_alpha_h.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_h.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_H_SPAMAX	(1)
 
-//p_cb_alpha_i.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_i.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_I_CB_ALPHA_I		0
-//p_cb_alpha_i.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_i.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_I_SPAMAX	(1)
 
-//p_cb_alpha_j.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_j.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_J_CB_ALPHA_J		0
-//p_cb_alpha_j.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_j.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_J_SPAMAX	(1)
 
-//p_cb_alpha_k.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_k.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_K_CB_ALPHA_K		0
-//p_cb_alpha_k.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_k.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_K_SPAMAX	(1)
 
-//p_cb_alpha_l.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_l.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_L_CB_ALPHA_L		0
-//p_cb_alpha_l.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_l.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_L_SPAMAX	(1)
 
-//p_cb_alpha_m.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_m.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_M_CB_ALPHA_M		0
-//p_cb_alpha_m.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_m.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_M_SPAMAX	(1)
 
-//p_cb_alpha_n.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_n.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_N_CB_ALPHA_N		0
-//p_cb_alpha_n.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_n.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_N_SPAMAX	(1)
 
-//p_cb_alpha_o.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_o.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_O_CB_ALPHA_O		0
-//p_cb_alpha_o.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_o.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_O_SPAMAX	(1)
 
-//p_cb_alpha_p.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_p.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_P_CB_ALPHA_P		0
-//p_cb_alpha_p.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_p.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_P_SPAMAX	(1)
 
-//p_cb_alpha_q.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_q.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_Q_CB_ALPHA_Q		0
-//p_cb_alpha_q.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_q.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_Q_SPAMAX	(1)
 
-//p_cb_alpha_r.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_r.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_R_CB_ALPHA_R		0
-//p_cb_alpha_r.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_r.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_R_SPAMAX	(1)
 
-//p_cb_alpha_s.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_s.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_S_CB_ALPHA_S		0
-//p_cb_alpha_s.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_s.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_S_SPAMAX	(1)
 
-//p_cb_alpha_t.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_t.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_T_CB_ALPHA_T		0
-//p_cb_alpha_t.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_t.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_T_SPAMAX	(1)
 
-//p_cb_alpha_u.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_u.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_U_CB_ALPHA_U		0
-//p_cb_alpha_u.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_u.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_U_SPAMAX	(1)
 
-//p_cb_alpha_v.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_v.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_V_CB_ALPHA_V		0
-//p_cb_alpha_v.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_v.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_V_SPAMAX	(1)
 
-//p_cb_alpha_w.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_w.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_W_CB_ALPHA_W		0
-//p_cb_alpha_w.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_w.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_W_SPAMAX	(1)
 
-//p_cb_alpha_x.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_x.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_X_CB_ALPHA_X		0
-//p_cb_alpha_x.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_x.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_X_SPAMAX	(1)
 
-//p_cb_alpha_y.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_y.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_Y_CB_ALPHA_Y		0
-//p_cb_alpha_y.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_y.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_Y_SPAMAX	(1)
 
-//p_cb_alpha_z.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_z.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_Z_CB_ALPHA_Z		0
-//p_cb_alpha_z.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_z.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_Z_SPAMAX	(1)
 
-//p_cb_alpha_mark01.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_mark01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_MARK01_CB_ALPHA_MARK01		0
-//p_cb_alpha_mark01.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_mark01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_MARK01_SPAMAX	(1)
 
-//p_cb_alpha_mark02.h偺spr儕僜乕僗掕媊
+//p_cb_alpha_mark02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_ALPHA_MARK02_CB_ALPHA_MARK02		0
-//p_cb_alpha_mark02.spa撪偺儕僜乕僗屄悢
+//p_cb_alpha_mark02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_ALPHA_MARK02_SPAMAX	(1)
 
-//p_cb_sp_01.h偺spr儕僜乕僗掕媊
+//p_cb_sp_01.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_SP_01_CB_WATER		0
-//p_cb_sp_01.spa撪偺儕僜乕僗屄悢
+//p_cb_sp_01.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_SP_01_SPAMAX	(1)
 
-//p_cb_sp_02.h偺spr儕僜乕僗掕媊
+//p_cb_sp_02.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_SP_02_CB_BOMB		0
-//p_cb_sp_02.spa撪偺儕僜乕僗屄悢
+//p_cb_sp_02.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_SP_02_SPAMAX	(1)
 
-//p_cb_sp_03.h偺spr儕僜乕僗掕媊
+//p_cb_sp_03.h銇畇pr銉偨銉笺偣瀹氱京
 #define P_CB_SP_03_CB_KIRAKIRA		0
-//p_cb_sp_03.spa撪偺儕僜乕僗屄悢
+//p_cb_sp_03.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define P_CB_SP_03_SPAMAX	(1)
 
 
 
-//---- ball_effect_setup_tbl僥乕僽儖偺define掕媊 ----
+//---- ball_effect_setup_tbl銉嗐兗銉栥儷銇甦efine瀹氱京 ----
 #define SPA_P_BALL_EFFECT		(0)
 #define SPA_P_BALL_01		(1)
 #define SPA_P_BALL_02		(2)

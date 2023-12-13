@@ -16,16 +16,16 @@
 #define NNS_G3D_H_
 
 //
-// G3D‚ð‚¨Žg‚¢‚É‚È‚ç‚ê‚éÛ‚Ì’ˆÓŽ–€
-// E MI_SendGXCommandAsync‚Å‚Í‚È‚­ANNS_G3dSendDL‚ð‚¨Žg‚¢‚­‚¾‚³‚¢B
-// E •¡”‚ÌƒXƒŒƒbƒh‚©‚çG3D‚ÌŠÖ”‚ðŒÄ‚Ño‚³‚È‚¢‚Å‚­‚¾‚³‚¢B
-// E SDK‚ÌG3_XXXXƒRƒ}ƒ“ƒh‚ÍANNS_G3dGeFlushBuffer()‚ðŽÀs‚µ‚ÄAG3D‚ªŽ‚Á‚Ä‚¢‚é
-//    ƒWƒIƒƒgƒŠƒRƒ}ƒ“ƒhƒLƒƒƒbƒVƒ…‚ðƒtƒ‰ƒbƒVƒ…‚µ‚Ä‚©‚çŽg—p‚µ‚Ä‚­‚¾‚³‚¢B
+// G3Dã‚’ãŠä½¿ã„ã«ãªã‚‰ã‚Œã‚‹éš›ã®æ³¨æ„äº‹é …
+// ãƒ» MI_SendGXCommandAsyncã§ã¯ãªãã€NNS_G3dSendDLã‚’ãŠä½¿ã„ãã ã•ã„ã€‚
+// ãƒ» è¤‡æ•°ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰G3Dã®é–¢æ•°ã‚’å‘¼ã³å‡ºã•ãªã„ã§ãã ã•ã„ã€‚
+// ãƒ» SDKã®G3_XXXXã‚³ãƒžãƒ³ãƒ‰ã¯ã€NNS_G3dGeFlushBuffer()ã‚’å®Ÿè¡Œã—ã¦ã€G3DãŒæŒã£ã¦ã„ã‚‹
+//    ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã—ã¦ã‹ã‚‰ä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚
 //
 // ADVICE
-// E DO NOT USE MI_SendGXCommandAsync DIRECTLY. USE NNS_G3dSendDL INSTEAD.
-// E DO NOT USE G3D FUNCTIONS FROM MULTIPLE THREADS.
-// E Call G3_XXX on SDK after executing NNS_G3dGeFlushBuffer() --- This waits
+// ãƒ» DO NOT USE MI_SendGXCommandAsync DIRECTLY. USE NNS_G3dSendDL INSTEAD.
+// ãƒ» DO NOT USE G3D FUNCTIONS FROM MULTIPLE THREADS.
+// ãƒ» Call G3_XXX on SDK after executing NNS_G3dGeFlushBuffer() --- This waits
 //    until NNS_G3dSendDL completes, then flushes a geometry command buffer
 //    which G3D may have.
 //

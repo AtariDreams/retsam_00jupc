@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	eventflag.c
- * @bfief	ƒZ[ƒuƒtƒ‰ƒOAƒ[ƒN‘€ì
+ * @bfief	ã‚»ãƒ¼ãƒ–ãƒ•ãƒ©ã‚°ã€ãƒ¯ãƒ¼ã‚¯æ“ä½œ
  * @author	Tamada
  * @author	Satoshi Nohara
  * @date	05.10.22
@@ -22,15 +22,15 @@
 //=============================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒ[ƒN\‘¢‘Ì‚Ì’è‹`
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®å®šç¾©
  */
 //------------------------------------------------------------------
 struct _EVENTWORK {
-	u16 work[EVENT_WORK_AREA_MAX];	//ƒ[ƒN
-	u8	flag[EVENT_FLAG_AREA_MAX];	//ƒtƒ‰ƒO
+	u16 work[EVENT_WORK_AREA_MAX];	//ãƒ¯ãƒ¼ã‚¯
+	u8	flag[EVENT_FLAG_AREA_MAX];	//ãƒ•ãƒ©ã‚°
 };
 
-//ƒZ[ƒu‚µ‚È‚¢ƒtƒ‰ƒO
+//ã‚»ãƒ¼ãƒ–ã—ãªã„ãƒ•ãƒ©ã‚°
 static u8 EventCtrlFlag[CTRLFLAG_AREA_MAX] = {};
 
 
@@ -45,11 +45,11 @@ int EventWork_GetWorkSize(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒ[ƒN‚ğ¶¬‚·‚é
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param	heapID		ƒq[ƒvID
+ * @param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	EVENTWORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	EVENTWORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 EVENTWORK * EventWork_AllocWork(int heapID)
@@ -64,13 +64,13 @@ EVENTWORK * EventWork_AllocWork(int heapID)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒ[ƒN‚Ì‰Šú‰»
- * @param	evwk	EVENTWORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
+ * @param	evwk	EVENTWORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void EventWork_Init(EVENTWORK * evwk)
 {
-	//•s³‚È’l‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚ÅƒNƒŠƒA
+	//ä¸æ­£ãªå€¤ãŒå…¥ã£ã¦ã„ã‚‹ã®ã§ã‚¯ãƒªã‚¢
 	memset( evwk, 0, sizeof(EVENTWORK) );
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_EVENT_WORK)
 	SVLD_SetCrc(GMDATA_ID_EVENT_WORK);
@@ -79,11 +79,11 @@ void EventWork_Init(EVENTWORK * evwk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‚©‚çƒCƒxƒ“ƒgƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- * @param	sv	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	sv	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	ƒZ[ƒuƒf[ƒ^’†‚ÌEVENTWORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¸­ã®EVENTWORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 EVENTWORK * SaveData_GetEventWork(SAVEDATA * sv)
@@ -98,13 +98,13 @@ EVENTWORK * SaveData_GetEventWork(SAVEDATA * sv)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN‚·‚é
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- * @param	ev			ƒCƒxƒ“ƒgƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag_no		ƒtƒ‰ƒOƒiƒ“ƒo[
+ * @param	ev			ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag_no		ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //------------------------------------------------------------------
 BOOL EventWork_CheckEventFlag( EVENTWORK * ev, u16 flag_no)
@@ -119,10 +119,10 @@ BOOL EventWork_CheckEventFlag( EVENTWORK * ev, u16 flag_no)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param	ev			ƒCƒxƒ“ƒgƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag_no		ƒtƒ‰ƒOƒiƒ“ƒo[
+ * @param	ev			ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag_no		ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -141,10 +141,10 @@ void EventWork_SetEventFlag( EVENTWORK * ev, u16 flag_no)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒtƒ‰ƒO‚ğƒŠƒZƒbƒg‚·‚é
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param	ev			ƒCƒxƒ“ƒgƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag_no		ƒtƒ‰ƒOƒiƒ“ƒo[
+ * @param	ev			ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag_no		ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -162,12 +162,12 @@ void EventWork_ResetEventFlag( EVENTWORK * ev, u16 flag_no)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒtƒ‰ƒO‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
- * @param	flag_no		ƒtƒ‰ƒOƒiƒ“ƒo[
+ * @param	flag_no		ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	"NULL != ƒtƒ‰ƒOƒAƒhƒŒƒX"
- * @retval	"NULL = –¢’è‹`"
+ * @retval	"NULL != ãƒ•ãƒ©ã‚°ã‚¢ãƒ‰ãƒ¬ã‚¹"
+ * @retval	"NULL = æœªå®šç¾©"
  */
 //--------------------------------------------------------------------------------------------
 u8 * EventWork_GetEventFlagAdrs( EVENTWORK * ev, u16 flag_no )
@@ -177,14 +177,14 @@ u8 * EventWork_GetEventFlagAdrs( EVENTWORK * ev, u16 flag_no )
 	}else if( flag_no < SCFLG_START ){
 
 		if( (flag_no / 8) >= EVENT_FLAG_AREA_MAX ){
-			GF_ASSERT( (0) && "ƒtƒ‰ƒOƒiƒ“ƒo[‚ªÅ‘å”‚ğ’´‚¦‚Ä‚¢‚Ü‚·I" );
+			GF_ASSERT( (0) && "ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼ãŒæœ€å¤§æ•°ã‚’è¶…ãˆã¦ã„ã¾ã™ï¼" );
 		}
 
 		return &ev->flag[flag_no/8];
 	}else{
 
 		if( ((flag_no - SCFLG_START) / 8) >= CTRLFLAG_AREA_MAX ){
-			GF_ASSERT( (0) && "ƒtƒ‰ƒOƒiƒ“ƒo[‚ªÅ‘å”‚ğ’´‚¦‚Ä‚¢‚Ü‚·I" );
+			GF_ASSERT( (0) && "ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼ãŒæœ€å¤§æ•°ã‚’è¶…ãˆã¦ã„ã¾ã™ï¼" );
 		}
 
 		return &( EventCtrlFlag[ (flag_no - SCFLG_START) / 8 ] );
@@ -193,21 +193,21 @@ u8 * EventWork_GetEventFlagAdrs( EVENTWORK * ev, u16 flag_no )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒ[ƒNƒAƒhƒŒƒX‚ğæ“¾
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- * @param	ev			ƒCƒxƒ“ƒgƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	work_no		ƒ[ƒNƒiƒ“ƒo[
+ * @param	ev			ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	work_no		ãƒ¯ãƒ¼ã‚¯ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	"ƒ[ƒN‚ÌƒAƒhƒŒƒX"
+ * @return	"ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹"
  *
- * @li	work_no < 0x8000	’Êí‚ÌƒZ[ƒuƒ[ƒN
- * @li	work_no >= 0x8000	ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚Ì’†‚ÉŠm•Û‚µ‚Ä‚¢‚éƒ[ƒN
+ * @li	work_no < 0x8000	é€šå¸¸ã®ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯
+ * @li	work_no >= 0x8000	ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ä¸­ã«ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------------------------------
 u16 * EventWork_GetEventWorkAdrs( EVENTWORK * ev, u16 work_no )
 {
 	if( (work_no - SVWK_START) >= EVENT_WORK_AREA_MAX ){
-		GF_ASSERT( (0) && "ƒ[ƒNƒiƒ“ƒo[‚ªÅ‘å”‚ğ’´‚¦‚Ä‚¢‚Ü‚·I" );
+		GF_ASSERT( (0) && "ãƒ¯ãƒ¼ã‚¯ãƒŠãƒ³ãƒãƒ¼ãŒæœ€å¤§æ•°ã‚’è¶…ãˆã¦ã„ã¾ã™ï¼" );
 	}
 
 	return &ev->work[ work_no - SVWK_START ];

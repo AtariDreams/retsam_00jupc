@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_input.c
- * @brief	ÉoÉgÉãÉåÉRÅ[É_Å[
+ * @brief	„Éê„Éà„É´„É¨„Ç≥„Éº„ÉÄ„Éº
  * @author	goto
  * @date	2007.07.31
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -101,7 +101,7 @@ static BOOL BR_input_Touch( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉTÉCÉhÉoÅ[êGÇ¡ÇƒÇÈÅ[ÅH
+ * @brief	„Çµ„Ç§„Éâ„Éê„ÉºËß¶„Å£„Å¶„Çã„ÉºÔºü
  *
  * @param	none	
  *
@@ -141,12 +141,12 @@ static BOOL BR_input_Key( BR_WORK* wk )
 {
 	BOOL bMove = FALSE;
 	
-	GF_ASSERT( 0 );					///< Ç±Ç±Ç…ÇÕÇ‡Ç§Ç±Ç»Ç¢
+	GF_ASSERT( 0 );					///< „Åì„Åì„Å´„ÅØ„ÇÇ„ÅÜ„Åì„Å™„ÅÑ
 	
 	wk->sys.touch = INPUT_MODE_TOUCH;
 	BR_Main_SeqChange( wk, eINPUT_TOUCH );
 	
-	return BR_input_Touch( wk );	///< Ç∆ÇËÇ†Ç¶Ç∏ÅAtouchÇÃÇ”ÇËÇ∑ÇÈ
+	return BR_input_Touch( wk );	///< „Å®„Çä„ÅÇ„Åà„Åö„ÄÅtouch„ÅÆ„Åµ„Çä„Åô„Çã
 
 #if 0
 	if ( GF_TP_GetTrg() ){
@@ -154,7 +154,7 @@ static BOOL BR_input_Key( BR_WORK* wk )
 	}
 	
 	if ( GF_TP_GetCont() == TRUE ){
-		///< É^ÉbÉ`Ç≥ÇÍÇΩÇÁÅAÉLÅ[ÉÇÅ[ÉhÇèIóπÇ∑ÇÈ
+		///< „Çø„ÉÉ„ÉÅ„Åï„Çå„Åü„Çâ„ÄÅ„Ç≠„Éº„É¢„Éº„Éâ„ÇíÁµÇ‰∫Ü„Åô„Çã
 			
 		wk->sys.touch = INPUT_MODE_TOUCH;
 		
@@ -168,9 +168,9 @@ static BOOL BR_input_Key( BR_WORK* wk )
 	}
 	
 	if ( sys.trg & PAD_BUTTON_A ){
-		///< åàíË
+		///< Ê±∫ÂÆö
 		
-		///< îªíËÇµÇ»Ç¢èàóù
+		///< Âà§ÂÆö„Åó„Å™„ÅÑÂá¶ÁêÜ
 		{
 			BOOL bLock = BR_UnlockMenuCheck( wk );
 			
@@ -188,7 +188,7 @@ static BOOL BR_input_Key( BR_WORK* wk )
 		}
 	}
 	else if ( sys.trg & PAD_BUTTON_B ){
-		///< ÉLÉÉÉìÉZÉã		
+		///< „Ç≠„É£„É≥„Çª„É´		
 		if ( wk->tag_man.stack_s == 0 ){
 			BR_PostMessage( wk->message, FALSE, 0 );
 			BR_Main_SeqChange( wk, eINPUT_END );
@@ -198,7 +198,7 @@ static BOOL BR_input_Key( BR_WORK* wk )
 		}
 	}
 	else if ( sys.trg & PAD_KEY_UP ){
-		///< Å™ ÉLÅ[
+		///< ‚Üë „Ç≠„Éº
 		
 		if ( wk->tag_man.cur_pos > 0 ){
 			wk->tag_man.cur_pos--;
@@ -210,7 +210,7 @@ static BOOL BR_input_Key( BR_WORK* wk )
 		bMove = TRUE;
 	}
 	else if ( sys.trg & PAD_KEY_DOWN ){
-		///< Å´ ÉLÅ[
+		///< ‚Üì „Ç≠„Éº
 		
 		wk->tag_man.cur_pos++;
 		wk->tag_man.cur_pos %= wk->tag_man.item_max;
@@ -247,7 +247,7 @@ static BOOL BR_input_End( BR_WORK* wk )
 		wk->wait = 0;
 		Cursor_Visible( wk->cur_wk, FALSE );
 		Cursor_Visible( wk->cur_wk_top, FALSE );
-		CATS_SystemActiveSet( wk, TRUE );			///< true Ç…ÇµÇΩéûì_Ç≈ÅAVisibleÇ‡å¯Ç©Ç»Ç≠Ç»ÇÈÅ™2çs
+		CATS_SystemActiveSet( wk, TRUE );			///< true „Å´„Åó„ÅüÊôÇÁÇπ„Åß„ÄÅVisible„ÇÇÂäπ„Åã„Å™„Åè„Å™„Çã‚Üë2Ë°å
 		wk->sub_seq++;
 		break;
 	
@@ -335,12 +335,12 @@ static BOOL BR_input_Executed( BR_WORK* wk )
 	
 	switch( wk->menu_data[ wk->tag_man.cur_pos ].seq ){
 //	case eMENU_DATA_REC_DELETE:
-//		///< ÉZÅ[ÉuÇè¡Ç∑
+//		///< „Çª„Éº„Éñ„ÇíÊ∂à„Åô
 //		bActive = BR_input_Executed_RecDelete( wk );
 //		break;
 		
 	default:
-		///< É_É~Å[
+		///< „ÉÄ„Éü„Éº
 		bActive = TRUE;
 		break;
 	}
@@ -363,7 +363,7 @@ static BOOL BR_input_Executed( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	É^ÉOà⁄ìÆópTCB
+ * @brief	„Çø„Ç∞ÁßªÂãïÁî®TCB
  *
  * @param	tcb	
  * @param	work	
@@ -415,7 +415,7 @@ void BR_TagMove_TCB( TCB_PTR tcb, void* work )
 		break;
 		
 	default:
-		///< âï˙
+		///< Ëß£Êîæ
 		sys_FreeMemoryEz( wk );
 		TCB_Delete( tcb );		
 		break;
@@ -424,7 +424,7 @@ void BR_TagMove_TCB( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	É^ÉOÇÃà⁄ìÆ
+ * @brief	„Çø„Ç∞„ÅÆÁßªÂãï
  *
  * @param	wk	
  *
@@ -438,7 +438,7 @@ static BOOL BR_input_TagSelect( BR_WORK* wk )
 	
 	switch ( wk->sub_seq ){
 	case 0:
-		///< ìÆçÏTCBìoò^
+		///< Âãï‰ΩúTCBÁôªÈå≤
 //		BR_TouchPanel_TagHRT_ReSet( wk );
 		{
 			int i;			
@@ -470,7 +470,7 @@ static BOOL BR_input_TagSelect( BR_WORK* wk )
 					tag->cur_wk = NULL;					
 					tag->t_px = tag->s_px;
 					tag->t_py = TAG_INIT_POS( TAG_MAX, wk->tag_man.item_max );
-				//	OS_Printf( "É^ÉOÇÃà⁄ìÆ = %d\n", tag->t_py );
+				//	OS_Printf( "„Çø„Ç∞„ÅÆÁßªÂãï = %d\n", tag->t_py );
 					if ( tag->t_py >= TAG_INIT_POS_2( TAG_MAX, 3 ) ){
 						 tag->t_py = TAG_INIT_POS_2( TAG_MAX, 3 );
 					}
@@ -486,13 +486,13 @@ static BOOL BR_input_TagSelect( BR_WORK* wk )
 		break;
 	
 	case 1:
-		///< TCB ë“Çø
+		///< TCB ÂæÖ„Å°
 		tsw = wk->sub_work;
 		if ( tsw->color != 16 ){
 			tsw->color += 2;
 			ColorConceChangePfd( wk->sys.pfd, FADE_MAIN_OBJ, TAG_PALETTE, tsw->color, wk->sys.logo_color );
 		}
-		///< è„âÊñ 
+		///< ‰∏äÁîªÈù¢
 		{
 			int i;		
 			BR_TAG_TCB_WORK* tag;
@@ -538,7 +538,7 @@ static BOOL BR_input_TagSelect( BR_WORK* wk )
 				tsw->bTagMove_U = FALSE;
 			}
 			
-			///< É^ÉOÇÃêFêÿÇËë÷Ç¶	
+			///< „Çø„Ç∞„ÅÆËâ≤Âàá„ÇäÊõø„Åà	
 			for ( i = 0; i < wk->tag_man.stack_s; i++ ){
 				if ( i == wk->tag_man.stack_s ){
 					CATS_ObjectPaletteOffsetSetCap( wk->tag_man.tag_s[ i ].cap, dOAM_PAL_TAG_1 );	
@@ -556,7 +556,7 @@ static BOOL BR_input_TagSelect( BR_WORK* wk )
 		
 	case 2:
 		{		
-			if ( wk->menu_data[ wk->tag_man.cur_pos ].data == NULL ){		///< éüÇÃÉÅÉjÉÖÅ[ÉfÅ[É^Ç™ñ≥Ç¢èÍçá
+			if ( wk->menu_data[ wk->tag_man.cur_pos ].data == NULL ){		///< Ê¨°„ÅÆ„É°„Éã„É•„Éº„Éá„Éº„Çø„ÅåÁÑ°„ÅÑÂ†¥Âêà
 			
 				BR_MenuData_Analysis( wk );
 			}
@@ -565,10 +565,10 @@ static BOOL BR_input_TagSelect( BR_WORK* wk )
 				BR_Main_SeqChange( wk, eINPUT_MENU_IN );
 			}
 			
-			BR_Main_MenuChangeNext( wk );					///< éüÇÃÉÅÉjÉÖÅ[ê›íË			
-		//	BR_TouchPanel_TagHRT_Set( wk );					///< É^ÉOÇÃìñÇΩÇËîªíËçXêV
+			BR_Main_MenuChangeNext( wk );					///< Ê¨°„ÅÆ„É°„Éã„É•„ÉºË®≠ÂÆö			
+		//	BR_TouchPanel_TagHRT_Set( wk );					///< „Çø„Ç∞„ÅÆÂΩì„Åü„ÇäÂà§ÂÆöÊõ¥Êñ∞
 		
-			tsw = wk->sub_work;								///< subÉèÅ[ÉNÇÕçÌèú
+			tsw = wk->sub_work;								///< sub„ÉØ„Éº„ÇØ„ÅØÂâäÈô§
 			sys_FreeMemoryEz( tsw );
 		}
 		break;
@@ -583,7 +583,7 @@ static BOOL BR_input_TagSelect( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	É^ÉOñﬂÇ∑
+ * @brief	„Çø„Ç∞Êàª„Åô
  *
  * @param	wk	
  *
@@ -597,7 +597,7 @@ static BOOL BR_input_TagBack( BR_WORK* wk )
 	
 	switch ( wk->sub_seq ){
 	case 0:
-		///< ìÆçÏTCBìoò^
+		///< Âãï‰ΩúTCBÁôªÈå≤
 		{
 			int i;
 			BR_TAG_TCB_WORK* tag;
@@ -672,7 +672,7 @@ static BOOL BR_input_TagBack( BR_WORK* wk )
 				tsw->color = 0;
 				wk->sub_seq++;
 				
-				///< êFêÿÇËë÷Ç¶
+				///< Ëâ≤Âàá„ÇäÊõø„Åà
 				wk->tag_man.stack_s--;
 				for ( i = 0; i < wk->tag_man.stack_s; i++ ){				
 					if ( i == wk->tag_man.stack_s - 1 ){
@@ -702,7 +702,7 @@ static BOOL BR_input_TagBack( BR_WORK* wk )
 		{
 			BOOL state;
 			
-			state = BR_Main_MenuChangeBack( wk );		///< ëOÇÃÉÅÉjÉÖÅ[ê›íË
+			state = BR_Main_MenuChangeBack( wk );		///< Ââç„ÅÆ„É°„Éã„É•„ÉºË®≠ÂÆö
 			
 			tsw = wk->sub_work;
 			sys_FreeMemoryEz( tsw );

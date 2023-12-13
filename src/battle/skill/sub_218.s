@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_218.s
- *@brief	�퓬�V�[�P���X
- *			�V���b�g�A�E�g�ǉ����ʃV�[�P���X
+ *@brief	戦闘シーケンス
+ *			シャットアウト追加効果シーケンス
  *@author	HisashiSogabe
  *@data		2006.03.02
  *
@@ -17,14 +17,14 @@
 SUB_218:
 	IF				IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_NOHIT_CHG,Umakukimaran
 	MIGAWARI_CHECK	SIDE_DEFENCE,Umakukimaran
-	//�����}���`�^�C�v�́A���܂����܂��
+	//特性マルチタイプは、うまくきまらん
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_speabino,TOKUSYU_MARUTITAIPU,Umakukimaran
 	IF_PSP			IF_FLAG_NE,SIDE_DEFENCE,ID_PSP_wkw_shutout_count,0,Umakukimaran
 
-	//�͂����񂾂܂̏ꍇ�͂��܂����܂��
+	//はっきんだまの場合はうまくきまらん
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_item,ITEM_HAKKINDAMA,Umakukimaran
 
-	//�搧�����̏ꍇ�͂��܂����܂��
+	//先制発動の場合はうまくきまらん
 	IF_PSP			IF_FLAG_NE,SIDE_DEFENCE,ID_PSP_wkw_sensei_flag,0,Umakukimaran
 	IF_PSP			IF_FLAG_NE,SIDE_DEFENCE,ID_PSP_wkw_once_agi_up,0,Umakukimaran
 

@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  Cƒ\[ƒX->ƒoƒCƒiƒŠ[
+# Project:  Cã‚½ãƒ¼ã‚¹->ãƒã‚¤ãƒŠãƒªãƒ¼
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -33,7 +33,7 @@ CSV_FILE = $(BUILD_MODEL_CSV) $(ANIME_CSV)
 
 XLS_FIEL = build_model_anime.xls ../build_model/build_model.xls
 
-#‹¤’Ê•Ï”’è‹`
+#å…±é€šå¤‰æ•°å®šç¾©
 include $(DP_ROOT)/commondefs.GF
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 
@@ -42,7 +42,7 @@ include g3d_list
 #----------------------------------------------------------------------------
 #
 #----------------------------------------------------------------------------
-#ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚ğmake clean‘ÎÛ‚Éİ’è
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚’make cleanå¯¾è±¡ã«è¨­å®š
 LDIRT_CLEAN	= $(TARGET_ARC_ANM) $(TARGET_ARC_ANM_LIST) \
 	$(G3D_ANIME_DIR)*.* $(BINFILE)
 
@@ -52,7 +52,7 @@ LINCLUDES		+= $(DP_ROOT)/src/field
 LINCLUDES	+= $(dir $<)
 
 #----------------------------------------------------------------------------
-#	ƒc[ƒ‹‚Ö‚ÌƒpƒXw’è
+#	ãƒ„ãƒ¼ãƒ«ã¸ã®ãƒ‘ã‚¹æŒ‡å®š
 #----------------------------------------------------------------------------
 G3DCVTR	= $(NITROSYSTEM_ROOT)/tools/win/bin/g3dcvtr.exe
 
@@ -73,7 +73,7 @@ G3D_NSBTP = $(subst $(DATASRC)/,$(G3D_ANIME_DIR),$(G3D_ITP:.itp=.nsbtp))
 
 #----------------------------------------------------------------------------
 #
-#	ƒ‹[ƒ‹’è‹`
+#	ãƒ«ãƒ¼ãƒ«å®šç¾©
 #
 #----------------------------------------------------------------------------
 do-build: $(TARGET_ARC_ANM) $(TARGET_ARC_ANM_LIST)
@@ -88,17 +88,17 @@ $(BINFILE): $(ANIME_CSV)
 	ruby bm_anime.rb
 	
 $(TARGET_ARC_ANM): $(G3D_NSBCA) $(G3D_NSBTA) $(G3D_NSBTP) $(ANM_ARC_LIST)
-	$(MAKE) makeanmarc				#ƒAƒjƒƒA[ƒJƒCƒu
+	$(MAKE) makeanmarc				#ã‚¢ãƒ‹ãƒ¡ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 
 $(TARGET_ARC_ANM_LIST): $(BINFILE) $(ANMLST_ARC_LIST)
-	$(MAKE) makelistarc				#ƒŠƒXƒgƒA[ƒJƒCƒu
+	$(MAKE) makelistarc				#ãƒªã‚¹ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 
-#ƒAƒjƒƒA[ƒJƒCƒuì¬
+#ã‚¢ãƒ‹ãƒ¡ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä½œæˆ
 makeanmarc:
 	nnsarc -i -c -l -n $(ARC_ANM) -S $(ANM_ARC_LIST) > anm_arc_result.txt
 	mv $(ARC_ANM) $(TARGET_ARC_ANM)
 	
-#ƒŠƒXƒgƒA[ƒJƒCƒuì¬
+#ãƒªã‚¹ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä½œæˆ
 makelistarc:
 	nnsarc -i -c -l -n $(ARC_ANM_LIST) -S $(ANMLST_ARC_LIST) > anmlst_arc_result.txt
 	mv $(ARC_ANM_LIST) $(TARGET_ARC_ANM_LIST)

@@ -1,27 +1,27 @@
-//---- ƒRƒ“ƒo[ƒ^FSPAConv.exe  Version 1.11
+//---- ã‚³ãƒ³ãƒãƒ¼ã‚¿ï¼šSPAConv.exe  Version 1.11
 
 #ifndef __EGG_DEMO_SETUP_H__
 #define __EGG_DEMO_SETUP_H__
 
-//egg_demo_normal.h‚ÌsprƒŠƒ\[ƒX’è‹`
+//egg_demo_normal.hã®sprãƒªã‚½ãƒ¼ã‚¹å®šç¾©
 #define EGG_DEMO_NORMAL_KARA_BURN01		0
 #define EGG_DEMO_NORMAL_KARA_BURN02		1
 #define EGG_DEMO_NORMAL_KARA_BURN03		2
 #define EGG_DEMO_NORMAL_KIRA_BURN01		3
-//egg_demo_normal.spa“à‚ÌƒŠƒ\[ƒXŒÂ”
+//egg_demo_normal.spaå†…ã®ãƒªã‚½ãƒ¼ã‚¹å€‹æ•°
 #define EGG_DEMO_NORMAL_SPAMAX	(4)
 
-//egg_demo_special.h‚ÌsprƒŠƒ\[ƒX’è‹`
+//egg_demo_special.hã®sprãƒªã‚½ãƒ¼ã‚¹å®šç¾©
 #define EGG_DEMO_SPECIAL_TAMAGO_MANA01		0
 #define EGG_DEMO_SPECIAL_TAMAGO_MANA02		1
 #define EGG_DEMO_SPECIAL_TAMAGO_MANA03		2
 #define EGG_DEMO_SPECIAL_TAMAGO_MANA04		3
-//egg_demo_special.spa“à‚ÌƒŠƒ\[ƒXŒÂ”
+//egg_demo_special.spaå†…ã®ãƒªã‚½ãƒ¼ã‚¹å€‹æ•°
 #define EGG_DEMO_SPECIAL_SPAMAX	(4)
 
 
 
-//---- egg_demo_setup_tblƒe[ƒuƒ‹‚Ìdefine’è‹` ----
+//---- egg_demo_setup_tblãƒ†ãƒ¼ãƒ–ãƒ«ã®defineå®šç¾© ----
 #define SPA_EGG_DEMO_NORMAL		(0)
 #define SPA_EGG_DEMO_SPECIAL		(1)
 

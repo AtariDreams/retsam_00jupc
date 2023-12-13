@@ -44,12 +44,12 @@ static NNSSndWaveOut sWaveOut[ SND_CHANNEL_NUM ];
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndWaveOutAllocChannel
 
-  Description:  ”gŒ`Ä¶—p‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğŠm•Û‚µ‚Ü‚·
+  Description:  æ³¢å½¢å†ç”Ÿç”¨ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ç¢ºä¿ã—ã¾ã™
 
-  Arguments:    chNo - ƒ`ƒƒƒ“ƒlƒ‹”Ô†
+  Arguments:    chNo - ãƒãƒ£ãƒ³ãƒãƒ«ç•ªå·
 
-  Returns:      Šm•Û‚É¬Œ÷‚µ‚½‚çA”gŒ`Ä¶ƒnƒ“ƒhƒ‹‚ğ•Ô‚·
-                Šm•Û‚É¸”s‚µ‚½‚çANNS_SND_WAVEOUT_INVALID_HANDLE‚ğ•Ô‚·
+  Returns:      ç¢ºä¿ã«æˆåŠŸã—ãŸã‚‰ã€æ³¢å½¢å†ç”Ÿãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™
+                ç¢ºä¿ã«å¤±æ•—ã—ãŸã‚‰ã€NNS_SND_WAVEOUT_INVALID_HANDLEã‚’è¿”ã™
  *---------------------------------------------------------------------------*/
 NNSSndWaveOutHandle NNS_SndWaveOutAllocChannel( int chNo )
 {
@@ -69,9 +69,9 @@ NNSSndWaveOutHandle NNS_SndWaveOutAllocChannel( int chNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndWaveOutFreeChannel
 
-  Description:  ”gŒ`Ä¶—p‚ÉŠm•Û‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚ğ‰ğ•ú‚µ‚Ü‚·
+  Description:  æ³¢å½¢å†ç”Ÿç”¨ã«ç¢ºä¿ã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ã‚’è§£æ”¾ã—ã¾ã™
 
-  Arguments:    handle - ”gŒ`Ä¶ƒnƒ“ƒhƒ‹
+  Arguments:    handle - æ³¢å½¢å†ç”Ÿãƒãƒ³ãƒ‰ãƒ«
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -85,20 +85,20 @@ void NNS_SndWaveOutFreeChannel( NNSSndWaveOutHandle handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndWaveOutStart
 
-  Description:  ”gŒ`Ä¶‚ğŠJn‚µ‚Ü‚·
+  Description:  æ³¢å½¢å†ç”Ÿã‚’é–‹å§‹ã—ã¾ã™
 
-  Arguments:    handle   - ”gŒ`Ä¶ƒnƒ“ƒhƒ‹
-                format   - ”gŒ`ƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
-                dataaddr - ”gŒ`ƒf[ƒ^æ“ªƒAƒhƒŒƒX
-                loopFlag - ƒ‹[ƒvƒtƒ‰ƒO
-                loopStartSample - ƒ‹[ƒvŠJnƒTƒ“ƒvƒ‹ˆÊ’u
-                samples         - ƒTƒ“ƒvƒ‹”
-                sampleRate - ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
-                volume     - ƒ{ƒŠƒ…[ƒ€
-                speed      - Ä¶ƒXƒs[ƒh
-                pan        - ƒpƒ“
+  Arguments:    handle   - æ³¢å½¢å†ç”Ÿãƒãƒ³ãƒ‰ãƒ«
+                format   - æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+                dataaddr - æ³¢å½¢ãƒ‡ãƒ¼ã‚¿å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+                loopFlag - ãƒ«ãƒ¼ãƒ—ãƒ•ãƒ©ã‚°
+                loopStartSample - ãƒ«ãƒ¼ãƒ—é–‹å§‹ã‚µãƒ³ãƒ—ãƒ«ä½ç½®
+                samples         - ã‚µãƒ³ãƒ—ãƒ«æ•°
+                sampleRate - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
+                volume     - ãƒœãƒªãƒ¥ãƒ¼ãƒ 
+                speed      - å†ç”Ÿã‚¹ãƒ”ãƒ¼ãƒ‰
+                pan        - ãƒ‘ãƒ³
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndWaveOutStart(
     NNSSndWaveOutHandle handle,
@@ -170,9 +170,9 @@ BOOL NNS_SndWaveOutStart(
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndWaveOutStop
 
-  Description:  ”gŒ`Ä¶‚ğ’â~‚µ‚Ü‚·
+  Description:  æ³¢å½¢å†ç”Ÿã‚’åœæ­¢ã—ã¾ã™
 
-  Arguments:    handle - ”gŒ`Ä¶ƒnƒ“ƒhƒ‹
+  Arguments:    handle - æ³¢å½¢å†ç”Ÿãƒãƒ³ãƒ‰ãƒ«
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -193,10 +193,10 @@ void NNS_SndWaveOutStop( NNSSndWaveOutHandle handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndWaveOutSetVolume
 
-  Description:  ”gŒ`Ä¶‚Ì‰¹—Ê‚ğ•ÏX‚µ‚Ü‚·
+  Description:  æ³¢å½¢å†ç”Ÿã®éŸ³é‡ã‚’å¤‰æ›´ã—ã¾ã™
 
-  Arguments:    handle - ”gŒ`Ä¶ƒnƒ“ƒhƒ‹
-                volume - ƒ{ƒŠƒ…[ƒ€
+  Arguments:    handle - æ³¢å½¢å†ç”Ÿãƒãƒ³ãƒ‰ãƒ«
+                volume - ãƒœãƒªãƒ¥ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -216,10 +216,10 @@ void NNS_SndWaveOutSetVolume( NNSSndWaveOutHandle handle, int volume )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndWaveOutSetSpeed
 
-  Description:  ”gŒ`Ä¶‚ÌÄ¶ƒXƒs[ƒh‚ğ•ÏX‚µ‚Ü‚·
+  Description:  æ³¢å½¢å†ç”Ÿã®å†ç”Ÿã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã—ã¾ã™
 
-  Arguments:    handle - ”gŒ`Ä¶ƒnƒ“ƒhƒ‹
-                speed - Ä¶ƒXƒs[ƒh
+  Arguments:    handle - æ³¢å½¢å†ç”Ÿãƒãƒ³ãƒ‰ãƒ«
+                speed - å†ç”Ÿã‚¹ãƒ”ãƒ¼ãƒ‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -244,10 +244,10 @@ void NNS_SndWaveOutSetSpeed( NNSSndWaveOutHandle handle, int speed )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndWaveOutSetPan
 
-  Description:  ”gŒ`Ä¶‚Ìƒpƒ“‚ğ•ÏX‚µ‚Ü‚·
+  Description:  æ³¢å½¢å†ç”Ÿã®ãƒ‘ãƒ³ã‚’å¤‰æ›´ã—ã¾ã™
 
-  Arguments:    handle - ”gŒ`Ä¶ƒnƒ“ƒhƒ‹
-                pan    - ƒpƒ“
+  Arguments:    handle - æ³¢å½¢å†ç”Ÿãƒãƒ³ãƒ‰ãƒ«
+                pan    - ãƒ‘ãƒ³
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -266,11 +266,11 @@ void NNS_SndWaveOutSetPan( NNSSndWaveOutHandle handle, int pan )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndWaveOutIsPlaying
 
-  Description:  ”gŒ`Ä¶‚ªÄ¶’†‚©‚Ç‚¤‚©‚ğ’²‚×‚Ü‚·B
+  Description:  æ³¢å½¢å†ç”ŸãŒå†ç”Ÿä¸­ã‹ã©ã†ã‹ã‚’èª¿ã¹ã¾ã™ã€‚
 
-  Arguments:    handle - ”gŒ`Ä¶ƒnƒ“ƒhƒ‹
+  Arguments:    handle - æ³¢å½¢å†ç”Ÿãƒãƒ³ãƒ‰ãƒ«
 
-  Returns:      Ä¶’†‚È‚çTRUEA’â~’†‚È‚çFALSE
+  Returns:      å†ç”Ÿä¸­ãªã‚‰TRUEã€åœæ­¢ä¸­ãªã‚‰FALSE
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndWaveOutIsPlaying( NNSSndWaveOutHandle handle )
 {
@@ -296,9 +296,9 @@ BOOL NNS_SndWaveOutIsPlaying( NNSSndWaveOutHandle handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndWaveOutWaitForChannelStop
 
-  Description:  ”gŒ`Ä¶‚ªŠ®‘S‚É’â~‚·‚é‚Ü‚Å‘Ò‚¿‚Ü‚·
+  Description:  æ³¢å½¢å†ç”ŸãŒå®Œå…¨ã«åœæ­¢ã™ã‚‹ã¾ã§å¾…ã¡ã¾ã™
 
-  Arguments:    handle - ”gŒ`Ä¶ƒnƒ“ƒhƒ‹
+  Arguments:    handle - æ³¢å½¢å†ç”Ÿãƒãƒ³ãƒ‰ãƒ«
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

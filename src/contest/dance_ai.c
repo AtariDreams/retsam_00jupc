@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	dance_ai.c
- * @brief	ƒ_ƒ“ƒX•”–åAI
+ * @brief	ãƒ€ãƒ³ã‚¹éƒ¨é–€AI
  * @author	matsuda
- * @date	2006.05.25(–Ø)
+ * @date	2006.05.25(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -18,7 +18,7 @@
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static int MainDancer_AlphaGet(int con_rank, int character);
 static int BackDancer_AlphaGet(int con_rank, int con_type, int character, int beat, 
@@ -33,19 +33,19 @@ static void DanceAI_BackDancer(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork,
 	DANCING_SEND_WORK *sendwork);
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///AIŒvZ—pƒ¿’lF«Ši‡
+///AIè¨ˆç®—ç”¨Î±å€¤ï¼šæ€§æ ¼é †
 ALIGN4 static const s8 AlphaTbl[] = {
 	1, 2, 3, 4,
 };
 
-///AI‚ªƒƒCƒ“ƒ_ƒ“ƒT[A‘±‚¯‚Ä“¯‚¶•ûŒü‚Éƒ_ƒ“ƒX‚·‚éŠm—¦(100‚¾‚Æ•K‚¸“¯‚¶•ûŒü‚Éƒ_ƒ“ƒX)
+///AIãŒãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼æ™‚ã€ç¶šã‘ã¦åŒã˜æ–¹å‘ã«ãƒ€ãƒ³ã‚¹ã™ã‚‹ç¢ºç‡(100ã ã¨å¿…ãšåŒã˜æ–¹å‘ã«ãƒ€ãƒ³ã‚¹)
 ALIGN4 static const u8 SameStepRand[] = {
-	90,			//ƒm[ƒ}ƒ‹
-	40,			//ƒX[ƒp[
-	0,			//ƒnƒCƒp[
-	0,			//ƒ}ƒXƒ^[
+	90,			//ãƒãƒ¼ãƒãƒ«
+	40,			//ã‚¹ãƒ¼ãƒ‘ãƒ¼
+	0,			//ãƒã‚¤ãƒ‘ãƒ¼
+	0,			//ãƒã‚¹ã‚¿ãƒ¼
 };
 
 
@@ -57,12 +57,12 @@ ALIGN4 static const u8 SameStepRand[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXAI‰Šú‰»
+ * @brief   ãƒ€ãƒ³ã‚¹AIåˆæœŸåŒ–
  *
- * @param   aiwork			AI—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   rotation_pos	ƒ[ƒe[ƒVƒ‡ƒ“ˆÊ’u
- * @param   random_seed		ƒ‰ƒ“ƒ_ƒ€‚Ìí
+ * @param   aiwork			AIç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   rotation_pos	ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ä½ç½®
+ * @param   random_seed		ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®
  */
 //--------------------------------------------------------------
 void DanceAI_Init(DANCE_AI_WORK *aiwork, int breeder_no, int rotation_pos, u32 random_seed, 
@@ -78,8 +78,8 @@ void DanceAI_Init(DANCE_AI_WORK *aiwork, int breeder_no, int rotation_pos, u32 r
 
 //--------------------------------------------------------------
 /**
- * @brief   2T–Ú—p‚É•Û‚µ‚Ä‚¢‚­ƒpƒ‰ƒ[ƒ^‚Ì‚İ‘Ş”ğ‚³‚¹‚ÄA‚»‚êˆÈŠO‚Ìƒpƒ‰ƒ[ƒ^‚ÍƒNƒŠƒA‚·‚é
- * @param   aiwork		AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   2é€±ç›®ç”¨ã«ä¿æŒã—ã¦ã„ããƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã¿é€€é¿ã•ã›ã¦ã€ãã‚Œä»¥å¤–ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯ã‚¯ãƒªã‚¢ã™ã‚‹
+ * @param   aiwork		AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void DanceAI_ParamClear(DANCE_AI_WORK *aiwork)
@@ -102,14 +102,14 @@ void DanceAI_ParamClear(DANCE_AI_WORK *aiwork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“ƒ_ƒ“ƒT[‚ÌAIŒvZ
+ * @brief   ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã®AIè¨ˆç®—
  *
- * @param   dpw					ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   aiwork				AI—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw					ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   aiwork				AIç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   all_tempo_frame		
  * @param   one_tempo_frame		
  *
- * ƒƒCƒ“ƒ_ƒ“ƒT[‚Ìƒ_ƒ“ƒXŠJn‘O‚Éˆê“x‚¾‚¯ŒÄ‚Ô•K—v‚ª‚ ‚è‚Ü‚·B
+ * ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã®ãƒ€ãƒ³ã‚¹é–‹å§‹å‰ã«ä¸€åº¦ã ã‘å‘¼ã¶å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void DancdAI_MainDancerCalc(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork, u32 all_tempo_frame, u32 one_tempo_frame)
@@ -124,7 +124,7 @@ void DancdAI_MainDancerCalc(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork, u32 all
 	
 	dance_beat = RhythmDataGet(dpw->d_game.rhythm_no, RHYTHM_IDX_BEAT);
 	
-	//‚»‚Ìƒr[ƒg”ÍˆÍ“à‚Éû‚Ü‚éÅ‘å‚¸‚ê‹–—eƒtƒŒ[ƒ€(lÌŒÜ“ü‚µ‚Ä®”‰»)
+	//ãã®ãƒ“ãƒ¼ãƒˆç¯„å›²å†…ã«åã¾ã‚‹æœ€å¤§ãšã‚Œè¨±å®¹ãƒ•ãƒ¬ãƒ¼ãƒ (å››æ¨äº”å…¥ã—ã¦æ•´æ•°åŒ–)
 	if(dpw->d_game.rhythm_no == RHYTHM_NO_4){
 		beat_max_zure_frame = 
 			(one_tempo_frame / 4 + ONE_TEMPO_CALC_DECIMAL/2) / ONE_TEMPO_CALC_DECIMAL;
@@ -135,16 +135,16 @@ void DancdAI_MainDancerCalc(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork, u32 all
 	}
 	OS_TPrintf("max_zure = %d\n", beat_max_zure_frame);
 	
-	//ƒ_ƒ“ƒXo—ˆ‚é”ÍˆÍ‚ğŒˆ’è
+	//ãƒ€ãƒ³ã‚¹å‡ºæ¥ã‚‹ç¯„å›²ã‚’æ±ºå®š
 	switch(dpw->consys->c_game.rank){
 	case CONRANK_NORMAL:
 	case CONRANK_SUPER:
 		rinsetu_out = FALSE;
-		timing_point = dance_beat / 2 / 2;	//— ”ŠÜ‚Ü‚È‚¢
+		timing_point = dance_beat / 2 / 2;	//è£æ‹å«ã¾ãªã„
 		base_tempo = one_tempo_frame;
 		break;
 	default:
-		rinsetu_out = TRUE;		//—×Ú‚µ‚½ˆÊ’u‚Íl•ª‰¹•„‚Éû‚Ü‚Á‚Ä‚¢‚È‚¢‚Ì‚Å”z’u‹Ö~
+		rinsetu_out = TRUE;		//éš£æ¥ã—ãŸä½ç½®ã¯å››åˆ†éŸ³ç¬¦ã«åã¾ã£ã¦ã„ãªã„ã®ã§é…ç½®ç¦æ­¢
 		timing_point = dance_beat / 2;
 		base_tempo = one_tempo_frame / 2;
 		break;
@@ -154,16 +154,16 @@ void DancdAI_MainDancerCalc(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork, u32 all
 		dance_timing[i] = FALSE;
 	}
 	
-	//ƒ_ƒ“ƒX‚·‚é¬ß‚ÌˆÊ’u‚ğƒ‰ƒ“ƒ_ƒ€‚ÅŒˆ’è
+	//ãƒ€ãƒ³ã‚¹ã™ã‚‹å°ç¯€ã®ä½ç½®ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§æ±ºå®š
 	count = 0;
 	while(1){
 		pos = contest_fix_rand(aiwork->random_seed, &aiwork->random_seed) % timing_point;
 		if(pos == 0){
-			continue;	//Å‰‚Ì¬à‚Í‰Ÿ‚³‚¹‚È‚¢
+			continue;	//æœ€åˆã®å°èª¬ã¯æŠ¼ã•ã›ãªã„
 		}
 		
 		if(dance_timing[pos] == FALSE){
-			//—×Ú‚µ‚½ˆÊ’u‚Íl•ª‰¹•„‚Éû‚Ü‚Á‚Ä‚¢‚È‚¢‚Ì‚Å”z’u‹Ö~
+			//éš£æ¥ã—ãŸä½ç½®ã¯å››åˆ†éŸ³ç¬¦ã«åã¾ã£ã¦ã„ãªã„ã®ã§é…ç½®ç¦æ­¢
 			if(rinsetu_out == TRUE){
 				if((pos == timing_point - 1) && (dance_timing[pos - 1]) == TRUE){
 					continue;
@@ -171,7 +171,7 @@ void DancdAI_MainDancerCalc(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork, u32 all
 				else if(dance_timing[pos - 1] == TRUE || dance_timing[pos + 1] == TRUE){
 					continue;
 				}
-				//— ”‚Ìê‡‚Í‚ ‚ñ‚Ü‚èo‚È‚¢‚æ‚¤‚Éˆê’èŠm—¦‚Å‚Í‚¶‚­
+				//è£æ‹ã®å ´åˆã¯ã‚ã‚“ã¾ã‚Šå‡ºãªã„ã‚ˆã†ã«ä¸€å®šç¢ºç‡ã§ã¯ã˜ã
 				if((pos & 1) && (contest_fix_rand(aiwork->random_seed, &aiwork->random_seed) & 0xff) < 128){
 					continue;
 				}
@@ -185,7 +185,7 @@ void DancdAI_MainDancerCalc(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork, u32 all
 		}
 	}
 	
-	//ƒ_ƒ“ƒX‚·‚éˆÊ’u‚ğƒtƒŒ[ƒ€‚É•ÏŠ·
+	//ãƒ€ãƒ³ã‚¹ã™ã‚‹ä½ç½®ã‚’ãƒ•ãƒ¬ãƒ¼ãƒ ã«å¤‰æ›
 	count = 0;
 	for(i = 0; i < dance_beat / 2; i++){
 		if(dance_timing[i] == TRUE){
@@ -194,7 +194,7 @@ void DancdAI_MainDancerCalc(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork, u32 all
 		}
 	}
 	
-	//ƒIƒtƒZƒbƒgƒtƒŒ[ƒ€‰ÁZ
+	//ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ•ãƒ¬ãƒ¼ãƒ åŠ ç®—
 	alpha = MainDancer_AlphaGet(dpw->consys->c_game.rank, aiwork->character);
 	for(i = 0; i < dpw->d_game.touch_count; i++){
 		s32 check_frame;
@@ -204,16 +204,16 @@ void DancdAI_MainDancerCalc(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork, u32 all
 		if(check_frame < 0){
 			check_frame = 0;
 		}
-		//‚¸‚ê‚ª‘å‚«‚·‚¬‚Ä—×‚Ì•ˆ–Ê‚ÉˆÚ“®‚µ‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+		//ãšã‚ŒãŒå¤§ãã™ãã¦éš£ã®è­œé¢ã«ç§»å‹•ã—ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		if(check_frame - aiwork->main.hit_frame[i] >= beat_max_zure_frame){
 			check_frame = aiwork->main.hit_frame[i] + beat_max_zure_frame - 1;
 		}
 		aiwork->main.hit_frame[i] = check_frame;
 		aiwork->main.occ[i] = TRUE;
-		OS_TPrintf("AI ƒƒCƒ“ƒ_ƒ“ƒXFhit_frame %d”Ô = %d, one_tempo=%d\n", i, aiwork->main.hit_frame[i], one_tempo_frame);
+		OS_TPrintf("AI ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚¹ï¼šhit_frame %dç•ª = %d, one_tempo=%d\n", i, aiwork->main.hit_frame[i], one_tempo_frame);
 	}
 	
-	//—x‚é•ûŒüİ’è
+	//è¸Šã‚‹æ–¹å‘è¨­å®š
 	{
 		int same_step_rand;
 		
@@ -237,12 +237,12 @@ void DancdAI_MainDancerCalc(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork, u32 all
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“ƒ_ƒ“ƒT[‚ÌŒvZ—pƒ¿’læ“¾
+ * @brief   ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã®è¨ˆç®—ç”¨Î±å€¤å–å¾—
  *
- * @param   con_rank		ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN(CONRANK_???)
- * @param   character		ƒƒCƒ“ƒ_ƒ“ƒT[‚Ì«Ši
+ * @param   con_rank		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯(CONRANK_???)
+ * @param   character		ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã®æ€§æ ¼
  *
- * @retval  ƒƒCƒ“ƒ_ƒ“ƒT[—p‚Ìƒ¿’l
+ * @retval  ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ç”¨ã®Î±å€¤
  */
 //--------------------------------------------------------------
 static int MainDancer_AlphaGet(int con_rank, int character)
@@ -271,17 +271,17 @@ static int MainDancer_AlphaGet(int con_rank, int character)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒbƒNƒ_ƒ“ƒT[‚ÌŒvZ—pƒ¿’læ“¾
+ * @brief   ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼ã®è¨ˆç®—ç”¨Î±å€¤å–å¾—
  *
- * @param   con_rank		ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN(CONRANK_???)
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
- * @param   character		ƒoƒbƒNƒ_ƒ“ƒT[‚Ì«Ši
- * @param   beat			—x‚éƒ^[ƒQƒbƒg‚Æ‚È‚éƒƒCƒ“ƒ_ƒ“ƒT[‚ª—x‚Á‚½ƒr[ƒgˆÊ’u
- * @param   ahead_beat		ƒƒCƒ“ƒ_ƒ“ƒT[‚ª‘O‚É—x‚Á‚Ä‚¢‚½ƒr[ƒgˆÊ’u(Å‰‚Ìƒ_ƒ“ƒX‚È‚ç-1)
+ * @param   con_rank		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯(CONRANK_???)
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
+ * @param   character		ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼ã®æ€§æ ¼
+ * @param   beat			è¸Šã‚‹ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ãªã‚‹ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ãŒè¸Šã£ãŸãƒ“ãƒ¼ãƒˆä½ç½®
+ * @param   ahead_beat		ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ãŒå‰ã«è¸Šã£ã¦ã„ãŸãƒ“ãƒ¼ãƒˆä½ç½®(æœ€åˆã®ãƒ€ãƒ³ã‚¹ãªã‚‰-1)
  * @param   rhythm_no		
- * @param   dp_sio			TRUE:DP‚ª¬‚´‚Á‚½’ÊM
+ * @param   dp_sio			TRUE:DPãŒæ··ã–ã£ãŸé€šä¿¡
  *
- * @retval  ƒoƒbƒNƒ_ƒ“ƒT[—p‚Ìƒ¿’l
+ * @retval  ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼ç”¨ã®Î±å€¤
  */
 //--------------------------------------------------------------
 static int BackDancer_AlphaGet(int con_rank, int con_type, int character, int beat, int ahead_beat, int rhythm_no, int dp_sio)
@@ -290,19 +290,19 @@ static int BackDancer_AlphaGet(int con_rank, int con_type, int character, int be
 	
 	GF_ASSERT(NELEMS(AlphaTbl) > character);
 	
-	//-- ‚»‚Ì‘¼‚Ì‚¸‚ê—v‘f --//
+	//-- ãã®ä»–ã®ãšã‚Œè¦ç´  --//
 	if(ahead_beat != -1){
-		//”¼ƒeƒ“ƒ|‚¸‚ç‚³‚ê‚é
-		if(rhythm_no == RHYTHM_NO_4){	//3”q‚Í— ”‚ª‘½‚¢‚Ì‚Å‚±‚Ì”»’è‚ğÈ‚­
+		//åŠãƒ†ãƒ³ãƒãšã‚‰ã•ã‚Œã‚‹
+		if(rhythm_no == RHYTHM_NO_4){	//3æ‹å­ã¯è£æ‹ãŒå¤šã„ã®ã§ã“ã®åˆ¤å®šã‚’çœã
 			if((beat & 1) != (ahead_beat & 1)){
 				alpha += 3;
 			}
 		}
-		//‘O‚Ì—x‚è‚©‚çŠÔ‚ª‹·‚¢(•\”‚ª2‚ÂˆÈ‰º)
+		//å‰ã®è¸Šã‚Šã‹ã‚‰é–“ãŒç‹­ã„(è¡¨æ‹ãŒ2ã¤ä»¥ä¸‹)
 		if(beat - ahead_beat <= 2*2){
 			alpha--;
 		}
-		//‘O‚Ì—x‚è‚©‚çŠÔ‚ªL‚¢(•\”‚ª4‚ÂˆÈã)
+		//å‰ã®è¸Šã‚Šã‹ã‚‰é–“ãŒåºƒã„(è¡¨æ‹ãŒ4ã¤ä»¥ä¸Š)
 		if(beat - ahead_beat >= 4*2){
 			alpha += 3;
 		}
@@ -318,7 +318,7 @@ static int BackDancer_AlphaGet(int con_rank, int con_type, int character, int be
 		break;
 	case CONRANK_HYPER:
 		if(dp_sio == TRUE && (con_type == CONTYPE_CUTE || con_type == CONTYPE_CLEVER)){
-			alpha = alpha*3;	//‚±‚Ì‚Q‚Â‚Í“ï‚µ‚¢‚Æ‚ÌˆÓŒ©‚ª‚ ‚Á‚½‚Ì‚Åalpha‚ğ’²®
+			alpha = alpha*3;	//ã“ã®ï¼’ã¤ã¯é›£ã—ã„ã¨ã®æ„è¦‹ãŒã‚ã£ãŸã®ã§alphaã‚’èª¿æ•´
 		}
 		else{
 			alpha += alpha/2;
@@ -327,7 +327,7 @@ static int BackDancer_AlphaGet(int con_rank, int con_type, int character, int be
 	case CONRANK_MASTER:
 	default:
 		if(dp_sio == TRUE && (con_type == CONTYPE_CUTE || con_type == CONTYPE_CLEVER)){
-			alpha = alpha*2 + alpha/2;	//‚±‚Ì‚Q‚Â‚Í“ï‚µ‚¢‚Æ‚ÌˆÓŒ©‚ª‚ ‚Á‚½‚Ì‚Åalpha‚ğ’²®
+			alpha = alpha*2 + alpha/2;	//ã“ã®ï¼’ã¤ã¯é›£ã—ã„ã¨ã®æ„è¦‹ãŒã‚ã£ãŸã®ã§alphaã‚’èª¿æ•´
 		}
 		break;
 	}
@@ -340,18 +340,18 @@ static int BackDancer_AlphaGet(int con_rank, int con_type, int character, int be
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒbƒNƒ_ƒ“ƒT[‚ÌŒvZ—pƒÀ’l‚ğæ“¾‚·‚é
+ * @brief   ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼ã®è¨ˆç®—ç”¨Î²å€¤ã‚’å–å¾—ã™ã‚‹
  *
- * @param   con_rank		ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN(CONRANK_???)
- * @param   character		ƒoƒbƒNƒ_ƒ“ƒT[‚Ì«Ši
- * @param   beat			—x‚éƒ^[ƒQƒbƒg‚Æ‚È‚éƒƒCƒ“ƒ_ƒ“ƒT[‚ª—x‚Á‚½ƒr[ƒgˆÊ’u
- * @param   ahead_beat		ƒƒCƒ“ƒ_ƒ“ƒT[‚ª‘O‚É—x‚Á‚Ä‚¢‚½ƒr[ƒgˆÊ’u(Å‰‚Ìƒ_ƒ“ƒX‚È‚ç-1)
- * @param   main_step		ƒƒCƒ“ƒ_ƒ“ƒT[‚Ì—x‚Á‚½ƒ_ƒ“ƒXƒXƒeƒbƒv
- * @param   ahead_step		‘O‚É—x‚Á‚½ƒƒCƒ“ƒ_ƒ“ƒT[‚Ìƒ_ƒ“ƒXƒXƒeƒbƒv
- * 							(Å‰‚Ìƒ_ƒ“ƒX‚Ì‚ÍDANCE_STEP_NONE)
- * @param   dp_sio			TRUE:DP‚ª¬‚´‚Á‚½’ÊM
+ * @param   con_rank		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯(CONRANK_???)
+ * @param   character		ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼ã®æ€§æ ¼
+ * @param   beat			è¸Šã‚‹ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ãªã‚‹ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ãŒè¸Šã£ãŸãƒ“ãƒ¼ãƒˆä½ç½®
+ * @param   ahead_beat		ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ãŒå‰ã«è¸Šã£ã¦ã„ãŸãƒ“ãƒ¼ãƒˆä½ç½®(æœ€åˆã®ãƒ€ãƒ³ã‚¹ãªã‚‰-1)
+ * @param   main_step		ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã®è¸Šã£ãŸãƒ€ãƒ³ã‚¹ã‚¹ãƒ†ãƒƒãƒ—
+ * @param   ahead_step		å‰ã«è¸Šã£ãŸãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼ã®ãƒ€ãƒ³ã‚¹ã‚¹ãƒ†ãƒƒãƒ—
+ * 							(æœ€åˆã®ãƒ€ãƒ³ã‚¹ã®æ™‚ã¯DANCE_STEP_NONE)
+ * @param   dp_sio			TRUE:DPãŒæ··ã–ã£ãŸé€šä¿¡
  *
- * @retval  ƒÀ’l
+ * @retval  Î²å€¤
  */
 //--------------------------------------------------------------
 static int BackDancer_BetaGet(int con_rank, int con_type, int character, int beat, int ahead_beat,
@@ -382,20 +382,20 @@ static int BackDancer_BetaGet(int con_rank, int con_type, int character, int bea
 		break;
 	}
 	
-	//—x‚Á‚½•ûŒü‚ª‘O‚Æˆá‚¤•ûŒü
+	//è¸Šã£ãŸæ–¹å‘ãŒå‰ã¨é•ã†æ–¹å‘
 	if(ahead_step != DANCE_STEP_NONE){
 		if(main_step != ahead_step){
 			beta += 8;
 		}
 	}
 
-	//-- ‚»‚Ì‘¼‚Ì‚¸‚ê—v‘f --//
+	//-- ãã®ä»–ã®ãšã‚Œè¦ç´  --//
 	if(ahead_beat != -1){
-		//”¼ƒeƒ“ƒ|‚¸‚ç‚³‚ê‚é
+		//åŠãƒ†ãƒ³ãƒãšã‚‰ã•ã‚Œã‚‹
 		if((beat & 1) != (ahead_beat & 1)){
 			beta += 2;
 		}
-		//‘O‚Ì—x‚è‚©‚çŠÔ‚ªL‚¢(•\”‚ª4‚ÂˆÈã)
+		//å‰ã®è¸Šã‚Šã‹ã‚‰é–“ãŒåºƒã„(è¡¨æ‹ãŒ4ã¤ä»¥ä¸Š)
 		if(beat - ahead_beat >= 4*2){
 			beta += 5;
 		}
@@ -410,7 +410,7 @@ static int BackDancer_BetaGet(int con_rank, int con_type, int character, int bea
 		break;
 	case CONRANK_HYPER:
 		if(dp_sio == TRUE && (con_type == CONTYPE_CUTE || con_type == CONTYPE_CLEVER)){
-			beta *= 2;	//‚±‚Ì‚Q‚Â‚Í“ï‚µ‚¢‚Æ‚ÌˆÓŒ©‚ª‚ ‚Á‚½‚Ì‚Åbeta‚ğ’²®
+			beta *= 2;	//ã“ã®ï¼’ã¤ã¯é›£ã—ã„ã¨ã®æ„è¦‹ãŒã‚ã£ãŸã®ã§betaã‚’èª¿æ•´
 		}
 		else{
 			beta += beta/2;
@@ -419,7 +419,7 @@ static int BackDancer_BetaGet(int con_rank, int con_type, int character, int bea
 	case CONRANK_MASTER:
 	default:
 		if(dp_sio == TRUE && (con_type == CONTYPE_CUTE || con_type == CONTYPE_CLEVER)){
-			beta += beta/2;	//‚±‚Ì‚Q‚Â‚Í“ï‚µ‚¢‚Æ‚ÌˆÓŒ©‚ª‚ ‚Á‚½‚Ì‚Åbeta‚ğ’²®
+			beta += beta/2;	//ã“ã®ï¼’ã¤ã¯é›£ã—ã„ã¨ã®æ„è¦‹ãŒã‚ã£ãŸã®ã§betaã‚’èª¿æ•´
 		}
 		break;
 	}
@@ -429,16 +429,16 @@ static int BackDancer_BetaGet(int con_rank, int con_type, int character, int bea
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒT[AIÀs
+ * @brief   ãƒ€ãƒ³ã‚µãƒ¼AIå®Ÿè¡Œ
  *
- * @param   dpw					ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   aiwork				AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   frame				Œ»İ‚ÌƒtƒŒ[ƒ€
- * @param   all_tempo_frame		ƒ[ƒ^[‚ª’[‚©‚ç’[‚Ü‚Å“’B‚·‚éƒtƒŒ[ƒ€
- * @param   one_tempo_frame		1¬ßi‚Ş‚Ì‚É•K—v‚ÈƒtƒŒ[ƒ€”
- *                              (®”•”FONE_TEMPO_CALC_DECIMALæZ•”•ªAˆÈ‰º¬”)
- * @param   musicdata			‹Èƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sendwork			ƒ_ƒ“ƒXÀs‘—Mƒ^ƒXƒNƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw					ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   aiwork				AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   frame				ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param   all_tempo_frame		ãƒ¡ãƒ¼ã‚¿ãƒ¼ãŒç«¯ã‹ã‚‰ç«¯ã¾ã§åˆ°é”ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param   one_tempo_frame		1å°ç¯€é€²ã‚€ã®ã«å¿…è¦ãªãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+ *                              (æ•´æ•°éƒ¨ï¼šONE_TEMPO_CALC_DECIMALä¹—ç®—éƒ¨åˆ†ã€ä»¥ä¸‹å°æ•°)
+ * @param   musicdata			æ›²ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sendwork			ãƒ€ãƒ³ã‚¹å®Ÿè¡Œé€ä¿¡ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void DanceAI_Main(int now_frame_dancer, DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork, 
@@ -457,16 +457,16 @@ void DanceAI_Main(int now_frame_dancer, DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiw
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“ƒ_ƒ“ƒT[AIƒƒCƒ“ˆ—
+ * @brief   ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚µãƒ¼AIãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- * @param   dpw					ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   aiwork				AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   frame				Œ»İ‚ÌƒtƒŒ[ƒ€
- * @param   all_tempo_frame		ƒ[ƒ^[‚ª’[‚©‚ç’[‚Ü‚Å“’B‚·‚éƒtƒŒ[ƒ€
- * @param   one_tempo_frame		1¬ßi‚Ş‚Ì‚É•K—v‚ÈƒtƒŒ[ƒ€”
- *                              (®”•”FONE_TEMPO_CALC_DECIMALæZ•”•ªAˆÈ‰º¬”)
- * @param   musicdata			‹Èƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sendwork			ƒ_ƒ“ƒXÀs‘—Mƒ^ƒXƒNƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw					ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   aiwork				AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   frame				ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param   all_tempo_frame		ãƒ¡ãƒ¼ã‚¿ãƒ¼ãŒç«¯ã‹ã‚‰ç«¯ã¾ã§åˆ°é”ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param   one_tempo_frame		1å°ç¯€é€²ã‚€ã®ã«å¿…è¦ãªãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+ *                              (æ•´æ•°éƒ¨ï¼šONE_TEMPO_CALC_DECIMALä¹—ç®—éƒ¨åˆ†ã€ä»¥ä¸‹å°æ•°)
+ * @param   musicdata			æ›²ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sendwork			ãƒ€ãƒ³ã‚¹å®Ÿè¡Œé€ä¿¡ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceAI_MainDancer(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork, 
@@ -476,7 +476,7 @@ static void DanceAI_MainDancer(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork,
 	DANCING_PARAM dancing_param;
 	u32 half_tempo_frame;
 	
-	half_tempo_frame = one_tempo_frame / 2;		//— ”‚àæ‚é‚æ‚¤‚É
+	half_tempo_frame = one_tempo_frame / 2;		//è£æ‹ã‚‚å–ã‚‹ã‚ˆã†ã«
 	
 	if(aiwork->rotation_pos != 0 || aiwork->touch_count >= musicdata->touch_count){
 		return;
@@ -487,7 +487,7 @@ static void DanceAI_MainDancer(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork,
 		return;
 	}
 	
-	//ƒƒCƒ“ƒ_ƒ“ƒXÀs
+	//ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚¹å®Ÿè¡Œ
 	{
 		int pos;
 		
@@ -517,16 +517,16 @@ static void DanceAI_MainDancer(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒbƒNƒ_ƒ“ƒT[AIƒƒCƒ“ˆ—
+ * @brief   ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚µãƒ¼AIãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- * @param   dpw					ƒ_ƒ“ƒX•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   aiwork				AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   frame				Œ»İ‚ÌƒtƒŒ[ƒ€
- * @param   all_tempo_frame		ƒ[ƒ^[‚ª’[‚©‚ç’[‚Ü‚Å“’B‚·‚éƒtƒŒ[ƒ€
- * @param   one_tempo_frame		1¬ßi‚Ş‚Ì‚É•K—v‚ÈƒtƒŒ[ƒ€”
- *                              (®”•”FONE_TEMPO_CALC_DECIMALæZ•”•ªAˆÈ‰º¬”)
- * @param   musicdata			‹Èƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sendwork			ƒ_ƒ“ƒXÀs‘—Mƒ^ƒXƒNƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   dpw					ãƒ€ãƒ³ã‚¹éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   aiwork				AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   frame				ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param   all_tempo_frame		ãƒ¡ãƒ¼ã‚¿ãƒ¼ãŒç«¯ã‹ã‚‰ç«¯ã¾ã§åˆ°é”ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param   one_tempo_frame		1å°ç¯€é€²ã‚€ã®ã«å¿…è¦ãªãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+ *                              (æ•´æ•°éƒ¨ï¼šONE_TEMPO_CALC_DECIMALä¹—ç®—éƒ¨åˆ†ã€ä»¥ä¸‹å°æ•°)
+ * @param   musicdata			æ›²ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sendwork			ãƒ€ãƒ³ã‚¹å®Ÿè¡Œé€ä¿¡ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DanceAI_BackDancer(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork, 
@@ -537,7 +537,7 @@ static void DanceAI_BackDancer(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork,
 	DANCING_PARAM *main_param;
 	u32 half_tempo_frame, back_frame;
 	
-	half_tempo_frame = one_tempo_frame / 2;		//— ”‚àæ‚é‚æ‚¤‚É
+	half_tempo_frame = one_tempo_frame / 2;		//è£æ‹ã‚‚å–ã‚‹ã‚ˆã†ã«
 	
 	if(aiwork->rotation_pos == 0 || aiwork->touch_count >= musicdata->touch_count
 			|| dpw->maindancer_record[aiwork->touch_count].occ == FALSE){
@@ -552,7 +552,7 @@ static void DanceAI_BackDancer(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork,
 	main_param = &dpw->maindancer_record[aiwork->touch_count];
 	back_frame = frame - all_tempo_frame / 2;
 	
-	//Ÿ‚É—x‚éƒ_ƒ“ƒX‚ÌˆÊ’u‚ğ‚Ü‚¾Œˆ‚ß‚Ä‚¢‚È‚¢‚È‚çŒˆ’è‚·‚é
+	//æ¬¡ã«è¸Šã‚‹ãƒ€ãƒ³ã‚¹ã®ä½ç½®ã‚’ã¾ã æ±ºã‚ã¦ã„ãªã„ãªã‚‰æ±ºå®šã™ã‚‹
 	if(aiwork->back.occ == FALSE){
 		u32 hit_frame;
 		s32 offset_frame;
@@ -585,7 +585,7 @@ static void DanceAI_BackDancer(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork,
 			hit_frame += offset_frame;
 		}
 		
-		//—x‚é•ûŒüƒ~ƒXƒ`ƒFƒbƒN
+		//è¸Šã‚‹æ–¹å‘ãƒŸã‚¹ãƒã‚§ãƒƒã‚¯
 		if((contest_fix_rand(aiwork->random_seed, &aiwork->random_seed) % 100) < (0+alpha+beta)){
 			do{
 				tp_type = DANCE_TP_JUMP 
@@ -598,11 +598,11 @@ static void DanceAI_BackDancer(DANCE_PROC_WORK *dpw, DANCE_AI_WORK *aiwork,
 		aiwork->back.frame = hit_frame;
 		aiwork->back.tp_type = tp_type;
 		aiwork->back.occ = TRUE;
-		OS_TPrintf("ƒ[ƒe[ƒVƒ‡ƒ“ˆÊ’u%d ‚ÌAI‚ÌŸ‚Ìƒ_ƒ“ƒXƒtƒŒ[ƒ€%d\n", aiwork->rotation_pos, aiwork->back.frame);
+		OS_TPrintf("ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ä½ç½®%d ã®AIã®æ¬¡ã®ãƒ€ãƒ³ã‚¹ãƒ•ãƒ¬ãƒ¼ãƒ ï¼%d\n", aiwork->rotation_pos, aiwork->back.frame);
 		OS_TPrintf("frame = %d, back_frame = %d\n", frame, back_frame);
 	}
 	
-	//ƒoƒbƒNƒ_ƒ“ƒXÀs
+	//ãƒãƒƒã‚¯ãƒ€ãƒ³ã‚¹å®Ÿè¡Œ
 	{
 		if(aiwork->back.frame <= back_frame){
 			DancerReactionSet(aiwork->breeder_no, aiwork->back.tp_type, frame, one_tempo_frame, 

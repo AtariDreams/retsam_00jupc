@@ -8,7 +8,7 @@
 ;
 ; The assembly needed to invoke the profiler under PowerPC
 ;
-;  Copyright © 1993-1994 Metrowerks Inc.  All rights reserved
+;  Copyright 1993-1994 Metrowerks Inc.  All rights reserved
 ;  
 
 ; addTime(dest, src1, src2)

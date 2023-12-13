@@ -18,19 +18,19 @@
   indent source
 
   Revision 1.17  2006/11/16 10:30:18  takano_makoto
-  MB_FakeSetVerboseScanCallback()ŠÖ”‚ğ’Ç‰Á
+  MB_FakeSetVerboseScanCallback()é–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.16  2006/03/13 06:33:33  yosizaki
   add MB_FAKESCAN_PARENT_BEACON.
 
   Revision 1.15  2006/02/20 02:31:03  seiki_masashi
-  WMGameInfo.gameNameCount_attribute ‚ğ attribute ‚É–¼‘O•ÏX
+  WMGameInfo.gameNameCount_attribute ã‚’ attribute ã«åå‰å¤‰æ›´
 
   Revision 1.14  2006/01/18 02:11:30  kitase_hirotake
   do-indent
 
   Revision 1.13  2005/12/01 09:15:13  takano_makoto
-  MB_FAKE_WORK_SIZE‚ÌƒTƒCƒYƒ`ƒFƒbƒN‚ğ’Ç‰Á
+  MB_FAKE_WORK_SIZEã®ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯ã‚’è¿½åŠ 
 
   Revision 1.12  2005/02/28 05:26:24  yosizaki
   do-indent.
@@ -42,28 +42,28 @@
   fix copyright header.
 
   Revision 1.9  2005/01/11 02:24:33  takano_makoto
-  Lock’†‚Ìe‚Ìƒf[ƒ^óM‚ÉATimeoutƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg‚·‚é‚æ‚¤‚ÉC³
+  Lockä¸­ã®è¦ªã®ãƒ‡ãƒ¼ã‚¿å—ä¿¡æ™‚ã«ã€Timeoutã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.8  2005/01/07 02:55:30  takano_makoto
-  ƒfƒoƒbƒOo—Í‚ğ’Ç‰Á
+  ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›ã‚’è¿½åŠ 
 
   Revision 1.7  2004/11/29 05:46:01  takano_makoto
-  ‘—óMƒoƒbƒtƒ@ƒTƒCƒY‚ğ•ÏX
+  é€å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
 
   Revision 1.6  2004/11/29 04:53:08  takano_makoto
-  WM_StartMP‚ÌsendBuffer‚Æ WM_SetMPData‚ÌSendBuffer‚É“¯‚¶—Ìˆæ‚ªg—p‚³‚ê‚Ä‚¢‚½‚Ì‚ğC³B
+  WM_StartMPã®sendBufferã¨ WM_SetMPDataã®SendBufferã«åŒã˜é ˜åŸŸãŒä½¿ç”¨ã•ã‚Œã¦ã„ãŸã®ã‚’ä¿®æ­£ã€‚
 
   Revision 1.5  2004/11/29 02:55:30  takano_makoto
-  32byte align•s‹ï‡C³
+  32byte alignä¸å…·åˆä¿®æ­£
 
   Revision 1.4  2004/11/25 12:30:28  takano_makoto
-  print debug‚ğOFF‚É•ÏX
+  print debugã‚’OFFã«å¤‰æ›´
 
   Revision 1.3  2004/11/24 13:00:35  takano_makoto
-  ƒGƒ‰[ˆ—‚ğ’Ç‰Á
+  ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¿½åŠ 
 
   Revision 1.2  2004/11/23 23:51:20  takano_makoto
-  FINALROMƒrƒ‹ƒh‚ÌWarning‚ğœ‹
+  FINALROMãƒ“ãƒ«ãƒ‰æ™‚ã®Warningã‚’é™¤å»
 
   Revision 1.1  2004/11/22 12:38:30  takano_makoto
   Initial update.
@@ -92,27 +92,27 @@
 
 typedef struct
 {
-    u32     sendBuf[WM_SIZE_CHILD_SEND_BUFFER(MB_COMM_PARENT_RECV_MAX, FALSE) / sizeof(u32)] ATTRIBUTE_ALIGN(32);       // ‘—Mƒoƒbƒtƒ@ 0x400 byte
-    u32     recvBuf[WM_SIZE_CHILD_RECEIVE_BUFFER(MB_COMM_PARENT_SEND_MAX, FALSE) / sizeof(u32)] ATTRIBUTE_ALIGN(32);    // óMƒoƒbƒtƒ@ 0xF00 byte
-    u32     sendDataBuf[WM_SIZE_CHILD_SEND_BUFFER(MB_COMM_PARENT_RECV_MAX, FALSE) / sizeof(u32)] ATTRIBUTE_ALIGN(32);   // ‘—Mƒf[ƒ^ì¬—pƒoƒbƒtƒ@ 0x400 byte
-    WMBssDesc bssDescBuf ATTRIBUTE_ALIGN(32);   // e‹@ƒXƒLƒƒƒ“—pƒoƒbƒtƒ@ —v32ƒoƒCƒgƒAƒ‰ƒCƒ“  0xC0 byte
-    WMScanParam scanParam ATTRIBUTE_ALIGN(32);  // ƒXƒLƒƒƒ“ƒpƒ‰ƒ[ƒ^     —v32ƒoƒCƒgƒAƒ‰ƒCƒ“  0x20 byte
-    MBWMWork wmWork ATTRIBUTE_ALIGN(32);        // MP’ÊM—pƒ[ƒNƒoƒbƒtƒ@ˆÓ —v32ƒoƒCƒgƒAƒ‰ƒCƒ“
-    MBUserInfo userInfo;               // ƒ†[ƒU[î•ñ
+    u32     sendBuf[WM_SIZE_CHILD_SEND_BUFFER(MB_COMM_PARENT_RECV_MAX, FALSE) / sizeof(u32)] ATTRIBUTE_ALIGN(32);       // é€ä¿¡ãƒãƒƒãƒ•ã‚¡ 0x400 byte
+    u32     recvBuf[WM_SIZE_CHILD_RECEIVE_BUFFER(MB_COMM_PARENT_SEND_MAX, FALSE) / sizeof(u32)] ATTRIBUTE_ALIGN(32);    // å—ä¿¡ãƒãƒƒãƒ•ã‚¡ 0xF00 byte
+    u32     sendDataBuf[WM_SIZE_CHILD_SEND_BUFFER(MB_COMM_PARENT_RECV_MAX, FALSE) / sizeof(u32)] ATTRIBUTE_ALIGN(32);   // é€ä¿¡ãƒ‡ãƒ¼ã‚¿ä½œæˆç”¨ãƒãƒƒãƒ•ã‚¡ 0x400 byte
+    WMBssDesc bssDescBuf ATTRIBUTE_ALIGN(32);   // è¦ªæ©Ÿã‚¹ã‚­ãƒ£ãƒ³ç”¨ãƒãƒƒãƒ•ã‚¡ è¦32ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ³  0xC0 byte
+    WMScanParam scanParam ATTRIBUTE_ALIGN(32);  // ã‚¹ã‚­ãƒ£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿     è¦32ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ³  0x20 byte
+    MBWMWork wmWork ATTRIBUTE_ALIGN(32);        // MPé€šä¿¡ç”¨ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡æ„ è¦32ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ³
+    MBUserInfo userInfo;               // ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±
     u8      _padding1[2];
-    MBFakeScanCallbackFunc scanCallback;        // e‹@ƒXƒLƒƒƒ“’Ê’m—pƒR[ƒ‹ƒoƒbƒN
-    MBCommCStateCallbackFunc stateCallback;     // ó‘Ô’Ê’m—pƒR[ƒ‹ƒoƒbƒN
-    u32     ggid;                      // ŒŸõ‚·‚éGGID
-    MbBeaconRecvStatus beaconRecvStatus;        // ƒr[ƒRƒ“óMƒXƒe[ƒ^ƒX
-    BOOL    scanning;                  // ƒXƒLƒƒƒ“’†ƒtƒ‰ƒO
-    BOOL    endScanBusy;               // ƒXƒLƒƒƒ“I—¹ˆ—’†ƒtƒ‰ƒO
-    BOOL    locking;                   // ƒƒbƒN’†ƒtƒ‰ƒO
-    BOOL    endFlag;                   // MB‚ÌI—¹ˆ——v‹
-    u32     targetGgid;                // —v‹‚·‚éƒoƒCƒiƒŠ‚ÌGGID
-    u16     targetFileNo;              // —v‹‚·‚éƒoƒCƒiƒŠ‚ÌFileNo
-    u16     c_comm_state;              // q‹@ó‘Ô
-    WMCallbackFunc verboseScanCallback; // ¶‚ÌWMScan‚Ì’Ê’m‚ğƒ†[ƒU‚É’m‚ç‚¹‚éƒR[ƒ‹ƒoƒbƒN
-    MBFakeCompareGGIDCallbackFunc compareGGIDCallback; // ƒ†[ƒU’è‹`‚ÌGGID”äŠrƒR[ƒ‹ƒoƒbƒN
+    MBFakeScanCallbackFunc scanCallback;        // è¦ªæ©Ÿã‚¹ã‚­ãƒ£ãƒ³é€šçŸ¥ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+    MBCommCStateCallbackFunc stateCallback;     // çŠ¶æ…‹é€šçŸ¥ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+    u32     ggid;                      // æ¤œç´¢ã™ã‚‹GGID
+    MbBeaconRecvStatus beaconRecvStatus;        // ãƒ“ãƒ¼ã‚³ãƒ³å—ä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+    BOOL    scanning;                  // ã‚¹ã‚­ãƒ£ãƒ³ä¸­ãƒ•ãƒ©ã‚°
+    BOOL    endScanBusy;               // ã‚¹ã‚­ãƒ£ãƒ³çµ‚äº†å‡¦ç†ä¸­ãƒ•ãƒ©ã‚°
+    BOOL    locking;                   // ãƒ­ãƒƒã‚¯ä¸­ãƒ•ãƒ©ã‚°
+    BOOL    endFlag;                   // MBã®çµ‚äº†å‡¦ç†è¦æ±‚
+    u32     targetGgid;                // è¦æ±‚ã™ã‚‹ãƒã‚¤ãƒŠãƒªã®GGID
+    u16     targetFileNo;              // è¦æ±‚ã™ã‚‹ãƒã‚¤ãƒŠãƒªã®FileNo
+    u16     c_comm_state;              // å­æ©ŸçŠ¶æ…‹
+    WMCallbackFunc verboseScanCallback; // ç”Ÿã®WMScanã®é€šçŸ¥ã‚’ãƒ¦ãƒ¼ã‚¶ã«çŸ¥ã‚‰ã›ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+    MBFakeCompareGGIDCallbackFunc compareGGIDCallback; // ãƒ¦ãƒ¼ã‚¶å®šç¾©ã®GGIDæ¯”è¼ƒã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     u8      _padding2[8];
 }
 MBFakeWork;
@@ -121,7 +121,7 @@ SDK_COMPILER_ASSERT(sizeof(MBFakeWork) <= MB_FAKE_WORK_SIZE);
 
 
 //============================================================================
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================
 
 static void MBFi_EndComplete(void);
@@ -130,7 +130,7 @@ static void MBFi_CommChangeChildState(u16 state, void *arg);
 static void MBFi_SendCallback(u16 state, void *arg);
 static void MBFi_ErrorCallback(u16 apiid, u16 errcode, BOOL isApiError);
 
-/* scan—p */
+/* scanç”¨ */
 static void MBFi_StateInStartScan(void);
 static void MBFi_StateOutStartScanParent(void *arg);
 static void MBFi_CommBeaconRecvCallback(MbBeaconMsg msg, MBGameInfoRecvList * gInfop, int index);
@@ -144,12 +144,12 @@ static BOOL RotateChannel(void);
 static void MBFi_StateInEndScan(void);
 static void MBFi_StateOutEndScan(void *arg);
 
-/* ƒGƒ“ƒgƒŠ[ˆ——p */
+/* ã‚¨ãƒ³ãƒˆãƒªãƒ¼å‡¦ç†ç”¨ */
 static void MBFi_WMCallback(u16 type, void *arg);
 static void MBFi_CommChildRecvData(WMPortRecvCallback *cb);
 static void MBFi_CommChildSendData(void);
 
-/* ƒfƒoƒbƒOo—Í—p */
+/* ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›ç”¨ */
 #if (MB_FAKE_PRINT == 1)
 static void MBFi_PrintMBCallbackType(u16 type);
 static void MBFi_PrintMBCommCallbacyType(u16 type);
@@ -159,7 +159,7 @@ static void MBFi_PrintMBCommCallbacyType(u16 type);
 #endif
 
 //============================================================================
-// ƒ[ƒJƒ‹•Ï”éŒ¾
+// ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°å®£è¨€
 //============================================================================
 
 static vu16 mbf_initialize;
@@ -168,25 +168,25 @@ static MBFakeWork *mbf_work;
 
 
 //============================================================================
-// ŠÖ”’è‹`
+// é–¢æ•°å®šç¾©
 //============================================================================
 
 
 /*---------------------------------------------------------------------------*
   Name:         MB_FakeInit
 
-  Description:  ƒtƒFƒCƒNƒ}ƒ‹ƒ`ƒu[ƒgq‹@‚Ì‰Šú‰»ŠÖ”B
+  Description:  ãƒ•ã‚§ã‚¤ã‚¯ãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆå­æ©Ÿã®åˆæœŸåŒ–é–¢æ•°ã€‚
 
-  Arguments:    buf     ƒtƒFƒCƒNq‹@‚É•K—v‚Èƒ[ƒN—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Å‚·B
-                        MB_FakeGetWorkSize()‚Å•K—v‚ÈƒTƒCƒY‚ğæ“¾‚Å‚«‚Ü‚·B
-                user    q‹@‚Ìƒ†[ƒUî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Å‚·B
+  Arguments:    buf     ãƒ•ã‚§ã‚¤ã‚¯å­æ©Ÿã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿ã§ã™ã€‚
+                        MB_FakeGetWorkSize()ã§å¿…è¦ãªã‚µã‚¤ã‚ºã‚’å–å¾—ã§ãã¾ã™ã€‚
+                user    å­æ©Ÿã®ãƒ¦ãƒ¼ã‚¶æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã§ã™ã€‚
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void MB_FakeInit(void *buf, const MBUserInfo *user)
 {
     SDK_NULL_ASSERT(buf);
-    SDK_ASSERT(((u32)buf & 0x1F) == 0); // 32ƒoƒCƒgƒAƒ‰ƒCƒ“‚ğƒ`ƒFƒbƒN
+    SDK_ASSERT(((u32)buf & 0x1F) == 0); // 32ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ³ã‚’ãƒã‚§ãƒƒã‚¯
 
     if (mbf_initialize)
     {
@@ -197,7 +197,7 @@ void MB_FakeInit(void *buf, const MBUserInfo *user)
 
     MB_FAKE_OUTPUT("MB_Fake Initialized\n");
 
-    // ƒoƒbƒtƒ@‚ÌƒNƒŠƒA
+    // ãƒãƒƒãƒ•ã‚¡ã®ã‚¯ãƒªã‚¢
     MI_CpuClear8(buf, sizeof(MBFakeWork));
 
     mbf_work = (MBFakeWork *) buf;
@@ -206,11 +206,11 @@ void MB_FakeInit(void *buf, const MBUserInfo *user)
     mbf_work->compareGGIDCallback = NULL;
 
     MI_CpuCopy8(user, &mbf_work->userInfo, sizeof(MBUserInfo));
-    // ƒr[ƒRƒ“óM—pƒ[ƒNƒoƒbƒtƒ@‚ğİ’è
+    // ãƒ“ãƒ¼ã‚³ãƒ³å—ä¿¡ç”¨ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’è¨­å®š
     MBi_SetBeaconRecvStatusBuffer(&mbf_work->beaconRecvStatus);
-    // ƒQ[ƒ€î•ñóMƒXƒe[ƒ^ƒX‚ğ‰Šú‰»
+    // ã‚²ãƒ¼ãƒ æƒ…å ±å—ä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’åˆæœŸåŒ–
     MB_InitRecvGameInfoStatus();
-    // ƒXƒLƒƒƒ“ƒƒbƒN—pŠÖ”‚ğİ’è
+    // ã‚¹ã‚­ãƒ£ãƒ³ãƒ­ãƒƒã‚¯ç”¨é–¢æ•°ã‚’è¨­å®š
     MBi_SetScanLockFunc(MBFi_ScanLock, MBFi_ScanUnlock);
 }
 
@@ -218,7 +218,7 @@ void MB_FakeInit(void *buf, const MBUserInfo *user)
 /*---------------------------------------------------------------------------*
   Name:         MB_FakeEnd
 
-  Description:  ƒtƒFƒCƒNƒ}ƒ‹ƒ`ƒu[ƒgq‹@‚ÌI—¹ŠÖ”B
+  Description:  ãƒ•ã‚§ã‚¤ã‚¯ãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆå­æ©Ÿã®çµ‚äº†é–¢æ•°ã€‚
 
   Arguments:    None.
   
@@ -228,7 +228,7 @@ void MB_FakeEnd(void)
 {
     if (mbf_work->endFlag)
     {
-        // Šù‚ÉI—¹ˆ—‚É“ü‚Á‚Ä‚¢‚éê‡‚Í‰½‚à‚µ‚È‚¢
+        // æ—¢ã«çµ‚äº†å‡¦ç†ã«å…¥ã£ã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã—ãªã„
         return;
     }
 
@@ -237,19 +237,19 @@ void MB_FakeEnd(void)
     switch (mbf_work->c_comm_state)
     {
     case MB_COMM_CSTATE_NONE:
-        // ƒXƒLƒƒƒ“’†‚Å‚ ‚ê‚ÎƒXƒLƒƒƒ“‚ğI—¹
+        // ã‚¹ã‚­ãƒ£ãƒ³ä¸­ã§ã‚ã‚Œã°ã‚¹ã‚­ãƒ£ãƒ³ã‚’çµ‚äº†
         if (mbf_work->scanning)
         {
             mbf_work->scanning = FALSE;
         }
-        // ƒXƒLƒƒƒ“ŠJn‘O‚à‚µ‚­‚ÍEndScanŠ®—¹Œã‚Å‚ ‚ê‚Î‰½‚à‚¹‚¸‚ÉŠ®—¹
+        // ã‚¹ã‚­ãƒ£ãƒ³é–‹å§‹å‰ã‚‚ã—ãã¯EndScanå®Œäº†å¾Œã§ã‚ã‚Œã°ä½•ã‚‚ã›ãšã«å®Œäº†
         else if (!mbf_work->endScanBusy)
         {
             MBFi_EndComplete();
         }
         else
         {
-            // ƒXƒLƒƒƒ“I—¹ˆ—’†‚Å‚ ‚ê‚ÎŠ®—¹‚ğ‘Ò‚Â
+            // ã‚¹ã‚­ãƒ£ãƒ³çµ‚äº†å‡¦ç†ä¸­ã§ã‚ã‚Œã°å®Œäº†ã‚’å¾…ã¤
         }
         break;
 
@@ -260,7 +260,7 @@ void MB_FakeEnd(void)
     case MB_COMM_CSTATE_REQ_REFUSED:
     case MB_COMM_CSTATE_ERROR:
     case MB_COMM_CSTATE_MEMBER_FULL:
-        // ƒŠƒZƒbƒg‚µ‚ÄI—¹
+        // ãƒªã‚»ãƒƒãƒˆã—ã¦çµ‚äº†
         MBi_WMReset();
         break;
 
@@ -268,17 +268,17 @@ void MB_FakeEnd(void)
     case MB_COMM_CSTATE_DLINFO_ACCEPTED:
     case MB_COMM_CSTATE_RECV_PROCEED:
     case MB_COMM_CSTATE_RECV_COMPLETE:
-        // MP‚©‚ç‡‚ÉˆÀ‘S‚ÉI—¹
+        // MPã‹ã‚‰é †ã«å®‰å…¨ã«çµ‚äº†
         MBi_WMDisconnect();
         break;
 
     case MB_COMM_CSTATE_BOOTREQ_ACCEPTED:
-        // Ø’fŠ®—¹‚ğ‘Ò‚Â
+        // åˆ‡æ–­å®Œäº†ã‚’å¾…ã¤
         break;
 
     case MB_COMM_CSTATE_BOOT_READY:
     case MB_COMM_CSTATE_CANCELLED:
-        // Šù‚ÉIDLEƒXƒe[ƒg‚É—‚¿‚Ä‚¢‚é‚Ì‚ÅI—¹
+        // æ—¢ã«IDLEã‚¹ãƒ†ãƒ¼ãƒˆã«è½ã¡ã¦ã„ã‚‹ã®ã§çµ‚äº†
         MBFi_EndComplete();
         break;
 
@@ -291,7 +291,7 @@ void MB_FakeEnd(void)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_EndComplete
 
-  Description:  ƒtƒFƒCƒNq‹@ƒ‰ƒCƒuƒ‰ƒŠ‚ÌŠ®—¹ˆ—
+  Description:  ãƒ•ã‚§ã‚¤ã‚¯å­æ©Ÿãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®å®Œäº†å‡¦ç†
 
   Arguments:    None.
 
@@ -301,10 +301,10 @@ static void MBFi_EndComplete(void)
 {
     mbf_initialize = 0;
     mbf_work->endFlag = 0;
-    // ƒ|[ƒgƒR[ƒ‹ƒoƒbƒN‚ğƒNƒŠƒA
+    // ãƒãƒ¼ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’ã‚¯ãƒªã‚¢
     MBi_WMClearCallback();
 
-    // ƒ†[ƒU‚ÉŠ®—¹’Ê’m
+    // ãƒ¦ãƒ¼ã‚¶ã«å®Œäº†é€šçŸ¥
     MBFi_CommChangeChildState(MB_COMM_CSTATE_FAKE_END, NULL);
 }
 
@@ -312,11 +312,11 @@ static void MBFi_EndComplete(void)
 /*---------------------------------------------------------------------------*
   Name:         MB_FakeGetWorkSize
 
-  Description:  ƒtƒFƒCƒNq‹@ƒ‰ƒCƒuƒ‰ƒŠ‚É•K—v‚Èƒ[ƒNƒTƒCƒY‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ•ã‚§ã‚¤ã‚¯å­æ©Ÿãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¾ã™ã€‚
 
   Arguments:    None.
 
-  Returns:      •K—v‚Èƒ[ƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY
+  Returns:      å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 u32 MB_FakeGetWorkSize(void)
 {
@@ -328,9 +328,9 @@ u32 MB_FakeGetWorkSize(void)
 /*---------------------------------------------------------------------------*
   Name:         MB_FakeSetCStateCallback
 
-  Description:  ƒtƒFƒCƒNq‹@‚Ìó‘Ô‘JˆÚ‚ğ’Ê’m‚·‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚µ‚Ü‚·B
+  Description:  ãƒ•ã‚§ã‚¤ã‚¯å­æ©Ÿã®çŠ¶æ…‹é·ç§»ã‚’é€šçŸ¥ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã—ã¾ã™ã€‚
 
-  Arguments:    callback    İ’è‚·‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Arguments:    callback    è¨­å®šã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -347,11 +347,11 @@ void MB_FakeSetCStateCallback(MBCommCStateCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_CommChangeChildState
 
-  Description:  q‹@ó‘Ô‚Ì•ÏX‚·‚éŠÖ”‚Å‚·B
-                ó‘Ô‚Ì•ÏX‚Æ“¯‚Éƒ†[ƒUƒvƒƒOƒ‰ƒ€‚ÖƒR[ƒ‹ƒoƒbƒN‚ğ•Ô‚µ‚Ü‚·B
+  Description:  å­æ©ŸçŠ¶æ…‹ã®å¤‰æ›´ã™ã‚‹é–¢æ•°ã§ã™ã€‚
+                çŠ¶æ…‹ã®å¤‰æ›´ã¨åŒæ™‚ã«ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã¸ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¿”ã—ã¾ã™ã€‚
 
-  Arguments:    state   İ’è‚·‚éó‘Ô
-                arg     ƒR[ƒ‹ƒoƒbƒN‚Ö‚Ìˆø”
+  Arguments:    state   è¨­å®šã™ã‚‹çŠ¶æ…‹
+                arg     ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¸ã®å¼•æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -397,10 +397,10 @@ static void MBFi_CommChangeChildState(u16 state, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_SendCallback
 
-  Description:  ƒR[ƒ‹ƒoƒbƒN‚ğ‘—M‚µ‚Ü‚·B
+  Description:  ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’é€ä¿¡ã—ã¾ã™ã€‚
 
-  Arguments:    state   ƒtƒFƒCƒNq‹@‚Ìó‘Ô
-                arg     ƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    state   ãƒ•ã‚§ã‚¤ã‚¯å­æ©Ÿã®çŠ¶æ…‹
+                arg     ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -416,10 +416,10 @@ static inline void MBFi_SendCallback(u16 state, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_ErrorCallback
 
-  Description:  ƒGƒ‰[”­¶‚ğƒR[ƒ‹ƒoƒbƒN‚Å’Ê’m‚µ‚Ü‚·B
+  Description:  ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã‚’ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§é€šçŸ¥ã—ã¾ã™ã€‚
 
-  Arguments:    apiid   ƒGƒ‰[‚ÌŒ´ˆö‚Æ‚È‚Á‚½API‚ğƒR[ƒ‹ƒoƒbƒN‚Å’Ê’m‚µ‚Ü‚·B
-                errcode  ƒGƒ‰[‚ÌŒ´ˆöƒR[ƒh‚ğƒR[ƒ‹ƒoƒbƒN‚Å’Ê’m‚µ‚Ü‚·B
+  Arguments:    apiid   ã‚¨ãƒ©ãƒ¼ã®åŸå› ã¨ãªã£ãŸAPIã‚’ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§é€šçŸ¥ã—ã¾ã™ã€‚
+                errcode  ã‚¨ãƒ©ãƒ¼ã®åŸå› ã‚³ãƒ¼ãƒ‰ã‚’ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§é€šçŸ¥ã—ã¾ã™ã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -435,7 +435,7 @@ static inline void MBFi_ErrorCallback(u16 apiid, u16 errcode, BOOL isApiError)
 
     if (isApiError)
     {
-        // APIŠÖ”ŒÄ‚Ño‚µ‚ÌƒGƒ‰[
+        // APIé–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®ã‚¨ãƒ©ãƒ¼
         switch (errcode)
         {
         case WM_ERRCODE_INVALID_PARAM:
@@ -462,7 +462,7 @@ static inline void MBFi_ErrorCallback(u16 apiid, u16 errcode, BOOL isApiError)
     }
     else
     {
-        // ƒR[ƒ‹ƒoƒbƒN‚ÌƒGƒ‰[
+        // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯æ™‚ã®ã‚¨ãƒ©ãƒ¼
         switch (apiid)
         {
         case WM_APIID_INITIALIZE:
@@ -476,13 +476,13 @@ static inline void MBFi_ErrorCallback(u16 apiid, u16 errcode, BOOL isApiError)
         case WM_APIID_SET_DCF_DATA:
         case WM_APIID_DISCONNECT:
         case WM_APIID_START_KS:
-            /* ˆÈã‚ÌƒGƒ‰[‚ÍAWMÅ‰Šú‰»‚Ì•K—v‚ÈƒGƒ‰[ */
+            /* ä»¥ä¸Šã®ã‚¨ãƒ©ãƒ¼ã¯ã€WMæœ€åˆæœŸåŒ–ã®å¿…è¦ãªã‚¨ãƒ©ãƒ¼ */
             error_type = MB_ERRCODE_FATAL;
             break;
         case WM_APIID_RESET:
         case WM_APIID_END:
         default:
-            /* ‚»‚Ì‘¼‚ÌƒGƒ‰[‚É‚Â‚¢‚Ä‚ÍAƒR[ƒ‹ƒoƒbƒNƒGƒ‰[‚Æ‚µ‚Ä•Ô‚· */
+            /* ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼ã«ã¤ã„ã¦ã¯ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¨ãƒ©ãƒ¼ã¨ã—ã¦è¿”ã™ */
             error_type = MB_ERRCODE_WM_FAILURE;
             break;
         }
@@ -495,7 +495,7 @@ static inline void MBFi_ErrorCallback(u16 apiid, u16 errcode, BOOL isApiError)
 
 
 //============================================================================
-// ƒXƒLƒƒƒ“—pŠÖ”
+// ã‚¹ã‚­ãƒ£ãƒ³ç”¨é–¢æ•°
 //============================================================================
 
 void MB_FakeSetVerboseScanCallback(WMCallbackFunc callback)
@@ -510,9 +510,9 @@ void MB_FakeSetVerboseScanCallback(WMCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         MB_FakeSetCompareGGIDCallback
 
-  Description:  MBe‹@‚ÌGGID”äŠrƒR[ƒ‹ƒoƒbƒN‚ğİ’è‚µ‚Ü‚·B
+  Description:  MBè¦ªæ©Ÿã®GGIDæ¯”è¼ƒã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®šã—ã¾ã™ã€‚
 
-  Arguments:    callback    GGID”äŠrƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Arguments:    callback    GGIDæ¯”è¼ƒã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -528,10 +528,10 @@ void MB_FakeSetCompareGGIDCallback(MBFakeCompareGGIDCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         MB_FakeStartScanParent
 
-  Description:  ƒ}ƒ‹ƒ`ƒu[ƒge‹@‚ÌƒXƒLƒƒƒ“‚ğŠJn‚µ‚Ü‚·B
+  Description:  ãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆè¦ªæ©Ÿã®ã‚¹ã‚­ãƒ£ãƒ³ã‚’é–‹å§‹ã—ã¾ã™ã€‚
 
-  Arguments:    callback    e‹@ƒXƒLƒƒƒ“‚ÌƒR[ƒ‹ƒoƒbƒN‚ğ’Ê’m‚·‚éŠÖ”
-                ggid        ŒŸõ‚·‚éMBe‹@‚ÌGGIDBGGID‚ªˆÙ‚È‚ê‚Î”­Œ©‚³‚ê‚Ü‚¹‚ñB
+  Arguments:    callback    è¦ªæ©Ÿã‚¹ã‚­ãƒ£ãƒ³ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’é€šçŸ¥ã™ã‚‹é–¢æ•°
+                ggid        æ¤œç´¢ã™ã‚‹MBè¦ªæ©Ÿã®GGIDã€‚GGIDãŒç•°ãªã‚Œã°ç™ºè¦‹ã•ã‚Œã¾ã›ã‚“ã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -552,7 +552,7 @@ void MB_FakeStartScanParent(MBFakeScanCallbackFunc callback, u32 ggid)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_StateInStartScan
 
-  Description:  ƒXƒLƒƒƒ“ƒRƒ}ƒ“ƒh‚ğ”­s‚µ‚Ü‚·B
+  Description:  ã‚¹ã‚­ãƒ£ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã—ã¾ã™ã€‚
 
   Arguments:    None.
 
@@ -562,7 +562,7 @@ static void MBFi_StateInStartScan(void)
 {
     WMErrCode result;
 
-    // WM_StartScan()”­s
+    // WM_StartScan()ç™ºè¡Œ
     if (mbf_work->locking)
     {
         mbf_work->scanParam.maxChannelTime = MB_SCAN_TIME_LOCKING;
@@ -573,10 +573,10 @@ static void MBFi_StateInStartScan(void)
         WM_CopyBssid(ANY_PARENT, mbf_work->scanParam.bssid);
 
         mbf_work->scanParam.maxChannelTime = MB_SCAN_TIME_NORMAL;
-        // ƒƒbƒN’†‚Å‚È‚¯‚ê‚Îƒ`ƒƒƒ“ƒlƒ‹‚Ìİ’è‚ğ‚·‚é
+        // ãƒ­ãƒƒã‚¯ä¸­ã§ãªã‘ã‚Œã°ãƒãƒ£ãƒ³ãƒãƒ«ã®è¨­å®šã‚’ã™ã‚‹
         if (!RotateChannel())
         {
-            // –³ü‚ªg‚¦‚È‚¢ó‘Ô
+            // ç„¡ç·šãŒä½¿ãˆãªã„çŠ¶æ…‹
             MBFi_ScanErrorCallback(WM_APIID_MEASURE_CHANNEL, 0);
             return;
         }
@@ -596,9 +596,9 @@ static void MBFi_StateInStartScan(void)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_StateOutStartScanParent
 
-  Description:  WM_StartScan‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Description:  WM_StartScanã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-  Arguments:    arg     WM_StartScan‚ÌƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    arg     WM_StartScanã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -618,12 +618,12 @@ static void MBFi_StateOutStartScanParent(void *arg)
         break;
 
     case WM_STATECODE_PARENT_FOUND:
-        // Scan‚Åæ“¾‚µ‚½e‹@î•ñ‚ÌŠi”[
+        // Scanã§å–å¾—ã—ãŸè¦ªæ©Ÿæƒ…å ±ã®æ ¼ç´
         {
             /*
-             * w’è‚³‚ê‚½GGID‚Æˆê’v‚·‚é‚©, ‚Ü‚½‚Í
-             * ƒ†[ƒU’è‹`‚Ì”äŠrˆ—‚ªTRUE‚ğ•Ô‚¹‚Î
-             * ƒr[ƒRƒ“‰ğÍ‘ÎÛ‚Æ‚·‚é.
+             * æŒ‡å®šã•ã‚ŒãŸGGIDã¨ä¸€è‡´ã™ã‚‹ã‹, ã¾ãŸã¯
+             * ãƒ¦ãƒ¼ã‚¶å®šç¾©ã®æ¯”è¼ƒå‡¦ç†ãŒTRUEã‚’è¿”ã›ã°
+             * ãƒ“ãƒ¼ã‚³ãƒ³è§£æå¯¾è±¡ã¨ã™ã‚‹.
              */
             BOOL    matched = (mbf_work->compareGGIDCallback == NULL) ?
                 (cb->gameInfo.ggid == mbf_work->ggid) :
@@ -644,7 +644,7 @@ static void MBFi_StateOutStartScanParent(void *arg)
         // don't break;
 
     case WM_STATECODE_PARENT_NOT_FOUND:
-        /* e‹@ƒQ[ƒ€î•ñ‚Ìõ–½ƒJƒEƒ“ƒg */
+        /* è¦ªæ©Ÿã‚²ãƒ¼ãƒ æƒ…å ±ã®å¯¿å‘½ã‚«ã‚¦ãƒ³ãƒˆ */
         MB_CountGameInfoLifetime(MBFi_CommBeaconRecvCallback, FALSE);
 
         if (mbf_work->scanning)
@@ -667,12 +667,12 @@ static void MBFi_StateOutStartScanParent(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_ScanCallback
 
-  Description:  ƒ†[ƒUƒvƒƒOƒ‰ƒ€‚É‘Î‚µ‚ÄAe‹@‚ÌƒXƒLƒƒƒ“î•ñ‚ğƒR[ƒ‹ƒoƒbƒN‚Å
-                ’Ê’m‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã«å¯¾ã—ã¦ã€è¦ªæ©Ÿã®ã‚¹ã‚­ãƒ£ãƒ³æƒ…å ±ã‚’ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§
+                é€šçŸ¥ã—ã¾ã™ã€‚
 
-  Arguments:    state   ’Ê’m‚·‚éó‘Ô
-                gInfop  ”­Œ©‚µ‚½e‹@î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                index   “à•”‚ÅŠÇ—‚µ‚Ä‚¢‚ée‹@‚ÌŠÇ—”Ô†
+  Arguments:    state   é€šçŸ¥ã™ã‚‹çŠ¶æ…‹
+                gInfop  ç™ºè¦‹ã—ãŸè¦ªæ©Ÿæƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                index   å†…éƒ¨ã§ç®¡ç†ã—ã¦ã„ã‚‹è¦ªæ©Ÿã®ç®¡ç†ç•ªå·
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -702,10 +702,10 @@ static void MBFi_ScanCallback(u16 state, MBGameInfoRecvList * gInfop, int index)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_ScanErrorCallback
 
-  Description:  ƒXƒLƒƒƒ“‚ÌƒGƒ‰[”­¶‚ğƒR[ƒ‹ƒoƒbƒN‚Å’Ê’m‚µ‚Ü‚·B
+  Description:  ã‚¹ã‚­ãƒ£ãƒ³æ™‚ã®ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã‚’ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§é€šçŸ¥ã—ã¾ã™ã€‚
 
-  Arguments:    apiid    ƒGƒ‰[‚ÌŒ´ˆö‚Æ‚È‚Á‚½APIID
-                errcode  ƒGƒ‰[‚ÌŒ´ˆöƒR[ƒh
+  Arguments:    apiid    ã‚¨ãƒ©ãƒ¼ã®åŸå› ã¨ãªã£ãŸAPIID
+                errcode  ã‚¨ãƒ©ãƒ¼ã®åŸå› ã‚³ãƒ¼ãƒ‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -726,9 +726,9 @@ static void MBFi_ScanErrorCallback(u16 apiid, u16 errcode)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_ScanLock
 
-  Description:  ƒXƒLƒƒƒ“‚·‚ée‹@‚ğƒƒbƒN
+  Description:  ã‚¹ã‚­ãƒ£ãƒ³ã™ã‚‹è¦ªæ©Ÿã‚’ãƒ­ãƒƒã‚¯
 
-  Arguments:    macAddr  : ƒƒbƒN‚·‚ée‹@‚ÌMACƒAƒhƒŒƒX
+  Arguments:    macAddr  : ãƒ­ãƒƒã‚¯ã™ã‚‹è¦ªæ©Ÿã®MACã‚¢ãƒ‰ãƒ¬ã‚¹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -742,7 +742,7 @@ static void MBFi_ScanLock(u8 *macAddr)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_ScanUnlock
 
-  Description:  ƒXƒLƒƒƒ“‚·‚ée‹@‚ÌƒƒbƒN‚ğ‰ğœ
+  Description:  ã‚¹ã‚­ãƒ£ãƒ³ã™ã‚‹è¦ªæ©Ÿã®ãƒ­ãƒƒã‚¯ã‚’è§£é™¤
 
   Arguments:    None.
   
@@ -757,11 +757,11 @@ static void MBFi_ScanUnlock(void)
 /*---------------------------------------------------------------------------*
   Name:         MBi_CommBeaconRecvCallback
 
-  Description:  q‹@‚Ìƒr[ƒRƒ“óMƒR[ƒ‹ƒoƒbƒN
+  Description:  å­æ©Ÿã®ãƒ“ãƒ¼ã‚³ãƒ³å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    msg    : ƒr[ƒRƒ“óMƒƒbƒZ[ƒW
-                gInfop : e‹@ƒQ[ƒ€î•ñ
-                index  : ƒr[ƒRƒ“ƒCƒ“ƒfƒNƒX
+  Arguments:    msg    : ãƒ“ãƒ¼ã‚³ãƒ³å—ä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+                gInfop : è¦ªæ©Ÿã‚²ãƒ¼ãƒ æƒ…å ±
+                index  : ãƒ“ãƒ¼ã‚³ãƒ³ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -784,7 +784,7 @@ static void MBFi_CommBeaconRecvCallback(MbBeaconMsg msg, MBGameInfoRecvList * gI
         MB_FAKE_OUTPUT("Parent List Full\n");
         break;
     case MB_BC_MSG_GINFO_BEACON:
-        /* Šù’m‚Ìe‹@‚Ìƒr[ƒRƒ“‚ğŒŸo‚·‚é‚½‚Ñ‚É’Ê’m */
+        /* æ—¢çŸ¥ã®è¦ªæ©Ÿã®ãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ¤œå‡ºã™ã‚‹ãŸã³ã«é€šçŸ¥ */
         MBFi_ScanCallback(MB_FAKESCAN_PARENT_BEACON, (void *)gInfop, index);
         break;
     }
@@ -793,11 +793,11 @@ static void MBFi_CommBeaconRecvCallback(MbBeaconMsg msg, MBGameInfoRecvList * gI
 /*---------------------------------------------------------------------------*
   Name:         RotateChannel
 
-  Description:  ƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ[ƒe[ƒVƒ‡ƒ“
+  Description:  ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³
 
   Arguments:    None.
 
-  Returns:      —LŒø‚Èƒ`ƒƒƒ“ƒlƒ‹‚ªŒ©‚Â‚©‚ç‚È‚¯‚ê‚ÎFALSE‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      æœ‰åŠ¹ãªãƒãƒ£ãƒ³ãƒãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã°FALSEã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static BOOL RotateChannel(void)
 {
@@ -807,7 +807,7 @@ static BOOL RotateChannel(void)
         return FALSE;
     }
 
-    // ƒ`ƒƒƒ“ƒlƒ‹‚ğƒ[ƒe[ƒVƒ‡ƒ“
+    // ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³
     mbf_work->scanParam.channel++;
     while (TRUE)
     {
@@ -828,7 +828,7 @@ static BOOL RotateChannel(void)
 /*---------------------------------------------------------------------------*
   Name:         MB_FakeEndScan
 
-  Description:  e‹@‚ÌƒXƒLƒƒƒ“I—¹
+  Description:  è¦ªæ©Ÿã®ã‚¹ã‚­ãƒ£ãƒ³çµ‚äº†
 
   Arguments:    None.
 
@@ -844,7 +844,7 @@ void MB_FakeEndScan(void)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_StateInEndScan
 
-  Description:  e‹@‚ÌƒXƒLƒƒƒ“I—¹ƒRƒ}ƒ“ƒh‚ğ”­s
+  Description:  è¦ªæ©Ÿã®ã‚¹ã‚­ãƒ£ãƒ³çµ‚äº†ã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œ
 
   Arguments:    None.
 
@@ -864,9 +864,9 @@ static void MBFi_StateInEndScan(void)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_StateOutEndScan
 
-  Description:  e‹@‚ÌƒXƒLƒƒƒ“I—¹ƒR[ƒ‹ƒoƒbƒN
+  Description:  è¦ªæ©Ÿã®ã‚¹ã‚­ãƒ£ãƒ³çµ‚äº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    arg     WM_EndScan‚ÌƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    arg     WM_EndScanã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -894,20 +894,20 @@ static void MBFi_StateOutEndScan(void *arg)
 
 
 //============================================================================
-// e‹@‚Ö‚ÌƒGƒ“ƒgƒŠ[ˆ—
+// è¦ªæ©Ÿã¸ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼å‡¦ç†
 //============================================================================
 
 /*---------------------------------------------------------------------------*
   Name:         MB_FakeEntryToParent
 
-  Description:  e‹@‚Ö‚ÌƒGƒ“ƒgƒŠ[‚ğŠJn
+  Description:  è¦ªæ©Ÿã¸ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã‚’é–‹å§‹
 
-  Arguments:    index   ƒGƒ“ƒgƒŠ[‚·‚ée‹@‚Ì“à•”ŠÇ—”Ô†‚ğˆø”‚Æ‚µ‚Ä—^‚¦‚Ü‚·B
-                        MB_FakeStartScanParent‚ÌƒR[ƒ‹ƒoƒbƒN‚Åæ“¾‚·‚éindex
-                        ‚ğ—^‚¦‚Ä‚­‚¾‚³‚¢B
+  Arguments:    index   ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã™ã‚‹è¦ªæ©Ÿã®å†…éƒ¨ç®¡ç†ç•ªå·ã‚’å¼•æ•°ã¨ã—ã¦ä¸ãˆã¾ã™ã€‚
+                        MB_FakeStartScanParentã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§å–å¾—ã™ã‚‹index
+                        ã‚’ä¸ãˆã¦ãã ã•ã„ã€‚
 
-  Returns:      ˆø”‚Ìindex‚ª—LŒø‚È‚à‚Ì‚Å‚ ‚ê‚Î TRUE.
-                —LŒø‚Å‚È‚¯‚ê‚Î FALSE.
+  Returns:      å¼•æ•°ã®indexãŒæœ‰åŠ¹ãªã‚‚ã®ã§ã‚ã‚Œã° TRUE.
+                æœ‰åŠ¹ã§ãªã‘ã‚Œã° FALSE.
  *---------------------------------------------------------------------------*/
 BOOL MB_FakeEntryToParent(u16 index)
 {
@@ -935,10 +935,10 @@ BOOL MB_FakeEntryToParent(u16 index)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_WMCallback
 
-  Description:  MP’ÊM‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Description:  MPé€šä¿¡ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-  Arguments:    type    ƒR[ƒ‹ƒoƒbƒNƒ^ƒCƒv
-                arg     ƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    type    ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¿ã‚¤ãƒ—
+                arg     ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -949,52 +949,52 @@ static void MBFi_WMCallback(u16 type, void *arg)
     switch (type)
     {
         //--------------------------------------------
-        // e‹@‚Ö‚ÌÚ‘±¸”s’Ê’m
+        // è¦ªæ©Ÿã¸ã®æ¥ç¶šå¤±æ•—é€šçŸ¥
     case MB_CALLBACK_CONNECT_FAILED:
         MBFi_CommChangeChildState(MB_COMM_CSTATE_CONNECT_FAILED, NULL);
         break;
         //--------------------------------------------
-        // e‹@‚Ö‚ÌÚ‘±Š®—¹’Ê’m
+        // è¦ªæ©Ÿã¸ã®æ¥ç¶šå®Œäº†é€šçŸ¥
     case MB_CALLBACK_CONNECTED_TO_PARENT:
         MB_FAKE_OUTPUT("connect to parent\n");
         MBFi_CommChangeChildState(MB_COMM_CSTATE_CONNECT, arg);
         MBi_ChildStartMP((u16 *)mbf_work->sendBuf, (u16 *)mbf_work->recvBuf);
         break;
         //--------------------------------------------
-        // e‹@‚©‚ç‚ÌØ’f’Ê’m
+        // è¦ªæ©Ÿã‹ã‚‰ã®åˆ‡æ–­é€šçŸ¥
     case MB_CALLBACK_DISCONNECTED_FROM_PARENT:
         MBFi_CommChangeChildState(MB_COMM_CSTATE_DISCONNECTED_BY_PARENT, arg);
         break;
         //--------------------------------------------
-        // MP’ÊMŠJn’Ê’m
+        // MPé€šä¿¡é–‹å§‹é€šçŸ¥
     case MB_CALLBACK_MP_STARTED:
         break;
         //-----------------------------
-        // ƒf[ƒ^‘—M‰Â”\’Ê’m
+        // ãƒ‡ãƒ¼ã‚¿é€ä¿¡å¯èƒ½é€šçŸ¥
     case MB_CALLBACK_MP_SEND_ENABLE:
         {
-            // ‘—Mƒf[ƒ^‚ÌƒZƒbƒgˆ—
+            // é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆå‡¦ç†
             MBFi_CommChildSendData();
         }
         break;
         //-----------------------------
-        // ƒf[ƒ^óM‰Â”\’Ê’m
+        // ãƒ‡ãƒ¼ã‚¿å—ä¿¡å¯èƒ½é€šçŸ¥
     case MB_CALLBACK_MP_CHILD_RECV:
         {
             MBFi_CommChildRecvData((WMPortRecvCallback *)arg);
         }
         break;
         //-----------------------------
-        // q‹@‘¤‚©‚ç‚ÌØ’fŠ®—¹’Ê’m
+        // å­æ©Ÿå´ã‹ã‚‰ã®åˆ‡æ–­å®Œäº†é€šçŸ¥
     case MB_CALLBACK_DISCONNECT_COMPLETE:
         if (mbf_work->c_comm_state == MB_COMM_CSTATE_BOOTREQ_ACCEPTED)
         {
-            // ƒu[ƒgƒŠƒNƒGƒXƒgóMŒã‚È‚çƒu[ƒgŠ®—¹ó‘Ô‚Ö‘JˆÚ
+            // ãƒ–ãƒ¼ãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆå—ä¿¡å¾Œãªã‚‰ãƒ–ãƒ¼ãƒˆå®Œäº†çŠ¶æ…‹ã¸é·ç§»
             MBFi_CommChangeChildState(MB_COMM_CSTATE_BOOT_READY, NULL);
         }
         else
         {
-            // ƒu[ƒgƒŠƒNƒGƒXƒgóM‘O‚È‚çƒLƒƒƒ“ƒZƒ‹ó‘Ô‚Ö‘JˆÚ
+            // ãƒ–ãƒ¼ãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆå—ä¿¡å‰ãªã‚‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«çŠ¶æ…‹ã¸é·ç§»
             MBFi_CommChangeChildState(MB_COMM_CSTATE_CANCELLED, NULL);
         }
         if (mbf_work->endFlag)
@@ -1003,14 +1003,14 @@ static void MBFi_WMCallback(u16 type, void *arg)
         }
         break;
         //------------------------------
-        // MP’ÊM’Ê’m
+        // MPé€šä¿¡é€šçŸ¥
     case MB_CALLBACK_MP_CHILD_SENT:
     case MB_CALLBACK_MP_CHILD_SENT_TIMEOUT:
     case MB_CALLBACK_MP_CHILD_SENT_ERR:
-        // ’P‚È‚éMPƒŒƒxƒ‹‚Ì’ÊMó‹µ‚Ì’Ê’m‚È‚Ì‚Å“Á‚Éˆ—‚Í•K—v‚È‚¢
+        // å˜ãªã‚‹MPãƒ¬ãƒ™ãƒ«ã®é€šä¿¡çŠ¶æ³ã®é€šçŸ¥ãªã®ã§ç‰¹ã«å‡¦ç†ã¯å¿…è¦ãªã„
         break;
         //------------------------------
-        // ƒGƒ‰[‚Ö‚Ì‘Îˆ
+        // ã‚¨ãƒ©ãƒ¼ã¸ã®å¯¾å‡¦
     case MB_CALLBACK_API_ERROR:
         {
             MBErrorCallback *cb = (MBErrorCallback *) arg;
@@ -1034,9 +1034,9 @@ static void MBFi_WMCallback(u16 type, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_CommChildRecvData
 
-  Description:  e‹@‚©‚ç‚Ìƒf[ƒ^óMˆ—
+  Description:  è¦ªæ©Ÿã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿å—ä¿¡å‡¦ç†
 
-  Arguments:    cb  ƒ|[ƒgƒR[ƒ‹ƒoƒbƒN‚ÌƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    cb  ãƒãƒ¼ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1044,15 +1044,15 @@ static void MBFi_CommChildRecvData(WMPortRecvCallback *cb)
 {
     MBCommParentBlockHeader hd;
 
-    // ƒwƒbƒ_‰ğÍ
+    // ãƒ˜ãƒƒãƒ€è§£æ
     (void)MBi_SetRecvBufferFromParent(&hd, (u8 *)cb->data);
 
 //    MBFi_PrintMBCommCallbacyType( hd.type );
 
-    switch (hd.type)                   // óMBlockƒ^ƒCƒv‚É‚æ‚éó‘Ô‘JˆÚ
+    switch (hd.type)                   // å—ä¿¡Blockã‚¿ã‚¤ãƒ—ã«ã‚ˆã‚‹çŠ¶æ…‹é·ç§»
     {
     case MB_COMM_TYPE_PARENT_SENDSTART:
-        // e‹@‚©‚ç‚Ì‘—MŠJnƒƒbƒZ[ƒW
+        // è¦ªæ©Ÿã‹ã‚‰ã®é€ä¿¡é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
         if (mbf_work->c_comm_state == MB_COMM_CSTATE_CONNECT)
         {
             MB_FAKE_OUTPUT("Allowd to request file from parent!\n");
@@ -1060,14 +1060,14 @@ static void MBFi_CommChildRecvData(WMPortRecvCallback *cb)
         }
         break;
 
-    case MB_COMM_TYPE_PARENT_KICKREQ: // e‹@‚©‚ç‚ÌKickƒƒbƒZ[ƒW
+    case MB_COMM_TYPE_PARENT_KICKREQ: // è¦ªæ©Ÿã‹ã‚‰ã®Kickãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
         if (mbf_work->c_comm_state == MB_COMM_CSTATE_REQ_ENABLE)
         {
             MBFi_CommChangeChildState(MB_COMM_CSTATE_REQ_REFUSED, NULL);
         }
         break;
 
-    case MB_COMM_TYPE_PARENT_MEMBER_FULL:      // e‹@‚©‚ç‚Ìƒƒ“ƒo[’´‰ßƒƒbƒZ[ƒW
+    case MB_COMM_TYPE_PARENT_MEMBER_FULL:      // è¦ªæ©Ÿã‹ã‚‰ã®ãƒ¡ãƒ³ãƒãƒ¼è¶…éãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
         if (mbf_work->c_comm_state == MB_COMM_CSTATE_REQ_ENABLE)
         {
             MBFi_CommChangeChildState(MB_COMM_CSTATE_MEMBER_FULL, NULL);
@@ -1075,17 +1075,17 @@ static void MBFi_CommChildRecvData(WMPortRecvCallback *cb)
         break;
 
     case MB_COMM_TYPE_PARENT_DL_FILEINFO:
-        // MbDownloadFileInfoHeader‚ÌóM
+        // MbDownloadFileInfoHeaderã®å—ä¿¡
         if (mbf_work->c_comm_state == MB_COMM_CSTATE_REQ_ENABLE)
         {
-            /* óM‚µ‚½MbDownloadFileInfo‚ğˆø”‚Æ‚µ‚Ä“n‚·B */
+            /* å—ä¿¡ã—ãŸMbDownloadFileInfoã‚’å¼•æ•°ã¨ã—ã¦æ¸¡ã™ã€‚ */
             MBFi_CommChangeChildState(MB_COMM_CSTATE_DLINFO_ACCEPTED, NULL);
         }
 
         break;
 
     case MB_COMM_TYPE_PARENT_DATA:
-        /* ƒuƒƒbƒNƒf[ƒ^‚ÌóM */
+        /* ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡ */
         if (mbf_work->c_comm_state == MB_COMM_CSTATE_DLINFO_ACCEPTED)
         {
             MBFi_CommChangeChildState(MB_COMM_CSTATE_RECV_PROCEED, NULL);
@@ -1093,7 +1093,7 @@ static void MBFi_CommChildRecvData(WMPortRecvCallback *cb)
 
         if (mbf_work->c_comm_state == MB_COMM_CSTATE_RECV_PROCEED)
         {
-            MBFi_CommChangeChildState(MB_COMM_CSTATE_RECV_COMPLETE, NULL);      // óMŠ®—¹
+            MBFi_CommChangeChildState(MB_COMM_CSTATE_RECV_COMPLETE, NULL);      // å—ä¿¡å®Œäº†
         }
         break;
 
@@ -1104,7 +1104,7 @@ static void MBFi_CommChildRecvData(WMPortRecvCallback *cb)
         }
         else if (mbf_work->c_comm_state == MB_COMM_CSTATE_BOOTREQ_ACCEPTED)
         {
-            MBi_WMDisconnect();        // ’ÊM‚ğI—¹‚³‚¹‚é
+            MBi_WMDisconnect();        // é€šä¿¡ã‚’çµ‚äº†ã•ã›ã‚‹
         }
         break;
     default:
@@ -1119,7 +1119,7 @@ static void MBFi_CommChildRecvData(WMPortRecvCallback *cb)
 /*---------------------------------------------------------------------------*
   Name:         MBi_CommChildSendData
 
-  Description:  q‹@ƒf[ƒ^‘—M
+  Description:  å­æ©Ÿãƒ‡ãƒ¼ã‚¿é€ä¿¡
 
   Arguments:    None.
 
@@ -1156,7 +1156,7 @@ static void MBFi_CommChildSendData(void)
         break;
 
     case MB_COMM_CSTATE_DLINFO_ACCEPTED:
-        // DownloadInfoó—ÌƒƒbƒZ[ƒW
+        // DownloadInfoå—é ˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
         hd.type = MB_COMM_TYPE_CHILD_ACCEPT_FILEINFO;
         (void)MBi_MakeChildSendBuffer(&hd, (u8 *)mbf_work->sendDataBuf);
         errcode = MBi_MPSendToParent(MB_COMM_CHILD_HEADER_SIZE, pollbmp, mbf_work->sendDataBuf);
@@ -1166,7 +1166,7 @@ static void MBFi_CommChildSendData(void)
         break;
 
     case MB_COMM_CSTATE_RECV_COMPLETE:
-        // ƒuƒƒbƒN“]‘—’â~ƒƒbƒZ[ƒW(e‚©‚çBOOTREQ‚ª—ˆ‚é‚Ü‚Å‘—‚è‚Â‚Ã‚¯‚é)
+        // ãƒ–ãƒ­ãƒƒã‚¯è»¢é€åœæ­¢ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(è¦ªã‹ã‚‰BOOTREQãŒæ¥ã‚‹ã¾ã§é€ã‚Šã¤ã¥ã‘ã‚‹)
         hd.type = MB_COMM_TYPE_CHILD_STOPREQ;
         (void)MBi_MakeChildSendBuffer(&hd, (u8 *)mbf_work->sendDataBuf);
         errcode = MBi_MPSendToParent(MB_COMM_CHILD_HEADER_SIZE, pollbmp, mbf_work->sendDataBuf);
@@ -1178,7 +1178,7 @@ static void MBFi_CommChildSendData(void)
         errcode = MBi_MPSendToParent(MB_COMM_CHILD_HEADER_SIZE, pollbmp, mbf_work->sendDataBuf);
         break;
     default:
-        // MP’ÊMŠm—§‚Ì‚½‚ßADUMMY MP‚ğ‘—M
+        // MPé€šä¿¡ç¢ºç«‹ã®ãŸã‚ã€DUMMY MPã‚’é€ä¿¡
         hd.type = MB_COMM_TYPE_DUMMY;
         (void)MBi_MakeChildSendBuffer(&hd, (u8 *)mbf_work->sendDataBuf);
         errcode = MBi_MPSendToParent(MB_COMM_CHILD_HEADER_SIZE, pollbmp, mbf_work->sendDataBuf);
@@ -1191,13 +1191,13 @@ static void MBFi_CommChildSendData(void)
 /*---------------------------------------------------------------------------*
   Name:         MB_FakeGetParentGameInfo
 
-  Description:  e‹@ƒŠƒXƒg‚©‚çe‹@‚ÌƒQ[ƒ€î•ñ‚ğæ“¾‚·‚éB
+  Description:  è¦ªæ©Ÿãƒªã‚¹ãƒˆã‹ã‚‰è¦ªæ©Ÿã®ã‚²ãƒ¼ãƒ æƒ…å ±ã‚’å–å¾—ã™ã‚‹ã€‚
 
-  Arguments:    index     e‹@ƒCƒ“ƒfƒbƒNƒX
-                pGameInfo e‹@î•ñ‚ğæ“¾‚·‚é—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    index     è¦ªæ©Ÿã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+                pGameInfo è¦ªæ©Ÿæƒ…å ±ã‚’å–å¾—ã™ã‚‹é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      —LŒø‚Èe‹@‚ÌƒCƒ“ƒfƒbƒNƒX‚È‚ç‚Î TRUE
-                –³Œø‚Èe‹@‚ÌƒCƒ“ƒfƒbƒNƒX‚È‚ç‚Î FALSE;
+  Returns:      æœ‰åŠ¹ãªè¦ªæ©Ÿã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãªã‚‰ã° TRUE
+                ç„¡åŠ¹ãªè¦ªæ©Ÿã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãªã‚‰ã° FALSE;
  *---------------------------------------------------------------------------*/
 BOOL MB_FakeGetParentGameInfo(u16 index, MBGameInfo *pGameInfo)
 {
@@ -1226,13 +1226,13 @@ BOOL MB_FakeGetParentGameInfo(u16 index, MBGameInfo *pGameInfo)
 /*---------------------------------------------------------------------------*
   Name:         MB_FakeGetParentBssDesc
 
-  Description:  e‹@ƒŠƒXƒg‚©‚çe‹@‚ÌBssDesc‚ğæ“¾‚·‚éB
+  Description:  è¦ªæ©Ÿãƒªã‚¹ãƒˆã‹ã‚‰è¦ªæ©Ÿã®BssDescã‚’å–å¾—ã™ã‚‹ã€‚
 
-  Arguments:    index e‹@ƒCƒ“ƒfƒbƒNƒX
-                pBssDesc e‹@î•ñ‚ğæ“¾‚·‚é—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    index è¦ªæ©Ÿã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+                pBssDesc è¦ªæ©Ÿæƒ…å ±ã‚’å–å¾—ã™ã‚‹é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      —LŒø‚Èe‹@‚ÌƒCƒ“ƒfƒbƒNƒX‚È‚ç‚Î TRUE
-                –³Œø‚Èe‹@‚ÌƒCƒ“ƒfƒbƒNƒX‚È‚ç‚Î FALSE;
+  Returns:      æœ‰åŠ¹ãªè¦ªæ©Ÿã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãªã‚‰ã° TRUE
+                ç„¡åŠ¹ãªè¦ªæ©Ÿã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãªã‚‰ã° FALSE;
  *---------------------------------------------------------------------------*/
 BOOL MB_FakeGetParentBssDesc(u16 index, WMBssDesc *pBssDesc)
 {
@@ -1261,17 +1261,17 @@ BOOL MB_FakeGetParentBssDesc(u16 index, WMBssDesc *pBssDesc)
 /*---------------------------------------------------------------------------*
   Name:         MB_FakeReadParentBssDesc
 
-  Description:  e‹@ƒŠƒXƒg‚Ìe‹@BssDesc‚ğ‚à‚Æ‚ÉWM_StartConnectŠÖ”‚Ì‚½‚ß‚Ìî•ñ‚ğæ“¾‚µ‚Ü‚·B
+  Description:  è¦ªæ©Ÿãƒªã‚¹ãƒˆã®è¦ªæ©ŸBssDescã‚’ã‚‚ã¨ã«WM_StartConnecté–¢æ•°ã®ãŸã‚ã®æƒ…å ±ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    index           e‹@ƒCƒ“ƒfƒbƒNƒX
-                pBssDesc        e‹@î•ñ‚ğæ“¾‚·‚é—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                parent_max_size MPe‹@‚ÌÅ‘å‘—MƒTƒCƒY
-                child_max_size  MPq‹@‚ÌÅ‘å‘—MƒTƒCƒY
-                ks_flag         ƒL[ƒVƒFƒAƒŠƒ“ƒOİ’èƒtƒ‰ƒO
-                cs_flag         ˜A‘±“]‘—İ’èƒtƒ‰ƒO
+  Arguments:    index           è¦ªæ©Ÿã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+                pBssDesc        è¦ªæ©Ÿæƒ…å ±ã‚’å–å¾—ã™ã‚‹é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                parent_max_size MPè¦ªæ©Ÿã®æœ€å¤§é€ä¿¡ã‚µã‚¤ã‚º
+                child_max_size  MPå­æ©Ÿã®æœ€å¤§é€ä¿¡ã‚µã‚¤ã‚º
+                ks_flag         ã‚­ãƒ¼ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°è¨­å®šãƒ•ãƒ©ã‚°
+                cs_flag         é€£ç¶šè»¢é€è¨­å®šãƒ•ãƒ©ã‚°
 
-  Returns:      —LŒø‚Èe‹@‚ÌƒCƒ“ƒfƒbƒNƒX‚È‚ç‚Î TRUE
-                –³Œø‚Èe‹@‚ÌƒCƒ“ƒfƒbƒNƒX‚È‚ç‚Î FALSE;
+  Returns:      æœ‰åŠ¹ãªè¦ªæ©Ÿã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãªã‚‰ã° TRUE
+                ç„¡åŠ¹ãªè¦ªæ©Ÿã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãªã‚‰ã° FALSE;
  *---------------------------------------------------------------------------*/
 BOOL MB_FakeReadParentBssDesc(u16 index, WMBssDesc *pBssDesc, u16 parent_max_size,
                               u16 child_max_size, BOOL ks_flag, BOOL cs_flag)
@@ -1303,9 +1303,9 @@ BOOL MB_FakeReadParentBssDesc(u16 index, WMBssDesc *pBssDesc, u16 parent_max_siz
 /*---------------------------------------------------------------------------*
   Name:         MBFi_PrintMBCallbackType
 
-  Description:  MB_WM‚©‚ç‚ÌƒR[ƒ‹ƒoƒbƒNƒ^ƒCƒv‚ğƒfƒoƒbƒOo—Í‚µ‚Ü‚·B
+  Description:  MB_WMã‹ã‚‰ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¿ã‚¤ãƒ—ã‚’ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›ã—ã¾ã™ã€‚
 
-  Arguments:    type  ƒR[ƒ‹ƒoƒbƒNƒ^ƒCƒv
+  Arguments:    type  ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¿ã‚¤ãƒ—
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1366,9 +1366,9 @@ static void MBFi_PrintMBCallbackType(u16 type)
 /*---------------------------------------------------------------------------*
   Name:         MBFi_PrintMBCommCallbacyType
 
-  Description:  e‹@‚©‚ç‚ÌƒpƒPƒbƒg‚ÌƒƒbƒZ[ƒWƒ^ƒCƒv‚ğƒfƒoƒbƒOo—Í‚µ‚Ü‚·B
+  Description:  è¦ªæ©Ÿã‹ã‚‰ã®ãƒ‘ã‚±ãƒƒãƒˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—ã‚’ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›ã—ã¾ã™ã€‚
 
-  Arguments:    type ƒƒbƒZ[ƒWƒ^ƒCƒv
+  Arguments:    type ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

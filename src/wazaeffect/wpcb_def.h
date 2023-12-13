@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	wpcb_def.h
- * @brief	Šî–{\‘¢‘Ì wpcb_xxx.c ‚µ‚©Ainclude‚µ‚Ä‚Í‚¢‚¯‚È‚¢
+ * @brief	åŸºæœ¬æ§‹é€ ä½“ wpcb_xxx.c ã—ã‹ã€includeã—ã¦ã¯ã„ã‘ãªã„
  * @author	goto
- * @date	2006.02.12(“ú)
+ * @date	2006.02.12(æ—¥)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -15,82 +15,82 @@
 
 // -----------------------------------------
 //
-//	  ƒvƒƒOƒ‰ƒ€’†‚Åˆµ‚¤
+//	â–¡ ãƒ—ãƒ­ã‚°ãƒ©ãƒ ä¸­ã§æ‰±ã†
 //
 // -----------------------------------------
-#define OPERATOR_AXIS_PARAM_MAX		(3)				///< •ûŒü‚ªEX_DATA‚©‚çŽæ“¾‚·‚é’l‚Ì”
-#define OPERATOR_POS_PARAM_MAX		(3)				///< À•W‚ªEX_DATA‚©‚çŽæ“¾‚·‚é’l‚Ì”
-#define OPERATOR_REVERCE_FLAG_OFF	(1)				///< ”½“]ƒtƒ‰ƒO
-#define OPERATOR_REVERCE_FLAG_ON	(-1)			///< ”½“]ƒtƒ‰ƒO
+#define OPERATOR_AXIS_PARAM_MAX		(3)				///< æ–¹å‘ãŒEX_DATAã‹ã‚‰å–å¾—ã™ã‚‹å€¤ã®æ•°
+#define OPERATOR_POS_PARAM_MAX		(3)				///< åº§æ¨™ãŒEX_DATAã‹ã‚‰å–å¾—ã™ã‚‹å€¤ã®æ•°
+#define OPERATOR_REVERCE_FLAG_OFF	(1)				///< åè»¢ãƒ•ãƒ©ã‚°
+#define OPERATOR_REVERCE_FLAG_ON	(-1)			///< åè»¢ãƒ•ãƒ©ã‚°
 
 // -----------------------------------------
 //
-//	  *.s ‚Åˆµ‚¤
+//	â–¡ *.s ã§æ‰±ã†
 //
 // -----------------------------------------
-#define OPERATOR_EX_REVERCE_ON			(0)			///< *[ ‹¤’Ê ] ˆÊ’u”½“]‚ ‚è
-#define OPERATOR_EX_REVERCE_OFF			(1)			///< *[ ‹¤’Ê ] ˆÊ’u”½“]–³‚µ
+#define OPERATOR_EX_REVERCE_ON			(0)			///< *[ å…±é€š ] ä½ç½®åè»¢ã‚ã‚Š
+#define OPERATOR_EX_REVERCE_OFF			(1)			///< *[ å…±é€š ] ä½ç½®åè»¢ç„¡ã—
 
-#define OPERATOR_DEF_DATA_NUM			(6)			///< ƒf[ƒ^Ží—Þ
+#define OPERATOR_DEF_DATA_NUM			(6)			///< ãƒ‡ãƒ¼ã‚¿ç¨®é¡ž
 
-#define OPERATOR_PRI_NONE				(0)			///< *[ —Dæ“x ] 
-#define OPERATOR_PRI_FRONT				(1)			///< ‘O–Ê
-#define OPERATOR_PRI_BACK				(2)			///< ”w–Ê
+#define OPERATOR_PRI_NONE				(0)			///< *[ å„ªå…ˆåº¦ ] 
+#define OPERATOR_PRI_FRONT				(1)			///< å‰é¢
+#define OPERATOR_PRI_BACK				(2)			///< èƒŒé¢
 #define OPERATOR_PRI_Z					(3)			///< Z
 
-#define OPERATOR_DEF_FZ_AA				(256)		///< ‘O–Ê—pŠî–{Z
-#define OPERATOR_DEF_BZ_AA				(0)			///< ”w–Ê—pŠî–{Z
-#define OPERATOR_DEF_FZ_BB				(-5120)		///< ‘O–Ê—pŠî–{Z
-#define OPERATOR_DEF_BZ_BB				(-5376)		///< ”w–Ê—pŠî–{Z
+#define OPERATOR_DEF_FZ_AA				(256)		///< å‰é¢ç”¨åŸºæœ¬Z
+#define OPERATOR_DEF_BZ_AA				(0)			///< èƒŒé¢ç”¨åŸºæœ¬Z
+#define OPERATOR_DEF_FZ_BB				(-5120)		///< å‰é¢ç”¨åŸºæœ¬Z
+#define OPERATOR_DEF_BZ_BB				(-5376)		///< èƒŒé¢ç”¨åŸºæœ¬Z
 
-#define OPERATOR_TARGET_NONE			(0)			///< *[ À°¹Þ¯Ä ] TARGET_NONE == POS_NONE
+#define OPERATOR_TARGET_NONE			(0)			///< *[ ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ ] TARGET_NONE == POS_NONE
 #define OPERATOR_TARGET_AT				(1)
 #define OPERATOR_TARGET_DF				(2)
 #define OPERATOR_TARGET_AT_SIDE			(3)
 #define OPERATOR_TARGET_DF_SIDE			(4)
 
 
-#define OPERATOR_POS_NONE				(0)			///< *[ À•W ]
-#define OPERATOR_POS_SP					(1)			///< ŠJŽn
-#define OPERATOR_POS_EP					(2)			///< I—¹
-#define OPERATOR_POS_SET				(3)			///< ƒ†[ƒU[Žw’è
-#define OPERATOR_POS_SP_OFS				(4)			///< ŠJŽn+ofs
-#define OPERATOR_POS_EP_OFS				(5)			///< I—¹+ofs
-#define OPERATOR_POS_LSP				(6)			///< ƒŒ[ƒU[ŠJŽn
-#define OPERATOR_POS_LEP				(7)			///< ƒŒ[ƒU[I—¹
-#define OPERATOR_POS_RSP				(8)			///< ƒŠƒ“ƒOŠJŽn
-#define OPERATOR_POS_REP				(9)			///< ƒŠƒ“ƒOI—¹
-#define OPERATOR_POS_L2SP				(10)		///< ƒŒ[ƒU[ŠJŽn
-#define OPERATOR_POS_L2EP				(11)		///< ƒŒ[ƒU[I—¹
-#define OPERATOR_POS_AT_SIDE_OFS		(12)		///< ŠJŽn+ofs
-#define OPERATOR_POS_DF_SIDE_OFS		(13)		///< I—¹+ofs
-#define OPERATOR_POS_L3SP				(14)		///< ƒŒ[ƒU[ŠJŽn
-#define OPERATOR_POS_L3EP				(15)		///< ƒŒ[ƒU[I—¹
-#define OPERATOR_POS_L095SP				(16)		///< ƒŒ[ƒU[ŠJŽn
-#define OPERATOR_POS_L095EP				(17)		///< ƒŒ[ƒU[I—¹
-#define OPERATOR_POS_L161SP				(18)		///< ƒŒ[ƒU[ŠJŽn
-#define OPERATOR_POS_L161EP				(19)		///< ƒŒ[ƒU[I—¹
-#define OPERATOR_POS_L308SP				(20)		///< ƒŒ[ƒU[ŠJŽn
-#define OPERATOR_POS_L308EP				(21)		///< ƒŒ[ƒU[I—¹
-#define OPERATOR_POS_L304SP				(22)		///< ƒŒ[ƒU[ŠJŽn
-#define OPERATOR_POS_L304EP				(23)		///< ƒŒ[ƒU[I—¹
-#define OPERATOR_POS_L320SP				(24)		///< ƒŒ[ƒU[ŠJŽn
-#define OPERATOR_POS_L320EP				(25)		///< ƒŒ[ƒU[I—¹
-#define OPERATOR_POS_L406SP				(26)		///< ƒŒ[ƒU[ŠJŽn
-#define OPERATOR_POS_L406EP				(27)		///< ƒŒ[ƒU[I—¹
-#define OPERATOR_POS_145_CON			(28)		///< ƒRƒ“ƒeƒXƒgF–A
-#define OPERATOR_POS_169_CON			(29)		///< ƒRƒ“ƒeƒXƒgF‚¢‚Æ
-#define OPERATOR_POS_226				(30)		///< ƒoƒgƒ“ƒ^ƒbƒ`
-#define OPERATOR_POS_145				(31)		///< –A
-#define OPERATOR_POS_225				(32)		///< ‚è‚ã‚¤‚Ì‚¢‚Ô‚«
-#define OPERATOR_POS_389_CON			(33)		///< ƒRƒ“ƒeƒXƒgF
-#define OPERATOR_POS_194				(34)		///< ƒRƒ“ƒeƒXƒgF
+#define OPERATOR_POS_NONE				(0)			///< *[ åº§æ¨™ ]
+#define OPERATOR_POS_SP					(1)			///< é–‹å§‹
+#define OPERATOR_POS_EP					(2)			///< çµ‚äº†
+#define OPERATOR_POS_SET				(3)			///< ãƒ¦ãƒ¼ã‚¶ãƒ¼æŒ‡å®š
+#define OPERATOR_POS_SP_OFS				(4)			///< é–‹å§‹+ofs
+#define OPERATOR_POS_EP_OFS				(5)			///< çµ‚äº†+ofs
+#define OPERATOR_POS_LSP				(6)			///< ãƒ¬ãƒ¼ã‚¶ãƒ¼é–‹å§‹
+#define OPERATOR_POS_LEP				(7)			///< ãƒ¬ãƒ¼ã‚¶ãƒ¼çµ‚äº†
+#define OPERATOR_POS_RSP				(8)			///< ãƒªãƒ³ã‚°é–‹å§‹
+#define OPERATOR_POS_REP				(9)			///< ãƒªãƒ³ã‚°çµ‚äº†
+#define OPERATOR_POS_L2SP				(10)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼é–‹å§‹
+#define OPERATOR_POS_L2EP				(11)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼çµ‚äº†
+#define OPERATOR_POS_AT_SIDE_OFS		(12)		///< é–‹å§‹+ofs
+#define OPERATOR_POS_DF_SIDE_OFS		(13)		///< çµ‚äº†+ofs
+#define OPERATOR_POS_L3SP				(14)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼é–‹å§‹
+#define OPERATOR_POS_L3EP				(15)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼çµ‚äº†
+#define OPERATOR_POS_L095SP				(16)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼é–‹å§‹
+#define OPERATOR_POS_L095EP				(17)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼çµ‚äº†
+#define OPERATOR_POS_L161SP				(18)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼é–‹å§‹
+#define OPERATOR_POS_L161EP				(19)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼çµ‚äº†
+#define OPERATOR_POS_L308SP				(20)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼é–‹å§‹
+#define OPERATOR_POS_L308EP				(21)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼çµ‚äº†
+#define OPERATOR_POS_L304SP				(22)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼é–‹å§‹
+#define OPERATOR_POS_L304EP				(23)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼çµ‚äº†
+#define OPERATOR_POS_L320SP				(24)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼é–‹å§‹
+#define OPERATOR_POS_L320EP				(25)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼çµ‚äº†
+#define OPERATOR_POS_L406SP				(26)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼é–‹å§‹
+#define OPERATOR_POS_L406EP				(27)		///< ãƒ¬ãƒ¼ã‚¶ãƒ¼çµ‚äº†
+#define OPERATOR_POS_145_CON			(28)		///< ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šæ³¡
+#define OPERATOR_POS_169_CON			(29)		///< ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šã„ã¨
+#define OPERATOR_POS_226				(30)		///< ãƒãƒˆãƒ³ã‚¿ãƒƒãƒ
+#define OPERATOR_POS_145				(31)		///< æ³¡
+#define OPERATOR_POS_225				(32)		///< ã‚Šã‚…ã†ã®ã„ã¶ã
+#define OPERATOR_POS_389_CON			(33)		///< ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼š
+#define OPERATOR_POS_194				(34)		///< ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼š
 
-#define OPERATOR_POS_SP_OFS_ALL			(100)		///< ŠJŽn‘¤‚©‚ç‚ÌƒIƒtƒZƒbƒg‘SŽw’è
-#define OPERATOR_POS_EP_OFS_ALL			(101)		///< I—¹‘¤‚©‚ç‚ÌƒIƒtƒZƒbƒg‘SŽw’è
+#define OPERATOR_POS_SP_OFS_ALL			(100)		///< é–‹å§‹å´ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå…¨æŒ‡å®š
+#define OPERATOR_POS_EP_OFS_ALL			(101)		///< çµ‚äº†å´ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå…¨æŒ‡å®š
 
 
-#define OPERATOR_AXIS_NONE				(0)			///< *[ •ûŒü ]
+#define OPERATOR_AXIS_NONE				(0)			///< *[ æ–¹å‘ ]
 #define OPERATOR_AXIS_AT				(1)
 #define OPERATOR_AXIS_DF				(2)
 #define OPERATOR_AXIS_SET				(3)
@@ -98,7 +98,7 @@
 #define OPERATOR_AXIS_DF_SIDE			(5)
 #define OPERATOR_AXIS_AT_OLD			(6)
 #define OPERATOR_AXIS_DF_OLD			(7)
-#define OPERATOR_AXIS_AT_3				(8)			///< 3 ƒTƒCƒPŒõü‚È‚Ç
+#define OPERATOR_AXIS_AT_3				(8)			///< 3 ã‚µã‚¤ã‚±å…‰ç·šãªã©
 #define OPERATOR_AXIS_DF_3				(9)
 #define OPERATOR_AXIS_AT_095			(10)		///< 095
 #define OPERATOR_AXIS_DF_095			(11)
@@ -112,14 +112,14 @@
 #define OPERATOR_AXIS_DF_320			(19)
 #define OPERATOR_AXIS_AT_406			(20)		///< 308
 #define OPERATOR_AXIS_DF_406			(21)
-#define OPERATOR_AXIS_145_CON			(22)		///< ƒRƒ“ƒeƒXƒgF–A
-#define OPERATOR_AXIS_169_CON			(23)		///< ƒRƒ“ƒeƒXƒgF‚¢‚Æ
-#define OPERATOR_AXIS_145				(24)		///< –A
-#define OPERATOR_AXIS_389_CON			(25)		///< ƒRƒ“ƒeƒXƒgF
-#define OPERATOR_AXIS_194				(26)		///< ‚Ý‚¿‚Ã‚ê
+#define OPERATOR_AXIS_145_CON			(22)		///< ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šæ³¡
+#define OPERATOR_AXIS_169_CON			(23)		///< ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šã„ã¨
+#define OPERATOR_AXIS_145				(24)		///< æ³¡
+#define OPERATOR_AXIS_389_CON			(25)		///< ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼š
+#define OPERATOR_AXIS_194				(26)		///< ã¿ã¡ã¥ã‚Œ
 
 
-#define OPERATOR_FLD_NONE				(0x0000)	///< *[ Ì¨°ÙÄÞ ]
+#define OPERATOR_FLD_NONE				(0x0000)	///< *[ ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ ]
 #define OPERATOR_FLD_GRAVITY_MAG		(0x0002)	///< VecFx16
 #define OPERATOR_FLD_RANDOM_MAG			(0x0004)	///< VecFx16
 #define OPERATOR_FLD_RANDOM_INTVL		(0x0008)	///< u16
@@ -135,30 +135,30 @@
 #define OPERATOR_FLD_CONVERGENCE_RATIO	(0x2000)	///< fx16
 #define OPERATOR_FLD_END				(0xFEFE)	///< 
 
-///< EX_DATA ‚É•t‚·‚é
+///< EX_DATA ã«ä»˜éšã™ã‚‹
 #define OPERATOR_FLD_EX_DATA_NUM		(5)			///< mode, flip, x, y, z
-#define OPERATOR_FLD_DEFAULT			(0)			///< ’Êí‚Ì’l‚ðÝ’è
-#define OPERATOR_FLD_SET				(1)			///< Œã‚ë‚É‘±‚­’l‚ðÝ’è
-#define OPERATOR_FLD_AT					(2)			///< UŒ‚‘¤‚ÌŠî–{ˆÊ’u‚ÖÝ’è
-#define OPERATOR_FLD_DF					(3)			///< ‘ÎÛ‘¤‚ÌŠî–{ˆÊ’u‚ÖÝ’è
-#define OPERATOR_FLD_SET_DF				(4)			///< Œã‚ë‚É‘±‚­’l@2ŒÂ‚Ìƒp[ƒZƒ“ƒg 3, 4 ‚È‚ç@3/4
-#define OPERATOR_FLD_NO_DATA			(0xFF)		///< Žw’è–³‚µ
+#define OPERATOR_FLD_DEFAULT			(0)			///< é€šå¸¸ã®å€¤ã‚’è¨­å®š
+#define OPERATOR_FLD_SET				(1)			///< å¾Œã‚ã«ç¶šãå€¤ã‚’è¨­å®š
+#define OPERATOR_FLD_AT					(2)			///< æ”»æ’ƒå´ã®åŸºæœ¬ä½ç½®ã¸è¨­å®š
+#define OPERATOR_FLD_DF					(3)			///< å¯¾è±¡å´ã®åŸºæœ¬ä½ç½®ã¸è¨­å®š
+#define OPERATOR_FLD_SET_DF				(4)			///< å¾Œã‚ã«ç¶šãå€¤ã€€2å€‹ã®ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ 3, 4 ãªã‚‰ã€€3/4
+#define OPERATOR_FLD_NO_DATA			(0xFF)		///< æŒ‡å®šç„¡ã—
 
-#define OPERATOR_CAMERA_NONE			(0)			///< *[ ¶Ò× ]
-#define OPERATOR_CAMERA_SPIN			(1)			///< ƒXƒsƒ“ŒüƒJƒƒ‰Ý’è
-#define OPERATOR_CAMERA_SET				(2)			///< ƒ†[ƒU[ƒJƒƒ‰Žw’è
-#define OPERATOR_CAMERA_MOVE			(3)			///< ˆÚ“®ƒJƒƒ‰Žw’è
-#define OPERATOR_CAMERA_145				(4)			///< ˆÚ“®ƒJƒƒ‰Žw’è
-#define OPERATOR_CAMERA_169_CON			(5)			///< ˆÚ“®ƒJƒƒ‰Žw’è
-#define OPERATOR_CAMERA_126				(6)			///< ˆÚ“®ƒJƒƒ‰Žw’è
-#define OPERATOR_CAMERA_AT				(7)			///< UŒ‚‘¤ƒJƒƒ‰Žw’è
-#define OPERATOR_CAMERA_DF				(8)			///< –hŒä‘¤ƒJƒƒ‰Žw’è
+#define OPERATOR_CAMERA_NONE			(0)			///< *[ ã‚«ãƒ¡ãƒ© ]
+#define OPERATOR_CAMERA_SPIN			(1)			///< ã‚¹ãƒ”ãƒ³å‘ã‚«ãƒ¡ãƒ©è¨­å®š
+#define OPERATOR_CAMERA_SET				(2)			///< ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚«ãƒ¡ãƒ©æŒ‡å®š
+#define OPERATOR_CAMERA_MOVE			(3)			///< ç§»å‹•ã‚«ãƒ¡ãƒ©æŒ‡å®š
+#define OPERATOR_CAMERA_145				(4)			///< ç§»å‹•ã‚«ãƒ¡ãƒ©æŒ‡å®š
+#define OPERATOR_CAMERA_169_CON			(5)			///< ç§»å‹•ã‚«ãƒ¡ãƒ©æŒ‡å®š
+#define OPERATOR_CAMERA_126				(6)			///< ç§»å‹•ã‚«ãƒ¡ãƒ©æŒ‡å®š
+#define OPERATOR_CAMERA_AT				(7)			///< æ”»æ’ƒå´ã‚«ãƒ¡ãƒ©æŒ‡å®š
+#define OPERATOR_CAMERA_DF				(8)			///< é˜²å¾¡å´ã‚«ãƒ¡ãƒ©æŒ‡å®š
 
-///< EX_DATA ‚É•t‚·‚é
+///< EX_DATA ã«ä»˜éšã™ã‚‹
 #define OPERATOR_CAMERA_EX_DATA_NUM		(4)			///< flip, x, y, z
 
-///< Šî–{’l
-#define OPERATOR_SET_CENTER				(0)			///< Œ´“_
+///< åŸºæœ¬å€¤
+#define OPERATOR_SET_CENTER				(0)			///< åŽŸç‚¹
 
 #endif
 

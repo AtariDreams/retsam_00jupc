@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_254.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			254�@�U����A�����̍ő�g�o�̂S���̂P���������󂯂�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			254　攻撃後、自分の最大ＨＰの４分の１を自分が受ける
  *
  *@author	HisashiSogabe
  *@data		2005.12.20

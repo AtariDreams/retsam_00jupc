@@ -27,13 +27,13 @@
   add function to get address of tcm beginning address.
 
   Revision 1.8  2004/03/30 06:09:29  yada
-  ldconst ‚â lda ‚ğ ldr = ‚ğg—p‚·‚é‹Lq‚É‚µ‚½B
+  ldconst ã‚„ lda ã‚’ ldr = ã‚’ä½¿ç”¨ã™ã‚‹è¨˜è¿°ã«ã—ãŸã€‚
 
   Revision 1.7  2004/02/12 08:38:58  yada
-  #endif –Y‚êC³
+  #endif å¿˜ã‚Œä¿®æ­£
 
   Revision 1.6  2004/02/10 12:12:05  yada
-  OS_GetDTCMAddress, OS_GetITCMAddress ‚ğ os_system.c‚©‚çˆÚs
+  OS_GetDTCMAddress, OS_GetITCMAddress ã‚’ os_system.cã‹ã‚‰ç§»è¡Œ
 
   Revision 1.5  2004/02/09 11:17:22  yasu
   include code32.h
@@ -42,13 +42,13 @@
   change SDK prefix iris -> nitro
 
   Revision 1.3  2004/01/18 02:25:37  yada
-  ƒCƒ“ƒfƒ“ƒg“™‚Ì®Œ`
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆç­‰ã®æ•´å½¢
 
   Revision 1.2  2004/01/16 01:18:05  yasu
   Support SDK_BB
 
   Revision 1.1  2004/01/14 12:03:05  yada
-  ‰”Å
+  åˆç‰ˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

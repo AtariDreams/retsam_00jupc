@@ -2,7 +2,7 @@
 /**
  *
  *@file		renderer_pack.c
- *@brief	�����_���[�p�b�N�֐�
+ *@brief	レンダラーパック関数
  *@author	tomoya takahashi
  *@data		2005.09.01
  *
@@ -14,18 +14,18 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 
@@ -33,10 +33,10 @@
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�����_���[�g�p�������s���܂��B
+ *@brief	レンダラー使用準備を行います。
  *
- *@param	p_renderer	�����_���[�̎��̂̃|�C���^
- *@param	Zoffs		Z�I�t�Z�b�g�̑���
+ *@param	p_renderer	レンダラーの実体のポインタ
+ *@param	Zoffs		Zオフセットの増分
  *
  *@return	none
  *
@@ -46,22 +46,22 @@
 void RNDP_InitRenderer(NNSG2dRendererInstance* p_renderer, fx32 Zoffs)
 {
 	NNS_G2dInitRenderer( p_renderer );
-	// Z �I�t�Z�b�g�������w��
+	// Z オフセット増分を指定
 	NNS_G2dSetRendererSpriteZoffset( p_renderer, Zoffs );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�T�[�t�F�[�X��������
+ *@brief	サーフェースを初期化
  *
- *@param	pSurface		����������T�[�t�F�[�X�̎��̂̃|�C���^
- *@param	pRect			�T�[�t�F�[�X�̋�`
- *@param	OamSetFunc		OAM�ݒ�R�[���o�b�N�֐�
- *@param	AffineSetFunc	�A�t�B���s��ݒ�R�[���o�b�N�֐�
- *@param	cullFunc		�J�����O�R�[���o�b�N�֐�
- *@param	type			�T�[�t�F�[�X�^�C�v
- *@param	pSetRenderer	���̃T�[�t�F�[�X��ݒ肷�郌���_���[�i�ݒ肵�Ȃ��Ƃ��́@NULL�j
+ *@param	pSurface		初期化するサーフェースの実体のポインタ
+ *@param	pRect			サーフェースの矩形
+ *@param	OamSetFunc		OAM設定コールバック関数
+ *@param	AffineSetFunc	アフィン行列設定コールバック関数
+ *@param	cullFunc		カリングコールバック関数
+ *@param	type			サーフェースタイプ
+ *@param	pSetRenderer	このサーフェースを設定するレンダラー（設定しないときは　NULL）
  *
  *@return	none
  *
@@ -78,18 +78,18 @@ void RNDP_InitSurface(NNSG2dRenderSurface* pSurface,
 {
 	NNS_G2dInitRenderSurface(pSurface);
 	
-	// ��`�ݒ�
+	// 矩形設定
 	pSurface->viewRect = *pRect;
 
-	// �R�[���o�b�N�֐�
+	// コールバック関数
 	pSurface->pFuncOamRegister          = OamSetFunc;
 	pSurface->pFuncOamAffineRegister    = AffineSetFunc;
 	pSurface->pFuncVisibilityCulling    = cullFunc;
 
-	// �\����
+	// 表示先
 	pSurface->type                      = type;
 	
-	// �����_���[�ɐݒ�
+	// レンダラーに設定
 	if(pSetRenderer){
 	    NNS_G2dAddRendererTargetSurface( pSetRenderer, pSurface );
 	}
@@ -98,10 +98,10 @@ void RNDP_InitSurface(NNSG2dRenderSurface* pSurface,
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�T�[�t�F�[�X�ɋ�`�f�[�^��ݒ肷��
+ *@brief	サーフェースに矩形データを設定する
  *
- *@param	pSurface		�T�[�t�F�[�X
- *@param	pRect			�ݒ肷���`�f�[�^	
+ *@param	pSurface		サーフェース
+ *@param	pRect			設定する矩形データ	
  *
  *@return	none
  *
@@ -115,10 +115,10 @@ void RNDP_SetSurfaceRect(NNSG2dRenderSurface* pSurface, NNSG2dViewRect* pRect)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�T�[�t�F�[�X�����`�f�[�^���擾����
+ *	@brief	サーフェースから矩形データを取得する
  *
- *	@param	pSurface		�T�[�t�F�[�X
- *	@param	pRect			��`�f�[�^�擾��
+ *	@param	pSurface		サーフェース
+ *	@param	pRect			矩形データ取得先
  */
 //-----------------------------------------------------------------------------
 void RNDP_GetSurfaceRect(NNSG2dRenderSurface* pSurface, NNSG2dViewRect* pRect)
@@ -129,10 +129,10 @@ void RNDP_GetSurfaceRect(NNSG2dRenderSurface* pSurface, NNSG2dViewRect* pRect)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�T�[�t�F�[�X��OAM�̐ݒ�֐���ݒ�
+ *@brief	サーフェースにOAMの設定関数を設定
  *
- *@param	pSurface		�T�[�t�F�[�X
- *@param	OamSetFunc		OAM�ݒ�֐�
+ *@param	pSurface		サーフェース
+ *@param	OamSetFunc		OAM設定関数
  *
  *@return
  *
@@ -147,10 +147,10 @@ void RNDP_SetSurfaceOamSetFunc(NNSG2dRenderSurface* pSurface, NNSG2dOamRegisterF
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�T�[�t�F�[�X�ɃA�t�B���s��̐ݒ�֐���ݒ�
+ *@brief	サーフェースにアフィン行列の設定関数を設定
  *
- *@param	pSurface		�T�[�t�F�[�X
- *@param	AffineSetFunc		�A�t�B���s��ݒ�֐�
+ *@param	pSurface		サーフェース
+ *@param	AffineSetFunc		アフィン行列設定関数
  *
  *@return	none
  *
@@ -165,10 +165,10 @@ void RNDP_SetSurfaceAffineSetFunc(NNSG2dRenderSurface* pSurface, NNSG2dAffineReg
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�T�[�t�F�[�X�ɃJ�����O�֐���ݒ�
+ *@brief	サーフェースにカリング関数を設定
  *
- *@param	pSurface		�T�[�t�F�[�X
- *@param	CullFunc		�J�����O�֐�
+ *@param	pSurface		サーフェース
+ *@param	CullFunc		カリング関数
  *
  *@return	none
  *
@@ -183,10 +183,10 @@ void RNDP_SetSurfaceCullingFunc(NNSG2dRenderSurface* pSurface, NNSG2dRndCellCull
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�T�[�t�F�[�X�^�C�v��ݒ�
+ *@brief	サーフェースタイプを設定
  *
- *@param	pSurface		�T�[�t�F�[�X
- *@param	type			�T�[�t�F�[�X�^�C�v
+ *@param	pSurface		サーフェース
+ *@param	type			サーフェースタイプ
  *
  *@return	none
  *
@@ -201,10 +201,10 @@ void RNDP_SetSurfaceType(NNSG2dRenderSurface* pSurface, NNSG2dSurfaceType type)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�T�[�t�F�[�X�������_���[�ɐݒ�
+ *@brief	サーフェースをレンダラーに設定
  *
- *@param	pSurface		�T�[�t�F�[�X
- *@param	pSetRenderer	�ݒ肷�郌���_���[
+ *@param	pSurface		サーフェース
+ *@param	pSetRenderer	設定するレンダラー
  *
  *@return	none
  *
@@ -218,29 +218,29 @@ void RNDP_SetSurfaceRenderer(NNSG2dRenderSurface* pSurface, NNSG2dRendererInstan
 
 //-----------------------------------------------------------------------------
 /**
- *@brief	�T�[�t�F�C�X���ɃZ�������邩���`�F�b�N���A�J�����O����
- *			�J�����O�͋��ʂ�OK�Ȃ̂ō쐬
+ *@brief	サーフェイス内にセルがいるかをチェックし、カリングする
+ *			カリングは共通でOKなので作成
  *
- *@param	pCell�F����Ώۂ̃Z�����ւ̃|�C���^
- *@param	pMtx�F����Ώۂ̃Z���ɓK�p�������W�ϊ��s��
- *@param	pViewRect�F�o�͐�T�[�t�F�C�X�̕\����`
+ *@param	pCell：判定対象のセル情報へのポインタ
+ *@param	pMtx：判定対象のセルに適用される座標変換行列
+ *@param	pViewRect：出力先サーフェイスの表示矩形
  *
- *@retval	�ΏۃZ����\������FTRUE
- *@retval	�ΏۃZ����\�����Ȃ��FFALSE
+ *@retval	対象セルを表示する：TRUE
+ *@retval	対象セルを表示しない：FALSE
  *
  */
  //----------------------------------------------------------------------------
 BOOL RNDP_CallBackCulling( const NNSG2dCellData* pCell, const MtxFx32* pMtx, const NNSG2dViewRect* pViewRect )
 {
-	// �R���o�[�^�ɂ��v�Z���ꂽ���E�����a���擾����
+	// コンバータにより計算された境界球半径を取得する
 	const NNSG2dCellBoundingRectS16* Rect = NNS_G2dGetCellBoundingRect( pCell );
     const fx32  R = NNS_G2dGetCellBoundingSphereR( pCell );
 
-    // �Z���̕\���ʒu���_�����߂�
+    // セルの表示位置原点を求める
     const fx32  px = pMtx->_20 - pViewRect->posTopLeft.x;
     const fx32  py = pMtx->_21 - pViewRect->posTopLeft.y;
 
-	// �Z����`
+	// セル矩形
 	fx32  minY; 
 	fx32  maxY; 
 	fx32  minX; 
@@ -248,8 +248,8 @@ BOOL RNDP_CallBackCulling( const NNSG2dCellData* pCell, const MtxFx32* pMtx, con
 	fx32  work;
 
 
-	// �Z���̋��E���������`�����߂�
-	// �Z����`�ʒu�𒆐S�ʒu�ɂ����Ƃ�
+	// セルの境界球を内包する矩形を求める
+	// セル定義位置を中心位置にしたとき
 	if( NNS_G2dCellHasBR( pCell ) == TRUE ){
 		minY = Rect->minY << FX32_SHIFT;
 		maxY = Rect->maxY << FX32_SHIFT;
@@ -264,14 +264,14 @@ BOOL RNDP_CallBackCulling( const NNSG2dCellData* pCell, const MtxFx32* pMtx, con
 	
 
 	
-	// ���W�v�Z�ōs��v�Z��̍��W�ɕϊ�
+	// 座標計算で行列計算後の座標に変換
 	minY = FX_Mul(minY, pMtx->_01) + FX_Mul(minY, pMtx->_11) + py;
 	maxY = FX_Mul(maxY, pMtx->_01) + FX_Mul(maxY, pMtx->_11) + py;
 	
 	minX = FX_Mul(minX, pMtx->_00) + FX_Mul(minX, pMtx->_10) + px;
 	maxX = FX_Mul(maxX, pMtx->_00) + FX_Mul(maxX, pMtx->_10) + px;
 
-	// ���W���t�]���Ă���\��������̂Ń`�F�b�N
+	// 座標が逆転している可能性があるのでチェック
 	if( maxY < minY ){
 		work = maxY;
 		maxY = minY;

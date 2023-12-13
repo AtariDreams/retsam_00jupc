@@ -20,7 +20,7 @@
 #include <nitro/types.h>
 
 
-/* CodeWarrior �R���p�C���̃O���[�o���f�X�g���N�^�`�F�[������ */
+/* CodeWarrior コンパイラのグローバルデストラクタチェーン操作 */
 
 
 #ifdef __cplusplus
@@ -31,14 +31,14 @@ extern "C" {
 /* declaration */
 
 /*
- * �f�X�g���N�^�R�[���o�b�N.
- * �������� this �����̃I�u�W�F�N�g�|�C���^.
+ * デストラクタコールバック.
+ * 第一引数は this 相当のオブジェクトポインタ.
  */
 typedef void (*MWI_DESTRUCTOR_FUNC) (void *);
 
 /*
- * �f�X�g���N�^�`�F�[��.
- * �O���[�o���I�u�W�F�N�g���X�ɂЂƂp�ӂ���.
+ * デストラクタチェーン.
+ * グローバルオブジェクトが個々にひとつ用意する.
  */
 typedef struct MWiDestructorChain
 {
@@ -52,8 +52,8 @@ MWiDestructorChain;
 /* variable */
 
 /*
- * �O���[�o���f�X�g���N�^�`�F�[��.
- * ctor �̋t���ɌĂ΂��悤, �擪�ɑ}������Ă���.
+ * グローバルデストラクタチェーン.
+ * ctor の逆順に呼ばれるよう, 先頭に挿入されていく.
  */
 extern MWiDestructorChain *__global_destructor_chain;
 
@@ -64,13 +64,13 @@ extern MWiDestructorChain *__global_destructor_chain;
 /*---------------------------------------------------------------------------*
   Name:         __register_global_object
 
-  Description:  �����n��`�֐�.
-                �O���[�o���f�X�g���N�^�`�F�[���̐擪�Ƀ`�F�[�����ЂƂ}��.
+  Description:  処理系定義関数.
+                グローバルデストラクタチェーンの先頭にチェーンをひとつ挿入.
 
-  Arguments:    obj              ��̑ΏۃI�u�W�F�N�g�̃|�C���^.
-                dtor             �f�X�g���N�^���[�`��.
-                chain            �`�F�[���\���̂̃|�C���^.
-                                 (�O���[�o���I�u�W�F�N�g���X�ɂЂƂp�ӂ���)
+  Arguments:    obj              解体対象オブジェクトのポインタ.
+                dtor             デストラクタルーチン.
+                chain            チェーン構造体のポインタ.
+                                 (グローバルオブジェクトが個々にひとつ用意する)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -105,7 +105,7 @@ void    __register_global_object(void *obj, MWI_DESTRUCTOR_FUNC dtor, MWiDestruc
   add comments.
 
   Revision 1.3  2005/03/01 01:57:00  yosizaki
-  copyright �̔N���C��.
+  copyright の年を修正.
 
   Revision 1.2  2005/02/28 05:26:02  yosizaki
   do-indent.

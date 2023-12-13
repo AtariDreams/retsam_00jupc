@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_item_buff.c
- *	@brief		�A�C�e�����ێ��o�b�t�@
+ *	@brief		アイテム数保持バッファ
  *	@author		tomoya takahashi
  *	@data		2006.03.24
  *
@@ -16,45 +16,45 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�R�[�f�B���O�K��
- *		���֐���
- *				�P�����ڂ͑啶������ȍ~�͏������ɂ���
- *		���ϐ���
- *				�E�ϐ�����
- *						const�ɂ� c_ ��t����
- *						static�ɂ� s_ ��t����
- *						�|�C���^�ɂ� p_ ��t����
- *						�S�č��킳��� csp_ �ƂȂ�
- *				�E�O���[�o���ϐ�
- *						�P�����ڂ͑啶��
- *				�E�֐����ϐ�
- *						�������Ɓh�Q�h�Ɛ������g�p���� �֐��̈���������Ɠ���
+ *					コーディング規約
+ *		●関数名
+ *				１文字目は大文字それ以降は小文字にする
+ *		●変数名
+ *				・変数共通
+ *						constには c_ を付ける
+ *						staticには s_ を付ける
+ *						ポインタには p_ を付ける
+ *						全て合わさると csp_ となる
+ *				・グローバル変数
+ *						１文字目は大文字
+ *				・関数内変数
+ *						小文字と”＿”と数字を使用する 関数の引数もこれと同じ
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
-*/
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-/**
- *					�\���̐錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					構造体宣言
+*/
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+/**
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�Z�[�u�f�[�^����A�C�e���ێ��f�[�^�쐬
+ *	@brief	セーブデータからアイテム保持データ作成
  *
- *	@param	cp_imc_item		�A�C�e���Z�[�u�f�[�^
- *	@param	p_buff			�f�[�^�i�[��
+ *	@param	cp_imc_item		アイテムセーブデータ
+ *	@param	p_buff			データ格納先
  *
  *	@return	none
  */
@@ -64,12 +64,12 @@ void IMC_ITEM_BUFF_Make( const IMC_ITEM_SAVEDATA* cp_imc_item, IMC_ITEM_BUFF* p_
 	int i;
 	u32 idx;
 	
-	// �A�N�Z�T���ێ��f�[�^�擾
+	// アクセサリ保持データ取得
 	for( i=0; i<IMC_ACCE_MAX; i++ ){
 		p_buff->Acce[ i ] = ImcSaveData_GetAcceFlag( cp_imc_item, i );
 	}
 
-	// �o�b�O�ێ��f�[�^�擾
+	// バッグ保持データ取得
 	for( i=0; i<IMC_BG_RIGHT_MAX; i++ ){
 		p_buff->Bg[ i ] = IMC_BG_RIGHT_MAX;
 	}
@@ -85,14 +85,14 @@ void IMC_ITEM_BUFF_Make( const IMC_ITEM_SAVEDATA* cp_imc_item, IMC_ITEM_BUFF* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�A�N�Z�T���ێ������ւ炷
+ *	@brief	アクセサリ保持数をへらす
  *
- *	@param	p_buff	�o�b�t�@�f�[�^
- *	@param	acce_no	�A�N�Z�T���i���o�[
- *	@param	num		���炷�l
+ *	@param	p_buff	バッファデータ
+ *	@param	acce_no	アクセサリナンバー
+ *	@param	num		減らす値
  *
- *	@retval	TRUE	�O�ȏ�ɂȂ���
- *	@retval	FALSE	�O�ȉ��ɂȂ���
+ *	@retval	TRUE	０以上になった
+ *	@retval	FALSE	０以下になった
  */
 //-----------------------------------------------------------------------------
 BOOL IMC_ITEM_BUFF_AcceDec( IMC_ITEM_BUFF* p_buff, u32 acce_no, int num )
@@ -114,12 +114,12 @@ BOOL IMC_ITEM_BUFF_AcceDec( IMC_ITEM_BUFF* p_buff, u32 acce_no, int num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�A�N�Z�T���擾���@��Ԃ�
+ *	@brief	アクセサリ取得数　を返す
  *
- *	@param	p_buff		�o�b�t�@
- *	@param	acce_no		�A�N�Z�T���i���o�[
+ *	@param	p_buff		バッファ
+ *	@param	acce_no		アクセサリナンバー
  *
- *	@return	�A�N�Z�T���擾��
+ *	@return	アクセサリ取得数
  */
 //-----------------------------------------------------------------------------
 u32 IMC_ITEM_BUFF_AcceGetNum( const IMC_ITEM_BUFF* p_buff, u32 acce_no )
@@ -131,12 +131,12 @@ u32 IMC_ITEM_BUFF_AcceGetNum( const IMC_ITEM_BUFF* p_buff, u32 acce_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���Ԃ���Ή�����BGNo���擾����
+ *	@brief	順番から対応するBGNoを取得する
  *
- *	@param	p_buff	�o�b�t�@
- *	@param	turn	����
+ *	@param	p_buff	バッファ
+ *	@param	turn	順番
  *
- *	@return	BG�i���o�[
+ *	@return	BGナンバー
  */
 //-----------------------------------------------------------------------------
 u32 IMC_ITEM_BUFF_TurnBgNoGet( const IMC_ITEM_BUFF* p_buff, u32 turn )
@@ -146,12 +146,12 @@ u32 IMC_ITEM_BUFF_TurnBgNoGet( const IMC_ITEM_BUFF* p_buff, u32 turn )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGNO����擾�������Ԃ����߂�
+ *	@brief	BGNOから取得した順番を求める
  *
- *	@param	p_buff		�o�b�t�@
+ *	@param	p_buff		バッファ
  *	@param	bgno		BGNo
  *
- *	@return	����������		IMC_BG_RIGHT_MAX �̂Ƃ��݂��Ă��Ȃ�
+ *	@return	見つけた順番		IMC_BG_RIGHT_MAX のときみつけていない
  */
 //-----------------------------------------------------------------------------
 u32 IMC_ITEM_BUFF_BgNoTurnGet( const IMC_ITEM_BUFF* p_buff, u32 bgno )

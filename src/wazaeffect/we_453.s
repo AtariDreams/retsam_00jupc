@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_001.s
- * @brief	‚Ν‚½‚­
+ * @brief	γ―γγ
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(ζ°΄)
  *
- * ‚±‚±‚ΙFX‚Θ‰πΰ“™‚π‘‚Ά‚Δ‚ΰ‚ζ‚Ά
+ * γ“γ“γ«θ‰²γ€…γªθ§£θª¬η­‰γ‚’ζ›Έγ„γ¦γ‚‚γ‚γ„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	΅‚Ν‚½‚­
+//	β– γ―γγ
 //
 //
 // =============================================================================
@@ -38,7 +38,7 @@ WEST_Hataku:
 	WAIT_FLAG
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_VANISH, 2, WE_TOOL_M1, 1
 	
-	///< 1Β–Ϊ‚Μ‚µ‚Τ‚«
+	///< 1ε€‹η›®γ®γ—γ¶γ
 	SE_L			SEQ_SE_DP_W291
 	ADD_PARTICLE_EMIT_SET	0, 0, W_453_453_WATER_UP01, EMTFUNC_ATTACK_POS
 	FUNC_CALL				WEST_SP_EMIT_STRAIGHT, 8, 0, 0, 0, 0, 8, 64, 0, W453_WAIT_1 << 16 | W453_WAIT_1 + 1
@@ -51,7 +51,7 @@ WEST_Hataku:
 	
 	WAIT					5
 
-	///< 2Β–Ϊ‚Μ‚µ‚Τ‚«
+	///< 2ε€‹η›®γ®γ—γ¶γ
 	SE_C			SEQ_SE_DP_W291
 	ADD_PARTICLE_EMIT_SET	0, 3, W_453_453_WATER_UP01, EMTFUNC_ATTACK_POS
 	FUNC_CALL				WEST_SP_EMIT_STRAIGHT, 8, 3, 0, 0, 0, 8, 64, 0, W453_WAIT_2 << 16 | W453_WAIT_2 + 1
@@ -64,7 +64,7 @@ WEST_Hataku:
 	
 	WAIT					5
 	
-	///< 3Β–Ϊ‚Μ‚µ‚Τ‚«
+	///< 3ε€‹η›®γ®γ—γ¶γ
 	SE_R			SEQ_SE_DP_W291
 	ADD_PARTICLE_EMIT_SET	0, 6, W_453_453_WATER_UP01, EMTFUNC_ATTACK_POS
 	FUNC_CALL				WEST_SP_EMIT_STRAIGHT, 8, 6, 0, 0, 0, 8, 64, 0, W453_WAIT_3 << 16 | W453_WAIT_3 + 1

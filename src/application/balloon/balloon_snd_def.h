@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	balloon_snd_def.h
- * @brief	風船ミニゲームSE定義ファイル
+ * @brief	鬚ｨ闊ｹ繝溘ル繧ｲ繝ｼ繝SE螳夂ｾｩ繝輔ぃ繧､繝ｫ
  * @author	matsuda
- * @date	2008.01.08(火)
+ * @date	2008.01.08(轣ｫ)
  */
 //==============================================================================
 #ifndef __BALLOON_SND_DEF_H__
@@ -12,33 +12,33 @@
 #include "system/snd_tool.h"
 
 
-///ソーナンスを押す音
+///繧ｽ繝ｼ繝翫Φ繧ｹ繧呈款縺咎浹
 #define SE_SONANS_PUSH			(SEQ_SE_PL_BALLOON02)
 
-///ポンプに空気が発生した時に鳴らす
+///繝昴Φ繝励↓遨ｺ豌励′逋ｺ逕溘＠縺滓凾縺ｫ魑ｴ繧峨☆
 #define SE_BALLOON_POMP_AIR		(SEQ_SE_PL_BALLOON03_2)
 
-///ソーナンスから空気が出る音
+///繧ｽ繝ｼ繝翫Φ繧ｹ縺九ｉ遨ｺ豌励′蜃ｺ繧矩浹
 #define SE_SONANS_AIR			(SEQ_SE_PL_BALLOON03)
 
-///ソーナンスを押すタイミングがグレートな音
+///繧ｽ繝ｼ繝翫Φ繧ｹ繧呈款縺吶ち繧､繝溘Φ繧ｰ縺後げ繝ｬ繝ｼ繝医↑髻ｳ
 //#define SE_GREAT				(SEQ_SE_PL_BALLOON05)
 #define SE_GREAT				(SEQ_SE_PL_BALLOON04)
 
-///ソーナンスが大きくなる音
+///繧ｽ繝ｼ繝翫Φ繧ｹ縺悟､ｧ縺阪￥縺ｪ繧矩浹
 #define SE_SONANS_BIG			(SEQ_SE_PL_BALLOON01)
 
-///風船登場音
+///鬚ｨ闊ｹ逋ｻ蝣ｴ髻ｳ
 #define SE_BALLOON_APPEAR		(SEQ_SE_DP_BOX02)
 
-///風船の破裂音
+///鬚ｨ闊ｹ縺ｮ遐ｴ陬る浹
 #define SE_BALLOON_EXPLODED		(SEQ_SE_PL_BALLOON07)
 
-///ブースターに空気がヒットした時の音
+///繝悶�ｼ繧ｹ繧ｿ繝ｼ縺ｫ遨ｺ豌励′繝偵ャ繝医＠縺滓凾縺ｮ髻ｳ
 #define SE_BALLOON_BOOSTER_HIT	(SEQ_SE_PL_BALLOON05)
 //#define SE_BALLOON_BOOSTER_HIT	(SEQ_SE_PL_BOOSTHIT2)
 
-///風船がピンチになった時に鳴らす音
+///鬚ｨ闊ｹ縺後ヴ繝ｳ繝√↓縺ｪ縺｣縺滓凾縺ｫ魑ｴ繧峨☆髻ｳ
 //#define SE_BALLOON_PINCH		(SEQ_SE_PL_ALERT3)
 #define SE_BALLOON_PINCH		(SEQ_SE_PL_ALERT4)
 

@@ -12,10 +12,10 @@
 
   $Log: vib.h,v $
   Revision 1.2  2006/03/03 00:34:27  okubata_ryoma
-  include‚ğextern"C"‚ÌŠO‚Ö
+  includeã‚’extern"C"ã®å¤–ã¸
 
   Revision 1.1  2006/03/02 10:21:13  okubata_ryoma
-  vib.h‚Ì’Ç‰Á
+  vib.hã®è¿½åŠ 
 
 
   $NoKeywords: $

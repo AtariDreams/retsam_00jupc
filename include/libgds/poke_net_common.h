@@ -5,7 +5,7 @@
   $NoKeywords: $
  *===========================================================================*/
 /*! @file
-	@brief	Pokemon GDS WiFi ƒ‰ƒCƒuƒ‰ƒŠ
+	@brief	Pokemon GDS WiFi ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 
 */
 //===========================================================================
@@ -13,771 +13,771 @@
 #define ___POKE_NET_GDS_COMMON___
 
 //===============================================
-//                ŽžŠÔƒpƒbƒN
+//                æ™‚é–“ãƒ‘ãƒƒã‚¯
 //===============================================
 #define POKE_NET_TIMETOU64(Y,M,D,h,m,s)	(u64)((((u64)Y) << 40) | (((u64)M) << 32) | (((u64)D) << 24) | (((u64)h) << 16) | (((u64)m) << 8) | (((u64)s) << 0))
 
 //===============================================
-//!          ‚f‚c‚rƒŠƒNƒGƒXƒgƒR[ƒh
+//!          ï¼§ï¼¤ï¼³ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ¼ãƒ‰
 //===============================================
 enum POKE_NET_GDS_REQCODE {
-	POKE_NET_GDS_REQCODE_DEBUG_START = 0 ,				// ¦ˆÈ‰ºƒfƒoƒbƒO‚ÅŽg—p‚·‚éƒŠƒNƒGƒXƒg
+	POKE_NET_GDS_REQCODE_DEBUG_START = 0 ,				// â€»ä»¥ä¸‹ãƒ‡ãƒãƒƒã‚°ã§ä½¿ç”¨ã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 
-	// ------------------------- ˆÈ‰ºƒfƒoƒbƒOƒŠƒNƒGƒXƒg ----------------------
-	POKE_NET_GDS_REQCODE_DEBUG_MESSAGE = 0 ,			//!< ƒfƒoƒbƒOƒƒbƒZ[ƒW
+	// ------------------------- ä»¥ä¸‹ãƒ‡ãƒãƒƒã‚°ãƒªã‚¯ã‚¨ã‚¹ãƒˆ ----------------------
+	POKE_NET_GDS_REQCODE_DEBUG_MESSAGE = 0 ,			//!< ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
-	POKE_NET_GDS_REQCODE_DEBUG_END   = 9999 ,			// ¦9999‚Ü‚Å‚ÍƒfƒoƒbƒO‚ÅŽd—l‚·‚éƒŠƒNƒGƒXƒg
-	POKE_NET_GDS_REQCODE_ADMIN_START = 10000 ,			// ¦10000ˆÈ~‚ÍŠÇ—ŽÒ‚ªŽg—p‚Å‚«‚éƒŠƒNƒGƒXƒg
+	POKE_NET_GDS_REQCODE_DEBUG_END   = 9999 ,			// â€»9999ã¾ã§ã¯ãƒ‡ãƒãƒƒã‚°ã§ä»•æ§˜ã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	POKE_NET_GDS_REQCODE_ADMIN_START = 10000 ,			// â€»10000ä»¥é™ã¯ç®¡ç†è€…ãŒä½¿ç”¨ã§ãã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 
 #ifndef ___POKE_NET_BUILD_DS___
-	// -------------------------- ˆÈ‰ºŠÇ—ŽÒƒŠƒNƒGƒXƒg -----------------------
-	POKE_NET_GDS_REQCODE_ADMIN_SVR_STATUS = 10000 ,			// ƒT[ƒo[ƒXƒe[ƒ^ƒXŽæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_SVR_CLEARSTATUS ,			// ƒT[ƒo[î•ñƒNƒŠƒA
-	POKE_NET_GDS_REQCODE_ADMIN_SVR_COMMAND ,				// ƒT[ƒo[‚Ö‚Ì–½—ß
-	POKE_NET_GDS_REQCODE_ADMIN_SVR_DBINITIALIZE ,			// ƒf[ƒ^ƒx[ƒX‰Šú‰»
+	// -------------------------- ä»¥ä¸‹ç®¡ç†è€…ãƒªã‚¯ã‚¨ã‚¹ãƒˆ -----------------------
+	POKE_NET_GDS_REQCODE_ADMIN_SVR_STATUS = 10000 ,			// ã‚µãƒ¼ãƒãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_SVR_CLEARSTATUS ,			// ã‚µãƒ¼ãƒãƒ¼æƒ…å ±ã‚¯ãƒªã‚¢
+	POKE_NET_GDS_REQCODE_ADMIN_SVR_COMMAND ,				// ã‚µãƒ¼ãƒãƒ¼ã¸ã®å‘½ä»¤
+	POKE_NET_GDS_REQCODE_ADMIN_SVR_DBINITIALIZE ,			// ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹åˆæœŸåŒ–
 
-	POKE_NET_GDS_REQCODE_ADMIN_DRESSUPSHOT_STATUS = 11000 ,	// ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgó‘ÔŽæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_DRESSUPSHOT_DELETE ,			// ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgíœ
-	POKE_NET_GDS_REQCODE_ADMIN_DRESSUPSHOT_CLEAR ,			// ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgƒNƒŠƒA
+	POKE_NET_GDS_REQCODE_ADMIN_DRESSUPSHOT_STATUS = 11000 ,	// ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆçŠ¶æ…‹å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_DRESSUPSHOT_DELETE ,			// ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå‰Šé™¤
+	POKE_NET_GDS_REQCODE_ADMIN_DRESSUPSHOT_CLEAR ,			// ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆã‚¯ãƒªã‚¢
 
-	POKE_NET_GDS_REQCODE_ADMIN_BOXSHOT_STATUS = 12000 ,		// ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgó‘ÔŽæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_BOXSHOT_DELETE ,				// ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgíœ
-	POKE_NET_GDS_REQCODE_ADMIN_BOXSHOT_CLEAR ,				// ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgƒNƒŠƒA
+	POKE_NET_GDS_REQCODE_ADMIN_BOXSHOT_STATUS = 12000 ,		// ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆçŠ¶æ…‹å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_BOXSHOT_DELETE ,				// ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå‰Šé™¤
+	POKE_NET_GDS_REQCODE_ADMIN_BOXSHOT_CLEAR ,				// ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆã‚¯ãƒªã‚¢
 
-	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_STATUS = 13000 ,	// ƒoƒgƒ‹ƒf[ƒ^ó‘ÔŽæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_DELETE ,			// ƒoƒgƒ‹ƒf[ƒ^íœ
-	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_RANKHISTORY ,		// ƒoƒgƒ‹ƒf[ƒ^ƒ‰ƒ“ƒLƒ“ƒO—š—ðŽæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_EVENTFLAG ,		// ƒoƒgƒ‹ƒf[ƒ^ƒCƒxƒ“ƒg“o˜^—v‹
-	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_CLEAR ,			// ƒoƒgƒ‹ƒf[ƒ^ƒNƒŠƒA
-	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_GETPARAM ,		// ƒpƒ‰ƒ[ƒ^Žæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_SETPARAM ,		// ƒpƒ‰ƒ[ƒ^Ý’è
-	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_EXECDECISION ,	// Šm’èˆ—ŽÀs(‹­§)
+	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_STATUS = 13000 ,	// ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿çŠ¶æ…‹å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_DELETE ,			// ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
+	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_RANKHISTORY ,		// ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ©ãƒ³ã‚­ãƒ³ã‚°å±¥æ­´å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_EVENTFLAG ,		// ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ™ãƒ³ãƒˆç™»éŒ²è¦æ±‚
+	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_CLEAR ,			// ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
+	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_GETPARAM ,		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_SETPARAM ,		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
+	POKE_NET_GDS_REQCODE_ADMIN_BATTLEDATA_EXECDECISION ,	// ç¢ºå®šå‡¦ç†å®Ÿè¡Œ(å¼·åˆ¶)
 
-	POKE_NET_GDS_REQCODE_ADMIN_RANKING_STATUS = 14000 ,		// ƒ‰ƒ“ƒLƒ“ƒOó‘ÔŽæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_RANKING_HISTORY ,			// ƒ‰ƒ“ƒLƒ“ƒO—š—ðŽæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_RANKING_GET ,				// ƒ†[ƒU[‚Ìƒ‰ƒ“ƒLƒ“ƒOî•ñŽæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_RANKING_SET ,				// ƒ†[ƒU[‚Ìƒ‰ƒ“ƒLƒ“ƒOî•ñÝ’è
-	POKE_NET_GDS_REQCODE_ADMIN_RANKING_CLEAR ,				// ƒ‰ƒ“ƒLƒ“ƒOî•ñƒNƒŠƒA
+	POKE_NET_GDS_REQCODE_ADMIN_RANKING_STATUS = 14000 ,		// ãƒ©ãƒ³ã‚­ãƒ³ã‚°çŠ¶æ…‹å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_RANKING_HISTORY ,			// ãƒ©ãƒ³ã‚­ãƒ³ã‚°å±¥æ­´å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_RANKING_GET ,				// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°æƒ…å ±å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_RANKING_SET ,				// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°æƒ…å ±è¨­å®š
+	POKE_NET_GDS_REQCODE_ADMIN_RANKING_CLEAR ,				// ãƒ©ãƒ³ã‚­ãƒ³ã‚°æƒ…å ±ã‚¯ãƒªã‚¢
 
-	POKE_NET_GDS_REQCODE_ADMIN_RANKING_GETSCHEDULE ,		// ƒ‰ƒ“ƒLƒ“ƒOƒXƒPƒWƒ…[ƒ‹Žæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_RANKING_SETSCHEDULE ,		// ƒ‰ƒ“ƒLƒ“ƒOƒXƒPƒWƒ…[ƒ‹Ý’è
-	POKE_NET_GDS_REQCODE_ADMIN_RANKING_EXECDECISION ,		// Šm’èˆ—ŽÀs(‹­§)
+	POKE_NET_GDS_REQCODE_ADMIN_RANKING_GETSCHEDULE ,		// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_RANKING_SETSCHEDULE ,		// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«è¨­å®š
+	POKE_NET_GDS_REQCODE_ADMIN_RANKING_EXECDECISION ,		// ç¢ºå®šå‡¦ç†å®Ÿè¡Œ(å¼·åˆ¶)
 
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_POKEMONTABLE_GET = 15000 ,	// •s³ƒ`ƒFƒbƒN:ƒ|ƒPƒ‚ƒ“–ˆ‚ÌÝ’èŽæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_POKEMONTABLE_SET ,			// •s³ƒ`ƒFƒbƒN:ƒ|ƒPƒ‚ƒ“–ˆ‚ÌÝ’èƒZƒbƒg
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_NGWORD_GET ,				// •s³ƒ`ƒFƒbƒN:‚m‚fƒ[ƒhŽæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_NGWORD_SET ,				// •s³ƒ`ƒFƒbƒN:‚m‚fƒ[ƒhƒZƒbƒg
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_LANGCODE_GET ,				// •s³ƒ`ƒFƒbƒN:Œ¾ŒêƒR[ƒhŽæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_LANGCODE_SET ,				// •s³ƒ`ƒFƒbƒN:Œ¾ŒêƒR[ƒhƒZƒbƒg
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_ITEM_GET ,					// •s³ƒ`ƒFƒbƒN:‚Ç‚¤‚®Žæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_ITEM_SET ,					// •s³ƒ`ƒFƒbƒN:‚Ç‚¤‚®ƒZƒbƒg
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_MEETPLACE_GET ,				// •s³ƒ`ƒFƒbƒN:o‰ï‚Á‚½êŠŽæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_MEETPLACE_SET ,				// •s³ƒ`ƒFƒbƒN:o‰ï‚Á‚½êŠƒZƒbƒg
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_WAZATABLE_GET ,				// •s³ƒ`ƒFƒbƒN:‹Zƒe[ƒuƒ‹
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_WAZATABLE_SET ,				// •s³ƒ`ƒFƒbƒN:‹Zƒe[ƒuƒ‹
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_ACCESSORY_GET ,				// •s³ƒ`ƒFƒbƒN:‚m‚fƒAƒNƒZƒTƒŠŽæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_ACCESSORY_SET ,				// •s³ƒ`ƒFƒbƒN:‚m‚fƒAƒNƒZƒTƒŠÝ’è
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_DRESSUPBGID_GET ,			// •s³ƒ`ƒFƒbƒN:‚m‚fƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg”wŒi‚h‚c
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_DRESSUPBGID_SET ,			// •s³ƒ`ƒFƒbƒN:‚m‚fƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg”wŒi‚h‚c
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_REGULATION_GET ,			// •s³ƒ`ƒFƒbƒN:—LŒø‚ÈƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“
-	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_REGULATION_SET ,			// •s³ƒ`ƒFƒbƒN:—LŒø‚ÈƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_POKEMONTABLE_GET = 15000 ,	// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ãƒã‚±ãƒ¢ãƒ³æ¯Žã®è¨­å®šå–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_POKEMONTABLE_SET ,			// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ãƒã‚±ãƒ¢ãƒ³æ¯Žã®è¨­å®šã‚»ãƒƒãƒˆ
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_NGWORD_GET ,				// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ï¼®ï¼§ãƒ¯ãƒ¼ãƒ‰å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_NGWORD_SET ,				// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ï¼®ï¼§ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_LANGCODE_GET ,				// ä¸æ­£ãƒã‚§ãƒƒã‚¯:è¨€èªžã‚³ãƒ¼ãƒ‰å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_LANGCODE_SET ,				// ä¸æ­£ãƒã‚§ãƒƒã‚¯:è¨€èªžã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_ITEM_GET ,					// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ã©ã†ãå–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_ITEM_SET ,					// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ã©ã†ãã‚»ãƒƒãƒˆ
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_MEETPLACE_GET ,				// ä¸æ­£ãƒã‚§ãƒƒã‚¯:å‡ºä¼šã£ãŸå ´æ‰€å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_MEETPLACE_SET ,				// ä¸æ­£ãƒã‚§ãƒƒã‚¯:å‡ºä¼šã£ãŸå ´æ‰€ã‚»ãƒƒãƒˆ
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_WAZATABLE_GET ,				// ä¸æ­£ãƒã‚§ãƒƒã‚¯:æŠ€ãƒ†ãƒ¼ãƒ–ãƒ«
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_WAZATABLE_SET ,				// ä¸æ­£ãƒã‚§ãƒƒã‚¯:æŠ€ãƒ†ãƒ¼ãƒ–ãƒ«
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_ACCESSORY_GET ,				// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ï¼®ï¼§ã‚¢ã‚¯ã‚»ã‚µãƒªå–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_ACCESSORY_SET ,				// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ï¼®ï¼§ã‚¢ã‚¯ã‚»ã‚µãƒªè¨­å®š
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_DRESSUPBGID_GET ,			// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ï¼®ï¼§ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆèƒŒæ™¯ï¼©ï¼¤
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_DRESSUPBGID_SET ,			// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ï¼®ï¼§ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆèƒŒæ™¯ï¼©ï¼¤
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_REGULATION_GET ,			// ä¸æ­£ãƒã‚§ãƒƒã‚¯:æœ‰åŠ¹ãªãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³
+	POKE_NET_GDS_REQCODE_ADMIN_ILLEGALCHECK_REGULATION_SET ,			// ä¸æ­£ãƒã‚§ãƒƒã‚¯:æœ‰åŠ¹ãªãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³
 
-	POKE_NET_GDS_REQCODE_ADMIN_DHOCHECKLOG_GET ,						// •s³ƒ`ƒFƒbƒNƒƒO:Žæ“¾
-	POKE_NET_GDS_REQCODE_ADMIN_DHOCHECKLOG_CLEAR ,						// •s³ƒ`ƒFƒbƒNƒƒO:ƒNƒŠƒA
+	POKE_NET_GDS_REQCODE_ADMIN_DHOCHECKLOG_GET ,						// ä¸æ­£ãƒã‚§ãƒƒã‚¯ãƒ­ã‚°:å–å¾—
+	POKE_NET_GDS_REQCODE_ADMIN_DHOCHECKLOG_CLEAR ,						// ä¸æ­£ãƒã‚§ãƒƒã‚¯ãƒ­ã‚°:ã‚¯ãƒªã‚¢
 
 #endif
-	POKE_NET_GDS_REQCODE_ADMIN_END  = 19999 ,			// ¦19999‚Ü‚Å‚ÍŠÇ—ŽÒ‚ªŽg—p‚Å‚«‚éƒŠƒNƒGƒXƒg
-	POKE_NET_GDS_REQCODE_USER_START = 20000 ,			// ¦20000ˆÈ~‚Íˆê”Êƒ†[ƒU[‚ªŽg‚¦‚éƒŠƒNƒGƒXƒg
+	POKE_NET_GDS_REQCODE_ADMIN_END  = 19999 ,			// â€»19999ã¾ã§ã¯ç®¡ç†è€…ãŒä½¿ç”¨ã§ãã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	POKE_NET_GDS_REQCODE_USER_START = 20000 ,			// â€»20000ä»¥é™ã¯ä¸€èˆ¬ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒä½¿ãˆã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 
-	// ------------------------- ˆÈ‰ºƒ†[ƒU[ƒŠƒNƒGƒXƒg ----------------------
-	POKE_NET_GDS_REQCODE_DRESSUPSHOT_REGIST = 20000 ,	//!< ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg“o˜^
-	POKE_NET_GDS_REQCODE_DRESSUPSHOT_GET ,				//!< ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgŽæ“¾
-	POKE_NET_GDS_REQCODE_BOXSHOT_REGIST = 21000,		//!< ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg“o˜^
-	POKE_NET_GDS_REQCODE_BOXSHOT_GET ,					//!< ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgŽæ“¾
-	POKE_NET_GDS_REQCODE_RANKING_GETTYPE = 22000,		//!< Œ»Ý‚Ìƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒvŽæ“¾
-	POKE_NET_GDS_REQCODE_RANKING_UPDATE ,				//!< Œ»Ý‚Ìƒ‰ƒ“ƒLƒ“ƒOî•ñ‚ÌXV‚ÆŽæ“¾
-	POKE_NET_GDS_REQCODE_BATTLEDATA_REGIST = 23000,		//!< ƒoƒgƒ‹ƒf[ƒ^“o˜^
-	POKE_NET_GDS_REQCODE_BATTLEDATA_SEARCH ,			//!< ƒoƒgƒ‹ƒf[ƒ^ŒŸõ
-	POKE_NET_GDS_REQCODE_BATTLEDATA_GET ,				//!< ƒoƒgƒ‹ƒf[ƒ^Žæ“¾
-	POKE_NET_GDS_REQCODE_BATTLEDATA_FAVORITE ,			//!< ƒoƒgƒ‹ƒf[ƒ^‚¨‹C‚É“ü‚è“o˜^
+	// ------------------------- ä»¥ä¸‹ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒªã‚¯ã‚¨ã‚¹ãƒˆ ----------------------
+	POKE_NET_GDS_REQCODE_DRESSUPSHOT_REGIST = 20000 ,	//!< ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²
+	POKE_NET_GDS_REQCODE_DRESSUPSHOT_GET ,				//!< ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå–å¾—
+	POKE_NET_GDS_REQCODE_BOXSHOT_REGIST = 21000,		//!< ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²
+	POKE_NET_GDS_REQCODE_BOXSHOT_GET ,					//!< ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå–å¾—
+	POKE_NET_GDS_REQCODE_RANKING_GETTYPE = 22000,		//!< ç¾åœ¨ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—å–å¾—
+	POKE_NET_GDS_REQCODE_RANKING_UPDATE ,				//!< ç¾åœ¨ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°æƒ…å ±ã®æ›´æ–°ã¨å–å¾—
+	POKE_NET_GDS_REQCODE_BATTLEDATA_REGIST = 23000,		//!< ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ç™»éŒ²
+	POKE_NET_GDS_REQCODE_BATTLEDATA_SEARCH ,			//!< ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿æ¤œç´¢
+	POKE_NET_GDS_REQCODE_BATTLEDATA_GET ,				//!< ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
+	POKE_NET_GDS_REQCODE_BATTLEDATA_FAVORITE ,			//!< ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãŠæ°—ã«å…¥ã‚Šç™»éŒ²
 
 	POKE_NET_GDS_REQCODE_LAST
 };
 
 #define	POKE_NET_GDS_REQUESTCOMMON_AUTH_SVLTOKEN_LENGTH		(304)
 //===============================================
-//! ƒ|ƒPƒ‚ƒ“WiFiƒ‰ƒCƒuƒ‰ƒŠ ƒŠƒNƒGƒXƒg”FØî•ñ
+//! ãƒã‚±ãƒ¢ãƒ³WiFiãƒ©ã‚¤ãƒ–ãƒ©ãƒª ãƒªã‚¯ã‚¨ã‚¹ãƒˆèªè¨¼æƒ…å ±
 //===============================================
 typedef struct {
-	s32		PID;								//!< ƒvƒƒtƒ@ƒCƒ‹‚h‚c
-	u8		ROMCode;							//!< ƒo[ƒWƒ‡ƒ“ƒR[ƒh
-	u8		LangCode;							//!< Œ¾ŒêƒR[ƒh
-	char	SvlToken[POKE_NET_GDS_REQUESTCOMMON_AUTH_SVLTOKEN_LENGTH];	// ƒT[ƒrƒXƒƒP[ƒ^ƒg[ƒNƒ“
+	s32		PID;								//!< ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ï¼©ï¼¤
+	u8		ROMCode;							//!< ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
+	u8		LangCode;							//!< è¨€èªžã‚³ãƒ¼ãƒ‰
+	char	SvlToken[POKE_NET_GDS_REQUESTCOMMON_AUTH_SVLTOKEN_LENGTH];	// ã‚µãƒ¼ãƒ“ã‚¹ãƒ­ã‚±ãƒ¼ã‚¿ãƒˆãƒ¼ã‚¯ãƒ³
 	u16		Dummy;
 } POKE_NET_REQUESTCOMMON_AUTH;
 
 //===============================================
-//!  ƒ|ƒPƒ‚ƒ“WiFiƒ‰ƒCƒuƒ‰ƒŠ ƒŠƒNƒGƒXƒgƒwƒbƒ_
+//!  ãƒã‚±ãƒ¢ãƒ³WiFiãƒ©ã‚¤ãƒ–ãƒ©ãƒª ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€
 //===============================================
 typedef struct {
-	unsigned short ReqCode;						//!< ƒŠƒNƒGƒXƒgƒR[ƒh(POKE_NET_GDS_REQUEST_REQCODE_xxxx)
-	unsigned short Option;						//!< ƒŠƒNƒGƒXƒgƒIƒvƒVƒ‡ƒ“
-	POKE_NET_REQUESTCOMMON_AUTH Auth;			//!< ƒ†[ƒU[”FØî•ñ
-	unsigned char Param[0];						//!< ƒpƒ‰ƒ[ƒ^(ŠeƒŠƒNƒGƒXƒg‚Ì\‘¢‘Ì)
+	unsigned short ReqCode;						//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ¼ãƒ‰(POKE_NET_GDS_REQUEST_REQCODE_xxxx)
+	unsigned short Option;						//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚ªãƒ—ã‚·ãƒ§ãƒ³
+	POKE_NET_REQUESTCOMMON_AUTH Auth;			//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼æƒ…å ±
+	unsigned char Param[0];						//!< ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(å„ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®æ§‹é€ ä½“)
 } POKE_NET_REQUEST;
 
 //===============================================
-//!  ƒ|ƒPƒ‚ƒ“WiFiƒ‰ƒCƒuƒ‰ƒŠ ƒŒƒXƒ|ƒ“ƒXƒwƒbƒ_
+//!  ãƒã‚±ãƒ¢ãƒ³WiFiãƒ©ã‚¤ãƒ–ãƒ©ãƒª ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ˜ãƒƒãƒ€
 //===============================================
 typedef struct {
-	unsigned short ReqCode;						//!< ƒŠƒNƒGƒXƒgƒR[ƒh(POKE_NET_GDS_REQUEST_REQCODE_xxxx)
-	unsigned short Result;						//!< ƒŒƒXƒ|ƒ“ƒXŒ‹‰Ê(POKE_NET_GDS_RESPONSE_RESULT_xxxx)
-	unsigned char Param[0];						//!< ƒpƒ‰ƒ[ƒ^(ŠeƒŒƒXƒ|ƒ“ƒX‚Ì\‘¢‘Ì)
+	unsigned short ReqCode;						//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ¼ãƒ‰(POKE_NET_GDS_REQUEST_REQCODE_xxxx)
+	unsigned short Result;						//!< ãƒ¬ã‚¹ãƒãƒ³ã‚¹çµæžœ(POKE_NET_GDS_RESPONSE_RESULT_xxxx)
+	unsigned char Param[0];						//!< ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(å„ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®æ§‹é€ ä½“)
 } POKE_NET_RESPONSE;
 
 //===============================================
-//       ƒŠƒNƒGƒXƒg/ƒŒƒXƒ|ƒ“ƒX\‘¢‘Ì
+//       ãƒªã‚¯ã‚¨ã‚¹ãƒˆ/ãƒ¬ã‚¹ãƒãƒ³ã‚¹æ§‹é€ ä½“
 //===============================================
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-//      ƒfƒoƒbƒOƒŠƒNƒGƒXƒg/ƒŒƒXƒ|ƒ“ƒX
+//      ãƒ‡ãƒãƒƒã‚°ãƒªã‚¯ã‚¨ã‚¹ãƒˆ/ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 //------------------------------------
-//         ƒfƒoƒbƒOƒƒbƒZ[ƒW
+//         ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 //------------------------------------
-//! ‚f‚c‚rƒfƒoƒbƒOƒƒbƒZ[ƒWŒ‹‰Ê
+//! ï¼§ï¼¤ï¼³ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµæžœ
 enum POKE_NET_GDS_RESPONSE_RESULT_DEBUG_MESSAGE {
-	POKE_NET_GDS_RESPONSE_RESULT_DEBUG_MESSAGE_SUCCESS ,				//!< “o˜^¬Œ÷
+	POKE_NET_GDS_RESPONSE_RESULT_DEBUG_MESSAGE_SUCCESS ,				//!< ç™»éŒ²æˆåŠŸ
 };
 
-//! ‚f‚c‚rƒfƒoƒbƒOƒƒbƒZ[ƒWƒŠƒNƒGƒXƒg
+//! ï¼§ï¼¤ï¼³ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 typedef struct {
-	char Message[1024];						//!< ƒfƒoƒbƒOƒƒbƒZ[ƒW
+	char Message[1024];						//!< ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 } POKE_NET_GDS_REQUEST_DEBUG_MESSAGE;
 
-//! ‚f‚c‚rƒfƒoƒbƒOƒƒbƒZ[ƒWƒŒƒXƒ|ƒ“ƒX
+//! ï¼§ï¼¤ï¼³ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 typedef struct {
-	char ResultMessage[1024];				//!< ƒfƒoƒbƒOƒƒbƒZ[ƒW
+	char ResultMessage[1024];				//!< ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 } POKE_NET_GDS_RESPONSE_DEBUG_MESSAGE;
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-//        ƒ†[ƒU[ƒŠƒNƒGƒXƒg/ƒŒƒXƒ|ƒ“ƒX
+//        ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒªã‚¯ã‚¨ã‚¹ãƒˆ/ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 //------------------------------------
-//     ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg“o˜^
+//     ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²
 //------------------------------------
-//! ‚f‚c‚rƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg“o˜^Œ‹‰Ê
+//! ï¼§ï¼¤ï¼³ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²çµæžœ
 enum POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST {
-	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_SUCCESS ,				//!< “o˜^¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_AUTH ,			//!< ƒ†[ƒU[”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_ALREADY ,			//!< ‚·‚Å‚É“o˜^‚³‚ê‚Ä‚¢‚é
-	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_ILLEGAL ,			//!< •s³‚Èƒf[ƒ^
-	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_ILLEGALPROFILE ,	//!< •s³‚Èƒ†[ƒU[ƒvƒƒtƒB[ƒ‹
-	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_UNKNOWN			//!< ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_SUCCESS ,				//!< ç™»éŒ²æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_AUTH ,			//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_ALREADY ,			//!< ã™ã§ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹
+	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_ILLEGAL ,			//!< ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿
+	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_ILLEGALPROFILE ,	//!< ä¸æ­£ãªãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_UNKNOWN			//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-//! ‚f‚c‚rƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg“o˜^ƒŠƒNƒGƒXƒg
+//! ï¼§ï¼¤ï¼³ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 typedef struct {
-	GT_GDS_DRESS_SEND Data;							//!< ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg‘—Mƒf[ƒ^
+	GT_GDS_DRESS_SEND Data;							//!< ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆé€ä¿¡ãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_REQUEST_DRESSUPSHOT_REGIST;
 
-//! ‚f‚c‚rƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg“o˜^ƒŒƒXƒ|ƒ“ƒX
+//! ï¼§ï¼¤ï¼³ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 typedef struct {
-	u64 Code;										//!< “o˜^‚³‚ê‚½ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg‚ÌƒR[ƒh
+	u64 Code;										//!< ç™»éŒ²ã•ã‚ŒãŸãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆã®ã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_RESPONSE_DRESSUPSHOT_REGIST;
 
 //------------------------------------
-//     ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgŽæ“¾
+//     ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå–å¾—
 //------------------------------------
-//! ‚f‚c‚rƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgŽæ“¾Œ‹‰Ê
+//! ï¼§ï¼¤ï¼³ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå–å¾—çµæžœ
 enum POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET {
-	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET_SUCCESS ,				//!< Žæ“¾¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET_ERROR_AUTH ,			//!< ƒ†[ƒU[”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET_ERROR_ILLEGALPOKEMON ,	//!< ƒ|ƒPƒ‚ƒ“”Ô†ƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET_ERROR_UNKNOWN			//!< ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET_SUCCESS ,				//!< å–å¾—æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET_ERROR_AUTH ,			//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET_ERROR_ILLEGALPOKEMON ,	//!< ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET_ERROR_UNKNOWN			//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-//! ‚f‚c‚rƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgŽæ“¾ƒ^ƒCƒv
+//! ï¼§ï¼¤ï¼³ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå–å¾—ã‚¿ã‚¤ãƒ—
 enum POKE_NET_GDS_REQUEST_DRESSUPSHOT_GETTYPE {
-	POKE_NET_GDS_REQUEST_DRESSUPSHOT_GETTYPE_POKEMON ,				//!< ƒ|ƒPƒ‚ƒ“”Ô†‚ÅÅVŽæ“¾(SearchParam‚Éƒ|ƒPƒ‚ƒ“”Ô†)
-	POKE_NET_GDS_REQUEST_DRESSUPSHOT_GETTYPE_CODE					//!< ƒR[ƒh’¼ÚŽw’è‚ÅŽæ“¾
+	POKE_NET_GDS_REQUEST_DRESSUPSHOT_GETTYPE_POKEMON ,				//!< ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã§æœ€æ–°å–å¾—(SearchParamã«ãƒã‚±ãƒ¢ãƒ³ç•ªå·)
+	POKE_NET_GDS_REQUEST_DRESSUPSHOT_GETTYPE_CODE					//!< ã‚³ãƒ¼ãƒ‰ç›´æŽ¥æŒ‡å®šã§å–å¾—
 };
 
-//! ‚f‚c‚rƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgŽæ“¾ƒŠƒNƒGƒXƒg
+//! ï¼§ï¼¤ï¼³ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 typedef struct {
-	unsigned short SearchType;										//!< ŒŸõƒ^ƒCƒv(POKE_NET_GDS_REQUEST_DRESSUPSHOT_GETTYPE_xxxx)
-	unsigned short SearchOpt;										//!< ŒŸõƒIƒvƒVƒ‡ƒ“(Œ»Ý–¢Žg—p)
-	u64 SearchParam;												//!< ŒŸõƒpƒ‰ƒ[ƒ^
+	unsigned short SearchType;										//!< æ¤œç´¢ã‚¿ã‚¤ãƒ—(POKE_NET_GDS_REQUEST_DRESSUPSHOT_GETTYPE_xxxx)
+	unsigned short SearchOpt;										//!< æ¤œç´¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³(ç¾åœ¨æœªä½¿ç”¨)
+	u64 SearchParam;												//!< æ¤œç´¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 } POKE_NET_GDS_REQUEST_DRESSUPSHOT_GET;
 
-//! ‚f‚c‚rƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgŽæ“¾ƒŒƒXƒ|ƒ“ƒX“à—e
+//! ï¼§ï¼¤ï¼³ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹å†…å®¹
 typedef struct {
-	long PID;														//!< ƒAƒbƒvƒ[ƒhŽÒ‚Ìƒvƒƒtƒ@ƒCƒ‹‚h‚c
-	u64 Code;														//!< ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgƒR[ƒh
-	GT_GDS_DRESS_RECV Data;											//!< ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgŽóMƒf[ƒ^
+	long PID;														//!< ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰è€…ã®ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ï¼©ï¼¤
+	u64 Code;														//!< ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆã‚³ãƒ¼ãƒ‰
+	GT_GDS_DRESS_RECV Data;											//!< ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå—ä¿¡ãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_RESPONSE_DRESSUPSHOT_RECVDATA;
 
-#define	POKE_NET_GDS_RESPONSE_DRESSUPSHOT_GET_MAX	(10)			// ƒNƒ‰ƒCƒAƒ“ƒg‚ªŽó‚¯Žæ‚éƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgÅ‘å”
+#define	POKE_NET_GDS_RESPONSE_DRESSUPSHOT_GET_MAX	(10)			// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãŒå—ã‘å–ã‚‹ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆæœ€å¤§æ•°
 
-//! ‚f‚c‚rƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgŽæ“¾ƒŒƒXƒ|ƒ“ƒX
+//! ï¼§ï¼¤ï¼³ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 typedef struct {
-	long HitCount;													//!< ƒqƒbƒgŒ”
-	POKE_NET_GDS_RESPONSE_DRESSUPSHOT_RECVDATA Data[0];				//!< ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgŽóMƒf[ƒ^
+	long HitCount;													//!< ãƒ’ãƒƒãƒˆä»¶æ•°
+	POKE_NET_GDS_RESPONSE_DRESSUPSHOT_RECVDATA Data[0];				//!< ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå—ä¿¡ãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_RESPONSE_DRESSUPSHOT_GET;
 
 //------------------------------------
-//        ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg“o˜^
+//        ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²
 //------------------------------------
-//! ‚f‚c‚rƒ{ƒbƒNƒXƒVƒ‡ƒbƒg“o˜^Œ‹‰Ê
+//! ï¼§ï¼¤ï¼³ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²çµæžœ
 enum POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST {
-	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_SUCCESS ,				//!< “o˜^¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_AUTH ,			//!< ƒ†[ƒU[”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_ALREADY ,			//!< ‚·‚Å‚É“o˜^‚³‚ê‚Ä‚¢‚é
-	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_ILLEGAL ,			//!< •s³‚Èƒf[ƒ^
-	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_ILLEGALPROFILE ,	//!< •s³‚Èƒ†[ƒU[ƒvƒƒtƒB[ƒ‹
-	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_ILLEGALGROUP ,	//!< •s³‚ÈƒOƒ‹[ƒv”Ô†
-	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_UNKNOWN			//!< ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_SUCCESS ,				//!< ç™»éŒ²æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_AUTH ,			//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_ALREADY ,			//!< ã™ã§ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹
+	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_ILLEGAL ,			//!< ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿
+	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_ILLEGALPROFILE ,	//!< ä¸æ­£ãªãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_ILLEGALGROUP ,	//!< ä¸æ­£ãªã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·
+	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_UNKNOWN			//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-//! ‚f‚c‚rƒ{ƒbƒNƒXƒVƒ‡ƒbƒg“o˜^ƒŠƒNƒGƒXƒg
+//! ï¼§ï¼¤ï¼³ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 typedef struct {
-	long GroupNo;													//!< “o˜^æƒOƒ‹[ƒv”Ô†
-	GT_BOX_SHOT_SEND Data;											//!< ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg‘—Mƒf[ƒ^
+	long GroupNo;													//!< ç™»éŒ²å…ˆã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·
+	GT_BOX_SHOT_SEND Data;											//!< ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆé€ä¿¡ãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_REQUEST_BOXSHOT_REGIST;
 
-//! ‚f‚c‚rƒ{ƒbƒNƒXƒVƒ‡ƒbƒg“o˜^ƒŒƒXƒ|ƒ“ƒX
+//! ï¼§ï¼¤ï¼³ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 typedef struct {
-	u64 Code;														//!< “o˜^‚³‚ê‚½ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg‚ÌƒR[ƒh
+	u64 Code;														//!< ç™»éŒ²ã•ã‚ŒãŸãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆã®ã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_RESPONSE_BOXSHOT_REGIST;
 
 //------------------------------------
-//        ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgŽæ“¾
+//        ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå–å¾—
 //------------------------------------
-//! ‚f‚c‚rƒ{ƒbƒNƒXƒVƒ‡ƒbƒgŽæ“¾Œ‹‰Ê
+//! ï¼§ï¼¤ï¼³ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå–å¾—çµæžœ
 enum POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET {
-	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_SUCCESS ,				//!< Žæ“¾¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_ERROR_AUTH ,			//!< ƒ†[ƒU[”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_ERROR_ILLEGALGROUP ,	//!< ƒOƒ‹[ƒv”Ô†ƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_ERROR_UNKNOWN			//!< ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_SUCCESS ,				//!< å–å¾—æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_ERROR_AUTH ,			//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_ERROR_ILLEGALGROUP ,	//!< ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_ERROR_UNKNOWN			//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-//! ‚f‚c‚rƒ{ƒbƒNƒXƒVƒ‡ƒbƒgŽæ“¾ƒ^ƒCƒv
+//! ï¼§ï¼¤ï¼³ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå–å¾—ã‚¿ã‚¤ãƒ—
 enum POKE_NET_GDS_REQUEST_BOXSHOT_GETTYPE {
-	POKE_NET_GDS_REQUEST_BOXSHOT_GETTYPE_GROUP ,					//!< ƒOƒ‹[ƒv”Ô†‚ÅÅVŽæ“¾(SearchParam‚ÉƒOƒ‹[ƒv”Ô†)
-	POKE_NET_GDS_REQUEST_BOXSHOT_GETTYPE_CODE						//!< ‚h‚cŽw’è‚ÅŽæ“¾(SearchParam‚ÉƒR[ƒh”Ô†)
+	POKE_NET_GDS_REQUEST_BOXSHOT_GETTYPE_GROUP ,					//!< ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·ã§æœ€æ–°å–å¾—(SearchParamã«ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·)
+	POKE_NET_GDS_REQUEST_BOXSHOT_GETTYPE_CODE						//!< ï¼©ï¼¤æŒ‡å®šã§å–å¾—(SearchParamã«ã‚³ãƒ¼ãƒ‰ç•ªå·)
 };
 
-//! ‚f‚c‚rƒ{ƒbƒNƒXƒVƒ‡ƒbƒgŽæ“¾ƒŠƒNƒGƒXƒg
+//! ï¼§ï¼¤ï¼³ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 typedef struct {
-	unsigned short SearchType;										//!< ŒŸõƒ^ƒCƒv(POKE_NET_GDS_REQUEST_BOXSHOT_GETTYPE_xxxx)
-	unsigned short SearchOpt;										//!< ŒŸõƒIƒvƒVƒ‡ƒ“(Œ»Ý–¢Žg—p)
-	u64 SearchParam;												//!< ŒŸõƒpƒ‰ƒ[ƒ^
+	unsigned short SearchType;										//!< æ¤œç´¢ã‚¿ã‚¤ãƒ—(POKE_NET_GDS_REQUEST_BOXSHOT_GETTYPE_xxxx)
+	unsigned short SearchOpt;										//!< æ¤œç´¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³(ç¾åœ¨æœªä½¿ç”¨)
+	u64 SearchParam;												//!< æ¤œç´¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 } POKE_NET_GDS_REQUEST_BOXSHOT_GET;
 
-//! ‚f‚c‚rƒ{ƒbƒNƒXƒVƒ‡ƒbƒgŽæ“¾ƒŒƒXƒ|ƒ“ƒX“à—e
+//! ï¼§ï¼¤ï¼³ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹å†…å®¹
 typedef struct {
-	long PID;														//!< ƒAƒbƒvƒ[ƒhŽÒ‚Ìƒvƒƒtƒ@ƒCƒ‹‚h‚c
-	long GroupNo;													//!< ƒOƒ‹[ƒv”Ô†
-	u64 Code;														//!< ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgƒR[ƒh
-	GT_BOX_SHOT_RECV Data;											//!< ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgŽóMƒf[ƒ^
+	long PID;														//!< ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰è€…ã®ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ï¼©ï¼¤
+	long GroupNo;													//!< ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·
+	u64 Code;														//!< ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆã‚³ãƒ¼ãƒ‰
+	GT_BOX_SHOT_RECV Data;											//!< ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå—ä¿¡ãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_RESPONSE_BOXSHOT_RECVDATA;
 
-#define	POKE_NET_GDS_RESPONSE_BOXSHOT_GET_MAXNUM	(20)			// ƒNƒ‰ƒCƒAƒ“ƒg‚ªŽó‚¯Žæ‚éƒ{ƒbƒNƒXƒVƒ‡ƒbƒgÅ‘å”
+#define	POKE_NET_GDS_RESPONSE_BOXSHOT_GET_MAXNUM	(20)			// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãŒå—ã‘å–ã‚‹ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆæœ€å¤§æ•°
 
-//! ‚f‚c‚rƒ{ƒbƒNƒXƒVƒ‡ƒbƒgŽæ“¾ƒŒƒXƒ|ƒ“ƒX
+//! ï¼§ï¼¤ï¼³ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 typedef struct {
-	long HitCount;													//!< ƒqƒbƒgŒ”
-	POKE_NET_GDS_RESPONSE_BOXSHOT_RECVDATA Data[0];					//!< ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgŽóMƒf[ƒ^
+	long HitCount;													//!< ãƒ’ãƒƒãƒˆä»¶æ•°
+	POKE_NET_GDS_RESPONSE_BOXSHOT_RECVDATA Data[0];					//!< ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå—ä¿¡ãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_RESPONSE_BOXSHOT_GET;
 
 
 //------------------------------------
-//      ƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒvŽæ“¾
+//      ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—å–å¾—
 //------------------------------------
 /*
-//! ‚f‚c‚rƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒvŽæ“¾ƒŠƒNƒGƒXƒg
+//! ï¼§ï¼¤ï¼³ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—å–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 typedef struct {
 } POKE_NET_GDS_REQUEST_RANKING_GETTYPE;
 */
 
-//! ‚f‚c‚rƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒvŽæ“¾Œ‹‰Ê
+//! ï¼§ï¼¤ï¼³ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—å–å¾—çµæžœ
 enum POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE {
-	POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE_SUCCESS ,				//!< Žæ“¾¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE_ERROR_AUTH ,			//!< ƒ†[ƒU[”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE_ERROR_UNKNOWN			//!< ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE_SUCCESS ,				//!< å–å¾—æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE_ERROR_AUTH ,			//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE_ERROR_UNKNOWN			//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-//! ‚f‚c‚rƒ‰ƒ“ƒLƒ“ƒOŽæ“¾ƒŒƒXƒ|ƒ“ƒX“à—e
+//! ï¼§ï¼¤ï¼³ãƒ©ãƒ³ã‚­ãƒ³ã‚°å–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹å†…å®¹
 typedef struct {
-	GT_RANKING_TYPE_RECV Data;					//!< ƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒvƒf[ƒ^
+	GT_RANKING_TYPE_RECV Data;					//!< ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_RESPONSE_RANKING_GETTYPE;
 
 //------------------------------------
-//        ƒ‰ƒ“ƒLƒ“ƒOXV
+//        ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°
 //------------------------------------
-//! ‚f‚c‚rƒ‰ƒ“ƒLƒ“ƒOXVŒ‹‰Ê
+//! ï¼§ï¼¤ï¼³ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°çµæžœ
 enum POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE {
-	POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_SUCCESS ,				//!< XV¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_AUTH ,			//!< ƒ†[ƒU[”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_ILLEGALTYPE	 ,	//!< ƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒvƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_ILLEGALDATA	 ,	//!< •s³‚Èƒf[ƒ^ƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_ILLEGALPROFILE ,	//!< •s³‚ÈƒvƒƒtƒB[ƒ‹
-	POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_UNKNOWN			//!< ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_SUCCESS ,				//!< æ›´æ–°æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_AUTH ,			//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_ILLEGALTYPE	 ,	//!< ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_ILLEGALDATA	 ,	//!< ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_ILLEGALPROFILE ,	//!< ä¸æ­£ãªãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+	POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_UNKNOWN			//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-//! ‚f‚c‚rƒ‰ƒ“ƒLƒ“ƒOXVƒŠƒNƒGƒXƒg
+//! ï¼§ï¼¤ï¼³ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 typedef struct {
-	GT_RANKING_MYDATA_SEND Data;					//!< ƒ‰ƒ“ƒLƒ“ƒOXVƒf[ƒ^
+	GT_RANKING_MYDATA_SEND Data;					//!< ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°ãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_REQUEST_RANKING_UPDATE;
 
-//! ‚f‚c‚rƒ‰ƒ“ƒLƒ“ƒOXVƒŒƒXƒ|ƒ“ƒX
+//! ï¼§ï¼¤ï¼³ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 typedef struct {
-	GT_LAST_WEEK_RANKING_ALL_RECV LastWeek;			//!< æT‚Ìƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^
-	GT_THIS_WEEK_RANKING_DATA_ALL_RECV ThisWeek;	//!< ¡T‚Ìƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^
+	GT_LAST_WEEK_RANKING_ALL_RECV LastWeek;			//!< å…ˆé€±ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿
+	GT_THIS_WEEK_RANKING_DATA_ALL_RECV ThisWeek;	//!< ä»Šé€±ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_RESPONSE_RANKING_UPDATE;
 
 //------------------------------------
-//       ƒoƒgƒ‹ƒf[ƒ^“o˜^
+//       ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ç™»éŒ²
 //------------------------------------
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^“o˜^Œ‹‰Ê
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ç™»éŒ²çµæžœ
 enum POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST {
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_SUCCESS ,				//!< “o˜^¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_AUTH ,				//!< ƒ†[ƒU[”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ALREADY ,			//!< ‚·‚Å‚É“o˜^‚³‚ê‚Ä‚¢‚é
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGAL ,			//!< •s³‚Èƒf[ƒ^
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGALPROFILE ,	//!< •s³‚Èƒ†[ƒU[ƒvƒƒtƒB[ƒ‹
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_UNKNOWN ,			//!< ‚»‚Ì‘¼ƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGALPOKEMON_MINE ,	//!< Ž©•ª‚Ìƒ|ƒPƒ‚ƒ“‚ÅƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGALPOKEMON_OTHER ,	//!< ‘ŠŽè‚Ìƒ|ƒPƒ‚ƒ“‚ÅƒGƒ‰
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_SUCCESS ,				//!< ç™»éŒ²æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_AUTH ,				//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ALREADY ,			//!< ã™ã§ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGAL ,			//!< ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGALPROFILE ,	//!< ä¸æ­£ãªãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_UNKNOWN ,			//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGALPOKEMON_MINE ,	//!< è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã§ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGALPOKEMON_OTHER ,	//!< ç›¸æ‰‹ã®ãƒã‚±ãƒ¢ãƒ³ã§ã‚¨ãƒ©
 };
 
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^“o˜^ƒŠƒNƒGƒXƒg
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ç™»éŒ²ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 typedef struct {
-	GT_BATTLE_REC_SEND Data;												//!< ƒoƒgƒ‹ƒf[ƒ^‘—Mƒf[ƒ^
+	GT_BATTLE_REC_SEND Data;												//!< ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿é€ä¿¡ãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_REQUEST_BATTLEDATA_REGIST;
 
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^“o˜^ƒŒƒXƒ|ƒ“ƒX
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ç™»éŒ²ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 typedef struct {
-	u64 Code;																//!< “o˜^‚³‚ê‚½ƒoƒgƒ‹ƒf[ƒ^‚ÌƒR[ƒh
+	u64 Code;																//!< ç™»éŒ²ã•ã‚ŒãŸãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_RESPONSE_BATTLEDATA_REGIST;
 
 
 //------------------------------------
-//      ƒoƒgƒ‹ƒf[ƒ^ƒŠƒXƒgŽæ“¾
+//      ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆå–å¾—
 //------------------------------------
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^ƒŠƒXƒgŽæ“¾Œ‹‰Ê
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆå–å¾—çµæžœ
 enum POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH {
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_SUCCESS ,			//!< Žæ“¾¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_ERROR_AUTH ,			//!< ƒ†[ƒU[”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_ERROR_ILLEGALPARAM ,	//!< ŒŸõƒpƒ‰ƒ[ƒ^ƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_ERROR_UNKNOWN		//!< ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_SUCCESS ,			//!< å–å¾—æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_ERROR_AUTH ,			//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_ERROR_ILLEGALPARAM ,	//!< æ¤œç´¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_ERROR_UNKNOWN		//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^ƒŠƒXƒgŽæ“¾ƒ^ƒCƒv
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆå–å¾—ã‚¿ã‚¤ãƒ—
 enum POKE_NET_GDS_REQUEST_BATTLEDATA_SEARCHTYPE {
-	POKE_NET_GDS_REQUEST_BATTLEDATA_SEARCHTYPE_CONDITION ,				//!< ðŒŽw’è‚ÅŽæ“¾
-	POKE_NET_GDS_REQUEST_BATTLEDATA_SEARCHTYPE_RANKING ,				//!< ¡T‚Ì’Êíƒ‰ƒ“ƒLƒ“ƒO
-	POKE_NET_GDS_REQUEST_BATTLEDATA_SEARCHTYPE_EXRANKING ,				//!< ¡T‚ÌŠg’£ƒ‰ƒ“ƒLƒ“ƒO
-	POKE_NET_GDS_REQUEST_BATTLEDATA_SEARCHTYPE_PID ,					// PID‚É‚æ‚éŽæ“¾(ŠÇ——p)
+	POKE_NET_GDS_REQUEST_BATTLEDATA_SEARCHTYPE_CONDITION ,				//!< æ¡ä»¶æŒ‡å®šã§å–å¾—
+	POKE_NET_GDS_REQUEST_BATTLEDATA_SEARCHTYPE_RANKING ,				//!< ä»Šé€±ã®é€šå¸¸ãƒ©ãƒ³ã‚­ãƒ³ã‚°
+	POKE_NET_GDS_REQUEST_BATTLEDATA_SEARCHTYPE_EXRANKING ,				//!< ä»Šé€±ã®æ‹¡å¼µãƒ©ãƒ³ã‚­ãƒ³ã‚°
+	POKE_NET_GDS_REQUEST_BATTLEDATA_SEARCHTYPE_PID ,					// PIDã«ã‚ˆã‚‹å–å¾—(ç®¡ç†ç”¨)
 };
 
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^ƒŠƒXƒgŽæ“¾ƒŠƒNƒGƒXƒg
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 typedef struct {
-	unsigned short SearchType;											//!< ŒŸõƒ^ƒCƒv(POKE_NET_GDS_REQUEST_BATTLEDATA_SEARCHTYPE_xxxx)
-	unsigned short SearchOpt;											//!< ŒŸõƒIƒvƒVƒ‡ƒ“(Œ»Ý–¢Žg—p)
-	GT_BATTLE_REC_SEARCH_SEND ConditionParam;							//!< •¡‡ŒŸõƒpƒ‰ƒ[ƒ^
-	u64 SearchParam;													//!< ŒŸõƒpƒ‰ƒ[ƒ^
+	unsigned short SearchType;											//!< æ¤œç´¢ã‚¿ã‚¤ãƒ—(POKE_NET_GDS_REQUEST_BATTLEDATA_SEARCHTYPE_xxxx)
+	unsigned short SearchOpt;											//!< æ¤œç´¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³(ç¾åœ¨æœªä½¿ç”¨)
+	GT_BATTLE_REC_SEARCH_SEND ConditionParam;							//!< è¤‡åˆæ¤œç´¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	u64 SearchParam;													//!< æ¤œç´¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 } POKE_NET_GDS_REQUEST_BATTLEDATA_SEARCH;
 
-#define	POKE_NET_GDS_RESPONSE_BATTLEDATA_SEARCH_MAXNUM	(30)			// ƒNƒ‰ƒCƒAƒ“ƒg‚ªŽó‚¯Žæ‚éƒoƒgƒ‹ƒf[ƒ^ƒwƒbƒ_Å‘å”
+#define	POKE_NET_GDS_RESPONSE_BATTLEDATA_SEARCH_MAXNUM	(30)			// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãŒå—ã‘å–ã‚‹ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€æœ€å¤§æ•°
 
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^ƒŠƒXƒgŽæ“¾ƒŒƒXƒ|ƒ“ƒX“à—e
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹å†…å®¹
 typedef struct {
-	long PID;															//!< ƒAƒbƒvƒ[ƒhŽÒ‚Ìƒvƒƒtƒ@ƒCƒ‹‚h‚c
-	u64 Code;															//!< ƒoƒgƒ‹ƒf[ƒ^ƒR[ƒh
-	GT_BATTLE_REC_OUTLINE_RECV Data;									//!< ƒoƒgƒ‹ƒf[ƒ^ƒwƒbƒ_
+	long PID;															//!< ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰è€…ã®ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ï¼©ï¼¤
+	u64 Code;															//!< ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ¼ãƒ‰
+	GT_BATTLE_REC_OUTLINE_RECV Data;									//!< ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€
 } POKE_NET_GDS_RESPONSE_BATTLEDATA_SEARCH_RECVDATA;
 
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^ƒŠƒXƒgŽæ“¾ƒŒƒXƒ|ƒ“ƒX
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 typedef struct {
-	long HitCount;														//!< ƒqƒbƒgŒ”
-	POKE_NET_GDS_RESPONSE_BATTLEDATA_SEARCH_RECVDATA Data[0];			//!< ƒoƒgƒ‹ƒf[ƒ^ƒŠƒXƒg
+	long HitCount;														//!< ãƒ’ãƒƒãƒˆä»¶æ•°
+	POKE_NET_GDS_RESPONSE_BATTLEDATA_SEARCH_RECVDATA Data[0];			//!< ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆ
 } POKE_NET_GDS_RESPONSE_BATTLEDATA_SEARCH;
 
 //------------------------------------
-//      ƒoƒgƒ‹ƒf[ƒ^Žæ“¾
+//      ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
 //------------------------------------
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^Žæ“¾Œ‹‰Ê
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—çµæžœ
 enum POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET {
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_SUCCESS ,				//!< Žæ“¾¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_ERROR_AUTH ,			//!< ƒ†[ƒU[”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_ERROR_ILLEGALCODE ,		//!< ƒR[ƒhƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_ERROR_UNKNOWN			//!< ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_SUCCESS ,				//!< å–å¾—æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_ERROR_AUTH ,			//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_ERROR_ILLEGALCODE ,		//!< ã‚³ãƒ¼ãƒ‰ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_ERROR_UNKNOWN			//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^Žæ“¾ƒŠƒNƒGƒXƒg
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 typedef struct {
-	u64 Code;															//!< ƒoƒgƒ‹ƒf[ƒ^ƒR[ƒh
-	u32 ServerVersion;													//!< Žæ“¾‘ÎÛƒoƒgƒ‹ƒf[ƒ^‚ÌƒT[ƒo[ƒo[ƒWƒ‡ƒ“
+	u64 Code;															//!< ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ¼ãƒ‰
+	u32 ServerVersion;													//!< å–å¾—å¯¾è±¡ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ã®ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 } POKE_NET_GDS_REQUEST_BATTLEDATA_GET;
 
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^Žæ“¾ƒŒƒXƒ|ƒ“ƒX
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 typedef struct {
-	long PID;															//!< ƒAƒbƒvƒ[ƒhŽÒ‚Ìƒvƒƒtƒ@ƒCƒ‹‚h‚c
-	u64 Code;															//!< ƒoƒgƒ‹ƒf[ƒ^ƒR[ƒh
-	GT_BATTLE_REC_RECV Data;											//!< ƒoƒgƒ‹ƒf[ƒ^
+	long PID;															//!< ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰è€…ã®ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ï¼©ï¼¤
+	u64 Code;															//!< ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ¼ãƒ‰
+	GT_BATTLE_REC_RECV Data;											//!< ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_RESPONSE_BATTLEDATA_GET;
 
 //------------------------------------
-//      ƒoƒgƒ‹ƒf[ƒ^‚¨‹C‚É“ü‚è“o˜^
+//      ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãŠæ°—ã«å…¥ã‚Šç™»éŒ²
 //------------------------------------
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^‚¨‹C‚É“ü‚è“o˜^Œ‹‰Ê
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãŠæ°—ã«å…¥ã‚Šç™»éŒ²çµæžœ
 enum POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE {
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_SUCCESS ,				//!< ‚¨‹C‚É“ü‚è“o˜^¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_ERROR_AUTH ,			//!< ƒ†[ƒU[”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_ERROR_ILLEGALCODE ,	//!< ƒR[ƒhƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_ERROR_UNKNOWN			//!< ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_SUCCESS ,				//!< ãŠæ°—ã«å…¥ã‚Šç™»éŒ²æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_ERROR_AUTH ,			//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_ERROR_ILLEGALCODE ,	//!< ã‚³ãƒ¼ãƒ‰ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_ERROR_UNKNOWN			//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^‚¨‹C‚É“ü‚è“o˜^ƒŠƒNƒGƒXƒg
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãŠæ°—ã«å…¥ã‚Šç™»éŒ²ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 typedef struct {
-	u64 Code;															//!< ƒoƒgƒ‹ƒf[ƒ^ƒR[ƒh
+	u64 Code;															//!< ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_REQUEST_BATTLEDATA_FAVORITE;
 
 /*
-//! ‚f‚c‚rƒoƒgƒ‹ƒf[ƒ^‚¨‹C‚É“ü‚è“o˜^ƒŒƒXƒ|ƒ“ƒX
+//! ï¼§ï¼¤ï¼³ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãŠæ°—ã«å…¥ã‚Šç™»éŒ²ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 typedef struct {
 } POKE_NET_GDS_RESPONSE_BATTLEDATA_FAVORITE;
 */
 
 #ifndef ___POKE_NET_BUILD_DS___
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-//        ŠÇ—ŽÒƒŠƒNƒGƒXƒg/ƒŒƒXƒ|ƒ“ƒX
+//        ç®¡ç†è€…ãƒªã‚¯ã‚¨ã‚¹ãƒˆ/ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 //------------------------------------
-//        ƒT[ƒo[ó‘ÔŽæ“¾
+//        ã‚µãƒ¼ãƒãƒ¼çŠ¶æ…‹å–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_STATUS {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_STATUS_SUCCESS ,				// Žæ“¾¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_STATUS_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_STATUS_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_STATUS_SUCCESS ,				// å–å¾—æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_STATUS_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_STATUS_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 enum {
-	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_STATUS_STOPPED ,			// ’âŽ~ó‘Ô
-	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_STATUS_ACTIVE ,			// ‰Ò“®ó‘Ô
-	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_STATUS_SHUTDOWN ,		// ƒVƒƒƒbƒgƒ_ƒEƒ“
-	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_STATUS_UNKNOWN ,			// •s–¾ó‘Ô(‰ž“š‚È‚µ)
+	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_STATUS_STOPPED ,			// åœæ­¢çŠ¶æ…‹
+	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_STATUS_ACTIVE ,			// ç¨¼å‹•çŠ¶æ…‹
+	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_STATUS_SHUTDOWN ,		// ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³
+	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_STATUS_UNKNOWN ,			// ä¸æ˜ŽçŠ¶æ…‹(å¿œç­”ãªã—)
 };
 
-#define POKE_NET_GDS_RESPONSE_ADMIN_SVR_MAXNUM	(256)			// Å‘åƒT[ƒo[”
+#define POKE_NET_GDS_RESPONSE_ADMIN_SVR_MAXNUM	(256)			// æœ€å¤§ã‚µãƒ¼ãƒãƒ¼æ•°
 
 enum {
-	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_SVRTYPE_ADMIN ,	// ŠÇ—ƒT[ƒo[
-	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_SVRTYPE_SLAVE ,	// ’ÊíƒT[ƒo[
+	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_SVRTYPE_ADMIN ,	// ç®¡ç†ã‚µãƒ¼ãƒãƒ¼
+	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_SVRTYPE_SLAVE ,	// é€šå¸¸ã‚µãƒ¼ãƒãƒ¼
 };
 
 typedef struct {
-	long Type;												// ƒT[ƒo[Ží(POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_SVRTYPE_xxxx)
-	long Status;											// ƒXƒe[ƒ^ƒX(POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_STATUS_xxxxx)
-	long MaxConnectCount;									// Å‘åƒRƒlƒNƒVƒ‡ƒ“‰Â”\”
-	long ConnectCount;										// ƒRƒlƒNƒVƒ‡ƒ“”
-	u64 LastUpdateTime;										// ÅIƒXƒe[ƒ^ƒXXVŽžŠÔ(0xYYYYMMDDHHMMSS)
-	unsigned long IP;										// ƒT[ƒo[IPƒAƒhƒŒƒX
-	long Request;											// ƒT[ƒo[‚Ö‘—‚Á‚Ä‚¢‚éƒŠƒNƒGƒXƒgƒR[ƒh
+	long Type;												// ã‚µãƒ¼ãƒãƒ¼ç¨®(POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_SVRTYPE_xxxx)
+	long Status;											// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹(POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA_STATUS_xxxxx)
+	long MaxConnectCount;									// æœ€å¤§ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³å¯èƒ½æ•°
+	long ConnectCount;										// ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³æ•°
+	u64 LastUpdateTime;										// æœ€çµ‚ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°æ™‚é–“(0xYYYYMMDDHHMMSS)
+	unsigned long IP;										// ã‚µãƒ¼ãƒãƒ¼IPã‚¢ãƒ‰ãƒ¬ã‚¹
+	long Request;											// ã‚µãƒ¼ãƒãƒ¼ã¸é€ã£ã¦ã„ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA;
 
 typedef struct {
-	long ServerCount;										// ƒT[ƒo[”
-	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA Status[0];	// ŠeƒT[ƒo[‚ÌƒXƒe[ƒ^ƒX
+	long ServerCount;										// ã‚µãƒ¼ãƒãƒ¼æ•°
+	POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUSDATA Status[0];	// å„ã‚µãƒ¼ãƒãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 } POKE_NET_GDS_RESPONSE_ADMIN_SVR_STATUS;
 
 //------------------------------------
-//        ƒT[ƒo[î•ñƒNƒŠƒA
+//        ã‚µãƒ¼ãƒãƒ¼æƒ…å ±ã‚¯ãƒªã‚¢
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_CLEARSTATUS {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_CLEARSTATUS_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_CLEARSTATUS_ERROR_AUTH ,		// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_CLEARSTATUS_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_CLEARSTATUS_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_CLEARSTATUS_ERROR_AUTH ,		// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_CLEARSTATUS_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 //------------------------------------
-//        ƒT[ƒo[‚Ö‚Ì–½—ß
+//        ã‚µãƒ¼ãƒãƒ¼ã¸ã®å‘½ä»¤
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_ERROR_AUTH ,				// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_ERROR_ILLEGALIP ,		// •s³‚ÈƒT[ƒo[‚h‚oƒAƒhƒŒƒX
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_ERROR_ILLEGALTYPE ,		// ’ÊíƒT[ƒo[ˆÈŠO‚É‚Í–½—ß‚Å‚«‚È‚¢
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_ERROR_ILLEGALSTATUS ,	// –½—ß‚Å‚«‚È‚¢ƒXƒe[ƒ^ƒXó‘Ô
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_ERROR_ALREADYREQUEST ,	// ‚·‚Å‚É—v‹‚ª‘—‚ç‚ê‚Ä‚¢‚éƒT[ƒo[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_ERROR_AUTH ,				// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_ERROR_ILLEGALIP ,		// ä¸æ­£ãªã‚µãƒ¼ãƒãƒ¼ï¼©ï¼°ã‚¢ãƒ‰ãƒ¬ã‚¹
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_ERROR_ILLEGALTYPE ,		// é€šå¸¸ã‚µãƒ¼ãƒãƒ¼ä»¥å¤–ã«ã¯å‘½ä»¤ã§ããªã„
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_ERROR_ILLEGALSTATUS ,	// å‘½ä»¤ã§ããªã„ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çŠ¶æ…‹
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_ERROR_ALREADYREQUEST ,	// ã™ã§ã«è¦æ±‚ãŒé€ã‚‰ã‚Œã¦ã„ã‚‹ã‚µãƒ¼ãƒãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_COMMAND_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 enum POKE_NET_GDS_REQUEST_ADMIN_SVR_COMMAND_REQCODE {
-	POKE_NET_GDS_REQUEST_ADMIN_SVR_COMMAND_NOREQ ,						// —v‹‚È‚µ
-	POKE_NET_GDS_REQUEST_ADMIN_SVR_COMMAND_START ,						// ŠJŽn—v‹
-	POKE_NET_GDS_REQUEST_ADMIN_SVR_COMMAND_STOP ,						// ’âŽ~—v‹
-	POKE_NET_GDS_REQUEST_ADMIN_SVR_COMMAND_SHUTDOWN ,					// ƒVƒƒƒbƒgƒ_ƒEƒ“—v‹
+	POKE_NET_GDS_REQUEST_ADMIN_SVR_COMMAND_NOREQ ,						// è¦æ±‚ãªã—
+	POKE_NET_GDS_REQUEST_ADMIN_SVR_COMMAND_START ,						// é–‹å§‹è¦æ±‚
+	POKE_NET_GDS_REQUEST_ADMIN_SVR_COMMAND_STOP ,						// åœæ­¢è¦æ±‚
+	POKE_NET_GDS_REQUEST_ADMIN_SVR_COMMAND_SHUTDOWN ,					// ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³è¦æ±‚
 };
 
 typedef struct {
-	short Command;														// ƒRƒ}ƒ“ƒh”Ô†(POKE_NET_GDS_REQUEST_ADMIN_SVR_COMMAND_xxx)
-	short Option;														// ƒIƒvƒVƒ‡ƒ“(Œ»Ý–¢Žg—p)
-	unsigned long IP;													// ŠJŽn‚·‚éƒT[ƒo[‚ÌIPƒAƒhƒŒƒX
+	short Command;														// ã‚³ãƒžãƒ³ãƒ‰ç•ªå·(POKE_NET_GDS_REQUEST_ADMIN_SVR_COMMAND_xxx)
+	short Option;														// ã‚ªãƒ—ã‚·ãƒ§ãƒ³(ç¾åœ¨æœªä½¿ç”¨)
+	unsigned long IP;													// é–‹å§‹ã™ã‚‹ã‚µãƒ¼ãƒãƒ¼ã®IPã‚¢ãƒ‰ãƒ¬ã‚¹
 } POKE_NET_GDS_REQUEST_ADMIN_SVR_COMMAND;
 
 //------------------------------------
-// ‰Šú‚c‚aÝ’è
+// åˆæœŸï¼¤ï¼¢è¨­å®š
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_DBINITIALIZE {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_DBINITIALIZE_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_DBINITIALIZE_ERROR_AUTH ,	// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_DBINITIALIZE_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_DBINITIALIZE_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_DBINITIALIZE_ERROR_AUTH ,	// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_SVR_DBINITIALIZE_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 //------------------------------------
-//  ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgF‘S‘Ìî•ñ
+//  ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆï¼šå…¨ä½“æƒ…å ±
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_STATUS {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_STATUS_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_STATUS_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_STATUS_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_STATUS_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_STATUS_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_STATUS_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-/* ƒŠƒNƒGƒXƒg‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_REQUEST_ADMIN_DRESSUPSHOT_STATUS;
 */
 
 typedef struct {
-	long TotalCount;										// “o˜^‘”
-	// ¡Œã’Ç‰Á—\’è
+	long TotalCount;										// ç™»éŒ²ç·æ•°
+	// ä»Šå¾Œè¿½åŠ äºˆå®š
 } POKE_NET_GDS_RESPONSE_ADMIN_DRESSUPSHOT_STATUS;
 
 //------------------------------------
-//  ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgFíœ
+//  ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆï¼šå‰Šé™¤
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_DELETE {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_DELETE_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_DELETE_ERROR_ILLEGALCODE ,	// ƒR[ƒhƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_DELETE_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_DELETE_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_DELETE_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_DELETE_ERROR_ILLEGALCODE ,	// ã‚³ãƒ¼ãƒ‰ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_DELETE_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_DELETE_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 typedef struct {
-	u64 Code;												// íœ‚µ‚½‚¢ƒR[ƒh
+	u64 Code;												// å‰Šé™¤ã—ãŸã„ã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_REQUEST_ADMIN_DRESSUPSHOT_DELETE;
 
-/* ƒŒƒXƒ|ƒ“ƒX‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_RESPONSE_ADMIN_DRESSUPSHOT_DELETE;
 */
 
 //------------------------------------
-//  ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgFƒNƒŠƒA
+//  ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆï¼šã‚¯ãƒªã‚¢
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_CLEAR {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_CLEAR_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_CLEAR_ERROR_PERMISSION ,		// ”F‚ß‚ç‚ê‚Ä‚¢‚È‚¢
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_CLEAR_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_CLEAR_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_CLEAR_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_CLEAR_ERROR_PERMISSION ,		// èªã‚ã‚‰ã‚Œã¦ã„ãªã„
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_CLEAR_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DRESSUPSHOT_CLEAR_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-/* ƒŠƒNƒGƒXƒg‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_REQUEST_ADMIN_DRESSUPSHOT_CLEAR;
 */
 
-/* ƒŒƒXƒ|ƒ“ƒX‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_RESPONSE_ADMIN_DRESSUPSHOT_CLEAR;
 */
 
 //------------------------------------
-//  ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgF‘S‘Ìî•ñ
+//  ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆï¼šå…¨ä½“æƒ…å ±
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_STATUS {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_STATUS_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_STATUS_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_STATUS_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_STATUS_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_STATUS_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_STATUS_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-/* ƒŠƒNƒGƒXƒg‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_REQUEST_ADMIN_BOXSHOT_STATUS;
 */
 
 typedef struct {
-	long TotalCount;										// “o˜^‘”
-	// ¡Œã’Ç‰Á—\’è
+	long TotalCount;										// ç™»éŒ²ç·æ•°
+	// ä»Šå¾Œè¿½åŠ äºˆå®š
 } POKE_NET_GDS_RESPONSE_ADMIN_BOXSHOT_STATUS;
 
 //------------------------------------
-//  ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgFíœ
+//  ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆï¼šå‰Šé™¤
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_DELETE {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_DELETE_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_DELETE_ERROR_ILLEGALCODE ,	// ƒR[ƒhƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_DELETE_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_DELETE_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_DELETE_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_DELETE_ERROR_ILLEGALCODE ,	// ã‚³ãƒ¼ãƒ‰ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_DELETE_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_DELETE_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 typedef struct {
-	u64 Code;												// íœ‚µ‚½‚¢ƒR[ƒh
+	u64 Code;												// å‰Šé™¤ã—ãŸã„ã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_REQUEST_ADMIN_BOXSHOT_DELETE;
 
-/* ƒŒƒXƒ|ƒ“ƒX‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_RESPONSE_ADMIN_BOXSHOT_DELETE;
 */
 
 //------------------------------------
-//  ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgFƒNƒŠƒA
+//  ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆï¼šã‚¯ãƒªã‚¢
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_CLEAR {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_CLEAR_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_CLEAR_ERROR_PERMISSION ,		// ”F‚ß‚ç‚ê‚Ä‚¢‚È‚¢
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_CLEAR_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_CLEAR_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_CLEAR_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_CLEAR_ERROR_PERMISSION ,		// èªã‚ã‚‰ã‚Œã¦ã„ãªã„
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_CLEAR_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BOXSHOT_CLEAR_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-/* ƒŠƒNƒGƒXƒg‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_REQUEST_ADMIN_BOXSHOT_CLEAR;
 */
 
-/* ƒŒƒXƒ|ƒ“ƒX‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_RESPONSE_ADMIN_BOXSHOT_CLEAR;
 */
 
 //------------------------------------
-//  ƒoƒgƒ‹ƒf[ƒ^F‘S‘Ìî•ñ
+//  ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ï¼šå…¨ä½“æƒ…å ±
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_STATUS {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_STATUS_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_STATUS_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_STATUS_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_STATUS_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_STATUS_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_STATUS_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-/* ƒŠƒNƒGƒXƒg‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_STATUS;
 */
 
 typedef struct {
-	long TotalRankingCount;									// Œ»Ý‚Ü‚Å‚Ìƒ‰ƒ“ƒLƒ“ƒOŠm’è‰ñ”
-	long TotalRegistCount;									// “o˜^‘”
-	long TotalEventCount;									// ƒCƒxƒ“ƒg“o˜^‘”
-	// ¡Œã’Ç‰Á—\’è
+	long TotalRankingCount;									// ç¾åœ¨ã¾ã§ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ç¢ºå®šå›žæ•°
+	long TotalRegistCount;									// ç™»éŒ²ç·æ•°
+	long TotalEventCount;									// ã‚¤ãƒ™ãƒ³ãƒˆç™»éŒ²ç·æ•°
+	// ä»Šå¾Œè¿½åŠ äºˆå®š
 } POKE_NET_GDS_RESPONSE_ADMIN_BATTLEDATA_STATUS;
 
 //------------------------------------
-//  ƒoƒgƒ‹ƒf[ƒ^Fíœ
+//  ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ï¼šå‰Šé™¤
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_DELETE {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_DELETE_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_DELETE_ERROR_ILLEGALCODE ,	// ƒR[ƒhƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_DELETE_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_DELETE_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_DELETE_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_DELETE_ERROR_ILLEGALCODE ,	// ã‚³ãƒ¼ãƒ‰ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_DELETE_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_DELETE_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 enum POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA {
-	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_ALL ,					// ‘S‘Ì
-	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_REGIST ,				// “o˜^ƒGƒŠƒA
-	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_TODAYRANKING ,		// ¡“ú‚Ìƒ‰ƒ“ƒLƒ“ƒO
-	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_YESTERDAYRANKING ,	// Šm’è‚³‚ê‚½æ“úƒ‰ƒ“ƒLƒ“ƒOƒGƒŠƒA
-	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_TODAYEXRANKING ,		// ¡“ú‚ÌŠg’£ƒ‰ƒ“ƒLƒ“ƒO
-	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_YESTERDAYEXRANKING ,	// Šm’è‚³‚ê‚½æ“úŠg’£ƒ‰ƒ“ƒLƒ“ƒOƒGƒŠƒA
-	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_EVENT ,				// ƒCƒxƒ“ƒgƒGƒŠƒA
+	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_ALL ,					// å…¨ä½“
+	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_REGIST ,				// ç™»éŒ²ã‚¨ãƒªã‚¢
+	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_TODAYRANKING ,		// ä»Šæ—¥ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°
+	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_YESTERDAYRANKING ,	// ç¢ºå®šã•ã‚ŒãŸå…ˆæ—¥ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¨ãƒªã‚¢
+	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_TODAYEXRANKING ,		// ä»Šæ—¥ã®æ‹¡å¼µãƒ©ãƒ³ã‚­ãƒ³ã‚°
+	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_YESTERDAYEXRANKING ,	// ç¢ºå®šã•ã‚ŒãŸå…ˆæ—¥æ‹¡å¼µãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¨ãƒªã‚¢
+	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_EVENT ,				// ã‚¤ãƒ™ãƒ³ãƒˆã‚¨ãƒªã‚¢
 };
 
 typedef struct {
-	long TargetArea;										// ƒ^[ƒQƒbƒgƒGƒŠƒA(POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_xxxx)
-	u64 Code;												// íœ‚µ‚½‚¢ƒR[ƒh
+	long TargetArea;										// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚¨ãƒªã‚¢(POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE_AREA_xxxx)
+	u64 Code;												// å‰Šé™¤ã—ãŸã„ã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_DELETE;
 
-/* ƒŒƒXƒ|ƒ“ƒX‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_RESPONSE_ADMIN_BATTLEDATA_DELETE;
 */
 
 //------------------------------------
-//  ƒoƒgƒ‹ƒf[ƒ^FƒNƒŠƒA
+//  ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ï¼šã‚¯ãƒªã‚¢
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_CLEAR {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_CLEAR_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_CLEAR_ERROR_PERMISSION ,		// ”F‚ß‚ç‚ê‚Ä‚¢‚È‚¢
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_CLEAR_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_CLEAR_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_CLEAR_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_CLEAR_ERROR_PERMISSION ,		// èªã‚ã‚‰ã‚Œã¦ã„ãªã„
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_CLEAR_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_CLEAR_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-/*ƒŠƒNƒGƒXƒg‚ÍƒR[ƒh‚Ì‚Ý
+/*ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_CLEAR;
 */
 
-/* ƒŒƒXƒ|ƒ“ƒX‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_RESPONSE_ADMIN_BATTLEDATA_CLEAR;
 */
 
 
 //------------------------------------
-//  ƒoƒgƒ‹ƒf[ƒ^Fƒ‰ƒ“ƒLƒ“ƒO—š—ðŽæ“¾
+//  ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ï¼šãƒ©ãƒ³ã‚­ãƒ³ã‚°å±¥æ­´å–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_RANKHISTORY {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_RANKHISTORY_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_RANKHISTORY_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_RANKHISTORY_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_RANKHISTORY_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_RANKHISTORY_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_RANKHISTORY_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 enum POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_RANKHISTORY_TYPE {
-	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_RANKHISTORY_TYPE_RANKING ,			// ’Êíƒ‰ƒ“ƒLƒ“ƒO
-	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_RANKHISTORY_TYPE_EXRANKING ,			// Šg’£ƒ‰ƒ“ƒLƒ“ƒO
-	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_RANKHISTORY_TYPE_NEW ,				// ÅV
+	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_RANKHISTORY_TYPE_RANKING ,			// é€šå¸¸ãƒ©ãƒ³ã‚­ãƒ³ã‚°
+	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_RANKHISTORY_TYPE_EXRANKING ,			// æ‹¡å¼µãƒ©ãƒ³ã‚­ãƒ³ã‚°
+	POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_RANKHISTORY_TYPE_NEW ,				// æœ€æ–°
 };
 
-typedef struct {											// - ƒ‰ƒ“ƒLƒ“ƒO—š—ðƒŠƒNƒGƒXƒg -
-	long Type;												// ƒ^ƒCƒv(POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_RANKHISTORY_TYPE_xxxx)
-	long StartBefore;										// Žæ“¾ŠJŽn‰ß‹Ž“ú”(Œ»Ý‚©‚çStartBefore“ú‘O‚Ìƒ‰ƒ“ƒLƒ“ƒO‚©‚çŽæ“¾)
-	long Count;												// Žæ“¾‚·‚éƒ‰ƒ“ƒLƒ“ƒO“ú”
+typedef struct {											// - ãƒ©ãƒ³ã‚­ãƒ³ã‚°å±¥æ­´ãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
+	long Type;												// ã‚¿ã‚¤ãƒ—(POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_RANKHISTORY_TYPE_xxxx)
+	long StartBefore;										// å–å¾—é–‹å§‹éŽåŽ»æ—¥æ•°(ç¾åœ¨ã‹ã‚‰StartBeforeæ—¥å‰ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‹ã‚‰å–å¾—)
+	long Count;												// å–å¾—ã™ã‚‹ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ—¥æ•°
 } POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_RANKHISTORY;
 
-typedef struct {											// - ƒ‰ƒ“ƒLƒ“ƒO“àƒf[ƒ^î•ñ -
-	s32 PID;												// ƒvƒƒtƒ@ƒCƒ‹‚h‚c
-	u64 Code;												// ƒoƒgƒ‹ƒf[ƒ^ƒR[ƒh
-	u64 Point;												// Šl“¾ƒ|ƒCƒ“ƒg
-	u64 RegistTime;											// “o˜^“úŽž(0xYYYYMMDDHHMMSS)
-	u32 FavoriteCount;										// ‚¨‹C‚É“ü‚è“o˜^”
-	GT_GDS_PROFILE Profile;									// ƒvƒƒtƒB[ƒ‹
-	GT_BATTLE_REC_OUTLINE_RECV Data;						// ƒoƒgƒ‹ƒf[ƒ^ƒwƒbƒ_
+typedef struct {											// - ãƒ©ãƒ³ã‚­ãƒ³ã‚°å†…ãƒ‡ãƒ¼ã‚¿æƒ…å ± -
+	s32 PID;												// ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ï¼©ï¼¤
+	u64 Code;												// ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ¼ãƒ‰
+	u64 Point;												// ç²å¾—ãƒã‚¤ãƒ³ãƒˆ
+	u64 RegistTime;											// ç™»éŒ²æ—¥æ™‚(0xYYYYMMDDHHMMSS)
+	u32 FavoriteCount;										// ãŠæ°—ã«å…¥ã‚Šç™»éŒ²æ•°
+	GT_GDS_PROFILE Profile;									// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+	GT_BATTLE_REC_OUTLINE_RECV Data;						// ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€
 } POKE_NET_GDS_RESPONSE_ADMIN_BATTLEDATA_RANKHISTORY_PARAM;
 
-typedef struct {														// - ƒ‰ƒ“ƒLƒ“ƒOî•ñ -
-	long Count;															// ƒqƒbƒg”
-	POKE_NET_GDS_RESPONSE_ADMIN_BATTLEDATA_RANKHISTORY_PARAM List[0];	// Šeƒf[ƒ^
+typedef struct {														// - ãƒ©ãƒ³ã‚­ãƒ³ã‚°æƒ…å ± -
+	long Count;															// ãƒ’ãƒƒãƒˆæ•°
+	POKE_NET_GDS_RESPONSE_ADMIN_BATTLEDATA_RANKHISTORY_PARAM List[0];	// å„ãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_RESPONSE_ADMIN_BATTLEDATA_RANKHISTORY_RANKING;
 
-typedef struct {											// - ƒ‰ƒ“ƒLƒ“ƒO—š—ðƒŒƒXƒ|ƒ“ƒX -
-	long HitCount;											// ƒqƒbƒg‚µ‚½ƒ‰ƒ“ƒLƒ“ƒO”
-	char RankingList[0];									// ƒ‰ƒ“ƒLƒ“ƒOƒŠƒXƒg
+typedef struct {											// - ãƒ©ãƒ³ã‚­ãƒ³ã‚°å±¥æ­´ãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
+	long HitCount;											// ãƒ’ãƒƒãƒˆã—ãŸãƒ©ãƒ³ã‚­ãƒ³ã‚°æ•°
+	char RankingList[0];									// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒªã‚¹ãƒˆ
 															// (sizeof(POKE_NET_GDS_RESPONSE_ADMIN_BATTLEDATA_RANKHISTORY_RANKING) +
-															//	sizeof(POKE_NET_GDS_RESPONSE_ADMIN_BATTLEDATA_RANKHISTORY_PARAM) * ‚»‚ê‚¼‚ê‚Ìƒ‰ƒ“ƒLƒ“ƒO“à‚ÌCount) * HitCount
+															//	sizeof(POKE_NET_GDS_RESPONSE_ADMIN_BATTLEDATA_RANKHISTORY_PARAM) * ãã‚Œãžã‚Œã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°å†…ã®Count) * HitCount
 } POKE_NET_GDS_RESPONSE_ADMIN_BATTLEDATA_RANKHISTORY;
 
 //------------------------------------
-//  ƒoƒgƒ‹ƒf[ƒ^FƒCƒxƒ“ƒg“o˜^—v‹
+//  ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ï¼šã‚¤ãƒ™ãƒ³ãƒˆç™»éŒ²è¦æ±‚
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EVENTFLAG {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EVENTFLAG_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EVENTFLAG_ERROR_ILLEGALCODE ,		// ƒR[ƒhƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EVENTFLAG_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EVENTFLAG_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EVENTFLAG_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EVENTFLAG_ERROR_ILLEGALCODE ,		// ã‚³ãƒ¼ãƒ‰ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EVENTFLAG_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EVENTFLAG_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 typedef struct {
-	u64 Code;												// ƒCƒxƒ“ƒg—Ìˆæ‚ÖˆÚ“®‚³‚¹‚½‚¢ƒf[ƒ^‚ÌƒR[ƒh
+	u64 Code;												// ã‚¤ãƒ™ãƒ³ãƒˆé ˜åŸŸã¸ç§»å‹•ã•ã›ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_EVENTFLAG;
 
 /*
@@ -786,16 +786,16 @@ typedef struct {
 */
 
 //------------------------------------
-//  ƒoƒgƒ‹ƒf[ƒ^FŠÇ—ƒpƒ‰ƒ[ƒ^Žæ“¾
+//  ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ï¼šç®¡ç†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_GETPARAM {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_GETPARAM_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_GETPARAM_ERROR_AUTH ,				// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_GETPARAM_ERROR_UNKNOWN ,			// ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_GETPARAM_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_GETPARAM_ERROR_AUTH ,				// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_GETPARAM_ERROR_UNKNOWN ,			// ã‚¨ãƒ©ãƒ¼
 };
 
-#define	POKE_NET_GDS_BATTLEDATA_GETPARAM_WEIGHT_MAXNUM	(30+2)			// ‡ˆÊ‚É‚æ‚éƒpƒ‰ƒ[ƒ^”(‡ˆÊ”+‚»‚Ì‘¼/ÅV)
-#define	POKE_NET_GDS_BATTLEDATA_GETPARAM_SCALING_MAXNUM	(10+1)			// ‡ˆÊ‚É‚æ‚éƒpƒ‰ƒ[ƒ^”
+#define	POKE_NET_GDS_BATTLEDATA_GETPARAM_WEIGHT_MAXNUM	(30+2)			// é †ä½ã«ã‚ˆã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°(é †ä½æ•°+ãã®ä»–/æœ€æ–°)
+#define	POKE_NET_GDS_BATTLEDATA_GETPARAM_SCALING_MAXNUM	(10+1)			// é †ä½ã«ã‚ˆã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°
 
 /*
 typedef struct {
@@ -803,30 +803,30 @@ typedef struct {
 */
 
 typedef struct {
-	long Weight[POKE_NET_GDS_BATTLEDATA_GETPARAM_WEIGHT_MAXNUM];		// ƒ|ƒCƒ“ƒgd‚Ý‚Ã‚¯
-	long Scaling[POKE_NET_GDS_BATTLEDATA_GETPARAM_SCALING_MAXNUM];		// ‡ˆÊ‚É‚æ‚éƒ|ƒCƒ“ƒg”{—¦
-	s64 InitPoint;														// ‰Šúƒ|ƒCƒ“ƒg·•ª’l
-	s64 Bias;															// •½’R‰»è‡’l
+	long Weight[POKE_NET_GDS_BATTLEDATA_GETPARAM_WEIGHT_MAXNUM];		// ãƒã‚¤ãƒ³ãƒˆé‡ã¿ã¥ã‘
+	long Scaling[POKE_NET_GDS_BATTLEDATA_GETPARAM_SCALING_MAXNUM];		// é †ä½ã«ã‚ˆã‚‹ãƒã‚¤ãƒ³ãƒˆå€çŽ‡
+	s64 InitPoint;														// åˆæœŸãƒã‚¤ãƒ³ãƒˆå·®åˆ†å€¤
+	s64 Bias;															// å¹³å¦åŒ–é–¾å€¤
 } POKE_NET_GDS_RESPONSE_ADMIN_BATTLEDATA_GETPARAM;
 
 //------------------------------------
-//  ƒoƒgƒ‹ƒf[ƒ^FŠÇ—ƒpƒ‰ƒ[ƒ^Ý’è
+//  ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ï¼šç®¡ç†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_SETPARAM {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_SETPARAM_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_SETPARAM_ERROR_AUTH ,				// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_SETPARAM_ERROR_PARAMS ,			// ƒpƒ‰ƒ[ƒ^ƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_SETPARAM_ERROR_UNKNOWN ,			// ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_SETPARAM_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_SETPARAM_ERROR_AUTH ,				// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_SETPARAM_ERROR_PARAMS ,			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_SETPARAM_ERROR_UNKNOWN ,			// ã‚¨ãƒ©ãƒ¼
 };
 
-#define	POKE_NET_GDS_BATTLEDATA_SETPARAM_WEIGHT_MAXNUM	(30+2)			// ‡ˆÊ‚É‚æ‚éƒpƒ‰ƒ[ƒ^”(‡ˆÊ”+‚»‚Ì‘¼/ÅV)
-#define	POKE_NET_GDS_BATTLEDATA_SETPARAM_SCALING_MAXNUM	(10+1)			// ‡ˆÊ‚É‚æ‚éƒpƒ‰ƒ[ƒ^”
+#define	POKE_NET_GDS_BATTLEDATA_SETPARAM_WEIGHT_MAXNUM	(30+2)			// é †ä½ã«ã‚ˆã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°(é †ä½æ•°+ãã®ä»–/æœ€æ–°)
+#define	POKE_NET_GDS_BATTLEDATA_SETPARAM_SCALING_MAXNUM	(10+1)			// é †ä½ã«ã‚ˆã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°
 
 typedef struct {
-	long Weight[POKE_NET_GDS_BATTLEDATA_SETPARAM_WEIGHT_MAXNUM];		// ƒ|ƒCƒ“ƒgd‚Ý‚Ã‚¯
-	long Scaling[POKE_NET_GDS_BATTLEDATA_SETPARAM_SCALING_MAXNUM];		// ‡ˆÊ‚É‚æ‚éƒ|ƒCƒ“ƒg”{—¦
-	s64 InitPoint;														// ‰Šúƒ|ƒCƒ“ƒg·•ª’l
-	s64 Bias;															// •½’R‰»è‡’l
+	long Weight[POKE_NET_GDS_BATTLEDATA_SETPARAM_WEIGHT_MAXNUM];		// ãƒã‚¤ãƒ³ãƒˆé‡ã¿ã¥ã‘
+	long Scaling[POKE_NET_GDS_BATTLEDATA_SETPARAM_SCALING_MAXNUM];		// é †ä½ã«ã‚ˆã‚‹ãƒã‚¤ãƒ³ãƒˆå€çŽ‡
+	s64 InitPoint;														// åˆæœŸãƒã‚¤ãƒ³ãƒˆå·®åˆ†å€¤
+	s64 Bias;															// å¹³å¦åŒ–é–¾å€¤
 } POKE_NET_GDS_REQUEST_ADMIN_BATTLEDATA_SETPARAM;
 
 /*
@@ -835,12 +835,12 @@ typedef struct {
 */
 
 //------------------------------------
-//  ƒoƒgƒ‹ƒf[ƒ^F‹­§Šm’èˆ—
+//  ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ï¼šå¼·åˆ¶ç¢ºå®šå‡¦ç†
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EXECDECISION {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EXECDECISION_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EXECDECISION_ERROR_AUTH ,				// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EXECDECISION_ERROR_UNKNOWN ,			// ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EXECDECISION_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EXECDECISION_ERROR_AUTH ,				// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_BATTLEDATA_EXECDECISION_ERROR_UNKNOWN ,			// ã‚¨ãƒ©ãƒ¼
 };
 
 /*
@@ -854,137 +854,137 @@ typedef struct {
 */
 
 //------------------------------------
-//  ƒ‰ƒ“ƒLƒ“ƒOF‘S‘Ìî•ñ
+//  ãƒ©ãƒ³ã‚­ãƒ³ã‚°ï¼šå…¨ä½“æƒ…å ±
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_STATUS {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_STATUS_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_STATUS_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_STATUS_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_STATUS_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_STATUS_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_STATUS_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-/* ƒŠƒNƒGƒXƒg‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_REQUEST_ADMIN_RANKING_STATUS;
 */
 
 typedef struct {
-	long TotalRankingCount;									// Œ»Ý‚Ü‚Å‚Ìƒ‰ƒ“ƒLƒ“ƒO‰ñ”
-	long ThisWeekRankingNo;									// Œ»Ý‚Ìƒ‰ƒ“ƒLƒ“ƒO‚ÌŠJÃ”Ô†
-	// ¡Œã’Ç‰Á—\’è
+	long TotalRankingCount;									// ç¾åœ¨ã¾ã§ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°å›žæ•°
+	long ThisWeekRankingNo;									// ç¾åœ¨ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã®é–‹å‚¬ç•ªå·
+	// ä»Šå¾Œè¿½åŠ äºˆå®š
 } POKE_NET_GDS_RESPONSE_ADMIN_RANKING_STATUS;
 
 
 //------------------------------------
-//  ƒ‰ƒ“ƒLƒ“ƒOFƒ‰ƒ“ƒLƒ“ƒO—š—ðŽæ“¾
+//  ãƒ©ãƒ³ã‚­ãƒ³ã‚°ï¼šãƒ©ãƒ³ã‚­ãƒ³ã‚°å±¥æ­´å–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_HISTORY {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_HISTORY_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_HISTORY_ERROR_AUTH ,				// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_HISTORY_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_HISTORY_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_HISTORY_ERROR_AUTH ,				// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_HISTORY_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-typedef struct {											// - ƒ‰ƒ“ƒLƒ“ƒO—š—ðƒŠƒNƒGƒXƒg -
-	long Type;												// ƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒv(-1:Žw’è‚È‚µ)
-	long StartBefore;										// Žæ“¾ŠJŽn‰ß‹ŽŠJÃ‰ñ”(Œ»Ý‚©‚çStartBefore‰ñ‘O‚Ìƒ‰ƒ“ƒLƒ“ƒO‚©‚çŽæ“¾)
-	long Count;												// Žæ“¾‚·‚éƒ‰ƒ“ƒLƒ“ƒO‰ñ”
+typedef struct {											// - ãƒ©ãƒ³ã‚­ãƒ³ã‚°å±¥æ­´ãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
+	long Type;												// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—(-1:æŒ‡å®šãªã—)
+	long StartBefore;										// å–å¾—é–‹å§‹éŽåŽ»é–‹å‚¬å›žæ•°(ç¾åœ¨ã‹ã‚‰StartBeforeå›žå‰ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‹ã‚‰å–å¾—)
+	long Count;												// å–å¾—ã™ã‚‹ãƒ©ãƒ³ã‚­ãƒ³ã‚°å›žæ•°
 } POKE_NET_GDS_REQUEST_ADMIN_RANKING_HISTORY;
 
 
-typedef struct {											// - ƒ‰ƒ“ƒLƒ“ƒO—š—ðƒŒƒXƒ|ƒ“ƒX -
-	long Type;												// Žæ“¾‚µ‚½ƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒv
-	long HitCount;											// ƒqƒbƒg‚µ‚½ƒ‰ƒ“ƒLƒ“ƒO”
-	GT_LAST_WEEK_RANKING_DATA Ranking[0];					// ƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^(Type:-1‚ÌŽž‚ÍGT_RANKING_WEEK_NUMŒÂ‚Å‚Pƒ‰ƒ“ƒLƒ“ƒO)
+typedef struct {											// - ãƒ©ãƒ³ã‚­ãƒ³ã‚°å±¥æ­´ãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
+	long Type;												// å–å¾—ã—ãŸãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—
+	long HitCount;											// ãƒ’ãƒƒãƒˆã—ãŸãƒ©ãƒ³ã‚­ãƒ³ã‚°æ•°
+	GT_LAST_WEEK_RANKING_DATA Ranking[0];					// ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿(Type:-1ã®æ™‚ã¯GT_RANKING_WEEK_NUMå€‹ã§ï¼‘ãƒ©ãƒ³ã‚­ãƒ³ã‚°)
 } POKE_NET_GDS_RESPONSE_ADMIN_RANKING_HISTORY;
 
 
 //------------------------------------
-//  ƒ‰ƒ“ƒLƒ“ƒOFƒ†[ƒU[ƒpƒ‰ƒ[ƒ^Žæ“¾
+//  ãƒ©ãƒ³ã‚­ãƒ³ã‚°ï¼šãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GET_ERROR_AUTH ,		// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GET_ERROR_AUTH ,		// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-#define POKE_NET_GDS_ADMIN_RANKING_USER_STATUS_INEFFECTIVE (0)				// –³Œø
-#define POKE_NET_GDS_ADMIN_RANKING_USER_STATUS_EFFECTIVE   (1)			// —LŒø
+#define POKE_NET_GDS_ADMIN_RANKING_USER_STATUS_INEFFECTIVE (0)				// ç„¡åŠ¹
+#define POKE_NET_GDS_ADMIN_RANKING_USER_STATUS_EFFECTIVE   (1)			// æœ‰åŠ¹
 
-#define POKE_NET_GDS_ADMIN_RANKING_USER_MAXCOUNT    (50)									// ƒpƒ‰ƒ[ƒ^‚ª•Ô‚Á‚Ä‚­‚éÅ‘åƒvƒŒƒCƒ„[”
-#define POKE_NET_GDS_ADMIN_RANKING_USER_PARAMCOUNT  (GT_RANKING_MYDATA_RANKING_TYPE_MAX)	// ƒpƒ‰ƒ[ƒ^‚ª•Ô‚Á‚Ä‚­‚éÅ‘åƒvƒŒƒCƒ„[”
+#define POKE_NET_GDS_ADMIN_RANKING_USER_MAXCOUNT    (50)									// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒè¿”ã£ã¦ãã‚‹æœ€å¤§ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°
+#define POKE_NET_GDS_ADMIN_RANKING_USER_PARAMCOUNT  (GT_RANKING_MYDATA_RANKING_TYPE_MAX)	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒè¿”ã£ã¦ãã‚‹æœ€å¤§ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°
 
-typedef struct {													// - ƒ‰ƒ“ƒLƒ“ƒO ƒpƒ‰ƒ[ƒ^Žæ“¾ƒŠƒNƒGƒXƒg -
-	long PID;														// ƒ†[ƒU[‚Ìƒvƒƒtƒ@ƒCƒ‹‚h‚c(0:‘S–³Œøƒ†[ƒU[)
-	long PageNo;													// ƒy[ƒW”Ô†(POKE_NET_GDS_ADMIN_RANKING_USER_MAXCOUNT = ‚Pƒy[ƒW)
+typedef struct {													// - ãƒ©ãƒ³ã‚­ãƒ³ã‚° ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
+	long PID;														// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã®ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ï¼©ï¼¤(0:å…¨ç„¡åŠ¹ãƒ¦ãƒ¼ã‚¶ãƒ¼)
+	long PageNo;													// ãƒšãƒ¼ã‚¸ç•ªå·(POKE_NET_GDS_ADMIN_RANKING_USER_MAXCOUNT = ï¼‘ãƒšãƒ¼ã‚¸)
 } POKE_NET_GDS_REQUEST_ADMIN_RANKING_GET;
 
-typedef struct {													// - ƒ‰ƒ“ƒLƒ“ƒO ƒ†[ƒU[ƒpƒ‰ƒ[ƒ^Žæ“¾ -
+typedef struct {													// - ãƒ©ãƒ³ã‚­ãƒ³ã‚° ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾— -
 	long PID;														// PID
-	long Status;													// Œ»Ý‚ÌƒXƒe[ƒ^ƒX(POKE_NET_GDS_ADMIN_RANKING_USER_STATUS_xxxx)
-	u64 Params[POKE_NET_GDS_ADMIN_RANKING_USER_PARAMCOUNT];			// Šeƒpƒ‰ƒ[ƒ^(ƒT[ƒo[‚É•ÛŽ‚µ‚Ä‚¢‚éƒ†[ƒU[–ˆ‚Ì“¾“_)
+	long Status;													// ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹(POKE_NET_GDS_ADMIN_RANKING_USER_STATUS_xxxx)
+	u64 Params[POKE_NET_GDS_ADMIN_RANKING_USER_PARAMCOUNT];			// å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(ã‚µãƒ¼ãƒãƒ¼ã«ä¿æŒã—ã¦ã„ã‚‹ãƒ¦ãƒ¼ã‚¶ãƒ¼æ¯Žã®å¾—ç‚¹)
 } POKE_NET_GDS_RESPONSE_ADMIN_RANKING_GETPARAM;
 
-typedef struct {													// - ƒ‰ƒ“ƒLƒ“ƒO ƒ†[ƒU[ƒpƒ‰ƒ[ƒ^Žæ“¾ -
-	long Count;														// ƒ†[ƒU[”
-	POKE_NET_GDS_RESPONSE_ADMIN_RANKING_GETPARAM List[0];			// ƒ†[ƒU[ƒpƒ‰ƒ[ƒ^
-																	// Å‘å‚Å * POKE_NET_GDS_ADMIN_RANKING_USER_MAXCOUNT
+typedef struct {													// - ãƒ©ãƒ³ã‚­ãƒ³ã‚° ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾— -
+	long Count;														// ãƒ¦ãƒ¼ã‚¶ãƒ¼æ•°
+	POKE_NET_GDS_RESPONSE_ADMIN_RANKING_GETPARAM List[0];			// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+																	// æœ€å¤§ã§ * POKE_NET_GDS_ADMIN_RANKING_USER_MAXCOUNT
 } POKE_NET_GDS_RESPONSE_ADMIN_RANKING_GET;
 
 
 //------------------------------------
-//  ƒ‰ƒ“ƒLƒ“ƒOFƒ†[ƒU[ƒpƒ‰ƒ[ƒ^Ý’è
+//  ãƒ©ãƒ³ã‚­ãƒ³ã‚°ï¼šãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SET_ERROR_AUTH ,		// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SET_ERROR_AUTH ,		// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-typedef struct {													// - ƒ‰ƒ“ƒLƒ“ƒO ƒ†[ƒU[ƒpƒ‰ƒ[ƒ^Ý’è -
-	long PID;														// PID(0:–³Œø)
-	long Status;													// Œ»Ý‚ÌƒXƒe[ƒ^ƒX(POKE_NET_GDS_ADMIN_RANKING_USER_STATUS_xxxx)
-	u64 Params[POKE_NET_GDS_ADMIN_RANKING_USER_PARAMCOUNT];			// Šeƒpƒ‰ƒ[ƒ^(ƒT[ƒo[‚É•ÛŽ‚µ‚Ä‚¢‚éƒ†[ƒU[–ˆ‚Ì“¾“_)
+typedef struct {													// - ãƒ©ãƒ³ã‚­ãƒ³ã‚° ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š -
+	long PID;														// PID(0:ç„¡åŠ¹)
+	long Status;													// ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹(POKE_NET_GDS_ADMIN_RANKING_USER_STATUS_xxxx)
+	u64 Params[POKE_NET_GDS_ADMIN_RANKING_USER_PARAMCOUNT];			// å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(ã‚µãƒ¼ãƒãƒ¼ã«ä¿æŒã—ã¦ã„ã‚‹ãƒ¦ãƒ¼ã‚¶ãƒ¼æ¯Žã®å¾—ç‚¹)
 } POKE_NET_GDS_REQUEST_ADMIN_RANKING_SETPARAM;
 
-typedef struct {																						// - ƒ‰ƒ“ƒLƒ“ƒO ƒ†[ƒU[ƒpƒ‰ƒ[ƒ^Ý’è -
-	long Count;																							// ƒ†[ƒU[”
-	POKE_NET_GDS_REQUEST_ADMIN_RANKING_SETPARAM List[POKE_NET_GDS_ADMIN_RANKING_USER_MAXCOUNT];			// ƒ†[ƒU[ƒpƒ‰ƒ[ƒ^
+typedef struct {																						// - ãƒ©ãƒ³ã‚­ãƒ³ã‚° ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š -
+	long Count;																							// ãƒ¦ãƒ¼ã‚¶ãƒ¼æ•°
+	POKE_NET_GDS_REQUEST_ADMIN_RANKING_SETPARAM List[POKE_NET_GDS_ADMIN_RANKING_USER_MAXCOUNT];			// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 } POKE_NET_GDS_REQUEST_ADMIN_RANKING_SET;
 
-/* ƒŒƒXƒ|ƒ“ƒX‚ÍƒR[ƒh‚Ì‚Ý
-typedef struct {													// - ƒ†[ƒU[ƒpƒ‰ƒ[ƒ^Ý’èƒŒƒXƒ|ƒ“ƒX -
+/* ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
+typedef struct {													// - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®šãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
 } POKE_NET_GDS_RESPONSE_ADMIN_RANKING_SET;
 */
 
 //------------------------------------
-//  ƒ‰ƒ“ƒLƒ“ƒOFƒNƒŠƒA
+//  ãƒ©ãƒ³ã‚­ãƒ³ã‚°ï¼šã‚¯ãƒªã‚¢
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_CLEAR {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_CLEAR_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_CLEAR_ERROR_PERMISSION ,		// ”F‚ß‚ç‚ê‚Ä‚¢‚È‚¢
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_CLEAR_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_CLEAR_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_CLEAR_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_CLEAR_ERROR_PERMISSION ,		// èªã‚ã‚‰ã‚Œã¦ã„ãªã„
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_CLEAR_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_CLEAR_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-/* ƒŠƒNƒGƒXƒg‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_REQUEST_ADMIN_RANKING_CLEAR;
 */
 
-/* ƒŒƒXƒ|ƒ“ƒX‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_RESPONSE_ADMIN_RANKING_CLEAR;
 */
 
 //------------------------------------
-//  ƒ‰ƒ“ƒLƒ“ƒOFƒXƒPƒWƒ…[ƒ‹Žæ“¾
+//  ãƒ©ãƒ³ã‚­ãƒ³ã‚°ï¼šã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«å–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GETSCHEDULE {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GETSCHEDULE_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GETSCHEDULE_ERROR_AUTH ,				// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GETSCHEDULE_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GETSCHEDULE_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GETSCHEDULE_ERROR_AUTH ,				// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_GETSCHEDULE_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-/* ƒŠƒNƒGƒXƒg‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_REQUEST_ADMIN_RANKING_GETSCHEDULE;
 */
@@ -992,7 +992,7 @@ typedef struct {
 #define	POKE_NET_GDS_RESPONSE_ADMIN_RANKING_SCHEDULE_CATEGORYCOUNT	(3)
 #define	POKE_NET_GDS_RESPONSE_ADMIN_RANKING_SCHEDULE_ITEMCOUNT		(256)
 
-// ƒXƒPƒWƒ…[ƒ‹ƒŠƒXƒg
+// ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒªã‚¹ãƒˆ
 typedef struct {
 	long CurrentWeekNo;
 	long CurrentNo[POKE_NET_GDS_RESPONSE_ADMIN_RANKING_SCHEDULE_CATEGORYCOUNT];
@@ -1000,34 +1000,34 @@ typedef struct {
 } POKE_NET_GDS_RESPONSE_ADMIN_RANKING_GETSCHEDULE;
 
 //------------------------------------
-//  ƒ‰ƒ“ƒLƒ“ƒOFƒXƒPƒWƒ…[ƒ‹Ý’è
+//  ãƒ©ãƒ³ã‚­ãƒ³ã‚°ï¼šã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«è¨­å®š
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SETSCHEDULE {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SETSCHEDULE_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SETSCHEDULE_ERROR_AUTH ,				// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SETSCHEDULE_ERROR_UNKNOWN			// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SETSCHEDULE_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SETSCHEDULE_ERROR_AUTH ,				// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_SETSCHEDULE_ERROR_UNKNOWN			// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 #define	POKE_NET_GDS_RESPONSE_ADMIN_RANKING_SCHEDULE_CATEGORYCOUNT	(3)
 #define	POKE_NET_GDS_RESPONSE_ADMIN_RANKING_SCHEDULE_ITEMCOUNT		(256)
 
-// ƒXƒPƒWƒ…[ƒ‹ƒŠƒXƒg
+// ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒªã‚¹ãƒˆ
 typedef struct {
 	unsigned char Kind[POKE_NET_GDS_RESPONSE_ADMIN_RANKING_SCHEDULE_CATEGORYCOUNT][POKE_NET_GDS_RESPONSE_ADMIN_RANKING_SCHEDULE_ITEMCOUNT];
 } POKE_NET_GDS_REQUEST_ADMIN_RANKING_SETSCHEDULE;
 
-/* ƒŒƒXƒ|ƒ“ƒX‚ÍƒR[ƒh‚Ì‚Ý
+/* ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_RESPONSE_ADMIN_RANKING_SETSCHEDULE;
 */
 
 //------------------------------------
-//  ƒ‰ƒ“ƒLƒ“ƒOF‹­§Šm’èˆ—
+//  ãƒ©ãƒ³ã‚­ãƒ³ã‚°ï¼šå¼·åˆ¶ç¢ºå®šå‡¦ç†
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_EXECDECISION {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_EXECDECISION_SUCCESS ,				// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_EXECDECISION_ERROR_AUTH ,			// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_EXECDECISION_ERROR_UNKNOWN ,			// ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_EXECDECISION_SUCCESS ,				// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_EXECDECISION_ERROR_AUTH ,			// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_RANKING_EXECDECISION_ERROR_UNKNOWN ,			// ã‚¨ãƒ©ãƒ¼
 };
 
 /*
@@ -1041,422 +1041,422 @@ typedef struct {
 */
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:ƒ|ƒPƒ‚ƒ“–ˆ‚ÌÝ’èŽæ“¾
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ãƒã‚±ãƒ¢ãƒ³æ¯Žã®è¨­å®šå–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_GET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_GET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_GET_ERROR_AUTH ,	// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_GET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_GET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_GET_ERROR_AUTH ,	// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_GET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 /*
-typedef struct {													// - ƒ|ƒPƒ‚ƒ“–ˆÝ’èŽæ“¾ƒŠƒNƒGƒXƒg -
+typedef struct {													// - ãƒã‚±ãƒ¢ãƒ³æ¯Žè¨­å®šå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_POKEMONTABLE_GET;
 */
 
-#define POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_MONSCOUNT	(507)	// ƒ|ƒPƒ‚ƒ“–ˆ•\‚ÍƒtƒHƒ‹ƒ€˜gƒ|ƒPƒ‚ƒ“‚àŠÜ‚Þ500‘Ì
+#define POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_MONSCOUNT	(507)	// ãƒã‚±ãƒ¢ãƒ³æ¯Žè¡¨ã¯ãƒ•ã‚©ãƒ«ãƒ æž ãƒã‚±ãƒ¢ãƒ³ã‚‚å«ã‚€500ä½“
 
 enum {
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EFFECTIVE ,	// —LŒø/–³Œø
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_RAREFLAG ,		// ƒŒƒAƒtƒ‰ƒO(—§‚Á‚Ä‚¢‚½‚çƒŒƒA—LŒø)
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_DISTRIBUTE ,	// ”z•z(—§‚Á‚Ä‚¢‚½‚ç”z•zƒtƒ‰ƒO‚ðƒ`ƒFƒbƒN‚·‚é)
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_LVMIN ,		// Å’áƒŒƒxƒ‹
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_FORMMAX ,		// ƒtƒHƒ‹ƒ€”Ô†Å‘å
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_CFORM ,		// ŒvŽZÏ‚ÝƒtƒHƒ‹ƒ€’l
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ABSEVO ,		// ‹­§“I‚Éi‰»‘O‚Æ‚µ‚Äˆµ‚¤‚©”Û‚©
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_LEGEND ,		// “`àƒ|ƒPƒ‚ƒ“‚©”Û‚©
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ABILITY0 ,		// ‚Æ‚­‚¹‚¢0
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ABILITY1 ,		// ‚Æ‚­‚¹‚¢1
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EFFECTIVE ,	// æœ‰åŠ¹/ç„¡åŠ¹
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_RAREFLAG ,		// ãƒ¬ã‚¢ãƒ•ãƒ©ã‚°(ç«‹ã£ã¦ã„ãŸã‚‰ãƒ¬ã‚¢æœ‰åŠ¹)
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_DISTRIBUTE ,	// é…å¸ƒ(ç«‹ã£ã¦ã„ãŸã‚‰é…å¸ƒãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹)
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_LVMIN ,		// æœ€ä½Žãƒ¬ãƒ™ãƒ«
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_FORMMAX ,		// ãƒ•ã‚©ãƒ«ãƒ ç•ªå·æœ€å¤§
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_CFORM ,		// è¨ˆç®—æ¸ˆã¿ãƒ•ã‚©ãƒ«ãƒ å€¤
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ABSEVO ,		// å¼·åˆ¶çš„ã«é€²åŒ–å‰ã¨ã—ã¦æ‰±ã†ã‹å¦ã‹
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_LEGEND ,		// ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã‹å¦ã‹
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ABILITY0 ,		// ã¨ãã›ã„0
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ABILITY1 ,		// ã¨ãã›ã„1
 	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_HP ,			// HP
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ATTACK ,		// ‚±‚¤‚°‚«
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_DEFENSE ,		// ‚Ú‚¤‚¬‚å
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_AGILITY ,		// ‚·‚Î‚â‚³
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_SATTACK ,		// ‚Æ‚­‚±‚¤
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_SDEFENSE ,		// ‚Æ‚­‚Ú‚¤
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_TYPE1 ,		// ƒ^ƒCƒv1
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_TYPE2 ,		// ƒ^ƒCƒv2
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_CAPTUREPER ,	// •ßŠl—¦
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EXP ,			// ŒoŒ±’l
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EHP ,			// “w—Í’lHP
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EATTACK ,		// “w—Í’l‚±‚¤‚°‚«
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EDEFENSE ,		// “w—Í’l‚Ú‚¤‚¬‚å
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EAGILITY ,		// “w—Í’l‚·‚Î‚â‚³
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ESATTACK ,		// “w—Í’l‚Æ‚­‚±‚¤
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ESDEFENSE ,	// “w—Í’l‚Æ‚­‚Ú‚¤
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ITEM0 ,		// ‚Ç‚¤‚®0
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ITEM1 ,		// ‚Ç‚¤‚®1
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_SEX ,			// «•ÊƒxƒNƒgƒ‹
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_BORNWALK ,		// ›z‰»•à”
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ATTACH ,		// ‰Šú‚È‚Â‚«“x
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_GROWTH ,		// ¬’·‹Èü
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EGG0 ,			// ƒ^ƒ}ƒSƒOƒ‹[ƒv0
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EGG1 ,			// ƒ^ƒ}ƒSƒOƒ‹[ƒv2
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ESCAPEPER ,	// “¦‚°—¦
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_COLOR ,		// F
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_REV ,			// ”½“]•s‰Â
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_WAZAFLAG0 ,	// ‚í‚´ƒ}ƒVƒ“ƒtƒ‰ƒO0
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_WAZAFLAG1 ,	// ‚í‚´ƒ}ƒVƒ“ƒtƒ‰ƒO1
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_WAZAFLAG2 ,	// ‚í‚´ƒ}ƒVƒ“ƒtƒ‰ƒO2
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_WAZAFLAG3 ,	// ‚í‚´ƒ}ƒVƒ“ƒtƒ‰ƒO3
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ATTACK ,		// ã“ã†ã’ã
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_DEFENSE ,		// ã¼ã†ãŽã‚‡
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_AGILITY ,		// ã™ã°ã‚„ã•
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_SATTACK ,		// ã¨ãã“ã†
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_SDEFENSE ,		// ã¨ãã¼ã†
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_TYPE1 ,		// ã‚¿ã‚¤ãƒ—1
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_TYPE2 ,		// ã‚¿ã‚¤ãƒ—2
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_CAPTUREPER ,	// æ•ç²çŽ‡
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EXP ,			// çµŒé¨“å€¤
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EHP ,			// åŠªåŠ›å€¤HP
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EATTACK ,		// åŠªåŠ›å€¤ã“ã†ã’ã
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EDEFENSE ,		// åŠªåŠ›å€¤ã¼ã†ãŽã‚‡
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EAGILITY ,		// åŠªåŠ›å€¤ã™ã°ã‚„ã•
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ESATTACK ,		// åŠªåŠ›å€¤ã¨ãã“ã†
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ESDEFENSE ,	// åŠªåŠ›å€¤ã¨ãã¼ã†
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ITEM0 ,		// ã©ã†ã0
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ITEM1 ,		// ã©ã†ã1
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_SEX ,			// æ€§åˆ¥ãƒ™ã‚¯ãƒˆãƒ«
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_BORNWALK ,		// å­µåŒ–æ­©æ•°
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ATTACH ,		// åˆæœŸãªã¤ãåº¦
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_GROWTH ,		// æˆé•·æ›²ç·š
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EGG0 ,			// ã‚¿ãƒžã‚´ã‚°ãƒ«ãƒ¼ãƒ—0
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_EGG1 ,			// ã‚¿ãƒžã‚´ã‚°ãƒ«ãƒ¼ãƒ—2
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_ESCAPEPER ,	// é€ƒã’çŽ‡
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_COLOR ,		// è‰²
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_REV ,			// åè»¢ä¸å¯
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_WAZAFLAG0 ,	// ã‚ã–ãƒžã‚·ãƒ³ãƒ•ãƒ©ã‚°0
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_WAZAFLAG1 ,	// ã‚ã–ãƒžã‚·ãƒ³ãƒ•ãƒ©ã‚°1
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_WAZAFLAG2 ,	// ã‚ã–ãƒžã‚·ãƒ³ãƒ•ãƒ©ã‚°2
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_WAZAFLAG3 ,	// ã‚ã–ãƒžã‚·ãƒ³ãƒ•ãƒ©ã‚°3
 
-	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_COUNT			// ŒÂ”
+	POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_COUNT			// å€‹æ•°
 };
 
-typedef struct {													// - ƒ|ƒPƒ‚ƒ“–ˆÝ’èŽæ“¾ƒŒƒXƒ|ƒ“ƒX -
+typedef struct {													// - ãƒã‚±ãƒ¢ãƒ³æ¯Žè¨­å®šå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
 	unsigned long Table[POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_MONSCOUNT][POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_COUNT];
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_POKEMONTABLE_GET;
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:ƒ|ƒPƒ‚ƒ“–ˆ‚ÌÝ’èƒZƒbƒg
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ãƒã‚±ãƒ¢ãƒ³æ¯Žã®è¨­å®šã‚»ãƒƒãƒˆ
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_SET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_SET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_SET_ERROR_AUTH ,	// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_SET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_SET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_SET_ERROR_AUTH ,	// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_POKEMONTABLE_SET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-typedef struct {													// - ƒ|ƒPƒ‚ƒ“–ˆÝ’èƒŠƒNƒGƒXƒg -
+typedef struct {													// - ãƒã‚±ãƒ¢ãƒ³æ¯Žè¨­å®šãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
 	unsigned long Table[POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_MONSCOUNT][POKE_NET_GDS_ADMIN_ILLEGALCHECK_POKEMONTABLE_COUNT];
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_POKEMONTABLE_SET;
 
 /*
-typedef struct {													// - ƒ|ƒPƒ‚ƒ“–ˆÝ’èƒŒƒXƒ|ƒ“ƒX -
+typedef struct {													// - ãƒã‚±ãƒ¢ãƒ³æ¯Žè¨­å®šãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_POKEMONTABLE_SET;
 */
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:‚m‚fƒ[ƒh‚ÌÝ’èŽæ“¾
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ï¼®ï¼§ãƒ¯ãƒ¼ãƒ‰ã®è¨­å®šå–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_GET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_GET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_GET_ERROR_AUTH ,		// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_GET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_GET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_GET_ERROR_AUTH ,		// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_GET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 /*
-typedef struct {													// - ‚m‚fƒ[ƒhÝ’èŽæ“¾ƒŠƒNƒGƒXƒg -
+typedef struct {													// - ï¼®ï¼§ãƒ¯ãƒ¼ãƒ‰è¨­å®šå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_NGWORD_GET;
 */
 
 #define POKE_NET_GDS_ADMIN_ILLEGALCHECK_NGWORD_MAXNUM (100)
 
-typedef struct {													// - ‚m‚fƒ[ƒhÝ’èŽæ“¾ƒŒƒXƒ|ƒ“ƒX -
-	long Count;														// ‚m‚fƒ[ƒhƒR[ƒh”
-	long Codes[0];													// ‚m‚fƒ[ƒhƒR[ƒh
+typedef struct {													// - ï¼®ï¼§ãƒ¯ãƒ¼ãƒ‰è¨­å®šå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
+	long Count;														// ï¼®ï¼§ãƒ¯ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒ‰æ•°
+	long Codes[0];													// ï¼®ï¼§ãƒ¯ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_NGWORD_GET;
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:‚m‚fƒ[ƒh‚ÌÝ’èƒZƒbƒg
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ï¼®ï¼§ãƒ¯ãƒ¼ãƒ‰ã®è¨­å®šã‚»ãƒƒãƒˆ
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_SET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_SET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_SET_ERROR_AUTH ,		// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_SET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_SET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_SET_ERROR_AUTH ,		// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_NGWORD_SET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-typedef struct {													// - ‚m‚fƒ[ƒhÝ’èƒŠƒNƒGƒXƒg -
-	long Count;														// ‚m‚fƒ[ƒhƒR[ƒh”
-	long Codes[POKE_NET_GDS_ADMIN_ILLEGALCHECK_NGWORD_MAXNUM];		// ‚m‚fƒ[ƒhƒR[ƒh
+typedef struct {													// - ï¼®ï¼§ãƒ¯ãƒ¼ãƒ‰è¨­å®šãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
+	long Count;														// ï¼®ï¼§ãƒ¯ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒ‰æ•°
+	long Codes[POKE_NET_GDS_ADMIN_ILLEGALCHECK_NGWORD_MAXNUM];		// ï¼®ï¼§ãƒ¯ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_NGWORD_SET;
 
 /*
-typedef struct {													// - ‚m‚fƒ[ƒhÝ’èƒŒƒXƒ|ƒ“ƒX -
+typedef struct {													// - ï¼®ï¼§ãƒ¯ãƒ¼ãƒ‰è¨­å®šãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_NGWORD_SET;
 */
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:Œ¾ŒêƒR[ƒh‚ÌÝ’èŽæ“¾
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:è¨€èªžã‚³ãƒ¼ãƒ‰ã®è¨­å®šå–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_GET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_GET_SUCCESS ,			// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_GET_ERROR_AUTH ,		// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_GET_ERROR_UNKNOWN		// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_GET_SUCCESS ,			// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_GET_ERROR_AUTH ,		// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_GET_ERROR_UNKNOWN		// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 /*
-typedef struct {													// - Œ¾ŒêƒR[ƒhÝ’èŽæ“¾ƒŠƒNƒGƒXƒg -
+typedef struct {													// - è¨€èªžã‚³ãƒ¼ãƒ‰è¨­å®šå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_LANGCODE_GET;
 */
 
 #define POKE_NET_GDS_ADMIN_ILLEGALCHECK_LANGCODE_MAXNUM (100)
 
-typedef struct {													// - Œ¾ŒêƒR[ƒhÝ’èŽæ“¾ƒŒƒXƒ|ƒ“ƒX -
-	long Count;														// Œ¾ŒêƒR[ƒhƒR[ƒh”
-	long Codes[0];													// Œ¾ŒêƒR[ƒhƒR[ƒh
+typedef struct {													// - è¨€èªžã‚³ãƒ¼ãƒ‰è¨­å®šå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
+	long Count;														// è¨€èªžã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒ‰æ•°
+	long Codes[0];													// è¨€èªžã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_LANGCODE_GET;
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:Œ¾ŒêƒR[ƒh‚ÌÝ’èƒZƒbƒg
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:è¨€èªžã‚³ãƒ¼ãƒ‰ã®è¨­å®šã‚»ãƒƒãƒˆ
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_SET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_SET_SUCCESS ,			// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_SET_ERROR_AUTH ,		// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_SET_ERROR_UNKNOWN		// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_SET_SUCCESS ,			// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_SET_ERROR_AUTH ,		// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_LANGCODE_SET_ERROR_UNKNOWN		// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-typedef struct {													// - Œ¾ŒêƒR[ƒhÝ’èƒŠƒNƒGƒXƒg -
-	long Count;														// Œ¾ŒêƒR[ƒh”
-	long Codes[POKE_NET_GDS_ADMIN_ILLEGALCHECK_LANGCODE_MAXNUM];	// Œ¾ŒêƒR[ƒh
+typedef struct {													// - è¨€èªžã‚³ãƒ¼ãƒ‰è¨­å®šãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
+	long Count;														// è¨€èªžã‚³ãƒ¼ãƒ‰æ•°
+	long Codes[POKE_NET_GDS_ADMIN_ILLEGALCHECK_LANGCODE_MAXNUM];	// è¨€èªžã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_LANGCODE_SET;
 
 /*
-typedef struct {													// - Œ¾ŒêƒR[ƒhÝ’èƒŒƒXƒ|ƒ“ƒX -
+typedef struct {													// - è¨€èªžã‚³ãƒ¼ãƒ‰è¨­å®šãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_LANGCODE_SET;
 */
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:‚Ç‚¤‚®‚ÌÝ’èŽæ“¾
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ã©ã†ãã®è¨­å®šå–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_GET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_GET_SUCCESS ,			// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_GET_ERROR_AUTH ,		// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_GET_ERROR_UNKNOWN		// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_GET_SUCCESS ,			// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_GET_ERROR_AUTH ,		// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_GET_ERROR_UNKNOWN		// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 
 /*
-typedef struct {													// - ‚Ç‚¤‚®Ý’èŽæ“¾ƒŠƒNƒGƒXƒg -
+typedef struct {													// - ã©ã†ãè¨­å®šå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_ITEM_GET;
 */
 
 #define POKE_NET_GDS_ADMIN_ILLEGALCHECK_ITEM_MAXNUM (100)
 
-typedef struct {													// - ‚Ç‚¤‚®Ý’èŽæ“¾ƒŒƒXƒ|ƒ“ƒX -
-	long Count;														// ‚Ç‚¤‚®”
-	long Codes[0];													// ‚Ç‚¤‚®ƒR[ƒh
+typedef struct {													// - ã©ã†ãè¨­å®šå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
+	long Count;														// ã©ã†ãæ•°
+	long Codes[0];													// ã©ã†ãã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_ITEM_GET;
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:‚Ç‚¤‚®‚ÌÝ’èƒZƒbƒg
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ã©ã†ãã®è¨­å®šã‚»ãƒƒãƒˆ
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_SET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_SET_SUCCESS ,			// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_SET_ERROR_AUTH ,		// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_SET_ERROR_UNKNOWN		// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_SET_SUCCESS ,			// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_SET_ERROR_AUTH ,		// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ITEM_SET_ERROR_UNKNOWN		// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-typedef struct {													// - ‚Ç‚¤‚®Ý’èƒŠƒNƒGƒXƒg -
-	long Count;														// ‚Ç‚¤‚®”
-	long Codes[POKE_NET_GDS_ADMIN_ILLEGALCHECK_ITEM_MAXNUM];		// ‚Ç‚¤‚®ƒR[ƒh
+typedef struct {													// - ã©ã†ãè¨­å®šãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
+	long Count;														// ã©ã†ãæ•°
+	long Codes[POKE_NET_GDS_ADMIN_ILLEGALCHECK_ITEM_MAXNUM];		// ã©ã†ãã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_ITEM_SET;
 
 /*
-typedef struct {													// - ‚Ç‚¤‚®Ý’èƒŒƒXƒ|ƒ“ƒX -
+typedef struct {													// - ã©ã†ãè¨­å®šãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_ITEM_SET;
 */
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:o‰ï‚Á‚½êŠ‚ÌÝ’èŽæ“¾
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:å‡ºä¼šã£ãŸå ´æ‰€ã®è¨­å®šå–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_GET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_GET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_GET_ERROR_AUTH ,	// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_GET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_GET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_GET_ERROR_AUTH ,	// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_GET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 /*
-typedef struct {													// - o‰ï‚Á‚½êŠÝ’èŽæ“¾ƒŠƒNƒGƒXƒg -
+typedef struct {													// - å‡ºä¼šã£ãŸå ´æ‰€è¨­å®šå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_MEETPLACE_GET;
 */
 
 #define POKE_NET_GDS_ADMIN_ILLEGALCHECK_MEETPLACE_MAXPLACE		(1+32)
 #define POKE_NET_GDS_ADMIN_ILLEGALCHECK_MEETPLACE_MAXPOKEMON	(GT_BOXSHOT_MONSNO_MAX)
 
-typedef struct {													// - o‰ï‚Á‚½êŠÝ’èŽæ“¾ƒŒƒXƒ|ƒ“ƒX -
-	long Count;														// Ý’è‚³‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“”
+typedef struct {													// - å‡ºä¼šã£ãŸå ´æ‰€è¨­å®šå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
+	long Count;														// è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°
 	s16 Table[0];													// sizeof(s16)*POKE_NET_GDS_ADMIN_ILLEGALCHECK_MEETPLACE_MAXPLACE * HitCount
-																	// [0]‚Íƒ|ƒPƒ‚ƒ“”Ô†
+																	// [0]ã¯ãƒã‚±ãƒ¢ãƒ³ç•ªå·
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_MEETPLACE_GET;
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:o‰ï‚Á‚½êŠ‚ÌÝ’èƒZƒbƒg
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:å‡ºä¼šã£ãŸå ´æ‰€ã®è¨­å®šã‚»ãƒƒãƒˆ
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_SET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_SET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_SET_ERROR_AUTH ,	// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_SET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_SET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_SET_ERROR_AUTH ,	// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_MEETPLACE_SET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-typedef struct {													// - o‰ï‚Á‚½êŠÝ’èƒŠƒNƒGƒXƒg -
+typedef struct {													// - å‡ºä¼šã£ãŸå ´æ‰€è¨­å®šãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
 	long Count;
 	s16 Table[POKE_NET_GDS_ADMIN_ILLEGALCHECK_MEETPLACE_MAXPOKEMON*POKE_NET_GDS_ADMIN_ILLEGALCHECK_MEETPLACE_MAXPLACE];	// sizeof(s16)*POKE_NET_GDS_ADMIN_ILLEGALCHECK_MEETPLACE_MAXPLACE * HitCount
-																														// [0]‚Íƒ|ƒPƒ‚ƒ“”Ô†
+																														// [0]ã¯ãƒã‚±ãƒ¢ãƒ³ç•ªå·
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_MEETPLACE_SET;
 
 /*
-typedef struct {													// - o‰ï‚Á‚½êŠÝ’èƒŒƒXƒ|ƒ“ƒX -
+typedef struct {													// - å‡ºä¼šã£ãŸå ´æ‰€è¨­å®šãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_MEETPLACE_SET;
 */
 
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:‹Z•\‚ÌÝ’èŽæ“¾
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:æŠ€è¡¨ã®è¨­å®šå–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_GET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_GET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_GET_ERROR_AUTH ,	// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_GET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_GET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_GET_ERROR_AUTH ,	// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_GET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-#define POKE_NET_GDS_ADMIN_ILLEGALCHECK_WAZATABLE_MONSCOUNT	(507)	// ‹Z•\‚ÍƒtƒHƒ‹ƒ€˜gƒ|ƒPƒ‚ƒ“‚àŠÜ‚Þ507‘Ì
+#define POKE_NET_GDS_ADMIN_ILLEGALCHECK_WAZATABLE_MONSCOUNT	(507)	// æŠ€è¡¨ã¯ãƒ•ã‚©ãƒ«ãƒ æž ãƒã‚±ãƒ¢ãƒ³ã‚‚å«ã‚€507ä½“
 
 /*
-typedef struct {													// - ‹Z•\Ý’èŽæ“¾ƒŠƒNƒGƒXƒg -
+typedef struct {													// - æŠ€è¡¨è¨­å®šå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_WAZATABLE_GET;
 */
 
-typedef struct {													// - ‹Z•\Ý’èŽæ“¾ƒŒƒXƒ|ƒ“ƒX -
-	long Size;														// ƒTƒCƒY
-	char Binary[0];													// ƒoƒCƒiƒŠƒf[ƒ^
+typedef struct {													// - æŠ€è¡¨è¨­å®šå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
+	long Size;														// ã‚µã‚¤ã‚º
+	char Binary[0];													// ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_WAZATABLE_GET;
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:‹Z•\‚ÌÝ’èƒZƒbƒg
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:æŠ€è¡¨ã®è¨­å®šã‚»ãƒƒãƒˆ
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_SET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_SET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_SET_ERROR_AUTH ,	// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_SET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_SET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_SET_ERROR_AUTH ,	// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_WAZATABLE_SET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-typedef struct {													// - ‹Z•\Ý’èƒŠƒNƒGƒXƒg -
-	long Size;														// ƒTƒCƒY
-	char Binary[0];													// ƒoƒCƒiƒŠƒf[ƒ^
+typedef struct {													// - æŠ€è¡¨è¨­å®šãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
+	long Size;														// ã‚µã‚¤ã‚º
+	char Binary[0];													// ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_WAZATABLE_SET;
 
 /*
-typedef struct {													// - ‹Z•\Ý’èƒŒƒXƒ|ƒ“ƒX -
+typedef struct {													// - æŠ€è¡¨è¨­å®šãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_WAZATABLE_SET;
 */
 
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:ƒAƒNƒZƒTƒŠ‚ÌÝ’èŽæ“¾
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ã‚¢ã‚¯ã‚»ã‚µãƒªã®è¨­å®šå–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_GET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_GET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_GET_ERROR_AUTH ,	// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_GET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_GET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_GET_ERROR_AUTH ,	// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_GET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 /*
-typedef struct {													// - ƒAƒNƒZƒTƒŠÝ’èŽæ“¾ƒŠƒNƒGƒXƒg -
+typedef struct {													// - ã‚¢ã‚¯ã‚»ã‚µãƒªè¨­å®šå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_ACCESSORY_GET;
 */
 
 #define POKE_NET_GDS_ADMIN_ILLEGALCHECK_ACCESSORY_MAXNUM (100)
 
-typedef struct {													// - ƒAƒNƒZƒTƒŠÝ’èŽæ“¾ƒŒƒXƒ|ƒ“ƒX -
-	long Count;														// ƒAƒNƒZƒTƒŠƒR[ƒh”
-	long Codes[0];													// ƒAƒNƒZƒTƒŠƒR[ƒh
+typedef struct {													// - ã‚¢ã‚¯ã‚»ã‚µãƒªè¨­å®šå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
+	long Count;														// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚³ãƒ¼ãƒ‰æ•°
+	long Codes[0];													// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_ACCESSORY_GET;
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:ƒAƒNƒZƒTƒŠ‚ÌÝ’èƒZƒbƒg
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ã‚¢ã‚¯ã‚»ã‚µãƒªã®è¨­å®šã‚»ãƒƒãƒˆ
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_SET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_SET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_SET_ERROR_AUTH ,	// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_SET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_SET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_SET_ERROR_AUTH ,	// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_ACCESSORY_SET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-typedef struct {														// - ƒAƒNƒZƒTƒŠÝ’èƒŠƒNƒGƒXƒg -
-	long Count;															// ƒAƒNƒZƒTƒŠƒR[ƒh”
-	long Codes[POKE_NET_GDS_ADMIN_ILLEGALCHECK_ACCESSORY_MAXNUM];		// ƒAƒNƒZƒTƒŠƒR[ƒh
+typedef struct {														// - ã‚¢ã‚¯ã‚»ã‚µãƒªè¨­å®šãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
+	long Count;															// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚³ãƒ¼ãƒ‰æ•°
+	long Codes[POKE_NET_GDS_ADMIN_ILLEGALCHECK_ACCESSORY_MAXNUM];		// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_ACCESSORY_SET;
 
 /*
-typedef struct {													// - ƒAƒNƒZƒTƒŠÝ’èƒŒƒXƒ|ƒ“ƒX -
+typedef struct {													// - ã‚¢ã‚¯ã‚»ã‚µãƒªè¨­å®šãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_ACCESSORY_SET;
 */
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:ƒhƒŒƒXƒAƒbƒvBGID‚ÌÝ’èŽæ“¾
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—BGIDã®è¨­å®šå–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_GET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_GET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_GET_ERROR_AUTH ,	// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_GET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_GET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_GET_ERROR_AUTH ,	// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_GET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 /*
-typedef struct {													// - ƒhƒŒƒXƒAƒbƒvBGIDÝ’èŽæ“¾ƒŠƒNƒGƒXƒg -
+typedef struct {													// - ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—BGIDè¨­å®šå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_DRESSUPBGID_GET;
 */
 
 #define POKE_NET_GDS_ADMIN_ILLEGALCHECK_DRESSUPBGID_MAXNUM (18)
 
-typedef struct {													// - ƒhƒŒƒXƒAƒbƒvBGIDÝ’èŽæ“¾ƒŒƒXƒ|ƒ“ƒX -
-	long Count;														// ƒhƒŒƒXƒAƒbƒvBGIDƒR[ƒh”
-	long Codes[0];													// ƒhƒŒƒXƒAƒbƒvBGIDƒR[ƒh
+typedef struct {													// - ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—BGIDè¨­å®šå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
+	long Count;														// ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—BGIDã‚³ãƒ¼ãƒ‰æ•°
+	long Codes[0];													// ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—BGIDã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_DRESSUPBGID_GET;
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:ƒhƒŒƒXƒAƒbƒvBGID‚ÌÝ’èƒZƒbƒg
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—BGIDã®è¨­å®šã‚»ãƒƒãƒˆ
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_SET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_SET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_SET_ERROR_AUTH ,	// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_SET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_SET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_SET_ERROR_AUTH ,	// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_DRESSUPBGID_SET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-typedef struct {														// - ƒhƒŒƒXƒAƒbƒvBGIDÝ’èƒŠƒNƒGƒXƒg -
-	long Count;															// ƒhƒŒƒXƒAƒbƒvBGIDƒR[ƒh”
-	long Codes[POKE_NET_GDS_ADMIN_ILLEGALCHECK_DRESSUPBGID_MAXNUM];		// ƒhƒŒƒXƒAƒbƒvBGIDƒR[ƒh
+typedef struct {														// - ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—BGIDè¨­å®šãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
+	long Count;															// ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—BGIDã‚³ãƒ¼ãƒ‰æ•°
+	long Codes[POKE_NET_GDS_ADMIN_ILLEGALCHECK_DRESSUPBGID_MAXNUM];		// ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—BGIDã‚³ãƒ¼ãƒ‰
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_DRESSUPBGID_SET;
 
 /*
-typedef struct {													// - ƒhƒŒƒXƒAƒbƒvBGIDÝ’èƒŒƒXƒ|ƒ“ƒX -
+typedef struct {													// - ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—BGIDè¨­å®šãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_DRESSUPBGID_SET;
 */
 
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ÌÝ’èŽæ“¾
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®šå–å¾—
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_GET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_GET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_GET_ERROR_AUTH ,		// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_GET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_GET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_GET_ERROR_AUTH ,		// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_GET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
 /*
-typedef struct {																	// - ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“Ý’èŽæ“¾ƒŠƒNƒGƒXƒg -
+typedef struct {																	// - ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®šå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_REGULATION_GET;
 */
 
 #define POKE_NET_GDS_ADMIN_ILLEGALCHECK_REGULATION_MAXNUM (100)
 
-typedef struct {																	// - ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“Ý’èŽæ“¾ƒŒƒXƒ|ƒ“ƒX -
-	long Count;																		// ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“”
-	GT_REGULATION Regulation[0];													// ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“
+typedef struct {																	// - ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®šå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
+	long Count;																		// ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³æ•°
+	GT_REGULATION Regulation[0];													// ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_REGULATION_GET;
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒN:ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ÌÝ’èƒZƒbƒg
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯:ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã®è¨­å®šã‚»ãƒƒãƒˆ
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_SET {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_SET_SUCCESS ,		// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_SET_ERROR_AUTH ,		// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_SET_ERROR_UNKNOWN	// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_SET_SUCCESS ,		// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_SET_ERROR_AUTH ,		// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_ILLEGALCHECK_REGULATION_SET_ERROR_UNKNOWN	// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-typedef struct {																	// - ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“Ý’èƒŠƒNƒGƒXƒg -
-	long Count;																		// ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒR[ƒh”
-	GT_REGULATION Regulation[POKE_NET_GDS_ADMIN_ILLEGALCHECK_REGULATION_MAXNUM];	// ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“”
+typedef struct {																	// - ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®šãƒªã‚¯ã‚¨ã‚¹ãƒˆ -
+	long Count;																		// ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰æ•°
+	GT_REGULATION Regulation[POKE_NET_GDS_ADMIN_ILLEGALCHECK_REGULATION_MAXNUM];	// ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³æ•°
 } POKE_NET_GDS_REQUEST_ADMIN_ILLEGALCHECK_REGULATION_SET;
 
 /*
-typedef struct {																	// - ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“Ý’èƒŒƒXƒ|ƒ“ƒX -
+typedef struct {																	// - ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®šãƒ¬ã‚¹ãƒãƒ³ã‚¹ -
 } POKE_NET_GDS_RESPONSE_ADMIN_ILLEGALCHECK_REGULATION_SET;
 */
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒNƒƒO:Žæ“¾
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯ãƒ­ã‚°:å–å¾—
 //------------------------------------
-#define POKE_NET_GDS_RESPONSE_ADMIN_DHOCHECKLOG_GET_TIMECAPA	(20)	// Žž•¶Žš—ñ‚Ì‘å‚«‚³
-#define POKE_NET_GDS_RESPONSE_ADMIN_DHOCHECKLOG_GET_CONTENTCAPA	(256)	// “à—e•¶Žš—ñ‚Ì‘å‚«‚³
-#define POKE_NET_GDS_RESPONSE_ADMIN_DHOCHECKLOG_GET_MAXRESPONSE	(30)	// Å‘å‰½Œ‚Ü‚Å‚Ìƒf[ƒ^‚ð•Ô“š‚·‚é‚©
+#define POKE_NET_GDS_RESPONSE_ADMIN_DHOCHECKLOG_GET_TIMECAPA	(20)	// æ™‚åˆ»æ–‡å­—åˆ—ã®å¤§ãã•
+#define POKE_NET_GDS_RESPONSE_ADMIN_DHOCHECKLOG_GET_CONTENTCAPA	(256)	// å†…å®¹æ–‡å­—åˆ—ã®å¤§ãã•
+#define POKE_NET_GDS_RESPONSE_ADMIN_DHOCHECKLOG_GET_MAXRESPONSE	(30)	// æœ€å¤§ä½•ä»¶ã¾ã§ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ç­”ã™ã‚‹ã‹
 
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DHOCHECKLOG_GET {
 	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DHOCHECKLOG_GET_SUCCESS ,
@@ -1464,7 +1464,7 @@ enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DHOCHECKLOG_GET {
 };
 
 typedef struct {
-	long	PageNo;		// ƒy[ƒW”Ô†
+	long	PageNo;		// ãƒšãƒ¼ã‚¸ç•ªå·
 } POKE_NET_GDS_REQUEST_ADMIN_DHOCHECKLOG_GET;
 
 typedef struct {
@@ -1478,21 +1478,21 @@ typedef struct {
 } POKE_NET_GDS_RESPONSE_ADMIN_DHOCHECKLOG_GET;
 
 //------------------------------------
-// •s³ƒ`ƒFƒbƒNƒƒO:ƒNƒŠƒA
+// ä¸æ­£ãƒã‚§ãƒƒã‚¯ãƒ­ã‚°:ã‚¯ãƒªã‚¢
 //------------------------------------
 enum POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DHOCHECKLOG_CLEAR {
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DHOCHECKLOG_CLEAR_SUCCESS ,			// ¬Œ÷
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DHOCHECKLOG_CLEAR_ERROR_PERMISSION ,	// ”F‚ß‚ç‚ê‚Ä‚¢‚È‚¢
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DHOCHECKLOG_CLEAR_ERROR_AUTH ,		// ”FØƒGƒ‰[
-	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DHOCHECKLOG_CLEAR_ERROR_UNKNOWN		// ‚»‚Ì‘¼ƒGƒ‰[
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DHOCHECKLOG_CLEAR_SUCCESS ,			// æˆåŠŸ
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DHOCHECKLOG_CLEAR_ERROR_PERMISSION ,	// èªã‚ã‚‰ã‚Œã¦ã„ãªã„
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DHOCHECKLOG_CLEAR_ERROR_AUTH ,		// èªè¨¼ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_RESPONSE_RESULT_ADMIN_DHOCHECKLOG_CLEAR_ERROR_UNKNOWN		// ãã®ä»–ã‚¨ãƒ©ãƒ¼
 };
 
-/*	 ƒŠƒNƒGƒXƒg‚ÍƒR[ƒh‚Ì‚Ý
+/*	 ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_REQUEST_ADMIN_DHOCHECKLOG_CLEAR;
 */
 
-/*	ƒŒƒXƒ|ƒ“ƒX‚ÍƒR[ƒh‚Ì‚Ý
+/*	ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã¯ã‚³ãƒ¼ãƒ‰ã®ã¿
 typedef struct {
 } POKE_NET_GDS_RESPONSE_ADMIN_DHOCHECKLOG_CLEAR;
 */

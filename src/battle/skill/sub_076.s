@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_076.s
- *@brief	戦闘シーケンス
- *			ATTACK_MESSAGEと技エフェクトがセットになったシーケンス
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			ATTACK_MESSAGE縺ｨ謚繧ｨ繝輔ぉ繧ｯ繝医′繧ｻ繝�繝医↓縺ｪ縺｣縺溘す繝ｼ繧ｱ繝ｳ繧ｹ
  *@author	HisashiSogabe
  *@data		2006.01.23
  *

@@ -1,16 +1,16 @@
 /**
- *	@brief	ポルト関連サウンド定義ファイル
+ *	@brief	繝昴Ν繝磯未騾｣繧ｵ繧ｦ繝ｳ繝牙ｮ夂ｾｩ繝輔ぃ繧､繝ｫ
  */
 
 #ifndef __H_PORU_SND_DEF_H__
 #define __H_PORU_SND_DEF_H__
 
-#define PORUC_SE_SEL	SEQ_SE_DP_SELECT		//移動音
+#define PORUC_SE_SEL	SEQ_SE_DP_SELECT		//遘ｻ蜍暮浹
 
-//#define PORUC_SE_DECIDE	SEQ_SE_DP_DECIDE	//決定音
-#define PORUC_SE_DECIDE	SEQ_SE_DP_SELECT		//決定音
+//#define PORUC_SE_DECIDE	SEQ_SE_DP_DECIDE	//豎ｺ螳夐浹
+#define PORUC_SE_DECIDE	SEQ_SE_DP_SELECT		//豎ｺ螳夐浹
 
-//#define PORUC_SE_BTN	SEQ_SE_DP_SELECT		//下画面ボタン音
-#define PORUC_SE_BTN	SEQ_SE_DP_BUTTON9		//下画面ボタン音
+//#define PORUC_SE_BTN	SEQ_SE_DP_SELECT		//荳狗判髱｢繝懊ち繝ｳ髻ｳ
+#define PORUC_SE_BTN	SEQ_SE_DP_BUTTON9		//荳狗判髱｢繝懊ち繝ｳ髻ｳ
 
 #endif //__H_PORU_SND_DEF_H__

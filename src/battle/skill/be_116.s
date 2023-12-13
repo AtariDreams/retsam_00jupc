@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_116.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			116�@���̃^�[���ɓG����퓬�s�\�ɂȂ�悤�ȍU�����󂯂Ă��g�o���K���P�c��B�A���ŏo���Ɛ��������������Ă���
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			116　そのターンに敵から戦闘不能になるような攻撃を受けてもＨＰが必ず１残る。連続で出すと成功率が下がっていく
  *
  *@author	HisashiSogabe
  *@data		2006.01.25

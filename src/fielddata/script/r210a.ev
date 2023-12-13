@@ -1,6 +1,6 @@
 //====================================================================
 //						r210a.gmm
-//					ƒtƒB[ƒ‹ƒhEƒ[ƒh210a
+//					ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ»ãƒ­ãƒ¼ãƒ‰210a
 //====================================================================
 	.text
 
@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_r210aevc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r210a_stopper
 _EVENT_DATA		ev_r210a_cowgirl1
@@ -22,14 +22,14 @@ _EVENT_DATA		ev_r210a_sign1
 _EVENT_DATA		ev_r210a_sign2
 _EVENT_DATA		ev_r210a_jogger4
 _EVENT_DATA		ev_r210a_flag_change
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_r210a_flag_change:
-	/*ŽžŠÔ‘Ñ‚É‚æ‚Á‚Ä•ªŠò*/
+	/*æ™‚é–“å¸¯ã«ã‚ˆã£ã¦åˆ†å²*/
 	_GET_TIME_ZONE	LOCALWORK0
 	_IFVAL_JUMP		LOCALWORK0,EQ,TIMEZONE_MORNING,ev_r210a_fc_morning
 	_IFVAL_JUMP		LOCALWORK0,EQ,TIMEZONE_NOON,ev_r210a_fc_noon
@@ -53,7 +53,7 @@ ev_r210a_fc_midnight:
 
 
 /********************************************************************/
-/*							ƒXƒgƒbƒp[								*/
+/*							ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼								*/
 /********************************************************************/
 #define POS_R210A_CHAMP_X1	(560)
 #define POS_R210A_CHAMP_X2	(561)
@@ -61,7 +61,7 @@ ev_r210a_fc_midnight:
 ev_r210a_stopper:
 	_TALK_OBJ_START
 
-	/*ƒAƒCƒeƒ€u‚Ð‚Å‚ñ‚Ì‚­‚·‚èv‚ð‚à‚Á‚Ä‚¢‚éŽž*/
+	/*ã‚¢ã‚¤ãƒ†ãƒ ã€Œã²ã§ã‚“ã®ãã™ã‚Šã€ã‚’ã‚‚ã£ã¦ã„ã‚‹æ™‚*/
 	_ITEM_CHK		ITEM_HIDENNOKUSURI,1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r210a_stopper_hiden
 
@@ -78,13 +78,13 @@ ev_r210a_stopper_hiden:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_r210a_stopper_01
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_r210a_stopper_01:
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 yes_r210a_stopper_01:
 	_PLAYER_NAME	0
 	_ITEM_NAME	1,ITEM_HIDENNOKUSURI
@@ -93,21 +93,21 @@ yes_r210a_stopper_01:
 	_VOICE_PLAY		MONSNO_KODAKKU,0
 	_VOICE_WAIT
 
-	/*I*/
+	/*ï¼*/
 	_OBJ_ANIME		R210A_STOPPER_1,anm_r210a_stopper_1_00
 	_OBJ_ANIME		R210A_STOPPER_2,anm_r210a_stopper_1_00
 	_OBJ_ANIME		R210A_STOPPER_3,anm_r210a_stopper_1_00
 	_OBJ_ANIME		R210A_STOPPER_4,anm_r210a_stopper_1_00
 	_OBJ_ANIME_WAIT
 
-	/*‹Ž‚Á‚Ä‚¢‚­*/
+	/*åŽ»ã£ã¦ã„ã*/
 	_OBJ_ANIME		R210A_STOPPER_1,anm_r210a_stopper_1_01
 	_OBJ_ANIME		R210A_STOPPER_2,anm_r210a_stopper_2_01
 	_OBJ_ANIME		R210A_STOPPER_3,anm_r210a_stopper_3_01
 	_OBJ_ANIME		R210A_STOPPER_4,anm_r210a_stopper_4_01
 	_OBJ_ANIME_WAIT
 
-	/*‰æ–Êã•”‚ÉˆÚ“®*/
+	/*ç”»é¢ä¸Šéƒ¨ã«ç§»å‹•*/
 	_OBJ_DEL		R210A_STOPPER_1
 	_OBJ_DEL		R210A_STOPPER_2
 	_OBJ_DEL		R210A_STOPPER_3
@@ -115,7 +115,7 @@ yes_r210a_stopper_01:
 
 	_TIME_WAIT		45,SCWK_ANSWER
 
-	/*ƒ`ƒƒƒ“ƒsƒIƒ““oê*/
+	/*ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ç™»å ´*/
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,POS_R210A_CHAMP_X1,ev_r210a_champ_pos_x1
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,POS_R210A_CHAMP_X2,ev_r210a_champ_pos_x2
@@ -147,7 +147,7 @@ common_r210a_champ_pos:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_r210a_chanpion_01
 	_END
 
-//u‚¢‚¢‚¦v
+//ã€Œã„ã„ãˆã€
 no_r210a_chanpion_01:
 	_TALKMSG		msg_r210a_chanpion_03
 	_YES_NO_WIN		SCWK_ANSWER
@@ -155,19 +155,19 @@ no_r210a_chanpion_01:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_r210a_chanpion_01
 	_END
 
-//u‚Í‚¢v
+//ã€Œã¯ã„ã€
 yes_r210a_chanpion_01:
-	//ƒAƒCƒeƒ€“üŽèu‚¨‚Ü‚à‚èv
+	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã€ŒãŠã¾ã‚‚ã‚Šã€
 	_LDVAL			SCWK_TEMP0,ITEM_KODAINOOMAMORI
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€“üŽè¬Œ÷
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*‘—‚èƒJ[ƒ\ƒ‹‘Ò‚¿‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹æˆåŠŸ
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*é€ã‚Šã‚«ãƒ¼ã‚½ãƒ«å¾…ã¡ã‚ã‚Š*/
 
 	_TALK_KEYWAIT	msg_r210a_chanpion_02
 	_TALK_CLOSE
 
-	//ƒ`ƒƒƒ“ƒsƒIƒ“‹Ž‚é
+	//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³åŽ»ã‚‹
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,POS_R210A_CHAMP_X1,ev_r210a_champ_pos_x1_2
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,POS_R210A_CHAMP_X2,ev_r210a_champ_pos_x2_2
@@ -190,7 +190,7 @@ common_r210a_champ_pos_2:
 	_END
 
 //--------------------------------------------------------------------
-//ƒRƒ_ƒbƒN	‘Þê
+//ã‚³ãƒ€ãƒƒã‚¯	é€€å ´
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r210a_stopper_1_00
 	_ANIME_DATA	AC_MARK_GYOE,1
@@ -233,14 +233,14 @@ _ANIME_LABEL	anm_r210a_stopper_4_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ`ƒƒƒ“ƒsƒIƒ“	“oê
+//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³	ç™»å ´
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r210a_champ_01
 	_ANIME_DATA	AC_WALK_U_8F,7
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ`ƒƒƒ“ƒsƒIƒ“	‹Ž‚é
+//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³	åŽ»ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r210a_champ_02
 	_ANIME_DATA	AC_WALK_D_8F,9
@@ -251,14 +251,14 @@ _ANIME_LABEL	anm_r210a_champ_03
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	‚«‚Ã‚­
+//ä¸»äººå…¬	ãã¥ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r210a_player_01
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	Œ©‘—‚é
+//ä¸»äººå…¬	è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r210a_player_02
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -276,7 +276,7 @@ _ANIME_LABEL	anm_r210a_player_03
 
 
 /********************************************************************/
-/*							–qê­—								*/
+/*							ç‰§å ´å°‘å¥³								*/
 /********************************************************************/
 ev_r210a_cowgirl1:
 	_EASY_OBJ_MSG	msg_r210a_cowgirl_01
@@ -284,31 +284,31 @@ ev_r210a_cowgirl1:
 
 
 /********************************************************************/
-/*						ƒgƒŒ[ƒi[Žo‚³‚ñ							*/
+/*						ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å§‰ã•ã‚“							*/
 /********************************************************************/
 ev_r210a_woman3:
 	_TALK_OBJ_START
 
-	/*‚·‚Å‚ÉƒAƒCƒeƒ€“üŽè‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_WAZAMASIN51_GET,ev_r210a_woman3_02
 
 	_TALK_KEYWAIT	msg_r210a_woman3_01
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_WAZAMASIN51
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r210a_woman3_item_event_fail
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*‘—‚èƒJ[ƒ\ƒ‹‘Ò‚¿‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*é€ã‚Šã‚«ãƒ¼ã‚½ãƒ«å¾…ã¡ã‚ã‚Š*/
 
 	_FLAG_SET		FE_WAZAMASIN51_GET
 	_JUMP			ev_r210a_woman3_02
 
-/*‚·‚Å‚ÉƒAƒCƒeƒ€“üŽè‚µ‚Ä‚¢‚½‚ç*/
+/*ã™ã§ã«ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 ev_r210a_woman3_02:
 	_TALKMSG		msg_r210a_woman3_02
 	_LAST_KEYWAIT
@@ -316,9 +316,9 @@ ev_r210a_woman3_02:
 	_TALK_OBJ_END
 	_END
 
-/*ƒAƒCƒeƒ€“üŽèŽ¸”s*/
+/*ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹å¤±æ•—*/
 ev_r210a_woman3_item_event_fail:
-	//ƒAƒCƒeƒ€Žæ“¾Ž¸”sƒCƒxƒ“ƒg(‹¤’ÊƒƒbƒZ[ƒW‚ðo‚·Aê—p‚ðŽg—p‚·‚é‚Æ‚«‚Í‚¢‚ç‚È‚¢)
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å¤±æ•—ã‚¤ãƒ™ãƒ³ãƒˆ(å…±é€šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™ã€å°‚ç”¨ã‚’ä½¿ç”¨ã™ã‚‹ã¨ãã¯ã„ã‚‰ãªã„)
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
 	_TALK_CLOSE
 	_TALK_OBJ_END
@@ -326,7 +326,7 @@ ev_r210a_woman3_item_event_fail:
 
 
 /********************************************************************/
-/*							Ž{ÝŠÅ”Â								*/
+/*							æ–½è¨­çœ‹æ¿								*/
 /********************************************************************/
 ev_r210a_sign1:
 	_EASY_BOARD_MSG	msg_r210a_sign1_01,BOARD_TYPE_POST,0
@@ -334,7 +334,7 @@ ev_r210a_sign1:
 
 
 /********************************************************************/
-/*							•WŽ¯									*/
+/*							æ¨™è­˜									*/
 /********************************************************************/
 ev_r210a_sign2:
 	_EASY_BOARD_MSG	msg_r210a_sign2_01,BOARD_TYPE_ROAD,0
@@ -342,7 +342,7 @@ ev_r210a_sign2:
 
 
 /********************************************************************/
-/*							ƒWƒ‡ƒMƒ“ƒO								*/
+/*							ã‚¸ãƒ§ã‚®ãƒ³ã‚°								*/
 /********************************************************************/
 ev_r210a_jogger4:
 	_EASY_OBJ_MSG	msg_r210a_jogger_04_01

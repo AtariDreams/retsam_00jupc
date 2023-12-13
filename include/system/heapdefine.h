@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	heapdefine.h
- * @brief	ƒ|ƒPƒ‚ƒ“‚c‚o ƒq[ƒvŽí•ÊŽw’è
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ï¼¤ï¼° ãƒ’ãƒ¼ãƒ—ç¨®åˆ¥æŒ‡å®š
  * @author	taya  GAME FREAK Inc.
  */
 //=============================================================================
@@ -12,13 +12,13 @@
 
 //----------------------------------------------------------------------------
 /**
- *  Šî–{ƒq[ƒv’è‹`  
+ *  åŸºæœ¬ãƒ’ãƒ¼ãƒ—å®šç¾©  
  *
- *  ƒVƒXƒeƒ€AƒAƒvƒŠ‚È‚Ç‘å‚Ü‚©‚ÈÝ’è‚Ì‚Ýs‚¤B
- *  Å‰‚ÉƒAƒŠ[ƒi‚©‚çƒƒ‚ƒŠ‚ðŠm•Û‚·‚é‚Ì‚Í‚±‚ê‚ç‚Ìƒq[ƒvƒOƒ‹[ƒv‚Ì‚ÝB
+ *  ã‚·ã‚¹ãƒ†ãƒ ã€ã‚¢ãƒ—ãƒªãªã©å¤§ã¾ã‹ãªè¨­å®šã®ã¿è¡Œã†ã€‚
+ *  æœ€åˆã«ã‚¢ãƒªãƒ¼ãƒŠã‹ã‚‰ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ã®ã¯ã“ã‚Œã‚‰ã®ãƒ’ãƒ¼ãƒ—ã‚°ãƒ«ãƒ¼ãƒ—ã®ã¿ã€‚
  *
- *  ŠeŽíƒAƒvƒŠ‚Í‚±‚ê‚ç‚Ìƒq[ƒv‚©‚ç’¼Úƒƒ‚ƒŠ‚ðƒAƒƒP[ƒg‚·‚é‚Ì‚Å‚Í‚È‚­A
- *  ƒAƒvƒŠ—p‚Ì‘å‚«‚Èƒq[ƒv“à‚É‚³‚ç‚Éƒq[ƒv‚ðì¬‚µA‚»‚±‚©‚çƒAƒƒP[ƒg‚·‚éB
+ *  å„ç¨®ã‚¢ãƒ—ãƒªã¯ã“ã‚Œã‚‰ã®ãƒ’ãƒ¼ãƒ—ã‹ã‚‰ç›´æŽ¥ãƒ¡ãƒ¢ãƒªã‚’ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã™ã‚‹ã®ã§ã¯ãªãã€
+ *  ã‚¢ãƒ—ãƒªç”¨ã®å¤§ããªãƒ’ãƒ¼ãƒ—å†…ã«ã•ã‚‰ã«ãƒ’ãƒ¼ãƒ—ã‚’ä½œæˆã—ã€ãã“ã‹ã‚‰ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã™ã‚‹ã€‚
  *
  */
 //----------------------------------------------------------------------------
@@ -35,133 +35,133 @@ typedef enum {
 
 //----------------------------------------------------------------------------
 /**
- *  ƒ†[ƒU[ƒq[ƒv’è‹`  
+ *  ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ’ãƒ¼ãƒ—å®šç¾©  
  *
- *  ŠeƒAƒvƒŠ‚²‚Æ‚ÉŒÅ—L‚Ìƒq[ƒv‚h‚c‚ðØ‚éB
- *  ƒAƒŠ[ƒi‚©‚çƒƒ‚ƒŠ‚ðŠm•Û‚·‚é‚Ì‚Å‚Í‚È‚­Aã‹L‚ÌŠî–{ƒq[ƒv‚Ì’†‚©‚ç‚³‚ç‚É
- *  ƒq[ƒv‚ðì¬‚µ‚ÄA‚»‚Ìƒq[ƒv‚©‚çƒƒ‚ƒŠƒuƒƒbƒN‚ðƒAƒƒP[ƒg‚·‚éB
+ *  å„ã‚¢ãƒ—ãƒªã”ã¨ã«å›ºæœ‰ã®ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤ã‚’åˆ‡ã‚‹ã€‚
+ *  ã‚¢ãƒªãƒ¼ãƒŠã‹ã‚‰ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ã®ã§ã¯ãªãã€ä¸Šè¨˜ã®åŸºæœ¬ãƒ’ãƒ¼ãƒ—ã®ä¸­ã‹ã‚‰ã•ã‚‰ã«
+ *  ãƒ’ãƒ¼ãƒ—ã‚’ä½œæˆã—ã¦ã€ãã®ãƒ’ãƒ¼ãƒ—ã‹ã‚‰ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã™ã‚‹ã€‚
  */
 //----------------------------------------------------------------------------
 typedef enum {
-	HEAPID_FIELD = HEAPID_BASE_MAX,		// ƒtƒB[ƒ‹ƒh
-	HEAPID_BATTLE,						// í“¬
-	HEAPID_BAG,							// ƒoƒbƒO
-	HEAPID_POKETCH_MAIN,				// ƒ|ƒPƒbƒ`iƒƒCƒ“j
-	HEAPID_POKETCH_APP,					// ƒ|ƒPƒbƒ`iƒAƒvƒŠj
-	HEAPID_BOX_SYSTEM,					// ƒ{ƒbƒNƒXiƒVƒXƒeƒ€§Œäj
-	HEAPID_BOX_VIEW,					// ƒ{ƒbƒNƒXi•`‰æƒ[ƒNj
-	HEAPID_WORLD,						//ƒ[ƒ‹ƒh
-	HEAPID_POKELIST,					// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg
-	HEAPID_IMAGECLIP_DATA,				// ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^ƒ[ƒN
-	HEAPID_IMAGECLIP_DRAW,				// ƒCƒ[ƒWƒNƒŠƒbƒv•`‰æƒ[ƒN
-    HEAPID_COMMUNICATION,               // ’ÊM
-	HEAPID_TITLE,						// ƒ^ƒCƒgƒ‹‰æ–Ê
-	HEAPID_TOWNMAP,						// ƒ^ƒEƒ“ƒ}ƒbƒv
-	HEAPID_NAMEIN,						// –¼‘O“ü—Í
-	HEAPID_POKESTATUS,					// ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–Ê
-	HEAPID_CONTEST,						// ƒRƒ“ƒeƒXƒg‘S‘ÌƒVƒXƒeƒ€
-	HEAPID_ACTIN,						// ƒRƒ“ƒeƒXƒgF‰‰‹Z—Í•”–å
-	HEAPID_VISUAL,						// ƒRƒ“ƒeƒXƒgFƒrƒWƒ…ƒAƒ‹•”–å
-	HEAPID_DANCE,						// ƒRƒ“ƒeƒXƒgFƒ_ƒ“ƒX•”–å
-	HEAPID_CONRES,						// ƒRƒ“ƒeƒXƒgFŒ‹‰Ê”­•\‰æ–Ê
-	HEAPID_TR_CARD,						// ƒgƒŒ[ƒi[ƒJ[ƒh
-	HEAPID_TRADELIST,					// ƒ|ƒPƒ‚ƒ“ŒðŠ·ƒŠƒXƒg‰æ–Ê
-	HEAPID_DEBUG_APPLICATION,			// ƒfƒoƒbƒOƒAƒvƒŠƒP[ƒVƒ‡ƒ“—p
-	HEAPID_OPENING,						// ƒI[ƒvƒjƒ“ƒO
-    HEAPID_DIGFOSSIL,                   // ‰»ÎŒ@‚è
-    HEAPID_TITLE_DEMO,                  // ƒ^ƒCƒgƒ‹ƒfƒ‚30
-	HEAPID_UNIONROOM,					// ƒ†ƒjƒIƒ“ƒ‹[ƒ€—p
-	HEAPID_EVENT,						// ƒCƒxƒ“ƒg—p
-	HEAPID_UNDERGROUND,					// ’n‰º‚Å‚Ì‰ï˜b—p
-	HEAPID_PMS_INPUT_SYSTEM,			// ŠÈˆÕ‰ï˜b“ü—Í‰æ–ÊiƒVƒXƒeƒ€§Œäj
-	HEAPID_PMS_INPUT_VIEW,				// ŠÈˆÕ‰ï˜b“ü—Í‰æ–Êi•`‰æƒ[ƒNj
-	HEAPID_NUTSTAG,						// –Ø‚ÌŽÀƒ^ƒO‰æ–Ê
-	HEAPID_ZUKAN,						// }ŠÓ—p
-	HEAPID_CONFIG,						// ƒRƒ“ƒtƒBƒO—p
-	HEAPID_OEKAKI,						// ‚¨ŠG‚©‚«ƒ{[ƒh—p
-	HEAPID_MAILSYS,						// ƒ[ƒ‹—p
-	HEAPID_MAILVIEW,					// ƒ[ƒ‹‰{———p
-	HEAPID_FANTASYNOTE,					// –`Œ¯ƒm[ƒg—p
-	HEAPID_MAILBOX,						// ƒ[ƒ‹ƒ{ƒbƒNƒX—p
-	HEAPID_PORUTO,						// ƒ|ƒ‹ƒgƒRƒ“ƒgƒ[ƒ‰—p
-	HEAPID_PORUTO_CASE,					// ƒ|ƒ‹ƒgƒP[ƒX—p
-	HEAPID_PORUTO_DEMO,					// ƒ|ƒ‹ƒgƒfƒ‚—p
-	HEAPID_EV_POKESELECT,				// ŠJŽnƒ|ƒPƒ‚ƒ“ƒZƒŒƒNƒg—p
-	HEAPID_MYSIGN,						// ƒgƒŒ[ƒi[ƒTƒCƒ“—p
-    HEAPID_WIFIMENU,                    // WIFIƒƒjƒ…[
-    HEAPID_WIFIEARTH,                   // ¢ŠE’ÊM—š—ð
-	HEAPID_RECORD,						// ƒŒƒR[ƒhƒR[ƒi[—p
-    HEAPID_WIFINOTE,                    // WIFI—F’BŽè’ 
-	HEAPID_CUSTOM_BALL,					// ƒJƒXƒ^ƒ€ƒ{[ƒ‹
-    HEAPID_WIFIP2PMATCH,                // WIFI P2P ƒ}ƒbƒ`ƒ“ƒO‰æ–Ê—p
-	HEAPID_NUT_MIXER,					// –Ø‚ÌŽÀ‚Ü‚º‚Ü‚ºƒVƒXƒeƒ€
-	HEAPID_NMIXER_GM,					// –Ø‚ÌŽÀ‚Ü‚º‚Ü‚º–{‘Ì
-	HEAPID_DEMO_TRADE_MAIN,				// ƒ|ƒPƒ‚ƒ“ŒðŠ·ƒfƒ‚iƒƒCƒ“j
-	HEAPID_DEMO_TRADE_SUB,				// ƒ|ƒPƒ‚ƒ“ŒðŠ·ƒfƒ‚iƒTƒuj
-	HEAPID_BTLTOWER_SCR,				// ƒoƒgƒ‹ƒ^ƒ[ƒXƒNƒŠƒvƒg
-	HEAPID_DENDOU_PC,					// “a“°“ü‚èPC‰æ–ÊiƒVƒXƒeƒ€j
-	HEAPID_DENDOU_PC_VIEW,				// “a“°“ü‚èPC‰æ–Êi•`‰æj
-	HEAPID_WORLDTRADE,					// wifi¢ŠEŒðŠ·‰æ–Ê
-	HEAPID_DENDOU_DEMO,					// “a“°“ü‚èƒfƒ‚
-	HEAPID_FIELD_FLDOBJ_MDL,			// ƒtƒB[ƒ‹ƒh@ƒtƒB[ƒ‹ƒhOBJ@ƒ‚ƒfƒ‹
-	HEAPID_FIELD_FLDOBJ_ANM,			// ƒtƒB[ƒ‹ƒh@ƒtƒB[ƒ‹ƒhOBJ@ƒAƒjƒ
-	HEAPID_FIELD_FE,					// ƒtƒB[ƒ‹ƒh@ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg
-	HEAPID_WAZAOSHIE,					// ‹Z‹³‚¦/Žv‚¢o‚µ‰æ–Ê
-	HEAPID_WIFI_BATTLETOWER,			// WIFIƒoƒgƒ‹ƒ^ƒ[Ú‘±‰æ–Ê
-	HEAPID_FIELD_FE_BLACT_MDL,			// ƒtƒB[ƒ‹ƒh@ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒ‚ƒfƒ‹
-	HEAPID_FIELD_FE_BLACT_ANM,			// ƒtƒB[ƒ‹ƒh@ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒAƒjƒ
-	HEAPID_EGG_DEMO,					// ‚½‚Ü‚²›z‰»ƒfƒ‚
-	HEAPID_SHIPDEMO,					// ‘Dƒfƒ‚
-	HEAPID_ITEMSHINKA,					// ƒAƒCƒeƒ€i‰»—p
-	HEAPID_BTOWER_APP,					// ƒ^ƒ[ŠÖ˜AƒAƒvƒŠ
-	HEAPID_ENDING_DEMO,					// ƒGƒ“ƒfƒBƒ“ƒOƒfƒ‚
-	HEAPID_OP_DEMO,						// ƒI[ƒvƒjƒ“ƒOƒfƒ‚
-	HEAPID_GAMEINIT,					// ƒQ[ƒ€‰Šú‰»ˆ—
-	HEAPID_AGBCARTRIDGE,					// ‚`‚f‚aƒJ[ƒgƒŠƒbƒW‚©‚ç‚à‚Á‚Ä‚­‚é‰æ–Ê
-	HEAPID_SLOT,						// ƒXƒƒbƒg
-	HEAPID_RANKING_VIEW,				// ƒMƒlƒXƒz[ƒ‹ƒ‰ƒ“ƒLƒ“ƒO‰æ–Ê
-	HEAPID_STARTMENU,					// ƒXƒ^[ƒgƒƒjƒ…[‰æ–Ê
-	HEAPID_INTRO,						// “±“üƒfƒ‚
-	HEAPID_INTRO_TV,					// “±“üƒfƒ‚‚s‚u
-	HEAPID_SYOUJYOU,					// •\²ó
-	HEAPID_POKEMONRANGER,					// ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚Æ‚ÌÚ‘±‰æ–Ê
-	HEAPID_MYSTERYGIFT,					// ‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ì‰æ–Ê
-	HEAPID_MYSTERYCARD,					// ‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ì ƒJ[ƒh‚ðŒ©‚é‰æ–Ê
-	HEAPID_BACKUPCONT,					// ƒoƒbƒNƒAƒbƒvƒRƒ“ƒgƒ[ƒ‹—p
+	HEAPID_FIELD = HEAPID_BASE_MAX,		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+	HEAPID_BATTLE,						// æˆ¦é—˜
+	HEAPID_BAG,							// ãƒãƒƒã‚°
+	HEAPID_POKETCH_MAIN,				// ãƒã‚±ãƒƒãƒï¼ˆãƒ¡ã‚¤ãƒ³ï¼‰
+	HEAPID_POKETCH_APP,					// ãƒã‚±ãƒƒãƒï¼ˆã‚¢ãƒ—ãƒªï¼‰
+	HEAPID_BOX_SYSTEM,					// ãƒœãƒƒã‚¯ã‚¹ï¼ˆã‚·ã‚¹ãƒ†ãƒ åˆ¶å¾¡ï¼‰
+	HEAPID_BOX_VIEW,					// ãƒœãƒƒã‚¯ã‚¹ï¼ˆæç”»ãƒ¯ãƒ¼ã‚¯ï¼‰
+	HEAPID_WORLD,						//ãƒ¯ãƒ¼ãƒ«ãƒ‰
+	HEAPID_POKELIST,					// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ
+	HEAPID_IMAGECLIP_DATA,				// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+	HEAPID_IMAGECLIP_DRAW,				// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—æç”»ãƒ¯ãƒ¼ã‚¯
+    HEAPID_COMMUNICATION,               // é€šä¿¡
+	HEAPID_TITLE,						// ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
+	HEAPID_TOWNMAP,						// ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—
+	HEAPID_NAMEIN,						// åå‰å…¥åŠ›
+	HEAPID_POKESTATUS,					// ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢
+	HEAPID_CONTEST,						// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¨ä½“ã‚·ã‚¹ãƒ†ãƒ 
+	HEAPID_ACTIN,						// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šæ¼”æŠ€åŠ›éƒ¨é–€
+	HEAPID_VISUAL,						// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€
+	HEAPID_DANCE,						// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€
+	HEAPID_CONRES,						// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šçµæžœç™ºè¡¨ç”»é¢
+	HEAPID_TR_CARD,						// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰
+	HEAPID_TRADELIST,					// ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒªã‚¹ãƒˆç”»é¢
+	HEAPID_DEBUG_APPLICATION,			// ãƒ‡ãƒãƒƒã‚°ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ç”¨
+	HEAPID_OPENING,						// ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°
+    HEAPID_DIGFOSSIL,                   // åŒ–çŸ³æŽ˜ã‚Š
+    HEAPID_TITLE_DEMO,                  // ã‚¿ã‚¤ãƒˆãƒ«ãƒ‡ãƒ¢30
+	HEAPID_UNIONROOM,					// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨
+	HEAPID_EVENT,						// ã‚¤ãƒ™ãƒ³ãƒˆç”¨
+	HEAPID_UNDERGROUND,					// åœ°ä¸‹ã§ã®ä¼šè©±ç”¨
+	HEAPID_PMS_INPUT_SYSTEM,			// ç°¡æ˜“ä¼šè©±å…¥åŠ›ç”»é¢ï¼ˆã‚·ã‚¹ãƒ†ãƒ åˆ¶å¾¡ï¼‰
+	HEAPID_PMS_INPUT_VIEW,				// ç°¡æ˜“ä¼šè©±å…¥åŠ›ç”»é¢ï¼ˆæç”»ãƒ¯ãƒ¼ã‚¯ï¼‰
+	HEAPID_NUTSTAG,						// æœ¨ã®å®Ÿã‚¿ã‚°ç”»é¢
+	HEAPID_ZUKAN,						// å›³é‘‘ç”¨
+	HEAPID_CONFIG,						// ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”¨
+	HEAPID_OEKAKI,						// ãŠçµµã‹ããƒœãƒ¼ãƒ‰ç”¨
+	HEAPID_MAILSYS,						// ãƒ¡ãƒ¼ãƒ«ç”¨
+	HEAPID_MAILVIEW,					// ãƒ¡ãƒ¼ãƒ«é–²è¦§ç”¨
+	HEAPID_FANTASYNOTE,					// å†’é™ºãƒŽãƒ¼ãƒˆç”¨
+	HEAPID_MAILBOX,						// ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ç”¨
+	HEAPID_PORUTO,						// ãƒãƒ«ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ç”¨
+	HEAPID_PORUTO_CASE,					// ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ç”¨
+	HEAPID_PORUTO_DEMO,					// ãƒãƒ«ãƒˆãƒ‡ãƒ¢ç”¨
+	HEAPID_EV_POKESELECT,				// é–‹å§‹ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¬ã‚¯ãƒˆç”¨
+	HEAPID_MYSIGN,						// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚µã‚¤ãƒ³ç”¨
+    HEAPID_WIFIMENU,                    // WIFIãƒ¡ãƒ‹ãƒ¥ãƒ¼
+    HEAPID_WIFIEARTH,                   // ä¸–ç•Œé€šä¿¡å±¥æ­´
+	HEAPID_RECORD,						// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ç”¨
+    HEAPID_WIFINOTE,                    // WIFIå‹é”æ‰‹å¸³
+	HEAPID_CUSTOM_BALL,					// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
+    HEAPID_WIFIP2PMATCH,                // WIFI P2P ãƒžãƒƒãƒãƒ³ã‚°ç”»é¢ç”¨
+	HEAPID_NUT_MIXER,					// æœ¨ã®å®Ÿã¾ãœã¾ãœã‚·ã‚¹ãƒ†ãƒ 
+	HEAPID_NMIXER_GM,					// æœ¨ã®å®Ÿã¾ãœã¾ãœæœ¬ä½“
+	HEAPID_DEMO_TRADE_MAIN,				// ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒ‡ãƒ¢ï¼ˆãƒ¡ã‚¤ãƒ³ï¼‰
+	HEAPID_DEMO_TRADE_SUB,				// ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒ‡ãƒ¢ï¼ˆã‚µãƒ–ï¼‰
+	HEAPID_BTLTOWER_SCR,				// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+	HEAPID_DENDOU_PC,					// æ®¿å ‚å…¥ã‚ŠPCç”»é¢ï¼ˆã‚·ã‚¹ãƒ†ãƒ ï¼‰
+	HEAPID_DENDOU_PC_VIEW,				// æ®¿å ‚å…¥ã‚ŠPCç”»é¢ï¼ˆæç”»ï¼‰
+	HEAPID_WORLDTRADE,					// wifiä¸–ç•Œäº¤æ›ç”»é¢
+	HEAPID_DENDOU_DEMO,					// æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¢
+	HEAPID_FIELD_FLDOBJ_MDL,			// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ãƒ¢ãƒ‡ãƒ«
+	HEAPID_FIELD_FLDOBJ_ANM,			// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ã‚¢ãƒ‹ãƒ¡
+	HEAPID_FIELD_FE,					// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	HEAPID_WAZAOSHIE,					// æŠ€æ•™ãˆ/æ€ã„å‡ºã—ç”»é¢
+	HEAPID_WIFI_BATTLETOWER,			// WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æŽ¥ç¶šç”»é¢
+	HEAPID_FIELD_FE_BLACT_MDL,			// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ãƒ¢ãƒ‡ãƒ«
+	HEAPID_FIELD_FE_BLACT_ANM,			// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚¢ãƒ‹ãƒ¡
+	HEAPID_EGG_DEMO,					// ãŸã¾ã”å­µåŒ–ãƒ‡ãƒ¢
+	HEAPID_SHIPDEMO,					// èˆ¹ãƒ‡ãƒ¢
+	HEAPID_ITEMSHINKA,					// ã‚¢ã‚¤ãƒ†ãƒ é€²åŒ–ç”¨
+	HEAPID_BTOWER_APP,					// ã‚¿ãƒ¯ãƒ¼é–¢é€£ã‚¢ãƒ—ãƒª
+	HEAPID_ENDING_DEMO,					// ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ‡ãƒ¢
+	HEAPID_OP_DEMO,						// ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ãƒ‡ãƒ¢
+	HEAPID_GAMEINIT,					// ã‚²ãƒ¼ãƒ åˆæœŸåŒ–å‡¦ç†
+	HEAPID_AGBCARTRIDGE,					// ï¼¡ï¼§ï¼¢ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã‹ã‚‰ã‚‚ã£ã¦ãã‚‹ç”»é¢
+	HEAPID_SLOT,						// ã‚¹ãƒ­ãƒƒãƒˆ
+	HEAPID_RANKING_VIEW,				// ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ãƒ©ãƒ³ã‚­ãƒ³ã‚°ç”»é¢
+	HEAPID_STARTMENU,					// ã‚¹ã‚¿ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢
+	HEAPID_INTRO,						// å°Žå…¥ãƒ‡ãƒ¢
+	HEAPID_INTRO_TV,					// å°Žå…¥ãƒ‡ãƒ¢ï¼´ï¼¶
+	HEAPID_SYOUJYOU,					// è¡¨å½°çŠ¶
+	HEAPID_POKEMONRANGER,					// ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã®æŽ¥ç¶šç”»é¢
+	HEAPID_MYSTERYGIFT,					// ãµã—ãŽãªãŠãã‚Šã‚‚ã®ç”»é¢
+	HEAPID_MYSTERYCARD,					// ãµã—ãŽãªãŠãã‚Šã‚‚ã® ã‚«ãƒ¼ãƒ‰ã‚’è¦‹ã‚‹ç”»é¢
+	HEAPID_BACKUPCONT,					// ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ç”¨
 	HEAPID_UNIONBOARD,
-	HEAPID_GAMECLEAR,					// ƒQ[ƒ€ƒNƒŠƒAŽž‚Ìƒf[ƒ^ƒZ[ƒu‰æ–Ê
-    HEAPID_COMMICON,                    // ’ÊMƒAƒCƒRƒ“
-    HEAPID_WIFI_BATTLEROOM,             // wifiƒoƒgƒ‹ƒ‹[ƒ€
-    HEAPID_FACTORY,			            // ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
-    HEAPID_FRONTIERMAP,			        // ƒtƒƒ“ƒeƒBƒAƒ}ƒbƒv
-	HEAPID_GURU2,						// ‚®‚é‚®‚éŒðŠ·
-	HEAPID_WIFI_FOURMATCH,				// WiFi2`4lƒ}ƒbƒ`ƒ“ƒO‰æ–Ê
-	HEAPID_WIFI_FOURMATCHVCHAT,			// WiFi2`4lƒ}ƒbƒ`ƒ“ƒO‰æ–Ê VCHAT—p
-    HEAPID_STAGE,			            // ƒoƒgƒ‹ƒXƒe[ƒW
-    HEAPID_BUCKET,			            // WiFiƒoƒPƒbƒgƒQ[ƒ€
-    HEAPID_CASTLE,			            // ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
-    HEAPID_CODEIN,						// ƒR[ƒh“ü—Í
-    HEAPID_BATTLE_RECORDER,				// ƒoƒgƒ‹ƒŒƒR[ƒ_[
-    HEAPID_ROULETTE,			        // ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg
-    HEAPID_WFLOBBY,				        // WiFiƒƒr[
-    HEAPID_WLDTIMER,			        // ¢ŠEŽžŒv
-    HEAPID_BALANCE_BALL,				// ‹Êæ‚è
-    HEAPID_NEWSDRAW,					// WiFiƒƒr[ƒjƒ…[ƒX•`‰æ
-    HEAPID_EMAIL_MANAGE,				// Eƒ[ƒ‹‰æ–ÊŠÇ—
-    HEAPID_EMAIL,						// Eƒ[ƒ‹‰æ–Ê
-    HEAPID_BALLOON,						// •—‘DŠ„‚è
-    HEAPID_DEMO_TENGAN,					// ƒfƒ‚—p
-    HEAPID_WFLBY_ROOM,					// WiFiLê—p
-    HEAPID_WFLBY_ROOMGRA,				// WiFiLêƒOƒ‰ƒtƒBƒbƒN—p
-    HEAPID_FRONTIER_MONITOR,		    // ƒtƒƒ“ƒeƒBƒA¬Ñ‰æ–Ê
-    HEAPID_SCRATCH,					    // ƒXƒNƒ‰ƒbƒ`
-    HEAPID_GDS_MAIN,				    // GDSƒ‚[ƒhFƒƒCƒ“
-    HEAPID_GDS_CONNECT,				    // GDSƒ‚[ƒhFWIFIÚ‘±‰æ–Ê
-    HEAPID_FOOTPRINT,					// ‘«Õƒ{[ƒh
-    HEAPID_BR_MANAGER,					// ƒoƒgƒ‹ƒŒƒR[ƒ_[ŠÇ——p
-	HEAPID_LIBRARY_TV,					// }‘ŠÙƒfƒ‚‚s‚u
-    HEAPID_WIFIP2PMATCHEX,				// WIFI P2P ƒ}ƒbƒ`ƒ“ƒO ‚R`‚Slƒ}ƒbƒ`ƒ“ƒOê—pŠg’£ƒq[ƒv
-    HEAPID_ANKETO,						// ‚Ð‚ë‚Î@ƒAƒ“ƒP[ƒg
+	HEAPID_GAMECLEAR,					// ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢æ™‚ã®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–ç”»é¢
+    HEAPID_COMMICON,                    // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
+    HEAPID_WIFI_BATTLEROOM,             // wifiãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ 
+    HEAPID_FACTORY,			            // ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
+    HEAPID_FRONTIERMAP,			        // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒžãƒƒãƒ—
+	HEAPID_GURU2,						// ãã‚‹ãã‚‹äº¤æ›
+	HEAPID_WIFI_FOURMATCH,				// WiFi2ã€œ4äººãƒžãƒƒãƒãƒ³ã‚°ç”»é¢
+	HEAPID_WIFI_FOURMATCHVCHAT,			// WiFi2ã€œ4äººãƒžãƒƒãƒãƒ³ã‚°ç”»é¢ VCHATç”¨
+    HEAPID_STAGE,			            // ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
+    HEAPID_BUCKET,			            // WiFiãƒã‚±ãƒƒãƒˆã‚²ãƒ¼ãƒ 
+    HEAPID_CASTLE,			            // ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+    HEAPID_CODEIN,						// ã‚³ãƒ¼ãƒ‰å…¥åŠ›
+    HEAPID_BATTLE_RECORDER,				// ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
+    HEAPID_ROULETTE,			        // ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
+    HEAPID_WFLOBBY,				        // WiFiãƒ­ãƒ“ãƒ¼
+    HEAPID_WLDTIMER,			        // ä¸–ç•Œæ™‚è¨ˆ
+    HEAPID_BALANCE_BALL,				// çŽ‰ä¹—ã‚Š
+    HEAPID_NEWSDRAW,					// WiFiãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹æç”»
+    HEAPID_EMAIL_MANAGE,				// Eãƒ¡ãƒ¼ãƒ«ç”»é¢ç®¡ç†
+    HEAPID_EMAIL,						// Eãƒ¡ãƒ¼ãƒ«ç”»é¢
+    HEAPID_BALLOON,						// é¢¨èˆ¹å‰²ã‚Š
+    HEAPID_DEMO_TENGAN,					// ãƒ‡ãƒ¢ç”¨
+    HEAPID_WFLBY_ROOM,					// WiFiåºƒå ´ç”¨
+    HEAPID_WFLBY_ROOMGRA,				// WiFiåºƒå ´ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç”¨
+    HEAPID_FRONTIER_MONITOR,		    // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æˆç¸¾ç”»é¢
+    HEAPID_SCRATCH,					    // ã‚¹ã‚¯ãƒ©ãƒƒãƒ
+    HEAPID_GDS_MAIN,				    // GDSãƒ¢ãƒ¼ãƒ‰ï¼šãƒ¡ã‚¤ãƒ³
+    HEAPID_GDS_CONNECT,				    // GDSãƒ¢ãƒ¼ãƒ‰ï¼šWIFIæŽ¥ç¶šç”»é¢
+    HEAPID_FOOTPRINT,					// è¶³è·¡ãƒœãƒ¼ãƒ‰
+    HEAPID_BR_MANAGER,					// ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼ç®¡ç†ç”¨
+	HEAPID_LIBRARY_TV,					// å›³æ›¸é¤¨ãƒ‡ãƒ¢ï¼´ï¼¶
+    HEAPID_WIFIP2PMATCHEX,				// WIFI P2P ãƒžãƒƒãƒãƒ³ã‚° ï¼“ã€œï¼”äººãƒžãƒƒãƒãƒ³ã‚°å°‚ç”¨æ‹¡å¼µãƒ’ãƒ¼ãƒ—
+    HEAPID_ANKETO,						// ã²ã‚ã°ã€€ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 	
 	HEAPID_MAX,
 }HEAPID;

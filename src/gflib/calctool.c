@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	calctool.c
- * @brief	�v�Z�֌W
+ * @brief	計算関係
  * @author	mori(GAME FREAK Inc.)
  * @date	2004.10.28
  *
@@ -17,17 +17,17 @@
 
 
 //==============================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //==============================================================================
 static	u16 CodeRand(u32 *code);
 
 
 #if CALCTOOL_SINCOSTBLDEL
-// FX16��FX32�ɕϊ�����
+// FX16をFX32に変換する
 #define FX16_TO_FX32(a)		FX32_CONST( FX_FX16_TO_F32( (a) ) )
 #else
 /**
- *	@brief	SinCos�e�[�u��
+ *	@brief	SinCosテーブル
  */
 const fx32 FixSinCosTbl[360+90] = {
  FX32_SIN0,FX32_SIN1,FX32_SIN2,FX32_SIN3,FX32_SIN4,FX32_SIN5,FX32_SIN6,FX32_SIN7,FX32_SIN8, FX32_SIN9,
@@ -79,7 +79,7 @@ const fx32 FixSinCosTbl[360+90] = {
 };
 
 /**
- *	@brief	FX_SinIdx(),FX_CosIdx()�֐��ɓn���L�[��360�x�Ή��ϊ��e�[�u��
+ *	@brief	FX_SinIdx(),FX_CosIdx()関数に渡すキーの360度対応変換テーブル
  */
 const u16 RotKey360Tbl[360] = {
  0x00000, 0x000b7, 0x0016d, 0x00223, 0x002d9, 0x0038f, 0x00445, 0x004fb, 0x005b1, 0x00667,
@@ -122,10 +122,10 @@ const u16 RotKey360Tbl[360] = {
 #endif	// CALCTOOL_SINCOSTBLDEL
 
 /**
- *	@brief	�x���@�Ŏ������p�x�ɑΉ�����FX_SinIndex()�̒l��Ԃ�(��荞�݂Ȃ�)
- *	@param	deg	u16:0-359�x�̐���
+ *	@brief	度数法で示した角度に対応するFX_SinIndex()の値を返す(回り込みなし)
+ *	@param	deg	u16:0-359度の整数
  *
- *	@return FX_SinIndex()��deg�ɑΉ������l
+ *	@return FX_SinIndex()のdegに対応した値
  */
 fx32 Sin360(u16 deg)
 {
@@ -150,10 +150,10 @@ fx32 Sin360(u16 deg)
 #endif
 }
 /**
- *	@brief	�x���@�Ŏ������p�x�ɑΉ�����FX_CosIndex()�̒l��Ԃ�(��荞�݂Ȃ�)
- *	@param	deg	u16:0-359�x�̐���
+ *	@brief	度数法で示した角度に対応するFX_CosIndex()の値を返す(回り込みなし)
+ *	@param	deg	u16:0-359度の整数
  *
- *	@return FX_CosIndex()��deg�ɑΉ������l
+ *	@return FX_CosIndex()のdegに対応した値
  */
 fx32 Cos360(u16 deg){
 #ifdef ERRCHECK_ON_DEG_TO_XXX
@@ -176,10 +176,10 @@ fx32 Cos360(u16 deg){
 }
 
 /**
- *	@brief	�x���@�Ŏ������p�x�ɑΉ�����FX_SinIndex()�̒l��Ԃ�(��荞�݂���)
- *	@param	deg	u16:�x���@�̊p�x
+ *	@brief	度数法で示した角度に対応するFX_SinIndex()の値を返す(回り込みあり)
+ *	@param	deg	u16:度数法の角度
  *
- *	@return FX_SinIndex()��deg�ɑΉ������l
+ *	@return FX_SinIndex()のdegに対応した値
  */
 fx32 Sin360R(u16 deg)
 {
@@ -191,10 +191,10 @@ fx32 Sin360R(u16 deg)
 #endif
 }
 /**
- *	@brief	�x���@�Ŏ������p�x�ɑΉ�����FX_CosIndex()�̒l��Ԃ�(��荞�݂���)
- *	@param	deg	u16:�x���@�̊p�x
+ *	@brief	度数法で示した角度に対応するFX_CosIndex()の値を返す(回り込みあり)
+ *	@param	deg	u16:度数法の角度
  *
- *	@return FX_CosIndex()��deg�ɑΉ������l
+ *	@return FX_CosIndex()のdegに対応した値
  */
 fx32 Cos360R(u16 deg)
 {
@@ -207,10 +207,10 @@ fx32 Cos360R(u16 deg)
 }
 
 /**
- *	@brief	�x���@�Ŏ������p�x�ɑΉ�����Nitro�̃��[�e�[�V����Index�L�[��Ԃ�(��荞�݂Ȃ�)
- *	@param	deg	u16:�x���@�̊p�x
+ *	@brief	度数法で示した角度に対応するNitroのローテーションIndexキーを返す(回り込みなし)
+ *	@param	deg	u16:度数法の角度
  *
- *	@return deg�ɑΉ�����Nitro��Index�L�[
+ *	@return degに対応したNitroのIndexキー
  */
 u16 RotKey(u16 deg)
 {
@@ -228,10 +228,10 @@ u16 RotKey(u16 deg)
 #endif
 }
 /**
- *	@brief	�x���@�Ŏ������p�x�ɑΉ�����Nitro�̃��[�e�[�V����Index�L�[��Ԃ�(��荞�݂Ȃ�)
- *	@param	deg	u16:�x���@�̊p�x
+ *	@brief	度数法で示した角度に対応するNitroのローテーションIndexキーを返す(回り込みなし)
+ *	@param	deg	u16:度数法の角度
  *
- *	@return deg�ɑΉ�����Nitro��Index�L�[
+ *	@return degに対応したNitroのIndexキー
  */
 u16 RotKeyR(u16 deg)
 {
@@ -244,10 +244,10 @@ u16 RotKeyR(u16 deg)
 }
 
 /**
- *	@brief	�x���@(fx32)�Ŏ������p�x�ɑΉ�����FX_SinIndex()�̒l��Ԃ�(��荞�݂���)
- *	@param	deg	fx32:�x���@�̊p�x
+ *	@brief	度数法(fx32)で示した角度に対応するFX_SinIndex()の値を返す(回り込みあり)
+ *	@param	deg	fx32:度数法の角度
  *
- *	@return FX_SinIndex()��deg�ɑΉ������l
+ *	@return FX_SinIndex()のdegに対応した値
  */
 fx32 Sin360FX(fx32 deg)
 {
@@ -260,10 +260,10 @@ fx32 Sin360FX(fx32 deg)
 #endif
 }
 /**
- *	@brief	�x���@(fx32)�Ŏ������p�x�ɑΉ�����FX_CosIndex()�̒l��Ԃ�(��荞�݂���)
- *	@param	deg	fx32:�x���@�̊p�x
+ *	@brief	度数法(fx32)で示した角度に対応するFX_CosIndex()の値を返す(回り込みあり)
+ *	@param	deg	fx32:度数法の角度
  *
- *	@return FX_CosIndex()��deg�ɑΉ������l
+ *	@return FX_CosIndex()のdegに対応した値
  */
 fx32 Cos360FX(fx32 deg)
 {
@@ -275,7 +275,7 @@ fx32 Cos360FX(fx32 deg)
 #endif
 }
 
-//pp_rand�Ɗ�������Ȃ��������[�`��
+//pp_randと干渉しあわない乱数ルーチン
 u32 gf_rand_next;
 
 u32 gf_get_seed(void)
@@ -297,21 +297,21 @@ u16 gf_rand(void)
 
 //==============================================================================
 /**
- * $brief   ���`�����@�����擾�i�����̎�w��Łj
- *          ���̌v�Z���@�ł́A�����̎�͑O��擾�����l�ł��邱�Ƃ��������Ă��邽�߁A
- *          �Ԃ�l��ۑ�����΁A���������̗������擾���邱�Ƃ��ł���B
- *          �������A���ۂɃQ�[�����Ŏg���Ƃ��ɂ�u32���l���傫������Ƃ�����%�i�]��j�ŏk�߂Ă͂����Ȃ��B
- *          0-31�ł��������%32�Ƃ�����ƁA�����l�΂���ł�悤�ɂȂ�܂��B
- *          /�i���Z�j�ŏ��������邱�ƁB
+ * $brief   線形合同法乱数取得（乱数の種指定版）
+ *          この計算方法では、乱数の種は前回取得した値であることが分かっているため、
+ *          返り値を保存すれば、同じ周期の乱数を取得することができる。
+ *          ただし、実際にゲーム内で使うときにはu32が値が大きいからといって%（余り）で縮めてはいけない。
+ *          0-31でいいからと%32とかすると、同じ値ばかりでるようになります。
+ *          /（除算）で小さくすること。
  *
- * @param   seed	�����̎�
+ * @param   seed	乱数の種
  *
- * @retval  u32		�����i�����Ă��̒l�͎��̗����̎�ɂ��Ȃ�j
+ * @retval  u32		乱数（そしてこの値は次の乱数の種にもなる）
  */
 //==============================================================================
 u32 gf_fix_rand( u32 seed )
 {
-	// �����ŕԂ��l��ۑ����Ă����Ύ��̗����̎�ɂȂ�
+	// ここで返す値を保存しておけば次の乱数の種になる
 	return seed * 1812433253L + 1;
 }
 
@@ -319,45 +319,45 @@ u32 gf_fix_rand( u32 seed )
  *
  *	H16/11/10		Tomoya Takahashi
  *	
- *				MT���ł̗��������֐�
+ *				MT方での乱数発生関数
  *
  ----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
- *					�萔�錾
+ *					定数宣言
  ----------------------------------------------------------------------------*/
-#define N 624						// �����z��̗v�f��
-#define M 397						// ���R��
-#define MATRIX_A 0x9908b0dfUL		// ���߂��l�̂P�r�b�g�ڂ��P�̎���XOR����l 
-#define UPPER_MASK 0x80000000UL		// �r�b�g��w-r�r�b�g���擾����}�N��	����w = 32 r = 31�ł��B
-#define LOWER_MASK 0x7fffffffUL		// �r�b�g��r�r�b�g���擾����}�N��		��������ƂR�Q�r�b�g�����Ȃ��̗������擾�ł��܂��B
+#define N 624						// 乱数配列の要素数
+#define M 397						// 自然数
+#define MATRIX_A 0x9908b0dfUL		// 求めた値の１ビット目が１の時にXORする値 
+#define UPPER_MASK 0x80000000UL		// ビットのw-rビットを取得するマクロ	今はw = 32 r = 31です。
+#define LOWER_MASK 0x7fffffffUL		// ビットのrビットを取得するマクロ		こうすると３２ビット符号なしの乱数を取得できます。
 
 
 /*-----------------------------------------------------------------------------
- *					�O���[�o���ϐ�
+ *					グローバル変数
  ----------------------------------------------------------------------------*/
-static u32 mt[N];						// MT�̎��̌��ʂ̓���z��
-static int mti=N+1;						// �z��v�f�ԍ�(N+1�̎��͏���������Ă��Ȃ�)
-static u32 mag01[2]={0x0UL, MATRIX_A};	// ���̌��ʂP�r�b�g�ڂ�Y�����ԍ��Ƃ��ē����Xor������e�[�u��
+static u32 mt[N];						// MTの式の結果の入る配列
+static int mti=N+1;						// 配列要素番号(N+1の時は初期化されていない)
+static u32 mag01[2]={0x0UL, MATRIX_A};	// 式の結果１ビット目を添え字番号として入れてXorをするテーブル
 
 /*-----------------------------------------------------------------------------
  *
- *				�������֐�
+ *				初期化関数
  *
- *	����
- *		u32 s�F�V�[�h�l(���̒l���珉�����l�����`�����@�Ő�������܂�)
+ *	引数
+ *		u32 s：シード値(この値から初期化値が線形合同法で生成されます)
  *
- *	�߂�l
- *		�Ȃ�
+ *	戻り値
+ *		なし
  *
- *		�V�[�h�l�ɂ��mt�z�������`�����@�̗����Ő���
+ *		シード値によりmt配列内を線形合同法の乱数で生成
  * 
  ----------------------------------------------------------------------------*/
 void gf_mtSrand(u32 s)
 {
-    mt[0]= s & 0xffffffff;			// �V�[�h�l��v�f�O�ɑ��
+    mt[0]= s & 0xffffffff;			// シード値を要素０に代入
 
 	//
-	// ���`�����@�ŗ����𐶐�
+	// 線形合同法で乱数を生成
 	//
     for (mti=1; mti<N; mti++) {
         mt[mti] = 
@@ -370,13 +370,13 @@ void gf_mtSrand(u32 s)
 
 /*-----------------------------------------------------------------------------
  *
- *			�����Ȃ��R�Q�r�b�g���̗������擾
+ *			符号なし３２ビット長の乱数を取得
  *			
- *	����
- *		�Ȃ�
+ *	引数
+ *		なし
  *
- *	�߂�l
- *		u32�^�F�������ꂽ����
+ *	戻り値
+ *		u32型：生成された乱数
  *
  ----------------------------------------------------------------------------*/
 u32 gf_mtRand(void)
@@ -384,21 +384,21 @@ u32 gf_mtRand(void)
     u32 y;
     
 	//
-	// �����̐���
+	// 乱数の生成
 	//
-	// �����痐���𐶐����邩�̃`�F�b�N
-    if (mti >= N) {		// �����Ƀ��[�v������
-		int kk;			// ���̌v�Z���[�v�p
+	// 式から乱数を生成するかのチェック
+    if (mti >= N) {		// 無限にループさせる
+		int kk;			// 式の計算ループ用
 
-		// mti��N+1�̂Ƃ��͏�����
+		// mtiがN+1のときは初期化
         if (mti == N+1)   
 		{
-			gf_mtSrand(5489UL);		// �K���Ȓl�ŏ�����
+			gf_mtSrand(5489UL);		// 適当な値で初期化
 		}
 
 		//
-		// mti��N�ɂȂ����̂�
-		// �����痐���𐶐��i�l���킩��܂���j
+		// mtiがNになったので
+		// 式から乱数を生成（僕もわかりません）
 		// 
         for (kk=0;kk<N-M;kk++) {
             y = (mt[kk]&UPPER_MASK)|(mt[kk+1]&LOWER_MASK);
@@ -411,15 +411,15 @@ u32 gf_mtRand(void)
         y = (mt[N-1]&UPPER_MASK)|(mt[0]&LOWER_MASK);
         mt[N-1] = mt[M-1] ^ (y >> 1) ^ mag01[y & 0x1UL];
 
-        mti = 0;		// �擪�ɖ߂�
+        mti = 0;		// 先頭に戻す
     }
   
 	//
-	// ���̗������擾
+	// 今の乱数を取得
 	// 
     y = mt[mti++];
 
-	// ���̉��̏����ł����ƒl�𕪕z�����Ă��܂��B
+	// この下の処理でもっと値を分布させています。
     y ^= (y >> 11);
     y ^= (y << 7) & 0x9d2c5680UL;
     y ^= (y << 15) & 0xefc60000UL;
@@ -436,19 +436,19 @@ u32 gf_mtRand(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG�EOBJ��Affine�p�ϊ��s����쐬 ( 2D )
+ * BG・OBJのAffine用変換行列を作成 ( 2D )
  *
- * @param	mtx			�ϊ��s��i�[�ꏊ
- * @param	rad			�p�x ( MAX = 0xffff )
- * @param	scale_x		X�����̊g�嗦
- * @param	scale_y		Y�����̊g�嗦
- * @param	mode		�p�x�ϊ����[�h
+ * @param	mtx			変換行列格納場所
+ * @param	rad			角度 ( MAX = 0xffff )
+ * @param	scale_x		X方向の拡大率
+ * @param	scale_y		Y方向の拡大率
+ * @param	mode		角度変換モード
  *
- * @return	�ϊ��s��
+ * @return	変換行列
  *
  * @li	mode = AFFINE_MAX_256 : theta < 256
  * @li	mode = AFFINE_MAX_360 : theta < 360
- * @li	scale_x(y) = FX32_ONE : �P�{
+ * @li	scale_x(y) = FX32_ONE : １倍
  */
 //--------------------------------------------------------------------------------------------
 void AffineMtxMake_2D( MtxFx22 * mtx, u16 rad, fx32 scale_x, fx32 scale_y, u8 mode )
@@ -466,13 +466,13 @@ void AffineMtxMake_2D( MtxFx22 * mtx, u16 rad, fx32 scale_x, fx32 scale_y, u8 mo
 
 //-----------------------------------------------------------------------------
 /**
- *	���ʂQ���_�����]���������l���擾����
+ *	平面２頂点から回転動さ距離値を取得する
  */
 //-----------------------------------------------------------------------------
 
-// �T�C�Y1�̃x�N�g�������삳�����傫���e�[�u��	���a��2�`128�ł�
-#define CALC_CIRCLE_VECTOR_PARAM_NUM	( 127 )		// ���a��؂�i�K��
-#define CALC_CIRCLE_VECTOR_MAX			( 0xffff )	// �e�[�u����1��]�̈ړ��傫��
+// サイズ1のベクトルが動作させた大きさテーブル	半径は2〜128です
+#define CALC_CIRCLE_VECTOR_PARAM_NUM	( 127 )		// 半径区切る段階数
+#define CALC_CIRCLE_VECTOR_MAX			( 0xffff )	// テーブルの1回転の移動大きさ
 static const u16 CALC_CircleVectorParam[ CALC_CIRCLE_VECTOR_PARAM_NUM ] = {
 	0x169f,
 	0xf14,
@@ -605,11 +605,11 @@ static const u16 CALC_CircleVectorParam[ CALC_CIRCLE_VECTOR_PARAM_NUM ] = {
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�QD��p�O�ρ@Z�ɂ����l������Ȃ��̂��m��Ȃ̂ō���
+ *	@brief	２D専用外積　Zにしか値が入らないのが確定なので高速
  *
- *	@param	cp_a		A�x�N�g��	���A��
- *	@param	cp_b		B�x�N�g��	���A��
- *	@param	p_ans		�@���x�N�g��
+ *	@param	cp_a		Aベクトル	ｘ、ｙ
+ *	@param	cp_b		Bベクトル	ｘ、ｙ
+ *	@param	p_ans		法線ベクトル
  */
 //-----------------------------------------------------------------------------
 static inline void calcTool_2DGaiseki( const VecFx32* cp_a, const VecFx32* cp_b, VecFx32* p_ans )
@@ -621,14 +621,14 @@ static inline void calcTool_2DGaiseki( const VecFx32* cp_a, const VecFx32* cp_b,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ʂQ���_����Q�[�t���Ǝ���]���������l���擾����
+ *	@brief	平面２頂点からゲーフリ独自回転動さ距離値を取得する
  *
- *	@param	x0		A�_�����W
- *	@param	y0		A�_�����W
- *	@param	x1		B�_�����W
- *	@param	y1		B�_�����W
+ *	@param	x0		A点ｘ座標
+ *	@param	y0		A点ｙ座標
+ *	@param	x1		B点ｘ座標
+ *	@param	y1		B点ｙ座標
  *
- *	@return	�Q�[�t���Ǝ���]���������l
+ *	@return	ゲーフリ独自回転動さ距離値
  */
 //-----------------------------------------------------------------------------
 s32 CalcTool_CircleVectorMove( s32 x0, s32 y0, s32 x1, s32 y1 )
@@ -638,15 +638,15 @@ s32 CalcTool_CircleVectorMove( s32 x0, s32 y0, s32 x1, s32 y1 )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ʂQ���_����C�ӂ̓���l���擾����
+ *	@brief	平面２頂点から任意の動作値を取得する
  *
- *	@param	x0		A�_�����W
- *	@param	y0		A�_�����W
- *	@param	x1		B�_�����W
- *	@param	y1		B�_�����W
- *	@param	roopnum	�P��]��\������
+ *	@param	x0		A点ｘ座標
+ *	@param	y0		A点ｙ座標
+ *	@param	x1		B点ｘ座標
+ *	@param	y1		B点ｙ座標
+ *	@param	roopnum	１回転を表す距離
  *
- *	@return	roopnum�P�ʂ̓���l
+ *	@return	roopnum単位の動作値
  */
 //-----------------------------------------------------------------------------
 s32 CalcTool_CircleVectorNum( s32 x0, s32 y0, s32 x1, s32 y1, u16 roopnum )
@@ -658,32 +658,32 @@ s32 CalcTool_CircleVectorNum( s32 x0, s32 y0, s32 x1, s32 y1, u16 roopnum )
 	s32 dist_ret;
 	s32 r_dis;
 	
-	// �i��ł�����������߂�
+	// 進んでいる方向を求める
 	VEC_Set( &a, x0<<FX32_SHIFT, y0<<FX32_SHIFT, 0 );
 	VEC_Set( &b, x1<<FX32_SHIFT, y1<<FX32_SHIFT, 0 );
-//	VEC_CrossProduct( &a, &b, &ans );	// �O�ςŖ@���x�N�g���擾
-	calcTool_2DGaiseki( &a, &b, &ans );	// �O�ςŖ@���x�N�g���擾
-	area_way = ans.x + ans.y + ans.z;	// �㉺�擾
+//	VEC_CrossProduct( &a, &b, &ans );	// 外積で法線ベクトル取得
+	calcTool_2DGaiseki( &a, &b, &ans );	// 外積で法線ベクトル取得
+	area_way = ans.x + ans.y + ans.z;	// 上下取得
 
-	// ���a�����߂�
+	// 半径を求める
 	VEC_Set( &a, x0<<FX32_SHIFT, y0<<FX32_SHIFT, 0 );
 	r = VEC_Mag( &a );
 
-	// �i�񂾑傫�������߂�
-	// (0, 0)��(x1,x1)�̕����x�N�g�����쐬
+	// 進んだ大きさを求める
+	// (0, 0)と(x1,x1)の方向ベクトルを作成
 	VEC_Set( &b, x1<<FX32_SHIFT, y1<<FX32_SHIFT, 0 );
-	VEC_Normalize( &b, &c );	// �P�ʃx�N�g��
+	VEC_Normalize( &b, &c );	// 単位ベクトル
 
-	// �P�ʕ����x�N�g���̔��a�{�ŁA(0, 0)��(x1,x1)�������R�̒����̓_C���쐬
-	c.x = FX_Mul( c.x, r );	// ���a���i�񂾍��W
-	c.y = FX_Mul( c.y, r );	// ���a���i�񂾍��W
+	// 単位方向ベクトルの半径倍で、(0, 0)と(x1,x1)線分上のRの長さの点Cを作成
+	c.x = FX_Mul( c.x, r );	// 半径分進んだ座標
+	c.y = FX_Mul( c.y, r );	// 半径分進んだ座標
 
-	VEC_Subtract( &c, &a, &ans );	// A�`C�����̒��������߂�
+	VEC_Subtract( &c, &a, &ans );	// A〜C線分の長さを求める
 	dist = VEC_Mag( &ans );
 	dist_ret = dist >> FX32_SHIFT;
-	dist_ret = MATH_IAbs( dist_ret );	// ��Βl
+	dist_ret = MATH_IAbs( dist_ret );	// 絶対値
 
-	// �������瓮���l�����߂�
+	// 距離から動さ値を求める
 	r_dis = r >> FX32_SHIFT;
 	r_dis -= 2;
 	if( r_dis < 0 ){
@@ -693,13 +693,13 @@ s32 CalcTool_CircleVectorNum( s32 x0, s32 y0, s32 x1, s32 y1, u16 roopnum )
 		r_dis = CALC_CIRCLE_VECTOR_PARAM_NUM - 1;
 	}
 
-	// 1��]���ړ���CALC_CIRCLE_VECTOR_MAX�Ƃ����Ƃ��̒l�����߂�
+	// 1回転を移動量CALC_CIRCLE_VECTOR_MAXとしたときの値を求める
 	dist_ret *= CALC_CircleVectorParam[ r_dis ];
 
-	// ���̒l��roop_num�ł̒l�ɗ��Ƃ�����
+	// その値をroop_numでの値に落とし込む
 	dist_ret = (roopnum * dist_ret) / CALC_CIRCLE_VECTOR_MAX;
 
-	// �����̕�����t����
+	// 方向の符号を付ける
 	if( area_way <= 0 ){
 		dist_ret *= -1;
 	}
@@ -708,18 +708,18 @@ s32 CalcTool_CircleVectorNum( s32 x0, s32 y0, s32 x1, s32 y1, u16 roopnum )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ʂQ���_����C�ӂ̓���l���擾����
+ *	@brief	平面２頂点から任意の動作値を取得する
  *
- *	@param	x0		A�_�����W
- *	@param	y0		A�_�����W
- *	@param	x1		B�_�����W
- *	@param	y1		B�_�����W
- *	@param	r		����a
+ *	@param	x0		A点ｘ座標
+ *	@param	y0		A点ｙ座標
+ *	@param	x1		B点ｘ座標
+ *	@param	y1		B点ｙ座標
+ *	@param	r		基準半径
  *
- *	@return	�ړ�����
+ *	@return	移動距離
  *
- *	���p���@
- *		r�̉~�������߁A�ړ��������~���̉��p�[�Z���g�ɓ����邩�ɂ��A��]�p�x�����߂邱�Ƃ��o���܂�
+ *	応用方法
+ *		rの円周を求め、移動距離が円周の何パーセントに当たるかにより、回転角度を求めることも出来ます
  */
 //-----------------------------------------------------------------------------
 //#define CALCTOOL_CIRCLEVEC_R_HOSEI
@@ -730,49 +730,49 @@ s32 CalcTool_CircleVectorDistance( s32 x0, s32 y0, s32 x1, s32 y1, u32 r )
 	fx32 dist;
 	s32 dist_ret;
 	
-	// �i��ł�����������߂�
+	// 進んでいる方向を求める
 	VEC_Set( &a, x0<<FX32_SHIFT, y0<<FX32_SHIFT, 0 );
 	VEC_Set( &b, x1<<FX32_SHIFT, y1<<FX32_SHIFT, 0 );
-//	VEC_CrossProduct( &a, &b, &ans );	// �O�ςŖ@���x�N�g���擾
-	calcTool_2DGaiseki( &a, &b, &ans );	// �O�ςŖ@���x�N�g���擾
-	area_way = ans.x + ans.y + ans.z;	// �㉺�擾
+//	VEC_CrossProduct( &a, &b, &ans );	// 外積で法線ベクトル取得
+	calcTool_2DGaiseki( &a, &b, &ans );	// 外積で法線ベクトル取得
+	area_way = ans.x + ans.y + ans.z;	// 上下取得
 
 #ifdef CALCTOOL_CIRCLEVEC_R_HOSEI
-	// ���a�����߂�
+	// 半径を求める
 	VEC_Set( &a, x0<<FX32_SHIFT, y0<<FX32_SHIFT, 0 );
-	VEC_Normalize( &a, &b );	// �P�ʃx�N�g��
-	a.x = FX_Mul( b.x, r << FX32_SHIFT );	// ���a���i�񂾍��W
-	a.y = FX_Mul( b.y, r << FX32_SHIFT );	// ���a���i�񂾍��W
+	VEC_Normalize( &a, &b );	// 単位ベクトル
+	a.x = FX_Mul( b.x, r << FX32_SHIFT );	// 半径分進んだ座標
+	a.y = FX_Mul( b.y, r << FX32_SHIFT );	// 半径分進んだ座標
 
-	// �i�񂾑傫�������߂�
-	// (0, 0)��(x1,x1)�̕����x�N�g�����쐬
+	// 進んだ大きさを求める
+	// (0, 0)と(x1,x1)の方向ベクトルを作成
 	VEC_Set( &b, x1<<FX32_SHIFT, y1<<FX32_SHIFT, 0 );
-	VEC_Normalize( &b, &c );	// �P�ʃx�N�g��
+	VEC_Normalize( &b, &c );	// 単位ベクトル
 
-	// �P�ʕ����x�N�g���̔��a�{�ŁA(0, 0)��(x1,x1)�������R�̒����̓_C���쐬
-	c.x = FX_Mul( c.x, r << FX32_SHIFT );	// ���a���i�񂾍��W
-	c.y = FX_Mul( c.y, r << FX32_SHIFT );	// ���a���i�񂾍��W
+	// 単位方向ベクトルの半径倍で、(0, 0)と(x1,x1)線分上のRの長さの点Cを作成
+	c.x = FX_Mul( c.x, r << FX32_SHIFT );	// 半径分進んだ座標
+	c.y = FX_Mul( c.y, r << FX32_SHIFT );	// 半径分進んだ座標
 
-	VEC_Subtract( &b, &a, &ans );	// A�`C�����̒��������߂�
+	VEC_Subtract( &b, &a, &ans );	// A〜C線分の長さを求める
 	dist = VEC_Mag( &ans );
 	dist_ret = dist >> FX32_SHIFT;
-	dist_ret = MATH_IAbs( dist_ret );	// ��Βl
+	dist_ret = MATH_IAbs( dist_ret );	// 絶対値
 
 #else
-	// oa�Ɛ����ȕ����ɓ����Ă��鋗����Ԃ�
+	// oaと垂直な方向に動いている距離を返す
 	
-	// ���_����a�_�܂ł̃x�N�g���ɐ����ȕ����x�N�g��c�����߂�
-	VEC_Set( &a, y0<<FX32_SHIFT, x0<<FX32_SHIFT, 0 );	// �����ȃx�N�g��
-	VEC_Normalize( &a, &c );	// �P�ʃx�N�g���[������ŕ����x�N�g����
-	// �����x�N�g����ab�x�N�g���Ƃ̓��ςŁA�ړ����������߂�
+	// 原点からa点までのベクトルに垂直な方向ベクトルcを求める
+	VEC_Set( &a, y0<<FX32_SHIFT, x0<<FX32_SHIFT, 0 );	// 垂直なベクトル
+	VEC_Normalize( &a, &c );	// 単位ベクトルー＞これで方向ベクトルに
+	// 方向ベクトルとabベクトルとの内積で、移動距離を求める
 	VEC_Set( &a, x0<<FX32_SHIFT, y0<<FX32_SHIFT, 0 );
 	VEC_Set( &b, x1<<FX32_SHIFT, y1<<FX32_SHIFT, 0 );
-	VEC_Subtract( &b, &a, &ans );	// A�`C�����̒��������߂�
+	VEC_Subtract( &b, &a, &ans );	// A〜C線分の長さを求める
 	dist = VEC_DotProduct( &c, &ans );
 	dist_ret = dist >> FX32_SHIFT;
-	dist_ret = MATH_IAbs( dist_ret );	// ��Βl
+	dist_ret = MATH_IAbs( dist_ret );	// 絶対値
 #endif
-	// �����̕�����t����
+	// 方向の符号を付ける
 	if( area_way <= 0 ){
 		dist_ret *= -1;
 	}
@@ -781,31 +781,31 @@ s32 CalcTool_CircleVectorDistance( s32 x0, s32 y0, s32 x1, s32 y1, u32 r )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���a�Ƌ������猻�݂̉�]�p���擾����
+ *	@brief	半径と距離から現在の回転角を取得する
  *
- *	@param	r		���a
- *	@param	dist	�ړ�����
+ *	@param	r		半径
+ *	@param	dist	移動距離
  *
- *	@return	��]�p	u16�ŃL���X�g���Ă�������
+ *	@return	回転角	u16でキャストしてください
  */
 //-----------------------------------------------------------------------------
 s32 CalcTool_CircleVectroDistRotaGet( u16 r, s32 dist )
 {
 	s32 r_dist;
-	// �~�������߂�
+	// 円周を求める
 	r_dist = FX_Mul( (2*r)<<FX32_SHIFT, FX32_CONST(3.140f) ) >> FX32_SHIFT;
-	// dist�Ƃ̔�Ŋp�x�����߂�
+	// distとの比で角度を求める
 	return (s32)( (dist * 0xffff) / r_dist );
 }
 
 //----------------------------------------------------------------------------------------------
 /**
- * �`�F�b�N�T���̎Z�o���[�`��
+ * チェックサムの算出ルーチン
  *
- * @param	adrs	�J�n�A�h���X
- * @param	size	�f�[�^�T�C�Y
+ * @param	adrs	開始アドレス
+ * @param	size	データサイズ
  *
- * @retval	"�Z�o�����l"
+ * @retval	"算出した値"
  */
 //----------------------------------------------------------------------------------------------
 u32 CalcTool_calc_check_sum(const void * adrs, u32 size)
@@ -820,11 +820,11 @@ u32 CalcTool_calc_check_sum(const void * adrs, u32 size)
 
 //============================================================================================
 /**
- *	�Í�����
+ *	暗号処理
  *
- * @param[in]	data	�Í�������f�[�^�̃|�C���^
- * @param[in]	size	�Í�������f�[�^�̃T�C�Y
- * @param[in]	code	�Í����L�[�̏����l
+ * @param[in]	data	暗号化するデータのポインタ
+ * @param[in]	size	暗号化するデータのサイズ
+ * @param[in]	code	暗号化キーの初期値
  */
 //============================================================================================
 void	CalcTool_Coded(void *data,u32 size,u32 code)
@@ -832,7 +832,7 @@ void	CalcTool_Coded(void *data,u32 size,u32 code)
 	int	i;
 	u16	*data_p=(u16 *)data;
 
-	//�Í��́A�����Í��L�[�Ń}�X�N
+	//暗号は、乱数暗号キーでマスク
 	for(i=0;i<size/2;i++){
 		data_p[i]^=CodeRand(&code);
 	}
@@ -840,11 +840,11 @@ void	CalcTool_Coded(void *data,u32 size,u32 code)
 
 //============================================================================================
 /**
- *	��������
+ *	復号処理
  *
- * @param[in]	data	��������f�[�^�̃|�C���^
- * @param[in]	size	��������f�[�^�̃T�C�Y
- * @param[in]	code	�Í����L�[�̏����l
+ * @param[in]	data	復号するデータのポインタ
+ * @param[in]	size	復号するデータのサイズ
+ * @param[in]	code	暗号化キーの初期値
  */
 //============================================================================================
 void	CalcTool_Decoded(void *data,u32 size,u32 code)
@@ -854,11 +854,11 @@ void	CalcTool_Decoded(void *data,u32 size,u32 code)
 
 //============================================================================================
 /**
- *	�����Í��L�[�������[�`��
+ *	乱数暗号キー生成ルーチン
  *
- * @param[in,out]	code	�Í��L�[�i�[���[�N�̃|�C���^
+ * @param[in,out]	code	暗号キー格納ワークのポインタ
  *
- * @return	�Í��L�[�i�[���[�N�̏��2�o�C�g���Í��L�[�Ƃ��ĕԂ�
+ * @return	暗号キー格納ワークの上位2バイトを暗号キーとして返す
  */
 //============================================================================================
 static	u16 CodeRand(u32 *code)
@@ -871,20 +871,20 @@ static	u16 CodeRand(u32 *code)
 #if CRC_LOADCHECK
 
 /**
- * @brief	�v�Z�c�[���pwork
+ * @brief	計算ツール用work
  */
 typedef struct {
-	MATHCRC16Table crc_table;	///<CRC�Z�o�p�e�[�u��
+	MATHCRC16Table crc_table;	///<CRC算出用テーブル
 } _CALCTOOL_TABLE;
 
 static _CALCTOOL_TABLE* _pCalcTable=NULL;
 
 //----------------------------------------------------------------------------------------------
 /**
- * �`�F�b�N�T���̎Z�o���[�`��
- * @param	adrs	�J�n�A�h���X
- * @param	size	�f�[�^�T�C�Y
- * @retval	"�Z�o�����l"
+ * チェックサムの算出ルーチン
+ * @param	adrs	開始アドレス
+ * @param	size	データサイズ
+ * @retval	"算出した値"
  */
 //----------------------------------------------------------------------------------------------
 u16 CalcTool_CrcCheck(const void * adrs, u32 size)
@@ -894,9 +894,9 @@ u16 CalcTool_CrcCheck(const void * adrs, u32 size)
 
 //----------------------------------------------------------------------------------------------
 /**
- * @brief   �b�q�b�e�[�u���̏�����
- * @param	heapID  �������m��ID
- * @retval	����
+ * @brief   ＣＲＣテーブルの初期化
+ * @param	heapID  メモリ確保ID
+ * @retval	無し
  */
 //----------------------------------------------------------------------------------------------
 void CalcTool_CrcInit(int heapID)
@@ -909,8 +909,8 @@ void CalcTool_CrcInit(int heapID)
 
 //----------------------------------------------------------------------------------------------
 /**
- * @brief   �b�q�b�e�[�u���̏I������
- * @retval	����
+ * @brief   ＣＲＣテーブルの終了処理
+ * @retval	無し
  */
 //----------------------------------------------------------------------------------------------
 void CalcTool_CrcEnd(void)

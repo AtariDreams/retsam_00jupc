@@ -3,7 +3,7 @@
  *
  *	@file		field_hideneff.c
  *	@file		field_hideneff.h
- *	@brief		ƒtƒB[ƒ‹ƒh”é“`‹ZƒGƒtƒFƒNƒg
+ *	@brief		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç§˜ä¼æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *	@data		2006.06.26
  *
  */
@@ -25,39 +25,39 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
-#define FHE_TASK_PRI	( 1024 )	// “®‚³ƒ^ƒXƒN—Dæ‡ˆÊ
+#define FHE_TASK_PRI	( 1024 )	// å‹•ã•ã‚¿ã‚¹ã‚¯å„ªå…ˆé †ä½
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OBJID‚ÌƒIƒuƒWƒFƒNƒg‚ÌŒü‚¢‚Ä‚¢‚é•ûŒü‚Éİ’è
+ *	@brief	OBJIDã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‘ã„ã¦ã„ã‚‹æ–¹å‘ã«è¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void FHE_objDirGridMatSet( FIELD_OBJ_SYS_PTR fldobjsys, u32 objID, D3DOBJ* p_obj )
 {
-	int dir;	// •ûŒü
+	int dir;	// æ–¹å‘
 	int grid_x, grid_z;
 	VecFx32 pos;
 	FIELD_OBJ_PTR p_fldobj;
 
 	p_fldobj = FieldOBJSys_OBJIDSearch( fldobjsys, objID );
 
-	// æ‚è‡‚¦‚¸©‹@‚ÌˆÊ’u‚Éo‚·
+	// å–ã‚Šåˆãˆãšè‡ªæ©Ÿã®ä½ç½®ã«å‡ºã™
 	FieldOBJ_VecPosGet( p_fldobj, &pos );
 	grid_x = FieldOBJ_NowPosGX_Get( p_fldobj );
 	grid_z = FieldOBJ_NowPosGZ_Get( p_fldobj );
@@ -84,19 +84,19 @@ static void FHE_objDirGridMatSet( FIELD_OBJ_SYS_PTR fldobjsys, u32 objID, D3DOBJ
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©‹@‚ÌŒü‚¢‚Ä‚¢‚é‚Ù‚¤‚ÌˆÊ’u‚ğİ’è
+ *	@brief	è‡ªæ©Ÿã®å‘ã„ã¦ã„ã‚‹ã»ã†ã®ä½ç½®ã‚’è¨­å®š
  *
- *	@param	jiki	©‹@ƒ|ƒCƒ“ƒ^
- *	@param	p_obj	•`‰æƒIƒuƒWƒFƒNƒg
+ *	@param	jiki	è‡ªæ©Ÿãƒã‚¤ãƒ³ã‚¿
+ *	@param	p_obj	æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void FHE_playerDirGridMatSet( const PLAYER_STATE_PTR jiki, D3DOBJ* p_obj )
 {
-	int dir;	// •ûŒü
+	int dir;	// æ–¹å‘
 	int grid_x, grid_z;
 	VecFx32 pos;
 
-	// æ‚è‡‚¦‚¸©‹@‚ÌˆÊ’u‚Éo‚·
+	// å–ã‚Šåˆãˆãšè‡ªæ©Ÿã®ä½ç½®ã«å‡ºã™
 	Player_VecPosGet( jiki, &pos );
 	grid_x = Player_NowGPosXGet( jiki );
 	grid_z = Player_NowGPosZGet( jiki );
@@ -125,10 +125,10 @@ static void FHE_playerDirGridMatSet( const PLAYER_STATE_PTR jiki, D3DOBJ* p_obj 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©‹@‚Ì‚P‚Â‘O‚ÌÀ•W‚ğİ’è‚·‚é
+ *	@brief	è‡ªæ©Ÿã®ï¼‘ã¤å‰ã®åº§æ¨™ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	jiki	©‹@
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒg
+ *	@param	jiki	è‡ªæ©Ÿ
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void FHE_playerVecMatSet( const PLAYER_STATE_PTR jiki, D3DOBJ* p_obj )
@@ -144,14 +144,14 @@ static void FHE_playerVecMatSet( const PLAYER_STATE_PTR jiki, D3DOBJ* p_obj )
 
 	VecFx32 pos;
 
-	// æ‚è‡‚¦‚¸©‹@‚ÌˆÊ’u‚Éo‚·
+	// å–ã‚Šåˆãˆãšè‡ªæ©Ÿã®ä½ç½®ã«å‡ºã™
 	Player_VecPosGet( jiki, &pos );
 	D3DOBJ_SetMatrix( p_obj, pos.x, pos.y, pos.z );
 }
 
 
 //-------------------------------------
-// ƒRƒ‚ƒ“‹¤’Êƒ[ƒN
+// ã‚³ãƒ¢ãƒ³å…±é€šãƒ¯ãƒ¼ã‚¯
 //=====================================
 #define FHE_COMMON_ANM_NUM	( 4 )
 typedef struct {
@@ -163,13 +163,13 @@ typedef struct {
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹¤’ÊƒIƒuƒWƒF‰Šú‰»
+ *	@brief	å…±é€šã‚ªãƒ–ã‚¸ã‚§åˆæœŸåŒ–
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒg
- *	@param	mdl_idx		ƒ‚ƒfƒ‹IDX
- *	@param	anm_idx		ƒAƒjƒIDX	+ ƒAƒjƒ”‚Ü‚Å‚ÌƒAƒjƒ‚ğ“Ç‚İ‚Ş
- *	@param	anm_num		ƒAƒjƒ”
- *	@param	p_allocator	ƒAƒƒP[ƒ^
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	mdl_idx		ãƒ¢ãƒ‡ãƒ«IDX
+ *	@param	anm_idx		ã‚¢ãƒ‹ãƒ¡IDX	+ ã‚¢ãƒ‹ãƒ¡æ•°ã¾ã§ã®ã‚¢ãƒ‹ãƒ¡ã‚’èª­ã¿è¾¼ã‚€
+ *	@param	anm_num		ã‚¢ãƒ‹ãƒ¡æ•°
+ *	@param	p_allocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void Fhe_CommonObjInit( FHE_COMMON_OBJ* p_obj, ARCHANDLE* p_handle, u32 mdl_idx, u32 anm_idx, int anm_num, NNSFndAllocator* p_allocator )
@@ -178,13 +178,13 @@ static void Fhe_CommonObjInit( FHE_COMMON_OBJ* p_obj, ARCHANDLE* p_handle, u32 m
 
 	memset( p_obj, 0, sizeof(FHE_COMMON_OBJ) );
 
-	// ƒ‚ƒfƒ‹“Ç‚İ‚İ
+	// ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿
 	D3DOBJ_MdlLoadH( &p_obj->mdl, p_handle, mdl_idx, HEAPID_FIELD );
 	D3DOBJ_Init( &p_obj->obj, &p_obj->mdl );
 
 	p_obj->anm_num = anm_num;
 
-	// ƒAƒjƒ“Ç‚İ‚İ
+	// ã‚¢ãƒ‹ãƒ¡èª­ã¿è¾¼ã¿
 	for( i=0; i<p_obj->anm_num; i++ ){
 		D3DOBJ_AnmLoadH( &p_obj->anm[i], &p_obj->mdl, p_handle, anm_idx + i, HEAPID_FIELD, p_allocator );
 		D3DOBJ_AddAnm( &p_obj->obj, &p_obj->anm[i] );
@@ -193,20 +193,20 @@ static void Fhe_CommonObjInit( FHE_COMMON_OBJ* p_obj, ARCHANDLE* p_handle, u32 m
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹¤’ÊƒIƒuƒWƒFƒNƒg‚Ì”jŠü
+ *	@brief	å…±é€šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç ´æ£„
  *	
- *	@param	p_obj		‹¤’ÊƒIƒuƒWƒFƒNƒg
- *	@param	p_allocator	ƒAƒƒP[ƒ^
+ *	@param	p_obj		å…±é€šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	p_allocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void Fhe_CommonObjDelete( FHE_COMMON_OBJ* p_obj, NNSFndAllocator* p_allocator )
 {
 	int i;
 
-	// ƒ‚ƒfƒ‹”jŠü
+	// ãƒ¢ãƒ‡ãƒ«ç ´æ£„
 	D3DOBJ_MdlDelete( &p_obj->mdl );
 
-	// ƒAƒjƒ”jŠü
+	// ã‚¢ãƒ‹ãƒ¡ç ´æ£„
 	for( i=0; i<p_obj->anm_num; i++ ){
 		D3DOBJ_AnmDelete( &p_obj->anm[i], p_allocator );
 	}
@@ -214,12 +214,12 @@ static void Fhe_CommonObjDelete( FHE_COMMON_OBJ* p_obj, NNSFndAllocator* p_alloc
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒm[ƒ‹[ƒvƒAƒjƒ
+ *	@brief	ãƒãƒ¼ãƒ«ãƒ¼ãƒ—ã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_obj	ƒIƒuƒWƒF
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL Fhe_CommonObj_NoLoopAnime( FHE_COMMON_OBJ* p_obj )
@@ -236,9 +236,9 @@ static BOOL Fhe_CommonObj_NoLoopAnime( FHE_COMMON_OBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‹[ƒvƒAƒjƒ
+ *	@brief	ãƒ«ãƒ¼ãƒ—ã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_obj	ƒIƒuƒWƒF
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§
  */
 //-----------------------------------------------------------------------------
 static void Fhe_CommonObj_LoopAnime( FHE_COMMON_OBJ* p_obj )
@@ -252,9 +252,9 @@ static void Fhe_CommonObj_LoopAnime( FHE_COMMON_OBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹¤’ÊƒIƒuƒWƒF•`‰æˆ—
+ *	@brief	å…±é€šã‚ªãƒ–ã‚¸ã‚§æç”»å‡¦ç†
  *
- *	@param	p_obj	‹¤’ÊƒIƒuƒWƒFƒNƒg
+ *	@param	p_obj	å…±é€šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void Fhe_CommonObj_Draw( FHE_COMMON_OBJ* p_obj )
@@ -266,16 +266,16 @@ static void Fhe_CommonObj_Draw( FHE_COMMON_OBJ* p_obj )
 
 //-----------------------------------------------------------------------------
 /**
- *					‚¢‚ ‚¢‚¬‚è
+ *					ã„ã‚ã„ãã‚Š
 */
 //-----------------------------------------------------------------------------
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	FHE_IAIGIRI_SEQ_MOVE,
 	FHE_IAIGIRI_SEQ_END,
 };
 
-// ‚¢‚ ‚¢‚¬‚èƒAƒjƒ”
+// ã„ã‚ã„ãã‚Šã‚¢ãƒ‹ãƒ¡æ•°
 enum{
 	FHE_IAIGRI_ANM_ICA,
 	FHE_IAIGRI_ANM_IMA,
@@ -283,32 +283,32 @@ enum{
 	FHE_IAIGRI_ANM_NUM,
 };
 //-------------------------------------
-//	‚¢‚ ‚¢‚¬‚è
+//	ã„ã‚ã„ãã‚Š
 //=====================================
 typedef struct {
 	FHE_COMMON_OBJ obj;
 
-	// ƒAƒƒP[ƒ^
+	// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
 	NNSFndAllocator allocator;
 
-	u32 seq;	// ƒV[ƒPƒ“ƒX
+	u32 seq;	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 } FLD_HIDENEFF_IAIGIRI;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					‚¢‚í‚­‚¾‚«	
+ *					ã„ã‚ãã ã	
 */
 //-----------------------------------------------------------------------------
 
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	FHE_IWAKUDAKI_SEQ_MOVE,
 	FHE_IWAKUDAKI_SEQ_END,
 };
 
 
-// ‚¢‚í‚­‚¾‚«ƒAƒjƒ”
+// ã„ã‚ãã ãã‚¢ãƒ‹ãƒ¡æ•°
 enum{
 	FHE_IWAKUDAKI_ANM_IMA,
 	FHE_IWAKUDAKI_ANM_ICA,
@@ -317,71 +317,71 @@ enum{
 	FHE_IWAKUDAKI_ANM_NUM,
 };
 //-------------------------------------
-//	‚¢‚í‚­‚¾‚«
+//	ã„ã‚ãã ã
 //=====================================
 typedef struct {
 	FHE_COMMON_OBJ obj;
 
-	// ƒAƒƒP[ƒ^
+	// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
 	NNSFndAllocator allocator;
 
-	u32 seq;	// ƒV[ƒPƒ“ƒX
+	u32 seq;	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 } FLD_HIDENEFF_IWAKUDAKI;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					‚½‚«‚Ì‚Ú‚è	
+ *					ãŸãã®ã¼ã‚Š	
 */
 //-----------------------------------------------------------------------------
-// ‘ê“o‚èƒV[ƒPƒ“ƒX
+// æ»ç™»ã‚Šã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	FHE_TAKINOBORI_SEQ_LOADSEQ,
 	FHE_TAKINOBORI_SEQ_START,
 	FHE_TAKINOBORI_SEQ_LOOP,
 };
 
-// ‚½‚«‚Ì‚Ú‚èƒ‚ƒfƒ‹”
+// ãŸãã®ã¼ã‚Šãƒ¢ãƒ‡ãƒ«æ•°
 enum{
 	FHE_TAKINOBORI_OBJ_START,
 	FHE_TAKINOBORI_OBJ_LOOP,
 	FHE_TAKINOBORI_OBJ_NUM,
 };
 
-// ‚½‚«‚Ì‚Ú‚èƒAƒjƒ”
+// ãŸãã®ã¼ã‚Šã‚¢ãƒ‹ãƒ¡æ•°
 enum{
 	FHE_TAKINOBORI_ANM_ICA,
 	FHE_TAKINOBORI_ANM_ITP,
 	FHE_TAKINOBORI_ANM_NUM,
 };
 //-------------------------------------
-//	‚½‚«‚Ì‚Ú‚è
+//	ãŸãã®ã¼ã‚Š
 //=====================================
 typedef struct _FLD_HIDENEFF_TAKINOBORI{
 	FHE_COMMON_OBJ obj[FHE_TAKINOBORI_OBJ_NUM];
 
-	// ƒAƒƒP[ƒ^
+	// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
 	NNSFndAllocator allocator;
 	
-	u32 seq;	// ƒV[ƒPƒ“ƒX
+	u32 seq;	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 } FLD_HIDENEFF_TAKINOBORI;
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒƒbƒNƒNƒ‰ƒCƒ€	
+ *					ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ 	
 */
 //-----------------------------------------------------------------------------
 
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	FHE_ROCKCLIMB_SEQ_MOVE,
 };
 
-#define FHE_ROCKCLIMB_OBJ_NUM	( 16 )	// •\¦ƒIƒuƒWƒF”
+#define FHE_ROCKCLIMB_OBJ_NUM	( 16 )	// è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§æ•°
 
-// ƒƒbƒNƒNƒ‰ƒCƒ€ƒAƒjƒ”
+// ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ ã‚¢ãƒ‹ãƒ¡æ•°
 enum{
 	FHE_ROCKCLIMB_ANM_IMA,
 	FHE_ROCKCLIMB_ANM_ICA,
@@ -391,7 +391,7 @@ enum{
 };
 
 //-------------------------------------
-//	ƒƒbƒNƒNƒ‰ƒCƒ€ƒGƒtƒFƒNƒg‚¨‚Ô‚¶‚¥
+//	ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŠã¶ã˜ã‡
 //=====================================
 typedef struct {
 	D3DOBJ		obj;
@@ -399,7 +399,7 @@ typedef struct {
 	u32 status;
 }FLD_HIDENEFF_ROCKCLIMB_OBJ;
 //-------------------------------------
-//	ƒƒbƒNƒNƒ‰ƒCƒ€
+//	ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ 
 //=====================================
 typedef struct {
 	D3DOBJ_MDL	mdl;
@@ -412,10 +412,10 @@ typedef struct {
 	fx32 ofs_z;
 	VecFx32 pos;
 
-	// ƒAƒƒP[ƒ^
+	// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
 	NNSFndAllocator allocator;
 
-	u32 seq;	// ƒV[ƒPƒ“ƒX
+	u32 seq;	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 } FLD_HIDENEFF_ROCKCLIMB;
 #define FHE_ROCKCLIMB_WAIT	( 4 )
 #define FHE_ROCKCLIMB_EFF_OFS_Y	(GRID_FX32 * 2)
@@ -426,12 +426,12 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					‚¢‚ ‚¢‚¬‚è	
+ *					ã„ã‚ã„ãã‚Š	
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‰Šú‰»ˆ—
+ *	@brief	ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_Iaigiri_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -442,29 +442,29 @@ static void FHE_Iaigiri_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, vo
 
 	memset( p_fhe_w, 0, sizeof(FLD_HIDENEFF_IAIGIRI) );
 
-	// ƒAƒƒP[ƒ^ì¬
+	// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ä½œæˆ
 	sys_InitAllocator( &p_fhe_w->allocator, HEAPID_FIELD, 32 );
 
 	p_handle = ArchiveDataHandleOpen( ARC_HIDEN_EFFECT, HEAPID_FIELD );
 
-	// ‹¤’ÊƒIƒuƒWƒFƒNƒg‰Šú‰»ˆ—
+	// å…±é€šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸåŒ–å‡¦ç†
 	Fhe_CommonObjInit( &p_fhe_w->obj, p_handle, NARC_hiden_effect_iaigiri_nsbmd,
 			NARC_hiden_effect_iaigiri_nsbca, FHE_IAIGRI_ANM_NUM, &p_fhe_w->allocator );
 
 	ArchiveDataHandleClose( p_handle );
 
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	FHE_playerDirGridMatSet( p_fsys->player, &p_fhe_w->obj.obj );
 
 	Snd_SePlay( SE_IAIGIRI );
 
-	// ƒV[ƒPƒ“ƒX
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	p_fhe_w->seq = FHE_IAIGIRI_SEQ_MOVE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN”jŠüˆ—
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_Iaigiri_Delete(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -476,7 +476,7 @@ static void FHE_Iaigiri_Delete(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®‚³ˆ—
+ *	@brief	å‹•ã•å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_Iaigiri_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -504,7 +504,7 @@ static void FHE_Iaigiri_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, vo
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æˆ—
+ *	@brief	æç”»å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_Iaigiri_Draw(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -515,11 +515,11 @@ static void FHE_Iaigiri_Draw(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, vo
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚¢‚ ‚¢‚¬‚è@ƒGƒtƒFƒNƒgŠJn
+ *	@brief	ã„ã‚ã„ãã‚Šã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	fsys	ƒtƒB[ƒ‹ƒhƒf[ƒ^
+ *	@param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 FLDMAPFUNC_WORK* FLD_HIDENEFF_Iaigiri_Start( FIELDSYS_WORK* fsys )
@@ -539,9 +539,9 @@ FLDMAPFUNC_WORK* FLD_HIDENEFF_Iaigiri_Start( FIELDSYS_WORK* fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚¢‚ ‚¢‚¬‚è@ƒGƒtƒFƒNƒg”jŠü
+ *	@brief	ã„ã‚ã„ãã‚Šã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç ´æ£„
  *
- *	@param	p_demo	ƒfƒ‚ƒ[ƒN
+ *	@param	p_demo	ãƒ‡ãƒ¢ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void FLD_HIDENEFF_Iaigiri_End( FLDMAPFUNC_WORK* p_demo )
@@ -551,12 +551,12 @@ void FLD_HIDENEFF_Iaigiri_End( FLDMAPFUNC_WORK* p_demo )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚¢‚ ‚¢‚¬‚è@I—¹ƒ`ƒFƒbƒN
+ *	@brief	ã„ã‚ã„ãã‚Šã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_demo	ƒfƒ‚ƒ[ƒN
+ *	@param	p_demo	ãƒ‡ãƒ¢ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL FLD_HIDENEFF_Iaigiri_EndCheck( FLDMAPFUNC_WORK* p_demo )
@@ -570,12 +570,12 @@ BOOL FLD_HIDENEFF_Iaigiri_EndCheck( FLDMAPFUNC_WORK* p_demo )
 
 //-----------------------------------------------------------------------------
 /**
- *					‚¢‚í‚­‚¾‚«	
+ *					ã„ã‚ãã ã	
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‰Šú‰»ˆ—
+ *	@brief	ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_Iwakudaki_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -586,7 +586,7 @@ static void FHE_Iwakudaki_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, 
 
 	memset( p_fhe_w, 0, sizeof(FLD_HIDENEFF_IWAKUDAKI) );
 
-	// ƒAƒƒP[ƒ^ì¬
+	// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ä½œæˆ
 	sys_InitAllocator( &p_fhe_w->allocator, HEAPID_FIELD, 32 );
 
 	p_handle = ArchiveDataHandleOpen( ARC_HIDEN_EFFECT, HEAPID_FIELD );
@@ -595,19 +595,19 @@ static void FHE_Iwakudaki_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, 
 			NARC_hiden_effect_iwakudaki_nsbca, FHE_IWAKUDAKI_ANM_NUM, &p_fhe_w->allocator );
 
 	ArchiveDataHandleClose( p_handle );
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	FHE_playerDirGridMatSet( p_fsys->player, &p_fhe_w->obj.obj );
 
 	Snd_SePlay( SE_IWAKUDAKI );
 
-	// ƒV[ƒPƒ“ƒX
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	p_fhe_w->seq = FHE_IWAKUDAKI_SEQ_MOVE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‰Šú‰»ˆ—
- *	ƒNƒƒKƒl’YB—p
+ *	@brief	ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–å‡¦ç†
+ *	ã‚¯ãƒ­ã‚¬ãƒç‚­å‘ç”¨
  */
 //-----------------------------------------------------------------------------
 static void FHE_Iwakudaki_Kurogane_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -618,7 +618,7 @@ static void FHE_Iwakudaki_Kurogane_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK *
 
 	memset( p_fhe_w, 0, sizeof(FLD_HIDENEFF_IWAKUDAKI) );
 
-	// ƒAƒƒP[ƒ^ì¬
+	// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ä½œæˆ
 	sys_InitAllocator( &p_fhe_w->allocator, HEAPID_FIELD, 32 );
 
 	p_handle = ArchiveDataHandleOpen( ARC_HIDEN_EFFECT, HEAPID_FIELD );
@@ -626,20 +626,20 @@ static void FHE_Iwakudaki_Kurogane_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK *
 	Fhe_CommonObjInit( &p_fhe_w->obj, p_handle, NARC_hiden_effect_iwakudaki_nsbmd,
 			NARC_hiden_effect_iwakudaki_nsbca, FHE_IWAKUDAKI_ANM_NUM, &p_fhe_w->allocator );
 
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	FHE_objDirGridMatSet( p_fsys->fldobjsys, D01R0102_LEADER, &p_fhe_w->obj.obj );
 
 	Snd_SePlay( SE_IWAKUDAKI );
 
 	ArchiveDataHandleClose( p_handle );
 
-	// ƒV[ƒPƒ“ƒX
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	p_fhe_w->seq = FHE_IWAKUDAKI_SEQ_MOVE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN”jŠüˆ—
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_Iwakudaki_Delete(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -651,7 +651,7 @@ static void FHE_Iwakudaki_Delete(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®‚³ˆ—
+ *	@brief	å‹•ã•å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_Iwakudaki_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -679,7 +679,7 @@ static void FHE_Iwakudaki_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æˆ—
+ *	@brief	æç”»å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_Iwakudaki_Draw(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -690,11 +690,11 @@ static void FHE_Iwakudaki_Draw(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚¢‚í‚­‚¾‚«@ƒGƒtƒFƒNƒgŠJn
+ *	@brief	ã„ã‚ãã ãã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	fsys	ƒtƒB[ƒ‹ƒhƒf[ƒ^
+ *	@param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 FLDMAPFUNC_WORK* FLD_HIDENEFF_Iwakudaki_Start( FIELDSYS_WORK* fsys )
@@ -714,11 +714,11 @@ FLDMAPFUNC_WORK* FLD_HIDENEFF_Iwakudaki_Start( FIELDSYS_WORK* fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚¢‚í‚­‚¾‚«@ƒGƒtƒFƒNƒgŠJn	ƒNƒƒKƒl’YB—p
+ *	@brief	ã„ã‚ãã ãã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹	ã‚¯ãƒ­ã‚¬ãƒç‚­å‘ç”¨
  *
- *	@param	fsys	ƒtƒB[ƒ‹ƒhƒf[ƒ^
+ *	@param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 FLDMAPFUNC_WORK* FLD_HIDENEFF_Iwakudaki_KuroganeL_Start( FIELDSYS_WORK* fsys )
@@ -738,9 +738,9 @@ FLDMAPFUNC_WORK* FLD_HIDENEFF_Iwakudaki_KuroganeL_Start( FIELDSYS_WORK* fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚¢‚í‚­‚¾‚«@ƒGƒtƒFƒNƒg”jŠü
+ *	@brief	ã„ã‚ãã ãã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç ´æ£„
  *
- *	@param	p_demo	ƒfƒ‚ƒ[ƒN
+ *	@param	p_demo	ãƒ‡ãƒ¢ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void FLD_HIDENEFF_Iwakudaki_End( FLDMAPFUNC_WORK* p_demo )
@@ -750,12 +750,12 @@ void FLD_HIDENEFF_Iwakudaki_End( FLDMAPFUNC_WORK* p_demo )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚¢‚í‚­‚¾‚«@I—¹ƒ`ƒFƒbƒN
+ *	@brief	ã„ã‚ãã ãã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_demo	ƒfƒ‚ƒ[ƒN
+ *	@param	p_demo	ãƒ‡ãƒ¢ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL FLD_HIDENEFF_Iwakudaki_EndCheck( FLDMAPFUNC_WORK* p_demo )
@@ -770,12 +770,12 @@ BOOL FLD_HIDENEFF_Iwakudaki_EndCheck( FLDMAPFUNC_WORK* p_demo )
 
 //-----------------------------------------------------------------------------
 /**
- *					‚½‚«‚Ì‚Ú‚è	
+ *					ãŸãã®ã¼ã‚Š	
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‰Šú‰»ˆ—
+ *	@brief	ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_Takinobori_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -786,7 +786,7 @@ static void FHE_Takinobori_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys,
 
 	memset( p_fhe_w, 0, sizeof(FLD_HIDENEFF_TAKINOBORI) );
 
-	// ƒAƒƒP[ƒ^ì¬
+	// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ä½œæˆ
 	sys_InitAllocator( &p_fhe_w->allocator, HEAPID_FIELD, 32 );
 
 	p_handle = ArchiveDataHandleOpen( ARC_HIDEN_EFFECT, HEAPID_FIELD );
@@ -795,7 +795,7 @@ static void FHE_Takinobori_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys,
 	for( i=0; i<FHE_TAKINOBORI_OBJ_NUM; i++ ){
 		Fhe_CommonObjInit( &p_fhe_w->obj[i], p_handle, mdl_idx[i], anm_idx[i], FHE_TAKINOBORI_ANM_NUM, &p_fhe_w->allocator );
 
-		// À•Wİ’è
+		// åº§æ¨™è¨­å®š
 		FHE_playerVecMatSet( p_fsys->player, &p_fhe_w->obj[i].obj );
 	}
 #else
@@ -803,7 +803,7 @@ static void FHE_Takinobori_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys,
 			NARC_hiden_effect_ride_start_nsbmd, NARC_hiden_effect_ride_start_nsbca,
 			FHE_TAKINOBORI_ANM_NUM, &p_fhe_w->allocator );
 
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	FHE_playerVecMatSet( p_fsys->player, &p_fhe_w->obj[FHE_TAKINOBORI_OBJ_START].obj );
 #endif
 
@@ -811,13 +811,13 @@ static void FHE_Takinobori_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys,
 
 	Snd_SePlay( SE_TAKINOBORI );
 
-	// ƒV[ƒPƒ“ƒX
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	p_fhe_w->seq = FHE_TAKINOBORI_SEQ_LOADSEQ;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN”jŠüˆ—
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_Takinobori_Delete(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -832,7 +832,7 @@ static void FHE_Takinobori_Delete(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsy
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®‚³ˆ—
+ *	@brief	å‹•ã•å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_Takinobori_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -842,17 +842,17 @@ static void FHE_Takinobori_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys,
 	ARCHANDLE* p_handle;
 
 	switch( p_fhe_w->seq ){
-	case FHE_TAKINOBORI_SEQ_LOADSEQ:	// ‚à‚¤‚Ğ‚Æ‚Â‚Ìƒ‚ƒfƒ‹“Ç‚İ‚İ@‚P‚Â‚ÌƒeƒNƒXƒ`ƒƒ‚ª‘½‚«‚½‚ß•ªŠ„‚µ‚Ä“Ç‚İ‚Ş
+	case FHE_TAKINOBORI_SEQ_LOADSEQ:	// ã‚‚ã†ã²ã¨ã¤ã®ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿ã€€ï¼‘ã¤ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒå¤šããŸã‚åˆ†å‰²ã—ã¦èª­ã¿è¾¼ã‚€
 		p_handle = ArchiveDataHandleOpen( ARC_HIDEN_EFFECT, HEAPID_FIELD );
 		Fhe_CommonObjInit( &p_fhe_w->obj[FHE_TAKINOBORI_OBJ_LOOP], p_handle, 
 				NARC_hiden_effect_ride_loop_nsbmd, NARC_hiden_effect_ride_loop_nsbca,
 				FHE_TAKINOBORI_ANM_NUM, &p_fhe_w->allocator );
 		ArchiveDataHandleClose( p_handle );
 
-		// À•Wİ’è
+		// åº§æ¨™è¨­å®š
 		FHE_playerVecMatSet( p_fsys->player, &p_fhe_w->obj[FHE_TAKINOBORI_OBJ_LOOP].obj );
 
-		// ƒ‹[ƒvƒAƒjƒ‚Í”ñ•\¦
+		// ãƒ«ãƒ¼ãƒ—ã‚¢ãƒ‹ãƒ¡ã¯éè¡¨ç¤º
 		D3DOBJ_SetDraw( &p_fhe_w->obj[ FHE_TAKINOBORI_OBJ_LOOP ].obj, FALSE );
 		p_fhe_w->seq ++;
 	case FHE_TAKINOBORI_SEQ_START:
@@ -879,7 +879,7 @@ static void FHE_Takinobori_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æˆ—
+ *	@brief	æç”»å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_Takinobori_Draw(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -894,11 +894,11 @@ static void FHE_Takinobori_Draw(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚½‚«‚Ì‚Ú‚è@ƒGƒtƒFƒNƒgŠJn
+ *	@brief	ãŸãã®ã¼ã‚Šã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	fsys	ƒtƒB[ƒ‹ƒhƒf[ƒ^
+ *	@param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 FLDMAPFUNC_WORK* FLD_HIDENEFF_Takinobori_Start( FIELDSYS_WORK* fsys )
@@ -918,9 +918,9 @@ FLDMAPFUNC_WORK* FLD_HIDENEFF_Takinobori_Start( FIELDSYS_WORK* fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚½‚«‚Ì‚Ú‚è@ƒGƒtƒFƒNƒg”jŠü
+ *	@brief	ãŸãã®ã¼ã‚Šã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç ´æ£„
  *
- *	@param	p_demo	ƒfƒ‚ƒ[ƒN
+ *	@param	p_demo	ãƒ‡ãƒ¢ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void FLD_HIDENEFF_Takinobori_End( FLDMAPFUNC_WORK* p_demo )
@@ -935,15 +935,15 @@ void FLD_HIDENEFF_Takinobori_End( FLDMAPFUNC_WORK* p_demo )
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒƒbƒNCLIMB
+ *					ãƒ­ãƒƒã‚¯CLIMB
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	lockCLIMBƒIƒuƒWƒFƒNƒg“®‚³ŠJn
+ *	@brief	lockCLIMBã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ã•é–‹å§‹
  *
- *	@param	p_obj	ƒIƒuƒWƒF
- *	@param	jiki	ƒ^[ƒQƒbƒg@©‹@ƒIƒuƒWƒFƒNƒg
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	jiki	ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã€€è‡ªæ©Ÿã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void Fhe_RockClime_ObjStart( FLD_HIDENEFF_ROCKCLIMB_OBJ* p_obj, const PLAYER_STATE_PTR jiki, fx32 ofs_y, fx32 ofs_z )
@@ -953,17 +953,17 @@ static void Fhe_RockClime_ObjStart( FLD_HIDENEFF_ROCKCLIMB_OBJ* p_obj, const PLA
 
 	GF_ASSERT( p_obj->status == 0 );
 	
-	// æ‚è‡‚¦‚¸©‹@‚Ì‚P‚Â‘OˆÊ’u‚Éo‚·
+	// å–ã‚Šåˆãˆãšè‡ªæ©Ÿã®ï¼‘ã¤å‰ä½ç½®ã«å‡ºã™
 	Player_VecPosGet( jiki, &pos );
 	D3DOBJ_SetMatrix( &p_obj->obj, pos.x, pos.y + ofs_y, pos.z + ofs_z );
 	p_obj->status = 1;
 
-	// ƒAƒjƒƒIƒuƒWƒF‚Ì‰Šú‰»
+	// ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§ã®åˆæœŸåŒ–
 	for( i=0; i<FHE_ROCKCLIMB_ANM_NUM; i++ ){
 		D3DOBJ_AnmSet( &p_obj->anm[i], 0 );	
 	}
 
-	// •`‰æON
+	// æç”»ON
 	D3DOBJ_SetDraw( &p_obj->obj, TRUE );
 
 	Snd_SePlay( SE_ROCKCLIMB );
@@ -971,7 +971,7 @@ static void Fhe_RockClime_ObjStart( FLD_HIDENEFF_ROCKCLIMB_OBJ* p_obj, const PLA
 
 //----------------------------------------------------------------------------
 /**	
- *	@brief	ƒƒbƒNƒNƒ‰ƒCƒ€ƒGƒtƒFƒNƒgƒIƒuƒWƒFƒNƒgƒƒCƒ“
+ *	@brief	ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³
  */
 //-----------------------------------------------------------------------------
 static void Fhe_RockClime_ObjMain( FLD_HIDENEFF_ROCKCLIMB_OBJ* p_obj )
@@ -990,7 +990,7 @@ static void Fhe_RockClime_ObjMain( FLD_HIDENEFF_ROCKCLIMB_OBJ* p_obj )
 	
 	if( result == TRUE ){
 		p_obj->status = 0;
-		// •`‰æOFF
+		// æç”»OFF
 		D3DOBJ_SetDraw( &p_obj->obj, FALSE );
 	}
 }
@@ -999,12 +999,12 @@ static void Fhe_RockClime_ObjMain( FLD_HIDENEFF_ROCKCLIMB_OBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒNƒNƒ‰ƒCƒ€ƒIƒuƒWƒFƒNƒg@‰Šú‰»
+ *	@brief	ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€€åˆæœŸåŒ–
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	p_mdl		ƒ‚ƒfƒ‹
- *	@param	p_allocator	ƒAƒƒP[ƒ^
- *	@param	pp_anmbuff	ƒAƒjƒƒoƒbƒtƒ@
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_mdl		ãƒ¢ãƒ‡ãƒ«
+ *	@param	p_allocator	ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
+ *	@param	pp_anmbuff	ã‚¢ãƒ‹ãƒ¡ãƒãƒƒãƒ•ã‚¡
  */
 //-----------------------------------------------------------------------------
 static void Fhe_RockClime_ObjInit( FLD_HIDENEFF_ROCKCLIMB_OBJ* p_obj, D3DOBJ_MDL* p_mdl, NNSFndAllocator* p_allocator, void** pp_anmbuff )
@@ -1025,9 +1025,9 @@ static void Fhe_RockClime_ObjInit( FLD_HIDENEFF_ROCKCLIMB_OBJ* p_obj, D3DOBJ_MDL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒNƒNƒ‰ƒCƒ€ƒIƒuƒWƒF”jŠü
+ *	@brief	ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ ã‚ªãƒ–ã‚¸ã‚§ç ´æ£„
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒg
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void Fhe_RockClime_ObjDelete( FLD_HIDENEFF_ROCKCLIMB_OBJ* p_obj, NNSFndAllocator* p_allocator )
@@ -1042,7 +1042,7 @@ static void Fhe_RockClime_ObjDelete( FLD_HIDENEFF_ROCKCLIMB_OBJ* p_obj, NNSFndAl
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	i‚ñ‚Å‚¢‚é‚Ù‚¤‚±‚¤‚©‚ço‚·ƒGƒtƒFƒNƒg‚ÌˆÊ’u‚ğİ’è
+ *	@brief	é€²ã‚“ã§ã„ã‚‹ã»ã†ã“ã†ã‹ã‚‰å‡ºã™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ä½ç½®ã‚’è¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void FHE_RockClime_MoveOfsSet( FLD_HIDENEFF_ROCKCLIMB* p_fhe_w )
@@ -1050,7 +1050,7 @@ static void FHE_RockClime_MoveOfsSet( FLD_HIDENEFF_ROCKCLIMB* p_fhe_w )
 	VecFx32 pos;
 #if 1
 	Player_VecPosGet( p_fhe_w->p_fsys->player, &pos );
-	// i‚İæ‚ªA‰ºè‘O
+	// é€²ã¿å…ˆãŒã€ä¸‹æ‰‹å‰
 	if( ((pos.x - p_fhe_w->pos.x) == 0) &&
 		(pos.y < p_fhe_w->pos.y) && 
 		(pos.z > p_fhe_w->pos.z) ){
@@ -1067,34 +1067,34 @@ static void FHE_RockClime_MoveOfsSet( FLD_HIDENEFF_ROCKCLIMB* p_fhe_w )
 	
 #if 0
 	Player_VecPosGet( p_fhe_w->p_fsys->player, &pos );
-	// i‚İæ‚ª¶‰E
+	// é€²ã¿å…ˆãŒå·¦å³
 	if( (pos.x - p_fhe_w->pos.x) != 0 ){
 		p_fhe_w->ofs_y = FHE_ROCKCLIMB_EFF_OFS_Y;
 		p_fhe_w->ofs_z = FHE_ROCKCLIMB_EFF_OFS_Z;
 
-	// i‚İæ‚ªAã
+	// é€²ã¿å…ˆãŒã€ä¸Š
 	}else if( pos.y > p_fhe_w->pos.y ){
 
-		// è‘O
+		// æ‰‹å‰
 		if( pos.z > p_fhe_w->pos.z ){
 			p_fhe_w->ofs_y = -FHE_ROCKCLIMB_EFF_OFS_Y;
 			p_fhe_w->ofs_z = -FHE_ROCKCLIMB_EFF_OFS_Z;
 
-		// ‰œ
+		// å¥¥
 		}else{
 			p_fhe_w->ofs_y = FHE_ROCKCLIMB_EFF_OFS_Y;
 			p_fhe_w->ofs_z = FHE_ROCKCLIMB_EFF_OFS_Z;
 		}
 
-	// i‚İæ‚ªA‰º
+	// é€²ã¿å…ˆãŒã€ä¸‹
 	}else{
 
-		// è‘O
+		// æ‰‹å‰
 		if( pos.z > p_fhe_w->pos.z ){
 			p_fhe_w->ofs_y = 0;
 			p_fhe_w->ofs_z = FHE_ROCKCLIMB_EFF_OFS_Z*2;
 
-		// ‰œ
+		// å¥¥
 		}else{
 			p_fhe_w->ofs_y = FHE_ROCKCLIMB_EFF_OFS_Y;
 			p_fhe_w->ofs_z = FHE_ROCKCLIMB_EFF_OFS_Z;
@@ -1109,7 +1109,7 @@ static void FHE_RockClime_MoveOfsSet( FLD_HIDENEFF_ROCKCLIMB* p_fhe_w )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	V‚µ‚¢ƒƒbƒNƒNƒ‰ƒCƒ€ƒIƒuƒWƒF“®‚³ŠJn
+ *	@brief	æ–°ã—ã„ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ ã‚ªãƒ–ã‚¸ã‚§å‹•ã•é–‹å§‹
  *
  *	@param	p_fhe 
  */
@@ -1118,7 +1118,7 @@ static void Fhe_RockClime_Set( FLD_HIDENEFF_ROCKCLIMB* p_fhe )
 {
 	int i;
 
-	// i‚ñ‚Å‚¢‚é‚Ù‚¤‚±‚¤‚©‚ço‚·ƒGƒtƒFƒNƒg‚ÌˆÊ’u‚ğİ’è
+	// é€²ã‚“ã§ã„ã‚‹ã»ã†ã“ã†ã‹ã‚‰å‡ºã™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ä½ç½®ã‚’è¨­å®š
 	FHE_RockClime_MoveOfsSet( p_fhe );
 	
 	for( i=0; i<FHE_ROCKCLIMB_OBJ_NUM; i++ ){
@@ -1127,15 +1127,15 @@ static void Fhe_RockClime_Set( FLD_HIDENEFF_ROCKCLIMB* p_fhe )
 			return ;
 		}
 	}
-	// ƒIƒuƒWƒFƒNƒg‚ª‚½‚è‚È‚¢
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒãŸã‚Šãªã„
 	GF_ASSERT(0);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒNƒNƒ‰ƒCƒ€@ƒIƒuƒWƒFƒƒCƒ“
+ *	@brief	ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ ã€€ã‚ªãƒ–ã‚¸ã‚§ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_fhe	lockCLIMBƒIƒuƒWƒFƒNƒg
+ *	@param	p_fhe	lockCLIMBã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void Fhe_RockClime_Main( FLD_HIDENEFF_ROCKCLIMB* p_fhe )
@@ -1150,7 +1150,7 @@ static void Fhe_RockClime_Main( FLD_HIDENEFF_ROCKCLIMB* p_fhe )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‰Šú‰»ˆ—
+ *	@brief	ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_RockClime_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -1161,20 +1161,20 @@ static void FHE_RockClime_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, 
 	
 	memset( p_fhe_w, 0, sizeof(FLD_HIDENEFF_ROCKCLIMB) );
 
-	// ƒAƒƒP[ƒ^ì¬
+	// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ä½œæˆ
 	sys_InitAllocator( &p_fhe_w->allocator, HEAPID_FIELD, 32 );
 
 	p_handle = ArchiveDataHandleOpen( ARC_HIDEN_EFFECT, HEAPID_FIELD );
 
-	// ƒ‚ƒfƒ‹“Ç‚İ‚İ
+	// ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿
 	D3DOBJ_MdlLoadH( &p_fhe_w->mdl, p_handle, NARC_hiden_effect_iwakudaki_nsbmd, HEAPID_FIELD );
 
-	// ƒAƒjƒ“Ç‚İ‚İ
+	// ã‚¢ãƒ‹ãƒ¡èª­ã¿è¾¼ã¿
 	for( i=0; i<FHE_ROCKCLIMB_ANM_NUM; i++ ){
 		p_fhe_w->p_anmbuff[i] = ArcUtil_HDL_Load( p_handle, NARC_hiden_effect_iwakudaki_nsbca + i, FALSE, HEAPID_FIELD, ALLOC_TOP );
 	}
 	
-	// ƒƒbƒNƒNƒ‰ƒCƒ€ƒIƒuƒWƒFƒNƒg¶¬
+	// ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 	for( i=0; i<FHE_ROCKCLIMB_OBJ_NUM; i++ ){
 		Fhe_RockClime_ObjInit( &p_fhe_w->obj[i], &p_fhe_w->mdl, &p_fhe_w->allocator, p_fhe_w->p_anmbuff );
 	}
@@ -1182,7 +1182,7 @@ static void FHE_RockClime_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, 
 	p_fhe_w->p_fsys = p_fsys;
 	Player_VecPosGet( p_fhe_w->p_fsys->player, &p_fhe_w->pos );
 
-	// ƒV[ƒPƒ“ƒX
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	p_fhe_w->seq = FHE_ROCKCLIMB_SEQ_MOVE;
 	
 	ArchiveDataHandleClose( p_handle );
@@ -1190,7 +1190,7 @@ static void FHE_RockClime_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN”jŠüˆ—
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_RockClime_Delete(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -1202,7 +1202,7 @@ static void FHE_RockClime_Delete(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys
 	}
 	D3DOBJ_MdlDelete( &p_fhe_w->mdl );
 
-	// ƒAƒjƒ”jŠü
+	// ã‚¢ãƒ‹ãƒ¡ç ´æ£„
 	for( i=0; i<FHE_ROCKCLIMB_ANM_NUM; i++ ){
 		sys_FreeMemoryEz( p_fhe_w->p_anmbuff[i] );
 	}
@@ -1210,7 +1210,7 @@ static void FHE_RockClime_Delete(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®‚³ˆ—
+ *	@brief	å‹•ã•å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_RockClime_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -1226,7 +1226,7 @@ static void FHE_RockClime_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, 
 			Fhe_RockClime_Set( p_fhe_w );
 		}
 		
-		// ƒGƒtƒFƒNƒg“®‚³ƒƒCƒ“
+		// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ã•ãƒ¡ã‚¤ãƒ³
 		Fhe_RockClime_Main( p_fhe_w );
 		break;
 	default:
@@ -1236,7 +1236,7 @@ static void FHE_RockClime_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æˆ—
+ *	@brief	æç”»å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FHE_RockClime_Draw(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -1252,7 +1252,7 @@ static void FHE_RockClime_Draw(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒNƒNƒ‰ƒCƒ€ŠJn
+ *	@brief	ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 FLDMAPFUNC_WORK* FLD_HIDENEFF_RockClime_Start( FIELDSYS_WORK* fsys )
@@ -1272,7 +1272,7 @@ FLDMAPFUNC_WORK* FLD_HIDENEFF_RockClime_Start( FIELDSYS_WORK* fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒNƒNƒ‰ƒCƒ€I—¹
+ *	@brief	ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 void FLD_HIDENEFF_RockClime_End( FLDMAPFUNC_WORK* p_demo )

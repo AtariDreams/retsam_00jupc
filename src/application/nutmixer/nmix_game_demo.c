@@ -2,7 +2,7 @@
 /**
  *
  *	@file		nmix_game_demo.c
- *	@brief		–Ø‚ÌŽÀƒ~ƒLƒT[@¬‚³‚¢ƒGƒtƒFƒNƒg“®‚³‚È‚Ç‚Ìˆ—
+ *	@brief		æœ¨ã®å®ŸãƒŸã‚­ã‚µãƒ¼ã€€å°ã•ã„ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ã•ãªã©ã®å‡¦ç†
  *	@author		tomoya takahashi
  *	@data		2006.05.24
  *
@@ -25,37 +25,37 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *		‰½‚©”Ä—p“I‚È‚à‚Ì‚ð‚¢‚©‚É‘‚­
+ *		ä½•ã‹æ±Žç”¨çš„ãªã‚‚ã®ã‚’ã„ã‹ã«æ›¸ã
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	’†SˆÊ’u‚ÆSTR‚©‚ç¶’[À•W‚ð‹‚ß‚é
+ *	@brief	ä¸­å¿ƒä½ç½®ã¨STRã‹ã‚‰å·¦ç«¯åº§æ¨™ã‚’æ±‚ã‚ã‚‹
  *
- *	@param	c_x		’†S‚˜
- *	@param	str		•¶Žš—ñ
- *	@param	font	ƒtƒHƒ“ƒgƒ^ƒCƒv
+ *	@param	c_x		ä¸­å¿ƒï½˜
+ *	@param	str		æ–‡å­—åˆ—
+ *	@param	font	ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
  *
- *	@return	¶’[À•W
+ *	@return	å·¦ç«¯åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 static int NMixDemo_GetStrLeftX_CenterKey( int c_x, const STRBUF* str, FONT_TYPE font )
@@ -70,7 +70,7 @@ static int NMixDemo_GetStrLeftX_CenterKey( int c_x, const STRBUF* str, FONT_TYPE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	SWSP@ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	@brief	SWSPã€€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  */
 //-----------------------------------------------------------------------------
 static SWSP_CHAR_PTR NMix_Demo_SwspCharLoad( SWSP_SYS_PTR swsp_sys, u32 data_idx, u32 heapid, ARCHANDLE* p_handle )
@@ -85,7 +85,7 @@ static SWSP_CHAR_PTR NMix_Demo_SwspCharLoad( SWSP_SYS_PTR swsp_sys, u32 data_idx
 			p_handle, data_idx, FALSE,
 			&p_chardata, heapid );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	char_ent.s_sys		= swsp_sys;
 	char_ent.res_file	= p_chardata;
 	obj =SWSP_CharLoad( &char_ent );
@@ -96,7 +96,7 @@ static SWSP_CHAR_PTR NMix_Demo_SwspCharLoad( SWSP_SYS_PTR swsp_sys, u32 data_idx
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	SWSP@ƒpƒŒƒbƒgƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	@brief	SWSPã€€ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  */
 //-----------------------------------------------------------------------------
 static SWSP_PLTT_PTR NMix_Demo_SwspPlttLoad( SWSP_SYS_PTR swsp_sys, u32 data_idx, u32 heapid, ARCHANDLE* p_handle )
@@ -107,11 +107,11 @@ static SWSP_PLTT_PTR NMix_Demo_SwspPlttLoad( SWSP_SYS_PTR swsp_sys, u32 data_idx
 	SWSP_PLTT_PTR obj;
 	
 	
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚Ýž‚Ý
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ArcUtil_HDL_PalDataGet( 
 			p_handle, data_idx,
 			&p_plttdata, heapid );
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	pltt_ent.s_sys		= swsp_sys;
 	pltt_ent.res_file	= p_plttdata;
 	pltt_ent.load_num	= 1;
@@ -123,16 +123,16 @@ static SWSP_PLTT_PTR NMix_Demo_SwspPlttLoad( SWSP_SYS_PTR swsp_sys, u32 data_idx
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg“o˜^
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²
  *
- *	@param	swsp_sys	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
- *	@param	p_char	ƒLƒƒƒ‰ƒNƒ^
- *	@param	p_pltt	ƒpƒŒƒbƒg
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W	
- *	@param	pri		—Dæ‡ˆÊ
+ *	@param	swsp_sys	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
+ *	@param	p_char	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+ *	@param	p_pltt	ãƒ‘ãƒ¬ãƒƒãƒˆ
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™	
+ *	@param	pri		å„ªå…ˆé †ä½
  *
- *	@return	ƒIƒuƒWƒFƒNƒg
+ *	@return	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static SWSP_OBJ_PTR NMix_Demo_SwspObjAdd( SWSP_SYS_PTR swsp_sys, SWSP_CHAR_PTR p_char, SWSP_PLTT_PTR p_pltt, int x, int y, int pri )
@@ -144,7 +144,7 @@ static SWSP_OBJ_PTR NMix_Demo_SwspObjAdd( SWSP_SYS_PTR swsp_sys, SWSP_CHAR_PTR p
 	add.p_char	= p_char;
 	add.p_pltt	= p_pltt;
 
-	// “o˜^ƒf[ƒ^Ši”[
+	// ç™»éŒ²ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	add.m_x = x;
 	add.m_y = y;
 	add.rota = 0;
@@ -154,7 +154,7 @@ static SWSP_OBJ_PTR NMix_Demo_SwspObjAdd( SWSP_SYS_PTR swsp_sys, SWSP_CHAR_PTR p
 
 	obj = SWSP_Add( &add );
 
-	// Žæ‚è‡‚¦‚¸”ñ•\Ž¦
+	// å–ã‚Šåˆãˆãšéžè¡¨ç¤º
 	SWSP_SetSpriteDraw( obj, FALSE );
 
 	return obj;
@@ -164,22 +164,22 @@ static SWSP_OBJ_PTR NMix_Demo_SwspObjAdd( SWSP_SYS_PTR swsp_sys, SWSP_CHAR_PTR p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚È‚Çì¬
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãªã©ä½œæˆ
  *
- *	@param	p_sys		ƒ[ƒN
- *	@param	work_num	ƒ[ƒN”
- *	@param	res_num		ƒŠƒ\[ƒX”
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
+ *	@param	work_num	ãƒ¯ãƒ¼ã‚¯æ•°
+ *	@param	res_num		ãƒªã‚½ãƒ¼ã‚¹æ•°
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 void NMIXGAME_CLACT_Init( NMIXGAME_CLACT_SYS* p_sys, int work_num, int res_num, int heapID )
 {
 	int i;
 	
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 	p_sys->cas = CLACT_U_SetEasyInit( work_num, &p_sys->renddata, heapID );
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	for( i=0; i<4; i++ ){
 		p_sys->resMan[i] = CLACT_U_ResManagerInit( res_num, i, heapID );
 	}
@@ -187,9 +187,9 @@ void NMIXGAME_CLACT_Init( NMIXGAME_CLACT_SYS* p_sys, int work_num, int res_num, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€î•ñ”jŠü
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ æƒ…å ±ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMIXGAME_CLACT_Delete( NMIXGAME_CLACT_SYS* p_sys )
@@ -207,47 +207,47 @@ void NMIXGAME_CLACT_Delete( NMIXGAME_CLACT_SYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’Pƒ‚ÈƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	@brief	å˜ç´”ãªãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_sys		ŠÇ—ƒVƒXƒeƒ€
- *	@param	p_work		ƒf[ƒ^Ši”[æ
- *	@param	arc_file	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹
- *	@param	pltt_idx	ƒpƒŒƒbƒg
- *	@param	pltt_num	ƒpƒŒƒbƒg“Ç‚Ýž‚Ý”
- *	@param	char_idx	ƒLƒƒƒ‰ƒNƒ^
- *	@param	cel_idx		ƒZƒ‹
- *	@param	anm_idx		ƒAƒjƒ
- *	@param	cont_id		ŠÇ—ID
- *	@param	heap		ƒq[ƒv
+ *	@param	p_sys		ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_work		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	arc_file	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«
+ *	@param	pltt_idx	ãƒ‘ãƒ¬ãƒƒãƒˆ
+ *	@param	pltt_num	ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æ•°
+ *	@param	char_idx	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+ *	@param	cel_idx		ã‚»ãƒ«
+ *	@param	anm_idx		ã‚¢ãƒ‹ãƒ¡
+ *	@param	cont_id		ç®¡ç†ID
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 void NMIXGAME_CLACT_ResLoadEasy( NMIXGAME_CLACT_SYS* p_sys, NMIXGAME_CLACT_RES_WORK* p_work, ARCHANDLE* p_handle, u32 pltt_idx, u32 pltt_num, u32 char_idx, u32 cel_idx, u32 anm_idx, u32 cont_id, u32 heap )
 {
 	BOOL result;
 	
-	// ƒLƒƒƒ‰ƒNƒ^
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 	p_work->resobj[0] = CLACT_U_ResManagerResAddArcChar_ArcHandle_AllocType( p_sys->resMan[0],
 			p_handle, char_idx, FALSE, cont_id,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap, ALLOC_BOTTOM );
 
-	// ƒpƒŒƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 	p_work->resobj[1] = CLACT_U_ResManagerResAddArcPltt_ArcHandle_AllocType( p_sys->resMan[1],
 			p_handle, pltt_idx, FALSE, cont_id,
 			NNS_G2D_VRAM_TYPE_2DMAIN, pltt_num, heap, ALLOC_BOTTOM );
 	p_work->pltt_copy = FALSE;
 
-	// ƒZƒ‹
+	// ã‚»ãƒ«
 	p_work->resobj[2] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( p_sys->resMan[2],
 			p_handle, cel_idx, FALSE, cont_id,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒAƒjƒ
+	// ã‚¢ãƒ‹ãƒ¡
 	p_work->resobj[3] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( p_sys->resMan[3],
 			p_handle, anm_idx, FALSE, cont_id,
 			CLACT_U_CELLANM_RES, heap );
 
 
-	// Vram“]‘—
+	// Vramè»¢é€
 	result = CLACT_U_CharManagerSetCharModeAdjustAreaCont( p_work->resobj[0] );	
 	GF_ASSERT( result );
 	CLACT_U_ResManagerResOnlyDelete( p_work->resobj[0] );
@@ -255,7 +255,7 @@ void NMIXGAME_CLACT_ResLoadEasy( NMIXGAME_CLACT_SYS* p_sys, NMIXGAME_CLACT_RES_W
 	GF_ASSERT( result );
 	CLACT_U_ResManagerResOnlyDelete( p_work->resobj[1] );
 
-	// ƒwƒbƒ_[ì¬
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &p_work->head,
 			cont_id, cont_id, cont_id, cont_id,
 			CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
@@ -266,17 +266,17 @@ void NMIXGAME_CLACT_ResLoadEasy( NMIXGAME_CLACT_SYS* p_sys, NMIXGAME_CLACT_RES_W
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒpƒŒƒbƒgƒRƒs[
+ *	@brief		ãƒ‘ãƒ¬ãƒƒãƒˆã‚³ãƒ”ãƒ¼
  *
- *	@param	p_sys		ƒAƒNƒ^[ƒVƒXƒeƒ€
- *	@param	p_work		ƒ[ƒN
- *	@param	arc_file	ƒA[ƒJƒCƒu
- *	@param	pltt_obj	ƒpƒŒƒbƒgƒIƒuƒWƒF
- *	@param	char_idx	ƒLƒƒƒ‰
- *	@param	cel_idx		ƒZƒ‹
- *	@param	anm_idx		ƒAƒjƒ
- *	@param	cont_id		ŠÇ—ID
- *	@param	heap		ƒq[ƒv
+ *	@param	p_sys		ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	arc_file	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+ *	@param	pltt_obj	ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	char_idx	ã‚­ãƒ£ãƒ©
+ *	@param	cel_idx		ã‚»ãƒ«
+ *	@param	anm_idx		ã‚¢ãƒ‹ãƒ¡
+ *	@param	cont_id		ç®¡ç†ID
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 void NMIXGAME_CLACT_ResLoadEasy_PlttCopy( NMIXGAME_CLACT_SYS* p_sys, NMIXGAME_CLACT_RES_WORK* p_work, ARCHANDLE* p_handle, CLACT_U_RES_OBJ_PTR pltt_obj, u32 char_idx, u32 cel_idx, u32 anm_idx, u32 cont_id, u32 heap )
@@ -284,33 +284,33 @@ void NMIXGAME_CLACT_ResLoadEasy_PlttCopy( NMIXGAME_CLACT_SYS* p_sys, NMIXGAME_CL
 	BOOL result;
 	u32 pltt_contid;
 	
-	// ƒLƒƒƒ‰ƒNƒ^
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 	p_work->resobj[0] = CLACT_U_ResManagerResAddArcChar_ArcHandle_AllocType( p_sys->resMan[0],
 			p_handle, char_idx, FALSE, cont_id,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap, ALLOC_BOTTOM );
 
-	// ƒpƒŒƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 	p_work->resobj[1] = pltt_obj;
 	p_work->pltt_copy = TRUE;
 	pltt_contid = CLACT_U_ResManagerGetResObjID( pltt_obj );
 
-	// ƒZƒ‹
+	// ã‚»ãƒ«
 	p_work->resobj[2] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( p_sys->resMan[2],
 			p_handle, cel_idx, FALSE, cont_id,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒAƒjƒ
+	// ã‚¢ãƒ‹ãƒ¡
 	p_work->resobj[3] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( p_sys->resMan[3],
 			p_handle, anm_idx, FALSE, cont_id,
 			CLACT_U_CELLANM_RES, heap );
 
 
-	// Vram“]‘—
+	// Vramè»¢é€
 	result = CLACT_U_CharManagerSetCharModeAdjustAreaCont( p_work->resobj[0] );	
 	GF_ASSERT( result );
 	CLACT_U_ResManagerResOnlyDelete( p_work->resobj[0] );
 
-	// ƒwƒbƒ_[ì¬
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &p_work->head,
 			cont_id, pltt_contid, cont_id, cont_id,
 			CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
@@ -321,10 +321,10 @@ void NMIXGAME_CLACT_ResLoadEasy_PlttCopy( NMIXGAME_CLACT_SYS* p_sys, NMIXGAME_CL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’PƒƒŠƒ\[ƒX”jŠü
+ *	@brief	å˜ç´”ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return	none
  */
@@ -338,14 +338,14 @@ void NMIXGAME_CLACT_ResDeleteEasy( NMIXGAME_CLACT_SYS* p_sys, NMIXGAME_CLACT_RES
 		CLACT_U_PlttManagerDelete( p_work->resobj[1] );
 	}
 
-	// ƒŠƒ\[ƒXŠ®‘S”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹å®Œå…¨ç ´æ£„
 	for( i=0; i<4; i++ ){
 
 		if( i != 1 ){
 			CLACT_U_ResManagerResDelete( p_sys->resMan[i], p_work->resobj[i] );
 		}else{
 
-			// ƒpƒŒƒbƒg‚Ì‚Æ‚«‚¾‚¯ƒRƒs[ƒIƒuƒWƒFƒ`ƒFƒbƒN
+			// ãƒ‘ãƒ¬ãƒƒãƒˆã®ã¨ãã ã‘ã‚³ãƒ”ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ãƒã‚§ãƒƒã‚¯
 			if( p_work->pltt_copy == FALSE ){
 				CLACT_U_ResManagerResDelete( p_sys->resMan[i], p_work->resobj[i] );
 			}
@@ -355,17 +355,17 @@ void NMIXGAME_CLACT_ResDeleteEasy( NMIXGAME_CLACT_SYS* p_sys, NMIXGAME_CLACT_RES
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[“o˜^
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_work		ƒŠƒ\[ƒXƒ[ƒN
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	z			‚šÀ•W
- *	@param	pri			—Dæ‡ˆÊ
- *	@param	heap		ƒq[ƒv
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work		ãƒªã‚½ãƒ¼ã‚¹ãƒ¯ãƒ¼ã‚¯
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	z			ï½šåº§æ¨™
+ *	@param	pri			å„ªå…ˆé †ä½
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 CLACT_WORK_PTR NMIXGAME_CLACT_Add( NMIXGAME_CLACT_SYS* p_sys, NMIXGAME_CLACT_RES_WORK* p_work, fx32 x, fx32 y, fx32 z, int pri, int heap )
@@ -391,17 +391,17 @@ CLACT_WORK_PTR NMIXGAME_CLACT_Add( NMIXGAME_CLACT_SYS* p_sys, NMIXGAME_CLACT_RES
 
 //-----------------------------------------------------------------------------
 /**
- *			”Ä—pŒvŽZƒVƒXƒeƒ€
+ *			æ±Žç”¨è¨ˆç®—ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ì‰Šú‰»
+ *	@brief	å‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_work			“®ìƒ[ƒN
- *	@param	s_x				ŠJŽnxÀ•W
- *	@param	e_x				I—¹xÀ•W
- *	@param	count_max		ƒJƒEƒ“ƒgÅ‘å’l
+ *	@param	p_work			å‹•ä½œãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x				é–‹å§‹xåº§æ¨™
+ *	@param	e_x				çµ‚äº†xåº§æ¨™
+ *	@param	count_max		ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§å€¤
  *
  *	@return	none
  */
@@ -417,19 +417,19 @@ void NMIX_DEMO_MoveReq( NMIX_DEMO_MOVE_WORK* p_work, int s_x, int e_x, int count
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒƒCƒ“
+ *	@brief	å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL NMIX_DEMO_MoveMain( NMIX_DEMO_MOVE_WORK* p_work )
 {
 	int w_x;
 
-	// Œ»ÝÀ•WŽæ“¾
+	// ç¾åœ¨åº§æ¨™å–å¾—
 	w_x = p_work->dis_x * p_work->count;
 	w_x = w_x / p_work->count_max;
 
@@ -447,12 +447,12 @@ BOOL NMIX_DEMO_MoveMain( NMIX_DEMO_MOVE_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ì‰Šú‰»
+ *	@brief	å‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_work			“®ìƒ[ƒN
- *	@param	s_x				ŠJŽnxÀ•W
- *	@param	e_x				I—¹xÀ•W
- *	@param	count_max		ƒJƒEƒ“ƒgÅ‘å’l
+ *	@param	p_work			å‹•ä½œãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x				é–‹å§‹xåº§æ¨™
+ *	@param	e_x				çµ‚äº†xåº§æ¨™
+ *	@param	count_max		ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§å€¤
  *
  *	@return	none
  */
@@ -468,19 +468,19 @@ void NMIX_DEMO_MoveReqFx( NMIX_DEMO_MOVE_WORK_FX* p_work, fx32 s_x, fx32 e_x, in
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒƒCƒ“
+ *	@brief	å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL NMIX_DEMO_MoveMainFx( NMIX_DEMO_MOVE_WORK_FX* p_work )
 {
 	fx32 w_x;
 
-	// Œ»ÝÀ•WŽæ“¾
+	// ç¾åœ¨åº§æ¨™å–å¾—
 	w_x = FX_Mul( p_work->dis_x, p_work->count << FX32_SHIFT );
 	w_x = FX_Div( w_x, p_work->count_max << FX32_SHIFT );
 	
@@ -497,27 +497,27 @@ BOOL NMIX_DEMO_MoveMainFx( NMIX_DEMO_MOVE_WORK_FX* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Á‘¬“®ì”Ä—p@‰Šú‰»
+ *	@brief	åŠ é€Ÿå‹•ä½œæ±Žç”¨ã€€åˆæœŸåŒ–
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	s_x		ŠJŽnÀ•W
- *	@param	e_x		I—¹À•W
- *	@param	s_s		ŠJŽn‘¬“x
- *	@param	count_max ¶³ÝÀ’l
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x		é–‹å§‹åº§æ¨™
+ *	@param	e_x		çµ‚äº†åº§æ¨™
+ *	@param	s_s		é–‹å§‹é€Ÿåº¦
+ *	@param	count_max ã‚«ã‚¦ãƒ³ã‚¿å€¤
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void NMIX_DEMO_AddMoveReqFx( NMIX_DEMO_ADDMOVE_WORK_FX* p_work, fx32 s_x, fx32 e_x, fx32 s_s, int count_max )
 {
-	fx32 t_x_t;	// ƒ^ƒCƒ€‚Ì‚Qæ
-	fx32 vot;	// ‰‘¬“x–ƒ^ƒCƒ€
+	fx32 t_x_t;	// ã‚¿ã‚¤ãƒ ã®ï¼’ä¹—
+	fx32 vot;	// åˆé€Ÿåº¦ï¼Šã‚¿ã‚¤ãƒ 
 	fx32 dis;
 	fx32 a;
 
 	dis = e_x - s_x;
 	
-	// ‰Á‘¬’l‚ð‹‚ß‚é
+	// åŠ é€Ÿå€¤ã‚’æ±‚ã‚ã‚‹
 	// a = 2(x - vot)/(t*t)
 	t_x_t = (count_max * count_max) << FX32_SHIFT;
 	vot = FX_Mul( s_s, count_max * FX32_ONE );
@@ -535,12 +535,12 @@ void NMIX_DEMO_AddMoveReqFx( NMIX_DEMO_ADDMOVE_WORK_FX* p_work, fx32 s_x, fx32 e
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Á‘¬“®ìƒƒCƒ“
+ *	@brief	åŠ é€Ÿå‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL NMIX_DEMO_AddMoveMainFx( NMIX_DEMO_ADDMOVE_WORK_FX* p_work )
@@ -550,13 +550,13 @@ BOOL NMIX_DEMO_AddMoveMainFx( NMIX_DEMO_ADDMOVE_WORK_FX* p_work )
 	fx32 calc_work;
 	fx32 vot;
 	
-	// “™‰Á‘¬“x‰^“®
+	// ç­‰åŠ é€Ÿåº¦é‹å‹•
 	// dis = vot + 1/2( a*(t*t) )
 	vot = FX_Mul( p_work->s_s, p_work->count << FX32_SHIFT );
 	t_x_t = (p_work->count * p_work->count) << FX32_SHIFT;
 	calc_work = FX_Mul( p_work->s_a, t_x_t );
 	calc_work = FX_Div( calc_work, 2*FX32_ONE );	// 1/2(a*(t*t))
-	dis = vot + calc_work;	///<ˆÚ“®‹——£
+	dis = vot + calc_work;	///<ç§»å‹•è·é›¢
 
 	p_work->x = p_work->s_x + dis;
 
@@ -573,11 +573,11 @@ BOOL NMIX_DEMO_AddMoveMainFx( NMIX_DEMO_ADDMOVE_WORK_FX* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒxƒNƒgƒ‹ì¬
+ *	@brief	ãƒ™ã‚¯ãƒˆãƒ«ä½œæˆ
  *	@param	x
  *	@param	y
  *	@param	z 
- *	@return	ƒxƒNƒgƒ‹
+ *	@return	ãƒ™ã‚¯ãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 VecFx32 NMIX_DEMO_MakeVec( fx32 x, fx32 y, fx32 z )
@@ -596,12 +596,12 @@ VecFx32 NMIX_DEMO_MakeVec( fx32 x, fx32 y, fx32 z )
 
 //-----------------------------------------------------------------------------
 /**
- *					–Ø‚ÌŽÀ‚È‚×‚É“Š‚°ž‚Ý
+ *					æœ¨ã®å®Ÿãªã¹ã«æŠ•ã’è¾¼ã¿
 */
 //-----------------------------------------------------------------------------
 
 #define NMIX_DEMO_NUTS_IN_RESMAN_ID	( 1000 )
-// ƒIƒuƒWƒFƒNƒgƒV[ƒPƒ“ƒX
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	NMIX_DEMO_NUTSIN_OBJ_SEQ_WAIT,
 	NMIX_DEMO_NUTSIN_OBJ_SEQ_MOVE,
@@ -609,72 +609,72 @@ enum{
 	NMIX_DEMO_NUTSIN_OBJ_SEQ_END,
 };
 
-// –Ø‚ÌŽÀ“®‚³ƒe[ƒuƒ‹
+// æœ¨ã®å®Ÿå‹•ã•ãƒ†ãƒ¼ãƒ–ãƒ«
 typedef struct{
-	fx32 eff_ssx;	// ‰‘¬“x‚˜
-	fx32 eff_ssy;	// ‰‘¬“x‚™
-	s16 eff_sx;		// ŠJŽn‚˜À•W 
-	s16 eff_ex;		// I—¹‚˜À•W
+	fx32 eff_ssx;	// åˆé€Ÿåº¦ï½˜
+	fx32 eff_ssy;	// åˆé€Ÿåº¦ï½™
+	s16 eff_sx;		// é–‹å§‹ï½˜åº§æ¨™ 
+	s16 eff_ex;		// çµ‚äº†ï½˜åº§æ¨™
 	
-	s16 eff_sy;		// ŠJŽn‚™À•W
-	s16 eff_ey;		// I—¹‚™À•W
-	u8 eff_count_max;	// ƒJƒEƒ“ƒg’l
-	u8 wait;		// ”­ŽËƒEƒGƒCƒg
+	s16 eff_sy;		// é–‹å§‹ï½™åº§æ¨™
+	s16 eff_ey;		// çµ‚äº†ï½™åº§æ¨™
+	u8 eff_count_max;	// ã‚«ã‚¦ãƒ³ãƒˆå€¤
+	u8 wait;		// ç™ºå°„ã‚¦ã‚¨ã‚¤ãƒˆ
 } NMIX_DEMO_NUTS_IN_PARAM;
 
 static const NMIX_DEMO_NUTS_IN_PARAM NMIX_DEMO_NutsInMoveParam[ NUTMIXER_MEMBER_MAX ] = {
 	{
-		FX32_CONST( 0 ),	// ‰‘¬“x‚˜
-		FX32_CONST( 0 ),	// ‰‘¬“x‚™
-		64,		// ŠJŽn‚˜À•W 
-		96,		// I—¹‚˜À•W
-		-32,	// ŠJŽn‚™À•W
-		88,		// I—¹‚™À•W
-		32,	// ƒJƒEƒ“ƒg’l
-		10,	// ”­ŽËƒEƒGƒCƒg
+		FX32_CONST( 0 ),	// åˆé€Ÿåº¦ï½˜
+		FX32_CONST( 0 ),	// åˆé€Ÿåº¦ï½™
+		64,		// é–‹å§‹ï½˜åº§æ¨™ 
+		96,		// çµ‚äº†ï½˜åº§æ¨™
+		-32,	// é–‹å§‹ï½™åº§æ¨™
+		88,		// çµ‚äº†ï½™åº§æ¨™
+		32,	// ã‚«ã‚¦ãƒ³ãƒˆå€¤
+		10,	// ç™ºå°„ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{
-		FX32_CONST( 0 ),	// ‰‘¬“x‚˜
-		FX32_CONST( 0 ),	// ‰‘¬“x‚™
-		280,	// ŠJŽn‚˜À•W 
-		156,	// I—¹‚˜À•W
-		192,	// ŠJŽn‚™À•W
-		128,	// I—¹‚™À•W
-		32,	// ƒJƒEƒ“ƒg’l
-		32,	// ”­ŽËƒEƒGƒCƒg
+		FX32_CONST( 0 ),	// åˆé€Ÿåº¦ï½˜
+		FX32_CONST( 0 ),	// åˆé€Ÿåº¦ï½™
+		280,	// é–‹å§‹ï½˜åº§æ¨™ 
+		156,	// çµ‚äº†ï½˜åº§æ¨™
+		192,	// é–‹å§‹ï½™åº§æ¨™
+		128,	// çµ‚äº†ï½™åº§æ¨™
+		32,	// ã‚«ã‚¦ãƒ³ãƒˆå€¤
+		32,	// ç™ºå°„ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{
-		FX32_CONST( 0 ),	// ‰‘¬“x‚˜
-		FX32_CONST( 0 ),	// ‰‘¬“x‚™
-		-32,	// ŠJŽn‚˜À•W 
-		128,	// I—¹‚˜À•W
-		32,		// ŠJŽn‚™À•W
-		96,		// I—¹‚™À•W
-		32,	// ƒJƒEƒ“ƒg’l
-		32,	// ”­ŽËƒEƒGƒCƒg
+		FX32_CONST( 0 ),	// åˆé€Ÿåº¦ï½˜
+		FX32_CONST( 0 ),	// åˆé€Ÿåº¦ï½™
+		-32,	// é–‹å§‹ï½˜åº§æ¨™ 
+		128,	// çµ‚äº†ï½˜åº§æ¨™
+		32,		// é–‹å§‹ï½™åº§æ¨™
+		96,		// çµ‚äº†ï½™åº§æ¨™
+		32,	// ã‚«ã‚¦ãƒ³ãƒˆå€¤
+		32,	// ç™ºå°„ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 	{
-		FX32_CONST( 0 ),	// ‰‘¬“x‚˜
-		FX32_CONST( 0 ),	// ‰‘¬“x‚™
-		128,	// ŠJŽn‚˜À•W 
-		116,	// I—¹‚˜À•W
-		-32,	// ŠJŽn‚™À•W
-		96,		// I—¹‚™À•W
-		32,	// ƒJƒEƒ“ƒg’l
-		32,	// ”­ŽËƒEƒGƒCƒg
+		FX32_CONST( 0 ),	// åˆé€Ÿåº¦ï½˜
+		FX32_CONST( 0 ),	// åˆé€Ÿåº¦ï½™
+		128,	// é–‹å§‹ï½˜åº§æ¨™ 
+		116,	// çµ‚äº†ï½˜åº§æ¨™
+		-32,	// é–‹å§‹ï½™åº§æ¨™
+		96,		// çµ‚äº†ï½™åº§æ¨™
+		32,	// ã‚«ã‚¦ãƒ³ãƒˆå€¤
+		32,	// ç™ºå°„ã‚¦ã‚¨ã‚¤ãƒˆ
 	},
 };
 
-// –Ø‚ÌŽÀƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^IDXŽæ“¾ƒ}ƒNƒ
+// æœ¨ã®å®Ÿã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿IDXå–å¾—ãƒžã‚¯ãƒ­
 #define	NMIXGAMEDEMO_NUTSIN_PL_GET(x)		( NARC_ntag_gra_kinomi_001_NCLR + ((x)-NUTS_START_ITEMNUM) )
 #define	NMIXGAMEDEMO_NUTSIN_CH_GET(x)		( NARC_ntag_gra_kinomi_001_NCGR + ((x)-NUTS_START_ITEMNUM) )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‚Ì‰Šú‰»
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	nuts_num	–Ø‚ÌŽÀ”
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	nuts_num	æœ¨ã®å®Ÿæ•°
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_NutsIn_Init( NMIX_DEMO_NUTS_IN* p_work, int nuts_num )
@@ -685,27 +685,27 @@ void NMixGameDemo_NutsIn_Init( NMIX_DEMO_NUTS_IN* p_work, int nuts_num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‚Ì”jŠü
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã®ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_NutsIn_Delete( NMIX_DEMO_NUTS_IN* p_work )
 {
-	// ƒŠƒ\[ƒX”jŠü‚µ‚Ä‚¢‚Ü‚¹‚ñB
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„ã—ã¦ã„ã¾ã›ã‚“ã€‚
 	GF_ASSERT( p_work->res_load == FALSE );
 	memset( p_work, 0, sizeof(NMIX_DEMO_NUTS_IN) );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹“Ç‚Ýž‚Ý
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
  *
- *	@param	p_work					ƒ[ƒN
- *	@param	p_get_ko_before_data	ƒQ[ƒ€ŠJŽn‘O’ÊMƒf[ƒ^
- *	@param	p_clact					ƒAƒNƒ^[ƒVƒXƒeƒ€
- *	@param	p_def_oam_res			ƒfƒtƒHƒ‹ƒgOAMƒŠƒ\[ƒX
- *	@param	heapID					ƒq[ƒv
+ *	@param	p_work					ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_get_ko_before_data	ã‚²ãƒ¼ãƒ é–‹å§‹å‰é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_clact					ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_def_oam_res			ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆOAMãƒªã‚½ãƒ¼ã‚¹
+ *	@param	heapID					ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_NutsIn_GraphicLoad( NMIX_DEMO_NUTS_IN* p_work, NUTMIX_COMM_BEFORE_KO* p_get_ko_before_data, NMIXGAME_CLACT_SYS* p_clact, NMIXGAME_CLACT_RES_WORK* p_def_oam_res, u32 heapID )
@@ -714,19 +714,19 @@ void NMixGameDemo_NutsIn_GraphicLoad( NMIX_DEMO_NUTS_IN* p_work, NUTMIX_COMM_BEF
 	int load_num;
 	ARCHANDLE* p_handle;
 
-	// ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	p_handle = ArchiveDataHandleOpen( ARC_NTAG_GRA, heapID );
 	
-	// ’ÊM‘ŠŽè‚Ì–Ø‚ÌŽÀƒf[ƒ^‚ð“Ç‚Ýž‚Þ	’†g‚ÍƒAƒCƒeƒ€ƒiƒ“ƒo[
+	// é€šä¿¡ç›¸æ‰‹ã®æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€	ä¸­èº«ã¯ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
 	load_num = 0;
 	for( i=0; i<NUTMIXER_MEMBER_MAX; i++ ){
 		
-		// 0ˆÈŠO‚È‚ç–Ø‚ÌŽÀƒf[ƒ^
+		// 0ä»¥å¤–ãªã‚‰æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿
 		if( p_get_ko_before_data->before[i].nut_type != 0 ){
 			
-//			OS_Printf( "‚«‚Ì‚Ý %d cont_id %d\n", p_get_ko_before_data->before[i].nut_type, NMIX_DEMO_NUTS_IN_RESMAN_ID + i );
+//			OS_Printf( "ãã®ã¿ %d cont_id %d\n", p_get_ko_before_data->before[i].nut_type, NMIX_DEMO_NUTS_IN_RESMAN_ID + i );
 			
-			// “Ç‚Ýž‚Ýˆ—
+			// èª­ã¿è¾¼ã¿å‡¦ç†
 			NMIXGAME_CLACT_ResLoadEasy( p_clact, 
 					&p_work->res_work[ load_num ], p_handle,
 					NMIXGAMEDEMO_NUTSIN_PL_GET( p_get_ko_before_data->before[i].nut_type ), 1,
@@ -734,11 +734,11 @@ void NMixGameDemo_NutsIn_GraphicLoad( NMIX_DEMO_NUTS_IN* p_work, NUTMIX_COMM_BEF
 					NARC_ntag_gra_kinomi_001_NCER, NARC_ntag_gra_kinomi_001_NANR,
 					NMIX_DEMO_NUTS_IN_RESMAN_ID + i, heapID );
 
-			// ƒAƒNƒ^[‚Ìì¬ˆ—
+			// ã‚¢ã‚¯ã‚¿ãƒ¼ã®ä½œæˆå‡¦ç†
 			p_work->clact[ load_num ] = NMIXGAME_CLACT_Add( p_clact,
 					&p_work->res_work[ load_num ] ,0,0,0,0, heapID );
 			CLACT_SetDrawFlag( p_work->clact[ load_num ], FALSE );
-			// …‚Éƒ|ƒ`ƒƒƒ“‚àŽg‚¤
+			// æ°´ã«ãƒãƒãƒ£ãƒ³ã‚‚ä½¿ã†
 			p_work->pochan[ load_num ] = NMIXGAME_CLACT_Add( p_clact,
 					&p_def_oam_res[ NMIX_GAME_DEF_OAM_RES_START ], 
 					0,0,0,0, heapID );
@@ -747,14 +747,14 @@ void NMixGameDemo_NutsIn_GraphicLoad( NMIX_DEMO_NUTS_IN* p_work, NUTMIX_COMM_BEF
 			load_num ++;
 		}
 
-		// ‘S•”“Ç‚Ýž‚ñ‚¾‚©ƒ`ƒFƒbƒN
+		// å…¨éƒ¨èª­ã¿è¾¼ã‚“ã ã‹ãƒã‚§ãƒƒã‚¯
 		if( p_work->nuts_num == load_num ){
 //			OS_Printf( "load_num %d i[%d] \n", load_num, i );
 			break;
 		}
 	}
 
-	// ƒnƒ“ƒhƒ‹ƒNƒ[ƒX
+	// ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚¹
 	ArchiveDataHandleClose( p_handle );
 
 
@@ -763,10 +763,10 @@ void NMixGameDemo_NutsIn_GraphicLoad( NMIX_DEMO_NUTS_IN* p_work, NUTMIX_COMM_BEF
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN”jŠü
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_clact	ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_clact	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_NutsIn_GraphicRelease( NMIX_DEMO_NUTS_IN* p_work, NMIXGAME_CLACT_SYS* p_clact )
@@ -785,9 +785,9 @@ void NMixGameDemo_NutsIn_GraphicRelease( NMIX_DEMO_NUTS_IN* p_work, NMIXGAME_CLA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀ“Š“üƒGƒtƒFƒNƒgŠJŽn
+ *	@brief	æœ¨ã®å®ŸæŠ•å…¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_NutsIn_Start( NMIX_DEMO_NUTS_IN* p_work )
@@ -798,7 +798,7 @@ void NMixGameDemo_NutsIn_Start( NMIX_DEMO_NUTS_IN* p_work )
 	GF_ASSERT( p_work->move_flg == FALSE );
 
 	for( i=0; i<p_work->nuts_num; i++ ){
-		// “®‚³ƒpƒ‰ƒ[ƒ^‰Šú‰»
+		// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 		NMIX_DEMO_AddMoveReqFx( &p_work->move_x[i], 
 				NMIX_DEMO_NutsInMoveParam[i].eff_sx * FX32_ONE,
 				NMIX_DEMO_NutsInMoveParam[i].eff_ex * FX32_ONE,
@@ -811,7 +811,7 @@ void NMixGameDemo_NutsIn_Start( NMIX_DEMO_NUTS_IN* p_work )
 				NMIX_DEMO_NutsInMoveParam[i].eff_ssy,
 				NMIX_DEMO_NutsInMoveParam[ i].eff_count_max );	
 
-		// ƒAƒNƒ^[‚ÉÀ•WÝ’è
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ã«åº§æ¨™è¨­å®š
 		matrix = NMIX_DEMO_MakeVec( p_work->move_x[i].x,
 				p_work->move_y[i].x, 0 );
 		CLACT_SetMatrix( p_work->clact[i], &matrix );
@@ -820,23 +820,23 @@ void NMixGameDemo_NutsIn_Start( NMIX_DEMO_NUTS_IN* p_work )
 		p_work->obj_wait[i] = NMIX_DEMO_NutsInMoveParam[i].wait;
 	}
 
-	// ”­ŽË‘”‰Šú‰»
+	// ç™ºå°„ç·æ•°åˆæœŸåŒ–
 	p_work->start_count = 0;
 	p_work->move_flg = TRUE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø‚ÌŽÀ“Š“üƒGƒtƒFƒNƒgƒƒCƒ“
+ *	@brief	æœ¨ã®å®ŸæŠ•å…¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	NMIX_DEMO_NUTS_RET_FALSE,	// “r’†
- * 	@retval	NMIX_DEMO_NUTS_RET_TRUE,	// I—¹
- *	@retval	NMIX_DEMO_NUTS_RET_NUTS_00,	// 0“Š“ü
- *	@retval	NMIX_DEMO_NUTS_RET_NUTS_01,	// 1“Š“ü
- *	@retval	NMIX_DEMO_NUTS_RET_NUTS_02,	// 2“Š“ü
- *	@retval	NMIX_DEMO_NUTS_RET_NUTS_03,	// 3“Š“ü
+ *	@retval	NMIX_DEMO_NUTS_RET_FALSE,	// é€”ä¸­
+ * 	@retval	NMIX_DEMO_NUTS_RET_TRUE,	// çµ‚äº†
+ *	@retval	NMIX_DEMO_NUTS_RET_NUTS_00,	// 0æŠ•å…¥
+ *	@retval	NMIX_DEMO_NUTS_RET_NUTS_01,	// 1æŠ•å…¥
+ *	@retval	NMIX_DEMO_NUTS_RET_NUTS_02,	// 2æŠ•å…¥
+ *	@retval	NMIX_DEMO_NUTS_RET_NUTS_03,	// 3æŠ•å…¥
  */
 //-----------------------------------------------------------------------------
 u32 NMixGameDemo_NutsIn_Main( NMIX_DEMO_NUTS_IN* p_work )
@@ -850,22 +850,22 @@ u32 NMixGameDemo_NutsIn_Main( NMIX_DEMO_NUTS_IN* p_work )
 		return NMIX_DEMO_NUTS_RET_TRUE;
 	}
 
-	// ”­ŽË•”•ª
+	// ç™ºå°„éƒ¨åˆ†
 	if( p_work->start_count < p_work->nuts_num ){
 
 		p_work->obj_wait[ p_work->start_count ]--;
 		if( p_work->obj_wait[ p_work->start_count ] <= 0 ){
-			// ”­ŽË
+			// ç™ºå°„
 			p_work->obj_seq[ p_work->start_count ] = NMIX_DEMO_NUTSIN_OBJ_SEQ_MOVE;
 			CLACT_SetDrawFlag( p_work->clact[p_work->start_count], TRUE );
 
-			// –ß‚è’l
+			// æˆ»ã‚Šå€¤
 			ret = NMIX_DEMO_NUTS_RET_NUTS_00 + p_work->start_count;
 			p_work->start_count ++;
 		}
 	}
 	
-	// “®‚³•”•ª
+	// å‹•ã•éƒ¨åˆ†
 	for( i=0; i<p_work->nuts_num; i++ ){
 		switch( p_work->obj_seq[ i ] ){
 		case NMIX_DEMO_NUTSIN_OBJ_SEQ_WAIT:
@@ -884,7 +884,7 @@ u32 NMixGameDemo_NutsIn_Main( NMIX_DEMO_NUTS_IN* p_work )
 				CLACT_SetAnmFlag( p_work->pochan[i], TRUE );
 				CLACT_SetDrawFlag( p_work->clact[i], FALSE );
 
-				// ƒ|ƒ`ƒƒƒ“‰¹ŠJŽn
+				// ãƒãƒãƒ£ãƒ³éŸ³é–‹å§‹
 				Snd_SePlay( NMIXGAME_SE_NUTS_SOOP_IN );
 				
 				p_work->obj_seq[ i ]++;
@@ -892,7 +892,7 @@ u32 NMixGameDemo_NutsIn_Main( NMIX_DEMO_NUTS_IN* p_work )
 			break;
 			
 		case NMIX_DEMO_NUTSIN_OBJ_SEQ_POCHAN:
-			// ƒAƒjƒI—¹‘Ò‚¿
+			// ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 			if( CLACT_AnmActiveCheck( p_work->pochan[i] ) == FALSE ){
 				CLACT_SetDrawFlag( p_work->pochan[i], FALSE );
 				p_work->obj_seq[i]++;
@@ -908,7 +908,7 @@ u32 NMixGameDemo_NutsIn_Main( NMIX_DEMO_NUTS_IN* p_work )
 		}
 	}
 
-	// I—¹ƒ`ƒFƒbƒN
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( p_work->obj_seq[ p_work->nuts_num - 1 ] == NMIX_DEMO_NUTSIN_OBJ_SEQ_END ){
 		p_work->move_flg = FALSE;
 		return NMIX_DEMO_NUTS_RET_TRUE;
@@ -921,34 +921,34 @@ u32 NMixGameDemo_NutsIn_Main( NMIX_DEMO_NUTS_IN* p_work )
 
 //-----------------------------------------------------------------------------
 /**
- *		ã‰æ–Ê§Œä
+ *		ä¸Šç”»é¢åˆ¶å¾¡
  */
 //-----------------------------------------------------------------------------
-#define NMIX_SUBWIN_FONTBMP_X	( 4 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_SUBWIN_FONTBMP_Y	( 19 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_SUBWIN_FONTBMP_CX	( 23 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_SUBWIN_FONTBMP_CY	( 4 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_SUBWIN_FONT_COLOR		( 0 )		// ˜g—pƒJƒ‰[ƒpƒŒƒbƒg
+#define NMIX_SUBWIN_FONTBMP_X	( 4 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_SUBWIN_FONTBMP_Y	( 19 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_SUBWIN_FONTBMP_CX	( 23 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_SUBWIN_FONTBMP_CY	( 4 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_SUBWIN_FONT_COLOR		( 0 )		// æž ç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define NMIX_SUBWIN_FONT_CG_OFS		( 1 )
-#define NMIX_SUBWIN_FONT_STR_COLOR	( 1 )		// ƒtƒHƒ“ƒg—pƒJƒ‰[ƒpƒŒƒbƒg
+#define NMIX_SUBWIN_FONT_STR_COLOR	( 1 )		// ãƒ•ã‚©ãƒ³ãƒˆç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define NMIX_SUBWIN_FONTBMP_PRICOLOR	( GF_PRINTCOLOR_MAKE(1,2,15) )
 
-#define NMIX_SUBWIN_BACK_COLOR		( 2 )	// ”wŒiƒJƒ‰[ƒpƒŒƒbƒg
-#define NMIX_SUBWIN_BACK_COLOR_NUM	( 2 )	// ”wŒiƒJƒ‰[ƒpƒŒƒbƒgŽg—p”
+#define NMIX_SUBWIN_BACK_COLOR		( 2 )	// èƒŒæ™¯ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define NMIX_SUBWIN_BACK_COLOR_NUM	( 2 )	// èƒŒæ™¯ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨æ•°
 
-#define NMIX_SUBWIN_PLNAME_FONTBMP_X	( 6 )		// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvˆÊ’u
-#define NMIX_SUBWIN_PLNAME_FONTBMP_Y	( 13 )		// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvˆÊ’u
-#define NMIX_SUBWIN_PLNAME_FONTBMP_CX	( 20 )		// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_SUBWIN_PLNAME_FONTBMP_CY	( 8 )		// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_SUBWIN_BACK_PLNAME_WAKU_DRAW_CX	( 5 )	// ˜g@•\Ž¦ŠJŽn‚˜
-#define NMIX_SUBWIN_BACK_PLNAME_WAKU_DRAW_CY	( 13 )	// ˜g@•\Ž¦ŠJŽn‚™
-#define NMIX_SUBWIN_BACK_PLNAME_WAKU_DRAW_COX	( 12 )	// ˜g@•\Ž¦@ƒIƒtƒZƒbƒg
-#define NMIX_SUBWIN_BACK_PLNAME_WAKU_DRAW_COY	( 5 )	// ˜g@•\Ž¦@ƒIƒtƒZƒbƒg
-#define NMIX_SUBWIN_BACK_PLNAME_WAKU_CX		( 10 )		// ˜g@ƒTƒCƒY
-#define NMIX_SUBWIN_BACK_PLNAME_WAKU_CY		( 4 )		// ˜g@ƒTƒCƒY
+#define NMIX_SUBWIN_PLNAME_FONTBMP_X	( 6 )		// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½ç½®
+#define NMIX_SUBWIN_PLNAME_FONTBMP_Y	( 13 )		// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½ç½®
+#define NMIX_SUBWIN_PLNAME_FONTBMP_CX	( 20 )		// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_SUBWIN_PLNAME_FONTBMP_CY	( 8 )		// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_SUBWIN_BACK_PLNAME_WAKU_DRAW_CX	( 5 )	// æž ã€€è¡¨ç¤ºé–‹å§‹ï½˜
+#define NMIX_SUBWIN_BACK_PLNAME_WAKU_DRAW_CY	( 13 )	// æž ã€€è¡¨ç¤ºé–‹å§‹ï½™
+#define NMIX_SUBWIN_BACK_PLNAME_WAKU_DRAW_COX	( 12 )	// æž ã€€è¡¨ç¤ºã€€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define NMIX_SUBWIN_BACK_PLNAME_WAKU_DRAW_COY	( 5 )	// æž ã€€è¡¨ç¤ºã€€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define NMIX_SUBWIN_BACK_PLNAME_WAKU_CX		( 10 )		// æž ã€€ã‚µã‚¤ã‚º
+#define NMIX_SUBWIN_BACK_PLNAME_WAKU_CY		( 4 )		// æž ã€€ã‚µã‚¤ã‚º
 #define NMIX_SUBWIN_BACK_PLNAME_WAKU_XNUM	( 2 )
-#define NMIX_SUBWIN_BACK_PLNAME_FONT_OFSX	( 32 )	// •¶Žš‚Ì˜g¶ã‚©‚ç’†S‚Ü‚Å‚ÌƒIƒtƒZƒbƒg
-#define NMIX_SUBWIN_BACK_PLNAME_FONT_OFSY	( 8 )	// •¶Žš‚Ì˜g¶ã‚©‚ç’†S‚Ü‚Å‚ÌƒIƒtƒZƒbƒg
+#define NMIX_SUBWIN_BACK_PLNAME_FONT_OFSX	( 32 )	// æ–‡å­—ã®æž å·¦ä¸Šã‹ã‚‰ä¸­å¿ƒã¾ã§ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define NMIX_SUBWIN_BACK_PLNAME_FONT_OFSY	( 8 )	// æ–‡å­—ã®æž å·¦ä¸Šã‹ã‚‰ä¸­å¿ƒã¾ã§ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 
 static void NMixSubWin_BmpInit( NMIX_DEMO_SUB_WIN* p_work, u32 heapID );
@@ -961,15 +961,15 @@ static void NmixSubWIn_BmpTextSet( GF_BGL_BMPWIN* p_bmp, STRBUF* str, int x, int
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–Ê§Œäƒ[ƒN‚Ì‰Šú‰»
+ *	@brief	ã‚µãƒ–ç”»é¢åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- *	@param	p_work				ƒ[ƒN
- *	@param	pp_trainer_name		ƒgƒŒ[ƒi[–¼”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	comm_count			’ÊM‘ŠŽè”
- *	@param	p_msg_data			ƒƒbƒZ[ƒWƒf[ƒ^
- *	@param	p_comm_data			’ÊMƒf[ƒ^
- *	@param	wnd_type			ƒEƒBƒ“ƒhƒEƒ^ƒCƒv
- *	@param	heapID				ƒq[ƒvID
+ *	@param	p_work				ãƒ¯ãƒ¼ã‚¯
+ *	@param	pp_trainer_name		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åé…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	comm_count			é€šä¿¡ç›¸æ‰‹æ•°
+ *	@param	p_msg_data			ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_comm_data			é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ *	@param	wnd_type			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ—
+ *	@param	heapID				ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_SubWin_Init( NMIX_DEMO_SUB_WIN* p_work, int comm_count, NMIXER_MSG* p_msg_data, NUTMIX_GAME_COMM_PACK* p_comm_data, int wnd_type, u32 heapID )
@@ -984,25 +984,25 @@ void NMixGameDemo_SubWin_Init( NMIX_DEMO_SUB_WIN* p_work, int comm_count, NMIXER
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒNƒf[ƒ^”jŠü
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *	
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_SubWin_Delete( NMIX_DEMO_SUB_WIN* p_work )
 {
-	// ƒŠƒ\[ƒX”jŠü‚µ‚Ä‚¢‚Ü‚¹‚ñ
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„ã—ã¦ã„ã¾ã›ã‚“
 	GF_ASSERT( p_work->res_load == FALSE );
 	memset( p_work, 0, sizeof(NMIX_DEMO_SUB_WIN) );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	3DƒŠƒ\[ƒX“Ç‚Ýž‚Ýˆ—
+ *	@brief	3Dãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿å‡¦ç†
  *
- *	@param	p_work		ƒ[ƒN
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  *	@param	p_bgl		BGL
- *	@param	heapID		ƒq[ƒvID
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
  *	@return	none
  */
@@ -1011,13 +1011,13 @@ void NMixGameDemo_SubWin_GraphicLoad( NMIX_DEMO_SUB_WIN* p_work, GF_BGL_INI* p_b
 {
 	GF_ASSERT( p_work->res_load == FALSE );
 
-	// BGLÝ’è
+	// BGLè¨­å®š
 	p_work->p_bgl = p_bgl;
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE‰Šú‰»
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 	NMixSubWin_BmpInit( p_work, heapID );
 
-	// ”wŒiÝ’è
+	// èƒŒæ™¯è¨­å®š
 	NMixSubWin_BackGroundInit( p_work, heapID, p_handle );
 
 	p_work->res_load = TRUE;
@@ -1036,10 +1036,10 @@ void NMixGameDemo_SubWin_GraphicRelease( NMIX_DEMO_SUB_WIN* p_work )
 {
 	GF_ASSERT( p_work->res_load == TRUE );
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	NMixSubWin_BmpRelease( p_work );
 
-	// ”wŒi”jŠü
+	// èƒŒæ™¯ç ´æ£„
 	NMixSubWin_BackGroundRelease( p_work );
 
 	p_work->res_load = FALSE;
@@ -1047,19 +1047,19 @@ void NMixGameDemo_SubWin_GraphicRelease( NMIX_DEMO_SUB_WIN* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒE•t‚«ƒeƒLƒXƒg“o˜^
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä»˜ããƒ†ã‚­ã‚¹ãƒˆç™»éŒ²
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	msgidx	•\Ž¦‚·‚éƒƒbƒZ[ƒW
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	msgidx	è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_SubWin_WinNutsOn( NMIX_DEMO_SUB_WIN* p_work, int nuts_id )
 {
-	// –Ø‚ÌŽÀ•¶Žš—ñì¬
+	// æœ¨ã®å®Ÿæ–‡å­—åˆ—ä½œæˆ
 	WORDSET_RegisterItemName( p_work->p_msg_data->wset, 0, nuts_id );
 	WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->nuts_in );
 	
-	// ƒrƒbƒgƒ}ƒbƒv‰Šú‰»
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—åˆæœŸåŒ–
 	GF_BGL_BmpWinDataFill( p_work->p_bmp, 15 );
 	NmixSubWIn_BmpTextSet( p_work->p_bmp, p_work->p_msg_data->tmp, 0, 0 );
 	BmpTalkWinWrite( p_work->p_bmp, WINDOW_TRANS_ON, NMIX_SUBWIN_FONT_CG_OFS, NMIX_SUBWIN_FONT_COLOR );
@@ -1068,9 +1068,9 @@ void NMixGameDemo_SubWin_WinNutsOn( NMIX_DEMO_SUB_WIN* p_work, int nuts_id )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒv–Ê•\Ž¦OFF
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—é¢è¡¨ç¤ºOFF
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1078,20 +1078,20 @@ void NMixGameDemo_SubWin_WinNutsOn( NMIX_DEMO_SUB_WIN* p_work, int nuts_id )
 void NMixGameDemo_SubWin_WinNutsOff( NMIX_DEMO_SUB_WIN* p_work )
 {
 	GF_BGL_BmpWinOff( p_work->p_bmp );
-	// ƒƒbƒZ[ƒWƒXƒNƒŠ[ƒ“‚ðƒNƒŠ[ƒ“
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_ScrClear( p_work->p_bgl, GF_BGL_FRAME0_S );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚Ì‚Ü‚Ü@‚¨‘Ò‚¿‚­‚¾‚³‚¢•`‰æ
+ *	@brief	ãã®ã¾ã¾ã€€ãŠå¾…ã¡ãã ã•ã„æç”»
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_SubWin_WinWaitMsgOn( NMIX_DEMO_SUB_WIN* p_work )
 {
-	// ƒrƒbƒgƒ}ƒbƒv‰Šú‰»
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—åˆæœŸåŒ–
 	GF_BGL_BmpWinDataFill( p_work->p_bmp, 15 );
 	NmixSubWIn_BmpTextSet( p_work->p_bmp, p_work->p_msg_data->wait, 0, 0 );
 	BmpTalkWinWrite( p_work->p_bmp, WINDOW_TRANS_ON, NMIX_SUBWIN_FONT_CG_OFS, NMIX_SUBWIN_FONT_COLOR );
@@ -1100,9 +1100,9 @@ void NMixGameDemo_SubWin_WinWaitMsgOn( NMIX_DEMO_SUB_WIN* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠeƒvƒŒƒCƒ„[‚Ì–¼‘OÝ’è
+ *	@brief	å„ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åå‰è¨­å®š
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1117,12 +1117,12 @@ void NMixGameDemo_SubWin_PlayerNameOn( NMIX_DEMO_SUB_WIN* p_work )
 	int netid;
 	int name_draw_x, name_draw_y;
 
-	// 1lƒvƒŒƒC‚Ì‚Æ‚«‚ÍAo‚³‚È‚¢
+	// 1äººãƒ—ãƒ¬ã‚¤ã®ã¨ãã¯ã€å‡ºã•ãªã„
 	if( p_work->comm_count == 1 ){
 		return ;
 	}
 	
-	// ”wŒiƒXƒNƒŠ[ƒ“ƒf[ƒ^‚É˜g‚ð‘‚­
+	// èƒŒæ™¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã«æž ã‚’æ›¸ã
 	for( i=0; i<p_work->comm_count; i++ ){
 
 		x = i % NMIX_SUBWIN_BACK_PLNAME_WAKU_XNUM;
@@ -1133,7 +1133,7 @@ void NMixGameDemo_SubWin_PlayerNameOn( NMIX_DEMO_SUB_WIN* p_work )
 		x *= NMIX_SUBWIN_BACK_PLNAME_WAKU_CX;
 		y *= NMIX_SUBWIN_BACK_PLNAME_WAKU_CY;
 
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«ž‚Ý
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 		GF_BGL_ScrWriteExpand( p_work->p_bgl, GF_BGL_FRAME1_S,
 				NMIX_SUBWIN_BACK_PLNAME_WAKU_DRAW_CX + x_draw,
 				NMIX_SUBWIN_BACK_PLNAME_WAKU_DRAW_CY + y_draw,
@@ -1144,7 +1144,7 @@ void NMixGameDemo_SubWin_PlayerNameOn( NMIX_DEMO_SUB_WIN* p_work )
 				NMIX_SUBWIN_BACK_PLNAME_WAKU_CX * 2,
 				NMIX_SUBWIN_BACK_PLNAME_WAKU_CY * 2 );
 
-		// ƒpƒŒƒbƒg‚ð‚ ‚í‚¹‚é
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚ã‚ã›ã‚‹
 		GF_BGL_ScrPalChange( p_work->p_bgl, GF_BGL_FRAME1_S,
 				NMIX_SUBWIN_BACK_PLNAME_WAKU_DRAW_CX + x_draw,
 				NMIX_SUBWIN_BACK_PLNAME_WAKU_DRAW_CY + y_draw,
@@ -1153,36 +1153,36 @@ void NMixGameDemo_SubWin_PlayerNameOn( NMIX_DEMO_SUB_WIN* p_work )
 				NMIX_SUBWIN_BACK_COLOR );
 
 
-		// BMP‚É–¼‘O‚ð‘‚­
+		// BMPã«åå‰ã‚’æ›¸ã
 		netid = p_work->p_comm_data->playno_netid[ i ];
 		WORDSET_RegisterPlayerName( p_work->p_msg_data->wset, 0, p_work->p_comm_data->p_mystate[netid] );
 		WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->tr_name );
 
 
-		name_draw_x = NMixDemo_GetStrLeftX_CenterKey( (x_draw*8) + NMIX_SUBWIN_BACK_PLNAME_FONT_OFSX, p_work->p_msg_data->tmp, FONT_TALK );	// ¶’[À•W‚ð‹‚ß‚é
+		name_draw_x = NMixDemo_GetStrLeftX_CenterKey( (x_draw*8) + NMIX_SUBWIN_BACK_PLNAME_FONT_OFSX, p_work->p_msg_data->tmp, FONT_TALK );	// å·¦ç«¯åº§æ¨™ã‚’æ±‚ã‚ã‚‹
 		name_draw_y = (y_draw*8) + NMIX_SUBWIN_BACK_PLNAME_FONT_OFSY;
 		NmixSubWIn_BmpTextSet( p_work->p_bmp_plname, p_work->p_msg_data->tmp, 
 				name_draw_x, name_draw_y );
 	}
 
 	GF_BGL_BmpWinOnVReq( p_work->p_bmp_plname );
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req( p_work->p_bgl, GF_BGL_FRAME1_S );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 static void NMixSubWin_BmpInit( NMIX_DEMO_SUB_WIN* p_work, u32 heapID )
 {
-	// ”wŒi‚ÌÝ’è‚Æƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEÝ’è
+	// èƒŒæ™¯ã®è¨­å®šã¨ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 	p_work->p_bmp = GF_BGL_BmpWinAllocGet( heapID, 1 );
 	p_work->p_bmp_plname = GF_BGL_BmpWinAllocGet( heapID, 1 );
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“o˜^
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç™»éŒ²
 	GF_BGL_BmpWinAdd( p_work->p_bgl, p_work->p_bmp,
 			GF_BGL_FRAME0_S, 
 			NMIX_SUBWIN_FONTBMP_X,
@@ -1192,7 +1192,7 @@ static void NMixSubWin_BmpInit( NMIX_DEMO_SUB_WIN* p_work, u32 heapID )
 			NMIX_SUBWIN_FONT_STR_COLOR,
 			TALK_WIN_CGX_SIZ + 1 );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“o˜^
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç™»éŒ²
 	GF_BGL_BmpWinAdd( p_work->p_bgl, p_work->p_bmp_plname,
 			GF_BGL_FRAME0_S, 
 			NMIX_SUBWIN_PLNAME_FONTBMP_X,
@@ -1202,17 +1202,17 @@ static void NMixSubWin_BmpInit( NMIX_DEMO_SUB_WIN* p_work, u32 heapID )
 			NMIX_SUBWIN_FONT_STR_COLOR,
 			TALK_WIN_CGX_SIZ + 1 );
 
-	// ƒNƒŠ[ƒ“
+	// ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( p_work->p_bmp, 15 );
 	GF_BGL_BmpWinDataFill( p_work->p_bmp_plname, 0 );
 
-	// ˜g‚ð•`‰æ
+	// æž ã‚’æç”»
 	TalkWinGraphicSet( p_work->p_bgl, GF_BGL_FRAME0_S,
 			NMIX_SUBWIN_FONT_CG_OFS,
 			NMIX_SUBWIN_FONT_COLOR,
 			p_work->wnd_type, heapID );
 
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	TalkFontPaletteLoad( PALTYPE_SUB_BG, 
 			NMIX_SUBWIN_FONT_STR_COLOR * 32, heapID );
 
@@ -1223,7 +1223,7 @@ static void NMixSubWin_BmpInit( NMIX_DEMO_SUB_WIN* p_work, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 static void NMixSubWin_BmpRelease( NMIX_DEMO_SUB_WIN* p_work )
@@ -1236,21 +1236,21 @@ static void NMixSubWin_BmpRelease( NMIX_DEMO_SUB_WIN* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		”wŒi‰Šú‰»
+ *	@brief		èƒŒæ™¯åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 static void NMixSubWin_BackGroundInit( NMIX_DEMO_SUB_WIN* p_work, u32 heapID, ARCHANDLE* p_handle )
 {
 	int scrn_idx;
 	
-	// ƒx[ƒX”wŒi
+	// ãƒ™ãƒ¼ã‚¹èƒŒæ™¯
 	ArcUtil_HDL_PalSet( p_handle, NARC_nutmixer_cook_m_NCLR, 
 			PALTYPE_SUB_BG, NMIX_SUBWIN_BACK_COLOR*32,
 			NMIX_SUBWIN_BACK_COLOR_NUM*32, heapID );
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_nutmixer_cook_m_NCGR,
 			p_work->p_bgl, GF_BGL_FRAME1_S, 0, 0, FALSE, heapID );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	if( p_work->comm_count == 1 ){
 		scrn_idx = NARC_nutmixer_cook_m1_NSCR;
 	}else{
@@ -1259,13 +1259,13 @@ static void NMixSubWin_BackGroundInit( NMIX_DEMO_SUB_WIN* p_work, u32 heapID, AR
 	p_work->p_bg_scrn_buf = ArcUtil_HDL_ScrnDataGet( p_handle, 
 			scrn_idx, FALSE, &p_work->p_bg_scrn, heapID );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«ž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_work->p_bgl, GF_BGL_FRAME1_S,
 			p_work->p_bg_scrn->rawData, 0, 0,
 			p_work->p_bg_scrn->screenWidth / 8,
 			p_work->p_bg_scrn->screenHeight / 8 );
 
-	// ƒpƒŒƒbƒg‚ð‚ ‚í‚¹‚é
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚ã‚ã›ã‚‹
 	GF_BGL_ScrPalChange( p_work->p_bgl, GF_BGL_FRAME1_S,
 			0, 0, 
 			p_work->p_bg_scrn->screenWidth / 8,
@@ -1273,18 +1273,18 @@ static void NMixSubWin_BackGroundInit( NMIX_DEMO_SUB_WIN* p_work, u32 heapID, AR
 			NMIX_SUBWIN_BACK_COLOR+1 );
 
 
-	// ƒvƒŒƒCƒ„[–¼”wŒi‚ð“Ç‚Ýž‚Ý
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åèƒŒæ™¯ã‚’èª­ã¿è¾¼ã¿
 	p_work->p_playername_scrn_buf = ArcUtil_HDL_ScrnDataGet( p_handle, 
 			NARC_nutmixer_cook_m2a_NSCR, FALSE, 
 			&p_work->p_playername_scrn, heapID );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req( p_work->p_bgl, GF_BGL_FRAME1_S );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		”wŒi”jŠü
+ *	@brief		èƒŒæ™¯ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 static void NMixSubWin_BackGroundRelease( NMIX_DEMO_SUB_WIN* p_work )
@@ -1295,17 +1295,17 @@ static void NMixSubWin_BackGroundRelease( NMIX_DEMO_SUB_WIN* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE‚ÉƒeƒLƒXƒgÝ’è
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ†ã‚­ã‚¹ãƒˆè¨­å®š
  *
- *	@param	p_bmp		ƒrƒbƒgƒ}ƒbƒv
- *	@param	str			•¶Žš—ñ
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
+ *	@param	p_bmp		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
+ *	@param	str			æ–‡å­—åˆ—
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 static void NmixSubWIn_BmpTextSet( GF_BGL_BMPWIN* p_bmp, STRBUF* str, int x, int y )
 {
-	// •¶Žš—ñ‘‚«ž‚Ý
+	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿
 	GF_STR_PrintColor( p_bmp, FONT_TALK, str, x, y, 0, NMIX_SUBWIN_FONTBMP_PRICOLOR, NULL );
 }
 
@@ -1315,7 +1315,7 @@ static void NmixSubWIn_BmpTextSet( GF_BGL_BMPWIN* p_bmp, STRBUF* str, int x, int
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒJƒEƒ“ƒgƒ_ƒEƒ“
+ *		ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
  */
 //-----------------------------------------------------------------------------
 
@@ -1324,9 +1324,9 @@ static void NmixSubWIn_BmpTextSet( GF_BGL_BMPWIN* p_bmp, STRBUF* str, int x, int
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒgƒ_ƒEƒ“ƒ[ƒN‰Šú‰»
+ *	@brief	ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- *	@param	p_work		ƒ[ƒN
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_CountDown_Init( NMIX_DEMO_COUNTDOWN* p_work )
@@ -1336,33 +1336,33 @@ void NMixGameDemo_CountDown_Init( NMIX_DEMO_COUNTDOWN* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒgƒ_ƒEƒ“ƒ[ƒN”jŠü
+ *	@brief	ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_CountDown_Delete( NMIX_DEMO_COUNTDOWN* p_work )
 {
-	// ƒŠƒ\[ƒX”jŠü‚µ‚Ä‚¢‚Ü‚¹‚ñ
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„ã—ã¦ã„ã¾ã›ã‚“
 	GF_ASSERT( p_work->res_load == FALSE );
 	memset( p_work, 0, sizeof(NMIX_DEMO_COUNTDOWN) );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒgƒ_ƒEƒ“ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	@brief	ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_work			ƒ[ƒN
- *	@param	p_clact			ƒZƒ‹ƒAƒNƒ^[
- *	@param	p_def_oam_res	ƒfƒtƒHƒ‹ƒgOAMƒŠƒ\[ƒX
- *	@param	heapID			ƒq[ƒvID 
- *	@param	res_no			ƒŠƒ\[ƒXƒiƒ“ƒo[
- *	@param	anm_idx			ƒAƒjƒƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_work			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_clact			ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	p_def_oam_res	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆOAMãƒªã‚½ãƒ¼ã‚¹
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID 
+ *	@param	res_no			ãƒªã‚½ãƒ¼ã‚¹ãƒŠãƒ³ãƒãƒ¼
+ *	@param	anm_idx			ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_CountDown_GraphicLoad( NMIX_DEMO_COUNTDOWN* p_work, NMIXGAME_CLACT_SYS* p_clact, NMIXGAME_CLACT_RES_WORK* p_def_oam_res, u32 heapID, u32 res_no, u32 anm_idx )
 {
-	// …‚Éƒ|ƒ`ƒƒƒ“‚àŽg‚¤
+	// æ°´ã«ãƒãƒãƒ£ãƒ³ã‚‚ä½¿ã†
 	p_work->clact = NMIXGAME_CLACT_Add( p_clact,
 			&p_def_oam_res[ res_no ], 
 			NMIX_GAMEDEMO_COUNTDOWN_X, NMIX_GAMEDEMO_COUNTDOWN_Y,
@@ -1375,9 +1375,9 @@ void NMixGameDemo_CountDown_GraphicLoad( NMIX_DEMO_COUNTDOWN* p_work, NMIXGAME_C
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒgƒ_ƒEƒ“ƒŠƒ\[ƒX”jŠü
+ *	@brief	ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *	
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_CountDown_GraphicRelease( NMIX_DEMO_COUNTDOWN* p_work )
@@ -1389,9 +1389,9 @@ void NMixGameDemo_CountDown_GraphicRelease( NMIX_DEMO_COUNTDOWN* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒgƒ_ƒEƒ“ŠJŽn
+ *	@brief	ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³é–‹å§‹
  *
- *	@param	p_work ƒ[ƒN
+ *	@param	p_work ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_CountDown_Start( NMIX_DEMO_COUNTDOWN* p_work )
@@ -1414,12 +1414,12 @@ void NMixGameDemo_CountDown_Start_Pen( NMIX_DEMO_COUNTDOWN* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒgƒ_ƒEƒ“ƒƒCƒ“
+ *	@brief	ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL NMixGameDemo_CountDown_Main( NMIX_DEMO_COUNTDOWN* p_work )
@@ -1433,10 +1433,10 @@ BOOL NMixGameDemo_CountDown_Main( NMIX_DEMO_COUNTDOWN* p_work )
 
 //-----------------------------------------------------------------------------
 /**
- *		“çƒOƒ‰ƒtƒBƒbƒN•`‰æŠÇ—ƒVƒXƒeƒ€
+ *		é‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æç”»ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
-// ‰ŠƒAƒjƒ
+// ç‚Žã‚¢ãƒ‹ãƒ¡
 static const u8 FireAnmSync[ NMIX_SOOPTYPE_SOOP_NUM ] = {
 	4,
 	3,
@@ -1456,9 +1456,9 @@ static const fx32 FireScaleMax[ NMIX_SOOPTYPE_SOOP_NUM ] = {
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN“à‰Šú‰»
+ *	@brief	ãƒ¯ãƒ¼ã‚¯å†…åˆæœŸåŒ–
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_NabeGra_Init( NMIX_DEMO_NABE_GRA* p_work )
@@ -1468,7 +1468,7 @@ void NMixGameDemo_NabeGra_Init( NMIX_DEMO_NABE_GRA* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN”jŠü
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
  *	@param	p_work 
  */
@@ -1481,11 +1481,11 @@ void NMixGameDemo_NabeGra_Delete( NMIX_DEMO_NABE_GRA* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	wsp_sys		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	wsp_sys		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_NabeGra_GraphicLoad( NMIX_DEMO_NABE_GRA* p_work, SWSP_SYS_PTR	swsp_sys, u32 heapID, ARCHANDLE* p_handle )
@@ -1551,23 +1551,23 @@ void NMixGameDemo_NabeGra_GraphicLoad( NMIX_DEMO_NABE_GRA* p_work, SWSP_SYS_PTR	
 	};
 	
 	GF_ASSERT( p_work->res_load == FALSE );
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	for( i=0; i<NMIX_DEMO_NABE_CHAR_NUM; i++ ){
 		p_work->swsp_char[ i ] = NMix_Demo_SwspCharLoad( swsp_sys, NabeCharTbl[i], heapID, p_handle );
 	}
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚Ýž‚Ý
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	for( i=0; i<NMIX_DEMO_NABE_PLTT_NUM; i++ ){
 		p_work->swsp_pltt[ i ] = NMix_Demo_SwspPlttLoad( swsp_sys, NabePlttTbl[i], heapID, p_handle );
 	}
 
-	// ƒIƒuƒWƒFƒNƒg“o˜^
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²
 	for( i=0; i<NMIX_DEMO_NABE_OBJ_NUM; i++ ){
 		p_work->swsp_obj[ i ] = NMix_Demo_SwspObjAdd( swsp_sys,
 				p_work->swsp_char[ NabeObjCharTbl[ i ] ],
 				p_work->swsp_pltt[ i ],
 				NabeObjMatX[i], NabeObjMatY[i],
 				NabeObjPriTbl[ i ] );
-		// ’†SÀ•W
+		// ä¸­å¿ƒåº§æ¨™
 		SWSP_SetSpriteCenterPos( p_work->swsp_obj[ i ], 128 - NabeObjMatX[i], 96 - NabeObjMatY[i] );
 	}
 
@@ -1576,9 +1576,9 @@ void NMixGameDemo_NabeGra_GraphicLoad( NMIX_DEMO_NABE_GRA* p_work, SWSP_SYS_PTR	
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_NabeGra_GraphicRelease( NMIX_DEMO_NABE_GRA* p_work )
@@ -1588,11 +1588,11 @@ void NMixGameDemo_NabeGra_GraphicRelease( NMIX_DEMO_NABE_GRA* p_work )
 	GF_ASSERT( p_work->res_load == TRUE );
 
 	for( i=0; i<NMIX_DEMO_NABE_OBJ_NUM; i++ ){
-		// ƒIƒuƒWƒFƒNƒg”jŠü
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
 		SWSP_Delete( p_work->swsp_obj[ i ] );
 	}
 	
-	// Vram‚©‚ç”jŠü
+	// Vramã‹ã‚‰ç ´æ£„
 	for( i=0; i<NMIX_DEMO_NABE_CHAR_NUM; i++ ){
 		SWSP_CharDelete( p_work->swsp_char[ i ] );
 	}
@@ -1605,11 +1605,11 @@ void NMixGameDemo_NabeGra_GraphicRelease( NMIX_DEMO_NABE_GRA* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg•\Ž¦ONOFF
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¡¨ç¤ºONOFF
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	obj_id	ƒIƒuƒWƒFƒNƒgID
- *	@param	flg		ƒtƒ‰ƒO
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	obj_id	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆID
+ *	@param	flg		ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_NabeGra_GraphicSetDrawFlg( NMIX_DEMO_NABE_GRA* p_work, u32 obj_id, BOOL flg )
@@ -1620,13 +1620,13 @@ void NMixGameDemo_NabeGra_GraphicSetDrawFlg( NMIX_DEMO_NABE_GRA* p_work, u32 obj
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg•\Ž¦ONOFF	Žæ“¾
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¡¨ç¤ºONOFF	å–å¾—
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	obj_id		ƒIƒuƒWƒFƒNƒgID
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	obj_id		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆID
  *
- *	@retval	TRUE	•\Ž¦
- *	@retval	FALSE	”ñ•\Ž¦
+ *	@retval	TRUE	è¡¨ç¤º
+ *	@retval	FALSE	éžè¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 BOOL NMixGameDemo_NabeGra_GraphicGetDrawFlg( NMIX_DEMO_NABE_GRA* p_work, u32 obj_id )
@@ -1637,17 +1637,17 @@ BOOL NMixGameDemo_NabeGra_GraphicGetDrawFlg( NMIX_DEMO_NABE_GRA* p_work, u32 obj
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒX[ƒv‰ñ“]Šp“x‚ÌÝ’è
+ *	@brief	ã‚¹ãƒ¼ãƒ—å›žè»¢è§’åº¦ã®è¨­å®š
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	rota		‰ñ“]Šp“x
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	rota		å›žè»¢è§’åº¦
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_NabeGra_GraphicSetSoopRota( NMIX_DEMO_NABE_GRA* p_work, u16 rota )
 {
 	int i;
 	
-	// ƒX[ƒvŒn‘S‚Ä‚ÌOBJ‚ÉÝ’è
+	// ã‚¹ãƒ¼ãƒ—ç³»å…¨ã¦ã®OBJã«è¨­å®š
 	for( i=NMIX_DEMO_NABE_OBJ_SOOP_0; i<=NMIX_DEMO_NABE_OBJ_SOOP_2; i++ ){
 		SWSP_SetSpriteRotZ( p_work->swsp_obj[ i ], rota );
 	}
@@ -1655,16 +1655,16 @@ void NMixGameDemo_NabeGra_GraphicSetSoopRota( NMIX_DEMO_NABE_GRA* p_work, u16 ro
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒX[ƒv@Šg‘å—¦Ý’è
+ *	@brief	ã‚¹ãƒ¼ãƒ—ã€€æ‹¡å¤§çŽ‡è¨­å®š
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	scale		Šg‘å—¦
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	scale		æ‹¡å¤§çŽ‡
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_NabeGra_GraphicSetSoopScale( NMIX_DEMO_NABE_GRA* p_work, fx32 scale )
 {
 	int i;
-	// ƒX[ƒvŒn‘S‚Ä‚ÌOBJ‚ÉÝ’è
+	// ã‚¹ãƒ¼ãƒ—ç³»å…¨ã¦ã®OBJã«è¨­å®š
 	for( i=NMIX_DEMO_NABE_OBJ_SOOP_0; i<=NMIX_DEMO_NABE_OBJ_SOOP_2; i++ ){
 		SWSP_SetSpriteScale( p_work->swsp_obj[ i ], scale, scale );
 	}
@@ -1672,11 +1672,11 @@ void NMixGameDemo_NabeGra_GraphicSetSoopScale( NMIX_DEMO_NABE_GRA* p_work, fx32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“çƒOƒ‰‚Ó‚¡‚­ƒ¿’lÝ’è
+ *	@brief	é‹ã‚°ãƒ©ãµãƒãÎ±å€¤è¨­å®š
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	obj_id	ƒIƒuƒWƒFƒNƒgID
- *	@param	alpha	ƒ¿’l
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	obj_id	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆID
+ *	@param	alpha	Î±å€¤
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_NabeGra_GraphicSetAlpha( NMIX_DEMO_NABE_GRA* p_work, u32 obj_id, u32 alpha )
@@ -1687,9 +1687,9 @@ void NMixGameDemo_NabeGra_GraphicSetAlpha( NMIX_DEMO_NABE_GRA* p_work, u32 obj_i
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ@ƒCƒ„[ƒAƒjƒ@ŠJŽn
+ *	@brief	ãƒ•ã‚¡ã‚¤ãƒ¤ãƒ¼ã‚¢ãƒ‹ãƒ¡ã€€é–‹å§‹
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_NabeGra_FireAnmStart( NMIX_DEMO_NABE_GRA* p_work )
@@ -1697,7 +1697,7 @@ void NMixGameDemo_NabeGra_FireAnmStart( NMIX_DEMO_NABE_GRA* p_work )
 	p_work->fire_anm_seq = 1;
 	p_work->way_switch = 0;
 
-	// ¬‚³‚¢’l‚É‚·‚é	
+	// å°ã•ã„å€¤ã«ã™ã‚‹	
 	NMIX_DEMO_MoveReqFx( &p_work->fire_anm,
 			FX32_ONE,
 			FireScaleMin[ 0 ],
@@ -1707,9 +1707,9 @@ void NMixGameDemo_NabeGra_FireAnmStart( NMIX_DEMO_NABE_GRA* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ@ƒCƒ„[ƒAƒjƒ@ƒƒCƒ“
+ *	@brief	ãƒ•ã‚¡ã‚¤ãƒ¤ãƒ¼ã‚¢ãƒ‹ãƒ¡ã€€ãƒ¡ã‚¤ãƒ³
  *	
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------	
 void NMixGameDemo_NabeGra_FireAnm( NMIX_DEMO_NABE_GRA* p_work, int soop_type )
@@ -1718,15 +1718,15 @@ void NMixGameDemo_NabeGra_FireAnm( NMIX_DEMO_NABE_GRA* p_work, int soop_type )
 	int i;
 	switch( p_work->fire_anm_seq ){
 	case 0:
-		// ƒpƒ‰ƒ[ƒ^‰Šú‰»
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 		if( p_work->way_switch == 0 ){
-			// ‘å‚«‚­‚È‚é
+			// å¤§ãããªã‚‹
 			NMIX_DEMO_MoveReqFx( &p_work->fire_anm,
 					FireScaleMin[ soop_type ],
 					FireScaleMax[ soop_type ],
 					FireAnmSync[ soop_type ] );
 		}else{
-			// ¬‚³‚­‚È‚é
+			// å°ã•ããªã‚‹
 			NMIX_DEMO_MoveReqFx( &p_work->fire_anm,
 					FireScaleMax[ soop_type ],
 					FireScaleMin[ soop_type ],
@@ -1735,9 +1735,9 @@ void NMixGameDemo_NabeGra_FireAnm( NMIX_DEMO_NABE_GRA* p_work, int soop_type )
 		p_work->fire_anm_seq++;
 
 	case 1:
-		// ‚P‰ñ“®‚©‚·
+		// ï¼‘å›žå‹•ã‹ã™
 		result = NMIX_DEMO_MoveMainFx( &p_work->fire_anm );
-		// ‰Î‘S‚Ä‚ÌOBJ‚ÉÝ’è
+		// ç«å…¨ã¦ã®OBJã«è¨­å®š
 		for( i=NMIX_DEMO_NABE_OBJ_FIRE_0; i<=NMIX_DEMO_NABE_OBJ_FIRE_2; i++ ){
 			SWSP_SetSpriteScale( p_work->swsp_obj[ i ], p_work->fire_anm.x, p_work->fire_anm.x );
 		}
@@ -1758,17 +1758,17 @@ void NMixGameDemo_NabeGra_FireAnm( NMIX_DEMO_NABE_GRA* p_work, int soop_type )
 
 //-----------------------------------------------------------------------------
 /**
- *		‘¼‚Ìl‚ÌˆÊ’u@•`‰æ@ŠÇ—ƒVƒXƒeƒ€
+ *		ä»–ã®äººã®ä½ç½®ã€€æç”»ã€€ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 #define NMIX_DEMO_OTHER_MARK_BG_PRI	( 2 )
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‰Šú‰»
+ *	@brief	ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *	@param	p_work 
- *	@param	cp_commdata		’ÊMƒf[ƒ^
- *	@param	comm_count		’ÊMl”
- *	@param	p_comm_work		’ÊMƒ[ƒN
+ *	@param	cp_commdata		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ *	@param	comm_count		é€šä¿¡äººæ•°
+ *	@param	p_comm_work		é€šä¿¡ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_OtherMark_Init( NMIX_DEMO_OTHER_MARK* p_work, const NUTMIX_GAME_COMM_PACK* cp_commdata, u32 comm_count, NUTMIX_COMMPACK_WORK* p_comm_work )
@@ -1781,14 +1781,14 @@ void NMixGameDemo_OtherMark_Init( NMIX_DEMO_OTHER_MARK* p_work, const NUTMIX_GAM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN”jŠü
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *	
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_OtherMark_Delete( NMIX_DEMO_OTHER_MARK* p_work )	
 {
-	// ƒŠƒ\[ƒX”jŠü‚µ‚Ä‚¢‚È‚¢
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„ã—ã¦ã„ãªã„
 	GF_ASSERT( p_work->res_load == FALSE );
 
 	memset( p_work, 0, sizeof(NMIX_DEMO_OTHER_MARK) );
@@ -1796,12 +1796,12 @@ void NMixGameDemo_OtherMark_Delete( NMIX_DEMO_OTHER_MARK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN“Ç‚Ýž‚Ý
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿
  *
- *	@param	p_work			ƒ[ƒN
- *	@param	p_clact			ƒAƒNƒ^[ƒVƒXƒeƒ€
- *	@param	p_def_oam_res	Šî–{ƒŠƒ\[ƒX
- *	@param	heapID			ƒq[ƒv
+ *	@param	p_work			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_clact			ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_def_oam_res	åŸºæœ¬ãƒªã‚½ãƒ¼ã‚¹
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_OtherMark_GraphicLoad( NMIX_DEMO_OTHER_MARK* p_work, NMIXGAME_CLACT_SYS* p_clact, NMIXGAME_CLACT_RES_WORK* p_def_oam_res, u32 heapID )
@@ -1827,9 +1827,9 @@ void NMixGameDemo_OtherMark_GraphicLoad( NMIX_DEMO_OTHER_MARK* p_work, NMIXGAME_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒŠƒ\[ƒX”jŠü
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_OtherMark_GraphicRelease( NMIX_DEMO_OTHER_MARK* p_work )
@@ -1845,9 +1845,9 @@ void NMixGameDemo_OtherMark_GraphicRelease( NMIX_DEMO_OTHER_MARK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	MARKˆÊ’u’²®
+ *	@brief	MARKä½ç½®èª¿æ•´
  *
- *	@param	p_work			ƒ[ƒN
+ *	@param	p_work			ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_OtherMark_Main( NMIX_DEMO_OTHER_MARK* p_work )
@@ -1857,7 +1857,7 @@ void NMixGameDemo_OtherMark_Main( NMIX_DEMO_OTHER_MARK* p_work )
 	VecFx32 matrix;
 	const NUTMIX_OYA* p_oya = &p_work->cp_commdata->get_game_data[ COMM_PARENT_ID ].oya;
 	
-	//	‘Î‰ž‚·‚éˆÊ’u‚ÉÝ’u
+	//	å¯¾å¿œã™ã‚‹ä½ç½®ã«è¨­ç½®
 	for( i=0; i<p_work->comm_count; i++ ){
 		net_id = p_work->cp_commdata->playno_netid[ i ];
 		matrix.x = p_oya->x[ net_id ] * FX32_ONE;
@@ -1868,7 +1868,7 @@ void NMixGameDemo_OtherMark_Main( NMIX_DEMO_OTHER_MARK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒtƒ‰ƒOÝ’è
+ *	@brief	æç”»ãƒ•ãƒ©ã‚°è¨­å®š
  *
  *	@param	p_work
  *	@param	flg 
@@ -1881,7 +1881,7 @@ void NMixGameDemo_OtherMark_DrawFlag( NMIX_DEMO_OTHER_MARK* p_work, BOOL flg )
 	int i;
 	int net_id;
 	
-	// Ž©•ª‚ÌIDˆÈŠO‚Ìnetid •\Ž¦ON
+	// è‡ªåˆ†ã®IDä»¥å¤–ã®netid è¡¨ç¤ºON
 	for( i=0; i<p_work->comm_count; i++ ){
 		net_id = p_work->cp_commdata->playno_netid[ i ];
 		if( NMIX_CommPack_CommGetCurrentID( p_work->p_comm_work ) != net_id ){
@@ -1894,81 +1894,81 @@ void NMixGameDemo_OtherMark_DrawFlag( NMIX_DEMO_OTHER_MARK* p_work, BOOL flg )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒƒCƒ“‰æ–Ê@ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ *		ãƒ¡ã‚¤ãƒ³ç”»é¢ã€€ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  */
 //-----------------------------------------------------------------------------
 
-#define NMIX_MAINWIN_FONT_COLOR		( 0 )		// ˜g—pƒJƒ‰[ƒpƒŒƒbƒg
-#define NMIX_MAINWIN_MENUFONT_COLOR		( 1 )		// ˜g—pƒJƒ‰[ƒpƒŒƒbƒg
+#define NMIX_MAINWIN_FONT_COLOR		( 0 )		// æž ç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define NMIX_MAINWIN_MENUFONT_COLOR		( 1 )		// æž ç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define NMIX_MAINWIN_FONT_CG_OFS	( 1 )
 #define NMIX_MAINWIN_SYSTEM_FONT_CG_OFS	( 1+TALK_WIN_CGX_SIZ )
-#define NMIX_MAINWIN_STR_COLOR		( 2 )		// ƒtƒHƒ“ƒg—pƒJƒ‰[ƒpƒŒƒbƒg
-#define NMIX_MAINWIN_SYSTEMSTR_COLOR		( 3 )		// ƒtƒHƒ“ƒg—pƒJƒ‰[ƒpƒŒƒbƒg
+#define NMIX_MAINWIN_STR_COLOR		( 2 )		// ãƒ•ã‚©ãƒ³ãƒˆç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define NMIX_MAINWIN_SYSTEMSTR_COLOR		( 3 )		// ãƒ•ã‚©ãƒ³ãƒˆç”¨ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define NMIX_MAINWIN_BMP_PRICOLOR		( GF_PRINTCOLOR_MAKE(1,2,15) )
 #define NMIX_MAINWIN_BMP_SYSTEMPRICOLOR	( GF_PRINTCOLOR_MAKE(1,2,15) )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/04/05
-// ’²—’†‚ÌƒƒbƒZ[ƒW‚ªŽ©“®‚ÅƒEƒBƒ“ƒhƒE’†‰›‚É•\Ž¦‚³‚ê‚é‚æ‚¤‚É•ÏX
-#define NMIX_MAINWIN_COMMBMP_X	( 8 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
+// èª¿ç†ä¸­ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒè‡ªå‹•ã§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä¸­å¤®ã«è¡¨ç¤ºã•ã‚Œã‚‹ã‚ˆã†ã«å¤‰æ›´
+#define NMIX_MAINWIN_COMMBMP_X	( 8 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
 // ----------------------------------------------------------------------------
-#define NMIX_MAINWIN_COMMBMP_Y	( 11 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_MAINWIN_COMMBMP_CX	( 16 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_MAINWIN_COMMBMP_CY	( 4 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_MAINWIN_COMMBMP_COFS ( NMIX_MAINWIN_SYSTEM_FONT_CG_OFS+MENU_WIN_CGX_SIZ )			// ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg
+#define NMIX_MAINWIN_COMMBMP_Y	( 11 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_MAINWIN_COMMBMP_CX	( 16 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_MAINWIN_COMMBMP_CY	( 4 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_MAINWIN_COMMBMP_COFS ( NMIX_MAINWIN_SYSTEM_FONT_CG_OFS+MENU_WIN_CGX_SIZ )			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-#define NMIX_MAINWIN_RESULT0_BMP_X	( 2 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_MAINWIN_RESULT0_BMP_Y	( 1 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_MAINWIN_RESULT0_BMP_CX	( 28 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_MAINWIN_RESULT0_BMP_CY	( 15 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_MAINWIN_RESULT0_BMP_COFS ( NMIX_MAINWIN_SYSTEM_FONT_CG_OFS+MENU_WIN_CGX_SIZ )			// ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg
+#define NMIX_MAINWIN_RESULT0_BMP_X	( 2 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_MAINWIN_RESULT0_BMP_Y	( 1 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_MAINWIN_RESULT0_BMP_CX	( 28 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_MAINWIN_RESULT0_BMP_CY	( 15 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_MAINWIN_RESULT0_BMP_COFS ( NMIX_MAINWIN_SYSTEM_FONT_CG_OFS+MENU_WIN_CGX_SIZ )			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-#define NMIX_MAINWIN_RESULT1_BMP_X	( 2 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_MAINWIN_RESULT1_BMP_Y	( 18 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_MAINWIN_RESULT1_BMP_CX	( 28 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_MAINWIN_RESULT1_BMP_CY	( 5 )			// •¶Žš–Êƒrƒbƒgƒ}ƒbƒvsize
-#define NMIX_MAINWIN_RESULT1_BMP_COFS ( NMIX_MAINWIN_RESULT0_BMP_COFS+ (NMIX_MAINWIN_RESULT0_BMP_CX * NMIX_MAINWIN_RESULT0_BMP_CY) )			// ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg
+#define NMIX_MAINWIN_RESULT1_BMP_X	( 2 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_MAINWIN_RESULT1_BMP_Y	( 18 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_MAINWIN_RESULT1_BMP_CX	( 28 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_MAINWIN_RESULT1_BMP_CY	( 5 )			// æ–‡å­—é¢ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—size
+#define NMIX_MAINWIN_RESULT1_BMP_COFS ( NMIX_MAINWIN_RESULT0_BMP_COFS+ (NMIX_MAINWIN_RESULT0_BMP_CX * NMIX_MAINWIN_RESULT0_BMP_CY) )			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 
-// Œ‹‰Ê•\Ž¦ˆÊ’u
-#define NMIX_MAINWIN_RESULT_TITLE_X	( 56 )		// ‘S‘Ìƒ^ƒCƒgƒ‹
-#define NMIX_MAINWIN_RESULT_TITLE_Y	( 0 )		// ‘S‘Ìƒ^ƒCƒgƒ‹
-#define NMIX_MAINWIN_RESULT_PORUTO_TITLE_X	( 0 )	// ƒ|ƒ‹ƒgƒ^ƒCƒgƒ‹
-#define NMIX_MAINWIN_RESULT_PORUTO_TITLE_Y	( 0 )	// ƒ|ƒ‹ƒgƒ^ƒCƒgƒ‹
-#define NMIX_MAINWIN_RESULT_NEMU_TITLE_X	( 0 )	// ƒƒjƒ…[ƒ^ƒCƒgƒ‹
-#define NMIX_MAINWIN_RESULT_NEMU_NUM_X		( 160 )	// ƒƒjƒ…[’l
+// çµæžœè¡¨ç¤ºä½ç½®
+#define NMIX_MAINWIN_RESULT_TITLE_X	( 56 )		// å…¨ä½“ã‚¿ã‚¤ãƒˆãƒ«
+#define NMIX_MAINWIN_RESULT_TITLE_Y	( 0 )		// å…¨ä½“ã‚¿ã‚¤ãƒˆãƒ«
+#define NMIX_MAINWIN_RESULT_PORUTO_TITLE_X	( 0 )	// ãƒãƒ«ãƒˆã‚¿ã‚¤ãƒˆãƒ«
+#define NMIX_MAINWIN_RESULT_PORUTO_TITLE_Y	( 0 )	// ãƒãƒ«ãƒˆã‚¿ã‚¤ãƒˆãƒ«
+#define NMIX_MAINWIN_RESULT_NEMU_TITLE_X	( 0 )	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¿ã‚¤ãƒˆãƒ«
+#define NMIX_MAINWIN_RESULT_NEMU_NUM_X		( 160 )	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å€¤
 
-#define NMIX_MAINWIN_RESULT_COOKTIME_KETA	( 2 )	// ’²—ŽžŠÔŒ…
-#define NMIX_MAINWIN_RESULT_KOBOSI_KETA	( 4 )		// ‚±‚Ú‚µ
-#define NMIX_MAINWIN_RESULT_KOGASI_KETA	( 4 )		// ‚±‚°
-#define NMIX_MAINWIN_RESULT_TEAMWORK_KETA	( 4 )		// ƒ`[ƒ€ƒ[ƒN
-#define NMIX_MAINWIN_RESULT_COOKTIME_TITLE_Y	( 24 )	// ’²—ŽžŠÔƒ^ƒCƒgƒ‹
-#define NMIX_MAINWIN_RESULT_KOBOSI_TITLE_Y	( 48 )	// ‚±‚Ú‚µ‚½‰ñ”
-#define NMIX_MAINWIN_RESULT_KOGASI_TITLE_Y	( 68 )	// ‚±‚ª‚µ‚½‰ñ”
-#define NMIX_MAINWIN_RESULT_TEAMWORK_TITLE_Y ( 88 )// TEAMWORK“_”
+#define NMIX_MAINWIN_RESULT_COOKTIME_KETA	( 2 )	// èª¿ç†æ™‚é–“æ¡
+#define NMIX_MAINWIN_RESULT_KOBOSI_KETA	( 4 )		// ã“ã¼ã—
+#define NMIX_MAINWIN_RESULT_KOGASI_KETA	( 4 )		// ã“ã’
+#define NMIX_MAINWIN_RESULT_TEAMWORK_KETA	( 4 )		// ãƒãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
+#define NMIX_MAINWIN_RESULT_COOKTIME_TITLE_Y	( 24 )	// èª¿ç†æ™‚é–“ã‚¿ã‚¤ãƒˆãƒ«
+#define NMIX_MAINWIN_RESULT_KOBOSI_TITLE_Y	( 48 )	// ã“ã¼ã—ãŸå›žæ•°
+#define NMIX_MAINWIN_RESULT_KOGASI_TITLE_Y	( 68 )	// ã“ãŒã—ãŸå›žæ•°
+#define NMIX_MAINWIN_RESULT_TEAMWORK_TITLE_Y ( 88 )// TEAMWORKç‚¹æ•°
 
-#define NMIX_MAINWIN_RESULT_PORUTO_KETA		( 2 )	//ƒ|ƒ‹ƒgƒf[ƒ^Œ…
-#define NMIX_MAINWIN_RESULT_PORUTO_NUM_X	( 16 )	// ƒ|ƒ‹ƒgƒf[ƒ^
-#define NMIX_MAINWIN_RESULT_PORUTO_NUM_Y	( 24 )	//ƒ|ƒ‹ƒgƒf[ƒ^
+#define NMIX_MAINWIN_RESULT_PORUTO_KETA		( 2 )	//ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿æ¡
+#define NMIX_MAINWIN_RESULT_PORUTO_NUM_X	( 16 )	// ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿
+#define NMIX_MAINWIN_RESULT_PORUTO_NUM_Y	( 24 )	//ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿
 
 #define NMIX_MAINWIN_COMMBACK_COLOR	( 4 )
 
-// ƒeƒLƒXƒg•\Ž¦–Êˆ—
+// ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤ºé¢å‡¦ç†
 #define NMIX_MAINWIN_TEXT_BMP_X		( 2 )
 #define NMIX_MAINWIN_TEXT_BMP_Y		( 2 )
 #define NMIX_MAINWIN_TEXT_BMP_CX	( 27 )
 #define NMIX_MAINWIN_TEXT_BMP_CY	( 5 )
-#define NMIX_MAINWIN_TEXT_BMP_COFS ( NMIX_MAINWIN_SYSTEM_FONT_CG_OFS+MENU_WIN_CGX_SIZ )			// ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg
+#define NMIX_MAINWIN_TEXT_BMP_COFS ( NMIX_MAINWIN_SYSTEM_FONT_CG_OFS+MENU_WIN_CGX_SIZ )			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 
-// ‚±‚±‚É‚©‚¢‚¿‚á‚¤
-// YESNOƒEƒBƒ“ƒhƒE
+// ã“ã“ã«ã‹ã„ã¡ã‚ƒã†
+// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define NMIX_MAINWIN_YESNO_WND_X		( 24 )
 #define NMIX_MAINWIN_YESNO_WND_Y		( 8 )
-#define NMIX_MAINWIN_YESNO_BMP_COFS ( NMIX_MAINWIN_TEXT_BMP_COFS + (NMIX_MAINWIN_TEXT_BMP_CX * NMIX_MAINWIN_TEXT_BMP_CY) )			// ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg
+#define NMIX_MAINWIN_YESNO_BMP_COFS ( NMIX_MAINWIN_TEXT_BMP_COFS + (NMIX_MAINWIN_TEXT_BMP_CX * NMIX_MAINWIN_TEXT_BMP_CY) )			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define NMIX_MAINWIN_YESNO_PLT			( 5 )
  
-// ƒGƒtƒFƒNƒg
+// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 #define NMIX_MAINWIN_COMM_EFF_DRAW_TIME	( 30 )	
 #define NMIX_MAINWIN_COMM_EFF_TCB_PRI	( 1024 )
 
@@ -1978,14 +1978,14 @@ static void NMixMainWin_BmpRelease( NMIX_DEMO_MAIN_WIN* p_work );
 static void NMixMainWin_BackGroundInit( NMIX_DEMO_MAIN_WIN* p_work, u32 heapID, ARCHANDLE* p_handle );
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ƒEƒBƒ“ƒhƒE@‰Šú‰»
+ *	@brief	ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€åˆæœŸåŒ–
  *
- *	@param	p_work			ƒ[ƒN
- *	@param	comm_coun		’ÊM‘ŠŽè”
- *	@param	p_msg_data		ƒƒbƒZ[ƒWƒf[ƒ^
- *	@param	p_comm_data		’ÊMƒf[ƒ^
- *	@param	wnd_type		ƒEƒBƒ“ƒhƒEƒ^ƒCƒv
- *	@param	heapID			ƒq[ƒv
+ *	@param	p_work			ãƒ¯ãƒ¼ã‚¯
+ *	@param	comm_coun		é€šä¿¡ç›¸æ‰‹æ•°
+ *	@param	p_msg_data		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_comm_data		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
+ *	@param	wnd_type		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ—
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_MainWin_Init( NMIX_DEMO_MAIN_WIN* p_work, int comm_count, NMIXER_MSG* p_msg_data, NUTMIX_GAME_COMM_PACK* p_comm_data, int wnd_type, u32 heapID )
@@ -2000,20 +2000,20 @@ void NMixGameDemo_MainWin_Init( NMIX_DEMO_MAIN_WIN* p_work, int comm_count, NMIX
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_MainWin_Delete( NMIX_DEMO_MAIN_WIN* p_work )
 {
-	// ƒŠƒ\[ƒX”jŠü‚µ‚Ä‚¢‚Ü‚¹‚ñ
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„ã—ã¦ã„ã¾ã›ã‚“
 	GF_ASSERT( p_work->res_load == FALSE );
 
-	// ƒ^ƒXƒN”jŠü
+	// ã‚¿ã‚¹ã‚¯ç ´æ£„
 	NMixGameDemo_StopComment( p_work );
 
-	// ƒ^ƒCƒ€ƒEƒGƒCƒgƒ[ƒN”jŠü
+	// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	MMixGameDemo_EndTimeWait( p_work );
 
 	
@@ -2022,27 +2022,27 @@ void NMixGameDemo_MainWin_Delete( NMIX_DEMO_MAIN_WIN* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“‰æ–Ê@BGƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	@brief	ãƒ¡ã‚¤ãƒ³ç”»é¢ã€€BGãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *	
- *	@param	p_work		ƒ[ƒN
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  *	@param	p_bgl		BGL
- *	@param	heapID		ƒq[ƒvID
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_MainWin_GraphicLoad( NMIX_DEMO_MAIN_WIN* p_work, GF_BGL_INI* p_bgl, u32 heapID, ARCHANDLE* p_handle )
 {
 	GF_ASSERT( p_work->res_load == FALSE );
 
-	// BGLÝ’è
+	// BGLè¨­å®š
 	p_work->p_bgl = p_bgl;
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE‰Šú‰»
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 	NMixMainWin_BmpInit( p_work, heapID );
 
-	// ”wŒiÝ’è
+	// èƒŒæ™¯è¨­å®š
 	NMixMainWin_BackGroundInit( p_work, heapID, p_handle );
 
-	// ”ñ•\Ž¦‚É‚·‚é
+	// éžè¡¨ç¤ºã«ã™ã‚‹
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 
@@ -2051,16 +2051,16 @@ void NMixGameDemo_MainWin_GraphicLoad( NMIX_DEMO_MAIN_WIN* p_work, GF_BGL_INI* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“‰æ–ÊBG@ƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒ¡ã‚¤ãƒ³ç”»é¢BGã€€ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_MainWin_GraphicRelease( NMIX_DEMO_MAIN_WIN* p_work )
 {
 	GF_ASSERT( p_work->res_load == TRUE );
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	NMixMainWin_BmpRelease( p_work );
 
 	p_work->res_load = FALSE;
@@ -2068,7 +2068,7 @@ void NMixGameDemo_MainWin_GraphicRelease( NMIX_DEMO_MAIN_WIN* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 static void NMixMainWin_BmpInit( NMIX_DEMO_MAIN_WIN* p_work, u32 heapID )
@@ -2109,26 +2109,26 @@ static void NMixMainWin_BmpInit( NMIX_DEMO_MAIN_WIN* p_work, u32 heapID )
 		},
 	};
 
-	// ˜g‚ÌŠG‚È‚Ç“Ç‚Ýž‚Ý
-	// ‰ï˜b˜g
+	// æž ã®çµµãªã©èª­ã¿è¾¼ã¿
+	// ä¼šè©±æž 
 	TalkWinGraphicSet( p_work->p_bgl, GF_BGL_FRAME2_M,
 			NMIX_MAINWIN_FONT_CG_OFS,
 			NMIX_MAINWIN_FONT_COLOR,
 			p_work->wnd_type, heapID );
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, 
 			NMIX_MAINWIN_STR_COLOR * 32, heapID );
 
-	// ƒƒjƒ…[˜g
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼æž 
 	MenuWinGraphicSet( p_work->p_bgl, GF_BGL_FRAME2_M,
 			NMIX_MAINWIN_SYSTEM_FONT_CG_OFS,
 			NMIX_MAINWIN_MENUFONT_COLOR,
 			MENU_TYPE_SYSTEM, heapID );
-	// ƒVƒXƒeƒ€ƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 
 			NMIX_MAINWIN_SYSTEMSTR_COLOR * 32, heapID );
 	
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒƒ‚ƒŠŠm•Û
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	for( i=0; i<NMIX_DEMO_MAINWIN_NUM; i++ ){
 		p_work->p_bmp[i] = GF_BGL_BmpWinAllocGet( heapID, 1 );
 
@@ -2147,7 +2147,7 @@ static void NMixMainWin_BmpInit( NMIX_DEMO_MAIN_WIN* p_work, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 static void NMixMainWin_BmpRelease( NMIX_DEMO_MAIN_WIN* p_work )
@@ -2162,7 +2162,7 @@ static void NMixMainWin_BmpRelease( NMIX_DEMO_MAIN_WIN* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		”wŒi‰Šú‰»
+ *	@brief		èƒŒæ™¯åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 static void NMixMainWin_BackGroundInit( NMIX_DEMO_MAIN_WIN* p_work, u32 heapID, ARCHANDLE* p_handle )
@@ -2170,7 +2170,7 @@ static void NMixMainWin_BackGroundInit( NMIX_DEMO_MAIN_WIN* p_work, u32 heapID, 
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 	
-	// ”wŒiÝ’è
+	// èƒŒæ™¯è¨­å®š
 	ArcUtil_HDL_PalSet( p_handle, NARC_nutmixer_cook_s_window_NCLR, 
 			PALTYPE_MAIN_BG, NMIX_MAINWIN_COMMBACK_COLOR*32,
 			1*32, heapID );
@@ -2180,13 +2180,13 @@ static void NMixMainWin_BackGroundInit( NMIX_DEMO_MAIN_WIN* p_work, u32 heapID, 
 	buff = ArcUtil_HDL_ScrnDataGet( p_handle, 
 			NARC_nutmixer_cook_s_window_NSCR, FALSE, &p_scrn, heapID );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«ž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_work->p_bgl, GF_BGL_FRAME1_M,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8,
 			p_scrn->screenHeight / 8 );
 
-	// ƒpƒŒƒbƒg‚ð‚ ‚í‚¹‚é
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚ã‚ã›ã‚‹
 	GF_BGL_ScrPalChange( p_work->p_bgl, GF_BGL_FRAME1_M,
 			0, 0, 
 			p_scrn->screenWidth / 8,
@@ -2195,7 +2195,7 @@ static void NMixMainWin_BackGroundInit( NMIX_DEMO_MAIN_WIN* p_work, u32 heapID, 
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req( p_work->p_bgl, GF_BGL_FRAME1_M );
 }
 
@@ -2203,51 +2203,51 @@ static void NMixMainWin_BackGroundInit( NMIX_DEMO_MAIN_WIN* p_work, u32 heapID, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒƒbƒZ[ƒW•\Ž¦
+ *	@brief	çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_EndMsgPirntOn( NMIX_DEMO_MAIN_WIN* p_work )
 {
-	// •¶Žš—ñ•`‰æ
+	// æ–‡å­—åˆ—æç”»
 	GF_BGL_BmpWinDataFill( p_work->p_bmp[NMIX_DEMO_MAINWIN_COMME], 0 );
 
-	// •¶Žš—ñ•`‰æ
+	// æ–‡å­—åˆ—æç”»
 	GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_COMME],
 			FONT_TALK, p_work->p_msg_data->end, 0, 0, 0,
 			NMIX_MAINWIN_BMP_PRICOLOR, NULL );
-	// “]‘—
+	// è»¢é€
 	GF_BGL_BmpWinOn( p_work->p_bmp[NMIX_DEMO_MAINWIN_COMME] );
 
-	// •\Ž¦Ý’è
+	// è¡¨ç¤ºè¨­å®š
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒƒbƒZ[ƒW”ñ•\Ž¦
+ *	@brief	çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸éžè¡¨ç¤º
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_EndMsgPrintOff( NMIX_DEMO_MAIN_WIN* p_work )
 {
 	MMixGameDemo_EndTimeWait( p_work );
 	
-	// ”ñ•\Ž¦‚É‚µ‚ÄI‚í‚é
+	// éžè¡¨ç¤ºã«ã—ã¦çµ‚ã‚ã‚‹
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 
-	// “]‘—
+	// è»¢é€
 	GF_BGL_BmpWinOff( p_work->p_bmp[NMIX_DEMO_MAINWIN_COMME] );
 }
 
 
 //----------------------------------------------------------------------------
 /**	
- *	@brief	ƒGƒtƒFƒNƒgƒƒCƒ“ƒ^ƒXƒN
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NMixGameDemo_MainComment( TCB_PTR tcb, void* p_work )
@@ -2257,7 +2257,7 @@ static void NMixGameDemo_MainComment( TCB_PTR tcb, void* p_work )
 	p_demo->move_count ++;
 	
 	if( p_demo->move_count >= NMIX_MAINWIN_COMM_EFF_DRAW_TIME ){
-		// ”ñ•\Ž¦‚É‚µ‚ÄI‚í‚é
+		// éžè¡¨ç¤ºã«ã—ã¦çµ‚ã‚ã‚‹
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 		TCB_Delete( tcb );
@@ -2267,10 +2267,10 @@ static void NMixGameDemo_MainComment( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒƒ“ƒg•`‰æƒGƒtƒFƒNƒgŠJŽn
+ *	@brief	ã‚³ãƒ¡ãƒ³ãƒˆæç”»ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	comm_type	ƒRƒƒ“ƒgƒ^ƒCƒv
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	comm_type	ã‚³ãƒ¡ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
  *
  *	comm_type
 		NMIX_STMSG_SPEED_KOGERU00,
@@ -2282,40 +2282,40 @@ static void NMixGameDemo_MainComment( TCB_PTR tcb, void* p_work )
 //-----------------------------------------------------------------------------
 void NMixGameDemo_StartComment( NMIX_DEMO_MAIN_WIN* p_work, u32 comm_type )
 {
-	// •\Ž¦’†‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+	// è¡¨ç¤ºä¸­ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_work->move_tcb == NULL );
 
 	p_work->move_tcb = TCB_Add( NMixGameDemo_MainComment, p_work, NMIX_MAINWIN_COMM_EFF_TCB_PRI );
 	p_work->move_count = 0;
 
-	// •¶Žš—ñ•`‰æ
+	// æ–‡å­—åˆ—æç”»
 	GF_BGL_BmpWinDataFill( p_work->p_bmp[NMIX_DEMO_MAINWIN_COMME], 0 );
 
     {
         // MatchComment: use for x pos
         u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_TALK, p_work->p_msg_data->spd[ comm_type ], 0, 128);
-        // •¶Žš—ñ•`‰æ
+        // æ–‡å­—åˆ—æç”»
         GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_COMME],
                 FONT_TALK, p_work->p_msg_data->spd[ comm_type ], xofs, 0, 0,
                 NMIX_MAINWIN_BMP_PRICOLOR, NULL );
     }
 
-	// “]‘—
+	// è»¢é€
 	GF_BGL_BmpWinOn( p_work->p_bmp[NMIX_DEMO_MAINWIN_COMME] );
 
-	// •\Ž¦Ý’è
+	// è¡¨ç¤ºè¨­å®š
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒ`ƒFƒbƒN
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *	
  *	@param	cp_work 
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL NMixGameDemo_EndCheckComment( const NMIX_DEMO_MAIN_WIN* cp_work )
@@ -2328,9 +2328,9 @@ BOOL NMixGameDemo_EndCheckComment( const NMIX_DEMO_MAIN_WIN* cp_work )
 	
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒƒ“ƒgƒGƒtƒFƒNƒg@’âŽ~
+ *	@brief	ã‚³ãƒ¡ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€åœæ­¢
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_StopComment( NMIX_DEMO_MAIN_WIN* p_work )
@@ -2338,7 +2338,7 @@ void NMixGameDemo_StopComment( NMIX_DEMO_MAIN_WIN* p_work )
 	if( p_work->move_tcb == NULL ){
 		return ;
 	}
-	// ”ñ•\Ž¦‚É‚µ‚ÄI‚í‚é
+	// éžè¡¨ç¤ºã«ã—ã¦çµ‚ã‚ã‚‹
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 	
@@ -2348,23 +2348,23 @@ void NMixGameDemo_StopComment( NMIX_DEMO_MAIN_WIN* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒEƒGƒCƒg‚ð•\Ž¦
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆã‚’è¡¨ç¤º
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void MMixGameDemo_StartTimeWait( NMIX_DEMO_MAIN_WIN* p_work )
 {
-	// o‚µ‚Ä‚½‚çÁ‚·
+	// å‡ºã—ã¦ãŸã‚‰æ¶ˆã™
 	MMixGameDemo_EndTimeWait( p_work );
 	p_work->p_timewait = TimeWaitIconAdd( p_work->p_bmp[NMIX_DEMO_MAINWIN_TEXT], NMIX_MAINWIN_FONT_CG_OFS );
 }
 	
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒEƒGƒCƒg‚ð”ñ•\Ž¦
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆã‚’éžè¡¨ç¤º
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void MMixGameDemo_EndTimeWait( NMIX_DEMO_MAIN_WIN* p_work )
@@ -2375,17 +2375,17 @@ void MMixGameDemo_EndTimeWait( NMIX_DEMO_MAIN_WIN* p_work )
 	}
 }
 
-// ƒV[ƒ“0
+// ã‚·ãƒ¼ãƒ³0
 static void NMixGameDemo_MainWin_ResultSeen0( NMIX_DEMO_MAIN_WIN* p_work )
 {
-	// ƒƒbƒZ[ƒWƒXƒNƒŠ[ƒ“‚ðƒNƒŠ[ƒ“
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_ScrClear( p_work->p_bgl, GF_BGL_FRAME2_M );
 	
-	// •¶Žš—ñ•`‰æ
+	// æ–‡å­—åˆ—æç”»
 	GF_BGL_BmpWinDataFill( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN], 15 );
 
     {
-        // Œ‹‰Ê”­•\ 
+        // çµæžœç™ºè¡¨ 
         // MatchComment: use calculated xofs
         u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_SYSTEM, p_work->p_msg_data->result, 0, 224);
         GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN],
@@ -2395,23 +2395,23 @@ static void NMixGameDemo_MainWin_ResultSeen0( NMIX_DEMO_MAIN_WIN* p_work )
                 NMIX_MAINWIN_BMP_SYSTEMPRICOLOR, NULL );
     }
 
-	// ˜g‚Ì•`‰æ
+	// æž ã®æç”»
 	BmpMenuWinWrite( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN], WINDOW_TRANS_ON, NMIX_MAINWIN_SYSTEM_FONT_CG_OFS, NMIX_MAINWIN_MENUFONT_COLOR );
 
-	// ‚¿‚Á‚¿‚á‚¢ƒEƒBƒ“ƒhƒE
+	// ã¡ã£ã¡ã‚ƒã„ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	GF_BGL_BmpWinDataFill( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_SUB], 15 );
 
-	// o—ˆ‚½ƒ|ƒƒbƒN
+	// å‡ºæ¥ãŸãƒãƒ­ãƒƒã‚¯
 	GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_SUB],
 			FONT_SYSTEM, p_work->p_msg_data->res[ NMIX_STMSG_RESULT_PORUTO_TI ], 
 			NMIX_MAINWIN_RESULT_PORUTO_TITLE_X, NMIX_MAINWIN_RESULT_PORUTO_TITLE_Y,
 			0,
 			NMIX_MAINWIN_BMP_SYSTEMPRICOLOR, NULL );
 
-	// ˜g‚Ì•`‰æ
+	// æž ã®æç”»
 	BmpMenuWinWrite( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_SUB], WINDOW_TRANS_ON, NMIX_MAINWIN_SYSTEM_FONT_CG_OFS, NMIX_MAINWIN_MENUFONT_COLOR );
 
-	// •\Ž¦
+	// è¡¨ç¤º
 	GF_BGL_BmpWinOnVReq( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN] );
 	GF_BGL_BmpWinOnVReq( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_SUB] );
 }
@@ -2420,30 +2420,30 @@ static void NMixGameDemo_MainWin_ResultSeen0( NMIX_DEMO_MAIN_WIN* p_work )
 extern u32 D_Tomoya_MazeMaze_TeamWork;
 #endif
 
-// ƒV[ƒ“1
+// ã‚·ãƒ¼ãƒ³1
 static void NMixGameDemo_MainWin_ResultSeen1( NMIX_DEMO_MAIN_WIN* p_work )
 {
-	// ’²—ŽžŠÔ
+	// èª¿ç†æ™‚é–“
 	GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN],
 			FONT_SYSTEM, p_work->p_msg_data->res[ NMIX_STMSG_RESULT_COOK_TIME_TI ], 
 			NMIX_MAINWIN_RESULT_NEMU_TITLE_X, NMIX_MAINWIN_RESULT_COOKTIME_TITLE_Y,
 			0,
 			NMIX_MAINWIN_BMP_SYSTEMPRICOLOR, NULL );
 
-	// ŽÀÛ‚ÌŽžŠÔ
+	// å®Ÿéš›ã®æ™‚é–“
 	WORDSET_RegisterNumber( p_work->p_msg_data->wset, 0, 
 			p_work->p_comm_data->get_result_data.min,
 			NMIX_MAINWIN_RESULT_COOKTIME_KETA, 
-			NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );	// •ª
+			NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );	// åˆ†
 	WORDSET_RegisterNumber( p_work->p_msg_data->wset, 1, 
 			p_work->p_comm_data->get_result_data.second,
 			NMIX_MAINWIN_RESULT_COOKTIME_KETA, 
-			NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );	// •b
+			NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );	// ç§’
 	WORDSET_RegisterNumber( p_work->p_msg_data->wset, 2,
 			p_work->p_comm_data->get_result_data.dec,
 			NMIX_MAINWIN_RESULT_COOKTIME_KETA, 
-			NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );	// ƒRƒ“ƒ}
-	WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[NMIX_STMSG_RESULT_COOK_TIME] );	// “WŠJ
+			NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );	// ã‚³ãƒ³ãƒž
+	WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[NMIX_STMSG_RESULT_COOK_TIME] );	// å±•é–‹
 	
 	GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN],
 			FONT_SYSTEM, p_work->p_msg_data->tmp, 
@@ -2451,14 +2451,14 @@ static void NMixGameDemo_MainWin_ResultSeen1( NMIX_DEMO_MAIN_WIN* p_work )
 			NMIX_MAINWIN_RESULT_COOKTIME_TITLE_Y,
 			0, NMIX_MAINWIN_BMP_SYSTEMPRICOLOR, NULL );
 
-	// ‚±‚Ú‚µ‚½‰ñ”
+	// ã“ã¼ã—ãŸå›žæ•°
 	GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN],
 			FONT_SYSTEM, p_work->p_msg_data->res[ NMIX_STMSG_RESULT_KOBOSI_NUM_TI ], 
 			NMIX_MAINWIN_RESULT_NEMU_TITLE_X, NMIX_MAINWIN_RESULT_KOBOSI_TITLE_Y,
 			0,
 			NMIX_MAINWIN_BMP_SYSTEMPRICOLOR, NULL );
 	
-	// ŽÀÛ‚Ì‰ñ”
+	// å®Ÿéš›ã®å›žæ•°
 	WORDSET_RegisterNumber( p_work->p_msg_data->wset, 0, 
 			p_work->p_comm_data->get_result_data.kobore_num,
 			NMIX_MAINWIN_RESULT_KOBOSI_KETA,
@@ -2466,12 +2466,12 @@ static void NMixGameDemo_MainWin_ResultSeen1( NMIX_DEMO_MAIN_WIN* p_work )
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/25
-	// ‰ñ”‚É‚æ‚Á‚Ä’PˆÊ‚Ì’P•¡‚ðo‚µ•ª‚¯
+	// å›žæ•°ã«ã‚ˆã£ã¦å˜ä½ã®å˜è¤‡ã‚’å‡ºã—åˆ†ã‘
 	{
 		int msg_idx = p_work->p_comm_data->get_result_data.kobore_num == 1 ?
 		              NMIX_STMSG_RESULT_KOBOSI_KOGASI_NUM :
 		              NMIX_STMSG_RESULT_KOBOSI_KOGASI_NUM_PLURAL;
-		WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[msg_idx] );	// “WŠJ
+		WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[msg_idx] );	// å±•é–‹
 	}
 	// ----------------------------------------------------------------------------
 	
@@ -2481,7 +2481,7 @@ static void NMixGameDemo_MainWin_ResultSeen1( NMIX_DEMO_MAIN_WIN* p_work )
 			NMIX_MAINWIN_RESULT_KOBOSI_TITLE_Y,
 			0, NMIX_MAINWIN_BMP_SYSTEMPRICOLOR, NULL );
 
-	// Å‚ª‚µ‚½‰ñ”
+	// ç„¦ãŒã—ãŸå›žæ•°
 	GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN],
 			FONT_SYSTEM, p_work->p_msg_data->res[ NMIX_STMSG_RESULT_KOGASI_NUM_TI ], 
 			NMIX_MAINWIN_RESULT_NEMU_TITLE_X, 
@@ -2489,7 +2489,7 @@ static void NMixGameDemo_MainWin_ResultSeen1( NMIX_DEMO_MAIN_WIN* p_work )
 			0,
 			NMIX_MAINWIN_BMP_SYSTEMPRICOLOR, NULL );
 	
-	// ŽÀÛ‚Ì‰ñ”
+	// å®Ÿéš›ã®å›žæ•°
 	WORDSET_RegisterNumber( p_work->p_msg_data->wset, 0,
 			p_work->p_comm_data->get_result_data.kogasi_num, 
 			NMIX_MAINWIN_RESULT_KOGASI_KETA,
@@ -2497,12 +2497,12 @@ static void NMixGameDemo_MainWin_ResultSeen1( NMIX_DEMO_MAIN_WIN* p_work )
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/25
-	// ‰ñ”‚É‚æ‚Á‚Ä’PˆÊ‚Ì’P•¡‚ðo‚µ•ª‚¯
+	// å›žæ•°ã«ã‚ˆã£ã¦å˜ä½ã®å˜è¤‡ã‚’å‡ºã—åˆ†ã‘
 	{
 		int msg_idx = p_work->p_comm_data->get_result_data.kogasi_num == 1 ?
 		              NMIX_STMSG_RESULT_KOBOSI_KOGASI_NUM :
 		              NMIX_STMSG_RESULT_KOBOSI_KOGASI_NUM_PLURAL;
-		WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[msg_idx] );	// “WŠJ
+		WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[msg_idx] );	// å±•é–‹
 	}
 	// ----------------------------------------------------------------------------
 	
@@ -2512,12 +2512,12 @@ static void NMixGameDemo_MainWin_ResultSeen1( NMIX_DEMO_MAIN_WIN* p_work )
 			NMIX_MAINWIN_RESULT_KOGASI_TITLE_Y,
 			0, NMIX_MAINWIN_BMP_SYSTEMPRICOLOR, NULL );
 
-	// ‚à‚µ•¡”l”‚Å‚â‚Á‚Ä‚¢‚½‚çTEAMWORK“_‚ð•\Ž¦
+	// ã‚‚ã—è¤‡æ•°äººæ•°ã§ã‚„ã£ã¦ã„ãŸã‚‰TEAMWORKç‚¹ã‚’è¡¨ç¤º
 #ifdef PM_DEBUG
 	D_Tomoya_MazeMaze_TeamWork = p_work->p_comm_data->get_result_data.match_num;
 #endif
 /*	if( p_work->comm_count > 1 ){
-		// TEAMWORK“_”
+		// TEAMWORKç‚¹æ•°
 		GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN],
 				FONT_SYSTEM, p_work->p_msg_data->res[ NMIX_STMSG_RESULT_TEAMWORK_TI ], 
 				NMIX_MAINWIN_RESULT_NEMU_TITLE_X, 
@@ -2525,13 +2525,13 @@ static void NMixGameDemo_MainWin_ResultSeen1( NMIX_DEMO_MAIN_WIN* p_work )
 				0,
 				NMIX_MAINWIN_BMP_SYSTEMPRICOLOR, NULL );
 		
-		// ŽÀÛ‚Ì‰ñ”
+		// å®Ÿéš›ã®å›žæ•°
 		WORDSET_RegisterNumber( p_work->p_msg_data->wset, 0,
 				p_work->p_comm_data->get_result_data.match_num,
 				NMIX_MAINWIN_RESULT_TEAMWORK_KETA,
 				NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 
-		WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[NMIX_STMSG_RESULT_TEAMWORK] );	// “WŠJ
+		WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[NMIX_STMSG_RESULT_TEAMWORK] );	// å±•é–‹
 		
 		GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN],
 				FONT_SYSTEM, p_work->p_msg_data->tmp, 
@@ -2540,14 +2540,14 @@ static void NMixGameDemo_MainWin_ResultSeen1( NMIX_DEMO_MAIN_WIN* p_work )
 				0, NMIX_MAINWIN_BMP_SYSTEMPRICOLOR, NULL );
 	}//*/
 	
-	// •\Ž¦
+	// è¡¨ç¤º
 	GF_BGL_BmpWinOnVReq( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN] );
 }
 
-// ƒV[ƒ“2
+// ã‚·ãƒ¼ãƒ³2
 static void NMixGameDemo_MainWin_ResultSeen2( NMIX_DEMO_MAIN_WIN* p_work )
 {
-	// ƒ|ƒƒbƒN–¼	ƒŒƒxƒ‹ ŒÂ”
+	// ãƒãƒ­ãƒƒã‚¯å	ãƒ¬ãƒ™ãƒ« å€‹æ•°
 	WORDSET_RegisterPorutoName( p_work->p_msg_data->wset, 3, 
 			p_work->p_comm_data->get_result_data.poruto_type );	
 	WORDSET_RegisterNumber( p_work->p_msg_data->wset, 1,
@@ -2563,7 +2563,7 @@ static void NMixGameDemo_MainWin_ResultSeen2( NMIX_DEMO_MAIN_WIN* p_work )
 #ifdef NMIX_DEBUG_DUMMY_RESULT_ON
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/21
-	// ”­“®ðŒ‚ðƒZƒŒƒNƒgƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‚¢‚½‚Æ‚«‚É•ÏX
+	// ç™ºå‹•æ¡ä»¶ã‚’ã‚»ãƒ¬ã‚¯ãƒˆãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ã„ãŸã¨ãã«å¤‰æ›´
 	if( sys.cont & PAD_BUTTON_SELECT ){
 		WORDSET_RegisterNumber( p_work->p_msg_data->wset, 2,
 				99,
@@ -2573,7 +2573,7 @@ static void NMixGameDemo_MainWin_ResultSeen2( NMIX_DEMO_MAIN_WIN* p_work )
 	// ----------------------------------------------------------------------------
 #endif
 
-	WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[NMIX_STMSG_RESULT_PORUTO] );	// “WŠJ
+	WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[NMIX_STMSG_RESULT_PORUTO] );	// å±•é–‹
 
 	GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_SUB],
 			FONT_SYSTEM, p_work->p_msg_data->tmp, 
@@ -2582,16 +2582,16 @@ static void NMixGameDemo_MainWin_ResultSeen2( NMIX_DEMO_MAIN_WIN* p_work )
 			0,
 			NMIX_MAINWIN_BMP_SYSTEMPRICOLOR, NULL );
 	
-	// •\Ž¦
+	// è¡¨ç¤º
 	GF_BGL_BmpWinOnVReq( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_SUB] );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€Œ‹‰Ê•\Ž¦
+ *	@brief	ã‚²ãƒ¼ãƒ çµæžœè¡¨ç¤º
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	seen		ƒV[ƒ“
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	seen		ã‚·ãƒ¼ãƒ³
 		NMIX_DEMO_MINWIN_RESULT_SEEN0,
 		NMIX_DEMO_MINWIN_RESULT_SEEN1,
 		NMIX_DEMO_MINWIN_RESULT_SEEN2,
@@ -2617,15 +2617,15 @@ void NMixGameDemo_ResultOn( NMIX_DEMO_MAIN_WIN* p_work, u32 seen )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ‹‰Ê•\Ž¦‚ðoff
+ *	@brief	çµæžœè¡¨ç¤ºã‚’off
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_ResultOff( NMIX_DEMO_MAIN_WIN* p_work )
 {
-	// ƒƒbƒZ[ƒWƒXƒNƒŠ[ƒ“‚ðƒNƒŠ[ƒ“
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_ScrClear( p_work->p_bgl, GF_BGL_FRAME2_M );
 	
-	// •\Ž¦
+	// è¡¨ç¤º
 	GF_BGL_BmpWinOff( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN] );
 	GF_BGL_BmpWinOff( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_SUB] );
 }
@@ -2633,10 +2633,10 @@ void NMixGameDemo_ResultOff( NMIX_DEMO_MAIN_WIN* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒLƒXƒg•\Ž¦
+ *	@brief	ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤º
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	text_no		ƒeƒLƒXƒgƒ^ƒCƒv
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	text_no		ãƒ†ã‚­ã‚¹ãƒˆã‚¿ã‚¤ãƒ—
 			NMIX_DEMO_MAINWIN_TEXT_SAVE_PORUTO,
 			NMIX_DEMO_MAINWIN_TEXT_HIKITUDUKI,
 			NMIX_DEMO_MAINWIN_TEXT_PORUTO_IPPAI,
@@ -2661,7 +2661,7 @@ void NMixGameDemo_TextOn( NMIX_DEMO_MAIN_WIN* p_work, u32 text_no )
 	case NMIX_DEMO_MAINWIN_TEXT_SAVE_PORUTO:
 		WORDSET_RegisterPlayerName( p_work->p_msg_data->wset, 0,
 				 p_work->p_comm_data->p_mystate[ p_work->p_comm_data->my_netid ] );
-		WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->casein );	// “WŠJ
+		WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->casein );	// å±•é–‹
 		str = p_work->p_msg_data->tmp;
 		break;
 		
@@ -2690,16 +2690,16 @@ void NMixGameDemo_TextOn( NMIX_DEMO_MAIN_WIN* p_work, u32 text_no )
 		break;
 	}
 	
-	// •¶Žš‚Ì•\Ž¦
+	// æ–‡å­—ã®è¡¨ç¤º
 	GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_TEXT],
 			FONT_TALK, str, 
 			0, 0, 0,
 			NMIX_MAINWIN_BMP_PRICOLOR, NULL );
 
-	// ˜g‚Ì•`‰æ
+	// æž ã®æç”»
 	BmpTalkWinWrite( p_work->p_bmp[NMIX_DEMO_MAINWIN_TEXT], WINDOW_TRANS_ON, NMIX_MAINWIN_FONT_CG_OFS, NMIX_MAINWIN_FONT_COLOR );
 	
-	// •\Ž¦
+	// è¡¨ç¤º
 	GF_BGL_BmpWinOnVReq( p_work->p_bmp[NMIX_DEMO_MAINWIN_TEXT] );
 }
 
@@ -2707,185 +2707,185 @@ void NMixGameDemo_TextOn( NMIX_DEMO_MAIN_WIN* p_work, u32 text_no )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒX[ƒvƒGƒtƒFƒNƒgŠÇ—
+ *		ã‚¹ãƒ¼ãƒ—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç®¡ç†
  */
 //-----------------------------------------------------------------------------
 enum{
-	NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,	// ƒAƒjƒ‚ªI‚í‚èŽŸ‘æÁ‚¦‚é
-	NMIX_DEMO_SOOP_EFF_MOVETYPE_ENDREQ,		// I—¹ƒŠƒNƒGƒXƒg‚ð‚à‚ç‚Á‚ÄÁ‚¦‚é
+	NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,	// ã‚¢ãƒ‹ãƒ¡ãŒçµ‚ã‚ã‚Šæ¬¡ç¬¬æ¶ˆãˆã‚‹
+	NMIX_DEMO_SOOP_EFF_MOVETYPE_ENDREQ,		// çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’ã‚‚ã‚‰ã£ã¦æ¶ˆãˆã‚‹
 	NMIX_DEMO_SOOP_EFF_MOVETYPE_NUM
 };
 
 //-------------------------------------
-//	“®‚³ƒpƒ‰ƒ[ƒ^
+//	å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	fx32 rnd_scale_min;	// ŠgkÅ¬
-	fx32 rnd_scale_max;	// ŠgkÅ‘å
-	fx32 rnd_scale_ss;	// Šgk‰‘¬“x
-	fx32 move_ss;		// ‰‘¬“x
-	u8 rnd_dis_s_min;	// “®‚³ŠJŽnÅ¬
-	u8 rnd_dis_s_max;	// “®‚³ŠJŽnÅ‘å
-	u8 rnd_dis_min;		// “®‚³‹——£Å¬
-	u8 rnd_dis_max;		// “®‚³‹——£Å‘å
-	u8 move_sync;		// “®‚³ƒVƒ“ƒN”
-	u8 res_id;			// ƒfƒtƒHƒ‹ƒgƒŠƒ\[ƒX‰½”Ô–Ú‚©
-	u8 res_anm;			// ƒAƒjƒ[ƒVƒ‡ƒ“‰½”Ô–Ú‚©
-	u8 move_type;		// “®‚³ƒ^ƒCƒv
+	fx32 rnd_scale_min;	// æ‹¡ç¸®æœ€å°
+	fx32 rnd_scale_max;	// æ‹¡ç¸®æœ€å¤§
+	fx32 rnd_scale_ss;	// æ‹¡ç¸®åˆé€Ÿåº¦
+	fx32 move_ss;		// åˆé€Ÿåº¦
+	u8 rnd_dis_s_min;	// å‹•ã•é–‹å§‹æœ€å°
+	u8 rnd_dis_s_max;	// å‹•ã•é–‹å§‹æœ€å¤§
+	u8 rnd_dis_min;		// å‹•ã•è·é›¢æœ€å°
+	u8 rnd_dis_max;		// å‹•ã•è·é›¢æœ€å¤§
+	u8 move_sync;		// å‹•ã•ã‚·ãƒ³ã‚¯æ•°
+	u8 res_id;			// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒªã‚½ãƒ¼ã‚¹ä½•ç•ªç›®ã‹
+	u8 res_anm;			// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä½•ç•ªç›®ã‹
+	u8 move_type;		// å‹•ã•ã‚¿ã‚¤ãƒ—
 
-	u8 scale_use;		// ŠgkŽg—pƒtƒ‰ƒO
-	u8 soop_move;		// ƒX[ƒv“®‚³
+	u8 scale_use;		// æ‹¡ç¸®ä½¿ç”¨ãƒ•ãƒ©ã‚°
+	u8 soop_move;		// ã‚¹ãƒ¼ãƒ—å‹•ã•
 	u8 pri;				// priority
 } NMIX_DEMO_SOOP_EFF_PARAM;
 
-// “®‚³ƒpƒ‰ƒ[ƒ^
-// ÅŒã‚ÌƒX[ƒvƒ^ƒCƒv‚É‚ÍA‚±‚Ú‚ê‚é‚ª‚È‚¢‚Ì‚Å-1‚µ‚Ä‚¢‚Ü‚·
-#define EFF_SOOP_DATA_NUM	( (NMIX_SOOPTYPE_SOOP_NUM*3) - 1 )	// ƒf[ƒ^‚·‚¤
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+// æœ€å¾Œã®ã‚¹ãƒ¼ãƒ—ã‚¿ã‚¤ãƒ—ã«ã¯ã€ã“ã¼ã‚Œã‚‹ãŒãªã„ã®ã§-1ã—ã¦ã„ã¾ã™
+#define EFF_SOOP_DATA_NUM	( (NMIX_SOOPTYPE_SOOP_NUM*3) - 1 )	// ãƒ‡ãƒ¼ã‚¿ã™ã†
 static const NMIX_DEMO_SOOP_EFF_PARAM EffSoopMoveParam[ EFF_SOOP_DATA_NUM ] = {
-	{	// ƒX[ƒvŒ`‘Ô0	‰Œ
-		FX32_CONST(0.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ¬
-		FX32_CONST(1.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ‘å
-		FX32_CONST(0.0f),	// Šg‘å‰‘¬“x
-		FX32_CONST(0.0f),	// “®‚³‰‘¬“x
-		32,					// ŠJŽn‹——£Å¬
-		64,					// ŠJŽn‹——£Å‘å
-		0,					// “®‚³‹——£Å¬
-		0,					// “®‚³‹——£Å‘å
-		32,					// “®‚³ƒVƒ“ƒN
-		NMIX_GAME_DEF_OAM_RES_SOUP,	// ƒŠƒ\[ƒX‰½”Ô–Ú‚©
-		1,						// ƒAƒjƒƒiƒ“ƒo[
-		NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,// “®‚³ƒ^ƒCƒv
-		FALSE,				// ŠgkŽg—pƒtƒ‰ƒO
-		FALSE,				// ƒX[ƒv‚Æ“¯Šú‚µ‚Ä“®‚­‚©
-		5,					// ƒ\ƒtƒg—Dæ‡ˆÊ
+	{	// ã‚¹ãƒ¼ãƒ—å½¢æ…‹0	ç…™
+		FX32_CONST(0.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å°
+		FX32_CONST(1.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å¤§
+		FX32_CONST(0.0f),	// æ‹¡å¤§åˆé€Ÿåº¦
+		FX32_CONST(0.0f),	// å‹•ã•åˆé€Ÿåº¦
+		32,					// é–‹å§‹è·é›¢æœ€å°
+		64,					// é–‹å§‹è·é›¢æœ€å¤§
+		0,					// å‹•ã•è·é›¢æœ€å°
+		0,					// å‹•ã•è·é›¢æœ€å¤§
+		32,					// å‹•ã•ã‚·ãƒ³ã‚¯
+		NMIX_GAME_DEF_OAM_RES_SOUP,	// ãƒªã‚½ãƒ¼ã‚¹ä½•ç•ªç›®ã‹
+		1,						// ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+		NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,// å‹•ã•ã‚¿ã‚¤ãƒ—
+		FALSE,				// æ‹¡ç¸®ä½¿ç”¨ãƒ•ãƒ©ã‚°
+		FALSE,				// ã‚¹ãƒ¼ãƒ—ã¨åŒæœŸã—ã¦å‹•ãã‹
+		5,					// ã‚½ãƒ•ãƒˆå„ªå…ˆé †ä½
 	},
-	{	// ƒX[ƒvŒ`‘Ô0	‚±‚°‚é
-		FX32_CONST(0.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ¬
-		FX32_CONST(1.0f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ‘å
-		FX32_CONST(0.0f),	// Šg‘å‰‘¬“x
-		FX32_CONST(0.0f),	// “®‚³‰‘¬“x
-		0,					// ŠJŽn‹——£Å¬
-		8,					// ŠJŽn‹——£Å‘å
-		0,					// “®‚³‹——£Å¬
-		24,					// “®‚³‹——£Å‘å
-		16,					// “®‚³ƒVƒ“ƒN
-		NMIX_GAME_DEF_OAM_RES_SOUP,	// ƒŠƒ\[ƒX‰½”Ô–Ú‚©
-		2,					// ƒAƒjƒƒiƒ“ƒo[
-		NMIX_DEMO_SOOP_EFF_MOVETYPE_ENDREQ,	// “®‚³ƒ^ƒCƒv
-		TRUE,				// ŠgkŽg—pƒtƒ‰ƒO
-		TRUE,				// ƒX[ƒv‚Æ“¯Šú‚µ‚Ä“®‚­‚©
-		10,					// ƒ\ƒtƒg—Dæ‡ˆÊ
+	{	// ã‚¹ãƒ¼ãƒ—å½¢æ…‹0	ã“ã’ã‚‹
+		FX32_CONST(0.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å°
+		FX32_CONST(1.0f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å¤§
+		FX32_CONST(0.0f),	// æ‹¡å¤§åˆé€Ÿåº¦
+		FX32_CONST(0.0f),	// å‹•ã•åˆé€Ÿåº¦
+		0,					// é–‹å§‹è·é›¢æœ€å°
+		8,					// é–‹å§‹è·é›¢æœ€å¤§
+		0,					// å‹•ã•è·é›¢æœ€å°
+		24,					// å‹•ã•è·é›¢æœ€å¤§
+		16,					// å‹•ã•ã‚·ãƒ³ã‚¯
+		NMIX_GAME_DEF_OAM_RES_SOUP,	// ãƒªã‚½ãƒ¼ã‚¹ä½•ç•ªç›®ã‹
+		2,					// ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+		NMIX_DEMO_SOOP_EFF_MOVETYPE_ENDREQ,	// å‹•ã•ã‚¿ã‚¤ãƒ—
+		TRUE,				// æ‹¡ç¸®ä½¿ç”¨ãƒ•ãƒ©ã‚°
+		TRUE,				// ã‚¹ãƒ¼ãƒ—ã¨åŒæœŸã—ã¦å‹•ãã‹
+		10,					// ã‚½ãƒ•ãƒˆå„ªå…ˆé †ä½
 	},
-	{	// ƒX[ƒvŒ`‘Ô0	‚±‚Ú‚ê‚é
-		FX32_CONST(0.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ¬
-		FX32_CONST(1.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ‘å
-		FX32_CONST(0.0f),	// Šg‘å‰‘¬“x
-		FX32_CONST(2.0f),	// “®‚³‰‘¬“x
-		32,					// ŠJŽn‹——£Å¬
-		64,					// ŠJŽn‹——£Å‘å
-		32,					// “®‚³‹——£Å¬
-		64,					// “®‚³‹——£Å‘å
-		16,					// “®‚³ƒVƒ“ƒN
-		NMIX_GAME_DEF_OAM_RES_SOUP,	// ƒŠƒ\[ƒX‰½”Ô–Ú‚©
-		0,						// ƒAƒjƒƒiƒ“ƒo[
-		NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,// “®‚³ƒ^ƒCƒv
-		FALSE,				// ŠgkŽg—pƒtƒ‰ƒO
-		FALSE,				// ƒX[ƒv‚Æ“¯Šú‚µ‚Ä“®‚­‚©
-		5,					// ƒ\ƒtƒg—Dæ‡ˆÊ
+	{	// ã‚¹ãƒ¼ãƒ—å½¢æ…‹0	ã“ã¼ã‚Œã‚‹
+		FX32_CONST(0.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å°
+		FX32_CONST(1.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å¤§
+		FX32_CONST(0.0f),	// æ‹¡å¤§åˆé€Ÿåº¦
+		FX32_CONST(2.0f),	// å‹•ã•åˆé€Ÿåº¦
+		32,					// é–‹å§‹è·é›¢æœ€å°
+		64,					// é–‹å§‹è·é›¢æœ€å¤§
+		32,					// å‹•ã•è·é›¢æœ€å°
+		64,					// å‹•ã•è·é›¢æœ€å¤§
+		16,					// å‹•ã•ã‚·ãƒ³ã‚¯
+		NMIX_GAME_DEF_OAM_RES_SOUP,	// ãƒªã‚½ãƒ¼ã‚¹ä½•ç•ªç›®ã‹
+		0,						// ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+		NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,// å‹•ã•ã‚¿ã‚¤ãƒ—
+		FALSE,				// æ‹¡ç¸®ä½¿ç”¨ãƒ•ãƒ©ã‚°
+		FALSE,				// ã‚¹ãƒ¼ãƒ—ã¨åŒæœŸã—ã¦å‹•ãã‹
+		5,					// ã‚½ãƒ•ãƒˆå„ªå…ˆé †ä½
 	},
 
-	{	// ƒX[ƒvŒ`‘Ô1	‰Œ
-		FX32_CONST(0.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ¬
-		FX32_CONST(1.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ‘å
-		FX32_CONST(0.0f),	// Šg‘å‰‘¬“x
-		FX32_CONST(0.0f),	// “®‚³‰‘¬“x
-		32,					// ŠJŽn‹——£Å¬
-		64,					// ŠJŽn‹——£Å‘å
-		0,					// “®‚³‹——£Å¬
-		0,					// “®‚³‹——£Å‘å
-		32,					// “®‚³ƒVƒ“ƒN
-		NMIX_GAME_DEF_OAM_RES_CREAM,	// ƒŠƒ\[ƒX‰½”Ô–Ú‚©
-		1,						// ƒAƒjƒƒiƒ“ƒo[
-		NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,// “®‚³ƒ^ƒCƒv
-		FALSE,				// ŠgkŽg—pƒtƒ‰ƒO
-		FALSE,				// ƒX[ƒv‚Æ“¯Šú‚µ‚Ä“®‚­‚©
-		5,					// ƒ\ƒtƒg—Dæ‡ˆÊ
+	{	// ã‚¹ãƒ¼ãƒ—å½¢æ…‹1	ç…™
+		FX32_CONST(0.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å°
+		FX32_CONST(1.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å¤§
+		FX32_CONST(0.0f),	// æ‹¡å¤§åˆé€Ÿåº¦
+		FX32_CONST(0.0f),	// å‹•ã•åˆé€Ÿåº¦
+		32,					// é–‹å§‹è·é›¢æœ€å°
+		64,					// é–‹å§‹è·é›¢æœ€å¤§
+		0,					// å‹•ã•è·é›¢æœ€å°
+		0,					// å‹•ã•è·é›¢æœ€å¤§
+		32,					// å‹•ã•ã‚·ãƒ³ã‚¯
+		NMIX_GAME_DEF_OAM_RES_CREAM,	// ãƒªã‚½ãƒ¼ã‚¹ä½•ç•ªç›®ã‹
+		1,						// ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+		NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,// å‹•ã•ã‚¿ã‚¤ãƒ—
+		FALSE,				// æ‹¡ç¸®ä½¿ç”¨ãƒ•ãƒ©ã‚°
+		FALSE,				// ã‚¹ãƒ¼ãƒ—ã¨åŒæœŸã—ã¦å‹•ãã‹
+		5,					// ã‚½ãƒ•ãƒˆå„ªå…ˆé †ä½
 	},
-	{	// ƒX[ƒvŒ`‘Ô1	‚±‚°‚é
-		FX32_CONST(0.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ¬
-		FX32_CONST(1.0f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ‘å
-		FX32_CONST(0.0f),	// Šg‘å‰‘¬“x
-		FX32_CONST(0.0f),	// “®‚³‰‘¬“x
-		0,					// ŠJŽn‹——£Å¬
-		8,					// ŠJŽn‹——£Å‘å
-		0,					// “®‚³‹——£Å¬
-		24,					// “®‚³‹——£Å‘å
-		16,					// “®‚³ƒVƒ“ƒN
-		NMIX_GAME_DEF_OAM_RES_CREAM,	// ƒŠƒ\[ƒX‰½”Ô–Ú‚©
-		2,					// ƒAƒjƒƒiƒ“ƒo[
-		NMIX_DEMO_SOOP_EFF_MOVETYPE_ENDREQ,	// “®‚³ƒ^ƒCƒv
-		TRUE,				// ŠgkŽg—pƒtƒ‰ƒO
-		TRUE,				// ƒX[ƒv‚Æ“¯Šú‚µ‚Ä“®‚­‚©
-		10,					// ƒ\ƒtƒg—Dæ‡ˆÊ
+	{	// ã‚¹ãƒ¼ãƒ—å½¢æ…‹1	ã“ã’ã‚‹
+		FX32_CONST(0.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å°
+		FX32_CONST(1.0f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å¤§
+		FX32_CONST(0.0f),	// æ‹¡å¤§åˆé€Ÿåº¦
+		FX32_CONST(0.0f),	// å‹•ã•åˆé€Ÿåº¦
+		0,					// é–‹å§‹è·é›¢æœ€å°
+		8,					// é–‹å§‹è·é›¢æœ€å¤§
+		0,					// å‹•ã•è·é›¢æœ€å°
+		24,					// å‹•ã•è·é›¢æœ€å¤§
+		16,					// å‹•ã•ã‚·ãƒ³ã‚¯
+		NMIX_GAME_DEF_OAM_RES_CREAM,	// ãƒªã‚½ãƒ¼ã‚¹ä½•ç•ªç›®ã‹
+		2,					// ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+		NMIX_DEMO_SOOP_EFF_MOVETYPE_ENDREQ,	// å‹•ã•ã‚¿ã‚¤ãƒ—
+		TRUE,				// æ‹¡ç¸®ä½¿ç”¨ãƒ•ãƒ©ã‚°
+		TRUE,				// ã‚¹ãƒ¼ãƒ—ã¨åŒæœŸã—ã¦å‹•ãã‹
+		10,					// ã‚½ãƒ•ãƒˆå„ªå…ˆé †ä½
 	},
-	{	// ƒX[ƒvŒ`‘Ô1	‚±‚Ú‚ê‚é
-		FX32_CONST(0.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ¬
-		FX32_CONST(1.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ‘å
-		FX32_CONST(0.0f),	// Šg‘å‰‘¬“x
-		FX32_CONST(4.0f),	// “®‚³‰‘¬“x
-		32,					// ŠJŽn‹——£Å¬
-		64,					// ŠJŽn‹——£Å‘å
-		32,					// “®‚³‹——£Å¬
-		64,					// “®‚³‹——£Å‘å
-		16,					// “®‚³ƒVƒ“ƒN
-		NMIX_GAME_DEF_OAM_RES_CREAM,	// ƒŠƒ\[ƒX‰½”Ô–Ú‚©
-		0,						// ƒAƒjƒƒiƒ“ƒo[
-		NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,// “®‚³ƒ^ƒCƒv
-		FALSE,				// ŠgkŽg—pƒtƒ‰ƒO
-		FALSE,				// ƒX[ƒv‚Æ“¯Šú‚µ‚Ä“®‚­‚©
-		5,					// ƒ\ƒtƒg—Dæ‡ˆÊ
+	{	// ã‚¹ãƒ¼ãƒ—å½¢æ…‹1	ã“ã¼ã‚Œã‚‹
+		FX32_CONST(0.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å°
+		FX32_CONST(1.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å¤§
+		FX32_CONST(0.0f),	// æ‹¡å¤§åˆé€Ÿåº¦
+		FX32_CONST(4.0f),	// å‹•ã•åˆé€Ÿåº¦
+		32,					// é–‹å§‹è·é›¢æœ€å°
+		64,					// é–‹å§‹è·é›¢æœ€å¤§
+		32,					// å‹•ã•è·é›¢æœ€å°
+		64,					// å‹•ã•è·é›¢æœ€å¤§
+		16,					// å‹•ã•ã‚·ãƒ³ã‚¯
+		NMIX_GAME_DEF_OAM_RES_CREAM,	// ãƒªã‚½ãƒ¼ã‚¹ä½•ç•ªç›®ã‹
+		0,						// ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+		NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,// å‹•ã•ã‚¿ã‚¤ãƒ—
+		FALSE,				// æ‹¡ç¸®ä½¿ç”¨ãƒ•ãƒ©ã‚°
+		FALSE,				// ã‚¹ãƒ¼ãƒ—ã¨åŒæœŸã—ã¦å‹•ãã‹
+		5,					// ã‚½ãƒ•ãƒˆå„ªå…ˆé †ä½
 	},
 	
 
-	{	// ƒX[ƒvŒ`‘Ô2	‰Œ
-		FX32_CONST(0.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ¬
-		FX32_CONST(1.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ‘å
-		FX32_CONST(0.0f),	// Šg‘å‰‘¬“x
-		FX32_CONST(0.0f),	// “®‚³‰‘¬“x
-		32,					// ŠJŽn‹——£Å¬
-		64,					// ŠJŽn‹——£Å‘å
-		0,					// “®‚³‹——£Å¬
-		0,					// “®‚³‹——£Å‘å
-		32,					// “®‚³ƒVƒ“ƒN
-		NMIX_GAME_DEF_OAM_RES_SOBORO,	// ƒŠƒ\[ƒX‰½”Ô–Ú‚©
-		0,						// ƒAƒjƒƒiƒ“ƒo[
-		NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,// “®‚³ƒ^ƒCƒv
-		FALSE,				// ŠgkŽg—pƒtƒ‰ƒO
-		FALSE,				// ƒX[ƒv‚Æ“¯Šú‚µ‚Ä“®‚­‚©
-		5,					// ƒ\ƒtƒg—Dæ‡ˆÊ
+	{	// ã‚¹ãƒ¼ãƒ—å½¢æ…‹2	ç…™
+		FX32_CONST(0.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å°
+		FX32_CONST(1.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å¤§
+		FX32_CONST(0.0f),	// æ‹¡å¤§åˆé€Ÿåº¦
+		FX32_CONST(0.0f),	// å‹•ã•åˆé€Ÿåº¦
+		32,					// é–‹å§‹è·é›¢æœ€å°
+		64,					// é–‹å§‹è·é›¢æœ€å¤§
+		0,					// å‹•ã•è·é›¢æœ€å°
+		0,					// å‹•ã•è·é›¢æœ€å¤§
+		32,					// å‹•ã•ã‚·ãƒ³ã‚¯
+		NMIX_GAME_DEF_OAM_RES_SOBORO,	// ãƒªã‚½ãƒ¼ã‚¹ä½•ç•ªç›®ã‹
+		0,						// ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+		NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,// å‹•ã•ã‚¿ã‚¤ãƒ—
+		FALSE,				// æ‹¡ç¸®ä½¿ç”¨ãƒ•ãƒ©ã‚°
+		FALSE,				// ã‚¹ãƒ¼ãƒ—ã¨åŒæœŸã—ã¦å‹•ãã‹
+		5,					// ã‚½ãƒ•ãƒˆå„ªå…ˆé †ä½
 	},
-	{	// ƒX[ƒvŒ`‘Ô2	‚±‚°
-		FX32_CONST(0.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ¬
-		FX32_CONST(1.50f),	// —”‚Å‹‚ß‚éŠg‘å’lÅ‘å
-		FX32_CONST(0.0f),	// Šg‘å‰‘¬“x
-		FX32_CONST(0.0f),	// “®‚³‰‘¬“x
-		32,					// ŠJŽn‹——£Å¬
-		64,					// ŠJŽn‹——£Å‘å
-		0,					// “®‚³‹——£Å¬
-		0,					// “®‚³‹——£Å‘å
-		32,					// “®‚³ƒVƒ“ƒN
-		NMIX_GAME_DEF_OAM_RES_SOBORO,	// ƒŠƒ\[ƒX‰½”Ô–Ú‚©
-		1,						// ƒAƒjƒƒiƒ“ƒo[
-		NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,// “®‚³ƒ^ƒCƒv
-		FALSE,				// ŠgkŽg—pƒtƒ‰ƒO
-		FALSE,				// ƒX[ƒv‚Æ“¯Šú‚µ‚Ä“®‚­‚©
-		5,					// ƒ\ƒtƒg—Dæ‡ˆÊ
+	{	// ã‚¹ãƒ¼ãƒ—å½¢æ…‹2	ã“ã’
+		FX32_CONST(0.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å°
+		FX32_CONST(1.50f),	// ä¹±æ•°ã§æ±‚ã‚ã‚‹æ‹¡å¤§å€¤æœ€å¤§
+		FX32_CONST(0.0f),	// æ‹¡å¤§åˆé€Ÿåº¦
+		FX32_CONST(0.0f),	// å‹•ã•åˆé€Ÿåº¦
+		32,					// é–‹å§‹è·é›¢æœ€å°
+		64,					// é–‹å§‹è·é›¢æœ€å¤§
+		0,					// å‹•ã•è·é›¢æœ€å°
+		0,					// å‹•ã•è·é›¢æœ€å¤§
+		32,					// å‹•ã•ã‚·ãƒ³ã‚¯
+		NMIX_GAME_DEF_OAM_RES_SOBORO,	// ãƒªã‚½ãƒ¼ã‚¹ä½•ç•ªç›®ã‹
+		1,						// ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+		NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END,// å‹•ã•ã‚¿ã‚¤ãƒ—
+		FALSE,				// æ‹¡ç¸®ä½¿ç”¨ãƒ•ãƒ©ã‚°
+		FALSE,				// ã‚¹ãƒ¼ãƒ—ã¨åŒæœŸã—ã¦å‹•ãã‹
+		5,					// ã‚½ãƒ•ãƒˆå„ªå…ˆé †ä½
 	},
 };
 
-#define NMIX_DEMO_SOOP_EFFECT_PRI	( 100 )		// ƒ\ƒtƒgpriority
-#define NMIX_DEMO_SOOP_EFFECT_BG_PRI	( 2 )	// ƒn[ƒhpri
-#define NMIX_DEMO_SOOP_END_EFF_SYNC	( 8 )	// ‚±‚°I—¹ƒGƒtƒFƒNƒgƒVƒ“ƒN”
+#define NMIX_DEMO_SOOP_EFFECT_PRI	( 100 )		// ã‚½ãƒ•ãƒˆpriority
+#define NMIX_DEMO_SOOP_EFFECT_BG_PRI	( 2 )	// ãƒãƒ¼ãƒ‰pri
+#define NMIX_DEMO_SOOP_END_EFF_SYNC	( 8 )	// ã“ã’çµ‚äº†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ãƒ³ã‚¯æ•°
 
 
 
@@ -2900,9 +2900,9 @@ static void NmixGameDemo_SoopEffect_EndEffectObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒtƒFƒNƒg‰Šú‰»
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
  *	
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_SoopEffect_Init( NMIX_DEMO_SOOP_EFFECT* p_work )
@@ -2912,9 +2912,9 @@ void NMixGameDemo_SoopEffect_Init( NMIX_DEMO_SOOP_EFFECT* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒtƒFƒNƒgƒ[ƒN”jŠü
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_SoopEffect_Delete( NMIX_DEMO_SOOP_EFFECT* p_work )
@@ -2926,12 +2926,12 @@ void NMixGameDemo_SoopEffect_Delete( NMIX_DEMO_SOOP_EFFECT* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_work				ƒ[ƒN
- *	@param	p_clact				ƒZƒ‹ƒAƒNƒ^[
- *	@param	p_def_oam_res		ƒfƒtƒHƒ‹ƒgƒŠƒ\[ƒX
- *	@param	heapID				ƒq[ƒvID
+ *	@param	p_work				ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_clact				ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	p_def_oam_res		ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒªã‚½ãƒ¼ã‚¹
+ *	@param	heapID				ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_SoopEffect_GraphicLoad( NMIX_DEMO_SOOP_EFFECT* p_work, NMIXGAME_CLACT_SYS* p_clact, NMIXGAME_CLACT_RES_WORK* p_def_oam_res, u32 heapID )
@@ -2945,16 +2945,16 @@ void NMixGameDemo_SoopEffect_GraphicLoad( NMIX_DEMO_SOOP_EFFECT* p_work, NMIXGAM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_SoopEffect_GraphicRelease( NMIX_DEMO_SOOP_EFFECT* p_work )
 {
 	int i;
 	
-	// “o˜^‚³‚ê‚Ä‚¢‚éOAM‚ð”jŠü‚·‚é
+	// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹OAMã‚’ç ´æ£„ã™ã‚‹
 	for(  i=0; i<NMIX_DEMO_SOOP_EFF_NUM; i++ ){
 		if( p_work->eff_obj[i].clact != NULL ){
 			NmixGameDemo_SoopEffect_DeleteObj( &p_work->eff_obj[i] );
@@ -2965,9 +2965,9 @@ void NMixGameDemo_SoopEffect_GraphicRelease( NMIX_DEMO_SOOP_EFFECT* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ŠÖ”
+ *	@brief	ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_SoopEffect_Main( NMIX_DEMO_SOOP_EFFECT* p_work, NUTMIX_GAME_COMM_PACK* p_comm_pack )
@@ -2978,7 +2978,7 @@ void NMixGameDemo_SoopEffect_Main( NMIX_DEMO_SOOP_EFFECT* p_work, NUTMIX_GAME_CO
 		if( p_work->eff_obj[i].clact ){
 			NmixGameDemo_SoopEffect_MainObj( &p_work->eff_obj[i] );
 
-			// ƒX[ƒv‚Æˆê‚ÉˆÚ“®‚·‚é
+			// ã‚¹ãƒ¼ãƒ—ã¨ä¸€ç·’ã«ç§»å‹•ã™ã‚‹
 			if( p_work->eff_obj[i].soop_move ){
 				NmixGameDemo_SoopEffect_MoveSoopObj( &p_work->eff_obj[i], p_comm_pack );
 			}
@@ -2988,11 +2988,11 @@ void NMixGameDemo_SoopEffect_Main( NMIX_DEMO_SOOP_EFFECT* p_work, NUTMIX_GAME_CO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒtƒFƒNƒg“o˜^
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™»éŒ²
  *
- *	@param	p_work			ƒ[ƒN
- *	@param	soop_type		ƒX[ƒvƒ^ƒCƒv
- *	@param	eff_type		ƒGƒtƒFƒNƒgƒ^ƒCƒv
+ *	@param	p_work			ãƒ¯ãƒ¼ã‚¯
+ *	@param	soop_type		ã‚¹ãƒ¼ãƒ—ã‚¿ã‚¤ãƒ—
+ *	@param	eff_type		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
  *
  *	eff_type
 		NMIX_DEMO_SOOP_EFF_TYPE_KOGE,
@@ -3012,45 +3012,45 @@ void NMixGameDemo_SoopEffect_Add( NMIX_DEMO_SOOP_EFFECT* p_work, int soop_type, 
 	}
 
 
-	// ‹ó‚¢‚Ä‚¢‚éƒIƒuƒWƒFŠm•Û
+	// ç©ºã„ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ç¢ºä¿
 	p_obj = NmixGameDemo_SoopEffect_GetClaenObj( p_work );
 	if( p_obj == NULL ){
-		// ˆê”ÔÌ‚É“o˜^‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ðŽæ“¾
+		// ä¸€ç•ªæ˜”ã«ç™»éŒ²ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
 		p_obj = NmixGameDemo_SoopEffect_GetOldObj( p_work );
 		GF_ASSERT( p_obj );
-		NmixGameDemo_SoopEffect_DeleteObj( p_obj );	// ƒIƒuƒWƒFƒNƒg”jŠü
+		NmixGameDemo_SoopEffect_DeleteObj( p_obj );	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
 	}
 	
-	// —”‚ðŽg—p‚µ‚Äƒpƒ‰ƒ[ƒ^‚ðì¬‚·‚é
-	// “®‚³•ûŒü‚ð‹‚ß‚é
+	// ä¹±æ•°ã‚’ä½¿ç”¨ã—ã¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
+	// å‹•ã•æ–¹å‘ã‚’æ±‚ã‚ã‚‹
 	rnd_rota = gf_mtRand();
 
-	// ŠJŽn“®‚³‹——£
+	// é–‹å§‹å‹•ã•è·é›¢
 	move_s_dis = move_param.rnd_dis_s_min + (gf_mtRand() % move_param.rnd_dis_s_max);
 	move_dis = move_param.rnd_dis_min + (gf_mtRand() % move_param.rnd_dis_max);
 
-	move_dis += move_s_dis;	// ŠJŽnˆÊ’u‚ð‘«‚·
+	move_dis += move_s_dis;	// é–‹å§‹ä½ç½®ã‚’è¶³ã™
 	
-	// •ûŒü‚©‚çŠJŽn‚˜‚™À•W‚ð‹‚ß‚é
+	// æ–¹å‘ã‹ã‚‰é–‹å§‹ï½˜ï½™åº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	s_x = FX_Mul( FX_SinIdx( rnd_rota ),  move_s_dis*FX32_ONE );
 	s_y = FX_Mul( FX_CosIdx( rnd_rota ),  move_s_dis*FX32_ONE );
-	// •ûŒü‚©‚çI—¹‚˜‚™À•W‚ð‹‚ß‚é
+	// æ–¹å‘ã‹ã‚‰çµ‚äº†ï½˜ï½™åº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	e_x = FX_Mul( FX_SinIdx( rnd_rota ),  move_dis*FX32_ONE );
 	e_y = FX_Mul( FX_CosIdx( rnd_rota ),  move_dis*FX32_ONE );
-	// •ûŒü‚©‚ç‰‘¬“x‚˜‚™‚ð‹‚ß‚é
+	// æ–¹å‘ã‹ã‚‰åˆé€Ÿåº¦ï½˜ï½™ã‚’æ±‚ã‚ã‚‹
 	ss_x = FX_Mul( FX_SinIdx( rnd_rota ), move_param.move_ss );
 	ss_y = FX_Mul( FX_CosIdx( rnd_rota ), move_param.move_ss );
 
-	// ŠJŽnI—¹À•W‚ð’†S‚©‚ç‚Ì‹——£‚É‚·‚é
+	// é–‹å§‹çµ‚äº†åº§æ¨™ã‚’ä¸­å¿ƒã‹ã‚‰ã®è·é›¢ã«ã™ã‚‹
 	s_x += 128 * FX32_ONE;
 	e_x += 128 * FX32_ONE;
 	s_y += 96 * FX32_ONE;
 	e_y += 96 * FX32_ONE;
 
-	// Šgk‚ð‹‚ß‚é
+	// æ‹¡ç¸®ã‚’æ±‚ã‚ã‚‹
 	e_scale = move_param.rnd_scale_min + (gf_mtRand() % move_param.rnd_scale_max);
 	
-	// “®‚³ƒf[ƒ^“o˜^
+	// å‹•ã•ãƒ‡ãƒ¼ã‚¿ç™»éŒ²
 	NmixGameDemo_SoopEffect_AddObj(
 			p_obj, move_param.move_type,
 			s_x, e_x, ss_x, s_y, e_y, ss_y,
@@ -3061,23 +3061,23 @@ void NMixGameDemo_SoopEffect_Add( NMIX_DEMO_SOOP_EFFECT* p_work, int soop_type, 
 			move_param.soop_move,
 			move_param.pri );
 
-	// “o˜^¶³ÝÀ
+	// ç™»éŒ²ã‚«ã‚¦ãƒ³ã‚¿
 	p_obj->add_time = p_work->add_count;
 	p_work->add_count ++;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒŠƒNƒGƒXƒg‚ðo‚µAI—¹‘Ò‚¿ƒGƒtƒFƒNƒg‚ðÁ‚·
+ *	@brief	çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã—ã€çµ‚äº†å¾…ã¡ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æ¶ˆã™
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_SoopEffect_DelReq( NMIX_DEMO_SOOP_EFFECT* p_work )
 {
 	int i;	
 	
-	// I—¹ƒŠƒNƒGƒXƒg‚ðo‚µAI—¹ƒGƒtƒFƒNƒgÝ’è
+	// çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã—ã€çµ‚äº†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¨­å®š
 	for( i=0; i<NMIX_DEMO_SOOP_EFF_NUM; i++ ){
 		
 		if( p_work->eff_obj[i].clact != NULL ){
@@ -3090,11 +3090,11 @@ void NMixGameDemo_SoopEffect_DelReq( NMIX_DEMO_SOOP_EFFECT* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒNƒŠ[ƒ“ƒIƒuƒWƒFƒNƒgŽæ“¾
+ *	@brief	ã‚¯ãƒªãƒ¼ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒIƒuƒWƒFPTR		NULLF‚È‚µ
+ *	@return	ã‚ªãƒ–ã‚¸ã‚§PTR		NULLï¼šãªã—
  */
 //-----------------------------------------------------------------------------
 static NMIX_DEMO_SOOP_EFF_OBJ* NmixGameDemo_SoopEffect_GetClaenObj( NMIX_DEMO_SOOP_EFFECT* p_work )
@@ -3111,11 +3111,11 @@ static NMIX_DEMO_SOOP_EFF_OBJ* NmixGameDemo_SoopEffect_GetClaenObj( NMIX_DEMO_SO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆê”ÔÌ‚É“o˜^‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ðŽæ“¾
+ *	@brief	ä¸€ç•ªæ˜”ã«ç™»éŒ²ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒIƒuƒWƒFƒNƒg
+ *	@return	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static NMIX_DEMO_SOOP_EFF_OBJ* NmixGameDemo_SoopEffect_GetOldObj( NMIX_DEMO_SOOP_EFFECT* p_work )
@@ -3140,9 +3140,9 @@ static NMIX_DEMO_SOOP_EFF_OBJ* NmixGameDemo_SoopEffect_GetOldObj( NMIX_DEMO_SOOP
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg”jŠüˆ—
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„å‡¦ç†
  *
- *	@param	p_obj	ƒ[ƒN
+ *	@param	p_obj	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NmixGameDemo_SoopEffect_DeleteObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj )
@@ -3155,9 +3155,9 @@ static void NmixGameDemo_SoopEffect_DeleteObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒƒCƒ“ˆ—
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒg
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void NmixGameDemo_SoopEffect_MainObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj )
@@ -3165,12 +3165,12 @@ static void NmixGameDemo_SoopEffect_MainObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj )
 	BOOL result;
 	
 	if( p_obj->move_end == FALSE ){
-		// “®‚³ˆ—
+		// å‹•ã•å‡¦ç†
 		p_obj->move_end = NMIX_DEMO_AddMoveMainFx( &p_obj->move_x );
 		NMIX_DEMO_AddMoveMainFx( &p_obj->move_y );
 		NMIX_DEMO_AddMoveMainFx( &p_obj->move_scale );
 
-		// À•WÝ’è
+		// åº§æ¨™è¨­å®š
 		p_obj->matrix.x = p_obj->move_x.x;
 		p_obj->matrix.y = p_obj->move_y.x;
 		CLACT_SetMatrix( p_obj->clact, &p_obj->matrix );
@@ -3184,7 +3184,7 @@ static void NmixGameDemo_SoopEffect_MainObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj )
 	}
 
 	if( p_obj->anm_end == FALSE ){
-		// ƒAƒjƒI—¹‚Æ“®‚³I—¹‚ðŒŸ’m
+		// ã‚¢ãƒ‹ãƒ¡çµ‚äº†ã¨å‹•ã•çµ‚äº†ã‚’æ¤œçŸ¥
 		if( CLACT_AnmActiveCheck( p_obj->clact ) == FALSE ){
 			p_obj->anm_end = TRUE;
 		}
@@ -3193,7 +3193,7 @@ static void NmixGameDemo_SoopEffect_MainObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj )
 	if( p_obj->move_type == NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END ){
 		
 		if( (p_obj->move_end == TRUE) && (p_obj->anm_end == TRUE) ){
-			// ”jŠü
+			// ç ´æ£„
 			NmixGameDemo_SoopEffect_DeleteObj( p_obj );
 		}
 	}
@@ -3201,10 +3201,10 @@ static void NmixGameDemo_SoopEffect_MainObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒX[ƒvˆê‚ÉƒIƒuƒWƒFƒNƒg‚ð‰ñ“]‚³‚¹‚é
+ *	@brief	ã‚¹ãƒ¼ãƒ—ä¸€ç·’ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å›žè»¢ã•ã›ã‚‹
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒg
- *	@param	p_comm_pack	’ÊMƒpƒbƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	p_comm_pack	é€šä¿¡ãƒ‘ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 static void NmixGameDemo_SoopEffect_MoveSoopObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj, NUTMIX_GAME_COMM_PACK* p_comm_pack )
@@ -3215,7 +3215,7 @@ static void NmixGameDemo_SoopEffect_MoveSoopObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj, 
 	u16 calc_rota;
 	fx32 calc_x, calc_y;
 	
-	// ‘SƒAƒjƒI—¹Œã“®‚­
+	// å…¨ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾Œå‹•ã
 	if( (p_obj->move_end == TRUE) && (p_obj->anm_end == TRUE) ){
 		if( p_comm_pack->get_game_data[ COMM_PARENT_ID ].oya.rota_way == 0 ){
 			p_obj->obj_rota += p_comm_pack->get_game_data[ COMM_PARENT_ID ].oya.rota_sp;
@@ -3237,41 +3237,41 @@ static void NmixGameDemo_SoopEffect_MoveSoopObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj, 
 
 		calc_rota = def_rota + p_obj->obj_rota;
 
-		// ƒAƒNƒ^[À•W‚ðÝ’è
+		// ã‚¢ã‚¯ã‚¿ãƒ¼åº§æ¨™ã‚’è¨­å®š
 		matrix.x = FX_Mul( FX_CosIdx( calc_rota ), dist * FX32_ONE );
 		matrix.y = FX_Mul( FX_SinIdx( calc_rota ), dist * FX32_ONE );
 
 		matrix.x += (NMIX_SOOP_ROTA_CX*FX32_ONE);
 		matrix.y += (NMIX_SOOP_ROTA_CY*FX32_ONE);
 
-		// ‰ñ“]ŒãÀ•W‚ðÝ’è
+		// å›žè»¢å¾Œåº§æ¨™ã‚’è¨­å®š
 		CLACT_SetMatrix( p_obj->clact, &matrix );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg“o˜^
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²
  *
- *	@param	p_obj			ƒIƒuƒWƒFƒNƒg
- *	@param	move_type		ƒ^ƒCƒv
- *	@param	s_x				ŠJŽn‚˜À•W
- *	@param	e_x				I—¹‚˜À•W
- *	@param	ss_x			‰‘¬“x‚˜
- *	@param	s_y				ŠJŽn‚™À•W
- *	@param	e_y				I—¹‚™À•W
- *	@param	ss_y			‰‘¬“x‚™
- *	@param	scale_x			ŠgkŠJŽn
- *	@param	scale_e			ŠgkÅŒã
- *	@param	scale_ss		Šgk‰‘¬“x
- *	@param	scale_use		Šgk‚ðŽg—p‚·‚é‚©
- *	@param	move_sync		“®‚³ƒVƒ“ƒN”
- *	@param	p_res			ƒŠƒ\[ƒX
- *	@param	anm_idx			ƒAƒjƒƒiƒ“ƒo[
- *	@param	p_clact			ƒAƒNƒ^[
- *	@param	heapID			ƒq[ƒvID
- *	@param	soop_move		ƒX[ƒv“®‚³
- *	@param	pri				ƒ\ƒtƒgpriority
+ *	@param	p_obj			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	move_type		ã‚¿ã‚¤ãƒ—
+ *	@param	s_x				é–‹å§‹ï½˜åº§æ¨™
+ *	@param	e_x				çµ‚äº†ï½˜åº§æ¨™
+ *	@param	ss_x			åˆé€Ÿåº¦ï½˜
+ *	@param	s_y				é–‹å§‹ï½™åº§æ¨™
+ *	@param	e_y				çµ‚äº†ï½™åº§æ¨™
+ *	@param	ss_y			åˆé€Ÿåº¦ï½™
+ *	@param	scale_x			æ‹¡ç¸®é–‹å§‹
+ *	@param	scale_e			æ‹¡ç¸®æœ€å¾Œ
+ *	@param	scale_ss		æ‹¡ç¸®åˆé€Ÿåº¦
+ *	@param	scale_use		æ‹¡ç¸®ã‚’ä½¿ç”¨ã™ã‚‹ã‹
+ *	@param	move_sync		å‹•ã•ã‚·ãƒ³ã‚¯æ•°
+ *	@param	p_res			ãƒªã‚½ãƒ¼ã‚¹
+ *	@param	anm_idx			ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+ *	@param	p_clact			ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID
+ *	@param	soop_move		ã‚¹ãƒ¼ãƒ—å‹•ã•
+ *	@param	pri				ã‚½ãƒ•ãƒˆpriority
  */
 //-----------------------------------------------------------------------------
 static void NmixGameDemo_SoopEffect_AddObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj, int move_type, fx32 s_x, fx32 e_x, fx32 ss_x, fx32 s_y, fx32 e_y, fx32 ss_y, fx32 scale_x, fx32 scale_e, fx32 scale_ss, BOOL scale_use, int move_sync, NMIXGAME_CLACT_RES_WORK* p_res, int anm_idx, NMIXGAME_CLACT_SYS* p_clact, u32 heapID, BOOL soop_move, u8 pri )
@@ -3292,41 +3292,41 @@ static void NmixGameDemo_SoopEffect_AddObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj, int m
 	p_obj->scale_use = scale_use;
 	p_obj->soop_move = soop_move;
 
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	p_obj->clact = NMIXGAME_CLACT_Add( p_clact, p_res, s_x, s_y, 0, pri, heapID );
-	GF_ASSERT( p_obj->clact );	// “o˜^Ž¸”s
+	GF_ASSERT( p_obj->clact );	// ç™»éŒ²å¤±æ•—
 	if( p_obj->scale_use ){
-		// Šgk
+		// æ‹¡ç¸®
 		CLACT_SetScaleAffine( p_obj->clact, &p_obj->scale, CLACT_AFFINE_DOUBLE );
 	}
-	// ƒAƒjƒ
+	// ã‚¢ãƒ‹ãƒ¡
 	CLACT_AnmChg( p_obj->clact, anm_idx );
-	// AUTOƒAƒjƒ
+	// AUTOã‚¢ãƒ‹ãƒ¡
 	CLACT_SetAnmFlag( p_obj->clact, TRUE );
-	// BG—Dæ‡ˆÊ
+	// BGå„ªå…ˆé †ä½
 	CLACT_BGPriorityChg( p_obj->clact, NMIX_DEMO_SOOP_EFFECT_BG_PRI );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒGƒtƒFƒNƒgÝ’è
+ *	@brief	çµ‚äº†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¨­å®š
  *
- *	@param	p_obj	ƒIƒuƒWƒF
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§
  */
 //-----------------------------------------------------------------------------
 static void NmixGameDemo_SoopEffect_EndEffectObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj )
 {
-	// ƒAƒjƒƒ^ƒCƒvƒ`ƒFƒbƒN
-	// I—¹ƒŠƒNƒGƒXƒgŒ`Ž®‚©ƒ`ƒFƒbƒN
+	// ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯
+	// çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆå½¢å¼ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_obj->move_type != NMIX_DEMO_SOOP_EFF_MOVETYPE_ENDREQ ){
 		return ;
 	}
 	
-	// ŠgkƒAƒjƒ‚µ‚ÄI‚í‚é
+	// æ‹¡ç¸®ã‚¢ãƒ‹ãƒ¡ã—ã¦çµ‚ã‚ã‚‹
 	NMIX_DEMO_AddMoveReqFx( &p_obj->move_scale,
 			p_obj->move_scale.x, FX32_CONST(0.050f), 0, NMIX_DEMO_SOOP_END_EFF_SYNC );
 
-	// ƒAƒjƒI—¹ŒãŽ©–Å
+	// ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾Œè‡ªæ»…
 	p_obj->move_type = NMIX_DEMO_SOOP_EFF_MOVETYPE_ANM_END;
 	p_obj->scale_use = TRUE;
 
@@ -3337,17 +3337,17 @@ static void NmixGameDemo_SoopEffect_EndEffectObj( NMIX_DEMO_SOOP_EFF_OBJ* p_obj 
 
 //-----------------------------------------------------------------------------
 /**
- *		–îˆóƒGƒtƒFƒNƒgŠÇ—
+ *		çŸ¢å°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç®¡ç†
  */
 //-----------------------------------------------------------------------------
 
-#define NMIX_DEMO_YAZIRUSI_OAM_CONT_ID	( 7000 )	// ŠÇ—ID
-#define NMIX_DEMO_YAZIRUSI_OAM_CL_NUM	( 2 )		// ƒJƒ‰[–{”
+#define NMIX_DEMO_YAZIRUSI_OAM_CONT_ID	( 7000 )	// ç®¡ç†ID
+#define NMIX_DEMO_YAZIRUSI_OAM_CL_NUM	( 2 )		// ã‚«ãƒ©ãƒ¼æœ¬æ•°
 #define NMIX_DEMO_YAZIRUSI_OAM_SET_X	( 128 * FX32_ONE )
 #define NMIX_DEMO_YAZIRUSI_OAM_SET_Y	( 96 * FX32_ONE )
 
-#define NMIX_DEMO_YAZIRUSI_NORMAL_ANMNUM	( 3 )	// “_–Å‰ñ”
-#define NMIX_DEMO_YAZIRUSI_NORMAL_TIMING	( 8 )	// “_–Åƒ^ƒCƒ~ƒ“ƒO
+#define NMIX_DEMO_YAZIRUSI_NORMAL_ANMNUM	( 3 )	// ç‚¹æ»…å›žæ•°
+#define NMIX_DEMO_YAZIRUSI_NORMAL_TIMING	( 8 )	// ç‚¹æ»…ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
 
 static void NmixGameDemo_Yazirusi_NormalAnmStart( NMIX_DEMO_YAZIRUSI_OBJ* p_obj );
@@ -3358,9 +3358,9 @@ static void NmixGameDemo_Yazirusi_ReverseAnm( NMIX_DEMO_YAZIRUSI_OBJ* p_obj );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–îˆóƒGƒtƒFƒNƒg‰Šú‰»
+ *	@brief	çŸ¢å°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_Yazirusi_Init( NMIX_DEMO_YAZIRUSI* p_work )
@@ -3370,9 +3370,9 @@ void NMixGameDemo_Yazirusi_Init( NMIX_DEMO_YAZIRUSI* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–îˆóƒGƒtƒFƒNƒg”jŠü
+ *	@brief	çŸ¢å°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_Yazirusi_Delete( NMIX_DEMO_YAZIRUSI* p_work )
@@ -3383,11 +3383,11 @@ void NMixGameDemo_Yazirusi_Delete( NMIX_DEMO_YAZIRUSI* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	p_clact		ƒZƒ‹ƒAƒNƒ^[
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_Yazirusi_GraphicLoad( NMIX_DEMO_YAZIRUSI* p_work, NMIXGAME_CLACT_SYS* p_clact, u32 heapID, ARCHANDLE* p_handle )
@@ -3399,7 +3399,7 @@ void NMixGameDemo_Yazirusi_GraphicLoad( NMIX_DEMO_YAZIRUSI* p_work, NMIXGAME_CLA
 
 	p_work->p_clact = p_clact;
 	
-	// ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	NMIXGAME_CLACT_ResLoadEasy( p_clact,
 			&p_work->oam_res, p_handle,
 			NARC_nutmixer_cook_s_yazi_NCLR,
@@ -3409,7 +3409,7 @@ void NMixGameDemo_Yazirusi_GraphicLoad( NMIX_DEMO_YAZIRUSI* p_work, NMIXGAME_CLA
 			NARC_nutmixer_cook_s_yaj_NANR, 
 			NMIX_DEMO_YAZIRUSI_OAM_CONT_ID, heapID );
 
-	// ƒIƒuƒWƒFƒNƒg“o˜^
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²
 	for( i=0; i<NMIX_DEMO_YAZIRUSI_OBJ_NUM; i++ ){
 		p_work->yazirusi[i].clact = NMIXGAME_CLACT_Add( p_clact,
 				&p_work->oam_res,
@@ -3417,7 +3417,7 @@ void NMixGameDemo_Yazirusi_GraphicLoad( NMIX_DEMO_YAZIRUSI* p_work, NMIXGAME_CLA
 				NMIX_DEMO_YAZIRUSI_OAM_SET_Y, 0,
 				0, heapID );
 
-		// ƒAƒjƒƒ`ƒFƒ“ƒW
+		// ã‚¢ãƒ‹ãƒ¡ãƒã‚§ãƒ³ã‚¸
 		if( i >= NMIX_DEMO_YAZIRUSI_LEFT ){
 
 			CLACT_AnmChg( p_work->yazirusi[i].clact, 1 );
@@ -3431,9 +3431,9 @@ void NMixGameDemo_Yazirusi_GraphicLoad( NMIX_DEMO_YAZIRUSI* p_work, NMIXGAME_CLA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_work		ƒ[ƒN
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_Yazirusi_GraphicRelease( NMIX_DEMO_YAZIRUSI* p_work )
@@ -3443,11 +3443,11 @@ void NMixGameDemo_Yazirusi_GraphicRelease( NMIX_DEMO_YAZIRUSI* p_work )
 	GF_ASSERT( p_work->res_load == TRUE );
 
 	for( i=0; i<NMIX_DEMO_YAZIRUSI_OBJ_NUM; i++ ){
-		// ƒIƒuƒWƒFƒNƒg”jŠü
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
 		CLACT_Delete( p_work->yazirusi[i].clact );
 	}
 	
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	NMIXGAME_CLACT_ResDeleteEasy( p_work->p_clact, &p_work->oam_res );
 
 	p_work->res_load = FALSE;
@@ -3455,18 +3455,18 @@ void NMixGameDemo_Yazirusi_GraphicRelease( NMIX_DEMO_YAZIRUSI* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–îˆóƒƒCƒ““®‚³
+ *	@brief	çŸ¢å°ãƒ¡ã‚¤ãƒ³å‹•ã•
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_Yazirusi_Main( NMIX_DEMO_YAZIRUSI* p_work )
 {
 	int i;
 	
-	// ŠeX‚Ì“®‚³‚ð‚·‚é
-	// ‰E¶‚ÍA‚R‰ñ“_–Å‚µ‚ÄI‚í‚é
-	// ‹t‰ñ“]‚ÍAI‚í‚è‚ªƒNƒ‹‚Ü‚ÅA“_–Å‚·‚é
+	// å„ã€…ã®å‹•ã•ã‚’ã™ã‚‹
+	// å³å·¦ã¯ã€ï¼“å›žç‚¹æ»…ã—ã¦çµ‚ã‚ã‚‹
+	// é€†å›žè»¢ã¯ã€çµ‚ã‚ã‚ŠãŒã‚¯ãƒ«ã¾ã§ã€ç‚¹æ»…ã™ã‚‹
 	for( i=0; i<NMIX_DEMO_YAZIRUSI_OBJ_NUM; i++ ){
 		if( (i == NMIX_DEMO_YAZIRUSI_LEFT) || (i == NMIX_DEMO_YAZIRUSI_RIGHT) ){
 			NmixGameDemo_Yazirusi_NormalAnm( &p_work->yazirusi[i] );
@@ -3478,17 +3478,17 @@ void NMixGameDemo_Yazirusi_Main( NMIX_DEMO_YAZIRUSI* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®‚³ƒŠƒNƒGƒXƒg
+ *	@brief	å‹•ã•ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	eff_type	ƒGƒtƒFƒNƒgƒ^ƒCƒv
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	eff_type	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_Yazirusi_Add( NMIX_DEMO_YAZIRUSI* p_work, int eff_type )
 {
 	GF_ASSERT( eff_type < NMIX_DEMO_YAZIRUSI_OBJ_NUM );
 
-	// “®‚³ŠJŽn
+	// å‹•ã•é–‹å§‹
 	if( (eff_type == NMIX_DEMO_YAZIRUSI_LEFT) || (eff_type == NMIX_DEMO_YAZIRUSI_RIGHT) ){
 		NmixGameDemo_Yazirusi_NormalAnmStart( &p_work->yazirusi[eff_type] );
 	}else{
@@ -3498,39 +3498,39 @@ void NMixGameDemo_Yazirusi_Add( NMIX_DEMO_YAZIRUSI* p_work, int eff_type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®‚³‹­§I—¹
+ *	@brief	å‹•ã•å¼·åˆ¶çµ‚äº†
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	eff_type	ƒGƒtƒFƒNƒgƒ^ƒCƒv
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	eff_type	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_Yazirusi_Stop( NMIX_DEMO_YAZIRUSI* p_work, int eff_type )
 {
 	GF_ASSERT( eff_type < NMIX_DEMO_YAZIRUSI_OBJ_NUM );
 	
-	// “®‚³I—¹
+	// å‹•ã•çµ‚äº†
 	p_work->yazirusi[ eff_type ].move = FALSE;
 
-	// ”ñ•\Ž¦‚É
+	// éžè¡¨ç¤ºã«
 	CLACT_SetDrawFlag( p_work->yazirusi[ eff_type ].clact, FALSE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–îˆóƒGƒtƒFƒNƒg‚ªI‚í‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	çŸ¢å°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚ã‚ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_work		ƒ[ƒN
- *	@param	eff_type	ƒ^ƒCƒv
+ *	@param	cp_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	eff_type	ã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL NMixGameDemo_Yazirusi_EndCheck( const NMIX_DEMO_YAZIRUSI* cp_work, int eff_type )
 {
 	GF_ASSERT( eff_type < NMIX_DEMO_YAZIRUSI_OBJ_NUM );
 	
-	// “®‚³I—¹
+	// å‹•ã•çµ‚äº†
 	if( cp_work->yazirusi[ eff_type ].move == FALSE ){
 		return TRUE;
 	}
@@ -3539,9 +3539,9 @@ BOOL NMixGameDemo_Yazirusi_EndCheck( const NMIX_DEMO_YAZIRUSI* cp_work, int eff_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊíƒAƒjƒŠJŽn
+ *	@brief	é€šå¸¸ã‚¢ãƒ‹ãƒ¡é–‹å§‹
  *
- *	@param	p_obj	ƒIƒuƒWƒF
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§
  */
 //-----------------------------------------------------------------------------
 static void NmixGameDemo_Yazirusi_NormalAnmStart( NMIX_DEMO_YAZIRUSI_OBJ* p_obj )
@@ -3553,9 +3553,9 @@ static void NmixGameDemo_Yazirusi_NormalAnmStart( NMIX_DEMO_YAZIRUSI_OBJ* p_obj 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒm[ƒ}ƒ‹ƒAƒjƒ
+ *	@brief	ãƒŽãƒ¼ãƒžãƒ«ã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_obj	ƒIƒuƒWƒF
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§
  */
 //-----------------------------------------------------------------------------
 static void NmixGameDemo_Yazirusi_NormalAnm( NMIX_DEMO_YAZIRUSI_OBJ* p_obj )
@@ -3566,14 +3566,14 @@ static void NmixGameDemo_Yazirusi_NormalAnm( NMIX_DEMO_YAZIRUSI_OBJ* p_obj )
 	
 	NmixGameDemo_Yazirusi_ReverseAnm( p_obj );
 
-	// 0‚É‚È‚Á‚½‰ñ”‚ð”‚¦‚é
+	// 0ã«ãªã£ãŸå›žæ•°ã‚’æ•°ãˆã‚‹
 	if( p_obj->count == 0 ){
 		p_obj->count_num --;
 		if( p_obj->count_num <= 0 ){
 
-			// “®‚³I—¹
+			// å‹•ã•çµ‚äº†
 			p_obj->move = FALSE;
-			// •`‰æOFF
+			// æç”»OFF
 			CLACT_SetDrawFlag( p_obj->clact, FALSE );
 		}
 	}
@@ -3581,9 +3581,9 @@ static void NmixGameDemo_Yazirusi_NormalAnm( NMIX_DEMO_YAZIRUSI_OBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹t‰ñ“]—p“®‚³ŠJŽn
+ *	@brief	é€†å›žè»¢ç”¨å‹•ã•é–‹å§‹
  *
- *	@param	p_obj	ƒIƒuƒWƒF
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§
  */
 //-----------------------------------------------------------------------------
 static void NmixGameDemo_Yazirusi_ReverseAnmStart( NMIX_DEMO_YAZIRUSI_OBJ* p_obj )
@@ -3594,9 +3594,9 @@ static void NmixGameDemo_Yazirusi_ReverseAnmStart( NMIX_DEMO_YAZIRUSI_OBJ* p_obj
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹t‰ñ“]@—pƒAƒjƒƒƒCƒ“
+ *	@brief	é€†å›žè»¢ã€€ç”¨ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_obj	ƒIƒuƒWƒF
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§
  */
 //-----------------------------------------------------------------------------
 static void NmixGameDemo_Yazirusi_ReverseAnm( NMIX_DEMO_YAZIRUSI_OBJ* p_obj )
@@ -3606,10 +3606,10 @@ static void NmixGameDemo_Yazirusi_ReverseAnm( NMIX_DEMO_YAZIRUSI_OBJ* p_obj )
 	}
 	
 	if( p_obj->count == 0 ){
-		// •\Ž¦
+		// è¡¨ç¤º
 		CLACT_SetDrawFlag( p_obj->clact, TRUE );
 	}else if( p_obj->count == NMIX_DEMO_YAZIRUSI_NORMAL_TIMING ){
-		// ”ñ•\Ž¦
+		// éžè¡¨ç¤º
 		CLACT_SetDrawFlag( p_obj->clact, FALSE );
 	}else if( p_obj->count == (NMIX_DEMO_YAZIRUSI_NORMAL_TIMING * 2) ){
 		p_obj->count = 0;
@@ -3622,16 +3622,16 @@ static void NmixGameDemo_Yazirusi_ReverseAnm( NMIX_DEMO_YAZIRUSI_OBJ* p_obj )
 
 //-----------------------------------------------------------------------------
 /**
- *		¯ƒLƒ‰ƒLƒ‰@
+ *		æ˜Ÿã‚­ãƒ©ã‚­ãƒ©ã€€
  */
 //-----------------------------------------------------------------------------
 #define NMIX_DEMO_HOSI_SOFT_PRI	( 5 )
 #define NMIX_DEMO_HOSI_BG_PRI	( 2 )
 
-#define NMIX_DEMO_HOSI_MOVE_SYNC	( 16 )	// “®‚³ƒVƒ“ƒN”
-#define NMIX_DEMO_HOSI_MOVE_DIST	( FX32_CONST( 16 ) )	// ˆÚ“®‹——£
-#define NMIX_DEMO_HOSI_MOVE_SS		( FX32_CONST( 1 ) )		// ‰‘¬“x
-#define NMIX_DEMO_HOSI_MOVE_ADDNUM	( 2 )	// 1‰ñ‚Ì“o˜^”
+#define NMIX_DEMO_HOSI_MOVE_SYNC	( 16 )	// å‹•ã•ã‚·ãƒ³ã‚¯æ•°
+#define NMIX_DEMO_HOSI_MOVE_DIST	( FX32_CONST( 16 ) )	// ç§»å‹•è·é›¢
+#define NMIX_DEMO_HOSI_MOVE_SS		( FX32_CONST( 1 ) )		// åˆé€Ÿåº¦
+#define NMIX_DEMO_HOSI_MOVE_ADDNUM	( 2 )	// 1å›žã®ç™»éŒ²æ•°
 
 
 
@@ -3645,10 +3645,10 @@ static void NMixGameDemo_HosiKirakiraObjAdd( NMIX_DEMO_HOSI_KIRAKIRA_OBJ* p_obj,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒ‰ƒLƒ‰‰Šú‰»
+ *	@brief	ã‚­ãƒ©ã‚­ãƒ©åˆæœŸåŒ–
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	comm_count	’ÊM‘ŠŽè”
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	comm_count	é€šä¿¡ç›¸æ‰‹æ•°
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_HosiKiraKira_Init( NMIX_DEMO_HOSI_KIRAKIRA* p_work, int comm_count )
@@ -3659,26 +3659,26 @@ void NMixGameDemo_HosiKiraKira_Init( NMIX_DEMO_HOSI_KIRAKIRA* p_work, int comm_c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒ‰ƒLƒ‰@”jŠü
+ *	@brief	ã‚­ãƒ©ã‚­ãƒ©ã€€ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_HosiKiraKira_Delete( NMIX_DEMO_HOSI_KIRAKIRA* p_work )
 {
-	// ƒŠƒ\[ƒX”jŠü‚µ‚Ä‚¢‚Ü‚¹‚ñB
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„ã—ã¦ã„ã¾ã›ã‚“ã€‚
 	GF_ASSERT( p_work->res_load == FALSE );
 	memset( p_work, 0, sizeof(NMIX_DEMO_HOSI_KIRAKIRA) );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒX“Ç‚Ýž‚Ýˆ—
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿å‡¦ç†
  *
- *	@param	p_work				ƒ[ƒN
- *	@param	p_clact				ƒAƒNƒ^[ƒVƒXƒeƒ€
- *	@param	p_def_oam_res		ƒfƒtƒHƒ‹ƒg‚è‚»[‚·
- *	@param	heapID				ƒq[ƒvID
+ *	@param	p_work				ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_clact				ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_def_oam_res		ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚Šããƒ¼ã™
+ *	@param	heapID				ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_HosiKiraKira_GraphicLoad( NMIX_DEMO_HOSI_KIRAKIRA* p_work, NMIXGAME_CLACT_SYS* p_clact, NMIXGAME_CLACT_RES_WORK* p_def_oam_res, u32 heapID )
@@ -3698,9 +3698,9 @@ void NMixGameDemo_HosiKiraKira_GraphicLoad( NMIX_DEMO_HOSI_KIRAKIRA* p_work, NMI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_HosiKiraKira_GraphicRelease( NMIX_DEMO_HOSI_KIRAKIRA* p_work )
@@ -3716,9 +3716,9 @@ void NMixGameDemo_HosiKiraKira_GraphicRelease( NMIX_DEMO_HOSI_KIRAKIRA* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒ‰ƒLƒ‰ƒƒCƒ“ˆ—
+ *	@brief	ã‚­ãƒ©ã‚­ãƒ©ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_work ƒ[ƒN
+ *	@param	p_work ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_HosiKiraKira_Main( NMIX_DEMO_HOSI_KIRAKIRA* p_work )
@@ -3732,11 +3732,11 @@ void NMixGameDemo_HosiKiraKira_Main( NMIX_DEMO_HOSI_KIRAKIRA* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒ‰ƒLƒ‰ƒIƒuƒWƒFƒNƒg‚ðo‚·
+ *	@brief	ã‚­ãƒ©ã‚­ãƒ©ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‡ºã™
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_HosiKiraKira_Add( NMIX_DEMO_HOSI_KIRAKIRA* p_work, int x, int y )
@@ -3748,16 +3748,16 @@ void NMixGameDemo_HosiKiraKira_Add( NMIX_DEMO_HOSI_KIRAKIRA* p_work, int x, int 
 	int i;
 
 
-	// “o˜^À•W‚È‚Ç‚ð‹‚ß‚é
+	// ç™»éŒ²åº§æ¨™ãªã©ã‚’æ±‚ã‚ã‚‹
 	rota = FX_Atan2Idx( x - NMIX_SOOP_ROTA_CX, y - NMIX_SOOP_ROTA_CY );
 
-	// ‰ñ“]ˆÊ’u‚©‚çˆÚ“®•ûŒü‚ð‹‚ß‚é
+	// å›žè»¢ä½ç½®ã‹ã‚‰ç§»å‹•æ–¹å‘ã‚’æ±‚ã‚ã‚‹
 	e_x = FX_Mul( FX_CosIdx( rota ), NMIX_DEMO_HOSI_MOVE_DIST );
 	e_y = FX_Mul( FX_SinIdx( rota ), NMIX_DEMO_HOSI_MOVE_DIST );
 	ss_x = FX_Mul( FX_CosIdx( rota ), NMIX_DEMO_HOSI_MOVE_SS );
 	ss_y = FX_Mul( FX_SinIdx( rota ), NMIX_DEMO_HOSI_MOVE_SS );
 
-	// ‹ó‚¢‚Ä‚¢‚éƒIƒuƒWƒFŽæ“¾
+	// ç©ºã„ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§å–å¾—
 	p_obj = NMixGameDemo_HosiKirakiraCleanObj_Get( p_work );
 	if( p_obj ){
 		NMixGameDemo_HosiKirakiraObjAdd( p_obj, p_work->eff_count,
@@ -3775,18 +3775,18 @@ void NMixGameDemo_HosiKiraKira_Add( NMIX_DEMO_HOSI_KIRAKIRA* p_work, int x, int 
 				-ss_x, -ss_y );
 	}
 
-	// ƒGƒtƒFƒNƒgƒJƒEƒ“ƒg
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚«ã‚¦ãƒ³ãƒˆ
 	p_work->eff_count = (p_work->eff_count + 1) % p_work->comm_count;
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹ó‚¢‚Ä‚¢‚éƒIƒuƒWƒFƒNƒgŽæ“¾
+ *	@brief	ç©ºã„ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒIƒuƒWƒFƒNƒg
+ *	@return	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static NMIX_DEMO_HOSI_KIRAKIRA_OBJ* NMixGameDemo_HosiKirakiraCleanObj_Get( NMIX_DEMO_HOSI_KIRAKIRA* p_work )
@@ -3804,9 +3804,9 @@ static NMIX_DEMO_HOSI_KIRAKIRA_OBJ* NMixGameDemo_HosiKirakiraCleanObj_Get( NMIX_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg“®‚³ƒƒCƒ“
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ã•ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒg
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void NMixGameDemo_HosiKiraKiraObjMain( NMIX_DEMO_HOSI_KIRAKIRA_OBJ* p_obj )
@@ -3818,27 +3818,27 @@ static void NMixGameDemo_HosiKiraKiraObjMain( NMIX_DEMO_HOSI_KIRAKIRA_OBJ* p_obj
 	}
 	
 	if( p_obj->move_end == FALSE ){
-		// “®‚³ˆ—
+		// å‹•ã•å‡¦ç†
 		p_obj->move_end = NMIX_DEMO_AddMoveMainFx( &p_obj->move_x );
 		NMIX_DEMO_AddMoveMainFx( &p_obj->move_y );
 
-		// À•WÝ’è
+		// åº§æ¨™è¨­å®š
 		p_obj->matrix.x = p_obj->move_x.x;
 		p_obj->matrix.y = p_obj->move_y.x;
 		CLACT_SetMatrix( p_obj->clact, &p_obj->matrix );
 	}
 
 	if( p_obj->move_end == TRUE ){
-		// ”jŠü
+		// ç ´æ£„
 		NMixGameDemo_HosiKiraKiraObjDel( p_obj );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg“®‚³”jŠü
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ã•ç ´æ£„
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒg
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void NMixGameDemo_HosiKiraKiraObjDel( NMIX_DEMO_HOSI_KIRAKIRA_OBJ* p_obj )
@@ -3846,23 +3846,23 @@ static void NMixGameDemo_HosiKiraKiraObjDel( NMIX_DEMO_HOSI_KIRAKIRA_OBJ* p_obj 
 	if( p_obj->move_flg == FALSE  ){
 		return ;
 	}
-	// ƒAƒNƒ^[‚ð”ñ•\Ž¦‚É
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’éžè¡¨ç¤ºã«
 	CLACT_SetDrawFlag( p_obj->clact, FALSE );
 	p_obj->move_flg = FALSE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒg“o˜^
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒg
- *	@param	anm_idx		ƒAƒjƒƒCƒ“ƒfƒbƒNƒX
- *	@param	x			ŠJŽn‚˜À•W
- *	@param	y			ŠJŽn‚™À•W
- *	@param	e_x			I—¹‚˜À•W
- *	@param	e_y			I—¹‚™À•W
- *	@param	ss_x		‰‘¬“x‚˜
- *	@param	ss_y		‰‘¬“x‚™
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	anm_idx		ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	x			é–‹å§‹ï½˜åº§æ¨™
+ *	@param	y			é–‹å§‹ï½™åº§æ¨™
+ *	@param	e_x			çµ‚äº†ï½˜åº§æ¨™
+ *	@param	e_y			çµ‚äº†ï½™åº§æ¨™
+ *	@param	ss_x		åˆé€Ÿåº¦ï½˜
+ *	@param	ss_y		åˆé€Ÿåº¦ï½™
  */
 //-----------------------------------------------------------------------------
 static void NMixGameDemo_HosiKirakiraObjAdd( NMIX_DEMO_HOSI_KIRAKIRA_OBJ* p_obj, int anm_idx, fx32 x, fx32 y, fx32 e_x, fx32 e_y, fx32 ss_x, fx32 ss_y )
@@ -3874,17 +3874,17 @@ static void NMixGameDemo_HosiKirakiraObjAdd( NMIX_DEMO_HOSI_KIRAKIRA_OBJ* p_obj,
 	p_obj->matrix.x = x;
 	p_obj->matrix.y = y;
 
-	// •\Ž¦
+	// è¡¨ç¤º
 	CLACT_SetDrawFlag( p_obj->clact, TRUE );
-	// ƒAƒjƒ
+	// ã‚¢ãƒ‹ãƒ¡
 	CLACT_AnmChg( p_obj->clact, anm_idx );
 	CLACT_AnmReStart( p_obj->clact );
-	// AUTOƒAƒjƒ
+	// AUTOã‚¢ãƒ‹ãƒ¡
 	CLACT_SetAnmFlag( p_obj->clact, TRUE );
-	// BG—Dæ‡ˆÊ
+	// BGå„ªå…ˆé †ä½
 	CLACT_BGPriorityChg( p_obj->clact, NMIX_DEMO_HOSI_BG_PRI );
 
-	// “®‚³ŠJŽn
+	// å‹•ã•é–‹å§‹
 	p_obj->move_flg = TRUE;
 	p_obj->move_end = FALSE;
 }
@@ -3892,33 +3892,33 @@ static void NMixGameDemo_HosiKirakiraObjAdd( NMIX_DEMO_HOSI_KIRAKIRA_OBJ* p_obj,
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒ|ƒ‹ƒg•\Ž¦
+ *			ãƒãƒ«ãƒˆè¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒ‹ƒg•\Ž¦‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆè¡¨ç¤ºåˆæœŸåŒ–
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	poruto_type	ƒ|ƒ‹ƒgƒ^ƒCƒv
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	poruto_type	ãƒãƒ«ãƒˆã‚¿ã‚¤ãƒ—
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_PorutoDraw_Init( NMIX_DEMO_PORUTO_DRAW* p_work, int x, int y, int poruto_type, int heapID )
 {
 	p_work->poruto_man = PoruOam_SysInit( heapID, 1, 1, PORUOAM_DRAW_MAIN, PORUOAM_CGXOFS_ADJUST );
 
-	// ƒ|ƒ‹ƒg“o˜^
+	// ãƒãƒ«ãƒˆç™»éŒ²
 	p_work->p_obj = PoruOam_Add( p_work->poruto_man, poruto_type, x, y, 0, 0, 0, PORUOAM_VT_MAIN );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒ‹ƒg”jŠü
+ *	@brief	ãƒãƒ«ãƒˆç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_PorutoDraw_Delete( NMIX_DEMO_PORUTO_DRAW* p_work )
@@ -3929,9 +3929,9 @@ void NMixGameDemo_PorutoDraw_Delete( NMIX_DEMO_PORUTO_DRAW* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒ‹ƒg•`‰æˆ—
+ *	@brief	ãƒãƒ«ãƒˆæç”»å‡¦ç†
  *
- *	@param	p_work ƒ[ƒN
+ *	@param	p_work ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_PorutoDraw_Draw( NMIX_DEMO_PORUTO_DRAW* p_work )
@@ -3942,15 +3942,15 @@ void NMixGameDemo_PorutoDraw_Draw( NMIX_DEMO_PORUTO_DRAW* p_work )
 
 //-----------------------------------------------------------------------------
 /**
- *			YES@NO@ƒEƒBƒ“ƒhƒE
+ *			YESã€€NOã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	YESNOƒEƒBƒ“ƒhƒE@‰Šú‰»
+ *	@brief	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€åˆæœŸåŒ–
  *
- *	@param	p_work			ƒ[ƒN
- *	@param	comm_count		’ÊM¶³ÝÀ
+ *	@param	p_work			ãƒ¯ãƒ¼ã‚¯
+ *	@param	comm_count		é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_YesNoWnd_Init( NMIX_DEMO_YESNO_WND* p_work, int heap, GF_BGL_INI* p_bgl )
@@ -3961,9 +3961,9 @@ void NMixGameDemo_YesNoWnd_Init( NMIX_DEMO_YESNO_WND* p_work, int heap, GF_BGL_I
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YESNOƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_YesNoWnd_Delete( NMIX_DEMO_YESNO_WND* p_work )
@@ -3973,9 +3973,9 @@ void NMixGameDemo_YesNoWnd_Delete( NMIX_DEMO_YESNO_WND* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YESNOƒEƒBƒ“ƒhƒEŠJŽn
+ *	@brief	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹
  *
- *	@param	p_work ƒ[ƒN
+ *	@param	p_work ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void NMixGameDemo_YesNoWnd_Start( NMIX_DEMO_YESNO_WND* p_work )
@@ -3994,13 +3994,13 @@ void NMixGameDemo_YesNoWnd_Start( NMIX_DEMO_YESNO_WND* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	YESNOƒEƒBƒ“ƒhƒEƒƒCƒ“
+ *	@brief	YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TOUCH_SW_RET_NORMAL	// ‰½‚à‚È‚µ
- *	@retval	TOUCH_SW_RET_YES	// ‚Í‚¢
- *	@retval	TOUCH_SW_RET_NO		// ‚¢‚¢‚¦
+ *	@retval	TOUCH_SW_RET_NORMAL	// ä½•ã‚‚ãªã—
+ *	@retval	TOUCH_SW_RET_YES	// ã¯ã„
+ *	@retval	TOUCH_SW_RET_NO		// ã„ã„ãˆ
  */
 //-----------------------------------------------------------------------------
 u32 NMixGameDemo_YesNoWnd_Main( NMIX_DEMO_YESNO_WND* p_work )

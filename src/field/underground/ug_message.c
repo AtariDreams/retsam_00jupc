@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_message.c
- * @brief	’n‰º—p ƒƒbƒZ[ƒW‚ğŠÈ’P‚Éˆµ‚¤‚½‚ß‚ÌƒNƒ‰ƒX
+ * @brief	åœ°ä¸‹ç”¨ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ç°¡å˜ã«æ‰±ã†ãŸã‚ã®ã‚¯ãƒ©ã‚¹
  * @author	k.ohno
  * @date    2006.03.25
  */
@@ -40,7 +40,7 @@ extern void CommUnderAllMsgForceDel(void);
 typedef struct _COMM_MESSAGE{
     STRBUF* pStrBuf;
     STRBUF* pExpStrBuf;
-    GF_BGL_BMPWIN win;		// BMPƒEƒBƒ“ƒhƒEƒ[ƒN
+    GF_BGL_BMPWIN win;		// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
 
     GF_BGL_INI* bgl;
     PTRCommMsgCallback pCallBackFunc;
@@ -66,34 +66,34 @@ typedef struct _COMM_MESSAGE{
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/29
-// WORDSET ‚Ì‘ã“üæƒCƒ“ƒfƒbƒNƒX‚Ì’è‹`‚ğ ug_message.h ‚ÉˆÚ“®
+// WORDSET ã®ä»£å…¥å…ˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å®šç¾©ã‚’ ug_message.h ã«ç§»å‹•
 // MatchComment: see src/field/underground/ug_message.h for the removed defines
 // first removed define is _TALK_TARGET_INDEX_WORK
 // ----------------------------------------------------------------------------
 
 static void _talkWindowEnd(COMM_MESSAGE* pComm, BOOL bClear);
 
-///‘I‘ğƒƒjƒ…[‚ÌƒŠƒXƒgƒx[ƒX
+///é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆãƒ™ãƒ¼ã‚¹
 static const BMPLIST_HEADER MenuListHeader = {
-    NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,					// 
-    0,	// ƒŠƒXƒg€–Ú”
-    0,	// •\¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-    8,						// €–Ú•\¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-    0,						// •\¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶šF
-    FBMP_COL_WHITE,			// ”wŒiF
-    FBMP_COL_BLK_SDW,		// •¶š‰eF
-    0,						// •¶šŠÔŠu‚w
-    16,						// •¶šŠÔŠu‚x
-    BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,				// •¶šw’è
-    0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
-    NULL,                   // ƒ[ƒN
+    0,	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    0,	// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,				// æ–‡å­—æŒ‡å®š
+    0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
+    NULL,                   // ãƒ¯ãƒ¼ã‚¯
 };
 
 const BMPLIST_HEADER* CommMsgGetNormalBmpListHeader(void)
@@ -107,13 +107,13 @@ const BMPLIST_HEADER* CommMsgGetNormalBmpListHeader(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰Šú‰»
- * @param   msgManagerNo ƒƒbƒZ[ƒWƒf[ƒ^”Ô†
- * @param   heapID g—p‚·‚éHEAP
- * @param   GF_BGL_INI* bgl  bglƒ|ƒCƒ“ƒ^
+ * @brief   åˆæœŸåŒ–
+ * @param   msgManagerNo ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç•ªå·
+ * @param   heapID ä½¿ç”¨ã™ã‚‹HEAP
+ * @param   GF_BGL_INI* bgl  bglãƒã‚¤ãƒ³ã‚¿
  * @param   speed
  * @param   type
- * @retval  COMM_MESSAGEƒ|ƒCƒ“ƒ^
+ * @retval  COMM_MESSAGEãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 
@@ -131,14 +131,14 @@ COMM_MESSAGE* CommMsgInitialize(int msgManagerNo,int heapID, GF_BGL_INI* bgl,
     pComm->pExpStrBuf = STRBUF_Create( size, heapID );
     pComm->pWordSet = WORDSET_Create(heapID);
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
     pComm->msgManagerNo = msgManagerNo;
 	pComm->msg_man = MSGMAN_Create(
         MSGMAN_TYPE_DIRECT, ARC_MSG, msgManagerNo, heapID );
     pComm->heapID = heapID;
     pComm->bgl = bgl;
 //    pComm->win = win;
-    GF_BGL_BmpWinInit( &pComm->win );		// BMPƒEƒBƒ“ƒhƒEƒ[ƒN
+    GF_BGL_BmpWinInit( &pComm->win );		// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
     pComm->bTalkMenuDisp = FALSE;
     pComm->bExpand = FALSE;
     pComm->pWinTask = NULL;
@@ -152,7 +152,7 @@ COMM_MESSAGE* CommMsgInitialize(int msgManagerNo,int heapID, GF_BGL_INI* bgl,
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠJ•úˆ—
+ * @brief   é–‹æ”¾å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -169,7 +169,7 @@ void CommMsgFinalize(COMM_MESSAGE* pComm)
 
 //--------------------------------------------------------------
 /**
- * @brief   MSGMANAGER•ÏX
+ * @brief   MSGMANAGERå¤‰æ›´
  * @param   none
  * @retval  none
  */
@@ -188,7 +188,7 @@ void CommMsgChangeMSGMAN(COMM_MESSAGE* pComm, int msgManagerNo, int type)
 
 //--------------------------------------------------------------
 /**
- * @brief   bgl‚ğ•ÏX‚·‚é
+ * @brief   bglã‚’å¤‰æ›´ã™ã‚‹
  * @param   void
  * @retval  MSGDATA_MANAGER*
  */
@@ -205,7 +205,7 @@ void CommMsgSetBgl(COMM_MESSAGE* pComm,GF_BGL_INI* bgl, u16 wincgx,u16 msgcgx)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[‚ğ“¾‚é
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’å¾—ã‚‹
  * @param   void
  * @retval  MSGDATA_MANAGER*
  */
@@ -218,9 +218,9 @@ MSGDATA_MANAGER* CommMsgGetMsgManager(COMM_MESSAGE* pComm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\¦’†
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pTalk		‰ï˜b\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä¸­
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pTalk		ä¼šè©±æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -246,9 +246,9 @@ static void _talkWindowFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜b‚ğƒoƒbƒtƒ@‚É“ü‚ê‚»‚Ìƒoƒbƒtƒ@‚ğRETURN‚·‚é
+ * @brief   ä¼šè©±ã‚’ãƒãƒƒãƒ•ã‚¡ã«å…¥ã‚Œãã®ãƒãƒƒãƒ•ã‚¡ã‚’RETURNã™ã‚‹
  * @param   pComm  COMM_MESSAGE
- * @param   msgNo  ‰ï˜b”Ô†
+ * @param   msgNo  ä¼šè©±ç•ªå·
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -267,11 +267,11 @@ static STRBUF* _expandStrBuf(COMM_MESSAGE* pComm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\¦
- * @param   pComm  COMM_MESSAGEƒ|ƒCƒ“ƒ^
- * @param   bTask  ƒ^ƒXƒN‚ÅI—¹‚ğŠÇ—‚·‚éê‡TRUE
- * @param   pEndCallBack I—¹‚ÉŒÄ‚ÔƒR[ƒ‹ƒoƒbƒN
- * @retval  ƒEƒCƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+ * @brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
+ * @param   pComm  COMM_MESSAGEãƒã‚¤ãƒ³ã‚¿
+ * @param   bTask  ã‚¿ã‚¹ã‚¯ã§çµ‚äº†ã‚’ç®¡ç†ã™ã‚‹å ´åˆTRUE
+ * @param   pEndCallBack çµ‚äº†æ™‚ã«å‘¼ã¶ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ * @retval  ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------
 
@@ -282,7 +282,7 @@ static int _talkStart(COMM_MESSAGE* pComm, BOOL bTask, PTRCommMsgCallback pEndCa
 
     _talkWindowEnd(pComm, _CLEAR_DISP);
     CommUnderAllMsgForceDel();
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     if(!GF_BGL_BmpWinAddCheck(&pComm->win)){
         GF_BGL_BmpWinAdd(pComm->bgl, &pComm->win,
                          GF_BGL_FRAME3_M,
@@ -313,9 +313,9 @@ static int _talkStart(COMM_MESSAGE* pComm, BOOL bTask, PTRCommMsgCallback pEndCa
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜b‚ğƒoƒbƒtƒ@‚É“ü‚ê‚»‚Ìƒoƒbƒtƒ@‚ğRETURN‚·‚é
+ * @brief   ä¼šè©±ã‚’ãƒãƒƒãƒ•ã‚¡ã«å…¥ã‚Œãã®ãƒãƒƒãƒ•ã‚¡ã‚’RETURNã™ã‚‹
  * @param   pComm  COMM_MESSAGE
- * @param   msgNo  ‰ï˜b”Ô†
+ * @param   msgNo  ä¼šè©±ç•ªå·
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -328,11 +328,11 @@ STRBUF* CommMsgGetExpandStrBuf(COMM_MESSAGE* pComm, int msgNo)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\¦
- * @param   msgNo  ‰ï˜b”Ô†
+ * @brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
+ * @param   msgNo  ä¼šè©±ç•ªå·
  * @param   bgl  GF_BGL_INI* 
- * @param   bTask  ƒL[ˆ—‚ğƒ^ƒXƒN‚É”C‚¹‚Ä©“®I—¹‚·‚é‚©‚Ç‚¤‚©
- * @param   pEndCallBack  I—¹‚ÉƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ô‚©‚Ç‚¤‚©
+ * @param   bTask  ã‚­ãƒ¼å‡¦ç†ã‚’ã‚¿ã‚¹ã‚¯ã«ä»»ã›ã¦è‡ªå‹•çµ‚äº†ã™ã‚‹ã‹ã©ã†ã‹
+ * @param   pEndCallBack  çµ‚äº†æ™‚ã«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã¶ã‹ã©ã†ã‹
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -344,11 +344,11 @@ int CommMsgTalkWindowStart(COMM_MESSAGE* pComm, int msgNo, BOOL bTask, PTRCommMs
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒCƒ“ƒhƒEˆêŠ‡•\¦
- * @param   msgNo  ‰ï˜b”Ô†
+ * @brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä¸€æ‹¬è¡¨ç¤º
+ * @param   msgNo  ä¼šè©±ç•ªå·
  * @param   bgl  GF_BGL_INI* 
- * @param   bTask  ƒL[ˆ—‚ğƒ^ƒXƒN‚É”C‚¹‚Ä©“®I—¹‚·‚é‚©‚Ç‚¤‚©
- * @param   pEndCallBack  I—¹‚ÉƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ô‚©‚Ç‚¤‚©
+ * @param   bTask  ã‚­ãƒ¼å‡¦ç†ã‚’ã‚¿ã‚¹ã‚¯ã«ä»»ã›ã¦è‡ªå‹•çµ‚äº†ã™ã‚‹ã‹ã©ã†ã‹
+ * @param   pEndCallBack  çµ‚äº†æ™‚ã«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã¶ã‹ã©ã†ã‹
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -365,12 +365,12 @@ int CommMsgTalkWindowAllWrite(COMM_MESSAGE* pComm, int msgNo, BOOL bTask, PTRCom
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\¦ ”š‚ğƒR[ƒ‹ƒoƒbƒN‚É“n‚·
- * @param   msgNo  ‰ï˜b”Ô†
+ * @brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º æ•°å­—ã‚’ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«æ¸¡ã™
+ * @param   msgNo  ä¼šè©±ç•ªå·
  * @param   bgl  GF_BGL_INI* 
- * @param   bTask  ƒL[ˆ—‚ğƒ^ƒXƒN‚É”C‚¹‚Ä©“®I—¹‚·‚é‚©‚Ç‚¤‚©
- * @param   pEndCallBack  I—¹‚ÉƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ô‚©‚Ç‚¤‚©
- * @param   callbackNum ƒR[ƒ‹ƒoƒbƒN‚É“n‚·”š
+ * @param   bTask  ã‚­ãƒ¼å‡¦ç†ã‚’ã‚¿ã‚¹ã‚¯ã«ä»»ã›ã¦è‡ªå‹•çµ‚äº†ã™ã‚‹ã‹ã©ã†ã‹
+ * @param   pEndCallBack  çµ‚äº†æ™‚ã«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã¶ã‹ã©ã†ã‹
+ * @param   callbackNum ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«æ¸¡ã™æ•°å­—
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -383,9 +383,9 @@ int CommMsgTalkWindowStartSendNum(COMM_MESSAGE* pComm, int msgNo, BOOL bTask, PT
 
 //--------------------------------------------------------------
 /**
- * @brief   ME‚ÌI—¹‚ğƒR[ƒ‹ƒoƒbƒN‚Å‘Ò‚Âê‡ŒÄ‚Ô
- * @param   COMM_MESSAGE  ƒƒbƒZ[ƒWƒnƒ“ƒhƒ‹
- * @retval  ƒEƒCƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+ * @brief   MEã®çµ‚äº†ã‚’ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§å¾…ã¤å ´åˆå‘¼ã¶
+ * @param   COMM_MESSAGE  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒ³ãƒ‰ãƒ«
+ * @retval  ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------
 
@@ -396,7 +396,7 @@ void CommMsgTalkWindowMeWait(COMM_MESSAGE* pComm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒCƒ“ƒhƒEÁ‹  ˆøŒp‚¬
+ * @brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ¶ˆå»  å¼•ç¶™ãæ™‚
  * @param   none
  * @retval  none
  */
@@ -439,7 +439,7 @@ static void _talkWindowEnd(COMM_MESSAGE* pComm, int clearMode)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒCƒ“ƒhƒEÁ‹
+ * @brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ¶ˆå»
  * @param   none
  * @retval  none
  */
@@ -471,7 +471,7 @@ void CommMsgRegisterUGItemName(COMM_MESSAGE* pComm,int type)
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/28
-// •s’èŠ¥Œ•t‚«‚Ì’n‰ºƒAƒCƒeƒ€–¼‚ğ‘ã“ü‚·‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ åã‚’ä»£å…¥ã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
 void CommMsgRegisterUGItemNameIndefinate(COMM_MESSAGE* pComm,int type)
 {
     WORDSET_RegisterUGItemNameIndefinate(pComm->pWordSet, _UGITEM_INDEX_WORK, type );
@@ -487,7 +487,7 @@ void CommMsgRegisterUGTrapName(COMM_MESSAGE* pComm,int type)
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/28
-// •s’èŠ¥Œ•t‚«‚Ì’n‰ºƒƒi–¼‚ğ‘ã“ü‚·‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®åœ°ä¸‹ãƒ¯ãƒŠåã‚’ä»£å…¥ã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
 void CommMsgRegisterUGTrapNameIndefinate(COMM_MESSAGE* pComm,int type)
 {
     WORDSET_RegisterUGTrapNameIndefinate(pComm->pWordSet, _UGTRAP_INDEX_WORK, type );
@@ -521,7 +521,7 @@ void CommMsgRegisterUGGoodsName(COMM_MESSAGE* pComm,int type)
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/28
-// •s’èŠ¥Œ•t‚«‚Ì’n‰ºƒOƒbƒY–¼‚ğ‘ã“ü‚·‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®åœ°ä¸‹ã‚°ãƒƒã‚ºåã‚’ä»£å…¥ã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
 void CommMsgRegisterUGGoodsNameIndefinate(COMM_MESSAGE* pComm,int type)
 {
     WORDSET_RegisterUGGoodsNameIndefinate(pComm->pWordSet, _UNDER_GOODS_WORK, type );
@@ -584,7 +584,7 @@ void CommMsgRegisterUGGoodsNameIndex(COMM_MESSAGE* pComm,int index,int type)
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/28
-// •s’èŠ¥Œ•t‚«‚Ì’n‰ºƒAƒCƒeƒ€EƒƒiEƒOƒbƒY–¼‚ğ‘ã“ü‚·‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ»ãƒ¯ãƒŠãƒ»ã‚°ãƒƒã‚ºåã‚’ä»£å…¥ã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
 
 void CommMsgRegisterUGItemNameIndexIndefinate(COMM_MESSAGE* pComm,int index,int type)
 {
@@ -608,7 +608,7 @@ void CommMsgRegisterUGGoodsNameIndexIndefinate(COMM_MESSAGE* pComm,int index,int
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/29
-// w’èƒCƒ“ƒfƒbƒNƒX‚É“o˜^‚³‚ê‚½’PŒê‚ğƒLƒƒƒsƒ^ƒ‰ƒCƒY
+// æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ã‚­ãƒ£ãƒ”ã‚¿ãƒ©ã‚¤ã‚º
 
 void CommMsgCapitalizeIndex(COMM_MESSAGE* pComm,int index)
 {
@@ -631,7 +631,7 @@ void CommMsgPrintStop(COMM_MESSAGE* pComm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒCƒ“ƒhƒE‚ªo—Í’†‚©‚Ç‚¤‚©
+ * @brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãŒå‡ºåŠ›ä¸­ã‹ã©ã†ã‹
  * @param   none
  * @retval  none
  */
@@ -647,7 +647,7 @@ BOOL CommMsgIsOutputing(COMM_MESSAGE* pComm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒCƒ“ƒhƒEŒŸ¸
+ * @brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ¤œæŸ»
  * @param   none
  * @retval  none
  */

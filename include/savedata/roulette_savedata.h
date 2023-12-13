@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	roulette_savedata.h
- * @brief	ƒ‹[ƒŒƒbƒgƒZ[ƒuƒf[ƒ^—pƒwƒbƒ_[
+ * @brief	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ç”¨ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	2007.09.05
  */
@@ -12,7 +12,7 @@
 
 //============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //============================================================================================
 enum{
@@ -20,17 +20,17 @@ enum{
 	ROULETTEDATA_ID_RANDOM_FLAG,
 	ROULETTEDATA_ID_ROUND,
 	ROULETTEDATA_ID_CSR_SPEED_LEVEL,
-	//ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³
 	ROULETTEDATA_ID_TEMOTI_ITEM,
-	//ƒgƒŒ[ƒi[
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
 	ROULETTEDATA_ID_TR_INDEX,
-	//ŽQ‰Á‚µ‚Ä‚¢‚éŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ä½ç½®æƒ…å ±
 	ROULETTEDATA_ID_MINE_POKE_POS,
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ª”í‚ç‚È‚¢‚æ‚¤‚É•Û‘¶
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«ä¿å­˜
 	ROULETTEDATA_ID_ENEMY_POKE_INDEX,
 
 	//////////
-	//¬Ñ
+	//æˆç¸¾
 	//////////
 	ROULETTESCORE_ID_CLEAR_FLAG,
 };
@@ -38,7 +38,7 @@ enum{
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒXƒe[ƒWƒZ[ƒuƒf[ƒ^‚Ö‚Ì•sŠ®‘SŒ^’è‹`
+ * @brief	ã‚¹ãƒ†ãƒ¼ã‚¸ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ä¸å®Œå…¨åž‹å®šç¾©
  */
 //---------------------------------------------------------------------------
 typedef struct _ROULETTEDATA ROULETTEDATA;
@@ -65,7 +65,7 @@ extern void ROULETTEDATA_SetSaveFlag( ROULETTEDATA* wk, BOOL flag );
 extern void ROULETTEDATA_PutPlayData( ROULETTEDATA* wk, u8 id, u8 param, u8 param2, const void* buf );
 extern u32 ROULETTEDATA_GetPlayData( ROULETTEDATA* wk, u8 id, u8 param, u8 param2, void* buf );
 
-//¬Ñ
+//æˆç¸¾
 extern void ROULETTESCORE_Init( ROULETTESCORE* wk );
 extern int ROULETTESCORE_GetWorkSize( void );
 extern ROULETTESCORE * SaveData_GetRouletteScore( SAVEDATA* sv );

@@ -1,36 +1,36 @@
 #=======================================================================================
 #
-#	.gmmƒtƒ@ƒCƒ‹‚©‚çA_EASY_OBJ_MSGŒ`®‚ğ“f‚«o‚·
+#	.gmmãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã€_EASY_OBJ_MSGå½¢å¼ã‚’åãå‡ºã™
 #
 #	05.10.04 Satoshi Nohara
 #
-#	"sign"‚ªŠÜ‚Ü‚ê‚Ä‚¢‚½‚çA_EASY_BOARD_MSG‚É‚·‚é‚æ‚¤‚É‚µ‚½
+#	"sign"ãŒå«ã¾ã‚Œã¦ã„ãŸã‚‰ã€_EASY_BOARD_MSGã«ã™ã‚‹ã‚ˆã†ã«ã—ãŸ
 #
 #=======================================================================================
 BEGIN{
 	tmp_file = FIELNAME
-	sub( "../../../convert/message/src/scenario/", "", tmp_file )		#"../.."‚Æˆê’v‚·‚é‚Ü‚Åíœ
+	sub( "../../../convert/message/src/scenario/", "", tmp_file )		#"../.."ã¨ä¸€è‡´ã™ã‚‹ã¾ã§å‰Šé™¤
 }
 
 {
 	diff_file = FILENAME
 
-	sub( "../../../convert/message/src/scenario/", "", diff_file )		#"../.."‚Æˆê’v‚·‚é‚Ü‚Åíœ
+	sub( "../../../convert/message/src/scenario/", "", diff_file )		#"../.."ã¨ä¸€è‡´ã™ã‚‹ã¾ã§å‰Šé™¤
 
 	if( tmp_file != diff_file ){
 		tmp_file = FILENAME
-		sub( "../../../convert/message/src/scenario/", "", tmp_file )	#"../.."‚Æˆê’v‚·‚é‚Ü‚Åíœ
-		basic_data_write()				#î•ñ•`‰æ
+		sub( "../../../convert/message/src/scenario/", "", tmp_file )	#"../.."ã¨ä¸€è‡´ã™ã‚‹ã¾ã§å‰Šé™¤
+		basic_data_write()				#æƒ…å ±æç”»
 	}
 
 	if( $0 ~ "<row id=" ){
 		msg = $0
-		sub( "<row id=\"", "", msg )	#gmmƒtƒ@ƒCƒ‹ŒŸõ
+		sub( "<row id=\"", "", msg )	#gmmãƒ•ã‚¡ã‚¤ãƒ«æ¤œç´¢
 		sub( "\t", "", msg )
-		sub(/\".*$/,"",msg)				#","ˆÈ~‚ğíœ
+		sub(/\".*$/,"",msg)				#","ä»¥é™ã‚’å‰Šé™¤
 
 		ev = msg
-		sub( "msg", "ev", ev )			#ev‚É’u‚«Š·‚¦
+		sub( "msg", "ev", ev )			#evã«ç½®ãæ›ãˆ
 
 		#print msg
 		#print ev
@@ -40,7 +40,7 @@ BEGIN{
 		print "/********************************************************************/"
 		print ev ":"
 
-		#ŠÅ”Â‚¾‚Á‚½‚ç
+		#çœ‹æ¿ã ã£ãŸã‚‰
 		if( $0 ~ "sign" ){
 			print "\t_EASY_BOARD_MSG\t" msg ",BOARD_TYPE_TOWN,0"
 		}else{
@@ -53,7 +53,7 @@ BEGIN{
 }
 
 #-----------------
-#	î•ñ•`‰æ
+#	æƒ…å ±æç”»
 #-----------------
 function basic_data_write()
 {
@@ -74,15 +74,15 @@ function basic_data_write()
 	print ""
 
 	print "//--------------------------------------------------------------------"
-	print "//					     ƒXƒNƒŠƒvƒg–{‘Ì"
+	print "//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“"
 	print "//--------------------------------------------------------------------"
 	print ""
 
 	print "//--------------------------------------------------------------------"
-	print "//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹"
+	print "//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«"
 	print "//--------------------------------------------------------------------"
 	print "_EVENT_DATA		ev_" file
-	print "_EVENT_DATA_END						//I—¹"
+	print "_EVENT_DATA_END						//çµ‚äº†"
 	print ""
 }
 

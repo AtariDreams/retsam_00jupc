@@ -21,7 +21,7 @@
   fix header comment
 
   Revision 1.5  2004/02/18 02:38:06  yada
-  StartUp ŠÖ”’è‹`’Ç‰Á
+  StartUp é–¢æ•°å®šç¾©è¿½åŠ 
 
   Revision 1.4  2004/02/14 10:14:10  yasu
   aliased NitroMain -> NitroSpMain when ARM7
@@ -33,10 +33,10 @@
   change SDK prefix iris -> nitro
 
   Revision 1.1  2003/11/12 12:24:00  yasu
-  crt0.o ‚ğ base ƒ‰ƒCƒuƒ‰ƒŠ‚©‚çŠJ•ú‚µ‚½
+  crt0.o ã‚’ base ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‹ã‚‰é–‹æ”¾ã—ãŸ
 
   Revision 1.1  2003/11/10 09:03:04  yada
-  void IrisMain(void) ‚ğİ’è
+  void IrisMain(void) ã‚’è¨­å®š
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

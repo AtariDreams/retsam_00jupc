@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_083.s
- *@brief	êÌì¨ÉVÅ[ÉPÉìÉX
- *			Ç›ÇøÇ√ÇÍÉ`ÉFÉbÉNÇ†ÇËãCê‚ÉVÅ[ÉPÉìÉX
+ *@brief	Êà¶Èóò„Ç∑„Éº„Ç±„É≥„Çπ
+ *			„Åø„Å°„Å•„Çå„ÉÅ„Çß„ÉÉ„ÇØ„ÅÇ„ÇäÊ∞óÁµ∂„Ç∑„Éº„Ç±„É≥„Çπ
  *@author	HisashiSogabe
  *@data		2006.01.24
  *
@@ -15,21 +15,21 @@
 	.include	"waza_seq_def.h"
 
 SUB_083:
-	//Ç›ÇøÇ√ÇÍÉtÉâÉOÇ™óßÇ¡ÇƒÇ¢ÇÈÇ©É`ÉFÉbÉN
+	//„Åø„Å°„Å•„Çå„Éï„É©„Ç∞„ÅåÁ´ã„Å£„Å¶„ÅÑ„Çã„Åã„ÉÅ„Çß„ÉÉ„ÇØ
 	IF_PSP			IF_FLAG_NBIT,SIDE_KIZETSU,ID_PSP_condition2,CONDITION2_MICHIDURE,NoMichidure
-	//ñ°ï˚Ç…ÇÕî≠ìÆÇµÇ»Ç¢
+	//Âë≥Êñπ„Å´„ÅØÁô∫Âãï„Åó„Å™„ÅÑ
 	SIDE_CHECK		SIDE_ATTACK,SIDE_KIZETSU,NoMichidure
-	//HP0Åié©îöånÅjÇ…ÇÕî≠ìÆÇµÇ»Ç¢
+	//HP0ÔºàËá™ÁàÜÁ≥ªÔºâ„Å´„ÅØÁô∫Âãï„Åó„Å™„ÅÑ
 	IF_PSP			IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_hp,0,NoMichidure
 	MESSAGE			MichidureM2MMsg,TAG_NICK_NICK,SIDE_KIZETSU,SIDE_ATTACK
-	//sp->kizetsu_clientÇëﬁî
+	//sp->kizetsu_client„ÇíÈÄÄÈÅø
 	VALUE_WORK		VAL_GET,BUF_PARA_KIZETSU_CLIENT,BUF_PARA_PUSH_CLIENT
-	//AttackClientÇÃHPÇÉ_ÉÅÅ[ÉWÇ…
+	//AttackClient„ÅÆHP„Çí„ÉÄ„É°„Éº„Ç∏„Å´
 	PSP_VALUE_WORK	VAL_GET,SIDE_ATTACK,ID_PSP_hp,BUF_PARA_HP_CALC_WORK
 	VALUE			VAL_MUL,BUF_PARA_HP_CALC_WORK,-1
-	//HPëÄçÏëŒè€ÇAttackClientÇ…
+	//HPÊìç‰ΩúÂØæË±°„ÇíAttackClient„Å´
 	VALUE_WORK		VAL_SET,BUF_PARA_CLIENT_WORK,BUF_PARA_ATTACK_CLIENT
-	//É_ÉÅÅ[ÉWÉGÉtÉFÉNÉgÇ≈ì_ñ≈ÇµÇ»Ç¢ÉtÉâÉOÇóßÇƒÇÈ
+	//„ÉÄ„É°„Éº„Ç∏„Ç®„Éï„Çß„ÇØ„Éà„ÅßÁÇπÊªÖ„Åó„Å™„ÅÑ„Éï„É©„Ç∞„ÇíÁ´ã„Å¶„Çã
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_BLINK
 	GOSUB			SUB_SEQ_HP_CALC
 	KIZETSU_EFFECT
@@ -38,10 +38,10 @@ SUB_083:
 	MESSAGE			KizetsuMineMsg,TAG_NICK,SIDE_KIZETSU
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//ãCê‚ÉJÉEÉìÉgÇÉJÉEÉìÉgÉAÉbÉv
+	//Ê∞óÁµ∂„Ç´„Ç¶„É≥„Éà„Çí„Ç´„Ç¶„É≥„Éà„Ç¢„ÉÉ„Éó
 	INC_RECORD		SIDE_KIZETSU,CLIENT_BOOT_TYPE_NOMINE,RECID_KILL_POKE
 	INC_RECORD		SIDE_KIZETSU,CLIENT_BOOT_TYPE_MINE,RECID_TEMOTI_KIZETU
-	//ëﬁîÇµÇƒÇ¢ÇΩsp->kizetsu_clientÇñﬂÇ∑
+	//ÈÄÄÈÅø„Åó„Å¶„ÅÑ„Åüsp->kizetsu_client„ÇíÊàª„Åô
 	VALUE_WORK		VAL_GET,BUF_PARA_PUSH_CLIENT,BUF_PARA_KIZETSU_CLIENT
 NoMichidure:
 	ONNEN			NoOnnen

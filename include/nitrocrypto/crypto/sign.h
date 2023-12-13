@@ -15,10 +15,10 @@
   *** empty log message ***
 
   Revision 1.2  2006/02/24 01:21:27  okubata_ryoma
-  NitroCrypto ‚ÌVİ@Crypt ‚©‚ç Crypto ‚Ö
+  NitroCrypto ã®æ–°è¨­ã€€Crypt ã‹ã‚‰ Crypto ã¸
 
   Revision 1.1  2005/12/19 22:08:53  seiki_masashi
-  NitroWiFi ‚Ì CRYPT ƒ‰ƒCƒuƒ‰ƒŠ‚ğVİ‚µA“dq–¼ŒŸØ‹@”\‚ğ’Ç‰Á
+  NitroWiFi ã® CRYPT ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’æ–°è¨­ã—ã€é›»å­ç½²åæ¤œè¨¼æ©Ÿèƒ½ã‚’è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -33,13 +33,13 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         CRYPTO_VerifySignatureWithHash
 
-  Description:  ƒnƒbƒVƒ…’l‚©‚ç“dq–¼‚ğŒŸØ‚·‚é
+  Description:  ãƒãƒƒã‚·ãƒ¥å€¤ã‹ã‚‰é›»å­ç½²åã‚’æ¤œè¨¼ã™ã‚‹
 
-  Arguments:    hash_ptr - ƒnƒbƒVƒ…’l‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                sign_ptr - “dq–¼‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                mod_ptr - ŒöŠJŒ®‚Ö‚Ìƒ|ƒCƒ“ƒ^
-  Returns:      ”FØ‚Å‚«‚½‚ç TRUE
-                ”FØ‚Å‚«‚È‚©‚Á‚½‚ç FALSE
+  Arguments:    hash_ptr - ãƒãƒƒã‚·ãƒ¥å€¤ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                sign_ptr - é›»å­ç½²åã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                mod_ptr - å…¬é–‹éµã¸ã®ãƒã‚¤ãƒ³ã‚¿
+  Returns:      èªè¨¼ã§ããŸã‚‰ TRUE
+                èªè¨¼ã§ããªã‹ã£ãŸã‚‰ FALSE
  *---------------------------------------------------------------------------*/
 int CRYPTO_VerifySignatureWithHash(
     const void* hash_ptr,
@@ -50,15 +50,15 @@ int CRYPTO_VerifySignatureWithHash(
 /*---------------------------------------------------------------------------*
   Name:         CRYPTO_VerifySignature
 
-  Description:  ƒf[ƒ^‚©‚ç“dq–¼‚ğŒŸØ‚·‚é
+  Description:  ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰é›»å­ç½²åã‚’æ¤œè¨¼ã™ã‚‹
 
-  Arguments:    data_ptr - ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data_len - ƒf[ƒ^‚ÌƒTƒCƒY
-                sign_ptr - “dq–¼‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                mod_ptr - ŒöŠJŒ®‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    data_ptr - ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data_len - ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+                sign_ptr - é›»å­ç½²åã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                mod_ptr - å…¬é–‹éµã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ”FØ‚Å‚«‚½‚ç TRUE
-                ”FØ‚Å‚«‚È‚©‚Á‚½‚ç FALSE
+  Returns:      èªè¨¼ã§ããŸã‚‰ TRUE
+                èªè¨¼ã§ããªã‹ã£ãŸã‚‰ FALSE
  *---------------------------------------------------------------------------*/
 int CRYPTO_VerifySignature(
     const void* data_ptr,

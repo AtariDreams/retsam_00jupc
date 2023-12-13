@@ -1,7 +1,7 @@
 #ifndef _C01R0603_DEF_H_
 #define _C01R0603_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C01R0603		(1)
 #define	SCRID_C01R0603_BOY2		(2)
 #define	SCRID_C01R0603_GIRL3		(3)
@@ -15,6 +15,6 @@
 #define	SCRID_C01R0603_POSTER1		(11)
 #define	SCRID_C01R0603_POSTER2		(12)
 #define	SCRID_GDS_BV		(13)
-#define	SCRID_C01R0603_DATA_MAX		(13)		//最大数
+#define	SCRID_C01R0603_DATA_MAX		(13)		//譛螟ｧ謨ｰ
 
 #endif //_C01R0603_DEF_H_

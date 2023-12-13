@@ -11,7 +11,7 @@
 
 //----------------------------------------------------------
 /**
- * @brief	š”Ô‘g‚ð1‚Â‘‚â‚µ‚½
+ * @brief	â˜…ç•ªçµ„ã‚’1ã¤å¢—ã‚„ã—ãŸ
  */
 //----------------------------------------------------------
 typedef enum {
@@ -23,44 +23,44 @@ typedef enum {
 	TV_PROGRAM_RECORD_GON,
 	TV_PROGRAM_SINOU_NOW,
 	TV_PROGRAM_TREND,
-	TV_PROGRAM_VARIETY,				//ƒoƒ‰ƒGƒeƒBƒAƒ[š
+	TV_PROGRAM_VARIETY,				//ãƒãƒ©ã‚¨ãƒ†ã‚£ã‚¢ãƒ¯ãƒ¼â˜…
 
 	TV_PROGRAM_ID_MAX,
 }TV_PROGRAM_ID;
 
 //----------------------------------------------------------
 /**
- * @brief	TVƒgƒsƒbƒNFŠÄŽ‹Œ^ƒ^ƒCƒv’è‹`
+ * @brief	TVãƒˆãƒ”ãƒƒã‚¯ï¼šç›£è¦–åž‹ã‚¿ã‚¤ãƒ—å®šç¾©
  */
 //----------------------------------------------------------
 typedef enum {
-	TVTOPIC_WATCH_POKE_GET_SUCCESS = 1,	///<ƒ|ƒPƒ‚ƒ“•ßŠl¬Œ÷I	3	ƒ|ƒPƒ‚ƒ“•ßŠlI—¹Œã
-	TVTOPIC_WATCH_POKE_GET_FAILURE,		///<ƒ|ƒPƒ‚ƒ“•ßŠlŽ¸”s	3	ƒ{[ƒ‹ŽŽ“Š‚PˆÈã‚Å“|‚·A“¦‚ª‚·
-	TVTOPIC_WATCH_FISHING,				///<¢ŠE‚ð’Þ‚éI	3	ƒ|ƒPƒ‚ƒ“‚ð‚Â‚èã‚°‚½‚Æ‚«
-	TVTOPIC_WATCH_CHANGE_GROUP,			///<ƒOƒ‹[ƒvæ‚èŠ·‚¦I	4	•Ê‚ÌƒOƒ‹[ƒv‚Éæ‚èŠ·‚¦‚½‚Æ‚«
-	TVTOPIC_WATCH_SEE_RARE_POKEMON,		///<ƒŒƒAƒ|ƒPƒ‚ƒ“”­Œ©I	3	ƒŒƒAƒ|ƒPƒ‚ƒ“‚Æ‚ÌƒGƒ“ƒJƒEƒ“ƒgŒã
-	TVTOPIC_WATCH_GET_HIDE_ITEM,		///<‰B‚µ“¹‹ï”­Œ©I	4	‰B‚µ“¹‹ï‚ðŒ©‚Â‚¯‚½‚Æ‚«
-	TVTOPIC_WATCH_SHOPPING,				///<”ƒ‚¢•¨ƒ`ƒFƒbƒN	4	ˆê“x‚É10ŒÂˆÈã‚Ì“¹‹ï‚ð”ƒ‚Á‚½‚Æ‚«
-	TVTOPIC_WATCH_BORN_EGG,				///<ƒ^ƒ}ƒS‚ª›z‚Á‚½I	4	ƒ^ƒ}ƒS‚ª›z‰»‚µ‚½‚Æ‚«
-	TVTOPIC_WATCH_CHECK_SODATEYA,		///<ˆç‚Ä‰®ƒ`ƒFƒbƒN		ˆç‚Ä‰®‚É—a‚¯‚½‚Æ‚«
-	TVTOPIC_WATCH_CHANGE_NICKNAME,		///<©–¼”»’f	4	ƒjƒbƒNƒl[ƒ€‚ð•ÏX‚µ‚½‚Æ‚«
-	TVTOPIC_WATCH_POISON_DEAD,			///<“Å‚Å‚Ð‚ñŽ€cc		ƒtƒB[ƒ‹ƒh‚Åƒ|ƒPƒ‚ƒ“‚ª•mŽ€‚É‚È‚Á‚½‚Æ‚«
-	TVTOPIC_WATCH_WIN_LOT,				///<ƒ|ƒPƒ‚ƒ“‚­‚¶“–‘II		ƒ|ƒPƒ‚ƒ“‚­‚¶‚É“–‚½‚Á‚½‚Æ‚«
-	TVTOPIC_WATCH_DIG_FOSSIL,			///<‰»ÎŒ@‚è	‰»ÎŒ@‚è‚ð‚µ‚½‚ ‚Æ
-	TVTOPIC_WATCH_DENDOU,				///<“a“°“ü‚èI	‚Í‚¶‚ß‚Ä“a“°“ü‚è‚µ‚½‚Æ‚«
-	TVTOPIC_WATCH_SAFARI,				///<ƒTƒtƒ@ƒŠƒQ[ƒ€	ƒTƒtƒ@ƒŠƒQ[ƒ€‚ðI—¹‚³‚¹‚½‚Æ‚«
-	TVTOPIC_WATCH_OSU_MESU,				///<ƒIƒX‚¾‚¯IƒƒX‚¾‚¯I	ƒpƒ\ƒRƒ“‚©‚ç”²‚¯‚½‚Æ‚«‚ÌŽèŽ‚¿‚É‚æ‚è
-	TVTOPIC_WATCH_KANPOU,				///<—Ç–ò‚ÍŒû‚É‹ê‚µI	ƒ|ƒPƒ‚ƒ“‚ÉŠ¿•û–ò‚ð‚ ‚°‚½‚Æ‚«
-	TVTOPIC_WATCH_NUTS_HARVEST,			///<–LìI		–Ø‚ÌŽÀ‚ð‚½‚­‚³‚ñŽûŠn‚µ‚½‚Æ‚«iŽûŠnŽžA–Ø‚ÌHP‚ª‚WA‚X‚¾‚Á‚½‚Æ‚«j
-	TVTOPIC_WATCH_NUTS_POOR,			///<•sìEEE	–Ø‚ÌŽÀ‚ª‚P‚Â‚µ‚©ŽûŠn‚Å‚«‚È‚©‚Á‚½‚Æ‚«
-	TVTOPIC_WATCH_MAKE_NEW_GROUP,		///<VƒOƒ‹[ƒv’a¶I	V‚µ‚­ƒOƒ‹[ƒv‚ðì‚Á‚½‚Æ‚«
-	TVTOPIC_WATCH_SET_CUSTOMBALL,		///<ƒJƒXƒ^ƒ€ƒ{[ƒ‹ì¬I	ƒJƒXƒ^ƒ€ƒJƒvƒZƒ‹‚ðƒ|ƒPƒ‚ƒ“‚ÉƒZƒbƒg‚µ‚½‚Æ‚«
-	TVTOPIC_WATCH_GET_FLAG,				///<Šø‚ðŽæ‚Á‚½I		l‚ÌŠø‚ðŽ‚¿‹A‚Á‚½I
-	TVTOPIC_WATCH_LOSE_FLAG,			///<Šø‚ðŽæ‚ç‚ê‚½I		Ž©•ª‚ÌŠø‚ðŽ‚¿‹A‚ç‚ê‚½I
-	TVTOPIC_WATCH_RIBBON,				///<ƒŠƒ{ƒ“		
+	TVTOPIC_WATCH_POKE_GET_SUCCESS = 1,	///<ãƒã‚±ãƒ¢ãƒ³æ•ç²æˆåŠŸï¼	3	ãƒã‚±ãƒ¢ãƒ³æ•ç²çµ‚äº†å¾Œ
+	TVTOPIC_WATCH_POKE_GET_FAILURE,		///<ãƒã‚±ãƒ¢ãƒ³æ•ç²å¤±æ•—	3	ãƒœãƒ¼ãƒ«è©¦æŠ•ï¼‘ä»¥ä¸Šã§å€’ã™ã€é€ƒãŒã™
+	TVTOPIC_WATCH_FISHING,				///<ä¸–ç•Œã‚’é‡£ã‚‹ï¼	3	ãƒã‚±ãƒ¢ãƒ³ã‚’ã¤ã‚Šä¸Šã’ãŸã¨ã
+	TVTOPIC_WATCH_CHANGE_GROUP,			///<ã‚°ãƒ«ãƒ¼ãƒ—ä¹—ã‚Šæ›ãˆï¼	4	åˆ¥ã®ã‚°ãƒ«ãƒ¼ãƒ—ã«ä¹—ã‚Šæ›ãˆãŸã¨ã
+	TVTOPIC_WATCH_SEE_RARE_POKEMON,		///<ãƒ¬ã‚¢ãƒã‚±ãƒ¢ãƒ³ç™ºè¦‹ï¼	3	ãƒ¬ã‚¢ãƒã‚±ãƒ¢ãƒ³ã¨ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå¾Œ
+	TVTOPIC_WATCH_GET_HIDE_ITEM,		///<éš ã—é“å…·ç™ºè¦‹ï¼	4	éš ã—é“å…·ã‚’è¦‹ã¤ã‘ãŸã¨ã
+	TVTOPIC_WATCH_SHOPPING,				///<è²·ã„ç‰©ãƒã‚§ãƒƒã‚¯	4	ä¸€åº¦ã«10å€‹ä»¥ä¸Šã®é“å…·ã‚’è²·ã£ãŸã¨ã
+	TVTOPIC_WATCH_BORN_EGG,				///<ã‚¿ãƒžã‚´ãŒå­µã£ãŸï¼	4	ã‚¿ãƒžã‚´ãŒå­µåŒ–ã—ãŸã¨ã
+	TVTOPIC_WATCH_CHECK_SODATEYA,		///<è‚²ã¦å±‹ãƒã‚§ãƒƒã‚¯		è‚²ã¦å±‹ã«é ã‘ãŸã¨ã
+	TVTOPIC_WATCH_CHANGE_NICKNAME,		///<å§“ååˆ¤æ–­	4	ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’å¤‰æ›´ã—ãŸã¨ã
+	TVTOPIC_WATCH_POISON_DEAD,			///<æ¯’ã§ã²ã‚“æ­»â€¦â€¦		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ãƒã‚±ãƒ¢ãƒ³ãŒç€•æ­»ã«ãªã£ãŸã¨ã
+	TVTOPIC_WATCH_WIN_LOT,				///<ãƒã‚±ãƒ¢ãƒ³ãã˜å½“é¸ï¼		ãƒã‚±ãƒ¢ãƒ³ãã˜ã«å½“ãŸã£ãŸã¨ã
+	TVTOPIC_WATCH_DIG_FOSSIL,			///<åŒ–çŸ³æŽ˜ã‚Š	åŒ–çŸ³æŽ˜ã‚Šã‚’ã—ãŸã‚ã¨
+	TVTOPIC_WATCH_DENDOU,				///<æ®¿å ‚å…¥ã‚Šï¼	ã¯ã˜ã‚ã¦æ®¿å ‚å…¥ã‚Šã—ãŸã¨ã
+	TVTOPIC_WATCH_SAFARI,				///<ã‚µãƒ•ã‚¡ãƒªã‚²ãƒ¼ãƒ 	ã‚µãƒ•ã‚¡ãƒªã‚²ãƒ¼ãƒ ã‚’çµ‚äº†ã•ã›ãŸã¨ã
+	TVTOPIC_WATCH_OSU_MESU,				///<ã‚ªã‚¹ã ã‘ï¼ãƒ¡ã‚¹ã ã‘ï¼	ãƒ‘ã‚½ã‚³ãƒ³ã‹ã‚‰æŠœã‘ãŸã¨ãã®æ‰‹æŒã¡ã«ã‚ˆã‚Š
+	TVTOPIC_WATCH_KANPOU,				///<è‰¯è–¬ã¯å£ã«è‹¦ã—ï¼	ãƒã‚±ãƒ¢ãƒ³ã«æ¼¢æ–¹è–¬ã‚’ã‚ã’ãŸã¨ã
+	TVTOPIC_WATCH_NUTS_HARVEST,			///<è±Šä½œï¼		æœ¨ã®å®Ÿã‚’ãŸãã•ã‚“åŽç©«ã—ãŸã¨ãï¼ˆåŽç©«æ™‚ã€æœ¨ã®HPãŒï¼˜ã€ï¼™ã ã£ãŸã¨ãï¼‰
+	TVTOPIC_WATCH_NUTS_POOR,			///<ä¸ä½œãƒ»ãƒ»ãƒ»	æœ¨ã®å®ŸãŒï¼‘ã¤ã—ã‹åŽç©«ã§ããªã‹ã£ãŸã¨ã
+	TVTOPIC_WATCH_MAKE_NEW_GROUP,		///<æ–°ã‚°ãƒ«ãƒ¼ãƒ—èª•ç”Ÿï¼	æ–°ã—ãã‚°ãƒ«ãƒ¼ãƒ—ã‚’ä½œã£ãŸã¨ã
+	TVTOPIC_WATCH_SET_CUSTOMBALL,		///<ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ä½œæˆï¼	ã‚«ã‚¹ã‚¿ãƒ ã‚«ãƒ—ã‚»ãƒ«ã‚’ãƒã‚±ãƒ¢ãƒ³ã«ã‚»ãƒƒãƒˆã—ãŸã¨ã
+	TVTOPIC_WATCH_GET_FLAG,				///<æ——ã‚’å–ã£ãŸï¼		äººã®æ——ã‚’æŒã¡å¸°ã£ãŸï¼
+	TVTOPIC_WATCH_LOSE_FLAG,			///<æ——ã‚’å–ã‚‰ã‚ŒãŸï¼		è‡ªåˆ†ã®æ——ã‚’æŒã¡å¸°ã‚‰ã‚ŒãŸï¼
+	TVTOPIC_WATCH_RIBBON,				///<ãƒªãƒœãƒ³		
 
-	TVTOPIC_WATCH_VILLA,				///<•Ê‘‘š
-	TVTOPIC_WATCH_RECONSTRUCTION,		///<‰ü’zš
+	TVTOPIC_WATCH_VILLA,				///<åˆ¥è˜â˜…
+	TVTOPIC_WATCH_RECONSTRUCTION,		///<æ”¹ç¯‰â˜…
 
 	TVTOPIC_WATCH_MAX,
 }TVTOPIC_WATCH_TYPE;
@@ -68,22 +68,22 @@ typedef enum {
 
 //----------------------------------------------------------
 /**
- * @brief	TVƒgƒsƒbƒNFƒMƒlƒXŒ^ƒ^ƒCƒv’è‹`
+ * @brief	TVãƒˆãƒ”ãƒƒã‚¯ï¼šã‚®ãƒã‚¹åž‹ã‚¿ã‚¤ãƒ—å®šç¾©
  */
 //----------------------------------------------------------
 typedef enum {
-	TVTOPIC_RECORD_BTOWER = 1,		///<ƒoƒgƒ‹ƒ^ƒ[˜AŸ‹L˜^XV	ƒoƒgƒ‹ƒ^ƒ[˜AŸ‹L˜^‚ðXV‚µ‚½‚Æ‚«
-	TVTOPIC_RECORD_BFACTORY,		///<ƒtƒ@ƒNƒgƒŠ[˜AŸ‹L˜^XV	ƒtƒ@ƒNƒgƒŠ[˜AŸ‹L˜^‚ðXV‚µ‚½‚Æ‚«
-	TVTOPIC_RECORD_OOKISA,			///<‘å‚«‚³‘ª’è‹L˜^XV	‘å‚«‚³‘ª’è‚Å‹L˜^‚ðXV‚µ‚½‚Æ‚«
-	TVTOPIC_RECORD_SLOT,			///<ƒXƒƒbƒg’Bl	ƒXƒƒbƒg‚Åˆê’è–‡”ˆÈã‚ð‰Ò‚¢‚¾‚Æ‚«
-	TVTOPIC_RECORD_RIBBON,			///<ƒŠƒ{ƒ“ƒRƒŒƒNƒ^[	ƒŠƒ{ƒ“‚ðˆê’è–‡”ˆÈãŠl“¾Žž‚Éì¬
-	TVTOPIC_RECORD_NUTS_MASTER,		///<–Ø‚ÌŽÀˆç‚Ä‚Ì–¼l	ŽûŠnŽžA–Ø‚ÌHP‚ª10‚¾‚Á‚½‚Æ‚«
-	TVTOPIC_RECORD_POKE_SEARCHER,	///<—h‚ê‘–¼l		—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg‚ðI—¹‚µ‚½‚Æ‚«˜A‘±”‚ª10ˆÈã
-	TVTOPIC_RECORD_TRAP_REMOVER,	///<ƒƒi‰ðœ–¼l	’n‰º‚É“ü‚Á‚½‚Æ‚«A‚½‚­‚³‚ñ‚Ìƒƒi‚ð‰ðœ‚µ‚½‚çì¬
-	TVTOPIC_RECORD_FLAG_GET,		///<ƒnƒ^ƒgƒŠ–¼l		
+	TVTOPIC_RECORD_BTOWER = 1,		///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹è¨˜éŒ²æ›´æ–°	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹è¨˜éŒ²ã‚’æ›´æ–°ã—ãŸã¨ã
+	TVTOPIC_RECORD_BFACTORY,		///<ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼é€£å‹è¨˜éŒ²æ›´æ–°	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼é€£å‹è¨˜éŒ²ã‚’æ›´æ–°ã—ãŸã¨ã
+	TVTOPIC_RECORD_OOKISA,			///<å¤§ãã•æ¸¬å®šè¨˜éŒ²æ›´æ–°	å¤§ãã•æ¸¬å®šã§è¨˜éŒ²ã‚’æ›´æ–°ã—ãŸã¨ã
+	TVTOPIC_RECORD_SLOT,			///<ã‚¹ãƒ­ãƒƒãƒˆé”äºº	ã‚¹ãƒ­ãƒƒãƒˆã§ä¸€å®šæžšæ•°ä»¥ä¸Šã‚’ç¨¼ã„ã ã¨ã
+	TVTOPIC_RECORD_RIBBON,			///<ãƒªãƒœãƒ³ã‚³ãƒ¬ã‚¯ã‚¿ãƒ¼	ãƒªãƒœãƒ³ã‚’ä¸€å®šæžšæ•°ä»¥ä¸Šç²å¾—æ™‚ã«ä½œæˆ
+	TVTOPIC_RECORD_NUTS_MASTER,		///<æœ¨ã®å®Ÿè‚²ã¦ã®åäºº	åŽç©«æ™‚ã€æœ¨ã®HPãŒ10ã ã£ãŸã¨ã
+	TVTOPIC_RECORD_POKE_SEARCHER,	///<æºã‚Œè‰åäºº		æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚’çµ‚äº†ã—ãŸã¨ãé€£ç¶šæ•°ãŒ10ä»¥ä¸Š
+	TVTOPIC_RECORD_TRAP_REMOVER,	///<ãƒ¯ãƒŠè§£é™¤åäºº	åœ°ä¸‹ã«å…¥ã£ãŸã¨ãã€ãŸãã•ã‚“ã®ãƒ¯ãƒŠã‚’è§£é™¤ã—ãŸã‚‰ä½œæˆ
+	TVTOPIC_RECORD_FLAG_GET,		///<ãƒã‚¿ãƒˆãƒªåäºº		
 
-	TVTOPIC_RECORD_BP,				///<ƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼lš
-	TVTOPIC_RECORD_GTS,				///<GTS–¼lš
+	TVTOPIC_RECORD_BP,				///<ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäººâ˜…
+	TVTOPIC_RECORD_GTS,				///<GTSåäººâ˜…
 
 	TVTOPIC_RECORD_MAX,
 }TVTOPIC_RECORD_TYPE;
@@ -91,30 +91,30 @@ typedef enum {
 
 //----------------------------------------------------------
 /**
- * @brief	TVƒgƒsƒbƒNFŽ¿–âŒ^ƒ^ƒCƒv’è‹`
+ * @brief	TVãƒˆãƒ”ãƒƒã‚¯ï¼šè³ªå•åž‹ã‚¿ã‚¤ãƒ—å®šç¾©
  */
 //----------------------------------------------------------
 typedef enum {
-	TVTOPIC_INTERVIEW_GYM_BADGE = 1,///<ƒWƒ€§”eI	1	ƒWƒ€‚Ì‚ ‚éƒVƒeƒB	ƒWƒ€ƒŠ[ƒ_[‚ð“|‚µ‚½‚ ‚Æ
-	TVTOPIC_INTERVIEW_BTOWER,		///<’§íIƒoƒgƒ‹ƒ^ƒ[	1	ƒoƒgƒ‹ƒ^ƒ[	’§íI—¹Œã
-	TVTOPIC_INTERVIEW_BFACTORY,		///<’§íIƒtƒ@ƒNƒgƒŠ[	1	ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[	’§íI—¹Œã
-	TVTOPIC_INTERVIEW_POKEMON,		///<‚ ‚È‚½‚Ìƒ|ƒPƒ‚ƒ“	1	ƒ|ƒPƒ‚ƒ“‘åD‚«ƒNƒ‰ƒu	
-	TVTOPIC_INTERVIEW_ITEM,			///<‚¨‚·‚·‚ß‚Ì‚Ç‚¤‚®I	2	ƒtƒŒƒ“ƒhƒŠƒBƒVƒ‡ƒbƒv	
-	TVTOPIC_INTERVIEW_POKETCH,		///<‚¨‹C‚É“ü‚è‚Ìƒ|ƒPƒbƒ`	2	ƒJƒ“ƒpƒj[	
-	TVTOPIC_INTERVIEW_CONTEST,		///<’§íIƒRƒ“ƒeƒXƒg		ƒRƒ“ƒeƒXƒg‰ïê	ƒRƒ“ƒeƒXƒgI—¹Œã
-	TVTOPIC_INTERVIEW_TATOE,		///<ƒ|ƒPƒ‚ƒ“‚É—á‚¦‚½‚çH	2	‘åD‚«ƒNƒ‰ƒu	
-	TVTOPIC_INTERVIEW_CLIP,			///<ƒ|ƒPƒ‚ƒ“ƒNƒŠƒbƒvI	2	ƒNƒŠƒbƒv‚ðì‚éêŠ	ƒNƒŠƒbƒv‚ðì‚Á‚½‚ ‚Æ
-	TVTOPIC_INTERVIEW_CHARACTOR,	///<«Šif’fI	2		
-	TVTOPIC_INTERVIEW_PORUTO,		///<ƒ|ƒ‹ƒg—¿—		ƒ|ƒ‹ƒg‚ðì‚éêŠ	ƒ|ƒ‹ƒg‚ðì‚Á‚½‚ç
-	TVTOPIC_INTERVIEW_KOUKAN,		///<ŒðŠ·‚µ‚½ƒ|ƒPƒ‚ƒ“	1		
-	TVTOPIC_INTERVIEW_TUREARUKI,	///<˜A‚ê•à‚«‚ð–ž‹iI		Ž©‘RŒö‰€ƒQ[ƒg	˜A‚ê•à‚«Œã
+	TVTOPIC_INTERVIEW_GYM_BADGE = 1,///<ã‚¸ãƒ åˆ¶è¦‡ï¼	1	ã‚¸ãƒ ã®ã‚ã‚‹ã‚·ãƒ†ã‚£	ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã‚’å€’ã—ãŸã‚ã¨
+	TVTOPIC_INTERVIEW_BTOWER,		///<æŒ‘æˆ¦ï¼ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼	1	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼	æŒ‘æˆ¦çµ‚äº†å¾Œ
+	TVTOPIC_INTERVIEW_BFACTORY,		///<æŒ‘æˆ¦ï¼ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼	1	ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼	æŒ‘æˆ¦çµ‚äº†å¾Œ
+	TVTOPIC_INTERVIEW_POKEMON,		///<ã‚ãªãŸã®ãƒã‚±ãƒ¢ãƒ³	1	ãƒã‚±ãƒ¢ãƒ³å¤§å¥½ãã‚¯ãƒ©ãƒ–	
+	TVTOPIC_INTERVIEW_ITEM,			///<ãŠã™ã™ã‚ã®ã©ã†ãï¼	2	ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚£ã‚·ãƒ§ãƒƒãƒ—	
+	TVTOPIC_INTERVIEW_POKETCH,		///<ãŠæ°—ã«å…¥ã‚Šã®ãƒã‚±ãƒƒãƒ	2	ã‚«ãƒ³ãƒ‘ãƒ‹ãƒ¼	
+	TVTOPIC_INTERVIEW_CONTEST,		///<æŒ‘æˆ¦ï¼ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆä¼šå ´	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆçµ‚äº†å¾Œ
+	TVTOPIC_INTERVIEW_TATOE,		///<ãƒã‚±ãƒ¢ãƒ³ã«ä¾‹ãˆãŸã‚‰ï¼Ÿ	2	å¤§å¥½ãã‚¯ãƒ©ãƒ–	
+	TVTOPIC_INTERVIEW_CLIP,			///<ãƒã‚±ãƒ¢ãƒ³ã‚¯ãƒªãƒƒãƒ—ï¼	2	ã‚¯ãƒªãƒƒãƒ—ã‚’ä½œã‚‹å ´æ‰€	ã‚¯ãƒªãƒƒãƒ—ã‚’ä½œã£ãŸã‚ã¨
+	TVTOPIC_INTERVIEW_CHARACTOR,	///<æ€§æ ¼è¨ºæ–­ï¼	2		
+	TVTOPIC_INTERVIEW_PORUTO,		///<ãƒãƒ«ãƒˆæ–™ç†		ãƒãƒ«ãƒˆã‚’ä½œã‚‹å ´æ‰€	ãƒãƒ«ãƒˆã‚’ä½œã£ãŸã‚‰
+	TVTOPIC_INTERVIEW_KOUKAN,		///<äº¤æ›ã—ãŸãƒã‚±ãƒ¢ãƒ³	1		
+	TVTOPIC_INTERVIEW_TUREARUKI,	///<é€£ã‚Œæ­©ãã‚’æº€å–«ï¼		è‡ªç„¶å…¬åœ’ã‚²ãƒ¼ãƒˆ	é€£ã‚Œæ­©ãå¾Œ
 
-	TVTOPIC_INTERVIEW_STAGE,		///<ƒoƒgƒ‹ƒXƒe[ƒWš
-	TVTOPIC_INTERVIEW_STRANGE1,		///<‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš
-	TVTOPIC_INTERVIEW_STRANGE2,		///<‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš
-	TVTOPIC_INTERVIEW_STRANGE3,		///<‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš
-	TVTOPIC_INTERVIEW_STRANGE4,		///<‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš
-	TVTOPIC_INTERVIEW_FRIEND,		///<ƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µš
+	TVTOPIC_INTERVIEW_STAGE,		///<ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸â˜…
+	TVTOPIC_INTERVIEW_STRANGE1,		///<ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…
+	TVTOPIC_INTERVIEW_STRANGE2,		///<ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…
+	TVTOPIC_INTERVIEW_STRANGE3,		///<ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…
+	TVTOPIC_INTERVIEW_STRANGE4,		///<ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…
+	TVTOPIC_INTERVIEW_FRIEND,		///<ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—â˜…
 
 	TVTOPIC_INTERVIEW_TYPE_MAX,
 }TVTOPIC_INTERVIEW_TYPE;
@@ -122,27 +122,27 @@ typedef enum {
 
 //----------------------------------------------------------
 /**
- * @brief	TVƒgƒsƒbƒNFƒCƒxƒ“ƒgŒ^ƒ^ƒCƒv’è‹`
+ * @brief	TVãƒˆãƒ”ãƒƒã‚¯ï¼šã‚¤ãƒ™ãƒ³ãƒˆåž‹ã‚¿ã‚¤ãƒ—å®šç¾©
  */
 //----------------------------------------------------------
 typedef enum {
-	TVTOPIC_EVENT_RANDOMGROUP = 1,		///<ƒOƒ‹[ƒvÐ‰î
-	TVTOPIC_EVENT_WEATHER,				///<“V‹C—\•ñ
-	TVTOPIC_EVENT_TOWNGUIDE,			///<ƒVƒ“ƒIƒE‚ ‚ÌŠX‚±‚ÌŠX
-	TVTOPIC_EVENT_BARGAIN,				///<ƒVƒ‡ƒbƒvˆÀ”„‚èî•ñ
-	TVTOPIC_EVENT_POKEMON_OUTBREAK,		///<‘å—Ê”­¶I
-	TVTOPIC_EVENT_POKEMON_ENCOUNT,		///<ƒ|ƒPƒ‚ƒ“o–vî•ñI
-	TVTOPIC_EVENT_POKEMON_AISHOU,		///<ƒ|ƒPƒ‚ƒ“‘Š«ƒ`ƒƒƒ“ƒlƒ‹
-	TVTOPIC_EVENT_POSTMAN,				///<”z’Bˆõ‚¾‚æ‚è
-	TVTOPIC_EVENT_NUTS_INFOMATION,		///<‚«‚Ì‚Ý‚¶‚å‚¤‚Ù‚¤
-	TVTOPIC_EVENT_WAZAMACHINE,			///<‚í‚´ƒ}ƒVƒ“‚¶‚å‚¤‚Ù‚¤
-	TVTOPIC_EVENT_POKEMON_ITEM,			///<‚Ç‚¤‚®‚ðŽ‚Á‚Ä‚é–ì¶ƒ|ƒPƒ‚ƒ“
-	TVTOPIC_EVENT_POKEMON_CHARACTOR,	///<‚¹‚¢‚©‚­f’f
-	TVTOPIC_EVENT_SLOT_INFO,			///<ƒXƒƒbƒg‚Ìo‹Êî•ñ
-	TVTOPIC_EVENT_TV_SHOPPING,			///<‚s‚uƒVƒ‡ƒbƒsƒ“ƒO
-	TVTOPIC_EVENT_TV_MOVE_POKEMON,		///<ˆÚ“®ƒ|ƒPƒ‚ƒ“–ÚŒ‚î•ñI
-	TVTOPIC_EVENT_TV_TAMAGO_INFO,		///<ƒ^ƒ}ƒS”­Œ©•ñ
-	TVTOPIC_EVENT_TV_CLIP_INFO,			///<ƒ|ƒPƒ‚ƒ“ƒtƒ@ƒbƒVƒ‡ƒ“ƒ`ƒFƒbƒN
+	TVTOPIC_EVENT_RANDOMGROUP = 1,		///<ã‚°ãƒ«ãƒ¼ãƒ—ç´¹ä»‹
+	TVTOPIC_EVENT_WEATHER,				///<å¤©æ°—äºˆå ±
+	TVTOPIC_EVENT_TOWNGUIDE,			///<ã‚·ãƒ³ã‚ªã‚¦ã‚ã®è¡—ã“ã®è¡—
+	TVTOPIC_EVENT_BARGAIN,				///<ã‚·ãƒ§ãƒƒãƒ—å®‰å£²ã‚Šæƒ…å ±
+	TVTOPIC_EVENT_POKEMON_OUTBREAK,		///<å¤§é‡ç™ºç”Ÿï¼
+	TVTOPIC_EVENT_POKEMON_ENCOUNT,		///<ãƒã‚±ãƒ¢ãƒ³å‡ºæ²¡æƒ…å ±ï¼
+	TVTOPIC_EVENT_POKEMON_AISHOU,		///<ãƒã‚±ãƒ¢ãƒ³ç›¸æ€§ãƒãƒ£ãƒ³ãƒãƒ«
+	TVTOPIC_EVENT_POSTMAN,				///<é…é”å“¡ã ã‚ˆã‚Š
+	TVTOPIC_EVENT_NUTS_INFOMATION,		///<ãã®ã¿ã˜ã‚‡ã†ã»ã†
+	TVTOPIC_EVENT_WAZAMACHINE,			///<ã‚ã–ãƒžã‚·ãƒ³ã˜ã‚‡ã†ã»ã†
+	TVTOPIC_EVENT_POKEMON_ITEM,			///<ã©ã†ãã‚’æŒã£ã¦ã‚‹é‡Žç”Ÿãƒã‚±ãƒ¢ãƒ³
+	TVTOPIC_EVENT_POKEMON_CHARACTOR,	///<ã›ã„ã‹ãè¨ºæ–­
+	TVTOPIC_EVENT_SLOT_INFO,			///<ã‚¹ãƒ­ãƒƒãƒˆã®å‡ºçŽ‰æƒ…å ±
+	TVTOPIC_EVENT_TV_SHOPPING,			///<ï¼´ï¼¶ã‚·ãƒ§ãƒƒãƒ”ãƒ³ã‚°
+	TVTOPIC_EVENT_TV_MOVE_POKEMON,		///<ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ç›®æ’ƒæƒ…å ±ï¼
+	TVTOPIC_EVENT_TV_TAMAGO_INFO,		///<ã‚¿ãƒžã‚´ç™ºè¦‹å ±å‘Š
+	TVTOPIC_EVENT_TV_CLIP_INFO,			///<ãƒã‚±ãƒ¢ãƒ³ãƒ•ã‚¡ãƒƒã‚·ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
 
 	TVTOPIC_EVENT_TYPE_MAX,
 }TVTOPIC_EVENT_TYPE;
@@ -150,18 +150,18 @@ typedef enum {
 
 //----------------------------------------------------------
 /**
- * @brief	TVƒgƒsƒbƒNFƒoƒ‰ƒGƒeƒBŒ^ƒ^ƒCƒv’è‹`š
+ * @brief	TVãƒˆãƒ”ãƒƒã‚¯ï¼šãƒãƒ©ã‚¨ãƒ†ã‚£åž‹ã‚¿ã‚¤ãƒ—å®šç¾©â˜…
  */
 //----------------------------------------------------------
 typedef enum {
-	TVTOPIC_VARIETY_SEARCH_PARTY = 1,	///<ƒ|ƒPƒ‚ƒ“‘{õ‘àš
-	TVTOPIC_VARIETY_LEADER,				///<ƒ}ƒLƒVƒ}ƒ€ŽŽ‡’†Œpš
-	TVTOPIC_VARIETY_DORAMA1,			///<˜A‘±ƒeƒŒƒrƒhƒ‰ƒ}š
-	TVTOPIC_VARIETY_DORAMA2,			///<˜A‘±ƒeƒŒƒrƒhƒ‰ƒ}š
-	TVTOPIC_VARIETY_DORAMA3,			///<˜A‘±ƒeƒŒƒrƒhƒ‰ƒ}š
-	TVTOPIC_VARIETY_DORAMA4,			///<˜A‘±ƒeƒŒƒrƒhƒ‰ƒ}š
-	TVTOPIC_VARIETY_DORAMA5,			///<˜A‘±ƒeƒŒƒrƒhƒ‰ƒ}š
-	TVTOPIC_VARIETY_DORAMA6,			///<˜A‘±ƒeƒŒƒrƒhƒ‰ƒ}š
+	TVTOPIC_VARIETY_SEARCH_PARTY = 1,	///<ãƒã‚±ãƒ¢ãƒ³æœç´¢éšŠâ˜…
+	TVTOPIC_VARIETY_LEADER,				///<ãƒžã‚­ã‚·ãƒžãƒ è©¦åˆä¸­ç¶™â˜…
+	TVTOPIC_VARIETY_DORAMA1,			///<é€£ç¶šãƒ†ãƒ¬ãƒ“ãƒ‰ãƒ©ãƒžâ˜…
+	TVTOPIC_VARIETY_DORAMA2,			///<é€£ç¶šãƒ†ãƒ¬ãƒ“ãƒ‰ãƒ©ãƒžâ˜…
+	TVTOPIC_VARIETY_DORAMA3,			///<é€£ç¶šãƒ†ãƒ¬ãƒ“ãƒ‰ãƒ©ãƒžâ˜…
+	TVTOPIC_VARIETY_DORAMA4,			///<é€£ç¶šãƒ†ãƒ¬ãƒ“ãƒ‰ãƒ©ãƒžâ˜…
+	TVTOPIC_VARIETY_DORAMA5,			///<é€£ç¶šãƒ†ãƒ¬ãƒ“ãƒ‰ãƒ©ãƒžâ˜…
+	TVTOPIC_VARIETY_DORAMA6,			///<é€£ç¶šãƒ†ãƒ¬ãƒ“ãƒ‰ãƒ©ãƒžâ˜…
 
 	TVTOPIC_VARIETY_TYPE_MAX,
 }TVTOPIC_VARIETY_TYPE;
@@ -169,45 +169,45 @@ typedef enum {
 
 //----------------------------------------------------------
 /**
- * @brief	CMƒ^ƒCƒv’è‹`
+ * @brief	CMã‚¿ã‚¤ãƒ—å®šç¾©
  */
 //----------------------------------------------------------
 typedef enum {
-	CM_TYPE_POKECEN = 1,		///<ƒ|ƒPƒ‚ƒ“ƒZƒ“ƒ^[	Å‰‚©‚ç
-	CM_TYPE_FRIENDLYSHOP,		///<ƒtƒŒƒ“ƒhƒŠƒBƒVƒ‡ƒbƒv	Å‰‚©‚ç
-	CM_TYPE_TV_STATION,			///<‚s‚u‹Ç	Å‰‚©‚ç
-	CM_TYPE_TRAINERSCHOOL,		///<ƒgƒŒ[ƒi[ƒXƒN[ƒ‹	Å‰‚©‚ç
-	CM_TYPE_POKETCH,			///<ƒ|ƒPƒbƒ`	Å‰‚©‚ç
-	CM_TYPE_POKETCH_SOFT,		///<ƒ|ƒPƒbƒ`ƒ\ƒtƒg	
-	CM_TYPE_FLOWER_SHOP,		///<‰Ô‰®	ƒ\ƒmƒI“ž’…
-	CM_TYPE_BICYCLE_SHOP,		///<Ž©“]ŽÔ‰®	ƒnƒNƒ^ƒC“ž’…
-	CM_TYPE_CONTEST,			///<”ü—eŽº	
-	CM_TYPE_NATURE_PARK,		///<ƒRƒ“ƒeƒXƒg‚b‚l	ƒnƒNƒ^ƒC“ž’…					//10
-	CM_TYPE_DEPART,				///<Ž©‘RŒö‰€	ƒˆƒXƒK“ž’…
-	CM_TYPE_BEAUTY_SALON,		///<ƒgƒoƒŠƒfƒp[ƒg	ƒˆƒXƒK“ž’…
-	CM_TYPE_SODATEYA,			///<ˆç‚Ä‰®	ƒˆƒXƒK“ž’…
-	CM_TYPE_HOTEL,				///<ƒzƒeƒ‹	ƒˆƒXƒK“ž’…
-	CM_TYPE_SAFARI,				///<‘åŽ¼Œ´	ƒˆƒXƒK“ž’…
-	CM_TYPE_C09,				///<ƒLƒbƒTƒLƒVƒeƒB	ƒWƒ€ƒoƒbƒW‚TŒÂ
-	CM_TYPE_C08,				///<ƒiƒMƒTŽsê	ƒWƒ€ƒoƒbƒW‚TŒÂ
-	CM_TYPE_GTC,				///<‚f‚s‚b	‚f‚s‚bƒI[ƒvƒ“
-	CM_TYPE_POKEPARK,			///<ƒ|ƒPƒ‚ƒ“ƒp[ƒN	ƒVƒ“ƒIƒE}ŠÓƒRƒ“ƒv
-	CM_TYPE_SHIP_C09,			///<ƒLƒbƒTƒLƒVƒeƒB‚Ì‘D	ƒVƒ“ƒIƒE}ŠÓƒRƒ“ƒv			//20
-	CM_TYPE_BATTLEZONE,			///<ƒoƒgƒ‹ƒ][ƒ“	ƒVƒ“ƒIƒE}ŠÓƒRƒ“ƒv
-	CM_TYPE_CLUB,				///<‰ïˆõ§‚ÌŒš•¨	ƒVƒ“ƒIƒE}ŠÓƒRƒ“ƒv
-	CM_TYPE_GINGA1,				///<ƒMƒ“ƒK’c‚P	
-	CM_TYPE_GINGA2,				///<ƒMƒ“ƒK’c‚Q	
-	CM_TYPE_PC_COMM,			///<ƒ|ƒPƒ‚ƒ“ƒZƒ“ƒ^[’ÊM•Ò	}ŠÓŽæ“¾Œã
-	CM_TYPE_PC_WIFI,			///<ƒ|ƒPƒ‚ƒ“ƒZƒ“ƒ^[Wi-Fi•Ò	}ŠÓŽæ“¾Œã
-	CM_TYPE_BTOWER,				///<ƒoƒgƒ‹ƒ^ƒ[	ƒoƒgƒ‹ƒ^ƒ[ƒI[ƒvƒ“Œã
-	CM_TYPE_WIFI_BTOWER,		///< Wi-Fiƒoƒgƒ‹ƒ^ƒ[	Wi-Fiƒoƒgƒ‹ƒ^ƒ[ƒI[ƒvƒ“Œã
-	CM_TYPE_SHIP,				///<æ‚è•¨‚b‚li‘Dj	‘D‚Éæ‚ê‚é‚æ‚¤‚É‚È‚Á‚Ä‚©‚ç
-	CM_TYPE_STAGE,				///<ƒoƒgƒ‹ƒXƒe[ƒW		c11“ž’…‚©‚çš				//30
-	CM_TYPE_CASTLE,				///<ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹	c11“ž’…‚©‚çš
-	CM_TYPE_ROULETTE,			///<ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg	c11“ž’…‚©‚çš
-	CM_TYPE_FACTORY,			///<ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[	c11“ž’…‚©‚çš
-	CM_TYPE_GLOBAL_TOWER,		///<ƒOƒ[ƒoƒ‹ƒ^ƒ[Å‰‚©‚çš
-	CM_TYPE_WIFI_HIROBA,		///<WIFILê		Å‰‚©‚çš						//35
+	CM_TYPE_POKECEN = 1,		///<ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ³ã‚¿ãƒ¼	æœ€åˆã‹ã‚‰
+	CM_TYPE_FRIENDLYSHOP,		///<ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚£ã‚·ãƒ§ãƒƒãƒ—	æœ€åˆã‹ã‚‰
+	CM_TYPE_TV_STATION,			///<ï¼´ï¼¶å±€	æœ€åˆã‹ã‚‰
+	CM_TYPE_TRAINERSCHOOL,		///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¹ã‚¯ãƒ¼ãƒ«	æœ€åˆã‹ã‚‰
+	CM_TYPE_POKETCH,			///<ãƒã‚±ãƒƒãƒ	æœ€åˆã‹ã‚‰
+	CM_TYPE_POKETCH_SOFT,		///<ãƒã‚±ãƒƒãƒã‚½ãƒ•ãƒˆ	
+	CM_TYPE_FLOWER_SHOP,		///<èŠ±å±‹	ã‚½ãƒŽã‚ªåˆ°ç€
+	CM_TYPE_BICYCLE_SHOP,		///<è‡ªè»¢è»Šå±‹	ãƒã‚¯ã‚¿ã‚¤åˆ°ç€
+	CM_TYPE_CONTEST,			///<ç¾Žå®¹å®¤	
+	CM_TYPE_NATURE_PARK,		///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼£ï¼­	ãƒã‚¯ã‚¿ã‚¤åˆ°ç€					//10
+	CM_TYPE_DEPART,				///<è‡ªç„¶å…¬åœ’	ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	CM_TYPE_BEAUTY_SALON,		///<ãƒˆãƒãƒªãƒ‡ãƒ‘ãƒ¼ãƒˆ	ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	CM_TYPE_SODATEYA,			///<è‚²ã¦å±‹	ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	CM_TYPE_HOTEL,				///<ãƒ›ãƒ†ãƒ«	ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	CM_TYPE_SAFARI,				///<å¤§æ¹¿åŽŸ	ãƒ¨ã‚¹ã‚¬åˆ°ç€
+	CM_TYPE_C09,				///<ã‚­ãƒƒã‚µã‚­ã‚·ãƒ†ã‚£	ã‚¸ãƒ ãƒãƒƒã‚¸ï¼•å€‹
+	CM_TYPE_C08,				///<ãƒŠã‚®ã‚µå¸‚å ´	ã‚¸ãƒ ãƒãƒƒã‚¸ï¼•å€‹
+	CM_TYPE_GTC,				///<ï¼§ï¼´ï¼£	ï¼§ï¼´ï¼£ã‚ªãƒ¼ãƒ—ãƒ³
+	CM_TYPE_POKEPARK,			///<ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚¯	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã‚³ãƒ³ãƒ—
+	CM_TYPE_SHIP_C09,			///<ã‚­ãƒƒã‚µã‚­ã‚·ãƒ†ã‚£ã®èˆ¹	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã‚³ãƒ³ãƒ—			//20
+	CM_TYPE_BATTLEZONE,			///<ãƒãƒˆãƒ«ã‚¾ãƒ¼ãƒ³	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã‚³ãƒ³ãƒ—
+	CM_TYPE_CLUB,				///<ä¼šå“¡åˆ¶ã®å»ºç‰©	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã‚³ãƒ³ãƒ—
+	CM_TYPE_GINGA1,				///<ã‚®ãƒ³ã‚¬å›£ï¼‘	
+	CM_TYPE_GINGA2,				///<ã‚®ãƒ³ã‚¬å›£ï¼’	
+	CM_TYPE_PC_COMM,			///<ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ³ã‚¿ãƒ¼é€šä¿¡ç·¨	å›³é‘‘å–å¾—å¾Œ
+	CM_TYPE_PC_WIFI,			///<ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ³ã‚¿ãƒ¼Wi-Fiç·¨	å›³é‘‘å–å¾—å¾Œ
+	CM_TYPE_BTOWER,				///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚ªãƒ¼ãƒ—ãƒ³å¾Œ
+	CM_TYPE_WIFI_BTOWER,		///< Wi-Fiãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼	Wi-Fiãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚ªãƒ¼ãƒ—ãƒ³å¾Œ
+	CM_TYPE_SHIP,				///<ä¹—ã‚Šç‰©ï¼£ï¼­ï¼ˆèˆ¹ï¼‰	èˆ¹ã«ä¹—ã‚Œã‚‹ã‚ˆã†ã«ãªã£ã¦ã‹ã‚‰
+	CM_TYPE_STAGE,				///<ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸		c11åˆ°ç€ã‹ã‚‰â˜…				//30
+	CM_TYPE_CASTLE,				///<ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«	c11åˆ°ç€ã‹ã‚‰â˜…
+	CM_TYPE_ROULETTE,			///<ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ	c11åˆ°ç€ã‹ã‚‰â˜…
+	CM_TYPE_FACTORY,			///<ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼	c11åˆ°ç€ã‹ã‚‰â˜…
+	CM_TYPE_GLOBAL_TOWER,		///<ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¿ãƒ¯ãƒ¼æœ€åˆã‹ã‚‰â˜…
+	CM_TYPE_WIFI_HIROBA,		///<WIFIåºƒå ´		æœ€åˆã‹ã‚‰â˜…						//35
 
 	CM_TYPE_MAX,
 }CM_TYPE;

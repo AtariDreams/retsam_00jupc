@@ -12,7 +12,7 @@
 
   $Log: mi_swap.c,v $
   Revision 1.7  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.6  2005/02/28 05:26:25  yosizaki
   do-indent.
@@ -27,10 +27,10 @@
   (none)
 
   Revision 1.2  2004/02/10 02:28:08  yada
-  code32‚ÅˆÍ‚¤
+  code32ã§å›²ã†
 
   Revision 1.1  2004/02/10 01:22:22  yada
-  UTL_ ‚©‚ç‚ÌˆÚs
+  UTL_ ã‹ã‚‰ã®ç§»è¡Œ
 
 
   $NoKeywords: $

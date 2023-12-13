@@ -1,4 +1,4 @@
-//	���샂�f���ӂ�킯�w��ID
+//	動作モデルふりわけ指定ID
 
 #ifndef	__MMLIST_DEF_H__
 #define __MMLIST_DEF_H__

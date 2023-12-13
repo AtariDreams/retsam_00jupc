@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SNDWaveData</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>SNDWaveData</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcsynopsisinfo"><code>typedef struct SNDWaveParam
@@ -33,7 +33,7 @@
 <dd><pre class="funcprototype"></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDARLWT"></a>
-      <h2>�v�f</h2>
+      <h2>要素</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -41,33 +41,33 @@
 <tbody>
 <tr>
 <td><em><strong><code>format</code></strong></em></td>
-<td>�T���v���t�H�[�}�b�g�ł��B</td>
+<td>サンプルフォーマットです。</td>
 </tr>
 <tr>
 <td><em><strong><code>loopflag</code></strong></em></td>
-<td>���[�v�t���O�ł��B�O�Ȃ烋�[�v�����A��O�Ȃ烋�[�v�L��ł��B</td>
+<td>ループフラグです。０ならループ無し、非０ならループ有りです。</td>
 </tr>
 <tr>
 <td><em><strong><code>rate</code></strong></em></td>
-<td>�T���v�����O���[�g�ł��B�P�ʂ�Hz�ł��B</td>
+<td>サンプリングレートです。単位はHzです。</td>
 </tr>
 <tr>
 <td><em><strong><code>timer</code></strong></em></td>
-<td>�Đ��^�C�}�[�l�ł��BSND_TIMER_CLOCK / rate �ɑ������܂��B</td>
+<td>再生タイマー値です。SND_TIMER_CLOCK / rate に相当します。</td>
 </tr>
 <tr>
 <td><em><strong><code>loopstart</code></strong></em></td>
-<td>���[�v�J�n�|�C���g�ł��B�P�ʂ̓��[�h�i32bit�j�ł��B</td>
+<td>ループ開始ポイントです。単位はワード（32bit）です。</td>
 </tr>
 <tr>
 <td><em><strong><code>looplen</code></strong></em></td>
-<td>���[�v���ł��B���[�v�����̏ꍇ�́A�g�`���ɑ������܂��B
-            �P�ʂ̓��[�h�i32bit�j�ł��B</td>
+<td>ループ長です。ループ無しの場合は、波形長に相当します。
+            単位はワード（32bit）です。</td>
 </tr>
 <tr>
 <td><em><strong><code>samples</code></strong></em></td>
-<td>�T���v���f�[�^�̔z��ł��B�z��̑傫���́A
-            <em><strong><code>loopstart</code></strong></em>+<em><strong><code>looplen</code></strong></em>[word]�ł��B
+<td>サンプルデータの配列です。配列の大きさは、
+            <em><strong><code>loopstart</code></strong></em>+<em><strong><code>looplen</code></strong></em>[word]です。
           </td>
 </tr>
 </tbody>
@@ -75,20 +75,20 @@
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAPNWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�g�`�f�[�^�\���̂ł��B�g�`�f�[�^�̃w�b�_���y�уT���v���f�[�^��ێ����Ă��܂��B
+波形データ構造体です。波形データのヘッダ情報及びサンプルデータを保持しています。
 </p>
       <p>
-�T���v���t�H�[�}�b�g<em><strong><code>format</code></strong></em>�͈ȉ��̒l�����܂��B
+サンプルフォーマット<em><strong><code>format</code></strong></em>は以下の値を取ります。
 </p>
-      <div class="table"><a name="IDA0NWT"></a><p class="title"><b>�\ . SNDWaveFormat</b></p>
+      <div class="table"><a name="IDA0NWT"></a><p class="title"><b>表 . SNDWaveFormat</b></p>
 <table summary="SNDWaveFormat" border="1">
 <colgroup><col><col></colgroup>
 <thead>
 <tr>
-<th>���x��</th>
-<th>����</th>
+<th>ラベル</th>
+<th>説明</th>
 </tr>
 </thead>
 <tbody>
@@ -109,24 +109,24 @@
 </div>
 
       <p>
-�T���v���t�H�[�}�b�g��<em><strong><code>SND_WAVE_FORMAT_ADPCM</code></strong></em>�̏ꍇ�A
-�T���v���f�[�^<em><strong><code>samples</code></strong></em>�̐擪�Pword�ɂ́A
-���̂悤��ADPCM�̃w�b�_��񂪊i�[����܂��B
+サンプルフォーマットが<em><strong><code>SND_WAVE_FORMAT_ADPCM</code></strong></em>の場合、
+サンプルデータ<em><strong><code>samples</code></strong></em>の先頭１wordには、
+次のようなADPCMのヘッダ情報が格納されます。
 </p>
 
       <pre class="programlisting">
 struct {
-    s16 prevsample; // �O�̃T���v���l
-    u8  previndex;  // �O�̃C���f�b�N�X�l
-    u8  padding;    // �p�f�B���O(���0)
+    s16 prevsample; // 前のサンプル値
+    u8  previndex;  // 前のインデックス値
+    u8  padding;    // パディング(常に0)
 };
 </pre>
       
     </div>
-<h2>�Q��</h2>
-<p>�Ȃ��B</p>
-<h2>����</h2>
-<p>2005/01/19 ����<br></p>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2005/01/19 初版<br></p>
 </div>
 </body>
 </html>

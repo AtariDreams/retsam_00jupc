@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_176.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			176�@�菕����������̋Z�̈З͂��P�D�T�{�ɂ���
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			176　手助けした相手の技の威力を１．５倍にする
  *
  *@author	HisashiSogabe
  *@data		2005.10.03
@@ -19,7 +19,7 @@ BE_176:
 	MESSAGE_PARAM	TedasukeM2MMsg,TAG_NICK_NICK,SIDE_ATTACK,SIDE_WORK
 	VALUE			VAL_SET,BUF_PARA_ADD_STATUS_INDIRECT,ADD_COND2_MESSAGE_WORK|ADD_STATUS_WAZAKOUKA
 #if AFTER_MASTER_070123_BT2_FIX
-	//�����Ă��鑊��ł����Ă�
+	//消えている相手でも当てる
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_KIE_HIT
 #endif //AFTER_MASTER_070123_BT2_FIX
 	SEQ_END

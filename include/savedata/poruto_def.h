@@ -1,6 +1,6 @@
 /**
  *	@file	poruto_def.h
- *	@brief	ƒ|ƒ‹ƒgƒf[ƒ^@’è”’è‹`ƒtƒ@ƒCƒ‹
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ã€€å®šæ•°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«
  *	@author	Miyuki Iwasawa
  *	@date	06.02.28
  */
@@ -8,13 +8,13 @@
 #ifndef __H_PORUTO_DEF_H__
 #define __H_PORUTO_DEF_H__
 
-#define PORUTO_STOCK_MAX	(100)	///<ƒP[ƒX‚É“ü‚ê‚Ä‚¨‚¯‚é”
-#define PORUTO_PARAM_MAX	(255)	///<–¡‚Ìƒpƒ‰ƒ[ƒ^MAX’l
-#define PORUTO_PARAM_VMAX	(99)	///<–¡‚Ìƒpƒ‰ƒ[ƒ^•`‰æãŒÀ’l
-#define PORUTO_DATA_NULL	(0xFFFF)	///<‹ó‚«—Ìˆæ‚ª‚È‚¢‚Æ‚«‚É•Ô‚é’l
-#define PORUTO_MILD_VALUE	(50)	///<uƒ}ƒCƒ‹ƒhv‚Æ”»’è‚³‚ê‚é’l
+#define PORUTO_STOCK_MAX	(100)	///<ã‚±ãƒ¼ã‚¹ã«å…¥ã‚Œã¦ãŠã‘ã‚‹æ•°
+#define PORUTO_PARAM_MAX	(255)	///<å‘³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿MAXå€¤
+#define PORUTO_PARAM_VMAX	(99)	///<å‘³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æç”»ä¸Šé™å€¤
+#define PORUTO_DATA_NULL	(0xFFFF)	///<ç©ºãé ˜åŸŸãŒãªã„ã¨ãã«è¿”ã‚‹å€¤
+#define PORUTO_MILD_VALUE	(50)	///<ã€Œãƒã‚¤ãƒ«ãƒ‰ã€ã¨åˆ¤å®šã•ã‚Œã‚‹å€¤
 
-///ƒ|ƒ‹ƒgƒZ[ƒuƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^QÆID
+///ãƒãƒ«ãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å‚ç…§ID
 typedef enum{
  PORUTO_PARAID_FLAVOR,
  PORUTO_PARAID_SPICY,
@@ -26,51 +26,51 @@ typedef enum{
  PORUTO_PARAID_NUM,
 }PORUTO_PARAID;
 
-//–¡ID
+//å‘³ID
 typedef enum{
- PORUTO_FLAVOR_SPICY,	///<h‚¢
- PORUTO_FLAVOR_SP_AS,	///<‚©‚ç‚µ‚Ô
- PORUTO_FLAVOR_SP_SW,	///<‚©‚ç‚ ‚Ü
- PORUTO_FLAVOR_SP_BI,	///<‚©‚ç‚É‚ª
- PORUTO_FLAVOR_SP_SO,	///<‚©‚ç‚·‚Á‚Ï
- PORUTO_FLAVOR_AS_SP,	///<‚µ‚Ô‚©‚ç
- PORUTO_FLAVOR_ASTR,	///<a‚¢
- PORUTO_FLAVOR_AS_SW,	///<‚µ‚Ô‚ ‚Ü
- PORUTO_FLAVOR_AS_BI,	///<‚µ‚Ô‚É‚ª
- PORUTO_FLAVOR_AS_SO,	///<‚µ‚Ô‚·‚Á‚Ï
- PORUTO_FLAVOR_SW_SP,	///<‚ ‚Ü‚©‚ç
- PORUTO_FLAVOR_SW_AS,	///<‚ ‚Ü‚µ‚Ô
- PORUTO_FLAVOR_SWEET,	///<ŠÃ‚¢
- PORUTO_FLAVOR_SW_BI,	///<‚ ‚Ü‚É‚ª
- PORUTO_FLAVOR_SW_SO,	///<‚ ‚Ü‚¸‚Á‚Ï
- PORUTO_FLAVOR_BI_SP,	///<‚É‚ª‚©‚ç
- PORUTO_FLAVOR_BI_AS,	///<‚É‚ª‚µ‚Ô
- PORUTO_FLAVOR_BI_SW,	///<‚É‚ª‚ ‚Ü
- PORUTO_FLAVOR_BITTER,	///<‹ê‚¢
- PORUTO_FLAVOR_BI_SO,	///<‚É‚ª‚·‚Á‚Ï
- PORUTO_FLAVOR_SO_SP,	///<‚·‚Á‚Ï‚©‚ç
- PORUTO_FLAVOR_SO_AS,	///<‚·‚Á‚Ï‚µ‚Ô
- PORUTO_FLAVOR_SO_SW,	///<‚·‚Á‚Ï‚ ‚Ü
- PORUTO_FLAVOR_SO_BI,	///<‚·‚Á‚Ï‚É‚ª
- PORUTO_FLAVOR_SOUR,	///<_‚Á‚Ï‚¢
- PORUTO_FLAVOR_HEAVY,	///<‚±‚Á‚Ä‚è
- PORUTO_FLAVOR_THICK,	///<‚­‚Ç‚¢
- PORUTO_FLAVOR_NGOOD,	///<‚Ü‚¸‚¢
- PORUTO_FLAVOR_MILD,	///<‚Ü‚ë‚â‚©
- PORUTO_FLAVOR_MAX,		///<–¡‚Ìí—Ş”
- PORUTO_FLAVOR_NULL,	///<–³Œø’l
+ PORUTO_FLAVOR_SPICY,	///<è¾›ã„
+ PORUTO_FLAVOR_SP_AS,	///<ã‹ã‚‰ã—ã¶
+ PORUTO_FLAVOR_SP_SW,	///<ã‹ã‚‰ã‚ã¾
+ PORUTO_FLAVOR_SP_BI,	///<ã‹ã‚‰ã«ãŒ
+ PORUTO_FLAVOR_SP_SO,	///<ã‹ã‚‰ã™ã£ã±
+ PORUTO_FLAVOR_AS_SP,	///<ã—ã¶ã‹ã‚‰
+ PORUTO_FLAVOR_ASTR,	///<æ¸‹ã„
+ PORUTO_FLAVOR_AS_SW,	///<ã—ã¶ã‚ã¾
+ PORUTO_FLAVOR_AS_BI,	///<ã—ã¶ã«ãŒ
+ PORUTO_FLAVOR_AS_SO,	///<ã—ã¶ã™ã£ã±
+ PORUTO_FLAVOR_SW_SP,	///<ã‚ã¾ã‹ã‚‰
+ PORUTO_FLAVOR_SW_AS,	///<ã‚ã¾ã—ã¶
+ PORUTO_FLAVOR_SWEET,	///<ç”˜ã„
+ PORUTO_FLAVOR_SW_BI,	///<ã‚ã¾ã«ãŒ
+ PORUTO_FLAVOR_SW_SO,	///<ã‚ã¾ãšã£ã±
+ PORUTO_FLAVOR_BI_SP,	///<ã«ãŒã‹ã‚‰
+ PORUTO_FLAVOR_BI_AS,	///<ã«ãŒã—ã¶
+ PORUTO_FLAVOR_BI_SW,	///<ã«ãŒã‚ã¾
+ PORUTO_FLAVOR_BITTER,	///<è‹¦ã„
+ PORUTO_FLAVOR_BI_SO,	///<ã«ãŒã™ã£ã±
+ PORUTO_FLAVOR_SO_SP,	///<ã™ã£ã±ã‹ã‚‰
+ PORUTO_FLAVOR_SO_AS,	///<ã™ã£ã±ã—ã¶
+ PORUTO_FLAVOR_SO_SW,	///<ã™ã£ã±ã‚ã¾
+ PORUTO_FLAVOR_SO_BI,	///<ã™ã£ã±ã«ãŒ
+ PORUTO_FLAVOR_SOUR,	///<é…¸ã£ã±ã„
+ PORUTO_FLAVOR_HEAVY,	///<ã“ã£ã¦ã‚Š
+ PORUTO_FLAVOR_THICK,	///<ãã©ã„
+ PORUTO_FLAVOR_NGOOD,	///<ã¾ãšã„
+ PORUTO_FLAVOR_MILD,	///<ã¾ã‚ã‚„ã‹
+ PORUTO_FLAVOR_MAX,		///<å‘³ã®ç¨®é¡æ•°
+ PORUTO_FLAVOR_NULL,	///<ç„¡åŠ¹å€¤
 }PORUTO_FLAVORID;
 
-///–¡ƒ^ƒCƒv
+///å‘³ã‚¿ã‚¤ãƒ—
 typedef enum{
- PORUTO_FTYPE_SPICY,	///<h‚¢Œn
- PORUTO_FTYPE_ASTR,		///<a‚¢Œn
- PORUTO_FTYPE_SWEET,	///<ŠÃ‚¢Œn
- PORUTO_FTYPE_BITTER,	///<‹ê‚¢Œn
- PORUTO_FTYPE_SOUR,		///<_‚Á‚Ï‚¢Œn
- PORUTO_FTYPE_MIX,		///<ƒ~ƒbƒNƒX
+ PORUTO_FTYPE_SPICY,	///<è¾›ã„ç³»
+ PORUTO_FTYPE_ASTR,		///<æ¸‹ã„ç³»
+ PORUTO_FTYPE_SWEET,	///<ç”˜ã„ç³»
+ PORUTO_FTYPE_BITTER,	///<è‹¦ã„ç³»
+ PORUTO_FTYPE_SOUR,		///<é…¸ã£ã±ã„ç³»
+ PORUTO_FTYPE_MIX,		///<ãƒŸãƒƒã‚¯ã‚¹
  PORUTO_FTYPE_MAX,
- PORUTO_FTYPE_NUM = 5,	///<ˆêŒn“‚Ì”
+ PORUTO_FTYPE_NUM = 5,	///<ä¸€ç³»çµ±ã®æ•°
 }PORUTO_FTYPE;
 
 #endif	//__H_PORUTO_DEF_H__

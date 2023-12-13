@@ -36,8 +36,8 @@ extern "C" {
 #endif
 
 //
-// ‰ü–¼‚ğs‚Á‚½ŠÖ”‚Ì•Ê–¼
-// ŒİŠ·«ˆÛ‚Ì‚½‚ß•Ê–¼‚Æ‚µ‚ÄˆÈ‘O‚ÌŠÖ”‚ğéŒ¾‚µ‚Ü‚·B
+// æ”¹åã‚’è¡Œã£ãŸé–¢æ•°ã®åˆ¥å
+// äº’æ›æ€§ç¶­æŒã®ãŸã‚åˆ¥åã¨ã—ã¦ä»¥å‰ã®é–¢æ•°ã‚’å®£è¨€ã—ã¾ã™ã€‚
 // 
 #define NNS_G2dAddTargetSurface             NNS_G2dAddRendererTargetSurface
 #define NNS_G2dSetCurrentImageProxy         NNS_G2dSetRendererImageProxy
@@ -50,13 +50,13 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dRndCellCullingFunction
   
-  Description:   ‚ğ‰Â‹ƒJƒŠƒ“ƒO‚·‚éŠÖ”ƒ|ƒCƒ“ƒ^
+  Description:   ã‚’å¯è¦–ã‚«ãƒªãƒ³ã‚°ã™ã‚‹é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
   
-  Arguments:    pCell   : ƒZƒ‹
-                pMtx    : •ÏŠ·s—ñ
-                pTrans  : •½sˆÚ“®’l
+  Arguments:    pCell   : ã‚»ãƒ«
+                pMtx    : å¤‰æ›è¡Œåˆ—
+                pTrans  : å¹³è¡Œç§»å‹•å€¤
                
-  Returns:      ‰Â‹‚È‚çTRUE
+  Returns:      å¯è¦–ãªã‚‰TRUE
   
  *---------------------------------------------------------------------------*/ 
 typedef BOOL(*NNSG2dRndCellCullingFunction)
@@ -71,15 +71,15 @@ struct NNSG2dRenderSurface;
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dRndDrawCellCallBack
   
-  Description:   •`‰æ‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒN
-                i•`‰æ‘O‚Æ•`‰æŒã‚ÉŒÄ‚Ño‚³‚ê‚éj
+  Description:   æç”»æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+                ï¼ˆæç”»å‰ã¨æç”»å¾Œã«å‘¼ã³å‡ºã•ã‚Œã‚‹ï¼‰
   
-  Arguments:    pRend   : ƒŒƒ“ƒ_ƒ‰‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                pSurface: ƒŒƒ“ƒ_ƒT[ƒtƒFƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                pCell   : ƒZƒ‹
-                pMtx    : •ÏŠ·s—ñ
+  Arguments:    pRend   : ãƒ¬ãƒ³ãƒ€ãƒ©ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                pSurface: ãƒ¬ãƒ³ãƒ€ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                pCell   : ã‚»ãƒ«
+                pMtx    : å¤‰æ›è¡Œåˆ—
                
-  Returns:      –³‚µ
+  Returns:      ç„¡ã—
   
  *---------------------------------------------------------------------------*/ 
 typedef void(*NNSG2dRndDrawCellCallBack)
@@ -94,15 +94,15 @@ typedef void(*NNSG2dRndDrawCellCallBack)
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dRndDrawOamCallBack
   
-  Description:   “à‚ÌOamƒAƒgƒŠƒrƒ…[ƒg•`‰æ‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒN
-                i•`‰æ‘O‚Æ•`‰æŒã‚ÉŒÄ‚Ño‚³‚ê‚éj
+  Description:   å†…ã®Oamã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæç”»æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+                ï¼ˆæç”»å‰ã¨æç”»å¾Œã«å‘¼ã³å‡ºã•ã‚Œã‚‹ï¼‰
   
-  Arguments:    pRend   : ƒŒƒ“ƒ_ƒ‰‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                pSurface: ƒŒƒ“ƒ_ƒT[ƒtƒFƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                pCell   : ƒZƒ‹
-                pMtx    : •ÏŠ·s—ñ
+  Arguments:    pRend   : ãƒ¬ãƒ³ãƒ€ãƒ©ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                pSurface: ãƒ¬ãƒ³ãƒ€ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                pCell   : ã‚»ãƒ«
+                pMtx    : å¤‰æ›è¡Œåˆ—
                
-  Returns:      –³‚µ
+  Returns:      ç„¡ã—
   
  *---------------------------------------------------------------------------*/ 
 typedef void(*NNSG2dRndDrawOamCallBack)
@@ -119,20 +119,20 @@ typedef void(*NNSG2dRndDrawOamCallBack)
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dRenderSurface
 
-  Description:  ƒŒƒ“ƒ_ƒŠƒ“ƒO‘ÎÛ‚ğ‚ ‚ç‚í‚·\‘¢
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°å¯¾è±¡ã‚’ã‚ã‚‰ã‚ã™æ§‹é€ 
                 
-                Oam‚ğ“o˜^‚·‚éŠÖ”AOamAffineParamater‚ğ“o˜^‚·‚éŠÖ”‚Ìƒ|ƒCƒ“ƒ^‚ğ‚¿A
-                ÀÛ‚É•`‰æ–½—ß‚ğ”­s‚·‚éÓ”C‚ğ‚¿‚Ü‚·B
-                ( "•`‰æ–½—ß‚ğ”­s‚·‚é" •”•ª ‚Í •ÊŠT”O‚Æ‚µ‚Ä•ª—£‚·‚é‚©‚à‚µ‚ê‚È‚¢ )
+                Oamã‚’ç™»éŒ²ã™ã‚‹é–¢æ•°ã€OamAffineParamaterã‚’ç™»éŒ²ã™ã‚‹é–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿ã‚’æŒã¡ã€
+                å®Ÿéš›ã«æç”»å‘½ä»¤ã‚’ç™ºè¡Œã™ã‚‹è²¬ä»»ã‚’æŒã¡ã¾ã™ã€‚
+                ( "æç”»å‘½ä»¤ã‚’ç™ºè¡Œã™ã‚‹" éƒ¨åˆ† ã¯ åˆ¥æ¦‚å¿µã¨ã—ã¦åˆ†é›¢ã™ã‚‹ã‹ã‚‚ã—ã‚Œãªã„ )
                
-                ‘¼‚ÌÀ‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ‚¿ƒŠƒXƒg\‘¢‚ğ\’z‚µ‚Ü‚·B
+                ä»–ã®å®Ÿä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’æŒã¡ãƒªã‚¹ãƒˆæ§‹é€ ã‚’æ§‹ç¯‰ã—ã¾ã™ã€‚
                 
  *---------------------------------------------------------------------------*/    
 typedef struct NNSG2dRenderSurface
 {
     //
     // NNSG2dRndCoreSurface 
-    // ƒŒƒ“ƒ_ƒŠƒ“ƒO‘ÎÛƒT[ƒtƒFƒX‚ÌŠî–{“I‚È“Á«‚ğ•Û‚µ‚Ü‚·B
+    // ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°å¯¾è±¡ã‚µãƒ¼ãƒ•ã‚§ã‚¹ã®åŸºæœ¬çš„ãªç‰¹æ€§ã‚’ä¿æŒã—ã¾ã™ã€‚
     //
     union
     {
@@ -151,13 +151,13 @@ typedef struct NNSG2dRenderSurface
         };
     };
     
-    NNSG2dOamRegisterFunction         pFuncOamRegister;         // Oam “o˜^ŠÖ”
-    NNSG2dAffineRegisterFunction      pFuncOamAffineRegister;   // Affine “o˜^ŠÖ”
+    NNSG2dOamRegisterFunction         pFuncOamRegister;         // Oam ç™»éŒ²é–¢æ•°
+    NNSG2dAffineRegisterFunction      pFuncOamAffineRegister;   // Affine ç™»éŒ²é–¢æ•°
     
-    void*                             pNextSurface;             // Ÿ‚ÌƒT[ƒtƒFƒX
+    void*                             pNextSurface;             // æ¬¡ã®ã‚µãƒ¼ãƒ•ã‚§ã‚¹
     
     
-    NNSG2dRndCellCullingFunction      pFuncVisibilityCulling;   // ‰Â‹ƒJƒŠƒ“ƒOŠÖ”
+    NNSG2dRndCellCullingFunction      pFuncVisibilityCulling;   // å¯è¦–ã‚«ãƒªãƒ³ã‚°é–¢æ•°
     
     NNSG2dRndDrawCellCallBack         pBeforeDrawCellBackFunc;
     NNSG2dRndDrawCellCallBack         pAfterDrawCellBackFunc;
@@ -172,77 +172,77 @@ NNSG2dRenderSurface;
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dRendererOptimizeHint
 
-  Description:  Renderer •`‰æÅ“K‰»‚ÉŠÖ‚·‚éî•ñ
+  Description:  Renderer æç”»æœ€é©åŒ–ã«é–¢ã™ã‚‹æƒ…å ±
                 
  *---------------------------------------------------------------------------*/
 typedef enum NNSG2dRendererOptimizeHint
 {
     NNS_G2D_RDR_OPZHINT_NONE              = 0x0,
-    NNS_G2D_RDR_OPZHINT_NOT_SR            = 0x1, // SR(Scale Rotate) •ÏŠ·‚ğg—p‚µ‚È‚¢
-    NNS_G2D_RDR_OPZHINT_LOCK_PARAMS       = 0x2  // ƒpƒ‰ƒ[ƒ^‚ğƒƒbƒN‚·‚éB
+    NNS_G2D_RDR_OPZHINT_NOT_SR            = 0x1, // SR(Scale Rotate) å¤‰æ›ã‚’ä½¿ç”¨ã—ãªã„
+    NNS_G2D_RDR_OPZHINT_LOCK_PARAMS       = 0x2  // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹ã€‚
                                                  // 
-                                                 // ƒT[ƒtƒFƒX‚ªˆê–‡‚Ìê‡‚Ì‚İw’è‰Â”\B
-                                                 // ‰æ‘œƒvƒƒNƒVAƒT[ƒtƒFƒXí—Ş‚ª 
-                                                 // ƒŒƒ“ƒ_ƒ‰ Begin-End Renderring ƒuƒƒbƒN“à‚Å•ÏX•s‰Â”\‚Æ‚È‚è‚Ü‚·B
-                                                 // ‚»‚ÌŒ‹‰ÊAƒŒƒ“ƒ_ƒ‰ƒRƒA‚Ì Begin-End Renderring ‚ÌÀs‚ğ 
-                                                 // ƒŒƒ“ƒ_ƒ‰ Begin-End Renderring ‚Æ“¯‚¶ƒ^ƒCƒ~ƒ“ƒO‚ÅÀs‚·‚é‚±‚Æ‚ª‰Â”\‚Æ‚È‚è‚Ü‚·B
+                                                 // ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãŒä¸€æšã®å ´åˆã®ã¿æŒ‡å®šå¯èƒ½ã€‚
+                                                 // ç”»åƒãƒ—ãƒ­ã‚¯ã‚·ã€ã‚µãƒ¼ãƒ•ã‚§ã‚¹ç¨®é¡ãŒ 
+                                                 // ãƒ¬ãƒ³ãƒ€ãƒ© Begin-End Renderring ãƒ–ãƒ­ãƒƒã‚¯å†…ã§å¤‰æ›´ä¸å¯èƒ½ã¨ãªã‚Šã¾ã™ã€‚
+                                                 // ãã®çµæœã€ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ã® Begin-End Renderring ã®å®Ÿè¡Œã‚’ 
+                                                 // ãƒ¬ãƒ³ãƒ€ãƒ© Begin-End Renderring ã¨åŒã˜ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§å®Ÿè¡Œã™ã‚‹ã“ã¨ãŒå¯èƒ½ã¨ãªã‚Šã¾ã™ã€‚
                                                  //
-                                                 // ƒtƒ‰ƒO‚ğw’è‚µ‚È‚¢ê‡AƒŒƒ“ƒ_ƒ‰ƒRƒA‚Ì Begin-End Renderring ‚ÌÀs‚ÍA
-                                                 // ƒZƒ‹‚Ì•`‰æ–ˆ‚És‚í‚ê‚Ü‚·B
+                                                 // ãƒ•ãƒ©ã‚°ã‚’æŒ‡å®šã—ãªã„å ´åˆã€ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ã® Begin-End Renderring ã®å®Ÿè¡Œã¯ã€
+                                                 // ã‚»ãƒ«ã®æç”»æ¯ã«è¡Œã‚ã‚Œã¾ã™ã€‚
 
 }NNSG2dRendererOptimizeHint;
 
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dRendererOverwriteParam
 
-  Description:  OBJƒAƒgƒŠƒrƒ…[ƒgã‘‚«€–Ú
+  Description:  OBJã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆä¸Šæ›¸ãé …ç›®
 
  *---------------------------------------------------------------------------*/
 typedef enum NNSG2dRendererOverwriteParam
 {
-    NNS_G2D_RND_OVERWRITE_NONE          = 0x0, // OBJƒAƒgƒŠƒrƒ…[ƒgã‘‚«‚ğs‚í‚È‚¢
-    NNS_G2D_RND_OVERWRITE_PRIORITY      = 0x1, // •`‰æ—Dæ“x
-    NNS_G2D_RND_OVERWRITE_PLTTNO        = 0x2, // ƒpƒŒƒbƒg”Ô†
-    NNS_G2D_RND_OVERWRITE_MOSAIC        = 0x4, // ƒ‚ƒUƒCƒNON OFF
-    NNS_G2D_RND_OVERWRITE_OBJMODE       = 0x8, // ƒIƒuƒWƒFƒ‚[ƒh
-    NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS   = 0x10, // ƒpƒŒƒbƒg”Ô†(ƒIƒtƒZƒbƒg‰ÁZ)
+    NNS_G2D_RND_OVERWRITE_NONE          = 0x0, // OBJã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆä¸Šæ›¸ãã‚’è¡Œã‚ãªã„
+    NNS_G2D_RND_OVERWRITE_PRIORITY      = 0x1, // æç”»å„ªå…ˆåº¦
+    NNS_G2D_RND_OVERWRITE_PLTTNO        = 0x2, // ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+    NNS_G2D_RND_OVERWRITE_MOSAIC        = 0x4, // ãƒ¢ã‚¶ã‚¤ã‚¯ON OFF
+    NNS_G2D_RND_OVERWRITE_OBJMODE       = 0x8, // ã‚ªãƒ–ã‚¸ã‚§ãƒ¢ãƒ¼ãƒ‰
+    NNS_G2D_RND_OVERWRITE_PLTTNO_OFFS   = 0x10, // ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·(ã‚ªãƒ•ã‚»ãƒƒãƒˆåŠ ç®—)
     NNS_G2D_RND_OVERWRITE_MAX
     
 }NNSG2dRendererOverwriteParam;
 // 
-// ‚»‚Ì‚Ù‚©‚ÌŒó•â
+// ãã®ã»ã‹ã®å€™è£œ
 // OBJMode
-// ƒ‚ƒUƒCƒNONOFF
+// ãƒ¢ã‚¶ã‚¤ã‚¯ONOFF
 
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dRendererInstance
 
-  Description:  Renderer À‘Ì
-                NNSG2dRenderSurface‚ÌƒŠƒXƒg‚ğ•Û‚µ‚Ü‚·
+  Description:  Renderer å®Ÿä½“
+                NNSG2dRenderSurfaceã®ãƒªã‚¹ãƒˆã‚’ä¿æŒã—ã¾ã™
 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dRendererInstance
 {
-    NNSG2dRndCoreInstance             rendererCore;        // ƒŒƒ“ƒ_ƒ‰ƒRƒA
+    NNSG2dRndCoreInstance             rendererCore;        // ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢
         
     
-    NNSG2dRenderSurface*              pTargetSurfaceList;  // •`‰æ‘ÎÛƒT[ƒtƒFƒXƒŠƒXƒg
-    NNSG2dRenderSurface*              pCurrentSurface;     // Œ»İ•`‰æˆ—’†‚ÌƒT[ƒtƒFƒX
-                                                           // ( ƒŒƒ“ƒ_ƒ‰ƒRƒA‚ª•`‰æˆ—’†ˆÈŠO‚Í NULL ‚Éİ’è‚³‚ê‚é )
+    NNSG2dRenderSurface*              pTargetSurfaceList;  // æç”»å¯¾è±¡ã‚µãƒ¼ãƒ•ã‚§ã‚¹ãƒªã‚¹ãƒˆ
+    NNSG2dRenderSurface*              pCurrentSurface;     // ç¾åœ¨æç”»å‡¦ç†ä¸­ã®ã‚µãƒ¼ãƒ•ã‚§ã‚¹
+                                                           // ( ãƒ¬ãƒ³ãƒ€ãƒ©ã‚³ã‚¢ãŒæç”»å‡¦ç†ä¸­ä»¥å¤–ã¯ NULL ã«è¨­å®šã•ã‚Œã‚‹ )
     
-    const NNSG2dPaletteSwapTable*     pPaletteSwapTbl;     // ƒJƒ‰[ƒpƒŒƒbƒg•ÏXƒe[ƒuƒ‹(NULL‚à‰Â)                                                       
-    u32                               opzHint;             // •`‰æÅ“K‰»‚Ì‚½‚ß‚Ìî•ñ
+    const NNSG2dPaletteSwapTable*     pPaletteSwapTbl;     // ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´ãƒ†ãƒ¼ãƒ–ãƒ«(NULLã‚‚å¯)                                                       
+    u32                               opzHint;             // æç”»æœ€é©åŒ–ã®ãŸã‚ã®æƒ…å ±
                                                            // NNSG2dRendererOptimizeHint
                                                            
-    fx32                              spriteZoffsetStep;   // ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg©“®ZƒIƒtƒZƒbƒg‚Ì—Ê
+    fx32                              spriteZoffsetStep;   // ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆè‡ªå‹•Zã‚ªãƒ•ã‚»ãƒƒãƒˆã®é‡
     
     u32                               overwriteEnableFlag; // NNSG2dRendererOverwriteParam
-    u16                               overwritePriority;   // •`‰æ—Dæ“x
-    u16                               overwritePlttNo;     // ƒpƒŒƒbƒg”Ô†
+    u16                               overwritePriority;   // æç”»å„ªå…ˆåº¦
+    u16                               overwritePlttNo;     // ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
     GXOamMode                         overwriteObjMode;                      
     BOOL                              overwriteMosaicFlag;
     
-    u16                               overwritePlttNoOffset;// ƒpƒŒƒbƒg”Ô†(ƒIƒtƒZƒbƒg‰ÁZ)
+    u16                               overwritePlttNoOffset;// ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·(ã‚ªãƒ•ã‚»ãƒƒãƒˆåŠ ç®—)
     u16                               pad16_;
 }
 NNSG2dRendererInstance;
@@ -253,7 +253,7 @@ NNSG2dRendererInstance;
 
 
 //------------------------------------------------------------------------------
-// ‰Šú‰»ŠÖ˜A
+// åˆæœŸåŒ–é–¢é€£
 void NNS_G2dInitRenderer( NNSG2dRendererInstance* pRend );
 void NNS_G2dAddRendererTargetSurface
 ( 
@@ -269,7 +269,7 @@ void NNS_G2dSetRendererFlipMode
 );
 
 //------------------------------------------------------------------------------
-// •`‰æŠÖ˜A
+// æç”»é–¢é€£
 
 
 void NNS_G2dBeginRendering   ( NNSG2dRendererInstance* pRendererInstance );
@@ -285,7 +285,7 @@ void NNS_G2dDrawEntity         ( NNSG2dEntity* pEntity );
 void NNS_G2dEndRendering   ( );
 
 //------------------------------------------------------------------------------
-// s—ñ‘€ì
+// è¡Œåˆ—æ“ä½œ
 void NNS_G2dPushMtx();
 void NNS_G2dPopMtx();
 void NNS_G2dTranslate(fx32 x, fx32 y, fx32 z );
@@ -298,7 +298,7 @@ void NNS_G2dRotZ( fx32 sin, fx32 cos );
 
 
 //------------------------------------------------------------------------------
-// ƒpƒŒƒbƒg•ÏXŠÖ˜A
+// ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´é–¢é€£
 void NNS_G2dSetRendererPaletteTbl
 ( 
     NNSG2dRendererInstance*         pRend, 
@@ -314,7 +314,7 @@ void NNS_G2dResetRendererPaletteTbl
 );
 
 //------------------------------------------------------------------------------
-// ‰æ‘œî•ñŠÖ˜A
+// ç”»åƒæƒ…å ±é–¢é€£
 void NNS_G2dSetRendererImageProxy
 ( 
     NNSG2dRendererInstance*             pRend, 
@@ -363,7 +363,7 @@ NNS_G2dGetRendererAffineOverwriteMode
 }
 
 //------------------------------------------------------------------------------
-// Core ‚Ö ˆÚ“®
+// Core ã¸ ç§»å‹•
 NNS_G2D_INLINE void NNS_G2dSetRendererSurfaceActiveFlag
 ( 
     NNSG2dRenderSurface*    pSurface, 
@@ -385,7 +385,7 @@ NNS_G2D_INLINE BOOL NNS_G2dGetRendererSurfaceActiveFlag
 }
 
 //------------------------------------------------------------------------------
-// ƒAƒNƒZƒT •`‰æ—Dæ“x
+// ã‚¢ã‚¯ã‚»ã‚µ æç”»å„ªå…ˆåº¦
 NNS_G2D_INLINE void NNS_G2dSetRendererOverwritePriority
 (
     NNSG2dRendererInstance*     pRend,
@@ -403,8 +403,8 @@ NNS_G2D_INLINE u16 NNS_G2dGetRendererOverwritePriority
     return pRend->overwritePriority;
 }
 //------------------------------------------------------------------------------
-// ƒAƒNƒZƒT
-// ƒpƒŒƒbƒg”Ô†
+// ã‚¢ã‚¯ã‚»ã‚µ
+// ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 NNS_G2D_INLINE void NNS_G2dSetRendererOverwritePlttNo
 (
     NNSG2dRendererInstance*     pRend,
@@ -423,7 +423,7 @@ NNS_G2D_INLINE u16 NNS_G2dGetRendererOverwritePlttNo
 }
 
 //------------------------------------------------------------------------------
-// ŠJ”­’†‚Å‚·
+// é–‹ç™ºä¸­ã§ã™
 NNS_G2D_INLINE void NNS_G2dSetRendererOverwritePlttNoOffset
 (
     NNSG2dRendererInstance*     pRend,
@@ -434,7 +434,7 @@ NNS_G2D_INLINE void NNS_G2dSetRendererOverwritePlttNoOffset
 }
 
 //------------------------------------------------------------------------------
-// ŠJ”­’†‚Å‚·
+// é–‹ç™ºä¸­ã§ã™
 NNS_G2D_INLINE u16 NNS_G2dGetRendererOverwritePlttNoOffset
 (
     const NNSG2dRendererInstance* pRend    
@@ -481,7 +481,7 @@ NNS_G2D_INLINE GXOamMode NNS_G2dGetRendererOverwriteOBJMode
 
 
 //------------------------------------------------------------------------------
-// OAMã‘‚«ƒtƒ‰ƒO‘€ì
+// OAMä¸Šæ›¸ããƒ•ãƒ©ã‚°æ“ä½œ
 NNS_G2D_INLINE void 
 NNS_G2dSetRendererOverwriteEnable
 ( 
@@ -514,22 +514,22 @@ NNS_G2dIsRendererOverwriteEnable
 
 
 //------------------------------------------------------------------------------
-// •`‰æÅ“K‰»ŠÖ˜A
+// æç”»æœ€é©åŒ–é–¢é€£
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dOptimizeRenderer
 
-  Description:  ƒŒƒ“ƒ_ƒ‰‚ÌÅ“K‰»‚ğs‚¢‚Ü‚·B
-                –{API‚Í”p~‚É‚È‚è‚Ü‚µ‚½B
-                –{ŠÖ”‚ğŒÄ‚Ño‚·‚ÆAŒxƒƒbƒZ[ƒW‚ªo—Í‚³‚ê‚Ü‚·B
+  Description:  ãƒ¬ãƒ³ãƒ€ãƒ©ã®æœ€é©åŒ–ã‚’è¡Œã„ã¾ã™ã€‚
+                æœ¬APIã¯å»ƒæ­¢ã«ãªã‚Šã¾ã—ãŸã€‚
+                æœ¬é–¢æ•°ã‚’å‘¼ã³å‡ºã™ã¨ã€è­¦å‘Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå‡ºåŠ›ã•ã‚Œã¾ã™ã€‚
                 
-                –{ŠÖ”‚Ì‘ã‚í‚è‚ÉANNS_G2dBeginRenderingEx()‚ª—pˆÓ‚³‚ê‚Ü‚µ‚½B
-                
-                
-  Arguments:    pRend:      ƒŒƒ“ƒ_ƒ‰À‘Ì
+                æœ¬é–¢æ•°ã®ä»£ã‚ã‚Šã«ã€NNS_G2dBeginRenderingEx()ãŒç”¨æ„ã•ã‚Œã¾ã—ãŸã€‚
                 
                 
+  Arguments:    pRend:      ãƒ¬ãƒ³ãƒ€ãƒ©å®Ÿä½“
                 
-  Returns:      ‚È‚µ
+                
+                
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dOptimizeRenderer( NNSG2dRendererInstance* pRend )

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_042.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			042�@�Q�`�T�^�[���̊ԃ_���[�W��^����B���̊ԁA����͓������Ȃ�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			042　２〜５ターンの間ダメージを与える。その間、相手は逃げられない
  *
  *@author	HisashiSogabe
  *@data		2006.01.19

@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	savedata_def.h
- * @brief	ƒZ[ƒuƒf[ƒ^ŽQÆ—p•sŠ®‘SŒ^’è‹`
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å‚ç…§ç”¨ä¸å®Œå…¨åž‹å®šç¾©
  * @author	tamada	GAME FREAK Inc.
  * @date	2005.10.13
  */
@@ -11,42 +11,42 @@
 
 //------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^ŠÇ—\‘¢‚Ö‚Ì•sŠ®‘SŒ^ƒ|ƒCƒ“ƒ^
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ç®¡ç†æ§‹é€ ã¸ã®ä¸å®Œå…¨åž‹ãƒã‚¤ãƒ³ã‚¿
  *
- * ’†g‚ÍŒ©‚¦‚È‚¢‚¯‚Çƒ|ƒCƒ“ƒ^Œo—R‚ÅŽQÆ‚Í‚Å‚«‚é
+ * ä¸­èº«ã¯è¦‹ãˆãªã„ã‘ã©ãƒã‚¤ãƒ³ã‚¿çµŒç”±ã§å‚ç…§ã¯ã§ãã‚‹
  */
 //------------------------------------------------------------
 typedef struct _SAVEDATA SAVEDATA;
 
 //------------------------------------------------------------
-///	ƒ[ƒhŒ‹‰Ê’è‹`
+///	ãƒ­ãƒ¼ãƒ‰çµæžœå®šç¾©
 //------------------------------------------------------------
 typedef enum{
-	LOAD_RESULT_NULL = 0,		///<ƒf[ƒ^‚È‚µ
-	LOAD_RESULT_OK,				///<ƒf[ƒ^³í“Ç‚Ýž‚Ý
-	LOAD_RESULT_NG,				///<ƒf[ƒ^ˆÙí
-	LOAD_RESULT_BREAK,			///<”j‰óA•œ‹Œ•s”\ 
+	LOAD_RESULT_NULL = 0,		///<ãƒ‡ãƒ¼ã‚¿ãªã—
+	LOAD_RESULT_OK,				///<ãƒ‡ãƒ¼ã‚¿æ­£å¸¸èª­ã¿è¾¼ã¿
+	LOAD_RESULT_NG,				///<ãƒ‡ãƒ¼ã‚¿ç•°å¸¸
+	LOAD_RESULT_BREAK,			///<ç ´å£Šã€å¾©æ—§ä¸èƒ½ 
 }LOAD_RESULT;
 
 //------------------------------------------------------------
-///	ƒZ[ƒuŒ‹‰Ê’è‹`
+///	ã‚»ãƒ¼ãƒ–çµæžœå®šç¾©
 //------------------------------------------------------------
 typedef enum {
-	SAVE_RESULT_CONTINUE = 0,		///<ƒZ[ƒuˆ—Œp‘±’†
-	SAVE_RESULT_LAST,				///<ƒZ[ƒuˆ—Œp‘±’†AÅŒã‚Ìˆê‚Â‘O
-	SAVE_RESULT_OK,					///<ƒZ[ƒu³íI—¹
-	SAVE_RESULT_NG,					///<ƒZ[ƒuŽ¸”sI—¹
+	SAVE_RESULT_CONTINUE = 0,		///<ã‚»ãƒ¼ãƒ–å‡¦ç†ç¶™ç¶šä¸­
+	SAVE_RESULT_LAST,				///<ã‚»ãƒ¼ãƒ–å‡¦ç†ç¶™ç¶šä¸­ã€æœ€å¾Œã®ä¸€ã¤å‰
+	SAVE_RESULT_OK,					///<ã‚»ãƒ¼ãƒ–æ­£å¸¸çµ‚äº†
+	SAVE_RESULT_NG,					///<ã‚»ãƒ¼ãƒ–å¤±æ•—çµ‚äº†
 }SAVE_RESULT;
 
 //--------------------------------------------------------------
-//	first_status‚ÌŒ‹‰ÊBIT
+//	first_statusã®çµæžœBIT
 //--------------------------------------------------------------
-#define NORMAL_NG_BIT			(1<<0)		//’ÊíƒZ[ƒuFƒ~ƒ‰[ƒŠƒ“ƒONG
-#define NORMAL_BREAK_BIT		(1<<1)		//’ÊíƒZ[ƒuF”j‰ó
-#define FRONTIER_NG_BIT			(1<<2)		//ŠO•”ƒtƒƒ“ƒeƒBƒAƒZ[ƒuFƒ~ƒ‰[ƒŠƒ“ƒONG
-#define FRONTIER_BREAK_BIT		(1<<3)		//ŠO•”ƒtƒƒ“ƒeƒBƒAƒZ[ƒuF”j‰ó
-#define VIDEO_NG_BIT			(1<<4)		//ŠO•”ƒrƒfƒIƒZ[ƒuFƒ~ƒ‰[ƒŠƒ“ƒONG
-#define VIDEO_BREAK_BIT			(1<<5)		//ŠO•”ƒrƒfƒIƒZ[ƒuF”j‰ó
+#define NORMAL_NG_BIT			(1<<0)		//é€šå¸¸ã‚»ãƒ¼ãƒ–ï¼šãƒŸãƒ©ãƒ¼ãƒªãƒ³ã‚°NG
+#define NORMAL_BREAK_BIT		(1<<1)		//é€šå¸¸ã‚»ãƒ¼ãƒ–ï¼šç ´å£Š
+#define FRONTIER_NG_BIT			(1<<2)		//å¤–éƒ¨ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚»ãƒ¼ãƒ–ï¼šãƒŸãƒ©ãƒ¼ãƒªãƒ³ã‚°NG
+#define FRONTIER_BREAK_BIT		(1<<3)		//å¤–éƒ¨ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚»ãƒ¼ãƒ–ï¼šç ´å£Š
+#define VIDEO_NG_BIT			(1<<4)		//å¤–éƒ¨ãƒ“ãƒ‡ã‚ªã‚»ãƒ¼ãƒ–ï¼šãƒŸãƒ©ãƒ¼ãƒªãƒ³ã‚°NG
+#define VIDEO_BREAK_BIT			(1<<5)		//å¤–éƒ¨ãƒ“ãƒ‡ã‚ªã‚»ãƒ¼ãƒ–ï¼šç ´å£Š
 
 
 #endif	/*	__SAVEDATA_DEF_H__ */

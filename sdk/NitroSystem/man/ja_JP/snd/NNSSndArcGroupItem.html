@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNSSndArcGroupItem</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNSSndArcGroupItem</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;
 
@@ -30,7 +30,7 @@
 <dd><pre class="funcprototype"></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAPLWT"></a>
-      <h2>�v�f</h2>
+      <h2>要素</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -38,32 +38,32 @@
 <tbody>
 <tr>
 <td><em><strong><code>type</code></strong></em></td>
-<td>���[�h����f�[�^�̎�ނł��B</td>
+<td>ロードするデータの種類です。</td>
 </tr>
 <tr>
 <td><em><strong><code>loadFlag</code></strong></em></td>
-<td>�ǂ̃f�[�^�����[�h���邩���w�肷��t���O�ł��B</td>
+<td>どのデータをロードするかを指定するフラグです。</td>
 </tr>
 <tr>
 <td><em><strong><code>padding</code></strong></em></td>
-<td>�p�f�B���O�ł��B</td>
+<td>パディングです。</td>
 </tr>
 <tr>
 <td><em><strong><code>index</code></strong></em></td>
-<td>���[�h����f�[�^�̃C���f�b�N�X�ԍ��ł��B</td>
+<td>ロードするデータのインデックス番号です。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDATMWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�O���[�v���\����<a href="NNSSndArcGroupInfo.html"><span class="structname">NNSSndArcGroupInfo</span></a>���̃O���[�v���ڍ\���̂ł��B
-�O���[�v���ŁA�ǂ̃f�[�^�����[�h����̂���������񂪊i�[����Ă��܂��B
+グループ情報構造体<a href="NNSSndArcGroupInfo.html"><span class="structname">NNSSndArcGroupInfo</span></a>中のグループ項目構造体です。
+グループ中で、どのデータをロードするのかを示す情報が格納されています。
 </p>
       <p>
-���[�h����f�[�^�̎��<em><strong><code>type</code></strong></em>�́A���L��<span class="type">enum NNSSndArcSndType</span>�̓��̈�������Ă��܂��B
+ロードするデータの種類<em><strong><code>type</code></strong></em>は、下記の<span class="type">enum NNSSndArcSndType</span>の内の一つが入っています。
 </p>
       <pre class="programlisting">
 enum NNSSndArcSndType {    
@@ -76,42 +76,42 @@ enum NNSSndArcSndType {
 };
 </pre>
       <p>
-�ǂ̃f�[�^�����[�h���邩���w�肷��t���O<em><strong><code>loadFlag</code></strong></em>�ɂ́A���L�̃}�N���̘_���a�������Ă��܂��B
+どのデータをロードするかを指定するフラグ<em><strong><code>loadFlag</code></strong></em>には、下記のマクロの論理和が入っています。
 </p>
-      <div class="table"><a name="IDAMNWT"></a><p class="title"><b>�\ . ���[�h�t���O</b></p>
-<table summary="���[�h�t���O" border="1">
+      <div class="table"><a name="IDAMNWT"></a><p class="title"><b>表 . ロードフラグ</b></p>
+<table summary="ロードフラグ" border="1">
 <colgroup><col><col><col></colgroup>
 <thead>
 <tr>
-<th>�}�N��</th>
-<th>�l</th>
-<th>����</th>
+<th>マクロ</th>
+<th>値</th>
+<th>説明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>NNS_SND_ARC_LOAD_SEQ</td>
 <td>1 &lt;&lt; 0</td>
-<td>�V�[�P���X�f�[�^</td>
+<td>シーケンスデータ</td>
 </tr>
 <tr>
 <td>NNS_SND_ARC_LOAD_BANK</td>
 <td>1 &lt;&lt; 1</td>
-<td>�o���N�f�[�^</td>
+<td>バンクデータ</td>
 </tr>
 <tr>
 <td>NNS_SND_ARC_LOAD_WAVE</td>
 <td>1 &lt;&lt; 2</td>
-<td>�g�`�A�[�J�C�u</td>
+<td>波形アーカイブ</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNSSndArcGroupInfo.html"><span class="structname">NNSSndArcGroupInfo</span></a></p>
-<h2>����</h2>
-<p>2004/06/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
 </div>
 </body>
 </html>

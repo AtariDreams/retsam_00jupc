@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_085.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			085@Œø‰Ê‚È‚µi‚Í‚Ë‚éj
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			085ã€€åŠ¹æœãªã—ï¼ˆã¯ã­ã‚‹ï¼‰
  *
  *@author	HisashiSogabe
  *@data		2005.01.19

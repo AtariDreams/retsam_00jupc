@@ -51,8 +51,8 @@ NNSG2dBinaryBlockHeader* NNS_G2dFindBinaryBlock
 void NNSi_G2dUnpackUserExCellAttrBank( NNSG2dUserExCellAttrBank* pCellAttrBank );
 
 //------------------------------------------------------------------------------
-// ƒfƒoƒbƒNo—ÍŠÖ”
-// FINAL_ROM ‚Å‚ÍƒR[ƒh¶¬‚³‚ê‚È‚¢
+// ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›é–¢æ•°
+// FINAL_ROM ã§ã¯ã‚³ãƒ¼ãƒ‰ç”Ÿæˆã•ã‚Œãªã„
 #ifdef __SNC__
 NNS_G2D_DEBUG_FUNC_DECL_BEGIN void NNSi_G2dPrintUserExCellAttrBank( const NNSG2dUserExCellAttrBank* pCellAttrBank ) NNS_G2D_DEBUG_FUNC_DECL_END
 #else//__SNC__
@@ -60,7 +60,7 @@ NNS_G2D_DEBUG_FUNC_DECL_BEGIN void NNSi_G2dPrintUserExCellAttrBank( const NNSG2d
 #endif//__SNC__
 
 //
-// ƒCƒ“ƒ‰ƒCƒ“ŠÖ”
+// ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°
 //
 //------------------------------------------------------------------------------
 NNS_G2D_INLINE BOOL NNSi_G2dIsBinFileSignatureValid
@@ -71,7 +71,7 @@ NNS_G2D_INLINE BOOL NNSi_G2dIsBinFileSignatureValid
 {
     if( pBinFile != NULL )
     {
-        // ƒtƒ@ƒCƒ‹Ž¯•ÊŽq‚ª³‚µ‚¢‚©
+        // ãƒ•ã‚¡ã‚¤ãƒ«è­˜åˆ¥å­ãŒæ­£ã—ã„ã‹
         if( ( pBinFile->signature == binFileSig  ) )
         {
             return TRUE;                
@@ -89,7 +89,7 @@ NNS_G2D_INLINE BOOL NNSi_G2dIsBinFileVersionValid
 {
     if( pBinFile != NULL )
     {
-        // ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚Ìƒo[ƒWƒ‡ƒ“‚ÍŽw’è‚µ‚½ƒo[ƒWƒ‡ƒ“‚æ‚èV‚µ‚¢‚©H
+        // ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã¯æŒ‡å®šã—ãŸãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚ˆã‚Šæ–°ã—ã„ã‹ï¼Ÿ
         if( pBinFile->version >= version )
         {
             return TRUE;                
@@ -112,10 +112,10 @@ NNS_G2D_INLINE BOOL NNS_G2dIsBinFileValid
 {
     if( pBinFile != NULL )
     {
-        // ƒoƒCƒgƒI[ƒ_[‚Í³‚µ‚¢‚©H
+        // ãƒã‚¤ãƒˆã‚ªãƒ¼ãƒ€ãƒ¼ã¯æ­£ã—ã„ã‹ï¼Ÿ
         //
-        // ŒÃ‚¢ƒo[ƒWƒ‡ƒ“ƒRƒ“ƒo[ƒ^‚Ìo—Íƒf[ƒ^‚Å‚ÍA³‚µ‚­Ý’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ(ƒ[ƒ’l‚ª‘ã“ü‚³‚ê‚Ä‚¢‚Ü‚·)B
-        // ŽÀŽ¿“I‚ÉŽg—p‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅAƒ`ƒFƒbƒN‚Ís‚¢‚Ü‚¹‚ñB
+        // å¤ã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ³ãƒãƒ¼ã‚¿ã®å‡ºåŠ›ãƒ‡ãƒ¼ã‚¿ã§ã¯ã€æ­£ã—ãè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“(ã‚¼ãƒ­å€¤ãŒä»£å…¥ã•ã‚Œã¦ã„ã¾ã™)ã€‚
+        // å®Ÿè³ªçš„ã«ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„ã®ã§ã€ãƒã‚§ãƒƒã‚¯ã¯è¡Œã„ã¾ã›ã‚“ã€‚
         //
         // if( pBinFile->byteOrder == NNS_G2D_LITTLEENDIAN_BITMARK )
         {            

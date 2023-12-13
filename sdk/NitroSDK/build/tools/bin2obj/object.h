@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.1  2005/06/10 12:55:43  yasu
-  1st ƒŠƒtƒ@ƒNƒ^ƒŠƒ“ƒO
+  1st ãƒªãƒ•ã‚¡ã‚¯ã‚¿ãƒªãƒ³ã‚°
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -37,17 +37,17 @@ Section;
 
 // Section List
 #define	MAX_SECTIONS		16
-//#define       SECTION_NULL            0       // index=0 ‚ÌƒZƒNƒVƒ‡ƒ“‚Íƒ_ƒ~[=NULL
-//#define       SECTION_SHSTRTAB        1       // index=1 ƒZƒNƒVƒ‡ƒ“–¼ƒe[ƒuƒ‹
-//#define       SECTION_SYMTAB          2       // index=2 ƒVƒ“ƒ{ƒ‹î•ñ\‘¢‘Ì
-//#define       SECTION_STRTAB          3       // index=3 ƒVƒ“ƒ{ƒ‹–¼ƒe[ƒuƒ‹
-//#define       SECTION_DATA            4       // index=4 ƒf[ƒ^ƒZƒNƒVƒ‡ƒ“
+//#define       SECTION_NULL            0       // index=0 ã®ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã¯ãƒ€ãƒŸãƒ¼=NULL
+//#define       SECTION_SHSTRTAB        1       // index=1 ã‚»ã‚¯ã‚·ãƒ§ãƒ³åãƒ†ãƒ¼ãƒ–ãƒ«
+//#define       SECTION_SYMTAB          2       // index=2 ã‚·ãƒ³ãƒœãƒ«æƒ…å ±æ§‹é€ ä½“
+//#define       SECTION_STRTAB          3       // index=3 ã‚·ãƒ³ãƒœãƒ«åãƒ†ãƒ¼ãƒ–ãƒ«
+//#define       SECTION_DATA            4       // index=4 ãƒ‡ãƒ¼ã‚¿ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 
 // Symbol List
 #define	MAX_SYMBOLS		16
-//#define       SYMBOL_NULL             0       // index=0 ‚ÌƒVƒ“ƒ{ƒ‹‚Íƒ_ƒ~[=NULL
-//#define       SYMBOL_LABEL_BEGIN      1       // index=1 —ÌˆæŠJnˆÊ’u
-//#define       SYMBOL_LABEL_END        2       // index=2 —ÌˆæI—¹ˆÊ’u
+//#define       SYMBOL_NULL             0       // index=0 ã®ã‚·ãƒ³ãƒœãƒ«ã¯ãƒ€ãƒŸãƒ¼=NULL
+//#define       SYMBOL_LABEL_BEGIN      1       // index=1 é ˜åŸŸé–‹å§‹ä½ç½®
+//#define       SYMBOL_LABEL_END        2       // index=2 é ˜åŸŸçµ‚äº†ä½ç½®
 
 // Data Section
 #define	MAX_DATA		16

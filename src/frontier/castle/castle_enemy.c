@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	castle_enemy.c
- * @brief	uƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹ “GƒgƒŒ[ƒi[‰æ–ÊvƒƒCƒ“ƒ\[ƒX
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ« æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”»é¢ã€ãƒ¡ã‚¤ãƒ³ã‚½ãƒ¼ã‚¹
  * @author	Satoshi Nohara
  * @date	07.07.05
  */
@@ -66,7 +66,7 @@ FS_EXTERN_OVERLAY(frontier_common);
 
 //==============================================================================================
 //
-//	ƒfƒoƒbƒN—p
+//	ãƒ‡ãƒãƒƒã‚¯ç”¨
 //
 //==============================================================================================
 //PROC_DATA* p_proc;
@@ -74,22 +74,22 @@ FS_EXTERN_OVERLAY(frontier_common);
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒV[ƒPƒ“ƒX’è‹`
+//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
 enum {
-	SEQ_GAME_INIT,											//‰Šú‰»
+	SEQ_GAME_INIT,											//åˆæœŸåŒ–
 
-	SEQ_GAME_TYPE_SEL,										//ƒ^ƒCƒv‘I‘ğ’†
+	SEQ_GAME_TYPE_SEL,										//ã‚¿ã‚¤ãƒ—é¸æŠä¸­
 
-	SEQ_GAME_SEND_RECV,										//‘—óM
+	SEQ_GAME_SEND_RECV,										//é€å—ä¿¡
 
-	SEQ_GAME_END_MULTI,										//(’ÊM)I—¹
-	SEQ_GAME_END,											//I—¹
+	SEQ_GAME_END_MULTI,										//(é€šä¿¡)çµ‚äº†
+	SEQ_GAME_END,											//çµ‚äº†
 };
 
-//‘I‘ğˆ
+//é¸æŠè‚¢
 enum{
 	SEL_TEMOTI = 0,
 	SEL_LEVEL,
@@ -98,131 +98,131 @@ enum{
 	SEL_TOZIRU,
 };
 
-#define INFO_RANKUP_POINT			(50)					//ƒ‰ƒ“ƒNƒAƒbƒv‚É•K—v‚Èƒ|ƒCƒ“ƒg
+#define INFO_RANKUP_POINT			(50)					//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã«å¿…è¦ãªãƒã‚¤ãƒ³ãƒˆ
 
-//‰½‚ğŒˆ’è‚µ‚½‚©’è‹`
+//ä½•ã‚’æ±ºå®šã—ãŸã‹å®šç¾©
 enum{
-	FC_PARAM_TEMOTI = 0,				//‚Ä‚à‚¿
-	FC_PARAM_LEVEL,						//ƒŒƒxƒ‹
-	FC_PARAM_INFO,						//‚¶‚å‚¤‚Ù‚¤
-	FC_PARAM_TUYOSA,					//‚Â‚æ‚³
-	FC_PARAM_WAZA,						//‚í‚´
+	FC_PARAM_TEMOTI = 0,				//ã¦ã‚‚ã¡
+	FC_PARAM_LEVEL,						//ãƒ¬ãƒ™ãƒ«
+	FC_PARAM_INFO,						//ã˜ã‚‡ã†ã»ã†
+	FC_PARAM_TUYOSA,					//ã¤ã‚ˆã•
+	FC_PARAM_WAZA,						//ã‚ã–
 	/////////////////////////////
-	FC_PARAM_INFO_RANKUP,			//(‚¶‚å‚¤‚Ù‚¤)ƒ‰ƒ“ƒNƒAƒbƒv
+	FC_PARAM_INFO_RANKUP,			//(ã˜ã‚‡ã†ã»ã†)ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—
 	/////////////////////////////
-	FC_PARAM_TOZIRU,					//‚Æ‚¶‚é
+	FC_PARAM_TOZIRU,					//ã¨ã˜ã‚‹
 };
 
-//TYPE_SEL‚É–ß‚µ‚½‚Ì•œ‹Aˆ—‚Ì•ªŠò’è‹`
+//TYPE_SELã«æˆ»ã—ãŸæ™‚ã®å¾©å¸°å‡¦ç†ã®åˆ†å²å®šç¾©
 #define RECOVER_NONE				(0)
 #define RECOVER_NORMAL				(1)
 #define RECOVER_RANKUP				(2)
 #define RECOVER_STATUS				(3)
 
 //----------------------------------------------------------------------------------------------
-//Šø‚Ì•\¦ˆÊ’u
+//æ——ã®è¡¨ç¤ºä½ç½®
 //----------------------------------------------------------------------------------------------
 enum{
 	CASTLE_HATA_START_X			= (96),
 	CASTLE_MULTI_HATA_START_X	= (64),
 	CASTLE_HATA_START_Y			= (60),
 };
-#define CASTLE_HATA_WIDTH_X		(64)				//•\¦‚·‚é•
-#define CASTLE_HATA_WIDTH_Y		(12)				//•\¦‚·‚é•
+#define CASTLE_HATA_WIDTH_X		(64)				//è¡¨ç¤ºã™ã‚‹å¹…
+#define CASTLE_HATA_WIDTH_Y		(12)				//è¡¨ç¤ºã™ã‚‹å¹…
 
-//ƒ‰ƒ“ƒNƒAƒbƒvƒGƒtƒFƒNƒg•\¦ˆÊ’u
+//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¡¨ç¤ºä½ç½®
 #define CASTLE_ENEMY_RANKUP_X	(211)
 #define CASTLE_ENEMY_RANKUP_Y	(105)
 
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
 struct _CASTLE_ENEMY_WORK{
 
-	PROC* proc;										//PROC‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	PROC* proc;										//PROCã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	FRONTIER_SAVEWORK* fro_sv;						//
 
-	u8	sub_seq;									//ƒV[ƒPƒ“ƒX
-	u8	type;										//ˆø”‚Æ‚µ‚Ä“n‚³‚ê‚½ƒoƒgƒ‹ƒ^ƒCƒv
-	u8	msg_index;									//ƒƒbƒZ[ƒWindex
-	u8	recover;									//•œ‹Aƒtƒ‰ƒO
+	u8	sub_seq;									//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	type;										//å¼•æ•°ã¨ã—ã¦æ¸¡ã•ã‚ŒãŸãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—
+	u8	msg_index;									//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸index
+	u8	recover;									//å¾©å¸°ãƒ•ãƒ©ã‚°
 
-	u8	tmp_csr_pos;								//‘Ş”ğ‚µ‚Ä‚ ‚éƒJ[ƒ\ƒ‹ˆÊ’u
-	u8	csr_pos;									//Œ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
+	u8	tmp_csr_pos;								//é€€é¿ã—ã¦ã‚ã‚‹ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8	csr_pos;									//ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 	u8	level_sel;									//
-	u8	eff_init_flag:1;							//Œˆ’èƒGƒtƒFƒNƒg‰Šú‰»ƒtƒ‰ƒO
-	u8	list_flag:1;								//ƒŠƒXƒg•\¦’†‚©ƒtƒ‰ƒO
-	u8	menu_flag:1;								//ƒƒjƒ…[•\¦’†‚©ƒtƒ‰ƒO
-	u8	recover_flag:5;								//TYPE_SEL‚É–ß‚Á‚½‚Ì•ªŠòƒtƒ‰ƒO
+	u8	eff_init_flag:1;							//æ±ºå®šã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–ãƒ•ãƒ©ã‚°
+	u8	list_flag:1;								//ãƒªã‚¹ãƒˆè¡¨ç¤ºä¸­ã‹ãƒ•ãƒ©ã‚°
+	u8	menu_flag:1;								//ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºä¸­ã‹ãƒ•ãƒ©ã‚°
+	u8	recover_flag:5;								//TYPE_SELã«æˆ»ã£ãŸæ™‚ã®åˆ†å²ãƒ•ãƒ©ã‚°
 
 	u8	send_req;
-	u8	parent_decide_pos;							//Œˆ’è‚µ‚½ƒJ[ƒ\ƒ‹ˆÊ’u(‚Ç‚Ìƒ|ƒPƒ‚ƒ“‚©)
+	u8	parent_decide_pos;							//æ±ºå®šã—ãŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®(ã©ã®ãƒã‚±ãƒ¢ãƒ³ã‹)
 	u8	parent_decide_updown;
-	u8	parent_decide_type;							//Œˆ’è‚µ‚½€–Ú(FC_PARAM_??)
+	u8	parent_decide_type;							//æ±ºå®šã—ãŸé …ç›®(FC_PARAM_??)
 
 	u8	h_max;
 	u8	modoru_pos;
 	u8	wait;
-	u8	recieve_count;								//óMƒJƒEƒ“ƒg
+	u8	recieve_count;								//å—ä¿¡ã‚«ã‚¦ãƒ³ãƒˆ
 
-	u16 list_csr_pos;								//ƒŠƒXƒg‚Å‘I‘ğ‚µ‚½ˆÊ’u
+	u16 list_csr_pos;								//ãƒªã‚¹ãƒˆã§é¸æŠã—ãŸä½ç½®
 	u16	dummy26;
 
 	u16	basic_list_lp;
 	u16	basic_list_cp;
 
-	MSGDATA_MANAGER* msgman;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;								//’PŒêƒZƒbƒg
-	STRBUF* msg_buf;								//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
-	STRBUF* tmp_buf;								//ƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	MSGDATA_MANAGER* msgman;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;								//å˜èªã‚»ãƒƒãƒˆ
+	STRBUF* msg_buf;								//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+	STRBUF* tmp_buf;								//ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 
-	STRBUF* menu_buf[CASTLE_MENU_BUF_MAX];			//ƒƒjƒ…[ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
-	STRCODE str[PERSON_NAME_SIZE + EOM_SIZE];		//ƒƒjƒ…[‚ÌƒƒbƒZ[ƒW
+	STRBUF* menu_buf[CASTLE_MENU_BUF_MAX];			//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+	STRCODE str[PERSON_NAME_SIZE + EOM_SIZE];		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
-	GF_BGL_INI*	bgl;								//BGL‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	GF_BGL_BMPWIN bmpwin[CASTLE_ENEMY_BMPWIN_MAX];	//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_INI*	bgl;								//BGLã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	GF_BGL_BMPWIN bmpwin[CASTLE_ENEMY_BMPWIN_MAX];	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
-	//BMPƒƒjƒ…[(bmp_menu.h)
-	BMPMENU_HEADER MenuH;							//BMPƒƒjƒ…[ƒwƒbƒ_[
-	BMPMENU_WORK* mw;								//BMPƒƒjƒ…[ƒ[ƒN
-	BMPMENU_DATA Data[CASTLE_MENU_BUF_MAX];			//BMPƒƒjƒ…[ƒf[ƒ^
+	//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼(bmp_menu.h)
+	BMPMENU_HEADER MenuH;							//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	BMPMENU_WORK* mw;								//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	BMPMENU_DATA Data[CASTLE_MENU_BUF_MAX];			//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
-	//BMPƒŠƒXƒg
-	BMPLIST_WORK* lw;								//BMPƒŠƒXƒgƒf[ƒ^
+	//BMPãƒªã‚¹ãƒˆ
+	BMPLIST_WORK* lw;								//BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 	BMPLIST_DATA* menulist;							//
 
-	PALETTE_FADE_PTR pfd;							//ƒpƒŒƒbƒgƒtƒF[ƒh
+	PALETTE_FADE_PTR pfd;							//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 
-	NUMFONT* num_font;								//8x8ƒtƒHƒ“ƒg
+	NUMFONT* num_font;								//8x8ãƒ•ã‚©ãƒ³ãƒˆ
 
-	//const CONFIG* config;							//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^
-	CONFIG* config;									//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^
-	SAVEDATA* sv;									//ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	CASTLEDATA* castle_sv;							//ƒLƒƒƒbƒXƒ‹ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	CASTLESCORE* score_sv;							//ƒLƒƒƒbƒXƒ‹ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
+	//const CONFIG* config;							//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿
+	CONFIG* config;									//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿
+	SAVEDATA* sv;									//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	CASTLEDATA* castle_sv;							//ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	CASTLESCORE* score_sv;							//ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 
-	CASTLE_CLACT castle_clact;						//ƒZƒ‹ƒAƒNƒ^ƒf[ƒ^
-	CASTLE_OBJ* p_icon[CASTLE_COMM_POKE_TOTAL_NUM];	//ƒAƒCƒRƒ“OBJ‚Ìƒ|ƒCƒ“ƒ^Ši”[ƒe[ƒuƒ‹
-	CASTLE_OBJ* p_ball[CASTLE_COMM_POKE_TOTAL_NUM];	//ƒ{[ƒ‹OBJ‚Ìƒ|ƒCƒ“ƒ^Ši”[ƒe[ƒuƒ‹
-	CASTLE_OBJ* p_eff;								//ƒGƒtƒFƒNƒgOBJ‚Ìƒ|ƒCƒ“ƒ^Ši”[ƒe[ƒuƒ‹
-	CASTLE_OBJ* p_poke_sel;							//ƒ|ƒPƒ‚ƒ“‘I‘ğƒEƒBƒ“OBJ‚Ìƒ|ƒCƒ“ƒ^
-	CASTLE_OBJ* p_pair_poke_sel;					//ƒyƒA‚Ìƒ|ƒPƒ‚ƒ“‘I‘ğƒEƒBƒ“OBJ‚Ìƒ|ƒCƒ“ƒ^
-	CASTLE_OBJ* p_hp[CASTLE_COMM_POKE_TOTAL_NUM];	//HPó‘ÔOBJ‚Ìƒ|ƒCƒ“ƒ^
-	CASTLE_OBJ* p_hata[CASTLE_COMM_POKE_TOTAL_NUM][2];	//ŠøOBJ‚Ìƒ|ƒCƒ“ƒ^Ši”[ƒe[ƒuƒ‹
-	CASTLE_OBJ* p_eff_rankup;						//ƒ‰ƒ“ƒNƒAƒbƒvOBJ‚Ìƒ|ƒCƒ“ƒ^Ši”[ƒe[ƒuƒ‹
+	CASTLE_CLACT castle_clact;						//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+	CASTLE_OBJ* p_icon[CASTLE_COMM_POKE_TOTAL_NUM];	//ã‚¢ã‚¤ã‚³ãƒ³OBJã®ãƒã‚¤ãƒ³ã‚¿æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
+	CASTLE_OBJ* p_ball[CASTLE_COMM_POKE_TOTAL_NUM];	//ãƒœãƒ¼ãƒ«OBJã®ãƒã‚¤ãƒ³ã‚¿æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
+	CASTLE_OBJ* p_eff;								//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆOBJã®ãƒã‚¤ãƒ³ã‚¿æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
+	CASTLE_OBJ* p_poke_sel;							//ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¦ã‚£ãƒ³OBJã®ãƒã‚¤ãƒ³ã‚¿
+	CASTLE_OBJ* p_pair_poke_sel;					//ãƒšã‚¢ã®ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¦ã‚£ãƒ³OBJã®ãƒã‚¤ãƒ³ã‚¿
+	CASTLE_OBJ* p_hp[CASTLE_COMM_POKE_TOTAL_NUM];	//HPçŠ¶æ…‹OBJã®ãƒã‚¤ãƒ³ã‚¿
+	CASTLE_OBJ* p_hata[CASTLE_COMM_POKE_TOTAL_NUM][2];	//æ——OBJã®ãƒã‚¤ãƒ³ã‚¿æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
+	CASTLE_OBJ* p_eff_rankup;						//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—OBJã®ãƒã‚¤ãƒ³ã‚¿æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
 
-	u16* p_ret_work;								//CASTLE_CALL_WORK‚Ì–ß‚è’lƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	u16* p_ret_work;								//CASTLE_CALL_WORKã®æˆ»ã‚Šå€¤ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	//“GƒgƒŒ[ƒi[‰æ–Ê‚Ìî•ñ‚ªŒöŠJ‚³‚ê‚½‚©ƒtƒ‰ƒO
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”»é¢ã®æƒ…å ±ãŒå…¬é–‹ã•ã‚ŒãŸã‹ãƒ•ãƒ©ã‚°
 	u8*	p_temoti_flag;
 	u8*	p_level_flag;
 	u8*	p_tuyosa_flag;
 	u8* p_waza_flag;
 
-	//ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹—p
+	//ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ç”¨
 	POKEPARTY* p_party;
 
 	ARCHANDLE* hdl;
@@ -230,15 +230,15 @@ struct _CASTLE_ENEMY_WORK{
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	//CASTLE_COMM castle_comm;
 #if 1
-	//’ÊM—pFƒf[ƒ^ƒoƒbƒtƒ@
+	//é€šä¿¡ç”¨ï¼šãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
 	u16	send_buf[CASTLE_COMM_BUF_LEN];
 
-	//’ÊM—p
-	u8	pair_csr_pos;								//ƒp[ƒgƒi[‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
-	u8	pair_rankup_type;							//ƒp[ƒgƒi[‚Ìƒ‰ƒ“ƒNƒAƒbƒv‚µ‚½‚¢ƒ^ƒCƒv
-	u8	pair_modoru_flag;							//ƒp[ƒgƒi[‚Ìu–ß‚év‘I‘ğ‚µ‚½‚©
-	u8	pair_rank[CASTLE_RANK_TYPE_MAX];			//ƒp[ƒgƒi[‚Ìƒ‰ƒ“ƒN
-	u16 pair_cp;									//ƒp[ƒgƒi[‚ÌCP
+	//é€šä¿¡ç”¨
+	u8	pair_csr_pos;								//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8	pair_rankup_type;							//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã—ãŸã„ã‚¿ã‚¤ãƒ—
+	u8	pair_modoru_flag;							//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ã€Œæˆ»ã‚‹ã€é¸æŠã—ãŸã‹
+	u8	pair_rank[CASTLE_RANK_TYPE_MAX];			//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ãƒ©ãƒ³ã‚¯
+	u16 pair_cp;									//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®CP
 
 #endif
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -249,7 +249,7 @@ struct _CASTLE_ENEMY_WORK{
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 //PROC
@@ -257,7 +257,7 @@ PROC_RESULT CastleEnemyProc_Init( PROC * proc, int * seq );
 PROC_RESULT CastleEnemyProc_Main( PROC * proc, int * seq );
 PROC_RESULT CastleEnemyProc_End( PROC * proc, int * seq );
 
-//ƒV[ƒPƒ“ƒX
+//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 static BOOL Seq_GameInit( CASTLE_ENEMY_WORK* wk );
 static void TypeSelInit( CASTLE_ENEMY_WORK* wk );
 static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk );
@@ -265,23 +265,23 @@ static BOOL Seq_GameSendRecv( CASTLE_ENEMY_WORK* wk );
 static BOOL Seq_GameEndMulti( CASTLE_ENEMY_WORK* wk );
 static BOOL Seq_GameEnd( CASTLE_ENEMY_WORK* wk );
 
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 static void CastleCommon_Delete( CASTLE_ENEMY_WORK* wk );
 static void Castle_Recover( CASTLE_ENEMY_WORK* wk );
 static void Castle_InitSub1( void );
 static void Castle_InitSub2( CASTLE_ENEMY_WORK* wk );
 
-//‹¤’Ê‰Šú‰»AI—¹
+//å…±é€šåˆæœŸåŒ–ã€çµ‚äº†
 static void Castle_ObjInit( CASTLE_ENEMY_WORK* wk );
 static void Castle_BgInit( CASTLE_ENEMY_WORK* wk );
 static void Castle_BgExit( GF_BGL_INI * ini );
 
-//İ’è
+//è¨­å®š
 static void VBlankFunc( void * work );
 static void SetVramBank(void);
 static void SetBgHeader( GF_BGL_INI * ini );
 
-//BGƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+//BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 static void Castle_SetMainBgGraphic( CASTLE_ENEMY_WORK * wk, u32 frm  );
 static void Castle_SetMainBgPalette( void );
 static void Castle_SetStatusBgGraphic( CASTLE_ENEMY_WORK * wk, u32 frm  );
@@ -289,7 +289,7 @@ static void Castle_SetWazaBgGraphic( CASTLE_ENEMY_WORK * wk, u32 frm  );
 static void Castle_SetStatusBgPalette( void );
 static void Castle_SetSubBgGraphic( CASTLE_ENEMY_WORK * wk, u32 frm  );
 
-//ƒƒbƒZ[ƒW
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 static u8 CastleWriteMsg( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
 // MatchComment: new function prototype
 static u8 CastleWriteMsg_Full_ov107_2247680( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, CastleMsgAln a10_mode );
@@ -305,20 +305,20 @@ static void WazaMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u
 static void Castle_PokeHpMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win );
 static void Castle_PokeLvMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win );
 
-//ƒƒjƒ…[
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 static void CastleInitMenu( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 y_max );
 static void CastleSetMenuData( CASTLE_ENEMY_WORK* wk, u8 no, u8 param, int msg_id );
 static void Castle_SetMenu2( CASTLE_ENEMY_WORK* wk );
 static void Castle_SetMenu3( CASTLE_ENEMY_WORK* wk );
 
-//ƒŠƒXƒg
+//ãƒªã‚¹ãƒˆ
 static void Castle_BasicListMake( CASTLE_ENEMY_WORK* wk );
 static void Castle_CsrMoveCallBack( BMPLIST_WORK* work, u32 param, u8 mode );
 static void Castle_Basic2ListMake( CASTLE_ENEMY_WORK* wk );
 static void Castle_Basic2CsrMoveCallBack( BMPLIST_WORK* work, u32 param, u8 mode );
 static void Castle_Basic2LineWriteCallBack( BMPLIST_WORK* work, u32 param, u8 y );
 
-//•¶š—ñ
+//æ–‡å­—åˆ—
 static void Castle_SetNumber( CASTLE_ENEMY_WORK* wk, u32 bufID, s32 number, u32 keta, NUMBER_DISPTYPE disp );
 static void Castle_SetPokeName( CASTLE_ENEMY_WORK* wk, u32 bufID, POKEMON_PASO_PARAM* ppp );
 static void Castle_SetPlayerName( CASTLE_ENEMY_WORK* wk, u32 bufID );
@@ -334,7 +334,7 @@ static void CastleEnemy_Basic_Del( CASTLE_ENEMY_WORK* wk );
 static void CastleEnemy_Basic2_Write( CASTLE_ENEMY_WORK* wk );
 static void CastleEnemy_Basic2_Del( CASTLE_ENEMY_WORK* wk );
 
-//ƒc[ƒ‹
+//ãƒ„ãƒ¼ãƒ«
 static BOOL Castle_CheckType( CASTLE_ENEMY_WORK* wk, u8 type );
 static void NextSeq( CASTLE_ENEMY_WORK* wk, int* seq, int next );
 static int KeyCheck( int key );
@@ -354,7 +354,7 @@ static void CastleEnemy_WazaWinChg( CASTLE_ENEMY_WORK* wk, s8 add_sub );
 static void CastleEnemy_PairDecideDel( CASTLE_ENEMY_WORK* wk );
 static void BmpTalkWinClearSub( GF_BGL_BMPWIN* win );
 
-//’ÊM
+//é€šä¿¡
 BOOL CastleEnemy_CommSetSendBuf( CASTLE_ENEMY_WORK* wk, u16 type, u16 param );
 void CastleEnemy_CommSendBufBasicData( CASTLE_ENEMY_WORK* wk, u16 type );
 void CastleEnemy_CommRecvBufBasicData(int id_no,int size,void *pData,void *work);
@@ -365,7 +365,7 @@ void CastleEnemy_CommRecvBufCsrPos(int id_no,int size,void *pData,void *work);
 void CastleEnemy_CommSendBufModoru( CASTLE_ENEMY_WORK* wk );
 void CastleEnemy_CommRecvBufModoru(int id_no,int size,void *pData,void *work);
 
-//ƒTƒuƒV[ƒPƒ“ƒX
+//ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 static void CastleEnemy_SeqSubTuyosa( CASTLE_ENEMY_WORK* wk, u8 csr_pos );
 static void CastleEnemy_SeqSubTuyosaFlagOn( CASTLE_ENEMY_WORK* wk, u8 csr_pos );
 static void CastleEnemy_SeqSubTuyosaMsgSet( CASTLE_ENEMY_WORK* wk, u8 csr_pos );
@@ -400,12 +400,12 @@ static void Castle_GetHataXY( CASTLE_ENEMY_WORK* wk, u32* x, u32* y );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT CastleEnemyProc_Init( PROC * proc, int * seq )
@@ -431,7 +431,7 @@ PROC_RESULT CastleEnemyProc_Init( PROC * proc, int * seq )
 	wk->score_sv		= SaveData_GetCastleScore( wk->sv );
 	wk->type			= castle_call->type;
 	wk->p_ret_work		= &castle_call->ret_work;
-	wk->config			= SaveData_GetConfig( wk->sv );			//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^‚ğæ“¾
+	wk->config			= SaveData_GetConfig( wk->sv );			//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 	wk->p_party			= castle_call->p_e_party;
 	wk->p_temoti_flag	= &castle_call->enemy_temoti_flag[0];
 	wk->p_level_flag	= &castle_call->enemy_level_flag[0];
@@ -442,10 +442,10 @@ PROC_RESULT CastleEnemyProc_Init( PROC * proc, int * seq )
 	wk->fro_sv			= SaveData_GetFrontier( wk->sv );
 
 	for( i=0; i < CASTLE_RANK_TYPE_MAX; i++ ){
-		wk->pair_rank[i] = 1;									//ƒp[ƒgƒi[‚Ìƒ‰ƒ“ƒN1ƒIƒŠƒWƒ“
+		wk->pair_rank[i] = 1;									//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ãƒ©ãƒ³ã‚¯1ã‚ªãƒªã‚¸ãƒ³
 	}
 
-	//’ÊMƒ^ƒCƒv‚Å‚È‚¢
+	//é€šä¿¡ã‚¿ã‚¤ãƒ—ã§ãªã„æ™‚
 	if( Castle_CommCheck(wk->type) == FALSE ){
 		wk->h_max = 3;
 	}else{
@@ -453,7 +453,7 @@ PROC_RESULT CastleEnemyProc_Init( PROC * proc, int * seq )
 	}
 	wk->modoru_pos = wk->h_max;
 
-	//Bƒ{ƒ^ƒ“‰Ÿ‚µ‚ÄAãƒL[‚ğ‰Ÿ‚µ‚½‚É–ß‚éˆÊ’u
+	//Bãƒœã‚¿ãƒ³æŠ¼ã—ã¦ã€ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸæ™‚ã«æˆ»ã‚‹ä½ç½®
 	wk->tmp_csr_pos = (wk->modoru_pos - 1);
 
 	wk->pair_csr_pos	= 0;
@@ -474,12 +474,12 @@ PROC_RESULT CastleEnemyProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT CastleEnemyProc_Main( PROC * proc, int * seq )
@@ -487,25 +487,25 @@ PROC_RESULT CastleEnemyProc_Main( PROC * proc, int * seq )
 	CASTLE_ENEMY_WORK* wk  = PROC_GetWork( proc );
 	//OS_Printf( "(*seq) = %d\n", (*seq) );
 
-	//‘Šè‚ªu–ß‚év‚ğ‘I‚ñ‚¾
+	//ç›¸æ‰‹ãŒã€Œæˆ»ã‚‹ã€ã‚’é¸ã‚“ã æ™‚
 	if( wk->pair_modoru_flag == 1 ){
 
 		switch( *seq ){
 
-		//’ÊMI—¹‚Ö
+		//é€šä¿¡çµ‚äº†ã¸
 		case SEQ_GAME_TYPE_SEL:
-		//case SEQ_GAME_SEND_RECV:						//08.06.17 ‘—óM’†‚Í‹­§I—¹‚µ‚È‚¢
+		//case SEQ_GAME_SEND_RECV:						//08.06.17 é€å—ä¿¡ä¸­ã¯å¼·åˆ¶çµ‚äº†ã—ãªã„
 			wk->pair_modoru_flag = 0;
 			CastleEnemy_PairDecideDel( wk );
 			CastleEnemy_SeqSubStatusWinDel( wk );
 
-			//ƒGƒtƒFƒNƒg’†‚àI—¹‚·‚é‚æ‚¤‚É‚µ‚½
+			//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­ã‚‚çµ‚äº†ã™ã‚‹ã‚ˆã†ã«ã—ãŸ
 			if( wk->p_eff != NULL ){
 				CastleObj_Delete( wk->p_eff );
 				wk->eff_init_flag = 0;
 			}
 
-			//u›‚³‚ñ‚ª–ß‚é‚ğ‘I‘ğ‚µ‚Ü‚µ‚½Iv
+			//ã€Œâ—‹ã•ã‚“ãŒæˆ»ã‚‹ã‚’é¸æŠã—ã¾ã—ãŸï¼ã€
 			CastleTalkWinPut( &wk->bmpwin[ENEMY_BMPWIN_TALK], CONFIG_GetWindowType(wk->config));
 			Frontier_PairNameWordSet( wk->wordset, 0 );
 			wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_08, FONT_TALK );
@@ -518,16 +518,16 @@ PROC_RESULT CastleEnemyProc_Main( PROC * proc, int * seq )
 	}else if( wk->parent_decide_pos != CASTLE_ENEMY_DECIDE_NONE ){
 		switch( *seq ){
 
-		//‘—óM‚Ö‹­§ˆÚ“®
+		//é€å—ä¿¡ã¸å¼·åˆ¶ç§»å‹•
 		case SEQ_GAME_TYPE_SEL:
-		case SEQ_GAME_END_MULTI:						//08.06.17 æ‚Éu–ß‚év’†‚Ì‚ÍA
-			wk->pair_modoru_flag = 0;					//08.06.17 u‘—óMv‚É–ß‚·
+		case SEQ_GAME_END_MULTI:						//08.06.17 å…ˆã«ã€Œæˆ»ã‚‹ã€ä¸­ã®æ™‚ã¯ã€
+			wk->pair_modoru_flag = 0;					//08.06.17 ã€Œé€å—ä¿¡ã€ã«æˆ»ã™
 			CastleEnemy_PairDecideDel( wk );
 			CastleEnemy_SeqSubStatusWinDel( wk );
 			NextSeq( wk, seq, SEQ_GAME_SEND_RECV );
 			break;
 
-		//‰½‚à‚µ‚È‚¢
+		//ä½•ã‚‚ã—ãªã„
 		//case SEQ_GAME_INIT:
 		//case SEQ_GAME_SEND_RECV:
 		//case SEQ_GAME_END_MULTI:
@@ -539,7 +539,7 @@ PROC_RESULT CastleEnemyProc_Main( PROC * proc, int * seq )
 	switch( *seq ){
 
 	//-----------------------------------
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	case SEQ_GAME_INIT:
 		if( Seq_GameInit(wk) == TRUE ){
 			NextSeq( wk, seq, SEQ_GAME_TYPE_SEL );
@@ -547,42 +547,42 @@ PROC_RESULT CastleEnemyProc_Main( PROC * proc, int * seq )
 		break;
 
 	//-----------------------------------
-	//ƒ^ƒCƒv‘I‘ğ’†
+	//ã‚¿ã‚¤ãƒ—é¸æŠä¸­
 	case SEQ_GAME_TYPE_SEL:
 		if( Seq_GameTypeSel(wk) == TRUE ){
 
 			if( wk->send_req == 1 ){
-				NextSeq( wk, seq, SEQ_GAME_SEND_RECV );					//‘—óM‚Ö
+				NextSeq( wk, seq, SEQ_GAME_SEND_RECV );					//é€å—ä¿¡ã¸
 			}else{
 
-				//’ÊMƒ^ƒCƒv‚Ì
+				//é€šä¿¡ã‚¿ã‚¤ãƒ—ã®æ™‚
 				if( Castle_CommCheck(wk->type) == TRUE ){
-					NextSeq( wk, seq, SEQ_GAME_END_MULTI );				//(’ÊM)I—¹‚Ö
+					NextSeq( wk, seq, SEQ_GAME_END_MULTI );				//(é€šä¿¡)çµ‚äº†ã¸
 				}else{
-					NextSeq( wk, seq, SEQ_GAME_END );					//I—¹‚Ö
+					NextSeq( wk, seq, SEQ_GAME_END );					//çµ‚äº†ã¸
 				}
 			}
 		}
 		break;
 
 	//-----------------------------------
-	//‘—óM
+	//é€å—ä¿¡
 	case SEQ_GAME_SEND_RECV:
 		if( Seq_GameSendRecv(wk) == TRUE ){
-			NextSeq( wk, seq, SEQ_GAME_TYPE_SEL );						//ƒ^ƒCƒv‘I‘ğ’†‚Ö
+			NextSeq( wk, seq, SEQ_GAME_TYPE_SEL );						//ã‚¿ã‚¤ãƒ—é¸æŠä¸­ã¸
 		}
 		break;
 
 	//-----------------------------------
-	//’ÊMŒğŠ·I—¹
+	//é€šä¿¡äº¤æ›çµ‚äº†
 	case SEQ_GAME_END_MULTI:
 		if( Seq_GameEndMulti(wk) == TRUE ){
-			NextSeq( wk, seq, SEQ_GAME_END );							//I—¹‚Ö
+			NextSeq( wk, seq, SEQ_GAME_END );							//çµ‚äº†ã¸
 		}
 		break;
 
 	//-----------------------------------
-	//I—¹
+	//çµ‚äº†
 	case SEQ_GAME_END:
 		if( Seq_GameEnd(wk) == TRUE ){
 			return PROC_RES_FINISH;
@@ -591,23 +591,23 @@ PROC_RESULT CastleEnemyProc_Main( PROC * proc, int * seq )
 
 	}
 
-	//ƒAƒCƒRƒ“ã‰ºƒAƒjƒ
+	//ã‚¢ã‚¤ã‚³ãƒ³ä¸Šä¸‹ã‚¢ãƒ‹ãƒ¡
 	CastleEnemy_IconSelAnm( wk );
 
-	//CastleObj_IconAnm( wk->p_icon );				//ƒAƒCƒRƒ“ƒAƒjƒ
-	CLACT_Draw( wk->castle_clact.ClactSet );		//ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+	//CastleObj_IconAnm( wk->p_icon );				//ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡
+	CLACT_Draw( wk->castle_clact.ClactSet );		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 
 	return PROC_RES_CONTINUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	"ˆ—ó‹µ"
+ * @return	"å‡¦ç†çŠ¶æ³"
  */
 //--------------------------------------------------------------
 PROC_RESULT CastleEnemyProc_End( PROC * proc, int * seq )
@@ -615,17 +615,17 @@ PROC_RESULT CastleEnemyProc_End( PROC * proc, int * seq )
 	int i;
 	CASTLE_ENEMY_WORK* wk = PROC_GetWork( proc );
 
-	*(wk->p_ret_work) = wk->csr_pos;					//–ß‚è’lŠi”[ƒ[ƒN‚Ö‘ã“ü(ƒJ[ƒ\ƒ‹ˆÊ’u)
+	*(wk->p_ret_work) = wk->csr_pos;					//æˆ»ã‚Šå€¤æ ¼ç´ãƒ¯ãƒ¼ã‚¯ã¸ä»£å…¥(ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®)
 
 	OS_Printf( "*(wk->p_ret_work) = %d\n", *(wk->p_ret_work) );
 
 	DellVramTransferManager();
 
-	CastleCommon_Delete( wk );							//íœˆ—
+	CastleCommon_Delete( wk );							//å‰Šé™¤å‡¦ç†
 
-	PROC_FreeWork( proc );								//ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );								//ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	sys_VBlankFuncChange( NULL, NULL );					//VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );					//VBlankã‚»ãƒƒãƒˆ
 	sys_DeleteHeap( HEAPID_CASTLE );
 
 	Overlay_UnloadID( FS_OVERLAY_ID(frontier_common) );
@@ -636,24 +636,24 @@ PROC_RESULT CastleEnemyProc_End( PROC * proc, int * seq )
 
 //==============================================================================================
 //
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFƒQ[ƒ€‰Šú‰»
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚²ãƒ¼ãƒ åˆæœŸåŒ–
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameInit( CASTLE_ENEMY_WORK* wk )
 {
 	switch( wk->sub_seq ){
 
-	//ƒRƒ}ƒ“ƒhİ’èŒã‚Ì“¯Šú
+	//ã‚³ãƒãƒ³ãƒ‰è¨­å®šå¾Œã®åŒæœŸ
 	case 0:
 		if( Castle_CommCheck(wk->type) == TRUE ){
 			CommToolTempDataReset();
@@ -662,7 +662,7 @@ static BOOL Seq_GameInit( CASTLE_ENEMY_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‚ª“Í‚¢‚½‚©Šm”F
+	//ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰ãŒå±Šã„ãŸã‹ç¢ºèª
 	case 1:
 		if( Castle_CommCheck(wk->type) == TRUE ){
 			if( CommIsTimingSync(DBC_TIM_CASTLE_ENEMY_INIT) == TRUE ){
@@ -674,10 +674,10 @@ static BOOL Seq_GameInit( CASTLE_ENEMY_WORK* wk )
 		}
 		break;
 		
-	//Šî–{î•ñ‘—M
+	//åŸºæœ¬æƒ…å ±é€ä¿¡
 	case 2:
 		if( Castle_CommCheck(wk->type) == TRUE ){
-			//Šî–{î•ñ‚ğ‘—M
+			//åŸºæœ¬æƒ…å ±ã‚’é€ä¿¡
 			if( CastleEnemy_CommSetSendBuf(wk,CASTLE_COMM_ENEMY_PAIR,0) == TRUE ){
 				wk->sub_seq++;
 			}
@@ -690,7 +690,7 @@ static BOOL Seq_GameInit( CASTLE_ENEMY_WORK* wk )
 		}
 		break;
 
-	//ƒuƒ‰ƒbƒNƒCƒ“
+	//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
 	case 3:
 		if( Castle_CommCheck(wk->type) == TRUE ){
 			if( wk->recieve_count >= CASTLE_COMM_PLAYER_NUM ){
@@ -708,7 +708,7 @@ static BOOL Seq_GameInit( CASTLE_ENEMY_WORK* wk )
 		}
 		break;
 		
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 4:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			return TRUE;
@@ -721,11 +721,11 @@ static BOOL Seq_GameInit( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static void TypeSelInit( CASTLE_ENEMY_WORK* wk )
@@ -733,22 +733,22 @@ static void TypeSelInit( CASTLE_ENEMY_WORK* wk )
 	u16 x,y,offset_x,offset_y,pair_offset_x,pair_offset_y,icon_offset_x,ball_offset_x;
 	GF_BGL_BMPWIN* win;
 
-	//’ÊM‚µ‚Ä‚¢‚é‚©‚Å•\¦‚ÌƒIƒtƒZƒbƒg‚ª•Ï‚í‚é
+	//é€šä¿¡ã—ã¦ã„ã‚‹ã‹ã§è¡¨ç¤ºã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãŒå¤‰ã‚ã‚‹
 	Castle_GetOffset( wk, &offset_x, &offset_y, &pair_offset_x, &pair_offset_y );
 
 	///////////////////////////////////////////////////////////////////////////////
 	win = &wk->bmpwin[ENEMY_BMPWIN_TR1];
-	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );					//“h‚è‚Â‚Ô‚µ
-	CastleEnemy_SeqSubNameWrite( wk, win );							//ƒvƒŒƒCƒ„[Aƒp[ƒgƒi[–¼•\¦
-	CastleEnemy_SeqSubCPWrite( wk, win );							//CP•\¦
+	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );					//å¡—ã‚Šã¤ã¶ã—
+	CastleEnemy_SeqSubNameWrite( wk, win );							//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã€ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åè¡¨ç¤º
+	CastleEnemy_SeqSubCPWrite( wk, win );							//CPè¡¨ç¤º
 
 	///////////////////////////////////////////////////////////////////////////////
-	//HP‚ÆLV•\¦
+	//HPã¨LVè¡¨ç¤º
 	Castle_PokeHpMsgWrite( wk, &wk->bmpwin[ENEMY_BMPWIN_HP] );
 	Castle_PokeLvMsgWrite( wk, &wk->bmpwin[ENEMY_BMPWIN_LV] );
 
 	///////////////////////////////////////////////////////////////////////////////
-	CastleEnemy_Default_Write( wk );								//TALKMENU,‚à‚Ç‚é
+	CastleEnemy_Default_Write( wk );								//TALKMENU,ã‚‚ã©ã‚‹
 
 	GF_Disp_DispOn();
 	return;
@@ -756,11 +756,11 @@ static void TypeSelInit( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒ^ƒCƒv‘I‘ğ’†
+ * @brief	ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—é¸æŠä¸­
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 enum{
@@ -779,14 +779,14 @@ enum{
 	SEQ_SUB_INFO_RANKUP_YES_NO,
 	SEQ_SUB_INFO_RANKUP_DECIDE_EFF_WAIT,
 	//////////////////////////////////////////////////////////////////
-	SEQ_SUB_DECIDE_EFF_WAIT,				//Œˆ’èƒGƒtƒFƒNƒg‘Ò‚¿
-	SEQ_SUB_DECIDE_EFF_WAIT_NEXT_WIN_OFF,	//Œˆ’èƒGƒtƒFƒNƒg‘Ò‚¿¨ƒEƒBƒ“ƒhƒIƒt‚Ö
-	SEQ_SUB_DECIDE_EFF_WAIT_WIN_OFF,		//Œˆ’èƒGƒtƒFƒNƒg‘Ò‚¿¨ƒEƒBƒ“ƒhƒIƒtAÅ‰‚Ì‰æ–Ê‚É–ß‚é
+	SEQ_SUB_DECIDE_EFF_WAIT,				//æ±ºå®šã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¾…ã¡
+	SEQ_SUB_DECIDE_EFF_WAIT_NEXT_WIN_OFF,	//æ±ºå®šã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¾…ã¡â†’ã‚¦ã‚£ãƒ³ãƒ‰ã‚ªãƒ•ã¸
+	SEQ_SUB_DECIDE_EFF_WAIT_WIN_OFF,		//æ±ºå®šã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¾…ã¡â†’ã‚¦ã‚£ãƒ³ãƒ‰ã‚ªãƒ•ã€æœ€åˆã®ç”»é¢ã«æˆ»ã‚‹
 	//////////////////////////////////////////////////////////////////
-	SEQ_SUB_INFO_KEY_WAIT_LIST_RETURN,		//ƒL[‘Ò‚¿‚µ‚ÄA‚¶‚å‚¤‚Ù‚¤ƒŠƒXƒg‚É–ß‚é
-	SEQ_SUB_KEY_WAIT,						//ƒL[‘Ò‚¿AÅ‰‚Ì‰æ–Ê‚É–ß‚é
-	SEQ_SUB_INFO_TUYOSA_KEY_WAIT_WIN_OFF,	//ƒL[‘Ò‚¿AƒXƒe[ƒ^ƒXƒEƒBƒ“ƒhƒEÁ‚·ABASICƒŠƒXƒg‚Ö–ß‚é
-	SEQ_SUB_INFO_WAZA_KEY_WAIT_WIN_OFF,		//ƒL[‘Ò‚¿AƒXƒe[ƒ^ƒXƒEƒBƒ“ƒhƒEÁ‚·ABASICƒŠƒXƒg‚Ö–ß‚é
+	SEQ_SUB_INFO_KEY_WAIT_LIST_RETURN,		//ã‚­ãƒ¼å¾…ã¡ã—ã¦ã€ã˜ã‚‡ã†ã»ã†ãƒªã‚¹ãƒˆã«æˆ»ã‚‹
+	SEQ_SUB_KEY_WAIT,						//ã‚­ãƒ¼å¾…ã¡ã€æœ€åˆã®ç”»é¢ã«æˆ»ã‚‹
+	SEQ_SUB_INFO_TUYOSA_KEY_WAIT_WIN_OFF,	//ã‚­ãƒ¼å¾…ã¡ã€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¶ˆã™ã€BASICãƒªã‚¹ãƒˆã¸æˆ»ã‚‹
+	SEQ_SUB_INFO_WAZA_KEY_WAIT_WIN_OFF,		//ã‚­ãƒ¼å¾…ã¡ã€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¶ˆã™ã€BASICãƒªã‚¹ãƒˆã¸æˆ»ã‚‹
 };
 
 static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
@@ -803,50 +803,50 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		wk->recover = 0;
 		wk->sub_seq = SEQ_SUB_TYPE_SEL;
 
-		//ƒ‰ƒ“ƒNƒAƒbƒv‚µ‚½‚É–ß‚èæ‚ª“Áê‚©ƒ`ƒFƒbƒN
+		//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã—ãŸæ™‚ã«æˆ»ã‚Šå…ˆãŒç‰¹æ®Šã‹ãƒã‚§ãƒƒã‚¯
 		if( wk->recover_flag == RECOVER_NORMAL ){
 			BmpTalkWinClearSub( &wk->bmpwin[ENEMY_BMPWIN_TALK] );
-			CastleEnemy_Default_Write( wk );								//TALKMENU,‚à‚Ç‚é
+			CastleEnemy_Default_Write( wk );								//TALKMENU,ã‚‚ã©ã‚‹
 
-		//ƒ‰ƒ“ƒNƒAƒbƒv‚µ‚½‚É–ß‚èæ‚ª“Áê‚©ƒ`ƒFƒbƒN
+		//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã—ãŸæ™‚ã«æˆ»ã‚Šå…ˆãŒç‰¹æ®Šã‹ãƒã‚§ãƒƒã‚¯
 		}else if( wk->recover_flag == RECOVER_RANKUP ){
 			BmpTalkWinClearSub( &wk->bmpwin[ENEMY_BMPWIN_TALK] );
 			CastleEnemy_Basic2_Write( wk );		//TALK,BASIC2
 
-			//ƒ‰ƒ“ƒNƒAƒbƒvƒGƒtƒFƒNƒg
+			//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 			CastleObj_RankUpEff( wk->p_eff_rankup, CASTLE_ENEMY_RANKUP_X, CASTLE_ENEMY_RANKUP_Y );
 
 			wk->sub_seq = SEQ_SUB_INFO_LIST;
 
-		//’ÊM‚Å©•ª‚ªƒXƒe[ƒ^ƒX‚ğŠJ•ú‚µ‚½‚©ƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+		//é€šä¿¡ã§è‡ªåˆ†ãŒã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’é–‹æ”¾ã—ãŸã‹ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 		}else if( wk->recover_flag == RECOVER_STATUS ){
 			wk->sub_seq = SEQ_SUB_DECIDE_EFF_WAIT_WIN_OFF;
 		}
 
-		wk->recover_flag = RECOVER_NONE;			//TYPE_SEL‚É–ß‚Á‚½‚Ì•ªŠòƒtƒ‰ƒOƒNƒŠƒA
+		wk->recover_flag = RECOVER_NONE;			//TYPE_SELã«æˆ»ã£ãŸæ™‚ã®åˆ†å²ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒ^ƒCƒv‚ğ‘I‘ğ’†
+	//ã‚¿ã‚¤ãƒ—ã‚’é¸æŠä¸­
 	case SEQ_SUB_TYPE_SEL:
 		CsrMove( wk, sys.trg );
 
-		//Œˆ’èƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½
+		//æ±ºå®šãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸæ™‚
 		if( sys.trg & PAD_BUTTON_A ){
 			Snd_SePlay( SEQ_SE_DP_SELECT );
 
-			//u‚à‚Ç‚év
+			//ã€Œã‚‚ã©ã‚‹ã€
 			if( wk->csr_pos >= wk->modoru_pos ){
 				return TRUE;
 			}else{
-				CastleEnemy_Default_Del( wk );		//TALKMENU,‚à‚Ç‚é
+				CastleEnemy_Default_Del( wk );		//TALKMENU,ã‚‚ã©ã‚‹
 				CastleEnemy_Basic_Write( wk );		//TALKMENU2,BASIC
 				wk->sub_seq = SEQ_SUB_MENU_MAIN;
 				break;
 			}
 
 		}else if( sys.trg & PAD_BUTTON_B ){
-			//‚·‚Å‚Éu‚à‚Ç‚évˆÊ’u‚Ì‚Í‰½‚à‚µ‚È‚¢
+			//ã™ã§ã«ã€Œã‚‚ã©ã‚‹ã€ä½ç½®ã®æ™‚ã¯ä½•ã‚‚ã—ãªã„
 			if( wk->csr_pos != wk->modoru_pos ){
 				Snd_SePlay( SEQ_SE_DP_SELECT );
 				wk->csr_pos = wk->modoru_pos;
@@ -858,11 +858,11 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//‚â‚é‚±‚Æ‚ğ‘I‘ğ’†
+	//ã‚„ã‚‹ã“ã¨ã‚’é¸æŠä¸­
 	case SEQ_SUB_MENU_MAIN:
 		ret = BmpListMain( wk->lw );
 		Castle_ListSeCall( ret, SEQ_SE_DP_SELECT );
-		BmpListDirectPosGet( wk->lw, &wk->list_csr_pos );					//ƒJ[ƒ\ƒ‹ˆÊ’u
+		BmpListDirectPosGet( wk->lw, &wk->list_csr_pos );					//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 
 		switch( ret ){
 
@@ -871,24 +871,24 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 
 		case BMPLIST_CANCEL:
 			CastleEnemy_Basic_Del( wk );			//TALKMENU2,BASIC
-			CastleEnemy_Default_Write( wk );		//TALKMENU,‚à‚Ç‚é
+			CastleEnemy_Default_Write( wk );		//TALKMENU,ã‚‚ã©ã‚‹
 			wk->sub_seq = SEQ_SUB_START;
 			break;
 
-		//‚µ‚å‚¤‚½‚¢
+		//ã—ã‚‡ã†ãŸã„
 		case FC_PARAM_TEMOTI:
-			wk->parent_decide_type = ret;			//ƒpƒ‰ƒ[ƒ^
+			wk->parent_decide_type = ret;			//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-			//³‘Ì‚ªŒöŠJ‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç
+			//æ­£ä½“ãŒå…¬é–‹ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰
 			if( wk->p_temoti_flag[GetCsrPokePos(wk->h_max,wk->csr_pos)] == 0 ){
 				CastleEnemy_Basic_Del( wk );		//TALKMENU2,BASIC
 
-				//uƒ|ƒPƒ‚ƒ“‚Ì@‚µ‚å‚¤‚½‚¢‚ª@‚í‚©‚è‚Ü‚·@›‚b‚o‚ğ@‚Â‚©‚¢@‚Ü‚·‚©Hv
+				//ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã€€ã—ã‚‡ã†ãŸã„ãŒã€€ã‚ã‹ã‚Šã¾ã™ã€€â—‹ï¼£ï¼°ã‚’ã€€ã¤ã‹ã„ã€€ã¾ã™ã‹ï¼Ÿã€
 				CastleEnemy_SeqSubTalkWinOn( wk );
 				Castle_SetNumber(	wk, 0, CP_USE_TEMOTI, CASTLE_KETA_CP, 
 									NUMBER_DISPTYPE_LEFT );
 				wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_04, FONT_TALK );
-				Castle_SetMenu2( wk );						//u‚Í‚¢E‚¢‚¢‚¦v
+				Castle_SetMenu2( wk );						//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 				wk->sub_seq = SEQ_SUB_TEMOTI_YES_NO;
 			}else{
 				CastleEnemy_Basic_Del( wk );		//TALKMENU2,BASIC
@@ -896,44 +896,44 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 				poke =  PokeParty_GetMemberPointer( wk->p_party, 
 													GetCsrPokePos(wk->h_max,wk->csr_pos) );
 
-				/*uƒ|ƒPƒ‚ƒ“‚Ì@‚µ‚å‚¤‚½‚¢‚Í@›@‚Å‚µ‚½Iv*/
+				/*ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã€€ã—ã‚‡ã†ãŸã„ã¯ã€€â—‹ã€€ã§ã—ãŸï¼ã€*/
 				CastleEnemy_SeqSubTalkWinOn( wk );
 				Castle_SetPokeName( wk, 0, PPPPointerGet(poke) );
 				wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_04_03, FONT_TALK );
 				wk->sub_seq = SEQ_SUB_KEY_WAIT;
-				//‰½‚à‚µ‚È‚¢(ƒŠƒXƒgŒp‘±)
+				//ä½•ã‚‚ã—ãªã„(ãƒªã‚¹ãƒˆç¶™ç¶š)
 				//Snd_SeStopBySeqNo( SEQ_SE_DP_SELECT, 0 );
 				//Snd_SePlay( SEQ_SE_DP_BOX03 );
 			}
 			break;
 
-		//ƒŒƒxƒ‹
+		//ãƒ¬ãƒ™ãƒ«
 		case FC_PARAM_LEVEL:
-			wk->parent_decide_type = ret;		//ƒpƒ‰ƒ[ƒ^
+			wk->parent_decide_type = ret;		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 			CastleEnemy_Basic_Del( wk );		//TALKMENU2,BASIC
 
 			poke =  PokeParty_GetMemberPointer( wk->p_party, 
 												GetCsrPokePos(wk->h_max,wk->csr_pos) );
 
-			//u›‚Ì@ƒŒƒxƒ‹‚ğ@‚©‚¦‚ç‚ê‚Ü‚·@‚Ç‚¿‚ç‚É@‚µ‚Ü‚·‚©Hv
+			//ã€Œâ—‹ã®ã€€ãƒ¬ãƒ™ãƒ«ã‚’ã€€ã‹ãˆã‚‰ã‚Œã¾ã™ã€€ã©ã¡ã‚‰ã«ã€€ã—ã¾ã™ã‹ï¼Ÿã€
 			CastleEnemy_SeqSubTalkWinOn( wk );
 			Castle_SetPokeName( wk, 0, PPPPointerGet(poke) );
 			wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_05, FONT_TALK );
-			Castle_SetMenu3( wk );				//uƒŒƒxƒ‹{‚TEƒŒƒxƒ‹[‚TE‚â‚ß‚év
+			Castle_SetMenu3( wk );				//ã€Œãƒ¬ãƒ™ãƒ«ï¼‹ï¼•ãƒ»ãƒ¬ãƒ™ãƒ«ãƒ¼ï¼•ãƒ»ã‚„ã‚ã‚‹ã€
 			wk->sub_seq = SEQ_SUB_LEVEL_LIST;
 			break;
 
-		//‚¶‚å‚¤‚Ù‚¤
+		//ã˜ã‚‡ã†ã»ã†
 		case FC_PARAM_INFO:
 			CastleEnemy_Basic_Del( wk );		//TALKMENU2,BASIC
 			CastleEnemy_Basic2_Write( wk );		//TALK,BASIC2
 			wk->sub_seq = SEQ_SUB_INFO_LIST;
 			break;
 
-		//‚Æ‚¶‚é
+		//ã¨ã˜ã‚‹
 		case FC_PARAM_TOZIRU:
 			CastleEnemy_Basic_Del( wk );		//TALKMENU2,BASIC
-			CastleEnemy_Default_Write( wk );	//TALKMENU,‚à‚Ç‚é
+			CastleEnemy_Default_Write( wk );	//TALKMENU,ã‚‚ã©ã‚‹
 			wk->sub_seq = SEQ_SUB_START;
 			break;
 		};
@@ -941,7 +941,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//u‚Ä‚à‚¿vu‚Í‚¢E‚¢‚¢‚¦vƒƒjƒ…[ˆ—
+	//ã€Œã¦ã‚‚ã¡ã€ã€Œã¯ã„ãƒ»ã„ã„ãˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
 	case SEQ_SUB_TEMOTI_YES_NO:
 		ret = BmpMenuMain( wk->mw );
 
@@ -950,18 +950,18 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		case BMPMENU_NULL:
 			break;
 
-		//u‚Í‚¢v
+		//ã€Œã¯ã„ã€
 		case 0:
 			CastleEnemy_SeqSubMenuWinClear( wk );
 			BmpTalkWinClearSub( &wk->bmpwin[ENEMY_BMPWIN_TALK] );
 
 			now_cp = FrontierRecord_Get(wk->fro_sv, CastleScr_GetCPRecordID(wk->type),
-										//FRONTIER_RECORD_NOT_FRIEND );		//Œ»İ‚ÌCP
+										//FRONTIER_RECORD_NOT_FRIEND );		//ç¾åœ¨ã®CP
 										Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)));
 
-			//CP‚ª‘«‚è‚È‚¢
+			//CPãŒè¶³ã‚Šãªã„æ™‚
 			if( now_cp < CP_USE_TEMOTI ){
-				//‰üs‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚Å‘Š’k
+				//æ”¹è¡ŒãŒå…¥ã£ã¦ã„ã‚‹ã®ã§ç›¸è«‡
 				CastleEnemy_SeqSubTalkWinOn( wk );
 				wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_03, FONT_TALK );
 				wk->sub_seq = SEQ_SUB_KEY_WAIT;
@@ -973,8 +973,8 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 				Castle_CPRecord_Sub( wk->fro_sv, wk->type, CP_USE_TEMOTI );
 				CastleEnemy_SeqSubCPWrite( wk, &wk->bmpwin[ENEMY_BMPWIN_TR1] );
 
-				//ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‚ÌƒAƒCƒRƒ“‚ğƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚É‚·‚é
-				//ƒŒƒxƒ‹A«•ÊA‘Ì—Í‚ğ•\¦
+				//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã«ã™ã‚‹
+				//ãƒ¬ãƒ™ãƒ«ã€æ€§åˆ¥ã€ä½“åŠ›ã‚’è¡¨ç¤º
 				CastleEnemy_SeqSubTemoti( wk, wk->csr_pos );
 			
 				wk->sub_seq = SEQ_SUB_DECIDE_EFF_WAIT;
@@ -984,7 +984,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 			}
 			break;
 			
-		//u‚¢‚¢‚¦v
+		//ã€Œã„ã„ãˆã€
 		case 1:
 		case BMPMENU_CANCEL:
 			CastleEnemy_SeqSubMenuWinClear( wk );
@@ -997,7 +997,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//uƒŒƒxƒ‹vƒƒjƒ…[ˆ—
+	//ã€Œãƒ¬ãƒ™ãƒ«ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
 	case SEQ_SUB_LEVEL_LIST:
 		ret = BmpMenuMain( wk->mw );
 
@@ -1006,13 +1006,13 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		case BMPMENU_NULL:
 			break;
 
-		//uƒŒƒxƒ‹{‚Tv
+		//ã€Œãƒ¬ãƒ™ãƒ«ï¼‹ï¼•ã€
 		case 0:
 			CastleEnemy_SeqSubMenuWinClear( wk );
 			now_cp = FrontierRecord_Get(wk->fro_sv, CastleScr_GetCPRecordID(wk->type),
 									Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)) );
 
-			//‚·‚Å‚É+5‚µ‚Ä‚¢‚½‚ço—ˆ‚È‚¢
+			//ã™ã§ã«+5ã—ã¦ã„ãŸã‚‰å‡ºæ¥ãªã„
 			if( wk->p_level_flag[GetCsrPokePos(wk->h_max,wk->csr_pos)] == 1 ){
 				CastleEnemy_SeqSubTalkWinOn( wk );
 				wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_05_04, FONT_TALK );
@@ -1024,13 +1024,13 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 			}
 			break;
 			
-		//uƒŒƒxƒ‹|‚Tv
+		//ã€Œãƒ¬ãƒ™ãƒ«âˆ’ï¼•ã€
 		case 1:
 			CastleEnemy_SeqSubMenuWinClear( wk );
 			now_cp = FrontierRecord_Get(wk->fro_sv, CastleScr_GetCPRecordID(wk->type),
 									Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)) );
 
-			//‚·‚Å‚É-5‚µ‚Ä‚¢‚½‚ço—ˆ‚È‚¢
+			//ã™ã§ã«-5ã—ã¦ã„ãŸã‚‰å‡ºæ¥ãªã„
 			if( wk->p_level_flag[GetCsrPokePos(wk->h_max,wk->csr_pos)] == 2 ){
 				CastleEnemy_SeqSubTalkWinOn( wk );
 				wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_05_05, FONT_TALK );
@@ -1054,7 +1054,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//uƒŒƒxƒ‹vu‚Í‚¢E‚¢‚¢‚¦vƒƒjƒ…[ˆ—
+	//ã€Œãƒ¬ãƒ™ãƒ«ã€ã€Œã¯ã„ãƒ»ã„ã„ãˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
 	case SEQ_SUB_LEVEL_YES_NO:
 		ret = BmpMenuMain( wk->mw );
 
@@ -1063,15 +1063,15 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		case BMPMENU_NULL:
 			break;
 
-		//u‚Í‚¢v
+		//ã€Œã¯ã„ã€
 		case 0:
 			CastleEnemy_SeqSubMenuWinClear( wk );
 
 			now_cp = FrontierRecord_Get(wk->fro_sv, CastleScr_GetCPRecordID(wk->type),
 									Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)) );
-			check_cp = CastleEnemy_GetLvCP( wk->level_sel );			//g—pCP
+			check_cp = CastleEnemy_GetLvCP( wk->level_sel );			//ä½¿ç”¨CP
 
-			//CP‚ª‘«‚è‚È‚¢
+			//CPãŒè¶³ã‚Šãªã„æ™‚
 			if( now_cp < check_cp ){
 				CastleEnemy_SeqSubTalkWinOn( wk );
 				wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_03, FONT_TALK );
@@ -1079,7 +1079,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 				return FALSE;
 			}
 
-			//‘ã“ü‚³‚ê‚Ä‚¢‚½‚çˆ—‚ª•Ï‚í‚é‚Æ‚±‚ë‚ªA’ÊMA”ñ’ÊM‚Å“Á‚É‚È‚¢‚Ì‚ÅƒZƒbƒg‚µ‚Ä–â‘è‚È‚µ
+			//ä»£å…¥ã•ã‚Œã¦ã„ãŸã‚‰å‡¦ç†ãŒå¤‰ã‚ã‚‹ã¨ã“ã‚ãŒã€é€šä¿¡ã€éé€šä¿¡ã§ç‰¹ã«ãªã„ã®ã§ã‚»ãƒƒãƒˆã—ã¦å•é¡Œãªã—
 			wk->parent_decide_updown = wk->level_sel;
 
 			if( Castle_CommCheck(wk->type) == FALSE ){
@@ -1095,7 +1095,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 			}
 			break;
 			
-		//u‚¢‚¢‚¦v
+		//ã€Œã„ã„ãˆã€
 		case 1:
 		case BMPMENU_CANCEL:
 			CastleEnemy_SeqSubMenuWinClear( wk );
@@ -1108,11 +1108,11 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//u‚¶‚å‚¤‚Ù‚¤vƒŠƒXƒgˆ—
+	//ã€Œã˜ã‚‡ã†ã»ã†ã€ãƒªã‚¹ãƒˆå‡¦ç†
 	case SEQ_SUB_INFO_LIST:
 		ret = BmpListMain( wk->lw );
 		Castle_ListSeCall( ret, SEQ_SE_DP_SELECT );
-		BmpListDirectPosGet( wk->lw, &wk->list_csr_pos );					//ƒJ[ƒ\ƒ‹ˆÊ’u
+		BmpListDirectPosGet( wk->lw, &wk->list_csr_pos );					//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 
 		switch( ret ){
 
@@ -1127,16 +1127,16 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 			break;
 
 		case FC_PARAM_TUYOSA:
-			wk->parent_decide_type = ret;		//ƒpƒ‰ƒ[ƒ^
+			wk->parent_decide_type = ret;		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 			CastleEnemy_Basic2_Del( wk );		//TALK,BASIC2
 
-			//‚Â‚æ‚³‚ªŒöŠJ‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç
+			//ã¤ã‚ˆã•ãŒå…¬é–‹ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰
 			if( wk->p_tuyosa_flag[GetCsrPokePos(wk->h_max,wk->csr_pos)] == 0 ){
-				//uƒ|ƒPƒ‚ƒ“‚Ì@‚Â‚æ‚³‚ª@‚í‚©‚è‚Ü‚·@›‚b‚o‚ğ@‚Â‚©‚¢@‚Ü‚·‚©Hv
+				//ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã€€ã¤ã‚ˆã•ãŒã€€ã‚ã‹ã‚Šã¾ã™ã€€â—‹ï¼£ï¼°ã‚’ã€€ã¤ã‹ã„ã€€ã¾ã™ã‹ï¼Ÿã€
 				CastleEnemy_SeqSubTalkWinOn( wk );
 				Castle_SetNumber( wk, 0, CP_USE_TUYOSA, CASTLE_KETA_CP, NUMBER_DISPTYPE_LEFT);
 				wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_06, FONT_TALK );
-				Castle_SetMenu2( wk );						//u‚Í‚¢E‚¢‚¢‚¦v
+				Castle_SetMenu2( wk );						//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 				wk->sub_seq = SEQ_SUB_INFO_TUYOSA_YES_NO;
 			}else{
 				CastleEnemy_SeqSubTuyosa( wk, wk->csr_pos );
@@ -1145,10 +1145,10 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 			break;
 
 		case FC_PARAM_WAZA:
-			wk->parent_decide_type = ret;		//ƒpƒ‰ƒ[ƒ^
+			wk->parent_decide_type = ret;		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 			CastleEnemy_Basic2_Del( wk );		//TALK,BASIC2
 
-			//ƒ‰ƒ“ƒN‚ª‘«‚è‚È‚¢
+			//ãƒ©ãƒ³ã‚¯ãŒè¶³ã‚Šãªã„æ™‚
 			now_rank = Castle_GetRank( wk->sv, wk->type, CASTLE_RANK_TYPE_INFO );
 			if( now_rank == 1 ){
 				wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_09_10, FONT_TALK );
@@ -1156,19 +1156,19 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 				return FALSE;
 			}
 
-			//‰ï˜bƒEƒBƒ“ƒhƒE•\¦
+			//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 			//CastleTalkWinPut( &wk->bmpwin[ENEMY_BMPWIN_TALK], CONFIG_GetWindowType(wk->config));
 
-			//‹Z‚ªŒöŠJ‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç
+			//æŠ€ãŒå…¬é–‹ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰
 			if( wk->p_waza_flag[GetCsrPokePos(wk->h_max,wk->csr_pos)] == 0 ){
-				//u‚à‚Á‚Ä‚¢‚é@‚í‚´‚ª@‚í‚©‚è‚Ü‚·@›‚b‚o‚ğ@‚Â‚©‚¢@‚Ü‚·‚©Hv
+				//ã€Œã‚‚ã£ã¦ã„ã‚‹ã€€ã‚ã–ãŒã€€ã‚ã‹ã‚Šã¾ã™ã€€â—‹ï¼£ï¼°ã‚’ã€€ã¤ã‹ã„ã€€ã¾ã™ã‹ï¼Ÿã€
 				CastleEnemy_SeqSubTalkWinOn( wk );
 				Castle_SetNumber( wk, 0, CP_USE_WAZA, CASTLE_KETA_CP, NUMBER_DISPTYPE_LEFT);
 				wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_07, FONT_TALK );
-				Castle_SetMenu2( wk );						//u‚Í‚¢E‚¢‚¢‚¦v
+				Castle_SetMenu2( wk );						//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 				wk->sub_seq = SEQ_SUB_INFO_WAZA_YES_NO;
 			}else{
-				CastleEnemy_SeqSubWaza( wk, wk->csr_pos );	//‹Z–¼A‚o‚o–¼‚ğ•\¦
+				CastleEnemy_SeqSubWaza( wk, wk->csr_pos );	//æŠ€åã€ï¼°ï¼°åã‚’è¡¨ç¤º
 				wk->sub_seq = SEQ_SUB_INFO_WAZA_KEY_WAIT_WIN_OFF;
 			}
 			break;
@@ -1176,27 +1176,27 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		case FC_PARAM_INFO_RANKUP:
 			now_rank = Castle_GetRank( wk->sv, wk->type, CASTLE_RANK_TYPE_INFO );
 				
-			//ƒ‰ƒ“ƒNƒAƒbƒv‚l‚`‚w‚ğ‘I‘ğ
+			//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ï¼­ï¼¡ï¼¸ã‚’é¸æŠ
 			//if( now_rank == CASTLE_RANK_MAX ){
-			if( now_rank == (CASTLE_RANK_MAX-1) ){				//‚±‚±‚¾‚¯2‚ªÅ‚‚È‚Ì‚ÅI
-				//u‚±‚ê@‚¢‚¶‚å‚¤@ƒ‰ƒ“ƒN‚Í@‚ ‚ª‚è‚Ü‚¹‚ñIv
+			if( now_rank == (CASTLE_RANK_MAX-1) ){				//ã“ã“ã ã‘2ãŒæœ€é«˜ãªã®ã§ï¼
+				//ã€Œã“ã‚Œã€€ã„ã˜ã‚‡ã†ã€€ãƒ©ãƒ³ã‚¯ã¯ã€€ã‚ãŒã‚Šã¾ã›ã‚“ï¼ã€
 				Snd_SeStopBySeqNo( SEQ_SE_DP_SELECT, 0 );
 				Snd_SePlay( SEQ_SE_DP_BOX03 );
 				//wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_09_08, FONT_TALK );
 				//wk->sub_seq = SEQ_SUB_INFO_KEY_WAIT_LIST_RETURN;
 			}else{
-				wk->parent_decide_type = ret;		//ƒpƒ‰ƒ[ƒ^
+				wk->parent_decide_type = ret;		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 				CastleEnemy_Basic2_Del( wk );		//TALK,BASIC2
 
-				//•K—v‚ÈCPƒ|ƒCƒ“ƒgæ“¾
+				//å¿…è¦ãªCPãƒã‚¤ãƒ³ãƒˆå–å¾—
 				now_cp = FrontierRecord_Get(wk->fro_sv, CastleScr_GetCPRecordID(wk->type),
 										Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)));
 
-				/*u›‚b‚o‚ğg‚Á‚Äƒ‰ƒ“ƒN‚ğ‚ ‚°‚Ü‚·‚©Hv*/
+				/*ã€Œâ—‹ï¼£ï¼°ã‚’ä½¿ã£ã¦ãƒ©ãƒ³ã‚¯ã‚’ã‚ã’ã¾ã™ã‹ï¼Ÿã€*/
 				Castle_SetNumber(wk, 0, INFO_RANKUP_POINT, 
 								 CASTLE_KETA_CP, NUMBER_DISPTYPE_LEFT );
 				wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_11_01, FONT_TALK );
-				Castle_SetMenu2( wk );						//u‚Í‚¢E‚¢‚¢‚¦v
+				Castle_SetMenu2( wk );						//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 				wk->sub_seq = SEQ_SUB_INFO_RANKUP_YES_NO;
 			}
 			break;
@@ -1204,7 +1204,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//u‚Â‚æ‚³vu‚Í‚¢E‚¢‚¢‚¦vƒƒjƒ…[ˆ—
+	//ã€Œã¤ã‚ˆã•ã€ã€Œã¯ã„ãƒ»ã„ã„ãˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
 	case SEQ_SUB_INFO_TUYOSA_YES_NO:
 		ret = BmpMenuMain( wk->mw );
 
@@ -1213,7 +1213,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		case BMPMENU_NULL:
 			break;
 
-		//u‚Í‚¢v
+		//ã€Œã¯ã„ã€
 		case 0:
 			ans = CastleEnemy_SeqSubTuyosaWazaYes( wk, CP_USE_TUYOSA, msg_castle_trainer_06_05 );
 			if( ans == TRUE ){
@@ -1221,7 +1221,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 			}
 			break;
 			
-		//u‚¢‚¢‚¦v
+		//ã€Œã„ã„ãˆã€
 		case 1:
 		case BMPMENU_CANCEL:
 			CastleEnemy_SeqSubMenuWinClear( wk );
@@ -1233,7 +1233,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//u‚í‚´vu‚Í‚¢E‚¢‚¢‚¦vƒƒjƒ…[ˆ—
+	//ã€Œã‚ã–ã€ã€Œã¯ã„ãƒ»ã„ã„ãˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
 	case SEQ_SUB_INFO_WAZA_YES_NO:
 		ret = BmpMenuMain( wk->mw );
 
@@ -1242,7 +1242,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		case BMPMENU_NULL:
 			break;
 
-		//u‚Í‚¢v
+		//ã€Œã¯ã„ã€
 		case 0:
 			ans = CastleEnemy_SeqSubTuyosaWazaYes( wk, CP_USE_WAZA, msg_castle_trainer_07_03 );
 			if( ans == TRUE ){
@@ -1250,7 +1250,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 			}
 			break;
 			
-		//u‚¢‚¢‚¦v
+		//ã€Œã„ã„ãˆã€
 		case 1:
 		case BMPMENU_CANCEL:
 			CastleEnemy_SeqSubMenuWinClear( wk );
@@ -1262,7 +1262,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//uƒ‰ƒ“ƒNƒAƒbƒvvu‚Í‚¢E‚¢‚¢‚¦vƒƒjƒ…[ˆ—
+	//ã€Œãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã€ã€Œã¯ã„ãƒ»ã„ã„ãˆã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
 	case SEQ_SUB_INFO_RANKUP_YES_NO:
 		ret = BmpMenuMain( wk->mw );
 
@@ -1271,7 +1271,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		case BMPMENU_NULL:
 			break;
 
-		//u‚Í‚¢v
+		//ã€Œã¯ã„ã€
 		case 0:
 			CastleEnemy_SeqSubMenuWinClear( wk );
 
@@ -1279,9 +1279,9 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 										Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)));
 			now_rank = Castle_GetRank( wk->sv, wk->type, CASTLE_RANK_TYPE_INFO );
 
-			//CP‚Ì”äŠr
+			//CPã®æ¯”è¼ƒ
 			if( now_cp < INFO_RANKUP_POINT ){
-				//u‚b‚o‚ª@‚½‚è‚Ü‚¹‚ñv
+				//ã€Œï¼£ï¼°ãŒã€€ãŸã‚Šã¾ã›ã‚“ã€
 				CastleEnemy_SeqSubMenuWinClear( wk );
 				CastleTalkWinPut( &wk->bmpwin[ENEMY_BMPWIN_TALK], CONFIG_GetWindowType(wk->config));
 				wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_07_03, FONT_TALK );
@@ -1289,7 +1289,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 				break;
 			}
 						
-			//ƒ‰ƒ“ƒNƒAƒbƒv
+			//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—
 			if( Castle_CommCheck(wk->type) == FALSE ){
 				CastleRank_SeqSubRankUp( wk, wk->csr_pos, FC_PARAM_INFO_RANKUP );
 				wk->sub_seq = SEQ_SUB_INFO_RANKUP_DECIDE_EFF_WAIT;
@@ -1301,7 +1301,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 
 			break;
 			
-		//u‚¢‚¢‚¦v
+		//ã€Œã„ã„ãˆã€
 		case 1:
 		case BMPMENU_CANCEL:
 			CastleEnemy_SeqSubMenuWinClear( wk );
@@ -1313,14 +1313,14 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//î•ñƒ‰ƒ“ƒNƒAƒbƒvŒˆ’èƒGƒtƒFƒNƒg‘Ò‚¿
+	//æƒ…å ±ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—æ±ºå®šã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¾…ã¡
 	case SEQ_SUB_INFO_RANKUP_DECIDE_EFF_WAIT:
 		if( sys.trg & (PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL) ){
 		//if( CastleEnemy_DecideEff(wk,wk->csr_pos,wk->parent_decide_type) == TRUE ){
 			CastleEnemy_SeqSubMenuWinClear( wk );
 			CastleEnemy_Basic2_Write( wk );		//TALK,BASIC2
 
-			//ƒ‰ƒ“ƒNƒAƒbƒvƒGƒtƒFƒNƒg
+			//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 			CastleObj_RankUpEff( wk->p_eff_rankup, CASTLE_ENEMY_RANKUP_X, CASTLE_ENEMY_RANKUP_Y );
 
 			wk->sub_seq = SEQ_SUB_INFO_LIST;
@@ -1328,7 +1328,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//Œˆ’èƒGƒtƒFƒNƒg‘Ò‚¿
+	//æ±ºå®šã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¾…ã¡
 	case SEQ_SUB_DECIDE_EFF_WAIT:
 		if( CastleEnemy_DecideEff(wk,wk->csr_pos,wk->parent_decide_type) == TRUE ){
 			wk->sub_seq = SEQ_SUB_KEY_WAIT;
@@ -1336,7 +1336,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//Œˆ’èƒGƒtƒFƒNƒg‘Ò‚¿¨ƒEƒBƒ“ƒhƒIƒt‚Ö
+	//æ±ºå®šã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¾…ã¡â†’ã‚¦ã‚£ãƒ³ãƒ‰ã‚ªãƒ•ã¸
 	case SEQ_SUB_DECIDE_EFF_WAIT_NEXT_WIN_OFF:
 		if( CastleEnemy_DecideEff(wk,wk->csr_pos,wk->parent_decide_type) == TRUE ){
 			wk->sub_seq = SEQ_SUB_DECIDE_EFF_WAIT_WIN_OFF;
@@ -1344,7 +1344,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//Œˆ’èƒGƒtƒFƒNƒg‘Ò‚¿¨ƒEƒBƒ“ƒhƒIƒt‚µ‚ÄÅ‰‚Ì‰æ–Ê‚É–ß‚é
+	//æ±ºå®šã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¾…ã¡â†’ã‚¦ã‚£ãƒ³ãƒ‰ã‚ªãƒ•ã—ã¦æœ€åˆã®ç”»é¢ã«æˆ»ã‚‹
 	case SEQ_SUB_DECIDE_EFF_WAIT_WIN_OFF:
 		if( wk->parent_decide_type == FC_PARAM_TUYOSA ){
 			wk->sub_seq = SEQ_SUB_INFO_TUYOSA_KEY_WAIT_WIN_OFF;
@@ -1354,7 +1354,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒL[‘Ò‚¿‚µ‚ÄA‚¶‚å‚¤‚Ù‚¤ƒŠƒXƒg‚É–ß‚é
+	//ã‚­ãƒ¼å¾…ã¡ã—ã¦ã€ã˜ã‚‡ã†ã»ã†ãƒªã‚¹ãƒˆã«æˆ»ã‚‹
 	case SEQ_SUB_INFO_KEY_WAIT_LIST_RETURN:
 		if( sys.trg & (PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL) ){
 			Snd_SePlay( SEQ_SE_DP_SELECT );
@@ -1364,18 +1364,18 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒL[‘Ò‚¿
+	//ã‚­ãƒ¼å¾…ã¡
 	case SEQ_SUB_KEY_WAIT:
 		if( sys.trg & (PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL) ){
 			Snd_SePlay( SEQ_SE_DP_SELECT );
 			BmpTalkWinClearSub( &wk->bmpwin[ENEMY_BMPWIN_TALK] );
-			CastleEnemy_Default_Write( wk );		//TALKMENU,‚à‚Ç‚é
+			CastleEnemy_Default_Write( wk );		//TALKMENU,ã‚‚ã©ã‚‹
 			wk->sub_seq = SEQ_SUB_START;
 		}
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//‚Â‚æ‚³FƒL[‘Ò‚¿‚µ‚ÄƒXƒe[ƒ^ƒX‚È‚Ç‚ÌƒEƒBƒ“ƒhƒE‚ğÁ‚µ‚ÄABASICƒŠƒXƒg‚Ö–ß‚é
+	//ã¤ã‚ˆã•ï¼šã‚­ãƒ¼å¾…ã¡ã—ã¦ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãªã©ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã—ã¦ã€BASICãƒªã‚¹ãƒˆã¸æˆ»ã‚‹
 	case SEQ_SUB_INFO_TUYOSA_KEY_WAIT_WIN_OFF:
 		if( sys.trg & PAD_KEY_LEFT ){
 			CastleEnemy_TuyosaWinChg( wk, -1 );
@@ -1390,7 +1390,7 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 		break;
 
 	//////////////////////////////////////////////////////////////////////////////////////
-	//‚í‚´FƒL[‘Ò‚¿‚µ‚ÄƒXƒe[ƒ^ƒX‚È‚Ç‚ÌƒEƒBƒ“ƒhƒE‚ğÁ‚µ‚ÄABASICƒŠƒXƒg‚Ö–ß‚é
+	//ã‚ã–ï¼šã‚­ãƒ¼å¾…ã¡ã—ã¦ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãªã©ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã—ã¦ã€BASICãƒªã‚¹ãƒˆã¸æˆ»ã‚‹
 	case SEQ_SUB_INFO_WAZA_KEY_WAIT_WIN_OFF:
 		if( sys.trg & PAD_KEY_LEFT ){
 			CastleEnemy_WazaWinChg( wk, -1 );
@@ -1412,11 +1412,11 @@ static BOOL Seq_GameTypeSel( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‘—óM
+ * @brief	é€å—ä¿¡
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameSendRecv( CASTLE_ENEMY_WORK* wk )
@@ -1426,9 +1426,9 @@ static BOOL Seq_GameSendRecv( CASTLE_ENEMY_WORK* wk )
 	switch( wk->sub_seq ){
 
 	case 0:
-		wk->recover_flag = RECOVER_NORMAL;	//ƒ‰ƒ“ƒNƒAƒbƒv‚µ‚½‚É–ß‚èæ‚ª“Áêƒtƒ‰ƒOOFF
+		wk->recover_flag = RECOVER_NORMAL;	//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã—ãŸæ™‚ã«æˆ»ã‚Šå…ˆãŒç‰¹æ®Šãƒ•ãƒ©ã‚°OFF
 
-		//‘I‚ñ‚¾ƒŠƒNƒGƒXƒg(‚â‚è‚½‚¢‚±‚Æ)‚ğ‘—M
+		//é¸ã‚“ã ãƒªã‚¯ã‚¨ã‚¹ãƒˆ(ã‚„ã‚ŠãŸã„ã“ã¨)ã‚’é€ä¿¡
 		if( CastleEnemy_CommSetSendBuf(wk,CASTLE_COMM_ENEMY_UP_TYPE,wk->csr_pos) == TRUE ){
 			wk->send_req = 0;
 			wk->sub_seq++;
@@ -1440,10 +1440,10 @@ static BOOL Seq_GameSendRecv( CASTLE_ENEMY_WORK* wk )
 			break;
 		}
 
-		//e‚ªŒˆ‚ß‚½ƒ‰ƒ“ƒN‚ÆLR‚ğƒ‰ƒ“ƒNƒAƒbƒv‚³‚¹‚é
+		//è¦ªãŒæ±ºã‚ãŸãƒ©ãƒ³ã‚¯ã¨LRã‚’ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã•ã›ã‚‹
 		wk->recieve_count = 0;
 
-		//ƒ‰ƒ“ƒN‚ğã‚°‚éˆ—‚Æ‚»‚êˆÈŠO‚Å•ª‚¯‚Ä‚¢‚é
+		//ãƒ©ãƒ³ã‚¯ã‚’ä¸Šã’ã‚‹å‡¦ç†ã¨ãã‚Œä»¥å¤–ã§åˆ†ã‘ã¦ã„ã‚‹
 		if( wk->parent_decide_type == FC_PARAM_INFO_RANKUP ){ 
 			CastleRank_SeqSubRankUp( wk, wk->parent_decide_pos, FC_PARAM_INFO_RANKUP );
 		}else{
@@ -1453,9 +1453,9 @@ static BOOL Seq_GameSendRecv( CASTLE_ENEMY_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//Œˆ’èƒGƒtƒFƒNƒg‘Ò‚¿
+	//æ±ºå®šã‚¨ãƒ•ã‚§ã‚¯ãƒˆå¾…ã¡
 	case 2:
-		sel_pos = GetCommSelCsrPos( wk->modoru_pos, wk->parent_decide_pos );	//ƒJ[ƒ\ƒ‹ˆÊ’uæ“¾
+		sel_pos = GetCommSelCsrPos( wk->modoru_pos, wk->parent_decide_pos );	//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å–å¾—
 		if( CastleEnemy_DecideEff(wk,sel_pos,wk->parent_decide_type) == TRUE ){
 			wk->wait = CASTLE_COMM_WAIT;
 			wk->sub_seq++;
@@ -1467,7 +1467,7 @@ static BOOL Seq_GameSendRecv( CASTLE_ENEMY_WORK* wk )
 		//Snd_SePlay( SEQ_SE_DP_SELECT );
 		wk->wait--;
 		if( wk->wait == 0 ){
-			//“¯ŠúŠJn
+			//åŒæœŸé–‹å§‹
 			CommToolTempDataReset();
 			CommTimingSyncStart( DBC_TIM_CASTLE_ENEMY_UP );
 			wk->sub_seq++;
@@ -1475,37 +1475,37 @@ static BOOL Seq_GameSendRecv( CASTLE_ENEMY_WORK* wk )
 		}
 		break;
 
-	//“¯Šú
+	//åŒæœŸ
 	case 4:
-		//ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‚ª“Í‚¢‚½‚©Šm”F
+		//ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰ãŒå±Šã„ãŸã‹ç¢ºèª
 		if( CommIsTimingSync(DBC_TIM_CASTLE_ENEMY_UP) == TRUE ){
 			wk->sub_seq++;
 		}
 		break;
 
 	case 5:
-		//ƒGƒtƒFƒNƒgƒ^ƒCƒ~ƒ“ƒO‚ª2‰ÓŠ‚É‚È‚Á‚½‚Ì‚Å’Ç‰Á
-		sel_pos = GetCommSelCsrPos( wk->modoru_pos, wk->parent_decide_pos );	//ƒJ[ƒ\ƒ‹ˆÊ’uæ“¾
+		//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒ2ç®‡æ‰€ã«ãªã£ãŸã®ã§è¿½åŠ 
+		sel_pos = GetCommSelCsrPos( wk->modoru_pos, wk->parent_decide_pos );	//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å–å¾—
 		if( CastleEnemy_DecideEff2(wk,sel_pos,wk->parent_decide_type) == TRUE ){
 			CommToolTempDataReset();
 			CommToolInitialize( HEAPID_CASTLE );	//timingSyncEnd=0xff
 
-			//08.03.28íœ
+			//08.03.28å‰Šé™¤
 			//BmpTalkWinClearSub( &wk->bmpwin[ENEMY_BMPWIN_TALK] );
 			//CastleEnemy_SeqSubStatusWinDel( wk );
 
-			//CastleEnemy_SeqSubAllInfoWrite( wk );								//î•ñXV
+			//CastleEnemy_SeqSubAllInfoWrite( wk );								//æƒ…å ±æ›´æ–°
 			wk->parent_decide_pos = CASTLE_ENEMY_DECIDE_NONE;
 
 #if 0
-			//08.03.28íœ
-			//ƒ‰ƒ“ƒNƒAƒbƒv‚µ‚½‚É–ß‚èæ‚ª“Áê‚©ƒ`ƒFƒbƒN
+			//08.03.28å‰Šé™¤
+			//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã—ãŸæ™‚ã«æˆ»ã‚Šå…ˆãŒç‰¹æ®Šã‹ãƒã‚§ãƒƒã‚¯
 			if( wk->recover_flag == RECOVER_NORMAL ){
-				CastleEnemy_Default_Write( wk );								//TALKMENU,‚à‚Ç‚é
+				CastleEnemy_Default_Write( wk );								//TALKMENU,ã‚‚ã©ã‚‹
 			}
 #endif
 
-			//u–ß‚é£ƒŠƒNƒGƒXƒg‚ªæ‚É‚«‚Ä‚¢‚Ä‚àA‚È‚©‚Á‚½‚±‚Æ‚É‚·‚é
+			//ã€Œæˆ»ã‚‹ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒå…ˆã«ãã¦ã„ã¦ã‚‚ã€ãªã‹ã£ãŸã“ã¨ã«ã™ã‚‹
 			wk->pair_modoru_flag = 0;
 			return TRUE;
 		}
@@ -1518,11 +1518,11 @@ static BOOL Seq_GameSendRecv( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFƒ}ƒ‹ƒ`I—¹‚Ö
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒãƒ«ãƒçµ‚äº†ã¸
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameEndMulti( CASTLE_ENEMY_WORK* wk )
@@ -1531,7 +1531,7 @@ static BOOL Seq_GameEndMulti( CASTLE_ENEMY_WORK* wk )
 
 	switch( wk->sub_seq ){
 
-	//u–ß‚év‘—M
+	//ã€Œæˆ»ã‚‹ã€é€ä¿¡
 	case 0:
 		if( CastleEnemy_CommSetSendBuf(wk,CASTLE_COMM_ENEMY_MODORU,0) == TRUE ){
 			wk->wait = CASTLE_MODORU_WAIT;
@@ -1539,7 +1539,7 @@ static BOOL Seq_GameEndMulti( CASTLE_ENEMY_WORK* wk )
 		}
 		break;
 
-	//“¯ŠúŠJn
+	//åŒæœŸé–‹å§‹
 	case 1:
 		if( wk->wait > 0 ){
 			wk->wait--;
@@ -1552,9 +1552,9 @@ static BOOL Seq_GameEndMulti( CASTLE_ENEMY_WORK* wk )
 		}
 		break;
 
-	//“¯Šú‘Ò‚¿
+	//åŒæœŸå¾…ã¡
 	case 2:
-		//ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‚ª“Í‚¢‚½‚©Šm”F
+		//ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰ãŒå±Šã„ãŸã‹ç¢ºèª
 		if( CommIsTimingSync(DBC_TIM_CASTLE_ENEMY_END) == TRUE ){
 			CommToolTempDataReset();
 			BmpTalkWinClearSub( &wk->bmpwin[ENEMY_BMPWIN_TALK] );
@@ -1568,11 +1568,11 @@ static BOOL Seq_GameEndMulti( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXFI—¹‚Ö
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµ‚äº†ã¸
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = Ÿ‚ÖAFALSE = Œp‘±"
+ * @return	"TRUE = æ¬¡ã¸ã€FALSE = ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL Seq_GameEnd( CASTLE_ENEMY_WORK* wk )
@@ -1581,7 +1581,7 @@ static BOOL Seq_GameEnd( CASTLE_ENEMY_WORK* wk )
 
 	switch( wk->sub_seq ){
 
-	//ƒtƒF[ƒhƒAƒEƒg
+	//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	case 0:
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, 
 					WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_CASTLE );
@@ -1589,7 +1589,7 @@ static BOOL Seq_GameEnd( CASTLE_ENEMY_WORK* wk )
 		wk->sub_seq++;
 		break;
 
-	//ƒtƒF[ƒhI—¹‘Ò‚¿
+	//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 	case 1:
 		if( WIPE_SYS_EndCheck() == TRUE ){
 			return TRUE;
@@ -1603,15 +1603,15 @@ static BOOL Seq_GameEnd( CASTLE_ENEMY_WORK* wk )
 
 //==============================================================================================
 //
-//	‹¤’Êˆ—
+//	å…±é€šå‡¦ç†
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê íœ
+ * @brief	å…±é€š å‰Šé™¤
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1623,10 +1623,10 @@ static void CastleCommon_Delete( CASTLE_ENEMY_WORK* wk )
 
 	CastleObj_Delete( wk->p_poke_sel );
 	CastleObj_Delete( wk->p_pair_poke_sel );
-	//CastleObj_Delete( wk->p_eff );		//‚¢‚ç‚È‚¢
+	//CastleObj_Delete( wk->p_eff );		//ã„ã‚‰ãªã„
 	CastleObj_Delete( wk->p_eff_rankup );
 	
-	//‚Â‚æ‚³A‚í‚´
+	//ã¤ã‚ˆã•ã€ã‚ã–
 	for( i=0; i < CASTLE_COMM_POKE_TOTAL_NUM ;i++ ){
 		for( j=0; j < 2 ;j++ ){
 			CastleObj_Delete( wk->p_hata[i][j] );
@@ -1640,31 +1640,31 @@ static void CastleCommon_Delete( CASTLE_ENEMY_WORK* wk )
 		CastleObj_Delete( wk->p_hp[i] );
 	}
 
-	//’ÊMƒAƒCƒRƒ“íœ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
 	WirelessIconEasyEnd();
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhŠJ•ú
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰é–‹æ”¾
 	PaletteFadeWorkAllocFree( wk->pfd, FADE_MAIN_OBJ );
 	PaletteFadeWorkAllocFree( wk->pfd, FADE_MAIN_BG );
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ŠJ•ú
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ é–‹æ”¾
 	PaletteFadeFree( wk->pfd );
 	wk->pfd = NULL;
 
-	CastleClact_DeleteCellObject(&wk->castle_clact);		//2DƒIƒuƒWƒFƒNƒgŠÖ˜A—ÌˆæŠJ•ú
+	CastleClact_DeleteCellObject(&wk->castle_clact);		//2Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé–¢é€£é ˜åŸŸé–‹æ”¾
 
-	MSGMAN_Delete( wk->msgman );						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠJ•ú
+	MSGMAN_Delete( wk->msgman );						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£é–‹æ”¾
 	WORDSET_Delete( wk->wordset );
-	STRBUF_Delete( wk->msg_buf );						//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
-	STRBUF_Delete( wk->tmp_buf );						//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
+	STRBUF_Delete( wk->msg_buf );						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
+	STRBUF_Delete( wk->tmp_buf );						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
 	NUMFONT_Delete( wk->num_font );
 
 	for( i=0; i < CASTLE_MENU_BUF_MAX ;i++ ){
-		STRBUF_Delete( wk->menu_buf[i] );				//ƒƒjƒ…[ƒoƒbƒtƒ@ŠJ•ú
+		STRBUF_Delete( wk->menu_buf[i] );				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
 	}
 
-	CastleExitBmpWin( wk->bmpwin, CASTLE_BMP_ENEMY );	//BMPƒEƒBƒ“ƒhƒEŠJ•ú
-	Castle_BgExit( wk->bgl );							//BGLíœ
+	CastleExitBmpWin( wk->bmpwin, CASTLE_BMP_ENEMY );	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
+	Castle_BgExit( wk->bgl );							//BGLå‰Šé™¤
 	ArchiveDataHandleClose( wk->hdl );
 
 	return;
@@ -1672,9 +1672,9 @@ static void CastleCommon_Delete( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	•œ‹A
+ * @brief	å¾©å¸°
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1686,17 +1686,17 @@ static void Castle_Recover( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê ‰Šú‰»1
+ * @brief	å…±é€š åˆæœŸåŒ–1
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void Castle_InitSub1( void )
 {
-	sys_VBlankFuncChange( NULL, NULL );					//VBlankƒZƒbƒg
-	sys_HBlankIntrSet( NULL,NULL );						//HBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );					//VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrSet( NULL,NULL );						//HBlankã‚»ãƒƒãƒˆ
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	GX_SetVisiblePlane( 0 );
@@ -1706,9 +1706,9 @@ static void Castle_InitSub1( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê ‰Šú‰»2
+ * @brief	å…±é€š åˆæœŸåŒ–2
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1723,10 +1723,10 @@ static void Castle_InitSub2( CASTLE_ENEMY_WORK* wk )
 	GF_BGL_BMPWIN* win;
 
 	wk->hdl = ArchiveDataHandleOpen( ARC_FRONTIER_BG, HEAPID_CASTLE );
-	Castle_BgInit( wk );								//BG‰Šú‰»
-	Castle_ObjInit( wk );								//OBJ‰Šú‰»
+	Castle_BgInit( wk );								//BGåˆæœŸåŒ–
+	Castle_ObjInit( wk );								//OBJåˆæœŸåŒ–
 
-	//ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	wk->msgman = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, 
 								NARC_msg_castle_trainer_dat, HEAPID_CASTLE );
 
@@ -1734,23 +1734,23 @@ static void Castle_InitSub2( CASTLE_ENEMY_WORK* wk )
 	wk->msg_buf = STRBUF_Create( CASTLE_MSG_BUF_SIZE, HEAPID_CASTLE );
 	wk->tmp_buf = STRBUF_Create( CASTLE_MSG_BUF_SIZE, HEAPID_CASTLE );
 
-	//•¶š—ñƒoƒbƒtƒ@ì¬
+	//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	for( i=0; i < CASTLE_MENU_BUF_MAX ;i++ ){
 		wk->menu_buf[i] = STRBUF_Create( CASTLE_MENU_BUF_SIZE, HEAPID_CASTLE );
 	}
 
-	//ƒtƒHƒ“ƒgƒpƒŒƒbƒg
+	//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆ
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, BC_FONT_PAL * 32, HEAPID_CASTLE );
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, BC_MSGFONT_PAL * 32, HEAPID_CASTLE );
 
-	//8x8ƒtƒHƒ“ƒgì¬(g—pbmpwin[ENEMY_BMPWIN_TYPE]‚ÌƒpƒŒƒbƒg(BC_FONT_PAL)‚ğg—p
+	//8x8ãƒ•ã‚©ãƒ³ãƒˆä½œæˆ(ä½¿ç”¨bmpwin[ENEMY_BMPWIN_TYPE]ã®ãƒ‘ãƒ¬ãƒƒãƒˆ(BC_FONT_PAL)ã‚’ä½¿ç”¨
 	//wk->num_font = NUMFONT_Create( 15, 14, FBMP_COL_NULL, HEAPID_CASTLE );
 	wk->num_font = NUMFONT_Create( FBMP_COL_BLACK, FBMP_COL_BLK_SDW, FBMP_COL_NULL, HEAPID_CASTLE );
 
-	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
 	CastleAddBmpWin( wk->bgl, wk->bmpwin, CASTLE_BMP_ENEMY );
 
-	//’ÊM‚µ‚Ä‚¢‚é‚©‚Å•\¦‚ÌƒIƒtƒZƒbƒg‚ª•Ï‚í‚é
+	//é€šä¿¡ã—ã¦ã„ã‚‹ã‹ã§è¡¨ç¤ºã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãŒå¤‰ã‚ã‚‹
 	Castle_GetOffset( wk, &offset_x, &offset_y, &pair_offset_x, &pair_offset_y );
 
 	////////////////////////////////////////////////////////////////////////////////////////
@@ -1762,7 +1762,7 @@ static void Castle_InitSub2( CASTLE_ENEMY_WORK* wk )
 		ball_offset_x = BALL_MULTI_START_X;
 	}
 
-	//ƒ{[ƒ‹OBJ
+	//ãƒœãƒ¼ãƒ«OBJ
 	e_max = Castle_GetEnemyPokeNum( wk->type, CASTLE_FLAG_TOTAL );
 	for( i=0; i < e_max ;i++ ){
 		wk->p_ball[i] = CastleObj_Create(	&wk->castle_clact, 
@@ -1771,37 +1771,37 @@ static void Castle_InitSub2( CASTLE_ENEMY_WORK* wk )
 											BALL_WIDTH_X*i+ball_offset_x, 
 											BALL_START_Y, CASTLE_BG_PRI_LOW, NULL );
 
-		//HPó‘ÔOBJ’Ç‰Á
+		//HPçŠ¶æ…‹OBJè¿½åŠ 
 		wk->p_hp[i] = CastleObj_Create(	&wk->castle_clact,
 										ID_CHAR_CSR, ID_PLTT_CSR, 
 										ID_CELL_CSR, CASTLE_ANM_HP_MIDORI,
 										ICON_WIDTH_X*i+icon_offset_x, 
 										ICON_START_Y+20, CASTLE_BG_PRI_BACK, NULL );
 
-		//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“OBJ’Ç‰Á
+		//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³OBJè¿½åŠ 
 		wk->p_icon[i] = CastleObj_Create(	&wk->castle_clact, 
 											ID_CHAR_ICON1+i, ID_PLTT_ICON,
 											ID_CELL_ICON, POKEICON_ANM_HPMAX,
 											ICON_WIDTH_X*i+icon_offset_x, 
 											ICON_START_Y, CASTLE_BG_PRI_LOW, NULL );
 
-		//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒgØ‚è‘Ö‚¦
+		//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
 		CastleObj_IconPalChg( wk->p_icon[i], PokeParty_GetMemberPointer(wk->p_party,i) );
 
-		//è‚¿‚ªŒöŠJ‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç
+		//æ‰‹æŒã¡ãŒå…¬é–‹ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰
 		if( wk->p_temoti_flag[i] == 0 ){
-			CastleObj_Vanish( wk->p_ball[i], CASTLE_VANISH_OFF );	//ƒ{[ƒ‹•\¦
-			CastleObj_Vanish( wk->p_icon[i], CASTLE_VANISH_ON );	//ƒ|ƒPƒAƒCƒRƒ“”ñ•\¦
-			CastleObj_Vanish( wk->p_hp[i], CASTLE_VANISH_ON );		//HPó‘ÔƒAƒCƒRƒ“”ñ•\¦
+			CastleObj_Vanish( wk->p_ball[i], CASTLE_VANISH_OFF );	//ãƒœãƒ¼ãƒ«è¡¨ç¤º
+			CastleObj_Vanish( wk->p_icon[i], CASTLE_VANISH_ON );	//ãƒã‚±ã‚¢ã‚¤ã‚³ãƒ³éè¡¨ç¤º
+			CastleObj_Vanish( wk->p_hp[i], CASTLE_VANISH_ON );		//HPçŠ¶æ…‹ã‚¢ã‚¤ã‚³ãƒ³éè¡¨ç¤º
 		}else{
-			CastleObj_Vanish( wk->p_ball[i], CASTLE_VANISH_ON );	//ƒ{[ƒ‹”ñ•\¦
-			CastleObj_Vanish( wk->p_icon[i], CASTLE_VANISH_OFF );	//ƒ|ƒPƒAƒCƒRƒ“•\¦
-			CastleObj_Vanish( wk->p_hp[i], CASTLE_VANISH_OFF );		//HPó‘ÔƒAƒCƒRƒ“•\¦
+			CastleObj_Vanish( wk->p_ball[i], CASTLE_VANISH_ON );	//ãƒœãƒ¼ãƒ«éè¡¨ç¤º
+			CastleObj_Vanish( wk->p_icon[i], CASTLE_VANISH_OFF );	//ãƒã‚±ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
+			CastleObj_Vanish( wk->p_hp[i], CASTLE_VANISH_OFF );		//HPçŠ¶æ…‹ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 		}
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////
-	//ƒ|ƒPƒ‚ƒ“‘I‘ğƒEƒBƒ“OBJ’Ç‰Á
+	//ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¦ã‚£ãƒ³OBJè¿½åŠ 
 	CastleEnemy_GetPokeSelXY( wk, &start_x, &start_y, 0 );
 	wk->p_poke_sel = CastleObj_Create(	&wk->castle_clact, 
 										ID_CHAR_CSR, ID_PLTT_CSR, 
@@ -1816,11 +1816,11 @@ static void Castle_InitSub2( CASTLE_ENEMY_WORK* wk )
 											CASTLE_BG_PRI_LOW, NULL );
 
 	if( Castle_CommCheck(wk->type) == FALSE ){
-		CastleObj_Vanish( wk->p_pair_poke_sel, CASTLE_VANISH_ON );			//”ñ•\¦
+		CastleObj_Vanish( wk->p_pair_poke_sel, CASTLE_VANISH_ON );			//éè¡¨ç¤º
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////
-	//ŠøOBJ’Ç‰Á
+	//æ——OBJè¿½åŠ 
 	for( i=0; i < CASTLE_COMM_POKE_TOTAL_NUM ;i++ ){
 		for( j=0; j < 2 ;j++ ){
 			Castle_GetHataXY( wk, &start_x, &start_y );
@@ -1832,24 +1832,24 @@ static void Castle_InitSub2( CASTLE_ENEMY_WORK* wk )
 										start_y + (CASTLE_HATA_WIDTH_Y * j), 
 										CASTLE_BG_PRI_LOW, NULL );
 
-			CastleObj_Vanish( wk->p_hata[i][j], CASTLE_VANISH_ON );			//”ñ•\¦
+			CastleObj_Vanish( wk->p_hata[i][j], CASTLE_VANISH_ON );			//éè¡¨ç¤º
 		}
 	}
 
-	//‚Â‚æ‚³A‚í‚´‚ªŒöŠJ‚³‚ê‚Ä‚¢‚½‚çŠø‚ğ•\¦‚·‚é
+	//ã¤ã‚ˆã•ã€ã‚ã–ãŒå…¬é–‹ã•ã‚Œã¦ã„ãŸã‚‰æ——ã‚’è¡¨ç¤ºã™ã‚‹
 	CastleRank_SeqSubHataVanish( wk );
 
 	////////////////////////////////////////////////////////////////////////////////////////
-	//ƒ‰ƒ“ƒNƒAƒbƒvOBJ’Ç‰Á
+	//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—OBJè¿½åŠ 
 	wk->p_eff_rankup = CastleObj_Create(&wk->castle_clact, 
 										ID_CHAR_CSR, ID_PLTT_CSR, 
 										ID_CELL_CSR, CASTLE_ANM_RANK_UP, 
-										20, 20,			//’l“K“–
+										20, 20,			//å€¤é©å½“
 										CASTLE_BG_PRI_HIGH, NULL );
-	CastleObj_Vanish( wk->p_eff_rankup, CASTLE_VANISH_ON );					//”ñ•\¦
+	CastleObj_Vanish( wk->p_eff_rankup, CASTLE_VANISH_ON );					//éè¡¨ç¤º
 
 	////////////////////////////////////////////////////////////////////////////////////////
-	//’ÊMƒAƒCƒRƒ“ƒZƒbƒg
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚»ãƒƒãƒˆ
 	if( CommIsInitialize() ){
 //CLACT_U_WmIcon_SetReserveAreaCharManager( NNS_G2D_VRAM_TYPE_2DMAIN,GX_OBJVRAMMODE_CHAR_1D_64K );
 		CLACT_U_WmIcon_SetReserveAreaCharManager( NNS_G2D_VRAM_TYPE_2DMAIN,
@@ -1858,22 +1858,22 @@ static void Castle_InitSub2( CASTLE_ENEMY_WORK* wk )
 		WirelessIconEasy();
 	}
 
-	sys_VBlankFuncChange( VBlankFunc, (void*)wk );		//VBlankƒZƒbƒg
+	sys_VBlankFuncChange( VBlankFunc, (void*)wk );		//VBlankã‚»ãƒƒãƒˆ
 	return;
 }
 
 
 //==============================================================================================
 //
-//	‹¤’Ê‰Šú‰»AI—¹
+//	å…±é€šåˆæœŸåŒ–ã€çµ‚äº†
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BGŠÖ˜A‰Šú‰»
+ * @brief	BGé–¢é€£åˆæœŸåŒ–
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1883,32 +1883,32 @@ static void Castle_BgInit( CASTLE_ENEMY_WORK* wk )
 	SetVramBank();
 	SetBgHeader( wk->bgl );
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ƒ[ƒNì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	wk->pfd = PaletteFadeInit( HEAPID_CASTLE );
 
-	//ƒŠƒNƒGƒXƒgƒf[ƒ^‚ğmalloc‚µ‚ÄƒZƒbƒg
+	//ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’mallocã—ã¦ã‚»ãƒƒãƒˆ
 	PaletteFadeWorkAllocSet( wk->pfd, FADE_MAIN_OBJ, FADE_PAL_ALL_SIZE, HEAPID_CASTLE );
 	PaletteFadeWorkAllocSet( wk->pfd, FADE_MAIN_BG, FADE_PAL_ALL_SIZE, HEAPID_CASTLE );
 
-	//ã‰æ–Ê”wŒi
+	//ä¸Šç”»é¢èƒŒæ™¯
 	Castle_SetMainBgGraphic( wk, BC_FRAME_BG );
 	Castle_SetMainBgPalette();
 	Castle_SetStatusBgGraphic( wk, BC_FRAME_SLIDE );
 	//Castle_SetWazaBgGraphic( wk, BC_FRAME_SLIDE );
 	Castle_SetStatusBgPalette();
-	//GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );		//BG”ñ•\¦
-	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BG”ñ•\¦
+	//GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );		//BGéè¡¨ç¤º
+	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BGéè¡¨ç¤º
 
-	//‰º‰æ–Ê”wŒiAƒpƒŒƒbƒgƒZƒbƒg
+	//ä¸‹ç”»é¢èƒŒæ™¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	Castle_SetSubBgGraphic( wk, BC_FRAME_SUB );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJŠÖ˜A‰Šú‰»
+ * @brief	OBJé–¢é€£åˆæœŸåŒ–
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1925,16 +1925,16 @@ static void Castle_ObjInit( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BG‰ğ•ú
+ * @brief	BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void Castle_BgExit( GF_BGL_INI * ini )
 {
-	//ƒƒCƒ“‰æ–Ê‚ÌŠe–Ê‚Ì•\¦ƒRƒ“ƒgƒ[ƒ‹(•\¦OFF)
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å„é¢ã®è¡¨ç¤ºã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«(è¡¨ç¤ºOFF)
 	GF_Disp_GX_VisibleControl(	GX_PLANEMASK_BG0 | 
 								GX_PLANEMASK_BG1 | 
 								GX_PLANEMASK_BG2 |
@@ -1942,7 +1942,7 @@ static void Castle_BgExit( GF_BGL_INI * ini )
 								GX_PLANEMASK_OBJ, 
 								VISIBLE_OFF );
 
-	//ƒTƒu‰æ–Ê‚ÌŠe–Ê‚Ì•\¦ƒRƒ“ƒgƒ[ƒ‹(•\¦OFF)
+	//ã‚µãƒ–ç”»é¢ã®å„é¢ã®è¡¨ç¤ºã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«(è¡¨ç¤ºOFF)
 	GF_Disp_GXS_VisibleControl(	GX_PLANEMASK_BG0 | 
 								GX_PLANEMASK_BG1 | 
 								GX_PLANEMASK_BG2 | 
@@ -1950,7 +1950,7 @@ static void Castle_BgExit( GF_BGL_INI * ini )
 								GX_PLANEMASK_OBJ, 
 								VISIBLE_OFF );
 
-	//GF_BGL_BGControlSet‚Åæ“¾‚µ‚½ƒƒ‚ƒŠ‚ğŠJ•ú
+	//GF_BGL_BGControlSetã§å–å¾—ã—ãŸãƒ¡ãƒ¢ãƒªã‚’é–‹æ”¾
 	GF_BGL_BGControlExit( ini, BC_FRAME_BG );			//3
 	GF_BGL_BGControlExit( ini, BC_FRAME_SLIDE );
 	GF_BGL_BGControlExit( ini, BC_FRAME_TYPE );
@@ -1964,15 +1964,15 @@ static void Castle_BgExit( GF_BGL_INI * ini )
 
 //==============================================================================================
 //
-//	İ’è
+//	è¨­å®š
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	VBlankŠÖ”
+ * @brief	VBlanké–¢æ•°
  *
- * @param	work	ƒ[ƒN
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1981,18 +1981,18 @@ static void VBlankFunc( void * work )
 {
 	CASTLE_ENEMY_WORK* wk = work;
 
-	//ƒpƒŒƒbƒg“]‘—
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	if( wk->pfd != NULL ){
 		PaletteFadeTrans( wk->pfd );
 	}
 
 	GF_BGL_VBlankFunc( wk->bgl );
 
-	//ƒZƒ‹ƒAƒNƒ^[
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	//Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	//ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	//ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();	
 
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
@@ -2000,32 +2000,32 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------
 /**
- * @brief	VRAMİ’è
+ * @brief	VRAMè¨­å®š
  *
  * @param	none
  *
  * @return	none
  *
- * ×‚©‚­İ’è‚µ‚Ä‚¢‚È‚¢‚Ì‚Å’ˆÓI
+ * ç´°ã‹ãè¨­å®šã—ã¦ã„ãªã„ã®ã§æ³¨æ„ï¼
  */
 //--------------------------------------------------------------
 static void SetVramBank(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_C,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_C,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_32_H,			//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_32_H,			//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_64_E,				//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		//ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_64_E,				//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		//ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	//ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	//ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_01_AB,				//ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			//ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_01_AB,				//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 
 	GF_Disp_SetBank( &tbl );
@@ -2034,9 +2034,9 @@ static void SetVramBank(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	BGİ’è
+ * @brief	BGè¨­å®š
  *
- * @param	init	BGLƒf[ƒ^
+ * @param	init	BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -2050,7 +2050,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	{	//BG(ƒtƒHƒ“ƒg)(‰ï˜bAƒƒjƒ…[)
+	{	//BG(ãƒ•ã‚©ãƒ³ãƒˆ)(ä¼šè©±ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -2061,7 +2061,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, BC_FRAME_WIN );
 	}
 
-	{	//BG(ƒtƒHƒ“ƒg)(ƒ^ƒCƒv•\¦)
+	{	//BG(ãƒ•ã‚©ãƒ³ãƒˆ)(ã‚¿ã‚¤ãƒ—è¡¨ç¤º)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			//GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
@@ -2073,7 +2073,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, BC_FRAME_TYPE );
 	}
 
-	{	//ã‰æ–Ê(ƒXƒe[ƒ^ƒX)
+	{	//ä¸Šç”»é¢(ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			//GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
@@ -2086,7 +2086,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, BC_FRAME_SLIDE );
 	}
 
-	{	//ã‰æ–Ê(SINGLE,DOUBLE)
+	{	//ä¸Šç”»é¢(SINGLE,DOUBLE)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x08000, GX_BG_EXTPLTT_01,
@@ -2098,7 +2098,7 @@ static void SetBgHeader( GF_BGL_INI * ini )
 	}
 
 	//--------------------------------------------------------------------------------
-	{	//‰º‰æ–Ê(ƒ{[ƒ‹)
+	{	//ä¸‹ç”»é¢(ãƒœãƒ¼ãƒ«)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
@@ -2116,16 +2116,16 @@ static void SetBgHeader( GF_BGL_INI * ini )
 
 //==============================================================================================
 //
-//	BGƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+//	BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFã‰æ–Ê”wŒi
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸Šç”»é¢èƒŒæ™¯
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -2147,7 +2147,7 @@ static void Castle_SetMainBgGraphic( CASTLE_ENEMY_WORK * wk, u32 frm  )
 
 //--------------------------------------------------------------
 /**
- * @brief	ã‰æ–Ê”wŒiƒpƒŒƒbƒgİ’è
+ * @brief	ä¸Šç”»é¢èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
  *
  * @param	none
  *
@@ -2162,7 +2162,7 @@ static void Castle_SetMainBgPalette( void )
 	buf = ArcUtil_PalDataGet( ARC_FRONTIER_BG, BC_TAISEN_NCLR, &dat, HEAPID_CASTLE );
 
 	DC_FlushRange( dat->pRawData, (sizeof(u16)*16*4) );
-	GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*4) );		//ƒƒCƒ“
+	GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*4) );		//ãƒ¡ã‚¤ãƒ³
 
 	sys_FreeMemoryEz(buf);
 	return;
@@ -2170,10 +2170,10 @@ static void Castle_SetMainBgPalette( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFã‰æ–ÊƒXƒe[ƒ^ƒX
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸Šç”»é¢ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -2190,7 +2190,7 @@ static void Castle_SetStatusBgGraphic( CASTLE_ENEMY_WORK * wk, u32 frm  )
 
 //--------------------------------------------------------------
 /**
- * @brief	ã‰æ–ÊƒXƒe[ƒ^ƒXƒpƒŒƒbƒgİ’è
+ * @brief	ä¸Šç”»é¢ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
  *
  * @param	none
  *
@@ -2205,7 +2205,7 @@ static void Castle_SetStatusBgPalette( void )
 	buf = ArcUtil_PalDataGet( ARC_FRONTIER_BG, BC_TAISEN_NCLR, &dat, HEAPID_CASTLE );
 
 	DC_FlushRange( dat->pRawData, (sizeof(u16)*16*4) );
-	GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*4) );		//ƒƒCƒ“
+	GX_LoadBGPltt( dat->pRawData, 0, (sizeof(u16)*16*4) );		//ãƒ¡ã‚¤ãƒ³
 
 	sys_FreeMemoryEz(buf);
 	return;
@@ -2213,10 +2213,10 @@ static void Castle_SetStatusBgPalette( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFã‰æ–Ê‚í‚´
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸Šç”»é¢ã‚ã–
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -2233,10 +2233,10 @@ static void Castle_SetWazaBgGraphic( CASTLE_ENEMY_WORK * wk, u32 frm  )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgF‰º‰æ–Ê”wŒiAƒpƒŒƒbƒgƒZƒbƒg
+ * @brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šä¸‹ç”»é¢èƒŒæ™¯ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	frm		ƒtƒŒ[ƒ€ƒiƒ“ƒo[
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	frm		ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -2257,7 +2257,7 @@ static void Castle_SetSubBgGraphic( CASTLE_ENEMY_WORK * wk, u32 frm  )
 
 //==============================================================================================
 //
-//	ƒƒbƒZ[ƒWŠÖ˜A
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£
 //
 //==============================================================================================
 
@@ -2270,30 +2270,30 @@ static u8 CastleWriteMsg( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id,
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\¦
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	msg_id	ƒƒbƒZ[ƒWID
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	wait	•¶š•\¦ƒEƒFƒCƒg
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	wait	æ–‡å­—è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
- * @return	"•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX"
+ * @return	"æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"
  */
 //--------------------------------------------------------------
 static u8 CastleWriteMsg_Full_ov107_2247680( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, CastleMsgAln a10_mode )
 {
 	u8 msg_index;
 
-	GF_BGL_BmpWinDataFill( win, b_col );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, b_col );			//å¡—ã‚Šã¤ã¶ã—
 	MSGMAN_GetString( wk->msgman, msg_id, wk->tmp_buf );
 
-	//“o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ‚·‚é
+	//ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
 	WORDSET_ExpandStr( wk->wordset, wk->msg_buf, wk->tmp_buf );
 
     switch(a10_mode){
@@ -2319,22 +2319,22 @@ static u8 CastleWriteMsgSimple( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int m
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\¦(“h‚è‚Â‚Ô‚µ‚È‚µ)
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º(å¡—ã‚Šã¤ã¶ã—ãªã—)
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	msg_id	ƒƒbƒZ[ƒWID
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	wait	•¶š•\¦ƒEƒFƒCƒg
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	wait	æ–‡å­—è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
- * @return	"•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX"
+ * @return	"æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"
  *
- * “h‚è‚Â‚Ô‚µ‚È‚µ
+ * å¡—ã‚Šã¤ã¶ã—ãªã—
  */
 //--------------------------------------------------------------
 static u8 CastleWriteMsgSimple_Full_ov107_2247744( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, CastleMsgAln a10_mode )
@@ -2343,7 +2343,7 @@ static u8 CastleWriteMsgSimple_Full_ov107_2247744( CASTLE_ENEMY_WORK* wk, GF_BGL
 
 	MSGMAN_GetString( wk->msgman, msg_id, wk->tmp_buf );
 
-	//“o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ‚·‚é
+	//ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
 	WORDSET_ExpandStr( wk->wordset, wk->msg_buf, wk->tmp_buf );
 
     switch(a10_mode){
@@ -2364,10 +2364,10 @@ static u8 CastleWriteMsgSimple_Full_ov107_2247744( CASTLE_ENEMY_WORK* wk, GF_BGL
 
 //--------------------------------------------------------------
 /**
- * @brief	ŠÈ’PƒƒbƒZ[ƒW•\¦
+ * @brief	ç°¡å˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id	ƒƒbƒZ[ƒWID
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  *
  * @return	"msg_index"
  */
@@ -2386,50 +2386,50 @@ static u8 Castle_EasyMsg( CASTLE_ENEMY_WORK* wk, int msg_id, u8 font )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒe[ƒ^ƒXƒƒbƒZ[ƒW•\¦
+ * @brief	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 enum{
-	//‚à‚¿‚à‚Ì
+	//ã‚‚ã¡ã‚‚ã®
 	STATUS_MOTIMONO_X =		(1*8),
 	STATUS_MOTIMONO_Y =		(1*8),
 	STATUS_MOTIMONO_NUM_X =	(9*8),
 
-	//‚¹‚¢‚©‚­@›
+	//ã›ã„ã‹ãã€€â—‹
 	STATUS_SEIKAKU_X =		(1*8),
 	STATUS_SEIKAKU_Y =		(3*8),
 	STATUS_SEIKAKU_NUM_X =	(9*8),
 
-	//‚Æ‚­‚¹‚¢
+	//ã¨ãã›ã„
 	STATUS_TOKUSEI_X =		(1*8),
 	STATUS_TOKUSEI_Y =		(5*8),
 	STATUS_TOKUSEI_NUM_X =	(9*8),
 
-	//‚±‚¤‚°‚«
+	//ã“ã†ã’ã
 	STATUS_KOUGEKI_X =		(1*8),
 	STATUS_KOUGEKI_Y =		(7*8),
 	STATUS_KOUGEKI_NUM_X =	(11*8),
 
-	//‚Ú‚¤‚¬‚å
+	//ã¼ã†ãã‚‡
 	STATUS_BOUGYO_X =		(13*8),
 	STATUS_BOUGYO_Y =		(STATUS_KOUGEKI_Y),
 	STATUS_BOUGYO_NUM_X =	(23*8),
 
-	//‚Æ‚­‚±‚¤
+	//ã¨ãã“ã†
 	STATUS_TOKUKOU_X =		(1*8),
 	STATUS_TOKUKOU_Y =		(9*8),
 	STATUS_TOKUKOU_NUM_X =	(11*8),
 
-	//‚Æ‚­‚Ú‚¤
+	//ã¨ãã¼ã†
 	STATUS_TOKUBOU_X =		(13*8),
 	STATUS_TOKUBOU_Y =		(STATUS_TOKUKOU_Y),
 	STATUS_TOKUBOU_NUM_X =	(23*8),
 
-	//‚·‚Î‚â‚³
+	//ã™ã°ã‚„ã•
 	STATUS_SUBAYASA_X =		(1*8),
 	STATUS_SUBAYASA_Y =		(11*8),
 	STATUS_SUBAYASA_NUM_X =	(11*8),
@@ -2437,49 +2437,49 @@ enum{
 
 static void Castle_StatusMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke )
 {
-	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );	//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );	//å¡—ã‚Šã¤ã¶ã—
 
-	//u‚à‚¿‚à‚Ìv
+	//ã€Œã‚‚ã¡ã‚‚ã®ã€
 	WORDSET_RegisterItemName( wk->wordset, 0, PokeParaGet(poke,ID_PARA_item,NULL) );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_01, STATUS_MOTIMONO_X, STATUS_MOTIMONO_Y, CASTLE_MSG_ALN_LEFT );
 	StMsgWriteSub( wk, win,msg_castle_trainer_status_01_01,STATUS_MOTIMONO_NUM_X,STATUS_MOTIMONO_Y, CASTLE_MSG_ALN_LEFT );
 
-	//u‚¹‚¢‚©‚­v
+	//ã€Œã›ã„ã‹ãã€
 	WORDSET_RegisterSeikaku( wk->wordset, 0, PokeSeikakuGet(poke) );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_02, STATUS_SEIKAKU_X, STATUS_SEIKAKU_Y, CASTLE_MSG_ALN_LEFT );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_02_01, STATUS_SEIKAKU_NUM_X,STATUS_SEIKAKU_Y, CASTLE_MSG_ALN_LEFT );
 
-	//u‚Æ‚­‚¹‚¢v
+	//ã€Œã¨ãã›ã„ã€
 	WORDSET_RegisterTokuseiName( wk->wordset, 0, PokeParaGet(poke,ID_PARA_speabino,NULL) );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_03, STATUS_TOKUSEI_X, STATUS_TOKUSEI_Y, CASTLE_MSG_ALN_LEFT );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_03_01, STATUS_TOKUSEI_NUM_X,STATUS_TOKUSEI_Y, CASTLE_MSG_ALN_LEFT );
 
-	//u‚±‚¤‚°‚«v
+	//ã€Œã“ã†ã’ãã€
 	//OS_Printf( "pow = %d\n", PokeParaGet(poke,ID_PARA_pow,NULL) );
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_pow,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_04, STATUS_KOUGEKI_X, STATUS_KOUGEKI_Y, CASTLE_MSG_ALN_LEFT );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_04_01, STATUS_KOUGEKI_NUM_X,STATUS_KOUGEKI_Y, CASTLE_MSG_ALN_RIGHT );
 
-	//u‚Ú‚¤‚¬‚åv
+	//ã€Œã¼ã†ãã‚‡ã€
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_def,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_05, STATUS_BOUGYO_X, STATUS_BOUGYO_Y, CASTLE_MSG_ALN_LEFT );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_05_01, STATUS_BOUGYO_NUM_X, STATUS_BOUGYO_Y, CASTLE_MSG_ALN_RIGHT );
 
-	//u‚Æ‚­‚±‚¤v
+	//ã€Œã¨ãã“ã†ã€
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_spepow,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_06, STATUS_TOKUKOU_X, STATUS_TOKUKOU_Y, CASTLE_MSG_ALN_LEFT );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_06_01, STATUS_TOKUKOU_NUM_X,STATUS_TOKUKOU_Y, CASTLE_MSG_ALN_RIGHT );
 
-	//u‚Æ‚­‚Ú‚¤v
+	//ã€Œã¨ãã¼ã†ã€
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_spedef,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_07, STATUS_TOKUBOU_X, STATUS_TOKUBOU_Y, CASTLE_MSG_ALN_LEFT );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_07_01, STATUS_TOKUBOU_NUM_X,STATUS_TOKUBOU_Y, CASTLE_MSG_ALN_RIGHT );
 
-	//u‚·‚Î‚â‚³v
+	//ã€Œã™ã°ã‚„ã•ã€
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_agi,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
 	StMsgWriteSub( wk, win, msg_castle_trainer_status_08, STATUS_SUBAYASA_X, STATUS_SUBAYASA_Y, CASTLE_MSG_ALN_LEFT );
@@ -2498,28 +2498,28 @@ static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u
 
 //--------------------------------------------------------------
 /**
- * @brief	‹ZƒƒbƒZ[ƒW•\¦
+ * @brief	æŠ€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 enum{
-	//‹Z–¼
+	//æŠ€å
 	STATUS_WAZA_X =			(4*8), // MatchComment: 3*8 -> 4*8
 	STATUS_WAZA_Y =			(2*8-4), // MatchComment: 2*8 -> 2*8-4
 
-	//‹Zƒ|ƒCƒ“ƒg
+	//æŠ€ãƒã‚¤ãƒ³ãƒˆ
 	STATUS_POINT_X =		(18*8+1), // MatchComment: 12*8 -> 18*8+1
 	STATUS_POINT_Y =		(2*8-4), // MatchComment: 2*8 -> 2*8-4
 };
 
 static void Castle_WazaMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke )
 {
-	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );	//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );	//å¡—ã‚Šã¤ã¶ã—
 
-	//id+i‚Í•ÛØ‚³‚ê‚é‚©‚í‚©‚ç‚È‚¢‚Ì‚ÅA‚â‚ç‚È‚¢B
+	//id+iã¯ä¿è¨¼ã•ã‚Œã‚‹ã‹ã‚ã‹ã‚‰ãªã„ã®ã§ã€ã‚„ã‚‰ãªã„ã€‚
 
 	WazaMsgWriteSub(	wk, win, 0, msg_castle_trainer_waza_01_01, 
 						msg_castle_trainer_waza_02, poke, ID_PARA_waza1, 
@@ -2550,14 +2550,14 @@ static void WazaMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u
 	point_x = STATUS_POINT_X;
 	point_y = STATUS_POINT_Y + (no * 24);
 
-	//u‹Z–¼v
+	//ã€ŒæŠ€åã€
 	//WORDSET_RegisterWazaName( wk->wordset, 0, PokeParaGet(poke,id,NULL) );
 	WORDSET_RegisterWazaName( wk->wordset, no, PokeParaGet(poke,id,NULL) );
 	wk->msg_index = CastleWriteMsgSimple( wk, win,
 									msg_id, x, y, MSG_NO_PUT, 
 									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT );
 
-	//u‹Zƒ|ƒCƒ“ƒgv
+	//ã€ŒæŠ€ãƒã‚¤ãƒ³ãƒˆã€
 	//Castle_SetNumber( wk, 0, PokeParaGet(poke,id2,NULL), CASTLE_KETA_STATUS );
 	//Castle_SetNumber( wk, 1, PokeParaGet(poke,id3,NULL), CASTLE_KETA_STATUS );
 	Castle_SetNumber(	wk, 4, PokeParaGet(poke,id2,NULL), CASTLE_KETA_STATUS,
@@ -2574,9 +2574,9 @@ static void WazaMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u
 
 //--------------------------------------------------------------------------------------------
 /**
- * HP‚ÆMHP‚ÌƒXƒ‰ƒbƒVƒ…•\¦
+ * HPã¨MHPã®ã‚¹ãƒ©ãƒƒã‚·ãƒ¥è¡¨ç¤º
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2588,7 +2588,7 @@ static void Castle_PokeHpMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win )
 	int i;
 	POKEMON_PARAM* poke;
 
-	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );	//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );	//å¡—ã‚Šã¤ã¶ã—
 
 	if( Castle_CommCheck(wk->type) == FALSE ){
 		hp_offset_x = CASTLE_HP_START_X;
@@ -2600,7 +2600,7 @@ static void Castle_PokeHpMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win )
 
 	for( i=0;i < e_max ;i++ ){
 
-		//³‘Ì‚ªŒöŠJ‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à•\¦‚µ‚È‚¢
+		//æ­£ä½“ãŒå…¬é–‹ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚è¡¨ç¤ºã—ãªã„
 		if( wk->p_temoti_flag[i] == 0 ){
 			GF_BGL_BmpWinFill(	win, FBMP_COL_NULL, 
 								hp_offset_x + (CASTLE_HP_WIDTH_X * i), CASTLE_HP_START_Y,
@@ -2611,17 +2611,17 @@ static void Castle_PokeHpMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win )
 
 		poke =  PokeParty_GetMemberPointer( wk->p_party, i );
 
-		//HP‚Í‰E‚Ã‚ß
+		//HPã¯å³ã¥ã‚
 		NUMFONT_WriteNumber(wk->num_font, PokeParaGet(poke,ID_PARA_hp,NULL), CASTLE_KETA_HP, 
 							NUMFONT_MODE_SPACE, win, 
 							hp_offset_x + (CASTLE_HP_WIDTH_X * i), CASTLE_HP_START_Y );
 
-		//HP‚ÆMHP‚ÌƒXƒ‰ƒbƒVƒ…(‹L†•`‰æ)
+		//HPã¨MHPã®ã‚¹ãƒ©ãƒƒã‚·ãƒ¥(è¨˜å·æç”»)
 		NUMFONT_WriteMark(	wk->num_font, NUMFONT_MARK_SLASH, win, 
 							CASTLE_HPSLASH_START_X + hp_offset_x + (CASTLE_HP_WIDTH_X * i),
 							CASTLE_HP_START_Y );
 
-		//HPMAX‚Í¶‚Ã‚ß
+		//HPMAXã¯å·¦ã¥ã‚
 		NUMFONT_WriteNumber(wk->num_font, PokeParaGet(poke,ID_PARA_hpmax,NULL), CASTLE_KETA_HP, 
 							NUMFONT_MODE_LEFT, win, 
 							CASTLE_HPMAX_START_X + hp_offset_x + (CASTLE_HP_WIDTH_X * i), 
@@ -2634,9 +2634,9 @@ static void Castle_PokeHpMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹•\¦
+ * ãƒ¬ãƒ™ãƒ«è¡¨ç¤º
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2649,7 +2649,7 @@ static void Castle_PokeLvMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win )
 	int i;
 	POKEMON_PARAM* poke;
 
-	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );	//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );	//å¡—ã‚Šã¤ã¶ã—
 
 	if( Castle_CommCheck(wk->type) == FALSE ){
 		lv_offset_x = CASTLE_LV_START_X;
@@ -2664,12 +2664,12 @@ static void Castle_PokeLvMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win )
 	for( i=0;i < e_max ;i++ ){
 		poke =  PokeParty_GetMemberPointer( wk->p_party, i );
 
-		//LV(‹L†‚Æ”š‚ğƒZƒbƒg‚Å•`‰æ)
+		//LV(è¨˜å·ã¨æ•°å­—ã‚’ã‚»ãƒƒãƒˆã§æç”»)
 		NUMFONT_WriteSet(	wk->num_font, NUMFONT_MARK_LV, PokeParaGet(poke,ID_PARA_level,NULL),
 							CASTLE_KETA_LV, NUMFONT_MODE_LEFT, win,
 							lv_offset_x + (CASTLE_LV_WIDTH_X * i), CASTLE_LV_START_Y );
 
-		//«•Ê•\¦
+		//æ€§åˆ¥è¡¨ç¤º
 		sex = PokeParaGet( poke, ID_PARA_sex, NULL );
 		PokeSexWrite(	wk, win, sex_offset_x + (CASTLE_SEX_WIDTH_X * i), CASTLE_SEX_START_Y, 
 						BC_FONT, sex );
@@ -2683,17 +2683,17 @@ static void Castle_PokeLvMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win )
 
 //==============================================================================================
 //
-//	ƒƒjƒ…[ŠÖ˜A
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢é€£
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	ƒwƒbƒ_[‰Šúİ’è
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	ãƒ˜ãƒƒãƒ€ãƒ¼åˆæœŸè¨­å®š
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		GF_BGL_BMPWINŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	y_max	€–ÚÅ‘å”
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		GF_BGL_BMPWINå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	y_max	é …ç›®æœ€å¤§æ•°
  *
  * @retval	none
  */
@@ -2714,20 +2714,20 @@ static void CastleInitMenu( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 y_max 
 	wk->MenuH.y_max		= y_max;
 	wk->MenuH.line_spc	= 0;
 	wk->MenuH.c_disp_f	= 0;
-	//wk->MenuH.c_disp_f	= 1;			//ƒJ[ƒ\ƒ‹‚È‚µ
-	//wk->MenuH.loop_f	= 0;			//ƒ‹[ƒv–³‚µ
-	wk->MenuH.loop_f	= 1;			//ƒ‹[ƒv—L‚è
+	//wk->MenuH.c_disp_f	= 1;			//ã‚«ãƒ¼ã‚½ãƒ«ãªã—
+	//wk->MenuH.loop_f	= 0;			//ãƒ«ãƒ¼ãƒ—ç„¡ã—
+	wk->MenuH.loop_f	= 1;			//ãƒ«ãƒ¼ãƒ—æœ‰ã‚Š
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPƒƒjƒ…[	ƒf[ƒ^ƒZƒbƒg
+ * @brief	BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼	ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	no		ƒZƒbƒg‚·‚éêŠ(–ß‚è’l)
- * @param	param	–ß‚è’l
- * @param	msg_id	ƒƒbƒZ[ƒWID
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	no		ã‚»ãƒƒãƒˆã™ã‚‹å ´æ‰€(æˆ»ã‚Šå€¤)
+ * @param	param	æˆ»ã‚Šå€¤
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  *
  * @retval	none
  */
@@ -2737,7 +2737,7 @@ static void CastleSetMenuData( CASTLE_ENEMY_WORK* wk, u8 no, u8 param, int msg_i
 	int i;
 	void* msg;
 
-	SDK_ASSERTMSG( no < CASTLE_MENU_BUF_MAX, "ƒƒjƒ…[€–Ú”ƒI[ƒo[I" );
+	SDK_ASSERTMSG( no < CASTLE_MENU_BUF_MAX, "ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®æ•°ã‚ªãƒ¼ãƒãƒ¼ï¼" );
 
 	MSGMAN_GetString( wk->msgman, msg_id, wk->menu_buf[no] );
 
@@ -2748,9 +2748,9 @@ static void CastleSetMenuData( CASTLE_ENEMY_WORK* wk, u8 no, u8 param, int msg_i
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê ƒƒjƒ…[ƒZƒbƒg2u‚Í‚¢A‚¢‚¢‚¦v
+ * @brief	å…±é€š ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚»ãƒƒãƒˆ2ã€Œã¯ã„ã€ã„ã„ãˆã€
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2759,8 +2759,8 @@ static void Castle_SetMenu2( CASTLE_ENEMY_WORK* wk )
 {
 	CastleWriteMenuWin( wk->bgl, &wk->bmpwin[ENEMY_BMPWIN_YESNO] );
 	CastleInitMenu( wk, &wk->bmpwin[ENEMY_BMPWIN_YESNO], 2 );
-	CastleSetMenuData( wk, 0, 0, msg_castle_trainer_02_01 );				//‚Í‚¢
-	CastleSetMenuData( wk, 1, 1, msg_castle_trainer_02_02 );				//‚¢‚¢‚¦
+	CastleSetMenuData( wk, 0, 0, msg_castle_trainer_02_01 );				//ã¯ã„
+	CastleSetMenuData( wk, 1, 1, msg_castle_trainer_02_02 );				//ã„ã„ãˆ
 	wk->mw = BmpMenuAddEx( &wk->MenuH, 8, 0, 0, HEAPID_CASTLE, PAD_BUTTON_CANCEL );
 	wk->menu_flag = 1;
 	return;
@@ -2768,9 +2768,9 @@ static void Castle_SetMenu2( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Ê ƒƒjƒ…[ƒZƒbƒg3uƒŒƒxƒ‹{‚TAƒŒƒxƒ‹[‚TA‚â‚ß‚év
+ * @brief	å…±é€š ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚»ãƒƒãƒˆ3ã€Œãƒ¬ãƒ™ãƒ«ï¼‹ï¼•ã€ãƒ¬ãƒ™ãƒ«ãƒ¼ï¼•ã€ã‚„ã‚ã‚‹ã€
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2779,9 +2779,9 @@ static void Castle_SetMenu3( CASTLE_ENEMY_WORK* wk )
 {
 	CastleWriteMenuWin( wk->bgl, &wk->bmpwin[ENEMY_BMPWIN_SEL] );
 	CastleInitMenu( wk, &wk->bmpwin[ENEMY_BMPWIN_SEL], 3 );
-	CastleSetMenuData( wk, 0, 0, msg_castle_trainer_05_01 );				//ƒŒƒxƒ‹{‚T
-	CastleSetMenuData( wk, 1, 1, msg_castle_trainer_05_02 );				//ƒŒƒxƒ‹[‚T
-	CastleSetMenuData( wk, 2, 2, msg_castle_trainer_05_03 );				//‚â‚ß‚é
+	CastleSetMenuData( wk, 0, 0, msg_castle_trainer_05_01 );				//ãƒ¬ãƒ™ãƒ«ï¼‹ï¼•
+	CastleSetMenuData( wk, 1, 1, msg_castle_trainer_05_02 );				//ãƒ¬ãƒ™ãƒ«ãƒ¼ï¼•
+	CastleSetMenuData( wk, 2, 2, msg_castle_trainer_05_03 );				//ã‚„ã‚ã‚‹
 	wk->mw = BmpMenuAddEx( &wk->MenuH, 8, 0, 0, HEAPID_CASTLE, PAD_BUTTON_CANCEL );
 	wk->menu_flag = 1;
 	return;
@@ -2790,55 +2790,55 @@ static void Castle_SetMenu3( CASTLE_ENEMY_WORK* wk )
 
 //==============================================================================================
 //
-//	u‚µ‚å‚¤‚½‚¢AƒŒƒxƒ‹A‚¶‚å‚¤‚Ù‚¤A‚Æ‚¶‚év
+//	ã€Œã—ã‚‡ã†ãŸã„ã€ãƒ¬ãƒ™ãƒ«ã€ã˜ã‚‡ã†ã»ã†ã€ã¨ã˜ã‚‹ã€
 //
 //==============================================================================================
 static const BMPLIST_HEADER CastleListH = {
-	NULL,						//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
+	NULL,						//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 
-	NULL,						//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,						//ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,						//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,						//ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-	NULL,						//GF_BGL_BMPWIN‚Ìƒ|ƒCƒ“ƒ^
+	NULL,						//GF_BGL_BMPWINã®ãƒã‚¤ãƒ³ã‚¿
 
-	0,							//ƒŠƒXƒg€–Ú”
-	0,							//•\¦Å‘å€–Ú”
+	0,							//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	0,							//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 
-	0,							//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	8,							//€–Ú•\¦‚wÀ•W
-	0,							//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,							//•\¦‚xÀ•W
-	FBMP_COL_BLACK,				//•¶šF
-	FBMP_COL_NULL,				//”wŒiF
-	FBMP_COL_BLK_SDW,			//•¶š‰eF
-	0,							//•¶šŠÔŠu‚w
-	16,							//•¶šŠÔŠu‚x
-	BMPLIST_NO_SKIP,			//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,				//•¶šw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚Æv‚¤‚Ì‚Å)
-	0,							//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	0,							//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,							//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,							//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,							//è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_BLACK,				//æ–‡å­—è‰²
+	FBMP_COL_NULL,				//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,			//æ–‡å­—å½±è‰²
+	0,							//æ–‡å­—é–“éš”ï¼¸
+	16,							//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_NO_SKIP,			//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,				//æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0,							//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 	NULL,
 };
 
 static const u32 basic_msg_tbl[][2] = {
-	{ msg_castle_trainer_choice_01,	FC_PARAM_TEMOTI },	//‚µ‚ç‚×‚é
-	{ msg_castle_trainer_choice_02,	FC_PARAM_LEVEL },	//ƒŒƒxƒ‹
-	{ msg_castle_trainer_choice_03,	FC_PARAM_INFO },	//‚¶‚å‚¤‚Ù‚¤
-	{ msg_castle_trainer_choice_04,	BMPLIST_CANCEL },	//‚Æ‚¶‚é
+	{ msg_castle_trainer_choice_01,	FC_PARAM_TEMOTI },	//ã—ã‚‰ã¹ã‚‹
+	{ msg_castle_trainer_choice_02,	FC_PARAM_LEVEL },	//ãƒ¬ãƒ™ãƒ«
+	{ msg_castle_trainer_choice_03,	FC_PARAM_INFO },	//ã˜ã‚‡ã†ã»ã†
+	{ msg_castle_trainer_choice_04,	BMPLIST_CANCEL },	//ã¨ã˜ã‚‹
 };
 #define BASIC_MSG_TBL_MAX	( NELEMS(basic_msg_tbl) )
 
 static const u32 basic_under_msg_tbl[] = {
-	msg_castle_trainer_00_03,	//‚µ‚ç‚×‚é
-	msg_castle_trainer_00_04,	//ƒŒƒxƒ‹
-	msg_castle_trainer_00_05,	//‚¶‚å‚¤‚Ù‚¤
-	msg_castle_trainer_00_06,	//‚Æ‚¶‚é
+	msg_castle_trainer_00_03,	//ã—ã‚‰ã¹ã‚‹
+	msg_castle_trainer_00_04,	//ãƒ¬ãƒ™ãƒ«
+	msg_castle_trainer_00_05,	//ã˜ã‚‡ã†ã»ã†
+	msg_castle_trainer_00_06,	//ã¨ã˜ã‚‹
 };
 
 //--------------------------------------------------------------
 /**
- * @brief	u‚µ‚ç‚×‚éAƒŒƒxƒ‹A‚¶‚å‚¤‚Ù‚¤A‚Æ‚¶‚évƒŠƒXƒgì¬
+ * @brief	ã€Œã—ã‚‰ã¹ã‚‹ã€ãƒ¬ãƒ™ãƒ«ã€ã˜ã‚‡ã†ã»ã†ã€ã¨ã˜ã‚‹ã€ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2848,9 +2848,9 @@ static void Castle_BasicListMake( CASTLE_ENEMY_WORK* wk )
 	int i;
 	BMPLIST_HEADER list_h;
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	CastleWriteMenuWin( wk->bgl, &wk->bmpwin[ENEMY_BMPWIN_BASIC_LIST] );
-	GF_BGL_BmpWinDataFill( &wk->bmpwin[ENEMY_BMPWIN_BASIC_LIST], FBMP_COL_WHITE );	//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( &wk->bmpwin[ENEMY_BMPWIN_BASIC_LIST], FBMP_COL_WHITE );	//å¡—ã‚Šã¤ã¶ã—
 
 	wk->menulist = BMP_MENULIST_Create( BASIC_MSG_TBL_MAX, HEAPID_CASTLE );
 
@@ -2863,11 +2863,11 @@ static void Castle_BasicListMake( CASTLE_ENEMY_WORK* wk )
 	list_h.list		= wk->menulist;
 	list_h.win		= &wk->bmpwin[ENEMY_BMPWIN_BASIC_LIST];
 	list_h.work		= wk;
-	list_h.call_back= Castle_CsrMoveCallBack;				//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	list_h.icon		= NULL;									//ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	list_h.count	= BASIC_MSG_TBL_MAX;					//ƒŠƒXƒg€–Ú”
-	list_h.b_col	= FBMP_COL_WHITE;						//”wŒiF
-	list_h.line		= 4;									//•\¦Å‘å€–Ú”
+	list_h.call_back= Castle_CsrMoveCallBack;				//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	list_h.icon		= NULL;									//ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	list_h.count	= BASIC_MSG_TBL_MAX;					//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	list_h.b_col	= FBMP_COL_WHITE;						//èƒŒæ™¯è‰²
+	list_h.line		= 4;									//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 	wk->lw			= BmpListSet( &list_h, wk->basic_list_lp, wk->basic_list_cp, HEAPID_CASTLE );
 
 	wk->list_flag	= 1;
@@ -2877,9 +2877,9 @@ static void Castle_BasicListMake( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒN
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- * @param	wk			CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2890,12 +2890,12 @@ static void Castle_CsrMoveCallBack( BMPLIST_WORK* work, u32 param, u8 mode )
 	u16 item,list_bak,pos_bak;
 	CASTLE_ENEMY_WORK* wk = (CASTLE_ENEMY_WORK*)BmpListParamGet( work, BMPLIST_ID_WORK );
 
-	//‰Šú‰»‚Í–Â‚ç‚³‚È‚¢
+	//åˆæœŸåŒ–æ™‚ã¯é³´ã‚‰ã•ãªã„
 	if( mode == 0 ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
 
-	BmpListDirectPosGet( work, &pos_bak );				//ƒJ[ƒ\ƒ‹À•Wæ“¾
+	BmpListDirectPosGet( work, &pos_bak );				//ã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™å–å¾—
 
 	CastleWriteMsg( wk, &wk->bmpwin[ENEMY_BMPWIN_TALKMENU2], 
 					basic_under_msg_tbl[pos_bak], 1, 1, MSG_NO_PUT, 
@@ -2907,29 +2907,29 @@ static void Castle_CsrMoveCallBack( BMPLIST_WORK* work, u32 param, u8 mode )
 
 //==============================================================================================
 //
-//	u‚Â‚æ‚³A‚í‚´Aƒ‰ƒ“ƒNƒAƒbƒvA‚â‚ß‚évƒŠƒXƒg
+//	ã€Œã¤ã‚ˆã•ã€ã‚ã–ã€ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã€ã‚„ã‚ã‚‹ã€ãƒªã‚¹ãƒˆ
 //
 //==============================================================================================
 static const u32 basic2_msg_tbl[][2] = {
-	{ msg_castle_trainer_09_01,	FC_PARAM_TUYOSA },		//‚Â‚æ‚³
-	{ msg_castle_trainer_09_02,	FC_PARAM_WAZA },		//‚í‚´
-	{ msg_castle_trainer_09_03,	FC_PARAM_INFO_RANKUP },	//ƒ‰ƒ“ƒNƒAƒbƒv
-	{ msg_castle_trainer_09_04,	BMPLIST_CANCEL },		//‚â‚ß‚é
+	{ msg_castle_trainer_09_01,	FC_PARAM_TUYOSA },		//ã¤ã‚ˆã•
+	{ msg_castle_trainer_09_02,	FC_PARAM_WAZA },		//ã‚ã–
+	{ msg_castle_trainer_09_03,	FC_PARAM_INFO_RANKUP },	//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—
+	{ msg_castle_trainer_09_04,	BMPLIST_CANCEL },		//ã‚„ã‚ã‚‹
 };
 #define BASIC2_MSG_TBL_MAX			( NELEMS(basic2_msg_tbl) )
 
 static const u16 basic2_under_msg_tbl[][2] = {
-	{ msg_castle_trainer_09_05, msg_castle_trainer_09_05 },		//‚Â‚æ‚³
-	{ msg_castle_trainer_09_06,	msg_castle_trainer_09_06 },		//‚í‚´
-	{ msg_castle_trainer_09_07, msg_castle_trainer_09_08 },		//ƒ‰ƒ“ƒNƒAƒbƒv(‚±‚±‚ª‚©‚í‚é)
-	{ msg_castle_trainer_09_09,	msg_castle_trainer_09_09 },		//‚â‚ß‚é
+	{ msg_castle_trainer_09_05, msg_castle_trainer_09_05 },		//ã¤ã‚ˆã•
+	{ msg_castle_trainer_09_06,	msg_castle_trainer_09_06 },		//ã‚ã–
+	{ msg_castle_trainer_09_07, msg_castle_trainer_09_08 },		//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—(ã“ã“ãŒã‹ã‚ã‚‹)
+	{ msg_castle_trainer_09_09,	msg_castle_trainer_09_09 },		//ã‚„ã‚ã‚‹
 };
 
 //--------------------------------------------------------------
 /**
- * @brief	u‚Â‚æ‚³A‚í‚´Aƒ‰ƒ“ƒNƒAƒbƒvA‚â‚ß‚évƒŠƒXƒgì¬
+ * @brief	ã€Œã¤ã‚ˆã•ã€ã‚ã–ã€ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã€ã‚„ã‚ã‚‹ã€ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk			CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2939,9 +2939,9 @@ static void Castle_Basic2ListMake( CASTLE_ENEMY_WORK* wk )
 	int i;
 	BMPLIST_HEADER list_h;
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	CastleWriteMenuWin( wk->bgl, &wk->bmpwin[ENEMY_BMPWIN_BASIC2_LIST] );
-	GF_BGL_BmpWinDataFill( &wk->bmpwin[ENEMY_BMPWIN_BASIC2_LIST], FBMP_COL_WHITE );	//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( &wk->bmpwin[ENEMY_BMPWIN_BASIC2_LIST], FBMP_COL_WHITE );	//å¡—ã‚Šã¤ã¶ã—
 
 	wk->menulist = BMP_MENULIST_Create( BASIC2_MSG_TBL_MAX, HEAPID_CASTLE );
 
@@ -2954,11 +2954,11 @@ static void Castle_Basic2ListMake( CASTLE_ENEMY_WORK* wk )
 	list_h.list		= wk->menulist;
 	list_h.win		= &wk->bmpwin[ENEMY_BMPWIN_BASIC2_LIST];
 	list_h.work		= wk;
-	list_h.call_back= Castle_Basic2CsrMoveCallBack;			//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	list_h.icon		= Castle_Basic2LineWriteCallBack;		//ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	list_h.count	= BASIC2_MSG_TBL_MAX;					//ƒŠƒXƒg€–Ú”
-	list_h.b_col	= FBMP_COL_WHITE;						//”wŒiF
-	list_h.line		= 4;									//•\¦Å‘å€–Ú”
+	list_h.call_back= Castle_Basic2CsrMoveCallBack;			//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	list_h.icon		= Castle_Basic2LineWriteCallBack;		//ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	list_h.count	= BASIC2_MSG_TBL_MAX;					//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	list_h.b_col	= FBMP_COL_WHITE;						//èƒŒæ™¯è‰²
+	list_h.line		= 4;									//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 	wk->lw			= BmpListSet( &list_h, 0, 0, HEAPID_CASTLE );
 
 	wk->list_flag	= 1;
@@ -2968,9 +2968,9 @@ static void Castle_Basic2ListMake( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒN
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- * @param	wk			CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2981,14 +2981,14 @@ static void Castle_Basic2CsrMoveCallBack( BMPLIST_WORK* work, u32 param, u8 mode
 	u16 pos_bak;
 	CASTLE_ENEMY_WORK* wk = (CASTLE_ENEMY_WORK*)BmpListParamGet( work, BMPLIST_ID_WORK );
 
-	//‰Šú‰»‚Í–Â‚ç‚³‚È‚¢
+	//åˆæœŸåŒ–æ™‚ã¯é³´ã‚‰ã•ãªã„
 	if( mode == 0 ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
 
-	BmpListDirectPosGet( work, &pos_bak );				//ƒJ[ƒ\ƒ‹À•Wæ“¾
+	BmpListDirectPosGet( work, &pos_bak );				//ã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™å–å¾—
 
-	//ƒ‰ƒ“ƒN‚É‚æ‚Á‚ÄƒƒbƒZ[ƒW‚ª•Ï‚í‚é
+	//ãƒ©ãƒ³ã‚¯ã«ã‚ˆã£ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå¤‰ã‚ã‚‹
 	now_rank = Castle_GetRank( wk->sv, wk->type, CASTLE_RANK_TYPE_INFO );
 	if( now_rank == 1 ){
 		no= 0;
@@ -2996,7 +2996,7 @@ static void Castle_Basic2CsrMoveCallBack( BMPLIST_WORK* work, u32 param, u8 mode
 		no = 1;
 	}
 
-	//‰º‚ÌƒEƒBƒ“ƒhƒE‚É•\¦‚·‚éƒƒbƒZ[ƒW‚ª•Ï‚í‚é
+	//ä¸‹ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå¤‰ã‚ã‚‹
 	CastleWriteMsg( wk, &wk->bmpwin[ENEMY_BMPWIN_TALK], 
 					basic2_under_msg_tbl[pos_bak][no], 1, 1, MSG_NO_PUT, 
 					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_WHITE, FONT_TALK );
@@ -3006,9 +3006,9 @@ static void Castle_Basic2CsrMoveCallBack( BMPLIST_WORK* work, u32 param, u8 mode
 
 //--------------------------------------------------------------
 /**
- * @brief	ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒN
+ * @brief	ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- * @param	wk			CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3024,7 +3024,7 @@ static void Castle_Basic2LineWriteCallBack( BMPLIST_WORK* work, u32 param, u8 y 
 
 	switch( param ){
 	case FC_PARAM_WAZA:
-		//ƒ‰ƒ“ƒN‚ğŒ©‚Ä•\¦F‚ğ•Ï‚¦‚é
+		//ãƒ©ãƒ³ã‚¯ã‚’è¦‹ã¦è¡¨ç¤ºè‰²ã‚’å¤‰ãˆã‚‹
 		if( now_rank == 1 ){
 			f_col = FBMP_COL_BLK_SDW;
 		}else{
@@ -3033,7 +3033,7 @@ static void Castle_Basic2LineWriteCallBack( BMPLIST_WORK* work, u32 param, u8 y 
 		break;
 
 	case FC_PARAM_INFO_RANKUP:
-		//ƒ‰ƒ“ƒN‚ğŒ©‚Ä•\¦F‚ğ•Ï‚¦‚é
+		//ãƒ©ãƒ³ã‚¯ã‚’è¦‹ã¦è¡¨ç¤ºè‰²ã‚’å¤‰ãˆã‚‹
 		if( now_rank == (CASTLE_RANK_MAX-1) ){
 			f_col = FBMP_COL_BLK_SDW;
 		}else{
@@ -3054,21 +3054,21 @@ static void Castle_Basic2LineWriteCallBack( BMPLIST_WORK* work, u32 param, u8 y 
 
 //==============================================================================================
 //
-//	•¶š—ñƒZƒbƒg
+//	æ–‡å­—åˆ—ã‚»ãƒƒãƒˆ
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	”’l‚ğƒZƒbƒg
+ * @brief	æ•°å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	bufID	ƒoƒbƒtƒ@ID
- * @param	number	ƒZƒbƒg‚·‚é”’l
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bufID	ãƒãƒƒãƒ•ã‚¡ID
+ * @param	number	ã‚»ãƒƒãƒˆã™ã‚‹æ•°å€¤
  *
  * @retval	none
  *
- * Œ…‚ğŒÅ’è‚É‚µ‚Ä‚¢‚é
+ * æ¡ã‚’å›ºå®šã«ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static void Castle_SetNumber( CASTLE_ENEMY_WORK* wk, u32 bufID, s32 number, u32 keta, NUMBER_DISPTYPE disp )
@@ -3079,10 +3079,10 @@ static void Castle_SetNumber( CASTLE_ENEMY_WORK* wk, u32 bufID, s32 number, u32 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“–¼‚ğƒZƒbƒg
+ * @brief	ãƒã‚±ãƒ¢ãƒ³åã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	bufID	ƒoƒbƒtƒ@ID
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bufID	ãƒãƒƒãƒ•ã‚¡ID
  * @param	ppp		POKEMON_PASO_PARAM
  *
  * @retval	none
@@ -3096,10 +3096,10 @@ static void Castle_SetPokeName( CASTLE_ENEMY_WORK* wk, u32 bufID, POKEMON_PASO_P
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒ„[–¼‚ğƒZƒbƒg
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	bufID	ƒoƒbƒtƒ@ID
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bufID	ãƒãƒƒãƒ•ã‚¡ID
  *
  * @retval	none
  */
@@ -3112,16 +3112,16 @@ static void Castle_SetPlayerName( CASTLE_ENEMY_WORK* wk, u32 bufID )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒ„[–¼‚ğ•\¦
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’è¡¨ç¤º
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
  * @return	none
  */
@@ -3130,12 +3130,12 @@ static void PlayerNameWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u
 {
 	u32 col;
 	const MYSTATUS* my;
-	STRBUF* player_buf;								//ƒvƒŒƒCƒ„[–¼ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	STRBUF* player_buf;								//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 
 	my = SaveData_GetMyStatus( wk->sv );
 	player_buf = STRBUF_Create( PLAYER_NAME_BUF_SIZE, HEAPID_CASTLE );
 	
-	//GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );			//“h‚è‚Â‚Ô‚µ
+	//GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );			//å¡—ã‚Šã¤ã¶ã—
 
 	STRBUF_SetStringCode( player_buf, MyStatus_GetMyName(my) );
 
@@ -3148,22 +3148,22 @@ static void PlayerNameWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u
 
 	GF_STR_PrintColor( win, font, player_buf, x, y, MSG_NO_PUT, col, NULL );
 
-	STRBUF_Delete( player_buf );					//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ŠJ•ú
+	STRBUF_Delete( player_buf );					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒgƒi[–¼‚ğ•\¦
+ * @brief	ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
  * @return	none
  */
@@ -3173,7 +3173,7 @@ static void PairNameWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32
 	MYSTATUS* my;
 	u32 col;
 
-	//ƒp[ƒgƒi[‚ÌMyStatusæ“¾
+	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®MyStatuså–å¾—
 	my = CommInfoGetMyStatus( (CommGetCurrentID() ^ 1) );
 
 	if( MyStatus_GetMySex(my) == PM_MALE ){
@@ -3198,16 +3198,16 @@ static void PairNameWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“–¼‚ğ•\¦
+ * @brief	ãƒã‚±ãƒ¢ãƒ³åã‚’è¡¨ç¤º
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
  *
  * @return	none
  */
@@ -3218,15 +3218,15 @@ static void PokeNameWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32
 	u32 sex,msg_id,col;
 	STRBUF* buf;
 	POKEMON_PARAM* poke;
-	STRCODE sel_poke_buf[POKE_NAME_BUF_SIZE];					//ƒ|ƒPƒ‚ƒ“–¼ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	STRCODE sel_poke_buf[POKE_NAME_BUF_SIZE];					//ãƒã‚±ãƒ¢ãƒ³åãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 
 	poke =  PokeParty_GetMemberPointer( wk->p_party, 0 );
-	PokeParaGet( poke, ID_PARA_default_name, sel_poke_buf );	//ƒ|ƒPƒ‚ƒ“‚ÌƒfƒtƒHƒ‹ƒg–¼‚ğæ“¾
+	PokeParaGet( poke, ID_PARA_default_name, sel_poke_buf );	//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåã‚’å–å¾—
 
-	GF_BGL_BmpWinDataFill( win, b_col );						//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, b_col );						//å¡—ã‚Šã¤ã¶ã—
 
-	buf = STRBUF_Create( POKE_NAME_BUF_SIZE, HEAPID_CASTLE );	//STRBUF¶¬
-	STRBUF_SetStringCode( buf, sel_poke_buf );					//STRCODE¨STRBUF
+	buf = STRBUF_Create( POKE_NAME_BUF_SIZE, HEAPID_CASTLE );	//STRBUFç”Ÿæˆ
+	STRBUF_SetStringCode( buf, sel_poke_buf );					//STRCODEâ†’STRBUF
 
 	GF_STR_PrintColor( win, font, buf, x, y, MSG_NO_PUT, 
 								GF_PRINTCOLOR_MAKE(f_col,s_col,b_col), NULL );
@@ -3238,18 +3238,18 @@ static void PokeNameWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“–¼‚ğ•\¦(«•Êw’è)
+ * @brief	ãƒã‚±ãƒ¢ãƒ³åã‚’è¡¨ç¤º(æ€§åˆ¥æŒ‡å®š)
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
- * @param	monsno	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param	sex		«•Ê
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
+ * @param	monsno	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param	sex		æ€§åˆ¥
  *
  * @return	none
  */
@@ -3261,11 +3261,11 @@ static void PokeNameWriteEx( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u
 	MSGDATA_MANAGER* man;
 	STRBUF* buf;
 	POKEMON_PARAM* poke;
-	STRCODE sel_poke_buf[POKE_NAME_BUF_SIZE];					//ƒ|ƒPƒ‚ƒ“–¼ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	STRCODE sel_poke_buf[POKE_NAME_BUF_SIZE];					//ãƒã‚±ãƒ¢ãƒ³åãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 
-	GF_BGL_BmpWinDataFill( win, b_col );						//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( win, b_col );						//å¡—ã‚Šã¤ã¶ã—
 
-	//ƒ|ƒPƒ‚ƒ“–¼‚ğæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³åã‚’å–å¾—
 	man = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_monsname_dat, HEAPID_CASTLE );
 	buf = MSGMAN_AllocString( man, monsno );
 	MSGMAN_Delete( man );
@@ -3274,7 +3274,7 @@ static void PokeNameWriteEx( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u
 								GF_PRINTCOLOR_MAKE(f_col,s_col,b_col), NULL );
 
 /*
-	//‰E’[‚É«•ÊƒR[ƒh‚ğ•\¦
+	//å³ç«¯ã«æ€§åˆ¥ã‚³ãƒ¼ãƒ‰ã‚’è¡¨ç¤º
 	x_pos = GF_BGL_BmpWinGet_SizeX(win) - 1;
 
 	msg_id = (sex == PARA_MALE) ? msg_castle_male : msg_castle_female;
@@ -3293,17 +3293,17 @@ static void PokeNameWriteEx( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ì«•Ê‚ğ•\¦
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ã‚’è¡¨ç¤º
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
- * @param	x		XÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	y		YÀ•W(ƒhƒbƒg’PˆÊ)
- * @param	f_col	•¶šFƒiƒ“ƒo[(“h‚è‚Â‚Ô‚µƒJƒ‰[ƒR[ƒh)
- * @param	s_col	‰eFƒiƒ“ƒo[
- * @param	b_col	”wŒiFƒiƒ“ƒo[
- * @param	font	ƒtƒHƒ“ƒgí—Ş
- * @param	sex		«•Ê
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	x		Xåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	y		Yåº§æ¨™(ãƒ‰ãƒƒãƒˆå˜ä½)
+ * @param	f_col	æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼(å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰)
+ * @param	s_col	å½±è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	b_col	èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+ * @param	font	ãƒ•ã‚©ãƒ³ãƒˆç¨®é¡
+ * @param	sex		æ€§åˆ¥
  *
  * @return	none
  */
@@ -3324,7 +3324,7 @@ static void PokeSexWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 
 		s_col = FBMP_COL_RED_SDW;
 		b_col = FBMP_COL_NULL;
 	}else{
-		return;		//‰½‚à‚µ‚È‚¢
+		return;		//ä½•ã‚‚ã—ãªã„
 	}
 
 	CastleWriteMsgSimple(	wk, win, msg_id, 
@@ -3337,16 +3337,16 @@ static void PokeSexWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰Šúó‘Ô‚ğ•\¦
+ * åˆæœŸçŠ¶æ…‹ã‚’è¡¨ç¤º
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void CastleEnemy_Default_Write( CASTLE_ENEMY_WORK* wk )
 {
-	//u‚à‚Ç‚év
+	//ã€Œã‚‚ã©ã‚‹ã€
     // MatchComment: Call CastleWriteMsg_Full_ov107_2247680 instead of CastleWriteMsg
     // MatchComment: x: 1 -> 16
     // MatchComment: extra arg: 1 (centering)
@@ -3354,7 +3354,7 @@ static void CastleEnemy_Default_Write( CASTLE_ENEMY_WORK* wk )
 									msg_castle_trainer_00_02, 16, 1+4 , MSG_NO_PUT,
 									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, CASTLE_MSG_ALN_CENTER );
 
-	//‰º‚Éƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚Åà–¾‚ğ•\¦
+	//ä¸‹ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§èª¬æ˜ã‚’è¡¨ç¤º
 	//CastleWriteMenuWin( wk->bgl, &wk->bmpwin[ENEMY_BMPWIN_TALKMENU] );
 	CastleTalkWinPut( &wk->bmpwin[ENEMY_BMPWIN_TALKMENU], CONFIG_GetWindowType(wk->config));
 
@@ -3366,9 +3366,9 @@ static void CastleEnemy_Default_Write( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰Šúó‘Ô‚ğíœ
+ * åˆæœŸçŠ¶æ…‹ã‚’å‰Šé™¤
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3383,20 +3383,20 @@ static void CastleEnemy_Default_Del( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šî–{ó‘Ô‚ğ•\¦
+ * åŸºæœ¬çŠ¶æ…‹ã‚’è¡¨ç¤º
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void CastleEnemy_Basic_Write( CASTLE_ENEMY_WORK* wk )
 {
-	//‰º‚Éƒƒjƒ…[ƒEƒBƒ“ƒhƒE2‚Åà–¾‚ğ•\¦
+	//ä¸‹ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦2ã§èª¬æ˜ã‚’è¡¨ç¤º
 	//CastleWriteMenuWin( wk->bgl, &wk->bmpwin[ENEMY_BMPWIN_TALKMENU2] );
 	CastleTalkWinPut( &wk->bmpwin[ENEMY_BMPWIN_TALKMENU2], CONFIG_GetWindowType(wk->config));
 
-	/*uƒ|ƒPƒ‚ƒ“‚Ì³‘Ì‚ª‚í‚©‚è‚Ü‚·v*/
+	/*ã€Œãƒã‚±ãƒ¢ãƒ³ã®æ­£ä½“ãŒã‚ã‹ã‚Šã¾ã™ã€*/
 	//wk->msg_index = CastleWriteMsg( wk, &wk->bmpwin[ENEMY_BMPWIN_TALKMENU2], 
 	//								msg_castle_trainer_00_03, 1, 1, MSG_NO_PUT, 
 	//								FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_WHITE, BC_FONT );
@@ -3408,9 +3408,9 @@ static void CastleEnemy_Basic_Write( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šî–{ó‘Ô‚ğíœ
+ * åŸºæœ¬çŠ¶æ…‹ã‚’å‰Šé™¤
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3427,20 +3427,20 @@ static void CastleEnemy_Basic_Del( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚Â‚æ‚³A‚í‚´Aƒ‰ƒ“ƒNƒAƒbƒvA‚â‚ß‚évó‘Ô‚ğ•\¦
+ * ã€Œã¤ã‚ˆã•ã€ã‚ã–ã€ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã€ã‚„ã‚ã‚‹ã€çŠ¶æ…‹ã‚’è¡¨ç¤º
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void CastleEnemy_Basic2_Write( CASTLE_ENEMY_WORK* wk )
 {
-	//‰º‚Éƒƒjƒ…[ƒEƒBƒ“ƒhƒE2‚Åà–¾‚ğ•\¦
+	//ä¸‹ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦2ã§èª¬æ˜ã‚’è¡¨ç¤º
 	//CastleWriteMenuWin( wk->bgl, &wk->bmpwin[ENEMY_BMPWIN_TALKMENU2] );
 	CastleTalkWinPut( &wk->bmpwin[ENEMY_BMPWIN_TALK], CONFIG_GetWindowType(wk->config));
 
-	/*uƒ|ƒPƒ‚ƒ“‚Ì‚Â‚æ‚³‚ª‚í‚©‚è‚Ü‚·v*/
+	/*ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã¤ã‚ˆã•ãŒã‚ã‹ã‚Šã¾ã™ã€*/
 	wk->msg_index = CastleWriteMsg( wk, &wk->bmpwin[ENEMY_BMPWIN_TALK], 
 									msg_castle_trainer_09_05, 1, 1, MSG_NO_PUT, 
 									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_WHITE, FONT_TALK );
@@ -3452,9 +3452,9 @@ static void CastleEnemy_Basic2_Write( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚Â‚æ‚³A‚í‚´Aƒ‰ƒ“ƒNƒAƒbƒvA‚â‚ß‚évó‘Ô‚ğíœ
+ * ã€Œã¤ã‚ˆã•ã€ã‚ã–ã€ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã€ã‚„ã‚ã‚‹ã€çŠ¶æ…‹ã‚’å‰Šé™¤
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3470,18 +3470,18 @@ static void CastleEnemy_Basic2_Del( CASTLE_ENEMY_WORK* wk )
 
 //==============================================================================================
 //
-//	ƒc[ƒ‹
+//	ãƒ„ãƒ¼ãƒ«
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	Œ»İ‚Ìtypeƒ`ƒFƒbƒNŠÖ”
+ * @brief	ç¾åœ¨ã®typeãƒã‚§ãƒƒã‚¯é–¢æ•°
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	type	ƒ`ƒFƒbƒN‚·‚éƒ^ƒCƒv
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¿ã‚¤ãƒ—
  *
- * @return	"TRUE = type‚ª“¯‚¶AFALSE = type‚ªˆá‚¤"
+ * @return	"TRUE = typeãŒåŒã˜ã€FALSE = typeãŒé•ã†"
  */
 //--------------------------------------------------------------
 static BOOL Castle_CheckType( CASTLE_ENEMY_WORK* wk, u8 type )
@@ -3495,11 +3495,11 @@ static BOOL Castle_CheckType( CASTLE_ENEMY_WORK* wk, u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒX•ÏX
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^
- * @param	next	Ÿ‚ÌƒV[ƒPƒ“ƒX’è‹`
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	next	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
  *
  * @return	none
  */
@@ -3513,11 +3513,11 @@ static void NextSeq( CASTLE_ENEMY_WORK* wk, int* seq, int next )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒL[ƒ`ƒFƒbƒN
+ * @brief	ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯
  *
- * @param	key		ƒ`ƒFƒbƒN‚·‚éƒL[
+ * @param	key		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚­ãƒ¼
  *
- * @return	"Œ‹‰Ê"
+ * @return	"çµæœ"
  */
 //--------------------------------------------------------------
 static int KeyCheck( int key )
@@ -3527,9 +3527,9 @@ static int KeyCheck( int key )
 
 //--------------------------------------------------------------
 /**
- * @brief	BGƒ`ƒFƒbƒN
+ * @brief	BGãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3575,9 +3575,9 @@ static void BgCheck( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	\šƒL[‘€ì
+ * @brief	åå­—ã‚­ãƒ¼æ“ä½œ
  *
- * @param	key		ƒ`ƒFƒbƒN‚·‚éƒL[
+ * @param	key		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚­ãƒ¼
  *
  * @return	none
  */
@@ -3625,7 +3625,7 @@ static void CsrMove( CASTLE_ENEMY_WORK* wk, int key )
 	///////////////////////////////////////////////////////////////////////////////////////////
 	if( sys.trg & PAD_KEY_UP ){
 
-		//u‚à‚Ç‚év‚Æc‚É‚«‚ê‚¢‚É•À‚ñ‚Å‚¢‚È‚¢‚Ì‚Å•Û—¯
+		//ã€Œã‚‚ã©ã‚‹ã€ã¨ç¸¦ã«ãã‚Œã„ã«ä¸¦ã‚“ã§ã„ãªã„ã®ã§ä¿ç•™
 		if( wk->csr_pos < wk->h_max ){
 			return;
 		}
@@ -3637,7 +3637,7 @@ static void CsrMove( CASTLE_ENEMY_WORK* wk, int key )
 	///////////////////////////////////////////////////////////////////////////////////////////
 	if( sys.trg & PAD_KEY_DOWN ){
 
-		//u‚à‚Ç‚év‚Æc‚É‚«‚ê‚¢‚É•À‚ñ‚Å‚¢‚È‚¢‚Ì‚Å•Û—¯
+		//ã€Œã‚‚ã©ã‚‹ã€ã¨ç¸¦ã«ãã‚Œã„ã«ä¸¦ã‚“ã§ã„ãªã„ã®ã§ä¿ç•™
 		if( wk->csr_pos >= wk->modoru_pos ){
 			return;
 		}
@@ -3658,18 +3658,18 @@ static void CsrMoveSub( CASTLE_ENEMY_WORK* wk )
 {
 	Snd_SePlay( SEQ_SE_DP_SELECT );
 
-	//’ÊMƒ^ƒCƒv‚Ì‚ÍAƒJ[ƒ\ƒ‹ˆÊ’u‚ğ‘—M
+	//é€šä¿¡ã‚¿ã‚¤ãƒ—ã®æ™‚ã¯ã€ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’é€ä¿¡
 	if( Castle_CommCheck(wk->type) == TRUE ){
 		CastleEnemy_CommSetSendBuf( wk, CASTLE_COMM_ENEMY_CSR_POS, wk->csr_pos );
 	}
 
-	//ƒ|ƒPƒ‚ƒ“‘I‘ğƒEƒBƒ“ƒhƒE
+	//ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	//PokeSelMoveSub( wk, wk->csr_pos, CommGetCurrentID() );
 	PokeSelMoveSub( wk, wk->csr_pos, 0 );
 	return;
 }
 
-//ƒ|ƒPƒ‚ƒ“‘I‘ğƒEƒBƒ“ƒhƒE
+//ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 static void PokeSelMoveSub( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 flag )
 {
 	CASTLE_OBJ* obj;
@@ -3685,7 +3685,7 @@ static void PokeSelMoveSub( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 flag )
 		modoru_anm_no = CASTLE_ANM_MODORU_AITE;
 	}
 
-	//u‚à‚Ç‚évƒ|ƒPƒ‚ƒ“‘I‘ğƒEƒBƒ“ƒh‚Ì‚Ì•\¦Ø‘Ö
+	//ã€Œã‚‚ã©ã‚‹ã€ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã®ã®è¡¨ç¤ºåˆ‡æ›¿
 	if( csr_pos >= wk->modoru_pos ){
 		CastleObj_AnmChg( obj, modoru_anm_no );
 		CastleObj_SetObjPos( obj, ENEMY_CSR_MODORU_X, ENEMY_CSR_MODORU_Y );
@@ -3698,7 +3698,7 @@ static void PokeSelMoveSub( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 flag )
 	return;
 }
 
-//ƒ|ƒPƒ‚ƒ“‘I‘ğƒEƒBƒ“ƒhƒEƒIƒtƒZƒbƒgæ“¾
+//ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 static void CastleEnemy_GetPokeSelXY( CASTLE_ENEMY_WORK* wk, u32* x, u32* y, u8 csr_pos )
 {
 	if( Castle_CommCheck(wk->type) == TRUE ){
@@ -3727,9 +3727,9 @@ static void CastleEnemy_GetPokeSelXY( CASTLE_ENEMY_WORK* wk, u32* x, u32* y, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹‚wæ“¾
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ï¼¸å–å¾—
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"X"
  */
@@ -3742,9 +3742,9 @@ static u16 GetCsrX( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 lr )
 
 	poke_pos = GetCsrPokePos( wk->h_max, csr_pos );
 
-	if( lr == 0 ){						//¶
+	if( lr == 0 ){						//å·¦
 		lr_offset_x = SEL_CSR_L_OFFSET;
-	}else{								//‰E
+	}else{								//å³
 		lr_offset_x = SEL_CSR_R_OFFSET;
 	}
 
@@ -3773,9 +3773,9 @@ static u16 GetCsrX( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 lr )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹‚xæ“¾
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ï¼¹å–å¾—
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"Y"
  */
@@ -3795,7 +3795,7 @@ static u16 GetCsrY( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒIƒtƒZƒbƒgæ“¾
+ * @brief	ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
  *
  * @param	
  *
@@ -3804,7 +3804,7 @@ static u16 GetCsrY( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 //--------------------------------------------------------------
 static void Castle_GetOffset( CASTLE_ENEMY_WORK* wk, u16* offset_x, u16* offset_y, u16* pair_offset_x, u16* pair_offset_y )
 {
-	//’ÊM‚µ‚Ä‚¢‚é‚©‚Å•\¦‚ÌƒIƒtƒZƒbƒg‚ª•Ï‚í‚é
+	//é€šä¿¡ã—ã¦ã„ã‚‹ã‹ã§è¡¨ç¤ºã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãŒå¤‰ã‚ã‚‹
 	if( Castle_CommCheck(wk->type) == FALSE ){
 		*offset_x		= INFO_SINGLE_OFFSET_X;
 		*offset_y		= 0;
@@ -3822,11 +3822,11 @@ static void Castle_GetOffset( CASTLE_ENEMY_WORK* wk, u16* offset_x, u16* offset_
 
 //--------------------------------------------------------------
 /**
- * @brief	‘I‘ğ‚³‚ê‚½ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ“n‚µ‚ÄA•K—v‚È‰‰o‚ğˆ—‚·‚é
+ * @brief	é¸æŠã•ã‚ŒãŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’æ¸¡ã—ã¦ã€å¿…è¦ãªæ¼”å‡ºã‚’å‡¦ç†ã™ã‚‹
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE=I—¹AFALSE=Œp‘±"
+ * @return	"TRUE=çµ‚äº†ã€FALSE=ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL CastleEnemy_DecideEff( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_type )
@@ -3836,7 +3836,7 @@ static BOOL CastleEnemy_DecideEff( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_typ
 	u8 poke_pos,type_offset;
 	POKEMON_PARAM* poke;
 
-	//ƒIƒtƒZƒbƒg
+	//ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	type_offset = wk->modoru_pos;
 
 	poke_pos = GetCsrPokePos( wk->h_max, csr_pos );
@@ -3844,20 +3844,20 @@ static BOOL CastleEnemy_DecideEff( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_typ
 
 	switch( sel_type ){
 
-	//u‚Ä‚à‚¿v
+	//ã€Œã¦ã‚‚ã¡ã€
 	case FC_PARAM_TEMOTI:
 		wk->eff_init_flag = 0;
 		return TRUE;
 		break;
 
-	//uƒŒƒxƒ‹v
+	//ã€Œãƒ¬ãƒ™ãƒ«ã€
 	case FC_PARAM_LEVEL:
 
-		//‰Šúİ’è
+		//åˆæœŸè¨­å®š
 		if( wk->eff_init_flag == 0 ){
 			wk->eff_init_flag = 1;
 
-			//ƒAƒjƒƒiƒ“ƒo[‚ğæ“¾
+			//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 			//if( wk->level_sel == 1 ){
 			if( wk->parent_decide_updown == 1 ){
 				anm_no = CASTLE_ANM_LV_UP;
@@ -3871,7 +3871,7 @@ static BOOL CastleEnemy_DecideEff( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_typ
 				eff_offset_x	= LV_UPDOWN_MULTI_START_X;
 			}
 
-			//ƒGƒtƒFƒNƒgOBJ’Ç‰Á
+			//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆOBJè¿½åŠ 
 			wk->p_eff = CastleObj_Create(	&wk->castle_clact, 
 											ID_CHAR_CSR, ID_PLTT_CSR, 
 											ID_CELL_CSR, anm_no, 
@@ -3880,7 +3880,7 @@ static BOOL CastleEnemy_DecideEff( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_typ
 											CASTLE_BG_PRI_HIGH, NULL );
 		}
 
-		//ƒAƒjƒ[ƒVƒ‡ƒ“I—¹‘Ò‚¿
+		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†å¾…ã¡
 		if( CastleObj_AnmActiveCheck(wk->p_eff) == FALSE ){
 			CastleObj_Delete( wk->p_eff );
 			wk->p_eff = NULL;
@@ -3889,12 +3889,12 @@ static BOOL CastleEnemy_DecideEff( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_typ
 		}
 		break;
 
-	//u‚Â‚æ‚³v
+	//ã€Œã¤ã‚ˆã•ã€
 	case FC_PARAM_TUYOSA:
 		if( Castle_CommCheck(wk->type) == FALSE ){
 			if( sys.trg & (PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL) ){
 				Snd_SePlay( SEQ_SE_DP_SELECT );
-				CastleEnemy_SeqSubTuyosa( wk, csr_pos );					//‚Â‚æ‚³
+				CastleEnemy_SeqSubTuyosa( wk, csr_pos );					//ã¤ã‚ˆã•
 				wk->eff_init_flag = 0;
 				return TRUE;
 			}
@@ -3904,12 +3904,12 @@ static BOOL CastleEnemy_DecideEff( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_typ
 		}
 		break;
 
-	//u‚í‚´v
+	//ã€Œã‚ã–ã€
 	case FC_PARAM_WAZA:
 		if( Castle_CommCheck(wk->type) == FALSE ){
 			if( sys.trg & (PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL) ){
 				Snd_SePlay( SEQ_SE_DP_SELECT );
-				CastleEnemy_SeqSubWaza( wk, csr_pos );								//‚í‚´
+				CastleEnemy_SeqSubWaza( wk, csr_pos );								//ã‚ã–
 				wk->eff_init_flag = 0;
 				return TRUE;
 			}
@@ -3919,7 +3919,7 @@ static BOOL CastleEnemy_DecideEff( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_typ
 		}
 		break;
 
-	//u‚¶‚å‚¤‚Ù‚¤ƒ‰ƒ“ƒNƒAƒbƒvv
+	//ã€Œã˜ã‚‡ã†ã»ã†ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã€
 	case FC_PARAM_INFO_RANKUP:
 		wk->eff_init_flag = 0;
 		return TRUE;
@@ -3932,11 +3932,11 @@ static BOOL CastleEnemy_DecideEff( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_typ
 
 //--------------------------------------------------------------
 /**
- * @brief	‘I‘ğ‚³‚ê‚½ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ“n‚µ‚ÄA•K—v‚È‰‰o‚ğˆ—‚·‚é
+ * @brief	é¸æŠã•ã‚ŒãŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’æ¸¡ã—ã¦ã€å¿…è¦ãªæ¼”å‡ºã‚’å‡¦ç†ã™ã‚‹
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE=I—¹AFALSE=Œp‘±"
+ * @return	"TRUE=çµ‚äº†ã€FALSE=ç¶™ç¶š"
  */
 //--------------------------------------------------------------
 static BOOL CastleEnemy_DecideEff2( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_type )
@@ -3945,7 +3945,7 @@ static BOOL CastleEnemy_DecideEff2( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_ty
 	u8 poke_pos,type_offset;
 	POKEMON_PARAM* poke;
 
-	//ƒIƒtƒZƒbƒg
+	//ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	type_offset = wk->modoru_pos;
 
 	poke_pos = GetCsrPokePos( wk->h_max, csr_pos );
@@ -3953,9 +3953,9 @@ static BOOL CastleEnemy_DecideEff2( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_ty
 
 	switch( sel_type ){
 
-	//u‚Ä‚à‚¿v
-	//uƒŒƒxƒ‹v
-	//u‚¶‚å‚¤‚Ù‚¤ƒ‰ƒ“ƒNƒAƒbƒvv
+	//ã€Œã¦ã‚‚ã¡ã€
+	//ã€Œãƒ¬ãƒ™ãƒ«ã€
+	//ã€Œã˜ã‚‡ã†ã»ã†ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã€
 	case FC_PARAM_TEMOTI:
 	case FC_PARAM_LEVEL:
 	case FC_PARAM_INFO_RANKUP:
@@ -3963,16 +3963,16 @@ static BOOL CastleEnemy_DecideEff2( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_ty
 		return TRUE;
 		break;
 
-	//u‚Â‚æ‚³v
+	//ã€Œã¤ã‚ˆã•ã€
 	case FC_PARAM_TUYOSA:
 		if( Castle_CommCheck(wk->type) == TRUE ){
-			if( CommGetCurrentID() == COMM_PARENT_ID ){						//e
-				if( wk->parent_decide_pos >= type_offset ){					//eFq‚ÌŒˆ’è‚ª—LŒø‚È‚ç
+			if( CommGetCurrentID() == COMM_PARENT_ID ){						//è¦ª
+				if( wk->parent_decide_pos >= type_offset ){					//è¦ªï¼šå­ã®æ±ºå®šãŒæœ‰åŠ¹ãªã‚‰
 					wk->eff_init_flag = 0;
 					return TRUE;
 				}
-			}else{															//q
-				if( wk->parent_decide_pos < type_offset ){					//qFe‚ÌŒˆ’è‚ª—LŒø‚È‚ç
+			}else{															//å­
+				if( wk->parent_decide_pos < type_offset ){					//å­ï¼šè¦ªã®æ±ºå®šãŒæœ‰åŠ¹ãªã‚‰
 					wk->eff_init_flag = 0;
 					return TRUE;
 				}
@@ -3982,7 +3982,7 @@ static BOOL CastleEnemy_DecideEff2( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_ty
 #if 0
 	
 		if( wk->eff_init_flag == 0 ){
-			CastleEnemy_SeqSubTuyosa( wk, csr_pos );						//‚Â‚æ‚³
+			CastleEnemy_SeqSubTuyosa( wk, csr_pos );						//ã¤ã‚ˆã•
 			wk->eff_init_flag = 1;
 			return FALSE;
 		}
@@ -3998,24 +3998,24 @@ static BOOL CastleEnemy_DecideEff2( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_ty
 		}
 #else
 		if( wk->eff_init_flag == 0 ){
-			wk->recover_flag = RECOVER_STATUS;						//’ÊM‚Å©•ª‚ªƒXƒe[ƒ^ƒXŠJ•ú‚µ‚½
-			CastleEnemy_SeqSubTuyosa( wk, csr_pos );						//‚Â‚æ‚³
+			wk->recover_flag = RECOVER_STATUS;						//é€šä¿¡ã§è‡ªåˆ†ãŒã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é–‹æ”¾ã—ãŸ
+			CastleEnemy_SeqSubTuyosa( wk, csr_pos );						//ã¤ã‚ˆã•
 			wk->eff_init_flag = 0;
 			return TRUE;
 		}
 #endif
 		break;
 
-	//u‚í‚´v
+	//ã€Œã‚ã–ã€
 	case FC_PARAM_WAZA:
 		if( Castle_CommCheck(wk->type) == TRUE ){
-			if( CommGetCurrentID() == COMM_PARENT_ID ){						//e
-				if( wk->parent_decide_pos >= type_offset ){					//eFq‚ÌŒˆ’è‚ª—LŒø‚È‚ç
+			if( CommGetCurrentID() == COMM_PARENT_ID ){						//è¦ª
+				if( wk->parent_decide_pos >= type_offset ){					//è¦ªï¼šå­ã®æ±ºå®šãŒæœ‰åŠ¹ãªã‚‰
 					wk->eff_init_flag = 0;
 					return TRUE;
 				}
-			}else{															//q
-				if( wk->parent_decide_pos < type_offset ){					//qFe‚ÌŒˆ’è‚ª—LŒø‚È‚ç
+			}else{															//å­
+				if( wk->parent_decide_pos < type_offset ){					//å­ï¼šè¦ªã®æ±ºå®šãŒæœ‰åŠ¹ãªã‚‰
 					wk->eff_init_flag = 0;
 					return TRUE;
 				}
@@ -4024,7 +4024,7 @@ static BOOL CastleEnemy_DecideEff2( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_ty
 
 #if 0
 		if( wk->eff_init_flag == 0 ){
-			CastleEnemy_SeqSubWaza( wk, csr_pos );							//‚í‚´
+			CastleEnemy_SeqSubWaza( wk, csr_pos );							//ã‚ã–
 			wk->eff_init_flag = 1;
 			return FALSE;
 		}
@@ -4040,8 +4040,8 @@ static BOOL CastleEnemy_DecideEff2( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_ty
 		}
 #else
 		if( wk->eff_init_flag == 0 ){
-			wk->recover_flag = RECOVER_STATUS;						//’ÊM‚Å©•ª‚ªƒXƒe[ƒ^ƒXŠJ•ú‚µ‚½
-			CastleEnemy_SeqSubWaza( wk, csr_pos );							//‚í‚´
+			wk->recover_flag = RECOVER_STATUS;						//é€šä¿¡ã§è‡ªåˆ†ãŒã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é–‹æ”¾ã—ãŸ
+			CastleEnemy_SeqSubWaza( wk, csr_pos );							//ã‚ã–
 			wk->eff_init_flag = 0;
 			return TRUE;
 		}
@@ -4055,7 +4055,7 @@ static BOOL CastleEnemy_DecideEff2( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 sel_ty
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŒƒxƒ‹‘€ì‚Ìg—pCP‚ğæ“¾
+ * @brief	ãƒ¬ãƒ™ãƒ«æ“ä½œã®ä½¿ç”¨CPã‚’å–å¾—
  *
  * @param	
  *
@@ -4073,7 +4073,7 @@ static u16 CastleEnemy_GetLvCP( u8 level_sel )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚Â‚æ‚³ƒEƒBƒ“ƒhƒE‚ğ•\¦‚µ‚Ä‚¢‚é‚É¶‰E‚ÅØ‚è‘Ö‚¦
+ * @brief	ã¤ã‚ˆã•ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã—ã¦ã„ã‚‹æ™‚ã«å·¦å³ã§åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	
  *
@@ -4097,13 +4097,13 @@ static void CastleEnemy_TuyosaWinChg( CASTLE_ENEMY_WORK* wk, s8 add_sub )
 			pos = 0;
 		}
 
-		//ˆêüƒ`ƒFƒbƒN‚µ‚½
+		//ä¸€å‘¨ãƒã‚§ãƒƒã‚¯ã—ãŸ
 		if( pos == wk->csr_pos ){
 			return;
 		}
 
-		//ƒEƒBƒ“ƒhƒE‚ğØ‚è‘Ö‚¦
-		if( wk->p_tuyosa_flag[pos] == 1 ){			//ƒtƒ‰ƒOON
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’åˆ‡ã‚Šæ›¿ãˆ
+		if( wk->p_tuyosa_flag[pos] == 1 ){			//ãƒ•ãƒ©ã‚°ON
 			wk->csr_pos = pos;
 			CsrMoveSub( wk );
 			poke =  PokeParty_GetMemberPointer( wk->p_party, GetCsrPokePos(wk->h_max,wk->csr_pos) );
@@ -4117,7 +4117,7 @@ static void CastleEnemy_TuyosaWinChg( CASTLE_ENEMY_WORK* wk, s8 add_sub )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚í‚´ƒEƒBƒ“ƒhƒE‚ğ•\¦‚µ‚Ä‚¢‚é‚É¶‰E‚ÅØ‚è‘Ö‚¦
+ * @brief	ã‚ã–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã—ã¦ã„ã‚‹æ™‚ã«å·¦å³ã§åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	
  *
@@ -4141,13 +4141,13 @@ static void CastleEnemy_WazaWinChg( CASTLE_ENEMY_WORK* wk, s8 add_sub )
 			pos = 0;
 		}
 
-		//ˆêüƒ`ƒFƒbƒN‚µ‚½
+		//ä¸€å‘¨ãƒã‚§ãƒƒã‚¯ã—ãŸ
 		if( pos == wk->csr_pos ){
 			return;
 		}
 
-		//ƒEƒBƒ“ƒhƒE‚ğØ‚è‘Ö‚¦
-		if( wk->p_waza_flag[pos] == 1 ){			//ƒtƒ‰ƒOON
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’åˆ‡ã‚Šæ›¿ãˆ
+		if( wk->p_waza_flag[pos] == 1 ){			//ãƒ•ãƒ©ã‚°ON
 			wk->csr_pos = pos;
 			CsrMoveSub( wk );
 			poke =  PokeParty_GetMemberPointer( wk->p_party, GetCsrPokePos(wk->h_max,wk->csr_pos) );
@@ -4161,7 +4161,7 @@ static void CastleEnemy_WazaWinChg( CASTLE_ENEMY_WORK* wk, s8 add_sub )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒyƒA‚ª‰½‚©Œˆ’è‚µ‚½‚Ì‹­§I—¹ˆ—
+ * @brief	ãƒšã‚¢ãŒä½•ã‹æ±ºå®šã—ãŸæ™‚ã®å¼·åˆ¶çµ‚äº†å‡¦ç†
  *
  * @param	
  *
@@ -4173,13 +4173,13 @@ static void CastleEnemy_PairDecideDel( CASTLE_ENEMY_WORK* wk )
 	CastleEnemy_SeqSubMenuWinClear( wk );
 	CastleEnemy_SeqSubListEnd( wk );
 	BmpTalkWinClearSub( &wk->bmpwin[ENEMY_BMPWIN_TALK] );
-	CastleObj_Vanish( wk->p_eff_rankup, CASTLE_VANISH_ON );			//”ñ•\¦
+	CastleObj_Vanish( wk->p_eff_rankup, CASTLE_VANISH_ON );			//éè¡¨ç¤º
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒEíœ
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  *
  * @param	
  *
@@ -4196,16 +4196,16 @@ static void BmpTalkWinClearSub( GF_BGL_BMPWIN* win )
 
 //==============================================================================================
 //
-//	’ÊM(CommStart)
+//	é€šä¿¡(CommStart)
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‘—MƒEƒFƒCƒg@
+ * @brief	é€ä¿¡ã‚¦ã‚§ã‚¤ãƒˆã€€
  *
- * @param	wk			CASTLE_RANK_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	type		‘—Mƒ^ƒCƒv
+ * @param	wk			CASTLE_RANK_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type		é€ä¿¡ã‚¿ã‚¤ãƒ—
  *
  * @retval	none
  */
@@ -4216,25 +4216,25 @@ BOOL CastleEnemy_CommSetSendBuf( CASTLE_ENEMY_WORK* wk, u16 type, u16 param )
 
 	switch( type ){
 
-	//–¼‘O
+	//åå‰
 	case CASTLE_COMM_ENEMY_PAIR:
 		command = FC_CASTLE_ENEMY_PAIR;
 		CastleEnemy_CommSendBufBasicData( wk, type );
 		break;
 
-	//ƒŠƒNƒGƒXƒg
+	//ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	case CASTLE_COMM_ENEMY_UP_TYPE:
 		command = FC_CASTLE_ENEMY_REQ_TYPE;
 		CastleEnemy_CommSendBufRankUpType( wk, type, param );
 		break;
 
-	//ƒJ[ƒ\ƒ‹ˆÊ’u
+	//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 	case CASTLE_COMM_ENEMY_CSR_POS:
 		command = FC_CASTLE_ENEMY_CSR_POS;
 		CastleEnemy_CommSendBufCsrPos( wk, type );
 		break;
 
-	//u–ß‚év
+	//ã€Œæˆ»ã‚‹ã€
 	case CASTLE_COMM_ENEMY_MODORU:
 		command = FC_CASTLE_ENEMY_MODORU;
 		CastleEnemy_CommSendBufModoru( wk );
@@ -4252,9 +4252,9 @@ BOOL CastleEnemy_CommSetSendBuf( CASTLE_ENEMY_WORK* wk, u16 type, u16 param )
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚ÉŠî–{î•ñ‚ğƒZƒbƒg
+ * @brief	send_bufã«åŸºæœ¬æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -4264,28 +4264,28 @@ void CastleEnemy_CommSendBufBasicData( CASTLE_ENEMY_WORK* wk, u16 type )
 	int i,num;
 	MYSTATUS* my;
 	
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** Šî–{î•ñ‘—M\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** åŸºæœ¬æƒ…å ±é€ä¿¡\n" );
 
 	num = 0;
 	my	= SaveData_GetMyStatus( wk->sv );
 
 	wk->send_buf[num] = type;
-	OS_Printf( "‘—MFtype = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼štype = %d\n", wk->send_buf[0] );
 	num+=1;														//1
 
-	wk->send_buf[num]	= MyStatus_GetMySex(my);				//«•Ê
-	OS_Printf( "‘—MFmy sex = %d\n", wk->send_buf[1] );
+	wk->send_buf[num]	= MyStatus_GetMySex(my);				//æ€§åˆ¥
+	OS_Printf( "é€ä¿¡ï¼šmy sex = %d\n", wk->send_buf[1] );
 	num+=1;														//2
 
-	//ƒ‰ƒ“ƒN
+	//ãƒ©ãƒ³ã‚¯
 	for( i=0; i < CASTLE_RANK_TYPE_MAX ;i++ ){
 		wk->send_buf[num+i] = Castle_GetRank( wk->sv, wk->type, i );
-		OS_Printf( "‘—MFrank = %d\n", wk->send_buf[num+i] );
+		OS_Printf( "é€ä¿¡ï¼šrank = %d\n", wk->send_buf[num+i] );
 	}
 	num+=CASTLE_RANK_TYPE_MAX;									//5
 
 	//wk->send_buf[num] = CASTLESCORE_GetCP( wk->score_sv );
-	//OS_Printf( "‘—MFcp = %d\n", wk->send_buf[num] );
+	//OS_Printf( "é€ä¿¡ï¼šcp = %d\n", wk->send_buf[num] );
 	//num+=1;														//6
 
 	return;
@@ -4293,12 +4293,12 @@ void CastleEnemy_CommSendBufBasicData( CASTLE_ENEMY_WORK* wk, u16 type )
 
 //--------------------------------------------------------------
 /**
- * @brief   Šî–{î•ñ ’ÊMóMˆ—
+ * @brief   åŸºæœ¬æƒ…å ± é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CastleEnemy_CommRecvBufBasicData(int id_no,int size,void *pData,void *work)
@@ -4307,12 +4307,12 @@ void CastleEnemy_CommRecvBufBasicData(int id_no,int size,void *pData,void *work)
 	CASTLE_ENEMY_WORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** Šî–{î•ñóM\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** åŸºæœ¬æƒ…å ±å—ä¿¡\n" );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -4324,13 +4324,13 @@ void CastleEnemy_CommRecvBufBasicData(int id_no,int size,void *pData,void *work)
 	num+=1;													//2
 
 	for( i=0; i < CASTLE_RANK_TYPE_MAX ;i++ ){
-		wk->pair_rank[i] = (u8)recv_buf[num+i];				//ƒ‰ƒ“ƒN
-		OS_Printf( "óMFwk->pair_rank[%d] = %d\n", i, wk->pair_rank[i] );
+		wk->pair_rank[i] = (u8)recv_buf[num+i];				//ãƒ©ãƒ³ã‚¯
+		OS_Printf( "å—ä¿¡ï¼šwk->pair_rank[%d] = %d\n", i, wk->pair_rank[i] );
 	}
 	num+=CASTLE_RANK_TYPE_MAX;								//5
 
 	//wk->pair_cp = (u16)recv_buf[num];						//CP
-	//OS_Printf( "óMFwk->pair_cp = %d\n", wk->pair_cp );
+	//OS_Printf( "å—ä¿¡ï¼šwk->pair_cp = %d\n", wk->pair_cp );
 	//num+=1;													//6
 
 	return;
@@ -4338,26 +4338,26 @@ void CastleEnemy_CommRecvBufBasicData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚ÉƒŠƒNƒGƒXƒg(‚Ç‚ê‚ğƒ‰ƒ“ƒNƒAƒbƒv‚µ‚½‚¢)‚ğƒZƒbƒg
+ * @brief	send_bufã«ãƒªã‚¯ã‚¨ã‚¹ãƒˆ(ã©ã‚Œã‚’ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã—ãŸã„)ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 void CastleEnemy_CommSendBufRankUpType( CASTLE_ENEMY_WORK* wk, u16 type, u16 param )
 {
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** ƒ‰ƒ“ƒNƒAƒbƒv‚µ‚½‚¢ƒŠƒNƒGƒXƒgî•ñ‘—M\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã—ãŸã„ãƒªã‚¯ã‚¨ã‚¹ãƒˆæƒ…å ±é€ä¿¡\n" );
 
-	//ƒRƒ}ƒ“ƒh
+	//ã‚³ãƒãƒ³ãƒ‰
 	wk->send_buf[0] = type;
-	OS_Printf( "‘—MFtype = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼štype = %d\n", wk->send_buf[0] );
 
-	//ƒJ[ƒ\ƒ‹ˆÊ’u
+	//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 	wk->send_buf[1] = param;
-	OS_Printf( "‘—MFcsr_pos = %d\n", wk->send_buf[1] );
+	OS_Printf( "é€ä¿¡ï¼šcsr_pos = %d\n", wk->send_buf[1] );
 
-	//æ‚Éq‚Ì‘I‘ğ‚ª‚«‚Ä‚¢‚È‚­‚ÄA‚Ü‚¾’l‚ª“ü‚Á‚Ä‚¢‚È‚¢‚ÍAe‚ÌŒˆ’è‚ÍƒZƒbƒg‚µ‚Ä‚µ‚Ü‚¤
+	//å…ˆã«å­ã®é¸æŠãŒãã¦ã„ãªãã¦ã€ã¾ã å€¤ãŒå…¥ã£ã¦ã„ãªã„æ™‚ã¯ã€è¦ªã®æ±ºå®šã¯ã‚»ãƒƒãƒˆã—ã¦ã—ã¾ã†
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		if( wk->parent_decide_pos == CASTLE_ENEMY_DECIDE_NONE ){
 			wk->parent_decide_pos = param;
@@ -4365,33 +4365,33 @@ void CastleEnemy_CommSendBufRankUpType( CASTLE_ENEMY_WORK* wk, u16 type, u16 par
 		}
 	}
 
-	//e‚ÌŒˆ’èƒ^ƒCƒv
+	//è¦ªã®æ±ºå®šã‚¿ã‚¤ãƒ—
 	wk->send_buf[2] = wk->parent_decide_pos;
-	OS_Printf( "‘—MFparent_decide_pos = %d\n", wk->send_buf[2] );
+	OS_Printf( "é€ä¿¡ï¼šparent_decide_pos = %d\n", wk->send_buf[2] );
 
-	//ƒp[ƒgƒi[‚ª¶A‰E‚ÅA©•ªA‘Šè‚Ì‚Ç‚¿‚ç‚Ìƒ‰ƒ“ƒN‚ğã‚°‚æ‚¤‚Æ‚µ‚Ä‚¢‚é‚©
+	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒå·¦ã€å³ã§ã€è‡ªåˆ†ã€ç›¸æ‰‹ã®ã©ã¡ã‚‰ã®ãƒ©ãƒ³ã‚¯ã‚’ä¸Šã’ã‚ˆã†ã¨ã—ã¦ã„ã‚‹ã‹
 	//wk->send_buf[3] = (wk->csr_pos % wk->h_max);
-	//OS_Printf( "‘—MFrankup_lr = %d\n", wk->send_buf[3] );
+	//OS_Printf( "é€ä¿¡ï¼šrankup_lr = %d\n", wk->send_buf[3] );
 
-	//ƒŒƒxƒ‹ã‚°‰º‚°
+	//ãƒ¬ãƒ™ãƒ«ä¸Šã’ä¸‹ã’
 	wk->send_buf[4] = wk->parent_decide_updown;
-	OS_Printf( "‘—MFlv_updown = %d\n", wk->send_buf[4] );
+	OS_Printf( "é€ä¿¡ï¼šlv_updown = %d\n", wk->send_buf[4] );
 
-	//Œˆ’è‚µ‚½‚±‚Æ
+	//æ±ºå®šã—ãŸã“ã¨
 	wk->send_buf[5] = wk->parent_decide_type;
-	OS_Printf( "‘—MFparent_decide_type = %d\n", wk->send_buf[5] );
+	OS_Printf( "é€ä¿¡ï¼šparent_decide_type = %d\n", wk->send_buf[5] );
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ‰ƒ“ƒNƒAƒbƒv‚µ‚½‚¢ƒŠƒNƒGƒXƒg ’ÊMóMˆ—
+ * @brief   ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã—ãŸã„ãƒªã‚¯ã‚¨ã‚¹ãƒˆ é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CastleEnemy_CommRecvBufRankUpType(int id_no,int size,void *pData,void *work)
@@ -4400,64 +4400,64 @@ void CastleEnemy_CommRecvBufRankUpType(int id_no,int size,void *pData,void *work
 	CASTLE_ENEMY_WORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** ƒ‰ƒ“ƒNƒAƒbƒv‚µ‚½‚¢ƒŠƒNƒGƒXƒgî•ñóM\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã—ãŸã„ãƒªã‚¯ã‚¨ã‚¹ãƒˆæƒ…å ±å—ä¿¡\n" );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
-	//ƒRƒ}ƒ“ƒh
+	//ã‚³ãƒãƒ³ãƒ‰
 	//recv_buf[0]
 	
 	wk->pair_rankup_type = recv_buf[1];
-	OS_Printf( "óMFwk->pair_rankup_type = %d\n", wk->pair_rankup_type );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_rankup_type = %d\n", wk->pair_rankup_type );
 
 	////////////////////////////////////////////////////////////////////////
-	//e
+	//è¦ª
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 
-		//e‚ÌŒˆ’è‚ª‚·‚Å‚ÉŒˆ‚Ü‚Á‚Ä‚¢‚½‚çAq‚Ì‘I‘ğ‚Í–³Œø
+		//è¦ªã®æ±ºå®šãŒã™ã§ã«æ±ºã¾ã£ã¦ã„ãŸã‚‰ã€å­ã®é¸æŠã¯ç„¡åŠ¹
 		if( wk->parent_decide_pos != CASTLE_ENEMY_DECIDE_NONE ){
 			wk->pair_rankup_type= 0;
 			//wk->parent_decide_lr= (wk->csr_pos % wk->h_max);
 		}else{
 
-			//e‚ÌŒˆ’è‚ªŒˆ‚Ü‚Á‚Ä‚¢‚È‚¢‚ÍA
-			//e‚ª‘—M‚·‚é‚Éuq‚É‚»‚ê‚Å‚¢‚¢‚æv‚Æ‘—M‚·‚é
+			//è¦ªã®æ±ºå®šãŒæ±ºã¾ã£ã¦ã„ãªã„æ™‚ã¯ã€
+			//è¦ªãŒé€ä¿¡ã™ã‚‹æ™‚ã«ã€Œå­ã«ãã‚Œã§ã„ã„ã‚ˆã€ã¨é€ä¿¡ã™ã‚‹
 			//wk->parent_decide_pos	= wk->pair_rankup_type;
 			
-			//q‚Ì‘I‘ğ‚ªÌ—p‚³‚ê‚½‚±‚Æ‚ª‚í‚©‚é‚æ‚¤‚ÉƒIƒtƒZƒbƒg("modoru_pos")‚ğ‰Á‚¦‚é
+			//å­ã®é¸æŠãŒæ¡ç”¨ã•ã‚ŒãŸã“ã¨ãŒã‚ã‹ã‚‹ã‚ˆã†ã«ã‚ªãƒ•ã‚»ãƒƒãƒˆ("modoru_pos")ã‚’åŠ ãˆã‚‹
 			wk->parent_decide_pos	= wk->pair_rankup_type + wk->modoru_pos;
 			wk->parent_decide_updown= recv_buf[4];
 			wk->parent_decide_type  = recv_buf[5];
 		}
 	////////////////////////////////////////////////////////////////////////
-	//q
+	//å­
 	}else{
-		//e‚ÌŒˆ’èƒ^ƒCƒv
+		//è¦ªã®æ±ºå®šã‚¿ã‚¤ãƒ—
 		wk->parent_decide_pos = recv_buf[2];
 		
-		//ƒp[ƒgƒi[‚ª¶A‰E‚ÅA©•ªA‘Šè‚Ì‚Ç‚¿‚ç‚Ìƒ‰ƒ“ƒN‚ğã‚°‚æ‚¤‚Æ‚µ‚Ä‚¢‚é‚©
+		//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒå·¦ã€å³ã§ã€è‡ªåˆ†ã€ç›¸æ‰‹ã®ã©ã¡ã‚‰ã®ãƒ©ãƒ³ã‚¯ã‚’ä¸Šã’ã‚ˆã†ã¨ã—ã¦ã„ã‚‹ã‹
 		//wk->parent_decide_lr	= recv_buf[3];
 		wk->parent_decide_updown= recv_buf[4];
 		wk->parent_decide_type  = recv_buf[5];
 	}
 
-	OS_Printf( "óMFwk->parent_decide_pos = %d\n", wk->parent_decide_pos );
-	//OS_Printf( "óMFparent_decide_lr = %d\n", wk->parent_decide_lr );
-	OS_Printf( "óMFparent_decide_updown = %d\n", wk->parent_decide_updown );
+	OS_Printf( "å—ä¿¡ï¼šwk->parent_decide_pos = %d\n", wk->parent_decide_pos );
+	//OS_Printf( "å—ä¿¡ï¼šparent_decide_lr = %d\n", wk->parent_decide_lr );
+	OS_Printf( "å—ä¿¡ï¼šparent_decide_updown = %d\n", wk->parent_decide_updown );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚ÉƒJ[ƒ\ƒ‹ˆÊ’u‚ğƒZƒbƒg
+ * @brief	send_bufã«ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -4465,22 +4465,22 @@ void CastleEnemy_CommRecvBufRankUpType(int id_no,int size,void *pData,void *work
 void CastleEnemy_CommSendBufCsrPos( CASTLE_ENEMY_WORK* wk, u16 type )
 {
 	wk->send_buf[0] = type;
-	OS_Printf( "‘—MFtype = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼štype = %d\n", wk->send_buf[0] );
 
 	wk->send_buf[1]	= wk->csr_pos;
-	OS_Printf( "‘—MFcsr_pos = %d\n", wk->send_buf[1] );
+	OS_Printf( "é€ä¿¡ï¼šcsr_pos = %d\n", wk->send_buf[1] );
 
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÊ’u ’ÊMóMˆ—
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ä½ç½® é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CastleEnemy_CommRecvBufCsrPos(int id_no,int size,void *pData,void *work)
@@ -4488,21 +4488,21 @@ void CastleEnemy_CommRecvBufCsrPos(int id_no,int size,void *pData,void *work)
 	CASTLE_ENEMY_WORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** ƒJ[ƒ\ƒ‹ˆÊ’uî•ñóM\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®æƒ…å ±å—ä¿¡\n" );
 
 	//wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
 	//type = recv_buf[0];
 	
-	wk->pair_csr_pos = (u8)recv_buf[1];						//ƒJ[ƒ\ƒ‹ˆÊ’u
-	OS_Printf( "óMFwk->pair_csr_pos = %d\n", wk->pair_csr_pos );
+	wk->pair_csr_pos = (u8)recv_buf[1];						//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_csr_pos = %d\n", wk->pair_csr_pos );
 
-	//ƒ|ƒPƒ‚ƒ“‘I‘ğƒEƒBƒ“ƒhƒE
+	//ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	//PokeSelMoveSub( wk, wk->pair_csr_pos, (CommGetCurrentID() ^ 1) );
 	PokeSelMoveSub( wk, wk->pair_csr_pos, 1 );
 
@@ -4511,30 +4511,30 @@ void CastleEnemy_CommRecvBufCsrPos(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	send_buf‚Éu–ß‚év‚ğƒZƒbƒg
+ * @brief	send_bufã«ã€Œæˆ»ã‚‹ã€ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 void CastleEnemy_CommSendBufModoru( CASTLE_ENEMY_WORK* wk )
 {
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** u–ß‚évî•ñ‘—M\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** ã€Œæˆ»ã‚‹ã€æƒ…å ±é€ä¿¡\n" );
 
 	wk->send_buf[0] = 1;
-	OS_Printf( "‘—MF–ß‚é = %d\n", wk->send_buf[0] );
+	OS_Printf( "é€ä¿¡ï¼šæˆ»ã‚‹ = %d\n", wk->send_buf[0] );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   u–ß‚év ’ÊMóMˆ—
+ * @brief   ã€Œæˆ»ã‚‹ã€ é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CastleEnemy_CommRecvBufModoru(int id_no,int size,void *pData,void *work)
@@ -4542,30 +4542,30 @@ void CastleEnemy_CommRecvBufModoru(int id_no,int size,void *pData,void *work)
 	CASTLE_ENEMY_WORK* wk = work;
 	const u16* recv_buf = pData;
 
-	OS_Printf( "******ƒLƒƒƒbƒXƒ‹****** u–ß‚évî•ñóM\n" );
+	OS_Printf( "******ã‚­ãƒ£ãƒƒã‚¹ãƒ«****** ã€Œæˆ»ã‚‹ã€æƒ…å ±å—ä¿¡\n" );
 
 	//wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
 
 	wk->pair_modoru_flag = (u8)recv_buf[0];
-	OS_Printf( "óMFwk->pair_modoru_flag = %d\n", wk->pair_modoru_flag );
+	OS_Printf( "å—ä¿¡ï¼šwk->pair_modoru_flag = %d\n", wk->pair_modoru_flag );
 	return;
 }
 
 
 //==============================================================================================
 //
-//	ƒTƒuƒV[ƒPƒ“ƒX
+//	ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief		‚Á‚Ä‚¢‚é“¹‹ïA«ŠiA“Á«AŠe”\—Í’l‚ğ•\¦
+ * @brief		æŒã£ã¦ã„ã‚‹é“å…·ã€æ€§æ ¼ã€ç‰¹æ€§ã€å„èƒ½åŠ›å€¤ã‚’è¡¨ç¤º
  *
  * @param	
  *
@@ -4576,7 +4576,7 @@ static void CastleEnemy_SeqSubTuyosa( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 {
 	POKEMON_PARAM* poke;
 
-	//‚Â‚æ‚³A‚í‚´‚ªŒöŠJ‚³‚ê‚Ä‚¢‚½‚çŠø‚ğ•\¦‚·‚é
+	//ã¤ã‚ˆã•ã€ã‚ã–ãŒå…¬é–‹ã•ã‚Œã¦ã„ãŸã‚‰æ——ã‚’è¡¨ç¤ºã™ã‚‹
 	//CastleEnemy_SeqSubTuyosaFlagOn( wk, csr_pos );
 	//CastleRank_SeqSubHataVanish( wk );
 
@@ -4594,7 +4594,7 @@ static void CastleEnemy_SeqSubTuyosa( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 
 //--------------------------------------------------------------
 /**
- * @brief		‚Â‚æ‚³ŒöŠJƒtƒ‰ƒOƒIƒ“
+ * @brief		ã¤ã‚ˆã•å…¬é–‹ãƒ•ãƒ©ã‚°ã‚ªãƒ³
  *
  * @param	
  *
@@ -4603,11 +4603,11 @@ static void CastleEnemy_SeqSubTuyosa( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 //--------------------------------------------------------------
 static void CastleEnemy_SeqSubTuyosaFlagOn( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 {
-	wk->p_tuyosa_flag[GetCsrPokePos(wk->h_max,csr_pos)] = 1;			//ƒtƒ‰ƒOON
+	wk->p_tuyosa_flag[GetCsrPokePos(wk->h_max,csr_pos)] = 1;			//ãƒ•ãƒ©ã‚°ON
 	return;
 }
 
-//u‚Â‚æ‚³vŒ©‚¦‚é‚æ‚¤‚É‚È‚Á‚½MSG
+//ã€Œã¤ã‚ˆã•ã€è¦‹ãˆã‚‹ã‚ˆã†ã«ãªã£ãŸMSG
 static void CastleEnemy_SeqSubTuyosaMsgSet( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 {
 	POKEMON_PARAM* poke;
@@ -4617,7 +4617,7 @@ static void CastleEnemy_SeqSubTuyosaMsgSet( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 	Castle_SetPokeName( wk, 0, PPPPointerGet(poke) );
 	wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_06_04, FONT_TALK );
 
-	//‚Â‚æ‚³‚ªŒöŠJ‚³‚ê‚Ä‚¢‚½‚çŠø‚ğ•\¦‚·‚é
+	//ã¤ã‚ˆã•ãŒå…¬é–‹ã•ã‚Œã¦ã„ãŸã‚‰æ——ã‚’è¡¨ç¤ºã™ã‚‹
 	CastleEnemy_SeqSubTuyosaFlagOn( wk, csr_pos );
 	CastleRank_SeqSubHataVanish( wk );
 	Snd_SePlay( SEQ_SE_DP_UG_020 );
@@ -4626,7 +4626,7 @@ static void CastleEnemy_SeqSubTuyosaMsgSet( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 
 //--------------------------------------------------------------
 /**
- * @brief		‹Z–¼A‚o‚o–¼‚ğ•\¦
+ * @brief		æŠ€åã€ï¼°ï¼°åã‚’è¡¨ç¤º
  *
  * @param	
  *
@@ -4637,7 +4637,7 @@ static void CastleEnemy_SeqSubWaza( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 {
 	POKEMON_PARAM* poke;
 
-	//‚Â‚æ‚³A‚í‚´‚ªŒöŠJ‚³‚ê‚Ä‚¢‚½‚çŠø‚ğ•\¦‚·‚é
+	//ã¤ã‚ˆã•ã€ã‚ã–ãŒå…¬é–‹ã•ã‚Œã¦ã„ãŸã‚‰æ——ã‚’è¡¨ç¤ºã™ã‚‹
 	//CastleEnemy_SeqSubWazaFlagOn( wk, csr_pos );
 	//CastleRank_SeqSubHataVanish( wk );
 
@@ -4655,7 +4655,7 @@ static void CastleEnemy_SeqSubWaza( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 
 //--------------------------------------------------------------
 /**
- * @brief		‚í‚´ŒöŠJƒtƒ‰ƒOƒIƒ“
+ * @brief		ã‚ã–å…¬é–‹ãƒ•ãƒ©ã‚°ã‚ªãƒ³
  *
  * @param	
  *
@@ -4664,7 +4664,7 @@ static void CastleEnemy_SeqSubWaza( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 //--------------------------------------------------------------
 static void CastleEnemy_SeqSubWazaFlagOn( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 {
-	wk->p_waza_flag[GetCsrPokePos(wk->h_max,csr_pos)] = 1;					//ƒtƒ‰ƒOON
+	wk->p_waza_flag[GetCsrPokePos(wk->h_max,csr_pos)] = 1;					//ãƒ•ãƒ©ã‚°ON
 	return;
 }
 
@@ -4677,7 +4677,7 @@ static void CastleEnemy_SeqSubWazaMsgSet( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 	Castle_SetPokeName( wk, 0, PPPPointerGet(poke) );
 	wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_07_04, FONT_TALK );
 
-	//‚í‚´‚ªŒöŠJ‚³‚ê‚Ä‚¢‚½‚çŠø‚ğ•\¦‚·‚é
+	//ã‚ã–ãŒå…¬é–‹ã•ã‚Œã¦ã„ãŸã‚‰æ——ã‚’è¡¨ç¤ºã™ã‚‹
 	CastleEnemy_SeqSubWazaFlagOn( wk, csr_pos );
 	CastleRank_SeqSubHataVanish( wk );
 	Snd_SePlay( SEQ_SE_DP_UG_020 );
@@ -4686,7 +4686,7 @@ static void CastleEnemy_SeqSubWazaMsgSet( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒNƒŠƒA
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢
  *
  * @param	
  *
@@ -4706,7 +4706,7 @@ static void CastleEnemy_SeqSubMenuWinClear( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ï˜bƒEƒBƒ“ƒhƒEON
+ * @brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ON
  *
  * @param	
  *
@@ -4721,7 +4721,7 @@ static void CastleEnemy_SeqSubTalkWinOn( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	CPXV
+ * @brief	CPæ›´æ–°
  *
  * @param	
  *
@@ -4753,10 +4753,10 @@ static void CastleEnemy_SeqSubCPWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win
 									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, CASTLE_MSG_ALN_RIGHT );
 	}else{
 
-		//eAq‚Ì‰æ–Ê‚Æ‚àAeAq‚Ì‡”Ô‚ÉCP‚ª•\¦‚³‚ê‚é‚æ‚¤‚É‚·‚é
+		//è¦ªã€å­ã®ç”»é¢ã¨ã‚‚ã€è¦ªã€å­ã®é †ç•ªã«CPãŒè¡¨ç¤ºã•ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
 
 		//////////////////////////////////////////////////////////////////////////////
-		//e‚È‚ç
+		//è¦ªãªã‚‰
 		if( CommGetCurrentID() == COMM_PARENT_ID ){
 			x = offset_x + INFO_PLAYER_CP_X;
 			y = offset_y + INFO_PLAYER_CP_Y;
@@ -4771,7 +4771,7 @@ static void CastleEnemy_SeqSubCPWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win
 										msg_castle_trainer_cp_01, x, y , MSG_NO_PUT, 
 										FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, CASTLE_MSG_ALN_RIGHT );
 
-			//ƒp[ƒgƒi[‚ÌCP‚ğ•\¦
+			//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®CPã‚’è¡¨ç¤º
 			x = pair_offset_x + INFO_PLAYER_CP_X;
 			y = pair_offset_y + INFO_PLAYER_CP_Y;
 			GF_BGL_BmpWinFill( win, FBMP_COL_NULL, x-6*8, y, 6*8, 2*8 );
@@ -4781,9 +4781,9 @@ static void CastleEnemy_SeqSubCPWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win
 										FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, CASTLE_MSG_ALN_RIGHT );
 
 		//////////////////////////////////////////////////////////////////////////////
-		//q‚È‚ç
+		//å­ãªã‚‰
 		}else{
-			//ƒp[ƒgƒi[‚ÌCP‚ğ•\¦
+			//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®CPã‚’è¡¨ç¤º
 			x = offset_x + INFO_PLAYER_CP_X;
 			y = offset_y + INFO_PLAYER_CP_Y;
 			GF_BGL_BmpWinFill( win, FBMP_COL_NULL, x-6*8, y, 6*8, 2*8 );
@@ -4812,9 +4812,9 @@ static void CastleEnemy_SeqSubCPWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win
 }
 //--------------------------------------------------------------
 /**
- * @brief	LEVEL’²®CPŠm”F
+ * @brief	LEVELèª¿æ•´CPç¢ºèª
  *
- * @param	level_sel	1=+5A2=-5
+ * @param	level_sel	1=+5ã€2=-5
  *
  * @return	none
  */
@@ -4823,14 +4823,14 @@ static void CastleEnemy_SeqSubLevelMsg( CASTLE_ENEMY_WORK* wk, u8 level_sel )
 {
 	Castle_SetNumber( wk, 0, CastleEnemy_GetLvCP(level_sel), CASTLE_KETA_CP, NUMBER_DISPTYPE_LEFT );
 	wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_02, FONT_TALK );
-	Castle_SetMenu2( wk );										//u‚Í‚¢E‚¢‚¢‚¦v
+	Castle_SetMenu2( wk );										//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 	wk->level_sel = level_sel;
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒ„[Aƒp[ƒgƒi[–¼•\¦
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã€ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åè¡¨ç¤º
  *
  * @param	
  *
@@ -4841,37 +4841,37 @@ static void CastleEnemy_SeqSubNameWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* w
 {
 	u16 x,y,offset_x,offset_y,pair_offset_x,pair_offset_y;
 
-	//ƒIƒtƒZƒbƒgæ“¾
+	//ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 	Castle_GetOffset( wk, &offset_x, &offset_y, &pair_offset_x, &pair_offset_y );
 
 	if( Castle_CommCheck(wk->type) == FALSE ){
 		x = offset_x + INFO_PLAYER_X;
 		y = offset_y + INFO_PLAYER_Y;
-		PlayerNameWrite( wk, win, x, y, BC_FONT );			//ƒvƒŒƒCƒ„[–¼‚ğ•\¦
+		PlayerNameWrite( wk, win, x, y, BC_FONT );			//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’è¡¨ç¤º
 		//GF_BGL_BmpWinOnVReq( win );
 	}else{
 
-		//eAq‚Ì‰æ–Ê‚Æ‚àAeAq‚Ì‡”Ô‚É–¼‘O‚ª•\¦‚³‚ê‚é‚æ‚¤‚É‚·‚é
+		//è¦ªã€å­ã®ç”»é¢ã¨ã‚‚ã€è¦ªã€å­ã®é †ç•ªã«åå‰ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
 
-		//e‚È‚ç
+		//è¦ªãªã‚‰
 		if( CommGetCurrentID() == COMM_PARENT_ID ){
 			x = offset_x + INFO_PLAYER_X;
 			y = offset_y + INFO_PLAYER_Y;
-			PlayerNameWrite( wk, win, x, y, BC_FONT );		//ƒvƒŒƒCƒ„[–¼‚ğ•\¦
+			PlayerNameWrite( wk, win, x, y, BC_FONT );		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’è¡¨ç¤º
 
 			x = pair_offset_x + INFO_PLAYER_X;
 			y = pair_offset_y + INFO_PLAYER_Y;
-			PairNameWrite( wk, win, x, y, BC_FONT );		//ƒp[ƒgƒi[–¼‚ğ•\¦
+			PairNameWrite( wk, win, x, y, BC_FONT );		//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º
 
-		//q‚È‚ç
+		//å­ãªã‚‰
 		}else{
 			x = offset_x + INFO_PLAYER_X;
 			y = offset_y + INFO_PLAYER_Y;
-			PairNameWrite( wk, win, x, y, BC_FONT );		//ƒp[ƒgƒi[–¼‚ğ•\¦
+			PairNameWrite( wk, win, x, y, BC_FONT );		//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º
 
 			x = pair_offset_x + INFO_PLAYER_X;
 			y = pair_offset_y + INFO_PLAYER_Y;
-			PlayerNameWrite( wk, win, x, y, BC_FONT );		//ƒvƒŒƒCƒ„[–¼‚ğ•\¦
+			PlayerNameWrite( wk, win, x, y, BC_FONT );		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’è¡¨ç¤º
 		}
 
 		//GF_BGL_BmpWinOnVReq( win );
@@ -4883,13 +4883,13 @@ static void CastleEnemy_SeqSubNameWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* w
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒNƒAƒbƒv
+ * @brief	ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
- * eAq‚Æ‚à‚É‰æ–Ê‚Ì“Gƒ|ƒPƒ‚ƒ“‚Ì•À‚Ñ‚Í“¯‚¶
+ * è¦ªã€å­ã¨ã‚‚ã«ç”»é¢ã®æ•µãƒã‚±ãƒ¢ãƒ³ã®ä¸¦ã³ã¯åŒã˜
  */
 //--------------------------------------------------------------
 static void CastleEnemy_SeqSubRankUp( CASTLE_ENEMY_WORK* wk, u8 parent_decide_pos, u8 parent_decide_type )
@@ -4901,14 +4901,14 @@ static void CastleEnemy_SeqSubRankUp( CASTLE_ENEMY_WORK* wk, u8 parent_decide_po
 
 	Snd_SePlay( SEQ_SE_DP_PIRORIRO2 );
 
-	//ƒIƒtƒZƒbƒg
+	//ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	type_offset = wk->modoru_pos;
 
-	//‘I‚ñ‚¾ƒJ[ƒ\ƒ‹ˆÊ’u‚ğæ“¾
+	//é¸ã‚“ã ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å–å¾—
 	sel_pos = GetCommSelCsrPos( type_offset, parent_decide_pos );
 
 	////////////////////////////////////////////////
-	//g—pCP
+	//ä½¿ç”¨CP
 	switch( parent_decide_type ){
 
 	case FC_PARAM_TEMOTI:
@@ -4916,7 +4916,7 @@ static void CastleEnemy_SeqSubRankUp( CASTLE_ENEMY_WORK* wk, u8 parent_decide_po
 		break;
 
 	case FC_PARAM_LEVEL:
-		sub_cp = CastleEnemy_GetLvCP( wk->parent_decide_updown );			//g—pCP
+		sub_cp = CastleEnemy_GetLvCP( wk->parent_decide_updown );			//ä½¿ç”¨CP
 		break;
 
 	case FC_PARAM_TUYOSA:
@@ -4933,57 +4933,57 @@ static void CastleEnemy_SeqSubRankUp( CASTLE_ENEMY_WORK* wk, u8 parent_decide_po
 	OS_Printf( "wk->pair_cp = %d\n", wk->pair_cp );
 
 	////////////////////////////////////////////////
-	//e
+	//è¦ª
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 
-		//eFe‚ÌŒˆ’è‚ª—LŒø‚È‚ç
+		//è¦ªï¼šè¦ªã®æ±ºå®šãŒæœ‰åŠ¹ãªã‚‰
 		if( parent_decide_pos < type_offset ){
 			Castle_SetPlayerName( wk, 5 );
-			Castle_CPRecord_Sub( wk->fro_sv, wk->type, sub_cp );//©•ª‚ÌCPŒ¸‚ç‚·
+			Castle_CPRecord_Sub( wk->fro_sv, wk->type, sub_cp );//è‡ªåˆ†ã®CPæ¸›ã‚‰ã™
 
-		//eFq‚ÌŒˆ’è‚ª—LŒø‚È‚ç
+		//è¦ªï¼šå­ã®æ±ºå®šãŒæœ‰åŠ¹ãªã‚‰
 		}else{
 			Castle_SetPairName( wk->wordset, 5 );
-			wk->pair_cp -= sub_cp;								//‘Šè‚ÌCPŒ¸‚ç‚·
+			wk->pair_cp -= sub_cp;								//ç›¸æ‰‹ã®CPæ¸›ã‚‰ã™
 		}
 
 	///////////////////////////////////////////////
-	//q
+	//å­
 	}else{
 
-		//qFe‚ÌŒˆ’è‚ª—LŒø‚È‚ç
+		//å­ï¼šè¦ªã®æ±ºå®šãŒæœ‰åŠ¹ãªã‚‰
 		if( parent_decide_pos < type_offset ){
 			Castle_SetPairName( wk->wordset, 5 );
-			wk->pair_cp -= sub_cp;								//‘Šè‚ÌCPŒ¸‚ç‚·
+			wk->pair_cp -= sub_cp;								//ç›¸æ‰‹ã®CPæ¸›ã‚‰ã™
 
-		//qFq‚ÌŒˆ’è‚ª—LŒø‚È‚ç
+		//å­ï¼šå­ã®æ±ºå®šãŒæœ‰åŠ¹ãªã‚‰
 		}else{
 			Castle_SetPlayerName( wk, 5 );
-			Castle_CPRecord_Sub( wk->fro_sv, wk->type, sub_cp );//©•ª‚ÌCPŒ¸‚ç‚·
+			Castle_CPRecord_Sub( wk->fro_sv, wk->type, sub_cp );//è‡ªåˆ†ã®CPæ¸›ã‚‰ã™
 		}
 	}
 
 	OS_Printf( "wk->pair_cp = %d\n", wk->pair_cp );
 
-	CastleEnemy_SeqSubCPWrite( wk, &wk->bmpwin[ENEMY_BMPWIN_TR1] );	//CP•\¦‚ğXV
-	CastleEnemy_SeqSubMenuWinClear( wk );							//ƒƒjƒ…[‚ğ•\¦‚µ‚Ä‚¢‚½‚çíœ
+	CastleEnemy_SeqSubCPWrite( wk, &wk->bmpwin[ENEMY_BMPWIN_TR1] );	//CPè¡¨ç¤ºã‚’æ›´æ–°
+	CastleEnemy_SeqSubMenuWinClear( wk );							//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã—ã¦ã„ãŸã‚‰å‰Šé™¤
 
 	switch( parent_decide_type ){
 
 	case FC_PARAM_TEMOTI:
-		CastleEnemy_SeqSubTemoti( wk, sel_pos );							//‚Ä‚à‚¿
+		CastleEnemy_SeqSubTemoti( wk, sel_pos );							//ã¦ã‚‚ã¡
 		break;
 
 	case FC_PARAM_LEVEL:
-		CastleEnemy_SeqSubLevel( wk, sel_pos, wk->parent_decide_updown );	//ƒŒƒxƒ‹
+		CastleEnemy_SeqSubLevel( wk, sel_pos, wk->parent_decide_updown );	//ãƒ¬ãƒ™ãƒ«
 		break;
 
 	case FC_PARAM_TUYOSA:
-		CastleEnemy_SeqSubTuyosaMsgSet( wk, sel_pos );						//‚Â‚æ‚³Œ©‚¦‚éMSG
+		CastleEnemy_SeqSubTuyosaMsgSet( wk, sel_pos );						//ã¤ã‚ˆã•è¦‹ãˆã‚‹MSG
 		break;
 
 	case FC_PARAM_WAZA:
-		CastleEnemy_SeqSubWazaMsgSet( wk, sel_pos );						//‚í‚´Œ©‚¦‚éMSG
+		CastleEnemy_SeqSubWazaMsgSet( wk, sel_pos );						//ã‚ã–è¦‹ãˆã‚‹MSG
 		break;
 	};
 
@@ -4992,9 +4992,9 @@ static void CastleEnemy_SeqSubRankUp( CASTLE_ENEMY_WORK* wk, u8 parent_decide_po
 
 //--------------------------------------------------------------
 /**
- * @brief	è‚¿
+ * @brief	æ‰‹æŒã¡
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -5010,30 +5010,30 @@ static void CastleEnemy_SeqSubTemoti( CASTLE_ENEMY_WORK* wk, u8 csr_pos )
 	Castle_SetPokeName( wk, 0, PPPPointerGet(poke) );
 	wk->msg_index = Castle_EasyMsg( wk, msg_castle_trainer_04_03, FONT_TALK );
 
-	//ƒtƒ‰ƒOON
+	//ãƒ•ãƒ©ã‚°ON
 	wk->p_temoti_flag[GetCsrPokePos(wk->h_max,csr_pos)] = 1;
 
-	CastleObj_Vanish( wk->p_ball[GetCsrPokePos(wk->h_max,csr_pos)], CASTLE_VANISH_ON );	//”ñ•\¦
-	CastleObj_Vanish( wk->p_icon[GetCsrPokePos(wk->h_max,csr_pos)], CASTLE_VANISH_OFF );//•\¦
+	CastleObj_Vanish( wk->p_ball[GetCsrPokePos(wk->h_max,csr_pos)], CASTLE_VANISH_ON );	//éè¡¨ç¤º
+	CastleObj_Vanish( wk->p_icon[GetCsrPokePos(wk->h_max,csr_pos)], CASTLE_VANISH_OFF );//è¡¨ç¤º
 
-	//HP‚ÆLV•\¦
+	//HPã¨LVè¡¨ç¤º
 	Castle_PokeHpMsgWrite( wk, &wk->bmpwin[ENEMY_BMPWIN_HP] );
 	Castle_PokeLvMsgWrite( wk, &wk->bmpwin[ENEMY_BMPWIN_LV] );
 
-	CastleObj_Vanish( wk->p_hp[GetCsrPokePos(wk->h_max,csr_pos)], CASTLE_VANISH_OFF );	//HPó‘Ô•\¦
+	CastleObj_Vanish( wk->p_hp[GetCsrPokePos(wk->h_max,csr_pos)], CASTLE_VANISH_OFF );	//HPçŠ¶æ…‹è¡¨ç¤º
 
 	//Snd_SePlay( SEQ_SE_DP_DENSI16 );
 	Snd_SePlay( SEQ_SE_DP_UG_020 );
 	//Snd_SePlay( SEQ_SE_DP_DENSI15 );
-	//Snd_SePlay( SEQ_SE_DP_DENSI06 );		//–Â‚ç‚È‚¢
+	//Snd_SePlay( SEQ_SE_DP_DENSI06 );		//é³´ã‚‰ãªã„
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŒƒxƒ‹
+ * @brief	ãƒ¬ãƒ™ãƒ«
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -5058,17 +5058,17 @@ static void CastleEnemy_SeqSubLevel( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 level
 		Snd_SePlay( SEQ_SE_DP_CLOSE7 );
 	}
 
-	//ƒŒƒxƒ‹‚ªã‚ª‚Á‚½‚èA‰º‚ª‚Á‚½‚è
-	//•\¦‚³‚ê‚Ä‚¢‚éî•ñ‚àXV‚·‚é
+	//ãƒ¬ãƒ™ãƒ«ãŒä¸ŠãŒã£ãŸã‚Šã€ä¸‹ãŒã£ãŸã‚Š
+	//è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹æƒ…å ±ã‚‚æ›´æ–°ã™ã‚‹
 			
-	//ƒtƒ‰ƒOON
+	//ãƒ•ãƒ©ã‚°ON
 	if( wk->p_level_flag[GetCsrPokePos(wk->h_max,csr_pos)] == 0 ){
 		wk->p_level_flag[GetCsrPokePos(wk->h_max,csr_pos)] = level_sel;
 	}else{
-		wk->p_level_flag[GetCsrPokePos(wk->h_max,csr_pos)] = 0;		//ˆê“xã‰º‚³‚¹‚½‚à‚Ì‚ğŒ³‚É–ß‚µ‚½
+		wk->p_level_flag[GetCsrPokePos(wk->h_max,csr_pos)] = 0;		//ä¸€åº¦ä¸Šä¸‹ã•ã›ãŸã‚‚ã®ã‚’å…ƒã«æˆ»ã—ãŸ
 	}
 
-	//ƒŒƒxƒ‹’²®
+	//ãƒ¬ãƒ™ãƒ«èª¿æ•´
 	if( wk->p_level_flag[GetCsrPokePos(wk->h_max,csr_pos)] == 0 ){
 		exp = PokeLevelExpGet( PokeParaGet(temp_poke,ID_PARA_monsno,NULL), 50 );
 		PokeParaPut( temp_poke, ID_PARA_exp, &exp );
@@ -5083,7 +5083,7 @@ static void CastleEnemy_SeqSubLevel( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 level
 		PokeParaCalc( temp_poke );
 	}
 
-	//HP‚ÆLV•\¦
+	//HPã¨LVè¡¨ç¤º
 	Castle_PokeHpMsgWrite( wk, &wk->bmpwin[ENEMY_BMPWIN_HP] );
 	Castle_PokeLvMsgWrite( wk, &wk->bmpwin[ENEMY_BMPWIN_LV] );
 	return;
@@ -5091,26 +5091,26 @@ static void CastleEnemy_SeqSubLevel( CASTLE_ENEMY_WORK* wk, u8 csr_pos, u8 level
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒe[ƒ^ƒXƒEƒBƒ“ƒhƒE‚ğÁ‚·
+ * @brief	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void CastleEnemy_SeqSubStatusWinDel( CASTLE_ENEMY_WORK* wk )
 {
-	GF_BGL_BmpWinDataFill( &wk->bmpwin[ENEMY_BMPWIN_STATUS], FBMP_COL_NULL );	//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( &wk->bmpwin[ENEMY_BMPWIN_STATUS], FBMP_COL_NULL );	//å¡—ã‚Šã¤ã¶ã—
 	//GF_BGL_BmpWinOnVReq( &wk->bmpwin[ENEMY_BMPWIN_STATUS] );
 	//GF_BGL_BmpWinOffVReq( &wk->bmpwin[ENEMY_BMPWIN_STATUS] );
-	GF_BGL_BmpWinOff( &wk->bmpwin[ENEMY_BMPWIN_STATUS] );						//šVReq‚µ‚È‚¢
+	GF_BGL_BmpWinOff( &wk->bmpwin[ENEMY_BMPWIN_STATUS] );						//â˜…VReqã—ãªã„
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒXƒgI—¹
+ * @brief	ãƒªã‚¹ãƒˆçµ‚äº†
  *
  * @param	
  *
@@ -5123,7 +5123,7 @@ static void CastleEnemy_SeqSubListEnd( CASTLE_ENEMY_WORK* wk )
 
 	if( wk->list_flag == 1 ){
 		wk->list_flag = 0;
-		//wk->list_csr_pos = 0;	//’ˆÓI
+		//wk->list_csr_pos = 0;	//æ³¨æ„ï¼
 		p_list_win = (GF_BGL_BMPWIN*)BmpListParamGet( wk->lw, BMPLIST_ID_WIN );
 
 #if 0
@@ -5134,10 +5134,10 @@ static void CastleEnemy_SeqSubListEnd( CASTLE_ENEMY_WORK* wk )
 		BmpMenuWinClear( p_list_win, WINDOW_TRANS_OFF );
 #endif
 
-		GF_BGL_BmpWinDataFill( p_list_win, FBMP_COL_NULL );	//“h‚è‚Â‚Ô‚µ
+		GF_BGL_BmpWinDataFill( p_list_win, FBMP_COL_NULL );	//å¡—ã‚Šã¤ã¶ã—
 		GF_BGL_BmpWinOffVReq( p_list_win );
 
-		//ƒŠƒXƒgíœ
+		//ãƒªã‚¹ãƒˆå‰Šé™¤
 		BMP_MENULIST_Delete( wk->menulist );
 		BmpListExit( wk->lw, NULL, NULL );
 	}
@@ -5147,9 +5147,9 @@ static void CastleEnemy_SeqSubListEnd( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒRƒ“ã‰ºƒAƒjƒ
+ * @brief	ã‚¢ã‚¤ã‚³ãƒ³ä¸Šä¸‹ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk		CASTLE_RANK_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_RANK_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -5171,7 +5171,7 @@ static void CastleEnemy_IconSelAnm( CASTLE_ENEMY_WORK* wk )
 		if( wk->p_icon[i] != NULL ){
 			CastleObj_PokeIconAnmChg( wk->p_icon[i], anm );
 
-			//‘I‘ğ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚Å‚Í‚È‚¢‚©Au‚à‚Ç‚év‘I‘ğ’†‚Ì
+			//é¸æŠã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã§ã¯ãªã„æ™‚ã‹ã€ã€Œã‚‚ã©ã‚‹ã€é¸æŠä¸­ã®æ™‚
 			if((i != GetCsrPokePos(wk->h_max,wk->csr_pos)) || (wk->csr_pos >= wk->modoru_pos) ){
 				CastleObj_PokeIconPosSet( wk->p_icon[i], 0 );
 			}else{
@@ -5185,11 +5185,11 @@ static void CastleEnemy_IconSelAnm( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚Â‚æ‚³A‚í‚´u‚Í‚¢v‚Ì‹¤’Êˆ—
+ * @brief	ã¤ã‚ˆã•ã€ã‚ã–ã€Œã¯ã„ã€ã®å…±é€šå‡¦ç†
  *
  * @param	
  *
- * @return	"FALSE = ‚»‚ÌŒãbreak, TRUE = ‚»‚ÌŒãreturn TRUE"
+ * @return	"FALSE = ãã®å¾Œbreak, TRUE = ãã®å¾Œreturn TRUE"
  */
 //--------------------------------------------------------------
 static BOOL CastleEnemy_SeqSubTuyosaWazaYes( CASTLE_ENEMY_WORK* wk, u16 use_cp, u16 cp_not_msg )
@@ -5201,7 +5201,7 @@ static BOOL CastleEnemy_SeqSubTuyosaWazaYes( CASTLE_ENEMY_WORK* wk, u16 use_cp, 
 	now_cp = FrontierRecord_Get(wk->fro_sv, CastleScr_GetCPRecordID(wk->type),
 								Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)) );
 
-	//CP‚ª‘«‚è‚È‚¢
+	//CPãŒè¶³ã‚Šãªã„æ™‚
 	if( now_cp < use_cp ){
 		CastleEnemy_SeqSubTalkWinOn( wk );
 		wk->msg_index = Castle_EasyMsg( wk, cp_not_msg, FONT_TALK );
@@ -5215,9 +5215,9 @@ static BOOL CastleEnemy_SeqSubTuyosaWazaYes( CASTLE_ENEMY_WORK* wk, u16 use_cp, 
 		CastleEnemy_SeqSubCPWrite( wk, &wk->bmpwin[ENEMY_BMPWIN_TR1] );
 
 		if( use_cp == CP_USE_TUYOSA ){
-			CastleEnemy_SeqSubTuyosaMsgSet( wk, wk->csr_pos );		//‚Â‚æ‚³Œ©‚¦‚éMSG
+			CastleEnemy_SeqSubTuyosaMsgSet( wk, wk->csr_pos );		//ã¤ã‚ˆã•è¦‹ãˆã‚‹MSG
 		}else{
-			CastleEnemy_SeqSubWazaMsgSet( wk, wk->csr_pos );		//‚í‚´Œ©‚¦‚éMSG
+			CastleEnemy_SeqSubWazaMsgSet( wk, wk->csr_pos );		//ã‚ã–è¦‹ãˆã‚‹MSG
 		}
 
 		wk->sub_seq = SEQ_SUB_DECIDE_EFF_WAIT_NEXT_WIN_OFF;
@@ -5238,28 +5238,28 @@ static BOOL CastleEnemy_SeqSubTuyosaWazaYes( CASTLE_ENEMY_WORK* wk, u16 use_cp, 
 //
 //==============================================================================================
 
-//’ÊM‘Šè‚É•\¦‚³‚ê‚éƒƒbƒZ[ƒW
+//é€šä¿¡ç›¸æ‰‹ã«è¡¨ç¤ºã•ã‚Œã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 static const u16 rankup_pair_msg_tbl[CASTLE_RANK_TYPE_MAX][CASTLE_RANK_MAX] = {
-//œ‰ñ•œ‚Ìƒ‰ƒ“ƒNƒAƒbƒv‚Q
-//œ‰ñ•œ‚Ìƒ‰ƒ“ƒNƒAƒbƒv‚R
-	{	0, 0, 0 },							//–¢g—p
+//â—å›å¾©ã®ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ï¼’
+//â—å›å¾©ã®ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ï¼“
+	{	0, 0, 0 },							//æœªä½¿ç”¨
 
-//œ“¹‹ï‚Ìƒ‰ƒ“ƒNƒAƒbƒv‚Q
-//œ“¹‹ï‚Ìƒ‰ƒ“ƒNƒAƒbƒv‚R
-	{	0, 0, 0 },							//–¢g—p
+//â—é“å…·ã®ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ï¼’
+//â—é“å…·ã®ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ï¼“
+	{	0, 0, 0 },							//æœªä½¿ç”¨
 
-//œî•ñ‚Ìƒ‰ƒ“ƒNƒAƒbƒv‚Q
-//œî•ñ‚Ìƒ‰ƒ“ƒNƒAƒbƒv‚R
-//u‚í‚´‚Ì‚¶‚å‚¤‚Ù‚¤‚ğ‚©‚¤‚±‚Æ‚ª‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚·v
-//u‚í‚´‚Ì‚¶‚å‚¤‚Ù‚¤‚ğ‚©‚¤‚±‚Æ‚ª‚Å‚«‚é‚æ‚¤‚É‚È‚è‚Ü‚·v
+//â—æƒ…å ±ã®ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ï¼’
+//â—æƒ…å ±ã®ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ï¼“
+//ã€Œã‚ã–ã®ã˜ã‚‡ã†ã»ã†ã‚’ã‹ã†ã“ã¨ãŒã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™ã€
+//ã€Œã‚ã–ã®ã˜ã‚‡ã†ã»ã†ã‚’ã‹ã†ã“ã¨ãŒã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™ã€
 	{ 0, msg_castle_trainer_11_05, msg_castle_trainer_11_05 },
 };
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒNƒAƒbƒv(castle_rank.c‚©‚çˆÚ“®)
+ * @brief	ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—(castle_rank.cã‹ã‚‰ç§»å‹•)
  *
- * @param	wk		CASTLE_RANK_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_RANK_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	param	FC_PARAM_INFO_RANKUP
  *
  * @return	none
@@ -5276,61 +5276,61 @@ static void CastleRank_SeqSubRankUp(CASTLE_ENEMY_WORK* wk, u8 parent_decide_pos,
 	if( param == FC_PARAM_INFO_RANKUP ){
 		type = CASTLE_RANK_TYPE_INFO;
 	}else{
-		OS_Printf( "CastleRank_SeqSubRankUp ˆø”param‚ª•s³‚Å‚·I\n" );
+		OS_Printf( "CastleRank_SeqSubRankUp å¼•æ•°paramãŒä¸æ­£ã§ã™ï¼\n" );
 		GF_ASSERT( 0 );
 	}
 
-	//ƒIƒtƒZƒbƒg
+	//ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	type_offset = wk->modoru_pos;	
 
-	//‘I‚ñ‚¾ƒJ[ƒ\ƒ‹ˆÊ’u‚ğæ“¾
+	//é¸ã‚“ã ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å–å¾—
 	sel_pos = GetCommSelCsrPos( type_offset, parent_decide_pos );
 
 	////////////////////////////////////////////////
-	//e
+	//è¦ª
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 
-		//eFe‚ÌŒˆ’è‚ª—LŒø‚È‚ç
+		//è¦ªï¼šè¦ªã®æ±ºå®šãŒæœ‰åŠ¹ãªã‚‰
 		if( parent_decide_pos < type_offset ){
 			Castle_SetPlayerName( wk, 5 );
 			now_rank = Castle_GetRank( wk->sv, wk->type, type );
 
 			Castle_CPRecord_Sub( wk->fro_sv, wk->type, INFO_RANKUP_POINT );
 
-			//ƒ‰ƒ“ƒNƒAƒbƒv
+			//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—
 			now_rank = Castle_GetRank( wk->sv, wk->type, type );
 
 			buf16[0] = (now_rank + 1);
 			FrontierRecord_Set(	SaveData_GetFrontier(wk->sv), 
 				CastleScr_GetRankRecordID(wk->type,type),
 				Frontier_GetFriendIndex(CastleScr_GetRankRecordID(wk->type,type)), (now_rank + 1) );
-			OS_Printf( "eFe‚ğƒ‰ƒ“ƒNƒAƒbƒv %d\n", (now_rank+1) );
+			OS_Printf( "è¦ªï¼šè¦ªã‚’ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ— %d\n", (now_rank+1) );
 
-			//ƒ‰ƒ“ƒNƒAƒbƒv‚µ‚½‚É–ß‚èæ‚ª“Áêƒtƒ‰ƒOON
+			//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã—ãŸæ™‚ã«æˆ»ã‚Šå…ˆãŒç‰¹æ®Šãƒ•ãƒ©ã‚°ON
 			if( Castle_CommCheck(wk->type) == TRUE ){
 				wk->recover_flag = RECOVER_RANKUP;
 			}
 
-		//eFq‚ÌŒˆ’è‚ª—LŒø‚È‚ç
+		//è¦ªï¼šå­ã®æ±ºå®šãŒæœ‰åŠ¹ãªã‚‰
 		}else{
 			Castle_SetPairName( wk->wordset, 5 );
 			now_rank= wk->pair_rank[type];
-			wk->pair_cp -= INFO_RANKUP_POINT;						//CPŒ¸‚ç‚·
+			wk->pair_cp -= INFO_RANKUP_POINT;						//CPæ¸›ã‚‰ã™
 			wk->pair_rank[type]++;
 		}
 
 	///////////////////////////////////////////////
-	//q
+	//å­
 	}else{
 
-		//qFe‚ÌŒˆ’è‚ª—LŒø‚È‚ç
+		//å­ï¼šè¦ªã®æ±ºå®šãŒæœ‰åŠ¹ãªã‚‰
 		if( parent_decide_pos < type_offset ){
 			Castle_SetPairName( wk->wordset, 5 );
 			now_rank= wk->pair_rank[type];
-			wk->pair_cp -= INFO_RANKUP_POINT;						//CPŒ¸‚ç‚·
+			wk->pair_cp -= INFO_RANKUP_POINT;						//CPæ¸›ã‚‰ã™
 			wk->pair_rank[type]++;
 
-		//qFq‚ÌŒˆ’è‚ª—LŒø‚È‚ç
+		//å­ï¼šå­ã®æ±ºå®šãŒæœ‰åŠ¹ãªã‚‰
 		}else{
 			Castle_SetPlayerName( wk, 5 );
 			now_rank = Castle_GetRank( wk->sv, wk->type, type );
@@ -5343,27 +5343,27 @@ static void CastleRank_SeqSubRankUp(CASTLE_ENEMY_WORK* wk, u8 parent_decide_pos,
 			FrontierRecord_Set(	SaveData_GetFrontier(wk->sv), 
 				CastleScr_GetRankRecordID(wk->type,type),
 				Frontier_GetFriendIndex(CastleScr_GetRankRecordID(wk->type,type)), (now_rank + 1) );
-			OS_Printf( "qFq‚ğƒ‰ƒ“ƒNƒAƒbƒv %d\n", (now_rank+1) );
+			OS_Printf( "å­ï¼šå­ã‚’ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ— %d\n", (now_rank+1) );
 
-			//ƒ‰ƒ“ƒNƒAƒbƒv‚µ‚½‚É–ß‚èæ‚ª“Áêƒtƒ‰ƒOON
+			//ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã—ãŸæ™‚ã«æˆ»ã‚Šå…ˆãŒç‰¹æ®Šãƒ•ãƒ©ã‚°ON
 			if( Castle_CommCheck(wk->type) == TRUE ){
 				wk->recover_flag = RECOVER_RANKUP;
 			}
 		}
 	}
 
-	//ƒƒjƒ…[‚ğ•\¦‚µ‚Ä‚¢‚½‚çíœ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã—ã¦ã„ãŸã‚‰å‰Šé™¤
 	CastleEnemy_SeqSubMenuWinClear( wk );
 
-	//CP•\¦‚ğXV
+	//CPè¡¨ç¤ºã‚’æ›´æ–°
 	CastleEnemy_SeqSubCPWrite( wk, &wk->bmpwin[ENEMY_BMPWIN_TR1] );
 
-	//CastleRank_SeqSubAllInfoWrite( wk );							//î•ñXV
+	//CastleRank_SeqSubAllInfoWrite( wk );							//æƒ…å ±æ›´æ–°
 
-	//‰ï˜bƒEƒBƒ“ƒhƒE•\¦
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 	CastleTalkWinPut( &wk->bmpwin[ENEMY_BMPWIN_TALK], CONFIG_GetWindowType(wk->config) );
 
-	//uƒ‰ƒ“ƒN‚ªƒAƒbƒv‚µ‚Ü‚µ‚½Iv
+	//ã€Œãƒ©ãƒ³ã‚¯ãŒã‚¢ãƒƒãƒ—ã—ã¾ã—ãŸï¼ã€
 	wk->msg_index = Castle_EasyMsg( wk, rankup_pair_msg_tbl[type][now_rank], FONT_TALK );
 	//Snd_SePlay( SEQ_SE_DP_PIRORIRO2 );
 	//Snd_SePlay( SEQ_SE_DP_DANSA4 );
@@ -5372,9 +5372,9 @@ static void CastleRank_SeqSubRankUp(CASTLE_ENEMY_WORK* wk, u8 parent_decide_pos,
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒN‚ğŒ©‚ÄŠø‚ğ•\¦‚·‚é
+ * @brief	ãƒ©ãƒ³ã‚¯ã‚’è¦‹ã¦æ——ã‚’è¡¨ç¤ºã™ã‚‹
  *
- * @param	wk		CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -5395,12 +5395,12 @@ static void CastleRank_SeqSubHataVanish( CASTLE_ENEMY_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒN‚ÌƒŒƒxƒ‹‚©‚çAŠø‚ÌƒoƒjƒbƒVƒ…‚ğ‘€ì(•\¦‚É‚·‚é)
+ * @brief	ãƒ©ãƒ³ã‚¯ã®ãƒ¬ãƒ™ãƒ«ã‹ã‚‰ã€æ——ã®ãƒãƒ‹ãƒƒã‚·ãƒ¥ã‚’æ“ä½œ(è¡¨ç¤ºã«ã™ã‚‹)
  *
- * @param	wk			CASTLE_ENEMY_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	no			‚Ç‚ê‚©
- * @param	level		Œ»İ‚Ìƒ‰ƒ“ƒN
- * @param	flag		e‚©q‚©
+ * @param	wk			CASTLE_ENEMY_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	no			ã©ã‚Œã‹
+ * @param	level		ç¾åœ¨ã®ãƒ©ãƒ³ã‚¯
+ * @param	flag		è¦ªã‹å­ã‹
  *
  * @retval	none
  */
@@ -5408,11 +5408,11 @@ static void CastleRank_SeqSubHataVanish( CASTLE_ENEMY_WORK* wk )
 static void Castle_HataVanish( CASTLE_ENEMY_WORK* wk, u8 no )
 {
 	if( wk->p_tuyosa_flag[no] == 1 ){
-		CastleObj_Vanish( wk->p_hata[no][0], CASTLE_VANISH_OFF );		//•\¦
+		CastleObj_Vanish( wk->p_hata[no][0], CASTLE_VANISH_OFF );		//è¡¨ç¤º
 	}
 
 	if( wk->p_waza_flag[no] == 1 ){
-		CastleObj_Vanish( wk->p_hata[no][1], CASTLE_VANISH_OFF );		//•\¦
+		CastleObj_Vanish( wk->p_hata[no][1], CASTLE_VANISH_OFF );		//è¡¨ç¤º
 	}
 
 	return;
@@ -5420,11 +5420,11 @@ static void Castle_HataVanish( CASTLE_ENEMY_WORK* wk, u8 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ŠøOBJƒIƒtƒZƒbƒgæ“¾
+ * @brief	æ——OBJã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
  *
  * @param	
  *
- * @return	"ƒIƒtƒZƒbƒg"
+ * @return	"ã‚ªãƒ•ã‚»ãƒƒãƒˆ"
  */
 //--------------------------------------------------------------
 static void Castle_GetHataXY( CASTLE_ENEMY_WORK* wk, u32* x, u32* y )

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_201.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			201�@�d�C�^�C�v�̋Z�̈З͂��Z���g�p�����|�P���������邩���蔼���ɂȂ�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			201　電気タイプの技の威力が技を使用したポケモンがいるかぎり半分になる
  *
  *@author	HisashiSogabe
  *@data		2006.02.09

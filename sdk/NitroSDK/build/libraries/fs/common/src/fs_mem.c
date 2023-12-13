@@ -23,7 +23,7 @@
 /*****************************************************************************/
 /* variable */
 
-/* ƒƒ‚ƒŠƒ}ƒbƒvƒhƒtƒ@ƒCƒ‹ƒA[ƒJƒCƒu */
+/* ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ– */
 static FSArchive fsi_arc_mem;
 static BOOL fsi_mem_init;
 
@@ -34,12 +34,12 @@ static BOOL fsi_mem_init;
 /*---------------------------------------------------------------------------*
   Name:         FSi_MemArchiveProc
 
-  Description:  ƒƒ‚ƒŠƒ}ƒbƒvƒhƒtƒ@ƒCƒ‹ƒA[ƒJƒCƒu‚ÌƒvƒƒV[ƒWƒƒ
+  Description:  ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£
 
-  Arguments:    p_file           ƒRƒ}ƒ“ƒhî•ñ‚ğŠi”[‚µ‚½ FSFile \‘¢‘Ì
-                cmd              ƒRƒ}ƒ“ƒhƒ^ƒCƒv
+  Arguments:    p_file           ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ã‚’æ ¼ç´ã—ãŸ FSFile æ§‹é€ ä½“
+                cmd              ã‚³ãƒãƒ³ãƒ‰ã‚¿ã‚¤ãƒ—
 
-  Returns:      ƒRƒ}ƒ“ƒhˆ—Œ‹‰Ê.
+  Returns:      ã‚³ãƒãƒ³ãƒ‰å‡¦ç†çµæœ.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_MemArchiveProc(FSFile *p_file, FSCommandType cmd)
 {
@@ -65,7 +65,7 @@ static FSResult FSi_MemArchiveProc(FSFile *p_file, FSCommandType cmd)
 /*---------------------------------------------------------------------------*
   Name:         FSi_InitMem
 
-  Description:  ƒƒ‚ƒŠƒ}ƒbƒvƒhƒtƒ@ƒCƒ‹ƒA[ƒJƒCƒu‚Ì‰Šú‰»
+  Description:  ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®åˆæœŸåŒ–
 
   Arguments:    None.
 
@@ -79,7 +79,7 @@ static void FSi_InitMem(void)
     {
         FS_InitArchive(&fsi_arc_mem);
         FS_SetArchiveProc(&fsi_arc_mem, FSi_MemArchiveProc, (u32)FS_ARCHIVE_PROC_ALL);
-        /* FAT ‚Í FNT ‚Í–³‚¢ */
+        /* FAT ã¯ FNT ã¯ç„¡ã„ */
         if (!FS_LoadArchive(&fsi_arc_mem, 0, 0, 0, 0, 0, NULL, NULL))
         {
             OS_TPanic("failed to load memory-mapping archive!");
@@ -93,11 +93,11 @@ static void FSi_InitMem(void)
 /*---------------------------------------------------------------------------*
   Name:         FS_CreateFileFromMemory
 
-  Description:  ƒƒ‚ƒŠ—Ìˆæ‚ğƒ}ƒbƒv‚µ‚½ƒtƒ@ƒCƒ‹‚ğˆê“I‚É¶¬.
+  Description:  ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’ãƒãƒƒãƒ—ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸€æ™‚çš„ã«ç”Ÿæˆ.
 
-  Arguments:    p_file           ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹‚ğŠi”[‚·‚é FSFile \‘¢‘Ì
-                buf              READ ‚¨‚æ‚Ñ WRITE ‚Ì‘ÎÛ‚Æ‚È‚éƒƒ‚ƒŠ
-                size             buf ‚ÌƒoƒCƒgƒTƒCƒY
+  Arguments:    p_file           ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’æ ¼ç´ã™ã‚‹ FSFile æ§‹é€ ä½“
+                buf              READ ãŠã‚ˆã³ WRITE ã®å¯¾è±¡ã¨ãªã‚‹ãƒ¡ãƒ¢ãƒª
+                size             buf ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

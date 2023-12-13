@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	title.c
- * @brief	ƒ^ƒCƒgƒ‹‰æ–Ê
+ * @brief	ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
  * @author	Hiroyuki Nakamura
  * @date	2005.02.02
  */
@@ -38,17 +38,17 @@ extern const PROC_DATA BackupLoadProcData;
 
 
 #ifdef PM_DEBUG
-//#define DEBUG_PL_BOOT_ON				///< —LŒø = Å‰‚ÌƒJƒƒ‰ˆÚ“®‚ª”ò‚Î‚¹‚È‚­‚È‚é 
+//#define DEBUG_PL_BOOT_ON				///< æœ‰åŠ¹ = æœ€åˆã®ã‚«ãƒ¡ãƒ©ç§»å‹•ãŒé£›ã°ã›ãªããªã‚‹ 
 #endif
 
-#define ANM_STOP_FRAME	(90)	///< DP‚Å‚ÍAƒeƒNƒXƒ`ƒƒƒAƒjƒ‚Ì“®‚¢‚Ä‚È‚¢ŽžŠÔ‚É‡‚í‚¹‚Ä‚¢‚é
+#define ANM_STOP_FRAME	(90)	///< DPã§ã¯ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ã®å‹•ã„ã¦ãªã„æ™‚é–“ã«åˆã‚ã›ã¦ã„ã‚‹
 #define CAMERA_MOVE_FRAME	( 60 )
 
-///ŠçƒAƒjƒ‚Ìó‘Ô
+///é¡”ã‚¢ãƒ‹ãƒ¡ã®çŠ¶æ…‹
 enum{
-	KAO_ANM_STATUS_WAIT,		///<ƒAƒjƒ‚Ü‚¾
-	KAO_ANM_STATUS_START,		///<ƒAƒjƒŠJŽn
-	KAO_ANM_STATUS_END,			///<ƒAƒjƒI—¹
+	KAO_ANM_STATUS_WAIT,		///<ã‚¢ãƒ‹ãƒ¡ã¾ã 
+	KAO_ANM_STATUS_START,		///<ã‚¢ãƒ‹ãƒ¡é–‹å§‹
+	KAO_ANM_STATUS_END,			///<ã‚¢ãƒ‹ãƒ¡çµ‚äº†
 };
 
 static void BG_SetLoadStartTitle( GF_BGL_INI* bgl, int heapID );
@@ -57,15 +57,15 @@ static void BG_SetLoadStartTitle( GF_BGL_INI* bgl, int heapID );
 //================================================================
 //
 //
-//		ƒ^ƒCƒgƒ‹
+//		ã‚¿ã‚¤ãƒˆãƒ«
 //
 //
 //================================================================
 //================================================================
 //----------------------------------
-//Œ^éŒ¾
+//åž‹å®£è¨€
 //----------------------------------
-///	‚R‚cƒ‚ƒfƒ‹§Œä—p\‘¢‘Ì
+///	ï¼“ï¼¤ãƒ¢ãƒ‡ãƒ«åˆ¶å¾¡ç”¨æ§‹é€ ä½“
 typedef struct TITLE_3DWORK_tag
 {
 	int	Draw3Dsw;
@@ -79,16 +79,16 @@ typedef struct TITLE_3DWORK_tag
 	NNSG3dAnmObj*			anmobj2;
 	NNSFndAllocator			allocater;
 
-	VecFx32 trans;			//À•W
-	VecFx32 scale;			//ƒXƒP[ƒ‹
-	VecFx32	rotate;			//‰ñ“]	
+	VecFx32 trans;			//åº§æ¨™
+	VecFx32 scale;			//ã‚¹ã‚±ãƒ¼ãƒ«
+	VecFx32	rotate;			//å›žè»¢	
 
 	GF_CAMERA_PTR camera_p;
 	GF_CAMERA_PTR demo_camera_p;
 
 	int		anm_flag;
 	
-	//VƒI[ƒvƒjƒ“ƒO‚Å’Ç‰Á 2008.03.16(“ú) matsuda
+	//æ–°ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã§è¿½åŠ  2008.03.16(æ—¥) matsuda
 	D3DOBJ kao_obj;
 	D3DOBJ_ANM kao_ica_anm;
 	D3DOBJ_ANM kao_ima_anm;
@@ -105,11 +105,11 @@ typedef struct TITLE_3DWORK_tag
 	fx32 demo_camera_add_distance;
 	int demo_camera_add_persp_way;
 
-	u8 kao_anm_start_ica;	//TRUE:ŠçƒAƒjƒŠJŽn
+	u8 kao_anm_start_ica;	//TRUE:é¡”ã‚¢ãƒ‹ãƒ¡é–‹å§‹
 	u8 kao_anm_start_ima;
 }TITLE_3DWORK;
 
-///	ƒƒS‰ñ“]ƒfƒ‚Žg—pƒ[ƒN\‘¢‘Ì
+///	ãƒ­ã‚´å›žè»¢ãƒ‡ãƒ¢ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct TITLE_LOGODEMO_WORK_tag
 {
 	int seq;
@@ -117,7 +117,7 @@ typedef struct TITLE_LOGODEMO_WORK_tag
 
 }TITLE_LOGODEMO_WORK;
 
-///	ƒ^ƒCƒgƒ‹‰æ–ÊŽg—pƒ[ƒN\‘¢‘Ì
+///	ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ä½¿ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct TITLE_TITLEDEMO_WORK_tag
 {
 	int seq;
@@ -143,21 +143,21 @@ typedef struct TITLE_TITLEDEMO_WORK_tag
 
 	fx32	c_speed;
 	
-	BOOL gira_on;		///<TRUE:ƒMƒ‰ƒeƒBƒi•\Ž¦B@FALSE:‘„‚Ì’Œƒfƒ‚•\Ž¦
-	BOOL yari_on;		///<TRUE:‚â‚è‚n‚m
+	BOOL gira_on;		///<TRUE:ã‚®ãƒ©ãƒ†ã‚£ãƒŠè¡¨ç¤ºã€‚ã€€FALSE:æ§ã®æŸ±ãƒ‡ãƒ¢è¡¨ç¤º
+	BOOL yari_on;		///<TRUE:ã‚„ã‚Šï¼¯ï¼®
 	int	 cam_frame;
 	
 	int	 move_rad_1;
 	int	 move_rad_2;
 }TITLE_TITLEDEMO_WORK;
 			
-///	ƒ^ƒCƒgƒ‹‘S‘Ì§Œä—pƒ[ƒN\‘¢‘Ì
+///	ã‚¿ã‚¤ãƒˆãƒ«å…¨ä½“åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct TITLE_DEMO_WORK_tag
 {
 	int	heapID; 
 
-	GF_BGL_INI*		bgl;	// BGƒ}ƒl[ƒWƒƒ
-	GF_G3DMAN*		g3Dman;	// 3Dƒ}ƒl[ƒWƒƒ
+	GF_BGL_INI*		bgl;	// BGãƒžãƒãƒ¼ã‚¸ãƒ£
+	GF_G3DMAN*		g3Dman;	// 3Dãƒžãƒãƒ¼ã‚¸ãƒ£
 
 	TITLE_LOGODEMO_WORK		logoDemo;
 	TITLE_TITLEDEMO_WORK	titleDemo;
@@ -173,31 +173,31 @@ typedef struct TITLE_DEMO_WORK_tag
 	
 }TITLE_DEMO_WORK;
 
-///	‚R‚c•`‰æƒGƒ“ƒWƒ“ƒXƒCƒbƒ`’è‹`
+///	ï¼“ï¼¤æç”»ã‚¨ãƒ³ã‚¸ãƒ³ã‚¹ã‚¤ãƒƒãƒå®šç¾©
 typedef enum {
-	DRAW3D_DISABLE = 0,	///<•`‰æ‚È‚µ
-	DRAW3D_BANISH,		///<Á‹Ž¨•`‰æ‚È‚µ
-	DRAW3D_ENABLE,		///<•`‰æ
+	DRAW3D_DISABLE = 0,	///<æç”»ãªã—
+	DRAW3D_BANISH,		///<æ¶ˆåŽ»â†’æç”»ãªã—
+	DRAW3D_ENABLE,		///<æç”»
 };
 
 typedef enum {
-	DRAW3DANM_DISABLE = 0,	///<•`‰æ‚È‚µ
-	DRAW3DANM_STOP,			///<’âŽ~¨•`‰æ‚È‚µ
-	DRAW3DANM_ENABLE,		///<•`‰æ
+	DRAW3DANM_DISABLE = 0,	///<æç”»ãªã—
+	DRAW3DANM_STOP,			///<åœæ­¢â†’æç”»ãªã—
+	DRAW3DANM_ENABLE,		///<æç”»
 };
 
 
-///	‘JˆÚæƒV[ƒ“’è‹`
+///	é·ç§»å…ˆã‚·ãƒ¼ãƒ³å®šç¾©
 typedef enum {
-	SCENE_ID_NOT_DECIDE = 0,		///<‘JˆÚæƒV[ƒ“–¢Šm’è
-	SCENE_ID_MENU,					///<‘JˆÚæƒV[ƒ“F’Êíƒƒjƒ…[
-	SCENE_ID_ERASE,					///<‘JˆÚæƒV[ƒ“FƒoƒbƒNƒAƒbƒvÁ‹Ž
-	SCENE_ID_LOOP,					///<‘JˆÚæƒV[ƒ“Fƒ^ƒCƒ}[ƒ‹[ƒv
-	SCENE_ID_DEBUGMENU,				///<‘JˆÚæƒV[ƒ“FƒfƒoƒbƒOƒƒjƒ…[
+	SCENE_ID_NOT_DECIDE = 0,		///<é·ç§»å…ˆã‚·ãƒ¼ãƒ³æœªç¢ºå®š
+	SCENE_ID_MENU,					///<é·ç§»å…ˆã‚·ãƒ¼ãƒ³ï¼šé€šå¸¸ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+	SCENE_ID_ERASE,					///<é·ç§»å…ˆã‚·ãƒ¼ãƒ³ï¼šãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—æ¶ˆåŽ»
+	SCENE_ID_LOOP,					///<é·ç§»å…ˆã‚·ãƒ¼ãƒ³ï¼šã‚¿ã‚¤ãƒžãƒ¼ãƒ«ãƒ¼ãƒ—
+	SCENE_ID_DEBUGMENU,				///<é·ç§»å…ˆã‚·ãƒ¼ãƒ³ï¼šãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 }SCENE_ID;
 
 enum{
-	//ƒ^ƒCƒgƒ‹‰æ–Ê
+	//ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
 	TITLEDEMO_SEQ_TITLE_LOAD,
 	TITLEDEMO_SEQ_TITLE_IN,
 	TITLEDEMO_SEQ_TITLE_SOUNDSTART,
@@ -208,7 +208,7 @@ enum{
 };
 
 //----------------------------------
-//ŠÖ”éŒ¾
+//é–¢æ•°å®£è¨€
 //----------------------------------
 extern void		Main_SetNextProc(FSOverlayID ov_id, const PROC_DATA * proc_data);
 FS_EXTERN_OVERLAY( d_startmenu );
@@ -249,7 +249,7 @@ static void DebugControl( TITLE_TITLEDEMO_WORK* wk );
 #endif
 static void Debug_CameraMove(GF_CAMERA_PTR camera);
 //----------------------------------
-//ƒ}ƒNƒéŒ¾
+//ãƒžã‚¯ãƒ­å®£è¨€
 //----------------------------------
 #define KEYTRG( pattern ) ( ( sys.trg & ( pattern ) ) == ( pattern ) )
 #define KEYCNT( pattern ) ( ( sys.cont & ( pattern ) ) == ( pattern ) )
@@ -300,44 +300,44 @@ static void Debug_CameraMove(GF_CAMERA_PTR camera);
 #define TITLE_LOGO_PALTYPE			( PALTYPE_SUB_BG_EX )
 #define TITLE_GF_PALTYPE			( PALTYPE_MAIN_BG )
 
-///ƒfƒ‚—pƒJƒƒ‰Ý’è
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©è¨­å®š
 #define DEMO_CAMERA_PERSPWAY		(FX_GET_ROTA_NUM(22))
 #define DEMO_CAMERA_TX			( 0 )		/// target
 #define DEMO_CAMERA_TY			( 0 )
 #define DEMO_CAMERA_TZ			( 0 )
-///ƒfƒ‚—pƒJƒƒ‰‚Ì’Ž‹“_‚Ü‚Å‚Ì‹——£
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®æ³¨è¦–ç‚¹ã¾ã§ã®è·é›¢
 #define DEMO_CAMERA_DISTANCE		(160 << FX32_SHIFT)
 
-///ƒfƒ‚—pƒJƒƒ‰‚ÌˆÚ“®‘¬“x
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®ç§»å‹•é€Ÿåº¦
 #define DEMO_CAMERA_MOVE_SPEED		(0xa00)
 enum{
-	DEMO_CAMERA_MOVE_FRAME = 60,			//ˆÚ“®‚µ‚Ä‚¢‚éƒtƒŒ[ƒ€
-	DEMO_KAO_ANM_START_FRAME = 75,			//ŠçƒAƒjƒŠJŽnƒtƒŒ[ƒ€
-	DEMO_CAMERA_ANGLE_START_FRAME = 90 + 160,		//Šp“x•ÏXŠJŽnƒtƒŒ[ƒ€
-	DEMO_CAMERA_ANGLE_RETURN_FRAME = 95,	//Šp“x•ÏXÜ‚è•Ô‚µƒtƒŒ[ƒ€
-	DEMO_CAMERA_ANGLE_END_FRAME = 105,		//Šp“x–ß‚µI—¹ƒtƒŒ[ƒ€
-	DEMO_CAMERA_DISTANCE_MOVE_FRAME = 100,//115,	//‹——£‹l‚ß‚éŠJŽnƒtƒŒ[ƒ€
+	DEMO_CAMERA_MOVE_FRAME = 60,			//ç§»å‹•ã—ã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+	DEMO_KAO_ANM_START_FRAME = 75,			//é¡”ã‚¢ãƒ‹ãƒ¡é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+	DEMO_CAMERA_ANGLE_START_FRAME = 90 + 160,		//è§’åº¦å¤‰æ›´é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ 
+	DEMO_CAMERA_ANGLE_RETURN_FRAME = 95,	//è§’åº¦å¤‰æ›´æŠ˜ã‚Šè¿”ã—ãƒ•ãƒ¬ãƒ¼ãƒ 
+	DEMO_CAMERA_ANGLE_END_FRAME = 105,		//è§’åº¦æˆ»ã—çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ 
+	DEMO_CAMERA_DISTANCE_MOVE_FRAME = 100,//115,	//è·é›¢è©°ã‚ã‚‹é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 };
-///ƒfƒ‚—pƒJƒƒ‰‚ÌƒXƒ^[ƒgƒIƒtƒZƒbƒgZ(ˆÚ“®‹——£)
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®ã‚¹ã‚¿ãƒ¼ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆZ(ç§»å‹•è·é›¢)
 #define DEMO_CAMERA_MOVE_OFFSET_Z	(DEMO_CAMERA_MOVE_SPEED * DEMO_CAMERA_MOVE_FRAME)
 
-///ƒfƒ‚—pƒJƒƒ‰‚Ì“Ë‚Áž‚Ý‘O‚ÌŠp“x‰ÁŽZ’l‚Ì‰Šú’l
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®çªã£è¾¼ã¿å‰ã®è§’åº¦åŠ ç®—å€¤ã®åˆæœŸå€¤
 #define DEMO_CAMERA_ADD_ANGLE_INIT		(0x10000 - 0x1c7d)	//(40)
 #define DEMO_CAMERA_ADD_ANGLE_FRAME		(30)
-#define DEMO_CAMERA_ADD_ANGLE_END		(0x10000 - 0x3fef)//(90 - DEMO_CAMERA_ADD_ANGLE_INIT-1)	//ÅI“I‚ÈŠp“x‚ª90“x(end+init)‚¾‚Æ^‚ÁˆÃ‚É‚È‚é
+#define DEMO_CAMERA_ADD_ANGLE_END		(0x10000 - 0x3fef)//(90 - DEMO_CAMERA_ADD_ANGLE_INIT-1)	//æœ€çµ‚çš„ãªè§’åº¦ãŒ90åº¦(end+init)ã ã¨çœŸã£æš—ã«ãªã‚‹
 
-///ƒfƒ‚—pƒJƒƒ‰‚Ì“Ë‚Áž‚Ý‘O‚Ì‹——£‰ÁŽZ’l‚Ì‰Šú’l
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®çªã£è¾¼ã¿å‰ã®è·é›¢åŠ ç®—å€¤ã®åˆæœŸå€¤
 #define DEMO_CAMERA_ADD_DISTANCE_INIT	(FX32_ONE)
-///ƒfƒ‚—pƒJƒƒ‰‚Ì“Ë‚Áž‚Ý‘O‚Ìƒp[ƒX‰ÁŽZ’l‚Ì‰Šú’l
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®çªã£è¾¼ã¿å‰ã®ãƒ‘ãƒ¼ã‚¹åŠ ç®—å€¤ã®åˆæœŸå€¤
 #define DEMO_CAMERA_ADD_PERSPWAY_INIT	(120 << 8)
-///ƒfƒ‚—pƒJƒƒ‰‚Ì“Ë‚Áž‚Ý‚Ìƒp[ƒXŒ¸ŽZ’l‚ÌÅ’á’n
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®çªã£è¾¼ã¿ã®ãƒ‘ãƒ¼ã‚¹æ¸›ç®—å€¤ã®æœ€ä½Žåœ°
 #define DEMO_CAMERA_ADD_PERSPWAY_KEEP	(16 << 8)
-///ƒfƒ‚—pƒJƒƒ‰‚Ì“Ë‚Áž‚Ý‘O‚Ìƒp[ƒXŒ¸ŽZ’l‚Ì‰Šú’l
+///ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®çªã£è¾¼ã¿å‰ã®ãƒ‘ãƒ¼ã‚¹æ¸›ç®—å€¤ã®åˆæœŸå€¤
 #define DEMO_CAMERA_ADD_PERSPWAY_SUB	(0x0280)
 
 //=================================================================================================
 //
-// ‚o‚q‚n‚b’è‹`ƒe[ƒuƒ‹
+// ï¼°ï¼²ï¼¯ï¼£å®šç¾©ãƒ†ãƒ¼ãƒ–ãƒ«
 //
 //=================================================================================================
 const PROC_DATA TitleProcData = {
@@ -349,7 +349,7 @@ const PROC_DATA TitleProcData = {
 
 //================================================================
 //----------------------------------
-//‚o‚q‚n‚b‰Šú‰»
+//ï¼°ï¼²ï¼¯ï¼£åˆæœŸåŒ–
 //----------------------------------
 static PROC_RESULT Title_Init(PROC * proc, int * seq)
 {
@@ -364,12 +364,12 @@ static PROC_RESULT Title_Init(PROC * proc, int * seq)
 	WIPE_SetBrightness( WIPE_DISP_MAIN,WIPE_FADE_BLACK );
 	WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_BLACK );
 
-	//ƒJƒ‰[“ÁŽêŒø‰Ê–³Œø
+	//ã‚«ãƒ©ãƒ¼ç‰¹æ®ŠåŠ¹æžœç„¡åŠ¹
 	G2S_BlendNone();
 	G2_BlendNone();
 	
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrSet( NULL,NULL );		// HBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrSet( NULL,NULL );		// HBlankã‚»ãƒƒãƒˆ
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -397,7 +397,7 @@ static PROC_RESULT Title_Init(PROC * proc, int * seq)
 }
 
 //----------------------------------
-//‚o‚q‚n‚bƒƒCƒ“
+//ï¼°ï¼²ï¼¯ï¼£ãƒ¡ã‚¤ãƒ³
 //----------------------------------
 static PROC_RESULT Title_Main(PROC * proc, int * seq)
 {
@@ -416,7 +416,7 @@ static PROC_RESULT Title_Main(PROC * proc, int * seq)
 
 #endif
 
-			if(sys.DS_Boot_Flag == FALSE){		//‹N“®ŽžˆÈŠO‚Í“±“ü‰‰oƒJƒbƒg
+			if(sys.DS_Boot_Flag == FALSE){		//èµ·å‹•æ™‚ä»¥å¤–ã¯å°Žå…¥æ¼”å‡ºã‚«ãƒƒãƒˆ
 #ifdef PM_DEBUG
 				wk->enable_counter = 0;
 #else
@@ -427,7 +427,7 @@ static PROC_RESULT Title_Main(PROC * proc, int * seq)
 				*seq = TITLEDEMO_SEQ_TITLE_SOUNDSTART;
 			} else {
 				wk->enable_counter = 0;
-				sys.DS_Boot_Flag = FALSE;	//ƒu[ƒgƒtƒ‰ƒOƒZƒbƒg
+				sys.DS_Boot_Flag = FALSE;	//ãƒ–ãƒ¼ãƒˆãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 				wk->titleDemo.yari_on = TRUE;
 				*seq = TITLEDEMO_SEQ_TITLE_IN;
 			}
@@ -442,17 +442,17 @@ static PROC_RESULT Title_Main(PROC * proc, int * seq)
 		break;
 			
 	case TITLEDEMO_SEQ_TITLE_SOUNDSTART:
-		Snd_SceneSet( SND_SCENE_DUMMY );						//‰¹ŠyƒV[ƒ“ƒŠƒZƒbƒg
-		Snd_DataSetByScene( SND_SCENE_TITLE, SEQ_TITLE01, 1 );	//ƒ^ƒCƒgƒ‹‰æ–Ê
+		Snd_SceneSet( SND_SCENE_DUMMY );						//éŸ³æ¥½ã‚·ãƒ¼ãƒ³ãƒªã‚»ãƒƒãƒˆ
+		Snd_DataSetByScene( SND_SCENE_TITLE, SEQ_TITLE01, 1 );	//ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
 		*seq = TITLEDEMO_SEQ_TITLE_KEYCHECK;
 		break;
 
 	case TITLEDEMO_SEQ_TITLE_KEYCHECK:
 		if( wk->enable_counter ){
-			wk->enable_counter--;	//‘€ì‚ª‰Â”\‚É‚È‚é‚Ü‚Å‚ÌƒEƒFƒCƒgŒv‘ª—pƒJƒEƒ“ƒ^
+			wk->enable_counter--;	//æ“ä½œãŒå¯èƒ½ã«ãªã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆè¨ˆæ¸¬ç”¨ã‚«ã‚¦ãƒ³ã‚¿
 
-			//ŠJŽnŽž‚Ì‚Ý–ñ‚Q•b‚­‚ç‚¢‚Ü‚ÅƒQ[ƒ€ŠJŽn‚ªo—ˆ‚È‚¢‚æ‚¤‚É‚·‚é
-			//(˜A‘Å‚ª‚«‚­‚Æ‘¦ƒ^ƒCƒgƒ‹‰æ–Ê‚ð”²‚¯‚Ä‚µ‚Ü‚¤‚Ì‚Å)
+			//é–‹å§‹æ™‚ã®ã¿ç´„ï¼’ç§’ãã‚‰ã„ã¾ã§ã‚²ãƒ¼ãƒ é–‹å§‹ãŒå‡ºæ¥ãªã„ã‚ˆã†ã«ã™ã‚‹
+			//(é€£æ‰“ãŒããã¨å³ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã‚’æŠœã‘ã¦ã—ã¾ã†ã®ã§)
 			wk->titleDemo.enable_flag = FALSE;
 			TitleDemo_Main( &wk->titleDemo, wk->bgl, wk->heapID );
 			break;
@@ -463,24 +463,24 @@ static PROC_RESULT Title_Main(PROC * proc, int * seq)
 		wk->main_timer++;
 
 		if( KEYTRG(PAD_BUTTON_A) || KEYTRG(PAD_BUTTON_START)){
-			wk->next_scene = SCENE_ID_MENU;//ŠJŽnƒƒjƒ…[‚Ö
+			wk->next_scene = SCENE_ID_MENU;//é–‹å§‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸
 			Snd_BgmFadeOut( 0, 60 );
 		//	Snd_SePlay( SEQ_SE_DP_START );
-			Snd_PMVoicePlay(MONSNO_KIMAIRAN, 1);	//ƒMƒ‰ƒeƒBƒiAƒIƒŠƒWƒ“ƒtƒHƒ‹ƒ€
+			Snd_PMVoicePlay(MONSNO_KIMAIRAN, 1);	//ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€ã‚ªãƒªã‚¸ãƒ³ãƒ•ã‚©ãƒ«ãƒ 
 		//	FADE(WIPE_TYPE_FADEOUT,WIPE_FADE_WHITE,wk->heapID)
 			BG_SetLoadStartTitle( wk->bgl, wk->heapID );
 			*seq = TITLEDEMO_SEQ_TITLE_EXITWAIT;
 			break;
 		}
 		if( KEYCNT(PAD_BUTTON_B|PAD_KEY_UP|PAD_BUTTON_SELECT) ){
-			wk->next_scene = SCENE_ID_ERASE;//ƒoƒbƒNƒAƒbƒvÁ‹Ž‚Ö
+			wk->next_scene = SCENE_ID_ERASE;//ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—æ¶ˆåŽ»ã¸
 			FADE(WIPE_TYPE_FADEOUT,WIPE_FADE_BLACK,wk->heapID)
 			*seq = TITLEDEMO_SEQ_TITLE_EXIT;
 			break;
 		}
 		if( wk->main_timer > 30*30 ){
-			wk->next_scene = SCENE_ID_LOOP;//ƒ^ƒCƒ€ƒAƒEƒgƒ‹[ƒv
-			sys.DS_Boot_Flag = TRUE;	//ƒu[ƒgƒtƒ‰ƒOƒŠƒZƒbƒg
+			wk->next_scene = SCENE_ID_LOOP;//ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒ«ãƒ¼ãƒ—
+			sys.DS_Boot_Flag = TRUE;	//ãƒ–ãƒ¼ãƒˆãƒ•ãƒ©ã‚°ãƒªã‚»ãƒƒãƒˆ
 			TITLE_PRSSTART_FRAME_OFF
 			Snd_BgmFadeOut( 0, 60 );
 			*seq = TITLEDEMO_SEQ_TITLE_EXITWAIT2;
@@ -491,7 +491,7 @@ static PROC_RESULT Title_Main(PROC * proc, int * seq)
 		DebugControl( &wk->titleDemo );
 
 		if( KEYTRG(PAD_BUTTON_SELECT) ){
-			wk->next_scene = SCENE_ID_DEBUGMENU;//ƒfƒoƒbƒOƒƒjƒ…[‚Ö
+			wk->next_scene = SCENE_ID_DEBUGMENU;//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸
 			FADE(WIPE_TYPE_FADEOUT,WIPE_FADE_BLACK,wk->heapID)
 			*seq = TITLEDEMO_SEQ_TITLE_EXIT;
 			break;
@@ -565,7 +565,7 @@ static PROC_RESULT Title_Main(PROC * proc, int * seq)
 }
 
 //----------------------------------
-//‚o‚q‚n‚bI—¹
+//ï¼°ï¼²ï¼¯ï¼£çµ‚äº†
 //----------------------------------
 static PROC_RESULT Title_Exit(PROC * proc, int * seq)
 {
@@ -573,11 +573,11 @@ static PROC_RESULT Title_Exit(PROC * proc, int * seq)
 	int heapID = wk->heapID;
 	int next_scene = wk->next_scene;
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
 
 	Title3D_Exit( wk );
 	Title2DBgRelease( wk );
-	PROC_FreeWork( proc );				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
 	sys_DeleteHeap( heapID );
 
@@ -591,7 +591,7 @@ static PROC_RESULT Title_Exit(PROC * proc, int * seq)
 		Main_SetNextProc( NO_OVERLAY_ID, &BackupEraseProcData );
 		break;
 	case SCENE_ID_LOOP:
-		Snd_SceneSet( SND_SCENE_DUMMY );						//‰¹ŠyƒV[ƒ“ƒŠƒZƒbƒg
+		Snd_SceneSet( SND_SCENE_DUMMY );						//éŸ³æ¥½ã‚·ãƒ¼ãƒ³ãƒªã‚»ãƒƒãƒˆ
 		Main_SetNextProc( FS_OVERLAY_ID( title ), &OpDemoProcData );
 		break;
 
@@ -606,7 +606,7 @@ static PROC_RESULT Title_Exit(PROC * proc, int * seq)
 
 
 //----------------------------------
-//‚u‚a‚k‚`‚m‚jŠÖ”
+//ï¼¶ï¼¢ï¼¬ï¼¡ï¼®ï¼«é–¢æ•°
 //----------------------------------
 static void TitleLogo_Demo_VBlank(void* work)
 {
@@ -617,21 +617,21 @@ static void TitleLogo_Demo_VBlank(void* work)
 
 
 //----------------------------------
-//‚u‚q‚`‚lÝ’è
+//ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
 //----------------------------------
 static void Title_VramBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_0123_H,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_NONE,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_0_G				// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_0123_H,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_NONE,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_0_G				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
@@ -639,7 +639,7 @@ static void Title_VramBankSet(void)
 
 //----------------------------------
 //
-//	ƒfƒ‚ƒXƒLƒbƒv”»’è
+//	ãƒ‡ãƒ¢ã‚¹ã‚­ãƒƒãƒ—åˆ¤å®š
 //
 //----------------------------------
 static BOOL TitleDemoSkipCheck( void )
@@ -653,7 +653,7 @@ static BOOL TitleDemoSkipCheck( void )
 
 //----------------------------------
 //
-//	‚R‚c‰Šú‰»•I—¹
+//	ï¼“ï¼¤åˆæœŸåŒ–ï¼†çµ‚äº†
 //
 //----------------------------------
 static void Title3D_Init( TITLE_DEMO_WORK* wk )
@@ -661,7 +661,7 @@ static void Title3D_Init( TITLE_DEMO_WORK* wk )
 	wk->g3Dman = GF_G3DMAN_Init(wk->heapID, 
 			GF_G3DMAN_LNK, GF_G3DTEX_128K, GF_G3DMAN_LNK, GF_G3DPLT_64K, NULL );
 
-	// ‚R‚cŽg—p–Ê‚ÌÝ’è•ÏX(ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®šå¤‰æ›´(ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
     G2_SetBG0Priority(1);
 }
 
@@ -672,7 +672,7 @@ static void Title3D_Exit( TITLE_DEMO_WORK* wk )
 
 //----------------------------------
 //
-//	‚R‚cƒf[ƒ^“Ç‚Ýž‚Ý•I—¹
+//	ï¼“ï¼¤ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ï¼†çµ‚äº†
 //
 //----------------------------------
 static void Title3D_ModelLoad( TITLE_3DWORK* g3Dwk, int dataID, int texanmID, int heapID)
@@ -699,7 +699,7 @@ static void Title3D_ModelLoad( TITLE_3DWORK* g3Dwk, int dataID, int texanmID, in
 	NNS_G3dRenderObjAddAnmObj( &g3Dwk->rndobj, g3Dwk->anmobj2 );
 
 	{
-		//ƒ‚ƒfƒ‹ƒf[ƒ^ƒpƒ‰ƒ[ƒ^‰Šú‰»
+		//ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 		VecFx32 init_trans	= { 0, 0, 0 };
 		VecFx32 init_scale	= { FX32_ONE, FX32_ONE, FX32_ONE };
 		VecFx32 init_rotate = { 0, 0, 0 };
@@ -715,7 +715,7 @@ static void Title3D_ModelLoad( TITLE_3DWORK* g3Dwk, int dataID, int texanmID, in
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒ‚—pƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚Ýž‚Ý
+ * @brief   ãƒ‡ãƒ¢ç”¨ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
  * @param   g3Dwk		
  */
@@ -736,52 +736,52 @@ static void Title3D_DemoModelLoad(TITLE_3DWORK *g3Dwk, int heapID)
 
 	hdl  = ArchiveDataHandleOpen(ARC_TITLE_PL, heapID); 
 
-	{//Šç
-		//ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚Ýž‚Ý
+	{//é¡”
+		//ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		D3DOBJ_MdlLoadH(&g3Dwk->kao_mdl, hdl, NARC_titledemo_op_kao_nsbmd, heapID);
 		NNS_G3dMdlUseMdlAlpha(g3Dwk->kao_mdl.pModel);
 		NNS_G3dMdlUseMdlPolygonID(g3Dwk->kao_mdl.pModel);
-		//icaƒAƒjƒƒf[ƒ^“Ç‚Ýž‚Ý
+		//icaã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		D3DOBJ_AnmLoadH(&g3Dwk->kao_ica_anm, &g3Dwk->kao_mdl, hdl, 
 			NARC_titledemo_op_kao_nsbca, heapID, &g3Dwk->allocater);
 		D3DOBJ_AnmSet(&g3Dwk->kao_ica_anm, 0);
-		//imaƒAƒjƒƒf[ƒ^“Ç‚Ýž‚Ý
+		//imaã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		D3DOBJ_AnmLoadH(&g3Dwk->kao_ima_anm, &g3Dwk->kao_mdl, hdl, 
 			NARC_titledemo_op_kao_nsbma, heapID, &g3Dwk->allocater);
 		D3DOBJ_AnmSet(&g3Dwk->kao_ima_anm, 0);
 
-		//ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+		//ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 		D3DOBJ_Init(&g3Dwk->kao_obj, &g3Dwk->kao_mdl);
-		//À•WÝ’è
+		//åº§æ¨™è¨­å®š
 		D3DOBJ_SetMatrix( &g3Dwk->kao_obj, KAO_3D_X, KAO_3D_Y, KAO_3D_Z);
 		D3DOBJ_SetScale(&g3Dwk->kao_obj, KAO_3D_SCALE, KAO_3D_SCALE, KAO_3D_SCALE);
 		D3DOBJ_SetDraw( &g3Dwk->kao_obj, TRUE );
-		//ƒAƒjƒŠÖ˜A•t‚¯
+		//ã‚¢ãƒ‹ãƒ¡é–¢é€£ä»˜ã‘
 		D3DOBJ_AddAnm(&g3Dwk->kao_obj, &g3Dwk->kao_ica_anm);
 		D3DOBJ_AddAnm(&g3Dwk->kao_obj, &g3Dwk->kao_ima_anm);
 	}
 	
-	{//ŒŠ
-		//ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚Ýž‚Ý
+	{//ç©´
+		//ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		D3DOBJ_MdlLoadH(&g3Dwk->ana_mdl, hdl, NARC_titledemo_op_ana_nsbmd, heapID);
 		NNS_G3dMdlUseMdlAlpha(g3Dwk->ana_mdl.pModel);
 		NNS_G3dMdlUseMdlPolygonID(g3Dwk->ana_mdl.pModel);
-		//icaƒAƒjƒƒf[ƒ^“Ç‚Ýž‚Ý
+		//icaã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		D3DOBJ_AnmLoadH(&g3Dwk->ana_ica_anm, &g3Dwk->ana_mdl, hdl, 
 			NARC_titledemo_op_ana_nsbca, heapID, &g3Dwk->allocater);
 		D3DOBJ_AnmSet(&g3Dwk->ana_ica_anm, 0);
-		//itaƒAƒjƒƒf[ƒ^“Ç‚Ýž‚Ý
+		//itaã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		D3DOBJ_AnmLoadH(&g3Dwk->ana_ita_anm, &g3Dwk->ana_mdl, hdl, 
 			NARC_titledemo_op_ana_nsbta, heapID, &g3Dwk->allocater);
 		D3DOBJ_AnmSet(&g3Dwk->ana_ita_anm, 0);
 
-		//ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+		//ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 		D3DOBJ_Init(&g3Dwk->ana_obj, &g3Dwk->ana_mdl);
-		//À•WÝ’è
+		//åº§æ¨™è¨­å®š
 		D3DOBJ_SetMatrix( &g3Dwk->ana_obj, ANA_3D_X, ANA_3D_Y, ANA_3D_Z);
 		D3DOBJ_SetScale(&g3Dwk->ana_obj, ANA_3D_SCALE, ANA_3D_SCALE, ANA_3D_SCALE);
 		D3DOBJ_SetDraw( &g3Dwk->ana_obj, TRUE );
-		//ƒAƒjƒŠÖ˜A•t‚¯
+		//ã‚¢ãƒ‹ãƒ¡é–¢é€£ä»˜ã‘
 		D3DOBJ_AddAnm(&g3Dwk->ana_obj, &g3Dwk->ana_ica_anm);
 		D3DOBJ_AddAnm(&g3Dwk->ana_obj, &g3Dwk->ana_ita_anm);
 	}
@@ -818,7 +818,7 @@ static void Title3D_DemoModelRelease(TITLE_3DWORK *g3Dwk)
 
 //----------------------------------
 //
-//	‚R‚c•`‰æŠÖ”
+//	ï¼“ï¼¤æç”»é–¢æ•°
 //
 //----------------------------------
 static void Title3D_Draw(TITLE_TITLEDEMO_WORK *wk, TITLE_3DWORK* g3Dwk )
@@ -874,11 +874,11 @@ static void Title3D_Draw(TITLE_TITLEDEMO_WORK *wk, TITLE_3DWORK* g3Dwk )
 		VecFx32_to_MtxFx33(	&rotate_tmp,&g3Dwk->rotate);
 
 		if(wk->gira_on == FALSE){
-			if (  wk->yari_on == TRUE ){		///< gira‚Í”ñ•\Ž¦‚¾‚¯‚Ç‚â‚è‚Í•\Ž¦‚Ì‚Æ‚«
+			if (  wk->yari_on == TRUE ){		///< giraã¯éžè¡¨ç¤ºã ã‘ã©ã‚„ã‚Šã¯è¡¨ç¤ºã®ã¨ã
 				Title3D_Demo_MdlDraw(g3Dwk);
 			}
 			else {
-				;								///< ‚È‚ñ‚à‚Å‚Ä‚È‚¢
+				;								///< ãªã‚“ã‚‚ã§ã¦ãªã„
 			}
 		}
 		else{
@@ -928,7 +928,7 @@ static void Title3D_Draw(TITLE_TITLEDEMO_WORK *wk, TITLE_3DWORK* g3Dwk )
 }
 
 //--------------------------------------------------------------
-//	ƒfƒ‚—p3Dƒ‚ƒfƒ‹•`‰æ
+//	ãƒ‡ãƒ¢ç”¨3Dãƒ¢ãƒ‡ãƒ«æç”»
 //--------------------------------------------------------------
 static void Title3D_Demo_MdlDraw(TITLE_3DWORK *g3Dwk)
 {
@@ -961,22 +961,22 @@ static void Title3D_Demo_MdlDraw(TITLE_3DWORK *g3Dwk)
 
 //----------------------------------
 //
-//	‚Q‚c‚a‚f‰Šú‰»•I—¹
+//	ï¼’ï¼¤ï¼¢ï¼§åˆæœŸåŒ–ï¼†çµ‚äº†
 //
 //----------------------------------
 static void Title2DBgSet( TITLE_DEMO_WORK* wk )
 {
-	//BGƒ‰ƒCƒuƒ‰ƒŠ—pƒƒ‚ƒŠŠm•Û
+	//BGãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	wk->bgl = GF_BGL_BglIniAlloc(wk->heapID);
 
-	{	// BGƒVƒXƒeƒ€Ý’è
+	{	// BGã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		GF_BGL_SYS_HEADER BGsys_data = {
 			GX_DISPMODE_GRAPHICS,GX_BGMODE_0,GX_BGMODE_0,GX_BG0_AS_3D
 		};	
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	{	// PRESS START ‚a‚fÝ’è(0)
+	{	// PRESS START ï¼¢ï¼§è¨­å®š(0)
 		GF_BGL_BGCNT_HEADER PrsSt_Data = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -985,10 +985,10 @@ static void Title2DBgSet( TITLE_DEMO_WORK* wk )
 		};
 		GF_BGL_BGControlSet( wk->bgl, TITLE_PRSSTART_FRAME, &PrsSt_Data, GF_BGL_MODE_TEXT );
 	}
-	{	// ƒ_ƒCƒ„Eƒp[ƒ‹ƒƒS ‚a‚fÝ’è(1)
+	{	// ãƒ€ã‚¤ãƒ¤ãƒ»ãƒ‘ãƒ¼ãƒ«ãƒ­ã‚´ ï¼¢ï¼§è¨­å®š(1)
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/31
-		// ƒ^ƒCƒgƒ‹ƒƒS‚ðŠCŠO”Å‚Ì‚à‚Ì‚É·‚µ‘Ö‚¦
+		// ã‚¿ã‚¤ãƒˆãƒ«ãƒ­ã‚´ã‚’æµ·å¤–ç‰ˆã®ã‚‚ã®ã«å·®ã—æ›¿ãˆ
 		GF_BGL_BGCNT_HEADER DPlogo_Data = {
             // Actually, don't use this localization change (kept old data)
 			0, 0, 0x1000, 0,
@@ -999,10 +999,10 @@ static void Title2DBgSet( TITLE_DEMO_WORK* wk )
 		// ----------------------------------------------------------------------------
 		GF_BGL_BGControlSet( wk->bgl, TITLE_LOGO2_FRAME, &DPlogo_Data, GF_BGL_MODE_TEXT );
 	}
-	{	// ƒ^ƒCƒgƒ‹ƒƒS ‚a‚fÝ’è(2)
+	{	// ã‚¿ã‚¤ãƒˆãƒ«ãƒ­ã‚´ ï¼¢ï¼§è¨­å®š(2)
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/31
-		// ƒ^ƒCƒgƒ‹ƒƒS‚ðŠCŠO”Å‚Ì‚à‚Ì‚É·‚µ‘Ö‚¦
+		// ã‚¿ã‚¤ãƒˆãƒ«ãƒ­ã‚´ã‚’æµ·å¤–ç‰ˆã®ã‚‚ã®ã«å·®ã—æ›¿ãˆ
 		GF_BGL_BGCNT_HEADER Titlelogo_Data = {
             // Actually, don't use this localization change (kept old data)
 			0, 0, 0x1000, 0,
@@ -1013,7 +1013,7 @@ static void Title2DBgSet( TITLE_DEMO_WORK* wk )
 		// ----------------------------------------------------------------------------
 		GF_BGL_BGControlSet( wk->bgl, TITLE_LOGO_FRAME, &Titlelogo_Data, GF_BGL_MODE_TEXT );
 	}
-	{	// GAMEFREAK inc ‚a‚fÝ’è(1)
+	{	// GAMEFREAK inc ï¼¢ï¼§è¨­å®š(1)
 		GF_BGL_BGCNT_HEADER GF_Data = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1023,7 +1023,7 @@ static void Title2DBgSet( TITLE_DEMO_WORK* wk )
 		GF_BGL_BGControlSet( wk->bgl, TITLE_CPRIGHT_FRAME, &GF_Data, GF_BGL_MODE_TEXT );
 	}
 
-	{	// ƒƒCƒ“ƒfƒBƒXƒvƒŒƒC”wŒi ‚a‚fÝ’è(3)@
+	{	// ãƒ¡ã‚¤ãƒ³ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤èƒŒæ™¯ ï¼¢ï¼§è¨­å®š(3)ã€€
 		GF_BGL_BGCNT_HEADER BackM_Data = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1032,7 +1032,7 @@ static void Title2DBgSet( TITLE_DEMO_WORK* wk )
 		};
 		GF_BGL_BGControlSet( wk->bgl, GF_BGL_FRAME3_M, &BackM_Data, GF_BGL_MODE_TEXT );
 	}
-	{	// ƒTƒuƒfƒBƒXƒvƒŒƒC”wŒi ‚a‚fÝ’è(3)@
+	{	// ã‚µãƒ–ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤èƒŒæ™¯ ï¼¢ï¼§è¨­å®š(3)ã€€
 		GF_BGL_BGCNT_HEADER BackS_Data = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1043,8 +1043,8 @@ static void Title2DBgSet( TITLE_DEMO_WORK* wk )
 	}
 	FRAME_ALLOFF
 
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0x0000 );	//”wŒiF‰Šú‰»iƒƒCƒ“‰æ–Êj
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0x0000 );	//”wŒiF‰Šú‰»iƒTƒu‰æ–Êj
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‰
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0x0000 );	//èƒŒæ™¯è‰²åˆæœŸåŒ–ï¼ˆã‚µãƒ–ç”»é¢ï¼‰
 }
 
 static void Title2DBgRelease( TITLE_DEMO_WORK* wk )
@@ -1063,7 +1063,7 @@ static void Title2DBgRelease( TITLE_DEMO_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒ‚—pƒJƒƒ‰‚ÌˆÚ“®
+ * @brief   ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã®ç§»å‹•
  *
  * @param   g3Dwk		
  */
@@ -1084,8 +1084,8 @@ static void Title3D_Demo_CameraMove(TITLE_TITLEDEMO_WORK *wk, TITLE_3DWORK *g3Dw
 	}
 	
 	if(g3Dwk->demo_move_frame == DEMO_KAO_ANM_START_FRAME){
-		g3Dwk->kao_anm_start_ica = KAO_ANM_STATUS_START;	//ŠçƒAƒjƒŠJŽn
-		g3Dwk->kao_anm_start_ima = KAO_ANM_STATUS_START;	//ŠçƒAƒjƒŠJŽn
+		g3Dwk->kao_anm_start_ica = KAO_ANM_STATUS_START;	//é¡”ã‚¢ãƒ‹ãƒ¡é–‹å§‹
+		g3Dwk->kao_anm_start_ima = KAO_ANM_STATUS_START;	//é¡”ã‚¢ãƒ‹ãƒ¡é–‹å§‹
 	}
 	
 //	if(g3Dwk->demo_move_frame >= DEMO_CAMERA_ANGLE_START_FRAME 
@@ -1130,7 +1130,7 @@ static void Title3D_Demo_CameraMove(TITLE_TITLEDEMO_WORK *wk, TITLE_3DWORK *g3Dw
 
 //=================================================================================================
 //
-//	ƒ^ƒCƒgƒ‹‰æ–Ê
+//	ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
 //
 //=================================================================================================
 static void Title2DGraphicSet(GF_BGL_INI* ini,int heapID, TITLE_TITLEDEMO_WORK* wk );
@@ -1138,7 +1138,7 @@ static void Title2DGraphicRelease(GF_BGL_INI* ini,int heapID, TITLE_TITLEDEMO_WO
 static void TitleDemoDataGet( TITLE_TITLEDEMO_WORK* wk );
 static void TitleDemoLight1Effect( TITLE_TITLEDEMO_WORK* wk );
 
-//ŠeŽíÝ’è’liNitroViewer@‚ÅŽæ“¾j
+//å„ç¨®è¨­å®šå€¤ï¼ˆNitroViewerã€€ã§å–å¾—ï¼‰
 #define TD_TITLE_CAMERA_PERSPWAY		(0x0b60)
 #define TD_TITLE_CAMERA_CLIP_NEAR		(0)
 #define TD_TITLE_CAMERA_CLIP_FAR		(FX32_ONE*300)
@@ -1193,16 +1193,16 @@ enum{
 	TDSEQ_LIGHT1_UP,
 	TDSEQ_LIGHT1_DOWN,
 };
-// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/31
-// ƒ^ƒCƒgƒ‹ƒƒS‚ðŠCŠO”Å‚Ì‚à‚Ì‚É·‚µ‘Ö‚¦
+// ã‚¿ã‚¤ãƒˆãƒ«ãƒ­ã‚´ã‚’æµ·å¤–ç‰ˆã®ã‚‚ã®ã«å·®ã—æ›¿ãˆ
 static const BMPWIN_DAT TitleMsgWinData =
 	{ TITLE_PRSSTART_FRAME,2,19,28,2,2,1 };	//frame,startX,startY,sizeX,sizeY,palnum,cgxnum	
 // ----------------------------------------------------------------------------
 
 //----------------------------------
-// ‰Šú‰»
+// åˆæœŸåŒ–
 //----------------------------------
 static BOOL TitleDemo_Init( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,int heapID )
 {
@@ -1217,13 +1217,13 @@ static BOOL TitleDemo_Init( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,int heapID
 						heapID );
 
     G3X_AntiAlias( TRUE );
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	{
-		//ƒJƒƒ‰ƒZƒbƒg
+		//ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 		VEC_SET( wk->camera_tpos, wk->tp_st.x, wk->tp_st.y, wk->tp_st.z );
 		VEC_SET( wk->camera_cpos, wk->cp_st.x, wk->cp_st.y, wk->cp_st.z );
 
-		wk->poke.camera_p = GFC_AllocCamera(heapID);	//ƒJƒƒ‰ì¬
+		wk->poke.camera_p = GFC_AllocCamera(heapID);	//ã‚«ãƒ¡ãƒ©ä½œæˆ
 
 		GFC_InitCameraTC( &wk->camera_tpos,&wk->camera_cpos,TD_TITLE_CAMERA_PERSPWAY,
 							GF_CAMERA_PERSPECTIV,FALSE,wk->poke.camera_p);
@@ -1232,13 +1232,13 @@ static BOOL TitleDemo_Init( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,int heapID
 		GFC_SetCameraView(GF_CAMERA_PERSPECTIV,wk->poke.camera_p);
 		GFC_AttachCamera(wk->poke.camera_p);
 	}
-	{//ƒfƒ‚—pƒJƒƒ‰ƒZƒbƒg
-		static const CAMERA_ANGLE DemoCameraAngle = {	//ƒJƒƒ‰ƒAƒ“ƒOƒ‹
+	{//ãƒ‡ãƒ¢ç”¨ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
+		static const CAMERA_ANGLE DemoCameraAngle = {	//ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«
 			DEMO_CAMERA_ADD_ANGLE_INIT, FX_GET_ROTA_NUM(0), FX_GET_ROTA_NUM(0),
 		};
 		VecFx32	target = { DEMO_CAMERA_TX, DEMO_CAMERA_TY, DEMO_CAMERA_TZ };
 		
-		wk->poke.demo_camera_p = GFC_AllocCamera(heapID);	//ƒJƒƒ‰ì¬
+		wk->poke.demo_camera_p = GFC_AllocCamera(heapID);	//ã‚«ãƒ¡ãƒ©ä½œæˆ
 
 		GFC_InitCameraTDA(&target, DEMO_CAMERA_DISTANCE, &DemoCameraAngle,
 			DEMO_CAMERA_PERSPWAY, GF_CAMERA_PERSPECTIV, FALSE, wk->poke.demo_camera_p);
@@ -1246,7 +1246,7 @@ static BOOL TitleDemo_Init( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,int heapID
 		GFC_SetCameraClip( TD_TITLE_CAMERA_CLIP_NEAR, TD_TITLE_CAMERA_CLIP_FAR, 
 			wk->poke.demo_camera_p);
 
-		//ƒXƒNƒ[ƒ‹IN‚³‚¹‚é‚Ì‚Å‚¿‚å‚Á‚Æ—£‚·
+		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«INã•ã›ã‚‹ã®ã§ã¡ã‚‡ã£ã¨é›¢ã™
 		{
 			VecFx32 move = {0,0,DEMO_CAMERA_MOVE_OFFSET_Z};
 			GFC_ShiftCamera(&move, wk->poke.demo_camera_p);
@@ -1255,7 +1255,7 @@ static BOOL TitleDemo_Init( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,int heapID
 		GFC_AttachCamera(wk->poke.demo_camera_p);
 	}
 	{
-		//ƒ‰ƒCƒgƒZƒbƒg
+		//ãƒ©ã‚¤ãƒˆã‚»ãƒƒãƒˆ
 		NNS_G3dGlbLightVector(0, wk->lv0.x, wk->lv0.y, wk->lv0.z );
 		NNS_G3dGlbLightColor(0, 0x7fff);
 		NNS_G3dGlbLightVector(1, wk->lv1.x, wk->lv1.y, wk->lv1.z );
@@ -1265,7 +1265,7 @@ static BOOL TitleDemo_Init( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,int heapID
 		G3X_AntiAlias( TRUE );
 	}
 
-	//‚R‚c•`‰æƒXƒCƒbƒ`”½“]
+	//ï¼“ï¼¤æç”»ã‚¹ã‚¤ãƒƒãƒåè»¢
 	sys.disp3DSW = DISP_3D_TO_SUB;
 	GF_Disp_DispSelect();
 	wk->poke.Draw3Dsw = DRAW3D_ENABLE;
@@ -1274,29 +1274,29 @@ static BOOL TitleDemo_Init( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,int heapID
 }
 
 //----------------------------------
-// “±“ü
+// å°Žå…¥
 //----------------------------------
 static void Title2DGraphicSetEffect(GF_BGL_INI* ini,int heapID, TITLE_TITLEDEMO_WORK* wk );
 enum{
-	TDSEQ_TITLE_EF_STARTWAIT = 0,			//ŠJŽnƒEƒFƒCƒg
-	TDSEQ_TITLE_EF_DISPON,					//•`‰æŠJŽn
-	TDSEQ_TITLE_EF_FLUSH0_1,				//ƒtƒ‰ƒbƒVƒ…(’Êí¨”’)
-	TDSEQ_TITLE_EF_FLUSH0_2,				//ƒtƒ‰ƒbƒVƒ…(”’¨’Êí)
-	TDSEQ_TITLE_EF_FLUSHWAIT,				//ƒtƒ‰ƒbƒVƒ…ƒEƒFƒCƒg
-	TDSEQ_TITLE_EF_FLUSH1_1,				//ƒtƒ‰ƒbƒVƒ…(’Êí¨”’)
-	TDSEQ_TITLE_EF_FLUSH1_2,				//ƒtƒ‰ƒbƒVƒ…(”’¨’Êí)
+	TDSEQ_TITLE_EF_STARTWAIT = 0,			//é–‹å§‹ã‚¦ã‚§ã‚¤ãƒˆ
+	TDSEQ_TITLE_EF_DISPON,					//æç”»é–‹å§‹
+	TDSEQ_TITLE_EF_FLUSH0_1,				//ãƒ•ãƒ©ãƒƒã‚·ãƒ¥(é€šå¸¸â†’ç™½)
+	TDSEQ_TITLE_EF_FLUSH0_2,				//ãƒ•ãƒ©ãƒƒã‚·ãƒ¥(ç™½â†’é€šå¸¸)
+	TDSEQ_TITLE_EF_FLUSHWAIT,				//ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¦ã‚§ã‚¤ãƒˆ
+	TDSEQ_TITLE_EF_FLUSH1_1,				//ãƒ•ãƒ©ãƒƒã‚·ãƒ¥(é€šå¸¸â†’ç™½)
+	TDSEQ_TITLE_EF_FLUSH1_2,				//ãƒ•ãƒ©ãƒƒã‚·ãƒ¥(ç™½â†’é€šå¸¸)
 	
 	TDSEQ_TITLE_EF_WIPE_IN,
-	TDSEQ_TITLE_EF_CAMERAMOVESTART,			//ƒJƒƒ‰ˆÚ“®ŠJŽnƒEƒGƒCƒg
-	TDSEQ_TITLE_EF_CAMERAMOVE,				//ƒJƒƒ‰ˆÚ“®
-	TDSEQ_TITLE_EF_CAMERAMOVE_END,			//ƒJƒƒ‰ˆÚ“®I—¹
+	TDSEQ_TITLE_EF_CAMERAMOVESTART,			//ã‚«ãƒ¡ãƒ©ç§»å‹•é–‹å§‹ã‚¦ã‚¨ã‚¤ãƒˆ
+	TDSEQ_TITLE_EF_CAMERAMOVE,				//ã‚«ãƒ¡ãƒ©ç§»å‹•
+	TDSEQ_TITLE_EF_CAMERAMOVE_END,			//ã‚«ãƒ¡ãƒ©ç§»å‹•çµ‚äº†
 };
 
 static void GiraOnly_CameraMove( TITLE_TITLEDEMO_WORK* wk )
 {
 	BOOL move_flag = TRUE;
 	
-	///< “K“–‚É“®‚¢‚Ä‚½Š´‚ª‚ ‚Á‚½‚Ì‚Å‚Æ‚è‚ ‚¦‚¸‚P•b‚É“ˆê
+	///< é©å½“ã«å‹•ã„ã¦ãŸæ„ŸãŒã‚ã£ãŸã®ã§ã¨ã‚Šã‚ãˆãšï¼‘ç§’ã«çµ±ä¸€
 	fx32 speed;
 	fx32 frame = CAMERA_MOVE_FRAME;
 	
@@ -1323,7 +1323,7 @@ static void BG_SetLoad( GF_BGL_INI* bgl, int heapID )
 {
 	GF_BGL_BGControlExit( bgl, TITLE_LOGO2_FRAME );
 	{
-		// ƒTƒuƒfƒBƒXƒvƒŒƒC”wŒi ‚a‚fÝ’è(3)@
+		// ã‚µãƒ–ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤èƒŒæ™¯ ï¼¢ï¼§è¨­å®š(3)ã€€
 		GF_BGL_BGCNT_HEADER BackS_Data = {
 			0, 0, 0x800, 0,
 			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1333,23 +1333,23 @@ static void BG_SetLoad( GF_BGL_INI* bgl, int heapID )
 		GF_BGL_BGControlSet( bgl, TITLE_LOGO2_FRAME, &BackS_Data, GF_BGL_MODE_TEXT );
 	}
 	
-	///< BG‚Ì“Ç‚Ýž‚Ý
+	///< BGã®èª­ã¿è¾¼ã¿
 	ArcUtil_BgCharSet(ARC_TITLE_PL,NARC_titledemo_title_back_m_NCGR,bgl,TITLE_LOGO2_FRAME,0,0,0,heapID);
 	ArcUtil_ScrnSet( ARC_TITLE_PL, NARC_titledemo_title_back_m2_NSCR, bgl, TITLE_LOGO2_FRAME, 0, 0, 0, heapID );
 	
-	///< ƒAƒ‹ƒtƒ@Ý’è
+	///< ã‚¢ãƒ«ãƒ•ã‚¡è¨­å®š
 	G2_BlendNone();
 	G2S_SetBlendAlpha( GX_BLEND_PLANEMASK_BG1,
 					   GX_BLEND_PLANEMASK_BG3, 10, 10 );
 
-	SUBFRAME_ON(GX_PLANEMASK_BG1)	//SubDisp”wŒi‚n‚m
+	SUBFRAME_ON(GX_PLANEMASK_BG1)	//SubDispèƒŒæ™¯ï¼¯ï¼®
 }
 
 static void BG_SetLoadStartTitle( GF_BGL_INI* bgl, int heapID )
 {
 	GF_BGL_BGControlExit( bgl, TITLE_PRSSTART_FRAME );
 
-	{	// ƒ^ƒCƒgƒ‹ƒƒS ‚a‚fÝ’è(2)
+	{	// ã‚¿ã‚¤ãƒˆãƒ«ãƒ­ã‚´ ï¼¢ï¼§è¨­å®š(2)
 		GF_BGL_BGCNT_HEADER Titlelogo_Data = {
 			0, 0, 0x1000, 0,
 			GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_256,
@@ -1359,7 +1359,7 @@ static void BG_SetLoadStartTitle( GF_BGL_INI* bgl, int heapID )
 		GF_BGL_BGControlSet( bgl, TITLE_PRSSTART_FRAME, &Titlelogo_Data, GF_BGL_MODE_TEXT );
 	}
 	
-	///< BG‚Ì“Ç‚Ýž‚Ý
+	///< BGã®èª­ã¿è¾¼ã¿
 //	ArcUtil_BgCharSet(ARC_TITLE_PL,NARC_titledemo_title_back_m_NCGR,bgl,TITLE_PRSSTART_FRAME,0,0,0,heapID);
 	ArcUtil_ScrnSet( ARC_TITLE_PL, NARC_titledemo_logo_NSCR, bgl, TITLE_PRSSTART_FRAME, 0, 0, 0, heapID );
 
@@ -1371,7 +1371,7 @@ static void BG_SetLoadStartTitle( GF_BGL_INI* bgl, int heapID )
 	GF_BGL_ScrollSet( bgl, GF_BGL_FRAME2_S, GF_BGL_SCROLL_X_SET, 0 );
 	GF_BGL_ScrollSet( bgl, GF_BGL_FRAME2_S, GF_BGL_SCROLL_Y_SET, +1 );
 
-	///< ƒAƒ‹ƒtƒ@Ý’è
+	///< ã‚¢ãƒ«ãƒ•ã‚¡è¨­å®š
 	G2S_SetBlendAlpha( GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1,
 					   GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3, 26, 10 );
 
@@ -1382,10 +1382,10 @@ static BOOL TitleDemo_DispOnEffect( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,in
 {
 	BOOL result = FALSE;
 
-	if( TitleDemoSkipCheck() == TRUE ){	//ƒXƒLƒbƒv”»’è
+	if( TitleDemoSkipCheck() == TRUE ){	//ã‚¹ã‚­ãƒƒãƒ—åˆ¤å®š
 		wk->gira_on = TRUE;
 		wk->yari_on = FALSE;
-		WIPE_SYS_ExeEnd();				//ƒƒCƒv‹­§‰ðœ
+		WIPE_SYS_ExeEnd();				//ãƒ¯ã‚¤ãƒ—å¼·åˆ¶è§£é™¤
 		BrightnessChgReset( MASK_DOUBLE_DISPLAY );
 		return TRUE;
 	}
@@ -1393,9 +1393,9 @@ static BOOL TitleDemo_DispOnEffect( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,in
 	switch(wk->seq){
 
 	case TDSEQ_TITLE_EF_STARTWAIT:
-		MAINFRAME_ON(GX_PLANEMASK_BG0)	//‚R‚c–Ê‚n‚m
+		MAINFRAME_ON(GX_PLANEMASK_BG0)	//ï¼“ï¼¤é¢ï¼¯ï¼®
 		wk->l1efseq = TDSEQ_LIGHT1_INIT;
-		wk->wait_counter = 15 + 252;	//ƒeƒ“ƒKƒ“ƒUƒ“‚ð‘‚ß‚ÉI‚í‚é‚æ‚¤‚É‚µ‚½‚Ì‚Å‚»‚Ì•ªƒEƒFƒCƒg
+		wk->wait_counter = 15 + 252;	//ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³ã‚’æ—©ã‚ã«çµ‚ã‚ã‚‹ã‚ˆã†ã«ã—ãŸã®ã§ãã®åˆ†ã‚¦ã‚§ã‚¤ãƒˆ
 		WIPE_SYS_Start(	WIPE_PATTERN_WMS,WIPE_TYPE_FADEIN,WIPE_TYPE_FADEIN,
 						WIPE_FADE_BLACK, 15, 3, heapID );
 
@@ -1403,7 +1403,7 @@ static BOOL TitleDemo_DispOnEffect( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,in
 		break;
 
 	case TDSEQ_TITLE_EF_DISPON:
-		if(WIPE_SYS_EndCheck() == TRUE){	//‹P“x•ÏX‘Ò‚¿
+		if(WIPE_SYS_EndCheck() == TRUE){	//è¼åº¦å¤‰æ›´å¾…ã¡
 			if( wk->wait_counter ){
 				wk->wait_counter--;
 			} else {
@@ -1414,7 +1414,7 @@ static BOOL TitleDemo_DispOnEffect( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,in
 		break;
 
 	case TDSEQ_TITLE_EF_FLUSH0_1:
-		if( FLUSH_WAIT ){	//‹P“x•ÏX‘Ò‚¿
+		if( FLUSH_WAIT ){	//è¼åº¦å¤‰æ›´å¾…ã¡
 			if(wk->wait_counter){
 				FLUSH_SET( 10, BRIGHTNESS_WHITE, BRIGHTNESS_NORMAL )
 				wk->l1efseq = TDSEQ_LIGHT1_UP;
@@ -1429,7 +1429,7 @@ static BOOL TitleDemo_DispOnEffect( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,in
 		break;
 
 	case TDSEQ_TITLE_EF_FLUSH0_2:
-		if( FLUSH_WAIT ){	//‹P“x•ÏX‘Ò‚¿
+		if( FLUSH_WAIT ){	//è¼åº¦å¤‰æ›´å¾…ã¡
 			FLUSH_SET( 10, BRIGHTNESS_NORMAL, BRIGHTNESS_WHITE )
 			wk->l1efseq = TDSEQ_LIGHT1_DOWN;
 
@@ -1447,7 +1447,7 @@ static BOOL TitleDemo_DispOnEffect( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,in
 		break;
 
 	case TDSEQ_TITLE_EF_FLUSH1_1:
-		if(WIPE_SYS_EndCheck() == TRUE){	//‹P“x•ÏX‘Ò‚¿
+		if(WIPE_SYS_EndCheck() == TRUE){	//è¼åº¦å¤‰æ›´å¾…ã¡
 			if(wk->wait_counter){
 				WIPE_SYS_Start(	WIPE_PATTERN_WMS,WIPE_TYPE_FADEOUT,WIPE_TYPE_FADEOUT,
 								WIPE_FADE_WHITE,FLUSH_WIPE_DIV,FLUSH_WIPE_SYNC,heapID);
@@ -1459,7 +1459,7 @@ static BOOL TitleDemo_DispOnEffect( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,in
 				wk->wait_counter = 10;
 				wk->seq = TDSEQ_TITLE_EF_CAMERAMOVESTART;
 				
-				///< •
+				///< é»’
 				wk->gira_on = TRUE;
 				WIPE_SetBrightness(	WIPE_DISP_MAIN, WIPE_FADE_BLACK );
 			}
@@ -1467,7 +1467,7 @@ static BOOL TitleDemo_DispOnEffect( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,in
 		break;
 
 	case TDSEQ_TITLE_EF_FLUSH1_2:
-		if(WIPE_SYS_EndCheck() == TRUE){	//‹P“x•ÏX‘Ò‚¿
+		if(WIPE_SYS_EndCheck() == TRUE){	//è¼åº¦å¤‰æ›´å¾…ã¡
 			wk->yari_on = FALSE;
 			TITLE_LOGO2_FRAME_ON
 			wk->poke.anm_flag = DRAW3DANM_ENABLE;
@@ -1488,7 +1488,7 @@ static BOOL TitleDemo_DispOnEffect( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,in
 	case TDSEQ_TITLE_EF_WIPE_IN:
 		WIPE_SYS_Start(	WIPE_PATTERN_M, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN,
 						WIPE_FADE_BLACK, FADE_WIPE_DIV, FADE_WIPE_SYNC, heapID );
-		MAINFRAME_ON(GX_PLANEMASK_BG3)	//MainDisp”wŒi‚n‚m
+		MAINFRAME_ON(GX_PLANEMASK_BG3)	//MainDispèƒŒæ™¯ï¼¯ï¼®
 		wk->seq = TDSEQ_TITLE_EF_CAMERAMOVE;
 		wk->cam_frame = 0;
 		break;
@@ -1497,7 +1497,7 @@ static BOOL TitleDemo_DispOnEffect( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,in
 		{
 			GiraOnly_CameraMove( wk );
 
-			//ƒJƒƒ‰‚ÌˆÊ’u‚ÆÅ“_‚ðÝ’è
+			//ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã¨ç„¦ç‚¹ã‚’è¨­å®š
 			GFC_SetLookTarget( &wk->camera_tpos, wk->poke.camera_p );
 			GFC_SetCameraPos( &wk->camera_cpos, wk->poke.camera_p );
 
@@ -1522,7 +1522,7 @@ static BOOL TitleDemo_DispOnEffect( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,in
 			wk->wait_counter--;
 		} 
 		else {
-			if(WIPE_SYS_EndCheck() == TRUE){	//‹P“x•ÏX‘Ò‚¿
+			if(WIPE_SYS_EndCheck() == TRUE){	//è¼åº¦å¤‰æ›´å¾…ã¡
 				result = TRUE;
 			}
 		}
@@ -1536,11 +1536,11 @@ static BOOL TitleDemo_DispOnEffect( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,in
 }
 
 //----------------------------------
-// ƒƒCƒ“
+// ãƒ¡ã‚¤ãƒ³
 //----------------------------------
 enum{
-	TDSEQ_TITLE_MAIN_DISPON = 0,		//•`‰æŠJŽn
-	TDSEQ_TITLE_MAIN_CONT,				//ƒƒCƒ“‰‰o
+	TDSEQ_TITLE_MAIN_DISPON = 0,		//æç”»é–‹å§‹
+	TDSEQ_TITLE_MAIN_CONT,				//ãƒ¡ã‚¤ãƒ³æ¼”å‡º
 };
 
 static void TitleFinish_CameraSet( TITLE_TITLEDEMO_WORK* wk )
@@ -1559,12 +1559,12 @@ static BOOL TitleDemo_Main( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,int heapID
 	switch(wk->seq){
 
 	case TDSEQ_TITLE_MAIN_DISPON:
-		//‚·‚×‚Ä‚Ì•`‰æ‚ð‚n‚m(ƒXƒLƒbƒv‚³‚ê‚é‚±‚Æ‚ðl—¶)
+		//ã™ã¹ã¦ã®æç”»ã‚’ï¼¯ï¼®(ã‚¹ã‚­ãƒƒãƒ—ã•ã‚Œã‚‹ã“ã¨ã‚’è€ƒæ…®)
 		GFC_SetLookTarget( &wk->tp_ed, wk->poke.camera_p );
 		GFC_SetCameraPos( &wk->cp_ed, wk->poke.camera_p );
-		MAINFRAME_ON(GX_PLANEMASK_BG0)	//‚R‚c–Ê‚n‚m
-		MAINFRAME_ON(GX_PLANEMASK_BG3)	//MainDisp”wŒi‚n‚m
-		SUBFRAME_ON(GX_PLANEMASK_BG3)	//SubDisp”wŒi‚n‚m
+		MAINFRAME_ON(GX_PLANEMASK_BG0)	//ï¼“ï¼¤é¢ï¼¯ï¼®
+		MAINFRAME_ON(GX_PLANEMASK_BG3)	//MainDispèƒŒæ™¯ï¼¯ï¼®
+		SUBFRAME_ON(GX_PLANEMASK_BG3)	//SubDispèƒŒæ™¯ï¼¯ï¼®
 
 		TITLE_LOGO_FRAME_ON
 		TITLE_CPRIGHT_FRAME_ON
@@ -1610,18 +1610,18 @@ static BOOL TitleDemo_Main( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,int heapID
 }
 
 //----------------------------------
-// I—¹
+// çµ‚äº†
 //----------------------------------
 static BOOL TitleDemo_Exit( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,int heapID )
 {
-	GFC_FreeCamera(wk->poke.camera_p);				//ƒJƒƒ‰ŠJ•ú
-	GFC_FreeCamera(wk->poke.demo_camera_p);				//ƒJƒƒ‰ŠJ•ú
+	GFC_FreeCamera(wk->poke.camera_p);				//ã‚«ãƒ¡ãƒ©é–‹æ”¾
+	GFC_FreeCamera(wk->poke.demo_camera_p);				//ã‚«ãƒ¡ãƒ©é–‹æ”¾
 	Title3D_ModelRelease( &wk->poke );
 	Title2DGraphicRelease(bgl,heapID,wk);
 	G2_BlendNone();
 	G3X_EdgeMarking(FALSE);
 
-	//‚R‚c•`‰æƒXƒCƒbƒ`•œ‹A
+	//ï¼“ï¼¤æç”»ã‚¹ã‚¤ãƒƒãƒå¾©å¸°
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 
@@ -1629,61 +1629,61 @@ static BOOL TitleDemo_Exit( TITLE_TITLEDEMO_WORK* wk, GF_BGL_INI* bgl,int heapID
 }
 
 //----------------------------------
-// ‚Q‚c‚a‚f“Ç‚Ýž‚Ý
+// ï¼’ï¼¤ï¼¢ï¼§èª­ã¿è¾¼ã¿
 //----------------------------------
 static void Title2DGraphicSet(GF_BGL_INI* ini,int heapID, TITLE_TITLEDEMO_WORK* wk )
 {
-	{	// ”wŒi
+	{	// èƒŒæ™¯
 		int palIDm,palIDs;
 
-		ArcUtil_BgCharSet//ã‰æ–ÊƒLƒƒƒ‰	(”½“]‚µ‚Ä‚é‚Ì‚ÅSubDisp)
+		ArcUtil_BgCharSet//ä¸Šç”»é¢ã‚­ãƒ£ãƒ©	(åè»¢ã—ã¦ã‚‹ã®ã§SubDisp)
 			(ARC_TITLE_PL,NARC_titledemo_title_back_m_NCGR,ini,GF_BGL_FRAME3_S,0,0,0,heapID);
-		ArcUtil_BgCharSet	//‰º‰æ–ÊƒLƒƒƒ‰(”½“]‚µ‚Ä‚é‚Ì‚ÅMainDisp)
+		ArcUtil_BgCharSet	//ä¸‹ç”»é¢ã‚­ãƒ£ãƒ©(åè»¢ã—ã¦ã‚‹ã®ã§MainDisp)
 			(ARC_TITLE_PL,NARC_titledemo_title_back_s_NCGR,ini,GF_BGL_FRAME3_M,0,0,0,heapID);
-		ArcUtil_ScrnSet		//ã‰æ–ÊƒXƒNƒŠ[ƒ“(”½“]‚µ‚Ä‚é‚Ì‚ÅSubDisp)
+		ArcUtil_ScrnSet		//ä¸Šç”»é¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³(åè»¢ã—ã¦ã‚‹ã®ã§SubDisp)
 			(ARC_TITLE_PL,NARC_titledemo_title_back_m_NSCR,ini,GF_BGL_FRAME3_S,0,0,0,heapID);
-		ArcUtil_ScrnSet		//‰º‰æ–ÊƒXƒNƒŠ[ƒ“(”½“]‚µ‚Ä‚é‚Ì‚ÅMainDisp)
+		ArcUtil_ScrnSet		//ä¸‹ç”»é¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³(åè»¢ã—ã¦ã‚‹ã®ã§MainDisp)
 			(ARC_TITLE_PL,NARC_titledemo_title_back_s_NSCR,ini,GF_BGL_FRAME3_M,0,0,0,heapID);
 			
 		palIDm = NARC_titledemo_title_back_m_pla_NCLR;
 		palIDs = NARC_titledemo_title_back_s_pla_NCLR;
-		ArcUtil_PalSet(ARC_TITLE_PL,palIDm,PALTYPE_SUB_BG,0,0,heapID);		//ã‰æ–ÊƒpƒŒƒbƒg
-		ArcUtil_PalSet(ARC_TITLE_PL,palIDs,PALTYPE_MAIN_BG,0,0,heapID);	//‰º‰æ–ÊƒpƒŒƒbƒg
+		ArcUtil_PalSet(ARC_TITLE_PL,palIDm,PALTYPE_SUB_BG,0,0,heapID);		//ä¸Šç”»é¢ãƒ‘ãƒ¬ãƒƒãƒˆ
+		ArcUtil_PalSet(ARC_TITLE_PL,palIDs,PALTYPE_MAIN_BG,0,0,heapID);	//ä¸‹ç”»é¢ãƒ‘ãƒ¬ãƒƒãƒˆ
 	}
-	{	// ƒƒS
+	{	// ãƒ­ã‚´
 		int cgxID,palID;
 		cgxID = NARC_titledemo_logo_pla_NCGR;
 		palID = NARC_titledemo_logo_pla_NCLR;
-		ArcUtil_BgCharSet(ARC_TITLE_PL,cgxID,ini,TITLE_LOGO_FRAME,0,0,0,heapID);	//ƒLƒƒƒ‰
+		ArcUtil_BgCharSet(ARC_TITLE_PL,cgxID,ini,TITLE_LOGO_FRAME,0,0,0,heapID);	//ã‚­ãƒ£ãƒ©
 		ArcUtil_PalSet(ARC_TITLE_PL,palID,TITLE_LOGO_PALTYPE,EX_PAL_SLOT2_ADRS,0,heapID);
-		ArcUtil_ScrnSet		//ƒXƒNƒŠ[ƒ“
+		ArcUtil_ScrnSet		//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 			(ARC_TITLE_PL,NARC_titledemo_logo_NSCR,ini,TITLE_LOGO_FRAME,0,0,0,heapID);
 	}
-	{	// ƒƒS‚Qiƒ‚ƒmƒg[ƒ“j
+	{	// ãƒ­ã‚´ï¼’ï¼ˆãƒ¢ãƒŽãƒˆãƒ¼ãƒ³ï¼‰
 		ArcUtil_BgCharSet(	ARC_OP_DEMO,NARC_op_demo_g_logo2_NCGR,
-							ini,TITLE_LOGO2_FRAME,0,0,0,heapID);	//ƒLƒƒƒ‰
+							ini,TITLE_LOGO2_FRAME,0,0,0,heapID);	//ã‚­ãƒ£ãƒ©
 		ArcUtil_PalSet(		ARC_OP_DEMO,NARC_op_demo_g_logo2_NCLR,
 							TITLE_LOGO_PALTYPE,EX_PAL_SLOT1_ADRS,0,heapID);
-		ArcUtil_ScrnSet		//ƒXƒNƒŠ[ƒ“
+		ArcUtil_ScrnSet		//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 			(ARC_OP_DEMO,NARC_op_demo_g_logo_NSCR,ini,TITLE_LOGO2_FRAME,0,0,0,heapID);
 	}
 	{	// copyright
-		ArcUtil_BgCharSet	//ƒLƒƒƒ‰
+		ArcUtil_BgCharSet	//ã‚­ãƒ£ãƒ©
 			(ARC_TITLE_PL,NARC_titledemo_title_cpright_NCGR,ini,TITLE_CPRIGHT_FRAME,0,0,0,heapID);
-		ArcUtil_ScrnSet		//ƒXƒNƒŠ[ƒ“
+		ArcUtil_ScrnSet		//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 			(ARC_TITLE_PL,NARC_titledemo_title_cpright_NSCR,ini,TITLE_CPRIGHT_FRAME,0,0,0,heapID);
-		ArcUtil_PalSet		//ƒpƒŒƒbƒg(ƒKƒCƒhƒEƒCƒ“ƒhƒE—pž‚Ý)
+		ArcUtil_PalSet		//ãƒ‘ãƒ¬ãƒƒãƒˆ(ã‚¬ã‚¤ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨è¾¼ã¿)
 			(ARC_TITLE_PL,NARC_titledemo_title_cpright_NCLR,TITLE_GF_PALTYPE,32*1,32*3,heapID);
 	}
 	GF_BGL_BackGroundColorSet(GF_BGL_FRAME0_M,0x0000);
 	GF_BGL_BackGroundColorSet(GF_BGL_FRAME0_S,0x0000);
 
-	{	// ƒKƒCƒhƒƒbƒZ[ƒW
+	{	// ã‚¬ã‚¤ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		MSGDATA_MANAGER*	msg_man;
 		STRBUF*				title_str;
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/11/14
-		// u‚o‚t‚r‚g@‚r‚s‚`‚q‚s@‚a‚t‚s‚s‚n‚mv‚ðŽ©“®‚ÅƒZƒ“ƒ^ƒŠƒ“ƒO‚µ‚Ä•\Ž¦
+		// ã€Œï¼°ï¼µï¼³ï¼¨ã€€ï¼³ï¼´ï¼¡ï¼²ï¼´ã€€ï¼¢ï¼µï¼´ï¼´ï¼¯ï¼®ã€ã‚’è‡ªå‹•ã§ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã—ã¦è¡¨ç¤º
 		u32 x;
 		// ----------------------------------------------------------------------------
 
@@ -1692,16 +1692,16 @@ static void Title2DGraphicSet(GF_BGL_INI* ini,int heapID, TITLE_TITLEDEMO_WORK* 
 		msg_man = MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_title_dat,heapID );
 		title_str = STRBUF_Create(64, heapID);
 
-		//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒEƒrƒbƒgƒ}ƒbƒvì¬
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½œæˆ
 		GF_BGL_BmpWinAddEx(ini,&wk->msgwin,&TitleMsgWinData );
-		//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE‚ÌƒNƒŠƒA bmp,col,startX,startY,sizeX,sizeY
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒªã‚¢ bmp,col,startX,startY,sizeX,sizeY
 		GF_BGL_BmpWinFill(&wk->msgwin,FBMP_COL_NULL,0,0,28*DOTSIZE,2*DOTSIZE);
-		//•¶Žš—ñ‚ÌŽæ“¾i‚`ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢j
+		//æ–‡å­—åˆ—ã®å–å¾—ï¼ˆï¼¡ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ãã ã•ã„ï¼‰
 		MSGMAN_GetString(msg_man,title_msg_01,title_str);
-		//•¶Žš—ñ‚Ì•\Ž¦
+		//æ–‡å­—åˆ—ã®è¡¨ç¤º
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/11/14
-		// u‚o‚t‚r‚g@‚r‚s‚`‚q‚s@‚a‚t‚s‚s‚n‚mv‚ðŽ©“®‚ÅƒZƒ“ƒ^ƒŠƒ“ƒO‚µ‚Ä•\Ž¦
+		// ã€Œï¼°ï¼µï¼³ï¼¨ã€€ï¼³ï¼´ï¼¡ï¼²ï¼´ã€€ï¼¢ï¼µï¼´ï¼´ï¼¯ï¼®ã€ã‚’è‡ªå‹•ã§ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã—ã¦è¡¨ç¤º
 		x = FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, title_str, 1, wk->msgwin.sizx * 8 );
 		GF_STR_PrintExpand(&wk->msgwin,FONT_SYSTEM,title_str,x,0,MSG_ALLPUT,
 							GF_PRINTCOLOR_MAKE(1, 1, FBMP_COL_NULL),1,0,NULL);
@@ -1739,7 +1739,7 @@ static void Title2DGraphicRelease(GF_BGL_INI* ini,int heapID, TITLE_TITLEDEMO_WO
 }
 
 //----------------------------------
-// ƒ‰ƒCƒgƒGƒtƒFƒNƒg
+// ãƒ©ã‚¤ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //----------------------------------
 #define LIGHT1_EF_SPEED (2)
 
@@ -1776,11 +1776,11 @@ static void TitleDemoLight1Effect( TITLE_TITLEDEMO_WORK* wk )
 }
 
 //----------------------------------
-// ƒo[ƒWƒ‡ƒ“•ª‚¯ƒf[ƒ^Žæ“¾
+// ãƒãƒ¼ã‚¸ãƒ§ãƒ³åˆ†ã‘ãƒ‡ãƒ¼ã‚¿å–å¾—
 //----------------------------------
-//ŠeŽíÝ’è’liNitroViewer@‚ÅŽæ“¾j
+//å„ç¨®è¨­å®šå€¤ï¼ˆNitroViewerã€€ã§å–å¾—ï¼‰
 #if 0
-//ƒ_ƒCƒ„ƒ‚ƒ“ƒh
+//ãƒ€ã‚¤ãƒ¤ãƒ¢ãƒ³ãƒ‰
 #define TD_TITLED_CMR_CPX_ST			(FX32_ONE * 0)
 #define TD_TITLED_CMR_CPY_ST			(FX32_ONE * 65)//66)
 #define TD_TITLED_CMR_CPZ_ST			(FX32_ONE * 72)//76)
@@ -1808,7 +1808,7 @@ static void TitleDemoLight1Effect( TITLE_TITLEDEMO_WORK* wk )
 #define TD_TITLED_ECOL_G				(7)
 #define TD_TITLED_ECOL_B				(9)
 
-//ƒp[ƒ‹
+//ãƒ‘ãƒ¼ãƒ«
 #define TD_TITLEP_CMR_CPX_ST			(FX32_ONE * -65)
 #define TD_TITLEP_CMR_CPY_ST			(FX32_ONE * 41)
 #define TD_TITLEP_CMR_CPZ_ST			(FX32_ONE * 19)
@@ -1837,23 +1837,23 @@ static void TitleDemoLight1Effect( TITLE_TITLEDEMO_WORK* wk )
 #define TD_TITLEP_ECOL_B				(15)
 #endif
 
-//ƒvƒ‰ƒ`ƒi
-///< ƒJƒƒ‰ˆÊ’u	ŠJŽn
+//ãƒ—ãƒ©ãƒãƒŠ
+///< ã‚«ãƒ¡ãƒ©ä½ç½®	é–‹å§‹
 #define TD_TITLEPL_CMR_CPX_ST			( FX32_ONE *   0 )
 #define TD_TITLEPL_CMR_CPY_ST			( FX32_ONE * 192 )
 #define TD_TITLEPL_CMR_CPZ_ST			( FX32_ONE * 600 )
 
-///< ƒJƒƒ‰ˆÊ’u	I—¹ I‚í‚è‚ÌˆÊ’u‚Í•Ï‚¦‚È‚¢•ûŒü‚Å
+///< ã‚«ãƒ¡ãƒ©ä½ç½®	çµ‚äº† çµ‚ã‚ã‚Šã®ä½ç½®ã¯å¤‰ãˆãªã„æ–¹å‘ã§
 #define TD_TITLEPL_CMR_CPX_ED			( FX32_ONE * -64 )
 #define TD_TITLEPL_CMR_CPY_ED			( FX32_ONE * 192 )
 #define TD_TITLEPL_CMR_CPZ_ED			( FX32_ONE * 484 )
 
-///< ƒ^[ƒQƒbƒg	ŠJŽn
+///< ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ	é–‹å§‹
 #define TD_TITLEPL_CMR_TPX_ST			( FX32_ONE *   0 )
 #define TD_TITLEPL_CMR_TPY_ST			( FX32_ONE * 100 )
 #define TD_TITLEPL_CMR_TPZ_ST			( FX32_ONE * -18 )
 
-///< ƒ^[ƒQƒbƒg	I—¹
+///< ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ	çµ‚äº†
 #define TD_TITLEPL_CMR_TPX_ED			( FX32_ONE *   0 )
 #define TD_TITLEPL_CMR_TPY_ED			( FX32_ONE * 100 )
 #define TD_TITLEPL_CMR_TPZ_ED			( FX32_ONE * -18 )
@@ -1903,7 +1903,7 @@ static void TitleDemoDataGet( TITLE_TITLEDEMO_WORK* wk )
 #ifdef PM_DEBUG
 extern void SaveErrorWarningCall( int heapID, int msgID );
 //----------------------------------
-// ƒfƒoƒbƒO—p
+// ãƒ‡ãƒãƒƒã‚°ç”¨
 //----------------------------------
 static void DebugControl( TITLE_TITLEDEMO_WORK* wk )
 {
@@ -1920,7 +1920,7 @@ static void DebugControl( TITLE_TITLEDEMO_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒO‹@”\FƒJƒƒ‰ˆÚ“®
+ * @brief   ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ï¼šã‚«ãƒ¡ãƒ©ç§»å‹•
  *
  * @param   camera
  */
@@ -1934,9 +1934,9 @@ static void Debug_CameraMove(GF_CAMERA_PTR camera)
 	CAMERA_ANGLE angle = {0,0,0,0};
 	int mode = 0;
 	enum{
-		MODE_SHIFT,			//•½sˆÚ“®
-		MODE_DISTANCE,		//‹——£
-		MODE_ANGLE_REV,		//Œö“]
+		MODE_SHIFT,			//å¹³è¡Œç§»å‹•
+		MODE_DISTANCE,		//è·é›¢
+		MODE_ANGLE_REV,		//å…¬è»¢
 	};
 	
 	if((sys.cont & PAD_BUTTON_L) && (sys.cont & PAD_BUTTON_R)){
@@ -1974,7 +1974,7 @@ static void Debug_CameraMove(GF_CAMERA_PTR camera)
 		}
 		GFC_ShiftCamera(&move, camera);
 		move = GFC_GetCameraPos(camera);
-		OS_TPrintf("ƒJƒƒ‰ˆÊ’u x=%d(16i:%x), y=%d(16i:%x), z=%d(16i:%x)\n", move.x, move.x, move.y, move.y, move.z, move.z);
+		OS_TPrintf("ã‚«ãƒ¡ãƒ©ä½ç½® x=%d(16é€²:%x), y=%d(16é€²:%x), z=%d(16é€²:%x)\n", move.x, move.x, move.y, move.y, move.z, move.z);
 		break;
 	
 	case MODE_ANGLE_REV:
@@ -1998,7 +1998,7 @@ static void Debug_CameraMove(GF_CAMERA_PTR camera)
 		}
 		GFC_AddCameraAngleRev(&angle, camera);
 		angle = GFC_GetCameraAngle(camera);
-		OS_TPrintf("ƒJƒƒ‰ƒAƒ“ƒOƒ‹@x=%d, y=%d, z=%d\n", angle.x, angle.y, angle.z);
+		OS_TPrintf("ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ã€€x=%d, y=%d, z=%d\n", angle.x, angle.y, angle.z);
 		break;
 	case MODE_DISTANCE:
 		if(sys.cont & PAD_KEY_UP){
@@ -2009,7 +2009,7 @@ static void Debug_CameraMove(GF_CAMERA_PTR camera)
 			GFC_AddCameraDistance(-FX32_ONE, camera);
 		//	GFC_AddCameraPerspWay(-32, camera);
 		}
-		OS_TPrintf("ƒJƒƒ‰‹——£%d(16i:%x)\n", GFC_GetCameraDistance(camera), GFC_GetCameraDistance(camera));
+		OS_TPrintf("ã‚«ãƒ¡ãƒ©è·é›¢ï¼%d(16é€²:%x)\n", GFC_GetCameraDistance(camera), GFC_GetCameraDistance(camera));
 		break;
 	}
 #endif

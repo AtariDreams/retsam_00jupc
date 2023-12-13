@@ -1,7 +1,7 @@
 #ifndef _D26R0107_DEF_H_
 #define _D26R0107_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D26R0107_FLAG_CHANGE		(1)
 #define	SCRID_D26R0107_OBJ_CHANGE		(2)
 #define	SCRID_D26R0107_GKANBU		(3)
@@ -17,6 +17,6 @@
 #define	SCRID_D26R0107_MACHINE_C_OBJ		(13)
 #define	SCRID_POS_D26R0107_GKANBU		(14)
 #define	SCRID_D26R0107_GKANBU2		(15)
-#define	SCRID_D26R0107_DATA_MAX		(15)		//最大数
+#define	SCRID_D26R0107_DATA_MAX		(15)		//譛螟ｧ謨ｰ
 
 #endif //_D26R0107_DEF_H_

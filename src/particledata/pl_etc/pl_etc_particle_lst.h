@@ -1,25 +1,25 @@
-//---- ƒRƒ“ƒo[ƒ^FSPAConv.exe  Version 1.13
+//---- ã‚³ãƒ³ãƒãƒ¼ã‚¿ï¼šSPAConv.exe  Version 1.13
 
 #ifndef __PL_ETC_PARTICLE_LST_H__
 #define __PL_ETC_PARTICLE_LST_H__
 
-//balloon.h‚ÌsprƒŠƒ\[ƒX’è‹`
+//balloon.hã®sprãƒªã‚½ãƒ¼ã‚¹å®šç¾©
 #define BALLOON_HINOMARU		0
 #define BALLOON_PUSYU		1
 #define BALLOON_PUSYU2		2
-//balloon.spa“à‚ÌƒŠƒ\[ƒXŒÂ”
+//balloon.spaå†…ã®ãƒªã‚½ãƒ¼ã‚¹å€‹æ•°
 #define BALLOON_SPAMAX	(3)
 
-//opening_demo.h‚ÌsprƒŠƒ\[ƒX’è‹`
+//opening_demo.hã®sprãƒªã‚½ãƒ¼ã‚¹å®šç¾©
 #define OPENING_DEMO_OP_TITLE01		0
 #define OPENING_DEMO_OP_TITLE02		1
 #define OPENING_DEMO_OP_TITLE03		2
-//opening_demo.spa“à‚ÌƒŠƒ\[ƒXŒÂ”
+//opening_demo.spaå†…ã®ãƒªã‚½ãƒ¼ã‚¹å€‹æ•°
 #define OPENING_DEMO_SPAMAX	(3)
 
 
 
-//---- pl_etc_particle_lst_tblƒe[ƒuƒ‹‚Ìdefine’è‹` ----
+//---- pl_etc_particle_lst_tblãƒ†ãƒ¼ãƒ–ãƒ«ã®defineå®šç¾© ----
 #define SPA_BALLOON		(0)
 #define SPA_OPENING_DEMO		(1)
 

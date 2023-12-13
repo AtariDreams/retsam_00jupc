@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_c10r0101evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c10r0101_veteran
 _EVENT_DATA		ev_c10r0101_shop
@@ -32,27 +32,27 @@ _EVENT_DATA_END
 ev_c10r0101_flag_change:
 	_ARRIVE_FLAG_SET		FLAG_ARRIVE_CHAMPLEAGUE
 
-	/*ƒŠ[ƒO‚ÌƒhƒA‚ðƒŠƒZƒbƒg*/
-	_FLAG_SET		FV_C10R0103_DOOR_01		/*Žè‘O*/
+	/*ãƒªãƒ¼ã‚°ã®ãƒ‰ã‚¢ã‚’ãƒªã‚»ãƒƒãƒˆ*/
+	_FLAG_SET		FV_C10R0103_DOOR_01		/*æ‰‹å‰*/
 	_FLAG_SET		FV_C10R0105_DOOR_01
 	_FLAG_SET		FV_C10R0107_DOOR_01
 	_FLAG_SET		FV_C10R0109_DOOR_01
-	_FLAG_RESET		FV_C10R0103_DOOR_02		/*‰œ*/
+	_FLAG_RESET		FV_C10R0103_DOOR_02		/*å¥¥*/
 	_FLAG_RESET		FV_C10R0105_DOOR_02
 	_FLAG_RESET		FV_C10R0107_DOOR_02
 	_FLAG_RESET		FV_C10R0109_DOOR_02
 
-	/*Žl“V‰¤ƒŠƒZƒbƒg*/
+	/*å››å¤©çŽ‹ãƒªã‚»ãƒƒãƒˆ*/
 	_FLAG_RESET		FE_BIGFOUR1_WIN
 	_FLAG_RESET		FE_BIGFOUR2_WIN
 	_FLAG_RESET		FE_BIGFOUR3_WIN
 	_FLAG_RESET		FE_BIGFOUR4_WIN
 
-	/*ƒxƒeƒ‰ƒ“‚Ç‚¢‚Ä‚¢‚½‚ç*/
+	/*ãƒ™ãƒ†ãƒ©ãƒ³ã©ã„ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_C10R0101_VETERAN,ev_c10r0101_flag_change_pos
 	_END
 
-/*ƒxƒeƒ‰ƒ“‚Ç‚¢‚Ä‚¢‚½‚ç*/
+/*ãƒ™ãƒ†ãƒ©ãƒ³ã©ã„ã¦ã„ãŸã‚‰*/
 ev_c10r0101_flag_change_pos:
 	_SXY_POS_CHANGE	C10R0101_VETERAN,12,3
 	_END
@@ -64,7 +64,7 @@ ev_c10r0101_flag_change_pos:
 ev_c10r0101_veteran:
 	_TALK_OBJ_START
 
-	/*ƒxƒeƒ‰ƒ“‚Ç‚¢‚Ä‚¢‚½‚ç*/
+	/*ãƒ™ãƒ†ãƒ©ãƒ³ã©ã„ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_C10R0101_VETERAN,ev_c10r0101_veteran_02
 
 	_TALK_KEYWAIT	msg_c10r0101_veteran_01
@@ -79,7 +79,7 @@ ev_c10r0101_veteran:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_RIGHT,ev_c10r0101_veteran_dir_right
 	_END
 
-/*‚Ç‚­*/
+/*ã©ã*/
 ev_c10r0101_veteran_dir_up:
 	_OBJ_ANIME		C10R0101_VETERAN,anm_c10r0101_veteran_01
 	_OBJ_ANIME_WAIT
@@ -104,7 +104,7 @@ common_c10r0101_veteran_dir:
 	_TALK_OBJ_END
 	_END
 
-/*ƒxƒeƒ‰ƒ“‚Ç‚¢‚Ä‚¢‚½‚ç*/
+/*ãƒ™ãƒ†ãƒ©ãƒ³ã©ã„ã¦ã„ãŸã‚‰*/
 ev_c10r0101_veteran_02:
 	_TALKMSG		msg_c10r0101_veteran_03
 	_LAST_KEYWAIT
@@ -113,7 +113,7 @@ ev_c10r0101_veteran_02:
 	_END
 
 //--------------------------------------------------------------------
-//–å”Ô@“¹‚ð‚ ‚¯‚é
+//é–€ç•ªã€€é“ã‚’ã‚ã‘ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c10r0101_veteran_01
 	_ANIME_DATA	AC_WALK_R_8F,1
@@ -132,7 +132,7 @@ _ANIME_LABEL	anm_c10r0101_veteran_03
 
 
 /********************************************************************/
-//							“Xˆõ(OBJ–¼shopm)
+//							åº—å“¡(OBJåshopm)
 /********************************************************************/
 ev_c10r0101_shop:
 	_TALK_OBJ_START
@@ -145,7 +145,7 @@ ev_c10r0101_shop:
 	_END
 
 /********************************************************************/
-//						•i•¨ŒÅ’è‚Ì“Xˆõ(OBJ–¼shopm)
+//						å“ç‰©å›ºå®šã®åº—å“¡(OBJåshopm)
 /********************************************************************/
 ev_c10r0101_fix_shop:
 	_TALK_OBJ_START
@@ -159,7 +159,7 @@ ev_c10r0101_fix_shop:
 
 
 /********************************************************************/
-//							ƒ‰ƒCƒoƒ‹
+//							ãƒ©ã‚¤ãƒãƒ«
 /********************************************************************/
 #define POS_C10R0101_X1	(10)
 #define POS_C10R0101_X2	(11)
@@ -168,11 +168,11 @@ ev_c10r0101_fix_shop:
 ev_c10r0101_rival:
 	_EVENT_START
 
-	/*“oê*/
+	/*ç™»å ´*/
 	_FLAG_RESET		FV_C10R0101_RIVAL
 	_OBJ_ADD		C10R0101_RIVAL
 
-	_CHG_COMMON_SCR SCRID_THE_RIVAL_PLAY				/*ƒ‰ƒCƒoƒ‹‹ÈÄ¶*/
+	_CHG_COMMON_SCR SCRID_THE_RIVAL_PLAY				/*ãƒ©ã‚¤ãƒãƒ«æ›²å†ç”Ÿ*/
 
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,POS_C10R0101_X1,ev_c10r0101_rival_x1
@@ -180,7 +180,7 @@ ev_c10r0101_rival:
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,POS_C10R0101_X3,ev_c10r0101_rival_x3
 	_END
 
-/*‹ß‚Ã‚¢‚Ä‚­‚é*/
+/*è¿‘ã¥ã„ã¦ãã‚‹*/
 ev_c10r0101_rival_x1:
 	_OBJ_ANIME		C10R0101_RIVAL,anm_c10r0101_rival_01
 	_OBJ_ANIME_WAIT
@@ -204,13 +204,13 @@ common_c10r0101_rival_01:
 	_TALK_KEYWAIT	msg_c10r0101_rival_01
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_FIRST_POKE_NO_GET	SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,MONSNO_NAETORU,ev_c10r0101_rival_02
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,MONSNO_HIKOZARU,ev_c10r0101_rival_03
 	_JUMP												ev_c10r0101_rival_01
 
-//í“¬ŒÄ‚Ño‚µ
+//æˆ¦é—˜å‘¼ã³å‡ºã—
 ev_c10r0101_rival_01:
 	_TRAINER_BTL_SET	RIVAL_13,0
 	_JUMP				ev_c10r0101_rival_btl_coomon
@@ -238,7 +238,7 @@ ev_c10r0101_rival_btl_coomon:
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,POS_C10R0101_X3,ev_c10r0101_rival_x13
 	_END
 
-/*‘Þê*/
+/*é€€å ´*/
 ev_c10r0101_rival_x11:
 	_OBJ_ANIME		C10R0101_RIVAL,anm_c10r0101_rival_11
 	_OBJ_ANIME_WAIT
@@ -263,23 +263,23 @@ common_c10r0101_rival_11:
 	_END
 
 //--------------------------------------------------------------------
-//”s–kˆ—
+//æ•—åŒ—å‡¦ç†
 //--------------------------------------------------------------------
 ev_c10r0101_rival_battle_lose:
-	_FLAG_SET		FV_C10R0101_RIVAL	/*Ä“xƒCƒxƒ“ƒg‚ð‹N‚±‚µ‚½Žž‚Ì‘Îˆ*/
+	_FLAG_SET		FV_C10R0101_RIVAL	/*å†åº¦ã‚¤ãƒ™ãƒ³ãƒˆã‚’èµ·ã“ã—ãŸæ™‚ã®å¯¾å‡¦*/
 	_TRAINER_LOSE
 	_EVENT_END
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	‰º‚ðŒü‚­
+//ä¸»äººå…¬	ä¸‹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c10r0101_player_01
 	_ANIME_DATA	AC_STAY_WALK_D_4F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹@‹ß‚Ã‚¢‚Ä‚­‚é
+//ãƒ©ã‚¤ãƒãƒ«ã€€è¿‘ã¥ã„ã¦ãã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c10r0101_rival_01
 	_ANIME_DATA	AC_WALK_U_4F,3
@@ -298,7 +298,7 @@ _ANIME_LABEL	anm_c10r0101_rival_03
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹@‘Þê
+//ãƒ©ã‚¤ãƒãƒ«ã€€é€€å ´
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c10r0101_rival_11
 	_ANIME_DATA	AC_WALK_D_4F,3
@@ -318,7 +318,7 @@ _ANIME_LABEL	anm_c10r0101_rival_13
 
 
 /********************************************************************/
-/*						ƒgƒŒ[ƒi[Žo‚³‚ñ							*/
+/*						ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å§‰ã•ã‚“							*/
 /********************************************************************/
 ev_c10r0101_woman3:
 	_EASY_OBJ_MSG	msg_c10r0101_woman3_01
@@ -326,14 +326,14 @@ ev_c10r0101_woman3:
 
 
 /********************************************************************/
-/*						ƒgƒŒ[ƒi[ŒZ‚³‚ñ							*/
+/*						ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å…„ã•ã‚“							*/
 /********************************************************************/
 ev_c10r0101_man2:
 	_EASY_OBJ_MSG	msg_c10r0101_man2_01
 	_END
 
 /********************************************************************/
-/*						ƒ|ƒPƒZƒ“‰ñ•œŽó•t@							*/
+/*						ãƒã‚±ã‚»ãƒ³å›žå¾©å—ä»˜ã€€							*/
 /********************************************************************/
 ev_c10r0101_pcwoman1:
 	_LDVAL			SCWK_TEMP3,C10R0101_PCWOMAN1_01

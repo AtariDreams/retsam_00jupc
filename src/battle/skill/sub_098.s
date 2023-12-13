@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_098.s
- *@brief	�퓬�V�[�P���X
- *			�̂낢�ɂ��_���[�W�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			のろいによるダメージシーケンス
  *@author	HisashiSogabe
  *@data		2006.01.27
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_098:
-	//�����}�W�b�N�K�[�h�́A�_���[�W�Ȃ�
+	//特性マジックガードは、ダメージなし
 	TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_WORK,TOKUSYU_MAZIKKUGAADO,SUB_098_END
 	STATUS_EFFECT	SIDE_WORK,STATUS_DAMAGE_NOROI
 	SERVER_WAIT

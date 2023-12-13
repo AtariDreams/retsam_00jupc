@@ -16,7 +16,7 @@
 #define NNS_G2D_CELL_DATA_H_
 
 #include <nitro/types.h>
-#include <nnsys/g2d/fmt/g2d_Character_data.h>// ƒZƒ‹ ’è‹`‚ÍƒLƒƒƒ‰ƒNƒ^ƒ}ƒbƒsƒ“ƒOî•ñ‚ÉˆË‘¶‚·‚é
+#include <nnsys/g2d/fmt/g2d_Character_data.h>// ã‚»ãƒ« å®šç¾©ã¯ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ”ãƒ³ã‚°æƒ…å ±ã«ä¾å­˜ã™ã‚‹
 #include <nnsys/g2d/fmt/g2d_Common_data.h>
 #include <nnsys/g2d/g2d_config.h>
 
@@ -25,7 +25,7 @@ extern "C" {
 #endif
 
 //------------------------------------------------------------------------------
-// ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹ ¯•Êq ŠÖ˜A
+// ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ« è­˜åˆ¥å­ é–¢é€£
 #define NNS_G2D_BINFILE_SIG_CELL          (u32)'NCER'
 #define NNS_G2D_BLKSIG_CELLBANK           (u32)'CEBK'
 
@@ -33,14 +33,14 @@ extern "C" {
 
 
 //------------------------------------------------------------------------------
-// ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹ Šg’£q
+// ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ« æ‹¡å¼µå­
 #define NNS_G2D_BINFILE_EXT_CELL          "NCER"
 
 //------------------------------------------------------------------------------
 
 
 
-// NNSG2dCellData.bUseFlipHV “à‚ğQÆ‚·‚é‚½‚ß‚Ì ƒVƒtƒg—Ê
+// NNSG2dCellData.bUseFlipHV å†…ã‚’å‚ç…§ã™ã‚‹ãŸã‚ã® ã‚·ãƒ•ãƒˆé‡
 #define NNS_G2D_CELL_FLIP_H_SHIFT           (0 + 8) 
 #define NNS_G2D_CELL_FLIP_V_SHIFT           (1 + 8)
 #define NNS_G2D_CELL_FLIP_HV_SHIFT          (2 + 8)
@@ -60,17 +60,17 @@ extern "C" {
 #define NNS_G2D_CELL_MAX_Y                  127
 
 //------------------------------------------------------------------------------
-// NNSG2dCellDataBank.cellBankAttr “à‚Ìƒrƒbƒgî•ñ’è‹`
-#define NNS_G2D_CELLBK_ATTR_CELLWITHBR       0x1 // NNSG2dCellDataBank.cellBankAttr‚Æ & ‚ğ‚Æ‚é
-                                                 // ƒZƒ‹ƒf[ƒ^‚ª 
-                                                 // NNSG2dCellDataWithBR ‚È‚ç 1 
-                                                 // NNSG2dCellData ‚È‚ç 0
+// NNSG2dCellDataBank.cellBankAttr å†…ã®ãƒ“ãƒƒãƒˆæƒ…å ±å®šç¾©
+#define NNS_G2D_CELLBK_ATTR_CELLWITHBR       0x1 // NNSG2dCellDataBank.cellBankAttrã¨ & ã‚’ã¨ã‚‹
+                                                 // ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãŒ 
+                                                 // NNSG2dCellDataWithBR ãªã‚‰ 1 
+                                                 // NNSG2dCellData ãªã‚‰ 0
 
 //
-// ƒo[ƒWƒ‡ƒ“î•ñ
-// Ver         •ÏX“_
+// ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±
+// Ver         å¤‰æ›´ç‚¹
 // -------------------------------------
-// 1.0         Vram“]‘—ƒAƒjƒ‹@”\‚ÌŠg’£
+// 1.0         Vramè»¢é€ã‚¢ãƒ‹ãƒ¡æ©Ÿèƒ½ã®æ‹¡å¼µ
 //
 #define NNS_G2D_NCER_MAJOR_VER              1
 #define NNS_G2D_NCER_MINOR_VER              0       
@@ -78,13 +78,13 @@ extern "C" {
 
 
 //------------------------------------------------------------------------------
-// ŠÖ”‰ü–¼FŒİŠ·«‚Ì‚½‚ßAŒÃ‚¢–¼Ì‚ğ•Ê–¼‚Æ‚µ‚Ä’è‹`‚µ‚Ü‚·
+// é–¢æ•°æ”¹åï¼šäº’æ›æ€§ã®ãŸã‚ã€å¤ã„åç§°ã‚’åˆ¥åã¨ã—ã¦å®šç¾©ã—ã¾ã™
 #define NNS_G2dGetSizeReqiredVramTransferCellDataBank   NNS_G2dGetSizeRequiredVramTransferCellDataBank   
 
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dCellVramTransferData
 
-  Description:  1‚Â‚ÌƒZƒ‹‚ğ•\¦‚·‚é‚Ì‚É•K—v‚ÈVram“]‘—‚ÉŠÖ‚·‚éî•ñ
+  Description:  1ã¤ã®ã‚»ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹ã®ã«å¿…è¦ãªVramè»¢é€ã«é–¢ã™ã‚‹æƒ…å ±
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dCellVramTransferData
@@ -97,14 +97,14 @@ typedef struct NNSG2dCellVramTransferData
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dVramTransferData
 
-  Description:  ƒZƒ‹‚ğ•\¦‚·‚é‚Ì‚É•K—v‚ÈVram“]‘—‚ÉŠÖ‚·‚éî•ñ
+  Description:  ã‚»ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹ã®ã«å¿…è¦ãªVramè»¢é€ã«é–¢ã™ã‚‹æƒ…å ±
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dVramTransferData
 {
-    u32                                 szByteMax;             // ‚·‚×‚Ä‚ÌVRAM“]‘—’†‚ÌÅ‘åƒoƒCƒg”
-    NNSG2dCellVramTransferData*         pCellTransferDataArray;// •Û‚³‚ê‚é NNSG2dCellDataBank 
-                                                               // ‚Ì numCells •ª‚Ì’·‚³‚Å‚·
+    u32                                 szByteMax;             // ã™ã¹ã¦ã®VRAMè»¢é€ä¸­ã®æœ€å¤§ãƒã‚¤ãƒˆæ•°
+    NNSG2dCellVramTransferData*         pCellTransferDataArray;// ä¿æŒã•ã‚Œã‚‹ NNSG2dCellDataBank 
+                                                               // ã® numCells åˆ†ã®é•·ã•ã§ã™
     
 }NNSG2dVramTransferData;
 
@@ -114,7 +114,7 @@ typedef struct NNSG2dVramTransferData
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dCellOAMAttrData
 
-  Description:  ƒZƒ‹‚ğ’è‹`‚·‚é OAMƒAƒgƒŠƒrƒ…[ƒg
+  Description:  ã‚»ãƒ«ã‚’å®šç¾©ã™ã‚‹ OAMã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dCellOAMAttrData
@@ -128,7 +128,7 @@ typedef struct NNSG2dCellOAMAttrData
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dCellData
 
-  Description:  ƒZƒ‹‚Ì‹«ŠEî•ñ(‹éŒ`)‚ğ’è‹`‚·‚é
+  Description:  ã‚»ãƒ«ã®å¢ƒç•Œæƒ…å ±(çŸ©å½¢)ã‚’å®šç¾©ã™ã‚‹
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dCellBoundingRectS16
@@ -143,28 +143,28 @@ typedef struct NNSG2dCellBoundingRectS16
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dCellData
 
-  Description:  ƒZƒ‹‚ğ’è‹`‚·‚é ŠT”O
+  Description:  ã‚»ãƒ«ã‚’å®šç¾©ã™ã‚‹ æ¦‚å¿µ
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dCellData
 {
-    u16                       numOAMAttrs;      // OAM ƒAƒgƒŠƒrƒ…[ƒg”
-    u16                       cellAttr;         // ƒZƒ‹‚Ìí—Ş‚ÉŠÖ‚·‚éî•ñ
-                                                // ƒtƒŠƒbƒv ‚ÉŠÖ‚·‚é î•ñ (ãˆÊ8ƒrƒbƒg)
-                                                // ‹«ŠEî•ñ‚ÉŠÖ‚·‚éî•ñ
+    u16                       numOAMAttrs;      // OAM ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæ•°
+    u16                       cellAttr;         // ã‚»ãƒ«ã®ç¨®é¡ã«é–¢ã™ã‚‹æƒ…å ±
+                                                // ãƒ•ãƒªãƒƒãƒ— ã«é–¢ã™ã‚‹ æƒ…å ± (ä¸Šä½8ãƒ“ãƒƒãƒˆ)
+                                                // å¢ƒç•Œæƒ…å ±ã«é–¢ã™ã‚‹æƒ…å ±
                                                 // 
-                                                // •`‰æÅ“K‰»‚ÉŠÖ‚·‚é î•ñ (‰ºˆÊ8ƒrƒbƒg)
-                                                //      (6Bit => ‹«ŠE‹…‚Ì”¼Œa >> 2 )
+                                                // æç”»æœ€é©åŒ–ã«é–¢ã™ã‚‹ æƒ…å ± (ä¸‹ä½8ãƒ“ãƒƒãƒˆ)
+                                                //      (6Bit => å¢ƒç•Œçƒã®åŠå¾„ >> 2 )
                                                 
     
-    NNSG2dCellOAMAttrData*    pOamAttrArray;    // NNSG2dCellOAMAttrData ”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+    NNSG2dCellOAMAttrData*    pOamAttrArray;    // NNSG2dCellOAMAttrData é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
 }NNSG2dCellData;
 
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dCellDataWithBR
   
-  Description:  ƒZƒ‹‚ğ’è‹`‚·‚é ŠT”O(‹«ŠEî•ñ‚Æ‚µ‚ÄNNSG2dCellBoundingRect‚ğ‚Â)
+  Description:  ã‚»ãƒ«ã‚’å®šç¾©ã™ã‚‹ æ¦‚å¿µ(å¢ƒç•Œæƒ…å ±ã¨ã—ã¦NNSG2dCellBoundingRectã‚’æŒã¤)
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dCellDataWithBR
@@ -177,20 +177,20 @@ typedef struct NNSG2dCellDataWithBR
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dCellDataBank
 
-  Description:  •¡” ƒZƒ‹ƒf[ƒ^‚ğ‚Ü‚Æ‚ß‚é ŠT”O
-                ’Êí‚Í NNSG2dCellDataBank == ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹( NCER ) ‚Å‚·
+  Description:  è¤‡æ•° ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ã¾ã¨ã‚ã‚‹ æ¦‚å¿µ
+                é€šå¸¸ã¯ NNSG2dCellDataBank == ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«( NCER ) ã§ã™
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dCellDataBank
 {
-    u16                              numCells;               // ƒZƒ‹‘”
-    u16                              cellBankAttr;           // ‘®«
+    u16                              numCells;               // ã‚»ãƒ«ç·æ•°
+    u16                              cellBankAttr;           // å±æ€§
     NNSG2dCellData*                  pCellDataArrayHead;     // offset addres 
-    NNSG2dCharacterDataMapingType    mappingMode;            // QÆƒLƒƒƒ‰ƒNƒ^‚Ìƒ}ƒbƒsƒ“ƒOƒ‚[ƒh
+    NNSG2dCharacterDataMapingType    mappingMode;            // å‚ç…§ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰
     
-    NNSG2dVramTransferData*          pVramTransferData;      // Vram “]‘— ƒAƒjƒ ‚ÉŠÖ‚·‚éî•ñ
+    NNSG2dVramTransferData*          pVramTransferData;      // Vram è»¢é€ ã‚¢ãƒ‹ãƒ¡ ã«é–¢ã™ã‚‹æƒ…å ±
     
-    void*                            pStringBank;            // •¶šƒoƒ“ƒN
+    void*                            pStringBank;            // æ–‡å­—ãƒãƒ³ã‚¯
     void*                            pExtendedData;          // offset addr (if it exists.)
     
     
@@ -199,7 +199,7 @@ typedef struct NNSG2dCellDataBank
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dCellDataBankBlock 
 
-  Description:  NNSG2dCellDataBank‚ğŠi”[‚·‚éƒoƒCƒiƒŠƒuƒƒbƒN
+  Description:  NNSG2dCellDataBankã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒŠãƒªãƒ–ãƒ­ãƒƒã‚¯
   
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dCellDataBankBlock
@@ -220,7 +220,7 @@ typedef struct NNSG2dUserExCellAttr
 typedef struct NNSG2dUserExCellAttrBank
 {
     u16                      numCells; // 
-    u16                      numAttribute; // ƒAƒgƒŠƒrƒ…[ƒg”FŒ»İ‚Í1ŒÅ’è
+    u16                      numAttribute; // ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæ•°ï¼šç¾åœ¨ã¯1å›ºå®š
     NNSG2dUserExCellAttr*    pCellAttrArray;   
     
 }NNSG2dUserExCellAttrBank;
@@ -228,19 +228,19 @@ typedef struct NNSG2dUserExCellAttrBank
 
 
 //------------------------------------------------------------------------------
-// ƒCƒ“ƒ‰ƒCƒ“ŠÖ”
+// ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°
 //------------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dSetCellBankHasBR
 
-  Description:  ƒZƒ‹‚ª‹«ŠE‹éŒ`‚ğ‚ÂƒZƒ‹ƒoƒ“ƒN‚©‚Ç‚¤‚©‚ğæ“¾‚µ‚Ü‚·
-                << ƒRƒ“ƒo[ƒ^‚ªg—p‚·‚éŠÖ”‚Å‚· >>
+  Description:  ã‚»ãƒ«ãŒå¢ƒç•ŒçŸ©å½¢ã‚’æŒã¤ã‚»ãƒ«ãƒãƒ³ã‚¯ã‹ã©ã†ã‹ã‚’å–å¾—ã—ã¾ã™
+                << ã‚³ãƒ³ãƒãƒ¼ã‚¿ãŒä½¿ç”¨ã™ã‚‹é–¢æ•°ã§ã™ >>
                 
-  Arguments:    pCellBank:           ƒZƒ‹ƒoƒ“ƒNî•ñ
+  Arguments:    pCellBank:           ã‚»ãƒ«ãƒãƒ³ã‚¯æƒ…å ±
                 
                 
-  Returns:      ƒZƒ‹ƒoƒ“ƒN‚ª‹«ŠE‹éŒ`‚ğ‚Â‚©‚Ç‚¤‚©
+  Returns:      ã‚»ãƒ«ãƒãƒ³ã‚¯ãŒå¢ƒç•ŒçŸ©å½¢ã‚’æŒã¤ã‹ã©ã†ã‹
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNSi_G2dSetCellBankHasBR(  NNSG2dCellDataBank* pCellBank )
@@ -252,12 +252,12 @@ NNS_G2D_INLINE void NNSi_G2dSetCellBankHasBR(  NNSG2dCellDataBank* pCellBank )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dCellBankHasBR
 
-  Description:  ƒZƒ‹‚ª‹«ŠE‹éŒ`‚ğ‚ÂƒZƒ‹ƒoƒ“ƒN‚©‚Ç‚¤‚©‚ğæ“¾‚µ‚Ü‚·
+  Description:  ã‚»ãƒ«ãŒå¢ƒç•ŒçŸ©å½¢ã‚’æŒã¤ã‚»ãƒ«ãƒãƒ³ã‚¯ã‹ã©ã†ã‹ã‚’å–å¾—ã—ã¾ã™
                 
-  Arguments:    pCellBank:           ƒZƒ‹ƒoƒ“ƒNî•ñ
+  Arguments:    pCellBank:           ã‚»ãƒ«ãƒãƒ³ã‚¯æƒ…å ±
                 
                 
-  Returns:      ƒZƒ‹ƒoƒ“ƒN‚ª‹«ŠE‹éŒ`‚ğ‚Â‚©‚Ç‚¤‚©
+  Returns:      ã‚»ãƒ«ãƒãƒ³ã‚¯ãŒå¢ƒç•ŒçŸ©å½¢ã‚’æŒã¤ã‹ã©ã†ã‹
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE BOOL NNSi_G2dCellBankHasBR(  const NNSG2dCellDataBank* pCellBank )
@@ -268,13 +268,13 @@ NNS_G2D_INLINE BOOL NNSi_G2dCellBankHasBR(  const NNSG2dCellDataBank* pCellBank 
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dSetCellAttrFlipFlag
 
-  Description:  ƒtƒŠƒbƒv—˜—pİ’èî•ñ‚ğŠi”[‚µ‚½ u16 •Ï” ‚ğİ’è‚µ•Ô‚µ‚Ü‚· 
+  Description:  ãƒ•ãƒªãƒƒãƒ—åˆ©ç”¨è¨­å®šæƒ…å ±ã‚’æ ¼ç´ã—ãŸ u16 å¤‰æ•° ã‚’è¨­å®šã—è¿”ã—ã¾ã™ 
                 
-  Arguments:    bH:         HƒtƒŠƒbƒv
-                bV:         VƒtƒŠƒbƒv
-                bHV:        HVƒtƒŠƒbƒv
+  Arguments:    bH:         Hãƒ•ãƒªãƒƒãƒ—
+                bV:         Vãƒ•ãƒªãƒƒãƒ—
+                bHV:        HVãƒ•ãƒªãƒƒãƒ—
                 
-  Returns:      î•ñ‚ğŠi”[‚µ‚½ u16 •Ï” 
+  Returns:      æƒ…å ±ã‚’æ ¼ç´ã—ãŸ u16 å¤‰æ•° 
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE u16 NNSi_G2dSetCellAttrFlipFlag( BOOL bH, BOOL bV, BOOL bHV )
@@ -286,13 +286,13 @@ NNS_G2D_INLINE u16 NNSi_G2dSetCellAttrFlipFlag( BOOL bH, BOOL bV, BOOL bHV )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dSetCellAttrHasBR
 
-  Description:  ƒZƒ‹‚ª‹«ŠE‹éŒ`‚ğ‚Â‚©‚Ç‚¤‚©‚ğİ’è‚µ‚½ u16 •Ï” ‚ğİ’è‚µ•Ô‚µ‚Ü‚· 
-                << ƒRƒ“ƒo[ƒ^‚ªg—p‚·‚éŠÖ”‚Å‚· >>
+  Description:  ã‚»ãƒ«ãŒå¢ƒç•ŒçŸ©å½¢ã‚’æŒã¤ã‹ã©ã†ã‹ã‚’è¨­å®šã—ãŸ u16 å¤‰æ•° ã‚’è¨­å®šã—è¿”ã—ã¾ã™ 
+                << ã‚³ãƒ³ãƒãƒ¼ã‚¿ãŒä½¿ç”¨ã™ã‚‹é–¢æ•°ã§ã™ >>
                 
-  Arguments:    bHasBR:         ƒZƒ‹‚ª‹«ŠE‹éŒ`‚ğ‚Â‚©‚Ç‚¤‚©
+  Arguments:    bHasBR:         ã‚»ãƒ«ãŒå¢ƒç•ŒçŸ©å½¢ã‚’æŒã¤ã‹ã©ã†ã‹
                 
                 
-  Returns:      î•ñ‚ğŠi”[‚µ‚½ u16 •Ï” 
+  Returns:      æƒ…å ±ã‚’æ ¼ç´ã—ãŸ u16 å¤‰æ•° 
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE u16 NNSi_G2dSetCellAttrHasBR( BOOL bHasBR )
@@ -303,11 +303,11 @@ NNS_G2D_INLINE u16 NNSi_G2dSetCellAttrHasBR( BOOL bHasBR )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dIsCellFlipH
 
-  Description:  HƒtƒŠƒbƒv ‚ğg—p‚·‚é‚©’²¸‚µ‚Ü‚·
+  Description:  Hãƒ•ãƒªãƒƒãƒ— ã‚’ä½¿ç”¨ã™ã‚‹ã‹èª¿æŸ»ã—ã¾ã™
                 
-  Arguments:    pCell:           ƒZƒ‹ƒf[ƒ^ 
+  Arguments:    pCell:           ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ 
                 
-  Returns:      g—p‚·‚é‚©‚Ç‚¤‚©
+  Returns:      ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE BOOL NNSi_G2dIsCellFlipH( const NNSG2dCellData* pCell )
@@ -319,11 +319,11 @@ NNS_G2D_INLINE BOOL NNSi_G2dIsCellFlipH( const NNSG2dCellData* pCell )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dIsCellFlipV
 
-  Description:  VƒtƒŠƒbƒv ‚ğg—p‚·‚é‚©’²¸‚µ‚Ü‚·
+  Description:  Vãƒ•ãƒªãƒƒãƒ— ã‚’ä½¿ç”¨ã™ã‚‹ã‹èª¿æŸ»ã—ã¾ã™
                 
-  Arguments:    pCell:           ƒZƒ‹ƒf[ƒ^ 
+  Arguments:    pCell:           ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ 
                 
-  Returns:      g—p‚·‚é‚©‚Ç‚¤‚©
+  Returns:      ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE BOOL NNSi_G2dIsCellFlipV( const NNSG2dCellData* pCell )
@@ -334,11 +334,11 @@ NNS_G2D_INLINE BOOL NNSi_G2dIsCellFlipV( const NNSG2dCellData* pCell )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dIsCellFlipHV
 
-  Description:  HVƒtƒŠƒbƒv ‚ğg—p‚·‚é‚©’²¸‚µ‚Ü‚·
+  Description:  HVãƒ•ãƒªãƒƒãƒ— ã‚’ä½¿ç”¨ã™ã‚‹ã‹èª¿æŸ»ã—ã¾ã™
                 
-  Arguments:    pCell:           ƒZƒ‹ƒf[ƒ^ 
+  Arguments:    pCell:           ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ 
                 
-  Returns:      g—p‚·‚é‚©‚Ç‚¤‚©
+  Returns:      ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE BOOL NNSi_G2dIsCellFlipHV( const NNSG2dCellData* pCell )
@@ -349,12 +349,12 @@ NNS_G2D_INLINE BOOL NNSi_G2dIsCellFlipHV( const NNSG2dCellData* pCell )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dCellHasBR
 
-  Description:  ƒZƒ‹‚ª‹«ŠE‹éŒ`‚ğ‚Â‚©‚Ç‚¤‚©‚ğæ“¾‚µ‚Ü‚·
+  Description:  ã‚»ãƒ«ãŒå¢ƒç•ŒçŸ©å½¢ã‚’æŒã¤ã‹ã©ã†ã‹ã‚’å–å¾—ã—ã¾ã™
                 
-  Arguments:    pCell:           ƒZƒ‹ƒf[ƒ^
+  Arguments:    pCell:           ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
                 
                 
-  Returns:      ƒZƒ‹‚ª‹«ŠE‹éŒ`‚ğ‚Â‚©‚Ç‚¤‚©
+  Returns:      ã‚»ãƒ«ãŒå¢ƒç•ŒçŸ©å½¢ã‚’æŒã¤ã‹ã©ã†ã‹
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE BOOL NNS_G2dCellHasBR(  const NNSG2dCellData* pCell )
@@ -370,14 +370,14 @@ NNS_G2D_INLINE BOOL NNSi_G2dCellHasBR(  const NNSG2dCellData* pCell )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dCellBoundingRect
 
-  Description:  ƒZƒ‹‚Ì‹«ŠE‹éŒ`‚ğæ“¾‚µ‚Ü‚·B
-                “à•”‚Å‚ÍƒZƒ‹‚ª‹«ŠE‹éŒ`‚ğ‚Â‚©”»’è‚µ‚Ü‚¹‚ñB
-                ”»’è‚Íƒ†[ƒUƒR[ƒh‚Ås‚Á‚Ä‚­‚¾‚³‚¢B
+  Description:  ã‚»ãƒ«ã®å¢ƒç•ŒçŸ©å½¢ã‚’å–å¾—ã—ã¾ã™ã€‚
+                å†…éƒ¨ã§ã¯ã‚»ãƒ«ãŒå¢ƒç•ŒçŸ©å½¢ã‚’æŒã¤ã‹åˆ¤å®šã—ã¾ã›ã‚“ã€‚
+                åˆ¤å®šã¯ãƒ¦ãƒ¼ã‚¶ã‚³ãƒ¼ãƒ‰ã§è¡Œã£ã¦ãã ã•ã„ã€‚
                 
-  Arguments:    pCell:           ƒZƒ‹ƒf[ƒ^
+  Arguments:    pCell:           ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
                 
                 
-  Returns:      ƒZƒ‹‚ª‹«ŠE‹éŒ`
+  Returns:      ã‚»ãƒ«ãŒå¢ƒç•ŒçŸ©å½¢
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE const NNSG2dCellBoundingRectS16* 
@@ -391,24 +391,24 @@ NNS_G2dGetCellBoundingRect( const NNSG2dCellData* pCell )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dSetCellBoundingSphereR
 
-  Description:  ƒZƒ‹‚Ì‹«ŠE‹…î•ñ‚ğİ’è‚µ‚Ü‚·B(–{ŠÖ”‚ÍƒRƒ“ƒo[ƒ^‚É‚æ‚èg—p‚³‚ê‚éŠÖ”‚Å‚·)
-                8Bit‹«ŠE‹…”¼Œaî•ñ‚ğ2ƒrƒbƒg‰EƒVƒtƒg‚µ‚ÄApCell->cellAttr‚ÉŠi”[‚µ‚Ü‚·B
+  Description:  ã‚»ãƒ«ã®å¢ƒç•Œçƒæƒ…å ±ã‚’è¨­å®šã—ã¾ã™ã€‚(æœ¬é–¢æ•°ã¯ã‚³ãƒ³ãƒãƒ¼ã‚¿ã«ã‚ˆã‚Šä½¿ç”¨ã•ã‚Œã‚‹é–¢æ•°ã§ã™)
+                8Bitå¢ƒç•ŒçƒåŠå¾„æƒ…å ±ã‚’2ãƒ“ãƒƒãƒˆå³ã‚·ãƒ•ãƒˆã—ã¦ã€pCell->cellAttrã«æ ¼ç´ã—ã¾ã™ã€‚
 
-                ”¼Œaî•ñ‚Ì‰ºˆÊ2ƒrƒbƒg‚ÍØÌ‚Ä‘O‚ÉAØ‚èã‚°ˆ—‚ğ‚¨‚±‚È‚¢‚Ü‚·B
+                åŠå¾„æƒ…å ±ã®ä¸‹ä½2ãƒ“ãƒƒãƒˆã¯åˆ‡æ¨ã¦å‰ã«ã€åˆ‡ã‚Šä¸Šã’å‡¦ç†ã‚’ãŠã“ãªã„ã¾ã™ã€‚
                 
-                << ƒRƒ“ƒo[ƒ^‚ªg—p‚·‚éŠÖ”‚Å‚· >>
+                << ã‚³ãƒ³ãƒãƒ¼ã‚¿ãŒä½¿ç”¨ã™ã‚‹é–¢æ•°ã§ã™ >>
                 
                 
-  Arguments:    pCell:           ƒZƒ‹ƒf[ƒ^
-                R    :           ‹«ŠE‹…”¼Œa
+  Arguments:    pCell:           ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
+                R    :           å¢ƒç•ŒçƒåŠå¾„
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNSi_G2dSetCellBoundingSphereR( NNSG2dCellData* pCell, u8 R )
 {
     //
-    // Ø‚èã‚°ˆ—
+    // åˆ‡ã‚Šä¸Šã’å‡¦ç†
     //
     if( (R & 0x3) != 0 )
     {
@@ -424,12 +424,12 @@ NNS_G2D_INLINE void NNSi_G2dSetCellBoundingSphereR( NNSG2dCellData* pCell, u8 R 
   Name:         NNS_G2dGetCellBoundingSphereR    
                 NNSi_G2dGetCellBoundingSphereR
 
-  Description:  ƒZƒ‹‚Ì‹«ŠE‹…î•ñ‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ã‚»ãƒ«ã®å¢ƒç•Œçƒæƒ…å ±ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pCell:           ƒZƒ‹ƒf[ƒ^
+  Arguments:    pCell:           ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
                 
                 
-  Returns:      ‹«ŠE‹…”¼Œa
+  Returns:      å¢ƒç•ŒçƒåŠå¾„
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE u8 NNS_G2dGetCellBoundingSphereR( const NNSG2dCellData* pCell )
@@ -440,7 +440,7 @@ NNS_G2D_INLINE u8 NNS_G2dGetCellBoundingSphereR( const NNSG2dCellData* pCell )
 
 NNS_G2D_INLINE u8 NNSi_G2dGetCellBoundingSphereR( const NNSG2dCellData* pCell )
 {
-    // TODO:Œx‚ğ•\¦‚·‚é
+    // TODO:è­¦å‘Šã‚’è¡¨ç¤ºã™ã‚‹
     return NNS_G2dGetCellBoundingSphereR( pCell );
 }
 
@@ -449,12 +449,12 @@ NNS_G2D_INLINE u8 NNSi_G2dGetCellBoundingSphereR( const NNSG2dCellData* pCell )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dCellDataBankHasVramTransferData
 
-  Description:  ƒZƒ‹ƒoƒ“ƒN‚ªVRAM“]‘—î•ñ‚ğ‚Á‚Ä‚¢‚é‚©’²¸‚µ‚Ü‚·B
+  Description:  ã‚»ãƒ«ãƒãƒ³ã‚¯ãŒVRAMè»¢é€æƒ…å ±ã‚’æŒã£ã¦ã„ã‚‹ã‹èª¿æŸ»ã—ã¾ã™ã€‚
                 
-  Arguments:    pCellBank:           ƒZƒ‹ƒf[ƒ^ƒoƒ“ƒN
+  Arguments:    pCellBank:           ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯
                 
                 
-  Returns:      ‚à‚Á‚Ä‚¢‚ê‚ÎTRUE
+  Returns:      ã‚‚ã£ã¦ã„ã‚Œã°TRUE
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE BOOL NNS_G2dCellDataBankHasVramTransferData( const NNSG2dCellDataBank* pCellBank )
@@ -466,13 +466,13 @@ NNS_G2D_INLINE BOOL NNS_G2dCellDataBankHasVramTransferData( const NNSG2dCellData
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetSizeRequiredVramTransferCellDataBank
 
-  Description:  VRAM“]‘—ƒZƒ‹ƒoƒ“ƒN‚ª•K—v‚Æ‚·‚éVRAM—Ìˆæ‚Ì‘å‚«‚³iƒoƒCƒgj‚ğæ“¾‚µ‚Ü‚·B
-                VRAM“]‘—î•ñ‚ğ‚Á‚Ä‚¢‚È‚¢ê‡‚Íƒ[ƒ‚ğ•Ô‚µ‚Ü‚·B
+  Description:  VRAMè»¢é€ã‚»ãƒ«ãƒãƒ³ã‚¯ãŒå¿…è¦ã¨ã™ã‚‹VRAMé ˜åŸŸã®å¤§ãã•ï¼ˆãƒã‚¤ãƒˆï¼‰ã‚’å–å¾—ã—ã¾ã™ã€‚
+                VRAMè»¢é€æƒ…å ±ã‚’æŒã£ã¦ã„ãªã„å ´åˆã¯ã‚¼ãƒ­ã‚’è¿”ã—ã¾ã™ã€‚
                 
-  Arguments:    pCellBank:           ƒZƒ‹ƒf[ƒ^ƒoƒ“ƒN
+  Arguments:    pCellBank:           ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯
                 
                 
-  Returns:      •K—v‚Æ‚·‚éVRAM—Ìˆæ‚Ì‘å‚«‚³iƒoƒCƒgj
+  Returns:      å¿…è¦ã¨ã™ã‚‹VRAMé ˜åŸŸã®å¤§ãã•ï¼ˆãƒã‚¤ãƒˆï¼‰
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE u32 NNS_G2dGetSizeRequiredVramTransferCellDataBank( const NNSG2dCellDataBank* pCellBank )
@@ -491,15 +491,15 @@ NNS_G2D_INLINE u32 NNS_G2dGetSizeRequiredVramTransferCellDataBank( const NNSG2dC
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetCellVramTransferData
 
-  Description:  w’è‚³‚ê‚½ƒZƒ‹”Ô†‚ÌVRAM“]‘—ƒZƒ‹ƒf[ƒ^‚ğæ“¾‚µ‚Ü‚·
+  Description:  æŒ‡å®šã•ã‚ŒãŸã‚»ãƒ«ç•ªå·ã®VRAMè»¢é€ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ã¾ã™
                 
-                ƒZƒ‹”ˆÈã‚ÌƒZƒ‹”Ô†‚ªw’è‚³‚ê‚½ê‡AƒAƒT[ƒg‚É¸”s‚µ‚Ü‚·
-                VRAM“]‘—î•ñ‚ğ‚½‚È‚¢ƒZƒ‹ƒf[ƒ^ƒoƒ“ƒN‚ªw’è‚³‚ê‚½ê‡AƒAƒT[ƒg‚É¸”s‚µ‚Ü‚·
+                ã‚»ãƒ«æ•°ä»¥ä¸Šã®ã‚»ãƒ«ç•ªå·ãŒæŒ‡å®šã•ã‚ŒãŸå ´åˆã€ã‚¢ã‚µãƒ¼ãƒˆã«å¤±æ•—ã—ã¾ã™
+                VRAMè»¢é€æƒ…å ±ã‚’æŒãŸãªã„ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯ãŒæŒ‡å®šã•ã‚ŒãŸå ´åˆã€ã‚¢ã‚µãƒ¼ãƒˆã«å¤±æ•—ã—ã¾ã™
                 
-  Arguments:    pCellBank   :           ƒZƒ‹ƒf[ƒ^ƒoƒ“ƒN
-                cellIdx     :           ƒZƒ‹”Ô†
+  Arguments:    pCellBank   :           ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯
+                cellIdx     :           ã‚»ãƒ«ç•ªå·
                 
-  Returns:      •K—v‚Æ‚·‚éVRAM—Ìˆæ‚Ì‘å‚«‚³iƒoƒCƒgj
+  Returns:      å¿…è¦ã¨ã™ã‚‹VRAMé ˜åŸŸã®å¤§ãã•ï¼ˆãƒã‚¤ãƒˆï¼‰
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE const NNSG2dCellVramTransferData* 
@@ -516,23 +516,23 @@ NNSi_G2dGetCellVramTransferData( const NNSG2dCellDataBank* pCellBank, u16 cellId
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetUserExCellAttrBankFromCellBank
 
-  Description:  ƒZƒ‹ƒoƒ“ƒN‚©‚çƒZƒ‹Šg’£ƒAƒgƒŠƒrƒ…[ƒgƒoƒ“ƒN‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ã‚»ãƒ«ãƒãƒ³ã‚¯ã‹ã‚‰ã‚»ãƒ«æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒãƒ³ã‚¯ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
                 
-  Arguments:    pCellBank   :           ƒZƒ‹ƒf[ƒ^ƒoƒ“ƒN
+  Arguments:    pCellBank   :           ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯
                 
                 
-  Returns:      ƒZƒ‹Šg’£ƒAƒgƒŠƒrƒ…[ƒgƒoƒ“ƒN
+  Returns:      ã‚»ãƒ«æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒãƒ³ã‚¯
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE const NNSG2dUserExCellAttrBank* 
 NNS_G2dGetUserExCellAttrBankFromCellBank( const NNSG2dCellDataBank* pCellBank )
 {
-    // ƒuƒƒbƒN‚ğæ“¾‚µ‚Ü‚·
+    // ãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—ã—ã¾ã™
     const NNSG2dUserExDataBlock* pBlk 
         = NNSi_G2dGetUserExDataBlkByID( pCellBank->pExtendedData,
                                         NNS_G2D_USEREXBLK_CELLATTR );
-    // ƒuƒƒbƒN‚Ìæ“¾‚É¬Œ÷‚µ‚½‚ç...
+    // ãƒ–ãƒ­ãƒƒã‚¯ã®å–å¾—ã«æˆåŠŸã—ãŸã‚‰...
     if( pBlk != NULL )
     {
         return (const NNSG2dUserExCellAttrBank*)(pBlk + 1);
@@ -543,14 +543,14 @@ NNS_G2dGetUserExCellAttrBankFromCellBank( const NNSG2dCellDataBank* pCellBank )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetUserExCellAttr
 
-  Description:  ƒZƒ‹Šg’£ƒAƒgƒŠƒrƒ…[ƒgƒoƒ“ƒN‚©‚çƒZƒ‹Šg’£ƒAƒgƒŠƒrƒ…[ƒg
-                ‚ğƒZƒ‹”Ô†‚ğw’è‚µ‚Äæ“¾‚µ‚Ü‚·B
+  Description:  ã‚»ãƒ«æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒãƒ³ã‚¯ã‹ã‚‰ã‚»ãƒ«æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+                ã‚’ã‚»ãƒ«ç•ªå·ã‚’æŒ‡å®šã—ã¦å–å¾—ã—ã¾ã™ã€‚
                 
                 
-  Arguments:    pCellAttrBank   :           ƒZƒ‹Šg’£ƒAƒgƒŠƒrƒ…[ƒgƒoƒ“ƒN
-                idx             :           ƒZƒ‹”Ô†                
+  Arguments:    pCellAttrBank   :           ã‚»ãƒ«æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒãƒ³ã‚¯
+                idx             :           ã‚»ãƒ«ç•ªå·                
                 
-  Returns:      ƒZƒ‹Šg’£ƒAƒgƒŠƒrƒ…[ƒg
+  Returns:      ã‚»ãƒ«æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE const NNSG2dUserExCellAttr* 
@@ -571,13 +571,13 @@ NNS_G2dGetUserExCellAttr
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetUserExCellAttrValue
 
-  Description:  ƒZƒ‹Šg’£ƒAƒgƒŠƒrƒ…[ƒg‚©‚çƒAƒgƒŠƒrƒ…[ƒg’l‚ğæ“¾‚µ‚Ü‚·
+  Description:  ã‚»ãƒ«æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‹ã‚‰ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå€¤ã‚’å–å¾—ã—ã¾ã™
                 
                 
-  Arguments:    pCellAttrBank   :           ƒZƒ‹Šg’£ƒAƒgƒŠƒrƒ…[ƒg
+  Arguments:    pCellAttrBank   :           ã‚»ãƒ«æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
                 
                 
-  Returns:      ƒAƒgƒŠƒrƒ…[ƒg’l
+  Returns:      ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå€¤
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE const u32
@@ -593,13 +593,13 @@ NNS_G2dGetUserExCellAttrValue
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dCopyCellAsOamAttr
 
-  Description:  ƒZƒ‹ƒf[ƒ^“à‚ÌOamƒAƒgƒŠƒrƒ…[ƒgî•ñ‚ğGXOamAttr‚ÉƒRƒs[‚µ‚Ü‚·B
+  Description:  ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿å†…ã®Oamã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæƒ…å ±ã‚’GXOamAttrã«ã‚³ãƒ”ãƒ¼ã—ã¾ã™ã€‚
                 
-  Arguments:    pCell       :       ƒZƒ‹ƒf[ƒ^
-                idx         :       OAMƒAƒgƒŠƒrƒ…[ƒg”Ô†
-                pDst        :       ƒRƒs[æ GXOamAttr
+  Arguments:    pCell       :       ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
+                idx         :       OAMã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç•ªå·
+                pDst        :       ã‚³ãƒ”ãƒ¼å…ˆ GXOamAttr
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNS_G2dCopyCellAsOamAttr( const NNSG2dCellData* pCell, u16 idx, GXOamAttr* pDst )
@@ -619,13 +619,13 @@ NNS_G2D_INLINE void NNS_G2dCopyCellAsOamAttr( const NNSG2dCellData* pCell, u16 i
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dRepeatXinCellSpace
 
-  Description:  ƒZƒ‹“à‚ÌOBJ‚ÌƒŠƒs[ƒgiÀ•W‰ñ‚è‚İjˆ—‚ğs‚¢‚Ü‚·
-                Œ‹‰Ê s16 ’l‚Í -128 - 127 ‚Ö‚Æ•ÏŠ·‚³‚ê‚Ü‚·B
+  Description:  ã‚»ãƒ«å†…ã®OBJã®ãƒªãƒ”ãƒ¼ãƒˆï¼ˆåº§æ¨™å›ã‚Šè¾¼ã¿ï¼‰å‡¦ç†ã‚’è¡Œã„ã¾ã™
+                çµæœ s16 å€¤ã¯ -128 - 127 ã¸ã¨å¤‰æ›ã•ã‚Œã¾ã™ã€‚
                 
-  Arguments:    srcX       :       Œ³‚Ì’l
+  Arguments:    srcX       :       å…ƒã®å€¤
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE  s16 NNS_G2dRepeatXinCellSpace( s16 srcX )
@@ -640,13 +640,13 @@ NNS_G2D_INLINE  s16 NNS_G2dRepeatXinCellSpace( s16 srcX )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dRepeatYinCellSpace
 
-  Description:  ƒZƒ‹“à‚ÌOBJ‚ÌƒŠƒs[ƒgiÀ•W‰ñ‚è‚İjˆ—‚ğs‚¢‚Ü‚·
-                Œ‹‰Ê s16 ’l‚Í -128 - 127 ‚Ö‚Æ•ÏŠ·‚³‚ê‚Ü‚·B
+  Description:  ã‚»ãƒ«å†…ã®OBJã®ãƒªãƒ”ãƒ¼ãƒˆï¼ˆåº§æ¨™å›ã‚Šè¾¼ã¿ï¼‰å‡¦ç†ã‚’è¡Œã„ã¾ã™
+                çµæœ s16 å€¤ã¯ -128 - 127 ã¸ã¨å¤‰æ›ã•ã‚Œã¾ã™ã€‚
                 
-  Arguments:    srcY       :       Œ³‚Ì’l
+  Arguments:    srcY       :       å…ƒã®å€¤
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE  s16 NNS_G2dRepeatYinCellSpace( s16 srcY )

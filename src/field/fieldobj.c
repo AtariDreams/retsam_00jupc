@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fieldobj.c
- * @brief	ƒtƒB[ƒ‹ƒhƒIƒuƒWƒFƒNƒg
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  * @author	kagaya
  * @data	05.07.13
  *
@@ -19,16 +19,16 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-//	‚Å‚Î‚Á‚®
+//	ã§ã°ã£ã
 //--------------------------------------------------------------
 #ifdef PM_DEBUG
 
-//#define DEBUG_OBJID_SAM_CHECK		//’è‹`‚ÅOBJ ID“¯ˆêƒ`ƒFƒbƒN
-//#define DEBUG_PRINT_FLDOBJ_COUNT	//’è‹`‚ÅOBJ‘¶İ”o—Í
+//#define DEBUG_OBJID_SAM_CHECK		//å®šç¾©ã§OBJ IDåŒä¸€ãƒã‚§ãƒƒã‚¯
+//#define DEBUG_PRINT_FLDOBJ_COUNT	//å®šç¾©ã§OBJå­˜åœ¨æ•°å‡ºåŠ›
 
-#ifdef DEBUG_ONLY_FOR_kagaya		//kagayaê—p
-//#define DEBUG_CHECK_NEWOBJ		//V‹KOBJƒ`ƒFƒbƒN
-#define DEBUG_FLDOBJ_PRINTF			//OS_Printf()—LŒø
+#ifdef DEBUG_ONLY_FOR_kagaya		//kagayaå°‚ç”¨
+//#define DEBUG_CHECK_NEWOBJ		//æ–°è¦OBJãƒã‚§ãƒƒã‚¯
+#define DEBUG_FLDOBJ_PRINTF			//OS_Printf()æœ‰åŠ¹
 #endif
 
 #ifdef DEBUG_CHECK_NEWOBJ
@@ -39,116 +39,116 @@
 #endif //PM_DEBUG
 
 //--------------------------------------------------------------
-///	ƒGƒCƒŠƒAƒXƒVƒ“ƒ{ƒ‹
+///	ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã‚·ãƒ³ãƒœãƒ«
 //--------------------------------------------------------------
 enum
 {
-	RET_ALIES_NOT = 0,	//ƒGƒCƒŠƒAƒX‚Å‚Í‚È‚¢
-	RET_ALIES_EXIST,	//ƒGƒCƒŠƒAƒX‚Æ‚µ‚ÄŠù‚É‘¶İ‚µ‚Ä‚¢‚é
-	RET_ALIES_CHANGE,	//ƒGƒCƒŠƒAƒX•ÏX‚ª•K—v‚Å‚ ‚é
+	RET_ALIES_NOT = 0,	//ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã§ã¯ãªã„
+	RET_ALIES_EXIST,	//ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã¨ã—ã¦æ—¢ã«å­˜åœ¨ã—ã¦ã„ã‚‹
+	RET_ALIES_CHANGE,	//ã‚¨ã‚¤ãƒªã‚¢ã‚¹å¤‰æ›´ãŒå¿…è¦ã§ã‚ã‚‹
 };
 
 //==============================================================================
 //	struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FIELD_OBJ_SYS\‘¢‘Ì
+///	FIELD_OBJ_SYSæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FIELD_OBJ_SYS
 {
-	u32 status_bit;											///<ƒXƒe[ƒ^ƒXƒrƒbƒg
-	int fldobj_max;											///<FIELD_OBJÅ‘å”
-	int fldobj_count;										///<ƒtƒB[ƒ‹ƒhOBJŒ»İ”
-	int tcb_pri;											///<TCBƒvƒ‰ƒCƒIƒŠƒeƒB
-	int blact_idx;											///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒCƒ“ƒfƒbƒNƒX
-	ARCHANDLE *archandle;									///<ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+	u32 status_bit;											///<ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ
+	int fldobj_max;											///<FIELD_OBJæœ€å¤§æ•°
+	int fldobj_count;										///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç¾åœ¨æ•°
+	int tcb_pri;											///<TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	int blact_idx;											///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	ARCHANDLE *archandle;									///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
 	FIELD_OBJ_BLACT_CONT blact_cont;						///<FIELD_OBJ_BLACT_CONT
 	FIELD_OBJ_RENDER_CONT_PTR render_cont;					///<FIELD_OBJ_RENDER_CONT
-	FIELD_OBJ_PTR fldobj_work;								///<FIELD_OBJƒ[ƒN *
+	FIELD_OBJ_PTR fldobj_work;								///<FIELD_OBJãƒ¯ãƒ¼ã‚¯ *
 	FIELDSYS_WORK *fieldsys;								///<FIELDSYS_WORK *
 }FIELD_OBJ_SYS;
 
-#define FIELD_OBJ_SYS_SIZE (sizeof(FIELD_OBJ_SYS))			///<FIELD_OBJ_SYSƒTƒCƒY
+#define FIELD_OBJ_SYS_SIZE (sizeof(FIELD_OBJ_SYS))			///<FIELD_OBJ_SYSã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	FIELD_OBJ\‘¢‘Ì
+///	FIELD_OBJæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FIELD_OBJ
 {
-	u32 status_bit;											///<ƒXƒe[ƒ^ƒXƒrƒbƒg
-	u32 move_bit;											///<“®ìƒrƒbƒg
+	u32 status_bit;											///<ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ
+	u32 move_bit;											///<å‹•ä½œãƒ“ãƒƒãƒˆ
 	u32 obj_id;												///<OBJ ID
-	u32 zone_id;											///<ƒ][ƒ“ ID
-	u32 obj_code;											///<OBJƒR[ƒh
-	u32 move_code;											///<“®ìƒR[ƒh
-	u32 event_type;											///<ƒCƒxƒ“ƒgƒ^ƒCƒv
-	u32 event_flag;											///<ƒCƒxƒ“ƒgƒtƒ‰ƒO
-	u32 event_id;											///<ƒCƒxƒ“ƒgID
-	int dir_head;											///<FIELD_OBJ_Hw’è•ûŒü
-	int dir_disp;											///<Œ»İŒü‚¢‚Ä‚¢‚é•ûŒü
-	int dir_move;											///<Œ»İ“®‚¢‚Ä‚¢‚é•ûŒü
-	int dir_disp_old;										///<‰ß‹‚Ì“®‚¢‚Ä‚¢‚½•ûŒü
-	int dir_move_old;										///<‰ß‹‚Ì“®‚¢‚Ä‚¢‚½•ûŒü
-	int param0;												///<ƒwƒbƒ_w’èƒpƒ‰ƒƒ^
-	int param1;												///<ƒwƒbƒ_w’èƒpƒ‰ƒƒ^
-	int param2;												///<ƒwƒbƒ_w’èƒpƒ‰ƒƒ^
-	int move_limit_x;										///<X•ûŒüˆÚ“®§ŒÀ
-	int move_limit_z;										///<Z•ûŒüˆÚ“®§ŒÀ
-	int gx_init;											///<‰ŠúƒOƒŠƒbƒhX
-	int gy_init;											///<‰ŠúƒOƒŠƒbƒhY
-	int gz_init;											///<‰ŠúƒOƒŠƒbƒhZ
-	int gx_old;												///<‰ß‹ƒOƒŠƒbƒhX
-	int gy_old;												///<‰ß‹ƒOƒŠƒbƒhY
-	int gz_old;												///<‰ß‹ƒOƒŠƒbƒhZ
-	int gx_now;												///<Œ»İƒOƒŠƒbƒhX
-	int gy_now;												///<Œ»İƒOƒŠƒbƒhY
-	int gz_now;												///<Œ»İƒOƒŠƒbƒhZ
-	VecFx32 vec_pos_now;									///<Œ»İÀ”À•W
-	VecFx32 vec_draw_offs;									///<•\¦À•WƒIƒtƒZƒbƒg
-	VecFx32 vec_draw_offs_outside;							///<ŠO•”w’è•\¦À•WƒIƒtƒZƒbƒg
-	VecFx32 vec_attr_offs;								///<ƒAƒgƒŠƒrƒ…[ƒg‚É‚æ‚éÀ•WƒIƒtƒZƒbƒg
-	u32 draw_status;										///<•`‰æƒXƒe[ƒ^ƒX
-	int acmd_code;											///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒR[ƒh
-	int acmd_seq;											///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒV[ƒPƒ“ƒX
-	u16 now_attr;											///<Œ»İ‚Ìƒ}ƒbƒvƒAƒgƒŠƒrƒ…[ƒg
-	u16 old_attr;											///<‰ß‹‚Ìƒ}ƒbƒvƒAƒgƒŠƒrƒ…[ƒg
+	u32 zone_id;											///<ã‚¾ãƒ¼ãƒ³ ID
+	u32 obj_code;											///<OBJã‚³ãƒ¼ãƒ‰
+	u32 move_code;											///<å‹•ä½œã‚³ãƒ¼ãƒ‰
+	u32 event_type;											///<ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+	u32 event_flag;											///<ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
+	u32 event_id;											///<ã‚¤ãƒ™ãƒ³ãƒˆID
+	int dir_head;											///<FIELD_OBJ_HæŒ‡å®šæ–¹å‘
+	int dir_disp;											///<ç¾åœ¨å‘ã„ã¦ã„ã‚‹æ–¹å‘
+	int dir_move;											///<ç¾åœ¨å‹•ã„ã¦ã„ã‚‹æ–¹å‘
+	int dir_disp_old;										///<éå»ã®å‹•ã„ã¦ã„ãŸæ–¹å‘
+	int dir_move_old;										///<éå»ã®å‹•ã„ã¦ã„ãŸæ–¹å‘
+	int param0;												///<ãƒ˜ãƒƒãƒ€æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿
+	int param1;												///<ãƒ˜ãƒƒãƒ€æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿
+	int param2;												///<ãƒ˜ãƒƒãƒ€æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿
+	int move_limit_x;										///<Xæ–¹å‘ç§»å‹•åˆ¶é™
+	int move_limit_z;										///<Zæ–¹å‘ç§»å‹•åˆ¶é™
+	int gx_init;											///<åˆæœŸã‚°ãƒªãƒƒãƒ‰X
+	int gy_init;											///<åˆæœŸã‚°ãƒªãƒƒãƒ‰Y
+	int gz_init;											///<åˆæœŸã‚°ãƒªãƒƒãƒ‰Z
+	int gx_old;												///<éå»ã‚°ãƒªãƒƒãƒ‰X
+	int gy_old;												///<éå»ã‚°ãƒªãƒƒãƒ‰Y
+	int gz_old;												///<éå»ã‚°ãƒªãƒƒãƒ‰Z
+	int gx_now;												///<ç¾åœ¨ã‚°ãƒªãƒƒãƒ‰X
+	int gy_now;												///<ç¾åœ¨ã‚°ãƒªãƒƒãƒ‰Y
+	int gz_now;												///<ç¾åœ¨ã‚°ãƒªãƒƒãƒ‰Z
+	VecFx32 vec_pos_now;									///<ç¾åœ¨å®Ÿæ•°åº§æ¨™
+	VecFx32 vec_draw_offs;									///<è¡¨ç¤ºåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	VecFx32 vec_draw_offs_outside;							///<å¤–éƒ¨æŒ‡å®šè¡¨ç¤ºåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	VecFx32 vec_attr_offs;								///<ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã«ã‚ˆã‚‹åº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32 draw_status;										///<æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	int acmd_code;											///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰
+	int acmd_seq;											///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u16 now_attr;											///<ç¾åœ¨ã®ãƒãƒƒãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+	u16 old_attr;											///<éå»ã®ãƒãƒƒãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	
-	TCB_PTR tcb;											///<“®ìŠÖ”TCB*
-	CONST_FIELD_OBJ_SYS_PTR fldobj_sys;						///<FIELD_OBJ_SYS‚Ö‚Ì *
+	TCB_PTR tcb;											///<å‹•ä½œé–¢æ•°TCB*
+	CONST_FIELD_OBJ_SYS_PTR fldobj_sys;						///<FIELD_OBJ_SYSã¸ã® *
 	
-	FIELD_OBJ_MOVE_PROC_INIT move_init_proc;				///<‰Šú‰»ŠÖ”
-	FIELD_OBJ_MOVE_PROC move_proc;							///<“®ìŠÖ”
-	FIELD_OBJ_MOVE_PROC_DEL move_delete_proc;				///<íœŠÖ”
-	FIELD_OBJ_DRAW_PROC_INIT draw_init_proc;				///<•`‰æ‰Šú‰»ŠÖ”
-	FIELD_OBJ_DRAW_PROC draw_proc;							///<•`‰æŠÖ”
-	FIELD_OBJ_DRAW_PROC_DEL draw_delete_proc;				///<•`‰æíœŠÖ”
-	FIELD_OBJ_DRAW_PROC_PUSH draw_push_proc;				///<•`‰æ‘Ş”ğŠÖ”
-	FIELD_OBJ_DRAW_PROC_POP draw_pop_proc;					///<•`‰æ•œ‹AŠÖ”
+	FIELD_OBJ_MOVE_PROC_INIT move_init_proc;				///<åˆæœŸåŒ–é–¢æ•°
+	FIELD_OBJ_MOVE_PROC move_proc;							///<å‹•ä½œé–¢æ•°
+	FIELD_OBJ_MOVE_PROC_DEL move_delete_proc;				///<å‰Šé™¤é–¢æ•°
+	FIELD_OBJ_DRAW_PROC_INIT draw_init_proc;				///<æç”»åˆæœŸåŒ–é–¢æ•°
+	FIELD_OBJ_DRAW_PROC draw_proc;							///<æç”»é–¢æ•°
+	FIELD_OBJ_DRAW_PROC_DEL draw_delete_proc;				///<æç”»å‰Šé™¤é–¢æ•°
+	FIELD_OBJ_DRAW_PROC_PUSH draw_push_proc;				///<æç”»é€€é¿é–¢æ•°
+	FIELD_OBJ_DRAW_PROC_POP draw_pop_proc;					///<æç”»å¾©å¸°é–¢æ•°
 	
-	u8 move_proc_work[FLDOBJ_MOVE_WORK_SIZE];				///<“®ìŠÖ”—pƒ[ƒN
-	u8 move_sub_proc_work[FLDOBJ_MOVE_SUB_WORK_SIZE];		///<“®ìƒTƒuŠÖ”—pƒ[ƒN
-	u8 move_cmd_proc_work[FLDOBJ_MOVE_CMD_WORK_SIZE];		///<“®ìƒRƒ}ƒ“ƒh—pƒ[ƒN
-	u8 draw_proc_work[FLDOBJ_DRAW_WORK_SIZE];				///<•`‰æŠÖ”—pƒ[ƒN
+	u8 move_proc_work[FLDOBJ_MOVE_WORK_SIZE];				///<å‹•ä½œé–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯
+	u8 move_sub_proc_work[FLDOBJ_MOVE_SUB_WORK_SIZE];		///<å‹•ä½œã‚µãƒ–é–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯
+	u8 move_cmd_proc_work[FLDOBJ_MOVE_CMD_WORK_SIZE];		///<å‹•ä½œã‚³ãƒãƒ³ãƒ‰ç”¨ãƒ¯ãƒ¼ã‚¯
+	u8 draw_proc_work[FLDOBJ_DRAW_WORK_SIZE];				///<æç”»é–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯
 }FIELD_OBJ;
 
-#define FIELD_OBJ_SIZE (sizeof(FIELD_OBJ))					///<FIELD_OBJƒTƒCƒY
+#define FIELD_OBJ_SIZE (sizeof(FIELD_OBJ))					///<FIELD_OBJã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_H_LOAD_FILE\‘¢‘Ì
+///	FIELD_OBJ_H_LOAD_FILEæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	int zone;
-	int add_max;											//“o˜^Å‘å”
-	int add_count;											//’Ç‰Á”
+	int add_max;											//ç™»éŒ²æœ€å¤§æ•°
+	int add_count;											//è¿½åŠ æ•°
 	CONST_FIELD_OBJ_SYS_PTR sys;							//FIELD_OBJ_SYS_PTR 
-	FIELD_OBJ_H *head;										//ƒwƒbƒ_[
+	FIELD_OBJ_H *head;										//ãƒ˜ãƒƒãƒ€ãƒ¼
 }FIELD_OBJ_H_LOAD_FILE;
-															///FIELD_OBJ_H_LOAD_FILEƒTƒCƒY
+															///FIELD_OBJ_H_LOAD_FILEã‚µã‚¤ã‚º
 #define FIELD_OBJ_H_LOAD_FILE_SIZE (sizeof(FIELD_OBJ_H_LOAD_FILE))
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static FIELD_OBJ_SYS_PTR  FldOBJSys_AllocMemory( int max );
 
@@ -220,15 +220,15 @@ static FIELD_OBJ_DRAW_PROC_DEL FldOBJ_DrawProcList_DeleteGet(
 static const FIELD_OBJ_DRAW_PROC_LIST * FldOBJ_DrawProcListGet( u32 code );
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ	ƒVƒXƒeƒ€
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ	ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * FIELD OBJ ƒVƒXƒeƒ€‰Šú‰»
+ * FIELD OBJ ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  * @param		fsys			FIELDSYS_WORK *
- * @param		max 			ˆ—‚·‚éOBJÅ‘å”
- * @param		pri				ƒtƒB[ƒ‹ƒhOBJ‚ÌŠî–{TCBƒvƒ‰ƒCƒIƒŠƒeƒB
- * @retval		FIELD_OBJ_SYS*	’Ç‰Á‚³‚ê‚½ƒtƒB[ƒ‹ƒhOBJ*
+ * @param		max 			å‡¦ç†ã™ã‚‹OBJæœ€å¤§æ•°
+ * @param		pri				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®åŸºæœ¬TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @retval		FIELD_OBJ_SYS*	è¿½åŠ ã•ã‚ŒãŸãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ*
  */
 //--------------------------------------------------------------
 FIELD_OBJ_SYS_PTR FieldOBJSys_Init( FIELDSYS_WORK *fsys, int max, int pri )
@@ -250,7 +250,7 @@ FIELD_OBJ_SYS_PTR FieldOBJSys_Init( FIELDSYS_WORK *fsys, int max, int pri )
 
 //--------------------------------------------------------------
 /**
- * FIELD OBJ ƒVƒXƒeƒ€íœ
+ * FIELD OBJ ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
  * @param	fos		FIELD_OBJ_SYS_PTR 
  * @retval	nothing
  */
@@ -263,7 +263,7 @@ void FieldOBJSys_Delete( FIELD_OBJ_SYS_PTR fos )
 
 //--------------------------------------------------------------
 /**
- * FIELD OBJ@‘S‚Ä‚ğíœ
+ * FIELD OBJã€€å…¨ã¦ã‚’å‰Šé™¤
  * @param	fos		FIELD_OBJ_SYS_PTR 
  * @retval	nothing
  */
@@ -275,18 +275,18 @@ void FieldOBJSys_DeleteAll( FIELD_OBJ_SYS_PTR fos )
 	FieldOBJSys_Delete( fos );
 	
 	#ifdef DEBUG_FLDOBJ_PRINTF
-	OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ ‘S‚Ä‚ğíœ‚µ‚Ü‚µ‚½\n" );
+	OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ å…¨ã¦ã‚’å‰Šé™¤ã—ã¾ã—ãŸ\n" );
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * FIELD OBJ@ƒ][ƒ“XV‚Ìíœˆ—
+ * FIELD OBJã€€ã‚¾ãƒ¼ãƒ³æ›´æ–°æ™‚ã®å‰Šé™¤å‡¦ç†
  * @param	sys		FIELD_OBJ_SYS_PTR 
- * @param	old_zone	ŒÃ‚¢ƒ][ƒ“ID
- * @param	new_zone	V‚µ‚¢ƒ][ƒ“ID
- * @param	head_max	head—v‘f”
- * @param	head	V‚µ‚¢‚Ìƒ][ƒ“‚É”z’u‚·‚éFIELD_OBJ_H *
+ * @param	old_zone	å¤ã„ã‚¾ãƒ¼ãƒ³ID
+ * @param	new_zone	æ–°ã—ã„ã‚¾ãƒ¼ãƒ³ID
+ * @param	head_max	headè¦ç´ æ•°
+ * @param	head	æ–°ã—ã„ã®ã‚¾ãƒ¼ãƒ³ã«é…ç½®ã™ã‚‹FIELD_OBJ_H *
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -297,7 +297,7 @@ void FieldOBJSys_ZoneUpdateDelete( FIELD_OBJ_SYS_PTR fos,
 	FIELD_OBJ_PTR fldobj = FieldOBJSys_FldOBJWorkGet( fos );
 	
 	#ifdef DEBUG_FLDOBJ_PRINTF
-	OS_Printf( "ŒÃ‚¢Zone‚É”z’u‚³‚ê‚½ƒtƒB[ƒ‹ƒhOBJ@íœŠJn\n" );
+	OS_Printf( "å¤ã„Zoneã«é…ç½®ã•ã‚ŒãŸãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€å‰Šé™¤é–‹å§‹\n" );
 	#endif
 	
 	while( max ){
@@ -317,7 +317,7 @@ void FieldOBJSys_ZoneUpdateDelete( FIELD_OBJ_SYS_PTR fos,
 			case RET_ALIES_CHANGE:
 				#ifdef DEBUG_FLDOBJ_PRINTF
 				OS_Printf(
-					"ƒGƒCƒŠƒAƒX‘ÎÛ‚ÌOBJ‚ ‚è OBJ_ID=%d ZONE_ID=%d GRID X=%d,GRID Z=%d \n",
+					"ã‚¨ã‚¤ãƒªã‚¢ã‚¹å¯¾è±¡ã®OBJã‚ã‚Š OBJ_ID=%d ZONE_ID=%d GRID X=%d,GRID Z=%d \n",
 					FieldOBJ_OBJIDGet(fldobj),
 					new_zone,
 					FieldOBJ_NowPosGX_Get(fldobj), FieldOBJ_NowPosGZ_Get(fldobj) );
@@ -325,10 +325,10 @@ void FieldOBJSys_ZoneUpdateDelete( FIELD_OBJ_SYS_PTR fos,
 				break;
 			case RET_ALIES_EXIST:
 				#ifdef DEBUG_FLDOBJ_PRINTF
-				OS_Printf( "ƒGƒCƒŠƒAƒX‘ÎÛ‚ÌOBJ‚ªŠù‚ÉƒGƒCƒŠƒAƒX‰»‚µ‚Ä‚¢‚Ü‚· " );
+				OS_Printf( "ã‚¨ã‚¤ãƒªã‚¢ã‚¹å¯¾è±¡ã®OBJãŒæ—¢ã«ã‚¨ã‚¤ãƒªã‚¢ã‚¹åŒ–ã—ã¦ã„ã¾ã™ " );
 				OS_Printf( "OBJ_ID=%d ", FieldOBJ_OBJIDGet(fldobj) );
 				OS_Printf( "ZONE_ID=%d ", FieldOBJ_ZoneIDGetAlies(fldobj) );
-				OS_Printf( "’Ç‰Á’†‚Ìƒ][ƒ“ID=%d ", new_zone );
+				OS_Printf( "è¿½åŠ ä¸­ã®ã‚¾ãƒ¼ãƒ³ID=%d ", new_zone );
 				OS_Printf( "GRID X=%d, ", FieldOBJ_NowPosGX_Get(fldobj) );
 				OS_Printf( "GRID Z=%d\n", FieldOBJ_NowPosGZ_Get(fldobj) );
 				#endif
@@ -342,18 +342,18 @@ void FieldOBJSys_ZoneUpdateDelete( FIELD_OBJ_SYS_PTR fos,
 	
 	FieldOBJ_BlActCont_ResmGuestDeleteAll( fos, FieldOBJSys_BlActContGet(fos) );
 	#ifdef DEBUG_FLDOBJ_PRINTF
-	OS_Printf( "ŒÃ‚¢Zone‚É”z’u‚³‚ê‚½ƒtƒB[ƒ‹ƒhOBJ@íœŠ®—¹\n" );
+	OS_Printf( "å¤ã„Zoneã«é…ç½®ã•ã‚ŒãŸãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€å‰Šé™¤å®Œäº†\n" );
 	#endif
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJƒVƒXƒeƒ€@ƒp[ƒc
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚·ã‚¹ãƒ†ãƒ ã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * FIELD OBJ ì‹Æ—ÌˆæŠm•Û
- * @param	max				ˆ—‚·‚éOBJÅ‘å”
- * @retval	FIELD_OBJ_SYS	Šm•Û‚µ‚½—Ìˆæ*
+ * FIELD OBJ ä½œæ¥­é ˜åŸŸç¢ºä¿
+ * @param	max				å‡¦ç†ã™ã‚‹OBJæœ€å¤§æ•°
+ * @retval	FIELD_OBJ_SYS	ç¢ºä¿ã—ãŸé ˜åŸŸ*
  */
 //--------------------------------------------------------------
 static FIELD_OBJ_SYS_PTR FldOBJSys_AllocMemory( int max )
@@ -379,15 +379,15 @@ static FIELD_OBJ_SYS_PTR FldOBJSys_AllocMemory( int max )
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚ğ’Ç‰Á ˆø”ƒwƒbƒ_[
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚’è¿½åŠ  å¼•æ•°ãƒ˜ãƒƒãƒ€ãƒ¼
  * @param	fos			FIELD_OBJ_SYS_PTR 
- * @param	head		’Ç‰Á‚·‚éî•ñ‚ğ“Z‚ß‚½FIELD_OBJ_H *
- * @param	zone_id		ƒ][ƒ“ID
- * @retval	FIELD_OBJ	’Ç‰Á‚³‚ê‚½FIELD_OBJ_PTR BNULL=’Ç‰Á•s‰Â
+ * @param	head		è¿½åŠ ã™ã‚‹æƒ…å ±ã‚’çºã‚ãŸFIELD_OBJ_H *
+ * @param	zone_id		ã‚¾ãƒ¼ãƒ³ID
+ * @retval	FIELD_OBJ	è¿½åŠ ã•ã‚ŒãŸFIELD_OBJ_PTR ã€‚NULL=è¿½åŠ ä¸å¯
  */
 //--------------------------------------------------------------
 FIELD_OBJ_PTR FieldOBJ_AddH( CONST_FIELD_OBJ_SYS_PTR fos, const FIELD_OBJ_H *headtest, int zone_id )
@@ -397,7 +397,7 @@ FIELD_OBJ_PTR FieldOBJ_AddH( CONST_FIELD_OBJ_SYS_PTR fos, const FIELD_OBJ_H *hea
 	FIELD_OBJ_H *head = &headdata;
 	
 #ifdef DEBUG_CHECK_NEWOBJ
-	{	//ŠÈˆÕOBJƒR[ƒhƒeƒXƒg
+	{	//ç°¡æ˜“OBJã‚³ãƒ¼ãƒ‰ãƒ†ã‚¹ãƒˆ
 #if 0
 		if( head->obj_code == BIGMAN ){
 			head->obj_code = GIRATINAORIGIN;
@@ -414,25 +414,25 @@ FIELD_OBJ_PTR FieldOBJ_AddH( CONST_FIELD_OBJ_SYS_PTR fos, const FIELD_OBJ_H *hea
 	{
 		int obj_id = FieldOBJ_H_IDGet( head );
 		
-		if( FldOBJ_H_AliesCheck(head) == FALSE ){				//ƒGƒCƒŠƒAƒX‚Å‚Í‚È‚¢
+		if( FldOBJ_H_AliesCheck(head) == FALSE ){				//ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã§ã¯ãªã„
 			fldobj = FldOBJ_AliesSearch( fos, obj_id, zone_id );
 			
-			if( fldobj != NULL ){								//ƒGƒCƒŠƒAƒX‚ÅŠù‚É‘¶İ‚µ‚Ä‚¢‚é
-				FldOBJ_AliesOBJChange( fldobj, head, zone_id );	//ƒGƒCƒŠƒAƒX‚©‚çƒtƒB[ƒ‹ƒhOBJ‚Ö
+			if( fldobj != NULL ){								//ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã§æ—¢ã«å­˜åœ¨ã—ã¦ã„ã‚‹
+				FldOBJ_AliesOBJChange( fldobj, head, zone_id );	//ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã‹ã‚‰ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã¸
 				#ifdef DEBUG_FLDOBJ_PRINTF
-				OS_Printf( "ƒGƒCƒŠƒAƒX -> ƒtƒB[ƒ‹ƒhOBJ OBJ_ID %d ", obj_id );
+				OS_Printf( "ã‚¨ã‚¤ãƒªã‚¢ã‚¹ -> ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ OBJ_ID %d ", obj_id );
 				OS_Printf( "GIRD X=%d ", FieldOBJ_H_PosXGet(head) );
 				OS_Printf( "GIRD Z=%d\n", FieldOBJ_H_PosZGet(head) );
 				#endif
 				return( fldobj );
 			}
-		}else{													//ƒGƒCƒŠƒAƒX‚Å‚ ‚é
+		}else{													//ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã§ã‚ã‚‹
 			fldobj = FldOBJ_OBJIDZoneIDSearch( fos, obj_id, FldOBJ_H_AliesZoneIDGet(head) );
 			
-			if( fldobj != NULL ){								//Šù‚ÉƒtƒB[ƒ‹ƒhOBJ‚ª‘¶İ‚·‚é
-				FldOBJ_OBJAliesChange( fldobj, zone_id, head );	//ƒtƒB[ƒ‹ƒhOBJ‚©‚çƒGƒCƒŠƒAƒX‚Ö
+			if( fldobj != NULL ){								//æ—¢ã«ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãŒå­˜åœ¨ã™ã‚‹
+				FldOBJ_OBJAliesChange( fldobj, zone_id, head );	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã¸
 				#ifdef DEBUG_FLDOBJ_PRINTF
-				OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ -> ƒGƒCƒŠƒAƒX OBJ_ID %d ", obj_id );
+				OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ -> ã‚¨ã‚¤ãƒªã‚¢ã‚¹ OBJ_ID %d ", obj_id );
 				OS_Printf( "GIRD X=%d ", FieldOBJ_H_PosXGet(head) );
 				OS_Printf( "GIRD Z=%d\n", FieldOBJ_H_PosZGet(head) );
 				#endif
@@ -440,7 +440,7 @@ FIELD_OBJ_PTR FieldOBJ_AddH( CONST_FIELD_OBJ_SYS_PTR fos, const FIELD_OBJ_H *hea
 			}
 			
 			#ifdef DEBUG_FLDOBJ_PRINTF
-			OS_Printf( "ƒGƒCƒŠƒAƒX‚ª”z’u‚³‚ê‚Ü‚· " );
+			OS_Printf( "ã‚¨ã‚¤ãƒªã‚¢ã‚¹ãŒé…ç½®ã•ã‚Œã¾ã™ " );
 			OS_Printf( "ZONE_ID %d, OBJ_ID %d ", obj_id, FldOBJ_H_AliesZoneIDGet(head) );
 			OS_Printf( "GIRD X=%d ", FieldOBJ_H_PosXGet(head) );
 			OS_Printf( "GIRD Z=%d\n", FieldOBJ_H_PosZGet(head) );
@@ -477,28 +477,28 @@ FIELD_OBJ_PTR FieldOBJ_AddH( CONST_FIELD_OBJ_SYS_PTR fos, const FIELD_OBJ_H *hea
 	{
 		int obj_id = FieldOBJ_H_IDGet( head );
 		
-		if( FldOBJ_H_AliesCheck(head) == FALSE ){				//ƒGƒCƒŠƒAƒX‚Å‚Í‚È‚¢
+		if( FldOBJ_H_AliesCheck(head) == FALSE ){				//ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã§ã¯ãªã„
 			fldobj = FldOBJ_AliesSearch( fos, obj_id, zone_id );
 			
-			if( fldobj != NULL ){								//ƒGƒCƒŠƒAƒX‚ÅŠù‚É‘¶İ‚µ‚Ä‚¢‚é
-				FldOBJ_AliesOBJChange( fldobj, head, zone_id );	//ƒGƒCƒŠƒAƒX‚©‚çƒtƒB[ƒ‹ƒhOBJ‚Ö
-				OS_Printf( "ƒGƒCƒŠƒAƒX -> ƒtƒB[ƒ‹ƒhOBJ OBJ_ID %d ", obj_id );
+			if( fldobj != NULL ){								//ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã§æ—¢ã«å­˜åœ¨ã—ã¦ã„ã‚‹
+				FldOBJ_AliesOBJChange( fldobj, head, zone_id );	//ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã‹ã‚‰ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã¸
+				OS_Printf( "ã‚¨ã‚¤ãƒªã‚¢ã‚¹ -> ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ OBJ_ID %d ", obj_id );
 				OS_Printf( "GIRD X=%d ", FieldOBJ_H_PosXGet(head) );
 				OS_Printf( "GIRD Z=%d\n", FieldOBJ_H_PosZGet(head) );
 				return( fldobj );
 			}
-		}else{													//ƒGƒCƒŠƒAƒX‚Å‚ ‚é
+		}else{													//ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã§ã‚ã‚‹
 			fldobj = FldOBJ_OBJIDZoneIDSearch( fos, obj_id, FldOBJ_H_AliesZoneIDGet(head) );
 			
-			if( fldobj != NULL ){								//Šù‚ÉƒtƒB[ƒ‹ƒhOBJ‚ª‘¶İ‚·‚é
-				FldOBJ_OBJAliesChange( fldobj, zone_id, head );	//ƒtƒB[ƒ‹ƒhOBJ‚©‚çƒGƒCƒŠƒAƒX‚Ö
-				OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ -> ƒGƒCƒŠƒAƒX OBJ_ID %d ", obj_id );
+			if( fldobj != NULL ){								//æ—¢ã«ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãŒå­˜åœ¨ã™ã‚‹
+				FldOBJ_OBJAliesChange( fldobj, zone_id, head );	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã¸
+				OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ -> ã‚¨ã‚¤ãƒªã‚¢ã‚¹ OBJ_ID %d ", obj_id );
 				OS_Printf( "GIRD X=%d ", FieldOBJ_H_PosXGet(head) );
 				OS_Printf( "GIRD Z=%d\n", FieldOBJ_H_PosZGet(head) );
 				return( fldobj );
 			}
 			
-			OS_Printf( "ƒGƒCƒŠƒAƒX‚ª”z’u‚³‚ê‚Ü‚· " );
+			OS_Printf( "ã‚¨ã‚¤ãƒªã‚¢ã‚¹ãŒé…ç½®ã•ã‚Œã¾ã™ " );
 			OS_Printf( "ZONE_ID %d, OBJ_ID %d ", obj_id, FldOBJ_H_AliesZoneIDGet(head) );
 			OS_Printf( "GIRD X=%d ", FieldOBJ_H_PosXGet(head) );
 			OS_Printf( "GIRD Z=%d\n", FieldOBJ_H_PosZGet(head) );
@@ -529,16 +529,16 @@ FIELD_OBJ_PTR FieldOBJ_AddH( CONST_FIELD_OBJ_SYS_PTR fos, const FIELD_OBJ_H *hea
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚ğ’Ç‰ÁBÅ’áŒÀ•K—v‚Èî•ñ‚©‚çƒwƒbƒ_[ì¬‚µ‚Ä’Ç‰ÁB
- * ‘«‚è‚È‚¢î•ñ‚Í0‚ÅƒNƒŠƒA‚³‚ê‚Ä‚¢‚éB•K—v‚ ‚ê‚Î’Ç‰ÁŒã‚ÉŠe©‚Å©—R‚Éİ’èB
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚’è¿½åŠ ã€‚æœ€ä½é™å¿…è¦ãªæƒ…å ±ã‹ã‚‰ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆã—ã¦è¿½åŠ ã€‚
+ * è¶³ã‚Šãªã„æƒ…å ±ã¯0ã§ã‚¯ãƒªã‚¢ã•ã‚Œã¦ã„ã‚‹ã€‚å¿…è¦ã‚ã‚Œã°è¿½åŠ å¾Œã«å„è‡ªã§è‡ªç”±ã«è¨­å®šã€‚
  * @param	fos			FIELD_OBJ_SYS_PTR 
- * @param	x			‰ŠúƒOƒŠƒbƒhÀ•WX
- * @param	z			‰ŠúƒOƒŠƒbƒhÀ•WZ
- * @param	dir			‰Šú•ûŒüBDIR_UP“™
- * @param	obj			OBJƒR[ƒhBHERO“™
- * @param	move		“®ìƒR[ƒhBMV_RND“™
- * @param	zone_id		ƒ][ƒ“ID ZONE_ID_NOTHING“™
- * @retval	FIELD_OBJ	’Ç‰Á‚³‚ê‚½FIELD_OBJ_PTR BNULL=’Ç‰Á•s‰Â
+ * @param	x			åˆæœŸã‚°ãƒªãƒƒãƒ‰åº§æ¨™X
+ * @param	z			åˆæœŸã‚°ãƒªãƒƒãƒ‰åº§æ¨™Z
+ * @param	dir			åˆæœŸæ–¹å‘ã€‚DIR_UPç­‰
+ * @param	obj			OBJã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
+ * @param	move		å‹•ä½œã‚³ãƒ¼ãƒ‰ã€‚MV_RNDç­‰
+ * @param	zone_id		ã‚¾ãƒ¼ãƒ³ID ZONE_ID_NOTHINGç­‰
+ * @retval	FIELD_OBJ	è¿½åŠ ã•ã‚ŒãŸFIELD_OBJ_PTR ã€‚NULL=è¿½åŠ ä¸å¯
  */
 //--------------------------------------------------------------
 FIELD_OBJ_PTR FieldOBJ_AddHMake(
@@ -570,13 +570,13 @@ FIELD_OBJ_PTR FieldOBJ_AddHMake(
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ_Hƒe[ƒuƒ‹‚æ‚èw’è‚ÌID‚ğ‚Á‚½OBJ‚ğ’Ç‰Á
+ * FIELD_OBJ_Hãƒ†ãƒ¼ãƒ–ãƒ«ã‚ˆã‚ŠæŒ‡å®šã®IDã‚’æŒã£ãŸOBJã‚’è¿½åŠ 
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	id		’Ç‰Á‚·‚éheadŒŸõID
- * @param	zone	’Ç‰Á‚ÌÛ‚Éw’è‚·‚éƒ][ƒ“ID
- * @param	max		head—v‘f”
+ * @param	id		è¿½åŠ ã™ã‚‹headæ¤œç´¢ID
+ * @param	zone	è¿½åŠ ã®éš›ã«æŒ‡å®šã™ã‚‹ã‚¾ãƒ¼ãƒ³ID
+ * @param	max		headè¦ç´ æ•°
  * @param	head	FIELD_OBJ_H *
- * @retval	FIELD_OBJ_PTR	’Ç‰Á‚³‚ê‚½FIELD_OBJ_PTR NULL=idŠY“––³‚µ
+ * @retval	FIELD_OBJ_PTR	è¿½åŠ ã•ã‚ŒãŸFIELD_OBJ_PTR NULL=idè©²å½“ç„¡ã—
  */
 //--------------------------------------------------------------
 FIELD_OBJ_PTR FieldOBJ_AddHEvent(
@@ -599,16 +599,16 @@ FIELD_OBJ_PTR FieldOBJ_AddHEvent(
 
 //--------------------------------------------------------------
 /**
- * FIELD OBJ@•\¦Œn‚Ì‚İÄİ’è@íœ‚Ís‚í‚È‚¢
+ * FIELD OBJã€€è¡¨ç¤ºç³»ã®ã¿å†è¨­å®šã€€å‰Šé™¤ã¯è¡Œã‚ãªã„
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	code	OBJƒR[ƒh HERO“™
+ * @param	code	OBJã‚³ãƒ¼ãƒ‰ HEROç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawResetAlone( FIELD_OBJ_PTR fldobj, int code )
 {
 #ifdef PM_DEBUG
-	{	//•`‰æƒVƒXƒeƒ€‰Šú‰»Š®—¹‚µ‚Ä‚¢‚È‚¢
+	{	//æç”»ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–å®Œäº†ã—ã¦ã„ãªã„
 		CONST_FIELD_OBJ_SYS_PTR fos = FieldOBJ_FieldOBJSysGet( fldobj );
 		GF_ASSERT( FieldOBJSys_DrawInitCompCheck(fos) != FALSE &&
 			"FieldOBJ_DrawReset() DRAW SYS NOT INIT" );
@@ -623,9 +623,9 @@ void FieldOBJ_DrawResetAlone( FIELD_OBJ_PTR fldobj, int code )
 
 //--------------------------------------------------------------
 /**
- * FIELD OBJ@Œ»İ‚Ì•`‰æŠÖ”‚ğíœ‚µ‚ÄÄİ’è
+ * FIELD OBJã€€ç¾åœ¨ã®æç”»é–¢æ•°ã‚’å‰Šé™¤ã—ã¦å†è¨­å®š
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	code	OBJƒR[ƒh HERO“™
+ * @param	code	OBJã‚³ãƒ¼ãƒ‰ HEROç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -640,8 +640,8 @@ void FieldOBJ_DrawReset( FIELD_OBJ_PTR fldobj, int code )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚ğíœ
- * @param	fldobj		íœ‚·‚éFIELD_OBJ_PTR 
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚’å‰Šé™¤
+ * @param	fldobj		å‰Šé™¤ã™ã‚‹FIELD_OBJ_PTR 
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -663,8 +663,8 @@ void FieldOBJ_Delete( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚ğíœ@ƒXƒNƒŠƒvƒg‚ÌOBJíœƒtƒ‰ƒO‚ğON‚É‚·‚é
- * @param	fldobj		íœ‚·‚éFIELD_OBJ_PTR 
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚’å‰Šé™¤ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®OBJå‰Šé™¤ãƒ•ãƒ©ã‚°ã‚’ONã«ã™ã‚‹
+ * @param	fldobj		å‰Šé™¤ã™ã‚‹FIELD_OBJ_PTR 
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -679,7 +679,7 @@ void FieldOBJ_DeleteEvent( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * FIELD OBJ@•\¦Œn‚Ì‚İíœ
+ * FIELD OBJã€€è¡¨ç¤ºç³»ã®ã¿å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -709,8 +709,8 @@ void FieldOBJ_DrawDelete( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ”­¶‚µ‚Ä‚¢‚éƒtƒB[ƒ‹ƒhOBJ‚ğ‘S‚Äíœ
- * @param	fldobj		íœ‚·‚éFIELD_OBJ_PTR 
+ * ç¾åœ¨ç™ºç”Ÿã—ã¦ã„ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚’å…¨ã¦å‰Šé™¤
+ * @param	fldobj		å‰Šé™¤ã™ã‚‹FIELD_OBJ_PTR 
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -735,8 +735,8 @@ void FieldOBJ_DeleteAll( FIELD_OBJ_SYS_PTR fos )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ”­¶‚µ‚Ä‚¢‚éƒtƒB[ƒ‹ƒhOBJ‘S‚Ä‚ğ‘Ş”ğ
- * @param	fldobj		íœ‚·‚éFIELD_OBJ_PTR 
+ * ç¾åœ¨ç™ºç”Ÿã—ã¦ã„ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ã¦ã‚’é€€é¿
+ * @param	fldobj		å‰Šé™¤ã™ã‚‹FIELD_OBJ_PTR 
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -763,7 +763,7 @@ void FieldOBJ_PushAll( FIELD_OBJ_SYS_PTR fos )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ”­¶‚µ‚Ä‚¢‚éƒtƒB[ƒ‹ƒhOBJ‘S‚Ä‚É‚½‚¢‚µ‚Ä•`‰æˆ—‚Ì‘Ş”ğ‚ğs‚¤
+ * ç¾åœ¨ç™ºç”Ÿã—ã¦ã„ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ã¦ã«ãŸã„ã—ã¦æç”»å‡¦ç†ã®é€€é¿ã‚’è¡Œã†
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @retval	nothing
  */
@@ -772,8 +772,8 @@ void FieldOBJ_DrawProcPushAll( FIELD_OBJ_SYS_PTR fos )
 {
 	#ifdef DEBUG_FLDOBJ_PRINTF
 	if( FieldOBJSys_DrawInitCompCheck(fos) != TRUE ){
-		OS_Printf( "FLDOBJ •`‰æˆ—‚ª‘¶İ‚µ‚Ä‚¢‚È‚¢‚Ì‚É" );
-		OS_Printf( "FieldOBJ_DrawProcPushAll()‚ªŒÄ‚Î‚ê‚Ä‚¢‚Ü‚·" );
+		OS_Printf( "FLDOBJ æç”»å‡¦ç†ãŒå­˜åœ¨ã—ã¦ã„ãªã„ã®ã«" );
+		OS_Printf( "FieldOBJ_DrawProcPushAll()ãŒå‘¼ã°ã‚Œã¦ã„ã¾ã™" );
 	}
 	#endif
 	
@@ -801,14 +801,14 @@ void FieldOBJ_DrawProcPushAll( FIELD_OBJ_SYS_PTR fos )
 	}
 	
 	#ifdef DEBUG_FLDOBJ_PRINTF
-	OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ •`‰æî•ñ‚ğ‘Ş”ğ‚µ‚Ü‚µ‚½\n" );
+	OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ æç”»æƒ…å ±ã‚’é€€é¿ã—ã¾ã—ãŸ\n" );
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * Œ»İ”­¶‚µ‚Ä‚¢‚éƒtƒB[ƒ‹ƒhOBJ‘S‚Ä‚ğ•œ‹A
- * @param	fldobj		íœ‚·‚éFIELD_OBJ_PTR 
+ * ç¾åœ¨ç™ºç”Ÿã—ã¦ã„ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ã¦ã‚’å¾©å¸°
+ * @param	fldobj		å‰Šé™¤ã™ã‚‹FIELD_OBJ_PTR 
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -835,8 +835,8 @@ void FieldOBJ_PopAll( FIELD_OBJ_SYS_PTR fos )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ”­¶‚µ‚Ä‚¢‚éƒtƒB[ƒ‹ƒhOBJ‘S‚Ä‚É‘Î‚µ‚Ä•`‰æˆ—•œ‹A
- * @param	fldobj		íœ‚·‚éFIELD_OBJ_PTR 
+ * ç¾åœ¨ç™ºç”Ÿã—ã¦ã„ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ã¦ã«å¯¾ã—ã¦æç”»å‡¦ç†å¾©å¸°
+ * @param	fldobj		å‰Šé™¤ã™ã‚‹FIELD_OBJ_PTR 
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -844,7 +844,7 @@ void FieldOBJ_DrawProcPopAll( FIELD_OBJ_SYS_PTR fos )
 {
 	#ifdef DEBUG_FLDOBJ_PRINTF
 	if( FieldOBJSys_DrawInitCompCheck(fos) != TRUE ){
-		OS_Printf("FLDOBJ •`‰æˆ—–¢‰Šú‰»‚Å•`‰æ•œ‹Aˆ—‚ªŒÄ‚Î‚ê‚Ä‚¢‚Ü‚·\n");
+		OS_Printf("FLDOBJ æç”»å‡¦ç†æœªåˆæœŸåŒ–ã§æç”»å¾©å¸°å‡¦ç†ãŒå‘¼ã°ã‚Œã¦ã„ã¾ã™\n");
 	}
 	#endif
 	GF_ASSERT( FieldOBJSys_DrawInitCompCheck(fos) == TRUE );
@@ -872,19 +872,19 @@ void FieldOBJ_DrawProcPopAll( FIELD_OBJ_SYS_PTR fos )
 	}
 	
 	#ifdef DEBUG_FLDOBJ_PRINTF
-	OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ •`‰æî•ñ‚ğ•œ‹A‚µ‚Ü‚µ‚½\n" );
+	OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ æç”»æƒ…å ±ã‚’å¾©å¸°ã—ã¾ã—ãŸ\n" );
 	#endif
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒZ[ƒu
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ã‚»ãƒ¼ãƒ–
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * Œ»İ”­¶‚µ‚Ä‚¢‚éƒtƒB[ƒ‹ƒhOBJ‘S‚Ä‚ğƒZ[ƒuƒf[ƒ^‚É•Û‘¶
+ * ç¾åœ¨ç™ºç”Ÿã—ã¦ã„ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ã¦ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«ä¿å­˜
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	save	•Û‘¶æFIELD_OBJ_SAVE_DATA_PTR
- * @param	max		save‚Ì—v‘f”
+ * @param	save	ä¿å­˜å…ˆFIELD_OBJ_SAVE_DATA_PTR
+ * @param	max		saveã®è¦ç´ æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -897,7 +897,7 @@ void FieldOBJSys_DataSaveAll(
 	while( FieldOBJSys_FieldOBJSearch(fos,&fldobj,&no,FLDOBJ_STA_BIT_USE) ){
 		FldOBJ_SaveDataSave( fsys, fldobj, save );
 		save++; max--;
-		GF_ASSERT( max > 0 && "FieldOBJSys_DataSaveAll()ˆÙí" );
+		GF_ASSERT( max > 0 && "FieldOBJSys_DataSaveAll()ç•°å¸¸" );
 	}
 	
 	if( max ){
@@ -907,10 +907,10 @@ void FieldOBJSys_DataSaveAll(
 
 //--------------------------------------------------------------
 /**
- * ƒZ[ƒu‚µ‚½ƒf[ƒ^‚ğƒ[ƒh
+ * ã‚»ãƒ¼ãƒ–ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	save	•Û‘¶‚µ‚½ƒf[ƒ^‚ªŠi”[‚³‚ê‚½FIELD_OBJ_SAVE_DATA_PTR
- * @param	max		save‚Ì—v‘f”
+ * @param	save	ä¿å­˜ã—ãŸãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚ŒãŸFIELD_OBJ_SAVE_DATA_PTR
+ * @param	max		saveã®è¦ç´ æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -923,7 +923,7 @@ void FieldOBJSys_DataLoadAll(
 	while( max ){
 		if( (save->status_bit & FLDOBJ_STA_BIT_USE) ){
 			fldobj = FldOBJ_SpaceSearch( fos );
-			GF_ASSERT( fldobj != NULL && "FieldOBJSys_DataLoadAll()ˆÙí" );
+			GF_ASSERT( fldobj != NULL && "FieldOBJSys_DataLoadAll()ç•°å¸¸" );
 		
 			FldOBJ_SaveDataLoad( fldobj, save );
 			FldOBJ_DataLoadRecover( fos, fldobj );
@@ -936,7 +936,7 @@ void FieldOBJSys_DataLoadAll(
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚Ìî•ñ‚ğƒZ[ƒuƒf[ƒ^‚ÉƒZƒbƒg
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®æƒ…å ±ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«ã‚»ãƒƒãƒˆ
  * @param	fldobj		FIELD_OBJ_PTR
  * @param	save		FIELD_OBJ_SAVE_DATA_PTR
  * @retval	nothing
@@ -968,13 +968,13 @@ static void FldOBJ_SaveDataSave( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj, FIEL
 	save->gy_now = FieldOBJ_NowPosGY_Get( fldobj );
 	save->gz_now = FieldOBJ_NowPosGZ_Get( fldobj );
 
-	//‚‚³‚Ì•Û‘¶
+	//é«˜ã•ã®ä¿å­˜
 #if 0
 	{
 		HEIGHT_TYPE flag;
 		fx32 x,y,z;
 		VecFx32 vec_pos;
-		//ƒOƒŠƒbƒh‚ğFX32Œ^‚É‚·‚é(ƒOƒŠƒbƒh‚Ì’†SÀ•W)
+		//ã‚°ãƒªãƒƒãƒ‰ã‚’FX32å‹ã«ã™ã‚‹(ã‚°ãƒªãƒƒãƒ‰ã®ä¸­å¿ƒåº§æ¨™)
 		x = save->gx_now * 16 * FX32_ONE+(8*FX32_ONE);
 		z = save->gz_now * 16 * FX32_ONE+(8*FX32_ONE);
 		FieldOBJ_VecPosGet( fldobj, &vec_pos );
@@ -1002,15 +1002,15 @@ static void FldOBJ_SaveDataSave( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj, FIEL
 		
 		if( flag == FALSE ){
 			#if 0
-			//‚±‚ê‚¾‚Æ‚‚³æ“¾¸”sA
-			//‚»‚ê‚Ü‚Å³í‚Éæ“¾‚µ‚Ä‚¢‚½‚‚³‚ğ–³‹‚µ‚ÄƒOƒŠƒbƒh’PˆÊ‚©‚ç
-			//ÀÀ•W‚É•ÏŠ·‚µ‚Ä‚µ‚Ü‚¢AÎ‚ß“™‚Ì’[”‚ª–³Œø‚Æ‚È‚Á‚Ä‚µ‚Ü‚¤B
+			//ã“ã‚Œã ã¨é«˜ã•å–å¾—å¤±æ•—æ™‚ã€
+			//ãã‚Œã¾ã§æ­£å¸¸ã«å–å¾—ã—ã¦ã„ãŸé«˜ã•ã‚’ç„¡è¦–ã—ã¦ã‚°ãƒªãƒƒãƒ‰å˜ä½ã‹ã‚‰
+			//å®Ÿåº§æ¨™ã«å¤‰æ›ã—ã¦ã—ã¾ã„ã€æ–œã‚ç­‰ã®ç«¯æ•°ãŒç„¡åŠ¹ã¨ãªã£ã¦ã—ã¾ã†ã€‚
 			save->fx32_y = H_GRID_SIZE_FX32( save->gy_now );
 			#else
 			save->fx32_y = FieldOBJ_VecPosYGet( fldobj );	
 			#endif
 		}else{
-			#if 1 //PL ‚‚³æ“¾‹Ö~‚ÍÀÀ•W‚»‚Ì‚Ü‚Ü•Û‘¶
+			#if 1 //PL é«˜ã•å–å¾—ç¦æ­¢æ™‚ã¯å®Ÿåº§æ¨™ãã®ã¾ã¾ä¿å­˜
 			if( FieldOBJ_HeightOFFCheck(fldobj) == TRUE ){
 				vec.y = FieldOBJ_VecPosYGet( fldobj );
 			}
@@ -1029,7 +1029,7 @@ static void FldOBJ_SaveDataSave( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj, FIEL
 
 //--------------------------------------------------------------
 /**
- * ƒZ[ƒuƒf[ƒ^‚Ìî•ñ‚ğƒtƒB[ƒ‹ƒhOBJ‚ÉƒZƒbƒg
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®æƒ…å ±ã‚’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã«ã‚»ãƒƒãƒˆ
  * @param	fldobj		FIELD_OBJ_PTR
  * @param	save		FIELD_OBJ_SAVE_DATA_PTR
  * @retval	nothing
@@ -1061,7 +1061,7 @@ static void FldOBJ_SaveDataLoad( FIELD_OBJ_PTR fldobj, FIELD_OBJ_SAVE_DATA_PTR s
 	FieldOBJ_NowPosGY_Set( fldobj, save->gy_now );
 	FieldOBJ_NowPosGZ_Set( fldobj, save->gz_now );
 
-	//‚‚³•œ‹A
+	//é«˜ã•å¾©å¸°
 	{
 		VecFx32 vec = {0,0,0};
 		vec.y = save->fx32_y;
@@ -1076,7 +1076,7 @@ static void FldOBJ_SaveDataLoad( FIELD_OBJ_PTR fldobj, FIELD_OBJ_SAVE_DATA_PTR s
 
 //--------------------------------------------------------------
 /**
- * ƒf[ƒ^ƒ[ƒhŒã‚Ì•œ‹A
+ * ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰å¾Œã®å¾©å¸°
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
@@ -1089,7 +1089,7 @@ static void FldOBJ_DataLoadRecover( CONST_FIELD_OBJ_SYS_PTR fos, FIELD_OBJ_PTR f
 	
 	FieldOBJ_FieldOBJSysSet( fldobj, fos );
 	
-	FldOBJ_WorkInit_MoveProcInit( fldobj );						//“®ìŠÖ”‚Ì‰Šú‰»‚Ì‚İ
+	FldOBJ_WorkInit_MoveProcInit( fldobj );						//å‹•ä½œé–¢æ•°ã®åˆæœŸåŒ–ã®ã¿
 	FieldOBJ_AcmdFree( fldobj );
 	FldOBJ_DrawWorkInit( fldobj );
 	
@@ -1100,7 +1100,7 @@ static void FldOBJ_DataLoadRecover( CONST_FIELD_OBJ_SYS_PTR fos, FIELD_OBJ_PTR f
 
 //--------------------------------------------------------------
 /**
- * ƒf[ƒ^ƒ[ƒhŒã‚ÌƒXƒe[ƒ^ƒXƒrƒbƒg•œ‹A
+ * ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰å¾Œã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆå¾©å¸°
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1109,7 +1109,7 @@ static void FldOBJ_DataLoadStatusBitRecover( FIELD_OBJ_PTR fldobj )
 {
 	FieldOBJ_StatusBit_ON( fldobj,
 			FLDOBJ_STA_BIT_USE |
-//			FLDOBJ_STA_BIT_HEIGHT_GET_NEED |	//ƒZ[ƒu‚Ì‚‚³‚ğM—p‚·‚é
+//			FLDOBJ_STA_BIT_HEIGHT_GET_NEED |	//ã‚»ãƒ¼ãƒ–æ™‚ã®é«˜ã•ã‚’ä¿¡ç”¨ã™ã‚‹
 			FLDOBJ_STA_BIT_MOVE_START );
 	
 	FieldOBJ_StatusBit_OFF( fldobj,
@@ -1130,7 +1130,7 @@ static void FldOBJ_DataLoadStatusBitRecover( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒf[ƒ^ƒ[ƒhŒã‚ÌÀ•W•œ‹A
+ * ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰å¾Œã®åº§æ¨™å¾©å¸°
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1140,7 +1140,7 @@ static void FldOBJ_DataLoadPosRecover( FIELD_OBJ_PTR fldobj )
 	int pos;
 	VecFx32 vec;
 	
-	FieldOBJ_VecPosGet( fldobj, &vec );		//Y’l‚Ì‚İƒZƒbƒgÏ‚İ
+	FieldOBJ_VecPosGet( fldobj, &vec );		//Yå€¤ã®ã¿ã‚»ãƒƒãƒˆæ¸ˆã¿
 
 //	OS_Printf("recover_y:%x\n",vec.y);
 	
@@ -1149,7 +1149,7 @@ static void FldOBJ_DataLoadPosRecover( FIELD_OBJ_PTR fldobj )
 	FieldOBJ_OldPosGX_Set( fldobj, pos );
 
 	pos = FieldOBJ_NowPosGY_Get( fldobj );
-//	vec.y = H_GRID_SIZE_FX32( pos ) + FLDOBJ_VEC_Y_GRID_OFFS_FX32;	<<ƒ[ƒh‚É’l‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚Í‚¸
+//	vec.y = H_GRID_SIZE_FX32( pos ) + FLDOBJ_VEC_Y_GRID_OFFS_FX32;	<<ãƒ­ãƒ¼ãƒ‰æ™‚ã«å€¤ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã¯ãš
 	FieldOBJ_OldPosGY_Set( fldobj, pos );
 	
 	pos = FieldOBJ_NowPosGZ_Get( fldobj );
@@ -1160,21 +1160,21 @@ static void FldOBJ_DataLoadPosRecover( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ •¡”“o˜^
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ è¤‡æ•°ç™»éŒ²
 //==============================================================================
-#if 0	//—p–³‚µ
+#if 0	//ç”¨ç„¡ã—
 
 //--------------------------------------------------------------
-///	FieldOBJ_AddFile()‚Åƒtƒ@ƒCƒ‹–¼“Ç‚İ‚İ‚Åg—p‚·‚éƒoƒbƒtƒ@ƒTƒCƒY
+///	FieldOBJ_AddFile()ã§ãƒ•ã‚¡ã‚¤ãƒ«åèª­ã¿è¾¼ã¿ã§ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 //--------------------------------------------------------------
 #define FLDOBJ_FILE_1LINE_BUF (96)
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ@ƒtƒ@ƒCƒ‹–¼w’è‚É‚æ‚é•¡”“o˜^
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ãƒ•ã‚¡ã‚¤ãƒ«åæŒ‡å®šã«ã‚ˆã‚‹è¤‡æ•°ç™»éŒ²
  * @param	sys			FIELD_OBJ_SYS_PTR 
- * @param	zone		’Ç‰Á‚³‚ê‚éƒ][ƒ“ID
- * @param	name		FIELD_OBJ_H‚ª‹Lq‚³‚ê‚½ƒtƒ@ƒCƒ‹–¼
+ * @param	zone		è¿½åŠ ã•ã‚Œã‚‹ã‚¾ãƒ¼ãƒ³ID
+ * @param	name		FIELD_OBJ_HãŒè¨˜è¿°ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«å
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1193,7 +1193,7 @@ void FieldOBJ_AddFile( CONST_FIELD_OBJ_SYS_PTR sys, int zone, const char *name )
 	file = sys_LoadFile( HEAPID_WORLD, name );
 	GF_ASSERT( file != NULL && "fieldobj add file alloc error" );
 	
-	StrTok( file, buf, ',' );								//“o˜^”
+	StrTok( file, buf, ',' );								//ç™»éŒ²æ•°
 	max = AtoI( buf );
 	
 	OS_Printf( "fieldobj add file load %d\n", max );
@@ -1201,61 +1201,61 @@ void FieldOBJ_AddFile( CONST_FIELD_OBJ_SYS_PTR sys, int zone, const char *name )
 	head = sys_AllocMemoryLo( HEAPID_WORLD, FIELD_OBJ_H_SIZE * max );
 	GF_ASSERT( head != NULL && "fieldobj add file head alloc error" );
 	
-	f_pos = StrTok( file, buf, RETURN_CODE );				//1s”ò‚Î‚µ
-	f_pos = StrTok( f_pos, buf, RETURN_CODE );				//’i—”ò‚Î‚µ
+	f_pos = StrTok( file, buf, RETURN_CODE );				//1è¡Œé£›ã°ã—
+	f_pos = StrTok( f_pos, buf, RETURN_CODE );				//æ®µè½é£›ã°ã—
 	
 	for( i = 0; i < max; i++ ){
-		f_pos = StrTok( f_pos, buf, ',' );					//IDæ“¾
+		f_pos = StrTok( f_pos, buf, ',' );					//IDå–å¾—
 		FieldOBJ_H_IDSet( &head[i], AtoI(buf) );
-		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1s”ò‚Î‚µ
+		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1è¡Œé£›ã°ã—
 		
-		f_pos = StrTok( f_pos, buf, ',' );					//OBJƒR[ƒhæ“¾
+		f_pos = StrTok( f_pos, buf, ',' );					//OBJã‚³ãƒ¼ãƒ‰å–å¾—
 		FieldOBJ_H_OBJCodeSet( &head[i], AtoI(buf) );
-		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1s”ò‚Î‚µ
+		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1è¡Œé£›ã°ã—
 		
-		f_pos = StrTok( f_pos, buf, ',' );					//“®ìƒR[ƒhæ“¾
+		f_pos = StrTok( f_pos, buf, ',' );					//å‹•ä½œã‚³ãƒ¼ãƒ‰å–å¾—
 		FieldOBJ_H_MoveCodeSet( &head[i], AtoI(buf) );
-		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1s”ò‚Î‚µ
+		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1è¡Œé£›ã°ã—
 		
-		f_pos = StrTok( f_pos, buf, ',' );					//ƒCƒxƒ“ƒgƒ^ƒCƒvæ“¾
+		f_pos = StrTok( f_pos, buf, ',' );					//ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—å–å¾—
 		FieldOBJ_H_EventTypeSet( &head[i], AtoI(buf) );
-		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1s”ò‚Î‚µ
+		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1è¡Œé£›ã°ã—
 		
-		f_pos = StrTok( f_pos, buf, ',' );					//ƒCƒxƒ“ƒgƒtƒ‰ƒOæ“¾
+		f_pos = StrTok( f_pos, buf, ',' );					//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°å–å¾—
 		FieldOBJ_H_EventFlagSet( &head[i], AtoI(buf) );
-		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1s”ò‚Î‚µ
+		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1è¡Œé£›ã°ã—
 		
-		f_pos = StrTok( f_pos, buf, ',' );					//ƒCƒxƒ“ƒgIDæ“¾
+		f_pos = StrTok( f_pos, buf, ',' );					//ã‚¤ãƒ™ãƒ³ãƒˆIDå–å¾—
 		FieldOBJ_H_EventIDSet( &head[i], AtoI(buf) );
-		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1s”ò‚Î‚µ
+		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1è¡Œé£›ã°ã—
 		
-		f_pos = StrTok( f_pos, buf, ',' );					//•ûŒüæ“¾
+		f_pos = StrTok( f_pos, buf, ',' );					//æ–¹å‘å–å¾—
 		FieldOBJ_H_DirSet( &head[i], AtoI(buf) );
-		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1s”ò‚Î‚µ
+		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1è¡Œé£›ã°ã—
 		
-		f_pos = StrTok( f_pos, buf, ',' );					//ƒpƒ‰ƒƒ^æ“¾
+		f_pos = StrTok( f_pos, buf, ',' );					//ãƒ‘ãƒ©ãƒ¡ã‚¿å–å¾—
 		FieldOBJ_H_ParamSet( &head[i], AtoI(buf) );
-		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1s”ò‚Î‚µ
+		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1è¡Œé£›ã°ã—
 		
-		f_pos = StrTok( f_pos, buf, ',' );					//ˆÚ“®§ŒÀXæ“¾
+		f_pos = StrTok( f_pos, buf, ',' );					//ç§»å‹•åˆ¶é™Xå–å¾—
 		FieldOBJ_H_MoveLimitXSet( &head[i], AtoI(buf) );
 		
-		f_pos = StrTok( f_pos, buf, ',' );					//ˆÚ“®§ŒÀZæ“¾
+		f_pos = StrTok( f_pos, buf, ',' );					//ç§»å‹•åˆ¶é™Zå–å¾—
 		FieldOBJ_H_MoveLimitZSet( &head[i], AtoI(buf) );
-		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1s”ò‚Î‚µ
+		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1è¡Œé£›ã°ã—
 		
-		f_pos = StrTok( f_pos, buf, ',' );					//XÀ•Wæ“¾
+		f_pos = StrTok( f_pos, buf, ',' );					//Xåº§æ¨™å–å¾—
 		FieldOBJ_H_PosXSet( &head[i], AtoI(buf) );
 		
-		f_pos = StrTok( f_pos, buf, ',' );					//ZÀ•Wæ“¾
+		f_pos = StrTok( f_pos, buf, ',' );					//Zåº§æ¨™å–å¾—
 		FieldOBJ_H_PosZSet( &head[i], AtoI(buf) );
-		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1s”ò‚Î‚µ
+		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//1è¡Œé£›ã°ã—
 		
-		f_pos = StrTok( f_pos, buf, ',' );					//YÀ•Wæ“¾
+		f_pos = StrTok( f_pos, buf, ',' );					//Yåº§æ¨™å–å¾—
 		FieldOBJ_H_PosYSet( &head[i], AtoI(buf) );
-		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//ˆês”ò‚Î‚µ
+		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//ä¸€è¡Œé£›ã°ã—
 		
-		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//’i—”ò‚Î‚µ
+		f_pos = StrTok( f_pos, buf, RETURN_CODE );			//æ®µè½é£›ã°ã—
 	}
 	
 	sys_FreeMemory( HEAPID_WORLD, file );
@@ -1277,11 +1277,11 @@ void FieldOBJ_AddFile( CONST_FIELD_OBJ_SYS_PTR sys, int zone, const char *name )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ@ƒoƒCƒiƒŠw’è‚É‚æ‚é•¡”“o˜^
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ãƒã‚¤ãƒŠãƒªæŒ‡å®šã«ã‚ˆã‚‹è¤‡æ•°ç™»éŒ²
  * @param	sys			FIELD_OBJ_SYS_PTR 
- * @param	zone		’Ç‰Á‚³‚ê‚éƒ][ƒ“ID
- * @param	max			’Ç‰Á‚·‚éÅ‘å”
- * @param	bin			’Ç‰Á‚·‚éFIELD_OBJ_H‚ª”z’u‚³‚ê‚Ä‚¢‚éƒoƒCƒiƒŠ*
+ * @param	zone		è¿½åŠ ã•ã‚Œã‚‹ã‚¾ãƒ¼ãƒ³ID
+ * @param	max			è¿½åŠ ã™ã‚‹æœ€å¤§æ•°
+ * @param	bin			è¿½åŠ ã™ã‚‹FIELD_OBJ_HãŒé…ç½®ã•ã‚Œã¦ã„ã‚‹ãƒã‚¤ãƒŠãƒª*
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1292,9 +1292,9 @@ void FieldOBJ_AddBin( CONST_FIELD_OBJ_SYS_PTR sys, int zone, int max, const FIEL
 	FIELD_OBJ_H_LOAD_FILE *load;
 	
 	#ifdef DEBUG_FLDOBJ_PRINTF
-	OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ ˆêŠ‡“o˜^ŠJn ”z’u” %d\n", max );
+	OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ä¸€æ‹¬ç™»éŒ²é–‹å§‹ é…ç½®æ•° %d\n", max );
 	if( max == 0 ){
-		OS_Printf( "FieldOBJ_AddBin()@w’èÅ‘å”ˆÙí" );
+		OS_Printf( "FieldOBJ_AddBin()ã€€æŒ‡å®šæœ€å¤§æ•°ç•°å¸¸" );
 	}
 	#endif
 	GF_ASSERT( max );
@@ -1316,13 +1316,13 @@ void FieldOBJ_AddBin( CONST_FIELD_OBJ_SYS_PTR sys, int zone, int max, const FIEL
 	FldOBJ_AddFileProc( load );
 	
 	#ifdef DEBUG_FLDOBJ_PRINTF
-	OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ ˆêŠ‡“o˜^I—¹\n" );
+	OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ä¸€æ‹¬ç™»éŒ²çµ‚äº†\n" );
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJˆêŠ‡“o˜^
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJä¸€æ‹¬ç™»éŒ²
  * @param	work	FIELD_OBJ_H_LOAD_FILE
  * @retval	nothing
  */
@@ -1342,7 +1342,7 @@ static void FldOBJ_AddFileProc( FIELD_OBJ_H_LOAD_FILE *work )
 			fldobj = FieldOBJ_AddH( work->sys, head, work->zone );
 			#ifdef DEBUG_FLDOBJ_PRINTF
 			if( fldobj == NULL ){
-				OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ‚ÌˆêŠ‡“o˜^‚É¸”s‚µ‚Ü‚µ‚½\n" );
+				OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ä¸€æ‹¬ç™»éŒ²ã«å¤±æ•—ã—ã¾ã—ãŸ\n" );
 			}
 			#endif
 			GF_ASSERT( fldobj != NULL );
@@ -1350,11 +1350,11 @@ static void FldOBJ_AddFileProc( FIELD_OBJ_H_LOAD_FILE *work )
 		#ifdef PM_DEBUG
 		else{
 			#ifdef DEBUG_FLDOBJ_PRINTF
-			OS_Printf( "ƒtƒB[ƒ‹ƒhOBJˆêŠ‡“o˜^’†cƒCƒxƒ“ƒgƒtƒ‰ƒO‚ªFALSE‚Ìˆ×A" );
+			OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJä¸€æ‹¬ç™»éŒ²ä¸­â€¦ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ãŒFALSEã®ç‚ºã€" );
 			OS_Printf( "OBJ ID=%d,",FieldOBJ_H_IDGet(head) );
 			OS_Printf( "GIRD X=%d,",FieldOBJ_H_PosXGet(head) );
 			OS_Printf( "GIRD Z=%d",FieldOBJ_H_PosZGet(head) );
-			OS_Printf( "‚É”z’u‚·‚éOBJ‚Ì’Ç‰Á‚ğ–³‹‚µ‚Ü‚µ‚½\n" );
+			OS_Printf( "ã«é…ç½®ã™ã‚‹OBJã®è¿½åŠ ã‚’ç„¡è¦–ã—ã¾ã—ãŸ\n" );
 			#endif
 		}
 		#endif
@@ -1367,7 +1367,7 @@ static void FldOBJ_AddFileProc( FIELD_OBJ_H_LOAD_FILE *work )
 	sys_FreeMemory( HEAPID_WORLD, work );
 }
 
-#if 0	//‹Œ”Å@ƒGƒCƒŠƒAƒX‚Å‚ÌƒoƒO‚ ‚è
+#if 0	//æ—§ç‰ˆã€€ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã§ã®ãƒã‚°ã‚ã‚Š
 static void FldOBJ_AddFileProc( FIELD_OBJ_H_LOAD_FILE *work )
 {
 	FIELD_OBJ_PTR fldobj;
@@ -1380,13 +1380,13 @@ static void FldOBJ_AddFileProc( FIELD_OBJ_H_LOAD_FILE *work )
 	do{
 		if( CheckEventFlag(fsys,head->event_flag) == FALSE ){
 			fldobj = FieldOBJ_AddH( work->sys, head, work->zone );
-			GF_ASSERT( fldobj != NULL && "ƒtƒB[ƒ‹ƒhOBJ‚ÌˆêŠ‡“o˜^‚É¸”s‚µ‚Ü‚µ‚½\n" );
+			GF_ASSERT( fldobj != NULL && "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ä¸€æ‹¬ç™»éŒ²ã«å¤±æ•—ã—ã¾ã—ãŸ\n" );
 		}else{
-			OS_Printf( "ƒtƒB[ƒ‹ƒhOBJˆêŠ‡“o˜^’†cƒCƒxƒ“ƒgƒtƒ‰ƒO‚ªFALSE‚Ìˆ×A" );
+			OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJä¸€æ‹¬ç™»éŒ²ä¸­â€¦ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ãŒFALSEã®ç‚ºã€" );
 			OS_Printf( "OBJ ID=%d,",FieldOBJ_H_IDGet(head) );
 			OS_Printf( "GIRD X=%d,",FieldOBJ_H_PosXGet(head) );
 			OS_Printf( "GIRD Z=%d",FieldOBJ_H_PosZGet(head) );
-			OS_Printf( "‚É”z’u‚·‚éOBJ‚Ì’Ç‰Á‚ğ–³‹‚µ‚Ü‚µ‚½\n" );
+			OS_Printf( "ã«é…ç½®ã™ã‚‹OBJã®è¿½åŠ ã‚’ç„¡è¦–ã—ã¾ã—ãŸ\n" );
 		}
 	
 		head++;
@@ -1399,13 +1399,13 @@ static void FldOBJ_AddFileProc( FIELD_OBJ_H_LOAD_FILE *work )
 #endif
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ@ƒp[ƒc
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚Ì‹ó‚«‚ğ’T‚·
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ç©ºãã‚’æ¢ã™
  * @param	sys			FIELD_OBJ_SYS_PTR 
- * @retval	FIELD_OBJ	‹ó‚«‚ÌFIELD_OBJ*@‹ó‚«‚ª–³‚¢ê‡‚ÍNULL
+ * @retval	FIELD_OBJ	ç©ºãã®FIELD_OBJ*ã€€ç©ºããŒç„¡ã„å ´åˆã¯NULL
  */
 //--------------------------------------------------------------
 static FIELD_OBJ_PTR  FldOBJ_SpaceSearch( CONST_FIELD_OBJ_SYS_PTR sys )
@@ -1431,11 +1431,11 @@ static FIELD_OBJ_PTR  FldOBJ_SpaceSearch( CONST_FIELD_OBJ_SYS_PTR sys )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ@ƒGƒCƒŠƒAƒX‚ğ’T‚·
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã‚’æ¢ã™
  * @param	fos			FIELD_OBJ_SYS_PTR
- * @param	obj_id		ˆê’v‚·‚éOBJ ID
- * @param	zone_id		ˆê’v‚·‚éZONE ID
- * @retval	FIELD_OBJ	ˆê’v‚·‚éFIELD_OBJ*@ˆê’v–³‚µ=NULL
+ * @param	obj_id		ä¸€è‡´ã™ã‚‹OBJ ID
+ * @param	zone_id		ä¸€è‡´ã™ã‚‹ZONE ID
+ * @retval	FIELD_OBJ	ä¸€è‡´ã™ã‚‹FIELD_OBJ*ã€€ä¸€è‡´ç„¡ã—=NULL
  */
 //--------------------------------------------------------------
 static FIELD_OBJ_PTR FldOBJ_AliesSearch( CONST_FIELD_OBJ_SYS_PTR fos, int obj_id, int zone_id )
@@ -1458,7 +1458,7 @@ static FIELD_OBJ_PTR FldOBJ_AliesSearch( CONST_FIELD_OBJ_SYS_PTR fos, int obj_id
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ@TCB“®ìŠÖ”’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€TCBå‹•ä½œé–¢æ•°è¿½åŠ 
  * @param	sys		FIELD_OBJ_SYS*
  * @param	fldobj	FIELD_OBJ*
  * @retval	nothing
@@ -1484,9 +1484,9 @@ static void FldOBJ_MoveTcbAdd( CONST_FIELD_OBJ_SYS_PTR sys, FIELD_OBJ_PTR fldobj
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ@ƒwƒbƒ_[î•ñ”½‰f
- * @param	fldobj		İ’è‚·‚éFIELD_OBJ_PTR 
- * @param	head		”½‰f‚·‚éî•ñ‚ğ“Z‚ß‚½FIELD_OBJ_H *
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ãƒ˜ãƒƒãƒ€ãƒ¼æƒ…å ±åæ˜ 
+ * @param	fldobj		è¨­å®šã™ã‚‹FIELD_OBJ_PTR 
+ * @param	head		åæ˜ ã™ã‚‹æƒ…å ±ã‚’çºã‚ãŸFIELD_OBJ_H *
  * @param	fsys		FIELDSYS_WORK *
  * @retval	nothing
  */
@@ -1512,9 +1512,9 @@ static void FldOBJ_AddHeaderSet(
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ@À•WŒn‰Šú‰»
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€åº§æ¨™ç³»åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
- * @param	head		”½‰f‚·‚éî•ñ‚ğ“Z‚ß‚½FIELD_OBJ_H *
+ * @param	head		åæ˜ ã™ã‚‹æƒ…å ±ã‚’çºã‚ãŸFIELD_OBJ_H *
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1529,7 +1529,7 @@ static void FldOBJ_AddHeaderPosInit( FIELD_OBJ_PTR fldobj, const FIELD_OBJ_H *he
 	FieldOBJ_OldPosGX_Set( fldobj, pos );
 	FieldOBJ_NowPosGX_Set( fldobj, pos );
 	
-	pos = FieldOBJ_H_PosYGet( head );							//posİ’è‚Ífx32Œ^‚Å—ˆ‚éB
+	pos = FieldOBJ_H_PosYGet( head );							//posè¨­å®šã¯fx32å‹ã§æ¥ã‚‹ã€‚
 	vec.y = (fx32)pos;
 	pos = SIZE_H_GRID_FX32( pos );
 	FieldOBJ_InitPosGY_Set( fldobj, pos );
@@ -1547,7 +1547,7 @@ static void FldOBJ_AddHeaderPosInit( FIELD_OBJ_PTR fldobj, const FIELD_OBJ_H *he
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ@ƒ[ƒN‰Šú‰»
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @param	sys			FIELD_OBJ_SYS_PTR 
  * @retval	nothing
@@ -1556,9 +1556,9 @@ static void FldOBJ_AddHeaderPosInit( FIELD_OBJ_PTR fldobj, const FIELD_OBJ_H *he
 static void FldOBJ_WorkInit( FIELD_OBJ_PTR fldobj, CONST_FIELD_OBJ_SYS_PTR sys )
 {
 	FieldOBJ_StatusBit_ON( fldobj,
-			FLDOBJ_STA_BIT_USE |							//g—p’†
-			FLDOBJ_STA_BIT_HEIGHT_GET_ERROR |				//‚‚³æ“¾‚ª•K—v‚Å‚ ‚é
-			FLDOBJ_STA_BIT_ATTR_GET_ERROR );				//ƒAƒgƒŠƒrƒ…[ƒgæ“¾‚ª•K—v‚Å‚ ‚é
+			FLDOBJ_STA_BIT_USE |							//ä½¿ç”¨ä¸­
+			FLDOBJ_STA_BIT_HEIGHT_GET_ERROR |				//é«˜ã•å–å¾—ãŒå¿…è¦ã§ã‚ã‚‹
+			FLDOBJ_STA_BIT_ATTR_GET_ERROR );				//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—ãŒå¿…è¦ã§ã‚ã‚‹
 	
 	if( FieldOBJ_EventIDAliesCheck(fldobj) == TRUE ){
 		FieldOBJ_StatusBitSet_Alies( fldobj, TRUE );
@@ -1572,7 +1572,7 @@ static void FldOBJ_WorkInit( FIELD_OBJ_PTR fldobj, CONST_FIELD_OBJ_SYS_PTR sys )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ “®ìŠÖ”‰Šú‰»
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ å‹•ä½œé–¢æ•°åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -1589,7 +1589,7 @@ static void FldOBJ_WorkInit_MoveProcInit( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ •`‰æŠÖ”‰Šú‰»
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ æç”»é–¢æ•°åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -1614,7 +1614,7 @@ static void FldOBJ_WorkInit_DrawProcInit( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒ[ƒNÁ‹
+ * ãƒ¯ãƒ¼ã‚¯æ¶ˆå»
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -1626,12 +1626,12 @@ static void FldOBJ_WorkClear( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒtƒB[ƒ‹ƒhOBJ‚ªƒGƒCƒŠƒAƒXw’è‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ * æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãŒã‚¨ã‚¤ãƒªã‚¢ã‚¹æŒ‡å®šã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  * @param	fldobj		FIELD_OBJ_PTR
- * @param	h_zone_id	head‚ğ“Ç‚İ‚Şƒ][ƒ“ID
- * @param	max			head—v‘f”
+ * @param	h_zone_id	headã‚’èª­ã¿è¾¼ã‚€ã‚¾ãƒ¼ãƒ³ID
+ * @param	max			headè¦ç´ æ•°
  * @param	head		FIELD_OBJ_H
- * @retval	int			RET_ALIES_NOT“™
+ * @retval	int			RET_ALIES_NOTç­‰
  */
 //--------------------------------------------------------------
 static int FldOBJ_HeaderAliesCheck(
@@ -1643,20 +1643,20 @@ static int FldOBJ_HeaderAliesCheck(
 	while( max ){
 		obj_id = FieldOBJ_H_IDGet( head );
 		
-		if( FieldOBJ_OBJIDGet(fldobj) == obj_id ){					//IDˆê’v
-			if( FldOBJ_H_AliesCheck(head) == TRUE ){				//ƒGƒCƒŠƒAƒXƒwƒbƒ_[
-				zone_id = FldOBJ_H_AliesZoneIDGet( head );			//ƒGƒCƒŠƒAƒX‚Ì³‹Kƒ][ƒ“ID
+		if( FieldOBJ_OBJIDGet(fldobj) == obj_id ){					//IDä¸€è‡´
+			if( FldOBJ_H_AliesCheck(head) == TRUE ){				//ã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+				zone_id = FldOBJ_H_AliesZoneIDGet( head );			//ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã®æ­£è¦ã‚¾ãƒ¼ãƒ³ID
 				
-				if( FieldOBJ_StatusBitCheck_Alies(fldobj) == TRUE ){	//‘ÎÛƒGƒCƒŠƒAƒX
+				if( FieldOBJ_StatusBitCheck_Alies(fldobj) == TRUE ){	//å¯¾è±¡ã‚¨ã‚¤ãƒªã‚¢ã‚¹
 					if( FieldOBJ_ZoneIDGetAlies(fldobj) == zone_id ){
-						return( RET_ALIES_EXIST );						//Alies‚Æ‚µ‚ÄŠù‚É‘¶İ
+						return( RET_ALIES_EXIST );						//Aliesã¨ã—ã¦æ—¢ã«å­˜åœ¨
 					}
 				}else if( FieldOBJ_ZoneIDGet(fldobj) == zone_id ){
-					return( RET_ALIES_CHANGE );							//Alies‘ÎÛ‚Å‚ ‚é
+					return( RET_ALIES_CHANGE );							//Alieså¯¾è±¡ã§ã‚ã‚‹
 				}
-			}else{														//’Êíƒwƒbƒ_[
+			}else{														//é€šå¸¸ãƒ˜ãƒƒãƒ€ãƒ¼
 				if( FieldOBJ_StatusBitCheck_Alies(fldobj) == TRUE ){
-					if( FieldOBJ_ZoneIDGetAlies(fldobj) == h_zone_id ){	//¶‘¶ƒGƒCƒŠƒAƒX‚Æˆê’v
+					if( FieldOBJ_ZoneIDGetAlies(fldobj) == h_zone_id ){	//ç”Ÿå­˜ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã¨ä¸€è‡´
 						return( RET_ALIES_CHANGE );
 					}
 				}
@@ -1672,10 +1672,10 @@ static int FldOBJ_HeaderAliesCheck(
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒ][ƒ“ID‚ÆOBJ ID‚ğ‚ÂFIELD_OBJ_PTR‚ğæ“¾B
+ * æŒ‡å®šã•ã‚ŒãŸã‚¾ãƒ¼ãƒ³IDã¨OBJ IDã‚’æŒã¤FIELD_OBJ_PTRã‚’å–å¾—ã€‚
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @param	obj_id	OBJ ID
- * @param	zone_id	ƒ][ƒ“ID
+ * @param	zone_id	ã‚¾ãƒ¼ãƒ³ID
  * @retval	FIELD_OBJ_PTR FIELD_OBJ_PTR
  */
 //--------------------------------------------------------------
@@ -1696,9 +1696,9 @@ static FIELD_OBJ_PTR FldOBJ_OBJIDZoneIDSearch(
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒ][ƒ“ID‚ğ‚Â‚à‚ÌˆÈŠO‚ğ‘S‚Äíœ
+ * æŒ‡å®šã•ã‚ŒãŸã‚¾ãƒ¼ãƒ³IDã‚’æŒã¤ã‚‚ã®ä»¥å¤–ã‚’å…¨ã¦å‰Šé™¤
  * @param	fos			FIELD_OBJ_SYS_PTR
- * @param	zone_id		íœ‚µ‚È‚¢ƒ][ƒ“ID
+ * @param	zone_id		å‰Šé™¤ã—ãªã„ã‚¾ãƒ¼ãƒ³ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1724,10 +1724,10 @@ static void FldOBJ_DeleteAll_OldZoneID( FIELD_OBJ_SYS_PTR fos, u32 zone_id )
 
 //--------------------------------------------------------------
 /**
- * OBJ ID‚Éˆê’v‚·‚éFIELD_OBJ_PTR‚ğŒŸõ
+ * OBJ IDã«ä¸€è‡´ã™ã‚‹FIELD_OBJ_PTRã‚’æ¤œç´¢
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	id		ŒŸõ‚·‚éOBJ ID
- * @retval	FIELD_OBJ_PTR	NULL=‘¶İ‚µ‚È‚¢
+ * @param	id		æ¤œç´¢ã™ã‚‹OBJ ID
+ * @retval	FIELD_OBJ_PTR	NULL=å­˜åœ¨ã—ãªã„
  */
 //--------------------------------------------------------------
 FIELD_OBJ_PTR FieldOBJSys_OBJIDSearch( CONST_FIELD_OBJ_SYS_PTR fos, int id )
@@ -1735,7 +1735,7 @@ FIELD_OBJ_PTR FieldOBJSys_OBJIDSearch( CONST_FIELD_OBJ_SYS_PTR fos, int id )
 	int max;
 	FIELD_OBJ_PTR fldobj;
 	
-	GF_ASSERT( fos != NULL && "FieldOBJSys_OBJIDSearch() NULLw’è‚Å‚·" );
+	GF_ASSERT( fos != NULL && "FieldOBJSys_OBJIDSearch() NULLæŒ‡å®šã§ã™" );
 	
 	max = FieldOBJSys_OBJMaxGet( fos );
 	fldobj = FldOBJSys_FieldOBJWorkGet( fos );
@@ -1758,10 +1758,10 @@ FIELD_OBJ_PTR FieldOBJSys_OBJIDSearch( CONST_FIELD_OBJ_SYS_PTR fos, int id )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒR[ƒh‚Éˆê’v‚·‚éFIELD_OBJ_PTR‚ğŒŸõ
+ * å‹•ä½œã‚³ãƒ¼ãƒ‰ã«ä¸€è‡´ã™ã‚‹FIELD_OBJ_PTRã‚’æ¤œç´¢
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	mv_code		ŒŸõ‚·‚é“®ìƒR[ƒh
- * @retval	FIELD_OBJ_PTR	NULL=‘¶İ‚µ‚È‚¢
+ * @param	mv_code		æ¤œç´¢ã™ã‚‹å‹•ä½œã‚³ãƒ¼ãƒ‰
+ * @retval	FIELD_OBJ_PTR	NULL=å­˜åœ¨ã—ãªã„
  */
 //--------------------------------------------------------------
 FIELD_OBJ_PTR FieldOBJSys_MoveCodeSearch( CONST_FIELD_OBJ_SYS_PTR fos, int mv_code )
@@ -1793,12 +1793,12 @@ FIELD_OBJ_PTR FieldOBJSys_OBJIDMoveCodeSearch( CONST_FIELD_OBJ_SYS_PTR fos, int 
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJƒ[ƒNŒŸõ
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ¯ãƒ¼ã‚¯æ¤œç´¢
  * @param	fos			FIELD_OBJ_SYS_PTR
- * @param	fldobj		ŠY“–‚·‚éFIELD_OBJ_PTRŠi”[æ
- * @param	no			ŒŸõŠJnƒ[ƒNnoB‚±‚ÌŠÖ”‚©‚ç–ß‚éÛAŒŸõˆÊ’u+1‚Ì’l‚É‚È‚é
- * @param	check_bit	ŒŸõğŒƒXƒe[ƒ^ƒXƒrƒbƒgBFLDOBJ_STA_BIT_USE“™
- * @retval	int			TRUE=ˆê’v‚ ‚è FALSE=ˆê’v‚È‚µ
+ * @param	fldobj		è©²å½“ã™ã‚‹FIELD_OBJ_PTRæ ¼ç´å…ˆ
+ * @param	no			æ¤œç´¢é–‹å§‹ãƒ¯ãƒ¼ã‚¯noã€‚ã“ã®é–¢æ•°ã‹ã‚‰æˆ»ã‚‹éš›ã€æ¤œç´¢ä½ç½®+1ã®å€¤ã«ãªã‚‹
+ * @param	check_bit	æ¤œç´¢æ¡ä»¶ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆã€‚FLDOBJ_STA_BIT_USEç­‰
+ * @retval	int			TRUE=ä¸€è‡´ã‚ã‚Š FALSE=ä¸€è‡´ãªã—
  */
 //--------------------------------------------------------------
 int FieldOBJSys_FieldOBJSearch(
@@ -1832,7 +1832,7 @@ int FieldOBJSys_FieldOBJSearch(
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ•`‰æ‰Šú‰»‚És‚¤ˆ—
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJæç”»åˆæœŸåŒ–ã«è¡Œã†å‡¦ç†
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1845,8 +1845,8 @@ static void FldOBJ_DrawInitStatusSet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJŠÖ˜AƒGƒtƒFƒNƒg‚Ìƒtƒ‰ƒO‰Šú‰»B
- * ƒGƒtƒFƒNƒgŠÖ˜A‚Ìƒtƒ‰ƒO‰Šú‰»‚ğ‚Ü‚Æ‚ß‚é
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé–¢é€£ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ•ãƒ©ã‚°åˆæœŸåŒ–ã€‚
+ * ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–¢é€£ã®ãƒ•ãƒ©ã‚°åˆæœŸåŒ–ã‚’ã¾ã¨ã‚ã‚‹
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1862,7 +1862,7 @@ static void FldOBJ_DrawEffectFlagInit( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ•`‰æíœ‚És‚¤ˆ—
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJæç”»å‰Šé™¤æ™‚ã«è¡Œã†å‡¦ç†
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1873,11 +1873,11 @@ static void FldOBJ_DrawDeleteStatusSet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½OBJƒR[ƒh‚ªƒ[ƒNQÆŒ^‚È‚ç‚Îƒ[ƒN“àOBJƒR[ƒh‚É•ÏXB
- * ˆá‚¤ê‡‚Í‚»‚Ì‚Ü‚Ü‚Å•Ô‚·B
+ * æŒ‡å®šã•ã‚ŒãŸOBJã‚³ãƒ¼ãƒ‰ãŒãƒ¯ãƒ¼ã‚¯å‚ç…§å‹ãªã‚‰ã°ãƒ¯ãƒ¼ã‚¯å†…OBJã‚³ãƒ¼ãƒ‰ã«å¤‰æ›´ã€‚
+ * é•ã†å ´åˆã¯ãã®ã¾ã¾ã§è¿”ã™ã€‚
  * @param	fsys	FIELDSYS_WORK *
- * @param	code	OBJƒR[ƒhBHERO“™
- * @retval	int		ƒ`ƒFƒbƒN‚³‚ê‚½OBJƒR[ƒh
+ * @param	code	OBJã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
+ * @retval	int		ãƒã‚§ãƒƒã‚¯ã•ã‚ŒãŸOBJã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 static int FldOBJ_OBJCodeWkOBJCodeConv( FIELDSYS_WORK *fsys, int code )
@@ -1892,10 +1892,10 @@ static int FldOBJ_OBJCodeWkOBJCodeConv( FIELDSYS_WORK *fsys, int code )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ”­¶‚µ‚Ä‚¢‚éƒtƒB[ƒ‹ƒhOBJ‚ÌOBJƒR[ƒh‚ğQÆ
+ * ç¾åœ¨ç™ºç”Ÿã—ã¦ã„ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®OBJã‚³ãƒ¼ãƒ‰ã‚’å‚ç…§
  * @param	fldobj		FIELD_OBJ_PTR 
- * @param	code		ƒ`ƒFƒbƒN‚·‚éƒR[ƒhBHERO“™
- * @retval	int			TRUE=fldobjˆÈŠO‚É‚àcode‚ğ‚Á‚Ä‚¢‚é“z‚ª‚¢‚é
+ * @param	code		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚³ãƒ¼ãƒ‰ã€‚HEROç­‰
+ * @retval	int			TRUE=fldobjä»¥å¤–ã«ã‚‚codeã‚’æŒã£ã¦ã„ã‚‹å¥´ãŒã„ã‚‹
  */
 //--------------------------------------------------------------
 int FieldOBJ_OBJCodeUseSearch( CONST_FIELD_OBJ_PTR fldobj, int code )
@@ -1928,7 +1928,7 @@ int FieldOBJ_OBJCodeUseSearch( CONST_FIELD_OBJ_PTR fldobj, int code )
 
 //--------------------------------------------------------------
 /**
- * ‚‚³‰Šú‰» FLDOBJ_STA_BIT_HEIGHT_GET_ERROR‚ªOFF‚Ìê‡‚Í‰Šú‰»‚µ‚È‚¢
+ * é«˜ã•åˆæœŸåŒ– FLDOBJ_STA_BIT_HEIGHT_GET_ERRORãŒOFFã®å ´åˆã¯åˆæœŸåŒ–ã—ãªã„
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1942,7 +1942,7 @@ static void FldOBJ_HeightNeedCheckInit( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ì‰Šú‰»‚És‚¤ˆ—“Z‚ß
+ * å‹•ä½œåˆæœŸåŒ–ã«è¡Œã†å‡¦ç†çºã‚
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1955,7 +1955,7 @@ static void FldOBJ_MoveWorkInit( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æ‰Šú‰»‚És‚¤ˆ—“Z‚ß
+ * æç”»åˆæœŸåŒ–ã«è¡Œã†å‡¦ç†çºã‚
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1965,7 +1965,7 @@ static void FldOBJ_DrawWorkInit( FIELD_OBJ_PTR fldobj )
 	CONST_FIELD_OBJ_SYS_PTR fos = FieldOBJ_FieldOBJSysGet( fldobj );
 	
 	if( FieldOBJSys_DrawInitCompCheck(fos) == FALSE ){
-		return; //•`‰æƒVƒXƒeƒ€‰Šú‰»Š®—¹‚µ‚Ä‚¢‚È‚¢
+		return; //æç”»ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–å®Œäº†ã—ã¦ã„ãªã„
 	}
 	
 	FldOBJ_HeightNeedCheckInit( fldobj );
@@ -1981,9 +1981,9 @@ static void FldOBJ_DrawWorkInit( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgID‚ªƒGƒCƒŠƒAƒX‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ * ã‚¤ãƒ™ãƒ³ãƒˆIDãŒã‚¨ã‚¤ãƒªã‚¢ã‚¹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=ƒGƒCƒŠƒAƒXID‚Å‚ ‚é FALSE=ˆá‚¤
+ * @retval	int			TRUE=ã‚¨ã‚¤ãƒªã‚¢ã‚¹IDã§ã‚ã‚‹ FALSE=é•ã†
  */
 //--------------------------------------------------------------
 int FieldOBJ_EventIDAliesCheck( CONST_FIELD_OBJ_PTR fldobj )
@@ -1999,17 +1999,17 @@ int FieldOBJ_EventIDAliesCheck( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ@ƒGƒCƒŠƒAƒX‚©‚ç³‹KOBJ‚Ö‚Ì•ÏX
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã‹ã‚‰æ­£è¦OBJã¸ã®å¤‰æ›´
  * @param	fldobj		FIELD_OBJ_PTR 
- * @param	head		‘ÎÛ‚ÌFIELD_OBJ_H
- * @param	zone_id		³‹K‚Ìƒ][ƒ“ID
+ * @param	head		å¯¾è±¡ã®FIELD_OBJ_H
+ * @param	zone_id		æ­£è¦ã®ã‚¾ãƒ¼ãƒ³ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void FldOBJ_AliesOBJChange( FIELD_OBJ_PTR fldobj, const FIELD_OBJ_H *head, int zone_id )
 {
 	GF_ASSERT( FieldOBJ_StatusBitCheck_Alies(fldobj) == TRUE &&
-			"FldOBJ_AliesOBJChange()alies‚Å‚Í‚È‚¢" );
+			"FldOBJ_AliesOBJChange()aliesã§ã¯ãªã„" );
 	
 	FieldOBJ_StatusBitSet_Alies( fldobj, FALSE );
 	FieldOBJ_ZoneIDSet( fldobj, zone_id );
@@ -2019,15 +2019,15 @@ static void FldOBJ_AliesOBJChange( FIELD_OBJ_PTR fldobj, const FIELD_OBJ_H *head
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ@³‹KOBJ‚©‚çƒGƒCƒŠƒAƒX‚Ö‚Ì•ÏX
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€æ­£è¦OBJã‹ã‚‰ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã¸ã®å¤‰æ›´
  * @param	fldobj		FIELD_OBJ_PTR 
- * @param	head		‘ÎÛ‚ÌFIELD_OBJ_H
+ * @param	head		å¯¾è±¡ã®FIELD_OBJ_H
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void FldOBJ_OBJAliesChange( FIELD_OBJ_PTR fldobj, int zone_id, const FIELD_OBJ_H *head )
 {
-	GF_ASSERT( FldOBJ_H_AliesCheck(head) == TRUE && "FldOBJ_OBJAliesChange()alies‚Å‚Í‚È‚¢" );
+	GF_ASSERT( FldOBJ_H_AliesCheck(head) == TRUE && "FldOBJ_OBJAliesChange()aliesã§ã¯ãªã„" );
 	
 	FieldOBJ_StatusBitSet_Alies( fldobj, TRUE );
 	FieldOBJ_EventIDSet( fldobj, FieldOBJ_H_EventIDGet(head) );
@@ -2037,10 +2037,10 @@ static void FldOBJ_OBJAliesChange( FIELD_OBJ_PTR fldobj, int zone_id, const FIEL
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ_PTR‚ÌTCBƒXƒ^ƒ“ƒ_[ƒhƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ’²®‚µ‚Äæ“¾
+ * FIELD_OBJ_PTRã®TCBã‚¹ã‚¿ãƒ³ãƒ€ãƒ¼ãƒ‰ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’èª¿æ•´ã—ã¦å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	offset	ƒXƒ^ƒ“ƒ_[ƒhƒvƒ‰ƒCƒIƒŠƒeƒB‚É‰ÁZ‚·‚é’l
- * @retval	int		’²ß‚³‚ê‚½ƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param	offset	ã‚¹ã‚¿ãƒ³ãƒ€ãƒ¼ãƒ‰ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã«åŠ ç®—ã™ã‚‹å€¤
+ * @retval	int		èª¿ç¯€ã•ã‚ŒãŸãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  */
 //--------------------------------------------------------------
 int FieldOBJ_TCBPriGet( CONST_FIELD_OBJ_PTR fldobj, int offset )
@@ -2055,12 +2055,12 @@ int FieldOBJ_TCBPriGet( CONST_FIELD_OBJ_PTR fldobj, int offset )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚Ì“¯ˆêƒ`ƒFƒbƒNB
- * €–SA“ü‚ê‘Ö‚í‚è‚ª”­¶‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚éB
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®åŒä¸€ãƒã‚§ãƒƒã‚¯ã€‚
+ * æ­»äº¡ã€å…¥ã‚Œæ›¿ã‚ã‚ŠãŒç™ºç”Ÿã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	obj_id	“¯ˆê‚Æ‚İ‚È‚·OBJ ID
- * @param	zone_id	“¯ˆê‚Æ‚İ‚È‚·ZONE ID
- * @retval	int		TRUE=“¯ˆêBFALSE=“¯ˆê‚Å‚Í‚È‚¢
+ * @param	obj_id	åŒä¸€ã¨ã¿ãªã™OBJ ID
+ * @param	zone_id	åŒä¸€ã¨ã¿ãªã™ZONE ID
+ * @retval	int		TRUE=åŒä¸€ã€‚FALSE=åŒä¸€ã§ã¯ãªã„
  */
 //--------------------------------------------------------------
 int FieldOBJ_CheckSameID( CONST_FIELD_OBJ_PTR fldobj, int obj_id, int zone_id )
@@ -2088,13 +2088,13 @@ int FieldOBJ_CheckSameID( CONST_FIELD_OBJ_PTR fldobj, int obj_id, int zone_id )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚Ì“¯ˆêƒ`ƒFƒbƒNBOBJƒR[ƒhŠÜ‚İ
- * €–SA“ü‚ê‘Ö‚í‚è‚ª”­¶‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚éB
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®åŒä¸€ãƒã‚§ãƒƒã‚¯ã€‚OBJã‚³ãƒ¼ãƒ‰å«ã¿
+ * æ­»äº¡ã€å…¥ã‚Œæ›¿ã‚ã‚ŠãŒç™ºç”Ÿã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	code	“¯ˆê‚Æ‚İ‚È‚·OBJƒR[ƒh
- * @param	obj_id	“¯ˆê‚Æ‚İ‚È‚·OBJ ID
- * @param	zone_id	“¯ˆê‚Æ‚İ‚È‚·ZONE ID
- * @retval	int		TRUE=“¯ˆêBFALSE=“¯ˆê‚Å‚Í‚È‚¢
+ * @param	code	åŒä¸€ã¨ã¿ãªã™OBJã‚³ãƒ¼ãƒ‰
+ * @param	obj_id	åŒä¸€ã¨ã¿ãªã™OBJ ID
+ * @param	zone_id	åŒä¸€ã¨ã¿ãªã™ZONE ID
+ * @retval	int		TRUE=åŒä¸€ã€‚FALSE=åŒä¸€ã§ã¯ãªã„
  */
 //--------------------------------------------------------------
 int FieldOBJ_CheckSameIDOBJCodeIn(
@@ -2116,11 +2116,11 @@ int FieldOBJ_CheckSameIDOBJCodeIn(
 }
 
 //==============================================================================
-//	“®ìŠÖ”
+//	å‹•ä½œé–¢æ•°
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ TCB “®ìŠÖ”
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ TCB å‹•ä½œé–¢æ•°
  * @param	tcb		TCB_PTR
  * @param	work	tcb work
  * @retval	nothing
@@ -2141,7 +2141,7 @@ static void FldOBJ_TCB_MoveProc( TCB_PTR tcb, void *work )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ TCB “®ìŠÖ”‚©‚çŒÄ‚Î‚ê‚é•`‰æŠÖ”
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ TCB å‹•ä½œé–¢æ•°ã‹ã‚‰å‘¼ã°ã‚Œã‚‹æç”»é–¢æ•°
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -2156,11 +2156,11 @@ static void FldOBJ_TCB_DrawProc( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJƒVƒXƒeƒ€@QÆ
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚·ã‚¹ãƒ†ãƒ ã€€å‚ç…§
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * const FIELD_OBJ_SYS‚ğFIELD_OBJ_SYS‚É
+ * const FIELD_OBJ_SYSã‚’FIELD_OBJ_SYSã«
  * @param	sys		FIELD_OBJ_SYS_PTR 
  * @retval	FIELD_OBJ_SYS	FIELD_OBJ_SYS_PTR 
  */
@@ -2172,9 +2172,9 @@ static FIELD_OBJ_SYS_PTR  FldOBJ_ConstSysLocalGet( CONST_FIELD_OBJ_SYS_PTR sys )
 
 //--------------------------------------------------------------
 /**
- * OBJ“o˜^‰Â”\Å‘å”‚ğƒZƒbƒg
+ * OBJç™»éŒ²å¯èƒ½æœ€å¤§æ•°ã‚’ã‚»ãƒƒãƒˆ
  * @param	sys		FIELD_OBJ_SYS_PTR 
- * @param	max		Å‘å”
+ * @param	max		æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2185,9 +2185,9 @@ void FieldOBJSys_OBJMaxSet( FIELD_OBJ_SYS_PTR sys, int max )
 
 //--------------------------------------------------------------
 /**
- * OBJ“o˜^‰Â”\Å‘å”‚ğæ“¾
+ * OBJç™»éŒ²å¯èƒ½æœ€å¤§æ•°ã‚’å–å¾—
  * @param	sys		FIELD_OBJ_SYS_PTR 
- * @retval	int		OBJÅ‘å”
+ * @retval	int		OBJæœ€å¤§æ•°
  */
 //--------------------------------------------------------------
 int FieldOBJSys_OBJMaxGet( CONST_FIELD_OBJ_SYS_PTR sys )
@@ -2197,7 +2197,7 @@ int FieldOBJSys_OBJMaxGet( CONST_FIELD_OBJ_SYS_PTR sys )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ‘¶İ‚µ‚Ä‚¢‚éOBJ‚Ì”‚ğ1‘‰Á
+ * ç¾åœ¨å­˜åœ¨ã—ã¦ã„ã‚‹OBJã®æ•°ã‚’1å¢—åŠ 
  * @param	sys		FIELD_OBJ_SYS_PTR 
  * @retval	nothing
  */
@@ -2212,7 +2212,7 @@ static void FldOBJSys_OBJCountInc( FIELD_OBJ_SYS_PTR sys )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ‘¶İ‚µ‚Ä‚¢‚éOBJ‚Ì”‚ğ1Œ¸‚ç‚·
+ * ç¾åœ¨å­˜åœ¨ã—ã¦ã„ã‚‹OBJã®æ•°ã‚’1æ¸›ã‚‰ã™
  * @param	sys		FIELD_OBJ_SYS_PTR 
  * @retval	nothing
  */
@@ -2227,9 +2227,9 @@ static void FldOBJSys_OBJCountDec( FIELD_OBJ_SYS_PTR sys )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ‘¶İ‚µ‚Ä‚¢‚éOBJ‚Ì”‚ğƒZƒbƒg
+ * ç¾åœ¨å­˜åœ¨ã—ã¦ã„ã‚‹OBJã®æ•°ã‚’ã‚»ãƒƒãƒˆ
  * @param	sys		FIELD_OBJ_SYS_PTR 
- * @param	count	ƒZƒbƒg‚·‚é”
+ * @param	count	ã‚»ãƒƒãƒˆã™ã‚‹æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2240,9 +2240,9 @@ static void FldOBJSys_OBJCountSet( FIELD_OBJ_SYS_PTR sys, int count )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ‘¶İ‚µ‚Ä‚¢‚éOBJ‚Ì”‚ğæ“¾
+ * ç¾åœ¨å­˜åœ¨ã—ã¦ã„ã‚‹OBJã®æ•°ã‚’å–å¾—
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @retval	int		Œ»İ‘¶İ‚µ‚Ä‚¢‚éOBJ‚Ì”
+ * @retval	int		ç¾åœ¨å­˜åœ¨ã—ã¦ã„ã‚‹OBJã®æ•°
  */
 //--------------------------------------------------------------
 int FieldOBJSys_OBJCountGet( CONST_FIELD_OBJ_SYS_PTR fos )
@@ -2252,9 +2252,9 @@ int FieldOBJSys_OBJCountGet( CONST_FIELD_OBJ_SYS_PTR fos )
 
 //--------------------------------------------------------------
 /**
- * ƒVƒXƒeƒ€@ƒXƒe[ƒ^ƒXƒrƒbƒg‰Šú‰»
+ * ã‚·ã‚¹ãƒ†ãƒ ã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆåˆæœŸåŒ–
  * @param	sys		FIELD_OBJ_SYS_PTR 
- * @param	bit		‰Šú‰»’lBFLDOBJSYS_STA_BIT_NON“™
+ * @param	bit		åˆæœŸåŒ–å€¤ã€‚FLDOBJSYS_STA_BIT_NONç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2265,9 +2265,9 @@ void FieldOBJSys_StatusBit_Init( FIELD_OBJ_SYS_PTR sys, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ƒVƒXƒeƒ€@ƒXƒe[ƒ^ƒXƒrƒbƒg ON
+ * ã‚·ã‚¹ãƒ†ãƒ ã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ ON
  * @param	sys		FIELD_OBJ_SYS_PTR 
- * @param	bit		ON‚É‚·‚éƒrƒbƒgBFLDOBJSYS_STA_BIT_NON“™
+ * @param	bit		ONã«ã™ã‚‹ãƒ“ãƒƒãƒˆã€‚FLDOBJSYS_STA_BIT_NONç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2278,10 +2278,10 @@ void FieldOBJSys_StatusBit_ON( FIELD_OBJ_SYS_PTR sys, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ƒVƒXƒeƒ€@ƒXƒe[ƒ^ƒXƒrƒbƒg OFF
+ * ã‚·ã‚¹ãƒ†ãƒ ã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ OFF
  * @param	sys		FIELD_OBJ_SYS_PTR 
- * @param	bit		OFF‚É‚·‚éƒrƒbƒgBFLDOBJSYS_STA_BIT_NON“™
- * @retval	int		’Ç‰Á‚³‚ê‚Ä‚¢‚éOBJ”
+ * @param	bit		OFFã«ã™ã‚‹ãƒ“ãƒƒãƒˆã€‚FLDOBJSYS_STA_BIT_NONç­‰
+ * @retval	int		è¿½åŠ ã•ã‚Œã¦ã„ã‚‹OBJæ•°
  */
 //--------------------------------------------------------------
 void FieldOBJSys_StatusBit_OFF( FIELD_OBJ_SYS_PTR sys, u32 bit )
@@ -2291,14 +2291,14 @@ void FieldOBJSys_StatusBit_OFF( FIELD_OBJ_SYS_PTR sys, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ƒVƒXƒeƒ€@ƒXƒe[ƒ^ƒXƒrƒbƒg ƒ`ƒFƒbƒN
- * –ß‚è’l‚ÍƒXƒe[ƒ^ƒXƒrƒbƒg‚Æƒ`ƒFƒbƒN‚·‚éƒrƒbƒg‚ğand‚µ‚½’l‚ª•Ô‚éB
- * —áF‘ÎÛ FIDOBJSYS_STR_BIT_DRAW_INIT_COMPˆÈŠO‚ÍOFFB
- * ƒ`ƒFƒbƒN‚·‚éƒrƒbƒg‚ÍFLDOBJSYS_STA_BIT_DRAW_INIT_COMP|FLDOBJSYS_STA_BIT_MOVE_PROC_STOP
- * –ß‚è’l‚ÍFLDOBJSYS_STA_BIT_DRAW_PROC_INIT‚ª•Ô‚éB
+ * ã‚·ã‚¹ãƒ†ãƒ ã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ ãƒã‚§ãƒƒã‚¯
+ * æˆ»ã‚Šå€¤ã¯ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆã¨ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ“ãƒƒãƒˆã‚’andã—ãŸå€¤ãŒè¿”ã‚‹ã€‚
+ * ä¾‹ï¼šå¯¾è±¡ FIDOBJSYS_STR_BIT_DRAW_INIT_COMPä»¥å¤–ã¯OFFã€‚
+ * ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ“ãƒƒãƒˆã¯FLDOBJSYS_STA_BIT_DRAW_INIT_COMP|FLDOBJSYS_STA_BIT_MOVE_PROC_STOP
+ * æˆ»ã‚Šå€¤ã¯FLDOBJSYS_STA_BIT_DRAW_PROC_INITãŒè¿”ã‚‹ã€‚
  * @param	sys				FIELD_OBJ_SYS_PTR 
- * @param	bit				ƒ`ƒFƒbƒN‚·‚éƒrƒbƒgBFLDOBJ_STA_BIT_USE“™
- * @retval	u32				ƒ`ƒFƒbƒNŒã‚Ìƒrƒbƒg
+ * @param	bit				ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ“ãƒƒãƒˆã€‚FLDOBJ_STA_BIT_USEç­‰
+ * @retval	u32				ãƒã‚§ãƒƒã‚¯å¾Œã®ãƒ“ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 u32 FieldOBJSys_StatusBit_Check( CONST_FIELD_OBJ_SYS_PTR sys, u32 bit )
@@ -2308,9 +2308,9 @@ u32 FieldOBJSys_StatusBit_Check( CONST_FIELD_OBJ_SYS_PTR sys, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * TCBŠî–{ƒvƒ‰ƒCƒIƒŠƒeƒB‚ğƒZƒbƒg
+ * TCBåŸºæœ¬ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’ã‚»ãƒƒãƒˆ
  * @param	sys				FIELD_OBJ_SYS_PTR 
- * @param	pri				TCBŠî–{ƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param	pri				TCBåŸºæœ¬ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2321,9 +2321,9 @@ void FieldOBJSys_TCBStandardPrioritySet( FIELD_OBJ_SYS_PTR sys, int pri )
 
 //--------------------------------------------------------------
 /**
- * TCBŠî–{ƒvƒ‰ƒCƒIƒŠƒeƒBæ“¾
+ * TCBåŸºæœ¬ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å–å¾—
  * @param	sys			FIELD_OBJ_SYS_PTR 
- * @retval	u32			TCBƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @retval	u32			TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  */
 //--------------------------------------------------------------
 int FieldOBJSys_TCBStandardPriorityGet( CONST_FIELD_OBJ_SYS_PTR sys )
@@ -2333,7 +2333,7 @@ int FieldOBJSys_TCBStandardPriorityGet( CONST_FIELD_OBJ_SYS_PTR sys )
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ_BLACT_CONT *æ“¾
+ * FIELD_OBJ_BLACT_CONT *å–å¾—
  * @param	sys		FIELD_OBJ_SYS_PTR 
  * @retval	FIELD_OBJ_BLACT_CONT	FIELD_OBJ_BLACT_CONT *
  */
@@ -2345,7 +2345,7 @@ FIELD_OBJ_BLACT_CONT * FieldOBJSys_BlActContGet( CONST_FIELD_OBJ_SYS_PTR sys )
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ_RENDER_CONT_PTRƒZƒbƒg
+ * FIELD_OBJ_RENDER_CONT_PTRã‚»ãƒƒãƒˆ
  * @param	sys		FIELD_OBJ_SYS_PTR 
  * @param	render	FIELD_OBJ_RENDER_CONT_PTR
  * @retval	nothing
@@ -2358,7 +2358,7 @@ void FieldOBJSys_RenderContSet( FIELD_OBJ_SYS_PTR sys, FIELD_OBJ_RENDER_CONT_PTR
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ_RENDER_CONT_PTR æ“¾
+ * FIELD_OBJ_RENDER_CONT_PTR å–å¾—
  * @param	sys		FIELD_OBJ_SYS_PTR 
  * @retval	FIELD_OBJ_RENDER_CONT_PTR FIELD_OBJ_RENDER_CONT_PTR
  */
@@ -2370,7 +2370,7 @@ FIELD_OBJ_RENDER_CONT_PTR FieldOBJSys_RenderContGet( CONST_FIELD_OBJ_SYS_PTR sys
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJƒ[ƒN‚ğƒZƒbƒg
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ¯ãƒ¼ã‚¯ã‚’ã‚»ãƒƒãƒˆ
  * @param	sys		FIELD_OBJ_SYS_PTR 
  * @param	ptr		FIELD_OBJ_PTR 
  * @retval	nothing
@@ -2383,7 +2383,7 @@ void FieldOBJSys_FieldOBJWorkSet( FIELD_OBJ_SYS_PTR sys, FIELD_OBJ_PTR ptr )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJƒ[ƒNæ“¾
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ¯ãƒ¼ã‚¯å–å¾—
  * @param	sys			FIELD_OBJ_SYS_PTR 
  * @retval	FIELD_OBJ	FIELD_OBJ_PTR 
  */
@@ -2395,7 +2395,7 @@ CONST_FIELD_OBJ_PTR  FieldOBJSys_FieldOBJWorkGet( CONST_FIELD_OBJ_SYS_PTR sys )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJƒ[ƒNæ“¾@ƒ[ƒJƒ‹
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ¯ãƒ¼ã‚¯å–å¾—ã€€ãƒ­ãƒ¼ã‚«ãƒ«
  * @param	sys			FIELD_OBJ_SYS_PTR 
  * @retval	FIELD_OBJ	FIELD_OBJ_PTR 
  */
@@ -2407,8 +2407,8 @@ static FIELD_OBJ_PTR FldOBJSys_FieldOBJWorkGet( CONST_FIELD_OBJ_SYS_PTR sys )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJƒ[ƒNæ“¾@FIELD OBJƒ[ƒJƒ‹—p
- * const–³‚µBƒtƒB[ƒ‹ƒhOBJˆÈŠO‚Íg—p‹Ö~
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ¯ãƒ¼ã‚¯å–å¾—ã€€FIELD OBJãƒ­ãƒ¼ã‚«ãƒ«ç”¨
+ * constç„¡ã—ã€‚ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJä»¥å¤–ã¯ä½¿ç”¨ç¦æ­¢
  * @param	sys			FIELD_OBJ_SYS_PTR 
  * @retval	FIELD_OBJ	FIELD_OBJ_PTR 
  */
@@ -2420,8 +2420,8 @@ FIELD_OBJ_PTR  FieldOBJSys_FldOBJWorkGet( CONST_FIELD_OBJ_SYS_PTR sys )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJƒ[ƒNisB
- * FieldOBJSys_FieldOBJWorkGet()‚Åæ“¾‚µ‚½ƒ|ƒCƒ“ƒ^‚ğ‚P‚Âi‚ß‚éB
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ¯ãƒ¼ã‚¯é€²è¡Œã€‚
+ * FieldOBJSys_FieldOBJWorkGet()ã§å–å¾—ã—ãŸãƒã‚¤ãƒ³ã‚¿ã‚’ï¼‘ã¤é€²ã‚ã‚‹ã€‚
  * @param	FIELD_OBJ	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2433,8 +2433,8 @@ void FieldOBJSys_FieldOBJWorkInc( CONST_FIELD_OBJ_PTR *fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJƒ[ƒNisB”ñconst
- * FieldOBJSys_FieldOBJWorkGet()‚Åæ“¾‚µ‚½ƒ|ƒCƒ“ƒ^‚ğ‚P‚Âi‚ß‚éB
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ¯ãƒ¼ã‚¯é€²è¡Œã€‚éconst
+ * FieldOBJSys_FieldOBJWorkGet()ã§å–å¾—ã—ãŸãƒã‚¤ãƒ³ã‚¿ã‚’ï¼‘ã¤é€²ã‚ã‚‹ã€‚
  * @param	FIELD_OBJ	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2446,7 +2446,7 @@ void FieldOBJSys_FldOBJWorkInc( FIELD_OBJ_PTR *fldobj )
 
 //--------------------------------------------------------------
 /**
- * FIELDSYS_WORK *ƒZƒbƒg
+ * FIELDSYS_WORK *ã‚»ãƒƒãƒˆ
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @param	fsys	FIELDSYS_WORK *
  * @retval	nothing
@@ -2459,7 +2459,7 @@ void FieldOBJSys_FieldSysWorkSet( FIELD_OBJ_SYS_PTR fos, FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * FIELDSYS_WORK *æ“¾
+ * FIELDSYS_WORK *å–å¾—
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @retval	FIELDSYS_WORK	FIELDSYS_WORK *
  */
@@ -2471,7 +2471,7 @@ FIELDSYS_WORK * FieldOBJSys_FieldSysWorkGet( CONST_FIELD_OBJ_SYS_PTR fos )
 
 //--------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒZƒbƒg
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚»ãƒƒãƒˆ
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @param	handle	ARCHANDLE *
  * @retval	nothing
@@ -2484,25 +2484,25 @@ void FieldOBJSys_ArcHandleSet( FIELD_OBJ_SYS_PTR fos, ARCHANDLE *handle )
 
 //--------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹æ“¾
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«å–å¾—
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @retval	ARCHANDLE*@ARCHANDLE *
+ * @retval	ARCHANDLE*ã€€ARCHANDLE *
  */
 //--------------------------------------------------------------
 ARCHANDLE * FieldOBJSys_ArcHandleGet( CONST_FIELD_OBJ_SYS_PTR fos )
 {
-	GF_ASSERT( fos->archandle != NULL && "FieldOBJSys_ArcHandleGet()ƒnƒ“ƒhƒ‹–³‚µ" );
+	GF_ASSERT( fos->archandle != NULL && "FieldOBJSys_ArcHandleGet()ãƒãƒ³ãƒ‰ãƒ«ç„¡ã—" );
 	return( ((FIELD_OBJ_SYS_PTR)fos)->archandle );
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ@QÆ
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€å‚ç…§
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒXƒrƒbƒg‰Šú‰»
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆåˆæœŸåŒ–
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	bit				‰Šú‰»’lBFLDOBJ_STA_BIT_USE“™
+ * @param	bit				åˆæœŸåŒ–å€¤ã€‚FLDOBJ_STA_BIT_USEç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2513,9 +2513,9 @@ void FieldOBJ_StatusBit_Init( FIELD_OBJ_PTR fldobj, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒXƒrƒbƒgæ“¾
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆå–å¾—
  * @param	fldobj			FIELD_OBJ_PTR 
- * @retval	u32				ƒXƒe[ƒ^ƒXƒrƒbƒg
+ * @retval	u32				ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 u32 FieldOBJ_StatusBit_Get( CONST_FIELD_OBJ_PTR fldobj )
@@ -2525,9 +2525,9 @@ u32 FieldOBJ_StatusBit_Get( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒXƒrƒbƒg ON
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ ON
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	bit				ON‚É‚µ‚½‚¢ƒrƒbƒgBFLDOBJ_STA_BIT_USE“™
+ * @param	bit				ONã«ã—ãŸã„ãƒ“ãƒƒãƒˆã€‚FLDOBJ_STA_BIT_USEç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2538,9 +2538,9 @@ void FieldOBJ_StatusBit_ON( FIELD_OBJ_PTR fldobj, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒXƒrƒbƒg OFF
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ OFF
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	bit				OFF‚É‚µ‚½‚¢ƒrƒbƒgBFLDOBJ_STA_BIT_USE“™
+ * @param	bit				OFFã«ã—ãŸã„ãƒ“ãƒƒãƒˆã€‚FLDOBJ_STA_BIT_USEç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2551,16 +2551,16 @@ void FieldOBJ_StatusBit_OFF( FIELD_OBJ_PTR fldobj, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒXƒrƒbƒg ƒ`ƒFƒbƒN
- * –ß‚è’l‚ÍƒXƒe[ƒ^ƒXƒrƒbƒg‚Æƒ`ƒFƒbƒN‚·‚éƒrƒbƒg‚ğand‚µ‚½’l‚ª•Ô‚éB
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ ãƒã‚§ãƒƒã‚¯
+ * æˆ»ã‚Šå€¤ã¯ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆã¨ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ“ãƒƒãƒˆã‚’andã—ãŸå€¤ãŒè¿”ã‚‹ã€‚
  * 
- * —áF‘ÎÛOBJ‚ÌƒXƒe[ƒ^ƒXƒrƒbƒg‚ÍFIDOBJ_STR_BIT_USEˆÈŠO‚ÍOFFB
- * ƒ`ƒFƒbƒN‚·‚éƒrƒbƒg‚ÍFLDOBJ_STA_BIT_USE|FLDOBJ_STA_BIT_MOVE_STARTB
- * –ß‚è’l‚ÍFLDOBJ_STA_BIT_USE‚ª•Ô‚éB
+ * ä¾‹ï¼šå¯¾è±¡OBJã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆã¯FIDOBJ_STR_BIT_USEä»¥å¤–ã¯OFFã€‚
+ * ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ“ãƒƒãƒˆã¯FLDOBJ_STA_BIT_USE|FLDOBJ_STA_BIT_MOVE_STARTã€‚
+ * æˆ»ã‚Šå€¤ã¯FLDOBJ_STA_BIT_USEãŒè¿”ã‚‹ã€‚
  * 
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	bit				ƒ`ƒFƒbƒN‚·‚éƒrƒbƒgBFLDOBJ_STA_BIT_USE“™
- * @retval	u32				ƒ`ƒFƒbƒNŒã‚Ìƒrƒbƒg
+ * @param	bit				ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ“ãƒƒãƒˆã€‚FLDOBJ_STA_BIT_USEç­‰
+ * @retval	u32				ãƒã‚§ãƒƒã‚¯å¾Œã®ãƒ“ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 u32 FieldOBJ_StatusBit_Check( CONST_FIELD_OBJ_PTR fldobj, u32 bit )
@@ -2570,10 +2570,10 @@ u32 FieldOBJ_StatusBit_Check( CONST_FIELD_OBJ_PTR fldobj, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒXƒrƒbƒg ŠÈˆÕƒ`ƒFƒbƒN
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ ç°¡æ˜“ãƒã‚§ãƒƒã‚¯
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	bit				ƒ`ƒFƒbƒN‚·‚éƒrƒbƒgBFLDOBJ_STA_BIT_USE“™
- * @retval	u32				TRUE=bit‚Ì‚Ç‚ê‚©‚ªŠY“–BFALSE=ŠY“––³‚µ
+ * @param	bit				ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ“ãƒƒãƒˆã€‚FLDOBJ_STA_BIT_USEç­‰
+ * @retval	u32				TRUE=bitã®ã©ã‚Œã‹ãŒè©²å½“ã€‚FALSE=è©²å½“ç„¡ã—
  */
 //--------------------------------------------------------------
 u32 FieldOBJ_StatusBit_CheckEasy( CONST_FIELD_OBJ_PTR fldobj, u32 bit )
@@ -2587,9 +2587,9 @@ u32 FieldOBJ_StatusBit_CheckEasy( CONST_FIELD_OBJ_PTR fldobj, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒrƒbƒg@‰Šú‰»
+ * å‹•ä½œãƒ“ãƒƒãƒˆã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	bit		‰Šú‰»‚·‚éƒrƒbƒg FLDOBJ_MOVE_BIT_NON“™
+ * @param	bit		åˆæœŸåŒ–ã™ã‚‹ãƒ“ãƒƒãƒˆ FLDOBJ_MOVE_BIT_NONç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2600,9 +2600,9 @@ void FieldOBJ_MoveBit_Init( FIELD_OBJ_PTR fldobj, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒrƒbƒg@æ“¾
+ * å‹•ä½œãƒ“ãƒƒãƒˆã€€å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	u32		“®ìƒrƒbƒg
+ * @retval	u32		å‹•ä½œãƒ“ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 u32 FieldOBJ_MoveBit_Get( CONST_FIELD_OBJ_PTR fldobj )
@@ -2612,9 +2612,9 @@ u32 FieldOBJ_MoveBit_Get( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒrƒbƒg@ON
+ * å‹•ä½œãƒ“ãƒƒãƒˆã€€ON
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	bit		—§‚Ä‚éƒrƒbƒg FLDOBJ_MOVE_BIT_NON“™
+ * @param	bit		ç«‹ã¦ã‚‹ãƒ“ãƒƒãƒˆ FLDOBJ_MOVE_BIT_NONç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2625,9 +2625,9 @@ void FieldOBJ_MoveBit_ON( FIELD_OBJ_PTR fldobj, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒrƒbƒg@OFF
+ * å‹•ä½œãƒ“ãƒƒãƒˆã€€OFF
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	bit		‰º‚ë‚·ƒrƒbƒg FLDOBJ_MOVE_BIT_NON“™
+ * @param	bit		ä¸‹ã‚ã™ãƒ“ãƒƒãƒˆ FLDOBJ_MOVE_BIT_NONç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2638,9 +2638,9 @@ void FieldOBJ_MoveBit_OFF( FIELD_OBJ_PTR fldobj, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒrƒbƒg@ƒ`ƒFƒbƒN
+ * å‹•ä½œãƒ“ãƒƒãƒˆã€€ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	bit		ƒ`ƒFƒbƒN‚·‚éƒrƒbƒg FLDOBJ_MOVE_BIT_NON“™
+ * @param	bit		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ“ãƒƒãƒˆ FLDOBJ_MOVE_BIT_NONç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2651,7 +2651,7 @@ u32 FieldOBJ_MoveBit_Check( CONST_FIELD_OBJ_PTR fldobj, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * OBJ IDƒZƒbƒg
+ * OBJ IDã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
  * @param	id		obj id
  * @retval	nothing
@@ -2664,7 +2664,7 @@ void FieldOBJ_OBJIDSet( FIELD_OBJ_PTR fldobj, u32 obj_id )
 
 //--------------------------------------------------------------
 /**
- * OBJ IDæ“¾
+ * OBJ IDå–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	u32		OBJ ID
  */
@@ -2676,9 +2676,9 @@ u32 FieldOBJ_OBJIDGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ZONE IDƒZƒbƒg
+ * ZONE IDã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	zone_id	ƒ][ƒ“ID
+ * @param	zone_id	ã‚¾ãƒ¼ãƒ³ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2689,7 +2689,7 @@ void FieldOBJ_ZoneIDSet( FIELD_OBJ_PTR fldobj, int zone_id )
 
 //--------------------------------------------------------------
 /**
- * ZONE IDæ“¾
+ * ZONE IDå–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	int		ZONE ID
  */
@@ -2701,9 +2701,9 @@ int FieldOBJ_ZoneIDGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒhƒZƒbƒg
+ * OBJã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	code			ƒZƒbƒg‚·‚éƒR[ƒh
+ * @param	code			ã‚»ãƒƒãƒˆã™ã‚‹ã‚³ãƒ¼ãƒ‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2714,9 +2714,9 @@ void FieldOBJ_OBJCodeSet( FIELD_OBJ_PTR fldobj, u32 code )
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒhæ“¾
+ * OBJã‚³ãƒ¼ãƒ‰å–å¾—
  * @param	fldobj			FIELD_OBJ_PTR 
- * @retval	u32				OBJƒR[ƒh
+ * @retval	u32				OBJã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 u32 FieldOBJ_OBJCodeGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -2726,9 +2726,9 @@ u32 FieldOBJ_OBJCodeGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒhæ“¾@íƒ`ƒFƒbƒN‚ ‚è
+ * OBJã‚³ãƒ¼ãƒ‰å–å¾—ã€€ç¨®ãƒã‚§ãƒƒã‚¯ã‚ã‚Š
  * @param	fldobj			FIELD_OBJ_PTR 
- * @retval	u32				OBJƒR[ƒh
+ * @retval	u32				OBJã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 u32 FieldOBJ_OBJCodeGetSeedIn( CONST_FIELD_OBJ_PTR fldobj )
@@ -2744,9 +2744,9 @@ u32 FieldOBJ_OBJCodeGetSeedIn( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒR[ƒhƒZƒbƒg
+ * å‹•ä½œã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	code			“®ìƒR[ƒh
+ * @param	code			å‹•ä½œã‚³ãƒ¼ãƒ‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2757,9 +2757,9 @@ void FieldOBJ_MoveCodeSet( FIELD_OBJ_PTR fldobj, u32 code )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒR[ƒhæ“¾
+ * å‹•ä½œã‚³ãƒ¼ãƒ‰å–å¾—
  * @param	fldobj			FIELD_OBJ_PTR 
- * @retval	u32				“®ìƒR[ƒh
+ * @retval	u32				å‹•ä½œã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 u32 FieldOBJ_MoveCodeGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -2769,7 +2769,7 @@ u32 FieldOBJ_MoveCodeGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒ^ƒCƒvƒZƒbƒg
+ * ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã‚»ãƒƒãƒˆ
  * @param	fldobj		FIELD_OBJ_PTR 
  * @param	type		Event Type
  * @retval	nothing
@@ -2782,7 +2782,7 @@ void FieldOBJ_EventTypeSet( FIELD_OBJ_PTR fldobj, u32 type )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒ^ƒCƒvæ“¾
+ * ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—å–å¾—
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	u32			Event Type
  */
@@ -2794,7 +2794,7 @@ u32 FieldOBJ_EventTypeGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒtƒ‰ƒOƒZƒbƒg
+ * ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  * @param	fldobj		FIELD_OBJ_PTR 
  * @param	flag		Event Flag
  * @retval	nothing
@@ -2807,7 +2807,7 @@ void FieldOBJ_EventFlagSet( FIELD_OBJ_PTR fldobj, u32 flag )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒtƒ‰ƒOæ“¾
+ * ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°å–å¾—
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	u32			Event Flag
  */
@@ -2819,7 +2819,7 @@ u32 FieldOBJ_EventFlagGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgIDƒZƒbƒg
+ * ã‚¤ãƒ™ãƒ³ãƒˆIDã‚»ãƒƒãƒˆ
  * @param	fldobj		FIELD_OBJ_PTR 
  * @param	id			Event ID
  * @retval	nothing
@@ -2832,7 +2832,7 @@ void FieldOBJ_EventIDSet( FIELD_OBJ_PTR fldobj, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgIDæ“¾
+ * ã‚¤ãƒ™ãƒ³ãƒˆIDå–å¾—
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	u32			Event ID
  */
@@ -2844,9 +2844,9 @@ u32 FieldOBJ_EventIDGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒwƒbƒ_[w’è•ûŒüƒZƒbƒg
+ * ãƒ˜ãƒƒãƒ€ãƒ¼æŒ‡å®šæ–¹å‘ã‚»ãƒƒãƒˆ
  * @param	fldobj		FIELD_OBJ_PTR 
- * @param	dir			DIR_UP“™
+ * @param	dir			DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2857,9 +2857,9 @@ void FieldOBJ_DirHeaderSet( FIELD_OBJ_PTR fldobj, int dir )
 
 //--------------------------------------------------------------
 /**
- * ƒwƒbƒ_[w’è•ûŒüæ“¾
+ * ãƒ˜ãƒƒãƒ€ãƒ¼æŒ‡å®šæ–¹å‘å–å¾—
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	u32			DIR_UP“™
+ * @retval	u32			DIR_UPç­‰
  */
 //--------------------------------------------------------------
 u32 FieldOBJ_DirHeaderGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -2869,9 +2869,9 @@ u32 FieldOBJ_DirHeaderGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •\¦•ûŒüƒZƒbƒg@‹­§
+ * è¡¨ç¤ºæ–¹å‘ã‚»ãƒƒãƒˆã€€å¼·åˆ¶
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	dir				DIR_UP“™
+ * @param	dir				DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2883,9 +2883,9 @@ void FieldOBJ_DirDispSetForce( FIELD_OBJ_PTR fldobj, int dir )
 
 //--------------------------------------------------------------
 /**
- * •\¦•ûŒüƒZƒbƒg@FLDOBJ_STA_BIT_PAUSE_DIRƒ`ƒFƒbƒN‚ ‚è
+ * è¡¨ç¤ºæ–¹å‘ã‚»ãƒƒãƒˆã€€FLDOBJ_STA_BIT_PAUSE_DIRãƒã‚§ãƒƒã‚¯ã‚ã‚Š
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	dir				DIR_UP“™
+ * @param	dir				DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2899,9 +2899,9 @@ void FieldOBJ_DirDispCheckSet( FIELD_OBJ_PTR fldobj, int dir )
 
 //--------------------------------------------------------------
 /**
- * •\¦•ûŒüæ“¾
+ * è¡¨ç¤ºæ–¹å‘å–å¾—
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	dir				DIR_UP“™
+ * @param	dir				DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2912,9 +2912,9 @@ int FieldOBJ_DirDispGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‰ß‹•\¦•ûŒüæ“¾
+ * éå»è¡¨ç¤ºæ–¹å‘å–å¾—
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	dir				DIR_UP“™
+ * @param	dir				DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2925,9 +2925,9 @@ int FieldOBJ_DirDispOldGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®•ûŒüƒZƒbƒg
+ * ç§»å‹•æ–¹å‘ã‚»ãƒƒãƒˆ
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	dir				DIR_UP“™
+ * @param	dir				DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2939,9 +2939,9 @@ void FieldOBJ_DirMoveSet( FIELD_OBJ_PTR fldobj, int dir )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®•ûŒüæ“¾
+ * ç§»å‹•æ–¹å‘å–å¾—
  * @param	fldobj			FIELD_OBJ_PTR 
- * @retval	dir				DIR_UP“™
+ * @retval	dir				DIR_UPç­‰
  */
 //--------------------------------------------------------------
 int FieldOBJ_DirMoveGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -2951,9 +2951,9 @@ int FieldOBJ_DirMoveGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‰ß‹ˆÚ“®•ûŒüæ“¾
+ * éå»ç§»å‹•æ–¹å‘å–å¾—
  * @param	fldobj			FIELD_OBJ_PTR 
- * @retval	dir				DIR_UP“™
+ * @retval	dir				DIR_UPç­‰
  */
 //--------------------------------------------------------------
 int FieldOBJ_DirMoveOldGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -2963,9 +2963,9 @@ int FieldOBJ_DirMoveOldGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •\¦AˆÚ“®•ûŒüƒZƒbƒg@FLDOBJ_STA_BIT_PAUSE_DIRƒ`ƒFƒbƒN‚ ‚è
+ * è¡¨ç¤ºã€ç§»å‹•æ–¹å‘ã‚»ãƒƒãƒˆã€€FLDOBJ_STA_BIT_PAUSE_DIRãƒã‚§ãƒƒã‚¯ã‚ã‚Š
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	dir				DIR_UP“™
+ * @param	dir				DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2977,10 +2977,10 @@ void FieldOBJ_DirMoveDispCheckSet( FIELD_OBJ_PTR fldobj, int dir )
 
 //--------------------------------------------------------------
 /**
- * ƒwƒbƒ_[w’èƒpƒ‰ƒƒ^ƒZƒbƒg
+ * ãƒ˜ãƒƒãƒ€ãƒ¼æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ã‚»ãƒƒãƒˆ
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	param			ƒpƒ‰ƒƒ^
- * @param	no				ƒZƒbƒg‚·‚éƒpƒ‰ƒƒ^”Ô†@FLDOBJ_PARAM_0“™
+ * @param	param			ãƒ‘ãƒ©ãƒ¡ã‚¿
+ * @param	no				ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ã‚¿ç•ªå·ã€€FLDOBJ_PARAM_0ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2990,16 +2990,16 @@ void FieldOBJ_ParamSet( FIELD_OBJ_PTR fldobj, int param, FLDOBJ_H_PARAM no )
 	case FLDOBJ_PARAM_0: fldobj->param0 = param; break;
 	case FLDOBJ_PARAM_1: fldobj->param1 = param; break;
 	case FLDOBJ_PARAM_2: fldobj->param2 = param; break;
-	default: GF_ASSERT( 0 && "FieldOBJ_ParamSet()•s³‚Èˆø”" );
+	default: GF_ASSERT( 0 && "FieldOBJ_ParamSet()ä¸æ­£ãªå¼•æ•°" );
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ƒwƒbƒ_[w’èƒpƒ‰ƒƒ^æ“¾
+ * ãƒ˜ãƒƒãƒ€ãƒ¼æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿å–å¾—
  * @param	fldobj			FIELD_OBJ_PTR
- * @param	param			FLDOBJ_PARAM_0“™
- * @retval	int				ƒpƒ‰ƒƒ^
+ * @param	param			FLDOBJ_PARAM_0ç­‰
+ * @retval	int				ãƒ‘ãƒ©ãƒ¡ã‚¿
  */
 //--------------------------------------------------------------
 int FieldOBJ_ParamGet( CONST_FIELD_OBJ_PTR fldobj, FLDOBJ_H_PARAM param )
@@ -3010,15 +3010,15 @@ int FieldOBJ_ParamGet( CONST_FIELD_OBJ_PTR fldobj, FLDOBJ_H_PARAM param )
 	case FLDOBJ_PARAM_2: return( fldobj->param2 );
 	}
 	
-	GF_ASSERT( 0 && "FieldOBJ_ParamGet()•s³‚Èˆø”" );
+	GF_ASSERT( 0 && "FieldOBJ_ParamGet()ä¸æ­£ãªå¼•æ•°" );
 	return( 0 );
 }
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®§ŒÀXƒZƒbƒg
+ * ç§»å‹•åˆ¶é™Xã‚»ãƒƒãƒˆ
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	x				ˆÚ“®§ŒÀ
+ * @param	x				ç§»å‹•åˆ¶é™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3029,9 +3029,9 @@ void FieldOBJ_MoveLimitXSet( FIELD_OBJ_PTR fldobj, int x )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®§ŒÀXæ“¾
+ * ç§»å‹•åˆ¶é™Xå–å¾—
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			ˆÚ“®§ŒÀX
+ * @retval	int			ç§»å‹•åˆ¶é™X
  */
 //--------------------------------------------------------------
 int FieldOBJ_MoveLimitXGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -3041,9 +3041,9 @@ int FieldOBJ_MoveLimitXGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®§ŒÀZƒZƒbƒg
+ * ç§»å‹•åˆ¶é™Zã‚»ãƒƒãƒˆ
  * @param	fldobj			FIELD_OBJ_PTR 
- * @param	y				ˆÚ“®§ŒÀ
+ * @param	y				ç§»å‹•åˆ¶é™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3054,9 +3054,9 @@ void FieldOBJ_MoveLimitZSet( FIELD_OBJ_PTR fldobj, int z )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®§ŒÀZæ“¾
+ * ç§»å‹•åˆ¶é™Zå–å¾—
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			ˆÚ“®§ŒÀz
+ * @retval	int			ç§»å‹•åˆ¶é™z
  */
 //--------------------------------------------------------------
 int FieldOBJ_MoveLimitZGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -3066,9 +3066,9 @@ int FieldOBJ_MoveLimitZGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æƒXƒe[ƒ^ƒXƒZƒbƒg
+ * æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚»ãƒƒãƒˆ
  * @param	fldobj		FIELD_OBJ_PTR 
- * @param	st			DRAW_STA_STOP“™
+ * @param	st			DRAW_STA_STOPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3079,9 +3079,9 @@ void FieldOBJ_DrawStatusSet( FIELD_OBJ_PTR fldobj, u32 st )
 
 //--------------------------------------------------------------
 /**
- * •`‰æƒXƒe[ƒ^ƒXæ“¾
+ * æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	u32			DRAW_STA_STOP“™
+ * @retval	u32			DRAW_STA_STOPç­‰
  */
 //--------------------------------------------------------------
 u32 FieldOBJ_DrawStatusGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -3091,7 +3091,7 @@ u32 FieldOBJ_DrawStatusGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ìTCB*ƒZƒbƒg
+ * å‹•ä½œTCB*ã‚»ãƒƒãƒˆ
  * @param	fldobj			FIELD_OBJ_PTR 
  * @param	tcb				TCB_PTR
  * @retval	nothing
@@ -3104,7 +3104,7 @@ void FieldOBJ_MoveTcbPtrSet( FIELD_OBJ_PTR fldobj, TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * “®ìTCB*æ“¾
+ * å‹•ä½œTCB*å–å¾—
  * @param	fldobj			FIELD_OBJ_PTR 
  * @retval	TCB_PTR			TCB_PTR
  */
@@ -3116,7 +3116,7 @@ TCB_PTR FieldOBJ_MoveTcbPtrGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ìTCB*‚ğíœ
+ * å‹•ä½œTCB*ã‚’å‰Šé™¤
  * @param	fldobj			FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -3128,7 +3128,7 @@ void FieldOBJ_MoveTcbDelete( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ_SYS_PTR ƒZƒbƒg
+ * FIELD_OBJ_SYS_PTR ã‚»ãƒƒãƒˆ
  * @param	fldobj			FIELD_OBJ_PTR 
  * @param	sys				FIELD_OBJ_SYS_PTR 
  * @retval	nothing
@@ -3141,7 +3141,7 @@ void FieldOBJ_FieldOBJSysSet( FIELD_OBJ_PTR fldobj, CONST_FIELD_OBJ_SYS_PTR sys 
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ_SYS_PTR æ“¾
+ * FIELD_OBJ_SYS_PTR å–å¾—
  * @param	fldobj			FIELD_OBJ_PTR 
  * @retval	FIELD_OBJ_SYS	FIELD_OBJ_SYS_PTR 
  */
@@ -3153,7 +3153,7 @@ CONST_FIELD_OBJ_SYS_PTR FieldOBJ_FieldOBJSysGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ_SYS_PTR  æ“¾ not const
+ * FIELD_OBJ_SYS_PTR  å–å¾— not const
  * @param	fldobj			FIELD_OBJ_PTR 
  * @retval	FIELD_OBJ_SYS	FIELD_OBJ_SYS_PTR 
  */
@@ -3165,12 +3165,12 @@ static FIELD_OBJ_SYS_PTR FldOBJ_FieldOBJSysGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ìŠÖ”—pƒ[ƒN‰Šú‰»B
- * size‚ªƒ[ƒNƒTƒCƒY‚ğ’´‚¦‚Ä‚¢‚½ê‡AASSERTB
- * “®ì—pƒ[ƒN‚Ísize•ªA0‚Å‰Šú‰»B
+ * å‹•ä½œé–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ã€‚
+ * sizeãŒãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã‚’è¶…ãˆã¦ã„ãŸå ´åˆã€ASSERTã€‚
+ * å‹•ä½œç”¨ãƒ¯ãƒ¼ã‚¯ã¯sizeåˆ†ã€0ã§åˆæœŸåŒ–ã€‚
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	size	•K—v‚Èƒ[ƒNƒTƒCƒY
- * @retval	void*	‰Šú‰»‚³‚ê‚½ƒ[ƒN
+ * @param	size	å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
+ * @retval	void*	åˆæœŸåŒ–ã•ã‚ŒãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 void * FieldOBJ_MoveProcWorkInit( FIELD_OBJ_PTR fldobj, int size )
@@ -3187,9 +3187,9 @@ void * FieldOBJ_MoveProcWorkInit( FIELD_OBJ_PTR fldobj, int size )
 
 //--------------------------------------------------------------
 /**
- * “®ìŠÖ”—pƒ[ƒNæ“¾B
+ * å‹•ä½œé–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯å–å¾—ã€‚
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	void*	ƒ[ƒN
+ * @retval	void*	ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 void * FieldOBJ_MoveProcWorkGet( FIELD_OBJ_PTR fldobj )
@@ -3199,11 +3199,11 @@ void * FieldOBJ_MoveProcWorkGet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ì•â•ŠÖ”—pƒ[ƒN‰Šú‰»B
- * size‚ªƒ[ƒNƒTƒCƒY‚ğ’´‚¦‚Ä‚¢‚½ê‡AASSERTB
+ * å‹•ä½œè£œåŠ©é–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ã€‚
+ * sizeãŒãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã‚’è¶…ãˆã¦ã„ãŸå ´åˆã€ASSERTã€‚
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	size	•K—v‚Èƒ[ƒNƒTƒCƒY
- * @retval	void*	‰Šú‰»‚³‚ê‚½ƒ[ƒN
+ * @param	size	å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
+ * @retval	void*	åˆæœŸåŒ–ã•ã‚ŒãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 void * FieldOBJ_MoveSubProcWorkInit( FIELD_OBJ_PTR fldobj, int size )
@@ -3211,7 +3211,7 @@ void * FieldOBJ_MoveSubProcWorkInit( FIELD_OBJ_PTR fldobj, int size )
 	u8 *work;
 	
 	GF_ASSERT( size <= FLDOBJ_MOVE_SUB_WORK_SIZE &&
-			"ƒtƒB[ƒ‹ƒhOBJ “®ì•â•ƒ[ƒNƒTƒCƒY‚ªƒI[ƒo[" );
+			"ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ å‹•ä½œè£œåŠ©ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºãŒã‚ªãƒ¼ãƒãƒ¼" );
 	
 	work = FieldOBJ_MoveSubProcWorkGet( fldobj );
 	memset( work, 0, size );
@@ -3221,9 +3221,9 @@ void * FieldOBJ_MoveSubProcWorkInit( FIELD_OBJ_PTR fldobj, int size )
 
 //--------------------------------------------------------------
 /**
- * “®ì•â•ŠÖ”—pƒ[ƒNæ“¾
+ * å‹•ä½œè£œåŠ©é–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	void*	ƒ[ƒN*
+ * @retval	void*	ãƒ¯ãƒ¼ã‚¯*
  */
 //--------------------------------------------------------------
 void * FieldOBJ_MoveSubProcWorkGet( FIELD_OBJ_PTR fldobj )
@@ -3233,11 +3233,11 @@ void * FieldOBJ_MoveSubProcWorkGet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ì•â•ŠÖ”—pƒ[ƒN‰Šú‰»B
- * size‚ªƒ[ƒNƒTƒCƒY‚ğ’´‚¦‚Ä‚¢‚½ê‡AASSERTB
+ * å‹•ä½œè£œåŠ©é–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ã€‚
+ * sizeãŒãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã‚’è¶…ãˆã¦ã„ãŸå ´åˆã€ASSERTã€‚
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	size	•K—v‚Èƒ[ƒNƒTƒCƒY
- * @retval	void*	‰Šú‰»‚³‚ê‚½ƒ[ƒN
+ * @param	size	å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
+ * @retval	void*	åˆæœŸåŒ–ã•ã‚ŒãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 void * FieldOBJ_MoveCmdWorkInit( FIELD_OBJ_PTR fldobj, int size )
@@ -3245,7 +3245,7 @@ void * FieldOBJ_MoveCmdWorkInit( FIELD_OBJ_PTR fldobj, int size )
 	u8 *work;
 	
 	GF_ASSERT( size <= FLDOBJ_MOVE_CMD_WORK_SIZE &&
-			"ƒtƒB[ƒ‹ƒhOBJ “®ìƒRƒ}ƒ“ƒhƒ[ƒNƒTƒCƒY‚ªƒI[ƒo[" );
+			"ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ å‹•ä½œã‚³ãƒãƒ³ãƒ‰ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºãŒã‚ªãƒ¼ãƒãƒ¼" );
 	
 	work = FieldOBJ_MoveCmdWorkGet( fldobj );
 	memset( work, 0, size );
@@ -3255,9 +3255,9 @@ void * FieldOBJ_MoveCmdWorkInit( FIELD_OBJ_PTR fldobj, int size )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒRƒ}ƒ“ƒh—pƒ[ƒNæ“¾
+ * å‹•ä½œã‚³ãƒãƒ³ãƒ‰ç”¨ãƒ¯ãƒ¼ã‚¯å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	void*	ƒ[ƒN*
+ * @retval	void*	ãƒ¯ãƒ¼ã‚¯*
  */
 //--------------------------------------------------------------
 void * FieldOBJ_MoveCmdWorkGet( FIELD_OBJ_PTR fldobj )
@@ -3267,11 +3267,11 @@ void * FieldOBJ_MoveCmdWorkGet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æŠÖ”—pƒ[ƒN‰Šú‰»B
- * size‚ªƒ[ƒNƒTƒCƒY‚ğ’´‚¦‚Ä‚¢‚½ê‡AASSERTB
+ * æç”»é–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ã€‚
+ * sizeãŒãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã‚’è¶…ãˆã¦ã„ãŸå ´åˆã€ASSERTã€‚
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	size	•K—v‚Èƒ[ƒNƒTƒCƒY
- * @retval	void*	‰Šú‰»‚³‚ê‚½ƒ[ƒN
+ * @param	size	å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
+ * @retval	void*	åˆæœŸåŒ–ã•ã‚ŒãŸãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 void * FieldOBJ_DrawProcWorkInit( FIELD_OBJ_PTR fldobj, int size )
@@ -3288,9 +3288,9 @@ void * FieldOBJ_DrawProcWorkInit( FIELD_OBJ_PTR fldobj, int size )
 
 //--------------------------------------------------------------
 /**
- * •`‰æŠÖ”—pƒ[ƒNæ“¾
+ * æç”»é–¢æ•°ç”¨ãƒ¯ãƒ¼ã‚¯å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	void*	ƒ[ƒN
+ * @retval	void*	ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 void * FieldOBJ_DrawProcWorkGet( FIELD_OBJ_PTR fldobj )
@@ -3300,9 +3300,9 @@ void * FieldOBJ_DrawProcWorkGet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‰Šú‰»ŠÖ”ƒZƒbƒg
+ * åˆæœŸåŒ–é–¢æ•°ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	init	‰Šú‰»ŠÖ”
+ * @param	init	åˆæœŸåŒ–é–¢æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3313,7 +3313,7 @@ void FieldOBJ_MoveInitProcSet( FIELD_OBJ_PTR fldobj, FIELD_OBJ_MOVE_PROC_INIT in
 
 //--------------------------------------------------------------
 /**
- * ‰Šú‰»ŠÖ”Às
+ * åˆæœŸåŒ–é–¢æ•°å®Ÿè¡Œ
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -3325,9 +3325,9 @@ void FieldOBJ_MoveInitProcCall( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ìŠÖ”ƒZƒbƒg
+ * å‹•ä½œé–¢æ•°ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	move	“®ìŠÖ”
+ * @param	move	å‹•ä½œé–¢æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3338,7 +3338,7 @@ void FieldOBJ_MoveProcSet( FIELD_OBJ_PTR fldobj, FIELD_OBJ_MOVE_PROC move )
 
 //--------------------------------------------------------------
 /**
- * “®ìŠÖ”Às
+ * å‹•ä½œé–¢æ•°å®Ÿè¡Œ
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -3350,9 +3350,9 @@ void FieldOBJ_MoveProcCall( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * íœŠÖ”“o˜^
+ * å‰Šé™¤é–¢æ•°ç™»éŒ²
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	del		“®ìŠÖ”
+ * @param	del		å‹•ä½œé–¢æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3363,7 +3363,7 @@ void FieldOBJ_MoveDeleteProcSet( FIELD_OBJ_PTR fldobj, FIELD_OBJ_MOVE_PROC_DEL d
 
 //--------------------------------------------------------------
 /**
- * íœŠÖ”Às
+ * å‰Šé™¤é–¢æ•°å®Ÿè¡Œ
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -3376,9 +3376,9 @@ void FieldOBJ_MoveDeleteProcCall( FIELD_OBJ_PTR fldobj )
 #if 0
 //--------------------------------------------------------------
 /**
- * •œ‹AŠÖ”“o˜^
+ * å¾©å¸°é–¢æ•°ç™»éŒ²
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	del		“®ìŠÖ”
+ * @param	del		å‹•ä½œé–¢æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3391,7 +3391,7 @@ void FieldOBJ_MoveReturnProcSet( FIELD_OBJ_PTR fldobj, FIELD_OBJ_MOVE_PROC_RET r
 
 //--------------------------------------------------------------
 /**
- * •œ‹AŠÖ”Às
+ * å¾©å¸°é–¢æ•°å®Ÿè¡Œ
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -3409,9 +3409,9 @@ void FieldOBJ_MoveReturnProcCall( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æ‰Šú‰»ŠÖ”“o˜^
+ * æç”»åˆæœŸåŒ–é–¢æ•°ç™»éŒ²
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	init	‰Šú‰»ŠÖ”
+ * @param	init	åˆæœŸåŒ–é–¢æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3422,7 +3422,7 @@ void FieldOBJ_DrawInitProcSet( FIELD_OBJ_PTR fldobj, FIELD_OBJ_DRAW_PROC_INIT in
 
 //--------------------------------------------------------------
 /**
- * •`‰æ‰Šú‰»ŠÖ”Às
+ * æç”»åˆæœŸåŒ–é–¢æ•°å®Ÿè¡Œ
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -3434,9 +3434,9 @@ void FieldOBJ_DrawInitProcCall( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æŠÖ”“o˜^
+ * æç”»é–¢æ•°ç™»éŒ²
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	draw	•`‰æŠÖ”
+ * @param	draw	æç”»é–¢æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3447,7 +3447,7 @@ void FieldOBJ_DrawProcSet( FIELD_OBJ_PTR fldobj, FIELD_OBJ_DRAW_PROC draw )
 
 //--------------------------------------------------------------
 /**
- * •`‰æŠÖ”Às
+ * æç”»é–¢æ•°å®Ÿè¡Œ
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -3459,9 +3459,9 @@ void FieldOBJ_DrawProcCall( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æíœŠÖ”“o˜^
+ * æç”»å‰Šé™¤é–¢æ•°ç™»éŒ²
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	del		íœŠÖ”
+ * @param	del		å‰Šé™¤é–¢æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3472,7 +3472,7 @@ void FieldOBJ_DrawDeleteProcSet( FIELD_OBJ_PTR fldobj, FIELD_OBJ_DRAW_PROC_DEL d
 
 //--------------------------------------------------------------
 /**
- * •`‰æíœŠÖ”Às
+ * æç”»å‰Šé™¤é–¢æ•°å®Ÿè¡Œ
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -3484,9 +3484,9 @@ void FieldOBJ_DrawDeleteProcCall( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æ‘Ş”ğŠÖ”“o˜^
+ * æç”»é€€é¿é–¢æ•°ç™»éŒ²
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	push	‘Ş”ğŠÖ”
+ * @param	push	é€€é¿é–¢æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3497,7 +3497,7 @@ void FieldOBJ_DrawPushProcSet( FIELD_OBJ_PTR fldobj, FIELD_OBJ_DRAW_PROC_PUSH pu
 
 //--------------------------------------------------------------
 /**
- * •`‰æ‘Ş”ğŠÖ”Às
+ * æç”»é€€é¿é–¢æ•°å®Ÿè¡Œ
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -3509,9 +3509,9 @@ void FieldOBJ_DrawPushProcCall( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æ•œ‹AŠÖ”“o˜^
+ * æç”»å¾©å¸°é–¢æ•°ç™»éŒ²
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	pop		‘Ş”ğŠÖ”
+ * @param	pop		é€€é¿é–¢æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3522,7 +3522,7 @@ void FieldOBJ_DrawPopProcSet( FIELD_OBJ_PTR fldobj, FIELD_OBJ_DRAW_PROC_POP pop 
 
 //--------------------------------------------------------------
 /**
- * •`‰æ•œ‹AŠÖ”Às
+ * æç”»å¾©å¸°é–¢æ•°å®Ÿè¡Œ
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -3534,9 +3534,9 @@ void FieldOBJ_DrawPopProcCall( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒR[ƒhƒZƒbƒg
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	code	AC_DIR_U“™
+ * @param	code	AC_DIR_Uç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3547,9 +3547,9 @@ void FieldOBJ_AcmdCodeSet( FIELD_OBJ_PTR fldobj, int code )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒR[ƒhæ“¾
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		AC_DIR_U“™
+ * @retval	int		AC_DIR_Uç­‰
  */
 //--------------------------------------------------------------
 int FieldOBJ_AcmdCodeGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -3559,9 +3559,9 @@ int FieldOBJ_AcmdCodeGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒV[ƒPƒ“ƒXƒZƒbƒg
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	no		ƒV[ƒPƒ“ƒX
+ * @param	no		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3572,7 +3572,7 @@ void FieldOBJ_AcmdSeqSet( FIELD_OBJ_PTR fldobj, int no )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒV[ƒPƒ“ƒX‘‰Á
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¢—åŠ 
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -3584,9 +3584,9 @@ void FieldOBJ_AcmdSeqInc( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒV[ƒPƒ“ƒXæ“¾
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		ƒV[ƒPƒ“ƒX
+ * @retval	int		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------
 int FieldOBJ_AcmdSeqGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -3596,9 +3596,9 @@ int FieldOBJ_AcmdSeqGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ‚Ìƒ}ƒbƒvƒAƒgƒŠƒrƒ…[ƒg‚ğƒZƒbƒg
+ * ç¾åœ¨ã®ãƒãƒƒãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	attr	ƒZƒbƒg‚·‚éƒAƒgƒŠƒrƒ…[ƒg
+ * @param	attr	ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3609,9 +3609,9 @@ void FieldOBJ_NowMapAttrSet( FIELD_OBJ_PTR fldobj, u32 attr )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ‚Ìƒ}ƒbƒvƒAƒgƒŠƒrƒ…[ƒg‚ğæ“¾
+ * ç¾åœ¨ã®ãƒãƒƒãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	u32		ƒ}ƒbƒvƒAƒgƒŠƒrƒ…[ƒg
+ * @retval	u32		ãƒãƒƒãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  */
 //--------------------------------------------------------------
 u32 FieldOBJ_NowMapAttrGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -3621,9 +3621,9 @@ u32 FieldOBJ_NowMapAttrGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‰ß‹‚Ìƒ}ƒbƒvƒAƒgƒŠƒrƒ…[ƒg‚ğƒZƒbƒg
+ * éå»ã®ãƒãƒƒãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	attr	ƒZƒbƒg‚·‚éƒAƒgƒŠƒrƒ…[ƒg
+ * @param	attr	ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3634,9 +3634,9 @@ void FieldOBJ_OldMapAttrSet( FIELD_OBJ_PTR fldobj, u32 attr )
 
 //--------------------------------------------------------------
 /**
- * ‰ß‹‚Ìƒ}ƒbƒvƒAƒgƒŠƒrƒ…[ƒg‚ğæ“¾
+ * éå»ã®ãƒãƒƒãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	u32		ƒ}ƒbƒvƒAƒgƒŠƒrƒ…[ƒg
+ * @retval	u32		ãƒãƒƒãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  */
 //--------------------------------------------------------------
 u32 FieldOBJ_OldMapAttrGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -3646,7 +3646,7 @@ u32 FieldOBJ_OldMapAttrGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * FIELDSYS_WORKæ“¾
+ * FIELDSYS_WORKå–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	FIELDSYS_WORK	FIELDSYS_WORK *
  */
@@ -3661,9 +3661,9 @@ FIELDSYS_WORK * FieldOBJ_FieldSysWorkGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * TCBŠî–{ƒvƒ‰ƒCƒIƒŠƒeƒBæ“¾
+ * TCBåŸºæœ¬ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TCBŠî–{ƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @retval	int		TCBåŸºæœ¬ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  */
 //--------------------------------------------------------------
 int FieldOBJ_TCBStandardPriorityGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -3673,25 +3673,25 @@ int FieldOBJ_TCBStandardPriorityGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒGƒCƒŠƒAƒX‚Ìƒ][ƒ“IDæ“¾BƒGƒCƒŠƒAƒX‚ÍƒCƒxƒ“ƒgƒtƒ‰ƒO‚ªw’èƒ][ƒ“ID
+ * ã‚¨ã‚¤ãƒªã‚¢ã‚¹æ™‚ã®ã‚¾ãƒ¼ãƒ³IDå–å¾—ã€‚ã‚¨ã‚¤ãƒªã‚¢ã‚¹æ™‚ã¯ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ãŒæŒ‡å®šã‚¾ãƒ¼ãƒ³ID
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		ƒ][ƒ“ID
+ * @retval	int		ã‚¾ãƒ¼ãƒ³ID
  */
 //--------------------------------------------------------------
 int FieldOBJ_ZoneIDGetAlies( CONST_FIELD_OBJ_PTR fldobj )
 {
 	GF_ASSERT( FieldOBJ_StatusBitCheck_Alies(fldobj) == TRUE &&
-			"FieldOBJ_ZoneIDGetAlies()alies‚Å‚Í–³‚¢" );
+			"FieldOBJ_ZoneIDGetAlies()aliesã§ã¯ç„¡ã„" );
 	return( FieldOBJ_EventFlagGet(fldobj) );
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJƒVƒXƒeƒ€@ƒXƒe[ƒ^ƒXƒrƒbƒgŠÈˆÕ
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚·ã‚¹ãƒ†ãƒ ã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆç°¡æ˜“
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‘S‘Ì‚Ì“®ì‚ğŠ®‘S’â~B
- * “®ìˆ—A•`‰æˆ—‚ğŠ®‘S’â~‚·‚éBƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚É‚à”½‰‚µ‚È‚¢B
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ä½“ã®å‹•ä½œã‚’å®Œå…¨åœæ­¢ã€‚
+ * å‹•ä½œå‡¦ç†ã€æç”»å‡¦ç†ã‚’å®Œå…¨åœæ­¢ã™ã‚‹ã€‚ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã«ã‚‚åå¿œã—ãªã„ã€‚
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @retval	nothing
  */
@@ -3702,13 +3702,13 @@ void FieldOBJSys_MoveStopAll( FIELD_OBJ_SYS_PTR fos )
 		FLDOBJSYS_STA_BIT_MOVE_PROC_STOP | FLDOBJSYS_STA_BIT_DRAW_PROC_STOP );
 	
 	#ifdef DEBUG_FLDOBJ_PRINTF
-	OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ‘S‘Ì‚Ì“®ì‚ğ’â~‚µ‚Ü‚µ‚½\n" );
+	OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ä½“ã®å‹•ä½œã‚’åœæ­¢ã—ã¾ã—ãŸ\n" );
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‘S‘Ì‚Ì“®ìŠ®‘S’â~‚ğ‰ğœ
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ä½“ã®å‹•ä½œå®Œå…¨åœæ­¢ã‚’è§£é™¤
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @retval	nothing
  */
@@ -3719,15 +3719,15 @@ void FieldOBJSys_MoveStopAllClear( FIELD_OBJ_SYS_PTR fos )
 		FLDOBJSYS_STA_BIT_MOVE_PROC_STOP | FLDOBJSYS_STA_BIT_DRAW_PROC_STOP );
 	
 	#ifdef DEBUG_FLDOBJ_PRINTF
-	OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ‘S‘Ì‚Ì“®ì’â~‚ğ‰ğœ‚µ‚Ü‚µ‚½\n" );
+	OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ä½“ã®å‹•ä½œåœæ­¢ã‚’è§£é™¤ã—ã¾ã—ãŸ\n" );
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‘S‘Ì‚Ì“®ì‚ğˆê’â~
- * ŒÅ—L‚Ì“®ìˆ—iƒ‰ƒ“ƒ_ƒ€ˆÚ“®“™j‚ğˆê’â~‚·‚éB
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚É‚Í”½‰‚·‚éB
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ä½“ã®å‹•ä½œã‚’ä¸€æ™‚åœæ­¢
+ * å›ºæœ‰ã®å‹•ä½œå‡¦ç†ï¼ˆãƒ©ãƒ³ãƒ€ãƒ ç§»å‹•ç­‰ï¼‰ã‚’ä¸€æ™‚åœæ­¢ã™ã‚‹ã€‚
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã«ã¯åå¿œã™ã‚‹ã€‚
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @retval	nothing
  */
@@ -3747,13 +3747,13 @@ void FieldOBJSys_MovePauseAll( FIELD_OBJ_SYS_PTR fos )
 	}while( max );
 	
 	#ifdef DEBUG_FLDOBJ_PRINTF
-	OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ‘S‘Ì“®ì‚ğƒ|[ƒY‚µ‚Ü‚µ‚½\n" );
+	OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ä½“å‹•ä½œã‚’ãƒãƒ¼ã‚ºã—ã¾ã—ãŸ\n" );
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‘S‘Ì“®ìˆê’â~‚ğ‰ğœ
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ä½“å‹•ä½œä¸€æ™‚åœæ­¢ã‚’è§£é™¤
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @retval	nothing
  */
@@ -3773,15 +3773,15 @@ void FieldOBJSys_MovePauseAllClear( FIELD_OBJ_SYS_PTR fos )
 	}while( max );
 	
 	#ifdef DEBUG_FLDOBJ_PRINTF
-	OS_Printf( "ƒtƒB[ƒ‹ƒhOBJ‘S‘Ì“®ìƒ|[ƒY‚ğ‰ğœ‚µ‚Ü‚µ‚½\n" );
+	OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå…¨ä½“å‹•ä½œãƒãƒ¼ã‚ºã‚’è§£é™¤ã—ã¾ã—ãŸ\n" );
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * •`‰æˆ—‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ * æç”»å‡¦ç†ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  * @param	fos				FIELD_OBJ_SYS_PTR
- * @retval	int				TRUE=‰Šú‰»‚³‚ê‚Ä‚¢‚é
+ * @retval	int				TRUE=åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 int FieldOBJSys_DrawInitCompCheck( CONST_FIELD_OBJ_SYS_PTR fos )
@@ -3795,10 +3795,10 @@ int FieldOBJSys_DrawInitCompCheck( CONST_FIELD_OBJ_SYS_PTR fos )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚çƒtƒB[ƒ‹ƒhOBJƒVƒXƒeƒ€‚Ìƒrƒbƒgƒ`ƒFƒbƒN
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚·ã‚¹ãƒ†ãƒ ã®ãƒ“ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  * @param	fldobj		FIELD_OBJ_PTR
- * @param	bit			FLDOBJSYS_STA_BIT_DRAW_INIT_COMP“™
- * @retval	u32			0ˆÈŠO bitƒqƒbƒg
+ * @param	bit			FLDOBJSYS_STA_BIT_DRAW_INIT_COMPç­‰
+ * @retval	u32			0ä»¥å¤– bitãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 u32 FieldOBJ_FieldOBJSysStatusBitCheck( CONST_FIELD_OBJ_PTR fldobj, u32 bit )
@@ -3809,9 +3809,9 @@ u32 FieldOBJ_FieldOBJSysStatusBitCheck( CONST_FIELD_OBJ_PTR fldobj, u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ‰e‚ğ•t‚¯‚éA•t‚¯‚È‚¢‚ÌƒZƒbƒg
+ * å½±ã‚’ä»˜ã‘ã‚‹ã€ä»˜ã‘ãªã„ã®ã‚»ãƒƒãƒˆ
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	flag	TRUE=‰e‚ğ•t‚¯‚é FALSE=‰e‚ğ•t‚¯‚È‚¢
+ * @param	flag	TRUE=å½±ã‚’ä»˜ã‘ã‚‹ FALSE=å½±ã‚’ä»˜ã‘ãªã„
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3826,9 +3826,9 @@ void FieldOBJSys_ShadowJoinSet( FIELD_OBJ_SYS_PTR fos, int flag )
 
 //--------------------------------------------------------------
 /**
- * ‰e‚ğ•t‚¯‚éA•t‚¯‚È‚¢‚Ìƒ`ƒFƒbƒN
+ * å½±ã‚’ä»˜ã‘ã‚‹ã€ä»˜ã‘ãªã„ã®ãƒã‚§ãƒƒã‚¯
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @retval	int		FALSE=•t‚¯‚È‚¢
+ * @retval	int		FALSE=ä»˜ã‘ãªã„
  */
 //--------------------------------------------------------------
 int FieldOBJSys_ShadowJoinCheck( CONST_FIELD_OBJ_SYS_PTR fos )
@@ -3841,13 +3841,13 @@ int FieldOBJSys_ShadowJoinCheck( CONST_FIELD_OBJ_SYS_PTR fos )
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒXƒe[ƒ^ƒXƒrƒbƒgŠÈˆÕ
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆç°¡æ˜“
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * g—pƒ`ƒFƒbƒN
+ * ä½¿ç”¨ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=g—p’†
+ * @retval	int		TRUE=ä½¿ç”¨ä¸­
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBitCheck_Use( CONST_FIELD_OBJ_PTR fldobj )
@@ -3857,7 +3857,7 @@ int FieldOBJ_StatusBitCheck_Use( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®“®ì’†‚É‚·‚é
+ * ç§»å‹•å‹•ä½œä¸­ã«ã™ã‚‹
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -3869,7 +3869,7 @@ void FieldOBJ_StatusBitON_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®“®ì’†‚ğ‰ğœ
+ * ç§»å‹•å‹•ä½œä¸­ã‚’è§£é™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -3881,9 +3881,9 @@ void FieldOBJ_StatusBitOFF_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®“®ì’†ƒ`ƒFƒbƒN
+ * ç§»å‹•å‹•ä½œä¸­ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=“®ì’†
+ * @retval	int		TRUE=å‹•ä½œä¸­
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBitCheck_Move( CONST_FIELD_OBJ_PTR fldobj )
@@ -3893,7 +3893,7 @@ int FieldOBJ_StatusBitCheck_Move( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®“®ìŠJn‚É‚·‚é
+ * ç§»å‹•å‹•ä½œé–‹å§‹ã«ã™ã‚‹
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -3905,7 +3905,7 @@ void FieldOBJ_StatusBitON_MoveStart( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®“®ìŠJn‚ğ‰ğœ
+ * ç§»å‹•å‹•ä½œé–‹å§‹ã‚’è§£é™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -3917,9 +3917,9 @@ void FieldOBJ_StatusBitOFF_MoveStart( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®“®ìŠJnƒ`ƒFƒbƒN
+ * ç§»å‹•å‹•ä½œé–‹å§‹ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=ˆÚ“®“®ìŠJn
+ * @retval	int		TRUE=ç§»å‹•å‹•ä½œé–‹å§‹
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBitCheck_MoveStart( CONST_FIELD_OBJ_PTR fldobj )
@@ -3929,7 +3929,7 @@ int FieldOBJ_StatusBitCheck_MoveStart( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®“®ìI—¹‚É‚·‚é
+ * ç§»å‹•å‹•ä½œçµ‚äº†ã«ã™ã‚‹
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -3941,7 +3941,7 @@ void FieldOBJ_StatusBitON_MoveEnd( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®“®ìI—¹‚ğ‰ğœ
+ * ç§»å‹•å‹•ä½œçµ‚äº†ã‚’è§£é™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -3953,9 +3953,9 @@ void FieldOBJ_StatusBitOFF_MoveEnd( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®“®ìI—¹ƒ`ƒFƒbƒN
+ * ç§»å‹•å‹•ä½œçµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=ˆÚ“®I—¹
+ * @retval	int		TRUE=ç§»å‹•çµ‚äº†
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBitCheck_MoveEnd( CONST_FIELD_OBJ_PTR fldobj )
@@ -3965,7 +3965,7 @@ int FieldOBJ_StatusBitCheck_MoveEnd( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æ‰Šú‰»Š®—¹‚É‚·‚é
+ * æç”»åˆæœŸåŒ–å®Œäº†ã«ã™ã‚‹
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -3977,7 +3977,7 @@ void FieldOBJ_StatusBitON_DrawProcInitComp( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æ‰Šú‰»Š®—¹‚ğ‰ğœ
+ * æç”»åˆæœŸåŒ–å®Œäº†ã‚’è§£é™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -3989,9 +3989,9 @@ void FieldOBJ_StatusBitOFF_DrawProcInitComp( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æ‰Šú‰»Š®—¹ƒ`ƒFƒbƒN
+ * æç”»åˆæœŸåŒ–å®Œäº†ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=•`‰æ‰Šú‰»Š®—¹
+ * @retval	int		TRUE=æç”»åˆæœŸåŒ–å®Œäº†
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBitCheck_DrawProcInitComp( CONST_FIELD_OBJ_PTR fldobj )
@@ -4001,9 +4001,9 @@ int FieldOBJ_StatusBitCheck_DrawProcInitComp( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ”ñ•\¦ƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+ * éè¡¨ç¤ºãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=”ñ•\¦@FALSE=•\¦
+ * @param	flag	TRUE=éè¡¨ç¤ºã€€FALSE=è¡¨ç¤º
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4014,9 +4014,9 @@ int FieldOBJ_StatusBitCheck_Vanish( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ”ñ•\¦ƒtƒ‰ƒO‚ğİ’è
+ * éè¡¨ç¤ºãƒ•ãƒ©ã‚°ã‚’è¨­å®š
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=”ñ•\¦@FALSE=•\¦
+ * @param	flag	TRUE=éè¡¨ç¤ºã€€FALSE=è¡¨ç¤º
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4031,9 +4031,9 @@ void FieldOBJ_StatusBitSet_Vanish( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * OBJ“¯m‚Ì“–‚½‚è”»’èƒtƒ‰ƒO‚ğİ’è
+ * OBJåŒå£«ã®å½“ãŸã‚Šåˆ¤å®šãƒ•ãƒ©ã‚°ã‚’è¨­å®š
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=ƒqƒbƒgƒAƒŠ@FALSE=ƒqƒbƒgƒiƒV
+ * @param	flag	TRUE=ãƒ’ãƒƒãƒˆã‚¢ãƒªã€€FALSE=ãƒ’ãƒƒãƒˆãƒŠã‚·
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4048,9 +4048,9 @@ void FieldOBJ_StatusBitSet_FellowHit( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * “®ì’†ƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * å‹•ä½œä¸­ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=“®ì’†@FALSE=’â~’†
+ * @param	flag	TRUE=å‹•ä½œä¸­ã€€FALSE=åœæ­¢ä¸­
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4065,9 +4065,9 @@ void FieldOBJ_StatusBitSet_Move( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * ˜b‚µ‚©‚¯‰Â”\ƒ`ƒFƒbƒN
+ * è©±ã—ã‹ã‘å¯èƒ½ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=‰Â”\ FALSE=•s‰Â
+ * @retval	int		TRUE=å¯èƒ½ FALSE=ä¸å¯
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBitCheck_Talk( FIELD_OBJ_PTR fldobj )
@@ -4081,9 +4081,9 @@ int FieldOBJ_StatusBitCheck_Talk( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ˜b‚µ‚©‚¯•s‰Âƒtƒ‰ƒO‚ğƒZƒbƒg
+ * è©±ã—ã‹ã‘ä¸å¯ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=•s‰Â FALSE=‰Â”\
+ * @param	flag	TRUE=ä¸å¯ FALSE=å¯èƒ½
  */
 //--------------------------------------------------------------
 void FieldOBJ_StatusBitSet_TalkOFF( FIELD_OBJ_PTR fldobj, int flag )
@@ -4097,7 +4097,7 @@ void FieldOBJ_StatusBitSet_TalkOFF( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒ|[ƒY
+ * å‹•ä½œãƒãƒ¼ã‚º
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -4109,7 +4109,7 @@ void FieldOBJ_MovePause( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒ|[ƒY‰ğœ
+ * å‹•ä½œãƒãƒ¼ã‚ºè§£é™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -4121,9 +4121,9 @@ void FieldOBJ_MovePauseClear( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒ|[ƒYƒ`ƒFƒbƒN
+ * å‹•ä½œãƒãƒ¼ã‚ºãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=“®ìƒ|[ƒY
+ * @retval	int		TRUE=å‹•ä½œãƒãƒ¼ã‚º
  */
 //--------------------------------------------------------------
 int FieldOBJ_MovePauseCheck( CONST_FIELD_OBJ_PTR fldobj )
@@ -4137,9 +4137,9 @@ int FieldOBJ_MovePauseCheck( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒXƒrƒbƒg •`‰æˆ—‰Šú‰»Š®—¹ƒ`ƒFƒbƒN
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ æç”»å‡¦ç†åˆæœŸåŒ–å®Œäº†ãƒã‚§ãƒƒã‚¯
  * @param	fldobj		FIELD_OBJ_PTR
- * @retval	int			TRUE=Š®—¹BFALSE=‚Ü‚¾
+ * @retval	int			TRUE=å®Œäº†ã€‚FALSE=ã¾ã 
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBit_DrawInitCompCheck( CONST_FIELD_OBJ_PTR fldobj )
@@ -4161,9 +4161,9 @@ int FieldOBJ_StatusBit_DrawInitCompCheck( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‚‚³æ“¾‚ğ‹Ö~‚·‚é
+ * é«˜ã•å–å¾—ã‚’ç¦æ­¢ã™ã‚‹
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	int		TRUE=‚‚³æ“¾OFF FALSE=ON
+ * @param	int		TRUE=é«˜ã•å–å¾—OFF FALSE=ON
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4178,9 +4178,9 @@ void FieldOBJ_StatusBitSet_HeightGetOFF( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * ‚‚³æ“¾‚ª‹Ö~‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * é«˜ã•å–å¾—ãŒç¦æ­¢ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=‹Ö~
+ * @retval	int		TRUE=ç¦æ­¢
  */
 //--------------------------------------------------------------
 int FieldOBJ_HeightOFFCheck( CONST_FIELD_OBJ_PTR fldobj )
@@ -4194,9 +4194,9 @@ int FieldOBJ_HeightOFFCheck( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“Ø‚è‘Ö‚¦‚Ìíœ‹Ö~
+ * ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆæ™‚ã®å‰Šé™¤ç¦æ­¢
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=‹Ö~ FALSE=‹Ö~‚µ‚È‚¢
+ * @param	flag	TRUE=ç¦æ­¢ FALSE=ç¦æ­¢ã—ãªã„
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4211,9 +4211,9 @@ void FieldOBJ_NotZoneDeleteSet( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * ƒGƒCƒŠƒAƒXƒtƒ‰ƒO‚ğƒZƒbƒg
+ * ã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=ƒGƒCƒŠƒAƒX FALSE=ˆá‚¤
+ * @param	flag	TRUE=ã‚¨ã‚¤ãƒªã‚¢ã‚¹ FALSE=é•ã†
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4228,9 +4228,9 @@ void FieldOBJ_StatusBitSet_Alies( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * ƒGƒCƒŠƒAƒXƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+ * ã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	flag	TRUE=ƒGƒCƒŠƒAƒX FALSE=ˆá‚¤
+ * @retval	flag	TRUE=ã‚¨ã‚¤ãƒªã‚¢ã‚¹ FALSE=é•ã†
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBitCheck_Alies( CONST_FIELD_OBJ_PTR fldobj )
@@ -4244,9 +4244,9 @@ int FieldOBJ_StatusBitCheck_Alies( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ó£ƒGƒtƒFƒNƒgƒZƒbƒgƒtƒ‰ƒO‚ğƒZƒbƒg
+ * æµ…ç€¬ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚»ãƒƒãƒˆãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=ƒZƒbƒg@FALSE=ƒNƒŠƒA
+ * @param	flag	TRUE=ã‚»ãƒƒãƒˆã€€FALSE=ã‚¯ãƒªã‚¢
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4261,9 +4261,9 @@ void FieldOBJ_StatusBitSet_ShoalEffectSet( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * ó£ƒGƒtƒFƒNƒgƒZƒbƒgƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+ * æµ…ç€¬ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚»ãƒƒãƒˆãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	flag	TRUE=ƒZƒbƒg@FALSE=ˆá‚¤
+ * @retval	flag	TRUE=ã‚»ãƒƒãƒˆã€€FALSE=é•ã†
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBitCheck_ShoalEffectSet( CONST_FIELD_OBJ_PTR fldobj )
@@ -4277,9 +4277,9 @@ int FieldOBJ_StatusBitCheck_ShoalEffectSet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒgƒŠƒrƒ…[ƒgƒIƒtƒZƒbƒgİ’èOFFƒZƒbƒg
+ * ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®šOFFã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=ƒZƒbƒg@FALSE=ƒNƒŠƒA
+ * @param	flag	TRUE=ã‚»ãƒƒãƒˆã€€FALSE=ã‚¯ãƒªã‚¢
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4294,9 +4294,9 @@ void FieldOBJ_StatusBitSet_AttrOffsOFF( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒgƒŠƒrƒ…[ƒgƒIƒtƒZƒbƒgİ’èOFFƒ`ƒFƒbƒN
+ * ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®šOFFãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	flag	TRUE=OFF@FALSE=ˆá‚¤
+ * @retval	flag	TRUE=OFFã€€FALSE=é•ã†
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBitCheck_AttrOffsOFF( CONST_FIELD_OBJ_PTR fldobj )
@@ -4310,9 +4310,9 @@ int FieldOBJ_StatusBitCheck_AttrOffsOFF( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‹´ˆÚ“®ƒtƒ‰ƒOƒZƒbƒg
+ * æ©‹ç§»å‹•ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=ƒZƒbƒg@FALSE=ƒNƒŠƒA
+ * @param	flag	TRUE=ã‚»ãƒƒãƒˆã€€FALSE=ã‚¯ãƒªã‚¢
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4327,9 +4327,9 @@ void FieldOBJ_StatusBitSet_Bridge( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * ‹´ˆÚ“®ƒtƒ‰ƒOƒ`ƒFƒbƒN
+ * æ©‹ç§»å‹•ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	flag	TRUE=‹´@FALSE=ˆá‚¤
+ * @retval	flag	TRUE=æ©‹ã€€FALSE=é•ã†
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBitCheck_Bridge( CONST_FIELD_OBJ_PTR fldobj )
@@ -4343,9 +4343,9 @@ int FieldOBJ_StatusBitCheck_Bridge( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‰f‚è‚±‚İƒtƒ‰ƒOƒZƒbƒg
+ * æ˜ ã‚Šã“ã¿ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=ƒZƒbƒg@FALSE=ƒNƒŠƒA
+ * @param	flag	TRUE=ã‚»ãƒƒãƒˆã€€FALSE=ã‚¯ãƒªã‚¢
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4360,9 +4360,9 @@ void FieldOBJ_StatusBitSet_Reflect( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * ‰f‚è‚±‚İƒtƒ‰ƒOƒ`ƒFƒbƒN
+ * æ˜ ã‚Šã“ã¿ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	flag	TRUE=ƒZƒbƒg@FALSE=–³‚µ
+ * @retval	flag	TRUE=ã‚»ãƒƒãƒˆã€€FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBitCheck_Reflect( CONST_FIELD_OBJ_PTR fldobj )
@@ -4376,9 +4376,9 @@ int FieldOBJ_StatusBitCheck_Reflect( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒ`ƒFƒbƒN
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	flag	TRUE=ƒRƒ}ƒ“ƒhƒAƒŠ@FALSE=–³‚µ
+ * @retval	flag	TRUE=ã‚³ãƒãƒ³ãƒ‰ã‚¢ãƒªã€€FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBitCheck_Acmd( CONST_FIELD_OBJ_PTR fldobj )
@@ -4392,9 +4392,9 @@ int FieldOBJ_StatusBitCheck_Acmd( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Šg’£‚‚³”½‰ƒtƒ‰ƒO‚ğƒZƒbƒg
+ * æ‹¡å¼µé«˜ã•åå¿œãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=ƒZƒbƒg@FALSE=ƒNƒŠƒA
+ * @param	flag	TRUE=ã‚»ãƒƒãƒˆã€€FALSE=ã‚¯ãƒªã‚¢
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4409,9 +4409,9 @@ void FieldOBJ_StatusBitSet_HeightExpand( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * Šg’£‚‚³”½‰ƒtƒ‰ƒOƒ`ƒFƒbƒN
+ * æ‹¡å¼µé«˜ã•åå¿œãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	flag	TRUE=Šg’£‚‚³‚É”½‰‚·‚é@FALSE=–³‚µ
+ * @retval	flag	TRUE=æ‹¡å¼µé«˜ã•ã«åå¿œã™ã‚‹ã€€FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 int FieldOBJ_StatusBitCheck_HeightExpand( CONST_FIELD_OBJ_PTR fldobj )
@@ -4424,13 +4424,13 @@ int FieldOBJ_StatusBitCheck_HeightExpand( CONST_FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	“®ìƒrƒbƒgŠÈˆÕ
+//	å‹•ä½œãƒ“ãƒƒãƒˆç°¡æ˜“
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒAƒgƒŠƒrƒ…[ƒgæ“¾‚ğ’â~
+ * ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—ã‚’åœæ­¢
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	flag	TRUE=’â~
+ * @param	flag	TRUE=åœæ­¢
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4445,9 +4445,9 @@ void FieldOBJ_MoveBitSet_AttrGetOFF( FIELD_OBJ_PTR fldobj, int flag )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒgƒŠƒrƒ…[ƒgæ“¾‚ğ’â~@ƒ`ƒFƒbƒN
+ * ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—ã‚’åœæ­¢ã€€ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int	TRUE=’â~
+ * @retval	int	TRUE=åœæ­¢
  */
 //--------------------------------------------------------------
 int FieldOBJ_MoveBitCheck_AttrGetOFF( CONST_FIELD_OBJ_PTR fldobj )
@@ -4460,13 +4460,13 @@ int FieldOBJ_MoveBitCheck_AttrGetOFF( CONST_FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	À•WŒnQÆ
+//	åº§æ¨™ç³»å‚ç…§
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰ŠúÀ•W XÀ•Wæ“¾
+ * åˆæœŸåº§æ¨™ Xåº§æ¨™å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		XÀ•W
+ * @retval	int		Xåº§æ¨™
  */
 //--------------------------------------------------------------
 int FieldOBJ_InitPosGX_Get( CONST_FIELD_OBJ_PTR fldobj )
@@ -4476,9 +4476,9 @@ int FieldOBJ_InitPosGX_Get( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‰ŠúÀ•W XÀ•WƒZƒbƒg
+ * åˆæœŸåº§æ¨™ Xåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	x		ƒZƒbƒg‚·‚éÀ•W
+ * @param	x		ã‚»ãƒƒãƒˆã™ã‚‹åº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4489,7 +4489,7 @@ void FieldOBJ_InitPosGX_Set( FIELD_OBJ_PTR fldobj, int x )
 
 //--------------------------------------------------------------
 /**
- * ‰ŠúÀ•W YÀ•Wæ“¾
+ * åˆæœŸåº§æ¨™ Yåº§æ¨™å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	int		Y
  */
@@ -4501,10 +4501,10 @@ int FieldOBJ_InitPosGY_Get( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‰ŠúÀ•W YÀ•WƒZƒbƒg
+ * åˆæœŸåº§æ¨™ Yåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	y		ƒZƒbƒg‚·‚éÀ•W
- * @retval	int		yÀ•W
+ * @param	y		ã‚»ãƒƒãƒˆã™ã‚‹åº§æ¨™
+ * @retval	int		yåº§æ¨™
  */
 //--------------------------------------------------------------
 void FieldOBJ_InitPosGY_Set( FIELD_OBJ_PTR fldobj, int y )
@@ -4514,9 +4514,9 @@ void FieldOBJ_InitPosGY_Set( FIELD_OBJ_PTR fldobj, int y )
 
 //--------------------------------------------------------------
 /**
- * ‰ŠúÀ•W zÀ•Wæ“¾
+ * åˆæœŸåº§æ¨™ zåº§æ¨™å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		zÀ•W
+ * @retval	int		zåº§æ¨™
  */
 //--------------------------------------------------------------
 int FieldOBJ_InitPosGZ_Get( CONST_FIELD_OBJ_PTR fldobj )
@@ -4526,9 +4526,9 @@ int FieldOBJ_InitPosGZ_Get( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‰ŠúÀ•W zÀ•WƒZƒbƒg
+ * åˆæœŸåº§æ¨™ zåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	z		ƒZƒbƒg‚·‚éÀ•W
+ * @param	z		ã‚»ãƒƒãƒˆã™ã‚‹åº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4539,9 +4539,9 @@ void FieldOBJ_InitPosGZ_Set( FIELD_OBJ_PTR fldobj, int z )
 
 //--------------------------------------------------------------
 /**
- * ‰ß‹À•W@XÀ•Wæ“¾
+ * éå»åº§æ¨™ã€€Xåº§æ¨™å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		XÀ•W
+ * @retval	int		Xåº§æ¨™
  */
 //--------------------------------------------------------------
 int FieldOBJ_OldPosGX_Get( CONST_FIELD_OBJ_PTR fldobj )
@@ -4551,9 +4551,9 @@ int FieldOBJ_OldPosGX_Get( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‰ß‹À•W XÀ•WƒZƒbƒg
+ * éå»åº§æ¨™ Xåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	x		ƒZƒbƒg‚·‚éÀ•W
+ * @param	x		ã‚»ãƒƒãƒˆã™ã‚‹åº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4564,7 +4564,7 @@ void FieldOBJ_OldPosGX_Set( FIELD_OBJ_PTR fldobj, int x )
 
 //--------------------------------------------------------------
 /**
- * ‰ß‹À•W YÀ•Wæ“¾
+ * éå»åº§æ¨™ Yåº§æ¨™å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	int		Y
  */
@@ -4576,10 +4576,10 @@ int FieldOBJ_OldPosGY_Get( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‰ß‹À•W YÀ•WƒZƒbƒg
+ * éå»åº§æ¨™ Yåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	y		ƒZƒbƒg‚·‚éÀ•W
- * @retval	int		yÀ•W
+ * @param	y		ã‚»ãƒƒãƒˆã™ã‚‹åº§æ¨™
+ * @retval	int		yåº§æ¨™
  */
 //--------------------------------------------------------------
 void FieldOBJ_OldPosGY_Set( FIELD_OBJ_PTR fldobj, int y )
@@ -4589,9 +4589,9 @@ void FieldOBJ_OldPosGY_Set( FIELD_OBJ_PTR fldobj, int y )
 
 //--------------------------------------------------------------
 /**
- * ‰ß‹À•W zÀ•Wæ“¾
+ * éå»åº§æ¨™ zåº§æ¨™å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		zÀ•W
+ * @retval	int		zåº§æ¨™
  */
 //--------------------------------------------------------------
 int FieldOBJ_OldPosGZ_Get( CONST_FIELD_OBJ_PTR fldobj )
@@ -4601,9 +4601,9 @@ int FieldOBJ_OldPosGZ_Get( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‰ß‹À•W zÀ•WƒZƒbƒg
+ * éå»åº§æ¨™ zåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	z		ƒZƒbƒg‚·‚éÀ•W
+ * @param	z		ã‚»ãƒƒãƒˆã™ã‚‹åº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4614,9 +4614,9 @@ void FieldOBJ_OldPosGZ_Set( FIELD_OBJ_PTR fldobj, int z )
 
 //--------------------------------------------------------------
 /**
- * Œ»İÀ•W XÀ•Wæ“¾
+ * ç¾åœ¨åº§æ¨™ Xåº§æ¨™å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		XÀ•W
+ * @retval	int		Xåº§æ¨™
  */
 //--------------------------------------------------------------
 int FieldOBJ_NowPosGX_Get( CONST_FIELD_OBJ_PTR fldobj )
@@ -4626,9 +4626,9 @@ int FieldOBJ_NowPosGX_Get( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Œ»İÀ•W XÀ•WƒZƒbƒg
+ * ç¾åœ¨åº§æ¨™ Xåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	x		ƒZƒbƒg‚·‚éÀ•W
+ * @param	x		ã‚»ãƒƒãƒˆã™ã‚‹åº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4639,9 +4639,9 @@ void FieldOBJ_NowPosGX_Set( FIELD_OBJ_PTR fldobj, int x )
 
 //--------------------------------------------------------------
 /**
- * Œ»İÀ•W XÀ•W‘‰Á
+ * ç¾åœ¨åº§æ¨™ Xåº§æ¨™å¢—åŠ 
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	x		‘«‚·’l
+ * @param	x		è¶³ã™å€¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4652,7 +4652,7 @@ void FieldOBJ_NowPosGX_Add( FIELD_OBJ_PTR fldobj, int x )
 
 //--------------------------------------------------------------
 /**
- * Œ»İÀ•W YÀ•Wæ“¾
+ * ç¾åœ¨åº§æ¨™ Yåº§æ¨™å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	int		Y
  */
@@ -4664,10 +4664,10 @@ int FieldOBJ_NowPosGY_Get( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Œ»İÀ•W YÀ•WƒZƒbƒg
+ * ç¾åœ¨åº§æ¨™ Yåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	y		ƒZƒbƒg‚·‚éÀ•W
- * @retval	int		yÀ•W
+ * @param	y		ã‚»ãƒƒãƒˆã™ã‚‹åº§æ¨™
+ * @retval	int		yåº§æ¨™
  */
 //--------------------------------------------------------------
 void FieldOBJ_NowPosGY_Set( FIELD_OBJ_PTR fldobj, int y )
@@ -4677,9 +4677,9 @@ void FieldOBJ_NowPosGY_Set( FIELD_OBJ_PTR fldobj, int y )
 
 //--------------------------------------------------------------
 /**
- * Œ»İÀ•W YÀ•W‘‰Á
+ * ç¾åœ¨åº§æ¨™ Yåº§æ¨™å¢—åŠ 
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	y		‘«‚·’l
+ * @param	y		è¶³ã™å€¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4690,9 +4690,9 @@ void FieldOBJ_NowPosGY_Add( FIELD_OBJ_PTR fldobj, int y )
 
 //--------------------------------------------------------------
 /**
- * ‰ß‹À•W zÀ•Wæ“¾
+ * éå»åº§æ¨™ zåº§æ¨™å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	int		zÀ•W
+ * @retval	int		zåº§æ¨™
  */
 //--------------------------------------------------------------
 int FieldOBJ_NowPosGZ_Get( CONST_FIELD_OBJ_PTR fldobj )
@@ -4702,9 +4702,9 @@ int FieldOBJ_NowPosGZ_Get( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Œ»İÀ•W zÀ•WƒZƒbƒg
+ * ç¾åœ¨åº§æ¨™ zåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	z		ƒZƒbƒg‚·‚éÀ•W
+ * @param	z		ã‚»ãƒƒãƒˆã™ã‚‹åº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4715,9 +4715,9 @@ void FieldOBJ_NowPosGZ_Set( FIELD_OBJ_PTR fldobj, int z )
 
 //--------------------------------------------------------------
 /**
- * Œ»İÀ•W zÀ•W‘‰Á
+ * ç¾åœ¨åº§æ¨™ zåº§æ¨™å¢—åŠ 
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	z		‘«‚·’l
+ * @param	z		è¶³ã™å€¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4728,9 +4728,9 @@ void FieldOBJ_NowPosGZ_Add( FIELD_OBJ_PTR fldobj, int z )
 
 //--------------------------------------------------------------
 /**
- * ÀÀ•Wæ“¾
+ * å®Ÿåº§æ¨™å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	vec		À•WŠi”[æ
+ * @param	vec		åº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4741,9 +4741,9 @@ void FieldOBJ_VecPosGet( CONST_FIELD_OBJ_PTR fldobj, VecFx32 *vec )
 
 //--------------------------------------------------------------
 /**
- * ÀÀ•WƒZƒbƒg
+ * å®Ÿåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	vec		ƒZƒbƒgÀ•W
+ * @param	vec		ã‚»ãƒƒãƒˆåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4754,9 +4754,9 @@ void FieldOBJ_VecPosSet( FIELD_OBJ_PTR fldobj, const VecFx32 *vec )
 
 //--------------------------------------------------------------
 /**
- * ÀÀ•Wƒ|ƒCƒ“ƒ^æ“¾
+ * å®Ÿåº§æ¨™ãƒã‚¤ãƒ³ã‚¿å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	VecFx32	ÀÀ•Wƒ|ƒCƒ“ƒ^
+ * @retval	VecFx32	å®Ÿåº§æ¨™ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 const VecFx32 * FieldOBJ_VecPosPtrGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -4766,9 +4766,9 @@ const VecFx32 * FieldOBJ_VecPosPtrGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ÀÀ•WY’læ“¾
+ * å®Ÿåº§æ¨™Yå€¤å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @retval	fx32	‚‚³
+ * @retval	fx32	é«˜ã•
  */
 //--------------------------------------------------------------
 fx32 FieldOBJ_VecPosYGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -4778,9 +4778,9 @@ fx32 FieldOBJ_VecPosYGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •\¦À•WƒIƒtƒZƒbƒgæ“¾
+ * è¡¨ç¤ºåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	vec		ƒZƒbƒgÀ•W
+ * @param	vec		ã‚»ãƒƒãƒˆåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4791,9 +4791,9 @@ void FieldOBJ_VecDrawOffsGet( CONST_FIELD_OBJ_PTR fldobj, VecFx32 *vec )
 
 //--------------------------------------------------------------
 /**
- * •\¦À•WƒIƒtƒZƒbƒgƒZƒbƒg
+ * è¡¨ç¤ºåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	vec		ƒZƒbƒgÀ•W
+ * @param	vec		ã‚»ãƒƒãƒˆåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4804,9 +4804,9 @@ void FieldOBJ_VecDrawOffsSet( FIELD_OBJ_PTR fldobj, const VecFx32 *vec )
 
 //--------------------------------------------------------------
 /**
- * •\¦À•WƒIƒtƒZƒbƒgƒ|ƒCƒ“ƒ^æ“¾
+ * è¡¨ç¤ºåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿å–å¾—
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	VecFx32		ƒIƒtƒZƒbƒgƒ|ƒCƒ“ƒ^
+ * @retval	VecFx32		ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 VecFx32 * FieldOBJ_VecDrawOffsPtrGet( FIELD_OBJ_PTR fldobj )
@@ -4816,9 +4816,9 @@ VecFx32 * FieldOBJ_VecDrawOffsPtrGet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ŠO•”w’è•\¦À•WƒIƒtƒZƒbƒgæ“¾
+ * å¤–éƒ¨æŒ‡å®šè¡¨ç¤ºåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	vec		ƒZƒbƒgÀ•W
+ * @param	vec		ã‚»ãƒƒãƒˆåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4829,9 +4829,9 @@ void FieldOBJ_VecDrawOffsOutSideGet( CONST_FIELD_OBJ_PTR fldobj, VecFx32 *vec )
 
 //--------------------------------------------------------------
 /**
- * ŠO•”w’è•\¦À•WƒIƒtƒZƒbƒgƒZƒbƒg
+ * å¤–éƒ¨æŒ‡å®šè¡¨ç¤ºåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	vec		ƒZƒbƒgÀ•W
+ * @param	vec		ã‚»ãƒƒãƒˆåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4842,9 +4842,9 @@ void FieldOBJ_VecDrawOffsOutSideSet( FIELD_OBJ_PTR fldobj, const VecFx32 *vec )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒgƒŠƒrƒ…[ƒg•Ï‰»À•WƒIƒtƒZƒbƒgæ“¾
+ * ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå¤‰åŒ–åº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	vec		ƒZƒbƒgÀ•W
+ * @param	vec		ã‚»ãƒƒãƒˆåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4855,9 +4855,9 @@ void FieldOBJ_VecAttrOffsGet( CONST_FIELD_OBJ_PTR fldobj, VecFx32 *vec )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒgƒŠƒrƒ…[ƒg•Ï‰»À•WƒIƒtƒZƒbƒgƒZƒbƒg
+ * ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå¤‰åŒ–åº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR 
- * @param	vec		ƒZƒbƒgÀ•W
+ * @param	vec		ã‚»ãƒƒãƒˆåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4868,9 +4868,9 @@ void FieldOBJ_VecAttrOffsSet( FIELD_OBJ_PTR fldobj, const VecFx32 *vec )
 
 //--------------------------------------------------------------
 /**
- * ‚‚³(ƒOƒŠƒbƒh’PˆÊ)‚ğæ“¾
+ * é«˜ã•(ã‚°ãƒªãƒƒãƒ‰å˜ä½)ã‚’å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		‚‚³BH_GRID’PˆÊ
+ * @retval	int		é«˜ã•ã€‚H_GRIDå˜ä½
  */
 //--------------------------------------------------------------
 int FieldOBJ_HeightGridGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -4881,11 +4881,11 @@ int FieldOBJ_HeightGridGet( CONST_FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	FIELD_OBJ_H	QÆ
+//	FIELD_OBJ_H	å‚ç…§
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ID ƒZƒbƒg
+ * ID ã‚»ãƒƒãƒˆ
  * @param	head	FIELD_OBJ_H
  * @param	id		OBJ ID
  * @retval	nothing
@@ -4898,7 +4898,7 @@ void FieldOBJ_H_IDSet( FIELD_OBJ_H *head, int id )
 
 //--------------------------------------------------------------
 /**
- * ID æ“¾
+ * ID å–å¾—
  * @param	head	FIELD_OBJ_H
  * @retval	u32		ID
  */
@@ -4910,9 +4910,9 @@ int FieldOBJ_H_IDGet( const FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒhƒZƒbƒg
+ * OBJã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
  * @param	head	FIELD_OBJ_H
- * @param	code	HERO“™
+ * @param	code	HEROç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4923,9 +4923,9 @@ void FieldOBJ_H_OBJCodeSet( FIELD_OBJ_H *head, int code )
 
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒhæ“¾
+ * OBJã‚³ãƒ¼ãƒ‰å–å¾—
  * @param	head	FIELD_OBJ_H
- * @retval	int		OBJƒR[ƒh
+ * @retval	int		OBJã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 int FieldOBJ_H_OBJCodeGet( const FIELD_OBJ_H *head )
@@ -4935,9 +4935,9 @@ int FieldOBJ_H_OBJCodeGet( const FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒR[ƒhƒZƒbƒg
+ * å‹•ä½œã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
  * @param	head	FIELD_OBJ_H
- * @param	code	MV_DIR_RND“™
+ * @param	code	MV_DIR_RNDç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4948,9 +4948,9 @@ void FieldOBJ_H_MoveCodeSet( FIELD_OBJ_H *head, int code )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒR[ƒhæ“¾
+ * å‹•ä½œã‚³ãƒ¼ãƒ‰å–å¾—
  * @param	head	FIELD_OBJ_H
- * @retval	int		“®ìƒR[ƒh
+ * @retval	int		å‹•ä½œã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 int FieldOBJ_H_MoveCodeGet( const FIELD_OBJ_H *head )
@@ -4960,9 +4960,9 @@ int FieldOBJ_H_MoveCodeGet( const FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒ^ƒCƒvƒZƒbƒg
+ * ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã‚»ãƒƒãƒˆ
  * @param	head	FIELD_OBJ_H
- * @param	type	ƒCƒxƒ“ƒgƒ^ƒCƒv
+ * @param	type	ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4973,9 +4973,9 @@ void FieldOBJ_H_EventTypeSet( FIELD_OBJ_H *head, int type )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒ^ƒCƒvæ“¾
+ * ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—å–å¾—
  * @param	head	FIELD_OBJ_H
- * @retval	int		ƒCƒxƒ“ƒgƒ^ƒCƒv
+ * @retval	int		ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
  */
 //--------------------------------------------------------------
 int FieldOBJ_H_EventTypeGet( const FIELD_OBJ_H *head )
@@ -4985,9 +4985,9 @@ int FieldOBJ_H_EventTypeGet( const FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒtƒ‰ƒOƒZƒbƒg
+ * ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  * @param	head	FIELD_OBJ_H
- * @param	flag	ƒCƒxƒ“ƒgƒtƒ‰ƒO
+ * @param	flag	ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4998,9 +4998,9 @@ void FieldOBJ_H_EventFlagSet( FIELD_OBJ_H *head, int flag )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒtƒ‰ƒOæ“¾
+ * ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°å–å¾—
  * @param	head	FIELD_OBJ_H
- * @retval	int		ƒCƒxƒ“ƒgƒtƒ‰ƒO
+ * @retval	int		ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 int FieldOBJ_H_EventFlagGet( const FIELD_OBJ_H *head )
@@ -5010,9 +5010,9 @@ int FieldOBJ_H_EventFlagGet( const FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgIDƒZƒbƒg
+ * ã‚¤ãƒ™ãƒ³ãƒˆIDã‚»ãƒƒãƒˆ
  * @param	head	FIELD_OBJ_H
- * @param	id		ƒCƒxƒ“ƒgID
+ * @param	id		ã‚¤ãƒ™ãƒ³ãƒˆID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5023,9 +5023,9 @@ void FieldOBJ_H_EventIDSet( FIELD_OBJ_H *head, int id )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgIDæ“¾
+ * ã‚¤ãƒ™ãƒ³ãƒˆIDå–å¾—
  * @param	head	FIELD_OBJ_H
- * @retval	int		ƒCƒxƒ“ƒgƒtƒ‰ƒO
+ * @retval	int		ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 int FieldOBJ_H_EventIDGet( const FIELD_OBJ_H *head )
@@ -5035,9 +5035,9 @@ int FieldOBJ_H_EventIDGet( const FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * •ûŒüƒZƒbƒg
+ * æ–¹å‘ã‚»ãƒƒãƒˆ
  * @param	head	FIELD_OBJ_H
- * @param	dir		DIR_UP“™
+ * @param	dir		DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5048,9 +5048,9 @@ void FieldOBJ_H_DirSet( FIELD_OBJ_H *head, int dir )
 
 //--------------------------------------------------------------
 /**
- * •ûŒüæ“¾
+ * æ–¹å‘å–å¾—
  * @param	head	FIELD_OBJ_H
- * @retval	int		•ûŒü
+ * @retval	int		æ–¹å‘
  */
 //--------------------------------------------------------------
 int FieldOBJ_H_DirGet( const FIELD_OBJ_H *head )
@@ -5060,10 +5060,10 @@ int FieldOBJ_H_DirGet( const FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * w’èƒpƒ‰ƒƒ^ƒZƒbƒg
+ * æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿ã‚»ãƒƒãƒˆ
  * @param	head	FIELD_OBJ_H
- * @param	param	w’èƒpƒ‰ƒƒ^
- * @param	no		FLDOBJ_PARAM_0“™
+ * @param	param	æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿
+ * @param	no		FLDOBJ_PARAM_0ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5073,16 +5073,16 @@ void FieldOBJ_H_ParamSet( FIELD_OBJ_H *head, int param, FLDOBJ_H_PARAM no )
 	case FLDOBJ_PARAM_0: head->param0 = param; break;
 	case FLDOBJ_PARAM_1: head->param1 = param; break;
 	case FLDOBJ_PARAM_2: head->param2 = param; break;
-	default: GF_ASSERT( 0 && "FieldOBJ_H_ParamSet()•s³‚Èˆø”" );
+	default: GF_ASSERT( 0 && "FieldOBJ_H_ParamSet()ä¸æ­£ãªå¼•æ•°" );
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * w’èƒpƒ‰ƒƒ^æ“¾
+ * æŒ‡å®šãƒ‘ãƒ©ãƒ¡ã‚¿å–å¾—
  * @param	head	FIELD_OBJ_H
- * @param	no		æ“¾‚·‚éƒpƒ‰ƒƒ^BFLDOBJ_PARAM_0“™
- * @retval	int		ƒpƒ‰ƒƒ^
+ * @param	no		å–å¾—ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ã‚¿ã€‚FLDOBJ_PARAM_0ç­‰
+ * @retval	int		ãƒ‘ãƒ©ãƒ¡ã‚¿
  */
 //--------------------------------------------------------------
 int FieldOBJ_H_ParamGet( const FIELD_OBJ_H *head, FLDOBJ_H_PARAM no )
@@ -5093,15 +5093,15 @@ int FieldOBJ_H_ParamGet( const FIELD_OBJ_H *head, FLDOBJ_H_PARAM no )
 	case FLDOBJ_PARAM_2: return( head->param2 );
 	}
 	
-	GF_ASSERT( 0 && "FieldOBJ_H_ParamGet()•s³‚Èˆø”" );
+	GF_ASSERT( 0 && "FieldOBJ_H_ParamGet()ä¸æ­£ãªå¼•æ•°" );
 	return( 0 );
 }
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®§ŒÀXƒZƒbƒg
+ * ç§»å‹•åˆ¶é™Xã‚»ãƒƒãƒˆ
  * @param	head	FIELD_OBJ_H
- * @param	x		ˆÚ“®§ŒÀX
+ * @param	x		ç§»å‹•åˆ¶é™X
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5112,9 +5112,9 @@ void FieldOBJ_H_MoveLimitXSet( FIELD_OBJ_H *head, int x )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®§ŒÀXæ“¾
+ * ç§»å‹•åˆ¶é™Xå–å¾—
  * @param	head	FIELD_OBJ_H
- * @retval	int		ˆÚ“®§ŒÀX
+ * @retval	int		ç§»å‹•åˆ¶é™X
  */
 //--------------------------------------------------------------
 int FieldOBJ_H_MoveLimitXGet( const FIELD_OBJ_H *head )
@@ -5124,9 +5124,9 @@ int FieldOBJ_H_MoveLimitXGet( const FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®§ŒÀZƒZƒbƒg
+ * ç§»å‹•åˆ¶é™Zã‚»ãƒƒãƒˆ
  * @param	head	FIELD_OBJ_H
- * @param	z		ˆÚ“®§ŒÀZ
+ * @param	z		ç§»å‹•åˆ¶é™Z
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5137,9 +5137,9 @@ void FieldOBJ_H_MoveLimitZSet( FIELD_OBJ_H *head, int z )
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®§ŒÀZæ“¾
+ * ç§»å‹•åˆ¶é™Zå–å¾—
  * @param	head	FIELD_OBJ_H
- * @retval	int		ˆÚ“®§ŒÀY
+ * @retval	int		ç§»å‹•åˆ¶é™Y
  */
 //--------------------------------------------------------------
 int FieldOBJ_H_MoveLimitZGet( const FIELD_OBJ_H *head )
@@ -5149,9 +5149,9 @@ int FieldOBJ_H_MoveLimitZGet( const FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * XÀ•WƒZƒbƒg
+ * Xåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	head	FIELD_OBJ_H
- * @param	x		XÀ•W
+ * @param	x		Xåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5162,9 +5162,9 @@ void FieldOBJ_H_PosXSet( FIELD_OBJ_H *head, int x )
 
 //--------------------------------------------------------------
 /**
- * XÀ•Wæ“¾
+ * Xåº§æ¨™å–å¾—
  * @param	head	FIELD_OBJ_H
- * @retval	int		XÀ•W
+ * @retval	int		Xåº§æ¨™
  */
 //--------------------------------------------------------------
 int FieldOBJ_H_PosXGet( const FIELD_OBJ_H *head )
@@ -5174,9 +5174,9 @@ int FieldOBJ_H_PosXGet( const FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * YÀ•WƒZƒbƒg
+ * Yåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	head	FIELD_OBJ_H
- * @param	y		yÀ•W
+ * @param	y		yåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5187,9 +5187,9 @@ void FieldOBJ_H_PosYSet( FIELD_OBJ_H *head, int y )
 
 //--------------------------------------------------------------
 /**
- * YÀ•Wæ“¾
+ * Yåº§æ¨™å–å¾—
  * @param	head	FIELD_OBJ_H
- * @retval	int		YÀ•W
+ * @retval	int		Yåº§æ¨™
  */
 //--------------------------------------------------------------
 int FieldOBJ_H_PosYGet( const FIELD_OBJ_H *head )
@@ -5199,9 +5199,9 @@ int FieldOBJ_H_PosYGet( const FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * ZÀ•WƒZƒbƒg
+ * Zåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	head	FIELD_OBJ_H
- * @param	z		ZÀ•W
+ * @param	z		Zåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5212,9 +5212,9 @@ void FieldOBJ_H_PosZSet( FIELD_OBJ_H *head, int z )
 
 //--------------------------------------------------------------
 /**
- * ZÀ•Wæ“¾
+ * Zåº§æ¨™å–å¾—
  * @param	head	FIELD_OBJ_H
- * @retval	int		YÀ•W
+ * @retval	int		Yåº§æ¨™
  */
 //--------------------------------------------------------------
 int FieldOBJ_H_PosZGet( const FIELD_OBJ_H *head )
@@ -5224,11 +5224,11 @@ int FieldOBJ_H_PosZGet( const FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJƒwƒbƒ_[”z—ñ‚©‚çw’èID‚ğ‚Á‚½ƒwƒbƒ_[‚ğŒŸõ
- * @param	id		ƒwƒbƒ_[ID
- * @param	max		head—v‘f”
- * @param	head	ƒtƒB[ƒ‹ƒhOBJƒwƒbƒ_[ƒe[ƒuƒ‹
- * @retval	FIELD_OBJ_H id‚ğ‚Âhead“àƒ|ƒCƒ“ƒ^BNULL=ˆê’v–³‚µ
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ˜ãƒƒãƒ€ãƒ¼é…åˆ—ã‹ã‚‰æŒ‡å®šIDã‚’æŒã£ãŸãƒ˜ãƒƒãƒ€ãƒ¼ã‚’æ¤œç´¢
+ * @param	id		ãƒ˜ãƒƒãƒ€ãƒ¼ID
+ * @param	max		headè¦ç´ æ•°
+ * @param	head	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @retval	FIELD_OBJ_H idã‚’æŒã¤headå†…ãƒã‚¤ãƒ³ã‚¿ã€‚NULL=ä¸€è‡´ç„¡ã—
  */
 //--------------------------------------------------------------
 static const FIELD_OBJ_H * FldOBJ_H_OBJIDSearch( int id, int max, const FIELD_OBJ_H *head )
@@ -5250,9 +5250,9 @@ static const FIELD_OBJ_H * FldOBJ_H_OBJIDSearch( int id, int max, const FIELD_OB
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJƒwƒbƒ_[@ƒGƒCƒŠƒAƒXƒ`ƒFƒbƒN
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ˜ãƒƒãƒ€ãƒ¼ã€€ã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒã‚§ãƒƒã‚¯
  * @param	head	FIELD_OBJ_H
- * @retval	int		TRUE=ƒGƒCƒŠƒAƒX@FALSE=ˆá‚¤
+ * @retval	int		TRUE=ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã€€FALSE=é•ã†
  */
 //--------------------------------------------------------------
 static int FldOBJ_H_AliesCheck( const FIELD_OBJ_H *head )
@@ -5264,26 +5264,26 @@ static int FldOBJ_H_AliesCheck( const FIELD_OBJ_H *head )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJƒwƒbƒ_[@ƒGƒCƒŠƒAƒX‚Ìƒ][ƒ“IDæ“¾B
- * ƒGƒCƒŠƒAƒX‚ÍƒCƒxƒ“ƒgƒtƒ‰ƒO‚ªƒ][ƒ“ID‚É‚È‚é
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ˜ãƒƒãƒ€ãƒ¼ã€€ã‚¨ã‚¤ãƒªã‚¢ã‚¹æ™‚ã®ã‚¾ãƒ¼ãƒ³IDå–å¾—ã€‚
+ * ã‚¨ã‚¤ãƒªã‚¢ã‚¹æ™‚ã¯ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ãŒã‚¾ãƒ¼ãƒ³IDã«ãªã‚‹
  * @param	head	FIELD_OBJ_H
- * @retval	int		ƒ][ƒ“ID
+ * @retval	int		ã‚¾ãƒ¼ãƒ³ID
  */
 //--------------------------------------------------------------
 static int FldOBJ_H_AliesZoneIDGet( const FIELD_OBJ_H *head )
 {
-	GF_ASSERT( FldOBJ_H_AliesCheck(head) == TRUE && "FldOBJ_H_AliesZoneIDGet()alies‚Å‚Í‚È‚¢" );
+	GF_ASSERT( FldOBJ_H_AliesCheck(head) == TRUE && "FldOBJ_H_AliesZoneIDGet()aliesã§ã¯ãªã„" );
 	return( FieldOBJ_H_EventFlagGet(head) );
 }
 
 //==============================================================================
-//	FIELD_OBJ_MOVE_PROC QÆ
+//	FIELD_OBJ_MOVE_PROC å‚ç…§
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * “®ìƒe[ƒuƒ‹‚©‚çw’è‚ÌƒŠƒXƒgæ‚èo‚µ
+ * å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰æŒ‡å®šã®ãƒªã‚¹ãƒˆå–ã‚Šå‡ºã—
  * @param	nothing
- * @retval	FIELD_OBJ_MOVE_PROC_LIST	FIELD_OBJ_MOVE_PROC_LISTƒe[ƒuƒ‹
+ * @retval	FIELD_OBJ_MOVE_PROC_LIST	FIELD_OBJ_MOVE_PROC_LISTãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST * FldOBJ_MoveProcListGet( u32 code )
@@ -5294,9 +5294,9 @@ static const FIELD_OBJ_MOVE_PROC_LIST * FldOBJ_MoveProcListGet( u32 code )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒR[ƒhæ“¾
+ * å‹•ä½œã‚³ãƒ¼ãƒ‰å–å¾—
  * @param	list 		FIELD_OBJ_MOVE_PROC_LIST
- * @retval	u32			MV_PLAYER“™
+ * @retval	u32			MV_PLAYERç­‰
  */
 //--------------------------------------------------------------
 static u32 FldOBJ_MoveProcList_MoveCodeGet( const FIELD_OBJ_MOVE_PROC_LIST *list )
@@ -5306,9 +5306,9 @@ static u32 FldOBJ_MoveProcList_MoveCodeGet( const FIELD_OBJ_MOVE_PROC_LIST *list
 
 //--------------------------------------------------------------
 /**
- * ‰Šú‰»ŠÖ”æ“¾
+ * åˆæœŸåŒ–é–¢æ•°å–å¾—
  * @param	list FIELD_OBJ_MOVE_PROC_LIST
- * @retval	FIELD_OBJ_MOVE_PROC_INIT list‚Ì‰Šú‰»ŠÖ”
+ * @retval	FIELD_OBJ_MOVE_PROC_INIT listã®åˆæœŸåŒ–é–¢æ•°
  */
 //--------------------------------------------------------------
 static FIELD_OBJ_MOVE_PROC_INIT FldOBJ_MoveProcList_InitGet(
@@ -5319,9 +5319,9 @@ static FIELD_OBJ_MOVE_PROC_INIT FldOBJ_MoveProcList_InitGet(
 
 //--------------------------------------------------------------
 /**
- * “®ìŠÖ”æ“¾
+ * å‹•ä½œé–¢æ•°å–å¾—
  * @param	list FIELD_OBJ_MOVE_PROC_LIST
- * @retval	FIELD_OBJ_MOVE_PROC list‚Ì“®ìŠÖ”
+ * @retval	FIELD_OBJ_MOVE_PROC listã®å‹•ä½œé–¢æ•°
  */
 //--------------------------------------------------------------
 static FIELD_OBJ_MOVE_PROC FldOBJ_MoveProcList_MoveGet( const FIELD_OBJ_MOVE_PROC_LIST *list )
@@ -5331,9 +5331,9 @@ static FIELD_OBJ_MOVE_PROC FldOBJ_MoveProcList_MoveGet( const FIELD_OBJ_MOVE_PRO
 
 //--------------------------------------------------------------
 /**
- * íœŠÖ”æ“¾
+ * å‰Šé™¤é–¢æ•°å–å¾—
  * @param	list FIELD_OBJ_MOVE_PROC_LIST
- * @retval	FIELD_OBJ_MOVE_PROC_DEL list‚Ì“®ìŠÖ”
+ * @retval	FIELD_OBJ_MOVE_PROC_DEL listã®å‹•ä½œé–¢æ•°
  */
 //--------------------------------------------------------------
 static FIELD_OBJ_MOVE_PROC_DEL FldOBJ_MoveProcList_DeleteGet(
@@ -5343,11 +5343,11 @@ static FIELD_OBJ_MOVE_PROC_DEL FldOBJ_MoveProcList_DeleteGet(
 }
 
 //==============================================================================
-//	FIELD_OBJ_DRAW_PROC_LIST FIELD_OBJ_DRAW_PROC_LIST_REGQÆ
+//	FIELD_OBJ_DRAW_PROC_LIST FIELD_OBJ_DRAW_PROC_LIST_REGå‚ç…§
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰Šú‰»ŠÖ”æ“¾
+ * åˆæœŸåŒ–é–¢æ•°å–å¾—
  * @param	list	FIELD_OBJ_DRAW_PROC_LIST *
  * @retval	FIELD_OBJ_DRAW_PROC_INIT	FIELD_OBJ_DRAW_PROC_INIT *
  */
@@ -5360,7 +5360,7 @@ static FIELD_OBJ_DRAW_PROC_INIT FldOBJ_DrawProcList_InitGet(
 
 //--------------------------------------------------------------
 /**
- * •`‰æŠÖ”æ“¾
+ * æç”»é–¢æ•°å–å¾—
  * @param	list	FIELD_OBJ_DRAW_PROC_LIST *
  * @retval	FIELD_OBJ_DRAW_PROC		FIELD_OBJ_DRAW_PROC *
  */
@@ -5372,7 +5372,7 @@ static FIELD_OBJ_DRAW_PROC FldOBJ_DrawProcList_DrawGet( const FIELD_OBJ_DRAW_PRO
 
 //--------------------------------------------------------------
 /**
- * íœŠÖ”æ“¾
+ * å‰Šé™¤é–¢æ•°å–å¾—
  * @param	list	FIELD_OBJ_DRAW_PROC_LIST *
  * @retval	FIELD_OBJ_DRAW_PROC_DEL		FIELD_OBJ_DRAW_PROC_DEL *
  */
@@ -5385,7 +5385,7 @@ static FIELD_OBJ_DRAW_PROC_DEL FldOBJ_DrawProcList_DeleteGet(
 
 //--------------------------------------------------------------
 /**
- * ‘Ş”ğŠÖ”æ“¾
+ * é€€é¿é–¢æ•°å–å¾—
  * @param	list	FIELD_OBJ_DRAW_PROC_LIST *
  * @retval	FIELD_OBJ_DRAW_PROC_PUSH		FIELD_OBJ_DRAW_PROC_PUSH *
  */
@@ -5398,7 +5398,7 @@ static FIELD_OBJ_DRAW_PROC_PUSH FldOBJ_DrawProcList_PushGet(
 
 //--------------------------------------------------------------
 /**
- * •œ‹AŠÖ”æ“¾
+ * å¾©å¸°é–¢æ•°å–å¾—
  * @param	list	FIELD_OBJ_DRAW_PROC_LIST *
  * @retval	FIELD_OBJ_DRAW_PROC_PUSH		FIELD_OBJ_DRAW_PROC_PUSH *
  */
@@ -5411,9 +5411,9 @@ static FIELD_OBJ_DRAW_PROC_POP FldOBJ_DrawProcList_PopGet(
 
 //--------------------------------------------------------------
 /**
- * ƒe[ƒuƒ‹‚©‚çw’è‚ÌƒŠƒXƒgæ‚èo‚µ
- * @param	code	HERO“™
- * @retval	list	code‚É‘Î‰‚µ‚½FIELD_OBJ_DRAW_PROC_LIST *
+ * ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰æŒ‡å®šã®ãƒªã‚¹ãƒˆå–ã‚Šå‡ºã—
+ * @param	code	HEROç­‰
+ * @retval	list	codeã«å¯¾å¿œã—ãŸFIELD_OBJ_DRAW_PROC_LIST *
  */
 //--------------------------------------------------------------
 static const FIELD_OBJ_DRAW_PROC_LIST * FldOBJ_DrawProcListGet( u32 code )
@@ -5428,21 +5428,21 @@ static const FIELD_OBJ_DRAW_PROC_LIST * FldOBJ_DrawProcListGet( u32 code )
 		tbl++;
 	}while( tbl->code != OBJCODEMAX );
 	
-	GF_ASSERT( 0 && "FldOBJ_DrawProcListGet()•s³‚ÈƒR[ƒh" );
+	GF_ASSERT( 0 && "FldOBJ_DrawProcListGet()ä¸æ­£ãªã‚³ãƒ¼ãƒ‰" );
 	return( NULL );
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒc[ƒ‹
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ãƒ„ãƒ¼ãƒ«
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒOƒŠƒbƒhX,ZÀ•W‚É‚¢‚éOBJ‚ğæ“¾
+ * æŒ‡å®šã•ã‚ŒãŸã‚°ãƒªãƒƒãƒ‰X,Zåº§æ¨™ã«ã„ã‚‹OBJã‚’å–å¾—
  * @param	sys			FIELD_OBJ_SYS_PTR 
- * @param	x			ŒŸõƒOƒŠƒbƒhX
- * @param	z			ŒŸõƒOƒŠƒbƒhZ
- * @param	old_hit		TURE=‰ß‹À•W‚à”»’è‚·‚é
- * @retval	FIELD_OBJ	x,zˆÊ’u‚É‚¢‚éFIELD_OBJ_PTR BNULL=‚»‚ÌÀ•W‚ÉOBJ‚Í‚¢‚È‚¢
+ * @param	x			æ¤œç´¢ã‚°ãƒªãƒƒãƒ‰X
+ * @param	z			æ¤œç´¢ã‚°ãƒªãƒƒãƒ‰Z
+ * @param	old_hit		TURE=éå»åº§æ¨™ã‚‚åˆ¤å®šã™ã‚‹
+ * @retval	FIELD_OBJ	x,zä½ç½®ã«ã„ã‚‹FIELD_OBJ_PTR ã€‚NULL=ãã®åº§æ¨™ã«OBJã¯ã„ãªã„
  */
 //--------------------------------------------------------------
 FIELD_OBJ_PTR FieldOBJ_SearchGridPos(
@@ -5478,10 +5478,10 @@ FIELD_OBJ_PTR FieldOBJ_SearchGridPos(
 
 //--------------------------------------------------------------
 /**
- * À•WA•ûŒü‚ğ‰Šú‰»Bfx32Œ^
+ * åº§æ¨™ã€æ–¹å‘ã‚’åˆæœŸåŒ–ã€‚fx32å‹
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	vec		‰Šú‰»À•W
- * @param	dir		•ûŒü DIR_UP“™
+ * @param	vec		åˆæœŸåŒ–åº§æ¨™
+ * @param	dir		æ–¹å‘ DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5503,7 +5503,7 @@ void FieldOBJ_VecPosDirInit( FIELD_OBJ_PTR fldobj, const VecFx32 *vec, int dir )
 	
 	FieldOBJ_DirDispSetForce( fldobj, dir );
 	
-//	‚È‚ñ‚Å‚¢‚ê‚Ä‚½‚Ì‚©
+//	ãªã‚“ã§ã„ã‚Œã¦ãŸã®ã‹
 //	FldOBJ_WorkInit_MoveProcInit( fldobj );
 //	FldOBJ_WorkInit_DrawProcInit( fldobj );
 	
@@ -5514,12 +5514,12 @@ void FieldOBJ_VecPosDirInit( FIELD_OBJ_PTR fldobj, const VecFx32 *vec, int dir )
 
 //--------------------------------------------------------------
 /**
- * À•WA•ûŒü‚ğ‰Šú‰»BƒOƒŠƒbƒhÀ•WŒ^
+ * åº§æ¨™ã€æ–¹å‘ã‚’åˆæœŸåŒ–ã€‚ã‚°ãƒªãƒƒãƒ‰åº§æ¨™å‹
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	x		ƒOƒŠƒbƒhXÀ•W
- * @param	y		ƒOƒŠƒbƒhYÀ•W
- * @param	z		ƒOƒŠƒbƒhZÀ•W
- * @param	dir		•ûŒü DIR_UP“™
+ * @param	x		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	y		ã‚°ãƒªãƒƒãƒ‰Yåº§æ¨™
+ * @param	z		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	dir		æ–¹å‘ DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5541,11 +5541,11 @@ void FieldOBJ_GPosDirInit( FIELD_OBJ_PTR fldobj, int x, int y, int z, int dir )
 	
 	FieldOBJ_DirDispSetForce( fldobj, dir );
 	
-//	‚È‚ñ‚Å‚¢‚ê‚Ä‚½‚Ì‚©
+//	ãªã‚“ã§ã„ã‚Œã¦ãŸã®ã‹
 //	FldOBJ_WorkInit_MoveProcInit( fldobj );
 //	FldOBJ_WorkInit_DrawProcInit( fldobj );
 
-//	‚‚³‚Íˆø”‚Ì’l‚ğM—p‚·‚é
+//	é«˜ã•ã¯å¼•æ•°ã®å€¤ã‚’ä¿¡ç”¨ã™ã‚‹
 //	FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_MOVE_START | FLDOBJ_STA_BIT_HEIGHT_GET_NEED );
 	FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_MOVE_START );
 	FieldOBJ_StatusBit_OFF( fldobj, FLDOBJ_STA_BIT_MOVE | FLDOBJ_STA_BIT_MOVE_END );
@@ -5555,9 +5555,9 @@ void FieldOBJ_GPosDirInit( FIELD_OBJ_PTR fldobj, int x, int y, int z, int dir )
 
 //--------------------------------------------------------------
 /**
- * “®ìƒR[ƒh•ÏX
+ * å‹•ä½œã‚³ãƒ¼ãƒ‰å¤‰æ›´
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	code	MV_RND“™
+ * @param	code	MV_RNDç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5571,7 +5571,7 @@ void FieldOBJ_MoveCodeChange( FIELD_OBJ_PTR fldobj, u32 code )
 
 //--------------------------------------------------------------
 /**
- * OBJ ID‚ğ•ÏX
+ * OBJ IDã‚’å¤‰æ›´
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	id		OBJ ID
  * @retval	nothing
@@ -5586,13 +5586,13 @@ void FieldOBJ_OBJIDChange( FIELD_OBJ_PTR fldobj, int id )
 }
 
 //==============================================================================
-//	“®ìŠÖ”ƒ_ƒ~[
+//	å‹•ä½œé–¢æ•°ãƒ€ãƒŸãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * “®ì‰Šú‰»ŠÖ”ƒ_ƒ~[
+ * å‹•ä½œåˆæœŸåŒ–é–¢æ•°ãƒ€ãƒŸãƒ¼
  * @param	FIELD_OBJ	FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_MoveInitProcDummy( FIELD_OBJ_PTR fldobj )
@@ -5601,7 +5601,7 @@ void FieldOBJ_MoveInitProcDummy( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ìŠÖ”ƒ_ƒ~[
+ * å‹•ä½œé–¢æ•°ãƒ€ãƒŸãƒ¼
  * @param	FIELD_OBJ	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -5612,7 +5612,7 @@ void FieldOBJ_MoveProcDummy( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ìíœŠÖ”ƒ_ƒ~[
+ * å‹•ä½œå‰Šé™¤é–¢æ•°ãƒ€ãƒŸãƒ¼
  * @param	FIELD_OBJ	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -5623,7 +5623,7 @@ void FieldOBJ_MoveDeleteProcDummy( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “®ì•œ‹AŠÖ”ƒ_ƒ~[
+ * å‹•ä½œå¾©å¸°é–¢æ•°ãƒ€ãƒŸãƒ¼
  * @param	FIELD_OBJ_PTR	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -5633,13 +5633,13 @@ void FieldOBJ_MoveReturnProcDummy( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	•`‰æŠÖ”ƒ_ƒ~[
+//	æç”»é–¢æ•°ãƒ€ãƒŸãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * •`‰æ‰Šú‰»ŠÖ”ƒ_ƒ~[
+ * æç”»åˆæœŸåŒ–é–¢æ•°ãƒ€ãƒŸãƒ¼
  * @param	FIELD_OBJ	FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawInitProcDummy( FIELD_OBJ_PTR fldobj )
@@ -5648,7 +5648,7 @@ void FieldOBJ_DrawInitProcDummy( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æŠÖ”ƒ_ƒ~[
+ * æç”»é–¢æ•°ãƒ€ãƒŸãƒ¼
  * @param	FIELD_OBJ	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -5659,7 +5659,7 @@ void FieldOBJ_DrawProcDummy( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æíœŠÖ”ƒ_ƒ~[
+ * æç”»å‰Šé™¤é–¢æ•°ãƒ€ãƒŸãƒ¼
  * @param	FIELD_OBJ	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -5670,7 +5670,7 @@ void FieldOBJ_DrawDeleteProcDummy( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æ‘Ş”ğŠÖ”ƒ_ƒ~[
+ * æç”»é€€é¿é–¢æ•°ãƒ€ãƒŸãƒ¼
  * @param	FIELD_OBJ	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -5681,7 +5681,7 @@ void FieldOBJ_DrawPushProcDummy( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * •`‰æ•œ‹AŠÖ”ƒ_ƒ~[
+ * æç”»å¾©å¸°é–¢æ•°ãƒ€ãƒŸãƒ¼
  * @param	FIELD_OBJ	FIELD_OBJ_PTR 
  * @retval	nothing
  */

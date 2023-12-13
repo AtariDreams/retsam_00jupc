@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_098.s
- * @brief	�ł񂱂�������			98
+ * @brief	でんこうせっか			98
  * @author	goto
- * @date	2005.07.13(��)
+ * @date	2005.07.13(水)
  *
- * �����ɐF�X�ȉ�����������Ă��悢
+ * ここに色々な解説等を書いてもよい
  *
  */
 //==============================================================================
@@ -19,13 +19,13 @@
 // =============================================================================
 //
 //
-//	���ł񂱂�������			98
+//	■でんこうせっか			98
 //
 //
 // =============================================================================
-#define WE098_SHAKE_W_X	(2)		// �ӂ蕝
-#define WE098_SHAKE_NUM	(1)		// �ӂ��
-#define WE098_SHAKE_SYNC (1)	// �V���N��
+#define WE098_SHAKE_W_X	(2)		// ふり幅
+#define WE098_SHAKE_NUM	(1)		// ふる回数
+#define WE098_SHAKE_SYNC (1)	// シンク数
 WEST_DENKOUSEKKA:
 	LOAD_PARTICLE_DROP	0,W_098_SPA
 
@@ -36,7 +36,7 @@ WEST_DENKOUSEKKA:
 
 	SE_L			SEQ_SE_DP_W104
 
-	// �`��J�n
+	// 描画開始
 	POKEOAM_DROP		WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_0, WEDEF_POKE_RES_0,
 	POKEOAM_DROP		WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_1, WEDEF_POKE_RES_1,
 	PT_DROP_EX			WEDEF_DROP_M2, WEDEF_DROP_M2,

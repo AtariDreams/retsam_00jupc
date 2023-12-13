@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	footprint_comm.c
- * @brief	���Ճ{�[�h�̒ʐM����M�n
+ * @brief	足跡ボードの通信送受信系
  * @author	matsuda
- * @date	2008.01.21(��)
+ * @date	2008.01.21(月)
  */
 //==============================================================================
 #include "common.h"
@@ -16,7 +16,7 @@
 
 
 //==============================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //==============================================================================
 static void COMMCMD_PlayerIn(s32 userid, const void *cp_data, u32 size, void *p_work);
 static void COMMCMD_PlayerOut(s32 userid, const void *cp_data, u32 size, void *p_work);
@@ -27,12 +27,12 @@ static BOOL RecvDataCheck(s32 userid, FOOTPRINT_MY_COMM_STATUS *my_comm);
 
 
 //==============================================================================
-//	�ʐM�f�[�^�e�[�u��
+//	通信データテーブル
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- *	�ʐM��M�e�[�u��		��COMM_FOOTPRINT�ƕ��т𓯂��ɂ��Ă������ƁI�I
+ *	通信受信テーブル		※COMM_FOOTPRINTと並びを同じにしておくこと！！
  */
 //--------------------------------------------------------------
 static const DWC_LOBBY_MSGCOMMAND MsgCommandTbl_Footprint[] = {
@@ -40,36 +40,36 @@ static const DWC_LOBBY_MSGCOMMAND MsgCommandTbl_Footprint[] = {
 	{ COMMCMD_PlayerOut,					0 },
 	{ COMMCMD_Stamp,						sizeof(STAMP_PARAM) },
 	
-	// ��b
+	// 会話
 //	{ WFLBY_SYSTEM_COMMCMD_TALK_Req,		sizeof(WFLBY_SYSTEM_TALK_DATA) },
 //	{ WFLBY_SYSTEM_COMMCMD_TALK_Ans,		sizeof(WFLBY_SYSTEM_TALK_DATA) },
 //	{ WFLBY_SYSTEM_COMMCMD_TALK_Data,		sizeof(WFLBY_SYSTEM_TALK_DATA) },
 //	{ WFLBY_SYSTEM_COMMCMD_TALK_End,		sizeof(WFLBY_SYSTEM_TALK_DATA) },
 
-	// �g�s�b�N
+	// トピック
 //	{ WFLBY_SYSTEM_COMMCMD_TOPIC_Data,		sizeof(WFLBY_TOPIC) },
 };
 
-///���Ճ{�[�h�̒ʐM�R�}���h�ő吔
+///足跡ボードの通信コマンド最大数
 #define FOOTPRINT_COMM_MSGTBL_MAX		(NELEMS(MsgCommandTbl_Footprint))
 
-///�R�}���h���s�ԍ�
+///コマンド発行番号
 typedef enum{
-	COMM_FOOTPRINT_PLAYER_IN,	///<�������܂���
-	COMM_FOOTPRINT_PLAYER_OUT,	///<�ގ����܂���
-	COMM_FOOTPRINT_STAMP,		///<�X�^���v���s
+	COMM_FOOTPRINT_PLAYER_IN,	///<入室しました
+	COMM_FOOTPRINT_PLAYER_OUT,	///<退室しました
+	COMM_FOOTPRINT_STAMP,		///<スタンプ発行
 }COMM_FOOTPRINT;
 
 
 
 //==============================================================================
 //
-//	�V�X�e��
+//	システム
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   �ʐM�V�X�e�������ݒ�
+ * @brief   通信システム初期設定
  *
  * @param   fps		
  */
@@ -81,27 +81,27 @@ void Footprint_Comm_Init(FOOTPRINT_SYS_PTR fps)
 
 //--------------------------------------------------------------
 /**
- * @brief   ��M�����f�[�^���󂯎����Ԃ��`�F�b�N
+ * @brief   受信したデータが受け取れる状態かチェック
  *
- * @param   userid		���[�U�[ID
- * @param   my_comm		�����̒ʐM�X�e�[�^�X
+ * @param   userid		ユーザーID
+ * @param   my_comm		自分の通信ステータス
  *
- * @retval  TRUE:��MOK
- * @retval  FALSE:��M����
+ * @retval  TRUE:受信OK
+ * @retval  FALSE:受信拒否
  */
 //--------------------------------------------------------------
 static BOOL RecvDataCheck(s32 userid, FOOTPRINT_MY_COMM_STATUS *my_comm)
 {
 	if(my_comm->user_id == userid){
-		OS_TPrintf("�����̃f�[�^��M\n");
-		return FALSE;	//�����̃f�[�^�Ȃ̂Ŗ���
+		OS_TPrintf("自分のデータ受信\n");
+		return FALSE;	//自分のデータなので無視
 	}
 	if(my_comm->ready == FALSE){
-		OS_TPrintf("ready��ԂɂȂ��Ă��Ȃ��̂Ŏ󂯎�苑��\n");
+		OS_TPrintf("ready状態になっていないので受け取り拒否\n");
 		return FALSE;
 	}
 	if(DWC_LOBBY_SUBCHAN_GetUserIDIdx(userid) == DWC_LOBBY_USERIDTBL_IDX_NONE){
-		OS_TPrintf("�܂��T�[�o�[�̃V�X�e���ɔ��f����Ă��Ȃ����[�U�[�Ȃ̂ŋ���\n");
+		OS_TPrintf("まだサーバーのシステムに反映されていないユーザーなので拒否\n");
 		return FALSE;
 	}
 	
@@ -110,16 +110,16 @@ static BOOL RecvDataCheck(s32 userid, FOOTPRINT_MY_COMM_STATUS *my_comm)
 
 //==============================================================================
 //
-//	���M����
+//	送信命令
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ���M�F�������܂���
+ * @brief   送信：入室しました
  *
- * @param   in_para		�����p�����[�^
+ * @param   in_para		入室パラメータ
  *
- * @retval  TRUE:���M�����A�@FALSE:���s
+ * @retval  TRUE:送信成功、　FALSE:失敗
  */
 //--------------------------------------------------------------
 BOOL Footprint_Send_PlayerIn(const FOOTPRINT_IN_PARAM *in_para)
@@ -130,9 +130,9 @@ BOOL Footprint_Send_PlayerIn(const FOOTPRINT_IN_PARAM *in_para)
 
 //--------------------------------------------------------------
 /**
- * @brief   ���M�F�ގ����܂���
+ * @brief   送信：退室しました
  *
- * @retval  TRUE:���M�����A�@FALSE:���s
+ * @retval  TRUE:送信成功、　FALSE:失敗
  */
 //--------------------------------------------------------------
 BOOL Footprint_Send_PlayerOut(void)
@@ -143,11 +143,11 @@ BOOL Footprint_Send_PlayerOut(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ���M�F�X�^���v���s
+ * @brief   送信：スタンプ発行
  *
- * @param   stamp		�X�^���v�p�����[�^
+ * @param   stamp		スタンプパラメータ
  *
- * @retval  TRUE:���M�����A�@FALSE:���s
+ * @retval  TRUE:送信成功、　FALSE:失敗
  */
 //--------------------------------------------------------------
 BOOL Footprint_Send_Stamp(const STAMP_PARAM *stamp)
@@ -162,12 +162,12 @@ BOOL Footprint_Send_Stamp(const STAMP_PARAM *stamp)
 
 //==============================================================================
 //
-//	��M�R�[���o�b�N
+//	受信コールバック
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   �������܂�����M
+ * @brief   入室しました受信
  *
  * @param   userid		
  * @param   cp_data		
@@ -181,7 +181,7 @@ static void COMMCMD_PlayerIn(s32 userid, const void *cp_data, u32 size, void *p_
 	FOOTPRINT_MY_COMM_STATUS *my_comm = Footprint_MyCommStatusGet(fps);
 	const FOOTPRINT_IN_PARAM *in_para = cp_data;
 	
-	OS_TPrintf("������M\n");
+	OS_TPrintf("入室受信\n");
 	if(RecvDataCheck(userid, my_comm) == FALSE){
 		return;
 	}
@@ -191,7 +191,7 @@ static void COMMCMD_PlayerIn(s32 userid, const void *cp_data, u32 size, void *p_
 
 //--------------------------------------------------------------
 /**
- * @brief   �ގ����܂�����M
+ * @brief   退室しました受信
  *
  * @param   userid		
  * @param   cp_data		
@@ -204,7 +204,7 @@ static void COMMCMD_PlayerOut(s32 userid, const void *cp_data, u32 size, void *p
 	FOOTPRINT_SYS_PTR fps = p_work;
 	FOOTPRINT_MY_COMM_STATUS *my_comm = Footprint_MyCommStatusGet(fps);
 	
-	OS_TPrintf("�ގ���M\n");
+	OS_TPrintf("退室受信\n");
 	if(RecvDataCheck(userid, my_comm) == FALSE){
 		return;
 	}
@@ -214,7 +214,7 @@ static void COMMCMD_PlayerOut(s32 userid, const void *cp_data, u32 size, void *p
 
 //--------------------------------------------------------------
 /**
- * @brief   �������X�^���v��M
+ * @brief   押したスタンプ受信
  *
  * @param   userid		
  * @param   cp_data		
@@ -228,7 +228,7 @@ static void COMMCMD_Stamp(s32 userid, const void *cp_data, u32 size, void *p_wor
 	FOOTPRINT_MY_COMM_STATUS *my_comm = Footprint_MyCommStatusGet(fps);
 	const STAMP_PARAM *stamp = cp_data;
 	
-	OS_TPrintf("�X�^���v��M\n");
+	OS_TPrintf("スタンプ受信\n");
 	if(RecvDataCheck(userid, my_comm) == FALSE){
 		return;
 	}
@@ -237,10 +237,10 @@ static void COMMCMD_Stamp(s32 userid, const void *cp_data, u32 size, void *p_wor
 }
 
 #if 0
-// �ʐM�R�[���o�b�N
+// 通信コールバック
 //----------------------------------------------------------------------------
 /**
- *	@brief	��b���N�G�X�g
+ *	@brief	会話リクエスト
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_COMMCMD_TALK_Req( s32 userid, const void* cp_data, u32 size, void* p_work )
@@ -250,47 +250,47 @@ static void WFLBY_SYSTEM_COMMCMD_TALK_Req( s32 userid, const void* cp_data, u32 
 	const WFLBY_SYSTEM_TALK_DATA* cp_talkdata;
 	u32 status;
 
-	// �f�[�^�擾
+	// データ取得
 	cp_talkdata = cp_data;
 
-	// ���̐l��IDX���擾
+	// その人のIDXを取得
 	idx = DWC_LOBBY_GetUserIDIdx( userid );
 
 	
 	status = WFLBY_SYSTEM_GetProfileStatus( &p_wk->myprofile );
 	
-	// ����b�ł����Ԃ��`�F�b�N
-	// ��Ԃ��Z�������A�m��Ȃ��l�Ȃ炲�߂�Ȃ���
-	// ���̐l���牽�x���b���������Ă���ꍇ
+	// 今会話できる状態かチェック
+	// 状態が忙しいか、知らない人ならごめんなさい
+	// その人から何度も話しかけられている場合
 	if( (status != WFLBY_STATUS_LOGIN) ||
 		(idx == DWC_LOBBY_USERIDTBL_IDX_NONE) ||
 		(cp_talkdata->seq != WFLBY_TALK_SEQ_B_ANS) ||
 		(WFLBY_SYSTEM_CheckTalkCount( p_wk, idx ) == FALSE)){
 
-		// ��b�ł��Ȃ����Ƃ𑗐M
+		// 会話できないことを送信
 		OS_TPrintf( "talk don't  user=%d\n", userid );
 		WFLBY_SYSTEM_TALK_SendTalkAns( p_wk, userid, FALSE );
 		return ;
 	}
 
-	// ��b�ł���悤�Ȃ̂ŁA��������
+	// 会話できるようなので、応答する
 	WFLBY_SYSTEM_TALK_SendTalkAns( p_wk, userid, TRUE );
 
-	// ���߂Ă��`�F�b�N
+	// 初めてかチェック
 	if( WFLBY_SYSTEM_TALK_CheckMsk( &p_wk->talk, idx ) == FALSE ){
 		p_wk->talk.talk_first = TRUE;
 	}else{
 		p_wk->talk.talk_first = FALSE;
 	}
 
-	// ��Ԃ���b�ɂ���
+	// 状態を会話にする
 	WFLBY_SYSTEM_TALK_SetMsk( &p_wk->talk, idx );
 	p_wk->talk.talk_idx		= idx;
 	p_wk->talk.talk_seq		= WFLBY_TALK_SEQ_A_SEL;
 	p_wk->talk.talk_type	= WFLBY_TALK_TYPE_B;
 	p_wk->talk.talk_b_start	= FALSE;
 
-	// ��b�����҂��J�n
+	// 会話応答待ち開始
 	WFLBY_SYSTEM_TALK_StartRecvWait( &p_wk->talk );
 
 	OS_TPrintf( "talk match  user=%d\n", userid );

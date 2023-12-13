@@ -1,6 +1,6 @@
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>DWC_SetRecvBuffer</TITLE>
 		<LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
 	<BODY>
 		<H1>DWC_SetRecvBuffer</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>#include &lt;dwc.h&gt;
@@ -18,50 +18,50 @@ BOOL DWC_SetRecvBuffer ( u8 aid, void* recvBuffer, int size );</CODE></PRE>
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-		  �}�b�`���C�N������A��DS���璼�ڑ����Ă���f�[�^����M���邽�߂̎�M�o�b�t�@��ݒ肵�܂��B
+		  マッチメイク完了後、他DSから直接送られてくるデータを受信するための受信バッファを設定します。
 		</P>
 		<P>
-		  ��M�o�b�t�@�́A���b�V���^�l�b�g���[�N���̊eDS�ɑ΂��Čʂɐݒ肷��K�v������A�eDS���w�肷��ɂ�AID��p���܂��B�ڑ�����DS��AID�́A<A href="DWC_GetAIDList.html">DWC_GetAIDList</A>�֐��Ŏ擾���邱�Ƃ��ł��܂��B
+		  受信バッファは、メッシュ型ネットワーク内の各DSに対して個別に設定する必要があり、各DSを指定するにはAIDを用います。接続中のDSのAIDは、<A href="DWC_GetAIDList.html">DWC_GetAIDList</A>関数で取得することができます。
 		</P>
 		<P>
-		  ��M�o�b�t�@��ݒ肷��O�ɓ͂����f�[�^�͔j������܂��B
+		  受信バッファを設定する前に届いたデータは破棄されます。
 		</P>
 
-		<H2>����</H2>
+		<H2>引数</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>aid</CODE></STRONG></EM></TD>
-					<TD width="75%">��M�����AID</TD>
+					<TD width="75%">受信相手のAID</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>recvBuffer</CODE></STRONG></EM></TD>
-					<TD>��M�o�b�t�@�̃|�C���^</TD>
+					<TD>受信バッファのポインタ</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>size</CODE></STRONG></EM></TD>
-					<TD>��M�o�b�t�@�̃T�C�Y</TD>
+					<TD>受信バッファのサイズ</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
-					<TD width="75%">��M�o�b�t�@�̐ݒ萬��</TD>
+					<TD width="75%">受信バッファの設定成功</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
-					<TD>�f�[�^����M���Ȃ̂Őݒ�ł��Ȃ�</TD>
+					<TD>データを受信中なので設定できない</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 			<CODE>
 			  <A href="DWC_GetAIDList.html">DWC_GetAIDList</A>,
@@ -70,10 +70,10 @@ BOOL DWC_SetRecvBuffer ( u8 aid, void* recvBuffer, int size );</CODE></PRE>
 			</CODE>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2005/12/16 ��M�o�b�t�@�Ɋւ��������ǉ�<BR>
-			2005/07/22 ����<BR>
+			2005/12/16 受信バッファに関する説明を追加<BR>
+			2005/07/22 初版<BR>
 		</P>
 
 	</BODY>

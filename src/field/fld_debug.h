@@ -1,7 +1,7 @@
 //===========================================================================
 /**
  *	@file	fld_debug.h
- *	@brief	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[ƒŠƒXƒgİ’è
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆè¨­å®š
  *
  */
 //===========================================================================
@@ -13,13 +13,13 @@
 #include "field/field.h"
 
 #ifdef	PM_DEBUG
-#define DEBUG_BG1_PRINT		// ƒtƒB[ƒ‹ƒh‰æ–Ê‚ÅBG1–Ê‚ÉƒfƒoƒbƒO•¶š—ñ‚ğ•`‰æ
+#define DEBUG_BG1_PRINT		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”»é¢ã§BG1é¢ã«ãƒ‡ãƒãƒƒã‚°æ–‡å­—åˆ—ã‚’æç”»
 #endif
 
 
 //===========================================================================
 /**
- *	@brief	ƒtƒB[ƒ‹ƒhƒfƒoƒbƒOƒƒjƒ…[ƒŠƒXƒgİ’è
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆè¨­å®š
  *
  *	@param	none
  *	@retval	none
@@ -28,12 +28,12 @@
 extern void FieldDebugListSet(FIELDSYS_WORK * fsys);
 
 //------------------------------------------------------------------
-///	ƒfƒoƒbƒOƒƒjƒ…[‚©‚çRTC‘€ìŒÄ‚Ño‚µ
+///	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰RTCæ“ä½œå‘¼ã³å‡ºã—
 //------------------------------------------------------------------
 extern void EventSet_DebugRtcCotrol(FIELDSYS_WORK * fsys);
 
 //------------------------------------------------------------------
-///	ƒfƒoƒbƒOƒƒjƒ…[‚©‚çƒeƒŒƒr“à—e•\¦ŒÄ‚Ño‚µ
+///	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ãƒ†ãƒ¬ãƒ“å†…å®¹è¡¨ç¤ºå‘¼ã³å‡ºã—
 //------------------------------------------------------------------
 extern void EventSet_TVDebugInfo(FIELDSYS_WORK * fsys);
 
@@ -42,13 +42,13 @@ extern void EventSet_TVDebugInfo(FIELDSYS_WORK * fsys);
 
 #ifndef DEBUG_BG1_PRINT
 
-#define	DEBUG_INIT_TICK()		/* ‰½‚à‚µ‚È‚¢ */
-#define	DEBUG_STORE_TICK(n)		/* ‰½‚à‚µ‚È‚¢ */
-#define DEBUG_CLEAR_TICK()		/* ‰½‚à‚µ‚È‚¢ */
+#define	DEBUG_INIT_TICK()		/* ä½•ã‚‚ã—ãªã„ */
+#define	DEBUG_STORE_TICK(n)		/* ä½•ã‚‚ã—ãªã„ */
+#define DEBUG_CLEAR_TICK()		/* ä½•ã‚‚ã—ãªã„ */
 
-#define	DEBUG_VIEW_HOOK(n)		/* ‰½‚à‚µ‚È‚¢ */
+#define	DEBUG_VIEW_HOOK(n)		/* ä½•ã‚‚ã—ãªã„ */
 
-#define	DEBUG_ENTRY_STRESSPRINT_TASK(fsys)		/* ‰½‚à‚µ‚È‚¢ */
+#define	DEBUG_ENTRY_STRESSPRINT_TASK(fsys)		/* ä½•ã‚‚ã—ãªã„ */
 
 #else
 
@@ -81,7 +81,7 @@ extern void DebugIchiCheckOn(FIELDSYS_WORK* fsys);
 
 //-----------------------------------------------------------------------------
 /**
- *	2007.10.25	e’†—Ìˆæ‚ğ‘‚â‚·‚½‚ß‚É@gflib/fntsys‚©‚çˆÚ“®
+ *	2007.10.25	éŠƒä¸­é ˜åŸŸã‚’å¢—ã‚„ã™ãŸã‚ã«ã€€gflib/fntsysã‹ã‚‰ç§»å‹•
  */
 //-----------------------------------------------------------------------------
 extern u8	ASCIIcode2DSuni(u8 c_id, u8 *ascii_str, u16 *ds_str);

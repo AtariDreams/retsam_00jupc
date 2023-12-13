@@ -1,21 +1,21 @@
 //============================================================================================
 /**
  * @file	mat_shp.c
- * @bfief	ƒ}ƒbƒgEƒVƒFƒCƒvƒf[ƒ^ŠÖ˜Aƒtƒ@ƒCƒ‹
+ * @bfief	ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿é–¢é€£ãƒ•ã‚¡ã‚¤ãƒ«
  * @author	Nozomu Saitou
  *
  */
 //============================================================================================
 #include "mat_shp.h"
 
-//1mat1shape‘Î‰ƒf[ƒ^@ƒoƒCƒiƒŠƒtƒH[ƒ}ƒbƒg
+//1mat1shapeå¯¾å¿œãƒ‡ãƒ¼ã‚¿ã€€ãƒã‚¤ãƒŠãƒªãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 
 
 
 typedef struct MAT_SHP_HEADER_tag
 {
-	u16 Num;	//ƒIƒuƒWƒFƒNƒg‚ª‚à‚ÂMAT_SHP‚Ì—v‘f”
-	u16	Idx;	//MAT_SHP”z—ñ‚ÌQÆIndexNo
+	u16 Num;	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã‚‚ã¤MAT_SHPã®è¦ç´ æ•°
+	u16	Idx;	//MAT_SHPé…åˆ—ã®å‚ç…§IndexNo
 }MAT_SHP_HEADER;
 
 typedef struct MAT_SHP_DATA_tag
@@ -26,9 +26,9 @@ typedef struct MAT_SHP_DATA_tag
 
 //==============================================================================
 /**
- * ƒ}ƒbƒgEƒVƒFƒCƒvƒf[ƒ^‚Ìƒƒ‚ƒŠŠm•Û
+ * ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
  *
- * @retval  MSD_PTR		ƒ}ƒbƒgEƒVƒFƒCƒvƒf[ƒ^ƒ|ƒCƒ“ƒ^	
+ * @retval  MSD_PTR		ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿	
  */
 //==============================================================================
 MSD_PTR AllocMatShpData(void)
@@ -41,10 +41,10 @@ MSD_PTR AllocMatShpData(void)
 
 //==============================================================================
 /**
- * ƒ}ƒbƒgEƒVƒFƒCƒvƒf[ƒ^‚Ìƒ[ƒh
+ * ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
  *
- * @param   inName			ƒtƒ@ƒCƒ‹ƒpƒX
- * @param	outData			ƒ}ƒbƒgEƒVƒFƒCƒvƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param   inName			ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+ * @param	outData			ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none	
  */
@@ -66,7 +66,7 @@ void LoadMatShape(const char * inName, MSD_PTR outData)
 		ret = FS_ReadFile(&file, &mat_shp_num, 2);
 		GF_ASSERT( ret >= 0 && "ERROR:mat_shp can not read" );
 		
-		//ƒƒ‚ƒŠŠm•Û
+		//ãƒ¡ãƒ¢ãƒªç¢ºä¿
 		header_size = sizeof(MAT_SHP_HEADER)*obj_num;
 		mat_shp_size = sizeof(MAT_SHP)*mat_shp_num;
 
@@ -89,9 +89,9 @@ void LoadMatShape(const char * inName, MSD_PTR outData)
 
 //==============================================================================
 /**
- * ƒ}ƒbƒgEƒVƒFƒCƒvƒf[ƒ^‚Ì‰ğ•ú
+ * ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾
  *
- * @param	outData			ƒ}ƒbƒgEƒVƒFƒCƒvƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	outData			ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none	
  */
@@ -105,11 +105,11 @@ void FreeMatShpData(MSD_PTR outData)
 
 //==============================================================================
 /**
- * ƒ}ƒbƒgEƒVƒFƒCƒv”‚Ìæ“¾
+ * ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—æ•°ã®å–å¾—
  *
- * @param   inObjIdx		3‚cOBJƒCƒ“ƒfƒbƒNƒX
- * @param	inData			ƒ}ƒbƒgEƒVƒFƒCƒvƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	outNum			ƒ}ƒbƒgEƒVƒFƒCƒv”
+ * @param   inObjIdx		3ï¼¤OBJã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inData			ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	outNum			ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—æ•°
  *
  * @retval  none	
  */
@@ -123,12 +123,12 @@ void GetMatShpNum(const int inObjIdx,
 
 //==============================================================================
 /**
- * ƒ}ƒbƒgEƒVƒFƒCƒv”‚ÆƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+ * ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—æ•°ã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  *
- * @param   inObjIdx		3‚cOBJƒCƒ“ƒfƒbƒNƒX
- * @param	inData			ƒ}ƒbƒgEƒVƒFƒCƒvƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	outNum			ƒ}ƒbƒgEƒVƒFƒCƒv”
- * @param	outIdx			ƒCƒ“ƒfƒbƒNƒX
+ * @param   inObjIdx		3ï¼¤OBJã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inData			ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	outNum			ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—æ•°
+ * @param	outIdx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @retval  none	
  */
@@ -144,12 +144,12 @@ void GetMatShpNumAndIdx(const int inObjIdx,
 
 //==============================================================================
 /**
- * ƒCƒ“ƒfƒbƒNƒX‚ğƒL[‚É‚µ‚ÄAƒ}ƒbƒgEƒVƒFƒCƒv‚ğæ“¾
+ * ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚­ãƒ¼ã«ã—ã¦ã€ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—ã‚’å–å¾—
  *
- * @param   inIdx			ƒCƒ“ƒfƒbƒNƒX
- * @param	inData			ƒ}ƒbƒgEƒVƒFƒCƒvƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param   inIdx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inData			ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  MAT_SHP			ƒ}ƒbƒgEƒVƒFƒCƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @retval  MAT_SHP			ãƒãƒƒãƒˆãƒ»ã‚·ã‚§ã‚¤ãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 MAT_SHP const *GetMatShp(const u16 inIdx, MSD_CONST_PTR inData)

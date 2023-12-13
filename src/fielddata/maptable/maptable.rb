@@ -1,11 +1,11 @@
 ###############################################################
 #
 #
-#		ƒ][ƒ“ŠÇ—•\ƒRƒ“ƒo[ƒ^
+#		ã‚¾ãƒ¼ãƒ³ç®¡ç†è¡¨ã‚³ãƒ³ãƒãƒ¼ã‚¿
 #
 #		sousuke tamada	GAME FREAK Inc.
 #
-#		2005.10.12	‰¼Š®¬
+#		2005.10.12	ä»®å®Œæˆ
 #
 #
 ###############################################################
@@ -80,7 +80,7 @@ class ColumnID
 				@cNAME = c_count
 			when "WINDOW_TYPE"
 				@cWINDOW = c_count
-			when "”õl"
+			when "å‚™è€ƒ"
 				@cCOMMENT = c_count
 			end
 			c_count += 1
@@ -122,7 +122,7 @@ class OutputFile
 end
 ###############################################################
 #
-#		ZoneData”z—ñ¶¬
+#		ZoneDataé…åˆ—ç”Ÿæˆ
 #
 ###############################################################
 
@@ -140,19 +140,19 @@ class ZoneDataFile < OutputFile
 
 	def ox2bool str, id
 		case str
-		when "›"
+		when "â—‹"
 			"TRUE"
-		when "~"
+		when "Ã—"
 			"FALSE"
 		else
-			STDERR.puts "#{id}:#{str}:‘z’èŠO‚Ì“ü—Í‚ª‚ ‚è‚Ü‚·\n"
+			STDERR.puts "#{id}:#{str}:æƒ³å®šå¤–ã®å…¥åŠ›ãŒã‚ã‚Šã¾ã™\n"
 			"FALSE"
 		end
 	end
 
 	#------------------------------------------------
 	#
-	#	ƒ][ƒ“‚²‚Æ‚Ìƒf[ƒ^o—Í
+	#	ã‚¾ãƒ¼ãƒ³ã”ã¨ã®ãƒ‡ãƒ¼ã‚¿å‡ºåŠ›
 	#
 	#------------------------------------------------
 	def putLine cl, linecount, column
@@ -162,32 +162,32 @@ class ZoneDataFile < OutputFile
 		end
 		area = column[cl.cAREA_ID]
 		if !(area =~ /^AREA_ID_/) then
-			STDERR.puts "ƒGƒŠƒA‚Ìw’è‚ª‚¨‚©‚µ‚¢!:#{area}:\n"
+			STDERR.puts "ã‚¨ãƒªã‚¢ã®æŒ‡å®šãŒãŠã‹ã—ã„!:#{area}:\n"
 			exit 1
 		end
 		movemodel = column[cl.cMOVEMODEL]
 		matrix = "MATRIX_ID_#{column[cl.cMATRIX]}".upcase
 
-		event_id = if column[cl.cEVENT] != "›" then
+		event_id = if column[cl.cEVENT] != "â—‹" then
 				"NARC_zone_event_zone_dummy_total_bin" 
 			else
 				"NARC_zone_event_zone_#{id.downcase}_total_bin"
 			end
-		script = column[cl.cSCRIPT] == "›" ? "NARC_scr_seq_#{id.downcase}_bin" : "scr_dummy"
-		sp_script = column[cl.cSCRIPT] == "›" ? "NARC_scr_seq_sp_#{id.downcase}_bin" : "sp_scr_dummy"
-		msg = column[cl.cMSG] == "›" ? "NARC_msg_#{id.downcase}_dat" : "msg_dummy"
+		script = column[cl.cSCRIPT] == "â—‹" ? "NARC_scr_seq_#{id.downcase}_bin" : "scr_dummy"
+		sp_script = column[cl.cSCRIPT] == "â—‹" ? "NARC_scr_seq_sp_#{id.downcase}_bin" : "sp_scr_dummy"
+		msg = column[cl.cMSG] == "â—‹" ? "NARC_msg_#{id.downcase}_dat" : "msg_dummy"
 		bgm_day = column[cl.cBGM_DAY]
 		bgm_night = column[cl.cBGM_NIGHT]
 		weather = "WEATHER_SYS_#{column[cl.cWEATHER].upcase}"
 		camera = "#{column[cl.cCAMERA]}"
 		battle_bg = "#{column[cl.cBATTLEBG]}"
 		if !(battle_bg =~ /^BG_ID_/) then
-			STDERR.puts "í“¬”wŒi‚Ìw’è‚ª‚¨‚©‚µ‚¢I:#{battle_bg}:#{id.upcase}\n"
+			STDERR.puts "æˆ¦é—˜èƒŒæ™¯ã®æŒ‡å®šãŒãŠã‹ã—ã„ï¼:#{battle_bg}:#{id.upcase}\n"
 			exit 1
 		end
 		name = column[cl.cNAME].upcase
 		encount_id = case column[cl.cENCOUNT]
-			when "›"
+			when "â—‹"
 				"NARC_enc_data_#{id.downcase}enc_bin"
 			else
 				"enc_dummy"
@@ -195,7 +195,7 @@ class ZoneDataFile < OutputFile
 		window = column[cl.cWINDOW].upcase
 		maptype = column[cl.cMAPTYPE]
 		if !(maptype =~ /^MAPTYPE_/) then
-			STDERR.puts "ƒ}ƒbƒvƒ^ƒCƒv‚Ìw’è‚ª‚¨‚©‚µ‚¢!:#{maptype}:\n"
+			STDERR.puts "ãƒãƒƒãƒ—ã‚¿ã‚¤ãƒ—ã®æŒ‡å®šãŒãŠã‹ã—ã„!:#{maptype}:\n"
 		end
 		dash_flag = ox2bool column[cl.cDASH], id
 		bicycle_flag = ox2bool column[cl.cBICYCLE], id
@@ -234,7 +234,7 @@ end
 
 ###############################################################
 #
-#	ƒ][ƒ“–¼ƒe[ƒuƒ‹ƒf[ƒ^¶¬
+#	ã‚¾ãƒ¼ãƒ³åãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 #
 ###############################################################
 class ZoneNameFile < OutputFile
@@ -251,7 +251,7 @@ end
 
 ###############################################################
 #
-#	ƒ][ƒ“ID’è‹`ƒwƒbƒ_¶¬
+#	ã‚¾ãƒ¼ãƒ³IDå®šç¾©ãƒ˜ãƒƒãƒ€ç”Ÿæˆ
 #
 ###############################################################
 
@@ -272,7 +272,7 @@ class ZoneIDFile < OutputFile
 	end
 
 	#----------------------------------------
-	#	ƒ][ƒ“‚²‚Æ‚ÌID
+	#	ã‚¾ãƒ¼ãƒ³ã”ã¨ã®ID
 	#----------------------------------------
 	def putLine zone_id, linecount
 		@fp.puts "\#define ZONE_ID_#{zone_id} (#{linecount})\n"
@@ -283,7 +283,7 @@ end
 
 ###############################################################
 #
-#	ƒ][ƒ“–ˆƒCƒxƒ“ƒg’è‹`¶¬
+#	ã‚¾ãƒ¼ãƒ³æ¯ã‚¤ãƒ™ãƒ³ãƒˆå®šç¾©ç”Ÿæˆ
 #
 ###############################################################
 class ZoneEventFile < OutputFile
@@ -313,7 +313,7 @@ class ZoneEventArcFile < OutputFile
 end
 
 ###############################################################
-#	ƒ}ƒbƒvÚ‘±’è‹`ƒwƒbƒ_‚ÌƒCƒ“ƒNƒ‹[ƒh¶¬
+#	ãƒãƒƒãƒ—æ¥ç¶šå®šç¾©ãƒ˜ãƒƒãƒ€ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ç”Ÿæˆ
 ###############################################################
 class ZoneEventDoorHeader < OutputFile
 	def putHeader
@@ -351,15 +351,15 @@ end
 def diff_overwrite new_file, old_file
 	if FileTest.exist? old_file then
 		if filediff(old_file,new_file) == true then
-			#·•ª‚ª‚ ‚Á‚½ê‡‚ÍXV
+			#å·®åˆ†ãŒã‚ã£ãŸå ´åˆã¯æ›´æ–°
 			File.delete old_file
 			File.rename new_file, old_file
 		else
-			#·•ª‚ª‚È‚©‚Á‚½ê‡‚Ínew_file‚ğíœ
+			#å·®åˆ†ãŒãªã‹ã£ãŸå ´åˆã¯new_fileã‚’å‰Šé™¤
 			File.delete new_file
 		end
 	else
-		#zone_id.h‚ª‘¶İ‚µ‚È‚¢ê‡‚Ínew_file‚ğold_file‚ÉƒŠƒl[ƒ€
+		#zone_id.hãŒå­˜åœ¨ã—ãªã„å ´åˆã¯new_fileã‚’old_fileã«ãƒªãƒãƒ¼ãƒ 
 		File.rename new_file, old_file
 	end
 end
@@ -396,7 +396,7 @@ end
 
 ###############################################################
 #
-#		‚±‚±‚©‚çƒƒCƒ“
+#		ã“ã“ã‹ã‚‰ãƒ¡ã‚¤ãƒ³
 #
 ###############################################################
 def convert
@@ -422,7 +422,7 @@ def convert
 		column = line.split
 		id = column[cl.cZONE_ID].upcase
 		if id == "END"
-			#I’[’è‹`
+			#çµ‚ç«¯å®šç¾©
 			idfile.putLine "MAX", linecount
 			break
 		end
@@ -430,12 +430,12 @@ def convert
 		namefile.putLine id
 		namebinfile.put id
 		idfile.putLine id, linecount
-		if column[cl.cEVENT] == "›" then
+		if column[cl.cEVENT] == "â—‹" then
 			eventfile.putLine id
 			evarcfile.putLine id
 			doorheader.putLine id
 		end
-		if column[cl.cMSG] == "›" then
+		if column[cl.cMSG] == "â—‹" then
 			msgheader.putLine id
 		end
 		linecount += 1
@@ -455,7 +455,7 @@ def convert
 	diff_overwrite "temp_doorevent.h", "doorevent.h"
 	diff_overwrite "temp_msgheader.h", "msg_header.h"
 
-	STDERR.puts "zonetable.xls‚ğƒRƒ“ƒo[ƒg‚µ‚Ü‚µ‚½\n"
+	STDERR.puts "zonetable.xlsã‚’ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ã¾ã—ãŸ\n"
 end
 
 convert

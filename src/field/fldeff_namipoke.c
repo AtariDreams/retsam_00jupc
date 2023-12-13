@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_namipoke.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@©‹@”gæ‚èƒ|ƒPƒ‚ƒ“
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€è‡ªæ©Ÿæ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³
  * @author	kagaya
  * @data	05.07.13
  *
@@ -17,16 +17,16 @@
 //==============================================================================
 //	define
 //==============================================================================
-//#define DEBUG_NAMIPOKE_WRITE_OFF	//’è‹`‚Å”gæ‚èƒ|ƒPƒ‚ƒ“•`‰æOFF
+//#define DEBUG_NAMIPOKE_WRITE_OFF	//å®šç¾©ã§æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³æç”»OFF
 
 //#define NAMIPOKE_DRAW_Z_OFFSET (FX32_ONE*(3))
-//#define NAMIPOKE_DRAW_Z_OFFSET (FX32_ONE*(5))			///<”gæ‚èƒ|ƒPƒ‚ƒ“•`‰æƒIƒtƒZƒbƒgZ²
+//#define NAMIPOKE_DRAW_Z_OFFSET (FX32_ONE*(5))			///<æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³æç”»ã‚ªãƒ•ã‚»ãƒƒãƒˆZè»¸
 //#define NAMIPOKE_DRAW_Z_OFFSET (FX32_ONE*(3))				
 
-#define NAMIPOKE_RIDE_Y_OFFSET (FX32_ONE*7)				///<”gƒ|ƒPæ‚è‚Ö‚Ì•\¦ƒIƒtƒZƒbƒgY
-#define NAMIPOKE_RIDE_Z_OFFSET (FX32_ONE*4)				///<”gƒ|ƒPæ‚è‚Ö‚Ì•\¦ƒIƒtƒZƒbƒgZ
+#define NAMIPOKE_RIDE_Y_OFFSET (FX32_ONE*7)				///<æ³¢ãƒã‚±ä¹—ã‚Šã¸ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆY
+#define NAMIPOKE_RIDE_Z_OFFSET (FX32_ONE*4)				///<æ³¢ãƒã‚±ä¹—ã‚Šã¸ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆZ
 
-#define NAMIPOKE_SHAKE_VALUE (0x0400)					///<‰Šú—h‚ê•
+#define NAMIPOKE_SHAKE_VALUE (0x0400)					///<åˆæœŸæºã‚Œå¹…
 #define NAMIPOKE_SHAKE_MAX (FX32_ONE*4)
 
 #define NAMIPOKE_ON_FRAME (30)
@@ -36,12 +36,12 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_NAMIPOKEŒ^
+///	FE_NAMIPOKEå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_NAMIPOKE * FE_NAMIPOKE_PTR;
 
 //--------------------------------------------------------------
-///	FE_NAMIPOKE\‘¢‘Ì
+///	FE_NAMIPOKEæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_NAMIPOKE
 {
@@ -50,47 +50,47 @@ typedef struct _TAG_FE_NAMIPOKE
 	FRO_OBJ robj;
 }FE_NAMIPOKE;
 
-#define FE_NAMIPOKE_SIZE (sizeof(FE_NAMIPOKE)) ///<FE_NAMIPOKEƒTƒCƒY
+#define FE_NAMIPOKE_SIZE (sizeof(FE_NAMIPOKE)) ///<FE_NAMIPOKEã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	NAMIPOKE_ADD_H\‘¢‘Ì
+///	NAMIPOKE_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int init_dir;					///<•\¦•ûŒü
+	int init_dir;					///<è¡¨ç¤ºæ–¹å‘
 	FE_SYS *fes;					///<FE_SYS_PTR
 	FE_NAMIPOKE_PTR namipoke;		///<FE_NAMIPOKE_PTR
 	FIELD_OBJ_PTR fldobj;			///<FIELD_OBJ_PTR
 }NAMIPOKE_ADD_H;
 
-#define NAMIPOKE_ADD_H_SIZE (sizeof(NAMIPOKE_ADD_H)) ///<NAMIPOKE_ADD_HƒTƒCƒY
+#define NAMIPOKE_ADD_H_SIZE (sizeof(NAMIPOKE_ADD_H)) ///<NAMIPOKE_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	NAMIPOKE_WORK\‘¢‘Ì
+///	NAMIPOKE_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int vanish_sw;								///<”ñ•\¦SW
-	int dir;									///<•ûŒü
-	int draw_dir;								///<•`‰æ•ûŒü
+	int vanish_sw;								///<éè¡¨ç¤ºSW
+	int dir;									///<æ–¹å‘
+	int draw_dir;								///<æç”»æ–¹å‘
 	int obj_id;									///<OBJ ID
 	int zone_id;								///<ZONE ID
-	int frame;									///<•\¦ƒtƒŒ[ƒ€
-	int joint;									///<Ú‘±ƒtƒ‰ƒO
-	fx32 shake_offs;							///<—h‚ê
-	fx32 shake_value;							///<—h‚ê—Ê
+	int frame;									///<è¡¨ç¤ºãƒ•ãƒ¬ãƒ¼ãƒ 
+	int joint;									///<æ¥ç¶šãƒ•ãƒ©ã‚°
+	fx32 shake_offs;							///<æºã‚Œ
+	fx32 shake_value;							///<æºã‚Œé‡
 #ifdef DEBUG_NAMIPOKE_ROT
 	int rot_x;
 	int rot_y;
 	int rot_z;
 #endif
-	NAMIPOKE_ADD_H head;						///<’Ç‰Á‚ÌNAMIPOKE_ADD_H
+	NAMIPOKE_ADD_H head;						///<è¿½åŠ æ™‚ã®NAMIPOKE_ADD_H
 }NAMIPOKE_WORK;
 
-#define NAMIPOKE_WORK_SIZE (sizeof(NAMIPOKE_WORK))	///<NAMIPOKE_WORKƒTƒCƒY
+#define NAMIPOKE_WORK_SIZE (sizeof(NAMIPOKE_WORK))	///<NAMIPOKE_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void NamiPoke_GraphicInit( FE_NAMIPOKE_PTR namipoke );
 static void NamiPoke_GraphicDelete( FE_NAMIPOKE_PTR namipoke );
@@ -98,11 +98,11 @@ static void NamiPoke_GraphicDelete( FE_NAMIPOKE_PTR namipoke );
 static const EOA_H_NPP DATA_EoaH_NamiPoke;
 
 //==============================================================================
-//	”gæ‚èƒ|ƒPƒ‚ƒ“@ƒVƒXƒeƒ€
+//	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“‰Šú‰»
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_NAMIPOKE_PTR	FE_NAMIPOKE_PTR
  */
@@ -120,7 +120,7 @@ void * FE_NamiPoke_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“íœ
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³å‰Šé™¤
  * @param	namipoke		FE_NAMIPOKE_PTR
  * @retval	nothing
  */
@@ -133,11 +133,11 @@ void FE_NamiPoke_Delete( void *work )
 }
 
 //==============================================================================
-//	”gæ‚èƒ|ƒPƒ‚ƒ“@ƒOƒ‰ƒtƒBƒbƒN
+//	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“ ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	namipoke	FE_NAMIPOKE_PTR
  * @retval	nothing
  */
@@ -151,7 +151,7 @@ static void NamiPoke_GraphicInit( FE_NAMIPOKE_PTR namipoke )
 
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“ ƒOƒ‰ƒtƒBƒbƒNíœ
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	namipoke	FE_NAMIPOKE_PTR
  * @retval	nothing
  */
@@ -162,17 +162,17 @@ static void NamiPoke_GraphicDelete( FE_NAMIPOKE_PTR namipoke )
 }
 
 //==============================================================================
-//	”gæ‚èƒ|ƒPƒ‚ƒ“@EOA
+//	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ”gæ‚èƒ|ƒPƒ‚ƒ“’Ç‰Á
- * @param	fldobj	‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR
- * @param	gx		•\¦‚·‚éƒOƒŠƒbƒhXÀ•W
- * @param	gz		•\¦‚·‚éƒOƒŠƒbƒhZÀ•W
- * @param	dir		•\¦‚·‚é•ûŒü
- * @param	joint	TRUE=fldobjÀ•W‚ÉÚ‘±@FALSE=Ú‘±‚µ‚È‚¢
- * @retval	EOA_PTR	”gæ‚èƒ|ƒPƒ‚ƒ“EOA_PTR
+ * æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³è¿½åŠ 
+ * @param	fldobj	å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR
+ * @param	gx		è¡¨ç¤ºã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	gz		è¡¨ç¤ºã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	dir		è¡¨ç¤ºã™ã‚‹æ–¹å‘
+ * @param	joint	TRUE=fldobjåº§æ¨™ã«æ¥ç¶šã€€FALSE=æ¥ç¶šã—ãªã„
+ * @retval	EOA_PTR	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³EOA_PTR
  */
 //--------------------------------------------------------------
 EOA_PTR FE_FldOBJNamiPokeSet(
@@ -205,10 +205,10 @@ EOA_PTR FE_FldOBJNamiPokeSet(
 
 //--------------------------------------------------------------
 /**
- * EOA ”gæ‚èƒ|ƒPƒ‚ƒ“@‰Šú‰»
+ * EOA æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaNamiPoke_Init( EOA_PTR eoa, void *wk )
@@ -230,7 +230,7 @@ static int EoaNamiPoke_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ”gæ‚èƒ|ƒPƒ‚ƒ“@íœ
+ * EOA æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -246,7 +246,7 @@ static void EoaNamiPoke_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ”gæ‚èƒ|ƒPƒ‚ƒ“@“®ì
+ * EOA æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -258,19 +258,19 @@ static void EoaNamiPoke_Move( EOA_PTR eoa, void *wk )
 	FIELD_OBJ_PTR fldobj = work->head.fldobj;
 	
 	if( FieldOBJ_CheckSameID(fldobj,work->obj_id,work->zone_id) == FALSE ){
-		FE_EoaDelete( eoa );									//“¯ˆê‚Å‚Í‚È‚¢
+		FE_EoaDelete( eoa );									//åŒä¸€ã§ã¯ãªã„
 		return;
 	}
 	
 	work->vanish_sw = FALSE;
 	work->dir = FieldOBJ_DirDispGet( fldobj );
 	
-	if( work->dir == DIR_NOT ){								//•ûŒü‚ªæ‚ê‚È‚¢
+	if( work->dir == DIR_NOT ){								//æ–¹å‘ãŒå–ã‚Œãªã„
 		work->vanish_sw = TRUE;
 		return;
 	}
 	
-	if( work->joint == FALSE ){								//Ú‘±‚µ‚È‚¢
+	if( work->joint == FALSE ){								//æ¥ç¶šã—ãªã„
 		return;
 	}
 	
@@ -306,7 +306,7 @@ static void EoaNamiPoke_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ”gæ‚èƒ|ƒPƒ‚ƒ“@•`‰æ
+ * EOA æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -364,12 +364,12 @@ static void EoaNamiPoke_Draw( EOA_PTR eoa, void *wk )
 		{
 			if( work->dir != work->draw_dir ){
 				work->draw_dir = work->dir;
-				OS_Printf( "‚È‚İ‚Û‚¯@•\¦•ûŒü‚ªXV‚³‚ê‚Ü‚µ‚½ %d\n", work->dir );
+				OS_Printf( "ãªã¿ã½ã‘ã€€è¡¨ç¤ºæ–¹å‘ãŒæ›´æ–°ã•ã‚Œã¾ã—ãŸ %d\n", work->dir );
 			}
 		}
 		
 		{
-			OS_Printf("‚È‚İ‚Û‚¯‰ñ“]Šp“x X=%d,Y=%d,Z=%d\n",work->rot_x,work->rot_y,work->rot_z);
+			OS_Printf("ãªã¿ã½ã‘å›è»¢è§’åº¦ X=%d,Y=%d,Z=%d\n",work->rot_x,work->rot_y,work->rot_z);
 			Rot360_to_MtxFx33( &rot, work->rot_x, work->rot_y, work->rot_z );
 		}
 		
@@ -384,13 +384,13 @@ static void EoaNamiPoke_Draw( EOA_PTR eoa, void *wk )
 #endif
 
 //==============================================================================
-//	”gæ‚èƒ|ƒPƒ‚ƒ“ƒAƒNƒ^[ƒp[ƒc
+//	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * Ú‘±ƒtƒ‰ƒOON OFF
- * @param	eoa		”gæ‚èƒ|ƒPƒ‚ƒ“EOA_PTR
- * @param	flag	TRUE=Ú‘± FALSE=–¢Ú‘±
+ * æ¥ç¶šãƒ•ãƒ©ã‚°ON OFF
+ * @param	eoa		æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³EOA_PTR
+ * @param	flag	TRUE=æ¥ç¶š FALSE=æœªæ¥ç¶š
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -407,7 +407,7 @@ void FE_FldOBJNamiPokeJointFlagSet( EOA_PTR eoa, int flag )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	”gæ‚èƒ|ƒPƒ‚ƒ“EOA_H
+///	æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_NamiPoke =
 {

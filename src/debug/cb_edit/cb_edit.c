@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	cb_sys.c
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
- * @date	2006.04.03(Œ)
+ * @date	2006.04.03(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -88,7 +88,7 @@ static void CBE_pv_VramBankSet(GF_BGL_INI *bgl);
 
 FS_EXTERN_OVERLAY(custom_ball);
 
-const PROC_DATA CBE_ProcData = {			///< ƒvƒƒZƒX’è‹`ƒf[ƒ^
+const PROC_DATA CBE_ProcData = {			///< ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 
 	CBE_ProcInit,
 	CBE_ProcMain,
@@ -104,23 +104,23 @@ static void CBE_pv_VramBankSet(GF_BGL_INI *bgl)
 //	WIPE_ResetBrightness(WIPE_DISP_SUB);
 	
 	
-	//VRAMİ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -135,7 +135,7 @@ static void CBE_pv_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_M
@@ -168,7 +168,7 @@ static void CBE_pv_VramBankSet(GF_BGL_INI *bgl)
 		GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG0, VISIBLE_ON);
 	}
 	
-	///< ƒTƒu‰æ–ÊƒtƒŒ[ƒ€İ’è
+	///< ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			{	/// font
@@ -204,7 +204,7 @@ static void CBE_pv_VramBankSet(GF_BGL_INI *bgl)
 	}
 }
 
-///< Œ»İ‚Ì•ÒWƒf[ƒ^‚ğEditData‚É–ß‚·
+///< ç¾åœ¨ã®ç·¨é›†ãƒ‡ãƒ¼ã‚¿ã‚’EditDataã«æˆ»ã™
 static void CBE_pv_EditSealSave( CBE_WORK* wk )
 {
 	int i;	
@@ -374,12 +374,12 @@ static void CBE_pv_PageData_Create(CB_MAIN_WORK* cbmw, int page_no)
 	add_start  = page_no;
 	add_start *= CB_DEF_PAGE_ITEMS;
 	
-	for (i = 0; i < CB_DEF_PAGE_ITEMS; i++){						///< ƒy[ƒWƒf[ƒ^‰Šú‰»
+	for (i = 0; i < CB_DEF_PAGE_ITEMS; i++){						///< ãƒšãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 		cbmw->page.item[ i ] = 0;
 	}
 	
-	///< ƒZ[ƒuƒf[ƒ^‚É‚ ‚éA‚à‚µ‚­‚ÍƒoƒbƒNƒAƒbƒvƒf[ƒ^‚ªŠ—L‚µ‚Ä‚¢‚éê‡
-	///< ”z•z—pƒV[ƒ‹3–‡‚Íæ“¾‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é( -4 )
+	///< ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«ã‚ã‚‹ã€ã‚‚ã—ãã¯ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ãŒæ‰€æœ‰ã—ã¦ã„ã‚‹å ´åˆ
+	///< é…å¸ƒç”¨ã‚·ãƒ¼ãƒ«3æšã¯å–å¾—ã§ããªã„ã‚ˆã†ã«ã™ã‚‹( -4 )
 	for (i = 0; i < CB_DEF_ITEM_DATA_NUM - 4; i++){
 		
 		num  = 99;
@@ -387,9 +387,9 @@ static void CBE_pv_PageData_Create(CB_MAIN_WORK* cbmw, int page_no)
 		if ( num != 0 ){
 			add++;
 			
-			if (add <= add_start){ continue; }						///< ƒy[ƒWŠJnˆÊ’u‚ğ‰z‚¦–³‚¯‚ê‚Î“o˜^‚Å‚«‚È‚¢
+			if (add <= add_start){ continue; }						///< ãƒšãƒ¼ã‚¸é–‹å§‹ä½ç½®ã‚’è¶Šãˆç„¡ã‘ã‚Œã°ç™»éŒ²ã§ããªã„
 			
-			cbmw->page.item[ no ] = (i + 1);						///< 1ƒIƒŠƒWƒ“‚È‚Ì‚Å + 1	
+			cbmw->page.item[ no ] = (i + 1);						///< 1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§ + 1	
 			no++;
 			
 			if (no >= CB_DEF_PAGE_ITEMS){ break; }
@@ -410,8 +410,8 @@ static const RECT_HIT_TBL hit_tbl_edit[] = {
 	{ 88, 88 + 16,   8,   8 + 16	},
 	{ 88, 88 + 16,  64,  64 + 16	},
 	
-	{104+16,104+16+ 24,  8,   8 + 40	},	///< ª
-	{104+16,104+16+ 24, 56,  56 + 40	},	///< «
+	{104+16,104+16+ 24,  8,   8 + 40	},	///< â†‘
+	{104+16,104+16+ 24, 56,  56 + 40	},	///< â†“
 	
 	{168-16, 188-16,  64-32,   64-32+24	},			///< PANEL
 	{168-16, 188-16, 104-32,  104-32+24	},			///< SHOW
@@ -435,7 +435,7 @@ static const RECT_HIT_TBL hit_tbl_panel[] = {
 	
 	{104,128, 183, 207 },	/// 0
 	{104,128, 207, 231 },	/// C
-	{104,128, 231, 255 },	/// v
+	{104,128, 231, 255 },	/// ã€
 	
 };
 
@@ -452,7 +452,7 @@ static void CBE_pv_EditCallBack( u32 button, u32 event, void* work )
 	
 	wk = (CBE_WORK*)work;
 	
-	///< ‰Ÿ‚³‚ê‚½‚Æ‚«‚Ì”½‰
+	///< æŠ¼ã•ã‚ŒãŸã¨ãã®åå¿œ
 	if ( event == BMN_EVENT_TOUCH ){
 			
 		switch ( button ){
@@ -634,7 +634,7 @@ static void CBE_pv_PanelSys( CBE_WORK* wk, int button )
 	
 	CBE_pv_PanelOAM_Change( wk, wk->edit_no );
 	
-//	OS_Printf( "Œ… = %d num = %3d old = %3d\n", wk->edit_keta, wk->edit_no, wk->edit_old_no );
+//	OS_Printf( "æ¡ = %d num = %3d old = %3d\n", wk->edit_keta, wk->edit_no, wk->edit_old_no );
 }
 
 static void CBE_pv_PanelCallBack( u32 button, u32 event, void* work )
@@ -643,7 +643,7 @@ static void CBE_pv_PanelCallBack( u32 button, u32 event, void* work )
 	
 	wk = (CBE_WORK*)work;
 	
-	///< ‰Ÿ‚³‚ê‚½‚Æ‚«‚Ì”½‰
+	///< æŠ¼ã•ã‚ŒãŸã¨ãã®åå¿œ
 	if ( event == BMN_EVENT_TOUCH ){
 		
 		switch ( button ){
@@ -682,7 +682,7 @@ static void CBE_pv_YesNoCallBack( u32 button, u32 event, void* work )
 	
 	wk = (CBE_WORK*)work;
 	
-	///< ‰Ÿ‚³‚ê‚½‚Æ‚«‚Ì”½‰
+	///< æŠ¼ã•ã‚ŒãŸã¨ãã®åå¿œ
 	if ( event == BMN_EVENT_TOUCH ){
 		
 		switch ( button ){
@@ -756,11 +756,11 @@ static void CBE_pv_DispInit( CB_MAIN_WORK* cbmw )
 {
 	ARCHANDLE* p_handle;
 	ARCHANDLE* p_handle2;
-	// ƒJƒXƒ^ƒ€ƒ{[ƒ‹ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	p_handle  = ArchiveDataHandleOpen( ARC_CUSTOM_BALL_GRA, HEAPID_CUSTOM_BALL );
 	p_handle2 = ArchiveDataHandleOpen( ARC_TEST_FILE, HEAPID_CUSTOM_BALL );
 	
-	///< OBJ+BG“Ç‚İ‚İ
+	///< OBJ+BGèª­ã¿è¾¼ã¿
 
 	CB_Select_TopResLoad(cbmw, p_handle);
 //	CB_Select_BottomResLoad(cbmw, p_handle);
@@ -815,7 +815,7 @@ static void CBE_pv_DispInit( CB_MAIN_WORK* cbmw )
 //	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );	///< BG
 	CB_Sys_MainTPSet(cbmw, FALSE);
 
-	// ƒJƒXƒ^ƒ€ƒ{[ƒ‹ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒNƒ[ƒY
+	// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
 	ArchiveDataHandleClose( p_handle );
 	ArchiveDataHandleClose( p_handle2 );
 }
@@ -874,7 +874,7 @@ static void CBE_pv_PanelControl( CBE_WORK* wk )
 
 // -----------------------------------------------------------------------------
 //
-//	 ¡ ¡@ƒvƒƒbƒNŠÖ˜A@ ¡ ¡
+//	â–¡â– â–¡â– ã€€ãƒ—ãƒ­ãƒƒã‚¯é–¢é€£ã€€â–¡â– â–¡â– 
 //
 // -----------------------------------------------------------------------------
 static PROC_RESULT	CBE_ProcInit(PROC* proc, int* seq)
@@ -883,7 +883,7 @@ static PROC_RESULT	CBE_ProcInit(PROC* proc, int* seq)
 	CB_MAIN_WORK*	cbmw;
 	CB_PROC_WORK*	cbpw;
 	
-	///< Ø‚è‘Ö‚¦‚É‰Šú‰»‚µ‚Ä‚¢‚½‚à‚Ì
+	///< åˆ‡ã‚Šæ›¿ãˆæ™‚ã«åˆæœŸåŒ–ã—ã¦ã„ãŸã‚‚ã®
 	{	
 		sys_CreateHeap( HEAPID_BASE_APP, HEAPID_CUSTOM_BALL, CB_DEF_HEAP_SIZE );
 		
@@ -919,7 +919,7 @@ static PROC_RESULT	CBE_ProcInit(PROC* proc, int* seq)
 	}
 	
 	
-	///< ProcInit‚Å‰Šú‰»‚µ‚Ä‚¢‚½‚à‚Ì
+	///< ProcInitã§åˆæœŸåŒ–ã—ã¦ã„ãŸã‚‚ã®
 	{
 		CB_Tool_SystemInit( HEAPID_CUSTOM_BALL );
 		CB_Tool_DefaultBlendSet();
@@ -946,7 +946,7 @@ static PROC_RESULT	CBE_ProcInit(PROC* proc, int* seq)
 		cbmw->select[ 0 ] = CBProc_SelectPosGet( cbmw->cb_pw );
 		cbmw->select[ 1 ] = CBProc_SelectPosGet( cbmw->cb_pw );
 		
-		///< ƒGƒfƒBƒbƒgƒf[ƒ^
+		///< ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 		{
 			int i, j;
 			for ( i = 0; i < EDIT_CORE_MAX; i++ ){
@@ -960,7 +960,7 @@ static PROC_RESULT	CBE_ProcInit(PROC* proc, int* seq)
 			}
 		}
 		
-		///< ƒVƒXƒeƒ€Œn‚Ì‰Šú‰»
+		///< ã‚·ã‚¹ãƒ†ãƒ ç³»ã®åˆæœŸåŒ–
 		{			
 			cbmw->sys.bgl = GF_BGL_BglIniAlloc( HEAPID_CUSTOM_BALL );
 			initVramTransferManagerHeap( CB_DEF_VRAM_TRANSFER_TASK_NUM, HEAPID_CUSTOM_BALL );
@@ -979,7 +979,7 @@ static PROC_RESULT	CBE_ProcInit(PROC* proc, int* seq)
 			cbmw->sys.ssm_p = SoftSpriteInit( HEAPID_CUSTOM_BALL );
 			cbmw->sys.pas = PokeAnm_AllocMemory( HEAPID_CUSTOM_BALL, 1, 0 );
 			
-			///< ƒEƒBƒ“ƒhƒE
+			///< ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 			{
 				int win_type;
 				
@@ -1001,7 +1001,7 @@ static PROC_RESULT	CBE_ProcInit(PROC* proc, int* seq)
 				}				
 			}
 						
-			///< ƒ{ƒ^ƒ“ƒVƒXƒeƒ€
+			///< ãƒœã‚¿ãƒ³ã‚·ã‚¹ãƒ†ãƒ 
 			// CB_Tool_ButtonInit(cbmw);
 
 			sys_VBlankFuncChange(CB_Tool_VBlank, cbmw);
@@ -1009,26 +1009,26 @@ static PROC_RESULT	CBE_ProcInit(PROC* proc, int* seq)
 			///< --- font oam
 			FontOam_SysInit(cbmw);
 			
-			///< ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒJƒXƒ^ƒ€ƒ{[ƒ‹)(BGMˆøŒp‚¬)
+			///< ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«)(BGMå¼•ç¶™ã)
 			Snd_DataSetByScene( SND_SCENE_SUB_CUSTOM, 0, 0 );
 
-			OS_Printf("  custom ball init\n");
+			OS_Printf("â–¡ custom ball init\n");
 		}
 	}
 	
-	///< ƒ{ƒ^ƒ“‚Ìİ’è
+	///< ãƒœã‚¿ãƒ³ã®è¨­å®š
 	{
 		CBE_pv_ButtonHitPanel( wk );
 	}
 	
-	///< Itemƒf[ƒ^‚Ìæ“¾
+	///< Itemãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 	{
 		wk->mw->cb_item_data = CB_SaveData_ItemDataGet(wk->mw->cb_pw->save_data);
 		
 		
 	}
 	
-	///< OAM‰Šú‰»
+	///< OAMåˆæœŸåŒ–
 	{
 		CBE_pv_PageData_Create( cbmw, cbmw->page.no );
 		CBE_pv_SealLoad( wk );		
@@ -1121,7 +1121,7 @@ static PROC_RESULT	CBE_ProcMain(PROC* proc, int* seq)
 	
 	case 0:
 		{
-			///< ‰æ–Ê‰Šú‰»
+			///< ç”»é¢åˆæœŸåŒ–
 			CBE_pv_DispInit( cbmw );
 			*seq = 1;
 		}		
@@ -1129,7 +1129,7 @@ static PROC_RESULT	CBE_ProcMain(PROC* proc, int* seq)
 		
 	case 1:
 		{
-			///< ƒƒCƒ“ˆ—
+			///< ãƒ¡ã‚¤ãƒ³å‡¦ç†
 			
 			switch ( wk->seq ){
 			case 0:
@@ -1382,7 +1382,7 @@ static PROC_RESULT	CBE_ProcEnd(PROC* proc, int* seq)
 		
 	PROC_FreeWork(proc);	///< cbmw free
 	
-	///< ƒ^ƒbƒ`ƒpƒlƒ‹
+	///< ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«
 	{
 		u32 active;
 		active = StopTP();
@@ -1395,7 +1395,7 @@ static PROC_RESULT	CBE_ProcEnd(PROC* proc, int* seq)
 		
 	Overlay_UnloadID(FS_OVERLAY_ID(bc_common));
 	
-	OS_Printf("  custom ball end\n");	
+	OS_Printf("â–¡ custom ball end\n");	
 	
 #endif
 	return PROC_RES_FINISH;

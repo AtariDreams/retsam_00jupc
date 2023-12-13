@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_sound.c
- * @bfief	�X�N���v�g�R�}���h�F�T�E���h�֘A
+ * @bfief	スクリプトコマンド：サウンド関連
  * @author	Satoshi Nohara
  * @date	06.06.26
  */
@@ -25,7 +25,7 @@
 
 //============================================================================================
 //
-//	�v�����g�^�C�v�錾
+//	プロロトタイプ宣言
 //
 //============================================================================================
 static BOOL EvWaitBgmFade( VM_MACHINE * core );
@@ -64,15 +64,15 @@ BOOL EvCmdSndNowBgmNoGet( VM_MACHINE * core );
 
 //============================================================================================
 //
-//	�R�}���h
+//	コマンド
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGM�I���҂�
+ * BGM終了待ち
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -88,9 +88,9 @@ BOOL EvCmdBgmPlayCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGM�ύX
+ * BGM変更
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -104,16 +104,16 @@ BOOL EvCmdBgmPlay( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGM��~
+ * BGM停止
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdBgmStop( VM_MACHINE * core )
 {
-	u16 music = VMGetU16(core);	//"���g�p"
+	u16 music = VMGetU16(core);	//"未使用"
 	//Snd_BgmStop( music, 0 );
 	Snd_BgmStop( Snd_NowBgmNoGet(), 0 );
 	return 0;
@@ -121,9 +121,9 @@ BOOL EvCmdBgmStop( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���݂̃}�b�v��BGM���Đ�
+ * 現在のマップのBGMを再生
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -139,10 +139,10 @@ BOOL EvCmdBgmNowMapPlay( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �}�b�v�������BGM�w�肪�Z�b�g�����
- * ���]��BGM�̐���ȂǂɎg�p
+ * マップ内限定のBGM指定がセットされる
+ * 自転車BGMの制御などに使用
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -155,11 +155,11 @@ BOOL EvCmdBgmSpecialSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGM�t�F�[�h�A�E�g�҂�
+ * BGMフェードアウト待ち
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
- * @return	���1
+ * @return	常に1
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdBgmFadeOut( VM_MACHINE * core )
@@ -171,7 +171,7 @@ BOOL EvCmdBgmFadeOut( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = �I��
+//return 1 = 終了
 static BOOL EvWaitBgmFade( VM_MACHINE * core )
 {
 	if( Snd_FadeCheck() == 0 ){
@@ -182,9 +182,9 @@ static BOOL EvWaitBgmFade( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGM�t�F�[�h�C���҂�(�t�F�[�h�A�E�g�������̂��ĊJ����)
+ * BGMフェードイン待ち(フェードアウトしたものが再開する)
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -199,9 +199,9 @@ BOOL EvCmdBgmFadeIn( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �V�[�P���X���ꎞ��~�܂��͍ĊJ
+ * シーケンスを一時停止または再開
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -217,9 +217,9 @@ BOOL EvCmdBgmPlayerPause( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���oBGM�Đ�(���C�o���A�T�|�[�g�A��Ă�)
+ * 演出BGM再生(ライバル、サポート、つれてけ)
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -232,9 +232,9 @@ BOOL EvCmdPlayerFieldDemoBgmPlay( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �t�B�[���hBGM���Œ�ɂ���t���O�Z�b�g(�Z�[�u���Ȃ�)
+ * フィールドBGMを固定にするフラグセット(セーブしない)
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -247,9 +247,9 @@ BOOL EvCmdCtrlBgmFlagSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �r�d��炷
+ * ＳＥを鳴らす
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -262,9 +262,9 @@ BOOL EvCmdSePlay( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �r�d���~�߂�
+ * ＳＥを止める
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -277,25 +277,25 @@ BOOL EvCmdSeStop( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * SE�I���҂�
+ * SE終了待ち
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
- * @return	���1
+ * @return	常に1
  *
- * @li		�J�Ȃǂ̃��[�v���ŁA�������[�v�ɂȂ��Ă��܂��̂ŁASE�i���o�[�w�肵�āA������`�F�b�N�I
+ * @li		雨などのループ音で、無限ループになってしまうので、SEナンバー指定して、それをチェック！
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdSeWait(VM_MACHINE * core)
 {
-	//���z�}�V���̔ėp���W�X�^��BGM�i���o�[���i�[
+	//仮想マシンの汎用レジスタにBGMナンバーを格納
 	core->reg[0] = VMGetWorkValue(core);
 
 	VM_SetWait( core, EvWaitSe );
 	return 1;
 }
 
-//return 1 = �I��
+//return 1 = 終了
 static BOOL EvWaitSe(VM_MACHINE * core)
 {
 	//if( Snd_SePlayCheckAll() == 0 ){
@@ -309,13 +309,13 @@ static BOOL EvWaitSe(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ������炷
+ * 鳴き声を鳴らす
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  *
- * ���莝���̐擪�̃|�P�����̖�����炷������������A�t�H����������K�v������I
+ * ★手持ちの先頭のポケモンの鳴き声を鳴らす時があったら、フォルムを見る必要がある！
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdVoicePlay( VM_MACHINE * core )
@@ -324,24 +324,24 @@ BOOL EvCmdVoicePlay( VM_MACHINE * core )
 	no	= VMGetWorkValue(core);
 	ptn = VMGetWorkValue(core);
 
-	//�؃��b�v�Đ��e�X�g
+	//ぺラップ再生テスト
 	//no = MONSNO_PERAPPU;
 
-	//�p�^�[�����w��ł���֐��ɒu��������\��
+	//パターンを指定できる関数に置き換える予定
 	Snd_PMVoicePlay( no, 0 );
 
-	//�t�B�[���h��ŁA�X�J�C�t�H�������o�����邱�Ƃ͂Ȃ��B
-	//��ĉ��ɗa����ƃm�[�}���t�H�����ɂȂ�̂ŁA��ĉ��̖�����OK
+	//フィールド上で、スカイフォルムが出現することはない。
+	//育て屋に預けるとノーマルフォルムになるので、育て屋の鳴き声もOK
 	return 0;
 };
 
 //--------------------------------------------------------------------------------------------
 /**
- * �����I���҂�
+ * 鳴き声終了待ち
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
- * @return	���1
+ * @return	常に1
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdVoicePlayWait( VM_MACHINE * core )
@@ -350,7 +350,7 @@ BOOL EvCmdVoicePlayWait( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = �I��
+//return 1 = 終了
 static BOOL EvWaitVoicePlay(VM_MACHINE * core)
 {
 	if( Snd_PMVoicePlayCheck() == 0 ){
@@ -361,9 +361,9 @@ static BOOL EvWaitVoicePlay(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ME�Đ�
+ * ME再生
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -377,9 +377,9 @@ BOOL EvCmdMePlay(VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ME�I���҂�
+ * ME終了待ち
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -390,15 +390,15 @@ BOOL EvCmdMeWait(VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = �I��
+//return 1 = 終了
 static BOOL EvWaitMe( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys = core->fsys;
 
-	//�I���҂��̂�
+	//終了待ちのみ
 	//if( Snd_MePlayCheck() == 0 ){
 	
-	//�I���҂��{�E�F�C�g���[�N�҂�
+	//終了待ち＋ウェイトワーク待ち
 	if( Snd_MePlayCheckBgmPlay() == 0 ){ 
 		return TRUE;
 	}
@@ -408,9 +408,9 @@ static BOOL EvWaitMe( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �y���b�v�f�[�^�����邩�`�F�b�N
+ * ペラップデータがあるかチェック
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -430,9 +430,9 @@ BOOL EvCmdPerapDataCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �y���b�v�^���J�n
+ * ペラップ録音開始
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -442,20 +442,20 @@ BOOL EvCmdPerapRecStart( VM_MACHINE * core )
 	u16* ret_wk			= VMGetWork( core );
 
 	if( Snd_PerapVoiceRecStart() == MIC_RESULT_SUCCESS ){
-		*ret_wk = TRUE;	//����
+		*ret_wk = TRUE;	//成功
 		return 0;
 	}
 
-	*ret_wk = FALSE;	//���s
+	*ret_wk = FALSE;	//失敗
 	return 0;
 
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * �y���b�v�^����~
+ * ペラップ録音停止
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -469,9 +469,9 @@ BOOL EvCmdPerapRecStop( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �y���b�v�^�������f�[�^���Z�[�u
+ * ペラップ録音したデータをセーブ
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -485,24 +485,24 @@ BOOL EvCmdPerapSave( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �N���C�}�b�N�X���o�T�E���h�f�[�^�ǉ����[�h
+ * クライマックス演出サウンドデータ追加ロード
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdSndClimaxDataLoad( VM_MACHINE * core )
 {
-	Snd_DataSetByScene( SND_SCENE_SUB_CLIMAX, 0, 0 );	//�T�E���h�f�[�^���[�h(BGM���p��)
+	Snd_DataSetByScene( SND_SCENE_SUB_CLIMAX, 0, 0 );	//サウンドデータロード(BGM引継ぎ)
 	return 1;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * �����{�����[���Z�b�g
+ * 初期ボリュームセット
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -518,9 +518,9 @@ BOOL EvCmdSndInitialVolSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �f�����o�T�E���h�f�[�^���[�h
+ * デモ演出サウンドデータロード
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -531,19 +531,19 @@ BOOL EvCmdSndDemo01DataLoad( VM_MACHINE * core )
 		//Snd_DataSetByScene( SND_SCENE_DEMO01, SEQ_PL_CHO01_2_SIM, 1 );
 		//Snd_DataSetByScene( SND_SCENE_DEMO01, SEQ_PL_TOWN01, 1 );
 		//Snd_DataSetByScene( SND_SCENE_DEMO01, SEQ_PL_TOWN01, 1 );
-		Snd_DataSetByScene( SND_SCENE_DEMO01, SEQ_PL_TOWN02, 1 );		//�f�B���CTr����
+		Snd_DataSetByScene( SND_SCENE_DEMO01, SEQ_PL_TOWN02, 1 );		//ディレイTrあり
 	}else{
 		//Snd_DataSetByScene( SND_SCENE_DEMO01, SEQ_PL_TOWN01, 1 );
-		Snd_DataSetByScene( SND_SCENE_DEMO01, SEQ_PL_TOWN02, 1 );		//�f�B���CTr����
+		Snd_DataSetByScene( SND_SCENE_DEMO01, SEQ_PL_TOWN02, 1 );		//ディレイTrあり
 	}
 	return 1;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * �t�B�[���h�T�E���h�f�[�^���[�h
+ * フィールドサウンドデータロード
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -557,9 +557,9 @@ BOOL EvCmdSndFieldDataLoad( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	����BGM�i���o�[�擾
+ * @brief	今のBGMナンバー取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */

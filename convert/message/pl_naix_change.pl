@@ -1,29 +1,29 @@
 #!/usr/bin/perl
 
-#ˆø”‚ª‚P‚Â•K—v
+#å¼•æ•°ãŒï¼‘ã¤å¿…è¦
 if( @ARGV != 1 ){
 	print( "pl_naix_change.pl need one param\n" );
 	exit 1;
 }
 
-#ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“
+#ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 if( open( FILEIN, $ARGV[0] ) == 0 ){
 	print( "can't open ".$ARGV[0]."\n" );
 	exit 1;
 }
 
-#ƒf[ƒ^ƒRƒs[
+#ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 @filedata = <FILEIN>;
 close( FILEIN );
 
-#o—ÍƒI[ƒvƒ“
+#å‡ºåŠ›ã‚ªãƒ¼ãƒ—ãƒ³
 if( open( FILEOUT, ">".$ARGV[0] ) == 0 ){
 	print( "can't open ".$ARGV[0]."\n" );
 	exit 1;
 }
 
 foreach $data ( @filedata ){
-	#’uŠ·‚µ‚Äo—Í	
+	#ç½®æ›ã—ã¦å‡ºåŠ›	
 	$data =~ s/pl_//;
 	print( $data );
 	print( FILEOUT $data );

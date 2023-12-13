@@ -1,10 +1,10 @@
 #ifndef _DOSA_DEF_H_
 #define _DOSA_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_DOSA_FLAG_CHANGE		(10400)
 #define	SCRID_DOSA_OBJ1		(10401)
 #define	SCRID_DOSA_OBJ2		(10402)
-#define	SCRID_DOSA_DATA_MAX		(3)		//最大数
+#define	SCRID_DOSA_DATA_MAX		(3)		//譛螟ｧ謨ｰ
 
 #endif //_DOSA_DEF_H_

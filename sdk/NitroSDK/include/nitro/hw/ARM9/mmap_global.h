@@ -33,7 +33,7 @@
   Add entry of HW_EXT_WRAM_ARM7.
 
   Revision 1.9  2004/02/17 08:22:07  yada
-  tab®Œ`
+  tabæ•´å½¢
 
   Revision 1.8  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
@@ -45,19 +45,19 @@
   for the 2nd display
 
   Revision 1.5  2004/01/15 08:26:09  yada
-  HW_ITCM_IMAGE ‚ğİ’è
+  HW_ITCM_IMAGE ã‚’è¨­å®š
 
   Revision 1.4  2003/12/17 06:05:39  yasu
-  mmap_reserved.h ‚ğ mmap_tcm.h ‚Æ mmap_shared.h ‚É•ªŠ„
+  mmap_reserved.h ã‚’ mmap_tcm.h ã¨ mmap_shared.h ã«åˆ†å‰²
 
   Revision 1.3  2003/12/09 08:35:26  yasu
-  ƒƒ‚ƒŠƒ}ƒbƒvü‚è‚ğüV
+  ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—å‘¨ã‚Šã‚’åˆ·æ–°
 
   Revision 1.2  2003/12/08 12:18:31  yada
-  “®ì‚·‚é‚æ‚¤‚Éu‚Æ‚è‚ ‚¦‚¸•ÏXv‚ğ‚©‚¯‚½B—vC³B
+  å‹•ä½œã™ã‚‹ã‚ˆã†ã«ã€Œã¨ã‚Šã‚ãˆãšå¤‰æ›´ã€ã‚’ã‹ã‘ãŸã€‚è¦ä¿®æ­£ã€‚
 
   Revision 1.1  2003/12/08 09:08:53  yasu
-  V‹Kƒƒ‚ƒŠƒ}ƒbƒv
+  æ–°è¦ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

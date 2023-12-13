@@ -24,7 +24,7 @@ DEBUGDIR_TEST		=	field
 DEBUG_CBEDIT_DIR	=	debug/cb_edit
 
 
-#ƒVƒXƒeƒ€ƒvƒƒOƒ‰ƒ€ií’“j
+#ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ã‚°ãƒ©ãƒ ï¼ˆå¸¸é§ï¼‰
 SYSTEMSRCS	=	$(SYSTEMDIR)\main.c \
 				$(SYSTEMDIR)\pm_version.c \
 				$(SYSTEMDIR)\bmp_list.c \
@@ -81,7 +81,7 @@ SYSTEMSRCS	=	$(SYSTEMDIR)\main.c \
 				$(APPLICATIONDIR)\battle_recorder\gds_main.c
 
 
-#’ÊMƒvƒƒOƒ‰ƒ€ií’“j
+#é€šä¿¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ ï¼ˆå¸¸é§ï¼‰
 COMMUNICATIONSRCS = $(COMMUNICATIONDIR)\wh.c \
 					$(COMMUNICATIONDIR)\comm_ring_buff.c \
 					$(COMMUNICATIONDIR)\comm_queue.c \
@@ -102,7 +102,7 @@ COMMUNICATIONSRCS = $(COMMUNICATIONDIR)\wh.c \
 					$(COMMUNICATIONDIR)\com_dwc_warning.c
 
 
-#GFƒ‰ƒCƒuƒ‰ƒŠií’“j
+#GFãƒ©ã‚¤ãƒ–ãƒ©ãƒªï¼ˆå¸¸é§ï¼‰
 GFLIBSRCS	=	$(GFLIBDIR)\system.c \
 				$(GFLIBDIR)\heapsys.c \
 				$(GFLIBDIR)\bg_system.c \
@@ -142,7 +142,7 @@ GFLIBSRCS	=	$(GFLIBDIR)\system.c \
 				$(GFLIBDIR)\debug_3d_draw_count.c \
 				$(GFLIBDIR)\rebooter.c
 
-#‹¤’Êƒf[ƒ^ƒAƒNƒZƒXií’“j
+#å…±é€šãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ï¼ˆå¸¸é§ï¼‰
 SAVEDATASRC	=	$(SAVEDATADIR)\savedata.c \
 				$(SAVEDATADIR)\saveload_system.c \
 				$(SAVEDATADIR)\system_data.c \
@@ -195,7 +195,7 @@ SAVEDATASRC	=	$(SAVEDATADIR)\savedata.c \
 				$(SAVEDATADIR)\wifi_hiroba_save.c
 
 
-#ƒQ[ƒ€ƒVƒXƒeƒ€ií’“j
+#ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ï¼ˆå¸¸é§ï¼‰
 GAMESYSSRCS	=	$(GAMESYSDIR)\worldmap.c \
 				$(GAMESYSDIR)\zonedata.c \
 				$(GAMESYSDIR)\eventdata.c \
@@ -319,7 +319,7 @@ GAMESYSSRCS	=	$(GAMESYSDIR)\worldmap.c \
 								$(FIELDDIR)\b_tower_wifi.c \
 								$(FIELDDIR)\field_rdobj.c
 								
-#ƒfƒoƒbƒOƒvƒƒOƒ‰ƒ€i¡‚Ì‚Æ‚±‚ëí’“j
+#ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒ­ã‚°ãƒ©ãƒ ï¼ˆä»Šã®ã¨ã“ã‚å¸¸é§ï¼‰
 DEBUGSRCS	=	$(DEBUGDIR_TEST)\d_iwast.c \
 				$(DEBUGDIR_TEST)\d_mori2.c \
 				$(DEBUGDIR_TEST)\d_matsu_res.c \
@@ -331,7 +331,7 @@ DEBUGSRCS	=	$(DEBUGDIR_TEST)\d_iwast.c \
 				$(DEBUGDIR)\d_global.c
 
 
-#í’“ƒvƒƒOƒ‰ƒ€
+#å¸¸é§ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 SRCS		=	$(SYSTEMSRCS) \
 				$(GFLIBSRCS) \
 				$(SAVEDATASRC) \
@@ -423,30 +423,30 @@ SRCS		=	$(SYSTEMSRCS) \
 
 
 #================================================
-# ‚±‚±‚©‚ç‰º‚ÍƒI[ƒo[ƒŒƒCƒvƒƒOƒ‰ƒ€’è‹`
+# ã“ã“ã‹ã‚‰ä¸‹ã¯ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚°ãƒ©ãƒ å®šç¾©
 #================================================
-# ƒI[ƒo[ƒŒƒC—p‚Ìƒ\[ƒXƒR[ƒh’è‹`‚Ì‚Psã‚Éu#===>v‚Æ‚ ‚é‚Ì‚Í
-# ƒI[ƒo[ƒŒƒCƒc[ƒ‹—p‚Ì“ÁŽêƒL[ƒ[ƒh‚Å‚·B
-# ‚±‚Ìu#===>v‚ÌŒã‚ë‚É‚ ‚é•¶Žš—ñ‚ÍƒI[ƒo[ƒŒƒC‚·‚éÛ‚Ìƒ‚ƒWƒ…[ƒ‹‚Ì
-# ƒ^[ƒQƒbƒg‚ðŽw‚µ‚Ä‚¢‚Ü‚·B
-# umainv‚Æ‚¢‚¤ƒL[ƒ[ƒh‚Íí’“ƒvƒƒOƒ‰ƒ€•”•ª‚ðŽw‚·—\–ñŒê‚Å‚·B
-# umainv‚ÌŒã‚ë‚É‚Â‚­ƒvƒƒOƒ‰ƒ€—Ìˆæ‚Ì–¼‘O‚ÍuSRCS_OVERLAY_????????v‚Ì
-# u????????v‚Ì•”•ª‚ð¬•¶Žš‚É‚µ‚ÄŽg—p‚µ‚Ü‚·B
-# uSRCS_OVERLAY_POKETCH01v‚Æ‚¢‚¤ƒ\[ƒXƒR[ƒhŒQ‚Íupoketch01v‚Æ‚¢‚¤
-# ƒI[ƒo[ƒŒƒCID‚É‚È‚è‚Ü‚·
+# ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ç”¨ã®ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰å®šç¾©ã®ï¼‘è¡Œä¸Šã«ã€Œ#===>ã€ã¨ã‚ã‚‹ã®ã¯
+# ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ„ãƒ¼ãƒ«ç”¨ã®ç‰¹æ®Šã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã§ã™ã€‚
+# ã“ã®ã€Œ#===>ã€ã®å¾Œã‚ã«ã‚ã‚‹æ–‡å­—åˆ—ã¯ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã™ã‚‹éš›ã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®
+# ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’æŒ‡ã—ã¦ã„ã¾ã™ã€‚
+# ã€Œmainã€ã¨ã„ã†ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã¯å¸¸é§ãƒ—ãƒ­ã‚°ãƒ©ãƒ éƒ¨åˆ†ã‚’æŒ‡ã™äºˆç´„èªžã§ã™ã€‚
+# ã€Œmainã€ã®å¾Œã‚ã«ã¤ããƒ—ãƒ­ã‚°ãƒ©ãƒ é ˜åŸŸã®åå‰ã¯ã€ŒSRCS_OVERLAY_????????ã€ã®
+# ã€Œ????????ã€ã®éƒ¨åˆ†ã‚’å°æ–‡å­—ã«ã—ã¦ä½¿ç”¨ã—ã¾ã™ã€‚
+# ã€ŒSRCS_OVERLAY_POKETCH01ã€ã¨ã„ã†ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ç¾¤ã¯ã€Œpoketch01ã€ã¨ã„ã†
+# ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDã«ãªã‚Šã¾ã™
 #
-# ‚±‚ê‚ç‚Ìˆ—‚Íoverlaytool.rb‚Ås‚í‚ê‚Ä‚¢‚Ü‚·B
-# ¡’ˆÓ¡ 
-# 1.‚±‚Ìƒc[ƒ‹‚ÍƒtƒHƒ‹ƒ_“à‚Ìƒ\[ƒXƒR[ƒh–¼Žæ“¾‚Ís‚Á‚Ä‚¢‚Ü‚¹‚ñ
-#   ‚Â‚Ü‚èAu$(DEBUGDIR)v‚Ì‚Ý‘‚¢‚Ä‚±‚ÌƒtƒHƒ‹ƒ_‚Ì’†‚Ìƒtƒ@ƒCƒ‹‚ð
-#   ‘S‚ÄƒI[ƒo[ƒŒƒCˆµ‚¢‚É‚·‚é‚Æ‚¢‚¤ˆ—‚Íì¬‚µ‚Ä‚¢‚Ü‚¹‚ñB
-#   ($(DEBUGDIR)/d_mori.c)‚Æ‚¢‚¤‚æ‚¤‚Éƒ\[ƒXƒtƒ@ƒCƒ‹–¼‚àŽw’è‚·‚éŽ–‚ð
-#   Šú‘Ò‚µ‚½“®ì‚ð‚µ‚Ä‚¢‚Ü‚·B
-# 2.ƒI[ƒo[ƒŒƒC—p‚Ìƒ\[ƒXƒR[ƒh’è‹`‚ðƒI[ƒo[ƒŒƒCID‚É•ÏŠ·‚µ‚ÄŽg—p‚·‚éˆ×A
-#   ‘¶Ý‚µ‚Ä‚¢‚È‚¢ƒI[ƒo[ƒŒƒCƒ\[ƒX‚ðæ‚Éu===>v‚ÅŽw’è‚µ‚È‚¢‚æ‚¤‚É
-#   ‚µ‚Ä‚­‚¾‚³‚¢iƒ`ƒFƒbƒN‚Í‚µ‚Ä‚¢‚Ü‚·j
-#   ˆê”Ô‰‚ß‚ÌƒI[ƒo[ƒŒƒCƒ^[ƒQƒbƒg’è‹`‚Íumainv‚µ‚©‘‚¯‚È‚¢Ž–‚É‚È‚è‚Ü‚·B
-# 3.ƒ‰ƒCƒuƒ‰ƒŠ‚ðƒI[ƒo[ƒŒƒC‚·‚éê‡  #LIB=>	???.a  ‚Æ‘‚¢‚Ä‚­‚¾‚³‚¢
+# ã“ã‚Œã‚‰ã®å‡¦ç†ã¯overlaytool.rbã§è¡Œã‚ã‚Œã¦ã„ã¾ã™ã€‚
+# â– æ³¨æ„â–  
+# 1.ã“ã®ãƒ„ãƒ¼ãƒ«ã¯ãƒ•ã‚©ãƒ«ãƒ€å†…ã®ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰åå–å¾—ã¯è¡Œã£ã¦ã„ã¾ã›ã‚“
+#   ã¤ã¾ã‚Šã€ã€Œ$(DEBUGDIR)ã€ã®ã¿æ›¸ã„ã¦ã“ã®ãƒ•ã‚©ãƒ«ãƒ€ã®ä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’
+#   å…¨ã¦ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤æ‰±ã„ã«ã™ã‚‹ã¨ã„ã†å‡¦ç†ã¯ä½œæˆã—ã¦ã„ã¾ã›ã‚“ã€‚
+#   ($(DEBUGDIR)/d_mori.c)ã¨ã„ã†ã‚ˆã†ã«ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«åã‚‚æŒ‡å®šã™ã‚‹äº‹ã‚’
+#   æœŸå¾…ã—ãŸå‹•ä½œã‚’ã—ã¦ã„ã¾ã™ã€‚
+# 2.ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ç”¨ã®ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰å®šç¾©ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDã«å¤‰æ›ã—ã¦ä½¿ç”¨ã™ã‚‹ç‚ºã€
+#   å­˜åœ¨ã—ã¦ã„ãªã„ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚½ãƒ¼ã‚¹ã‚’å…ˆã«ã€Œ===>ã€ã§æŒ‡å®šã—ãªã„ã‚ˆã†ã«
+#   ã—ã¦ãã ã•ã„ï¼ˆãƒã‚§ãƒƒã‚¯ã¯ã—ã¦ã„ã¾ã™ï¼‰
+#   ä¸€ç•ªåˆã‚ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚¿ãƒ¼ã‚²ãƒƒãƒˆå®šç¾©ã¯ã€Œmainã€ã—ã‹æ›¸ã‘ãªã„äº‹ã«ãªã‚Šã¾ã™ã€‚
+# 3.ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã™ã‚‹å ´åˆ  #LIB=>	???.a  ã¨æ›¸ã„ã¦ãã ã•ã„
 #
 # --------------
 # ==> main
@@ -455,7 +455,7 @@ SRCS		=	$(SYSTEMSRCS) \
 # ==> SRCS_OVERLY_FIRST
 # SRCS_OVERLY_SECOND = $(SRC)\test2.c
 # --------------
-# ‚Í‘‚¯‚Ü‚·‚ªA
+# ã¯æ›¸ã‘ã¾ã™ãŒã€
 # 
 # --------------
 # ==> SRCS_OVERLY_SECOND
@@ -464,25 +464,25 @@ SRCS		=	$(SYSTEMSRCS) \
 # ==> main
 # SRCS_OVERLY_SECOND = $(SRC)\test2.c
 # --------------
-# ‚ÍFIRST‚Ì‰º‚ÉSECOND‚ª‚ ‚é‚Ì‚Éæ‚ÉSECOND‚ðƒ^[ƒQƒbƒg‚É
-# ‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚é‚Ì‚ÅƒGƒ‰[‚É‚È‚è‚Ü‚·B
+# ã¯FIRSTã®ä¸‹ã«SECONDãŒã‚ã‚‹ã®ã«å…ˆã«SECONDã‚’ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«
+# ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹ã®ã§ã‚¨ãƒ©ãƒ¼ã«ãªã‚Šã¾ã™ã€‚
 # 
 # 
-# —v–]EŽ¿–â‚ÍX‚É‚¨Šè‚¢‚µ‚Ü‚·B
+# è¦æœ›ãƒ»è³ªå•ã¯æ£®ã«ãŠé¡˜ã„ã—ã¾ã™ã€‚
 # 
 
-#ƒI[ƒo[ƒŒƒCƒeƒXƒg‚P
+#ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ†ã‚¹ãƒˆï¼‘
 #===> main
 SRCS_OVERLAY_TEST_FIRST		= $(SYSTEMDIR)\test_overlay.c
 
 
-#ƒI[ƒo[ƒŒƒCƒeƒXƒg‚Q
+#ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ†ã‚¹ãƒˆï¼’
 #===> main
 SRCS_OVERLAY_TEST_SECOND	= $(SYSTEMDIR)/test_overlay2.c
 
 
-#ƒI[ƒo[ƒŒƒCƒeƒXƒg‚R
-#test_second‚ÌŒã‚ë‚É”z’u‚·‚éƒI[ƒo[ƒŒƒC
+#ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ†ã‚¹ãƒˆï¼“
+#test_secondã®å¾Œã‚ã«é…ç½®ã™ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤
 #===> SRCS_OVERLAY_TEST_SECOND
 SRCS_OVERLAY_TEST_SECOND_ABC 	= $(SYSTEMDIR)/test_overlay3.c \
 				  $(SYSTEMDIR)/test_overlay4.c
@@ -490,7 +490,7 @@ SRCS_OVERLAY_TEST_SECOND_ABC 	= $(SYSTEMDIR)/test_overlay3.c \
 #===> ITCM
 SRCS_OVERLAY_TEST_ITCM		= $(SYSTEMDIR)\test_overlay_itcm.c
 
-#wifiƒvƒƒOƒ‰ƒ€
+#wifiãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 #===> main
 #LIB=>					libdwcauth.a
 #LIB=>					libdwcbase.a
@@ -512,8 +512,8 @@ SRCS_OVERLAY_OL_WIFI		= $(WIFIDIR)\dwc_rap.c \
 								$(WIFIDIR)\vchat.c
 
 
-#ƒtƒB[ƒ‹ƒhƒvƒƒOƒ‰ƒ€i”ñí’“j
-#Œ©‹É‚ß‚é‚Ü‚ÅFX“®‚­‚±‚Æ‚É‚È‚é‚ÆŽv‚í‚ê‚éB
+#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚°ãƒ©ãƒ ï¼ˆéžå¸¸é§ï¼‰
+#è¦‹æ¥µã‚ã‚‹ã¾ã§è‰²ã€…å‹•ãã“ã¨ã«ãªã‚‹ã¨æ€ã‚ã‚Œã‚‹ã€‚
 #===> main
 SRCS_OVERLAY_FIELDMAP		= $(FIELDDIR)\fieldmap.c \
 								$(FIELDDIR)\fieldmap_func.c \
@@ -628,8 +628,8 @@ SRCS_OVERLAY_FIELDMAP		= $(FIELDDIR)\fieldmap.c \
 								$(FIELDDIR)\field_villa.c \
 								$(FIELDDIR)\fldeff_namipoker.c
 
-#ƒtƒB[ƒ‹ƒhƒI[ƒo[ƒŒƒC—Ìˆæ‚»‚Ì‚Q
-#’n‰º‚Æ•À—ñ‚ÌˆÊ’u‚É‚¨‚©‚ê‚é
+#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸãã®ï¼’
+#åœ°ä¸‹ã¨ä¸¦åˆ—ã®ä½ç½®ã«ãŠã‹ã‚Œã‚‹
 #===> SRCS_OVERLAY_FIELDMAP
 SRCS_OVERLAY_FIELDMAP_SUB	=	$(FIELDDIR)\field_demo.c \
 								$(FIELDDIR)\encount_set.c \
@@ -664,35 +664,35 @@ SRCS_OVERLAY_FIELDMAP_SUB	=	$(FIELDDIR)\field_demo.c \
 								$(FIELDDIR)\scr_hideneff.c \
 								$(CONTESTDIR)\comm_command_contest_fld.c
 
-#ƒtƒB[ƒ‹ƒhƒI[ƒo[ƒŒƒC—Ìˆæ‚»‚Ì‚R
-#fieldmap_sub‚Ì‰º‚É’u‚©‚ê‚é
+#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸãã®ï¼“
+#fieldmap_subã®ä¸‹ã«ç½®ã‹ã‚Œã‚‹
 #===> SRCS_OVERLAY_FIELDMAP_SUB
 SRCS_OVERLAY_FIELDMAP_SUB_FIELD	=	$(FIELDDIR)\comm_direct_counter.c \
 									$(FIELDDIR)\comm_regulation.c \
 									$(FIELDDIR)\field_accessory_shop.c \
 									$(FIELDDIR)\fd_shop.c
 									
-#ƒtƒB[ƒ‹ƒhƒI[ƒo[ƒŒƒC—Ìˆæ‚»‚Ì‚R
-#fieldmap_sub‚Ì‰º‚É’u‚©‚ê‚é
+#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸãã®ï¼“
+#fieldmap_subã®ä¸‹ã«ç½®ã‹ã‚Œã‚‹
 #===> SRCS_OVERLAY_FIELDMAP_SUB
 SRCS_OVERLAY_FIELDMAP_SUB_GYM	=	$(FIELDDIR)\gym.c
 
-#ƒtƒB[ƒ‹ƒhƒI[ƒo[ƒŒƒC—Ìˆæ‚»‚Ì‚R
-#fieldmap_sub‚Ì‰º‚É’u‚©‚ê‚é
+#ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸãã®ï¼“
+#fieldmap_subã®ä¸‹ã«ç½®ã‹ã‚Œã‚‹
 #===> SRCS_OVERLAY_FIELDMAP_SUB
 SRCS_OVERLAY_FIELDMAP_SUB_HAKAI	=	$(FIELDDIR)\test_hakai.c \
 									$(FIELDDIR)\field_tornworld.c
 
-#VSƒfƒ‚
+#VSãƒ‡ãƒ¢
 #===> SRCS_OVERLAY_OL_WIFI
 SRCS_OVERLAY_VS_DEMO		=	$(BATTLEDIR)\vs_demo.c
 
-#í“¬•ƒRƒ“ƒeƒXƒg‹¤’Ê
+#æˆ¦é—˜ï¼†ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…±é€š
 #===> SRCS_OVERLAY_OL_WIFI
 SRCS_OVERLAY_BC_COMMON		=	$(BATTLEDIR)\wazatype_panel.c \
 								$(WAZAEFFECT)\battle_particle.c
 
-#í“¬•ƒRƒ“ƒeƒXƒg‹¤’Ê
+#æˆ¦é—˜ï¼†ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…±é€š
 #===> SRCS_OVERLAY_BC_COMMON
 SRCS_OVERLAY_BC_COMMON2		= $(WAZAEFFECT)\we_sys.c \
 				$(WAZAEFFECT)\d_particle.c \
@@ -725,7 +725,7 @@ SRCS_OVERLAY_BC_COMMON2		= $(WAZAEFFECT)\we_sys.c \
 				$(CONTESTDIR)\con_battle.c \
 				$(WAZAEFFECT)\d_tool.c
 
-#í“¬ƒoƒbƒO•ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg
+#æˆ¦é—˜ãƒãƒƒã‚°ï¼†ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ
 #===> SRCS_OVERLAY_BC_COMMON
 SRCS_OVERLAY_BATTLE_BAG_LIST	=	$(BATTLEDIR)\b_plist_main.c \
 									$(BATTLEDIR)\b_plist_bmp.c \
@@ -739,16 +739,16 @@ SRCS_OVERLAY_BATTLE_BAG_LIST	=	$(BATTLEDIR)\b_plist_main.c \
 									$(BATTLEDIR)\b_app_tool.c
 
 
-#í“¬AI
+#æˆ¦é—˜AI
 #===> SRCS_OVERLAY_BC_COMMON
 SRCS_OVERLAY_BATTLE_AI			=	$(BATTLEDIR)\tr_ai.c \
 									$(BATTLEDIR)\tr_ai\tr_ai_seq.s
 
-#ƒfƒoƒbƒOí“¬ƒc[ƒ‹
+#ãƒ‡ãƒãƒƒã‚°æˆ¦é—˜ãƒ„ãƒ¼ãƒ«
 #===> main
 SRCS_OVERLAY_DEBUG_FIGHT	= $(DEBUGDIR)\d_fight_tool.c
 
-#í“¬
+#æˆ¦é—˜
 #===> SRCS_OVERLAY_BC_COMMON2
 SRCS_OVERLAY_BATTLE		= $(BATTLEDIR)\fight.c \
 				$(BATTLEDIR)\fight_tool.c \
@@ -768,7 +768,7 @@ SRCS_OVERLAY_BATTLE		= $(BATTLEDIR)\fight.c \
 				$(BATTLEDIR)\battle_playbackstop.c \
 				$(DEBUGDIR)\d_battle.c
 
-#ƒRƒ“ƒeƒXƒg
+#ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 #===> SRCS_OVERLAY_BC_COMMON2
 SRCS_OVERLAY_CONTEST		= $(CONTESTDIR)\actin.c \
 				$(CONTESTDIR)\visual.c \
@@ -799,13 +799,13 @@ SRCS_OVERLAY_CONTEST		= $(CONTESTDIR)\actin.c \
 				
 
 
-#wifiÝ’è‰æ–Ê
+#wifiè¨­å®šç”»é¢
 #===> SRCS_OVERLAY_OL_WIFI
-#LIB=>					libmb.a     ##¡Œã‚±‚±‚É‚­‚é—\’è
+#LIB=>					libmb.a     ##ä»Šå¾Œã“ã“ã«ãã‚‹äºˆå®š
 #LIB=>					libdwcutil.a
 SRCS_OVERLAY_OL_WIFIUTIL	= $(WIFIDIR)\dwc_raputility.c
 
-# ƒ{ƒbƒNƒX
+# ãƒœãƒƒã‚¯ã‚¹
 #===> main
 SRCS_OVERLAY_OVERLAY_BOX =	$(APPLICATIONDIR)\box\box.c \
 				$(APPLICATIONDIR)\box\box_reel.c \
@@ -823,7 +823,7 @@ SRCS_OVERLAY_OVERLAY_BOX =	$(APPLICATIONDIR)\box\box.c \
 				$(APPLICATIONDIR)\box\boxv_compare.c \
 				$(APPLICATIONDIR)\box\boxmenu.c
 
-# ŠÈˆÕ‰ï˜b
+# ç°¡æ˜“ä¼šè©±
 #===> main
 SRCS_OVERLAY_OVERLAY_PMSI =	$(APPLICATIONDIR)\pms_input\pms_input.c \
 				$(APPLICATIONDIR)\pms_input\pms_input_view.c \
@@ -836,7 +836,7 @@ SRCS_OVERLAY_OVERLAY_PMSI =	$(APPLICATIONDIR)\pms_input\pms_input.c \
 				$(APPLICATIONDIR)\pms_input\pmsi_initial_data.c 
 
 
-# }ŠÓ
+# å›³é‘‘
 #===> main
 SRCS_OVERLAY_OL_ZUKAN = $(APPLICATIONDIR)\zukanlist\zkn_sys.c \
 				$(POKEDIR)\pokefoot.c \
@@ -872,7 +872,7 @@ SRCS_OVERLAY_OL_ZUKAN = $(APPLICATIONDIR)\zukanlist\zkn_sys.c \
 
 
 
-# ƒCƒ[ƒWƒNƒŠƒbƒv
+# ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—
 #===> SRCS_OVERLAY_CONTEST
 SRCS_OVERLAY_OL_IMAGECLIP	= $(APPLICATIONDIR)\imageClip\imc_accessorie.c \
 				$(APPLICATIONDIR)\imageClip\imc_drawsys.c \
@@ -894,7 +894,7 @@ SRCS_OVERLAY_OL_IMAGECLIP	= $(APPLICATIONDIR)\imageClip\imc_accessorie.c \
 
 
 
-# ’n‰º
+# åœ°ä¸‹
 #===> SRCS_OVERLAY_FIELDMAP
 SRCS_OVERLAY_OL_UNDERGROUND 		 =  $(UNDERGROUNDDIR)\ug_dig_fossil.c \
 								$(UNDERGROUNDDIR)\ug_dig_stone.c \
@@ -918,15 +918,15 @@ SRCS_OVERLAY_OL_UNDERGROUND 		 =  $(UNDERGROUNDDIR)\ug_dig_fossil.c \
 								$(UNDERGROUNDDIR)\ug_base.c
 								
 
-# ƒ|ƒPƒbƒ`Žæ“¾ˆÈ‘O‚Ì‰æ–Êì¬
-# 'SRCS_OVERLAY_FIELDMAP_SUB_FIELD'‚©'SRCS_OVERLAY_FIELDMAP_SUB_GYM'
-# 'SRCS_OVERLAY_FIELDMAP_SUB_HAKAI'‚Ì’†‚©‚çˆê”Ô‘å‚«‚¢‚Ì‚ðŽw’è
+# ãƒã‚±ãƒƒãƒå–å¾—ä»¥å‰ã®ç”»é¢ä½œæˆ
+# 'SRCS_OVERLAY_FIELDMAP_SUB_FIELD'ã‹'SRCS_OVERLAY_FIELDMAP_SUB_GYM'
+# 'SRCS_OVERLAY_FIELDMAP_SUB_HAKAI'ã®ä¸­ã‹ã‚‰ä¸€ç•ªå¤§ãã„ã®ã‚’æŒ‡å®š
 #===> SRCS_OVERLAY_FIELDMAP_SUB_HAKAI
 SRCS_OVERLAY_OL_BEFORE_POKETCH 		 = $(FIELDDIR)\poketch\before_poketch.c
 
-# ƒ|ƒPƒbƒ`
-# 'SRCS_OVERLAY_FIELDMAP_SUB_FIELD'‚©'SRCS_OVERLAY_FIELDMAP_SUB_GYM'
-# 'SRCS_OVERLAY_FIELDMAP_SUB_HAKAI'‚Ì’†‚©‚çˆê”Ô‘å‚«‚¢‚Ì‚ðŽw’è
+# ãƒã‚±ãƒƒãƒ
+# 'SRCS_OVERLAY_FIELDMAP_SUB_FIELD'ã‹'SRCS_OVERLAY_FIELDMAP_SUB_GYM'
+# 'SRCS_OVERLAY_FIELDMAP_SUB_HAKAI'ã®ä¸­ã‹ã‚‰ä¸€ç•ªå¤§ãã„ã®ã‚’æŒ‡å®š
 #===> SRCS_OVERLAY_FIELDMAP_SUB_HAKAI
 SRCS_OVERLAY_OL_POKETCH 		 = $(FIELDDIR)\poketch\poketch_c.c \
 					   $(FIELDDIR)\poketch\poketch_v.c \
@@ -935,175 +935,175 @@ SRCS_OVERLAY_OL_POKETCH 		 = $(FIELDDIR)\poketch\poketch_c.c \
 					   $(FIELDDIR)\poketch\poketch_button.c \
 					   $(FIELDDIR)\poketch\poketch_map.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒfƒWƒ^ƒ‹ŽžŒv
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒ‡ã‚¸ã‚¿ãƒ«æ™‚è¨ˆ
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_DWATCH 	 = $(FIELDDIR)\poketch\poketch_a00c.c	\
                                   	   $(FIELDDIR)\poketch\poketch_a00v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒXƒgƒbƒvƒEƒHƒbƒ`
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šã‚¹ãƒˆãƒƒãƒ—ã‚¦ã‚©ãƒƒãƒ
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_STOPWATCH 	 = $(FIELDDIR)\poketch\poketch_a01c.c	\
                                      	   $(FIELDDIR)\poketch\poketch_a01v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFŒvŽZ‹@
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šè¨ˆç®—æ©Ÿ
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_CALC 		 = $(FIELDDIR)\poketch\poketch_a02c.c	\
                                            $(FIELDDIR)\poketch\poketch_a02v.c	\
                                            $(FIELDDIR)\poketch\poketch_realnum.c
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒƒ‚—pŽ†
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒ¡ãƒ¢ç”¨ç´™
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_MEMO		 = $(FIELDDIR)\poketch\poketch_a03c.c	\
                                            $(FIELDDIR)\poketch\poketch_a03v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒAƒiƒƒOŽžŒv
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šã‚¢ãƒŠãƒ­ã‚°æ™‚è¨ˆ
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_AWATCH		 = $(FIELDDIR)\poketch\poketch_a04c.c	\
                                            $(FIELDDIR)\poketch\poketch_a04v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒhƒbƒgƒA[ƒg
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒ‰ãƒƒãƒˆã‚¢ãƒ¼ãƒˆ
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_DOTART		 = $(FIELDDIR)\poketch\poketch_a05c.c	\
                                            $(FIELDDIR)\poketch\poketch_a05v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFŠÈˆÕƒ|ƒPƒ‚ƒ“ƒŠƒXƒg
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šç°¡æ˜“ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_SIMPLE_POKELIST = $(FIELDDIR)\poketch\poketch_a06c.c	\
                                            $(FIELDDIR)\poketch\poketch_a06v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠF‚È‚Â‚«‚Çƒ`ƒFƒbƒJ[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãªã¤ãã©ãƒã‚§ãƒƒã‚«ãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_NATSUKI_CHECKER = $(FIELDDIR)\poketch\poketch_a07c.c	\
                                            $(FIELDDIR)\poketch\poketch_a07v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒ_ƒEƒWƒ“ƒOƒ}ƒVƒ“
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒ€ã‚¦ã‚¸ãƒ³ã‚°ãƒžã‚·ãƒ³
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_DOWSING	= $(FIELDDIR)\poketch\poketch_a08c.c	\
                                           $(FIELDDIR)\poketch\poketch_a08v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒJƒEƒ“ƒ^[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_COUNTER	= $(FIELDDIR)\poketch\poketch_a09c.c	\
                                           $(FIELDDIR)\poketch\poketch_a09v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠF–œ•àŒv
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šä¸‡æ­©è¨ˆ
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_PEDOMETER	= $(FIELDDIR)\poketch\poketch_a10c.c	\
                                           $(FIELDDIR)\poketch\poketch_a10v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒoƒbƒNƒ‰ƒCƒgƒXƒCƒbƒ`
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒãƒƒã‚¯ãƒ©ã‚¤ãƒˆã‚¹ã‚¤ãƒƒãƒ
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_BACKLIGHT	= $(FIELDDIR)\poketch\poketch_a11c.c	\
                                           $(FIELDDIR)\poketch\poketch_a11v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒ_ƒ~[ƒ‚ƒjƒ^[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒ€ãƒŸãƒ¼ãƒ¢ãƒ‹ã‚¿ãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_DUMMY_MONITOR	= $(FIELDDIR)\poketch\poketch_a12c.c	\
                                           $(FIELDDIR)\poketch\poketch_a12v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒgƒŒ[ƒi[ƒ‰ƒ“ƒ`ƒƒ[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ©ãƒ³ãƒãƒ£ãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_TRAINER_LAUNCHER = $(FIELDDIR)\poketch\poketch_a13c.c	\
                                           $(FIELDDIR)\poketch\poketch_a13v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠF‚»‚¾‚Ä‚âƒJƒƒ‰
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãã ã¦ã‚„ã‚«ãƒ¡ãƒ©
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_SODATEYA_CAMERA = $(FIELDDIR)\poketch\poketch_a15c.c	\
                                           $(FIELDDIR)\poketch\poketch_a15v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒ‹[ƒŒƒbƒg
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_ROULETTE	= $(FIELDDIR)\poketch\poketch_a16c.c	\
                                           $(FIELDDIR)\poketch\poketch_a16v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒRƒCƒ“ƒgƒX
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šã‚³ã‚¤ãƒ³ãƒˆã‚¹
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_COINTOSS	= $(FIELDDIR)\poketch\poketch_a17c.c	\
                                           $(FIELDDIR)\poketch\poketch_a17v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠF‚í‚´‘Š«ƒ`ƒFƒbƒJ[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šã‚ã–ç›¸æ€§ãƒã‚§ãƒƒã‚«ãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_WAZAEFF	= $(FIELDDIR)\poketch\poketch_a18c.c	\
                                           $(FIELDDIR)\poketch\poketch_a18v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒ‰ƒuƒeƒXƒ^[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒ©ãƒ–ãƒ†ã‚¹ã‚¿ãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_LOVE_TESTER	= $(FIELDDIR)\poketch\poketch_a19c.c	\
                                           $(FIELDDIR)\poketch\poketch_a19v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒAƒ‰[ƒ€ŽžŒv
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šã‚¢ãƒ©ãƒ¼ãƒ æ™‚è¨ˆ
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_ALARM		= $(FIELDDIR)\poketch\poketch_a20c.c	\
                                           $(FIELDDIR)\poketch\poketch_a20v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒLƒbƒ`ƒ“ƒ^ƒCƒ}[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šã‚­ãƒƒãƒãƒ³ã‚¿ã‚¤ãƒžãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_KITCHEN	= $(FIELDDIR)\poketch\poketch_a21c.c	\
                                           $(FIELDDIR)\poketch\poketch_a21v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒ}ƒbƒvƒ}[ƒLƒ“ƒO
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒžãƒƒãƒ—ãƒžãƒ¼ã‚­ãƒ³ã‚°
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_MARK_MAP	= $(FIELDDIR)\poketch\poketch_a22c.c	\
                                           $(FIELDDIR)\poketch\poketch_a22v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠF‚«‚Ì‚ÝƒT[ƒ`ƒƒ[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãã®ã¿ã‚µãƒ¼ãƒãƒ£ãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_SEED_MAP	= $(FIELDDIR)\poketch\poketch_a23c.c	\
                                           $(FIELDDIR)\poketch\poketch_a23v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒJƒ‰[ƒ`ƒFƒ“ƒWƒƒ[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šã‚«ãƒ©ãƒ¼ãƒã‚§ãƒ³ã‚¸ãƒ£ãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_COLOR_CHANGER	= $(FIELDDIR)\poketch\poketch_a24c.c	\
                                           $(FIELDDIR)\poketch\poketch_a24v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒJƒŒƒ“ƒ_[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_CALENDAR	= $(FIELDDIR)\poketch\poketch_a25c.c	\
                                           $(FIELDDIR)\poketch\poketch_a25v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒ‰ƒWƒI
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒ©ã‚¸ã‚ª
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_RADIO		= $(FIELDDIR)\poketch\poketch_a26c.c	\
                                           $(FIELDDIR)\poketch\poketch_a26v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠF‚Â‚¤‚µ‚ñƒT[ƒ`ƒƒ[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šã¤ã†ã—ã‚“ã‚µãƒ¼ãƒãƒ£ãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_COMM_SEARCH	= $(FIELDDIR)\poketch\poketch_a27c.c	\
                                           $(FIELDDIR)\poketch\poketch_a27v.c
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒ|ƒPƒ‚ƒ“ƒJƒEƒ“ƒ^[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒã‚±ãƒ¢ãƒ³ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_POKEMON_COUNTER	= $(FIELDDIR)\poketch\poketch_a28c.c	\
                                                   $(FIELDDIR)\poketch\poketch_a28v.c
 
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒ|ƒPƒ‚ƒ“ƒqƒXƒgƒŠ[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒã‚±ãƒ¢ãƒ³ãƒ’ã‚¹ãƒˆãƒªãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_POKEMON_HISTORY	= $(FIELDDIR)\poketch\poketch_a29c.c	\
                                                   $(FIELDDIR)\poketch\poketch_a29v.c
 
 
-# ƒ|ƒPƒbƒ`ƒAƒvƒŠFƒ_ƒ~[
+# ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªï¼šãƒ€ãƒŸãƒ¼
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_POKETCH_APP_DUMMY		 = $(FIELDDIR)\poketch\poketch_a49c.c	\
                                            $(FIELDDIR)\poketch\poketch_a49v.c
 
 
-# ƒ†ƒjƒIƒ“‰º‰æ–Ê
+# ãƒ¦ãƒ‹ã‚ªãƒ³ä¸‹ç”»é¢
 #===> SRCS_OVERLAY_OL_POKETCH
 SRCS_OVERLAY_UNIONROOM_BOARD		 = $(FIELDDIR)\union_board.c
 
-#ƒQ[ƒ€ŠJŽnˆ—
+#ã‚²ãƒ¼ãƒ é–‹å§‹å‡¦ç†
 #===> main
 SRCS_OVERLAY_GAMESTART		= $(SYSTEMDIR)\gamestart.c \
 								$(GAMESYSDIR)\game_init.c
 
 
 
-#‚¨ŠG‚©‚«ƒ{[ƒh
+#ãŠçµµã‹ããƒœãƒ¼ãƒ‰
 #===> main
 SRCS_OVERLAY_OEKAKI_BOARD		= $(APPLICATIONDIR)\oekaki\oekaki.c
 
-#ƒŒƒR[ƒhƒR[ƒi[
+#ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼
 #===> main
 SRCS_OVERLAY_RECORD_CORNER		= $(APPLICATIONDIR)\record\record_corner.c \
 									$(SAVEDATADIR)\randomgroup_record.c \
@@ -1111,7 +1111,7 @@ SRCS_OVERLAY_RECORD_CORNER		= $(APPLICATIONDIR)\record\record_corner.c \
 									$(APPLICATIONDIR)\record\record_mix.c
 
 
-#WIFI ¢ŠE ‹¤’Ê
+#WIFI ä¸–ç•Œ å…±é€š
 #===> SRCS_OVERLAY_OL_WIFI
 #LIB=>					libdwcgsghttp.a
 #LIB=>					libdwcnd.a
@@ -1120,7 +1120,7 @@ SRCS_OVERLAY_DPW_COMMON		= $(DPWLIBDIR)\dpwi_encrypt.c \
 				  $(DPWLIBDIR)\dpwi_session.c
 
 
-#GDS’ÊM§Œä
+#GDSé€šä¿¡åˆ¶å¾¡
 #===> SRCS_OVERLAY_DPW_COMMON
 #LIB=>					libgds.a
 SRCS_OVERLAY_GDS_COMM =	$(APPLICATIONDIR)\battle_recorder\gds_data_conv.c \
@@ -1131,7 +1131,7 @@ SRCS_OVERLAY_GDS_COMM =	$(APPLICATIONDIR)\battle_recorder\gds_data_conv.c \
 								$(APPLICATIONDIR)\battle_recorder\gds_connect.c
 
 
-#ƒoƒgƒ‹ƒŒƒR[ƒ_[
+#ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
 #===> SRCS_OVERLAY_GDS_COMM
 SRCS_OVERLAY_BATTLE_RECORDER =	$(APPLICATIONDIR)\battle_recorder\br_main.c  \
 								$(APPLICATIONDIR)\battle_recorder\br_disp.c  \
@@ -1151,7 +1151,7 @@ SRCS_OVERLAY_BATTLE_RECORDER =	$(APPLICATIONDIR)\battle_recorder\br_main.c  \
 								$(SAVEDATADIR)\battle_rec_ov.c
 
 
-#wifi_2dmapƒVƒXƒeƒ€
+#wifi_2dmapã‚·ã‚¹ãƒ†ãƒ 
 #===> SRCS_OVERLAY_DPW_COMMON
 SRCS_OVERLAY_WIFI_2DMAPSYS =	$(APPLICATIONDIR)\wifi_2dmap\wifi_2dchar.c \
 								$(APPLICATIONDIR)\wifi_2dmap\wf2dmap_map.c \
@@ -1163,13 +1163,13 @@ SRCS_OVERLAY_WIFI_2DMAPSYS =	$(APPLICATIONDIR)\wifi_2dmap\wifi_2dchar.c \
 								$(APPLICATIONDIR)\wifi_2dmap\wf2dmap_cmdq.c
 
 
-#WIFI—F’BŽè’ 
-#wifi_2dchar.c‚ðŽg—p‚µ‚½‚¢‚Ì‚Åmain‚©‚çˆÚ“®‚³‚¹‚Ü‚µ‚½	07.07.26	tomoya
+#WIFIå‹é”æ‰‹å¸³
+#wifi_2dchar.cã‚’ä½¿ç”¨ã—ãŸã„ã®ã§mainã‹ã‚‰ç§»å‹•ã•ã›ã¾ã—ãŸ	07.07.26	tomoya
 #===> SRCS_OVERLAY_WIFI_2DMAPSYS
 SRCS_OVERLAY_WIFI_NOTE		= $(APPLICATIONDIR)\wifi_note\pl_wifi_note.c
 
 
-#WIFIP2Pƒ}ƒbƒ`ƒ“ƒO
+#WIFIP2Pãƒžãƒƒãƒãƒ³ã‚°
 #===> SRCS_OVERLAY_WIFI_2DMAPSYS
 SRCS_OVERLAY_WIFI_P2PMATCH		= $(APPLICATIONDIR)\wifi_p2pmatch\wifi_p2pmatch.c \
 									$(APPLICATIONDIR)\wifi_p2pmatch\wifi_p2pmatchroom.c \
@@ -1234,20 +1234,20 @@ SRCS_OVERLAY_WIFILOBBY_ROOM		=	$(APPLICATIONDIR)\wifi_lobby\wflby_3dmatrix.c \
 
 
 
-#ƒgƒŒ[ƒi[ƒJ[ƒh
-#‚Þ‚©‚µ‚Í===> main
+#ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰
+#ã‚€ã‹ã—ã¯===> main
 #===> SRCS_OVERLAY_BC_COMMON2
 SRCS_OVERLAY_TRAINER_CARD		= $(APPLICATIONDIR)\trainer_card\trainer_card.c \
 				$(APPLICATIONDIR)\trainer_card\trcard_bmp.c \
 				$(APPLICATIONDIR)\trainer_card\trcard_obj.c \
 				$(APPLICATIONDIR)\trainer_card\trcard_snd.c
 
-#ƒTƒCƒ“‰æ–Ê
+#ã‚µã‚¤ãƒ³ç”»é¢
 #===> SRCS_OVERLAY_TRAINER_CARD
 SRCS_OVERLAY_MYSIGN			= $(APPLICATIONDIR)\mysign\mysign.c
 
 
-#ƒI[ƒvƒjƒ“ƒO
+#ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°
 #===> main
 SRCS_OVERLAY_OPENING		= $(DEMODIR)\opening\opening.c \
 				$(DEMODIR)\opening\opening_bmp.c \
@@ -1255,22 +1255,22 @@ SRCS_OVERLAY_OPENING		= $(DEMODIR)\opening\opening.c \
 				$(DEMODIR)\intro\intro.c \
 				$(DEMODIR)\intro\intro_tv.c
 
-#ƒRƒ“ƒtƒBƒO
+#ã‚³ãƒ³ãƒ•ã‚£ã‚°
 #===> main
 SRCS_OVERLAY_CONFIG		= $(APPLICATIONDIR)\config\config_tool.c
 
-#ƒ[ƒ‹•`‰æ
+#ãƒ¡ãƒ¼ãƒ«æç”»
 #===> main
 SRCS_OVERLAY_MAILVIEW		= $(APPLICATIONDIR)\mail\mailview.c
 
-#ƒJƒvƒZƒ‹
+#ã‚«ãƒ—ã‚»ãƒ«
 #===> SRCS_OVERLAY_BC_COMMON2
 SRCS_OVERLAY_CUSTOM_BALL	=	$(APPLICATIONDIR)\custom_ball\cb_seal.c \
 								$(APPLICATIONDIR)\custom_ball\cb_disp.c \
 								$(APPLICATIONDIR)\custom_ball\cb_main.c
 
 
-#ƒ^ƒCƒgƒ‹‰æ–Ê
+#ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢
 #===> main
 SRCS_OVERLAY_TITLE		= $(DPTITLEDIR)title.c \
 						  $(DPTITLEDIR)opening_demo.c \
@@ -1279,11 +1279,11 @@ SRCS_OVERLAY_TITLE		= $(DPTITLEDIR)title.c \
 						  $(DPTITLEDIR)op_poke_cutin.c
 
 
-#ƒ|ƒPƒ‚ƒ“‘I‘ð‰æ–Ê
+#ãƒã‚±ãƒ¢ãƒ³é¸æŠžç”»é¢
 #===> main
 SRCS_OVERLAY_EV_POKESELECT = $(DEMODIR)\ev_poke_select.c
 
-#ƒ|ƒ‹ƒgƒP[ƒX
+#ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹
 #===> main
 SRCS_OVERLAY_PORUTOCASE		= $(APPLICATIONDIR)\poruto\porucase.c \
 			$(APPLICATIONDIR)\poruto\porucase_bmp.c \
@@ -1292,7 +1292,7 @@ SRCS_OVERLAY_PORUTOCASE		= $(APPLICATIONDIR)\poruto\porucase.c \
 			$(APPLICATIONDIR)\poruto\poru_3d.c
 			 
 
-#ƒ^ƒEƒ“ƒ}ƒbƒv
+#ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—
 #===> main
 SRCS_OVERLAY_TOWNMAP	= $(APPLICATIONDIR)\worldmap\townmap.c \
 			$(APPLICATIONDIR)\worldmap\tmap_nrm.c \
@@ -1301,19 +1301,19 @@ SRCS_OVERLAY_TOWNMAP	= $(APPLICATIONDIR)\worldmap\townmap.c \
 			
 			
 			 
-#–`Œ¯ƒm[ƒg
+#å†’é™ºãƒŽãƒ¼ãƒˆ
 #===> main
 SRCS_OVERLAY_FNOTE		= $(APPLICATIONDIR)\f_note\fnote_main.c \
 			$(APPLICATIONDIR)\f_note\fnote_bmp.c
 
 
-#‚Ü‚º‚Ü‚ºŠî–{ƒVƒXƒeƒ€
-#í’“‚ð‚ ‚¯‚é‚½‚ß‚ÉˆÚ“®‚³‚¹‚é
+#ã¾ãœã¾ãœåŸºæœ¬ã‚·ã‚¹ãƒ†ãƒ 
+#å¸¸é§ã‚’ã‚ã‘ã‚‹ãŸã‚ã«ç§»å‹•ã•ã›ã‚‹
 #===> SRCS_OVERLAY_BC_COMMON2
 SRCS_OVERLAY_NUTS_MIXER_COMMON = $(APPLICATIONDIR)\nutmixer\nutmixer.c \
 				$(APPLICATIONDIR)\nutmixer\nmix_mseq.c
 
-#‚Ü‚º‚Ü‚º
+#ã¾ãœã¾ãœ
 #===> SRCS_OVERLAY_NUTS_MIXER_COMMON
 SRCS_OVERLAY_NUTS_MIXER	= $(APPLICATIONDIR)\nutmixer\nmix_game.c \
 				$(APPLICATIONDIR)\nutmixer\nmix_res.c \
@@ -1323,38 +1323,38 @@ SRCS_OVERLAY_NUTS_MIXER	= $(APPLICATIONDIR)\nutmixer\nmix_game.c \
 				$(APPLICATIONDIR)\nutmixer\nmix_game_demo.c \
 				$(APPLICATIONDIR)\nutmixer\nmix_game_data.c
 
-#ƒoƒbƒO
-#wifiPofin‚Ì‚½‚ßƒ{ƒbƒNƒX‚Ì‰º‚©‚çNUTS_MIXER_COMMON‚Ì‰º‚ÉˆÚ“® SRCS_OVERLAY_OVERLAY_BOX
+#ãƒãƒƒã‚°
+#wifiPofinã®ãŸã‚ãƒœãƒƒã‚¯ã‚¹ã®ä¸‹ã‹ã‚‰NUTS_MIXER_COMMONã®ä¸‹ã«ç§»å‹• SRCS_OVERLAY_OVERLAY_BOX
 #===> SRCS_OVERLAY_NUTS_MIXER_COMMON
 SRCS_OVERLAY_FLD_BAG	= $(APPLICATIONDIR)\bag\bag_main.c \
 				$(APPLICATIONDIR)\bag\bag_bmp.c \
 				$(APPLICATIONDIR)\bag\bag_obj.c
 
 
-#–Ø‚ÌŽÀƒ^ƒO
-#wifiƒ|ƒtƒBƒ“‚Ì‚½‚ßSRCS_OVERLAY_FLD_BAG‚Ì‰º‚É’u‚­ main
+#æœ¨ã®å®Ÿã‚¿ã‚°
+#wifiãƒãƒ•ã‚£ãƒ³ã®ãŸã‚SRCS_OVERLAY_FLD_BAGã®ä¸‹ã«ç½®ã main
 #===> SRCS_OVERLAY_FLD_BAG
 SRCS_OVERLAY_NUTS_TAG	= $(APPLICATIONDIR)\nuts_tag\nuts_tag.c
 
 
-#“a“°“ü‚èƒfƒ‚
+#æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¢
 #===> SRCS_OVERLAY_BC_COMMON2
 SRCS_OVERLAY_DEMO_DENDOU =	$(DEMODIR)\dendou\demo_dendou.c
 
 
-#“a“°“ü‚èƒf[ƒ^‰æ–Ê
+#æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¼ã‚¿ç”»é¢
 #===> main
 SRCS_OVERLAY_DENDOU_PC =	$(APPLICATIONDIR)\dendou_pc\dendou_pc.c	\
 				$(APPLICATIONDIR)\dendou_pc\dendou_pc_view.c
 
 
-#ŒðŠ·ƒŠƒXƒg
+#äº¤æ›ãƒªã‚¹ãƒˆ
 #===> SRCS_OVERLAY_BC_COMMON2
 SRCS_OVERLAY_TRADELIST =	$(APPLICATIONDIR)\tradelist\tradelist.c \
 				$(APPLICATIONDIR)\tradelist\tradelist_bmp.c
 
 
-#ƒ^ƒCƒgƒ‹ƒfƒoƒbƒO  ƒƒ‚ƒŠ[íŒ¸‚Ìˆ×‚±‚±‚ÉˆÚ“®
+#ã‚¿ã‚¤ãƒˆãƒ«ãƒ‡ãƒãƒƒã‚°  ãƒ¡ãƒ¢ãƒªãƒ¼å‰Šæ¸›ã®ç‚ºã“ã“ã«ç§»å‹•
 #===> main
 SRCS_OVERLAY_TITLE_DEBUG	= $(DEBUGDIR)\snd_test.c \
 				$(DEBUGDIR)\d_title.c \
@@ -1367,24 +1367,24 @@ SRCS_OVERLAY_TITLE_DEBUG	= $(DEBUGDIR)\snd_test.c \
 				$(DEBUGDIR)\d_contest.c \
 				$(DEBUGDIR)\d_ex_save.c
 
-#ƒ^ƒ[ƒAƒvƒŠ(¬Ñƒ‚ƒjƒ^•—ð‘ãƒŠ[ƒ_[)
+#ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒª(æˆç¸¾ãƒ¢ãƒ‹ã‚¿ï¼†æ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼)
 #===> main
 SRCS_OVERLAY_BTOWER_APP = $(APPLICATIONDIR)\btower\btwr_score.c
 
-#‹Z‹³‚¦/Žv‚¢o‚µ
+#æŠ€æ•™ãˆ/æ€ã„å‡ºã—
 #===> main
 SRCS_OVERLAY_WAZA_OSHIE	= $(APPLICATIONDIR)\waza_oshie\wo_main.c
 
-#WIFI’n‹…‹V
+#WIFIåœ°çƒå„€
 #===> main
 SRCS_OVERLAY_WIFIEARTH	= $(APPLICATIONDIR)\wifi_earth\wifi_earth.c
 
-#‘Dƒfƒ‚
+#èˆ¹ãƒ‡ãƒ¢
 #===> main
 SRCS_OVERLAY_SHIP_DEMO	=	$(FIELDDIR)\ship_demo.c \
 							$(FIELDDIR)\ship_demo_pl.c
 
-#WIFI¢ŠEŒðŠ·
+#WIFIä¸–ç•Œäº¤æ›
 #===> SRCS_OVERLAY_BC_COMMON2
 SRCS_OVERLAY_WORLDTRADE		= $(DPWLIBDIR)\dpw_tr.c \
 				  $(APPLICATIONDIR)\wifi_worldtrade\worldtrade.c \
@@ -1401,7 +1401,7 @@ SRCS_OVERLAY_WORLDTRADE		= $(DPWLIBDIR)\dpw_tr.c \
                                   $(APPLICATIONDIR)\wifi_worldtrade\worldtrade_enter.c
 
 
-#ƒ|ƒPƒ‚ƒ“ŒðŠ·ƒfƒ‚
+#ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒ‡ãƒ¢
 #===> SRCS_OVERLAY_WORLDTRADE
 SRCS_OVERLAY_DEMO_TRADE =	$(DEMODIR)\trade\demo_trade.c		\
 				$(DEMODIR)\trade\demo_trade_3d.c	\
@@ -1414,14 +1414,14 @@ SRCS_OVERLAY_DEMO_TRADE =	$(DEMODIR)\trade\demo_trade.c		\
 				$(DEMODIR)\trade\demo_trade_scene6.c
 
 
-#WIFI¢ŠEƒoƒgƒ‹ƒ^ƒ[
+#WIFIä¸–ç•Œãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 #===> SRCS_OVERLAY_BC_COMMON2
 SRCS_OVERLAY_DPW_TOWER		= $(DPWLIBDIR)\dpw_bt.c \
 				  $(APPLICATIONDIR)\wifi_b_tower\wbtower.c \
 				  $(APPLICATIONDIR)\wifi_b_tower\wbtower_enter.c
 
 
-#ƒXƒ^[ƒgƒƒjƒ…[/‚Ó‚µ‚¬‚È‚Å‚«‚²‚Æ
+#ã‚¹ã‚¿ãƒ¼ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼/ãµã—ãŽãªã§ãã”ã¨
 #===> SRCS_OVERLAY_DPW_COMMON
 SRCS_OVERLAY_STARTMENU		= $(SYSTEMDIR)\startmenu.c \
 				  $(FUSHIGI)\pokemonranger.c \
@@ -1448,7 +1448,7 @@ SRCS_OVERLAY_STARTMENU		= $(SYSTEMDIR)\startmenu.c \
 				  $(SYSTEMDIR)\agb_str.c \
 				  src\library\crypto\libcrypto_ov97.s
 
-#Eƒ[ƒ‹
+#Eãƒ¡ãƒ¼ãƒ«
 #===> SRCS_OVERLAY_WORLDTRADE
 SRCS_OVERLAY_EMAIL =	$(APPLICATIONDIR)\e_mail\email_main.c \
 				  $(APPLICATIONDIR)\e_mail\email_enter.c \
@@ -1457,7 +1457,7 @@ SRCS_OVERLAY_EMAIL =	$(APPLICATIONDIR)\e_mail\email_main.c \
 				  $(APPLICATIONDIR)\e_mail\email_test.c \
 	              $(APPLICATIONDIR)\e_mail\email.c
 
-#ƒGƒ“ƒfƒBƒ“ƒOƒfƒ‚
+#ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ‡ãƒ¢
 #===> main
 SRCS_OVERLAY_DEMO_ENDING = $(DEMODIR)\ending\ending.c \
 				$(DEMODIR)\ending\ending_setup.c \
@@ -1470,7 +1470,7 @@ SRCS_OVERLAY_DEMO_ENDING = $(DEMODIR)\ending\ending.c \
 				$(DEMODIR)\ending\ending_list.c \
 				$(DEMODIR)\ending\ending_tool.c
 
-#ƒeƒ“ƒKƒ“ƒUƒ“ƒfƒ‚
+#ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³ãƒ‡ãƒ¢
 #===> main
 SRCS_OVERLAY_DEMO_TENGANZAN =	$(DEMODIR)\tengan\demo_tengan.c		\
 								$(DEMODIR)\tengan\demo_tengan_s0.c	\
@@ -1482,7 +1482,7 @@ SRCS_OVERLAY_DEMO_TENGANZAN =	$(DEMODIR)\tengan\demo_tengan.c		\
 								$(DEMODIR)\tengan\demo_eff.c
 
 
-#ƒ~ƒjƒQ[ƒ€@ƒXƒƒbƒg
+#ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã€€ã‚¹ãƒ­ãƒƒãƒˆ
 #===> main
 SRCS_OVERLAY_SLOT = $(APPLICATIONDIR)\slot\slot.c \
 				$(APPLICATIONDIR)\slot\slot_main.c \
@@ -1491,7 +1491,7 @@ SRCS_OVERLAY_SLOT = $(APPLICATIONDIR)\slot\slot.c \
 				$(APPLICATIONDIR)\slot\slot_data.c
 				
 
-#•\²ó
+#è¡¨å½°çŠ¶
 #===> main
 SRCS_OVERLAY_SYOUJYOU = $(DEMODIR)\syoujyou\syoujyou.c
 
@@ -1506,7 +1506,7 @@ SRCS_OVERLAY_WIFI_BATTLEROOM =	$(APPLICATIONDIR)\wifi_battleroom\wifi_battleroom
 								$(APPLICATIONDIR)\wifi_battleroom\wbr_client_cont.c
 
 
-#ƒtƒƒ“ƒeƒBƒA‹¤’Êƒc[ƒ‹—Þ
+#ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å…±é€šãƒ„ãƒ¼ãƒ«é¡ž
 #===> SRCS_OVERLAY_WIFI_2DMAPSYS
 SRCS_OVERLAY_FRONTIER_COMMON	= $(FRONTIERDIR)\frontier_tool.c \
 								$(FRONTIERDIR)\frontier_scr.c \
@@ -1542,7 +1542,7 @@ SRCS_OVERLAY_FRONTIER_COMMON	= $(FRONTIERDIR)\frontier_tool.c \
 								$(FRONTIERDIR)\frontier_enc_cutin.c \
 								$(FRONTIERDIR)\f_encount.c
 
-#ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
+#ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 #===> SRCS_OVERLAY_FRONTIER_COMMON
 SRCS_OVERLAY_FACTORY			= $(FRONTIERDIR)\factory\factory.c \
 								  $(FRONTIERDIR)\factory\factory_clact.c \
@@ -1552,14 +1552,14 @@ SRCS_OVERLAY_FACTORY			= $(FRONTIERDIR)\factory\factory.c \
 								  $(FRONTIERDIR)\factory\factory_csr.c \
 								  $(FRONTIERDIR)\factory\factory_bmp.c
 								  
-#ƒoƒgƒ‹ƒXƒe[ƒW
+#ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
 #===> SRCS_OVERLAY_FRONTIER_COMMON
 SRCS_OVERLAY_STAGE				= $(FRONTIERDIR)\stage\stage.c \
 								  $(FRONTIERDIR)\stage\stage_clact.c \
 								  $(FRONTIERDIR)\stage\stage_obj.c \
 								  $(FRONTIERDIR)\stage\stage_bmp.c
 
-#ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
+#ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 #===> SRCS_OVERLAY_FRONTIER_COMMON
 SRCS_OVERLAY_CASTLE				= $(FRONTIERDIR)\castle\castle_mine.c \
 								  $(FRONTIERDIR)\castle\castle_enemy.c \
@@ -1568,24 +1568,24 @@ SRCS_OVERLAY_CASTLE				= $(FRONTIERDIR)\castle\castle_mine.c \
 								  $(FRONTIERDIR)\castle\castle_common.c \
 								  $(FRONTIERDIR)\castle\castle_bmp.c
 
-#ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg
+#ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 #===> SRCS_OVERLAY_FRONTIER_COMMON
 SRCS_OVERLAY_ROULETTE			= $(FRONTIERDIR)\roulette\roulette.c \
 								  $(FRONTIERDIR)\roulette\roulette_clact.c \
 								  $(FRONTIERDIR)\roulette\roulette_obj.c \
 								  $(FRONTIERDIR)\roulette\roulette_bmp.c
 
-#‚®‚é‚®‚éŒðŠ·
+#ãã‚‹ãã‚‹äº¤æ›
 #===> main
 SRCS_OVERLAY_GURU2	= $(APPLICATIONDIR)\guru2\guru2_main.c \
                       $(APPLICATIONDIR)\guru2\guru2_receipt.c
 
-#ƒtƒƒ“ƒeƒBƒAƒ‚ƒjƒ^[
+#ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¢ãƒ‹ã‚¿ãƒ¼
 #===> main
 SRCS_OVERLAY_FRONTIER_MONITOR	= $(FRONTIERDIR)\frontier_monitor.c \
 								  $(FRONTIERDIR)\frontier_monitor_bmp.c
 
-#ƒXƒNƒ‰ƒbƒ`
+#ã‚¹ã‚¯ãƒ©ãƒƒãƒ
 #===> main
 SRCS_OVERLAY_SCRATCH			= $(APPLICATIONDIR)\scratch\scratch.c \
 								  $(SYSTEMDIR)\touchpanel_draw.c \
@@ -1593,24 +1593,24 @@ SRCS_OVERLAY_SCRATCH			= $(APPLICATIONDIR)\scratch\scratch.c \
 								  $(APPLICATIONDIR)\scratch\scratch_obj.c \
 								  $(APPLICATIONDIR)\scratch\scratch_bmp.c
 
-#wifiƒƒr[ƒjƒ…[ƒX
+#wifiãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹
 #===> SRCS_OVERLAY_WIFILOBBY_COMMON
 SRCS_OVERLAY_LOBBYNEWS =	$(APPLICATIONDIR)\wifi_lobby\lobby_news.c 
 
-#‘«Õƒ{[ƒh
+#è¶³è·¡ãƒœãƒ¼ãƒ‰
 #===> SRCS_OVERLAY_WIFILOBBY_COMMON
 SRCS_OVERLAY_FOOTPRINT_BOARD =	$(APPLICATIONDIR)\wifi_lobby\footprint_main.c \
 								$(APPLICATIONDIR)\wifi_lobby\footprint_stamp.c \
 								$(APPLICATIONDIR)\wifi_lobby\footprint_tool.c \
 								$(APPLICATIONDIR)\wifi_lobby\footprint_comm.c
 
-#wifiƒ~ƒjƒQ[ƒ€ƒc[ƒ‹
+#wifiãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ„ãƒ¼ãƒ«
 #===> SRCS_OVERLAY_WIFILOBBY_COMMON
 SRCS_OVERLAY_MINIGAME_COMMON = $(APPLICATIONDIR)\wifi_lobby\minigame_tool.c \
 							   $(APPLICATIONDIR)\wifi_lobby\minigame_commcomand.c \
 							   $(APPLICATIONDIR)\wifi_lobby\minigame_commcomand_func.c
 
-#wifiƒoƒPƒbƒgƒQ[ƒ€
+#wifiãƒã‚±ãƒƒãƒˆã‚²ãƒ¼ãƒ 
 #===> SRCS_OVERLAY_MINIGAME_COMMON
 SRCS_OVERLAY_BUCKET =	$(APPLICATIONDIR)\bucket\bucket.c \
 						$(APPLICATIONDIR)\bucket\bct_surver.c \
@@ -1618,7 +1618,7 @@ SRCS_OVERLAY_BUCKET =	$(APPLICATIONDIR)\bucket\bucket.c \
 						$(APPLICATIONDIR)\bucket\comm_bct_command.c \
 						$(APPLICATIONDIR)\bucket\comm_bct_command_func.c
 						
-#wifi‹Êæ‚è
+#wifiçŽ‰ä¹—ã‚Š
 #===> SRCS_OVERLAY_MINIGAME_COMMON
 SRCS_OVERLAY_BALANCE_BALL =	$(APPLICATIONDIR)\BalanceBall\bb_comm_cmd.c		\
 							$(APPLICATIONDIR)\BalanceBall\balance_ball.c	\
@@ -1629,7 +1629,7 @@ SRCS_OVERLAY_BALANCE_BALL =	$(APPLICATIONDIR)\BalanceBall\bb_comm_cmd.c		\
 							$(APPLICATIONDIR)\BalanceBall\bb_tool.c			\
 							$(SYSTEMDIR)\quaternion.c
 
-#wifi•—‘DŠ„‚è
+#wifié¢¨èˆ¹å‰²ã‚Š
 #===> SRCS_OVERLAY_MINIGAME_COMMON
 SRCS_OVERLAY_BALLOON =	$(APPLICATIONDIR)\balloon\balloon.c \
 						$(APPLICATIONDIR)\balloon\balloon_game.c \
@@ -1639,20 +1639,20 @@ SRCS_OVERLAY_BALLOON =	$(APPLICATIONDIR)\balloon\balloon.c \
 						$(APPLICATIONDIR)\balloon\comm_command_balloon.c \
 						$(APPLICATIONDIR)\balloon\balloon_send_recv.c
 
-#ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒWƒfƒ‚
+#ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ãƒ‡ãƒ¢
 #===> main
 SRCS_OVERLAY_FORM_DEMO		= $(APPLICATIONDIR)\pokelist\plist_demo.c
 
-#‚½‚Ü‚²ƒfƒ‚
+#ãŸã¾ã”ãƒ‡ãƒ¢
 #===> main
 SRCS_OVERLAY_EGG		= $(DEMODIR)\egg\egg_disp.c \
 						  $(DEMODIR)\egg\egg_main.c
 
-#}‘ŠÙTV
+#å›³æ›¸é¤¨TV
 #===> main
 SRCS_OVERLAY_LIBRARY_TV	= $(DEMODIR)\intro\library_tv.c
 
-#”j‚ê‚½¢ŠE“Ë“üƒfƒ‚
+#ç ´ã‚ŒãŸä¸–ç•Œçªå…¥ãƒ‡ãƒ¢
 #===> main
 SRCS_OVERLAY_WARP		= $(DEMODIR)\warp\hakai_warp.c
 

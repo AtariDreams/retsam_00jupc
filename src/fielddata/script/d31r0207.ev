@@ -1,5 +1,5 @@
 //====================================================================
-//						d31r0207(ÉTÉçÉìïîâÆ)
+//						d31r0207(„Çµ„É≠„É≥ÈÉ®Â±ã)
 //====================================================================
 
 	.text
@@ -17,11 +17,11 @@
 
 
 //--------------------------------------------------------------------
-//					     ÉXÉNÉäÉvÉgñ{ëÃ
+//					     „Çπ„ÇØ„É™„Éó„ÉàÊú¨‰Ωì
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ÉXÉNÉäÉvÉgÉeÅ[ÉuÉã
+//					     „Çπ„ÇØ„É™„Éó„Éà„ÉÜ„Éº„Éñ„É´
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_tower_salon_ask_exit_01
 _EVENT_DATA		ev_tower_salon_seven1_01
@@ -40,7 +40,7 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d31r0207_flag_change:
-	//seven1:ÉÇÉ~Å@É`ÉFÉbÉN
+	//seven1:„É¢„Éü„ÄÄ„ÉÅ„Çß„ÉÉ„ÇØ
 ev_d31r0207_flag_seven1_check:
 	_IF_FLAGOFF_JUMP	FE_SEVEN1_CLEAR,ev_d31r0207_flag_seven1_on
 	_IFVAL_JUMP		WK_SCENE_D31R0207,NE,2,ev_d31r0207_flag_seven1_off
@@ -49,7 +49,7 @@ ev_d31r0207_flag_seven1_check:
 ev_d31r0207_flag_seven1_off:
 	_FLAG_RESET		FV_D31R0207_SEVEN1
 	
-	//seven2:É~ÉãÅ@É`ÉFÉbÉN
+	//seven2:„Éü„É´„ÄÄ„ÉÅ„Çß„ÉÉ„ÇØ
 ev_d31r0207_flag_seven2_check:
 	_IF_FLAGOFF_JUMP	FE_SEVEN2_CLEAR,ev_d31r0207_flag_seven2_on
 	_IFVAL_JUMP		WK_SCENE_D31R0207,NE,2,ev_d31r0207_flag_seven2_off
@@ -58,7 +58,7 @@ ev_d31r0207_flag_seven2_check:
 ev_d31r0207_flag_seven2_off:
 	_FLAG_RESET		FV_D31R0207_SEVEN2
 
-	//seven3:ÉQÉìÅ@É`ÉFÉbÉN
+	//seven3:„Ç≤„É≥„ÄÄ„ÉÅ„Çß„ÉÉ„ÇØ
 ev_d31r0207_flag_seven3_check:
 	_IF_FLAGOFF_JUMP	FE_SEVEN3_CLEAR,ev_d31r0207_flag_seven3_on
 	_IFVAL_JUMP		WK_SCENE_D31R0207,NE,2,ev_d31r0207_flag_seven3_off
@@ -67,7 +67,7 @@ ev_d31r0207_flag_seven3_check:
 ev_d31r0207_flag_seven3_off:
 	_FLAG_RESET		FV_D31R0207_SEVEN3
 	
-	//seven4:É}ÉCÅ@É`ÉFÉbÉN
+	//seven4:„Éû„Ç§„ÄÄ„ÉÅ„Çß„ÉÉ„ÇØ
 ev_d31r0207_flag_seven4_check:
 	_IF_FLAGOFF_JUMP	FE_SEVEN4_CLEAR,ev_d31r0207_flag_seven4_on
 	_IFVAL_JUMP		WK_SCENE_D31R0207,NE,2,ev_d31r0207_flag_seven4_off
@@ -76,7 +76,7 @@ ev_d31r0207_flag_seven4_check:
 ev_d31r0207_flag_seven4_off:
 	_FLAG_RESET		FV_D31R0207_SEVEN4
 	
-	//seven5:ÉoÉNÅ@É`ÉFÉbÉN
+	//seven5:„Éê„ÇØ„ÄÄ„ÉÅ„Çß„ÉÉ„ÇØ
 ev_d31r0207_flag_seven5_check:
 	_IF_FLAGOFF_JUMP	FE_SEVEN5_CLEAR,ev_d31r0207_flag_seven5_on
 	_IFVAL_JUMP		WK_SCENE_D31R0207,NE,2,ev_d31r0207_flag_seven5_off
@@ -128,7 +128,7 @@ ev_d31r0207_obj_pcwoman2_set:
 /********************************************************************/
 
 /********************************************************************/
-/* ÉTÉçÉìÇ…ì¸Ç¡ÇƒÇ´ÇΩÇ∆Ç´ÇÃèàóù										*/
+/* „Çµ„É≠„É≥„Å´ÂÖ•„Å£„Å¶„Åç„Åü„Å®„Åç„ÅÆÂá¶ÁêÜ										*/
 /********************************************************************/
 ev_tower_salon_enter:
 	_EVENT_START
@@ -136,21 +136,21 @@ ev_tower_salon_enter:
 	_CALL			ev_tower_salon_comanm_player_in
 	_TALK_KEYWAIT	msg_tower_85
 	_TALK_CLOSE
-	//5êlèOíäëI
+	//5‰∫∫Ë°ÜÊäΩÈÅ∏
 	_BTOWER_TOOLS	BTWR_SUB_CHOICE_BTL_SEVEN,BTWR_NULL_PARAM,BTWR_NULL_PARAM
 
 #ifdef BTOWER_AUTO_DEB
 deb_auto_salon_01:
-	//ÇTêlèOÉâÉìÉ_ÉÄëIë
+	//Ôºï‰∫∫Ë°Ü„É©„É≥„ÉÄ„É†ÈÅ∏Êäû
 	_GET_RND			SCWK_ANSWER,5
 	_LDVAL				SCWK_PARAM0,D31R0207_SEVEN1
 	_ADD_WK				SCWK_PARAM0,SCWK_ANSWER
 
-	//ëIÇÒÇæÇTêlèOÉZÉbÉg
+	//ÈÅ∏„Çì„Å†Ôºï‰∫∫Ë°Ü„Çª„ÉÉ„Éà
 	_BTOWER_TOOLS		BTWR_SUB_SET_PARTNER_NO,SCWK_ANSWER,BTWR_NULL_PARAM
-	//OBJè¡Ç∑
+	//OBJÊ∂à„Åô
 	_OBJ_DEL			SCWK_PARAM0
-	//àÍíUèÍñ ì]ä∑
+	//‰∏ÄÊó¶Â†¥Èù¢Ëª¢Êèõ
 	_LDVAL				WK_SCENE_D31R0207,2
 	_MAP_CHANGE			ZONE_ID_D31R0207,0,8,4,DIR_UP
 #endif
@@ -158,11 +158,11 @@ deb_auto_salon_01:
 	_END
 
 /********************************************************************/
-/* éÛïtÇ®éoÇ≥ÇÒòbÇµä|ÇØ											*/
+/* Âèó‰ªò„ÅäÂßâ„Åï„ÇìË©±„ÅóÊéõ„Åë											*/
 /********************************************************************/
 ev_tower_salon_ask_exit_01:
 	_TALK_OBJ_START
-	//Ç‹ÇæëIÇÒÇ≈Ç»Ç¢
+	//„Åæ„Å†ÈÅ∏„Çì„Åß„Å™„ÅÑ
 	_PLAYER_NAME		0
 	_TALKMSG			msg_tower_86
 	_YES_NO_WIN			SCWK_ANSWER
@@ -172,29 +172,29 @@ ev_tower_salon_ask_exit_01:
 	_TALK_OBJ_END
 	_END
 
-//íßêÌÇé~ÇﬂÇÈ
+//ÊåëÊà¶„ÇíÊ≠¢„ÇÅ„Çã
 ev_tower_salon_exit:
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//éÛÇØïtÇØÇ…ñﬂÇÈ
+	//Âèó„Åë‰ªò„Åë„Å´Êàª„Çã
 	_LDVAL				WK_SCENE_D31R0201,3
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	_MAP_CHANGE			ZONE_ID_D31R0201,0,11,6,DIR_UP
 	_END
 
 
-//ÉpÅ[ÉgÉiÅ[ÇëIÇÒÇæ
+//„Éë„Éº„Éà„Éä„Éº„ÇíÈÅ∏„Çì„Å†
 ev_tower_salon_select:
 	_EVENT_START
-	//ÉVÅ[ÉìÉèÅ[ÉNÉäÉZÉbÉg
+	//„Ç∑„Éº„É≥„ÉØ„Éº„ÇØ„É™„Çª„ÉÉ„Éà
 	_LDVAL				WK_SCENE_D31R0207,0
 	_TALK_KEYWAIT		msg_tower_87
 	_TALK_CLOSE
 	_CALL				ev_tower_salon_comanm_player_out
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//É}ÉãÉ`í òHÅ`ÉãÅ[ÉÄÇ÷
+	//„Éû„É´„ÉÅÈÄöË∑Ø„Äú„É´„Éº„É†„Å∏
 	_LDVAL				WK_SCENE_D31R0202,2
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	_MAP_CHANGE			ZONE_ID_D31R0202,0,SB_EV_PLAYER_SX,SB_EV_PLAYER_SY,DIR_UP
@@ -203,9 +203,9 @@ ev_tower_salon_select:
 
 
 /********************************************************************/
-/* ÇTêlèOòbÇµä|ÇØ													*/
+/* Ôºï‰∫∫Ë°ÜË©±„ÅóÊéõ„Åë													*/
 /********************************************************************/
-//ã§óL
+//ÂÖ±Êúâ
 ev_tower_salon_common_pokedata:
 	_BTOWER_SEVEN_POKE_GET	LOCALWORK9,0,SCWK_TEMP0,SCWK_TEMP1
 	_POKEMON_NAME_EXTRA	0,SCWK_TEMP0,PM_MALE,FALSE
@@ -215,7 +215,7 @@ ev_tower_salon_common_pokedata:
 	_WAZA_NAME			3,SCWK_TEMP1
 	_RET
 
-//ÉÇÉ~
+//„É¢„Éü
 ev_tower_salon_seven1_01:
 	_TALK_OBJ_START
 	_IFVAL_JUMP		WK_SCENE_D31R0207,EQ,2,ev_tower_salon_seven1_no
@@ -233,7 +233,7 @@ ev_tower_salon_seven1_no:
 	_END
 
 ev_tower_salon_seven1_yes:
-	//ÉpÅ[ÉgÉiÅ[NoÉZÉbÉg
+	//„Éë„Éº„Éà„Éä„ÉºNo„Çª„ÉÉ„Éà
 	_BTOWER_TOOLS	BTWR_SUB_SET_PARTNER_NO,LOCALWORK9,BTWR_NULL_PARAM
 	_LDVAL			WK_SCENE_D31R0207,2
 	_TALK_KEYWAIT	msg_tower_seven7b_03
@@ -243,7 +243,7 @@ ev_tower_salon_seven1_yes:
 	_JUMP			ev_tower_salon_comanm_seven1
 	_END
 
-//É~Éã
+//„Éü„É´
 ev_tower_salon_seven2_01:
 	_TALK_OBJ_START
 	_IFVAL_JUMP		WK_SCENE_D31R0207,EQ,2,ev_tower_salon_seven2_no
@@ -262,7 +262,7 @@ ev_tower_salon_seven2_no:
 	_END
 
 ev_tower_salon_seven2_yes:
-	//ÉpÅ[ÉgÉiÅ[NoÉZÉbÉg
+	//„Éë„Éº„Éà„Éä„ÉºNo„Çª„ÉÉ„Éà
 	_BTOWER_TOOLS		BTWR_SUB_SET_PARTNER_NO,LOCALWORK9,BTWR_NULL_PARAM
 	_LDVAL			WK_SCENE_D31R0207,2
 	_PLAYER_NAME	0
@@ -273,7 +273,7 @@ ev_tower_salon_seven2_yes:
 	_JUMP			ev_tower_salon_comanm_seven2
 	_END
 
-//ÉQÉì
+//„Ç≤„É≥
 ev_tower_salon_seven3_01:
 	_TALK_OBJ_START
 	_IFVAL_JUMP		WK_SCENE_D31R0207,EQ,2,ev_tower_salon_seven3_no
@@ -291,7 +291,7 @@ ev_tower_salon_seven3_no:
 	_END
 
 ev_tower_salon_seven3_yes:
-	//ÉpÅ[ÉgÉiÅ[NoÉZÉbÉg
+	//„Éë„Éº„Éà„Éä„ÉºNo„Çª„ÉÉ„Éà
 	_BTOWER_TOOLS		BTWR_SUB_SET_PARTNER_NO,LOCALWORK9,BTWR_NULL_PARAM
 	_LDVAL			WK_SCENE_D31R0207,2
 	_TALK_KEYWAIT	msg_tower_seven7a_03
@@ -301,7 +301,7 @@ ev_tower_salon_seven3_yes:
 	_JUMP			ev_tower_salon_comanm_seven3
 	_END
 
-//É}ÉC
+//„Éû„Ç§
 ev_tower_salon_seven4_01:
 	_TALK_OBJ_START
 	_IFVAL_JUMP		WK_SCENE_D31R0207,EQ,2,ev_tower_salon_seven4_no
@@ -319,7 +319,7 @@ ev_tower_salon_seven4_no:
 	_END
 
 ev_tower_salon_seven4_yes:
-	//ÉpÅ[ÉgÉiÅ[NoÉZÉbÉg
+	//„Éë„Éº„Éà„Éä„ÉºNo„Çª„ÉÉ„Éà
 	_BTOWER_TOOLS		BTWR_SUB_SET_PARTNER_NO,LOCALWORK9,BTWR_NULL_PARAM
 	_LDVAL			WK_SCENE_D31R0207,2
 	_TALK_KEYWAIT	msg_tower_seven7d_03
@@ -329,7 +329,7 @@ ev_tower_salon_seven4_yes:
 	_JUMP			ev_tower_salon_comanm_seven4
 	_END
 
-//ÉoÉN
+//„Éê„ÇØ
 ev_tower_salon_seven5_01:
 	_TALK_OBJ_START
 	_IFVAL_JUMP		WK_SCENE_D31R0207,EQ,2,ev_tower_salon_seven5_no
@@ -347,7 +347,7 @@ ev_tower_salon_seven5_no:
 	_END
 
 ev_tower_salon_seven5_yes:
-	//ÉpÅ[ÉgÉiÅ[NoÉZÉbÉg
+	//„Éë„Éº„Éà„Éä„ÉºNo„Çª„ÉÉ„Éà
 	_BTOWER_TOOLS		BTWR_SUB_SET_PARTNER_NO,LOCALWORK9,BTWR_NULL_PARAM
 	_LDVAL			WK_SCENE_D31R0207,2
 	_TALK_KEYWAIT	msg_tower_seven7c_03
@@ -358,20 +358,20 @@ ev_tower_salon_seven5_yes:
 	_END
 
 ev_tower_salon_comanm_door_open:
-	//ÉGÉåÉxÅ[É^ÉhÉAopen
+	//„Ç®„É¨„Éô„Éº„Çø„Éâ„Ç¢open
 	_SET_UP_DOOR_ANIME	0,0,8,2,77
 	_SEQ_OPEN_DOOR	77
 	_WAIT_3D_ANIME	77
 	_RET
 
 ev_tower_salon_comanm_door_close:
-	_SEQ_CLOSE_DOOR	77	//ÉhÉAï¬ÇﬂÇÈ
-	_WAIT_3D_ANIME	77	//ÉAÉjÉÅèIóπë“Çø
-	_FREE_3D_ANIME	77	//ÉhÉAÉAÉjÉÅâï˙
+	_SEQ_CLOSE_DOOR	77	//„Éâ„Ç¢Èñâ„ÇÅ„Çã
+	_WAIT_3D_ANIME	77	//„Ç¢„Éã„É°ÁµÇ‰∫ÜÂæÖ„Å°
+	_FREE_3D_ANIME	77	//„Éâ„Ç¢„Ç¢„Éã„É°Ëß£Êîæ
 	_RET
 
 /********************************************************************/
-/* é©ã@/Ç®éoÇ≥ÇÒÉAÉjÉÅ												*/
+/* Ëá™Ê©ü/„ÅäÂßâ„Åï„Çì„Ç¢„Éã„É°												*/
 /********************************************************************/
 ev_tower_salon_comanm_player_in:
 	_CALL		ev_tower_salon_comanm_door_open
@@ -396,9 +396,9 @@ ev_tower_salon_comanm_player_out:
 	_RET
 
 /********************************************************************/
-/* ÇTêlèOÉAÉjÉÅ														*/
+/* Ôºï‰∫∫Ë°Ü„Ç¢„Éã„É°														*/
 /********************************************************************/
-//ã§óL
+//ÂÖ±Êúâ
 ev_tower_salon_comanm_seven_out:
 	_OBJ_ANIME			LOCALWORK0,anm_d31r0207_seven_out01
 	_OBJ_ANIME_WAIT
@@ -410,12 +410,12 @@ ev_tower_salon_comanm_seven_out:
 	_CALL				ev_tower_salon_comanm_door_close
 	_OBJ_ANIME			D31R0207_PCWOMAN2,anm_d31r0207_pcwoman2_seven_out02
 	_OBJ_ANIME_WAIT
-	//àÍíUèÍñ ì]ä∑
+	//‰∏ÄÊó¶Â†¥Èù¢Ëª¢Êèõ
 	_MAP_CHANGE			ZONE_ID_D31R0207,0,8,4,DIR_UP
 	_TALK_OBJ_END
 	_END
 
-//ÉÇÉ~
+//„É¢„Éü
 ev_tower_salon_comanm_seven1:
 	_LDVAL				LOCALWORK0,D31R0207_SEVEN1
 	_PLAYER_POS_GET		SCWK_PARAM0,SCWK_PARAM1
@@ -433,7 +433,7 @@ ev_tower_salon_anm_seven1_02:
 	_JUMP				ev_tower_salon_comanm_seven_out
 	_END
 
-//É~Éã
+//„Éü„É´
 ev_tower_salon_comanm_seven2:
 	_LDVAL				LOCALWORK0,D31R0207_SEVEN2
 	_PLAYER_POS_GET		SCWK_PARAM0,SCWK_PARAM1
@@ -451,7 +451,7 @@ ev_tower_salon_anm_seven2_02:
 	_JUMP				ev_tower_salon_comanm_seven_out
 	_END
 
-//ÉQÉì
+//„Ç≤„É≥
 ev_tower_salon_comanm_seven3:
 	_LDVAL				LOCALWORK0,D31R0207_SEVEN3
 	_PLAYER_POS_GET		SCWK_PARAM0,SCWK_PARAM1
@@ -469,7 +469,7 @@ ev_tower_salon_anm_seven3_02:
 	_JUMP				ev_tower_salon_comanm_seven_out
 	_END
 
-//É}ÉC
+//„Éû„Ç§
 ev_tower_salon_comanm_seven4:
 	_LDVAL				LOCALWORK0,D31R0207_SEVEN4
 	_PLAYER_POS_GET		SCWK_PARAM0,SCWK_PARAM1
@@ -487,7 +487,7 @@ ev_tower_salon_anm_seven4_02:
 	_JUMP				ev_tower_salon_comanm_seven_out
 	_END
 
-//ÉoÉN
+//„Éê„ÇØ
 ev_tower_salon_comanm_seven5:
 	_LDVAL				LOCALWORK0,D31R0207_SEVEN5
 	_PLAYER_POS_GET		SCWK_PARAM0,SCWK_PARAM1
@@ -506,7 +506,7 @@ ev_tower_salon_anm_seven5_02:
 	_END
 
 //--------------------------------------------
-//é©ã@ì¸èÍ
+//Ëá™Ê©üÂÖ•Â†¥
 //--------------------------------------------
 _ANIME_LABEL	anm_d31r0207_player_01
 	_ANIME_DATA	AC_WALK_D_8F,2
@@ -549,7 +549,7 @@ _ANIME_LABEL	anm_d31r0207_pcwoman2_out
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------
-//seven:ã§óL
+//seven:ÂÖ±Êúâ
 //--------------------------------------------
 _ANIME_LABEL	anm_d31r0207_seven_out01
 	_ANIME_DATA	AC_DIR_U,1
@@ -561,7 +561,7 @@ _ANIME_LABEL	anm_d31r0207_seven_out02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------
-//seven1:ÉÇÉ~ pat1
+//seven1:„É¢„Éü pat1
 //--------------------------------------------
 _ANIME_LABEL	anm_d31r0207_seven1_01
 	_ANIME_DATA	AC_WALK_D_4F,1
@@ -579,7 +579,7 @@ _ANIME_LABEL	anm_d31r0207_seven1_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------
-//seven2:É~Éã pat1
+//seven2:„Éü„É´ pat1
 //--------------------------------------------
 _ANIME_LABEL	anm_d31r0207_seven2_01
 	_ANIME_DATA	AC_WALK_R_4F,1
@@ -593,7 +593,7 @@ _ANIME_LABEL	anm_d31r0207_seven2_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------
-//seven3:ÉQÉì pat1
+//seven3:„Ç≤„É≥ pat1
 //--------------------------------------------
 _ANIME_LABEL	anm_d31r0207_seven3_01
 	_ANIME_DATA	AC_WALK_L_4F,1
@@ -607,7 +607,7 @@ _ANIME_LABEL	anm_d31r0207_seven3_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------
-//seven4:É}ÉC pat1
+//seven4:„Éû„Ç§ pat1
 //--------------------------------------------
 _ANIME_LABEL	anm_d31r0207_seven4_01
 	_ANIME_DATA	AC_WALK_D_4F,1
@@ -624,7 +624,7 @@ _ANIME_LABEL	anm_d31r0207_seven4_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------
-//seven5:ÉoÉN pat1
+//seven5:„Éê„ÇØ pat1
 //--------------------------------------------
 _ANIME_LABEL	anm_d31r0207_seven5_01
 	_ANIME_DATA	AC_WALK_L_4F,1

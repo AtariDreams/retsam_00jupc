@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ƒeƒNƒXƒ`ƒƒƒZƒbƒgƒf[ƒ^ì¬
+# Project:  ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -20,12 +20,12 @@ NSBTXFILESDIR	= nsbtx_files
 AREA_TABLE		= ../area_table.txt
 
 #----------------------------------------------------------------------------
-#	‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·‚ğ‰Â”\‚É‚·‚é‚½‚ß‚Ìİ’è
+#	ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã‚’å¯èƒ½ã«ã™ã‚‹ãŸã‚ã®è¨­å®š
 #----------------------------------------------------------------------------
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#‹¤’Ê•Ï”’è‹`
+#å…±é€šå¤‰æ•°å®šç¾©
 include $(DP_ROOT)/commondefs.GF
 
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
@@ -35,7 +35,7 @@ include g3_texset
 #----------------------------------------------------------------------------
 #
 #----------------------------------------------------------------------------
-#Make‚Å¶¬‚³‚ê‚é*.bin‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.binã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(TARGET_ARC) $(NSBTXFILESDIR)/*.nsbtx
 
 LINCLUDES		= $(NITROSDK_ROOT)/include
@@ -44,7 +44,7 @@ LINCLUDES		+= $(DP_ROOT)/src/field
 LINCLUDES	+= $(dir $<)
 
 #----------------------------------------------------------------------------
-#	ƒc[ƒ‹‚Ö‚ÌƒpƒXw’è
+#	ãƒ„ãƒ¼ãƒ«ã¸ã®ãƒ‘ã‚¹æŒ‡å®š
 #----------------------------------------------------------------------------
 G3LISTMK	= g3listmk.rb
 G3DCVTR	= $(NITROSYSTEM_ROOT)/tools/win/bin/g3dcvtr.exe
@@ -56,29 +56,29 @@ TEX_MAG = $(DP_ROOT)/convert/tex_mag/tex_mag.exe
 
 #----------------------------------------------------------------------------
 #
-#	ƒ‹[ƒ‹’è‹`
+#	ãƒ«ãƒ¼ãƒ«å®šç¾©
 #
 #----------------------------------------------------------------------------
 do-build: $(TARGET_ARC)
 
 $(TARGET_ARC): $(G3D_TEX_SET) $(ARCLIST)
-	$(MAKE) mkg3list			#NSBTX•ÏŠ·ƒŠƒXƒg
-	$(MAKE) texset_cmb			#í’“|”ñí’“ƒeƒNƒXƒ`ƒƒƒZƒbƒgƒ}[ƒW
-	$(MAKE) imdconv				#IMD•ÏŠ·
-	$(MAKE) texsetarc			#ƒeƒNƒXƒ`ƒƒƒZƒbƒgƒA[ƒJƒCƒu
+	$(MAKE) mkg3list			#NSBTXå¤‰æ›ãƒªã‚¹ãƒˆ
+	$(MAKE) texset_cmb			#å¸¸é§|éå¸¸é§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆãƒãƒ¼ã‚¸
+	$(MAKE) imdconv				#IMDå¤‰æ›
+	$(MAKE) texsetarc			#ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 
-#NSBTX•ÏŠ·—pƒŠƒXƒgì¬
+#NSBTXå¤‰æ›ç”¨ãƒªã‚¹ãƒˆä½œæˆ
 mkg3list:
 	ruby $(G3LISTMK) $(ARCLIST) $(NSBTXFILESDIR)/
 
-#í’“|”ñí’“ƒeƒNƒXƒ`ƒƒƒZƒbƒg‚ğƒ}[ƒW
+#å¸¸é§|éå¸¸é§ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆã‚’ãƒãƒ¼ã‚¸
 texset_cmb:
 	ruby $(TEXIMD_CMB) $(AREA_TABLE) $(TEXSETIMDDIR)/ $(TEX_MAG)
 
-#IMD‚ğNSBTX‚É•ÏŠ·
+#IMDã‚’NSBTXã«å¤‰æ›
 imdconv:$(G3D_TEX_IMD:.imd=.nsbtx)
 
-#ƒeƒNƒXƒ`ƒƒƒZƒbƒg‚ÌƒA[ƒJƒCƒu
+#ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 texsetarc:
 	nnsarc -i -c -l -n $(TARGET_ARC) -S $(ARCLIST)  > arc_result.txt
 

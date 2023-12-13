@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_d26r0106evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d26r0106_gingam
 _EVENT_DATA		ev_d26r0106_assistantm
@@ -45,12 +45,12 @@ ev_d26r0106_assistantm:
 
 
 /********************************************************************/
-/*								”à									*/
+/*								æ‰‰									*/
 /********************************************************************/
 ev_d26r0106_door:
 	_TALK_OBJ_START
 
-	/*uƒMƒ“ƒK‚¾‚ñ‚ÌƒJƒMv‚ð‚à‚Á‚Ä‚¢‚éH*/
+	/*ã€Œã‚®ãƒ³ã‚¬ã ã‚“ã®ã‚«ã‚®ã€ã‚’ã‚‚ã£ã¦ã„ã‚‹ï¼Ÿ*/
 	_ITEM_CHK	ITEM_GINGADANNOKAGI,1,SCWK_ANSWER
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,TRUE,ev_d26r0106_door_02
 	
@@ -60,7 +60,7 @@ ev_d26r0106_door:
 	_TALK_OBJ_END
 	_END
 
-/*uƒMƒ“ƒK‚¾‚ñ‚ÌƒJƒMv‚ð‚à‚Á‚Ä‚¢‚éH*/
+/*ã€Œã‚®ãƒ³ã‚¬ã ã‚“ã®ã‚«ã‚®ã€ã‚’ã‚‚ã£ã¦ã„ã‚‹ï¼Ÿ*/
 ev_d26r0106_door_02:
 	_TALKMSG		msg_d26r0106_door_02
 	_YES_NO_WIN		SCWK_ANSWER
@@ -68,13 +68,13 @@ ev_d26r0106_door_02:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_d26r0106_door
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 yes_d26r0106_door:
 	_PLAYER_NAME	0
 	_TALKMSG		msg_d26r0106_door_03
 	_LAST_KEYWAIT
 
-	//”àŠJ‚­‚Ó‚è
+	//æ‰‰é–‹ããµã‚Š
 	_SE_WAIT		SEQ_SE_DP_SELECT
 	_SE_PLAY		SE_AZITO_DOOR_OPEN
 	_OBJ_ANIME		D26R0106_DOOR_01,anm_d26r0106_door_01
@@ -89,14 +89,14 @@ yes_d26r0106_door:
 	_TALK_OBJ_END
 	_END
 
-/*u‚¢‚¢‚¦vI—¹*/
+/*ã€Œã„ã„ãˆã€çµ‚äº†*/
 no_d26r0106_door:
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 	
 //--------------------------------------------------------------------
-//”à	ŠJ‚­‚Ó‚è
+//æ‰‰	é–‹ããµã‚Š
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d26r0106_door_01
 	_ANIME_DATA	AC_WALK_L_4F,1

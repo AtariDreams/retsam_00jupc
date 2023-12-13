@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>Image_Overview</title>
@@ -10,10 +10,10 @@
 </head>
 
 <body>
-<h1 align="left">�摜�v���N�V�T�v</h1>
-<H2>�T�O�}</H2>
+<h1 align="left">画像プロクシ概要</h1>
+<H2>概念図</H2>
 <P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
-12.0pt;font-family:Century;mso-fareast-font-family:"�l�r �o����";mso-bidi-font-family:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
 "Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
 JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
  coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
@@ -40,17 +40,17 @@ JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
  <v:imagedata src="file:///C:\DOCUME~1\KITANI~1\LOCALS~1\Temp\msohtml1\01\clip_image001.wmz"
   o:title="" gain="126031f"/>
 </v:shape><![endif]--><IMG width="565" height="214" src="clip_image002.gif" v:shapes="_x0000_i1025"></span></P>
-<H2>����</H2>
-�f2D���C�u�����ł́A�����`�o�h���g�p���āA���C����ʂ�OBJ�ł̕\���A�T�u��ʂ�OBJ�ł̕\���A�y�у\�t�g�E�F�A�X�v���C�g�ł̕\���𓮓I�ɐ؂�ւ��鎖���o���܂��B���������ۂɂ́A�����̈قȂ�\����ɑ΂��ĕ`����s���ׂɂ́A���ꂼ��قȂ�VRAM�X���b�g�ɂ����p�ɃL�����N�^�f�[�^���i�[���Ă����K�v������܂��B�f2D���C�u�����ł́A�\���悪�؂�ւ�����ꍇ�ɁA�L�����N�^�f�[�^�̊i�[��̐؂�ւ����ӎ����Ȃ��Ă��悢�悤�ɁAImageProxy(�摜�v���N�V)�ƌĂ΂��d�g�݂������Ă��܂��B
-ImageProxy�́A���[�U����L�����N�^�f�[�^�̃x�[�X�A�h���X�̎擾���v�������ƁA���̃L�����N�^�����ɂ���ĕ\������悤�Ƃ��Ă��邩�𔻒f���A�K�؂�VRAM�X���b�g�Ɋi�[����Ă���L�����N�^�̃x�[�X�A�h���X��Ԃ��܂��B
-�{�\���͏�ʃ��[�e�B���e�B�w�̃����_�����W���[���� VRAM����ݒ肷��ۂȂǂɎg�p����Ă��܂��B<BR>
+<H2>説明</H2>
+Ｇ2Dライブラリでは、同じＡＰＩを使用して、メイン画面のOBJでの表示、サブ画面のOBJでの表示、及びソフトウェアスプライトでの表示を動的に切り替える事が出来ます。しかし実際には、これらの異なる表示先に対して描画を行う為には、それぞれ異なるVRAMスロットにそれ専用にキャラクタデータを格納しておく必要があります。Ｇ2Dライブラリでは、表示先が切り替わった場合に、キャラクタデータの格納先の切り替えを意識しなくてもよいように、ImageProxy(画像プロクシ)と呼ばれる仕組みを持っています。
+ImageProxyは、ユーザからキャラクタデータのベースアドレスの取得が要求されると、そのキャラクタが何によって表示されようとしているかを判断し、適切なVRAMスロットに格納されているキャラクタのベースアドレスを返します。
+本構造は上位ユーティリティ層のレンダラモジュールに VRAM情報を設定する際などに使用されています。<BR>
 <BR>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
-�Ȃ�
+なし
 </p>
-<H2>����</H2>
-<P>2004/12/06 ����</P>
+<H2>履歴</H2>
+<P>2004/12/06 初版</P>
 </body>
 </html>

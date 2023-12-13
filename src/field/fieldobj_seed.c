@@ -2,7 +2,7 @@
 /**
  *
  * @file	fieldobj_seed.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ –Ø‚ÌÀ
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ æœ¨ã®å®Ÿ
  * @author	kagaya
  * @data	05.07.25
  *
@@ -19,13 +19,13 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒO
+//	ãƒ‡ãƒãƒƒã‚°
 //--------------------------------------------------------------
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	MOVE_SEED_WORK\‘¢‘Ì
+///	MOVE_SEED_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -36,7 +36,7 @@ typedef struct
 #define MOVE_SEED_WORK_SIZE (sizeof(MOVE_SEED_WORK))
 
 //--------------------------------------------------------------
-//	DRAW_SEED_WORK\‘¢‘Ì
+//	DRAW_SEED_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -49,18 +49,18 @@ typedef struct
 #define DRAW_SEED_WORK_SIZE (sizeof(DRAW_SEED_WORK))
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static int Seed_OBJCodeGet( int kind, int growth );
 
 //==============================================================================
-//	–Ø‚ÌÀ
+//	æœ¨ã®å®Ÿ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * OBJƒR[ƒh‚ª–Ø‚ÌÀ‚©ƒ`ƒFƒbƒN
- * @param	code	HERO“™
- * @retval	int		TRUE=–Ø‚ÌÀ
+ * OBJã‚³ãƒ¼ãƒ‰ãŒæœ¨ã®å®Ÿã‹ãƒã‚§ãƒƒã‚¯
+ * @param	code	HEROç­‰
+ * @retval	int		TRUE=æœ¨ã®å®Ÿ
  */
 //--------------------------------------------------------------
 int FieldOBJ_OBJCodeSeedCheck( int code )
@@ -74,9 +74,9 @@ int FieldOBJ_OBJCodeSeedCheck( int code )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚çíê—pOBJƒR[ƒhæ“¾
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ç¨®å°‚ç”¨OBJã‚³ãƒ¼ãƒ‰å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		SEED“™ OBJCODEMAX=–³‚µ
+ * @retval	int		SEEDç­‰ OBJCODEMAX=ç„¡ã—
  */
 //--------------------------------------------------------------
 int FieldOBJ_OBJCodeSeedGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -102,7 +102,7 @@ int FieldOBJ_OBJCodeSeedGet( CONST_FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀûŠn‚ğ’m‚ç‚¹‚é
+ * æœ¨ã®å®Ÿåç©«ã‚’çŸ¥ã‚‰ã›ã‚‹
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -114,11 +114,11 @@ void FieldOBJ_SeedHarvestFlagSet( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	–Ø‚ÌÀ“®ì
+//	æœ¨ã®å®Ÿå‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_SEED@‰Šú‰»
+ * MV_SEEDã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -133,7 +133,7 @@ void FieldOBJ_MoveSeed_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_SEED@“®ì
+ * MV_SEEDã€€å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -148,7 +148,7 @@ void FieldOBJ_MoveSeed_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_SEED@íœ
+ * MV_SEEDã€€å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -158,11 +158,11 @@ void FieldOBJ_MoveSeed_Delete( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	–Ø‚ÌÀ@•`‰æ
+//	æœ¨ã®å®Ÿã€€æç”»
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀ•`‰æ@‰Šú‰»
+ * æœ¨ã®å®Ÿæç”»ã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -178,7 +178,7 @@ void FieldOBJ_DrawSeed_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀ•`‰æ@•`‰æ
+ * æœ¨ã®å®Ÿæç”»ã€€æç”»
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -190,26 +190,26 @@ void FieldOBJ_DrawSeed_Draw( FIELD_OBJ_PTR fldobj )
 //	u32 new_state = move->state;
 	u32 new_state = SeedSys_GetSeedStatus( FieldOBJ_FieldSysWorkGet(fldobj), fldobj );
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){			//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){			//è¿½åŠ ä¸­
 		return;
 	}
 	
-	if( new_state != draw->draw_state ){							//XV
+	if( new_state != draw->draw_state ){							//æ›´æ–°
 		FieldOBJ_BlActDeleteCodeCancel( fldobj, &draw->act, draw->draw_code );
 		
-		draw->draw_code = Seed_OBJCodeGet(							//V‚µ‚¢–Ø‚ÌÀOBJƒR[ƒhæ“¾
+		draw->draw_code = Seed_OBJCodeGet(							//æ–°ã—ã„æœ¨ã®å®ŸOBJã‚³ãƒ¼ãƒ‰å–å¾—
 				SeedSys_GetSeedType(FieldOBJ_FieldSysWorkGet(fldobj),fldobj),
 				new_state );
 		
-		if( draw->draw_code != OBJCODEMAX ){						//•\¦‚·‚×‚«À‚ª‚ ‚é
+		if( draw->draw_code != OBJCODEMAX ){						//è¡¨ç¤ºã™ã¹ãå®ŸãŒã‚ã‚‹
 			if( draw->draw_state != SEEDSTAT_NOTHING ){
 				FE_FldOBJSeedEff_Add( fldobj );
 			}
 			
 			FieldOBJ_BlActAddRegularGuestCode( fldobj, &draw->act, draw->draw_code );
 		}else{
-			if( draw->draw_state != SEEDSTAT_NOTHING && 			//‰ß‹ˆç¬‚ ‚è
-				move->harvest_flag == FALSE ){						//ûŠn‚Å‚Í‚È‚¢
+			if( draw->draw_state != SEEDSTAT_NOTHING && 			//éå»è‚²æˆã‚ã‚Š
+				move->harvest_flag == FALSE ){						//åç©«ã§ã¯ãªã„
 				FE_FldOBJSeedEff_Add( fldobj );
 			}
 		}
@@ -219,7 +219,7 @@ void FieldOBJ_DrawSeed_Draw( FIELD_OBJ_PTR fldobj )
 	
 	draw->draw_state = new_state;
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){			//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){			//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -241,28 +241,28 @@ void FieldOBJ_DrawSeed_Draw( FIELD_OBJ_PTR fldobj )
 	DRAW_SEED_WORK *draw = FieldOBJ_DrawProcWorkGet( fldobj );
 	u32 new_state = move->state;
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){			//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){			//è¿½åŠ ä¸­
 		return;
 	}
 	
-	if( new_state != draw->draw_state ){							//XV
-		if( draw->act != NULL ){									//Œ»İ‚ÌƒAƒNƒ^[‚ğíœ‚·‚é
+	if( new_state != draw->draw_state ){							//æ›´æ–°
+		if( draw->act != NULL ){									//ç¾åœ¨ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
 			FieldOBJ_BlActDeleteCode( fldobj, &draw->act, draw->draw_code );
 		}
 		
-		draw->draw_code = Seed_OBJCodeGet(							//V‚µ‚¢–Ø‚ÌÀOBJƒR[ƒhæ“¾
+		draw->draw_code = Seed_OBJCodeGet(							//æ–°ã—ã„æœ¨ã®å®ŸOBJã‚³ãƒ¼ãƒ‰å–å¾—
 				SeedSys_GetSeedType(FieldOBJ_FieldSysWorkGet(fldobj),fldobj),
 				new_state );
 		
-		if( draw->draw_code != OBJCODEMAX ){						//•\¦‚·‚×‚«À‚ª‚ ‚é
+		if( draw->draw_code != OBJCODEMAX ){						//è¡¨ç¤ºã™ã¹ãå®ŸãŒã‚ã‚‹
 			if( draw->draw_state != SEEDSTAT_NOTHING ){
 				FE_FldOBJSeedEff_Add( fldobj );
 			}
 			
 			FieldOBJ_BlActAddRegularGuestCode( fldobj, &draw->act, draw->draw_code );
 		}else{
-			if( draw->draw_state != SEEDSTAT_NOTHING && 			//‰ß‹ˆç¬‚ ‚è
-				move->harvest_flag == FALSE ){						//ûŠn‚Å‚Í‚È‚¢
+			if( draw->draw_state != SEEDSTAT_NOTHING && 			//éå»è‚²æˆã‚ã‚Š
+				move->harvest_flag == FALSE ){						//åç©«ã§ã¯ãªã„
 				FE_FldOBJSeedEff_Add( fldobj );
 			}
 		}
@@ -272,7 +272,7 @@ void FieldOBJ_DrawSeed_Draw( FIELD_OBJ_PTR fldobj )
 	
 	draw->draw_state = new_state;
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){			//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){			//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -290,7 +290,7 @@ void FieldOBJ_DrawSeed_Draw( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀ•`‰æ@íœ
+ * æœ¨ã®å®Ÿæç”»ã€€å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -311,7 +311,7 @@ void FieldOBJ_DrawSeed_Delete( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀ•`‰æ@‘Ş”ğ
+ * æœ¨ã®å®Ÿæç”»ã€€é€€é¿
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -344,10 +344,10 @@ void FieldOBJ_DrawSeed_Push( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀ•`‰æ@•œ‹A
- * ‘Ş”ğ‚µ‚½î•ñ‚ğŒ³‚ÉÄ•`‰æB
+ * æœ¨ã®å®Ÿæç”»ã€€å¾©å¸°
+ * é€€é¿ã—ãŸæƒ…å ±ã‚’å…ƒã«å†æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawSeed_Pop( FIELD_OBJ_PTR fldobj )
@@ -401,14 +401,14 @@ void FieldOBJ_DrawSeed_Pop( FIELD_OBJ_PTR fldobj )
 #endif
 
 //==============================================================================
-//	–Ø‚ÌÀ@ƒp[ƒc
+//	æœ¨ã®å®Ÿã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀí—ŞA¬’·’iŠK‚©‚çOBJƒR[ƒhæ“¾
- * @param	kind		í—Ş 1origin
- * @param	growth		¬’·’iŠK
- * @retval	int			SEED00“™ OBJCODEMAX=–³‚µ
+ * æœ¨ã®å®Ÿç¨®é¡ã€æˆé•·æ®µéšã‹ã‚‰OBJã‚³ãƒ¼ãƒ‰å–å¾—
+ * @param	kind		ç¨®é¡ 1origin
+ * @param	growth		æˆé•·æ®µéš
+ * @retval	int			SEED00ç­‰ OBJCODEMAX=ç„¡ã—
  */
 //--------------------------------------------------------------
 static int Seed_OBJCodeGet( int kind, int growth )
@@ -422,7 +422,7 @@ static int Seed_OBJCodeGet( int kind, int growth )
 			
 			#ifdef PM_DEBUG
 			if( kind < 0 || kind >= 64 ){
-				OS_Printf("–Ø‚ÌÀí—Ş‚ªˆÙí‚Å‚·!! –Ø‚ÌÀí—Ş=0x%x\n",kind+1);GF_ASSERT(0);
+				OS_Printf("æœ¨ã®å®Ÿç¨®é¡ãŒç•°å¸¸ã§ã™!! æœ¨ã®å®Ÿç¨®é¡=0x%x\n",kind+1);GF_ASSERT(0);
 			}
 			#endif
 			
@@ -438,14 +438,14 @@ static int Seed_OBJCodeGet( int kind, int growth )
 		}
 	}
 	
-	GF_ASSERT( 0 && "–Ø‚ÌÀ¬’·’l‚ªˆÙí‚Å‚·\n" );
+	GF_ASSERT( 0 && "æœ¨ã®å®Ÿæˆé•·å€¤ãŒç•°å¸¸ã§ã™\n" );
 	return( OBJCODEMAX );
 }
 
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀOBJ‚ªg—p‚µ‚Ä‚¢‚éBLACT_WORK_PTR‚ğæ“¾B
- * –Ø‚ÌÀŒÀ’è
+ * æœ¨ã®å®ŸOBJãŒä½¿ç”¨ã—ã¦ã„ã‚‹BLACT_WORK_PTRã‚’å–å¾—ã€‚
+ * æœ¨ã®å®Ÿé™å®š
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	blact	BLACT_WORK_PTR
  */

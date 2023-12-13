@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_d16r0103evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d16r0103_flag_change
 _EVENT_DATA		ev_d16r0103_init_change
@@ -28,36 +28,36 @@ _EVENT_DATA_END
 /********************************************************************/
 ev_d16r0103_flag_change:
 	_LDWK			LOCALWORK0,WK_SCENE_D16R0103
-	/*‚©‚´‚ñ‚Ì‚¨‚«‚¢‚µƒCƒxƒ“ƒg‚ªI—¹‚µ‚Ä‚¢‚½‚çƒoƒN‚ðÁ‚·*/
+	/*ã‹ã–ã‚“ã®ãŠãã„ã—ã‚¤ãƒ™ãƒ³ãƒˆãŒçµ‚äº†ã—ã¦ã„ãŸã‚‰ãƒã‚¯ã‚’æ¶ˆã™*/
 	_IFVAL_CALL		WK_SCENE_D16R0103,GE,1,ev_d16r0103_flag_change_seven5_del
-	/*ƒq[ƒhƒ‰ƒ“‚ð‚¾‚µ‚Ä‚¢‚¢‚©H*/
+	/*ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³ã‚’ã ã—ã¦ã„ã„ã‹ï¼Ÿ*/
 	_CALL			ev_d16r0103_flag_change_legend
 	_END
 
-/*‚©‚´‚ñ‚Ì‚¨‚«‚¢‚µƒCƒxƒ“ƒg‚ªI—¹‚µ‚Ä‚¢‚½‚çƒoƒN‚ðÁ‚·*/
+/*ã‹ã–ã‚“ã®ãŠãã„ã—ã‚¤ãƒ™ãƒ³ãƒˆãŒçµ‚äº†ã—ã¦ã„ãŸã‚‰ãƒã‚¯ã‚’æ¶ˆã™*/
 ev_d16r0103_flag_change_seven5_del:
 	_FLAG_SET		FV_D16R0103_SEVEN2
 	_RET
 
-/*ƒq[ƒhƒ‰ƒ“•\Ž¦ƒ`ƒFƒbƒN*/
+/*ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³è¡¨ç¤ºãƒã‚§ãƒƒã‚¯*/
 ev_d16r0103_flag_change_legend:
-	/*ƒq[ƒhƒ‰ƒ“•ßŠl‘OH*/
+	/*ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³æ•ç²å‰ï¼Ÿ*/
 	_IF_FLAGON_JUMP		FE_D16R0103_LEGEND_CLEAR,ev_d16r0103_legend_del
-	/*ƒQ[ƒ€ƒNƒŠƒAH*/
+	/*ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ï¼Ÿ*/
 	_SYS_FLAG_GAME_CLEAR_GET	LOCALWORK0	
 	_IFVAL_JUMP					LOCALWORK0,EQ,0,ev_d16r0103_legend_del
-	/*‘S‘}ŠÓopenH*/
+	/*å…¨å›½å›³é‘‘openï¼Ÿ*/
 	_ZENKOKU_ZUKAN_FLAG			FLAG_MODE_GET,LOCALWORK0
 	_IFVAL_JUMP					LOCALWORK0,EQ,0,ev_d16r0103_legend_del
-	/*ƒq[ƒhƒ‰ƒ“‰ð•úƒtƒ‰ƒOon?*/
+	/*ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³è§£æ”¾ãƒ•ãƒ©ã‚°on?*/
 	_IF_FLAGOFF_JUMP	FE_D16R0103_LEGEND_UNSEAL,ev_d16r0103_legend_del
-	/*ƒV[ƒ“ƒXƒe[ƒ^ƒX‚ª‚P‚©H*/
+	/*ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒï¼‘ã‹ï¼Ÿ*/
 	_IFVAL_JUMP			WK_SCENE_D16R0103,NE,1,ev_d16r0103_legend_del
-	/*‚±‚±‚Ü‚Åƒ`ƒFƒbƒN‚ð”²‚¯‚Ä‚«‚½‚Æ‚«‚¾‚¯o‚é*/
+	/*ã“ã“ã¾ã§ãƒã‚§ãƒƒã‚¯ã‚’æŠœã‘ã¦ããŸã¨ãã ã‘å‡ºã‚‹*/
 	_FLAG_RESET			FV_D16R0103_HIIDORAN
 	_RET
 
-/*ƒq[ƒhƒ‰ƒ“Á‚·*/
+/*ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³æ¶ˆã™*/
 ev_d16r0103_legend_del:
 	_FLAG_SET		FV_D16R0103_HIIDORAN
 	_RET
@@ -77,7 +77,7 @@ ev_d16r0103_init_change_obj_del:
 
 
 //--------------------------------------------------------------------
-//ŽålŒö	“¹‚ð‚ ‚¯‚é
+//ä¸»äººå…¬	é“ã‚’ã‚ã‘ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_player_20
 	_ANIME_DATA	AC_WALK_L_8F,1
@@ -86,21 +86,21 @@ _ANIME_LABEL	anm_d16r0103_player_20
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚TlO	˜b‚·
+//ï¼•äººè¡†	è©±ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_seven2_01
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚TlO	ã‚ðŒü‚­
+//ï¼•äººè¡†	ä¸Šã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_seven2_02
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚TlO	—§‚¿‹Ž‚é
+//ï¼•äººè¡†	ç«‹ã¡åŽ»ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_seven2_20
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -109,7 +109,7 @@ _ANIME_LABEL	anm_d16r0103_seven2_20
 
 
 /********************************************************************/
-/*							‰ï˜b									*/
+/*							ä¼šè©±									*/
 /********************************************************************/
 ev_d16r0103_seven2:
 	_PLAYER_NAME	1
@@ -118,19 +118,19 @@ ev_d16r0103_seven2:
 
 
 /********************************************************************/
-/*							ƒq[ƒhƒ‰ƒ“								*/
+/*							ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³								*/
 /********************************************************************/
 ev_d16r0103_hiidoran:
 	_EVENT_START
 	_SE_PLAY		SEQ_SE_DP_SELECT
 	_SE_WAIT		SEQ_SE_DP_SELECT
 
-	//ƒq[ƒhƒ‰ƒ“–ÚŒ‚ƒtƒ‰ƒOƒ`ƒFƒbƒN
+	//ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³ç›®æ’ƒãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 	_IF_FLAGOFF_CALL	FE_HIIDORAN_SEE,ev_d16r0103_hiidoran_see
 
-	/*•\Ž¦ó‘Ô§Œä*/
+	/*è¡¨ç¤ºçŠ¶æ…‹åˆ¶å¾¡*/
 	_LDVAL			WK_SCENE_D16R0103,2
-	//ƒq[ƒhƒ‰ƒ“ƒGƒ“ƒJƒEƒ“ƒg
+	//ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 	_VOICE_PLAY		MONSNO_HIIDORAN,0
 	_TALK_KEYWAIT	msg_d16r0103_sppoke11_01
 	_TALK_CLOSE
@@ -142,7 +142,7 @@ ev_d16r0103_hiidoran:
 	_LOSE_CHECK			SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_d16r0103_legend_lose
 
-	/*•ßŠlA“|‚µ‚½ê‡‚ÍAÄíƒtƒ‰ƒOƒŒƒxƒ‹ƒAƒbƒv*/
+	/*æ•ç²ã€å€’ã—ãŸå ´åˆã¯ã€å†æˆ¦ãƒ•ãƒ©ã‚°ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—*/
 	_SEACRET_POKE_RETRY_CHECK	SCWK_ANSWER
 	_IFVAL_CALL		SCWK_ANSWER,EQ,0,ev_d16r0103_legend_bs_flag_set
 
@@ -152,15 +152,15 @@ ev_d16r0103_hiidoran:
 	_JUMP			ev_d05r0116_legend_event_clear
 	_END
 
-/*•ßŠl‚µ‚½ê‡*/
+/*æ•ç²ã—ãŸå ´åˆ*/
 ev_d05r0116_legend_event_clear:
-	//ƒNƒŠƒAƒtƒ‰ƒOon
+	//ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°on
 	_FLAG_SET		FE_D16R0103_LEGEND_CLEAR
 
 	_EVENT_END
 	_END
 
-//ƒq[ƒhƒ‰ƒ““¦‚µ‚½A“|‚µ‚½
+//ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³é€ƒã—ãŸã€å€’ã—ãŸ
 ev_d16r0103_legend_capture_ng:
 	_TALKMSG		msg_d16r0103_sppoke11_02
 	_LAST_KEYWAIT
@@ -168,40 +168,40 @@ ev_d16r0103_legend_capture_ng:
 	_EVENT_END
 	_END
 
-//‘S–Å
+//å…¨æ»…
 ev_d16r0103_legend_lose:
-	/*‘S–ÅŽž‚Í–ß‚Á‚Ä‚«‚½‚çÄí‰Â*/
+	/*å…¨æ»…æ™‚ã¯æˆ»ã£ã¦ããŸã‚‰å†æˆ¦å¯*/
 	_LDVAL			WK_SCENE_D16R0103,1
 	_NORMAL_LOSE	
 	_EVENT_END
 	_END
 
-//ƒq[ƒhƒ‰ƒ“–ÚŒ‚ƒtƒ‰ƒO‚ð‚½‚Ä‚é
+//ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³ç›®æ’ƒãƒ•ãƒ©ã‚°ã‚’ãŸã¦ã‚‹
 ev_d16r0103_hiidoran_see:
 	_FLAG_SET	FE_HIIDORAN_SEE
 	_RET
 
-/*•ßŠlA“|‚µ‚½ê‡‚ÍAÄíƒtƒ‰ƒOƒŒƒxƒ‹ƒAƒbƒv*/
+/*æ•ç²ã€å€’ã—ãŸå ´åˆã¯ã€å†æˆ¦ãƒ•ãƒ©ã‚°ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—*/
 ev_d16r0103_legend_bs_flag_set:
 	_FLAG_SET		SYS_FLAG_BS_LV5
 	_RET
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹	‹ß‚Ã‚¢‚Ä‚­‚é
+//ãƒ©ã‚¤ãƒãƒ«	è¿‘ã¥ã„ã¦ãã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_rival_01
 	_ANIME_DATA	AC_WALK_U_8F,6
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹	‹Ž‚Á‚Ä‚¢‚­
+//ãƒ©ã‚¤ãƒãƒ«	åŽ»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_rival_02
 	_ANIME_DATA	AC_WALK_D_8F,6
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	‰º‚ðŒü‚­
+//ä¸»äººå…¬	ä¸‹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_player_01
 	_ANIME_DATA	AC_WAIT_8F,4
@@ -210,7 +210,7 @@ _ANIME_LABEL	anm_d16r0103_player_01
 
 
 /********************************************************************/
-/*				ƒvƒ‹[ƒgA‘ÛŒxŽ@A5lO‚ÌƒCƒxƒ“ƒg(‹­§)			*/
+/*				ãƒ—ãƒ«ãƒ¼ãƒˆã€å›½éš›è­¦å¯Ÿã€5äººè¡†ã®ã‚¤ãƒ™ãƒ³ãƒˆ(å¼·åˆ¶)			*/
 /********************************************************************/
 ev_d16r0103_gkanbu:
 	_EVENT_START
@@ -223,7 +223,7 @@ ev_d16r0103_gkanbu:
 	_ZISHIN			0
 	_SE_STOP		SE_SHAKE
 
-	/*’†‰›‚Ü‚ÅˆÚ“®*/
+	/*ä¸­å¤®ã¾ã§ç§»å‹•*/
 	_OBJ_ANIME		D16R0103_SEVEN2,anm_d16r0103_seven2_500
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d16r0103_player_500
 	_OBJ_ANIME_WAIT
@@ -233,7 +233,7 @@ ev_d16r0103_gkanbu:
 	_TALK_KEYWAIT	msg_d16r0103_seven2_01
 	_TALK_CLOSE
 
-	/*’uÎ‚Ü‚Å‚Ü‚ÅˆÚ“®*/
+	/*ç½®çŸ³ã¾ã§ã¾ã§ç§»å‹•*/
 	_OBJ_ANIME		D16R0103_GKANBU4,anm_d16r0103_gkanbu4_500
 	_OBJ_ANIME_WAIT
 
@@ -241,7 +241,7 @@ ev_d16r0103_gkanbu:
 	_TALK_KEYWAIT	msg_d16r0103_gkanbu4_02
 
 	_TALK_KEYWAIT	msg_d16r0103_detective_01
-	//_SE_PLAY		SEQ_SE_DP_CUSTOM05			/*ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚ÌƒV[ƒ“‚ðƒ[ƒh‚µ‚È‚¢‚Æƒ_ƒI*/
+	//_SE_PLAY		SEQ_SE_DP_CUSTOM05			/*ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®ã‚·ãƒ¼ãƒ³ã‚’ãƒ­ãƒ¼ãƒ‰ã—ãªã„ã¨ãƒ€ãƒ¡ï¼*/
 	_VOICE_PLAY		MONSNO_GUREGGU,0
 	_VOICE_WAIT
 	_TALK_CLOSE
@@ -251,7 +251,7 @@ ev_d16r0103_gkanbu:
 	_OBJ_ANIME		D16R0103_POKE,anm_d16r0103_poke_500
 	_OBJ_ANIME_WAIT
 
-	/*‚ ‚½‚Ó‚½*/
+	/*ã‚ãŸãµãŸ*/
 	_OBJ_ANIME		D16R0103_GKANBU4,anm_d16r0103_gkanbu4_700
 	_OBJ_ANIME		D16R0103_GINGAM1,anm_d16r0103_gingam1_50
 	_OBJ_ANIME		D16R0103_GINGAM2,anm_d16r0103_gingam1_51
@@ -265,16 +265,16 @@ ev_d16r0103_gkanbu:
 	_TALK_CLOSE
 	_OBJ_DEL		D16R0103_POKE
 
-	/*Šâ‚Ì’†‚©‚ç‘ÛŒxŽ@oŒ»*/
+	/*å²©ã®ä¸­ã‹ã‚‰å›½éš›è­¦å¯Ÿå‡ºç¾*/
 	_OBJ_DEL		D16R0103_STONE
 	_FLAG_RESET		FV_D16R0103_POLICE
 	_OBJ_ADD		D16R0103_POLICE
-	_CHG_COMMON_SCR SCRID_HANDSOME_PLAY				/*ƒnƒ“ƒTƒ€‹ÈÄ¶*/
+	_CHG_COMMON_SCR SCRID_HANDSOME_PLAY				/*ãƒãƒ³ã‚µãƒ æ›²å†ç”Ÿ*/
 
 	_TALK_KEYWAIT	msg_d16r0103_detective_03
 	_TALK_CLOSE
 
-	/*ƒvƒ‹[ƒg‘O‚ÉˆÚ“®*/
+	/*ãƒ—ãƒ«ãƒ¼ãƒˆå‰ã«ç§»å‹•*/
 	_OBJ_ANIME		D16R0103_POLICE,anm_d16r0103_police_500
 	_OBJ_ANIME		D16R0103_GINGAM1,anm_d16r0103_gingam1_40
 	_OBJ_ANIME		D16R0103_GINGAM2,anm_d16r0103_gingam1_41
@@ -283,7 +283,7 @@ ev_d16r0103_gkanbu:
 	_TALK_KEYWAIT	msg_d16r0103_detective_04
 	_TALK_CLOSE
 
-	/*ƒMƒ“ƒK’c“¦‚°‚é€”õ*/
+	/*ã‚®ãƒ³ã‚¬å›£é€ƒã’ã‚‹æº–å‚™*/
 	_OBJ_ANIME		D16R0103_GINGAM1,anm_d16r0103_gingam1_100
 	_OBJ_ANIME_WAIT
 	_TALK_KEYWAIT	msg_d16r0103_gingam1_01
@@ -301,7 +301,7 @@ ev_d16r0103_gkanbu:
 	_TALK_KEYWAIT	msg_d16r0103_gingam3_01
 	_TALK_CLOSE
 	
-	/*ƒMƒ“ƒK’c“¦‚°‚é*/
+	/*ã‚®ãƒ³ã‚¬å›£é€ƒã’ã‚‹*/
 	_OBJ_ANIME		D16R0103_GINGAM1,anm_d16r0103_gingam1_104
 	_OBJ_ANIME		D16R0103_GINGAM2,anm_d16r0103_gingam1_105
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d16r0103_player_105
@@ -316,13 +316,13 @@ ev_d16r0103_gkanbu:
 	_TALK_KEYWAIT	msg_d16r0103_detective_05
 	_TALK_CLOSE
 
-	/*ŒxŽ@2oŒ»*/
+	/*è­¦å¯Ÿ2å‡ºç¾*/
 	_FLAG_RESET		FV_D16R0103_POLICE_23
 	_OBJ_ADD		D16R0103_POLICE_2
 	_OBJ_ANIME		D16R0103_POLICE_2,anm_d16r0103_police2_500
 	_OBJ_ANIME_WAIT
 
-	/*ŒxŽ@3oŒ»*/
+	/*è­¦å¯Ÿ3å‡ºç¾*/
 	_OBJ_ADD		D16R0103_POLICE_3
 	_OBJ_ANIME		D16R0103_POLICE_3,anm_d16r0103_police3_500
 	_OBJ_ANIME_WAIT
@@ -334,7 +334,7 @@ ev_d16r0103_gkanbu:
 	_OBJ_ANIME		D16R0103_POLICE,anm_d16r0103_police_520
 	_OBJ_ANIME_WAIT
 
-	/*ƒvƒ‹[ƒgAŒxŽ@2l‘Þê*/
+	/*ãƒ—ãƒ«ãƒ¼ãƒˆã€è­¦å¯Ÿ2äººé€€å ´*/
 	_OBJ_ANIME		D16R0103_GKANBU4,anm_d16r0103_gkanbu4_510
 	_OBJ_ANIME		D16R0103_POLICE_2,anm_d16r0103_police2_510
 	_OBJ_ANIME		D16R0103_POLICE_3,anm_d16r0103_police3_510
@@ -351,36 +351,36 @@ ev_d16r0103_gkanbu:
 	_FLAG_SET		FV_D16R0103_SEVEN2
 	_FLAG_SET		FV_D16R0103_POLICE
 
-	//ƒV[ƒ“ƒXƒe[ƒ^ƒXXV
+	//ã‚·ãƒ¼ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°
 	_LDVAL			WK_SCENE_D16R0103,1
 
-	//‰ÎŽR‚Ì’uÎƒtƒ‰ƒOƒ`ƒFƒbƒN
+	//ç«å±±ã®ç½®çŸ³ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 	_FLAG_SET		FE_KAZANNOOKIISI_GET
-	_FLAG_RESET		FV_C07R0101_POLICE		/*‘ÛŒxŽ@AƒQ[ƒZƒ“‚ÉoŒ»*/
-	_FLAG_RESET		FV_T06_RIVAL			/*ƒ‰ƒCƒoƒ‹At06‚ÉoŒ»*/
+	_FLAG_RESET		FV_C07R0101_POLICE		/*å›½éš›è­¦å¯Ÿã€ã‚²ãƒ¼ã‚»ãƒ³ã«å‡ºç¾*/
+	_FLAG_RESET		FV_T06_RIVAL			/*ãƒ©ã‚¤ãƒãƒ«ã€t06ã«å‡ºç¾*/
 
-	//T06R0101‚Ì–¯‰Æ‚ÉƒoƒN‚ªŒ»‚í‚ê‚é
+	//T06R0101ã®æ°‘å®¶ã«ãƒã‚¯ãŒç¾ã‚ã‚Œã‚‹
 	_FLAG_RESET		FV_T06R0101_SEVEN2
 	_FLAG_RESET		FV_T06_SEVEN2
 
 	_FLAG_RESET		FV_D16_SEVEN2
 	_FLAG_RESET		FV_D16_POLICE
 
-	//_CHG_COMMON_SCR SCRID_HANDSOME_STOP				/*ƒnƒ“ƒTƒ€‹È’âŽ~*/
+	//_CHG_COMMON_SCR SCRID_HANDSOME_STOP				/*ãƒãƒ³ã‚µãƒ æ›²åœæ­¢*/
 
 	//_EVENT_END
 	_MAP_CHANGE		ZONE_ID_D16,0,751,233,DIR_UP
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	’†‰›‚Ü‚ÅˆÚ“®
+//ä¸»äººå…¬	ä¸­å¤®ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_player_500
 	_ANIME_DATA	AC_WALK_U_8F,3
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	“¦‚°‚éƒMƒ“ƒK’c‚ð‚Ý‚é
+//ä¸»äººå…¬	é€ƒã’ã‚‹ã‚®ãƒ³ã‚¬å›£ã‚’ã¿ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_player_105
 	_ANIME_DATA	AC_WAIT_8F,2
@@ -390,7 +390,7 @@ _ANIME_LABEL	anm_d16r0103_player_105
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚TlO	’†‰›‚Ü‚ÅˆÚ“®
+//ï¼•äººè¡†	ä¸­å¤®ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_seven2_500
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -398,7 +398,7 @@ _ANIME_LABEL	anm_d16r0103_seven2_500
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒvƒ‹[ƒg	’uÎ‚Ü‚Å‚Ü‚ÅˆÚ“®
+//ãƒ—ãƒ«ãƒ¼ãƒˆ	ç½®çŸ³ã¾ã§ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_gkanbu4_500
 	_ANIME_DATA	AC_WALK_U_8F,2
@@ -407,7 +407,7 @@ _ANIME_LABEL	anm_d16r0103_gkanbu4_500
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒvƒ‹[ƒg	‚ ‚½‚Ó‚½
+//ãƒ—ãƒ«ãƒ¼ãƒˆ	ã‚ãŸãµãŸ
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_gkanbu4_700
 	_ANIME_DATA	AC_STAY_WALK_L_4F,1
@@ -418,14 +418,14 @@ _ANIME_LABEL	anm_d16r0103_gkanbu4_700
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒvƒ‹[ƒg	˜b‚·
+//ãƒ—ãƒ«ãƒ¼ãƒˆ	è©±ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_gkanbu4_620
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒvƒ‹[ƒg	‚Ð‚Á‚Ï‚ç‚ê‚é
+//ãƒ—ãƒ«ãƒ¼ãƒˆ	ã²ã£ã±ã‚‰ã‚Œã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_gkanbu4_520
 	_ANIME_DATA	AC_WAIT_8F,2
@@ -433,7 +433,7 @@ _ANIME_LABEL	anm_d16r0103_gkanbu4_520
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒvƒ‹[ƒg	‘Þê
+//ãƒ—ãƒ«ãƒ¼ãƒˆ	é€€å ´
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_gkanbu4_510
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -445,7 +445,7 @@ _ANIME_LABEL	anm_d16r0103_gkanbu4_510
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒK’c	ƒnƒ“ƒTƒ€‹ßŠñ‚èƒtƒ‹[ƒg‚ðŒ©‚é
+//ã‚®ãƒ³ã‚¬å›£	ãƒãƒ³ã‚µãƒ è¿‘å¯„ã‚Šãƒ•ãƒ«ãƒ¼ãƒˆã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_gingam1_40
 	_ANIME_DATA	AC_WAIT_8F,3
@@ -463,7 +463,7 @@ _ANIME_LABEL	anm_d16r0103_gingam1_41
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒK’c	ƒnƒ“ƒTƒ€‚ðŒ©‚é
+//ã‚®ãƒ³ã‚¬å›£	ãƒãƒ³ã‚µãƒ ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_gingam1_50
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
@@ -474,7 +474,7 @@ _ANIME_LABEL	anm_d16r0103_gingam1_51
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒK’c	˜b‚·
+//ã‚®ãƒ³ã‚¬å›£	è©±ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_gingam1_100
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
@@ -485,7 +485,7 @@ _ANIME_LABEL	anm_d16r0103_gingam1_101
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒK’c	‚ ‚í‚Ä‚é
+//ã‚®ãƒ³ã‚¬å›£	ã‚ã‚ã¦ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_gingam1_102
 	_ANIME_DATA	AC_STAY_WALK_R_4F,3
@@ -496,7 +496,7 @@ _ANIME_LABEL	anm_d16r0103_gingam1_103
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒK’c	“¦‚°‚é
+//ã‚®ãƒ³ã‚¬å›£	é€ƒã’ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_gingam1_104
 	_ANIME_DATA	AC_WALK_R_4F,2
@@ -514,7 +514,7 @@ _ANIME_LABEL	anm_d16r0103_gingam1_105
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒOƒŒƒbƒOƒ‹	ƒvƒ‹[ƒg‚É‹ß‚Ã‚­
+//ã‚°ãƒ¬ãƒƒã‚°ãƒ«	ãƒ—ãƒ«ãƒ¼ãƒˆã«è¿‘ã¥ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_poke_500
 	_ANIME_DATA	AC_WALK_L_4F,2
@@ -525,7 +525,7 @@ _ANIME_LABEL	anm_d16r0103_poke_500
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‘ÛŒxŽ@	ƒvƒ‹[ƒg‚É‹ß‚Ã‚­
+//å›½éš›è­¦å¯Ÿ	ãƒ—ãƒ«ãƒ¼ãƒˆã«è¿‘ã¥ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_police_500
 	_ANIME_DATA	AC_WALK_L_8F,3
@@ -533,7 +533,7 @@ _ANIME_LABEL	anm_d16r0103_police_500
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‘ÛŒxŽ@	‚Ð‚Á‚Ï‚é
+//å›½éš›è­¦å¯Ÿ	ã²ã£ã±ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_police_520
 	_ANIME_DATA	AC_WALK_L_8F,1
@@ -543,7 +543,7 @@ _ANIME_LABEL	anm_d16r0103_police_520
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŒxŽ@2	Žw’èˆÊ’u‚ÉˆÚ“®
+//è­¦å¯Ÿ2	æŒ‡å®šä½ç½®ã«ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_police2_500
 	_ANIME_DATA	AC_WALK_U_8F,2
@@ -554,7 +554,7 @@ _ANIME_LABEL	anm_d16r0103_police2_500
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŒxŽ@2	‘Þê
+//è­¦å¯Ÿ2	é€€å ´
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_police2_510
 	_ANIME_DATA	AC_WALK_R_8F,1
@@ -566,7 +566,7 @@ _ANIME_LABEL	anm_d16r0103_police2_510
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŒxŽ@3	Žw’èˆÊ’u‚ÉˆÚ“®
+//è­¦å¯Ÿ3	æŒ‡å®šä½ç½®ã«ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_police3_500
 	_ANIME_DATA	AC_WALK_R_8F,1
@@ -576,7 +576,7 @@ _ANIME_LABEL	anm_d16r0103_police3_500
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŒxŽ@3	‘Þê
+//è­¦å¯Ÿ3	é€€å ´
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d16r0103_police3_510
 	_ANIME_DATA	AC_WALK_R_8F,1

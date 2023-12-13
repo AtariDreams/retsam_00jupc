@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_217.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			2ƒ^[ƒ“‹Z‚ð1ƒ^[ƒ“‚Å‚¾‚·‘•”õƒAƒCƒeƒ€Œø‰ÊƒV[ƒPƒ“ƒX
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			2ã‚¿ãƒ¼ãƒ³æŠ€ã‚’1ã‚¿ãƒ¼ãƒ³ã§ã ã™è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ åŠ¹æžœã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *@author	HisashiSogabe
  *@data		2006.03.02
  *
@@ -17,7 +17,7 @@
 SUB_217:
 	WAZA_EFFECT		SIDE_ATTACK
 	SERVER_WAIT
-	//‹ZƒGƒtƒFƒNƒgƒIƒtŽž‚Ì‚½‚ß‚ÉÁ‚¦‚éŒn‚Ìƒ`ƒFƒbƒN‚ð‚µ‚ÄŽp‚ðÁ‚·
+	//æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚ªãƒ•æ™‚ã®ãŸã‚ã«æ¶ˆãˆã‚‹ç³»ã®ãƒã‚§ãƒƒã‚¯ã‚’ã—ã¦å§¿ã‚’æ¶ˆã™
 	IF_PSP			IF_FLAG_NBIT,SIDE_ATTACK,ID_PSP_waza_kouka,WAZAKOUKA_KIE,NoVanish
 	VANISH_ON_OFF	SIDE_ATTACK,SW_VANISH_ON
 NoVanish:

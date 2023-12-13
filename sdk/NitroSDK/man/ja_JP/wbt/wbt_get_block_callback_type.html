@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>WBTGetBlockCallback</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">WBTGetBlockCallback</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -30,40 +30,40 @@ typedef	struct
   </dd>
 </dl>
 
-<H2>����</H2>
-<P><A href="command/WBT_GetBlock.html" target="_self">WBT_GetBlock</A>�֐��������̃R�[���o�b�N�œn�����\���̂ł��B<BR>
+<H2>説明</H2>
+<P><A href="command/WBT_GetBlock.html" target="_self">WBT_GetBlock</A>関数完了時のコールバックで渡される構造体です。<BR>
 <br>
-�e�����o�̓��e�͈ȉ��̒ʂ�ł��B<BR>
+各メンバの内容は以下の通りです。<BR>
 <TABLE border="0">
   <TBODY>
     <TR>
       <TD>block_id</TD>
-      <TD>��M���������u���b�NID�ł��B</TD>
+      <TD>受信完了したブロックIDです。</TD>
     </TR>
     <TR>
       <TD>recv_data_size</TD>
-      <TD>��M�f�[�^�T�C�Y�ł��B</TD>
+      <TD>受信データサイズです。</TD>
     </TR>
     <TR>
       <TD>recv_buf_table</TD>
-      <TD><A href="command/WBT_GetBlock.html" target="_self">WBT_GetBlock</A>�֐��Ŏw�肵����M�o�b�t�@�e�[�u���ł��B<br>
+      <TD><A href="command/WBT_GetBlock.html" target="_self">WBT_GetBlock</A>関数で指定した受信バッファテーブルです。<br>
     </TR>
     <TR>
       <TD>pkt_bmp_table</TD>
-      <TD><A href="command/WBT_GetBlock.html" target="_self">WBT_GetBlock</A>�֐��Ŏw�肵����M�����L�^�p�r�b�g�}�b�v�o�b�t�@�e�[�u���ł��B<br>
+      <TD><A href="command/WBT_GetBlock.html" target="_self">WBT_GetBlock</A>関数で指定した受信履歴記録用ビットマップバッファテーブルです。<br>
     </TR>
   </TBODY>
 </TABLE>
 <br>
 </P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/02/18 packet_bitmap���u��M�����L�^�p�r�b�g�}�b�v�o�b�t�@�v�Ƃ��������ɕύX<BR>
-2004/09/21 ����<BR>
+2005/02/18 packet_bitmapを「受信履歴記録用ビットマップバッファ」という説明に変更<BR>
+2004/09/21 初版<BR>
 </P>
 </body>
 </html>

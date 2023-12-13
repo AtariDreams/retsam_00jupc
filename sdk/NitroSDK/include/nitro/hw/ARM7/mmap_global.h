@@ -30,10 +30,10 @@
   only add comment
 
   Revision 1.7  2004/03/23 07:41:29  yada
-  TEG‚Å‚È‚¢‚Æ‚«‚ÌAARM7ê—pWRAM‚ğl—¶
+  TEGã§ãªã„ã¨ãã®ã€ARM7å°‚ç”¨WRAMã‚’è€ƒæ…®
 
   Revision 1.6  2004/02/17 08:22:07  yada
-  tab®Œ`
+  tabæ•´å½¢
 
   Revision 1.5  2004/02/13 10:40:18  yada
   (none)
@@ -45,17 +45,17 @@
   change SDK prefix iris -> nitro
 
   Revision 1.2  2003/12/22 14:08:52  yasu
-  include ƒK[ƒh‚ÌC³
+  include ã‚¬ãƒ¼ãƒ‰ã®ä¿®æ­£
 
   Revision 1.1  2003/12/16 10:56:38  yasu
-  spcode ‚©‚çˆÚ“®
+  spcode ã‹ã‚‰ç§»å‹•
 
   Revision 1.2  2003/12/16 06:29:41  ida
-  DTCM ‚Ì‹Lq‚ğíœ
-  “à•”ƒ[ƒNRAM‚Ì‹Lq‚ğ’Ç‰Á
+  DTCM ã®è¨˜è¿°ã‚’å‰Šé™¤
+  å†…éƒ¨ãƒ¯ãƒ¼ã‚¯RAMã®è¨˜è¿°ã‚’è¿½åŠ 
 
   Revision 1.1  2003/12/11 05:38:05  yasu
-  ARM9 ”Å‚ğƒRƒs[
+  ARM9 ç‰ˆã‚’ã‚³ãƒ”ãƒ¼
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

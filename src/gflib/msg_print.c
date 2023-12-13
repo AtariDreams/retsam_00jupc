@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	msg_print.c
- * @brief	ƒrƒbƒgƒ}ƒbƒv•¶š—ñ•\¦—pƒVƒXƒeƒ€
+ * @brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æ–‡å­—åˆ—è¡¨ç¤ºç”¨ã‚·ã‚¹ãƒ†ãƒ 
  * @author	tetsu
  * @date	2003.03.17
  *
@@ -31,18 +31,18 @@
 
 typedef struct {
 	CLACT_SET_PTR	cas;
-	CLACT_U_EASYRENDER_DATA	renddata;	// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_HEADER_TBL_PTR	clh;		// ƒwƒbƒ_[
-	CLACT_U_RES_MANAGER_PTR	resMan[4];	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_TBL * resObjTbl[2];	// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
-	int resObjNum[4];					// ‚»‚ê‚¼‚ê‚ÌƒŠƒ\[ƒXƒIƒuƒWƒF”
+	CLACT_U_EASYRENDER_DATA	renddata;	// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_HEADER_TBL_PTR	clh;		// ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_U_RES_MANAGER_PTR	resMan[4];	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_TBL * resObjTbl[2];	// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
+	int resObjNum[4];					// ãã‚Œãã‚Œã®ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§æ•°
 	CLACT_WORK_PTR	cwp;
 }TRG_CURSOR;
 
 
 
 //==================================================================
-//	•Ï” • ŠÖ”éŒ¾
+//	å¤‰æ•° ï¼† é–¢æ•°å®£è¨€
 //==================================================================
 static PRINT_RESULT	MSG_PrintDataSet( GF_BGL_INI * ini, MSG_DATA_HEADER * mdh_p );
 static PRINT_RESULT GF_MSG_PrintDataSet( MSG_DATA_HEADER * mdh_p );
@@ -65,11 +65,11 @@ static u8				msg_main_pause = 0;
 
 //---------------------------------------------------------------------------------------------
 /**
- *	•¶š•\¦ƒVƒXƒeƒ€‰Šú‰»ŠÖ”
+ *	æ–‡å­—è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–é–¢æ•°
  *
- * @param	ƒtƒHƒ“ƒgŠÖ”ŒQƒwƒbƒ_
+ * @param	ãƒ•ã‚©ãƒ³ãƒˆé–¢æ•°ç¾¤ãƒ˜ãƒƒãƒ€
  *
- * @retval	‚È‚µ
+ * @retval	ãªã—
  */
 //---------------------------------------------------------------------------------------------
 void MSG_PrintSysInit( const MSG_FONT_HEADER * header )
@@ -85,22 +85,22 @@ void MSG_PrintSysInit( const MSG_FONT_HEADER * header )
 
 //==============================================================================================
 //
-// •¶šo—Íƒ^ƒXƒN‚ğŠÇ—‚·‚é‚½‚ß‚Ìd‘g‚İ
+// æ–‡å­—å‡ºåŠ›ã‚¿ã‚¹ã‚¯ã‚’ç®¡ç†ã™ã‚‹ãŸã‚ã®ä»•çµ„ã¿
 //
 //==============================================================================================
 
 
 enum {
-	PRINTTASK_MAX = 8	// •¶šo—Íƒ^ƒXƒN‚ğ“o˜^‚Å‚«‚é‘”
+	PRINTTASK_MAX = 8	// æ–‡å­—å‡ºåŠ›ã‚¿ã‚¹ã‚¯ã‚’ç™»éŒ²ã§ãã‚‹ç·æ•°
 };
 static TCB_PTR			PrintTaskTable[PRINTTASK_MAX] = {0};
 
 
 //------------------------------------------------------------------
 /**
- * V‚µ‚¢•¶š•\¦ƒ^ƒXƒN‚ğƒZƒbƒg‚·‚é
+ * æ–°ã—ã„æ–‡å­—è¡¨ç¤ºã‚¿ã‚¹ã‚¯ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @retval  u8		ƒZƒbƒg‚µ‚½ƒ^ƒXƒN‚ÌƒCƒ“ƒfƒbƒNƒX’l
+ * @retval  u8		ã‚»ãƒƒãƒˆã—ãŸã‚¿ã‚¹ã‚¯ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤
  */
 //------------------------------------------------------------------
 static u8 SetNewPrintTask(TCB_FUNC func, void* work, u32 task_pri)
@@ -123,9 +123,9 @@ static u8 SetNewPrintTask(TCB_FUNC func, void* work, u32 task_pri)
 
 //------------------------------------------------------------------
 /**
- * •¶š•\¦ƒ^ƒXƒN‚ğ’â~Eíœ‚·‚é
+ * æ–‡å­—è¡¨ç¤ºã‚¿ã‚¹ã‚¯ã‚’åœæ­¢ãƒ»å‰Šé™¤ã™ã‚‹
  *
- * @param   index		ƒ^ƒXƒNƒCƒ“ƒfƒbƒNƒX’l
+ * @param   index		ã‚¿ã‚¹ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤
  *
  */
 //------------------------------------------------------------------
@@ -150,11 +150,11 @@ static void DeletePrintTask( u8 index )
 
 //------------------------------------------------------------------
 /**
- * w’èƒCƒ“ƒfƒbƒNƒX‚Ì•¶š•\¦ƒ^ƒXƒN‚ªI—¹‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æ–‡å­—è¡¨ç¤ºã‚¿ã‚¹ã‚¯ãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   index		ƒCƒ“ƒfƒbƒNƒX’l
+ * @param   index		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤
  *
- * @retval  BOOL		TRUE‚ÅI—¹‚µ‚Ä‚¢‚é^FALSE‚Å“®ì’†
+ * @retval  BOOL		TRUEã§çµ‚äº†ã—ã¦ã„ã‚‹ï¼FALSEã§å‹•ä½œä¸­
  */
 //------------------------------------------------------------------
 static BOOL CheckPrintTaskWorking( u8 index )
@@ -164,11 +164,11 @@ static BOOL CheckPrintTaskWorking( u8 index )
 
 //-------------------------------------------------------------------------------------
 /**
- *	•¶š•\¦‰Šú‰»ŠÖ”
+ *	æ–‡å­—è¡¨ç¤ºåˆæœŸåŒ–é–¢æ•°
  *
- * @param	‚È‚µ
+ * @param	ãªã—
  *
- * @retval	‚È‚µ
+ * @retval	ãªã—
  */
 //-------------------------------------------------------------------------------------
 void MSG_PrintInit(void)
@@ -182,12 +182,12 @@ void MSG_PrintInit(void)
 }
 //---------------------------------------------------------------------------------------------
 /*
- * •¶š•\¦I—¹ƒ`ƒFƒbƒNŠÖ”
+ * æ–‡å­—è¡¨ç¤ºçµ‚äº†ãƒã‚§ãƒƒã‚¯é–¢æ•°
  *
- * @param	msg_index	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @param	msg_index	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @retval	0	I—¹
- * @retval	1	ˆ—’†
+ * @retval	0	çµ‚äº†
+ * @retval	1	å‡¦ç†ä¸­
  */
 //---------------------------------------------------------------------------------------------
 u8 GF_MSG_PrintEndCheck( u8 msg_index )
@@ -197,9 +197,9 @@ u8 GF_MSG_PrintEndCheck( u8 msg_index )
 
 //------------------------------------------------------------------
 /**
- * •¶š•\¦‚Ìƒ^ƒXƒN‚ğ‹­§’â~‚·‚é
+ * æ–‡å­—è¡¨ç¤ºã®ã‚¿ã‚¹ã‚¯ã‚’å¼·åˆ¶åœæ­¢ã™ã‚‹
  *
- * @param   msg_index		ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @param   msg_index		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -215,21 +215,21 @@ void GF_STR_PrintForceStop( u8 msg_index )
 
 //------------------------------------------------------------------------------
 /**
- * BitmapWindow ‚Ì“à•”CGX—Ìˆæ‚É•¶š‚ğ•`‰æ‚·‚éiŠÈˆÕ”Åj
+ * BitmapWindow ã®å†…éƒ¨CGXé ˜åŸŸã«æ–‡å­—ã‚’æç”»ã™ã‚‹ï¼ˆç°¡æ˜“ç‰ˆï¼‰
  *
  * @param   win			[out] BitmapWindow
- * @param   fontID		ƒtƒHƒ“ƒg‚h‚c
- * @param   msg			[in]  •`‰æ•¶š—ñ‚ªŠi”[‚³‚ê‚Ä‚¢‚é•¶šƒoƒbƒtƒ@
- * @param   xofs		•`‰æŠJn“_‚wÀ•Wiƒhƒbƒg’PˆÊj
- * @param   yofs		•`‰æŠJn“_‚xÀ•Wiƒhƒbƒg’PˆÊj
- * @param   wait		‚P•¶š•`‰æ‚²‚Æ‚ÌƒEƒFƒCƒgƒtƒŒ[ƒ€”i¦j
- * @param   callback	‚P•¶š•`‰æ‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”ƒAƒhƒŒƒXi•s—v‚È‚çNULLj
+ * @param   fontID		ãƒ•ã‚©ãƒ³ãƒˆï¼©ï¼¤
+ * @param   msg			[in]  æç”»æ–‡å­—åˆ—ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹æ–‡å­—ãƒãƒƒãƒ•ã‚¡
+ * @param   xofs		æç”»é–‹å§‹ç‚¹ï¼¸åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆå˜ä½ï¼‰
+ * @param   yofs		æç”»é–‹å§‹ç‚¹ï¼¹åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆå˜ä½ï¼‰
+ * @param   wait		ï¼‘æ–‡å­—æç”»ã”ã¨ã®ã‚¦ã‚§ã‚¤ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ æ•°ï¼ˆâ€»ï¼‰
+ * @param   callback	ï¼‘æ–‡å­—æç”»ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼ˆä¸è¦ãªã‚‰NULLï¼‰
  *
- * @retval  u8			¶¬‚³‚ê‚é•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @retval  u8			ç”Ÿæˆã•ã‚Œã‚‹æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * ¦ wait ‚É MSG_NO_PUT ‚ğw’è‚µ‚½ê‡AƒLƒƒƒ‰—Ìˆæ‚É‘Î‚·‚é•`‰æ‚Ì‚İ‚ªÀs‚³‚ê‚é
- *            MSG_ALLPUT ‚ğw’è‚µ‚½ê‡AƒLƒƒƒ‰—Ìˆæ•`‰æ{BitmapWindowƒXƒNƒŠ[ƒ“ì¬{‚»‚ê‚ç‚ÌVRam“]‘—‚ªs‚í‚ê‚é
- *            ‚»‚êˆÈŠO‚Ì’l‚ğw’è‚µ‚½ê‡A
+ * â€» wait ã« MSG_NO_PUT ã‚’æŒ‡å®šã—ãŸå ´åˆã€ã‚­ãƒ£ãƒ©é ˜åŸŸã«å¯¾ã™ã‚‹æç”»ã®ã¿ãŒå®Ÿè¡Œã•ã‚Œã‚‹
+ *            MSG_ALLPUT ã‚’æŒ‡å®šã—ãŸå ´åˆã€ã‚­ãƒ£ãƒ©é ˜åŸŸæç”»ï¼‹BitmapWindowã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½œæˆï¼‹ãã‚Œã‚‰ã®VRamè»¢é€ãŒè¡Œã‚ã‚Œã‚‹
+ *            ãã‚Œä»¥å¤–ã®å€¤ã‚’æŒ‡å®šã—ãŸå ´åˆã€
  *
  */
 //------------------------------------------------------------------------------
@@ -239,22 +239,22 @@ u8 GF_STR_PrintSimple( GF_BGL_BMPWIN* win, u32 fontID, const STRBUF* msg, u32 xo
 
 	mph.strbuf		= msg;
 	mph.bmpwin		= win;
-	mph.fnt_index	= fontID;		//g—pƒtƒHƒ“ƒgINDEX
-	mph.start_x		= xofs;			//ƒEƒCƒ“ƒhƒE“à•\¦ŠJnXƒIƒtƒZƒbƒg
-	mph.start_y		= yofs;			//ƒEƒCƒ“ƒhƒE“à•\¦ŠJnYƒIƒtƒZƒbƒg
-	mph.write_x		= xofs;			//ƒEƒCƒ“ƒhƒE“à•`‰æXƒIƒtƒZƒbƒg
-	mph.write_y		= yofs;			//ƒEƒCƒ“ƒhƒE“à•`‰æYƒIƒtƒZƒbƒg
-	mph.space_x		= font_header[fontID].space_x;	//•¶šŠÔŠuX
-	mph.space_y		= font_header[fontID].space_y;	//•¶šŠÔŠuY
-	mph.style		= font_header[fontID].style;		//ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
-	mph.f_col		= font_header[fontID].f_col;		//•¶šFƒiƒ“ƒo[
-	mph.b_col		= font_header[fontID].b_col;		//”wŒiFƒiƒ“ƒo[
-	mph.s_col		= font_header[fontID].s_col;		//‰eF@ƒiƒ“ƒo[
-	mph.dot_tbl		= 0;			//Šg‘å—pƒhƒbƒgƒe[ƒuƒ‹
-	mph.dot_wy		= 0;			//Šg‘å‚ÌYÀ•W‚Ì•`‰æ•â³’l
+	mph.fnt_index	= fontID;		//ä½¿ç”¨ãƒ•ã‚©ãƒ³ãƒˆINDEX
+	mph.start_x		= xofs;			//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.start_y		= yofs;			//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.write_x		= xofs;			//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…æç”»Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.write_y		= yofs;			//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…æç”»Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.space_x		= font_header[fontID].space_x;	//æ–‡å­—é–“éš”X
+	mph.space_y		= font_header[fontID].space_y;	//æ–‡å­—é–“éš”Y
+	mph.style		= font_header[fontID].style;		//ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
+	mph.f_col		= font_header[fontID].f_col;		//æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼
+	mph.b_col		= font_header[fontID].b_col;		//èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+	mph.s_col		= font_header[fontID].s_col;		//å½±è‰²ã€€ãƒŠãƒ³ãƒãƒ¼
+	mph.dot_tbl		= 0;			//æ‹¡å¤§ç”¨ãƒ‰ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+	mph.dot_wy		= 0;			//æ‹¡å¤§æ™‚ã®Yåº§æ¨™ã®æç”»è£œæ­£å€¤
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/06
-	// ‚ ‚ç‚©‚¶‚ß“o˜^‚µ‚Ä‚¨‚¢‚½F‚ÉŒã‚Å•ÏX‚·‚éd‘g‚İ‚ğÀ‘•
+	// ã‚ã‚‰ã‹ã˜ã‚ç™»éŒ²ã—ã¦ãŠã„ãŸè‰²ã«å¾Œã§å¤‰æ›´ã™ã‚‹ä»•çµ„ã¿ã‚’å®Ÿè£…
 	mph.color_stack = COLORSTACK_NOENTRY;
 	// ----------------------------------------------------------------------------
 
@@ -263,22 +263,22 @@ u8 GF_STR_PrintSimple( GF_BGL_BMPWIN* win, u32 fontID, const STRBUF* msg, u32 xo
 
 //------------------------------------------------------------------------------
 /**
- * BitmapWindow ‚Ì“à•”CGX—Ìˆæ‚É•¶š‚ğ•`‰æ‚·‚éiƒJƒ‰[w’è”Åj
+ * BitmapWindow ã®å†…éƒ¨CGXé ˜åŸŸã«æ–‡å­—ã‚’æç”»ã™ã‚‹ï¼ˆã‚«ãƒ©ãƒ¼æŒ‡å®šç‰ˆï¼‰
  *
  * @param   win			[out] BitmapWindow
- * @param   fontID		ƒtƒHƒ“ƒg‚h‚c
- * @param   msg			[in]  •`‰æ•¶š—ñ‚ªŠi”[‚³‚ê‚Ä‚¢‚é•¶šƒoƒbƒtƒ@
- * @param   xofs		•`‰æŠJn“_‚wÀ•Wiƒhƒbƒg’PˆÊj
- * @param   yofs		•`‰æŠJn“_‚xÀ•Wiƒhƒbƒg’PˆÊj
- * @param   wait		‚P•¶š•`‰æ‚²‚Æ‚ÌƒEƒFƒCƒgƒtƒŒ[ƒ€”i¦j
- * @param   col			•`‰æ‚Ég‚¤F”Ô†iGF_PRINTCOLOR_MAKEƒ}ƒNƒ‚ğg—p‚·‚é‚±‚Æj
- * @param   callback	‚P•¶š•`‰æ‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”ƒAƒhƒŒƒXi•s—v‚È‚çNULLj
+ * @param   fontID		ãƒ•ã‚©ãƒ³ãƒˆï¼©ï¼¤
+ * @param   msg			[in]  æç”»æ–‡å­—åˆ—ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹æ–‡å­—ãƒãƒƒãƒ•ã‚¡
+ * @param   xofs		æç”»é–‹å§‹ç‚¹ï¼¸åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆå˜ä½ï¼‰
+ * @param   yofs		æç”»é–‹å§‹ç‚¹ï¼¹åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆå˜ä½ï¼‰
+ * @param   wait		ï¼‘æ–‡å­—æç”»ã”ã¨ã®ã‚¦ã‚§ã‚¤ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ æ•°ï¼ˆâ€»ï¼‰
+ * @param   col			æç”»ã«ä½¿ã†è‰²ç•ªå·ï¼ˆGF_PRINTCOLOR_MAKEãƒã‚¯ãƒ­ã‚’ä½¿ç”¨ã™ã‚‹ã“ã¨ï¼‰
+ * @param   callback	ï¼‘æ–‡å­—æç”»ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼ˆä¸è¦ãªã‚‰NULLï¼‰
  *
- * @retval  u8			¶¬‚³‚ê‚é•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @retval  u8			ç”Ÿæˆã•ã‚Œã‚‹æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * ¦ wait ‚É MSG_NO_PUT ‚ğw’è‚µ‚½ê‡AƒLƒƒƒ‰—Ìˆæ‚É‘Î‚·‚é•`‰æ‚Ì‚İ‚ªÀs‚³‚ê‚é
- *            MSG_ALLPUT ‚ğw’è‚µ‚½ê‡AƒLƒƒƒ‰—Ìˆæ•`‰æ{BitmapWindowƒXƒNƒŠ[ƒ“ì¬{‚»‚ê‚ç‚ÌVRam“]‘—‚ªs‚í‚ê‚é
- *            ‚»‚êˆÈŠO‚Ì’l‚ğw’è‚µ‚½ê‡A
+ * â€» wait ã« MSG_NO_PUT ã‚’æŒ‡å®šã—ãŸå ´åˆã€ã‚­ãƒ£ãƒ©é ˜åŸŸã«å¯¾ã™ã‚‹æç”»ã®ã¿ãŒå®Ÿè¡Œã•ã‚Œã‚‹
+ *            MSG_ALLPUT ã‚’æŒ‡å®šã—ãŸå ´åˆã€ã‚­ãƒ£ãƒ©é ˜åŸŸæç”»ï¼‹BitmapWindowã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½œæˆï¼‹ãã‚Œã‚‰ã®VRamè»¢é€ãŒè¡Œã‚ã‚Œã‚‹
+ *            ãã‚Œä»¥å¤–ã®å€¤ã‚’æŒ‡å®šã—ãŸå ´åˆã€
  *
  */
 //------------------------------------------------------------------------------
@@ -290,22 +290,22 @@ u8 GF_STR_PrintColor(
 
 	mph.strbuf		= msg;
 	mph.bmpwin		= win;
-	mph.fnt_index	= fontID;		//g—pƒtƒHƒ“ƒgINDEX
-	mph.start_x		= xofs;			//ƒEƒCƒ“ƒhƒE“à•\¦ŠJnXƒIƒtƒZƒbƒg
-	mph.start_y		= yofs;			//ƒEƒCƒ“ƒhƒE“à•\¦ŠJnYƒIƒtƒZƒbƒg
-	mph.write_x		= xofs;			//ƒEƒCƒ“ƒhƒE“à•`‰æXƒIƒtƒZƒbƒg
-	mph.write_y		= yofs;			//ƒEƒCƒ“ƒhƒE“à•`‰æYƒIƒtƒZƒbƒg
-	mph.space_x		= font_header[fontID].space_x;	//•¶šŠÔŠuX
-	mph.space_y		= font_header[fontID].space_y;	//•¶šŠÔŠuY
-	mph.style		= font_header[fontID].style;		//ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
+	mph.fnt_index	= fontID;		//ä½¿ç”¨ãƒ•ã‚©ãƒ³ãƒˆINDEX
+	mph.start_x		= xofs;			//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.start_y		= yofs;			//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.write_x		= xofs;			//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…æç”»Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.write_y		= yofs;			//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…æç”»Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.space_x		= font_header[fontID].space_x;	//æ–‡å­—é–“éš”X
+	mph.space_y		= font_header[fontID].space_y;	//æ–‡å­—é–“éš”Y
+	mph.style		= font_header[fontID].style;		//ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
 	mph.f_col		= GF_PRINTCOLOR_GET_LETTER(col);
 	mph.s_col		= GF_PRINTCOLOR_GET_SHADOW(col);
 	mph.b_col		= GF_PRINTCOLOR_GET_GROUND(col);
-	mph.dot_tbl		= 0;			//Šg‘å—pƒhƒbƒgƒe[ƒuƒ‹
-	mph.dot_wy		= 0;			//Šg‘å‚ÌYÀ•W‚Ì•`‰æ•â³’l
+	mph.dot_tbl		= 0;			//æ‹¡å¤§ç”¨ãƒ‰ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+	mph.dot_wy		= 0;			//æ‹¡å¤§æ™‚ã®Yåº§æ¨™ã®æç”»è£œæ­£å€¤
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/06
-	// ‚ ‚ç‚©‚¶‚ß“o˜^‚µ‚Ä‚¨‚¢‚½F‚ÉŒã‚Å•ÏX‚·‚éd‘g‚İ‚ğÀ‘•
+	// ã‚ã‚‰ã‹ã˜ã‚ç™»éŒ²ã—ã¦ãŠã„ãŸè‰²ã«å¾Œã§å¤‰æ›´ã™ã‚‹ä»•çµ„ã¿ã‚’å®Ÿè£…
 	mph.color_stack = COLORSTACK_NOENTRY;
 	// ----------------------------------------------------------------------------
 
@@ -314,24 +314,24 @@ u8 GF_STR_PrintColor(
 
 //------------------------------------------------------------------------------
 /**
- * BitmapWindow ‚Ì“à•”CGX—Ìˆæ‚É•¶š‚ğ•`‰æ‚·‚éiƒJƒ‰[•šŠÔEsŠÔw’è”Åj
+ * BitmapWindow ã®å†…éƒ¨CGXé ˜åŸŸã«æ–‡å­—ã‚’æç”»ã™ã‚‹ï¼ˆã‚«ãƒ©ãƒ¼ï¼†å­—é–“ãƒ»è¡Œé–“æŒ‡å®šç‰ˆï¼‰
  *
  * @param   win			[out] BitmapWindow
- * @param   fontID		ƒtƒHƒ“ƒg‚h‚c
- * @param   msg			[in]  •`‰æ•¶š—ñ‚ªŠi”[‚³‚ê‚Ä‚¢‚é•¶šƒoƒbƒtƒ@
- * @param   xofs		•`‰æŠJn“_‚wÀ•Wiƒhƒbƒg’PˆÊj
- * @param   yofs		•`‰æŠJn“_‚xÀ•Wiƒhƒbƒg’PˆÊj
- * @param   wait		‚P•¶š•`‰æ‚²‚Æ‚ÌƒEƒFƒCƒgƒtƒŒ[ƒ€”i¦j
- * @param   col			•`‰æ‚Ég‚¤F”Ô†iGF_PRINTCOLOR_MAKEƒ}ƒNƒ‚ğg—p‚·‚é‚±‚Æj
- * @param   xspc		•¶š‚²‚Æ‚ÌŠÔŠuiƒhƒbƒg’PˆÊj
- * @param   yspc		s‚²‚Æ‚ÌŠÔŠuiƒhƒbƒg’PˆÊj
- * @param   callback	‚P•¶š•`‰æ‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”ƒAƒhƒŒƒXi•s—v‚È‚çNULLj
+ * @param   fontID		ãƒ•ã‚©ãƒ³ãƒˆï¼©ï¼¤
+ * @param   msg			[in]  æç”»æ–‡å­—åˆ—ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹æ–‡å­—ãƒãƒƒãƒ•ã‚¡
+ * @param   xofs		æç”»é–‹å§‹ç‚¹ï¼¸åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆå˜ä½ï¼‰
+ * @param   yofs		æç”»é–‹å§‹ç‚¹ï¼¹åº§æ¨™ï¼ˆãƒ‰ãƒƒãƒˆå˜ä½ï¼‰
+ * @param   wait		ï¼‘æ–‡å­—æç”»ã”ã¨ã®ã‚¦ã‚§ã‚¤ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ æ•°ï¼ˆâ€»ï¼‰
+ * @param   col			æç”»ã«ä½¿ã†è‰²ç•ªå·ï¼ˆGF_PRINTCOLOR_MAKEãƒã‚¯ãƒ­ã‚’ä½¿ç”¨ã™ã‚‹ã“ã¨ï¼‰
+ * @param   xspc		æ–‡å­—ã”ã¨ã®é–“éš”ï¼ˆãƒ‰ãƒƒãƒˆå˜ä½ï¼‰
+ * @param   yspc		è¡Œã”ã¨ã®é–“éš”ï¼ˆãƒ‰ãƒƒãƒˆå˜ä½ï¼‰
+ * @param   callback	ï¼‘æ–‡å­—æç”»ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼ˆä¸è¦ãªã‚‰NULLï¼‰
  *
- * @retval  u8			¶¬‚³‚ê‚é•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @retval  u8			ç”Ÿæˆã•ã‚Œã‚‹æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * ¦ wait ‚É MSG_NO_PUT ‚ğw’è‚µ‚½ê‡AƒLƒƒƒ‰—Ìˆæ‚É‘Î‚·‚é•`‰æ‚Ì‚İ‚ªÀs‚³‚ê‚é
- *            MSG_ALLPUT ‚ğw’è‚µ‚½ê‡AƒLƒƒƒ‰—Ìˆæ•`‰æ{BitmapWindowƒXƒNƒŠ[ƒ“ì¬{‚»‚ê‚ç‚ÌVRam“]‘—‚ªs‚í‚ê‚é
- *            ‚»‚êˆÈŠO‚Ì’l‚ğw’è‚µ‚½ê‡A
+ * â€» wait ã« MSG_NO_PUT ã‚’æŒ‡å®šã—ãŸå ´åˆã€ã‚­ãƒ£ãƒ©é ˜åŸŸã«å¯¾ã™ã‚‹æç”»ã®ã¿ãŒå®Ÿè¡Œã•ã‚Œã‚‹
+ *            MSG_ALLPUT ã‚’æŒ‡å®šã—ãŸå ´åˆã€ã‚­ãƒ£ãƒ©é ˜åŸŸæç”»ï¼‹BitmapWindowã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½œæˆï¼‹ãã‚Œã‚‰ã®VRamè»¢é€ãŒè¡Œã‚ã‚Œã‚‹
+ *            ãã‚Œä»¥å¤–ã®å€¤ã‚’æŒ‡å®šã—ãŸå ´åˆã€
  *
  */
 //------------------------------------------------------------------------------
@@ -343,22 +343,22 @@ u8 GF_STR_PrintExpand(
 
 	mph.strbuf		= msg;
 	mph.bmpwin		= win;
-	mph.fnt_index	= fontID;	//g—pƒtƒHƒ“ƒgINDEX
-	mph.start_x		= xofs;		//ƒEƒCƒ“ƒhƒE“à•\¦ŠJnXƒIƒtƒZƒbƒg
-	mph.start_y		= yofs;		//ƒEƒCƒ“ƒhƒE“à•\¦ŠJnYƒIƒtƒZƒbƒg
-	mph.write_x		= xofs;		//ƒEƒCƒ“ƒhƒE“à•`‰æXƒIƒtƒZƒbƒg
-	mph.write_y		= yofs;		//ƒEƒCƒ“ƒhƒE“à•`‰æYƒIƒtƒZƒbƒg
-	mph.space_x		= xspc;		//•¶šŠÔŠuX
-	mph.space_y		= yspc;		//•¶šŠÔŠuY
-	mph.style		= font_header[fontID].style;		//ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
+	mph.fnt_index	= fontID;	//ä½¿ç”¨ãƒ•ã‚©ãƒ³ãƒˆINDEX
+	mph.start_x		= xofs;		//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.start_y		= yofs;		//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.write_x		= xofs;		//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…æç”»Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.write_y		= yofs;		//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…æç”»Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.space_x		= xspc;		//æ–‡å­—é–“éš”X
+	mph.space_y		= yspc;		//æ–‡å­—é–“éš”Y
+	mph.style		= font_header[fontID].style;		//ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
 	mph.f_col		= GF_PRINTCOLOR_GET_LETTER(col);
 	mph.s_col		= GF_PRINTCOLOR_GET_SHADOW(col);
 	mph.b_col		= GF_PRINTCOLOR_GET_GROUND(col);
-	mph.dot_tbl		= 0;			//Šg‘å—pƒhƒbƒgƒe[ƒuƒ‹
-	mph.dot_wy		= 0;			//Šg‘å‚ÌYÀ•W‚Ì•`‰æ•â³’l
+	mph.dot_tbl		= 0;			//æ‹¡å¤§ç”¨ãƒ‰ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+	mph.dot_wy		= 0;			//æ‹¡å¤§æ™‚ã®Yåº§æ¨™ã®æç”»è£œæ­£å€¤
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/06
-	// ‚ ‚ç‚©‚¶‚ß“o˜^‚µ‚Ä‚¨‚¢‚½F‚ÉŒã‚Å•ÏX‚·‚éd‘g‚İ‚ğÀ‘•
+	// ã‚ã‚‰ã‹ã˜ã‚ç™»éŒ²ã—ã¦ãŠã„ãŸè‰²ã«å¾Œã§å¤‰æ›´ã™ã‚‹ä»•çµ„ã¿ã‚’å®Ÿè£…
 	mph.color_stack = COLORSTACK_NOENTRY;
 	// ----------------------------------------------------------------------------
 
@@ -368,13 +368,13 @@ u8 GF_STR_PrintExpand(
 
 //------------------------------------------------------------------
 /**
- * BitmapWindow ‚Ì“à•”CGX—Ìˆæ‚É•¶š‚ğ•`‰æ‚·‚é
+ * BitmapWindow ã®å†…éƒ¨CGXé ˜åŸŸã«æ–‡å­—ã‚’æç”»ã™ã‚‹
  *
  * @param   mph_p			
  * @param   wait			
  * @param   call_back		
  *
- * @retval  u8			¶¬‚³‚ê‚é•¶š•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @retval  u8			ç”Ÿæˆã•ã‚Œã‚‹æ–‡å­—æç”»ãƒ«ãƒ¼ãƒãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //------------------------------------------------------------------
 u8 GF_STR_Print( const MSG_PRINT_HEADER* mph_p, u32 wait, pStrPrintCallBack call_back )
@@ -383,12 +383,12 @@ u8 GF_STR_Print( const MSG_PRINT_HEADER* mph_p, u32 wait, pStrPrintCallBack call
 	int i;
 
 	if(font_header == NULL){
-		return 0xff;		//ƒtƒHƒ“ƒgƒf[ƒ^æ“¾ƒvƒƒOƒ‰ƒ€‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢
+		return 0xff;		//ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„
 	}
 
 	mdh_p = sys_AllocMemory( HEAPID_BASE_SYSTEM, sizeof(MSG_DATA_HEADER) );
 
-	//•\¦ƒf[ƒ^İ’è
+	//è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿è¨­å®š
 	mdh_p->sw				= 1;
 	mdh_p->seq				= 0;
 	mdh_p->wait				= wait;
@@ -405,26 +405,26 @@ u8 GF_STR_Print( const MSG_PRINT_HEADER* mph_p, u32 wait, pStrPrintCallBack call
 
 	DispIconInit( mdh_p );
 
-	// ‚P•¶š‚²‚Æ‚ÉƒEƒFƒCƒg‚ğ‚½‚¹‚½•`‰æiƒ^ƒXƒNˆ—j
+	// ï¼‘æ–‡å­—ã”ã¨ã«ã‚¦ã‚§ã‚¤ãƒˆã‚’æŒãŸã›ãŸæç”»ï¼ˆã‚¿ã‚¹ã‚¯å‡¦ç†ï¼‰
 	if((wait != MSG_NO_PUT)&&(wait != MSG_ALLPUT))
 	{
-		mdh_p->wait--;			//wait’l•â³(0`)
+		mdh_p->wait--;			//waitå€¤è£œæ­£(0ã€œ)
 		mdh_p->wait_flg = 1;
 		mdh_p->msg_index = SetNewPrintTask(GF_MSG_PrintMain, mdh_p, 1);
 		return mdh_p->msg_index;
 	}
-	// ˆêŠ‡•`‰æ
+	// ä¸€æ‹¬æç”»
 	else
 	{
 		u32 error_check;
 
 		mdh_p->wait= 0;
 		mdh_p->wait_flg = 0;
-		error_check = 0;	//‚Æ‚è‚ ‚¦‚¸‹C‹x‚ß’ö“x‚É
+		error_check = 0;	//ã¨ã‚Šã‚ãˆãšæ°—ä¼‘ã‚ç¨‹åº¦ã«
 		FntDataColorSet(mph_p->f_col, mph_p->b_col, mph_p->s_col);
 
 		while(error_check < 1024){
-			//•¶š•`‰æ(ˆêŠ‡)
+			//æ–‡å­—æç”»(ä¸€æ‹¬)
 			if(GF_MSG_PrintDataSet( mdh_p ) == PRINT_RESULT_END){
 				break;
 			}
@@ -432,7 +432,7 @@ u8 GF_STR_Print( const MSG_PRINT_HEADER* mph_p, u32 wait, pStrPrintCallBack call
 		}
 
 		if(wait != MSG_NO_PUT){
-			//ƒfƒBƒXƒvƒŒƒC“]‘—(ƒLƒƒƒ‰ƒNƒ^ˆêŠ‡)
+			//ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤è»¢é€(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ä¸€æ‹¬)
 			GF_BGL_BmpWinOn( mdh_p->mph.bmpwin );
 		}
 
@@ -449,11 +449,11 @@ u8 GF_STR_Print( const MSG_PRINT_HEADER* mph_p, u32 wait, pStrPrintCallBack call
 
 //---------------------------------------------------------------------------------------------
 /**
- *	•¶š•\¦ƒƒCƒ“ŠÖ”
+ *	æ–‡å­—è¡¨ç¤ºãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- * @param	‚È‚µ
+ * @param	ãªã—
  *
- * @retval	‚È‚µ
+ * @retval	ãªã—
  */
 //---------------------------------------------------------------------------------------------
 static void GF_MSG_PrintMain( TCB_PTR tcb, void *work )
@@ -461,7 +461,7 @@ static void GF_MSG_PrintMain( TCB_PTR tcb, void *work )
 	MSG_DATA_HEADER * mdh_p;
 	PRINT_RESULT	result;
 
-	if(msg_main_pause){	return; }		// ƒƒCƒ“’†’f
+	if(msg_main_pause){	return; }		// ãƒ¡ã‚¤ãƒ³ä¸­æ–­
 
 	mdh_p = (MSG_DATA_HEADER *)work;
 
@@ -471,16 +471,16 @@ static void GF_MSG_PrintMain( TCB_PTR tcb, void *work )
 		mdh_p->callback_arg = 0;
 		FntDataColorSet(mdh_p->mph.f_col, mdh_p->mph.b_col, mdh_p->mph.s_col);
 
-		//ƒtƒHƒ“ƒgƒf[ƒ^æ“¾
+		//ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
 		result = GF_MSG_PrintDataSet( mdh_p );
 
-		//ƒtƒHƒ“ƒgƒf[ƒ^æ“¾ŠÖ”•Ô‚è’l‚É‚æ‚éˆ—•ªŠò
+		//ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—é–¢æ•°è¿”ã‚Šå€¤ã«ã‚ˆã‚‹å‡¦ç†åˆ†å²
 		switch( result ){
 		case PRINT_RESULT_WRITE:
 			GF_BGL_BmpWinOn( mdh_p->mph.bmpwin );
 
 		case PRINT_RESULT_COMMAND:
-			//•¶š•`‰æ‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ
+			//æ–‡å­—æç”»ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—
 			if(mdh_p->call_back != NULL){
 				mdh_p->callback_cont_flag = (mdh_p->call_back)( &(mdh_p->mph), mdh_p->callback_arg );
 			}
@@ -499,14 +499,14 @@ static void GF_MSG_PrintMain( TCB_PTR tcb, void *work )
 
 //---------------------------------------------------------------------------------------------
 /*
- *	•¶šƒf[ƒ^æ“¾
+ *	æ–‡å­—ãƒ‡ãƒ¼ã‚¿å–å¾—
  */
 //---------------------------------------------------------------------------------------------
 static PRINT_RESULT GF_MSG_PrintDataSet( MSG_DATA_HEADER * mdh_p )
 {
 	PRINT_RESULT  res;
 
-	//ŠeíƒtƒHƒ“ƒgƒVƒXƒeƒ€ƒvƒƒOƒ‰ƒ€‚ÌŒÄ‚Ño‚µ(ƒR[ƒh”»’è)
+	//å„ç¨®ãƒ•ã‚©ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®å‘¼ã³å‡ºã—(ã‚³ãƒ¼ãƒ‰åˆ¤å®š)
 	do{
 		res = FontDataPrint( mdh_p->mph.fnt_index, mdh_p );
 
@@ -537,11 +537,11 @@ static PRINT_RESULT GF_MSG_PrintDataSet( MSG_DATA_HEADER * mdh_p )
 
 //---------------------------------------------------------------------------------------------
 /*
- *	FntDataSet8x8_2bit ‚ğŒÄ‚Ô‘O‚ÉAF”Ô†‚ğƒZƒbƒg‚µ‚Ä‚¨‚­i‚‘¬‰»‚Ì‚½‚ßj
+ *	FntDataSet8x8_2bit ã‚’å‘¼ã¶å‰ã«ã€è‰²ç•ªå·ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠãï¼ˆé«˜é€ŸåŒ–ã®ãŸã‚ï¼‰
  *
- * @param	col_f	•¶šF”Ô†
- * @param	col_b	”wŒiF”Ô†
- * @param	col_s	‰eF”Ô†
+ * @param	col_f	æ–‡å­—è‰²ç•ªå·
+ * @param	col_b	èƒŒæ™¯è‰²ç•ªå·
+ * @param	col_s	å½±è‰²ç•ªå·
  */
 //---------------------------------------------------------------------------------------------
 #define DOTTBL_USE
@@ -617,12 +617,12 @@ void FntDataColorRecover(u8* col_f, u8* col_b, u8* col_s)
 
 //---------------------------------------------------------------------------------------------
 /*
- *	•¶šƒf[ƒ^İ’è
+ *	æ–‡å­—ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- * @param	radrs		“Ç‚İ‚İƒf[ƒ^ŠJnƒAƒhƒŒƒX
- * @param	wadrs		‘‚«‚İƒf[ƒ^ƒoƒbƒtƒ@ƒAƒhƒŒƒX
+ * @param	radrs		èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	wadrs		æ›¸ãè¾¼ã¿ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * @retval	x_size		•¶š‚wƒTƒCƒY(•¶š‹l‚ß—p)
+ * @retval	x_size		æ–‡å­—ï¼¸ã‚µã‚¤ã‚º(æ–‡å­—è©°ã‚ç”¨)
  */
 //---------------------------------------------------------------------------------------------
 #include "gflib/apptimer.h"
@@ -679,11 +679,11 @@ void FntDataSet8x8_2bit(u32 radrs,u32 wadrs)
 }
 //---------------------------------------------------------------------------------------------
 /*
- *	FntDataColorSet ‚Åİ’è‚µ‚½F”Ô†‚ğæ“¾
+ *	FntDataColorSet ã§è¨­å®šã—ãŸè‰²ç•ªå·ã‚’å–å¾—
  *
- * @param	mode	ƒ‚[ƒhienum COLOR_GET_MODE : msg_print.hj
+ * @param	mode	ãƒ¢ãƒ¼ãƒ‰ï¼ˆenum COLOR_GET_MODE : msg_print.hï¼‰
  *
- * @retval	F”Ô†
+ * @retval	è‰²ç•ªå·
  */
 //---------------------------------------------------------------------------------------------
 u8 FntDataColorGet(u8 mode)

@@ -33,17 +33,17 @@
 
 
 //============================================================================
-//  �֐��v���g�^�C�v�錾
+//  関数プロトタイプ宣言
 //============================================================================
 static u8 *MBi_ReceiveRequestDataPiece(const MBCommChildBlockHeader * hdr, u16 child);
 static BOOL IsGetAllRequestData(u16 child);
 
 
 //============================================================================
-//  �ϐ��錾
+//  変数宣言
 //============================================================================
 
-// �������N�G�X�g�̒f�ЃT�C�Y�A�f�А�
+// 分割リクエストの断片サイズ、断片数
 static struct
 {
     int     size;
@@ -52,26 +52,26 @@ static struct
 }
 req_data_piece;
 
-// �q�@�p
-// �������N�G�X�g�̑��M�C���f�b�N�X
+// 子機用
+// 分割リクエストの送信インデックス
 static u8 req_data_piece_idx = 0;
 
-// �e�@�p
-// �������N�G�X�g�̎�M�o�b�t�@
+// 親機用
+// 分割リクエストの受信バッファ
 static MbRequestPieceBuf *req_buf;
 
 
 //============================================================================
-//  �֐���`
+//  関数定義
 //============================================================================
 
 /*---------------------------------------------------------------------------*
   Name:         MBi_SetChildMPMaxSize
   
-  Description:  �q�@�̑��M�f�[�^�T�C�Y��ݒ肵�āA�������N�G�X�g�T�C�Y���v�Z
-                ���܂��B
+  Description:  子機の送信データサイズを設定して、分割リクエストサイズを計算
+                します。
   
-  Arguments:    childMaxSize �q�@���M�T�C�Y
+  Arguments:    childMaxSize 子機送信サイズ
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -86,9 +86,9 @@ void MBi_SetChildMPMaxSize(u16 childMaxSize)
 /*---------------------------------------------------------------------------*
   Name:         MBi_SetParentPieceBuffer
 
-  Description:  �e�@�̕������N�G�X�g��M�p�o�b�t�@��ݒ肵�܂��B
+  Description:  親機の分割リクエスト受信用バッファを設定します。
   
-  Arguments:    buf ��M�p�o�b�t�@�ւ̃|�C���^
+  Arguments:    buf 受信用バッファへのポインタ
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -102,9 +102,9 @@ void MBi_SetParentPieceBuffer(MbRequestPieceBuf * buf)
 /*---------------------------------------------------------------------------*
   Name:         MBi_ClearParentPieceBuffer
 
-  Description:  �������N�G�X�g��M�p�o�b�t�@���N���A���܂��B
+  Description:  分割リクエスト受信用バッファをクリアします。
   
-  Arguments:    child_aid �o�b�t�@���N���A����q�@AID
+  Arguments:    child_aid バッファをクリアする子機AID
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -124,12 +124,12 @@ void MBi_ClearParentPieceBuffer(u16 child_aid)
 /*---------------------------------------------------------------------------*
   Name:         MBi_MakeParentSendBuffer
 
-  Description:  �e�@�̑��M�w�b�_��񂩂�A���ۂɑ��M����f�[�^���\�z���܂��B
+  Description:  親機の送信ヘッダ情報から、実際に送信するデータを構築します。
 
-  Arguments:    hdr     �e�@���M�w�b�_�ւ̃|�C���^
-                sendbuf ���M�f�[�^�𐶐�����o�b�t�@�ւ̃|�C���^
+  Arguments:    hdr     親機送信ヘッダへのポインタ
+                sendbuf 送信データを生成するバッファへのポインタ
 
-  Returns:      ���M�o�b�t�@�ւ̃|�C���^
+  Returns:      送信バッファへのポインタ
  *---------------------------------------------------------------------------*/
 u8     *MBi_MakeParentSendBuffer(const MBCommParentBlockHeader * hdr, u8 *sendbuf)
 {
@@ -166,13 +166,13 @@ u8     *MBi_MakeParentSendBuffer(const MBCommParentBlockHeader * hdr, u8 *sendbu
 /*---------------------------------------------------------------------------*
   Name:         MBi_SetRecvBufferFromChild
 
-  Description:  �q�@�����M�����p�P�b�g����w�b�_�����擾���A�f�[�^���ւ�
-                �|�C���^��Ԃ��܂��B
+  Description:  子機から受信したパケットからヘッダ部を取得し、データ部への
+                ポインタを返します。
 
-  Arguments:    hdr     �w�b�_���擾���邽�߂̕ϐ��ւ̃|�C���^
-                recvbuf ��M�o�b�t�@�ւ̃|�C���^
+  Arguments:    hdr     ヘッダを取得するための変数へのポインタ
+                recvbuf 受信バッファへのポインタ
 
-  Returns:      �f�[�^���ւ̃|�C���^
+  Returns:      データ部へのポインタ
  *---------------------------------------------------------------------------*/
 u8     *MBi_SetRecvBufferFromChild(const u8 *recvbuf, MBCommChildBlockHeader * hdr, u16 child_id)
 {
@@ -183,7 +183,7 @@ u8     *MBi_SetRecvBufferFromChild(const u8 *recvbuf, MBCommChildBlockHeader * h
     switch (hdr->type)
     {
     case MB_COMM_TYPE_CHILD_FILEREQ:
-        // �f�Љ��f�[�^�𕜌�
+        // 断片化データを復元
         if (IsGetAllRequestData(child_id))
         {
             return (u8 *)req_buf->data_buf[child_id - 1];
@@ -218,13 +218,13 @@ u8     *MBi_SetRecvBufferFromChild(const u8 *recvbuf, MBCommChildBlockHeader * h
 /*---------------------------------------------------------------------------*
   Name:         MBi_ReceiveRequestDataPiece
 
-  Description:  �q�@�����M�����������N�G�X�g�f�[�^����A�S�̂��\�z���܂��B
+  Description:  子機から受信した分割リクエストデータから、全体を構築します。
 
-  Arguments:    hdr     �w�b�_���擾���邽�߂̕ϐ��ւ̃|�C���^
-                recvbuf ��M�o�b�t�@�ւ̃|�C���^
+  Arguments:    hdr     ヘッダを取得するための変数へのポインタ
+                recvbuf 受信バッファへのポインタ
 
-  Returns:      �������N�G�X�g�f�[�^�����ׂđ����Ă����ꍇ�̓f�[�^�ւ̃|�C���^
-                �܂������Ă��Ȃ��ꍇ�� NULL
+  Returns:      分割リクエストデータがすべて揃っていた場合はデータへのポインタ
+                まだ揃っていない場合は NULL
  *---------------------------------------------------------------------------*/
 static u8 *MBi_ReceiveRequestDataPiece(const MBCommChildBlockHeader * hdr, u16 child)
 {
@@ -264,19 +264,19 @@ static u8 *MBi_ReceiveRequestDataPiece(const MBCommChildBlockHeader * hdr, u16 c
 /*---------------------------------------------------------------------------*
   Name:         
 
-  Description:  �q�@�����M�����������N�G�X�g�f�[�^����A�S�̂��\�z���܂��B
+  Description:  子機から受信した分割リクエストデータから、全体を構築します。
 
-  Arguments:    hdr     �w�b�_���擾���邽�߂̕ϐ��ւ̃|�C���^
-                recvbuf ��M�o�b�t�@�ւ̃|�C���^
+  Arguments:    hdr     ヘッダを取得するための変数へのポインタ
+                recvbuf 受信バッファへのポインタ
 
-  Returns:      �������N�G�X�g�f�[�^�����ׂđ����Ă����ꍇ�� TRUE
-                �܂������Ă��Ȃ��ꍇ�� FALSE
+  Returns:      分割リクエストデータがすべて揃っていた場合は TRUE
+                まだ揃っていない場合は FALSE
  *---------------------------------------------------------------------------*/
 static BOOL IsGetAllRequestData(u16 child)
 {
     u16     i;
 
-    /* Piece���W�܂������𔻒� */
+    /* Pieceが集まったかを判定 */
     for (i = 0; i < req_data_piece.num; i++)
     {
         if ((req_buf->data_bmp[child - 1] & (1 << i)) == 0)
@@ -293,12 +293,12 @@ static BOOL IsGetAllRequestData(u16 child)
 /*---------------------------------------------------------------------------*
   Name:         MBi_MakeChildSendBuffer
 
-  Description:  �q�@�̑��M�w�b�_��񂩂�A���ۂɑ��M����f�[�^���\�z���܂��B
+  Description:  子機の送信ヘッダ情報から、実際に送信するデータを構築します。
 
-  Arguments:    hdr     �q�@���M�w�b�_�ւ̃|�C���^
-                sendbuf ���M�f�[�^�𐶐�����o�b�t�@�ւ̃|�C���^
+  Arguments:    hdr     子機送信ヘッダへのポインタ
+                sendbuf 送信データを生成するバッファへのポインタ
 
-  Returns:      ���M�o�b�t�@�ւ̃|�C���^
+  Returns:      送信バッファへのポインタ
  *---------------------------------------------------------------------------*/
 u8     *MBi_MakeChildSendBuffer(const MBCommChildBlockHeader * hdr, u8 *sendbuf)
 {
@@ -340,22 +340,22 @@ u8     *MBi_MakeChildSendBuffer(const MBCommChildBlockHeader * hdr, u8 *sendbuf)
 /*---------------------------------------------------------------------------*
   Name:         MBi_SendRequestDataPiece
 
-  Description:  �q�@���瑗�M���郊�N�G�X�g�f�[�^�𕪊����܂��B
+  Description:  子機から送信するリクエストデータを分割します。
 
-  Arguments:    pData     �����f�[�^���擾����|�C���^
-                pReq      �������郊�N�G�X�g�f�[�^
+  Arguments:    pData     分割データを取得するポインタ
+                pReq      分割するリクエストデータ
 
-  Returns:      �擾���������f�[�^�̃C���f�b�N�X�l
+  Returns:      取得した分割データのインデックス値
  *---------------------------------------------------------------------------*/
 u8 MBi_SendRequestDataPiece(u8 *pData, const MBCommRequestData *pReq)
 {
     const u8 *ptr = (u8 *)pReq;
 
-    /* ���MPiece������ */
+    /* 送信Pieceを決定 */
     req_data_piece_idx = (u8)((req_data_piece_idx + 1) % req_data_piece.num);
     MB_DEBUG_OUTPUT("req_data piece : %d\n", req_data_piece_idx);
 
-    // ���M�o�b�t�@�Ƀf�[�^���R�s�[
+    // 送信バッファにデータをコピー
     MI_CpuCopy8((void *)&ptr[req_data_piece_idx * req_data_piece.size],
                 pData, (u32)req_data_piece.size);
 
@@ -370,13 +370,13 @@ u8 MBi_SendRequestDataPiece(u8 *pData, const MBCommRequestData *pReq)
 /*---------------------------------------------------------------------------*
   Name:         MBi_SetRecvBufferFromParent
 
-  Description:  �e�@�����M�����p�P�b�g����w�b�_�����擾���A�f�[�^���ւ�
-                �|�C���^��Ԃ��܂��B
+  Description:  親機から受信したパケットからヘッダ部を取得し、データ部への
+                ポインタを返します。
 
-  Arguments:    hdr     �w�b�_���擾���邽�߂̕ϐ��ւ̃|�C���^
-                recvbuf ��M�o�b�t�@�ւ̃|�C���^
+  Arguments:    hdr     ヘッダを取得するための変数へのポインタ
+                recvbuf 受信バッファへのポインタ
 
-  Returns:      �f�[�^���ւ̃|�C���^
+  Returns:      データ部へのポインタ
  *---------------------------------------------------------------------------*/
 u8     *MBi_SetRecvBufferFromParent(MBCommParentBlockHeader * hdr, const u8 *recvbuf)
 {

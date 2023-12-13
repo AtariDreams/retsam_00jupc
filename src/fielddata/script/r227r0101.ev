@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_r227r0101evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r227r0101_oldwoman1
 _EVENT_DATA_END
@@ -38,12 +38,12 @@ ev_r227r0101_oldwoman1:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_r227r0101_oldwoman1
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 yes_r227r0101_oldwoman1:
 	_TALK_KEYWAIT	msg_r227r0101_oldwoman1_02
 	_TALK_CLOSE
 
-	/*‰ñ•œˆ—*/
+	/*å›å¾©å‡¦ç†*/
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
@@ -60,7 +60,7 @@ yes_r227r0101_oldwoman1:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_r227r0101_oldwoman1
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_r227r0101_oldwoman1:
 	_TALKMSG		msg_r227r0101_oldwoman1_04
 	_LAST_KEYWAIT

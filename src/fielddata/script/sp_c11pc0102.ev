@@ -1,9 +1,9 @@
 //====================================================================
 //							sp_c11pc0102.gmm
 //
-//	������X�N���v�g�t�@�C���𕪂��闝�R��
-//	����X�N���v�g�̓]�[���؂�ւ��������Ƀ��[�h����K�v������
-//	��ɂ����Ă����Ȃ��Ƃ����Ȃ��̂ŁA�e�ʍ팸�̂��߂ɕ����Ă���
+//	＜特殊スクリプトファイルを分ける理由＞
+//	特殊スクリプトはゾーン切り替えした時にロードする必要がある
+//	常にもっておかないといけないので、容量削減のために分けている
 //====================================================================
 	.text
 
@@ -12,7 +12,7 @@
 	.include	"connect_def.h"
 
 //--------------------------------------------------------------------
-//							����X�N���v�g
+//							特殊スクリプト
 //--------------------------------------------------------------------
 _OBJ_CHANGE_LABEL		SCRID_CONNECT_OBJ_CHANGE
 //_FLAG_CHANGE_LABEL	SCRID_C11PC0102_FLAG_CHANGE
@@ -20,7 +20,7 @@ _SCENE_CHANGE_LABEL	sp_c11pc0102_tbl
 _SP_EVENT_DATA_END
 
 sp_c11pc0102_tbl:
-	//���[�N�A��r����l�A�X�N���v�gID
+	//ワーク、比較する値、スクリプトID
 	_SCENE_CHANGE_DATA	WK_SCENE_COMM_ID,SCR_COMM_ID_BATTLE,SCRID_CONNECT_BATTLE_RETURN
 	_SCENE_CHANGE_DATA	WK_SCENE_COMM_ID,SCR_COMM_ID_UNION,SCRID_CONNECT_UNION_RETURN
 	_SCENE_CHANGE_DATA	WK_SCENE_COMM_ID,SCR_COMM_ID_RECORD,SCRID_CONNECT_RECORD_RETURN

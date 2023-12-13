@@ -1,6 +1,6 @@
 //====================================================================
 //						safari.ev
-//						ƒTƒtƒ@ƒŠ—pƒXƒNƒŠƒvƒgEƒf[ƒ^
+//						ã‚µãƒ•ã‚¡ãƒªç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ»ãƒ‡ãƒ¼ã‚¿
 //====================================================================
 
 	.text
@@ -10,7 +10,7 @@
 	.include	"../../../include/msgdata/msg_safari.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_safari_flag_change
 _EVENT_DATA		ev_safari_announce_time
@@ -35,24 +35,24 @@ _EVENT_DATA		ev_safari_train_go_area5
 _EVENT_DATA		ev_safari_train_go_area6
 _EVENT_DATA		ev_safari_retire
 _EVENT_DATA		ev_safari_announce_box_full
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 //----------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------
 //====================================================================
 //
-//		ƒTƒtƒ@ƒŠƒtƒ‰ƒOƒ`ƒFƒ“ƒW
+//		ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°ãƒã‚§ãƒ³ã‚¸
 //
 //====================================================================
 ev_safari_flag_change:
-	/*ƒTƒtƒ@ƒŠ“dÔ‚Ì‰Šú‰»*/
+	/*ã‚µãƒ•ã‚¡ãƒªé›»è»Šã®åˆæœŸåŒ–*/
 	_INIT_SAFARI_TRAIN
 	_END
 
 //====================================================================
 //
-//		ƒTƒtƒ@ƒŠI—¹FŠÔ‚¬‚ê
+//		ã‚µãƒ•ã‚¡ãƒªçµ‚äº†ï¼šæ™‚é–“ãã‚Œ
 //
 //====================================================================
 ev_safari_announce_time:
@@ -69,7 +69,7 @@ ev_safari_announce_time:
 
 //====================================================================
 //
-//		ƒTƒtƒ@ƒŠI—¹F•ßŠl¬Œ÷‚Åƒ{[ƒ‹‚È‚­‚È‚Á‚½
+//		ã‚µãƒ•ã‚¡ãƒªçµ‚äº†ï¼šæ•ç²æˆåŠŸã§ãƒœãƒ¼ãƒ«ãªããªã£ãŸ
 //
 //====================================================================
 ev_safari_end_gate:
@@ -86,7 +86,7 @@ ev_safari_end_gate:
 
 //====================================================================
 //
-//		ƒTƒtƒ@ƒŠI—¹F•ßŠl¸”s‚Åƒ{[ƒ‹‚È‚­‚È‚Á‚½
+//		ã‚µãƒ•ã‚¡ãƒªçµ‚äº†ï¼šæ•ç²å¤±æ•—ã§ãƒœãƒ¼ãƒ«ãªããªã£ãŸ
 //
 //====================================================================
 ev_safari_announce_ball:
@@ -103,7 +103,7 @@ ev_safari_announce_ball:
 
 //====================================================================
 //
-//		ƒTƒtƒ@ƒŠI—¹Fè‚¿Aƒ{ƒbƒNƒX‚ª‚¢‚Á‚Ï‚¢‚É‚È‚Á‚½
+//		ã‚µãƒ•ã‚¡ãƒªçµ‚äº†ï¼šæ‰‹æŒã¡ã€ãƒœãƒƒã‚¯ã‚¹ãŒã„ã£ã±ã„ã«ãªã£ãŸ
 //
 //====================================================================
 ev_safari_announce_box_full:
@@ -121,7 +121,7 @@ ev_safari_announce_box_full:
 
 //====================================================================
 //
-//		ƒTƒtƒ@ƒŠƒŠƒ^ƒCƒA
+//		ã‚µãƒ•ã‚¡ãƒªãƒªã‚¿ã‚¤ã‚¢
 //
 //====================================================================
 ev_safari_retire:
@@ -143,45 +143,45 @@ ev_safari_retire_cancel:
 
 //====================================================================
 //
-//		ƒTƒtƒ@ƒŠ“dÔƒGƒŠƒA1i¶ãj
+//		ã‚µãƒ•ã‚¡ãƒªé›»è»Šã‚¨ãƒªã‚¢1ï¼ˆå·¦ä¸Šï¼‰
 //
 //====================================================================
 ev_safari_train_area01:
 	_EVENT_START
 	
-	_TALKMSG	msg_safari_yobidashi_01	//‚Ç‚±‚Ös‚«‚Ü‚·‚©H
-	/*s‚«æ‘I‘ğ*/
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_159,0					//ƒGƒŠƒA3
-	_BMPMENU_MAKE_LIST	msg_ev_win_160,1					//ƒGƒŠƒA4
-	_BMPMENU_MAKE_LIST	msg_ev_win_161,2					//ƒGƒŠƒA5
-	_BMPMENU_MAKE_LIST	msg_ev_win_162,3					//ƒGƒŠƒA6
-	_BMPMENU_MAKE_LIST	msg_ev_win_163,4					//‚â‚ß‚é
+	_TALKMSG	msg_safari_yobidashi_01	//ã©ã“ã¸è¡Œãã¾ã™ã‹ï¼Ÿ
+	/*è¡Œãå…ˆé¸æŠ*/
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_159,0					//ã‚¨ãƒªã‚¢3
+	_BMPMENU_MAKE_LIST	msg_ev_win_160,1					//ã‚¨ãƒªã‚¢4
+	_BMPMENU_MAKE_LIST	msg_ev_win_161,2					//ã‚¨ãƒªã‚¢5
+	_BMPMENU_MAKE_LIST	msg_ev_win_162,3					//ã‚¨ãƒªã‚¢6
+	_BMPMENU_MAKE_LIST	msg_ev_win_163,4					//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 	_TALK_CLOSE
 
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,4,ev_safari_train_end
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,EV_WIN_B_CANCEL,ev_safari_train_end
 
-	/*“dÔ‚ğƒR[ƒ‹‚·‚é•K—v‚ª‚ ‚é‚©‚ğƒ`ƒFƒbƒN*/
+	/*é›»è»Šã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯*/
 	_CHECK_SAFARI_TRAIN	TRAIN_POS_1, SCWK_TEMP0
-	/*“dÔƒR[ƒ‹—p‚ÉTEMP1‚ÉŒ»İˆÊ’u‚ğƒZƒbƒg‚µ‚Æ‚­*/
+	/*é›»è»Šã‚³ãƒ¼ãƒ«ç”¨ã«TEMP1ã«ç¾åœ¨ä½ç½®ã‚’ã‚»ãƒƒãƒˆã—ã¨ã*/
 	_LDVAL		SCWK_TEMP1,TRAIN_POS_1
-	/*•K—v‚ª‚ ‚ê‚Î“dÔƒR[ƒ‹*/
+	/*å¿…è¦ãŒã‚ã‚Œã°é›»è»Šã‚³ãƒ¼ãƒ«*/
 	_IFVAL_CALL SCWK_TEMP0,EQ,TRAIN_DIF_POS, ev_safari_call_train
-	/*©‹@‚Ì‚‚³æ“¾‚ğ–³Œø*/
+	/*è‡ªæ©Ÿã®é«˜ã•å–å¾—ã‚’ç„¡åŠ¹*/
 	_PLAYER_HEGIHT_VALID	0
-	/*“dÔ‚Éæ‚é*/
-	_IFVAL_CALL SCWK_ANSWER,EQ,0, ev_safari_train_in_r3			//ƒGƒŠƒA3i¶‚É~‚è‚é‚Ì‚Å‰E‚É3•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,1, ev_safari_train_in_r4			//ƒGƒŠƒA4i‰E‚É~‚è‚é‚Ì‚Å‰E‚É4•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,2, ev_safari_train_in_r3			//ƒGƒŠƒA5i¶‚É~‚è‚é‚Ì‚Å‰E‚É3•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,3, ev_safari_train_in_r4			//ƒGƒŠƒA6i‰E‚É~‚è‚é‚Ì‚Å‰E‚É4•àj
-	/*ƒAƒ“ƒT[ƒ[ƒN‚ğŒ©‚Ä•ªŠò*/
-	_IFVAL_CALL SCWK_ANSWER,EQ,0,ev_safari_train_go_area3		//ƒGƒŠƒA3
-	_IFVAL_CALL SCWK_ANSWER,EQ,1,ev_safari_train_go_area4		//ƒGƒŠƒA4
-	_IFVAL_CALL SCWK_ANSWER,EQ,2,ev_safari_train_go_area5		//ƒGƒŠƒA5
-	_IFVAL_CALL SCWK_ANSWER,EQ,3,ev_safari_train_go_area6		//ƒGƒŠƒA6
-	/*©‹@‚Ì‚‚³æ“¾‚ğ—LŒø*/
+	/*é›»è»Šã«ä¹—ã‚‹*/
+	_IFVAL_CALL SCWK_ANSWER,EQ,0, ev_safari_train_in_r3			//ã‚¨ãƒªã‚¢3ï¼ˆå·¦ã«é™ã‚Šã‚‹ã®ã§å³ã«3æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,1, ev_safari_train_in_r4			//ã‚¨ãƒªã‚¢4ï¼ˆå³ã«é™ã‚Šã‚‹ã®ã§å³ã«4æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,2, ev_safari_train_in_r3			//ã‚¨ãƒªã‚¢5ï¼ˆå·¦ã«é™ã‚Šã‚‹ã®ã§å³ã«3æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,3, ev_safari_train_in_r4			//ã‚¨ãƒªã‚¢6ï¼ˆå³ã«é™ã‚Šã‚‹ã®ã§å³ã«4æ­©ï¼‰
+	/*ã‚¢ãƒ³ã‚µãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’è¦‹ã¦åˆ†å²*/
+	_IFVAL_CALL SCWK_ANSWER,EQ,0,ev_safari_train_go_area3		//ã‚¨ãƒªã‚¢3
+	_IFVAL_CALL SCWK_ANSWER,EQ,1,ev_safari_train_go_area4		//ã‚¨ãƒªã‚¢4
+	_IFVAL_CALL SCWK_ANSWER,EQ,2,ev_safari_train_go_area5		//ã‚¨ãƒªã‚¢5
+	_IFVAL_CALL SCWK_ANSWER,EQ,3,ev_safari_train_go_area6		//ã‚¨ãƒªã‚¢6
+	/*è‡ªæ©Ÿã®é«˜ã•å–å¾—ã‚’æœ‰åŠ¹*/
 	_PLAYER_HEGIHT_VALID	1
 	
 	_EVENT_END
@@ -190,45 +190,45 @@ ev_safari_train_area01:
 
 //====================================================================
 //
-//		ƒTƒtƒ@ƒŠ“dÔƒGƒŠƒA2i‰Eãj
+//		ã‚µãƒ•ã‚¡ãƒªé›»è»Šã‚¨ãƒªã‚¢2ï¼ˆå³ä¸Šï¼‰
 //
 //====================================================================
 ev_safari_train_area02:
 	_EVENT_START
 	
-	_TALKMSG	msg_safari_yobidashi_01	//‚Ç‚±‚Ös‚«‚Ü‚·‚©H
-	/*s‚«æ‘I‘ğ*/
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_159,0					//ƒGƒŠƒA3
-	_BMPMENU_MAKE_LIST	msg_ev_win_160,1					//ƒGƒŠƒA4
-	_BMPMENU_MAKE_LIST	msg_ev_win_161,2					//ƒGƒŠƒA5
-	_BMPMENU_MAKE_LIST	msg_ev_win_162,3					//ƒGƒŠƒA6
-	_BMPMENU_MAKE_LIST	msg_ev_win_163,4					//‚â‚ß‚é
+	_TALKMSG	msg_safari_yobidashi_01	//ã©ã“ã¸è¡Œãã¾ã™ã‹ï¼Ÿ
+	/*è¡Œãå…ˆé¸æŠ*/
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_159,0					//ã‚¨ãƒªã‚¢3
+	_BMPMENU_MAKE_LIST	msg_ev_win_160,1					//ã‚¨ãƒªã‚¢4
+	_BMPMENU_MAKE_LIST	msg_ev_win_161,2					//ã‚¨ãƒªã‚¢5
+	_BMPMENU_MAKE_LIST	msg_ev_win_162,3					//ã‚¨ãƒªã‚¢6
+	_BMPMENU_MAKE_LIST	msg_ev_win_163,4					//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 	_TALK_CLOSE
 	
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,4,ev_safari_train_end
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,EV_WIN_B_CANCEL,ev_safari_train_end
 
-	/*“dÔ‚ğƒR[ƒ‹‚·‚é•K—v‚ª‚ ‚é‚©‚ğƒ`ƒFƒbƒN*/
+	/*é›»è»Šã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯*/
 	_CHECK_SAFARI_TRAIN	TRAIN_POS_1, SCWK_TEMP0
-	/*“dÔƒR[ƒ‹—p‚ÉTEMP1‚ÉŒ»İˆÊ’u‚ğƒZƒbƒg‚µ‚Æ‚­*/
+	/*é›»è»Šã‚³ãƒ¼ãƒ«ç”¨ã«TEMP1ã«ç¾åœ¨ä½ç½®ã‚’ã‚»ãƒƒãƒˆã—ã¨ã*/
 	_LDVAL		SCWK_TEMP1,TRAIN_POS_1
-	/*•K—v‚ª‚ ‚ê‚Î“dÔƒR[ƒ‹*/
+	/*å¿…è¦ãŒã‚ã‚Œã°é›»è»Šã‚³ãƒ¼ãƒ«*/
 	_IFVAL_CALL SCWK_TEMP0,EQ,TRAIN_DIF_POS, ev_safari_call_train
-	/*©‹@‚Ì‚‚³æ“¾‚ğ–³Œø*/
+	/*è‡ªæ©Ÿã®é«˜ã•å–å¾—ã‚’ç„¡åŠ¹*/
 	_PLAYER_HEGIHT_VALID	0
-	/*“dÔ‚Éæ‚é*/
-	_IFVAL_CALL SCWK_ANSWER,EQ,0, ev_safari_train_in_l4			//ƒGƒŠƒA3i¶‚É~‚è‚é‚Ì‚Å¶‚É4•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,1, ev_safari_train_in_l3			//ƒGƒŠƒA4i‰E‚É~‚è‚é‚Ì‚Å¶‚É3•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,2, ev_safari_train_in_l4			//ƒGƒŠƒA5i¶‚É~‚è‚é‚Ì‚Å¶‚É4•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,3, ev_safari_train_in_l3			//ƒGƒŠƒA6i‰E‚É~‚è‚é‚Ì‚Å¶‚É3•àj
-	/*ƒAƒ“ƒT[ƒ[ƒN‚ğŒ©‚Ä•ªŠò*/
-	_IFVAL_CALL SCWK_ANSWER,EQ,0,ev_safari_train_go_area3		//ƒGƒŠƒA3
-	_IFVAL_CALL SCWK_ANSWER,EQ,1,ev_safari_train_go_area4		//ƒGƒŠƒA4
-	_IFVAL_CALL SCWK_ANSWER,EQ,2,ev_safari_train_go_area5		//ƒGƒŠƒA5
-	_IFVAL_CALL SCWK_ANSWER,EQ,3,ev_safari_train_go_area6		//ƒGƒŠƒA6
-	/*©‹@‚Ì‚‚³æ“¾‚ğ—LŒø*/
+	/*é›»è»Šã«ä¹—ã‚‹*/
+	_IFVAL_CALL SCWK_ANSWER,EQ,0, ev_safari_train_in_l4			//ã‚¨ãƒªã‚¢3ï¼ˆå·¦ã«é™ã‚Šã‚‹ã®ã§å·¦ã«4æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,1, ev_safari_train_in_l3			//ã‚¨ãƒªã‚¢4ï¼ˆå³ã«é™ã‚Šã‚‹ã®ã§å·¦ã«3æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,2, ev_safari_train_in_l4			//ã‚¨ãƒªã‚¢5ï¼ˆå·¦ã«é™ã‚Šã‚‹ã®ã§å·¦ã«4æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,3, ev_safari_train_in_l3			//ã‚¨ãƒªã‚¢6ï¼ˆå³ã«é™ã‚Šã‚‹ã®ã§å·¦ã«3æ­©ï¼‰
+	/*ã‚¢ãƒ³ã‚µãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’è¦‹ã¦åˆ†å²*/
+	_IFVAL_CALL SCWK_ANSWER,EQ,0,ev_safari_train_go_area3		//ã‚¨ãƒªã‚¢3
+	_IFVAL_CALL SCWK_ANSWER,EQ,1,ev_safari_train_go_area4		//ã‚¨ãƒªã‚¢4
+	_IFVAL_CALL SCWK_ANSWER,EQ,2,ev_safari_train_go_area5		//ã‚¨ãƒªã‚¢5
+	_IFVAL_CALL SCWK_ANSWER,EQ,3,ev_safari_train_go_area6		//ã‚¨ãƒªã‚¢6
+	/*è‡ªæ©Ÿã®é«˜ã•å–å¾—ã‚’æœ‰åŠ¹*/
 	_PLAYER_HEGIHT_VALID	1
 	
 	_EVENT_END
@@ -237,45 +237,45 @@ ev_safari_train_area02:
 
 //====================================================================
 //
-//		ƒTƒtƒ@ƒŠ“dÔƒGƒŠƒA3i¶’†j
+//		ã‚µãƒ•ã‚¡ãƒªé›»è»Šã‚¨ãƒªã‚¢3ï¼ˆå·¦ä¸­ï¼‰
 //
 //====================================================================
 ev_safari_train_area03:
 	_EVENT_START
 	
-	_TALKMSG	msg_safari_yobidashi_01	//‚Ç‚±‚Ös‚«‚Ü‚·‚©H
-	/*s‚«æ‘I‘ğ*/
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_157,0					//ƒGƒŠƒA1
-	_BMPMENU_MAKE_LIST	msg_ev_win_158,1					//ƒGƒŠƒA2
-	_BMPMENU_MAKE_LIST	msg_ev_win_161,2					//ƒGƒŠƒA5
-	_BMPMENU_MAKE_LIST	msg_ev_win_162,3					//ƒGƒŠƒA6
-	_BMPMENU_MAKE_LIST	msg_ev_win_163,4					//‚â‚ß‚é
+	_TALKMSG	msg_safari_yobidashi_01	//ã©ã“ã¸è¡Œãã¾ã™ã‹ï¼Ÿ
+	/*è¡Œãå…ˆé¸æŠ*/
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_157,0					//ã‚¨ãƒªã‚¢1
+	_BMPMENU_MAKE_LIST	msg_ev_win_158,1					//ã‚¨ãƒªã‚¢2
+	_BMPMENU_MAKE_LIST	msg_ev_win_161,2					//ã‚¨ãƒªã‚¢5
+	_BMPMENU_MAKE_LIST	msg_ev_win_162,3					//ã‚¨ãƒªã‚¢6
+	_BMPMENU_MAKE_LIST	msg_ev_win_163,4					//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 	_TALK_CLOSE
 	
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,4,ev_safari_train_end
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,EV_WIN_B_CANCEL,ev_safari_train_end
 
-	/*“dÔ‚ğƒR[ƒ‹‚·‚é•K—v‚ª‚ ‚é‚©‚ğƒ`ƒFƒbƒN*/
+	/*é›»è»Šã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯*/
 	_CHECK_SAFARI_TRAIN	TRAIN_POS_2, SCWK_TEMP0
-	/*“dÔƒR[ƒ‹—p‚ÉTEMP1‚ÉŒ»İˆÊ’u‚ğƒZƒbƒg‚µ‚Æ‚­*/
+	/*é›»è»Šã‚³ãƒ¼ãƒ«ç”¨ã«TEMP1ã«ç¾åœ¨ä½ç½®ã‚’ã‚»ãƒƒãƒˆã—ã¨ã*/
 	_LDVAL		SCWK_TEMP1,TRAIN_POS_2
-	/*•K—v‚ª‚ ‚ê‚Î“dÔƒR[ƒ‹*/
+	/*å¿…è¦ãŒã‚ã‚Œã°é›»è»Šã‚³ãƒ¼ãƒ«*/
 	_IFVAL_CALL SCWK_TEMP0,EQ,TRAIN_DIF_POS, ev_safari_call_train
-	/*©‹@‚Ì‚‚³æ“¾‚ğ–³Œø*/
+	/*è‡ªæ©Ÿã®é«˜ã•å–å¾—ã‚’ç„¡åŠ¹*/
 	_PLAYER_HEGIHT_VALID	0
-	/*“dÔ‚Éæ‚é*/
-	_IFVAL_CALL SCWK_ANSWER,EQ,0, ev_safari_train_in_r3			//ƒGƒŠƒA1i¶‚É~‚è‚é‚Ì‚Å‰E‚É3•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,1, ev_safari_train_in_r4			//ƒGƒŠƒA2i‰E‚É~‚è‚é‚Ì‚Å‰E‚É4•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,2, ev_safari_train_in_r3			//ƒGƒŠƒA5i¶‚É~‚è‚é‚Ì‚Å‰E‚É3•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,3, ev_safari_train_in_r4			//ƒGƒŠƒA6i‰E‚É~‚è‚é‚Ì‚Å‰E‚É4•àj
-	/*ƒAƒ“ƒT[ƒ[ƒN‚ğŒ©‚Ä•ªŠò*/
-	_IFVAL_CALL SCWK_ANSWER,EQ,0,ev_safari_train_go_area1		//ƒGƒŠƒA1
-	_IFVAL_CALL SCWK_ANSWER,EQ,1,ev_safari_train_go_area2		//ƒGƒŠƒA2
-	_IFVAL_CALL SCWK_ANSWER,EQ,2,ev_safari_train_go_area5		//ƒGƒŠƒA5
-	_IFVAL_CALL SCWK_ANSWER,EQ,3,ev_safari_train_go_area6		//ƒGƒŠƒA6
-	/*©‹@‚Ì‚‚³æ“¾‚ğ—LŒø*/
+	/*é›»è»Šã«ä¹—ã‚‹*/
+	_IFVAL_CALL SCWK_ANSWER,EQ,0, ev_safari_train_in_r3			//ã‚¨ãƒªã‚¢1ï¼ˆå·¦ã«é™ã‚Šã‚‹ã®ã§å³ã«3æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,1, ev_safari_train_in_r4			//ã‚¨ãƒªã‚¢2ï¼ˆå³ã«é™ã‚Šã‚‹ã®ã§å³ã«4æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,2, ev_safari_train_in_r3			//ã‚¨ãƒªã‚¢5ï¼ˆå·¦ã«é™ã‚Šã‚‹ã®ã§å³ã«3æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,3, ev_safari_train_in_r4			//ã‚¨ãƒªã‚¢6ï¼ˆå³ã«é™ã‚Šã‚‹ã®ã§å³ã«4æ­©ï¼‰
+	/*ã‚¢ãƒ³ã‚µãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’è¦‹ã¦åˆ†å²*/
+	_IFVAL_CALL SCWK_ANSWER,EQ,0,ev_safari_train_go_area1		//ã‚¨ãƒªã‚¢1
+	_IFVAL_CALL SCWK_ANSWER,EQ,1,ev_safari_train_go_area2		//ã‚¨ãƒªã‚¢2
+	_IFVAL_CALL SCWK_ANSWER,EQ,2,ev_safari_train_go_area5		//ã‚¨ãƒªã‚¢5
+	_IFVAL_CALL SCWK_ANSWER,EQ,3,ev_safari_train_go_area6		//ã‚¨ãƒªã‚¢6
+	/*è‡ªæ©Ÿã®é«˜ã•å–å¾—ã‚’æœ‰åŠ¹*/
 	_PLAYER_HEGIHT_VALID	1
 	
 	_EVENT_END
@@ -283,45 +283,45 @@ ev_safari_train_area03:
 	
 //====================================================================
 //
-//		ƒTƒtƒ@ƒŠ“dÔƒGƒŠƒA4i‰E’†j
+//		ã‚µãƒ•ã‚¡ãƒªé›»è»Šã‚¨ãƒªã‚¢4ï¼ˆå³ä¸­ï¼‰
 //
 //====================================================================
 ev_safari_train_area04:
 	_EVENT_START
 
-	_TALKMSG	msg_safari_yobidashi_01	//‚Ç‚±‚Ös‚«‚Ü‚·‚©H
-	/*s‚«æ‘I‘ğ*/
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_157,0					//ƒGƒŠƒA1
-	_BMPMENU_MAKE_LIST	msg_ev_win_158,1					//ƒGƒŠƒA2
-	_BMPMENU_MAKE_LIST	msg_ev_win_161,2					//ƒGƒŠƒA5
-	_BMPMENU_MAKE_LIST	msg_ev_win_162,3					//ƒGƒŠƒA6
-	_BMPMENU_MAKE_LIST	msg_ev_win_163,4					//‚â‚ß‚é
+	_TALKMSG	msg_safari_yobidashi_01	//ã©ã“ã¸è¡Œãã¾ã™ã‹ï¼Ÿ
+	/*è¡Œãå…ˆé¸æŠ*/
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_157,0					//ã‚¨ãƒªã‚¢1
+	_BMPMENU_MAKE_LIST	msg_ev_win_158,1					//ã‚¨ãƒªã‚¢2
+	_BMPMENU_MAKE_LIST	msg_ev_win_161,2					//ã‚¨ãƒªã‚¢5
+	_BMPMENU_MAKE_LIST	msg_ev_win_162,3					//ã‚¨ãƒªã‚¢6
+	_BMPMENU_MAKE_LIST	msg_ev_win_163,4					//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 	_TALK_CLOSE
 	
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,4,ev_safari_train_end
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,EV_WIN_B_CANCEL,ev_safari_train_end
 
-	/*“dÔ‚ğƒR[ƒ‹‚·‚é•K—v‚ª‚ ‚é‚©‚ğƒ`ƒFƒbƒN*/
+	/*é›»è»Šã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯*/
 	_CHECK_SAFARI_TRAIN	TRAIN_POS_2, SCWK_TEMP0
-	/*“dÔƒR[ƒ‹—p‚ÉTEMP1‚ÉŒ»İˆÊ’u‚ğƒZƒbƒg‚µ‚Æ‚­*/
+	/*é›»è»Šã‚³ãƒ¼ãƒ«ç”¨ã«TEMP1ã«ç¾åœ¨ä½ç½®ã‚’ã‚»ãƒƒãƒˆã—ã¨ã*/
 	_LDVAL		SCWK_TEMP1,TRAIN_POS_2
-	/*•K—v‚ª‚ ‚ê‚Î“dÔƒR[ƒ‹*/
+	/*å¿…è¦ãŒã‚ã‚Œã°é›»è»Šã‚³ãƒ¼ãƒ«*/
 	_IFVAL_CALL SCWK_TEMP0,EQ,TRAIN_DIF_POS, ev_safari_call_train
-	/*©‹@‚Ì‚‚³æ“¾‚ğ–³Œø*/
+	/*è‡ªæ©Ÿã®é«˜ã•å–å¾—ã‚’ç„¡åŠ¹*/
 	_PLAYER_HEGIHT_VALID	0
-	/*“dÔ‚Éæ‚é*/
-	_IFVAL_CALL SCWK_ANSWER,EQ,0, ev_safari_train_in_l4			//ƒGƒŠƒA1i¶‚É~‚è‚é‚Ì‚Å¶‚É4•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,1, ev_safari_train_in_l3			//ƒGƒŠƒA2i‰E‚É~‚è‚é‚Ì‚Å¶‚É3•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,2, ev_safari_train_in_l4			//ƒGƒŠƒA5i¶‚É~‚è‚é‚Ì‚Å¶‚É4•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,3, ev_safari_train_in_l3			//ƒGƒŠƒA6i‰E‚É~‚è‚é‚Ì‚Å¶‚É3•àj
-	/*ƒAƒ“ƒT[ƒ[ƒN‚ğŒ©‚Ä•ªŠò*/
-	_IFVAL_CALL SCWK_ANSWER,EQ,0,ev_safari_train_go_area1		//ƒGƒŠƒA1
-	_IFVAL_CALL SCWK_ANSWER,EQ,1,ev_safari_train_go_area2		//ƒGƒŠƒA2
-	_IFVAL_CALL SCWK_ANSWER,EQ,2,ev_safari_train_go_area5		//ƒGƒŠƒA5
-	_IFVAL_CALL SCWK_ANSWER,EQ,3,ev_safari_train_go_area6		//ƒGƒŠƒA6
-	/*©‹@‚Ì‚‚³æ“¾‚ğ—LŒø*/
+	/*é›»è»Šã«ä¹—ã‚‹*/
+	_IFVAL_CALL SCWK_ANSWER,EQ,0, ev_safari_train_in_l4			//ã‚¨ãƒªã‚¢1ï¼ˆå·¦ã«é™ã‚Šã‚‹ã®ã§å·¦ã«4æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,1, ev_safari_train_in_l3			//ã‚¨ãƒªã‚¢2ï¼ˆå³ã«é™ã‚Šã‚‹ã®ã§å·¦ã«3æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,2, ev_safari_train_in_l4			//ã‚¨ãƒªã‚¢5ï¼ˆå·¦ã«é™ã‚Šã‚‹ã®ã§å·¦ã«4æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,3, ev_safari_train_in_l3			//ã‚¨ãƒªã‚¢6ï¼ˆå³ã«é™ã‚Šã‚‹ã®ã§å·¦ã«3æ­©ï¼‰
+	/*ã‚¢ãƒ³ã‚µãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’è¦‹ã¦åˆ†å²*/
+	_IFVAL_CALL SCWK_ANSWER,EQ,0,ev_safari_train_go_area1		//ã‚¨ãƒªã‚¢1
+	_IFVAL_CALL SCWK_ANSWER,EQ,1,ev_safari_train_go_area2		//ã‚¨ãƒªã‚¢2
+	_IFVAL_CALL SCWK_ANSWER,EQ,2,ev_safari_train_go_area5		//ã‚¨ãƒªã‚¢5
+	_IFVAL_CALL SCWK_ANSWER,EQ,3,ev_safari_train_go_area6		//ã‚¨ãƒªã‚¢6
+	/*è‡ªæ©Ÿã®é«˜ã•å–å¾—ã‚’æœ‰åŠ¹*/
 	_PLAYER_HEGIHT_VALID	1
 	
 	_EVENT_END
@@ -329,45 +329,45 @@ ev_safari_train_area04:
 
 //====================================================================
 //
-//		ƒTƒtƒ@ƒŠ“dÔƒGƒŠƒA5i¶‰ºj
+//		ã‚µãƒ•ã‚¡ãƒªé›»è»Šã‚¨ãƒªã‚¢5ï¼ˆå·¦ä¸‹ï¼‰
 //
 //====================================================================
 ev_safari_train_area05:
 	_EVENT_START
 	
-	_TALKMSG	msg_safari_yobidashi_01	//‚Ç‚±‚Ös‚«‚Ü‚·‚©H
-	/*s‚«æ‘I‘ğ*/
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_157,0					//ƒGƒŠƒA1
-	_BMPMENU_MAKE_LIST	msg_ev_win_158,1					//ƒGƒŠƒA2
-	_BMPMENU_MAKE_LIST	msg_ev_win_159,2					//ƒGƒŠƒA3
-	_BMPMENU_MAKE_LIST	msg_ev_win_160,3					//ƒGƒŠƒA4
-	_BMPMENU_MAKE_LIST	msg_ev_win_163,4					//‚â‚ß‚é
+	_TALKMSG	msg_safari_yobidashi_01	//ã©ã“ã¸è¡Œãã¾ã™ã‹ï¼Ÿ
+	/*è¡Œãå…ˆé¸æŠ*/
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_157,0					//ã‚¨ãƒªã‚¢1
+	_BMPMENU_MAKE_LIST	msg_ev_win_158,1					//ã‚¨ãƒªã‚¢2
+	_BMPMENU_MAKE_LIST	msg_ev_win_159,2					//ã‚¨ãƒªã‚¢3
+	_BMPMENU_MAKE_LIST	msg_ev_win_160,3					//ã‚¨ãƒªã‚¢4
+	_BMPMENU_MAKE_LIST	msg_ev_win_163,4					//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 	_TALK_CLOSE
 	
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,4,ev_safari_train_end
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,EV_WIN_B_CANCEL,ev_safari_train_end
 
-	/*“dÔ‚ğƒR[ƒ‹‚·‚é•K—v‚ª‚ ‚é‚©‚ğƒ`ƒFƒbƒN*/
+	/*é›»è»Šã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯*/
 	_CHECK_SAFARI_TRAIN	TRAIN_POS_3, SCWK_TEMP0
-	/*“dÔƒR[ƒ‹—p‚ÉTEMP1‚ÉŒ»İˆÊ’u‚ğƒZƒbƒg‚µ‚Æ‚­*/
+	/*é›»è»Šã‚³ãƒ¼ãƒ«ç”¨ã«TEMP1ã«ç¾åœ¨ä½ç½®ã‚’ã‚»ãƒƒãƒˆã—ã¨ã*/
 	_LDVAL		SCWK_TEMP1,TRAIN_POS_3
-	/*•K—v‚ª‚ ‚ê‚Î“dÔƒR[ƒ‹*/
+	/*å¿…è¦ãŒã‚ã‚Œã°é›»è»Šã‚³ãƒ¼ãƒ«*/
 	_IFVAL_CALL SCWK_TEMP0,EQ,TRAIN_DIF_POS, ev_safari_call_train
-	/*©‹@‚Ì‚‚³æ“¾‚ğ–³Œø*/
+	/*è‡ªæ©Ÿã®é«˜ã•å–å¾—ã‚’ç„¡åŠ¹*/
 	_PLAYER_HEGIHT_VALID	0
-	/*“dÔ‚Éæ‚é*/
-	_IFVAL_CALL SCWK_ANSWER,EQ,0, ev_safari_train_in_r3			//ƒGƒŠƒA1i¶‚É~‚è‚é‚Ì‚Å‰E‚É3•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,1, ev_safari_train_in_r4			//ƒGƒŠƒA2i‰E‚É~‚è‚é‚Ì‚Å‰E‚É4•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,2, ev_safari_train_in_r3			//ƒGƒŠƒA3i¶‚É~‚è‚é‚Ì‚Å‰E‚É3•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,3, ev_safari_train_in_r4			//ƒGƒŠƒA4i‰E‚É~‚è‚é‚Ì‚Å‰E‚É4•àj
-	/*ƒAƒ“ƒT[ƒ[ƒN‚ğŒ©‚Ä•ªŠò*/
-	_IFVAL_CALL SCWK_ANSWER,EQ,0,ev_safari_train_go_area1		//ƒGƒŠƒA1
-	_IFVAL_CALL SCWK_ANSWER,EQ,1,ev_safari_train_go_area2		//ƒGƒŠƒA2
-	_IFVAL_CALL SCWK_ANSWER,EQ,2,ev_safari_train_go_area3		//ƒGƒŠƒA3
-	_IFVAL_CALL SCWK_ANSWER,EQ,3,ev_safari_train_go_area4		//ƒGƒŠƒA4
-	/*©‹@‚Ì‚‚³æ“¾‚ğ—LŒø*/
+	/*é›»è»Šã«ä¹—ã‚‹*/
+	_IFVAL_CALL SCWK_ANSWER,EQ,0, ev_safari_train_in_r3			//ã‚¨ãƒªã‚¢1ï¼ˆå·¦ã«é™ã‚Šã‚‹ã®ã§å³ã«3æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,1, ev_safari_train_in_r4			//ã‚¨ãƒªã‚¢2ï¼ˆå³ã«é™ã‚Šã‚‹ã®ã§å³ã«4æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,2, ev_safari_train_in_r3			//ã‚¨ãƒªã‚¢3ï¼ˆå·¦ã«é™ã‚Šã‚‹ã®ã§å³ã«3æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,3, ev_safari_train_in_r4			//ã‚¨ãƒªã‚¢4ï¼ˆå³ã«é™ã‚Šã‚‹ã®ã§å³ã«4æ­©ï¼‰
+	/*ã‚¢ãƒ³ã‚µãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’è¦‹ã¦åˆ†å²*/
+	_IFVAL_CALL SCWK_ANSWER,EQ,0,ev_safari_train_go_area1		//ã‚¨ãƒªã‚¢1
+	_IFVAL_CALL SCWK_ANSWER,EQ,1,ev_safari_train_go_area2		//ã‚¨ãƒªã‚¢2
+	_IFVAL_CALL SCWK_ANSWER,EQ,2,ev_safari_train_go_area3		//ã‚¨ãƒªã‚¢3
+	_IFVAL_CALL SCWK_ANSWER,EQ,3,ev_safari_train_go_area4		//ã‚¨ãƒªã‚¢4
+	/*è‡ªæ©Ÿã®é«˜ã•å–å¾—ã‚’æœ‰åŠ¹*/
 	_PLAYER_HEGIHT_VALID	1
 	
 	_EVENT_END
@@ -375,45 +375,45 @@ ev_safari_train_area05:
 
 //====================================================================
 //
-//		ƒTƒtƒ@ƒŠ“dÔƒGƒŠƒA6i‰E‰ºj
+//		ã‚µãƒ•ã‚¡ãƒªé›»è»Šã‚¨ãƒªã‚¢6ï¼ˆå³ä¸‹ï¼‰
 //
 //====================================================================
 ev_safari_train_area06:
 	_EVENT_START
 
-	_TALKMSG	msg_safari_yobidashi_01	//‚Ç‚±‚Ös‚«‚Ü‚·‚©H
-	/*s‚«æ‘I‘ğ*/
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_157,0					//ƒGƒŠƒA1
-	_BMPMENU_MAKE_LIST	msg_ev_win_158,1					//ƒGƒŠƒA2
-	_BMPMENU_MAKE_LIST	msg_ev_win_159,2					//ƒGƒŠƒA3
-	_BMPMENU_MAKE_LIST	msg_ev_win_160,3					//ƒGƒŠƒA4
-	_BMPMENU_MAKE_LIST	msg_ev_win_163,4					//‚â‚ß‚é
+	_TALKMSG	msg_safari_yobidashi_01	//ã©ã“ã¸è¡Œãã¾ã™ã‹ï¼Ÿ
+	/*è¡Œãå…ˆé¸æŠ*/
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER					//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_157,0					//ã‚¨ãƒªã‚¢1
+	_BMPMENU_MAKE_LIST	msg_ev_win_158,1					//ã‚¨ãƒªã‚¢2
+	_BMPMENU_MAKE_LIST	msg_ev_win_159,2					//ã‚¨ãƒªã‚¢3
+	_BMPMENU_MAKE_LIST	msg_ev_win_160,3					//ã‚¨ãƒªã‚¢4
+	_BMPMENU_MAKE_LIST	msg_ev_win_163,4					//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 	_TALK_CLOSE
 	
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,4,ev_safari_train_end
 	_IFVAL_JUMP  SCWK_ANSWER,EQ,EV_WIN_B_CANCEL,ev_safari_train_end
 
-	/*“dÔ‚ğƒR[ƒ‹‚·‚é•K—v‚ª‚ ‚é‚©‚ğƒ`ƒFƒbƒN*/
+	/*é›»è»Šã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯*/
 	_CHECK_SAFARI_TRAIN	TRAIN_POS_3, SCWK_TEMP0
-	/*“dÔƒR[ƒ‹—p‚ÉTEMP1‚ÉŒ»İˆÊ’u‚ğƒZƒbƒg‚µ‚Æ‚­*/
+	/*é›»è»Šã‚³ãƒ¼ãƒ«ç”¨ã«TEMP1ã«ç¾åœ¨ä½ç½®ã‚’ã‚»ãƒƒãƒˆã—ã¨ã*/
 	_LDVAL		SCWK_TEMP1,TRAIN_POS_3
-	/*•K—v‚ª‚ ‚ê‚Î“dÔƒR[ƒ‹*/
+	/*å¿…è¦ãŒã‚ã‚Œã°é›»è»Šã‚³ãƒ¼ãƒ«*/
 	_IFVAL_CALL SCWK_TEMP0,EQ,TRAIN_DIF_POS, ev_safari_call_train
-	/*©‹@‚Ì‚‚³æ“¾‚ğ–³Œø*/
+	/*è‡ªæ©Ÿã®é«˜ã•å–å¾—ã‚’ç„¡åŠ¹*/
 	_PLAYER_HEGIHT_VALID	0
-	/*“dÔ‚Éæ‚é*/
-	_IFVAL_CALL SCWK_ANSWER,EQ,0, ev_safari_train_in_l4			//ƒGƒŠƒA1i¶‚É~‚è‚é‚Ì‚Å¶‚É4•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,1, ev_safari_train_in_l3			//ƒGƒŠƒA2i‰E‚É~‚è‚é‚Ì‚Å¶‚É3•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,2, ev_safari_train_in_l4			//ƒGƒŠƒA3i¶‚É~‚è‚é‚Ì‚Å¶‚É4•àj
-	_IFVAL_CALL SCWK_ANSWER,EQ,3, ev_safari_train_in_l3			//ƒGƒŠƒA4i‰E‚É~‚è‚é‚Ì‚Å¶‚É3•àj
-	/*ƒAƒ“ƒT[ƒ[ƒN‚ğŒ©‚Ä•ªŠò*/
-	_IFVAL_CALL SCWK_ANSWER,EQ,0,ev_safari_train_go_area1		//ƒGƒŠƒA1
-	_IFVAL_CALL SCWK_ANSWER,EQ,1,ev_safari_train_go_area2		//ƒGƒŠƒA2
-	_IFVAL_CALL SCWK_ANSWER,EQ,2,ev_safari_train_go_area3		//ƒGƒŠƒA3
-	_IFVAL_CALL SCWK_ANSWER,EQ,3,ev_safari_train_go_area4		//ƒGƒŠƒA4
-	/*©‹@‚Ì‚‚³æ“¾‚ğ—LŒø*/
+	/*é›»è»Šã«ä¹—ã‚‹*/
+	_IFVAL_CALL SCWK_ANSWER,EQ,0, ev_safari_train_in_l4			//ã‚¨ãƒªã‚¢1ï¼ˆå·¦ã«é™ã‚Šã‚‹ã®ã§å·¦ã«4æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,1, ev_safari_train_in_l3			//ã‚¨ãƒªã‚¢2ï¼ˆå³ã«é™ã‚Šã‚‹ã®ã§å·¦ã«3æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,2, ev_safari_train_in_l4			//ã‚¨ãƒªã‚¢3ï¼ˆå·¦ã«é™ã‚Šã‚‹ã®ã§å·¦ã«4æ­©ï¼‰
+	_IFVAL_CALL SCWK_ANSWER,EQ,3, ev_safari_train_in_l3			//ã‚¨ãƒªã‚¢4ï¼ˆå³ã«é™ã‚Šã‚‹ã®ã§å·¦ã«3æ­©ï¼‰
+	/*ã‚¢ãƒ³ã‚µãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’è¦‹ã¦åˆ†å²*/
+	_IFVAL_CALL SCWK_ANSWER,EQ,0,ev_safari_train_go_area1		//ã‚¨ãƒªã‚¢1
+	_IFVAL_CALL SCWK_ANSWER,EQ,1,ev_safari_train_go_area2		//ã‚¨ãƒªã‚¢2
+	_IFVAL_CALL SCWK_ANSWER,EQ,2,ev_safari_train_go_area3		//ã‚¨ãƒªã‚¢3
+	_IFVAL_CALL SCWK_ANSWER,EQ,3,ev_safari_train_go_area4		//ã‚¨ãƒªã‚¢4
+	/*è‡ªæ©Ÿã®é«˜ã•å–å¾—ã‚’æœ‰åŠ¹*/
 	_PLAYER_HEGIHT_VALID	1
 
 	_EVENT_END
@@ -421,7 +421,7 @@ ev_safari_train_area06:
 
 //====================================================================
 //
-//		“dÔŒÄ‚Ô
+//		é›»è»Šå‘¼ã¶
 //
 //====================================================================
 ev_safari_call_train:
@@ -430,7 +430,7 @@ ev_safari_call_train:
 
 //====================================================================
 //
-//		“dÔæ‚Á‚ÄˆÚ“®
+//		é›»è»Šä¹—ã£ã¦ç§»å‹•
 //
 //====================================================================
 ev_safari_ride_train:
@@ -439,7 +439,7 @@ ev_safari_ride_train:
 
 //====================================================================
 //
-//		“dÔs‚«æ‚ªˆê”Ôã
+//		é›»è»Šè¡Œãå…ˆãŒä¸€ç•ªä¸Š
 //
 //====================================================================
 ev_safari_train_bound_for_pos1:
@@ -449,7 +449,7 @@ ev_safari_train_bound_for_pos1:
 
 //====================================================================
 //
-//		“dÔs‚«æ‚ª^‚ñ’†
+//		é›»è»Šè¡Œãå…ˆãŒçœŸã‚“ä¸­
 //
 //====================================================================
 ev_safari_train_bound_for_pos2:
@@ -459,7 +459,7 @@ ev_safari_train_bound_for_pos2:
 	
 //====================================================================
 //
-//		“dÔs‚«æ‚ªˆê”Ô‰º
+//		é›»è»Šè¡Œãå…ˆãŒä¸€ç•ªä¸‹
 //
 //====================================================================
 ev_safari_train_bound_for_pos3:
@@ -469,78 +469,78 @@ ev_safari_train_bound_for_pos3:
 
 //====================================================================
 //
-//		“dÔs‚«æ‚ªƒGƒŠƒA1
+//		é›»è»Šè¡Œãå…ˆãŒã‚¨ãƒªã‚¢1
 //
 //====================================================================
 ev_safari_train_go_area1:
 	_CALL	ev_safari_train_bound_for_pos1
-	/*~‚è‚é*/
+	/*é™ã‚Šã‚‹*/
 	_CALL	ev_safari_train_out_l
 	_RET
 
 //====================================================================
 //
-//		“dÔs‚«æ‚ªƒGƒŠƒA2
+//		é›»è»Šè¡Œãå…ˆãŒã‚¨ãƒªã‚¢2
 //
 //====================================================================
 ev_safari_train_go_area2:
 	_CALL	ev_safari_train_bound_for_pos1
-	/*~‚è‚é*/
+	/*é™ã‚Šã‚‹*/
 	_CALL	ev_safari_train_out_r
 	_RET
 
 //====================================================================
 //
-//		“dÔs‚«æ‚ªƒGƒŠƒA3
+//		é›»è»Šè¡Œãå…ˆãŒã‚¨ãƒªã‚¢3
 //
 //====================================================================
 ev_safari_train_go_area3:
 	_CALL	ev_safari_train_bound_for_pos2
-	/*~‚è‚é*/
+	/*é™ã‚Šã‚‹*/
 	_CALL	ev_safari_train_out_l
 	_RET
 
 //====================================================================
 //
-//		“dÔs‚«æ‚ªƒGƒŠƒA4
+//		é›»è»Šè¡Œãå…ˆãŒã‚¨ãƒªã‚¢4
 //
 //====================================================================
 ev_safari_train_go_area4:
 	_CALL	ev_safari_train_bound_for_pos2
-	/*~‚è‚é*/
+	/*é™ã‚Šã‚‹*/
 	_CALL	ev_safari_train_out_r
 	_RET
 
 //====================================================================
 //
-//		“dÔs‚«æ‚ªƒGƒŠƒA5
+//		é›»è»Šè¡Œãå…ˆãŒã‚¨ãƒªã‚¢5
 //
 //====================================================================
 ev_safari_train_go_area5:
 	_CALL	ev_safari_train_bound_for_pos3
-	/*~‚è‚é*/
+	/*é™ã‚Šã‚‹*/
 	_CALL	ev_safari_train_out_l
 	_RET
 
 //====================================================================
 //
-//		“dÔs‚«æ‚ªƒGƒŠƒA6
+//		é›»è»Šè¡Œãå…ˆãŒã‚¨ãƒªã‚¢6
 //
 //====================================================================
 ev_safari_train_go_area6:
 	_CALL	ev_safari_train_bound_for_pos3
-	/*~‚è‚é*/
+	/*é™ã‚Šã‚‹*/
 	_CALL	ev_safari_train_out_r
 	_RET
 	
 //====================================================================
 //
-//		“dÔˆ—I‚í‚è
+//		é›»è»Šå‡¦ç†çµ‚ã‚ã‚Š
 //
 //====================================================================
 ev_safari_train_end:
 	_PLAYER_NAME	0
-	_TALKMSG	msg_safari_yobidashi_02	//æ‚ç‚È‚©‚Á‚½
+	_TALKMSG	msg_safari_yobidashi_02	//ä¹—ã‚‰ãªã‹ã£ãŸ
 	_LAST_KEYWAIT
 	_TALK_CLOSE	
 	_EVENT_END
@@ -548,7 +548,7 @@ ev_safari_train_end:
 
 //====================================================================
 //
-//		“dÔ‚Éæ‚éi‰E‚É3•àj
+//		é›»è»Šã«ä¹—ã‚‹ï¼ˆå³ã«3æ­©ï¼‰
 //
 //====================================================================
 ev_safari_train_in_r3:
@@ -558,7 +558,7 @@ ev_safari_train_in_r3:
 
 //====================================================================
 //
-//		“dÔ‚Éæ‚éi‰E‚É4•àj
+//		é›»è»Šã«ä¹—ã‚‹ï¼ˆå³ã«4æ­©ï¼‰
 //
 //====================================================================
 ev_safari_train_in_r4:
@@ -568,7 +568,7 @@ ev_safari_train_in_r4:
 
 //====================================================================
 //
-//		“dÔ‚Éæ‚éi¶‚É3•àj
+//		é›»è»Šã«ä¹—ã‚‹ï¼ˆå·¦ã«3æ­©ï¼‰
 //
 //====================================================================
 ev_safari_train_in_l3:
@@ -578,7 +578,7 @@ ev_safari_train_in_l3:
 
 //====================================================================
 //
-//		“dÔ‚Éæ‚éi¶‚É4•àj
+//		é›»è»Šã«ä¹—ã‚‹ï¼ˆå·¦ã«4æ­©ï¼‰
 //
 //====================================================================
 ev_safari_train_in_l4:
@@ -588,7 +588,7 @@ ev_safari_train_in_l4:
 
 //====================================================================
 //
-//		“dÔ‚©‚ç~‚è‚éi‰Ej
+//		é›»è»Šã‹ã‚‰é™ã‚Šã‚‹ï¼ˆå³ï¼‰
 //
 //====================================================================
 ev_safari_train_out_r:
@@ -598,7 +598,7 @@ ev_safari_train_out_r:
 
 //====================================================================
 //
-//		“dÔ‚©‚ç~‚è‚éi¶j
+//		é›»è»Šã‹ã‚‰é™ã‚Šã‚‹ï¼ˆå·¦ï¼‰
 //
 //====================================================================
 ev_safari_train_out_l:
@@ -607,11 +607,11 @@ ev_safari_train_out_l:
 	_RET
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//ƒAƒjƒ[ƒVƒ‡ƒ“
+//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 
 //====================================================================
 //
-//		‰E‚É3•à ‚»‚ÌŒãƒoƒjƒbƒVƒ…
+//		å³ã«3æ­© ãã®å¾Œãƒãƒ‹ãƒƒã‚·ãƒ¥
 //
 //====================================================================
 _ANIME_LABEL anm_safari_player_right3wk_in
@@ -621,7 +621,7 @@ _ANIME_LABEL anm_safari_player_right3wk_in
 
 //====================================================================
 //
-//		‰E‚É4•à ‚»‚ÌŒãƒoƒjƒbƒVƒ…
+//		å³ã«4æ­© ãã®å¾Œãƒãƒ‹ãƒƒã‚·ãƒ¥
 //
 //====================================================================
 _ANIME_LABEL anm_safari_player_right4wk_in
@@ -631,7 +631,7 @@ _ANIME_LABEL anm_safari_player_right4wk_in
 
 //====================================================================
 //
-//		¶‚É3•à‚»‚ÌŒãƒoƒjƒbƒVƒ…
+//		å·¦ã«3æ­©ãã®å¾Œãƒãƒ‹ãƒƒã‚·ãƒ¥
 //
 //====================================================================
 _ANIME_LABEL anm_safari_player_left3wk_in
@@ -641,7 +641,7 @@ _ANIME_LABEL anm_safari_player_left3wk_in
 	
 //====================================================================
 //
-//		¶‚É4•à‚»‚ÌŒãƒoƒjƒbƒVƒ…
+//		å·¦ã«4æ­©ãã®å¾Œãƒãƒ‹ãƒƒã‚·ãƒ¥
 //
 //====================================================================
 _ANIME_LABEL anm_safari_player_left4wk_in
@@ -651,7 +651,7 @@ _ANIME_LABEL anm_safari_player_left4wk_in
 
 //====================================================================
 //
-//		ƒoƒjƒbƒVƒ…‰ğœ@‚»‚ÌŒã‰E‚É3•à
+//		ãƒãƒ‹ãƒƒã‚·ãƒ¥è§£é™¤ã€€ãã®å¾Œå³ã«3æ­©
 //
 //====================================================================
 _ANIME_LABEL anm_safari_player_right3wk_out
@@ -661,7 +661,7 @@ _ANIME_LABEL anm_safari_player_right3wk_out
 
 //====================================================================
 //
-//		ƒoƒjƒbƒVƒ…‰ğœ@‚»‚ÌŒã‰E‚É3•à
+//		ãƒãƒ‹ãƒƒã‚·ãƒ¥è§£é™¤ã€€ãã®å¾Œå³ã«3æ­©
 //
 //====================================================================
 _ANIME_LABEL anm_safari_player_left3wk_out

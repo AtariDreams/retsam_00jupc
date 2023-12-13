@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>G3X_GetRenderedLineCount</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">G3X_GetRenderedLineCount</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -20,16 +20,16 @@
 
 s32 G3X_GetRenderedLineCount(void);<BR></CODE></PRE>
   </dd>
-</dl><h2>����</h2>
-<P>�Ȃ�</P>
-<h2>�Ԃ�l</h2>
-<p>���O�̕`��t���[���ɂ�����A�J���[�o�b�t�@�̍ŏ��l</p>
-<H2>����</H2>
-<P>���O�̕`��t���[�����ɁA�J���[�o�b�t�@���Œች���C���܂łɂȂ������A���m�F����ꍇ�R�[�����܂��B�Ԃ�l��0����46�܂ł̒l�ƂȂ�܂��B�l���������ꍇ�A���C���Y�I�[�o�[���郊�X�N�����܂�܂��B���̏ꍇ�A�����_�����O�G���W���ɂ����镉�ׂ����炷���߁A�W�I���g���G���W���ɑ���|���S���������炷���̑΍���s���Ă��������B</P>
+</dl><h2>引数</h2>
+<P>なし</P>
+<h2>返り値</h2>
+<p>直前の描画フレームにおける、カラーバッファの最小値</p>
+<H2>説明</H2>
+<P>直前の描画フレーム中に、カラーバッファが最低何ラインまでになったか、を確認する場合コールします。返り値は0から46までの値となります。値が小さい場合、ラインズオーバーするリスクが高まります。この場合、レンダリングエンジンにかかる負荷を減らすため、ジオメトリエンジンに送るポリゴン数を減らす等の対策を行ってください。</P>
 
 
-<h2>�Q��</h2>
-<H2>����</H2>
+<h2>参照</h2>
+<H2>履歴</H2>
 <P>Ver. 2004/01/19</P>
 
 </body>

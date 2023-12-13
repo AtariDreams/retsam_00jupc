@@ -1,11 +1,11 @@
 //============================================================================================
 /**
  * @file	app_tool.c
- * @brief	ƒc[ƒ‹ŠÖ˜A
+ * @brief	ãƒ„ãƒ¼ãƒ«é–¢é€£
  * @author	Hiroyuki Nakamura
  * @date	05.09.28
  *
- *	“K“–‚É’Ç‰Á‚µ‚Ä‰º‚³‚¢
+ *	é©å½“ã«è¿½åŠ ã—ã¦ä¸‹ã•ã„
  */
 //============================================================================================
 #include "common.h"
@@ -20,19 +20,19 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	BRIGHT_SYNC			( COMM_BRIGHTNESS_SYNC )	// ‹P“x•ÏXSync”
-#define	BRIGHT_IN_END		( 0 )						// ‹P“x•ÏXI—¹’liˆÃ¨–¾j
-#define	BRIGHT_IN_START		( -16 )						// ‹P“x•ÏXŠJn’liˆÃ¨–¾j
-#define	BRIGHT_OUT_END		( -16 )						// ‹P“x•ÏXI—¹’li–¾¨ˆÃj
-#define	BRIGHT_OUT_START	( 0 )						// ‹P“x•ÏXŠJn’li–¾¨ˆÃj
+#define	BRIGHT_SYNC			( COMM_BRIGHTNESS_SYNC )	// è¼åº¦å¤‰æ›´Syncæ•°
+#define	BRIGHT_IN_END		( 0 )						// è¼åº¦å¤‰æ›´çµ‚äº†å€¤ï¼ˆæš—â†’æ˜ï¼‰
+#define	BRIGHT_IN_START		( -16 )						// è¼åº¦å¤‰æ›´é–‹å§‹å€¤ï¼ˆæš—â†’æ˜ï¼‰
+#define	BRIGHT_OUT_END		( -16 )						// è¼åº¦å¤‰æ›´çµ‚äº†å€¤ï¼ˆæ˜â†’æš—ï¼‰
+#define	BRIGHT_OUT_START	( 0 )						// è¼åº¦å¤‰æ›´é–‹å§‹å€¤ï¼ˆæ˜â†’æš—ï¼‰
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///OAMƒ^ƒCƒv‚Ìƒf[ƒ^ƒTƒCƒYƒe[ƒuƒ‹
+///OAMã‚¿ã‚¤ãƒ—ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºãƒ†ãƒ¼ãƒ–ãƒ«
 ALIGN4 static const u16 OamTypeSizeTbl[] = {
 	OBJSIZE_8x8,		//OAMTYPE_8x8	
 	OBJSIZE_16x16,		//OAMTYPE_16x16
@@ -52,28 +52,28 @@ ALIGN4 static const u16 OamTypeSizeTbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   OAMƒ^ƒCƒv‚©‚çOAM‚Ìƒf[ƒ^ƒTƒCƒY‚ğæ“¾‚·‚é
- * @param   oam_type		OAMƒ^ƒCƒv
- * @retval  ƒf[ƒ^ƒTƒCƒY(Byte’PˆÊ)
+ * @brief   OAMã‚¿ã‚¤ãƒ—ã‹ã‚‰OAMã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
+ * @param   oam_type		OAMã‚¿ã‚¤ãƒ—
+ * @retval  ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º(Byteå˜ä½)
  */
 //--------------------------------------------------------------
 int APP_OamTypeToSize(int oam_type)
 {
-	oam_type -= OAMTYPE_8x8;	//OAMTYPE_8x8‚ª0‚Ån‚Ü‚Á‚Ä‚¢‚È‚¢ê‡‚ğl‚¦‚Äˆê‰
+	oam_type -= OAMTYPE_8x8;	//OAMTYPE_8x8ãŒ0ã§å§‹ã¾ã£ã¦ã„ãªã„å ´åˆã‚’è€ƒãˆã¦ä¸€å¿œ
 	return OamTypeSizeTbl[oam_type];
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ’¼ü‹——£‚ğ‹‚ß‚Ü‚·
+ * @brief   ç›´ç·šè·é›¢ã‚’æ±‚ã‚ã¾ã™
  *
- * @param   x		X‚Ì‹——£
- * @param   y		Y‚Ì‹——£
+ * @param   x		Xã®è·é›¢
+ * @param   y		Yã®è·é›¢
  *
- * @retval  int		’¼ü‹——£
+ * @retval  int		ç›´ç·šè·é›¢
  *
- * À•W(0,0)‚ğn“_‚Æ‚µ‚ÄA(x,y)‚Ü‚Å‚Ì’¼ü‹——£‚ğŒvZ‚µ‚Ü‚·
+ * åº§æ¨™(0,0)ã‚’å§‹ç‚¹ã¨ã—ã¦ã€(x,y)ã¾ã§ã®ç›´ç·šè·é›¢ã‚’è¨ˆç®—ã—ã¾ã™
  */
 //--------------------------------------------------------------
 u32 APP_StraightDistance(u32 x, u32 y)
@@ -89,13 +89,13 @@ u32 APP_StraightDistance(u32 x, u32 y)
 
 //--------------------------------------------------------------------------------------------
 /**
- * Œ»İ’l‚ÌƒQ[ƒWƒhƒbƒg”‚ğæ“¾
+ * ç¾åœ¨å€¤ã®ã‚²ãƒ¼ã‚¸ãƒ‰ãƒƒãƒˆæ•°ã‚’å–å¾—
  *
- * @param	prm_now		Œ»İ’l
- * @param	prm_max		Å‘å’l
- * @param	dot_max		Å‘åƒhƒbƒg”
+ * @param	prm_now		ç¾åœ¨å€¤
+ * @param	prm_max		æœ€å¤§å€¤
+ * @param	dot_max		æœ€å¤§ãƒ‰ãƒƒãƒˆæ•°
  *
- * @return	ƒhƒbƒg”
+ * @return	ãƒ‰ãƒƒãƒˆæ•°
  */
 //--------------------------------------------------------------------------------------------
 u8 GetNumDotto( u32 prm_now, u32 prm_max, u8 dot_max )
@@ -103,7 +103,7 @@ u8 GetNumDotto( u32 prm_now, u32 prm_max, u8 dot_max )
 	u8 put_dot;
 	
 	put_dot = prm_now * dot_max / prm_max;
-	if( put_dot == 0 && prm_now > 0 ){	// ÄŞ¯ÄŒvZ‚Å‚Í0‚Å‚àÀÛ‚Ì’l‚ª1ˆÈã‚È‚ç1ÄŞ¯Ä‚É‚·‚é
+	if( put_dot == 0 && prm_now > 0 ){	// ãƒ‰ãƒƒãƒˆè¨ˆç®—ã§ã¯0ã§ã‚‚å®Ÿéš›ã®å€¤ãŒ1ä»¥ä¸Šãªã‚‰1ãƒ‰ãƒƒãƒˆã«ã™ã‚‹
 		put_dot = 1;
 	}
 	return put_dot;
@@ -111,38 +111,38 @@ u8 GetNumDotto( u32 prm_now, u32 prm_max, u8 dot_max )
 
 //--------------------------------------------------------------
 /**
- * @brief   •\¦ƒhƒbƒg‚ÆÅ‘åƒhƒbƒg‚©‚çHPƒQ[ƒW‚ÌF‚ğæ“¾‚·‚é
+ * @brief   è¡¨ç¤ºãƒ‰ãƒƒãƒˆã¨æœ€å¤§ãƒ‰ãƒƒãƒˆã‹ã‚‰HPã‚²ãƒ¼ã‚¸ã®è‰²ã‚’å–å¾—ã™ã‚‹
  *
- * @param   put_dot		•\¦ƒhƒbƒg”
- * @param   max_dot		Å‘åƒhƒbƒg”
+ * @param   put_dot		è¡¨ç¤ºãƒ‰ãƒƒãƒˆæ•°
+ * @param   max_dot		æœ€å¤§ãƒ‰ãƒƒãƒˆæ•°
  *
- * @retval  ƒQ[ƒWƒJƒ‰[
+ * @retval  ã‚²ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼
  */
 //--------------------------------------------------------------
 u8 GetGaugeDottoColor(u32 put_dot, u32 max_dot)
 {
-	put_dot <<= 8;		//Š„‚èZg—p‚Ìˆ×A¬”ƒŒƒxƒ‹‚Ü‚ÅŒ©‚ê‚é‚æ‚¤‚ÉŒÅ’è¬”‰»
+	put_dot <<= 8;		//å‰²ã‚Šç®—ä½¿ç”¨ã®ç‚ºã€å°æ•°ãƒ¬ãƒ™ãƒ«ã¾ã§è¦‹ã‚Œã‚‹ã‚ˆã†ã«å›ºå®šå°æ•°åŒ–
 	max_dot <<= 8;
 	
 	if( put_dot > (max_dot/2) ){
-		return HP_DOTTO_GREEN;		// —Î
+		return HP_DOTTO_GREEN;		// ç·‘
 	}else if( put_dot > (max_dot/5) ){
-		return HP_DOTTO_YELLOW;		// ‰©
+		return HP_DOTTO_YELLOW;		// é»„
 	}else if( put_dot > 0 ){
-		return HP_DOTTO_RED;		// Ô
+		return HP_DOTTO_RED;		// èµ¤
 	}
 	return HP_DOTTO_NULL;			// HP=0
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * HPƒQ[ƒW‚ÌƒJƒ‰[‚ğæ“¾
+ * HPã‚²ãƒ¼ã‚¸ã®ã‚«ãƒ©ãƒ¼ã‚’å–å¾—
  *
- * @param	hp			Œ»İ‚ÌHP
- * @param	mhp			Å‘åHP
- * @param	max_dot		Å‘åƒhƒbƒg”
+ * @param	hp			ç¾åœ¨ã®HP
+ * @param	mhp			æœ€å¤§HP
+ * @param	max_dot		æœ€å¤§ãƒ‰ãƒƒãƒˆæ•°
  *
- * @return	ƒQ[ƒWƒJƒ‰[
+ * @return	ã‚²ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼
  */
 //--------------------------------------------------------------------------------------------
 u8 GetHPGaugeDottoColor( u16 hp, u16 mhp, u32 max_dot )
@@ -160,9 +160,9 @@ u8 GetHPGaugeDottoColor( u16 hp, u16 mhp, u32 max_dot )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹P“x•ÏXƒŠƒNƒGƒXƒg
+ * è¼åº¦å¤‰æ›´ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param	req		ƒŠƒNƒGƒXƒgID
+ * @param	req		ãƒªã‚¯ã‚¨ã‚¹ãƒˆID
  *
  * @return	none
  */
@@ -182,10 +182,10 @@ void APP_BrightnessReq( u8 req )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒvƒVƒXƒeƒ€‚É‚æ‚éƒtƒF[ƒhƒŠƒNƒGƒXƒg
+ * ãƒ¯ã‚¤ãƒ—ã‚·ã‚¹ãƒ†ãƒ ã«ã‚ˆã‚‹ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param	req			ƒŠƒNƒGƒXƒgID
- * @param	heap		ƒq[ƒvID
+ * @param	req			ãƒªã‚¯ã‚¨ã‚¹ãƒˆID
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
  * @return	none
  */
@@ -206,14 +206,14 @@ void APP_WipeStart( u8 req, u32 heap )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŒÂ”•ÏX
+ * å€‹æ•°å¤‰æ›´
  *
- * @param	num		ŒÂ”
- * @param	max		Å‘å’l
+ * @param	num		å€‹æ•°
+ * @param	max		æœ€å¤§å€¤
  *
- * @retval	"APP_NUMSEL_NONE = }‚O"
- * @retval	"APP_NUMSEL_UP = {"
- * @retval	"APP_NUMSEL_DOWN = |"
+ * @retval	"APP_NUMSEL_NONE = Â±ï¼"
+ * @retval	"APP_NUMSEL_UP = ï¼‹"
+ * @retval	"APP_NUMSEL_DOWN = âˆ’"
  */
 //--------------------------------------------------------------------------------------------
 u8 NumSelectCheck( s16 * num, u16 max )
@@ -255,18 +255,18 @@ u8 NumSelectCheck( s16 * num, u16 max )
 ///////////////////////////////////////////////////////////////////////
 
 /**
- *	@brief	ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹Eƒtƒ@ƒCƒ‹idx“™‚ğˆø”‚ÉA
- *			w’èƒtƒŒ[ƒ€‚Ìƒf[ƒ^‚ğVRAM‚Ö“]‘—‚·‚é
+ *	@brief	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«idxç­‰ã‚’å¼•æ•°ã«ã€
+ *			æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ‡ãƒ¼ã‚¿ã‚’VRAMã¸è»¢é€ã™ã‚‹
  *
- *	@param	bgl		‰ŠúÏ‚İ‚ÌBGLƒf[ƒ^
- *	@param	heapID	ƒeƒ“ƒ|ƒ‰ƒŠì¬‚Ég‚¤ƒq[ƒvƒnƒ“ƒhƒ‹
- *	@param	handel	ƒI[ƒvƒ“Ï‚İ‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
- *	@param	arcID	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *	@param	dataID	ƒA[ƒJƒCƒu“àƒf[ƒ^ID
- *	@param	frame	ƒf[ƒ^“]‘—GF_BGL_FRAME_***w’è
- *	@param	mode	0:ƒLƒƒƒ‰,1:ƒXƒNƒŠ[ƒ“,2:ƒpƒŒƒbƒg
- *	@param	size	“]‘—ƒTƒCƒYw’è(0‚ğw’è‚µ‚½ê‡Aƒtƒ@ƒCƒ‹ƒTƒCƒY•ª)
- *	@param	ofs		“]‘—ƒIƒtƒZƒbƒgw’è
+ *	@param	bgl		åˆæœŸæ¸ˆã¿ã®BGLãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID	ãƒ†ãƒ³ãƒãƒ©ãƒªä½œæˆã«ä½¿ã†ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	handel	ã‚ªãƒ¼ãƒ—ãƒ³æ¸ˆã¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	arcID	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *	@param	dataID	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ãƒ‡ãƒ¼ã‚¿ID
+ *	@param	frame	ãƒ‡ãƒ¼ã‚¿è»¢é€GF_BGL_FRAME_***æŒ‡å®š
+ *	@param	mode	0:ã‚­ãƒ£ãƒ©,1:ã‚¹ã‚¯ãƒªãƒ¼ãƒ³,2:ãƒ‘ãƒ¬ãƒƒãƒˆ
+ *	@param	size	è»¢é€ã‚µã‚¤ã‚ºæŒ‡å®š(0ã‚’æŒ‡å®šã—ãŸå ´åˆã€ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºåˆ†)
+ *	@param	ofs		è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆæŒ‡å®š
  */
 void APP_ArcFileVramLoad(GF_BGL_INI* bgl,int heapID,
 		ARCHANDLE* handle,int arcID,int fileID,int frame,int mode,u16 trans_siz,u16 ofs)
@@ -282,7 +282,7 @@ void APP_ArcFileVramLoad(GF_BGL_INI* bgl,int heapID,
 	ArchiveDataLoadByHandle(handle,fileID,(void*)pSrc);
 
 	switch(mode){
-	case 0:	//ƒLƒƒƒ‰ƒNƒ^
+	case 0:	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 		NNS_G2dGetUnpackedCharacterData(pSrc,&pChar); 
 		if(trans_siz == 0){
 			trans_siz = pChar->szByte;
@@ -315,17 +315,17 @@ void APP_ArcFileVramLoad(GF_BGL_INI* bgl,int heapID,
 }
 
 /**
- *	@brief	ƒI[ƒvƒ“Ï‚İ‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹‚ğ“n‚µ‚Ä
- *			ƒA[ƒJƒCƒu“à‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ğUnpack‚µ‚Äæ“¾‚·‚é
+ *	@brief	ã‚ªãƒ¼ãƒ—ãƒ³æ¸ˆã¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’æ¸¡ã—ã¦
+ *			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’Unpackã—ã¦å–å¾—ã™ã‚‹
  *
- *	@param	handel	ƒI[ƒvƒ“Ï‚İ‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
- *	@param	arcID	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ID
- *	@param	dataID	ƒA[ƒJƒCƒu“àƒf[ƒ^ID
- *	@param	heapID	ƒƒ‚ƒŠŠm•Û‚·‚éƒq[ƒvƒnƒ“ƒhƒ‹
+ *	@param	handel	ã‚ªãƒ¼ãƒ—ãƒ³æ¸ˆã¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	arcID	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ID
+ *	@param	dataID	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ãƒ‡ãƒ¼ã‚¿ID
+ *	@param	heapID	ãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«
  *
- *	@return void*	Šm•Û‚µ‚½ƒf[ƒ^—Ìˆæ‚Ìæ“ªƒ|ƒCƒ“ƒ^
+ *	@return void*	ç¢ºä¿ã—ãŸãƒ‡ãƒ¼ã‚¿é ˜åŸŸã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  *	
- *	–Unpack‚·‚é‚¾‚¯‚È‚Ì‚ÅA‰ğ•ú‚Í©•ª‚Å‚â‚é‚±‚ÆI
+ *	ï¼ŠUnpackã™ã‚‹ã ã‘ãªã®ã§ã€è§£æ”¾ã¯è‡ªåˆ†ã§ã‚„ã‚‹ã“ã¨ï¼
  */
 void* APP_ArcScrFileUnpack(ARCHANDLE* handle,
 	int arcID,int fileID,NNSG2dScreenData** pDat,int heapID)

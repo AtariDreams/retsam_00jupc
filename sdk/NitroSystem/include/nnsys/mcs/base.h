@@ -26,31 +26,31 @@ extern "C" {
 
 
 /* ========================================================================
-    ’è”’è‹`
+    å®šæ•°å®šç¾©
    ======================================================================== */
 
 #define NNS_MCS_WORKMEM_SIZE        sizeof(NNSiMcsWork)
 
 
 /* =======================================================================
-    Œ^’è‹`
+    å‹å®šç¾©
    ======================================================================== */
 
 
-// ƒfƒoƒCƒXî•ñ
+// ãƒ‡ãƒã‚¤ã‚¹æƒ…å ±
 typedef struct NNSMcsDeviceCaps NNSMcsDeviceCaps;
 struct NNSMcsDeviceCaps
 {
-    u32         deviceID;           // ƒfƒoƒCƒX¯•ÊID
-    u32         maskResource;       // ‚±‚ÌƒfƒoƒCƒX‚ğ“®ì‚³‚¹‚é‚Ì‚É•K—v‚È‚èƒ\[ƒX
+    u32         deviceID;           // ãƒ‡ãƒã‚¤ã‚¹è­˜åˆ¥ID
+    u32         maskResource;       // ã“ã®ãƒ‡ãƒã‚¤ã‚¹ã‚’å‹•ä½œã•ã›ã‚‹ã®ã«å¿…è¦ãªã‚Šã‚½ãƒ¼ã‚¹
 };
 
 
-// óM‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”‚ÌŒ^
+// å—ä¿¡æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®å‹
 typedef void (*NNSMcsRecvCallback)(const void* recv, u32 recvSize, u32 userData, u32 offset, u32 totalSize);
 
 
-// óM‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ìî•ñ
+// å—ä¿¡æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®æƒ…å ±
 typedef struct NNSMcsRecvCBInfo NNSMcsRecvCBInfo;
 struct NNSMcsRecvCBInfo
 {
@@ -60,24 +60,24 @@ struct NNSMcsRecvCBInfo
     NNSFndLink          link;
 };
 
-// MCS—pƒ[ƒNƒƒ‚ƒŠ
+// MCSç”¨ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒª
 typedef struct NNSiMcsWork NNSiMcsWork;
 struct NNSiMcsWork
 {
-    u8                  bProtocolError;                     // mcsƒ‰ƒCƒuƒ‰ƒŠƒŒƒxƒ‹‚Ì•sˆê’v
-    u8                  bLengthEnable;                      // length‚ğæ“¾‚µ‚ÄA0ˆÈŠO‚Ì’l‚ğ“¾‚ç‚ê‚ê‚Î^
-    u8                  bHostDataRecived;                   // Å‰‚ÉƒzƒXƒg‚©‚çƒf[ƒ^‚ğóM‚Å‚«‚½‚ç^
+    u8                  bProtocolError;                     // mcsãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ¬ãƒ™ãƒ«ã®ä¸ä¸€è‡´
+    u8                  bLengthEnable;                      // lengthã‚’å–å¾—ã—ã¦ã€0ä»¥å¤–ã®å€¤ã‚’å¾—ã‚‰ã‚Œã‚Œã°çœŸ
+    u8                  bHostDataRecived;                   // æœ€åˆã«ãƒ›ã‚¹ãƒˆã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã§ããŸã‚‰çœŸ
     u8                  padding;
 
     OSMutex             mutex;
-    NNSFndList          recvCBInfoList;                     // óMƒR[ƒ‹ƒoƒbƒNŠÖ”ƒŠƒXƒg
+    NNSFndList          recvCBInfoList;                     // å—ä¿¡æ™‚ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãƒªã‚¹ãƒˆ
 
-    NNSiMcsMsg          writeBuf;                           // ‘‚«‚İ—pƒoƒbƒtƒ@
+    NNSiMcsMsg          writeBuf;                           // æ›¸ãè¾¼ã¿ç”¨ãƒãƒƒãƒ•ã‚¡
 };
 
 
 /* =======================================================================
-    ŠÖ”ƒvƒƒgƒ^ƒCƒv
+    é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
    ======================================================================== */
 
 #if defined(NNS_FINALROM)

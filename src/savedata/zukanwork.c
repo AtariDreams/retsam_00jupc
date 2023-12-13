@@ -1,13 +1,13 @@
 //============================================================================================
 /**
  * @file	zukanwork.c
- * @brief	}ŠÓó‘ÔƒAƒNƒZƒX—pƒ\[ƒX
+ * @brief	å›³é‘‘çŠ¶æ…‹ã‚¢ã‚¯ã‚»ã‚¹ç”¨ã‚½ãƒ¼ã‚¹
  * @author	tamada GAME FREAK inc.
  * @date	2005.12.15
  */
 //============================================================================================
 
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
 #include "common.h"
 
@@ -23,41 +23,41 @@
 //============================================================================================
 //============================================================================================
 enum {
-	POKEZUKAN_ARRAY_LEN = 16,	///<ƒ|ƒPƒ‚ƒ“}ŠÓƒtƒ‰ƒO”z—ñ‚Ì‚¨‚¨‚«‚³16 * 32 = 512‚Ü‚Å‘åä•v
+	POKEZUKAN_ARRAY_LEN = 16,	///<ãƒã‚±ãƒ¢ãƒ³å›³é‘‘ãƒ•ãƒ©ã‚°é…åˆ—ã®ãŠãŠãã•16 * 32 = 512ã¾ã§å¤§ä¸ˆå¤«
 
-	POKEZUKAN_UNKNOWN_NUM = UNK_END,///<ƒAƒ“ƒm[ƒ“”
+	POKEZUKAN_UNKNOWN_NUM = UNK_END,///<ã‚¢ãƒ³ãƒãƒ¼ãƒ³æ•°
 
 	MAGIC_NUMBER = 0xbeefcafe,
 
-	POKEZUKAN_DEOKISISU_MSK = 0xf,	// bitƒ}ƒXƒN	POKEZUKAN_ARRAY_LEN‚ÌŒã‚ë15bit•ª‚ğƒfƒIƒLƒVƒX‚Ég—p‚µ‚Ä‚Ü‚·B
+	POKEZUKAN_DEOKISISU_MSK = 0xf,	// bitãƒã‚¹ã‚¯	POKEZUKAN_ARRAY_LENã®å¾Œã‚15bitåˆ†ã‚’ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã«ä½¿ç”¨ã—ã¦ã¾ã™ã€‚
 
-	POKEZUKAN_TEXTVER_UP_NUM = MONSNO_MAX + 1,	//  Œ©‚½–ÚƒAƒbƒvƒf[ƒgƒoƒbƒtƒ@”	+1‚ÍƒpƒfƒBƒ“ƒO
+	POKEZUKAN_TEXTVER_UP_NUM = MONSNO_MAX + 1,	//  è¦‹ãŸç›®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãƒãƒƒãƒ•ã‚¡æ•°	+1ã¯ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
 };
 
 //----------------------------------------------------------
 /**
- * @brief	©•ªó‘Ôƒf[ƒ^Œ^’è‹`
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å‹å®šç¾©
  */
 //----------------------------------------------------------
 struct _ZUKAN_WORK {
-	u32 zukan_magic;						///<ƒ}ƒWƒbƒNƒiƒ“ƒo[
-	u32 get_flag[POKEZUKAN_ARRAY_LEN];		///<•ß‚Ü‚¦‚½ƒtƒ‰ƒO—pƒ[ƒN
-	u32 see_flag[POKEZUKAN_ARRAY_LEN];		///<Œ©‚Â‚¯‚½ƒtƒ‰ƒO—pƒ[ƒN
-	u32 sex_flag[2][POKEZUKAN_ARRAY_LEN];	///<ƒIƒXƒƒXƒtƒ‰ƒO—pƒ[ƒN
-	u32 PachiRandom;						///<ƒpƒbƒ`[ƒ‹—pŒÂ«—”•Ûƒ[ƒN
-	u8 SiiusiTurn;							///<ƒV[ƒEƒV—pŒ©‚Â‚¯‚½‡•Ûƒ[ƒN		2bit•K—v	1bit*2í—Ş
-	u8 SiidorugoTurn;						///<ƒV[ƒhƒ‹ƒS—pŒ©‚Â‚¯‚½‡•Ûƒ[ƒN	2bit•K—v	1bit*2í—Ş
-	u8 MinomuttiTurn;						///<ƒ~ƒmƒ€ƒbƒ`—pŒ©‚Â‚¯‚½‡•Ûƒ[ƒN	6bit•K—v	2bit*3í—Ş
-	u8 MinomesuTurn;						///<ƒ~ƒmƒƒX—pŒ©‚Â‚¯‚½‡•Ûƒ[ƒN		6bit•K—v	2bit*3í—Ş
-	u8 UnknownTurn[ POKEZUKAN_UNKNOWN_NUM ];///<ƒAƒ“ƒm[ƒ“‚ğŒ©‚Â‚¯‚½”Ô†
-	u8 TextVersionUp[ POKEZUKAN_TEXTVER_UP_NUM ];///<Œ¾Œêƒo[ƒWƒ‡ƒ“ƒAƒbƒvƒ}ƒXƒN
-	u8 GraphicVersionUp;					///<ƒOƒ‰ƒtƒBƒbƒNƒo[ƒWƒ‡ƒ“—p‹@”\Šg’£ƒtƒ‰ƒO
-	u8 TextVersionUpMasterFlag;				///<Œ¾Œêƒo[ƒWƒ‡ƒ“ƒAƒbƒvMasterƒtƒ‰ƒO
-	u8 zukan_get;							///<‚¸‚©‚ñæ“¾ƒtƒ‰ƒO
-	u8 zenkoku_flag;						///<‘S‘}ŠÓ•Ûƒtƒ‰ƒO
-	///<ƒƒgƒ€—pŒ©‚Â‚¯‚½‡”Ô•Ûƒ[ƒN		18bit•K—v	3bit*6í—Ş
-	///<ƒVƒFƒCƒ~—pŒ©‚Â‚¯‚½‡”Ô•Ûƒ[ƒN	2bit•K—v	1bit*2í—Ş
-	///<ƒMƒ‰ƒeƒBƒi—pŒ©‚Â‚¯‚½‡”Ô•Ûƒ[ƒN	2bit•K—v	1bit*2í—Ş
+	u32 zukan_magic;						///<ãƒã‚¸ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼
+	u32 get_flag[POKEZUKAN_ARRAY_LEN];		///<æ•ã¾ãˆãŸãƒ•ãƒ©ã‚°ç”¨ãƒ¯ãƒ¼ã‚¯
+	u32 see_flag[POKEZUKAN_ARRAY_LEN];		///<è¦‹ã¤ã‘ãŸãƒ•ãƒ©ã‚°ç”¨ãƒ¯ãƒ¼ã‚¯
+	u32 sex_flag[2][POKEZUKAN_ARRAY_LEN];	///<ã‚ªã‚¹ãƒ¡ã‚¹ãƒ•ãƒ©ã‚°ç”¨ãƒ¯ãƒ¼ã‚¯
+	u32 PachiRandom;						///<ãƒ‘ãƒƒãƒãƒ¼ãƒ«ç”¨å€‹æ€§ä¹±æ•°ä¿æŒãƒ¯ãƒ¼ã‚¯
+	u8 SiiusiTurn;							///<ã‚·ãƒ¼ã‚¦ã‚·ç”¨è¦‹ã¤ã‘ãŸé †ä¿æŒãƒ¯ãƒ¼ã‚¯		2bitå¿…è¦	1bit*2ç¨®é¡
+	u8 SiidorugoTurn;						///<ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´ç”¨è¦‹ã¤ã‘ãŸé †ä¿æŒãƒ¯ãƒ¼ã‚¯	2bitå¿…è¦	1bit*2ç¨®é¡
+	u8 MinomuttiTurn;						///<ãƒŸãƒãƒ ãƒƒãƒç”¨è¦‹ã¤ã‘ãŸé †ä¿æŒãƒ¯ãƒ¼ã‚¯	6bitå¿…è¦	2bit*3ç¨®é¡
+	u8 MinomesuTurn;						///<ãƒŸãƒãƒ¡ã‚¹ç”¨è¦‹ã¤ã‘ãŸé †ä¿æŒãƒ¯ãƒ¼ã‚¯		6bitå¿…è¦	2bit*3ç¨®é¡
+	u8 UnknownTurn[ POKEZUKAN_UNKNOWN_NUM ];///<ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã‚’è¦‹ã¤ã‘ãŸç•ªå·
+	u8 TextVersionUp[ POKEZUKAN_TEXTVER_UP_NUM ];///<è¨€èªãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—ãƒã‚¹ã‚¯
+	u8 GraphicVersionUp;					///<ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç”¨æ©Ÿèƒ½æ‹¡å¼µãƒ•ãƒ©ã‚°
+	u8 TextVersionUpMasterFlag;				///<è¨€èªãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—Masterãƒ•ãƒ©ã‚°
+	u8 zukan_get;							///<ãšã‹ã‚“å–å¾—ãƒ•ãƒ©ã‚°
+	u8 zenkoku_flag;						///<å…¨å›½å›³é‘‘ä¿æŒãƒ•ãƒ©ã‚°
+	///<ãƒ­ãƒˆãƒ ç”¨è¦‹ã¤ã‘ãŸé †ç•ªä¿æŒãƒ¯ãƒ¼ã‚¯		18bitå¿…è¦	3bit*6ç¨®é¡
+	///<ã‚·ã‚§ã‚¤ãƒŸç”¨è¦‹ã¤ã‘ãŸé †ç•ªä¿æŒãƒ¯ãƒ¼ã‚¯	2bitå¿…è¦	1bit*2ç¨®é¡
+	///<ã‚®ãƒ©ãƒ†ã‚£ãƒŠç”¨è¦‹ã¤ã‘ãŸé †ç•ªä¿æŒãƒ¯ãƒ¼ã‚¯	2bitå¿…è¦	1bit*2ç¨®é¡
 	u32 rotomu_turn;		
 	u8 syeimi_turn;
 	u8 giratyina_turn;
@@ -68,8 +68,8 @@ struct _ZUKAN_WORK {
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	‚¸‚©‚ñƒf[ƒ^—pƒ[ƒN‚ÌƒTƒCƒYæ“¾
- * @return	int		ZUKAN_WORK‚ÌƒTƒCƒY
+ * @brief	ãšã‹ã‚“ãƒ‡ãƒ¼ã‚¿ç”¨ãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚ºå–å¾—
+ * @return	int		ZUKAN_WORKã®ã‚µã‚¤ã‚º
  */
 //----------------------------------------------------------
 int ZukanWork_GetWorkSize(void)
@@ -78,9 +78,9 @@ int ZukanWork_GetWorkSize(void)
 }
 //----------------------------------------------------------
 /**
- * @brief	‚¸‚©‚ñƒf[ƒ^—pƒ[ƒN‚Ì¶¬ˆ—
- * @param	heapID		g—p‚·‚éƒq[ƒv‚Ìw’è
- * @return	ZUKAN_WORK	¶¬‚µ‚½ZUKAN_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãšã‹ã‚“ãƒ‡ãƒ¼ã‚¿ç”¨ãƒ¯ãƒ¼ã‚¯ã®ç”Ÿæˆå‡¦ç†
+ * @param	heapID		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @return	ZUKAN_WORK	ç”Ÿæˆã—ãŸZUKAN_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 ZUKAN_WORK * ZukanWork_AllocWork(u32 heapID)
@@ -96,9 +96,9 @@ ZUKAN_WORK * ZukanWork_AllocWork(u32 heapID)
 
 //----------------------------------------------------------
 /**
- * @brief	‚¸‚©‚ñƒf[ƒ^—pƒ[ƒN‚ÌƒRƒs[
- * @param	from	ƒRƒs[Œ³ZUKAN_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	to		ƒRƒs[æZUKAN_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãšã‹ã‚“ãƒ‡ãƒ¼ã‚¿ç”¨ãƒ¯ãƒ¼ã‚¯ã®ã‚³ãƒ”ãƒ¼
+ * @param	from	ã‚³ãƒ”ãƒ¼å…ƒZUKAN_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	to		ã‚³ãƒ”ãƒ¼å…ˆZUKAN_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void ZukanWork_Copy(const ZUKAN_WORK * from, ZUKAN_WORK * to)
@@ -108,12 +108,12 @@ void ZukanWork_Copy(const ZUKAN_WORK * from, ZUKAN_WORK * to)
 
 //============================================================================================
 //
-//				“à•”ŠÖ”
+//				å†…éƒ¨é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	‚¸‚©‚ñƒ[ƒN‚Ì®‡«ƒ`ƒFƒbƒN
+ * @brief	ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã®æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
  */
 //----------------------------------------------------------
 static inline void zukan_incorrect(const ZUKAN_WORK * zw)
@@ -122,13 +122,13 @@ static inline void zukan_incorrect(const ZUKAN_WORK * zw)
 }
 //----------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚Ì”ÍˆÍƒ`ƒFƒbƒN
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã®ç¯„å›²ãƒã‚§ãƒƒã‚¯
  */
 //----------------------------------------------------------
 static BOOL monsno_incorrect(u16 monsno)
 {
 	if (monsno == 0 || monsno > MONSNO_END) {
-		GF_ASSERT_MSG(0, "ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[ˆÙíF%d\n", monsno);
+		GF_ASSERT_MSG(0, "ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ç•°å¸¸ï¼š%d\n", monsno);
 		return TRUE;
 	} else {
 		return FALSE;
@@ -137,7 +137,7 @@ static BOOL monsno_incorrect(u16 monsno)
 
 //----------------------------------------------------------
 /**
- * @brief	”Ä—pƒrƒbƒgƒ`ƒFƒbƒN
+ * @brief	æ±ç”¨ãƒ“ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  */
 //----------------------------------------------------------
 static inline BOOL check_bit(const u8 * array, u16 flag_id)
@@ -147,7 +147,7 @@ static inline BOOL check_bit(const u8 * array, u16 flag_id)
 }
 //----------------------------------------------------------
 /**
- * @brief	”Ä—pƒrƒbƒgƒZƒbƒg
+ * @brief	æ±ç”¨ãƒ“ãƒƒãƒˆã‚»ãƒƒãƒˆ
  */
 //----------------------------------------------------------
 static inline void set_bit(u8 * array, u16 flag_id)
@@ -160,8 +160,8 @@ static inline void set_bit(u8 * array, u16 flag_id)
 }
 //----------------------------------------------------------
 /**
- * @brief	”Ä—p1ƒrƒbƒgƒf[ƒ^ƒZƒbƒg
- * ‚»‚Ìƒrƒbƒg‚ğƒNƒŠ[ƒ“‚É‚µ‚Ä‚©‚çİ’è‚µ‚Ü‚·
+ * @brief	æ±ç”¨1ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
+ * ãã®ãƒ“ãƒƒãƒˆã‚’ã‚¯ãƒªãƒ¼ãƒ³ã«ã—ã¦ã‹ã‚‰è¨­å®šã—ã¾ã™
  */
 //----------------------------------------------------------
 static inline void setnum_bit(u8 * array, u8 num, u16 flag_id)
@@ -184,7 +184,7 @@ static inline void reset_bit(u8 * array, u16 flag_id)
 #endif
 //----------------------------------------------------------
 /**
- * @brief	”Ä—pƒrƒbƒg”ƒJƒEƒ“ƒgˆ—
+ * @brief	æ±ç”¨ãƒ“ãƒƒãƒˆæ•°ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
  */
 //----------------------------------------------------------
 static u16 count_bit(const u32 * array, u32 array_max)
@@ -207,9 +207,9 @@ static u16 count_bit(const u32 * array, u32 array_max)
 
 //----------------------------------------------------------
 /**
- * @brief	”Ä—p2ƒrƒbƒgƒ`ƒFƒbƒN
- * –1bit”Å‚Í1`x‚ğw’è‚·‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚½‚ª
- * 2bit”Å‚Í0`x‚ğw’è‚·‚é‚æ‚¤‚É‚·‚é
+ * @brief	æ±ç”¨2ãƒ“ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
+ * ï¼Š1bitç‰ˆã¯1ã€œxã‚’æŒ‡å®šã™ã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ãŸãŒ
+ * 2bitç‰ˆã¯0ã€œxã‚’æŒ‡å®šã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
  */
 //----------------------------------------------------------
 static inline u32 check_bit2(const u8 * array, u16 flag_id)
@@ -218,8 +218,8 @@ static inline u32 check_bit2(const u8 * array, u16 flag_id)
 }
 //----------------------------------------------------------
 /**
- * @brief	”Ä—p2ƒrƒbƒgƒf[ƒ^ƒZƒbƒg
- * ‚»‚Ìƒrƒbƒg‚ğƒNƒŠ[ƒ“‚É‚µ‚Ä‚©‚çİ’è‚µ‚Ü‚·
+ * @brief	æ±ç”¨2ãƒ“ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
+ * ãã®ãƒ“ãƒƒãƒˆã‚’ã‚¯ãƒªãƒ¼ãƒ³ã«ã—ã¦ã‹ã‚‰è¨­å®šã—ã¾ã™
  */
 //----------------------------------------------------------
 static inline void setnum_bit2(u8 * array, u8 num, u16 flag_id)
@@ -236,7 +236,7 @@ static inline void setnum_bit2(u8 * array, u8 num, u16 flag_id)
 
 //----------------------------------------------------------
 /**
- * @brief	‚İ‚½ƒrƒbƒgİ’è
+ * @brief	ã¿ãŸãƒ“ãƒƒãƒˆè¨­å®š
  */
 //----------------------------------------------------------
 static inline void set_see_bit(ZUKAN_WORK * zw, u16 flag_id)
@@ -245,7 +245,7 @@ static inline void set_see_bit(ZUKAN_WORK * zw, u16 flag_id)
 }
 //----------------------------------------------------------
 /**
- * @brief	‚Â‚©‚Ü‚¦‚½ƒrƒbƒgİ’è
+ * @brief	ã¤ã‹ã¾ãˆãŸãƒ“ãƒƒãƒˆè¨­å®š
  */
 //----------------------------------------------------------
 static inline void set_get_bit(ZUKAN_WORK * zw, u16 flag_id)
@@ -254,10 +254,10 @@ static inline void set_get_bit(ZUKAN_WORK * zw, u16 flag_id)
 }
 //----------------------------------------------------------
 /**
- * @brief	«•Êƒrƒbƒgİ’è	ÀÛ‚Éİ’è
- * Å‰‚Ì«•Êİ’è‚Å2—v‘f–Ú‚Ì”z—ñ‚É‚à“¯‚¶’l‚ğİ’è‚·‚é
- * ‚±‚ê‚É‚æ‚è2—v‘f–Ú‚ª“¯‚¶’l‚Ì‚Íˆá‚¤«•Ê‚Ìƒ|ƒPƒ‚ƒ“‚ğ‚İ‚Ä‚¢‚È‚¢
- * ‚Æ‚¢‚¤‚±‚Æ‚É‚È‚é
+ * @brief	æ€§åˆ¥ãƒ“ãƒƒãƒˆè¨­å®š	å®Ÿéš›ã«è¨­å®š
+ * æœ€åˆã®æ€§åˆ¥è¨­å®šã§2è¦ç´ ç›®ã®é…åˆ—ã«ã‚‚åŒã˜å€¤ã‚’è¨­å®šã™ã‚‹
+ * ã“ã‚Œã«ã‚ˆã‚Š2è¦ç´ ç›®ãŒåŒã˜å€¤ã®æ™‚ã¯é•ã†æ€§åˆ¥ã®ãƒã‚±ãƒ¢ãƒ³ã‚’ã¿ã¦ã„ãªã„
+ * ã¨ã„ã†ã“ã¨ã«ãªã‚‹
  */
 //----------------------------------------------------------
 static void set_sex_bit_first_second(ZUKAN_WORK * zw, u8 num, u8 no, u16 flag_id)
@@ -269,20 +269,20 @@ static void set_sex_bit_first_second(ZUKAN_WORK * zw, u8 num, u8 no, u16 flag_id
 }
 //----------------------------------------------------------
 /**
- * @brief	«•Êƒrƒbƒgİ’è
+ * @brief	æ€§åˆ¥ãƒ“ãƒƒãƒˆè¨­å®š
  */
 //----------------------------------------------------------
 static void set_sex_bit(ZUKAN_WORK * zw, u8 num, u8 no, u16 monsno)
 {
-	GF_ASSERT_MSG( num <= 2, "num = %d", num );	// ’j@—@•s–¾ˆÈŠO‚ª‚«‚Ü‚µ‚½
-	if( num == PARA_UNK ){		// UNKNOW‚Í
-		num = PARA_MALE;		// ’j‚É‚·‚é
+	GF_ASSERT_MSG( num <= 2, "num = %d", num );	// ç”·ã€€å¥³ã€€ä¸æ˜ä»¥å¤–ãŒãã¾ã—ãŸ
+	if( num == PARA_UNK ){		// UNKNOWã¯
+		num = PARA_MALE;		// ç”·ã«ã™ã‚‹
 	}
 	set_sex_bit_first_second(zw, num, no, monsno);
 }
 //----------------------------------------------------------
 /**
- * @brief	‚İ‚½ƒrƒbƒgONOFFƒ`ƒFƒbƒN
+ * @brief	ã¿ãŸãƒ“ãƒƒãƒˆONOFFãƒã‚§ãƒƒã‚¯
  */
 //----------------------------------------------------------
 static inline BOOL check_see_bit(const ZUKAN_WORK * zw, u16 flag_id)
@@ -291,7 +291,7 @@ static inline BOOL check_see_bit(const ZUKAN_WORK * zw, u16 flag_id)
 }
 //----------------------------------------------------------
 /**
- * @brief	‚Â‚©‚Ü‚¦‚½ƒrƒbƒgONOFFƒ`ƒFƒbƒN
+ * @brief	ã¤ã‹ã¾ãˆãŸãƒ“ãƒƒãƒˆONOFFãƒã‚§ãƒƒã‚¯
  */
 //----------------------------------------------------------
 static inline BOOL check_get_bit(const ZUKAN_WORK * zw, u16 flag_id)
@@ -300,7 +300,7 @@ static inline BOOL check_get_bit(const ZUKAN_WORK * zw, u16 flag_id)
 }
 //----------------------------------------------------------
 /**
- * @brief	«•ÊƒrƒbƒgONOFFƒ`ƒFƒbƒN
+ * @brief	æ€§åˆ¥ãƒ“ãƒƒãƒˆONOFFãƒã‚§ãƒƒã‚¯
  */
 //----------------------------------------------------------
 static inline u8 check_sex_bit(const ZUKAN_WORK * zw, u16 flag_id, u8 first_second)
@@ -310,7 +310,7 @@ static inline u8 check_sex_bit(const ZUKAN_WORK * zw, u16 flag_id, u8 first_seco
 
 //----------------------------------------------------------
 /**
- * @brief	ŒÅ‘Ì—”‚ğİ’è
+ * @brief	å›ºä½“ä¹±æ•°ã‚’è¨­å®š
  */
 //----------------------------------------------------------
 static inline void SetZukanRandom(ZUKAN_WORK * zw, u16 monsno, u32 rand)
@@ -325,7 +325,7 @@ static inline void SetZukanRandom(ZUKAN_WORK * zw, u16 monsno, u32 rand)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒAƒ“ƒm[ƒ“‚ÌŒ»İİ’è”‚ğæ“¾
+ * @brief	ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã®ç¾åœ¨è¨­å®šæ•°ã‚’å–å¾—
  */
 //----------------------------------------------------------
 static int get_zukan_unknown_turn_num( const ZUKAN_WORK * zw )
@@ -340,7 +340,7 @@ static int get_zukan_unknown_turn_num( const ZUKAN_WORK * zw )
 }
 //----------------------------------------------------------
 /**
- * @brief	ƒAƒ“ƒm[ƒ“ƒtƒH[ƒ€İ’èÏ‚İ‚©ƒ`ƒFƒbƒN
+ * @brief	ã‚¢ãƒ³ãƒãƒ¼ãƒ³ãƒ•ã‚©ãƒ¼ãƒ è¨­å®šæ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
  */
 //----------------------------------------------------------
 static BOOL check_zukan_unknown_turn_set( const ZUKAN_WORK * zw, u8 form )
@@ -355,14 +355,14 @@ static BOOL check_zukan_unknown_turn_set( const ZUKAN_WORK * zw, u8 form )
 }
 //----------------------------------------------------------
 /**
- * @brief	ƒAƒ“ƒm[ƒ“Œ©‚Â‚¯‚½‡ƒf[ƒ^‚ÌÅŒã‚ÉŒ`óID‚ğİ’è
+ * @brief	ã‚¢ãƒ³ãƒãƒ¼ãƒ³è¦‹ã¤ã‘ãŸé †ãƒ‡ãƒ¼ã‚¿ã®æœ€å¾Œã«å½¢çŠ¶IDã‚’è¨­å®š
  */
 //----------------------------------------------------------
 static void SetZukanUnknownTurn( ZUKAN_WORK * zw, int form)
 {
 	int set_idx;
 
-	// İ’èÏ‚İ‚©ƒ`ƒFƒbƒN
+	// è¨­å®šæ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
 	if( check_zukan_unknown_turn_set( zw, form ) ){
 		return;
 	}
@@ -378,7 +378,7 @@ static void SetZukanUnknownTurn( ZUKAN_WORK * zw, int form)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒV[ƒEƒV@ƒV[ƒhƒ‹ƒS ƒVƒFƒCƒ~@ƒMƒ‰ƒeƒBƒi‚ÌŒ»İİ’è”‚ğæ“¾
+ * @brief	ã‚·ãƒ¼ã‚¦ã‚·ã€€ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´ ã‚·ã‚§ã‚¤ãƒŸã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠã®ç¾åœ¨è¨­å®šæ•°ã‚’å–å¾—
  */
 //----------------------------------------------------------
 static int get_twoform_poke_turn_num( const ZUKAN_WORK * zw, u32 monsno )
@@ -388,7 +388,7 @@ static int get_twoform_poke_turn_num( const ZUKAN_WORK * zw, u32 monsno )
 	const u8* arry;
 	GF_ASSERT( (monsno == MONSNO_SIIUSI) || (monsno == MONSNO_SIIDORUGO) || (monsno == MONSNO_EURISU) || (monsno == MONSNO_KIMAIRAN) );
 	
-	// Œ©‚Ä‚à‚¢‚È‚¢‚Æ‚«‚Í0
+	// è¦‹ã¦ã‚‚ã„ãªã„ã¨ãã¯0
 	if( ZukanWork_GetPokeSeeFlag( zw, monsno ) == FALSE ){	
 		return 0;
 	}
@@ -414,16 +414,16 @@ static int get_twoform_poke_turn_num( const ZUKAN_WORK * zw, u32 monsno )
 	first_form = check_bit( arry, 1 );	
 	second_form = check_bit( arry, 2 );	
 
-	if( first_form == second_form ){	// Å‰‚Æ‚QŒÂ‚ß‚ªˆê‚È‚ç‚P‰ñ‚¾‚¯
+	if( first_form == second_form ){	// æœ€åˆã¨ï¼’å€‹ã‚ãŒä¸€ç·’ãªã‚‰ï¼‘å›ã ã‘
 		return 1;
 	}
 	return 2;
 }
 //----------------------------------------------------------
 /**
- * @brief	ƒ~ƒmƒ€ƒbƒ`@ƒ~ƒmƒƒX@ƒVƒFƒCƒ~@ƒMƒ‰ƒeƒBƒi@ƒtƒH[ƒ€İ’èÏ‚İ‚©ƒ`ƒFƒbƒN
+ * @brief	ãƒŸãƒãƒ ãƒƒãƒã€€ãƒŸãƒãƒ¡ã‚¹ã€€ã‚·ã‚§ã‚¤ãƒŸã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€ãƒ•ã‚©ãƒ¼ãƒ è¨­å®šæ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
  * @param	form	0 or 1
- * *’ˆÓ 0or1ŒÀ’è‚Åì¬‚µ‚Ä‚¢‚Ü‚·B
+ * *æ³¨æ„ 0or1é™å®šã§ä½œæˆã—ã¦ã„ã¾ã™ã€‚
  */
 //----------------------------------------------------------
 static BOOL check_twoform_poke_turn_set( const ZUKAN_WORK * zw, u32 monsno, u8 form )
@@ -434,7 +434,7 @@ static BOOL check_twoform_poke_turn_set( const ZUKAN_WORK * zw, u32 monsno, u8 f
 	const u8* arry;
 	GF_ASSERT( (monsno == MONSNO_SIIUSI) || (monsno == MONSNO_SIIDORUGO) || (monsno == MONSNO_EURISU) || (monsno == MONSNO_KIMAIRAN) );
 	
-	// Œ©‚Ä‚à‚¢‚È‚¢‚Æ‚«‚Íİ’è‚³‚ê‚Ä‚¢‚é‚í‚¯‚ª‚È‚¢
+	// è¦‹ã¦ã‚‚ã„ãªã„ã¨ãã¯è¨­å®šã•ã‚Œã¦ã„ã‚‹ã‚ã‘ãŒãªã„
 	if( ZukanWork_GetPokeSeeFlag( zw, monsno ) == FALSE ){	
 		return FALSE;
 	}
@@ -457,9 +457,9 @@ static BOOL check_twoform_poke_turn_set( const ZUKAN_WORK * zw, u32 monsno, u8 f
 		break;
 	}
 
-	// İ’è”•ªƒ`ƒFƒbƒN
-	// ‚P‰ñ‚µ‚©Œ©‚Ä‚¢‚È‚¢‚Æ‚«‚Í‚Q‚Â–Ú‚Ìƒrƒbƒg‚ÍA
-	// ƒ_ƒ~[ƒf[ƒ^‚È‚Ì‚ÅA‚¿‚¥‚Á‚­‚µ‚È‚¢
+	// è¨­å®šæ•°åˆ†ãƒã‚§ãƒƒã‚¯
+	// ï¼‘å›ã—ã‹è¦‹ã¦ã„ãªã„ã¨ãã¯ï¼’ã¤ç›®ã®ãƒ“ãƒƒãƒˆã¯ã€
+	// ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã€ã¡ã‡ã£ãã—ãªã„
 	roop_num = get_twoform_poke_turn_num( zw, monsno );
 	for( i=0; i<roop_num; i++ ){
 		get_form = check_bit( arry, i+1 );	
@@ -471,8 +471,8 @@ static BOOL check_twoform_poke_turn_set( const ZUKAN_WORK * zw, u32 monsno, u8 f
 }
 //----------------------------------------------------------
 /**
- * @brief	ƒV[ƒEƒV@ƒV[ƒhƒ‰ƒS@ƒVƒFƒCƒ~@ƒMƒ‰ƒeƒBƒiŒ©‚Â‚¯‚½‡ƒf[ƒ^‚ÌÅŒã‚ÉŒ`óID‚ğİ’è
- * *’ˆÓ 0or1ŒÀ’è‚Åì¬‚µ‚Ä‚¢‚Ü‚·B
+ * @brief	ã‚·ãƒ¼ã‚¦ã‚·ã€€ã‚·ãƒ¼ãƒ‰ãƒ©ã‚´ã€€ã‚·ã‚§ã‚¤ãƒŸã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠè¦‹ã¤ã‘ãŸé †ãƒ‡ãƒ¼ã‚¿ã®æœ€å¾Œã«å½¢çŠ¶IDã‚’è¨­å®š
+ * *æ³¨æ„ 0or1é™å®šã§ä½œæˆã—ã¦ã„ã¾ã™ã€‚
  */
 //----------------------------------------------------------
 static void SetZukanTwoFormPokeTurn( ZUKAN_WORK * zw, u32 monsno, int form)
@@ -481,7 +481,7 @@ static void SetZukanTwoFormPokeTurn( ZUKAN_WORK * zw, u32 monsno, int form)
 	u8* arry;
 	GF_ASSERT( (monsno == MONSNO_SIIUSI) || (monsno == MONSNO_SIIDORUGO) || (monsno == MONSNO_EURISU) || (monsno == MONSNO_KIMAIRAN) );
 
-	// İ’èÏ‚İ‚©ƒ`ƒFƒbƒN
+	// è¨­å®šæ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
 	if( check_twoform_poke_turn_set( zw, monsno, form ) ){
 		return;
 	}
@@ -505,18 +505,18 @@ static void SetZukanTwoFormPokeTurn( ZUKAN_WORK * zw, u32 monsno, int form)
 	}
 
 	set_idx = get_twoform_poke_turn_num( zw, monsno );
-	if( set_idx < 2 ){	// 0ˆø‚«‚È‚çÅ‰‚Éİ’è@1‚È‚ç2‚Â‚ß‚Éİ’è 2‚È‚çİ’è‚µ‚È‚¢
+	if( set_idx < 2 ){	// 0å¼•ããªã‚‰æœ€åˆã«è¨­å®šã€€1ãªã‚‰2ã¤ã‚ã«è¨­å®š 2ãªã‚‰è¨­å®šã—ãªã„
 		setnum_bit( arry, form, set_idx+1 );
 		if( set_idx == 0 ){
-			setnum_bit( arry, form, set_idx+2 );	// Ÿ‚à“¯‚¶ŠG‚Å•Û‘¶‚·‚é
+			setnum_bit( arry, form, set_idx+2 );	// æ¬¡ã‚‚åŒã˜çµµã§ä¿å­˜ã™ã‚‹
 		}
 	}
 }
 
 //----------------------------------------------------------
 /**
- * @brief	ƒ~ƒmƒ€ƒbƒ`@ƒ~ƒmƒƒX‚ÌŒ»İİ’è”‚ğæ“¾
- * –Œ`ó‚ª0`2ŒÀ’è
+ * @brief	ãƒŸãƒãƒ ãƒƒãƒã€€ãƒŸãƒãƒ¡ã‚¹ã®ç¾åœ¨è¨­å®šæ•°ã‚’å–å¾—
+ * ï¼Šå½¢çŠ¶ãŒ0ã€œ2é™å®š
  */
 //----------------------------------------------------------
 static int get_zukan_minomutti_turn_num( const ZUKAN_WORK * zw, u32 monsno )
@@ -526,7 +526,7 @@ static int get_zukan_minomutti_turn_num( const ZUKAN_WORK * zw, u32 monsno )
 	const u8* arry;
 
 	GF_ASSERT( (monsno == MONSNO_MINOMUTTI) || (monsno == MONSNO_MINOMESU) );
-	// Œ©‚Ä‚à‚¢‚È‚¢‚Æ‚«‚Í0
+	// è¦‹ã¦ã‚‚ã„ãªã„ã¨ãã¯0
 	if( ZukanWork_GetPokeSeeFlag( zw, monsno ) == FALSE ){	
 		return 0;
 	}
@@ -546,9 +546,9 @@ static int get_zukan_minomutti_turn_num( const ZUKAN_WORK * zw, u32 monsno )
 }
 //----------------------------------------------------------
 /**
- * @brief	ƒ~ƒmƒ€ƒbƒ`@ƒ~ƒmƒƒX@ƒtƒH[ƒ€İ’èÏ‚İ‚©ƒ`ƒFƒbƒN
+ * @brief	ãƒŸãƒãƒ ãƒƒãƒã€€ãƒŸãƒãƒ¡ã‚¹ã€€ãƒ•ã‚©ãƒ¼ãƒ è¨­å®šæ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
  * @param	form	0 or 1 or 2
- * –Œ`ó‚ª0`2ŒÀ’è
+ * ï¼Šå½¢çŠ¶ãŒ0ã€œ2é™å®š
  */
 //----------------------------------------------------------
 static BOOL check_zukan_minomutti_turn_set( const ZUKAN_WORK * zw, u32 monsno, u8 form )
@@ -558,7 +558,7 @@ static BOOL check_zukan_minomutti_turn_set( const ZUKAN_WORK * zw, u32 monsno, u
 	const u8* arry;
 
 	GF_ASSERT( (monsno == MONSNO_MINOMUTTI) || (monsno == MONSNO_MINOMESU) );
-	// Œ©‚Ä‚à‚¢‚È‚¢‚Æ‚«‚ÍFALSE
+	// è¦‹ã¦ã‚‚ã„ãªã„ã¨ãã¯FALSE
 	if( ZukanWork_GetPokeSeeFlag( zw, monsno ) == FALSE ){	
 		return FALSE;
 	}
@@ -578,8 +578,8 @@ static BOOL check_zukan_minomutti_turn_set( const ZUKAN_WORK * zw, u32 monsno, u
 }
 //----------------------------------------------------------
 /**
- * @brief	ƒ~ƒmƒ€ƒbƒ`@ƒ~ƒmƒƒXŒ©‚Â‚¯‚½‡ƒf[ƒ^‚ÌÅŒã‚ÉŒ`óID‚ğİ’è
- * –Œ`ó‚ª0`2ŒÀ’è
+ * @brief	ãƒŸãƒãƒ ãƒƒãƒã€€ãƒŸãƒãƒ¡ã‚¹è¦‹ã¤ã‘ãŸé †ãƒ‡ãƒ¼ã‚¿ã®æœ€å¾Œã«å½¢çŠ¶IDã‚’è¨­å®š
+ * ï¼Šå½¢çŠ¶ãŒ0ã€œ2é™å®š
  */
 //----------------------------------------------------------
 static void SetZukanMinomuttiTurn( ZUKAN_WORK * zw, u32 monsno, int form)
@@ -588,7 +588,7 @@ static void SetZukanMinomuttiTurn( ZUKAN_WORK * zw, u32 monsno, int form)
 	u8* arry;
 	GF_ASSERT( (monsno == MONSNO_MINOMUTTI) || (monsno == MONSNO_MINOMESU) );
 
-	// İ’èÏ‚İ‚©ƒ`ƒFƒbƒN
+	// è¨­å®šæ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
 	if( check_zukan_minomutti_turn_set( zw, monsno, form ) ){
 		return;
 	}
@@ -608,11 +608,11 @@ static void SetZukanMinomuttiTurn( ZUKAN_WORK * zw, u32 monsno, int form)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€İ’è
+ *	@brief	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ è¨­å®š
  *
- *	@param	p_arry	Ši”[—Ìˆæ
- *	@param	no	ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€
- *	@param	num	Œ©‚Â‚¯‚½‡”Ôİ’è
+ *	@param	p_arry	æ ¼ç´é ˜åŸŸ
+ *	@param	no	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ 
+ *	@param	num	è¦‹ã¤ã‘ãŸé †ç•ªè¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void setDeokisisuFormNoCore( u32* p_arry, u8 no, u8 num )
@@ -628,20 +628,20 @@ static void setDeokisisuFormNoCore( u32* p_arry, u8 no, u8 num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€İ’è
+ *	@brief	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ è¨­å®š
  *
- *	@param	zw	}ŠÓƒ[ƒN
- *	@param	no	ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€
- *	@param	num	Œ©‚Â‚¯‚½‡”Ôİ’è
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+ *	@param	no	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ 
+ *	@param	num	è¦‹ã¤ã‘ãŸé †ç•ªè¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void setDEOKISISUFormNo( ZUKAN_WORK * zw, u8 no, u8 num )
 {
 	GF_ASSERT( num < ZUKAN_WORK_DEOKISISU_FORM_NUM );
 	GF_ASSERT( no <= POKEZUKAN_DEOKISISU_INIT );
-	// ƒfƒIƒLƒVƒXƒiƒ“ƒo[‚ğİ’è
-	// •ß‚Ü‚¦‚½ƒtƒ‰ƒO‚ÌŒã‚ë15bit‹ó‚¢‚Ä‚¢‚é‚Ì‚Å
-	// Œã‚ë4bit‚¸‚Â‚Éƒf[ƒ^‚ğ“o˜^‚µ‚Ä‚¨‚­
+	// ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒŠãƒ³ãƒãƒ¼ã‚’è¨­å®š
+	// æ•ã¾ãˆãŸãƒ•ãƒ©ã‚°ã®å¾Œã‚15bitç©ºã„ã¦ã„ã‚‹ã®ã§
+	// å¾Œã‚4bitãšã¤ã«ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²ã—ã¦ãŠã
 	if( num < ZUKAN_WORK_DEOKISISU_FORM_SAVEDATA_CUTNUM ){
 		setDeokisisuFormNoCore( zw->get_flag, no, num );
 	}else{
@@ -652,12 +652,12 @@ static void setDEOKISISUFormNo( ZUKAN_WORK * zw, u8 no, u8 num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€æ“¾
+ *	@brief	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ å–å¾—
  *
- *	@param	p_arry	Ši”[—Ìˆæ
- *	@param	num	Œ©‚Â‚¯‚½‡”Ôİ’è
+ *	@param	p_arry	æ ¼ç´é ˜åŸŸ
+ *	@param	num	è¦‹ã¤ã‘ãŸé †ç•ªè¨­å®š
  *
- *	@retval	ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
+ *	@retval	ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static inline u32 getDeokisisuFormNoCore( const u32* p_arry, u8 num )
@@ -668,18 +668,18 @@ static inline u32 getDeokisisuFormNoCore( const u32* p_arry, u8 num )
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€æ“¾
+ *	@brief	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ å–å¾—
  *
- *	@param	zw	}ŠÓƒ[ƒN
- *	@retval	ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+ *	@retval	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ 
  */
 //-----------------------------------------------------------------------------
 static u32 getDEOKISISUFormNo( const ZUKAN_WORK * zw, u8 num )
 {
 	u32 form;
-	// ƒfƒIƒLƒVƒXƒiƒ“ƒo[‚ğİ’è
-	// •ß‚Ü‚¦‚½ƒtƒ‰ƒO‚ÌŒã‚ë15bit‹ó‚¢‚Ä‚¢‚é‚Ì‚Å
-	// Œã‚ë4bit‚Éƒf[ƒ^‚ğ“o˜^‚µ‚Ä‚¨‚­
+	// ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒŠãƒ³ãƒãƒ¼ã‚’è¨­å®š
+	// æ•ã¾ãˆãŸãƒ•ãƒ©ã‚°ã®å¾Œã‚15bitç©ºã„ã¦ã„ã‚‹ã®ã§
+	// å¾Œã‚4bitã«ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²ã—ã¦ãŠã
 	if( num < ZUKAN_WORK_DEOKISISU_FORM_SAVEDATA_CUTNUM ){
 		form = getDeokisisuFormNoCore( zw->get_flag, num );
 	}else{
@@ -690,11 +690,11 @@ static u32 getDEOKISISUFormNo( const ZUKAN_WORK * zw, u8 num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚Ü‚Å‚ÉŒ©‚½ƒfƒIƒLƒVƒX‚Ì”‚ğ•Ô‚·
+ *	@brief	ä»Šã¾ã§ã«è¦‹ãŸãƒ‡ã‚ªã‚­ã‚·ã‚¹ã®æ•°ã‚’è¿”ã™
  *
- *	@param	zw	}ŠÓƒ[ƒN
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	¡‚Ü‚Å‚ÉŒ©‚½ƒfƒIƒLƒVƒX‚Ì”‚ğ•Ô‚·
+ *	@return	ä»Šã¾ã§ã«è¦‹ãŸãƒ‡ã‚ªã‚­ã‚·ã‚¹ã®æ•°ã‚’è¿”ã™
  */
 //-----------------------------------------------------------------------------
 static u32 nowGetDeokisisuFormNum( const ZUKAN_WORK * zw )
@@ -711,13 +711,13 @@ static u32 nowGetDeokisisuFormNum( const ZUKAN_WORK * zw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆÈ‘O‚É‚±‚ÌŒ`ó‚ÌƒfƒIƒLƒVƒX‚ğŒ©‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ä»¥å‰ã«ã“ã®å½¢çŠ¶ã®ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã‚’è¦‹ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	zw	}ŠÓƒ[ƒN
- *	@param	formno Œ`ó
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+ *	@param	formno å½¢çŠ¶
  *
- *	@retval	TRUE	Œ©‚½
- *	@retval	FALSE	Œ©‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	è¦‹ãŸ
+ *	@retval	FALSE	è¦‹ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL checkSeeDeokisisuFormNo( const ZUKAN_WORK * zw, u32 formno )
@@ -735,7 +735,7 @@ static BOOL checkSeeDeokisisuFormNo( const ZUKAN_WORK * zw, u32 formno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒH[ƒ€ƒiƒ“ƒo[İ’è@ƒpƒbƒN
+ *	@brief	ãƒ•ã‚©ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼è¨­å®šã€€ãƒ‘ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 static void SetDeokisisuFormNo( ZUKAN_WORK * zw, u16 monsno, POKEMON_PARAM* pp  )
@@ -744,9 +744,9 @@ static void SetDeokisisuFormNo( ZUKAN_WORK * zw, u16 monsno, POKEMON_PARAM* pp  
 	u32 setno;
 
 	if( monsno == MONSNO_DEOKISISU ){
-		// ‚Ü‚¾Œ©‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+		// ã¾ã è¦‹ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		if( checkSeeDeokisisuFormNo( zw, form ) == FALSE ){
-			setno = nowGetDeokisisuFormNum( zw );	// İ’èˆÊ’u
+			setno = nowGetDeokisisuFormNum( zw );	// è¨­å®šä½ç½®
 			setDEOKISISUFormNo( zw, form, setno );
 		}
 	}
@@ -754,21 +754,21 @@ static void SetDeokisisuFormNo( ZUKAN_WORK * zw, u16 monsno, POKEMON_PARAM* pp  
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€ƒiƒ“ƒo[ƒoƒbƒtƒ@‰Šú‰»
+ *	@brief	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–
  *
- *	@param	zw	}ŠÓƒ[ƒN
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void InitDeokisisuFormNo( ZUKAN_WORK * zw )
 {
 	int i;
 	for( i=0; i<ZUKAN_WORK_DEOKISISU_FORM_NUM; i++ ){
-		setDEOKISISUFormNo( zw, 0xf, i );	// 0xf‚Å‰Šú‰»‚·‚é
+		setDEOKISISUFormNo( zw, 0xf, i );	// 0xfã§åˆæœŸåŒ–ã™ã‚‹
 	}
 }
 
 
-// u32ƒf[ƒ^3bit‚²‚ÆQÆ
+// u32ãƒ‡ãƒ¼ã‚¿3bitã”ã¨å‚ç…§
 #define ZUKAN_3BIT_MAX	(0x7)
 static inline u32 get_3bit_data( u32 data, u32 idx )
 {
@@ -784,7 +784,7 @@ static inline void set_3bit_data( u32* p_data, u32 idx, u32 data )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒƒgƒ€‚ÌŒ»İİ’è”‚ğæ“¾
+ * @brief	ãƒ­ãƒˆãƒ ã®ç¾åœ¨è¨­å®šæ•°ã‚’å–å¾—
  */
 //----------------------------------------------------------
 static int get_rotom_turn_num( const ZUKAN_WORK * zw, u32 monsno )
@@ -794,12 +794,12 @@ static int get_rotom_turn_num( const ZUKAN_WORK * zw, u32 monsno )
 
 	GF_ASSERT( monsno == MONSNO_PURAZUMA );
 	
-	// Œ©‚Ä‚à‚¢‚È‚¢‚Æ‚«‚Í0
+	// è¦‹ã¦ã‚‚ã„ãªã„ã¨ãã¯0
 	if( ZukanWork_GetPokeSeeFlag( zw, monsno ) == FALSE ){	
 		return 0;
 	}
 
-	// ‘O‚ÆŒã‚ë‚ª“¯‚¶”š‚É‚È‚é‚Ü‚Å”‚ğ”‚¦‚é
+	// å‰ã¨å¾Œã‚ãŒåŒã˜æ•°å­—ã«ãªã‚‹ã¾ã§æ•°ã‚’æ•°ãˆã‚‹
 	num = 0;
 	for( i=0; i<ZUKAN_WORK_ROTOM_FORM_NUM; i++ ){
 		form = get_3bit_data( zw->rotomu_turn, i );
@@ -814,8 +814,8 @@ static int get_rotom_turn_num( const ZUKAN_WORK * zw, u32 monsno )
 }
 //----------------------------------------------------------
 /**
- * @brief	ƒƒgƒ€İ’èÏ‚İ‚©ƒ`ƒFƒbƒN
- * @param	form	0`5
+ * @brief	ãƒ­ãƒˆãƒ è¨­å®šæ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
+ * @param	form	0ã€œ5
  */
 //----------------------------------------------------------
 static BOOL check_rotom_turn_set( const ZUKAN_WORK * zw, u32 monsno, u8 form )
@@ -826,14 +826,14 @@ static BOOL check_rotom_turn_set( const ZUKAN_WORK * zw, u32 monsno, u8 form )
 	
 	GF_ASSERT( (monsno == MONSNO_PURAZUMA) );
 	
-	// Œ©‚Ä‚à‚¢‚È‚¢‚Æ‚«‚Íİ’è‚³‚ê‚Ä‚¢‚é‚í‚¯‚ª‚È‚¢
+	// è¦‹ã¦ã‚‚ã„ãªã„ã¨ãã¯è¨­å®šã•ã‚Œã¦ã„ã‚‹ã‚ã‘ãŒãªã„
 	if( ZukanWork_GetPokeSeeFlag( zw, monsno ) == FALSE ){	
 		return FALSE;
 	}
 
-	// İ’è”•ªƒ`ƒFƒbƒN
-	// ‚P‰ñ‚µ‚©Œ©‚Ä‚¢‚È‚¢‚Æ‚«‚Í‚Q‚Â–Ú‚Ìƒrƒbƒg‚ÍA
-	// ƒ_ƒ~[ƒf[ƒ^‚È‚Ì‚ÅA‚¿‚¥‚Á‚­‚µ‚È‚¢
+	// è¨­å®šæ•°åˆ†ãƒã‚§ãƒƒã‚¯
+	// ï¼‘å›ã—ã‹è¦‹ã¦ã„ãªã„ã¨ãã¯ï¼’ã¤ç›®ã®ãƒ“ãƒƒãƒˆã¯ã€
+	// ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ãªã®ã§ã€ã¡ã‡ã£ãã—ãªã„
 	roop_num = get_rotom_turn_num( zw, monsno );
 	for( i=0; i<roop_num; i++ ){
 		get_form = get_3bit_data( zw->rotomu_turn, i );	
@@ -845,7 +845,7 @@ static BOOL check_rotom_turn_set( const ZUKAN_WORK * zw, u32 monsno, u8 form )
 }
 //----------------------------------------------------------
 /**
- * @brief	ƒƒgƒ€Œ©‚Â‚¯‚½‡ƒf[ƒ^‚ÌÅŒã‚ÉŒ`óID‚ğİ’è
+ * @brief	ãƒ­ãƒˆãƒ è¦‹ã¤ã‘ãŸé †ãƒ‡ãƒ¼ã‚¿ã®æœ€å¾Œã«å½¢çŠ¶IDã‚’è¨­å®š
  */
 //----------------------------------------------------------
 static void SetZukanRotomTurn( ZUKAN_WORK * zw, u32 monsno, int form)
@@ -853,7 +853,7 @@ static void SetZukanRotomTurn( ZUKAN_WORK * zw, u32 monsno, int form)
 	int set_idx;
 	GF_ASSERT( (monsno == MONSNO_PURAZUMA) );
 
-	// İ’èÏ‚İ‚©ƒ`ƒFƒbƒN
+	// è¨­å®šæ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
 	if( check_rotom_turn_set( zw, monsno, form ) ){
 		return;
 	}
@@ -869,7 +869,7 @@ static void SetZukanRotomTurn( ZUKAN_WORK * zw, u32 monsno, int form)
 
 //----------------------------------------------------------
 /**
- * @brief	‚¢‚ë‚ñ‚Èƒ|ƒPƒ‚ƒ“‚ÌŒ©‚Â‚¯‚½‡ƒf[ƒ^‚Ì•Û‘¶
+ * @brief	ã„ã‚ã‚“ãªãƒã‚±ãƒ¢ãƒ³ã®è¦‹ã¤ã‘ãŸé †ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜
  */
 //----------------------------------------------------------
 static void SetZukanSpecialTurn(ZUKAN_WORK * zw, u16 monsno, POKEMON_PARAM* pp)
@@ -877,46 +877,46 @@ static void SetZukanSpecialTurn(ZUKAN_WORK * zw, u16 monsno, POKEMON_PARAM* pp)
 	int form;
 
 	switch( monsno ){
-	//  ƒAƒ“ƒm[ƒ“
+	//  ã‚¢ãƒ³ãƒãƒ¼ãƒ³
 	case MONSNO_ANNOON:
 		form = PokeParaUnknownFormGet( pp );
 		SetZukanUnknownTurn( zw, form );
 		break;
-	// ƒ~ƒmƒ€ƒbƒ`
+	// ãƒŸãƒãƒ ãƒƒãƒ
 	case MONSNO_MINOMUTTI:
 		form = PokeParaGet( pp, ID_PARA_form_no, NULL );
 		SetZukanMinomuttiTurn( zw, monsno, form );
 		break;
-	// ƒ~ƒmƒƒX
+	// ãƒŸãƒãƒ¡ã‚¹
 	case MONSNO_MINOMESU:
 		form = PokeParaGet( pp, ID_PARA_form_no, NULL );
 		SetZukanMinomuttiTurn( zw, monsno, form );
 		break;
-	// ƒEƒ~ƒEƒV
+	// ã‚¦ãƒŸã‚¦ã‚·
 	case MONSNO_SIIUSI:
 		form = PokeParaGet( pp, ID_PARA_form_no, NULL );
 		SetZukanTwoFormPokeTurn( zw, monsno, form );
 		break;
-	// ƒV[ƒhƒ‹ƒS
+	// ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´
 	case MONSNO_SIIDORUGO:
 		form = PokeParaGet( pp, ID_PARA_form_no, NULL );
 		SetZukanTwoFormPokeTurn( zw, monsno, form );
 		break;
-	// ƒfƒIƒLƒVƒX
+	// ãƒ‡ã‚ªã‚­ã‚·ã‚¹
 	case MONSNO_DEOKISISU:
-		SetDeokisisuFormNo( zw, monsno, pp );	// ƒfƒIƒLƒVƒX‚ÌƒtƒHƒ‹ƒ€‚ğ•Û‘¶
+		SetDeokisisuFormNo( zw, monsno, pp );	// ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã®ãƒ•ã‚©ãƒ«ãƒ ã‚’ä¿å­˜
 		break;
-	// ƒVƒFƒCƒ~
+	// ã‚·ã‚§ã‚¤ãƒŸ
 	case MONSNO_EURISU:
 		form = PokeParaGet( pp, ID_PARA_form_no, NULL );
 		SetZukanTwoFormPokeTurn( zw, monsno, form );
 		break;
-	// ƒMƒ‰ƒeƒBƒi
+	// ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
 	case MONSNO_KIMAIRAN:
 		form = PokeParaGet( pp, ID_PARA_form_no, NULL );
 		SetZukanTwoFormPokeTurn( zw, monsno, form );
 		break;
-	// ƒƒgƒ€
+	// ãƒ­ãƒˆãƒ 
 	case MONSNO_PURAZUMA:
 		form = PokeParaGet( pp, ID_PARA_form_no, NULL );
 		SetZukanRotomTurn( zw, monsno, form );
@@ -926,8 +926,8 @@ static void SetZukanSpecialTurn(ZUKAN_WORK * zw, u16 monsno, POKEMON_PARAM* pp)
 		break;
 	}
 	
-#if 0	// switch‚É‚©‚¦‚Ü‚µ‚½
-	// ƒAƒ“ƒm[ƒ“@ƒEƒ~ƒEƒV@ƒ~ƒmƒ€ƒV‚Ì‡”Ô‚Ìİ’è
+#if 0	// switchã«ã‹ãˆã¾ã—ãŸ
+	// ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã€€ã‚¦ãƒŸã‚¦ã‚·ã€€ãƒŸãƒãƒ ã‚·ã®é †ç•ªã®è¨­å®š
 	if( monsno == MONSNO_ANNOON ){
 		form = PokeParaUnknownFormGet( pp );
 		SetZukanUnknownTurn( zw, form );
@@ -944,14 +944,14 @@ static void SetZukanSpecialTurn(ZUKAN_WORK * zw, u16 monsno, POKEMON_PARAM* pp)
 		form = PokeParaGet( pp, ID_PARA_form_no, NULL );
 		SetZukanTwoFormPokeTurn( zw, monsno, form );
 	}else if( monsno == MONSNO_DEOKISISU ){
-		SetDeokisisuFormNo( zw, monsno, pp );	// ƒfƒIƒLƒVƒX‚ÌƒtƒHƒ‹ƒ€‚ğ•Û‘¶
+		SetDeokisisuFormNo( zw, monsno, pp );	// ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã®ãƒ•ã‚©ãƒ«ãƒ ã‚’ä¿å­˜
 	}
 #endif
 }
 
 //----------------------------------------------------------
 /**
- * @brief	ƒeƒLƒXƒgƒo[ƒWƒ‡ƒ“”z—ñƒCƒ“ƒfƒbƒNƒX‚ğƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚©‚çæ“¾
+ * @brief	ãƒ†ã‚­ã‚¹ãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³é…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰å–å¾—
  */
 //----------------------------------------------------------
 static inline int get_zukan_textversion_idx(u16 monsno)
@@ -960,7 +960,7 @@ static inline int get_zukan_textversion_idx(u16 monsno)
 }
 //----------------------------------------------------------
 /**
- * @brief	ƒeƒLƒXƒgƒo[ƒWƒ‡ƒ“ƒtƒ‰ƒOİ’è
+ * @brief	ãƒ†ã‚­ã‚¹ãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ•ãƒ©ã‚°è¨­å®š
  */
 //----------------------------------------------------------
 static void SetZukanTextVersionUp(ZUKAN_WORK * zw, u16 monsno, u32 lang)
@@ -973,17 +973,17 @@ static void SetZukanTextVersionUp(ZUKAN_WORK * zw, u16 monsno, u32 lang)
 	idx = monsno;
 	zkn_world_text_code = ZKN_WT_GetLANG_Code_ZKN_WORLD_TEXT_Code( lang );
 
-	// ‚»‚Ìƒ|ƒPƒ‚ƒ“‚ÉŠO‘Œêƒf[ƒ^‚Í‚È‚¢
+	// ãã®ãƒã‚±ãƒ¢ãƒ³ã«å¤–å›½èªãƒ‡ãƒ¼ã‚¿ã¯ãªã„
 //	if(idx == ZKN_WORLD_TEXT_POKE_NUM){ return; }
 
-	// ‚»‚Ì‘‚ÌŠO‘Œêƒf[ƒ^‚Í‚È‚¢
+	// ãã®å›½ã®å¤–å›½èªãƒ‡ãƒ¼ã‚¿ã¯ãªã„
 	if(zkn_world_text_code == ZKN_WORLD_TEXT_NUM){ return; }
 
 	zw->TextVersionUp[ idx ] |= 1 << zkn_world_text_code;
 }
 //----------------------------------------------------------
 /**
- * @brief	’Êí‚Ìƒ|ƒPƒ‚ƒ“«•Êæ“¾
+ * @brief	é€šå¸¸ã®ãƒã‚±ãƒ¢ãƒ³æ€§åˆ¥å–å¾—
  */
 //----------------------------------------------------------
 static u32 get_normal_poke_sex( const ZUKAN_WORK * zw, u16 monsno, int first_second )
@@ -991,7 +991,7 @@ static u32 get_normal_poke_sex( const ZUKAN_WORK * zw, u16 monsno, int first_sec
 	u32 sex_first, sex_second;
 	u32 ret_sex;
 
-	// â‘Î‚É•s–¾‚Èƒ|ƒPƒ‚ƒ“‚Ífirst‚Í•s–¾‚ğsecond‚ÍƒGƒ‰[‚ğ•Ô‚·
+	// çµ¶å¯¾ã«ä¸æ˜ãªãƒã‚±ãƒ¢ãƒ³ã¯firstã¯ä¸æ˜ã‚’secondã¯ã‚¨ãƒ©ãƒ¼ã‚’è¿”ã™
 	if( PokePersonalParaGet(monsno,ID_PER_sex) == MONS_UNKNOWN ){
 		if( first_second == ZUKAN_WORK_SEX_FIRST ){
 			return PARA_UNK;
@@ -1000,15 +1000,15 @@ static u32 get_normal_poke_sex( const ZUKAN_WORK * zw, u16 monsno, int first_sec
 		}
 	}
 	
-	// Ÿ‚ÉŒ©‚½«•Ê‚ªİ’è‚³‚ê‚Ä‚¢‚é‚Ì‚©ƒ`ƒFƒbƒN‚·‚é‚½‚ß‚É
-	// ‚Ç‚Á‚¿‚Ìê‡‚Å‚àÅ‰‚ÉŒ©‚½«•Ê‚ğæ“¾
+	// æ¬¡ã«è¦‹ãŸæ€§åˆ¥ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãŸã‚ã«
+	// ã©ã£ã¡ã®å ´åˆã§ã‚‚æœ€åˆã«è¦‹ãŸæ€§åˆ¥ã‚’å–å¾—
 	sex_first = check_sex_bit( zw, monsno, ZUKAN_WORK_SEX_FIRST );
 
-	// Ÿ‚ÉŒ©‚½«•Ê‚ğæ“¾‚·‚é‚È‚çŸ‚ÉŒ©‚½«•Ê‚ğæ“¾
+	// æ¬¡ã«è¦‹ãŸæ€§åˆ¥ã‚’å–å¾—ã™ã‚‹ãªã‚‰æ¬¡ã«è¦‹ãŸæ€§åˆ¥ã‚’å–å¾—
 	if( first_second == ZUKAN_WORK_SEX_SECOND ){
 		sex_second = check_sex_bit( zw, monsno, ZUKAN_WORK_SEX_SECOND );
 
-		// Å‰‚ÉŒ©‚½«•Ê‚Æˆê==‚Ü‚¾Œ©‚Ä‚¢‚È‚¢
+		// æœ€åˆã«è¦‹ãŸæ€§åˆ¥ã¨ä¸€ç·’==ã¾ã è¦‹ã¦ã„ãªã„
 		if( sex_second == sex_first ){
 			ret_sex = ZUKAN_WORK_GET_SEX_ERR;
 		}else{
@@ -1023,7 +1023,7 @@ static u32 get_normal_poke_sex( const ZUKAN_WORK * zw, u16 monsno, int first_sec
 
 //----------------------------------------------------------
 /**
- * @brief	ƒAƒ“ƒm[ƒ“Œ©‚Â‚¯‚½‡”Ôæ“¾
+ * @brief	ã‚¢ãƒ³ãƒãƒ¼ãƒ³è¦‹ã¤ã‘ãŸé †ç•ªå–å¾—
  */
 //----------------------------------------------------------
 static inline int get_unknown_see_form( const ZUKAN_WORK * zw, int idx )
@@ -1033,8 +1033,8 @@ static inline int get_unknown_see_form( const ZUKAN_WORK * zw, int idx )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒV[ƒEƒV@ƒV[ƒhƒ‰ƒS@ƒVƒFƒCƒ~@ƒMƒ‰ƒeƒBƒiŒ©‚Â‚¯‚½‡”Ôæ“¾
- *’ˆÓ 0or1ŒÀ’è‚Åì¬‚µ‚Ä‚¢‚Ü‚·B
+ * @brief	ã‚·ãƒ¼ã‚¦ã‚·ã€€ã‚·ãƒ¼ãƒ‰ãƒ©ã‚´ã€€ã‚·ã‚§ã‚¤ãƒŸã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠè¦‹ã¤ã‘ãŸé †ç•ªå–å¾—
+ *æ³¨æ„ 0or1é™å®šã§ä½œæˆã—ã¦ã„ã¾ã™ã€‚
  */
 //----------------------------------------------------------
 static int get_twoform_poke_see_form( const ZUKAN_WORK * zw, u32 monsno, int idx )
@@ -1065,7 +1065,7 @@ static int get_twoform_poke_see_form( const ZUKAN_WORK * zw, u32 monsno, int idx
 
 //----------------------------------------------------------
 /**
- * @brief	ƒƒgƒ€Œ©‚Â‚¯‚½‡”Ôæ“¾
+ * @brief	ãƒ­ãƒˆãƒ è¦‹ã¤ã‘ãŸé †ç•ªå–å¾—
  */
 //----------------------------------------------------------
 static int get_rotom_see_form( const ZUKAN_WORK * zw, u32 monsno, int idx )
@@ -1078,8 +1078,8 @@ static int get_rotom_see_form( const ZUKAN_WORK * zw, u32 monsno, int idx )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒ~ƒmƒ€ƒbƒ`@ƒ~ƒmƒƒXŒ©‚Â‚¯‚½‡”Ôæ“¾
- *’ˆÓ 0`2ŒÀ’è‚Åì¬‚µ‚Ä‚¢‚Ü‚·B
+ * @brief	ãƒŸãƒãƒ ãƒƒãƒã€€ãƒŸãƒãƒ¡ã‚¹è¦‹ã¤ã‘ãŸé †ç•ªå–å¾—
+ *æ³¨æ„ 0ã€œ2é™å®šã§ä½œæˆã—ã¦ã„ã¾ã™ã€‚
  */
 //----------------------------------------------------------
 static int get_minomutti_see_form( const ZUKAN_WORK * zw, u32 monsno, int idx )
@@ -1099,7 +1099,7 @@ static int get_minomutti_see_form( const ZUKAN_WORK * zw, u32 monsno, int idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒ“ƒRƒN}ŠÓŠ®¬‚É•K—v‚Èƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¼ãƒ³ã‚³ã‚¯å›³é‘‘å®Œæˆã«å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 static BOOL check_ZenkokuCompMonsno( u16 monsno )
@@ -1120,7 +1120,7 @@ static BOOL check_ZenkokuCompMonsno( u16 monsno )
 		MONSNO_AUSU,
 	};
 
-	// ƒ`ƒFƒbƒNœŠOƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN
+	// ãƒã‚§ãƒƒã‚¯é™¤å¤–ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯
 	cut_check = TRUE;
 	for( i=0; i<ZUKAN_WORK_ZENKOKU_COMP_NOPOKE_NUM; i++ ){
 		if( cut_check_monsno[ i ] == monsno ){
@@ -1132,7 +1132,7 @@ static BOOL check_ZenkokuCompMonsno( u16 monsno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒ“ƒIƒE}ŠÓŠ®¬‚É•K—v‚Èƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘å®Œæˆã«å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
  */
 //-----------------------------------------------------------------------------
 static BOOL check_ShinouCompMonsno( u16 monsno )
@@ -1144,7 +1144,7 @@ static BOOL check_ShinouCompMonsno( u16 monsno )
 //		MONSNO_MANAFI,
 	};
 
-	// ƒ`ƒFƒbƒNœŠOƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN
+	// ãƒã‚§ãƒƒã‚¯é™¤å¤–ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯
 	cut_check = TRUE;
 	for( i=0; i<ZUKAN_WORK_SHINOU_COMP_NOPOKE_NUM; i++ ){
 		if( cut_check_monsno[ i ] == monsno ){
@@ -1158,13 +1158,13 @@ static BOOL check_ShinouCompMonsno( u16 monsno )
 
 //============================================================================================
 //
-//			‚¸‚©‚ñî•ñ‘€ì—p‚ÌŠO•”ŒöŠJŠÖ”
+//			ãšã‹ã‚“æƒ…å ±æ“ä½œç”¨ã®å¤–éƒ¨å…¬é–‹é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief		‚¸‚©‚ñƒ[ƒN‚Ì‰Šú‰»
- * @param	zw		‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
+ * @param	zw		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void ZukanWork_Init(ZUKAN_WORK * zw)
@@ -1173,7 +1173,7 @@ void ZukanWork_Init(ZUKAN_WORK * zw)
 	zw->zukan_magic = MAGIC_NUMBER;
 	zw->zenkoku_flag = FALSE;
 
-	// •ß‚Ü‚¦‚½‡”Ôƒtƒ‰ƒO‚Éƒ_ƒ~[ƒf[ƒ^İ’è
+	// æ•ã¾ãˆãŸé †ç•ªãƒ•ãƒ©ã‚°ã«ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	memset( zw->UnknownTurn, 0xff, sizeof(u8) *  POKEZUKAN_UNKNOWN_NUM );
 	zw->SiiusiTurn = 0xff;		
 	zw->SiidorugoTurn = 0xff;	
@@ -1184,15 +1184,15 @@ void ZukanWork_Init(ZUKAN_WORK * zw)
 	zw->syeimi_turn = 0xff;	
 	zw->giratyina_turn = 0xff;		
 
-	// ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€ƒ^ƒCƒv•Û‘¶—Ìˆæ‚Ì‰Šú‰»
+	// ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ ã‚¿ã‚¤ãƒ—ä¿å­˜é ˜åŸŸã®åˆæœŸåŒ–
 	InitDeokisisuFormNo( zw );
 }
 
 //----------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ğ‚Â‚©‚Ü‚¦‚½”‚Ìæ“¾
- * @param	zw		‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	u16		•ß‚Ü‚¦‚½”
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚’ã¤ã‹ã¾ãˆãŸæ•°ã®å–å¾—
+ * @param	zw		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	u16		æ•ã¾ãˆãŸæ•°
  */
 //----------------------------------------------------------
 u16 ZukanWork_GetPokeGetCount(const ZUKAN_WORK * zw)
@@ -1209,16 +1209,16 @@ u16 ZukanWork_GetPokeGetCount(const ZUKAN_WORK * zw)
 	}
 	return count;
 
-	// ‚‘¬‚Å‚·‚ªAƒfƒIƒLƒVƒXƒtƒ‰ƒO‚ğget_flag‚ÌŒã‚ë‚É“ü‚ê‚½‚Ì‚ÅAg—p‚Å‚«‚Ü‚¹‚ñ
+	// é«˜é€Ÿã§ã™ãŒã€ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ãƒ©ã‚°ã‚’get_flagã®å¾Œã‚ã«å…¥ã‚ŒãŸã®ã§ã€ä½¿ç”¨ã§ãã¾ã›ã‚“
 //	return count_bit(zw->get_flag, POKEZUKAN_ARRAY_LEN);
 
 }
 
 //----------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ğŒ©‚Â‚¯‚½”‚Ìæ“¾
- * @param	zw		‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	u16		Œ©‚Â‚¯‚½”
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚’è¦‹ã¤ã‘ãŸæ•°ã®å–å¾—
+ * @param	zw		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	u16		è¦‹ã¤ã‘ãŸæ•°
  */
 //----------------------------------------------------------
 u16 ZukanWork_GetPokeSeeCount(const ZUKAN_WORK * zw)
@@ -1235,15 +1235,15 @@ u16 ZukanWork_GetPokeSeeCount(const ZUKAN_WORK * zw)
 	}
 	return count;
 
-	// ‚‘¬‚Å‚·‚ªAƒfƒIƒLƒVƒXƒtƒ‰ƒO‚ğget_flag‚ÌŒã‚ë‚É“ü‚ê‚½‚Ì‚ÅAg—p‚Å‚«‚Ü‚¹‚ñ
+	// é«˜é€Ÿã§ã™ãŒã€ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ãƒ©ã‚°ã‚’get_flagã®å¾Œã‚ã«å…¥ã‚ŒãŸã®ã§ã€ä½¿ç”¨ã§ãã¾ã›ã‚“
 //	return count_bit(zw->see_flag, POKEZUKAN_ARRAY_LEN);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»İ‚Ì}ŠÓÓ°ÄŞ‚Ìƒ|ƒPƒ‚ƒ“‚ğ•ß‚Ü‚¦‚½”æ“¾
- *	@param	zw		}ŠÓƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@return	•ß‚Ü‚¦‚½”
+ *	@brief	ç¾åœ¨ã®å›³é‘‘ãƒ¢ãƒ¼ãƒ‰ã®ãƒã‚±ãƒ¢ãƒ³ã‚’æ•ã¾ãˆãŸæ•°å–å¾—
+ *	@param	zw		å›³é‘‘ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@return	æ•ã¾ãˆãŸæ•°
  */
 //-----------------------------------------------------------------------------
 u16 ZukanWork_GetZukanPokeGetCount(const ZUKAN_WORK * zw)
@@ -1256,9 +1256,9 @@ u16 ZukanWork_GetZukanPokeGetCount(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»İ‚Ì}ŠÓÓ°ÄŞ‚Ìƒ|ƒPƒ‚ƒ“‚ğŒ©‚½”æ“¾
- *	@param	zw		}ŠÓƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@return Œ©‚½”
+ *	@brief	ç¾åœ¨ã®å›³é‘‘ãƒ¢ãƒ¼ãƒ‰ã®ãƒã‚±ãƒ¢ãƒ³ã‚’è¦‹ãŸæ•°å–å¾—
+ *	@param	zw		å›³é‘‘ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@return è¦‹ãŸæ•°
  */
 //-----------------------------------------------------------------------------
 u16 ZukanWork_GetZukanPokeSeeCount(const ZUKAN_WORK * zw)
@@ -1271,10 +1271,10 @@ u16 ZukanWork_GetZukanPokeSeeCount(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------
 /**
- * yƒVƒ“ƒIƒEz
- * @brief	ƒ|ƒPƒ‚ƒ“‚ğ‚Â‚©‚Ü‚¦‚½”‚Ìæ“¾
- * @param	zw		‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	u16		•ß‚Ü‚¦‚½”
+ * ã€ã‚·ãƒ³ã‚ªã‚¦ã€‘
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚’ã¤ã‹ã¾ãˆãŸæ•°ã®å–å¾—
+ * @param	zw		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	u16		æ•ã¾ãˆãŸæ•°
  */
 //----------------------------------------------------------
 u16 ZukanWork_GetShinouPokeGetCount(const ZUKAN_WORK * zw)
@@ -1285,7 +1285,7 @@ u16 ZukanWork_GetShinouPokeGetCount(const ZUKAN_WORK * zw)
 	count= 0;
 	for( i=1; i<=MONSNO_END; i++ ){
 		if( ZukanWork_GetPokeGetFlag( zw, i ) == TRUE ){
-			// ¼İµ³½Ş¶İ‚É‚¢‚é‚©ƒ`ƒFƒbƒN
+			// ã‚·ãƒ³ã‚ªã‚¦ã‚ºã‚«ãƒ³ã«ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( PokeZenkokuNo2ShinouNo( i ) != 0 ){
 				count ++;
 			}
@@ -1296,10 +1296,10 @@ u16 ZukanWork_GetShinouPokeGetCount(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------
 /**
- * yƒVƒ“ƒIƒEz
- * @brief	ƒ|ƒPƒ‚ƒ“‚ğŒ©‚Â‚¯‚½”‚Ìæ“¾
- * @param	zw		‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	u16		Œ©‚Â‚¯‚½”
+ * ã€ã‚·ãƒ³ã‚ªã‚¦ã€‘
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚’è¦‹ã¤ã‘ãŸæ•°ã®å–å¾—
+ * @param	zw		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	u16		è¦‹ã¤ã‘ãŸæ•°
  */
 //----------------------------------------------------------
 u16 ZukanWork_GetShinouPokeSeeCount(const ZUKAN_WORK * zw)
@@ -1310,7 +1310,7 @@ u16 ZukanWork_GetShinouPokeSeeCount(const ZUKAN_WORK * zw)
 	count= 0;
 	for( i=1; i<=MONSNO_END; i++ ){
 		if( ZukanWork_GetPokeSeeFlag( zw, i ) == TRUE ){
-			// ¼İµ³½Ş¶İ‚É‚¢‚é‚©ƒ`ƒFƒbƒN
+			// ã‚·ãƒ³ã‚ªã‚¦ã‚ºã‚«ãƒ³ã«ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( PokeZenkokuNo2ShinouNo( i ) != 0 ){
 				count ++;
 			}
@@ -1321,19 +1321,19 @@ u16 ZukanWork_GetShinouPokeSeeCount(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘S‘}ŠÓ‚ªŠ®¬‚µ‚½‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	å…¨å›½å›³é‘‘ãŒå®Œæˆã—ãŸã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	zw	}ŠÓƒ[ƒN
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	Š®¬
- *	@retval	FALSE	–¢Š®¬
+ *	@retval	TRUE	å®Œæˆ
+ *	@retval	FALSE	æœªå®Œæˆ
  */
 //-----------------------------------------------------------------------------
 BOOL ZukanWork_CheckZenkokuComp(const ZUKAN_WORK * zw)
 {
 	u16 num;
 
-	// ƒ[ƒ“ƒRƒN}ŠÓŠ®¬‚É•K—v‚Èƒ|ƒPƒ‚ƒ“‚ğ‰½•C•ß‚Ü‚¦‚½‚©
+	// ã‚¼ãƒ³ã‚³ã‚¯å›³é‘‘å®Œæˆã«å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³ã‚’ä½•åŒ¹æ•ã¾ãˆãŸã‹
 	num = ZukanWork_GetZenkokuGetCompCount( zw );
 
 	if( num >= ZUKAN_WORK_ZENKOKU_COMP_NUM ){
@@ -1344,19 +1344,19 @@ BOOL ZukanWork_CheckZenkokuComp(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒ“ƒIƒE}ŠÓ‚ªŠ®¬‚µ‚½‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãŒå®Œæˆã—ãŸã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	zw	}ŠÓƒ[ƒN
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	Š®¬
- *	@retval	FALSE	–¢Š®¬
+ *	@retval	TRUE	å®Œæˆ
+ *	@retval	FALSE	æœªå®Œæˆ
  */
 //-----------------------------------------------------------------------------
 BOOL ZukanWork_CheckShinouComp(const ZUKAN_WORK * zw)
 {
 	u16 num;
 
-	// ƒVƒ“ƒIƒE}ŠÓŠ®¬‚É•K—v‚Èƒ|ƒPƒ‚ƒ“‚ğ‰½•CŒ©‚Â‚¯‚½‚©
+	// ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘å®Œæˆã«å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³ã‚’ä½•åŒ¹è¦‹ã¤ã‘ãŸã‹
 	num = ZukanWork_GetShinouSeeCompCount( zw );
 
 	if( num >= ZUKAN_WORK_SHINOU_COMP_NUM ){
@@ -1367,18 +1367,18 @@ BOOL ZukanWork_CheckShinouComp(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒ“ƒRƒN}ŠÓ@Š®¬‚É•K—v‚Èƒ|ƒPƒ‚ƒ“‚ğ•ß‚Ü‚¦‚½”
+ *	@brief	ã‚¼ãƒ³ã‚³ã‚¯å›³é‘‘ã€€å®Œæˆã«å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³ã‚’æ•ã¾ãˆãŸæ•°
  *
- *	@param	zw		}ŠÓƒ[ƒN
- *	@return	Š®¬‚É•K—v‚Èƒ|ƒPƒ‚ƒ“‚ğ•ß‚Ü‚¦‚½”
+ *	@param	zw		å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+ *	@return	å®Œæˆã«å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³ã‚’æ•ã¾ãˆãŸæ•°
  */
 //-----------------------------------------------------------------------------
 u16 ZukanWork_GetZenkokuGetCompCount(const ZUKAN_WORK * zw)
 {
 	int i;
 	u16 num;
-	// ƒGƒ‹ƒtƒB@ƒ}ƒiƒtƒB@ƒ_[ƒN@ƒGƒŠƒEƒX@ƒAƒEƒX
-	// ˆÈŠO‚ğ•ß‚Ü‚¦‚Ä‚¢‚½‚çOK
+	// ã‚¨ãƒ«ãƒ•ã‚£ã€€ãƒãƒŠãƒ•ã‚£ã€€ãƒ€ãƒ¼ã‚¯ã€€ã‚¨ãƒªã‚¦ã‚¹ã€€ã‚¢ã‚¦ã‚¹
+	// ä»¥å¤–ã‚’æ•ã¾ãˆã¦ã„ãŸã‚‰OK
 	num = 0;
 	for( i=1; i<=ZUKAN_WORK_ZENKOKU_MONSMAX; i++ ){
 		if( ZukanWork_GetPokeGetFlag( zw, i ) == TRUE ){
@@ -1392,10 +1392,10 @@ u16 ZukanWork_GetZenkokuGetCompCount(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒ“ƒIƒE}ŠÓ@Š®¬‚É•K—v‚Èƒ|ƒPƒ‚ƒ“‚ğŒ©‚Â‚¯‚½”
+ *	@brief	ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã€€å®Œæˆã«å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³ã‚’è¦‹ã¤ã‘ãŸæ•°
  *
- *	@param	zw		}ŠÓƒ[ƒN
- *	@return	Š®¬‚É•K—v‚Èƒ|ƒPƒ‚ƒ“‚ğŒ©‚Â‚¯‚½”
+ *	@param	zw		å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+ *	@return	å®Œæˆã«å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³ã‚’è¦‹ã¤ã‘ãŸæ•°
  */
 //-----------------------------------------------------------------------------
 u16 ZukanWork_GetShinouSeeCompCount(const ZUKAN_WORK * zw)
@@ -1404,8 +1404,8 @@ u16 ZukanWork_GetShinouSeeCompCount(const ZUKAN_WORK * zw)
 	u16 num;
 	u32 monsno;
 
-	// ƒGƒ‹ƒtƒB@ƒ}ƒiƒtƒB@ƒ_[ƒN@ƒGƒŠƒEƒX@ƒAƒEƒX
-	// ˆÈŠO‚ğ•ß‚Ü‚¦‚Ä‚¢‚½‚çOK
+	// ã‚¨ãƒ«ãƒ•ã‚£ã€€ãƒãƒŠãƒ•ã‚£ã€€ãƒ€ãƒ¼ã‚¯ã€€ã‚¨ãƒªã‚¦ã‚¹ã€€ã‚¢ã‚¦ã‚¹
+	// ä»¥å¤–ã‚’æ•ã¾ãˆã¦ã„ãŸã‚‰OK
 	num = 0;
 	for( i=1; i<=ZUKAN_WORK_ZENKOKU_MONSMAX; i++ ){
 		if( ZukanWork_GetPokeSeeFlag( zw, i ) == TRUE ){
@@ -1422,10 +1422,10 @@ u16 ZukanWork_GetShinouSeeCompCount(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ğ•ß‚Ü‚¦‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒOæ“¾
- * @param	zw		‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	monsno	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @return	BOOL	ƒtƒ‰ƒOŒ‹‰Ê
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚’æ•ã¾ãˆãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°å–å¾—
+ * @param	zw		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	monsno	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @return	BOOL	ãƒ•ãƒ©ã‚°çµæœ
  */
 //----------------------------------------------------------
 BOOL ZukanWork_GetPokeGetFlag(const ZUKAN_WORK * zw, u16 monsno)
@@ -1443,10 +1443,10 @@ BOOL ZukanWork_GetPokeGetFlag(const ZUKAN_WORK * zw, u16 monsno)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ğŒ©‚Â‚¯‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒOæ“¾
- * @param	zw		‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	monsno	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @return	BOOL	ƒtƒ‰ƒOŒ‹‰Ê
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚’è¦‹ã¤ã‘ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°å–å¾—
+ * @param	zw		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	monsno	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @return	BOOL	ãƒ•ãƒ©ã‚°çµæœ
  */
 //----------------------------------------------------------
 BOOL ZukanWork_GetPokeSeeFlag(const ZUKAN_WORK * zw, u16 monsno)
@@ -1460,12 +1460,12 @@ BOOL ZukanWork_GetPokeSeeFlag(const ZUKAN_WORK * zw, u16 monsno)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“Áêƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”æ“¾
+ *	@brief	ç‰¹æ®Šãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°å–å¾—
  *
- *	@param	zw			}ŠÓƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	random_poke	æ“¾‚·‚éƒ|ƒPƒ‚ƒ“ŒÂ«—”
+ *	@param	zw			å›³é‘‘ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	random_poke	å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³å€‹æ€§ä¹±æ•°
  *
- *	@return	ŒÂ«—”
+ *	@return	å€‹æ€§ä¹±æ•°
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeRandomFlag(const ZUKAN_WORK * zw, u8 random_poke)
@@ -1475,7 +1475,7 @@ u32 ZukanWork_GetPokeRandomFlag(const ZUKAN_WORK * zw, u8 random_poke)
 	zukan_incorrect(zw);
 
 	switch( random_poke ){
-	case ZUKAN_WORK_RANDOM_PACHI:		// ƒpƒbƒ`[ƒ‹ŒÂ«—”
+	case ZUKAN_WORK_RANDOM_PACHI:		// ãƒ‘ãƒƒãƒãƒ¼ãƒ«å€‹æ€§ä¹±æ•°
 		random = zw->PachiRandom;
 		break;
 		
@@ -1489,16 +1489,16 @@ u32 ZukanWork_GetPokeRandomFlag(const ZUKAN_WORK * zw, u8 random_poke)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚ğ•\¦‚·‚é‚Æ‚«‚Ì«•Êæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ã¨ãã®æ€§åˆ¥å–å¾—
  *
- *	@param	zw				‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	monsno			ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- *	@param	first_second	Å‰‚ÉŒ©‚½«•Ê‚©Ÿ‚ÉŒ©‚½«•Ê‚©
+ *	@param	zw				ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	monsno			ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param	first_second	æœ€åˆã«è¦‹ãŸæ€§åˆ¥ã‹æ¬¡ã«è¦‹ãŸæ€§åˆ¥ã‹
  *
- *	@retval	PARA_MALE		ƒIƒX
- *	@retval	PARA_FEMALE		ƒƒX
- *	@retval	PARA_UNK		•s–¾	
- *	@retval	ZUKAN_WORK_GET_SEX_ERR	Œ©‚½«•Ê‚ª‚Ü‚¾–³‚¢
+ *	@retval	PARA_MALE		ã‚ªã‚¹
+ *	@retval	PARA_FEMALE		ãƒ¡ã‚¹
+ *	@retval	PARA_UNK		ä¸æ˜	
+ *	@retval	ZUKAN_WORK_GET_SEX_ERR	è¦‹ãŸæ€§åˆ¥ãŒã¾ã ç„¡ã„
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeSexFlag(const ZUKAN_WORK * zw, u16 monsno, int first_second )
@@ -1507,45 +1507,45 @@ u32 ZukanWork_GetPokeSexFlag(const ZUKAN_WORK * zw, u16 monsno, int first_second
 	if (monsno_incorrect(monsno)) {
 		return ZUKAN_WORK_GET_SEX_ERR;
 	}
-	// Œ©‚Ä‚È‚¢‚Æ‚«‚ÍƒGƒ‰[ƒR[ƒh‚ğ•Ô‚·
+	// è¦‹ã¦ãªã„ã¨ãã¯ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
 	if( !check_see_bit(zw, monsno) ){
 		return ZUKAN_WORK_GET_SEX_ERR;
 	}
 
-	// ƒm[ƒ}ƒ‹ƒ|ƒPƒ‚ƒ“
+	// ãƒãƒ¼ãƒãƒ«ãƒã‚±ãƒ¢ãƒ³
 	return get_normal_poke_sex( zw, monsno, first_second );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒm[ƒ“Œ©‚Â‚¯‚½‡İ’è
+ *	@brief	ã‚¢ãƒ³ãƒãƒ¼ãƒ³è¦‹ã¤ã‘ãŸé †è¨­å®š
  *
- *	@param	zw		}ŠÓƒ[ƒN
- *	@param	count	ƒAƒ“ƒm[ƒ“‡”Ô	(0`27)
+ *	@param	zw		å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+ *	@param	count	ã‚¢ãƒ³ãƒãƒ¼ãƒ³é †ç•ª	(0ã€œ27)
  *	
- *	@retval	ƒAƒ“ƒm[ƒ“ƒtƒH[ƒ€ƒiƒ“ƒo[
- *	@retval	ZUKAN_WORK_GET_SEX_ERR	Œ©‚Â‚¯‚Ä‚¢‚È‚¢
+ *	@retval	ã‚¢ãƒ³ãƒãƒ¼ãƒ³ãƒ•ã‚©ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
+ *	@retval	ZUKAN_WORK_GET_SEX_ERR	è¦‹ã¤ã‘ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeAnoonForm(const ZUKAN_WORK * zw, int count)
 {
 	zukan_incorrect(zw);
-	// ‚»‚Ì”‚ÌƒAƒ“ƒm[ƒ“ƒtƒHƒ‹ƒ€‚ğŒ©‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãã®æ•°ã®ã‚¢ãƒ³ãƒãƒ¼ãƒ³ãƒ•ã‚©ãƒ«ãƒ ã‚’è¦‹ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( get_zukan_unknown_turn_num( zw ) <= count ){
 		return ZUKAN_WORK_GET_SEX_ERR;
 	}
 
-	// ƒtƒHƒ‹ƒ€”‚ğ•Ô‚·
+	// ãƒ•ã‚©ãƒ«ãƒ æ•°ã‚’è¿”ã™
 	return get_unknown_see_form( zw, count );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒm[ƒ“‚ğŒ©‚½”
+ *	@brief	ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã‚’è¦‹ãŸæ•°
  *
- *	@param	zw		}ŠÓƒ[ƒN
+ *	@param	zw		å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	Œ©‚½”
+ *	@return	è¦‹ãŸæ•°
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeAnoonSeeNum(const ZUKAN_WORK * zw)
@@ -1556,20 +1556,20 @@ u32 ZukanWork_GetPokeAnoonSeeNum(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[ƒEƒVƒtƒHƒ‹ƒ€æ“¾
+ *	@brief	ã‚·ãƒ¼ã‚¦ã‚·ãƒ•ã‚©ãƒ«ãƒ å–å¾—
  *
- *	@param	zw		}ŠÓƒ[ƒN
- *	@param	count	Œ©‚Â‚¯‚½‡”Ô”	
+ *	@param	zw		å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+ *	@param	count	è¦‹ã¤ã‘ãŸé †ç•ªæ•°	
  *
- *	@retval	‚»‚Ì‡”Ô‚ÉŒ©‚Â‚¯‚½ƒtƒHƒ‹ƒ€
- *	@retval	ZUKAN_WORK_GET_SEX_ERR	Œ©‚Â‚¯‚Ä‚¢‚È‚¢
+ *	@retval	ãã®é †ç•ªã«è¦‹ã¤ã‘ãŸãƒ•ã‚©ãƒ«ãƒ 
+ *	@retval	ZUKAN_WORK_GET_SEX_ERR	è¦‹ã¤ã‘ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeSiiusiForm(const ZUKAN_WORK * zw, int count)
 {
 	zukan_incorrect(zw);
 
-	// ‚»‚Ì”‚ÌƒV[ƒEƒVƒtƒHƒ‹ƒ€‚ğŒ©‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãã®æ•°ã®ã‚·ãƒ¼ã‚¦ã‚·ãƒ•ã‚©ãƒ«ãƒ ã‚’è¦‹ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( get_twoform_poke_turn_num( zw, MONSNO_SIIUSI ) <= count ){
 		return ZUKAN_WORK_GET_SEX_ERR;
 	}
@@ -1578,11 +1578,11 @@ u32 ZukanWork_GetPokeSiiusiForm(const ZUKAN_WORK * zw, int count)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[ƒEƒV‚ÌƒtƒHƒ‹ƒ€‚ğŒ©‚½”
+ *	@brief	ã‚·ãƒ¼ã‚¦ã‚·ã®ãƒ•ã‚©ãƒ«ãƒ ã‚’è¦‹ãŸæ•°
  *
- *	@param	zw	}ŠÓƒ[ƒN
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒtƒHƒ‹ƒ€‚ğŒ©‚½”
+ *	@return	ãƒ•ã‚©ãƒ«ãƒ ã‚’è¦‹ãŸæ•°
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeSiiusiSeeNum(const ZUKAN_WORK * zw)
@@ -1593,20 +1593,20 @@ u32 ZukanWork_GetPokeSiiusiSeeNum(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[ƒhƒ‹ƒSƒtƒHƒ‹ƒ€ƒiƒ“ƒo[æ“¾
+ *	@brief	ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	zw		}ŠÓƒ[ƒN
- *	@param	count	Œ©‚Â‚¯‚½‡”Ô”	
+ *	@param	zw		å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+ *	@param	count	è¦‹ã¤ã‘ãŸé †ç•ªæ•°	
  *
- *	@retval	‚»‚Ì‡”Ô‚ÉŒ©‚Â‚¯‚½ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
- *	@retval	ZUKAN_WORK_GET_SEX_ERR	Œ©‚Â‚¯‚Ä‚¢‚È‚¢
+ *	@retval	ãã®é †ç•ªã«è¦‹ã¤ã‘ãŸãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
+ *	@retval	ZUKAN_WORK_GET_SEX_ERR	è¦‹ã¤ã‘ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeSiidorugoForm(const ZUKAN_WORK * zw, int count)
 {
 	zukan_incorrect(zw);
 	
-	// ‚»‚Ì”‚ÌƒV[ƒhƒ‹ƒSƒtƒHƒ‹ƒ€‚ğŒ©‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãã®æ•°ã®ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´ãƒ•ã‚©ãƒ«ãƒ ã‚’è¦‹ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( get_twoform_poke_turn_num( zw, MONSNO_SIIDORUGO ) <= count ){
 		return ZUKAN_WORK_GET_SEX_ERR;
 	}
@@ -1615,11 +1615,11 @@ u32 ZukanWork_GetPokeSiidorugoForm(const ZUKAN_WORK * zw, int count)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[ƒhƒ‹ƒS‚ÌƒtƒHƒ‹ƒ€‚ğŒ©‚½”
+ *	@brief	ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´ã®ãƒ•ã‚©ãƒ«ãƒ ã‚’è¦‹ãŸæ•°
  *
- *	@param	zw	}ŠÓƒ[ƒN
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒtƒHƒ‹ƒ€‚ğŒ©‚½”
+ *	@return	ãƒ•ã‚©ãƒ«ãƒ ã‚’è¦‹ãŸæ•°
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeSiidorugoSeeNum(const ZUKAN_WORK * zw)
@@ -1630,20 +1630,20 @@ u32 ZukanWork_GetPokeSiidorugoSeeNum(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒmƒ€ƒbƒ`ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[æ“¾
+ *	@brief	ãƒŸãƒãƒ ãƒƒãƒãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	zw		}ŠÓƒ[ƒN
- *	@param	count	Œ©‚Â‚¯‚½‡”Ô”	
+ *	@param	zw		å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+ *	@param	count	è¦‹ã¤ã‘ãŸé †ç•ªæ•°	
  *
- *	@retval	‚»‚Ì‡”Ô‚ÉŒ©‚Â‚¯‚½ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
- *	@retval	ZUKAN_WORK_GET_SEX_ERR	Œ©‚Â‚¯‚Ä‚¢‚È‚¢
+ *	@retval	ãã®é †ç•ªã«è¦‹ã¤ã‘ãŸãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
+ *	@retval	ZUKAN_WORK_GET_SEX_ERR	è¦‹ã¤ã‘ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeMinomuttiForm(const ZUKAN_WORK * zw, int count)
 {
 	zukan_incorrect(zw);
 
-	// ‚»‚Ì”‚Ìƒ~ƒmƒ€ƒbƒ`ƒtƒHƒ‹ƒ€‚ğŒ©‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãã®æ•°ã®ãƒŸãƒãƒ ãƒƒãƒãƒ•ã‚©ãƒ«ãƒ ã‚’è¦‹ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( get_zukan_minomutti_turn_num( zw, MONSNO_MINOMUTTI ) <= count ){
 		return ZUKAN_WORK_GET_SEX_ERR;
 	}
@@ -1652,11 +1652,11 @@ u32 ZukanWork_GetPokeMinomuttiForm(const ZUKAN_WORK * zw, int count)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒmƒ€ƒbƒ`‚ÌƒtƒHƒ‹ƒ€‚ğŒ©‚½”
+ *	@brief	ãƒŸãƒãƒ ãƒƒãƒã®ãƒ•ã‚©ãƒ«ãƒ ã‚’è¦‹ãŸæ•°
  *
- *	@param	zw	}ŠÓƒ[ƒN
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒtƒHƒ‹ƒ€‚ğŒ©‚½”
+ *	@return	ãƒ•ã‚©ãƒ«ãƒ ã‚’è¦‹ãŸæ•°
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeMinomuttiSeeNum(const ZUKAN_WORK * zw)
@@ -1667,20 +1667,20 @@ u32 ZukanWork_GetPokeMinomuttiSeeNum(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒmƒƒX’nŒ`ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[æ“¾
+ *	@brief	ãƒŸãƒãƒ¡ã‚¹åœ°å½¢ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	zw		}ŠÓƒ[ƒN
- *	@param	count	Œ©‚Â‚¯‚½‡”Ô”	
+ *	@param	zw		å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+ *	@param	count	è¦‹ã¤ã‘ãŸé †ç•ªæ•°	
  *
- *	@retval	‚»‚Ì‡”Ô‚ÉŒ©‚Â‚¯‚½ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
- *	@retval	ZUKAN_WORK_GET_SEX_ERR	Œ©‚Â‚¯‚Ä‚¢‚È‚¢
+ *	@retval	ãã®é †ç•ªã«è¦‹ã¤ã‘ãŸãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
+ *	@retval	ZUKAN_WORK_GET_SEX_ERR	è¦‹ã¤ã‘ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeMinomesuForm(const ZUKAN_WORK * zw, int count)
 {
 	zukan_incorrect(zw);
 
-	// ‚»‚Ì”‚Ìƒ~ƒmƒƒXƒtƒHƒ‹ƒ€‚ğŒ©‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãã®æ•°ã®ãƒŸãƒãƒ¡ã‚¹ãƒ•ã‚©ãƒ«ãƒ ã‚’è¦‹ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( get_zukan_minomutti_turn_num( zw, MONSNO_MINOMESU ) <= count ){
 		return ZUKAN_WORK_GET_SEX_ERR;
 	}
@@ -1689,11 +1689,11 @@ u32 ZukanWork_GetPokeMinomesuForm(const ZUKAN_WORK * zw, int count)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒmƒƒX‚ÌƒtƒHƒ‹ƒ€‚ğŒ©‚½”
+ *	@brief	ãƒŸãƒãƒ¡ã‚¹ã®ãƒ•ã‚©ãƒ«ãƒ ã‚’è¦‹ãŸæ•°
  *
- *	@param	zw	}ŠÓƒ[ƒN
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒtƒHƒ‹ƒ€‚ğŒ©‚½”
+ *	@return	ãƒ•ã‚©ãƒ«ãƒ ã‚’è¦‹ãŸæ•°
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeMinomesuSeeNum(const ZUKAN_WORK * zw)
@@ -1704,12 +1704,12 @@ u32 ZukanWork_GetPokeMinomesuSeeNum(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€@‚ğæ“¾‚·‚é
+ *	@brief	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ ã€€ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	zw	}ŠÓƒ[ƒN
- *	@param	countƒJƒEƒ“ƒg
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+ *	@param	countã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@return	ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
+ *	@return	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeDeokisisuForm(const ZUKAN_WORK * zw, int count)
@@ -1720,11 +1720,11 @@ u32 ZukanWork_GetPokeDeokisisuForm(const ZUKAN_WORK * zw, int count)
 
 //----------------------------------------------------------------------------
 /**	
- *	@brief	ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€@‚ğŒ©‚½”æ“¾
+ *	@brief	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ ã€€ã‚’è¦‹ãŸæ•°å–å¾—
  *
- *	@param	zw	}ŠÓƒ[ƒN
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	Œ©‚½”
+ *	@return	è¦‹ãŸæ•°
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeDeokisisuFormSeeNum(const ZUKAN_WORK * zw)
@@ -1736,9 +1736,9 @@ u32 ZukanWork_GetPokeDeokisisuFormSeeNum(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------
 /**
- * @brief	‚¸‚©‚ñƒf[ƒ^ƒZƒbƒgiŒ©‚Â‚¯‚½j
- * @param	zw		‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pp		Œ©‚Â‚¯‚½ƒ|ƒPƒ‚ƒ“‚ÌPOKEMON_PARAM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãšã‹ã‚“ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼ˆè¦‹ã¤ã‘ãŸï¼‰
+ * @param	zw		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pp		è¦‹ã¤ã‘ãŸãƒã‚±ãƒ¢ãƒ³ã®POKEMON_PARAMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void ZukanWork_SetPokeSee(ZUKAN_WORK * zw, POKEMON_PARAM * pp)
@@ -1746,31 +1746,31 @@ void ZukanWork_SetPokeSee(ZUKAN_WORK * zw, POKEMON_PARAM * pp)
 	u16 monsno = PokeParaGet(pp, ID_PARA_monsno, NULL);
 	u32 rand = PokeParaGet(pp, ID_PARA_personal_rnd, NULL);
 	u32 sex = PokeSexGet(pp);
-	u32 first_sex;	// Å‰‚ÉŒ©‚½«•Ê
+	u32 first_sex;	// æœ€åˆã«è¦‹ãŸæ€§åˆ¥
 
 	zukan_incorrect(zw);
 	if (monsno_incorrect(monsno)) {
 		return;
 	}
 	if (!check_see_bit(zw, monsno)) {
-		SetZukanRandom(zw, monsno, rand);			// ŒÅ‘Ì—”
-		set_sex_bit( zw, sex, ZUKAN_WORK_SEX_FIRST, monsno );			// Å‰‚ÉŒ©‚½«•Ê
+		SetZukanRandom(zw, monsno, rand);			// å›ºä½“ä¹±æ•°
+		set_sex_bit( zw, sex, ZUKAN_WORK_SEX_FIRST, monsno );			// æœ€åˆã«è¦‹ãŸæ€§åˆ¥
 	}else{
-		// Å‰‚ÉŒ©‚½«•Ê‚Æˆá‚¤‚Æ‚«ƒZƒJƒ“ƒh‚É“o˜^‚·‚é
+		// æœ€åˆã«è¦‹ãŸæ€§åˆ¥ã¨é•ã†ã¨ãã‚»ã‚«ãƒ³ãƒ‰ã«ç™»éŒ²ã™ã‚‹
 		first_sex = check_sex_bit( zw, monsno, ZUKAN_WORK_SEX_FIRST );
 		if( first_sex != sex ){
-			set_sex_bit( zw, sex, ZUKAN_WORK_SEX_SECOND, monsno );			// Ÿ‚ÉŒ©‚½«•Ê
+			set_sex_bit( zw, sex, ZUKAN_WORK_SEX_SECOND, monsno );			// æ¬¡ã«è¦‹ãŸæ€§åˆ¥
 		}
 	}
-	SetZukanSpecialTurn(zw, monsno, pp);		// “Áêƒ|ƒPƒ‚ƒ“‚ÌŒ©‚Â‚¯‚½‡”Ôİ’è
+	SetZukanSpecialTurn(zw, monsno, pp);		// ç‰¹æ®Šãƒã‚±ãƒ¢ãƒ³ã®è¦‹ã¤ã‘ãŸé †ç•ªè¨­å®š
 	set_see_bit(zw, monsno);
 }
 
 //----------------------------------------------------------
 /**
- * @brief	‚¸‚©‚ñƒf[ƒ^ƒZƒbƒgi•ß‚Ü‚¦‚½j
- * @param	zw		‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pp		•ß‚Ü‚¦‚½ƒ|ƒPƒ‚ƒ“‚ÌPOKEMON_PARAM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãšã‹ã‚“ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼ˆæ•ã¾ãˆãŸï¼‰
+ * @param	zw		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pp		æ•ã¾ãˆãŸãƒã‚±ãƒ¢ãƒ³ã®POKEMON_PARAMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void ZukanWork_SetPokeGet(ZUKAN_WORK * zw, POKEMON_PARAM * pp)
@@ -1779,32 +1779,32 @@ void ZukanWork_SetPokeGet(ZUKAN_WORK * zw, POKEMON_PARAM * pp)
 	u32 lang = PokeParaGet(pp, ID_PARA_country_code, NULL);
 	u32 rand = PokeParaGet(pp, ID_PARA_personal_rnd, NULL);
 	u32 sex = PokeSexGet(pp);
-	u32 first_sex;	// Å‰‚ÉŒ©‚½«•Ê
+	u32 first_sex;	// æœ€åˆã«è¦‹ãŸæ€§åˆ¥
 
 	zukan_incorrect(zw);
 	if (monsno_incorrect(monsno)) {
 		return;
 	}
 	if (!check_see_bit(zw, monsno)) {
-		SetZukanRandom(zw, monsno, rand);			// ŒÅ‘Ì—”
-		set_sex_bit( zw, sex, ZUKAN_WORK_SEX_FIRST, monsno );			// •\¦«•Ê
+		SetZukanRandom(zw, monsno, rand);			// å›ºä½“ä¹±æ•°
+		set_sex_bit( zw, sex, ZUKAN_WORK_SEX_FIRST, monsno );			// è¡¨ç¤ºæ€§åˆ¥
 	}else{
-		// Å‰‚ÉŒ©‚½«•Ê‚Æˆá‚¤‚Æ‚«ƒZƒJƒ“ƒh‚É“o˜^‚·‚é
+		// æœ€åˆã«è¦‹ãŸæ€§åˆ¥ã¨é•ã†ã¨ãã‚»ã‚«ãƒ³ãƒ‰ã«ç™»éŒ²ã™ã‚‹
 		first_sex = check_sex_bit( zw, monsno, ZUKAN_WORK_SEX_FIRST );
 		if( first_sex != sex ){
-			set_sex_bit( zw, sex, ZUKAN_WORK_SEX_SECOND, monsno );			// •\¦«•Ê
+			set_sex_bit( zw, sex, ZUKAN_WORK_SEX_SECOND, monsno );			// è¡¨ç¤ºæ€§åˆ¥
 		}
 	}
-	SetZukanSpecialTurn(zw, monsno, pp);		// “Áêƒ|ƒPƒ‚ƒ“‚ÌŒ©‚Â‚¯‚½‡”Ôİ’è
-	SetZukanTextVersionUp(zw, monsno, lang);	// ‘ƒR[ƒh
+	SetZukanSpecialTurn(zw, monsno, pp);		// ç‰¹æ®Šãƒã‚±ãƒ¢ãƒ³ã®è¦‹ã¤ã‘ãŸé †ç•ªè¨­å®š
+	SetZukanTextVersionUp(zw, monsno, lang);	// å›½ã‚³ãƒ¼ãƒ‰
 	set_get_bit(zw, monsno);
 	set_see_bit(zw, monsno);
 }
 
 //----------------------------------------------------------
 /**
- * @brief	‘S‘‚¸‚©‚ñƒ‚[ƒh‚ğƒZƒbƒg
- * @param	zw		‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	å…¨å›½ãšã‹ã‚“ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
+ * @param	zw		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void ZukanWork_SetZenkokuZukanFlag(ZUKAN_WORK * zw)
@@ -1815,10 +1815,10 @@ void ZukanWork_SetZenkokuZukanFlag(ZUKAN_WORK * zw)
 
 //----------------------------------------------------------
 /**
- * @brief	‘S‘‚¸‚©‚ñƒ‚[ƒh‚©‚Ç‚¤‚©H‚Ì–â‚¢‡‚í‚¹
- * @param	zw		‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE	‘S‘‚¸‚©‚ñƒ‚[ƒhƒI[ƒvƒ“
- * @retval	FALSE	ƒVƒ“ƒIƒE‚¸‚©‚ñƒ‚[ƒh
+ * @brief	å…¨å›½ãšã‹ã‚“ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ï¼Ÿã®å•ã„åˆã‚ã›
+ * @param	zw		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE	å…¨å›½ãšã‹ã‚“ãƒ¢ãƒ¼ãƒ‰ã‚ªãƒ¼ãƒ—ãƒ³
+ * @retval	FALSE	ã‚·ãƒ³ã‚ªã‚¦ãšã‹ã‚“ãƒ¢ãƒ¼ãƒ‰
  */
 //----------------------------------------------------------
 BOOL ZukanWork_GetZenkokuZukanFlag(const ZUKAN_WORK * zw)
@@ -1829,12 +1829,12 @@ BOOL ZukanWork_GetZenkokuZukanFlag(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒo[ƒWƒ‡ƒ“—p‹@”\Šg’£ƒtƒ‰ƒOæ“¾
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç”¨æ©Ÿèƒ½æ‹¡å¼µãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@param	zw		‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	zw		ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	TRUE	ƒo[ƒWƒ‡ƒ“ƒAƒbƒvŠ®—¹
- *	@retval	FALSE	ƒo[ƒWƒ‡ƒ“ƒAƒbƒv–¢Š®—¹
+ *	@retval	TRUE	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—å®Œäº†
+ *	@retval	FALSE	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—æœªå®Œäº†
  */
 //-----------------------------------------------------------------------------
 BOOL ZukanWork_GetGraphicVersionUpFlag(const ZUKAN_WORK * zw)
@@ -1845,9 +1845,9 @@ BOOL ZukanWork_GetGraphicVersionUpFlag(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒo[ƒWƒ‡ƒ“—p‹@”\Šg’£ƒtƒ‰ƒOİ’è
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç”¨æ©Ÿèƒ½æ‹¡å¼µãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	zw		}ŠÓƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	zw		å›³é‘‘ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *	@return	none
  */
@@ -1860,14 +1860,14 @@ void ZukanWork_SetGraphicVersionUpFlag(ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒeƒLƒXƒgƒo[ƒWƒ‡ƒ“ƒ`ƒFƒbƒN
+ *	@brief	å›³é‘‘ãƒ†ã‚­ã‚¹ãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
  *
  *	@param	zw
  *	@param	monsno
- *	@param	country_code		‘ƒR[ƒh
+ *	@param	country_code		å›½ã‚³ãƒ¼ãƒ‰
  *
- *	@retval	TRUE	‚»‚Ì‘‚Ìƒo[ƒWƒ‡ƒ“‚ğ•\¦‚µ‚Ä‚æ‚¢
- *	@retval	FALSE	‚»‚Ì‘‚Ìƒo[ƒWƒ‡ƒ“‚ğ•\¦‚µ‚Ä‚Í‚¢‚¯‚È‚¢
+ *	@retval	TRUE	ãã®å›½ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¡¨ç¤ºã—ã¦ã‚ˆã„
+ *	@retval	FALSE	ãã®å›½ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¡¨ç¤ºã—ã¦ã¯ã„ã‘ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL ZukanWork_GetTextVersionUpFlag(const ZUKAN_WORK * zw, u16 monsno, u32 country_code)
@@ -1875,27 +1875,27 @@ BOOL ZukanWork_GetTextVersionUpFlag(const ZUKAN_WORK * zw, u16 monsno, u32 count
 	int idx;
 
 
-	GF_ASSERT( country_code < 8 );		// ‘ƒR[ƒhÅ‘å”
+	GF_ASSERT( country_code < 8 );		// å›½ã‚³ãƒ¼ãƒ‰æœ€å¤§æ•°
 	
 	zukan_incorrect(zw);
-	// ƒeƒLƒXƒgƒo[ƒWƒ‡ƒ“‚Ì‚ ‚éƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN
+	// ãƒ†ã‚­ã‚¹ãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ã‚ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
 //	idx = get_zukan_textversion_idx(monsno);
 //	if( idx == ZKN_WORLD_TEXT_POKE_NUM ){ return FALSE; }
 	idx = monsno;
 
-	// ŠO‘ŒêƒeƒLƒXƒg—pƒiƒ“ƒo[‚É•ÏŠ·
+	// å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆç”¨ãƒŠãƒ³ãƒãƒ¼ã«å¤‰æ›
 	country_code = ZKN_WT_GetLANG_Code_ZKN_WORLD_TEXT_Code( country_code );
 
-	// ‚»‚ÌŒ¾Œê‚Ìƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãã®è¨€èªã®ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	return (zw->TextVersionUp[idx] & (1<<country_code));
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓŠO‘Œêƒo[ƒWƒ‡ƒ“@Masterƒtƒ‰ƒO
+ *	@brief	å›³é‘‘å¤–å›½èªãƒãƒ¼ã‚¸ãƒ§ãƒ³ã€€Masterãƒ•ãƒ©ã‚°
  *
- *	@param	zw	}ŠÓƒ[ƒN
- *	‚±‚Ìƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚È‚¢‚ÆAŠO‘Œê}ŠÓ‚ÍƒI[ƒvƒ“‚³‚ê‚È‚¢
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+ *	ã“ã®ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ãªã„ã¨ã€å¤–å›½èªå›³é‘‘ã¯ã‚ªãƒ¼ãƒ—ãƒ³ã•ã‚Œãªã„
  */
 //-----------------------------------------------------------------------------
 void ZukanWork_SetTextVersionUpMasterFlag( ZUKAN_WORK * zw )
@@ -1905,12 +1905,12 @@ void ZukanWork_SetTextVersionUpMasterFlag( ZUKAN_WORK * zw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓŠO‘Œêƒo[ƒWƒ‡ƒ“@Masterƒtƒ‰ƒOæ“¾
+ *	@brief	å›³é‘‘å¤–å›½èªãƒãƒ¼ã‚¸ãƒ§ãƒ³ã€€Masterãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@param	zw	}ŠÓƒ[ƒN
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒo[ƒWƒ‡ƒ“ƒAƒbƒvÏ‚İ
- *	@retval	FALSE	ƒo[ƒWƒ‡ƒ“ƒAƒbƒv‚³‚ê‚Ä‚È‚¢
+ *	@retval	TRUE	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—æ¸ˆã¿
+ *	@retval	FALSE	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—ã•ã‚Œã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL ZukanWork_GetTextVersionUpMasterFlag(const ZUKAN_WORK * zw)
@@ -1920,12 +1920,12 @@ BOOL ZukanWork_GetTextVersionUpMasterFlag(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓ•Ûƒtƒ‰ƒOæ“¾
+ *	@brief	å›³é‘‘ä¿æŒãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@param	zw	}ŠÓƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	TRUE	•Û
- *	@retval	FALSE	•Û‚µ‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ä¿æŒ
+ *	@retval	FALSE	ä¿æŒã—ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL ZukanWork_GetZukanGetFlag(const ZUKAN_WORK * zw)
@@ -1936,9 +1936,9 @@ BOOL ZukanWork_GetZukanGetFlag(const ZUKAN_WORK * zw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓ•Ûƒtƒ‰ƒOİ’è
+ *	@brief	å›³é‘‘ä¿æŒãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	zw	}ŠÓƒ[ƒN
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1951,14 +1951,14 @@ void ZukanWork_SetZukanGetFlag(ZUKAN_WORK * zw)
 
 //============================================================================================
 //
-//	ƒZ[ƒuƒf[ƒ^æ“¾‚Ì‚½‚ß‚ÌŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—ã®ãŸã‚ã®é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	©•ªó‘Ôƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
- * @param	sv			ƒZ[ƒuƒf[ƒ^•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	ZUKAN_WORK	‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	ZUKAN_WORK	ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 ZUKAN_WORK * SaveData_GetZukanWork(SAVEDATA * sv)
@@ -1970,12 +1970,12 @@ ZUKAN_WORK * SaveData_GetZukanWork(SAVEDATA * sv)
 
 //============================================================================================
 //============================================================================================
-// ƒAƒ“ƒm[ƒ“@ƒEƒ~ƒEƒV@ƒ~ƒmƒ€ƒV@‚ÌŒ©‚Â‚¯‚½‡”Ô‚¹‚Á‚Ä‚¢
+// ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã€€ã‚¦ãƒŸã‚¦ã‚·ã€€ãƒŸãƒãƒ ã‚·ã€€ã®è¦‹ã¤ã‘ãŸé †ç•ªã›ã£ã¦ã„
 static void set_debag_special_poke_see_no( ZUKAN_WORK * zw, int monsno )
 {
 	int i;
 	
-	// ƒAƒ“ƒm[ƒ“@ƒEƒ~ƒEƒV@ƒ~ƒmƒ€ƒV‚Ì‡”Ô‚Ìİ’è
+	// ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã€€ã‚¦ãƒŸã‚¦ã‚·ã€€ãƒŸãƒãƒ ã‚·ã®é †ç•ªã®è¨­å®š
 	if( monsno == MONSNO_ANNOON ){
 		for( i=0; i<POKEZUKAN_UNKNOWN_NUM; i++ ){
 			SetZukanUnknownTurn( zw, i );
@@ -1988,7 +1988,7 @@ static void set_debag_special_poke_see_no( ZUKAN_WORK * zw, int monsno )
 		for( i=ZUKAN_WORK_UMIUSHI_FORM_NUM - 1; i>=0; i-- ){
 			SetZukanTwoFormPokeTurn( zw, monsno, i );
 		}
-	}else if( (monsno == MONSNO_EURISU) ){	// ƒVƒFƒCƒ~‚¾‚¯Œ©‚½–Ú“o˜^‡‚ğ‹t‚É‚·‚é
+	}else if( (monsno == MONSNO_EURISU) ){	// ã‚·ã‚§ã‚¤ãƒŸã ã‘è¦‹ãŸç›®ç™»éŒ²é †ã‚’é€†ã«ã™ã‚‹
 		for( i=0; i<ZUKAN_WORK_UMIUSHI_FORM_NUM; i++ ){
 			setnum_bit( &zw->syeimi_turn, i, i+1 );
 		}
@@ -2004,28 +2004,28 @@ static void set_debag_special_poke_see_no( ZUKAN_WORK * zw, int monsno )
 	
 }
 
-// «•Êİ’è
+// æ€§åˆ¥è¨­å®š
 static void set_debug_poke_sex( ZUKAN_WORK * zw, int monsno )
 {
 	int sex = PokePersonalParaGet( monsno, ID_PER_sex );
 	
 	if( sex == MONS_MALE ){
-		// «•Êİ’è
+		// æ€§åˆ¥è¨­å®š
 		set_sex_bit( zw, PARA_MALE, ZUKAN_WORK_SEX_FIRST, monsno );
 		return;
 	}
 	if( sex == MONS_FEMALE ){
-		// «•Êİ’è
+		// æ€§åˆ¥è¨­å®š
 		set_sex_bit( zw, PARA_FEMALE, ZUKAN_WORK_SEX_FIRST, monsno );
 		return;
 	}
 	if( sex == MONS_UNKNOWN ){
-		// «•Êİ’è
+		// æ€§åˆ¥è¨­å®š
 		set_sex_bit( zw, PARA_UNK, ZUKAN_WORK_SEX_FIRST, monsno );
 		return;
 	}
 
-	// «•Êİ’è
+	// æ€§åˆ¥è¨­å®š
 	if( monsno % 2 ){
 		set_sex_bit( zw, PARA_MALE, ZUKAN_WORK_SEX_FIRST, monsno );
 		set_sex_bit( zw, PARA_FEMALE, ZUKAN_WORK_SEX_SECOND, monsno );
@@ -2037,8 +2037,8 @@ static void set_debug_poke_sex( ZUKAN_WORK * zw, int monsno )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒO—pF‚¸‚©‚ñƒf[ƒ^¶¬
- * @param	zw			‚¸‚©‚ñƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ‡ãƒãƒƒã‚°ç”¨ï¼šãšã‹ã‚“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
+ * @param	zw			ãšã‹ã‚“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	option
  */
 //----------------------------------------------------------
@@ -2058,7 +2058,7 @@ extern void Debug_ZukanWork_Make(ZUKAN_WORK * zw, int start, int end, BOOL see_f
 			set_get_bit(zw, i);
 			set_see_bit(zw, i);
 
-			// ŠO‘}ŠÓİ’è
+			// å¤–å›½å›³é‘‘è¨­å®š
 			SetZukanTextVersionUp(zw, i, LANG_JAPAN);
 			SetZukanTextVersionUp(zw, i, LANG_ENGLISH);
 			SetZukanTextVersionUp(zw, i, LANG_FRANCE);
@@ -2067,42 +2067,42 @@ extern void Debug_ZukanWork_Make(ZUKAN_WORK * zw, int start, int end, BOOL see_f
 			SetZukanTextVersionUp(zw, i, LANG_SPAIN);
 		}
 
-		// ŒÂ«—”İ’è
+		// å€‹æ€§ä¹±æ•°è¨­å®š
 		SetZukanRandom( zw, i, 0 );
 
-		// “ÁêŒ©‚Â‚¯‚½‡”Ôİ’è
+		// ç‰¹æ®Šè¦‹ã¤ã‘ãŸé †ç•ªè¨­å®š
 		set_debag_special_poke_see_no( zw, i );
 
-		// «•Ê	
+		// æ€§åˆ¥	
 		set_debug_poke_sex( zw, i );
 	}
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒo[ƒWƒ‡ƒ“ƒAƒbƒv
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—
 	ZukanWork_SetGraphicVersionUpFlag(zw);
 	ZukanWork_SetTextVersionUpMasterFlag(zw);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒIƒLƒVƒXƒoƒbƒNƒAƒbƒv
+ *	@brief	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
  *
- *	@param	zw	}ŠÓƒ[ƒN
+ *	@param	zw	å›³é‘‘ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void Debug_ZukanWork_DeokisisuBuckUp( ZUKAN_WORK * zw )
 {
-	// ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€IDƒoƒbƒtƒ@‰Šú‰»
+	// ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ IDãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–
 	InitDeokisisuFormNo( zw );
 		
-	// ƒfƒIƒLƒVƒX•Û‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ‡ã‚ªã‚­ã‚·ã‚¹ä¿æŒã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZukanWork_GetPokeSeeFlag( zw, MONSNO_DEOKISISU ) == TRUE ){
-		// ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚O‚ÅƒZ[ƒu
+		// ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ï¼ã§ã‚»ãƒ¼ãƒ–
 		setDEOKISISUFormNo( zw, 0, 0 );
 	}
 }
 
 
-// ŠO•”QÆƒCƒ“ƒfƒbƒNƒX‚ğì‚é‚Ì‚İ—LŒø(ƒQ[ƒ€’†‚Í–³Œø)
+// å¤–éƒ¨å‚ç…§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä½œã‚‹æ™‚ã®ã¿æœ‰åŠ¹(ã‚²ãƒ¼ãƒ ä¸­ã¯ç„¡åŠ¹)
 #ifdef CREATE_INDEX
 void *Index_Get_Zukan_Offset(ZUKAN_WORK *zw){ return &zw->zukan_get; }
 void *Index_Get_Zenkoku_Zukan_Offset(ZUKAN_WORK *zw){ return &zw->zenkoku_flag; }
@@ -2116,7 +2116,7 @@ void *Index_Get_Sex_Flag_Offset(ZUKAN_WORK *zw){ return &zw->sex_flag; }
 
 //------------------------------------------------------------------
 /**
- * ‘Sƒ|ƒPƒ‚ƒ“‚ÌA•ß‚Ü‚¦‚½‡ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ğ•Ô‚·
+ * å…¨ãƒã‚±ãƒ¢ãƒ³ã®ã€æ•ã¾ãˆãŸé †ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
  * @param   zw			
  * @param   monsno		
@@ -2175,7 +2175,7 @@ u32 ZukanWork_GetPokeForm( const ZUKAN_WORK* zw, int monsno, int count )
 		}
 		break;
 
-	// ƒVƒFƒCƒ~
+	// ã‚·ã‚§ã‚¤ãƒŸ
 	case MONSNO_EURISU:
 		if( count < get_twoform_poke_turn_num( zw, MONSNO_EURISU ) )
 		{
@@ -2183,7 +2183,7 @@ u32 ZukanWork_GetPokeForm( const ZUKAN_WORK* zw, int monsno, int count )
 		}
 		break;
 
-	// ƒMƒ‰ƒeƒBƒi
+	// ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
 	case MONSNO_KIMAIRAN:
 		if( count < get_twoform_poke_turn_num( zw, MONSNO_KIMAIRAN ) )
 		{
@@ -2191,7 +2191,7 @@ u32 ZukanWork_GetPokeForm( const ZUKAN_WORK* zw, int monsno, int count )
 		}
 		break;
 
-	// ƒƒgƒ€
+	// ãƒ­ãƒˆãƒ 
 	case MONSNO_PURAZUMA:
 		if( count < get_rotom_turn_num( zw, MONSNO_PURAZUMA ) ){
 			return get_rotom_see_form( zw, MONSNO_PURAZUMA, count );
@@ -2208,12 +2208,12 @@ u32 ZukanWork_GetPokeForm( const ZUKAN_WORK* zw, int monsno, int count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓ	Œ©‚½‚±‚Æ‚Ì‚ ‚éƒtƒHƒ‹ƒ€”‚ğ•Ô‚·
+ *	@brief	å›³é‘‘	è¦‹ãŸã“ã¨ã®ã‚ã‚‹ãƒ•ã‚©ãƒ«ãƒ æ•°ã‚’è¿”ã™
  *
- *	@param	zw			}ŠÓƒ[ƒN
- *	@param	monsno		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@param	zw			å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+ *	@param	monsno		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	Œ©‚½ƒtƒHƒ‹ƒ€”
+ *	@return	è¦‹ãŸãƒ•ã‚©ãƒ«ãƒ æ•°
  */
 //-----------------------------------------------------------------------------
 u32 ZukanWork_GetPokeFormNum( const ZUKAN_WORK* zw, int monsno )
@@ -2240,15 +2240,15 @@ u32 ZukanWork_GetPokeFormNum( const ZUKAN_WORK* zw, int monsno )
 	case MONSNO_DEOKISISU:
 		return ZukanWork_GetPokeDeokisisuFormSeeNum(zw);
 
-	// ƒVƒFƒCƒ~
+	// ã‚·ã‚§ã‚¤ãƒŸ
 	case MONSNO_EURISU:
 		return get_twoform_poke_turn_num( zw, MONSNO_EURISU );
 
-	// ƒMƒ‰ƒeƒBƒi
+	// ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
 	case MONSNO_KIMAIRAN:
 		return get_twoform_poke_turn_num( zw, MONSNO_KIMAIRAN );
 
-	// ƒƒgƒ€
+	// ãƒ­ãƒˆãƒ 
 	case MONSNO_PURAZUMA:
 		return get_rotom_turn_num( zw, MONSNO_PURAZUMA );
 

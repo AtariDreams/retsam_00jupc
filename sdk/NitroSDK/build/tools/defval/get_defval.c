@@ -15,10 +15,10 @@
   indent source
 
   Revision 1.4  2007/02/07 01:33:34  yasu
-  ’˜ì”N“xC³
+  è‘—ä½œå¹´åº¦ä¿®æ­£
 
   Revision 1.3  2007/02/01 11:24:22  yasu
-  binmode/textmode ‘Î‰
+  binmode/textmode å¯¾å¿œ
 
   Revision 1.2  2006/01/18 02:11:20  kitase_hirotake
   do-indent
@@ -33,11 +33,11 @@
 /*---------------------------------------------------------------------------*
   Name:         get_dvalue_listptr
   
-  Description:  ’è‹`–¼‚É‘Î‰‚·‚éƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+  Description:  å®šç¾©åã«å¯¾å¿œã™ã‚‹ãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
   
-  Arguments:    name        •Ï”‚Ì–¼‘O
+  Arguments:    name        å¤‰æ•°ã®åå‰
   
-  Returns:      ’è‹`ƒŠƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Returns:      å®šç¾©ãƒªã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *---------------------------------------------------------------------------*/
 tDefineValue *get_dvalue_listptr(const char *name)
 {
@@ -56,14 +56,14 @@ tDefineValue *get_dvalue_listptr(const char *name)
 /*---------------------------------------------------------------------------*
   Name:         get_dvalue
   
-  Description:  ’è‹`–¼‚Ì’l‚ğæ“¾‚·‚éB
-                ‚Ü‚¸’è‹`’lƒŠƒXƒg“à‚ğŒŸõ‚µA‚È‚¯‚ê‚ÎŠÂ‹«•Ï”‚ğŒŸõ‚·‚é
-                ‚»‚ê‚Å‚à‚È‚¯‚ê‚Î NULL ‚ğ•Ô‚·B
+  Description:  å®šç¾©åã®å€¤ã‚’å–å¾—ã™ã‚‹ã€‚
+                ã¾ãšå®šç¾©å€¤ãƒªã‚¹ãƒˆå†…ã‚’æ¤œç´¢ã—ã€ãªã‘ã‚Œã°ç’°å¢ƒå¤‰æ•°ã‚’æ¤œç´¢ã™ã‚‹
+                ãã‚Œã§ã‚‚ãªã‘ã‚Œã° NULL ã‚’è¿”ã™ã€‚
   
-  Arguments:    name        •Ï”‚Ì–¼‘O
+  Arguments:    name        å¤‰æ•°ã®åå‰
   
-  Returns:      ’l•¶š—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^(free •s—v)
-                NULL: ‘Î‰‚·‚é•Ï”‚ª‚È‚¢
+  Returns:      å€¤æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿(free ä¸è¦)
+                NULL: å¯¾å¿œã™ã‚‹å¤‰æ•°ãŒãªã„
  *---------------------------------------------------------------------------*/
 static char *get_dvalue(const char *name)
 {
@@ -75,13 +75,13 @@ static char *get_dvalue(const char *name)
 /*---------------------------------------------------------------------------*
   Name:         modify_dvalue
   
-  Description:  •Ï”Cüq :r,:t,:e,:h ‚É‚æ‚é•ÏŠ·ˆ—‚ğó‚¯‚½Œã‚Ì’è‹`’l‚ğ
-                •¡»‚µ‚Ä•Ô‚·B
+  Description:  å¤‰æ•°ä¿®é£¾å­ :r,:t,:e,:h ã«ã‚ˆã‚‹å¤‰æ›å‡¦ç†ã‚’å—ã‘ãŸå¾Œã®å®šç¾©å€¤ã‚’
+                è¤‡è£½ã—ã¦è¿”ã™ã€‚
   
-  Arguments:    value     Cü‚³‚ê‚é’l
-                modifier  Cüq 'r', 't', 'e', 'h' ‚Ì‚Ç‚ê‚©
+  Arguments:    value     ä¿®é£¾ã•ã‚Œã‚‹å€¤
+                modifier  ä¿®é£¾å­ 'r', 't', 'e', 'h' ã®ã©ã‚Œã‹
   
-  Returns:      •ÏŠ·’l•¶š—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^(free •K—v)
+  Returns:      å¤‰æ›å€¤æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿(free å¿…è¦)
  *---------------------------------------------------------------------------*/
 static char *modify_dvalue(const char *value, char modifier)
 {
@@ -96,22 +96,22 @@ static char *modify_dvalue(const char *value, char modifier)
         return StrDup(value);
 
     //
-    // Cüq‚Ìˆ—
-    //   “ü—Í’l‚ğƒtƒ@ƒCƒ‹–¼‚Ì\¬—v‘f‚É•ªŠ„‚µCüq‚É‰‚¶‚ÄÄ\¬‚·‚é
+    // ä¿®é£¾å­ã®å‡¦ç†
+    //   å…¥åŠ›å€¤ã‚’ãƒ•ã‚¡ã‚¤ãƒ«åã®æ§‹æˆè¦ç´ ã«åˆ†å‰²ã—ä¿®é£¾å­ã«å¿œã˜ã¦å†æ§‹æˆã™ã‚‹
     //
     UnpackFileName(value, &value_dir, &value_base, &value_ext);
 
     switch (modifier)
     {
-    case 'h':                         // ÅŒã‚Ì /, \ ‚Â‚«‚ÌƒfƒBƒŒƒNƒgƒŠ–¼
+    case 'h':                         // æœ€å¾Œã® /, \ ã¤ãã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
         modified_value = StrDup(value_dir);
         break;
 
-    case 't':                         // ƒfƒBƒŒƒNƒgƒŠ–³‚µ‚Ìƒtƒ@ƒCƒ‹–¼
+    case 't':                         // ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªç„¡ã—ã®ãƒ•ã‚¡ã‚¤ãƒ«å
         modified_value = StrCatDup(value_base, value_ext);
         break;
 
-    case 'r':                         // ƒtƒ‹ƒpƒX‚©‚çŠg’£q‚ğ–³‚­‚µ‚½–¼
+    case 'r':                         // ãƒ•ãƒ«ãƒ‘ã‚¹ã‹ã‚‰æ‹¡å¼µå­ã‚’ç„¡ãã—ãŸå
         modified_value = StrCatDup(value_dir, value_base);
         break;
 
@@ -135,12 +135,12 @@ static char *modify_dvalue(const char *value, char modifier)
 /*---------------------------------------------------------------------------*
   Name:         get_modified_dvalue
   
-  Description:  ’è‹`’lƒŠƒXƒg‚©‚ç‚Á‚Ä‚«‚½’l‚ÉA
-                Cüq :r,:t,:e,:h ‚É‚æ‚é•ÏŠ·ˆ—‚ğ‚©‚¯A•¡»‚µ‚Ä•Ô‚·B
+  Description:  å®šç¾©å€¤ãƒªã‚¹ãƒˆã‹ã‚‰æŒã£ã¦ããŸå€¤ã«ã€
+                ä¿®é£¾å­ :r,:t,:e,:h ã«ã‚ˆã‚‹å¤‰æ›å‡¦ç†ã‚’ã‹ã‘ã€è¤‡è£½ã—ã¦è¿”ã™ã€‚
   
-  Arguments:    name      ’è‹`–¼
+  Arguments:    name      å®šç¾©å
   
-  Returns:      •ÏŠ·’l•¶š—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^(free •K—v)
+  Returns:      å¤‰æ›å€¤æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿(free å¿…è¦)
  *---------------------------------------------------------------------------*/
 static char *get_modified_dvalue(const char *name)
 {
@@ -149,14 +149,14 @@ static char *get_modified_dvalue(const char *name)
     char    modifier = '\0';
     char   *value;
 
-    // Cüq‚Ìæ‚èo‚µ
+    // ä¿®é£¾å­ã®å–ã‚Šå‡ºã—
     if (name_len > 2 && name_copy[name_len - 2] == ':')
     {
         name_copy[name_len - 2] = '\0';
         modifier = name_copy[name_len - 1];
     }
 
-    // ’læ“¾
+    // å€¤å–å¾—
     value = modify_dvalue(get_dvalue(name_copy), modifier);
     free(name_copy);
 
@@ -167,13 +167,13 @@ static char *get_modified_dvalue(const char *name)
 /*---------------------------------------------------------------------------*
   Name:         put_modified_dvalue
   
-  Description:  •¶š—ñ‚ğƒtƒ@ƒCƒ‹‚Öo—Í‚·‚é
-                ‚»‚ÌÛ‚É $(XXXXX) ‚ğ“WŠJ‚·‚é
+  Description:  æ–‡å­—åˆ—ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã¸å‡ºåŠ›ã™ã‚‹
+                ãã®éš›ã« $(XXXXX) ã‚’å±•é–‹ã™ã‚‹
   
-  Arguments:    fp   o—Íƒtƒ@ƒCƒ‹–¼
-                str  •¶š—ñ
+  Arguments:    fp   å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«å
+                str  æ–‡å­—åˆ—
   
-  Returns:      TRUE ¬Œ÷
+  Returns:      TRUE æˆåŠŸ
  *---------------------------------------------------------------------------*/
 BOOL puts_modified_dvalue(FILE * fp, const char *str)
 {
@@ -186,13 +186,13 @@ BOOL puts_modified_dvalue(FILE * fp, const char *str)
     while ('\0' != *str)
     {
         //
-        // $(XXX) ‚ğ’T‚µA‚ ‚ê‚Î‘Î‰‚·‚é’l‚ğo—Í‚·‚é
+        // $(XXX) ã‚’æ¢ã—ã€ã‚ã‚Œã°å¯¾å¿œã™ã‚‹å€¤ã‚’å‡ºåŠ›ã™ã‚‹
         //
         if ('$' == *str)
         {
             if ('$' == *(str + 1))
             {
-                str++;                 // $$ ‚È‚ç $ ‚É•ÏŠ·‚·‚é
+                str++;                 // $$ ãªã‚‰ $ ã«å¤‰æ›ã™ã‚‹
             }
             else if ('(' == *(str + 1))
             {
@@ -224,7 +224,7 @@ BOOL puts_modified_dvalue(FILE * fp, const char *str)
         }
 
         //
-        // $(XXX) ‚Å‚È‚¢‚È‚çˆê•¶š‚¸‚Âo—Í‚·‚é
+        // $(XXX) ã§ãªã„ãªã‚‰ä¸€æ–‡å­—ãšã¤å‡ºåŠ›ã™ã‚‹
         //
         if (EOF == fputc(*str, fp))
         {

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		range_data.c
- *	@brief		•ª•zƒf[ƒ^æ“¾ŠÖ”
+ *	@brief		åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿å–å¾—é–¢æ•°
  *	@author		tomoya takahashi 
  *	@data		2006.02.11
  *
@@ -26,28 +26,28 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“•ª•zƒf[ƒ^Šeƒ^ƒCƒvŠJnƒiƒ“ƒo[
+//	ãƒã‚±ãƒ¢ãƒ³åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿å„ã‚¿ã‚¤ãƒ—é–‹å§‹ãƒŠãƒ³ãƒãƒ¼
 //=====================================
 #define ZKN_RANGEDATA_DAN_MORNING_ARC_S	(NARC_zukan_enc_diamond_zkn_dan_range_morning_mons_000_mrang)
 #define ZKN_RANGEDATA_DAN_NOON_ARC_S	(NARC_zukan_enc_diamond_zkn_dan_range_noon_mons_000_mrang)
@@ -63,13 +63,13 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static int ZknRangeDataZoneLinkIdGet( int zone_id, int arc_dataidx, int heap );
@@ -78,12 +78,12 @@ static int ZknRangeDataZoneLinkIdGet( int zone_id, int arc_dataidx, int heap );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[•ª•zƒf[ƒ^æ“¾
+ *	@brief	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	p_inbuff		ƒf[ƒ^Ši”[æ
- *	@param	mons_no			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	type			•ª•zƒ^ƒCƒv
- *	@param	heap			g—pƒq[ƒv
+ *	@param	p_inbuff		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	mons_no			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	type			åˆ†å¸ƒã‚¿ã‚¤ãƒ—
+ *	@param	heap			ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 void ZKN_RANGEDATA_GetMonsNoRange( ZKN_RANGE_DATA_MONS* p_inbuff, int mons_no, int type, int heap )
@@ -92,7 +92,7 @@ void ZKN_RANGEDATA_GetMonsNoRange( ZKN_RANGE_DATA_MONS* p_inbuff, int mons_no, i
 	u32 data_size;
 	
 	switch( type ){
-	// ƒ_ƒ“ƒWƒ‡ƒ“•ª•zƒf[ƒ^
+	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿
 	case ZKN_RANGEDATA_TYPE_DAN_MORNING:
 		arc_start = ZKN_RANGEDATA_DAN_MORNING_ARC_S;
 		break;
@@ -109,7 +109,7 @@ void ZKN_RANGEDATA_GetMonsNoRange( ZKN_RANGE_DATA_MONS* p_inbuff, int mons_no, i
 		arc_start = ZKN_RANGEDATA_DAN_SPECIAL_COMP_ARC_S;
 		break;
 	
-	// ƒtƒB[ƒ‹ƒh•ª•zƒf[ƒ^
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿
 	case ZKN_RANGEDATA_TYPE_FLD_MORNING:
 		arc_start = ZKN_RANGEDATA_FLD_MORNING_ARC_S;
 		break;
@@ -127,16 +127,16 @@ void ZKN_RANGEDATA_GetMonsNoRange( ZKN_RANGE_DATA_MONS* p_inbuff, int mons_no, i
 		break;
 	}
 	
-	// ƒA[ƒJƒCƒu‚©‚ç“Ç‚İ‚İ
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰èª­ã¿è¾¼ã¿
 	p_inbuff->p_rangeid = (int *)ArcUtil_LoadEx( ZKN_ARC_DAT, arc_start + mons_no, FALSE, heap, ALLOC_TOP, &data_size );
 	
-	// ƒf[ƒ^ƒTƒCƒY‚©‚ç”z—ñ—v‘f”‚ğó‚¯æ‚é
+	// ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‹ã‚‰é…åˆ—è¦ç´ æ•°ã‚’å—ã‘å–ã‚‹
 	p_inbuff->num = data_size / sizeof(int);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[•ª•zƒf[ƒ^”jŠü
+ *	@brief	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
  *	@param	p_inbuff 
  *
@@ -155,13 +155,13 @@ void ZKN_RANGEDATA_DeleteMonsNoRange( ZKN_RANGE_DATA_MONS* p_inbuff )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ][ƒ“ID‚É‘Î‰‚·‚éƒ_ƒ“ƒWƒ‡ƒ“•ª•zID‚ğæ“¾
+ *	@brief	ã‚¾ãƒ¼ãƒ³IDã«å¯¾å¿œã™ã‚‹ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆ†å¸ƒIDã‚’å–å¾—
  *
- *	@param	zone_id	ƒ][ƒ“ID
- *	@param	heap	ƒq[ƒv
+ *	@param	zone_id	ã‚¾ãƒ¼ãƒ³ID
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
- *	@retval	ZKN_DAN_ID_NONE		‘Î‰‚·‚éID‚È‚µ
- *	@retval	‚»‚Ì‘¼				‘Î‰‚·‚éID
+ *	@retval	ZKN_DAN_ID_NONE		å¯¾å¿œã™ã‚‹IDãªã—
+ *	@retval	ãã®ä»–				å¯¾å¿œã™ã‚‹ID
  */
 //-----------------------------------------------------------------------------
 int ZKN_RANGEDATA_GetZoneIDLinkDanRangeID( int zone_id, int heap )
@@ -171,13 +171,13 @@ int ZKN_RANGEDATA_GetZoneIDLinkDanRangeID( int zone_id, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ][ƒ“ID‚É‘Î‰‚·‚éƒtƒB[ƒ‹ƒh•ª•zID‚ğæ“¾
+ *	@brief	ã‚¾ãƒ¼ãƒ³IDã«å¯¾å¿œã™ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒIDã‚’å–å¾—
  *
- *	@param	zone_id	ƒ][ƒ“ID
- *	@param	heap	ƒq[ƒv
+ *	@param	zone_id	ã‚¾ãƒ¼ãƒ³ID
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
- *	@retval	ZKN_FLD_ID_NONE		‘Î‰‚·‚éID‚È‚µ
- *	@retval	‚»‚Ì‘¼				‘Î‰‚·‚éID
+ *	@retval	ZKN_FLD_ID_NONE		å¯¾å¿œã™ã‚‹IDãªã—
+ *	@retval	ãã®ä»–				å¯¾å¿œã™ã‚‹ID
  */
 //-----------------------------------------------------------------------------
 int ZKN_RANGEDATA_GetZoneIDLinkFldRangeID( int zone_id, int heap )
@@ -188,13 +188,13 @@ int ZKN_RANGEDATA_GetZoneIDLinkFldRangeID( int zone_id, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ“ƒWƒ‡ƒ“ƒOƒŠƒbƒhÀ•Wƒf[ƒ^æ“¾
+ *	@brief	ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	heap		ƒq[ƒv
- *	@param	p_num		ƒf[ƒ^”z—ñ—v‘f”Ši”[æ	int‚Ì•Ï”	(NULL—LŒø)
- *			‚±‚Ì’l‚ÍZKN_DAN_ID_MAX‚Æ“¯‚¶
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_num		ãƒ‡ãƒ¼ã‚¿é…åˆ—è¦ç´ æ•°æ ¼ç´å…ˆ	intã®å¤‰æ•°	(NULLæœ‰åŠ¹)
+ *			ã“ã®å€¤ã¯ZKN_DAN_ID_MAXã¨åŒã˜
  *
- *	@return	”z—ñ	”jŠü‚ÍŠe©
+ *	@return	é…åˆ—	ç ´æ£„ã¯å„è‡ª
  */
 //-----------------------------------------------------------------------------
 ZKN_RANGE_DATA_DAN_GRID* ZKN_RANGEDATA_GetDanGridOamData( int heap, int* p_num )
@@ -203,11 +203,11 @@ ZKN_RANGE_DATA_DAN_GRID* ZKN_RANGEDATA_GetDanGridOamData( int heap, int* p_num )
 	u32 data_size;
 
 	
-	// ƒA[ƒJƒCƒu‚©‚ç“Ç‚İ‚İ
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰èª­ã¿è¾¼ã¿
 	p_buff = (ZKN_RANGE_DATA_DAN_GRID*)ArcUtil_LoadEx( ZKN_ARC_DAT, NARC_zukan_enc_diamond_zkn_dan_griddata_dangri, FALSE, heap, ALLOC_TOP, &data_size );
 
 
-	// ƒf[ƒ^ƒTƒCƒY‚©‚ç”z—ñ—p”‚ğæ“¾
+	// ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‹ã‚‰é…åˆ—ç”¨æ•°ã‚’å–å¾—
 	if( p_num ){
 		*p_num = data_size / sizeof(ZKN_RANGE_DATA_DAN_GRID);
 	}
@@ -218,13 +218,13 @@ ZKN_RANGE_DATA_DAN_GRID* ZKN_RANGEDATA_GetDanGridOamData( int heap, int* p_num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒB[ƒ‹ƒhƒOƒŠƒbƒh•’nŒ`ƒf[ƒ^æ“¾
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚°ãƒªãƒƒãƒ‰ï¼†åœ°å½¢ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	heap		ƒq[ƒv
- *	@param	p_num		ƒf[ƒ^”z—ñ—v‘f”Ši”[æ	int ‚Ì•Ï”@iNULL—LŒøj
- *			‚±‚Ì’l‚ÍZKN_FLD_ID_MAX‚Æ“¯‚¶
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_num		ãƒ‡ãƒ¼ã‚¿é…åˆ—è¦ç´ æ•°æ ¼ç´å…ˆ	int ã®å¤‰æ•°ã€€ï¼ˆNULLæœ‰åŠ¹ï¼‰
+ *			ã“ã®å€¤ã¯ZKN_FLD_ID_MAXã¨åŒã˜
  *	
- *	@return	”z—ñ@”jŠü‚ÍŠe©
+ *	@return	é…åˆ—ã€€ç ´æ£„ã¯å„è‡ª
  */
 //-----------------------------------------------------------------------------
 ZKN_RANGE_DATA_FLD_GRID* ZKN_RANGEDATA_GetFldGridAraaData( int heap, int* p_num )
@@ -233,11 +233,11 @@ ZKN_RANGE_DATA_FLD_GRID* ZKN_RANGEDATA_GetFldGridAraaData( int heap, int* p_num 
 	u32 data_size;
 
 	
-	// ƒA[ƒJƒCƒu‚©‚ç“Ç‚İ‚İ
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰èª­ã¿è¾¼ã¿
 	p_buff = (ZKN_RANGE_DATA_FLD_GRID*)ArcUtil_LoadEx( ZKN_ARC_DAT, NARC_zukan_enc_diamond_zkn_fld_griddata_fldgri, FALSE, heap, ALLOC_TOP, &data_size );
 
 
-	// ƒf[ƒ^ƒTƒCƒY‚©‚ç”z—ñ—p”‚ğæ“¾
+	// ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‹ã‚‰é…åˆ—ç”¨æ•°ã‚’å–å¾—
 	if( p_num ){
 		*p_num = data_size / sizeof(ZKN_RANGE_DATA_FLD_GRID);
 	}
@@ -247,19 +247,19 @@ ZKN_RANGE_DATA_FLD_GRID* ZKN_RANGEDATA_GetFldGridAraaData( int heap, int* p_num 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒB[ƒ‹ƒh•ª•z}ƒf[ƒ^‚ğ‘‚«‚Ş
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒå›³ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
  *
- *	@param	p_buff			‘‚«‚İæƒoƒbƒtƒ@
- *	@param	buff_x			ƒoƒbƒtƒ@‚˜ƒTƒCƒY
- *	@parm	buff_y			ƒoƒbƒtƒ@‚™ƒTƒCƒY
- *	@param	cp_write_data	‘‚«‚İƒf[ƒ^	(•Ï”‚Ìƒ|ƒCƒ“ƒ^)
+ *	@param	p_buff			æ›¸ãè¾¼ã¿å…ˆãƒãƒƒãƒ•ã‚¡
+ *	@param	buff_x			ãƒãƒƒãƒ•ã‚¡ï½˜ã‚µã‚¤ã‚º
+ *	@parm	buff_y			ãƒãƒƒãƒ•ã‚¡ï½™ã‚µã‚¤ã‚º
+ *	@param	cp_write_data	æ›¸ãè¾¼ã¿ãƒ‡ãƒ¼ã‚¿	(å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿)
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ZKN_RANGE_DATA_FldGridDataWrite( u8* p_buff, u8 buff_x, u8 buff_y, const ZKN_RANGE_DATA_FLD_GRID* cp_write_data )
 {
-	int i,j;	// ƒ‹[ƒv
+	int i,j;	// ãƒ«ãƒ¼ãƒ—
 
 	GF_ASSERT( (cp_write_data->gridy + cp_write_data->sizey) < buff_y );
 	GF_ASSERT( (cp_write_data->gridx + cp_write_data->sizex) < buff_x );
@@ -275,37 +275,37 @@ void ZKN_RANGE_DATA_FldGridDataWrite( u8* p_buff, u8 buff_x, u8 buff_y, const ZK
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒ“ƒXƒ^[•ª•zƒf[ƒ^‚ÌƒtƒB[ƒ‹ƒh•ª•zƒ}ƒbƒv‚ğì¬
+ *	@brief	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ†å¸ƒãƒãƒƒãƒ—ã‚’ä½œæˆ
  *
- *	@param	p_buff				Ši”[æ
- *	@param	buff_x				Ši”[æƒoƒbƒtƒ@‚˜ƒTƒCƒY
- *	@param	buff_y				Ši”[æƒoƒbƒtƒ@‚™ƒTƒCƒY
- *	@param	cp_write_data		ƒtƒB[ƒ‹ƒh’nŒ`ƒf[ƒ^i”z—ñj
- *	@param	cp_mons_range		ƒ‚ƒ“ƒXƒ^[•ª•zƒf[ƒ^
- *	@param	cp_cut_rangeid		”rœ‚·‚é•ª•zID@”z—ñ
- *	@param	cut_tbl_num			”rœ”„‚éID”z—ñ”
+ *	@param	p_buff				æ ¼ç´å…ˆ
+ *	@param	buff_x				æ ¼ç´å…ˆãƒãƒƒãƒ•ã‚¡ï½˜ã‚µã‚¤ã‚º
+ *	@param	buff_y				æ ¼ç´å…ˆãƒãƒƒãƒ•ã‚¡ï½™ã‚µã‚¤ã‚º
+ *	@param	cp_write_data		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åœ°å½¢ãƒ‡ãƒ¼ã‚¿ï¼ˆé…åˆ—ï¼‰
+ *	@param	cp_mons_range		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_cut_rangeid		æ’é™¤ã™ã‚‹åˆ†å¸ƒIDã€€é…åˆ—
+ *	@param	cut_tbl_num			æ’é™¤å£²ã‚‹IDé…åˆ—æ•°
  *
- *	@return	ÀÛ‚Ìƒf[ƒ^”	”rœ”z—ñ‚Å”rœ‚³‚ê‚é‰Â”\«‚ª‚ ‚é‚½‚ß
+ *	@return	å®Ÿéš›ã®ãƒ‡ãƒ¼ã‚¿æ•°	æ’é™¤é…åˆ—ã§æ’é™¤ã•ã‚Œã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ãŸã‚
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_RANGE_DATA_FldGridDataWriteMonsRangeData( u8* p_buff, int buff_x, int buff_y, const ZKN_RANGE_DATA_FLD_GRID* cp_write_data, const ZKN_RANGE_DATA_MONS* cp_mons_range, const u8* cp_cut_randeid, u32 cut_tbl_num )
 {
-	int i;	// ƒ‹[ƒv—p
+	int i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 	int j;
 	u32 count = 0;
 
-	for( i=0; i<cp_mons_range->num - 1; i++ ){	// ƒ‚ƒ“ƒXƒ^[•ª•zÅŒã‚Íƒ_ƒ~[
+	for( i=0; i<cp_mons_range->num - 1; i++ ){	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åˆ†å¸ƒæœ€å¾Œã¯ãƒ€ãƒŸãƒ¼
 
-		GF_ASSERT( cp_mons_range->p_rangeid[i] );	// 0‚Í‚¨‚©‚µ‚¢
+		GF_ASSERT( cp_mons_range->p_rangeid[i] );	// 0ã¯ãŠã‹ã—ã„
 
-		// œŠOƒ`ƒFƒbƒN
+		// é™¤å¤–ãƒã‚§ãƒƒã‚¯
 		for( j = 0; j < cut_tbl_num; j++ ){
 			if( cp_mons_range->p_rangeid[i] == cp_cut_randeid[j] ){
 				break;
 			}
 		}
 
-		// ”rœˆÈŠO‚È‚ç‘‚­
+		// æ’é™¤ä»¥å¤–ãªã‚‰æ›¸ã
 		if( j >= cut_tbl_num ){
 			ZKN_RANGE_DATA_FldGridDataWrite( p_buff, buff_x, buff_y,
 					&cp_write_data[ cp_mons_range->p_rangeid[i] ] );
@@ -319,16 +319,16 @@ u32 ZKN_RANGE_DATA_FldGridDataWriteMonsRangeData( u8* p_buff, int buff_x, int bu
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ“ƒWƒ‡ƒ“À•W‚ğOAMƒAƒNƒ^[‚Éİ’è
+ *	@brief	ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åº§æ¨™ã‚’OAMã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®š
  *
- *	@param	p_act			ƒAƒNƒ^[
- *	@param	ofs_x			‘«‚µ‚±‚ŞÀ•W’l
- *	@param	ofs_y			‘«‚µ‚±‚ŞÀ•W’l
- *	@param	gridsizex		ƒOƒŠƒbƒh‚˜ƒTƒCƒY
- *	@param	gridsizey		ƒOƒŠƒbƒh‚™ƒTƒCƒY
- *	@param	cp_write_data	ƒ_ƒ“ƒWƒ‡ƒ“î•ñ
- *	@param	norm_seq		’ÊíƒAƒjƒƒV[ƒPƒ“ƒX
- *	@param	sp_seq			“ÁêƒAƒjƒƒV[ƒPƒ“ƒX
+ *	@param	p_act			ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	ofs_x			è¶³ã—ã“ã‚€åº§æ¨™å€¤
+ *	@param	ofs_y			è¶³ã—ã“ã‚€åº§æ¨™å€¤
+ *	@param	gridsizex		ã‚°ãƒªãƒƒãƒ‰ï½˜ã‚µã‚¤ã‚º
+ *	@param	gridsizey		ã‚°ãƒªãƒƒãƒ‰ï½™ã‚µã‚¤ã‚º
+ *	@param	cp_write_data	ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æƒ…å ±
+ *	@param	norm_seq		é€šå¸¸ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *	@param	sp_seq			ç‰¹æ®Šã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  *	@return	none
  */
@@ -345,7 +345,7 @@ void ZKN_RANGE_DATA_DanGridDataSet( CLACT_WORK_PTR p_act, int ofsx, int ofsy, in
 	CLACT_SetMatrix( p_act, &mat );
 
 
-	// “ÁêOAMİ’è
+	// ç‰¹æ®ŠOAMè¨­å®š
 	if( cp_write_data->oam_flg ){
 		CLACT_AnmChg( p_act, sp_seq );
 	}else{
@@ -356,24 +356,24 @@ void ZKN_RANGE_DATA_DanGridDataSet( CLACT_WORK_PTR p_act, int ofsx, int ofsy, in
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ“ƒWƒ‡ƒ“À•WOAMİ’èŠÖ”
+ *	@brief	ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åº§æ¨™OAMè¨­å®šé–¢æ•°
  *
- *	@param	pp_act				ƒAƒNƒ^[”z—ñ
- *	@param	use_start			g—pŠJn
- *	@param	act_max				ƒAƒNƒ^[”z—ñ—v‘f”
- *	@param	ofs_x				‘«‚µ‚±‚ŞÀ•W’l
- *	@param	ofs_y				‘«‚µ‚±‚ŞÀ•W’l
- *	@param	gridsizex			‚PƒOƒŠƒbƒhXƒTƒCƒY
- *	@param	gridsizey			‚PƒOƒŠƒbƒhYƒTƒCƒY
- *	@param	cp_write_data		ƒ_ƒ“ƒWƒ‡ƒ“ƒOƒŠƒbƒhƒf[ƒ^”z—ñ
- *	@param	cp_mons_range		ƒ‚ƒ“ƒXƒ^[•ª•zƒf[ƒ^
- *	@param	norm_seq		’ÊíƒAƒjƒƒV[ƒPƒ“ƒX
- *	@param	sp_seq				“ÁêOAM‚Ìê‡‚ÌƒAƒjƒƒV[ƒPƒ“ƒX
- *	@param	cp_cut_rangeid		”rœ‚·‚é•ª•zID@”z—ñ
- *	@param	cut_tbl_num			”rœ”„‚éID”z—ñ”
- *	@param	p_count				ÀÛ‚Ìƒf[ƒ^”	”rœ”z—ñ‚Å”rœ‚³‚ê‚é‰Â”\«‚ª‚ ‚é‚½‚ß Ši”[æ
+ *	@param	pp_act				ã‚¢ã‚¯ã‚¿ãƒ¼é…åˆ—
+ *	@param	use_start			ä½¿ç”¨é–‹å§‹
+ *	@param	act_max				ã‚¢ã‚¯ã‚¿ãƒ¼é…åˆ—è¦ç´ æ•°
+ *	@param	ofs_x				è¶³ã—ã“ã‚€åº§æ¨™å€¤
+ *	@param	ofs_y				è¶³ã—ã“ã‚€åº§æ¨™å€¤
+ *	@param	gridsizex			ï¼‘ã‚°ãƒªãƒƒãƒ‰Xã‚µã‚¤ã‚º
+ *	@param	gridsizey			ï¼‘ã‚°ãƒªãƒƒãƒ‰Yã‚µã‚¤ã‚º
+ *	@param	cp_write_data		ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿é…åˆ—
+ *	@param	cp_mons_range		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿
+ *	@param	norm_seq		é€šå¸¸ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *	@param	sp_seq				ç‰¹æ®ŠOAMã®å ´åˆã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *	@param	cp_cut_rangeid		æ’é™¤ã™ã‚‹åˆ†å¸ƒIDã€€é…åˆ—
+ *	@param	cut_tbl_num			æ’é™¤å£²ã‚‹IDé…åˆ—æ•°
+ *	@param	p_count				å®Ÿéš›ã®ãƒ‡ãƒ¼ã‚¿æ•°	æ’é™¤é…åˆ—ã§æ’é™¤ã•ã‚Œã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ãŸã‚ æ ¼ç´å…ˆ
  *
- *	@return	g—pƒAƒNƒ^[”
+ *	@return	ä½¿ç”¨ã‚¢ã‚¯ã‚¿ãƒ¼æ•°
  */
 //-----------------------------------------------------------------------------
 int ZKN_RANGE_DATA_DanGridDataSetMonsRangeData( CLACT_WORK_PTR* pp_act, int use_start, int act_max, int ofs_x, int ofsy, int gridsizex, int gridsizey, const ZKN_RANGE_DATA_DAN_GRID* cp_write_data, const ZKN_RANGE_DATA_MONS* cp_mons_range, int norm_seq, int sp_seq, const u8* cp_cut_randeid, u32 cut_tbl_num, u32* p_count )
@@ -382,19 +382,19 @@ int ZKN_RANGE_DATA_DanGridDataSetMonsRangeData( CLACT_WORK_PTR* pp_act, int use_
 	int act_count = use_start;
 	int count = 0;
 
-	for( i=0; i<cp_mons_range->num - 1; i++ ){	// ƒ‚ƒ“ƒXƒ^[•ª•zÅŒã‚Íƒ_ƒ~[
+	for( i=0; i<cp_mons_range->num - 1; i++ ){	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åˆ†å¸ƒæœ€å¾Œã¯ãƒ€ãƒŸãƒ¼
 
 		GF_ASSERT( cp_mons_range->p_rangeid[i] );
 		GF_ASSERT( act_count < act_max );
 
-		// œŠOƒ`ƒFƒbƒN
+		// é™¤å¤–ãƒã‚§ãƒƒã‚¯
 		for( j = 0; j < cut_tbl_num; j++ ){
 			if( cp_mons_range->p_rangeid[i] == cp_cut_randeid[j] ){
 				break;
 			}
 		}
 
-		// ”rœˆÈŠO‚È‚ç‘‚­
+		// æ’é™¤ä»¥å¤–ãªã‚‰æ›¸ã
 		if( j >= cut_tbl_num ){
 		
 			ZKN_RANGE_DATA_DanGridDataSet( pp_act[act_count], ofs_x, ofsy, gridsizex, gridsizey, &cp_write_data[ cp_mons_range->p_rangeid[i] ], norm_seq, sp_seq );
@@ -412,19 +412,19 @@ int ZKN_RANGE_DATA_DanGridDataSetMonsRangeData( CLACT_WORK_PTR* pp_act, int use_
 //-----------------------------------------------------------------------------
 /**
  *
- *		[ƒvƒ‰ƒCƒx[ƒgŠÖ”]
+ *		[ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°]
  * 
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ][ƒ“ID‚É‘Î‰‚·‚éID‚ğ•Ô‚·
+ *	@brief	ã‚¾ãƒ¼ãƒ³IDã«å¯¾å¿œã™ã‚‹IDã‚’è¿”ã™
  *
- *	@param	zone_id		ƒ][ƒ“ID
- *	@param	arc_dataidx	ƒA[ƒJƒCƒuƒf[ƒ^IND	iƒ_ƒ“ƒWƒ‡ƒ“Linkƒf[ƒ^ORƒtƒB[ƒ‹ƒhLINKƒf[ƒ^j
- *	@param	heap		ƒq[ƒv
+ *	@param	zone_id		ã‚¾ãƒ¼ãƒ³ID
+ *	@param	arc_dataidx	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿IND	ï¼ˆãƒ€ãƒ³ã‚¸ãƒ§ãƒ³Linkãƒ‡ãƒ¼ã‚¿ORãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰LINKãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
- *	@return	‘Î‰‚·‚éID
+ *	@return	å¯¾å¿œã™ã‚‹ID
  */
 //-----------------------------------------------------------------------------
 static int ZknRangeDataZoneLinkIdGet( int zone_id, int arc_dataidx, int heap )
@@ -438,15 +438,15 @@ static int ZknRangeDataZoneLinkIdGet( int zone_id, int arc_dataidx, int heap )
 	GF_ASSERT( (arc_dataidx == NARC_zukan_enc_diamond_zkn_dan_id_rzidlink)||
 			(arc_dataidx == NARC_zukan_enc_diamond_zkn_fld_id_rzidlink) );
 	
-	// ƒA[ƒJƒCƒu‚©‚ç“Ç‚İ‚İ
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰èª­ã¿è¾¼ã¿
 	p_buff = (int *)ArcUtil_LoadEx( ZKN_ARC_DAT, arc_dataidx, FALSE, heap, ALLOC_BOTTOM, &data_size );
 	
-	// ƒf[ƒ^ƒTƒCƒY‚©‚ç”z—ñ—v‘f”‚ğó‚¯æ‚é
+	// ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‹ã‚‰é…åˆ—è¦ç´ æ•°ã‚’å—ã‘å–ã‚‹
 	num = data_size / sizeof(int);
 
-	// Œ©‚Â‚©‚ç‚È‚¢‚Æ‚«‚Í0‚ğ•Ô‚·‚Æ‚»‚ê‚¼‚ê‚Ì•ª•zID‚ÌNONE’è”‚É‚È‚é
+	// è¦‹ã¤ã‹ã‚‰ãªã„ã¨ãã¯0ã‚’è¿”ã™ã¨ãã‚Œãã‚Œã®åˆ†å¸ƒIDã®NONEå®šæ•°ã«ãªã‚‹
 	ret = 0;
-	// ƒ‹[ƒv	ˆê‚Ìƒiƒ“ƒo[‚ª‚ ‚Á‚½‚ç‚»‚Ì”z—ñ‚Ì—v‘f”‚ª•ª•zID
+	// ãƒ«ãƒ¼ãƒ—	ä¸€ç·’ã®ãƒŠãƒ³ãƒãƒ¼ãŒã‚ã£ãŸã‚‰ãã®é…åˆ—ã®è¦ç´ æ•°ãŒåˆ†å¸ƒID
 	for( i=0; i<num; i++ ){
 		if( p_buff[i] == zone_id ){
 

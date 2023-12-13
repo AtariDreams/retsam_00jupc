@@ -1,6 +1,6 @@
 //=============================================================================
 /**
- *	@brief	ƒ}ƒbƒvƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^ŽQÆ—pƒwƒbƒ_ƒtƒ@ƒCƒ‹
+ *	@brief	ãƒžãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿å‚ç…§ç”¨ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
  *
  *	@param	none
  *	@retval	none
@@ -11,7 +11,7 @@
 #ifndef _MAP_RESOURCE_DEF_H_
 #define _MAP_RESOURCE_DEF_H_
 
-//“à•”‚ÌŒ©‚¦‚È‚¢ƒ}ƒbƒvƒŠƒ\[ƒX\‘¢‘Ì’è‹`
+//å†…éƒ¨ã®è¦‹ãˆãªã„ãƒžãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹æ§‹é€ ä½“å®šç¾©
 typedef  struct _MAP_RESOURCE *MAP_RESOURCE_PTR;
 
 #endif //_MAP_RESOURCE_DEF_H_

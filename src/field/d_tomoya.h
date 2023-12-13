@@ -2,7 +2,7 @@
 /**
  *
  *@file		d_tomoya.h
- *@brief	高橋友也デバック用
+ *@brief	鬮俶ｩ句暑荵溘ョ繝舌ャ繧ｯ逕ｨ
  *@author	tomoya takahashi
  *@data		2005.02.25
  */

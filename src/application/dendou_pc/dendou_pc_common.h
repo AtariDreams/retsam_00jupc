@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	dendou_pc_common.h
- * @bfief	“a“°“ü‚èƒpƒ\ƒRƒ“‰æ–Ê
+ * @bfief	æ®¿å ‚å…¥ã‚Šãƒ‘ã‚½ã‚³ãƒ³ç”»é¢
  * @author	taya GAME FREAK inc.
  *
  * @date	2006.04.21
@@ -17,39 +17,39 @@
 
 //------------------------------------------------------
 /**
- *	•`‰æƒRƒ}ƒ“ƒh
+ *	æç”»ã‚³ãƒãƒ³ãƒ‰
  */
 //------------------------------------------------------
 enum {
-	VCMD_INIT,				///< ‰æ–Ê‰Šú\’z•ƒtƒF[ƒhƒCƒ“
-	VCMD_QUIT,				///< ƒtƒF[ƒhƒAƒEƒg
-	VCMD_CHANGE_POKE,		///< ‘I‘ğƒ|ƒPƒ‚ƒ“•ÏX
-	VCMD_CHANGE_RECORD,		///< •\¦ƒŒƒR[ƒh•ÏX
-	VCMD_CHANGE_PARAMMODE,	///< ƒpƒ‰ƒ[ƒ^ƒ‚[ƒh•ÏX
+	VCMD_INIT,				///< ç”»é¢åˆæœŸæ§‹ç¯‰ï¼†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+	VCMD_QUIT,				///< ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+	VCMD_CHANGE_POKE,		///< é¸æŠãƒã‚±ãƒ¢ãƒ³å¤‰æ›´
+	VCMD_CHANGE_RECORD,		///< è¡¨ç¤ºãƒ¬ã‚³ãƒ¼ãƒ‰å¤‰æ›´
+	VCMD_CHANGE_PARAMMODE,	///< ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
 
 	VCMD_MAX,
 };
 
 //------------------------------------------------------
 /**
- *	ƒpƒ‰ƒ[ƒ^ƒ‚[ƒh
+ *	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¢ãƒ¼ãƒ‰
  */
 //------------------------------------------------------
 typedef enum {
-	PARAM_NORMAL,	///< ’Êí•\¦
-	PARAM_WAZA,		///< ‚í‚´–¼•\¦
+	PARAM_NORMAL,	///< é€šå¸¸è¡¨ç¤º
+	PARAM_WAZA,		///< ã‚ã–åè¡¨ç¤º
 }DendouPC_ParamMode;
 
 //------------------------------------------------------
 /**
- *	ƒƒCƒ“ƒ[ƒN•sŠ®‘SŒ^
+ *	ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ä¸å®Œå…¨å‹
  */
 //------------------------------------------------------
 typedef  struct  _DENDOU_PC_WORK	DENDOU_PC_WORK;
 
 //------------------------------------------------------
 /**
- *	•`‰æƒ[ƒN•sŠ®‘SŒ^
+ *	æç”»ãƒ¯ãƒ¼ã‚¯ä¸å®Œå…¨å‹
  */
 //------------------------------------------------------
 typedef  struct  _DENDOU_PC_VIEW	DENDOU_PC_VIEW;
@@ -57,16 +57,16 @@ typedef  struct  _DENDOU_PC_VIEW	DENDOU_PC_VIEW;
 
 //------------------------------------------------------
 /**
- *	•`‰æ—pî•ñ
+ *	æç”»ç”¨æƒ…å ±
  */
 //------------------------------------------------------
 typedef struct {
-	int			times;				///< ‰½‰ñ–Ú‚Ì“a“°“ü‚è‚©
-	RTCDate		date;				///< “a“°“ü‚è“ú•t
-	int			pokeCount;			///< ƒ|ƒPƒ‚ƒ“‰½‘Ì‚¢‚é‚©
-	int			pokePos;			///< ‰½‘Ì–Ú‚ğ‘I‚ñ‚Å‚¢‚é‚©
-	DendouPC_ParamMode	paramMode;	///< ƒpƒ‰ƒ[ƒ^ƒ‚[ƒh
-	DENDOU_POKEMON_DATA	pokemon[ TEMOTI_POKEMAX ];	///< ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	int			times;				///< ä½•å›ç›®ã®æ®¿å ‚å…¥ã‚Šã‹
+	RTCDate		date;				///< æ®¿å ‚å…¥ã‚Šæ—¥ä»˜
+	int			pokeCount;			///< ãƒã‚±ãƒ¢ãƒ³ä½•ä½“ã„ã‚‹ã‹
+	int			pokePos;			///< ä½•ä½“ç›®ã‚’é¸ã‚“ã§ã„ã‚‹ã‹
+	DendouPC_ParamMode	paramMode;	///< ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¢ãƒ¼ãƒ‰
+	DENDOU_POKEMON_DATA	pokemon[ TEMOTI_POKEMAX ];	///< ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 }DENDOU_PC_VIEWPARAM;
 
 
@@ -74,7 +74,7 @@ typedef struct {
 
 
 //--------------------------------------------------------------
-// •`‰æ‘¤ŠÖ”ŒQ
+// æç”»å´é–¢æ•°ç¾¤
 //--------------------------------------------------------------
 extern DENDOU_PC_VIEW* DendouPCView_CreateWork( DENDOU_PC_WORK* mainWork, const DENDOU_PC_VIEWPARAM* vpara );
 extern void DendouPCView_DeleteWork( DENDOU_PC_VIEW* vwk );

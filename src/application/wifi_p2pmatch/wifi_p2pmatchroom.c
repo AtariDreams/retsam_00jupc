@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wifi_matchroom.c
- *	@brief		wifi	ƒ}ƒbƒ`ƒ“ƒOƒ‹[ƒ€
+ *	@brief		wifi	ãƒãƒƒãƒãƒ³ã‚°ãƒ«ãƒ¼ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.01.31
  *
@@ -26,7 +26,7 @@
 #include "communication/comm_state.h"
 #include "system/snd_tool.h"  //sndTOOL
 
-#include "wifip2pmatch.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "wifip2pmatch.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 
 #include "include/system/pm_debug_wifi.h"
 
@@ -38,23 +38,23 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 #ifdef PM_DEBUG
-//#define MCR_DEBUG_2CCHAR_CHECK	// 2DMAPSYSTEM‚Ì•\¦ƒ`ƒFƒbƒN—p
+//#define MCR_DEBUG_2CCHAR_CHECK	// 2DMAPSYSTEMã®è¡¨ç¤ºãƒã‚§ãƒƒã‚¯ç”¨
 #endif
 
 #ifdef MCR_DEBUG_2CCHAR_CHECK
@@ -66,32 +66,32 @@ static u32 s_MCR_DEBUG_2CCHAR_VIEW_COUNT = 0;
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// “o˜^ˆÊ’uƒf[ƒ^
+// ç™»éŒ²ä½ç½®ãƒ‡ãƒ¼ã‚¿
 #define MCR_MOVEOBJ_ADD_POSNUM	(52)
 
-// ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒLƒ…[
+// ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼
 #define MCR_REQCMDQ_NUM	( 128 )
 
 
-#define MCR_MAP_GRID_SIZE	(WF2DMAP_GRID_SIZ)	// ƒ}ƒbƒv‚PƒOƒŠƒbƒhƒTƒCƒY
+#define MCR_MAP_GRID_SIZE	(WF2DMAP_GRID_SIZ)	// ãƒãƒƒãƒ—ï¼‘ã‚°ãƒªãƒƒãƒ‰ã‚µã‚¤ã‚º
 
 
-// “®ìó‘Ô
+// å‹•ä½œçŠ¶æ…‹
 enum{
-	MCR_MOVEOBJ_ST_PL_KEYWAIT,		// ƒvƒŒƒCƒ„[’Êí“®ì
-	MCR_MOVEOBJ_ST_KURUKURU,		// —‚¿‚éˆ—
-	MCR_MOVEOBJ_ST_KURUKURU_DEL,	// ã‚éˆ—
-	MCR_MOVEOBJ_ST_NPC,				// NPC“®ì
-	MCR_MOVEOBJ_ST_NPC_JUMP,		// NPC•åW’†
-	MCR_MOVEOBJ_ST_NPC_PAUSE,		// NPC“®ì’â~
+	MCR_MOVEOBJ_ST_PL_KEYWAIT,		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼é€šå¸¸å‹•ä½œ
+	MCR_MOVEOBJ_ST_KURUKURU,		// è½ã¡ã‚‹å‡¦ç†
+	MCR_MOVEOBJ_ST_KURUKURU_DEL,	// ä¸Šã‚‹å‡¦ç†
+	MCR_MOVEOBJ_ST_NPC,				// NPCå‹•ä½œ
+	MCR_MOVEOBJ_ST_NPC_JUMP,		// NPCå‹Ÿé›†ä¸­
+	MCR_MOVEOBJ_ST_NPC_PAUSE,		// NPCå‹•ä½œåœæ­¢
 	MCR_MOVEOBJ_ST_NUM,
 };
 
 
-enum{	// •ûŒü
+enum{	// æ–¹å‘
 	MCR_MOVEOBJ_WAY_TOP = WF2DMAP_WAY_UP,
 	MCR_MOVEOBJ_WAY_BOTTOM = WF2DMAP_WAY_DOWN,
 	MCR_MOVEOBJ_WAY_LEFT = WF2DMAP_WAY_LEFT,
@@ -101,40 +101,40 @@ enum{	// •ûŒü
 #define MCR_MOVEOBJ_BG_PRI	( 3 )
 #define MCR_MOVEOBJ_PLAYER_FRIENDNO	(0)
 
-#define MCR_MOVEOBJ_WALK_COUNT		(8)	// •à‚«ƒVƒ“ƒN”
-#define MCR_MOVEOBJ_KURU_COUNT		(45)// ‚­‚é‚­‚éƒVƒ“ƒN”
-#define MCR_MOVEOBJ_NPC_RAND_S		(256)// NPC•ûŒü•Ï‚¦‚éƒ^ƒCƒ~ƒ“ƒOÅ¬
-#define MCR_MOVEOBJ_NPC_RAND_M		(1024)// NPC•ûŒü•Ï‚¦‚éƒ^ƒCƒ~ƒ“ƒOÅ‘å
+#define MCR_MOVEOBJ_WALK_COUNT		(8)	// æ­©ãã‚·ãƒ³ã‚¯æ•°
+#define MCR_MOVEOBJ_KURU_COUNT		(45)// ãã‚‹ãã‚‹ã‚·ãƒ³ã‚¯æ•°
+#define MCR_MOVEOBJ_NPC_RAND_S		(256)// NPCæ–¹å‘å¤‰ãˆã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å°
+#define MCR_MOVEOBJ_NPC_RAND_M		(1024)// NPCæ–¹å‘å¤‰ãˆã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å¤§
 
-#define MCR_MOVEOBJ_WALK_DIST		( MCR_MAP_GRID_SIZE/MCR_MOVEOBJ_WALK_COUNT )	// 1ƒVƒ“ƒN‚É“®‚­À•W
+#define MCR_MOVEOBJ_WALK_DIST		( MCR_MAP_GRID_SIZE/MCR_MOVEOBJ_WALK_COUNT )	// 1ã‚·ãƒ³ã‚¯ã«å‹•ãåº§æ¨™
 #define MCR_MOVEOBJ_KURU_DIST		( -192 )
-#define MCR_MOVEOBJ_NPC_JUMP_EFFCOUNT	( 6 )// ƒWƒƒƒ“ƒv‚µ‚Ä‚¢‚éŠÔ
-#define MCR_MOVEOBJ_NPC_JUMP_WAITCOUNT	( 16 )// Ÿ‚ÌƒWƒƒƒ“ƒv‚Ü‚Å‚ÌƒEƒGƒCƒg
-#define MCR_MOVEOBJ_NPC_JUMP_COUNT		( (MCR_MOVEOBJ_NPC_JUMP_EFFCOUNT*2)+MCR_MOVEOBJ_NPC_JUMP_WAITCOUNT )// ‚PƒWƒƒƒ“ƒvƒJƒEƒ“ƒg
-#define MCR_MOVEOBJ_NPC_JUMP_DIS	( 4 )// ƒWƒƒƒ“ƒv‚Ì‚‚³
-#define MCR_MOVEOBJ_NPC_JUMP_RMAX	(180)// ‰ñ“]ŒÊMAX
+#define MCR_MOVEOBJ_NPC_JUMP_EFFCOUNT	( 6 )// ã‚¸ãƒ£ãƒ³ãƒ—ã—ã¦ã„ã‚‹æ™‚é–“
+#define MCR_MOVEOBJ_NPC_JUMP_WAITCOUNT	( 16 )// æ¬¡ã®ã‚¸ãƒ£ãƒ³ãƒ—ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
+#define MCR_MOVEOBJ_NPC_JUMP_COUNT		( (MCR_MOVEOBJ_NPC_JUMP_EFFCOUNT*2)+MCR_MOVEOBJ_NPC_JUMP_WAITCOUNT )// ï¼‘ã‚¸ãƒ£ãƒ³ãƒ—ã‚«ã‚¦ãƒ³ãƒˆ
+#define MCR_MOVEOBJ_NPC_JUMP_DIS	( 4 )// ã‚¸ãƒ£ãƒ³ãƒ—ã®é«˜ã•
+#define MCR_MOVEOBJ_NPC_JUMP_RMAX	(180)// å›è»¢å¼§MAX
 
 
-// ƒGƒtƒFƒNƒgƒŠƒ\[ƒX
-#define MCR_EFFECTRES_BGPRI		(2)	// BG—Dæ‡ˆÊ
-#define MCR_EFFECTRES_SOFTPRI	(0)// BG—Dæ‡ˆÊ
-#define MCR_EFFECTRES_OFS_Y		(32)// YÀ•W•â³’n
-#define MCR_EFFECTRES_OFS_X		(8)// YÀ•W•â³’n
-#define MCR_EFFECTWAKURES_OFS_Y		(0)// YÀ•W•â³’n
-#define MCR_EFFECTWAKURES_OFS_X		(8)// YÀ•W•â³’n
+// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚½ãƒ¼ã‚¹
+#define MCR_EFFECTRES_BGPRI		(2)	// BGå„ªå…ˆé †ä½
+#define MCR_EFFECTRES_SOFTPRI	(0)// BGå„ªå…ˆé †ä½
+#define MCR_EFFECTRES_OFS_Y		(32)// Yåº§æ¨™è£œæ­£åœ°
+#define MCR_EFFECTRES_OFS_X		(8)// Yåº§æ¨™è£œæ­£åœ°
+#define MCR_EFFECTWAKURES_OFS_Y		(0)// Yåº§æ¨™è£œæ­£åœ°
+#define MCR_EFFECTWAKURES_OFS_X		(8)// Yåº§æ¨™è£œæ­£åœ°
 
-// ƒŠƒ\[ƒXŠÇ—ID
-#define MCR_EFFECTRES_CONTID	( 50 )	// ƒGƒtƒFƒNƒgƒŠƒ\[ƒXŠÇ—ID
+// ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ID
+#define MCR_EFFECTRES_CONTID	( 50 )	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ID
 
 
-// PCƒAƒjƒ[ƒVƒ‡ƒ“
+// PCã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 enum{
-	// ‘Ò‹@’†‚ÌƒAƒjƒ
+	// å¾…æ©Ÿä¸­ã®ã‚¢ãƒ‹ãƒ¡
 	MCR_PCANM_ALL_SEQ_OFF,
 	MCR_PCANM_ALL_SEQ_ON,
 	MCR_PCANM_ALL_SEQ_NUM,
 
-	// Às’†‚ÌƒAƒjƒ
+	// å®Ÿè¡Œä¸­ã®ã‚¢ãƒ‹ãƒ¡
 	MCR_PCANM_USE_SEQ_NONE = 0,
 	MCR_PCANM_USE_SEQ_ON00,
 	MCR_PCANM_USE_SEQ_OFF01,
@@ -145,24 +145,24 @@ enum{
 	MCR_PCANM_USE_SEQ_OFF03,
 	MCR_PCANM_USE_SEQ_NUM,
 
-	// ƒJƒ‰[ƒ^ƒCƒv
+	// ã‚«ãƒ©ãƒ¼ã‚¿ã‚¤ãƒ—
 	MCR_PCANM_COL_ON = 0,
 	MCR_PCANM_COL_OFF,
 	MCR_PCANM_COL_WAIT,
 };
-#define MCR_PCANM_BGPLTT	( 7 )	// ƒAƒjƒ‚³‚¹‚éƒpƒŒƒbƒg
-#define MCR_PCANM_BGPLTTOFS	(1)		// ƒAƒjƒ‚³‚¹‚éƒpƒŒƒbƒg‚ÌŠJnƒIƒtƒZƒbƒg
-#define MCR_PCANM_PCNUM			(4)	// PC‚Ì”
-#define MCR_PCANM_DESTPL(x)	( (MCR_PCANM_BGPLTT*32) + (((x)+MCR_PCANM_BGPLTTOFS)*2) )	// ƒpƒŒƒbƒg“]‘—æƒAƒhƒŒƒXæ“¾
+#define MCR_PCANM_BGPLTT	( 7 )	// ã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define MCR_PCANM_BGPLTTOFS	(1)		// ã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã®é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define MCR_PCANM_PCNUM			(4)	// PCã®æ•°
+#define MCR_PCANM_DESTPL(x)	( (MCR_PCANM_BGPLTT*32) + (((x)+MCR_PCANM_BGPLTTOFS)*2) )	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 
 //-------------------------------------
-///	ƒAƒjƒƒf[ƒ^
+///	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	u8 flag;		// ƒJƒEƒ“ƒg—L–³
-	u8 count_num;	// ƒJƒEƒ“ƒg’l
-	u8 trans;		// “]‘——L–³
-	u8 trans_flag;	// “]‘—ƒtƒ‰ƒO
+	u8 flag;		// ã‚«ã‚¦ãƒ³ãƒˆæœ‰ç„¡
+	u8 count_num;	// ã‚«ã‚¦ãƒ³ãƒˆå€¤
+	u8 trans;		// è»¢é€æœ‰ç„¡
+	u8 trans_flag;	// è»¢é€ãƒ•ãƒ©ã‚°
 } MCR_PCANM_DATA;
 static const MCR_PCANM_DATA AnmData[ MCR_PCANM_USE_SEQ_NUM ] = {
 	{ FALSE,	0,	FALSE,	MCR_PCANM_COL_OFF },
@@ -184,17 +184,17 @@ static const u16 AllAnmData[ MCR_PCANM_ALL_SEQ_NUM ] = {
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒ}ƒNƒ
+ *		ãƒã‚¯ãƒ­
  */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	“®ìƒIƒuƒWƒFƒNƒg“o˜^ˆÊ’u
+///	å‹•ä½œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²ä½ç½®
 //=====================================
 typedef struct {
 	s16	x;
@@ -204,7 +204,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
@@ -291,14 +291,14 @@ static void WcrPCANM_UseEndReq( MCR_PCANM* p_wk );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WIFI@ƒ}ƒbƒ`ƒ“ƒOƒ‹[ƒ€@‰Šú‰»	ƒ[ƒN•ƒŠƒ\[ƒX“Ç‚İ‚İ‚às‚¤
+ *	@brief	WIFIã€€ãƒãƒƒãƒãƒ³ã‚°ãƒ«ãƒ¼ãƒ ã€€åˆæœŸåŒ–	ãƒ¯ãƒ¼ã‚¯ï¼†ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ã‚‚è¡Œã†
  *
- *	@param	p_mcr		ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
- *	@param	p_handle	ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+ *	@param	p_mcr		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	p_handle	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
  *	@param	p_bgl		BGL
- *	@param	hero_view	ålŒö‚Ì«•Ê
- *	@param	friendNum	—F’B‚Ì‘”
+ *	@param	hero_view	ä¸»äººå…¬ã®æ€§åˆ¥
+ *	@param	friendNum	å‹é”ã®ç·æ•°
  */
 //-----------------------------------------------------------------------------
 void WIFI_MCR_Init( WIFI_MATCHROOM* p_mcr, u32 heapID, ARCHANDLE* p_handle, GF_BGL_INI* p_bgl, u32 hero_view, u32 friendNum )
@@ -316,71 +316,71 @@ void WIFI_MCR_Init( WIFI_MATCHROOM* p_mcr, u32 heapID, ARCHANDLE* p_handle, GF_B
 	// CLACT INIT
 	WcrClactInit( &p_mcr->clact, p_mcr->use_heap, p_handle );
 
-	// BGL@‰Šú‰»
+	// BGLã€€åˆæœŸåŒ–
 	WcrBgContInit( p_mcr->p_bgl, heapID );
 
-	// ƒ}ƒbƒvƒf[ƒ^‰Šú‰»
+	// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	map_siz = WcrMapGridSizGet( map_no );
 	p_mcr->p_mapsys = WF2DMAP_MAPSysInit( map_siz.x, map_siz.y, heapID );
 	WF2DMAP_MAPSysDataSet( p_mcr->p_mapsys, WcrMapDataGet( map_no ) );
 
-	// ƒIƒuƒWƒFƒNƒgŠÇ—ƒVƒXƒeƒ€ì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	p_mcr->p_objsys = WF2DMAP_OBJSysInit( MCR_MOVEOBJNUM, heapID );
 
-	// ƒIƒuƒWƒFƒNƒg•\¦ƒVƒXƒeƒ€¶¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ç”Ÿæˆ
 	WcrObjDrawInit( p_mcr, hero_view, heapID );
 
-	// ƒXƒNƒ[ƒ‹ƒf[ƒ^‰Šú‰»
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	WF2DMAP_SCROLLSysDataInit( &p_mcr->scroll );
 
-	// ƒXƒNƒ[ƒ‹•`‰æƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æç”»ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	WcrScrnDrawInit( p_mcr, heapID, p_handle, map_no );
 	WcrBgSet( p_mcr->p_bgl, heapID, p_handle );
 
-	// PC‚ ‚É‚ß‰Šú‰»
+	// PCã‚ã«ã‚åˆæœŸåŒ–
 	WcrPCANM_Init( p_mcr, &p_mcr->pc_anm, p_handle );
 
-	// ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒLƒ…[¶¬
+	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ç”Ÿæˆ
 	p_mcr->p_reqcmdQ = WF2DMAP_REQCMDQSysInit( MCR_REQCMDQ_NUM, heapID );
 	
-	// ‰Šú‰»Š®—¹
+	// åˆæœŸåŒ–å®Œäº†
 	p_mcr->init = TRUE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WIFI	ƒ}ƒbƒ`ƒ“ƒOƒ‹[ƒ€@”jŠü@ƒ[ƒN•ƒŠƒ\[ƒX”jŠü
+ *	@brief	WIFI	ãƒãƒƒãƒãƒ³ã‚°ãƒ«ãƒ¼ãƒ ã€€ç ´æ£„ã€€ãƒ¯ãƒ¼ã‚¯ï¼†ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_mcr	ƒ[ƒN
+ *	@param	p_mcr	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WIFI_MCR_Dest( WIFI_MATCHROOM* p_mcr )
 {
-	// ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒLƒ…[”jŠü
+	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ç ´æ£„
 	WF2DMAP_REQCMDQSysExit( p_mcr->p_reqcmdQ );
 	
-	// ƒXƒNƒ[ƒ‹•`‰æƒVƒXƒeƒ€‚Í‚«
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æç”»ã‚·ã‚¹ãƒ†ãƒ ã¯ã
 	WcrScrnDrawExit( p_mcr );
 
-	// PC‚ ‚É‚ß”jŠü
+	// PCã‚ã«ã‚ç ´æ£„
 	WcrPCANM_Delete( p_mcr, &p_mcr->pc_anm );
 
-	// ‘S“®ìƒIƒuƒWƒFƒNƒg”jŠü
+	// å…¨å‹•ä½œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„
 	WcrMoveObjAllDel( p_mcr );
 
-	// ƒIƒuƒWƒFƒNƒg•\¦ƒVƒXƒeƒ€”jŠü
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WcrObjDrawExit( p_mcr );
 
-	// ƒIƒuƒWƒFƒNƒgƒVƒXƒeƒ€‚Í‚«
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ã¯ã
 	WF2DMAP_OBJSysExit( p_mcr->p_objsys );
 
-	// ƒ}ƒbƒvƒf[ƒ^‚Í‚«
+	// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã¯ã
 	WF2DMAP_MAPSysExit( p_mcr->p_mapsys );
 
-	// ƒZƒ‹ƒAƒNƒ^[”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	WcrClactDest( &p_mcr->clact );
 
-	// BGL”jŠü
+	// BGLç ´æ£„
 	WcrBgContDest( p_mcr->p_bgl );
 
 	memset( p_mcr, 0, sizeof(WIFI_MATCHROOM) );
@@ -403,68 +403,68 @@ BOOL WIFI_MCR_GetInitFlag( const WIFI_MATCHROOM* cp_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ˆ—
+ *	@brief	ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_mcr	ƒ[ƒN
+ *	@param	p_mcr	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	MCR_RET_NONE,		// ‚È‚µ
- *	@retval	MCR_RET_CANCEL,		// ƒLƒƒƒ“ƒZƒ‹
- *	@retval	MCR_RET_SELECT,		// ‘I‘ğ
- *	@retval MCR_RET_MYSELECT,	// ©•ª‘I‘ğ
+ *	@retval	MCR_RET_NONE,		// ãªã—
+ *	@retval	MCR_RET_CANCEL,		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+ *	@retval	MCR_RET_SELECT,		// é¸æŠ
+ *	@retval MCR_RET_MYSELECT,	// è‡ªåˆ†é¸æŠ
  */
 //-----------------------------------------------------------------------------
 u32 WIFI_MCR_Main( WIFI_MATCHROOM* p_mcr )
 {
 	BOOL result;
 
-	// ƒIƒuƒWƒFƒNƒg“®ì
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œ
 	WF2DMAP_OBJSysMain( p_mcr->p_objsys );
 
-	// ƒRƒ}ƒ“ƒh”­sˆ—
+	// ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œå‡¦ç†
 	WcrMoveObjCmdReq( p_mcr );
 
-	// ƒRƒ}ƒ“ƒh”»’fˆ—•ƒRƒ}ƒ“ƒhÀsˆ—
+	// ã‚³ãƒãƒ³ãƒ‰åˆ¤æ–­å‡¦ç†ï¼†ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œå‡¦ç†
 	WcrMoveObjCmdJudgeAndCmdMove( p_mcr );
 	
-	// ƒXƒNƒ[ƒ‹ˆ—
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†
 	WF2DMAP_SCRContSysMain( &p_mcr->scroll, p_mcr->p_player->p_obj );	
 	
-	// ƒXƒNƒ[ƒ‹•\¦ˆ—
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«è¡¨ç¤ºå‡¦ç†
 	WF2DMAP_SCRDrawSysMain( p_mcr->p_scrdraw, &p_mcr->scroll );	
 
-	// ƒIƒuƒWƒFƒNƒg•\¦ƒf[ƒ^XVˆ—
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¡¨ç¤ºãƒ‡ãƒ¼ã‚¿æ›´æ–°å‡¦ç†
 	WF2DMAP_OBJDrawSysUpdata( p_mcr->p_objdraw );
 
-	// ƒCƒxƒ“ƒgƒIƒuƒWƒFƒNƒg•\¦ƒf[ƒ^XVˆ—
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¡¨ç¤ºãƒ‡ãƒ¼ã‚¿æ›´æ–°å‡¦ç†
 	WcrMoveObjDraw( p_mcr );
 
-	// ƒ`ƒFƒbƒN‘O‚ÉoŒû‚ğÁ‚·
+	// ãƒã‚§ãƒƒã‚¯å‰ã«å‡ºå£ã‚’æ¶ˆã™
 	WcrClactResEffectExitDrawOff( p_mcr );
 
-	// ƒL[“ü—Íˆ—
+	// ã‚­ãƒ¼å…¥åŠ›å‡¦ç†
 	if( WcrMoveObjKeyInputCheck( p_mcr ) == TRUE ){
 
-		// oŒûƒ}ƒbƒg‚Ìã‚É—§‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		// å‡ºå£ãƒãƒƒãƒˆã®ä¸Šã«ç«‹ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		result = WcrExitCheck( p_mcr );
 
 		if( result == TRUE ){
 
-			// ƒ}ƒbƒg‚Ìã‚Å‰º‚ğŒü‚¢‚Ä‚¢‚é‚Ì‚ÅA–îˆó‚ğo‚·
+			// ãƒãƒƒãƒˆã®ä¸Šã§ä¸‹ã‚’å‘ã„ã¦ã„ã‚‹ã®ã§ã€çŸ¢å°ã‚’å‡ºã™
 			WcrClactResEffectExitDrawOn( p_mcr );
 
-			// ‚³‚ç‚É‰º‚ğ‰Ÿ‚µ‚½‚çA•”‰®‚ğo‚é
+			// ã•ã‚‰ã«ä¸‹ã‚’æŠ¼ã—ãŸã‚‰ã€éƒ¨å±‹ã‚’å‡ºã‚‹
 			if( sys.cont & PAD_KEY_DOWN ){
 				return MCR_RET_CANCEL;
 			}
 		}
 		if( sys.trg & PAD_BUTTON_DECIDE ){
-			// ‘¼l‚ğ‘I‘ğ‚µ‚½‚©ƒ`ƒFƒbƒN
+			// ä»–äººã‚’é¸æŠã—ãŸã‹ãƒã‚§ãƒƒã‚¯
 			if( WIFI_MCR_PlayerSelect( p_mcr ) > 0 ){
 				return MCR_RET_SELECT;
 
 			}else if( WcrMoveObjPCSelectCheck( p_mcr ) == TRUE ){
 
-				// –Ú‚Ì‘O‚È‚çPC‚È‚çƒŠƒXƒg‚ğo‚·
+				// ç›®ã®å‰ãªã‚‰PCãªã‚‰ãƒªã‚¹ãƒˆã‚’å‡ºã™
 				return MCR_RET_MYSELECT;
 			}
 		}
@@ -475,9 +475,9 @@ u32 WIFI_MCR_Main( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\¦
+ *	@brief	è¡¨ç¤º
  *
- *	@param	p_mcr	ƒ[ƒN
+ *	@param	p_mcr	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WIFI_MCR_Draw( WIFI_MATCHROOM* p_mcr )
@@ -489,31 +489,31 @@ void WIFI_MCR_Draw( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ğ’†‚Ì—F’BƒR[ƒh‚ğæ“¾‚·‚é
+ *	@brief	é¸æŠä¸­ã®å‹é”ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_mcr	ƒ[ƒN
+ *	@param	cp_mcr	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 u8 WIFI_MCR_PlayerSelect( const WIFI_MATCHROOM* cp_mcr )
 {
-	GF_ASSERT( cp_mcr->p_player != NULL );	// ålŒö‚ª‚¢‚é‚Ì‚©H
+	GF_ASSERT( cp_mcr->p_player != NULL );	// ä¸»äººå…¬ãŒã„ã‚‹ã®ã‹ï¼Ÿ
 	return cp_mcr->p_player->accesFriend;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ålŒö‚Ìæ‚Á‚Ä‚¢‚éƒ}ƒbƒvƒf[ƒ^æ“¾
+ *	@brief	ä¸»äººå…¬ã®ä¹—ã£ã¦ã„ã‚‹ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	cp_mcr	ƒ[ƒN
+ *	@param	cp_mcr	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ}ƒbƒvƒpƒ‰ƒ[ƒ^
+ *	@return	ãƒãƒƒãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 u32 WIFI_MCR_GetPlayerOnMapParam( const WIFI_MATCHROOM* cp_mcr )
 {
 	WF2DMAP_POS pos;
 	
-	GF_ASSERT( cp_mcr->p_player != NULL );	// ålŒö‚ª‚¢‚é‚Ì‚©H
+	GF_ASSERT( cp_mcr->p_player != NULL );	// ä¸»äººå…¬ãŒã„ã‚‹ã®ã‹ï¼Ÿ
 
 	pos = WF2DMAP_OBJWkMatrixGet( cp_mcr->p_player->p_obj );
 	return WF2DMAP_MAPSysParamGet( cp_mcr->p_mapsys, WF2DMAP_POS2GRID(pos.x), WF2DMAP_POS2GRID(pos.y) );
@@ -521,18 +521,18 @@ u32 WIFI_MCR_GetPlayerOnMapParam( const WIFI_MATCHROOM* cp_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ålŒö‚Ìæ‚Á‚Ä‚¢‚é‰º‚Ìƒ}ƒbƒvƒf[ƒ^æ“¾
+ *	@brief	ä¸»äººå…¬ã®ä¹—ã£ã¦ã„ã‚‹ä¸‹ã®ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	cp_mcr	ƒ[ƒN
+ *	@param	cp_mcr	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ}ƒbƒvƒpƒ‰ƒ[ƒ^
+ *	@return	ãƒãƒƒãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 u32 WIFI_MCR_GetPlayerOnUnderMapParam( const WIFI_MATCHROOM* cp_mcr )
 {
 	WF2DMAP_POS pos;
 	
-	GF_ASSERT( cp_mcr->p_player != NULL );	// ålŒö‚ª‚¢‚é‚Ì‚©H
+	GF_ASSERT( cp_mcr->p_player != NULL );	// ä¸»äººå…¬ãŒã„ã‚‹ã®ã‹ï¼Ÿ
 
 	pos = WF2DMAP_OBJWkMatrixGet( cp_mcr->p_player->p_obj );
 	return WF2DMAP_MAPSysParamGet( cp_mcr->p_mapsys, WF2DMAP_POS2GRID(pos.x), WF2DMAP_POS2GRID(pos.y)+1 );
@@ -540,10 +540,10 @@ u32 WIFI_MCR_GetPlayerOnUnderMapParam( const WIFI_MATCHROOM* cp_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹•\¦
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º
  *
- *	@param	p_mcr			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_obj			ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	p_mcr			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_obj			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WIFI_MCR_CursorOn( WIFI_MATCHROOM* p_mcr, const MCR_MOVEOBJ* cp_obj )
@@ -558,7 +558,7 @@ void WIFI_MCR_CursorOn( WIFI_MATCHROOM* p_mcr, const MCR_MOVEOBJ* cp_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹”ñ•\¦
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«éè¡¨ç¤º
  *
  *	@param	p_mcr 
  */
@@ -570,9 +570,9 @@ void WIFI_MCR_CursorOff( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚Ì“®ì‚ğ’â~İ’è‚·‚é
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‹•ä½œã‚’åœæ­¢è¨­å®šã™ã‚‹
  *
- *	@param	p_mcr		ƒ}ƒbƒ`ƒ“ƒOƒ‹[ƒ€ƒf[ƒ^
+ *	@param	p_mcr		ãƒãƒƒãƒãƒ³ã‚°ãƒ«ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
  *	@param	flag 
  */
 //-----------------------------------------------------------------------------
@@ -583,12 +583,12 @@ void WIFI_MCR_PlayerMovePause( WIFI_MATCHROOM* p_mcr, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚Ì“®ì’â~ƒtƒ‰ƒO‚ğæ“¾
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‹•ä½œåœæ­¢ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- *	@param	cp_mcr		ƒ}ƒbƒ`ƒ“ƒOƒ‹[ƒ€ƒf[ƒ^
+ *	@param	cp_mcr		ãƒãƒƒãƒãƒ³ã‚°ãƒ«ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	’â~’†
- *	@retval	FALSE	Às’†
+ *	@retval	TRUE	åœæ­¢ä¸­
+ *	@retval	FALSE	å®Ÿè¡Œä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WIFI_MCR_PlayerMovePauseGet( const WIFI_MATCHROOM* cp_mcr )
@@ -599,13 +599,13 @@ BOOL WIFI_MCR_PlayerMovePauseGet( const WIFI_MATCHROOM* cp_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ålŒö“o˜^
+ *	@brief	ä¸»äººå…¬ç™»éŒ²
  *
- *	@param	p_mcr		ƒ[ƒN
- *	@param	view		p
+ *	@param	p_mcr		ãƒ¯ãƒ¼ã‚¯
+ *	@param	view		å§¿
  *
- *	@retval	“o˜^‚µ‚½ƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^
- *	@retval	NULL ‚à‚¤“o˜^‚Å‚«‚È‚¢
+ *	@retval	ç™»éŒ²ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿
+ *	@retval	NULL ã‚‚ã†ç™»éŒ²ã§ããªã„
  */
 //-----------------------------------------------------------------------------
 MCR_MOVEOBJ* WIFI_MCR_SetPlayer( WIFI_MATCHROOM* p_mcr, u32 view )
@@ -613,35 +613,35 @@ MCR_MOVEOBJ* WIFI_MCR_SetPlayer( WIFI_MATCHROOM* p_mcr, u32 view )
 	MCR_MOVEOBJ* p_obj;
 	MCR_MOVEOBJ_ONPOS pos;
 
-	// ‹ó‚¢‚Ä‚¢‚éƒIƒuƒWƒFæ“¾
+	// ç©ºã„ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§å–å¾—
 	p_obj = WcrMoveObj_GetClean( p_mcr );
 	
-	// ålŒö‚Íæ‚Á‚Ä‚¨‚­
+	// ä¸»äººå…¬ã¯å–ã£ã¦ãŠã
 	p_mcr->p_player = p_obj;
 
 	WcrMapGetPlayerSetPos( p_mcr, &pos );
 
 #ifdef MCR_DEBUG_2CCHAR_CHECK
-	// “®ìİ’è
+	// å‹•ä½œè¨­å®š
 	WcrMoveObj_SetUpMove( p_mcr, p_obj, &pos, 
 			MCR_MOVEOBJ_PLAYER_FRIENDNO, AMBRELLA, MCR_MOVEOBJ_WAY_TOP, WF2DMAP_OBJST_NONE );
 	s_MCR_DEBUG_2CCHAR_VIEW_ID = AMBRELLA;
 #else
-	// “®ìİ’è
+	// å‹•ä½œè¨­å®š
 	WcrMoveObj_SetUpMove( p_mcr, p_obj, &pos, 
 			MCR_MOVEOBJ_PLAYER_FRIENDNO, view, MCR_MOVEOBJ_WAY_TOP, WF2DMAP_OBJST_NONE );
 #endif
 
-	// ƒvƒŒƒCƒ„[“®ìİ’è
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‹•ä½œè¨­å®š
 	WcrMoveObj_SetMoveFuncPlayer( p_mcr, p_obj );
 
-	// ƒOƒ‰ƒtƒBƒbƒNİ’è
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
 	WcrMoveObj_SetUpGraphic( p_mcr, p_obj, TRUE );
 
-	// ƒvƒŒƒCƒ„[‚ª“o˜^‚³‚ê‚½‚çˆê“xƒXƒNƒ[ƒ‹‚ğ‚ ‚í‚¹‚é
-	// ƒXƒNƒ[ƒ‹ˆ—
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒç™»éŒ²ã•ã‚ŒãŸã‚‰ä¸€åº¦ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚’ã‚ã‚ã›ã‚‹
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†
 	WF2DMAP_SCRContSysMain( &p_mcr->scroll, p_mcr->p_player->p_obj );	
-	// ƒXƒNƒ[ƒ‹•\¦ˆ—
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«è¡¨ç¤ºå‡¦ç†
 	WF2DMAP_SCRDrawSysMain( p_mcr->p_scrdraw, &p_mcr->scroll );	
 	
 	return p_obj;
@@ -649,14 +649,14 @@ MCR_MOVEOBJ* WIFI_MCR_SetPlayer( WIFI_MATCHROOM* p_mcr, u32 view )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPCƒIƒuƒWƒFƒNƒg@“o˜^
+ *	@brief	NPCã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€€ç™»éŒ²
  *
- *	@param	p_mcr		ƒ[ƒN
- *	@param	view		p
- *	@param	friendNo	—F’B”Ô†
+ *	@param	p_mcr		ãƒ¯ãƒ¼ã‚¯
+ *	@param	view		å§¿
+ *	@param	friendNo	å‹é”ç•ªå·
  *
- *	@retval	ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@retval	NULL				“o˜^¸”s
+ *	@retval	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@retval	NULL				ç™»éŒ²å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 MCR_MOVEOBJ* WIFI_MCR_SetNpc( WIFI_MATCHROOM* p_mcr, u32 view, u8 friendNo )
@@ -665,14 +665,14 @@ MCR_MOVEOBJ* WIFI_MCR_SetNpc( WIFI_MATCHROOM* p_mcr, u32 view, u8 friendNo )
 	MCR_MOVEOBJ_ONPOS pos;
 	WF2DMAP_POS hero_pos;
 
-	// ‹ó‚¢‚Ä‚¢‚éƒIƒuƒWƒFæ“¾
+	// ç©ºã„ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§å–å¾—
 	p_obj = WcrMoveObj_GetClean( p_mcr );
 	
-	// “o˜^êŠ‚ğ’T‚·
-	// -1‚µ‚Ä‚¢‚é‚Ì‚ÍålŒö‚ğ‚O”Ô‚Æ‚µ‚½—F’B”Ô†\¬‚É‚È‚Á‚Ä‚¢‚é‚½‚ß
+	// ç™»éŒ²å ´æ‰€ã‚’æ¢ã™
+	// -1ã—ã¦ã„ã‚‹ã®ã¯ä¸»äººå…¬ã‚’ï¼ç•ªã¨ã—ãŸå‹é”ç•ªå·æ§‹æˆã«ãªã£ã¦ã„ã‚‹ãŸã‚
 	WcrMapGetNpcSetPos( p_mcr, &pos, friendNo - 1 );
 
-	// ‚»‚ÌêŠ‚ÉålŒö‚ª‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ãã®å ´æ‰€ã«ä¸»äººå…¬ãŒã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_mcr->p_player ){
 		hero_pos = WF2DMAP_OBJWkMatrixGet( p_mcr->p_player->p_obj );
 		if( (hero_pos.x == pos.x) &&
@@ -681,15 +681,15 @@ MCR_MOVEOBJ* WIFI_MCR_SetNpc( WIFI_MATCHROOM* p_mcr, u32 view, u8 friendNo )
 		}
 	}
 
-	// “®ìİ’è
+	// å‹•ä½œè¨­å®š
 	WcrMoveObj_SetUpMove( p_mcr, p_obj, &pos, 
 			friendNo, view, MCR_MOVEOBJ_WAY_BOTTOM, WF2DMAP_OBJST_BUSY );
 
-	// “®ìŠÖ”
+	// å‹•ä½œé–¢æ•°
 	WcrMoveObj_SetMoveFuncKuruKuruInit( p_mcr, p_obj );
 
 
-	// ƒOƒ‰ƒtƒBƒbƒNİ’è
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
 	WcrMoveObj_SetUpGraphic( p_mcr, p_obj, FALSE );
 	
 	return p_obj;
@@ -697,9 +697,9 @@ MCR_MOVEOBJ* WIFI_MCR_SetNpc( WIFI_MATCHROOM* p_mcr, u32 view, u8 friendNo )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”jŠüƒŠƒNƒGƒXƒg
+ *	@brief	ç ´æ£„ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WIFI_MCR_DelPeopleReq( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
@@ -713,29 +713,29 @@ void WIFI_MCR_DelPeopleReq( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
 	p_obj->move_st	= MCR_MOVEOBJ_ST_KURUKURU_DEL;
 	p_obj->move_count = 0;
 
-	// ƒRƒ}ƒ“ƒhÀsOFF
+	// ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡ŒOFF
 	WF2DMAP_OBJDrawWkUpdataFlagSet( p_obj->p_draw, FALSE );
 	  
-	// ‚­‚é‚­‚éƒAƒjƒƒXƒ^[ƒg
+	// ãã‚‹ãã‚‹ã‚¢ãƒ‹ãƒ¡ã‚¹ã‚¿ãƒ¼ãƒˆ
 	WF2DMAP_OBJDrawWkKuruAnimeStart( p_obj->p_draw );
 
-	// –Z‚µ‚¢ó‘Ô‚É•ÏX‚·‚é
+	// å¿™ã—ã„çŠ¶æ…‹ã«å¤‰æ›´ã™ã‚‹
 	WcrMoveObj_ReqCmdSetEasy( p_mcr, WF2DMAP_OBJST_BUSY, p_obj );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹­§“I‚É”jŠü
+ *	@brief	å¼·åˆ¶çš„ã«ç ´æ£„
  *
- *	@param	p_obj	ƒ[ƒN
+ *	@param	p_obj	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WIFI_MCR_DelPeople( MCR_MOVEOBJ* p_obj )
 {
-	// 2DƒLƒƒƒ‰ƒNƒ^”jŠü
+	// 2Dã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç ´æ£„
 	WF2DMAP_OBJDrawWkDel( p_obj->p_draw );
 
-	// ƒIƒuƒWƒFƒNƒgŠÇ—”jŠü
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ç ´æ£„
 	WF2DMAP_OBJWkDel( p_obj->p_obj );
 
 	memset( p_obj, 0, sizeof(MCR_MOVEOBJ) );
@@ -743,11 +743,11 @@ void WIFI_MCR_DelPeople( MCR_MOVEOBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—F’B”Ô†‚ğæ“¾‚·‚é
+ *	@brief	å‹é”ç•ªå·ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- *	@return	—F’B”Ô†
+ *	@return	å‹é”ç•ªå·
  */
 //-----------------------------------------------------------------------------
 u8	WIFI_MCR_GetFriendNo( const MCR_MOVEOBJ* cp_obj )
@@ -757,11 +757,11 @@ u8	WIFI_MCR_GetFriendNo( const MCR_MOVEOBJ* cp_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ©‚½–Ú‚ğæ“¾
+ *	@brief	è¦‹ãŸç›®ã‚’å–å¾—
  *
- *	@param	cp_obj	ƒ[ƒN
+ *	@param	cp_obj	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	Œ©‚½–Ú
+ *	@return	è¦‹ãŸç›®
  */
 //-----------------------------------------------------------------------------
 u32	WIFI_MCR_GetView( const MCR_MOVEOBJ* cp_obj )
@@ -771,11 +771,11 @@ u32	WIFI_MCR_GetView( const MCR_MOVEOBJ* cp_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œü‚¢‚Ä‚¢‚é‹t•ûŒü‚ğæ“¾
+ *	@brief	å‘ã„ã¦ã„ã‚‹é€†æ–¹å‘ã‚’å–å¾—
  *
- *	@param	cp_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	cp_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‹t•ûŒü
+ *	@return	é€†æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_WAY	WIFI_MCR_GetRetWay( const MCR_MOVEOBJ* cp_obj )
@@ -788,11 +788,11 @@ WF2DMAP_WAY	WIFI_MCR_GetRetWay( const MCR_MOVEOBJ* cp_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPC‚Ì“®ì’â~@	•ûŒüŒÅ’è
+ *	@brief	NPCã®å‹•ä½œåœæ­¢ã€€	æ–¹å‘å›ºå®š
  *
- *	@param	p_mcr	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	way			•ûŒü
+ *	@param	p_mcr	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	way			æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 void WIFI_MCR_NpcPauseOn( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj, WF2DMAP_WAY way )
@@ -800,7 +800,7 @@ void WIFI_MCR_NpcPauseOn( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj, WF2DMAP_WAY
 	u32 playid;
 	WF2DMAP_POS mat;
 
-	// ¡‚Ì“®ìŠÖ”‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+	// ä»Šã®å‹•ä½œé–¢æ•°ã‚’ä¿å­˜ã—ã¦ãŠã
 	p_obj->pMoveTmp = p_obj->pMove;
 	p_obj->pMove = WcrMoveObj_MoveFuncNpcPause;
 
@@ -810,13 +810,13 @@ void WIFI_MCR_NpcPauseOn( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj, WF2DMAP_WAY
 	playid = WF2DMAP_OBJWkDataGet( p_obj->p_obj, WF2DMAP_OBJPM_PLID );
 	WcrMoveObj_ReqCmdSet( p_mcr, WF2DMAP_CMD_NONE, way, playid );
 
-	// •\¦‚à‹­§’èŠú‚É•ÏX
-	// ‚Ü‚¸XV’â~
+	// è¡¨ç¤ºã‚‚å¼·åˆ¶å®šæœŸã«å¤‰æ›´
+	// ã¾ãšæ›´æ–°åœæ­¢
 	WF2DMAP_OBJDrawWkUpdataFlagSet( p_obj->p_draw, FALSE );
 	WF2DMAP_OBJDrawWkWaySet( p_obj->p_draw, way );
 
-	// ‚È‚ñ‚©‚µ‚Ä‚¢‚é‚Æ‚«‚à‚ ‚é‚Ì‚Å
-	// À•W‚ğŒ³‚É–ß‚·
+	// ãªã‚“ã‹ã—ã¦ã„ã‚‹ã¨ãã‚‚ã‚ã‚‹ã®ã§
+	// åº§æ¨™ã‚’å…ƒã«æˆ»ã™
 	mat.x = WF2DMAP_OBJWkDataGet( p_obj->p_obj, WF2DMAP_OBJPM_X );
 	mat.y = WF2DMAP_OBJWkDataGet( p_obj->p_obj, WF2DMAP_OBJPM_Y );
 	WF2DMAP_OBJDrawWkMatrixSet( p_obj->p_draw, mat );
@@ -824,21 +824,21 @@ void WIFI_MCR_NpcPauseOn( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj, WF2DMAP_WAY
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPC‚Ì“®ìŠJn
+ *	@brief	NPCã®å‹•ä½œé–‹å§‹
  *
- *	@param	p_mcr	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	p_mcr	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WIFI_MCR_NpcPauseOff( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
 {
 	// 080708	tomoya
-	// NULL‚È‚ç‚È‚ñ‚à‚¹‚ñ
+	// NULLãªã‚‰ãªã‚“ã‚‚ã›ã‚“
 	if( p_obj == NULL ){
 		return ;
 	}
 	if( p_obj->pMoveTmp == NULL ){
-		return ;	// ‚à‚¤ƒ|[ƒYó‘Ô‚ğ‰ñ”ğ‚µ‚Ä‚¢‚é
+		return ;	// ã‚‚ã†ãƒãƒ¼ã‚ºçŠ¶æ…‹ã‚’å›é¿ã—ã¦ã„ã‚‹
 	}
 	p_obj->pMove = p_obj->pMoveTmp;
 	p_obj->pMoveTmp = NULL;
@@ -848,45 +848,45 @@ void WIFI_MCR_NpcPauseOff( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPC‚Ì“®ìƒ^ƒCƒv•ÏX
+ *	@brief	NPCã®å‹•ä½œã‚¿ã‚¤ãƒ—å¤‰æ›´
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	moveID		“®ìƒ^ƒCƒv
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	moveID		å‹•ä½œã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 void WIFI_MCR_NpcMoveSet( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj, MCR_NPC_MOVETYPE moveID )
 {
 	BOOL result;
 	
-	// ‚­‚é‚­‚é“®ìŠ®—¹‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãã‚‹ãã‚‹å‹•ä½œå®Œäº†ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	result = WcrMoveObj_MoveSetOkCheck( p_obj );
 	if( result == FALSE ){
-		// ƒtƒ‰ƒO‚¾‚¯İ’è‚µ‚Ä‚¨‚­
+		// ãƒ•ãƒ©ã‚°ã ã‘è¨­å®šã—ã¦ãŠã
 		p_obj->moveID = moveID;
 	}else{
-		// ¡İ’è‚µ‚Ä‚à‘åä•v
+		// ä»Šè¨­å®šã—ã¦ã‚‚å¤§ä¸ˆå¤«
 		WcrMoveObj_MoveSet( p_mcr, p_obj, moveID );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	g—p’†PCƒAƒjƒŠJn
+ *	@brief	ä½¿ç”¨ä¸­PCã‚¢ãƒ‹ãƒ¡é–‹å§‹
  *
- *	@param	p_mcr	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_mcr	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WIFI_MCR_PCAnmStart( WIFI_MATCHROOM* p_mcr )
 {
 	s8 map_param;
-	// PC‚Ì‘O‚É‚¢‚é‚©H
+	// PCã®å‰ã«ã„ã‚‹ã‹ï¼Ÿ
 	if( WcrMoveObjPCSelectCheck( p_mcr ) == TRUE ){
-		// ‰½”ÔPC‚©H
+		// ä½•ç•ªPCã‹ï¼Ÿ
 		map_param = WIFI_MCR_GetPlayerOnUnderMapParam( p_mcr );
 		map_param -= MCR_MAPPM_MAP00;
 		GF_ASSERT( (map_param >= 0) && (map_param < 4) );
 
-		// ŠJnI
+		// é–‹å§‹ï¼
 		WcrPCANM_UseStart( &p_mcr->pc_anm, map_param );
 		return;
 	}
@@ -896,9 +896,9 @@ void WIFI_MCR_PCAnmStart( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ‚ğI—¹‚³‚¹‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ã‚’çµ‚äº†ã•ã›ã‚‹
  *
- *	@param	p_mcr	ƒ[ƒN
+ *	@param	p_mcr	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WIFI_MCR_PCAnmOff( WIFI_MATCHROOM* p_mcr )
@@ -908,29 +908,29 @@ void WIFI_MCR_PCAnmOff( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	PCƒAƒjƒƒƒCƒ““®ì
+ *	@brief	PCã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
- *	@param	p_mcr	ƒ[ƒN
+ *	@param	p_mcr	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WIFI_MCR_PCAnmMain( WIFI_MATCHROOM* p_mcr )
 {
-	// ƒpƒ\ƒRƒ“ƒAƒjƒ
+	// ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡
 	WcrPCANM_Main( p_mcr, &p_mcr->pc_anm );
 }
 
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘S•””jŠü
+ *	@brief	å…¨éƒ¨ç ´æ£„
  *
- *	@param	p_mcr	ƒ[ƒN
+ *	@param	p_mcr	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObjAllDel( WIFI_MATCHROOM* p_mcr )
@@ -946,12 +946,12 @@ static void WcrMoveObjAllDel( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒL[“ü—Í‚µ‚Ä‚æ‚¢‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚­ãƒ¼å…¥åŠ›ã—ã¦ã‚ˆã„ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_mcr	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	cp_mcr	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	Key“ü—Í‚µ‚Ä‚à‚æ‚¢
- *	@retval	FALSE	Key“ü—Í‚µ‚Ä‚Í‚¢‚¯‚È‚¢
+ *	@retval	TRUE	Keyå…¥åŠ›ã—ã¦ã‚‚ã‚ˆã„
+ *	@retval	FALSE	Keyå…¥åŠ›ã—ã¦ã¯ã„ã‘ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WcrMoveObjKeyInputCheck( const WIFI_MATCHROOM* cp_mcr )
@@ -967,12 +967,12 @@ static BOOL WcrMoveObjKeyInputCheck( const WIFI_MATCHROOM* cp_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ålŒö‚ªPC‚Ì‘O‚É‚¢‚é‚Ì‚©ƒ`ƒFƒbƒN
+ *	@brief	ä¸»äººå…¬ãŒPCã®å‰ã«ã„ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_mcr		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	cp_mcr		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	PC‘I‘ğ
- *	@retval	FALSE	PC”ñ‘I‘ğ
+ *	@retval	TRUE	PCé¸æŠ
+ *	@retval	FALSE	PCéé¸æŠ
  */
 //-----------------------------------------------------------------------------
 static BOOL WcrMoveObjPCSelectCheck( const WIFI_MATCHROOM* cp_mcr )
@@ -986,7 +986,7 @@ static BOOL WcrMoveObjPCSelectCheck( const WIFI_MATCHROOM* cp_mcr )
 	pos = WF2DMAP_OBJToolWayPosGet( pos, way );
 	param = WF2DMAP_MAPSysParamGet( cp_mcr->p_mapsys, WF2DMAP_POS2GRID(pos.x), WF2DMAP_POS2GRID(pos.y) );
 
-	// ã‚ğŒü‚¢‚Ä‚¢‚é•K—v‚ª‚ ‚é
+	// ä¸Šã‚’å‘ã„ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹
 	if( way == WF2DMAP_WAY_UP ){
 		if( param == MCR_MAPPM_PC ){
 			return TRUE;
@@ -998,9 +998,9 @@ static BOOL WcrMoveObjPCSelectCheck( const WIFI_MATCHROOM* cp_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ}ƒ“ƒh”»’f•ƒRƒ}ƒ“ƒhÀsˆ—
+ *	@brief	ã‚³ãƒãƒ³ãƒ‰åˆ¤æ–­ï¼†ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œå‡¦ç†
  *
- *	@param	p_mcr	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_mcr	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObjCmdJudgeAndCmdMove( WIFI_MATCHROOM* p_mcr )
@@ -1009,7 +1009,7 @@ static void WcrMoveObjCmdJudgeAndCmdMove( WIFI_MATCHROOM* p_mcr )
 	WF2DMAP_ACTCMD act;
 	BOOL result;
 
-	// ƒRƒ}ƒ“ƒh‚ªŠÔƒRƒ}ƒ“ƒh‚ğÀs
+	// ã‚³ãƒãƒ³ãƒ‰ãŒé–“ã‚³ãƒãƒ³ãƒ‰ã‚’å®Ÿè¡Œ
 	while( WF2DMAP_REQCMDQSysCmdPop( p_mcr->p_reqcmdQ, &req ) == TRUE ){
 		result = WF2DMAP_JUDGESysCmdJudge( p_mcr->p_mapsys, p_mcr->p_objsys, &req, &act );
 		if( result == TRUE ){
@@ -1020,14 +1020,14 @@ static void WcrMoveObjCmdJudgeAndCmdMove( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ}ƒ“ƒhƒŠƒNƒGƒXƒgˆ—
+ *	@brief	ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆå‡¦ç†
  *
- *	@param	p_mcr	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_mcr	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObjCmdReq( WIFI_MATCHROOM* p_mcr )
 {
-	// “®ìŠÖ”‚ğ‚Ü‚í‚·
+	// å‹•ä½œé–¢æ•°ã‚’ã¾ã‚ã™
 	int i;
 	BOOL ret;
 
@@ -1036,7 +1036,7 @@ static void WcrMoveObjCmdReq( WIFI_MATCHROOM* p_mcr )
 			
 			ret = p_mcr->moveObj[i].pMove( p_mcr, &p_mcr->moveObj[i] );
 			if( ret == TRUE ){
-				// ”jŠü
+				// ç ´æ£„
 				WIFI_MCR_DelPeople( &p_mcr->moveObj[i] );
 			}
 		}
@@ -1045,9 +1045,9 @@ static void WcrMoveObjCmdReq( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒCƒxƒ“ƒg•\¦ˆ—
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¤ãƒ™ãƒ³ãƒˆè¡¨ç¤ºå‡¦ç†
  *
- *	@param	p_mcr	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_mcr	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObjDraw( WIFI_MATCHROOM* p_mcr )
@@ -1063,11 +1063,11 @@ static void WcrMoveObjDraw( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒF’Ê‚µ‚Ì“–‚½‚è”»’è
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§é€šã—ã®å½“ãŸã‚Šåˆ¤å®š
  *
- *	@param	cp_mcr		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_obj		ƒIƒuƒWƒFƒ[ƒN
- *	@param	way			‚»‚¢‚Â‚ªi‚Ş•ûŒü
+ *	@param	cp_mcr		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_obj		ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯
+ *	@param	way			ãã„ã¤ãŒé€²ã‚€æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 static const MCR_MOVEOBJ* WcrMoveObjGetHitCheck( const WIFI_MATCHROOM* cp_mcr, const MCR_MOVEOBJ* cp_obj, WF2DMAP_WAY way )
@@ -1079,7 +1079,7 @@ static const MCR_MOVEOBJ* WcrMoveObjGetHitCheck( const WIFI_MATCHROOM* cp_mcr, c
 	cp_wk = WF2DMAP_OBJSysHitCheck( cp_obj->p_obj, cp_mcr->p_objsys, way );
 	
 	if( cp_wk != NULL ){
-		// ‚»‚ÌƒIƒuƒWƒF‚ğ‚Á‚Ä‚éƒIƒuƒWƒF‚ğ’T‚·
+		// ãã®ã‚ªãƒ–ã‚¸ã‚§ã‚’æŒã£ã¦ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚’æ¢ã™
 		for( i=0; i<MCR_MOVEOBJNUM; i++ ){
 			if( cp_mcr->moveObj[i].p_obj == cp_wk ){
 				return &cp_mcr->moveObj[i];
@@ -1092,10 +1092,10 @@ static const MCR_MOVEOBJ* WcrMoveObjGetHitCheck( const WIFI_MATCHROOM* cp_mcr, c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒf[ƒ^•\¦ƒVƒXƒeƒ€¶¬
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ç”Ÿæˆ
  *
- *	@param	p_mcr		ƒ[ƒN
- *	@param	heapID		g—pƒq[ƒvID
+ *	@param	p_mcr		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WcrObjDrawInit( WIFI_MATCHROOM* p_mcr, u32 hero_view, u32 heapID )
@@ -1112,8 +1112,8 @@ static void WcrObjDrawInit( WIFI_MATCHROOM* p_mcr, u32 hero_view, u32 heapID )
 	p_mcr->p_objdraw = WF2DMAP_OBJDrawSysInit_Shadow( p_mcr->clact.clactSet, NULL, MCR_MOVEOBJNUM, 
 			hero_view, WF_2DC_MOVERUN, NNS_G2D_VRAM_TYPE_2DMAIN, heapID );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì“o˜^
-	// UNIONƒLƒƒƒ‰ƒNƒ^
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²
+	// UNIONã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 	WF2DMAP_OBJDrawSysUniResSet( p_mcr->p_objdraw, WF_2DC_MOVETURN, heapID );	
 #endif
 
@@ -1122,9 +1122,9 @@ static void WcrObjDrawInit( WIFI_MATCHROOM* p_mcr, u32 hero_view, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒf[ƒ^•\¦ƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_mcr		ƒ[ƒN
+ *	@param	p_mcr		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrObjDrawExit( WIFI_MATCHROOM* p_mcr )
@@ -1134,11 +1134,11 @@ static void WcrObjDrawExit( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹•\¦ƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	p_mcr		ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
+ *	@param	p_mcr		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WcrScrnDrawInit( WIFI_MATCHROOM* p_mcr, u32 heapID, ARCHANDLE* p_handle, u32 map_no )
@@ -1157,7 +1157,7 @@ static void WcrScrnDrawInit( WIFI_MATCHROOM* p_mcr, u32 heapID, ARCHANDLE* p_han
 		FALSE
 	};
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğİ’è
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	init.dataid_scrn += map_no;
 
 	p_mcr->p_scrdraw = WF2DMAP_SCRDrawSysInit( 
@@ -1166,9 +1166,9 @@ static void WcrScrnDrawInit( WIFI_MATCHROOM* p_mcr, u32 heapID, ARCHANDLE* p_han
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒ[ƒ‹•\¦ƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_mcr		ƒ[ƒN
+ *	@param	p_mcr		ãƒ¯ãƒ¼ã‚¯
  */	
 //-----------------------------------------------------------------------------
 static void WcrScrnDrawExit( WIFI_MATCHROOM* p_mcr )
@@ -1178,94 +1178,94 @@ static void WcrScrnDrawExit( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[@‰Šú‰»
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€åˆæœŸåŒ–
  *
- *	@param	p_clact		ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
- *	@param	heapID		ƒq[ƒv
- *	@param	p_handle	ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+ *	@param	p_clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_handle	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WcrClactInit( MCR_CLACT* p_clact, u32 heapID, ARCHANDLE* p_handle )
 {
 	int i;
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 	p_clact->clactSet = CLACT_U_SetEasyInit( MCR_CLACT_OBJNUM, &p_clact->renddata, heapID );
     CLACT_U_SetSubSurfaceMatrix( &p_clact->renddata, 0, MCR_CLACTSUBSURFACE_Y );
 
-	// ƒLƒƒƒ‰‚ÆƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+	// ã‚­ãƒ£ãƒ©ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	for( i=0; i<MCR_CLACT_RESNUM; i++ ){
 		p_clact->resMan[i] = CLACT_U_ResManagerInit(MCR_CLACT_LOADRESNUM, i, heapID);
 	}
 
-	// l•¨ƒŠƒ\[ƒX“Ç‚İ‚İ‚ÆƒLƒƒƒ‰ƒNƒ^ƒpƒŒƒbƒg‚Ì“]‘—
-	// ƒGƒtƒFƒNƒgƒŠƒ\[ƒX“Ç‚İ‚İ‚ÆƒLƒƒƒ‰ƒNƒ^ƒpƒŒƒbƒg‚Ì“]‘—
+	// äººç‰©ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ã¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‘ãƒ¬ãƒƒãƒˆã®è»¢é€
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ã¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‘ãƒ¬ãƒƒãƒˆã®è»¢é€
 	WcrClactResLoad( p_clact, heapID, p_handle );
 
-	// ƒAƒNƒ^[‚Ì“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç™»éŒ²
 	WcrClactAdd( p_clact, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *	
- *	@param	p_clact		ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
+ *	@param	p_clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrClactDest( MCR_CLACT* p_clact )
 {
 	int i;
 
-	// ƒAƒNƒ^[‚Ì”jŠü
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç ´æ£„
 	WcrClactDel( p_clact );
 	
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	WcrClactResRelease( p_clact );
 	
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	for( i=0; i<MCR_CLACT_RESNUM; i++ ){
 		CLACT_U_ResManagerDelete( p_clact->resMan[i] );
 	}
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet( p_clact->clactSet );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨AƒGƒtƒFƒNƒg‚ÌƒŠƒ\[ƒX“Ç‚İ‚İ•“]‘—
+ *	@brief	äººç‰©ã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ï¼†è»¢é€
  *
- *	@param	p_clact		ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
- *	@param	p_handle	ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+ *	@param	p_clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	p_handle	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WcrClactResLoad( MCR_CLACT* p_clact, u32 heapID, ARCHANDLE* p_handle )
 {
-	//@ƒGƒtƒFƒNƒgƒŠƒ\[ƒX“Ç‚İ
+	//ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚½ãƒ¼ã‚¹èª­è¾¼ã¿
 	WcrClactResEffectLoad( p_clact, heapID, p_handle );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_clact		ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
+ *	@param	p_clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrClactResRelease( MCR_CLACT* p_clact )
 {
-	// ƒGƒtƒFƒNƒgƒŠƒ\[ƒX”jŠü
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	WcrClactResEffectRelease( p_clact );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN“o˜^
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ç™»éŒ²
  *
- *	@param	p_clact		ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WcrClactAdd( MCR_CLACT* p_clact, u32 heapID )
@@ -1275,9 +1275,9 @@ static void WcrClactAdd( MCR_CLACT* p_clact, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *	
- *	@param	p_clact		ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^ƒ[ƒN
+ *	@param	p_clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrClactDel( MCR_CLACT* p_clact )
@@ -1287,10 +1287,10 @@ static void WcrClactDel( MCR_CLACT* p_clact )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒRƒ“ƒgƒ[ƒ‹İ’è
+ *	@brief	BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
  *
  *	@param	p_bgl	BGL
- *	@param	heapID	g—pƒq[ƒv
+ *	@param	heapID	ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WcrBgContInit( GF_BGL_INI* p_bgl, u32 heapID )
@@ -1299,7 +1299,7 @@ static void WcrBgContInit( GF_BGL_INI* p_bgl, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	g—p‚µ‚½BGCONT‚ğ”jŠü‚·‚é
+ *	@brief	ä½¿ç”¨ã—ãŸBGCONTã‚’ç ´æ£„ã™ã‚‹
  *
  *	@param	p_bgl	BGL
  */
@@ -1310,26 +1310,26 @@ static void WcrBgContDest( GF_BGL_INI* p_bgl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG‚ğİ’è
+ *	@brief	BGã‚’è¨­å®š
  *
  *	@param	p_bgl		BGL
- *	@param	heapID		ƒq[ƒv
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WcrBgSet( GF_BGL_INI* p_bgl, u32 heapID, ARCHANDLE* p_handle )
 {
-	// ƒpƒŒƒbƒg“]‘—
-	// g—p‚µ‚Ä‚æ‚¢ƒpƒŒƒbƒg‚ÍMAX@8
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
+	// ä½¿ç”¨ã—ã¦ã‚ˆã„ãƒ‘ãƒ¬ãƒƒãƒˆã¯MAXã€€8
 	ArcUtil_HDL_PalSet( p_handle, NARC_wifip2pmatch_wf_match_top_room_NCLR, PALTYPE_MAIN_BG, 0, 8*32, heapID );	
-	// ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒJƒ‰[‚Í•Ï‚¦‚È‚¢
+	// ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚«ãƒ©ãƒ¼ã¯å¤‰ãˆãªã„
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0 );
 	
-    // ƒƒCƒ“‰æ–ÊBG2ƒLƒƒƒ‰“]‘—
+    // ãƒ¡ã‚¤ãƒ³ç”»é¢BG2ã‚­ãƒ£ãƒ©è»¢é€
     ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_wf_match_top_room_NCGR, p_bgl,
                        GF_BGL_FRAME0_M, 0, 0, 0, heapID);
 /*
-    // ƒƒCƒ“‰æ–ÊBG2ƒXƒNƒŠ[ƒ““]‘—
+    // ãƒ¡ã‚¤ãƒ³ç”»é¢BG2ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
     ArcUtil_HDL_ScrnSet(   p_handle, NARC_wifip2pmatch_wf_match_top_room_1_NSCR+map_no, p_bgl,
                        GF_BGL_FRAME0_M, 0, 0, 0, heapID);
 //*/
@@ -1337,11 +1337,11 @@ static void WcrBgSet( GF_BGL_INI* p_bgl, u32 heapID, ARCHANDLE* p_handle )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒtƒFƒNƒg‚ÌƒŠƒ\[ƒX“Ç‚İ
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹èª­è¾¼ã¿
  *
- *	@param	p_clact		ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
- *	@param	heapID		ƒq[ƒv
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
+ *	@param	p_clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WcrClactResEffectLoad( MCR_CLACT* p_clact, u32 heapID, ARCHANDLE* p_handle )
@@ -1368,17 +1368,17 @@ static void WcrClactResEffectLoad( MCR_CLACT* p_clact, u32 heapID, ARCHANDLE* p_
 				p_handle, NARC_wifip2pmatch_wf_match_top_room_obj_NANR,
 				FALSE, MCR_EFFECTRES_CONTID, CLACT_U_CELLANM_RES, heapID );
 
-	// Vram“]‘—
+	// Vramè»¢é€
 	result = CLACT_U_CharManagerSetAreaCont( p_clact->effect.resobj[0] );
 	GF_ASSERT( result == TRUE );
 	result = CLACT_U_PlttManagerSetCleanArea( p_clact->effect.resobj[1] );
 	GF_ASSERT( result == TRUE );
 	
-	// ƒƒ‚ƒŠ‚©‚çƒŠƒ\[ƒX‚ğ”jŠü
+	// ãƒ¡ãƒ¢ãƒªã‹ã‚‰ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_clact->effect.resobj[0] );
 	CLACT_U_ResManagerResOnlyDelete( p_clact->effect.resobj[1] );
 
-	// ƒwƒbƒ_[ì¬
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &p_clact->effect.header, 
 			 MCR_EFFECTRES_CONTID, MCR_EFFECTRES_CONTID, 
 			 MCR_EFFECTRES_CONTID, MCR_EFFECTRES_CONTID,
@@ -1391,9 +1391,9 @@ static void WcrClactResEffectLoad( MCR_CLACT* p_clact, u32 heapID, ARCHANDLE* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒtƒFƒNƒg‚ÌƒŠƒ\[ƒX”jŠü
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_clact		ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
+ *	@param	p_clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrClactResEffectRelease( MCR_CLACT* p_clact )
@@ -1410,17 +1410,17 @@ static void WcrClactResEffectRelease( MCR_CLACT* p_clact )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒtƒFƒNƒgƒAƒNƒ^[“o˜^
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_clact		ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WcrClactResEffectAdd( MCR_CLACT* p_clact, u32 heapID )
 {
 	CLACT_ADD add;
 
-	// ‚OƒNƒŠƒA
+	// ï¼ã‚¯ãƒªã‚¢
 	memset( &add, 0, sizeof(CLACT_ADD) );
 	
 	add.ClActSet = p_clact->clactSet;
@@ -1434,22 +1434,22 @@ static void WcrClactResEffectAdd( MCR_CLACT* p_clact, u32 heapID )
 	p_clact->effect.exit_cursor = CLACT_Add( &add );
 	p_clact->effect.obj_waku = CLACT_Add( &add );
 
-	// •\¦OFF
+	// è¡¨ç¤ºOFF
 	CLACT_SetDrawFlag( p_clact->effect.exit_cursor, FALSE );
 	CLACT_SetDrawFlag( p_clact->effect.obj_waku, FALSE );
 
-	// ƒJ[ƒ\ƒ‹‚ÍƒI[ƒgƒAƒjƒ
+	// ã‚«ãƒ¼ã‚½ãƒ«ã¯ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡
 	CLACT_SetAnmFlag( p_clact->effect.exit_cursor, TRUE );
 
-	// ˜g‚ÍƒAƒjƒ‚P
+	// æ ã¯ã‚¢ãƒ‹ãƒ¡ï¼‘
 	CLACT_AnmChg( p_clact->effect.obj_waku, 1 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒtƒFƒNƒg”jŠü
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç ´æ£„
  *
- *	@param	p_clact		ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^ƒ[ƒN
+ *	@param	p_clact		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrClactResEffectDel( MCR_CLACT* p_clact )
@@ -1460,9 +1460,9 @@ static void WcrClactResEffectDel( MCR_CLACT* p_clact )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	oŒû•`‰æON
+ *	@brief	å‡ºå£æç”»ON
  *
- *	@param	p_mcr		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_mcr		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrClactResEffectExitDrawOn( WIFI_MATCHROOM* p_mcr )
@@ -1470,7 +1470,7 @@ static void WcrClactResEffectExitDrawOn( WIFI_MATCHROOM* p_mcr )
 	MCR_MOVEOBJ_ONPOS pos;
 	VecFx32 mat;
 	
-	// oŒûÀ•W‚ğæ“¾ •â³‚µ‚ÄƒAƒNƒ^[‚Éİ’è
+	// å‡ºå£åº§æ¨™ã‚’å–å¾— è£œæ­£ã—ã¦ã‚¢ã‚¯ã‚¿ãƒ¼ã«è¨­å®š
 	WcrMapGetPlayerSetPos( p_mcr, &pos );
 
 	pos.x += MCR_EFFECTRES_OFS_X;
@@ -1480,15 +1480,15 @@ static void WcrClactResEffectExitDrawOn( WIFI_MATCHROOM* p_mcr )
 	CLACT_SetMatrix( p_mcr->clact.effect.exit_cursor, &mat );
 	
 	
-	// ‚»‚ÌÀ•W‚Å•\¦ON
+	// ãã®åº§æ¨™ã§è¡¨ç¤ºON
 	CLACT_SetDrawFlag( p_mcr->clact.effect.exit_cursor, TRUE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	oŒû•`‰æOFF
+ *	@brief	å‡ºå£æç”»OFF
  *
- *	@param	p_mcr		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_mcr		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrClactResEffectExitDrawOff( WIFI_MATCHROOM* p_mcr )
@@ -1498,11 +1498,11 @@ static void WcrClactResEffectExitDrawOff( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ON
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ON
  *
- *	@param	p_mcr		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	pos			ƒJ[ƒ\ƒ‹À•W
- *	@param	pri			•\¦—Dæ‡ˆÊ
+ *	@param	p_mcr		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	pos			ã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™
+ *	@param	pri			è¡¨ç¤ºå„ªå…ˆé †ä½
  */	
 //-----------------------------------------------------------------------------
 static void WcrClactResEffectCursorDrawOn( WIFI_MATCHROOM* p_mcr, WF2DMAP_POS pos, u32 pri )
@@ -1517,13 +1517,13 @@ static void WcrClactResEffectCursorDrawOn( WIFI_MATCHROOM* p_mcr, WF2DMAP_POS po
 
 	CLACT_DrawPriorityChg( p_mcr->clact.effect.obj_waku, pri );
 	
-	// ‚»‚ÌÀ•W‚Å•\¦ON
+	// ãã®åº§æ¨™ã§è¡¨ç¤ºON
 	CLACT_SetDrawFlag( p_mcr->clact.effect.obj_waku, TRUE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹OFF
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«OFF
  *
  *	@param	p_mcr 
  */
@@ -1537,12 +1537,12 @@ static void WcrClactResEffectCursorDrawOff( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	oŒûƒ`ƒFƒbƒN‚Ì—L–³
+ *	@brief	å‡ºå£ãƒã‚§ãƒƒã‚¯ã®æœ‰ç„¡
  *
- *	@param	p_mcr	ƒ[ƒN
+ *	@param	p_mcr	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	oŒû‚É‚Ì‚Á‚½
- *	@retval	FALSE	oŒû‚É‚Ì‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	å‡ºå£ã«ã®ã£ãŸ
+ *	@retval	FALSE	å‡ºå£ã«ã®ã£ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WcrExitCheck( WIFI_MATCHROOM* p_mcr )
@@ -1551,21 +1551,21 @@ static BOOL WcrExitCheck( WIFI_MATCHROOM* p_mcr )
 	u32 map_param;
 	WF2DMAP_WAY	way;
 	
-	// ålŒö‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ä¸»äººå…¬ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_mcr->p_player == NULL ){
 		return FALSE;
 	}
 
-	// À•W‚ğæ“¾
+	// åº§æ¨™ã‚’å–å¾—
 	pos = WF2DMAP_OBJWkMatrixGet( p_mcr->p_player->p_obj );
 
-	// •ûŒü‚ğæ“¾
+	// æ–¹å‘ã‚’å–å¾—
 	way = WF2DMAP_OBJWkDataGet( p_mcr->p_player->p_obj, WF2DMAP_OBJPM_WAY );
 
-	// ‘«Œ³‚Ìƒ}ƒbƒvƒf[ƒ^æ“¾
+	// è¶³å…ƒã®ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å–å¾—
 	map_param = WF2DMAP_MAPSysParamGet( p_mcr->p_mapsys, WF2DMAP_POS2GRID(pos.x), WF2DMAP_POS2GRID(pos.y) );
 
-	// oŒû‚Ìã‚Å‰º‚ğŒü‚¢‚Ä‚¢‚½‚çI—¹
+	// å‡ºå£ã®ä¸Šã§ä¸‹ã‚’å‘ã„ã¦ã„ãŸã‚‰çµ‚äº†
 	if( (map_param == MCR_MAPPM_EXIT) && (way == WF2DMAP_WAY_DOWN) ){
 		return TRUE;
 	}
@@ -1576,11 +1576,11 @@ static BOOL WcrExitCheck( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPC“o˜^À•W‚ğæ“¾
+ *	@brief	NPCç™»éŒ²åº§æ¨™ã‚’å–å¾—
  *
- *	@param	p_mcr		ƒ[ƒN
- *	@param	p_pos		À•Wİ’èæ
- *	@param	friendNo	ƒtƒŒƒ“ƒhƒiƒ“ƒo[
+ *	@param	p_mcr		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_pos		åº§æ¨™è¨­å®šå…ˆ
+ *	@param	friendNo	ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void WcrMapGetNpcSetPos( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ_ONPOS* p_pos, u32 friendNo )
@@ -1598,15 +1598,15 @@ static void WcrMapGetNpcSetPos( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ_ONPOS* p_pos,
 	map_grid_x = WF2DMAP_MAPSysGridXGet( p_mcr->p_mapsys );
 	map_grid_y = WF2DMAP_MAPSysGridYGet( p_mcr->p_mapsys );
 	
-	// block_num‚Ìblock_idx‚Ìƒ}ƒbƒvˆÊ’u‚ğæ“¾‚·‚é
+	// block_numã®block_idxã®ãƒãƒƒãƒ—ä½ç½®ã‚’å–å¾—ã™ã‚‹
 	for( i=0; i<map_grid_y; i++ ){
 		for( j=0; j<map_grid_x; j++ ){
 			param = WF2DMAP_MAPSysParamGet( p_mcr->p_mapsys, j, i );
 			if( param == MCR_MAPPM_OBJ00+block_idx ){
-				// ‚»‚Ì‰º‚ÉƒuƒƒbƒNNo‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚Åƒ`ƒFƒbƒN
+				// ãã®ä¸‹ã«ãƒ–ãƒ­ãƒƒã‚¯NoãŒå…¥ã£ã¦ã„ã‚‹ã®ã§ãƒã‚§ãƒƒã‚¯
 				block_no = WF2DMAP_MAPSysParamGet( p_mcr->p_mapsys, j, i+1 );
 				if( block_no == block_num+MCR_MAPPM_MAP00 ){
-					// ‚İ‚Â‚©‚Á‚½I
+					// ã¿ã¤ã‹ã£ãŸï¼
 					p_pos->x =  WF2DMAP_GRID2POS( j );
 					p_pos->y =  WF2DMAP_GRID2POS( i );
 					return ;
@@ -1615,16 +1615,16 @@ static void WcrMapGetNpcSetPos( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ_ONPOS* p_pos,
 		}
 	}
 
-	// ‚È‚©‚½‚Á‚½
+	// ãªã‹ãŸã£ãŸ
 	GF_ASSERT_MSG( 0, "frinedno=%d\n", friendNo );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[“o˜^À•W‚ğæ“¾
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç™»éŒ²åº§æ¨™ã‚’å–å¾—
  *	
- *	@param	p_mcr	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_pos	À•WŠi”[æ
+ *	@param	p_mcr	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_pos	åº§æ¨™æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static void WcrMapGetPlayerSetPos( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ_ONPOS* p_pos )
@@ -1636,20 +1636,20 @@ static void WcrMapGetPlayerSetPos( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ_ONPOS* p_p
 	map_grid_x = WF2DMAP_MAPSysGridXGet( p_mcr->p_mapsys );
 	map_grid_y = WF2DMAP_MAPSysGridYGet( p_mcr->p_mapsys );
 	
-	// block_num‚Ìblock_idx‚Ìƒ}ƒbƒvˆÊ’u‚ğæ“¾‚·‚é
+	// block_numã®block_idxã®ãƒãƒƒãƒ—ä½ç½®ã‚’å–å¾—ã™ã‚‹
 	for( i=0; i<map_grid_y; i++ ){
 		for( j=0; j<map_grid_x; j++ ){
 			param = WF2DMAP_MAPSysParamGet( p_mcr->p_mapsys, j, i );
 #ifdef WFP2P_DEBUG_PLON_PC
 			if( param == MCR_MAPPM_PC ){
-				// ‚İ‚Â‚©‚Á‚½I
+				// ã¿ã¤ã‹ã£ãŸï¼
 				p_pos->x =  WF2DMAP_GRID2POS( j );
 				p_pos->y =  WF2DMAP_GRID2POS( i+1 );
 				return ;
 			}
 #else
 			if( param == MCR_MAPPM_EXIT ){
-				// ‚İ‚Â‚©‚Á‚½I
+				// ã¿ã¤ã‹ã£ãŸï¼
 				p_pos->x =  WF2DMAP_GRID2POS( j );
 				p_pos->y =  WF2DMAP_GRID2POS( i );
 				return ;
@@ -1658,18 +1658,18 @@ static void WcrMapGetPlayerSetPos( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ_ONPOS* p_p
 		}
 	}
 
-	// ‚È‚©‚½‚Á‚½
+	// ãªã‹ãŸã£ãŸ
 	GF_ASSERT(0);
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹ó‚¢‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚ğæ“¾
+ *	@brief	ç©ºã„ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
  *
- *	@param	p_mcr	ƒ[ƒN
+ *	@param	p_mcr	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	‹ó‚¢‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg
+ *	@retval	ç©ºã„ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static MCR_MOVEOBJ* WcrMoveObj_GetClean( WIFI_MATCHROOM* p_mcr )
@@ -1688,48 +1688,48 @@ static MCR_MOVEOBJ* WcrMoveObj_GetClean( WIFI_MATCHROOM* p_mcr )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒZƒbƒgƒAƒbƒv
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- *	@param	p_mcr		ƒ[ƒN
- *	@param	p_obj		“®ìƒIƒuƒWƒFƒNƒg
- *	@param	hero		ålŒö‚©‚Ç‚¤‚©
+ *	@param	p_mcr		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj		å‹•ä½œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	hero		ä¸»äººå…¬ã‹ã©ã†ã‹
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObj_SetUpGraphic( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj, BOOL hero )
 {
-	// •\¦ƒf[ƒ^‚Ì“o˜^
+	// è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²
 	p_obj->p_draw = WF2DMAP_OBJDrawWkNew( p_mcr->p_objdraw, p_obj->p_obj, hero, p_mcr->use_heap );
 
 	if( hero == FALSE ){
-		// ‚Ü‚¸XV’â~
+		// ã¾ãšæ›´æ–°åœæ­¢
 		WF2DMAP_OBJDrawWkUpdataFlagSet( p_obj->p_draw, FALSE );
 
-		// ‚­‚é‚­‚éƒAƒjƒƒXƒ^[ƒg
+		// ãã‚‹ãã‚‹ã‚¢ãƒ‹ãƒ¡ã‚¹ã‚¿ãƒ¼ãƒˆ
 		WF2DMAP_OBJDrawWkKuruAnimeStart( p_obj->p_draw );
 
-		// OBJ•\¦OFF
+		// OBJè¡¨ç¤ºOFF
 		WF2DMAP_OBJDrawWkDrawFlagSet( p_obj->p_draw, FALSE );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒIƒuƒWƒF‚Ì“®ì•”•ª‚Ì‰Šú‰»
+ *	@brief	å‹•ä½œã‚ªãƒ–ã‚¸ã‚§ã®å‹•ä½œéƒ¨åˆ†ã®åˆæœŸåŒ–
  *
- *	@param	p_mcr		ƒ[ƒN
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	cp_pos		“o˜^ƒ|ƒWƒVƒ‡ƒ“
- *	@param	friendNo	—F’Bƒiƒ“ƒo[
- *	@param	charid		ƒLƒƒƒ‰ƒNƒ^ID
- *	@param	way			‰Šú“®ì•ûŒü
- *	@param	status		‰Šúó‘Ô
+ *	@param	p_mcr		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_pos		ç™»éŒ²ãƒã‚¸ã‚·ãƒ§ãƒ³
+ *	@param	friendNo	å‹é”ãƒŠãƒ³ãƒãƒ¼
+ *	@param	charid		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+ *	@param	way			åˆæœŸå‹•ä½œæ–¹å‘
+ *	@param	status		åˆæœŸçŠ¶æ…‹
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObj_SetUpMove( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj, const MCR_MOVEOBJ_ONPOS* cp_pos, u32 friendNo, u16 charaid, u8 way, WF2DMAP_OBJST status )
 {
 	WF2DMAP_OBJDATA add;
 
-	// ƒIƒuƒWƒFƒNƒg‰Šú‰»
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
 	add.x = cp_pos->x;
 	add.y = cp_pos->y;
 	add.playid = friendNo;
@@ -1741,27 +1741,27 @@ static void WcrMoveObj_SetUpMove( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj, con
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚Ìl‚É¡˜b‚µ‚©‚¯‚Ä‘åä•v‚©ƒ`ƒFƒbƒN
+ *	@brief	ãã®äººã«ä»Šè©±ã—ã‹ã‘ã¦å¤§ä¸ˆå¤«ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_obj	ƒ[ƒN
+ *	@param	cp_obj	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‘åä•v
- *	@retval	FALSE	‚¾‚ß
+ *	@retval	TRUE	å¤§ä¸ˆå¤«
+ *	@retval	FALSE	ã ã‚
  */
 //-----------------------------------------------------------------------------
 static BOOL WcrMoveObj_CheckAccess( const MCR_MOVEOBJ* cp_obj )
 {
 	switch( cp_obj->move_st ){
 	// OK
-	case MCR_MOVEOBJ_ST_PL_KEYWAIT:		// ƒvƒŒƒCƒ„[’Êí“®ì
-	case MCR_MOVEOBJ_ST_NPC:				// NPC“®ì
-	case MCR_MOVEOBJ_ST_NPC_JUMP:		// NPC•åW’†
+	case MCR_MOVEOBJ_ST_PL_KEYWAIT:		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼é€šå¸¸å‹•ä½œ
+	case MCR_MOVEOBJ_ST_NPC:				// NPCå‹•ä½œ
+	case MCR_MOVEOBJ_ST_NPC_JUMP:		// NPCå‹Ÿé›†ä¸­
 		return TRUE;
 		
 	// NG
-	case MCR_MOVEOBJ_ST_KURUKURU:		// —‚¿‚éˆ—
-	case MCR_MOVEOBJ_ST_KURUKURU_DEL:	// ã‚éˆ—
-	case MCR_MOVEOBJ_ST_NPC_PAUSE:		// NPC“®ì’â~
+	case MCR_MOVEOBJ_ST_KURUKURU:		// è½ã¡ã‚‹å‡¦ç†
+	case MCR_MOVEOBJ_ST_KURUKURU_DEL:	// ä¸Šã‚‹å‡¦ç†
+	case MCR_MOVEOBJ_ST_NPC_PAUSE:		// NPCå‹•ä½œåœæ­¢
 		return FALSE;
 		
 	default:
@@ -1772,9 +1772,9 @@ static BOOL WcrMoveObj_CheckAccess( const MCR_MOVEOBJ* cp_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[“®ìŠJn
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‹•ä½œé–‹å§‹
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObj_SetMoveFuncPlayer( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
@@ -1784,15 +1784,15 @@ static void WcrMoveObj_SetMoveFuncPlayer( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_
 
 	p_obj->move_st	= MCR_MOVEOBJ_ST_PL_KEYWAIT;
 
-	// ó‘Ô‚ğ’Êí‚É–ß‚·
+	// çŠ¶æ…‹ã‚’é€šå¸¸ã«æˆ»ã™
 	WcrMoveObj_ReqCmdSetEasy( p_mcr, WF2DMAP_OBJST_NONE, p_obj );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚­‚é‚­‚é‰Šú‰»İ’è
+ *	@brief	ãã‚‹ãã‚‹åˆæœŸåŒ–è¨­å®š
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObj_SetMoveFuncKuruKuruInit( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
@@ -1806,9 +1806,9 @@ static void WcrMoveObj_SetMoveFuncKuruKuruInit( WIFI_MATCHROOM* p_mcr, MCR_MOVEO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPC“®ìİ’è
+ *	@brief	NPCå‹•ä½œè¨­å®š
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObj_SetMoveFuncNpc( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
@@ -1819,19 +1819,19 @@ static void WcrMoveObj_SetMoveFuncNpc( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj
 
 	p_obj->move_st	= MCR_MOVEOBJ_ST_NPC;
 
-	// ó‘Ô‚ğ’Êí‚É–ß‚·
+	// çŠ¶æ…‹ã‚’é€šå¸¸ã«æˆ»ã™
 	WcrMoveObj_ReqCmdSetEasy( p_mcr, WF2DMAP_OBJST_NONE, p_obj );
 
-	// •`‰æXV—LŒø
+	// æç”»æ›´æ–°æœ‰åŠ¹
 	WF2DMAP_OBJDrawWkUpdataFlagSet( p_obj->p_draw, TRUE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPCƒWƒƒƒ“ƒv“®ìİ’è
+ *	@brief	NPCã‚¸ãƒ£ãƒ³ãƒ—å‹•ä½œè¨­å®š
  *
- *	@param	p_mcr	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	p_mcr	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObj_SetMoveFuncNpcJump( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
@@ -1843,18 +1843,18 @@ static void WcrMoveObj_SetMoveFuncNpcJump( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p
 	p_obj->move_st	= MCR_MOVEOBJ_ST_NPC_JUMP;
 
 
-	// ó‘Ô‚ğ’Êí‚É–ß‚·
+	// çŠ¶æ…‹ã‚’é€šå¸¸ã«æˆ»ã™
 	WcrMoveObj_ReqCmdSetEasy( p_mcr, WF2DMAP_OBJST_BUSY, p_obj );
 
-	// •`‰æXV–³Œø
+	// æç”»æ›´æ–°ç„¡åŠ¹
 	WF2DMAP_OBJDrawWkUpdataFlagSet( p_obj->p_draw, FALSE );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ûŒü‚Ì‹t‚ğæ“¾
+ *	@brief	æ–¹å‘ã®é€†ã‚’å–å¾—
  *		
- *	@param	way		•ûŒü
+ *	@param	way		æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 static u32 WcrMoveObj_GetRetWay( u32 way )
@@ -1870,7 +1870,7 @@ static u32 WcrMoveObj_GetRetWay( u32 way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æŠÖ”ƒfƒtƒHƒ‹ƒg
+ *	@brief	æç”»é–¢æ•°ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObj_DrawFuncDefault( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
@@ -1879,9 +1879,9 @@ static void WcrMoveObj_DrawFuncDefault( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_ob
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚­‚é‚­‚é
+ *	@brief	ãã‚‹ãã‚‹
  *
- *	@param	p_obj ƒ[ƒN
+ *	@param	p_obj ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObj_DrawFuncKuruKuru( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
@@ -1890,25 +1890,25 @@ static void WcrMoveObj_DrawFuncKuruKuru( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_o
 
 	WF2DMAP_OBJDrawWkKuruAnimeMain( p_obj->p_draw );
 
-	// ”ñ•\¦‚È‚ç•\¦‚É‚·‚é
+	// éè¡¨ç¤ºãªã‚‰è¡¨ç¤ºã«ã™ã‚‹
 	if( WF2DMAP_OBJDrawWkDrawFlagGet( p_obj->p_draw ) == FALSE ){
 		WF2DMAP_OBJDrawWkDrawFlagSet( p_obj->p_draw, TRUE );
 	}
 
-	// ˆÊ’u‚ğã‚©‚ç—‚Æ‚µ‚Ä‚­‚é
+	// ä½ç½®ã‚’ä¸Šã‹ã‚‰è½ã¨ã—ã¦ãã‚‹
 	mat.x = WF2DMAP_OBJWkDataGet( p_obj->p_obj, WF2DMAP_OBJPM_X );
 	mat.y = WF2DMAP_OBJWkDataGet( p_obj->p_obj, WF2DMAP_OBJPM_Y );
 	shadow_mat = mat;
 	mat.y += FX_Mul( _Sin360( p_obj->move_count ), MCR_MOVEOBJ_KURU_DIST*FX32_ONE ) >> FX32_SHIFT;
 	WF2DMAP_OBJDrawWkMatrixSet( p_obj->p_draw, mat );
 
-	// ‰A‚Í’n–Ê‚ÌˆÊ’u‚Éo‚µ‚Á‚Ï‚È‚µ
+	// é™°ã¯åœ°é¢ã®ä½ç½®ã«å‡ºã—ã£ã±ãªã—
 	WF2DMAP_OBJDrawWkShadowMatrixSet( p_obj->p_draw, shadow_mat );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒƒƒ“ƒv•`‰æ
+ *	@brief	ã‚¸ãƒ£ãƒ³ãƒ—æç”»
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObj_DrawFuncNpcJump( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
@@ -1921,42 +1921,42 @@ static void WcrMoveObj_DrawFuncNpcJump( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_ob
 	mat.y = WF2DMAP_OBJWkDataGet( p_obj->p_obj, WF2DMAP_OBJPM_Y );
 	shadow_mat = mat;
 
-	// ƒJƒEƒ“ƒg’læ“¾
+	// ã‚«ã‚¦ãƒ³ãƒˆå€¤å–å¾—
 	count = p_obj->move_count - MCR_MOVEOBJ_NPC_JUMP_WAITCOUNT;
 
-	// count > 0@‚¾‚ÆƒWƒƒƒ“ƒv’†	‚»‚êˆÈŠO‚ÍŸ‚ÌƒWƒƒƒ“ƒv‚Ü‚Å‚ÌƒEƒGƒCƒg
+	// count > 0ã€€ã ã¨ã‚¸ãƒ£ãƒ³ãƒ—ä¸­	ãã‚Œä»¥å¤–ã¯æ¬¡ã®ã‚¸ãƒ£ãƒ³ãƒ—ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
 	if( count > 0 ){
 
 		count = count % MCR_MOVEOBJ_NPC_JUMP_EFFCOUNT;
 
-		// SINƒJ[ƒu‚ÌŠp“x‚ğæ“¾
+		// SINã‚«ãƒ¼ãƒ–ã®è§’åº¦ã‚’å–å¾—
 		r = (MCR_MOVEOBJ_NPC_JUMP_RMAX*count) / MCR_MOVEOBJ_NPC_JUMP_EFFCOUNT;
 
-		// ƒWƒƒƒ“ƒv
+		// ã‚¸ãƒ£ãƒ³ãƒ—
 		mat.y -= FX_Mul( Sin360(r), MCR_MOVEOBJ_NPC_JUMP_DIS*FX32_ONE ) >> FX32_SHIFT;
 	}
 
 	WF2DMAP_OBJDrawWkMatrixSet( p_obj->p_draw, mat );
 
-	// ‰A‚Í’n–Ê‚ÌˆÊ’u‚Éo‚µ‚Á‚Ï‚È‚µ
+	// é™°ã¯åœ°é¢ã®ä½ç½®ã«å‡ºã—ã£ã±ãªã—
 	WF2DMAP_OBJDrawWkShadowMatrixSet( p_obj->p_draw, shadow_mat );
 
-	// ‰º‚ğŒü‚©‚¹‚é
+	// ä¸‹ã‚’å‘ã‹ã›ã‚‹
 	WF2DMAP_OBJDrawWkWaySet( p_obj->p_draw, WF2DMAP_WAY_DOWN );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìŠÖ”
+ *	@brief	å‹•ä½œé–¢æ•°
  *
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	’Êí
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€šå¸¸
  */
 //-----------------------------------------------------------------------------
-// ålŒö—p
+// ä¸»äººå…¬ç”¨
 static BOOL WcrMoveObj_MoveFuncPlayerKeyWait( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
 {
 	s32 way;
@@ -1968,14 +1968,14 @@ static BOOL WcrMoveObj_MoveFuncPlayerKeyWait( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ
 	way = WF2DMAP_OBJWkDataGet( p_obj->p_obj, WF2DMAP_OBJPM_WAY );
 	playid = WF2DMAP_OBJWkDataGet( p_obj->p_obj, WF2DMAP_OBJPM_PLID );
 
-	// ‘Ò‹@ó‘Ô‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+	// å¾…æ©ŸçŠ¶æ…‹ã§ãªã‘ã‚Œã°ãªã‚‰ãªã„
 	status = WF2DMAP_OBJWkDataGet( p_obj->p_obj, WF2DMAP_OBJPM_ST );
 	if( status != WF2DMAP_OBJST_NONE ){
 		return FALSE;
 	}
 
 
-	// ƒLƒƒƒ‰ƒNƒ^‚ğ“ü‚ê‘Ö‚¦‚éƒfƒoƒbƒN‹@”\ 
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’å…¥ã‚Œæ›¿ãˆã‚‹ãƒ‡ãƒãƒƒã‚¯æ©Ÿèƒ½ 
 #ifdef MCR_DEBUG_2CCHAR_CHECK
 	if( sys.trg & PAD_BUTTON_START ){
 		static const u16 sc_DEBUG_VIEW_TBL[] = {
@@ -2113,19 +2113,19 @@ static BOOL WcrMoveObj_MoveFuncPlayerKeyWait( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ
 	}
 #endif
 
-	// ‘I‘ğŠÖŒW
+	// é¸æŠé–¢ä¿‚
 	if( sys.trg & PAD_BUTTON_DECIDE ){
 
-		// –Ú‚Ì‘O‚Él‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+		// ç›®ã®å‰ã«äººãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		cp_wk = WcrMoveObjGetHitCheck( p_mcr, p_obj, way );
 		
 		if( cp_wk != NULL ){
-			// ‚»‚Ìl‚Í–Z‚µ‚­‚È‚¢‚©ƒ`ƒFƒbƒN
+			// ãã®äººã¯å¿™ã—ããªã„ã‹ãƒã‚§ãƒƒã‚¯
 			if( WcrMoveObj_CheckAccess( cp_wk ) == TRUE ){
-				// ‚»‚ÌfriendNO‚ğİ’è
+				// ãã®friendNOã‚’è¨­å®š
 				p_obj->accesFriend = WF2DMAP_OBJWkDataGet( cp_wk->p_obj, WF2DMAP_OBJPM_PLID );
 			}else{
-				// ’ÊMƒoƒO602‘Îˆ	tomoya
+				// é€šä¿¡ãƒã‚°602å¯¾å‡¦	tomoya
 				p_obj->accesFriend = 0;
 			}
 		}else{
@@ -2133,19 +2133,19 @@ static BOOL WcrMoveObj_MoveFuncPlayerKeyWait( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ
 		}
 	}
 
-	// ˆÚ“®’â~ó‘Ô‚©ƒ`ƒFƒbƒN
+	// ç§»å‹•åœæ­¢çŠ¶æ…‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_mcr->player_pause == TRUE ){	
 		return FALSE;
 	}
 
-	// •à‚­‚©‘–‚é‚©
+	// æ­©ãã‹èµ°ã‚‹ã‹
 	if( sys.cont & PAD_BUTTON_B ){
 		cmd = WF2DMAP_OBJST_RUN;
 	}else{
 		cmd = WF2DMAP_OBJST_WALK;
 	}
 	
-	// ˆÚ“®ŠÖŒW
+	// ç§»å‹•é–¢ä¿‚
 	if( sys.cont & PAD_KEY_UP ){
 		if( way == MCR_MOVEOBJ_WAY_TOP ){
 			WcrMoveObj_ReqCmdSet( p_mcr, cmd, way, playid );
@@ -2175,7 +2175,7 @@ static BOOL WcrMoveObj_MoveFuncPlayerKeyWait( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ
 	return FALSE;
 }
 
-// ‚­‚é‚­‚é
+// ãã‚‹ãã‚‹
 static BOOL WcrMoveObj_MoveFuncKuruKuru( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
 {
 	s32 way;
@@ -2184,19 +2184,19 @@ static BOOL WcrMoveObj_MoveFuncKuruKuru( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_o
 	p_obj->move_count --;
 	if( p_obj->move_count <= 0 ){
 
-		// ‚­‚é‚­‚éƒAƒjƒI—¹
+		// ãã‚‹ãã‚‹ã‚¢ãƒ‹ãƒ¡çµ‚äº†
 		WF2DMAP_OBJDrawWkKuruAnimeEnd( p_obj->p_draw );
 
-		// ƒAƒbƒvƒf[ƒgŠJn
+		// ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆé–‹å§‹
 		WF2DMAP_OBJDrawWkUpdataFlagSet( p_obj->p_draw, TRUE );
 
 		playid = WF2DMAP_OBJWkDataGet( p_mcr->p_player->p_obj, WF2DMAP_OBJPM_PLID );
 		myplayid = WF2DMAP_OBJWkDataGet( p_obj->p_obj, WF2DMAP_OBJPM_PLID );
 		
-		// ‰Šú‰»Š®—¹
+		// åˆæœŸåŒ–å®Œäº†
 		if( myplayid == playid ){
 
-			// ƒvƒŒƒCƒ„[
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 			WcrMoveObj_SetMoveFuncPlayer( p_mcr, p_obj );
 		}else{
 			// NPC
@@ -2215,7 +2215,7 @@ static BOOL WcrMoveObj_MoveFuncKuruKuruDel( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* 
 	return FALSE;
 }
 
-// NPC“®ì
+// NPCå‹•ä½œ
 static BOOL WcrMoveObj_MoveFuncNpc( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
 {
 	u32 way;
@@ -2226,18 +2226,18 @@ static BOOL WcrMoveObj_MoveFuncNpc( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
 
 		p_obj->move_count = MCR_MOVEOBJ_NPC_RAND_S + (gf_mtRand() % MCR_MOVEOBJ_NPC_RAND_M);
 	
-		// ƒ‰ƒ“ƒ_ƒ€‚Å•ûŒü‚ğ•Ï‚¦‚é
+		// ãƒ©ãƒ³ãƒ€ãƒ ã§æ–¹å‘ã‚’å¤‰ãˆã‚‹
 		way = gf_mtRand() % MCR_MOVEOBJ_WAY_NUM;
 			
-		// ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhİ’è
-		// ‚»‚Ì•ûŒü‚É•ÏX
+		// ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒãƒ³ãƒ‰è¨­å®š
+		// ãã®æ–¹å‘ã«å¤‰æ›´
 		playid = WF2DMAP_OBJWkDataGet( p_obj->p_obj, WF2DMAP_OBJPM_PLID );
 		WcrMoveObj_ReqCmdSet( p_mcr, WF2DMAP_CMD_NONE, way, playid );
 	}
 	return FALSE;
 }
 
-// NPC“®ì@ƒWƒƒƒ“ƒv
+// NPCå‹•ä½œã€€ã‚¸ãƒ£ãƒ³ãƒ—
 static BOOL WcrMoveObj_MoveFuncNpcJump( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
 {
 	p_obj->move_count --;
@@ -2247,7 +2247,7 @@ static BOOL WcrMoveObj_MoveFuncNpcJump( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_ob
 	return FALSE;
 }
 
-// NPC“®ì’â~
+// NPCå‹•ä½œåœæ­¢
 static BOOL WcrMoveObj_MoveFuncNpcPause( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj )
 {
 	return FALSE;
@@ -2255,12 +2255,12 @@ static BOOL WcrMoveObj_MoveFuncNpcPause( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_o
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh‚ğİ’è‚·‚é
+ *	@brief	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒãƒ³ãƒ‰ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_mcr		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cmd			ƒRƒ}ƒ“ƒh
- *	@param	way			•ûŒü
- *	@param	playid		ƒvƒŒƒCƒ„[ID
+ *	@param	p_mcr		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cmd			ã‚³ãƒãƒ³ãƒ‰
+ *	@param	way			æ–¹å‘
+ *	@param	playid		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObj_ReqCmdSet( WIFI_MATCHROOM* p_mcr, s32 cmd, s32 way, s32 playid )
@@ -2275,11 +2275,11 @@ static void WcrMoveObj_ReqCmdSet( WIFI_MATCHROOM* p_mcr, s32 cmd, s32 way, s32 p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÈˆÕƒRƒ}ƒ“ƒhİ’è
+ *	@brief	ç°¡æ˜“ã‚³ãƒãƒ³ãƒ‰è¨­å®š
  *
- *	@param	p_mcr	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cmd		İ’èƒRƒ}ƒ“ƒh
- *	@param	cp_obj	İ’èƒIƒuƒWƒFƒNƒg
+ *	@param	p_mcr	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cmd		è¨­å®šã‚³ãƒãƒ³ãƒ‰
+ *	@param	cp_obj	è¨­å®šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObj_ReqCmdSetEasy( WIFI_MATCHROOM* p_mcr, s32 cmd, const MCR_MOVEOBJ* cp_obj )
@@ -2295,17 +2295,17 @@ static void WcrMoveObj_ReqCmdSetEasy( WIFI_MATCHROOM* p_mcr, s32 cmd, const MCR_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPC‚Ì“®ìƒ^ƒCƒv‚ğ•ÏX‚µ‚Ä‚à‘åä•v‚©ƒ`ƒFƒbƒN
+ *	@brief	NPCã®å‹•ä½œã‚¿ã‚¤ãƒ—ã‚’å¤‰æ›´ã—ã¦ã‚‚å¤§ä¸ˆå¤«ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	cp_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“®ìİ’è@OK
- *	@retval	FALSE	“®ì•ÏX@NG
+ *	@retval	TRUE	å‹•ä½œè¨­å®šã€€OK
+ *	@retval	FALSE	å‹•ä½œå¤‰æ›´ã€€NG
  */
 //-----------------------------------------------------------------------------
 static BOOL WcrMoveObj_MoveSetOkCheck( const MCR_MOVEOBJ* cp_obj )
 {
-	// ‚­‚é‚­‚é•`‰æ’†‚Í‚¾‚ß
+	// ãã‚‹ãã‚‹æç”»ä¸­ã¯ã ã‚
 	if( (u32)cp_obj->pDraw == (u32)WcrMoveObj_DrawFuncKuruKuru ){
 		return FALSE;
 	}
@@ -2314,15 +2314,15 @@ static BOOL WcrMoveObj_MoveSetOkCheck( const MCR_MOVEOBJ* cp_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìİ’è
+ *	@brief	å‹•ä½œè¨­å®š
  *
- *	@param	p_obj		ƒIƒuƒWƒFƒNƒgƒ[ƒN
- *	@param	moveID		“®ìƒ^ƒCƒv
+ *	@param	p_obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	moveID		å‹•ä½œã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WcrMoveObj_MoveSet( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj, MCR_NPC_MOVETYPE moveID )
 {	
-	// •`‰æŠÖ”‚ğ•ÏX
+	// æç”»é–¢æ•°ã‚’å¤‰æ›´
 	switch( moveID ){
 	case MCR_NPC_MOVE_NORMAL:
 		WcrMoveObj_SetMoveFuncNpc( p_mcr, p_obj );
@@ -2333,7 +2333,7 @@ static void WcrMoveObj_MoveSet( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj, MCR_N
 		break;
 
 	default:
-		// ‚»‚ñ‚È‚à‚ñ‚È‚¢
+		// ãã‚“ãªã‚‚ã‚“ãªã„
 		GF_ASSERT( 0 );
 		break;
 	}
@@ -2342,23 +2342,23 @@ static void WcrMoveObj_MoveSet( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ* p_obj, MCR_N
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	PCƒAƒjƒƒVƒXƒeƒ€@‰Šú‰»
+ *	@brief	PCã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ ã€€åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_handle	ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WcrPCANM_Init( WIFI_MATCHROOM* p_sys, MCR_PCANM* p_wk, ARCHANDLE* p_handle )
 {
-	// ƒ[ƒN‚ÌƒNƒŠƒA
+	// ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢
 	memset( p_wk, 0, sizeof(MCR_PCANM) );
 	
-	// ƒŠƒ\[ƒX“Ç‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­è¾¼ã¿
 	p_wk->p_plbuff = ArcUtil_HDL_PalDataGet( p_handle, 
 			NARC_wifip2pmatch_wf_match_top_room_pc_NCLR, &p_wk->p_pltt, p_sys->use_heap );
 
-	// ‘SPCƒAƒjƒŠJn
+	// å…¨PCã‚¢ãƒ‹ãƒ¡é–‹å§‹
 	p_wk->all_pcbitmap = (1<<0) | (1<<1) | (1<<2) | (1<<3);
 	p_wk->all_seq = MCR_PCANM_ALL_SEQ_OFF;
 	p_wk->all_count = AllAnmData[p_wk->all_seq];
@@ -2366,41 +2366,41 @@ static void WcrPCANM_Init( WIFI_MATCHROOM* p_sys, MCR_PCANM* p_wk, ARCHANDLE* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	PCƒAƒjƒƒVƒXƒeƒ€@”jŠü
+ *	@brief	PCã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ ã€€ç ´æ£„
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrPCANM_Delete( WIFI_MATCHROOM* p_sys, MCR_PCANM* p_wk )
 {
-	// ƒ[ƒN‚Ì”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ã®ç ´æ£„
 	sys_FreeMemoryEz( p_wk->p_plbuff );
 	memset( p_wk, 0, sizeof(MCR_PCANM) );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	PCƒAƒjƒ@ƒƒCƒ“
+ *	@brief	PCã‚¢ãƒ‹ãƒ¡ã€€ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrPCANM_Main( WIFI_MATCHROOM* p_sys, MCR_PCANM* p_wk )
 {
-	// ‘Ò‹@ƒAƒjƒƒƒCƒ“
+	// å¾…æ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
 	WcrPCANM_AllMain( p_wk );	
 
-	// g—p’†ƒAƒjƒƒƒCƒ“
+	// ä½¿ç”¨ä¸­ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
 	WcrPCANM_UseMain( p_wk );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘Ò‹@ƒAƒjƒƒƒCƒ“
+ *	@brief	å¾…æ©Ÿã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrPCANM_AllMain( MCR_PCANM* p_wk )
@@ -2408,13 +2408,13 @@ static void WcrPCANM_AllMain( MCR_PCANM* p_wk )
 	int i;
 	u32 on_off;
 
-	// ‘Ò‹@ƒAƒjƒ
+	// å¾…æ©Ÿã‚¢ãƒ‹ãƒ¡
 	p_wk->all_count --;
 	if( p_wk->all_count <= 0 ){
 		p_wk->all_seq = (p_wk->all_seq + 1) % MCR_PCANM_ALL_SEQ_NUM;
 		p_wk->all_count = AllAnmData[p_wk->all_seq];
 
-		// ƒpƒŒƒbƒg“]‘—
+		// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		if( p_wk->all_seq == MCR_PCANM_ALL_SEQ_ON ){
 			on_off = MCR_PCANM_COL_WAIT;
 		}else{
@@ -2425,7 +2425,7 @@ static void WcrPCANM_AllMain( MCR_PCANM* p_wk )
 				AddVramTransferManager( NNS_GFD_DST_2D_BG_PLTT_MAIN, 
 						MCR_PCANM_DESTPL(i), WcrPCANM_GetAnmSrc(p_wk, on_off ), 2 );
 
-//				TOMOYA_PRINT( "“]‘—ˆ— %d dest[0x%x] src[0x%x] \n", on_off, MCR_PCANM_DESTPL(i), WcrPCANM_GetAnmSrc(p_wk, on_off ) );
+//				TOMOYA_PRINT( "è»¢é€å‡¦ç† %d dest[0x%x] src[0x%x] \n", on_off, MCR_PCANM_DESTPL(i), WcrPCANM_GetAnmSrc(p_wk, on_off ) );
 			}
 		}
 	}
@@ -2433,9 +2433,9 @@ static void WcrPCANM_AllMain( MCR_PCANM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	g—p’†ƒAƒjƒƒƒCƒ“
+ *	@brief	ä½¿ç”¨ä¸­ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrPCANM_UseMain( MCR_PCANM* p_wk )
@@ -2445,62 +2445,62 @@ static void WcrPCANM_UseMain( MCR_PCANM* p_wk )
 	BOOL next = FALSE;
 
 
-	// Šî–{“I‚É‚ÍAnmData‚ÌƒJƒEƒ“ƒg•ªi‚Ş‚ÆŸ‚ÌƒAƒjƒƒf[ƒ^‚Éi‚ñ‚Å‚¢‚«‚Ü‚·B
-	// ƒJƒEƒ“ƒg‚ª–³‚¢ƒf[ƒ^‚Ì‚ÍAuse_pc_nextƒtƒ‰ƒO‚ªİ’è‚³‚ê‚½‚çŸ‚Éi‚İ‚Ü‚·B
-	// ƒpƒŒƒbƒg‚Ì“]‘—‚ÍAnmData‚Ìtransƒƒ“ƒo‚Ætrans_flagƒƒ“ƒo‚ğŒ©‚ÄŒˆ‚ß‚Ü‚·
+	// åŸºæœ¬çš„ã«ã¯AnmDataã®ã‚«ã‚¦ãƒ³ãƒˆåˆ†é€²ã‚€ã¨æ¬¡ã®ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã«é€²ã‚“ã§ã„ãã¾ã™ã€‚
+	// ã‚«ã‚¦ãƒ³ãƒˆãŒç„¡ã„ãƒ‡ãƒ¼ã‚¿ã®æ™‚ã¯ã€use_pc_nextãƒ•ãƒ©ã‚°ãŒè¨­å®šã•ã‚ŒãŸã‚‰æ¬¡ã«é€²ã¿ã¾ã™ã€‚
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã®è»¢é€ã¯AnmDataã®transãƒ¡ãƒ³ãƒã¨trans_flagãƒ¡ãƒ³ãƒã‚’è¦‹ã¦æ±ºã‚ã¾ã™
 
-	// ƒJƒEƒ“ƒgƒVƒXƒeƒ€
+	// ã‚«ã‚¦ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 	if( AnmData[ p_wk->use_pc_seq ].flag == TRUE ){
 		p_wk->use_pc_count --;
 		if( p_wk->use_pc_count <= 0 ){
 			next = TRUE;
 		}
 	}else{
-		// Ÿ‚Éi‚Şƒtƒ‰ƒO‚ª‘«‚Á‚Ä‚¢‚½‚çŸ‚Ö
+		// æ¬¡ã«é€²ã‚€ãƒ•ãƒ©ã‚°ãŒè¶³ã£ã¦ã„ãŸã‚‰æ¬¡ã¸
 		if( p_wk->use_pc_next ){
 			p_wk->use_pc_next = FALSE;
 			next = TRUE;
 		}
 	}
 
-	// Ÿ‚ÌƒV[ƒPƒ“ƒX‚Ö
+	// æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 	if( next ){
 		p_wk->use_pc_seq ++;
 
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( p_wk->use_pc_seq >= MCR_PCANM_USE_SEQ_NUM ){
 			WcrPCANM_UseAnmEnd( p_wk );
 			return ;
 		}
 
-		// ƒJƒEƒ“ƒg”‚È‚Çİ’è
+		// ã‚«ã‚¦ãƒ³ãƒˆæ•°ãªã©è¨­å®š
 		p_wk->use_pc_count = AnmData[ p_wk->use_pc_seq ].count_num;
 		trans = AnmData[ p_wk->use_pc_seq ].trans;
 		on_off = AnmData[ p_wk->use_pc_seq ].trans_flag;
 	}
 	
 
-	// “]‘—ˆ—
+	// è»¢é€å‡¦ç†
 	if( trans ){
 		AddVramTransferManager( NNS_GFD_DST_2D_BG_PLTT_MAIN, 
 				MCR_PCANM_DESTPL(p_wk->use_pc), WcrPCANM_GetAnmSrc(p_wk, on_off ), 2 );
-//		TOMOYA_PRINT( "“]‘—ˆ— %d dest[0x%x] src[0x%x] \n", on_off, MCR_PCANM_DESTPL(p_wk->use_pc), WcrPCANM_GetAnmSrc(p_wk, on_off ) );
+//		TOMOYA_PRINT( "è»¢é€å‡¦ç† %d dest[0x%x] src[0x%x] \n", on_off, MCR_PCANM_DESTPL(p_wk->use_pc), WcrPCANM_GetAnmSrc(p_wk, on_off ) );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ğæ“¾‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	on_off		TRUEFON		FALSEFOFF
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	on_off		TRUEï¼šON		FALSEï¼šOFF
  */
 //-----------------------------------------------------------------------------
 static void* WcrPCANM_GetAnmSrc( MCR_PCANM* p_wk, u32 on_off )
 {
 	u16* p_data;
 
-	// ƒf[ƒ^æ“¾
+	// ãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_data = (u16*)p_wk->p_pltt->pRawData;
 
 	return &p_data[ on_off+MCR_PCANM_BGPLTTOFS ];
@@ -2508,14 +2508,14 @@ static void* WcrPCANM_GetAnmSrc( MCR_PCANM* p_wk, u32 on_off )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	g—p’†ƒAƒjƒƒNƒŠ[ƒ“
+ *	@brief	ä½¿ç”¨ä¸­ã‚¢ãƒ‹ãƒ¡ã‚¯ãƒªãƒ¼ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrPCANM_UseAnmEnd( MCR_PCANM* p_wk )
 {
-	// ‘Ò‹@ƒAƒjƒ‚É‡—¬‚³‚¹‚é
+	// å¾…æ©Ÿã‚¢ãƒ‹ãƒ¡ã«åˆæµã•ã›ã‚‹
 	p_wk->all_pcbitmap |= 1<<p_wk->use_pc;
 	
 	p_wk->use_pc = 0;
@@ -2526,9 +2526,9 @@ static void WcrPCANM_UseAnmEnd( MCR_PCANM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	g—p’†ƒAƒjƒ‚ğŸ‚Éi‚ß‚éˆ—
+ *	@brief	ä½¿ç”¨ä¸­ã‚¢ãƒ‹ãƒ¡ã‚’æ¬¡ã«é€²ã‚ã‚‹å‡¦ç†
  *
- *	@param	p_wk ƒ[ƒN
+ *	@param	p_wk ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrPCANM_UseAnmNext( MCR_PCANM* p_wk )
@@ -2538,21 +2538,21 @@ static void WcrPCANM_UseAnmNext( MCR_PCANM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	PCƒAƒjƒŠJn
+ *	@brief	PCã‚¢ãƒ‹ãƒ¡é–‹å§‹
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	pc_no	ƒpƒŒƒbƒgNO
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	pc_no	ãƒ‘ãƒ¬ãƒƒãƒˆNO
  */
 //-----------------------------------------------------------------------------
 static void WcrPCANM_UseStart( MCR_PCANM* p_wk, u8 pc_no )
 {
-	// ¡“r’†‚Ì‚à‚Ì‚ª‚ ‚é‚©
+	// ä»Šé€”ä¸­ã®ã‚‚ã®ãŒã‚ã‚‹ã‹
 	if( p_wk->use_pc_seq != MCR_PCANM_USE_SEQ_NONE ){
-		// ¡Às’†‚Ì‚à‚Ì‚ğI‚í‚ç‚¹‚é
+		// ä»Šå®Ÿè¡Œä¸­ã®ã‚‚ã®ã‚’çµ‚ã‚ã‚‰ã›ã‚‹
 		WcrPCANM_UseAnmEnd( p_wk );
 	}
 
-	// ŠJn
+	// é–‹å§‹
 	p_wk->all_pcbitmap ^= 1<<pc_no;
 	p_wk->use_pc = pc_no;
 	WcrPCANM_UseAnmNext( p_wk );
@@ -2562,9 +2562,9 @@ static void WcrPCANM_UseStart( MCR_PCANM* p_wk, u8 pc_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	PCƒAƒjƒI—¹
+ *	@brief	PCã‚¢ãƒ‹ãƒ¡çµ‚äº†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WcrPCANM_UseEndReq( MCR_PCANM* p_wk )

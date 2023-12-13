@@ -32,7 +32,7 @@ static GXOamAttr       defaultOam_ = { 193, 193, 193 };
 
 
 //------------------------------------------------------------------------------
-// �e��o�^�֐� �� �Ó����������܂�
+// 各種登録関数 が 妥当か調査します
 static NNS_G2D_INLINE BOOL IsOamEntryFuncsValid_
 ( 
     const NNSG2dOamManagerInstanceEx*  pMan,
@@ -43,10 +43,10 @@ static NNS_G2D_INLINE BOOL IsOamEntryFuncsValid_
                                ( pF->getOamCapacity       != NULL ) &&    
                                ( pF->entryNewOam          != NULL ) );
                       
-    // �A�t�B���p�����[�^���Ǘ�����ꍇ�ɂ�...         
+    // アフィンパラメータを管理する場合には...         
     if( pMan->pAffineBuffer != NULL || pMan->lengthAffineBuffer != 0 )
     {
-        // �֘A����R�[���o�b�N���������ݒ肳��Ă���K�v������܂��B
+        // 関連するコールバックが正しく設定されている必要があります。
         return (BOOL)( bValid &&
                       ( pF->getAffineCapacity    != NULL ) &&
                       ( pF->entryNewAffine       != NULL ) );
@@ -57,8 +57,8 @@ static NNS_G2D_INLINE BOOL IsOamEntryFuncsValid_
 }
 
 //------------------------------------------------------------------------------
-// ���L NNSG2dOamChunk ���� �V���� NNSG2dOamChunk �� �擾���܂��B
-// ���L NNSG2dOamChunk �� ���������� ���[�U���ݒ肵�܂��B
+// 共有 NNSG2dOamChunk から 新しい NNSG2dOamChunk を 取得します。
+// 共有 NNSG2dOamChunk は 初期化時に ユーザが設定します。
 //
 static NNS_G2D_INLINE NNSG2dOamChunk* GetNewOamChunk_( NNSG2dOamManagerInstanceEx* pMan, const GXOamAttr* pOam )
 {
@@ -81,7 +81,7 @@ static NNS_G2D_INLINE NNSG2dOamChunk* GetNewOamChunk_( NNSG2dOamManagerInstanceE
 }
 
 //------------------------------------------------------------------------------
-// NNSG2dOamChunk �� NNSG2dOamChunkList �̐擪�ɉ����܂�
+// NNSG2dOamChunk を NNSG2dOamChunkList の先頭に加えます
 static NNS_G2D_INLINE void AddFront_( NNSG2dOamChunkList* pOamList, NNSG2dOamChunk* pChunk )
 {
     pChunk->pNext       = pOamList->pChunks;
@@ -91,28 +91,28 @@ static NNS_G2D_INLINE void AddFront_( NNSG2dOamChunkList* pOamList, NNSG2dOamChu
 }
 
 //------------------------------------------------------------------------------
-// NNSG2dOamChunk �� NNSG2dOamChunkList �̏I�[�ɉ����܂�
+// NNSG2dOamChunk を NNSG2dOamChunkList の終端に加えます
 static NNS_G2D_INLINE void AddBack_( NNSG2dOamChunkList* pOamList, NNSG2dOamChunk* pChunk )
 {
     pChunk->pNext               = NULL;
     
     if( pOamList->pLastChunk != NULL )
     {
-        // ����ȍ~
+        // 初回以降
         pOamList->pLastChunk->pNext = pChunk;
     }else{
-        // ����
+        // 初回
         pOamList->pChunks    = pChunk;
     }
     
-    // ���X�g�I�[�̍X�V
+    // リスト終端の更新
     pOamList->pLastChunk = pChunk;
     
     pOamList->numChunks++;
 }
 
 //------------------------------------------------------------------------------
-// ���ʃ��W���[����Oam��o�^���܂�
+// 下位モジュールにOamを登録します
 static NNS_G2D_INLINE void EntryOamToToBaseModule_( NNSG2dOamManagerInstanceEx* pMan, const GXOamAttr* pOam, u16 totalOam )
 {
     (void)(*pMan->oamEntryFuncs.entryNewOam)( pOam, totalOam );
@@ -120,21 +120,21 @@ static NNS_G2D_INLINE void EntryOamToToBaseModule_( NNSG2dOamManagerInstanceEx* 
 
 
 //------------------------------------------------------------------------------
-// affineProxy �� �Ó������肵�܂�
+// affineProxy が 妥当か判定します
 static NNS_G2D_INLINE BOOL IsAffineProxyValid_( NNSG2dOamManagerInstanceEx* pMan )
 {
     return ( pMan->pAffineBuffer != NULL && pMan->lengthAffineBuffer != 0 ) ? 
         TRUE : FALSE;
 }
 //------------------------------------------------------------------------------
-// �V�K�o�^�ɏ\���ȗe�ʂ��c���Ă��邩�������܂��B
+// 新規登録に十分な容量が残っているか調査します。
 static NNS_G2D_INLINE BOOL HasEnoughCapacity_( NNSG2dOamManagerInstanceEx* pMan )
 {
     NNS_G2D_NULL_ASSERT( pMan );
     return ( pMan->numAffineBufferUsed < pMan->lengthAffineBuffer ) ? TRUE : FALSE;
 }
 //------------------------------------------------------------------------------
-// affineProxyIdx => affineHWIndex �ւ̕ϊ������܂�
+// affineProxyIdx => affineHWIndex への変換をします
 static NNS_G2D_INLINE u16 ConvertAffineIndex_( NNSG2dOamManagerInstanceEx* pMan, u16 affineProxyIdx )
 {
     NNS_G2D_ASSERT( IsAffineProxyValid_( pMan ) );
@@ -144,14 +144,14 @@ static NNS_G2D_INLINE u16 ConvertAffineIndex_( NNSG2dOamManagerInstanceEx* pMan,
 }
 
 //------------------------------------------------------------------------------
-// NNSG2dOamChunkList ���� ���ׂĂ� NNSG2dOamChunk �� �Q�� affine �p�����[�^ �f�[�^
-// �� ���ۂ� HW�ɐݒ肳�ꂽ �f�[�^�ɕύX����
+// NNSG2dOamChunkList 中の すべての NNSG2dOamChunk の 参照 affine パラメータ データ
+// を 実際に HWに設定された データに変更する
 //
-// �A�t�B���ϊ����ꂽOAM�̕`�揇�ƒʏ��OAM�̕`�揇�����ꂳ��܂����B
-// �]���́A�A�t�B���ϊ����ꂽOAM�͓o�^���Ƃ͋t�̏��Ԃŕ`�悳��Ă��܂����B
+// アフィン変換されたOAMの描画順と通常のOAMの描画順が統一されました。
+// 従来は、アフィン変換されたOAMは登録順とは逆の順番で描画されていました。
 // 
-// �Ȃ��ANNS_G2D_OAMEX_USE_OLD_REINDEXOAMCHUNKLIST_ ���`���ă��C�u������
-// �ăr���h���邱�ƂŁA�ߋ��̎����Ɠ����U�镑���ɖ߂����Ƃ��\�ł��B
+// なお、NNS_G2D_OAMEX_USE_OLD_REINDEXOAMCHUNKLIST_ を定義してライブラリを
+// 再ビルドすることで、過去の実装と同じ振る舞いに戻すことが可能です。
 //
 //#define NNS_G2D_OAMEX_USE_OLD_REINDEXOAMCHUNKLIST_ 1
 
@@ -163,7 +163,7 @@ static NNS_G2D_INLINE void ReindexOamChunkList_
 {
 #ifdef NNS_G2D_OAMEX_USE_OLD_REINDEXOAMCHUNKLIST_
     //
-    // �ߋ��̎���
+    // 過去の実装
     //
     NNS_G2D_NULL_ASSERT( pMan );
     NNS_G2D_NULL_ASSERT( pChunkList );
@@ -172,12 +172,12 @@ static NNS_G2D_INLINE void ReindexOamChunkList_
         NNSG2dOamChunk*    pNextChunk = NULL;
         
         //
-        // ���X�g�I�[�܂�...
+        // リスト終端まで...
         //
         while( pChunk != NULL )
         {
             //
-            // �C���f�b�N�X�� AffineProxyIndex����A���ۂ�HW Index�� �ϊ�����
+            // インデックスを AffineProxyIndexから、実際のHW Indexに 変換する
             //
             const u16 index = ConvertAffineIndex_( pMan, pChunk->affineProxyIdx );
             
@@ -185,16 +185,16 @@ static NNS_G2D_INLINE void ReindexOamChunkList_
             
             pNextChunk = pChunk->pNext;
             
-            // �C���f�b�N�X���L���Ȓl�Ȃ��...
+            // インデックスが有効な値ならば...
             if( index != NNS_G2D_OAMEX_HW_ID_NOT_INIT )
             {
-                // OAM �� Index �� �t���ւ���
+                // OAM の Index を 付け替える
                 // G2_SetOBJEffect( &pChunk->oam, NNS_G2dGetOamManExDoubleAffineFlag( pMan ), index );
                 pChunk->oam.rsParam = index;
                 
                 //
-                // �ʏ�� OamChunkList�Ɉړ�����
-                // �ʏ�� OamChunkList�ɓo�^���Ƃ͋t���ɓo�^����Ă������ƂɂȂ�܂�
+                // 通常の OamChunkListに移動する
+                // 通常の OamChunkListに登録順とは逆順に登録されていくことになります
                 //
                 AddFront_( pChunkList, pChunk );
             }
@@ -203,7 +203,7 @@ static NNS_G2D_INLINE void ReindexOamChunkList_
     }
 #else // NNS_G2D_OAMEX_USE_OLD_REINDEXOAMCHUNKLIST_
     //
-    // ���݂̎���
+    // 現在の実装
     //
     NNS_G2D_NULL_ASSERT( pMan );
     NNS_G2D_NULL_ASSERT( pChunkList );
@@ -215,51 +215,51 @@ static NNS_G2D_INLINE void ReindexOamChunkList_
         
         
         //
-        // �A�t�B���ϊ����ꂽOAM���X�g�I�[�܂�...
+        // アフィン変換されたOAMリスト終端まで...
         //
         while( pChunk != NULL )
         {
             //
-            // �C���f�b�N�X�� AffineProxyIndex����A���ۂ�HW Index�� �ϊ�����
+            // インデックスを AffineProxyIndexから、実際のHW Indexに 変換する
             //
             const u16 index = ConvertAffineIndex_( pMan, pChunk->affineProxyIdx );
             
-            // �C���f�b�N�X���L���Ȓl�Ȃ��...
+            // インデックスが有効な値ならば...
             if( index != NNS_G2D_OAMEX_HW_ID_NOT_INIT )
             {
-                // �i�L���ȁj�A�t�B���ϊ����ꂽOAM���X�g�̐擪���L�����Ă���
+                // （有効な）アフィン変換されたOAMリストの先頭を記憶しておく
                 if( pHeadChunk == NULL )
                 {
                     pHeadChunk = pChunk;
                 }
                 
                 //
-                // OAM �� Index �� �t���ւ���
+                // OAM の Index を 付け替える
                 //
                 pChunk->oam.rsParam = index;
                 
                 
-                // ���̃`�����N��
+                // 次のチャンクへ
                 pPrevChunk = pChunk;
                 pChunk     = pChunk->pNext;
                 numAffinedOam++;
                 
             }else{
-                // ���X�g�����菜��
+                // リストから取り除く
                 if( pPrevChunk != NULL )
                 {
                     pPrevChunk->pNext = pChunk->pNext;
                 }
                 pMan->numUsedOam--;
-                // ���̃`�����N��
+                // 次のチャンクへ
                 pChunk     = pChunk->pNext;
             }
         }
         
         //
-        // pPrevChunk->pNext => �A�t�B���ϊ����ꂽOAM�̃��X�g�I�[
-        // �A�t�B���ϊ����ꂽOAM�̃��X�g���܂Ƃ߂āA�ʏ�̃`�����N���X�g�̐擪�ɑ}�����܂�
-        // �A�t�B���ϊ����ꂽOAM�̃��X�g���ł̏��Ԃ̕ύX�͂�����܂���
+        // pPrevChunk->pNext => アフィン変換されたOAMのリスト終端
+        // アフィン変換されたOAMのリストをまとめて、通常のチャンクリストの先頭に挿入します
+        // アフィン変換されたOAMのリスト内での順番の変更はおこりません
         // 
         if( numAffinedOam != 0 ) 
         {
@@ -273,11 +273,11 @@ static NNS_G2D_INLINE void ReindexOamChunkList_
 }
 
 //------------------------------------------------------------------------------
-// affine �ϊ����ꂽ NNSG2dOamChunk �� �`��\�Ȃ悤�ɏ������܂��B
+// affine 変換された NNSG2dOamChunk を 描画可能なように処理します。
 //
-// affine �ϊ����ꂽ NNSG2dOamChunk �� �ʏ�� NNSG2dOamChunk �� �ʂ̃��X�g�Ɋi�[����Ă��܂��B 
-// NNSG2dOamChunk �� ����affineProxy�z�� �� Index��affine�p�����[�^���Q�Ƃ��Ă��邽�߁A
-// �ʏ�� affine�p�����[�^Index �ɒl������������K�v������܂��B
+// affine 変換された NNSG2dOamChunk は 通常の NNSG2dOamChunk と 別のリストに格納されています。 
+// NNSG2dOamChunk は 内部affineProxy配列 の Indexでaffineパラメータを参照しているため、
+// 通常の affineパラメータIndex に値を書き換える必要があります。
 // 
 // 
 static NNS_G2D_INLINE void ReindexAffinedOams_( NNSG2dOamManagerInstanceEx* pMan )
@@ -289,7 +289,7 @@ static NNS_G2D_INLINE void ReindexAffinedOams_( NNSG2dOamManagerInstanceEx* pMan
     {
        u16 i;
        //
-       // ���ׂĂ� NNSG2dOamChunkList �ɂ���...
+       // すべての NNSG2dOamChunkList について...
        //
        for( i = 0; i < pMan->lengthOfOrderingTbl; i++ )
        {
@@ -302,19 +302,19 @@ static NNS_G2D_INLINE void ReindexAffinedOams_( NNSG2dOamManagerInstanceEx* pMan
 
 
 //------------------------------------------------------------------------------
-// �w�肳�ꂽ �`��D��x�͓K�����������܂��B
-// pMan->lengthOfOrderingTbl �� �}�l�[�W������������ ���[�U�����R�ɐݒ肷��l�ł��B
+// 指定された 描画優先度は適当か調査します。
+// pMan->lengthOfOrderingTbl は マネージャ初期化時に ユーザが自由に設定する値です。
 static NNS_G2D_INLINE BOOL IsPriorityValid_( NNSG2dOamManagerInstanceEx* pMan, u8 priority )
 {
     return ( priority < pMan->lengthOfOrderingTbl ) ? TRUE : FALSE;
 }
 
 //------------------------------------------------------------------------------
-// NNSG2dOamChunkList �� AffineIndex���w�肵�� OAMAttribute ��o�^���܂�
+// NNSG2dOamChunkList に AffineIndexを指定して OAMAttribute を登録します
 //
-// �V���� NNSG2dOamChunk �� ��U Affine �ϊ����ꂽ NNSG2dOamChunk ��p�̃��X�g�Ɋi�[����܂��B
-// NNSG2dOamChunk ��p�̃��X�g�́AReindexAffinedOams_() �ō�Index��������A
-// �ʏ�� NNSG2dOamChunk ���X�g�ɑ}������܂�
+// 新しい NNSG2dOamChunk は 一旦 Affine 変換された NNSG2dOamChunk 専用のリストに格納されます。
+// NNSG2dOamChunk 専用のリストは、ReindexAffinedOams_() で再Index処理され、
+// 通常の NNSG2dOamChunk リストに挿入されます
 //
 static NNS_G2D_INLINE BOOL EntryNewOamWithAffine_
 ( 
@@ -329,14 +329,14 @@ static NNS_G2D_INLINE BOOL EntryNewOamWithAffine_
     if( pOamChunk != NULL )
     {
         //
-        // Affine�𗘗p���Ȃ�
+        // Affineを利用しない
         //
         if( affineIdx == NNS_G2D_OAM_AFFINE_IDX_NONE )
         {
            if( drawOrderType == NNSG2D_OAMEX_DRAWORDER_BACKWARD )
            {
                //
-               // �ʏ�� OamChunkList�Ɉړ�����
+               // 通常の OamChunkListに移動する
                //
                AddFront_( pOamList, pOamChunk );
            }else{
@@ -348,15 +348,15 @@ static NNS_G2D_INLINE BOOL EntryNewOamWithAffine_
             if( drawOrderType == NNSG2D_OAMEX_DRAWORDER_BACKWARD )
             {
                //
-               // ��U Affine ���X�g�ɂ��܂�
-               // �擪�ɉ�����
+               // 一旦 Affine リストにしまう
+               // 先頭に加える
                //
                pOamChunk->pNext            = pOamList->pAffinedChunks;
                pOamList->pAffinedChunks    = pOamChunk;
             }else{
                //
-               // ��U Affine ���X�g�ɂ��܂�
-               // �I�[�ɉ�����
+               // 一旦 Affine リストにしまう
+               // 終端に加える
                //
                pOamChunk->pNext = NULL;
                if( pOamList->pLastAffinedChunk != NULL )
@@ -377,7 +377,7 @@ static NNS_G2D_INLINE BOOL EntryNewOamWithAffine_
 
 
 //------------------------------------------------------------------------------
-// ���X�g�̃|�C���^�� num �������i�߂܂�
+// リストのポインタを num 分だけ進めます
 static NNS_G2D_INLINE NNSG2dOamChunk* AdvancePointer_( NNSG2dOamChunk* pChunk, u16 num )
 {
     NNS_G2D_NULL_ASSERT( pChunk );
@@ -392,8 +392,8 @@ static NNS_G2D_INLINE NNSG2dOamChunk* AdvancePointer_( NNSG2dOamChunk* pChunk, u
 }
 
 //------------------------------------------------------------------------------
-// OamChunkList �� �`�悷��
-// OamChunk �� ����̕`��D��x������ OamChunk ���Ƃɂ܂Ƃ܂��� OamChunkList ���`�����܂��B
+// OamChunkList を 描画する
+// OamChunk は 同一の描画優先度を持つ OamChunk ごとにまとまって OamChunkList を形成します。
 //
 static NNS_G2D_INLINE u16 DrawOamChunks_
 ( 
@@ -406,19 +406,19 @@ static NNS_G2D_INLINE u16 DrawOamChunks_
 )
 {
     //
-    // ���ׂĂ�OBJ��`�悵�I��邩�A�󂫗e�ʂ��Ȃ��Ȃ�܂�
+    // すべてのOBJを描画し終わるか、空き容量がなくなるまで
     // 
     while( numOam > 0 && (capacityOfHW - numTotalOamDrawn) > 0 )
     {
         //
-        // �l�̃R�s�[
+        // 値のコピー
         //
         EntryOamToToBaseModule_( pMan, &pChunk->oam, numTotalOamDrawn );
         
         
         pChunk = pChunk->pNext;
         // 
-        // ���X�g�I�[�ɓ��B�����ꍇ�̓��X�g�擪����ăX�^�[�g������
+        // リスト終端に到達した場合はリスト先頭から再スタートをする
         //
         if( pChunk == NULL )
         {
@@ -435,8 +435,8 @@ static NNS_G2D_INLINE u16 DrawOamChunks_
 
 
 //------------------------------------------------------------------------------
-// AffineProxy �� ���ʃ��W���[���ɔ��f���܂��B
-// �i�ʏ�A���ʃ��W���[�� �� ���f�� HW�ɓ`�d���܂��j
+// AffineProxy を 下位モジュールに反映します。
+// （通常、下位モジュール は 反映を HWに伝播します）
 static NNS_G2D_INLINE void LoadAffineProxyToBaseModule_( NNSG2dOamManagerInstanceEx* pMan )
 {
     NNS_G2D_NULL_ASSERT( pMan );
@@ -450,7 +450,7 @@ static NNS_G2D_INLINE void LoadAffineProxyToBaseModule_( NNSG2dOamManagerInstanc
            
        NNSG2dAffineParamProxy*   pAff = NULL;
        //
-       // �O�t���[���̑�������o�^����悤�ȏ�����_���Ă��܂�
+       // 前フレームの続きから登録するような処理を狙っています
        //
        while( ( count < numAffine ) && 
               ( count < capacity ) )
@@ -477,13 +477,13 @@ static NNS_G2D_INLINE void LoadAffineProxyToBaseModule_( NNSG2dOamManagerInstanc
 
 //------------------------------------------------------------------------------
 //
-// �`��o�^����͈͂��v�Z���܂�
+// 描画登録する範囲を計算します
 //
-// �菇�F
+// 手順：
 //
-// 1�D�܂����ׂẴ��X�g��`�悳��Ȃ����X�g�Ƃ��Đݒ肵�܂�
-// 2�D���X�g�𑖍����A�`��OAM�`�����N���J�E���g���Ȃ���A���X�g�ɕ`��̂��߂̏���ݒ肵�Ă����܂��B
-// 3�D�󂫗e�ʂ������Ȃ����A�������͂��ׂẴ`�����N���̒������I������珈�����I�����܂��B
+// 1．まずすべてのリストを描画されないリストとして設定します
+// 2．リストを走査し、描画OAMチャンクをカウントしながら、リストに描画のための情報を設定していきます。
+// 3．空き容量が無くなった、もしくはすべてのチャンクをの調査が終わったら処理を終了します。
 //
 static NNS_G2D_INLINE void 
 CalcDrawnListArea_( NNSG2dOamManagerInstanceEx* pMan )
@@ -497,7 +497,7 @@ CalcDrawnListArea_( NNSG2dOamManagerInstanceEx* pMan )
     
     
     //
-    // ���ׂẴ`�����N���X�g�ɂ��āA�`��t���O�����Z�b�g���܂�
+    // すべてのチャンクリストについて、描画フラグをリセットします
     //
     for( i = 0; i < pMan->lengthOfOrderingTbl; i++ )
     {
@@ -506,16 +506,16 @@ CalcDrawnListArea_( NNSG2dOamManagerInstanceEx* pMan )
     
     
     //
-    // �f�[�^�̑����́A�O�t���[���ŏI���������̈ʒu����X�^�[�g����
+    // データの走査は、前フレームで終了した次の位置からスタートする
     //
     i = (u16)(pMan->lastRenderedOrderingTblIdx);
     
     //
-    // ���ׂẴ`�����N���X�g�̃`�����N�����������܂�...
+    // すべてのチャンクリストのチャンクが調査されるまで...
     //
     while( numTotalOamDrawn < pMan->numUsedOam )
     {
-       // �I�[�_�����O�e�[�u���I�[�܂ŒB������e�[�u���擪�ɖ߂�B
+       // オーダリングテーブル終端まで達したらテーブル先頭に戻る。
        if( i >= pMan->lengthOfOrderingTbl )
        {
            i = 0;
@@ -523,21 +523,21 @@ CalcDrawnListArea_( NNSG2dOamManagerInstanceEx* pMan )
        
        pOamList   = &pMan->pOamOrderingTbl[i];
        //
-       // �`�����N���X�g�Ƀ`�����N���o�^����Ă����...
+       // チャンクリストにチャンクが登録されていれば...
        //
        if( pOamList->numChunks != 0 )
        {
            const u16 currentCapacity = (u16)(capacityOfHW - numTotalOamDrawn);
            
            //
-           // �`�悳���ׂ��`�����N���X�g�Ƃ��Đݒ肳��܂�
-           // �܂��A�Ō�ɕ`�悳�ꂽ�`�����N���X�g�ԍ����X�V���܂�
+           // 描画されるべきチャンクリストとして設定されます
+           // また、最後に描画されたチャンクリスト番号を更新します
            //
            pOamList->bDrawn                 = TRUE;
            pMan->lastRenderedOrderingTblIdx = i;
            
            //
-           // ���X�g���̃`�����N�����ׂēo�^���\�Ȃ�
+           // リスト中のチャンクがすべて登録が可能なら
            //
            if( pOamList->numChunks <= currentCapacity )
            {
@@ -545,23 +545,23 @@ CalcDrawnListArea_( NNSG2dOamManagerInstanceEx* pMan )
               pOamList->numDrawn          = pOamList->numChunks;   
               
            }else{
-              // �������X�g�I�[�܂ŕ`�悪���ꂽ�Ȃ�΁A���t���[���ł́A�{�`�����N���X�g�̎��̃��X�g����
-              // �`����s���Ă����B
+              // もしリスト終端まで描画がされたならば、次フレームでは、本チャンクリストの次のリストから
+              // 描画を行っていく。
               if( (pOamList->numDrawn + pOamList->numLastFrameDrawn) / pOamList->numChunks > 0 )
               {
                   pMan->lastRenderedOrderingTblIdx = (u16)(i+1);
               }
               
               //
-              // �O�t���[���ŕ`�悳�ꂽ�`�����N������A
-              // ���t���[���ŕ`��O�ɗ^����I�t�Z�b�g�����v�Z���܂�
+              // 前フレームで描画されたチャンク数から、
+              // 今フレームで描画前に与えるオフセット数を計算します
               //
               pOamList->numLastFrameDrawn = (u16)((pOamList->numDrawn + 
                                             pOamList->numLastFrameDrawn ) % pOamList->numChunks);
               
-              pOamList->numDrawn          = currentCapacity;// �`���邾���`��    
+              pOamList->numDrawn          = currentCapacity;// 描けるだけ描く    
               //
-              // �I��
+              // 終了
               //
               break;
            }
@@ -574,11 +574,11 @@ CalcDrawnListArea_( NNSG2dOamManagerInstanceEx* pMan )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dResetOamManExBuffer
 
-  Description:  �}�l�[�W�������Z�b�g���܂��B
+  Description:  マネージャをリセットします。
                                 
-  Arguments:    pMan        :   [OUT] �}�l�[�W������
+  Arguments:    pMan        :   [OUT] マネージャ実体
                 
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dResetOamManExBuffer( NNSG2dOamManagerInstanceEx* pOam )
@@ -604,22 +604,22 @@ void NNS_G2dResetOamManExBuffer( NNSG2dOamManagerInstanceEx* pOam )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetOamManExInstance
 
-  Description:  �}�l�[�W�����̂𐶐����܂��B
+  Description:  マネージャ実体を生成します。
 
 
                 
                 
                 
-  Arguments:    pOam                    [OUT] �g��OAM�}�l�[�W�� ���� 
-                pOamOrderingTbl         [IN]  �I�[�_�����O�e�[�u���̐擪�A�h���X 
-                lengthOfOrderingTbl     [IN]  �I�[�_�����O�e�[�u���̒��� 
-                numPooledOam            [IN]  OBJChunk�̌� 
-                pPooledOam              [IN]  OBJChunk�z��ւ̃|�C���^ 
-                lengthAffineBuffer      [IN]  �A�t�B���p�����[�^�o�b�t�@�z��̒��� 
-                pAffineBuffer           [IN]  �A�t�B���p�����[�^�o�b�t�@�z��ւ̃|�C���^ 
+  Arguments:    pOam                    [OUT] 拡張OAMマネージャ 実体 
+                pOamOrderingTbl         [IN]  オーダリングテーブルの先頭アドレス 
+                lengthOfOrderingTbl     [IN]  オーダリングテーブルの長さ 
+                numPooledOam            [IN]  OBJChunkの個数 
+                pPooledOam              [IN]  OBJChunk配列へのポインタ 
+                lengthAffineBuffer      [IN]  アフィンパラメータバッファ配列の長さ 
+                pAffineBuffer           [IN]  アフィンパラメータバッファ配列へのポインタ 
 
                 
-  Returns:      �������̐���(���݂̂Ƃ���A�K����������)
+  Returns:      初期化の成否(現在のところ、必ず成功する)
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dGetOamManExInstance
@@ -638,12 +638,12 @@ BOOL NNS_G2dGetOamManExInstance
     NNS_G2D_NULL_ASSERT( pPooledOam );
     NNS_G2D_ASSERT( numPooledOam != 0 );
     
-    // �`�揇�^�C�v
-    // (�ߋ��̃o�[�W�����Ƃ̌݊����ێ��̂��߂ɁA�f�t�H���g�͋t��)
+    // 描画順タイプ
+    // (過去のバージョンとの互換性維持のために、デフォルトは逆順)
     pOam->drawOrderType = NNSG2D_OAMEX_DRAWORDER_BACKWARD;
     
     //
-    // �`�����N���X�g�v�f�̃[���N���A
+    // チャンクリスト要素のゼロクリア
     //
     MI_CpuClear32( pOamOrderingTbl, lengthOfOrderingTbl * sizeof( NNSG2dOamChunkList ) );
     
@@ -660,7 +660,7 @@ BOOL NNS_G2dGetOamManExInstance
     
     
     //
-    // �o�^�֐��֘A�̏�����
+    // 登録関数関連の初期化
     //
     {
         NNSG2dOamExEntryFunctions*  pFuncs = &pOam->oamEntryFuncs;
@@ -680,15 +680,15 @@ BOOL NNS_G2dGetOamManExInstance
 /*---------------------------------------------------------------------------*
   Name:         NNSG2d_SetOamManExDrawOrderType
 
-  Description:  �}�l�[�W����OAM�`�揇�̎�ނ�ݒ肵�܂��B
-                OAM�`�揇�̋K��l�� NNSG2D_OAMEX_DRAWORDER_BACKWARD �ɂȂ��Ă���
-                �_�ɂ����ӂ��������B
-                ����͈ȑO�̃o�[�W�����Ƃ̌݊������ێ����邽�߂̑΍�ł��B
+  Description:  マネージャのOAM描画順の種類を設定します。
+                OAM描画順の規定値は NNSG2D_OAMEX_DRAWORDER_BACKWARD になっている
+                点にご注意ください。
+                これは以前のバージョンとの互換性を維持するための対策です。
 
-  Arguments:    pOam                 :   [OUT] �}�l�[�W������
-                drawOrderType        :   [IN]  �`�揇�̎��
+  Arguments:    pOam                 :   [OUT] マネージャ実体
+                drawOrderType        :   [IN]  描画順の種類
                 
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNSG2d_SetOamManExDrawOrderType
@@ -705,16 +705,16 @@ void NNSG2d_SetOamManExDrawOrderType
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetOamManExEntryFunctions
 
-  Description:  �}�l�[�W���� �e��o�^�֐���ݒ肵�܂��B
-                �}�l�[�W�����p�O�ɕK���Ăяo���āA�o�^�֐���ݒ肷��K�v������܂��B
+  Description:  マネージャに 各種登録関数を設定します。
+                マネージャ利用前に必ず呼び出して、登録関数を設定する必要があります。
 
                 
                 
                 
-  Arguments:    pMan        :   [OUT] �}�l�[�W������
-                pSrc        :   [IN]  �e��o�^�֐�
+  Arguments:    pMan        :   [OUT] マネージャ実体
+                pSrc        :   [IN]  各種登録関数
                 
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetOamManExEntryFunctions
@@ -756,20 +756,20 @@ void NNS_G2dSetOamManExEntryFunctions
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dEntryOamManExOam
 
-  Description:  �g��OAM�}�l�[�W����OBJ���A�`�掞�̓o�^�����w�肵�ēo�^���܂��B
-                ���ۂɃn�[�h�E�G�A�ɓK�p�����Ƃ��ɁA�w�肵�����ԂœK�p���s���܂��B
+  Description:  拡張OAMマネージャにOBJを、描画時の登録順を指定して登録します。
+                実際にハードウエアに適用されるときに、指定した順番で適用を行います。
 
                 
-                �\���ȗe�ʂ�����ꍇ�� �o�^���s�� TRUE��Ԃ��܂�
+                十分な容量がある場合は 登録を行い TRUEを返します
                 
                 
                 
-  Arguments:    pMan        :   [OUT] �}�l�[�W������
+  Arguments:    pMan        :   [OUT] マネージャ実体
                 pOam        :   [IN]  OAMAttribute 
-                priority    :   [IN]  �`��D��x
-                affineIdx   :   [IN]  �A�t�B���E�C���f�b�N�X
+                priority    :   [IN]  描画優先度
+                affineIdx   :   [IN]  アフィン・インデックス
                 
-  Returns:      �o�^�̐���
+  Returns:      登録の成否
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dEntryOamManExOam
@@ -797,19 +797,19 @@ BOOL NNS_G2dEntryOamManExOam
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dEntryOamManExOamWithAffineIdx
 
-  Description:  �}�l�[�W���� AffineIndex���w�肵�� OAMAttribute ��o�^���܂�
-                NNS_G2dEntryOamManExAffine()�̕Ԃ�l���w�肵�Ă��������B
+  Description:  マネージャに AffineIndexを指定して OAMAttribute を登録します
+                NNS_G2dEntryOamManExAffine()の返り値を指定してください。
                 
-                �\���ȗe�ʂ�����ꍇ�� �o�^���s�� TRUE��Ԃ��܂�
+                十分な容量がある場合は 登録を行い TRUEを返します
                 
                 
                 
-  Arguments:    pMan        :   [OUT] �}�l�[�W������
+  Arguments:    pMan        :   [OUT] マネージャ実体
                 pOam        :   [IN]  OAMAttribute 
-                priority    :   [IN]  �`��D��x
-                affineIdx   :   [IN]  �A�t�B���E�C���f�b�N�X
+                priority    :   [IN]  描画優先度
+                affineIdx   :   [IN]  アフィン・インデックス
                 
-  Returns:      �o�^�̐���
+  Returns:      登録の成否
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dEntryOamManExOamWithAffineIdx
@@ -822,7 +822,7 @@ BOOL NNS_G2dEntryOamManExOamWithAffineIdx
 {
     NNS_G2D_NULL_ASSERT( pMan );
     NNS_G2D_NULL_ASSERT( pOam );
-    // �A�t�B���ϊ����L���Ǝw�肳��Ă���OAM�A�g���r���[�g���H
+    // アフィン変換が有効と指定されているOAMアトリビュートか？
     NNS_G2D_ASSERT( pOam->rsMode & 0x1 );
     NNS_G2D_ASSERT( IsPriorityValid_( pMan, priority ) );
     
@@ -840,20 +840,20 @@ BOOL NNS_G2dEntryOamManExOamWithAffineIdx
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dEntryOamManExAffine
 
-  Description:  �}�l�[�W����Affine�p�����[�^��o�^���܂�
-                �}�l�[�W���ɏ\���ȗe�ʂ�����΁Aaffine�ϊ��s���
-                ������ NNSG2dAffineParamProxy �� �i�[����AIndex ���Ԃ�܂��B
-                �A�t�B���p�����[�^�p�o�b�t�@�z�񂪐ݒ肳��Ă��Ȃ��ꍇ�́A�A�T�[�g�Ɏ��s���܂��B
+  Description:  マネージャにAffineパラメータを登録します
+                マネージャに十分な容量があれば、affine変換行列は
+                内部の NNSG2dAffineParamProxy に 格納され、Index が返ります。
+                アフィンパラメータ用バッファ配列が設定されていない場合は、アサートに失敗します。
                 
-                OBJ �� �}�l�[�W�������ł� 
-                NNSG2dAffineParamProxy �� Index�ɂ����Affine�p�����[�^���Q�Ƃ��܂��B
+                OBJ は マネージャ内部では 
+                NNSG2dAffineParamProxy の IndexによってAffineパラメータを参照します。
                 
                 
                 
-  Arguments:    pMan:      [OUT] �}�l�[�W������
-                mtx :      [IN]  affine�ϊ��s��
+  Arguments:    pMan:      [OUT] マネージャ実体
+                mtx :      [IN]  affine変換行列
   
-  Returns:      ������ NNSG2dAffineParamProxy �� Index
+  Returns:      内部の NNSG2dAffineParamProxy の Index
   
  *---------------------------------------------------------------------------*/
 u16 NNS_G2dEntryOamManExAffine
@@ -885,14 +885,14 @@ u16 NNS_G2dEntryOamManExAffine
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dApplyOamManExToBaseModule 
 
-  Description:  �}�l�[�W���̓��e��HW�ɔ��f����B
-                ���ۂɂ� HW�ɔ��f ����킯�ł͂Ȃ��A���ʃ��W���[���ɔ��f������B
-                ���ʃ��W���[����HW�ւ��̓��e�̔��f���s���܂ł́A�`��ɔ��f����Ȃ��B
+  Description:  マネージャの内容をHWに反映する。
+                実際には HWに反映 するわけではなく、下位モジュールに反映をする。
+                下位モジュールがHWへその内容の反映を行うまでは、描画に反映されない。
                 
                 
                 
-  Arguments:    pMan:      [OUT] �}�l�[�W������
-  Returns:      �Ȃ�
+  Arguments:    pMan:      [OUT] マネージャ実体
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dApplyOamManExToBaseModule( NNSG2dOamManagerInstanceEx* pMan )
@@ -906,23 +906,23 @@ void NNS_G2dApplyOamManExToBaseModule( NNSG2dOamManagerInstanceEx* pMan )
         if( pMan->numUsedOam != 0 )
         {
             //
-            // affine�ϊ����ꂽOam�̏���������
+            // affine変換されたOamの準備をする
             // 
             if( pMan->numAffineBufferUsed != 0 )
             {
-                // Affine Proxy �� ���e�� ���ʃ��W���[���ɓK�p���AAffine Index �����肷��
+                // Affine Proxy の 内容を 下位モジュールに適用し、Affine Index を決定する
                 LoadAffineProxyToBaseModule_( pMan );
-                // ��Index
+                // 再Index
                 ReindexAffinedOams_( pMan );
             }
             
             //
-            // �`�����N���X�g�̓o�^�͈͂��v�Z���܂�
+            // チャンクリストの登録範囲を計算します
             //
             CalcDrawnListArea_( pMan );
             
             //
-            // �O�����W���[���ɑ΂��Ď��ۂɕ`��o�^���s���܂�
+            // 外部モジュールに対して実際に描画登録を行います
             //
             {
                 u16 i = 0;
@@ -933,7 +933,7 @@ void NNS_G2dApplyOamManExToBaseModule( NNSG2dOamManagerInstanceEx* pMan )
                 {
                     pOamList  = &pMan->pOamOrderingTbl[i];
                     //
-                    // �`�悷��K�v�̂���`�����N���X�g�Ȃ��...
+                    // 描画する必要のあるチャンクリストならば...
                     //  
                     if( pOamList->bDrawn )
                     {
@@ -953,11 +953,11 @@ void NNS_G2dApplyOamManExToBaseModule( NNSG2dOamManagerInstanceEx* pMan )
         }
         
         //
-        // �c��e�ʂ̓f�t�H���g�l�ŃN���A����
+        // 残り容量はデフォルト値でクリアする
         //
         while( capacityOfHW > numTotalOamDrawn )
         {
-            // �f�t�H���g�l�ŃN���A
+            // デフォルト値でクリア
             EntryOamToToBaseModule_( pMan, &defaultOam_, numTotalOamDrawn );
             numTotalOamDrawn++;
         }

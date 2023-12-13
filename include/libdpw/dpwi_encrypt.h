@@ -31,27 +31,27 @@ extern "C" {
 #endif
 
 /*-----------------------------------------------------------------------*
-					Œ^E’è”éŒ¾
+					å‹ãƒ»å®šæ•°å®£è¨€
  *-----------------------------------------------------------------------*/
 
-// ˆÈ‰º—”¶¬—p
-#define MYRAND_A 69					// 8‚Ì”{”{5 ‚Ì”
-#define MYRAND_C 4369				// Šï”
-#define MYRAND_M 0x80000000			// 2^n@‚Ì”
+// ä»¥ä¸‹ä¹±æ•°ç”Ÿæˆç”¨
+#define MYRAND_A 69					// 8ã®å€æ•°ï¼‹5 ã®æ•°
+#define MYRAND_C 4369				// å¥‡æ•°
+#define MYRAND_M 0x80000000			// 2^nã€€ã®æ•°
 #define CHECKSUM_MASK 0x4a3b2c1d	// checksum mask
 
 
-//! DpwiCommon ŠÖ”‚Ì–ß‚è’l
+//! DpwiCommon é–¢æ•°ã®æˆ»ã‚Šå€¤
 typedef enum {
-	DPWI_COMMON_ENC_SUCCESS,		//!<	¬Œ÷
-	DPWI_COMMON_ENC_ERROR_NOMEMORY,	//!<	ƒƒ‚ƒŠ[Šm•ÛƒGƒ‰[
-	DPWI_COMMON_ENC_ERROR_NOBUFFER	//!<	“n‚³‚ê‚½ƒoƒbƒtƒ@‚Ì—e—Ê•s‘«
+	DPWI_COMMON_ENC_SUCCESS,		//!<	æˆåŠŸ
+	DPWI_COMMON_ENC_ERROR_NOMEMORY,	//!<	ãƒ¡ãƒ¢ãƒªãƒ¼ç¢ºä¿ã‚¨ãƒ©ãƒ¼
+	DPWI_COMMON_ENC_ERROR_NOBUFFER	//!<	æ¸¡ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã®å®¹é‡ä¸è¶³
 } DpwiEncResult;
 
 
 
 /*-----------------------------------------------------------------------*
-					ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾
+					é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  *-----------------------------------------------------------------------*/
 
 DpwiEncResult DpwiEncrypt(u32 pid, const u8* src, int srclen, u8* outbuf, int outlen);

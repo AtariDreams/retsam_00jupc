@@ -1,6 +1,6 @@
 //====================================================================
 //						common_scr
-//						���ʁE�f�[�^
+//						共通・データ
 //====================================================================
 
 	.text
@@ -32,7 +32,7 @@
 #include "../../../include/bugfix.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_common_board
 _EVENT_DATA		ev_pocket_me_set
@@ -92,12 +92,12 @@ _EVENT_DATA		ev_memory_print_check
 _EVENT_DATA		ev_handsome_play
 _EVENT_DATA		ev_handsome_stop
 _EVENT_DATA		ev_gira_item_ng
-_EVENT_DATA_END						//�I��
+_EVENT_DATA_END						//終了
 
 
 /********************************************************************/
 /********************************************************************/
-/*���g�p*/
+/*未使用*/
 ev_common_vm:
 	_END
 
@@ -108,30 +108,30 @@ ev_item_return:
 /********************************************************************/
 
 /********************************************************************/
-//				�W���[�C����
+//				ジョーイさん
 //
-//	SCWK_TEMP0	�S�[���h�J�[�h����
+//	SCWK_TEMP0	ゴールドカード判定
 /********************************************************************/
 ev_heal_p01:
 	_TALK_OBJ_START
 
-	//�g���[�i�[�P�[�X�̃����N�ɂ�蕪��B����u���b�N�J�[�h�����邽�ߊ�摤�Œ�����
+	//トレーナーケースのランクにより分岐。今回ブラックカードがあるため企画側で調整中
 	_GET_TRCARD_RANK	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,GE,4,gold_card_heal_p01
 
-	//���ӁI
+	//注意！
 	_LDVAL			SCWK_TEMP0,0
 
 	_GET_TIME_ZONE	SCWK_ANSWER
 	_DEBUG_WATCH_WORK	SCWK_ANSWER
 
-	_LDVAL			SCWK_TEMP0,	msg_common_pc_heal_11		//�u���͂悤�������܂��`�v
+	_LDVAL			SCWK_TEMP0,	msg_common_pc_heal_11		//「おはようございます〜」
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,TIMEZONE_MORNING, ev_heal_p01_ask
 
-	_LDVAL			SCWK_TEMP0, msg_common_pc_heal_12		//�u����ɂ��́`�v
+	_LDVAL			SCWK_TEMP0, msg_common_pc_heal_12		//「こんにちは〜」
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,TIMEZONE_NOON, ev_heal_p01_ask
 
-	_LDVAL			SCWK_TEMP0, msg_common_pc_heal_01		//�u�����ꂳ�܂ł��`�v
+	_LDVAL			SCWK_TEMP0, msg_common_pc_heal_01		//「おつかれさまです〜」
 
 ev_heal_p01_ask:
 	_TALKMSG_SP		SCWK_TEMP0
@@ -141,42 +141,42 @@ ev_heal_p01_ask:
 	_END
 
 //----------------------------------------------------------------------------------------------
-//�u�������v
+//「いいえ」
 //----------------------------------------------------------------------------------------------
 _pc_kaifuku_no:	
 	_TALKMSG		msg_common_pc_heal_04
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	//�I����
+	//終了へ
 	_TALK_OBJ_END
-	_CHG_LOCAL_SCR												//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR												//ローカルスクリプトに切り替え
 	_END
 
 //----------------------------------------------------------------------------------------------
-//�u�͂��v
+//「はい」
 //----------------------------------------------------------------------------------------------
 _pc_kaifuku_yes:
-	/*�n���A�j��*/
+	/*渡すアニメ*/
 	_PLAYER_REQ_BIT_ON		HERO_REQBIT_BANZAI
 	_PLAYER_REQ_START
 	_OBJ_ANIME				FLDOBJ_ID_PLAYER,player_banzai_anm00
 	_OBJ_ANIME_WAIT	
 	
-	//�g���[�i�[�P�[�X�̃����N�ɂ�蕪��B����u���b�N�J�[�h�����邽�ߊ�摤�Œ�����
+	//トレーナーケースのランクにより分岐。今回ブラックカードがあるため企画側で調整中
 	_GET_TRCARD_RANK	SCWK_ANSWER
 	_IFVAL_CALL		SCWK_ANSWER,GE,4,gold_pc_kaihuku_01
 	_IFVAL_CALL		SCWK_ANSWER,LT,4,normal_pc_kaihuku_01
 
-	//�񕜋��ʏ���
+	//回復共通処理
 	_CALL			common_pc_kaihuku
 
-	//�莝���̃|�P�����̒��Ƀ|�P���X�Ɋ������Ă���|�P���������邩
+	//手持ちのポケモンの中にポケルスに感染しているポケモンがいるか
 	_IF_FLAGOFF_JUMP	FE_PC_POKERUS,ev_pc_pokerus_chk
 
 	_JUMP			ev_pc_kaihuku_after
 
-//�����N�ŕ���
+//ランクで分岐
 normal_pc_kaihuku_01:
 	_TALKMSG		msg_common_pc_heal_02
 	_RET
@@ -186,17 +186,17 @@ gold_pc_kaihuku_01:
 	_RET
 
 //----------------------------------------------------------------------------------------------
-//�|�P�Z���񕜋��ʏ���
+//ポケセン回復共通処理
 //----------------------------------------------------------------------------------------------
 common_pc_kaihuku:
-	//��������
+	//左を向く
 	_OBJ_ANIME	SCWK_TEMP3,turn_l_anime
 	_OBJ_ANIME_WAIT	
 
 	_GET_POKE_COUNT2	SCWK_TEMP2
 	_PC_RECOVER_ANM		SCWK_TEMP2
 
-	//��������
+	//下を向く
 	_OBJ_ANIME	SCWK_TEMP3,turn_d_anime
 	_OBJ_ANIME_WAIT	
 
@@ -205,22 +205,22 @@ common_pc_kaihuku:
 	_RET
 
 //----------------------------------------------------------------------------------------------
-//�I������
+//終了処理
 //----------------------------------------------------------------------------------------------
 ev_pc_kaihuku_after:
 
-	//�����N�ŕ���
+	//ランクで分岐
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,1,gold_pc_kaihuku_02
 
 	_TALKMSG		msg_common_pc_heal_03
 
-	/*�ʏ�A�j��*/
+	/*通常アニメ*/
 	_OBJ_ANIME				FLDOBJ_ID_PLAYER,player_banzai_anm01
 	_OBJ_ANIME_WAIT	
 	_PLAYER_REQ_BIT_ON		HERO_REQBIT_NORMAL
 	_PLAYER_REQ_START
 
-	//������������
+	//おじぎをする
 	_OBJ_ANIME	SCWK_TEMP3,pcwoman_bow_anime01
 	_OBJ_ANIME_WAIT	
 
@@ -228,24 +228,24 @@ ev_pc_kaihuku_after:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	//�I����
+	//終了へ
 	_TALK_OBJ_END
-	_CHG_LOCAL_SCR												//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR												//ローカルスクリプトに切り替え
 	_END
 
 
 
-//�����N�ŕ���
+//ランクで分岐
 gold_pc_kaihuku_02:
 	_TALKMSG		msg_common_pc_heal_09
 
-	/*�ʏ�A�j��*/
+	/*通常アニメ*/
 	_OBJ_ANIME				FLDOBJ_ID_PLAYER,player_banzai_anm01
 	_OBJ_ANIME_WAIT	
 	_PLAYER_REQ_BIT_ON		HERO_REQBIT_NORMAL
 	_PLAYER_REQ_START
 
-	//������������
+	//おじぎをする
 	_OBJ_ANIME	SCWK_TEMP3,pcwoman_bow_anime01
 	_OBJ_ANIME_WAIT	
 
@@ -253,25 +253,25 @@ gold_pc_kaihuku_02:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	//�I����
+	//終了へ
 	_TALK_OBJ_END
-	_CHG_LOCAL_SCR												//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR												//ローカルスクリプトに切り替え
 	_END
 
 
 //----------------------------------------------------------------------------------------------
-//�莝���̃|�P�����̒��Ƀ|�P���X�Ɋ������Ă���|�P���������邩
+//手持ちのポケモンの中にポケルスに感染しているポケモンがいるか
 //----------------------------------------------------------------------------------------------
 ev_pc_pokerus_chk:
 	_CHK_TEMOTI_POKERUS		SCWK_TEMP2
 	_IFVAL_JUMP		SCWK_TEMP2,EQ,1,ev_pc_pokerus
 	_JUMP	ev_pc_kaihuku_after
 
-//�莝���̃|�P�����̒��Ƀ|�P���X�Ɋ������Ă���|�P����������
+//手持ちのポケモンの中にポケルスに感染しているポケモンがいる
 ev_pc_pokerus:
 	_FLAG_SET		FE_PC_POKERUS
 
-	/*�ʏ�A�j��*/
+	/*通常アニメ*/
 	_OBJ_ANIME				FLDOBJ_ID_PLAYER,player_banzai_anm01
 	_OBJ_ANIME_WAIT	
 	_PLAYER_REQ_BIT_ON		HERO_REQBIT_NORMAL
@@ -281,19 +281,19 @@ ev_pc_pokerus:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	//�I����
+	//終了へ
 	_TALK_OBJ_END
-	_CHG_LOCAL_SCR												//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR												//ローカルスクリプトに切り替え
 	_END
 
 //----------------------------------------------------------------------------------------------
-//	�S�[���h�J�[�h�C�x���g
+//	ゴールドカードイベント
 //----------------------------------------------------------------------------------------------
 gold_card_heal_p01:
-	//��x��b������
+	//一度会話したか
 	_IF_FLAGON_JUMP	FE_PC_GOLD,gold_card_heal_p02
 
-	//��b����
+	//会話した
 	_FLAG_SET		FE_PC_GOLD
 	_TALK_KEYWAIT	msg_common_pc_heal_05
 
@@ -305,12 +305,12 @@ gold_card_heal_p01:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	//�I����
+	//終了へ
 	_TALK_OBJ_END
-	_CHG_LOCAL_SCR												//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR												//ローカルスクリプトに切り替え
 	_END
 
-//��x��b����
+//一度会話した
 gold_card_heal_p02:
 	_PLAYER_NAME	0
 	_TALKMSG	msg_common_pc_heal_07
@@ -321,21 +321,21 @@ gold_card_heal_p02:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	//�I����
+	//終了へ
 	_TALK_OBJ_END
-	_CHG_LOCAL_SCR												//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR												//ローカルスクリプトに切り替え
 	_END
 
 //----------------------------------------------------------------------------------------------
-//�u�͂��v
+//「はい」
 //----------------------------------------------------------------------------------------------
 _pc_kaifuku_yes_gold:
-	//����
+	//注意
 	_LDVAL			SCWK_TEMP0,1
 	_JUMP			_pc_kaifuku_yes
 
 //----------------------------------------------------------------------------------------------
-//������
+//おじぎ
 //----------------------------------------------------------------------------------------------
 _ANIME_LABEL	pcwoman_bow_anime01
 	_ANIME_DATA	AC_PC_BOW,1
@@ -343,14 +343,14 @@ _ANIME_LABEL	pcwoman_bow_anime01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���΂ɕύX
+//万歳に変更
 //--------------------------------------------------------------------
 _ANIME_LABEL	player_banzai_anm00
 	_ANIME_DATA	AC_HERO_BANZAI,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���Ύ󂯎��ɕύX
+//万歳受け取りに変更
 //--------------------------------------------------------------------
 _ANIME_LABEL	player_banzai_anm01
 	_ANIME_DATA	AC_HERO_BANZAI_UKE,1
@@ -359,10 +359,10 @@ _ANIME_LABEL	player_banzai_anm01
 
 
 /********************************************************************/
-/*							�Ŕb������ 							*/
+/*							看板話しかけ 							*/
 //
 //	ANSWER
-//	�g�p���I
+//	使用中！
 /********************************************************************/
 ev_common_board:
 	_SWITCH			SCWK_ANSWER
@@ -375,39 +375,39 @@ ev_common_board:
 	_CASE_JUMP		1,ev_board_menu
 
 	_BOARD_REQ		BOARD_REQ_DOWN
-	_CHG_LOCAL_SCR					//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR					//ローカルスクリプトに切り替え
 	_END
 
-/* �L�����Z�� */
+/* キャンセル */
 ev_board_cancel:
 	_BOARD_REQ		BOARD_REQ_DOWN
-	_CHG_LOCAL_SCR					//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR					//ローカルスクリプトに切り替え
 	_END
 
-/* ���j���[���J�� */
+/* メニューを開く */
 ev_board_menu:
 	_BOARD_REQ		BOARD_REQ_DEL
 	_BOARD_REQ_WAIT
-	_MENU_REQ						//���j���[���N�G�X�g
-	_CHG_LOCAL_SCR					//���[�J���X�N���v�g�ɐ؂�ւ�
+	_MENU_REQ						//メニューリクエスト
+	_CHG_LOCAL_SCR					//ローカルスクリプトに切り替え
 	_END
 
 
 /********************************************************************/
-/*		�|�P�b�g��ME�Z�b�g(���[�J���X�N���v�g����Ăяo���p)		*/
+/*		ポケット別MEセット(ローカルスクリプトから呼び出し用)		*/
 //
-//	SCWK_TEMP0�ɃA�C�e���i���o�[�������Ă����Ă��������I
+//	SCWK_TEMP0にアイテムナンバーを代入しておいてください！
 /********************************************************************/
 ev_pocket_me_set:
-	_CALL			pocket_me_set		//ME�Z�b�g
-	_CHG_LOCAL_SCR						//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CALL			pocket_me_set		//MEセット
+	_CHG_LOCAL_SCR						//ローカルスクリプトに切り替え
 	_END
 
 //--------------------------------------------------------------------
-//	ME�Z�b�g
+//	MEセット
 //--------------------------------------------------------------------
 pocket_me_set:
-	//�|�P�b�g�i���o�[��SCWK_ANSWER�ɑ��
+	//ポケットナンバーをSCWK_ANSWERに代入
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 
 	_SWITCH			SCWK_ANSWER
@@ -421,38 +421,38 @@ pocket_me_set:
 	_CASE_JUMP		BAG_POKE_WAZA,		case2_pocket_me		//
 	_END
 
-//ME�p�^�[��1
+//MEパターン1
 case1_pocket_me:
 	_ME_PLAY		SEQ_FANFA4
 	_RET
 
-//ME�p�^�[��2
+//MEパターン2
 case2_pocket_me:
 	_ME_PLAY		SEQ_WAZA
 	_RET
 
-//ME�p�^�[��3
+//MEパターン3
 case3_pocket_me:
 	_ME_PLAY		SEQ_FANFA3
 	_RET
 
-//ME�p�^�[��4
+//MEパターン4
 case4_pocket_me:
 	_ME_PLAY		SEQ_FANFA2
 	_RET
 
-//�I��
+//終了
 ev_common_end_only:
-	_CHG_LOCAL_SCR												//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR												//ローカルスクリプトに切り替え
 	_END
 
 
 /********************************************************************/
-//						�Q�[���I�[�o�[�֘A
+//						ゲームオーバー関連
 /********************************************************************/
 
 //--------------------------------------------------------------------
-/*	�łɂ��m���w����������x���b�Z�[�W�\��                      */
+/*	毒による瀕死『ちからつきた』メッセージ表示                      */
 //--------------------------------------------------------------------
 ev_poison_dead:
 	_EVENT_START
@@ -464,19 +464,19 @@ ev_poison_msg_loop:
 	_APPROVE_POISON_DEAD	SCWK_ANSWER, SCWK_TEMP1
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,FALSE, ev_poison_msg_loop_tail
 
-/*�łŋC�₵���|�P�����������烁�b�Z�[�W�\��*/
+/*毒で気絶したポケモンがいたらメッセージ表示*/
 	_NICK_NAME	0, SCWK_TEMP1
 	_TALKMSG		msg_poison_01
 
 ev_poison_msg_loop_tail:
-//�J�E���g�A�b�v�A�莝���S���`�F�b�N����܂Ń��[�v
+//カウントアップ、手持ち全部チェックするまでループ
 	_ADD_WK			SCWK_TEMP1, 1
 	//_DEBUG_WATCH_WORK	SCWK_TEMP0
 	//_DEBUG_WATCH_WORK	SCWK_TEMP1
 	_CMPWK			SCWK_TEMP0,SCWK_TEMP1
 	_IF_JUMP		NE,ev_poison_msg_loop
 
-/*�퓬�\�Ȏ莝���|�P��������̂����Ȃ��Ȃ����̂ŃQ�[���I�[�o�[������(�Ώۏ��O�Ȃ����U�j*/
+/*戦闘可能な手持ちポケモンが一体もいなくなったのでゲームオーバー処理へ(対象除外なし＝６）*/
 	_GET_POKE_COUNT3	SCWK_ANSWER,6
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0, ev_poison_game_over
 
@@ -486,7 +486,7 @@ ev_poison_msg_loop_tail:
 	_END
 
 //--------------------------------------------------------------------
-/*	�w�߂̂܂����܂�����ɂȂ����x���b�Z�[�W�\��                    */
+/*	『めのまえがまっくらになった』メッセージ表示                    */
 //--------------------------------------------------------------------
 ev_game_over:
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -514,80 +514,80 @@ ev_poison_game_over:
 
 
 /********************************************************************/
-//							���|�[�g�֘A
+//							レポート関連
 /********************************************************************/
 ev_report:
-	/*07.07.24�ǉ�*/
+	/*07.07.24追加*/
 	_FLAG_RESET			FH_31_REPORT
 
-	_CALL	ev_report_sub					//�߂�l��SCWK_ANSWER
-	_RETURN_SCRIPT_WK_SET	SCWK_ANSWER		//�v���O�����Ɍ��ʂ�Ԃ��Ă���
+	_CALL	ev_report_sub					//戻り値＝SCWK_ANSWER
+	_RETURN_SCRIPT_WK_SET	SCWK_ANSWER		//プログラムに結果を返している
 	_TALK_CLOSE
 	_END
 
-/*���|�[�g�֎~���b�Z�[�W�\��*/
+/*レポート禁止メッセージ表示*/
 ev_report_ng:
 	_TALKMSG			msg_common_report_08
 	_AB_KEYWAIT
 	_TALK_CLOSE
 	_END
 
-//���̃X�N���v�g����Ă΂��p�̃��x��
-//���ӁILOCALWORK�Ɍ��ʂ������Ă���
+//他のスクリプトから呼ばれる用のラベル
+//注意！LOCALWORKに結果を代入している
 ev_report_call:
 
-	/*07.07.24�ǉ�*/
+	/*07.07.24追加*/
 	_FLAG_SET			FH_31_REPORT
 
-	_CALL	ev_report_sub					//�߂�l��SCWK_ANSWER
+	_CALL	ev_report_sub					//戻り値＝SCWK_ANSWER
 	_LDWK					LOCALWORK0,SCWK_ANSWER
-	_CHG_LOCAL_SCR						//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR						//ローカルスクリプトに切り替え
 	_END
 
 //--------------------------------------------------------------------
-//		���|�[�g���C������
-//		SCWK_ANSWER��	�O�̂Ƃ��Z�[�u�L�����Z��
-//		SCWK_ANSWER��	�P�̂Ƃ��Z�[�u����
+//		レポートメイン部分
+//		SCWK_ANSWERが	０のときセーブキャンセル
+//		SCWK_ANSWERが	１のときセーブ成功
 //--------------------------------------------------------------------
 ev_report_sub:
-	//�Z�[�u�f�[�^�̏�ԃ`�F�b�N
+	//セーブデータの状態チェック
 	_REPORT_SAVE_CHECK SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_report_save_ng			//�Z�[�u�f�[�^�L��
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_report_save_ng			//セーブデータ有り
 
 	_REPORT_WIN_OPEN
 
 	_TALKMSG		msg_common_report_01
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_report_cancel				//�u�������v
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_report_cancel				//「いいえ」
 
-	//�Z�[�u�f�[�^�̏�ԃ`�F�b�N
+	//セーブデータの状態チェック
 	_REPORT_SAVE_CHECK SCWK_ANSWER
 
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_report_save_total	 //����Z�[�u�A�������őS�̃Z�[�u
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_report_save_total	 //初回セーブ、無条件で全体セーブ
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_report_save_total_ask
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,3,ev_report_save_parts_ask
 	_END
 
-//�ʂ̃Z�[�u�f�[�^�L�聁�������݋֎~
+//別のセーブデータ有り＝書き込み禁止
 ev_report_save_ng:
 	_TALKMSG		msg_common_report_08
 	_AB_KEYWAIT
 
-	_LDVAL	SCWK_ANSWER,	0	/*���ʂ������郏�[�N"���s"*/
+	_LDVAL	SCWK_ANSWER,	0	/*結果を代入するワーク"失敗"*/
 	_RET
 
-//�S�̃Z�[�u
+//全体セーブ
 ev_report_save_total_ask:
 	_TALKMSG		msg_common_report_02
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_report_cancel
 
 ev_report_save_total:
-	/*�u�������񏑂�����ł��܂��v*/
+	/*「たくさん書き込んでいます」*/
 	_TALKMSG		msg_common_report_09
 	_JUMP			ev_report_save
 
-//�����Z�[�u
+//部分セーブ
 ev_report_save_parts_ask:
 	_TALKMSG		msg_common_report_02
 	_YES_NO_WIN		SCWK_ANSWER
@@ -595,30 +595,30 @@ ev_report_save_parts_ask:
 
 ev_report_save_parts:
 
-	/*07.08.09�ǉ�*/
+	/*07.08.09追加*/
 	_IF_FLAGOFF_JUMP	FH_31_REPORT,ev_report_save_parts_msg
 	_IF_FLAGON_JUMP		FH_31_REPORT,ev_reoprt_save_parts_msg_extra
 	_END
 
-//�Z�[�u
+//セーブ
 ev_report_save:
-	/*���@���|�[�g�`�Ԓǉ�*/
+	/*自機レポート形態追加*/
 	_PLAYER_REPORT_DRAW_SET
 
 	_TIME_WAIT			2,SCWK_ANSWER
 
 	_CALL					common_report_core
 
-	/*���@���|�[�g�`�ԍ폜*/
+	/*自機レポート形態削除*/
 	_PLAYER_REPORT_DRAW_DEL
 
 	_JUMP				common_report_save_reqbit
 
-/*���ʃZ�[�u����*/
+/*共通セーブ処理*/
 common_report_core:
 	_ADD_WAITICON
 
-	/*07.07.24�ǉ�*/
+	/*07.07.24追加*/
 	_IF_FLAGON_CALL		FH_31_REPORT,ev_extra_save_init
 
 	_REPORT_SAVE	SCWK_ANSWER
@@ -637,10 +637,10 @@ common_report_save_reqbit:
 
 	_RET
 
-ev_report_cancel:					/*�u�������v*/
+ev_report_cancel:					/*「いいえ」*/
 	_REPORT_WIN_CLOSE
 
-	_LDVAL	SCWK_ANSWER,	0	/*���ʂ������郏�[�N"���s"*/
+	_LDVAL	SCWK_ANSWER,	0	/*結果を代入するワーク"失敗"*/
 	_RET
 
 ev_report_failure:
@@ -651,31 +651,31 @@ ev_report_failure:
 
 	_RET
 
-/*07.07.24�ǉ�*/
-/*�O���Z�[�u������������Ă��Ȃ����͑S�̃Z�[�u�łȂ��Ă��u�������񏑂�����ł��܂��v�\��*/
+/*07.07.24追加*/
+/*外部セーブが初期化されていない時は全体セーブでなくても「たくさん書き込んでいます」表示*/
 ev_extra_save_init_flag_off_msg:
 	_TALKMSG		msg_common_report_09
 	_JUMP			ev_report_save
 	_END
 
-/*07.07.24�ǉ�*/
-/*���j���[����ł͂Ȃ��A�C�x���g����Z�[�u���ĂԎ�*/
+/*07.07.24追加*/
+/*メニューからではなく、イベントからセーブを呼ぶ時*/
 ev_extra_save_init:
 	_EXTRA_SAVE_INIT
 	_FLAG_RESET		FH_31_REPORT
 	_RET
 
-/*07.08.09�ǉ�*/
+/*07.08.09追加*/
 ev_report_save_parts_msg:
 	_TALKMSG		msg_common_report_03
 	_JUMP			ev_report_save
 	_END
 
-/*07.08.09�ǉ�*/
+/*07.08.09追加*/
 ev_reoprt_save_parts_msg_extra:
-	/*07.07.24�ǉ�*/
-	/*�����Z�[�u�ŌĂ΂��*/
-	/*�O���Z�[�u������������Ă��Ȃ����͑S�̃Z�[�u�łȂ��Ă��u�������񏑂�����ł��܂��v�\��*/
+	/*07.07.24追加*/
+	/*部分セーブで呼ばれる*/
+	/*外部セーブが初期化されていない時は全体セーブでなくても「たくさん書き込んでいます」表示*/
 	_EXTRA_SAVE_INIT_CHECK	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_extra_save_init_flag_off_msg
 	_JUMP			ev_report_save_parts_msg
@@ -683,61 +683,61 @@ ev_reoprt_save_parts_msg_extra:
 
 
 /********************************************************************/
-//						�n�j�[�c���[
+//						ハニーツリー
 /********************************************************************/
 ev_honey_tree:
 	_TALK_START
 
-	/*�Â����������Ă��邩�H*/
+	/*甘い蜜をもっているか？*/
 	_ITEM_CHK		ITEM_AMAIMITU,1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,NE,0,ev_honey_tree_honey_have
 
-	/*�����Ă��Ȃ��ꍇ*/
-	/*�؂̏󋵂��擾*/
+	/*持っていない場合*/
+	/*木の状況を取得*/
 	_GET_HONEY_TREE_STATE SCWK_ANSWER
-	/*�����h���*/
+	/*蜜が塗れる*/
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,HONEY_SPREAD_OK,honey_tree_spread_ok_no_have
-	/*�����h���Ă���*/
+	/*蜜が塗られている*/
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,HONEY_SPREAD_ALREADY,honey_tree_spread_already_no_have
-	/*�����h���āA�؂��h��Ă���*/
+	/*蜜が塗られて、木が揺れている*/
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,HONEY_SPREAD_ENCOUNT,honey_tree_spread_encount
 	_END
 
 ev_honey_tree_honey_have:
-	/*�؂̏󋵂��擾*/
+	/*木の状況を取得*/
 	_GET_HONEY_TREE_STATE SCWK_ANSWER
-	/*�����h���*/
+	/*蜜が塗れる*/
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,HONEY_SPREAD_OK,honey_tree_spread_ok
-	/*�����h���Ă���*/
+	/*蜜が塗られている*/
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,HONEY_SPREAD_ALREADY,honey_tree_spread_already
-	/*�����h���āA�؂��h��Ă���*/
+	/*蜜が塗られて、木が揺れている*/
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,HONEY_SPREAD_ENCOUNT,honey_tree_spread_encount
 	_END
 	
-/*���ʂ��ꍇ(�������ĂȂ�)*/
+/*蜜ぬれる場合(蜜持ってない)*/
 honey_tree_spread_ok_no_have:
-	_TALKMSG	msg_honey_tree_01	/*�Â��ɂ������`*/
+	_TALKMSG	msg_honey_tree_01	/*甘いにおいが〜*/
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_TALK_END
 	_END
 
-/*���h���Ă���ꍇ�i�������ĂȂ��j*/
+/*蜜塗られている場合（蜜持ってない）*/
 honey_tree_spread_already_no_have:
-	_TALKMSG	msg_honey_tree_02	/*�����ʂ��Ă���*/
+	_TALKMSG	msg_honey_tree_02	/*蜜がぬってある*/
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_TALK_END
 	_END
 	
-/*���ʂ��ꍇ�i�������Ă�j*/
+/*蜜ぬれる場合（蜜持ってる）*/
 honey_tree_spread_ok:
-	_TALK_KEYWAIT	msg_honey_tree_05	/*�Â��ɂ������`*/
+	_TALK_KEYWAIT	msg_honey_tree_05	/*甘いにおいが〜*/
 	_JUMP		honey_tree_spread_yn
 
-/*���h���Ă���ꍇ�i�������Ă�j*/
+/*蜜塗られている場合（蜜持ってる）*/
 honey_tree_spread_already:
-	_TALK_KEYWAIT	msg_honey_tree_06	/*�����ʂ��Ă���*/
+	_TALK_KEYWAIT	msg_honey_tree_06	/*蜜がぬってある*/
 	_JUMP		honey_tree_spread_yn
 	
 honey_tree_honey_check:
@@ -755,51 +755,51 @@ honey_tree_honey_check_af_btl:
 	_TALK_END
 	_END	
 	
-/*�h���ꍇ���h�邩�ǂ����̑I����������*/
+/*塗れる場合＞塗るかどうかの選択肢をだす*/
 honey_tree_spread_yn:
-	_TALKMSG	msg_honey_tree_03	/*����h��܂����H*/
+	_TALKMSG	msg_honey_tree_03	/*蜜を塗りますか？*/
 	_YES_NO_WIN		SCWK_ANSWER
 	_TALK_CLOSE
-	/*�h��ꍇ�A���̃Z�b�g�A�b�v*/
+	/*塗る場合、情報のセットアップ*/
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,honey_tree_spread_yes	
 
 	_TALK_END
 	_END
 
-/*���h��*/
+/*蜜塗る*/
 honey_tree_spread_yes:
-	//�݂��炷
-	_SUB_ITEM	ITEM_AMAIMITU,1,SCWK_ANSWER	/*�A���T�[���[�N�̒��g�͎g��Ȃ�*/
-	//�X�R�A���Z�F���h����
+	//みつ減らす
+	_SUB_ITEM	ITEM_AMAIMITU,1,SCWK_ANSWER	/*アンサーワークの中身は使わない*/
+	//スコア加算：蜜塗った
 	_ADD_SCORE	SCORE_ID_HONEY_TREE
 	
 	_HONEY_TREE
 
-	_TIME_WAIT			10, SCWK_ANSWER	/*�A���T�[���[�N�̒��g�͎g��Ȃ�(�����Ŏg�p)*/
+	_TIME_WAIT			10, SCWK_ANSWER	/*アンサーワークの中身は使わない(内部で使用)*/
 
-	_TALKMSG	msg_honey_tree_04	/*�����ʂ�܂���*/
+	_TALKMSG	msg_honey_tree_04	/*蜜をぬりました*/
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_TALK_END
 	_END
 
-/*�h���Ă��āA�؂��h��Ă���ꍇ���G���J�E���g*/
+/*塗られていて、木が揺れている場合＞エンカウント*/
 honey_tree_spread_encount:
 	_RECORD_INC			RECID_MITSU_ENC
 	_HONEY_TREE_BTL_SET
 
-	/*�s�k��*/
+	/*敗北へ*/
 	_TRAINER_LOSE_CHECK	SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_honey_tree_lose
 
-	/*�퓬�I������疨�h��A�j����Ԃ��N���A*/
+	/*戦闘終わったら蜜塗りアニメ状態をクリア*/
 	_HONEY_TREE_AFTER_SET
 
-	/*�Ăі���h�邩�`�F�b�N*/
+	/*再び蜜を塗るかチェック*/
 	_JUMP	honey_tree_honey_check_af_btl
 
 //--------------------------------------------------------------------
-//	�s�k
+//	敗北
 //--------------------------------------------------------------------
 ev_honey_tree_lose:
 	_NORMAL_LOSE
@@ -807,19 +807,19 @@ ev_honey_tree_lose:
 	_END
 
 /********************************************************************/
-//						�|�P�b�`�A�v���Q�b�g
+//						ポケッチアプリゲット
 //
-//	SCWK_TEMP0�ɃA�v���i���o�[�������Ă����I
+//	SCWK_TEMP0にアプリナンバーを代入しておく！
 /********************************************************************/
 ev_poketch_soft_get:
 	_CALL			ev_poketch_soft_get_sub
-	_CHG_LOCAL_SCR						//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR						//ローカルスクリプトに切り替え
 	_END
 
 ev_poketch_soft_get_sub:
 
 	_PLAYER_NAME	0
-	_POKETCH_NAME	1,SCWK_TEMP0		//�A�v����
+	_POKETCH_NAME	1,SCWK_TEMP0		//アプリ名
 
 	_ME_PLAY		SEQ_POCKETCH
 	_TALK_KEYWAIT		msg_poketch_get_02
@@ -827,7 +827,7 @@ ev_poketch_soft_get_sub:
 
 	_TALK_KEYWAIT		msg_poketch_get_03
 
-	//�擾�����t���O�Z�b�g
+	//取得したフラグセット
 	_POKETCH_ADD	SCWK_TEMP0
 
 	_IFVAL_CALL		SCWK_TEMP0,EQ, 0,ev_poketch_soft_app_text_01
@@ -959,30 +959,30 @@ ev_poketch_soft_app_text_25:
 	_RET
 
 /********************************************************************/
-//					�e�X�g�F�I�[�v�j���O�Ăяo��
+//					テスト：オープニング呼び出し
 /********************************************************************/
 ev_test_op:
 	_END	
 
 //********************************************************************
-//						�O�b�Y�擾�C�x���g(����)
+//						グッズ取得イベント(成功)
 //
-//	SCWK_TEMP0	�A�C�e���i���o�[
-//	SCWK_TEMP1	��
+//	SCWK_TEMP0	アイテムナンバー
+//	SCWK_TEMP1	個数
 //********************************************************************
 ev_goods_event:
 	_CALL			ev_goods_event_sub
 
 	_TALKMSG		msg_goods_get_02
 	_LAST_KEYWAIT
-	_CHG_LOCAL_SCR													//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR													//ローカルスクリプトに切り替え
 	_END
 
 ev_goods_event_keywait:
 	_CALL			ev_goods_event_sub
 
 	_TALK_KEYWAIT		msg_goods_get_03
-	_CHG_LOCAL_SCR													//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR													//ローカルスクリプトに切り替え
 	_END
 
 ev_goods_event_sub:
@@ -998,14 +998,14 @@ ev_goods_event_sub:
 
 
 //********************************************************************
-//						�g���b�v�擾�C�x���g(����)
+//						トラップ取得イベント(成功)
 //
-//	SCWK_TEMP0	�A�C�e���i���o�[
-//	SCWK_TEMP1	��
+//	SCWK_TEMP0	アイテムナンバー
+//	SCWK_TEMP1	個数
 //********************************************************************
 ev_trap_event:
 	_CALL			ev_trap_event_sub
-	_CHG_LOCAL_SCR													//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR													//ローカルスクリプトに切り替え
 	_END
 
 ev_trap_event_sub:
@@ -1020,14 +1020,14 @@ ev_trap_event_sub:
 	_RET
 
 //********************************************************************
-//						�^�}�擾�C�x���g(����)
+//						タマ取得イベント(成功)
 //
-//	SCWK_TEMP0	�A�C�e���i���o�[
-//	SCWK_TEMP1	��
+//	SCWK_TEMP0	アイテムナンバー
+//	SCWK_TEMP1	個数
 //********************************************************************
 ev_tama_event:
 	_CALL			ev_tama_event_sub
-	_CHG_LOCAL_SCR													//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR													//ローカルスクリプトに切り替え
 	_END
 
 ev_tama_event_sub:
@@ -1043,24 +1043,24 @@ ev_tama_event_sub:
 	_RET
 
 //********************************************************************
-//						�A�N�Z�T���[�擾�C�x���g(����)
+//						アクセサリー取得イベント(成功)
 //
-//	SCWK_TEMP0	�A�C�e���i���o�[
-//	SCWK_TEMP1	��
+//	SCWK_TEMP0	アイテムナンバー
+//	SCWK_TEMP1	個数
 //********************************************************************
 ev_acce_event:
 	_CALL			ev_acce_event_sub
 
 	_TALKMSG		msg_event_accessory_get_07
 	_LAST_KEYWAIT
-	_CHG_LOCAL_SCR													//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR													//ローカルスクリプトに切り替え
 	_END
 
 ev_acce_event_keywait:
 	_CALL			ev_acce_event_sub
 
 	_TALK_KEYWAIT		msg_event_accessory_get_08
-	_CHG_LOCAL_SCR													//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR													//ローカルスクリプトに切り替え
 	_END
 
 ev_acce_event_sub:
@@ -1076,23 +1076,23 @@ ev_acce_event_sub:
 
 
 //********************************************************************
-//						�w�i�擾�C�x���g(����)
+//						背景取得イベント(成功)
 //
-//	SCWK_TEMP0	�w�i�i���o�[
+//	SCWK_TEMP0	背景ナンバー
 //********************************************************************
 ev_imc_bg_getevent:
 	_CALL			ev_imc_bg_getevent_sub
 
 	_TALKMSG		msg_event_accessory_get_07
 	_LAST_KEYWAIT
-	_CHG_LOCAL_SCR													//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR													//ローカルスクリプトに切り替え
 	_END
 
 ev_imc_bg_getevent_keywait:
 	_CALL			ev_imc_bg_getevent_sub
 
 	_TALK_KEYWAIT		msg_event_accessory_get_08
-	_CHG_LOCAL_SCR													//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR													//ローカルスクリプトに切り替え
 	_END
 
 ev_imc_bg_getevent_sub:
@@ -1111,35 +1111,35 @@ ev_imc_bg_getevent_sub:
 
 
 //********************************************************************
-/*				�A�C�e���擾�C�x���g(����)(����J�[�\���҂��Ȃ�)	*/
+/*				アイテム取得イベント(成功)(送りカーソル待ちなし)	*/
 //
-//	SCWK_TEMP0	�A�C�e���i���o�[
-//	SCWK_TEMP1	��
+//	SCWK_TEMP0	アイテムナンバー
+//	SCWK_TEMP1	個数
 //********************************************************************
 ev_item_event:
 	_CALL			ev_item_event_sub
-	_CHG_LOCAL_SCR													//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR													//ローカルスクリプトに切り替え
 	_END
 
 //--------------------------------------------------------------------
-/*	����J�[�\���Ȃ�(�K���Ō�̃��b�Z�[�W�ɂȂ�I)					*/
+/*	送りカーソルなし(必ず最後のメッセージになる！)					*/
 /*	msg_event_item_get_06											*/
 //--------------------------------------------------------------------
 ev_item_event_sub:
-	_CALL			pocket_me_set									//ME�Z�b�g
+	_CALL			pocket_me_set									//MEセット
 
-	//�A�C�e���ǉ�
+	//アイテム追加
 	_ADD_ITEM		SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 
-	//���C�x���g�ł��炦��Z�}�V���ɂ���
-	//�����l���Z�}�V���̒��g�̐��������Ă����̂ŁA
-	/*�Z�}�V���̒��g�\�����b�Z�[�W�͂���Ȃ��I*/
+	//●イベントでもらえる技マシンについて
+	//くれる人が技マシンの中身の説明をしてくれるので、
+	/*技マシンの中身表示メッセージはいらない！*/
 
-	//�|�P�b�g�i���o�[��SCWK_ANSWER�ɑ��
+	//ポケットナンバーをSCWK_ANSWERに代入
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 
-	_IFVAL_CALL		SCWK_ANSWER,EQ,BAG_POKE_EVENT,event_item_get_taisetsu		//�������Ȃ���
-	_IFVAL_CALL		SCWK_ANSWER,NE,BAG_POKE_EVENT,event_item_get_sonota			//���̑�
+	_IFVAL_CALL		SCWK_ANSWER,EQ,BAG_POKE_EVENT,event_item_get_taisetsu		//たいせつなもの
+	_IFVAL_CALL		SCWK_ANSWER,NE,BAG_POKE_EVENT,event_item_get_sonota			//その他
 
 	_TALKMSG		msg_event_item_get_06
 	_LAST_KEYWAIT
@@ -1147,50 +1147,50 @@ ev_item_event_sub:
 
 
 //********************************************************************
-/*				�A�C�e���擾�C�x���g(����)(����J�[�\���҂�����)	*/
+/*				アイテム取得イベント(成功)(送りカーソル待ちあり)	*/
 //
-//	SCWK_TEMP0	�A�C�e���i���o�[
-//	SCWK_TEMP1	��
+//	SCWK_TEMP0	アイテムナンバー
+//	SCWK_TEMP1	個数
 //********************************************************************
 ev_item_event_keywait:
 	_CALL			ev_item_event_sub_keywait
-	_CHG_LOCAL_SCR													//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR													//ローカルスクリプトに切り替え
 	_END
 
 //--------------------------------------------------------------------
-/*	����J�[�\������												*/
+/*	送りカーソルあり												*/
 /*	msg_event_item_get_07											*/
 //--------------------------------------------------------------------
 ev_item_event_sub_keywait:
-	_CALL			pocket_me_set									//ME�Z�b�g
+	_CALL			pocket_me_set									//MEセット
 
-	//�A�C�e���ǉ�
+	//アイテム追加
 	_ADD_ITEM		SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 
-	//���C�x���g�ł��炦��Z�}�V���ɂ���
-	//�����l���Z�}�V���̒��g�̐��������Ă����̂ŁA
-	/*�Z�}�V���̒��g�\�����b�Z�[�W�͂���Ȃ��I*/
+	//●イベントでもらえる技マシンについて
+	//くれる人が技マシンの中身の説明をしてくれるので、
+	/*技マシンの中身表示メッセージはいらない！*/
 
-	//�|�P�b�g�i���o�[��SCWK_ANSWER�ɑ��
+	//ポケットナンバーをSCWK_ANSWERに代入
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 
-	_IFVAL_CALL		SCWK_ANSWER,EQ,BAG_POKE_EVENT,event_item_get_taisetsu		//�������Ȃ���
-	_IFVAL_CALL		SCWK_ANSWER,NE,BAG_POKE_EVENT,event_item_get_sonota			//���̑�
+	_IFVAL_CALL		SCWK_ANSWER,EQ,BAG_POKE_EVENT,event_item_get_taisetsu		//たいせつなもの
+	_IFVAL_CALL		SCWK_ANSWER,NE,BAG_POKE_EVENT,event_item_get_sonota			//その他
 
 	_TALK_KEYWAIT	msg_event_item_get_07
 	_RET
 
 //--------------------------------------------------------------------
-//	���ʏ���
+//	共通処理
 //--------------------------------------------------------------------
-//�������Ȃ���(���b�Z�[�W�̃A�C�e�����̕����̐F���ς��)
+//たいせつなもの(メッセージのアイテム名の部分の色が変わる)
 event_item_get_taisetsu:
 	_PLAYER_NAME	0
 	_ITEM_NAME		1,SCWK_TEMP0
 	_TALKMSG		msg_event_item_get_04
 	_JUMP			event_item_get_common_20
 
-//���̑�
+//その他
 event_item_get_sonota:
 	_ITEM_NAME		0,SCWK_TEMP0
 	_TALKMSG		msg_event_item_get_01
@@ -1200,14 +1200,14 @@ event_item_get_sonota:
 event_item_get_common_20:
 	_ME_WAIT
 
-	//�A�E�X�̃v���[�g�̃`�F�b�N�����Đ�p���b�Z�[�W���o��
+	//アウスのプレートのチェックをして専用メッセージを出す
 	_AUSU_ITEM_CHECK	SCWK_TEMP0,SCWK_ANSWER
 	_IFVAL_CALL		SCWK_ANSWER,EQ,1,ev_plate_msg_sub
 
 	_PLAYER_NAME	0
 	_ITEM_NAME		1,SCWK_TEMP0
 
-	//�|�P�b�g�i���o�[��SCWK_ANSWER�ɑ��
+	//ポケットナンバーをSCWK_ANSWERに代入
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 
 	_SWITCH			SCWK_ANSWER
@@ -1222,49 +1222,49 @@ event_item_get_common_20:
 	_END
 
 event_item_get_bag_poke_06:
-	//�|�P�b�g�i���o�[��SCWK_ANSWER�ɑ��
+	//ポケットナンバーをSCWK_ANSWERに代入
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_event_item_get_common_10
 
 event_item_get_bag_poke_07:
-	//�|�P�b�g�i���o�[��SCWK_ANSWER�ɑ��
+	//ポケットナンバーをSCWK_ANSWERに代入
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_event_item_get_common_10
 
 event_item_get_bag_poke_13:
-	//�|�P�b�g�i���o�[��SCWK_ANSWER�ɑ��
+	//ポケットナンバーをSCWK_ANSWERに代入
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_event_item_get_common_10
 
 event_item_get_bag_poke_09:
-	//�|�P�b�g�i���o�[��SCWK_ANSWER�ɑ��
+	//ポケットナンバーをSCWK_ANSWERに代入
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_event_item_get_common_10
 
 event_item_get_bag_poke_10:
-	//�|�P�b�g�i���o�[��SCWK_ANSWER�ɑ��
+	//ポケットナンバーをSCWK_ANSWERに代入
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_event_item_get_common_10
 
 event_item_get_bag_poke_11:
-	//�|�P�b�g�i���o�[��SCWK_ANSWER�ɑ��
+	//ポケットナンバーをSCWK_ANSWERに代入
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_event_item_get_common_10
 
 event_item_get_bag_poke_12:
-	//�|�P�b�g�i���o�[��SCWK_ANSWER�ɑ��
+	//ポケットナンバーをSCWK_ANSWERに代入
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_event_item_get_common_10
 
 event_item_get_bag_poke_08:
-	//�|�P�b�g�i���o�[��SCWK_ANSWER�ɑ��
+	//ポケットナンバーをSCWK_ANSWERに代入
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_event_item_get_common_10
@@ -1274,29 +1274,29 @@ ev_event_item_get_common_10:
 
 
 //********************************************************************
-//				�A�C�e���擾�C�x���g(���s)(LAST_KEYWAIT)
+//				アイテム取得イベント(失敗)(LAST_KEYWAIT)
 //********************************************************************
 ev_item_event_fail:
 	_CALL			ev_item_event_fail_sub
-	_CHG_LOCAL_SCR													//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR													//ローカルスクリプトに切り替え
 	_END
 
 ev_item_event_fail_sub:
-	//�u����˂�I�o�b�O�������ς����I�v
+	//「ざんねん！バッグがいっぱいだ！」
 	_TALKMSG		msg_event_item_get_03
 	_LAST_KEYWAIT
 	_RET
 
-/*�A�C�e���擾���s�������́A�C�x���g���I���ɂȂ�̂��A����Ƃ��A���b�Z�[�W�ɃL�[�҂�����邩�H�H*/
+/*アイテム取得失敗した時は、イベントが終了になるのか、それとも、メッセージにキー待ちいれるか？？*/
 
 /********************************************************************/
-/*							PC�N��                                */
+/*							PC起動                                */
 //
-//	SCWK_TEMP2	���j���[�߂�l
-//	(BMPMENU_INIT�`BMPMENU_START�`SWITCH�܂ł̊Ԃ͎g�p�s�I)
+//	SCWK_TEMP2	メニュー戻り値
+//	(BMPMENU_INIT〜BMPMENU_START〜SWITCHまでの間は使用不可！)
 /********************************************************************/
 ev_pc_on:
-	//�b������SE���Ⴄ�̂�"EVENT_START"�ɂ��Ă���
+	//話しかけSEが違うので"EVENT_START"にしている
 	_EVENT_START
 
 	_SE_PLAY		SEQ_SE_DP_PC_ON
@@ -1311,75 +1311,75 @@ ev_pc_on:
 
 /*PCON*/
 common_paso_on:
-	_SETUP_PASO_ANM		SCR_PASO_ANM_NO	//PC�A�j���Z�b�g�A�b�v
-	_START_PASO_ON_ANM	SCR_PASO_ANM_NO	//PC�N���A�j��
-	_WAIT_3D_ANIME		SCR_PASO_ANM_NO	//�A�j���҂�
+	_SETUP_PASO_ANM		SCR_PASO_ANM_NO	//PCアニメセットアップ
+	_START_PASO_ON_ANM	SCR_PASO_ANM_NO	//PC起動アニメ
+	_WAIT_3D_ANIME		SCR_PASO_ANM_NO	//アニメ待ち
 	_RET
 
 /*PCOFF*/
 common_paso_off:
-	_START_PASO_OFF_ANM	SCR_PASO_ANM_NO	//PC�����A�j��
-	_WAIT_3D_ANIME		SCR_PASO_ANM_NO	//�A�j���҂�
-	_FREE_3D_ANIME		SCR_PASO_ANM_NO	//�A�j�����
+	_START_PASO_OFF_ANM	SCR_PASO_ANM_NO	//PC消すアニメ
+	_WAIT_3D_ANIME		SCR_PASO_ANM_NO	//アニメ待ち
+	_FREE_3D_ANIME		SCR_PASO_ANM_NO	//アニメ解放
 	_RET
 
 //--------------------------------------------------------------------
-//���j���[01
+//メニュー01
 //--------------------------------------------------------------------
 ev_pc_on_menu01:
 	_PLAYER_NAME	0
 	_TALKMSG		msg_pc_on_02
-	_BMPMENU_INIT		1,1,0,1,SCWK_TEMP2		//B�L�����Z���L��
+	_BMPMENU_INIT		1,1,0,1,SCWK_TEMP2		//Bキャンセル有効
 
-	/*�u���ꂩ��PC�E�~�Y�L��PC�v*/
+	/*「だれかのPC・ミズキのPC」*/
 	_IF_FLAGOFF_CALL	SYS_FLAG_MIZUKI,ev_pc_on_menu01_2
 	_IF_FLAGON_CALL		SYS_FLAG_MIZUKI,ev_pc_on_menu01_3
 	
-	/*�u����PC�v*/
+	/*「○のPC」*/
 	_BMPMENU_MAKE_LIST	msg_ev_win_067,1
 
-	/*�u�i�i�J�}�h��PC�E�I�[�L�h��PC�v*/
-	/*�S���}�ӂɂȂ��Ă�����*/
+	/*「ナナカマドのPC・オーキドのPC」*/
+	/*全国図鑑になっていたら*/
 	_ZENKOKU_ZUKAN_FLAG	FLAG_MODE_GET,SCWK_ANSWER
 	_IFVAL_CALL		SCWK_ANSWER,EQ,0,ev_pc_on_menu01_10
 	_IFVAL_CALL		SCWK_ANSWER,EQ,1,ev_pc_on_menu01_10_2
 
-	/*�u�ł�ǂ�����v*/
+	/*「でんどういり」*/
 	_IF_FLAGON_JUMP		SYS_FLAG_GAME_CLEAR,ev_pc_on_menu01_4
 	_IF_FLAGOFF_JUMP	SYS_FLAG_GAME_CLEAR,ev_pc_on_menu01_4_2
 
 	_END
 
-/*���ꂩ��PC*/
+/*だれかのPC*/
 ev_pc_on_menu01_2:
-	_BMPMENU_MAKE_LIST	msg_ev_win_066,0		//���ꂩ��PC
+	_BMPMENU_MAKE_LIST	msg_ev_win_066,0		//だれかのPC
 	_RET
 
-/*�~�Y�L��PC*/
+/*ミズキのPC*/
 ev_pc_on_menu01_3:
-	_BMPMENU_MAKE_LIST	msg_ev_win_066_miz,0	//�~�Y�L��PC
+	_BMPMENU_MAKE_LIST	msg_ev_win_066_miz,0	//ミズキのPC
 	_RET
 
-/*�i�i�J�}�h��PC*/
+/*ナナカマドのPC*/
 ev_pc_on_menu01_10:
-	_BMPMENU_MAKE_LIST	msg_ev_win_069_nana,2	//�i�i�J�}�h��PC
+	_BMPMENU_MAKE_LIST	msg_ev_win_069_nana,2	//ナナカマドのPC
 	_RET
 
-/*�I�[�L�h��PC*/
+/*オーキドのPC*/
 ev_pc_on_menu01_10_2:
-	_BMPMENU_MAKE_LIST	msg_ev_win_069,2		//�I�[�L�h��PC
+	_BMPMENU_MAKE_LIST	msg_ev_win_069,2		//オーキドのPC
 	_RET
 
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-/*	���ꂩ(�~�Y�L)��PC
-	����PC
-	�i�i�J�}�h(�I�[�L�h)��PC
-	�ł�ǂ�����
-	��߂�*/
+/*	だれか(ミズキ)のPC
+	○のPC
+	ナナカマド(オーキド)のPC
+	でんどういり
+	やめる*/
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 ev_pc_on_menu01_4:
-	_BMPMENU_MAKE_LIST	msg_ev_win_068,3		//�ł�ǂ�����
-	_BMPMENU_MAKE_LIST	msg_ev_win_070,4		//�X�C�b�`������
+	_BMPMENU_MAKE_LIST	msg_ev_win_068,3		//でんどういり
+	_BMPMENU_MAKE_LIST	msg_ev_win_070,4		//スイッチをきる
 	_BMPMENU_START
 
 	_SWITCH			SCWK_TEMP2
@@ -1390,13 +1390,13 @@ ev_pc_on_menu01_4:
 	_JUMP			ev_pc_on_cancel
 
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-/*	���ꂩ(�~�Y�L)��PC
-	����PC
-	�i�i�J�}�h(�I�[�L�h)��PC
-	��߂�*/
+/*	だれか(ミズキ)のPC
+	○のPC
+	ナナカマド(オーキド)のPC
+	やめる*/
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 ev_pc_on_menu01_4_2:
-	_BMPMENU_MAKE_LIST	msg_ev_win_070,3		//�X�C�b�`������
+	_BMPMENU_MAKE_LIST	msg_ev_win_070,3		//スイッチをきる
 	_BMPMENU_START
 
 	_SWITCH			SCWK_TEMP2
@@ -1406,7 +1406,7 @@ ev_pc_on_menu01_4_2:
 	_JUMP			ev_pc_on_cancel
 
 //====================================================================
-/*�u���ꂩ��PC�v                                               */
+/*「だれかのPC」                                               */
 //====================================================================
 ev_pc_on_00:
 	_SE_PLAY		SEQ_SE_DP_PC_LOGIN
@@ -1416,22 +1416,22 @@ ev_pc_on_00:
 	_JUMP			ev_pc_on_menu02_sub
 
 //--------------------------------------------------------------------
-//���j���[02
+//メニュー02
 //--------------------------------------------------------------------
 ev_pc_on_menu02:
-	_BMPLIST_INIT		1,1,0,1,SCWK_ANSWER					//B�L�����Z���L��
+	_BMPLIST_INIT		1,1,0,1,SCWK_ANSWER					//Bキャンセル有効
 	_BMPLIST_MAKE_LIST	msg_ev_win_071,msg_ev_win_071_set,0
 	_BMPLIST_MAKE_LIST	msg_ev_win_072,msg_ev_win_072_set,1
 	_BMPLIST_MAKE_LIST	msg_ev_win_073,msg_ev_win_073_set,2
 	_BMPLIST_MAKE_LIST	msg_ev_win_074,msg_ev_win_074_set,3
 
-	/*�R���e�X�g�Z�t���O�����āu�悳����ׁv��\�����邩����*/
+	/*コンテスト技フラグを見て「つよさくらべ」を表示するか判別*/
 	_IF_FLAGON_CALL		SYS_FLAG_PST,ev_pc_on_menu02_tuyosa
 
 	_BMPLIST_MAKE_LIST	msg_ev_win_076,msg_ev_win_076_set,5
 	_RET
 
-/*�R���e�X�g�Z�t���O�����āu�悳����ׁv��\�����邩����*/
+/*コンテスト技フラグを見て「つよさくらべ」を表示するか判別*/
 ev_pc_on_menu02_tuyosa:
 	_BMPLIST_MAKE_LIST	msg_ev_win_075,msg_ev_win_075_set,4
 	_RET
@@ -1444,15 +1444,15 @@ ev_pc_on_menu02_sub:
 	_CASE_JUMP		2,ev_pc_on_00_2
 	_CASE_JUMP		3,ev_pc_on_00_3
 	_CASE_JUMP		4,ev_pc_on_00_4
-	_JUMP			ev_pc_on_menu01		//�u���悤�Ȃ�v���j���[01�֖߂�
+	_JUMP			ev_pc_on_menu01		//「さようなら」メニュー01へ戻る
 
 //--------------------------------------------------------------------
-//�u�|�P��������������v
+//「ポケモンをあずける」
 //--------------------------------------------------------------------
 ev_pc_on_00_0:
 	_TALK_CLOSE
 
-	/*�u���b�N�A�E�g���āA�A�j�����J��*/
+	/*ブラックアウトして、アニメを開放*/
 	_CALL			ev_black_out_anm_free
 
 	_BOX_SET_PROC	BOX_MODE_AZUKERU
@@ -1461,12 +1461,12 @@ ev_pc_on_00_0:
 	_JUMP			ev_pc_on_00_common
 
 //--------------------------------------------------------------------
-//�u�|�P��������Ă����v
+//「ポケモンをつれていく」
 //--------------------------------------------------------------------
 ev_pc_on_00_1:
 	_TALK_CLOSE
 
-	/*�u���b�N�A�E�g���āA�A�j�����J��*/
+	/*ブラックアウトして、アニメを開放*/
 	_CALL			ev_black_out_anm_free
 
 	_BOX_SET_PROC	BOX_MODE_TURETEIKU
@@ -1474,12 +1474,12 @@ ev_pc_on_00_1:
 	_JUMP			ev_pc_on_00_common
 
 //--------------------------------------------------------------------
-//�u�{�b�N�X�������肷��v
+//「ボックスをせいりする」
 //--------------------------------------------------------------------
 ev_pc_on_00_2:
 	_TALK_CLOSE
 
-	/*�u���b�N�A�E�g���āA�A�j�����J��*/
+	/*ブラックアウトして、アニメを開放*/
 	_CALL			ev_black_out_anm_free
 
 	_BOX_SET_PROC	BOX_MODE_SEIRI
@@ -1487,12 +1487,12 @@ ev_pc_on_00_2:
 	_JUMP			ev_pc_on_00_common
 
 //--------------------------------------------------------------------
-//�u�������̂������肷��v
+//「もちものをせいりする」
 //--------------------------------------------------------------------
 ev_pc_on_00_3:
 	_TALK_CLOSE
 
-	/*�u���b�N�A�E�g���āA�A�j�����J��*/
+	/*ブラックアウトして、アニメを開放*/
 	_CALL			ev_black_out_anm_free
 
 	_BOX_SET_PROC	BOX_MODE_ITEM
@@ -1500,27 +1500,27 @@ ev_pc_on_00_3:
 	_JUMP			ev_pc_on_00_common
 
 //--------------------------------------------------------------------
-//�u�悳����ׁv
+//「つよさくらべ」
 //--------------------------------------------------------------------
 ev_pc_on_00_4:
 	_TALK_CLOSE
 
-	/*�u���b�N�A�E�g���āA�A�j�����J��*/
+	/*ブラックアウトして、アニメを開放*/
 	_CALL			ev_black_out_anm_free
 
 	_BOX_SET_PROC	BOX_MODE_COMPARE
 	_SET_MAP_PROC
 	_JUMP			ev_pc_on_00_common
 
-//���ʕ��A����
+//共通復帰処理
 ev_pc_on_00_common:
 
-	/*�g�s�b�N�����F�I�X�����I���X�����I*/
+	/*トピック生成：オスだけ！メスだけ！*/
 	_TV_ENTRY_WATCH_OSU_MESU
 
-	//�u���b�N�A�E�g���Ƀ��j���[��`�悵�Ă����I
+	//ブラックアウト中にメニューを描画しておく！
 	_PLAYER_NAME	0
-	_TALKMSG_ALLPUT	msg_pc_on_02		//�_�~�[�Ƃ��ĕK�v�I
+	_TALKMSG_ALLPUT	msg_pc_on_02		//ダミーとして必要！
 	_CALL			ev_pc_on_menu02
 
 	/*PCON*/
@@ -1531,7 +1531,7 @@ ev_pc_on_00_common:
 	_JUMP			ev_pc_on_menu02_sub
 
 //====================================================================
-/*�u��l����PC�v                                               */
+/*「主人公のPC」                                               */
 //====================================================================
 ev_pc_on_01:
 	_SE_PLAY		SEQ_SE_DP_PC_LOGIN
@@ -1544,10 +1544,10 @@ ev_pc_on_01_2:
 	_JUMP			ev_pc_on_menu03_sub
 
 //--------------------------------------------------------------------
-//���j���[03
+//メニュー03
 //--------------------------------------------------------------------
 ev_pc_on_menu03:
-	_BMPLIST_INIT		1,1,0,1,SCWK_ANSWER					//B�L�����Z���L��
+	_BMPLIST_INIT		1,1,0,1,SCWK_ANSWER					//Bキャンセル有効
 	_BMPLIST_MAKE_LIST	msg_ev_win_077,msg_ev_win_077_set,0
 	_BMPLIST_MAKE_LIST	msg_ev_win_078,msg_ev_win_078_set,1
 	_BMPLIST_MAKE_LIST	msg_ev_win_079,msg_ev_win_079_set,3
@@ -1558,35 +1558,35 @@ ev_pc_on_menu03_sub:
 	_SWITCH			SCWK_ANSWER
 	_CASE_JUMP		0,ev_pc_on_03_0
 	_CASE_JUMP		1,ev_pc_on_03_1
-	_JUMP			ev_pc_on_menu01		//�u������������v���j���[01�֖߂�
+	_JUMP			ev_pc_on_menu01		//「せつぞくをきる」メニュー01へ戻る
 
 //--------------------------------------------------------------------
-//�u���[���{�b�N�X�v
+//「メールボックス」
 //--------------------------------------------------------------------
 ev_pc_on_03_0:
 	_TALK_CLOSE
 
-	_GET_MAILBOX_DATANUM	SCWK_ANSWER	//�{�b�N�X�����[�����擾
+	_GET_MAILBOX_DATANUM	SCWK_ANSWER	//ボックス内メール数取得
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_pc_on_03_0_1
 
 	_MAILBOX
 
-	/*��l����PC�̂��łɑI�������\������Ă����Ԃ֖߂�*/
+	/*主人公のPCのすでに選択肢が表示されている状態へ戻る*/
 	_JUMP			ev_pc_on_01_sub_mail
 
 ev_pc_on_03_0_1:
-	_TALK_KEYWAIT	msg_pc_mailcheck_01	//�{�b�N�X���󃁃b�Z�[�W
-	_JUMP			ev_pc_on_01_2		/*��l����PC�֖߂�(PC�ɐڑ������͂Ȃ�)*/
+	_TALK_KEYWAIT	msg_pc_mailcheck_01	//ボックスが空メッセージ
+	_JUMP			ev_pc_on_01_2		/*主人公のPCへ戻る(PCに接続したはなし)*/
 
 //--------------------------------------------------------------------
-/*��l����PC�̂��łɑI�������\������Ă����Ԃ֖߂�*/
+/*主人公のPCのすでに選択肢が表示されている状態へ戻る*/
 //--------------------------------------------------------------------
 ev_pc_on_01_sub_mail:
 
-	/*���[���͗�O�ŁAPC�A�j�����v���O�����ŏ������Ă���I*/
+	/*メールは例外で、PCアニメをプログラムで処理している！*/
 
 	_PLAYER_NAME	0
-	//_TALKMSG_ALLPUT	msg_pc_on_02		//�_�~�[�Ƃ��ĕK�v�I
+	//_TALKMSG_ALLPUT	msg_pc_on_02		//ダミーとして必要！
 	_TALK_OPEN
 	_CALL			ev_pc_on_menu03
 
@@ -1598,37 +1598,37 @@ ev_pc_on_01_sub_mail:
 	_JUMP			ev_pc_on_menu03_sub
 
 //--------------------------------------------------------------------
-//�u�J�X�^���{�[���v
+//「カスタムボール」
 //--------------------------------------------------------------------
 ev_pc_on_03_1:
 
-	/*�V�[�����P��ނ������Ă��Ȃ�������*/
+	/*シールを１種類も持っていなかったら*/
 	_CB_SEAL_KIND_NUM_GET	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_pc_seal_nothing
 
 	_TALK_CLOSE
 
-	/*�u���b�N�A�E�g���āA�A�j�����J��*/
+	/*ブラックアウトして、アニメを開放*/
 	_CALL			ev_black_out_anm_free
 
 	_CUSTOM_BALL_EVENT_CALL
 
-	/*��l����PC�̂��łɑI�������\������Ă����Ԃ֖߂�*/
+	/*主人公のPCのすでに選択肢が表示されている状態へ戻る*/
 	_JUMP			ev_pc_on_01_sub
 
-/*�V�[�����P��ނ������Ă��Ȃ�������*/
+/*シールを１種類も持っていなかったら*/
 ev_pc_seal_nothing:
 	_TALK_KEYWAIT	msg_computer_ball_01
-	_JUMP			ev_pc_on_01_2		/*��l����PC�֖߂�(PC�ɐڑ������͂Ȃ�)*/
+	_JUMP			ev_pc_on_01_2		/*主人公のPCへ戻る(PCに接続したはなし)*/
 
 //--------------------------------------------------------------------
-/*��l����PC�̂��łɑI�������\������Ă����Ԃ֖߂�*/
+/*主人公のPCのすでに選択肢が表示されている状態へ戻る*/
 //--------------------------------------------------------------------
 ev_pc_on_01_sub:
 
-	//�u���b�N�A�E�g���Ƀ��j���[��`�悵�Ă����I
+	//ブラックアウト中にメニューを描画しておく！
 	_PLAYER_NAME	0
-	_TALKMSG_ALLPUT	msg_pc_on_02		//�_�~�[�Ƃ��ĕK�v�I
+	_TALKMSG_ALLPUT	msg_pc_on_02		//ダミーとして必要！
 	_CALL			ev_pc_on_menu03
 
 	/*PCON*/
@@ -1639,7 +1639,7 @@ ev_pc_on_01_sub:
 	_JUMP			ev_pc_on_menu03_sub
 
 //====================================================================
-//�u�ł�ǂ�����v
+//「でんどういり」
 //====================================================================
 ev_pc_on_02:
 	_SE_PLAY		SEQ_SE_DP_PC_LOGIN
@@ -1648,32 +1648,32 @@ ev_pc_on_02:
 	_DENDOU_DATA_CHECK SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_pc_on_02_err
 	
-	/*�u���b�N�A�E�g���āA�A�j�����J��*/
+	/*ブラックアウトして、アニメを開放*/
 	_CALL			ev_black_out_anm_free
 
 	_PC_DENDOU_SET_PROC
 	_SET_MAP_PROC
 
-	/*PC�̃A�j���I���I�����āA�u���b�N�C��*/
+	/*PCのアニメオン終了して、ブラックイン*/
 	_CALL			ev_paso_on_black_in
 
-	_JUMP			ev_pc_on_menu01		//���j���[01�֖߂�
+	_JUMP			ev_pc_on_menu01		//メニュー01へ戻る
 
-/*�a������f�[�^�G���[*/
+/*殿堂入りデータエラー*/
 ev_pc_on_02_err:
 	_TALK_KEYWAIT	msg_dendou_error
-	_JUMP			ev_pc_on_menu01		//���j���[01�֖߂�
+	_JUMP			ev_pc_on_menu01		//メニュー01へ戻る
 	
 //====================================================================
-/*�u�I�[�L�h��PC�v                                            */
+/*「オーキドのPC」                                            */
 //====================================================================
 ev_pc_on_03:
 	_SE_PLAY		SEQ_SE_DP_PC_LOGIN
 	_CHG_COMMON_SCR	SCRID_PC_ZUKAN_HYOUKA
-	_JUMP			ev_pc_on_menu01		//���j���[01�֖߂�
+	_JUMP			ev_pc_on_menu01		//メニュー01へ戻る
 
 //====================================================================
-//�u�X�C�b�`������v
+//「スイッチをきる」
 //====================================================================
 ev_pc_on_cancel:
 	_TALK_CLOSE
@@ -1687,7 +1687,7 @@ ev_pc_on_cancel:
 	_END
 
 //====================================================================
-/*PC�̃A�j���I���I�����āA�u���b�N�C��*/
+/*PCのアニメオン終了して、ブラックイン*/
 //====================================================================
 ev_paso_on_black_in:
 	_CALL			common_paso_on
@@ -1696,24 +1696,24 @@ ev_paso_on_black_in:
 	_RET
 
 //====================================================================
-/*�u���b�N�A�E�g���āA�A�j�����J��*/
+/*ブラックアウトして、アニメを開放*/
 //====================================================================
 ev_black_out_anm_free:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
-	_FREE_3D_ANIME	SCR_PASO_ANM_NO	//�A�j�����
+	_FREE_3D_ANIME	SCR_PASO_ANM_NO	//アニメ解放
 	_RET
 
 
 /********************************************************************/
-/*							�_�~�[									*/
+/*							ダミー									*/
 /********************************************************************/
 ev_dummy23:
 	_END
 
 
 /********************************************************************/
-//					�f�o�b�N�@�J�X�^���{�[���Ăяo��
+//					デバック　カスタムボール呼び出し
 /********************************************************************/
 ev_debug_custom_ball:
 
@@ -1729,21 +1729,21 @@ ev_debug_custom_ball:
 
 
 /********************************************************************/
-//						�V���b�v�u��������Ⴂ�v
+//						ショップ「いらっしゃい」
 /********************************************************************/
 ev_shop_start_talk:
 	_TALKMSG		msg_shop_01
-	_CHG_LOCAL_SCR												//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR												//ローカルスクリプトに切り替え
 	_END
 
 
 /********************************************************************/
-//							�C�����Ă�
+//							気をつけてね
 /********************************************************************/
 ev_game_over_recover_myhome:
 	_EVENT_START
 
-	/*��������*/
+	/*向き合う*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,player_recover_myhome_anm
 	_OBJ_ANIME		T01R0201_MAMA,mama_recover_myhome_anm
 	_OBJ_ANIME_WAIT	
@@ -1765,7 +1765,7 @@ ev_game_over_recover_myhome:
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//�}�ӓ��肵�Ă��邩�Ń��b�Z�[�W�𕪊�
+	//図鑑入手しているかでメッセージを分岐
 	_IF_FLAGON_CALL		FE_ZUKAN_GET,ev_game_over_recover_myhome_zukan_on
 	_IF_FLAGOFF_CALL	FE_ZUKAN_GET,ev_game_over_recover_myhome_zukan_off
 
@@ -1774,7 +1774,7 @@ ev_game_over_recover_myhome:
 	_EVENT_END
 	_END
 
-//�}�ӓ��肵�Ă��邩�Ń��b�Z�[�W�𕪊�
+//図鑑入手しているかでメッセージを分岐
 ev_game_over_recover_myhome_zukan_on:
 	_TALKMSG		msg_all_dead_12
 	_RET
@@ -1789,7 +1789,7 @@ ev_game_over_recover_pc:
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*�n���A�j��*/
+	/*渡すアニメ*/
 	_PLAYER_REQ_BIT_ON		HERO_REQBIT_BANZAI
 	_PLAYER_REQ_START
 	_OBJ_ANIME				FLDOBJ_ID_PLAYER,player_banzai_anm00
@@ -1797,25 +1797,25 @@ ev_game_over_recover_pc:
 
 	_TALK_KEYWAIT	msg_all_dead_06
 
-	//���݈ʒu(PC)����A����pPC�L�����擾(SCWK_TEMP3�ցj
+	//現在位置(PC)から、それ用PCキャラ取得(SCWK_TEMP3へ）
 	_CALL			now_zone_to_pcwoman_code
 
-	//�񕜋��ʏ���
+	//回復共通処理
 	_CALL			common_pc_kaihuku
 
-	//C03�o�b�`�擾�`�F�b�N
+	//C03バッチ取得チェック
 	_SYS_FLAG_BADGE_GET	BADGE_ID_C03,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_game_over_badge_get
 
 	_TALK_KEYWAIT	msg_all_dead_07
 
-	/*�����Ƃ�*/
+	/*うけとり*/
 	_OBJ_ANIME				FLDOBJ_ID_PLAYER,player_banzai_anm01
 	_OBJ_ANIME_WAIT	
 	_PLAYER_REQ_BIT_ON		HERO_REQBIT_NORMAL
 	_PLAYER_REQ_START
 
-	//������������
+	//おじぎをする
 	_OBJ_ANIME	SCWK_TEMP3,pcwoman_bow_anime01
 	_OBJ_ANIME_WAIT	
 
@@ -1826,13 +1826,13 @@ ev_game_over_recover_pc:
 	_END
 
 ev_game_over_badge_get:
-	/*�����Ƃ�*/
+	/*うけとり*/
 	_OBJ_ANIME				FLDOBJ_ID_PLAYER,player_banzai_anm01
 	_OBJ_ANIME_WAIT	
 	_PLAYER_REQ_BIT_ON		HERO_REQBIT_NORMAL
 	_PLAYER_REQ_START
 
-	//������������
+	//おじぎをする
 	_OBJ_ANIME	SCWK_TEMP3,pcwoman_bow_anime01
 	_OBJ_ANIME_WAIT	
 
@@ -1842,7 +1842,7 @@ ev_game_over_badge_get:
 	_EVENT_END
 	_END
 
-//���݈ʒu(PC)����A����pPC�L�����擾(SCWK_TEMP3�ցj
+//現在位置(PC)から、それ用PCキャラ取得(SCWK_TEMP3へ）
 now_zone_to_pcwoman_code:
 	_GET_NOW_ZONE_ID	SCWK_TEMP0
 
@@ -1865,9 +1865,9 @@ now_zone_to_pcwoman_code:
 	_IFVAL_JUMP			SCWK_TEMP0,EQ,ZONE_ID_T06PC0101,pcwoman_no_set_t06pc0101
 	_IFVAL_JUMP			SCWK_TEMP0,EQ,ZONE_ID_T07PC0101,pcwoman_no_set_t07pc0101
 
-	_IFVAL_JUMP			SCWK_TEMP0,EQ,ZONE_ID_C10R0101,pcwoman_no_set_c10r0101	//�|�P�������[�O
+	_IFVAL_JUMP			SCWK_TEMP0,EQ,ZONE_ID_C10R0101,pcwoman_no_set_c10r0101	//ポケモンリーグ
 
-	//����L�ɊY�����Ȃ��ӏ����������Ƃ�
+	//※上記に該当しない箇所があったとき
 	_LDVAL	SCWK_TEMP3,0
 
 	_RET
@@ -1946,7 +1946,7 @@ pcwoman_no_set_c10r0101:
 
 
 //--------------------------------------------------------------------
-//��l���@�}�}�@��������
+//主人公　ママ　向き合う
 //--------------------------------------------------------------------
 _ANIME_LABEL	player_recover_myhome_anm
 	_ANIME_DATA	AC_DIR_L,1
@@ -1958,32 +1958,32 @@ _ANIME_LABEL	mama_recover_myhome_anm
 
 
 /********************************************************************/
-//						���ʃA�j���[�V����
+//						共通アニメーション
 /********************************************************************/
 
 //--------------------------------------------------------------------
-//��������
+//左を向く
 //--------------------------------------------------------------------
 _ANIME_LABEL	turn_l_anime
 	_ANIME_DATA	AC_DIR_L,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�������
+//上を向く
 //--------------------------------------------------------------------
 _ANIME_LABEL	turn_u_anime
 	_ANIME_DATA	AC_DIR_U,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�E������
+//右を向く
 //--------------------------------------------------------------------
 _ANIME_LABEL	turn_r_anime
 	_ANIME_DATA	AC_DIR_R,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//��������
+//下を向く
 //--------------------------------------------------------------------
 _ANIME_LABEL	turn_d_anime
 	_ANIME_DATA	AC_DIR_D,1
@@ -2000,7 +2000,7 @@ ev_abc_clear_check:
 
 
 /********************************************************************/
-//							�n���V	
+//							地球儀	
 /********************************************************************/
 ev_wifi_earth:
 	_TALK_START
@@ -2019,7 +2019,7 @@ ev_wifi_earth:
 
 
 /********************************************************************/
-/*						�\��t�����b�Z�[�W							*/
+/*						貼り付けメッセージ							*/
 /********************************************************************/
 ev_msg_auto:
 	_TALK_OBJ_START
@@ -2031,47 +2031,47 @@ ev_msg_auto:
 
 
 /********************************************************************/
-//							��������
+//							つうきこう
 /********************************************************************/
 ev_airhole:
 	_EASY_OBJ_MSG	msg_airhole_01
 	_END
 
 /********************************************************************/
-//				���܂�������i�G���J�E���g���Ȃ��ꏊ�Ŏg�p�j
+//				あまいかおり（エンカウントしない場所で使用）
 /********************************************************************/
 ev_sweet_no_enc:
 	_EASY_OBJ_MSG	msg_amaikaori_01
 	_END
 
 /********************************************************************/
-//				���܂�������i�V��G�t�F�N�g���Ɏg�p�j
+//				あまいかおり（天候エフェクト中に使用）
 /********************************************************************/
 ev_sweet_weather:
 	_EASY_OBJ_MSG	msg_amaikaori_02
 	_END
 
 /********************************************************************/
-//				���]�Ԃ����~��o����A�g���r���[�g
+//				自転車を乗り降り出来るアトリビュート
 /********************************************************************/
 ev_bump_post:
-	/*���]�Ԃ������Ă��邩�`�F�b�N*/
+	/*自転車を持っているかチェック*/
 	_ITEM_CHK		ITEM_ZITENSYA,1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,end_bump_post_not_bicycle
 
 	_EVENT_START
 	_SE_PLAY		SEQ_SE_DP_SELECT
 
-	/*���]�Ԃɏ���Ă��邩�`�F�b�N*/
+	/*自転車に乗っているかチェック*/
 	_BICYCLE_CHECK	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_bicycle_use
 
-	/*�u���]�Ԃɏ��܂����H�v*/
+	/*「自転車に乗りますか？」*/
 	_TALKMSG		msg_bycyclestop_02
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,end_bump_post
 
-	/*���]�ԏ�Ԃ�*/
+	/*自転車状態へ*/
 	_BICYCLE_REQ	1
 	
 	_TALK_CLOSE
@@ -2079,35 +2079,35 @@ ev_bump_post:
 	_END
 
 //--------------------------------------------------------------------
-/*���]�Ԃɏ���Ă���*/
+/*自転車に乗っている*/
 //--------------------------------------------------------------------
 ev_bicycle_use:
 
-	/*�u���]�Ԃ���~��܂����H�v*/
+	/*「自転車から降りますか？」*/
 	_TALKMSG		msg_bycyclestop_03
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,end_bump_post
 
-	/*�ʏ��Ԃ�*/
+	/*通常状態へ*/
 	_BICYCLE_REQ	0
 
 	_TALK_CLOSE
 	_EVENT_END
 	_END
 
-/*�I��*/
+/*終了*/
 end_bump_post:
 	_TALK_CLOSE
 	_EVENT_END
 	_END
 
-/*���]�Ԃ����Ă��Ȃ�*/
+/*自転車もっていない*/
 end_bump_post_not_bicycle:
 	_END
 
 
 /********************************************************************/
-//				�^�}�S���܂��C�x���g
+//				タマゴうまれるイベント
 /********************************************************************/
 ev_egg_hatching:
 	_TALK_START
@@ -2129,7 +2129,7 @@ ev_egg_hatching:
 	_END
 
 /********************************************************************/
-//				�X�v���[���ʐ؂�
+//				スプレー効果切れ
 /********************************************************************/
 ev_end_spray:
 	_TALK_START
@@ -2144,7 +2144,7 @@ ev_end_spray:
 
 
 /********************************************************************/
-/*						���b�Z�[�W�o�^���N�@						*/
+/*						メッセージ登録少年　						*/
 /********************************************************************/
 ev_msg_boy:
 	_TALK_OBJ_START
@@ -2154,7 +2154,7 @@ ev_msg_boy:
 
 
 /********************************************************************/
-//						�F�B�蒠�X�g�b�p�[
+//						友達手帳ストッパー
 /********************************************************************/
 ev_stopper_friendbook:
 	_EASY_OBJ_MSG	msg_stopper_friendbook_01
@@ -2162,16 +2162,16 @@ ev_stopper_friendbook:
 
 
 /********************************************************************/
-//					�A�E�X�̃v���[�g���b�Z�[�W
+//					アウスのプレートメッセージ
 /********************************************************************/
 ev_plate_msg:
 	_CALL			ev_plate_msg_sub
-	_CHG_LOCAL_SCR												//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR												//ローカルスクリプトに切り替え
 	_END
 
 ev_plate_msg_sub:
 	_ADD_WK			WK_SCENE_PLATE_MSG,1
-	_IFVAL_CALL		WK_SCENE_PLATE_MSG,GE,9,ev_plate_msg_wk_reset	/*����`�F�b�N*/
+	_IFVAL_CALL		WK_SCENE_PLATE_MSG,GE,9,ev_plate_msg_wk_reset	/*上限チェック*/
 
 	_IFVAL_CALL		WK_SCENE_PLATE_MSG,EQ,1,ev_plate_msg_01
 	_IFVAL_CALL		WK_SCENE_PLATE_MSG,EQ,2,ev_plate_msg_02
@@ -2183,7 +2183,7 @@ ev_plate_msg_sub:
 	_IFVAL_CALL		WK_SCENE_PLATE_MSG,EQ,8,ev_plate_msg_08
 	_RET
 
-/*����`�F�b�N*/
+/*上限チェック*/
 ev_plate_msg_wk_reset:
 	_LDVAL			WK_SCENE_PLATE_MSG,1
 	_RET
@@ -2222,14 +2222,14 @@ ev_plate_msg_08:
 
 
 /********************************************************************/
-/*			���b�Z�[�W�Ȃ��X�N���v�g(�����Ȃ��Ɍ���������)			*/
+/*			メッセージなしスクリプト(反応なしに見せかける)			*/
 /********************************************************************/
 ev_msg_nothing:
 	_END
 
 
 /********************************************************************/
-/*			�Ă񂩂��̂ӂ�											*/
+/*			てんかいのふえ											*/
 /********************************************************************/
 ev_tenkainofue:
 	_EVENT_START
@@ -2247,17 +2247,17 @@ ev_tenkainofue_sub:
 	_IFVAL_JUMP			SCWK_TEMP0,NE,31, ev_tenkainofue_ng
 	_IFVAL_JUMP			SCWK_TEMP1,NE,52, ev_tenkainofue_ng
 
-/* �Ă񂩂��̂ӂ����g������� */
-	/*�Q�[���N���A�H*/
+/* てんかいのふえが使える条件 */
+	/*ゲームクリア？*/
 	_SYS_FLAG_GAME_CLEAR_GET	LOCALWORK0
 	_IFVAL_JUMP					LOCALWORK0,EQ,0, ev_tenkainofue_ng
-	/* �S���}�ӓ����H*/
+	/* 全国図鑑入手後？*/
 	_ZENKOKU_ZUKAN_FLAG			FLAG_MODE_GET, LOCALWORK0
 	_IFVAL_JUMP					LOCALWORK0,EQ,0, ev_tenkainofue_ng
-	/* �z�z�p�}�W�b�N�i���o�[����H*/
+	/* 配布用マジックナンバー正常？*/
 	_IS_HAIHU_EVENT_ENABLE		HAIHUEVENT_ID_D05, LOCALWORK0
 	_IFVAL_JUMP					LOCALWORK0,EQ,0, ev_tenkainofue_ng
-	/* �A�E�X�i�A���Z�E�X�j��߂܂��Ă��Ȃ��H*/
+	/* アウス（アルセウス）を捕まえていない？*/
 	_IF_FLAGON_JUMP				FE_D05R0116_LEGEND_CLEAR, ev_tenkainofue_ng
 
 	_PLAYER_NAME		0
@@ -2284,7 +2284,7 @@ ev_tenkainofue_sub:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-//D05R0114�̒l���v���`�i�ŕύX�ɂȂ����̂Ŗ����ɂ���(08.06.09)
+//D05R0114の値がプラチナで変更になったので無効にした(08.06.09)
 //#if	(AFTER_MASTER_070719_EURO104_FIX != 1)
 //	_LDVAL						WK_SCENE_D05R0114, 4
 //#endif
@@ -2305,132 +2305,132 @@ ev_tenkainofue_cancel:
 
 
 /********************************************************************/
-/*					�T�|�[�g�ȍĐ�(���݂̋Ȃ͒�~)					*/
+/*					サポート曲再生(現在の曲は停止)					*/
 /********************************************************************/
 ev_the_boy_girl_play:
 
-	_BGM_STOP			0									//BGM��~
+	_BGM_STOP			0									//BGM停止
 
 	_GET_MY_SEX		SCWK_ANSWER
-	_IFVAL_CALL		SCWK_ANSWER,EQ,0,ev_the_boy				//�T�|�[�g��
-	_IFVAL_CALL		SCWK_ANSWER,EQ,1,ev_the_girl			//�T�|�[�g�j
+	_IFVAL_CALL		SCWK_ANSWER,EQ,0,ev_the_boy				//サポート女
+	_IFVAL_CALL		SCWK_ANSWER,EQ,1,ev_the_girl			//サポート男
 
-	_CHG_LOCAL_SCR											//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR											//ローカルスクリプトに切り替え
 	_END
 
-ev_the_boy:		//�T�|�[�g��
-	_PLAYER_FIELD_DEMO_BGM_PLAY		SEQ_THE_GIRL			//�T�|�[�gBGM�Đ�
+ev_the_boy:		//サポート女
+	_PLAYER_FIELD_DEMO_BGM_PLAY		SEQ_THE_GIRL			//サポートBGM再生
 	_RET
 
-ev_the_girl:		//�T�|�[�g�j
-	_PLAYER_FIELD_DEMO_BGM_PLAY		SEQ_THE_BOY				//�T�|�[�gBGM�Đ�
+ev_the_girl:		//サポート男
+	_PLAYER_FIELD_DEMO_BGM_PLAY		SEQ_THE_BOY				//サポートBGM再生
 	_RET
 
 
 /********************************************************************/
-/*					���C�o���ȍĐ�(���݂̋Ȃ͒�~)					*/
+/*					ライバル曲再生(現在の曲は停止)					*/
 /********************************************************************/
 ev_the_rival_play:
-	_BGM_STOP			0									//BGM��~
-	_PLAYER_FIELD_DEMO_BGM_PLAY		SEQ_THE_RIV				//���C�o��BGM�Đ�
-	_CHG_LOCAL_SCR											//���[�J���X�N���v�g�ɐ؂�ւ�
+	_BGM_STOP			0									//BGM停止
+	_PLAYER_FIELD_DEMO_BGM_PLAY		SEQ_THE_RIV				//ライバルBGM再生
+	_CHG_LOCAL_SCR											//ローカルスクリプトに切り替え
 	_END
 
 
 /********************************************************************/
-/*					��Ă��ȍĐ�(���݂̋Ȃ͒�~)					*/
+/*					つれてけ曲再生(現在の曲は停止)					*/
 /********************************************************************/
 ev_tsureteke_play:
-	_BGM_STOP			0									//BGM��~
-	_PLAYER_FIELD_DEMO_BGM_PLAY		SEQ_TSURETEKE			//��Ă�BGM�Đ�
-	_CHG_LOCAL_SCR											//���[�J���X�N���v�g�ɐ؂�ւ�
+	_BGM_STOP			0									//BGM停止
+	_PLAYER_FIELD_DEMO_BGM_PLAY		SEQ_TSURETEKE			//つれてけBGM再生
+	_CHG_LOCAL_SCR											//ローカルスクリプトに切り替え
 	_END
 
 
 /********************************************************************/
-/*					�n���T���ȍĐ�(���݂̋Ȃ͒�~)					*/
+/*					ハンサム曲再生(現在の曲は停止)					*/
 /********************************************************************/
 ev_handsome_play:
-	_BGM_STOP			0									//BGM��~
-	_PLAYER_FIELD_DEMO_BGM_PLAY		SEQ_PL_HANDSOME			//�n���T��BGM�Đ�
-	_CHG_LOCAL_SCR											//���[�J���X�N���v�g�ɐ؂�ւ�
+	_BGM_STOP			0									//BGM停止
+	_PLAYER_FIELD_DEMO_BGM_PLAY		SEQ_PL_HANDSOME			//ハンサムBGM再生
+	_CHG_LOCAL_SCR											//ローカルスクリプトに切り替え
 	_END
 
 
 /********************************************************************/
-/*					�T�|�[�g�Ȓ�~(�]�[���ȍĊJ)					*/
-/*					���C�o���Ȓ�~(�]�[���ȍĊJ)					*/
+/*					サポート曲停止(ゾーン曲再開)					*/
+/*					ライバル曲停止(ゾーン曲再開)					*/
 /********************************************************************/
 ev_the_boy_girl_stop:
 ev_the_rival_stop:
 ev_tsureteke_stop:
 ev_handsome_stop:
-	_BGM_FADEOUT		BGM_VOL_MIN,30						//�T�|�[�gBGM���t�F�[�h�A�E�g
-	_BGM_STOP			0									//�T�|�[�gBGM��~
-	_BGM_NOW_MAP_PLAY										//�]�[���ȍĐ�
-	_CHG_LOCAL_SCR											//���[�J���X�N���v�g�ɐ؂�ւ�
+	_BGM_FADEOUT		BGM_VOL_MIN,30						//サポートBGMをフェードアウト
+	_BGM_STOP			0									//サポートBGM停止
+	_BGM_NOW_MAP_PLAY										//ゾーン曲再生
+	_CHG_LOCAL_SCR											//ローカルスクリプトに切り替え
 	_END
 
 
 /********************************************************************/
-/*							GDS�Ăяo��								*/
+/*							GDS呼び出し								*/
 //
-//	SCWK_TEMP0	�ޔ�p�Ƃ��Ďg�p
-//	SCWK_TEMP1	�Ăяo�����[�h(�Z�b�g���Ă���)
-//		BR_MODE_GDS_BV		( 2 )		///< GDS�o�g���r�f�I
-//		BR_MODE_GDS_BV_RANK	( 3 )		///< GDS�o�g���r�f�I�����L���O
-//		BR_MODE_GDS_RANK	( 4 )		///< GDS�����L���O
-//		BR_MODE_GDS_DRESS	( 5 )		///< GDS�h���X�A�b�v�V���b�g
-//		BR_MODE_GDS_BOX		( 6 )		///< GDS�{�b�N�X�V���b�g
+//	SCWK_TEMP0	退避用として使用
+//	SCWK_TEMP1	呼び出しモード(セットしておく)
+//		BR_MODE_GDS_BV		( 2 )		///< GDSバトルビデオ
+//		BR_MODE_GDS_BV_RANK	( 3 )		///< GDSバトルビデオランキング
+//		BR_MODE_GDS_RANK	( 4 )		///< GDSランキング
+//		BR_MODE_GDS_DRESS	( 5 )		///< GDSドレスアップショット
+//		BR_MODE_GDS_BOX		( 6 )		///< GDSボックスショット
 /********************************************************************/
 ev_gds_call:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*WIFI�ڑ�������ID�擾*/
+	/*WIFI接続し初回ID取得*/
 	_DPW_INIT_PROC	SCWK_ANSWER
-	_LDWK			SCWK_TEMP0,SCWK_ANSWER						/*�ޔ�*/
+	_LDWK			SCWK_TEMP0,SCWK_ANSWER						/*退避*/
 
-	/*GDS�Ăяo��*/
+	/*GDS呼び出し*/
 	_GDS_SET_PROC	SCWK_TEMP1,SCWK_TEMP0,SCWK_ANSWER
 
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_gds_init_error			/*�G���[*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_gds_init_error			/*エラー*/
 	_SET_MAP_PROC
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	_CHG_LOCAL_SCR												/*���[�J���X�N���v�g�ɐ؂�ւ�*/
+	_CHG_LOCAL_SCR												/*ローカルスクリプトに切り替え*/
 	_END
 
-/*�G���[*/
+/*エラー*/
 ev_gds_init_error:
 	_SET_MAP_PROC
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*�����G���[�p�̏����������*/
+	/*何かエラー用の処理があれば*/
 
-	_CHG_LOCAL_SCR												/*���[�J���X�N���v�g�ɐ؂�ւ�*/
+	_CHG_LOCAL_SCR												/*ローカルスクリプトに切り替え*/
 	_END
 
 
 #if 0
-�w�b�_�[�t�@�C����include\application\br_sys_def.h
-�}�V���̏ꏊ�FGTS
-1�K �㑤�̃}�V���F�o�g���r�f�I�����L���O BR_MODE_GDS_BV_RANK
-1�K �����̃}�V���F�g���[�i�[�����L���O BR_MODE_GDS_RANK
-2�K(3�K?) 2��̃}�V�������镔���̏㑤�F�{�b�N�X�V���b�g BR_MODE_GDS_BOX
-2�K(3�K?)2��̃}�V�������镔���̉����F�h���X�A�b�v�V���b�g BR_MODE_GDS_DRESS
-3�K(2�K?) 1�䂾���}�V�������镔���F�o�g���r�f�I BR_MODE_GDS_BV
+ヘッダーファイルはinclude\application\br_sys_def.h
+マシンの場所：GTS
+1階 上側のマシン：バトルビデオランキング BR_MODE_GDS_BV_RANK
+1階 下側のマシン：トレーナーランキング BR_MODE_GDS_RANK
+2階(3階?) 2台のマシンがある部屋の上側：ボックスショット BR_MODE_GDS_BOX
+2階(3階?)2台のマシンがある部屋の下側：ドレスアップショット BR_MODE_GDS_DRESS
+3階(2階?) 1台だけマシンがある部屋：バトルビデオ BR_MODE_GDS_BV
 #endif
 
 
 /********************************************************************/
-/*						�Z�����̂�����{�[�h						*/
+/*						技教えのかけらボード						*/
 //
-//	SCWK_TEMP0	�J���[�w��
+//	SCWK_TEMP0	カラー指定
 /********************************************************************/
 ev_waza_oshie_board_01:
 	_TALK_START
@@ -2453,11 +2453,11 @@ ev_waza_oshie_board_03:
 ev_waza_oshie_board_sub:
 	_TALK_KEYWAIT	msg_waza_poster_01
 
-	/*�Z�K�����*/
+	/*技習得画面*/
 	_WAZA_OSHIE_BMPLIST_START	0xff,SCWK_TEMP0,SCWK_ANSWER
-	_LDWK			SCWK_PARAM3,SCWK_ANSWER					/*�I�������Z�i���o�[���擾*/
+	_LDWK			SCWK_PARAM3,SCWK_ANSWER					/*選択した技ナンバーを取得*/
 
-	/*�L�����Z�����ꂽ*/
+	/*キャンセルされた*/
 	_IFVAL_JUMP		SCWK_PARAM3,EQ,EV_WIN_B_CANCEL,ev_waza_oshie_board_cancel
 
 	_WAZA_OSHIE_BOARD_WRITE	21,1,SCWK_PARAM3,SCWK_ANSWER
@@ -2475,10 +2475,10 @@ ev_waza_oshie_board_cancel:
 
 
 /********************************************************************/
-/*	�S�Ă̋L�O�v�����g2�i�K�ڂ��擾���Ă��邩�`�F�b�N���ăX�R�A���Z	*/
+/*	全ての記念プリント2段階目を取得しているかチェックしてスコア加算	*/
 /********************************************************************/
 ev_memory_print_check:
-	/*���łɃX�R�A���Z���Ă����牽�����Ȃ�*/
+	/*すでにスコア加算していたら何もしない*/
 	_IF_FLAGON_JUMP	FE_MEMORY_PRINT_SCORE_GET,ev_memory_print_ret
 
 	_IFVAL_JUMP		SYS_WORK_MEMORY_PRINT_FACTORY,NE,MEMORY_PRINT_PUT_OK_2ND,ev_memory_print_ret
@@ -2488,24 +2488,24 @@ ev_memory_print_check:
 	_IFVAL_JUMP		SYS_WORK_MEMORY_PRINT_TOWER,NE,MEMORY_PRINT_PUT_OK_2ND,ev_memory_print_ret
 
 	_FLAG_SET		FE_MEMORY_PRINT_SCORE_GET
-	_SCORE_ADD		SCORE_ID_FRONTIER_CONQUER				/*�X�R�A���Z*/
+	_SCORE_ADD		SCORE_ID_FRONTIER_CONQUER				/*スコア加算*/
 	_JUMP			ev_memory_print_ret
 	_END
 
 ev_memory_print_ret:
-	_CHG_LOCAL_SCR											//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR											//ローカルスクリプトに切り替え
 	_END
 
 
 /********************************************************************/
-/*		�u�A�C�e���������ς��ŁA�͂����񂾂܂��O���܂���v			*/
+/*		「アイテムがいっぱいで、はっきんだまを外せません」			*/
 /********************************************************************/
 ev_gira_item_ng:
 	_TALK_KEYWAIT	msg_gira_item_ng
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_TALK_OBJ_END
-	_CHG_LOCAL_SCR											//���[�J���X�N���v�g�ɐ؂�ւ�
+	_CHG_LOCAL_SCR											//ローカルスクリプトに切り替え
 	_END
 
 

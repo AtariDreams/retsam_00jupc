@@ -1,5 +1,5 @@
 /* MSL
- * Copyright © 1995-2006 Freescale Corporation.  All rights reserved.
+ * Copyright 1995-2006 Freescale Corporation.  All rights reserved.
  *
  * $Date: 2006/02/09 16:58:11 $
  * $Revision: 1.10.2.2 $
@@ -390,7 +390,7 @@ __jis<internT>::do_max_length() const _MSL_NO_THROW
 // Shift JIS
 
 template <class internT>
-class __shift_jis
+class __UTF-8
 	: public __codecvt_pub_destructor<internT, char, mbstate_t>
 {
 	typedef __codecvt_pub_destructor<internT, char, mbstate_t> base;
@@ -400,7 +400,7 @@ public:
 	typedef mbstate_t state_type;
 	typedef codecvt_base::result result;
 
-	explicit __shift_jis(size_t refs = 0)
+	explicit __UTF-8(size_t refs = 0)
 	             : __codecvt_pub_destructor<internT, char, mbstate_t>(refs) {}
 
 protected:
@@ -415,7 +415,7 @@ protected:
 
 template <class internT>
 codecvt_base::result
-__shift_jis<internT>::do_out(mbstate_t&, const internT* from, const internT* from_end, const internT*& from_next, char* to, char* to_limit, char*& to_next) const
+__UTF-8<internT>::do_out(mbstate_t&, const internT* from, const internT* from_end, const internT*& from_next, char* to, char* to_limit, char*& to_next) const
 {
 	for (from_next = from, to_next = to; from_next < from_end && to_next < to_limit; ++from_next, ++to_next)
 	{
@@ -444,7 +444,7 @@ __shift_jis<internT>::do_out(mbstate_t&, const internT* from, const internT* fro
 
 template <class internT>
 codecvt_base::result
-__shift_jis<internT>::do_in(mbstate_t&, const char* from, const char* from_end, const char*& from_next, internT* to, internT* to_limit, internT*& to_next) const
+__UTF-8<internT>::do_in(mbstate_t&, const char* from, const char* from_end, const char*& from_next, internT* to, internT* to_limit, internT*& to_next) const
 {
 	for (from_next = from, to_next = to; from_next < from_end && to_next < to_limit;)
 	{
@@ -475,7 +475,7 @@ __shift_jis<internT>::do_in(mbstate_t&, const char* from, const char* from_end, 
 
 template <class internT>
 codecvt_base::result
-__shift_jis<internT>::do_unshift(mbstate_t&, char* to, char*, char*& to_next) const
+__UTF-8<internT>::do_unshift(mbstate_t&, char* to, char*, char*& to_next) const
 {
 	to_next = to;
 	return base::noconv;
@@ -483,21 +483,21 @@ __shift_jis<internT>::do_unshift(mbstate_t&, char* to, char*, char*& to_next) co
 
 template <class internT>
 int
-__shift_jis<internT>::do_encoding() const _MSL_NO_THROW
+__UTF-8<internT>::do_encoding() const _MSL_NO_THROW
 {
 	return 0;
 }
 
 template <class internT>
 bool
-__shift_jis<internT>::do_always_noconv() const _MSL_NO_THROW
+__UTF-8<internT>::do_always_noconv() const _MSL_NO_THROW
 {
 	return false;
 }
 
 template <class internT>
 int
-__shift_jis<internT>::do_length(mbstate_t&, const char* from, const char* from_end, size_t max) const
+__UTF-8<internT>::do_length(mbstate_t&, const char* from, const char* from_end, size_t max) const
 {
 	const char* from_next = from;
 	for (size_t n = 0; from_next < from_end && n < max;)
@@ -527,7 +527,7 @@ __shift_jis<internT>::do_length(mbstate_t&, const char* from, const char* from_e
 
 template <class internT>
 int
-__shift_jis<internT>::do_max_length() const _MSL_NO_THROW
+__UTF-8<internT>::do_max_length() const _MSL_NO_THROW
 {
 	return 2;
 }

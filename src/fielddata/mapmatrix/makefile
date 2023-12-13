@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ƒ][ƒ“ƒ}ƒgƒŠƒNƒXì¬
+# Project:  ã‚¾ãƒ¼ãƒ³ãƒãƒˆãƒªã‚¯ã‚¹ä½œæˆ
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -23,12 +23,12 @@ UNDERCSV_FOR_MAT	= ug_list_for_mat.csv
 LAND_XLS_DATA	= ../land_data/map_list.xls
 
 #----------------------------------------------------------------------------
-#	‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·‚ğ‰Â”\‚É‚·‚é‚½‚ß‚Ìİ’è
+#	ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã‚’å¯èƒ½ã«ã™ã‚‹ãŸã‚ã®è¨­å®š
 #----------------------------------------------------------------------------
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#‹¤’Ê•Ï”’è‹`
+#å…±é€šå¤‰æ•°å®šç¾©
 include $(DP_ROOT)/commondefs.GF
 
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
@@ -36,7 +36,7 @@ include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 #----------------------------------------------------------------------------
 #
 #----------------------------------------------------------------------------
-#Make‚Å¶¬‚³‚ê‚é*.bin‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.binã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(TARGET_ARC) $(ENUMHEADER) $(BINDATA)
 
 LINCLUDES		= $(NITROSDK_ROOT)/include
@@ -45,7 +45,7 @@ LINCLUDES		+= $(DP_ROOT)/src/field
 LINCLUDES	+= $(dir $<)
 
 #----------------------------------------------------------------------------
-#	ƒc[ƒ‹‚Ö‚ÌƒpƒXw’è
+#	ãƒ„ãƒ¼ãƒ«ã¸ã®ãƒ‘ã‚¹æŒ‡å®š
 #----------------------------------------------------------------------------
 LISTMK		= listmk.rb
 MAPMATRIX	= MapMatrix.exe
@@ -53,19 +53,19 @@ CSVCVTR	= $(DP_ROOT)/convert/exceltool/ExcelSeetConv.exe
 
 #----------------------------------------------------------------------------
 #
-#	ƒ‹[ƒ‹’è‹`
+#	ãƒ«ãƒ¼ãƒ«å®šç¾©
 #
 #----------------------------------------------------------------------------
 do-build: $(TARGET_ARC)
 
 $(TARGET_ARC): $(XLS)
-	$(MAKE) mklandlst			#ƒ‰ƒ“ƒhƒŠƒXƒgì¬
-	$(MAKE) convxls				#ƒGƒNƒZƒ‹ƒRƒ“ƒo[ƒg
-	$(MAKE) mklst				#ˆê——‚ğì¬
-	$(MAKE) convert				#ƒRƒ“ƒo[ƒg
-	$(MAKE) makearc				#ƒA[ƒJƒCƒu
+	$(MAKE) mklandlst			#ãƒ©ãƒ³ãƒ‰ãƒªã‚¹ãƒˆä½œæˆ
+	$(MAKE) convxls				#ã‚¨ã‚¯ã‚»ãƒ«ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+	$(MAKE) mklst				#ä¸€è¦§ã‚’ä½œæˆ
+	$(MAKE) convert				#ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+	$(MAKE) makearc				#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 
-#ƒ‰ƒ“ƒhƒŠƒXƒgì¬
+#ãƒ©ãƒ³ãƒ‰ãƒªã‚¹ãƒˆä½œæˆ
 mklandlst:
 	$(CSVCVTR) -o $(FLDCSV_FOR_MAT) -p 1 -s csv $(LAND_XLS_DATA)
 	$(CSVCVTR) -o $(ROOMCSV_FOR_MAT) -p 2 -s csv $(LAND_XLS_DATA)
@@ -73,19 +73,19 @@ mklandlst:
 	$(CSVCVTR) -o $(UNDERCSV_FOR_MAT) -p 4 -s csv $(LAND_XLS_DATA)
 	ruby make_land_list.rb $(FLDCSV_FOR_MAT) $(ROOMCSV_FOR_MAT) $(DUNCSV_FOR_MAT) $(UNDERCSV_FOR_MAT)
 
-#ƒGƒNƒZƒ‹ƒRƒ“ƒo[ƒg
+#ã‚¨ã‚¯ã‚»ãƒ«ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 convxls:
 	excel_conv.bat
 	
-#‘ÎÛƒ\[ƒXˆê——ì¬
+#å¯¾è±¡ã‚½ãƒ¼ã‚¹ä¸€è¦§ä½œæˆ
 mklst:
 	ruby listmk.rb $(MAPMATRIXTXT)
 
-#ƒRƒ“ƒo[ƒg
+#ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 convert:
 	$(MAPMATRIX)
 	
-#ƒA[ƒJƒCƒuì¬
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä½œæˆ
 makearc:
 	nnsarc -i -c -l -n $(TARGET_ARC) -S $(ARCLIST)  > arc_result.txt
 

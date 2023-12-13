@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	demo_tengan_s1.c
- * @brief	ƒƒCƒ“ƒfƒ‚
+ * @brief	ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒ¢
  * @author	goto
- * @date	2008.02.26(‰Î)
+ * @date	2008.02.26(ç«)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -58,7 +58,7 @@ static MDL_CMD_TBL akagi_look_osare[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰Ý’è
+ * @brief	ã‚«ãƒ¡ãƒ©è¨­å®š
  *
  * @param	camera	
  * @param	target	
@@ -81,7 +81,7 @@ static void Demo_CameraSet( GF_CAMERA_PTR camera, VecFx32* target )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX‚ÌŠÇ—
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ã®ç®¡ç†
  *
  * @param	wk	
  *
@@ -222,7 +222,7 @@ static void demo_scene01_ResourceLoad( DEMO_SCENE_01_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	OMA‚Ì“o˜^
+ * @brief	OMAã®ç™»éŒ²
  *
  * @param	wk	
  *
@@ -287,7 +287,7 @@ static void demo_scene01_Illuminant_Create( DEMO_SCENE_01_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	íœ
+ * @brief	å‰Šé™¤
  *
  * @param	wk	
  *
@@ -311,7 +311,7 @@ static void demo_scene01_ResourceDelete( DEMO_SCENE_01_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒ“‚P‰Šú‰»
+ * @brief	ã‚·ãƒ¼ãƒ³ï¼‘åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -385,7 +385,7 @@ void* Demo_Tengan_Scene01_Init( DEMO_TENGAN_WORK* main_wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒ“‚PƒƒCƒ“
+ * @brief	ã‚·ãƒ¼ãƒ³ï¼‘ãƒ¡ã‚¤ãƒ³
  *
  * @param	work	
  *
@@ -454,7 +454,7 @@ BOOL Demo_Tengan_Scene01_Main( void* work )
 			{
 			//	Snd_BgmPlay( SEQ_EYE_CHAMP );
 			//	Snd_BgmPlay( SEQ_BA_CHANP );
-			//	Snd_DataSetByScene( SND_SCENE_GIRA, SEQ_PL_EV_GIRA, 0 );	// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh		
+			//	Snd_DataSetByScene( SND_SCENE_GIRA, SEQ_PL_EV_GIRA, 0 );	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰		
 			//	Snd_BgmPlay( SND_SCENE_GIRA );
 			//	Snd_BgmPlay( SEQ_THE_EVENT02 );		
 			}
@@ -570,10 +570,10 @@ BOOL Demo_Tengan_Scene01_Main( void* work )
 			
 	case GIRA_INIT:
 		
-		wk->m_disp.kage[ 0 ].bAnime = TRUE;					///< ‰e 0 anime = TRUE
-		D3DOBJ_SetDraw( &wk->m_disp.kage[ 0 ].obj, TRUE );	///< ‰e
+		wk->m_disp.kage[ 0 ].bAnime = TRUE;					///< å½± 0 anime = TRUE
+		D3DOBJ_SetDraw( &wk->m_disp.kage[ 0 ].obj, TRUE );	///< å½±
 		Snd_BgmPlay( SEQ_PL_EV_GIRA );
-		Snd_DataSetByScene( SND_SCENE_SUB_CLIMAX, 0, 0 );	//ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(BGMˆøŒp‚¬)
+		Snd_DataSetByScene( SND_SCENE_SUB_CLIMAX, 0, 0 );	//ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(BGMå¼•ç¶™ãŽ)
 		wk->cut++;
 		break;
 			
@@ -590,7 +590,7 @@ BOOL Demo_Tengan_Scene01_Main( void* work )
 		||	 wk->wait == 145 ){
 			Snd_SePlay( DS_HOLE );
 			Snd_PlayerSetTrackPitchBySeqNo( DS_HOLE, 0xffff, 
-									(wk->wait / 30 * 32) + (wk->wait % 32 * 10) );	//ƒsƒbƒ`
+									(wk->wait / 30 * 32) + (wk->wait % 32 * 10) );	//ãƒ”ãƒƒãƒ
 		}
 		if ( wk->m_disp.kage[ 0 ].bAnime == FALSE ){
 			D3DOBJ_SetDraw( &wk->m_disp.kage[ 0 ].obj, FALSE );
@@ -628,7 +628,7 @@ BOOL Demo_Tengan_Scene01_Main( void* work )
 		break;
 	
 	case GIRA_MAIN_4:
-		///< ¸‚Á‚Ä‚éƒgƒR
+		///< æ˜‡ã£ã¦ã‚‹ãƒˆã‚³
 		wk->wait++;
 		
 		if ( wk->wait == 1 ){
@@ -669,7 +669,7 @@ BOOL Demo_Tengan_Scene01_Main( void* work )
 		break;
 	
 	case GIRA_MAIN_5:
-		///< ‰HŠJ‚­ƒgƒR
+		///< ç¾½é–‹ããƒˆã‚³
 		if ( GF_MSG_PrintEndCheck( wk->sys->msg_index ) ){ break; }
 		Demo_MSG_Off( wk->sys );
 //		if ( ++wk->wait <= 90 ){ break; }
@@ -799,7 +799,7 @@ BOOL Demo_Tengan_Scene01_Main( void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒ“‚PI—¹
+ * @brief	ã‚·ãƒ¼ãƒ³ï¼‘çµ‚äº†
  *
  * @param	work	
  *
@@ -867,7 +867,7 @@ BOOL Demo_Tengan_Scene01_Exit( void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	3D •`‰æ•”•ª
+ * @brief	3D æç”»éƒ¨åˆ†
  *
  * @param	wk	
  *

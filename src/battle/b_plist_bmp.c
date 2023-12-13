@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	b_plist_bmp.c
- * @brief	í“¬—pƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊBMPŠÖ˜A
+ * @brief	æˆ¦é—˜ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢BMPé–¢é€£
  * @author	Hiroyuki Nakamura
  * @date	05.02.01
  */
@@ -39,28 +39,28 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	PCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
-#define	PCOL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F”’
-#define	PCOL_N_BLUE		( GF_PRINTCOLOR_MAKE( 7, 8, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÂ
-#define	PCOL_N_RED		( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÔ
+#define	PCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
+#define	PCOL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šç™½
+#define	PCOL_N_BLUE		( GF_PRINTCOLOR_MAKE( 7, 8, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé’
+#define	PCOL_N_RED		( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šèµ¤
 
-#define	PCOL_BTN		( GF_PRINTCOLOR_MAKE( 7, 8, 9 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[Fƒ{ƒ^ƒ“
-#define	PCOL_B_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[Fƒ{ƒ^ƒ“—p”’
-#define	PCOL_B_BLUE		( GF_PRINTCOLOR_MAKE( 10, 11, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[Fƒ{ƒ^ƒ“—pÂ
-#define	PCOL_B_RED		( GF_PRINTCOLOR_MAKE( 12, 13, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[Fƒ{ƒ^ƒ“—pÔ
+#define	PCOL_BTN		( GF_PRINTCOLOR_MAKE( 7, 8, 9 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šãƒœã‚¿ãƒ³
+#define	PCOL_B_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šãƒœã‚¿ãƒ³ç”¨ç™½
+#define	PCOL_B_BLUE		( GF_PRINTCOLOR_MAKE( 10, 11, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šãƒœã‚¿ãƒ³ç”¨é’
+#define	PCOL_B_RED		( GF_PRINTCOLOR_MAKE( 12, 13, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šãƒœã‚¿ãƒ³ç”¨èµ¤
 
-#define	HP_GAGE_COL_G1	( 1 )	// HPƒQ[ƒWƒJƒ‰[—Î‚P
-#define	HP_GAGE_COL_G2	( 2 )	// HPƒQ[ƒWƒJƒ‰[—Î‚Q
-#define	HP_GAGE_COL_Y1	( 3 )	// HPƒQ[ƒWƒJƒ‰[‰©‚P
-#define	HP_GAGE_COL_Y2	( 4 )	// HPƒQ[ƒWƒJƒ‰[‰©‚Q
-#define	HP_GAGE_COL_R1	( 5 )	// HPƒQ[ƒWƒJƒ‰[Ô‚P
-#define	HP_GAGE_COL_R2	( 6 )	// HPƒQ[ƒWƒJƒ‰[Ô‚Q
+#define	HP_GAGE_COL_G1	( 1 )	// HPã‚²ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼ç·‘ï¼‘
+#define	HP_GAGE_COL_G2	( 2 )	// HPã‚²ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼ç·‘ï¼’
+#define	HP_GAGE_COL_Y1	( 3 )	// HPã‚²ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼é»„ï¼‘
+#define	HP_GAGE_COL_Y2	( 4 )	// HPã‚²ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼é»„ï¼’
+#define	HP_GAGE_COL_R1	( 5 )	// HPã‚²ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼èµ¤ï¼‘
+#define	HP_GAGE_COL_R2	( 6 )	// HPã‚²ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼èµ¤ï¼’
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void BPL_Page1BmpWrite( BPLIST_WORK * wk );
 static void BPL_ChgPageBmpWrite( BPLIST_WORK * wk );
@@ -74,273 +74,273 @@ static void BPL_Page8BmpWrite( BPLIST_WORK * wk );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// ‹¤’ÊƒfƒtƒHƒ‹ƒgƒEƒBƒ“ƒhƒEƒf[ƒ^
+// å…±é€šãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT CommBmpData[] =
 {
-	{	// ƒRƒƒ“ƒg•\¦
+	{	// ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤º
 		GF_BGL_FRAME0_S, WIN_P1_COMMENT_PX, WIN_P1_COMMENT_PY,
 		WIN_P1_COMMENT_SX, WIN_P1_COMMENT_SY, WIN_P1_COMMENT_PAL, WIN_P1_COMMENT_CGX
 	},
-	{	// ƒƒbƒZ[ƒW•\¦
+	{	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		GF_BGL_FRAME0_S, WIN_TALK_PX, WIN_TALK_PY,
 		WIN_TALK_SX, WIN_TALK_SY, WIN_TALK_PAL, WIN_TALK_CGX
 	}
 };
 
-// ƒy[ƒW‚P‚ÌBMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+// ãƒšãƒ¼ã‚¸ï¼‘ã®BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT Page1_BmpData[] =
 {
-	{	// ƒ|ƒPƒ‚ƒ“‚P
+	{	// ãƒã‚±ãƒ¢ãƒ³ï¼‘
 		GF_BGL_FRAME1_S, WIN_P1_POKE1_PX, WIN_P1_POKE1_PY,
 		WIN_P1_POKE1_SX, WIN_P1_POKE1_SY, WIN_P1_POKE1_PAL, WIN_P1_POKE1_CGX
 	},
-	{	// ƒ|ƒPƒ‚ƒ“‚Q
+	{	// ãƒã‚±ãƒ¢ãƒ³ï¼’
 		GF_BGL_FRAME1_S, WIN_P1_POKE2_PX, WIN_P1_POKE2_PY,
 		WIN_P1_POKE2_SX, WIN_P1_POKE2_SY, WIN_P1_POKE2_PAL, WIN_P1_POKE2_CGX
 	},
-	{	// ƒ|ƒPƒ‚ƒ“‚R
+	{	// ãƒã‚±ãƒ¢ãƒ³ï¼“
 		GF_BGL_FRAME1_S, WIN_P1_POKE3_PX, WIN_P1_POKE3_PY,
 		WIN_P1_POKE3_SX, WIN_P1_POKE3_SY, WIN_P1_POKE3_PAL, WIN_P1_POKE3_CGX
 	},
-	{	// ƒ|ƒPƒ‚ƒ“‚S
+	{	// ãƒã‚±ãƒ¢ãƒ³ï¼”
 		GF_BGL_FRAME1_S, WIN_P1_POKE4_PX, WIN_P1_POKE4_PY,
 		WIN_P1_POKE4_SX, WIN_P1_POKE4_SY, WIN_P1_POKE4_PAL, WIN_P1_POKE4_CGX
 	},
-	{	// ƒ|ƒPƒ‚ƒ“‚T
+	{	// ãƒã‚±ãƒ¢ãƒ³ï¼•
 		GF_BGL_FRAME1_S, WIN_P1_POKE5_PX, WIN_P1_POKE5_PY,
 		WIN_P1_POKE5_SX, WIN_P1_POKE5_SY, WIN_P1_POKE5_PAL, WIN_P1_POKE5_CGX
 	},
-	{	// ƒ|ƒPƒ‚ƒ“‚U
+	{	// ãƒã‚±ãƒ¢ãƒ³ï¼–
 		GF_BGL_FRAME1_S, WIN_P1_POKE6_PX, WIN_P1_POKE6_PY,
 		WIN_P1_POKE6_SX, WIN_P1_POKE6_SY, WIN_P1_POKE6_PAL, WIN_P1_POKE6_CGX
 	},
 };
 
-// “ü‚ê‘Ö‚¦ƒy[ƒW‚ÌBMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+// å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸ã®BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT ChgPage_BmpData[] =
 {
-	{	// –¼‘O
+	{	// åå‰
 		GF_BGL_FRAME1_S, WIN_CHG_NAME_PX, WIN_CHG_NAME_PY,
 		WIN_CHG_NAME_SX, WIN_CHG_NAME_SY, WIN_CHG_NAME_PAL, WIN_CHG_NAME_CGX
 	},
-	{	// u‚¢‚ê‚©‚¦‚év
+	{	// ã€Œã„ã‚Œã‹ãˆã‚‹ã€
 		GF_BGL_FRAME1_S, WIN_CHG_IREKAE_PX, WIN_CHG_IREKAE_PY,
 		WIN_CHG_IREKAE_SX, WIN_CHG_IREKAE_SY, WIN_CHG_IREKAE_PAL, WIN_CHG_IREKAE_CGX
 	},
-	{	// u‚Â‚æ‚³‚ğ‚İ‚év
+	{	// ã€Œã¤ã‚ˆã•ã‚’ã¿ã‚‹ã€
 		GF_BGL_FRAME1_S, WIN_CHG_STATUS_PX, WIN_CHG_STATUS_PY,
 		WIN_CHG_STATUS_SX, WIN_CHG_STATUS_SY, WIN_CHG_STATUS_PAL, WIN_CHG_STATUS_CGX
 	},
-	{	// u‚í‚´‚ğ‚İ‚év
+	{	// ã€Œã‚ã–ã‚’ã¿ã‚‹ã€
 		GF_BGL_FRAME1_S, WIN_CHG_WAZACHECK_PX, WIN_CHG_WAZACHECK_PY,
 		WIN_CHG_WAZACHECK_SX, WIN_CHG_WAZACHECK_SY, WIN_CHG_WAZACHECK_PAL, WIN_CHG_WAZACHECK_CGX
 	}
 };
 
-// ƒXƒe[ƒ^ƒX‹Z‘I‘ğƒy[ƒW‚ÌBMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€é¸æŠãƒšãƒ¼ã‚¸ã®BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT StWazaSelPage_BmpData[] =
 {
-	{	// –¼‘O
+	{	// åå‰
 		GF_BGL_FRAME1_S, WIN_ST_NAME_PX, WIN_ST_NAME_PY,
 		WIN_ST_NAME_SX, WIN_ST_NAME_SY, WIN_ST_NAME_PAL, WIN_ST_NAME_CGX
 	},
-	{	// ‹Z‚P
+	{	// æŠ€ï¼‘
 		GF_BGL_FRAME1_S, WIN_STW_SKILL1_PX, WIN_STW_SKILL1_PY,
 		WIN_STW_SKILL1_SX, WIN_STW_SKILL1_SY, WIN_STW_SKILL1_PAL, WIN_STW_SKILL1_CGX
 	},
-	{	// ‹Z‚Q
+	{	// æŠ€ï¼’
 		GF_BGL_FRAME1_S, WIN_STW_SKILL2_PX, WIN_STW_SKILL2_PY,
 		WIN_STW_SKILL2_SX, WIN_STW_SKILL2_SY, WIN_STW_SKILL2_PAL, WIN_STW_SKILL2_CGX
 	},
-	{	// ‹Z‚R
+	{	// æŠ€ï¼“
 		GF_BGL_FRAME1_S, WIN_STW_SKILL3_PX, WIN_STW_SKILL3_PY,
 		WIN_STW_SKILL3_SX, WIN_STW_SKILL3_SY, WIN_STW_SKILL3_PAL, WIN_STW_SKILL3_CGX
 	},
-	{	// ‹Z‚S
+	{	// æŠ€ï¼”
 		GF_BGL_FRAME1_S, WIN_STW_SKILL4_PX, WIN_STW_SKILL4_PY,
 		WIN_STW_SKILL4_SX, WIN_STW_SKILL4_SY, WIN_STW_SKILL4_PAL, WIN_STW_SKILL4_CGX
 	},
 
-	{	// u‚Â‚æ‚³‚ğ‚İ‚év
+	{	// ã€Œã¤ã‚ˆã•ã‚’ã¿ã‚‹ã€
 		GF_BGL_FRAME1_S, WIN_STW_STATUS_PX, WIN_STW_STATUS_PY,
 		WIN_STW_STATUS_SX, WIN_STW_STATUS_SY, WIN_STW_STATUS_PAL, WIN_STW_STATUS_CGX
 	},
 
-	{	// –¼‘OiƒXƒƒbƒvj
+	{	// åå‰ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_ST_NAME_PX, WIN_ST_NAME_PY,
 		WIN_ST_NAME_SX, WIN_ST_NAME_SY, WIN_ST_NAME_PAL, WIN_ST_NAME_S_CGX
 	},
-	{	// ‹Z‚PiƒXƒƒbƒvj
+	{	// æŠ€ï¼‘ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STW_SKILL1_PX, WIN_STW_SKILL1_PY,
 		WIN_STW_SKILL1_SX, WIN_STW_SKILL1_SY, WIN_STW_SKILL1_PAL, WIN_STW_SKILL1_S_CGX
 	},
-	{	// ‹Z‚QiƒXƒƒbƒvj
+	{	// æŠ€ï¼’ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STW_SKILL2_PX, WIN_STW_SKILL2_PY,
 		WIN_STW_SKILL2_SX, WIN_STW_SKILL2_SY, WIN_STW_SKILL2_PAL, WIN_STW_SKILL2_S_CGX
 	},
-	{	// ‹Z‚RiƒXƒƒbƒvj
+	{	// æŠ€ï¼“ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STW_SKILL3_PX, WIN_STW_SKILL3_PY,
 		WIN_STW_SKILL3_SX, WIN_STW_SKILL3_SY, WIN_STW_SKILL3_PAL, WIN_STW_SKILL3_S_CGX
 	},
-	{	// ‹Z‚SiƒXƒƒbƒvj
+	{	// æŠ€ï¼”ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STW_SKILL4_PX, WIN_STW_SKILL4_PY,
 		WIN_STW_SKILL4_SX, WIN_STW_SKILL4_SY, WIN_STW_SKILL4_PAL, WIN_STW_SKILL4_S_CGX
 	},
 };
 
-// ƒXƒe[ƒ^ƒXƒƒCƒ“ƒy[ƒW‚ÌBMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ã‚¤ãƒ³ãƒšãƒ¼ã‚¸ã®BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT StMainPage_BmpData[] =
 {
-	{	// –¼‘O
+	{	// åå‰
 		GF_BGL_FRAME1_S, WIN_ST_NAME_PX, WIN_ST_NAME_PY,
 		WIN_ST_NAME_SX, WIN_ST_NAME_SY, WIN_ST_NAME_PAL, WIN_ST_NAME_CGX
 	},
-	{	// “Á«–¼
+	{	// ç‰¹æ€§å
 		GF_BGL_FRAME1_S, WIN_STM_SPANAME_PX, WIN_STM_SPANAME_PY,
 		WIN_STM_SPANAME_SX, WIN_STM_SPANAME_SY, WIN_STM_SPANAME_PAL, WIN_STM_SPANAME_CGX
 	},
-	{	// “Á«à–¾
+	{	// ç‰¹æ€§èª¬æ˜
 		GF_BGL_FRAME1_S, WIN_STM_SPAINFO_PX, WIN_STM_SPAINFO_PY,
 		WIN_STM_SPAINFO_SX, WIN_STM_SPAINFO_SY, WIN_STM_SPAINFO_PAL, WIN_STM_SPAINFO_CGX
 	},
-	{	// “¹‹ï–¼
+	{	// é“å…·å
 		GF_BGL_FRAME1_S, WIN_STM_ITEMNAME_PX, WIN_STM_ITEMNAME_PY,
 		WIN_STM_ITEMNAME_SX, WIN_STM_ITEMNAME_SY, WIN_STM_ITEMNAME_PAL, WIN_STM_ITEMNAME_CGX
 	},
-	{	// HP’l
+	{	// HPå€¤
 		GF_BGL_FRAME1_S, WIN_STM_HPNUM_PX, WIN_STM_HPNUM_PY,
 		WIN_STM_HPNUM_SX, WIN_STM_HPNUM_SY, WIN_STM_HPNUM_PAL, WIN_STM_HPNUM_CGX
 	},
-	{	// UŒ‚’l
+	{	// æ”»æ’ƒå€¤
 		GF_BGL_FRAME1_S, WIN_STM_POWNUM_PX, WIN_STM_POWNUM_PY,
 		WIN_STM_POWNUM_SX, WIN_STM_POWNUM_SY, WIN_STM_POWNUM_PAL, WIN_STM_POWNUM_CGX
 	},
-	{	// –hŒä’l
+	{	// é˜²å¾¡å€¤
 		GF_BGL_FRAME1_S, WIN_STM_DEFNUM_PX, WIN_STM_DEFNUM_PY,
 		WIN_STM_DEFNUM_SX, WIN_STM_DEFNUM_SY, WIN_STM_DEFNUM_PAL, WIN_STM_DEFNUM_CGX
 	},
-	{	// ‘f‘‚³’l
+	{	// ç´ æ—©ã•å€¤
 		GF_BGL_FRAME1_S, WIN_STM_AGINUM_PX, WIN_STM_AGINUM_PY,
 		WIN_STM_AGINUM_SX, WIN_STM_AGINUM_SY, WIN_STM_AGINUM_PAL, WIN_STM_AGINUM_CGX
 	},
-	{	// “ÁU’l
+	{	// ç‰¹æ”»å€¤
 		GF_BGL_FRAME1_S, WIN_STM_SPPNUM_PX, WIN_STM_SPPNUM_PY,
 		WIN_STM_SPPNUM_SX, WIN_STM_SPPNUM_SY, WIN_STM_SPPNUM_PAL, WIN_STM_SPPNUM_CGX
 	},
-	{	// “Á–h’l
+	{	// ç‰¹é˜²å€¤
 		GF_BGL_FRAME1_S, WIN_STM_SPDNUM_PX, WIN_STM_SPDNUM_PY,
 		WIN_STM_SPDNUM_SX, WIN_STM_SPDNUM_SY, WIN_STM_SPDNUM_PAL, WIN_STM_SPDNUM_CGX
 	},
-	{	// HPƒQ[ƒW
+	{	// HPã‚²ãƒ¼ã‚¸
 		GF_BGL_FRAME1_S, WIN_STM_HPGAGE_PX, WIN_STM_HPGAGE_PY,
 		WIN_STM_HPGAGE_SX, WIN_STM_HPGAGE_SY, WIN_STM_HPGAGE_PAL, WIN_STM_HPGAGE_CGX
 	},
-	{	// ƒŒƒxƒ‹’l
+	{	// ãƒ¬ãƒ™ãƒ«å€¤
 		GF_BGL_FRAME1_S, WIN_STM_LVNUM_PX, WIN_STM_LVNUM_PY,
 		WIN_STM_LVNUM_SX, WIN_STM_LVNUM_SY, WIN_STM_LVNUM_PAL, WIN_STM_LVNUM_CGX
 	},
-	{	// Ÿ‚ÌƒŒƒxƒ‹’l
+	{	// æ¬¡ã®ãƒ¬ãƒ™ãƒ«å€¤
 		GF_BGL_FRAME1_S, WIN_STM_NEXTNUM_PX, WIN_STM_NEXTNUM_PY,
 		WIN_STM_NEXTNUM_SX, WIN_STM_NEXTNUM_SY, WIN_STM_NEXTNUM_PAL, WIN_STM_NEXTNUM_CGX
 	},
 
-	{	// uHPv
+	{	// ã€ŒHPã€
 		GF_BGL_FRAME1_S, WIN_STM_HP_PX, WIN_STM_HP_PY,
 		WIN_STM_HP_SX, WIN_STM_HP_SY, WIN_STM_HP_PAL, WIN_STM_HP_CGX
 	},
-	{	// u‚±‚¤‚°‚«v
+	{	// ã€Œã“ã†ã’ãã€
 		GF_BGL_FRAME1_S, WIN_STM_POW_PX, WIN_STM_POW_PY,
 		WIN_STM_POW_SX, WIN_STM_POW_SY, WIN_STM_POW_PAL, WIN_STM_POW_CGX
 	},
-	{	// u‚Ú‚¤‚¬‚åv
+	{	// ã€Œã¼ã†ãã‚‡ã€
 		GF_BGL_FRAME1_S, WIN_STM_DEF_PX, WIN_STM_DEF_PY,
 		WIN_STM_DEF_SX, WIN_STM_DEF_SY, WIN_STM_DEF_PAL, WIN_STM_DEF_CGX
 	},
-	{	// u‚·‚Î‚â‚³v
+	{	// ã€Œã™ã°ã‚„ã•ã€
 		GF_BGL_FRAME1_S, WIN_STM_AGI_PX, WIN_STM_AGI_PY,
 		WIN_STM_AGI_SX, WIN_STM_AGI_SY, WIN_STM_AGI_PAL, WIN_STM_AGI_CGX
 	},
-	{	// u‚Æ‚­‚±‚¤v
+	{	// ã€Œã¨ãã“ã†ã€
 		GF_BGL_FRAME1_S, WIN_STM_SPP_PX, WIN_STM_SPP_PY,
 		WIN_STM_SPP_SX, WIN_STM_SPP_SY, WIN_STM_SPP_PAL, WIN_STM_SPP_CGX
 	},
-	{	// u‚Æ‚­‚Ú‚¤v
+	{	// ã€Œã¨ãã¼ã†ã€
 		GF_BGL_FRAME1_S, WIN_STM_SPD_PX, WIN_STM_SPD_PY,
 		WIN_STM_SPD_SX, WIN_STM_SPD_SY, WIN_STM_SPD_PAL, WIN_STM_SPD_CGX
 	},
-	{	// uLv.v
+	{	// ã€ŒLv.ã€
 		GF_BGL_FRAME1_S, WIN_STM_LV_PX, WIN_STM_LV_PY,
 		WIN_STM_LV_SX, WIN_STM_LV_SY, WIN_STM_LV_PAL, WIN_STM_LV_CGX
 	},
-	{	// u‚Â‚¬‚ÌƒŒƒxƒ‹‚Ü‚Åv
+	{	// ã€Œã¤ãã®ãƒ¬ãƒ™ãƒ«ã¾ã§ã€
 		GF_BGL_FRAME1_S, WIN_STM_NEXT_PX, WIN_STM_NEXT_PY,
 		WIN_STM_NEXT_SX, WIN_STM_NEXT_SY, WIN_STM_NEXT_PAL, WIN_STM_NEXT_CGX
 	},
-	{	// u‚í‚´‚ğ‚İ‚év
+	{	// ã€Œã‚ã–ã‚’ã¿ã‚‹ã€
 		GF_BGL_FRAME1_S, WIN_STM_WAZACHECK_PX, WIN_STM_WAZACHECK_PY,
 		WIN_STM_WAZACHECK_SX, WIN_STM_WAZACHECK_SY, WIN_STM_WAZACHECK_PAL, WIN_STM_WAZACHECK_CGX
 	},
 
-	{	// –¼‘OiƒXƒƒbƒvj
+	{	// åå‰ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_ST_NAME_PX, WIN_ST_NAME_PY,
 		WIN_ST_NAME_SX, WIN_ST_NAME_SY, WIN_ST_NAME_PAL, WIN_ST_NAME_S_CGX
 	},
-	{	// “Á«–¼iƒXƒƒbƒvj
+	{	// ç‰¹æ€§åï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STM_SPANAME_PX, WIN_STM_SPANAME_PY,
 		WIN_STM_SPANAME_SX, WIN_STM_SPANAME_SY, WIN_STM_SPANAME_PAL, WIN_STM_SPANAME_S_CGX
 	},
-	{	// “Á«à–¾iƒXƒƒbƒvj
+	{	// ç‰¹æ€§èª¬æ˜ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STM_SPAINFO_PX, WIN_STM_SPAINFO_PY,
 		WIN_STM_SPAINFO_SX, WIN_STM_SPAINFO_SY, WIN_STM_SPAINFO_PAL, WIN_STM_SPAINFO_S_CGX
 	},
-	{	// “¹‹ï–¼iƒXƒƒbƒvj
+	{	// é“å…·åï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STM_ITEMNAME_PX, WIN_STM_ITEMNAME_PY,
 		WIN_STM_ITEMNAME_SX, WIN_STM_ITEMNAME_SY, WIN_STM_ITEMNAME_PAL, WIN_STM_ITEMNAME_S_CGX
 	},
-	{	// HP’liƒXƒƒbƒvj
+	{	// HPå€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STM_HPNUM_PX, WIN_STM_HPNUM_PY,
 		WIN_STM_HPNUM_SX, WIN_STM_HPNUM_SY, WIN_STM_HPNUM_PAL, WIN_STM_HPNUM_S_CGX
 	},
-	{	// UŒ‚’liƒXƒƒbƒvj
+	{	// æ”»æ’ƒå€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STM_POWNUM_PX, WIN_STM_POWNUM_PY,
 		WIN_STM_POWNUM_SX, WIN_STM_POWNUM_SY, WIN_STM_POWNUM_PAL, WIN_STM_POWNUM_S_CGX
 	},
-	{	// –hŒä’liƒXƒƒbƒvj
+	{	// é˜²å¾¡å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STM_DEFNUM_PX, WIN_STM_DEFNUM_PY,
 		WIN_STM_DEFNUM_SX, WIN_STM_DEFNUM_SY, WIN_STM_DEFNUM_PAL, WIN_STM_DEFNUM_S_CGX
 	},
-	{	// ‘f‘‚³’liƒXƒƒbƒvj
+	{	// ç´ æ—©ã•å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STM_AGINUM_PX, WIN_STM_AGINUM_PY,
 		WIN_STM_AGINUM_SX, WIN_STM_AGINUM_SY, WIN_STM_AGINUM_PAL, WIN_STM_AGINUM_S_CGX
 	},
-	{	// “ÁU’liƒXƒƒbƒvj
+	{	// ç‰¹æ”»å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STM_SPPNUM_PX, WIN_STM_SPPNUM_PY,
 		WIN_STM_SPPNUM_SX, WIN_STM_SPPNUM_SY, WIN_STM_SPPNUM_PAL, WIN_STM_SPPNUM_S_CGX
 	},
-	{	// “Á–h’liƒXƒƒbƒvj
+	{	// ç‰¹é˜²å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STM_SPDNUM_PX, WIN_STM_SPDNUM_PY,
 		WIN_STM_SPDNUM_SX, WIN_STM_SPDNUM_SY, WIN_STM_SPDNUM_PAL, WIN_STM_SPDNUM_S_CGX
 	},
-	{	// HPƒQ[ƒWiƒXƒƒbƒvj
+	{	// HPã‚²ãƒ¼ã‚¸ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STM_HPGAGE_PX, WIN_STM_HPGAGE_PY,
 		WIN_STM_HPGAGE_SX, WIN_STM_HPGAGE_SY, WIN_STM_HPGAGE_PAL, WIN_STM_HPGAGE_S_CGX
 	},
-	{	// ƒŒƒxƒ‹’liƒXƒƒbƒvj
+	{	// ãƒ¬ãƒ™ãƒ«å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STM_LVNUM_PX, WIN_STM_LVNUM_PY,
 		WIN_STM_LVNUM_SX, WIN_STM_LVNUM_SY, WIN_STM_LVNUM_PAL, WIN_STM_LVNUM_S_CGX
 	},
-	{	// Ÿ‚ÌƒŒƒxƒ‹’liƒXƒƒbƒvj
+	{	// æ¬¡ã®ãƒ¬ãƒ™ãƒ«å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME1_S, WIN_STM_NEXTNUM_PX, WIN_STM_NEXTNUM_PY,
 		WIN_STM_NEXTNUM_SX, WIN_STM_NEXTNUM_SY, WIN_STM_NEXTNUM_PAL, WIN_STM_NEXTNUM_S_CGX
 	}
 };
 
-// ƒXƒe[ƒ^ƒX‹ZÚ×ƒy[ƒW‚ÌBMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€è©³ç´°ãƒšãƒ¼ã‚¸ã®BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT StWazaInfoPage_BmpData[] =
 {
-	{	// ‹Z–¼
+	{	// æŠ€å
 		GF_BGL_FRAME0_S, WIN_P4_SKILL_PX, WIN_P4_SKILL_PY,
 		WIN_P4_SKILL_SX, WIN_P4_SKILL_SY, WIN_P4_SKILL_PAL, WIN_P4_SKILL_CGX
 	},
@@ -348,24 +348,24 @@ static const BMPWIN_DAT StWazaInfoPage_BmpData[] =
 		GF_BGL_FRAME0_S, WIN_P4_PPNUM_PX, WIN_P4_PPNUM_PY,
 		WIN_P4_PPNUM_SX, WIN_P4_PPNUM_SY, WIN_P4_PPNUM_PAL, WIN_P4_PPNUM_CGX
 	},
-	{	// –½’†’l
+	{	// å‘½ä¸­å€¤
 		GF_BGL_FRAME0_S, WIN_P4_HITNUM_PX, WIN_P4_HITNUM_PY,
 		WIN_P4_HITNUM_SX, WIN_P4_HITNUM_SY, WIN_P4_HITNUM_PAL, WIN_P4_HITNUM_CGX
 	},
-	{	// ˆĞ—Í’l
+	{	// å¨åŠ›å€¤
 		GF_BGL_FRAME0_S, WIN_P4_POWNUM_PX, WIN_P4_POWNUM_PY,
 		WIN_P4_POWNUM_SX, WIN_P4_POWNUM_SY, WIN_P4_POWNUM_PAL, WIN_P4_POWNUM_CGX
 	},
-	{	// ‹Zà–¾
+	{	// æŠ€èª¬æ˜
 		GF_BGL_FRAME0_S, WIN_P4_INFO_PX, WIN_P4_INFO_PY,
 		WIN_P4_INFO_SX, WIN_P4_INFO_SY, WIN_P4_INFO_PAL, WIN_P4_INFO_CGX
 	},
-	{	// •ª—Ş–¼
+	{	// åˆ†é¡å
 		GF_BGL_FRAME0_S, WIN_P4_BRNAME_PX, WIN_P4_BRNAME_PY,
 		WIN_P4_BRNAME_SX, WIN_P4_BRNAME_SY, WIN_P4_BRNAME_PAL, WIN_P4_BRNAME_CGX
 	},
 
-	{	// –¼‘O
+	{	// åå‰
 		GF_BGL_FRAME0_S, WIN_P4_NAME_PX, WIN_P4_NAME_PY,
 		WIN_P4_NAME_SX, WIN_P4_NAME_SY, WIN_P4_NAME_PAL, WIN_P4_NAME_CGX
 	},
@@ -373,82 +373,82 @@ static const BMPWIN_DAT StWazaInfoPage_BmpData[] =
 		GF_BGL_FRAME0_S, WIN_P4_PP_PX, WIN_P4_PP_PY,
 		WIN_P4_PP_SX, WIN_P4_PP_SY, WIN_P4_PP_PAL, WIN_P4_PP_CGX
 	},
-	{	// u‚ß‚¢‚¿‚ã‚¤v
+	{	// ã€Œã‚ã„ã¡ã‚…ã†ã€
 		GF_BGL_FRAME0_S, WIN_P4_HIT_PX, WIN_P4_HIT_PY,
 		WIN_P4_HIT_SX, WIN_P4_HIT_SY, WIN_P4_HIT_PAL, WIN_P4_HIT_CGX
 	},
-	{	// u‚¢‚è‚å‚­v
+	{	// ã€Œã„ã‚Šã‚‡ãã€
 		GF_BGL_FRAME0_S, WIN_P4_POW_PX, WIN_P4_POW_PY,
 		WIN_P4_POW_SX, WIN_P4_POW_SY, WIN_P4_POW_PAL, WIN_P4_POW_CGX
 	},
-	{	// u‚Ô‚ñ‚é‚¢v
+	{	// ã€Œã¶ã‚“ã‚‹ã„ã€
 		GF_BGL_FRAME0_S, WIN_P4_BUNRUI_PX, WIN_P4_BUNRUI_PY,
 		WIN_P4_BUNRUI_SX, WIN_P4_BUNRUI_SY, WIN_P4_BUNRUI_PAL, WIN_P4_BUNRUI_CGX
 	},
 
-	{	// ‹Z–¼iƒXƒƒbƒvj
+	{	// æŠ€åï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME0_S, WIN_P4_SKILL_PX, WIN_P4_SKILL_PY,
 		WIN_P4_SKILL_SX, WIN_P4_SKILL_SY, WIN_P4_SKILL_PAL, WIN_P4_SKILL_S_CGX
 	},
-	{	// PP/PPiƒXƒƒbƒvj
+	{	// PP/PPï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME0_S, WIN_P4_PPNUM_PX, WIN_P4_PPNUM_PY,
 		WIN_P4_PPNUM_SX, WIN_P4_PPNUM_SY, WIN_P4_PPNUM_PAL, WIN_P4_PPNUM_S_CGX
 	},
-	{	// –½’†’liƒXƒƒbƒvj
+	{	// å‘½ä¸­å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME0_S, WIN_P4_HITNUM_PX, WIN_P4_HITNUM_PY,
 		WIN_P4_HITNUM_SX, WIN_P4_HITNUM_SY, WIN_P4_HITNUM_PAL, WIN_P4_HITNUM_S_CGX
 	},
-	{	// ˆĞ—Í’liƒXƒƒbƒvj
+	{	// å¨åŠ›å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME0_S, WIN_P4_POWNUM_PX, WIN_P4_POWNUM_PY,
 		WIN_P4_POWNUM_SX, WIN_P4_POWNUM_SY, WIN_P4_POWNUM_PAL, WIN_P4_POWNUM_S_CGX
 	},
-	{	// ‹Zà–¾iƒXƒƒbƒvj
+	{	// æŠ€èª¬æ˜ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME0_S, WIN_P4_INFO_PX, WIN_P4_INFO_PY,
 		WIN_P4_INFO_SX, WIN_P4_INFO_SY, WIN_P4_INFO_PAL, WIN_P4_INFO_S_CGX
 	},
-	{	// •ª—Ş–¼iƒXƒƒbƒvj
+	{	// åˆ†é¡åï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 		GF_BGL_FRAME0_S, WIN_P4_BRNAME_PX, WIN_P4_BRNAME_PY,
 		WIN_P4_BRNAME_SX, WIN_P4_BRNAME_SY, WIN_P4_BRNAME_PAL, WIN_P4_BRNAME_S_CGX
 	},
 };
 
-// ƒy[ƒW‚T‚ÌBMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+// ãƒšãƒ¼ã‚¸ï¼•ã®BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT Page5_BmpData[] =
 {
-	{	// –¼‘O
+	{	// åå‰
 		GF_BGL_FRAME0_S, WIN_P5_NAME_PX, WIN_P5_NAME_PY,
 		WIN_P5_NAME_SX, WIN_P5_NAME_SY, WIN_P5_NAME_PAL, WIN_P5_NAME_CGX
 	},
-	{	// ‹Z‚P
+	{	// æŠ€ï¼‘
 		GF_BGL_FRAME0_S, WIN_P5_SKILL1_PX, WIN_P5_SKILL1_PY,
 		WIN_P5_SKILL1_SX, WIN_P5_SKILL1_SY, WIN_P5_SKILL1_PAL, WIN_P5_SKILL1_CGX
 	},
-	{	// ‹Z‚Q
+	{	// æŠ€ï¼’
 		GF_BGL_FRAME0_S, WIN_P5_SKILL2_PX, WIN_P5_SKILL2_PY,
 		WIN_P5_SKILL2_SX, WIN_P5_SKILL2_SY, WIN_P5_SKILL2_PAL, WIN_P5_SKILL2_CGX
 	},
-	{	// ‹Z‚R
+	{	// æŠ€ï¼“
 		GF_BGL_FRAME0_S, WIN_P5_SKILL3_PX, WIN_P5_SKILL3_PY,
 		WIN_P5_SKILL3_SX, WIN_P5_SKILL3_SY, WIN_P5_SKILL3_PAL, WIN_P5_SKILL3_CGX
 	},
-	{	// ‹Z‚S
+	{	// æŠ€ï¼”
 		GF_BGL_FRAME0_S, WIN_P5_SKILL4_PX, WIN_P5_SKILL4_PY,
 		WIN_P5_SKILL4_SX, WIN_P5_SKILL4_SY, WIN_P5_SKILL4_PAL, WIN_P5_SKILL4_CGX
 	},
-	{	// ‹Z‚T
+	{	// æŠ€ï¼•
 		GF_BGL_FRAME0_S, WIN_P5_SKILL5_PX, WIN_P5_SKILL5_PY,
 		WIN_P5_SKILL5_SX, WIN_P5_SKILL5_SY, WIN_P5_SKILL5_PAL, WIN_P5_SKILL5_CGX
 	},
 };
 
-// ƒy[ƒW‚U‚ÌBMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+// ãƒšãƒ¼ã‚¸ï¼–ã®BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT Page6_BmpData[] =
 {
-	{	// –¼‘O
+	{	// åå‰
 		GF_BGL_FRAME1_S, WIN_P6_NAME_PX, WIN_P6_NAME_PY,
 		WIN_P6_NAME_SX, WIN_P6_NAME_SY, WIN_P6_NAME_PAL, WIN_P6_NAME_CGX
 	},
-	{	// ‹Z–¼
+	{	// æŠ€å
 		GF_BGL_FRAME1_S, WIN_P6_SKILL_PX, WIN_P6_SKILL_PY,
 		WIN_P6_SKILL_SX, WIN_P6_SKILL_SY, WIN_P6_SKILL_PAL, WIN_P6_SKILL_CGX
 	},
@@ -460,73 +460,73 @@ static const BMPWIN_DAT Page6_BmpData[] =
 		GF_BGL_FRAME1_S, WIN_P6_PPNUM_PX, WIN_P6_PPNUM_PY,
 		WIN_P6_PPNUM_SX, WIN_P6_PPNUM_SY, WIN_P6_PPNUM_PAL, WIN_P6_PPNUM_CGX
 	},
-	{	// u‚ß‚¢‚¿‚ã‚¤v
+	{	// ã€Œã‚ã„ã¡ã‚…ã†ã€
 		GF_BGL_FRAME1_S, WIN_P6_HIT_PX, WIN_P6_HIT_PY,
 		WIN_P6_HIT_SX, WIN_P6_HIT_SY, WIN_P6_HIT_PAL, WIN_P6_HIT_CGX
 	},
-	{	// u‚¢‚è‚å‚­v
+	{	// ã€Œã„ã‚Šã‚‡ãã€
 		GF_BGL_FRAME1_S, WIN_P6_POW_PX, WIN_P6_POW_PY,
 		WIN_P6_POW_SX, WIN_P6_POW_SY, WIN_P6_POW_PAL, WIN_P6_POW_CGX
 	},
-	{	// –½’†’l
+	{	// å‘½ä¸­å€¤
 		GF_BGL_FRAME1_S, WIN_P6_HITNUM_PX, WIN_P6_HITNUM_PY,
 		WIN_P6_HITNUM_SX, WIN_P6_HITNUM_SY, WIN_P6_HITNUM_PAL, WIN_P6_HITNUM_CGX
 	},
-	{	// ˆĞ—Í’l
+	{	// å¨åŠ›å€¤
 		GF_BGL_FRAME1_S, WIN_P6_POWNUM_PX, WIN_P6_POWNUM_PY,
 		WIN_P6_POWNUM_SX, WIN_P6_POWNUM_SY, WIN_P6_POWNUM_PAL, WIN_P6_POWNUM_CGX
 	},
-	{	// ‹Zà–¾
+	{	// æŠ€èª¬æ˜
 		GF_BGL_FRAME1_S, WIN_P6_INFO_PX, WIN_P6_INFO_PY,
 		WIN_P6_INFO_SX, WIN_P6_INFO_SY, WIN_P6_INFO_PAL, WIN_P6_INFO_CGX
 	},
-	{	// u‚Ô‚ñ‚é‚¢v
+	{	// ã€Œã¶ã‚“ã‚‹ã„ã€
 		GF_BGL_FRAME1_S, WIN_P6_BUNRUI_PX, WIN_P6_BUNRUI_PY,
 		WIN_P6_BUNRUI_SX, WIN_P6_BUNRUI_SY, WIN_P6_BUNRUI_PAL, WIN_P6_BUNRUI_CGX
 	},
-	{	// •ª—Ş–¼
+	{	// åˆ†é¡å
 		GF_BGL_FRAME1_S, WIN_P6_BRNAME_PX, WIN_P6_BRNAME_PY,
 		WIN_P6_BRNAME_SX, WIN_P6_BRNAME_SY, WIN_P6_BRNAME_PAL, WIN_P6_BRNAME_CGX
 	},
-	{	// u‚í‚·‚ê‚év
+	{	// ã€Œã‚ã™ã‚Œã‚‹ã€
 		GF_BGL_FRAME1_S, WIN_P6_WASURERU_PX, WIN_P6_WASURERU_PY,
 		WIN_P6_WASURERU_SX, WIN_P6_WASURERU_SY, WIN_P6_WASURERU_PAL, WIN_P6_WASURERU_CGX
 	}
 };
 
-// ‹Z‰ñ•œƒy[ƒW‚ÌBMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+// æŠ€å›å¾©ãƒšãƒ¼ã‚¸ã®BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT PPRcvPage_BmpData[] =
 {
-	{	// –¼‘O
+	{	// åå‰
 		GF_BGL_FRAME0_S, WIN_P7_NAME_PX, WIN_P7_NAME_PY,
 		WIN_P7_NAME_SX, WIN_P7_NAME_SY, WIN_P7_NAME_PAL, WIN_P7_NAME_CGX
 	},
-	{	// ‹Z‚P
+	{	// æŠ€ï¼‘
 		GF_BGL_FRAME0_S, WIN_P7_SKILL1_PX, WIN_P7_SKILL1_PY,
 		WIN_P7_SKILL1_SX, WIN_P7_SKILL1_SY, WIN_P7_SKILL1_PAL, WIN_P7_SKILL1_CGX
 	},
-	{	// ‹Z‚Q
+	{	// æŠ€ï¼’
 		GF_BGL_FRAME0_S, WIN_P7_SKILL2_PX, WIN_P7_SKILL2_PY,
 		WIN_P7_SKILL2_SX, WIN_P7_SKILL2_SY, WIN_P7_SKILL2_PAL, WIN_P7_SKILL2_CGX
 	},
-	{	// ‹Z‚R
+	{	// æŠ€ï¼“
 		GF_BGL_FRAME0_S, WIN_P7_SKILL3_PX, WIN_P7_SKILL3_PY,
 		WIN_P7_SKILL3_SX, WIN_P7_SKILL3_SY, WIN_P7_SKILL3_PAL, WIN_P7_SKILL3_CGX
 	},
-	{	// ‹Z‚S
+	{	// æŠ€ï¼”
 		GF_BGL_FRAME0_S, WIN_P7_SKILL4_PX, WIN_P7_SKILL4_PY,
 		WIN_P7_SKILL4_SX, WIN_P7_SKILL4_SY, WIN_P7_SKILL4_PAL, WIN_P7_SKILL4_CGX
 	},
 };
 
-// ƒy[ƒW‚W‚ÌBMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+// ãƒšãƒ¼ã‚¸ï¼˜ã®BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT Page8_BmpData[] =
 {
-	{	// –¼‘O
+	{	// åå‰
 		GF_BGL_FRAME1_S, WIN_P8_NAME_PX, WIN_P8_NAME_PY,
 		WIN_P8_NAME_SX, WIN_P8_NAME_SY, WIN_P8_NAME_PAL, WIN_P8_NAME_CGX
 	},
-	{	// ‹Z–¼
+	{	// æŠ€å
 		GF_BGL_FRAME1_S, WIN_P8_SKILL_PX, WIN_P8_SKILL_PY,
 		WIN_P8_SKILL_SX, WIN_P8_SKILL_SY, WIN_P8_SKILL_PAL, WIN_P8_SKILL_CGX
 	},
@@ -538,22 +538,22 @@ static const BMPWIN_DAT Page8_BmpData[] =
 		GF_BGL_FRAME1_S, WIN_P8_PPNUM_PX, WIN_P8_PPNUM_PY,
 		WIN_P8_PPNUM_SX, WIN_P8_PPNUM_SY, WIN_P8_PPNUM_PAL, WIN_P8_PPNUM_CGX
 	},
-	{	// uƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgv
+	{	// ã€Œã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã€
 		GF_BGL_FRAME1_S, WIN_P8_APP_PX, WIN_P8_APP_PY,
 		WIN_P8_APP_SX, WIN_P8_APP_SY, WIN_P8_APP_PAL, WIN_P8_APP_CGX
 	},
-	{	// ‹Zà–¾
+	{	// æŠ€èª¬æ˜
 		GF_BGL_FRAME1_S, WIN_P8_INFO_PX, WIN_P8_INFO_PY,
 		WIN_P8_INFO_SX, WIN_P8_INFO_SY, WIN_P8_INFO_PAL, WIN_P8_INFO_CGX
 	},
-	{	// u‚í‚·‚ê‚év
+	{	// ã€Œã‚ã™ã‚Œã‚‹ã€
 		GF_BGL_FRAME1_S, WIN_P8_WASURERU_PX, WIN_P8_WASURERU_PY,
 		WIN_P8_WASURERU_SX, WIN_P8_WASURERU_SY, WIN_P8_WASURERU_PAL, WIN_P8_WASURERU_CGX
 	},
 };
 
 
-// ƒ|ƒPƒ‚ƒ“–¼‚ÌƒƒbƒZ[ƒWID
+// ãƒã‚±ãƒ¢ãƒ³åã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 static const u32 NameMsgID_Tbl[] = {
 	mes_b_plist_01_001,
 	mes_b_plist_01_101,
@@ -563,7 +563,7 @@ static const u32 NameMsgID_Tbl[] = {
 	mes_b_plist_01_501
 };
 
-// ‹Z–¼‚ÌƒƒbƒZ[ƒWID
+// æŠ€åã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 static const u32 WazaMsgID_Tbl[] = {
 	mes_b_plist_05_100,
 	mes_b_plist_05_200,
@@ -576,9 +576,9 @@ static const u32 WazaMsgID_Tbl[] = {
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒEƒBƒ“ƒhƒE‰Šú‰»
+ * BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -608,10 +608,10 @@ void BattlePokeList_BmpInit( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚²‚Æ‚ÌBMPƒEƒBƒ“ƒhƒE’Ç‰Á
+ * ãƒšãƒ¼ã‚¸ã”ã¨ã®BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
  *
- * @param	wk		ƒ[ƒN
- * @param	page	ƒy[ƒW
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	page	ãƒšãƒ¼ã‚¸
  *
  * @return	none
  */
@@ -622,48 +622,48 @@ void BattlePokeList_BmpAdd( BPLIST_WORK * wk, u32 page )
 	u8	i;
 
 	switch( page ){
-	case BPLIST_PAGE_SELECT:		// ƒ|ƒPƒ‚ƒ“‘I‘ğƒy[ƒW
+	case BPLIST_PAGE_SELECT:		// ãƒã‚±ãƒ¢ãƒ³é¸æŠãƒšãƒ¼ã‚¸
 		dat = Page1_BmpData;
 		wk->bmp_add_max = WIN_P1_MAX;
 		break;
 
-	case BPLIST_PAGE_POKE_CHG:		// ƒ|ƒPƒ‚ƒ““ü‚ê‘Ö‚¦ƒy[ƒW
+	case BPLIST_PAGE_POKE_CHG:		// ãƒã‚±ãƒ¢ãƒ³å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸
 		dat = ChgPage_BmpData;
 		wk->bmp_add_max = WIN_CHG_MAX;
 		break;
 
-	case BPLIST_PAGE_MAIN:			// ƒXƒe[ƒ^ƒXƒƒCƒ“ƒy[ƒW
+	case BPLIST_PAGE_MAIN:			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ã‚¤ãƒ³ãƒšãƒ¼ã‚¸
 		dat = StMainPage_BmpData;
 		wk->bmp_add_max = WIN_P3_MAX;
 		break;
 
-	case BPLIST_PAGE_WAZA_SEL:		// ƒXƒe[ƒ^ƒX‹Z‘I‘ğƒy[ƒW
+	case BPLIST_PAGE_WAZA_SEL:		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€é¸æŠãƒšãƒ¼ã‚¸
 		dat = StWazaSelPage_BmpData;
 		wk->bmp_add_max = WIN_STW_MAX;
 		break;
 
-	case BPLIST_PAGE_SKILL:			// ƒXƒe[ƒ^ƒX‹Zƒy[ƒW
+	case BPLIST_PAGE_SKILL:			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€ãƒšãƒ¼ã‚¸
 		dat = StWazaInfoPage_BmpData;
 		wk->bmp_add_max = WIN_P4_MAX;
 		break;
 
-	case BPLIST_PAGE_PP_RCV:		// PP‰ñ•œ‹Z‘I‘ğƒy[ƒW
+	case BPLIST_PAGE_PP_RCV:		// PPå›å¾©æŠ€é¸æŠãƒšãƒ¼ã‚¸
 		dat = PPRcvPage_BmpData;
 		wk->bmp_add_max = WIN_P7_MAX;
 		break;
 
-	case BPLIST_PAGE_WAZASET_BS:	// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Pƒy[ƒWií“¬‹Z‘I‘ğj
-	case BPLIST_PAGE_WAZASET_CS:	// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Sƒy[ƒWiƒRƒ“ƒeƒXƒg‹Z‘I‘ğj
+	case BPLIST_PAGE_WAZASET_BS:	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼‘ãƒšãƒ¼ã‚¸ï¼ˆæˆ¦é—˜æŠ€é¸æŠï¼‰
+	case BPLIST_PAGE_WAZASET_CS:	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼”ãƒšãƒ¼ã‚¸ï¼ˆã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€é¸æŠï¼‰
 		dat = Page5_BmpData;
 		wk->bmp_add_max = WIN_P5_MAX;
 		break;
 
-	case BPLIST_PAGE_WAZASET_BI:	// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Qƒy[ƒWií“¬‹ZÚ×j
+	case BPLIST_PAGE_WAZASET_BI:	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼’ãƒšãƒ¼ã‚¸ï¼ˆæˆ¦é—˜æŠ€è©³ç´°ï¼‰
 		dat = Page6_BmpData;
 		wk->bmp_add_max = WIN_P6_MAX;
 		break;
 
-	case BPLIST_PAGE_WAZASET_CI:	// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Rƒy[ƒWiƒRƒ“ƒeƒXƒg‹ZÚ×j
+	case BPLIST_PAGE_WAZASET_CI:	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼“ãƒšãƒ¼ã‚¸ï¼ˆã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€è©³ç´°ï¼‰
 		dat = Page8_BmpData;
 		wk->bmp_add_max = WIN_P8_MAX;
 		break;
@@ -677,9 +677,9 @@ void BattlePokeList_BmpAdd( BPLIST_WORK * wk, u32 page )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’Ç‰ÁBMPƒEƒBƒ“ƒhƒEíœ
+ * è¿½åŠ BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -691,9 +691,9 @@ void BattlePokeList_BmpFree( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒEƒBƒ“ƒhƒE‘Síœ
+ * BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å…¨å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -710,10 +710,10 @@ void BattlePokeList_BmpFreeAll( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMP‘‚«‚İ
+ * BMPæ›¸ãè¾¼ã¿
  *
- * @param	wk		ƒ[ƒN
- * @param	page	ƒy[ƒW
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	page	ãƒšãƒ¼ã‚¸
  *
  * @return	none
  */
@@ -721,36 +721,36 @@ void BattlePokeList_BmpFreeAll( BPLIST_WORK * wk )
 void BattlePokeList_BmpWrite( BPLIST_WORK * wk, u32 page )
 {
 	switch( page ){
-	case BPLIST_PAGE_SELECT:		// ƒ|ƒPƒ‚ƒ“‘I‘ğƒy[ƒW
+	case BPLIST_PAGE_SELECT:		// ãƒã‚±ãƒ¢ãƒ³é¸æŠãƒšãƒ¼ã‚¸
 		BPL_Page1BmpWrite( wk );
 		break;
-	case BPLIST_PAGE_POKE_CHG:		// ƒ|ƒPƒ‚ƒ““ü‚ê‘Ö‚¦ƒy[ƒW
+	case BPLIST_PAGE_POKE_CHG:		// ãƒã‚±ãƒ¢ãƒ³å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸
 		BPL_ChgPageBmpWrite( wk );
 		break;
-	case BPLIST_PAGE_MAIN:			// ƒXƒe[ƒ^ƒXƒƒCƒ“ƒy[ƒW
+	case BPLIST_PAGE_MAIN:			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ã‚¤ãƒ³ãƒšãƒ¼ã‚¸
 		BPL_StMainPageBmpWrite( wk );
 		break;
-	case BPLIST_PAGE_WAZA_SEL:		// ƒXƒe[ƒ^ƒX‹Z‘I‘ğƒy[ƒW
+	case BPLIST_PAGE_WAZA_SEL:		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€é¸æŠãƒšãƒ¼ã‚¸
 		BPL_StWazaSelPageBmpWrite( wk );
 		break;
-	case BPLIST_PAGE_SKILL:			// ƒXƒe[ƒ^ƒX‹ZÚ×ƒy[ƒW
+	case BPLIST_PAGE_SKILL:			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€è©³ç´°ãƒšãƒ¼ã‚¸
 		BPL_StWazaInfoPageBmpWrite( wk );
 		break;
 
-	case BPLIST_PAGE_PP_RCV:		// PP‰ñ•œ‹Z‘I‘ğƒy[ƒW
+	case BPLIST_PAGE_PP_RCV:		// PPå›å¾©æŠ€é¸æŠãƒšãƒ¼ã‚¸
 		BPL_PPRcvPageBmpWrite( wk );
 		break;
 
-	case BPLIST_PAGE_WAZASET_BS:	// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Pƒy[ƒWií“¬‹Z‘I‘ğj
-	case BPLIST_PAGE_WAZASET_CS:	// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Sƒy[ƒWiƒRƒ“ƒeƒXƒg‹Z‘I‘ğj
+	case BPLIST_PAGE_WAZASET_BS:	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼‘ãƒšãƒ¼ã‚¸ï¼ˆæˆ¦é—˜æŠ€é¸æŠï¼‰
+	case BPLIST_PAGE_WAZASET_CS:	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼”ãƒšãƒ¼ã‚¸ï¼ˆã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€é¸æŠï¼‰
 		BPL_WazaDelSelPageBmpWrite( wk );
 		break;
 
-	case BPLIST_PAGE_WAZASET_BI:	// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Qƒy[ƒWií“¬‹ZÚ×j
+	case BPLIST_PAGE_WAZASET_BI:	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼’ãƒšãƒ¼ã‚¸ï¼ˆæˆ¦é—˜æŠ€è©³ç´°ï¼‰
 		BPL_Page6BmpWrite( wk );
 		break;
 
-	case BPLIST_PAGE_WAZASET_CI:	// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Rƒy[ƒWiƒRƒ“ƒeƒXƒg‹ZÚ×j
+	case BPLIST_PAGE_WAZASET_CI:	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼“ãƒšãƒ¼ã‚¸ï¼ˆã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€è©³ç´°ï¼‰
 		BPL_Page8BmpWrite( wk );
 		break;
 	}
@@ -758,13 +758,13 @@ void BattlePokeList_BmpWrite( BPLIST_WORK * wk, u32 page )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“–¼•\¦
+ * ãƒã‚±ãƒ¢ãƒ³åè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
- * @param	px		•\¦XÀ•W
- * @param	py		•\¦YÀ•W
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
+ * @param	px		è¡¨ç¤ºXåº§æ¨™
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
  *
  * @return	none
  */
@@ -794,7 +794,7 @@ static void BPL_NamePut( BPLIST_WORK * wk, u32 idx, u32 fidx, u16 pos, u8 px, u8
 	STRBUF_Delete( str );
 	STRBUF_Delete( exp );
 
-	// «•Ê
+	// æ€§åˆ¥
 	if( pd->sex_put == 0 && pd->egg == 0 ){
 		if( pd->sex == PARA_MALE ){
 			str = MSGMAN_AllocString( wk->mman, mes_b_plist_02_502 );
@@ -826,13 +826,13 @@ static void BPL_NamePut( BPLIST_WORK * wk, u32 idx, u32 fidx, u16 pos, u8 px, u8
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹•\¦
+ * ãƒ¬ãƒ™ãƒ«è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
- * @param	px		•\¦XÀ•W
- * @param	py		•\¦YÀ•W
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
+ * @param	px		è¡¨ç¤ºXåº§æ¨™
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
  *
  * @return	none
  */
@@ -849,13 +849,13 @@ static void BPL_LvPut( BPLIST_WORK * wk, u32 idx, u16 pos, u8 px, u8 py )
 
 //--------------------------------------------------------------------------------------------
 /**
- * HP•\¦
+ * HPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
- * @param	px		•\¦XÀ•W
- * @param	py		•\¦YÀ•W
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
+ * @param	px		è¡¨ç¤ºXåº§æ¨™
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
  *
  * @return	none
  */
@@ -877,13 +877,13 @@ static void BPL_HPPut( BPLIST_WORK * wk, u32 idx, u16 pos, u8 px, u8 py )
 
 //--------------------------------------------------------------------------------------------
 /**
- * HPƒQ[ƒW•\¦
+ * HPã‚²ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
- * @param	px		•\¦XÀ•W
- * @param	py		•\¦YÀ•W
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
+ * @param	px		è¡¨ç¤ºXåº§æ¨™
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
  *
  * @return	none
  */
@@ -902,14 +902,14 @@ static void BPL_HPGagePut( BPLIST_WORK * wk, u32 idx, u16 pos, u8 px, u8 py )
 	case HP_DOTTO_NULL:
 		GF_BGL_BmpWinOnVReq( &wk->add_win[idx] );
 		return;
-	case HP_DOTTO_MAX:		// —Î
+	case HP_DOTTO_MAX:		// ç·‘
 	case HP_DOTTO_GREEN:
 		col = HP_GAGE_COL_G1;
 		break;
-	case HP_DOTTO_YELLOW:	// ‰©
+	case HP_DOTTO_YELLOW:	// é»„
 		col = HP_GAGE_COL_Y1;
 		break;
-	case HP_DOTTO_RED:		// Ô
+	case HP_DOTTO_RED:		// èµ¤
 		col = HP_GAGE_COL_R1;
 		break;
 	}
@@ -923,11 +923,11 @@ static void BPL_HPGagePut( BPLIST_WORK * wk, u32 idx, u16 pos, u8 px, u8 py )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “Á«•\¦
+ * ç‰¹æ€§è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
  *
  * @return	none
  */
@@ -956,11 +956,11 @@ static void BPL_TokuseiPut( BPLIST_WORK * wk, u32 idx, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€•\¦
+ * ã‚¢ã‚¤ãƒ†ãƒ è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
  *
  * @return	none
  */
@@ -991,15 +991,15 @@ static void BPL_ItemPut( BPLIST_WORK * wk, u32 idx, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z–¼•\¦
+ * æŠ€åè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	waza	‹Z”Ô†
- * @param	widx	ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	midx	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
- * @param	fidx	ƒtƒHƒ“ƒgƒCƒ“ƒfƒbƒNƒX
- * @param	py		YÀ•W
- * @param	col		ƒJƒ‰[
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ç•ªå·
+ * @param	widx	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	midx	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	fidx	ãƒ•ã‚©ãƒ³ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	py		Yåº§æ¨™
+ * @param	col		ã‚«ãƒ©ãƒ¼
  *
  * @return	none
  */
@@ -1035,12 +1035,12 @@ static void BPL_WazaNamePut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * uPPv•\¦
+ * ã€ŒPPã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	px		•\¦XÀ•W
- * @param	py		•\¦YÀ•W
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	px		è¡¨ç¤ºXåº§æ¨™
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
  *
  * @return	none
  */
@@ -1058,13 +1058,13 @@ static void BPL_PPPut( BPLIST_WORK * wk, u16 idx, u8 px, u8 py )
 
 //--------------------------------------------------------------------------------------------
 /**
- * PP’l•\¦
+ * PPå€¤è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	waza	‹Zƒf[ƒ^
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	px		•\¦XÀ•W
- * @param	py		•\¦YÀ•W
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ãƒ‡ãƒ¼ã‚¿
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	px		è¡¨ç¤ºXåº§æ¨™
+ * @param	py		è¡¨ç¤ºYåº§æ¨™
  *
  * @return	none
  */
@@ -1084,10 +1084,10 @@ static void BPL_PPNumPut( BPLIST_WORK * wk, BPL_POKEWAZA * waza, u16 idx, u8 px,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‘I‘ğƒy[ƒWƒRƒƒ“ƒg•\¦
+ * ãƒã‚±ãƒ¢ãƒ³é¸æŠãƒšãƒ¼ã‚¸ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	midx	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	midx	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  */
@@ -1110,9 +1110,9 @@ static void BPL_PokeSelStrPut( BPLIST_WORK * wk, u32 midx )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚¢‚ê‚©‚¦v•\¦
+ * ã€Œã„ã‚Œã‹ãˆã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1135,9 +1135,9 @@ static void BPL_StrIrekaePut( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒh•\¦
+ * ã‚³ãƒãƒ³ãƒ‰è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1162,10 +1162,10 @@ static void BPL_StrCommandPut( BPLIST_WORK * wk, u32 wid, u32 mid )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚R‚ÌƒŒƒxƒ‹•\¦
+ * ãƒšãƒ¼ã‚¸ï¼“ã®ãƒ¬ãƒ™ãƒ«è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
  *
  * @return	none
  */
@@ -1181,14 +1181,14 @@ static void BPL_P3_LvPut( BPLIST_WORK * wk, u32 pos )
 	pd   = &wk->poke[pos];
 	swap = WIN_P3_NAME_S * wk->bmp_swap;
 
-	// uLv.v
+	// ã€ŒLv.ã€
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_000 );
 	GF_STR_PrintColor(
 		&wk->add_win[WIN_P3_LV], FONT_SYSTEM, str, 0, 0, MSG_NO_PUT, PCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
-	// ƒŒƒxƒ‹’l
+	// ãƒ¬ãƒ™ãƒ«å€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_001 );
-	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 	WORDSET_RegisterNumber(
 		wk->wset, 0, pd->lv, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	WORDSET_ExpandStr( wk->wset, exp, str );
@@ -1196,18 +1196,18 @@ static void BPL_P3_LvPut( BPLIST_WORK * wk, u32 pos )
 		&wk->add_win[WIN_P3_LVNUM+swap], FONT_SYSTEM, exp, 0, 0, MSG_NO_PUT, PCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
 	STRBUF_Delete( exp );
-	// u‚Â‚¬‚ÌƒŒƒxƒ‹‚Ü‚Åv
+	// ã€Œã¤ãã®ãƒ¬ãƒ™ãƒ«ã¾ã§ã€
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_100 );
 	GF_STR_PrintColor(
 		&wk->add_win[WIN_P3_NEXT], FONT_SYSTEM, str, 0, 0, MSG_NO_PUT, PCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
-	// Ÿ‚ÌƒŒƒxƒ‹’l
+	// æ¬¡ã®ãƒ¬ãƒ™ãƒ«å€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_101 );
-	exp = STRBUF_Create( (6+1)*2, wk->dat->heap );	// (6Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+	exp = STRBUF_Create( (6+1)*2, wk->dat->heap );	// (6æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 // ----------------------------------------------------------------------------
 // localize_spec_mark(JP_VER10) imatake 2006/12/01
-/* ƒ‹ƒrƒTƒtƒ@‚Ìˆç‚Ä‰®‚ÅLv100ˆÈã‚ÌŒoŒ±’l‚É‚È‚é‚½‚ßAƒ}ƒCƒiƒX•\¦‚É‚È‚Á‚Ä‚µ‚Ü‚¤•s‹ï‡‘Îˆ */
-#if T1653_060815_FIX	// ‘ÎˆŒã
+/* ãƒ«ãƒ“ã‚µãƒ•ã‚¡ã®è‚²ã¦å±‹ã§Lv100ä»¥ä¸Šã®çµŒé¨“å€¤ã«ãªã‚‹ãŸã‚ã€ãƒã‚¤ãƒŠã‚¹è¡¨ç¤ºã«ãªã£ã¦ã—ã¾ã†ä¸å…·åˆå¯¾å‡¦ */
+#if T1653_060815_FIX	// å¯¾å‡¦å¾Œ
 	if( pd->lv < 100 ){
 		WORDSET_RegisterNumber(
 			wk->wset, 0, pd->next_lv_exp - pd->now_exp,
@@ -1216,7 +1216,7 @@ static void BPL_P3_LvPut( BPLIST_WORK * wk, u32 pos )
 		WORDSET_RegisterNumber(
 			wk->wset, 0, 0, 6, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
 	}
-#else					// ‘Îˆ‘O
+#else					// å¯¾å‡¦å‰
 	WORDSET_RegisterNumber(
 		wk->wset, 0, pd->next_lv_exp - pd->now_exp, 
 		6, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
@@ -1239,10 +1239,10 @@ static void BPL_P3_LvPut( BPLIST_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚R‚ÌUŒ‚•\¦
+ * ãƒšãƒ¼ã‚¸ï¼“ã®æ”»æ’ƒè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
  *
  * @return	none
  */
@@ -1259,14 +1259,14 @@ static void BPL_P3_PowPut( BPLIST_WORK * wk, u32 pos )
 	pd   = &wk->poke[pos];
 	swap = WIN_P3_NAME_S * wk->bmp_swap;
 
-	// u‚±‚¤‚°‚«v
+	// ã€Œã“ã†ã’ãã€
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_400 );
 	GF_STR_PrintColor(
 		&wk->add_win[WIN_P3_POW], FONT_SYSTEM, str, 0, 0, MSG_NO_PUT, PCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
-	// UŒ‚’l
+	// æ”»æ’ƒå€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_401 );
-	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 	WORDSET_RegisterNumber(
 		wk->wset, 0, pd->pow, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	WORDSET_ExpandStr( wk->wset, exp, str );
@@ -1283,10 +1283,10 @@ static void BPL_P3_PowPut( BPLIST_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚R‚Ì–hŒä•\¦
+ * ãƒšãƒ¼ã‚¸ï¼“ã®é˜²å¾¡è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
  *
  * @return	none
  */
@@ -1303,14 +1303,14 @@ static void BPL_P3_DefPut( BPLIST_WORK * wk, u32 pos )
 	pd   = &wk->poke[pos];
 	swap = WIN_P3_NAME_S * wk->bmp_swap;
 
-	// u‚Ú‚¤‚¬‚åv
+	// ã€Œã¼ã†ãã‚‡ã€
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_500 );
 	GF_STR_PrintColor(
 		&wk->add_win[WIN_P3_DEF], FONT_SYSTEM, str, 0, 0, MSG_NO_PUT, PCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
-	// –hŒä’l
+	// é˜²å¾¡å€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_501 );
-	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 	WORDSET_RegisterNumber(
 		wk->wset, 0, pd->def, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	WORDSET_ExpandStr( wk->wset, exp, str );
@@ -1327,10 +1327,10 @@ static void BPL_P3_DefPut( BPLIST_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚R‚Ì‘f‘‚³•\¦
+ * ãƒšãƒ¼ã‚¸ï¼“ã®ç´ æ—©ã•è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
  *
  * @return	none
  */
@@ -1347,14 +1347,14 @@ static void BPL_P3_AgiPut( BPLIST_WORK * wk, u32 pos )
 	pd   = &wk->poke[pos];
 	swap = WIN_P3_NAME_S * wk->bmp_swap;
 
-	// u‚·‚Î‚â‚³v
+	// ã€Œã™ã°ã‚„ã•ã€
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_800 );
 	GF_STR_PrintColor(
 		&wk->add_win[WIN_P3_AGI], FONT_SYSTEM, str, 0, 0, MSG_NO_PUT, PCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
-	// ‘f‘‚³’l
+	// ç´ æ—©ã•å€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_801 );
-	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 	WORDSET_RegisterNumber(
 		wk->wset, 0, pd->agi, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	WORDSET_ExpandStr( wk->wset, exp, str );
@@ -1371,10 +1371,10 @@ static void BPL_P3_AgiPut( BPLIST_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚R‚Ì“ÁU•\¦
+ * ãƒšãƒ¼ã‚¸ï¼“ã®ç‰¹æ”»è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
  *
  * @return	none
  */
@@ -1391,14 +1391,14 @@ static void BPL_P3_SppPut( BPLIST_WORK * wk, u32 pos )
 	pd   = &wk->poke[pos];
 	swap = WIN_P3_NAME_S * wk->bmp_swap;
 
-	// u‚Æ‚­‚±‚¤v
+	// ã€Œã¨ãã“ã†ã€
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_600 );
 	GF_STR_PrintColor(
 		&wk->add_win[WIN_P3_SPP], FONT_SYSTEM, str, 0, 0, MSG_NO_PUT, PCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
-	// “ÁU’l
+	// ç‰¹æ”»å€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_601 );
-	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 	WORDSET_RegisterNumber(
 		wk->wset, 0, pd->spp, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	WORDSET_ExpandStr( wk->wset, exp, str );
@@ -1415,10 +1415,10 @@ static void BPL_P3_SppPut( BPLIST_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚R‚Ì“Á–h•\¦
+ * ãƒšãƒ¼ã‚¸ï¼“ã®ç‰¹é˜²è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
  *
  * @return	none
  */
@@ -1435,14 +1435,14 @@ static void BPL_P3_SpdPut( BPLIST_WORK * wk, u32 pos )
 	pd   = &wk->poke[pos];
 	swap = WIN_P3_NAME_S * wk->bmp_swap;
 
-	// u‚Æ‚­‚Ú‚¤v
+	// ã€Œã¨ãã¼ã†ã€
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_700 );
 	GF_STR_PrintColor(
 		&wk->add_win[WIN_P3_SPD], FONT_SYSTEM, str, 0, 0, MSG_NO_PUT, PCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
-	// “Á–h’l
+	// ç‰¹é˜²å€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_701 );
-	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 	WORDSET_RegisterNumber(
 		wk->wset, 0, pd->spd, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	WORDSET_ExpandStr( wk->wset, exp, str );
@@ -1459,10 +1459,10 @@ static void BPL_P3_SpdPut( BPLIST_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚R‚ÌHP•\¦
+ * ãƒšãƒ¼ã‚¸ï¼“ã®HPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
  *
  * @return	none
  */
@@ -1479,21 +1479,21 @@ static void BPL_P3_HPPut( BPLIST_WORK * wk, u32 pos )
 	pd   = &wk->poke[pos];
 	swap = WIN_P3_NAME_S * wk->bmp_swap;
 
-	// uHPv
+	// ã€ŒHPã€
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_300 );
 	GF_STR_PrintColor(
 		&wk->add_win[WIN_P3_HP], FONT_SYSTEM, str, 0, 0, MSG_NO_PUT, PCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
-	// u/v
+	// ã€Œ/ã€
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_303 );
 	sra_siz = FontProc_GetPrintStrWidth( FONT_SYSTEM, str, 0 );
 	px = (GF_BGL_BmpWinGet_SizeX( &wk->add_win[WIN_P3_HPNUM] )*8-sra_siz)/2;
 	GF_STR_PrintColor(
 		&wk->add_win[WIN_P3_HPNUM+swap], FONT_SYSTEM, str, px, 0, MSG_NO_PUT, PCOL_N_BLACK, NULL );
 	STRBUF_Delete( str );
-	// HP’l
+	// HPå€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_301 );
-	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 	WORDSET_RegisterNumber(
 		wk->wset, 0, pd->hp, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	WORDSET_ExpandStr( wk->wset, exp, str );
@@ -1503,9 +1503,9 @@ static void BPL_P3_HPPut( BPLIST_WORK * wk, u32 pos )
 		px-tmp_siz, 0, MSG_NO_PUT, PCOL_N_BLACK, NULL );
 	STRBUF_Delete( str );
 	STRBUF_Delete( exp );
-	// Å‘åHP’l
+	// æœ€å¤§HPå€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_302 );
-	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+	exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 	WORDSET_RegisterNumber(
 		wk->wset, 0, pd->mhp, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	WORDSET_ExpandStr( wk->wset, exp, str );
@@ -1521,10 +1521,10 @@ static void BPL_P3_HPPut( BPLIST_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚R‚Ì“Á«•\¦
+ * ãƒšãƒ¼ã‚¸ï¼“ã®ç‰¹æ€§è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ƒ|ƒPƒ‚ƒ“ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ä½ç½®
  *
  * @return	none
  */
@@ -1552,14 +1552,14 @@ static void BPL_P3_TokuseiInfoPut( BPLIST_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚ß‚¢‚¿‚ã‚¤v•\¦
+ * ã€Œã‚ã„ã¡ã‚…ã†ã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  *
- *	ƒy[ƒW‚SE‚U‚Åg—p
+ *	ãƒšãƒ¼ã‚¸ï¼”ãƒ»ï¼–ã§ä½¿ç”¨
  */
 //--------------------------------------------------------------------------------------------
 static void BPL_WazaHitStrPut( BPLIST_WORK * wk, u32 idx )
@@ -1576,15 +1576,15 @@ static void BPL_WazaHitStrPut( BPLIST_WORK * wk, u32 idx )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‚Ì–½’†’l•\¦
+ * æŠ€ã®å‘½ä¸­å€¤è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	hit		–½’†’l
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	hit		å‘½ä¸­å€¤
  *
  * @return	none
  *
- *	ƒy[ƒW‚SE‚U‚Åg—p
+ *	ãƒšãƒ¼ã‚¸ï¼”ãƒ»ï¼–ã§ä½¿ç”¨
  */
 //--------------------------------------------------------------------------------------------
 static void BPL_WazaHitNumPut( BPLIST_WORK * wk, u32 idx, u32 hit )
@@ -1605,7 +1605,7 @@ static void BPL_WazaHitNumPut( BPLIST_WORK * wk, u32 idx, u32 hit )
 		STRBUF_Delete( str );
 	}else{
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_201 );
-		exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+		exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 		WORDSET_RegisterNumber(
 			wk->wset, 0, hit, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		WORDSET_ExpandStr( wk->wset, exp, str );
@@ -1621,14 +1621,14 @@ static void BPL_WazaHitNumPut( BPLIST_WORK * wk, u32 idx, u32 hit )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚¢‚è‚å‚­v•\¦
+ * ã€Œã„ã‚Šã‚‡ãã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  *
- *	ƒy[ƒW‚SE‚U‚Åg—p
+ *	ãƒšãƒ¼ã‚¸ï¼”ãƒ»ï¼–ã§ä½¿ç”¨
  */
 //--------------------------------------------------------------------------------------------
 static void BPL_WazaPowStrPut( BPLIST_WORK * wk, u32 idx )
@@ -1645,15 +1645,15 @@ static void BPL_WazaPowStrPut( BPLIST_WORK * wk, u32 idx )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‚ÌˆĞ—Í’l•\¦
+ * æŠ€ã®å¨åŠ›å€¤è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	pow		ˆĞ—Í’l
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	pow		å¨åŠ›å€¤
  *
  * @return	none
  *
- *	ƒy[ƒW‚SE‚U‚Åg—p
+ *	ãƒšãƒ¼ã‚¸ï¼”ãƒ»ï¼–ã§ä½¿ç”¨
  */
 //--------------------------------------------------------------------------------------------
 static void BPL_WazaPowNumPut( BPLIST_WORK * wk, u32 idx, u32 pow )
@@ -1674,7 +1674,7 @@ static void BPL_WazaPowNumPut( BPLIST_WORK * wk, u32 idx, u32 pow )
 		STRBUF_Delete( str );
 	}else{
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_101 );
-		exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+		exp = STRBUF_Create( (3+1)*2, wk->dat->heap );	// (3æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 		WORDSET_RegisterNumber(
 			wk->wset, 0, pow, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		WORDSET_ExpandStr( wk->wset, exp, str );
@@ -1690,15 +1690,15 @@ static void BPL_WazaPowNumPut( BPLIST_WORK * wk, u32 idx, u32 pow )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zà–¾•\¦
+ * æŠ€èª¬æ˜è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	waza	‹ZID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	waza	æŠ€ID
  *
  * @return	none
  *
- *	ƒy[ƒW‚SE‚U‚Åg—p
+ *	ãƒšãƒ¼ã‚¸ï¼”ãƒ»ï¼–ã§ä½¿ç”¨
  */
 //--------------------------------------------------------------------------------------------
 static void BPL_WazaInfoPut( BPLIST_WORK * wk, u32 idx, u32 waza )
@@ -1719,15 +1719,15 @@ static void BPL_WazaInfoPut( BPLIST_WORK * wk, u32 idx, u32 waza )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Zà–¾•\¦
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€èª¬æ˜è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	waza	‹ZID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	waza	æŠ€ID
  *
  * @return	none
  *
- *	ƒy[ƒW‚W‚Åg—p
+ *	ãƒšãƒ¼ã‚¸ï¼˜ã§ä½¿ç”¨
  */
 //--------------------------------------------------------------------------------------------
 static void BPL_ContestWazaInfoPut( BPLIST_WORK * wk, u32 idx, u32 waza )
@@ -1756,14 +1756,14 @@ static void BPL_ContestWazaInfoPut( BPLIST_WORK * wk, u32 idx, u32 waza )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚Ô‚ñ‚é‚¢v•\¦
+ * ã€Œã¶ã‚“ã‚‹ã„ã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  *
- *	ƒy[ƒW‚SE‚U‚Åg—p
+ *	ãƒšãƒ¼ã‚¸ï¼”ãƒ»ï¼–ã§ä½¿ç”¨
  */
 //--------------------------------------------------------------------------------------------
 static void BPL_WazaBunruiStrPut( BPLIST_WORK * wk, u32 idx )
@@ -1784,21 +1784,21 @@ static void BPL_WazaBunruiStrPut( BPLIST_WORK * wk, u32 idx )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •ª—Şí—Ş•\¦
+ * åˆ†é¡ç¨®é¡è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	kind	•ª—Şí—Ş
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	kind	åˆ†é¡ç¨®é¡
  *
  * @return	none
  *
- *	ƒy[ƒW‚SE‚U‚Åg—p
+ *	ãƒšãƒ¼ã‚¸ï¼”ãƒ»ï¼–ã§ä½¿ç”¨
  */
 //--------------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/29
-// •ª—Ş‚Ì•\¦‚ğ’†‰›Šñ‚¹‚É
-#define WIN_BRNAME_SX_PRAC		(7)		// WIN_P4_BRNAME_SX, WIN_P6_BRNAME_SX ‚ÌƒŒƒCƒAƒEƒgã‚ÌÀ¿“I‚È•
+// åˆ†é¡ã®è¡¨ç¤ºã‚’ä¸­å¤®å¯„ã›ã«
+#define WIN_BRNAME_SX_PRAC		(7)		// WIN_P4_BRNAME_SX, WIN_P6_BRNAME_SX ã®ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆä¸Šã®å®Ÿè³ªçš„ãªå¹…
 // ----------------------------------------------------------------------------
 static void BPL_WazaKindPut( BPLIST_WORK * wk, u32 idx, u32 kind )
 {
@@ -1808,18 +1808,18 @@ static void BPL_WazaKindPut( BPLIST_WORK * wk, u32 idx, u32 kind )
 	win = &wk->add_win[idx];
 
 	switch( kind ){
-	case 0:		// •¨—
+	case 0:		// ç‰©ç†
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_301 );
 		break;
-	case 1:		// •Ï‰»
+	case 1:		// å¤‰åŒ–
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_303 );
 		break;
-	case 2:		// “Áê
+	case 2:		// ç‰¹æ®Š
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_302 );
 	}
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/29
-	// •ª—Ş‚Ì•\¦‚ğ’†‰›Šñ‚¹‚É
+	// åˆ†é¡ã®è¡¨ç¤ºã‚’ä¸­å¤®å¯„ã›ã«
 	{
 		u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_SYSTEM, str, 0, WIN_BRNAME_SX_PRAC * 8);
 		GF_STR_PrintColor( win, FONT_SYSTEM, str, xofs, 0, MSG_NO_PUT, PCOL_N_BLACK, NULL );
@@ -1832,16 +1832,16 @@ static void BPL_WazaKindPut( BPLIST_WORK * wk, u32 idx, u32 kind )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹ZPP•\¦
+ * æŠ€PPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	npp		Œ»İ‚ÌPP
- * @param	mpp		Å‘åPP
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	npp		ç¾åœ¨ã®PP
+ * @param	mpp		æœ€å¤§PP
  *
  * @return	none
  *
- *	ƒy[ƒW‚SE‚U‚Åg—p
+ *	ãƒšãƒ¼ã‚¸ï¼”ãƒ»ï¼–ã§ä½¿ç”¨
  */
 //--------------------------------------------------------------------------------------------
 static void BPL_WazaPPPut( BPLIST_WORK * wk, u32 idx, u32 npp, u32 mpp )
@@ -1854,15 +1854,15 @@ static void BPL_WazaPPPut( BPLIST_WORK * wk, u32 idx, u32 npp, u32 mpp )
 
 	win = &wk->add_win[idx];
 
-	// u/v
+	// ã€Œ/ã€
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_004 );
 	sra_siz = FontProc_GetPrintStrWidth( FONT_SYSTEM, str, 0 );
 	px = ( GF_BGL_BmpWinGet_SizeX(win) * 8 - sra_siz ) / 2;
 	GF_STR_PrintColor( win, FONT_SYSTEM, str, px, 0, MSG_NO_PUT, PCOL_B_WHITE, NULL );
 	STRBUF_Delete( str );
-	// PP’l
+	// PPå€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_002 );
-	exp = STRBUF_Create( (2+1)*2, wk->dat->heap );	// (2Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+	exp = STRBUF_Create( (2+1)*2, wk->dat->heap );	// (2æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 	WORDSET_RegisterNumber(
 		wk->wset, 0, npp, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	WORDSET_ExpandStr( wk->wset, exp, str );
@@ -1871,9 +1871,9 @@ static void BPL_WazaPPPut( BPLIST_WORK * wk, u32 idx, u32 npp, u32 mpp )
 		win, FONT_SYSTEM, exp, px-tmp_siz, 0, MSG_NO_PUT, PCOL_N_WHITE, NULL );
 	STRBUF_Delete( str );
 	STRBUF_Delete( exp );
-	// Å‘åPP’l
+	// æœ€å¤§PPå€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_003 );
-	exp = STRBUF_Create( (2+1)*2, wk->dat->heap );	// (2Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+	exp = STRBUF_Create( (2+1)*2, wk->dat->heap );	// (2æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 	WORDSET_RegisterNumber(
 		wk->wset, 0, mpp, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	WORDSET_ExpandStr( wk->wset, exp, str );
@@ -1885,15 +1885,15 @@ static void BPL_WazaPPPut( BPLIST_WORK * wk, u32 idx, u32 npp, u32 mpp )
 	GF_BGL_BmpWinOnVReq( win );
 }
 
-#define	P5_PPNUM5_PX	( 56 )		// PP’l•\¦XÀ•W
-#define	P5_PPNUM5_PY	( 32 )		// PP’l•\¦YÀ•W
+#define	P5_PPNUM5_PX	( 56 )		// PPå€¤è¡¨ç¤ºXåº§æ¨™
+#define	P5_PPNUM5_PY	( 32 )		// PPå€¤è¡¨ç¤ºYåº§æ¨™
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚T‚ÌPP’l•\¦
+ * ãƒšãƒ¼ã‚¸ï¼•ã®PPå€¤è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	waza	‹ZID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ID
  *
  * @return	none
  */
@@ -1914,18 +1914,18 @@ static void BPL_P5_PPNumPut( BPLIST_WORK * wk, u32 waza )
 	GF_BGL_BmpWinOnVReq( win );
 }
 
-#define	P6_WASURERU_PY	( 6 )	// u‚í‚·‚ê‚év•\¦YÀ•W
+#define	P6_WASURERU_PY	( 6 )	// ã€Œã‚ã™ã‚Œã‚‹ã€è¡¨ç¤ºYåº§æ¨™
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚í‚·‚ê‚év•\¦
+ * ã€Œã‚ã™ã‚Œã‚‹ã€è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  *
- *	ƒy[ƒW‚U‚Åg—p
+ *	ãƒšãƒ¼ã‚¸ï¼–ã§ä½¿ç”¨
  */
 //--------------------------------------------------------------------------------------------
 static void BPL_WasureruStrPut( BPLIST_WORK * wk, u32 idx )
@@ -1951,13 +1951,13 @@ static void BPL_WasureruStrPut( BPLIST_WORK * wk, u32 idx )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”é“`‹ZƒGƒ‰[ƒƒbƒZ[ƒW•\¦
+ * ç§˜ä¼æŠ€ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  *
- *	ƒy[ƒW‚U‚Åg—p
+ *	ãƒšãƒ¼ã‚¸ï¼–ã§ä½¿ç”¨
  */
 //--------------------------------------------------------------------------------------------
 void BPL_HidenMsgPut( BPLIST_WORK * wk )
@@ -1979,18 +1979,18 @@ void BPL_HidenMsgPut( BPLIST_WORK * wk )
 
 
 
-#define	BTN_PP_PX		( 40 )		// uPPv•\¦XÀ•W
-#define	BTN_PP_PY		( 24 )		// uPPv•\¦YÀ•W
-#define	BTN_PPSRA_PX	( 80 )		// u/v•\¦XÀ•W
-#define	BTN_PPSRA_PY	( 24 )		// u/v•\¦YÀ•W
+#define	BTN_PP_PX		( 40 )		// ã€ŒPPã€è¡¨ç¤ºXåº§æ¨™
+#define	BTN_PP_PY		( 24 )		// ã€ŒPPã€è¡¨ç¤ºYåº§æ¨™
+#define	BTN_PPSRA_PX	( 80 )		// ã€Œ/ã€è¡¨ç¤ºXåº§æ¨™
+#define	BTN_PPSRA_PY	( 24 )		// ã€Œ/ã€è¡¨ç¤ºYåº§æ¨™
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ã‚ÌPP‚ğ•\¦
+ * ãƒœã‚¿ãƒ³ä¸Šã®PPã‚’è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	waza	‹Zƒf[ƒ^
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ãƒ‡ãƒ¼ã‚¿
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  */
@@ -2003,22 +2003,22 @@ static void BPL_WazaButtonPPPut( BPLIST_WORK * wk, BPL_POKEWAZA * waza, u32 idx 
 	u32	siz;
 
 	win = &wk->add_win[idx];
-	exp = STRBUF_Create( (2+1)*2, wk->dat->heap );	// (2Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+	exp = STRBUF_Create( (2+1)*2, wk->dat->heap );	// (2æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 
-	// uPPv
+	// ã€ŒPPã€
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_001 );
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, str, BTN_PP_PX, BTN_PP_PY, MSG_NO_PUT, PCOL_B_WHITE, NULL );
 	STRBUF_Delete( str );
 	
-	// u/v
+	// ã€Œ/ã€
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_004 );
 	siz = FontProc_GetPrintStrWidth( FONT_SYSTEM, str, 0 );
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, str, BTN_PPSRA_PX, BTN_PPSRA_PY, MSG_NO_PUT, PCOL_B_WHITE, NULL );
 	STRBUF_Delete( str );
 
-	// Å‘åPP’l
+	// æœ€å¤§PPå€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_003 );
 	WORDSET_RegisterNumber(
 		wk->wset, 0, waza->mpp, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
@@ -2027,7 +2027,7 @@ static void BPL_WazaButtonPPPut( BPLIST_WORK * wk, BPL_POKEWAZA * waza, u32 idx 
 		win, FONT_SYSTEM, exp, BTN_PPSRA_PX+siz, BTN_PPSRA_PY, MSG_NO_PUT, PCOL_B_WHITE, NULL );
 	STRBUF_Delete( str );
 
-	// PP’l
+	// PPå€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_002 );
 	WORDSET_RegisterNumber(
 		wk->wset, 0, waza->pp, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
@@ -2044,11 +2044,11 @@ static void BPL_WazaButtonPPPut( BPLIST_WORK * wk, BPL_POKEWAZA * waza, u32 idx 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ã‚ÌPP’l‚ğ•\¦
+ * ãƒœã‚¿ãƒ³ä¸Šã®PPå€¤ã‚’è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	waza	‹Zƒf[ƒ^
- * @param	idx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ãƒ‡ãƒ¼ã‚¿
+ * @param	idx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  */
@@ -2061,15 +2061,15 @@ static void BPL_WazaButtonPPRcv( BPLIST_WORK * wk, BPL_POKEWAZA * waza, u32 idx 
 	u32	siz;
 
 	win = &wk->add_win[idx];
-	exp = STRBUF_Create( (2+1)*2, wk->dat->heap );	// (2Œ…+EOM_)x2(ƒ[ƒJƒ‰ƒCƒY—p‚Éˆê‰)
+	exp = STRBUF_Create( (2+1)*2, wk->dat->heap );	// (2æ¡+EOM_)x2(ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ã«ä¸€å¿œ)
 
-	// ƒNƒŠƒA
+	// ã‚¯ãƒªã‚¢
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_001 );
 	siz = FontProc_GetPrintStrWidth( FONT_SYSTEM, str, 0 );
 	STRBUF_Delete( str );
 	GF_BGL_BmpWinFill( win, 0, BTN_PP_PX+siz, BTN_PPSRA_PY, BTN_PPSRA_PX-(BTN_PP_PX+siz), 16 );
 
-	// PP’l
+	// PPå€¤
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_002 );
 	WORDSET_RegisterNumber(
 		wk->wset, 0, waza->pp, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
@@ -2084,7 +2084,7 @@ static void BPL_WazaButtonPPRcv( BPLIST_WORK * wk, BPL_POKEWAZA * waza, u32 idx 
 	GF_BGL_BmpWinOnVReq( win );
 }
 
-// ƒpƒ‰ƒ[ƒ^•\¦À•W
+// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¡¨ç¤ºåº§æ¨™
 #define	P1_NAME_PX		( 32 )
 #define	P1_NAME_PY		( 8 )
 #define	P1_HP_PX		( 56 )
@@ -2100,9 +2100,9 @@ static void BPL_WazaButtonPPRcv( BPLIST_WORK * wk, BPL_POKEWAZA * waza, u32 idx 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚P‚ÌBMP•\¦
+ * ãƒšãƒ¼ã‚¸ï¼‘ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2138,10 +2138,10 @@ static void BPL_Page1BmpWrite( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚P‚ÌHP•\¦
+ * ãƒšãƒ¼ã‚¸ï¼‘ã®HPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		•À‚ÑˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä¸¦ã³ä½ç½®
  *
  * @return	none
  */
@@ -2160,10 +2160,10 @@ void BattlePokeList_P1_HPPut( BPLIST_WORK * wk, u8 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚P‚ÌLv•\¦
+ * ãƒšãƒ¼ã‚¸ï¼‘ã®Lvè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		•À‚ÑˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä¸¦ã³ä½ç½®
  *
  * @return	none
  */
@@ -2181,9 +2181,9 @@ static void BPL_IrekaeNamePut( BPLIST_WORK * wk, u32 pos );
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ü‚ê‘Ö‚¦ƒy[ƒW‚ÌBMP•\¦
+ * å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2216,10 +2216,10 @@ static void BPL_ChgPageBmpWrite( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ü‚ê‘Ö‚¦ƒy[ƒW‚Ì–¼‘O•\¦
+ * å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸ã®åå‰è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		•À‚ÑˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä¸¦ã³ä½ç½®
  *
  * @return	none
  */
@@ -2295,9 +2295,9 @@ static void BPL_IrekaeNamePut( BPLIST_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX‹Z‘I‘ğƒy[ƒW‚ÌBMP•\¦
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€é¸æŠãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2347,9 +2347,9 @@ static void BPL_StWazaSelPageBmpWrite( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒXƒƒCƒ“ƒy[ƒW‚ÌBMP•\¦
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ã‚¤ãƒ³ãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2411,9 +2411,9 @@ static void BPL_StMainPageBmpWrite( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX‹ZÚ×ƒy[ƒW‚ÌBMP•\¦
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€è©³ç´°ãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2463,9 +2463,9 @@ static void BPL_StWazaInfoPageBmpWrite( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z–Y‚ê‘I‘ğƒy[ƒW‚ÌBMP•\¦
+ * æŠ€å¿˜ã‚Œé¸æŠãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2522,9 +2522,9 @@ static void BPL_WazaDelSelPageBmpWrite( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚U‚ÌBMP•\¦
+ * ãƒšãƒ¼ã‚¸ï¼–ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2587,9 +2587,9 @@ static void BPL_Page6BmpWrite( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‰ñ•œ‘I‘ğƒy[ƒW‚ÌBMP•\¦
+ * æŠ€å›å¾©é¸æŠãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2630,11 +2630,11 @@ static void BPL_PPRcvPageBmpWrite( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‰ñ•œ‘I‘ğƒy[ƒW‚ÌBMP•\¦
+ * æŠ€å›å¾©é¸æŠãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	widx	ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	pos		‹ZˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	widx	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	pos		æŠ€ä½ç½®
  *
  * @return	none
  */
@@ -2665,9 +2665,9 @@ void BattlePokeList_PPRcv( BPLIST_WORK * wk, u16 widx, u16 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚W‚ÌBMP•\¦
+ * ãƒšãƒ¼ã‚¸ï¼˜ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2692,7 +2692,7 @@ static void BPL_Page8BmpWrite( BPLIST_WORK * wk )
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_400 );
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/30
-		// uƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgv‚ğ’†‰›Šñ‚¹‚É
+		// ã€Œã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã€ã‚’ä¸­å¤®å¯„ã›ã«
 		{
 			u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_SYSTEM, str, 0, WIN_P8_APP_SX * 8);
 			GF_STR_PrintColor(
@@ -2743,9 +2743,9 @@ static void BPL_Page8BmpWrite( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒW•\¦
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2759,9 +2759,9 @@ void BattlePokeList_TalkMsgSet( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒW•\¦ŠJn
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–‹å§‹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2778,21 +2778,21 @@ void BattlePokeList_TalkMsgStart( BPLIST_WORK * wk )
 
 
 
-#define	BPL_RCV_SLEEP		( 0x01 )	// –°‚è
-#define	BPL_RCV_POISON		( 0x02 )	// “Å
-#define	BPL_RCV_BURN		( 0x04 )	// ‰Î
-#define	BPL_RCV_ICE			( 0x08 )	// •X
-#define	BPL_RCV_PARALYZE	( 0x10 )	// –ƒáƒ
-#define	BPL_RCV_PANIC		( 0x20 )	// ¬—
-#define	BPL_RCV_MEROMERO	( 0x40 )	// ƒƒƒƒ
-#define	BPL_RCV_ALL			( 0x7f )	// ‘S‰õ
+#define	BPL_RCV_SLEEP		( 0x01 )	// çœ ã‚Š
+#define	BPL_RCV_POISON		( 0x02 )	// æ¯’
+#define	BPL_RCV_BURN		( 0x04 )	// ç«å‚·
+#define	BPL_RCV_ICE			( 0x08 )	// æ°·
+#define	BPL_RCV_PARALYZE	( 0x10 )	// éº»ç—º
+#define	BPL_RCV_PANIC		( 0x20 )	// æ··ä¹±
+#define	BPL_RCV_MEROMERO	( 0x40 )	// ãƒ¡ãƒ­ãƒ¡ãƒ­
+#define	BPL_RCV_ALL			( 0x7f )	// å…¨å¿«
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€g—pƒƒbƒZ[ƒWƒZƒbƒg
+ * ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2834,13 +2834,13 @@ void BattlePokeList_ItemUseMsgSet( BPLIST_WORK * wk )
 		prm |= BPL_RCV_MEROMERO;
 	}
 
-	// •m€‰ñ•œ
+	// ç€•æ­»å›å¾©
 	if( wk->poke[dat->sel_poke].hp == 0 && hp != 0 ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m13 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// HP‰ñ•œ
+	// HPå›å¾©
 	}else if( wk->poke[dat->sel_poke].hp != hp ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m07 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
@@ -2849,54 +2849,54 @@ void BattlePokeList_ItemUseMsgSet( BPLIST_WORK * wk )
 			NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// PP‰ñ•œ
+	// PPå›å¾©
 	}else if( ItemBufParamGet( item, ITEM_PRM_PP_RCV ) != 0 ||
 		ItemBufParamGet( item, ITEM_PRM_ALL_PP_RCV ) != 0 ){
 
 		MSGMAN_GetString( wk->mman, mes_b_plist_m12, wk->msg_buf );
-	// –°‚è
+	// çœ ã‚Š
 	}else if( prm == BPL_RCV_SLEEP ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m17 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// “Å
+	// æ¯’
 	}else if( prm == BPL_RCV_POISON ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m08 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// ‰Î
+	// ç«å‚·
 	}else if( prm == BPL_RCV_BURN ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m10 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// •X
+	// æ°·
 	}else if( prm == BPL_RCV_ICE ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m11 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// –ƒáƒ
+	// éº»ç—º
 	}else if( prm == BPL_RCV_PARALYZE ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m09 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// ¬—
+	// æ··ä¹±
 	}else if( prm == BPL_RCV_PANIC ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m15 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// ƒƒƒƒ
+	// ãƒ¡ãƒ­ãƒ¡ãƒ­
 	}else if( prm == BPL_RCV_MEROMERO ){
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m16 );
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-	// ƒXƒe[ƒ^ƒX‘S‰õ
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å…¨å¿«
 //	}else if( prm == BPL_RCV_ALL ){
 	}else{
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_m14 );
@@ -2910,9 +2910,9 @@ void BattlePokeList_ItemUseMsgSet( BPLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‚É‚æ‚éƒAƒCƒeƒ€g—pƒGƒ‰[ƒƒbƒZ[ƒWƒZƒbƒg
+ * æŠ€ã«ã‚ˆã‚‹ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */

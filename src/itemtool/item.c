@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	item.c
- * @brief	ƒAƒCƒeƒ€ƒf[ƒ^ˆ—
+ * @brief	ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	05.09.06
  */
@@ -27,7 +27,7 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 typedef struct {
 	u16	arc_data;
@@ -36,18 +36,18 @@ typedef struct {
 	u16	agb_id;
 }ITEMDATA_INDEX;
 
-#define	NORMAL_WAZAMACHINE_MAX	( 92 )		// ’Êí‚Ì‹Zƒ}ƒVƒ“”
-#define	HIDENWAZA_MAX			( 8 )		// ”é“`‹Z”
+#define	NORMAL_WAZAMACHINE_MAX	( 92 )		// é€šå¸¸ã®æŠ€ãƒã‚·ãƒ³æ•°
+#define	HIDENWAZA_MAX			( 8 )		// ç§˜ä¼æŠ€æ•°
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static s32 ItemParamRcvGet( ITEMPARAM_RCV * rcv, u16 param );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 #include "itemindex.dat"
 #include "waza_mcn.dat"
@@ -56,11 +56,11 @@ static s32 ItemParamRcvGet( ITEMPARAM_RCV * rcv, u16 param );
 
 //--------------------------------------------------------------------------------------------
 /**
- * w’èƒAƒCƒeƒ€‚ğw’èˆÊ’u‚É‘}“ü
+ * æŒ‡å®šã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒ‡å®šä½ç½®ã«æŒ¿å…¥
  *
- * @param	item	ƒAƒCƒeƒ€ƒf[ƒ^
- * @param	pos1	w’èƒAƒCƒeƒ€ˆÊ’u
- * @param	pos2	‘}“üˆÊ’u
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ * @param	pos1	æŒ‡å®šã‚¢ã‚¤ãƒ†ãƒ ä½ç½®
+ * @param	pos2	æŒ¿å…¥ä½ç½®
  *
  * @return	none
  */	
@@ -93,43 +93,43 @@ void ItemPutIn( void * item, u16 pos1, u16 pos2 )
 
 //============================================================================================
 //============================================================================================
-//	ƒf[ƒ^æ“¾
+//	ãƒ‡ãƒ¼ã‚¿å–å¾—
 //============================================================================================
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXæ“¾
+ * ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  *
- * @param	item		ƒAƒCƒeƒ€”Ô†
- * @param	type		æ“¾ƒf[ƒ^
+ * @param	item		ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param	type		å–å¾—ãƒ‡ãƒ¼ã‚¿
  *
- * @return	w’èƒf[ƒ^
+ * @return	æŒ‡å®šãƒ‡ãƒ¼ã‚¿
  *
- * @li	type = ITEM_GET_DATA		: ƒAƒCƒeƒ€ƒf[ƒ^‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
- * @li	type = ITEM_GET_ICON_CGX	: ƒAƒCƒRƒ“ƒLƒƒƒ‰‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
- * @li	type = ITEM_GET_ICON_PAL	: ƒAƒCƒRƒ“ƒpƒŒƒbƒg‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
- * @li	type = ITEM_GET_AGB_NUM		: AGB‚ÌƒAƒCƒeƒ€”Ô†
+ * @li	type = ITEM_GET_DATA		: ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @li	type = ITEM_GET_ICON_CGX	: ã‚¢ã‚¤ã‚³ãƒ³ã‚­ãƒ£ãƒ©ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @li	type = ITEM_GET_ICON_PAL	: ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @li	type = ITEM_GET_AGB_NUM		: AGBã®ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 u16 GetItemIndex( u16 item, u16 type )
 {
 	switch( type ){
-	case ITEM_GET_DATA:		// ƒAƒCƒeƒ€ƒf[ƒ^
+	case ITEM_GET_DATA:		// ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 		if( item == ITEM_DUMMY_ID || item == ITEM_RETURN_ID ){ break; }
 		return ItemDataIndex[item].arc_data;
 
-	case ITEM_GET_ICON_CGX:	// ƒAƒCƒRƒ“ƒLƒƒƒ‰ƒf[ƒ^
+	case ITEM_GET_ICON_CGX:	// ã‚¢ã‚¤ã‚³ãƒ³ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿
 		if( item == ITEM_DUMMY_ID ){ return NARC_item_icon_item_dumy_NCGR; }
 		if( item == ITEM_RETURN_ID ){ return NARC_item_icon_item_yaji_NCGR; }
 		return ItemDataIndex[item].arc_cgx;
 
-	case ITEM_GET_ICON_PAL:	// ƒAƒCƒRƒ“ƒpƒŒƒbƒgƒf[ƒ^
+	case ITEM_GET_ICON_PAL:	// ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 		if( item == ITEM_DUMMY_ID ){ return NARC_item_icon_item_dumy_NCLR; }
 		if( item == ITEM_RETURN_ID ){ return NARC_item_icon_item_yaji_NCLR; }
 		return ItemDataIndex[item].arc_pal;
 
-	case ITEM_GET_AGB_NUM:	// AGB‚ÌƒAƒCƒeƒ€”Ô†
+	case ITEM_GET_AGB_NUM:	// AGBã®ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
 		if( item == ITEM_DUMMY_ID || item == ITEM_RETURN_ID ){ break; }
 		return ItemDataIndex[item].agb_id;
 	}
@@ -138,12 +138,12 @@ u16 GetItemIndex( u16 item, u16 type )
 
 //--------------------------------------------------------------------------------------------
 /**
- * AGB‚ÌƒAƒCƒeƒ€‚ğDP‚ÌƒAƒCƒeƒ€‚É•ÏŠ·
+ * AGBã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’DPã®ã‚¢ã‚¤ãƒ†ãƒ ã«å¤‰æ›
  *
- * @param	agb		AGB‚ÌƒAƒCƒeƒ€”Ô†
+ * @param	agb		AGBã®ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
- * @retval	"ITEM_DUMMY_ID = DP‚É‚È‚¢ƒAƒCƒeƒ€"
- * @retval	"ITEM_DUMMY_ID != DP‚ÌƒAƒCƒeƒ€”Ô†"
+ * @retval	"ITEM_DUMMY_ID = DPã«ãªã„ã‚¢ã‚¤ãƒ†ãƒ "
+ * @retval	"ITEM_DUMMY_ID != DPã®ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·"
  */
 //--------------------------------------------------------------------------------------------
 u16	ITEM_AgbItemCnv( u16 agb )
@@ -160,11 +160,11 @@ u16	ITEM_AgbItemCnv( u16 agb )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚ÌƒZƒ‹ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXæ“¾
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚»ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  *
  * @param	none
  *
- * @return	ƒZƒ‹ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚»ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u16	ItemIconCellGet(void)
@@ -174,11 +174,11 @@ u16	ItemIconCellGet(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚ÌƒZƒ‹ƒAƒjƒƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXæ“¾
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  *
  * @param	none
  *
- * @return	ƒZƒ‹ƒAƒjƒƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @return	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u16	ItemIconCAnmGet(void)
@@ -188,17 +188,17 @@ u16	ItemIconCAnmGet(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^ƒ[ƒh
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
  *
- * @param	item		ƒAƒCƒeƒ€”Ô†
- * @param	type		æ“¾ƒf[ƒ^
- * @param	heap_id		ƒq[ƒvID
+ * @param	item		ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param	type		å–å¾—ãƒ‡ãƒ¼ã‚¿
+ * @param	heap_id		ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	w’èƒf[ƒ^
+ * @return	æŒ‡å®šãƒ‡ãƒ¼ã‚¿
  *
- * @li	type = ITEM_GET_DATA		: ƒAƒCƒeƒ€ƒf[ƒ^
- * @li	type = ITEM_GET_ICON_CGX	: ƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^
- * @li	type = ITEM_GET_ICON_PAL	: ƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒgƒf[ƒ^
+ * @li	type = ITEM_GET_DATA		: ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ * @li	type = ITEM_GET_ICON_CGX	: ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿
+ * @li	type = ITEM_GET_ICON_PAL	: ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 void * GetItemArcData( u16 item, u16 type, u32 heap_id )
@@ -206,11 +206,11 @@ void * GetItemArcData( u16 item, u16 type, u32 heap_id )
 	if( item > ITEM_DATA_MAX ){ item = 0; }
 
 	switch( type ){
-	case ITEM_GET_DATA:		// ƒAƒCƒeƒ€ƒf[ƒ^
+	case ITEM_GET_DATA:		// ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 		return ArchiveDataLoadMalloc( ARC_ITEMDATA, ItemDataIndex[item].arc_data, heap_id );
-	case ITEM_GET_ICON_CGX:	// ƒAƒCƒRƒ“ƒLƒƒƒ‰ƒf[ƒ^
+	case ITEM_GET_ICON_CGX:	// ã‚¢ã‚¤ã‚³ãƒ³ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿
 		return ArchiveDataLoadMalloc( ARC_ITEMICON, ItemDataIndex[item].arc_cgx, heap_id );
-	case ITEM_GET_ICON_PAL:	// ƒAƒCƒRƒ“ƒpƒŒƒbƒgƒf[ƒ^
+	case ITEM_GET_ICON_PAL:	// ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 		return ArchiveDataLoadMalloc( ARC_ITEMICON, ItemDataIndex[item].arc_pal, heap_id );
 	}
 	return NULL;
@@ -218,11 +218,11 @@ void * GetItemArcData( u16 item, u16 type, u32 heap_id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€–¼æ“¾
+ * ã‚¢ã‚¤ãƒ†ãƒ åå–å¾—
  *
- * @param   buf			ƒAƒCƒeƒ€–¼Ši”[æƒoƒbƒtƒ@
- * @param   item		ƒAƒCƒeƒ€”Ô†
- * @param   heap_id		ƒq[ƒvIDiƒeƒ“ƒ|ƒ‰ƒŠ‚Æ‚µ‚Äg—pj
+ * @param   buf			ã‚¢ã‚¤ãƒ†ãƒ åæ ¼ç´å…ˆãƒãƒƒãƒ•ã‚¡
+ * @param   item		ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param   heap_id		ãƒ’ãƒ¼ãƒ—IDï¼ˆãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ç”¨ï¼‰
  *
  */
 //--------------------------------------------------------------------------------------------
@@ -235,13 +235,13 @@ void GetItemName( STRBUF* buf, u16 item, u32 heap_id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * à–¾æ“¾
+ * èª¬æ˜å–å¾—
  *
- * @param   buf			ƒAƒCƒeƒ€–¼Ši”[æƒoƒbƒtƒ@
- * @param	item		ƒAƒCƒeƒ€”Ô†
- * @param	heap_id		ƒq[ƒvID
+ * @param   buf			ã‚¢ã‚¤ãƒ†ãƒ åæ ¼ç´å…ˆãƒãƒƒãƒ•ã‚¡
+ * @param	item		ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param	heap_id		ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	à–¾
+ * @return	èª¬æ˜
  */
 //--------------------------------------------------------------------------------------------
 void ItemInfoGet( STRBUF * buf, u16 item, u16 heap_id )
@@ -253,13 +253,13 @@ void ItemInfoGet( STRBUF * buf, u16 item, u16 heap_id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘•”õà–¾æ“¾
+ * è£…å‚™èª¬æ˜å–å¾—
  *
- * @param   buf			ƒAƒCƒeƒ€–¼Ši”[æƒoƒbƒtƒ@
- * @param	item		ƒAƒCƒeƒ€”Ô†
- * @param	heap_id		ƒq[ƒvID
+ * @param   buf			ã‚¢ã‚¤ãƒ†ãƒ åæ ¼ç´å…ˆãƒãƒƒãƒ•ã‚¡
+ * @param	item		ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param	heap_id		ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	‘•”õà–¾
+ * @return	è£…å‚™èª¬æ˜
  */
 //--------------------------------------------------------------------------------------------
 void ItemEpuipInfoGet( STRBUF * buf, u16 item, u16 heap_id )
@@ -271,13 +271,13 @@ void ItemEpuipInfoGet( STRBUF * buf, u16 item, u16 heap_id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒ‰ƒ[ƒ^æ“¾iƒAƒCƒeƒ€”Ô†w’èj
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—ï¼ˆã‚¢ã‚¤ãƒ†ãƒ ç•ªå·æŒ‡å®šï¼‰
  *
- * @param	item	ƒAƒCƒeƒ€”Ô†
- * @param	param	æ“¾ƒpƒ‰ƒ[ƒ^’è‹`
- * @param	heap_id		ƒq[ƒvID
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
+ * @param	param	å–å¾—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å®šç¾©
+ * @param	heap_id		ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	w’èƒpƒ‰ƒ[ƒ^
+ * @return	æŒ‡å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 s32	ItemParamGet( u16 item, u16 param, u32 heap_id )
@@ -294,53 +294,53 @@ s32	ItemParamGet( u16 item, u16 param, u32 heap_id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒ‰ƒ[ƒ^æ“¾iƒAƒCƒeƒ€ƒf[ƒ^w’èj
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—ï¼ˆã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æŒ‡å®šï¼‰
  *
- * @param	item	ƒAƒCƒeƒ€ƒf[ƒ^
- * @param	param	æ“¾ƒpƒ‰ƒ[ƒ^’è‹`
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ * @param	param	å–å¾—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å®šç¾©
  *
- * @return	w’èƒpƒ‰ƒ[ƒ^
+ * @return	æŒ‡å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 s32 ItemBufParamGet( ITEMDATA * item, u16 param )
 {
 	switch( param ){
-	case ITEM_PRM_PRICE:				// ”ƒ’l
+	case ITEM_PRM_PRICE:				// è²·å€¤
 		return (s32)item->price;
-	case ITEM_PRM_EQUIP:				// ‘•”õŒø‰Ê
+	case ITEM_PRM_EQUIP:				// è£…å‚™åŠ¹æœ
 		return (s32)item->eqp;
-	case ITEM_PRM_ATTACK:				// ˆĞ—Í
+	case ITEM_PRM_ATTACK:				// å¨åŠ›
 		return (s32)item->atc;
-	case ITEM_PRM_EVENT:				// d—v
+	case ITEM_PRM_EVENT:				// é‡è¦
 		return (s32)item->imp;
-	case ITEM_PRM_CNV:					// •Ö—˜ƒ{ƒ^ƒ“
+	case ITEM_PRM_CNV:					// ä¾¿åˆ©ãƒœã‚¿ãƒ³
 		return (s32)item->cnv_btn;
-	case ITEM_PRM_POCKET:				// •Û‘¶æiƒ|ƒPƒbƒg”Ô†j
+	case ITEM_PRM_POCKET:				// ä¿å­˜å…ˆï¼ˆãƒã‚±ãƒƒãƒˆç•ªå·ï¼‰
 		return (s32)item->fld_pocket;
-	case ITEM_PRM_FIELD:				// field‹@”\ 
+	case ITEM_PRM_FIELD:				// fieldæ©Ÿèƒ½ 
 		return (s32)item->field_func;
-	case ITEM_PRM_BATTLE:				// battle‹@”\ 
+	case ITEM_PRM_BATTLE:				// battleæ©Ÿèƒ½ 
 		return (s32)item->battle_func;
-	case ITEM_PRM_TUIBAMU_EFF:			// ‚Â‚¢‚Î‚ŞŒø‰Ê
+	case ITEM_PRM_TUIBAMU_EFF:			// ã¤ã„ã°ã‚€åŠ¹æœ
 		return (s32)item->tuibamu_eff;
-	case ITEM_PRM_NAGETUKERU_EFF:		// ‚È‚°‚Â‚¯‚éŒø‰Ê
+	case ITEM_PRM_NAGETUKERU_EFF:		// ãªã’ã¤ã‘ã‚‹åŠ¹æœ
 		return (s32)item->nage_eff;
-	case ITEM_PRM_NAGETUKERU_ATC:		// ‚È‚°‚Â‚¯‚éˆĞ—Í
+	case ITEM_PRM_NAGETUKERU_ATC:		// ãªã’ã¤ã‘ã‚‹å¨åŠ›
 		return (s32)item->nage_atc;
-	case ITEM_PRM_SIZENNOMEGUMI_ATC:	// ‚µ‚º‚ñ‚Ì‚ß‚®‚İˆĞ—Í
+	case ITEM_PRM_SIZENNOMEGUMI_ATC:	// ã—ãœã‚“ã®ã‚ãã¿å¨åŠ›
 		return (s32)item->sizen_atc;
-	case ITEM_PRM_SIZENNOMEGUMI_TYPE:	// ‚µ‚º‚ñ‚Ì‚ß‚®‚İƒ^ƒCƒv
+	case ITEM_PRM_SIZENNOMEGUMI_TYPE:	// ã—ãœã‚“ã®ã‚ãã¿ã‚¿ã‚¤ãƒ—
 		return (s32)item->sizen_type;
-	case ITEM_PRM_BTL_POCKET:			// í“¬•Û‘¶æiƒ|ƒPƒbƒg”Ô†j
+	case ITEM_PRM_BTL_POCKET:			// æˆ¦é—˜ä¿å­˜å…ˆï¼ˆãƒã‚±ãƒƒãƒˆç•ªå·ï¼‰
 		return (s32)item->btl_pocket;
-	case ITEM_PRM_W_TYPE:				// ƒ[ƒNƒ^ƒCƒv
+	case ITEM_PRM_W_TYPE:				// ãƒ¯ãƒ¼ã‚¯ã‚¿ã‚¤ãƒ—
 		return (s32)item->work_type;
 
-	default:							// ”Ä—pƒ[ƒN
+	default:							// æ±ç”¨ãƒ¯ãƒ¼ã‚¯
 		switch( item->work_type ){
-		case ITEM_WKTYPE_DUMMY:			// •’Êƒf[ƒ^
+		case ITEM_WKTYPE_DUMMY:			// æ™®é€šãƒ‡ãƒ¼ã‚¿
 			return (s32)item->work[0];
-		case ITEM_WKTYPE_POKEUSE:		// ƒ|ƒPƒ‚ƒ“‚Ég‚¤“¹‹ï
+		case ITEM_WKTYPE_POKEUSE:		// ãƒã‚±ãƒ¢ãƒ³ã«ä½¿ã†é“å…·
 			return ItemParamRcvGet( (ITEMPARAM_RCV *)item->work, param );
 		}
 	}
@@ -350,105 +350,105 @@ s32 ItemBufParamGet( ITEMDATA * item, u16 param )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ñ•œƒpƒ‰ƒ[ƒ^æ“¾
+ * å›å¾©ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
  *
- * @param	rcv		‰ñ•œƒf[ƒ^
- * @param	param	æ“¾ƒpƒ‰ƒ[ƒ^’è‹`
+ * @param	rcv		å›å¾©ãƒ‡ãƒ¼ã‚¿
+ * @param	param	å–å¾—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å®šç¾©
  *
- * @return	w’èƒpƒ‰ƒ[ƒ^
+ * @return	æŒ‡å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static s32 ItemParamRcvGet( ITEMPARAM_RCV * rcv, u16 param )
 {
 	switch( param ){
-	case ITEM_PRM_SLEEP_RCV:			// –°‚è‰ñ•œ
+	case ITEM_PRM_SLEEP_RCV:			// çœ ã‚Šå›å¾©
 		return (s32)rcv->sleep_rcv;
-	case ITEM_PRM_POISON_RCV:			// “Å‰ñ•œ
+	case ITEM_PRM_POISON_RCV:			// æ¯’å›å¾©
 		return (s32)rcv->poison_rcv;
-	case ITEM_PRM_BURN_RCV:				// ‰Î‰ñ•œ
+	case ITEM_PRM_BURN_RCV:				// ç«å‚·å›å¾©
 		return (s32)rcv->burn_rcv;
-	case ITEM_PRM_ICE_RCV:				// •X‰ñ•œ
+	case ITEM_PRM_ICE_RCV:				// æ°·å›å¾©
 		return (s32)rcv->ice_rcv;
-	case ITEM_PRM_PARALYZE_RCV:			// –ƒáƒ‰ñ•œ
+	case ITEM_PRM_PARALYZE_RCV:			// éº»ç—ºå›å¾©
 		return (s32)rcv->paralyze_rcv;
-	case ITEM_PRM_PANIC_RCV:			// ¬—‰ñ•œ
+	case ITEM_PRM_PANIC_RCV:			// æ··ä¹±å›å¾©
 		return (s32)rcv->panic_rcv;
-	case ITEM_PRM_MEROMERO_RCV:			// ƒƒƒƒ‰ñ•œ
+	case ITEM_PRM_MEROMERO_RCV:			// ãƒ¡ãƒ­ãƒ¡ãƒ­å›å¾©
 		return (s32)rcv->meromero_rcv;
-	case ITEM_PRM_ABILITY_GUARD:		// ”\—ÍƒK[ƒh
+	case ITEM_PRM_ABILITY_GUARD:		// èƒ½åŠ›ã‚¬ãƒ¼ãƒ‰
 		return (s32)rcv->ability_guard;
-	case ITEM_PRM_DEATH_RCV:			// •m€‰ñ•œ
+	case ITEM_PRM_DEATH_RCV:			// ç€•æ­»å›å¾©
 		return (s32)rcv->death_rcv;
-	case ITEM_PRM_ALL_DEATH_RCV:		// ‘Sˆõ•m€‰ñ•œ
+	case ITEM_PRM_ALL_DEATH_RCV:		// å…¨å“¡ç€•æ­»å›å¾©
 		return (s32)rcv->alldeath_rcv;
-	case ITEM_PRM_LV_UP:				// ƒŒƒxƒ‹ƒAƒbƒv
+	case ITEM_PRM_LV_UP:				// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—
 		return (s32)rcv->lv_up;
-	case ITEM_PRM_EVOLUTION:			// i‰»
+	case ITEM_PRM_EVOLUTION:			// é€²åŒ–
 		return (s32)rcv->evolution;
-	case ITEM_PRM_ATTACK_UP:			// UŒ‚—ÍƒAƒbƒv
+	case ITEM_PRM_ATTACK_UP:			// æ”»æ’ƒåŠ›ã‚¢ãƒƒãƒ—
 		return (s32)rcv->atc_up;
-	case ITEM_PRM_DEFENCE_UP:			// –hŒä—ÍƒAƒbƒv
+	case ITEM_PRM_DEFENCE_UP:			// é˜²å¾¡åŠ›ã‚¢ãƒƒãƒ—
 		return (s32)rcv->def_up;
-	case ITEM_PRM_SP_ATTACK_UP:			// “ÁUƒAƒbƒv
+	case ITEM_PRM_SP_ATTACK_UP:			// ç‰¹æ”»ã‚¢ãƒƒãƒ—
 		return (s32)rcv->spa_up;
-	case ITEM_PRM_SP_DEFENCE_UP:		// “Á–hƒAƒbƒv
+	case ITEM_PRM_SP_DEFENCE_UP:		// ç‰¹é˜²ã‚¢ãƒƒãƒ—
 		return (s32)rcv->spd_up;
-	case ITEM_PRM_AGILITY_UP:			// ‘f‘‚³ƒAƒbƒv
+	case ITEM_PRM_AGILITY_UP:			// ç´ æ—©ã•ã‚¢ãƒƒãƒ—
 		return (s32)rcv->agi_up;
-	case ITEM_PRM_HIT_UP:				// –½’†—¦ƒAƒbƒv
+	case ITEM_PRM_HIT_UP:				// å‘½ä¸­ç‡ã‚¢ãƒƒãƒ—
 		return (s32)rcv->hit_up;
-	case ITEM_PRM_CRITICAL_UP:			// ƒNƒŠƒeƒBƒJƒ‹—¦ƒAƒbƒv
+	case ITEM_PRM_CRITICAL_UP:			// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ç‡ã‚¢ãƒƒãƒ—
 		return (s32)rcv->critical_up;
-	case ITEM_PRM_PP_UP:				// PPƒAƒbƒv
+	case ITEM_PRM_PP_UP:				// PPã‚¢ãƒƒãƒ—
 		return (s32)rcv->pp_up;
-	case ITEM_PRM_PP_3UP:				// PPƒAƒbƒvi‚R’iŠKj
+	case ITEM_PRM_PP_3UP:				// PPã‚¢ãƒƒãƒ—ï¼ˆï¼“æ®µéšï¼‰
 		return (s32)rcv->pp_3up;
-	case ITEM_PRM_PP_RCV:				// PP‰ñ•œ
+	case ITEM_PRM_PP_RCV:				// PPå›å¾©
 		return (s32)rcv->pp_rcv;
-	case ITEM_PRM_ALL_PP_RCV:			// PP‰ñ•œi‘S‚Ä‚Ì‹Zj
+	case ITEM_PRM_ALL_PP_RCV:			// PPå›å¾©ï¼ˆå…¨ã¦ã®æŠ€ï¼‰
 		return (s32)rcv->allpp_rcv;
-	case ITEM_PRM_HP_RCV:				// HP‰ñ•œ
+	case ITEM_PRM_HP_RCV:				// HPå›å¾©
 		return (s32)rcv->hp_rcv;
-	case ITEM_PRM_HP_EXP:				// HP“w—Í’lƒAƒbƒv
+	case ITEM_PRM_HP_EXP:				// HPåŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 		return (s32)rcv->hp_exp;
-	case ITEM_PRM_POWER_EXP:			// UŒ‚“w—Í’lƒAƒbƒv
+	case ITEM_PRM_POWER_EXP:			// æ”»æ’ƒåŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 		return (s32)rcv->pow_exp;
-	case ITEM_PRM_DEFENCE_EXP:			// –hŒä“w—Í’lƒAƒbƒv
+	case ITEM_PRM_DEFENCE_EXP:			// é˜²å¾¡åŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 		return (s32)rcv->def_exp;
-	case ITEM_PRM_AGILITY_EXP:			// ‘f‘‚³“w—Í’lƒAƒbƒv
+	case ITEM_PRM_AGILITY_EXP:			// ç´ æ—©ã•åŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 		return (s32)rcv->agi_exp;
-	case ITEM_PRM_SP_ATTACK_EXP:		// “ÁU“w—Í’lƒAƒbƒv
+	case ITEM_PRM_SP_ATTACK_EXP:		// ç‰¹æ”»åŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 		return (s32)rcv->spa_exp;
-	case ITEM_PRM_SP_DEFENCE_EXP:		// “Á–h“w—Í’lƒAƒbƒv
+	case ITEM_PRM_SP_DEFENCE_EXP:		// ç‰¹é˜²åŠªåŠ›å€¤ã‚¢ãƒƒãƒ—
 		return (s32)rcv->spd_exp;
-	case ITEM_PRM_FRIEND1:				// ‚È‚Â‚«“x‚P
+	case ITEM_PRM_FRIEND1:				// ãªã¤ãåº¦ï¼‘
 		return (s32)rcv->friend_exp1;
-	case ITEM_PRM_FRIEND2:				// ‚È‚Â‚«“x‚Q
+	case ITEM_PRM_FRIEND2:				// ãªã¤ãåº¦ï¼’
 		return (s32)rcv->friend_exp2;
-	case ITEM_PRM_FRIEND3:				// ‚È‚Â‚«“x‚R
+	case ITEM_PRM_FRIEND3:				// ãªã¤ãåº¦ï¼“
 		return (s32)rcv->friend_exp3;
 
-	case ITEM_PRM_HP_EXP_POINT:			// HP“w—Í’l‚Ì’l
+	case ITEM_PRM_HP_EXP_POINT:			// HPåŠªåŠ›å€¤ã®å€¤
 		return (s32)rcv->prm_hp_exp;
-	case ITEM_PRM_POWER_EXP_POINT:		// UŒ‚“w—Í’l‚Ì’l
+	case ITEM_PRM_POWER_EXP_POINT:		// æ”»æ’ƒåŠªåŠ›å€¤ã®å€¤
 		return (s32)rcv->prm_pow_exp;
-	case ITEM_PRM_DEFENCE_EXP_POINT:	// –hŒä“w—Í’l‚Ì’l
+	case ITEM_PRM_DEFENCE_EXP_POINT:	// é˜²å¾¡åŠªåŠ›å€¤ã®å€¤
 		return (s32)rcv->prm_def_exp;
-	case ITEM_PRM_AGILITY_EXP_POINT:	// ‘f‘‚³“w—Í’l‚Ì’l
+	case ITEM_PRM_AGILITY_EXP_POINT:	// ç´ æ—©ã•åŠªåŠ›å€¤ã®å€¤
 		return (s32)rcv->prm_agi_exp;
-	case ITEM_PRM_SP_ATTACK_EXP_POINT:	// “ÁU“w—Í’l‚Ì’l
+	case ITEM_PRM_SP_ATTACK_EXP_POINT:	// ç‰¹æ”»åŠªåŠ›å€¤ã®å€¤
 		return (s32)rcv->prm_spa_exp;
-	case ITEM_PRM_SP_DEFENCE_EXP_POINT:	// “Á–h“w—Í’l‚Ì’l
+	case ITEM_PRM_SP_DEFENCE_EXP_POINT:	// ç‰¹é˜²åŠªåŠ›å€¤ã®å€¤
 		return (s32)rcv->prm_spd_exp;
-	case ITEM_PRM_HP_RCV_POINT:			// HP‰ñ•œ’l‚Ì’l
+	case ITEM_PRM_HP_RCV_POINT:			// HPå›å¾©å€¤ã®å€¤
 		return (s32)rcv->prm_hp_rcv;
-	case ITEM_PRM_PP_RCV_POINT:			// pp‰ñ•œ’l‚Ì’l
+	case ITEM_PRM_PP_RCV_POINT:			// ppå›å¾©å€¤ã®å€¤
 		return (s32)rcv->prm_pp_rcv;
-	case ITEM_PRM_FRIEND1_POINT:		// ‚È‚Â‚«“x1‚Ì’l
+	case ITEM_PRM_FRIEND1_POINT:		// ãªã¤ãåº¦1ã®å€¤
 		return (s32)rcv->prm_friend1;
-	case ITEM_PRM_FRIEND2_POINT:		// ‚È‚Â‚«“x2‚Ì’l
+	case ITEM_PRM_FRIEND2_POINT:		// ãªã¤ãåº¦2ã®å€¤
 		return (s32)rcv->prm_friend2;
-	case ITEM_PRM_FRIEND3_POINT:		// ‚È‚Â‚«“x3‚Ì’l
+	case ITEM_PRM_FRIEND3_POINT:		// ãªã¤ãåº¦3ã®å€¤
 		return (s32)rcv->prm_friend3;
 	}
 
@@ -457,16 +457,16 @@ static s32 ItemParamRcvGet( ITEMPARAM_RCV * rcv, u16 param )
 
 
 //============================================================================================
-//	‹Zƒ}ƒVƒ“
+//	æŠ€ãƒã‚·ãƒ³
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒ}ƒVƒ“‚ÅŠo‚¦‚ç‚ê‚é‹Z‚ğæ“¾
+ * æŠ€ãƒã‚·ãƒ³ã§è¦šãˆã‚‰ã‚Œã‚‹æŠ€ã‚’å–å¾—
  *
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
- * @return	‹Z”Ô†
+ * @return	æŠ€ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 const u16 GetWazaNoItem( u16 item )
@@ -480,12 +480,12 @@ const u16 GetWazaNoItem( u16 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘ğ‚³‚ê‚½‹Z‚ª”é“`‹Z‚©‚Ç‚¤‚©
+ * é¸æŠã•ã‚ŒãŸæŠ€ãŒç§˜ä¼æŠ€ã‹ã©ã†ã‹
  *
- * @param	waza	‹Z”Ô†
+ * @param	waza	æŠ€ç•ªå·
  *
- * @retval	"TRUE = ”é“`‹Z"
- * @retval	"FALSE = ”é“`‹ZˆÈŠO"
+ * @retval	"TRUE = ç§˜ä¼æŠ€"
+ * @retval	"FALSE = ç§˜ä¼æŠ€ä»¥å¤–"
  */
 //--------------------------------------------------------------------------------------------
 u8 HidenWazaCheck( u16 waza )
@@ -502,11 +502,11 @@ u8 HidenWazaCheck( u16 waza )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒ}ƒVƒ“”Ô†æ“¾
+ * æŠ€ãƒã‚·ãƒ³ç•ªå·å–å¾—
  *
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
- * @return	‹Zƒ}ƒVƒ“”Ô†
+ * @return	æŠ€ãƒã‚·ãƒ³ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 u8 WazaMashineNoGet( u16 item )
@@ -519,17 +519,17 @@ u8 WazaMashineNoGet( u16 item )
 
 
 //============================================================================================
-//	ƒ[ƒ‹ƒ`ƒFƒbƒN
+//	ãƒ¡ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€‚ªƒ[ƒ‹‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+ * ã‚¢ã‚¤ãƒ†ãƒ ãŒãƒ¡ãƒ¼ãƒ«ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
- * @retval	"TRUE = ƒ[ƒ‹"
- * @retval	"FALSE = ƒ[ƒ‹ˆÈŠO"
+ * @retval	"TRUE = ãƒ¡ãƒ¼ãƒ«"
+ * @retval	"FALSE = ãƒ¡ãƒ¼ãƒ«ä»¥å¤–"
  */
 //--------------------------------------------------------------------------------------------
 u8 ItemMailCheck( u16 item )
@@ -546,11 +546,11 @@ u8 ItemMailCheck( u16 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€”Ô†‚©‚çƒ[ƒ‹‚ÌƒfƒUƒCƒ“‚ğæ“¾
+ * ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·ã‹ã‚‰ãƒ¡ãƒ¼ãƒ«ã®ãƒ‡ã‚¶ã‚¤ãƒ³ã‚’å–å¾—
  *
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
- * @return	ƒfƒUƒCƒ“ID
+ * @return	ãƒ‡ã‚¶ã‚¤ãƒ³ID
  */
 //--------------------------------------------------------------------------------------------
 u8 ItemMailDesignGet( u16 item )
@@ -567,11 +567,11 @@ u8 ItemMailDesignGet( u16 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒ‹‚ÌƒfƒUƒCƒ“‚©‚çƒAƒCƒeƒ€”Ô†‚ğæ“¾
+ * ãƒ¡ãƒ¼ãƒ«ã®ãƒ‡ã‚¶ã‚¤ãƒ³ã‹ã‚‰ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·ã‚’å–å¾—
  *
- * @param	design		ƒfƒUƒCƒ“ID
+ * @param	design		ãƒ‡ã‚¶ã‚¤ãƒ³ID
  *
- * @return	ƒAƒCƒeƒ€”Ô†
+ * @return	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 u16 MailItemNumGet( u8 design )
@@ -584,17 +584,17 @@ u16 MailItemNumGet( u8 design )
 
 
 //============================================================================================
-//	–Ø‚ÌÀƒ`ƒFƒbƒN
+//	æœ¨ã®å®Ÿãƒã‚§ãƒƒã‚¯
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€‚ª–Ø‚ÌÀ‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+ * ã‚¢ã‚¤ãƒ†ãƒ ãŒæœ¨ã®å®Ÿã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
- * @retval	"TRUE = –Ø‚ÌÀ"
- * @retval	"FALSE = –Ø‚ÌÀˆÈŠO"
+ * @retval	"TRUE = æœ¨ã®å®Ÿ"
+ * @retval	"FALSE = æœ¨ã®å®Ÿä»¥å¤–"
  */
 //--------------------------------------------------------------------------------------------
 u8 ItemNutsCheck( u16 item )
@@ -611,11 +611,11 @@ u8 ItemNutsCheck( u16 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –Ø‚ÌÀ‚Ì”Ô†‚ğæ“¾
+ * æœ¨ã®å®Ÿã®ç•ªå·ã‚’å–å¾—
  *
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
- * @return	–Ø‚ÌÀ”Ô†
+ * @return	æœ¨ã®å®Ÿç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 u8 NutsNoGet( u16 item )
@@ -628,35 +628,35 @@ u8 NutsNoGet( u16 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w’èID‚Ì–Ø‚ÌÀ‚ÌƒAƒCƒeƒ€”Ô†‚ğæ“¾
+ * æŒ‡å®šIDã®æœ¨ã®å®Ÿã®ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·ã‚’å–å¾—
  *
- * @param	id		–Ø‚ÌÀ‚ÌID
+ * @param	id		æœ¨ã®å®Ÿã®ID
  *
- * @return	ƒAƒCƒeƒ€”Ô†
+ * @return	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 u16 NutsIDItemGet( u8 id )
 {
 	u32	i;
 
-	if( id >= ITEM_NUTS_MAX ){ return 0xffff; }		// ƒGƒ‰[
+	if( id >= ITEM_NUTS_MAX ){ return 0xffff; }		// ã‚¨ãƒ©ãƒ¼
 
 	return ItemNutsTable[id];
 }
 
 
 //============================================================================================
-//	Š¿•û–òƒ`ƒFƒbƒN
+//	æ¼¢æ–¹è–¬ãƒã‚§ãƒƒã‚¯
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€‚ªŠ¿•û–ò‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+ * ã‚¢ã‚¤ãƒ†ãƒ ãŒæ¼¢æ–¹è–¬ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param	item	ƒAƒCƒeƒ€”Ô†
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
  *
- * @retval	"TRUE = Š¿•û–ò"
- * @retval	"FALSE = Š¿•û–ò"
+ * @retval	"TRUE = æ¼¢æ–¹è–¬"
+ * @retval	"FALSE = æ¼¢æ–¹è–¬"
  */
 //--------------------------------------------------------------------------------------------
 u8 ItemKanpouyakuCheck( u16 item )
@@ -673,11 +673,11 @@ u8 ItemKanpouyakuCheck( u16 item )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒe[ƒuƒ‹‚ğ‚·‚×‚Äƒƒ‚ƒŠ‚É“WŠJ
+ * ã‚¢ã‚¤ãƒ†ãƒ ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã™ã¹ã¦ãƒ¡ãƒ¢ãƒªã«å±•é–‹
  *
- * @param	heapID	“WŠJ‚·‚éƒƒ‚ƒŠƒq[ƒvID
+ * @param	heapID	å±•é–‹ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	Šm•Û‚µ‚½ƒƒ‚ƒŠ‚ÌƒAƒhƒŒƒX
+ * @retval	ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 void	*ItemDataTableLoad(int heapID)
@@ -692,12 +692,12 @@ void	*ItemDataTableLoad(int heapID)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒe[ƒuƒ‹‚©‚ç”CˆÓ‚ÌƒAƒhƒŒƒX‚ğæ“¾
+ * ã‚¢ã‚¤ãƒ†ãƒ ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ä»»æ„ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- * @param	item	ƒAƒCƒeƒ€ƒe[ƒuƒ‹
- * @param	index	‚Æ‚è‚¾‚·ƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
+ * @param	item	ã‚¢ã‚¤ãƒ†ãƒ ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	index	ã¨ã‚Šã ã™ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	æ“¾‚µ‚½ƒAƒhƒŒƒX
+ * @retval	å–å¾—ã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 ITEMDATA	*GetItemDataPointer(ITEMDATA *item,u16 index)

@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	savework.h
- * @brief	ƒQ[ƒ€“àƒZ[ƒuƒ[ƒN’è‹`(ƒXƒNƒŠƒvƒg‚©‚ç‚Ì‚ÝƒAƒNƒZƒX‚³‚ê‚éƒ[ƒN)
+ * @brief	ã‚²ãƒ¼ãƒ å†…ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯å®šç¾©(ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ã®ã¿ã‚¢ã‚¯ã‚»ã‚¹ã•ã‚Œã‚‹ãƒ¯ãƒ¼ã‚¯)
  * @author	tomo
  * @date	2005.10.22
  */
@@ -10,7 +10,7 @@
 #define	__SAVEWORK_H__
 
 //----------------------------------------------------------------------------------------------
-//0-31‚ÍAƒ[ƒJƒ‹ƒ[ƒN‚Æ‚µ‚ÄŽg—p
+//0-31ã¯ã€ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¨ã—ã¦ä½¿ç”¨
 //MAX = evwkdef.h LOCAL_WORK_MAX
 //----------------------------------------------------------------------------------------------
 #define	 LOCALWORK0					(0+LOCAL_WORK_START)
@@ -47,7 +47,7 @@
 #define	 LOCALWORK31				(31+LOCAL_WORK_START)
 
 //----------------------------------------------------------------------------------------------
-//32-47‚ÍA•ÏXOK‚ÈOBJƒLƒƒƒ‰Žw’è‚Æ‚µ‚ÄŽg—p
+//32-47ã¯ã€å¤‰æ›´OKãªOBJã‚­ãƒ£ãƒ©æŒ‡å®šã¨ã—ã¦ä½¿ç”¨
 //MAX = evwkdef.h OBJCHR_WORK_MAX
 //----------------------------------------------------------------------------------------------
 #define	 OBJCHRWORK0				(0+OBJCHR_WORK_START)
@@ -68,453 +68,453 @@
 #define	 OBJCHRWORK15				(15+OBJCHR_WORK_START)
 
 //------------------------------------------------------------------------
-//							ƒtƒB[ƒ‹ƒhƒ^ƒEƒ“
+//							ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¿ã‚¦ãƒ³
 //------------------------------------------------------------------------
 #define WK_SCENE_T01					(SVSCRWK_START+0)
-/* ƒtƒ^ƒoƒ^ƒEƒ“ƒCƒxƒ“ƒg
-01 ƒQ[ƒ€ŠJŽnŽž‚©‚ç1
-02 ƒ‰ƒCƒoƒ‹‚Æ‰ï˜b‚µ‚ÄAT01‚ÌƒXƒgƒbƒp[‰ðœ
+/* ãƒ•ã‚¿ãƒã‚¿ã‚¦ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã‹ã‚‰1
+02 ãƒ©ã‚¤ãƒãƒ«ã¨ä¼šè©±ã—ã¦ã€T01ã®ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼è§£é™¤
 */
 
 #define WK_SCENE_T02					(SVSCRWK_START+1)
-/* ƒ}ƒTƒSƒ^ƒEƒ“ƒCƒxƒ“ƒg
-01 Œ¤‹†Š‚Ö‚Ì—U“±ƒCƒxƒ“ƒgI—¹
-02 ƒTƒ|[ƒg‚Ì‹³‚¦ƒCƒxƒ“ƒgI—¹
+/* ãƒžã‚µã‚´ã‚¿ã‚¦ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ç ”ç©¶æ‰€ã¸ã®èª˜å°Žã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+02 ã‚µãƒãƒ¼ãƒˆã®æ•™ãˆã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 //#define WK_SCENE_T03					(SVSCRWK_START+2)
-/* ƒ\ƒmƒIƒ^ƒEƒ“ƒCƒxƒ“ƒg
+/* ã‚½ãƒŽã‚ªã‚¿ã‚¦ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
 */
 
 #define WK_SCENE_T04					(SVSCRWK_START+3)
-/* ƒYƒCƒ^ƒEƒ“
-01 ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgI—¹
+/* ã‚ºã‚¤ã‚¿ã‚¦ãƒ³
+01 ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_T05					(SVSCRWK_START+4)
-/* ƒJƒ“ƒiƒMƒ^ƒEƒ“ƒCƒxƒ“ƒg
-01 ƒVƒƒiƒCƒxƒ“ƒgŠJŽn(ƒJƒ“ƒiƒMˆâÕ‚ÅƒMƒ“ƒK’cƒ{ƒX‚ÉŸ—˜‚µ‚½)
-02 ƒVƒƒiƒCƒxƒ“ƒgI—¹
+/* ã‚«ãƒ³ãƒŠã‚®ã‚¿ã‚¦ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ã‚·ãƒ­ãƒŠã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹(ã‚«ãƒ³ãƒŠã‚®éºè·¡ã§ã‚®ãƒ³ã‚¬å›£ãƒœã‚¹ã«å‹åˆ©ã—ãŸ)
+02 ã‚·ãƒ­ãƒŠã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_D32					(SVSCRWK_START+5)
 /*
-00 ƒtƒƒ“ƒeƒBƒAŽ{Ý‚ÉˆÚ“®‚·‚é‚½‚ß‚ÉŽg—p
+00 ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ã«ç§»å‹•ã™ã‚‹ãŸã‚ã«ä½¿ç”¨
 */
 
 #define WK_SCENE_C01_POLICE				(SVSCRWK_START+6)
-/* ƒRƒgƒuƒLƒVƒeƒB‘ÛŒxŽ@ƒCƒxƒ“ƒg
-01 ƒNƒƒKƒlƒWƒ€ƒoƒbƒ`“üŽè‚µ‚ÄPOSƒCƒxƒ“ƒgŠJŽn
-02 ƒNƒƒKƒlƒWƒ€ƒoƒbƒ`“üŽè‚µ‚ÄPOSƒCƒxƒ“ƒgI—¹(ƒRƒgƒuƒL‚ÅƒMƒ“ƒK’c‚Æ‘Îí‚µ‚Ä‚àI—¹)
+/* ã‚³ãƒˆãƒ–ã‚­ã‚·ãƒ†ã‚£å›½éš›è­¦å¯Ÿã‚¤ãƒ™ãƒ³ãƒˆ
+01 ã‚¯ãƒ­ã‚¬ãƒã‚¸ãƒ ãƒãƒƒãƒå…¥æ‰‹ã—ã¦POSã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 ã‚¯ãƒ­ã‚¬ãƒã‚¸ãƒ ãƒãƒƒãƒå…¥æ‰‹ã—ã¦POSã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†(ã‚³ãƒˆãƒ–ã‚­ã§ã‚®ãƒ³ã‚¬å›£ã¨å¯¾æˆ¦ã—ã¦ã‚‚çµ‚äº†)
 */
 
 #define WK_SCENE_C01					(SVSCRWK_START+7)
-/* ƒRƒgƒuƒLƒVƒeƒBƒCƒxƒ“ƒg
-01 ƒTƒ|[ƒgƒCƒxƒ“ƒgI—¹
-02 ƒ|ƒPƒbƒ`“üŽè‚µ‚½
-03 ƒMƒ“ƒK’cƒCƒxƒ“ƒgŠJŽn
-04 ƒMƒ“ƒK’cƒCƒxƒ“ƒgI—¹
+/* ã‚³ãƒˆãƒ–ã‚­ã‚·ãƒ†ã‚£ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ã‚µãƒãƒ¼ãƒˆã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+02 ãƒã‚±ãƒƒãƒå…¥æ‰‹ã—ãŸ
+03 ã‚®ãƒ³ã‚¬å›£ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+04 ã‚®ãƒ³ã‚¬å›£ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C02					(SVSCRWK_START+8)
-/* ƒ~ƒIƒVƒeƒBƒCƒxƒ“ƒg
-01 ƒ‰ƒCƒoƒ‹í“¬‚ÉŸ—˜
-02 ƒ‰ƒCƒoƒ‹}‘ŠÙ‚ÖˆÚ“®ƒCƒxƒ“ƒgŠJŽn
-03 ƒ‰ƒCƒoƒ‹}‘ŠÙ‚ÖˆÚ“®ƒCƒxƒ“ƒgI—¹
-04 }‘ŠÙƒCƒxƒ“ƒgI—¹Œã‚Ì”ŽŽmƒCƒxƒ“ƒgŠJŽn
-05 }‘ŠÙƒCƒxƒ“ƒgI—¹Œã‚Ì”ŽŽmƒCƒxƒ“ƒgI—¹
-06 ªƒCƒxƒ“ƒgŒã‚Éƒ}ƒbƒvØ‚è‘Ö‚¦‚Ä–ß‚Á‚Ä‚«‚½
+/* ãƒŸã‚ªã‚·ãƒ†ã‚£ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒ©ã‚¤ãƒãƒ«æˆ¦é—˜ã«å‹åˆ©
+02 ãƒ©ã‚¤ãƒãƒ«å›³æ›¸é¤¨ã¸ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+03 ãƒ©ã‚¤ãƒãƒ«å›³æ›¸é¤¨ã¸ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+04 å›³æ›¸é¤¨ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†å¾Œã®åšå£«ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+05 å›³æ›¸é¤¨ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†å¾Œã®åšå£«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+06 â†‘ã‚¤ãƒ™ãƒ³ãƒˆå¾Œã«ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆã¦æˆ»ã£ã¦ããŸ
 */
 
 #define WK_SCENE_C03					(SVSCRWK_START+9)
-/* ƒNƒƒKƒlƒVƒeƒBƒCƒxƒ“ƒg
-01 ƒWƒ€—U“±ƒCƒxƒ“ƒgI—¹
-02 ƒWƒ€ƒNƒŠƒA‚µ‚Äƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgŠJŽn
-03 ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgI—¹
+/* ã‚¯ãƒ­ã‚¬ãƒã‚·ãƒ†ã‚£ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ã‚¸ãƒ èª˜å°Žã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+02 ã‚¸ãƒ ã‚¯ãƒªã‚¢ã—ã¦ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+03 ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C04					(SVSCRWK_START+10)
-/*ƒnƒNƒ^ƒCƒVƒeƒB
-01 ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgI—¹
-02 ƒ`ƒƒƒ“ƒsƒIƒ“‚É‚¢‚ ‚¢‚¬‚è‚à‚ç‚Á‚½ 
-03 ƒ`ƒƒƒ“ƒsƒIƒ“‚Ìƒ^ƒ}ƒSƒCƒxƒ“ƒgŠJŽn
-04 ƒ`ƒƒƒ“ƒsƒIƒ“‚Ìƒ^ƒ}ƒSƒCƒxƒ“ƒgŽó‚¯Žæ‚ê‚È‚©‚Á‚½
-05 ƒ`ƒƒƒ“ƒsƒIƒ“‚Ìƒ^ƒ}ƒSƒCƒxƒ“ƒgI—¹
+/*ãƒã‚¯ã‚¿ã‚¤ã‚·ãƒ†ã‚£
+01 ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+02 ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ã«ã„ã‚ã„ãŽã‚Šã‚‚ã‚‰ã£ãŸ 
+03 ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ã®ã‚¿ãƒžã‚´ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+04 ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ã®ã‚¿ãƒžã‚´ã‚¤ãƒ™ãƒ³ãƒˆå—ã‘å–ã‚Œãªã‹ã£ãŸ
+05 ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ã®ã‚¿ãƒžã‚´ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C05R0601				(SVSCRWK_START+11)
-/*ƒˆƒXƒKƒVƒeƒBƒQ[ƒg
-01 ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgŠJŽn
-02 ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgI—¹
+/*ãƒ¨ã‚¹ã‚¬ã‚·ãƒ†ã‚£ã‚²ãƒ¼ãƒˆ
+01 ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C06					(SVSCRWK_START+12)
-/*ƒmƒ‚ƒZƒVƒeƒB
-1 ƒ‰ƒCƒoƒ‹í“¬ƒCƒxƒ“ƒgŠJŽn
-2 ƒ‰ƒCƒoƒ‹í“¬ƒCƒxƒ“ƒgI—¹
-3 ƒ‰ƒCƒoƒ‹‚Æƒ}ƒLƒV“oêƒCƒxƒ“ƒgŠJŽn
-4 ƒ‰ƒCƒoƒ‹‚Æƒ}ƒLƒV“oêƒCƒxƒ“ƒgI—¹
-5 “W–]‘ä‚Ö‚Ìƒ‰ƒCƒoƒ‹ƒXƒgƒbƒp[ŠJŽn
-6 “W–]‘ä‚Ö‚Ìƒ‰ƒCƒoƒ‹ƒXƒgƒbƒp[I—¹
+/*ãƒŽãƒ¢ã‚»ã‚·ãƒ†ã‚£
+1 ãƒ©ã‚¤ãƒãƒ«æˆ¦é—˜ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+2 ãƒ©ã‚¤ãƒãƒ«æˆ¦é—˜ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+3 ãƒ©ã‚¤ãƒãƒ«ã¨ãƒžã‚­ã‚·ç™»å ´ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+4 ãƒ©ã‚¤ãƒãƒ«ã¨ãƒžã‚­ã‚·ç™»å ´ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+5 å±•æœ›å°ã¸ã®ãƒ©ã‚¤ãƒãƒ«ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼é–‹å§‹
+6 å±•æœ›å°ã¸ã®ãƒ©ã‚¤ãƒãƒ«ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼çµ‚äº†
 */
 
 #define WK_SCENE_C07					(SVSCRWK_START+13)
-/*ƒgƒoƒŠƒVƒeƒB
-01 ƒWƒ€ƒNƒŠƒA(‘qŒÉ‘OƒCƒxƒ“ƒg‚ÌPOS‚ÉŽg—p)
+/*ãƒˆãƒãƒªã‚·ãƒ†ã‚£
+01 ã‚¸ãƒ ã‚¯ãƒªã‚¢(å€‰åº«å‰ã‚¤ãƒ™ãƒ³ãƒˆã®POSã«ä½¿ç”¨)
 */
 
 #define WK_SCENE_C08					(SVSCRWK_START+14)
-/*ƒiƒMƒTƒVƒeƒB
-01 ƒWƒ€ƒŠ[ƒ_[ƒCƒxƒ“ƒgI—¹
-02 ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgŠJŽn
-03 ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgI—¹
+/*ãƒŠã‚®ã‚µã‚·ãƒ†ã‚£
+01 ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+02 ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+03 ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C09					(SVSCRWK_START+15)
-/*ƒLƒbƒTƒLƒVƒeƒB
-01 _“aƒXƒgƒbƒp[I—¹
+/*ã‚­ãƒƒã‚µã‚­ã‚·ãƒ†ã‚£
+01 ç¥žæ®¿ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼çµ‚äº†
 */
 
 #define WK_SCENE_PC_UG_HIROBA			(SVSCRWK_START+16)
 /*
-01 ƒ|ƒPƒZƒ“’n‰º‚ÌLêƒhƒA‚©‚ço‚Ä‚­‚é
+01 ãƒã‚±ã‚»ãƒ³åœ°ä¸‹ã®åºƒå ´ãƒ‰ã‚¢ã‹ã‚‰å‡ºã¦ãã‚‹
 */
 
 #define WK_SCENE_C11					(SVSCRWK_START+17)
-/*HHƒVƒeƒB
-00 ƒ‰ƒCƒoƒ‹‚Ì˜A‚ê•à‚«ƒCƒxƒ“ƒgŠJŽn
-01 ƒ‰ƒCƒoƒ‹‚Ì˜A‚ê•à‚«ƒCƒxƒ“ƒgI—¹
-02 ƒ^ƒ[‘O‚ÌƒgƒŒ[ƒi[“|‚µ‚½
+/*ï¼Ÿï¼Ÿã‚·ãƒ†ã‚£
+00 ãƒ©ã‚¤ãƒãƒ«ã®é€£ã‚Œæ­©ãã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+01 ãƒ©ã‚¤ãƒãƒ«ã®é€£ã‚Œæ­©ãã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+02 ã‚¿ãƒ¯ãƒ¼å‰ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å€’ã—ãŸ
 */
 
 #define WK_SCENE_L01					(SVSCRWK_START+18)
-/* ŒÎ
-01 ŒÎ‚ÖˆÚ“®ƒCƒxƒ“ƒgI—¹
+/* æ¹–
+01 æ¹–ã¸ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_L02					(SVSCRWK_START+19)
-/* ŒÎ(–¢Žg—p)
-02 ƒ`ƒƒƒ“ƒsƒIƒ“ƒCƒxƒ“ƒgI—¹
+/* æ¹–(æœªä½¿ç”¨)
+02 ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_L03					(SVSCRWK_START+20)
-/* ŒÎ
-01 ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgI—¹
+/* æ¹–
+01 ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_R224_MAI				(SVSCRWK_START+21)
 /*
-01 ƒ}ƒCƒCƒxƒ“ƒg‹N“®
-02 ƒ}ƒCƒCƒxƒ“ƒgI—¹
+01 ãƒžã‚¤ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•
+02 ãƒžã‚¤ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_R201					(SVSCRWK_START+22)
-/* ƒ‰ƒCƒoƒ‹“oêƒCƒxƒ“ƒg
-00 ƒ‰ƒCƒoƒ‹‚Æ‡—¬ƒCƒxƒ“ƒgŠJŽn
-01 ƒJƒoƒ“‚ð‘I‚Î‚È‚¢‚Æo‚ê‚È‚¢POSŠJŽn
-02 ƒJƒoƒ“‚ð‘I‚ÔPOSI—¹ 
-03 ŒÎ‚És‚­‚Ü‚Å–ß‚ê‚È‚¢POSŠJŽn
-04 ŒÎ‚És‚­‚Ü‚Å–ß‚ê‚È‚¢POSI—¹
+/* ãƒ©ã‚¤ãƒãƒ«ç™»å ´ã‚¤ãƒ™ãƒ³ãƒˆ
+00 ãƒ©ã‚¤ãƒãƒ«ã¨åˆæµã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+01 ã‚«ãƒãƒ³ã‚’é¸ã°ãªã„ã¨å‡ºã‚Œãªã„POSé–‹å§‹
+02 ã‚«ãƒãƒ³ã‚’é¸ã¶POSçµ‚äº† 
+03 æ¹–ã«è¡Œãã¾ã§æˆ»ã‚Œãªã„POSé–‹å§‹
+04 æ¹–ã«è¡Œãã¾ã§æˆ»ã‚Œãªã„POSçµ‚äº†
 //////
-02 ”ŽŽm‚Æ‰ï‚¤ƒCƒxƒ“ƒgŠJŽn
-03 ”ŽŽm‚Æ‰ï‚¤ƒCƒxƒ“ƒgI—¹
+02 åšå£«ã¨ä¼šã†ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+03 åšå£«ã¨ä¼šã†ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_R202					(SVSCRWK_START+23)
-/* ƒTƒ|[ƒg•ßŠlƒfƒ‚
-01 ƒCƒxƒ“ƒgI—¹
-02 ƒ|ƒPƒgƒŒƒfƒ‚ŠJŽn
-03 ƒ|ƒPƒgƒŒƒfƒ‚I—¹
+/* ã‚µãƒãƒ¼ãƒˆæ•ç²ãƒ‡ãƒ¢
+01 ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+02 ãƒã‚±ãƒˆãƒ¬ãƒ‡ãƒ¢é–‹å§‹
+03 ãƒã‚±ãƒˆãƒ¬ãƒ‡ãƒ¢çµ‚äº†
 */
 
 #define WK_SCENE_R203					(SVSCRWK_START+24)
-/* ƒ‰ƒCƒoƒ‹“oêƒCƒxƒ“ƒg
-01 ƒCƒxƒ“ƒgI—¹
+/* ãƒ©ã‚¤ãƒãƒ«ç™»å ´ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_R205A					(SVSCRWK_START+25)
-/* ƒMƒ“ƒK’cƒCƒxƒ“ƒg
-01 ­—ƒCƒxƒ“ƒgI—¹
-02 ƒMƒ“ƒK’cƒCƒxƒ“ƒgI—¹
+/* ã‚®ãƒ³ã‚¬å›£ã‚¤ãƒ™ãƒ³ãƒˆ
+01 å°‘å¥³ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+02 ã‚®ãƒ³ã‚¬å›£ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_R209					(SVSCRWK_START+26)
-/* ‚Ý‚½‚Ü‚Ì‚Æ‚¤
-01 ‚©‚È‚ß‚¢‚µ‚ðŽg‚Á‚½
-02 ƒ~ƒJƒQ‚Æí“¬Œã
+/* ã¿ãŸã¾ã®ã¨ã†
+01 ã‹ãªã‚ã„ã—ã‚’ä½¿ã£ãŸ
+02 ãƒŸã‚«ã‚²ã¨æˆ¦é—˜å¾Œ
 */
 
 #define WK_SCENE_R227					(SVSCRWK_START+27)
-/* R227ƒCƒxƒ“ƒg
-01 ƒWƒ€ƒŠ[ƒ_[‚Æƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgI—¹
+/* R227ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã¨ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_R207					(SVSCRWK_START+28)
-/* R207ƒCƒxƒ“ƒg
+/* R207ã‚¤ãƒ™ãƒ³ãƒˆ
 01 
 */
 
 #define WK_SCENE_R224					(SVSCRWK_START+29)
-/* R224ƒCƒxƒ“ƒg
-01 ƒGƒEƒŠƒXÎ”èƒCƒxƒ“ƒg’†
+/* R224ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ã‚¨ã‚¦ãƒªã‚¹çŸ³ç¢‘ã‚¤ãƒ™ãƒ³ãƒˆä¸­
 */
 
 #define WK_SCENE_D26R0109				(SVSCRWK_START+30)
 /*
-01 ƒAƒJƒMu‰‰I—¹
+01 ã‚¢ã‚«ã‚®è¬›æ¼”çµ‚äº†
 */
 
-//#define WK_SCENE_NONE					(SVSCRWK_START+31)		//¦–¢Žg—pƒ[ƒN
+//#define WK_SCENE_NONE					(SVSCRWK_START+31)		//â€»æœªä½¿ç”¨ãƒ¯ãƒ¼ã‚¯
 
 #define WK_SCENE_D09R0104				(SVSCRWK_START+32)
-/* ƒ`ƒƒƒ“ƒsƒIƒ“ƒ[ƒh
-00 ˜A‚ê•à‚«I—¹
-01 ˜A‚ê•à‚«ŠJŽn
-02 ƒS[ƒ‹‚É‚Â‚¢‚½
+/* ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ãƒ­ãƒ¼ãƒ‰
+00 é€£ã‚Œæ­©ãçµ‚äº†
+01 é€£ã‚Œæ­©ãé–‹å§‹
+02 ã‚´ãƒ¼ãƒ«ã«ã¤ã„ãŸ
 */
 
 #define WK_SCENE_D21R0101				(SVSCRWK_START+33)
-/* –À‚¢‚Ì“´ŒA
-00 ˜A‚ê•à‚«I—¹
-01 ˜A‚ê•à‚«ŠJŽn
-02 ƒS[ƒ‹‚É‚Â‚¢‚½
+/* è¿·ã„ã®æ´žçªŸ
+00 é€£ã‚Œæ­©ãçµ‚äº†
+01 é€£ã‚Œæ­©ãé–‹å§‹
+02 ã‚´ãƒ¼ãƒ«ã«ã¤ã„ãŸ
 */
 
 #define WK_SCENE_D24R0105				(SVSCRWK_START+34)
-/* |“S“‡
-00 ˜A‚ê•à‚«I—¹
-01 ˜A‚ê•à‚«ŠJŽn
-02 ƒS[ƒ‹‚É‚Â‚¢‚½
+/* é‹¼é‰„å³¶
+00 é€£ã‚Œæ­©ãçµ‚äº†
+01 é€£ã‚Œæ­©ãé–‹å§‹
+02 ã‚´ãƒ¼ãƒ«ã«ã¤ã„ãŸ
 */
 
 #define WK_SCENE_D14R0101				(SVSCRWK_START+35)
-/* ƒNƒƒKƒlƒQ[ƒg
-01 ”é“`“üŽèƒCƒxƒ“ƒgŠJŽn
-02 ”é“`“üŽèƒCƒxƒ“ƒgI—¹
+/* ã‚¯ãƒ­ã‚¬ãƒã‚²ãƒ¼ãƒˆ
+01 ç§˜ä¼å…¥æ‰‹ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 ç§˜ä¼å…¥æ‰‹ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_D16R0102				(SVSCRWK_START+36)
-/* ‰ÎŽR‚QŠK
-00 ˜A‚ê•à‚«I—¹
-01 ˜A‚ê•à‚«ŠJŽn
-02 ƒS[ƒ‹‚É‚Â‚¢‚½
+/* ç«å±±ï¼’éšŽ
+00 é€£ã‚Œæ­©ãçµ‚äº†
+01 é€£ã‚Œæ­©ãé–‹å§‹
+02 ã‚´ãƒ¼ãƒ«ã«ã¤ã„ãŸ
 */
 
 #define WK_SCENE_D27R0101				(SVSCRWK_START+37)
-/* ŒÎƒCƒxƒ“ƒg
-01 ƒ|ƒPƒ‚ƒ““üŽè‚µ‚½
+/* æ¹–ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒã‚±ãƒ¢ãƒ³å…¥æ‰‹ã—ãŸ
 */
 
 #define WK_SCENE_D05R0101				(SVSCRWK_START+38)
-/* ƒeƒ“ƒKƒ“ŽRƒCƒxƒ“ƒg
-01 ƒ{ƒXƒCƒxƒ“ƒgI—¹
+/* ãƒ†ãƒ³ã‚¬ãƒ³å±±ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒœã‚¹ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_D27R0102				(SVSCRWK_START+39)
-/* ŒÎƒCƒxƒ“ƒg
-01 ”ŽŽm‚ª“`àƒ|ƒPƒ‚ƒ“‚ð•‚¯‚Ä‚­‚ê‹­§ƒCƒxƒ“ƒgI—¹
+/* æ¹–ã‚¤ãƒ™ãƒ³ãƒˆ
+01 åšå£«ãŒä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã‚’åŠ©ã‘ã¦ãã‚Œå¼·åˆ¶ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define	WK_SCENE_D05R0114				(SVSCRWK_START+40)
-/* ƒeƒ“ƒKƒ“ŽRŽR’¸ƒCƒxƒ“ƒg
-00	‰Šúó‘ÔAƒMƒ“ƒK’cƒUƒR‚Æ‘Îí
-01	POS‚ÅƒMƒ“ƒK’cŠ²•”‚Æƒ}ƒ‹ƒ`ƒoƒgƒ‹(02‚ÖƒI[ƒg)
-02	POS‚ÅƒMƒ‰ƒeƒBƒi“oêƒfƒ‚¨ƒVƒƒi“oê
-03	‚â‚Ô‚ê‚½¢ŠE‚És‚¯‚éó‘Ô(d05r0115‚É‚È‚Á‚Ä‚¢‚é)
+/* ãƒ†ãƒ³ã‚¬ãƒ³å±±å±±é ‚ã‚¤ãƒ™ãƒ³ãƒˆ
+00	åˆæœŸçŠ¶æ…‹ã€ã‚®ãƒ³ã‚¬å›£ã‚¶ã‚³ã¨å¯¾æˆ¦
+01	POSã§ã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨ã¨ãƒžãƒ«ãƒãƒãƒˆãƒ«(02ã¸ã‚ªãƒ¼ãƒˆ)
+02	POSã§ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´ãƒ‡ãƒ¢â†’ã‚·ãƒ­ãƒŠç™»å ´
+03	ã‚„ã¶ã‚ŒãŸä¸–ç•Œã«è¡Œã‘ã‚‹çŠ¶æ…‹(d05r0115ã«ãªã£ã¦ã„ã‚‹)
  */
 
 #define WK_SCENE_D11R0101				(SVSCRWK_START+41)
-/* ‚Ó‚ê‚ ‚¢Lê
-00 ˜A‚ê•à‚«‘O
-01 ˜A‚ê•à‚«’†
+/* ãµã‚Œã‚ã„åºƒå ´
+00 é€£ã‚Œæ­©ãå‰
+01 é€£ã‚Œæ­©ãä¸­
  */
 
 #define WK_SCENE_D11R0101_MONSNO              (SVSCRWK_START+42)
-/* ˜A‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+/* é€£ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 
 #define WK_SCENE_D11R0101_PRESENT		(SVSCRWK_START+43)
-/* –á‚¦‚é‚à‚Ì‚ÌŽí—Þ
-00 ‚«‚Ì‚Ý
-01 ƒAƒNƒZƒTƒŠ[
+/* è²°ãˆã‚‹ã‚‚ã®ã®ç¨®é¡ž
+00 ãã®ã¿
+01 ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼
  */
 
 #define WK_SCENE_D11R0101_PRESENT_ACCE_NO	(SVSCRWK_START+44)
-/* –á‚¦‚éƒAƒNƒZƒTƒŠ[ƒiƒ“ƒo[
+/* è²°ãˆã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 
 #define WK_SCENE_D11R0101_TNO        (SVSCRWK_START+45)
-/* ˜A‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ÌŽèŽ‚¿ƒiƒ“ƒo[
+/* é€£ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ‰‹æŒã¡ãƒŠãƒ³ãƒãƒ¼
  */
 
 #define WK_SCENE_D16R0103				(SVSCRWK_START+46)
-/* ‰ÎŽR‚RŠK
-01 ‚©‚´‚ñ‚Ì‚¨‚«‚¢‚µƒCƒxƒ“ƒgI—¹(ÄíOK)
-02 ƒq[ƒhƒ‰ƒ“‚É˜b‚µ‚©‚¯‚½(í“¬Œã)
+/* ç«å±±ï¼“éšŽ
+01 ã‹ã–ã‚“ã®ãŠãã„ã—ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†(å†æˆ¦OK)
+02 ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³ã«è©±ã—ã‹ã‘ãŸ(æˆ¦é—˜å¾Œ)
 */
 
 #define WK_SCENE_D11R0101_PRESENT_KINOMI_NO	(SVSCRWK_START+47)
-/* –á‚¦‚é‚«‚Ì‚Ýƒiƒ“ƒo[
+/* è²°ãˆã‚‹ãã®ã¿ãƒŠãƒ³ãƒãƒ¼
 */
 
 #define WK_SCENE_D16					(SVSCRWK_START+48)
 /*
-00 ‚µ‚½‚Á‚ÏƒCƒxƒ“ƒg”­“®
-01 ‚µ‚½‚Á‚ÏƒCƒxƒ“ƒgI—¹
-02 ‘ÛŒxŽ@ƒCƒxƒ“ƒg”­“®
-03 ‘ÛŒxŽ@ƒCƒxƒ“ƒgI—¹
+00 ã—ãŸã£ã±ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
+01 ã—ãŸã£ã±ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+02 å›½éš›è­¦å¯Ÿã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
+03 å›½éš›è­¦å¯Ÿã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_T07R0201				(SVSCRWK_START+49)
 /*
-00 ŠÇ—lƒCƒxƒ“ƒgŠJŽn
-01 ŠÇ—lƒCƒxƒ“ƒgI—¹(’•¶‚·‚é‚Ü‚Åo‚ç‚ê‚È‚¢POS‹N“®)
-02 ’•¶‚µ‚½
+00 ç®¡ç†äººã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+01 ç®¡ç†äººã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†(æ³¨æ–‡ã™ã‚‹ã¾ã§å‡ºã‚‰ã‚Œãªã„POSèµ·å‹•)
+02 æ³¨æ–‡ã—ãŸ
 */
 
 //#define WK_SCENE_T01R0101				(SVSCRWK_START+50)
 
 #define WK_SCENE_T01R0102				(SVSCRWK_START+51)
-/* ƒ‰ƒCƒoƒ‹2ŠKƒCƒxƒ“ƒg
-01 ƒ‰ƒCƒoƒ‹o”­ƒCƒxƒ“ƒgI—¹
+/* ãƒ©ã‚¤ãƒãƒ«2éšŽã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒ©ã‚¤ãƒãƒ«å‡ºç™ºã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_T01R0201				(SVSCRWK_START+52)
-/* Ž©‘î1ŠKƒCƒxƒ“ƒg
-01 2ŠK‚©‚ç~‚è‚Ä‚«‚½‰ï˜bI—¹
-02 ŠOo‚µ‚æ‚¤‚Æ‚µ‚Äƒ}ƒ}‚Æ‚Ì‰ï˜bI—¹
-03 ƒVƒ…[ƒYƒCƒxƒ“ƒgŠJŽn(r201‚Åƒ‰ƒCƒoƒ‹‚Æ‘ÎíŒã‚É”­“®)
-04 ƒVƒ…[ƒY‚ð‚à‚ç‚Á‚½
-05 ƒVƒ…[ƒY‚ð‚à‚ç‚Á‚ÄŠO‚Éo‚½
-06 –`Œ¯ƒm[ƒg“üŽèƒCƒxƒ“ƒgI—¹
-07 –`Œ¯ƒm[ƒg“üŽèƒCƒxƒ“ƒgŒã‚ÉŠO‚Éo‚Ä–ß‚Á‚Ä‚«‚½
+/* è‡ªå®…1éšŽã‚¤ãƒ™ãƒ³ãƒˆ
+01 2éšŽã‹ã‚‰é™ã‚Šã¦ããŸä¼šè©±çµ‚äº†
+02 å¤–å‡ºã—ã‚ˆã†ã¨ã—ã¦ãƒžãƒžã¨ã®ä¼šè©±çµ‚äº†
+03 ã‚·ãƒ¥ãƒ¼ã‚ºã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹(r201ã§ãƒ©ã‚¤ãƒãƒ«ã¨å¯¾æˆ¦å¾Œã«ç™ºå‹•)
+04 ã‚·ãƒ¥ãƒ¼ã‚ºã‚’ã‚‚ã‚‰ã£ãŸ
+05 ã‚·ãƒ¥ãƒ¼ã‚ºã‚’ã‚‚ã‚‰ã£ã¦å¤–ã«å‡ºãŸ
+06 å†’é™ºãƒŽãƒ¼ãƒˆå…¥æ‰‹ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+07 å†’é™ºãƒŽãƒ¼ãƒˆå…¥æ‰‹ã‚¤ãƒ™ãƒ³ãƒˆå¾Œã«å¤–ã«å‡ºã¦æˆ»ã£ã¦ããŸ
 */
 
 #define WK_SCENE_T01R0202				(SVSCRWK_START+53)
-/* Ž©‘î2ŠKƒCƒxƒ“ƒg
-01 ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgI—¹
+/* è‡ªå®…2éšŽã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_T02R0101				(SVSCRWK_START+54)
 /* 
-00 }ŠÓ“üŽèƒCƒxƒ“ƒgŠJŽn
-01 }ŠÓ“üŽèƒCƒxƒ“ƒgI—¹
-02 d17r0101Œã‚ÌƒCƒxƒ“ƒgŠJŽn
-03 d17r0101Œã‚ÌƒCƒxƒ“ƒgI—¹
-04 ƒiƒMƒT(c08)‚É“ž’…
+00 å›³é‘‘å…¥æ‰‹ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+01 å›³é‘‘å…¥æ‰‹ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+02 d17r0101å¾Œã®ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+03 d17r0101å¾Œã®ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+04 ãƒŠã‚®ã‚µ(c08)ã«åˆ°ç€
 */
 
 #define WK_SCENE_T07R0101				(SVSCRWK_START+55)
 /* 
-00 ‰ïˆõ‚É‚È‚ê‚é‚©ƒ`ƒFƒbƒN
+00 ä¼šå“¡ã«ãªã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 */
 
 #define WK_SCENE_R217					(SVSCRWK_START+56)
 /*
-01 ƒXƒ‚ƒ‚ƒCƒxƒ“ƒgI—¹
+01 ã‚¹ãƒ¢ãƒ¢ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_D05R0102				(SVSCRWK_START+57)
 /*
-01 ‘ÛŒxŽ@ƒCƒxƒ“ƒgŠJŽn
-02 ‘ÛŒxŽ@ƒCƒxƒ“ƒgI—¹
+01 å›½éš›è­¦å¯Ÿã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 å›½éš›è­¦å¯Ÿã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_D17R0101				(SVSCRWK_START+58)
 /*
-01 ƒVƒƒiƒCƒxƒ“ƒgŠJŽn
-02 ƒVƒƒiƒCƒxƒ“ƒgI—¹
-03 ƒiƒiƒJƒ}ƒh‚Æ‰ï˜b‚µ‚½
+01 ã‚·ãƒ­ãƒŠã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 ã‚·ãƒ­ãƒŠã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+03 ãƒŠãƒŠã‚«ãƒžãƒ‰ã¨ä¼šè©±ã—ãŸ
 */
 
 #define WK_SCENE_PARKMAN				(SVSCRWK_START+59)
 /*
-00 Œö‰€‚¨‚¶‚³‚ñ‚ÌE‚¢•¨ƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX
+00 å…¬åœ’ãŠã˜ã•ã‚“ã®æ‹¾ã„ç‰©ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 */
 
 #define WK_SCENE_D11R0101_WARP			(SVSCRWK_START+60)
 /*
-00 ƒ[ƒvPOS”­“®‘O
-01 ƒ[ƒvPOS”­“®Œã
+00 ãƒ¯ãƒ¼ãƒ—POSç™ºå‹•å‰
+01 ãƒ¯ãƒ¼ãƒ—POSç™ºå‹•å¾Œ
 */
 
 #define WK_SCENE_D16R0101				(SVSCRWK_START+61)
 /*
-00 Š²•”ƒCƒxƒ“ƒgŠJŽn
-01 Š²•”ƒCƒxƒ“ƒgI—¹
+00 å¹¹éƒ¨ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+01 å¹¹éƒ¨ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C04GYM0102				(SVSCRWK_START+62)
-/* ƒWƒ€“à‚Ìó‘Ô
+/* ã‚¸ãƒ å†…ã®çŠ¶æ…‹
 01 
 */
 
 #define WK_SCENE_C01R0701				(SVSCRWK_START+63)
-/* ƒgƒŒ[ƒi[ƒXƒN[ƒ‹ƒCƒxƒ“ƒg
-01 ƒ|ƒPƒbƒ`ƒCƒxƒ“ƒgŠJŽn
-02 ƒ|ƒPƒbƒ`ƒCƒxƒ“ƒgI—¹
+/* ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¹ã‚¯ãƒ¼ãƒ«ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒã‚±ãƒƒãƒã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 ãƒã‚±ãƒƒãƒã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C01R0201				(SVSCRWK_START+64)
-/* TV‹ÇƒCƒxƒ“ƒg
+/* TVå±€ã‚¤ãƒ™ãƒ³ãƒˆ
 */
 
 #define WK_SCENE_D03R0101				(SVSCRWK_START+65)
-/* ƒnƒNƒ^ƒC‚ÌX“à•”ƒCƒxƒ“ƒg
-01 ˜A‚ê•à‚«ŠJŽn
-02 ˜A‚ê•à‚«ƒS[ƒ‹‚É‚Â‚¢‚½
+/* ãƒã‚¯ã‚¿ã‚¤ã®æ£®å†…éƒ¨ã‚¤ãƒ™ãƒ³ãƒˆ
+01 é€£ã‚Œæ­©ãé–‹å§‹
+02 é€£ã‚Œæ­©ãã‚´ãƒ¼ãƒ«ã«ã¤ã„ãŸ
 */
 
 #define WK_SCENE_C02R0103				(SVSCRWK_START+66)
-/* }‘ŠÙ‚RŠKƒCƒxƒ“ƒg
-01 ‚Ý‚ñ‚È‚»‚ë‚¤ƒCƒxƒ“ƒgŠJŽn
-02 ‚Ý‚ñ‚È‚»‚ë‚¤ƒCƒxƒ“ƒgI—¹
+/* å›³æ›¸é¤¨ï¼“éšŽã‚¤ãƒ™ãƒ³ãƒˆ
+01 ã¿ã‚“ãªãã‚ã†ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 ã¿ã‚“ãªãã‚ã†ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C03R0401				(SVSCRWK_START+67)
-/* ‰»ÎƒCƒxƒ“ƒg
-01 ‰»Î—a‚©‚è’†
-02 ƒ|ƒPƒ‚ƒ“—a‚©‚è’†
+/* åŒ–çŸ³ã‚¤ãƒ™ãƒ³ãƒˆ
+01 åŒ–çŸ³é ã‹ã‚Šä¸­
+02 ãƒã‚±ãƒ¢ãƒ³é ã‹ã‚Šä¸­
 */
 
 #define WK_SCENE_KASEKI_MONSNO			(SVSCRWK_START+68)
-/* ‰»ÎƒCƒxƒ“ƒg
-xxxx ƒ|ƒPƒ‚ƒ“”Ô†
+/* åŒ–çŸ³ã‚¤ãƒ™ãƒ³ãƒˆ
+xxxx ãƒã‚±ãƒ¢ãƒ³ç•ªå·
 */
 
 #define WK_SCENE_C08R0701				(SVSCRWK_START+69)
-/* ƒ|ƒPƒbƒ`ƒ}ƒjƒA
-00 ‰ï˜b‘O
-01 ‰ï˜b‚µ‚½
-02 ƒ|ƒPƒbƒ`ƒAƒvƒŠ1‚Â–Ú“üŽè
-03 ƒ|ƒPƒbƒ`ƒAƒvƒŠ2‚Â–Ú“üŽè
-04 ƒ|ƒPƒbƒ`ƒAƒvƒŠ3‚Â–Ú“üŽè
+/* ãƒã‚±ãƒƒãƒãƒžãƒ‹ã‚¢
+00 ä¼šè©±å‰
+01 ä¼šè©±ã—ãŸ
+02 ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒª1ã¤ç›®å…¥æ‰‹
+03 ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒª2ã¤ç›®å…¥æ‰‹
+04 ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒª3ã¤ç›®å…¥æ‰‹
 */
 
 #define WK_SCENE_C08R0401				(SVSCRWK_START+70)
-/* ’TŒŸó‘Ô
-01 ƒ~ƒbƒVƒ‡ƒ“‚PƒNƒŠƒA 
-02 ƒ~ƒbƒVƒ‡ƒ“‚QƒNƒŠƒA 
-03 ƒ~ƒbƒVƒ‡ƒ“‚RƒNƒŠƒA 
-04 ƒ~ƒbƒVƒ‡ƒ“‚SƒNƒŠƒA 
-05 ƒ~ƒbƒVƒ‡ƒ“‚TƒNƒŠƒA 
-06 ƒ~ƒbƒVƒ‡ƒ“‚UƒNƒŠƒA 
-07 ƒnƒ^‚R–{ˆÈã‚Ì•\²Ï‚Ý
-08 ƒnƒ^‚P‚O–{ˆÈã‚Ì•\²Ï‚Ý
-09 ‚¿‚©ƒ}ƒXƒ^[iƒnƒ^‚T‚O–{ˆÈã‚Ì•\²Ï‚Ýj
+/* æŽ¢æ¤œçŠ¶æ…‹
+01 ãƒŸãƒƒã‚·ãƒ§ãƒ³ï¼‘ã‚¯ãƒªã‚¢ 
+02 ãƒŸãƒƒã‚·ãƒ§ãƒ³ï¼’ã‚¯ãƒªã‚¢ 
+03 ãƒŸãƒƒã‚·ãƒ§ãƒ³ï¼“ã‚¯ãƒªã‚¢ 
+04 ãƒŸãƒƒã‚·ãƒ§ãƒ³ï¼”ã‚¯ãƒªã‚¢ 
+05 ãƒŸãƒƒã‚·ãƒ§ãƒ³ï¼•ã‚¯ãƒªã‚¢ 
+06 ãƒŸãƒƒã‚·ãƒ§ãƒ³ï¼–ã‚¯ãƒªã‚¢ 
+07 ãƒã‚¿ï¼“æœ¬ä»¥ä¸Šã®è¡¨å½°æ¸ˆã¿
+08 ãƒã‚¿ï¼‘ï¼æœ¬ä»¥ä¸Šã®è¡¨å½°æ¸ˆã¿
+09 ã¡ã‹ãƒžã‚¹ã‚¿ãƒ¼ï¼ˆãƒã‚¿ï¼•ï¼æœ¬ä»¥ä¸Šã®è¡¨å½°æ¸ˆã¿ï¼‰
 */
 
 #define WK_SCENE_FACTORY_LOBBY			(SVSCRWK_START+71)
-/* ƒtƒ@ƒNƒgƒŠ[ƒƒr[
-00 ‰½‚à‚È‚µ
-01 7˜AŸ‚µ‚Ä–ß‚Á‚Ä‚«‚½Žž
-02 ‘±‚«‚©‚çÄŠJŽž
-03 ƒŠƒ^ƒCƒ„‚µ‚Ä–ß‚Á‚Ä‚«‚½Žž
-255 •s³ó‘ÔƒZƒbƒg’†
+/* ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ­ãƒ“ãƒ¼
+00 ä½•ã‚‚ãªã—
+01 7é€£å‹ã—ã¦æˆ»ã£ã¦ããŸæ™‚
+02 ç¶šãã‹ã‚‰å†é–‹æ™‚
+03 ãƒªã‚¿ã‚¤ãƒ¤ã—ã¦æˆ»ã£ã¦ããŸæ™‚
+255 ä¸æ­£çŠ¶æ…‹ã‚»ãƒƒãƒˆä¸­
 */
 
 #define WK_SCENE_FACTORY_TYPE			(SVSCRWK_START+72)
-/* ƒtƒ@ƒNƒgƒŠ[ƒ^ƒCƒv
+/* ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã‚¿ã‚¤ãƒ—
 00 FACTORY_TYPE_SINGLE
 01 FACTORY_TYPE_DOUBLE
 02 FACTORY_TYPE_MULTI
@@ -522,22 +522,22 @@ xxxx ƒ|ƒPƒ‚ƒ“”Ô†
 */
 
 #define WK_SCENE_FACTORY_LEVEL			(SVSCRWK_START+73)
-/* ƒtƒ@ƒNƒgƒŠ[ƒŒƒxƒ‹
+/* ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¬ãƒ™ãƒ«
 00 FACTORY_LEVEL_50
 01 FACTORY_LEVEL_OPEN
 */
 
 #define WK_SCENE_STAGE_LOBBY			(SVSCRWK_START+74)
-/* ƒXƒe[ƒWƒƒr[
-00 ‰½‚à‚È‚µ
-01 10˜AŸ‚µ‚Ä–ß‚Á‚Ä‚«‚½Žž
-02 ‘±‚«‚©‚çÄŠJŽž
-03 ƒŠƒ^ƒCƒ„‚µ‚Ä–ß‚Á‚Ä‚«‚½Žž
-255 •s³ó‘ÔƒZƒbƒg’†
+/* ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ­ãƒ“ãƒ¼
+00 ä½•ã‚‚ãªã—
+01 10é€£å‹ã—ã¦æˆ»ã£ã¦ããŸæ™‚
+02 ç¶šãã‹ã‚‰å†é–‹æ™‚
+03 ãƒªã‚¿ã‚¤ãƒ¤ã—ã¦æˆ»ã£ã¦ããŸæ™‚
+255 ä¸æ­£çŠ¶æ…‹ã‚»ãƒƒãƒˆä¸­
 */
 
 #define WK_SCENE_STAGE_TYPE				(SVSCRWK_START+75)
-/* ƒXƒe[ƒWƒ^ƒCƒv
+/* ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
 00 STAGE_TYPE_SINGLE
 01 STAGE_TYPE_DOUBLE
 02 STAGE_TYPE_MULTI
@@ -545,16 +545,16 @@ xxxx ƒ|ƒPƒ‚ƒ“”Ô†
 */
 
 #define WK_SCENE_CASTLE_LOBBY			(SVSCRWK_START+76)
-/* ƒLƒƒƒbƒXƒ‹ƒƒr[
-00 ‰½‚à‚È‚µ
-01 7˜AŸ‚µ‚Ä–ß‚Á‚Ä‚«‚½Žž
-02 ‘±‚«‚©‚çÄŠJŽž
-03 ƒŠƒ^ƒCƒ„‚µ‚Ä–ß‚Á‚Ä‚«‚½Žž
-255 •s³ó‘ÔƒZƒbƒg’†
+/* ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ­ãƒ“ãƒ¼
+00 ä½•ã‚‚ãªã—
+01 7é€£å‹ã—ã¦æˆ»ã£ã¦ããŸæ™‚
+02 ç¶šãã‹ã‚‰å†é–‹æ™‚
+03 ãƒªã‚¿ã‚¤ãƒ¤ã—ã¦æˆ»ã£ã¦ããŸæ™‚
+255 ä¸æ­£çŠ¶æ…‹ã‚»ãƒƒãƒˆä¸­
 */
 
 #define WK_SCENE_CASTLE_TYPE				(SVSCRWK_START+77)
-/* ƒLƒƒƒbƒXƒ‹ƒ^ƒCƒv
+/* ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã‚¿ã‚¤ãƒ—
 00 CASTLE_TYPE_SINGLE
 01 CASTLE_TYPE_DOUBLE
 02 CASTLE_TYPE_MULTI
@@ -562,7 +562,7 @@ xxxx ƒ|ƒPƒ‚ƒ“”Ô†
 */
 
 #define WK_SCENE_ROULETTE_TYPE				(SVSCRWK_START+78)
-/* ƒ‹[ƒŒƒbƒgƒ^ƒCƒv
+/* ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã‚¿ã‚¤ãƒ—
 00 ROULETTE_TYPE_SINGLE
 01 ROULETTE_TYPE_DOUBLE
 02 ROULETTE_TYPE_MULTI
@@ -570,323 +570,323 @@ xxxx ƒ|ƒPƒ‚ƒ“”Ô†
 */
 
 #define WK_SCENE_ROULETTE_LOBBY				(SVSCRWK_START+79)
-/* ƒ‹[ƒŒƒbƒgƒƒr[
-00 ‰½‚à‚È‚µ
-01 7˜AŸ‚µ‚Ä–ß‚Á‚Ä‚«‚½Žž
-02 ‘±‚«‚©‚çÄŠJŽž
-03 ƒŠƒ^ƒCƒ„‚µ‚Ä–ß‚Á‚Ä‚«‚½Žž
-255 •s³ó‘ÔƒZƒbƒg’†
+/* ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ­ãƒ“ãƒ¼
+00 ä½•ã‚‚ãªã—
+01 7é€£å‹ã—ã¦æˆ»ã£ã¦ããŸæ™‚
+02 ç¶šãã‹ã‚‰å†é–‹æ™‚
+03 ãƒªã‚¿ã‚¤ãƒ¤ã—ã¦æˆ»ã£ã¦ããŸæ™‚
+255 ä¸æ­£çŠ¶æ…‹ã‚»ãƒƒãƒˆä¸­
 */
 
 //#define WK_SCENE_L01R0101				(SVSCRWK_START+80)
 
 #define WK_SCENE_T06R0101				(SVSCRWK_START+81)
 /*
-00 ‚‚Ý‚ð–ÚŽw‚·‰Æ‚ÌƒCƒxƒ“ƒgŠJŽn
-01 ‚‚Ý‚ð–ÚŽw‚·‰Æ‚ÌƒCƒxƒ“ƒgI—¹
+00 é«˜ã¿ã‚’ç›®æŒ‡ã™å®¶ã®ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+01 é«˜ã¿ã‚’ç›®æŒ‡ã™å®¶ã®ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_T06_RIVAL				(SVSCRWK_START+82)
 /*
-00 t06‚Ìƒ‰ƒCƒoƒ‹‚Ìƒ‰ƒ“ƒ_ƒ€ƒƒbƒZ[ƒW•Û‘¶(0-2)
+00 t06ã®ãƒ©ã‚¤ãƒãƒ«ã®ãƒ©ãƒ³ãƒ€ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä¿å­˜(0-2)
 */
 
 #define WK_SCENE_D05R0115				(SVSCRWK_START+83)
 /*
-01 ƒVƒƒiƒCƒxƒ“ƒgŠJŽn
-02 ƒVƒƒiƒCƒxƒ“ƒgI—¹
+01 ã‚·ãƒ­ãƒŠã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 ã‚·ãƒ­ãƒŠã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_D05R0118				(SVSCRWK_START+84)
 /*
-00 ƒfƒBƒAƒ‹ƒKí“¬‰Â”\
-01 ƒfƒBƒAƒ‹ƒKí“¬•s‰Â
+00 ãƒ‡ã‚£ã‚¢ãƒ«ã‚¬æˆ¦é—˜å¯èƒ½
+01 ãƒ‡ã‚£ã‚¢ãƒ«ã‚¬æˆ¦é—˜ä¸å¯
 */
 
 
 #define WK_SCENE_D05R0119				(SVSCRWK_START+85)
 /*
-00 ƒpƒ‹ƒLƒAí“¬‰Â”\
-01 ƒpƒ‹ƒLƒAí“¬•s‰Â
+00 ãƒ‘ãƒ«ã‚­ã‚¢æˆ¦é—˜å¯èƒ½
+01 ãƒ‘ãƒ«ã‚­ã‚¢æˆ¦é—˜ä¸å¯
 */
 
 #define WK_SCENE_R221R0101				(SVSCRWK_START+86)
 /*
-00 ƒI[ƒLƒh‚ª‘Ò‚Á‚Ä‚¢‚é
-01 ƒI[ƒLƒh‚ª‹Ž‚Á‚½
+00 ã‚ªãƒ¼ã‚­ãƒ‰ãŒå¾…ã£ã¦ã„ã‚‹
+01 ã‚ªãƒ¼ã‚­ãƒ‰ãŒåŽ»ã£ãŸ
 */
 
 #define WK_SCENE_C06_POKE				(SVSCRWK_START+87)
 /*
-01 ƒOƒŒƒbƒOƒ‹oŒ»ƒCƒxƒ“ƒgƒ`ƒFƒbƒNI—¹(ƒ}ƒbƒv‘JˆÚ‚ÅƒNƒŠƒA)
+01 ã‚°ãƒ¬ãƒƒã‚°ãƒ«å‡ºç¾ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯çµ‚äº†(ãƒžãƒƒãƒ—é·ç§»ã§ã‚¯ãƒªã‚¢)
 */
 
 #define WK_SCENE_T07					(SVSCRWK_START+88)
 /*
-00 ‰Æw“üƒCƒxƒ“ƒgŠJŽn
-01 ‰Æw“üƒCƒxƒ“ƒgI—¹
+00 å®¶è³¼å…¥ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+01 å®¶è³¼å…¥ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_T07_EVENT				(SVSCRWK_START+89)
-/* —ˆ‹qƒCƒxƒ“ƒg
-01 ƒiƒiƒJƒ}ƒh”ŽŽm
-02 ƒqƒ‡ƒEƒ^
-03 ƒiƒ^ƒl
-04 ƒXƒ‚ƒ‚
-05 ƒgƒEƒKƒ“
+/* æ¥å®¢ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒŠãƒŠã‚«ãƒžãƒ‰åšå£«
+02 ãƒ’ãƒ§ã‚¦ã‚¿
+03 ãƒŠã‚¿ãƒ
+04 ã‚¹ãƒ¢ãƒ¢
+05 ãƒˆã‚¦ã‚¬ãƒ³
 */
 
 #define WK_SCENE_PAIR_R201_RIVAL		(SVSCRWK_START+90)
-/* R201˜A‚ê•à‚«ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒg
-01 ‰ï˜b1
-02 ‰ï˜b2
-03 ‰ï˜b3
-04 ‰ï˜b4
-05 ‰ï˜b5
+/* R201é€£ã‚Œæ­©ããƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ä¼šè©±1
+02 ä¼šè©±2
+03 ä¼šè©±3
+04 ä¼šè©±4
+05 ä¼šè©±5
 */
 
 #define WK_SCENE_PAIR_L01_RIVAL			(SVSCRWK_START+91)
-/* L01˜A‚ê•à‚«ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒg
-01 ‰ï˜b1
-02 ‰ï˜b2
-03 ‰ï˜b3
+/* L01é€£ã‚Œæ­©ããƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ä¼šè©±1
+02 ä¼šè©±2
+03 ä¼šè©±3
 */
 
 #define WK_SCENE_CONTEST				(SVSCRWK_START+92)
-/* ƒRƒ“ƒeƒXƒg
-00 ‰½‚à‚µ‚Ä‚¢‚È‚¢
-01 ƒRƒ“ƒeƒXƒg’†
-02 ƒGƒ“ƒfƒBƒ“ƒO’†
+/* ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+00 ä½•ã‚‚ã—ã¦ã„ãªã„
+01 ã‚³ãƒ³ãƒ†ã‚¹ãƒˆä¸­
+02 ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ä¸­
 */
 
 #define WK_SCENE_D03R0101_TREE			(SVSCRWK_START+93)
-/* ƒnƒNƒ^ƒC‚ÌX‚Ì—mŠÙ‘O‚Ì–Ø
-01 ƒ‚ƒ~‚Æ˜A‚ê•à‚«’†‚É–Ø‚É˜b‚µ‚©‚¯‚½
-02 ƒ‚ƒ~‚Ì‰ï˜bI—¹
+/* ãƒã‚¯ã‚¿ã‚¤ã®æ£®ã®æ´‹é¤¨å‰ã®æœ¨
+01 ãƒ¢ãƒŸã¨é€£ã‚Œæ­©ãä¸­ã«æœ¨ã«è©±ã—ã‹ã‘ãŸ
+02 ãƒ¢ãƒŸã®ä¼šè©±çµ‚äº†
 */
 
 #define WK_ELEVATOR_FLOOR				(SVSCRWK_START+94)
-/* ƒGƒŒƒx[ƒ^ƒtƒƒAƒ[ƒN
+/* ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ãƒ•ãƒ­ã‚¢ãƒ¯ãƒ¼ã‚¯
 */
 
 #define WK_SCENE_D02R0101				(SVSCRWK_START+95)
-/* ”­“dŠ“à
-01 ƒMƒ“ƒK’cƒCƒxƒ“ƒgI—¹
-02 ƒMƒ“ƒK’cŠ²•”POSƒCƒxƒ“ƒgI—¹
-03 ƒ}ƒbƒvƒAƒEƒgŒã
+/* ç™ºé›»æ‰€å†…
+01 ã‚®ãƒ³ã‚¬å›£ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+02 ã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨POSã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+03 ãƒžãƒƒãƒ—ã‚¢ã‚¦ãƒˆå¾Œ
 */
 
 #define WK_SCENE_UG						(SVSCRWK_START+96)
-/* ’n‰º
-01 ‰‰ñŽR’jƒCƒxƒ“ƒgI—¹
+/* åœ°ä¸‹
+01 åˆå›žå±±ç”·ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C05GYM0101				(SVSCRWK_START+97)
-/* ƒˆƒXƒKƒVƒeƒBƒCƒxƒ“ƒg
-00 ƒ_ƒ“ƒyƒC‚Ì‰‰ñà–¾ƒCƒxƒ“ƒgŠJŽn
-01 ƒ_ƒ“ƒyƒC‚Ì‰‰ñà–¾ƒCƒxƒ“ƒgI—¹
+/* ãƒ¨ã‚¹ã‚¬ã‚·ãƒ†ã‚£ã‚¤ãƒ™ãƒ³ãƒˆ
+00 ãƒ€ãƒ³ãƒšã‚¤ã®åˆå›žèª¬æ˜Žã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+01 ãƒ€ãƒ³ãƒšã‚¤ã®åˆå›žèª¬æ˜Žã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 //#define WK_SCENE_PC_UG					(SVSCRWK_START+98)
-/* ƒ|ƒPƒZƒ“’n‰ºƒCƒxƒ“ƒg
-//01 ‰‰ñ‚Æ‚à‚¾‚¿‚Ä‚¿‚å‚¤“üŽèƒCƒxƒ“ƒgI—¹
+/* ãƒã‚±ã‚»ãƒ³åœ°ä¸‹ã‚¤ãƒ™ãƒ³ãƒˆ
+//01 åˆå›žã¨ã‚‚ã ã¡ã¦ã¡ã‚‡ã†å…¥æ‰‹ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_D29R0102				(SVSCRWK_START+99)
-/* ŒÎƒCƒxƒ“ƒg
-01 ƒ‰ƒCƒoƒ‹‚ª•‰‚¯‚éƒCƒxƒ“ƒgŠJŽn
-02 ƒ‰ƒCƒoƒ‹‚ª•‰‚¯‚éƒCƒxƒ“ƒgI—¹
+/* æ¹–ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒ©ã‚¤ãƒãƒ«ãŒè² ã‘ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 ãƒ©ã‚¤ãƒãƒ«ãŒè² ã‘ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_PC0103					(SVSCRWK_START+100)
-/* ƒ|ƒPƒZƒ“’n‰º
-01 ƒ}ƒ~ƒiƒCƒxƒ“ƒgI—¹(‚Æ‚à‚¾‚¿‚Ä‚¿‚å‚¤ƒCƒxƒ“ƒg)
+/* ãƒã‚±ã‚»ãƒ³åœ°ä¸‹
+01 ãƒžãƒŸãƒŠã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†(ã¨ã‚‚ã ã¡ã¦ã¡ã‚‡ã†ã‚¤ãƒ™ãƒ³ãƒˆ)
 */
 
 #define WK_SCENE_COMM_ID				(SVSCRWK_START+101)
-/* ƒXƒNƒŠƒvƒg’ÊMŽó•tID
-00 ‰½‚à‚È‚µ
-01 ƒoƒgƒ‹
-02 ƒ†ƒjƒIƒ“
-03 ƒŒƒR[ƒh
+/* ã‚¹ã‚¯ãƒªãƒ—ãƒˆé€šä¿¡å—ä»˜ID
+00 ä½•ã‚‚ãªã—
+01 ãƒãƒˆãƒ«
+02 ãƒ¦ãƒ‹ã‚ªãƒ³
+03 ãƒ¬ã‚³ãƒ¼ãƒ‰
 04 WiFi
 */
 
 #define WK_SCENE_D26R0104				(SVSCRWK_START+102)
-/* ƒMƒ“ƒK’cƒAƒWƒg
-01 ƒ{ƒXƒCƒxƒ“ƒgI—¹
+/* ã‚®ãƒ³ã‚¬å›£ã‚¢ã‚¸ãƒˆ
+01 ãƒœã‚¹ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_SAFARI_GATE			(SVSCRWK_START+103)
-/* ƒTƒtƒ@ƒŠ“ü‚èŒû
+/* ã‚µãƒ•ã‚¡ãƒªå…¥ã‚Šå£
 */
 
 #define WK_SCENE_D31R0201				(SVSCRWK_START+104)
 /*
-00 ‰½‚à‚È‚µ
-01 ƒvƒŒƒCI—¹ŽžŽó•t
-02 ‘±‚«‚©‚çƒvƒŒƒCŽžŽó•t(‹x‚Þ‚ð‘I‘ð‚µ‚½)
-03 ƒTƒƒ“‚ÅƒLƒƒƒ“ƒZƒ‹‚µ‚Ä–ß‚Á‚Ä‚«‚½
+00 ä½•ã‚‚ãªã—
+01 ãƒ—ãƒ¬ã‚¤çµ‚äº†æ™‚å—ä»˜
+02 ç¶šãã‹ã‚‰ãƒ—ãƒ¬ã‚¤æ™‚å—ä»˜(ä¼‘ã‚€ã‚’é¸æŠžã—ãŸ)
+03 ã‚µãƒ­ãƒ³ã§ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¦æˆ»ã£ã¦ããŸ
 */
 
 #define WK_SCENE_D31R0205				(SVSCRWK_START+105)
-/* ƒoƒgƒ‹ƒ^ƒ[ƒVƒ“ƒOƒ‹ƒoƒgƒ‹‘Îí•”‰®
-00 Å‰‚É•”‰®‚É“ü‚é‚Æ‚«
-01 ˜AíŽž
+/* ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«å¯¾æˆ¦éƒ¨å±‹
+00 æœ€åˆã«éƒ¨å±‹ã«å…¥ã‚‹ã¨ã
+01 é€£æˆ¦æ™‚
  */
 
 #define WK_SCENE_SAFARI_ZONE			(SVSCRWK_START+106)
-/* ƒTƒtƒ@ƒŠ§Œä—p
-00:ƒTƒtƒ@ƒŠ‚É“ü‚é‘O
-01:ƒTƒtƒ@ƒŠ’†
-02:ƒTƒtƒ@ƒŠI—¹
-03:ƒ{[ƒ‹‚ª‚È‚­‚È‚Á‚ÄƒTƒtƒ@ƒŠI—¹	¦Œ»Ý‹¤’Ê‚Å"2"‚É‚µ‚Ä‚¢‚é
+/* ã‚µãƒ•ã‚¡ãƒªåˆ¶å¾¡ç”¨
+00:ã‚µãƒ•ã‚¡ãƒªã«å…¥ã‚‹å‰
+01:ã‚µãƒ•ã‚¡ãƒªä¸­
+02:ã‚µãƒ•ã‚¡ãƒªçµ‚äº†
+03:ãƒœãƒ¼ãƒ«ãŒãªããªã£ã¦ã‚µãƒ•ã‚¡ãƒªçµ‚äº†	â€»ç¾åœ¨å…±é€šã§"2"ã«ã—ã¦ã„ã‚‹
 */
 
 #define WK_SCENE_D31R0202				(SVSCRWK_START+107)
-/* ƒoƒgƒ‹ƒ^ƒ[ƒGƒŒƒx[ƒ^•”‰®
-00 ‚È‚É‚à‚È‚µ
-01 ƒVƒ“ƒOƒ‹’Ê˜H‚Ö
-02 ƒ}ƒ‹ƒ`’Ê˜H‚Ö
-03 ƒTƒƒ“‚Ö
+/* ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿éƒ¨å±‹
+00 ãªã«ã‚‚ãªã—
+01 ã‚·ãƒ³ã‚°ãƒ«é€šè·¯ã¸
+02 ãƒžãƒ«ãƒé€šè·¯ã¸
+03 ã‚µãƒ­ãƒ³ã¸
  */
 
 #define WK_SCENE_D31R0203				(SVSCRWK_START+108)
-/* ƒoƒgƒ‹ƒ^ƒ[ƒVƒ“ƒOƒ‹’Ê˜H
-00 ‚È‚É‚à‚È‚µ
-01 ƒCƒxƒ“ƒg‹N“®Žž
+/* ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚·ãƒ³ã‚°ãƒ«é€šè·¯
+00 ãªã«ã‚‚ãªã—
+01 ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•æ™‚
  */
 
 #define WK_SCENE_D31R0204				(SVSCRWK_START+109)
-/* ƒoƒgƒ‹ƒ^ƒ[ƒ}ƒ‹ƒ`’Ê˜H
-00 ‚È‚É‚à‚È‚µ
-01 ƒCƒxƒ“ƒg‹N“®Žž
+/* ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒžãƒ«ãƒé€šè·¯
+00 ãªã«ã‚‚ãªã—
+01 ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•æ™‚
  */
 
 #define WK_SCENE_D31R0206				(SVSCRWK_START+110)
-/* ƒoƒgƒ‹ƒ^ƒ[ƒ}ƒ‹ƒ`‘Îí•”‰®
-00 ‚È‚É‚à‚È‚µ
-01 ƒCƒxƒ“ƒg‹N“®Žž
+/* ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒžãƒ«ãƒå¯¾æˆ¦éƒ¨å±‹
+00 ãªã«ã‚‚ãªã—
+01 ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•æ™‚
  */
 
 #define WK_SCENE_D31R0207				(SVSCRWK_START+111)
-/* ƒoƒgƒ‹ƒ^ƒ[ƒ}ƒ‹ƒ`ƒTƒƒ“
- * 00 ‚È‚É‚à‚È‚µ
-01 ƒCƒxƒ“ƒg‹N“®Žž
+/* ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒžãƒ«ãƒã‚µãƒ­ãƒ³
+ * 00 ãªã«ã‚‚ãªã—
+01 ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•æ™‚
  */
 
 #define WK_SCENE_POKE_PARK				(SVSCRWK_START+112)
 /* 
-01 ƒ|ƒPƒp[ƒN’†
+01 ãƒã‚±ãƒ‘ãƒ¼ã‚¯ä¸­
 */
 
 #define WK_SCENE_PAIR_D16R0102_SEVEN5	(SVSCRWK_START+113)
-/* d16r0102˜A‚ê•à‚«‚TlOƒCƒxƒ“ƒg
-00 ‰ï˜b0
-01 ‰ï˜b1
-02 ‰ï˜b2
-03 ‰ï˜b3
+/* d16r0102é€£ã‚Œæ­©ãï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆ
+00 ä¼šè©±0
+01 ä¼šè©±1
+02 ä¼šè©±2
+03 ä¼šè©±3
 */
 
 #define WK_SCENE_PAIR_D21R0101_SEVEN2	(SVSCRWK_START+114)
-/* d21r0101˜A‚ê•à‚«‚TlOƒCƒxƒ“ƒg
-00 ‰ï˜b0
-01 ‰ï˜b1
-02 ‰ï˜b2
-03 ‰ï˜b3
+/* d21r0101é€£ã‚Œæ­©ãï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆ
+00 ä¼šè©±0
+01 ä¼šè©±1
+02 ä¼šè©±2
+03 ä¼šè©±3
 */
 
 #define WK_SCENE_PAIR_D24R0105_SEVEN3	(SVSCRWK_START+115)
-/* d24r0105˜A‚ê•à‚«‚TlOƒCƒxƒ“ƒg
-00 ‰ï˜b0
-01 ‰ï˜b1
-02 ‰ï˜b2
-03 ‰ï˜b3
+/* d24r0105é€£ã‚Œæ­©ãï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆ
+00 ä¼šè©±0
+01 ä¼šè©±1
+02 ä¼šè©±2
+03 ä¼šè©±3
 */
 
 #define WK_SCENE_PAIR_D09R0104_SEVEN4	(SVSCRWK_START+116)
-/* d09r0104˜A‚ê•à‚«‚TlOƒCƒxƒ“ƒg
-00 ‰ï˜b0
-01 ‰ï˜b1
-02 ‰ï˜b2
-03 ‰ï˜b3
+/* d09r0104é€£ã‚Œæ­©ãï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆ
+00 ä¼šè©±0
+01 ä¼šè©±1
+02 ä¼šè©±2
+03 ä¼šè©±3
 */
 
 #define WK_SCENE_NEWS_MONSNO			(SVSCRWK_START+117)
-/* V•·ŽÐ‚Å’T‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“
-00 ˆË—Š‘O 
-01`@ˆË—ŠŒãBƒ|ƒPƒ‚ƒ“No
+/* æ–°èžç¤¾ã§æŽ¢ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³
+00 ä¾é ¼å‰ 
+01ã€œã€€ä¾é ¼å¾Œã€‚ãƒã‚±ãƒ¢ãƒ³No
 */
 
 #define WK_SCENE_T01_RIVAL				(SVSCRWK_START+118)
-/* ƒtƒ^ƒo@ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒg
-01 ƒ‰ƒCƒoƒ‹‰Æ‚Ì‘O‚Å‚Ô‚Â‚©‚éƒCƒxƒ“ƒgI—¹
+/* ãƒ•ã‚¿ãƒã€€ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒ©ã‚¤ãƒãƒ«å®¶ã®å‰ã§ã¶ã¤ã‹ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C01_RIVAL				(SVSCRWK_START+119)
-/* ƒRƒgƒuƒL ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒg(‚»‚ÌŒã‚Ìƒ|ƒPƒbƒ`ƒCƒxƒ“ƒg‚É‚à‘±‚­)
-01 ƒ|ƒPƒbƒ`ƒCƒxƒ“ƒgŠJŽn
-02 ƒ|ƒPƒbƒ`ƒCƒxƒ“ƒgI—¹
+/* ã‚³ãƒˆãƒ–ã‚­ ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆ(ãã®å¾Œã®ãƒã‚±ãƒƒãƒã‚¤ãƒ™ãƒ³ãƒˆã«ã‚‚ç¶šã)
+01 ãƒã‚±ãƒƒãƒã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 ãƒã‚±ãƒƒãƒã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_PAIR_D03R0101_SEVEN1	(SVSCRWK_START+120)
-/* d03r0101˜A‚ê•à‚«‚TlOƒCƒxƒ“ƒg
-00 ‰ï˜b0
-01 ‰ï˜b1
-02 ‰ï˜b2
+/* d03r0101é€£ã‚Œæ­©ãï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆ
+00 ä¼šè©±0
+01 ä¼šè©±1
+02 ä¼šè©±2
 */
 
 #define WK_SCENE_D13R0101				(SVSCRWK_START+121)
-/* ƒ\ƒmƒI‰Ô”¨
-01 ƒMƒ“ƒK’cƒCƒxƒ“ƒgI—¹
+/* ã‚½ãƒŽã‚ªèŠ±ç•‘
+01 ã‚®ãƒ³ã‚¬å›£ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 //#define WK_SCENE_C05_RIVAL				(SVSCRWK_START+122)
-/* ƒˆƒXƒKƒVƒeƒBƒCƒxƒ“ƒg
-01 ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgŠJŽn
-02 ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgI—¹
+/* ãƒ¨ã‚¹ã‚¬ã‚·ãƒ†ã‚£ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 //#define WK_SCENE_C05R1101				(SVSCRWK_START+123)
 
 //#define WK_SCENE_BICYCLE				(SVSCRWK_START+124)
-/* ƒTƒCƒ“ƒNƒŠƒ“ƒOƒQ[ƒg
-//01 ƒXƒgƒbƒp[‰ðœ
+/* ã‚µã‚¤ãƒ³ã‚¯ãƒªãƒ³ã‚°ã‚²ãƒ¼ãƒˆ
+//01 ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼è§£é™¤
 */
 
 #define	WK_SCENE_POSTMAN				(SVSCRWK_START+125)
-/* ‚Ó‚µ‚¬”z’Bˆõ”»’è—pƒ[ƒN
- * ƒZ[ƒu‚·‚é•K—v‚Í‚È‚¢‚ªFLAG_CHANGEƒ‰ƒxƒ‹‚Å‘€ì‚·‚é‚½‚ßŠm•Û‚µ‚Ä‚¨‚­
+/* ãµã—ãŽé…é”å“¡åˆ¤å®šç”¨ãƒ¯ãƒ¼ã‚¯
+ * ã‚»ãƒ¼ãƒ–ã™ã‚‹å¿…è¦ã¯ãªã„ãŒFLAG_CHANGEãƒ©ãƒ™ãƒ«ã§æ“ä½œã™ã‚‹ãŸã‚ç¢ºä¿ã—ã¦ãŠã
  */
 
-#define WK_SCENE_T03_ZUKAN				(SVSCRWK_START+126)		//Œ»ÝŽg—p‚¹‚¸iMake‚ÌŠÖŒW‚Å‚Ü‚¾Žc‚Á‚Ä‚¢‚Ü‚·j
-/*}ŠÓ‚Ìƒpƒ[ƒAƒbƒvƒCƒxƒ“ƒg(ƒIƒXƒƒX’Ç‰Áj
-01@ƒCƒxƒ“ƒgI—¹
+#define WK_SCENE_T03_ZUKAN				(SVSCRWK_START+126)		//ç¾åœ¨ä½¿ç”¨ã›ãšï¼ˆMakeã®é–¢ä¿‚ã§ã¾ã æ®‹ã£ã¦ã„ã¾ã™ï¼‰
+/*å›³é‘‘ã®ãƒ‘ãƒ¯ãƒ¼ã‚¢ãƒƒãƒ—ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚ªã‚¹ãƒ¡ã‚¹è¿½åŠ ï¼‰
+01ã€€ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C10R0101				(SVSCRWK_START+127)
-/* ƒ|ƒPƒ‚ƒ“ƒŠ[ƒO
-01 ƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgI—¹
+/* ãƒã‚±ãƒ¢ãƒ³ãƒªãƒ¼ã‚°
+01 ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C01_GTC				(SVSCRWK_START+128)
-/* GTCƒXƒgƒbƒp[
-01 ƒXƒgƒbƒp[ƒCƒxƒ“ƒgI—¹
+/* GTCã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+01 ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_T05_OLDWOMAN			(SVSCRWK_START+129)
-/* ƒJƒ“ƒiƒMƒ^ƒEƒ“2
-01 ’·˜VƒCƒxƒ“ƒg
+/* ã‚«ãƒ³ãƒŠã‚®ã‚¿ã‚¦ãƒ³2
+01 é•·è€ã‚¤ãƒ™ãƒ³ãƒˆ
 */
 
 #define WK_SCENE_KUJI_AZUKE_ITEM		(SVSCRWK_START+130)
-/* —a‚¯‚Ä‚¢‚éÜi‚P`‚Sj
-00 —a‚¯‚Ä‚¢‚È‚¢
-01 ‚P“™
-02 ‚Q“™
-03 ‚R“™
-04 ‚S“™
-05 “Á“™
+/* é ã‘ã¦ã„ã‚‹è³žï¼ˆï¼‘ã€œï¼”ï¼‰
+00 é ã‘ã¦ã„ãªã„
+01 ï¼‘ç­‰
+02 ï¼’ç­‰
+03 ï¼“ç­‰
+04 ï¼”ç­‰
+05 ç‰¹ç­‰
 */
 
 #define	WK_SCENE_D10R0101				(SVSCRWK_START+131)
@@ -895,52 +895,52 @@ xxxx ƒ|ƒPƒ‚ƒ“”Ô†
 */
 
 #define WK_SCENE_DENDOU					(SVSCRWK_START+132)
-/* ‰‰ñ“a“°
-01 “a“°“ü‚èƒf[ƒ^‚ ‚è
-02 ƒNƒŠƒAŒã‚Ì‰‰ñƒCƒxƒ“ƒgI—¹
+/* åˆå›žæ®¿å ‚
+01 æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¼ã‚¿ã‚ã‚Š
+02 ã‚¯ãƒªã‚¢å¾Œã®åˆå›žã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C07_SUPPORT			(SVSCRWK_START+133)
-/*ƒgƒoƒŠƒVƒeƒB
-01 ƒWƒ€‘OƒTƒ|[ƒgƒCƒxƒ“ƒgI—¹ 
+/*ãƒˆãƒãƒªã‚·ãƒ†ã‚£
+01 ã‚¸ãƒ å‰ã‚µãƒãƒ¼ãƒˆã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº† 
 */
 
 #define WK_SCENE_C05_JUDGE				(SVSCRWK_START+134)
-/* ƒˆƒXƒKƒVƒeƒBƒCƒxƒ“ƒg
-01 ƒ~ƒ~ƒB‚ÌƒCƒxƒ“ƒgI—¹
+/* ãƒ¨ã‚¹ã‚¬ã‚·ãƒ†ã‚£ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒŸãƒŸã‚£ã®ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C05R1101_JUDGE			(SVSCRWK_START+135)
-/* ƒˆƒXƒKƒVƒeƒBƒCƒxƒ“ƒg
-01 ƒ~ƒ~ƒB‚ÌƒCƒxƒ“ƒgI—¹
+/* ãƒ¨ã‚¹ã‚¬ã‚·ãƒ†ã‚£ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒŸãƒŸã‚£ã®ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C02R0401				(SVSCRWK_START+136)
-/* ƒ_[ƒNƒCƒxƒ“ƒg
-01 ƒ_[ƒNƒCƒxƒ“ƒgŠJŽnƒCƒxƒ“ƒgFŠJŽn
-02 ƒ_[ƒNƒCƒxƒ“ƒgI—¹ƒCƒxƒ“ƒgFŠJŽn
-03 ƒ_[ƒNƒCƒxƒ“ƒgI—¹ƒCƒxƒ“ƒgFI—¹
-04 ƒ_[ƒNƒCƒxƒ“ƒg‚»‚ÌŒãƒCƒxƒ“ƒgFI—¹
+/* ãƒ€ãƒ¼ã‚¯ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒ€ãƒ¼ã‚¯ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹ã‚¤ãƒ™ãƒ³ãƒˆï¼šé–‹å§‹
+02 ãƒ€ãƒ¼ã‚¯ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆï¼šé–‹å§‹
+03 ãƒ€ãƒ¼ã‚¯ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã‚¤ãƒ™ãƒ³ãƒˆï¼šçµ‚äº†
+04 ãƒ€ãƒ¼ã‚¯ã‚¤ãƒ™ãƒ³ãƒˆãã®å¾Œã‚¤ãƒ™ãƒ³ãƒˆï¼šçµ‚äº†
 */
 
 #define WK_SCENE_GAME_START				(SVSCRWK_START+137)
-/* ƒQ[ƒ€ƒXƒ^[ƒgƒCƒxƒ“ƒg
-01 ƒQ[ƒ€ƒXƒ^[ƒgƒCƒxƒ“ƒgI—¹
+/* ã‚²ãƒ¼ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆã‚¤ãƒ™ãƒ³ãƒˆ
+01 ã‚²ãƒ¼ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_D20R0106				(SVSCRWK_START+138)
-/* ƒŒƒWƒLƒ“ƒOƒCƒxƒ“ƒg
-01 ƒŒƒWƒLƒ“ƒO’§í‰Â
-02 ƒŒƒWƒLƒ“ƒO’§í•s‰Â
-03 ƒŒƒWƒLƒ“ƒO’§íI—¹
+/* ãƒ¬ã‚¸ã‚­ãƒ³ã‚°ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒ¬ã‚¸ã‚­ãƒ³ã‚°æŒ‘æˆ¦å¯
+02 ãƒ¬ã‚¸ã‚­ãƒ³ã‚°æŒ‘æˆ¦ä¸å¯
+03 ãƒ¬ã‚¸ã‚­ãƒ³ã‚°æŒ‘æˆ¦çµ‚äº†
 */
 
 #define WK_SCENE_L02R0101_P01			(SVSCRWK_START+139)
-/* ƒJƒbƒvƒ‹‚P‚Ì‰ï˜b
-00 Š£”t
-01 ƒI[ƒhƒuƒ‹
-02 ƒƒCƒ“ƒfƒBƒbƒVƒ…
-03 ƒfƒU[ƒg
+/* ã‚«ãƒƒãƒ—ãƒ«ï¼‘ã®ä¼šè©±
+00 ä¹¾æ¯
+01 ã‚ªãƒ¼ãƒ‰ãƒ–ãƒ«
+02 ãƒ¡ã‚¤ãƒ³ãƒ‡ã‚£ãƒƒã‚·ãƒ¥
+03 ãƒ‡ã‚¶ãƒ¼ãƒˆ
 */
 
 #define WK_SCENE_L02R0101_P02			(SVSCRWK_START+140)
@@ -960,152 +960,152 @@ xxxx ƒ|ƒPƒ‚ƒ“”Ô†
 #define WK_SCENE_L02R0101_P09			(SVSCRWK_START+147)
 
 #define WK_SCENE_L02R0101_CLOSE			(SVSCRWK_START+148)
-/* ƒŒƒXƒgƒ‰ƒ“•Â“Xˆ—ŠÖ˜A
-01 •Â“Xˆ—‚Ö
+/* ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³é–‰åº—å‡¦ç†é–¢é€£
+01 é–‰åº—å‡¦ç†ã¸
 */
 
 #define WK_SCENE_R218R0201_ZUKAN		(SVSCRWK_START+149)
-/*}ŠÓ‚Ìƒpƒ[ƒAƒbƒvƒCƒxƒ“ƒg(ƒIƒXƒƒX’Ç‰Áj
-01@ƒCƒxƒ“ƒgI—¹
+/*å›³é‘‘ã®ãƒ‘ãƒ¯ãƒ¼ã‚¢ãƒƒãƒ—ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚ªã‚¹ãƒ¡ã‚¹è¿½åŠ ï¼‰
+01ã€€ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C02R0501				(SVSCRWK_START+150)
-/** ƒ~ƒIƒVƒeƒB ‘Dæ‚èƒiƒ~ƒL‚Ì‰Æ‚Ìƒ€[ƒoƒXƒCƒxƒ“ƒg
- 01	ˆ«–²ƒCƒxƒ“ƒgŠJŽn
- 02	ˆ«–²ƒCƒxƒ“ƒg’†
- 03 ˆ«–²ƒCƒxƒ“ƒg‰ðŒˆ’¼Œã`ˆê“x‰Æ‚ðo‚é‚Ü‚Å
+/** ãƒŸã‚ªã‚·ãƒ†ã‚£ èˆ¹ä¹—ã‚ŠãƒŠãƒŸã‚­ã®å®¶ã®ãƒ ãƒ¼ãƒã‚¹ã‚¤ãƒ™ãƒ³ãƒˆ
+ 01	æ‚ªå¤¢ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+ 02	æ‚ªå¤¢ã‚¤ãƒ™ãƒ³ãƒˆä¸­
+ 03 æ‚ªå¤¢ã‚¤ãƒ™ãƒ³ãƒˆè§£æ±ºç›´å¾Œã€œä¸€åº¦å®¶ã‚’å‡ºã‚‹ã¾ã§
  */
 
 #define WK_SCENE_C07R0201_GET_ACCE_NO		(SVSCRWK_START+151)
-/** –á‚Á‚½ƒAƒNƒZƒTƒŠ[”Ô†
+/** è²°ã£ãŸã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ç•ªå·
  */
 
 #define WK_SCENE_R221R0201_ITEM_LOOP		(SVSCRWK_START+152)
-/** ƒiƒ“ƒo[ƒWƒWƒC‚©‚çƒAƒCƒeƒ€ƒQƒbƒg(”Ô†‚ªƒ‹[ƒv‚·‚éj
- 00 ‚­‚ë‚¨‚Ñ
- 01 ‚½‚Â‚¶‚ñ‚Ì‚¨‚Ñ
- 02 ‚«‚ ‚¢‚Ìƒ^ƒXƒL
+/** ãƒŠãƒ³ãƒãƒ¼ã‚¸ã‚¸ã‚¤ã‹ã‚‰ã‚¢ã‚¤ãƒ†ãƒ ã‚²ãƒƒãƒˆ(ç•ªå·ãŒãƒ«ãƒ¼ãƒ—ã™ã‚‹ï¼‰
+ 00 ãã‚ãŠã³
+ 01 ãŸã¤ã˜ã‚“ã®ãŠã³
+ 02 ãã‚ã„ã®ã‚¿ã‚¹ã‚­
  */
 
 #define WK_SCENE_C05_GOODS_EV		(SVSCRWK_START+153)
-/** ƒOƒbƒY‚ð–á‚¦‚éŠG•`‚«
- 01 ƒAƒCƒeƒ€‚ð“n‚µ‚½
- 02 ‘S‚Ä‚ÌƒOƒbƒY‚ð–á‚Á‚½
+/** ã‚°ãƒƒã‚ºã‚’è²°ãˆã‚‹çµµæã
+ 01 ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ¸¡ã—ãŸ
+ 02 å…¨ã¦ã®ã‚°ãƒƒã‚ºã‚’è²°ã£ãŸ
  */
 
 #define WK_SCENE_C01R0202_GET_ACCE_NO		(SVSCRWK_START+154)
-/** –á‚Á‚½ƒAƒNƒZƒTƒŠ[”Ô†
+/** è²°ã£ãŸã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ç•ªå·
  */
 
 #define WK_D17SYSTEM_GET_POINT		(SVSCRWK_START+155)
-/** d17–ßƒ‰ƒY‚Ì“´ŒA@’Œ‚Ì‚ ‚é•”‰®‚ð’Ê‰ß‚µ‚½”
+/** d17æˆ»ãƒ©ã‚ºã®æ´žçªŸã€€æŸ±ã®ã‚ã‚‹éƒ¨å±‹ã‚’é€šéŽã—ãŸæ•°
  */
 #define WK_D17SYSTEM_PATH_MAP		(SVSCRWK_START+156)
-/** d17–ßƒ‰ƒY‚Ì“´ŒA@’Ê‰ß‚µ‚½•”‰®q‚×”
+/** d17æˆ»ãƒ©ã‚ºã®æ´žçªŸã€€é€šéŽã—ãŸéƒ¨å±‹è¿°ã¹æ•°
  */
 #define WK_SCENE_D26R0107			(SVSCRWK_START+157)
-/** ƒMƒ“ƒK’cƒAƒWƒg@ƒŒƒCƒAƒCƒnƒC‚Ì•”‰®
-01 ƒTƒ^[ƒ“íŒã`‰ð•úƒXƒCƒbƒ`‰Ÿ‚·‚Ü‚Å(•”‰®‚©‚ç‚Å‚ê‚È‚¢ƒXƒgƒbƒp[—LŒø)
+/** ã‚®ãƒ³ã‚¬å›£ã‚¢ã‚¸ãƒˆã€€ãƒ¬ã‚¤ã‚¢ã‚¤ãƒã‚¤ã®éƒ¨å±‹
+01 ã‚µã‚¿ãƒ¼ãƒ³æˆ¦å¾Œã€œè§£æ”¾ã‚¹ã‚¤ãƒƒãƒæŠ¼ã™ã¾ã§(éƒ¨å±‹ã‹ã‚‰ã§ã‚Œãªã„ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼æœ‰åŠ¹)
  */
 
 #define WK_SCENE_D31					(SVSCRWK_START+158)
-/* ƒoƒgƒ‹ƒ^ƒ[‘OƒCƒxƒ“ƒg
-01 ƒoƒgƒ‹ƒ^ƒCƒN[ƒ“Aƒ‰ƒCƒoƒ‹ƒCƒxƒ“ƒgI—¹
+/* ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å‰ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ãƒãƒˆãƒ«ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³ã€ãƒ©ã‚¤ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_T01R0201_GAME_CLEAR	(SVSCRWK_START+159)
-/* ƒQ[ƒ€ƒNƒŠƒAŒã‚Ìƒ}ƒ}‚Ì‰ï˜b
-01 ƒQ[ƒ€ƒNƒŠƒA‚µ‚ÄƒCƒxƒ“ƒg”­“®‰Â”\ó‘Ô
-02 ƒCƒxƒ“ƒgI—¹
+/* ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢å¾Œã®ãƒžãƒžã®ä¼šè©±
+01 ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã—ã¦ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•å¯èƒ½çŠ¶æ…‹
+02 ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_D25R0102		(SVSCRWK_START+160)
-/*	d25r0102 X‚Ì—mŠÙƒS[ƒXƒgƒCƒxƒ“ƒg
-01 ƒS[ƒXƒgƒCƒxƒ“ƒg”­¶Žž 
+/*	d25r0102 æ£®ã®æ´‹é¤¨ã‚´ãƒ¼ã‚¹ãƒˆã‚¤ãƒ™ãƒ³ãƒˆ
+01 ã‚´ãƒ¼ã‚¹ãƒˆã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿæ™‚ 
 */
 
 #define WK_SCENE_D25R0108		(SVSCRWK_START+161)
-/*	d25r0108 X‚Ì—mŠÙƒS[ƒXƒgƒCƒxƒ“ƒg
-01 ƒS[ƒXƒgƒCƒxƒ“ƒg”­¶Žž 
+/*	d25r0108 æ£®ã®æ´‹é¤¨ã‚´ãƒ¼ã‚¹ãƒˆã‚¤ãƒ™ãƒ³ãƒˆ
+01 ã‚´ãƒ¼ã‚¹ãƒˆã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿæ™‚ 
 */
 
 #define WK_SCENE_L02_BIGMAN		(SVSCRWK_START+162)
-/*	L02ƒiƒMƒT•û–Ê‚Ö‚ÌƒXƒgƒbƒp[
-00 ƒXƒgƒbƒp[—LŒø
-01 ƒXƒgƒbƒp[‰ðœ
+/*	L02ãƒŠã‚®ã‚µæ–¹é¢ã¸ã®ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+00 ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼æœ‰åŠ¹
+01 ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼è§£é™¤
 */
 
 #define WK_SCENE_D32R0101		(SVSCRWK_START+163)
-/*	(Œ³C11R0101)@ƒoƒgƒ‹ƒ^ƒ[Žó•tƒQ[ƒg
-00 ‰‚ß‚Ä“ž’B
-01 ‚»‚êˆÈŠO
+/*	(å…ƒC11R0101)ã€€ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å—ä»˜ã‚²ãƒ¼ãƒˆ
+00 åˆã‚ã¦åˆ°é”
+01 ãã‚Œä»¥å¤–
 */
 
 #define WK_SCENE_C04_STOPPER	(SVSCRWK_START+164)
-/*	C04‰º‘¤‚ÌƒXƒgƒbƒp[
-00 ƒXƒgƒbƒp[‰ðœ
-01 ƒXƒgƒbƒp[—LŒø
+/*	C04ä¸‹å´ã®ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
+00 ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼è§£é™¤
+01 ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼æœ‰åŠ¹
 */
 
 #define WK_SCENE_PLATE_MSG		(SVSCRWK_START+165)
-/*	ƒvƒŒ[ƒgƒƒbƒZ[ƒWƒ[ƒN
-01 - 08 ƒƒbƒZ[ƒW
+/*	ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯
+01 - 08 ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 */
 
 #define WK_SCENE_R212AR0101_POLICEMAN	(SVSCRWK_START+166)
-/* ‚¨‚Ü‚í‚è‚³‚ñ
-00 –³Œø
-01 —LŒø
+/* ãŠã¾ã‚ã‚Šã•ã‚“
+00 ç„¡åŠ¹
+01 æœ‰åŠ¹
 */ 
 
 #define WK_SCENE_T04R0301_RE_ITEM	(SVSCRWK_START+167)
-/* —a‚¯‚Ä‚¢‚éƒAƒCƒeƒ€”Ô†
+/* é ã‘ã¦ã„ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
 */
 
 #define WK_SCENE_D05R0116	(SVSCRWK_START+168)
-/* D05R0116 ƒAƒEƒX‚ÌoŒ»êŠ
-01 ƒAƒEƒXƒGƒ“ƒJƒEƒ“ƒgƒCƒxƒ“ƒg”­¶Žž
+/* D05R0116 ã‚¢ã‚¦ã‚¹ã®å‡ºç¾å ´æ‰€
+01 ã‚¢ã‚¦ã‚¹ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿæ™‚
 */
 
 #define WK_SCENE_R227_SEVEN2		(SVSCRWK_START+169)
-/* R227ƒCƒxƒ“ƒg
-01 ‚TlOƒCƒxƒ“ƒgI—¹
+/* R227ã‚¤ãƒ™ãƒ³ãƒˆ
+01 ï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C07_SUPPORT_GYM_AFTER		(SVSCRWK_START+170)
-/* C07ƒWƒ€Œã‚ÌƒTƒ|[ƒgƒCƒxƒ“ƒg
-01 ƒCƒxƒ“ƒgŠJŽn
-02 ƒCƒxƒ“ƒgI—¹
+/* C07ã‚¸ãƒ å¾Œã®ã‚µãƒãƒ¼ãƒˆã‚¤ãƒ™ãƒ³ãƒˆ
+01 ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C04R0205	(SVSCRWK_START+171)
-/*	ƒƒgƒ€•”‰®
-01 ”ŽŽmƒCƒxƒ“ƒgŠJŽn
-02 ”ŽŽmƒCƒxƒ“ƒgI—¹
+/*	ãƒ­ãƒˆãƒ éƒ¨å±‹
+01 åšå£«ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 åšå£«ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_CYCLINGROAD	(SVSCRWK_START+172)
-/* ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh
-01 ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh‚É“ü‚Á‚½‚Ì‚ÅŽ©“]ŽÔó‘Ô‚É‚·‚é(•ÏX‚µ‚½‚ç0‚É–ß‚é)
+/* ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰
+01 ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ã«å…¥ã£ãŸã®ã§è‡ªè»¢è»ŠçŠ¶æ…‹ã«ã™ã‚‹(å¤‰æ›´ã—ãŸã‚‰0ã«æˆ»ã‚‹)
 */
 
 #define WK_SCENE_C04R0201		(SVSCRWK_START+173)
-/* ƒMƒ“ƒK’cƒAƒWƒg
-01 ‘ÛŒxŽ@ƒCƒxƒ“ƒgI—¹
+/* ã‚®ãƒ³ã‚¬å›£ã‚¢ã‚¸ãƒˆ
+01 å›½éš›è­¦å¯Ÿã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_D02			(SVSCRWK_START+174)
-/* ”­“dŠ‘O
-01 ‘ÛŒxŽ@ƒCƒxƒ“ƒgŠJŽn
-02 ‘ÛŒxŽ@ƒCƒxƒ“ƒgI—¹
+/* ç™ºé›»æ‰€å‰
+01 å›½éš›è­¦å¯Ÿã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 å›½éš›è­¦å¯Ÿã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 #define WK_SCENE_C07R0301		(SVSCRWK_START+175)
-/* ‘qŒÉ
-01 ‘ÛŒxŽ@ƒCƒxƒ“ƒgŠJŽn
-02 ‘ÛŒxŽ@ƒCƒxƒ“ƒgI—¹
-03 ƒAƒWƒg‘ÛŒxŽ@ƒCƒxƒ“ƒgŠJŽn
-04 ƒAƒWƒg‘ÛŒxŽ@ƒCƒxƒ“ƒgI—¹
+/* å€‰åº«
+01 å›½éš›è­¦å¯Ÿã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+02 å›½éš›è­¦å¯Ÿã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+03 ã‚¢ã‚¸ãƒˆå›½éš›è­¦å¯Ÿã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+04 ã‚¢ã‚¸ãƒˆå›½éš›è­¦å¯Ÿã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 */
 
 //#define WK_SCENE_NONE		(SVSCRWK_START+176)			/* Max = 176 */

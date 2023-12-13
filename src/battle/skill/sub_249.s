@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_249.s
- *@brief	�퓬�V�[�P���X
- *			�܂Ё{�Ђ�ނ̒ǉ����ʃV�[�P���X�i�^�����_���[�W��1/2�j
+ *@brief	戦闘シーケンス
+ *			まひ＋ひるむの追加効果シーケンス（与えたダメージの1/2）
  *@author	HisashiSogabe
  *@data		2006.05.05
  *

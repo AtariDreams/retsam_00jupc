@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	gym_def.h
- * @brief	ƒXƒNƒŠƒvƒg‚ÅŽg—p‚·‚éƒWƒ€ŠÖ˜A’è‹`
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ä½¿ç”¨ã™ã‚‹ã‚¸ãƒ é–¢é€£å®šç¾©
  * @date	2006.04.21
  *
  */
@@ -9,14 +9,14 @@
 #ifndef _GYM_DEF_H_
 #define _GYM_DEF_H_
 
-//“d‹CƒWƒ€
-#define ELEC_GYM_ROOM1	(0)	//1•”‰®–Ú
-#define ELEC_GYM_ROOM2	(1)	//2•”‰®–Ú
-#define ELEC_GYM_ROOM3	(2)	//3•”‰®–Ú
+//é›»æ°—ã‚¸ãƒ 
+#define ELEC_GYM_ROOM1	(0)	//1éƒ¨å±‹ç›®
+#define ELEC_GYM_ROOM2	(1)	//2éƒ¨å±‹ç›®
+#define ELEC_GYM_ROOM3	(2)	//3éƒ¨å±‹ç›®
 
-#define ROTATE_GEAR_PLUS90		(0)		//90‹‰ñ“]@ƒXƒNƒŠƒvƒg‚Å‚à”Žš‚ÍŽg‚¤
-#define ROTATE_GEAR_MINUS90		(1)		//-90‹‰ñ“]@ƒXƒNƒŠƒvƒg‚Å‚à”Žš‚ÍŽg‚¤
-#define ROTATE_GEAR_PLUS180		(2)		//180‹@ƒXƒNƒŠƒvƒg‚Å‚à”Žš‚ÍŽg‚¤
+#define ROTATE_GEAR_PLUS90		(0)		//90Â°å›žè»¢ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ã‚‚æ•°å­—ã¯ä½¿ã†
+#define ROTATE_GEAR_MINUS90		(1)		//-90Â°å›žè»¢ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ã‚‚æ•°å­—ã¯ä½¿ã†
+#define ROTATE_GEAR_PLUS180		(2)		//180Â°ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ã‚‚æ•°å­—ã¯ä½¿ã†
 
 #endif	//_GYM_DEF_H_
 

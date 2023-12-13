@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	map_tool.c
- * @bfief	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒc[ƒ‹
+ * @bfief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ„ãƒ¼ãƒ«
  * @author	Nozomu Saitou
  *
  */
@@ -19,7 +19,7 @@
 #define HIT_ATTR_MASK	(0x1)
 #define LSB_MASK		(0xff)
 
-#define MOVE_HEIGHT_DEF	(20*FX32_ONE)	//20ƒ†ƒjƒbƒg (1.5ƒOƒŠƒbƒh24ƒ†ƒjƒbƒg‚¾‚ÆAŒë·‚ªo‚½‚Æ‚«‚É‘Î‰‚ª“ï‚µ‚¢‚Ì‚ÅAØ‚è‹l‚ß‚Ü‚µ‚½)
+#define MOVE_HEIGHT_DEF	(20*FX32_ONE)	//20ãƒ¦ãƒ‹ãƒƒãƒˆ (1.5ã‚°ãƒªãƒƒãƒ‰ï¼24ãƒ¦ãƒ‹ãƒƒãƒˆã ã¨ã€èª¤å·®ãŒå‡ºãŸã¨ãã«å¯¾å¿œãŒé›£ã—ã„ã®ã§ã€åˆ‡ã‚Šè©°ã‚ã¾ã—ãŸ)
 //static BOOL GetGroundMapHeight(FIELDSYS_WORK *fsys, VecFx32 *ioPos);
 //static BOOL GetUnderMapHeight(FIELDSYS_WORK *fsys, VecFx32 *ioPos);
 static const fx32 GetGroundMapHeight(	const FIELDSYS_WORK *fsys,
@@ -61,12 +61,12 @@ static const MAP_TOOL_LIST UnderMapToolList =
 
 //==============================================================================
 /**
- * 2‚Â‚Ì’l‚Ì·•ª‚ğ•Ô‚·(³’l)
+ * 2ã¤ã®å€¤ã®å·®åˆ†ã‚’è¿”ã™(æ­£å€¤)
  *
- * @param   inVal1	’l1‚Â–Ú
- * @param	inVal2	’l2‚Â–Ú
+ * @param   inVal1	å€¤1ã¤ç›®
+ * @param	inVal2	å€¤2ã¤ç›®
  *
- * @retval  fx32	·•ª’l
+ * @retval  fx32	å·®åˆ†å€¤
  */
 //==============================================================================
 static fx32 GetSubVal(const fx32 inVal1, const fx32 inVal2)
@@ -83,15 +83,15 @@ static fx32 GetSubVal(const fx32 inVal1, const fx32 inVal2)
 
 //==============================================================================
 /**
- * ’nã‚‚³æ“¾
+ * åœ°ä¸Šé«˜ã•å–å¾—
  *
- * @param   fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inNowHeight	Œ»İ‚‚³
- * @param	inX			‚wÀ•W
- * @param	inZ			‚yÀ•W
- * @param	outCode		‚‚³ƒ^ƒCƒvi’ÊíEŠg’£j
+ * @param   fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inNowHeight	ç¾åœ¨é«˜ã•
+ * @param	inX			ï¼¸åº§æ¨™
+ * @param	inZ			ï¼ºåº§æ¨™
+ * @param	outCode		é«˜ã•ã‚¿ã‚¤ãƒ—ï¼ˆé€šå¸¸ãƒ»æ‹¡å¼µï¼‰
  *
- * @retval  fx32		æ“¾‚‚³
+ * @retval  fx32		å–å¾—é«˜ã•
  */
 //==============================================================================
 static const fx32 GetGroundMapHeight(
@@ -137,11 +137,11 @@ static const fx32 GetGroundMapHeight(
 		map_w = GetWorldMapMatrixW(fsys->World);
 		map_grid_w = map_w*BLOCK_GRID_W;
 		
-		//Œ»İƒuƒƒbƒN‚ğŒvZ
+		//ç¾åœ¨ãƒ–ãƒ­ãƒƒã‚¯ã‚’è¨ˆç®—
 		grid_x = (inX-org_pos.x) /(16*FX32_ONE);
 		grid_z = (inZ-org_pos.z) /(16*FX32_ONE);
 		
-		//Šg’£‚‚³ƒf[ƒ^‚ğ’²‚×‚é
+		//æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‚’èª¿ã¹ã‚‹
 		ex_rc = EXH_HitCheckExHeight(
 			grid_x, grid_z, fsys->ExHeightList, &index);
 
@@ -149,7 +149,7 @@ static const fx32 GetGroundMapHeight(
 		block_z = grid_z / BLOCK_GRID_H;
 		block_index = block_x+block_z*map_w;
 	
-		//©‹@À•W‚ÉƒuƒƒbƒNƒIƒtƒZƒbƒg•ª‚ğŒ¸Z
+		//è‡ªæ©Ÿåº§æ¨™ã«ãƒ–ãƒ­ãƒƒã‚¯ã‚ªãƒ•ã‚»ãƒƒãƒˆåˆ†ã‚’æ¸›ç®—
 		x_ofs = ((block_x*BLOCK_GRID_W)+(BLOCK_GRID_W/2))*16*FX32_ONE;
 		z_ofs = ((block_z*BLOCK_GRID_H)+(BLOCK_GRID_H/2))*16*FX32_ONE;
 		target.x = inX - x_ofs - org_pos.x;
@@ -162,7 +162,7 @@ static const fx32 GetGroundMapHeight(
 		if (local_index>3){
 			normal_rc = FALSE;
 		}else{
-			//‚‚³æ“¾
+			//é«˜ã•å–å¾—
 			{
 				MHI_CONST_PTR  height_info =
 					GetDivMapHeightInfo(dmc,local_index);
@@ -175,14 +175,14 @@ static const fx32 GetGroundMapHeight(
 
 	if (ex_rc){
 		fx32 ex_height;
-		//Šg’£‚‚³ƒf[ƒ^æ“¾
+		//æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿å–å¾—
 		ex_height = EXH_GetExHeight(index, fsys->ExHeightList);
 		if (normal_rc){
 			OS_Printf_saitou("local_print ex_nor=%x,%x\n",ex_height,target.y);
-			//‚Ç‚¿‚ç‚ğÌ—p‚·‚é‚©‚ğƒ`ƒFƒbƒN
-			//‚‚¢‚Ù‚¤‚ğ’²‚×‚é
+			//ã©ã¡ã‚‰ã‚’æ¡ç”¨ã™ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
+			//é«˜ã„ã»ã†ã‚’èª¿ã¹ã‚‹
 			if (ex_height<=target.y){
-				//’Êí‚Ì•û‚ª‚‚¢ê‡‚Í‚»‚ê‚ğÌ—p
+				//é€šå¸¸ã®æ–¹ãŒé«˜ã„å ´åˆã¯ãã‚Œã‚’æ¡ç”¨
 ///				rc = TRUE;
 ///				ioPos->y = target.y;
 				code = HEIGHT_NORMAL;
@@ -190,18 +190,18 @@ static const fx32 GetGroundMapHeight(
 			}else{
 				fx32 sub1,sub2;
 				OS_Printf_saitou("local_print ex,target,now=%x,%x,%x\n",ex_height,target.y,height);
-				//Šg’£‚Ì•û‚ª‚‚¢ê‡‚Íw’è‚‚³‚É‹ß‚¢‚Ù‚¤‚ğÌ—p
-				sub1 = GetSubVal(target.y, inHeight);	//’Êí‚‚³‚ÆŒ»İ’l‚Ì·
-				sub2 = GetSubVal(ex_height, inHeight);	//Šg’£‚‚³‚ÆŒ»İ’l‚Ì·
-				OS_Printf_saitou("local_print ·•ª%x,%x\n",sub1,sub2);
+				//æ‹¡å¼µã®æ–¹ãŒé«˜ã„å ´åˆã¯æŒ‡å®šé«˜ã•ã«è¿‘ã„ã»ã†ã‚’æ¡ç”¨
+				sub1 = GetSubVal(target.y, inHeight);	//é€šå¸¸é«˜ã•ã¨ç¾åœ¨å€¤ã®å·®
+				sub2 = GetSubVal(ex_height, inHeight);	//æ‹¡å¼µé«˜ã•ã¨ç¾åœ¨å€¤ã®å·®
+				OS_Printf_saitou("local_print å·®åˆ†%x,%x\n",sub1,sub2);
 				if (sub1 <= sub2){
-					//’Êí‚‚³‚ğÌ—p
+					//é€šå¸¸é«˜ã•ã‚’æ¡ç”¨
 ///					ioPos->y = target.y;
 					height = target.y;
 					code = HEIGHT_NORMAL;
 				}else{
-					//Šg’£‚‚³‚ğÌ—p
-				OS_Printf_saitou("local_print Šg’£‚‚³‚ğÌ—p\n");
+					//æ‹¡å¼µé«˜ã•ã‚’æ¡ç”¨
+				OS_Printf_saitou("local_print æ‹¡å¼µé«˜ã•ã‚’æ¡ç”¨\n");
 ///					ioPos->y = ex_height;
 					height = ex_height;
 					code = HEIGHT_EXPAND;
@@ -209,7 +209,7 @@ static const fx32 GetGroundMapHeight(
 ///				rc = TRUE;
 			}
 		}else{
-			//Šg’£‚‚³ƒf[ƒ^‚Ì‚İ‚Éƒqƒbƒg
+			//æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ã¿ã«ãƒ’ãƒƒãƒˆ
 ///			rc = TRUE;
 ///			ioPos->y = ex_height;
 			code = HEIGHT_EXPAND;
@@ -275,18 +275,18 @@ static const fx32 GetGroundMapHeight(	const FIELDSYS_WORK *fsys,
 		map_w = GetWorldMapMatrixW(fsys->World);
 		map_grid_w = map_w*BLOCK_GRID_W;
 		
-		//Œ»İƒuƒƒbƒN‚ğŒvZ
+		//ç¾åœ¨ãƒ–ãƒ­ãƒƒã‚¯ã‚’è¨ˆç®—
 		grid_x = inX/(16*FX32_ONE);
 		grid_z = inZ/(16*FX32_ONE);
 
-		//Šg’£‚‚³ƒf[ƒ^‚ğ’²‚×‚é
+		//æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‚’èª¿ã¹ã‚‹
 		ex_rc = EXH_HitCheckExHeight(grid_x, grid_z, fsys->ExHeightList, &index);
 
 		block_x = grid_x / BLOCK_GRID_W;
 		block_z = grid_z / BLOCK_GRID_H;
 		block_index = block_x+block_z*map_w;
 	
-		//©‹@À•W‚ÉƒuƒƒbƒNƒIƒtƒZƒbƒg•ª‚ğŒ¸Z
+		//è‡ªæ©Ÿåº§æ¨™ã«ãƒ–ãƒ­ãƒƒã‚¯ã‚ªãƒ•ã‚»ãƒƒãƒˆåˆ†ã‚’æ¸›ç®—
 		x_ofs = ((block_x*BLOCK_GRID_W)+(BLOCK_GRID_W/2))*16*FX32_ONE;
 		z_ofs = ((block_z*BLOCK_GRID_H)+(BLOCK_GRID_H/2))*16*FX32_ONE;
 		target.x = inX - x_ofs;
@@ -298,7 +298,7 @@ static const fx32 GetGroundMapHeight(	const FIELDSYS_WORK *fsys,
 		if (local_index>3){
 			normal_rc = FALSE;
 		}else{
-			//‚‚³æ“¾
+			//é«˜ã•å–å¾—
 			{
 				MHI_CONST_PTR  height_info = GetDivMapHeightInfo(map_data_ptr,local_index);
 				///OS_Printf_saitou("local_idx=%d\n",local_index);
@@ -309,14 +309,14 @@ static const fx32 GetGroundMapHeight(	const FIELDSYS_WORK *fsys,
 
 	if (ex_rc){
 		fx32 ex_height;
-		//Šg’£‚‚³ƒf[ƒ^æ“¾
+		//æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿å–å¾—
 		ex_height = EXH_GetExHeight(index, fsys->ExHeightList);
 		if (normal_rc){
 			OS_Printf_saitou("local_print ex_nor=%x,%x\n",ex_height,target.y);
-			//‚Ç‚¿‚ç‚ğÌ—p‚·‚é‚©‚ğƒ`ƒFƒbƒN
-			//‚‚¢‚Ù‚¤‚ğ’²‚×‚é
+			//ã©ã¡ã‚‰ã‚’æ¡ç”¨ã™ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
+			//é«˜ã„ã»ã†ã‚’èª¿ã¹ã‚‹
 			if (ex_height<=target.y){
-				//’Êí‚Ì•û‚ª‚‚¢ê‡‚Í‚»‚ê‚ğÌ—p
+				//é€šå¸¸ã®æ–¹ãŒé«˜ã„å ´åˆã¯ãã‚Œã‚’æ¡ç”¨
 ///				rc = TRUE;
 ///				ioPos->y = target.y;
 				code = HEIGHT_NORMAL;
@@ -324,18 +324,18 @@ static const fx32 GetGroundMapHeight(	const FIELDSYS_WORK *fsys,
 			}else{
 				fx32 sub1,sub2;
 				OS_Printf_saitou("local_print ex,target,now=%x,%x,%x\n",ex_height,target.y,height);
-				//Šg’£‚Ì•û‚ª‚‚¢ê‡‚Íw’è‚‚³‚É‹ß‚¢‚Ù‚¤‚ğÌ—p
-				sub1 = GetSubVal(target.y, inNowHeight);	//’Êí‚‚³‚ÆŒ»İ’l‚Ì·
-				sub2 = GetSubVal(ex_height, inNowHeight);	//Šg’£‚‚³‚ÆŒ»İ’l‚Ì·
-				OS_Printf_saitou("local_print ·•ª%x,%x\n",sub1,sub2);
+				//æ‹¡å¼µã®æ–¹ãŒé«˜ã„å ´åˆã¯æŒ‡å®šé«˜ã•ã«è¿‘ã„ã»ã†ã‚’æ¡ç”¨
+				sub1 = GetSubVal(target.y, inNowHeight);	//é€šå¸¸é«˜ã•ã¨ç¾åœ¨å€¤ã®å·®
+				sub2 = GetSubVal(ex_height, inNowHeight);	//æ‹¡å¼µé«˜ã•ã¨ç¾åœ¨å€¤ã®å·®
+				OS_Printf_saitou("local_print å·®åˆ†%x,%x\n",sub1,sub2);
 				if (sub1 <= sub2){
-					//’Êí‚‚³‚ğÌ—p
+					//é€šå¸¸é«˜ã•ã‚’æ¡ç”¨
 ///					ioPos->y = target.y;
 					height = target.y;
 					code = HEIGHT_NORMAL;
 				}else{
-					//Šg’£‚‚³‚ğÌ—p
-				OS_Printf_saitou("local_print Šg’£‚‚³‚ğÌ—p\n");
+					//æ‹¡å¼µé«˜ã•ã‚’æ¡ç”¨
+				OS_Printf_saitou("local_print æ‹¡å¼µé«˜ã•ã‚’æ¡ç”¨\n");
 ///					ioPos->y = ex_height;
 					height = ex_height;
 					code = HEIGHT_EXPAND;
@@ -343,7 +343,7 @@ static const fx32 GetGroundMapHeight(	const FIELDSYS_WORK *fsys,
 ///				rc = TRUE;
 			}
 		}else{
-			//Šg’£‚‚³ƒf[ƒ^‚Ì‚İ‚Éƒqƒbƒg
+			//æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ã¿ã«ãƒ’ãƒƒãƒˆ
 ///			rc = TRUE;
 ///			ioPos->y = ex_height;
 			code = HEIGHT_EXPAND;
@@ -371,15 +371,15 @@ static const fx32 GetGroundMapHeight(	const FIELDSYS_WORK *fsys,
 
 //==============================================================================
 /**
- * ’n‰º‚‚³æ“¾
+ * åœ°ä¸‹é«˜ã•å–å¾—
  *
- * @param   fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inNowHeight	Œ»İ‚‚³
- * @param	inX			‚wÀ•W
- * @param	inZ			‚yÀ•W
- * @param	outCode		‚‚³ƒ^ƒCƒvi’ÊíEŠg’£j
+ * @param   fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inNowHeight	ç¾åœ¨é«˜ã•
+ * @param	inX			ï¼¸åº§æ¨™
+ * @param	inZ			ï¼ºåº§æ¨™
+ * @param	outCode		é«˜ã•ã‚¿ã‚¤ãƒ—ï¼ˆé€šå¸¸ãƒ»æ‹¡å¼µï¼‰
  *
- * @retval  fx32		æ“¾‚‚³
+ * @retval  fx32		å–å¾—é«˜ã•
  */
 //==============================================================================
 static const fx32 GetUnderMapHeight(	const FIELDSYS_WORK *fsys,
@@ -391,7 +391,7 @@ static const fx32 GetUnderMapHeight(	const FIELDSYS_WORK *fsys,
 	fx32 height;
 	u8 code;
 	
-	//ƒOƒŠƒbƒh‚É•ÏŠ·
+	//ã‚°ãƒªãƒƒãƒ‰ã«å¤‰æ›
 	grid_x = inX / (16*FX32_ONE);
 	grid_z = inZ / (16*FX32_ONE);
 
@@ -409,21 +409,21 @@ static const fx32 GetUnderMapHeight(	const FIELDSYS_WORK *fsys,
 		*outCode = code;
 	}
 	
-	//‚‚³‚Í‚O‚ğƒZƒbƒg
+	//é«˜ã•ã¯ï¼ã‚’ã‚»ãƒƒãƒˆ
 	height = 0;
 	return height;
 }
 
 //==============================================================================
 /**
- * ’nãƒAƒgƒŠƒrƒ…[ƒgæ“¾
+ * åœ°ä¸Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
  *
- * @param   fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inX			ƒOƒŠƒbƒhXÀ•W
- * @param	inZ			ƒOƒŠƒbƒhZÀ•W
- * @param	outAttr		ƒAƒgƒŠƒrƒ…[ƒg
+ * @param   fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inX			ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inZ			ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	outAttr		ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  *
- * @retval  BOOL		TRUE:æ“¾¬Œ÷		FALSE:æ“¾¸”s
+ * @retval  BOOL		TRUE:å–å¾—æˆåŠŸ		FALSE:å–å¾—å¤±æ•—
  */
 //==============================================================================
 static BOOL GetGroundAttribute(
@@ -455,7 +455,7 @@ static BOOL GetGroundAttribute(
 		}
 		
 		{
-			u32 local_grid_index;	//0`1023
+			u32 local_grid_index;	//0ã€œ1023
 			u16 const *attribute;
 			local_grid_index = (inGridZ % BLOCK_GRID_H) *
 				BLOCK_GRID_W + (inGridX % BLOCK_GRID_W);
@@ -508,12 +508,12 @@ static BOOL GetGroundAttribute(const FIELDSYS_WORK *fsys, const int inX, const i
 		}
 */
 		{
-			u32 local_grid_index;	//0`1023
+			u32 local_grid_index;	//0ã€œ1023
 			u16 const *attribute;
 			local_grid_index = (inZ % BLOCK_GRID_H)*BLOCK_GRID_W+(inX % BLOCK_GRID_W);
 			
 			//OS_Printf_saitou("local_grid_index = %d\n",local_grid_index);
-			//ƒAƒgƒŠƒrƒ…[ƒgæ“¾
+			//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
 			attribute = GetDivMapAttribute(map_data_ptr, local_index);
 			*outAttr = attribute[local_grid_index];
 			return TRUE;
@@ -524,14 +524,14 @@ static BOOL GetGroundAttribute(const FIELDSYS_WORK *fsys, const int inX, const i
 
 //==============================================================================
 /**
- * ’n‰ºƒAƒgƒŠƒrƒ…[ƒgæ“¾
+ * åœ°ä¸‹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
  *
- * @param   fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inX			ƒOƒŠƒbƒhXÀ•W
- * @param	inZ			ƒOƒŠƒbƒhZÀ•W
- * @param	outAttr		ƒAƒgƒŠƒrƒ…[ƒg
+ * @param   fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inX			ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inZ			ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	outAttr		ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  *
- * @retval  BOOL	•K‚¸TRUE‚ª‚©‚¦‚è‚Ü‚·
+ * @retval  BOOL	å¿…ãšTRUEãŒã‹ãˆã‚Šã¾ã™
  */
 //==============================================================================
 static BOOL GetUnderAttribute(const FIELDSYS_WORK *fsys, const int inX, const int inZ, u16 *outAttr)
@@ -559,10 +559,10 @@ static BOOL GetUnderAttribute(const FIELDSYS_WORK *fsys, const int inX, const in
 	
 		//grid_no = inX+inZ*map_grid_w;
 
-		//fsys‚É‚Ô‚ç‰º‚ª‚é’n‰ºƒ}ƒbƒsƒ“ƒOƒf[ƒ^i30‚˜30j‚ÉƒOƒŠƒbƒhƒiƒ“ƒo[‚ğ“Š‚°‚ÄB‚O`‚P‚X‚Ì‘Î‰ƒCƒ“ƒfƒbƒNƒX‚ğ‚à‚ç‚¤
+		//fsysã«ã¶ã‚‰ä¸‹ãŒã‚‹åœ°ä¸‹ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ï¼ˆ30ï½˜30ï¼‰ã«ã‚°ãƒªãƒƒãƒ‰ãƒŠãƒ³ãƒãƒ¼ã‚’æŠ•ã’ã¦ã€‚ï¼ã€œï¼‘ï¼™ã®å¯¾å¿œã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚‚ã‚‰ã†
 		//under_index = fsys->under_map[grid_no];
 		{
-			u32 local_grid_index;	//0`1023
+			u32 local_grid_index;	//0ã€œ1023
 			u16 const *block_attr;
 			local_grid_index = (inZ % BLOCK_GRID_H)*BLOCK_GRID_W+(inX % BLOCK_GRID_W);
 			///OS_Printf_saitou("local_=%d",local_grid_index);
@@ -576,10 +576,10 @@ static BOOL GetUnderAttribute(const FIELDSYS_WORK *fsys, const int inX, const in
 
 //==============================================================================
 /**
- * ƒ}ƒbƒvƒc[ƒ‹ƒŠƒXƒg‚ÌƒZƒbƒg
+ * ãƒãƒƒãƒ—ãƒ„ãƒ¼ãƒ«ãƒªã‚¹ãƒˆã®ã‚»ãƒƒãƒˆ
  *
- * @param   outMapToolList	ƒ}ƒbƒvƒc[ƒ‹ƒŠƒXƒgƒ|ƒCƒ“ƒ^
- * @param	inMapMode		ƒ}ƒbƒvƒ‚[ƒh
+ * @param   outMapToolList	ãƒãƒƒãƒ—ãƒ„ãƒ¼ãƒ«ãƒªã‚¹ãƒˆãƒã‚¤ãƒ³ã‚¿
+ * @param	inMapMode		ãƒãƒƒãƒ—ãƒ¢ãƒ¼ãƒ‰
  *
  * @retval  none
  */
@@ -597,13 +597,13 @@ void SetUpMapToolList(MTL_CONST_PTR *outMapToolList, MAP_TOOL_MODE inMapMode)
 
 //==============================================================================
 /**
- * ‚ ‚½‚èŒŸo
+ * ã‚ãŸã‚Šæ¤œå‡º
  *
- * @param   fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inX	ƒOƒŠƒbƒhXÀ•W
- * @param	inZ	ƒOƒŠƒbƒhZÀ•W
+ * @param   fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inX	ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inZ	ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
  *
- * @retval  BOOL	TRUE:i“ü•s‰Â	FALSE:i“ü‰Â
+ * @retval  BOOL	TRUE:é€²å…¥ä¸å¯	FALSE:é€²å…¥å¯
  */
 //==============================================================================
 BOOL GetHitAttr(const FIELDSYS_WORK *fsys, const int inX, const int inZ)
@@ -628,13 +628,13 @@ BOOL GetHitAttr(const FIELDSYS_WORK *fsys, const int inX, const int inZ)
 
 //==============================================================================
 /**
- * ƒAƒgƒŠƒrƒ…[ƒgæ“¾(2ƒoƒCƒg)
+ * ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—(2ãƒã‚¤ãƒˆ)
  *
- * @param	*fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inX		XƒOƒŠƒbƒhÀ•W
- * @param	inZ		ZƒOƒŠƒbƒhÀ•W
+ * @param	*fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inX		Xã‚°ãƒªãƒƒãƒ‰åº§æ¨™
+ * @param	inZ		Zã‚°ãƒªãƒƒãƒ‰åº§æ¨™
  *
- * @return	attrbute	ƒAƒgƒŠƒrƒ…[ƒg@¸”s‚Ìê‡‚Í0‚ğ•Ô‚·
+ * @return	attrbute	ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã€€å¤±æ•—ã®å ´åˆã¯0ã‚’è¿”ã™
  */
 //==============================================================================
 u16 GetAttribute(const FIELDSYS_WORK *fsys, const int inX, const int inZ)
@@ -646,19 +646,19 @@ u16 GetAttribute(const FIELDSYS_WORK *fsys, const int inX, const int inZ)
 	if(rc){
 		return attribute;
 	}
-	//æ“¾¸”s
+	//å–å¾—å¤±æ•—
 	return 0;
 }
 
 //==============================================================================
 /**
- * ƒAƒgƒŠƒrƒ…[ƒgæ“¾(‰ºˆÊ1ƒoƒCƒg)
+ * ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—(ä¸‹ä½1ãƒã‚¤ãƒˆ)
  *
- * @param	*fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inX		XƒOƒŠƒbƒhÀ•W
- * @param	inZ		ZƒOƒŠƒbƒhÀ•W
+ * @param	*fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inX		Xã‚°ãƒªãƒƒãƒ‰åº§æ¨™
+ * @param	inZ		Zã‚°ãƒªãƒƒãƒ‰åº§æ¨™
  *
- * @return	attrbute	ƒAƒgƒŠƒrƒ…[ƒg@¸”s‚Ìê‡‚Í0‚ğ•Ô‚·
+ * @return	attrbute	ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã€€å¤±æ•—ã®å ´åˆã¯0ã‚’è¿”ã™
  */
 //==============================================================================
 MATR GetAttributeLSB(const FIELDSYS_WORK *fsys, const int inX, const int inZ)
@@ -674,19 +674,19 @@ MATR GetAttributeLSB(const FIELDSYS_WORK *fsys, const int inX, const int inZ)
 		atr &= LSB_MASK;
 		return atr;
 	}
-	//æ“¾¸”s
+	//å–å¾—å¤±æ•—
 	return MATTR_NO_ATTR;
 }
 
 //==============================================================================
 /**
- * ƒAƒgƒŠƒrƒ…[ƒgæ“¾(ãˆÊ1ƒoƒCƒg)
+ * ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—(ä¸Šä½1ãƒã‚¤ãƒˆ)
  *
- * @param	*fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inX		XƒOƒŠƒbƒhÀ•W
- * @param	inZ		ZƒOƒŠƒbƒhÀ•W
+ * @param	*fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inX		Xã‚°ãƒªãƒƒãƒ‰åº§æ¨™
+ * @param	inZ		Zã‚°ãƒªãƒƒãƒ‰åº§æ¨™
  *
- * @return	attrbute	ƒAƒgƒŠƒrƒ…[ƒg@¸”s‚Ìê‡‚Í0‚ğ•Ô‚·
+ * @return	attrbute	ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã€€å¤±æ•—ã®å ´åˆã¯0ã‚’è¿”ã™
  */
 //==============================================================================
 u8 GetAttributeHSB(const FIELDSYS_WORK *fsys, const int inX, const int inZ)
@@ -701,7 +701,7 @@ u8 GetAttributeHSB(const FIELDSYS_WORK *fsys, const int inX, const int inZ)
 		atr &= LSB_MASK;
 		return atr;
 	}
-	//æ“¾¸”s
+	//å–å¾—å¤±æ•—
 	return 0;
 }
 
@@ -709,15 +709,15 @@ u8 GetAttributeHSB(const FIELDSYS_WORK *fsys, const int inX, const int inZ)
 
 //==============================================================================
 /**
- * ‚‚³æ“¾
+ * é«˜ã•å–å¾—
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^	
- * @param	inNowHeight		Œ»İ‚‚³
- * @param	inX				‚wÀ•W
- * @param	inZ				‚yÀ•W
- * @param	outCode			‚‚³ƒ^ƒCƒv(’ÊíEŠg’£)
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿	
+ * @param	inNowHeight		ç¾åœ¨é«˜ã•
+ * @param	inX				ï¼¸åº§æ¨™
+ * @param	inZ				ï¼ºåº§æ¨™
+ * @param	outCode			é«˜ã•ã‚¿ã‚¤ãƒ—(é€šå¸¸ãƒ»æ‹¡å¼µ)
  *
- * @return	fx32	æ“¾‚‚³
+ * @return	fx32	å–å¾—é«˜ã•
  */
 //==============================================================================
 const fx32 GetHeightPack(	const FIELDSYS_WORK *fsys,
@@ -733,9 +733,9 @@ const fx32 GetHeightPack(	const FIELDSYS_WORK *fsys,
 #if 0
 //==============================================================================
 /**
- * ‚‚³æ“¾
+ * é«˜ã•å–å¾—
  *
- * @param	*ioHeroPoint	©‹@À•W
+ * @param	*ioHeroPoint	è‡ªæ©Ÿåº§æ¨™
  *
  * @return	none
  */
@@ -755,9 +755,9 @@ BOOL GetHeightPack_old(	FIELDSYS_WORK *fsys, VecFx32 *ioVec)
 #if 0
 //==============================================================================
 /**
- * ‚‚³æ“¾
+ * é«˜ã•å–å¾—
  *
- * @param	*ioHeroPoint	©‹@À•W
+ * @param	*ioHeroPoint	è‡ªæ©Ÿåº§æ¨™
  *
  * @return	none
  */
@@ -777,43 +777,43 @@ const fx32 GetHeightPackEx(	FIELDSYS_WORK *fsys,
 		BOOL ex_rc;
 		u8 index;
 		u32	grid_x,grid_z;
-		//Œ»İƒuƒƒbƒN‚ğŒvZ
+		//ç¾åœ¨ãƒ–ãƒ­ãƒƒã‚¯ã‚’è¨ˆç®—
 		grid_x = inX/(16*FX32_ONE);
 		grid_z = inZ/(16*FX32_ONE);
 		
-		//Šg’£‚‚³ƒf[ƒ^‚ğ’²‚×‚é
+		//æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‚’èª¿ã¹ã‚‹
 		ex_rc = EXH_HitCheckExHeight(grid_x, grid_z, fsys->ExHeightList, &index);
 
 		if (ex_rc){
-			//Šg’£‚‚³ƒf[ƒ^æ“¾
+			//æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿å–å¾—
 			ex_height = EXH_GetExHeight(index, fsys->ExHeightList);
 			OS_Printf_saitou("local_print ex_nor=%x,%x\n",ex_height,height);
-			//‚Ç‚¿‚ç‚ğÌ—p‚·‚é‚©‚ğƒ`ƒFƒbƒN
-			//‚‚¢‚Ù‚¤‚ğ’²‚×‚é
+			//ã©ã¡ã‚‰ã‚’æ¡ç”¨ã™ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
+			//é«˜ã„ã»ã†ã‚’èª¿ã¹ã‚‹
 			if (ex_height<=height){
-				//’Êí‚Ì•û‚ª‚‚¢ê‡‚Í‚»‚ê‚ğÌ—p
+				//é€šå¸¸ã®æ–¹ãŒé«˜ã„å ´åˆã¯ãã‚Œã‚’æ¡ç”¨
 				code = HEIGHT_NORMAL;
 				return_height = height;
 			}else{
 				fx32 sub1,sub2;
 				OS_Printf_saitou("local_print ex,target,now=%x,%x,%x\n",ex_height,height,inNowY);
-				//Šg’£‚Ì•û‚ª‚‚¢ê‡‚Íw’è‚‚³‚É‹ß‚¢‚Ù‚¤‚ğÌ—p
-				sub1 = GetSubVal(height, inNowY);	//’Êí‚‚³‚ÆŒ»İ’l‚Ì·
-				sub2 = GetSubVal(ex_height, inNowY);	//Šg’£‚‚³‚ÆŒ»İ’l‚Ì·
-				OS_Printf_saitou("local_print ·•ª%x,%x\n",sub1,sub2);
+				//æ‹¡å¼µã®æ–¹ãŒé«˜ã„å ´åˆã¯æŒ‡å®šé«˜ã•ã«è¿‘ã„ã»ã†ã‚’æ¡ç”¨
+				sub1 = GetSubVal(height, inNowY);	//é€šå¸¸é«˜ã•ã¨ç¾åœ¨å€¤ã®å·®
+				sub2 = GetSubVal(ex_height, inNowY);	//æ‹¡å¼µé«˜ã•ã¨ç¾åœ¨å€¤ã®å·®
+				OS_Printf_saitou("local_print å·®åˆ†%x,%x\n",sub1,sub2);
 				if (sub1 <= sub2){
-					//’Êí‚‚³‚ğÌ—p
+					//é€šå¸¸é«˜ã•ã‚’æ¡ç”¨
 					return_height = height;
 					code = HEIGHT_NORMAL;
 				}else{
-					//Šg’£‚‚³‚ğÌ—p
-				OS_Printf_saitou("local_print Šg’£‚‚³‚ğÌ—p\n");
+					//æ‹¡å¼µé«˜ã•ã‚’æ¡ç”¨
+				OS_Printf_saitou("local_print æ‹¡å¼µé«˜ã•ã‚’æ¡ç”¨\n");
 					return_height = ex_height;
 					code = HEIGHT_EXPAND;
 				}
 			}
 		}else{
-			//Šg’£‚‚³ƒf[ƒ^‚Ì‚İ‚Éƒqƒbƒg
+			//æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã®ã¿ã«ãƒ’ãƒƒãƒˆ
 			code = HEIGHT_EXPAND;
 			return_height = ex_height;
 		}
@@ -827,15 +827,15 @@ const fx32 GetHeightPackEx(	FIELDSYS_WORK *fsys,
 #endif
 //==============================================================================
 /**
- * Œ»İ‚Ì‚‚³‚Æw’è‚Ì‚‚³‚©‚ç’i·‚Å‚ ‚é‚©‚ğ’²‚×‚é
+ * ç¾åœ¨ã®é«˜ã•ã¨æŒ‡å®šã®é«˜ã•ã‹ã‚‰æ®µå·®ã§ã‚ã‚‹ã‹ã‚’èª¿ã¹ã‚‹
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^	
- * @param	inVec		Œ»İÀ•W
- * @param	inGridX		w’èƒOƒŠƒbƒhÀ•WX
- * @param	inGridZ		w’èƒOƒŠƒbƒhÀ•WZ
- * @param	outCode		‚Ç‚Ì‚‚³ƒf[ƒ^‚Éƒqƒbƒg‚µ‚½‚©‚Ìƒ`ƒFƒbƒN—pi’ÊíAŠg’£A‚‚³‚È‚µj
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿	
+ * @param	inVec		ç¾åœ¨åº§æ¨™
+ * @param	inGridX		æŒ‡å®šã‚°ãƒªãƒƒãƒ‰åº§æ¨™X
+ * @param	inGridZ		æŒ‡å®šã‚°ãƒªãƒƒãƒ‰åº§æ¨™Z
+ * @param	outCode		ã©ã®é«˜ã•ãƒ‡ãƒ¼ã‚¿ã«ãƒ’ãƒƒãƒˆã—ãŸã‹ã®ãƒã‚§ãƒƒã‚¯ç”¨ï¼ˆé€šå¸¸ã€æ‹¡å¼µã€é«˜ã•ãªã—ï¼‰
  *
- * @return	1:‚‚¢	-1:’á‚¢		0:“¯‚¶
+ * @return	1:é«˜ã„	-1:ä½ã„		0:åŒã˜
  */
 //==============================================================================
 static int CheckHeightMove(	const FIELDSYS_WORK *fsys,
@@ -848,8 +848,8 @@ static int CheckHeightMove(	const FIELDSYS_WORK *fsys,
 	fx32 x,z;
 	fx32 height;
 	
-	//w’èƒOƒŠƒbƒh‚Ì‚‚³‚ğæ“¾
-	//ƒOƒŠƒbƒh‚ğFX32Œ^‚É‚·‚é(ƒOƒŠƒbƒh‚Ì’†SÀ•W)
+	//æŒ‡å®šã‚°ãƒªãƒƒãƒ‰ã®é«˜ã•ã‚’å–å¾—
+	//ã‚°ãƒªãƒƒãƒ‰ã‚’FX32å‹ã«ã™ã‚‹(ã‚°ãƒªãƒƒãƒ‰ã®ä¸­å¿ƒåº§æ¨™)
 	x = inGridX * 16 * FX32_ONE+(8*FX32_ONE);
 	z = inGridZ * 16 * FX32_ONE+(8*FX32_ONE);
 	height = 0;
@@ -864,26 +864,26 @@ static int CheckHeightMove(	const FIELDSYS_WORK *fsys,
 		OS_Printf_saitou("target=%x,%x,%x\n",x,height,z);
 	}
 #endif
-	//Œ»İ‚Ì‚‚³‚Æ”äŠr
-	if(height < inVec->y){		//w’èƒOƒŠƒbƒh‚Ì‚Ù‚¤‚ª’á‚¢
+	//ç¾åœ¨ã®é«˜ã•ã¨æ¯”è¼ƒ
+	if(height < inVec->y){		//æŒ‡å®šã‚°ãƒªãƒƒãƒ‰ã®ã»ã†ãŒä½ã„
 		y_high = inVec->y;
 		y_low = height;
 		rc = HIT_RES_TOO_LOW;
-	}else if(height > inVec->y){	//w’èƒOƒŠƒbƒh‚Ì‚Ù‚¤‚ª‚‚¢
+	}else if(height > inVec->y){	//æŒ‡å®šã‚°ãƒªãƒƒãƒ‰ã®ã»ã†ãŒé«˜ã„
 		y_high = height;
 		y_low = inVec->y;
 		rc = HIT_RES_TOO_HEIGH;
-	}else{							//“¯‚¶
+	}else{							//åŒã˜
 		rc = HIT_RES_EQUAL;
 		return rc;
 	}
 
-	//’i·‚Æ‚İ‚È‚³‚ê‚é‚©‚ğ”»’è
+	//æ®µå·®ã¨ã¿ãªã•ã‚Œã‚‹ã‹ã‚’åˆ¤å®š
 	if (y_high-y_low >= MOVE_HEIGHT_DEF){
-		GF_ASSERT(rc!=0 && "–ß‚è’l‚ª•s³");
-		//‹K’è’lˆÈŠO‚È‚Ì‚ÅA’i·‚Æ‚İ‚È‚·
+		GF_ASSERT(rc!=0 && "æˆ»ã‚Šå€¤ãŒä¸æ­£");
+		//è¦å®šå€¤ä»¥å¤–ãªã®ã§ã€æ®µå·®ã¨ã¿ãªã™
 	}else{
-		rc = HIT_RES_EQUAL;			//‹K’è’lˆÈ“à‚È‚Ì‚ÅA’i·‚Æ‚Í‚İ‚È‚³‚È‚¢
+		rc = HIT_RES_EQUAL;			//è¦å®šå€¤ä»¥å†…ãªã®ã§ã€æ®µå·®ã¨ã¯ã¿ãªã•ãªã„
 	}
 	
 	return rc;
@@ -891,15 +891,15 @@ static int CheckHeightMove(	const FIELDSYS_WORK *fsys,
 
 //==============================================================================
 /**
- * ‚‚³‚ğ‰Á–¡‚µ‚½ƒqƒbƒg”»’è
+ * é«˜ã•ã‚’åŠ å‘³ã—ãŸãƒ’ãƒƒãƒˆåˆ¤å®š
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^	
- * @param	inVec		Œ»İÀ•W
- * @param	inGridX		w’èƒOƒŠƒbƒhÀ•WX
- * @param	inGridZ		w’èƒOƒŠƒbƒhÀ•WZ
- * @param	outFlg		”»’èŒ‹‰Ê‚ğŠi”[‚·‚éƒoƒbƒtƒ@
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿	
+ * @param	inVec		ç¾åœ¨åº§æ¨™
+ * @param	inGridX		æŒ‡å®šã‚°ãƒªãƒƒãƒ‰åº§æ¨™X
+ * @param	inGridZ		æŒ‡å®šã‚°ãƒªãƒƒãƒ‰åº§æ¨™Z
+ * @param	outFlg		åˆ¤å®šçµæœã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
  *
- * @return	BOOL	TRUE:i“ü•s‰Â@FALSE:i“ü‰Â
+ * @return	BOOL	TRUE:é€²å…¥ä¸å¯ã€€FALSE:é€²å…¥å¯
  */
 //==============================================================================
 BOOL MPTL_CheckHitWall(	const FIELDSYS_WORK *fsys,
@@ -917,33 +917,33 @@ BOOL MPTL_CheckHitWall(	const FIELDSYS_WORK *fsys,
 		
 	if (check == HIT_RES_EQUAL){
 		BOOL hit;
-		//i“ü‰Â”\‚È‚ç‚ÎAƒAƒgƒŠƒrƒ…[ƒg‚É‚æ‚éƒqƒbƒg”»’è‚ğs‚¤
+		//é€²å…¥å¯èƒ½ãªã‚‰ã°ã€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã«ã‚ˆã‚‹ãƒ’ãƒƒãƒˆåˆ¤å®šã‚’è¡Œã†
 		hit = GetHitAttr(fsys, inGridX, inGridZ);
 		if ((!hit)&&(code==HEIGHT_EXPAND)){
-			//ƒAƒgƒŠƒrƒ…[ƒgƒqƒbƒg‚Å‚ài“ü‰Â”\A‚©‚ÂAŠg’£‚‚³ƒf[ƒ^‚ğæ“¾‚µ‚½ê‡
-			//…‚È‚ç“ü‚ê‚È‚¢ƒ`ƒFƒbƒN‚ğs‚¤
+			//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ’ãƒƒãƒˆã§ã‚‚é€²å…¥å¯èƒ½ã€ã‹ã¤ã€æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ãŸå ´åˆ
+			//æ°´ãªã‚‰å…¥ã‚Œãªã„ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
 			MATR attr = GetAttributeLSB( fsys, inGridX, inGridZ );
-			if (MATR_IsWaterNoIn(attr)){	//Šg’£‚‚³‚ÅA…‚È‚ç“ü‚ê‚È‚¢ƒAƒgƒŠƒrƒ…[ƒg‚Ì‚Æ‚«
-				return TRUE;//i“ü•s‰Â
+			if (MATR_IsWaterNoIn(attr)){	//æ‹¡å¼µé«˜ã•ã§ã€æ°´ãªã‚‰å…¥ã‚Œãªã„ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã®ã¨ã
+				return TRUE;//é€²å…¥ä¸å¯
 			}
 		}
 		return hit;
 	}else{
-		return TRUE;		//“–‚½‚èƒAƒŠBi“ü•s‰Â
+		return TRUE;		//å½“ãŸã‚Šã‚¢ãƒªã€‚é€²å…¥ä¸å¯
 	}
 }
 
 //==============================================================================
 /**
- * ‚‚³‚ğ‰Á–¡‚µ‚½ƒqƒbƒg”»’è@ŠO•”“–‚½‚è”»’è‚às‚¤
+ * é«˜ã•ã‚’åŠ å‘³ã—ãŸãƒ’ãƒƒãƒˆåˆ¤å®šã€€å¤–éƒ¨å½“ãŸã‚Šåˆ¤å®šã‚‚è¡Œã†
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^	
- * @param	inVec		Œ»İÀ•W
- * @param	inGridX		w’èƒOƒŠƒbƒhÀ•WX
- * @param	inGridZ		w’èƒOƒŠƒbƒhÀ•WZ
- * @param	outFlg		”»’èŒ‹‰Ê‚ğŠi”[‚·‚éƒoƒbƒtƒ@
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿	
+ * @param	inVec		ç¾åœ¨åº§æ¨™
+ * @param	inGridX		æŒ‡å®šã‚°ãƒªãƒƒãƒ‰åº§æ¨™X
+ * @param	inGridZ		æŒ‡å®šã‚°ãƒªãƒƒãƒ‰åº§æ¨™Z
+ * @param	outFlg		åˆ¤å®šçµæœã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
  *
- * @return	BOOL	TRUE:i“ü•s‰Â@FALSE:i“ü‰Â
+ * @return	BOOL	TRUE:é€²å…¥ä¸å¯ã€€FALSE:é€²å…¥å¯
  */
 //==============================================================================
 BOOL MPTL_CheckHitWallEx(	FIELDSYS_WORK *fsys,
@@ -959,22 +959,22 @@ BOOL MPTL_CheckHitWallEx(	FIELDSYS_WORK *fsys,
 		*outFlg = check;
 	}
 		
-	//i“ü‰Â”\‚È‚ç‚ÎAƒAƒgƒŠƒrƒ…[ƒg‚É‚æ‚éƒqƒbƒg”»’è‚ğs‚¤
+	//é€²å…¥å¯èƒ½ãªã‚‰ã°ã€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã«ã‚ˆã‚‹ãƒ’ãƒƒãƒˆåˆ¤å®šã‚’è¡Œã†
 	if (check == HIT_RES_EQUAL){
 		BOOL hit;
 		BOOL ex_rc;
-		//n‚ß‚ÉŠO•”“–‚½‚è”»’è‚ğs‚¤
+		//å§‹ã‚ã«å¤–éƒ¨å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
 		ex_rc = FLDGMK_FieldGimmickHitCheck(fsys, inGridX, inGridZ,
 											inVec->y, &hit);
-		//ŠO•”“–‚½‚è”»’è‚ğs‚í‚È‚©‚Á‚½‚Æ‚«‚Ì‚İ’Êí”»’è‚ÉˆÚs‚·‚é
+		//å¤–éƒ¨å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã‚ãªã‹ã£ãŸã¨ãã®ã¿é€šå¸¸åˆ¤å®šã«ç§»è¡Œã™ã‚‹
 		if (!ex_rc){	
 			hit = GetHitAttr(fsys, inGridX, inGridZ);
 			if ((!hit)&&(code==HEIGHT_EXPAND)){
-				//ƒAƒgƒŠƒrƒ…[ƒgƒqƒbƒg‚Å‚ài“ü‰Â”\A‚©‚ÂAŠg’£‚‚³ƒf[ƒ^‚ğæ“¾‚µ‚½ê‡
-				//…‚È‚ç“ü‚ê‚È‚¢ƒ`ƒFƒbƒN‚ğs‚¤
+				//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ’ãƒƒãƒˆã§ã‚‚é€²å…¥å¯èƒ½ã€ã‹ã¤ã€æ‹¡å¼µé«˜ã•ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ãŸå ´åˆ
+				//æ°´ãªã‚‰å…¥ã‚Œãªã„ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
 				MATR attr = GetAttributeLSB( fsys, inGridX, inGridZ );
-				if (MATR_IsWaterNoIn(attr)){	//Šg’£‚‚³‚ÅA…‚È‚ç“ü‚ê‚È‚¢ƒAƒgƒŠƒrƒ…[ƒg‚Ì‚Æ‚«
-					return TRUE;//i“ü•s‰Â
+				if (MATR_IsWaterNoIn(attr)){	//æ‹¡å¼µé«˜ã•ã§ã€æ°´ãªã‚‰å…¥ã‚Œãªã„ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã®ã¨ã
+					return TRUE;//é€²å…¥ä¸å¯
 				}
 			}
 			return hit;
@@ -982,19 +982,19 @@ BOOL MPTL_CheckHitWallEx(	FIELDSYS_WORK *fsys,
 			return hit;
 		}
 	}else{
-		return TRUE;		//“–‚½‚èƒAƒŠBi“ü•s‰Â
+		return TRUE;		//å½“ãŸã‚Šã‚¢ãƒªã€‚é€²å…¥ä¸å¯
 	}
 }
 
 
 //==============================================================================
 /**
- * w’èƒOƒŠƒbƒhÀ•W‚Ìã‚UƒOƒŠƒbƒh•ª‚Ì‹éŒ`‚Ì¶ãA‰E‰ºÀ•W‚ğZo‚·‚é
+ * æŒ‡å®šã‚°ãƒªãƒƒãƒ‰åº§æ¨™ã®ä¸Šï¼–ã‚°ãƒªãƒƒãƒ‰åˆ†ã®çŸ©å½¢ã®å·¦ä¸Šã€å³ä¸‹åº§æ¨™ã‚’ç®—å‡ºã™ã‚‹
  *
- * @param	inGridX		w’èƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ		w’èƒOƒŠƒbƒhZÀ•W
- * @param	inDir		•ûŒü
- * @param	outRect		‹éŒ`ƒf[ƒ^
+ * @param	inGridX		æŒ‡å®šã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ		æŒ‡å®šã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inDir		æ–¹å‘
+ * @param	outRect		çŸ©å½¢ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1004,11 +1004,11 @@ void MPTL_GetTargetRect(const int inGridX, const int inGridZ,
 {
 	int grid_x1,grid_z1,grid_x2,grid_z2;
 ///	switch(inDir){
-///	case 0:					//ã•ûŒü
-		//‘ÎÛ¶ãƒOƒŠƒbƒh
+///	case 0:					//ä¸Šæ–¹å‘
+		//å¯¾è±¡å·¦ä¸Šã‚°ãƒªãƒƒãƒ‰
 		grid_x1 = inGridX-1;
 		grid_z1 = inGridZ-2;
-		//‘ÎÛ‰E‰ºƒOƒŠƒbƒh
+		//å¯¾è±¡å³ä¸‹ã‚°ãƒªãƒƒãƒ‰
 		grid_x2 = inGridX+1;
 		grid_z2 = inGridZ;
 ///		break;
@@ -1017,9 +1017,9 @@ void MPTL_GetTargetRect(const int inGridX, const int inGridZ,
 ///	}
 
 	if (grid_x1<0 || grid_z1<0 || grid_x2<0 || grid_z2<0){
-		GF_ASSERT(0&&"ERROR:ƒOƒŠƒbƒh’l‚ªƒ}ƒCƒiƒX");
+		GF_ASSERT(0&&"ERROR:ã‚°ãƒªãƒƒãƒ‰å€¤ãŒãƒã‚¤ãƒŠã‚¹");
 	}
-	//ƒOƒŠƒbƒh‚ğfx32Œ^‚É•ÏX
+	//ã‚°ãƒªãƒƒãƒ‰ã‚’fx32å‹ã«å¤‰æ›´
 	outRect->X1 = grid_x1*16*FX32_ONE;
 	outRect->Z1 = grid_z1*16*FX32_ONE;
 	outRect->X2 = (grid_x2+1)*16*FX32_ONE;
@@ -1028,15 +1028,15 @@ void MPTL_GetTargetRect(const int inGridX, const int inGridZ,
 
 //==============================================================================
 /**
- * w’èƒOƒŠƒbƒhÀ•W‚ğŠî“_‚Æ‚µ‚ÄA‹éŒ`‚ğì¬
+ * æŒ‡å®šã‚°ãƒªãƒƒãƒ‰åº§æ¨™ã‚’åŸºç‚¹ã¨ã—ã¦ã€çŸ©å½¢ã‚’ä½œæˆ
  *
- * @param	inGridX		w’èƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ		w’èƒOƒŠƒbƒhZÀ•W
- * @param	inOfsX		Šî“_‚©‚ç‚ÌƒIƒtƒZƒbƒg@‹éŒ`XÀ•Wi¶ŠJnj
- * @param	inOfsZ		Šî“_‚©‚ç‚ÌƒIƒtƒZƒbƒg@‹éŒ`ZÀ•Wi‰œŠJnj
- * @param	inW			‹éŒ`‰¡•
- * @param	inH			‹éŒ`c•
- * @param	outRect		‹éŒ`ƒf[ƒ^
+ * @param	inGridX		æŒ‡å®šã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ		æŒ‡å®šã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inOfsX		åŸºç‚¹ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã€€çŸ©å½¢Xåº§æ¨™ï¼ˆå·¦é–‹å§‹ï¼‰
+ * @param	inOfsZ		åŸºç‚¹ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã€€çŸ©å½¢Zåº§æ¨™ï¼ˆå¥¥é–‹å§‹ï¼‰
+ * @param	inW			çŸ©å½¢æ¨ªå¹…
+ * @param	inH			çŸ©å½¢ç¸¦å¹…
+ * @param	outRect		çŸ©å½¢ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1047,17 +1047,17 @@ void MPTL_MakeTargetRect(	const int inGridX,const int inGridZ,
 							TARGET_RECT *outRect )
 {
 	int grid_x1,grid_z1,grid_x2,grid_z2;
-	//‘ÎÛ¶ãƒOƒŠƒbƒh
+	//å¯¾è±¡å·¦ä¸Šã‚°ãƒªãƒƒãƒ‰
 	grid_x1 = inGridX+inOfsX;
 	grid_z1 = inGridZ+inOfsZ;
-	//‘ÎÛ‰E‰ºƒOƒŠƒbƒh
+	//å¯¾è±¡å³ä¸‹ã‚°ãƒªãƒƒãƒ‰
 	grid_x2 = grid_x1+inW;
 	grid_z2 = grid_z1+inH;
 
 	if (grid_x1<0 || grid_z1<0 || grid_x2<0 || grid_z2<0){
-		GF_ASSERT(0&&"ERROR:ƒOƒŠƒbƒh’l‚ªƒ}ƒCƒiƒX");
+		GF_ASSERT(0&&"ERROR:ã‚°ãƒªãƒƒãƒ‰å€¤ãŒãƒã‚¤ãƒŠã‚¹");
 	}
-	//ƒOƒŠƒbƒh‚ğfx32Œ^‚É•ÏX
+	//ã‚°ãƒªãƒƒãƒ‰ã‚’fx32å‹ã«å¤‰æ›´
 	outRect->X1 = grid_x1*16*FX32_ONE;
 	outRect->Z1 = grid_z1*16*FX32_ONE;
 	outRect->X2 = grid_x2*16*FX32_ONE;
@@ -1066,13 +1066,13 @@ void MPTL_MakeTargetRect(	const int inGridX,const int inGridZ,
 
 //==============================================================================
 /**
- * w’è‚n‚a‚iƒf[ƒ^‚ÌÀ•W‚ÆA”»’è‹éŒ`‚ğ”äŠr
+ * æŒ‡å®šï¼¯ï¼¢ï¼ªãƒ‡ãƒ¼ã‚¿ã®åº§æ¨™ã¨ã€åˆ¤å®šçŸ©å½¢ã‚’æ¯”è¼ƒ
  *
- * @param	inObjPtr	3DƒIƒuƒWƒFƒNƒgƒf[ƒ^
- * @param	inRect		‹éŒ`ƒf[ƒ^
- * @param	inTrans		ƒIƒtƒZƒbƒg
+ * @param	inObjPtr	3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+ * @param	inRect		çŸ©å½¢ãƒ‡ãƒ¼ã‚¿
+ * @param	inTrans		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
- * @return	BOOL	TRUE:HIT@FALSE:NO HIT
+ * @return	BOOL	TRUE:HITã€€FALSE:NO HIT
  */
 //==============================================================================
 BOOL MPTL_Check3DObjIO(	const M3DO_CONST_PTR inObjPtr,
@@ -1093,14 +1093,14 @@ BOOL MPTL_Check3DObjIO(	const M3DO_CONST_PTR inObjPtr,
 
 //==============================================================================
 /**
- * w’è‹éŒ`“à‚Éw’èOBJ‚ª‚ ‚é‚©‚ğ”»’è
+ * æŒ‡å®šçŸ©å½¢å†…ã«æŒ‡å®šOBJãŒã‚ã‚‹ã‹ã‚’åˆ¤å®š
  *
- * @param fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * @param inTargetObjID		OBJID
- * @param inRect			ŒŸõ‹éŒ`
- * @param outObjData		ƒqƒbƒg‚µ‚½OBJiNULL‰Âj	
+ * @param inRect			æ¤œç´¢çŸ©å½¢
+ * @param outObjData		ãƒ’ãƒƒãƒˆã—ãŸOBJï¼ˆNULLå¯ï¼‰	
  *
- * @return	BOOL	TRUE:HIT@FALSE:NO HIT
+ * @return	BOOL	TRUE:HITã€€FALSE:NO HIT
  */
 //==============================================================================
 BOOL MPTL_CheckMap3DObjInRect(	const FIELDSYS_WORK *fsys,
@@ -1113,13 +1113,13 @@ BOOL MPTL_CheckMap3DObjInRect(	const FIELDSYS_WORK *fsys,
 
 	for(idx=0;idx<4;idx++){
 	
-	//ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+	//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 //	idx = GetNowLocalIndex(fsys->map_cont_dat);
-		//‚n‚a‚iƒŠƒXƒg‚ğæ“¾
+		//ï¼¯ï¼¢ï¼ªãƒªã‚¹ãƒˆã‚’å–å¾—
 		Get3DObjListFromLocalIdx(idx, fsys->map_cont_dat, &obj_data_list);
 		if( obj_data_list == NULL ){ continue; }
 		
-		//‹éŒ`“à”»’è
+		//çŸ©å½¢å†…åˆ¤å®š
 		{
 			u8 i;
 			VecFx32 trans;
@@ -1156,16 +1156,16 @@ BOOL MPTL_CheckMap3DObjInRect(	const FIELDSYS_WORK *fsys,
 
 //==============================================================================
 /**
- * w’è‹éŒ`“à‚É•¡”w’èOBJ‚ª‚ ‚é‚©‚ğ”»’è
+ * æŒ‡å®šçŸ©å½¢å†…ã«è¤‡æ•°æŒ‡å®šOBJãŒã‚ã‚‹ã‹ã‚’åˆ¤å®š
  *
- * @param fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param inTargetObjIDList	OBJIDƒŠƒXƒg
- * @param inListNum			ƒŠƒXƒg—v‘f”
- * @param inRect			ŒŸõ‹éŒ`
- * @param outObjData		ƒqƒbƒg‚µ‚½OBJ	(NULL‰Âj
- * @param outObjID			ƒqƒbƒg‚µ‚½OBJ‚ÌŠi”[êŠiNULL‰Âj
+ * @param fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param inTargetObjIDList	OBJIDãƒªã‚¹ãƒˆ
+ * @param inListNum			ãƒªã‚¹ãƒˆè¦ç´ æ•°
+ * @param inRect			æ¤œç´¢çŸ©å½¢
+ * @param outObjData		ãƒ’ãƒƒãƒˆã—ãŸOBJ	(NULLå¯ï¼‰
+ * @param outObjID			ãƒ’ãƒƒãƒˆã—ãŸOBJã®æ ¼ç´å ´æ‰€ï¼ˆNULLå¯ï¼‰
  * 
- * @return	BOOL	TRUE:HIT@FALSE:NO HIT
+ * @return	BOOL	TRUE:HITã€€FALSE:NO HIT
  */
 //==============================================================================
 BOOL MPTL_CheckPluralMap3DObjInRect(	const FIELDSYS_WORK *fsys,
@@ -1180,13 +1180,13 @@ BOOL MPTL_CheckPluralMap3DObjInRect(	const FIELDSYS_WORK *fsys,
 
 	for(idx=0;idx<4;idx++){
 	
-///	//ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+///	//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 ///	idx = GetNowLocalIndex(fsys->map_cont_dat);
-		//‚n‚a‚iƒŠƒXƒg‚ğæ“¾
+		//ï¼¯ï¼¢ï¼ªãƒªã‚¹ãƒˆã‚’å–å¾—
 		Get3DObjListFromLocalIdx(idx, fsys->map_cont_dat, &obj_data_list);
 		if( obj_data_list == NULL ){ continue; }
 		
-		//‹éŒ`“à”»’è
+		//çŸ©å½¢å†…åˆ¤å®š
 		{
 			u8 i;
 			VecFx32 trans;
@@ -1228,14 +1228,14 @@ BOOL MPTL_CheckPluralMap3DObjInRect(	const FIELDSYS_WORK *fsys,
 
 //==============================================================================
 /**
- * w’èOBJ‚ª‚ ‚é‚©‚ğ”»’è
+ * æŒ‡å®šOBJãŒã‚ã‚‹ã‹ã‚’åˆ¤å®š
  * 
- * @param fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * @param inTargetObjID		OBJID
- * @param outObjData		ˆê”Ôn‚ß‚Éƒqƒbƒg‚µ‚½OBJiNULL‰Âj
- * @param outBlockIdx		ˆê”Ôn‚ß‚Éƒqƒbƒg‚µ‚½OBJ‚Ì‚ ‚éƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒXiNULL‰Âj
+ * @param outObjData		ä¸€ç•ªå§‹ã‚ã«ãƒ’ãƒƒãƒˆã—ãŸOBJï¼ˆNULLå¯ï¼‰
+ * @param outBlockIdx		ä¸€ç•ªå§‹ã‚ã«ãƒ’ãƒƒãƒˆã—ãŸOBJã®ã‚ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆNULLå¯ï¼‰
  * 
- * @return	BOOL	TRUE:HIT@FALSE:NO HIT
+ * @return	BOOL	TRUE:HITã€€FALSE:NO HIT
  */
 //==============================================================================
 BOOL MPTL_CheckMap3DObj(const FIELDSYS_WORK *fsys,
@@ -1247,7 +1247,7 @@ BOOL MPTL_CheckMap3DObj(const FIELDSYS_WORK *fsys,
 	M3DOL_PTR obj_data_list;
 
 	for(idx=0;idx<4;idx++){
-		//‚n‚a‚iƒŠƒXƒg‚ğæ“¾
+		//ï¼¯ï¼¢ï¼ªãƒªã‚¹ãƒˆã‚’å–å¾—
 		Get3DObjListFromLocalIdx(idx, fsys->map_cont_dat, &obj_data_list);
 		if( obj_data_list == NULL ){ continue; }
 		
@@ -1279,15 +1279,15 @@ BOOL MPTL_CheckMap3DObj(const FIELDSYS_WORK *fsys,
 
 //==============================================================================
 /**
- * •¡”w’èOBJ‚ª‚ ‚é‚©‚ğ”»’è
+ * è¤‡æ•°æŒ‡å®šOBJãŒã‚ã‚‹ã‹ã‚’åˆ¤å®š
  *
- * @param fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param inTargetObjIDList	OBJIDƒŠƒXƒg
- * @param inListNum			ƒŠƒXƒg—v‘f”
- * @param outObjData		ƒqƒbƒg‚µ‚½OBJ	(NULL‰Âj
- * @param outObjID			ƒqƒbƒg‚µ‚½OBJ‚ÌŠi”[êŠiNULL‰Âj
+ * @param fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param inTargetObjIDList	OBJIDãƒªã‚¹ãƒˆ
+ * @param inListNum			ãƒªã‚¹ãƒˆè¦ç´ æ•°
+ * @param outObjData		ãƒ’ãƒƒãƒˆã—ãŸOBJ	(NULLå¯ï¼‰
+ * @param outObjID			ãƒ’ãƒƒãƒˆã—ãŸOBJã®æ ¼ç´å ´æ‰€ï¼ˆNULLå¯ï¼‰
  * 
- * @return	BOOL	TRUE:HIT@FALSE:NO HIT
+ * @return	BOOL	TRUE:HITã€€FALSE:NO HIT
  */
 //==============================================================================
 BOOL MPTL_CheckPluralMap3DObj(	const FIELDSYS_WORK *fsys,
@@ -1300,7 +1300,7 @@ BOOL MPTL_CheckPluralMap3DObj(	const FIELDSYS_WORK *fsys,
 	M3DOL_PTR obj_data_list;
 
 	for(idx=0;idx<4;idx++){
-		//‚n‚a‚iƒŠƒXƒg‚ğæ“¾
+		//ï¼¯ï¼¢ï¼ªãƒªã‚¹ãƒˆã‚’å–å¾—
 		Get3DObjListFromLocalIdx(idx, fsys->map_cont_dat, &obj_data_list);
 		if( obj_data_list == NULL ){ continue; }
 		
@@ -1333,11 +1333,11 @@ BOOL MPTL_CheckPluralMap3DObj(	const FIELDSYS_WORK *fsys,
 
 //==============================================================================
 /**
- * ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚©‚ç’nŒ`ƒIƒtƒZƒbƒg‚ğŒvZ
+ * ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰åœ°å½¢ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨ˆç®—
  *
- * @param   inBlockIndex	ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
- * @param   inMapW			ƒ}ƒbƒv•
- * @param   outTrans		æ“¾À•W
+ * @param   inBlockIndex	ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   inMapW			ãƒãƒƒãƒ—å¹…
+ * @param   outTrans		å–å¾—åº§æ¨™
  *
  * @return	none
  */

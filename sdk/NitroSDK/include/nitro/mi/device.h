@@ -29,11 +29,11 @@ extern  "C"
 /*---------------------------------------------------------------------------*/
 /* declarations */
 
-/* ƒfƒoƒCƒXƒAƒNƒZƒXŠÖ”ƒvƒƒgƒ^ƒCƒv */
+/* ãƒ‡ãƒã‚¤ã‚¹ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— */
 typedef int (*MIDeviceReadFunction)(void *userdata, void *buffer, u32 offset, u32 length);
 typedef int (*MIDeviceWriteFunction)(void *userdata, const void *buffer, u32 offset, u32 length);
 
-/* ƒfƒoƒCƒXƒAƒNƒZƒX\‘¢‘Ì */
+/* ãƒ‡ãƒã‚¤ã‚¹ã‚¢ã‚¯ã‚»ã‚¹æ§‹é€ ä½“ */
 typedef struct MIDevice
 {
     void                   *userdata;
@@ -49,12 +49,12 @@ MIDevice;
 /*---------------------------------------------------------------------------*
   Name:         MI_InitDevice
 
-  Description:  ƒfƒoƒCƒX‚ğ‰Šú‰».
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã‚’åˆæœŸåŒ–.
 
-  Arguments:    device           ‰Šú‰»‚·‚éMIDevice\‘¢‘Ì.
-                userdata         ”CˆÓ‚Ìƒ†[ƒU’è‹`ˆø”.
-                read             ƒfƒoƒCƒX“Ç‚İo‚µŠÖ”‚Ìƒ|ƒCƒ“ƒ^.
-                write            ƒfƒoƒCƒX‘‚«‚İŠÖ”‚Ìƒ|ƒCƒ“ƒ^.
+  Arguments:    device           åˆæœŸåŒ–ã™ã‚‹MIDeviceæ§‹é€ ä½“.
+                userdata         ä»»æ„ã®ãƒ¦ãƒ¼ã‚¶å®šç¾©å¼•æ•°.
+                read             ãƒ‡ãƒã‚¤ã‚¹èª­ã¿å‡ºã—é–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿.
+                write            ãƒ‡ãƒã‚¤ã‚¹æ›¸ãè¾¼ã¿é–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -71,14 +71,14 @@ void MI_InitDevice(MIDevice *device, void *userdata,
 /*---------------------------------------------------------------------------*
   Name:         MI_ReadDevice
 
-  Description:  ƒfƒoƒCƒX‚©‚ç“Ç‚İ‚İ.
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã‹ã‚‰èª­ã¿è¾¼ã¿.
 
-  Arguments:    device           MIDevice\‘¢‘Ì.
-                buffer           “]‘—æƒƒ‚ƒŠ.
-                offset           “]‘—Œ³ƒIƒtƒZƒbƒg.
-                length           “]‘—ƒTƒCƒY.
+  Arguments:    device           MIDeviceæ§‹é€ ä½“.
+                buffer           è»¢é€å…ˆãƒ¡ãƒ¢ãƒª.
+                offset           è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                length           è»¢é€ã‚µã‚¤ã‚º.
 
-  Returns:      ¬Œ÷‚·‚ê‚Î0ˆÈã‚Ì’l, ¸”s‚·‚ê‚Î•‰‚Ì’l.
+  Returns:      æˆåŠŸã™ã‚Œã°0ä»¥ä¸Šã®å€¤, å¤±æ•—ã™ã‚Œã°è² ã®å€¤.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 int MI_ReadDevice(MIDevice *device, void *buffer, u32 offset, u32 length)
@@ -89,14 +89,14 @@ int MI_ReadDevice(MIDevice *device, void *buffer, u32 offset, u32 length)
 /*---------------------------------------------------------------------------*
   Name:         MI_WriteDevice
 
-  Description:  ƒfƒoƒCƒX‚Ö‘‚«‚İ.
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã¸æ›¸ãè¾¼ã¿.
 
-  Arguments:    device           MIDevice\‘¢‘Ì.
-                buffer           “]‘—Œ³ƒƒ‚ƒŠ.
-                offset           “]‘—æƒIƒtƒZƒbƒg.
-                length           “]‘—ƒTƒCƒY.
+  Arguments:    device           MIDeviceæ§‹é€ ä½“.
+                buffer           è»¢é€å…ƒãƒ¡ãƒ¢ãƒª.
+                offset           è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                length           è»¢é€ã‚µã‚¤ã‚º.
 
-  Returns:      ¬Œ÷‚·‚ê‚Î0ˆÈã‚Ì’l, ¸”s‚·‚ê‚Î•‰‚Ì’l.
+  Returns:      æˆåŠŸã™ã‚Œã°0ä»¥ä¸Šã®å€¤, å¤±æ•—ã™ã‚Œã°è² ã®å€¤.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 int MI_WriteDevice(MIDevice *device, const void *buffer, u32 offset, u32 length)

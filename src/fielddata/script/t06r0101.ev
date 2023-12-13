@@ -1,45 +1,45 @@
 //====================================================================
 //								t06r0101
 //
-//	FH_01 - FH_04	‰ï˜bƒtƒ‰ƒO‚Æ‚µ‚ÄŽg—p(”z’u‚·‚él”•ª)
-//	FH_05 - FH_08	‘Îí‚µ‚½‚©ƒtƒ‰ƒO‚Æ‚µ‚ÄŽg—p(”z’u‚·‚él”•ª)
+//	FH_01 - FH_04	ä¼šè©±ãƒ•ãƒ©ã‚°ã¨ã—ã¦ä½¿ç”¨(é…ç½®ã™ã‚‹äººæ•°åˆ†)
+//	FH_05 - FH_08	å¯¾æˆ¦ã—ãŸã‹ãƒ•ãƒ©ã‚°ã¨ã—ã¦ä½¿ç”¨(é…ç½®ã™ã‚‹äººæ•°åˆ†)
 //
-//	LOCALWORK1		”»•Ê—p‚ÌƒLƒƒƒ‰ƒR[ƒh
-//	LOCALWORK5		ƒgƒŒ[ƒi[ƒf[ƒ^
-//	SYS_WORK_T06R0101_TALK		ƒpƒ^[ƒ“0‚©1‚©
+//	LOCALWORK1		åˆ¤åˆ¥ç”¨ã®ã‚­ãƒ£ãƒ©ã‚³ãƒ¼ãƒ‰
+//	LOCALWORK5		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+//	SYS_WORK_T06R0101_TALK		ãƒ‘ã‚¿ãƒ¼ãƒ³0ã‹1ã‹
 //
-//	OBJCODE –¼‘O		ƒ][ƒ“		msg
-//	LEADER1	ƒqƒ‡ƒEƒ^	c03			1		OK
-//	LEADER2	ƒiƒ^ƒl		c04			2		OK
-//	LEADER3	ƒ}ƒLƒV		c06			5
-//	LEADER4	ƒXƒ‚ƒ‚		c07			4
-//	LEADER5 ƒƒŠƒbƒT	c05			3
-//	LEADER6	ƒXƒYƒi		c09			7
-//	LEADER7	ƒgƒEƒKƒ“	c02			6
-//	LEADER8	ƒfƒ“ƒW		c08			8		OK
+//	OBJCODE åå‰		ã‚¾ãƒ¼ãƒ³		msg
+//	LEADER1	ãƒ’ãƒ§ã‚¦ã‚¿	c03			1		OK
+//	LEADER2	ãƒŠã‚¿ãƒ		c04			2		OK
+//	LEADER3	ãƒžã‚­ã‚·		c06			5
+//	LEADER4	ã‚¹ãƒ¢ãƒ¢		c07			4
+//	LEADER5 ãƒ¡ãƒªãƒƒã‚µ	c05			3
+//	LEADER6	ã‚¹ã‚ºãƒŠ		c09			7
+//	LEADER7	ãƒˆã‚¦ã‚¬ãƒ³	c02			6
+//	LEADER8	ãƒ‡ãƒ³ã‚¸		c08			8		OK
 //
-//	SEVEN1	ƒ‚ƒ~
-//	SEVEN2	ƒQƒ“
-//	SEVEN3	ƒ}ƒC
-//	SEVEN4	ƒoƒN
-//	SEVEN5	ƒ~ƒ‹
+//	SEVEN1	ãƒ¢ãƒŸ
+//	SEVEN2	ã‚²ãƒ³
+//	SEVEN3	ãƒžã‚¤
+//	SEVEN4	ãƒã‚¯
+//	SEVEN5	ãƒŸãƒ«
 //
 //
-//	ƒgƒŒ[ƒi[ID
-//	ƒqƒ‡ƒEƒ^	leader1
-//	ƒiƒ^ƒl@	leader2
-//	ƒƒŠƒbƒT	leader5
-//	ƒXƒ‚ƒ‚@	leader4
-//	ƒ}ƒLƒV@	leader3
-//	ƒgƒEƒKƒ“	leader7
-//	ƒXƒYƒi@	leader6
-//	ƒfƒ“ƒW@	leader8
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+//	ãƒ’ãƒ§ã‚¦ã‚¿	leader1
+//	ãƒŠã‚¿ãƒã€€	leader2
+//	ãƒ¡ãƒªãƒƒã‚µ	leader5
+//	ã‚¹ãƒ¢ãƒ¢ã€€	leader4
+//	ãƒžã‚­ã‚·ã€€	leader3
+//	ãƒˆã‚¦ã‚¬ãƒ³	leader7
+//	ã‚¹ã‚ºãƒŠã€€	leader6
+//	ãƒ‡ãƒ³ã‚¸ã€€	leader8
 //
-//	ƒ‚ƒ~		btfive1
-//	ƒ~ƒ‹		btfive5
-//	ƒQƒ“		btfive2
-//	ƒ}ƒC		btfive3
-//	ƒoƒN		btfive4
+//	ãƒ¢ãƒŸ		btfive1
+//	ãƒŸãƒ«		btfive5
+//	ã‚²ãƒ³		btfive2
+//	ãƒžã‚¤		btfive3
+//	ãƒã‚¯		btfive4
 //====================================================================
 
 	.text
@@ -49,11 +49,11 @@
 	.include	"../eventdata/zone_t06r0101evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_t06r0101_oldman1
 _EVENT_DATA		ev_t06r0101_seven2
@@ -70,21 +70,21 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_t06r0101_flag_change:
-	_FLAG_SET			FE_T06R0101_IN	/*Ž{Ý‚É“ü‚Á‚½*/
+	_FLAG_SET			FE_T06R0101_IN	/*æ–½è¨­ã«å…¥ã£ãŸ*/
 	_IF_FLAGOFF_JUMP	TMFLG_T06R0101_REMATCH,ev_t06r0101_flag_reset
 
-	/*Œ©‚½–Úƒ[ƒN‚É’Ç‰Á*/
+	/*è¦‹ãŸç›®ãƒ¯ãƒ¼ã‚¯ã«è¿½åŠ */
 	_CALL			ev_t06r0101_sys_work_set
 	_END
 
-/*1“úŒo‰ß‚µ‚Ä‚¢‚½‚ç*/
+/*1æ—¥çµŒéŽã—ã¦ã„ãŸã‚‰*/
 ev_t06r0101_flag_reset:
 	_FLAG_SET		TMFLG_T06R0101_REMATCH
 
-	/*ƒLƒƒƒ‰ƒR[ƒhƒZƒbƒg*/
+	/*ã‚­ãƒ£ãƒ©ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ*/
 	_GET_CHAR_CODE_T06R0101	SYS_WORK_T06R0101_OBJ1,SYS_WORK_T06R0101_OBJ2,SYS_WORK_T06R0101_OBJ3,SYS_WORK_T06R0101_OBJ4
 
-	/*Œ©‚½–Úƒ[ƒN‚É’Ç‰Á*/
+	/*è¦‹ãŸç›®ãƒ¯ãƒ¼ã‚¯ã«è¿½åŠ */
 	_CALL			ev_t06r0101_sys_work_set
 
 	_FLAG_RESET		FV_T06R0101_TR1
@@ -92,20 +92,20 @@ ev_t06r0101_flag_reset:
 	_FLAG_RESET		FV_T06R0101_TR3
 	_FLAG_RESET		FV_T06R0101_TR4
 
-	/*‚à‚ê‚½‚à‚Ì‚Í•\Ž¦‚µ‚È‚¢*/
+	/*ã‚‚ã‚ŒãŸã‚‚ã®ã¯è¡¨ç¤ºã—ãªã„*/
 	//_FLAG_SET		FV_T06R0101_TR1
 	_IFVAL_CALL		OBJCHRWORK2,EQ,0xfff,ev_t06r0101_tr2_vanish_on
 	_IFVAL_CALL		OBJCHRWORK3,EQ,0xfff,ev_t06r0101_tr3_vanish_on
 	_IFVAL_CALL		OBJCHRWORK4,EQ,0xfff,ev_t06r0101_tr4_vanish_on
 
-	/*5lOƒCƒxƒ“ƒgƒ`ƒFƒbƒN*/
+	/*5äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯*/
 	_IFVAL_CALL		OBJCHRWORK4,EQ,SEVEN1,ev_t06r0101_tr4_seven1_check
 	_IFVAL_CALL		OBJCHRWORK4,EQ,SEVEN2,ev_t06r0101_tr4_seven2_check
 	_IFVAL_CALL		OBJCHRWORK4,EQ,SEVEN3,ev_t06r0101_tr4_seven3_check
 	_IFVAL_CALL		OBJCHRWORK4,EQ,SEVEN4,ev_t06r0101_tr4_seven4_check
 	_IFVAL_CALL		OBJCHRWORK4,EQ,SEVEN5,ev_t06r0101_tr4_seven5_check
 
-	/*ƒNƒŠƒA*/
+	/*ã‚¯ãƒªã‚¢*/
 	_FLAG_RESET		FH_01
 	_FLAG_RESET		FH_02
 	_FLAG_RESET		FH_03
@@ -115,7 +115,7 @@ ev_t06r0101_flag_reset:
 	_FLAG_RESET		FH_07
 	_FLAG_RESET		FH_08
 
-	/*‰ï˜b‚Ìƒpƒ^[ƒ“‚ª2’Ê‚è‚ ‚é‚Ì‚Å‚Ç‚¿‚ç‚©Œˆ’è‚·‚é*/
+	/*ä¼šè©±ã®ãƒ‘ã‚¿ãƒ¼ãƒ³ãŒ2é€šã‚Šã‚ã‚‹ã®ã§ã©ã¡ã‚‰ã‹æ±ºå®šã™ã‚‹*/
 	_GET_RND		SYS_WORK_T06R0101_TALK,2
 	_END
 
@@ -131,36 +131,36 @@ ev_t06r0101_tr4_vanish_on:
 	_FLAG_SET		FV_T06R0101_TR4
 	_RET
 
-/*seven1:ƒ‚ƒ~@ƒ`ƒFƒbƒN*/
+/*seven1:ãƒ¢ãƒŸã€€ãƒã‚§ãƒƒã‚¯*/
 ev_t06r0101_tr4_seven1_check:
 	_IF_FLAGOFF_CALL	FE_SEVEN1_CLEAR,ev_t06r0101_tr4_vanish_on
 	_RET
 	
-/*seven2:ƒQƒ“@ƒ`ƒFƒbƒN*/
+/*seven2:ã‚²ãƒ³ã€€ãƒã‚§ãƒƒã‚¯*/
 ev_t06r0101_tr4_seven2_check:
 	//_IF_FLAGOFF_CALL	FE_SEVEN2_CLEAR,ev_t06r0101_tr4_vanish_on
 	_IF_FLAGOFF_CALL	FE_SEVEN3_CLEAR,ev_t06r0101_tr4_vanish_on
 	_RET
 
-/*seven3:ƒ}ƒC@ƒ`ƒFƒbƒN*/
+/*seven3:ãƒžã‚¤ã€€ãƒã‚§ãƒƒã‚¯*/
 ev_t06r0101_tr4_seven3_check:
 	//_IF_FLAGOFF_CALL	FE_SEVEN3_CLEAR,ev_t06r0101_tr4_vanish_on
 	_IF_FLAGOFF_CALL	FE_SEVEN4_CLEAR,ev_t06r0101_tr4_vanish_on
 	_RET
 	
-/*seven4:ƒoƒN@ƒ`ƒFƒbƒN*/
+/*seven4:ãƒã‚¯ã€€ãƒã‚§ãƒƒã‚¯*/
 ev_t06r0101_tr4_seven4_check:
 	//_IF_FLAGOFF_CALL	FE_SEVEN4_CLEAR,ev_t06r0101_tr4_vanish_on
 	_IF_FLAGOFF_CALL	FE_SEVEN5_CLEAR,ev_t06r0101_tr4_vanish_on
 	_RET
 	
-/*seven5:ƒ~ƒ‹@ƒ`ƒFƒbƒN*/
+/*seven5:ãƒŸãƒ«ã€€ãƒã‚§ãƒƒã‚¯*/
 ev_t06r0101_tr4_seven5_check:
 	//_IF_FLAGOFF_CALL	FE_SEVEN5_CLEAR,ev_t06r0101_tr4_vanish_on
 	_IF_FLAGOFF_CALL	FE_SEVEN2_CLEAR,ev_t06r0101_tr4_vanish_on
 	_RET
 
-/*Œ©‚½–Úƒ[ƒN‚É’Ç‰Á*/
+/*è¦‹ãŸç›®ãƒ¯ãƒ¼ã‚¯ã«è¿½åŠ */
 ev_t06r0101_sys_work_set:
 	_LDWK			OBJCHRWORK1,SYS_WORK_T06R0101_OBJ1
 	_LDWK			OBJCHRWORK2,SYS_WORK_T06R0101_OBJ2
@@ -170,12 +170,12 @@ ev_t06r0101_sys_work_set:
 
 
 /********************************************************************/
-/*							˜a•—˜Vl(‰ï˜b)							*/
+/*							å’Œé¢¨è€äºº(ä¼šè©±)							*/
 /********************************************************************/
 ev_t06r0101_oldman1:
 	_TALK_OBJ_START
 
-	/*ƒq[ƒhƒ‰ƒ“‚Æ‘˜‹öŒã*/
+	/*ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³ã¨é­é‡å¾Œ*/
 	_IF_FLAGON_JUMP	FE_HIIDORAN_SEE,ev_t06r0101_oldman1_03
 
 	_TALKMSG		msg_t06r0101_oldman1_02
@@ -184,7 +184,7 @@ ev_t06r0101_oldman1:
 	_TALK_OBJ_END
 	_END
 
-/*ƒq[ƒhƒ‰ƒ“‚Æ‘˜‹öŒã*/
+/*ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³ã¨é­é‡å¾Œ*/
 ev_t06r0101_oldman1_03:
 	_TALKMSG		msg_t06r0101_oldman1_03
 	_LAST_KEYWAIT
@@ -194,18 +194,18 @@ ev_t06r0101_oldman1_03:
 
 
 /********************************************************************/
-/*			‚TlO(‰ÎŽR’uÎ“üŽèŒã`˜b‚µ‚©‚¯‚é‚Ü‚Å‘¶Ý)				*/
+/*			ï¼•äººè¡†(ç«å±±ç½®çŸ³å…¥æ‰‹å¾Œã€œè©±ã—ã‹ã‘ã‚‹ã¾ã§å­˜åœ¨)				*/
 /********************************************************************/
 ev_t06r0101_seven2:
 	_TALK_OBJ_START
 
-	//‚±‚Ì˜b‚ð•·‚­‚Æƒq[ƒhƒ‰ƒ“oŒ»
+	//ã“ã®è©±ã‚’èžãã¨ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³å‡ºç¾
 	_FLAG_SET		FE_D16R0103_LEGEND_UNSEAL
 	
 	_TALK_KEYWAIT	msg_t06r0101_baku_01
 	_TALK_CLOSE
 
-	/*ŠO‚Éo‚Äs‚­*/
+	/*å¤–ã«å‡ºã¦è¡Œã*/
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 	_IFVAL_CALL		SCWK_TEMP1,EQ,7,ev_t06r0101_seven2_out01
 	_IFVAL_CALL		SCWK_TEMP1,EQ,8,ev_t06r0101_seven2_out02
@@ -214,10 +214,10 @@ ev_t06r0101_seven2:
 	_SE_PLAY		SEQ_SE_DP_KAIDAN2
 	_OBJ_DEL		T06R0101_SEVEN2
 
-	//ƒoƒN‚ªƒoƒgƒ‹ƒ^ƒ[‚ÉoŒ»‚·‚é‚æ‚¤‚É‚È‚é
+	//ãƒã‚¯ãŒãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã«å‡ºç¾ã™ã‚‹ã‚ˆã†ã«ãªã‚‹
 	_FLAG_SET		FE_SEVEN5_CLEAR
 
-	//‚±‚ÌêŠ‚©‚çƒoƒN‚Í‚¢‚È‚­‚È‚é
+	//ã“ã®å ´æ‰€ã‹ã‚‰ãƒã‚¯ã¯ã„ãªããªã‚‹
 	_FLAG_SET		FV_T06R0101_SEVEN2
 	_TALK_OBJ_END
 	_END
@@ -241,7 +241,7 @@ ev_t06r0101_seven2_out03:
 	_RET
 
 //--------------------------------------------------------------------
-//ŽålŒö	‚TlOŒ©‘—‚é
+//ä¸»äººå…¬	ï¼•äººè¡†è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_t06r0101_player_01
 	_ANIME_DATA	AC_WAIT_8F,2
@@ -261,7 +261,7 @@ _ANIME_LABEL	anm_t06r0101_player_03
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚TlO	o‚Äs‚­
+//ï¼•äººè¡†	å‡ºã¦è¡Œã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_t06r0101_seven2_01
 	_ANIME_DATA	AC_WALK_L_8F,1
@@ -285,14 +285,14 @@ _ANIME_LABEL	anm_t06r0101_seven2_03
 
 
 /********************************************************************/
-/*							˜a•—˜Vl(‹­§)							*/
+/*							å’Œé¢¨è€äºº(å¼·åˆ¶)							*/
 /********************************************************************/
 ev_t06r0101_oldman1_auto:
 	_EVENT_START
 
 	_LDVAL			WK_SCENE_T06R0101,1
 
-	/*‹C‚Ã‚­*/
+	/*æ°—ã¥ã*/
 	_OBJ_ANIME		T06R0101_OLDMAN1_01,anm_t06r0101_oldman1_100
 	_OBJ_ANIME_WAIT
 
@@ -306,14 +306,14 @@ ev_t06r0101_oldman1_auto:
 	_END
 
 //--------------------------------------------------------------------
-//˜a•—˜Vl	‹C‚Ã‚­
+//å’Œé¢¨è€äºº	æ°—ã¥ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_t06r0101_oldman1_100
 	_ANIME_DATA	AC_MARK_GYOE,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	‚TlOŒ©‘—‚é
+//ä¸»äººå…¬	ï¼•äººè¡†è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_t06r0101_player_100
 	_ANIME_DATA	AC_WALK_U_8F,2
@@ -322,24 +322,24 @@ _ANIME_LABEL	anm_t06r0101_player_100
 
 
 /********************************************************************/
-/*							1l–Ú(FH_01)							*/
+/*							1äººç›®(FH_01)							*/
 /********************************************************************/
 ev_t06r0101_tr1:
 	_TALK_OBJ_START
 
 	_PLAYER_NAME	0
 
-	/*”»•Ê—p‚Éƒ[ƒN‚ÉƒLƒƒƒ‰ƒZƒbƒg*/
+	/*åˆ¤åˆ¥ç”¨ã«ãƒ¯ãƒ¼ã‚¯ã«ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ*/
 	_LDWK			LOCALWORK1,OBJCHRWORK1
 
-	/*‚·‚Å‚ÉŸ—˜‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP		FH_05,ev_t06r0101_tr_common_02
 
-	/*‚·‚Å‚ÉŸ—˜‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 	_CALL			ev_t06r0101_trainer_win_check
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t06r0101_tr_common_02
 
-	/*u‚¢‚¢‚¦v‘I‘ðŒã‚©*/
+	/*ã€Œã„ã„ãˆã€é¸æŠžå¾Œã‹*/
 	_IF_FLAGOFF_CALL	FH_01,ev_t06r0101_tr1_02
 	_IF_FLAGON_CALL		FH_01,ev_t06r0101_tr1_03
 
@@ -360,7 +360,7 @@ ev_t06r0101_tr_common_01:
 
 	_RECORD_INC			RECID_LEADERHOUSE_BATTLE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_CALL				ev_t06r0101_trainer
 	_TRAINER_BTL_SET	LOCALWORK5,0
 	_TRAINER_LOSE_CHECK SCWK_PARAM0
@@ -374,12 +374,12 @@ ev_t06r0101_tr_common_02:
 	_JUMP			t06r0101_end
 	_END
 
-/*u‚¢‚¢‚¦v‘I‘ð‘O*/
+/*ã€Œã„ã„ãˆã€é¸æŠžå‰*/
 ev_t06r0101_tr1_02:
 	_CALL			ev_t06r0101_talk01
 	_RET
 
-/*u‚¢‚¢‚¦v‘I‘ðŒã*/
+/*ã€Œã„ã„ãˆã€é¸æŠžå¾Œ*/
 ev_t06r0101_tr1_03:
 	_CALL			ev_t06r0101_talk04
 	_RET
@@ -392,7 +392,7 @@ t06r0101_end:
 
 
 /********************************************************************/
-/*							u‚¢‚¢‚¦v								*/
+/*							ã€Œã„ã„ãˆã€								*/
 /********************************************************************/
 no_t06r0101_tr1_01:
 	_FLAG_SET		FH_01
@@ -402,7 +402,7 @@ no_t06r0101_tr1_01:
 
 
 /********************************************************************/
-/*								”s–k								*/
+/*								æ•—åŒ—								*/
 /********************************************************************/
 ev_t06r0101_common_battle_lose:
 	_TRAINER_LOSE
@@ -411,7 +411,7 @@ ev_t06r0101_common_battle_lose:
 
 
 /********************************************************************/
-/*				ƒqƒ‡ƒEƒ^EƒgƒEƒKƒ“ê—pƒƒbƒZ[ƒW					*/
+/*				ãƒ’ãƒ§ã‚¦ã‚¿ãƒ»ãƒˆã‚¦ã‚¬ãƒ³å°‚ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸					*/
 /********************************************************************/
 ev_t06r0101_ex_talk:
 	_IFVAL_CALL		LOCALWORK1,EQ,LEADER1,ev_t06r0101_ex_talk_sub_01
@@ -429,24 +429,24 @@ ev_t06r0101_ex_talk_sub_06:
 
 
 /********************************************************************/
-/*							2l–Ú(FH_02)							*/
+/*							2äººç›®(FH_02)							*/
 /********************************************************************/
 ev_t06r0101_tr2:
 	_TALK_OBJ_START
 
 	_PLAYER_NAME	0
 
-	/*”»•Ê—p‚Éƒ[ƒN‚ÉƒLƒƒƒ‰ƒZƒbƒg*/
+	/*åˆ¤åˆ¥ç”¨ã«ãƒ¯ãƒ¼ã‚¯ã«ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ*/
 	_LDWK			LOCALWORK1,OBJCHRWORK2
 
-	/*‚·‚Å‚ÉŸ—˜‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP		FH_06,ev_t06r0101_tr_common_02
 
-	/*‚·‚Å‚ÉŸ—˜‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 	_CALL			ev_t06r0101_trainer_win_check
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t06r0101_tr_common_02
 
-	/*u‚¢‚¢‚¦v‘I‘ðŒã‚©*/
+	/*ã€Œã„ã„ãˆã€é¸æŠžå¾Œã‹*/
 	_IF_FLAGOFF_CALL	FH_02,ev_t06r0101_tr1_02
 	_IF_FLAGON_CALL		FH_02,ev_t06r0101_tr1_03
 
@@ -461,7 +461,7 @@ ev_t06r0101_tr2:
 	_JUMP			ev_t06r0101_tr_common_02
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_t06r0101_tr2_01:
 	_FLAG_SET		FH_02
 	_CALL			ev_t06r0101_talk03
@@ -470,24 +470,24 @@ no_t06r0101_tr2_01:
 
 
 /********************************************************************/
-/*							3l–Ú(FH_03)							*/
+/*							3äººç›®(FH_03)							*/
 /********************************************************************/
 ev_t06r0101_tr3:
 	_TALK_OBJ_START
 
 	_PLAYER_NAME	0
 
-	/*”»•Ê—p‚Éƒ[ƒN‚ÉƒLƒƒƒ‰ƒZƒbƒg*/
+	/*åˆ¤åˆ¥ç”¨ã«ãƒ¯ãƒ¼ã‚¯ã«ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ*/
 	_LDWK			LOCALWORK1,OBJCHRWORK3
 
-	/*‚·‚Å‚ÉŸ—˜‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP		FH_07,ev_t06r0101_tr_common_02
 
-	/*‚·‚Å‚ÉŸ—˜‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 	_CALL			ev_t06r0101_trainer_win_check
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t06r0101_tr_common_02
 
-	/*u‚¢‚¢‚¦v‘I‘ðŒã‚©*/
+	/*ã€Œã„ã„ãˆã€é¸æŠžå¾Œã‹*/
 	_IF_FLAGOFF_CALL	FH_03,ev_t06r0101_tr1_02
 	_IF_FLAGON_CALL		FH_03,ev_t06r0101_tr1_03
 
@@ -502,7 +502,7 @@ ev_t06r0101_tr3:
 	_JUMP			ev_t06r0101_tr_common_02
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_t06r0101_tr3_01:
 	_FLAG_SET		FH_03
 	_CALL			ev_t06r0101_talk03
@@ -511,24 +511,24 @@ no_t06r0101_tr3_01:
 
 
 /********************************************************************/
-/*							4l–Ú(FH_04)							*/
+/*							4äººç›®(FH_04)							*/
 /********************************************************************/
 ev_t06r0101_tr4:
 	_TALK_OBJ_START
 
 	_PLAYER_NAME	0
 
-	/*”»•Ê—p‚Éƒ[ƒN‚ÉƒLƒƒƒ‰ƒZƒbƒg*/
+	/*åˆ¤åˆ¥ç”¨ã«ãƒ¯ãƒ¼ã‚¯ã«ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ*/
 	_LDWK			LOCALWORK1,OBJCHRWORK4
 
-	/*‚·‚Å‚ÉŸ—˜‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP		FH_08,ev_t06r0101_tr_common_02
 
-	/*‚·‚Å‚ÉŸ—˜‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 	_CALL			ev_t06r0101_trainer_win_check
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t06r0101_tr_common_02
 
-	/*u‚¢‚¢‚¦v‘I‘ðŒã‚©*/
+	/*ã€Œã„ã„ãˆã€é¸æŠžå¾Œã‹*/
 	_IF_FLAGOFF_CALL	FH_04,ev_t06r0101_tr1_02
 	_IF_FLAGON_CALL		FH_04,ev_t06r0101_tr1_03
 
@@ -543,7 +543,7 @@ ev_t06r0101_tr4:
 	_JUMP			ev_t06r0101_tr_common_02
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_t06r0101_tr4_01:
 	_FLAG_SET		FH_04
 	_CALL			ev_t06r0101_talk03
@@ -552,17 +552,17 @@ no_t06r0101_tr4_01:
 
 
 /********************************************************************/
-/*			ƒqƒ‡ƒEƒ^EƒgƒEƒKƒ“(SCWK_PARAM1=2‚Å“ñl‚¢‚é)				*/
+/*			ãƒ’ãƒ§ã‚¦ã‚¿ãƒ»ãƒˆã‚¦ã‚¬ãƒ³(SCWK_PARAM1=2ã§äºŒäººã„ã‚‹)				*/
 /********************************************************************/
 ev_t06r0101_ex:
 	_LDVAL			SCWK_PARAM1,0
 
-	/*ƒqƒ‡ƒEƒ^‚©ƒgƒEƒKƒ“‚É˜b‚µ‚©‚¯‚Ä‚¢‚½‚ç*/
+	/*ãƒ’ãƒ§ã‚¦ã‚¿ã‹ãƒˆã‚¦ã‚¬ãƒ³ã«è©±ã—ã‹ã‘ã¦ã„ãŸã‚‰*/
 	_IFVAL_JUMP		LOCALWORK1,EQ,LEADER1,ev_t06r0101_ex_sub
 	_IFVAL_JUMP		LOCALWORK1,EQ,LEADER7,ev_t06r0101_ex_sub
 	_RET
 
-/*ƒqƒ‡ƒEƒ^‚ÆƒgƒEƒKƒ“‚ª‚¢‚é‚©’T‚·*/
+/*ãƒ’ãƒ§ã‚¦ã‚¿ã¨ãƒˆã‚¦ã‚¬ãƒ³ãŒã„ã‚‹ã‹æŽ¢ã™*/
 ev_t06r0101_ex_sub:
 	_IFVAL_CALL		OBJCHRWORK1,EQ,LEADER1,ev_t06r0101_ex_01
 	_IFVAL_CALL		OBJCHRWORK2,EQ,LEADER1,ev_t06r0101_ex_01
@@ -574,14 +574,14 @@ ev_t06r0101_ex_sub:
 	_IFVAL_CALL		OBJCHRWORK4,EQ,LEADER7,ev_t06r0101_ex_01
 	_RET
 
-/*‚¢‚½‚çƒ[ƒN‚É+1*/
+/*ã„ãŸã‚‰ãƒ¯ãƒ¼ã‚¯ã«+1*/
 ev_t06r0101_ex_01:
 	_ADD_WK			SCWK_PARAM1,1
 	_RET
 
 
 /********************************************************************/
-/*						ƒgƒŒ[ƒi[ƒf[ƒ^ƒZƒbƒg						*/
+/*						ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ						*/
 /********************************************************************/
 ev_t06r0101_trainer:
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_trainer_01
@@ -592,11 +592,11 @@ ev_t06r0101_trainer:
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_trainer_06
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_trainer_07
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_trainer_08
-	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_trainer_09			/*ƒ‚ƒ~*/
-	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_trainer_10			/*ƒQƒ“*/
-	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_trainer_11			/*ƒ}ƒC*/
-	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_trainer_12			/*ƒoƒN*/
-	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_trainer_13			/*ƒ~ƒ‹*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_trainer_09			/*ãƒ¢ãƒŸ*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_trainer_10			/*ã‚²ãƒ³*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_trainer_11			/*ãƒžã‚¤*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_trainer_12			/*ãƒã‚¯*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_trainer_13			/*ãƒŸãƒ«*/
 	_RET
 
 ev_t06r0101_trainer_01:
@@ -653,10 +653,10 @@ ev_t06r0101_trainer_13:
 
 
 /********************************************************************/
-/*						ƒƒbƒZ[ƒW•ªŠò1								*/
+/*						ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²1								*/
 /********************************************************************/
 ev_t06r0101_talk01:
-	/*•Êƒpƒ^[ƒ“‚©*/
+	/*åˆ¥ãƒ‘ã‚¿ãƒ¼ãƒ³ã‹*/
 	_IFVAL_JUMP	SYS_WORK_T06R0101_TALK,EQ,1,ev_t06r0101_talk06
 
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk01_01
@@ -728,10 +728,10 @@ ev_t06r0101_talk01_13:
 
 
 /********************************************************************/
-/*						ƒƒbƒZ[ƒW•ªŠò2								*/
+/*						ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²2								*/
 /********************************************************************/
 ev_t06r0101_talk02:
-	/*•Êƒpƒ^[ƒ“‚©*/
+	/*åˆ¥ãƒ‘ã‚¿ãƒ¼ãƒ³ã‹*/
 	_IFVAL_JUMP	SYS_WORK_T06R0101_TALK,EQ,1,ev_t06r0101_talk07
 
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk02_01
@@ -803,10 +803,10 @@ ev_t06r0101_talk02_13:
 
 
 /********************************************************************/
-/*						ƒƒbƒZ[ƒW•ªŠò3								*/
+/*						ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²3								*/
 /********************************************************************/
 ev_t06r0101_talk03:
-	/*•Êƒpƒ^[ƒ“‚©*/
+	/*åˆ¥ãƒ‘ã‚¿ãƒ¼ãƒ³ã‹*/
 	_IFVAL_JUMP	SYS_WORK_T06R0101_TALK,EQ,1,ev_t06r0101_talk08
 
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk03_01
@@ -878,10 +878,10 @@ ev_t06r0101_talk03_13:
 
 
 /********************************************************************/
-/*						ƒƒbƒZ[ƒW•ªŠò4								*/
+/*						ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²4								*/
 /********************************************************************/
 ev_t06r0101_talk04:
-	/*•Êƒpƒ^[ƒ“‚©*/
+	/*åˆ¥ãƒ‘ã‚¿ãƒ¼ãƒ³ã‹*/
 	_IFVAL_JUMP	SYS_WORK_T06R0101_TALK,EQ,1,ev_t06r0101_talk09
 
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk04_01
@@ -953,10 +953,10 @@ ev_t06r0101_talk04_13:
 
 
 /********************************************************************/
-/*						ƒƒbƒZ[ƒW•ªŠò5								*/
+/*						ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²5								*/
 /********************************************************************/
 ev_t06r0101_talk05:
-	/*•Êƒpƒ^[ƒ“‚©*/
+	/*åˆ¥ãƒ‘ã‚¿ãƒ¼ãƒ³ã‹*/
 	_IFVAL_JUMP	SYS_WORK_T06R0101_TALK,EQ,1,ev_t06r0101_talk10
 
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk05_01
@@ -1028,7 +1028,7 @@ ev_t06r0101_talk05_13:
 
 
 /********************************************************************/
-/*						ƒƒbƒZ[ƒW•ªŠò6								*/
+/*						ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²6								*/
 /********************************************************************/
 ev_t06r0101_talk06:
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk06_01
@@ -1101,7 +1101,7 @@ ev_t06r0101_talk06_13:
 
 
 /********************************************************************/
-/*						ƒƒbƒZ[ƒW•ªŠò7								*/
+/*						ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²7								*/
 /********************************************************************/
 ev_t06r0101_talk07:
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk07_01
@@ -1174,7 +1174,7 @@ ev_t06r0101_talk07_13:
 
 
 /********************************************************************/
-/*						ƒƒbƒZ[ƒW•ªŠò8								*/
+/*						ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²8								*/
 /********************************************************************/
 ev_t06r0101_talk08:
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk08_01
@@ -1246,7 +1246,7 @@ ev_t06r0101_talk08_13:
 
 
 /********************************************************************/
-/*						ƒƒbƒZ[ƒW•ªŠò9								*/
+/*						ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²9								*/
 /********************************************************************/
 ev_t06r0101_talk09:
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk09_01
@@ -1319,7 +1319,7 @@ ev_t06r0101_talk09_13:
 
 
 /********************************************************************/
-/*						ƒƒbƒZ[ƒW•ªŠò10							*/
+/*						ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²10							*/
 /********************************************************************/
 ev_t06r0101_talk10:
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk10_01
@@ -1391,7 +1391,7 @@ ev_t06r0101_talk10_13:
 
 
 /********************************************************************/
-/*					ˆê“úˆê‰ñŸ—˜ƒtƒ‰ƒO‚ð—§‚Ä‚é						*/
+/*					ä¸€æ—¥ä¸€å›žå‹åˆ©ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹						*/
 /********************************************************************/
 ev_t06r0101_trainer_win:
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_trainer_win_01
@@ -1402,11 +1402,11 @@ ev_t06r0101_trainer_win:
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_trainer_win_06
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_trainer_win_07
 	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_trainer_win_08
-	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_trainer_win_09			/*ƒ‚ƒ~*/
-	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_trainer_win_10			/*ƒQƒ“*/
-	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_trainer_win_11			/*ƒ}ƒC*/
-	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_trainer_win_12			/*ƒoƒN*/
-	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_trainer_win_13			/*ƒ~ƒ‹*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_trainer_win_09			/*ãƒ¢ãƒŸ*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_trainer_win_10			/*ã‚²ãƒ³*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_trainer_win_11			/*ãƒžã‚¤*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_trainer_win_12			/*ãƒã‚¯*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_trainer_win_13			/*ãƒŸãƒ«*/
 	_RET
 
 ev_t06r0101_trainer_win_01:
@@ -1463,7 +1463,7 @@ ev_t06r0101_trainer_win_13:
 
 
 /********************************************************************/
-/*					ˆê“úˆê‰ñŸ—˜ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN					*/
+/*					ä¸€æ—¥ä¸€å›žå‹åˆ©ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯					*/
 /********************************************************************/
 ev_t06r0101_trainer_win_check:
 	_LDVAL		SCWK_ANSWER,0
@@ -1475,11 +1475,11 @@ ev_t06r0101_trainer_win_check:
 	_IFVAL_JUMP	LOCALWORK1,EQ,LEADER6,ev_t06r0101_trainer_win_check_06
 	_IFVAL_JUMP	LOCALWORK1,EQ,LEADER7,ev_t06r0101_trainer_win_check_07
 	_IFVAL_JUMP	LOCALWORK1,EQ,LEADER8,ev_t06r0101_trainer_win_check_08
-	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_trainer_win_check_09			/*ƒ‚ƒ~*/
-	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_trainer_win_check_10			/*ƒQƒ“*/
-	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_trainer_win_check_11			/*ƒ}ƒC*/
-	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_trainer_win_check_12			/*ƒoƒN*/
-	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_trainer_win_check_13			/*ƒ~ƒ‹*/
+	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_trainer_win_check_09			/*ãƒ¢ãƒŸ*/
+	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_trainer_win_check_10			/*ã‚²ãƒ³*/
+	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_trainer_win_check_11			/*ãƒžã‚¤*/
+	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_trainer_win_check_12			/*ãƒã‚¯*/
+	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_trainer_win_check_13			/*ãƒŸãƒ«*/
 	_RET
 
 ev_t06r0101_trainer_win_check_01:
@@ -1535,7 +1535,7 @@ ev_t06r0101_trainer_win_check_13:
 	_RET
 
 ev_t06r0101_trainer_win_check_on:
-	_LDVAL			SCWK_ANSWER,1			/*‘ÎíÏ‚Ý*/
+	_LDVAL			SCWK_ANSWER,1			/*å¯¾æˆ¦æ¸ˆã¿*/
 	_RET
 
 

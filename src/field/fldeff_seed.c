@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_seed.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ–Ø‚ÌÀŠÖ˜AƒGƒtƒFƒNƒg
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJæœ¨ã®å®Ÿé–¢é€£ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  * @author	kagaya
  * @data	05.07.13
  *
@@ -19,16 +19,16 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒfƒoƒbƒO
+///	ãƒ‡ãƒãƒƒã‚°
 //--------------------------------------------------------------
 
 //--------------------------------------------------------------
-///	¼‚è‹Cí—ŞÅ‘å
+///	æ¹¿ã‚Šæ°—ç¨®é¡æœ€å¤§
 //--------------------------------------------------------------
 #define SEEDGROUND_KIND (SEEDGROUND_FULL+1)
 
 //--------------------------------------------------------------
-///	•\¦ƒIƒtƒZƒbƒg
+///	è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 //#define SG_DRAW_Z_OFFSET (FX32_ONE*(3))
 #define SG_DRAW_X_OFFSET (FX32_ONE*2)
@@ -39,12 +39,12 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_SEEDGROUNDŒ^
+///	FE_SEEDGROUNDå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_SEEDGROUND * FE_SEEDGROUND_PTR;
 
 //--------------------------------------------------------------
-///	FE_SEEDGROUND\‘¢‘Ì
+///	FE_SEEDGROUNDæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_SEEDGROUND
 {
@@ -53,36 +53,36 @@ typedef struct _TAG_FE_SEEDGROUND
 	FRO_MDL rmdl[SEEDGROUND_KIND];
 }FE_SEEDGROUND;
 
-#define FE_SEEDGROUND_SIZE (sizeof(FE_SEEDGROUND)) ///<FE_SEEDGROUNDƒTƒCƒY
+#define FE_SEEDGROUND_SIZE (sizeof(FE_SEEDGROUND)) ///<FE_SEEDGROUNDã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	SEEDGROUND_ADD_H\‘¢‘Ì
+///	SEEDGROUND_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	FE_SYS *fes;								///<FE_SYS_PTR
 	FE_SEEDGROUND_PTR sg;						///<FE_SEEDGROUND_PTR
-	FIELD_OBJ_PTR fldobj;						///<–Ø‚ÌÀ“y‚Ì‘ÎÛFIELD_OBJ_PTR
+	FIELD_OBJ_PTR fldobj;						///<æœ¨ã®å®ŸåœŸã®å¯¾è±¡FIELD_OBJ_PTR
 }SEEDGROUND_ADD_H;
 
-#define SEEDGROUND_ADD_H_SIZE (sizeof(SEEDGROUND_ADD_H)) ///<SEEDGROUND_ADD_HƒTƒCƒY
+#define SEEDGROUND_ADD_H_SIZE (sizeof(SEEDGROUND_ADD_H)) ///<SEEDGROUND_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	SG_WORK\‘¢‘Ì
+///	SG_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int obj_id;									///<–Ø‚ÌÀ“y‘ÎÛOBJID
-	int zone_id;								///<–Ø‚ÌÀ“y‘ÎÛƒ][ƒ“ID
-	int vanish_sw;								///<”ñ•\¦SW
-	int dry;									///<Š£‚«‹ï‡
-	SEEDGROUND_ADD_H head;						///<’Ç‰Á‚ÌSEEDGROUND_ADD_H
+	int obj_id;									///<æœ¨ã®å®ŸåœŸå¯¾è±¡OBJID
+	int zone_id;								///<æœ¨ã®å®ŸåœŸå¯¾è±¡ã‚¾ãƒ¼ãƒ³ID
+	int vanish_sw;								///<éè¡¨ç¤ºSW
+	int dry;									///<ä¹¾ãå…·åˆ
+	SEEDGROUND_ADD_H head;						///<è¿½åŠ æ™‚ã®SEEDGROUND_ADD_H
 }SG_WORK;
 
-#define SG_WORK_SIZE (sizeof(SG_WORK))			///<SG_WORKƒTƒCƒY
+#define SG_WORK_SIZE (sizeof(SG_WORK))			///<SG_WORKã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	FE_SEED_EFF\‘¢‘Ì
+///	FE_SEED_EFFæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -94,29 +94,29 @@ typedef struct
 #define FE_SEED_EFF_SIZE (sizeof(FE_SEED_EFF))
 
 //--------------------------------------------------------------
-///	SEED_EFF_ADD_H\‘¢‘Ì
+///	SEED_EFF_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	FE_SYS *fes;								///<FE_SYS_PTR
 	FE_SEED_EFF *seedeff;						///<FE_SEED_EFF
-	FIELD_OBJ_PTR fldobj;						///<‘ÎÛFIELD_OBJ_PTR
+	FIELD_OBJ_PTR fldobj;						///<å¯¾è±¡FIELD_OBJ_PTR
 }SEED_EFF_ADD_H;
 
 //--------------------------------------------------------------
-///	SEED_EFF_WORK\‘¢‘Ì
+///	SEED_EFF_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int seq_no;									///<“®ì”Ô†
-	int count;									///<ƒJƒEƒ“ƒg
-	int frame_init;								///<ƒtƒŒ[ƒ€
-	SEED_EFF_ADD_H head;						///<’Ç‰Á‚ÌSEED_EFF_ADD_H
-	BLACT_WORK_PTR act;							///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[
+	int seq_no;									///<å‹•ä½œç•ªå·
+	int count;									///<ã‚«ã‚¦ãƒ³ãƒˆ
+	int frame_init;								///<ãƒ•ãƒ¬ãƒ¼ãƒ 
+	SEED_EFF_ADD_H head;						///<è¿½åŠ æ™‚ã®SEED_EFF_ADD_H
+	BLACT_WORK_PTR act;							///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼
 }SEED_EFF_WORK;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void SG_GraphicInit( FE_SEEDGROUND_PTR sd );
 static void SG_GraphicDelete( FE_SEEDGROUND_PTR sd );
@@ -135,11 +135,11 @@ static const u32 DATA_SeedGroundMdlArcIDTbl[SEEDGROUND_KIND];
 const BLACT_ANIME_TBL DATA_BlActAnmTbl_SeedEff[];
 
 //==============================================================================
-//	–Ø‚ÌÀ“y@ƒVƒXƒeƒ€
+//	æœ¨ã®å®ŸåœŸã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀ“y‰Šú‰»
+ * æœ¨ã®å®ŸåœŸåˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_SEEDGROUND_PTR	FE_SEEDGROUND_PTR
  */
@@ -157,7 +157,7 @@ void * FE_SeedGround_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀ“yíœ
+ * æœ¨ã®å®ŸåœŸå‰Šé™¤
  * @param	sd		FE_SEEDGROUND_PTR
  * @retval	nothing
  */
@@ -170,11 +170,11 @@ void FE_SeedGround_Delete( void *work )
 }
 
 //==============================================================================
-//	–Ø‚ÌÀ“y@ƒOƒ‰ƒtƒBƒbƒN
+//	æœ¨ã®å®ŸåœŸã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀ“y ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * æœ¨ã®å®ŸåœŸ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	sg	FE_SEEDGROUND_PTR
  * @retval	nothing
  */
@@ -192,7 +192,7 @@ static void SG_GraphicInit( FE_SEEDGROUND_PTR sg )
 
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀ“y ƒOƒ‰ƒtƒBƒbƒNíœ
+ * æœ¨ã®å®ŸåœŸ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	sg	FE_SEEDGROUND_PTR
  * @retval	nothing
  */
@@ -207,11 +207,11 @@ static void SG_GraphicDelete( FE_SEEDGROUND_PTR sg )
 }
 
 //==============================================================================
-//	–Ø‚ÌÀ“y@EOA
+//	æœ¨ã®å®ŸåœŸã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ—p–Ø‚ÌÀ“y’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”¨æœ¨ã®å®ŸåœŸè¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -231,18 +231,18 @@ void FE_FldOBJSeedGround_Add( FIELD_OBJ_PTR fldobj )
 	
 	FieldOBJ_VecPosGet( fldobj, &mtx );
 	
-	param = 0;	//«—ˆ“I‚É‚Í‚È‚ñ‚©‚Ìƒpƒ‰ƒƒ^
+	param = 0;	//å°†æ¥çš„ã«ã¯ãªã‚“ã‹ã®ãƒ‘ãƒ©ãƒ¡ã‚¿
 	
-	pri = FieldOBJ_TCBStandardPriorityGet( fldobj ) + 1;	//ƒtƒB[ƒ‹ƒhOBJ‚æ‚è‚àˆ—‚ğŒã‚É
+	pri = FieldOBJ_TCBStandardPriorityGet( fldobj ) + 1;	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚ˆã‚Šã‚‚å‡¦ç†ã‚’å¾Œã«
 	FE_EoaAddNpp( fes, &DATA_EoaH_SeedGround, &mtx, param, &head, pri );
 }
 
 //--------------------------------------------------------------
 /**
- * EOA –Ø‚ÌÀ“y@‰Šú‰»
+ * EOA æœ¨ã®å®ŸåœŸã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaSeedGround_Init( EOA_PTR eoa, void *wk )
@@ -262,7 +262,7 @@ static int EoaSeedGround_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA –Ø‚ÌÀ“y@íœ
+ * EOA æœ¨ã®å®ŸåœŸã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -274,7 +274,7 @@ static void EoaSeedGround_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA –Ø‚ÌÀ“y@“®ì
+ * EOA æœ¨ã®å®ŸåœŸã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -289,7 +289,7 @@ static void EoaSeedGround_Move( EOA_PTR eoa, void *wk )
 	fldobj = work->head.fldobj;
 	
 	if( FieldOBJ_CheckSameID(fldobj,work->obj_id,work->zone_id) == FALSE ){
-		FE_EoaDelete( eoa );										//“¯ˆê‚Å‚Í‚È‚¢
+		FE_EoaDelete( eoa );										//åŒä¸€ã§ã¯ãªã„
 		return;
 	}
 	
@@ -297,7 +297,7 @@ static void EoaSeedGround_Move( EOA_PTR eoa, void *wk )
 	
 	if( FieldOBJ_StatusBit_CheckEasy(fldobj,FLDOBJ_STA_BIT_VANISH) == TRUE || 
 		SeedSys_GetSeedStatus(FieldOBJ_FieldSysWorkGet(fldobj),fldobj) == SEEDSTAT_NOTHING ){
-		work->vanish_sw = TRUE;									//”ñ•\¦
+		work->vanish_sw = TRUE;									//éè¡¨ç¤º
 		return;
 	}
 	
@@ -314,7 +314,7 @@ static void EoaSeedGround_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA –Ø‚ÌÀ“y@•`‰æ
+ * EOA æœ¨ã®å®ŸåœŸã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -333,7 +333,7 @@ static void EoaSeedGround_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	–Ø‚ÌÀ“yEOA_H
+///	æœ¨ã®å®ŸåœŸEOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_SeedGround =
 {
@@ -345,11 +345,11 @@ static const EOA_H_NPP DATA_EoaH_SeedGround =
 };
 
 //==============================================================================
-//	–Ø‚ÌÀƒLƒ‰ƒLƒ‰ƒGƒtƒFƒNƒg
+//	æœ¨ã®å®Ÿã‚­ãƒ©ã‚­ãƒ©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀƒGƒtƒFƒNƒg@‰Šú‰»
+ * æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€åˆæœŸåŒ–
  * @param	fes	FE_SYS_PTR
  * @retval	void* FE_SEED_EFF *
  */
@@ -366,7 +366,7 @@ void * FE_SeedEff_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * –Ø‚ÌÀƒGƒtƒFƒNƒg@íœ
+ * æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€å‰Šé™¤
  * @param	work	FE_SEED_EFF
  * @retval	nothing
  */
@@ -380,7 +380,7 @@ void FE_SeedEff_Delete( void *work )
 
 //--------------------------------------------------------------
 /**
- * ƒGƒtƒFƒNƒg”ƒJƒEƒ“ƒg
+ * ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ•°ã‚«ã‚¦ãƒ³ãƒˆ
  * @param	seedeff	FE_SEED_EFF
  * @retval	nothing
  */
@@ -392,7 +392,7 @@ static void SeedEff_AddCountUp( FE_SEED_EFF *seedeff )
 
 //--------------------------------------------------------------
 /**
- * ƒGƒtƒFƒNƒg”ƒfƒNƒŠƒƒ“ƒg
+ * ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ•°ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  * @param	seedeff	FE_SEED_EFF
  * @retval	nothing
  */
@@ -402,12 +402,12 @@ static void SeedEff_AddCountDown( FE_SEED_EFF *seedeff )
 	seedeff->add_count--;
 	
 	GF_ASSERT( seedeff->add_count >= 0 &&
-		"SeedEff_AddCountDown()@’Ç‰Á‚Æíœ‚Ì‰ñ”‚ª‡‚í‚È‚¢" );
+		"SeedEff_AddCountDown()ã€€è¿½åŠ ã¨å‰Šé™¤ã®å›æ•°ãŒåˆã‚ãªã„" );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒGƒtƒFƒNƒg ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	seedeff	FE_SEED_EFF
  * @retval	nothing
  */
@@ -430,7 +430,7 @@ static void SeedEff_GraphicInit( FE_SEED_EFF *seedeff )
 
 //--------------------------------------------------------------
 /**
- * ‚¬‚å‚¦[ ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ãã‚‡ãˆãƒ¼ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	seedeff	FE_SEED_EFF
  * @retval	nothing
  */
@@ -449,7 +449,7 @@ static void SeedEff_GraphicDelete( FE_SEED_EFF *seedeff )
 
 //--------------------------------------------------------------
 /**
- * ”»’è‚Â‚«ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * åˆ¤å®šã¤ãã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	seedeff FE_SEED_EFF
  * @retval	nothing
  */
@@ -463,7 +463,7 @@ static void SeedEff_GraphicCheckInit( FE_SEED_EFF *seedeff )
 
 //--------------------------------------------------------------
 /**
- * ”»’è‚Â‚«ƒOƒ‰ƒtƒBƒbƒNíœ
+ * åˆ¤å®šã¤ãã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	seedeff FE_SEED_EFF
  * @retval	nothing
  */
@@ -477,9 +477,9 @@ static void SeedEff_GraphicCheckDelete( FE_SEED_EFF *seedeff )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ –Ø‚ÌÀƒGƒtƒFƒNƒg’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR
- * @retval	EOA_PTR		’Ç‰ÁEOA_PTR
+ * @retval	EOA_PTR		è¿½åŠ EOA_PTR
  */
 //--------------------------------------------------------------
 EOA_PTR FE_FldOBJSeedEff_Add( FIELD_OBJ_PTR fldobj )
@@ -502,10 +502,10 @@ EOA_PTR FE_FldOBJSeedEff_Add( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * EOA –Ø‚ÌÀƒGƒtƒFƒNƒg@‰Šú‰»
+ * EOA æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaSeedEff_Init( EOA_PTR eoa, void *wk )
@@ -518,7 +518,7 @@ static int EoaSeedEff_Init( EOA_PTR eoa, void *wk )
 	head = EOA_AddPtrGet( eoa );
 	work->head = *head;
 	
-	SeedEff_GraphicCheckInit( work->head.seedeff );				//ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+	SeedEff_GraphicCheckInit( work->head.seedeff );				//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
 	
 	EOA_MatrixGet( eoa, &vec );
 	work->act = FE_BlActAddID( work->head.fes, FE_BLACT_H_ID_SEED_EFF, &vec );
@@ -529,7 +529,7 @@ static int EoaSeedEff_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA –Ø‚ÌÀƒGƒtƒFƒNƒg@íœ
+ * EOA æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -541,14 +541,14 @@ static void EoaSeedEff_Delete( EOA_PTR eoa, void *wk )
 	
 	work = wk;
 	
-	BLACT_Delete( work->act );									//ƒAƒNƒ^[íœ
-	SeedEff_AddCountDown( work->head.seedeff );					//ƒJƒEƒ“ƒgƒ_ƒEƒ“
-	SeedEff_GraphicCheckDelete( work->head.seedeff );			//ƒOƒ‰ƒtƒBƒbƒNíœ
+	BLACT_Delete( work->act );									//ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
+	SeedEff_AddCountDown( work->head.seedeff );					//ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
+	SeedEff_GraphicCheckDelete( work->head.seedeff );			//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
 }
 
 //--------------------------------------------------------------
 /**
- * EOA –Ø‚ÌÀƒGƒtƒFƒNƒg@“®ì
+ * EOA æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -580,7 +580,7 @@ static void EoaSeedEff_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA –Ø‚ÌÀƒGƒtƒFƒNƒg@•`‰æ
+ * EOA æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -598,7 +598,7 @@ static void EoaSeedEff_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-/// –Ø‚ÌÀƒGƒtƒFƒNƒgEOA_H
+/// æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆEOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_SeedEff =
 {
@@ -613,7 +613,7 @@ static const EOA_H_NPP DATA_EoaH_SeedEff =
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	íƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^ƒtƒ@ƒCƒ‹ƒpƒXƒe[ƒuƒ‹BSEEDGROUND_DRY‚Ì•À‚Ñ‚Éˆê’v
+///	ç¨®ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã€‚SEEDGROUND_DRYã®ä¸¦ã³ã«ä¸€è‡´
 //--------------------------------------------------------------
 static const u32 DATA_SeedGroundMdlArcIDTbl[SEEDGROUND_KIND] =
 {
@@ -623,7 +623,7 @@ static const u32 DATA_SeedGroundMdlArcIDTbl[SEEDGROUND_KIND] =
 };
 
 //--------------------------------------------------------------
-///	–Ø‚ÌÀƒGƒtƒFƒNƒg
+///	æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_BlActAnmTbl_SeedEff[] =
 {

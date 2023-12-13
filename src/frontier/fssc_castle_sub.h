@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fssc_castle_sub.h
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhƒTƒuFƒLƒƒƒbƒXƒ‹
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ã‚µãƒ–ï¼šã‚­ãƒ£ãƒƒã‚¹ãƒ«
  * @author	Satoshi Nohara
  * @date	07.07.04
  */
@@ -14,7 +14,7 @@
 
 //============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //============================================================================================
 extern CASTLE_SCRWORK* CastleScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 pos1, u16 pos2, u16 pos3, u16* work );
@@ -36,12 +36,12 @@ extern u16 CastleScr_GetEnemyObjCode( CASTLE_SCRWORK* wk, u8 param );
 extern void CastleScr_SetLose( CASTLE_SCRWORK* wk );
 extern void CastleScr_SetClear( CASTLE_SCRWORK* wk );
 
-//–¼‘O{CPƒEƒBƒ“ƒhƒE
+//åå‰ï¼‹CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 extern void FSSC_Sub_CPWinWrite( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk );
 extern void FSSC_Sub_CPWinDel( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk );
 extern void FSSC_Sub_CPWrite( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk );
 
-//’ÊM
+//é€šä¿¡
 extern BOOL CastleScr_CommSetSendBuf( CASTLE_SCRWORK* wk, u16 type, u16 param );
 extern u16 CastleScr_CommGetLap( CASTLE_SCRWORK* wk );
 

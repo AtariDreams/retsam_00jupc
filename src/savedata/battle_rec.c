@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	battle_rec.c
- * @brief	í“¬˜^‰æƒZ[ƒuƒf[ƒ^
+ * @brief	æˆ¦é—˜éŒ²ç”»ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  * @author	matsuda
- * @date	2007.03.06(‰Î)
+ * @date	2007.03.06(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -36,7 +36,7 @@
 BATTLE_REC_SAVEDATA * brs=NULL;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 //static	void BattleRec_BattleParamCreate(BATTLE_PARAM *bp,SAVEDATA *sv);
 static void PokeParty_to_RecPokeParty(const POKEPARTY *party, REC_POKEPARTY *rec_party);
@@ -50,7 +50,7 @@ static void RecHeaderCreate(SAVEDATA *sv, BATTLE_REC_HEADER *head, const BATTLE_
 
 //------------------------------------------------------------------
 /**
- * ƒZ[ƒuƒf[ƒ^ƒTƒCƒY‚ğ•Ô‚·
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’è¿”ã™
  *
  * @retval  int		
  */
@@ -81,8 +81,8 @@ int BattleRec_GetWorkSize( void )
 	OS_TPrintf("GDS_PROFILE = %d\n", sizeof(GDS_PROFILE));
 #endif
 
-	//ƒZƒNƒ^[2ƒy[ƒW•ª‚æ‚è‚àƒTƒCƒY‚ª‘å‚«‚­‚È‚Á‚½‚çExtraSaveDataTable‚ÌŠe˜^‰æƒf[ƒ^‚Ì
-	//ƒy[ƒWƒIƒtƒZƒbƒg‚à+3’PˆÊ‚É’¼‚·
+	//ã‚»ã‚¯ã‚¿ãƒ¼2ãƒšãƒ¼ã‚¸åˆ†ã‚ˆã‚Šã‚‚ã‚µã‚¤ã‚ºãŒå¤§ãããªã£ãŸã‚‰ExtraSaveDataTableã®å„éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®
+	//ãƒšãƒ¼ã‚¸ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚‚+3å˜ä½ã«ç›´ã™
 	GF_ASSERT(sizeof(BATTLE_REC_SAVEDATA) < SAVE_SECTOR_SIZE * 2);
 	
 	return sizeof(BATTLE_REC_SAVEDATA);
@@ -90,7 +90,7 @@ int BattleRec_GetWorkSize( void )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ[ƒN‰Šú‰»
+ * @brief   ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   rec		
  */
@@ -103,9 +103,9 @@ void BattleRec_WorkInit(BATTLE_REC_SAVEDATA *rec)
 
 //------------------------------------------------------------------
 /**
- * ƒf[ƒ^‰Šú‰»
+ * ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- * @param   heapID	ƒƒ‚ƒŠŠm•Û‚·‚é‚½‚ß‚Ìƒq[ƒvID		
+ * @param   heapID	ãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹ãŸã‚ã®ãƒ’ãƒ¼ãƒ—ID		
  *
  */
 //------------------------------------------------------------------
@@ -115,14 +115,14 @@ void BattleRec_Init(SAVEDATA *sv,int heapID,LOAD_RESULT *result)
 		sys_FreeMemoryEz(brs);
 		brs = NULL;
 	}
-	//ƒ[ƒN‚ğŠm•Û‚·‚éˆ×‚¾‚¯‚ÌLOAD‚È‚Ì‚ÅALOADDATA_MYRECŒÅ’è
+	//ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿ã™ã‚‹ç‚ºã ã‘ã®LOADãªã®ã§ã€LOADDATA_MYRECå›ºå®š
 	brs=SaveData_Extra_LoadBattleRecData(sv,heapID,result,LOADDATA_MYREC);
 	BattleRec_WorkInit(brs);
 }
 
 //------------------------------------------------------------------
 /**
- * ‘Îí˜^‰æƒf[ƒ^‚Ì”jŠü
+ * å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®ç ´æ£„
  */
 //------------------------------------------------------------------
 void BattleRec_Exit(void)
@@ -134,9 +134,9 @@ void BattleRec_Exit(void)
 
 //------------------------------------------------------------------
 /**
- * ‘Îí˜^‰æƒf[ƒ^‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @retval	TRUE:‘¶İ‚·‚é@FALSE:‘¶İ‚µ‚È‚¢
+ * @retval	TRUE:å­˜åœ¨ã™ã‚‹ã€€FALSE:å­˜åœ¨ã—ãªã„
  */
 //------------------------------------------------------------------
 BOOL BattleRec_DataExistCheck(void)
@@ -146,9 +146,9 @@ BOOL BattleRec_DataExistCheck(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ[ƒN‚ÌƒAƒhƒŒƒX‚ğæ“¾
+ * @brief   ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- * @retval	brs‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒ[ƒNƒAƒhƒŒƒX		
+ * @retval	brsã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹		
  */
 //--------------------------------------------------------------
 BATTLE_REC_SAVEDATA * BattleRec_WorkAdrsGet( void )
@@ -160,9 +160,9 @@ BATTLE_REC_SAVEDATA * BattleRec_WorkAdrsGet( void )
 
 //--------------------------------------------------------------
 /**
- * @brief   ”FØƒL[‚ğœ‚¢‚½í“¬˜^‰æƒ[ƒN‚ÌƒAƒhƒŒƒX‚ğæ“¾
+ * @brief   èªè¨¼ã‚­ãƒ¼ã‚’é™¤ã„ãŸæˆ¦é—˜éŒ²ç”»ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- * @retval	brs‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒ[ƒNƒAƒhƒŒƒX(”FØƒL[œ‚­)
+ * @retval	brsã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹(èªè¨¼ã‚­ãƒ¼é™¤ã)
  */
 //--------------------------------------------------------------
 void * BattleRec_RecWorkAdrsGet( void )
@@ -177,13 +177,13 @@ void * BattleRec_RecWorkAdrsGet( void )
 
 //------------------------------------------------------------------
 /**
- * ‘Îí˜^‰æƒf[ƒ^‚Ìƒ[ƒh
+ * å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	heapID	ƒf[ƒ^‚ğƒ[ƒh‚·‚éƒƒ‚ƒŠ‚ğŠm•Û‚·‚é‚½‚ß‚Ìƒq[ƒvID
- * @param	result	ƒ[ƒhŒ‹‰Ê‚ğŠi”[‚·‚éƒ[ƒNRECLOAD_RESULT_NULL,OK,NG,ERROR
- * @param	bp		ƒ[ƒh‚µ‚½ƒf[ƒ^‚©‚ç¶¬‚·‚éBATTLE_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	num		ƒ[ƒh‚·‚éƒf[ƒ^ƒiƒ“ƒo[iLOADDATA_MYRECALOADDATA_DOWNLOAD0ALOADDATA_DOWNLOAD1cj
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	heapID	ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãŸã‚ã®ãƒ’ãƒ¼ãƒ—ID
+ * @param	result	ãƒ­ãƒ¼ãƒ‰çµæœã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯RECLOAD_RESULT_NULL,OK,NG,ERROR
+ * @param	bp		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ç”Ÿæˆã™ã‚‹BATTLE_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	num		ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ï¼ˆLOADDATA_MYRECã€LOADDATA_DOWNLOAD0ã€LOADDATA_DOWNLOAD1â€¦ï¼‰
  *
  * @retval	TRUE
  */
@@ -193,12 +193,12 @@ BOOL BattleRec_Load(SAVEDATA *sv,int heapID,LOAD_RESULT *result,BATTLE_PARAM *bp
 	BATTLE_REC_WORK *rec;
 	BATTLE_REC_HEADER *head;
 	
-	//‚·‚Å‚É“Ç‚İ‚Ü‚ê‚Ä‚¢‚éƒf[ƒ^‚ª‚ ‚é‚È‚çA”jŠü‚·‚é
+	//ã™ã§ã«èª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ãªã‚‰ã€ç ´æ£„ã™ã‚‹
 	if(brs){
 		sys_FreeMemoryEz(brs);
 		brs=NULL;
 	}
-	//–{—ˆ‚ÍAnum‚É‚æ‚Á‚Ä“Ç‚İ‚İæ‚ğ•Ï‚¦‚é
+	//æœ¬æ¥ã¯ã€numã«ã‚ˆã£ã¦èª­ã¿è¾¼ã¿å…ˆã‚’å¤‰ãˆã‚‹
 	brs=SaveData_Extra_LoadBattleRecData(sv,heapID,result,num);
 	if(*result != LOAD_RESULT_OK){
 		*result = RECLOAD_RESULT_ERROR;
@@ -208,7 +208,7 @@ BOOL BattleRec_Load(SAVEDATA *sv,int heapID,LOAD_RESULT *result,BATTLE_PARAM *bp
 	rec = &brs->rec;
 	head = &brs->head;
 	
-	//•œ†
+	//å¾©å·
 #if 0
 	BattleRec_Decoded(rec, sizeof(BATTLE_REC_WORK) - GDS_CRC_SIZE, rec->checksum);
 #else
@@ -216,22 +216,22 @@ BOOL BattleRec_Load(SAVEDATA *sv,int heapID,LOAD_RESULT *result,BATTLE_PARAM *bp
 		rec->crc.crc16ccitt_hash + ((rec->crc.crc16ccitt_hash ^ 0xffff) << 16));
 #endif
 
-	//“Ç‚İo‚µ‚½ƒf[ƒ^‚É˜^‰æƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	//èª­ã¿å‡ºã—ãŸãƒ‡ãƒ¼ã‚¿ã«éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(BattleRec_DataInitializeCheck(sv, brs) == TRUE){
-		*result = RECLOAD_RESULT_NULL;	//‰Šú‰»ƒf[ƒ^‚Ìˆ×Aƒf[ƒ^‚È‚µ
+		*result = RECLOAD_RESULT_NULL;	//åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã®ç‚ºã€ãƒ‡ãƒ¼ã‚¿ãªã—
 		return TRUE;
 	}
 
-	//ƒf[ƒ^‚Ì®‡«ƒ`ƒFƒbƒN
+	//ãƒ‡ãƒ¼ã‚¿ã®æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
 	if(BattleRecordCheckData(sv, brs) == FALSE){
 	#ifdef OSP_REC_ON
-		OS_TPrintf("•s³‚È˜^‰æƒf[ƒ^\n");
+		OS_TPrintf("ä¸æ­£ãªéŒ²ç”»ãƒ‡ãƒ¼ã‚¿\n");
 	#endif
 		*result = RECLOAD_RESULT_NG;
 		return TRUE;
 	}
 
-	//“Ç‚İo‚µƒf[ƒ^‚ğBATTLE_PARAM‚ÉƒZƒbƒg
+	//èª­ã¿å‡ºã—ãƒ‡ãƒ¼ã‚¿ã‚’BATTLE_PARAMã«ã‚»ãƒƒãƒˆ
 	if(bp){
 		BattleRec_BattleParamCreate(bp,sv);
 	}
@@ -242,16 +242,16 @@ BOOL BattleRec_Load(SAVEDATA *sv,int heapID,LOAD_RESULT *result,BATTLE_PARAM *bp
 
 //------------------------------------------------------------------
 /**
- * Šù‚É‘Îí˜^‰æƒf[ƒ^‚ª‘¶İ‚µ‚Ä‚¢‚é‚©’²‚×‚é(BattleRec_LoadŠÖ”‚©‚çƒf[ƒ^ƒ`ƒFƒbƒN‚Ì‚İ”²‚«o‚µ‚½‚à‚Ì)
+ * æ—¢ã«å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹(BattleRec_Loadé–¢æ•°ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯ã®ã¿æŠœãå‡ºã—ãŸã‚‚ã®)
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	heapID	ƒf[ƒ^‚ğƒ[ƒh‚·‚éƒƒ‚ƒŠ‚ğŠm•Û‚·‚é‚½‚ß‚Ìƒq[ƒvID
- * @param	result	ƒ[ƒhŒ‹‰Ê‚ğŠi”[‚·‚éƒ[ƒNRECLOAD_RESULT_NULL,OK,NG,ERROR
- * @param	bp		ƒ[ƒh‚µ‚½ƒf[ƒ^‚©‚ç¶¬‚·‚éBATTLE_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	num		ƒ[ƒh‚·‚éƒf[ƒ^ƒiƒ“ƒo[iLOADDATA_MYRECALOADDATA_DOWNLOAD0ALOADDATA_DOWNLOAD1cj
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	heapID	ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãŸã‚ã®ãƒ’ãƒ¼ãƒ—ID
+ * @param	result	ãƒ­ãƒ¼ãƒ‰çµæœã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯RECLOAD_RESULT_NULL,OK,NG,ERROR
+ * @param	bp		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ç”Ÿæˆã™ã‚‹BATTLE_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	num		ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ï¼ˆLOADDATA_MYRECã€LOADDATA_DOWNLOAD0ã€LOADDATA_DOWNLOAD1â€¦ï¼‰
  *
- * @retval	TRUE:³í‚È˜^‰æƒf[ƒ^‚ª‘¶İ‚µ‚Ä‚¢‚é
- * @retval	FALSE:³í‚È˜^‰æƒf[ƒ^‚Í‘¶İ‚µ‚Ä‚¢‚È‚¢
+ * @retval	TRUE:æ­£å¸¸ãªéŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ã¦ã„ã‚‹
+ * @retval	FALSE:æ­£å¸¸ãªéŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã¯å­˜åœ¨ã—ã¦ã„ãªã„
  */
 //------------------------------------------------------------------
 BOOL BattleRec_DataOccCheck(SAVEDATA *sv,int heapID,LOAD_RESULT *result,int num)
@@ -270,7 +270,7 @@ BOOL BattleRec_DataOccCheck(SAVEDATA *sv,int heapID,LOAD_RESULT *result,int num)
 	rec = &all->rec;
 	head = &all->head;
 	
-	//•œ†
+	//å¾©å·
 #if 0
 	BattleRec_Decoded(rec, sizeof(BATTLE_REC_WORK) - GDS_CRC_SIZE, rec->checksum);
 #else
@@ -278,17 +278,17 @@ BOOL BattleRec_DataOccCheck(SAVEDATA *sv,int heapID,LOAD_RESULT *result,int num)
 		rec->crc.crc16ccitt_hash + ((rec->crc.crc16ccitt_hash ^ 0xffff) << 16));
 #endif
 
-	//“Ç‚İo‚µ‚½ƒf[ƒ^‚É˜^‰æƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	//èª­ã¿å‡ºã—ãŸãƒ‡ãƒ¼ã‚¿ã«éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(BattleRec_DataInitializeCheck(sv, all) == TRUE){
-		*result = RECLOAD_RESULT_NULL;	//‰Šú‰»ƒf[ƒ^‚Ìˆ×Aƒf[ƒ^‚È‚µ
+		*result = RECLOAD_RESULT_NULL;	//åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã®ç‚ºã€ãƒ‡ãƒ¼ã‚¿ãªã—
 		sys_FreeMemoryEz(all);
 		return FALSE;
 	}
 
-	//ƒf[ƒ^‚Ì®‡«ƒ`ƒFƒbƒN
+	//ãƒ‡ãƒ¼ã‚¿ã®æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
 	if(BattleRecordCheckData(sv, all) == FALSE){
 	#ifdef OSP_REC_ON
-		OS_TPrintf("•s³‚È˜^‰æƒf[ƒ^\n");
+		OS_TPrintf("ä¸æ­£ãªéŒ²ç”»ãƒ‡ãƒ¼ã‚¿\n");
 	#endif
 		*result = RECLOAD_RESULT_NG;
 		sys_FreeMemoryEz(all);
@@ -302,16 +302,16 @@ BOOL BattleRec_DataOccCheck(SAVEDATA *sv,int heapID,LOAD_RESULT *result,int num)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘Îí˜^‰æ‚ÌƒZ[ƒuˆ—‚ğ‚Ü‚Æ‚ß‚½‚à‚Ì
+ * @brief   å¯¾æˆ¦éŒ²ç”»ã®ã‚»ãƒ¼ãƒ–å‡¦ç†ã‚’ã¾ã¨ã‚ãŸã‚‚ã®
  *
- * @param   sv		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   num		LOADDATA_MYRECALOADDATA_DOWNLOAD0ALOADDATA_DOWNLOAD1c
- * @param   seq		ƒZ[ƒuis‚ğ§Œä‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^(Å‰‚Í0ƒNƒŠƒA‚µ‚½ó‘Ô‚ÅŒÄ‚ñ‚Å‰º‚³‚¢)
+ * @param   sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   num		LOADDATA_MYRECã€LOADDATA_DOWNLOAD0ã€LOADDATA_DOWNLOAD1â€¦
+ * @param   seq		ã‚»ãƒ¼ãƒ–é€²è¡Œã‚’åˆ¶å¾¡ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿(æœ€åˆã¯0ã‚¯ãƒªã‚¢ã—ãŸçŠ¶æ…‹ã§å‘¼ã‚“ã§ä¸‹ã•ã„)
  *
- * @retval	SAVE_RESULT_CONTINUE	ƒZ[ƒuŒp‘±’†
- * @retval	SAVE_RESULT_LAST		ƒZ[ƒuŒp‘±’†AÅŒã‚Ì•”•ª
- * @retval	SAVE_RESULT_OK			ƒZ[ƒuI—¹A¬Œ÷
- * @retval	SAVE_RESULT_NG			ƒZ[ƒuI—¹A¸”s
+ * @retval	SAVE_RESULT_CONTINUE	ã‚»ãƒ¼ãƒ–ç¶™ç¶šä¸­
+ * @retval	SAVE_RESULT_LAST		ã‚»ãƒ¼ãƒ–ç¶™ç¶šä¸­ã€æœ€å¾Œã®éƒ¨åˆ†
+ * @retval	SAVE_RESULT_OK			ã‚»ãƒ¼ãƒ–çµ‚äº†ã€æˆåŠŸ
+ * @retval	SAVE_RESULT_NG			ã‚»ãƒ¼ãƒ–çµ‚äº†ã€å¤±æ•—
  */
 //--------------------------------------------------------------
 SAVE_RESULT Local_BattleRecSave(SAVEDATA *sv, BATTLE_REC_SAVEDATA *work, int num, u16 *seq)
@@ -347,17 +347,17 @@ SAVE_RESULT Local_BattleRecSave(SAVEDATA *sv, BATTLE_REC_SAVEDATA *work, int num
 
 //------------------------------------------------------------------
 /**
- * ‘Îí˜^‰æƒf[ƒ^‚ÌƒZ[ƒu
+ * å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒ¼ãƒ–
  *
- * @param	sv				ƒZ[ƒuƒf[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	data			ƒZ[ƒuƒf[‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   rec_mode		˜^‰æƒ‚[ƒh(RECMODE_???)
- * @param   fight_count		‰½í–Ú‚©
- * @param	num		ƒ[ƒh‚·‚éƒf[ƒ^ƒiƒ“ƒo[iLOADDATA_MYRECALOADDATA_DOWNLOAD0ALOADDATA_DOWNLOAD1cj
- * @param   work0		ƒZ[ƒuis‚ğ§Œä‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^(Å‰‚Í0ƒNƒŠƒA‚µ‚½ó‘Ô‚ÅŒÄ‚ñ‚Å‰º‚³‚¢)
- * @param   work1		ƒZ[ƒuis‚ğ§Œä‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^(Å‰‚Í0ƒNƒŠƒA‚µ‚½ó‘Ô‚ÅŒÄ‚ñ‚Å‰º‚³‚¢)
+ * @param	sv				ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	data			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   rec_mode		éŒ²ç”»ãƒ¢ãƒ¼ãƒ‰(RECMODE_???)
+ * @param   fight_count		ä½•æˆ¦ç›®ã‹
+ * @param	num		ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ï¼ˆLOADDATA_MYRECã€LOADDATA_DOWNLOAD0ã€LOADDATA_DOWNLOAD1â€¦ï¼‰
+ * @param   work0		ã‚»ãƒ¼ãƒ–é€²è¡Œã‚’åˆ¶å¾¡ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿(æœ€åˆã¯0ã‚¯ãƒªã‚¢ã—ãŸçŠ¶æ…‹ã§å‘¼ã‚“ã§ä¸‹ã•ã„)
+ * @param   work1		ã‚»ãƒ¼ãƒ–é€²è¡Œã‚’åˆ¶å¾¡ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿(æœ€åˆã¯0ã‚¯ãƒªã‚¢ã—ãŸçŠ¶æ…‹ã§å‘¼ã‚“ã§ä¸‹ã•ã„)
  *
- * @retval	ƒZ[ƒuŒ‹‰Ê(SAVE_RESULT_OK or SAVE_RESULT_NG ‚ª•Ô‚é‚Ü‚Åê‡‚Í–ˆƒtƒŒ[ƒ€ŒÄ‚Ñ‘±‚¯‚Ä‚­‚¾‚³‚¢)
+ * @retval	ã‚»ãƒ¼ãƒ–çµæœ(SAVE_RESULT_OK or SAVE_RESULT_NG ãŒè¿”ã‚‹ã¾ã§å ´åˆã¯æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å‘¼ã³ç¶šã‘ã¦ãã ã•ã„)
  */
 //------------------------------------------------------------------
 SAVE_RESULT BattleRec_Save(SAVEDATA *sv, int rec_mode, int fight_count, int num, u16 *work0, u16 *work1)
@@ -368,17 +368,17 @@ SAVE_RESULT BattleRec_Save(SAVEDATA *sv, int rec_mode, int fight_count, int num,
 	
 	switch(*work0){
 	case 0:
-		//ƒf[ƒ^‚ª‚È‚¢‚Æ‚«‚ÍA‰½‚à‚µ‚È‚¢
+		//ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã¨ãã¯ã€ä½•ã‚‚ã—ãªã„
 		if(brs==NULL){
 			return	SAVE_RESULT_NG;
 		}
 		head = &brs->head;
 		rec = &brs->rec;
 		
-		//˜^‰æƒf[ƒ^–{‘Ì‚ğŒ³‚Éƒwƒbƒ_ƒf[ƒ^ì¬
+		//éŒ²ç”»ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã‚’å…ƒã«ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		RecHeaderCreate(sv, head, rec, rec_mode, fight_count);
 
-		//CRCì¬
+		//CRCä½œæˆ
 		head->magic_key = REC_OCC_MAGIC_KEY;
 		head->crc.crc16ccitt_hash = SaveData_CalcCRC(sv, head, 
 			sizeof(BATTLE_REC_HEADER) - GDS_CRC_SIZE - DATANUMBER_SIZE);
@@ -386,7 +386,7 @@ SAVE_RESULT BattleRec_Save(SAVEDATA *sv, int rec_mode, int fight_count, int num,
 		rec->crc.crc16ccitt_hash = SaveData_CalcCRC(sv, rec, 
 			sizeof(BATTLE_REC_WORK) - GDS_CRC_SIZE);
 
-		//CRC‚ğƒL[‚É‚µ‚ÄˆÃ†‰»
+		//CRCã‚’ã‚­ãƒ¼ã«ã—ã¦æš—å·åŒ–
 		BattleRec_Coded(rec, sizeof(BATTLE_REC_WORK) - GDS_CRC_SIZE, 
 			rec->crc.crc16ccitt_hash + ((rec->crc.crc16ccitt_hash ^ 0xffff) << 16));
 		
@@ -403,20 +403,20 @@ SAVE_RESULT BattleRec_Save(SAVEDATA *sv, int rec_mode, int fight_count, int num,
 
 //--------------------------------------------------------------
 /**
- * @brief   w’èˆÊ’u‚Ì˜^‰æƒf[ƒ^‚ğíœ(‰Šú‰»)‚µ‚ÄƒZ[ƒuÀs
+ * @brief   æŒ‡å®šä½ç½®ã®éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤(åˆæœŸåŒ–)ã—ã¦ã‚»ãƒ¼ãƒ–å®Ÿè¡Œ
  *
  * @param   sv			
  * @param   heap_id		
  * @param   num			
- * @param   work0		ƒZ[ƒuis‚ğ§Œä‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^(Å‰‚Í0ƒNƒŠƒA‚µ‚½ó‘Ô‚ÅŒÄ‚ñ‚Å‰º‚³‚¢)
- * @param   work1		ƒZ[ƒuis‚ğ§Œä‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^(Å‰‚Í0ƒNƒŠƒA‚µ‚½ó‘Ô‚ÅŒÄ‚ñ‚Å‰º‚³‚¢)
+ * @param   work0		ã‚»ãƒ¼ãƒ–é€²è¡Œã‚’åˆ¶å¾¡ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿(æœ€åˆã¯0ã‚¯ãƒªã‚¢ã—ãŸçŠ¶æ…‹ã§å‘¼ã‚“ã§ä¸‹ã•ã„)
+ * @param   work1		ã‚»ãƒ¼ãƒ–é€²è¡Œã‚’åˆ¶å¾¡ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿(æœ€åˆã¯0ã‚¯ãƒªã‚¢ã—ãŸçŠ¶æ…‹ã§å‘¼ã‚“ã§ä¸‹ã•ã„)
  *
- * @retval  SAVE_RESULT_CONTINUE	ƒZ[ƒuˆ—Œp‘±’†
- * @retval  SAVE_RESULT_LAST		ƒZ[ƒuˆ—Œp‘±’†AÅŒã‚Ìˆê‚Â‘O
- * @retval  SAVE_RESULT_OK			ƒZ[ƒu³íI—¹
- * @retval  SAVE_RESULT_NG			ƒZ[ƒu¸”sI—¹
+ * @retval  SAVE_RESULT_CONTINUE	ã‚»ãƒ¼ãƒ–å‡¦ç†ç¶™ç¶šä¸­
+ * @retval  SAVE_RESULT_LAST		ã‚»ãƒ¼ãƒ–å‡¦ç†ç¶™ç¶šä¸­ã€æœ€å¾Œã®ä¸€ã¤å‰
+ * @retval  SAVE_RESULT_OK			ã‚»ãƒ¼ãƒ–æ­£å¸¸çµ‚äº†
+ * @retval  SAVE_RESULT_NG			ã‚»ãƒ¼ãƒ–å¤±æ•—çµ‚äº†
  *
- * ¦Á‹‚ÍƒIƒtƒ‰ƒCƒ“‚Ås‚¤‚Ì‚Å•ªŠ„ƒZ[ƒu‚Å‚Í‚È‚­AˆêŠ‡ƒZ[ƒu‚É‚µ‚Ä‚¢‚Ü‚·B
+ * â€»æ¶ˆå»ã¯ã‚ªãƒ•ãƒ©ã‚¤ãƒ³ã§è¡Œã†ã®ã§åˆ†å‰²ã‚»ãƒ¼ãƒ–ã§ã¯ãªãã€ä¸€æ‹¬ã‚»ãƒ¼ãƒ–ã«ã—ã¦ã„ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 SAVE_RESULT BattleRec_SaveDataErase(SAVEDATA *sv, int heap_id, int num)
@@ -443,11 +443,11 @@ SAVE_RESULT BattleRec_SaveDataErase(SAVEDATA *sv, int heap_id, int num)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜^‰æƒ‚[ƒh‚©‚çƒNƒ‰ƒCƒAƒ“ƒg”‚Æè‚¿”‚ÌãŒÀ‚ğæ“¾
+ * @brief   éŒ²ç”»ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆæ•°ã¨æ‰‹æŒã¡æ•°ã®ä¸Šé™ã‚’å–å¾—
  *
- * @param   rec_mode		˜^‰æƒ‚[ƒh(RECMODE_???)
- * @param   client_max		ƒNƒ‰ƒCƒAƒ“ƒg”‘ã“üæ
- * @param   temoti_max		è‚¿Å‘å”‘ã“üæ
+ * @param   rec_mode		éŒ²ç”»ãƒ¢ãƒ¼ãƒ‰(RECMODE_???)
+ * @param   client_max		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆæ•°ä»£å…¥å…ˆ
+ * @param   temoti_max		æ‰‹æŒã¡æœ€å¤§æ•°ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void BattleRec_ClientTemotiGet(int rec_mode, int *client_max, int *temoti_max)
@@ -472,12 +472,12 @@ void BattleRec_ClientTemotiGet(int rec_mode, int *client_max, int *temoti_max)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜^‰æƒf[ƒ^–{‘Ì‚ğŒ³‚Éƒwƒbƒ_[ƒf[ƒ^‚ğì¬
+ * @brief   éŒ²ç”»ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã‚’å…ƒã«ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
  *
- * @param   head		ƒwƒbƒ_[ƒf[ƒ^‘ã“üæ
- * @param   rec			˜^‰æƒf[ƒ^–{‘Ì
- * @param   rec_mode	˜^‰æƒ‚[ƒh(RECMODE_???)
- * @param   counter		‰½í–Ú‚©
+ * @param   head		ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ä»£å…¥å…ˆ
+ * @param   rec			éŒ²ç”»ãƒ‡ãƒ¼ã‚¿æœ¬ä½“
+ * @param   rec_mode	éŒ²ç”»ãƒ¢ãƒ¼ãƒ‰(RECMODE_???)
+ * @param   counter		ä½•æˆ¦ç›®ã‹
  */
 //--------------------------------------------------------------
 static void RecHeaderCreate(SAVEDATA *sv, BATTLE_REC_HEADER *head, const BATTLE_REC_WORK *rec, 
@@ -494,7 +494,7 @@ static void RecHeaderCreate(SAVEDATA *sv, BATTLE_REC_HEADER *head, const BATTLE_
 
 	n = 0;
 	
-	//©•ª‚ÌƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[æ“¾
+	//è‡ªåˆ†ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼å–å¾—
 	if(rec->rbp.fight_type&FIGHT_TYPE_SIO){
 		if(rec->rbp.fight_type&FIGHT_TYPE_TOWER){
 			my_client=rec->rbp.comm_id*2;
@@ -535,9 +535,9 @@ static void RecHeaderCreate(SAVEDATA *sv, BATTLE_REC_HEADER *head, const BATTLE_
 		}
 	}
 	
-	//ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒZƒbƒg
+	//ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	switch(rec_mode){
-	case RECMODE_COLOSSEUM_SINGLE_STANDARD:		//MIX‚ÍƒVƒ“ƒOƒ‹‚Æˆê
+	case RECMODE_COLOSSEUM_SINGLE_STANDARD:		//MIXã¯ã‚·ãƒ³ã‚°ãƒ«ã¨ä¸€ç·’
 	case RECMODE_COLOSSEUM_DOUBLE_STANDARD:
 		head->regulation = *(Data_GetRegulation(sv, REGULATION_NO_STANDARD));
 		break;
@@ -561,7 +561,7 @@ static void RecHeaderCreate(SAVEDATA *sv, BATTLE_REC_HEADER *head, const BATTLE_
 	case RECMODE_COLOSSEUM_DOUBLE_ETC:
 		head->regulation = *(Data_GetRegulation(sv, REGULATION_NO_ETC));
 		break;
-	case RECMODE_COLOSSEUM_SINGLE:		//§ŒÀ–³‚µ
+	case RECMODE_COLOSSEUM_SINGLE:		//åˆ¶é™ç„¡ã—
 	case RECMODE_COLOSSEUM_DOUBLE:
 	default:
 		head->regulation = *(Data_GetNoLimitRegulation());
@@ -574,12 +574,12 @@ static void RecHeaderCreate(SAVEDATA *sv, BATTLE_REC_HEADER *head, const BATTLE_
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘Îí˜^‰æƒf[ƒ^‚ª‰Šú‰»‚³‚ê‚½ƒf[ƒ^‚©’²‚×‚é
+ * @brief   å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒåˆæœŸåŒ–ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‹èª¿ã¹ã‚‹
  *
- * @param   src		‘Îí˜^‰æƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   src		å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‰Šú‰»‚³‚ê‚Ä‚¢‚éƒf[ƒ^
- * @retval  FALSE:‰½‚ç‚©‚Ìƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é
+ * @retval  TRUE:åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿
+ * @retval  FALSE:ä½•ã‚‰ã‹ã®ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL BattleRec_DataInitializeCheck(SAVEDATA *sv, BATTLE_REC_SAVEDATA *src)
@@ -588,7 +588,7 @@ static BOOL BattleRec_DataInitializeCheck(SAVEDATA *sv, BATTLE_REC_SAVEDATA *src
 	BATTLE_REC_HEADER *head = &src->head;
 
 	if(SaveData_GetExtraInitFlag(sv) == FALSE){
-		return TRUE;	//ŠO•”ƒZ[ƒuƒf[ƒ^‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Åƒf[ƒ^–³‚µ‚Æ”»’è‚·‚é
+		return TRUE;	//å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ã®ã§ãƒ‡ãƒ¼ã‚¿ç„¡ã—ã¨åˆ¤å®šã™ã‚‹
 	}
 	
 //	if(rec->crc.crc16ccitt_hash == 0 || head->crc.crc16ccitt_hash == 0){
@@ -600,11 +600,11 @@ static BOOL BattleRec_DataInitializeCheck(SAVEDATA *sv, BATTLE_REC_SAVEDATA *src
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒZ[ƒuƒf[ƒ^‚Ì®‡«ƒ`ƒFƒbƒN
+ * @brief   ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
  *
- * @param   src		ƒf[ƒ^‚Ìæ“ªƒAƒhƒŒƒX
+ * @param   src		ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * @retval  TRUE:³‚µ‚¢B@FALSE:•s³
+ * @retval  TRUE:æ­£ã—ã„ã€‚ã€€FALSE:ä¸æ­£
  */
 //--------------------------------------------------------------
 static	BOOL BattleRecordCheckData(SAVEDATA *sv, const BATTLE_REC_SAVEDATA * src)
@@ -618,26 +618,26 @@ static	BOOL BattleRecordCheckData(SAVEDATA *sv, const BATTLE_REC_SAVEDATA * src)
 		return FALSE;
 	}
 	
-	//ƒwƒbƒ_[‚ÌCRCƒnƒbƒVƒ…ŒvZ
+	//ãƒ˜ãƒƒãƒ€ãƒ¼ã®CRCãƒãƒƒã‚·ãƒ¥è¨ˆç®—
 	hash = SaveData_CalcCRC(sv, head, 
 		sizeof(BATTLE_REC_HEADER) -GDS_CRC_SIZE-DATANUMBER_SIZE);
 	if(hash != head->crc.crc16ccitt_hash){
 	#ifdef OSP_REC_ON
-		OS_TPrintf("ƒwƒbƒ_[‚ÌCRCƒnƒbƒVƒ…•s³\n");
+		OS_TPrintf("ãƒ˜ãƒƒãƒ€ãƒ¼ã®CRCãƒãƒƒã‚·ãƒ¥ä¸æ­£\n");
 	#endif
 		return FALSE;
 	}
 	
-	//–{‘Ì‘S‘Ì‚ÌCRCƒnƒbƒVƒ…ŒvZ
+	//æœ¬ä½“å…¨ä½“ã®CRCãƒãƒƒã‚·ãƒ¥è¨ˆç®—
 	hash = SaveData_CalcCRC(sv, rec, sizeof(BATTLE_REC_WORK) - GDS_CRC_SIZE);
 	if (hash != rec->crc.crc16ccitt_hash) {
 	#ifdef OSP_REC_ON
-		OS_TPrintf("˜^‰æƒf[ƒ^–{‘Ì‚ÌCRCƒnƒbƒVƒ…•s³\n");
+		OS_TPrintf("éŒ²ç”»ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã®CRCãƒãƒƒã‚·ãƒ¥ä¸æ­£\n");
 	#endif
 		return FALSE;
 	}
 	
-	//ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚Ì•s³ƒ`ƒFƒbƒN
+	//ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¸æ­£ãƒã‚§ãƒƒã‚¯
 	{
 		int client, temoti, wazano;
 		const REC_POKEPARA *para;
@@ -646,31 +646,31 @@ static	BOOL BattleRecordCheckData(SAVEDATA *sv, const BATTLE_REC_SAVEDATA * src)
 			for(temoti = 0; temoti < TEMOTI_POKEMAX; temoti++){
 				para = &(rec->rec_party[client].member[temoti]);
 			#if 0
-				//ƒ_ƒƒ^ƒ}ƒS
+				//ãƒ€ãƒ¡ã‚¿ãƒã‚´
 				if(para->fusei_tamago_flag == 1){
-					OS_TPrintf("ƒ_ƒƒ^ƒ}ƒS‚ª¬‚¶‚Á‚Ä‚¢‚é\n");
+					OS_TPrintf("ãƒ€ãƒ¡ã‚¿ãƒã‚´ãŒæ··ã˜ã£ã¦ã„ã‚‹\n");
 					return FALSE;
 				}
 			#endif
-				//•s³‚Èƒ|ƒPƒ‚ƒ“”Ô†
+				//ä¸æ­£ãªãƒã‚±ãƒ¢ãƒ³ç•ªå·
 				if(para->monsno > MONSNO_MAX){
 				#ifdef OSP_REC_ON
-					OS_TPrintf("•s³‚Èƒ|ƒPƒ‚ƒ“”Ô†\n");
+					OS_TPrintf("ä¸æ­£ãªãƒã‚±ãƒ¢ãƒ³ç•ªå·\n");
 				#endif
 					return FALSE;
 				}
-				//•s³‚ÈƒAƒCƒeƒ€”Ô†
+				//ä¸æ­£ãªã‚¢ã‚¤ãƒ†ãƒ ç•ªå·
 				if(para->item > ITEM_DATA_MAX){
 				#ifdef OSP_REC_ON
-					OS_TPrintf("•s³‚ÈƒAƒCƒeƒ€”Ô†\n");
+					OS_TPrintf("ä¸æ­£ãªã‚¢ã‚¤ãƒ†ãƒ ç•ªå·\n");
 				#endif
 					return FALSE;
 				}
-				//•s³‚È‹Z”Ô†
+				//ä¸æ­£ãªæŠ€ç•ªå·
 				for(wazano = 0; wazano < WAZA_TEMOTI_MAX; wazano++){
 					if(para->waza[wazano] > WAZANO_MAX){
 					#ifdef OSP_REC_ON
-						OS_TPrintf("•s³‚È‹Z”Ô†\n");
+						OS_TPrintf("ä¸æ­£ãªæŠ€ç•ªå·\n");
 					#endif
 						return FALSE;
 					}
@@ -684,11 +684,11 @@ static	BOOL BattleRecordCheckData(SAVEDATA *sv, const BATTLE_REC_SAVEDATA * src)
 
 //============================================================================================
 /**
- *	ˆÃ†ˆ—
+ *	æš—å·å‡¦ç†
  *
- * @param[in]	data	ˆÃ†‰»‚·‚éƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	size	ˆÃ†‰»‚·‚éƒf[ƒ^‚ÌƒTƒCƒY
- * @param[in]	code	ˆÃ†‰»ƒL[‚Ì‰Šú’l
+ * @param[in]	data	æš—å·åŒ–ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	size	æš—å·åŒ–ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+ * @param[in]	code	æš—å·åŒ–ã‚­ãƒ¼ã®åˆæœŸå€¤
  */
 //============================================================================================
 void	BattleRec_Coded(void *data,u32 size,u32 code)
@@ -698,11 +698,11 @@ void	BattleRec_Coded(void *data,u32 size,u32 code)
 
 //============================================================================================
 /**
- *	•œ†ˆ—
+ *	å¾©å·å‡¦ç†
  *
- * @param[in]	data	•œ†‚·‚éƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	size	•œ†‚·‚éƒf[ƒ^‚ÌƒTƒCƒY
- * @param[in]	code	ˆÃ†‰»ƒL[‚Ì‰Šú’l
+ * @param[in]	data	å¾©å·ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	size	å¾©å·ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+ * @param[in]	code	æš—å·åŒ–ã‚­ãƒ¼ã®åˆæœŸå€¤
  */
 //============================================================================================
 static	void	BattleRec_Decoded(void *data,u32 size,u32 code)
@@ -713,11 +713,11 @@ static	void	BattleRec_Decoded(void *data,u32 size,u32 code)
 
 //============================================================================================
 /**
- *	í“¬˜^‰æˆ—
+ *	æˆ¦é—˜éŒ²ç”»å‡¦ç†
  *
- * @param[in]	client_no	˜^‰æ‚ğs‚¤ClientNo
- * @param[in]	pos			˜^‰æƒf[ƒ^‚ÌŠi”[êŠ
- * @param[in]	data		˜^‰æƒf[ƒ^
+ * @param[in]	client_no	éŒ²ç”»ã‚’è¡Œã†ClientNo
+ * @param[in]	pos			éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å ´æ‰€
+ * @param[in]	data		éŒ²ç”»ãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 void BattleRec_DataRec(int client_no,int pos,REC_DATA data)
@@ -730,11 +730,11 @@ void BattleRec_DataRec(int client_no,int pos,REC_DATA data)
 
 //============================================================================================
 /**
- *	í“¬Ä¶ƒf[ƒ^æ“¾ˆ—
+ *	æˆ¦é—˜å†ç”Ÿãƒ‡ãƒ¼ã‚¿å–å¾—å‡¦ç†
  *
- * @param[in]	rp			í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	˜^‰æ‚ğs‚¤ClientNo
- * @param[in]	pos			˜^‰æƒf[ƒ^‚ÌŠi”[êŠ
+ * @param[in]	rp			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	éŒ²ç”»ã‚’è¡Œã†ClientNo
+ * @param[in]	pos			éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å ´æ‰€
  */
 //============================================================================================
 REC_DATA BattleRec_DataPlay(int client_no,int pos)
@@ -745,9 +745,9 @@ REC_DATA BattleRec_DataPlay(int client_no,int pos)
 
 //============================================================================================
 /**
- *	BATTLE_PARAM\‘¢‘Ì•Û‘¶ˆ—
+ *	BATTLE_PARAMæ§‹é€ ä½“ä¿å­˜å‡¦ç†
  *
- * @param[in]	bp			BATTLE_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bp			BATTLE_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void BattleRec_BattleParamRec(BATTLE_PARAM *bp)
@@ -800,7 +800,7 @@ void BattleRec_BattleParamRec(BATTLE_PARAM *bp)
 	}
 #endif
 
-	//-- REC_BATTLE_PARAM‚Å‚Í‚È‚¢êŠ‚É•Û‘¶‚·‚éƒf[ƒ^‚ğƒZƒbƒg --//
+	//-- REC_BATTLE_PARAMã§ã¯ãªã„å ´æ‰€ã«ä¿å­˜ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ --//
 	for(i=0;i<CLIENT_MAX;i++){
 		PokeParty_to_RecPokeParty(bp->poke_party[i], &rec->rec_party[i]);
 		MyStatus_Copy(bp->my_status[i],&rec->my_status[i]);
@@ -811,10 +811,10 @@ void BattleRec_BattleParamRec(BATTLE_PARAM *bp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒT[ƒo[ƒo[ƒWƒ‡ƒ“XVˆ—
+ * @brief   ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³æ›´æ–°å‡¦ç†
  *
  * @param   id_no				ID
- * @param   server_version		ƒT[ƒo[ƒo[ƒWƒ‡ƒ“
+ * @param   server_version		ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³
  */
 //--------------------------------------------------------------
 void BattleRec_ServerVersionUpdate(int id_no, u32 server_version)
@@ -834,12 +834,12 @@ void BattleRec_ServerVersionUpdate(int id_no, u32 server_version)
 
 //--------------------------------------------------------------
 /**
- * @brief   ©•ª‚ÌROM‚ÌƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚ª‹L˜^‚³‚ê‚Ä‚¢‚é‚©Šm”F
+ * @brief   è‡ªåˆ†ã®ROMã®ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒè¨˜éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèª
  *
  * @param   none		
  *
- * @retval  TRUE:‘S‚Ä©•ª‚Æ“¯‚¶‚©ˆÈ‰º‚ÌƒT[ƒo[ƒo[ƒWƒ‡ƒ“
- * @retval  FALSE:©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚ª‹L˜^‚³‚ê‚Ä‚¢‚é
+ * @retval  TRUE:å…¨ã¦è‡ªåˆ†ã¨åŒã˜ã‹ä»¥ä¸‹ã®ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+ * @retval  FALSE:è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒè¨˜éŒ²ã•ã‚Œã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 BOOL BattleRec_ServerVersionCheck(void)
@@ -864,10 +864,10 @@ BOOL BattleRec_ServerVersionCheck(void)
 
 //============================================================================================
 /**
- *	BATTLE_PARAM\‘¢‘Ì¶¬ˆ—
+ *	BATTLE_PARAMæ§‹é€ ä½“ç”Ÿæˆå‡¦ç†
  *
- * @param[in]	bp			BATTLE_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	sv			ƒZ[ƒu—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bp			BATTLE_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	sv			ã‚»ãƒ¼ãƒ–é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void BattleRec_BattleParamCreate(BATTLE_PARAM *bp,SAVEDATA *sv)
@@ -914,16 +914,16 @@ void BattleRec_BattleParamCreate(BATTLE_PARAM *bp,SAVEDATA *sv)
 	CONFIG_Copy(SaveData_GetConfig(sv), bp->config);
 	bp->config->window_type = rec->config.window_type;
 	if(bp->config->window_type >= TALK_WINDOW_MAX){
-		bp->config->window_type = 0;	//‹à‹â‚Å‰ï˜bƒEƒBƒ“ƒhƒE‚ª‘‚¦‚é–‚ğl‚¦‚ÄƒPƒA‚ğ“ü‚ê‚Ä‚¨‚­
+		bp->config->window_type = 0;	//é‡‘éŠ€ã§ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒå¢—ãˆã‚‹äº‹ã‚’è€ƒãˆã¦ã‚±ã‚¢ã‚’å…¥ã‚Œã¦ãŠã
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   POKEPARTY‚ğREC_POKEPARTY‚É•ÏŠ·‚·‚é
+ * @brief   POKEPARTYã‚’REC_POKEPARTYã«å¤‰æ›ã™ã‚‹
  *
- * @param   party			•ÏŠ·Œ³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   rec_party		•ÏŠ·Œã‚Ìƒf[ƒ^‘ã“üæ
+ * @param   party			å¤‰æ›å…ƒãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   rec_party		å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 static void PokeParty_to_RecPokeParty(const POKEPARTY *party, REC_POKEPARTY *rec_party)
@@ -944,10 +944,10 @@ static void PokeParty_to_RecPokeParty(const POKEPARTY *party, REC_POKEPARTY *rec
 
 //--------------------------------------------------------------
 /**
- * @brief   REC_POKEPARTY‚ğPOKEPARTY‚É•ÏŠ·‚·‚é
+ * @brief   REC_POKEPARTYã‚’POKEPARTYã«å¤‰æ›ã™ã‚‹
  *
- * @param   rec_party		•ÏŠ·Œ³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   party			•ÏŠ·Œã‚Ìƒf[ƒ^‘ã“üæ
+ * @param   rec_party		å¤‰æ›å…ƒãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   party			å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 static void RecPokeParty_to_PokeParty(REC_POKEPARTY *rec_party, POKEPARTY *party)
@@ -961,7 +961,7 @@ static void RecPokeParty_to_PokeParty(REC_POKEPARTY *rec_party, POKEPARTY *party
 	PokeParty_Init(party, rec_party->PokeCountMax);
 	for(i = 0; i < rec_party->PokeCount; i++){
 		RecPokePara_to_PokePara(&rec_party->member[i], pp);
-		PokeParaPut(pp, ID_PARA_cb_id, &cb_id_para);	//ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚Ío‚È‚¢‚æ‚¤‚É‚·‚é
+		PokeParaPut(pp, ID_PARA_cb_id, &cb_id_para);	//ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã¯å‡ºãªã„ã‚ˆã†ã«ã™ã‚‹
 		PokeParty_Add(party, pp);
 	}
 	
@@ -970,11 +970,11 @@ static void RecPokeParty_to_PokeParty(REC_POKEPARTY *rec_party, POKEPARTY *party
 
 //------------------------------------------------------------------
 /**
- * ˜^‰æƒf[ƒ^‚PŒ’Ç‰Á
+ * éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ï¼‘ä»¶è¿½åŠ 
  *
- * @param   data		“a“°“ü‚èƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   party		“a“°“ü‚èƒp[ƒeƒB[‚Ìƒf[ƒ^
- * @param   date		“a“°“ü‚è“ú•tƒf[ƒ^iNITRO‚Ìƒf[ƒ^‚»‚Ì‚Ü‚Üj
+ * @param   data		æ®¿å ‚å…¥ã‚Šã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   party		æ®¿å ‚å…¥ã‚Šãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã®ãƒ‡ãƒ¼ã‚¿
+ * @param   date		æ®¿å ‚å…¥ã‚Šæ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ï¼ˆNITROã®ãƒ‡ãƒ¼ã‚¿ãã®ã¾ã¾ï¼‰
  *
  */
 //------------------------------------------------------------------
@@ -989,12 +989,12 @@ void BattleRec_AddRecord( BATTLE_REC_SAVEDATA* data, const u8 *src)
 
 //------------------------------------------------------------------
 /**
- * “a“°“ü‚èƒŒƒR[ƒh‚©‚çAƒ|ƒPƒ‚ƒ“ƒf[ƒ^æ“¾
+ * æ®¿å ‚å…¥ã‚Šãƒ¬ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ã€ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- * @param   data		“a“°“ü‚èƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   index		ƒŒƒR[ƒhƒCƒ“ƒfƒbƒNƒXi0‚ªÅV‚ÅA‡‚É‹Œ‚­‚È‚Á‚Ä‚¢‚­j
- * @param   poke_pos	‰½‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“‚©i0`5j
- * @param   poke_data	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğó‚¯æ‚é\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   data		æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   index		ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆ0ãŒæœ€æ–°ã§ã€é †ã«æ—§ããªã£ã¦ã„ãï¼‰
+ * @param   poke_pos	ä½•ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³ã‹ï¼ˆ0ã€œ5ï¼‰
+ * @param   poke_data	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 /*
@@ -1028,19 +1028,19 @@ void BattleRec_GetRecord( const BATTLE_REC_SAVEDATA* data, int index, DENDOU_POK
 
 //==============================================================================
 //
-//	ƒf[ƒ^æ“¾
+//	ãƒ‡ãƒ¼ã‚¿å–å¾—
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   í“¬˜^‰æƒf[ƒ^‚©‚çAƒwƒbƒ_[‚ğ•Ê“rŠm•Û‚µ‚½ƒ[ƒN‚ÉƒRƒs[‚·‚é
+ * @brief   æˆ¦é—˜éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã€ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’åˆ¥é€”ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
  *
- * @param   src		í“¬˜^‰æƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   heap_id	ƒq[ƒvID
+ * @param   src		æˆ¦é—˜éŒ²ç”»ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   heap_id	ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  Šm•Û‚³‚ê‚½ƒwƒbƒ_[ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç¢ºä¿ã•ã‚ŒãŸãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * BattleRec_Load or BattleRec_Init‚ğg—p‚µ‚Äbrs‚Éƒf[ƒ^‚ğƒ[ƒh‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * BattleRec_Load or BattleRec_Initã‚’ä½¿ç”¨ã—ã¦brsã«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 BATTLE_REC_HEADER_PTR BattleRec_HeaderAllocCopy(int heap_id)
@@ -1056,14 +1056,14 @@ BATTLE_REC_HEADER_PTR BattleRec_HeaderAllocCopy(int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬˜^‰æƒf[ƒ^‚©‚çAGDSƒvƒƒtƒB[ƒ‹‚ğ•Ê“rŠm•Û‚µ‚½ƒ[ƒN‚ÉƒRƒs[‚·‚é
+ * @brief   æˆ¦é—˜éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã€GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’åˆ¥é€”ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
  *
- * @param   src		í“¬˜^‰æƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   heap_id	ƒq[ƒvID
+ * @param   src		æˆ¦é—˜éŒ²ç”»ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   heap_id	ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  Šm•Û‚³‚ê‚½GDSƒvƒƒtƒB[ƒ‹ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç¢ºä¿ã•ã‚ŒãŸGDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * BattleRec_Load or BattleRec_Init‚ğg—p‚µ‚Äbrs‚Éƒf[ƒ^‚ğƒ[ƒh‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * BattleRec_Load or BattleRec_Initã‚’ä½¿ç”¨ã—ã¦brsã«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 GDS_PROFILE_PTR BattleRec_GDSProfileAllocCopy(int heap_id)
@@ -1080,13 +1080,13 @@ GDS_PROFILE_PTR BattleRec_GDSProfileAllocCopy(int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   GDSƒvƒƒtƒB[ƒ‹‚Ìƒ|ƒCƒ“ƒ^æ“¾
+ * @brief   GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
- * @param   src		í“¬˜^‰æƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   src		æˆ¦é—˜éŒ²ç”»ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ƒvƒƒtƒB[ƒ‹‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * BattleRec_Load or BattleRec_Init‚ğg—p‚µ‚Äbrs‚Éƒf[ƒ^‚ğƒ[ƒh‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * BattleRec_Load or BattleRec_Initã‚’ä½¿ç”¨ã—ã¦brsã«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 GDS_PROFILE_PTR BattleRec_GDSProfilePtrGet(void)
@@ -1097,13 +1097,13 @@ GDS_PROFILE_PTR BattleRec_GDSProfilePtrGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜^‰æ–{‘Ì‚Ìƒ|ƒCƒ“ƒ^æ“¾
+ * @brief   éŒ²ç”»æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
- * @param   src		í“¬˜^‰æƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   src		æˆ¦é—˜éŒ²ç”»ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ˜^‰æ–{‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  éŒ²ç”»æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * BattleRec_Load or BattleRec_Init‚ğg—p‚µ‚Äbrs‚Éƒf[ƒ^‚ğƒ[ƒh‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * BattleRec_Load or BattleRec_Initã‚’ä½¿ç”¨ã—ã¦brsã«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 BATTLE_REC_WORK_PTR BattleRec_WorkPtrGet(void)
@@ -1114,13 +1114,13 @@ BATTLE_REC_WORK_PTR BattleRec_WorkPtrGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜^‰æƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^æ“¾
+ * @brief   éŒ²ç”»ãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
- * @param   src		í“¬˜^‰æƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   src		æˆ¦é—˜éŒ²ç”»ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ˜^‰æƒwƒbƒ_‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  éŒ²ç”»ãƒ˜ãƒƒãƒ€ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * BattleRec_Load or BattleRec_Init‚ğg—p‚µ‚Äbrs‚Éƒf[ƒ^‚ğƒ[ƒh‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * BattleRec_Load or BattleRec_Initã‚’ä½¿ç”¨ã—ã¦brsã«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 BATTLE_REC_HEADER_PTR BattleRec_HeaderPtrGet(void)
@@ -1131,15 +1131,15 @@ BATTLE_REC_HEADER_PTR BattleRec_HeaderPtrGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   “Ç‚İ‚ñ‚Å‚¢‚é˜^‰æƒf[ƒ^‚É‘Î‚µ‚ÄAw’èƒf[ƒ^‚Åã‘‚«‚·‚é
+ * @brief   èª­ã¿è¾¼ã‚“ã§ã„ã‚‹éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã«å¯¾ã—ã¦ã€æŒ‡å®šãƒ‡ãƒ¼ã‚¿ã§ä¸Šæ›¸ãã™ã‚‹
  *
- * @param   gpp			GDSƒvƒƒtƒB[ƒ‹
- * @param   head		˜^‰æƒwƒbƒ_
- * @param   rec			˜^‰æ–{‘Ì
- * @param	bp			‚»‚Ì‚Ü‚ÜÄ¶‚·‚éê‡‚ÍBATTLE_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ“n‚·
- * @param   sv			ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   gpp			GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ * @param   head		éŒ²ç”»ãƒ˜ãƒƒãƒ€
+ * @param   rec			éŒ²ç”»æœ¬ä½“
+ * @param	bp			ãã®ã¾ã¾å†ç”Ÿã™ã‚‹å ´åˆã¯BATTLE_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’æ¸¡ã™
+ * @param   sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * BattleRec_Load or BattleRec_Init‚ğg—p‚µ‚Äbrs‚Éƒf[ƒ^‚ğƒ[ƒh‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * BattleRec_Load or BattleRec_Initã‚’ä½¿ç”¨ã—ã¦brsã«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void BattleRec_DataSet(GDS_PROFILE_PTR gpp, BATTLE_REC_HEADER_PTR head, BATTLE_REC_WORK_PTR rec, BATTLE_PARAM *bp, SAVEDATA *sv)
@@ -1149,7 +1149,7 @@ void BattleRec_DataSet(GDS_PROFILE_PTR gpp, BATTLE_REC_HEADER_PTR head, BATTLE_R
 	MI_CpuCopy8(rec, &brs->rec, sizeof(BATTLE_REC_WORK));
 	MI_CpuCopy8(gpp, &brs->profile, sizeof(GDS_PROFILE));
 
-	//•œ†
+	//å¾©å·
 	BattleRec_Decoded(&brs->rec, sizeof(BATTLE_REC_WORK) - GDS_CRC_SIZE, 
 		brs->rec.crc.crc16ccitt_hash + ((brs->rec.crc.crc16ccitt_hash ^ 0xffff) << 16));
 	
@@ -1160,13 +1160,13 @@ void BattleRec_DataSet(GDS_PROFILE_PTR gpp, BATTLE_REC_HEADER_PTR head, BATTLE_R
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜^‰æƒwƒbƒ_‚Ìƒpƒ‰ƒ[ƒ^æ“¾
+ * @brief   éŒ²ç”»ãƒ˜ãƒƒãƒ€ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
  *
- * @param   head		˜^‰æƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   index		ƒf[ƒ^INDEX(RECHEAD_IDX_???)
- * @param   param		ƒpƒ‰ƒ[ƒ^
+ * @param   head		éŒ²ç”»ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   index		ãƒ‡ãƒ¼ã‚¿INDEX(RECHEAD_IDX_???)
+ * @param   param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  æ“¾ƒf[ƒ^
+ * @retval  å–å¾—ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 u64 RecHeader_ParamGet(BATTLE_REC_HEADER_PTR head, int index, int param)
@@ -1201,17 +1201,17 @@ u64 RecHeader_ParamGet(BATTLE_REC_HEADER_PTR head, int index, int param)
 		return head->secure;
 	}
 	
-	GF_ASSERT(0);	//•s–¾‚ÈINDEX
+	GF_ASSERT(0);	//ä¸æ˜ãªINDEX
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬˜^‰æƒwƒbƒ_‚ğAlloc‚·‚é
+ * @brief   æˆ¦é—˜éŒ²ç”»ãƒ˜ãƒƒãƒ€ã‚’Allocã™ã‚‹
  *
- * @param   heap_id		ƒq[ƒvID
+ * @param   heap_id		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  GDSƒvƒƒtƒB[ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 BATTLE_REC_HEADER_PTR BattleRec_Header_AllocMemory(int heap_id)
@@ -1225,9 +1225,9 @@ BATTLE_REC_HEADER_PTR BattleRec_Header_AllocMemory(int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬˜^‰æƒwƒbƒ_‚ğ‰ğ•ú
+ * @brief   æˆ¦é—˜éŒ²ç”»ãƒ˜ãƒƒãƒ€ã‚’è§£æ”¾
  *
- * @param   brhp		GDSƒvƒƒtƒB[ƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   brhp		GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BattleRec_Header_FreeMemory(BATTLE_REC_HEADER_PTR brhp)

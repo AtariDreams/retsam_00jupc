@@ -36,7 +36,7 @@
   offset value available
 
   Revision 1.7  2005/08/19 08:16:59  yasu
-  commondefs.add-ins.env により WiFi のメインツリーへインストールするように修正
+  commondefs.add-ins.env 縺ｫ繧医ｊ WiFi 縺ｮ繝｡繧､繝ｳ繝�繝ｪ繝ｼ縺ｸ繧､繝ｳ繧ｹ繝医�ｼ繝ｫ縺吶ｋ繧医≧縺ｫ菫ｮ豁｣
 
   Revision 1.6  2005/08/18 12:06:04  yada
   add ENV_SearchByType

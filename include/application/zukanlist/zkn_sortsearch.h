@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_sortsearch.h
- *	@brief		ŒŸõƒ\[ƒgƒAƒvƒŠƒP[ƒVƒ‡ƒ“
+ *	@brief		æ¤œç´¢ã‚½ãƒ¼ãƒˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
  *	@author		tomoya takahashi
  *	@data		2006.01.20
  *
@@ -22,11 +22,11 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒZƒŒƒNƒgÀ²Ìß
+//	ã‚»ãƒ¬ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
 //=====================================
 enum{
 	ZKN_SORTSEARCH_SELECT_SORT,
@@ -38,19 +38,19 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL void ZKN_SortSearchAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap );
 GLOBAL void ZKN_SortSearchAplDelete( ZKN_APL_DATA* p_data );
 
-// ƒtƒF[ƒhƒ‚[ƒhæ“¾
+// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰å–å¾—
 enum{
 	ZKN_SORTSEARCH_FADENONE,
 	ZKN_SORTSEARCH_FADEOUT,
@@ -63,16 +63,16 @@ enum{
 GLOBAL int ZKN_SortSearchAplFadeModeGet( const ZKN_APL_DATA* cp_data );
 GLOBAL int ZKN_SortSearchAplFadeModeCountGet( const ZKN_APL_DATA* cp_data );
 
-// ‘I‘ğÀ²Ìß•ÏX
+// é¸æŠã‚¿ã‚¤ãƒ—å¤‰æ›´
 GLOBAL void ZKN_SortSearchAplSelectTypeSet( ZKN_APL_DATA* p_data, int type );
 GLOBAL int ZKN_SortSearchAplSelectTypeGet( const ZKN_APL_DATA* cp_data );
-// ¿°ÄÀ²Ìß•ÏX
+// ã‚½ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—å¤‰æ›´
 GLOBAL void ZKN_SortSearchAplSortTypeSet( ZKN_APL_DATA* p_data, int type );
 GLOBAL int ZKN_SortSearchAplSortTypeGet( const ZKN_APL_DATA* cp_data );
-// ‚È‚Ü‚¦À²Ìß•ÏX
+// ãªã¾ãˆã‚¿ã‚¤ãƒ—å¤‰æ›´
 GLOBAL void ZKN_SortSearchAplNameTypeSet( ZKN_APL_DATA* p_data, int type );
 GLOBAL int ZKN_SortSearchAplNameTypeGet( const ZKN_APL_DATA* cp_data );
-// À²ÌßÀ²Ìß•ÏX
+// ã‚¿ã‚¤ãƒ—ã‚¿ã‚¤ãƒ—å¤‰æ›´
 enum{
 	ZKN_SORTSEARCH_TYPE1,
 	ZKN_SORTSEARCH_TYPE2,
@@ -80,10 +80,10 @@ enum{
 };
 GLOBAL void ZKN_SortSearchAplTypeTypeSet( ZKN_APL_DATA* p_data, int type, int no );
 GLOBAL int ZKN_SortSearchAplTypeTypeGet( const ZKN_APL_DATA* cp_data, int no );
-// Œ`‘ÔÀ²Ìß•ÏX
+// å½¢æ…‹ã‚¿ã‚¤ãƒ—å¤‰æ›´
 GLOBAL void ZKN_SortSearchAplFormTypeSet( ZKN_APL_DATA* p_data, int type );
 GLOBAL int ZKN_SortSearchAplFormTypeGet( const ZKN_APL_DATA* cp_data );
-// ƒŠƒXƒg‰æ–Ê‚Ös‚­
+// ãƒªã‚¹ãƒˆç”»é¢ã¸è¡Œã
 GLOBAL void ZKN_SortSearchAplReqListFade( ZKN_APL_DATA* p_data, BOOL do_sort );
 GLOBAL BOOL ZKN_SortSearchAplSortDoFlagGet( const ZKN_APL_DATA* cp_data );
 

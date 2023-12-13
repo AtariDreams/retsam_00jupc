@@ -12,81 +12,81 @@
 
   $Log: dwc_connectinet.h,v $
   Revision 1.24  2007/03/02 06:26:59  nakata
-  DWC_APINFO_AREA_KOR‚ğ’Ç‰ÁB
+  DWC_APINFO_AREA_KORã‚’è¿½åŠ ã€‚
 
   Revision 1.23  2006/11/17 06:30:07  nakata
-  TestInetŠÖ˜A‚Ì’è”‚Ì–¼Ì•ÏX
+  TestIneté–¢é€£ã®å®šæ•°ã®åç§°å¤‰æ›´
 
   Revision 1.22  2006/11/07 04:59:30  nakata
-  DWC_TestInetŒn‚Ì’Ç‰Á
+  DWC_TestInetç³»ã®è¿½åŠ 
 
   Revision 1.21  2006/06/27 06:43:56  nakata
-  FriendsMatchƒ‰ƒCƒuƒ‰ƒŠ‚È‚µ—p‚ÌDCFŠÄ‹ŠÖ”‚ğ’Ç‰Á
+  FriendsMatchãƒ©ã‚¤ãƒ–ãƒ©ãƒªãªã—ç”¨ã®DCFç›£è¦–é–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.20  2006/05/25 23:54:11  uemura
-  DWC_CheckWiFiStationŠÖ”‚ğ’Ç‰Á
+  DWC_CheckWiFiStationé–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.19  2006/04/17 07:33:34  nakata
-  ƒuƒ‰ƒEƒU—pƒzƒbƒgƒXƒ|ƒbƒgİ’èŠÖ”DWC_EnableHotSpot‚ğ’Ç‰Á
+  ãƒ–ãƒ©ã‚¦ã‚¶ç”¨ãƒ›ãƒƒãƒˆã‚¹ãƒãƒƒãƒˆè¨­å®šé–¢æ•°DWC_EnableHotSpotã‚’è¿½åŠ 
 
   Revision 1.18  2006/03/09 08:05:52  uemura
-  DWC_SetConnectApType‚Ìˆø”‚ğint‚©‚çDWCApInfoType‚Ö•ÏX
+  DWC_SetConnectApTypeã®å¼•æ•°ã‚’intã‹ã‚‰DWCApInfoTypeã¸å¤‰æ›´
 
   Revision 1.17  2006/03/09 07:35:13  nakata
-  DWCApInfo‚©‚çspotinfo‚ğÁ‹‚µAŠÖ˜A•”•ª‚ğ•ÏX
+  DWCApInfoã‹ã‚‰spotinfoã‚’æ¶ˆå»ã—ã€é–¢é€£éƒ¨åˆ†ã‚’å¤‰æ›´
 
   Revision 1.16  2006/03/09 06:07:41  uemura
-  DWC_DebugConnectInetAsync‚Ìˆø”WEP‚É16i‚O’l‚ª“ü‚Á‚Ä‚¢‚é‚Æ³‚µ‚­”»’è‚Å‚«‚È‚¢ƒoƒO‚ğC³
-  ˆø”‚ÉWEPMODE‚ğ“n‚·‚æ‚¤‚É•ÏX‚µ‚Ü‚µ‚½
+  DWC_DebugConnectInetAsyncã®å¼•æ•°WEPã«16é€²ï¼å€¤ãŒå…¥ã£ã¦ã„ã‚‹ã¨æ­£ã—ãåˆ¤å®šã§ããªã„ãƒã‚°ã‚’ä¿®æ­£
+  å¼•æ•°ã«WEPMODEã‚’æ¸¡ã™ã‚ˆã†ã«å¤‰æ›´ã—ã¾ã—ãŸ
 
   Revision 1.15  2006/03/09 02:50:37  uemura
-  ƒRƒƒ“ƒgC³
+  ã‚³ãƒ¡ãƒ³ãƒˆä¿®æ­£
 
   Revision 1.14  2006/03/09 02:27:17  uemura
-  DWC_SetConnectApType,DWC_DebugConnectInetAsync‚Ì’Ç‰Á
-  ‚±‚Ì2ŠÖ”‚ğdwc_connect_inet_sample‚ÖƒRƒ“ƒpƒCƒ‹ƒXƒCƒbƒ`‚Åg—p‚Å‚«‚é‚æ‚¤‚É’Ç‰Á‚·‚é
+  DWC_SetConnectApType,DWC_DebugConnectInetAsyncã®è¿½åŠ 
+  ã“ã®2é–¢æ•°ã‚’dwc_connect_inet_sampleã¸ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¹ã‚¤ãƒƒãƒã§ä½¿ç”¨ã§ãã‚‹ã‚ˆã†ã«è¿½åŠ ã™ã‚‹
 
   Revision 1.13  2006/02/23 08:21:47  nakata
-  DWCApInfoü‚è‚Ì’è”–¼“™‚ğ•ÏXB
+  DWCApInfoå‘¨ã‚Šã®å®šæ•°åç­‰ã‚’å¤‰æ›´ã€‚
 
   Revision 1.12  2006/02/23 06:58:04  nakata
-  DWCApinfo.bssid‚ÌŒ^‚ğchar‚©‚çunsigned char‚É•ÏXB
+  DWCApinfo.bssidã®å‹ã‚’charã‹ã‚‰unsigned charã«å¤‰æ›´ã€‚
 
   Revision 1.11  2006/02/23 02:55:40  nakata
-  DWC_GetApInfoŠÖ”ŠÖ˜A‚Ìƒ}ƒjƒ…ƒAƒ‹‚ğ’Ç‰ÁB
+  DWC_GetApInfoé–¢æ•°é–¢é€£ã®ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ã‚’è¿½åŠ ã€‚
 
   Revision 1.10  2006/02/23 00:53:54  nakata
-  APî•ñæ“¾ŠÖ”DWC_GetApInfo‚ğdwc_connectinet.c‚É’Ç‰Á
-  dwc_sample‚Ì•s•K—v‚ÈƒfƒoƒbƒOƒƒbƒZ[ƒW•\¦‚ğ—}§
+  APæƒ…å ±å–å¾—é–¢æ•°DWC_GetApInfoã‚’dwc_connectinet.cã«è¿½åŠ 
+  dwc_sampleã®ä¸å¿…è¦ãªãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚’æŠ‘åˆ¶
 
   Revision 1.9  2005/10/06 07:39:38  sasakit
-  SSL‚Ì‘½”{’·—İæŒvZƒXƒŒƒbƒh‚Ì—Dæ‡ˆÊ‚ğ‰º‚°‚é‹@”\‚ğŠO•”‚©‚ç’²®‚Å‚«‚é‚æ‚¤‚É‚µ‚½B
+  SSLã®å¤šå€é•·ç´¯ä¹—è¨ˆç®—ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆé †ä½ã‚’ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’å¤–éƒ¨ã‹ã‚‰èª¿æ•´ã§ãã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.8  2005/10/01 10:57:00  sasakit
-  DWC_CleanupInetAsync()’†‚ÉADWC_ProcessInet()‚ğŒÄ‚ñ‚Å‚àDISCONNECTED‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚µ‚½B
+  DWC_CleanupInetAsync()ä¸­ã«ã€DWC_ProcessInet()ã‚’å‘¼ã‚“ã§ã‚‚DISCONNECTEDã«ãªã‚‰ãªã„ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.7  2005/09/17 00:31:18  sasakit
-  UDPƒpƒPƒbƒg‚ğ—‚Æ‚µ‚½”‚ğæ“¾‚·‚éŠÖ”‚Ì’Ç‰ÁB
+  UDPãƒ‘ã‚±ãƒƒãƒˆã‚’è½ã¨ã—ãŸæ•°ã‚’å–å¾—ã™ã‚‹é–¢æ•°ã®è¿½åŠ ã€‚
 
   Revision 1.6  2005/09/14 01:55:31  sasakit
-  AP‚©‚ç‚ÌØ’fˆ—‚ğ®—‚µ‚½B
-  DWC_GetLinkLevel()ŠÖ”‚Ì’Ç‰ÁB
+  APã‹ã‚‰ã®åˆ‡æ–­å‡¦ç†ã‚’æ•´ç†ã—ãŸã€‚
+  DWC_GetLinkLevel()é–¢æ•°ã®è¿½åŠ ã€‚
 
   Revision 1.5  2005/09/07 07:13:55  sasakit
-  DWC_ACŠÖ”ŒQ‚ğŒµ–§‚ÉŒÄ‚Ño‚·‚æ‚¤‚ÉƒXƒe[ƒgƒ}ƒVƒ“‚ğ“ü‚ê‚½B
+  DWC_ACé–¢æ•°ç¾¤ã‚’å³å¯†ã«å‘¼ã³å‡ºã™ã‚ˆã†ã«ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚·ãƒ³ã‚’å…¥ã‚ŒãŸã€‚
 
   Revision 1.4  2005/09/06 09:12:38  sasakit
-  ConnectInet‚ÌƒGƒ‰[‚Ìˆ—‚ğ’Ç‰ÁB
+  ConnectInetæ™‚ã®ã‚¨ãƒ©ãƒ¼ã®å‡¦ç†ã‚’è¿½åŠ ã€‚
 
   Revision 1.3  2005/08/31 04:13:43  sasakit
-  ƒT[ƒo‚ÌØ‚è‘Ö‚¦‹@”\’Ç‰ÁB
+  ã‚µãƒ¼ãƒã®åˆ‡ã‚Šæ›¿ãˆæ©Ÿèƒ½è¿½åŠ ã€‚
 
   Revision 1.2  2005/08/20 07:01:19  sasakit
-  ƒwƒbƒ_ƒCƒ“ƒNƒ‹[ƒhƒK[ƒh‚Ì‘®‚ğ“ˆê‚µ‚½B
-  bm/dwc_init.h -> bm/dwc_bm_init.h‚É•ÏX
-  ƒwƒbƒ_‚ÉCopyright‚ğ‚Â‚¯‚½B
-  \‘¢‘Ì‚Ì–¼‘O‹óŠÔ‚ğ‚Å‚«‚é‚¾‚¯ƒ‹[ƒ‹‚É‚¿‚©‚Ã‚¯‚½B
-  util_wifiidtool.h‚Ædwc_backup.h‚ÌŠÖŒW‚ğáŠ±C³B
+  ãƒ˜ãƒƒãƒ€ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚¬ãƒ¼ãƒ‰ã®æ›¸å¼ã‚’çµ±ä¸€ã—ãŸã€‚
+  bm/dwc_init.h -> bm/dwc_bm_init.hã«å¤‰æ›´
+  ãƒ˜ãƒƒãƒ€ã«Copyrightã‚’ã¤ã‘ãŸã€‚
+  æ§‹é€ ä½“ã®åå‰ç©ºé–“ã‚’ã§ãã‚‹ã ã‘ãƒ«ãƒ¼ãƒ«ã«ã¡ã‹ã¥ã‘ãŸã€‚
+  util_wifiidtool.hã¨dwc_backup.hã®é–¢ä¿‚ã‚’è‹¥å¹²ä¿®æ­£ã€‚
 
 
   $NoKeywords: $
@@ -108,9 +108,9 @@ typedef struct DWCstInetControl
     u16  dmaNo;
     u16  powerMode;
 
-    u8            wontExecuteWDS;  // nintendo spot‚Ö‚ÌÚ‘±‚ğ‚İ‚éƒtƒF[ƒY‚ğ’†~‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO [masuda]
-    DWCWDSState   processWDSstate; // WDS‚Ìˆ—ƒXƒe[ƒg
-    DWCWDSData    nspotInfo;       // WDS‚Åæ“¾‚µ‚½ssid,wep,wepmode,apnum‚ğŠi”[‚·‚é‚½‚ß‚Ì•Ï”
+    u8            wontExecuteWDS;  // nintendo spotã¸ã®æ¥ç¶šã‚’è©¦ã¿ã‚‹ãƒ•ã‚§ãƒ¼ã‚ºã‚’ä¸­æ­¢ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚° [masuda]
+    DWCWDSState   processWDSstate; // WDSã®å‡¦ç†ã‚¹ãƒ†ãƒ¼ãƒˆ
+    DWCWDSData    nspotInfo;       // WDSã§å–å¾—ã—ãŸssid,wep,wepmode,apnumã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®å¤‰æ•°
 
 #ifndef SDK_FINALROM
 	int  connectType;
@@ -140,9 +140,9 @@ typedef enum
     DWC_CONNECTINET_AUTH_LAST
 } DWCInetAuthType;
 
-// [nakata] ‚±‚±‚æ‚èAPî•ñæ“¾ŠÖ˜A‚ÌŠg’£•”•ª
+// [nakata] ã“ã“ã‚ˆã‚ŠAPæƒ…å ±å–å¾—é–¢é€£ã®æ‹¡å¼µéƒ¨åˆ†
 
-// ƒGƒŠƒAƒR[ƒh
+// ã‚¨ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
 typedef enum {
 	DWC_APINFO_AREA_JPN = 0,
 	DWC_APINFO_AREA_USA,
@@ -152,7 +152,7 @@ typedef enum {
 	DWC_APINFO_AREA_UNKNOWN = 0xff
 } DWCApInfoArea;
 
-// APƒ^ƒCƒv
+// APã‚¿ã‚¤ãƒ—
 typedef enum {
 	DWC_APINFO_TYPE_USER0 = 0,
 	DWC_APINFO_TYPE_USER1,
@@ -161,10 +161,10 @@ typedef enum {
 	DWC_APINFO_TYPE_SHOP,
 	DWC_APINFO_TYPE_FREESPOT,
 	DWC_APINFO_TYPE_WAYPORT,
-	DWC_APINFO_TYPE_OTHER,          /* ‹Œ’è‹` */
-	DWC_APINFO_TYPE_NINTENDOWFC = DWC_APINFO_TYPE_OTHER,    /* —\–ñ */
+	DWC_APINFO_TYPE_OTHER,          /* æ—§å®šç¾© */
+	DWC_APINFO_TYPE_NINTENDOWFC = DWC_APINFO_TYPE_OTHER,    /* äºˆç´„ */
 	DWC_APINFO_TYPE_NINTENDOSPOT,
-	DWC_APINFO_TYPE_UNKNOWN = 99    /* •s–¾ */
+	DWC_APINFO_TYPE_UNKNOWN = 99    /* ä¸æ˜ */
 } DWCApInfoType;
 
 #define DWC_SIZE_SPOTINFO 9
@@ -179,18 +179,18 @@ typedef struct DWCstApInfo
 } DWCApInfo;
 
 BOOL DWC_GetApInfo(DWCApInfo *apinfo);
-// [nakata] ‚±‚±‚Ü‚ÅAPî•ñæ“¾ŠÖ˜A‚ÌŠg’£•”•ª
+// [nakata] ã“ã“ã¾ã§APæƒ…å ±å–å¾—é–¢é€£ã®æ‹¡å¼µéƒ¨åˆ†
 
-// [nakata] ‚±‚±‚æ‚èƒuƒ‰ƒEƒU‘Î‰‚ÌŠg’£•”•ª
+// [nakata] ã“ã“ã‚ˆã‚Šãƒ–ãƒ©ã‚¦ã‚¶å¯¾å¿œã®æ‹¡å¼µéƒ¨åˆ†
 void DWC_EnableHotspot(void);
-// [nakata] ‚±‚±‚Ü‚Åƒuƒ‰ƒEƒU‘Î‰‚ÌŠg’£•”•ª
+// [nakata] ã“ã“ã¾ã§ãƒ–ãƒ©ã‚¦ã‚¶å¯¾å¿œã®æ‹¡å¼µéƒ¨åˆ†
 
-// [uemura] 2006/05/24’Ç‰Á
+// [uemura] 2006/05/24è¿½åŠ 
 BOOL DWC_CheckWiFiStation( const void *ssid, u16 len );
-// [uemura] ‚±‚±‚Ü‚Å
+// [uemura] ã“ã“ã¾ã§
 
-typedef void* (* DWCACAlloc )( u32 name, s32 size );				// allocŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
-typedef void  (* DWCACFree  )( u32 name, void *ptr, s32 size );		// freeŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
+typedef void* (* DWCACAlloc )( u32 name, s32 size );				// allocé–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+typedef void  (* DWCACFree  )( u32 name, void *ptr, s32 size );		// freeé–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
 extern void  DWC_InitInetEx( DWCInetControl* inetCntl, u16 dmaNo, u16 powerMode, u16 ssl_priority );
 extern void  DWC_InitInet( DWCInetControl* inetCntl );
@@ -213,12 +213,12 @@ extern BOOL  DWCi_CheckDisconnected( void );
 extern WMLinkLevel DWC_GetLinkLevel( void );
 extern int   DWC_GetUdpPacketDropNum( void );
 
-// [nakata] 06/06/27 dwc_main.c‚©‚çˆÚ“®
+// [nakata] 06/06/27 dwc_main.cã‹ã‚‰ç§»å‹•
 extern void DWC_ForceShutdown( void );
 extern BOOL DWC_UpdateConnection( void );
-// [nakata] ‚±‚±‚Ü‚Å
+// [nakata] ã“ã“ã¾ã§
 
-// [nakata] 06/11/06 ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±Šm”Fˆ—‚ğƒ‰ƒbƒv‚·‚éŠÖ”‚ğ’Ç‰Á
+// [nakata] 06/11/06 ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæ¥ç¶šç¢ºèªå‡¦ç†ã‚’ãƒ©ãƒƒãƒ—ã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
 typedef enum
 {
     DWC_TESTINET_NOT_INITIALIZED = 0,
@@ -229,7 +229,7 @@ typedef enum
 
 BOOL DWC_TestInetAsync(int timeout);
 DWCTestInetResult DWC_TestInetProcess(void);
-// [nakata] ‚±‚±‚Ü‚Å
+// [nakata] ã“ã“ã¾ã§
 
 #ifndef SDK_FINALROM
 void         DWC_SetConnectApType( DWCApInfoType type );

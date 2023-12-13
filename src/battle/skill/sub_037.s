@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_037.s
- *@brief	�퓬�V�[�P���X
- *			������̒ǉ����ʃV�[�P���X
+ *@brief	戦闘シーケンス
+ *			こんらんの追加効果シーケンス
  *@author	HisashiSogabe
  *@data		2005.12.07
  *
@@ -16,61 +16,61 @@
 
 SUB_037:
 #if AFTER_MASTER_070409_31_EUR_FIX
-	//�����A�C�e���ł̒ǉ��̎��͐�p�̃`�F�b�N������
+	//装備アイテムでの追加の時は専用のチェックをする
 	IF				IF_FLAG_NE,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_SOUBIITEM,NormalCheck
 SoubiItemCheck:
-	//�����}�C�y�[�X�������Ă���Ƃ��́A���s����
+	//特性マイペースを持っているときは、失敗する
 	TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_TSUIKA,TOKUSYU_MAIPEESU,SEQ_037_END
-//���łɂ����񂵂Ă���ꍇ�́A���s����
+//すでにこんらんしている場合は、失敗する
 	IF_PSP			IF_FLAG_BIT,SIDE_TSUIKA,ID_PSP_condition2,CONDITION2_KONRAN,SEQ_037_END
-//����҂̂܂���Ŏ���Ă���ꍇ�́A���s����
+//しんぴのまもりで守られている場合は、失敗する
 	IF				IF_FLAG_BIT,BUF_PARA_SIDE_CONDITION_TSUIKA,SIDE_CONDITION_SHINPI,SEQ_037_END
 	BRANCH			NoWazaEffect
 NormalCheck:
 #endif //AFTER_MASTER_070409_31_EUR_FIX
-	//�����}�C�y�[�X�������Ă���Ƃ��́A���s����i������Ԃ�`�F�b�N�̂��߂ɍŏ�ʁj
+	//特性マイペースを持っているときは、失敗する（かたやぶりチェックのために最上位）
 	KATAYABURI_TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_TSUIKA,TOKUSYU_MAIPEESU,TokuseiNoKonran
-	//�Z���ʒǉ��̏ꍇ�A�����̃`�F�b�N����������
+	//技効果追加の場合、特性のチェックだけをする
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_WAZA_KOUKA,NoWazaEffect
 
-	//�Ԑڒǉ��̏ꍇ�A���Ղ�`�F�b�N������
+	//間接追加の場合、りんぷんチェックをする
 	IF				IF_FLAG_NE,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_INDIRECT,NoRinpun
-	//�������Ղ�������Ă���Ƃ��́A���s����i������Ԃ�`�F�b�N�̂��߂ɍŏ�ʁj
+	//特性りんぷんを持っているときは、失敗する（かたやぶりチェックのために最上位）
 	KATAYABURI_TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_TSUIKA,TOKUSYU_RINPUN,Umakukimaran
 NoRinpun:
-//���ڒǉ��̏ꍇ�AWAZAOUT�V�[�P���X�Ń��b�Z�[�W���o���Ȃ��̂ŁA�����ŏo��
+//直接追加の場合、WAZAOUTシーケンスでメッセージを出さないので、ここで出す
 	IF				IF_FLAG_NE,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_DIRECT,NoAttackMsg
 	ATTACK_MESSAGE
 	SERVER_WAIT
 NoAttackMsg:
 
-//�݂������o����Ă���Ƃ��́A���s����
+//みがわりを出されているときは、失敗する
 	MIGAWARI_CHECK	SIDE_TSUIKA,Umakukimaran
 
-//���łɂ����񂵂Ă���ꍇ�́A���s����
+//すでにこんらんしている場合は、失敗する
 	IF_PSP			IF_FLAG_BIT,SIDE_TSUIKA,ID_PSP_condition2,CONDITION2_KONRAN,AlreadyKonran
 
-//�킴���͂���Ă���Ƃ��́A���܂����܂��ɂ���
+//わざがはずれているときは、うまくきまらんにする
 	IF				IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_NOHIT_CHG,Umakukimaran
 
-//����҂̂܂���Ŏ���Ă���ꍇ�́A���s����
+//しんぴのまもりで守られている場合は、失敗する
 	IF				IF_FLAG_BIT,BUF_PARA_SIDE_CONDITION_TSUIKA,SIDE_CONDITION_SHINPI,ShinpiNoKonran
 
-//���ڒǉ��̏ꍇ�AWAZAOUT�V�[�P���X�ŋZ�G�t�F�N�g���o���Ȃ��̂ŁA�����ŏo��
+//直接追加の場合、WAZAOUTシーケンスで技エフェクトを出さないので、ここで出す
 	IF				IF_FLAG_NE,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_DIRECT,NoWazaEffect
 	WAZA_EFFECT		SIDE_ATTACK
 	SERVER_WAIT
 NoWazaEffect:
 	STATUS_EFFECT	SIDE_TSUIKA,STATUS_KONRAN
 	SERVER_WAIT
-	//������t���O�𗧂Ă�i�Q�`�T�^�[���j
+	//こんらんフラグを立てる（２〜５ターン）
 #if B1375_060817_FIX
 	RANDOM_GET		3,2
 #else //B1375_060817_FIX
 	RANDOM_GET		3,3
 #endif //B1375_060817_FIX
 	PSP_VALUE_WORK	VAL_BIT,SIDE_TSUIKA,ID_PSP_condition2,BUF_PARA_CALC_WORK
-//�Z���ʒǉ��̏ꍇ�A���b�Z�[�W�͕\�����Ȃ�
+//技効果追加の場合、メッセージは表示しない
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_WAZA_KOUKA,SUB_037_RET
 	MESSAGE			KonranMineMsg,TAG_NICK,SIDE_TSUIKA
 	SERVER_WAIT
@@ -80,13 +80,13 @@ SEQ_037_END:
 #endif //AFTER_MASTER_070409_31_EUR_FIX
 	SEQ_END
 
-//���܂����܂�Ȃ��Ƃ�
+//うまくきまらないとき
 Umakukimaran:
-//�Ԑڒǉ��̏ꍇ�A���b�Z�[�W���o���Ȃ�
+//間接追加の場合、メッセージを出さない
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_INDIRECT,SUB_037_RET
 	WAIT			MSG_WAIT
 	WAZA_PARAM_GET	ID_WTD_attackrange
-	//�����I���Z�́A������Ȃ��������b�Z�[�W�ɂ���
+	//複数選択技は、あたらなかったメッセージにする
 	IF				IF_FLAG_EQ,BUF_PARA_CALC_WORK,RANGE_DOUBLE,Ataranakatta
 	IF				IF_FLAG_EQ,BUF_PARA_CALC_WORK,RANGE_TRIPLE,Ataranakatta
 	GOSUB			SUB_SEQ_UMAKUKIMARAN
@@ -95,21 +95,21 @@ Ataranakatta:
 	GOSUB			SUB_SEQ_ATARANAKATTA
 	BRANCH			SUB_037_RET
 
-//���łɂ����񂵂Ă���Ƃ�
+//すでにこんらんしているとき
 AlreadyKonran:
-//�Ԑڒǉ��̏ꍇ�A���b�Z�[�W���o���Ȃ�
+//間接追加の場合、メッセージを出さない
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_INDIRECT,SUB_037_RET
 	WAIT			MSG_WAIT
 	MESSAGE			AlreadyKonranMineMsg,TAG_NICK,SIDE_TSUIKA
 	BRANCH			SUB_037_END
 
-//�����ł������h��
+//特性でこんらんを防ぐ
 TokuseiNoKonran:
-//�Ԑڒǉ��̏ꍇ�A���b�Z�[�W���o���Ȃ�
+//間接追加の場合、メッセージを出さない
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_INDIRECT,SUB_037_RET
-//�����A�C�e���ǉ��̏ꍇ�A���b�Z�[�W���o���Ȃ�
+//装備アイテム追加の場合、メッセージを出さない
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_SOUBIITEM,SUB_037_RET
-//�Z���ʒǉ��̏ꍇ�A���b�Z�[�W���o���Ȃ�
+//技効果追加の場合、メッセージを出さない
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_WAZA_KOUKA,SUB_037_RET
 	ATTACK_MESSAGE
 	SERVER_WAIT
@@ -119,16 +119,16 @@ NoAtkMsg:
 	BRANCH			SUB_037_END
 
 
-//����҂̂܂���Ŗh���ꂽ�Ƃ�
+//しんぴのまもりで防がれたとき
 ShinpiNoKonran:
-//�Ԑڒǉ��̏ꍇ�A���b�Z�[�W���o���Ȃ�
+//間接追加の場合、メッセージを出さない
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_INDIRECT,SUB_037_RET
 	WAIT			MSG_WAIT
 	MESSAGE			ShinpiGuardMineMsg,TAG_NICK,SIDE_TSUIKA
 SUB_037_END:
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//WazaStatusMessage�𖳌��ɂ��邽�߂ɂ��̃t���O�𗧂Ă�
+	//WazaStatusMessageを無効にするためにこのフラグを立てる
 	//VALUE			VAL_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_SIPPAI_RENZOKU_CHECK
 	VALUE			VAL_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_SIPPAI
 SUB_037_RET:

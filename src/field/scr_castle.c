@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_castle.c
- * @bfief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹(ó•t‚Ü‚í‚è)
+ * @bfief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«(å—ä»˜ã¾ã‚ã‚Š)
  * @author	Satoshi Nohara
  * @date	07.07.03
  */
@@ -18,11 +18,11 @@
 #include "system/lib_pack.h"
 #include "poketool/poke_number.h"	//PMNumber_GetMode
 #include "savedata/sp_ribbon.h"		//SaveData_GetSpRibbon
-#include "gflib/strbuf_family.h"	//‹–‰Â§
-//ƒtƒB[ƒ‹ƒh
+#include "gflib/strbuf_family.h"	//è¨±å¯åˆ¶
+//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 #include "fieldsys.h"
 #include "field_subproc.h"
-//ƒXƒNƒŠƒvƒg
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 #include "script.h"
 #include "scrcmd.h"
 #include "scrcmd_def.h"
@@ -31,7 +31,7 @@
 #include "sysflag.h"
 #include "syswork.h"
 #include "scr_tool.h"
-//ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
+//ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 #include "savedata/frontier_savedata.h"
 #include "scr_castle.h"
 #include "scr_castle_sub.h"
@@ -39,7 +39,7 @@
 #include "../frontier/castle_def.h"
 //#include "../frontier/comm_command_frontier.h"
 #include "comm_command_field.h"
-//’ÊM
+//é€šä¿¡
 #include "communication/comm_def.h"
 #include "communication/comm_tool.h"
 #include "communication/comm_system.h"
@@ -47,38 +47,38 @@
 
 //============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //============================================================================================
-///ƒ|ƒPƒ‚ƒ“‘I‘ğƒCƒxƒ“ƒgƒ[ƒN
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 typedef struct _CASTLE_POKESEL_EVENT{
 	int	seq;
-	u8	plist_type;							//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ^ƒCƒv
-	u8	pos;								//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ÌŒ»İƒJ[ƒ\ƒ‹ˆÊ’u
+	u8	plist_type;							//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚¿ã‚¤ãƒ—
+	u8	pos;								//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ç¾åœ¨ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 	u8	sel[3];
 	void** sp_wk;
 }CASTLE_POKESEL_EVENT;
 
-///ƒ|ƒPƒ‚ƒ“‘I‘ğƒCƒxƒ“ƒgƒV[ƒPƒ“ƒXID
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹ID
 typedef enum{
-	CASTLE_POKESEL_PLIST_CALL,				//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
-	CASTLE_POKESEL_PLIST_WAIT,				//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹‘Ò‚¿
-	CASTLE_POKESEL_PST_CALL,					//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXŒÄ‚Ño‚µ
-	CASTLE_POKESEL_PST_WAIT,					//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXI—¹‘Ò‚¿
-	CASTLE_POKESEL_EXIT,						//I—¹
+	CASTLE_POKESEL_PLIST_CALL,				//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
+	CASTLE_POKESEL_PLIST_WAIT,				//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å¾…ã¡
+	CASTLE_POKESEL_PST_CALL,					//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—
+	CASTLE_POKESEL_PST_WAIT,					//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çµ‚äº†å¾…ã¡
+	CASTLE_POKESEL_EXIT,						//çµ‚äº†
 };
 
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 BOOL EvCmdBattleCastleTools(VM_MACHINE* core);
 BOOL EvCmdBattleCastleSetContinueNG( VM_MACHINE * core );
 static void BattleCastleSetNewChallenge( SAVEDATA* sv, CASTLESCORE* wk, u8 type );
 
-//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX
+//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆï¼†ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 static void EventCmd_CastlePokeSelectCall( GMEVENT_CONTROL *event, void** buf, u8 plist_type );
 static BOOL BtlCastleEv_PokeSelect( GMEVENT_CONTROL *ev );
 static int BtlCastle_PokeListCall( CASTLE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,int heapID );
@@ -89,16 +89,16 @@ static int BtlCastle_PokeStatusWait( CASTLE_POKESEL_EVENT* wk, FIELDSYS_WORK* fs
 
 //============================================================================================
 //
-//	ƒRƒ}ƒ“ƒh
+//	ã‚³ãƒãƒ³ãƒ‰
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹—pƒRƒ}ƒ“ƒhŒQŒÄ‚Ño‚µƒCƒ“ƒ^[ƒtƒF[ƒX
+ *	@brief	ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ç”¨ã‚³ãƒãƒ³ãƒ‰ç¾¤å‘¼ã³å‡ºã—ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
  *
- *	@param	com_id		u16:ƒRƒ}ƒ“ƒhID
- *	@param	retwk_id	u16:•Ô‚è’l‚ğŠi”[‚·‚éƒ[ƒN‚ÌID
+ *	@param	com_id		u16:ã‚³ãƒãƒ³ãƒ‰ID
+ *	@param	retwk_id	u16:è¿”ã‚Šå€¤ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ID
  */
 //--------------------------------------------------------------
 BOOL EvCmdBattleCastleTools(VM_MACHINE* core)
@@ -124,15 +124,15 @@ BOOL EvCmdBattleCastleTools(VM_MACHINE* core)
 
 	switch( com_id ){
 
-	//0:Q‰Á‰Â”\‚Èƒ|ƒPƒ‚ƒ“”‚Ìƒ`ƒFƒbƒN(ƒAƒCƒeƒ€ƒ`ƒFƒbƒN‚È‚µ)
+	//0:å‚åŠ å¯èƒ½ãªãƒã‚±ãƒ¢ãƒ³æ•°ã®ãƒã‚§ãƒƒã‚¯(ã‚¢ã‚¤ãƒ†ãƒ ãƒã‚§ãƒƒã‚¯ãªã—)
 	case CASTLE_TOOL_CHK_ENTRY_POKE_NUM:
 		//*ret_wk = FrontierScrTools_CheckEntryPokeNum( param, core->fsys->savedata );
 		*ret_wk = TowerScrTools_CheckEntryPokeNum( param, core->fsys->savedata, 0 );
 		break;
 
-	//1:˜AŸ’†‚©æ“¾
+	//1:é€£å‹ä¸­ã‹å–å¾—
 	case CASTLE_TOOL_GET_CLEAR_FLAG:
-		//WIFI‚Ì‚İ“Áê(—F’B‚²‚Æ‚É"ƒNƒŠƒA‚µ‚½‚©ƒtƒ‰ƒO"‚ğ‚à‚Á‚Ä‚¢‚é)
+		//WIFIã®ã¿ç‰¹æ®Š(å‹é”ã”ã¨ã«"ã‚¯ãƒªã‚¢ã—ãŸã‹ãƒ•ãƒ©ã‚°"ã‚’ã‚‚ã£ã¦ã„ã‚‹)
 		if( param == CASTLE_TYPE_WIFI_MULTI ){
 			*ret_wk = FrontierRecord_Get(SaveData_GetFrontier(core->fsys->savedata), 
 										FRID_CASTLE_MULTI_WIFI_CLEAR_BIT,
@@ -143,15 +143,15 @@ BOOL EvCmdBattleCastleTools(VM_MACHINE* core)
 		}
 		break;
 
-	//3:˜AŸ’†ƒtƒ‰ƒOƒNƒŠƒAA˜AŸƒŒƒR[ƒhƒNƒŠƒAAƒ^ƒCƒvƒJƒEƒ“ƒgƒNƒŠƒAAƒ‰ƒ“ƒNƒNƒŠƒA
+	//3:é€£å‹ä¸­ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢ã€é€£å‹ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚¯ãƒªã‚¢ã€ã‚¿ã‚¤ãƒ—ã‚«ã‚¦ãƒ³ãƒˆã‚¯ãƒªã‚¢ã€ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢
 	case CASTLE_TOOL_SET_NEW_CHALLENGE:
 		BattleCastleSetNewChallenge( core->fsys->savedata, score_sv, param );
 		break;
 
-	//4:ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊŒÄ‚Ño‚µ
+	//4:ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢å‘¼ã³å‡ºã—
 	case CASTLE_TOOL_SELECT_POKE:
 
-		//ƒoƒgƒ‹ƒ^ƒCƒv‚É‚æ‚Á‚Ä•ªŠò
+		//ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦åˆ†å²
 		if( param == CASTLE_TYPE_SINGLE ){
 			plist_type = PL_TYPE_SINGLE;
 		}else if( param == CASTLE_TYPE_DOUBLE ){
@@ -167,8 +167,8 @@ BOOL EvCmdBattleCastleTools(VM_MACHINE* core)
 		return 1;
 
 	default:
-		OS_Printf( "“n‚³‚ê‚½com_id = %d\n", com_id );
-		GF_ASSERT( (0) && "com_id‚ª–¢‘Î‰‚Å‚·I" );
+		OS_Printf( "æ¸¡ã•ã‚ŒãŸcom_id = %d\n", com_id );
+		GF_ASSERT( (0) && "com_idãŒæœªå¯¾å¿œã§ã™ï¼" );
 		*ret_wk = 0;
 		break;
 	}
@@ -178,7 +178,7 @@ BOOL EvCmdBattleCastleTools(VM_MACHINE* core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹Œp‘±NGƒZƒbƒg
+ * @brief		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ç¶™ç¶šNGã‚»ãƒƒãƒˆ
  * @param		core
  */
 //--------------------------------------------------------------------------------------------
@@ -195,7 +195,7 @@ BOOL EvCmdBattleCastleSetContinueNG( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		˜AŸ’†ƒtƒ‰ƒOƒNƒŠƒAA˜AŸƒŒƒR[ƒhƒNƒŠƒAAƒ^ƒCƒvƒJƒEƒ“ƒgƒNƒŠƒAAƒ‰ƒ“ƒNƒNƒŠƒA
+ * @brief		é€£å‹ä¸­ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢ã€é€£å‹ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚¯ãƒªã‚¢ã€ã‚¿ã‚¤ãƒ—ã‚«ã‚¦ãƒ³ãƒˆã‚¯ãƒªã‚¢ã€ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢
  * @param		core
  */
 //--------------------------------------------------------------------------------------------
@@ -205,28 +205,28 @@ static void BattleCastleSetNewChallenge( SAVEDATA* sv, CASTLESCORE* wk, u8 type 
 	u16 buf16[4];
 	u8 buf8[4];
 
-	//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‚ÌƒNƒŠƒA‚ğ‘‚«o‚µ
+	//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"ã®ã‚¯ãƒªã‚¢ã‚’æ›¸ãå‡ºã—
 	buf8[0] = 0;
 	CASTLESCORE_PutScoreData( wk, CASTLESCORE_ID_CLEAR_FLAG, type, 0, buf8 );
 
-	//WIFI‚Ì‚İ“Áê(—F’B‚²‚Æ‚É"ƒNƒŠƒA‚µ‚½‚©ƒtƒ‰ƒO"‚ğ‚à‚Á‚Ä‚¢‚é)
+	//WIFIã®ã¿ç‰¹æ®Š(å‹é”ã”ã¨ã«"ã‚¯ãƒªã‚¢ã—ãŸã‹ãƒ•ãƒ©ã‚°"ã‚’ã‚‚ã£ã¦ã„ã‚‹)
 	if( type == CASTLE_TYPE_WIFI_MULTI ){
 		FrontierRecord_Set(	SaveData_GetFrontier(sv), 
 							FRID_CASTLE_MULTI_WIFI_CLEAR_BIT,
 							Frontier_GetFriendIndex(FRID_CASTLE_MULTI_WIFI_CLEAR_BIT), 0 );
 	}
 
-	//"Œ»İ‚Ì˜AŸ”"‚ğ0‚É‚·‚é
+	//"ç¾åœ¨ã®é€£å‹æ•°"ã‚’0ã«ã™ã‚‹
 	FrontierRecord_Set(	SaveData_GetFrontier(sv), 
 						CastleScr_GetWinRecordID(type),
 						Frontier_GetFriendIndex(CastleScr_GetWinRecordID(type)), 0 );
 
-	//"CP"‚ğ0‚É‚·‚é
+	//"CP"ã‚’0ã«ã™ã‚‹
 	FrontierRecord_Set(	SaveData_GetFrontier(sv), 
 						CastleScr_GetCPRecordID(type),
 						Frontier_GetFriendIndex(CastleScr_GetCPRecordID(type)), 0 );
 	
-	//•‰‚¯‚½‚Ì‚İƒ‰ƒ“ƒN‚ğŒ³‚É–ß‚·(7˜AŸ‚Ì‚Íƒ‰ƒ“ƒN‚»‚Ì‚Ü‚Üˆø‚«Œp‚®)
+	//è² ã‘ãŸæ™‚ã®ã¿ãƒ©ãƒ³ã‚¯ã‚’å…ƒã«æˆ»ã™(7é€£å‹ã®æ™‚ã¯ãƒ©ãƒ³ã‚¯ãã®ã¾ã¾å¼•ãç¶™ã)
 	buf16[0] = 1;
 	for( i=0; i < CASTLE_RANK_TYPE_MAX ;i++ ){
 		FrontierRecord_Set(	SaveData_GetFrontier(sv), 
@@ -240,7 +240,7 @@ static void BattleCastleSetNewChallenge( SAVEDATA* sv, CASTLESCORE* wk, u8 type 
 
 //============================================================================================
 //
-//	’ÊM
+//	é€šä¿¡
 //
 //============================================================================================
 BOOL EvCmdBattleCastleCommMonsNo(VM_MACHINE* core);
@@ -249,7 +249,7 @@ static BOOL GMEVENT_CastleComm( GMEVENT_CONTROL* event );
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒ}ƒ‹ƒ`ƒf[ƒ^‘—M
+ *	@brief	é€šä¿¡ãƒãƒ«ãƒãƒ‡ãƒ¼ã‚¿é€ä¿¡
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdBattleCastleCommMonsNo(VM_MACHINE* core)
@@ -258,9 +258,9 @@ BOOL EvCmdBattleCastleCommMonsNo(VM_MACHINE* core)
 	u16 monsno2	= VMGetWorkValue( core );
 	u16* ret_wk	= VMGetWork( core );
 
-	OS_Printf( "ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹’ÊMƒ}ƒ‹ƒ`ƒf[ƒ^‘—M\n" );
-	OS_Printf( "ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[ monsno = %d\n", monsno );
-	OS_Printf( "ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[ monsno2= %d\n", monsno2 );
+	OS_Printf( "ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«é€šä¿¡ãƒãƒ«ãƒãƒ‡ãƒ¼ã‚¿é€ä¿¡\n" );
+	OS_Printf( "ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ monsno = %d\n", monsno );
+	OS_Printf( "ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ monsno2= %d\n", monsno2 );
 	
 	EventCall_CastleComm( core->event_work, monsno, monsno2, ret_wk );
 	return 1;
@@ -268,10 +268,10 @@ BOOL EvCmdBattleCastleCommMonsNo(VM_MACHINE* core)
 	
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhF‘—óM
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šé€å—ä¿¡
  *
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	monsno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	monsno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //--------------------------------------------------------------------------------------------
 static void EventCall_CastleComm( GMEVENT_CONTROL* event, u16 monsno, u16 monsno2, u16* ret_wk )
@@ -293,12 +293,12 @@ static void EventCall_CastleComm( GMEVENT_CONTROL* event, u16 monsno, u16 monsno
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‘—óM
+ * @brief	é€å—ä¿¡
  *
- * @param	event		GMEVENT_CONTROLŒ^
+ * @param	event		GMEVENT_CONTROLå‹
  *
- * @retval	"FALSE = Às’†"
- * @retval	"TRUE = ÀsI—¹"
+ * @retval	"FALSE = å®Ÿè¡Œä¸­"
+ * @retval	"TRUE = å®Ÿè¡Œçµ‚äº†"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL GMEVENT_CastleComm( GMEVENT_CONTROL* event )
@@ -318,7 +318,7 @@ static BOOL GMEVENT_CastleComm( GMEVENT_CONTROL* event )
 
 			*comm_wk->ret_wk = 0;
 
-			//oêƒ|ƒPƒ‚ƒ“‚ª‚©‚Ô‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+			//å‡ºå ´ãƒã‚±ãƒ¢ãƒ³ãŒã‹ã¶ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( (comm_wk->mine_monsno[0] == comm_wk->pair_monsno[0]) ||
 				(comm_wk->mine_monsno[0] == comm_wk->pair_monsno[1]) ){
 				*comm_wk->ret_wk+=1;
@@ -349,13 +349,13 @@ static BOOL GMEVENT_CastleComm( GMEVENT_CONTROL* event )
 
 //============================================================================================
 //
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆï¼†ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‘I‘ğ@ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+ * @brief	ãƒã‚±ãƒ¢ãƒ³é¸æŠã€€ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
  *
  * @param	event	GMEVENT_CONTROL*
  *
@@ -377,11 +377,11 @@ static void EventCmd_CastlePokeSelectCall( GMEVENT_CONTROL *event, void** buf, u
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰@ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•ƒXƒe[ƒ^ƒX
+ * @brief	ã‚²ãƒ¼ãƒ ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã€€ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆï¼†ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  *
  * @param	ev	GMEVENT_CONTROL *
  *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static BOOL BtlCastleEv_PokeSelect( GMEVENT_CONTROL *ev )
@@ -391,29 +391,29 @@ static BOOL BtlCastleEv_PokeSelect( GMEVENT_CONTROL *ev )
 
 	switch( wk->seq ){
 
-	//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
+	//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
 	case CASTLE_POKESEL_PLIST_CALL:
 		wk->seq = BtlCastle_PokeListCall( wk, fsys, HEAPID_WORLD );
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹‘Ò‚¿
+	//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å¾…ã¡
 	case CASTLE_POKESEL_PLIST_WAIT:
 		wk->seq = BtlCastle_PokeListWait( wk, fsys );
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXŒÄ‚Ño‚µ
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—
 	case CASTLE_POKESEL_PST_CALL:
 		wk->seq = BtlCastle_PokeStatusCall( wk, fsys, HEAPID_WORLD );
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXI—¹‘Ò‚¿
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çµ‚äº†å¾…ã¡
 	case CASTLE_POKESEL_PST_WAIT:
 		wk->seq = BtlCastle_PokeStatusWait( wk, fsys );
 		break;
 
-	//I—¹
+	//çµ‚äº†
 	case CASTLE_POKESEL_EXIT:
-		sys_FreeMemoryEz( wk );		//CASTLE_POKESEL_EVENT‚ğŠJ•ú
+		sys_FreeMemoryEz( wk );		//CASTLE_POKESEL_EVENTã‚’é–‹æ”¾
 		return TRUE;
 	}
 
@@ -422,7 +422,7 @@ static BOOL BtlCastleEv_PokeSelect( GMEVENT_CONTROL *ev )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹@ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€€ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
  */
 //--------------------------------------------------------------------------------------------
 static int BtlCastle_PokeListCall( CASTLE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,int heapID )
@@ -433,34 +433,34 @@ static int BtlCastle_PokeListCall( CASTLE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,
 	PLIST_DATA* pld = sys_AllocMemory( HEAPID_WORLD, sizeof(PLIST_DATA) );
 	MI_CpuClearFast( pld, sizeof(PLIST_DATA) );
 
-	//PILSTDATA_Create‚Ì’†g‚Æ“¯‚¶
+	//PILSTDATA_Createã®ä¸­èº«ã¨åŒã˜
 	pld->pp			= SaveData_GetTemotiPokemon( fsys->savedata );
 	pld->myitem		= SaveData_GetMyItem( fsys->savedata );
 	pld->mailblock	= SaveData_GetMailBlock( fsys->savedata );
 	pld->cfg		= SaveData_GetConfig( fsys->savedata );
 
-	//ƒ^ƒCƒv‚ÍƒVƒ“ƒOƒ‹ŒÅ’è‚Å‚æ‚³‚»‚¤(Šm”F‚·‚é)
+	//ã‚¿ã‚¤ãƒ—ã¯ã‚·ãƒ³ã‚°ãƒ«å›ºå®šã§ã‚ˆã•ãã†(ç¢ºèªã™ã‚‹)
 	//pld->type		= wk->plist_type;
 	pld->type		= PL_TYPE_SINGLE;
 
 	pld->mode		= PL_MODE_BATTLE_CASTLE;
 	pld->fsys		= fsys;
 
-	//ƒJ[ƒ\ƒ‹ˆÊ’u
+	//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 	pld->ret_sel	= wk->pos;
 
-	//‘I‘ğ‚µ‚Ä‚¢‚éˆÊ’u(ƒŠƒXƒg¨ƒXƒe[ƒ^ƒX¨ƒŠƒXƒg‚Åó‘Ô‚ğ•œ‹A‚³‚¹‚é)
+	//é¸æŠã—ã¦ã„ã‚‹ä½ç½®(ãƒªã‚¹ãƒˆâ†’ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹â†’ãƒªã‚¹ãƒˆã§çŠ¶æ…‹ã‚’å¾©å¸°ã•ã›ã‚‹)
 	for( i=0; i < 3 ;i++ ){
 		pld->in_num[i] = wk->sel[i];
 	}
 
-	pld->in_lv		= 100;			//Q‰ÁƒŒƒxƒ‹
-	pld->in_min		= 3;			//Q‰ÁÅ¬”
-	pld->in_max		= 3;			//Q‰ÁÅ‘å”
+	pld->in_lv		= 100;			//å‚åŠ ãƒ¬ãƒ™ãƒ«
+	pld->in_min		= 3;			//å‚åŠ æœ€å°æ•°
+	pld->in_max		= 3;			//å‚åŠ æœ€å¤§æ•°
 
 	if( wk->plist_type == PL_TYPE_MULTI ){
-		pld->in_min = 2;			//Q‰ÁÅ¬”
-		pld->in_max = 2;			//Q‰ÁÅ‘å”
+		pld->in_min = 2;			//å‚åŠ æœ€å°æ•°
+		pld->in_max = 2;			//å‚åŠ æœ€å¤§æ•°
 	}
 
 	GameSystem_StartSubProc( fsys, &PokeListProcData, pld );
@@ -472,7 +472,7 @@ static int BtlCastle_PokeListCall( CASTLE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹‘Ò‚¿
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å¾…ã¡
  */
 //--------------------------------------------------------------------------------------------
 static int BtlCastle_PokeListWait( CASTLE_POKESEL_EVENT* wk, FIELDSYS_WORK* fsys )
@@ -480,30 +480,30 @@ static int BtlCastle_PokeListWait( CASTLE_POKESEL_EVENT* wk, FIELDSYS_WORK* fsys
 	int	ret;
 	PLIST_DATA* pld;
 
-	// ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+	// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 	if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ) {
 		return CASTLE_POKESEL_PLIST_WAIT;
 	}
 
 	pld = *(wk->sp_wk);
 
-	//ƒf[ƒ^æ“¾
+	//ãƒ‡ãƒ¼ã‚¿å–å¾—
 	switch( pld->ret_sel ){
 
-	case PL_SEL_POS_EXIT:					//‚â‚ß‚é(pld‚ÍŠJ•ú‚µ‚Ä‚¢‚È‚¢)
+	case PL_SEL_POS_EXIT:					//ã‚„ã‚ã‚‹(pldã¯é–‹æ”¾ã—ã¦ã„ãªã„)
 		return CASTLE_POKESEL_EXIT;
 
-	case PL_SEL_POS_ENTER:					//Œˆ’è(pld‚ÍŠJ•ú‚µ‚Ä‚¢‚È‚¢)
+	case PL_SEL_POS_ENTER:					//æ±ºå®š(pldã¯é–‹æ”¾ã—ã¦ã„ãªã„)
 		return CASTLE_POKESEL_EXIT;
 
-	default:								//‚Â‚æ‚³‚ğ‚İ‚é
+	default:								//ã¤ã‚ˆã•ã‚’ã¿ã‚‹
 		break;
 	}
 
-	//‘I‘ğ‚µ‚Ä‚¢‚éó‘Ô‚ğAƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‚ğŒÄ‚ñ‚¾‚ ‚Æ‚É•œ‹A‚³‚¹‚é‚½‚ß‚É•K—v
-	MI_CpuCopy8( pld->in_num, wk->sel, 3 );	//Œ»İ‘I‚Î‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ğ•Û‘¶
+	//é¸æŠã—ã¦ã„ã‚‹çŠ¶æ…‹ã‚’ã€ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å‘¼ã‚“ã ã‚ã¨ã«å¾©å¸°ã•ã›ã‚‹ãŸã‚ã«å¿…è¦
+	MI_CpuCopy8( pld->in_num, wk->sel, 3 );	//ç¾åœ¨é¸ã°ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ä¿å­˜
 
-	//ƒ|ƒWƒVƒ‡ƒ“‚ğ•Û‘¶
+	//ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’ä¿å­˜
 	wk->pos = pld->ret_sel;
 
 	sys_FreeMemoryEz(pld);
@@ -513,7 +513,7 @@ static int BtlCastle_PokeListWait( CASTLE_POKESEL_EVENT* wk, FIELDSYS_WORK* fsys
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹@ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€€ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—
  */
 //--------------------------------------------------------------------------------------------
 static int BtlCastle_PokeStatusCall(CASTLE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,int heapID )
@@ -522,20 +522,20 @@ static int BtlCastle_PokeStatusCall(CASTLE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys
 	SAVEDATA* sv;
 
 	static const u8 PST_PageTbl[] = {
-		PST_PAGE_INFO,			//uƒ|ƒPƒ‚ƒ“‚¶‚å‚¤‚Ù‚¤v
-		PST_PAGE_MEMO,			//uƒgƒŒ[ƒi[ƒƒ‚v
-		PST_PAGE_PARAM,			//uƒ|ƒPƒ‚ƒ“‚Ì‚¤‚è‚å‚­v
-		PST_PAGE_CONDITION,		//uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
-		PST_PAGE_B_SKILL,		//u‚½‚½‚©‚¤‚í‚´v
-		PST_PAGE_C_SKILL,		//uƒRƒ“ƒeƒXƒg‚í‚´v
-		PST_PAGE_RIBBON,		//u‚«‚Ë‚ñƒŠƒ{ƒ“v
-		PST_PAGE_RET,			//u‚à‚Ç‚év
+		PST_PAGE_INFO,			//ã€Œãƒã‚±ãƒ¢ãƒ³ã˜ã‚‡ã†ã»ã†ã€
+		PST_PAGE_MEMO,			//ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã€
+		PST_PAGE_PARAM,			//ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã†ã‚Šã‚‡ãã€
+		PST_PAGE_CONDITION,		//ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
+		PST_PAGE_B_SKILL,		//ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+		PST_PAGE_C_SKILL,		//ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
+		PST_PAGE_RIBBON,		//ã€Œãã­ã‚“ãƒªãƒœãƒ³ã€
+		PST_PAGE_RET,			//ã€Œã‚‚ã©ã‚‹ã€
 		PST_PAGE_MAX
 	};
 	
 	sv = fsys->savedata;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‚ğŒÄ‚Ño‚·
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å‘¼ã³å‡ºã™
 	psd = sys_AllocMemoryLo( heapID, sizeof(PSTATUS_DATA) );
 	MI_CpuClear8( psd,sizeof(PSTATUS_DATA) );
 
@@ -561,21 +561,21 @@ static int BtlCastle_PokeStatusCall(CASTLE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹@ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXI—¹‘Ò‚¿
+ *	@brief	ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€€ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çµ‚äº†å¾…ã¡
  */
 //--------------------------------------------------------------------------------------------
 static int BtlCastle_PokeStatusWait( CASTLE_POKESEL_EVENT* wk, FIELDSYS_WORK* fsys )
 {
 	PSTATUS_DATA* psd;
 
-	//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+	//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 	if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ) {
 		return CASTLE_POKESEL_PST_WAIT;
 	}
 
 	psd = *(wk->sp_wk);
 	
-	//Ø‚è‘Ö‚¦‚ç‚ê‚½ƒJƒŒƒ“ƒg‚ğ•Û‘¶‚·‚é
+	//åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚ŒãŸã‚«ãƒ¬ãƒ³ãƒˆã‚’ä¿å­˜ã™ã‚‹
 	wk->pos = psd->pos;
 
 	sys_FreeMemoryEz( psd );

@@ -16,7 +16,7 @@
 # fix copyright header.
 #
 # Revision 1.8  2005/01/06 07:35:19  seiki_masashi
-# �R�����g�̏C��
+# コメントの修正
 #
 # Revision 1.7  2004/08/27 09:22:05  yasu
 # Fix around NITRO_CODEGEN_ALL
@@ -31,14 +31,14 @@
 # algo_simple -> algo_light
 # algo_standard -> algo_fine
 # algo_accurate -> algo_superfine
-# �V���� algo_standard �̒ǉ�
+# 新しい algo_standard の追加
 #
 # Revision 1.3  2004/06/25 13:32:11  seiki_masashi
-# �F���A���S���Y�� 'Standard' �̒ǉ�
+# 認識アルゴリズム 'Standard' の追加
 #
 # Revision 1.2  2004/06/25 03:02:55  seiki_masashi
-# �e�֐����� workAreaSize �̎w����폜
-# GetRecognitionWorkAreaSize* �̒ǉ�
+# 各関数から workAreaSize の指定を削除
+# GetRecognitionWorkAreaSize* の追加
 #
 # Revision 1.1  2004/06/23 11:59:30  seiki_masashi
 # add 'PRC*' to SDK

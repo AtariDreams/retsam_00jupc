@@ -24,52 +24,52 @@ extern "C" {
 
 
 /* ========================================================================
-    Œ^’è‹`
+    åž‹å®šç¾©
    ======================================================================== */
 
 typedef struct NNSiFndUntHeapMBlockHead NNSiFndUntHeapMBlockHead;
 
-// ƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_î•ñ
+// ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€æƒ…å ±
 struct NNSiFndUntHeapMBlockHead
 {
-    NNSiFndUntHeapMBlockHead*  pMBlkHdNext;    // ŽŸƒuƒƒbƒN
+    NNSiFndUntHeapMBlockHead*  pMBlkHdNext;    // æ¬¡ãƒ–ãƒ­ãƒƒã‚¯
 };
 
 
 typedef struct NNSiFndUntMBlockList NNSiFndUntMBlockList;
 
-// ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒŠƒXƒg
+// ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒªã‚¹ãƒˆ
 struct NNSiFndUntMBlockList
 {
-    NNSiFndUntHeapMBlockHead*  head;           // æ“ª‚ÉŒq‚ª‚ê‚Ä‚¢‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+    NNSiFndUntHeapMBlockHead*  head;           // å…ˆé ­ã«ç¹‹ãŒã‚Œã¦ã„ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 };
 
 
 typedef struct NNSiFndUntHeapHead NNSiFndUntHeapHead;
 
-// ƒ†ƒjƒbƒgƒq[ƒv‚Ìƒwƒbƒ_î•ñ
+// ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ãƒ˜ãƒƒãƒ€æƒ…å ±
 struct NNSiFndUntHeapHead
 {
-    NNSiFndUntMBlockList    mbFreeList;     // ƒtƒŠ[ƒŠƒXƒg
-    u32                     mBlkSize;       // ƒƒ‚ƒŠƒuƒƒbƒNƒTƒCƒY
+    NNSiFndUntMBlockList    mbFreeList;     // ãƒ•ãƒªãƒ¼ãƒªã‚¹ãƒˆ
+    u32                     mBlkSize;       // ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
 };
 
 
 /* ========================================================================
-    ƒ}ƒNƒŠÖ”
+    ãƒžã‚¯ãƒ­é–¢æ•°
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndCreateUnitHeap
 
-  Description:  ƒ†ƒjƒbƒgƒq[ƒv‚ðì¬‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã‚’ä½œæˆã—ã¾ã™ã€‚
 
-  Arguments:    startAddress:  ƒq[ƒv—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒXB
-                heapSize:      ƒq[ƒv—Ìˆæ‚ÌƒTƒCƒYB
-                memBlockSize:  ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒYB
+  Arguments:    startAddress:  ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
+                heapSize:      ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®ã‚µã‚¤ã‚ºã€‚
+                memBlockSize:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºã€‚
 
-  Returns:      ŠÖ”‚ª¬Œ÷‚µ‚½ê‡Aì¬‚³‚ê‚½ƒ†ƒjƒbƒgƒq[ƒv‚Ìƒnƒ“ƒhƒ‹‚ª•Ô‚è‚Ü‚·B
-                ŠÖ”‚ªŽ¸”s‚·‚é‚ÆANNS_FND_INVALID_HEAP_HANDLE ‚ª•Ô‚è‚Ü‚·B
+  Returns:      é–¢æ•°ãŒæˆåŠŸã—ãŸå ´åˆã€ä½œæˆã•ã‚ŒãŸãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ãŒè¿”ã‚Šã¾ã™ã€‚
+                é–¢æ•°ãŒå¤±æ•—ã™ã‚‹ã¨ã€NNS_FND_INVALID_HEAP_HANDLE ãŒè¿”ã‚Šã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 #define                 NNS_FndCreateUnitHeap(startAddress, heapSize, memBlockSize) \
                             NNS_FndCreateUnitHeapEx(startAddress, heapSize, memBlockSize, NNS_FND_HEAP_DEFAULT_ALIGNMENT, 0)
@@ -78,18 +78,18 @@ struct NNSiFndUntHeapHead
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetMemBlockSizeForUnitHeap
 
-  Description:  ƒ†ƒjƒbƒgƒq[ƒv‚Ìƒƒ‚ƒŠƒuƒƒbƒNƒTƒCƒY‚ðŽæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    heap:  ƒ†ƒjƒbƒgƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
+  Arguments:    heap:  ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
 
-  Returns:      ƒ†ƒjƒbƒgƒq[ƒv‚Ìƒƒ‚ƒŠƒuƒƒbƒNƒTƒCƒY‚ð•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 #define                 NNS_FndGetMemBlockSizeForUnitHeap(heap) \
                             (((const NNSiFndUntHeapHead*)((const u8*)((const void*)(heap)) + sizeof(NNSiFndHeapHead)))->mBlkSize)
 
 
 /* ========================================================================
-    ŠÖ”ƒvƒƒgƒ^ƒCƒv
+    é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
    ======================================================================== */
 
 #if ! defined(NNS_FINALROM)

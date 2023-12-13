@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	actin_waza.c
- * @brief	‰‰‹Z—Í•”–åF‹ZŒø‰Ê
+ * @brief	æ¼”æŠ€åŠ›éƒ¨é–€ï¼šæŠ€åŠ¹æœ
  * @author	matsuda
- * @date	2006.01.26(–Ø)
+ * @date	2006.01.26(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -38,54 +38,54 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///‹ZŒø‰Ê‚ğ”­¶‚³‚¹‚éƒ^ƒCƒ~ƒ“ƒO’è‹`(Às‚·‚é‡”Ô)
+///æŠ€åŠ¹æœã‚’ç™ºç”Ÿã•ã›ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°å®šç¾©(å®Ÿè¡Œã™ã‚‹é †ç•ª)
 enum{
-	//-- ‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚Å‚Í‚Ü‚¾Šî–{AP“™‚Í–¢æ“¾ --//
-	SPMSG_TIMING_FIRST,		///<‹ZƒGƒtƒFƒNƒgÀs‘O‚É“ÁêƒƒbƒZ[ƒW
+	//-- ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ã¯ã¾ã åŸºæœ¬APç­‰ã¯æœªå–å¾— --//
+	SPMSG_TIMING_FIRST,		///<æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œå‰ã«ç‰¹æ®Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	
-	KOUKA_TIMING_FIRST,		///<‘¦Às‚·‚éŒø‰Ê(å‚ÉƒV[ƒ‹ƒhŒn“™)
-	KOUKA_TIMING_FIELD,		///<ê‚É‚©‚©‚éŒø‰Ê(å‚É‘S‘Ì–WŠQ‹Z“™)
+	KOUKA_TIMING_FIRST,		///<å³å®Ÿè¡Œã™ã‚‹åŠ¹æœ(ä¸»ã«ã‚·ãƒ¼ãƒ«ãƒ‰ç³»ç­‰)
+	KOUKA_TIMING_FIELD,		///<å ´ã«ã‹ã‹ã‚‹åŠ¹æœ(ä¸»ã«å…¨ä½“å¦¨å®³æŠ€ç­‰)
 	
-	//-- ‚±‚±‚ÅŠî–{AP‚âƒ{ƒ‹ƒe[ƒW’l“™‚ğæ“¾ --//
+	//-- ã“ã“ã§åŸºæœ¬APã‚„ãƒœãƒ«ãƒ†ãƒ¼ã‚¸å€¤ç­‰ã‚’å–å¾— --//
 	
-	KOUKA_TIMING_NOW,		///<©•ª‚ÌƒAƒs[ƒ‹‚Ì‚É”­“®‚·‚éŒø‰Ê
+	KOUKA_TIMING_NOW,		///<è‡ªåˆ†ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã®æ™‚ã«ç™ºå‹•ã™ã‚‹åŠ¹æœ
 	
-	//-- ‚±‚±‚Åæ“¾APA‹ZŒø‰ÊA–WŠQ“™‚Åæ“¾‚µ‚½AP’l‚Ì‰ÁŒ¸Z‚ğs‚¢‡Œv‚ğo‚· --//
+	//-- ã“ã“ã§å–å¾—APã€æŠ€åŠ¹æœã€å¦¨å®³ç­‰ã§å–å¾—ã—ãŸAPå€¤ã®åŠ æ¸›ç®—ã‚’è¡Œã„åˆè¨ˆã‚’å‡ºã™ --//
 	
-	KOUKA_TIMING_AFTER,		///<‘Sˆõ‚ÌƒAƒs[ƒ‹I—¹Œã‚É”­¶‚·‚éŒø‰Ê
-	KOUKA_TIMING_JUDGESUFFER,	///<R”»”í‚èŒn‚Ì‹ZŒø‰Ê
+	KOUKA_TIMING_AFTER,		///<å…¨å“¡ã®ã‚¢ãƒ”ãƒ¼ãƒ«çµ‚äº†å¾Œã«ç™ºç”Ÿã™ã‚‹åŠ¹æœ
+	KOUKA_TIMING_JUDGESUFFER,	///<å¯©åˆ¤è¢«ã‚Šç³»ã®æŠ€åŠ¹æœ
 	
-	//-- ‚±‚±‚ÅR”»”í‚è•ª‚Ì‰ÁZ --//
+	//-- ã“ã“ã§å¯©åˆ¤è¢«ã‚Šåˆ†ã®åŠ ç®— --//
 	
-	KOUKA_TIMING_END,		///<‘S‚Ä‚Ìˆ—‚ÌÅŒã‚É”­¶‚·‚éŒø‰Ê
+	KOUKA_TIMING_END,		///<å…¨ã¦ã®å‡¦ç†ã®æœ€å¾Œã«ç™ºç”Ÿã™ã‚‹åŠ¹æœ
 };
 
-///ƒƒbƒZ[ƒWƒ^ƒOw’è‚·‚éAg—p‚µ‚È‚¢‚Ì‚ÅAˆÓ}“I‚Éw’è‚È‚µA‚Æ•\‹L‚·‚éˆ×‚Ì’è‹`
+///ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚°æŒ‡å®šã™ã‚‹æ™‚ã€ä½¿ç”¨ã—ãªã„ã®ã§ã€æ„å›³çš„ã«æŒ‡å®šãªã—ã€ã¨è¡¨è¨˜ã™ã‚‹ç‚ºã®å®šç¾©
 #define TAG_NULL		(30000)
 
-///“ÁêƒƒbƒZ[ƒW‚ğg—p‚µ‚È‚¢
+///ç‰¹æ®Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä½¿ç”¨ã—ãªã„
 #define SPMSG_TIMING_NULL		(0xff)
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///‹ZŒø‰ÊƒV[ƒPƒ“ƒX‚ÌŠÖ”Œ^’è‹`
+///æŠ€åŠ¹æœã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®é–¢æ•°å‹å®šç¾©
 typedef int (*KOUKA_FUNC)(ACTIN_PROC_WORK *, AWAZA_PARAM *, int, int, int);
 
-///‹ZŒø‰ÊƒV[ƒPƒ“ƒXƒf[ƒ^\‘¢‘Ì
+///æŠ€åŠ¹æœã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct{
-	KOUKA_FUNC func;		///<ÀsŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u8 timing;				///<Àsƒ^ƒCƒ~ƒ“ƒO
-	u8 sp_msg;				///<“ÁêƒƒbƒZ[ƒW‚ğ•\¦‚³‚¹‚éƒ^ƒCƒ~ƒ“ƒO
+	KOUKA_FUNC func;		///<å®Ÿè¡Œé–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 timing;				///<å®Ÿè¡Œã‚¿ã‚¤ãƒŸãƒ³ã‚°
+	u8 sp_msg;				///<ç‰¹æ®Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã•ã›ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 	
 	u8 dummy[2];
 }KOUKA_SEQ_DATA;
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void AWAZA_SaveParamUpdate(AWAZA_PARAM *wp);
 
@@ -138,13 +138,13 @@ static int Kouka_LowPointAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_b
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 #include "actin_waza.dat"
 
-///‰‰‹Z—Í•”–åƒƒCƒ“ŠÖ”‚ÌƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+///æ¼”æŠ€åŠ›éƒ¨é–€ãƒ¡ã‚¤ãƒ³é–¢æ•°ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 static const KOUKA_SEQ_DATA KoukaSeqTbl[] = {
-	{Kouka_Null, 				KOUKA_TIMING_NOW, SPMSG_TIMING_NULL},      	//0 1ƒIƒŠƒWƒ“‚Ìˆ×ƒ_ƒ~[
+	{Kouka_Null, 				KOUKA_TIMING_NOW, SPMSG_TIMING_NULL},      	//0 1ã‚ªãƒªã‚¸ãƒ³ã®ç‚ºãƒ€ãƒŸãƒ¼
 	{Kouka_NextFirst,			KOUKA_TIMING_NOW, SPMSG_TIMING_NULL},			//1
 	{Kouka_NextEnd, 			KOUKA_TIMING_NOW, SPMSG_TIMING_NULL},      		//2
 	{Kouka_JudgeSufferAdd, 		KOUKA_TIMING_JUDGESUFFER, SPMSG_TIMING_NULL},	//3
@@ -173,15 +173,15 @@ static const KOUKA_SEQ_DATA KoukaSeqTbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒWƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
  * @param   personal		
- * @param   apno			‹ZŒø‰Ê”Ô†
- * @param   msg_type		g—p‚·‚éƒƒbƒZ[ƒWƒ^ƒCƒv(KOUKA_MSGID_???)
- * @param   mine			MINEƒ^ƒO‚ÌQÆ‚·‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   enemy			ENEMYƒ^ƒO‚ÌQÆ‚·‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   wazano			WAZAƒ^ƒO‚ÌQÆ‚·‚é‹Z”Ô†
- * @param   num				NUMƒ^ƒO‚ÌQÆ‚·‚é”’l
+ * @param   apno			æŠ€åŠ¹æœç•ªå·
+ * @param   msg_type		ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—(KOUKA_MSGID_???)
+ * @param   mine			MINEã‚¿ã‚°ã®æ™‚å‚ç…§ã™ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   enemy			ENEMYã‚¿ã‚°ã®æ™‚å‚ç…§ã™ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   wazano			WAZAã‚¿ã‚°ã®æ™‚å‚ç…§ã™ã‚‹æŠ€ç•ªå·
+ * @param   num				NUMã‚¿ã‚°ã®æ™‚å‚ç…§ã™ã‚‹æ•°å€¤
  */
 //--------------------------------------------------------------
 static void AWAZA_MsgParamSet(AWAZA_PERSONAL *personal, int apno, int msg_type, int mine, int enemy, int wazano, int num)
@@ -202,15 +202,15 @@ static void AWAZA_MsgParamSet(AWAZA_PERSONAL *personal, int apno, int msg_type, 
 		personal->tagpara.num = num;
 	}
 
-	OS_TPrintf("‹ZŒø‰ÊƒƒbƒZ[ƒWƒZƒbƒgFmsg_apno=%d, msg_type=%d\n", apno, msg_type);
+	OS_TPrintf("æŠ€åŠ¹æœãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆï¼šmsg_apno=%d, msg_type=%d\n", apno, msg_type);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^[ƒ“‚ÌÅ‰‚És‚¤•K—v‚Ì‚ ‚é‰Šú‰»ˆ—
+ * @brief   ã‚¿ãƒ¼ãƒ³ã®æœ€åˆã«è¡Œã†å¿…è¦ã®ã‚ã‚‹åˆæœŸåŒ–å‡¦ç†
  *
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp		‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp		æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AWAZA_WazaParaTurnInit(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp)
@@ -219,7 +219,7 @@ void AWAZA_WazaParaTurnInit(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp)
 	
 	*wp = apw->a_game.wazapara;
 	
-	AWAZA_SaveParamUpdate(wp);	//personal‚ğƒNƒŠƒA‚·‚é‘O‚É’lXV
+	AWAZA_SaveParamUpdate(wp);	//personalã‚’ã‚¯ãƒªã‚¢ã™ã‚‹å‰ã«å€¤æ›´æ–°
 	MI_CpuClear8(wp->personal, sizeof(AWAZA_PERSONAL) * BREEDER_MAX);
 	
 	for(breeder_no = 0; breeder_no < BREEDER_MAX; breeder_no++){
@@ -235,10 +235,10 @@ void AWAZA_WazaParaTurnInit(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠeƒuƒŠ[ƒ_[‚Ì‰‰‹ZŠJn‘O‚És‚¤•K—v‚Ì‚ ‚é‰Šú‰»ˆ—
+ * @brief   å„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®æ¼”æŠ€é–‹å§‹å‰ã«è¡Œã†å¿…è¦ã®ã‚ã‚‹åˆæœŸåŒ–å‡¦ç†
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[No
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No
  */
 //--------------------------------------------------------------
 void AWAZA_WazaParaBreederInit(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int breeder_no)
@@ -258,10 +258,10 @@ void AWAZA_WazaParaBreederInit(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int breede
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠeƒuƒŠ[ƒ_[‚Ì‰‰‹ZI—¹Œã‚És‚¤AƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒf[ƒ^XVˆ—
+ * @brief   å„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®æ¼”æŠ€çµ‚äº†å¾Œã«è¡Œã†ã€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒ‡ãƒ¼ã‚¿æ›´æ–°å‡¦ç†
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[No
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No
  */
 //--------------------------------------------------------------
 void AWAZA_WazaParaBreederGameUpdate(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int breeder_no)
@@ -278,10 +278,10 @@ void AWAZA_WazaParaBreederGameUpdate(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^[ƒ“I—¹Œã‚És‚¤AƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒf[ƒ^XVˆ—
+ * @brief   ã‚¿ãƒ¼ãƒ³çµ‚äº†å¾Œã«è¡Œã†ã€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒ‡ãƒ¼ã‚¿æ›´æ–°å‡¦ç†
  *
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp		‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp		æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AWAZA_WazaParaTurnGameUpdate(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp)
@@ -298,10 +298,10 @@ void AWAZA_WazaParaTurnGameUpdate(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZŒvZ‘O‚És‚¤•K—v‚Ì‚ ‚éŠeíƒpƒ‰ƒ[ƒ^XVˆ—
+ * @brief   æŠ€è¨ˆç®—å‰ã«è¡Œã†å¿…è¦ã®ã‚ã‚‹å„ç¨®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°å‡¦ç†
  *
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		‹Z‚ğo‚·‚Ô‚è[‚¾[‚Ì”Ô†
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		æŠ€ã‚’å‡ºã™ã¶ã‚Šãƒ¼ã ãƒ¼ã®ç•ªå·
  */
 //--------------------------------------------------------------
 static void AWAZA_CalcInitUpdateParam(AWAZA_PARAM *wp, int breeder_no)
@@ -312,7 +312,7 @@ static void AWAZA_CalcInitUpdateParam(AWAZA_PARAM *wp, int breeder_no)
 	wp->personal[breeder_no].my_effective_ap = 0;
 	wp->personal[breeder_no].enemy_effective_ap = 0;
 
-	//•ÏX‘O‚Ìƒ{ƒ‹ƒe[ƒW’læ“¾
+	//å¤‰æ›´å‰ã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸å€¤å–å¾—
 	for(i = 0; i < JUDGE_MAX; i++){
 		wp->voltage_before[i] = wp->voltage_after[i];
 	}
@@ -325,8 +325,8 @@ static void AWAZA_CalcInitUpdateParam(AWAZA_PARAM *wp, int breeder_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘Sˆõ‚Ì‹ZŒø‰Ê”­¶‘O‚ÌAP’l‚ğ‹L‰¯
- * @param   wp		‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å…¨å“¡ã®æŠ€åŠ¹æœç™ºç”Ÿå‰ã®APå€¤ã‚’è¨˜æ†¶
+ * @param   wp		æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AWAZA_TimingBeforeAppUpdate(AWAZA_PARAM *wp)
@@ -340,11 +340,11 @@ void AWAZA_TimingBeforeAppUpdate(AWAZA_PARAM *wp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZƒGƒtƒFƒNƒgÀs‘O‚É•\¦‚·‚é“ÁêƒƒbƒZ[ƒW‚Ì”»’è‚ğs‚¤
+ * @brief   æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œå‰ã«è¡¨ç¤ºã™ã‚‹ç‰¹æ®Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®åˆ¤å®šã‚’è¡Œã†
  *
- * @param   apw					‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp					‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no			‹Z‚ğo‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[
+ * @param   apw					æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp					æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no			æŠ€ã‚’å‡ºã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼
  */
 //--------------------------------------------------------------
 void AWAZA_FirstMsg(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int breeder_no)
@@ -364,11 +364,11 @@ void AWAZA_FirstMsg(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int breeder_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚ÌŠî–{AP’l‚ÌŒvZ‚ğs‚¤
+ * @brief   æŠ€ã®åŸºæœ¬APå€¤ã®è¨ˆç®—ã‚’è¡Œã†
  *
- * @param   apw					‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp					‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no			‹Z‚ğo‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[
+ * @param   apw					æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp					æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no			æŠ€ã‚’å‡ºã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼
  */
 //--------------------------------------------------------------
 void AWAZA_BaseAP(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int breeder_no)
@@ -382,12 +382,12 @@ void AWAZA_BaseAP(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int breeder_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZŒø‰Ê”­“®ˆ—
+ * @brief   æŠ€åŠ¹æœç™ºå‹•å‡¦ç†
  *
- * @param   apw					‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp					‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   now_breeder			‹Z‚ğo‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[
- * @param   now_breeder_pos		‹Z‚ğo‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Í‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©
+ * @param   apw					æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp					æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   now_breeder			æŠ€ã‚’å‡ºã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼
+ * @param   now_breeder_pos		æŠ€ã‚’å‡ºã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã¯ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹
  */
 //--------------------------------------------------------------
 void AWAZA_Kouka(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now_breeder, int now_breeder_pos)
@@ -396,9 +396,9 @@ void AWAZA_Kouka(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now_breeder, int now
 	
 	AWAZA_CalcInitUpdateParam(wp, now_breeder);
 	
-	//ƒAƒs[ƒ‹‚µ‚½–{l‚Ì‹ZŒø‰Ê”­¶
+	//ã‚¢ãƒ”ãƒ¼ãƒ«ã—ãŸæœ¬äººã®æŠ€åŠ¹æœç™ºç”Ÿ
 	if(KoukaSeqTbl[wp->personal[now_breeder].apno].timing == KOUKA_TIMING_NOW){
-		OS_TPrintf("———NOW‹ZŒø‰Ê”­¶F%d———(ƒuƒŠ[ƒ_[No%dApos=%d)\n",
+		OS_TPrintf("ï¼ ï¼ ï¼ NOWæŠ€åŠ¹æœç™ºç”Ÿï¼š%dï¼ ï¼ ï¼ (ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%dã€pos=%d)\n",
 			wp->personal[now_breeder].apno, now_breeder, now_breeder_pos);
 		KoukaSeqTbl[wp->personal[now_breeder].apno].func(apw, wp, now_breeder, 
 			now_breeder, now_breeder_pos);
@@ -407,11 +407,11 @@ void AWAZA_Kouka(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now_breeder, int now
 			+ wp->personal[now_breeder].enemy_effective_ap;
 	}
 	
-	//Šù‚ÉƒAƒs[ƒ‹Ï‚İ‚ÌƒuƒŠ[ƒ_[’B‚Ì‹ZŒø‰Ê”­¶ƒ`ƒFƒbƒN
+	//æ—¢ã«ã‚¢ãƒ”ãƒ¼ãƒ«æ¸ˆã¿ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼é”ã®æŠ€åŠ¹æœç™ºç”Ÿãƒã‚§ãƒƒã‚¯
 	for(i = 0; i <= now_breeder_pos/*apw->a_game.breeder_end_count*/; i++){
 		int kouka_breeder = apw->a_game.breeder_sort[i];
 		if(KoukaSeqTbl[wp->personal[kouka_breeder].apno].timing == KOUKA_TIMING_FIELD){
-			OS_TPrintf("———FIELD‹ZŒø‰Ê”­¶F%d———(ƒuƒŠ[ƒ_[No%dApos=%d)\n",
+			OS_TPrintf("ï¼ ï¼ ï¼ FIELDæŠ€åŠ¹æœç™ºç”Ÿï¼š%dï¼ ï¼ ï¼ (ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%dã€pos=%d)\n",
 				wp->personal[kouka_breeder].apno, kouka_breeder, i);
 			AWAZA_CalcInitUpdateParam(wp, kouka_breeder);
 			KoukaSeqTbl[wp->personal[kouka_breeder].apno].func(apw, wp, 
@@ -424,10 +424,10 @@ void AWAZA_Kouka(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now_breeder, int now
 
 //--------------------------------------------------------------
 /**
- * @brief   o‚µ‚½‹Z‚Ì‹ZŒø‰Ê”­“®Œã‚É”­“®‚·‚é“Áê‹ZŒø‰Ê
+ * @brief   å‡ºã—ãŸæŠ€ã®æŠ€åŠ¹æœç™ºå‹•å¾Œã«ç™ºå‹•ã™ã‚‹ç‰¹æ®ŠæŠ€åŠ¹æœ
  *
- * @param   apw					‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp					‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw					æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp					æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   now_breeder			
  * @param   now_breeder_pos		
  */
@@ -440,7 +440,7 @@ void AWAZA_KoukaSpecial(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp,
 	AWAZA_CalcInitUpdateParam(wp, now_breeder);
 	
 	if(wp->save[now_breeder].twice_now_apno != 0){
-		OS_TPrintf("———Ÿƒ^[ƒ“2”{‚Ì‹ZŒø‰Ê”­¶———(ƒuƒŠ[ƒ_[No%dApos=%d)\n",
+		OS_TPrintf("ï¼ ï¼ ï¼ æ¬¡ã‚¿ãƒ¼ãƒ³2å€ã®æŠ€åŠ¹æœç™ºç”Ÿï¼ ï¼ ï¼ (ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%dã€pos=%d)\n",
 			now_breeder, now_breeder_pos);
 		add_ap = wp->personal[now_breeder].app_total;
 		wp->personal[now_breeder].my_effective_ap += add_ap;
@@ -454,14 +454,14 @@ void AWAZA_KoukaSpecial(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp,
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZŒø‰Ê”­“®ˆ—(‘Sˆõ‰‰‹ZI—¹Œã)
+ * @brief   æŠ€åŠ¹æœç™ºå‹•å‡¦ç†(å…¨å“¡æ¼”æŠ€çµ‚äº†å¾Œ)
  *
- * @param   apw					‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp					‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   now_breeder			‹Z‚ğo‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[
- * @param   now_breeder_pos		‹Z‚ğo‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Í‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©
+ * @param   apw					æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp					æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   now_breeder			æŠ€ã‚’å‡ºã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼
+ * @param   now_breeder_pos		æŠ€ã‚’å‡ºã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã¯ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹
  *
- * @retval	TRUE:”­“®ƒ^ƒCƒ~ƒ“ƒO‚¾‚Á‚½‚Ì‚Åˆ—‚ªs‚í‚ê‚½B@FALSE:ˆ—‚Ís‚í‚ê‚È‚©‚Á‚½
+ * @retval	TRUE:ç™ºå‹•ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã ã£ãŸã®ã§å‡¦ç†ãŒè¡Œã‚ã‚ŒãŸã€‚ã€€FALSE:å‡¦ç†ã¯è¡Œã‚ã‚Œãªã‹ã£ãŸ
  */
 //--------------------------------------------------------------
 BOOL AWAZA_KoukaAfterTiming(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now_breeder, 
@@ -472,7 +472,7 @@ BOOL AWAZA_KoukaAfterTiming(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now_breed
 	AWAZA_CalcInitUpdateParam(wp, now_breeder);
 	
 	if(KoukaSeqTbl[wp->personal[now_breeder].apno].timing == KOUKA_TIMING_AFTER){
-		OS_TPrintf("———AFTER‹ZŒø‰Ê”­¶F%d———(ƒuƒŠ[ƒ_[No%dApos=%d)\n",
+		OS_TPrintf("ï¼ ï¼ ï¼ AFTERæŠ€åŠ¹æœç™ºç”Ÿï¼š%dï¼ ï¼ ï¼ (ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%dã€pos=%d)\n",
 			wp->personal[now_breeder].apno, now_breeder, now_breeder_pos);
 		KoukaSeqTbl[wp->personal[now_breeder].apno].func(apw, wp, now_breeder, 
 			now_breeder, now_breeder_pos);
@@ -486,14 +486,14 @@ BOOL AWAZA_KoukaAfterTiming(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now_breed
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»”í‚èŒn‚Ì‹ZŒø‰Ê”­“®ˆ—(‘Sˆõ‰‰‹ZI—¹Œã)
+ * @brief   å¯©åˆ¤è¢«ã‚Šç³»ã®æŠ€åŠ¹æœç™ºå‹•å‡¦ç†(å…¨å“¡æ¼”æŠ€çµ‚äº†å¾Œ)
  *
- * @param   apw					‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp					‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   now_breeder			‹Z‚ğo‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[
- * @param   now_breeder_pos		‹Z‚ğo‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Í‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©
+ * @param   apw					æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp					æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   now_breeder			æŠ€ã‚’å‡ºã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼
+ * @param   now_breeder_pos		æŠ€ã‚’å‡ºã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã¯ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹
  *
- * @retval	TRUE:”­“®ƒ^ƒCƒ~ƒ“ƒO‚¾‚Á‚½‚Ì‚Åˆ—‚ªs‚í‚ê‚½B@FALSE:ˆ—‚Ís‚í‚ê‚È‚©‚Á‚½
+ * @retval	TRUE:ç™ºå‹•ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã ã£ãŸã®ã§å‡¦ç†ãŒè¡Œã‚ã‚ŒãŸã€‚ã€€FALSE:å‡¦ç†ã¯è¡Œã‚ã‚Œãªã‹ã£ãŸ
  */
 //--------------------------------------------------------------
 BOOL AWAZA_KoukaJudgeSufferTiming(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now_breeder, 
@@ -504,7 +504,7 @@ BOOL AWAZA_KoukaJudgeSufferTiming(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now
 	AWAZA_CalcInitUpdateParam(wp, now_breeder);
 	
 	if(KoukaSeqTbl[wp->personal[now_breeder].apno].timing == KOUKA_TIMING_JUDGESUFFER){
-		OS_TPrintf("———JUDGE_SUFFER‹ZŒø‰Ê”­¶F%d———(ƒuƒŠ[ƒ_[No%dApos=%d)\n",
+		OS_TPrintf("ï¼ ï¼ ï¼ JUDGE_SUFFERæŠ€åŠ¹æœç™ºç”Ÿï¼š%dï¼ ï¼ ï¼ (ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%dã€pos=%d)\n",
 			wp->personal[now_breeder].apno, now_breeder, now_breeder_pos);
 		KoukaSeqTbl[wp->personal[now_breeder].apno].func(apw, wp, now_breeder, 
 			now_breeder, now_breeder_pos);
@@ -518,14 +518,14 @@ BOOL AWAZA_KoukaJudgeSufferTiming(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZŒø‰Ê”­“®ˆ—(‘S‚Ä‚ÌƒAƒs[ƒ‹I—¹Œã)
+ * @brief   æŠ€åŠ¹æœç™ºå‹•å‡¦ç†(å…¨ã¦ã®ã‚¢ãƒ”ãƒ¼ãƒ«çµ‚äº†å¾Œ)
  *
- * @param   apw					‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp					‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   now_breeder			‹Z‚ğo‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[
- * @param   now_breeder_pos		‹Z‚ğo‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Í‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©
+ * @param   apw					æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp					æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   now_breeder			æŠ€ã‚’å‡ºã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼
+ * @param   now_breeder_pos		æŠ€ã‚’å‡ºã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã¯ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹
  *
- * @retval	TRUE:”­“®ƒ^ƒCƒ~ƒ“ƒO‚¾‚Á‚½‚Ì‚Åˆ—‚ªs‚í‚ê‚½B@FALSE:ˆ—‚Ís‚í‚ê‚È‚©‚Á‚½
+ * @retval	TRUE:ç™ºå‹•ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã ã£ãŸã®ã§å‡¦ç†ãŒè¡Œã‚ã‚ŒãŸã€‚ã€€FALSE:å‡¦ç†ã¯è¡Œã‚ã‚Œãªã‹ã£ãŸ
  */
 //--------------------------------------------------------------
 BOOL AWAZA_KoukaEndTiming(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now_breeder, 
@@ -536,7 +536,7 @@ BOOL AWAZA_KoukaEndTiming(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now_breeder
 	AWAZA_CalcInitUpdateParam(wp, now_breeder);
 	
 	if(KoukaSeqTbl[wp->personal[now_breeder].apno].timing == KOUKA_TIMING_END){
-		OS_TPrintf("———END‹ZŒø‰Ê”­¶F%d———(ƒuƒŠ[ƒ_[No%dApos=%d)\n",
+		OS_TPrintf("ï¼ ï¼ ï¼ ENDæŠ€åŠ¹æœç™ºç”Ÿï¼š%dï¼ ï¼ ï¼ (ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%dã€pos=%d)\n",
 			wp->personal[now_breeder].apno, now_breeder, now_breeder_pos);
 		KoukaSeqTbl[wp->personal[now_breeder].apno].func(apw, wp, now_breeder, 
 			now_breeder, now_breeder_pos);
@@ -550,12 +550,12 @@ BOOL AWAZA_KoukaEndTiming(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now_breeder
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚ğo‚µ‚½Œã‚Ìƒ{ƒ‹ƒe[ƒWŒvZˆ—
+ * @brief   æŠ€ã‚’å‡ºã—ãŸå¾Œã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸è¨ˆç®—å‡¦ç†
  *
- * @param   apw					‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp					‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no			‹Z‚ğo‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   nt					A_TALK—p’Êí‰ï˜bƒƒbƒZ[ƒW‘ã“üæ
+ * @param   apw					æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp					æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no			æŠ€ã‚’å‡ºã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   nt					A_TALKç”¨é€šå¸¸ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void AWAZA_Voltage(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int breeder_no, NORMAL_TALK *nt)
@@ -568,7 +568,7 @@ void AWAZA_Voltage(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int breeder_no, NORMAL
 	
 	judge_no = apw->a_game.judge_no[breeder_no];
 	
-	//ƒ{ƒ‹ƒe[ƒWƒ`ƒFƒbƒN
+	//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚§ãƒƒã‚¯
 	voltage_addsub = ACALC_VoltageUpDownCheck(apw->consys->c_game.type, 
 		wp->personal[breeder_no].wazano, judge_no, apw->consys->c_game.special_judge_no);
 	
@@ -589,7 +589,7 @@ void AWAZA_Voltage(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int breeder_no, NORMAL
 		voltage_addsub = 0;
 	}
 	
-	//ƒ{ƒ‹ƒe[ƒWÅ‘åƒ`ƒFƒbƒN
+	//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸æœ€å¤§ãƒã‚§ãƒƒã‚¯
 	if(wp->voltage_after[judge_no] >= VOLTAGE_POINT_FULL){
 		if(judge_no == apw->consys->c_game.special_judge_no){
 			wp->personal[breeder_no].voltage_add_ap = VOLTAGE_FULL_ADD_AP_SPECIAL;
@@ -600,7 +600,7 @@ void AWAZA_Voltage(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int breeder_no, NORMAL
 	}
 
 #if 0
-	//Å‘å‚É’B‚µ‚Ä‚¢‚éƒ{ƒ‹ƒe[ƒW‚ğ0ƒNƒŠƒA
+	//æœ€å¤§ã«é”ã—ã¦ã„ã‚‹ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã‚’0ã‚¯ãƒªã‚¢
 	for(k = 0; k < JUDGE_MAX; k++){
 		if(apw->a_game.voltage_total[k] >= VOLTAGE_POINT_FULL){
 			apw->a_game.voltage_total[k] = 0;
@@ -608,7 +608,7 @@ void AWAZA_Voltage(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int breeder_no, NORMAL
 	}
 #endif
 
-	//A_TALKƒƒbƒZ[ƒW
+	//A_TALKãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	nt->after_a_talk_tagpara.num = wp->personal[breeder_no].voltage_add_ap / VOLTAGE_ONE_POINT;
 	if(voltage_addsub > 0){
 	#if 0
@@ -664,11 +664,11 @@ void AWAZA_Voltage(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int breeder_no, NORMAL
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»”í‚èŒvZ
+ * @brief   å¯©åˆ¤è¢«ã‚Šè¨ˆç®—
  *
- * @param   apw					‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp					‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   nt					A_TALK—p’Êí‰ï˜bƒƒbƒZ[ƒW‘ã“üæ
+ * @param   apw					æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp					æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   nt					A_TALKç”¨é€šå¸¸ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void AWAZA_JudgeSuffer(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now_breeder, NORMAL_TALK *nt)
@@ -686,14 +686,14 @@ void AWAZA_JudgeSuffer(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int now_breeder, N
 //	}
 //	nt->after_a_talk_tagpara.num = add_ap / APPEAL_ICON_ONE_POINT;
 	
-	OS_TPrintf("ƒuƒŠ[ƒ_[No%d, R”»”í‚èl”%d, æ“¾ƒ|ƒCƒ“ƒg%d\n", 
+	OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%d, å¯©åˆ¤è¢«ã‚Šäººæ•°ï¼%d, å–å¾—ãƒã‚¤ãƒ³ãƒˆï¼%d\n", 
 		now_breeder, wp->personal[now_breeder].judge_suffer, add_ap);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   AWAZA_SAVEƒpƒ‰ƒ[ƒ^XVˆ—
- * @param   wp		‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   AWAZA_SAVEãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°å‡¦ç†
+ * @param   wp		æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void AWAZA_SaveParamUpdate(AWAZA_PARAM *wp)
@@ -708,19 +708,19 @@ static void AWAZA_SaveParamUpdate(AWAZA_PARAM *wp)
 
 
 //==============================================================================
-//	‹ZŒø‰ÊƒV[ƒPƒ“ƒX
+//	æŠ€åŠ¹æœã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   Ÿ‚Ìƒ^[ƒ“‚Å‚Ì‡”Ô‚ªÅ‰‚É‚È‚é
+ * @brief   æ¬¡ã®ã‚¿ãƒ¼ãƒ³ã§ã®é †ç•ªãŒæœ€åˆã«ãªã‚‹
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_NextFirst(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -736,13 +736,13 @@ static int Kouka_NextFirst(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_bre
 		else{
 			if(wp->personal[i].next_sort == AWK_SORT_SPECIFY_FIRST 
 					&& wp->personal[i].next_pos == 0){
-				first_breeder = i;	//©•ª‚æ‚è‚àæ‚É‚±‚Ì‹Z‚ÅŸ1”Ô‚ğ”­“®‚µ‚Ä‚¢‚½ƒuƒŠ[ƒ_[
+				first_breeder = i;	//è‡ªåˆ†ã‚ˆã‚Šã‚‚å…ˆã«ã“ã®æŠ€ã§æ¬¡1ç•ªã‚’ç™ºå‹•ã—ã¦ã„ãŸãƒ–ãƒªãƒ¼ãƒ€ãƒ¼
 			}
 			sort[i] = wp->personal[i].next_pos;
 		}
 	}
 	
-	sort[kouka_breeder] = 0xff;	//©•ª‚ÌŠ‚Í‹ó”’‚É‚µ‚Ä‚¨‚­
+	sort[kouka_breeder] = 0xff;	//è‡ªåˆ†ã®æ‰€ã¯ç©ºç™½ã«ã—ã¦ãŠã
 	
 	for(i = 0; i < BREEDER_MAX; i++){
 		for(t = 0; t < BREEDER_MAX; t++){
@@ -761,12 +761,12 @@ static int Kouka_NextFirst(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_bre
 	for(i = 0; i < BREEDER_MAX; i++){
 		if(sort[i] != 0xff){
 			wp->personal[i].next_pos = sort[i];
-			OS_TPrintf("‹ZŒø‰Ê‚Ì‰e‹¿‚ÅƒuƒŠ[ƒ_[%d‚ÍŸ%d”Ô\n", i, sort[i]);
+			OS_TPrintf("æŠ€åŠ¹æœã®å½±éŸ¿ã§ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%dã¯æ¬¡%dç•ª\n", i, sort[i]);
 		}
 	}
 	wp->personal[kouka_breeder].next_sort = AWK_SORT_SPECIFY_FIRST;
 	wp->personal[kouka_breeder].next_pos = 0;
-	OS_TPrintf("‹ZŒø‰Ê‚É‚æ‚èƒuƒŠ[ƒ_[%d‚ÍŸ0”Ô\n", kouka_breeder);
+	OS_TPrintf("æŠ€åŠ¹æœã«ã‚ˆã‚Šãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%dã¯æ¬¡0ç•ª\n", kouka_breeder);
 	
 	if(first_breeder != BREEDER_MAX){
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
@@ -781,15 +781,15 @@ static int Kouka_NextFirst(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_bre
 
 //--------------------------------------------------------------
 /**
- * @brief   Ÿ‚Ìƒ^[ƒ“‚Å‚Ì‡”Ô‚ªÅŒã‚É‚È‚é
+ * @brief   æ¬¡ã®ã‚¿ãƒ¼ãƒ³ã§ã®é †ç•ªãŒæœ€å¾Œã«ãªã‚‹
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_NextEnd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -806,13 +806,13 @@ static int Kouka_NextEnd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breed
 		else{
 			if(wp->personal[i].next_sort == AWK_SORT_SPECIFY_END
 					&& wp->personal[i].next_pos == BREEDER_MAX - 1){
-				before_end_breeder = i;	//©•ª‚æ‚è‚àæ‚É‚±‚Ì‹Z‚ÅŸÅŒã‚ğ”­“®‚µ‚Ä‚¢‚½ƒuƒŠ[ƒ_[
+				before_end_breeder = i;	//è‡ªåˆ†ã‚ˆã‚Šã‚‚å…ˆã«ã“ã®æŠ€ã§æ¬¡æœ€å¾Œã‚’ç™ºå‹•ã—ã¦ã„ãŸãƒ–ãƒªãƒ¼ãƒ€ãƒ¼
 			}
 			sort[i] = wp->personal[i].next_pos;
 		}
 	}
 
-	sort[kouka_breeder] = 0xff;	//©•ª‚ÌŠ‚Í‹ó”’‚É‚µ‚Ä‚¨‚­
+	sort[kouka_breeder] = 0xff;	//è‡ªåˆ†ã®æ‰€ã¯ç©ºç™½ã«ã—ã¦ãŠã
 
 	for(i = BREEDER_MAX-1; i > -1; i--){
 		for(t = 0; t < BREEDER_MAX; t++){
@@ -831,12 +831,12 @@ static int Kouka_NextEnd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breed
 	for(i = 0; i < BREEDER_MAX; i++){
 		if(sort[i] != 0xff){
 			wp->personal[i].next_pos = sort[i];
-			OS_TPrintf("‹ZŒø‰Ê‚Ì‰e‹¿‚ÅƒuƒŠ[ƒ_[%d‚ÍŸ%d”Ô\n", i, sort[i]);
+			OS_TPrintf("æŠ€åŠ¹æœã®å½±éŸ¿ã§ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%dã¯æ¬¡%dç•ª\n", i, sort[i]);
 		}
 	}
 	wp->personal[kouka_breeder].next_sort = AWK_SORT_SPECIFY_END;
 	wp->personal[kouka_breeder].next_pos = BREEDER_MAX - 1;
-	OS_TPrintf("‹ZŒø‰Ê‚É‚æ‚èƒuƒŠ[ƒ_[%d‚ÍŸÅŒã\n", kouka_breeder);
+	OS_TPrintf("æŠ€åŠ¹æœã«ã‚ˆã‚Šãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%dã¯æ¬¡æœ€å¾Œ\n", kouka_breeder);
 
 	if(before_end_breeder == BREEDER_MAX){
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
@@ -852,15 +852,15 @@ static int Kouka_NextEnd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breed
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»‚Ìw–¼‚ª”í‚é–ˆ‚É{‚Q
+ * @brief   å¯©åˆ¤ã®æŒ‡åãŒè¢«ã‚‹æ¯ã«ï¼‹ï¼’
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_JudgeSufferAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -887,22 +887,22 @@ static int Kouka_JudgeSufferAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appea
 	AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 		msg_type, kouka_breeder, TAG_NULL, TAG_NULL, TAG_NULL);
 	
-	OS_TPrintf("R”»‚Ì”í‚èl”%d, ‰ÁZƒ|ƒCƒ“ƒg%d\n", wp->personal[kouka_breeder].judge_suffer,
+	OS_TPrintf("å¯©åˆ¤ã®è¢«ã‚Šäººæ•°ï¼%d, åŠ ç®—ãƒã‚¤ãƒ³ãƒˆï¼%d\n", wp->personal[kouka_breeder].judge_suffer,
 		wp->personal[kouka_breeder].judge_suffer * APPEAL_ICON_ONE_POINT);
 	return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ·‚èã‚ª‚Á‚½‚ç{2
+ * @brief   ç››ã‚Šä¸ŠãŒã£ãŸã‚‰ï¼‹2
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_VoltageUpAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -920,44 +920,44 @@ static int Kouka_VoltageUpAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 			KOUKA_MSGID_A, kouka_breeder, TAG_NULL, wp->personal[kouka_breeder].wazano, TAG_NULL);
 		
-		OS_TPrintf("·‚èã‚ª‚Á‚½‚Ì‚ÅŒø‰Ê”­¶\n");
+		OS_TPrintf("ç››ã‚Šä¸ŠãŒã£ãŸã®ã§åŠ¹æœç™ºç”Ÿ\n");
 		return TRUE;
 	}
 
-	OS_TPrintf("·‚èã‚ª‚ç‚È‚©‚Á‚½‚Ì‚Å¸”s\n");
+	OS_TPrintf("ç››ã‚Šä¸ŠãŒã‚‰ãªã‹ã£ãŸã®ã§å¤±æ•—\n");
 	return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   “ÁêŒø‰Ê‚È‚µ
+ * @brief   ç‰¹æ®ŠåŠ¹æœãªã—
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_Null(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
 {
-	OS_TPrintf("“ÁêŒø‰Ê‰½‚à‚È‚µ\n");
+	OS_TPrintf("ç‰¹æ®ŠåŠ¹æœä½•ã‚‚ãªã—\n");
 	return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»‚Ìw–¼‚ª”í‚ç‚È‚©‚Á‚½‚ç{3
+ * @brief   å¯©åˆ¤ã®æŒ‡åãŒè¢«ã‚‰ãªã‹ã£ãŸã‚‰ï¼‹3
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_NoneJudgeSufferAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -967,28 +967,28 @@ static int Kouka_NoneJudgeSufferAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int a
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 			KOUKA_MSGID_A, kouka_breeder, TAG_NULL, TAG_NULL, TAG_NULL);
 
-		OS_TPrintf("w–¼‚ª”í‚ç‚È‚©‚Á‚½‚Ì‚ÅŒø‰Ê”­¶\n");
+		OS_TPrintf("æŒ‡åãŒè¢«ã‚‰ãªã‹ã£ãŸã®ã§åŠ¹æœç™ºç”Ÿ\n");
 	}
 	else{
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 			KOUKA_MSGID_B, kouka_breeder, TAG_NULL, TAG_NULL, TAG_NULL);
 		
-		OS_TPrintf("w–¼‚ª”í‚Á‚Ä‚¢‚é‚Ì‚Å¸”s\n");
+		OS_TPrintf("æŒ‡åãŒè¢«ã£ã¦ã„ã‚‹ã®ã§å¤±æ•—\n");
 	}
 	return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   2‰ñ˜A‘±g—p‰Â”\
+ * @brief   2å›é€£ç¶šä½¿ç”¨å¯èƒ½
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_Continuation(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -997,25 +997,25 @@ static int Kouka_Continuation(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_
 		wp->save[kouka_breeder].waza_repeat = wp->personal[kouka_breeder].wazano;
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 			KOUKA_MSGID_A, kouka_breeder, TAG_NULL, TAG_NULL, TAG_NULL);
-		OS_TPrintf("Ÿƒ^[ƒ“‚à“¯‚¶‹Zg—pOK\n");
+		OS_TPrintf("æ¬¡ã‚¿ãƒ¼ãƒ³ã‚‚åŒã˜æŠ€ä½¿ç”¨OK\n");
 		return TRUE;
 	}
 	
-	OS_TPrintf("Šù‚É˜A‘±‚Å“¯‚¶‹Z‚ğo‚µ‚Ä‚¢‚é‚Ì‚Å˜A‘±‹ZŒø‰Ê¸”s\n");
+	OS_TPrintf("æ—¢ã«é€£ç¶šã§åŒã˜æŠ€ã‚’å‡ºã—ã¦ã„ã‚‹ã®ã§é€£ç¶šæŠ€åŠ¹æœå¤±æ•—\n");
 	return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒW•ª‚Ì™‚ª’Ç‰Á
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸åˆ†ã®â˜†ãŒè¿½åŠ 
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_VoltageAddAP(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1023,30 +1023,30 @@ static int Kouka_VoltageAddAP(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_
 	int judge_no, add_ap;
 	
 	judge_no = wp->personal[kouka_breeder].judge_no;
-	if(1){	//ƒ{ƒ‹ƒe[ƒW0‚Å‚àƒƒbƒZ[ƒWo‚·‚æ‚¤‚É‚µ‚½	wp->voltage_before[judge_no] > 0){
+	if(1){	//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸0ã§ã‚‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡ºã™ã‚ˆã†ã«ã—ãŸ	wp->voltage_before[judge_no] > 0){
 		add_ap = wp->voltage_before[judge_no];
 		wp->personal[kouka_breeder].my_effective_ap += add_ap;
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 			KOUKA_MSGID_A, TAG_NULL, TAG_NULL, TAG_NULL, add_ap / VOLTAGE_ONE_POINT);
-//		OS_TPrintf("ƒ{ƒ‹ƒe[ƒW1ˆÈã‚È‚Ì‚ÅŒø‰Ê”­¶\n");
+//		OS_TPrintf("ãƒœãƒ«ãƒ†ãƒ¼ã‚¸1ä»¥ä¸Šãªã®ã§åŠ¹æœç™ºç”Ÿ\n");
 		return TRUE;
 	}
 
-	OS_TPrintf("ƒ{ƒ‹ƒe[ƒW0‚È‚Ì‚Å¸”s\n");
+	OS_TPrintf("ãƒœãƒ«ãƒ†ãƒ¼ã‚¸0ãªã®ã§å¤±æ•—\n");
 	return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘Sˆõ‚ª”í‚Á‚½‚ç™‚ª{3
+ * @brief   å…¨å“¡ãŒè¢«ã£ãŸã‚‰â˜†ãŒï¼‹3
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_AllSufferAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1056,13 +1056,13 @@ static int Kouka_AllSufferAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 			KOUKA_MSGID_A, kouka_breeder, TAG_NULL, TAG_NULL, TAG_NULL);
 
-		OS_TPrintf("‘Sˆõ‚Ìw–¼‚ª”í‚Á‚½‚Ì‚ÅŒø‰Ê”­¶\n");
+		OS_TPrintf("å…¨å“¡ã®æŒ‡åãŒè¢«ã£ãŸã®ã§åŠ¹æœç™ºç”Ÿ\n");
 	}
 	else{
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 			KOUKA_MSGID_B, kouka_breeder, TAG_NULL, TAG_NULL, TAG_NULL);
 
-		OS_TPrintf("‘Sˆõ•ª‚Ìw–¼‚ª‘µ‚í‚È‚©‚Á‚½‚Ì‚Å¸”sB”í‚Á‚½l”(©•ªœ‚­)%d\n", 
+		OS_TPrintf("å…¨å“¡åˆ†ã®æŒ‡åãŒæƒã‚ãªã‹ã£ãŸã®ã§å¤±æ•—ã€‚è¢«ã£ãŸäººæ•°(è‡ªåˆ†é™¤ã)ï¼%d\n", 
 			wp->personal[kouka_breeder].judge_suffer);
 	}
 	return TRUE;
@@ -1070,15 +1070,15 @@ static int Kouka_AllSufferAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘Sˆõ‚Ìƒ{ƒ‹ƒe[ƒW‚ª1‚Â‚¸‚ÂŒ¸‚é
+ * @brief   å…¨å“¡ã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãŒ1ã¤ãšã¤æ¸›ã‚‹
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_AllVoltageSub(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1086,7 +1086,7 @@ static int Kouka_AllVoltageSub(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal
 	int judge_no;
 	
 	if(wp->personal[kouka_breeder].invalid_voltage_down == 1){
-		OS_TPrintf("ƒ{ƒ‹ƒe[ƒWŒ¸­–³Œø‚ÌŒø‰Ê”­“®’†‚Ìˆ×A¸”s\n");
+		OS_TPrintf("ãƒœãƒ«ãƒ†ãƒ¼ã‚¸æ¸›å°‘ç„¡åŠ¹ã®åŠ¹æœç™ºå‹•ä¸­ã®ç‚ºã€å¤±æ•—\n");
 		return FALSE;
 	}
 	for(judge_no = 0; judge_no < JUDGE_MAX; judge_no++){
@@ -1095,7 +1095,7 @@ static int Kouka_AllVoltageSub(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal
 		}
 	}
 	if(judge_no == JUDGE_MAX){
-		OS_TPrintf("R”»‘Sˆõ‚Ìƒ{ƒ‹ƒe[ƒW‚ª‚È‚¢‚½‚ßAŒø‰Ê¸”s\n");
+		OS_TPrintf("å¯©åˆ¤å…¨å“¡ã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãŒãªã„ãŸã‚ã€åŠ¹æœå¤±æ•—\n");
 		return FALSE;
 	}
 	
@@ -1109,41 +1109,41 @@ static int Kouka_AllVoltageSub(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal
 	AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 		KOUKA_MSGID_A, TAG_NULL, TAG_NULL, TAG_NULL, TAG_NULL);
 	
-	OS_TPrintf("R”»‘Sˆõ‚Ìƒ{ƒ‹ƒe[ƒW‚ğ‰º‚°‚éŒø‰Ê”­¶\n");
+	OS_TPrintf("å¯©åˆ¤å…¨å“¡ã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã‚’ä¸‹ã’ã‚‹åŠ¹æœç™ºç”Ÿ\n");
 	return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
-* @brief   Ÿ‚Ìƒ^[ƒ“‚Å™‚ª2”{
+* @brief   æ¬¡ã®ã‚¿ãƒ¼ãƒ³ã§â˜†ãŒ2å€
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_NextTurnTwice(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
 {
 	wp->personal[kouka_breeder].twice_next_apno = wp->personal[kouka_breeder].apno;
-	OS_TPrintf("Ÿ‚Ìƒ^[ƒ“2”{ƒtƒ‰ƒOƒZƒbƒgŠ®—¹\n");
+	OS_TPrintf("æ¬¡ã®ã‚¿ãƒ¼ãƒ³2å€ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆå®Œäº†\n");
 	return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒW‚Ì‘‰Á‚ª’â~
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã®å¢—åŠ ãŒåœæ­¢
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_VoltageUpStop(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1152,7 +1152,7 @@ static int Kouka_VoltageUpStop(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal
 	
 	for(i = pos; i < BREEDER_MAX; i++){
 		wp->personal[apw->a_game.breeder_sort[i]].invalid_voltage_up = 1;
-		OS_TPrintf("%d”ÔƒuƒŠ[ƒ_[‚Ìƒ{ƒ‹ƒe[ƒW‘‰Á‚È‚µ\n", apw->a_game.breeder_sort[i]);
+		OS_TPrintf("%dç•ªãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸å¢—åŠ ãªã—\n", apw->a_game.breeder_sort[i]);
 	}
 	AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 		KOUKA_MSGID_A, TAG_NULL, TAG_NULL, TAG_NULL, TAG_NULL);
@@ -1161,15 +1161,15 @@ static int Kouka_VoltageUpStop(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal
 
 //--------------------------------------------------------------
 /**
- * @brief   ©•ª‚Ì‘O‚É‰‰‹Z‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ìƒ{ƒ‹ƒe[ƒW‚ªƒ}ƒbƒNƒX‚É‚È‚Á‚½Aƒ{ƒ‹ƒe[ƒW•ª‚Ì‚İ‚à‚ç‚¦‚é
+ * @brief   è‡ªåˆ†ã®å‰ã«æ¼”æŠ€ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãŒãƒãƒƒã‚¯ã‚¹ã«ãªã£ãŸæ™‚ã€ãƒœãƒ«ãƒ†ãƒ¼ã‚¸åˆ†ã®ã¿ã‚‚ã‚‰ãˆã‚‹
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_FrontSame(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1177,36 +1177,36 @@ static int Kouka_FrontSame(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_bre
 	int front_breeder;
 	
 	if(pos == 0){
-		OS_TPrintf("æ“ª‚Ìˆ×A‹Z¸”s\n");
+		OS_TPrintf("å…ˆé ­ã®ç‚ºã€æŠ€å¤±æ•—\n");
 		return FALSE;
 	}
 
 	front_breeder = apw->a_game.breeder_sort[pos - 1];
 
 	if(wp->personal[front_breeder].voltage_add_ap == 0){
-		OS_TPrintf("‘O‚Ìl‚ªƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒg‚ğæ“¾‚µ‚Ä‚¢‚È‚¢‚Ì‚Å¸”s\n");
+		OS_TPrintf("å‰ã®äººãŒãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã‚’å–å¾—ã—ã¦ã„ãªã„ã®ã§å¤±æ•—\n");
 		return FALSE;
 	}
 	
 	wp->personal[kouka_breeder].my_effective_ap += wp->personal[front_breeder].voltage_add_ap;
 	AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 		KOUKA_MSGID_A, kouka_breeder, front_breeder, TAG_NULL, TAG_NULL);
-	OS_TPrintf("ƒuƒŠ[ƒ_[No%d‚ÌŒ‹‰Ê‚ğƒRƒs[‚µ‚Ü‚µ‚½B‰ÁZAP%d\n", 
+	OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%dã®çµæœã‚’ã‚³ãƒ”ãƒ¼ã—ã¾ã—ãŸã€‚åŠ ç®—APï¼%d\n", 
 		front_breeder, wp->personal[kouka_breeder].my_effective_ap);
 	return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Ÿ‚Ìƒ^[ƒ“‚Å‡”Ô‚ªƒ‰ƒ“ƒ_ƒ€
+ * @brief   æ¬¡ã®ã‚¿ãƒ¼ãƒ³ã§é †ç•ªãŒãƒ©ãƒ³ãƒ€ãƒ 
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_NextRandom(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1240,7 +1240,7 @@ static int Kouka_NextRandom(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_br
 	for(i = 0; i < BREEDER_MAX; i++){
 		wp->personal[i].next_sort = AWK_SORT_RANDOM;
 		wp->personal[i].next_pos = sort[i];
-		OS_TPrintf("ƒuƒŠ[ƒ_[%d‚ÍAŸ%d”Ô–Ú\n", i, sort[i]);
+		OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%dã¯ã€æ¬¡%dç•ªç›®\n", i, sort[i]);
 	}
 	
 	AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
@@ -1250,45 +1250,45 @@ static int Kouka_NextRandom(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_br
 
 //--------------------------------------------------------------
 /**
- * @brief   ÅŒã‚ÌƒAƒs[ƒ‹‚Å¯‚ª2”{
+ * @brief   æœ€å¾Œã®ã‚¢ãƒ”ãƒ¼ãƒ«ã§æ˜ŸãŒ2å€
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_EndTwice(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
 {
 	if(pos == BREEDER_MAX - 1){
-		//Šî–{ŒvZAP’l‚ğ‹ZŒø‰Ê‘•ª‚Æ‚µ‚Ä‘«‚µ‚±‚Ş
+		//åŸºæœ¬è¨ˆç®—APå€¤ã‚’æŠ€åŠ¹æœå¢—åˆ†ã¨ã—ã¦è¶³ã—ã“ã‚€
 		wp->personal[kouka_breeder].my_effective_ap += wp->personal[kouka_breeder].app_total;
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 			KOUKA_MSGID_A, TAG_NULL, TAG_NULL, TAG_NULL, 
 			wp->personal[kouka_breeder].app_total / APPEAL_ICON_ONE_POINT);
-		OS_TPrintf("2”{Œø‰Ê”­“®BŠî–{ŒvZAP’l%d\n", 
+		OS_TPrintf("2å€åŠ¹æœç™ºå‹•ã€‚åŸºæœ¬è¨ˆç®—APå€¤ï¼%d\n", 
 			wp->personal[kouka_breeder].app_total / APPEAL_ICON_ONE_POINT);
 		return TRUE;
 	}
 	
-	OS_TPrintf("‡”Ô‚ªÅŒã‚Å‚Í‚È‚¢ˆ×A¸”sBƒAƒs[ƒ‹‡”Ô%d\n", pos);
+	OS_TPrintf("é †ç•ªãŒæœ€å¾Œã§ã¯ãªã„ç‚ºã€å¤±æ•—ã€‚ã‚¢ãƒ”ãƒ¼ãƒ«é †ç•ªï¼%d\n", pos);
 	return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒW‚ª’á‚¢‚Ù‚Ç™‚ª‚à‚ç‚¦‚é
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãŒä½ã„ã»ã©â˜†ãŒã‚‚ã‚‰ãˆã‚‹
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_VoltageLevelAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1300,7 +1300,7 @@ static int Kouka_VoltageLevelAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appe
 		VOLTAGE_ONE_POINT * 2,
 		VOLTAGE_ONE_POINT * 1,
 		VOLTAGE_ONE_POINT * 0,
-		VOLTAGE_ONE_POINT * 0,	//ƒ{ƒ‹ƒe[ƒW‚T‚Ì(‚ ‚è‚¦‚È‚¢‚¯‚Çˆê‰ƒf[ƒ^‚Í–„‚ß‚Æ‚­)
+		VOLTAGE_ONE_POINT * 0,	//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ï¼•ã®æ™‚(ã‚ã‚Šãˆãªã„ã‘ã©ä¸€å¿œãƒ‡ãƒ¼ã‚¿ã¯åŸ‹ã‚ã¨ã)
 	};
 	
 	judge_no = wp->personal[kouka_breeder].judge_no;
@@ -1311,21 +1311,21 @@ static int Kouka_VoltageLevelAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appe
 		KOUKA_MSGID_A, TAG_NULL, TAG_NULL, TAG_NULL, 
 		VoltageAddData[voltage_level] / VOLTAGE_ONE_POINT);
 	
-	OS_TPrintf("Œ»İ‚Ìƒ{ƒ‹ƒe[ƒW=%d, ‰ÁZAP=%d\n", voltage_level, VoltageAddData[voltage_level]);
+	OS_TPrintf("ç¾åœ¨ã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸=%d, åŠ ç®—AP=%d\n", voltage_level, VoltageAddData[voltage_level]);
 	return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Å‰‚ÌƒAƒs[ƒ‹‚Å¯‚ª{‚Q
+ * @brief   æœ€åˆã®ã‚¢ãƒ”ãƒ¼ãƒ«ã§æ˜ŸãŒï¼‹ï¼’
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_FirstAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1334,25 +1334,25 @@ static int Kouka_FirstAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_bree
 		wp->personal[kouka_breeder].my_effective_ap += APPEAL_ICON_ONE_POINT * 2;
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 			KOUKA_MSGID_A, TAG_NULL, TAG_NULL, TAG_NULL, TAG_NULL);
-		OS_TPrintf("Å‰‚ÌƒAƒs[ƒ‹‚È‚Ì‚ÅŒø‰Ê”­“®BƒAƒs[ƒ‹‡”Ô%d\n", pos);
+		OS_TPrintf("æœ€åˆã®ã‚¢ãƒ”ãƒ¼ãƒ«ãªã®ã§åŠ¹æœç™ºå‹•ã€‚ã‚¢ãƒ”ãƒ¼ãƒ«é †ç•ªï¼%d\n", pos);
 		return TRUE;
 	}
 
-	OS_TPrintf("Å‰‚Å‚Í‚È‚¢‚Ì‚ÅA¸”sBƒAƒs[ƒ‹‡”Ô%d\n", pos);
+	OS_TPrintf("æœ€åˆã§ã¯ãªã„ã®ã§ã€å¤±æ•—ã€‚ã‚¢ãƒ”ãƒ¼ãƒ«é †ç•ªï¼%d\n", pos);
 	return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ÅŒã‚ÌƒAƒs[ƒ‹‚Å¯‚ª{‚Q
+ * @brief   æœ€å¾Œã®ã‚¢ãƒ”ãƒ¼ãƒ«ã§æ˜ŸãŒï¼‹ï¼’
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_EndAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1361,25 +1361,25 @@ static int Kouka_EndAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breede
 		wp->personal[kouka_breeder].my_effective_ap += APPEAL_ICON_ONE_POINT * 2;
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 			KOUKA_MSGID_A, TAG_NULL, TAG_NULL, TAG_NULL, TAG_NULL);
-		OS_TPrintf("ÅŒã‚ÌƒAƒs[ƒ‹‚È‚Ì‚ÅŒø‰Ê”­“®BƒAƒs[ƒ‹‡”Ô%d\n", pos);
+		OS_TPrintf("æœ€å¾Œã®ã‚¢ãƒ”ãƒ¼ãƒ«ãªã®ã§åŠ¹æœç™ºå‹•ã€‚ã‚¢ãƒ”ãƒ¼ãƒ«é †ç•ªï¼%d\n", pos);
 		return TRUE;
 	}
 
-	OS_TPrintf("ÅŒã‚Å‚Í‚È‚¢‚Ì‚ÅA¸”sBƒAƒs[ƒ‹‡”Ô%d\n", pos);
+	OS_TPrintf("æœ€å¾Œã§ã¯ãªã„ã®ã§ã€å¤±æ•—ã€‚ã‚¢ãƒ”ãƒ¼ãƒ«é †ç•ªï¼%d\n", pos);
 	return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒW‚Ì’á‰º‚ª’â~
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã®ä½ä¸‹ãŒåœæ­¢
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_VoltageSubStop(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1388,7 +1388,7 @@ static int Kouka_VoltageSubStop(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appea
 	
 	for(i = pos; i < BREEDER_MAX; i++){
 		wp->personal[apw->a_game.breeder_sort[i]].invalid_voltage_down = 1;
-		OS_TPrintf("%d”ÔƒuƒŠ[ƒ_[‚Ìƒ{ƒ‹ƒe[ƒWŒ¸­‚È‚µ\n", apw->a_game.breeder_sort[i]);
+		OS_TPrintf("%dç•ªãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸æ¸›å°‘ãªã—\n", apw->a_game.breeder_sort[i]);
 	}
 	AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 		KOUKA_MSGID_A, TAG_NULL, TAG_NULL, TAG_NULL, TAG_NULL);
@@ -1397,15 +1397,15 @@ static int Kouka_VoltageSubStop(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appea
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚Q•C‘±‚¯‚Äƒ{ƒ‹ƒe[ƒW‚ªã‚ª‚é‚Æš‚ªu+‚Rv
+ * @brief   ï¼’åŒ¹ç¶šã‘ã¦ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãŒä¸ŠãŒã‚‹ã¨â˜…ãŒã€Œ+ï¼“ã€
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_ContinuationVoltageAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1413,7 +1413,7 @@ static int Kouka_ContinuationVoltageAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, i
 	int front_breeder, my_up, front_up;
 	
 	if(pos == 0){
-		OS_TPrintf("æ“ª‚Ìˆ×A‹Z¸”s\n");
+		OS_TPrintf("å…ˆé ­ã®ç‚ºã€æŠ€å¤±æ•—\n");
 		return FALSE;
 	}
 	
@@ -1421,7 +1421,7 @@ static int Kouka_ContinuationVoltageAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, i
 	
 	if(wp->personal[kouka_breeder].invalid_voltage_up != 0
 			|| wp->personal[front_breeder].invalid_voltage_up != 0){
-		OS_TPrintf("ƒ{ƒ‹ƒe[ƒW‘‰Á–³Œø‚Ìˆ×¸”s\n");
+		OS_TPrintf("ãƒœãƒ«ãƒ†ãƒ¼ã‚¸å¢—åŠ ç„¡åŠ¹ã®ç‚ºå¤±æ•—\n");
 		return FALSE;
 	}
 	
@@ -1437,25 +1437,25 @@ static int Kouka_ContinuationVoltageAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, i
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 			KOUKA_MSGID_A, kouka_breeder, front_breeder, TAG_NULL, TAG_NULL);
 		
-		OS_TPrintf("˜A‘±ƒ{ƒ‹ƒe[ƒWUP‚È‚Ì‚ÅŒø‰Ê”­“®\n");
+		OS_TPrintf("é€£ç¶šãƒœãƒ«ãƒ†ãƒ¼ã‚¸UPãªã®ã§åŠ¹æœç™ºå‹•\n");
 		return TRUE;
 	}
 
-	OS_TPrintf("˜A‘±UP‚µ‚È‚©‚Á‚½‚Ì‚Å¸”s\n");
+	OS_TPrintf("é€£ç¶šUPã—ãªã‹ã£ãŸã®ã§å¤±æ•—\n");
 	return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰½”Ô–Ú‚É‰‰‹Z‚·‚é‚©‚Å•]‰¿‚ª•Ï‚í‚é
+ * @brief   ä½•ç•ªç›®ã«æ¼”æŠ€ã™ã‚‹ã‹ã§è©•ä¾¡ãŒå¤‰ã‚ã‚‹
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_SortAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1481,21 +1481,21 @@ static int Kouka_SortAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breed
 	AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 		msg_type, kouka_breeder, TAG_NULL, TAG_NULL, TAG_NULL);
 	
-	OS_TPrintf("‡”Ô%d, ‰ÁZƒ|ƒCƒ“ƒg%d\n", pos, Kouka_SortAddPoint[pos]);
+	OS_TPrintf("é †ç•ªï¼%d, åŠ ç®—ãƒã‚¤ãƒ³ãƒˆï¼%d\n", pos, Kouka_SortAddPoint[pos]);
 	return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒW‚ªƒ}ƒbƒNƒX‚É‚È‚Á‚½Œãg‚¤‚Æu+‚Rv
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãŒãƒãƒƒã‚¯ã‚¹ã«ãªã£ãŸå¾Œä½¿ã†ã¨ã€Œ+ï¼“ã€
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_VoltageMaxAfterAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1503,7 +1503,7 @@ static int Kouka_VoltageMaxAfterAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int a
 	int front_breeder;
 	
 	if(pos == 0){
-		OS_TPrintf("æ“ª‚Ìˆ×A‹Z¸”s\n");
+		OS_TPrintf("å…ˆé ­ã®ç‚ºã€æŠ€å¤±æ•—\n");
 		return FALSE;
 	}
 	
@@ -1514,24 +1514,24 @@ static int Kouka_VoltageMaxAfterAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int a
 		AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 			KOUKA_MSGID_A, kouka_breeder, TAG_NULL, TAG_NULL, TAG_NULL);
 		
-		OS_TPrintf("’¼‘O‚ªƒ{ƒ‹ƒe[ƒWMax‚¾‚Á‚½‚Ì‚ÅŒø‰Ê”­¶\n");
+		OS_TPrintf("ç›´å‰ãŒãƒœãƒ«ãƒ†ãƒ¼ã‚¸Maxã ã£ãŸã®ã§åŠ¹æœç™ºç”Ÿ\n");
 		return TRUE;
 	}
-	OS_TPrintf("’¼‘O‚Íƒ{ƒ‹ƒe[ƒWMax‚Å‚Í‚È‚©‚Á‚½‚Ì‚Å¸”s\n");
+	OS_TPrintf("ç›´å‰ã¯ãƒœãƒ«ãƒ†ãƒ¼ã‚¸Maxã§ã¯ãªã‹ã£ãŸã®ã§å¤±æ•—\n");
 	return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ©•ª‚ªˆê”Ô•]‰¿‚ª’á‚¢‚Æš‚ªu+‚Rv
+ * @brief   è‡ªåˆ†ãŒä¸€ç•ªè©•ä¾¡ãŒä½ã„ã¨â˜…ãŒã€Œ+ï¼“ã€
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wp				‹ZŒø‰Êƒpƒ‰ƒ[ƒ^‘ã“üæ‚Ìƒ|ƒCƒ“ƒ^
- * @param   appeal_breeder	ƒAƒs[ƒ‹’†‚ÌƒuƒŠ[ƒ_[”Ô†
- * @param   kouka_breeder	‚±‚Ì‹ZŒø‰Ê‚ğ”­“®‚µ‚Ä‚¢‚éƒuƒŠ[ƒ_[‚Ì”Ô†
- * @param   pos				‰½”Ô–Ú‚ÌƒAƒs[ƒ‹‚©(appeal_breeder‚ª)
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wp				æŠ€åŠ¹æœãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   appeal_breeder	ã‚¢ãƒ”ãƒ¼ãƒ«ä¸­ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   kouka_breeder	ã“ã®æŠ€åŠ¹æœã‚’ç™ºå‹•ã—ã¦ã„ã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ç•ªå·
+ * @param   pos				ä½•ç•ªç›®ã®ã‚¢ãƒ”ãƒ¼ãƒ«ã‹(appeal_breederãŒ)
  *
- * @retval  TRUE:Œø‰Ê”­¶B@FALSE:Œø‰Ê•s”­
+ * @retval  TRUE:åŠ¹æœç™ºç”Ÿã€‚ã€€FALSE:åŠ¹æœä¸ç™º
  */
 //--------------------------------------------------------------
 static int Kouka_LowPointAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_breeder, int kouka_breeder, int pos)
@@ -1549,7 +1549,7 @@ static int Kouka_LowPointAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_b
 		}
 	}
 	if(i != BREEDER_MAX){
-		OS_TPrintf("ƒuƒŠ[ƒ_[No%d‚Ì•û‚ª“_”‚ª’á‚¢‚Ì‚Å¸”s\n", i);
+		OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼No%dã®æ–¹ãŒç‚¹æ•°ãŒä½ã„ã®ã§å¤±æ•—\n", i);
 		return FALSE;
 	}
 	
@@ -1557,7 +1557,7 @@ static int Kouka_LowPointAdd(ACTIN_PROC_WORK *apw, AWAZA_PARAM *wp, int appeal_b
 	AWAZA_MsgParamSet(&wp->personal[kouka_breeder], wp->personal[kouka_breeder].apno, 
 		KOUKA_MSGID_A, kouka_breeder, TAG_NULL, TAG_NULL, TAG_NULL);
 	
-	OS_TPrintf("ˆê”Ôƒ|ƒCƒ“ƒg‚ª’á‚¢‚Ì‚ÅŒø‰Ê”­¶\n");
+	OS_TPrintf("ä¸€ç•ªãƒã‚¤ãƒ³ãƒˆãŒä½ã„ã®ã§åŠ¹æœç™ºç”Ÿ\n");
 	return TRUE;
 }
 

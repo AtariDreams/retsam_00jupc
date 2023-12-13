@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	scratch_bmp.c
- * @brief	uƒXƒNƒ‰ƒbƒ`vBMP
+ * @brief	ã€Œã‚¹ã‚¯ãƒ©ãƒƒãƒã€BMP
  * @author	Satoshi Nohara
  * @date	07.12.11
  */
@@ -19,174 +19,174 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//u‰º‰æ–Ê‰ï˜bv
+//ã€Œä¸‹ç”»é¢ä¼šè©±ã€
 #define WIN_TALK_PX			(2)
 #define WIN_TALK_PY			(1)
 #define WIN_TALK_SX			(27)
 #define WIN_TALK_SY			(4)
 #define WIN_TALK_CGX		(1)
 
-//u‚Í‚¢E‚¢‚¢‚¦v
+//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 #define WIN_YESNO_PX		(24)
 #define WIN_YESNO_PY		(13)
 #define WIN_YESNO_SX		(7)
 #define WIN_YESNO_SY		(4)
 #define WIN_YESNO_CGX		(WIN_TALK_CGX + WIN_TALK_SX * WIN_TALK_SY)
 
-//uƒAƒCƒeƒ€–¼1v
+//ã€Œã‚¢ã‚¤ãƒ†ãƒ å1ã€
 #define WIN_ITEM1_PX		(17) // MatchComment: 19 -> 17
 #define WIN_ITEM1_PY		(3)
 #define WIN_ITEM1_SX		(11)
 #define WIN_ITEM1_SY		(5)
 #define WIN_ITEM1_CGX		(WIN_YESNO_CGX + WIN_YESNO_SX * WIN_YESNO_SY)
 
-//uƒAƒCƒeƒ€–¼2v
+//ã€Œã‚¢ã‚¤ãƒ†ãƒ å2ã€
 #define WIN_ITEM2_PX		(17) // MatchComment: 19 -> 17
 #define WIN_ITEM2_PY		(8)
 #define WIN_ITEM2_SX		(11)
 #define WIN_ITEM2_SY		(5)
 #define WIN_ITEM2_CGX		(WIN_ITEM1_CGX + WIN_ITEM1_SX * WIN_ITEM1_SY)
 
-//uƒAƒCƒeƒ€–¼3v
+//ã€Œã‚¢ã‚¤ãƒ†ãƒ å3ã€
 #define WIN_ITEM3_PX		(17) // MatchComment: 19 -> 17
 #define WIN_ITEM3_PY		(14)
 #define WIN_ITEM3_SX		(11)
 #define WIN_ITEM3_SY		(5)
 #define WIN_ITEM3_CGX		(WIN_ITEM2_CGX + WIN_ITEM2_SX * WIN_ITEM2_SY)
 
-//uƒAƒCƒeƒ€–¼4v
+//ã€Œã‚¢ã‚¤ãƒ†ãƒ å4ã€
 #define WIN_ITEM4_PX		(17) // MatchComment: 19 -> 17
 #define WIN_ITEM4_PY		(19)
 #define WIN_ITEM4_SX		(11)
 #define WIN_ITEM4_SY		(5)
 #define WIN_ITEM4_CGX		(WIN_ITEM3_CGX + WIN_ITEM3_SX * WIN_ITEM3_SY)
 
-//uƒ|ƒPƒ‚ƒ“‚»‚ë‚¦‚é”1v
+//ã€Œãƒã‚±ãƒ¢ãƒ³ãã‚ãˆã‚‹æ•°1ã€
 #define WIN_NUM1_PX			(10)
 #define WIN_NUM1_PY			(3)
 #define WIN_NUM1_SX			(5)
 #define WIN_NUM1_SY			(3)
 #define WIN_NUM1_CGX		(WIN_ITEM4_CGX + WIN_ITEM4_SX * WIN_ITEM4_SY)
 
-//uƒ|ƒPƒ‚ƒ“‚»‚ë‚¦‚é”2v
+//ã€Œãƒã‚±ãƒ¢ãƒ³ãã‚ãˆã‚‹æ•°2ã€
 #define WIN_NUM2_PX			(10)
 #define WIN_NUM2_PY			(8)
 #define WIN_NUM2_SX			(5)
 #define WIN_NUM2_SY			(3)
 #define WIN_NUM2_CGX		(WIN_NUM1_CGX + WIN_NUM1_SX * WIN_NUM1_SY)
 
-//uƒ|ƒPƒ‚ƒ“‚»‚ë‚¦‚é”3v
+//ã€Œãƒã‚±ãƒ¢ãƒ³ãã‚ãˆã‚‹æ•°3ã€
 #define WIN_NUM3_PX			(10)
 #define WIN_NUM3_PY			(14)
 #define WIN_NUM3_SX			(5)
 #define WIN_NUM3_SY			(3)
 #define WIN_NUM3_CGX		(WIN_NUM2_CGX + WIN_NUM2_SX * WIN_NUM2_SY)
 
-//uƒ|ƒPƒ‚ƒ“‚»‚ë‚¦‚é”4v
+//ã€Œãƒã‚±ãƒ¢ãƒ³ãã‚ãˆã‚‹æ•°4ã€
 #define WIN_NUM4_PX			(10)
 #define WIN_NUM4_PY			(19)
 #define WIN_NUM4_SX			(5)
 #define WIN_NUM4_SY			(3)
 #define WIN_NUM4_CGX		(WIN_NUM3_CGX + WIN_NUM3_SX * WIN_NUM3_SY)
 
-//uƒXƒNƒ‰ƒbƒ`ƒXƒ^[ƒgv
+//ã€Œã‚¹ã‚¯ãƒ©ãƒƒãƒã‚¹ã‚¿ãƒ¼ãƒˆã€
 #define WIN_START_PX		(10)
 #define WIN_START_PY		(9)
 #define WIN_START_SX		(12)
 #define WIN_START_SY		(4)
-#define WIN_START_CGX		(WIN_NUM4_CGX + WIN_NUM4_SX * WIN_NUM4_SY)		//’ˆÓ
+#define WIN_START_CGX		(WIN_NUM4_CGX + WIN_NUM4_SX * WIN_NUM4_SY)		//æ³¨æ„
 
-//u‚R‚Â‚»‚ë‚Á‚½Iv
+//ã€Œï¼“ã¤ãã‚ã£ãŸï¼ã€
 #define WIN_ATARI_PX		(10)
 #define WIN_ATARI_PY		(9)
 #define WIN_ATARI_SX		(12)
 #define WIN_ATARI_SY		(4)
-#define WIN_ATARI_CGX		(WIN_NUM4_CGX + WIN_NUM4_SX * WIN_NUM4_SY)		//’ˆÓ
+#define WIN_ATARI_CGX		(WIN_NUM4_CGX + WIN_NUM4_SX * WIN_NUM4_SY)		//æ³¨æ„
 
-//u‚´‚ñ‚Ë‚ñIv
+//ã€Œã–ã‚“ã­ã‚“ï¼ã€
 #define WIN_HAZURE_PX		(10)
 #define WIN_HAZURE_PY		(9)
 #define WIN_HAZURE_SX		(12)
 #define WIN_HAZURE_SY		(4)
-#define WIN_HAZURE_CGX		(WIN_NUM4_CGX + WIN_NUM4_SX * WIN_NUM4_SY)		//’ˆÓ
+#define WIN_HAZURE_CGX		(WIN_NUM4_CGX + WIN_NUM4_SX * WIN_NUM4_SY)		//æ³¨æ„
 
-//u‚Â‚¬‚ÌƒJ[ƒh‚Öv
+//ã€Œã¤ãŽã®ã‚«ãƒ¼ãƒ‰ã¸ã€
 #define WIN_NEXT_PX			(10)
 #define WIN_NEXT_PY			(21)
 #define WIN_NEXT_SX			(13)
 #define WIN_NEXT_SY			(3)
 #define WIN_NEXT_CGX		(WIN_START_CGX + WIN_START_SX * WIN_START_SY)
 
-//u‚â‚ß‚év
+//ã€Œã‚„ã‚ã‚‹ã€
 #define WIN_YAMERU_PX		(13)
 #define WIN_YAMERU_PY		(21)
 #define WIN_YAMERU_SX		(13)
 #define WIN_YAMERU_SY		(3)
-#define WIN_YAMERU_CGX		(WIN_START_CGX + WIN_START_SX * WIN_START_SY)	//’ˆÓ
+#define WIN_YAMERU_CGX		(WIN_START_CGX + WIN_START_SX * WIN_START_SY)	//æ³¨æ„
 
-//uã‰æ–Ê‰ï˜bv
+//ã€Œä¸Šç”»é¢ä¼šè©±ã€
 #define WIN_SELECT_PX		(2)
 #define WIN_SELECT_PY		(19)
 #define WIN_SELECT_SX		(27)
 #define WIN_SELECT_SY		(4)
-//#define WIN_SELECT_CGX		(WIN_START_CGX + WIN_START_SX * WIN_START_SY)	//’ˆÓ
-#define WIN_SELECT_CGX		(1)	//’ˆÓ
+//#define WIN_SELECT_CGX		(WIN_START_CGX + WIN_START_SX * WIN_START_SY)	//æ³¨æ„
+#define WIN_SELECT_CGX		(1)	//æ³¨æ„
 
-//ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define BS_MENU_CGX_NUM		(1024-MENU_WIN_CGX_SIZ)
 
-//‰ï˜bƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define	BS_TALKWIN_CGX_SIZE	(TALK_WIN_CGX_SIZ)
 #define	BS_TALKWIN_CGX_NUM	(BS_MENU_CGX_NUM - BS_TALKWIN_CGX_SIZE)
 
 
 //==============================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
 static const BMPWIN_DAT ScratchBmpData[] =
 {
-	{	// 0:u‰ï˜bv
+	{	// 0:ã€Œä¼šè©±ã€
 		SCRATCH_FRAME_D_MSG, WIN_TALK_PX, WIN_TALK_PY,
 		WIN_TALK_SX, WIN_TALK_SY, BS_MSGFONT_PAL, WIN_TALK_CGX
 	},
-	{	// 1:u‚Í‚¢E‚¢‚¢‚¦v
+	{	// 1:ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 		SCRATCH_FRAME_U_MSG, WIN_YESNO_PX, WIN_YESNO_PY,
 		WIN_YESNO_SX, WIN_YESNO_SY, BS_FONT_PAL, WIN_YESNO_CGX
 	},
-	{	// 2:uƒAƒCƒeƒ€–¼1v
+	{	// 2:ã€Œã‚¢ã‚¤ãƒ†ãƒ å1ã€
 		SCRATCH_FRAME_U_MSG, WIN_ITEM1_PX, WIN_ITEM1_PY,
 		WIN_ITEM1_SX, WIN_ITEM1_SY, BS_FONT_PAL, WIN_ITEM1_CGX
 	},	
-	{	// 3:uƒAƒCƒeƒ€–¼2v
+	{	// 3:ã€Œã‚¢ã‚¤ãƒ†ãƒ å2ã€
 		SCRATCH_FRAME_U_MSG, WIN_ITEM2_PX, WIN_ITEM2_PY,
 		WIN_ITEM2_SX, WIN_ITEM2_SY, BS_FONT_PAL, WIN_ITEM2_CGX
 	},	
-	{	// 4:uƒAƒCƒeƒ€–¼3v
+	{	// 4:ã€Œã‚¢ã‚¤ãƒ†ãƒ å3ã€
 		SCRATCH_FRAME_U_MSG, WIN_ITEM3_PX, WIN_ITEM3_PY,
 		WIN_ITEM3_SX, WIN_ITEM3_SY, BS_FONT_PAL, WIN_ITEM3_CGX
 	},	
-	{	// 5:uƒAƒCƒeƒ€–¼4v
+	{	// 5:ã€Œã‚¢ã‚¤ãƒ†ãƒ å4ã€
 		SCRATCH_FRAME_U_MSG, WIN_ITEM4_PX, WIN_ITEM4_PY,
 		WIN_ITEM4_SX, WIN_ITEM4_SY, BS_FONT_PAL, WIN_ITEM4_CGX
 	},	
-	{	// 6:uƒAƒCƒeƒ€”1v
+	{	// 6:ã€Œã‚¢ã‚¤ãƒ†ãƒ æ•°1ã€
 		SCRATCH_FRAME_U_MSG, WIN_NUM1_PX, WIN_NUM1_PY,
 		WIN_NUM1_SX, WIN_NUM1_SY, BS_FONT_PAL, WIN_NUM1_CGX
 	},	
-	{	// 7:uƒAƒCƒeƒ€”2v
+	{	// 7:ã€Œã‚¢ã‚¤ãƒ†ãƒ æ•°2ã€
 		SCRATCH_FRAME_U_MSG, WIN_NUM2_PX, WIN_NUM2_PY,
 		WIN_NUM2_SX, WIN_NUM2_SY, BS_FONT_PAL, WIN_NUM2_CGX
 	},	
-	{	// 8:uƒAƒCƒeƒ€”3v
+	{	// 8:ã€Œã‚¢ã‚¤ãƒ†ãƒ æ•°3ã€
 		SCRATCH_FRAME_U_MSG, WIN_NUM3_PX, WIN_NUM3_PY,
 		WIN_NUM3_SX, WIN_NUM3_SY, BS_FONT_PAL, WIN_NUM3_CGX
 	},	
-	{	// 9:uƒAƒCƒeƒ€”4v
+	{	// 9:ã€Œã‚¢ã‚¤ãƒ†ãƒ æ•°4ã€
 		SCRATCH_FRAME_U_MSG, WIN_NUM4_PX, WIN_NUM4_PY,
 		WIN_NUM4_SX, WIN_NUM4_SY, BS_FONT_PAL, WIN_NUM4_CGX
 	},	
@@ -195,27 +195,27 @@ static const BMPWIN_DAT ScratchBmpData[] =
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	{	//10:uƒXƒNƒ‰ƒbƒ`ƒXƒ^[ƒgv
+	{	//10:ã€Œã‚¹ã‚¯ãƒ©ãƒƒãƒã‚¹ã‚¿ãƒ¼ãƒˆã€
 		SCRATCH_FRAME_D_MSG, WIN_START_PX, WIN_START_PY,
 		WIN_START_SX, WIN_START_SY, BS_FONT_PAL, WIN_START_CGX
 	},	
-	{	//11:u‚R‚Â‚»‚ë‚Á‚½Iv
+	{	//11:ã€Œï¼“ã¤ãã‚ã£ãŸï¼ã€
 		SCRATCH_FRAME_D_MSG, WIN_ATARI_PX, WIN_ATARI_PY,
 		WIN_ATARI_SX, WIN_ATARI_SY, BS_FONT_PAL, WIN_ATARI_CGX
 	},	
-	{	//12:u‚´‚ñ‚Ë‚ñv
+	{	//12:ã€Œã–ã‚“ã­ã‚“ã€
 		SCRATCH_FRAME_D_MSG, WIN_HAZURE_PX, WIN_HAZURE_PY,
 		WIN_HAZURE_SX, WIN_HAZURE_SY, BS_FONT_PAL, WIN_HAZURE_CGX
 	},	
-	{	//13:u‚Â‚¬‚ÌƒJ[ƒh‚Öv
+	{	//13:ã€Œã¤ãŽã®ã‚«ãƒ¼ãƒ‰ã¸ã€
 		SCRATCH_FRAME_D_MSG, WIN_NEXT_PX, WIN_NEXT_PY,
 		WIN_NEXT_SX, WIN_NEXT_SY, BS_FONT_PAL, WIN_NEXT_CGX
 	},	
-	{	//14:u‚â‚ß‚év
+	{	//14:ã€Œã‚„ã‚ã‚‹ã€
 		SCRATCH_FRAME_D_MSG, WIN_YAMERU_PX, WIN_YAMERU_PY,
 		WIN_YAMERU_SX, WIN_YAMERU_SY, BS_FONT_PAL, WIN_YAMERU_CGX
 	},	
-	{	//15:u›‚Ü‚¢‚ß‚Ì@ƒJ[ƒh‚ð@‚¦‚ç‚ñ‚Å‚­‚¾‚³‚¢v
+	{	//15:ã€Œâ—‹ã¾ã„ã‚ã®ã€€ã‚«ãƒ¼ãƒ‰ã‚’ã€€ãˆã‚‰ã‚“ã§ãã ã•ã„ã€
 		SCRATCH_FRAME_U_MSG, WIN_SELECT_PX, WIN_SELECT_PY,
 		//WIN_SELECT_SX, WIN_SELECT_SY, BS_FONT_PAL, WIN_SELECT_CGX
 		WIN_SELECT_SX, WIN_SELECT_SY, BS_MSGFONT_PAL, WIN_SELECT_CGX
@@ -225,7 +225,7 @@ static const BMPWIN_DAT ScratchBmpData[] =
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 void ScratchAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win );
@@ -234,31 +234,31 @@ void ScratchOffBmpWin( GF_BGL_BMPWIN* win );
 void ScratchWriteMenuWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win );
 void ScratchTalkWinPut( GF_BGL_BMPWIN * win, WINTYPE wintype );
 
-//‚Í‚¢A‚¢‚¢‚¦ƒEƒBƒ“ƒhƒE’è‹`
-#define YESNO_PX		(23)			//ŠJŽn‚w
-#define YESNO_PY		(19)			//ŠJŽn‚x
-#define YESNO_SX		(8)				//•‚w
-#define YESNO_SY		(4)				//•‚x
+//ã¯ã„ã€ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å®šç¾©
+#define YESNO_PX		(23)			//é–‹å§‹ï¼¸
+#define YESNO_PY		(19)			//é–‹å§‹ï¼¹
+#define YESNO_SX		(8)				//å¹…ï¼¸
+#define YESNO_SY		(4)				//å¹…ï¼¹
 
-//‰ï˜bƒEƒBƒ“ƒhƒE’è‹`
-#define TALK_PX			(2)				//ŠJŽn‚w
-#define TALK_PY			(19)			//ŠJŽn‚x
-#define TALK_SX			(17)			//•‚w
-#define TALK_SY			(4)				//•‚x
+//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å®šç¾©
+#define TALK_PX			(2)				//é–‹å§‹ï¼¸
+#define TALK_PY			(19)			//é–‹å§‹ï¼¹
+#define TALK_SX			(17)			//å¹…ï¼¸
+#define TALK_SY			(4)				//å¹…ï¼¹
 
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—è¿½åŠ 
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -268,10 +268,10 @@ void ScratchAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 	u8 i;
 	const BMPWIN_DAT* dat = ScratchBmpData;
 
-	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—è¿½åŠ 
 	for( i=0; i < SCRATCH_BMPWIN_MAX; i++ ){
 		GF_BGL_BmpWinAddEx( bgl, &win[i], &dat[i] );
-		GF_BGL_BmpWinDataFill( &win[i], FBMP_COL_NULL );		//“h‚è‚Â‚Ô‚µ
+		GF_BGL_BmpWinDataFill( &win[i], FBMP_COL_NULL );		//å¡—ã‚Šã¤ã¶ã—
 	}
 
 	return;
@@ -279,9 +279,9 @@ void ScratchAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü	
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„	
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -299,9 +299,9 @@ void ScratchExitBmpWin( GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒIƒt
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ•
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -319,29 +319,29 @@ void ScratchOffBmpWin( GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ƒEƒBƒ“ƒhƒE•\Ž¦
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
 //--------------------------------------------------------------
 void ScratchWriteMenuWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 {
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ðƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet( bgl, SCRATCH_FRAME_D_MSG, BS_MENU_CGX_NUM, BS_MENU_PAL, 0, HEAPID_SCRATCH );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ð•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_OFF, BS_MENU_CGX_NUM, BS_MENU_PAL );
 	return;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‰ï˜bƒEƒBƒ“ƒhƒE•\Ž¦
+ * @brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	win		BMPƒf[ƒ^
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */

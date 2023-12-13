@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndCaptureGetCaptureType</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,64 +11,64 @@
 <div></div>
 </div>
 <h1>NNS_SndCaptureGetCaptureType</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">NNSSndCaptureType NNS_SndCaptureGetCaptureType( <code>void )</code>;</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAULWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDA1LWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>���s���̃L���v�`���[�̎�ނ�Ԃ��܂��B
-�L���v�`���[�̎�ނ́A���L�̒l�̂����ꂩ�����܂��B
+      <p>実行中のキャプチャーの種類を返します。
+キャプチャーの種類は、下記の値のいずれかを取ります。
 </p>
-      <div class="table"><a name="IDABMWT"></a><p class="title"><b>�\ . NNSSndCaptureType</b></p>
+      <div class="table"><a name="IDABMWT"></a><p class="title"><b>表 . NNSSndCaptureType</b></p>
 <table summary="NNSSndCaptureType" border="1">
 <colgroup><col><col></colgroup>
 <thead>
 <tr>
-<th>���x��</th>
-<th>����</th>
+<th>ラベル</th>
+<th>説明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>NNS_SND_CAPTURE_TYPE_REVERB</td>
-<td>���o�[�u</td>
+<td>リバーブ</td>
 </tr>
 <tr>
 <td>NNS_SND_CAPTURE_TYPE_EFFECT</td>
-<td>�G�t�F�N�g</td>
+<td>エフェクト</td>
 </tr>
 <tr>
 <td>NNS_SND_CAPTURE_TYPE_SAMPLING</td>
-<td>�T���v�����O</td>
+<td>サンプリング</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDANNWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-���s���̃L���v�`���[�̎�ނ��擾���܂��B
+実行中のキャプチャーの種類を取得します。
 </p>
       <p>
-���̊֐��́A�L���v�`���[�����s���̎��̂݌Ăт������Ƃ��ł��܂��B
-�L���v�`���[�����s�����ǂ����𒲂ׂ邽�߂ɂ́A
-<tt class="function"><a href="NNS_SndCaptureIsActive.html">NNS_SndCaptureIsActive</a></tt>�֐���
-�Ăт����܂��B
+この関数は、キャプチャーが実行中の時のみ呼びだすことができます。
+キャプチャーが実行中かどうかを調べるためには、
+<tt class="function"><a href="NNS_SndCaptureIsActive.html">NNS_SndCaptureIsActive</a></tt>関数を
+呼びだします。
 </p>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndCaptureIsActive.html">NNS_SndCaptureIsActive</a></p>
-<h2>����</h2>
-<p>2005/08/18 ����<br></p>
+<h2>履歴</h2>
+<p>2005/08/18 初版<br></p>
 </div>
 </body>
 </html>

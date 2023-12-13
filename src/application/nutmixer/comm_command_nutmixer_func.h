@@ -2,13 +2,13 @@
 /**
  *
  *	@file		comm_command_nutmixer_func.h
- *	@brief		’ÊMƒR[ƒ‹ƒoƒbƒNŠÖ”
+ *	@brief		é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *	@author		tomoya takahashi
  *	@data		2006.05.23
  *
- * ’ÊMƒR[ƒ‹ƒoƒbƒNŠÖ”ƒe[ƒuƒ‹‚ÍA’ÊMƒI[ƒo[ƒŒƒC‚É”z’u‚µ‚Ü‚·‚ªA
- * ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ÍAƒ~ƒLƒT[‚ÌƒI[ƒoƒŒƒC—Ìˆæ‚É”z’u‚·‚ê‚Î‚æ‚¢‚Ì‚ÅA
- * ‚±‚¤‚µ‚Ü‚·B
+ * é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã¯ã€é€šä¿¡ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã«é…ç½®ã—ã¾ã™ãŒã€
+ * ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã¯ã€ãƒŸã‚­ã‚µãƒ¼ã®ã‚ªãƒ¼ãƒãƒ¬ã‚¤é ˜åŸŸã«é…ç½®ã™ã‚Œã°ã‚ˆã„ã®ã§ã€
+ * ã“ã†ã—ã¾ã™ã€‚
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 #ifndef __COMM_COMMAND_NUTMIXER_FUNC_H__
@@ -27,43 +27,43 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
-// ’ÊM‰Šú‰»ŠÖ”
+// é€šä¿¡åˆæœŸåŒ–é–¢æ•°
 extern void CommCommandNutMixerInitialize( NMIX_GAMEWORK* pWork, MYSTATUS* p_mystate );
 extern void CommCommandNutMixerDest( NMIX_GAMEWORK* pWork );
 
 	
-// ‹¤’ÊƒTƒCƒYæ“¾ŠÖ”
+// å…±é€šã‚µã‚¤ã‚ºå–å¾—é–¢æ•°
 extern int CommNutMixerGetZeroSize( void );
 extern int CommNutMixerGetOneSize( void );
 
 //-----------------------------------------------------------------------------
 /**
  *
- *		ƒQ[ƒ€—pƒRƒ}ƒ“ƒhƒR[ƒ‹ƒoƒbƒNŠÖ”
+ *		ã‚²ãƒ¼ãƒ ç”¨ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
  */
 //-----------------------------------------------------------------------------
-// “¯Šú—p
+// åŒæœŸç”¨
 extern void CommNutMixerGameSysStart( int netID, int size, void* pBuff, void* pWork );
 extern void CommNutMixerGameEnd( int netID, int size, void* pBuff, void* pWork );
 
-// ƒf[ƒ^óM—p
+// ãƒ‡ãƒ¼ã‚¿å—ä¿¡ç”¨
 extern void CommNutMixerGameBeforeDataKo( int netID, int size, void* pBuff, void* pWork );
 extern void CommNutMixerGameBeforeData( int netID, int size, void* pBuff, void* pWork );
 extern void CommNutMixerGameData( int netID, int size, void* pBuff, void* pWork );
@@ -74,7 +74,7 @@ extern void CommNutMixerGameNextData( int netID, int size, void* pBuff, void* pW
 extern void CommNutMixerOyaGameData( int netID, int size, void* pBuff, void* pWork );
 extern void CommNutMixerKoGameData( int netID, int size, void* pBuff, void* pWork );
 
-// ƒTƒCƒYæ“¾ŠÖ”
+// ã‚µã‚¤ã‚ºå–å¾—é–¢æ•°
 extern int CommNutMixerGetGameBeforeKoSize( void );
 extern int CommNutMixerGetGameBeforeSize( void );
 extern int CommNutMixerGetGameSize( void );
@@ -87,7 +87,7 @@ extern int CommNutMixerGetKoGameSize( void );
 //-----------------------------------------------------------------------------
 /**
  *
- *		’ÊMƒVƒXƒeƒ€ŠÖ”
+ *		é€šä¿¡ã‚·ã‚¹ãƒ†ãƒ é–¢æ•°
  *
  */
 //-----------------------------------------------------------------------------

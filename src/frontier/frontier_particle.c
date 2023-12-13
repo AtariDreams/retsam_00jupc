@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_particle.c
- * @brief	�t�����e�B�A 2D�}�b�v�p�p�[�e�B�N��
+ * @brief	フロンティア 2Dマップ用パーティクル
  * @author	matsuda
- * @date	2007.06.06(��)
+ * @date	2007.06.06(水)
  */
 //==============================================================================
 #include "common.h"
@@ -15,18 +15,18 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///�퓬�p�[�e�B�N���̃J�����j�A�ݒ�
+///戦闘パーティクルのカメラニア設定
 #define BP_NEAR			(FX32_ONE)
-///�퓬�p�[�e�B�N���̃J�����t�@�[�ݒ�
+///戦闘パーティクルのカメラファー設定
 #define BP_FAR			(FX32_ONE * 900)
 
 
 //==============================================================================
-//	�\���̒�`
+//	構造体定義
 //==============================================================================
-///�t�����e�B�A�p�[�e�B�N���V�X�e���\����
+///フロンティアパーティクルシステム構造体
 typedef struct _FRP_WORK{
 	PTC_PTR ptc[SPAWORK_MAX];
 	u16 heap_id;
@@ -34,7 +34,7 @@ typedef struct _FRP_WORK{
 
 
 //==============================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //==============================================================================
 static u32 sAllocTex(u32 size, BOOL is4x4comp);
 static u32 sAllocTexPalette(u32 size, BOOL is4pltt);
@@ -44,8 +44,8 @@ static void Local_ParticleExit(PTC_PTR ptc);
 
 //--------------------------------------------------------------
 /**
- * @brief   �p�[�e�B�N���V�X�e��������
- * @param   heap_id		�q�[�vID
+ * @brief   パーティクルシステム初期化
+ * @param   heap_id		ヒープID
  */
 //--------------------------------------------------------------
 FRP_PTR FRParticle_Init(int heap_id)
@@ -57,7 +57,7 @@ FRP_PTR FRParticle_Init(int heap_id)
 	
 	frp->heap_id = heap_id;
 	
-	//�p�[�e�B�N���V�X�e��������
+	//パーティクルシステム初期化
 	Particle_SystemWorkInit();
 	
 	return frp;
@@ -65,8 +65,8 @@ FRP_PTR FRParticle_Init(int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   �p�[�e�B�N���V�X�e���I��
- * @param   frp		�t�����e�B�A�p�[�e�B�N���V�X�e�����[�N�ւ̃|�C���^
+ * @brief   パーティクルシステム終了
+ * @param   frp		フロンティアパーティクルシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 void FRParticle_Exit(FRP_PTR frp)
@@ -86,13 +86,13 @@ void FRParticle_Exit(FRP_PTR frp)
 
 //--------------------------------------------------------------
 /**
- * @brief   �p�[�e�B�N���V�X�e�����쐬���A���\�[�X�̓ǂݍ��݁��o�^
+ * @brief   パーティクルシステムを作成し、リソースの読み込み＆登録
  *
- * @param   frp			�t�����e�B�A�p�[�e�B�N���V�X�e�����[�N�ւ̃|�C���^
+ * @param   frp			フロンティアパーティクルシステムワークへのポインタ
  * @param   work_id		SPAWORK_???
- * @param   spa_no		SPA�C���f�b�N�X
+ * @param   spa_no		SPAインデックス
  *
- * @retval  �������ꂽ�p�[�e�B�N���V�X�e���̃|�C���^
+ * @retval  生成されたパーティクルシステムのポインタ
  */
 //--------------------------------------------------------------
 PTC_PTR FRParticle_SystemCreate(FRP_PTR frp, int work_id, int spa_no, int camera_type)
@@ -104,7 +104,7 @@ PTC_PTR FRParticle_SystemCreate(FRP_PTR frp, int work_id, int spa_no, int camera
 	
 	GF_ASSERT(frp->ptc[work_id] == NULL);
 	
-	//�p�[�e�B�N���V�X�e���쐬
+	//パーティクルシステム作成
 	heap = sys_AllocMemory(frp->heap_id, PARTICLE_LIB_HEAP_SIZE);
 	ptc = Particle_SystemCreate(sAllocTex, sAllocTexPalette, heap, 
 		PARTICLE_LIB_HEAP_SIZE, TRUE, frp->heap_id);
@@ -112,11 +112,11 @@ PTC_PTR FRParticle_SystemCreate(FRP_PTR frp, int work_id, int spa_no, int camera
 	GFC_SetCameraClip(BP_NEAR, BP_FAR, camera_ptr);
 	Particle_CameraTypeSet( ptc ,camera_type );
 
-	//���\�[�X�ǂݍ��݁��o�^
+	//リソース読み込み＆登録
 	resource = Particle_ArcResourceLoad(ARC_FRONTIER_PARTICLE, spa_no, frp->heap_id);
 	Particle_ResourceSet(ptc, resource, PTC_AUTOTEX_LNK | PTC_AUTOPLTT_LNK, TRUE);
 	
-	//�Ǘ��̈�ɓo�^
+	//管理領域に登録
 	frp->ptc[work_id] = ptc;
 	
 	return ptc;
@@ -124,11 +124,11 @@ PTC_PTR FRParticle_SystemCreate(FRP_PTR frp, int work_id, int spa_no, int camera
 
 //--------------------------------------------------------------
 /**
- * @brief   �p�[�e�B�N���V�X�e�����I�����A�Ǘ��̈悩����폜����
+ * @brief   パーティクルシステムを終了し、管理領域からも削除する
  *
- * @param   frp		�t�����e�B�A�p�[�e�B�N���V�X�e�����[�N�ւ̃|�C���^
+ * @param   frp		フロンティアパーティクルシステムワークへのポインタ
  * @param   work_id	SPAWORK_???
- * @param   ptc		�p�[�e�B�N���V�X�e�����[�N�ւ̃|�C���^
+ * @param   ptc		パーティクルシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 void FRParticle_SystemExit(FRP_PTR frp, int work_id)
@@ -149,16 +149,16 @@ void FRParticle_SystemExit(FRP_PTR frp, int work_id)
 			return;
 		}
 	}
-	GF_ASSERT(0);	//�Ǘ��̈�ɓo�^����Ă��Ȃ�PTC���n����Ă���
+	GF_ASSERT(0);	//管理領域に登録されていないPTCが渡されている
 #endif
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   �t�����e�B�A�p�p�[�e�B�N���V�X�e���E���C���֐�(�v�Z�E�`�揈���Ȃǂ����s)
+ * @brief   フロンティア用パーティクルシステム・メイン関数(計算・描画処理などを実行)
  *
- * @param   ptc		�p�[�e�B�N���V�X�e�����[�N�ւ̃|�C���^
- * @retval  FALSE:1�������Ă���p�[�e�B�N�����Ȃ�
+ * @param   ptc		パーティクルシステムワークへのポインタ
+ * @retval  FALSE:1つも動いているパーティクルがない
  */
 //--------------------------------------------------------------
 int FRParticle_Main(void)
@@ -173,26 +173,26 @@ int FRParticle_Main(void)
 	}
 	
 
-	draw_num = Particle_DrawAll();	//�p�[�e�B�N���`��
+	draw_num = Particle_DrawAll();	//パーティクル描画
 
 	if(draw_num > 0){
-		//�p�[�e�B�N���̕`�悪�I�������̂ŁA�Ăу\�t�g�E�F�A�X�v���C�g�p�J�����ɐݒ�
+		//パーティクルの描画が終了したので、再びソフトウェアスプライト用カメラに設定
 		GF_G3X_Reset();
 	}
 
-	Particle_CalcAll();	//�p�[�e�B�N���v�Z
+	Particle_CalcAll();	//パーティクル計算
 
 	return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   PTC�|�C���^���擾����
+ * @brief   PTCポインタを取得する
  *
- * @param   frp			�t�����e�B�A�p�[�e�B�N���V�X�e�����[�N�ւ̃|�C���^
+ * @param   frp			フロンティアパーティクルシステムワークへのポインタ
  * @param   work_id		SPAWORK_???
  *
- * @retval  PTC�|�C���^
+ * @retval  PTCポインタ
  */
 //--------------------------------------------------------------
 PTC_PTR FRParticle_PTCPtrGet(FRP_PTR frp, int work_id)
@@ -203,11 +203,11 @@ PTC_PTR FRParticle_PTCPtrGet(FRP_PTR frp, int work_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ��������Ă���p�[�e�B�N���G�~�b�^�S�Ă̏I���҂�
+ * @brief   生成されているパーティクルエミッタ全ての終了待ち
  *
- * @param   frp		�t�����e�B�A�p�[�e�B�N���V�X�e�����[�N�ւ̃|�C���^
+ * @param   frp		フロンティアパーティクルシステムワークへのポインタ
  *
- * @retval  TRUE:�S�ďI�����Ă���B�@FALSE:1�ȏ�̃G�~�b�^�����삵�Ă���
+ * @retval  TRUE:全て終了している。　FALSE:1つ以上のエミッタが動作している
  */
 //--------------------------------------------------------------
 BOOL FRParticle_EmitNumGet(FRP_PTR frp)
@@ -221,7 +221,7 @@ BOOL FRParticle_EmitNumGet(FRP_PTR frp)
 			}
 		}
 	}
-	return TRUE;	//�����Ă���G�~�b�^�͂ЂƂ��Ȃ�
+	return TRUE;	//動いているエミッタはひとつもない
 }
 
 //==============================================================================
@@ -229,8 +229,8 @@ BOOL FRParticle_EmitNumGet(FRP_PTR frp)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   �p�[�e�B�N���V�X�e�����I��������
- * @param   ptc		�p�[�e�B�N���V�X�e�����[�N�ւ̃|�C���^
+ * @brief   パーティクルシステムを終了させる
+ * @param   ptc		パーティクルシステムワークへのポインタ
  */
 //--------------------------------------------------------------
 static void Local_ParticleExit(PTC_PTR ptc)
@@ -244,12 +244,12 @@ static void Local_ParticleExit(PTC_PTR ptc)
 
 //--------------------------------------------------------------
 /**
- * @brief   �e�N�X�`��VRAM�A�h���X��Ԃ����߂̃R�[���o�b�N�֐�
+ * @brief   テクスチャVRAMアドレスを返すためのコールバック関数
  *
- * @param   size		�e�N�X�`���T�C�Y
- * @param   is4x4comp	4x4���k�e�N�X�`���ł��邩�ǂ����̃t���O(TRUE=���k�e�N�X�`��)
+ * @param   size		テクスチャサイズ
+ * @param   is4x4comp	4x4圧縮テクスチャであるかどうかのフラグ(TRUE=圧縮テクスチャ)
  *
- * @retval  �ǂݍ��݂��J�n����VRAM�̃A�h���X
+ * @retval  読み込みを開始するVRAMのアドレス
  */
 //--------------------------------------------------------------
 static u32 sAllocTex(u32 size, BOOL is4x4comp)
@@ -259,7 +259,7 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 	
 	key = NNS_GfdAllocTexVram(size, is4x4comp, 0);
 	GF_ASSERT(key != NNS_GFD_ALLOC_ERROR_TEXKEY);
-	Particle_LnkTexKeySet(key);		//�����N�h���X�g���g�p���Ă���̂ŃL�[�����Z�b�g
+	Particle_LnkTexKeySet(key);		//リンクドリストを使用しているのでキー情報をセット
 	
 	address = NNS_GfdGetTexKeyAddr(key);
 	OS_TPrintf("vram=%d\n", address);
@@ -268,15 +268,15 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 
 //--------------------------------------------------------------
 /**
- * @brief	�e�N�X�`���p���b�gVRAM�A�h���X��Ԃ����߂̃R�[���o�b�N�֐�
+ * @brief	テクスチャパレットVRAMアドレスを返すためのコールバック関数
  *
- * @param	size		�e�N�X�`���T�C�Y
- * @param	is4pltt		4�F�p���b�g�ł��邩�ǂ����̃t���O
+ * @param	size		テクスチャサイズ
+ * @param	is4pltt		4色パレットであるかどうかのフラグ
  *
- * @retval	�ǂݍ��݂��J�n����VRAM�̃A�h���X
+ * @retval	読み込みを開始するVRAMのアドレス
  *
- * direct�`���̃e�N�X�`���̏ꍇ�ASPL_LoadTexPlttByCallbackFunction��
- * �R�[���o�b�N�֐����Ăяo���܂���B
+ * direct形式のテクスチャの場合、SPL_LoadTexPlttByCallbackFunctionは
+ * コールバック関数を呼び出しません。
  */
 //--------------------------------------------------------------
 static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
@@ -286,9 +286,9 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 	
 	key = NNS_GfdAllocPlttVram(size, is4pltt, NNS_GFD_ALLOC_FROM_LOW);
 	if(key == NNS_GFD_ALLOC_ERROR_PLTTKEY){
-		GF_ASSERT(0 && "�p�[�e�B�N���Ńp���b�g�̊m�ۂ��o���܂���I\n");
+		GF_ASSERT(0 && "パーティクルでパレットの確保が出来ません！\n");
 	}
-	Particle_PlttLnkTexKeySet(key);	//�����N�h���X�g���g�p���Ă���̂ŃL�[�����Z�b�g
+	Particle_PlttLnkTexKeySet(key);	//リンクドリストを使用しているのでキー情報をセット
 	address = NNS_GfdGetPlttKeyAddr(key);
 	OS_TPrintf("vram=%d\n", address);
 	return address;

@@ -1,11 +1,11 @@
 #ifndef _R217_DEF_H_
 #define _R217_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R217_STONE		(1)
 #define	SCRID_R217_SIGN1		(2)
 #define	SCRID_R217_GIRL4		(3)
 #define	SCRID_POS_R217_LEADER		(4)
-#define	SCRID_R217_DATA_MAX		(4)		//最大数
+#define	SCRID_R217_DATA_MAX		(4)		//譛螟ｧ謨ｰ
 
 #endif //_R217_DEF_H_

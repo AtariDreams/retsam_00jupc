@@ -1,7 +1,7 @@
 //******************************************************************************
 /**
  * @file	guru2_comm.c
- * @brief	‚®‚é‚®‚éŒğŠ·@’ÊM
+ * @brief	ãã‚‹ãã‚‹äº¤æ›ã€€é€šä¿¡
  * @author	kagaya
  * @data	05.07.13
  */
@@ -22,7 +22,7 @@
 #include "guru2_receipt.h"
 
 #ifdef DEBUG_ONLY_FOR_kagaya
-#define D_GURU2_PRINTF_ON	//’è‹`‚ÅOS_Printf—LŒø
+#define D_GURU2_PRINTF_ON	//å®šç¾©ã§OS_Printfæœ‰åŠ¹
 #endif
 
 //==============================================================================
@@ -30,8 +30,8 @@
 //==============================================================================
 //--------------------------------------------------------------
 ///	WUSE_SENDWORK
-///	’ÊM“]‘——p”Ä—pƒ[ƒNB
-///	ƒTƒCƒY‚ÍGURU2_WIDEUSE_SENDWORK_SIZE‚ÅŒÅ’è
+///	é€šä¿¡è»¢é€ç”¨æ±ç”¨ãƒ¯ãƒ¼ã‚¯ã€‚
+///	ã‚µã‚¤ã‚ºã¯GURU2_WIDEUSE_SENDWORK_SIZEã§å›ºå®š
 //--------------------------------------------------------------
 typedef struct
 {
@@ -53,11 +53,11 @@ static const CommPacketTbl DATA_CommPacketTbl[CF_COMMAND_MAX];
 static const PTRCommRecvFunc DATA_Guru2CommPacketTbl[G2COMM_MAX];
 
 //==============================================================================
-//	‚®‚é‚®‚éŒğŠ·@’ÊMƒRƒ}ƒ“ƒh
+//	ãã‚‹ãã‚‹äº¤æ›ã€€é€šä¿¡ã‚³ãƒãƒ³ãƒ‰
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’ÊMƒRƒ}ƒ“ƒhƒ[ƒN‰Šú‰»
+ * é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  * @param	g2p	GURU2PROC_WORK
  * @retval	g2c	GURU2COMM_WORK
  */
@@ -82,7 +82,7 @@ GURU2COMM_WORK * Guru2Comm_WorkInit( GURU2PROC_WORK *g2p, u32 heap_id )
 
 //--------------------------------------------------------------
 /**
- * ’ÊMƒRƒ}ƒ“ƒhƒ[ƒNíœ
+ * é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  * @param	g2c	GURU2COMM_WORK
  * @retval	nothing
  */
@@ -96,7 +96,7 @@ void Guru2Comm_WorkDelete( GURU2COMM_WORK *g2c )
 
 //--------------------------------------------------------------
 /**
- * ’ÊMƒRƒ}ƒ“ƒh‰Šú‰» óMƒR[ƒ‹ƒoƒbƒNİ’è
+ * é€šä¿¡ã‚³ãƒãƒ³ãƒ‰åˆæœŸåŒ– å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯è¨­å®š
  * @param	g2c	GURU2COMM_WORK
  * @retval	nothing
  */
@@ -108,7 +108,7 @@ void Guru2Comm_CommandInit( GURU2COMM_WORK *g2c )
 
 //--------------------------------------------------------------
 /**
- * ƒ†ƒjƒIƒ“ƒ‹[ƒ€’ÊM‚Ö–ß‚·
+ * ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ é€šä¿¡ã¸æˆ»ã™
  * @param	g2c	GURU2COMM_WORK
  * @retval	nothing
  */
@@ -122,11 +122,11 @@ void Guru2Comm_CommUnionRoomChange( GURU2COMM_WORK *g2c )
 }
 
 //==============================================================================
-//	‘—M—p”Ä—pƒ[ƒN
+//	é€ä¿¡ç”¨æ±ç”¨ãƒ¯ãƒ¼ã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ”Ä—pƒ[ƒN‘—M
+ * æ±ç”¨ãƒ¯ãƒ¼ã‚¯é€ä¿¡
  * @param
  * @retval
  */
@@ -147,7 +147,7 @@ static BOOL guru2Comm_WideUseSendWorkSend(
 		#ifdef PM_DEBUG
 		if( ret == FALSE ){
 			#ifdef D_GURU2_PRINTF_ON
-			OS_Printf( "‚®‚é‚®‚é@”Ä—pƒf[ƒ^‘—M¸”s ƒRƒ}ƒ“ƒh(%d)\n", cmd );
+			OS_Printf( "ãã‚‹ãã‚‹ã€€æ±ç”¨ãƒ‡ãƒ¼ã‚¿é€ä¿¡å¤±æ•— ã‚³ãƒãƒ³ãƒ‰(%d)\n", cmd );
 			#endif
 		}
 		#endif
@@ -157,22 +157,22 @@ static BOOL guru2Comm_WideUseSendWorkSend(
 }
 
 //==============================================================================
-//	‘—M
+//	é€ä¿¡
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éŒğŠ·ƒf[ƒ^‘—M
+ * ãã‚‹ãã‚‹äº¤æ›ãƒ‡ãƒ¼ã‚¿é€ä¿¡
  * @param	g2c		GURU2COMM_WORK
  * @param   code	G2C
  * @param	data	data
  * @param   size	size
- * @retval	BOOL	‘—MƒLƒ…[‚É“ü‚Á‚½‚©‚Ç‚¤‚©
+ * @retval	BOOL	é€ä¿¡ã‚­ãƒ¥ãƒ¼ã«å…¥ã£ãŸã‹ã©ã†ã‹
  * */
 //--------------------------------------------------------------
 BOOL Guru2Comm_SendData(
 	GURU2COMM_WORK *g2c, u32 code, const void *data, u32 size )
 {
-	if( g2c->send_stop_flag == TRUE ){	//‘—M’â~
+	if( g2c->send_stop_flag == TRUE ){	//é€ä¿¡åœæ­¢
 		return( FALSE );
 	}
 	
@@ -180,11 +180,11 @@ BOOL Guru2Comm_SendData(
 }
 
 //==============================================================================
-//	ƒR[ƒ‹ƒoƒbƒNŠÖ”@ƒƒCƒ“
+//	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€€ãƒ¡ã‚¤ãƒ³
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚éŒğŠ·ƒƒCƒ“ƒR[ƒ‹ƒoƒbƒN
+ * ãã‚‹ãã‚‹äº¤æ›ãƒ¡ã‚¤ãƒ³ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -210,7 +210,7 @@ static void CommCB_Guru2Cmd(
 
 //--------------------------------------------------------------
 /**
- * ó•t@ƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚ğóM
+ * å—ä»˜ã€€ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã‚’å—ä¿¡
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -228,16 +228,16 @@ static void CommCB_Guru2PokeParty(
 	buf = Guru2Comm_FriendPokePartyGet( g2c, netID );
 	memcpy( buf, pBuff, POKEPARTY_SEND_ONCE_SIZE );
 	#ifdef D_GURU2_PRINTF_ON
-	OS_Printf( "ƒ^ƒ}ƒSóM" );
+	OS_Printf( "ã‚¿ãƒã‚´å—ä¿¡" );
 	#endif
 }
 
 //==============================================================================
-//	ƒR[ƒ‹ƒoƒbƒNŠÖ”@ó•t
+//	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€€å—ä»˜
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ó•t@—£’E§Œäƒtƒ‰ƒO“’…
+ * å—ä»˜ã€€é›¢è„±åˆ¶å¾¡ãƒ•ãƒ©ã‚°åˆ°ç€
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -251,10 +251,10 @@ static void CommCB_Receipt_BanFlag(
 	GURU2COMM_WORK *g2c = pWork;
 	u8 *flag = (u8*)pBuff;
 	
-	if( netID==0 ){					//e
+	if( netID==0 ){					//è¦ª
 		if( g2c->banFlag != *flag ){
 			#ifdef D_GURU2_PRINTF_ON
-			OS_Printf( "e‹@‚©‚ç‚Ì—£’E‹Ö~ƒtƒ‰ƒO banFlag=%d\n", *flag );
+			OS_Printf( "è¦ªæ©Ÿã‹ã‚‰ã®é›¢è„±ç¦æ­¢ãƒ•ãƒ©ã‚° banFlag=%d\n", *flag );
 			#endif
 		}
 		g2c->banFlag = *flag;
@@ -263,7 +263,7 @@ static void CommCB_Receipt_BanFlag(
 
 //--------------------------------------------------------------
 /**
- * ó•t@ƒf[ƒ^óMƒR[ƒ‹ƒoƒbƒN
+ * å—ä»˜ã€€ãƒ‡ãƒ¼ã‚¿å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -277,13 +277,13 @@ static void CommCB_Receipt_Data(
 	GURU2COMM_WORK *g2c = pWork;
 	g2c->recv_count++;
 	#ifdef D_GURU2_PRINTF_ON
-	OS_Printf( "‚®‚é‚®‚éŒğŠ·ƒf[ƒ^óMŠ®—¹ id=%d\n", netID );
+	OS_Printf( "ãã‚‹ãã‚‹äº¤æ›ãƒ‡ãƒ¼ã‚¿å—ä¿¡å®Œäº† id=%d\n", netID );
 	#endif
 }
 
 //------------------------------------------------------------------
 /**
- * ó•t@‚®‚é‚®‚éŒğŠ·@ƒ|ƒPƒ‚ƒ“ƒZƒŒƒNƒgŠJn@e”­M
+ * å—ä»˜ã€€ãã‚‹ãã‚‹äº¤æ›ã€€ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¬ã‚¯ãƒˆé–‹å§‹ã€€è¦ªç™ºä¿¡
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -294,16 +294,16 @@ static void CommCB_Receipt_Data(
 static void CommCB_Receipt_Start(
 		int netID, int size, void* pBuff, void* pWork )
 {
-	if( CommGetCurrentID() != 0 ){	//e”­M q‚ÌƒV[ƒPƒ“ƒX•ÏX bug 0212 fix
+	if( CommGetCurrentID() != 0 ){	//è¦ªç™ºä¿¡ å­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´ bug 0212 fix
 		GURU2COMM_WORK *wk = pWork;
 	
 		wk->recv_count = 0;
 		wk->record_execute = TRUE;
 	
-		//ƒŒƒR[ƒhƒf[ƒ^‘—MŠJn
+		//ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿é€ä¿¡é–‹å§‹
 		//Guru2Comm_DataSend( wk, CommGetCurrentID() );
 		
-		//‰æ–Êã•”‚ğuƒŒƒR[ƒh‚±‚¤‚©‚ñ‚¿‚ã‚¤Iv
+		//ç”»é¢ä¸Šéƒ¨ã‚’ã€Œãƒ¬ã‚³ãƒ¼ãƒ‰ã“ã†ã‹ã‚“ã¡ã‚…ã†ï¼ã€
 		//RecordCornerTitleChange( wk );
 		//Guru2Rc_MainSeqForceChange(
 		//wk->g2p->g2r, RECORD_MODE_RECORD_SEND_DATA, netID );
@@ -311,13 +311,13 @@ static void CommCB_Receipt_Start(
 		Guru2Rc_MainSeqForceChange(
 			wk->g2p->g2r, RECORD_MODE_GURU2_POKESEL_START, netID );
 		
-	//	CommStateSetErrorCheck( TRUE,TRUE ); // ‚±‚±ˆÈ~‚ÍØ’fƒGƒ‰[
+	//	CommStateSetErrorCheck( TRUE,TRUE ); // ã“ã“ä»¥é™ã¯åˆ‡æ–­ï¼ã‚¨ãƒ©ãƒ¼
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ó•t@’ÊM‰æ–Ê‚ğÄŠJ‚·‚é
+ * å—ä»˜ã€€é€šä¿¡ç”»é¢ã‚’å†é–‹ã™ã‚‹
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -330,16 +330,16 @@ static void CommCB_Receipt_ReStart(
 {
 	GURU2COMM_WORK *g2c = pWork;
 	#ifdef D_GURU2_PRINTF_ON
-	OS_Printf("e‹@‚©‚çƒŒƒR[ƒh•åWÄŠJ’Ê’m\n");
+	OS_Printf("è¦ªæ©Ÿã‹ã‚‰ãƒ¬ã‚³ãƒ¼ãƒ‰å‹Ÿé›†å†é–‹é€šçŸ¥\n");
 	#endif
 	Guru2Rc_MainSeqForceChange( g2c->g2p->g2r, RECORD_MODE_NEWMEMBER_END, 0 );
 }
 
 //--------------------------------------------------------------
 /**
- * ó•t@q‹@‚ª—£’EB
- * pBuff q(—£’EÒ)‚©‚ç‚Ì‘—M0:—£’E‹–‰ÂŠm”FB@1:—£’EÀs
- * e‚©‚ç‚Ì‘—MãˆÊ4ƒrƒbƒgFe‚ÌshareNum(0xf‚Ìê‡‚Í—£’ENG)
+ * å—ä»˜ã€€å­æ©ŸãŒé›¢è„±ã€‚
+ * pBuff å­(é›¢è„±è€…)ã‹ã‚‰ã®é€ä¿¡ï¼0:é›¢è„±è¨±å¯ç¢ºèªã€‚ã€€1:é›¢è„±å®Ÿè¡Œ
+ * è¦ªã‹ã‚‰ã®é€ä¿¡ï¼ä¸Šä½4ãƒ“ãƒƒãƒˆï¼šè¦ªã®shareNum(0xfã®å ´åˆã¯é›¢è„±NG)
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -354,10 +354,10 @@ static void CommCB_Receipt_EndChild(
 	GURU2COMM_END_CHILD_WORK trans_work;
 	GURU2COMM_END_CHILD_WORK *recieve_work = pBuff;
 	
-	//q‹@(—£’EÒ)‚©‚ç‚Ì‘—M
-	if( netID != 0 ){						//—£’E‚µ‚Ü‚·’Ê’m
-		if( CommGetCurrentID()==0){			// q‹@‚©‚ç(e‹@‚ªó‚¯æ‚é)
-			// q‹@‚ª‚¢‚È‚­‚È‚Á‚½–‚ğ‘Sˆõ‚É’Ê’m‚·‚é
+	//å­æ©Ÿ(é›¢è„±è€…)ã‹ã‚‰ã®é€ä¿¡
+	if( netID != 0 ){						//é›¢è„±ã—ã¾ã™é€šçŸ¥
+		if( CommGetCurrentID()==0){			// å­æ©Ÿã‹ã‚‰(è¦ªæ©ŸãŒå—ã‘å–ã‚‹)
+			// å­æ©ŸãŒã„ãªããªã£ãŸäº‹ã‚’å…¨å“¡ã«é€šçŸ¥ã™ã‚‹
 			trans_work = *recieve_work;
 			trans_work.ridatu_id = netID;
 			trans_work.oya_share_num = g2c->shareNum;
@@ -367,12 +367,12 @@ static void CommCB_Receipt_EndChild(
 				if(g2c->shareNum != CommGetConnectNum() 
 					|| g2c->shareNum != Guru2Comm_OnlineNumGet()
 					|| g2c->shareNum != MATH_CountPopulation(WH_GetBitmap())){
-					trans_work.ridatu_kyoka = FALSE;	//—£’ENGI
+					trans_work.ridatu_kyoka = FALSE;	//é›¢è„±NGï¼
 				}else{
 					g2c->ridatu_bit |= 1 << netID;
 					trans_work.ridatu_kyoka = TRUE;
-					//—£’EOK‚È‚Ì‚ÅQ‰Á§ŒÀ‚ğ‚©‚¯‚é
-					//(—“ü‚ª‚ ‚ê‚Î‚»‚¿‚ç‘¤‚Å§ŒÀ‚ª‚Í‚¸‚³‚ê‚é‚Í‚¸)
+					//é›¢è„±OKãªã®ã§å‚åŠ åˆ¶é™ã‚’ã‹ã‘ã‚‹
+					//(ä¹±å…¥ãŒã‚ã‚Œã°ãã¡ã‚‰å´ã§åˆ¶é™ãŒã¯ãšã•ã‚Œã‚‹ã¯ãš)
 					CommStateSetLimitNum( CommGetConnectNum() );
 				}
 				break;
@@ -383,13 +383,13 @@ static void CommCB_Receipt_EndChild(
 			Guru2Comm_SendData( g2c, G2COMM_RC_END_CHILD,
 				&trans_work, sizeof(GURU2COMM_END_CHILD_WORK) );
 			#ifdef D_GURU2_PRINTF_ON
-			OS_Printf("q‹@%d‚©‚ç—£’E‚ğó‚¯æ‚Á‚½¨‘—M\n",netID);
+			OS_Printf("å­æ©Ÿ%dã‹ã‚‰é›¢è„±ã‚’å—ã‘å–ã£ãŸâ†’é€ä¿¡\n",netID);
 			#endif
 		}
-	}else{	//e‚©‚ç‚Ì‘—M
+	}else{	//è¦ªã‹ã‚‰ã®é€ä¿¡
 		switch(recieve_work->request){
 		case CREC_REQ_RIDATU_CHECK:
-			//—£’EŠm”F‚È‚Ì‚ÅA—£’E‚µ‚æ‚¤‚Æ‚µ‚½q‹@‚É‚Ì‚İŒ‹‰Ê‚ğ‘—‚é
+			//é›¢è„±ç¢ºèªãªã®ã§ã€é›¢è„±ã—ã‚ˆã†ã¨ã—ãŸå­æ©Ÿã«ã®ã¿çµæœã‚’é€ã‚‹
 			if(recieve_work->ridatu_id == CommGetCurrentID()){
 				if(recieve_work->ridatu_kyoka == FALSE){
 					Guru2Rc_MainSeqForceChange(
@@ -406,7 +406,7 @@ static void CommCB_Receipt_EndChild(
 			break;
 		case CREC_REQ_RIDATU_EXE:
 			#ifdef D_GURU2_PRINTF_ON
-			OS_Printf("e‹@‚ªq‹@%d‚Ì—£’E’Ê’m‚µ‚½\n",recieve_work->ridatu_id);
+			OS_Printf("è¦ªæ©ŸãŒå­æ©Ÿ%dã®é›¢è„±é€šçŸ¥ã—ãŸ\n",recieve_work->ridatu_id);
 			#endif
 			Guru2Rc_MainSeqForceChange(
 				g2c->g2p->g2r, RECORD_MODE_LOGOUT_CHILD, recieve_work->ridatu_id );
@@ -417,8 +417,8 @@ static void CommCB_Receipt_EndChild(
 
 //--------------------------------------------------------------
 /**
- *	ó•tuq‹@‚ª—“ü‚µ‚Ä‚«‚½‚Ì‚Åˆê’UŠG‚ğ‘—‚é‚æ~‚Ü‚Á‚Ä‚Ëv
- *	‚Æe‹@‚ª‘—M‚µ‚Ä‚«‚½‚ÌƒR[ƒ‹ƒoƒbƒN
+ *	å—ä»˜ã€Œå­æ©ŸãŒä¹±å…¥ã—ã¦ããŸã®ã§ä¸€æ—¦çµµã‚’é€ã‚‹ã‚ˆæ­¢ã¾ã£ã¦ã­ã€
+ *	ã¨è¦ªæ©ŸãŒé€ä¿¡ã—ã¦ããŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -435,18 +435,18 @@ static void CommCB_Receipt_Stop(
 	id = *(u8*)pBuff;
 	Guru2Rc_MainSeqCheckChange( wk->g2p->g2r, RECORD_MODE_NEWMEMBER, id );
 
-	if(CommGetCurrentID()==0){	// e‹@‚ª‰æ‘œƒf[ƒ^‘—M‚ğŠJn‚·‚é
+	if(CommGetCurrentID()==0){	// è¦ªæ©ŸãŒç”»åƒãƒ‡ãƒ¼ã‚¿é€ä¿¡ã‚’é–‹å§‹ã™ã‚‹
 		wk->send_num = 0;
 	}
 	
 	#ifdef D_GURU2_PRINTF_ON
-	OS_Printf("e‹@‚©‚ç‚Ìuq‹@%d‚ÉŠG‚ğ‘—‚é‚©‚ç~‚Ü‚Á‚Ä‚Ëv’Ê’m\n",id);
+	OS_Printf("è¦ªæ©Ÿã‹ã‚‰ã®ã€Œå­æ©Ÿ%dã«çµµã‚’é€ã‚‹ã‹ã‚‰æ­¢ã¾ã£ã¦ã­ã€é€šçŸ¥\n",id);
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * ó•t@e‹@‚ª‚â‚ß‚é‚Ì‚Å‹­§I—¹‚³‚¹‚é
+ * å—ä»˜ã€€è¦ªæ©ŸãŒã‚„ã‚ã‚‹ã®ã§å¼·åˆ¶çµ‚äº†ã•ã›ã‚‹
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -460,10 +460,10 @@ static void CommCB_Receipt_End(
 	GURU2COMM_WORK *wk = pWork;
 	
 	#ifdef D_GURU2_PRINTF_ON
-	OS_Printf("e‹@‚©‚ç‚ÌI—¹’Ê’m‚ª‚«‚½‚Ì‚Å‚â‚ß‚é\n");
+	OS_Printf("è¦ªæ©Ÿã‹ã‚‰ã®çµ‚äº†é€šçŸ¥ãŒããŸã®ã§ã‚„ã‚ã‚‹\n");
 	#endif
 	
-	// e‹@ˆÈŠO‚Í‚±‚ÌƒRƒ}ƒ“ƒh‚Å‹­§I—¹
+	// è¦ªæ©Ÿä»¥å¤–ã¯ã“ã®ã‚³ãƒãƒ³ãƒ‰ã§å¼·åˆ¶çµ‚äº†
 	if( CommGetCurrentID() != 0 ){
 		Guru2Rc_MainSeqForceChange( wk->g2p->g2r, RECORD_MODE_FORCE_END, 0  );
 	}
@@ -471,7 +471,7 @@ static void CommCB_Receipt_End(
 
 //--------------------------------------------------------------
 /**
- * ó•t@‚R‘ä–ÚE‚S‘ä–ÚE‚T‘ä–Ú‚Ìq‹@‚ªuŠG‚ğ‚¿‚å[‚¾‚¢v‚ÆŒ¾‚¤
+ * å—ä»˜ã€€ï¼“å°ç›®ãƒ»ï¼”å°ç›®ãƒ»ï¼•å°ç›®ã®å­æ©ŸãŒã€Œçµµã‚’ã¡ã‚‡ãƒ¼ã ã„ã€ã¨è¨€ã†
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -485,23 +485,23 @@ static void CommCB_Receipt_ChildJoin(
 	u8 id;
 	GURU2COMM_WORK *g2c = pWork;
 	
-	// e‹@‚ªó‚¯æ‚Á‚½‚ç(‚Æ‚¢‚¤‚©e‚µ‚©ó‚¯æ‚ç‚È‚¢‚¯‚Çj
+	// è¦ªæ©ŸãŒå—ã‘å–ã£ãŸã‚‰(ã¨ã„ã†ã‹è¦ªã—ã‹å—ã‘å–ã‚‰ãªã„ã‘ã©ï¼‰
 	if( CommGetCurrentID() == 0 ){
 		id  = netID;
-		// ‘S‘ä‚Éu‚±‚ê‚©‚çŠG‚ğ‘—‚é‚Ì‚Å~‚Ü‚Á‚Ä‚­‚¾‚³‚¢v‚Æ‘—M‚·‚é
+		// å…¨å°ã«ã€Œã“ã‚Œã‹ã‚‰çµµã‚’é€ã‚‹ã®ã§æ­¢ã¾ã£ã¦ãã ã•ã„ã€ã¨é€ä¿¡ã™ã‚‹
 		Guru2Comm_SendData( g2c, G2COMM_RC_STOP, &id, 1 );
 		#ifdef D_GURU2_PRINTF_ON
-		OS_Printf("q‹@(%d = %d)‚©‚ç‚Ì—“ü^ŠG‚Ì‚­‚¾‚³‚¢’Ê’m\n",id,netID);
+		OS_Printf("å­æ©Ÿ(%d = %d)ã‹ã‚‰ã®ä¹±å…¥ï¼çµµã®ãã ã•ã„é€šçŸ¥\n",id,netID);
 		#endif
 	}
 }
 
 //==============================================================================
-//	ƒR[ƒ‹ƒoƒbƒNŠÖ”@ƒQ[ƒ€ƒƒCƒ“
+//	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€€ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€ƒƒCƒ“@ƒVƒOƒiƒ‹óM
+ * ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ã€€ã‚·ã‚°ãƒŠãƒ«å—ä¿¡
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -517,13 +517,13 @@ static void CommCB_Main_Signal(
 	wk->comm_game_signal_bit |= *buff;
 	
 	#ifdef D_GURU2_PRINTF_ON
-	OS_Printf("‚®‚é‚®‚é ƒVƒOƒiƒ‹(0x%x)óM óMID=0x%x\n",*buff,netID);
+	OS_Printf("ãã‚‹ãã‚‹ ã‚·ã‚°ãƒŠãƒ«(0x%x)å—ä¿¡ å—ä¿¡ID=0x%x\n",*buff,netID);
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€ƒƒCƒ“@Q‰Á
+ * ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ã€€å‚åŠ 
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -537,13 +537,13 @@ static void CommCB_Main_Join(
 	GURU2COMM_WORK *wk = pWork;
 	wk->comm_game_join_bit |= 1 << netID;
 	#ifdef D_GURU2_PRINTF_ON
-	OS_Printf( "‚®‚é‚®‚é ƒQ[ƒ€Q‰Áó‚¯æ‚è ID= 0x%d\n", netID );
+	OS_Printf( "ãã‚‹ãã‚‹ ã‚²ãƒ¼ãƒ å‚åŠ å—ã‘å–ã‚Š ID= 0x%d\n", netID );
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€ƒƒCƒ“@ƒvƒŒƒC”Ô†‚ğóM
+ * ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ã€€ãƒ—ãƒ¬ã‚¤ç•ªå·ã‚’å—ä¿¡
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -561,7 +561,7 @@ static void CommCB_Main_PlayNo(
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€ƒƒCƒ“@ƒvƒŒƒCÅ‘å”‚ğóM
+ * ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ã€€ãƒ—ãƒ¬ã‚¤æœ€å¤§æ•°ã‚’å—ä¿¡
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -580,7 +580,7 @@ static void CommCB_Main_PlayMax(
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒ{ƒ^ƒ“î•ñ‚ğóM
+ * ã‚²ãƒ¼ãƒ ã€€ãƒœã‚¿ãƒ³æƒ…å ±ã‚’å—ä¿¡
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -598,7 +598,7 @@ static void CommCB_Main_Button(
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒQ[ƒ€î•ñ‚ğóM
+ * ã‚²ãƒ¼ãƒ ã€€ã‚²ãƒ¼ãƒ æƒ…å ±ã‚’å—ä¿¡
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -609,7 +609,7 @@ static void CommCB_Main_Button(
 static void CommCB_Main_GameData(
 		int netID, int size, void *pBuff, void *pWork )
 {
-	if( CommGetCurrentID() != 0 ){	//”­M‚µ‚½eˆÈŠO
+	if( CommGetCurrentID() != 0 ){	//ç™ºä¿¡ã—ãŸè¦ªä»¥å¤–
 		GURU2COMM_WORK *g2c = pWork;
 		GURU2COMM_GAMEDATA *data = pBuff;
 		Guru2Main_CommGameDataSet( g2c->g2p->g2m, data );
@@ -618,7 +618,7 @@ static void CommCB_Main_GameData(
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€ƒƒCƒ“@ŒğŠ·ˆÊ’u‚ğóM
+ * ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ã€€äº¤æ›ä½ç½®ã‚’å—ä¿¡
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -636,7 +636,7 @@ static void CommCB_Main_TradeNo(
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€ƒƒCƒ“@ƒQ[ƒ€Œ‹‰Ê‚ğóM
+ * ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ã€€ã‚²ãƒ¼ãƒ çµæœã‚’å—ä¿¡
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -654,7 +654,7 @@ static void CommCB_Main_GameResult(
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€ƒƒCƒ“@—‘ƒf[ƒ^ˆÙíóM
+ * ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ã€€åµãƒ‡ãƒ¼ã‚¿ç•°å¸¸å—ä¿¡
  * @param   netID		
  * @param   size		
  * @param   pBuff		
@@ -672,7 +672,7 @@ static void CommCB_Main_EggDataNG(
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€ƒƒCƒ“@—‘ƒf[ƒ^³íóM
+ * ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ã€€åµãƒ‡ãƒ¼ã‚¿æ­£å¸¸å—ä¿¡
  * @param   netID
  * @param   size
  * @param   pBuff
@@ -689,7 +689,7 @@ static void CommCB_Main_EggDataOK(
 }
 
 //==============================================================================
-//	ƒTƒCƒY
+//	ã‚µã‚¤ã‚º
 //==============================================================================
 //--------------------------------------------------------------
 ///	GURU2_WIDEUSE_SENDWORK_SIZE
@@ -716,11 +716,11 @@ static int _getPokePartyOnceSize( void )
 }
 
 //==============================================================================
-//	óMƒoƒbƒtƒ@
+//	å—ä¿¡ãƒãƒƒãƒ•ã‚¡
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒf[ƒ^óMƒoƒbƒtƒ@
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å—ä¿¡ãƒãƒƒãƒ•ã‚¡
  * @param
  * @retval
  */
@@ -736,13 +736,13 @@ static u8 * _getPokePartyRecvBuff( int netID, void *pWork, int size )
 }
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //------------------------------------------------------------------
 /**
- * Œ»İ‚ÌƒIƒ“ƒ‰ƒCƒ“”‚ğæ“¾
+ * ç¾åœ¨ã®ã‚ªãƒ³ãƒ©ã‚¤ãƒ³æ•°ã‚’å–å¾—
  * @param   nothing
- * @retval  int		ƒIƒ“ƒ‰ƒCƒ“”
+ * @retval  int		ã‚ªãƒ³ãƒ©ã‚¤ãƒ³æ•°
  */
 //------------------------------------------------------------------
 int Guru2Comm_OnlineNumGet( void )
@@ -759,7 +759,7 @@ int Guru2Comm_OnlineNumGet( void )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•ªŠ„‘—M
+ * $brief   ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²é€ä¿¡
  * @param   g2c
  * @param   no		
  * @retval  none		
@@ -768,7 +768,7 @@ int Guru2Comm_OnlineNumGet( void )
 static void guru2Comm_DataSend( GURU2COMM_WORK *g2c, int no )
 {
 #if 0
-	//xoræ“¾EŠi”[
+	//xorå–å¾—ãƒ»æ ¼ç´
 	{
 		int i;
 		u32 *p,result;
@@ -779,21 +779,21 @@ static void guru2Comm_DataSend( GURU2COMM_WORK *g2c, int no )
 		g2c->send_data._xor        = result;
 	}
 	
-	// •ªŠ„”Ô†‚ğ‘‚«‚Ş(e‹@‚Ì’l‚¾‚¯‚ªg—p‚³‚ê‚éj
+	// åˆ†å‰²ç•ªå·ã‚’æ›¸ãè¾¼ã‚€(è¦ªæ©Ÿã®å€¤ã ã‘ãŒä½¿ç”¨ã•ã‚Œã‚‹ï¼‰
 	g2c->send_data.seed = gf_rand();
 	
-	// ‘—MŠJn
+	// é€ä¿¡é–‹å§‹
 	CommSendHugeData(
 		G2COMM_RC_CMD, &g2c->send_data, sizeof(GURU2COMM_RC_SENDDATA) );
 	
-	OS_Printf("‘—Mƒf[ƒ^ no=%d, xor = %08x\n",
+	OS_Printf("é€ä¿¡ãƒ‡ãƒ¼ã‚¿ no=%d, xor = %08x\n",
 				g2c->send_data.seed,  g2c->send_data._xor );
 #endif
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒp[ƒeƒBóMÏ‚İƒoƒbƒtƒ@‚ğ•Ô‚·
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£å—ä¿¡æ¸ˆã¿ãƒãƒƒãƒ•ã‚¡ã‚’è¿”ã™
  * @param
  * @retval
  */
@@ -810,11 +810,11 @@ void * Guru2Comm_FriendPokePartyGet( GURU2COMM_WORK *g2c, int id )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	’ÊMƒR[ƒ‹ƒoƒbƒNŠÖ”
+///	é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 //--------------------------------------------------------------
 static const CommPacketTbl DATA_CommPacketTbl[CF_COMMAND_MAX] =
 {
-	// comm_command_field.c‚Å“o˜^‚³‚ê‚Ä‚¢‚éƒRƒ}ƒ“ƒhƒe[ƒuƒ‹‚Ì–³Œø‰»
+	// comm_command_field.cã§ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç„¡åŠ¹åŒ–
     { CommDummyCallBack, _getZero, NULL},
     { CommDummyCallBack, _getZero, NULL},
     { CommDummyCallBack, _getZero, NULL},
@@ -902,7 +902,7 @@ static const CommPacketTbl DATA_CommPacketTbl[CF_COMMAND_MAX] =
     { CommDummyCallBack, _getZero, NULL},
     { CommDummyCallBack, _getZero, NULL},
 	
-	// ƒŒƒR[ƒh‚ªg—p‚·‚éƒRƒ}ƒ“ƒh•”•ª
+	// ãƒ¬ã‚³ãƒ¼ãƒ‰ãŒä½¿ç”¨ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰éƒ¨åˆ†
     { CommDummyCallBack, _getZero, NULL},
     { CommDummyCallBack, _getZero, NULL},
     { CommDummyCallBack, _getZero, NULL},
@@ -914,7 +914,7 @@ static const CommPacketTbl DATA_CommPacketTbl[CF_COMMAND_MAX] =
     { CommDummyCallBack, _getZero, NULL},
     { CommDummyCallBack, _getZero, NULL},
 	
-	// ‚¨‚¦‚©‚«‚ÌƒRƒ}ƒ“ƒh‚ğ–³‹‚·‚é‚½‚ß‚Ì•”•ª
+	// ãŠãˆã‹ãã®ã‚³ãƒãƒ³ãƒ‰ã‚’ç„¡è¦–ã™ã‚‹ãŸã‚ã®éƒ¨åˆ†
 	{ CommDummyCallBack, _getZero, NULL},
 	{ CommDummyCallBack, _getZero, NULL},
 	{ CommDummyCallBack, _getZero, NULL},
@@ -928,13 +928,13 @@ static const CommPacketTbl DATA_CommPacketTbl[CF_COMMAND_MAX] =
 	{ CommDummyCallBack, _getZero, NULL},
 	{ CommDummyCallBack, _getZero, NULL},
 	
-	//‚±‚±‚©‚ç‚®‚é‚®‚é
+	//ã“ã“ã‹ã‚‰ãã‚‹ãã‚‹
 	{CommCB_Guru2Cmd, _getGuru2WideUseSendWorkSize, NULL }, //CG_GURU2_CMD
 	{CommCB_Guru2PokeParty,_getPokePartyOnceSize,_getPokePartyRecvBuff}, //CG_GURU2_EGG
 };
 
 //--------------------------------------------------------------
-///	‚®‚é‚®‚éê—p’ÊMƒR[ƒ‹ƒoƒbƒNŠÖ”
+///	ãã‚‹ãã‚‹å°‚ç”¨é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 //--------------------------------------------------------------
 static const PTRCommRecvFunc DATA_Guru2CommPacketTbl[G2COMM_MAX] =
 {

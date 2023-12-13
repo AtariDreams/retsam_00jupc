@@ -15,10 +15,10 @@
   fix about code32.h
 
   Revision 1.24  2007/02/27 10:32:13  okubata_ryoma
-  ���Z�b�g����sp��dtcm�ɑޔ�����悤�ɕύX
+  リセット時のspをdtcmに退避するように変更
 
   Revision 1.23  2006/08/10 00:04:00  okubata_ryoma
-  �J�[�g���b�W�̊����}���Ɋւ���s��C��(���Z�b�g���̃N���A�̈�̕ύX)
+  カートリッジの活線挿抜に関する不具合修正(リセット時のクリア領域の変更)
 
   Revision 1.22  2006/01/18 02:11:30  kitase_hirotake
   do-indent
@@ -36,10 +36,10 @@
   do-indent.
 
   Revision 1.17  2005/02/18 06:33:16  yasu
-  asm{} �ߓ� indent �C��
+  asm{} 節内 indent 修正
 
   Revision 1.16  2005/02/18 06:22:33  yasu
-  Signed/Unsigned �ϊ��x���}��
+  Signed/Unsigned 変換警告抑制
 
   Revision 1.15  2005/02/14 01:01:55  yada
   just fix copyright year

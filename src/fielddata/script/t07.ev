@@ -1,6 +1,6 @@
 //====================================================================
-//					ƒtƒB[ƒ‹ƒhEƒ^ƒEƒ“‚O‚V
-//						ƒŠƒ][ƒgƒGƒŠƒA
+//					ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ»ã‚¿ã‚¦ãƒ³ï¼ï¼—
+//						ãƒªã‚¾ãƒ¼ãƒˆã‚¨ãƒªã‚¢
 //====================================================================
 
 	.text
@@ -10,11 +10,11 @@
 	.include	"../eventdata/zone_t07evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_t07_woman2a
 _EVENT_DATA		ev_t07_woman2b
@@ -38,23 +38,23 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_t07_flag_change:
-	/*‘SˆõÁ‚·(OUT=ŠO)*/
+	/*å…¨å“¡æ¶ˆã™(OUT=å¤–)*/
 	_FLAG_SET		FV_VILLA_OUT_DOCTOR
 	_FLAG_SET		FV_VILLA_OUT_LEADER1
 	_FLAG_SET		FV_VILLA_OUT_LEADER2
 	_FLAG_SET		FV_VILLA_OUT_LEADER4
 	_FLAG_SET		FV_VILLA_OUT_LEADER6
 
-	/*ƒCƒxƒ“ƒg‚ª”­¶‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç”Ÿã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_IFVAL_JUMP		SYS_WORK_EVENT_T07R0201,EQ,0xff,ev_t07_event_not
 
-	/*‰Æ‚ðw“ü‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç‰½‚à‚µ‚È‚¢*/
+	/*å®¶ã‚’è³¼å…¥ã—ã¦ã„ãªã‹ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„*/
 	_IFVAL_JUMP		WK_SCENE_T07,EQ,0,ev_t07_event_not
 
-	/*‚·‚Å‚É‰Æ‚Ì’†‚ÉˆÚ“®‚µ‚Ä‚½‚ç‰½‚à‚µ‚È‚¢*/
+	/*ã™ã§ã«å®¶ã®ä¸­ã«ç§»å‹•ã—ã¦ãŸã‚‰ä½•ã‚‚ã—ãªã„*/
 	_IF_FLAGON_JUMP	SYS_FLAG_T07_OBJ_IN,ev_t07_event_not
 
-	/*ƒCƒxƒ“ƒg‚É•K—v‚ÈOBJ‚ð•\Ž¦‚·‚é*/
+	/*ã‚¤ãƒ™ãƒ³ãƒˆã«å¿…è¦ãªOBJã‚’è¡¨ç¤ºã™ã‚‹*/
 	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_DOCTOR,	t07_event03
 	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE1,		t07_event05
 	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE2,		t07_event06
@@ -63,11 +63,11 @@ ev_t07_flag_change:
 
 	_END
 
-/*ƒCƒxƒ“ƒg”­¶‚¹‚¸*/
+/*ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿã›ãš*/
 ev_t07_event_not:
 	_END
 
-/*ƒCƒxƒ“ƒg‚É“oê‚·‚él‚ð•\Ž¦*/
+/*ã‚¤ãƒ™ãƒ³ãƒˆã«ç™»å ´ã™ã‚‹äººã‚’è¡¨ç¤º*/
 t07_event03:
 	_FLAG_RESET		FV_VILLA_OUT_DOCTOR
 	_RET
@@ -90,26 +90,26 @@ t07_event10:
 
 
 /********************************************************************/
-/*						‚¨Ÿ­—ŽŽo‚³‚ñ								*/
+/*						ãŠæ´’è½å§‰ã•ã‚“								*/
 /********************************************************************/
 ev_t07_woman2a:
 	_EASY_OBJ_MSG	msg_t07_woman2a_01
 	_END
 
 /********************************************************************/
-/*						‚¨Ÿ­—ŽŽo‚³‚ñ								*/
+/*						ãŠæ´’è½å§‰ã•ã‚“								*/
 /********************************************************************/
 ev_t07_woman2b:
 	_EASY_OBJ_MSG	msg_t07_woman2b_01
 	_END
 
 /********************************************************************/
-/*						ƒgƒŒ[ƒi[Žo‚³‚ñ							*/
+/*						ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å§‰ã•ã‚“							*/
 /********************************************************************/
 ev_t07_woman3:
 	_TALK_OBJ_START
 
-	/*‰ïˆõ‚É‚È‚Á‚Ä‚¢‚é‚©‚ÅƒƒbƒZ[ƒW•ªŠò*/
+	/*ä¼šå“¡ã«ãªã£ã¦ã„ã‚‹ã‹ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²*/
 	_IF_FLAGOFF_CALL	FE_T07R0101_MEMBER,ev_t07_woman3_off
 	_IF_FLAGON_CALL		FE_T07R0101_MEMBER,ev_t07_woman3_on
 
@@ -128,28 +128,28 @@ ev_t07_woman3_on:
 
 
 /********************************************************************/
-/*							Ši“¬‰Æ									*/
+/*							æ ¼é—˜å®¶									*/
 /********************************************************************/
 ev_t07_fighter:
 	_EASY_OBJ_MSG	msg_t07_fighter_01
 	_END
 
 /********************************************************************/
-/*							ƒ^ƒEƒ“ƒ}ƒbƒv							*/
+/*							ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—							*/
 /********************************************************************/
 ev_t07_sign1:
 	_EASY_BOARD_MSG	msg_t07_sign1_01,BOARD_TYPE_TOWN,0
 	_END
 
 /********************************************************************/
-/*							Ž{ÝŠÅ”Â								*/
+/*							æ–½è¨­çœ‹æ¿								*/
 /********************************************************************/
 ev_t07_sign2:
 	_EASY_BOARD_MSG	msg_t07_sign2_01,BOARD_TYPE_POST,0
 	_END
 
 /********************************************************************/
-/*							ƒXƒCƒ}[								*/
+/*							ã‚¹ã‚¤ãƒžãƒ¼								*/
 /********************************************************************/
 ev_t07_swimmerm_1:
 	_EASY_OBJ_MSG	msg_t07_swimmerm_01
@@ -157,12 +157,12 @@ ev_t07_swimmerm_1:
 
 
 /********************************************************************/
-/*							•Ê‘‘ŠÇ—l(POS)							*/
+/*							åˆ¥è˜ç®¡ç†äºº(POS)							*/
 /********************************************************************/
 pos_t07_keeper:
 	_EVENT_START
 
-	/*‹ß‚Ã‚­*/
+	/*è¿‘ã¥ã*/
 	_PLAYER_POS_GET SCWK_TEMP0,SCWK_TEMP1
 	_IFVAL_CALL		SCWK_TEMP1,EQ,472,ev_t07_pos11_anm
 	_IFVAL_CALL		SCWK_TEMP1,EQ,473,ev_t07_pos12_anm
@@ -172,13 +172,13 @@ pos_t07_keeper:
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,t07_no_keeper_01
 
-	/*ƒgƒsƒbƒN¶¬F•Ê‘‘w“ü*/
+	/*ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šåˆ¥è˜è³¼å…¥*/
 	_TV_ENTRY_WATCH_VILLA
 
 	_TALK_KEYWAIT	msg_t07_keeper_02
 	_TALK_CLOSE
 
-	/*•Ê‘‘‚Ì‘O‚Ü‚Å—U“±*/
+	/*åˆ¥è˜ã®å‰ã¾ã§èª˜å°Ž*/
 	//_PLAYER_POS_GET SCWK_TEMP0,SCWK_TEMP1
 	_IFVAL_CALL		SCWK_TEMP1,EQ,472,ev_t07_pos1_anm
 	_IFVAL_CALL		SCWK_TEMP1,EQ,473,ev_t07_pos2_anm
@@ -187,31 +187,31 @@ pos_t07_keeper:
 	_TALK_KEYWAIT	msg_t07_keeper_04
 	_TALK_CLOSE
 
-	/*ã‚ðŒü‚­*/
+	/*ä¸Šã‚’å‘ã*/
 	_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_100
 	_OBJ_ANIME_WAIT
 
-	//ƒhƒAƒAƒjƒ‚ðƒZƒbƒgƒAƒbƒv
+	//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	_SET_UP_DOOR_ANIME	25,14,22,21,77
 
-	//ƒhƒAŠJ‚¯‚é
+	//ãƒ‰ã‚¢é–‹ã‘ã‚‹
 	_SEQ_OPEN_DOOR	77
 
-	//ƒAƒjƒI—¹‘Ò‚¿
+	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	_WAIT_3D_ANIME	77
 
-	/*ŠÇ—l@‰Æ‚Ì’†‚Ö*/
+	/*ç®¡ç†äººã€€å®¶ã®ä¸­ã¸*/
 	_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_10
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07_player_10
 	_OBJ_ANIME_WAIT
 
-	//ƒhƒA•Â‚ß‚é
+	//ãƒ‰ã‚¢é–‰ã‚ã‚‹
 	_SEQ_CLOSE_DOOR	77
 
-	//ƒAƒjƒI—¹‘Ò‚¿
+	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	_WAIT_3D_ANIME	77
 
-	//ƒhƒAƒAƒjƒ‰ð•ú
+	//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡è§£æ”¾
 	_FREE_3D_ANIME	77
 	_OBJ_DEL		T07_KEEPER
 
@@ -223,7 +223,7 @@ pos_t07_keeper:
 	//_EVENT_END
 	_END
 
-/*‹ß‚Ã‚­*/
+/*è¿‘ã¥ã*/
 ev_t07_pos11_anm:
 	_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_11
 	_OBJ_ANIME_WAIT
@@ -257,12 +257,12 @@ ev_t07_pos3_anm:
 	_OBJ_ANIME_WAIT
 	_RET
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 t07_no_keeper_01:
 	_TALKMSG		msg_t07_keeper_03
 	_TALK_CLOSE
 
-	/*‹ß‚Ã‚­*/
+	/*è¿‘ã¥ã*/
 	_PLAYER_POS_GET SCWK_TEMP0,SCWK_TEMP1
 	_IFVAL_CALL		SCWK_TEMP1,EQ,472,ev_t07_pos21_anm
 	_IFVAL_CALL		SCWK_TEMP1,EQ,473,ev_t07_pos22_anm
@@ -271,7 +271,7 @@ t07_no_keeper_01:
 	_EVENT_END
 	_END
 
-/*Œ³‚ÌˆÊ’u‚Ö*/
+/*å…ƒã®ä½ç½®ã¸*/
 ev_t07_pos21_anm:
 	_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_21
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07_player_20
@@ -292,7 +292,7 @@ ev_t07_pos23_anm:
 
 
 //--------------------------------------------------------------------
-//ŠÇ—l@	‹ß‚Ã‚­
+//ç®¡ç†äººã€€	è¿‘ã¥ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_t07_keeper_11
 	_ANIME_DATA	AC_WALK_U_8F,1
@@ -305,7 +305,7 @@ _ANIME_LABEL anm_t07_keeper_13
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŠÇ—l@	Œ³‚ÌˆÊ’u‚Ö
+//ç®¡ç†äººã€€	å…ƒã®ä½ç½®ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_t07_keeper_21
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -318,7 +318,7 @@ _ANIME_LABEL anm_t07_keeper_23
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŠÇ—l@•Ê‘‘‘O‚Ü‚ÅˆÚ“®
+//ç®¡ç†äººã€€åˆ¥è˜å‰ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_t07_keeper_01
 	_ANIME_DATA	AC_WALK_R_8F,6
@@ -339,14 +339,14 @@ _ANIME_LABEL anm_t07_keeper_03
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŠÇ—l@ã‚ðŒü‚­
+//ç®¡ç†äººã€€ä¸Šã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_t07_keeper_100
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŠÇ—l@‰Æ‚É“ü‚é
+//ç®¡ç†äººã€€å®¶ã«å…¥ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_t07_keeper_10
 	_ANIME_DATA	AC_WALK_U_8F,1
@@ -354,7 +354,7 @@ _ANIME_LABEL anm_t07_keeper_10
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö@•Ê‘‘‘O‚Ü‚ÅˆÚ“®
+//ä¸»äººå…¬ã€€åˆ¥è˜å‰ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_t07_player_01
 	_ANIME_DATA	AC_WALK_R_8F,7
@@ -372,7 +372,7 @@ _ANIME_LABEL anm_t07_player_03
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	‰Æ‚É“ü‚é
+//ä¸»äººå…¬	å®¶ã«å…¥ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_t07_player_10
 	_ANIME_DATA	AC_WALK_U_8F,2
@@ -380,7 +380,7 @@ _ANIME_LABEL anm_t07_player_10
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	”ƒ‚¦‚È‚¢‚Ì‚Å–ß‚é
+//ä¸»äººå…¬	è²·ãˆãªã„ã®ã§æˆ»ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_t07_player_20
 	_ANIME_DATA	AC_WALK_L_8F,1
@@ -388,7 +388,7 @@ _ANIME_LABEL anm_t07_player_20
 
 
 /********************************************************************/
-/*							ƒiƒiƒJƒ}ƒh”ŽŽm							*/
+/*							ãƒŠãƒŠã‚«ãƒžãƒ‰åšå£«							*/
 /********************************************************************/
 ev_t07_doctor:
 	_TALK_OBJ_START
@@ -409,7 +409,7 @@ ev_t07_doctor:
 	//_TALK_OBJ_END
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 t07_no_doctor_01:
 	_TALKMSG		msg_t07_doctor_03
 	_JUMP			ev_t07_common_obj_end
@@ -423,7 +423,7 @@ ev_t07_common_obj_end:
 
 
 /********************************************************************/
-/*							ƒqƒ‡ƒEƒ^								*/
+/*							ãƒ’ãƒ§ã‚¦ã‚¿								*/
 /********************************************************************/
 ev_t07_leader1:
 	_TALK_OBJ_START
@@ -444,7 +444,7 @@ ev_t07_leader1:
 	//_TALK_OBJ_END
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 t07_no_leader1_01:
 	_TALKMSG		msg_t07_leader1_03
 	_JUMP			ev_t07_common_obj_end
@@ -452,7 +452,7 @@ t07_no_leader1_01:
 
 
 /********************************************************************/
-/*								ƒiƒ^ƒl								*/
+/*								ãƒŠã‚¿ãƒ								*/
 /********************************************************************/
 ev_t07_leader2:
 	_TALK_OBJ_START
@@ -473,7 +473,7 @@ ev_t07_leader2:
 	//_TALK_OBJ_END
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 t07_no_leader2_01:
 	_TALKMSG		msg_t07_leader2_03
 	_JUMP			ev_t07_common_obj_end
@@ -481,7 +481,7 @@ t07_no_leader2_01:
 
 
 /********************************************************************/
-/*								ƒXƒ‚ƒ‚								*/
+/*								ã‚¹ãƒ¢ãƒ¢								*/
 /********************************************************************/
 ev_t07_leader4:
 	_TALK_OBJ_START
@@ -502,7 +502,7 @@ ev_t07_leader4:
 	//_TALK_OBJ_END
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 t07_no_leader4_01:
 	_TALKMSG		msg_t07_leader4_03
 	_JUMP			ev_t07_common_obj_end
@@ -510,7 +510,7 @@ t07_no_leader4_01:
 
 
 /********************************************************************/
-/*								ƒgƒEƒKƒ“							*/
+/*								ãƒˆã‚¦ã‚¬ãƒ³							*/
 /********************************************************************/
 ev_t07_leader6:
 	_TALK_OBJ_START
@@ -531,14 +531,14 @@ ev_t07_leader6:
 	//_TALK_OBJ_END
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 t07_no_leader6_01:
 	_TALKMSG		msg_t07_leader6__03
 	_JUMP			ev_t07_common_obj_end
 	_END
 
 /********************************************************************/
-/*							Ž{ÝŠÅ”Â								*/
+/*							æ–½è¨­çœ‹æ¿								*/
 /********************************************************************/
 ev_t07_sign3:
 	_EASY_BOARD_MSG	msg_t07_sign3_01,BOARD_TYPE_POST,0

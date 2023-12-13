@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	fieldobj.h
- * @brief	ƒtƒB[ƒ‹ƒhƒIƒuƒWƒFƒNƒg
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  * @author	kagaya
  * @data	05.07.13
  */
@@ -24,7 +24,7 @@
 //----
 #ifdef PM_DEBUG
 //----
-//#define DEBUG_ALIES			//’è‹`‚ÅƒGƒCƒŠƒAƒXƒeƒXƒg
+//#define DEBUG_ALIES			//å®šç¾©ã§ã‚¨ã‚¤ãƒªã‚¢ã‚¹ãƒ†ã‚¹ãƒˆ
 //----
 #endif	//PM_DEBUG
 //----
@@ -35,56 +35,56 @@
 //--------------------------------------------------------------
 //	fx
 //--------------------------------------------------------------
-#define NUM_FX32(a)	(FX32_ONE*(a))							///<®”->FX32Œ^‚É
-#define FX32_NUM(a)	((a)/FX32_ONE)							///<FX32->®”‚É
-#define NUM_FX16(a)	(FX16_ONE*(a))							///<®”->FX16Œ^‚É
-#define FX16_NUM(a)	((a)/FX16_ONE)							///<FX16->®”‚É
+#define NUM_FX32(a)	(FX32_ONE*(a))							///<æ•´æ•°->FX32å‹ã«
+#define FX32_NUM(a)	((a)/FX32_ONE)							///<FX32->æ•´æ•°ã«
+#define NUM_FX16(a)	(FX16_ONE*(a))							///<æ•´æ•°->FX16å‹ã«
+#define FX16_NUM(a)	((a)/FX16_ONE)							///<FX16->æ•´æ•°ã«
 
 //--------------------------------------------------------------
-//	ƒOƒŠƒbƒh
+//	ã‚°ãƒªãƒƒãƒ‰
 //--------------------------------------------------------------
-#define GRID_ONE	(1)										///<1ƒOƒŠƒbƒh
-#define GRID		(16)									///<1ƒOƒŠƒbƒh’PˆÊBÀÀ•W16
-#define GRID_HALF	(GRID>>1)								///<1/2ƒOƒŠƒbƒh
-#define GRID_SHIFT	(4)									///<ƒOƒŠƒbƒhÀÀ•W•ÏŠ·‚É•K—v‚ÈƒVƒtƒg”
-#define GRID_SIZE(a) ((a)<<GRID_SHIFT)						///<ƒOƒŠƒbƒhÀƒTƒCƒY•ÏŠ·
-#define SIZE_GRID(a) ((a)>>GRID_SHIFT)						///<ÀƒTƒCƒYƒOƒŠƒbƒh•ÏŠ·
-#define GRID_SIZE_FX32(a) (GRID_SIZE(a)*FX32_ONE)			///<ƒOƒŠƒbƒhÀƒTƒCƒYFX32•ÏŠ·
-#define SIZE_GRID_FX32(a) (SIZE_GRID(a)/FX32_ONE)			///<ÀƒTƒCƒYƒOƒŠƒbƒhFX32•ÏŠ·
-#define GRID_FX32 (GRID*FX32_ONE)							///<1ƒOƒŠƒbƒhÀ”
-#define GRID_HALF_FX32 (GRID_FX32>>1)						///<1/2ƒOƒŠƒbƒhÀ”
+#define GRID_ONE	(1)										///<1ã‚°ãƒªãƒƒãƒ‰
+#define GRID		(16)									///<1ã‚°ãƒªãƒƒãƒ‰å˜ä½ã€‚å®Ÿåº§æ¨™16
+#define GRID_HALF	(GRID>>1)								///<1/2ã‚°ãƒªãƒƒãƒ‰
+#define GRID_SHIFT	(4)									///<ã‚°ãƒªãƒƒãƒ‰å®Ÿåº§æ¨™å¤‰æ›ã«å¿…è¦ãªã‚·ãƒ•ãƒˆæ•°
+#define GRID_SIZE(a) ((a)<<GRID_SHIFT)						///<ã‚°ãƒªãƒƒãƒ‰å®Ÿã‚µã‚¤ã‚ºå¤‰æ›
+#define SIZE_GRID(a) ((a)>>GRID_SHIFT)						///<å®Ÿã‚µã‚¤ã‚ºã‚°ãƒªãƒƒãƒ‰å¤‰æ›
+#define GRID_SIZE_FX32(a) (GRID_SIZE(a)*FX32_ONE)			///<ã‚°ãƒªãƒƒãƒ‰å®Ÿã‚µã‚¤ã‚ºFX32å¤‰æ›
+#define SIZE_GRID_FX32(a) (SIZE_GRID(a)/FX32_ONE)			///<å®Ÿã‚µã‚¤ã‚ºã‚°ãƒªãƒƒãƒ‰FX32å¤‰æ›
+#define GRID_FX32 (GRID*FX32_ONE)							///<1ã‚°ãƒªãƒƒãƒ‰å®Ÿæ•°
+#define GRID_HALF_FX32 (GRID_FX32>>1)						///<1/2ã‚°ãƒªãƒƒãƒ‰å®Ÿæ•°
 
 //--------------------------------------------------------------
-//	‚‚³ƒOƒŠƒbƒh
+//	é«˜ã•ã‚°ãƒªãƒƒãƒ‰
 //--------------------------------------------------------------
-#define H_GRID_ONE	(1)										///<1ƒOƒŠƒbƒh
-#define H_GRID		(8)										///<1ƒOƒŠƒbƒh’PˆÊBÀÀ•W8
+#define H_GRID_ONE	(1)										///<1ã‚°ãƒªãƒƒãƒ‰
+#define H_GRID		(8)										///<1ã‚°ãƒªãƒƒãƒ‰å˜ä½ã€‚å®Ÿåº§æ¨™8
 #define H_GRID_2	(H_GRID*2)
 
-#define H_GRID_HALF	(H_GRID>>1)								///<1/2ƒOƒŠƒbƒh
-#define H_GRID_SHIFT	(3)								///<ƒOƒŠƒbƒhÀÀ•W•ÏŠ·‚É•K—v‚ÈƒVƒtƒg”
-#define H_GRID_SIZE(a) ((a)<<H_GRID_SHIFT)					///<ƒOƒŠƒbƒhÀƒTƒCƒY•ÏŠ·
-#define SIZE_H_GRID(a) ((a)>>H_GRID_SHIFT)					///<ÀƒTƒCƒYƒOƒŠƒbƒh•ÏŠ·
-#define H_GRID_SIZE_FX32(a) (H_GRID_SIZE(a)*FX32_ONE)		///<ƒOƒŠƒbƒhÀƒTƒCƒYFX32•ÏŠ·
-#define SIZE_H_GRID_FX32(a) (SIZE_H_GRID(a)/FX32_ONE)		///<ÀƒTƒCƒYƒOƒŠƒbƒhFX32•ÏŠ·
-#define H_GRID_FX32 (H_GRID*FX32_ONE)						///<1ƒOƒŠƒbƒhÀ”
+#define H_GRID_HALF	(H_GRID>>1)								///<1/2ã‚°ãƒªãƒƒãƒ‰
+#define H_GRID_SHIFT	(3)								///<ã‚°ãƒªãƒƒãƒ‰å®Ÿåº§æ¨™å¤‰æ›ã«å¿…è¦ãªã‚·ãƒ•ãƒˆæ•°
+#define H_GRID_SIZE(a) ((a)<<H_GRID_SHIFT)					///<ã‚°ãƒªãƒƒãƒ‰å®Ÿã‚µã‚¤ã‚ºå¤‰æ›
+#define SIZE_H_GRID(a) ((a)>>H_GRID_SHIFT)					///<å®Ÿã‚µã‚¤ã‚ºã‚°ãƒªãƒƒãƒ‰å¤‰æ›
+#define H_GRID_SIZE_FX32(a) (H_GRID_SIZE(a)*FX32_ONE)		///<ã‚°ãƒªãƒƒãƒ‰å®Ÿã‚µã‚¤ã‚ºFX32å¤‰æ›
+#define SIZE_H_GRID_FX32(a) (SIZE_H_GRID(a)/FX32_ONE)		///<å®Ÿã‚µã‚¤ã‚ºã‚°ãƒªãƒƒãƒ‰FX32å¤‰æ›
+#define H_GRID_FX32 (H_GRID*FX32_ONE)						///<1ã‚°ãƒªãƒƒãƒ‰å®Ÿæ•°
 
-#define H_GRID_FELLOW_SIZE (H_GRID_ONE*2)			///<OBJ“¯m‚Ì“–‚½‚è”»’è@‚‚³ƒqƒbƒgƒTƒCƒY
-#define H_GRID_G_GRID(a) ((a)/2) ///<‚‚³ƒOƒŠƒbƒh->’n–ÊƒOƒŠƒbƒhƒTƒCƒY‚É
-#define G_GRID_H_GRID(a) ((a)*2) ///<’n–ÊƒOƒŠƒbƒh->‚‚³ƒOƒŠƒbƒhƒTƒCƒY‚É
-
-//--------------------------------------------------------------
-//	ˆÚ“®§ŒÀ
-//--------------------------------------------------------------
-//#define	MOVE_LIMIT_NOT (0xffff)				///<ˆÚ“®§ŒÀ–³‚µ->ƒZ[ƒuƒf[ƒ^s8‚Ìˆ×A•ÏX
-#define	MOVE_LIMIT_NOT (-1)								///<ˆÚ“®§ŒÀ–³‚µ
+#define H_GRID_FELLOW_SIZE (H_GRID_ONE*2)			///<OBJåŒå£«ã®å½“ãŸã‚Šåˆ¤å®šã€€é«˜ã•ãƒ’ãƒƒãƒˆã‚µã‚¤ã‚º
+#define H_GRID_G_GRID(a) ((a)/2) ///<é«˜ã•ã‚°ãƒªãƒƒãƒ‰->åœ°é¢ã‚°ãƒªãƒƒãƒ‰ã‚µã‚¤ã‚ºã«
+#define G_GRID_H_GRID(a) ((a)*2) ///<åœ°é¢ã‚°ãƒªãƒƒãƒ‰->é«˜ã•ã‚°ãƒªãƒƒãƒ‰ã‚µã‚¤ã‚ºã«
 
 //--------------------------------------------------------------
-//	‘¬“x
+//	ç§»å‹•åˆ¶é™
 //--------------------------------------------------------------
-#define FRAME_1	(1)											///<1ƒtƒŒ[ƒ€
-#define FRAME_1_SYNC (2)									///<1ƒtƒŒ[ƒ€‚ÌVƒVƒ“ƒN”
-#define GRID_FRAME_1_FX32 (FX32_ONE/FRAME_1_SYNC)			///<ƒOƒŠƒbƒh1ƒtƒŒ[ƒ€ˆÚ“®—Ê
+//#define	MOVE_LIMIT_NOT (0xffff)				///<ç§»å‹•åˆ¶é™ç„¡ã—->ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿s8ã®ç‚ºã€å¤‰æ›´
+#define	MOVE_LIMIT_NOT (-1)								///<ç§»å‹•åˆ¶é™ç„¡ã—
+
+//--------------------------------------------------------------
+//	é€Ÿåº¦
+//--------------------------------------------------------------
+#define FRAME_1	(1)											///<1ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define FRAME_1_SYNC (2)									///<1ãƒ•ãƒ¬ãƒ¼ãƒ ã®Vã‚·ãƒ³ã‚¯æ•°
+#define GRID_FRAME_1_FX32 (FX32_ONE/FRAME_1_SYNC)			///<ã‚°ãƒªãƒƒãƒ‰1ãƒ•ãƒ¬ãƒ¼ãƒ ç§»å‹•é‡
 
 #define GRID_FRAME_32 (32)
 #define GRID_FRAME_16 (16)
@@ -103,72 +103,72 @@
 #define GRID_VALUE_SPEED_FRAME(g,f) ((GRID_FX32*g)/f)
 
 //--------------------------------------------------------------
-//	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ 
 //--------------------------------------------------------------
-#define BLACTANM_FRAME_1 (FX32_ONE)							///<1ƒtƒŒ[ƒ€‘¬“x
-#define BLACTANM_FRAME_2 (BLACTANM_FRAME_1 * 2)				///<2ƒtƒŒ[ƒ€‘¬“x
-#define BLACTANM_FRAME_3 (BLACTANM_FRAME_1 * 3)				///<2ƒtƒŒ[ƒ€‘¬“x
-#define BLACTANM_FRAME_4 (BLACTANM_FRAME_1 * 4)				///<4ƒtƒŒ[ƒ€‘¬“x
-#define BLACTANM_FRAME_8 (BLACTANM_FRAME_1 * 8)				///<8ƒtƒŒ[ƒ€‘¬“x
+#define BLACTANM_FRAME_1 (FX32_ONE)							///<1ãƒ•ãƒ¬ãƒ¼ãƒ é€Ÿåº¦
+#define BLACTANM_FRAME_2 (BLACTANM_FRAME_1 * 2)				///<2ãƒ•ãƒ¬ãƒ¼ãƒ é€Ÿåº¦
+#define BLACTANM_FRAME_3 (BLACTANM_FRAME_1 * 3)				///<2ãƒ•ãƒ¬ãƒ¼ãƒ é€Ÿåº¦
+#define BLACTANM_FRAME_4 (BLACTANM_FRAME_1 * 4)				///<4ãƒ•ãƒ¬ãƒ¼ãƒ é€Ÿåº¦
+#define BLACTANM_FRAME_8 (BLACTANM_FRAME_1 * 8)				///<8ãƒ•ãƒ¬ãƒ¼ãƒ é€Ÿåº¦
 
-#define BLACTANM_FRAME_05 (BLACTANM_FRAME_1/2)				///<1/2ƒtƒŒ[ƒ€‘¬“x
+#define BLACTANM_FRAME_05 (BLACTANM_FRAME_1/2)				///<1/2ãƒ•ãƒ¬ãƒ¼ãƒ é€Ÿåº¦
 
-#define BLACTANM_STEP_FRAME (8)								///<ˆê•àˆÚ“®ƒAƒjƒ‚ÌƒtƒŒ[ƒ€”
-#define BLACTANM_STEP_DASH_FRAME (4)						///<ƒ_ƒbƒVƒ…ˆê•àˆÚ“®ƒAƒjƒƒtƒŒ[ƒ€”
-
-//--------------------------------------------------------------
-//	À•W•â®
-//--------------------------------------------------------------
-#define FLDOBJ_VEC_X_GRID_OFFS_FX32 (GRID_HALF_FX32)		///<X•ûŒüƒOƒŠƒbƒh•â®
-#define FLDOBJ_VEC_Y_GRID_OFFS_FX32 (0)						///<Y•ûŒüƒOƒŠƒbƒh•â®
-#define FLDOBJ_VEC_Z_GRID_OFFS_FX32 (GRID_HALF_FX32)		///<Z•ûŒüƒOƒŠƒbƒh•â®
+#define BLACTANM_STEP_FRAME (8)								///<ä¸€æ­©ç§»å‹•ã‚¢ãƒ‹ãƒ¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+#define BLACTANM_STEP_DASH_FRAME (4)						///<ãƒ€ãƒƒã‚·ãƒ¥ä¸€æ­©ç§»å‹•ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 
 //--------------------------------------------------------------
-//	•\¦À•W•â®
+//	åº§æ¨™è£œæ•´
 //--------------------------------------------------------------
-#define FLDOBJ_BLACT_X_GROUND_OFFS_FX32 (0)					///<X•ûŒü’n–Ê•â®
-#define FLDOBJ_BLACT_Y_GROUND_OFFS_FX32 (0)					///<Y•ûŒü’n–Ê•â®
-#define FLDOBJ_BLACT_Z_GROUND_OFFS_FX32 (FX32_ONE*6)		///<Z•ûŒü’n–Ê•â®
+#define FLDOBJ_VEC_X_GRID_OFFS_FX32 (GRID_HALF_FX32)		///<Xæ–¹å‘ã‚°ãƒªãƒƒãƒ‰è£œæ•´
+#define FLDOBJ_VEC_Y_GRID_OFFS_FX32 (0)						///<Yæ–¹å‘ã‚°ãƒªãƒƒãƒ‰è£œæ•´
+#define FLDOBJ_VEC_Z_GRID_OFFS_FX32 (GRID_HALF_FX32)		///<Zæ–¹å‘ã‚°ãƒªãƒƒãƒ‰è£œæ•´
 
-//Y•ûŒü’n–Ê•â®<<20050901 del saito
+//--------------------------------------------------------------
+//	è¡¨ç¤ºåº§æ¨™è£œæ•´
+//--------------------------------------------------------------
+#define FLDOBJ_BLACT_X_GROUND_OFFS_FX32 (0)					///<Xæ–¹å‘åœ°é¢è£œæ•´
+#define FLDOBJ_BLACT_Y_GROUND_OFFS_FX32 (0)					///<Yæ–¹å‘åœ°é¢è£œæ•´
+#define FLDOBJ_BLACT_Z_GROUND_OFFS_FX32 (FX32_ONE*6)		///<Zæ–¹å‘åœ°é¢è£œæ•´
+
+//Yæ–¹å‘åœ°é¢è£œæ•´<<20050901 del saito
 //#define FLDOBJ_BLACT_Y_GROUND_OFFS_FX32 (FX32_ONE*7)
-//Z•ûŒü’n–Ê•â®<<20050901 del saito
+//Zæ–¹å‘åœ°é¢è£œæ•´<<20050901 del saito
 //#define FLDOBJ_BLACT_Z_GROUND_OFFS_FX32 (-(FX32_ONE*4))
 
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhOBJ•¡”“¯“o˜^FieldOBJ_AddFile()‚Å
-///	1ƒtƒŒ[ƒ€‚É’Ç‰Á‚Å‚«‚éÅ‘å”B
-/// 05.07.29 Œ»ó‚Å‚Í1ƒtƒŒ[ƒ€‚É4‰ñˆÈãƒrƒ‹ƒ{[ƒh‚ğ’Ç‰Á‚·‚é–‚ªo—ˆ‚È‚¢B
-/// 05.08.04 –â‘è‰ğŒˆ...‚©?
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¤‡æ•°åŒæ™‚ç™»éŒ²FieldOBJ_AddFile()ã§
+///	1ãƒ•ãƒ¬ãƒ¼ãƒ ã«è¿½åŠ ã§ãã‚‹æœ€å¤§æ•°ã€‚
+/// 05.07.29 ç¾çŠ¶ã§ã¯1ãƒ•ãƒ¬ãƒ¼ãƒ ã«4å›ä»¥ä¸Šãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚’è¿½åŠ ã™ã‚‹äº‹ãŒå‡ºæ¥ãªã„ã€‚
+/// 05.08.04 å•é¡Œè§£æ±º...ã‹?
 //--------------------------------------------------------------
 //#define FLDOBJ_ADD_1FRAME_MAX (4)
 
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhOBJ@Vƒuƒ‰ƒ“ƒN’†‚ÌƒeƒNƒXƒ`ƒƒ“]‘—Å‘å‰ñ”
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€Vãƒ–ãƒ©ãƒ³ã‚¯ä¸­ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€æœ€å¤§å›æ•°
 //--------------------------------------------------------------
 //#define FLDOBJ_BLACT_VINTR_TEX_LOAD_MAX (6)
 #define FLDOBJ_BLACT_VINTR_TEX_LOAD_MAX (32)
 
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhOBJ@ƒQƒXƒg’Ç‰ÁŠÇ—ˆ—‚ª1ƒtƒŒ[ƒ€’†‚É
-///	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚ğ’Ç‰Á‚Å‚«‚éÅ‘å”
-/// 05.09.16 Œ»ó‚Íˆê‘Ì‚Åˆê”tBˆ—•‰‰×‚ªB
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ã‚²ã‚¹ãƒˆè¿½åŠ ç®¡ç†å‡¦ç†ãŒ1ãƒ•ãƒ¬ãƒ¼ãƒ ä¸­ã«
+///	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’è¿½åŠ ã§ãã‚‹æœ€å¤§æ•°
+/// 05.09.16 ç¾çŠ¶ã¯ä¸€ä½“ã§ä¸€æ¯ã€‚å‡¦ç†è² è·ãŒã€‚
 //--------------------------------------------------------------
 //#define FLDOBJ_GUEST_BLACT_ADD_ONE_FRAME_MAX (1)
 #define FLDOBJ_GUEST_BLACT_ADD_ONE_FRAME_MAX (4)
 
 //--------------------------------------------------------------
-///	ƒŒƒMƒ…ƒ‰[@ƒQƒXƒg¯•Ê
+///	ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã€€ã‚²ã‚¹ãƒˆè­˜åˆ¥
 //--------------------------------------------------------------
 typedef enum
 {
-	REGULAR = 0,											///<ƒŒƒMƒ…ƒ‰[
-	GUEST,													///<ƒQƒXƒg
-	NOT_REGULAR_GUEST,										///<ƒŒƒMƒ…ƒ‰[‚Å‚àƒQƒXƒg‚Å‚à–³‚¢
+	REGULAR = 0,											///<ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼
+	GUEST,													///<ã‚²ã‚¹ãƒˆ
+	NOT_REGULAR_GUEST,										///<ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã§ã‚‚ã‚²ã‚¹ãƒˆã§ã‚‚ç„¡ã„
 }REGULAR_GUEST;
 
 //--------------------------------------------------------------
-///	ƒeƒNƒXƒ`ƒƒ“o˜^¯•Ê
+///	ãƒ†ã‚¯ã‚¹ãƒãƒ£ç™»éŒ²è­˜åˆ¥
 //--------------------------------------------------------------
 typedef enum
 {
@@ -180,100 +180,100 @@ typedef enum
 }TEXREG_TYPE;
 
 //--------------------------------------------------------------
-//	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒŠÇ—”
+//	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç®¡ç†æ•°
 //--------------------------------------------------------------
-#define FLDOBJ_RESM_REG_MAX_MDL (4)							///<ƒŒƒMƒ…ƒ‰[ƒ‚ƒfƒ‹IDŠÇ—”
-#define FLDOBJ_RESM_GST_MAX_MDL (4)							///<ƒQƒXƒgƒ‚ƒfƒ‹IDŠÇ—”
-#define FLDOBJ_RESM_REG_MAX_ANM (4)							///<ƒŒƒMƒ…ƒ‰[ƒAƒjƒIDŠÇ—”
-#define FLDOBJ_RESM_GST_MAX_ANM (4)							///<ƒQƒXƒgƒAƒjƒIDŠÇ—”
-#define FLDOBJ_RESM_REG_MAX_TEX (24)						///<ƒŒƒMƒ…ƒ‰[ƒeƒNƒXƒ`ƒƒIDŠÇ—”
-#define FLDOBJ_RESM_GST_MAX_TEX (8)							///<ƒQƒXƒgƒeƒNƒXƒ`ƒƒIDŠÇ—”
+#define FLDOBJ_RESM_REG_MAX_MDL (4)							///<ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ¢ãƒ‡ãƒ«IDç®¡ç†æ•°
+#define FLDOBJ_RESM_GST_MAX_MDL (4)							///<ã‚²ã‚¹ãƒˆãƒ¢ãƒ‡ãƒ«IDç®¡ç†æ•°
+#define FLDOBJ_RESM_REG_MAX_ANM (4)							///<ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡IDç®¡ç†æ•°
+#define FLDOBJ_RESM_GST_MAX_ANM (4)							///<ã‚²ã‚¹ãƒˆã‚¢ãƒ‹ãƒ¡IDç®¡ç†æ•°
+#define FLDOBJ_RESM_REG_MAX_TEX (24)						///<ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ†ã‚¯ã‚¹ãƒãƒ£IDç®¡ç†æ•°
+#define FLDOBJ_RESM_GST_MAX_TEX (8)							///<ã‚²ã‚¹ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£IDç®¡ç†æ•°
 
-#define FLDOBJ_RESM_MAX_MDL (8)								///<ƒ‚ƒfƒ‹IDŠÇ—Å‘å”
-#define FLDOBJ_RESM_MAX_ANM (8)								///<ƒAƒjƒIDŠÇ—Å‘å”
-#define FLDOBJ_RESM_MAX_TEX (32)							///<ƒeƒNƒXƒ`ƒƒIDŠÇ—Å‘å”
-#define FLDOBJ_FRAME_TRANS_MAX (10)	//1Frame‚É“]‘—‚Å‚«‚éƒf[ƒ^”Å‘å
+#define FLDOBJ_RESM_MAX_MDL (8)								///<ãƒ¢ãƒ‡ãƒ«IDç®¡ç†æœ€å¤§æ•°
+#define FLDOBJ_RESM_MAX_ANM (8)								///<ã‚¢ãƒ‹ãƒ¡IDç®¡ç†æœ€å¤§æ•°
+#define FLDOBJ_RESM_MAX_TEX (32)							///<ãƒ†ã‚¯ã‚¹ãƒãƒ£IDç®¡ç†æœ€å¤§æ•°
+#define FLDOBJ_FRAME_TRANS_MAX (10)	//1Frameã«è»¢é€ã§ãã‚‹ãƒ‡ãƒ¼ã‚¿æ•°æœ€å¤§
 
-#define FLDOBJ_LRES_SIZE_MDL (0x1000)						///<ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^ƒTƒCƒY •W€
-#define FLDOBJ_LRES_SIZE_ANM (0x0080)						///<ƒAƒjƒƒf[ƒ^ƒTƒCƒY@•W€
+#define FLDOBJ_LRES_SIZE_MDL (0x1000)						///<ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º æ¨™æº–
+#define FLDOBJ_LRES_SIZE_ANM (0x0080)						///<ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã€€æ¨™æº–
 #define FLDOBJ_LRES_MAXSIZE_MDL (FLDOBJ_LRES_SIZE_MDL*FLDOBJ_RESM_MAX_MDL)
 #define FLDOBJ_LRES_MAXSIZE_ANM (FLDOBJ_LRES_SIZE_ANM*FLDOBJ_RESM_MAX_ANM)
 
 //--------------------------------------------------------------
-///	ƒŒƒMƒ…ƒ‰[‚Å•K‚¸í’“‚·‚é”
+///	ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ã§å¿…ãšå¸¸é§ã™ã‚‹æ•°
 //--------------------------------------------------------------
 enum
 {
-	FLDOBJ_RESM_REG_ALWAYS_HERO = 0,						///<©‹@
-	FLDOBJ_RESM_REG_ALWAYS_KANBAN,							///<ŠÅ”Â
-	FLDOBJ_RESM_REG_ALWAYS_ETC,								///<‚»‚Ì‘¼
+	FLDOBJ_RESM_REG_ALWAYS_HERO = 0,						///<è‡ªæ©Ÿ
+	FLDOBJ_RESM_REG_ALWAYS_KANBAN,							///<çœ‹æ¿
+	FLDOBJ_RESM_REG_ALWAYS_ETC,								///<ãã®ä»–
 	
-	FLDOBJ_RESM_REG_ALWAYS_NUM,								///<Å‘å
+	FLDOBJ_RESM_REG_ALWAYS_NUM,								///<æœ€å¤§
 };
 
 //--------------------------------------------------------------
-//	FIELD_OBJ_SYS ƒXƒe[ƒ^ƒXƒrƒbƒg
+//	FIELD_OBJ_SYS ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ
 //--------------------------------------------------------------
-#define FLDOBJSYS_STA_BIT_NON				(0)				///<ƒXƒe[ƒ^ƒX–³‚µ
-#define FLDOBJSYS_STA_BIT_DRAW_INIT_COMP	(1<<0)			///<•`‰æ‰Šú‰»Š®—¹
-#define FLDOBJSYS_STA_BIT_MOVE_PROC_STOP	(1<<1)	///<“®ìˆ—’â~ ŒÂX‚Ì“®ìˆ—‚ğs‚í‚È‚¢
-#define FLDOBJSYS_STA_BIT_DRAW_PROC_STOP	(1<<2)	///<•`‰æˆ—’â~ ŒÂX‚Ì•`‰æˆ—‚ğs‚í‚È‚¢
-#define FLDOBJSYS_STA_BIT_SHADOW_JOIN_NOT	(1<<3)			///<‰e‚ğ•t‚¯‚È‚¢
+#define FLDOBJSYS_STA_BIT_NON				(0)				///<ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç„¡ã—
+#define FLDOBJSYS_STA_BIT_DRAW_INIT_COMP	(1<<0)			///<æç”»åˆæœŸåŒ–å®Œäº†
+#define FLDOBJSYS_STA_BIT_MOVE_PROC_STOP	(1<<1)	///<å‹•ä½œå‡¦ç†åœæ­¢ å€‹ã€…ã®å‹•ä½œå‡¦ç†ã‚’è¡Œã‚ãªã„
+#define FLDOBJSYS_STA_BIT_DRAW_PROC_STOP	(1<<2)	///<æç”»å‡¦ç†åœæ­¢ å€‹ã€…ã®æç”»å‡¦ç†ã‚’è¡Œã‚ãªã„
+#define FLDOBJSYS_STA_BIT_SHADOW_JOIN_NOT	(1<<3)			///<å½±ã‚’ä»˜ã‘ãªã„
 
 //--------------------------------------------------------------
-//	FIELD_OBJ ƒXƒe[ƒ^ƒXƒrƒbƒg
+//	FIELD_OBJ ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ“ãƒƒãƒˆ
 //--------------------------------------------------------------
-#define FLDOBJ_STA_BIT_NON					(0)				///<ƒXƒe[ƒ^ƒX–³‚µ
-#define FLDOBJ_STA_BIT_USE					(1<<0)			///<g—p’†‚ğ•\‚·
-#define FLDOBJ_STA_BIT_MOVE					(1<<1)			///<ˆÚ“®’†‚ğ•\‚·
-#define FLDOBJ_STA_BIT_MOVE_START			(1<<2)			///<ˆÚ“®ŠJn‚ğ•\‚·
-#define FLDOBJ_STA_BIT_MOVE_END				(1<<3)			///<ˆÚ“®I—¹‚ğ•\‚·
-#define FLDOBJ_STA_BIT_ACMD					(1<<4)			///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh’†
-#define FLDOBJ_STA_BIT_ACMD_END				(1<<5)			///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhI—¹
-#define FLDOBJ_STA_BIT_PAUSE_MOVE			(1<<6)			///<ˆÚ“®ˆê’â~
-#define FLDOBJ_STA_BIT_PAUSE_DIR			(1<<7)			///<•\¦•ûŒüˆê’â~
-#define FLDOBJ_STA_BIT_PAUSE_ANM			(1<<8)			///<ƒAƒjƒˆê’â~
-#define FLDOBJ_STA_BIT_VANISH				(1<<9)			///<”ñ•\¦
-#define FLDOBJ_STA_BIT_ZONE_DEL_NOT			(1<<10)			///<ƒ][ƒ“Ø‚è‘Ö‚¦‚É‚æ‚éíœ‹Ö~
-#define FLDOBJ_STA_BIT_ATTR_GET_ERROR		(1<<11)			///<ƒAƒgƒŠƒrƒ…[ƒgæ“¾¸”s
-#define FLDOBJ_STA_BIT_HEIGHT_GET_ERROR		(1<<12)			///<‚‚³æ“¾¸”s
-#define FLDOBJ_STA_BIT_HEIGHT_VANISH_OFF	(1<<13)			///<‚‚³æ“¾•s‰Â‚Ì”ñ•\¦‚ğOFF
-#define FLDOBJ_STA_BIT_DRAW_PROC_INIT_COMP	(1<<14)			///<•`‰æ‰Šú‰»Š®—¹
-#define FLDOBJ_STA_BIT_SHADOW_SET			(1<<15)			///<‰eƒZƒbƒgÏ‚İ
-#define FLDOBJ_STA_BIT_JUMP_START			(1<<16)			///<ƒWƒƒƒ“ƒvŠJn
-#define FLDOBJ_STA_BIT_JUMP_END				(1<<17)			///<ƒWƒƒƒ“ƒvI—¹
-#define FLDOBJ_STA_BIT_FELLOW_HIT_NON		(1<<18)			///<OBJ“¯m‚Ì“–‚½‚è”»’è–³Œø
-#define FLDOBJ_STA_BIT_TALK_OFF				(1<<19)			///<˜b‚µ‚©‚¯–³Œø
-#define FLDOBJ_STA_BIT_SHADOW_VANISH		(1<<20)			///<‰e•\¦A”ñ•\¦
-#define FLDOBJ_STA_BIT_DRAW_PUSH			(1<<21)			///<•`‰æˆ—‚ğ‘Ş”ğ
-#define FLDOBJ_STA_BIT_BLACT_ADD_PRAC		(1<<22)			///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰Á’†
-#define FLDOBJ_STA_BIT_HEIGHT_GET_OFF		(1<<23)			///<‚‚³æ“¾‚ğ‚µ‚È‚¢
-#define FLDOBJ_STA_BIT_REFLECT_SET			(1<<24)			///<‰f‚è‚İ‚ğƒZƒbƒg‚µ‚½
-#define FLDOBJ_STA_BIT_ALIES				(1<<25)			///<ƒGƒCƒŠƒAƒX‚Å‚ ‚é
-#define FLDOBJ_STA_BIT_EFFSET_SHOAL			(1<<26)			///<ó£ƒGƒtƒFƒNƒg‚ğƒZƒbƒg
-#define FLDOBJ_STA_BIT_ATTR_OFFS_OFF		(1<<27)			///<ƒAƒgƒŠƒrƒ…[ƒgƒIƒtƒZƒbƒgİ’èOFF
-#define FLDOBJ_STA_BIT_BRIDGE				(1<<28)			///<‹´ˆÚ“®’†‚Å‚ ‚é
-#define FLDOBJ_STA_BIT_HEIGHT_EXPAND		(1<<29)			///<Šg’£‚‚³‚É”½‰‚·‚é
+#define FLDOBJ_STA_BIT_NON					(0)				///<ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç„¡ã—
+#define FLDOBJ_STA_BIT_USE					(1<<0)			///<ä½¿ç”¨ä¸­ã‚’è¡¨ã™
+#define FLDOBJ_STA_BIT_MOVE					(1<<1)			///<ç§»å‹•ä¸­ã‚’è¡¨ã™
+#define FLDOBJ_STA_BIT_MOVE_START			(1<<2)			///<ç§»å‹•é–‹å§‹ã‚’è¡¨ã™
+#define FLDOBJ_STA_BIT_MOVE_END				(1<<3)			///<ç§»å‹•çµ‚äº†ã‚’è¡¨ã™
+#define FLDOBJ_STA_BIT_ACMD					(1<<4)			///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ä¸­
+#define FLDOBJ_STA_BIT_ACMD_END				(1<<5)			///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰çµ‚äº†
+#define FLDOBJ_STA_BIT_PAUSE_MOVE			(1<<6)			///<ç§»å‹•ä¸€æ™‚åœæ­¢
+#define FLDOBJ_STA_BIT_PAUSE_DIR			(1<<7)			///<è¡¨ç¤ºæ–¹å‘ä¸€æ™‚åœæ­¢
+#define FLDOBJ_STA_BIT_PAUSE_ANM			(1<<8)			///<ã‚¢ãƒ‹ãƒ¡ä¸€æ™‚åœæ­¢
+#define FLDOBJ_STA_BIT_VANISH				(1<<9)			///<éè¡¨ç¤º
+#define FLDOBJ_STA_BIT_ZONE_DEL_NOT			(1<<10)			///<ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã«ã‚ˆã‚‹å‰Šé™¤ç¦æ­¢
+#define FLDOBJ_STA_BIT_ATTR_GET_ERROR		(1<<11)			///<ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—å¤±æ•—
+#define FLDOBJ_STA_BIT_HEIGHT_GET_ERROR		(1<<12)			///<é«˜ã•å–å¾—å¤±æ•—
+#define FLDOBJ_STA_BIT_HEIGHT_VANISH_OFF	(1<<13)			///<é«˜ã•å–å¾—ä¸å¯æ™‚ã®éè¡¨ç¤ºã‚’OFF
+#define FLDOBJ_STA_BIT_DRAW_PROC_INIT_COMP	(1<<14)			///<æç”»åˆæœŸåŒ–å®Œäº†
+#define FLDOBJ_STA_BIT_SHADOW_SET			(1<<15)			///<å½±ã‚»ãƒƒãƒˆæ¸ˆã¿
+#define FLDOBJ_STA_BIT_JUMP_START			(1<<16)			///<ã‚¸ãƒ£ãƒ³ãƒ—é–‹å§‹
+#define FLDOBJ_STA_BIT_JUMP_END				(1<<17)			///<ã‚¸ãƒ£ãƒ³ãƒ—çµ‚äº†
+#define FLDOBJ_STA_BIT_FELLOW_HIT_NON		(1<<18)			///<OBJåŒå£«ã®å½“ãŸã‚Šåˆ¤å®šç„¡åŠ¹
+#define FLDOBJ_STA_BIT_TALK_OFF				(1<<19)			///<è©±ã—ã‹ã‘ç„¡åŠ¹
+#define FLDOBJ_STA_BIT_SHADOW_VANISH		(1<<20)			///<å½±è¡¨ç¤ºã€éè¡¨ç¤º
+#define FLDOBJ_STA_BIT_DRAW_PUSH			(1<<21)			///<æç”»å‡¦ç†ã‚’é€€é¿
+#define FLDOBJ_STA_BIT_BLACT_ADD_PRAC		(1<<22)			///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ä¸­
+#define FLDOBJ_STA_BIT_HEIGHT_GET_OFF		(1<<23)			///<é«˜ã•å–å¾—ã‚’ã—ãªã„
+#define FLDOBJ_STA_BIT_REFLECT_SET			(1<<24)			///<æ˜ ã‚Šè¾¼ã¿ã‚’ã‚»ãƒƒãƒˆã—ãŸ
+#define FLDOBJ_STA_BIT_ALIES				(1<<25)			///<ã‚¨ã‚¤ãƒªã‚¢ã‚¹ã§ã‚ã‚‹
+#define FLDOBJ_STA_BIT_EFFSET_SHOAL			(1<<26)			///<æµ…ç€¬ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚»ãƒƒãƒˆ
+#define FLDOBJ_STA_BIT_ATTR_OFFS_OFF		(1<<27)			///<ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®šOFF
+#define FLDOBJ_STA_BIT_BRIDGE				(1<<28)			///<æ©‹ç§»å‹•ä¸­ã§ã‚ã‚‹
+#define FLDOBJ_STA_BIT_HEIGHT_EXPAND		(1<<29)			///<æ‹¡å¼µé«˜ã•ã«åå¿œã™ã‚‹
 
 //--------------------------------------------------------------
-///	FIELD_OBJ “®ìƒrƒbƒg
+///	FIELD_OBJ å‹•ä½œãƒ“ãƒƒãƒˆ
 //--------------------------------------------------------------
-#define FLDOBJ_MOVE_BIT_NON					(0)				///<–³‚µ
-#define FLDOBJ_MOVE_BIT_SHADOW_SET			(1<<0)			///<‰e‚ğƒZƒbƒg‚µ‚½
-#define FLDOBJ_MOVE_BIT_GRASS_SET			(1<<1)			///<‘‚ğƒZƒbƒg‚µ‚½
-#define FLDOBJ_MOVE_BIT_ATTR_GET_OFF		(1<<2)			///<ƒAƒgƒŠƒrƒ…[ƒgæ“¾‚ğˆêØs‚í‚È‚¢
+#define FLDOBJ_MOVE_BIT_NON					(0)				///<ç„¡ã—
+#define FLDOBJ_MOVE_BIT_SHADOW_SET			(1<<0)			///<å½±ã‚’ã‚»ãƒƒãƒˆã—ãŸ
+#define FLDOBJ_MOVE_BIT_GRASS_SET			(1<<1)			///<è‰ã‚’ã‚»ãƒƒãƒˆã—ãŸ
+#define FLDOBJ_MOVE_BIT_ATTR_GET_OFF		(1<<2)			///<ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—ã‚’ä¸€åˆ‡è¡Œã‚ãªã„
 
 //--------------------------------------------------------------
-//	ƒqƒbƒgƒ`ƒFƒbƒNƒrƒbƒg
+//	ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ãƒ“ãƒƒãƒˆ
 //--------------------------------------------------------------
-#define FLDOBJ_MOVE_HIT_BIT_NON		(0)						///<ƒqƒbƒg–³‚µ
-#define FLDOBJ_MOVE_HIT_BIT_LIM		(1<<0)					///<ˆÚ“®§ŒÀ‚É‚æ‚éƒqƒbƒg
-#define FLDOBJ_MOVE_HIT_BIT_ATTR	(1<<1)					///<ƒAƒgƒŠƒrƒ…[ƒg‚É‚æ‚éƒqƒbƒg
-#define FLDOBJ_MOVE_HIT_BIT_OBJ		(1<<2)					///<OBJ“¯m‚ÌÕ“Ë
-#define FLDOBJ_MOVE_HIT_BIT_HEIGHT	(1<<3)					///<‚’á·‚É‚æ‚éƒqƒbƒg
+#define FLDOBJ_MOVE_HIT_BIT_NON		(0)						///<ãƒ’ãƒƒãƒˆç„¡ã—
+#define FLDOBJ_MOVE_HIT_BIT_LIM		(1<<0)					///<ç§»å‹•åˆ¶é™ã«ã‚ˆã‚‹ãƒ’ãƒƒãƒˆ
+#define FLDOBJ_MOVE_HIT_BIT_ATTR	(1<<1)					///<ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã«ã‚ˆã‚‹ãƒ’ãƒƒãƒˆ
+#define FLDOBJ_MOVE_HIT_BIT_OBJ		(1<<2)					///<OBJåŒå£«ã®è¡çª
+#define FLDOBJ_MOVE_HIT_BIT_HEIGHT	(1<<3)					///<é«˜ä½å·®ã«ã‚ˆã‚‹ãƒ’ãƒƒãƒˆ
 
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhOBJƒwƒbƒ_[ˆø”¯•Ê
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒ˜ãƒƒãƒ€ãƒ¼å¼•æ•°è­˜åˆ¥
 //--------------------------------------------------------------
 typedef enum
 {
@@ -283,58 +283,58 @@ typedef enum
 }FLDOBJ_H_PARAM;
 
 //--------------------------------------------------------------
-///	•`‰æƒ^ƒCƒv
+///	æç”»ã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 typedef enum
 {
-	FLDOBJ_DRAWTYPE_NON = 0,		///<•`‰æ–³‚µ
-	FLDOBJ_DRAWTYPE_BLACT,			///<ƒrƒ‹ƒ{[ƒh•`‰æ
-	FLDOBJ_DRAWTYPE_MDL,			///<ƒ‚ƒfƒŠƒ“ƒO•`‰æ
+	FLDOBJ_DRAWTYPE_NON = 0,		///<æç”»ç„¡ã—
+	FLDOBJ_DRAWTYPE_BLACT,			///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰æç”»
+	FLDOBJ_DRAWTYPE_MDL,			///<ãƒ¢ãƒ‡ãƒªãƒ³ã‚°æç”»
 }FLDOBJ_DRAWTYPE;
 
 //--------------------------------------------------------------
-///	‰eí—Ş
+///	å½±ç¨®é¡
 //--------------------------------------------------------------
 typedef enum
 {
-	FLDOBJ_SHADOW_NON = 0,			///<‰e–³‚µ
-	FLDOBJ_SHADOW_ON,				///<‰eƒAƒŠ
+	FLDOBJ_SHADOW_NON = 0,			///<å½±ç„¡ã—
+	FLDOBJ_SHADOW_ON,				///<å½±ã‚¢ãƒª
 }FLDOBJ_SHADOWTYPE;
 
 //--------------------------------------------------------------
-///	‘«Õí—Ş
+///	è¶³è·¡ç¨®é¡
 //--------------------------------------------------------------
 typedef enum
 {
-	FLDOBJ_FOOTMARK_NON = 0,		///<‘«Õ–³‚µ
-	FLDOBJ_FOOTMARK_NORMAL,			///<‚Q–{‘«
-	FLDOBJ_FOOTMARK_CYCLE,			///<©“]Ô
+	FLDOBJ_FOOTMARK_NON = 0,		///<è¶³è·¡ç„¡ã—
+	FLDOBJ_FOOTMARK_NORMAL,			///<ï¼’æœ¬è¶³
+	FLDOBJ_FOOTMARK_CYCLE,			///<è‡ªè»¢è»Š
 }FLDOBJ_FOOTMARKTYPE;
 
 //--------------------------------------------------------------
-///	‰f‚è‚±‚İí—Ş
+///	æ˜ ã‚Šã“ã¿ç¨®é¡
 //--------------------------------------------------------------
 typedef enum
 {
-	FLDOBJ_REFLECT_NON = 0,			///<‰f‚è‚±‚İ–³‚µ
-	FLDOBJ_REFLECT_BLACT,			///<ƒrƒ‹ƒ{[ƒh‰f‚è‚±‚İ
+	FLDOBJ_REFLECT_NON = 0,			///<æ˜ ã‚Šã“ã¿ç„¡ã—
+	FLDOBJ_REFLECT_BLACT,			///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰æ˜ ã‚Šã“ã¿
 }FLDOBJ_REFLECTTYPE;
 
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhOBJ“®ìƒvƒ‰ƒCƒIƒŠƒeƒBƒIƒtƒZƒbƒg
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå‹•ä½œãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 enum
 {
-	FLDOBJ_TCBPRI_OFFS_ST = 0,		///<Šî–{
-	FLDOBJ_TCBPRI_OFFS_PAIR = 1,	///<ƒyƒA“®ì
-	FLDOBJ_TCBPRI_OFFS_AFTER,		///<ƒtƒB[ƒ‹ƒhOBJ‚æ‚è‚àŒã
+	FLDOBJ_TCBPRI_OFFS_ST = 0,		///<åŸºæœ¬
+	FLDOBJ_TCBPRI_OFFS_PAIR = 1,	///<ãƒšã‚¢å‹•ä½œ
+	FLDOBJ_TCBPRI_OFFS_AFTER,		///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚ˆã‚Šã‚‚å¾Œ
 };
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-//	Œ^Ä’è‹`
+//	å‹å†å®šç¾©
 //--------------------------------------------------------------
 typedef struct _TAG_FIELD_OBJ_H						FIELD_OBJ_H;
 typedef struct _TAG_FIELD_OBJ_MOVE_PROC_LIST		FIELD_OBJ_MOVE_PROC_LIST;
@@ -372,132 +372,132 @@ typedef struct _TAG_FIELD_OBJ * FIELD_OBJ_PTR;
 typedef struct _TAG_FIELD_OBJ const * CONST_FIELD_OBJ_PTR;
 
 //--------------------------------------------------------------
-///	ŠÖ”’è‹`
+///	é–¢æ•°å®šç¾©
 //--------------------------------------------------------------
-typedef void (*FIELD_OBJ_MOVE_PROC_INIT)( FIELD_OBJ_PTR );		///<“®ì‰Šú‰»ŠÖ”
-typedef void (*FIELD_OBJ_MOVE_PROC)( FIELD_OBJ_PTR );			///<“®ìŠÖ”
-typedef void (*FIELD_OBJ_MOVE_PROC_DEL)( FIELD_OBJ_PTR );		///<“®ìíœŠÖ”
-typedef void (*FIELD_OBJ_MOVE_PROC_RET)( FIELD_OBJ_PTR );		///<“®ì•œ‹AŠÖ”
-typedef void (*FIELD_OBJ_DRAW_PROC_INIT)( FIELD_OBJ_PTR );		///<•`‰æ‰Šú‰»ŠÖ”
-typedef void (*FIELD_OBJ_DRAW_PROC)( FIELD_OBJ_PTR );			///<•`‰æŠÖ”
-typedef void (*FIELD_OBJ_DRAW_PROC_DEL)( FIELD_OBJ_PTR );		///<•`‰æíœŠÖ”
-typedef void (*FIELD_OBJ_DRAW_PROC_PUSH)( FIELD_OBJ_PTR );		///<•`‰æ‘Ş”ğŠÖ”
-typedef void (*FIELD_OBJ_DRAW_PROC_POP)( FIELD_OBJ_PTR );		///<•`‰æ•œ‹AŠÖ”
+typedef void (*FIELD_OBJ_MOVE_PROC_INIT)( FIELD_OBJ_PTR );		///<å‹•ä½œåˆæœŸåŒ–é–¢æ•°
+typedef void (*FIELD_OBJ_MOVE_PROC)( FIELD_OBJ_PTR );			///<å‹•ä½œé–¢æ•°
+typedef void (*FIELD_OBJ_MOVE_PROC_DEL)( FIELD_OBJ_PTR );		///<å‹•ä½œå‰Šé™¤é–¢æ•°
+typedef void (*FIELD_OBJ_MOVE_PROC_RET)( FIELD_OBJ_PTR );		///<å‹•ä½œå¾©å¸°é–¢æ•°
+typedef void (*FIELD_OBJ_DRAW_PROC_INIT)( FIELD_OBJ_PTR );		///<æç”»åˆæœŸåŒ–é–¢æ•°
+typedef void (*FIELD_OBJ_DRAW_PROC)( FIELD_OBJ_PTR );			///<æç”»é–¢æ•°
+typedef void (*FIELD_OBJ_DRAW_PROC_DEL)( FIELD_OBJ_PTR );		///<æç”»å‰Šé™¤é–¢æ•°
+typedef void (*FIELD_OBJ_DRAW_PROC_PUSH)( FIELD_OBJ_PTR );		///<æç”»é€€é¿é–¢æ•°
+typedef void (*FIELD_OBJ_DRAW_PROC_POP)( FIELD_OBJ_PTR );		///<æç”»å¾©å¸°é–¢æ•°
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_MOVE_PROC_LIST\‘¢‘Ì
+///	FIELD_OBJ_MOVE_PROC_LISTæ§‹é€ ä½“
 //--------------------------------------------------------------
 struct _TAG_FIELD_OBJ_MOVE_PROC_LIST
 {
-	int move_code;											///<“®ìƒR[ƒh
-	FIELD_OBJ_MOVE_PROC_INIT init_proc;						///<‰Šú‰»ŠÖ”
-	FIELD_OBJ_MOVE_PROC move_proc;							///<“®ìŠÖ”
-	FIELD_OBJ_MOVE_PROC_DEL delete_proc;					///<íœŠÖ”
-	FIELD_OBJ_MOVE_PROC_RET return_proc;					///<“®ì•œ‹AŠÖ”
+	int move_code;											///<å‹•ä½œã‚³ãƒ¼ãƒ‰
+	FIELD_OBJ_MOVE_PROC_INIT init_proc;						///<åˆæœŸåŒ–é–¢æ•°
+	FIELD_OBJ_MOVE_PROC move_proc;							///<å‹•ä½œé–¢æ•°
+	FIELD_OBJ_MOVE_PROC_DEL delete_proc;					///<å‰Šé™¤é–¢æ•°
+	FIELD_OBJ_MOVE_PROC_RET return_proc;					///<å‹•ä½œå¾©å¸°é–¢æ•°
 };
-															///FIELD_OBJ_MOVE_PROC_LISTƒTƒCƒY
+															///FIELD_OBJ_MOVE_PROC_LISTã‚µã‚¤ã‚º
 #define FIELD_OBJ_MOVE_PROC_LIST_SIZE (sizeof(FIELD_OBJ_MOVE_PROC_LIST))
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_DRAW_PROC_LIST\‘¢‘Ì
+///	FIELD_OBJ_DRAW_PROC_LISTæ§‹é€ ä½“
 //--------------------------------------------------------------
 struct _TAG_FIELD_OBJ_DRAW_PROC_LIST
 {
-	FIELD_OBJ_DRAW_PROC_INIT init_proc;						///<‰Šú‰»ŠÖ”
-	FIELD_OBJ_DRAW_PROC draw_proc;							///<•`‰æŠÖ”
-	FIELD_OBJ_DRAW_PROC_DEL delete_proc;					///<íœŠÖ”
-	FIELD_OBJ_DRAW_PROC_PUSH push_proc;						///<‘Ş”ğŠÖ”
-	FIELD_OBJ_DRAW_PROC_POP pop_proc;						///<•œ‹AŠÖ”
+	FIELD_OBJ_DRAW_PROC_INIT init_proc;						///<åˆæœŸåŒ–é–¢æ•°
+	FIELD_OBJ_DRAW_PROC draw_proc;							///<æç”»é–¢æ•°
+	FIELD_OBJ_DRAW_PROC_DEL delete_proc;					///<å‰Šé™¤é–¢æ•°
+	FIELD_OBJ_DRAW_PROC_PUSH push_proc;						///<é€€é¿é–¢æ•°
+	FIELD_OBJ_DRAW_PROC_POP pop_proc;						///<å¾©å¸°é–¢æ•°
 };
-															///FIELD_OBJ_DRAW_PROC_LISTƒTƒCƒY
+															///FIELD_OBJ_DRAW_PROC_LISTã‚µã‚¤ã‚º
 #define FIELD_OBJ_DRAW_PROC_LIST_SIZE (sizeof(FIELD_OBJ_DRAW_PROC_LIST))
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_DRAW_PROC_LIST_CODE_REG \‘¢‘Ì
+///	FIELD_OBJ_DRAW_PROC_LIST_CODE_REG æ§‹é€ ä½“
 //--------------------------------------------------------------
 struct _TAG_FIELD_OBJ_DRAW_PROC_LIST_REG
 {
-	u32 code;												///<“o˜^ƒR[ƒh
-	const FIELD_OBJ_DRAW_PROC_LIST *list;					///<•`‰æŠÖ”ƒŠƒXƒg
+	u32 code;												///<ç™»éŒ²ã‚³ãƒ¼ãƒ‰
+	const FIELD_OBJ_DRAW_PROC_LIST *list;					///<æç”»é–¢æ•°ãƒªã‚¹ãƒˆ
 };
-														///FIELD_OBJ_DRAW_PROC_LIST_REGƒTƒCƒY
+														///FIELD_OBJ_DRAW_PROC_LIST_REGã‚µã‚¤ã‚º
 #define FIELD_OBJ_DRAW_PROC_LIST_REG_SIZE (sizeof(FIELD_OBJ_DRAW_PROC_LIST_REG))
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_BLACTANM_PUSH \‘¢‘Ì
+///	FIELD_OBJ_BLACTANM_PUSH æ§‹é€ ä½“
 //--------------------------------------------------------------
 struct _TAG_FIELD_OBJ_BLACTANM_PUSH
 {
-	u16 vanish;								///<•\¦A”ñ•\¦
-	u16 anm_offs;							///<ƒAƒjƒƒIƒtƒZƒbƒg
-	fx32 frame;								///<ƒtƒŒ[ƒ€
+	u16 vanish;								///<è¡¨ç¤ºã€éè¡¨ç¤º
+	u16 anm_offs;							///<ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	fx32 frame;								///<ãƒ•ãƒ¬ãƒ¼ãƒ 
 };
 
 #define FIELD_OBJ_BLACTANM_PUSH_SIZE (sizeof(FIELD_OBJ_BLACTANM_PUSH))
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_BLACT_HEADER \‘¢‘Ì
+///	FIELD_OBJ_BLACT_HEADER æ§‹é€ ä½“
 //--------------------------------------------------------------
 struct _TAG_FIELD_OBJ_BLACT_HEADER
 {
-	u32 obj_code;											///<OBJƒR[ƒh
-	BLACT_HEADER *head;										///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_
+	u32 obj_code;											///<OBJã‚³ãƒ¼ãƒ‰
+	BLACT_HEADER *head;										///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 };
-										///FIELD_OBJ_BLACT_HEADERƒTƒCƒY
+										///FIELD_OBJ_BLACT_HEADERã‚µã‚¤ã‚º
 #define FIELD_OBJ_BLACT_HEADER_SIZE (sizeof(FIELD_OBJ_BLACT_HEADER))
 
 //--------------------------------------------------------------
-///	BLACTADD_RESERVE_WORK\‘¢‘Ì
+///	BLACTADD_RESERVE_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int code;												///<•\¦‚·‚éOBJƒR[ƒh
-	FIELD_OBJ_PTR	fldobj;									///<’Ç‰Á‚·‚é‘ÎÛ‚ÌFIELD_OBJ_PTR
-	BLACT_WORK_PTR	*act;									///<’Ç‰Á‚³‚ê‚½ƒrƒ‹ƒ{[ƒh *Ši”[æ
+	int code;												///<è¡¨ç¤ºã™ã‚‹OBJã‚³ãƒ¼ãƒ‰
+	FIELD_OBJ_PTR	fldobj;									///<è¿½åŠ ã™ã‚‹å¯¾è±¡ã®FIELD_OBJ_PTR
+	BLACT_WORK_PTR	*act;									///<è¿½åŠ ã•ã‚ŒãŸãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ *æ ¼ç´å…ˆ
 }BLACTADD_RESERVE;
 
 #define BLACTADD_RESERVE_SIZE (sizeof(BLACTADD_RESERVE))
 
 //--------------------------------------------------------------
-///	TEXLOAD_WORK\‘¢‘Ì
+///	TEXLOAD_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	u32 arc_id;												///<ƒ[ƒh‚·‚éƒA[ƒJƒCƒuID
-	int resm_tex_id;										///<“o˜^ID
-	REGULAR_GUEST reg_type;									///<“o˜^ƒ^ƒCƒv REGULAR? GUEST?
-	TEXRES_MANAGER_PTR resm_tex;							///<“o˜^RES(‹ó¯•Ê
+	u32 arc_id;												///<ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+	int resm_tex_id;										///<ç™»éŒ²ID
+	REGULAR_GUEST reg_type;									///<ç™»éŒ²ã‚¿ã‚¤ãƒ— REGULAR? GUEST?
+	TEXRES_MANAGER_PTR resm_tex;							///<ç™»éŒ²RES(ç©ºè­˜åˆ¥
 }TEXLOAD_WORK;
 
 #define TEXLOAD_WORK_SIZE (sizeof(TEXLOAD_WORK))
 
 //--------------------------------------------------------------
-///	VTEX_WORK\‘¢‘Ì
+///	VTEX_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	vu32 trans_end;											///<“]‘—I—¹ƒtƒ‰ƒO
-	int resm_tex_id;										///<“o˜^ID
-	TEXRES_MANAGER_PTR resm_tex;							///<“o˜^RES
+	vu32 trans_end;											///<è»¢é€çµ‚äº†ãƒ•ãƒ©ã‚°
+	int resm_tex_id;										///<ç™»éŒ²ID
+	TEXRES_MANAGER_PTR resm_tex;							///<ç™»éŒ²RES
 }VTEX_WORK;
 
 #define VTEX_WORK_SIZE (sizeof(VTEX_WORK))
 
 //--------------------------------------------------------------
-///	BLACT_VTRANS_WORK\‘¢‘Ì
+///	BLACT_VTRANS_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	s16 max;												///<Šeƒƒ“ƒo[Å‘å”
-	s16 load_max;											///<ƒ[ƒhÅ‘å”
-	vs16 load_count;										///<ƒ[ƒh‰ñ”
-	vu16 access_flag;										///<ƒAƒNƒZƒX’†ƒtƒ‰ƒO
+	s16 max;												///<å„ãƒ¡ãƒ³ãƒãƒ¼æœ€å¤§æ•°
+	s16 load_max;											///<ãƒ­ãƒ¼ãƒ‰æœ€å¤§æ•°
+	vs16 load_count;										///<ãƒ­ãƒ¼ãƒ‰å›æ•°
+	vu16 access_flag;										///<ã‚¢ã‚¯ã‚»ã‚¹ä¸­ãƒ•ãƒ©ã‚°
 	BLACTADD_RESERVE *blact_reserve_work_tbl;				///<BLACTA
 	TEXLOAD_WORK *tex_load_work_tbl;						///<TEXLOAD_WORK *
 	VTEX_WORK *vtex_work_tbl;								///<VTEX_WORK *
 	FIELD_OBJ_BLACT_CONT *cont;								///<FIELD_OBJ_BLACT_CONT *
-	TCB_PTR tcb_load;										///<TCB ƒf[ƒ^ƒ[ƒh
-	TCB_PTR tcb_blactadd;									///<TCB ƒrƒ‹ƒ{[ƒh’Ç‰Á
+	TCB_PTR tcb_load;										///<TCB ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
+	TCB_PTR tcb_blactadd;									///<TCB ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰è¿½åŠ 
 	TCB_PTR tcb_vintr;										///<TCB VIntr
 	TCB_PTR tcb_vwait;										///<TCB VWait
 }BLACT_VTRANS_WORK;
@@ -505,55 +505,55 @@ typedef struct
 #define BLACT_VTRANS_WORK_SIZE (sizeof(BLACT_VTRANS_WORK))
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_BLACT_CONT \‘¢‘Ì
+///	FIELD_OBJ_BLACT_CONT æ§‹é€ ä½“
 //--------------------------------------------------------------
 struct _TAG_FIELD_OBJ_BLACT_CONT
 {
-	int idx;											///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒCƒ“ƒfƒbƒNƒX
-	int max;											///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Å‘å”
+	int idx;											///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int max;											///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
 	
-	int resm_id_reg_max_mdl;							///<ƒŠƒ\[ƒXIDƒŒƒMƒ…ƒ‰[ŠÇ—”ƒ‚ƒfƒ‹
-	int resm_id_gst_max_mdl;							///<ƒŠƒ\[ƒXIDƒQƒXƒgŠÇ—”ƒ‚ƒfƒ‹
-	int resm_id_reg_max_anm;							///<ƒŠƒ\[ƒXIDƒŒƒMƒ…ƒ‰[ŠÇ—”ƒAƒjƒ
-	int resm_id_gst_max_anm;							///<ƒŠƒ\[ƒXIDƒQƒXƒgŠÇ—”ƒAƒjƒ
-	int resm_id_reg_max_tex;							///<ƒŠƒ\[ƒXIDƒŒƒMƒ…ƒ‰[ŠÇ—”ƒeƒNƒXƒ`ƒƒ
-	int resm_id_gst_max_tex;							///<ƒŠƒ\[ƒXID ƒQƒXƒgŠÇ—” ƒeƒNƒXƒ`ƒƒ
-	int resm_id_tbl_mdl[FLDOBJ_RESM_MAX_MDL];			///<ƒŠƒ\[ƒXIDƒ‚ƒfƒ‹Ši”[ƒe[ƒuƒ‹
-	int resm_id_tbl_anm[FLDOBJ_RESM_MAX_ANM];			///<ƒŠƒ\[ƒXIDƒAƒjƒŠi”[ƒe[ƒuƒ‹
-	int resm_id_tbl_tex[FLDOBJ_RESM_MAX_TEX];			///<ƒŠƒ\[ƒXIDƒeƒNƒXƒ`ƒƒŠi”[ƒe[ƒuƒ‹
+	int resm_id_reg_max_mdl;							///<ãƒªã‚½ãƒ¼ã‚¹IDãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ç®¡ç†æ•°ãƒ¢ãƒ‡ãƒ«
+	int resm_id_gst_max_mdl;							///<ãƒªã‚½ãƒ¼ã‚¹IDã‚²ã‚¹ãƒˆç®¡ç†æ•°ãƒ¢ãƒ‡ãƒ«
+	int resm_id_reg_max_anm;							///<ãƒªã‚½ãƒ¼ã‚¹IDãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ç®¡ç†æ•°ã‚¢ãƒ‹ãƒ¡
+	int resm_id_gst_max_anm;							///<ãƒªã‚½ãƒ¼ã‚¹IDã‚²ã‚¹ãƒˆç®¡ç†æ•°ã‚¢ãƒ‹ãƒ¡
+	int resm_id_reg_max_tex;							///<ãƒªã‚½ãƒ¼ã‚¹IDãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ç®¡ç†æ•°ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	int resm_id_gst_max_tex;							///<ãƒªã‚½ãƒ¼ã‚¹ID ã‚²ã‚¹ãƒˆç®¡ç†æ•° ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	int resm_id_tbl_mdl[FLDOBJ_RESM_MAX_MDL];			///<ãƒªã‚½ãƒ¼ã‚¹IDãƒ¢ãƒ‡ãƒ«æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
+	int resm_id_tbl_anm[FLDOBJ_RESM_MAX_ANM];			///<ãƒªã‚½ãƒ¼ã‚¹IDã‚¢ãƒ‹ãƒ¡æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
+	int resm_id_tbl_tex[FLDOBJ_RESM_MAX_TEX];			///<ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ã‚¯ã‚¹ãƒãƒ£æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
 	
-//	TCB_PTR tcb_ptr_blact_add;							///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰ÁŠÇ—TCB_PTR
-//	TCB_PTR tcb_ptr_vintr;								///<Vƒuƒ‰ƒ“ƒNŠ„‚è‚İˆ—TCB_PTR
-	BLACT_SET_PTR blact_setptr;							///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒZƒbƒgƒ|ƒCƒ“ƒ^
-	BLACT_HEADER *blact_head_tbl;						///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ƒe[ƒuƒ‹
-	RES_MANAGER_PTR	mdl_res_manage;						///<ƒ‚ƒfƒ‹ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
-	RES_MANAGER_PTR	anm_res_manage;						///<ƒAƒjƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
-	TEXRES_MANAGER_PTR	tex_res_manage;					///<ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
-	FIELD_OBJ_BLACT_HEADER *head_manage;				///<ƒAƒNƒ^[ƒwƒbƒ_[ŠÇ—
+//	TCB_PTR tcb_ptr_blact_add;							///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ç®¡ç†TCB_PTR
+//	TCB_PTR tcb_ptr_vintr;								///<Vãƒ–ãƒ©ãƒ³ã‚¯å‰²ã‚Šè¾¼ã¿å‡¦ç†TCB_PTR
+	BLACT_SET_PTR blact_setptr;							///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿
+	BLACT_HEADER *blact_head_tbl;						///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
+	RES_MANAGER_PTR	mdl_res_manage;						///<ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	RES_MANAGER_PTR	anm_res_manage;						///<ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	TEXRES_MANAGER_PTR	tex_res_manage;					///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	FIELD_OBJ_BLACT_HEADER *head_manage;				///<ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç®¡ç†
 	
-	LRES *lres_mdl;										///<ƒ‚ƒfƒŠƒ“ƒO—pƒŠƒ\[ƒX
-	LRES *lres_anm;										///<ƒAƒjƒ—pƒŠƒ\[ƒX
+	LRES *lres_mdl;										///<ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ç”¨ãƒªã‚½ãƒ¼ã‚¹
+	LRES *lres_anm;										///<ã‚¢ãƒ‹ãƒ¡ç”¨ãƒªã‚½ãƒ¼ã‚¹
 	
 	BLACT_VTRANS_WORK *vtrans_work;						///<BLACT_VTRANS_WORK
 	
 	CONST_FIELD_OBJ_SYS_PTR fos;						///<FIELD_OBJ_SYS_PTR
 };
-														//FIELD_OBJ_BLACT_CONTƒTƒCƒY
+														//FIELD_OBJ_BLACT_CONTã‚µã‚¤ã‚º
 #define FIELD_OBJ_BLACT_CONT_SIZE (sizeof(FIELD_OBJ_BLACT_CONT))
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_RESMH \‘¢‘Ì
+///	FIELD_OBJ_RESMH æ§‹é€ ä½“
 //--------------------------------------------------------------
 struct _TAG_FIELD_OBJ_RESMH
 {
-	int id;												///<“o˜^‚·‚éID
-	const char *path;									///<“o˜^‚·‚éƒf[ƒ^‚Ö‚ÌƒpƒX
+	int id;												///<ç™»éŒ²ã™ã‚‹ID
+	const char *path;									///<ç™»éŒ²ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒ‘ã‚¹
 };
 
 #define FIELD_OBJ_RESMH_SIZE (sizeof(FIELD_OBJ_RESMH))
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_RESMNARC \‘¢‘Ì
+///	FIELD_OBJ_RESMNARC æ§‹é€ ä½“
 //--------------------------------------------------------------
 struct _TAG_FIELD_OBJ_RESMNARC
 {
@@ -564,51 +564,51 @@ struct _TAG_FIELD_OBJ_RESMNARC
 #define FIELD_OBJ_RESMNARC_SIZE (sizeof(FIELD_OBJ_RESMNARC))
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_BLACT_HEADER_ID\‘¢‘Ì
+///	FIELD_OBJ_BLACT_HEADER_IDæ§‹é€ ä½“
 //--------------------------------------------------------------
 struct _TAG_FIELD_OBJ_BLACT_HEADER_ID
 {
-	int tex_id;											///<ƒeƒNƒXƒ`ƒƒID
-	int mdl_id;											///<ƒ‚ƒfƒ‹ID
-	int anm_id;											///<ƒAƒjƒID
-//	const char * const head_path;						///<ƒwƒbƒ_[ƒpƒX
-	const BLACT_ANIME_TBL *anm_tbl;						///<ƒAƒjƒƒe[ƒuƒ‹ *
+	int tex_id;											///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ID
+	int mdl_id;											///<ãƒ¢ãƒ‡ãƒ«ID
+	int anm_id;											///<ã‚¢ãƒ‹ãƒ¡ID
+//	const char * const head_path;						///<ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‘ã‚¹
+	const BLACT_ANIME_TBL *anm_tbl;						///<ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ« *
 };
 
 #define FIELD_OBJ_BLACT_HEADER_ID_SIZE (sizeof(FIELD_OBJ_BLACT_HEADER_ID))
 
 //--------------------------------------------------------------
-///	FIELD_OBJ_ACMD_LIST\‘¢‘Ì
+///	FIELD_OBJ_ACMD_LISTæ§‹é€ ä½“
 //--------------------------------------------------------------
 struct _TAG_FIELD_OBJ_ACMD_LIST
 {
-	u16 code;											///<Às‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒR[ƒh
-	u16 num;											///<codeÀs‰ñ”
+	u16 code;											///<å®Ÿè¡Œã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰
+	u16 num;											///<codeå®Ÿè¡Œå›æ•°
 };
 
 #define FIELD_OBJ_ACMD_LIST_SIZE (sizeof(FIELD_OBJ_ACMD_LIST))
 
 //--------------------------------------------------------------
-//	OBJCODE_SEEDDATA\‘¢‘Ì
+//	OBJCODE_SEEDDATAæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	u32 code_miki;			///<Š²OBJCODE
-	u32 code_flower;		///<‰ÔOBJCODE
-	u32 code_fruit;			///<ÀOBJCODE
+	u32 code_miki;			///<å¹¹OBJCODE
+	u32 code_flower;		///<èŠ±OBJCODE
+	u32 code_fruit;			///<å®ŸOBJCODE
 }OBJCODE_SEEDDATA;
 
 //--------------------------------------------------------------
-///	OBJCODE_STATE\‘¢‘Ì
+///	OBJCODE_STATEæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int code;				///<OBJƒR[ƒh
+	int code;				///<OBJã‚³ãƒ¼ãƒ‰
 	u32 type_draw:4;		///<FLDOBJ_DRAWTYPE
 	u32 type_shadow:2;		///<FLDOBJ_SHADOWTYPE
 	u32 type_footmark:4;	///<FLDOBJ_FOOTMARKTYPE
 	u32 type_reflect:2;		///<FLDOBJ_REFLECTTYPE;
-	u32 dmy:20;				///<bit—]‚è
+	u32 dmy:20;				///<bitä½™ã‚Š
 }OBJCODE_STATE;
 
 //--------------------------------------------------------------

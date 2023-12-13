@@ -33,7 +33,7 @@
   change SDK prefix iris -> nitro
 
   Revision 1.1  2003/11/25 11:19:32  yasu
-  emulator.h ‚ð’Ç‰Á
+  emulator.h ã‚’è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

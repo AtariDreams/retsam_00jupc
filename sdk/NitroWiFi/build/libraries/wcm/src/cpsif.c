@@ -15,29 +15,29 @@
   Copyright fix
 
   Revision 1.7.4.1  2007/09/18 09:18:05  okubata_ryoma
-  HEAD�ƃ}�[�W
+  HEADとマージ
 
   Revision 1.7  2006/03/10 09:22:19  kitase_hirotake
   INDENT SOURCE
 
   Revision 1.6  2005/09/01 23:45:02  terui
-  WcmCpsifKACallback�֐��ɂĈ������g�p�x�����������Ȃ��悤�ɉ���
+  WcmCpsifKACallback関数にて引数未使用警告が発生しないように改造
 
   Revision 1.5  2005/09/01 13:05:06  terui
-  Keep Alive �p NULL �p�P�b�g���M�@�\��ǉ�
-  �f�[�^���M���� Keep Alive �p�P�b�g���M�A���[�������Z�b�g����@�\��ǉ�
+  Keep Alive 用 NULL パケット送信機能を追加
+  データ送信時に Keep Alive パケット送信アラームをリセットする機能を追加
 
   Revision 1.4  2005/08/10 10:39:24  adachi_hiroaki
-  �G���[���b�Z�[�W�̈������C��
+  エラーメッセージの引数を修正
 
   Revision 1.3  2005/08/08 11:15:49  terui
-  WCM_GetApEssid �֐���ǉ�
+  WCM_GetApEssid 関数を追加
 
   Revision 1.2  2005/07/11 11:42:04  yasu
-  �p�f�B���O�x�����Ȃ������߂Ƀp�f�B���O�ǉ�
+  パディング警告をなくすためにパディング追加
 
   Revision 1.1  2005/07/07 10:45:52  terui
-  �V�K�ǉ�
+  新規追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -45,16 +45,16 @@
 #include "wcm_cpsif.h"
 
 /*---------------------------------------------------------------------------*
-    �萔��`
+    定数定義
  *---------------------------------------------------------------------------*/
 #if WCM_DEBUG
 
-// �x�����p�e�L�X�g���`
+// 警告文用テキスト雛形
 static const char   cpsifWarningText_NotInit[] = { "WCM library is not initialized yet.\n" };
 static const char   cpsifWarningText_IllegalParam[] = { "Illegal parameter ( %s )\n" };
 static const char   cpsifWarningText_InIrqMode[] = { "Processor mode is IRQ mode now.\n" };
 
-// �񍐕��p�e�L�X�g���`
+// 報告文用テキスト雛形
 static const char   cpsifReportText_WmSyncError[] = { "%s failed syncronously. ( ERRCODE: 0x%02x )\n" };
 static const char   cpsifReportText_WmAsyncError[] = { "%s failed asyncronously. ( ERRCODE: 0x%02x )\n" };
 #endif
@@ -62,33 +62,33 @@ static const char   cpsifReportText_WmAsyncError[] = { "%s failed asyncronously.
 #define WCMCPSIF_DUMMY_IRQ_THREAD   ((OSThread*)OS_IrqHandler)
 
 /*---------------------------------------------------------------------------*
-    �\���̒�`
+    構造体定義
  *---------------------------------------------------------------------------*/
 
-// ������ԊǗ��p�\����
+// 内部状態管理用構造体
 typedef struct WCMCpsifWork
 {
-    u8  initialized;                // ���[�N�ϐ��������m�F�p
-    u8  reserved[3];                // �p�f�B���O  (OSThreadQueue ��4byte�ȏ��)
-    OSThreadQueue   sendQ;          // DCF ���M�����҂��u���b�N�p Thread Queue
-    OSMutex         sendMutex;      // �����X���b�h�ɂ�鑗�M�̔r������p Mutex
-    WMErrCode       sendResult;     // DCF ���M�̔񓯊��I�ȏ������ʑޔ��G���A
-    WCMRecvInd      recvCallback;   // DCF ��M�R�[���o�b�N��ޔ��G���A
+    u8  initialized;                // ワーク変数初期化確認用
+    u8  reserved[3];                // パディング  (OSThreadQueue が4byte以上に)
+    OSThreadQueue   sendQ;          // DCF 送信完了待ちブロック用 Thread Queue
+    OSMutex         sendMutex;      // 複数スレッドによる送信の排他制御用 Mutex
+    WMErrCode       sendResult;     // DCF 送信の非同期的な処理結果退避エリア
+    WCMRecvInd      recvCallback;   // DCF 受信コールバック先退避エリア
 } WCMCpsifWork;
 
 /*---------------------------------------------------------------------------*
-    �����ϐ���`
+    内部変数定義
  *---------------------------------------------------------------------------*/
 
 /* 
- * ThreadQueue �� Mutex �ȂǁAWCM���C�u�������I�������ۂɉ������Ă��܂���
- * ����ϐ��Q�� static �ȕϐ��Ƃ���B�����̕ϐ��͈�x�����������ƂQ�x��
- * ������ꂽ��ď��������ꂽ�肵�Ȃ��B
+ * ThreadQueue や Mutex など、WCMライブラリが終了される際に解放されてしまうと
+ * 困る変数群は static な変数とする。これらの変数は一度初期化されると２度と
+ * 解放されたり再初期化されたりしない。
  */
 static WCMCpsifWork wcmCpsifw;
 
 /*---------------------------------------------------------------------------*
-    �����֐��v���g�^�C�v
+    内部関数プロトタイプ
  *---------------------------------------------------------------------------*/
 static void         WcmCpsifWmCallback(void* arg);
 static void         WcmCpsifKACallback(void* arg);
@@ -98,8 +98,8 @@ static void         WcmCpsifUnlockMutexInIRQ(OSMutex* mutex);
 /*---------------------------------------------------------------------------*
   Name:         WCMi_InitCpsif
 
-  Description:  CPS ���C�u�����Ƃ̃C���^�[�t�F�[�X�ƂȂ镔���ɂ��āA���[�N
-                �ϐ��Q������������B��x������������ď������͂��Ȃ��B
+  Description:  CPS ライブラリとのインターフェースとなる部分について、ワーク
+                変数群を初期化する。一度初期化したら再初期化はしない。
 
   Arguments:    None.
 
@@ -112,7 +112,7 @@ void WCMi_InitCpsif(void)
         wcmCpsifw.initialized = 1;
         wcmCpsifw.sendResult = WM_ERRCODE_SUCCESS;
 
-        /* wcmCpsifw.recvCallback �͕ύX����Ă���\��������̂ŏ��������Ȃ� */
+        /* wcmCpsifw.recvCallback は変更されている可能性があるので初期化しない */
         OS_InitThreadQueue(&(wcmCpsifw.sendQ));
         OS_InitMutex(&(wcmCpsifw.sendMutex));
     }
@@ -121,11 +121,11 @@ void WCMi_InitCpsif(void)
 /*---------------------------------------------------------------------------*
   Name:         WCMi_CpsifRecvCallback
 
-  Description:  �����h���C�o�� DCF �t���[������M�����ۂɌĂяo�����֐��B
-                ���荞�݃T�[�r�X���ŌĂяo����ACPS �̎�M�R�[���o�b�N�֐���
-                �Ăяo���B
+  Description:  無線ドライバが DCF フレームを受信した際に呼び出される関数。
+                割り込みサービス内で呼び出され、CPS の受信コールバック関数を
+                呼び出す。
 
-  Arguments:    recv    -   ��M���� DCF �t���[���\���̂ւ̃|�C���^���n�����B
+  Arguments:    recv    -   受信した DCF フレーム構造体へのポインタが渡される。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -140,8 +140,8 @@ void WCMi_CpsifRecvCallback(WMDcfRecvBuf* recv)
 /*---------------------------------------------------------------------------*
   Name:         WCMi_CpsifSendNullPacket
 
-  Description:  �L�[�v�A���C�u NULL �p�P�b�g �𑗐M����B
-                ���� DCF �p�P�b�g�𑗐M���̏ꍇ�͉����s��Ȃ��B
+  Description:  キープアライブ NULL パケット を送信する。
+                他の DCF パケットを送信中の場合は何も行わない。
 
   Arguments:    None.
 
@@ -151,7 +151,7 @@ void WCMi_CpsifSendNullPacket(void)
 {
     volatile WCMWork*   w = WCMi_GetSystemWork();
 
-    // WCM ���C�u�����̓�����Ԃ��m�F
+    // WCM ライブラリの内部状態を確認
     if (w == NULL)
     {
         return;
@@ -162,13 +162,13 @@ void WCMi_CpsifSendNullPacket(void)
         return;
     }
 
-    // �r�����b�N
+    // 排他ロック
     if (FALSE == WcmCpsifTryLockMutexInIRQ(&(wcmCpsifw.sendMutex)))
     {
         return;
     }
 
-    // ���M�v�����s
+    // 送信要求発行
     if (WM_ERRCODE_OPERATING != WM_SetDCFData(WcmCpsifKACallback, (const u8*)w->bssDesc.bssid, (const u16*)(w->sendBuf),
         0))
     {
@@ -179,16 +179,16 @@ void WCMi_CpsifSendNullPacket(void)
 /*---------------------------------------------------------------------------*
   Name:         WCM_GetApMacAddress
 
-  Description:  �����h���C�o���ڑ����m�����Ă��� AP �� MAC �A�h���X���擾����B
-    NOTICE:     ���̊֐��ɂ���Ď擾�����|�C���^�������o�b�t�@�̓��e�́A���荞��
-                ���ɂ���ԕω��ɔ����ĕύX���ꂽ��A�o�b�t�@���g��������ꂽ��
-                ����\��������_�ɒ��ӁB���荞�݋֎~������ԂŌĂяo���A���e��
-                �ʃo�b�t�@�ɑޔ����邱�Ƃ𐄏�����B
+  Description:  無線ドライバが接続を確立している AP の MAC アドレスを取得する。
+    NOTICE:     この関数によって取得したポインタが示すバッファの内容は、割り込み
+                等による状態変化に伴って変更されたり、バッファ自身が解放されたり
+                する可能性がある点に注意。割り込み禁止した状態で呼び出し、内容を
+                別バッファに退避することを推奨する。
 
   Arguments:    None.
 
-  Returns:      u8*     -   �ڑ����m�����Ă��� AP �� MAC �A�h���X�ւ̃|�C���^��
-                            �Ԃ��B�ڑ����m������Ă��Ȃ��ꍇ�ɂ� NULL ��Ԃ��B
+  Returns:      u8*     -   接続を確立している AP の MAC アドレスへのポインタを
+                            返す。接続が確立されていない場合には NULL を返す。
  *---------------------------------------------------------------------------*/
 u8* WCM_GetApMacAddress(void)
 {
@@ -196,13 +196,13 @@ u8* WCM_GetApMacAddress(void)
     WCMWork*    w = WCMi_GetSystemWork();
     OSIntrMode  e = OS_DisableInterrupts();
 
-    // �������m�F
+    // 初期化確認
     if (w != NULL)
     {
-        // WCM ���C�u�����̏�Ԋm�F
+        // WCM ライブラリの状態確認
         if ((w->phase == WCM_PHASE_DCF) && (w->resetting == WCM_RESETTING_OFF))
         {
-            /* �����h���C�o�ɂ����ăR�l�N�V�������m������Ă����� */
+            /* 無線ドライバにおいてコネクションが確立されている状態 */
             mac = w->bssDesc.bssid;
         }
     }
@@ -214,19 +214,19 @@ u8* WCM_GetApMacAddress(void)
 /*---------------------------------------------------------------------------*
   Name:         WCM_GetApEssid
 
-  Description:  �����h���C�o���ڑ����m�����Ă��� AP �� ESS-ID ���擾����B
-    NOTICE:     ���̊֐��ɂ���Ď擾�����|�C���^�������o�b�t�@�̓��e�́A���荞��
-                ���ɂ���ԕω��ɔ����ĕύX���ꂽ��A�o�b�t�@���g��������ꂽ��
-                ����\��������_�ɒ��ӁB���荞�݋֎~������ԂŌĂяo���A���e��
-                �ʃo�b�t�@�ɑޔ����邱�Ƃ𐄏�����B
+  Description:  無線ドライバが接続を確立している AP の ESS-ID を取得する。
+    NOTICE:     この関数によって取得したポインタが示すバッファの内容は、割り込み
+                等による状態変化に伴って変更されたり、バッファ自身が解放されたり
+                する可能性がある点に注意。割り込み禁止した状態で呼び出し、内容を
+                別バッファに退避することを推奨する。
 
-  Arguments:    length  -   ESS-ID �̒������擾���� u16 �^�ϐ��ւ̃|�C���^���w��
-                            ����B�ڑ����m������Ă��Ȃ��ꍇ�ɂ� 0 ���i�[�����B
-                            �������擾����K�v���Ȃ��ꍇ�ɂ́A���̈����� NULL ��
-                            �w�肵�Ă��悢�B
+  Arguments:    length  -   ESS-ID の長さを取得する u16 型変数へのポインタを指定
+                            する。接続が確立されていない場合には 0 が格納される。
+                            長さを取得する必要がない場合には、この引数に NULL を
+                            指定してもよい。
 
-  Returns:      u8*     -   �ڑ����m�����Ă��� AP �� ESS-ID �f�[�^��ւ̃|�C���^
-                            ��Ԃ��B�ڑ����m������Ă��Ȃ��ꍇ�ɂ� NULL ��Ԃ��B
+  Returns:      u8*     -   接続を確立している AP の ESS-ID データ列へのポインタ
+                            を返す。接続が確立されていない場合には NULL を返す。
  *---------------------------------------------------------------------------*/
 u8* WCM_GetApEssid(u16* length)
 {
@@ -235,13 +235,13 @@ u8* WCM_GetApEssid(u16* length)
     WCMWork*    w = WCMi_GetSystemWork();
     OSIntrMode  e = OS_DisableInterrupts();
 
-    // �������m�F
+    // 初期化確認
     if (w != NULL)
     {
-        // WCM ���C�u�����̏�Ԋm�F
+        // WCM ライブラリの状態確認
         if ((w->phase == WCM_PHASE_DCF) && (w->resetting == WCM_RESETTING_OFF))
         {
-            /* �����h���C�o�ɂ����ăR�l�N�V�������m������Ă����� */
+            /* 無線ドライバにおいてコネクションが確立されている状態 */
             essid = &(w->bssDesc.ssid[0]);
             len = w->bssDesc.ssidLength;
         }
@@ -259,15 +259,15 @@ u8* WCM_GetApEssid(u16* length)
 /*---------------------------------------------------------------------------*
   Name:         WCM_SetRecvDCFCallback
 
-  Description:  CPS �̎�M�R�[���o�b�N�֐���o�^����B
-                �����h���C�o�� DCF �t���[������M����x�ɂ����œo�^������M
-                �R�[���o�b�N�֐����Ăяo�����B
-    NOTICE:     �����œo�^�����R�[���o�b�N�֐����I�[�o�[���C���ɂ���ꍇ�ɂ́A
-                ��ѐ悪�������ɑ��݂��Ȃ��Ȃ�O�ɓo�^���Ă���R�[���o�b�N�֐���
-                NULL �ŏ㏑���N���A����K�v������_�ɒ��ӁB
+  Description:  CPS の受信コールバック関数を登録する。
+                無線ドライバが DCF フレームを受信する度にここで登録した受信
+                コールバック関数が呼び出される。
+    NOTICE:     ここで登録したコールバック関数がオーバーレイ内にある場合には、
+                飛び先がメモリに存在しなくなる前に登録しているコールバック関数を
+                NULL で上書きクリアする必要がある点に注意。
 
-  Arguments:    callback    -   DCF ��M�R�[���o�b�N�֐����w�肷��B
-                                NULL ���w�肷��Ǝ�M�ʒm����Ȃ��Ȃ�B
+  Arguments:    callback    -   DCF 受信コールバック関数を指定する。
+                                NULL を指定すると受信通知されなくなる。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -283,104 +283,104 @@ void WCM_SetRecvDCFCallback(WCMRecvInd callback)
 /*---------------------------------------------------------------------------*
   Name:         WCM_SendDCFData
 
-  Description:  �����h���C�o�� DCF �t���[�����M���w������BDCF �t���[���̑��M
-                �����A�������͎��s����܂œ����Ńu���b�N���đ҂B�܂��A������
-                �ڑ���Ԃ� DCF �t���[���𑗐M�ł��Ȃ���Ԃ̏ꍇ�ɂ͎��s����B
-    NOTICE:     �����̃X���b�h����񓯊��ɌĂяo����邱�Ƃ�z�肵�Ă��邪�A
-                ���荞�݃T�[�r�X���ŌĂяo����邱�Ƃ͑z�肵�Ă��Ȃ��_�ɒ��ӁB
+  Description:  無線ドライバに DCF フレーム送信を指示する。DCF フレームの送信
+                完了、もしくは失敗するまで内部でブロックして待つ。また、無線の
+                接続状態が DCF フレームを送信できない状態の場合には失敗する。
+    NOTICE:     複数のスレッドから非同期に呼び出されることを想定しているが、
+                割り込みサービス内で呼び出されることは想定していない点に注意。
 
-  Arguments:    dstAddr -   DCF �t���[���̂��Đ�ƂȂ� MAC �A�h���X���w�肷��B
-                buf     -   ���M����f�[�^�ւ̃|�C���^���w�肷��B
-                            ���֐�����߂�܂ł͎w�肵���o�b�t�@�̓��e�͕ێ�
-                            ���Ă����K�v������_�ɒ��ӁB
-                len     -   ���M����f�[�^�̒������o�C�g�P�ʂŎw�肷��B
+  Arguments:    dstAddr -   DCF フレームのあて先となる MAC アドレスを指定する。
+                buf     -   送信するデータへのポインタを指定する。
+                            当関数から戻るまでは指定したバッファの内容は保持
+                            しておく必要がある点に注意。
+                len     -   送信するデータの長さをバイト単位で指定する。
 
-  Returns:      s32     -   ���M�ɐ��������ꍇ�ɑ��M���ꂽ�f�[�^����Ԃ��B
-                            ���s�����ꍇ�ɂ͕��l��Ԃ��B
+  Returns:      s32     -   送信に成功した場合に送信されたデータ長を返す。
+                            失敗した場合には負値を返す。
  *---------------------------------------------------------------------------*/
 s32 WCM_SendDCFData(const u8* dstAddr, const u8* buf, s32 len)
 {
     OSIntrMode          e = OS_DisableInterrupts();
     volatile WCMWork*   w = WCMi_GetSystemWork();
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (w == NULL)
     {
         WCMi_Warning(cpsifWarningText_NotInit);
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_BEFORE_INIT;        // WCM ���C�u����������������Ă��Ȃ�
+        return WCM_CPSIF_RESULT_BEFORE_INIT;        // WCM ライブラリが初期化されていない
     }
 
 #if WCM_DEBUG
-    // �p�����[�^�m�F
+    // パラメータ確認
     if ((dstAddr == NULL) || (buf == NULL))
     {
         WCMi_Warning(cpsifWarningText_IllegalParam, "dstAddr or buf");
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // �|�C���^�� NULL
+        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // ポインタが NULL
     }
 
     if (len <= 0)
     {
         WCMi_Warning(cpsifWarningText_IllegalParam, "len");
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // len �� 0 �ȉ�
+        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // len が 0 以下
     }
 
     if (len > WCM_ROUNDUP32(WM_DCF_MAX_SIZE))
     {
         WCMi_Warning(cpsifWarningText_IllegalParam, "len");
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // len �� �T�C�Y����
+        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // len が サイズ超過
     }
 
     if ((u32) buf & 0x01)
     {
         WCMi_Warning(cpsifWarningText_IllegalParam, "buf");
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // buf ����A�h���X
+        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // buf が奇数アドレス
     }
 
-    // ���荞�݃T�[�r�X�����ǂ������m�F
+    // 割り込みサービス内かどうかを確認
     if (OS_GetProcMode() == HW_PSR_IRQ_MODE)
     {
         WCMi_Warning(cpsifWarningText_InIrqMode);
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_IN_IRQ_MODE;        // IRQ ���[�h�ł̌Ăяo���͋֎~
+        return WCM_CPSIF_RESULT_IN_IRQ_MODE;        // IRQ モードでの呼び出しは禁止
     }
 #endif
 
-    // �ʃX���b�h���r�����M�u���b�N���̏ꍇ�͉��������̂�҂�
+    // 別スレッドが排他送信ブロック中の場合は解除されるのを待つ
     OS_LockMutex(&(wcmCpsifw.sendMutex));
 
     /*
-     * �u���b�N��Ԃ��畜�A�������_�ŁAWCM���C�u�����̏�Ԃ͕s���B
-     * AP �Ɛڑ�����Ă����ԂłȂ��Ƒ��M�͂ł��Ȃ����߁A������ WCM ���C�u������
-     * ��Ԃ��m�F����K�v������B
+     * ブロック状態から復帰した時点で、WCMライブラリの状態は不明。
+     * AP と接続されている状態でないと送信はできないため、ここで WCM ライブラリの
+     * 状態を確認する必要がある。
      */
     w = WCMi_GetSystemWork();
     if (w == NULL)
     {
         OS_UnlockMutex(&(wcmCpsifw.sendMutex));
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_BEFORE_INIT;        // �Q�Ă���Ԃ� WCM ���C�u�������I�����Ă��܂����ꍇ
+        return WCM_CPSIF_RESULT_BEFORE_INIT;        // 寝ている間に WCM ライブラリが終了してしまった場合
     }
 
     if ((w->phase != WCM_PHASE_DCF) || (w->resetting == WCM_RESETTING_ON))
     {
         OS_UnlockMutex(&(wcmCpsifw.sendMutex));
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_NO_CONNECTION;      // ���M���悤�Ƃ������� AP �Ƃ̐ڑ����m�����Ă��Ȃ��ꍇ
+        return WCM_CPSIF_RESULT_NO_CONNECTION;      // 送信しようとした時に AP との接続が確立していない場合
     }
 
     /*
-     * ���M�f�[�^���L���b�V���Z�[�t�ȃo�b�t�@�Ɉ�U�R�s�[����B
-     * �����̃X���b�h����̑��M�v���͔r���I�ɏ��������̂ŁA�R�s�[��̃L���b�V���Z�[�t��
-     * �o�b�t�@�͈��̑��M����������Ηǂ��͂��B
+     * 送信データをキャッシュセーフなバッファに一旦コピーする。
+     * 複数のスレッドからの送信要求は排他的に処理されるので、コピー先のキャッシュセーフな
+     * バッファは一回の送信分だけあれば良いはず。
      */
     MI_CpuCopy8(buf, (void*)(w->sendBuf), (u32) len);
 
-    // ���M�v�����s
+    // 送信要求発行
     {
         WMErrCode   wmResult;
 
@@ -394,21 +394,21 @@ s32 WCM_SendDCFData(const u8* dstAddr, const u8* buf, s32 len)
         case WM_ERRCODE_INVALID_PARAM:
         case WM_ERRCODE_FIFO_ERROR:
         default:
-            // ���M�v���Ɏ��s�����ꍇ
+            // 送信要求に失敗した場合
             WCMi_Printf(cpsifReportText_WmSyncError, "WM_SetDCFData", wmResult);
             OS_UnlockMutex(&(wcmCpsifw.sendMutex));
             (void)OS_RestoreInterrupts(e);
-            return WCM_CPSIF_RESULT_SEND_FAILURE;   // DCF ���M�Ɏ��s
+            return WCM_CPSIF_RESULT_SEND_FAILURE;   // DCF 送信に失敗
         }
     }
 
-    // ���M�����҂��u���b�N
+    // 送信完了待ちブロック
     OS_SleepThread(&(wcmCpsifw.sendQ));
 
     /*
-     * �u���b�N��Ԃ��畜�A�������_�ŁAWCM���C�u�����̏�Ԃ͕s���B
-     * WCM ���C�u�������I������Ă��Ă��A���M���ʂ͕ێ�����Ă���̂�
-     * WCM ���C�u�����̏�Ԃ��m�F����K�v�͂Ȃ��B
+     * ブロック状態から復帰した時点で、WCMライブラリの状態は不明。
+     * WCM ライブラリが終了されていても、送信結果は保持されているので
+     * WCM ライブラリの状態を確認する必要はない。
      */
     switch (wcmCpsifw.sendResult)
     {
@@ -417,14 +417,14 @@ s32 WCM_SendDCFData(const u8* dstAddr, const u8* buf, s32 len)
 
     case WM_ERRCODE_FAILED:
     default:
-        // ���M�Ɏ��s�����ꍇ
+        // 送信に失敗した場合
         WCMi_Printf(cpsifReportText_WmAsyncError, "WCM_SendDCFData", wcmCpsifw.sendResult);
         OS_UnlockMutex(&(wcmCpsifw.sendMutex));
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_SEND_FAILURE;       // DCF ���M�Ɏ��s
+        return WCM_CPSIF_RESULT_SEND_FAILURE;       // DCF 送信に失敗
     }
 
-    // ����I��
+    // 正常終了
     OS_UnlockMutex(&(wcmCpsifw.sendMutex));
     (void)OS_RestoreInterrupts(e);
     return len;
@@ -433,23 +433,23 @@ s32 WCM_SendDCFData(const u8* dstAddr, const u8* buf, s32 len)
 /*---------------------------------------------------------------------------*
   Name:         WCM_SendDCFDataEx
 
-  Description:  �����h���C�o�� DCF �t���[�����M���w������BDCF �t���[���̑��M
-                �����A�������͎��s����܂œ����Ńu���b�N���đ҂B�܂��A������
-                �ڑ���Ԃ� DCF �t���[���𑗐M�ł��Ȃ���Ԃ̏ꍇ�ɂ͎��s����B
-    NOTICE:     �����̃X���b�h����񓯊��ɌĂяo����邱�Ƃ�z�肵�Ă��邪�A
-                ���荞�݃T�[�r�X���ŌĂяo����邱�Ƃ͑z�肵�Ă��Ȃ��_�ɒ��ӁB
+  Description:  無線ドライバに DCF フレーム送信を指示する。DCF フレームの送信
+                完了、もしくは失敗するまで内部でブロックして待つ。また、無線の
+                接続状態が DCF フレームを送信できない状態の場合には失敗する。
+    NOTICE:     複数のスレッドから非同期に呼び出されることを想定しているが、
+                割り込みサービス内で呼び出されることは想定していない点に注意。
 
-  Arguments:    dstAddr     -   DCF �t���[���̂��Đ�ƂȂ� MAC �A�h���X���w�肷��B
-                header      -   ���M����f�[�^�̃w�b�_�����ւ̃|�C���^���w�肷��B
-                headerLen   -   ���M����f�[�^�̃w�b�_�̒������o�C�g�P�ʂŎw�肷��B
-                body        -   ���M����f�[�^�̃{�f�B�����ւ̃|�C���^���w�肷��B
-                bodyLen     -   ���M����f�[�^�̃{�f�B�����̒������o�C�g�P�ʂŎw�肷��B
+  Arguments:    dstAddr     -   DCF フレームのあて先となる MAC アドレスを指定する。
+                header      -   送信するデータのヘッダ部分へのポインタを指定する。
+                headerLen   -   送信するデータのヘッダの長さをバイト単位で指定する。
+                body        -   送信するデータのボディ部分へのポインタを指定する。
+                bodyLen     -   送信するデータのボディ部分の長さをバイト単位で指定する。
                 
-                * header�Abody �Ɋւ��ẮA���֐�����߂�܂ł͎w�肵���o�b�t�@�̓��e��
-                  �ێ����Ă����K�v������_�ɒ��ӁB
+                * header、body に関しては、当関数から戻るまでは指定したバッファの内容は
+                  保持しておく必要がある点に注意。
 
-  Returns:      s32     -   ���M�ɐ��������ꍇ�ɑ��M���ꂽ�f�[�^����Ԃ��B
-                            ���s�����ꍇ�ɂ͕��l��Ԃ��B
+  Returns:      s32     -   送信に成功した場合に送信されたデータ長を返す。
+                            失敗した場合には負値を返す。
  *---------------------------------------------------------------------------*/
 s32 WCM_SendDCFDataEx(const u8* dstAddr, const u8* header, s32 headerLen,
                       const u8* body, s32 bodyLen)
@@ -457,84 +457,84 @@ s32 WCM_SendDCFDataEx(const u8* dstAddr, const u8* header, s32 headerLen,
     OSIntrMode          e = OS_DisableInterrupts();
     volatile WCMWork*   w = WCMi_GetSystemWork();
 
-    // �������ς݂��m�F
+    // 初期化済みを確認
     if (w == NULL)
     {
         WCMi_Warning(cpsifWarningText_NotInit);
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_BEFORE_INIT;        // WCM ���C�u����������������Ă��Ȃ�
+        return WCM_CPSIF_RESULT_BEFORE_INIT;        // WCM ライブラリが初期化されていない
     }
 
 #if WCM_DEBUG
-    // �p�����[�^�m�F
+    // パラメータ確認
     if ((dstAddr == NULL) || (header == NULL))
     {
         WCMi_Warning(cpsifWarningText_IllegalParam, "dstAddr or header");
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // header �̃|�C���^�� NULL
+        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // header のポインタが NULL
     }
 
     if (headerLen <= 0 || (body != NULL && bodyLen < 0) || (body == NULL && bodyLen != 0))
     {
         WCMi_Warning(cpsifWarningText_IllegalParam, "headerLen or bodyLen");
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // headerLen �� 0 �ȉ��A�܂��� bodyLen �� 0 ����
+        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // headerLen が 0 以下、または bodyLen が 0 未満
     }
 
     if (headerLen + bodyLen > WCM_ROUNDUP32(WM_DCF_MAX_SIZE))
     {
         WCMi_Warning(cpsifWarningText_IllegalParam, "headerLen + bodyLen");
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // (headerLen + bodyLen) �� �T�C�Y����
+        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // (headerLen + bodyLen) が サイズ超過
     }
 
     if ((u32) header & 0x01 || ((body != NULL) && ((u32) body & 0x01)))
     {
         WCMi_Warning(cpsifWarningText_IllegalParam, "header or body");
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // header �܂��� body �̃o�b�t�@����A�h���X
+        return WCM_CPSIF_RESULT_ILLEGAL_PARAM;      // header または body のバッファが奇数アドレス
     }
 
-    // ���荞�݃T�[�r�X�����ǂ������m�F
+    // 割り込みサービス内かどうかを確認
     if (OS_GetProcMode() == HW_PSR_IRQ_MODE)
     {
         WCMi_Warning(cpsifWarningText_InIrqMode);
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_IN_IRQ_MODE;        // IRQ ���[�h�ł̌Ăяo���͋֎~
+        return WCM_CPSIF_RESULT_IN_IRQ_MODE;        // IRQ モードでの呼び出しは禁止
     }
 #endif
 
-    // �ʃX���b�h���r�����M�u���b�N���̏ꍇ�͉��������̂�҂�
+    // 別スレッドが排他送信ブロック中の場合は解除されるのを待つ
     OS_LockMutex(&(wcmCpsifw.sendMutex));
 
     /*
-     * �u���b�N��Ԃ��畜�A�������_�ŁAWCM���C�u�����̏�Ԃ͕s���B
-     * AP �Ɛڑ�����Ă����ԂłȂ��Ƒ��M�͂ł��Ȃ����߁A������ WCM ���C�u������
-     * ��Ԃ��m�F����K�v������B
+     * ブロック状態から復帰した時点で、WCMライブラリの状態は不明。
+     * AP と接続されている状態でないと送信はできないため、ここで WCM ライブラリの
+     * 状態を確認する必要がある。
      */
     w = WCMi_GetSystemWork();
     if (w == NULL)
     {
         OS_UnlockMutex(&(wcmCpsifw.sendMutex));
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_BEFORE_INIT;        // �Q�Ă���Ԃ� WCM ���C�u�������I�����Ă��܂����ꍇ
+        return WCM_CPSIF_RESULT_BEFORE_INIT;        // 寝ている間に WCM ライブラリが終了してしまった場合
     }
 
     if ((w->phase != WCM_PHASE_DCF) || (w->resetting == WCM_RESETTING_ON))
     {
         OS_UnlockMutex(&(wcmCpsifw.sendMutex));
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_NO_CONNECTION;      // ���M���悤�Ƃ������� AP �Ƃ̐ڑ����m�����Ă��Ȃ��ꍇ
+        return WCM_CPSIF_RESULT_NO_CONNECTION;      // 送信しようとした時に AP との接続が確立していない場合
     }
 
     /*
-     * ���M�f�[�^���L���b�V���Z�[�t�ȃo�b�t�@�Ɉ�U�R�s�[����B
-     * �����̃X���b�h����̑��M�v���͔r���I�ɏ��������̂ŁA�R�s�[��̃L���b�V���Z�[�t��
-     * �o�b�t�@�͈��̑��M����������Ηǂ��͂��B
+     * 送信データをキャッシュセーフなバッファに一旦コピーする。
+     * 複数のスレッドからの送信要求は排他的に処理されるので、コピー先のキャッシュセーフな
+     * バッファは一回の送信分だけあれば良いはず。
      */
 
     /*
-     * �w�b�_�����ƃ{�f�B�����ɕ�����Ă����f�[�^���AWCMWork �� SendBuf �ɂ܂Ƃ߂ăR�s�[����
+     * ヘッダ部分とボディ部分に分かれていたデータを、WCMWork の SendBuf にまとめてコピーする
      */
     MI_CpuCopy8(header, (void*)(w->sendBuf), (u32) headerLen);
     if (bodyLen > 0)
@@ -542,7 +542,7 @@ s32 WCM_SendDCFDataEx(const u8* dstAddr, const u8* header, s32 headerLen,
         MI_CpuCopy8(body, (void*)(((u8*)w->sendBuf) + headerLen), (u32) bodyLen);
     }
 
-    // ���M�v�����s
+    // 送信要求発行
     {
         WMErrCode   wmResult;
 
@@ -556,21 +556,21 @@ s32 WCM_SendDCFDataEx(const u8* dstAddr, const u8* header, s32 headerLen,
         case WM_ERRCODE_INVALID_PARAM:
         case WM_ERRCODE_FIFO_ERROR:
         default:
-            // ���M�v���Ɏ��s�����ꍇ
+            // 送信要求に失敗した場合
             WCMi_Printf(cpsifReportText_WmSyncError, "WM_SetDCFData", wmResult);
             OS_UnlockMutex(&(wcmCpsifw.sendMutex));
             (void)OS_RestoreInterrupts(e);
-            return WCM_CPSIF_RESULT_SEND_FAILURE;   // DCF ���M�Ɏ��s
+            return WCM_CPSIF_RESULT_SEND_FAILURE;   // DCF 送信に失敗
         }
     }
 
-    // ���M�����҂��u���b�N
+    // 送信完了待ちブロック
     OS_SleepThread(&(wcmCpsifw.sendQ));
 
     /*
-     * �u���b�N��Ԃ��畜�A�������_�ŁAWCM���C�u�����̏�Ԃ͕s���B
-     * WCM ���C�u�������I������Ă��Ă��A���M���ʂ͕ێ�����Ă���̂�
-     * WCM ���C�u�����̏�Ԃ��m�F����K�v�͂Ȃ��B
+     * ブロック状態から復帰した時点で、WCMライブラリの状態は不明。
+     * WCM ライブラリが終了されていても、送信結果は保持されているので
+     * WCM ライブラリの状態を確認する必要はない。
      */
     switch (wcmCpsifw.sendResult)
     {
@@ -579,14 +579,14 @@ s32 WCM_SendDCFDataEx(const u8* dstAddr, const u8* header, s32 headerLen,
 
     case WM_ERRCODE_FAILED:
     default:
-        // ���M�Ɏ��s�����ꍇ
+        // 送信に失敗した場合
         WCMi_Printf(cpsifReportText_WmAsyncError, "WCM_SendDCFData", wcmCpsifw.sendResult);
         OS_UnlockMutex(&(wcmCpsifw.sendMutex));
         (void)OS_RestoreInterrupts(e);
-        return WCM_CPSIF_RESULT_SEND_FAILURE;       // DCF ���M�Ɏ��s
+        return WCM_CPSIF_RESULT_SEND_FAILURE;       // DCF 送信に失敗
     }
 
-    // ����I��
+    // 正常終了
     OS_UnlockMutex(&(wcmCpsifw.sendMutex));
     (void)OS_RestoreInterrupts(e);
     return headerLen + bodyLen;
@@ -595,11 +595,11 @@ s32 WCM_SendDCFDataEx(const u8* dstAddr, const u8* header, s32 headerLen,
 /*---------------------------------------------------------------------------*
   Name:         WcmCpsifWmCallback
 
-  Description:  DCF �t���[�����M�v���ɑ΂��閳���h���C�o����̔񓯊��I�ȉ�����
-                �󂯎��R�[���o�b�N�֐��B
+  Description:  DCF フレーム送信要求に対する無線ドライバからの非同期的な応答を
+                受け取るコールバック関数。
 
-  Arguments:    arg -   �����h���C�o����̉����p�����[�^���i�[����Ă���o�b�t�@
-                        �̃A�h���X���n�����B
+  Arguments:    arg -   無線ドライバからの応答パラメータが格納されているバッファ
+                        のアドレスが渡される。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -624,13 +624,13 @@ static void WcmCpsifWmCallback(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         WcmCpsifKACallback
 
-  Description:  DCF �t���[�����M�v���ɑ΂��閳���h���C�o����̔񓯊��I�ȉ�����
-                �󂯎��R�[���o�b�N�֐��B�L�[�v�A���C�u NULL �p�P�b�g���M��
-                ��p�B�ʏ�̃p�P�b�g���M�Ƃ͔r���I�ɑ��M������s�����ƂŁA
-                ������o�^�ł��Ȃ��R�[���o�b�N�֐���؂�ւ��Ďg�����Ƃ��\�B
+  Description:  DCF フレーム送信要求に対する無線ドライバからの非同期的な応答を
+                受け取るコールバック関数。キープアライブ NULL パケット送信時
+                専用。通常のパケット送信とは排他的に送信制御を行うことで、
+                一つしか登録できないコールバック関数を切り替えて使うことが可能。
 
-  Arguments:    arg -   �����h���C�o����̉����p�����[�^���i�[����Ă���o�b�t�@
-                        �̃A�h���X���n�����B
+  Arguments:    arg -   無線ドライバからの応答パラメータが格納されているバッファ
+                        のアドレスが渡される。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -646,21 +646,21 @@ static void WcmCpsifKACallback(void* arg)
 #pragma unused(arg)
 #endif
 
-    // �����̐��ۂɊւ�炸�r�����b�N����������
+    // 処理の成否に関わらず排他ロックを解除する
     WcmCpsifUnlockMutexInIRQ(&(wcmCpsifw.sendMutex));
 }
 
 /*---------------------------------------------------------------------------*
   Name:         WcmCpsifTryLockMutexInIRQ
 
-  Description:  IRQ ���荞�݃T�[�r�X���ɂ����Ĕr������p Mutex �̃��b�N�����݂�B
-                ���̊֐��Ń��b�N���� Mutex �� WcmCpsifUnlockMutexInIRQ �֐���
-                �̂݃A�����b�N�\�B
+  Description:  IRQ 割り込みサービス内において排他制御用 Mutex のロックを試みる。
+                この関数でロックした Mutex は WcmCpsifUnlockMutexInIRQ 関数で
+                のみアンロック可能。
 
-  Arguments:    mutex   -   �r������p OSMutex �ϐ��ւ̃|�C���^���w��B
+  Arguments:    mutex   -   排他制御用 OSMutex 変数へのポインタを指定。
 
-  Returns:      BOOL    -   ���b�N�ɐ��������ꍇ�� TRUE ��Ԃ��B���ɂȂ�炩��
-                            �X���b�h���烍�b�N����Ă����ꍇ�ɂ� FALSE ��Ԃ��B
+  Returns:      BOOL    -   ロックに成功した場合に TRUE を返す。既になんらかの
+                            スレッドからロックされていた場合には FALSE を返す。
  *---------------------------------------------------------------------------*/
 static BOOL WcmCpsifTryLockMutexInIRQ(OSMutex* mutex)
 {
@@ -688,12 +688,12 @@ static BOOL WcmCpsifTryLockMutexInIRQ(OSMutex* mutex)
 /*---------------------------------------------------------------------------*
   Name:         WcmCpsifUnlockMutexInIRQ
 
-  Description:  IRQ ���荞�݃T�[�r�X���ɂ����Ĕr������p Mutex �̃A�����b�N��
-                ���݂�BWcmCpsifTryLockMutexInIRQ �֐��Ń��b�N���� Mutex �ɑ�
-                ���Ă̂ݗL���B
-                �A�����b�N�ł��Ȃ������ꍇ�ɂ́A�����m���i�͂Ȃ��B
+  Description:  IRQ 割り込みサービス内において排他制御用 Mutex のアンロックを
+                試みる。WcmCpsifTryLockMutexInIRQ 関数でロックした Mutex に対
+                してのみ有効。
+                アンロックできなかった場合には、それを知る手段はない。
 
-  Arguments:    mutex   -   �r������p OSMutex �ϐ��ւ̃|�C���^���w��B
+  Arguments:    mutex   -   排他制御用 OSMutex 変数へのポインタを指定。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

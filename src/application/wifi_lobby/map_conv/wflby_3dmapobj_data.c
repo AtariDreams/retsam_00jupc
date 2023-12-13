@@ -1,11 +1,11 @@
-// ‚±‚Ìƒtƒ@ƒCƒ‹‚Ípl_conv/wifi_lobby/wflby_gradta_conv.pl‚Å©“®¶¬‚³‚ê‚Ü‚·
+// ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯pl_conv/wifi_lobby/wflby_gradta_conv.plã§è‡ªå‹•ç”Ÿæˆã•ã‚Œã¾ã™
 
 
 
 
 
 static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
-// ƒm[ƒ}ƒ‹@‰Î‚Ì•”‰®
+// ãƒãƒ¼ãƒãƒ«ã€€ç«ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l1_nsbmd,
 	NARC_wifi_lobby_wifi_object_s1a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s1b_nsbmd,
@@ -115,7 +115,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// ƒm[ƒ}ƒ‹@	…‚Ì•”‰®
+// ãƒãƒ¼ãƒãƒ«ã€€	æ°´ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l3_nsbmd,
 	NARC_wifi_lobby_wifi_object_s3a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s3b_nsbmd,
@@ -225,7 +225,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// ƒm[ƒ}ƒ‹@	“d‹C‚Ì•”‰®
+// ãƒãƒ¼ãƒãƒ«ã€€	é›»æ°—ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l4_nsbmd,
 	NARC_wifi_lobby_wifi_object_s4a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s4b_nsbmd,
@@ -335,7 +335,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// ƒm[ƒ}ƒ‹@	‘‚Ì•”‰®
+// ãƒãƒ¼ãƒãƒ«ã€€	è‰ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l2_nsbmd,
 	NARC_wifi_lobby_wifi_object_s2a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s2b_nsbmd,
@@ -445,7 +445,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// ƒm[ƒ}ƒ‹@	“Áê‚Ì•”‰®
+// ãƒãƒ¼ãƒãƒ«ã€€	ç‰¹æ®Šã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l5_nsbmd,
 	NARC_wifi_lobby_wifi_object_s5c_nsbmd,
 	NARC_wifi_lobby_wifi_object_s5c_nsbmd,
@@ -555,7 +555,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	14,
 	11,
 	0,
-// t@‰Î‚Ì•”‰®
+// æ˜¥ã€€ç«ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l1_nsbmd,
 	NARC_wifi_lobby_wifi_object_s1a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s1b_nsbmd,
@@ -665,7 +665,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// t@	…‚Ì•”‰®
+// æ˜¥ã€€	æ°´ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l3_nsbmd,
 	NARC_wifi_lobby_wifi_object_s3a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s3b_nsbmd,
@@ -775,7 +775,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// t@	“d‹C‚Ì•”‰®
+// æ˜¥ã€€	é›»æ°—ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l4_nsbmd,
 	NARC_wifi_lobby_wifi_object_s4a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s4b_nsbmd,
@@ -885,7 +885,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// t@	‘‚Ì•”‰®
+// æ˜¥ã€€	è‰ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l2_nsbmd,
 	NARC_wifi_lobby_wifi_object_s2a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s2b_nsbmd,
@@ -995,7 +995,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// t@	“Áê‚Ì•”‰®
+// æ˜¥ã€€	ç‰¹æ®Šã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l5_nsbmd,
 	NARC_wifi_lobby_wifi_object_s5c_nsbmd,
 	NARC_wifi_lobby_wifi_object_s5c_nsbmd,
@@ -1105,7 +1105,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	14,
 	11,
 	0,
-// ‰Ä@‰Î‚Ì•”‰®
+// å¤ã€€ç«ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l1_nsbmd,
 	NARC_wifi_lobby_wifi_object_s1a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s1b_nsbmd,
@@ -1215,7 +1215,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// ‰Ä@	…‚Ì•”‰®
+// å¤ã€€	æ°´ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l3_nsbmd,
 	NARC_wifi_lobby_wifi_object_s3a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s3b_nsbmd,
@@ -1325,7 +1325,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// ‰Ä@	“d‹C‚Ì•”‰®
+// å¤ã€€	é›»æ°—ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l4_nsbmd,
 	NARC_wifi_lobby_wifi_object_s4a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s4b_nsbmd,
@@ -1435,7 +1435,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// ‰Ä@	‘‚Ì•”‰®
+// å¤ã€€	è‰ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l2_nsbmd,
 	NARC_wifi_lobby_wifi_object_s2a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s2b_nsbmd,
@@ -1545,7 +1545,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// ‰Ä@	“Áê‚Ì•”‰®
+// å¤ã€€	ç‰¹æ®Šã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l5_nsbmd,
 	NARC_wifi_lobby_wifi_object_s5c_nsbmd,
 	NARC_wifi_lobby_wifi_object_s5c_nsbmd,
@@ -1655,7 +1655,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	14,
 	11,
 	0,
-// H@‰Î‚Ì•”‰®
+// ç§‹ã€€ç«ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l1_nsbmd,
 	NARC_wifi_lobby_wifi_object_s1a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s1b_nsbmd,
@@ -1765,7 +1765,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// H@	…‚Ì•”‰®
+// ç§‹ã€€	æ°´ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l3_nsbmd,
 	NARC_wifi_lobby_wifi_object_s3a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s3b_nsbmd,
@@ -1875,7 +1875,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// H@	“d‹C‚Ì•”‰®
+// ç§‹ã€€	é›»æ°—ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l4_nsbmd,
 	NARC_wifi_lobby_wifi_object_s4a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s4b_nsbmd,
@@ -1985,7 +1985,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// H@	‘‚Ì•”‰®
+// ç§‹ã€€	è‰ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l2_nsbmd,
 	NARC_wifi_lobby_wifi_object_s2a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s2b_nsbmd,
@@ -2095,7 +2095,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// H@	“Áê‚Ì•”‰®
+// ç§‹ã€€	ç‰¹æ®Šã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l5_nsbmd,
 	NARC_wifi_lobby_wifi_object_s5c_nsbmd,
 	NARC_wifi_lobby_wifi_object_s5c_nsbmd,
@@ -2205,7 +2205,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	14,
 	11,
 	0,
-// “~@‰Î‚Ì•”‰®
+// å†¬ã€€ç«ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l1_nsbmd,
 	NARC_wifi_lobby_wifi_object_s1a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s1b_nsbmd,
@@ -2315,7 +2315,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// “~@	…‚Ì•”‰®
+// å†¬ã€€	æ°´ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l3_nsbmd,
 	NARC_wifi_lobby_wifi_object_s3a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s3b_nsbmd,
@@ -2425,7 +2425,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// “~@	“d‹C‚Ì•”‰®
+// å†¬ã€€	é›»æ°—ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l4_nsbmd,
 	NARC_wifi_lobby_wifi_object_s4a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s4b_nsbmd,
@@ -2535,7 +2535,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// “~@	‘‚Ì•”‰®
+// å†¬ã€€	è‰ã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l2_nsbmd,
 	NARC_wifi_lobby_wifi_object_s2a_nsbmd,
 	NARC_wifi_lobby_wifi_object_s2b_nsbmd,
@@ -2645,7 +2645,7 @@ static const u32 sc_data[ WFLBY_SEASON_NUM * WFLBY_ROOM_TYPE  ] = {
 	7,
 	0,
 	14,
-// “~@	“Áê‚Ì•”‰®
+// å†¬ã€€	ç‰¹æ®Šã®éƒ¨å±‹
 	NARC_wifi_lobby_wifi_object_l5_nsbmd,
 	NARC_wifi_lobby_wifi_object_s5c_nsbmd,
 	NARC_wifi_lobby_wifi_object_s5c_nsbmd,

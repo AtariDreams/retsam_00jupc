@@ -22,7 +22,7 @@
 extern "C" {
 #endif
 
-#define NNS_G2D_OAM_AFFINE_IDX_NONE                0xFFFE        // OAM ƒ}ƒl[ƒWƒƒ‚É Affine ‚ğ g—p‚µ‚È‚¢ OAM‚ğ“o˜^‚·‚é‚Æ‚«‚É w’è‚·‚éAffine Index ’l
+#define NNS_G2D_OAM_AFFINE_IDX_NONE                0xFFFE        // OAM ãƒãƒãƒ¼ã‚¸ãƒ£ã« Affine ã‚’ ä½¿ç”¨ã—ãªã„ OAMã‚’ç™»éŒ²ã™ã‚‹ã¨ãã« æŒ‡å®šã™ã‚‹Affine Index å€¤
 
 typedef struct objSize
 {
@@ -49,7 +49,7 @@ GX_OAM_SHAPE_32x64 = (2 << GX_OAM_ATTR01_SHAPE_SHIFT) | (3 << GX_OAM_ATTR01_SIZE
 */
 
 //
-// ƒc[ƒ‹‚©‚çQÆ‚·‚éê‡‚ÍAƒwƒbƒ_‚Å’è‹`‚³‚ê‚éƒCƒ“ƒ‰ƒCƒ“ŠÖ”“à‚ÅéŒ¾‚µ‚Ü‚·B
+// ãƒ„ãƒ¼ãƒ«ã‹ã‚‰å‚ç…§ã™ã‚‹å ´åˆã¯ã€ãƒ˜ãƒƒãƒ€ã§å®šç¾©ã•ã‚Œã‚‹ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°å†…ã§å®£è¨€ã—ã¾ã™ã€‚
 //
 #ifdef NNS_FROM_TOOL
     #define NNS_G2D_OBJSIZE_TBL_STATIC static 
@@ -111,7 +111,7 @@ const u16 NNSi_objSizeHTbl[3][4]=               \
 
 
 //------------------------------------------------------------------------------
-// g2di_OamUtil.h‚æ‚èˆÚ“®
+// g2di_OamUtil.hã‚ˆã‚Šç§»å‹•
 NNS_G2D_INLINE GXOamShape NNS_G2dGetOAMSize( const GXOamAttr* oamAttr )
 {
     //const GXOamShape  result = (GXOamShape)( oamAttr->shape );
@@ -122,7 +122,7 @@ NNS_G2D_INLINE GXOamShape NNS_G2dGetOAMSize( const GXOamAttr* oamAttr )
 }
 
 //------------------------------------------------------------------------------
-// g2di_OamUtil.h‚æ‚èˆÚ“®
+// g2di_OamUtil.hã‚ˆã‚Šç§»å‹•
 NNS_G2D_INLINE int NNS_G2dGetOamSizeX( const GXOamShape* oamShape )
 {
     // NNS_G2D_NULL_ASSERT(oamShape);
@@ -134,7 +134,7 @@ NNS_G2D_INLINE int NNS_G2dGetOamSizeX( const GXOamShape* oamShape )
 }
 
 //------------------------------------------------------------------------------
-// g2di_OamUtil.h‚æ‚èˆÚ“®
+// g2di_OamUtil.hã‚ˆã‚Šç§»å‹•
 NNS_G2D_INLINE int NNS_G2dGetOamSizeY( const GXOamShape* oamShape )
 {
 #ifdef NNS_FROM_TOOL

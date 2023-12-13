@@ -18,7 +18,7 @@
   change declaration of alarm struct
 
   Revision 1.10  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.9  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -30,10 +30,10 @@
   fix header comment
 
   Revision 1.6  2004/02/25 11:28:44  yada
-  systemClock¨Tick ‚É”º‚¤•ÏX
+  systemClockâ†’Tick ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.5  2004/02/24 10:50:47  yada
-  AlarmƒJƒEƒ“ƒ^‚ÆÀŠÔ‚Ì•ÏŠ·’è‹`’Ç‰Á
+  Alarmã‚«ã‚¦ãƒ³ã‚¿ã¨å®Ÿæ™‚é–“ã®å¤‰æ›å®šç¾©è¿½åŠ 
 
   Revision 1.4  2004/02/19 08:43:36  yada
   only add comment
@@ -42,13 +42,13 @@
   change SDK prefix iris -> nitro
 
   Revision 1.2  2004/02/04 07:31:46  yada
-  OS_IsAlarmAvailable(), OS_EndAlarm() ’Ç‰Á
+  OS_IsAlarmAvailable(), OS_EndAlarm() è¿½åŠ 
 
   Revision 1.1  2004/02/03 11:18:58  yada
   firstRelease
 
   Revision 1.1  2003/12/22 01:35:16  yada
-  OS_Init() İ’u‚É‚Â‚« init.h ì¬
+  OS_Init() è¨­ç½®ã«ã¤ã init.h ä½œæˆ
 
 
   $NoKeywords: $

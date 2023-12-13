@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	bag.h
- * @brief	ƒoƒbƒO‰æ–Ê’è‹`iƒXƒNƒŠƒvƒg—p‚©‚àj
+ * @brief	ãƒãƒƒã‚°ç”»é¢å®šç¾©ï¼ˆã‚¹ã‚¯ãƒªãƒ—ãƒˆç”¨ã‹ã‚‚ï¼‰
  * @author	Hiroyuki Nakamura
  * @date	05.11.21
  */
@@ -9,17 +9,17 @@
 #ifndef BAG_DEF_H
 #define BAG_DEF_H
 
-// ƒ|ƒPƒbƒgID
-#define	BAG_POKE_NORMAL		( 0 )		// “¹‹ï
-#define	BAG_POKE_DRUG		( 1 )		// –ò
-#define	BAG_POKE_BALL		( 2 )		// ƒ{[ƒ‹
-#define	BAG_POKE_WAZA		( 3 )		// ‹Zƒ}ƒVƒ“
-#define	BAG_POKE_NUTS		( 4 )		// –Ø‚ÌÀ
-#define	BAG_POKE_SEAL		( 5 )		// ƒV[ƒ‹
-#define	BAG_POKE_BATTLE		( 6 )		// í“¬—p
-#define	BAG_POKE_EVENT		( 7 )		// ‘åØ‚È•¨
+// ãƒã‚±ãƒƒãƒˆID
+#define	BAG_POKE_NORMAL		( 0 )		// é“å…·
+#define	BAG_POKE_DRUG		( 1 )		// è–¬
+#define	BAG_POKE_BALL		( 2 )		// ãƒœãƒ¼ãƒ«
+#define	BAG_POKE_WAZA		( 3 )		// æŠ€ãƒã‚·ãƒ³
+#define	BAG_POKE_NUTS		( 4 )		// æœ¨ã®å®Ÿ
+#define	BAG_POKE_SEAL		( 5 )		// ã‚·ãƒ¼ãƒ«
+#define	BAG_POKE_BATTLE		( 6 )		// æˆ¦é—˜ç”¨
+#define	BAG_POKE_EVENT		( 7 )		// å¤§åˆ‡ãªç‰©
 
-#define	BAG_POKE_MAX		( 8 )		// ƒ|ƒPƒbƒgÅ‘å”
+#define	BAG_POKE_MAX		( 8 )		// ãƒã‚±ãƒƒãƒˆæœ€å¤§æ•°
 
 
 #endif	/* BAG_DEF_H */

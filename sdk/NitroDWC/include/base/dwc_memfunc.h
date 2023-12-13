@@ -12,10 +12,10 @@
 
   $Log: dwc_memfunc.h,v $
   Revision 1.2  2006/04/25 12:08:00  nakata
-  �������m�ۃ^�C�v��DWC_ALLOCTYPE_ND��ǉ�
+  メモリ確保タイプにDWC_ALLOCTYPE_NDを追加
 
   Revision 1.1  2005/08/19 06:32:03  sasakit
-  �t�@�C���̒ǉ��B
+  ファイルの追加。
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

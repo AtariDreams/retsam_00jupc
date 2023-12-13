@@ -2,7 +2,7 @@
 /**
  *
  * @file	player.h
- * @brief	Ž©‹@
+ * @brief	è‡ªæ©Ÿ
  * @author	kagaya
  * @data	05.08.03
  *
@@ -12,12 +12,12 @@
 #define PLAYER_H_FILE
 
 //==============================================================================
-//	ƒfƒoƒbƒO
+//	ãƒ‡ãƒãƒƒã‚°
 //==============================================================================
 //----
 #ifdef PM_DEBUG
 //----
-//–¢’è‹`‚ÅŽ©‹@ƒfƒoƒbƒO‹@”\‘S‚ÄOFF
+//æœªå®šç¾©ã§è‡ªæ©Ÿãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½å…¨ã¦OFF
 #define PLAYER_DEBUG
 //----
 #endif	//PM_DEBUG
@@ -26,11 +26,11 @@
 //----
 #ifdef PLAYER_DEBUG
 //----
-//’è‹`‚·‚éŽ–‚ÅƒfƒoƒbƒOˆÚ“®‰Â”\ 
+//å®šç¾©ã™ã‚‹äº‹ã§ãƒ‡ãƒãƒƒã‚°ç§»å‹•å¯èƒ½ 
 #define PLAYER_DEBUG_MOVE
-//’è‹`‚Å‰ö—Íƒtƒ‰ƒO‚ÌƒCƒxƒ“ƒgƒ`ƒFƒbƒN‚ðs‚¤
+//å®šç¾©ã§æ€ªåŠ›ãƒ•ãƒ©ã‚°ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
 //#define DEBUG_JIKI_KAIRIKI_FLAG_CHECK_ON
-//’è‹`‚Å‘ê‰º‚èƒoƒO”­¶
+//å®šç¾©ã§æ»ä¸‹ã‚Šãƒã‚°ç™ºç”Ÿ
 //#define DEBUG_JIKI_TAKIKUDARI_BUG_ON
 //----
 #endif //PLAYER_DEBUG
@@ -49,88 +49,88 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-//	“®ìó‘Ô‚ð•\‚·’l
+//	å‹•ä½œçŠ¶æ…‹ã‚’è¡¨ã™å€¤
 //--------------------------------------------------------------
 enum
 {
-	OBJ_MOVE_VALUE_STOP = 0,								///<’âŽ~ó‘Ô‚Å‚ ‚é
-	OBJ_MOVE_VALUE_WALK,									///<ˆÚ“®’†‚Å‚ ‚é
-	OBJ_MOVE_VALUE_TURN,									///<U‚èŒü‚«ó‘Ô‚Å‚ ‚é
+	OBJ_MOVE_VALUE_STOP = 0,								///<åœæ­¢çŠ¶æ…‹ã§ã‚ã‚‹
+	OBJ_MOVE_VALUE_WALK,									///<ç§»å‹•ä¸­ã§ã‚ã‚‹
+	OBJ_MOVE_VALUE_TURN,									///<æŒ¯ã‚Šå‘ãçŠ¶æ…‹ã§ã‚ã‚‹
 };
 
 //--------------------------------------------------------------
-///	“®ìó‹µ
+///	å‹•ä½œçŠ¶æ³
 //--------------------------------------------------------------
 enum
 {
-	OBJ_MOVE_STATE_OFF = 0,									///<“®ì–³‚µ
-	OBJ_MOVE_STATE_START,									///<“®ìŠJŽn
-	OBJ_MOVE_STATE_ON,										///<“®ì’†
-	OBJ_MOVE_STATE_END,										///<“®ìI—¹
+	OBJ_MOVE_STATE_OFF = 0,									///<å‹•ä½œç„¡ã—
+	OBJ_MOVE_STATE_START,									///<å‹•ä½œé–‹å§‹
+	OBJ_MOVE_STATE_ON,										///<å‹•ä½œä¸­
+	OBJ_MOVE_STATE_END,										///<å‹•ä½œçµ‚äº†
 };
 
 //--------------------------------------------------------------
-///	Ž©‹@ˆÚ“®”»’è–ß‚è’l
+///	è‡ªæ©Ÿç§»å‹•åˆ¤å®šæˆ»ã‚Šå€¤
 //--------------------------------------------------------------
-#define JIKI_MOVE_HIT_BIT_NON		(0)						///<áŠQ•¨–³‚µ
-#define JIKI_MOVE_HIT_BIT_ATTR		(1<<0)					///<ƒAƒgƒŠƒrƒ…[ƒgƒqƒbƒg
-#define JIKI_MOVE_HIT_BIT_OBJ		(1<<1)					///<OBJ“¯Žm‚ÌÕ“Ë
-#define JIKI_MOVE_HIT_BIT_JUMP		(1<<2)					///<ƒWƒƒƒ“ƒvƒqƒbƒg
-#define JIKI_MOVE_HIT_BIT_EXIT		(1<<3)					///<o“ü‚èŒûƒqƒbƒg
-#define JIKI_MOVE_HIT_BIT_TAKE_OFF	(1<<4)					///<ƒWƒƒƒ“ƒv‘äƒqƒbƒg
-#define JIKI_MOVE_HIT_BIT_WATER		(1<<5)					///<…ƒqƒbƒg
-#define JIKI_MOVE_HIT_BIT_BRIDGEHV	(1<<6)					///<ˆê–{‹´ƒqƒbƒg
-#define JIKI_MOVE_HIT_BIT_JUMP_3G	(1<<7)					///<3GƒWƒƒƒ“ƒv
+#define JIKI_MOVE_HIT_BIT_NON		(0)						///<éšœå®³ç‰©ç„¡ã—
+#define JIKI_MOVE_HIT_BIT_ATTR		(1<<0)					///<ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ’ãƒƒãƒˆ
+#define JIKI_MOVE_HIT_BIT_OBJ		(1<<1)					///<OBJåŒå£«ã®è¡çª
+#define JIKI_MOVE_HIT_BIT_JUMP		(1<<2)					///<ã‚¸ãƒ£ãƒ³ãƒ—ãƒ’ãƒƒãƒˆ
+#define JIKI_MOVE_HIT_BIT_EXIT		(1<<3)					///<å‡ºå…¥ã‚Šå£ãƒ’ãƒƒãƒˆ
+#define JIKI_MOVE_HIT_BIT_TAKE_OFF	(1<<4)					///<ã‚¸ãƒ£ãƒ³ãƒ—å°ãƒ’ãƒƒãƒˆ
+#define JIKI_MOVE_HIT_BIT_WATER		(1<<5)					///<æ°´ãƒ’ãƒƒãƒˆ
+#define JIKI_MOVE_HIT_BIT_BRIDGEHV	(1<<6)					///<ä¸€æœ¬æ©‹ãƒ’ãƒƒãƒˆ
+#define JIKI_MOVE_HIT_BIT_JUMP_3G	(1<<7)					///<3Gã‚¸ãƒ£ãƒ³ãƒ—
 
-//#define JIKI_MOVE_HIT_BIT_KAIRIKI	(1<<3)					///<‚©‚¢‚è‚«ƒqƒbƒg->ƒCƒxƒ“ƒg‚Ö
-//#define JIKI_MOVE_HIT_BIT_SWIM		(1<<4)				///<‚È‚Ý‚Ì‚èƒqƒbƒg->ƒCƒxƒ“ƒg‚Ö
+//#define JIKI_MOVE_HIT_BIT_KAIRIKI	(1<<3)					///<ã‹ã„ã‚Šããƒ’ãƒƒãƒˆ->ã‚¤ãƒ™ãƒ³ãƒˆã¸
+//#define JIKI_MOVE_HIT_BIT_SWIM		(1<<4)				///<ãªã¿ã®ã‚Šãƒ’ãƒƒãƒˆ->ã‚¤ãƒ™ãƒ³ãƒˆã¸
 
 //--------------------------------------------------------------
-///	Ž©‹@ƒCƒxƒ“ƒg
+///	è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆ
 //--------------------------------------------------------------
 typedef enum
 {
-	HERO_EVBIT_NON               = 0,			///<ƒCƒxƒ“ƒgŽw’è@–³‚µ
-	HERO_EVBIT_PERMIT_KAIRIKI    = (1<<0),		///<‰ö—ÍƒCƒxƒ“ƒg‚ð‹–‰Â
-	HERO_EVBIT_PREMIT_TAKINOBORI = (1<<1),		///<‘ê“o‚èƒCƒxƒ“ƒg‚ð‹–‰Â
-	HERO_EVBIT_TORNWORLD         = (1<<2),		///<”j‚ê‚½¢ŠEƒCƒxƒ“ƒg‚ð‹–‰Â
+	HERO_EVBIT_NON               = 0,			///<ã‚¤ãƒ™ãƒ³ãƒˆæŒ‡å®šã€€ç„¡ã—
+	HERO_EVBIT_PERMIT_KAIRIKI    = (1<<0),		///<æ€ªåŠ›ã‚¤ãƒ™ãƒ³ãƒˆã‚’è¨±å¯
+	HERO_EVBIT_PREMIT_TAKINOBORI = (1<<1),		///<æ»ç™»ã‚Šã‚¤ãƒ™ãƒ³ãƒˆã‚’è¨±å¯
+	HERO_EVBIT_TORNWORLD         = (1<<2),		///<ç ´ã‚ŒãŸä¸–ç•Œã‚¤ãƒ™ãƒ³ãƒˆã‚’è¨±å¯
 }HERO_EVBIT;
 
 //--------------------------------------------------------------
-///	ƒL[@ƒ{ƒ^ƒ“
+///	ã‚­ãƒ¼ã€€ãƒœã‚¿ãƒ³
 //--------------------------------------------------------------
-#define JIKI_DASH_BUTTON			(PAD_BUTTON_B)	///<ƒ_ƒbƒVƒ…‚Å‚«‚éƒ{ƒ^ƒ“
-#define JIKI_GEAR_CHG_BUTTON		(PAD_BUTTON_B)			///<ƒMƒAƒ`ƒFƒ“ƒWƒ{ƒ^ƒ“
+#define JIKI_DASH_BUTTON			(PAD_BUTTON_B)	///<ãƒ€ãƒƒã‚·ãƒ¥ã§ãã‚‹ãƒœã‚¿ãƒ³
+#define JIKI_GEAR_CHG_BUTTON		(PAD_BUTTON_B)			///<ã‚®ã‚¢ãƒã‚§ãƒ³ã‚¸ãƒœã‚¿ãƒ³
 
 //----
 #ifdef PLAYER_DEBUG_MOVE
 //----
-#define DEBUG_WALK_PAD				(PAD_BUTTON_R)			//ƒfƒoƒbƒOˆÚ“®‰Â”\ƒ{ƒ^ƒ“
+#define DEBUG_WALK_PAD				(PAD_BUTTON_R)			//ãƒ‡ãƒãƒƒã‚°ç§»å‹•å¯èƒ½ãƒœã‚¿ãƒ³
 //----
 #endif
 //----
 
 //--------------------------------------------------------------
-///	Ž©‹@‘¬“x
+///	è‡ªæ©Ÿé€Ÿåº¦
 //--------------------------------------------------------------
 enum
 {
-	JIKI_SPEED_0 = 0,										///<‘¬“x0(1)
+	JIKI_SPEED_0 = 0,										///<é€Ÿåº¦0(1)
 	JIKI_SPEED_1,
 	JIKI_SPEED_2,
 	JIKI_SPEED_3,
 };
 
-#define JIKI_SPEED_SNOWBALL_BREAK (JIKI_SPEED_1)			///<á‹Ê”j‰ó‘¬“x
+#define JIKI_SPEED_SNOWBALL_BREAK (JIKI_SPEED_1)			///<é›ªçŽ‰ç ´å£Šé€Ÿåº¦
 
-#define JIKI_SPEED_CYCLE3		(JIKI_SPEED_2)				///<‚R‘¬‘¬“x
-#define JIKI_SPEED_CYCLE4_TOP	(JIKI_SPEED_3)				///<‚S‘¬Å‚‘¬“x
-#define JIKI_SPEED_BRAKE_ON		(JIKI_SPEED_2)				///<ƒuƒŒ[ƒLŠJŽn‘¬“x
+#define JIKI_SPEED_CYCLE3		(JIKI_SPEED_2)				///<ï¼“é€Ÿé€Ÿåº¦
+#define JIKI_SPEED_CYCLE4_TOP	(JIKI_SPEED_3)				///<ï¼”é€Ÿæœ€é«˜é€Ÿåº¦
+#define JIKI_SPEED_BRAKE_ON		(JIKI_SPEED_2)				///<ãƒ–ãƒ¬ãƒ¼ã‚­é–‹å§‹é€Ÿåº¦
 
-#define JIKI_SPEED_VALUE_1		(1)							///<‚P‘¬
+#define JIKI_SPEED_VALUE_1		(1)							///<ï¼‘é€Ÿ
 
 //--------------------------------------------------------------
-///	Ž©‹@ƒtƒŒ[ƒ€ƒXƒs[ƒh
+///	è‡ªæ©Ÿãƒ•ãƒ¬ãƒ¼ãƒ ã‚¹ãƒ”ãƒ¼ãƒ‰
 //--------------------------------------------------------------
 enum
 {
@@ -145,7 +145,7 @@ enum
 #define JIKI_FRAME_SPEED_NORMAL (JIKI_FRAME_SPEED_8F)
 
 //--------------------------------------------------------------
-///	ƒMƒA‚RC‚SŽ¯•Ê
+///	ã‚®ã‚¢ï¼“ï¼Œï¼”è­˜åˆ¥
 //--------------------------------------------------------------
 enum
 {
@@ -155,7 +155,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	Ž©‹@ƒAƒjƒƒR[ƒhƒ^ƒCƒv
+///	è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰ã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 typedef enum
 {
@@ -169,21 +169,21 @@ typedef enum
 }HEROACTYPE;
 
 //--------------------------------------------------------------
-///	”j‚ê‚½¢ŠEŽí—Þ
+///	ç ´ã‚ŒãŸä¸–ç•Œç¨®é¡ž
 //--------------------------------------------------------------
 typedef enum
 {
-	HEROTWTYPE_NON = 0,		///<”j‚ê‚½¢ŠE‚Å‚Í‚È‚¢
-	HEROTWTYPE_ON,			///<”j‚ê‚½¢ŠE‚Å‚ ‚é
-	HEROTWTYPE_GROUND,		///<”j‚ê‚½¢ŠE “ÁŽê’nŒ`ˆÚ“®
-	HEROTWTYPE_WLEFT,		///<”j‚ê‚½¢ŠE ¶•ÇˆÚ“®
-	HEROTWTYPE_WRIGHT,		///<”j‚ê‚½¢ŠE ‰E•ÇˆÚ“®
-	HEROTWTYPE_ROOF,		///<”j‚ê‚½¢ŠE “VˆäˆÚ“®
-	HEROTWTYPE_MAX,			///<Å‘å
+	HEROTWTYPE_NON = 0,		///<ç ´ã‚ŒãŸä¸–ç•Œã§ã¯ãªã„
+	HEROTWTYPE_ON,			///<ç ´ã‚ŒãŸä¸–ç•Œã§ã‚ã‚‹
+	HEROTWTYPE_GROUND,		///<ç ´ã‚ŒãŸä¸–ç•Œ ç‰¹æ®Šåœ°å½¢ç§»å‹•
+	HEROTWTYPE_WLEFT,		///<ç ´ã‚ŒãŸä¸–ç•Œ å·¦å£ç§»å‹•
+	HEROTWTYPE_WRIGHT,		///<ç ´ã‚ŒãŸä¸–ç•Œ å³å£ç§»å‹•
+	HEROTWTYPE_ROOF,		///<ç ´ã‚ŒãŸä¸–ç•Œ å¤©äº•ç§»å‹•
+	HEROTWTYPE_MAX,			///<æœ€å¤§
 }HEROTWTYPE;
 
 //--------------------------------------------------------------
-///	ƒo[ƒWƒ‡ƒ“
+///	ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 //--------------------------------------------------------------
 typedef enum
 {
@@ -195,25 +195,25 @@ typedef enum
 //	typedef
 //==============================================================================
 //--------------------------------------------------------------
-//	PLAYER_STATE_PTR’è‹`
+//	PLAYER_STATE_PTRå®šç¾©
 //--------------------------------------------------------------
 typedef struct _TAG_PLAYER_STATE * PLAYER_STATE_PTR;
 typedef struct _TAG_PLAYER_STATE * const CONST_PLAYER_STATE_PTR;
 
 //--------------------------------------------------------------
-//	PLAYER_SAVEDATA\‘¢‘Ì
+//	PLAYER_SAVEDATAæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	u16 gear_type;										///<Œ»Ý‚ÌŽ©“]ŽÔƒMƒAƒ^ƒCƒv
-	u16 shoes_flag;										///<Bƒ_ƒbƒVƒ…”»’èƒVƒ…[ƒYƒtƒ‰ƒO
-	u32 form;											///<Ž©‹@Œ`‘Ô
+	u16 gear_type;										///<ç¾åœ¨ã®è‡ªè»¢è»Šã‚®ã‚¢ã‚¿ã‚¤ãƒ—
+	u16 shoes_flag;										///<Bãƒ€ãƒƒã‚·ãƒ¥åˆ¤å®šã‚·ãƒ¥ãƒ¼ã‚ºãƒ•ãƒ©ã‚°
+	u32 form;											///<è‡ªæ©Ÿå½¢æ…‹
 }PLAYER_SAVE_DATA;
 
 #define PLAYER_SAVE_DATA_SIZE (sizeof(PLAYER_SAVE_DATA))
 
 //==============================================================================
-//	ŠO•”éŒ¾
+//	å¤–éƒ¨å®£è¨€
 //==============================================================================
 //--------------------------------------------------------------
 //	player.c

@@ -1,6 +1,6 @@
 //====================================================================
 //						r227
-//					ƒtƒB[ƒ‹ƒhEƒ[ƒh227
+//					ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ»ãƒ­ãƒ¼ãƒ‰227
 //====================================================================
 
 	.text
@@ -10,11 +10,11 @@
 	.include	"../eventdata/zone_r227evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		pos_r227_gymleader
 _EVENT_DATA		ev_r227_sign1
@@ -30,7 +30,7 @@ _EVENT_DATA_END
 
 
 /********************************************************************/
-/*					ƒWƒ€ƒŠ[ƒ_[‚Æƒ‰ƒCƒoƒ‹(POS)						*/
+/*					ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã¨ãƒ©ã‚¤ãƒãƒ«(POS)						*/
 /********************************************************************/
 #define POS_R227_GYMLEADER_X1	(738)
 #define POS_R227_GYMLEADER_X2	(739)
@@ -38,21 +38,21 @@ _EVENT_DATA_END
 pos_r227_gymleader:
 	_EVENT_START
 
-	//ŽålŒö‚ÌˆÊ’uî•ñŽæ“¾
+	//ä¸»äººå…¬ã®ä½ç½®æƒ…å ±å–å¾—
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_R227_GYMLEADER_X2,pos_r227_gymleader_set_x
 
-	/*ŽålŒö‚É‹C‚Ã‚­*/
+	/*ä¸»äººå…¬ã«æ°—ã¥ã*/
 	_OBJ_ANIME		R227_GYMLEADER,anm_r227_gymleader_01
 	_OBJ_ANIME		R227_RIVAL,anm_r227_rival_01
-	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r227_player_00	/*¶‚©‚çPOS‚Éi“ü‚µ‚½Žž‚Ì‘Îˆ*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r227_player_00	/*å·¦ã‹ã‚‰POSã«é€²å…¥ã—ãŸæ™‚ã®å¯¾å‡¦*/
 	_OBJ_ANIME_WAIT
 
 	_PLAYER_NAME	0
 	_TALK_KEYWAIT	msg_r227_gymleader_01_01
 	_TALK_CLOSE
 
-	/*ƒ‰ƒCƒoƒ‹AƒWƒ€ƒŠ[ƒ_[‚Ì•û‚ðŒü‚­*/
+	/*ãƒ©ã‚¤ãƒãƒ«ã€ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã®æ–¹ã‚’å‘ã*/
 	_OBJ_ANIME		R227_RIVAL,anm_r227_rival_02
 	_OBJ_ANIME_WAIT
 
@@ -62,7 +62,7 @@ pos_r227_gymleader:
 	_TALK_KEYWAIT	msg_r227_rival_01
 	_TALK_CLOSE
 
-	/*ƒ}ƒLƒVAƒ‰ƒCƒoƒ‹‚Ì•û‚ðŒü‚­*/
+	/*ãƒžã‚­ã‚·ã€ãƒ©ã‚¤ãƒãƒ«ã®æ–¹ã‚’å‘ã*/
 	_OBJ_ANIME		R227_GYMLEADER,anm_r227_gymleader_50
 	_OBJ_ANIME_WAIT
 
@@ -71,7 +71,7 @@ pos_r227_gymleader:
 	_RIVAL_NAME		1
 	_TALK_KEYWAIT	msg_r227_rival_02
 
-	/*ƒ}ƒLƒVA‰º‚ðŒü‚­*/
+	/*ãƒžã‚­ã‚·ã€ä¸‹ã‚’å‘ã*/
 	_OBJ_ANIME		R227_GYMLEADER,anm_r227_gymleader_55
 	_OBJ_ANIME_WAIT
 
@@ -79,14 +79,14 @@ pos_r227_gymleader:
 	_TALK_KEYWAIT	msg_r227_gymleader_03
 	_TALK_CLOSE
 
-	/*R226‚Ö‹Ž‚Á‚Ä‚¢‚­*/
+	/*R226ã¸åŽ»ã£ã¦ã„ã*/
 	_OBJ_ANIME		R227_GYMLEADER,anm_r227_gymleader_04
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r227_player_03
 	_OBJ_ANIME		R227_RIVAL,anm_r227_rival_103
 	_OBJ_ANIME_WAIT
 	_OBJ_DEL		R227_GYMLEADER
 
-	/*ƒ‰ƒCƒoƒ‹AŽålŒö‚Ì•û‚ðŒü‚­*/
+	/*ãƒ©ã‚¤ãƒãƒ«ã€ä¸»äººå…¬ã®æ–¹ã‚’å‘ã*/
 	_OBJ_ANIME		R227_RIVAL,anm_r227_rival_03
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r227_player_210
 	_OBJ_ANIME_WAIT
@@ -108,14 +108,14 @@ pos_r227_gymleader:
 	_EVENT_END
 	_END
 
-/*ƒ}ƒLƒV‚Ì‘O‚É—ˆ‚é‚æ‚¤‚É‚·‚é*/
+/*ãƒžã‚­ã‚·ã®å‰ã«æ¥ã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 pos_r227_gymleader_set_x:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r227_player_200
 	_OBJ_ANIME_WAIT
 	_RET
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒ}ƒLƒV‚Ì‘O‚É—ˆ‚é‚æ‚¤‚É‚·‚é
+//ä¸»äººå…¬	ãƒžã‚­ã‚·ã®å‰ã«æ¥ã‚‹ã‚ˆã†ã«ã™ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_player_200
 	_ANIME_DATA	AC_WALK_L_8F,1
@@ -123,14 +123,14 @@ _ANIME_LABEL	anm_r227_player_200
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ã‚ðŒü‚­
+//ä¸»äººå…¬	ä¸Šã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_player_00
 	_ANIME_DATA	AC_DIR_U,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒ‰ƒCƒoƒ‹‚É‹ß‚Ã‚­
+//ä¸»äººå…¬	ãƒ©ã‚¤ãƒãƒ«ã«è¿‘ã¥ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_player_210
 	_ANIME_DATA	AC_WALK_R_8F,1
@@ -139,7 +139,7 @@ _ANIME_LABEL	anm_r227_player_210
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒ‰ƒCƒoƒ‹‚ðŒ©‘—‚é
+//ä¸»äººå…¬	ãƒ©ã‚¤ãƒãƒ«ã‚’è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_player_228
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -147,14 +147,14 @@ _ANIME_LABEL	anm_r227_player_228
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒWƒ€ƒŠ[ƒ_[‚ðŒ©‚é
+//ä¸»äººå…¬	ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_player_02
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒWƒ€ƒŠ[ƒ_[‚ðŒ©‘—‚é
+//ä¸»äººå…¬	ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã‚’è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_player_03
 	_ANIME_DATA	AC_WALK_L_8F,1
@@ -171,7 +171,7 @@ _ANIME_LABEL	anm_r227_player_04
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹	I
+//ãƒ©ã‚¤ãƒãƒ«	ï¼
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_rival_01
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
@@ -179,28 +179,28 @@ _ANIME_LABEL	anm_r227_rival_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹	ƒWƒ€ƒŠ[ƒ_[‚Ì•û‚ðŒü‚­
+//ãƒ©ã‚¤ãƒãƒ«	ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã®æ–¹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_rival_02
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹	ƒWƒ€ƒŠ[ƒ_[Œ©‘—‚é
+//ãƒ©ã‚¤ãƒãƒ«	ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_rival_103
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹	ŽålŒö‚Ì•û‚ðŒü‚­
+//ãƒ©ã‚¤ãƒãƒ«	ä¸»äººå…¬ã®æ–¹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_rival_03
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ‰ƒCƒoƒ‹	‹Ž‚Á‚Ä‚¢‚­
+//ãƒ©ã‚¤ãƒãƒ«	åŽ»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_rival_100
 	_ANIME_DATA	AC_WALK_D_4F,9
@@ -211,7 +211,7 @@ _ANIME_LABEL	anm_r227_rival_101
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒWƒ€ƒŠ[ƒ_[	I
+//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼	ï¼
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_gymleader_01
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
@@ -219,21 +219,21 @@ _ANIME_LABEL	anm_r227_gymleader_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒWƒ€ƒŠ[ƒ_[	ƒ‰ƒCƒoƒ‹‚Ì•û‚ðŒü‚­
+//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼	ãƒ©ã‚¤ãƒãƒ«ã®æ–¹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_gymleader_50
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒWƒ€ƒŠ[ƒ_[	‰º‚ðŒü‚­
+//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼	ä¸‹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_gymleader_55
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒWƒ€ƒŠ[ƒ_[	ƒ‰ƒCƒoƒ‹‚ðŒ©‘—‚é
+//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼	ãƒ©ã‚¤ãƒãƒ«ã‚’è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_gymleader_02
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -241,14 +241,14 @@ _ANIME_LABEL	anm_r227_gymleader_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒWƒ€ƒŠ[ƒ_[	ŽålŒö‚ðŒ©‚é
+//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼	ä¸»äººå…¬ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_gymleader_03
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒWƒ€ƒŠ[ƒ_[	‹Ž‚Á‚Ä‚¢‚­
+//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼	åŽ»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_gymleader_04
 	_ANIME_DATA	AC_WAIT_8F,2
@@ -261,7 +261,7 @@ _ANIME_LABEL	anm_r227_gymleader_05
 
 
 /********************************************************************/
-/*							“¹˜HŠÅ”Â								*/
+/*							é“è·¯çœ‹æ¿								*/
 /********************************************************************/
 ev_r227_sign1:
 	_EASY_BOARD_MSG	msg_r227_sign1_01,BOARD_TYPE_ROAD,0
@@ -269,7 +269,7 @@ ev_r227_sign1:
 
 
 /********************************************************************/
-/*							‚TlO									*/
+/*							ï¼•äººè¡†									*/
 /********************************************************************/
 ev_r227_seven2:
 	_EASY_OBJ_MSG	msg_r227_seven2_05
@@ -277,12 +277,12 @@ ev_r227_seven2:
 
 
 /********************************************************************/
-/*							‚TlO(POS)								*/
+/*							ï¼•äººè¡†(POS)								*/
 /********************************************************************/
 pos_r227_seven2:
 	_EVENT_START
 
-	/*ŽålŒö‚É‹C‚Ã‚­*/
+	/*ä¸»äººå…¬ã«æ°—ã¥ã*/
 	_OBJ_ANIME		R227_SEVEN2,anm_r227_seven2_01
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r227_player_100
 	_OBJ_ANIME_WAIT
@@ -297,21 +297,21 @@ ev_r227_seven2_2:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_r227_seven2
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_r227_seven2:
 	_TALKMSG		msg_r227_seven2_04
 	_JUMP			ev_r227_seven2_2
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 yes_r227_seven2:
-	/*ãŒü‚«*/
+	/*ä¸Šå‘ã*/
 	_OBJ_ANIME		R227_SEVEN2,anm_r227_seven2_50
 	_OBJ_ANIME_WAIT
 
 	_TALKMSG		msg_r227_seven2_02
 
-	/*ŽålŒö‚ÆŒü‚«‡‚Á‚Ä*/
+	/*ä¸»äººå…¬ã¨å‘ãåˆã£ã¦*/
 	_OBJ_ANIME		R227_SEVEN2,anm_r227_seven2_55
 	_OBJ_ANIME_WAIT
 
@@ -323,14 +323,14 @@ yes_r227_seven2:
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	ã‚ðŒ©‚é
+//ä¸»äººå…¬	ä¸Šã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_player_100
 	_ANIME_DATA	AC_DIR_U,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	‚TlO‚ðŒ©‘—‚é
+//ä¸»äººå…¬	ï¼•äººè¡†ã‚’è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_player_30
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -338,7 +338,7 @@ _ANIME_LABEL	anm_r227_player_30
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚TlO	‹ß‚Ã‚­
+//ï¼•äººè¡†	è¿‘ã¥ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_seven2_01
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
@@ -347,14 +347,14 @@ _ANIME_LABEL	anm_r227_seven2_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚TlO	ã‚ðŒü‚­
+//ï¼•äººè¡†	ä¸Šã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_seven2_50
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚TlO	Œü‚«‡‚¤
+//ï¼•äººè¡†	å‘ãåˆã†
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r227_seven2_55
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1

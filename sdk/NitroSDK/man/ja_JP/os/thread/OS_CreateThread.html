@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>OS_CreateThread</TITLE>
@@ -9,7 +9,7 @@
 </HEAD>
 <BODY>
 <H1 align="left">OS_CreateThread</H1>
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
@@ -22,46 +22,46 @@
      u32         prio );
   </CODE></PRE>
 </DL>
-<H2>����</H2>
+<H2>引数</H2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>thread</STRONG></EM></TD>
-      <TD width="87%">����������X���b�h�\���̂ւ̃|�C���^</TD>
+      <TD width="87%">初期化するスレッド構造体へのポインタ</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>func</STRONG></EM></TD>
-      <TD width="87%">���s���J�n����֐��ւ̃|�C���^</TD>
+      <TD width="87%">実行を開始する関数へのポインタ</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>arg</STRONG></EM></TD>
-      <TD width="87%">���s���J�n����֐��֓n������</TD>
+      <TD width="87%">実行を開始する関数へ渡す引数</TD>
     </TR>
     <TR>
       <TD><EM><STRONG>stack</STRONG></EM></TD>
-      <TD>�X�^�b�N�|�C���^�̊J�n�A�h���X�B�X�^�b�N�͉��ʕ����ɐς܂�Ă����̂ŁA
-      �X�^�b�N�̍ŏ�ʂ̈ʒu���w�肵�Ȃ���΂Ȃ�Ȃ��_�ɒ��ӂ��Ă��������B �A�h���X��4�o�C�g�A���C�������g���ꂽ���̂ł���K�v������܂��B</TD>
+      <TD>スタックポインタの開始アドレス。スタックは下位方向に積まれていくので、
+      スタックの最上位の位置を指定しなければならない点に注意してください。 アドレスは4バイトアラインメントされたものである必要があります。</TD>
     </TR>
     <TR>
       <TD><EM><STRONG>stackSize</STRONG></EM></TD>
-      <TD>�X�^�b�N�̃T�C�Y�B�P�ʂ̓o�C�g�ł��B4�̔{���ł���K�v������܂��B</TD>
+      <TD>スタックのサイズ。単位はバイトです。4の倍数である必要があります。</TD>
     </TR>
     <TR>
       <TD><EM><STRONG>prio</STRONG></EM></TD>
-      <TD>�X���b�h�̗D��x�ł��B 0 �������Ƃ������D��x�ŁA31 ���ł��Ⴂ�D��x�ł��B<BR>
-      <CODE>�Ȃ��AOSInitThread</CODE> ���Ăяo�����X���b�h�́A�D��x 16 �������܂��B<BR>
-      �����D��x�����X���b�h���쐬�����ꍇ�A�ォ��쐬�������̂��D�悳��܂��B</TD>
+      <TD>スレッドの優先度です。 0 がもっとも高い優先度で、31 が最も低い優先度です。<BR>
+      <CODE>なお、OSInitThread</CODE> を呼び出したスレッドは、優先度 16 を持ちます。<BR>
+      同じ優先度を持つスレッドを作成した場合、後から作成したものが優先されます。</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>�Ԃ�l</H2>
-<P>�Ȃ��B</P>
-<H2>����</H2>
-<P>�X���b�h���쐬���܂��B</P>
-<P><EM><B>thread</B></EM> �͍쐬����X���b�h�\���̂ւ̃|�C���^�ł��B�X���b�h�� <EM><B>func</B></EM> ������s����܂��B<EM><B>arg</B></EM> �ɓ����ꂽ�l�� <EM><B>func</B></EM> �̑������Ƃ��Ĉ����܂��B</P>
-<P>�X�^�b�N�̈�� <EM><B>stack</B></EM> �� <B><EM>stackSize</EM></B> �Ŏw�肵�܂��B<EM><B>stack</B></EM> �̓X�^�b�N�|�C���^�̊J�n�A�h���X�ŁA�X�^�b�N�̈�̍ŏ�ʃA�h���X(+1)�ƂȂ�܂��B(���ۂɂ̓X���b�h���쐬����ۂɁA�X�^�b�N�̃`�F�b�N�R�[�h�p��4�o�C�g���\�ߊm�ۂ���܂�)</P>
-<P><CODE><A href="OS_CreateThread.html">OS_CreateThread()</A></CODE> �ō쐬���ꂽ����̃X���b�h�͋x�~��ԂɂȂ��Ă��܂��̂ŁA<CODE><A href="OS_WakeupThreadDirect.html">OS_WakeupThreadDirect()</A></CODE> �Ŗ����I�ɓ����Ԃɂ��Ă��K�v������܂��B</P>
-<BLOCKQUOTE>(��)<BR>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>スレッドを作成します。</P>
+<P><EM><B>thread</B></EM> は作成するスレッド構造体へのポインタです。スレッドは <EM><B>func</B></EM> から実行されます。<EM><B>arg</B></EM> に入れられた値は <EM><B>func</B></EM> の第一引数として扱われます。</P>
+<P>スタック領域は <EM><B>stack</B></EM> と <B><EM>stackSize</EM></B> で指定します。<EM><B>stack</B></EM> はスタックポインタの開始アドレスで、スタック領域の最上位アドレス(+1)となります。(実際にはスレッドを作成する際に、スタックのチェックコード用に4バイトが予め確保されます)</P>
+<P><CODE><A href="OS_CreateThread.html">OS_CreateThread()</A></CODE> で作成された直後のスレッドは休止状態になっていますので、<CODE><A href="OS_WakeupThreadDirect.html">OS_WakeupThreadDirect()</A></CODE> で明示的に動作状態にしてやる必要があります。</P>
+<BLOCKQUOTE>(例)<BR>
 <CODE>#define THREAD_PRIO 10<BR>
 #define STACK_SIZE 1024<BR>
 <BR>
@@ -71,29 +71,29 @@ u64 stack[ STACK_SIZE / sizeof(u64) ];<BR>
 <BR>
 void nitroMain()<BR>
 {<BR>
-�@�F<BR>
-�@OS_InitThread();<BR>
-�@<FONT color="#ff0000">OS_CreateThread( &amp;thread, proc, NULL, <BR>
-�@�@�@�@�@�@�@�@�@�@�@�@stack+STACK_SIZE/sizeof(u64), STACK_SIZE,THREAD_PRIO
+　：<BR>
+　OS_InitThread();<BR>
+　<FONT color="#ff0000">OS_CreateThread( &amp;thread, proc, NULL, <BR>
+　　　　　　　　　　　　stack+STACK_SIZE/sizeof(u64), STACK_SIZE,THREAD_PRIO
 );</FONT><BR>
-�@OS_WakeupThreadDirect( &amp;thread );<BR>
-�@�F<BR>
+　OS_WakeupThreadDirect( &amp;thread );<BR>
+　：<BR>
 }<BR>
 <BR>
 void proc( void *arg )<BR>
 {<BR>
-�@�F<BR>
+　：<BR>
 }</CODE><BR>
 </BLOCKQUOTE>
-<H2>�Q��</H2>
+<H2>参照</H2>
 <P><CODE><A href="OS_InitThread.html">OS_InitThread</A>, <A href="OS_SleepThread.html">OS_SleepThread</A>, <A href="OS_WakeupThread.html">OS_WakeupThread</A>, <A href="OS_WakeupThreadDirect.html">OS_WakeupThreadDirect</A></CODE><BR>
 <CODE><A href="OS_ExitThread.html">OS_ExitThread</A>, <A href="OS_DestroyThread.html">OS_DestroyThread</A><BR>
 </CODE></P>
-<H2>����</H2>
-<P>2005/07/08 �X���b�h���̐������폜<BR>
-2004/11/01 �X���b�h���̕ύX�ɂ��ċL�q��ǉ�<BR>
-2004/04/27 �A�C�h���X���b�h�̋L�q��ǉ�<BR>
-2004/02/26 arg ��ǉ��A�X���b�h�̗D��x0�`31�̋L�q�ǉ�<BR>
-2003/12/01 ����</P>
+<H2>履歴</H2>
+<P>2005/07/08 スレッド数の制限を削除<BR>
+2004/11/01 スレッド数の変更について記述を追加<BR>
+2004/04/27 アイドルスレッドの記述を追加<BR>
+2004/02/26 arg を追加、スレッドの優先度0〜31の記述追加<BR>
+2003/12/01 初版</P>
 </BODY>
 </HTML>

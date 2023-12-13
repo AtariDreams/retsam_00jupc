@@ -15,10 +15,10 @@
   do-indent
 
   Revision 1.2  2005/05/17 12:55:26  seiki_masashi
-  �x���ւ̑Ή�
+  警告への対応
 
   Revision 1.1  2005/05/13 09:23:09  seiki_masashi
-  FFT �֐��̒ǉ�
+  FFT 関数の追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -29,10 +29,10 @@
 /*---------------------------------------------------------------------------*
   Name:         MATH_MakeFFTSinTable
 
-  Description:  �����t�[���G�ϊ��ŗp���� sin �e�[�u�����쐬����
+  Description:  高速フーリエ変換で用いる sin テーブルを作成する
 
-  Arguments:    sinTable - 2^nShift * 3/4 �� sin �e�[�u�����i�[����ꏊ�ւ̃|�C���^
-                nShift - �f�[�^���� log2
+  Arguments:    sinTable - 2^nShift * 3/4 個の sin テーブルを格納する場所へのポインタ
+                nShift - データ数の log2
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -56,12 +56,12 @@ void MATH_MakeFFTSinTable(fx16 *sinTable, u32 nShift)
 /*---------------------------------------------------------------------------*
   Name:         MATHi_FFT
 
-  Description:  �����t�[���G�ϊ����s�������֐�
+  Description:  高速フーリエ変換を行う内部関数
 
-  Arguments:    data - �����ԖڂɎ����A��Ԗڂɋ��������߂��ϊ����s���f�[�^�B
-                       �ϊ����ʂ͏㏑������ĕԂ����B
-                nShift - �f�[�^���� log2
-                sinTable - �~�����f�[�^���œ����������� sin �̒l�̃e�[�u��
+  Arguments:    data - 偶数番目に実部、奇数番目に虚部を収めた変換を行うデータ。
+                       変換結果は上書きされて返される。
+                nShift - データ数の log2
+                sinTable - 円周をデータ数で等分した時の sin の値のテーブル
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -73,36 +73,36 @@ void MATHi_FFT(fx32 *data, u32 nShift, const fx16 *sinTable)
     u32     n2 = n << 1;
     u32     nq = n >> 2;
 
-    // �r�b�g���]
+    // ビット反転
     {
         u32     rev = 0;
-        u32     shift = 32 - nShift - 1;        // -1 �� j ��2�{�ɂ��Ă�������
+        u32     shift = 32 - nShift - 1;        // -1 は j を2倍にしておくため
         for (i = 0; i < n2; i += 2)
         {
-            j = rev >> shift;          // �_���V�t�g
+            j = rev >> shift;          // 論理シフト
             if (i < j)
             {
-                // i �� j �����ł�2�{����Ă���
+                // i も j もすでに2倍されている
                 SWAP_FX32(data[i], data[j]);
                 SWAP_FX32(data[i + 1], data[j + 1]);
             }
-            // rev �� 32bit �Ŕ��]���������ƌ��Ȃ��ăC���N�������g
+            // rev を 32bit で反転した整数と見なしてインクリメント
             {
                 u32     s;
                 s = MATH_CLZ(~rev);
-                rev ^= (((s32)(0x80000000U)) >> s);     // �Z�p�V�t�g
+                rev ^= (((s32)(0x80000000U)) >> s);     // 算術シフト
             }
         }
     }
 
-    // �o�^�t���C
-    // ToDo: �������֘A���A�N�Z�X�ł���悤�Ƀ��[�v�̏��Ԃ𒲐�����
+    // バタフライ
+    // ToDo: メモリへ連続アクセスできるようにループの順番を調整する
     {
         u32     div, dt;
 
         dt = n;
-        // �ׂ����������� FFT �����グ�Ă���
-        // div �� k ����X�̂��߂�2�{���Ă��邱�Ƃɒ���
+        // 細かい分割から FFT を作り上げていく
+        // div も k も後々のために2倍してあることに注意
         for (div = 2; div < n2; div <<= 1)
         {
             u32     k;
@@ -110,14 +110,14 @@ void MATHi_FFT(fx32 *data, u32 nShift, const fx16 *sinTable)
             u32     t;
             dt >>= 1;
 
-            // �e�����ɂ��� 0 �Ԗڂ̍��̌v�Z���s��
+            // 各分割について 0 番目の項の計算を行う
             for (i = 0; i < n2; i += di)
             {
                 fx32    xr, xi, yr, yi;
                 u32     j = i + div;
-                // i �� j �����ł�2�{����Ă���
+                // i も j もすでに2倍されている
 
-                // 0 �Ԗڂ̍��͒P���Șa�ƍ��Ōv�Z�ł���
+                // 0 番目の項は単純な和と差で計算できる
                 // (wr, wi) == (1, 0)
                 xr = data[i];
                 xi = data[i + 1];
@@ -131,7 +131,7 @@ void MATHi_FFT(fx32 *data, u32 nShift, const fx16 *sinTable)
 
             t = dt;
 
-            // ������]���q��p���� k �Ԗڂ̍����܂Ƃ߂Čv�Z����
+            // 同じ回転因子を用いる k 番目の項をまとめて計算する
             for (k = 2; k < div; k += 2)
             {
                 if (k != div / 2)
@@ -148,18 +148,18 @@ void MATHi_FFT(fx32 *data, u32 nShift, const fx16 *sinTable)
                     w1 = wr + wi;
                     w2 = wr - wi;
 
-                    // �e�����ɂ��� k �Ԗڂ̍��̌v�Z���s��
+                    // 各分割について k 番目の項の計算を行う
                     for (i = k; i < n2; i += di)
                     {
                         fx32    xr, xi, yr, yi;
                         u32     j = i + div;
-                        // i �� j �����ł�2�{����Ă���
+                        // i も j もすでに2倍されている
 
-                        // �Ђ˂�
+                        // ひねる
                         xr = data[j];
                         xi = data[j + 1];
                         {
-                            // �ȉ��̏����Ɠ���
+                            // 以下の処理と同等
                             // yr = FX_Mul(wr, xr) - FX_Mul(wi, xi);
                             // yi = FX_Mul(wr, xi) + FX_Mul(wi, xr);
                             fx32    t = FX_Mul(wr, xr + xi);
@@ -178,14 +178,14 @@ void MATHi_FFT(fx32 *data, u32 nShift, const fx16 *sinTable)
                 else
                 {
                     t += dt;
-                    // �e�����ɂ��� k �Ԗڂ̍��̌v�Z���s��
+                    // 各分割について k 番目の項の計算を行う
                     for (i = k; i < n2; i += di)
                     {
                         fx32    xr, xi, yr, yi;
                         u32     j = i + div;
-                        // i �� j �����ł�2�{����Ă���
+                        // i も j もすでに2倍されている
 
-                        // div/2 �Ԗڂ̍��͒P���Șa�ƍ��Ōv�Z�ł���
+                        // div/2 番目の項は単純な和と差で計算できる
                         // (wr, wi) == (0, 1)
                         xr = data[i];
                         xi = data[i + 1];
@@ -209,12 +209,12 @@ void MATHi_FFT(fx32 *data, u32 nShift, const fx16 *sinTable)
 /*---------------------------------------------------------------------------*
   Name:         MATHi_IFFT
 
-  Description:  �����t�[���G�ϊ��̋t�ϊ����s�������֐�
+  Description:  高速フーリエ変換の逆変換を行う内部関数
 
-  Arguments:    data - �����ԖڂɎ����A��Ԗڂɋ��������߂��ϊ����s���f�[�^�B
-                       �ϊ����ʂ͏㏑������ĕԂ����B
-                nShift - �f�[�^���� log2
-                sinTable - �~�����f�[�^���œ����������� sin �̒l�̃e�[�u��
+  Arguments:    data - 偶数番目に実部、奇数番目に虚部を収めた変換を行うデータ。
+                       変換結果は上書きされて返される。
+                nShift - データ数の log2
+                sinTable - 円周をデータ数で等分した時の sin の値のテーブル
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -225,36 +225,36 @@ void MATHi_IFFT(fx32 *data, u32 nShift, const fx16 *sinTable)
     u32     n2 = n << 1;
     u32     nq = n >> 2;
 
-    // �r�b�g���]
+    // ビット反転
     {
         u32     rev = 0;
-        u32     shift = 32 - nShift - 1;        // -1 �� j ��2�{�ɂ��Ă�������
+        u32     shift = 32 - nShift - 1;        // -1 は j を2倍にしておくため
         for (i = 0; i < n2; i += 2)
         {
-            j = rev >> shift;          // �_���V�t�g
+            j = rev >> shift;          // 論理シフト
             if (i < j)
             {
-                // i �� j �����ł�2�{����Ă���
+                // i も j もすでに2倍されている
                 SWAP_FX32(data[i], data[j]);
                 SWAP_FX32(data[i + 1], data[j + 1]);
             }
-            // rev �� 32bit �Ŕ��]���������ƌ��Ȃ��ăC���N�������g
+            // rev を 32bit で反転した整数と見なしてインクリメント
             {
                 u32     s;
                 s = MATH_CLZ(~rev);
-                rev ^= (((s32)(0x80000000U)) >> s);     // �Z�p�V�t�g
+                rev ^= (((s32)(0x80000000U)) >> s);     // 算術シフト
             }
         }
     }
 
-    // �o�^�t���C
-    // ToDo: �������֘A���A�N�Z�X�ł���悤�Ƀ��[�v�̏��Ԃ𒲐�����
+    // バタフライ
+    // ToDo: メモリへ連続アクセスできるようにループの順番を調整する
     {
         u32     div, dt;
 
         dt = n;
-        // �ׂ����������� FFT �����グ�Ă���
-        // div �� k ����X�̂��߂�2�{���Ă��邱�Ƃɒ���
+        // 細かい分割から FFT を作り上げていく
+        // div も k も後々のために2倍してあることに注意
         for (div = 2; div < n2; div <<= 1)
         {
             u32     k;
@@ -262,14 +262,14 @@ void MATHi_IFFT(fx32 *data, u32 nShift, const fx16 *sinTable)
             u32     t;
             dt >>= 1;
 
-            // �e�����ɂ��� 0 �Ԗڂ̍��̌v�Z���s��
+            // 各分割について 0 番目の項の計算を行う
             for (i = 0; i < n2; i += di)
             {
                 fx32    xr, xi, yr, yi;
                 u32     j = i + div;
-                // i �� j �����ł�2�{����Ă���
+                // i も j もすでに2倍されている
 
-                // 0 �Ԗڂ̍��͒P���Șa�ƍ��Ōv�Z�ł���
+                // 0 番目の項は単純な和と差で計算できる
                 // (wr, wi) == (1, 0)
                 xr = data[i];
                 xi = data[i + 1];
@@ -283,7 +283,7 @@ void MATHi_IFFT(fx32 *data, u32 nShift, const fx16 *sinTable)
 
             t = dt;
 
-            // ������]���q��p���� k �Ԗڂ̍����܂Ƃ߂Čv�Z����
+            // 同じ回転因子を用いる k 番目の項をまとめて計算する
             for (k = 2; k < div; k += 2)
             {
                 if (k != div / 2)
@@ -296,18 +296,18 @@ void MATHi_IFFT(fx32 *data, u32 nShift, const fx16 *sinTable)
                     w1 = wr + wi;
                     w2 = wr - wi;
 
-                    // �e�����ɂ��� k �Ԗڂ̍��̌v�Z���s��
+                    // 各分割について k 番目の項の計算を行う
                     for (i = k; i < n2; i += di)
                     {
                         fx32    xr, xi, yr, yi;
                         u32     j = i + div;
-                        // i �� j �����ł�2�{����Ă���
+                        // i も j もすでに2倍されている
 
-                        // �Ђ˂�
+                        // ひねる
                         xr = data[j];
                         xi = data[j + 1];
                         {
-                            // �ȉ��̏����Ɠ���
+                            // 以下の処理と同等
                             // yr = FX_Mul(wr, xr) - FX_Mul(wi, xi);
                             // yi = FX_Mul(wr, xi) + FX_Mul(wi, xr);
                             fx32    t = FX_Mul(wr, xr + xi);
@@ -326,14 +326,14 @@ void MATHi_IFFT(fx32 *data, u32 nShift, const fx16 *sinTable)
                 else
                 {
                     t += dt;
-                    // �e�����ɂ��� k �Ԗڂ̍��̌v�Z���s��
+                    // 各分割について k 番目の項の計算を行う
                     for (i = k; i < n2; i += di)
                     {
                         fx32    xr, xi, yr, yi;
                         u32     j = i + div;
-                        // i �� j �����ł�2�{����Ă���
+                        // i も j もすでに2倍されている
 
-                        // div/2 �Ԗڂ̍��͒P���Șa�ƍ��Ōv�Z�ł���
+                        // div/2 番目の項は単純な和と差で計算できる
                         // (wr, wi) == (0, 1)
                         xr = data[i];
                         xi = data[i + 1];
@@ -358,35 +358,35 @@ void MATHi_FFT_alter(fx32 *data, u32 nShift, const fx16 *sinTable, BOOL inverse)
     u32     n2 = n << 1;
     u32     nq = n >> 2;
 
-    // �r�b�g���]
+    // ビット反転
     {
         u32     rev = 0;
-        u32     shift = 32 - nShift - 1;        // -1 �� j ��2�{�ɂ��Ă�������
+        u32     shift = 32 - nShift - 1;        // -1 は j を2倍にしておくため
         for (i = 0; i < n2; i += 2)
         {
-            j = rev >> shift;          // �_���V�t�g
+            j = rev >> shift;          // 論理シフト
             if (i < j)
             {
-                // i �� j �����ł�2�{����Ă���
+                // i も j もすでに2倍されている
                 SWAP_FX32(data[i], data[j]);
                 SWAP_FX32(data[i + 1], data[j + 1]);
             }
-            // rev �� 32bit �Ŕ��]���������ƌ��Ȃ��ăC���N�������g
+            // rev を 32bit で反転した整数と見なしてインクリメント
             {
                 u32     s;
                 s = MATH_CLZ(~rev);
-                rev ^= (((s32)(0x80000000U)) >> s);     // �Z�p�V�t�g
+                rev ^= (((s32)(0x80000000U)) >> s);     // 算術シフト
             }
         }
     }
 
-    // �o�^�t���C
+    // バタフライ
     {
         u32     div, dt;
 
         dt = n;
-        // �ׂ����������� FFT �����グ�Ă���
-        // div �� k ����X�̂��߂�2�{���Ă��邱�Ƃɒ���
+        // 細かい分割から FFT を作り上げていく
+        // div も k も後々のために2倍してあることに注意
         for (div = 2; div < n2; div <<= 1)
         {
             u32     k;
@@ -399,9 +399,9 @@ void MATHi_FFT_alter(fx32 *data, u32 nShift, const fx16 *sinTable, BOOL inverse)
                 {
                     fx32    xr, xi, yr, yi;
                     u32     j = i + div;
-                    // i �� j �����ł�2�{����Ă���
+                    // i も j もすでに2倍されている
 
-                    // 0 �Ԗڂ̍��͒P���Șa�ƍ��Ōv�Z�ł���
+                    // 0 番目の項は単純な和と差で計算できる
                     xr = data[i];
                     xi = data[i + 1];
                     yr = data[j];
@@ -429,13 +429,13 @@ void MATHi_FFT_alter(fx32 *data, u32 nShift, const fx16 *sinTable, BOOL inverse)
                         fx32    xr, xi, yr, yi;
                         u32     ik = i + k;
                         u32     j = ik + div;
-                        // ik �� j �����ł�2�{����Ă���
+                        // ik も j もすでに2倍されている
 
-                        // �Ђ˂�
+                        // ひねる
                         xr = data[j];
                         xi = data[j + 1];
                         {
-                            // �ȉ��̏����Ɠ���
+                            // 以下の処理と同等
                             // yr = FX_Mul(wr, xr) - FX_Mul(wi, xi);
                             // yi = FX_Mul(wr, xi) + FX_Mul(wi, xr);
                             fx32    t = FX_Mul(wr, xr + xi);
@@ -460,12 +460,12 @@ void MATHi_FFT_alter(fx32 *data, u32 nShift, const fx16 *sinTable, BOOL inverse)
 /*---------------------------------------------------------------------------*
   Name:         MATH_FFT
 
-  Description:  �����t�[���G�ϊ����s��
+  Description:  高速フーリエ変換を行う
 
-  Arguments:    data - �����ԖڂɎ����A��Ԗڂɋ��������߂��ϊ����s���f�[�^�B
-                       �ϊ����ʂ͏㏑������ĕԂ����B
-                nShift - �f�[�^���� log2
-                sinTable - �~�����f�[�^���œ����������� sin �̒l�̃e�[�u��
+  Arguments:    data - 偶数番目に実部、奇数番目に虚部を収めた変換を行うデータ。
+                       変換結果は上書きされて返される。
+                nShift - データ数の log2
+                sinTable - 円周をデータ数で等分した時の sin の値のテーブル
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -477,7 +477,7 @@ void MATH_FFT(fx32 *data, u32 nShift, const fx16 *sinTable)
 
     MATHi_FFT(data, nShift, sinTable);
 
-    // ���ʂ� n �Ŋ���
+    // 結果を n で割る
     for (i = 0; i < n2; i++)
     {
         data[i] >>= nShift;
@@ -487,12 +487,12 @@ void MATH_FFT(fx32 *data, u32 nShift, const fx16 *sinTable)
 /*---------------------------------------------------------------------------*
   Name:         MATH_IFFT
 
-  Description:  �����t�[���G�ϊ��̋t�ϊ����s��
+  Description:  高速フーリエ変換の逆変換を行う
 
-  Arguments:    data - �����ԖڂɎ����A��Ԗڂɋ��������߂��ϊ����s���f�[�^�B
-                       �ϊ����ʂ͏㏑������ĕԂ����B
-                nShift - �f�[�^���� log2
-                sinTable - �~�����f�[�^���œ����������� sin �̒l�̃e�[�u��
+  Arguments:    data - 偶数番目に実部、奇数番目に虚部を収めた変換を行うデータ。
+                       変換結果は上書きされて返される。
+                nShift - データ数の log2
+                sinTable - 円周をデータ数で等分した時の sin の値のテーブル
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -504,12 +504,12 @@ void MATH_IFFT(fx32 *data, u32 nShift, const fx16 *sinTable)
 /*---------------------------------------------------------------------------*
   Name:         MATH_FFTReal
 
-  Description:  �����t�[���G�ϊ����s��
+  Description:  高速フーリエ変換を行う
 
-  Arguments:    data - �����݂̂����߂��f�[�^�B
-                       �ϊ����ʂ͏㏑������ĕԂ����B
-                nShift - �f�[�^���� log2
-                sinTable - �~�����f�[�^���œ����������� sin �̒l�̃e�[�u��
+  Arguments:    data - 実部のみを収めたデータ。
+                       変換結果は上書きされて返される。
+                nShift - データ数の log2
+                sinTable - 円周をデータ数で等分した時の sin の値のテーブル
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -575,12 +575,12 @@ void MATH_FFTReal(fx32 *data, u32 nShift, const fx16 *sinTable, const fx16 *sinT
 /*---------------------------------------------------------------------------*
   Name:         MATH_IFFTReal
 
-  Description:  �����t�[���G�ϊ��̋t�ϊ����s��
+  Description:  高速フーリエ変換の逆変換を行う
 
-  Arguments:    data - �����݂̂����߂��f�[�^�B
-                       �ϊ����ʂ͏㏑������ĕԂ����B
-                nShift - �f�[�^���� log2
-                sinTable - �~�����f�[�^���œ����������� sin �̒l�̃e�[�u��
+  Arguments:    data - 実部のみを収めたデータ。
+                       変換結果は上書きされて返される。
+                nShift - データ数の log2
+                sinTable - 円周をデータ数で等分した時の sin の値のテーブル
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

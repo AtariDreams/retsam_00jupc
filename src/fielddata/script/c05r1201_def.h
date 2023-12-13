@@ -1,7 +1,7 @@
 #ifndef _C05R1201_DEF_H_
 #define _C05R1201_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C05R1201_EXPLORE		(1)
 #define	SCRID_C05R1201_OLDMAN2		(2)
 #define	SCRID_C05R1201_BABYBOY1		(3)
@@ -11,6 +11,6 @@
 #define	SCRID_C05R1201_OLDMAN1		(7)
 #define	SCRID_C05R1201_MYSTERY		(8)
 #define	SCRID_C05R1201_GORGGEOUSW		(9)
-#define	SCRID_C05R1201_DATA_MAX		(9)		//最大数
+#define	SCRID_C05R1201_DATA_MAX		(9)		//譛螟ｧ謨ｰ
 
 #endif //_C05R1201_DEF_H_

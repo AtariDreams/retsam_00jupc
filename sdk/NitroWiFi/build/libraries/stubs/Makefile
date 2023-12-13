@@ -16,22 +16,22 @@
 # Delete svc form SUBDIRS.
 #
 # Revision 1.6  2005/10/25 04:15:51  terui
-# SUBDIRS ‚É svc ‚ğ’Ç‰Á
+# SUBDIRS ã« svc ã‚’è¿½åŠ 
 #
 # Revision 1.5  2005/09/13 08:40:27  yasu
-# ssl ‚Ì stub ‚ğì¬
+# ssl ã® stub ã‚’ä½œæˆ
 #
 # Revision 1.4  2005/08/04 08:18:43  yada
 # add soc stub
 #
 # Revision 1.3  2005/07/29 05:08:40  terui
-# SUBDIRS ‚É md5 ‚ğ’Ç‰Á
+# SUBDIRS ã« md5 ã‚’è¿½åŠ 
 #
 # Revision 1.2  2005/07/15 12:07:53  yasu
-# stubscps ‚Ìíœ
+# stubscps ã®å‰Šé™¤
 #
 # Revision 1.1  2005/06/23 11:13:17  yasu
-# NitroWiFi ‚Ì commondefs, modulerules ‚ğ“Ç‚İ‚Ş
+# NitroWiFi ã® commondefs, modulerules ã‚’èª­ã¿è¾¼ã‚€
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

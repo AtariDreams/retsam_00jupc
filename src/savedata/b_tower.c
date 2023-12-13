@@ -1,6 +1,6 @@
 /**
  *	@file	b_tower.c
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@ƒZ[ƒuƒf[ƒ^
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *	@author	Miyuki Iwasawa
  *	@date	06.04.14
  */
@@ -30,14 +30,14 @@
 #include "msgdata/msg_btower_app.h"
 
 #ifdef _NITRO
-// \‘¢‘Ì‚ª‘z’è‚ÌƒTƒCƒY‚Æ‚È‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+// æ§‹é€ ä½“ãŒæƒ³å®šã®ã‚µã‚¤ã‚ºã¨ãªã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 SDK_COMPILER_ASSERT(sizeof(B_TOWER_LEADER_DATA) == 34);
 SDK_COMPILER_ASSERT(sizeof(B_TOWER_POKEMON) == 56);
 SDK_COMPILER_ASSERT(sizeof(BTLTOWER_WIFI_PLAYER) == 228);
 #endif
 
 /**
- *	@brief	ƒ^ƒ[@ƒvƒŒƒCƒf[ƒ^ƒTƒCƒY
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã€€ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 int TowerPlayData_GetWorkSize(void)
 {
@@ -45,7 +45,7 @@ int TowerPlayData_GetWorkSize(void)
 }
 
 /**
- *	@brief	ƒ^ƒ[@ƒvƒŒƒCƒ„[ƒXƒRƒAƒf[ƒ^ƒTƒCƒY
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã€€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 int	TowerSocreData_GetWorkSize(void)
 {
@@ -53,7 +53,7 @@ int	TowerSocreData_GetWorkSize(void)
 }
 
 /**
- *	@brief	ƒ^ƒ[@ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒTƒCƒY
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã€€ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 int TowerWifiPoke_GetWorkSize(void)
 {
@@ -61,7 +61,7 @@ int TowerWifiPoke_GetWorkSize(void)
 }
 
 /**
- *	@brief	ƒ^ƒ[@Wifiƒf[ƒ^ƒTƒCƒY
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã€€Wifiãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 int	TowerWifiData_GetWorkSize(void)
 {
@@ -69,14 +69,14 @@ int	TowerWifiData_GetWorkSize(void)
 }
 
 /**
- *	@brief@ƒ^ƒ[ Wifi/ƒgƒŒ[ƒi[ƒ[ƒhƒvƒŒƒCƒ„[ƒf[ƒ^\‘¢‘Ìƒf[ƒ^ƒTƒCƒY
+ *	@briefã€€ã‚¿ãƒ¯ãƒ¼ Wifi/ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ­ãƒ¼ãƒ‰ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 int TowerDpwBtPlayer_GetWorkSize(void)
 {
 	return sizeof(Dpw_Bt_Player);
 }
 /**
- *	@brief	ƒ^ƒ[@ƒvƒŒƒCƒf[ƒ^ƒNƒŠƒA
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã€€ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
  */
 void TowerPlayData_Clear(BTLTOWER_PLAYWORK* dat)
 {
@@ -87,7 +87,7 @@ void TowerPlayData_Clear(BTLTOWER_PLAYWORK* dat)
 }
 
 /**
- *	@brief	ƒ^ƒ[	ƒXƒRƒAƒf[ƒ^ƒNƒŠƒA
+ *	@brief	ã‚¿ãƒ¯ãƒ¼	ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
  */
 void TowerScoreData_Clear(BTLTOWER_SCOREWORK* dat)
 {
@@ -99,7 +99,7 @@ void TowerScoreData_Clear(BTLTOWER_SCOREWORK* dat)
 }
 
 /**
- *	@brief	ƒ^ƒ[@ƒvƒŒƒCƒ„[ƒƒbƒZ[ƒWƒf[ƒ^ƒNƒŠƒA
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã€€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
  */
 void TowerPlayerMsg_Clear(BTLTOWER_PLAYER_MSG* dat)
 {
@@ -113,7 +113,7 @@ void TowerPlayerMsg_Clear(BTLTOWER_PLAYER_MSG* dat)
 }
 
 /**
- *	@brief	ƒ^ƒ[@Wifiƒf[ƒ^ƒNƒŠƒA
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã€€Wifiãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
  */
 void TowerWifiData_Clear(BTLTOWER_WIFI_DATA* dat)
 {
@@ -124,15 +124,15 @@ void TowerWifiData_Clear(BTLTOWER_WIFI_DATA* dat)
 }
 
 //=======================================================
-//@ƒ^ƒ[@ƒvƒŒƒCƒf[ƒ^ƒAƒNƒZƒXŒn
+//ã€€ã‚¿ãƒ¯ãƒ¼ã€€ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç³»
 //=======================================================
 
 /**
- *	@brief	ƒvƒŒƒCƒf[ƒ^@Žæ“¾
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€å–å¾—
  *
  *	@param	dat	BTLTOWRE_PLAYWORK*
- *	@param	id	Žæ“¾‚·‚éƒf[ƒ^ID BTOWER_PSD_IDŒ^
- *	@param	buf	void*:ƒf[ƒ^Žæ“¾ƒ|ƒCƒ“ƒ^
+ *	@param	id	å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID BTOWER_PSD_IDåž‹
+ *	@param	buf	void*:ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒã‚¤ãƒ³ã‚¿
  */
 u32	TowerPlayData_Get(BTLTOWER_PLAYWORK* dat,BTWR_PSD_ID id,void* buf)
 {
@@ -167,11 +167,11 @@ u32	TowerPlayData_Get(BTLTOWER_PLAYWORK* dat,BTWR_PSD_ID id,void* buf)
 }
 
 /**
- *	@brief	ƒvƒŒƒCƒf[ƒ^@ƒZƒbƒg
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€ã‚»ãƒƒãƒˆ
  *	
  *	@param	dat	BTLTOWRE_PLAYWORK*
- *	@param	id	Žæ“¾‚·‚éƒf[ƒ^ID BTOWER_PSD_IDŒ^
- *	@param	buf	void*:ƒf[ƒ^‚ðŠi”[‚µ‚½ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	id	å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ID BTOWER_PSD_IDåž‹
+ *	@param	buf	void*:ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãŸãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 void TowerPlayData_Put(BTLTOWER_PLAYWORK* dat,BTWR_PSD_ID id,const void* buf)
 {
@@ -220,11 +220,11 @@ void TowerPlayData_Put(BTLTOWER_PLAYWORK* dat,BTWR_PSD_ID id,const void* buf)
 }
 
 /**
- *	@brief ƒvƒŒƒCƒf[ƒ^@WifiƒŒƒR[ƒhƒf[ƒ^Add	
+ *	@brief ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€Wifiãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿Add	
  *
- *	@param	down	“|‚³‚ê‚½ƒ|ƒPƒ‚ƒ“’Ç‰Á”
- *	@param	turn	‚©‚©‚Á‚½ƒ^[ƒ“’Ç‰Á”
- *	@param	damage	Žó‚¯‚½ƒ_ƒ[ƒW’Ç‰Á’l
+ *	@param	down	å€’ã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³è¿½åŠ æ•°
+ *	@param	turn	ã‹ã‹ã£ãŸã‚¿ãƒ¼ãƒ³è¿½åŠ æ•°
+ *	@param	damage	å—ã‘ãŸãƒ€ãƒ¡ãƒ¼ã‚¸è¿½åŠ å€¤
  */
 void TowerPlayData_WifiRecordAdd(BTLTOWER_PLAYWORK* dat,u8 down,u16 turn,u16 damage)
 {
@@ -251,10 +251,10 @@ void TowerPlayData_WifiRecordAdd(BTLTOWER_PLAYWORK* dat,u8 down,u16 turn,u16 dam
 }
 
 /**
- *	@brief	ƒvƒŒƒCƒf[ƒ^@³‚µ‚­ƒZ[ƒuÏ‚Ý‚©‚Ç‚¤‚©H
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€æ­£ã—ãã‚»ãƒ¼ãƒ–æ¸ˆã¿ã‹ã©ã†ã‹ï¼Ÿ
  *
- *	@retval	TRUE	³‚µ‚­ƒZ[ƒu‚³‚ê‚Ä‚¢‚é
- *	@retval FALSE	ƒZ[ƒu‚³‚ê‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	æ­£ã—ãã‚»ãƒ¼ãƒ–ã•ã‚Œã¦ã„ã‚‹
+ *	@retval FALSE	ã‚»ãƒ¼ãƒ–ã•ã‚Œã¦ã„ãªã„
  */
 BOOL TowerPlayData_GetSaveFlag(BTLTOWER_PLAYWORK* dat)
 {
@@ -262,7 +262,7 @@ BOOL TowerPlayData_GetSaveFlag(BTLTOWER_PLAYWORK* dat)
 }
 
 /**
- *	@brief	ƒvƒŒƒCƒf[ƒ^@ƒZ[ƒuó‘Ôƒtƒ‰ƒO‚ðƒZƒbƒg
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã€€ã‚»ãƒ¼ãƒ–çŠ¶æ…‹ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  */
 void TowerPlayData_SetSaveFlag(BTLTOWER_PLAYWORK* dat,BOOL flag)
 {
@@ -273,12 +273,12 @@ void TowerPlayData_SetSaveFlag(BTLTOWER_PLAYWORK* dat,BOOL flag)
 }
 
 //=======================================================
-//@ƒ^ƒ[@ƒXƒRƒAƒf[ƒ^ƒAƒNƒZƒXŒn
+//ã€€ã‚¿ãƒ¯ãƒ¼ã€€ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç³»
 //=======================================================
 /**
- *	@brief	ƒXƒRƒAƒf[ƒ^ ƒoƒgƒ‹ƒ|ƒCƒ“ƒgƒZƒbƒg
+ *	@brief	ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  *
- *	—LŒøƒRƒ}ƒ“ƒh set/get/add/sub
+ *	æœ‰åŠ¹ã‚³ãƒžãƒ³ãƒ‰ set/get/add/sub
  */
 u16 TowerScoreData_SetBattlePoint(BTLTOWER_SCOREWORK* dat,u16 num,BTWR_DATA_SETID mode)
 {
@@ -314,11 +314,11 @@ u16 TowerScoreData_SetBattlePoint(BTLTOWER_SCOREWORK* dat,u16 num,BTWR_DATA_SETI
 }
 
 /**
- *	@brief	ƒXƒRƒAƒf[ƒ^@Wifi˜A‘±”síƒJƒEƒ“ƒg‘€ì
+ *	@brief	ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã€€Wifié€£ç¶šæ•—æˆ¦ã‚«ã‚¦ãƒ³ãƒˆæ“ä½œ
  *
- *	—LŒøƒRƒ}ƒ“ƒh get/reset/inc
+ *	æœ‰åŠ¹ã‚³ãƒžãƒ³ãƒ‰ get/reset/inc
  *
- *	@return	‘€ìŒã‚ÌƒJƒEƒ“ƒg
+ *	@return	æ“ä½œå¾Œã®ã‚«ã‚¦ãƒ³ãƒˆ
  */
 u8 TowerScoreData_SetWifiLoseCount(BTLTOWER_SCOREWORK* dat,BTWR_DATA_SETID mode)
 {
@@ -329,7 +329,7 @@ u8 TowerScoreData_SetWifiLoseCount(BTLTOWER_SCOREWORK* dat,BTWR_DATA_SETID mode)
 		break;
 	case BTWR_DATA_inc:
 		if(dat->wifi_lose_f){
-			//˜A‘±”sí’†
+			//é€£ç¶šæ•—æˆ¦ä¸­
 			dat->wifi_lose += 1;
 		}else{
 			dat->wifi_lose = 1;
@@ -344,9 +344,9 @@ u8 TowerScoreData_SetWifiLoseCount(BTLTOWER_SCOREWORK* dat,BTWR_DATA_SETID mode)
 }
 
 /**
- *	@brief	ƒXƒRƒAƒf[ƒ^@Wifiƒ‰ƒ“ƒN‘€ì
+ *	@brief	ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã€€Wifiãƒ©ãƒ³ã‚¯æ“ä½œ
  *
- *	—LŒøƒRƒ}ƒ“ƒh get/reset/inc/dec
+ *	æœ‰åŠ¹ã‚³ãƒžãƒ³ãƒ‰ get/reset/inc/dec
  */
 u8	TowerScoreData_SetWifiRank(BTLTOWER_SCOREWORK* dat,BTWR_DATA_SETID mode)
 {
@@ -372,7 +372,7 @@ u8	TowerScoreData_SetWifiRank(BTLTOWER_SCOREWORK* dat,BTWR_DATA_SETID mode)
 }
 
 /**
- *	@brief	Žg—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^•Û‘¶
+ *	@brief	ä½¿ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä¿å­˜
  */
 void TowerScoreData_SetUsePokeData(BTLTOWER_SCOREWORK* dat,
 				BTWR_SCORE_POKE_DATA mode,B_TOWER_POKEMON* poke)
@@ -388,7 +388,7 @@ void TowerScoreData_SetUsePokeData(BTLTOWER_SCOREWORK* dat,
 }
 
 /**
- *	@brief	Žg—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ðƒoƒbƒtƒ@‚ÉƒRƒs[‚µ‚ÄŽæ“¾
+ *	@brief	ä½¿ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã—ã¦å–å¾—
  */
 void TowerScoreData_GetUsePokeData(BTLTOWER_SCOREWORK* dat,
 			BTWR_SCORE_POKE_DATA mode,B_TOWER_POKEMON* poke)
@@ -401,7 +401,7 @@ void TowerScoreData_GetUsePokeData(BTLTOWER_SCOREWORK* dat,
 }
 
 /**
- *	@brief	Žg—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ðƒoƒbƒtƒ@‚ÉƒRƒs[‚µ‚ÄŽæ“¾(WiFi\‘¢‘Ìƒf[ƒ^Œ^)
+ *	@brief	ä½¿ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã—ã¦å–å¾—(WiFiæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿åž‹)
  */
 void TowerScoreData_GetUsePokeDataDpw(BTLTOWER_SCOREWORK* dat,
 			BTWR_SCORE_POKE_DATA mode,DPW_BT_POKEMON_DATA* poke)
@@ -414,14 +414,14 @@ void TowerScoreData_GetUsePokeDataDpw(BTLTOWER_SCOREWORK* dat,
 }
 
 /**
- *	@brief	ƒXƒRƒAƒf[ƒ^ Wifi¬Ñ‘€ì
+ *	@brief	ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ Wifiæˆç¸¾æ“ä½œ
  */
 u16	TowerScoreData_SetWifiScore(BTLTOWER_SCOREWORK* dat,BTLTOWER_PLAYWORK *playdata)
 {
 	u16	sa,sb,sc,sd,st;
 	u16	score = 0;
 
-	//ƒ‰ƒEƒ“ƒh”‚ÍŸ‚¿”²‚«”+1‚É‚È‚Á‚Ä‚¢‚é‚Ì‚Åƒ}ƒCƒiƒX‚P‚µ‚ÄŒvŽZ‚·‚é
+	//ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã¯å‹ã¡æŠœãæ•°+1ã«ãªã£ã¦ã„ã‚‹ã®ã§ãƒžã‚¤ãƒŠã‚¹ï¼‘ã—ã¦è¨ˆç®—ã™ã‚‹
 	sa = (playdata->tower_round-1)*1000;
 	sb = playdata->wifi_rec_turn*10;
 	sc = playdata->wifi_rec_down*20;
@@ -444,7 +444,7 @@ u16	TowerScoreData_SetWifiScore(BTLTOWER_SCOREWORK* dat,BTLTOWER_PLAYWORK *playd
 }
 
 /**
- *	@brief	ƒXƒRƒAƒf[ƒ^@Wifi¬Ñ0ƒNƒŠƒA
+ *	@brief	ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã€€Wifiæˆç¸¾0ã‚¯ãƒªã‚¢
  */
 void TowerScoreData_ClearWifiScore(BTLTOWER_SCOREWORK* dat)
 {
@@ -455,7 +455,7 @@ void TowerScoreData_ClearWifiScore(BTLTOWER_SCOREWORK* dat)
 }
 
 /**
- *	@brief	ƒXƒRƒAƒf[ƒ^@Wifi¬ÑŽæ“¾
+ *	@brief	ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã€€Wifiæˆç¸¾å–å¾—
  */
 u16	TowerScoreData_GetWifiScore(BTLTOWER_SCOREWORK* dat)
 {
@@ -463,7 +463,7 @@ u16	TowerScoreData_GetWifiScore(BTLTOWER_SCOREWORK* dat)
 }
 
 /**
- *	@brief	ƒXƒRƒAƒf[ƒ^‚©‚çŸ‚¿”²‚¢‚½”‚ðŽæ“¾
+ *	@brief	ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å‹ã¡æŠœã„ãŸæ•°ã‚’å–å¾—
  */
 u8	TowerScoreData_GetWifiWinNum(BTLTOWER_SCOREWORK* dat)
 {
@@ -474,19 +474,19 @@ u8	TowerScoreData_GetWifiWinNum(BTLTOWER_SCOREWORK* dat)
 }
 
 /**
- *	@brief	ƒXƒRƒAƒf[ƒ^@Žü‰ñ”‘€ì
+ *	@brief	ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã€€å‘¨å›žæ•°æ“ä½œ
  *
- *	—LŒøƒRƒ}ƒ“ƒh reset/inc/get
+ *	æœ‰åŠ¹ã‚³ãƒžãƒ³ãƒ‰ reset/inc/get
  */
 u16 TowerScoreData_SetStage(BTLTOWER_SCOREWORK* dat,u16 id,BTWR_DATA_SETID mode)
 {
 	u16 id2;
 
 	if(id == BTWR_MODE_RETRY){
-		return 0;	//ƒŠƒgƒ‰ƒCƒ‚[ƒh‚Å‚ÍƒJƒEƒ“ƒg‚µ‚È‚¢
+		return 0;	//ãƒªãƒˆãƒ©ã‚¤ãƒ¢ãƒ¼ãƒ‰ã§ã¯ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
 	}
 
-	//ƒvƒ‰ƒ`ƒi’Ç‰Á
+	//ãƒ—ãƒ©ãƒãƒŠè¿½åŠ 
 	if(id == BTWR_MODE_WIFI_MULTI){
 		id2 = 5;						//tower_stage[5]
 	}else{
@@ -510,7 +510,7 @@ u16 TowerScoreData_SetStage(BTLTOWER_SCOREWORK* dat,u16 id,BTWR_DATA_SETID mode)
 }
 
 /**
- *	@brief	Œ»Ý‚ÌƒXƒe[ƒW’l‚ðƒZƒbƒg‚·‚é
+ *	@brief	ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ã‚¸å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  */
 u16 TowerScoreData_SetStageValue(BTLTOWER_SCOREWORK* dat,u16 id,u16 value)
 {
@@ -518,10 +518,10 @@ u16 TowerScoreData_SetStageValue(BTLTOWER_SCOREWORK* dat,u16 id,u16 value)
 
 	//if(id >= BTWR_MODE_RETRY){
 	if(id == BTWR_MODE_RETRY){
-		return 0;	//ƒŠƒgƒ‰ƒCƒ‚[ƒh‚Å‚ÍƒJƒEƒ“ƒg‚µ‚È‚¢
+		return 0;	//ãƒªãƒˆãƒ©ã‚¤ãƒ¢ãƒ¼ãƒ‰ã§ã¯ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
 	}
 
-	//ƒvƒ‰ƒ`ƒi’Ç‰Á
+	//ãƒ—ãƒ©ãƒãƒŠè¿½åŠ 
 	if(id == BTWR_MODE_WIFI_MULTI){
 		id2 = 5;						//tower_stage[5]
 	}else{
@@ -537,7 +537,7 @@ u16 TowerScoreData_SetStageValue(BTLTOWER_SCOREWORK* dat,u16 id,u16 value)
 
 #ifdef PM_DEBUG
 /**
- *	@brief	ƒfƒoƒbƒOŒÀ’è@Œ»Ý‚ÌƒXƒe[ƒW’l‚ðƒZƒbƒg‚·‚é
+ *	@brief	ãƒ‡ãƒãƒƒã‚°é™å®šã€€ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ã‚¸å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  */
 u16 TowerScoreData_DebugSetStageValue(BTLTOWER_SCOREWORK* dat,u16 id,u16 value)
 {
@@ -546,20 +546,20 @@ u16 TowerScoreData_DebugSetStageValue(BTLTOWER_SCOREWORK* dat,u16 id,u16 value)
 #endif	//PM_DEBUG
 	
 /**
- *	@brief	ƒXƒRƒAƒf[ƒ^ ƒtƒ‰ƒOƒGƒŠƒAƒZƒbƒg
+ *	@brief	ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ ãƒ•ãƒ©ã‚°ã‚¨ãƒªã‚¢ã‚»ãƒƒãƒˆ
  */
 BOOL	TowerScoreData_SetFlags(BTLTOWER_SCOREWORK* dat,u16 id,BTWR_DATA_SETID mode)
 {
 	u16	i;
 	u16	flag = 1;
 
-	//ƒGƒ‰[ƒ`ƒFƒbƒN
+	//ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( id >= BTWR_SFLAG_MAX ){
-		GF_ASSERT( (0) && "TowerScoreData_SetFlags ID‚ª•s³‚Å‚·I" );
+		GF_ASSERT( (0) && "TowerScoreData_SetFlags IDãŒä¸æ­£ã§ã™ï¼" );
 		return 0;
 	}
 
-	//ƒtƒ‰ƒOID¶¬
+	//ãƒ•ãƒ©ã‚°IDç”Ÿæˆ
 	for(i = 0;i < id;i++){
 		flag <<= 1;
 	}
@@ -582,7 +582,7 @@ BOOL	TowerScoreData_SetFlags(BTLTOWER_SCOREWORK* dat,u16 id,BTWR_DATA_SETID mode
 }
 
 /**
- *	@brief	ƒ^ƒ[—p“ú•t•Ï‰»ƒ‰ƒ“ƒ_ƒ€ƒV[ƒh•Û‘¶
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ç”¨æ—¥ä»˜å¤‰åŒ–ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰ä¿å­˜
  */
 void TowerScoreData_SetDayRndSeed(BTLTOWER_SCOREWORK* dat,u32 rnd_seed)
 {
@@ -593,18 +593,18 @@ void TowerScoreData_SetDayRndSeed(BTLTOWER_SCOREWORK* dat,u32 rnd_seed)
 }
 
 /**
- *	@brief	ƒ^ƒ[—p“ú•t•Ï‰»ƒ‰ƒ“ƒ_ƒ€ƒV[ƒhŽæ“¾
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ç”¨æ—¥ä»˜å¤‰åŒ–ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰å–å¾—
  */
 u32 TowerScoreData_GetDayRndSeed(BTLTOWER_SCOREWORK* dat)
 {
 	return dat->day_rnd_seed;
 }
 //=======================================================
-//@ƒ^ƒ[@ƒvƒŒƒCƒ„[ƒƒbƒZ[ƒWƒf[ƒ^ƒAƒNƒZƒXŒn
+//ã€€ã‚¿ãƒ¯ãƒ¼ã€€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç³»
 //=======================================================
 
 /**
- *	@brief	ŠÈˆÕ‰ï˜bƒf[ƒ^‚ðƒZƒbƒg
+ *	@brief	ç°¡æ˜“ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  */
 void TowerPlayerMsg_Set(SAVEDATA* sv,BTWR_PLAYER_MSG_ID id,PMS_DATA* src)
 {
@@ -617,7 +617,7 @@ void TowerPlayerMsg_Set(SAVEDATA* sv,BTWR_PLAYER_MSG_ID id,PMS_DATA* src)
 }
 
 /**
- *	@brief	ŠÈˆÕ‰ï˜bƒf[ƒ^‚ðŽæ“¾
+ *	@brief	ç°¡æ˜“ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  */
 PMS_DATA* TowerPlayerMsg_Get(SAVEDATA* sv,BTWR_PLAYER_MSG_ID id)
 {
@@ -627,13 +627,13 @@ PMS_DATA* TowerPlayerMsg_Get(SAVEDATA* sv,BTWR_PLAYER_MSG_ID id)
 }
 
 //=======================================================
-//@ƒ^ƒ[@Wifiƒf[ƒ^ƒAƒNƒZƒXŒn
+//ã€€ã‚¿ãƒ¯ãƒ¼ã€€Wifiãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç³»
 //=======================================================
 /**
- *	@brief	Žw’è‚µ‚½ƒ‹[ƒ€ƒf[ƒ^‚ÌŽæ“¾ƒtƒ‰ƒO‚ð—§‚Ä‚é
+ *	@brief	æŒ‡å®šã—ãŸãƒ«ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã®å–å¾—ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
  *
- *	@param	rank	1ƒIƒŠƒWƒ“‚È‚Ì‚Å’ˆÓ
- *	@param	roomno	1ƒIƒŠƒWƒ“‚È‚Ì‚Å’ˆÓ
+ *	@param	rank	1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§æ³¨æ„
+ *	@param	roomno	1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§æ³¨æ„
  */
 void TowerWifiData_SetRoomDataFlag(BTLTOWER_WIFI_DATA* dat,
 		u8 rank,u8 roomno,RTCDate *day)
@@ -648,7 +648,7 @@ void TowerWifiData_SetRoomDataFlag(BTLTOWER_WIFI_DATA* dat,
 	if(rank == 0 || rank > 10){
 		return;
 	}
-	//—¼•û1ƒIƒŠƒWƒ“‚È‚Ì‚Å-1‚µ‚ÄŒvŽZ
+	//ä¸¡æ–¹1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§-1ã—ã¦è¨ˆç®—
 	roomid = (rank-1)*200+(roomno-1);
 	
 	idx = roomid/8;
@@ -664,7 +664,7 @@ void TowerWifiData_SetRoomDataFlag(BTLTOWER_WIFI_DATA* dat,
 }
 
 /**
- *	@brief	ƒ‹[ƒ€ƒf[ƒ^Žæ“¾ƒtƒ‰ƒO‚ðƒNƒŠƒA‚·‚é
+ *	@brief	ãƒ«ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
  */
 void TowerWifiData_ClearRoomDataFlag(BTLTOWER_WIFI_DATA* dat)
 {
@@ -676,7 +676,7 @@ void TowerWifiData_ClearRoomDataFlag(BTLTOWER_WIFI_DATA* dat)
 }
 
 /**
- *	@brief	“ú•t‚ª•Ï‚í‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ *	@brief	æ—¥ä»˜ãŒå¤‰ã‚ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  */
 static BOOL check_day(RTCDate* new,RTCDate* old)
 {
@@ -693,10 +693,10 @@ static BOOL check_day(RTCDate* new,RTCDate* old)
 }
 
 /**
- *	@brief	Žw’è‚µ‚½ƒ‹[ƒ€‚ÌDLƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	æŒ‡å®šã—ãŸãƒ«ãƒ¼ãƒ ã®DLãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	rank	1ƒIƒŠƒWƒ“‚È‚Ì‚Å’ˆÓ
- *	@param	roomno	1ƒIƒŠƒWƒ“‚È‚Ì‚Å’ˆÓ
+ *	@param	rank	1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§æ³¨æ„
+ *	@param	roomno	1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§æ³¨æ„
  */
 BOOL TowerWifiData_CheckRoomDataFlag(BTLTOWER_WIFI_DATA* dat,u8 rank,u8 roomno,RTCDate* day)
 {
@@ -709,14 +709,14 @@ BOOL TowerWifiData_CheckRoomDataFlag(BTLTOWER_WIFI_DATA* dat,u8 rank,u8 roomno,R
 		return FALSE;
 	}
 
-	//ÅŒã‚ÉDL‚µ‚½“ú•t‚©‚çA“ú‚ª•Ï‚í‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	//æœ€å¾Œã«DLã—ãŸæ—¥ä»˜ã‹ã‚‰ã€æ—¥ãŒå¤‰ã‚ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 	GFDate2RTCDate(dat->day,&old_day);
 	if(check_day(day,&old_day)){
-		//“ú‚ª•Ï‚í‚Á‚Ä‚¢‚é‚Ì‚ÅAƒtƒ‰ƒOŒQ‚ðƒI[ƒ‹ƒNƒŠƒA
+		//æ—¥ãŒå¤‰ã‚ã£ã¦ã„ã‚‹ã®ã§ã€ãƒ•ãƒ©ã‚°ç¾¤ã‚’ã‚ªãƒ¼ãƒ«ã‚¯ãƒªã‚¢
 		TowerWifiData_ClearRoomDataFlag(dat);
 		return FALSE;
 	}
-	//—¼•û1ƒIƒŠƒWƒ“‚È‚Ì‚Å-1‚µ‚ÄŒvŽZ
+	//ä¸¡æ–¹1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§-1ã—ã¦è¨ˆç®—
 	roomid = (rank-1)*200+(roomno-1);
 	
 	idx = roomid/8;
@@ -730,7 +730,7 @@ BOOL TowerWifiData_CheckRoomDataFlag(BTLTOWER_WIFI_DATA* dat,u8 rank,u8 roomno,R
 }
 
 /**
- *	@brief	ƒvƒŒƒCƒ„[ƒf[ƒ^‚ª‘¶Ý‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  */
 BOOL TowerWifiData_IsPlayerDataEnable(BTLTOWER_WIFI_DATA* dat)
 {
@@ -738,7 +738,7 @@ BOOL TowerWifiData_IsPlayerDataEnable(BTLTOWER_WIFI_DATA* dat)
 }
 
 /**
- *	@brief	ƒŠ[ƒ_[ƒf[ƒ^‚ª‚ ‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  */
 BOOL TowerWifiData_IsLeaderDataEnable(BTLTOWER_WIFI_DATA* dat)
 {
@@ -746,17 +746,17 @@ BOOL TowerWifiData_IsLeaderDataEnable(BTLTOWER_WIFI_DATA* dat)
 }
 
 /**
- *	@brief	ƒvƒŒƒCƒ„[ƒf[ƒ^‚ðƒZ[ƒu
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–
  *	
- *	@param	rank	1ƒIƒŠƒWƒ“‚È‚Ì‚Å’ˆÓ 
- *	@param	roomno	1ƒIƒŠƒWƒ“‚È‚Ì‚Å’ˆÓ
+ *	@param	rank	1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§æ³¨æ„ 
+ *	@param	roomno	1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§æ³¨æ„
  */
 void TowerWifiData_SetPlayerData(BTLTOWER_WIFI_DATA* dat,DPW_BT_PLAYER* src,u8 rank,u8 roomno)
 {
 	MI_CpuCopy8(src,dat->player,
 		sizeof(BTLTOWER_WIFI_PLAYER)*BTOWER_STOCK_WIFI_PLAYER_MAX);
 	
-	//roomno‚Ærank‚ð•Û‘¶
+	//roomnoã¨rankã‚’ä¿å­˜
 	dat->player_rank = rank;
 	dat->player_room = roomno;
 	dat->player_data_f = 1;
@@ -766,7 +766,7 @@ void TowerWifiData_SetPlayerData(BTLTOWER_WIFI_DATA* dat,DPW_BT_PLAYER* src,u8 r
 }
 
 /**
- *	@brief	ƒvƒŒƒCƒ„[ƒf[ƒ^‚ðƒNƒŠƒA
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢
  */
 void TowerWifiData_ClearPlayerData(BTLTOWER_WIFI_DATA* dat)
 {
@@ -779,9 +779,9 @@ void TowerWifiData_ClearPlayerData(BTLTOWER_WIFI_DATA* dat)
 }
 
 /**
- *	@brief	ƒvƒŒƒCƒ„[ƒf[ƒ^‚ÌRoomID(ƒ‰ƒ“ƒN‚ÆroomNo)‚ðŽæ“¾
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®RoomID(ãƒ©ãƒ³ã‚¯ã¨roomNo)ã‚’å–å¾—
  *
- *	@param	roomid	BTOWER_ROOMIDŒ^(b_tower.h‚ÅŒöŠJ)
+ *	@param	roomid	BTOWER_ROOMIDåž‹(b_tower.hã§å…¬é–‹)
  */
 void TowerWifiData_GetPlayerDataRoomID(BTLTOWER_WIFI_DATA* dat,BTOWER_ROOMID *roomid)
 {
@@ -790,13 +790,13 @@ void TowerWifiData_GetPlayerDataRoomID(BTLTOWER_WIFI_DATA* dat,BTOWER_ROOMID *ro
 }
 
 /**
- *	@brief	ƒvƒŒƒCƒ„[ƒf[ƒ^‚ðƒ^ƒ[í“¬—p‚É‰ð“€
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¿ãƒ¯ãƒ¼æˆ¦é—˜ç”¨ã«è§£å‡
  */
 void TowerWifiData_GetBtlPlayerData(BTLTOWER_WIFI_DATA* dat,
 		B_TOWER_PARTNER_DATA* player,const u8 round)
 {
-	B_TOWER_TRAINER	*tr;			//ƒgƒŒ[ƒi[ƒf[ƒ^
-	B_TOWER_POKEMON	*poke;		//Ž‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	B_TOWER_TRAINER	*tr;			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	B_TOWER_POKEMON	*poke;		//æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 	BTLTOWER_WIFI_PLAYER* src;
 	MSGDATA_MANAGER* pMan;
 
@@ -804,10 +804,10 @@ void TowerWifiData_GetBtlPlayerData(BTLTOWER_WIFI_DATA* dat,
 	poke = player->btpwd;
 	src = &(dat->player[round]);
 
-	//ƒgƒŒ[ƒi[ƒpƒ‰ƒ[ƒ^Žæ“¾
-	tr->player_id = BATTLE_TOWER_TRAINER_ID;//src->id_no;	//ƒ^ƒ[—pID‚ÍŒÅ’è’l
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
+	tr->player_id = BATTLE_TOWER_TRAINER_ID;//src->id_no;	//ã‚¿ãƒ¯ãƒ¼ç”¨IDã¯å›ºå®šå€¤
 	tr->tr_type = src->tr_type;
-	//NGƒl[ƒ€ƒtƒ‰ƒOƒ`ƒFƒbƒN
+	//NGãƒãƒ¼ãƒ ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 	if(src->ngname_f){
 		pMan = MSGMAN_Create(MSGMAN_TYPE_NORMAL,ARC_MSG,
 				NARC_msg_btower_app_dat,HEAPID_WORLD);
@@ -821,7 +821,7 @@ void TowerWifiData_GetBtlPlayerData(BTLTOWER_WIFI_DATA* dat,
 	MI_CpuCopy8(src->win_word,tr->win_word,8);
 	MI_CpuCopy8(src->lose_word,tr->lose_word,8);
 
-	//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^Žæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
 	MI_CpuCopy8(src->poke,poke,sizeof(B_TOWER_POKEMON)*3);
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_FRONTIER)
 	SVLD_SetCrc(GMDATA_ID_FRONTIER);
@@ -829,17 +829,17 @@ void TowerWifiData_GetBtlPlayerData(BTLTOWER_WIFI_DATA* dat,
 }
 
 /**
- *	@brief	ƒŠ[ƒ_[ƒf[ƒ^‚ðƒZ[ƒu
+ *	@brief	ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–
  *	
- *	@param	rank	1ƒIƒŠƒWƒ“‚È‚Ì‚Å’ˆÓ
- *	@param	roomno	1ƒIƒŠƒWƒ“‚È‚Ì‚Å’ˆÓ
+ *	@param	rank	1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§æ³¨æ„
+ *	@param	roomno	1ã‚ªãƒªã‚¸ãƒ³ãªã®ã§æ³¨æ„
  */
 void TowerWifiData_SetLeaderData(BTLTOWER_WIFI_DATA* dat,DPW_BT_LEADER* src,u8 rank,u8 roomno)
 {
 	MI_CpuCopy8(src,&dat->leader,
 		sizeof(B_TOWER_LEADER_DATA)*BTOWER_STOCK_WIFI_LEADER_MAX);
 	
-	//roomno‚Ærank‚ð•Û‘¶
+	//roomnoã¨rankã‚’ä¿å­˜
 	dat->leader_rank = rank;
 	dat->leader_room = roomno;
 	dat->leader_data_f = 1;
@@ -849,7 +849,7 @@ void TowerWifiData_SetLeaderData(BTLTOWER_WIFI_DATA* dat,DPW_BT_LEADER* src,u8 r
 }
 
 /**
- *	@brief	ƒŠ[ƒ_[ƒf[ƒ^‚ðƒNƒŠƒA
+ *	@brief	ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢
  */
 void TowerWifiData_ClearLeaderData(BTLTOWER_WIFI_DATA* dat)
 {
@@ -862,9 +862,9 @@ void TowerWifiData_ClearLeaderData(BTLTOWER_WIFI_DATA* dat)
 }
 
 /**
- *	@brief	ƒŠ[ƒ_[ƒf[ƒ^‚ÌRoomID(ƒ‰ƒ“ƒN‚ÆroomNo)‚ðŽæ“¾
+ *	@brief	ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®RoomID(ãƒ©ãƒ³ã‚¯ã¨roomNo)ã‚’å–å¾—
  *
- *	@param	roomid	BTOWER_ROOMIDŒ^(b_tower.h‚ÅŒöŠJ)
+ *	@param	roomid	BTOWER_ROOMIDåž‹(b_tower.hã§å…¬é–‹)
  */
 void TowerWifiData_GetLeaderDataRoomID(BTLTOWER_WIFI_DATA* dat,BTOWER_ROOMID *roomid)
 {
@@ -873,9 +873,9 @@ void TowerWifiData_GetLeaderDataRoomID(BTLTOWER_WIFI_DATA* dat,BTOWER_ROOMID *ro
 }
 
 /**
- *	@brief	ƒŠ[ƒ_[ƒf[ƒ^‚ðAlloc‚µ‚½ƒƒ‚ƒŠ‚ÉƒRƒs[‚µ‚ÄŽæ“¾‚·‚é
+ *	@brief	ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’Allocã—ãŸãƒ¡ãƒ¢ãƒªã«ã‚³ãƒ”ãƒ¼ã—ã¦å–å¾—ã™ã‚‹
  *
- *	–“à•”‚ÅAlloc‚µ‚½ƒƒ‚ƒŠ—Ìˆæ‚ð•Ô‚·‚Ì‚ÅAŒÄ‚Ño‚µ‘¤‚ª–¾Ž¦“I‚É‰ð•ú‚·‚é‚±‚ÆI
+ *	ï¼Šå†…éƒ¨ã§Allocã—ãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’è¿”ã™ã®ã§ã€å‘¼ã³å‡ºã—å´ãŒæ˜Žç¤ºçš„ã«è§£æ”¾ã™ã‚‹ã“ã¨ï¼
  */
 B_TOWER_LEADER_DATA* TowerWifiData_GetLeaderDataAlloc(BTLTOWER_WIFI_DATA* dat,int heapID) 
 {
@@ -888,10 +888,10 @@ B_TOWER_LEADER_DATA* TowerWifiData_GetLeaderDataAlloc(BTLTOWER_WIFI_DATA* dat,in
 }
 
 //=======================================================
-//	ƒ^ƒ[@ƒZ[ƒuƒf[ƒ^ƒuƒƒbƒNŠÖ˜A
+//	ã‚¿ãƒ¯ãƒ¼ã€€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯é–¢é€£
 //=======================================================
 /**
- *	@brief	ƒ^ƒ[@ƒvƒŒƒCƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã€€ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  */
 BTLTOWER_PLAYWORK* SaveData_GetTowerPlayData(SAVEDATA* sv)
 {
@@ -904,7 +904,7 @@ BTLTOWER_PLAYWORK* SaveData_GetTowerPlayData(SAVEDATA* sv)
 }
 
 /**
- *	@brief	ƒ^ƒ[@ƒXƒRƒAƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã€€ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  */
 BTLTOWER_SCOREWORK* SaveData_GetTowerScoreData(SAVEDATA* sv)
 {
@@ -917,7 +917,7 @@ BTLTOWER_SCOREWORK* SaveData_GetTowerScoreData(SAVEDATA* sv)
 }
 
 /**
- *	@brief	ƒ^ƒ[ Wifiƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾	
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ Wifiãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—	
  */
 BTLTOWER_WIFI_DATA*	SaveData_GetTowerWifiData(SAVEDATA* sv)
 {

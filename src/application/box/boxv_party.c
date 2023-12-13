@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	boxv_party.c
- * @brief	�{�b�N�X�����ʁ@�`�扺�����i�莝���g���C�j
+ * @brief	ボックス操作画面　描画下請け（手持ちトレイ）
  * @author	taya
  * @date	2005.10.19
  */
@@ -28,9 +28,9 @@ enum {
 
 	LCD_SCRN_HEIGHT = 24,
 
-	PTRAY_SCRN_OUTSIZE = PTRAY_SCRN_HEIGHT-LCD_SCRN_HEIGHT,	// ��ʊO�ɏo�镔��
+	PTRAY_SCRN_OUTSIZE = PTRAY_SCRN_HEIGHT-LCD_SCRN_HEIGHT,	// 画面外に出る部分
 
-	// �X�N���[�����x�i�L�����P�ʁj
+	// スクロール速度（キャラ単位）
 	TRAY_SCROLL_SPEED = BOX_EFF_SPEED(2),
 
 	ICON_SCROLL_OFS = PTRAY_SCRN_HEIGHT * 8,
@@ -44,7 +44,7 @@ enum {
 };
 
 //==============================================================
-// �A�C�R���\���ʒu�e�[�u��
+// アイコン表示位置テーブル
 //==============================================================
 static const struct {
 	u16 x;
@@ -73,14 +73,14 @@ static void IconAllDelete( PARTY_VIEW_WORK* wk );
 
 
 //==============================================================================================================
-// ���C�����W���[������Ă΂�鏉�����E�I���֘A
+// メインモジュールから呼ばれる初期化・終了関連
 //==============================================================================================================
 
 //------------------------------------------------------------------
 /**
- * ����������
+ * 初期化処理
  *
- * @param   wk			���[�N�|�C���^
+ * @param   wk			ワークポインタ
  * @param   vwk			
  * @param   vpara		
  * @param   actsys		
@@ -128,9 +128,9 @@ BOOL BoxAppView_PartyInit( PARTY_VIEW_WORK* wk, BOXAPP_VIEW_WORK* vwk, const BOX
 }
 //------------------------------------------------------------------
 /**
- * �I������
+ * 終了処理
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -148,15 +148,15 @@ void BoxAppView_PartyQuit( PARTY_VIEW_WORK* wk )
 }
 
 //==============================================================================================================
-// ���C�����W���[������Ă΂��R�}���h�����֐��Q
+// メインモジュールから呼ばれるコマンド処理関数群
 //==============================================================================================================
 
 
 //------------------------------------------------------------------
 /**
- * �莝���g���C�S�`��
+ * 手持ちトレイ全描画
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -169,9 +169,9 @@ void BoxAppView_PartyDisp( PARTY_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �莝���g���C�J���A�N�V�����J�n
+ * 手持ちトレイ開くアクション開始
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -184,11 +184,11 @@ void BoxAppView_PartyOpenStart( PARTY_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �莝���g���C�J���A�N�V�����I���҂�
+ * 手持ちトレイ開くアクション終了待ち
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
- * @retval  BOOL		TRUE�ŏI��
+ * @retval  BOOL		TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_PartyOpenWait( PARTY_VIEW_WORK* wk )
@@ -197,7 +197,7 @@ BOOL BoxAppView_PartyOpenWait( PARTY_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �莝���g���C�J���A�N�V�����̃^�X�N
+ * 手持ちトレイ開くアクションのタスク
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -233,9 +233,9 @@ static void TrayOpenTask( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * �莝���g���C����A�N�V�����J�n
+ * 手持ちトレイ閉じるアクション開始
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -245,11 +245,11 @@ void BoxAppView_PartyCloseStart( PARTY_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �莝���g���C����A�N�V�����I���҂�
+ * 手持ちトレイ閉じるアクション終了待ち
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
- * @retval  BOOL		TRUE�ŏI��
+ * @retval  BOOL		TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_PartyCloseWait( PARTY_VIEW_WORK* wk )
@@ -263,7 +263,7 @@ BOOL BoxAppView_PartyCloseWait( PARTY_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �莝���g���C����A�N�V�����̃^�X�N
+ * 手持ちトレイ閉じるアクションのタスク
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -310,10 +310,10 @@ static void TrayCloseTask( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * �莝���g���C�A�C�R���̋󂫋l�ߓ���J�n
- * ���Ō���ȊO�̃|�P�������u���ށv�Ŏ����čs���ꂽ���Ɏg�p
+ * 手持ちトレイアイコンの空き詰め動作開始
+ * ※最後尾以外のポケモンを「つかむ」で持って行かれた時に使用
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -348,8 +348,8 @@ void BoxAppView_PartyIconCloseupStart( PARTY_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �莝���g���C�A�C�R���̋󂫋l�ߓ���^�X�N
- * ���Ō���ȊO�̃|�P�������u���ށv�Ŏ����čs���ꂽ���Ɏg�p
+ * 手持ちトレイアイコンの空き詰め動作タスク
+ * ※最後尾以外のポケモンを「つかむ」で持って行かれた時に使用
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -387,12 +387,12 @@ static void IconCloseupTask(TCB_PTR tcb, void* wk_adrs)
 }
 //------------------------------------------------------------------
 /**
- * �莝���g���C�A�C�R���̋󂫋l�ߓ���I���҂�
- * ���Ō���ȊO�̃|�P�������u���ށv�Ŏ����čs���ꂽ���Ɏg�p
+ * 手持ちトレイアイコンの空き詰め動作終了待ち
+ * ※最後尾以外のポケモンを「つかむ」で持って行かれた時に使用
  *
- * @param   wk			���[�N�|�C���^
+ * @param   wk			ワークポインタ
  *
- * @retval  BOOL		TRUE�ŏI��
+ * @retval  BOOL		TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_PartyIconCloseupWait( PARTY_VIEW_WORK* wk )
@@ -403,7 +403,7 @@ BOOL BoxAppView_PartyIconCloseupWait( PARTY_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �莝���g���C�Ō���ɒu���ꂽ�A�C�R���̋󂫋l�ߓ���J�n
+ * 手持ちトレイ最後尾に置かれたアイコンの空き詰め動作開始
  *
  * @param   wk		
  *
@@ -432,7 +432,7 @@ void BoxAppView_PartyLastIconCloseupStart( PARTY_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �莝���g���C�Ō���ɒu���ꂽ�A�C�R���̋󂫋l�ߓ���J�n
+ * 手持ちトレイ最後尾に置かれたアイコンの空き詰め動作開始
  *
  * @param   wk		
  *
@@ -444,7 +444,7 @@ BOOL BoxAppView_PartyLastIconCloseupWait( PARTY_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �莝���g���C�Ō���ɒu���ꂽ�A�C�R���̋󂫋l�ߓ���^�X�N
+ * 手持ちトレイ最後尾に置かれたアイコンの空き詰め動作タスク
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -484,9 +484,9 @@ static void LastIconCloseupTask( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * �w���Ă���A�C�R���f�[�^���{�b�N�X�ɗa����
+ * 指しているアイコンデータをボックスに預ける
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -494,27 +494,27 @@ void BoxAppView_PartyPointIconAzuke( PARTY_VIEW_WORK* wk )
 {
 	u32 pos;
 
-	// ���ݕ\�����̃g���C�ɗa����ꍇ�̓A�C�R���\�����X�V
+	// 現在表示中のトレイに預ける場合はアイコン表示を更新
 	if( wk->vpara->azukeruTrayNumber == BoxAppVPara_GetTrayBoxNumber( wk->vpara ) )
 	{
 		BoxAppView_TrayUpdateIcon( wk->trayWork );
 	}
 
-	// �w���Ă���A�C�R���͂�����������
+	// 指しているアイコンはただ消すだけ
 	pos = BoxAppVPara_GetCursorPartyPos( wk->vpara );
 	BoxAppView_IconWorkQuit( wk->iconsys, &wk->icon[pos], 1 );
 
-	// �󂫋l�ߓ���p�p�����[�^�Ƃ��ĕێ�
+	// 空き詰め動作用パラメータとして保持
 	wk->icon_closeup_poke_pos = pos;
 }
 
 
 //------------------------------------------------------------------------------
 /**
- * �w��ʒu�̃A�C�R�������������J�n
+ * 指定位置のアイコン逃がす処理開始
  *
- * @param   wk			�g���C�`�惏�[�N
- * @param   pos			�A�C�R���ʒu
+ * @param   wk			トレイ描画ワーク
+ * @param   pos			アイコン位置
  *
  */
 //------------------------------------------------------------------------------
@@ -527,11 +527,11 @@ void BoxAppView_PartyIconReleaseStart( PARTY_VIEW_WORK* wk, u32 pos )
 }
 //------------------------------------------------------------------------------
 /**
- * �w��ʒu�̃A�C�R�������������I���҂�
+ * 指定位置のアイコン逃がす処理終了待ち
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------------------
 BOOL BoxAppView_PartyIconReleaseWait( PARTY_VIEW_WORK* wk )
@@ -573,9 +573,9 @@ BOOL BoxAppView_PartyIconReleaseWait( PARTY_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �A�C�R�����i�荞�݃��[�h�\���ɑΉ�
+ * アイコンを絞り込みモード表示に対応
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -599,11 +599,11 @@ void BoxAppView_PartyIconLimitModeSet( PARTY_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�R���̃A�C�e�������X�V
+ * アイコンのアイテム情報を更新
  *
- * @param   wk			���[�N�|�C���^
- * @param   pos			�A�C�R���ʒu
- * @param   itemNumber	�A�C�e���i���o�[
+ * @param   wk			ワークポインタ
+ * @param   pos			アイコン位置
+ * @param   itemNumber	アイテムナンバー
  */
 //------------------------------------------------------------------
 void BoxAppView_PartyIconUpdateItem( PARTY_VIEW_WORK* wk, u32 pos, u32 itemNumber )
@@ -620,9 +620,9 @@ void BoxAppView_PartyIconUpdateItem( PARTY_VIEW_WORK* wk, u32 pos, u32 itemNumbe
 
 //------------------------------------------------------------------
 /**
- * �|�C���g���Ă���A�C�R���}�[�L���O�r�b�g�t���O�i�����X�e�[�^�X�j����������
+ * ポイントしているアイコンマーキングビットフラグ（内部ステータス）を書き換え
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -641,17 +641,17 @@ void BoxAppView_PartyIconMarkUpdate( PARTY_VIEW_WORK* wk )
 
 
 //==============================================================================================================
-// �����������W���[������Ă΂��֐��Q
+// 他下請けモジュールから呼ばれる関数群
 //==============================================================================================================
 
 //------------------------------------------------------------------
 /**
- * �莝���g���C���̎w��ʒu�A�C�R���f�[�^���o�b�t�@�Ɉ����n��
+ * 手持ちトレイ内の指定位置アイコンデータをバッファに引き渡す
  *
- * @param   wk		���[�N�|�C���^
- * @param   pos		�g���C���̈ʒu
- * @param   charpos	�L�����f�[�^�]����i�̈�擪����̃L�����P�ʃI�t�Z�b�g�j
- * @param   dst		�A�C�R���f�[�^�ړ���
+ * @param   wk		ワークポインタ
+ * @param   pos		トレイ内の位置
+ * @param   charpos	キャラデータ転送先（領域先頭からのキャラ単位オフセット）
+ * @param   dst		アイコンデータ移動先
  *
  */
 //------------------------------------------------------------------
@@ -661,12 +661,12 @@ void BoxAppView_PartyMoveIconData( PARTY_VIEW_WORK* wk, u32 pos, u32 charpos, BO
 	BoxAppView_Icon_ResetImageBank( wk->iconsys, dst, charpos );
 	BoxAppView_IconWorkInit( wk->iconsys, &wk->icon[pos], 1 );
 
-	// �󂫋l�ߓ���p�p�����[�^�Ƃ��ĕێ�
+	// 空き詰め動作用パラメータとして保持
 	wk->icon_closeup_poke_pos = pos;
 }
 //------------------------------------------------------------------
 /**
- * �A�C�R���f�[�^���󂢂Ă���Ō���̃o�b�t�@�Ɏ󂯎��
+ * アイコンデータを空いている最後尾のバッファに受け取る
  *
  * @param   wk			
  * @param   cursor_pos	
@@ -681,7 +681,7 @@ void BoxAppView_PartyAddIconData( PARTY_VIEW_WORK* wk, u32 cursor_pos, const BOX
 	BOX_ICON_WORK* dstIcon;
 
 
-	// �{���̃A�C�R���ʒu
+	// 本来のアイコン位置
 	iconpos = PokeParty_GetPokeCount( wk->vpara->partyData ) - 1;
 
 	charpos = OBJCHAR_PARTY_ICON_POS+OBJCHAR_TRAYICON_SIZE*iconpos;
@@ -691,12 +691,12 @@ void BoxAppView_PartyAddIconData( PARTY_VIEW_WORK* wk, u32 cursor_pos, const BOX
 	CLACT_BGPriorityChg( dstIcon->act, BGPRI_PARTY_ICON );
 	BoxAppView_ChangeDrawPriority( dstIcon->act, ACTPRI_PARTY_ICON_MIN+iconpos );
 
-	// �J�[�\���ʒu�͋󂫋l�ߓ���p�p�����[�^�Ƃ��ĕێ�
+	// カーソル位置は空き詰め動作用パラメータとして保持
 	wk->icon_closeup_poke_pos = cursor_pos;
 }
 //------------------------------------------------------------------
 /**
- * �A�C�R���f�[�^���w��ʒu�̃o�b�t�@�Ɏ󂯎��
+ * アイコンデータを指定位置のバッファに受け取る
  *
  * @param   wk			
  * @param   cursor_pos	
@@ -710,7 +710,7 @@ void BoxAppView_PartySetIconData( PARTY_VIEW_WORK* wk, u32 cursor_pos, const BOX
 	u32 charpos;
 	BOX_ICON_WORK* dstIcon;
 
-	// �{���̃A�C�R���ʒu
+	// 本来のアイコン位置
 	iconpos = cursor_pos;
 
 	charpos = OBJCHAR_PARTY_ICON_POS+OBJCHAR_TRAYICON_SIZE*iconpos;
@@ -720,17 +720,17 @@ void BoxAppView_PartySetIconData( PARTY_VIEW_WORK* wk, u32 cursor_pos, const BOX
 	CLACT_BGPriorityChg( dstIcon->act, BGPRI_PARTY_ICON );
 	BoxAppView_ChangeDrawPriority( dstIcon->act, ACTPRI_PARTY_ICON_MIN+iconpos );
 
-	// �J�[�\���ʒu�͋󂫋l�ߓ���p�p�����[�^�Ƃ��ĕێ�
+	// カーソル位置は空き詰め動作用パラメータとして保持
 	wk->icon_closeup_poke_pos = cursor_pos;
 }
 //------------------------------------------------------------------
 /**
- * �A�C�R���f�[�^�|�C���^��Ԃ�
+ * アイコンデータポインタを返す
  *
- * @param   wk		���[�N�|�C���^
- * @param   pos		�ʒu�w��
+ * @param   wk		ワークポインタ
+ * @param   pos		位置指定
  *
- * @retval  BOX_ICON_WORK*  �A�C�R���f�[�^�|�C���^
+ * @retval  BOX_ICON_WORK*  アイコンデータポインタ
  */
 //------------------------------------------------------------------
 BOX_ICON_WORK* BoxAppView_PartyGetIconData( PARTY_VIEW_WORK* wk, u32 pos )
@@ -741,12 +741,12 @@ BOX_ICON_WORK* BoxAppView_PartyGetIconData( PARTY_VIEW_WORK* wk, u32 pos )
 
 //------------------------------------------------------------------
 /**
- * �莝���g���C�A�C�R���̕\���ʒu�i�g���C�����S�ɃI�[�v��������Ԃł́j���擾
+ * 手持ちトレイアイコンの表示位置（トレイが完全にオープンした状態での）を取得
  *
- * @param   wk			[in]  ���[�N�|�C���^
- * @param   pos			[in]  ���̖ڂ̕\���ʒu��
- * @param   x			[out] �w���W���󂯎��ϐ��ւ̃|�C���^
- * @param   y			[out] �x���W���󂯎��ϐ��ւ̃|�C���^
+ * @param   wk			[in]  ワークポインタ
+ * @param   pos			[in]  何体目の表示位置か
+ * @param   x			[out] Ｘ座標を受け取る変数へのポインタ
+ * @param   y			[out] Ｙ座標を受け取る変数へのポインタ
  *
  */
 //------------------------------------------------------------------
@@ -767,15 +767,15 @@ void BoxAppView_PartyGetIconDispPos( PARTY_VIEW_WORK* wk, u32 pos, s32* x, s32* 
 
 
 //==============================================================================================================
-// ���[�J���֐��Q
+// ローカル関数群
 //==============================================================================================================
 
 //------------------------------------------------------------------
 /**
- * �g���C�X�N���[���`��
+ * トレイスクリーン描画
  *
- * @param   wk		���[�N�|�C���^
- * @param   pos		�`��i�K
+ * @param   wk		ワークポインタ
+ * @param   pos		描画段階
  *
  */
 //------------------------------------------------------------------
@@ -806,9 +806,9 @@ static void TrayScrnWrite( PARTY_VIEW_WORK* wk, u32 pos )
 }
 //------------------------------------------------------------------
 /**
- * �莝���g���C�A�C�R���̋󂫋l�ߓ���e�[�u���쐬
+ * 手持ちトレイアイコンの空き詰め動作テーブル作成
  *
- * @param   vec				����e�[�u���쐬��
+ * @param   vec				動作テーブル作成先
  *
  */
 //------------------------------------------------------------------
@@ -838,10 +838,10 @@ static void SetupCloseupMovePos( PARTY_VIEW_WORK* wk, VecFx32* vec )
 }
 //------------------------------------------------------------------
 /**
- * �g���C��̃A�C�R���S�X�N���[���i�J���E����A�N�V�����p�j
+ * トレイ上のアイコン全スクロール（開く・閉じるアクション用）
  *
- * @param   wk		���[�N�|�C���^
- * @param   val		�X�N���[����
+ * @param   wk		ワークポインタ
+ * @param   val		スクロール量
  *
  */
 //------------------------------------------------------------------
@@ -882,10 +882,10 @@ static void IconMoveScroll( PARTY_VIEW_WORK* wk, fx32 val )
 }
 //------------------------------------------------------------------
 /**
- * �莝���|�P�A�C�R���S���쐬
+ * 手持ちポケアイコン全部作成
  *
- * @param   wk			���[�N�|�C���^
- * @param   disp_flag	��ʓ��ɑ��݂��邩�H�i���Ȃ���Ή�ʉ��ɍ쐬�AVanish����j
+ * @param   wk			ワークポインタ
+ * @param   disp_flag	画面内に存在するか？（しなければ画面下に作成、Vanishする）
  *
  */
 //------------------------------------------------------------------
@@ -910,9 +910,9 @@ static void IconAllSet( PARTY_VIEW_WORK* wk, BOOL disp_flag)
 
 //------------------------------------------------------------------
 /**
- * �莝���|�P�����A�C�R���S�폜
+ * 手持ちポケモンアイコン全削除
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------

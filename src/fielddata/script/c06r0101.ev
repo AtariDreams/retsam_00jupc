@@ -1,9 +1,9 @@
 //====================================================================
 //								c06r0101
 //
-//	LOCALWORK2	�ߊl�������擾
+//	LOCALWORK2	捕獲した数取得
 //
-//	�T�t�@���Q�[���J�n�� TVTOPIC_SafariTemp_Init���Ă�ł���
+//	サファリゲーム開始時 TVTOPIC_SafariTemp_Initを呼んでいる
 //====================================================================
 
 	.text
@@ -14,11 +14,11 @@
 	.include	"../eventdata/zone_c06r0101evc.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c06r0101_bringm
 _EVENT_DATA		pos_c06r0101_bringm
@@ -38,9 +38,9 @@ ev_c06r0101_flag_change:
 
 
 /********************************************************************/
-/*							��t�W��								*/
+/*							受付係員								*/
 /********************************************************************/
-//dummy(EVENT���őg�ݍ��܂�Ă����̂ł��̂܂܁B�{����SCRID_NULL�ɕύX����j
+//dummy(EVENT側で組み込まれていたのでそのまま。本来はSCRID_NULLに変更する）
 ev_c06r0101_bringm:
 	_END
 
@@ -55,13 +55,13 @@ ev_c06r0101_bringm:
 pos_c06r0101_bringm:
 	_EVENT_START
 
-	//�U�����
+	//振り向き
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER, anm_c06r0101_player_turn_01
 	_OBJ_ANIME_WAIT
 
-	/*���@�̈ʒu*/
+	/*自機の位置*/
 	_PLAYER_POS_GET	LOCALWORK0,LOCALWORK1
-	/*�J�E���^���牓���ʒu�ɂ�����A�J�E���^�ɋ߂Â�*/
+	/*カウンタから遠い位置にいたら、カウンタに近づく*/
 	_IFVAL_CALL		LOCALWORK0,EQ,5,ev_c06r0101_player_move
 
 	_GOLD_WIN_WRITE		20,2
@@ -74,10 +74,10 @@ pos_c06r0101_bringm:
 
 //Yes
 bringm_yes:
-	//�{�b�N�X�������ς����ǂ������ׂ�
+	//ボックスがいっぱいかどうか調べる
 	_COUNT_MONSBOX_SPACE	SCWK_ANSWER
 	_IFVAL_JUMP				SCWK_ANSWER,NE,0, bringm_check_money
-	//�莝���������ς����ǂ������ׂ�
+	//手持ちがいっぱいかどうか調べる
 	_GET_POKE_COUNT			SCWK_ANSWER
 	_IFVAL_JUMP				SCWK_ANSWER,EQ,6, bringm_box_full
 
@@ -85,11 +85,11 @@ bringm_yes:
 bringm_check_money:
 	_TALKMSG		msg_c06r0101_bringm_01_02
 
-	//500�~�����Ă��邩�`�F�b�N
+	//500円持っているかチェック
 	_COMP_GOLD		SCWK_ANSWER,SAFARI_COST
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,bringm_no_money
 
-	//500�~����
+	//500円引く
 	_SE_PLAY		SEQ_SE_DP_REGI
 	_SUB_GOLD		SAFARI_COST
 	_GOLD_WRITE
@@ -106,7 +106,7 @@ bringm_check_money:
 
 	_GOLD_WIN_DEL
 
-	//���݈ʒu�iX)�ɍ��킹�ăA�j����ς���
+	//現在位置（X)に合わせてアニメを変える
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 	_IFVAL_JUMP	SCWK_TEMP0,EQ,POS_C06R0101_ANIME_START_X1,pos_c06r0101_anime_start_01
 	_IFVAL_JUMP	SCWK_TEMP0,EQ,POS_C06R0101_ANIME_START_X2,pos_c06r0101_anime_start_02
@@ -124,13 +124,13 @@ pos_c06r0101_anime_start_02:
 
 pos_c06r0101_safari_start:
 
-	//�T�t�@���n��
+	//サファリ始動
 	_LDVAL	WK_SCENE_SAFARI_ZONE,1
 	_SAFARI_START
-	//�߂����o���Ă�������
+	//戻り先を覚えておく処理
 	_SP_LOCATION_SET	ZONE_ID_C06R0101,C06R0101_MAT03, 5,2, DIR_DOWN
 
-	//�����֑J�ڂ��鏈��
+	//湿原へ遷移する処理
 	_SE_PLAY		SEQ_SE_DP_KAIDAN2
 	_MAP_CHANGE		ZONE_ID_D06R0206,0,POS_SAFARI_START_X,POS_SAFARI_START_Z,DIR_UP
 
@@ -138,14 +138,14 @@ pos_c06r0101_safari_start:
 
 
 
-//500�~�������Ƃ�
+//500円が無いとき
 bringm_no_money:
 	_TALKMSG		msg_c06r0101_bringm_01_07
 	_TALK_CLOSE
 
 	_GOLD_WIN_DEL
 
-	//�P��������
+	//１歩下がる
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c06r0101_player_back_01
 	_OBJ_ANIME_WAIT
 
@@ -158,21 +158,21 @@ bringm_no:
 
 	_GOLD_WIN_DEL
 
-	//�P��������
+	//１歩下がる
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER, anm_c06r0101_player_back_01
 	_OBJ_ANIME_WAIT
 
 	_EVENT_END
 	_END
 
-//�莝���A�{�b�N�X�������ς�
+//手持ち、ボックスがいっぱい
 bringm_box_full:
 	_GOLD_WIN_DEL
 
 	_TALKMSG	msg_c06r0101_bringm_01_08
 	_TALK_CLOSE
 
-	//�P��������
+	//１歩下がる
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c06r0101_player_back_01
 	_OBJ_ANIME_WAIT
 
@@ -180,21 +180,21 @@ bringm_box_full:
 	_END
 
 
-/*�J�E���^�[�ɋ߂Â�*/
+/*カウンターに近づく*/
 ev_c06r0101_player_move:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER, anm_c06r0101_player_move_01
 	_OBJ_ANIME_WAIT
 	_RET
 	
 //--------------------------------------------------------------------
-//��l��	��t�ɋ߂Â�
+//主人公	受付に近づく
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c06r0101_player_move_01
 	_ANIME_DATA	AC_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 	
 //--------------------------------------------------------------------
-//��l��	��t�̌�����
+//主人公	受付の向きへ
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c06r0101_player_turn_01
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
@@ -202,7 +202,7 @@ _ANIME_LABEL	anm_c06r0101_player_turn_01
 
 
 //--------------------------------------------------------------------
-//��l��	�T�t�@����
+//主人公	サファリへ
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c06r0101_player_go_01
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
@@ -220,7 +220,7 @@ _ANIME_LABEL	anm_c06r0101_player_go_02
 
 
 //--------------------------------------------------------------------
-//��l��	�P��������
+//主人公	１歩下がる
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c06r0101_player_back_01
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -229,7 +229,7 @@ _ANIME_LABEL	anm_c06r0101_player_back_01
 
 
 /********************************************************************/
-/*							�A�i�E���X								*/
+/*							アナウンス								*/
 /********************************************************************/
 ev_c06r0101_announce:
 	_EVENT_START
@@ -239,39 +239,39 @@ ev_c06r0101_announce:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,announce_no
 	_END
 
-//�͂�
+//はい
 announce_yes:
 	_TALKMSG		msg_c06r0101_bringm_02_02
 	_TALK_CLOSE
 
-	//��t�֖߂�
+	//受付へ戻る
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER, anm_c06r0101_player_to_counter_01
 	_OBJ_ANIME_WAIT
 
-	//�ʏ폈���֖߂�
+	//通常処理へ戻す
 	_LDVAL	WK_SCENE_SAFARI_ZONE,0
 
 	_SAFARI_END
 
-	/*�s�u�󋵕ێ����[�N����T�t�@���ŕ߂܂�������5�ȏ�Ȃ�|�P�b�`�ǉ�*/
+	/*ＴＶ状況保持ワークからサファリで捕まえた数が5以上ならポケッチ追加*/
 	_TV_SAFARI_TEMP_CAPTURE_COUNT_GET	LOCALWORK2
 	_IFVAL_JUMP		LOCALWORK2,GE,5,ev_c06r0101_cowgirl_flag_change_pos_change
 
 	_EVENT_END
 	_END
 
-/*�s�u�󋵕ێ����[�N����T�t�@���ŕ߂܂�������5�ȏ�Ȃ�|�P�b�`�ǉ�*/
+/*ＴＶ状況保持ワークからサファリで捕まえた数が5以上ならポケッチ追加*/
 ev_c06r0101_cowgirl_flag_change_pos_change:
-	/*���łɃ|�P�b�`������Ă�����I��*/
+	/*すでにポケッチもらっていたら終了*/
 	_IF_FLAGON_JUMP	FE_C06R0101_SOFT_GET,ev_c06r0101_cowgirl_flag_change_end
 
-	/*�߂Â��Ă���*/
+	/*近づいてくる*/
 	_OBJ_ANIME		C06R0101_COWGIRL,anm_c06r0101_cowgirl_90
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_c06r0101_cowgirl_04
 
-	/*�������傤�`�F�b�J�[*/
+	/*あいしょうチェッカー*/
 	_LDVAL			SCWK_TEMP0,POKETCH_APPID_LOVETESTER
 	_CHG_COMMON_SCR	SCRID_POKETCH_SOFT_GET
 	_FLAG_SET		FE_C06R0101_SOFT_GET
@@ -280,32 +280,32 @@ ev_c06r0101_cowgirl_flag_change_pos_change:
 	_EVENT_END
 	_END
 
-/*���łɃ|�P�b�`������Ă�����I��*/
+/*すでにポケッチもらっていたら終了*/
 ev_c06r0101_cowgirl_flag_change_end:
 	_EVENT_END
 	_END
 
-//������
+//いいえ
 announce_no:
 	_TALK_CLOSE
-	//�����֖߂�
+	//湿原へ戻る
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER, anm_c06r0101_player_to_safari_01
 	_OBJ_ANIME_WAIT
 
-	//�����֖߂�����
+	//湿原へ戻す処理
 	_MAP_CHANGE		ZONE_ID_D06R0206,0,POS_SAFARI_START_X,POS_SAFARI_START_Z,DIR_UP
 
 	_END
 
 //--------------------------------------------------------------------
-//��l��	��t�֖߂�
+//主人公	受付へ戻る
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c06r0101_player_to_counter_01
 	_ANIME_DATA	AC_WALK_D_8F,5
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//��l��	�����֖߂�
+//主人公	湿原へ戻る
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c06r0101_player_to_safari_01
 	_ANIME_DATA	AC_DIR_U,1
@@ -314,21 +314,21 @@ _ANIME_LABEL	anm_c06r0101_player_to_safari_01
 	_ANIME_DATA	ACMD_END,0
 
 /********************************************************************/
-/*						�T�t�@������̋A��							*/
+/*						サファリからの帰還							*/
 /********************************************************************/
 ev_c06r0101_safari_end:
 	_EVENT_START
 
 	//_TIME_WAIT	30,SCWK_ANSWER	/**/
 
-	//��t�֖߂�
+	//受付へ戻る
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER, anm_c06r0101_player_to_counter_01
 	_OBJ_ANIME_WAIT
 
-	//�ʏ폈���֖߂�
+	//通常処理へ戻す
 	_LDVAL	WK_SCENE_SAFARI_ZONE,0
 
-	/*�s�u�󋵕ێ����[�N����T�t�@���ŕ߂܂�������5�ȏ�Ȃ�|�P�b�`�ǉ�*/
+	/*ＴＶ状況保持ワークからサファリで捕まえた数が5以上ならポケッチ追加*/
 	_TV_SAFARI_TEMP_CAPTURE_COUNT_GET	LOCALWORK2
 	_IFVAL_JUMP		LOCALWORK2,GE,5,ev_c06r0101_cowgirl_flag_change_pos_change
 
@@ -336,7 +336,7 @@ ev_c06r0101_safari_end:
 	_END
 
 /********************************************************************/
-/*							��t�W��								*/
+/*							受付係員								*/
 /********************************************************************/
 ev_c06r0101_bringw:
 	_TALK_OBJ_START
@@ -367,15 +367,15 @@ bringw_03:
 
 
 /********************************************************************/
-/*						�|�P�b�`�����l							*/
+/*						ポケッチくれる人							*/
 /********************************************************************/
 ev_c06r0101_cowgirl:
 	_TALK_OBJ_START
 
-	/*���łɃ|�P�b�`������Ă�����*/
+	/*すでにポケッチもらっていたら*/
 	_IF_FLAGON_JUMP	FE_C06R0101_SOFT_GET,ev_c06r0101_cowgirl_10
 
-	/*���łɉ�b���Ă�����*/
+	/*すでに会話していたら*/
 	//_IF_FLAGON_JUMP	FE_C06R0101_COWGIRL,ev_c06r0101_cowgirl_02
 	//_FLAG_SET		FE_C06R0101_COWGIRL
 
@@ -383,7 +383,7 @@ ev_c06r0101_cowgirl:
 	_JUMP			ev_c06r0101_cowgirl_end
 	_END
 
-/*���łɃ|�P�b�`������Ă�����*/
+/*すでにポケッチもらっていたら*/
 ev_c06r0101_cowgirl_10:
 	_TALK_KEYWAIT	msg_c06r0101_cowgirl_05
 	_JUMP			ev_c06r0101_cowgirl_end
@@ -396,7 +396,7 @@ ev_c06r0101_cowgirl_end:
 	_END
 
 //--------------------------------------------------------------------
-//�|�P�b�`�����l	�����Â��Ă���
+//ポケッチくれる人	ちかづいてくる
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c06r0101_cowgirl_90
 	_ANIME_DATA	AC_WALK_R_8F,4
@@ -404,7 +404,7 @@ _ANIME_LABEL	anm_c06r0101_cowgirl_90
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�|�P�b�`�����l	�ǂ�
+//ポケッチくれる人	どく
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c06r0101_cowgirl_100
 	_ANIME_DATA	AC_WALK_L_8F,1

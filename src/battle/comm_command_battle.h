@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_command_battle.h
- * @brief	’ÊM‚ÌƒRƒ}ƒ“ƒhˆê——  ƒoƒgƒ‹—p
+ * @brief	é€šä¿¡ã®ã‚³ãƒãƒ³ãƒ‰ä¸€è¦§  ãƒãƒˆãƒ«ç”¨
  * @author	Katsumi Ohno
  * @date    2005.11.08
  */
@@ -14,7 +14,7 @@
 #include "battle/battle_common.h"
 
 //==============================================================================
-//  \‘¢‘ÌéŒ¾
+//  æ§‹é€ ä½“å®£è¨€
 //==============================================================================
 
 typedef struct
@@ -37,15 +37,15 @@ typedef struct
 }TCB_SIO_RECV;
 
 //==============================================================================
-//  define’è‹`
+//  defineå®šç¾©
 //==============================================================================
-#define	SIO_BUF_ACCESS		(0)			//’ÊMƒoƒbƒtƒ@“à‚Å‚Ìaccessƒf[ƒ^‚Ö‚Ì“Y‚¦š
-#define	SIO_BUF_PARA		(1)			//’ÊMƒoƒbƒtƒ@“à‚Å‚Ìparaƒf[ƒ^‚Ö‚Ì“Y‚¦š
-#define	SIO_BUF_SIZE_LOW	(2)			//’ÊMƒoƒbƒtƒ@“à‚Å‚ÌƒTƒCƒYƒf[ƒ^‚Ö‚Ì“Y‚¦š
-#define	SIO_BUF_SIZE_HIGH	(3)			//’ÊMƒoƒbƒtƒ@“à‚Å‚ÌƒTƒCƒYƒf[ƒ^‚Ö‚Ì“Y‚¦š
-#define	SIO_BUF_DATA		(4)			//’ÊMƒoƒbƒtƒ@“à‚Å‚Ìƒf[ƒ^‚Ö‚Ì“Y‚¦š
+#define	SIO_BUF_ACCESS		(0)			//é€šä¿¡ãƒãƒƒãƒ•ã‚¡å†…ã§ã®accessãƒ‡ãƒ¼ã‚¿ã¸ã®æ·»ãˆå­—
+#define	SIO_BUF_PARA		(1)			//é€šä¿¡ãƒãƒƒãƒ•ã‚¡å†…ã§ã®paraãƒ‡ãƒ¼ã‚¿ã¸ã®æ·»ãˆå­—
+#define	SIO_BUF_SIZE_LOW	(2)			//é€šä¿¡ãƒãƒƒãƒ•ã‚¡å†…ã§ã®ã‚µã‚¤ã‚ºãƒ‡ãƒ¼ã‚¿ã¸ã®æ·»ãˆå­—
+#define	SIO_BUF_SIZE_HIGH	(3)			//é€šä¿¡ãƒãƒƒãƒ•ã‚¡å†…ã§ã®ã‚µã‚¤ã‚ºãƒ‡ãƒ¼ã‚¿ã¸ã®æ·»ãˆå­—
+#define	SIO_BUF_DATA		(4)			//é€šä¿¡ãƒãƒƒãƒ•ã‚¡å†…ã§ã®ãƒ‡ãƒ¼ã‚¿ã¸ã®æ·»ãˆå­—
 
-/// “¯Šúí—Ş’è‹`
+/// åŒæœŸç¨®é¡å®šç¾©
 enum CommCommandBattleTiming_e {
 	COMM_BATTLE_STRAT_SYNC_NUM = 50,
 	COMM_BATTLE_SV_SYNC_NUM,
@@ -63,24 +63,24 @@ enum CommCommandBattleTiming_e {
 	COMM_BATTLE_RECDATA_SYNC_NUM
 };
 
-/// ƒoƒgƒ‹ê—p’ÊMƒRƒ}ƒ“ƒh‚Ì’è‹`B
+/// ãƒãƒˆãƒ«å°‚ç”¨é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ã®å®šç¾©ã€‚
 enum CommCommandBattle_e {
-  CB_EXIT_BATTLE = CS_COMMAND_MAX, ///< ƒoƒgƒ‹‚ğI—¹‚µƒtƒB[ƒ‹ƒh‚É–ß‚é–‚ğ‘—M
+  CB_EXIT_BATTLE = CS_COMMAND_MAX, ///< ãƒãƒˆãƒ«ã‚’çµ‚äº†ã—ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«æˆ»ã‚‹äº‹ã‚’é€ä¿¡
 
-	CB_BATTLE_DATA,					///<í“¬ƒf[ƒ^‘—M
-	CB_BATTLE_SERVER_VERSION_DATA,	///<í“¬ƒf[ƒ^‘—M
-	CB_BATTLE_MYSTATUS_DATA,		///<í“¬ƒf[ƒ^‘—M
-	CB_BATTLE_TRAINER_DATA,			///<í“¬ƒf[ƒ^‘—M
-	CB_BATTLE_POKE_DATA,			///<í“¬ƒf[ƒ^‘—M
-	CB_BATTLE_POKE_VOICE,			///<ƒyƒ‰ƒbƒvƒ{ƒCƒXƒf[ƒ^‘—M
-	CB_BATTLE_TTDATA1,				///<í“¬ƒf[ƒ^‘—M
-	CB_BATTLE_TTDATA2,				///<í“¬ƒf[ƒ^‘—M
-	CB_BATTLE_TPDATA1,				///<í“¬ƒf[ƒ^‘—M
-	CB_BATTLE_TPDATA2,				///<í“¬ƒf[ƒ^‘—M
-	CB_BATTLE_FRIEND_LIST,			///<‚Æ‚à‚¾‚¿ƒOƒ‹[ƒvƒf[ƒ^‘—M
+	CB_BATTLE_DATA,					///<æˆ¦é—˜ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	CB_BATTLE_SERVER_VERSION_DATA,	///<æˆ¦é—˜ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	CB_BATTLE_MYSTATUS_DATA,		///<æˆ¦é—˜ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	CB_BATTLE_TRAINER_DATA,			///<æˆ¦é—˜ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	CB_BATTLE_POKE_DATA,			///<æˆ¦é—˜ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	CB_BATTLE_POKE_VOICE,			///<ãƒšãƒ©ãƒƒãƒ—ãƒœã‚¤ã‚¹ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	CB_BATTLE_TTDATA1,				///<æˆ¦é—˜ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	CB_BATTLE_TTDATA2,				///<æˆ¦é—˜ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	CB_BATTLE_TPDATA1,				///<æˆ¦é—˜ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	CB_BATTLE_TPDATA2,				///<æˆ¦é—˜ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	CB_BATTLE_FRIEND_LIST,			///<ã¨ã‚‚ã ã¡ã‚°ãƒ«ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿é€ä¿¡
 
-  //------------------------------------------------‚±‚±‚Ü‚Å
-  CB_COMMAND_MAX   // I’[--------------‚±‚ê‚ÍˆÚ“®‚³‚¹‚È‚¢‚Å‚­‚¾‚³‚¢
+  //------------------------------------------------ã“ã“ã¾ã§
+  CB_COMMAND_MAX   // çµ‚ç«¯--------------ã“ã‚Œã¯ç§»å‹•ã•ã›ãªã„ã§ãã ã•ã„
 };
 
 extern	void CommCommandBattleInitialize(void* pWork);

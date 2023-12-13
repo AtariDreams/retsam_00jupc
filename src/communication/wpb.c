@@ -10,40 +10,40 @@
  *---------------------------------------------------------------------------*/
 #include    "communication/wpb.h"
 
-// ‚±‚ê‚ğdefine ‚·‚é‚ÆA–³üƒGƒ‰[‚Ìê‡‚Å‚àReset‚µ‚Ä‘±s‚·‚é
+// ã“ã‚Œã‚’define ã™ã‚‹ã¨ã€ç„¡ç·šã‚¨ãƒ©ãƒ¼ã®å ´åˆã§ã‚‚Resetã—ã¦ç¶šè¡Œã™ã‚‹
 #define FORCE_CONTINUE 1
 
 /*---------------------------------------------------------------------------*
-    ’è”’è‹`
+    å®šæ•°å®šç¾©
  *---------------------------------------------------------------------------*/
-#define     WC_DEFAULT_PORT             4       // ƒ|[ƒg”Ô†( 4`7 )
-#define     WC_DEFAULT_PORT_PRIO        2       // ƒ|[ƒg‚Ì—Dæ“x( 0`3 )
+#define     WC_DEFAULT_PORT             4       // ãƒãƒ¼ãƒˆç•ªå·( 4ã€œ7 )
+#define     WC_DEFAULT_PORT_PRIO        2       // ãƒãƒ¼ãƒˆã®å„ªå…ˆåº¦( 0ã€œ3 )
 
 /*---------------------------------------------------------------------------*
-    \‘¢‘Ì’è‹`
+    æ§‹é€ ä½“å®šç¾©
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
-    “à•”ŠÖ”’è‹`
+    å†…éƒ¨é–¢æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
-static void WcCreateParentParameter(void);      // e‹@î•ñ•ÒW
-static void WcCreateScanParameter(void);        // ƒXƒLƒƒƒ“İ’è•ÒW
+static void WcCreateParentParameter(void);      // è¦ªæ©Ÿæƒ…å ±ç·¨é›†
+static void WcCreateScanParameter(void);        // ã‚¹ã‚­ãƒ£ãƒ³è¨­å®šç·¨é›†
 static void WcSetNextScanChannel(void);
 
 static void WcInit(WPBBuf *buf);
-static void WcStartParent(void);              // e‹@‚Æ‚µ‚Ä‚ÌÚ‘±ŠJn
-static void WcStartChild(void);               // q‹@‚Æ‚µ‚Ä‚ÌÚ‘±ŠJn
-static void WcEnd(void);                      // ‰Šú‰»ó‘Ô‚Ö‚ÌˆÚsŠJn
-static WCStatus WcGetStatus(void);            // WCStatusŒ^‚Ì“à•”ó‘Ôæ“¾
+static void WcStartParent(void);              // è¦ªæ©Ÿã¨ã—ã¦ã®æ¥ç¶šé–‹å§‹
+static void WcStartChild(void);               // å­æ©Ÿã¨ã—ã¦ã®æ¥ç¶šé–‹å§‹
+static void WcEnd(void);                      // åˆæœŸåŒ–çŠ¶æ…‹ã¸ã®ç§»è¡Œé–‹å§‹
+static WCStatus WcGetStatus(void);            // WCStatuså‹ã®å†…éƒ¨çŠ¶æ…‹å–å¾—
 
-// e‹@‚Æ‚µ‚Ä‚Ì‘—Mƒf[ƒ^ƒZƒbƒg
+// è¦ªæ©Ÿã¨ã—ã¦ã®é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 static void WcSetParentData(const void *buf, u16 size);
-// q‹@‚Æ‚µ‚Ä‚Ì‘—Mƒf[ƒ^ƒZƒbƒg
+// å­æ©Ÿã¨ã—ã¦ã®é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 static void WcSetChildData(const void *buf, u16 size);
 
 static const WMBssDesc *WcBssid_GetParentBssdesc(void);
 
-// WMŒÄ‚Ño‚µ’P‹@”\ŠÖ”
+// WMå‘¼ã³å‡ºã—å˜æ©Ÿèƒ½é–¢æ•°
 static BOOL Wc_Enable(void);
 static BOOL Wc_Disable(void);
 static BOOL Wc_PowerOn(void);
@@ -63,7 +63,7 @@ static u16  WcBssid_GetScanBufferSize();
 static void WcBssid_AddFoundChild(const WMStartScanExCallback *arg); /* NEW */
 static void WcBssid_ResetScanBuffer(); /* NEW */
 
-// ƒvƒŠƒ“ƒgo—Í—}§ƒ_ƒ~[ŠÖ”
+// ãƒ—ãƒªãƒ³ãƒˆå‡ºåŠ›æŠ‘åˆ¶ãƒ€ãƒŸãƒ¼é–¢æ•°
 #define WC_DEBUG_PRINT
 
 #ifdef  WC_DEBUG_PRINT
@@ -74,19 +74,19 @@ static void WcBssid_ResetScanBuffer(); /* NEW */
 //#define DEBUG
 
 /*---------------------------------------------------------------------------*
-    “à•”•Ï”’è‹`
+    å†…éƒ¨å¤‰æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 
 static WPBBuf *wpbBuf;
 static int finished = 0;
-/************ ‚·‚êˆá‚¢’ÊMŠÖ˜A ******************/
+/************ ã™ã‚Œé•ã„é€šä¿¡é–¢é€£ ******************/
 
 #define WPBC_SCAN_TIME_MAX               150    // ms
 #define WPBC_BEACON_PERIOD               90     // ms
 
 #define WPBC_NUM_OF_CHILD         1
 
-#define MAX_RATIO 100                  // ƒ`ƒƒƒ“ƒlƒ‹g—p—¦‚Í0`100‚Ì”ÍˆÍ
+#define MAX_RATIO 100                  // ãƒãƒ£ãƒ³ãƒãƒ«ä½¿ç”¨ç‡ã¯0ã€œ100ã®ç¯„å›²
 
 typedef enum {
 	WPBC_RETURN_NONE = 0,
@@ -98,9 +98,9 @@ typedef enum {
 WpbcReturnCode;
 
 /*---------------------------------------------------------------------------*
-    ŠÖ”’è‹`
+    é–¢æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
-// wc‚©‚çŒÄ‚Ño‚³‚ê‚éŠÖ”
+// wcã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 static void WPBC_MeasureEnd(void);
 static void WPBC_BeaconSent(void);
 static BOOL WPBC_GetMode(void);
@@ -116,7 +116,7 @@ static BOOL WPBC_IsActiveWPBC(void);
 static int  WPBC_ParentReceiveCallback(u16 *data, u16 length);
 static int  WPBC_ChildReceiveCallback(u16 *data, u16 length);
 
-// WM‚©‚ç‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+// WMã‹ã‚‰ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static void WcCb_Disconnect(void *arg);
 static BOOL Wc_Disconnect(u16 aid);
 
@@ -124,7 +124,7 @@ static BOOL Wc_MeasureChannel(u16 channel);
 static int NumOfAllowedChannels(void);
 static int GetNextAllowedChannel(int current_channel);
 
-/* q‹@ƒpƒ‰ƒ[ƒ^ */
+/* å­æ©Ÿãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ */
 static int child_scan_channel_count = 0;
 static int child_scan_channel = 0;
 
@@ -159,7 +159,7 @@ wm_getstatus()
 }
 
 /*---------------------------------------------------------------------------*
-    “à•”•Ï”’è‹`
+    å†…éƒ¨å¤‰æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 static u16 ChannelListToChannel(u16 channelList)
 {
@@ -184,38 +184,38 @@ static u16 ChannelToChannelList(int channel)
 /*---------------------------------------------------------------------------*
   Name:         WcInit
 
-  Description:  –³ü’ÊM‚ğ‰Šú‰»‚·‚é
+  Description:  ç„¡ç·šé€šä¿¡ã‚’åˆæœŸåŒ–ã™ã‚‹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 static WMParentParam wpbcDefaultParameter = {
 	NULL, 0, 0,
-	0,                                 // ƒQ[ƒ€ƒOƒ‹[ƒvID
-	0x0000,                            // temporary ID (–ˆ‰ñ+1‚³‚ê‚é)
-	1,                                 // ƒGƒ“ƒgƒŠ[‹–‰Âƒtƒ‰ƒO
-	WPBC_NUM_OF_CHILD,                 // Å‘åÚ‘±q‹@”
-	0,                                 // ƒ}ƒ‹ƒ`ƒu[ƒgƒtƒ‰ƒO
-	0,                                 // ƒL[ƒVƒFƒAƒŠƒ“ƒO
-	0,                                 // ˜A‘±‘—Mƒtƒ‰ƒO
-	WPBC_BEACON_PERIOD,                // beacon ŠÔŠu
-	{0, 0, 0, 0},                      // ƒ†[ƒU[–¼
-	{0, 0, 0, 0, 0, 0, 0, 0},          // ƒQ[ƒ€–¼
-	1,                                 // Ú‘±ƒ`ƒƒƒ“ƒlƒ‹
-	WPBC_PARENT_DATA_SIZE_MAX,         // e‹@‘—Mƒf[ƒ^ƒTƒCƒY
-	WPBC_CHILD_DATA_SIZE_MAX           // q‹@‘—Mƒf[ƒ^ƒTƒCƒY
+	0,                                 // ã‚²ãƒ¼ãƒ ã‚°ãƒ«ãƒ¼ãƒ—ID
+	0x0000,                            // temporary ID (æ¯å›+1ã•ã‚Œã‚‹)
+	1,                                 // ã‚¨ãƒ³ãƒˆãƒªãƒ¼è¨±å¯ãƒ•ãƒ©ã‚°
+	WPBC_NUM_OF_CHILD,                 // æœ€å¤§æ¥ç¶šå­æ©Ÿæ•°
+	0,                                 // ãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆãƒ•ãƒ©ã‚°
+	0,                                 // ã‚­ãƒ¼ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°
+	0,                                 // é€£ç¶šé€ä¿¡ãƒ•ãƒ©ã‚°
+	WPBC_BEACON_PERIOD,                // beacon é–“éš”
+	{0, 0, 0, 0},                      // ãƒ¦ãƒ¼ã‚¶ãƒ¼å
+	{0, 0, 0, 0, 0, 0, 0, 0},          // ã‚²ãƒ¼ãƒ å
+	1,                                 // æ¥ç¶šãƒãƒ£ãƒ³ãƒãƒ«
+	WPBC_PARENT_DATA_SIZE_MAX,         // è¦ªæ©Ÿé€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	WPBC_CHILD_DATA_SIZE_MAX           // å­æ©Ÿé€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 		// Reserves
 };
 
 static void WcInit(WPBBuf *buf)
 {
-	// WPB—pƒƒ‚ƒŠƒ|ƒCƒ“ƒ^
+	// WPBç”¨ãƒ¡ãƒ¢ãƒªãƒã‚¤ãƒ³ã‚¿
 	wpbBuf = buf;
-	// ƒXƒe[ƒg‰Šú‰»
+	// ã‚¹ãƒ†ãƒ¼ãƒˆåˆæœŸåŒ–
 	wpbBuf->wcStatus = WC_STATUS_READY;
-	// ‘—Mƒtƒ‰ƒO‰Šú‰»
+	// é€ä¿¡ãƒ•ãƒ©ã‚°åˆæœŸåŒ–
 	wpbBuf->wcSendFlag = FALSE;
 
-	// e‹@î•ñ‚ğƒLƒƒƒbƒVƒ…Store‚µ‚Ä‚à–â‘è‚È‚¢ƒoƒbƒtƒ@‚ÉƒRƒs[
+	// è¦ªæ©Ÿæƒ…å ±ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥Storeã—ã¦ã‚‚å•é¡Œãªã„ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
 	MI_CpuCopy32(&wpbcDefaultParameter, &wpbBuf->pparaBuf,
 				 sizeof(WMParentParam));
 	wpbBuf->pparaBuf.userGameInfo = wpbBuf->gameInfo;
@@ -224,7 +224,7 @@ static void WcInit(WPBBuf *buf)
 /*---------------------------------------------------------------------------*
   Name:         WcStartParent
 
-  Description:  e‹@‚Æ‚µ‚Ä–³ü’ÊM‚ğŠJn‚·‚éB
+  Description:  è¦ªæ©Ÿã¨ã—ã¦ç„¡ç·šé€šä¿¡ã‚’é–‹å§‹ã™ã‚‹ã€‚
 
   Arguments:    None.
 
@@ -234,22 +234,22 @@ static void WcStartParent(void)
 {
 	switch (wpbBuf->wcStatus) {
 	case WC_STATUS_READY:
-		// e‹@‚Æ‚µ‚Ä‰Šú‰»ŠJn
+		// è¦ªæ©Ÿã¨ã—ã¦åˆæœŸåŒ–é–‹å§‹
 		wpbBuf->wcStatus = WC_STATUS_BUSY;
-		wpbBuf->wcTarget = WC_STATUS_PARENT;   // –Ú•Wó‘Ô‚ğ"e‹@Ú‘±ó‘Ô"‚É
+		wpbBuf->wcTarget = WC_STATUS_PARENT;   // ç›®æ¨™çŠ¶æ…‹ã‚’"è¦ªæ©Ÿæ¥ç¶šçŠ¶æ…‹"ã«
 		Wc_Enable();
 		break ;
 	case WC_STATUS_BUSY:
-		// –Ú•Wó‘Ô‚ğXV
-		wpbBuf->wcTarget = WC_STATUS_PARENT;   // –Ú•Wó‘Ô‚ğ"e‹@Ú‘±ó‘Ô"‚É
+		// ç›®æ¨™çŠ¶æ…‹ã‚’æ›´æ–°
+		wpbBuf->wcTarget = WC_STATUS_PARENT;   // ç›®æ¨™çŠ¶æ…‹ã‚’"è¦ªæ©Ÿæ¥ç¶šçŠ¶æ…‹"ã«
 		break ;
 	case WC_STATUS_PARENT:
-		// Šù‚Ée‹@‚È‚Ì‚Åˆ—‚È‚µ
+		// æ—¢ã«è¦ªæ©Ÿãªã®ã§å‡¦ç†ãªã—
 		break ;
 	case WC_STATUS_CHILD:
-		// ˆê’UƒŠƒZƒbƒg‚·‚é
+		// ä¸€æ—¦ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 		wpbBuf->wcStatus = WC_STATUS_BUSY;
-		wpbBuf->wcTarget = WC_STATUS_PARENT;   // –Ú•Wó‘Ô‚ğ"e‹@Ú‘±ó‘Ô"‚É
+		wpbBuf->wcTarget = WC_STATUS_PARENT;   // ç›®æ¨™çŠ¶æ…‹ã‚’"è¦ªæ©Ÿæ¥ç¶šçŠ¶æ…‹"ã«
 		Wc_Reset();
 		break ;
 	}
@@ -258,7 +258,7 @@ static void WcStartParent(void)
 /*---------------------------------------------------------------------------*
   Name:         WcStartChild
 
-  Description:  q‹@‚Æ‚µ‚Ä–³ü’ÊM‚ğŠJn‚·‚éB
+  Description:  å­æ©Ÿã¨ã—ã¦ç„¡ç·šé€šä¿¡ã‚’é–‹å§‹ã™ã‚‹ã€‚
 
   Arguments:    None.
 
@@ -268,23 +268,23 @@ static void WcStartChild(void)
 {
 	switch (wpbBuf->wcStatus) {
 	case WC_STATUS_READY:
-		// q‹@‚Æ‚µ‚Ä‰Šú‰»ŠJn
+		// å­æ©Ÿã¨ã—ã¦åˆæœŸåŒ–é–‹å§‹
 		wpbBuf->wcStatus = WC_STATUS_BUSY;
-		wpbBuf->wcTarget = WC_STATUS_CHILD;    // –Ú•Wó‘Ô‚ğ"q‹@Ú‘±ó‘Ô"‚É
+		wpbBuf->wcTarget = WC_STATUS_CHILD;    // ç›®æ¨™çŠ¶æ…‹ã‚’"å­æ©Ÿæ¥ç¶šçŠ¶æ…‹"ã«
 		Wc_Enable();
 		break ;
 	case WC_STATUS_BUSY:
-		// –Ú•Wó‘Ô‚ğXV
-		wpbBuf->wcTarget = WC_STATUS_CHILD;    // –Ú•Wó‘Ô‚ğ"q‹@Ú‘±ó‘Ô"‚É
+		// ç›®æ¨™çŠ¶æ…‹ã‚’æ›´æ–°
+		wpbBuf->wcTarget = WC_STATUS_CHILD;    // ç›®æ¨™çŠ¶æ…‹ã‚’"å­æ©Ÿæ¥ç¶šçŠ¶æ…‹"ã«
 		break ;
 	case WC_STATUS_PARENT:
-		// ˆê’UƒŠƒZƒbƒg‚·‚é
+		// ä¸€æ—¦ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 		wpbBuf->wcStatus = WC_STATUS_BUSY;
-		wpbBuf->wcTarget = WC_STATUS_CHILD;    // –Ú•Wó‘Ô‚ğ"q‹@Ú‘±ó‘Ô"‚É
+		wpbBuf->wcTarget = WC_STATUS_CHILD;    // ç›®æ¨™çŠ¶æ…‹ã‚’"å­æ©Ÿæ¥ç¶šçŠ¶æ…‹"ã«
 		Wc_Reset();
 		break ;
 	case WC_STATUS_CHILD:
-		// Šù‚Éq‹@‚È‚Ì‚Åˆ—‚È‚µ
+		// æ—¢ã«å­æ©Ÿãªã®ã§å‡¦ç†ãªã—
 		break ;
 	}
 }
@@ -292,7 +292,7 @@ static void WcStartChild(void)
 /*---------------------------------------------------------------------------*
   Name:         WcEnd
 
-  Description:  ’ÊM‘O‚Ìó‘Ô‚É–ß‚·
+  Description:  é€šä¿¡å‰ã®çŠ¶æ…‹ã«æˆ»ã™
 
   Arguments:    None.
 
@@ -303,24 +303,24 @@ static void WcEnd(void)
 	switch (wpbBuf->wcStatus) {
 	case WC_STATUS_READY:
 		WcDebugPrintf("WcEnd: status ready\n");
-		// –Ú•Wó‘Ô‚ğXV
-		wpbBuf->wcTarget = WC_STATUS_END;      // –Ú•Wó‘Ô‚ğ"END"‚É
+		// ç›®æ¨™çŠ¶æ…‹ã‚’æ›´æ–°
+		wpbBuf->wcTarget = WC_STATUS_END;      // ç›®æ¨™çŠ¶æ…‹ã‚’"END"ã«
 		break ;
 	case WC_STATUS_BUSY:
 		WcDebugPrintf("WcEnd: status busy\n");
-		// –Ú•Wó‘Ô‚ğXV
-//		wpbBuf->wcTarget = WC_STATUS_READY;    // –Ú•Wó‘Ô‚ğ"READY"‚É
-		wpbBuf->wcTarget = WC_STATUS_END;      // –Ú•Wó‘Ô‚ğ"END"‚É
+		// ç›®æ¨™çŠ¶æ…‹ã‚’æ›´æ–°
+//		wpbBuf->wcTarget = WC_STATUS_READY;    // ç›®æ¨™çŠ¶æ…‹ã‚’"READY"ã«
+		wpbBuf->wcTarget = WC_STATUS_END;      // ç›®æ¨™çŠ¶æ…‹ã‚’"END"ã«
 		break ;
 	case WC_STATUS_PARENT:
 		WcDebugPrintf("WcEnd: status parent\n");
 	case WC_STATUS_CHILD:
 		WcDebugPrintf("WcEnd: status parent or child\n");
 
-		// ƒŠƒZƒbƒg‚·‚é‚±‚Æ‚ÅÚ‘±‚ğØ’f‚·‚é
+		// ãƒªã‚»ãƒƒãƒˆã™ã‚‹ã“ã¨ã§æ¥ç¶šã‚’åˆ‡æ–­ã™ã‚‹
 		wpbBuf->wcStatus = WC_STATUS_BUSY;
-//		wpbBuf->wcTarget = WC_STATUS_READY;    // –Ú•Wó‘Ô‚ğ"READY"‚É
-		wpbBuf->wcTarget = WC_STATUS_END;      // –Ú•Wó‘Ô‚ğ"END"‚É
+//		wpbBuf->wcTarget = WC_STATUS_READY;    // ç›®æ¨™çŠ¶æ…‹ã‚’"READY"ã«
+		wpbBuf->wcTarget = WC_STATUS_END;      // ç›®æ¨™çŠ¶æ…‹ã‚’"END"ã«
 		Wc_Reset();
 		break ;
 	}
@@ -329,11 +329,11 @@ static void WcEnd(void)
 /*---------------------------------------------------------------------------*
   Name:         WcGetStatus
 
-  Description:  –³ü’ÊM‚ÌŒ»İ‚ÌƒXƒe[ƒg‚ğæ“¾‚·‚éB
+  Description:  ç„¡ç·šé€šä¿¡ã®ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
 
   Arguments:    None.
 
-  Returns:      Œ»İ‚ÌƒXƒe[ƒg‚ğ•Ô‚·B
+  Returns:      ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static WCStatus WcGetStatus(void)
 {
@@ -343,21 +343,21 @@ static WCStatus WcGetStatus(void)
 /*---------------------------------------------------------------------------*
   Name:         WcSetParentData
 
-  Description:  e‹@‚Æ‚µ‚Ä‘—M‚·‚éƒf[ƒ^‚ğİ’è‚·‚éB
+  Description:  è¦ªæ©Ÿã¨ã—ã¦é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
 
-  Arguments:    buf  - ‘—M‚·‚éƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                       (32-Byte Align ‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚é)
-                size - ‘—M‚·‚éƒf[ƒ^‚ÌƒTƒCƒYB
+  Arguments:    buf  - é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                       (32-Byte Align ã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹)
+                size - é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 static void WcSetParentData(const void *buf, u16 size)
 {
-	// ‘—Mƒf[ƒ^ƒTƒCƒYŠm”F
+	// é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºç¢ºèª
 	if (size > wpbBuf->pparaBuf.parentMaxSize) {
 		return ;
 	}
-	// ‘O‚Ì‘—M‚ÌŠ®—¹‚ğŠm”F
+	// å‰ã®é€ä¿¡ã®å®Œäº†ã‚’ç¢ºèª
 	if (wpbBuf->wcSendFlag) {
 		wpbBuf->wcSendFlag = FALSE;
 		Wc_SetMPData(buf, size);
@@ -367,21 +367,21 @@ static void WcSetParentData(const void *buf, u16 size)
 /*---------------------------------------------------------------------------*
   Name:         WcSetChildData
 
-  Description:  q‹@‚Æ‚µ‚Ä‘—M‚·‚éƒf[ƒ^‚ğİ’è‚·‚éB
+  Description:  å­æ©Ÿã¨ã—ã¦é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
 
-  Arguments:    buf  - ‘—M‚·‚éƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                       (32-Byte Align ‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚é)
-                size - ‘—M‚·‚éƒf[ƒ^‚ÌƒTƒCƒYB
+  Arguments:    buf  - é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                       (32-Byte Align ã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹)
+                size - é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 static void WcSetChildData(const void *buf, u16 size)
 {
-	// ‘—Mƒf[ƒ^ƒTƒCƒYŠm”F
+	// é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºç¢ºèª
 	if (size > wpbcDefaultParameter.childMaxSize) {
 		return ;
 	}
-	// ‘O‚Ì‘—M‚ÌŠ®—¹‚ğŠm”F
+	// å‰ã®é€ä¿¡ã®å®Œäº†ã‚’ç¢ºèª
 	if (wpbBuf->wcSendFlag) {
 		wpbBuf->wcSendFlag = FALSE;
 		Wc_SetMPData(buf, size);
@@ -393,7 +393,7 @@ static void WcSetChildData(const void *buf, u16 size)
 /*---------------------------------------------------------------------------*
   Name:         WcCreateParentParameter
 
-  Description:  e‹@î•ñ‚ğ•ÒW‚·‚éB
+  Description:  è¦ªæ©Ÿæƒ…å ±ã‚’ç·¨é›†ã™ã‚‹ã€‚
 
   Arguments:    None.
 
@@ -405,14 +405,14 @@ static void WcCreateParentParameter(void)
 
 	wpbBuf->pparaBuf.channel = wpbBuf->sChannel;
 	WcDebugPrintf("  parent channel = %d.\n", wpbBuf->sChannel);
-	// tempID‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+	// tempIDã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	wpbBuf->pparaBuf.tgid = ++tempID;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         WcCreateScanParameter
 
-  Description:  ƒXƒLƒƒƒ“İ’èî•ñ‚ğ•ÒW‚·‚éB
+  Description:  ã‚¹ã‚­ãƒ£ãƒ³è¨­å®šæƒ…å ±ã‚’ç·¨é›†ã™ã‚‹ã€‚
 
   Arguments:    None.
 
@@ -431,14 +431,14 @@ static void WcCreateScanParameter(void)
 	p->ssidLength = 0;
 	MI_CpuFill8(p->ssid, 0xff, sizeof p->ssid);
 
-	// ƒuƒ[ƒhƒLƒƒƒXƒgƒAƒhƒŒƒX‚ğw’è‚µA‘Se‹@‚ğ’Tõ‚·‚é‚æ‚¤İ’è
+	// ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒ‡å®šã—ã€å…¨è¦ªæ©Ÿã‚’æ¢ç´¢ã™ã‚‹ã‚ˆã†è¨­å®š
 	MI_CpuFill8(p->bssid, 0xff, sizeof p->bssid);
 }
 
 /*---------------------------------------------------------------------------*
   Name:         WcSetNextScanChannel
 
-  Description:  ƒXƒLƒƒƒ“İ’è“à‚Ìƒ`ƒƒƒ“ƒlƒ‹w’è‚ğŸ‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ÉXV‚·‚éB
+  Description:  ã‚¹ã‚­ãƒ£ãƒ³è¨­å®šå†…ã®ãƒãƒ£ãƒ³ãƒãƒ«æŒ‡å®šã‚’æ¬¡ã®ãƒãƒ£ãƒ³ãƒãƒ«ã«æ›´æ–°ã™ã‚‹ã€‚
 
   Arguments:    None.
 
@@ -465,12 +465,12 @@ static void WcSetNextScanChannel(void)
 /*---------------------------------------------------------------------------*
   Name:         Wc_Enable
 
-  Description:  WM_EnableŠÖ”‚ğŒÄ‚Ño‚·B
+  Description:  WM_Enableé–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL - WM_Enable‚É‚æ‚è”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚Å‚«‚½ê‡‚É
-                       TRUE‚ğ•Ô‚·B¸”s‚µ‚½ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL - WM_Enableã«ã‚ˆã‚ŠéåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã§ããŸå ´åˆã«
+                       TRUEã‚’è¿”ã™ã€‚å¤±æ•—ã—ãŸå ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void WcCb_Enable(void *arg)
 {
@@ -512,12 +512,12 @@ static BOOL Wc_Enable(void)
 /*---------------------------------------------------------------------------*
   Name:         Wc_Disable
 
-  Description:  WM_DisableŠÖ”‚ğŒÄ‚Ño‚·B
+  Description:  WM_Disableé–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL - WM_Disable‚É‚æ‚è”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚Å‚«‚½ê‡‚É
-                       TRUE‚ğ•Ô‚·B¸”s‚µ‚½ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL - WM_Disableã«ã‚ˆã‚ŠéåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã§ããŸå ´åˆã«
+                       TRUEã‚’è¿”ã™ã€‚å¤±æ•—ã—ãŸå ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void WcCb_Disable(void *arg)
 {
@@ -534,7 +534,7 @@ static void WcCb_Disable(void *arg)
 	case WC_STATUS_READY:
 	case WC_STATUS_END:
 	default:
-		wpbBuf->wcStatus = WC_STATUS_READY; // ³í‚ÉREADYó‘Ô‚É‘JˆÚŠ®—¹
+		wpbBuf->wcStatus = WC_STATUS_READY; // æ­£å¸¸ã«READYçŠ¶æ…‹ã«é·ç§»å®Œäº†
 		if (wpbBuf->wcTarget == WC_STATUS_END) {
 			wpbBuf->wcTarget = WC_STATUS_READY;
 			if (wpbBuf->wpbCallback) {
@@ -580,12 +580,12 @@ static BOOL Wc_Disable(void)
 /*---------------------------------------------------------------------------*
   Name:         Wc_PowerOn
 
-  Description:  WM_PowerOnŠÖ”‚ğŒÄ‚Ño‚·B
+  Description:  WM_PowerOné–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL - WM_PowerOn‚É‚æ‚è”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚Å‚«‚½ê‡‚É
-                       TRUE‚ğ•Ô‚·B¸”s‚µ‚½ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL - WM_PowerOnã«ã‚ˆã‚ŠéåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã§ããŸå ´åˆã«
+                       TRUEã‚’è¿”ã™ã€‚å¤±æ•—ã—ãŸå ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void WcCb_PowerOn(void *arg)
 {
@@ -616,7 +616,7 @@ static void WcCb_PowerOn(void *arg)
 
 			WcCreateParentParameter();
 			if (!Wc_SetParentParameter()) {
-				wpbBuf->wcTarget = WC_STATUS_READY; // –Ú•Wó‘Ô‚ğ"READY"‚É
+				wpbBuf->wcTarget = WC_STATUS_READY; // ç›®æ¨™çŠ¶æ…‹ã‚’"READY"ã«
 				Wc_Reset();
 			}
 		}
@@ -625,7 +625,7 @@ static void WcCb_PowerOn(void *arg)
 		if (TRUE == Wc_SetIndCallback()) {
 			WcCreateScanParameter();
 			if (!Wc_StartScan()) {
-				wpbBuf->wcTarget = WC_STATUS_READY; // –Ú•Wó‘Ô‚ğ"READY"‚É
+				wpbBuf->wcTarget = WC_STATUS_READY; // ç›®æ¨™çŠ¶æ…‹ã‚’"READY"ã«
 				Wc_Reset();
 			}
 		}
@@ -652,12 +652,12 @@ static BOOL Wc_PowerOn(void)
 /*---------------------------------------------------------------------------*
   Name:         Wc_PowerOff
 
-  Description:  WM_PowerOffŠÖ”‚ğŒÄ‚Ño‚·B
+  Description:  WM_PowerOffé–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL - WM_PowerOff‚É‚æ‚è”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚Å‚«‚½ê‡‚É
-                       TRUE‚ğ•Ô‚·B¸”s‚µ‚½ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL - WM_PowerOffã«ã‚ˆã‚ŠéåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã§ããŸå ´åˆã«
+                       TRUEã‚’è¿”ã™ã€‚å¤±æ•—ã—ãŸå ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void WcCb_PowerOff(void *arg)
 {
@@ -699,12 +699,12 @@ static BOOL Wc_PowerOff(void)
 /*---------------------------------------------------------------------------*
   Name:         Wc_SetIndCallback
 
-  Description:  WM_SetIndCallbackŠÖ”‚ğŒÄ‚Ño‚·B
+  Description:  WM_SetIndCallbacké–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL - WM_SetIndCallbackŠÖ”‚ª¬Œ÷‚µ‚½ê‡‚ÉTRUE‚ğ•Ô‚·B
-                       ¸”s‚µ‚½ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL - WM_SetIndCallbacké–¢æ•°ãŒæˆåŠŸã—ãŸå ´åˆã«TRUEã‚’è¿”ã™ã€‚
+                       å¤±æ•—ã—ãŸå ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void WcCb_Indicate(void *arg)
 {
@@ -733,12 +733,12 @@ static BOOL Wc_SetIndCallback(void)
 /*---------------------------------------------------------------------------*
   Name:         Wc_Reset
 
-  Description:  WM_ResetŠÖ”‚ğŒÄ‚Ño‚·B
+  Description:  WM_Reseté–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL - WM_Reset‚É‚æ‚è”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚Å‚«‚½ê‡‚É
-                       TRUE‚ğ•Ô‚·B¸”s‚µ‚½ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL - WM_Resetã«ã‚ˆã‚ŠéåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã§ããŸå ´åˆã«
+                       TRUEã‚’è¿”ã™ã€‚å¤±æ•—ã—ãŸå ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void WcCb_Reset(void *arg)
 {
@@ -840,12 +840,12 @@ static BOOL Wc_Reset(void)
 /*---------------------------------------------------------------------------*
   Name:         Wc_SetParentParameter
 
-  Description:  WM_SetParentParameterŠÖ”‚ğŒÄ‚Ño‚·B
+  Description:  WM_SetParentParameteré–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL - WM_SetParentParameter‚É‚æ‚è”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚Å‚«‚½
-                       ê‡‚ÉTRUE‚ğ•Ô‚·B¸”s‚µ‚½ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL - WM_SetParentParameterã«ã‚ˆã‚ŠéåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã§ããŸ
+                       å ´åˆã«TRUEã‚’è¿”ã™ã€‚å¤±æ•—ã—ãŸå ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void WcCb_SetParentParameter(void *arg)
 {
@@ -872,7 +872,7 @@ static void WcCb_SetParentParameter(void *arg)
 		break ;
 	case WC_STATUS_CHILD:
 		wpbBuf->wcTarget = WC_STATUS_CHILD;
-		// q‹@ƒ‚[ƒh‚ÉˆÚs‚·‚éˆ×‚Éˆê’UƒŠƒZƒbƒg‚·‚é
+		// å­æ©Ÿãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œã™ã‚‹ç‚ºã«ä¸€æ—¦ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 		Wc_Reset();
 		break ;
 	}
@@ -895,12 +895,12 @@ static BOOL Wc_SetParentParameter(void)
 /*---------------------------------------------------------------------------*
   Name:         Wc_StartParent
 
-  Description:  WM_StartParentŠÖ”‚ğŒÄ‚Ño‚·B
+  Description:  WM_StartParenté–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL - WM_StartParent‚É‚æ‚è”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚Å‚«‚½ê‡‚É
-                       TRUE‚ğ•Ô‚·B¸”s‚µ‚½ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL - WM_StartParentã«ã‚ˆã‚ŠéåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã§ããŸå ´åˆã«
+                       TRUEã‚’è¿”ã™ã€‚å¤±æ•—ã—ãŸå ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void disconnect_callback();
 
@@ -932,7 +932,7 @@ static void WcCb_StartParent(void *arg)
 			break ;
 		case WC_STATUS_CHILD:
 			wpbBuf->wcTarget = WC_STATUS_CHILD;
-			// q‹@ƒ‚[ƒh‚ÉˆÚs‚·‚éˆ×‚Éˆê’UƒŠƒZƒbƒg‚·‚é
+			// å­æ©Ÿãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œã™ã‚‹ç‚ºã«ä¸€æ—¦ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 			Wc_Reset();
 			break ;
 		}
@@ -959,9 +959,9 @@ static void WcCb_StartParent(void *arg)
 #endif
 		disconnect_callback();
 		WPBC_Disconnect((u16)(1 << cb->aid));
-		// ƒR[ƒ‹ƒoƒbƒN‚Ìƒ`ƒF[ƒ“’†‚Ìê‡‚Í‚±‚±‚Å‚ÍWc_Reset‚ğŒÄ‚Î‚È‚¢B
+		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®ãƒã‚§ãƒ¼ãƒ³ä¸­ã®å ´åˆã¯ã“ã“ã§ã¯Wc_Resetã‚’å‘¼ã°ãªã„ã€‚
 		if (wpbBuf->wcStatus != WC_STATUS_BUSY) {
-			//e‹@‚É‚È‚éHƒIƒŠƒWƒiƒ‹‚Æ‚¿‚ª‚¤‚Æ‚±‚ë
+			//è¦ªæ©Ÿã«ãªã‚‹ï¼Ÿã‚ªãƒªã‚¸ãƒŠãƒ«ã¨ã¡ãŒã†ã¨ã“ã‚
 			wpbBuf->wcTarget = WC_STATUS_PARENT;
 			Wc_Reset();
 		}
@@ -985,12 +985,12 @@ static BOOL Wc_StartParent(void)
 /*---------------------------------------------------------------------------*
   Name:         Wc_StartScan
 
-  Description:  WM_StartScanŠÖ”‚ğŒÄ‚Ño‚·B
+  Description:  WM_StartScané–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL - WM_StartScan‚É‚æ‚è”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚Å‚«‚½ê‡‚É
-                       TRUE‚ğ•Ô‚·B¸”s‚µ‚½ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL - WM_StartScanã«ã‚ˆã‚ŠéåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã§ããŸå ´åˆã«
+                       TRUEã‚’è¿”ã™ã€‚å¤±æ•—ã—ãŸå ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void WcCb_StartScan(void *arg)
 {
@@ -1010,7 +1010,7 @@ static void WcCb_StartScan(void *arg)
 //		Wc_Reset();
 //		break ;
 	case WC_STATUS_PARENT:
-		// e‹@ƒ‚[ƒh‚ÉˆÚs‚·‚éˆ×‚Éˆê’UIDLE‚É–ß‚·
+		// è¦ªæ©Ÿãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œã™ã‚‹ç‚ºã«ä¸€æ—¦IDLEã«æˆ»ã™
 		if (!Wc_EndScan()) {
 			wpbBuf->wcTarget = WC_STATUS_READY;
 			Wc_Reset();
@@ -1019,15 +1019,15 @@ static void WcCb_StartScan(void *arg)
 	case WC_STATUS_CHILD:
 		switch (cb->state) {
 		case WM_STATECODE_PARENT_FOUND:
-			// e‹@î•ñŠi”[ƒoƒbƒtƒ@‚ÌƒLƒƒƒbƒVƒ…‚ğ”jŠü
+			// è¦ªæ©Ÿæƒ…å ±æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ç ´æ£„
 			DC_InvalidateRange(WcBssid_GetScanBuffer(),
 							   WcBssid_GetScanBufferSize());
 			WcBssid_AddFoundChild(cb);
 
 			// Don't break here.
-			// ‘±‚¯‚Ä‚à‚¤ˆê‰ñƒXƒLƒƒƒ“‚ğÀs
+			// ç¶šã‘ã¦ã‚‚ã†ä¸€å›ã‚¹ã‚­ãƒ£ãƒ³ã‚’å®Ÿè¡Œ
 		case WM_STATECODE_PARENT_NOT_FOUND:
-			// ‚à‚¤ˆê‰ñƒXƒLƒƒƒ“‚ğÀs‚·‚é
+			// ã‚‚ã†ä¸€å›ã‚¹ã‚­ãƒ£ãƒ³ã‚’å®Ÿè¡Œã™ã‚‹
 			WcSetNextScanChannel();
 			child_scan_channel_count++;
 
@@ -1072,12 +1072,12 @@ static BOOL Wc_StartScan(void)
 /*---------------------------------------------------------------------------*
   Name:         Wc_EndScan
 
-  Description:  WM_EndScanŠÖ”‚ğŒÄ‚Ño‚·B
+  Description:  WM_EndScané–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL - WM_EndScan‚É‚æ‚è”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚Å‚«‚½ê‡‚É
-                       TRUE‚ğ•Ô‚·B¸”s‚µ‚½ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL - WM_EndScanã«ã‚ˆã‚ŠéåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã§ããŸå ´åˆã«
+                       TRUEã‚’è¿”ã™ã€‚å¤±æ•—ã—ãŸå ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void set_buf(const WPBCallback *arg);
 static void reset_buf();
@@ -1119,7 +1119,7 @@ static void WcCb_EndScan(void *arg)
 			if (arg.bssDesc && arg.send_ptr && arg.recv_ptr) {
 				wpbBuf->parent_bssdesc_ptr = arg.bssDesc;
 				set_buf(&arg);
-				// q‹@‚Æ‚µ‚ÄƒRƒlƒNƒgŠJn
+				// å­æ©Ÿã¨ã—ã¦ã‚³ãƒã‚¯ãƒˆé–‹å§‹
 				if (!Wc_StartConnect()) {
 					wpbBuf->wcTarget = WC_STATUS_READY;
 					Wc_Reset();
@@ -1129,7 +1129,7 @@ static void WcCb_EndScan(void *arg)
 				reset_buf();
 			}
 		}
-		/* e‹@‚É‚È‚é */
+		/* è¦ªæ©Ÿã«ãªã‚‹ */
 		// wcTarget = WC_STATUS_READY;
 		// WcStartParent();
 		if (WPBC_GetMode() == TRUE) {
@@ -1156,12 +1156,12 @@ static BOOL Wc_EndScan(void)
 /*---------------------------------------------------------------------------*
   Name:         Wc_StartConnect
 
-  Description:  WM_StartConnectŠÖ”‚ğŒÄ‚Ño‚·B
+  Description:  WM_StartConnecté–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL - WM_StartConnect‚É‚æ‚è”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚Å‚«‚½ê‡‚É
-                       TRUE‚ğ•Ô‚·B¸”s‚µ‚½ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL - WM_StartConnectã«ã‚ˆã‚ŠéåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã§ããŸå ´åˆã«
+                       TRUEã‚’è¿”ã™ã€‚å¤±æ•—ã—ãŸå ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void WcCb_StartConnect(void *arg)
 {
@@ -1187,8 +1187,8 @@ static void WcCb_StartConnect(void *arg)
 	case WC_STATUS_READY:
 	case WC_STATUS_PARENT:
 		WcDebugPrintf("< WM_StartConnect success.\n");
-		// –Ú•Wó‘Ô‚ª"q‹@"‚Å‚È‚­‚È‚Á‚½‚Ì‚ÅAˆê’UƒŠƒZƒbƒg‚·‚é
-		// ƒR[ƒ‹ƒoƒbƒN‚Ìƒ`ƒF[ƒ“’†‚Ìê‡‚Í‚±‚±‚Å‚ÍWc_Reset‚ğŒÄ‚Î‚È‚¢B
+		// ç›®æ¨™çŠ¶æ…‹ãŒ"å­æ©Ÿ"ã§ãªããªã£ãŸã®ã§ã€ä¸€æ—¦ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®ãƒã‚§ãƒ¼ãƒ³ä¸­ã®å ´åˆã¯ã“ã“ã§ã¯Wc_Resetã‚’å‘¼ã°ãªã„ã€‚
 		if (wpbBuf->wcStatus != WC_STATUS_BUSY) {
 			Wc_Reset();
 		}
@@ -1196,14 +1196,14 @@ static void WcCb_StartConnect(void *arg)
 	case WC_STATUS_CHILD:
 		switch (cb->state) {
 		case WM_STATECODE_CONNECT_START:
-			// CONNECTED‚É‚È‚é‚Ì‚ğ‘Ò‚Â‚Ì‚ÅAˆ—‚È‚µ
+			// CONNECTEDã«ãªã‚‹ã®ã‚’å¾…ã¤ã®ã§ã€å‡¦ç†ãªã—
 			break ;
 		case WM_STATECODE_CONNECTED:
-			// Šù‚Éq‹@‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+			// æ—¢ã«å­æ©Ÿã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
 			if (wpbBuf->wcStatus == WC_STATUS_CHILD) {
 				WcDebugPrintf("- Connected , but already child mode.\n");
 			} else {
-				// MP‚ğŠJn
+				// MPã‚’é–‹å§‹
 				WcDebugPrintf("< WM_StartConnect success. to CHILD\n");
 				if (!Wc_StartMP()) {
 					wpbBuf->wcTarget = WC_STATUS_READY;
@@ -1213,7 +1213,7 @@ static void WcCb_StartConnect(void *arg)
 			break ;
 		case WM_STATECODE_BEACON_LOST:
 			WcDebugPrintf("- Beacon from parent lost.\n");
-			// ƒr[ƒRƒ“‚ğ¸‚Á‚½‚¾‚¯‚Å‚ÍƒŠƒZƒbƒg‚µ‚È‚¢
+			// ãƒ“ãƒ¼ã‚³ãƒ³ã‚’å¤±ã£ãŸã ã‘ã§ã¯ãƒªã‚»ãƒƒãƒˆã—ãªã„
 			break ;
 		case WM_STATECODE_DISCONNECTED:
 			WcDebugPrintf("- DisConnected from parent.\n");
@@ -1222,9 +1222,9 @@ static void WcCb_StartConnect(void *arg)
 #endif
 			disconnect_callback();
 			wpbBuf->wcTarget = WC_STATUS_READY;
-			// ƒR[ƒ‹ƒoƒbƒN‚Ìƒ`ƒF[ƒ“’†‚Ìê‡‚Í‚±‚±‚Å‚ÍWc_Reset‚ğŒÄ‚Î‚È‚¢B
+			// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®ãƒã‚§ãƒ¼ãƒ³ä¸­ã®å ´åˆã¯ã“ã“ã§ã¯Wc_Resetã‚’å‘¼ã°ãªã„ã€‚
 			if (wpbBuf->wcStatus != WC_STATUS_BUSY) {
-				//e‹@‚É‚È‚éHƒIƒŠƒWƒiƒ‹‚Æ‚¿‚ª‚¤‚Æ‚±‚ë
+				//è¦ªæ©Ÿã«ãªã‚‹ï¼Ÿã‚ªãƒªã‚¸ãƒŠãƒ«ã¨ã¡ãŒã†ã¨ã“ã‚
 				wpbBuf->wcTarget = WC_STATUS_PARENT;
 				Wc_Reset();
 			}
@@ -1258,12 +1258,12 @@ static BOOL Wc_StartConnect(void)
 /*---------------------------------------------------------------------------*
   Name:Wc_StartMP
 
-  Description:  WM_StartMPŠÖ”‚ğŒÄ‚Ño‚·B
+  Description:  WM_StartMPé–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL - WM_StartMP‚É‚æ‚è”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚Å‚«‚½ê‡‚É
-                       TRUE‚ğ•Ô‚·B¸”s‚µ‚½ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL - WM_StartMPã«ã‚ˆã‚ŠéåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã§ããŸå ´åˆã«
+                       TRUEã‚’è¿”ã™ã€‚å¤±æ•—ã—ãŸå ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void WcCb_StartMP(void *arg)
 {
@@ -1273,11 +1273,11 @@ static void WcCb_StartMP(void *arg)
 		switch (cb->errcode) {
 		case WM_ERRCODE_SEND_FAILED:
 		case WM_ERRCODE_TIMEOUT:
-			// ‘—óM‚ªŠ®—¹‚µ‚È‚©‚Á‚½ê‡‚Ìindicate
-			// ‚È‚É‚à‚¹‚¸‚ÉÄ‘—‚³‚ê‚é‚Ì‚ğ‘Ò‚Â
+			// é€å—ä¿¡ãŒå®Œäº†ã—ãªã‹ã£ãŸå ´åˆã®indicate
+			// ãªã«ã‚‚ã›ãšã«å†é€ã•ã‚Œã‚‹ã®ã‚’å¾…ã¤
 			break ;
 		case WM_ERRCODE_INVALID_POLLBITMAP:
-			// ©•ªˆ¶‚Å‚Í‚È‚¢ MP ’ÊM‚ğó‚¯æ‚Á‚½ê‡‚Ì indicate
+			// è‡ªåˆ†å®›ã§ã¯ãªã„ MP é€šä¿¡ã‚’å—ã‘å–ã£ãŸå ´åˆã® indicate
 			break ;
 		default:
 			WcDebugPrintf("< WM_StartMP failed. ERRCODE: %x %x!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n",
@@ -1300,7 +1300,7 @@ OS_TPrintf("================================================================\n")
 		case WC_STATUS_PARENT:
 		case WC_STATUS_CHILD:
 			wpbBuf->wcSendFlag = TRUE;
-			// e(q)‹@‚Æ‚µ‚Ä‚ÌÚ‘±‚ª³í‚ÉŠ®—¹
+			// è¦ª(å­)æ©Ÿã¨ã—ã¦ã®æ¥ç¶šãŒæ­£å¸¸ã«å®Œäº†
 			wpbBuf->wcStatus = wpbBuf->wcTarget;
 			if (wpbBuf->wcStatus == WC_STATUS_PARENT) {
 				WPBC_StartMpParent();
@@ -1311,10 +1311,10 @@ OS_TPrintf("================================================================\n")
 		}
 		break ;
 	case WM_STATECODE_MPEND_IND:
-		// e‹@‚Æ‚µ‚Ä‚Ì‘—óMŠ®—¹‚Ìindicate
+		// è¦ªæ©Ÿã¨ã—ã¦ã®é€å—ä¿¡å®Œäº†æ™‚ã®indicate
 		break ;
 	case WM_STATECODE_MP_IND:
-		// q‹@‚Æ‚µ‚Ä‚ÌóMŠ®—¹‚Ìindicate
+		// å­æ©Ÿã¨ã—ã¦ã®å—ä¿¡å®Œäº†æ™‚ã®indicate
 		break ;
 	}
 }
@@ -1329,13 +1329,13 @@ static void WcCb_ReceiveData(void *arg)
 	}
 	switch (cb->state) {
 	case WM_STATECODE_PORT_RECV:
-		// ƒf[ƒ^óM
+		// ãƒ‡ãƒ¼ã‚¿å—ä¿¡
 		switch (wpbBuf->wcStatus) {
 		case WC_STATUS_PARENT:
 			if (WPBC_ParentReceiveCallback(cb->data, cb->length)
 				== WPBC_RETURN_DISCONNECT) {
 				Wc_Disconnect(cb->aid);
-				/* Ú‘±•ƒf[ƒ^ŒğŠ·Š®—¹‚µ‚½‚ç“o˜^ */
+				/* æ¥ç¶šï¼†ãƒ‡ãƒ¼ã‚¿äº¤æ›å®Œäº†ã—ãŸã‚‰ç™»éŒ² */
 			}
 			break ;
 		case WC_STATUS_CHILD:
@@ -1349,16 +1349,16 @@ static void WcCb_ReceiveData(void *arg)
 		}
 		break ;
 	case WM_STATECODE_CONNECTED:
-		// Ú‘±’Ê’m
+		// æ¥ç¶šé€šçŸ¥
 		break ;
 	case WM_STATECODE_DISCONNECTED:
-		// Ø’f’Ê’m
+		// åˆ‡æ–­é€šçŸ¥
 		switch (wpbBuf->wcStatus) {
 		case WC_STATUS_PARENT:
 #ifdef MY_TEXT
 			mfprintf(tc[2], "disconnected by child %d\n", cb->aid);
 #endif
-			/* StartParent‚Ì‚Ù‚¤‚Å’Ê’m */
+			/* StartParentã®ã»ã†ã§é€šçŸ¥ */
 //			WPBC_Disconnect((u16)(1 << cb->aid));
 //			WPBC_ParentReceiveCallback(NULL, 0);
 			break ;
@@ -1410,12 +1410,12 @@ BOOL Wc_StartMP(void)
 /*---------------------------------------------------------------------------*
   Name:         Wc_SetMPData
 
-  Description:  WM_SetMPDataŠÖ”‚ğŒÄ‚Ño‚·B
+  Description:  WM_SetMPDataé–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL - WM_SetMPData‚É‚æ‚è”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚Å‚«‚½ê‡‚É
-                       TRUE‚ğ•Ô‚·B¸”s‚µ‚½ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL - WM_SetMPDataã«ã‚ˆã‚ŠéåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã§ããŸå ´åˆã«
+                       TRUEã‚’è¿”ã™ã€‚å¤±æ•—ã—ãŸå ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void WcCb_SetMPData(void *arg)
 {
@@ -1445,7 +1445,7 @@ static void WcCb_SetMPData(void *arg)
 		return;
 	}
 
-	/* WM_ERRCODE_SEND_FAILED‚Ì‚Æ‚«‚àŒÄ‚Ño‚· */
+	/* WM_ERRCODE_SEND_FAILEDã®ã¨ãã‚‚å‘¼ã³å‡ºã™ */
 	if (wpbBuf->wcStatus == WC_STATUS_CHILD) {
 		WPBC_SetMPDataChild();
 	} else if (wpbBuf->wcStatus == WC_STATUS_PARENT) {
@@ -1545,7 +1545,7 @@ static void WcCb_Disconnect(void *arg)
 #ifdef MY_TEXT
 		mfprintf(tc[2], "< WM_Disconnect success\n");
 #endif
-//		wpbBuf->wcTarget = WC_STATUS_PARENT;    // –Ú•Wó‘Ô‚ğ"e‹@Ú‘±ó‘Ô"‚É
+//		wpbBuf->wcTarget = WC_STATUS_PARENT;    // ç›®æ¨™çŠ¶æ…‹ã‚’"è¦ªæ©Ÿæ¥ç¶šçŠ¶æ…‹"ã«
 //		Wc_Reset();
 		if (wpbBuf->wcStatus != WC_STATUS_BUSY) {
 			wpbBuf->wcTarget = WC_STATUS_PARENT;
@@ -1577,7 +1577,7 @@ static BOOL Wc_Disconnect(u16 aid)
 }
 
 /*---------------------------------------------------------------------------*
-    “d”gg—p—¦‘ª’è•”•ª
+    é›»æ³¢ä½¿ç”¨ç‡æ¸¬å®šéƒ¨åˆ†
  *---------------------------------------------------------------------------*/
 
 static void WcCb_MeasureChannel(void *arg);
@@ -1585,9 +1585,9 @@ static void WcCb_MeasureChannel(void *arg);
 /* Wc_MeasureChannel */
 static BOOL Wc_MeasureChannel(u16 channel)
 {
-#define WH_MEASURE_TIME         30     // 1ƒtƒŒ[ƒ€‚Éˆê‰ñ’ÊM‚µ‚Ä‚¢‚é“d”g‚ğE‚¦‚é‚¾‚¯‚ÌŠÔŠu(ms)
-#define WH_MEASURE_CS_OR_ED     3      // ƒLƒƒƒŠƒAƒZƒ“ƒX‚ÆED’l‚Ì˜_—˜a
-#define WH_MEASURE_ED_THRESHOLD 17     // ÀŒ±ƒf[ƒ^‚É‚æ‚éŒoŒ±“I‚É—LŒø‚Æv‚í‚ê‚é‚¨Š©‚ßEDè‡’l
+#define WH_MEASURE_TIME         30     // 1ãƒ•ãƒ¬ãƒ¼ãƒ ã«ä¸€å›é€šä¿¡ã—ã¦ã„ã‚‹é›»æ³¢ã‚’æ‹¾ãˆã‚‹ã ã‘ã®é–“éš”(ms)
+#define WH_MEASURE_CS_OR_ED     3      // ã‚­ãƒ£ãƒªã‚¢ã‚»ãƒ³ã‚¹ã¨EDå€¤ã®è«–ç†å’Œ
+#define WH_MEASURE_ED_THRESHOLD 17     // å®Ÿé¨“ãƒ‡ãƒ¼ã‚¿ã«ã‚ˆã‚‹çµŒé¨“çš„ã«æœ‰åŠ¹ã¨æ€ã‚ã‚Œã‚‹ãŠå‹§ã‚EDé–¾å€¤
 
 	int wmResult;
 
@@ -1596,11 +1596,11 @@ static BOOL Wc_MeasureChannel(u16 channel)
 #ifdef DEBUG
 	OS_TPrintf("Channel = %d\n", channel);
 #endif
-	wmResult = WM_MeasureChannel(WcCb_MeasureChannel,   /* ƒR[ƒ‹ƒoƒbƒNİ’è */
+	wmResult = WM_MeasureChannel(WcCb_MeasureChannel,   /* ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯è¨­å®š */
 								 WH_MEASURE_CS_OR_ED,   /* CS or ED */
-								 WH_MEASURE_ED_THRESHOLD,       /* ‘æ2ˆø”‚ªƒLƒƒƒŠƒAƒZƒ“ƒX‚Ì‚İ‚Ìê‡‚Í–³Œø */
-								 channel,       /* ¡‰ñ‚ÌŒŸõƒ`ƒƒƒ“ƒlƒ‹ */
-								 WH_MEASURE_TIME);      /*‚Pƒ`ƒƒƒ“ƒlƒ‹‚ ‚½‚è‚Ì’²¸ŠÔ[ms] */
+								 WH_MEASURE_ED_THRESHOLD,       /* ç¬¬2å¼•æ•°ãŒã‚­ãƒ£ãƒªã‚¢ã‚»ãƒ³ã‚¹ã®ã¿ã®å ´åˆã¯ç„¡åŠ¹ */
+								 channel,       /* ä»Šå›ã®æ¤œç´¢ãƒãƒ£ãƒ³ãƒãƒ« */
+								 WH_MEASURE_TIME);      /*ï¼‘ãƒãƒ£ãƒ³ãƒãƒ«ã‚ãŸã‚Šã®èª¿æŸ»æ™‚é–“[ms] */
 
 	if (wmResult != WM_ERRCODE_OPERATING) {
 		WcDebugPrintf("< WM_MeasureChannel failed. ERRCODE: %x!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n", wmResult);
@@ -1622,7 +1622,7 @@ static void WcCb_MeasureChannel(void *arg)
 		Wc_Reset();
 		return ;
 	}
-	/* ‚æ‚èg—p—¦‚Ì’á‚¢ƒ`ƒƒƒ“ƒlƒ‹‚ğæ“¾ (‰Šú’l 101% ‚È‚Ì‚Åæ“ª‚Í•K‚¸‘I‘ğ) */
+	/* ã‚ˆã‚Šä½¿ç”¨ç‡ã®ä½ã„ãƒãƒ£ãƒ³ãƒãƒ«ã‚’å–å¾— (åˆæœŸå€¤ 101% ãªã®ã§å…ˆé ­ã¯å¿…ãšé¸æŠ) */
 	if (wpbBuf->sChannelBusyRatio > cb->ccaBusyRatio) {
 		wpbBuf->sChannelBusyRatio = cb->ccaBusyRatio;
 		wpbBuf->sChannel = cb->channel;
@@ -1634,7 +1634,7 @@ static void WcCb_MeasureChannel(void *arg)
 		return ;
 	}
 	WPBC_MeasureEnd();
-	wpbBuf->wcTarget = WC_STATUS_PARENT;        // –Ú•Wó‘Ô‚ğ"e‹@Ú‘±ó‘Ô"‚É
+	wpbBuf->wcTarget = WC_STATUS_PARENT;        // ç›®æ¨™çŠ¶æ…‹ã‚’"è¦ªæ©Ÿæ¥ç¶šçŠ¶æ…‹"ã«
 	Wc_Reset();
 }
 
@@ -1643,11 +1643,11 @@ static void WcCb_MeasureChannel(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         WcBssid_GetScanBuffer
 
-  Description:  ƒXƒLƒƒƒ“ƒoƒbƒtƒ@‚ğ“¾‚é
+  Description:  ã‚¹ã‚­ãƒ£ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’å¾—ã‚‹
 
   Arguments:    None.
 
-  Returns:      WMBssDesc* - ƒXƒLƒƒƒ“ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+  Returns:      WMBssDesc* - ã‚¹ã‚­ãƒ£ãƒ³ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  *---------------------------------------------------------------------------*/
 static WMBssDesc *WcBssid_GetScanBuffer()
 {
@@ -1669,9 +1669,9 @@ static u16 WcBssid_GetScanBufferSize()
 /*---------------------------------------------------------------------------*
   Name:         WcBssid_AddFoundChild
 
-  Description:  ƒXƒLƒƒƒ“‚µ‚ÄŒ©‚Â‚¯‚½e‹@‚Ì”‚ğƒZƒbƒg‚·‚é
+  Description:  ã‚¹ã‚­ãƒ£ãƒ³ã—ã¦è¦‹ã¤ã‘ãŸè¦ªæ©Ÿã®æ•°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 
-  Arguments:    arg     - ƒXƒLƒƒƒ“Œ‹‰Ê
+  Arguments:    arg     - ã‚¹ã‚­ãƒ£ãƒ³çµæœ
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1679,7 +1679,7 @@ static void WcBssid_AddFoundChild(const WMStartScanExCallback *arg)
 {
 	if (arg->bssDescCount) {
 		WMBssDesc *bssdesc = arg->bssDesc[arg->bssDescCount - 1];
-		/* BssDesc‚Ìƒ[ƒh” */
+		/* BssDescã®ãƒ¯ãƒ¼ãƒ‰æ•° */
 		int w = (u16 *)bssdesc - wpbBuf->current_bssdesc_ptr;
 		int n = MATH_ROUNDUP(w + bssdesc->length, 16);
 
@@ -1692,7 +1692,7 @@ static void WcBssid_AddFoundChild(const WMStartScanExCallback *arg)
 /*---------------------------------------------------------------------------*
   Name:         WcBssid_ResetScanBuffer
 
-  Description:  Œ©‚Â‚¯‚½e‹@‚Ì”‚ğƒNƒŠƒA‚·‚éB
+  Description:  è¦‹ã¤ã‘ãŸè¦ªæ©Ÿã®æ•°ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
 
   Arguments:    None.
 
@@ -1707,11 +1707,11 @@ static void WcBssid_ResetScanBuffer()
 /*---------------------------------------------------------------------------*
   Name:         WcBssid_GetParentBssdesc
 
-  Description:  Ú‘±‚·‚ée‹@‚ÌWMBssDescƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+  Description:  æ¥ç¶šã™ã‚‹è¦ªæ©Ÿã®WMBssDescãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
 
   Arguments:    None.
 
-  Returns:      WMBssDesc* - e‹@‚ÌWMBssDescƒ|ƒCƒ“ƒ^
+  Returns:      WMBssDesc* - è¦ªæ©Ÿã®WMBssDescãƒã‚¤ãƒ³ã‚¿
  *---------------------------------------------------------------------------*/
 static const WMBssDesc *WcBssid_GetParentBssdesc(void)
 {
@@ -1719,7 +1719,7 @@ static const WMBssDesc *WcBssid_GetParentBssdesc(void)
 }
 
 /*---------------------------------------------------------------------------*
-    ’è”’è‹`
+    å®šæ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 
 #define REQUEST_DONE                          0xffff
@@ -1735,7 +1735,7 @@ static const WMBssDesc *WcBssid_GetParentBssdesc(void)
 
 
 /*---------------------------------------------------------------------------*
-    \‘¢‘Ì’è‹`
+    æ§‹é€ ä½“å®šç¾©
  *---------------------------------------------------------------------------*/
 typedef struct {
 	int      size;
@@ -1758,19 +1758,19 @@ typedef struct {
 	PassBuffer send_buf;
 	PassBuffer recv_buf;
 	int pre_send_count;
-	u32 recv_bitmap; /* mod32‚Åƒ‹[ƒv */
+	u32 recv_bitmap; /* mod32ã§ãƒ«ãƒ¼ãƒ— */
 	int recv_bitmap_index;
 } PassCtrl;
 
 
-/********** “à•”ƒf[ƒ^ ***********************************/
+/********** å†…éƒ¨ãƒ‡ãƒ¼ã‚¿ ***********************************/
 
-static u8 gSendBuf[512] ATTRIBUTE_ALIGN(32);    //‘—Mƒoƒbƒtƒ@
+static u8 gSendBuf[512] ATTRIBUTE_ALIGN(32);    //é€ä¿¡ãƒãƒƒãƒ•ã‚¡
 
 static PassData my_pass_data;
 static PassCtrl pass_ctrl;
 
-/* e‹@ƒpƒ‰ƒ[ƒ^ */
+/* è¦ªæ©Ÿãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ */
 static u16 connected_bitmap = 0;
 static int parent_beacon_sent_count;
 
@@ -1780,14 +1780,14 @@ static int current_seq = 0;
 
 
 static BOOL pass_comm_pattern[MAX_PATTERN][MAX_SEQ] = {
-	{TRUE, FALSE, TRUE, TRUE},         // FALSE -> q‹@
-	{FALSE, TRUE, TRUE, TRUE},         // TRUE ->  e‹@
+	{TRUE, FALSE, TRUE, TRUE},         // FALSE -> å­æ©Ÿ
+	{FALSE, TRUE, TRUE, TRUE},         // TRUE ->  è¦ªæ©Ÿ
 	{FALSE, TRUE, TRUE, TRUE},
 	{TRUE, FALSE, TRUE, TRUE},
 };
 
 /*---------------------------------------------------------------------------*
-    ƒ}ƒNƒ’è‹`
+    ãƒã‚¯ãƒ­å®šç¾©
  *---------------------------------------------------------------------------*/
 static inline int div32(int a)
 {
@@ -1804,15 +1804,15 @@ static inline int get_data_total_count(void)
 	return my_pass_data.total_count;
 }
 
-/********** “à•”ŠÖ” *************************************/
+/********** å†…éƒ¨é–¢æ•° *************************************/
 
 /*---------------------------------------------------------------------------*
   Name:         pass_copy_to_structure
 
-  Description:  WMóMƒoƒbƒtƒ@‚©‚çPassBuffer\‘¢‘Ì‚ÉƒRƒs[‚·‚é
+  Description:  WMå—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰PassBufferæ§‹é€ ä½“ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 
-  Arguments:    buf - WMóMƒoƒbƒtƒ@
-                pb  - PassBuffer\‘¢‘Ì
+  Arguments:    buf - WMå—ä¿¡ãƒãƒƒãƒ•ã‚¡
+                pb  - PassBufferæ§‹é€ ä½“
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1834,10 +1834,10 @@ static void pass_copy_to_structure(u8 *buf, PassBuffer * pb)
 /*---------------------------------------------------------------------------*
   Name:         pass_copy_to_buffer
 
-  Description:  PassBuffer\‘¢‘Ì‚©‚çWM‘—Mƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é
+  Description:  PassBufferæ§‹é€ ä½“ã‹ã‚‰WMé€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 
-  Arguments:    pb  - PassBuffer\‘¢‘Ì
-                buf - WM‘—Mƒoƒbƒtƒ@
+  Arguments:    pb  - PassBufferæ§‹é€ ä½“
+                buf - WMé€ä¿¡ãƒãƒƒãƒ•ã‚¡
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1859,10 +1859,10 @@ static void pass_copy_to_buffer(PassBuffer * pb, u8 *buf)
 /*---------------------------------------------------------------------------*
   Name:         pass_BufToData
 
-  Description:  PassBuffer\‘¢‘Ì‚©‚çƒ†[ƒU[óMƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é
+  Description:  PassBufferæ§‹é€ ä½“ã‹ã‚‰ãƒ¦ãƒ¼ã‚¶ãƒ¼å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 
-  Arguments:    pb  - PassBuffer\‘¢‘Ì
-                buf - ƒ†[ƒU[óMƒoƒbƒtƒ@
+  Arguments:    pb  - PassBufferæ§‹é€ ä½“
+                buf - ãƒ¦ãƒ¼ã‚¶ãƒ¼å—ä¿¡ãƒãƒƒãƒ•ã‚¡
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1894,11 +1894,11 @@ static void pass_BufToData(PassBuffer * pb, PassCtrl * pctrl)
 /*---------------------------------------------------------------------------*
   Name:         pass_DataToBuf
 
-  Description:  ƒ†[ƒU[‘—Mƒoƒbƒtƒ@‚©‚çPassBuffer\‘¢‘Ì‚ÉƒRƒs[‚·‚é
+  Description:  ãƒ¦ãƒ¼ã‚¶ãƒ¼é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰PassBufferæ§‹é€ ä½“ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 
-  Arguments:    seq_no - ƒV[ƒPƒ“ƒX”Ô†
-                pb     - PassBuffer\‘¢‘Ì
-                buf    - ƒ†[ƒU[‘—Mƒoƒbƒtƒ@
+  Arguments:    seq_no - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+                pb     - PassBufferæ§‹é€ ä½“
+                buf    - ãƒ¦ãƒ¼ã‚¶ãƒ¼é€ä¿¡ãƒãƒƒãƒ•ã‚¡
 
   Returns:      None.    {TRUE, TRUE, FALSE, TRUE},
 
@@ -1930,7 +1930,7 @@ static void pass_DataToBuf(int seq_no, PassBuffer * pb, PassData * pd)
 /*---------------------------------------------------------------------------*
   Name:         pass_data_init_recv_bitmap
 
-  Description:  óM—š—ğƒrƒbƒgƒ}ƒbƒv‚Ì‰Šú‰»
+  Description:  å—ä¿¡å±¥æ­´ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®åˆæœŸåŒ–
 
   Arguments:    None.
 
@@ -1945,12 +1945,12 @@ static void pass_data_init_recv_bitmap()
 /*---------------------------------------------------------------------------*
   Name:         pass_data_set_recv_bitmap
 
-  Description:  óM—š—ğƒrƒbƒgƒ}ƒbƒv‚ğƒZƒbƒg‚·‚é
+  Description:  å—ä¿¡å±¥æ­´ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 
-  Arguments:    aid    - AID(AID‚²‚Æ‚ÉóMƒoƒbƒtƒ@‚ğŠÇ—‚µ‚Ä‚¢‚é‚½‚ß)
-                seq_no - ƒV[ƒPƒ“ƒX”Ô†
+  Arguments:    aid    - AID(AIDã”ã¨ã«å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’ç®¡ç†ã—ã¦ã„ã‚‹ãŸã‚)
+                seq_no - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 
-  Returns:      BOOL   - FALSE/‚·‚Å‚Éƒ`ƒFƒbƒNÏ‚İ
+  Returns:      BOOL   - FALSE/ã™ã§ã«ãƒã‚§ãƒƒã‚¯æ¸ˆã¿
  *---------------------------------------------------------------------------*/
 static BOOL pass_data_set_recv_bitmap(int seq_no)
 {
@@ -1967,9 +1967,9 @@ static BOOL pass_data_set_recv_bitmap(int seq_no)
 /*---------------------------------------------------------------------------*
   Name:         pass_data_get_recv_bitmap
 
-  Description:  óM—š—ğƒrƒbƒgƒ}ƒbƒv‚ğƒ`ƒFƒbƒN‚·‚é
+  Description:  å—ä¿¡å±¥æ­´ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 
-  Arguments:    seq_no - ƒV[ƒPƒ“ƒX”Ô†
+  Arguments:    seq_no - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1987,7 +1987,7 @@ static BOOL pass_data_get_recv_bitmap(int seq_no)
 /*---------------------------------------------------------------------------*
   Name:         pass_data_get_next_count
 
-  Description:  Ÿ‚É‘Šè‚É—v‹‚·‚éƒV[ƒPƒ“ƒX”Ô†‚ğ“¾‚é
+  Description:  æ¬¡ã«ç›¸æ‰‹ã«è¦æ±‚ã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·ã‚’å¾—ã‚‹
 
   Arguments:    None.
 
@@ -1999,7 +1999,7 @@ static u16 pass_data_get_next_count()
 	int count;
 
 	if (pc->recv_bitmap_index >= get_data_total_count()) {
-		return REQUEST_DONE;          /* ‚·‚×‚ÄóMÏ‚İ */
+		return REQUEST_DONE;          /* ã™ã¹ã¦å—ä¿¡æ¸ˆã¿ */
 	}
 	count = pc->pre_send_count;
 	for (;;) {
@@ -2013,9 +2013,9 @@ static u16 pass_data_get_next_count()
 			return (u16)count;
 		}
 		if (count == pc->pre_send_count) {
-			/* ‚±‚±‚É—ˆ‚é‚±‚Æ‚Í‚È‚¢‚Í‚¸ */
+			/* ã“ã“ã«æ¥ã‚‹ã“ã¨ã¯ãªã„ã¯ãš */
 			OS_TPrintf("Error ! %d %d %d %08X\n", pc->pre_send_count, pc->recv_bitmap_index, get_data_total_count(), pc->recv_bitmap);
-			return REQUEST_DONE;          /* ‚·‚×‚ÄóMÏ‚İ */
+			return REQUEST_DONE;          /* ã™ã¹ã¦å—ä¿¡æ¸ˆã¿ */
 		}
 	}
 }
@@ -2023,9 +2023,9 @@ static u16 pass_data_get_next_count()
 /*---------------------------------------------------------------------------*
   Name:         pass_InitBuf
 
-  Description:  PassBuffer\‘¢‘Ì‚Ì‰Šú‰»
+  Description:  PassBufferæ§‹é€ ä½“ã®åˆæœŸåŒ–
 
-  Arguments:    pb - PassBuffer\‘¢‘Ì
+  Arguments:    pb - PassBufferæ§‹é€ ä½“
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -2041,7 +2041,7 @@ static void pass_InitBuf(PassBuffer * pb)
 /*---------------------------------------------------------------------------*
   Name:         pass_ResetData
 
-  Description:  ‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”B
+  Description:  ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°ã€‚
 
   Arguments:    None.
 
@@ -2064,7 +2064,7 @@ static void pass_ResetData()
 
 
 /*---------------------------------------------------------------------------*
-    ŠO•”ŠÖ”
+    å¤–éƒ¨é–¢æ•°
  *---------------------------------------------------------------------------*/
 
 static void WPBC_MeasureEnd(void)
@@ -2082,7 +2082,7 @@ static void WPBC_MeasureEnd(void)
 /*---------------------------------------------------------------------------*
   Name:         WPBC_BeaconSent
 
-  Description:  ‚·‚ê‚¿‚ª‚¢’ÊMŠÖ”
+  Description:  ã™ã‚Œã¡ãŒã„é€šä¿¡é–¢æ•°
 
   Arguments:    none.
 
@@ -2097,9 +2097,9 @@ static void WPBC_BeaconSent(void)
 			parent_beacon_sent_count = 0;
 
 			if (WPBC_GetMode() == TRUE) {
-				/* e‹@‚Ì‚Ü‚Ü */
+				/* è¦ªæ©Ÿã®ã¾ã¾ */
 			} else {
-				/* q‹@‚É‚È‚é */
+				/* å­æ©Ÿã«ãªã‚‹ */
 				WcStartChild();
 			}
 		}
@@ -2117,7 +2117,7 @@ static BOOL WPBC_GetMode(void)
 			current_pattern = 0;
 		}
 		if (current_pattern == start_pattern) {
-			start_pattern = (int)(OS_GetTick() % MAX_PATTERN);  /* —”‚Ì‚Â‚à‚è */
+			start_pattern = (int)(OS_GetTick() % MAX_PATTERN);  /* ä¹±æ•°ã®ã¤ã‚‚ã‚Š */
 			current_pattern = start_pattern;
 		}
 	}
@@ -2141,7 +2141,7 @@ static BOOL WPBC_GetMode(void)
 /*---------------------------------------------------------------------------*
   Name:         WPBC_StartMpParent
 
-  Description:  ‚·‚ê‚¿‚ª‚¢’ÊMŠÖ”
+  Description:  ã™ã‚Œã¡ãŒã„é€šä¿¡é–¢æ•°
 
   Arguments:    none.
 
@@ -2157,13 +2157,13 @@ static void WPBC_StartMpParent(void)
 /*---------------------------------------------------------------------------*
   Name:         WPBC_ParentSendStep
 
-  Description:  e‹@‚Æ‚µ‚Äq‹@‚Ö‚Ìƒf[ƒ^‘—M‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”B
+  Description:  è¦ªæ©Ÿã¨ã—ã¦å­æ©Ÿã¸ã®ãƒ‡ãƒ¼ã‚¿é€ä¿¡æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°ã€‚
 
-  Arguments:    connected_bitmp - Œ»İÚ‘±’†‚ÌAIDƒrƒbƒgƒ}ƒbƒv
-                buf  - ‘—Mƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                size - ‘—Mƒoƒbƒtƒ@ƒTƒCƒY
+  Arguments:    connected_bitmp - ç¾åœ¨æ¥ç¶šä¸­ã®AIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+                buf  - é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                size - é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-  Returns:      ‘—Mƒf[ƒ^ƒTƒCƒY
+  Returns:      é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 static int WPBC_ParentSendStep(int size)
 {
@@ -2176,7 +2176,7 @@ static int WPBC_ParentSendStep(int size)
 		return 0;
 	}
 
-	/* ©‹Ç‚ÌƒŠƒNƒGƒXƒg”Ô†‚ÌƒZƒbƒg */
+	/* è‡ªå±€ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆç•ªå·ã®ã‚»ãƒƒãƒˆ */
 	if (pass_ctrl.recv_done == TRUE) {
 		if (pass_ctrl.reset_done) {
 			pass_ctrl.send_buf.req_count = REQUEST_DONE;
@@ -2190,7 +2190,7 @@ static int WPBC_ParentSendStep(int size)
 		}
 	}
 
-	/* ‘Šè‚ÌƒŠƒNƒGƒXƒg‚É‘Î‚·‚éƒf[ƒ^‚ÌƒZƒbƒg */
+	/* ç›¸æ‰‹ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã«å¯¾ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ */
 	if (pass_ctrl.send_done) {
 		send_buf_count = REQUEST_NONE;
 	} else {
@@ -2198,7 +2198,7 @@ static int WPBC_ParentSendStep(int size)
 	}
 	pass_DataToBuf(send_buf_count, &(pass_ctrl.send_buf), &my_pass_data);
 
-	/* send_buf‚©‚ç‘—Mƒoƒbƒtƒ@‚ÉƒRƒs[ */
+	/* send_bufã‹ã‚‰é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ */
 	pass_copy_to_buffer(&(pass_ctrl.send_buf), send_buf);
 
 #ifdef DEBUG
@@ -2221,7 +2221,7 @@ static int WPBC_ParentSendStep(int size)
 /*---------------------------------------------------------------------------*
   Name:         WPBC_Connected
 
-  Description:  ‚·‚ê‚¿‚ª‚¢’ÊMŠÖ”Be‚Æ‚µ‚Ä‘Ò‹@’†‚Éq‚©‚çÚ‘±‚³‚ê‚½
+  Description:  ã™ã‚Œã¡ãŒã„é€šä¿¡é–¢æ•°ã€‚è¦ªã¨ã—ã¦å¾…æ©Ÿä¸­ã«å­ã‹ã‚‰æ¥ç¶šã•ã‚ŒãŸ
 
   Arguments:    aid.
 
@@ -2253,7 +2253,7 @@ static int WPBC_Connected(u16 aid, const u8 macAddress[], const u8 ssid[])
 	int send_size;
 
 	if (connected_bitmap != 0) {
-		/* •Ê‚Ìq‹@‚Æ’ÊM‚µ‚Ä‚¢‚é‚Æ‚«‚Í‘—M‚µ‚È‚¢ */
+		/* åˆ¥ã®å­æ©Ÿã¨é€šä¿¡ã—ã¦ã„ã‚‹ã¨ãã¯é€ä¿¡ã—ãªã„ */
 		connected_bitmap |= (1 << aid);
 	} else {
 		connected_bitmap |= (1 << aid);
@@ -2296,7 +2296,7 @@ static int WPBC_Connected(u16 aid, const u8 macAddress[], const u8 ssid[])
 /*---------------------------------------------------------------------------*
   Name:         WPBC_SetMPDataParent
 
-  Description:  ‚·‚ê‚¿‚ª‚¢’ÊMŠÖ”
+  Description:  ã™ã‚Œã¡ãŒã„é€šä¿¡é–¢æ•°
 
   Arguments:    none.
 
@@ -2311,12 +2311,12 @@ static void WPBC_SetMPDataParent(void)
 /*---------------------------------------------------------------------------*
   Name:         WPBC_ParentReceiveCallback
 
-  Description:  e‹@‚Æ‚µ‚Äq‹@‚©‚ç‚Ìƒf[ƒ^óM‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”B
+  Description:  è¦ªæ©Ÿã¨ã—ã¦å­æ©Ÿã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿å—ä¿¡æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°ã€‚
 
-  Arguments:    buf    - óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^ (NULL ‚ÅØ’f’Ê’m)
-                length  - óMƒf[ƒ^‚ÌƒTƒCƒY
+  Arguments:    buf    - å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ (NULL ã§åˆ‡æ–­é€šçŸ¥)
+                length  - å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
 
-  Returns:      TRUE/FALSE - ƒf[ƒ^ŒğŠ·Š®—¹(TRUE)
+  Returns:      TRUE/FALSE - ãƒ‡ãƒ¼ã‚¿äº¤æ›å®Œäº†(TRUE)
  *---------------------------------------------------------------------------*/
 static void disconnect_callback()
 {
@@ -2335,17 +2335,17 @@ static void disconnect_callback()
 static int WPBC_ParentReceiveCallback(u16 *buf, u16 length)
 {
 	if (buf == NULL || length == 0) {
-		return WPBC_RETURN_CONTINUE;   /* ’ÊM‚ğŒp‘±‚·‚é */
+		return WPBC_RETURN_CONTINUE;   /* é€šä¿¡ã‚’ç¶™ç¶šã™ã‚‹ */
 	}
 
-	/* ‚Ü‚¸óMƒoƒbƒtƒ@‚©‚çpass_recv_buf‚ÉƒRƒs[ */
+	/* ã¾ãšå—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰pass_recv_bufã«ã‚³ãƒ”ãƒ¼ */
 	pass_copy_to_structure(((u8 *)buf), &(pass_ctrl.recv_buf));
 	if (pass_ctrl.recv_buf.req_count == REQUEST_BYE) {
 #ifdef DEBUG
 		OS_TPrintf("parent : get REQUEST_BYE\n");
 #endif
 		disconnect_callback();
-		return WPBC_RETURN_DISCONNECT;  /* ’ÊM‚ğØ’f‚·‚é */
+		return WPBC_RETURN_DISCONNECT;  /* é€šä¿¡ã‚’åˆ‡æ–­ã™ã‚‹ */
 	}
 	if (pass_ctrl.reset_done == FALSE) {
 		//    pass_ctrl[aid].recv_buf.req_count = REQUEST_NONE;
@@ -2355,9 +2355,9 @@ static int WPBC_ParentReceiveCallback(u16 *buf, u16 length)
 			OS_TPrintf("parent recv->%x\n", pass_ctrl.recv_buf.res_count);
 #endif
 			if (pass_ctrl.recv_buf.res_count < get_data_total_count()) {
-				/* óM—š—ğ‚Éƒ`ƒFƒbƒN‚ğ“ü‚ê‚é */
+				/* å—ä¿¡å±¥æ­´ã«ãƒã‚§ãƒƒã‚¯ã‚’å…¥ã‚Œã‚‹ */
 				if (TRUE == pass_data_set_recv_bitmap(pass_ctrl.recv_buf.res_count)) {
-					/* óMƒf[ƒ^‚ğƒZ[ƒu */
+					/* å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ– */
 					pass_BufToData(&(pass_ctrl.recv_buf), &pass_ctrl);
 				}
 			}
@@ -2366,12 +2366,12 @@ static int WPBC_ParentReceiveCallback(u16 *buf, u16 length)
 				pass_ctrl.send_done = TRUE;
 			}
 			if (pass_ctrl.send_done == TRUE) {
-				/* ‚±‚¿‚ç‚à‘—Mƒf[ƒ^I—¹‚Ìê‡ */
+				/* ã“ã¡ã‚‰ã‚‚é€ä¿¡ãƒ‡ãƒ¼ã‚¿çµ‚äº†ã®å ´åˆ */
 				if (pass_ctrl.hardware_buffer_count < (HARDWARE_BUFFER_DUMMY_COUNT * 2)) {
-					// ‚S‰ñ‚­‚é‚Ü‚Å•Û—¯
-					/* ‘Šè‚Ì‚Æ‚è‚±‚Ú‚µ‚ğ–h‚® */
+					// ï¼”å›ãã‚‹ã¾ã§ä¿ç•™
+					/* ç›¸æ‰‹ã®ã¨ã‚Šã“ã¼ã—ã‚’é˜²ã */
 					pass_ctrl.hardware_buffer_count++;
-					return WPBC_RETURN_CONTINUE;        /* ’ÊM‚ğŒp‘±‚·‚é */
+					return WPBC_RETURN_CONTINUE;        /* é€šä¿¡ã‚’ç¶™ç¶šã™ã‚‹ */
 				}
 				pass_ctrl.reset_done = FALSE;
 				if (wpbBuf->wpbCallback) {
@@ -2392,18 +2392,18 @@ static int WPBC_ParentReceiveCallback(u16 *buf, u16 length)
 						return WPBC_RETURN_DONE;
 					}
 				}
-				return WPBC_RETURN_CONTINUE;        /* ’ÊM‚ğŒp‘±‚·‚é */
-//				return WPBC_RETURN_DISCONNECT;  /* ’ÊM‚ğØ’f‚·‚é */
+				return WPBC_RETURN_CONTINUE;        /* é€šä¿¡ã‚’ç¶™ç¶šã™ã‚‹ */
+//				return WPBC_RETURN_DISCONNECT;  /* é€šä¿¡ã‚’åˆ‡æ–­ã™ã‚‹ */
 			}
 		}
 	}
-	return WPBC_RETURN_CONTINUE;       /* ’ÊM‚ğŒp‘±‚·‚é */
+	return WPBC_RETURN_CONTINUE;       /* é€šä¿¡ã‚’ç¶™ç¶šã™ã‚‹ */
 }
 
 /*---------------------------------------------------------------------------*
   Name:         WPBC_Disconnect
 
-  Description:  ‚·‚ê‚¿‚ª‚¢’ÊMŠÖ”
+  Description:  ã™ã‚Œã¡ãŒã„é€šä¿¡é–¢æ•°
 
   Arguments:    aid_bitmap.
 
@@ -2417,18 +2417,18 @@ static void WPBC_Disconnect(u16 aid_bitmap)
 /*---------------------------------------------------------------------------*
   Name:         WPBC_ChildSendStep
 
-  Description:  q‹@‚Æ‚µ‚Äe‹@‚©‚ç‚Ìƒf[ƒ^óM‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”B
+  Description:  å­æ©Ÿã¨ã—ã¦è¦ªæ©Ÿã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿å—ä¿¡æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°ã€‚
 
   Arguments:    None.
 
-  Returns:      ‘—Mƒf[ƒ^ƒTƒCƒY
+  Returns:      é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 static int WPBC_ChildSendStep(int size)
 {
 #pragma unused(size)
 	int peer_request;
 
-	/* ©‹Ç‚ÌƒŠƒNƒGƒXƒg”Ô†‚ğƒZƒbƒg */
+	/* è‡ªå±€ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆç•ªå·ã‚’ã‚»ãƒƒãƒˆ */
 	if (pass_ctrl.recv_done == TRUE) {
 		if (pass_ctrl.reset_done) {
 			pass_ctrl.send_buf.req_count = REQUEST_DONE;
@@ -2442,11 +2442,11 @@ static int WPBC_ChildSendStep(int size)
 		}
 	}
 
-	/* ‘Šè‹Ç‚ÌƒŠƒNƒGƒXƒg”Ô†‚É‘Î‚µ‚Äƒf[ƒ^‚ğƒZƒbƒg */
+	/* ç›¸æ‰‹å±€ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆç•ªå·ã«å¯¾ã—ã¦ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ */
 	peer_request = (int)(pass_ctrl.recv_buf.req_count);
 	pass_DataToBuf(peer_request, &(pass_ctrl.send_buf), &my_pass_data);
 
-	/* send_buf‚©‚ç‘—Mƒoƒbƒtƒ@‚ÉƒRƒs[ */
+	/* send_bufã‹ã‚‰é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ */
 	pass_copy_to_buffer(&(pass_ctrl.send_buf), gSendBuf);
 
 #ifdef DEBUG
@@ -2461,7 +2461,7 @@ static int WPBC_ChildSendStep(int size)
 /*---------------------------------------------------------------------------*
   Name:         WPBC_StartMpChild
 
-  Description:  ‚·‚ê‚¿‚ª‚¢’ÊMŠÖ”
+  Description:  ã™ã‚Œã¡ãŒã„é€šä¿¡é–¢æ•°
 
   Arguments:    none.
 
@@ -2477,7 +2477,7 @@ static void WPBC_StartMpChild(void)
 /*---------------------------------------------------------------------------*
   Name:         WPBC_SetMPDataChild
 
-  Description:  ‚·‚ê‚¿‚ª‚¢’ÊMŠÖ”
+  Description:  ã™ã‚Œã¡ãŒã„é€šä¿¡é–¢æ•°
 
   Arguments:    none.
 
@@ -2494,42 +2494,42 @@ static void WPBC_SetMPDataChild(void)
 /*---------------------------------------------------------------------------*
   Name:         WPBC_ChildReceiveCallback
 
-  Description:  q‹@‚Æ‚µ‚Äe‹@‚©‚ç‚Ìƒf[ƒ^óM‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”B
+  Description:  å­æ©Ÿã¨ã—ã¦è¦ªæ©Ÿã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿å—ä¿¡æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°ã€‚
 
-  Arguments:    buf     - óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^ (NULL ‚ÅØ’f’Ê’m)
-                length  - óMƒf[ƒ^‚ÌƒTƒCƒY
+  Arguments:    buf     - å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ (NULL ã§åˆ‡æ–­é€šçŸ¥)
+                length  - å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
 
-  Returns:      TRUE/FALSE - ƒf[ƒ^ŒğŠ·Š®—¹(TRUE)
+  Returns:      TRUE/FALSE - ãƒ‡ãƒ¼ã‚¿äº¤æ›å®Œäº†(TRUE)
  *---------------------------------------------------------------------------*/
 static int WPBC_ChildReceiveCallback(u16 *buf, u16 length)
 {
 	if (buf == NULL || length == 0) {
-		return WPBC_RETURN_CONTINUE;   /* ’ÊM‚ğŒp‘±‚·‚é */
+		return WPBC_RETURN_CONTINUE;   /* é€šä¿¡ã‚’ç¶™ç¶šã™ã‚‹ */
 	}
 
 #ifdef DEBUG
 	OS_TPrintf("child recv->%x\n", pass_ctrl.recv_buf.res_count);
 #endif
 
-	/* ‚Ü‚¸óMƒoƒbƒtƒ@‚©‚çpass_recv_buf‚ÉƒRƒs[ */
+	/* ã¾ãšå—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰pass_recv_bufã«ã‚³ãƒ”ãƒ¼ */
 	pass_copy_to_structure(((u8 *)buf), &(pass_ctrl.recv_buf));
 	if (pass_ctrl.recv_buf.req_count == REQUEST_BYE) {
 #ifdef DEBUG
 		OS_TPrintf("child: get REQUEST_BYE\n");
 #endif
 		disconnect_callback();
-		return WPBC_RETURN_DISCONNECT;  /* ’ÊM‚ğØ’f‚·‚é */
+		return WPBC_RETURN_DISCONNECT;  /* é€šä¿¡ã‚’åˆ‡æ–­ã™ã‚‹ */
 	}
 	if (pass_ctrl.reset_done == FALSE) {
 		//    pass_ctrl[MY_AID].recv_buf.req_count = REQUEST_NONE;
 	} else {
 		if (length < PASS_PACKET_SIZE) {
 			// OS_TPrintf("length shortage aid %d = %d logical = %d\n",aid, length, PASS_PACKET_SIZE * aid );
-			return WPBC_RETURN_CONTINUE;        /* ’ÊM‚ğŒp‘±‚·‚é */
+			return WPBC_RETURN_CONTINUE;        /* é€šä¿¡ã‚’ç¶™ç¶šã™ã‚‹ */
 		}
 		if (pass_ctrl.recv_done == FALSE) {
 			if (pass_ctrl.recv_buf.res_count < get_data_total_count()) {
-				/* óM—š—ğ‚Éƒ`ƒFƒbƒN‚ğ“ü‚ê‚é */
+				/* å—ä¿¡å±¥æ­´ã«ãƒã‚§ãƒƒã‚¯ã‚’å…¥ã‚Œã‚‹ */
 				if (TRUE == pass_data_set_recv_bitmap(pass_ctrl.recv_buf.res_count)) {
 					pass_BufToData(&(pass_ctrl.recv_buf), &(pass_ctrl));
 				}
@@ -2539,12 +2539,12 @@ static int WPBC_ChildReceiveCallback(u16 *buf, u16 length)
 				pass_ctrl.send_done = TRUE;
 			}
 			if (pass_ctrl.send_done == TRUE) {
-				/* ©‹Ç‚à‘—Mƒf[ƒ^I—¹‚Ìê‡ */
+				/* è‡ªå±€ã‚‚é€ä¿¡ãƒ‡ãƒ¼ã‚¿çµ‚äº†ã®å ´åˆ */
 				if (pass_ctrl.hardware_buffer_count < HARDWARE_BUFFER_DUMMY_COUNT) {
-					// ‚Q‰ñ‚­‚é‚Ü‚Å•Û—¯
-					/* ‘Šè‚Ì‚Æ‚è‚±‚Ú‚µ‚ğ–h‚® */
+					// ï¼’å›ãã‚‹ã¾ã§ä¿ç•™
+					/* ç›¸æ‰‹ã®ã¨ã‚Šã“ã¼ã—ã‚’é˜²ã */
 					pass_ctrl.hardware_buffer_count++;
-					return WPBC_RETURN_CONTINUE;        /* ’ÊM‚ğŒp‘±‚·‚é */
+					return WPBC_RETURN_CONTINUE;        /* é€šä¿¡ã‚’ç¶™ç¶šã™ã‚‹ */
 				}
 				pass_ctrl.reset_done = FALSE;
 				if (wpbBuf->wpbCallback) {
@@ -2565,12 +2565,12 @@ static int WPBC_ChildReceiveCallback(u16 *buf, u16 length)
 						return WPBC_RETURN_DONE;
 					}
 				}
-				return WPBC_RETURN_CONTINUE;        /* ’ÊM‚ğŒp‘±‚·‚é */
+				return WPBC_RETURN_CONTINUE;        /* é€šä¿¡ã‚’ç¶™ç¶šã™ã‚‹ */
 //				return WPBC_RETURN_DISCONNECT;
 			}
 		}
 	}
-	return WPBC_RETURN_CONTINUE;       /* ’ÊM‚ğŒp‘±‚·‚é */
+	return WPBC_RETURN_CONTINUE;       /* é€šä¿¡ã‚’ç¶™ç¶šã™ã‚‹ */
 }
 
 /*===========================================================================*/
@@ -2611,7 +2611,7 @@ WMErrCode WPB_SetGameInfo(const u16 *gameInfo,
 /*---------------------------------------------------------------------------*
   Name:         WPBC_Start
 
-  Description:  ‚·‚ê‚¿‚ª‚¢’ÊMŠJnŠÖ”
+  Description:  ã™ã‚Œã¡ãŒã„é€šä¿¡é–‹å§‹é–¢æ•°
 
   Arguments:    none.
 
@@ -2629,7 +2629,7 @@ WMErrCode WPB_Start()
 /*---------------------------------------------------------------------------*
   Name:         WPBC_IsActiveWPBC
 
-  Description:  ‚·‚ê‚¿‚ª‚¢’ÊMŠJnŠÖ”
+  Description:  ã™ã‚Œã¡ãŒã„é€šä¿¡é–‹å§‹é–¢æ•°
 
   Arguments:    none.
 
@@ -2643,7 +2643,7 @@ static BOOL WPBC_IsActiveWPBC(void)
 /*---------------------------------------------------------------------------*
   Name:         WPB_End
 
-  Description:  ‚·‚ê‚¿‚ª‚¢’ÊMI—¹ŠÖ”
+  Description:  ã™ã‚Œã¡ãŒã„é€šä¿¡çµ‚äº†é–¢æ•°
 
   Arguments:    none.
 
@@ -2652,7 +2652,7 @@ static BOOL WPBC_IsActiveWPBC(void)
 WMErrCode WPB_End(void)
 {
 	pass_active_flag = FALSE;
-	WcEnd();                           /* PowerOffó‘Ô‚É‚È‚é */
+	WcEnd();                           /* PowerOffçŠ¶æ…‹ã«ãªã‚‹ */
 	return WM_ERRCODE_SUCCESS;
 }
 
@@ -2672,7 +2672,7 @@ WPB_Finished(void)
 /*---------------------------------------------------------------------------*
   Name:         WPB_TestParent
 
-  Description:  ‚·‚ê‚¿‚ª‚¢e‹@ƒeƒXƒgŠÖ”
+  Description:  ã™ã‚Œã¡ãŒã„è¦ªæ©Ÿãƒ†ã‚¹ãƒˆé–¢æ•°
 
   Arguments:    none.
 
@@ -2685,11 +2685,11 @@ const WMBssDesc *WPB_TestParent(const WMBssDesc *bssDesc,
 	int n = 0;
 	const WMBssDesc *p = bssDesc;
 
-	/* GGID ‚ªˆê’v‚·‚ée‹@‚ğ”‚¦‚é */
+	/* GGID ãŒä¸€è‡´ã™ã‚‹è¦ªæ©Ÿã‚’æ•°ãˆã‚‹ */
 	for (i = 0; i < bssDescCount; i++) {
-		/* GameGroupID‚ªˆê’v‚·‚é‚©‚ğŠm”F */
-		/* userGameInfo ‚ª 4 ƒoƒCƒgˆÈã‚ ‚èAÅ‰‚Ì 4 ƒoƒCƒg‚ğ u32 ‚Æ‚µ‚Ä */
-		/* ÅãˆÊƒrƒbƒg‚ª 0 ‚È‚ç‹¤’Ê‚·‚êˆá‚¢‚É‘Î‰ */
+		/* GameGroupIDãŒä¸€è‡´ã™ã‚‹ã‹ã‚’ç¢ºèª */
+		/* userGameInfo ãŒ 4 ãƒã‚¤ãƒˆä»¥ä¸Šã‚ã‚Šã€æœ€åˆã® 4 ãƒã‚¤ãƒˆã‚’ u32 ã¨ã—ã¦ */
+		/* æœ€ä¸Šä½ãƒ“ãƒƒãƒˆãŒ 0 ãªã‚‰å…±é€šã™ã‚Œé•ã„ã«å¯¾å¿œ */
 		if (p->gameInfoLength >=
 			(char *)&p->gameInfo.ggid - (char *)&p->gameInfo
 			+ sizeof p->gameInfo.ggid &&
@@ -2701,12 +2701,12 @@ const WMBssDesc *WPB_TestParent(const WMBssDesc *bssDesc,
 		p = (const WMBssDesc *)((const u16 *)p + p->length);
 	}
 	if (!n) return NULL;
-	n = OS_GetTickLo() % 263 % n; /* ‹[——” */
+	n = OS_GetTickLo() % 263 % n; /* æ“¬ä¼¼ä¹±æ•° */
 	p = bssDesc;
 	for (i = 0; i < bssDescCount; i++) {
-		/* GameGroupID‚ªˆê’v‚·‚é‚©‚ğŠm”F */
-		/* userGameInfo ‚ª 4 ƒoƒCƒgˆÈã‚ ‚èAÅ‰‚Ì 4 ƒoƒCƒg‚ğ u32 ‚Æ‚µ‚Ä */
-		/* ÅãˆÊƒrƒbƒg‚ª 0 ‚È‚ç‹¤’Ê‚·‚êˆá‚¢‚É‘Î‰ */
+		/* GameGroupIDãŒä¸€è‡´ã™ã‚‹ã‹ã‚’ç¢ºèª */
+		/* userGameInfo ãŒ 4 ãƒã‚¤ãƒˆä»¥ä¸Šã‚ã‚Šã€æœ€åˆã® 4 ãƒã‚¤ãƒˆã‚’ u32 ã¨ã—ã¦ */
+		/* æœ€ä¸Šä½ãƒ“ãƒƒãƒˆãŒ 0 ãªã‚‰å…±é€šã™ã‚Œé•ã„ã«å¯¾å¿œ */
 		if (p->gameInfoLength >=
 			(char *)&p->gameInfo.ggid - (char *)&p->gameInfo
 			+ sizeof p->gameInfo.ggid &&
@@ -2718,7 +2718,7 @@ const WMBssDesc *WPB_TestParent(const WMBssDesc *bssDesc,
 		}
 		p = (const WMBssDesc *)((const u16 *)p + p->length);
 	}
-	return NULL; /* ‚±‚±‚É‚Í—ˆ‚È‚¢‚Í‚¸ */
+	return NULL; /* ã“ã“ã«ã¯æ¥ãªã„ã¯ãš */
 }
 /*---------------------------------------------------------------------------*
   End of file

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_128.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			128�@�G���|�P�������������߂鎞�ɂ��̋Z��I��ł���ƁA��シ��O�ɔ{�̃_���[�W��^���邱�Ƃ��o����
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			128　敵がポケモンを引っ込める時にこの技を選んでいると、交代する前に倍のダメージを与えることが出来る
  *
  *@author	HisashiSogabe
  *@data		2006.02.09

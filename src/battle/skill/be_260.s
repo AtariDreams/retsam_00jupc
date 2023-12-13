@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_260.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			260@‚±‚¨‚è‚Ì’Ç‰ÁŒø‰Ê+‚ ‚ç‚êó‘Ô‚Ì‚Æ‚«A‹Z‚ª•K‚¸–½’†‚·‚éB
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			260ã€€ã“ãŠã‚Šã®è¿½åŠ åŠ¹æžœ+ã‚ã‚‰ã‚ŒçŠ¶æ…‹ã®ã¨ãã€æŠ€ãŒå¿…ãšå‘½ä¸­ã™ã‚‹ã€‚
  *
  *@author	HisashiSogabe
  *@data		2006.04.14

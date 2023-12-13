@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_057.s
- * @brief	Ç»Ç›ÇÃÇË			57
+ * @brief	„Å™„Åø„ÅÆ„Çä			57
  * @author	goto
- * @date	2005.07.13(êÖ)
+ * @date	2005.07.13(Ê∞¥)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	Å°Ç»Ç›ÇÃÇË			57
+//	‚ñ†„Å™„Åø„ÅÆ„Çä			57
 //
 //
 // =============================================================================
@@ -66,7 +66,7 @@ WEST_DAKURYUU:
 
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6,  WE_TOOL_E1, 0, 1, WE_PAL_RED_BROWN, 10, 10
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6,  WE_TOOL_E2, 0, 1, WE_PAL_RED_BROWN, 10, 10
-//	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6,  WE_TOOL_M2, 0, 1, WE_PAL_RED_BROWN, 10, 10	2ëŒëIëÇæÇ©ÇÁ
+//	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6,  WE_TOOL_M2, 0, 1, WE_PAL_RED_BROWN, 10, 10	2ÂØæÈÅ∏Êäû„Å†„Åã„Çâ
 	FUNC_CALL		WEST_SP_WT_SHAKE, 5, SHAKE_M_X, 0, SHAKE_M_WAIT, WE_056_SHAKE_NUM,  WE_TOOL_E1 | WE_TOOL_SSP,
 	FUNC_CALL		WEST_SP_WT_SHAKE, 5, SHAKE_M_X, 0, SHAKE_M_WAIT, WE_056_SHAKE_NUM,  WE_TOOL_E2 | WE_TOOL_SSP,
 

@@ -1,6 +1,6 @@
 /**
  *	@file	nmix_2d.h
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[ 2DƒŠƒ\[ƒXŠÇ—
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ 2Dãƒªã‚½ãƒ¼ã‚¹ç®¡ç†
  *	@author	Miyuki Iwasawa
  *	@date	06.04.08
  */
@@ -11,7 +11,7 @@
 #include "application/app_tool.h"
 
 typedef struct _NMIX_2DRES{
-	GF_BGL_INI *bgl;	///<BGLƒf[ƒ^
+	GF_BGL_INI *bgl;	///<BGLãƒ‡ãƒ¼ã‚¿
 
 	void*	pScrBuf01;
 	NNSG2dScreenData*	pScr01;

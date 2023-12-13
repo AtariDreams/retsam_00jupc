@@ -1,17 +1,16 @@
-# encoding: shift_jis
 DEFAULT_LSFFILE		= "default.lsf"
 MAKE_PROG_FILE  	= "make_prog_files"
 OUTPUT_LSFFILE  	= "main.lsf"
 OUTPUT_OVERLAYFILES	= "overlay_files"
 OUTPUT_OVERLAYTEXT  = "overlaymap.txt"
 
-MATCH_KEYWORD	 = /\A#===>/			# s“ª‚ªu#===>v
-MATCH_LIB        = /^#LIB=>/            # ƒ‰ƒCƒuƒ‰ƒŠ‚ğŠÜ‚ß‚éê‡
-MATCH_OVERLAYSRC = /^SRCS_OVERLAY_.*/	# s“ª‚©‚çuSRCS_OVERLAY_...v
-MATCH_ENDSRC	 = /[\s\t].*\\\z/				# s––‚ªu\v
+MATCH_KEYWORD	 = /\A#===>/			# è¡Œé ­ãŒã€Œ#===>ã€
+MATCH_LIB        = /^#LIB=>/            # ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’å«ã‚ã‚‹å ´åˆ
+MATCH_OVERLAYSRC = /^SRCS_OVERLAY_.*/	# è¡Œé ­ã‹ã‚‰ã€ŒSRCS_OVERLAY_...ã€
+MATCH_ENDSRC	 = /[\s\t].*\\\z/				# è¡Œæœ«ãŒã€Œ\ã€
 MATCH_ERROR      = /\\\s/
 
-#ƒfƒtƒHƒ‹ƒg‚Å“Ç‚İ‚Şƒtƒ@ƒCƒ‹
+#ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§èª­ã¿è¾¼ã‚€ãƒ•ã‚¡ã‚¤ãƒ«
 default_lsf = File.read(DEFAULT_LSFFILE)
 
 
@@ -40,7 +39,7 @@ line_count        = 1
 
 File.open(OUTPUT_LSFFILE,"w"){|file|
 	file.puts(default_lsf)
-	file.puts("#‚±‚±‚©‚ç‰º‚Íoverlaytool.rb‚Å©“®¶¬‚³‚ê‚Ä‚¢‚Ü‚·\n\n")
+	file.puts("#ã“ã“ã‹ã‚‰ä¸‹ã¯overlaytool.rbã§è‡ªå‹•ç”Ÿæˆã•ã‚Œã¦ã„ã¾ã™\n\n")
 }
 
 def clean_invalid_utf8(str)
@@ -49,20 +48,20 @@ end
   
 
 
-#ƒ^[ƒQƒbƒg‚É‚È‚éƒ\[ƒXƒR[ƒh‚Ì‹Lqƒtƒ@ƒCƒ‹‚ğ‚Ps‚¸‚Âˆ—
+#ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ãªã‚‹ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ã®è¨˜è¿°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ï¼‘è¡Œãšã¤å‡¦ç†
 File.readlines(MAKE_PROG_FILE).each{ |line|
 	line.chomp!
 
 	line = clean_invalid_utf8(line)
-	#s––‚Ìu\v‚ÌŒã‚ë‚ÉƒXƒy[ƒX‚ª“ü‚Á‚Ä‚¢‚é‚ÆŒë“®ì‚·‚é‚Ì‚Åƒ`ƒFƒbƒN‚·‚é
+	#è¡Œæœ«ã®ã€Œ\ã€ã®å¾Œã‚ã«ã‚¹ãƒšãƒ¼ã‚¹ãŒå…¥ã£ã¦ã„ã‚‹ã¨èª¤å‹•ä½œã™ã‚‹ã®ã§ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	if line.match(MATCH_ERROR) then
-		printf "%ds–ÚF \\ƒ}[ƒN‚ÌŒã‚ë‚ÉƒXƒy[ƒX‚ª‚Í‚¢‚Á‚Ä‚¢‚Ü‚·B\n",line_count
+		printf "%dè¡Œç›®ï¼š \\ãƒãƒ¼ã‚¯ã®å¾Œã‚ã«ã‚¹ãƒšãƒ¼ã‚¹ãŒã¯ã„ã£ã¦ã„ã¾ã™ã€‚\n",line_count
 		exit 1
 	end
 	line_count = line_count + 1
 
 
-	#ƒI[ƒo[ƒŒƒC’è‹`‚Ìæ“¾
+	#ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤å®šç¾©ã®å–å¾—
 	if line.match(MATCH_KEYWORD) then
 		overlay_flag = 1
 		m = MATCH_KEYWORD.match(line)
@@ -71,20 +70,20 @@ File.readlines(MAKE_PROG_FILE).each{ |line|
 			overlay_target << _str
 			overlay_count = overlay_count+1
 		else
-			printf "u%sv ‚Æ‚¢‚¤ƒI[ƒo[ƒŒƒCƒ\\[ƒX‚Í’è‹`‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ\n",_str
+			printf "ã€Œ%sã€ ã¨ã„ã†ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚½\ãƒ¼ã‚¹ã¯å®šç¾©ã•ã‚Œã¦ã„ã¾ã›ã‚“\n",_str
 			exit 1
 		end
 	end
 
-	#uSRCS_OVERLAYv‚ÌŒã‚Íƒ\[ƒXƒR[ƒhs‚È‚Ì‚Åu\v‚ª‚È‚­‚È‚é‚Ü‚Å
-	# •Û‘¶‚µ‘±‚¯‚é
+	#ã€ŒSRCS_OVERLAYã€ã®å¾Œã¯ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰è¡Œãªã®ã§ã€Œ\ã€ãŒãªããªã‚‹ã¾ã§
+	# ä¿å­˜ã—ç¶šã‘ã‚‹
 	if line_get_flag==1 then
 		if line.match(/[a-zA-Z_0-9]+\.[cs]/) then
 			source_name << line
 		end
 
-		# u\v‚ª–³‚¢s‚ª‚Å‚Ä‚«‚½‚çI‚í‚è‚È‚Ì‚ÅAæ“¾I—¹
-		# lsfƒtƒ@ƒCƒ‹‚É‘‚«‚İ‚ğs‚¤
+		# ã€Œ\ã€ãŒç„¡ã„è¡ŒãŒã§ã¦ããŸã‚‰çµ‚ã‚ã‚Šãªã®ã§ã€å–å¾—çµ‚äº†
+		# lsfãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã¿ã‚’è¡Œã†
 		if line.match(MATCH_ENDSRC)==nil || line=="" then
 #			p source_name
 			line_get_flag = 0
@@ -92,9 +91,9 @@ File.readlines(MAKE_PROG_FILE).each{ |line|
 			File.open(OUTPUT_LSFFILE,"a"){|file|
 
 
-				# uSRCS_OVERLAY_???v‚©‚çSRCS_OVERLAY_‚ğí‚Á‚Ä¬•¶š‰»‚µ‚½–¼‘O‚ğƒI[ƒo[ƒŒƒC—Ìˆæ‚Ì
-				# ƒ^[ƒQƒbƒg‚É‚·‚éB‚½‚¾‚µA—\–ñŒê‚Æ‚µ‚Äumain,ITCM,DTCMv‚Æ‚¢‚¤•¶š—ñ‚ª’è‹`‚³‚ê‚Ä‚¢‚é‚Ì‚Å
-				# ‚±‚ê‚ç‚Í”ğ‚¯‚é‚æ‚¤‚É‚·‚é
+				# ã€ŒSRCS_OVERLAY_???ã€ã‹ã‚‰SRCS_OVERLAY_ã‚’å‰Šã£ã¦å°æ–‡å­—åŒ–ã—ãŸåå‰ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸã®
+				# ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã™ã‚‹ã€‚ãŸã ã—ã€äºˆç´„èªã¨ã—ã¦ã€Œmain,ITCM,DTCMã€ã¨ã„ã†æ–‡å­—åˆ—ãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹ã®ã§
+				# ã“ã‚Œã‚‰ã¯é¿ã‘ã‚‹ã‚ˆã†ã«ã™ã‚‹
 				_targetname = overlay_target[overlay_table_num+2]
 				if _targetname != "main" && _targetname!="DTCM" && _targetname != "ITCM" then
 					_targetname = _targetname.downcase.sub(/srcs_overlay_/,"")
@@ -136,14 +135,14 @@ File.readlines(MAKE_PROG_FILE).each{ |line|
 		end
 	end
 
-	#ƒI[ƒo[ƒŒƒCƒ\[ƒX–¼‚Ìæ“¾
+	#ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚½ãƒ¼ã‚¹åã®å–å¾—
 	if line.match(MATCH_OVERLAYSRC) then
 		line_get_flag = 1
 
 		if overlay_flag==0 then
 			printf "Error!!\n"
-			printf "#===>‚ÅƒI[ƒo[ƒŒƒCƒAƒhƒŒƒX‚ğw’è‚µ‚Ä‚¢‚È‚¢‚Ì‚ÉA\n"
-			printf "ƒI[ƒo[ƒŒƒC—p‚Ìƒ\\[ƒXƒR[ƒh‚ª‹Lq‚³‚ê‚Ä‚¢‚Ü‚·\n"
+			printf "#===>ã§ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒ‡å®šã—ã¦ã„ãªã„ã®ã«ã€\n"
+			printf "ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ç”¨ã®ã‚½\ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ãŒè¨˜è¿°ã•ã‚Œã¦ã„ã¾ã™\n"
 			exit 1
 		end
 
@@ -163,7 +162,7 @@ File.readlines(MAKE_PROG_FILE).each{ |line|
 
 }
 
-#ƒI[ƒo[ƒŒƒC‚ÉŠY“–‚·‚éƒtƒ@ƒCƒ‹‚ªƒRƒ“ƒpƒ‹ƒ^[ƒQƒbƒg‚É‚È‚é‚æ‚¤‚É‚·‚é
+#ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã«è©²å½“ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚³ãƒ³ãƒ‘ãƒ«ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ãªã‚‹ã‚ˆã†ã«ã™ã‚‹
 File.open(OUTPUT_OVERLAYFILES,"w"){|file|
 	for i in 3..overlay_name.size-1
 	if i==3 then
@@ -181,7 +180,7 @@ end
 }
 
 
-#ƒI[ƒo[ƒŒƒC‚Ìƒ^[ƒQƒbƒgƒl[ƒ€‚Æ‚»‚Ì”Ô†‚ğƒeƒLƒXƒg‚É“f‚«o‚·
+#ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒãƒ¼ãƒ ã¨ãã®ç•ªå·ã‚’ãƒ†ã‚­ã‚¹ãƒˆã«åãå‡ºã™
 File.open(OUTPUT_OVERLAYTEXT,"w"){|file|
 	for i in 1..overlay_count-1
 		if overlay_name[i+3]
@@ -198,12 +197,12 @@ File.open(OUTPUT_OVERLAYTEXT,"w"){|file|
 
 if overlay_count != overlay_table_num then
 	printf "'Error!!!\n"
-	printf "===>            =  %d ‰ñ\n",overlay_count
-	printf "SRCS_OVERLAY_?  =  %d ‰ñ\n",overlay_table_num
-	printf "'===>'‚Åw’è‚·‚éƒI[ƒo[ƒŒƒCƒ^[ƒQƒbƒg‚Ì‰ñ”‚Æ\nƒI[ƒo[ƒŒƒCw’è‚Ìƒ\\[ƒXƒR[ƒhŒQ‚Ì”‚ª‚ ‚Á‚Ä‚¢‚Ü‚¹‚ñ\n"
+	printf "===>            =  %d å›\n",overlay_count
+	printf "SRCS_OVERLAY_?  =  %d å›\n",overlay_table_num
+	printf "'===>'ã§æŒ‡å®šã™ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®å›æ•°ã¨\nã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤æŒ‡å®šã®ã‚½\ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ç¾¤ã®æ•°ãŒã‚ã£ã¦ã„ã¾ã›ã‚“\n"
 	exit 1
 else
-	printf "ƒI[ƒo[ƒŒƒCƒc[ƒ‹³íI—¹\n"
+	printf "ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ„ãƒ¼ãƒ«æ­£å¸¸çµ‚äº†\n"
 end
 
 

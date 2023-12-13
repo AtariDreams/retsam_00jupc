@@ -1,40 +1,40 @@
 ------------------------------------------------------------------------------
 NITRO-SDK:
-	NITRO-SDK ���� AGBSDK ���Ƃ̋������@�ɂ���
+	NITRO-SDK 環境と AGBSDK 環境との共存方法について
 
 					2004/02/24
-					�C�V��������� ������O���[�v
+					任天堂株式会社 環境制作グループ
 ------------------------------------------------------------------------------
 
-�@Cygwin �ł� mount �R�}���h�𗘗p���邱�ƂŁA�C�ӂ̃f�B���N�g����P���
-�f�B���N�g���c���[��Ƀ}�b�s���O�����z�p�X�Ƃ��Ďg�p���邱�Ƃ��ł��܂��B
+　Cygwin では mount コマンドを利用することで、任意のディレクトリを単一の
+ディレクトリツリー上にマッピングし仮想パスとして使用することができます。
 
-  AGBSDK �ɕt���� AGBGNUPro ���ɂ����Ă��̉��z�p�X�𗘗p���Ă���ꍇ�A
-Cygwin �C���X�g�[���̍ۂ� AGBGNUPro ���ɂ����鉼�z�o�X�̃��[�g�f�B���N�g����
-�}�E���g�ʒu���A�V�����C���X�g�[������� Cygwin �ɂ���ď㏑������邱�Ƃɂ��
-�s�����������\��������܂��B
+  AGBSDK に付属の AGBGNUPro 環境においてこの仮想パスを利用している場合、
+Cygwin インストールの際に AGBGNUPro 環境における仮想バスのルートディレクトリの
+マウント位置が、新しくインストールされる Cygwin によって上書きされることにより
+不具合が発生する可能性があります。
 
-  AGB �J������ PATH �ݒ�� Makefile ���̒��� AGB ���C�u�����ւ̃p�X�̋L�q���A
-���z�p�X���g�p���Ȃ��`���łȂ���Ă���΁A�V���� Cygwin �Ŗ��Ȃ����삵�A
-NITRO-SDK �̊��Ƌ����\�ł��邱�Ƃ��m�F����Ă��܂��B
+  AGB 開発環境の PATH 設定や Makefile 等の中で AGB ライブラリへのパスの記述が、
+仮想パスを使用しない形式でなされていれば、新しい Cygwin で問題なく動作し、
+NITRO-SDK の環境と共存可能であることが確認されています。
 
-  �����V�K�C���X�g�[�����ꂽ Cygwin �ɂ����� AGB ���ł̃r���h�ɖ�肪�N����
-�܂�����A�܂� AgbGNUProBash.bat, AgbGNUProDos.bat, Makefile ���ɂ��������
-�� AGBDIR �� PATH �̐ݒ肪 AGB ���ւ̃f�B���N�g�����ƈ�v���Ă��邩�����m�F
-���������B
+  もし新規インストールされた Cygwin において AGB 環境でのビルドに問題が起こり
+ましたら、まず AgbGNUProBash.bat, AgbGNUProDos.bat, Makefile 等における環境変
+数 AGBDIR や PATH の設定が AGB 環境へのディレクトリ名と一致しているかをご確認
+ください。
 
 
-(�⑫) NITROSDK_ROOT �� .bashrc ���̊��ݒ�t�@�C�����ł̐ݒ�
+(補足) NITROSDK_ROOT を .bashrc 等の環境設定ファイル内での設定
 
-�@NITROSDK_ROOT �� Cygwin �̃C���X�g�[���ʒu����̉��z�p�X�Őݒ肵���ꍇ�A
-�R���p�C�����ւ̃I�v�V�����Ƃ��ăp�X������ɓn����Ȃ��ꍇ������܂��B
+　NITROSDK_ROOT を Cygwin のインストール位置からの仮想パスで設定した場合、
+コンパイラ等へのオプションとしてパスが正常に渡されない場合があります。
 
-  ���̂��߁A�K��
+  このため、必ず
 
-	"C:/(NitroSDK�ւ̃p�X)"
+	"C:/(NitroSDKへのパス)"
 
-  �܂���
+  または
 
-	"C:\(NitroSDK�ւ̃p�X)"
+	"C:\(NitroSDKへのパス)"
 
-  �Ƃ����l�Ƀh���C�u������̐�΃p�X�Őݒ肵�Ă��������B
+  という様にドライブ名からの絶対パスで設定してください。

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FS_GetArchiveOffset</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FS_GetArchiveOffset</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -23,28 +23,28 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>p_arc</STRONG></EM></TD>
-      <TD width="87%">FSArchive�\���̂̃A�h���X</TD>
+      <TD width="87%">FSArchive構造体のアドレス</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>pos</STRONG></EM></TD>
-      <TD width="87%">�x�[�X�I�t�Z�b�g����̑��Έʒu</TD>
+      <TD width="87%">ベースオフセットからの相対位置</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�A�[�J�C�u�̃x�[�X����̎w��ʒu�I�t�Z�b�g��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>アーカイブのベースからの指定位置オフセットを返します。</p>
 
-<H2>����</H2>
-<P>�w�肳�ꂽ�ʒu�I�t�Z�b�g�ɃA�[�J�C�u�̃x�[�X�����Z���ĕԂ��܂��B<BR>
-���̊֐��́AFS_GetArchiveBase(p_arc) + pos �Ɠ����ł��B<BR>
+<H2>説明</H2>
+<P>指定された位置オフセットにアーカイブのベースを加算して返します。<BR>
+この関数は、FS_GetArchiveBase(p_arc) + pos と等価です。<BR>
 <BR></p>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../fs_archive_type.html">FSArchive</A>
 <BR>
@@ -52,10 +52,10 @@
 <A href="FS_GetArchiveFAT.html">FS_GetArchiveFAT</A> 
 <A href="FS_GetArchiveFNT.html">FS_GetArchiveFNT</A> 
 <BR></code></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/11/02 �i�������~�X�̏C���A�����N�����<br>
-2004/06/30 ����<br>
+2004/11/02 段落書式ミスの修正、リンク先訂正<br>
+2004/06/30 初版<br>
 </P>
 </body>
 </html>

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	mysterylib.c	
- * @bfief	�ӂ����ȁ@��������̂Ŏg���郉�C�u�������ǂ�
+ * @bfief	ふしぎな　おくりもので使えるライブラリもどき
  * @author	Satoshi Mitsuhara
  * @date	06.06.12
  *
@@ -54,7 +54,7 @@ typedef struct {
   int icon_base;
   
   BOOL init_clact_flag[4];
-  // ���o�p�Z���A�N�^�[
+  // 演出用セルアクター
   MYSTERY_CLACT clact;
   CLACT_WORK_PTR giftact;
   int giftact_wait;
@@ -87,7 +87,7 @@ static void MysteryLib_VBlankFunc(void *work);
 
 //------------------------------------------------------------------
 /**
- * @brief	�ӂ����ȁ@��������̃��C�u����������
+ * @brief	ふしぎな　おくりものライブラリ初期化
  * @param	NONE
  * @return	NONE
  */
@@ -105,7 +105,7 @@ void MysteryLib_Init(int heapid)
 
 //------------------------------------------------------------------
 /**
- * @brief	PROC���������܂Ƃ߂��֐�
+ * @brief	PROC初期化をまとめた関数
  * @param	NONE
  * @return	NONE
  */
@@ -117,9 +117,9 @@ void *MysteryLib_InitProc(PROC *proc, int heapid, int size, int heapsize)
   sys_CreateHeap(HEAPID_BASE_APP, heapid, heapsize);
   sys_PrintHeapFreeSize(heapid);
   wk = PROC_AllocWork(proc, size, heapid);
-  // �������s�ǂ��|���̂Ń��[�N�̓[���N���A
+  // 初期化不良が怖いのでワークはゼロクリア
   memset(wk, 0, size);
-  /* ��ʂ̏����ݒ� */
+  /* 画面の初期設定 */
   WIPE_SetBrightness(WIPE_DISP_MAIN, WIPE_FADE_BLACK);
   WIPE_SetBrightness(WIPE_DISP_SUB,  WIPE_FADE_BLACK);
   return wk;
@@ -128,7 +128,7 @@ void *MysteryLib_InitProc(PROC *proc, int heapid, int size, int heapsize)
 
 //------------------------------------------------------------------
 /**
- * @brief	�a�f�������֐�(�P�t���[���̂�)
+ * @brief	ＢＧ初期化関数(１フレームのみ)
  * @param	NONE
  * @return	NONE
  */
@@ -157,7 +157,7 @@ void MysteryLib_BgInitFrame(GF_BGL_INI *ini, int frame, u8 size, u32 scrbase, u3
 
 //------------------------------------------------------------------
 /**
- * @brief	�t�F�[�h�̃^�C�v�ύX
+ * @brief	フェードのタイプ変更
  * @param	0: BLACK  1: WHITE
  * @return	NONE
  */
@@ -170,7 +170,7 @@ void MysteryLib_ChangeFadeType(int type)
 
 //------------------------------------------------------------------
 /**
- * @brief	�t�F�[�h�֐�
+ * @brief	フェード関数
  * @param	NONE
  * @return	NONE
  */
@@ -190,7 +190,7 @@ void MysteryLib_RequestFade(int type, int next_seq, int *seq, int next)
 
 //------------------------------------------------------------------
 /**
- * @brief	�t�F�[�h�I���֐�
+ * @brief	フェード終了関数
  * @param	NONE
  * @return	NONE
  */
@@ -206,14 +206,14 @@ void MysteryLib_FadeEndCheck(int *seq)
 
 //------------------------------------------------------------------
 /**
- * @brief	MYSTERY_WIN�\���̂̏�����
+ * @brief	MYSTERY_WIN構造体の初期化
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
 void MysteryLib_WinInit1(MYSTERY_WIN *mw, GF_BGL_BMPWIN *win, int palno, int arc, int fchr, int fcol)
 {
-  // ��x�ݒ肵���炠�܂�ύX�̂Ȃ����̂��ŏ��ɐݒ�
+  // 一度設定したらあまり変更のないものを最初に設定
   memset(mw, 0, sizeof(MYSTERY_WIN));
   mw->drawflag = TRUE;
   mw->redrawflag = TRUE;
@@ -234,7 +234,7 @@ void MysteryLib_WinInit1(MYSTERY_WIN *mw, GF_BGL_BMPWIN *win, int palno, int arc
 }
 void MysteryLib_WinInit2(MYSTERY_WIN *mw, int w, int h,/* int msgid,*/ int base)
 {
-  // �E�B���h�E�𐶐����邽�тɕύX�����肻���Ȃ���
+  // ウィンドウを生成するたびに変更がありそうなもの
   mw->width = w;
   mw->height = h;
   mw->base = base;
@@ -262,7 +262,7 @@ void MysteryLib_WinSetPos(MYSTERY_WIN *mw, int dx, int dy)
   
 //------------------------------------------------------------------
 /**
- * @brief	���b�Z�[�W�E�B���h�E��o�^
+ * @brief	メッセージウィンドウを登録
  * @param	NONE
  * @return	NONE
  */
@@ -275,13 +275,13 @@ static int MysteryLib_RedrawWin(MYSTERY_WIN *mw, int msgid)
   MSGDATA_MANAGER *msgman;
 
   MYSTERYLIB_WORK *wk = GetMysteryLibWorkPtr();
-  // �E�B���h�E���N���A
+  // ウィンドウをクリア
   if(msgid != MYSTERYLIB_NOMSG && mw->msgid != msgid){
     mw->msgid = msgid;
     if(mw->redrawflag == TRUE)
       GF_BGL_BmpWinDataFill(mw->win, mw->clrcolor);
     if(mw->msgid != MYSTERYLIB_NOMSG){
-      // �A�[�J�C�u����W�J���ĕ\��
+      // アーカイブから展開して表示
       msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, mw->arcno, wk->heapid);
       if(mw->word == NULL)	word = WORDSET_Create(wk->heapid);
       else			word = mw->word;
@@ -289,7 +289,7 @@ static int MysteryLib_RedrawWin(MYSTERY_WIN *mw, int msgid)
       if(mw->rightflag == FALSE){
 	midx = GF_STR_PrintColor(mw->win, mw->font, msg, mw->dx, mw->dy, mw->msgspd, mw->color, NULL);
       } else {
-	// �E�񂹂��ĕ\��
+	// 右寄せして表示
 	int width, wsize;
 	width = FontProc_GetPrintStrWidth(mw->font, msg, FontHeaderGet(mw->font, FONT_HEADER_SPACE_X));
 	wsize = GF_BGL_BmpWinGet_SizeX(mw->win) * 8 - width;
@@ -311,12 +311,12 @@ int MysteryLib_CreateWin(GF_BGL_INI *bgl, MYSTERY_WIN *mw, int sx, int sy, int m
     GF_BGL_BmpWinAdd(bgl, mw->win, mw->screen, sx, sy, mw->width, mw->height, mw->palno, mw->base);
     midx = MysteryLib_RedrawWin(mw, msgid);
   } else {
-    // �\�����W��ύX����
+    // 表示座標を変更する
     if(sx != -1)	GF_BGL_BmpWinSet_PosX(mw->win, sx);
     if(sy != -1)	GF_BGL_BmpWinSet_PosY(mw->win, sy);
     midx = MysteryLib_RedrawWin(mw, msgid);
   }
-  // �]���t���O��TRUE�Ȃ�΂u�q�`�l�֓]������
+  // 転送フラグがTRUEならばＶＲＡＭへ転送する
   if(mw->drawflag == TRUE){
     if(mw->winmode == MYSTERYLIB_WINTYPE_NORMAL)
       BmpMenuWinWrite(mw->win, WINDOW_TRANS_ON, mw->fchr, mw->fcol);
@@ -328,7 +328,7 @@ int MysteryLib_CreateWin(GF_BGL_INI *bgl, MYSTERY_WIN *mw, int sx, int sy, int m
 
 //------------------------------------------------------------------
 /**
- * @brief	�E�B���h�E�������L�����N�^������Ԃ�
+ * @brief	ウィンドウが消費するキャラクタ総数を返す
  * @param	NONE
  * @return	NONE
  */
@@ -343,7 +343,7 @@ int MysteryLib_GetWindowChr(MYSTERY_WIN *mw)
 
 //------------------------------------------------------------------
 /**
- * @brief	�L�����N�^�A�p���b�g�}�l�[�W���[������
+ * @brief	キャラクタ、パレットマネージャー初期化
  * @param	NONE
  * @return	NONE
  */
@@ -359,15 +359,15 @@ void MysteryLib_InitCPManager(void)
     NULL,
   };
 
-  // �L�����N�^�}�l�[�W���[������
+  // キャラクタマネージャー初期化
   cm.heap = wk->heapid;
 //  InitCharManager(&cm);
   InitCharManagerReg( &cm, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K );
 
-  // �p���b�g�}�l�[�W���[������
+  // パレットマネージャー初期化
   InitPlttManager(MYSTERYLIB_PLTT_CONT_NUM, wk->heapid);
       
-  // �ǂݍ��݊J�n�ʒu��������
+  // 読み込み開始位置を初期化
   CharLoadStartAll();
   PlttLoadStartAll();
 }
@@ -375,9 +375,9 @@ void MysteryLib_InitCPManager(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	�Z���A�N�^�[�V�X�e��������������Ă邩�Ԃ�
+ * @brief	セルアクターシステムが初期化されてるか返す
  * @param	NONE
- * @return	TRUE: �������ς݁@FALSE:���������ĂȂ�
+ * @return	TRUE: 初期化済み　FALSE:初期化してない
  */
 //------------------------------------------------------------------
 BOOL MysteryLib_isInitClact(void)
@@ -388,7 +388,7 @@ BOOL MysteryLib_isInitClact(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	�Z���A�N�^�[�V�X�e���̏�����
+ * @brief	セルアクターシステムの初期化
  * @param	NONE
  * @return	NONE
  */
@@ -398,25 +398,25 @@ void MysteryLib_InitClactSystem(void)
   int i;
   MYSTERYLIB_WORK *wk = GetMysteryLibWorkPtr();
 
-  // OAM�}�l�[�W���[�̏�����
+  // OAMマネージャーの初期化
   NNS_G2dInitOamManagerModule();
-  // ���LOAM�}�l�[�W���쐬
-  // �����_���pOAM�}�l�[�W���쐬
-  // �����ō쐬����OAM�}�l�[�W�����݂�Ȃŋ��L����
-  REND_OAMInit(0, 126,		// ���C�����OAM�Ǘ��̈�
-	       0, 32,		// ���C����ʃA�t�B���Ǘ��̈�
-	       0, 126,		// �T�u���OAM�Ǘ��̈�
-	       0, 32,		// �T�u��ʃA�t�B���Ǘ��̈�
+  // 共有OAMマネージャ作成
+  // レンダラ用OAMマネージャ作成
+  // ここで作成したOAMマネージャをみんなで共有する
+  REND_OAMInit(0, 126,		// メイン画面OAM管理領域
+	       0, 32,		// メイン画面アフィン管理領域
+	       0, 126,		// サブ画面OAM管理領域
+	       0, 32,		// サブ画面アフィン管理領域
 	       wk->heapid);
 	
-  // �Z���A�N�^�[������
+  // セルアクター初期化
   wk->clact.clactSet = CLACT_U_SetEasyInit( 128, &wk->clact.renddata, wk->heapid);	///< 70 -> 128
   CLACT_U_SetSubSurfaceMatrix(&wk->clact.renddata, 0, (256*FX32_ONE));
 
   wk->sub_add = SUB_SURFACE_Y;
   
-  //���\�[�X�}�l�[�W���[������
-  for(i = 0; i < CLACT_U_RES_MAX; i++){		//���\�[�X�}�l�[�W���[�쐬
+  //リソースマネージャー初期化
+  for(i = 0; i < CLACT_U_RES_MAX; i++){		//リソースマネージャー作成
     wk->clact.resMan[i] = CLACT_U_ResManagerInit( 32, i, wk->heapid);	/// 3 -> 32
   }
 }
@@ -446,7 +446,7 @@ MYSTERY_CLACT* MysteryLib_GetClactSystem( void )
 
 //------------------------------------------------------------------
 /**
- * @brief	�Z���A�N�^�[������
+ * @brief	セルアクター初期化
  * @param	NONE
  * @return	NONE
  */
@@ -460,41 +460,41 @@ void MysteryLib_InitClact(int arcfile, int arcchar, int arcpal, int arccell, int
   //  OS_TPrintf("%d, %d, %d, %d, %d, %d\n", arcfile, arcchar, arcpal, arccell, arcanim, screen);
 
   comp = 1;
-  // ���߂�Ȃ����AITEMICON�����͓��ʈ���
+  // ごめんなさい、ITEMICONだけは特別扱い
   if(arcfile == ARC_ITEMICON)	comp = 0;
   
-  //chara�ǂݍ���
+  //chara読み込み
   if(arcchar != -1){
     wk->clact.resObjTbl[screen][CLACT_U_CHAR_RES] =
       CLACT_U_ResManagerResAddArcChar(wk->clact.resMan[CLACT_U_CHAR_RES],
 				      arcfile, arcchar, comp, screen, hwscreen, wk->heapid);
   }
-  //pal�ǂݍ���
+  //pal読み込み
   if(arcpal != -1){
     wk->clact.resObjTbl[screen][CLACT_U_PLTT_RES] =
       CLACT_U_ResManagerResAddArcPltt(wk->clact.resMan[CLACT_U_PLTT_RES],
 				      arcfile, arcpal, 0, screen, hwscreen, 3, wk->heapid);
   }
-  //cell�ǂݍ���
+  //cell読み込み
   if(arccell != -1){
     wk->clact.resObjTbl[screen][CLACT_U_CELL_RES] =
       CLACT_U_ResManagerResAddArcKindCell(wk->clact.resMan[CLACT_U_CELL_RES],
 					  arcfile, arccell, comp, screen, CLACT_U_CELL_RES,wk->heapid);
   }
-  //�����֐���anim�ǂݍ���
+  //同じ関数でanim読み込み
   if(arcanim != -1){
     wk->clact.resObjTbl[screen][CLACT_U_CELLANM_RES] =
       CLACT_U_ResManagerResAddArcKindCell(wk->clact.resMan[CLACT_U_CELLANM_RES],
 					  arcfile, arcanim, comp, screen, CLACT_U_CELLANM_RES,wk->heapid);
   }
 
-  // Chara�]��
+  // Chara転送
 //  CLACT_U_CharManagerSetAreaCont(wk->clact.resObjTbl[screen][CLACT_U_CHAR_RES]);
 	CLACT_U_CharManagerSet(wk->clact.resObjTbl[screen][CLACT_U_CHAR_RES]);
-  // �p���b�g�]��
+  // パレット転送
   CLACT_U_PlttManagerSetCleanArea(wk->clact.resObjTbl[screen][CLACT_U_PLTT_RES]);
 
-  // �Z���A�N�^�[�w�b�_�쐬
+  // セルアクターヘッダ作成
   CLACT_U_MakeHeader(&wk->clact.clActHeader[screen], screen, screen, screen, screen,
 		     CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
 		     0, 0,
@@ -503,11 +503,11 @@ void MysteryLib_InitClact(int arcfile, int arcchar, int arcpal, int arccell, int
 		     wk->clact.resMan[CLACT_U_CELL_RES],
 		     wk->clact.resMan[CLACT_U_CELLANM_RES],
 		     NULL,NULL);
-  //�܂������]�����Ă��Ȃ�����
+  //まだ何も転送していないから
   if(screen == GF_BGL_MAIN_DISP)
-    GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//���C�����OBJ�ʂn�m
+    GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//メイン画面OBJ面ＯＮ
   else
-    GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON );	//�T�u���OBJ�ʂn�m
+    GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON );	//サブ画面OBJ面ＯＮ
 
   sys_VBlankFuncChange(MysteryLib_VBlankFunc, NULL);
 }
@@ -530,7 +530,7 @@ void MysteryLib_SetVBlank( void )
 
 //------------------------------------------------------------------
 /**
- * @brief	�T�u��ʂ̃T�[�t�F�C�X�ύX
+ * @brief	サブ画面のサーフェイス変更
  * @param	NONE
  * @return	NONE
  */
@@ -546,7 +546,7 @@ void MysteryLib_SetSubSurfaceMatrix(fx32 x, fx32 y)
 
 //------------------------------------------------------------------
 /**
- * @brief	���t���[���Ăяo���ė~�����֐�
+ * @brief	毎フレーム呼び出して欲しい関数
  * @param	NONE
  * @return	NONE
  */
@@ -589,7 +589,7 @@ void MysteryLib_DoClact_Ex( int state )
 
 //------------------------------------------------------------------
 /**
- * @brief	CLACT_ADD�̐��`���쐬
+ * @brief	CLACT_ADDの雛形を作成
  * @param	NONE
  * @return	NONE
  */
@@ -630,7 +630,7 @@ CLACT_WORK_PTR MysteryLib_MakeCLACT(int screen, CLACT_WORK_PTR anim, int sx, int
 
 //------------------------------------------------------------------
 /**
- * @brief	�Z���A�N�^�[�̍폜
+ * @brief	セルアクターの削除
  * @param	NONE
  * @return	NONE
  */
@@ -641,35 +641,35 @@ void MysteryLib_RemoveClact(void)
   MYSTERY_CLACT *act = &wk->clact;
   int i;
 
-  // ���ꂾ�����ʂ�act�Ȃ̂ł����ŏ���
+  // これだけ特別なactなのでここで消去
   if(wk->giftact){
     CLACT_Delete(wk->giftact);
     wk->giftact = NULL;
   }
   
-  // �L�����]���}�l�[�W���[�j��
+  // キャラ転送マネージャー破棄
   if(act->resObjTbl[GF_BGL_MAIN_DISP][CLACT_U_CHAR_RES])
     CLACT_U_CharManagerDelete(act->resObjTbl[GF_BGL_MAIN_DISP][CLACT_U_CHAR_RES]);
   if(act->resObjTbl[GF_BGL_SUB_DISP ][CLACT_U_CHAR_RES])
     CLACT_U_CharManagerDelete(act->resObjTbl[GF_BGL_SUB_DISP ][CLACT_U_CHAR_RES]);
-  // �p���b�g�]���}�l�[�W���[�j��
+  // パレット転送マネージャー破棄
   if(act->resObjTbl[GF_BGL_MAIN_DISP][CLACT_U_PLTT_RES])
     CLACT_U_PlttManagerDelete(act->resObjTbl[GF_BGL_MAIN_DISP][CLACT_U_PLTT_RES]);
   if(act->resObjTbl[GF_BGL_SUB_DISP ][CLACT_U_PLTT_RES])
     CLACT_U_PlttManagerDelete(act->resObjTbl[GF_BGL_SUB_DISP ][CLACT_U_PLTT_RES]);
 
-  // �L�����E�p���b�g�E�Z���E�Z���A�j���̃��\�[�X�}�l�[�W���[�j��
+  // キャラ・パレット・セル・セルアニメのリソースマネージャー破棄
   for(i = 0; i < CLACT_U_RES_MAX; i++){
     CLACT_U_ResManagerDelete(act->resMan[i]);
     act->resMan[i] = NULL;
   }
 
-  // �Z���A�N�^�[�Z�b�g�j��
+  // セルアクターセット破棄
   CLACT_DestSet(act->clactSet);
   act->clactSet = NULL;
-  //OAM�����_���[�j��
+  //OAMレンダラー破棄
   REND_OAM_Delete();
-  // ���\�[�X���
+  // リソース解放
   DeleteCharManager();
   DeletePlttManager();
 
@@ -678,7 +678,7 @@ void MysteryLib_RemoveClact(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	�Q�[���J�Z�b�g�ɑΉ������r�b�g��Ԃ�
+ * @brief	ゲームカセットに対応したビットを返す
  * @param	NONE
  * @return	NONE
  */
@@ -706,16 +706,16 @@ static void MysteryLib_VBlankFunc(void *work)
     wk->vfunc(wk);
     wk->vfunc = NULL;
   }
-  // �Z���A�N�^�[Vram�]���}�l�[�W���[���s
+  // セルアクターVram転送マネージャー実行
   DoVramTransferManager();
-  // �����_�����LOAM�}�l�[�W��Vram�]��
+  // レンダラ共有OAMマネージャVram転送
   REND_OAMTrans();
     if(wk->bgl)
         GF_BGL_VBlankFunc( wk->bgl );
   OS_SetIrqCheckFlag( OS_IE_V_BLANK );
 
 #if 0
-  // �K�v�������Thread���������N����
+  // 必要があればThreadをたたき起こす
   if(OS_IsThreadTerminated(&wk->thread) == FALSE)
     OS_WakeupThreadDirect(&wk->thread);
 #endif
@@ -724,7 +724,7 @@ static void MysteryLib_VBlankFunc(void *work)
 
 //------------------------------------------------------------------
 /**
- * @brief	��������̂ɑΉ������p���b�g�ԍ���Ԃ�
+ * @brief	おくりものに対応したパレット番号を返す
  * @param	NONE
  * @return	NONE
  */
@@ -736,19 +736,19 @@ static int MysteryLib_GetGiftPalno(int gift)
     u8 type, palno;
   } GiftPalno[] = {
     { MYSTERYGIFT_TYPE_NONE,		0 },
-    { MYSTERYGIFT_TYPE_POKEMON,		1 },	// �|�P����
-    { MYSTERYGIFT_TYPE_POKEEGG,		1 },	// �^�}�S
-    { MYSTERYGIFT_TYPE_ITEM,		2 },	// �ǂ���
-    { MYSTERYGIFT_TYPE_RULE,		3 },	// ���[��
-    { MYSTERYGIFT_TYPE_GOODS,		2 },	// �O�b�Y
-    { MYSTERYGIFT_TYPE_ACCESSORY,	2 },	// �A�N�Z�T��
-    { MYSTERYGIFT_TYPE_RANGEREGG,	0 },	// �i�}�t�B�[�̃^�}�S
-    { MYSTERYGIFT_TYPE_MEMBERSCARD,	5 },	// �����o�[�Y�J�[�h
-    { MYSTERYGIFT_TYPE_LETTER,		5 },	// �I�[�L�h�̂Ă���
-    { MYSTERYGIFT_TYPE_WHISTLE, 	5 },	// �Ă񂩂��̂ӂ�
-    { MYSTERYGIFT_TYPE_POKETCH, 	4 },	// �|�P�b�`
-    { MYSTERYGIFT_TYPE_SECRET_KEY, 	5 },	// �閧�̌�
-    { MYSTERYGIFT_TYPE_MOVIE,	 	5 },	// �f��z�z
+    { MYSTERYGIFT_TYPE_POKEMON,		1 },	// ポケモン
+    { MYSTERYGIFT_TYPE_POKEEGG,		1 },	// タマゴ
+    { MYSTERYGIFT_TYPE_ITEM,		2 },	// どうぐ
+    { MYSTERYGIFT_TYPE_RULE,		3 },	// ルール
+    { MYSTERYGIFT_TYPE_GOODS,		2 },	// グッズ
+    { MYSTERYGIFT_TYPE_ACCESSORY,	2 },	// アクセサリ
+    { MYSTERYGIFT_TYPE_RANGEREGG,	0 },	// ナマフィーのタマゴ
+    { MYSTERYGIFT_TYPE_MEMBERSCARD,	5 },	// メンバーズカード
+    { MYSTERYGIFT_TYPE_LETTER,		5 },	// オーキドのてがみ
+    { MYSTERYGIFT_TYPE_WHISTLE, 	5 },	// てんかいのふえ
+    { MYSTERYGIFT_TYPE_POKETCH, 	4 },	// ポケッチ
+    { MYSTERYGIFT_TYPE_SECRET_KEY, 	5 },	// 秘密の鍵
+    { MYSTERYGIFT_TYPE_MOVIE,	 	5 },	// 映画配布
     { -1 },
   };
   
@@ -761,7 +761,7 @@ static int MysteryLib_GetGiftPalno(int gift)
 
 //------------------------------------------------------------------
 /**
- * @brief	�w��̃|�P�����O���t�B�b�N�X�����[�h
+ * @brief	指定のポケモングラフィックスをロード
  * @param	NONE
  * @return	NONE
  */
@@ -774,20 +774,20 @@ static void MysteryLib_LoadPokeGra(CLACT_WORK_PTR clwk, POKEMON_PARAM *pp, int m
   u32 rnd;
   MYSTERYLIB_WORK *wk = GetMysteryLibWorkPtr();
 #if 0//def DEBUG_ONLY_FOR_mituhara
-  OS_TPrintf("�t�H�����ԍ��� %d �ł�\n", form_no);
+  OS_TPrintf("フォルム番号は %d です\n", form_no);
 #endif
   
-  // �|�P�����̉摜��ǂݍ��ށi�������\�t�g�E�F�A�X�v���C�g�p�̃e�N�X�`����ԁj
+  // ポケモンの画像を読み込む（ただしソフトウェアスプライト用のテクスチャ状態）
   sex = PokeSexGet(pp);
   col = PokeRareGet(pp);
   PokeGraArcDataGet(ssa, mons_no, sex, PARA_FRONT, col, form_no, 0);
 
-  // �e�N�X�`����OAM�p�ɕϊ�����(�p�b�`�[���̂Ԃ����l��)
+  // テクスチャをOAM用に変換する(パッチールのぶちも考慮)
   rnd = PokeParaGet( pp, ID_PARA_personal_rnd, NULL );
   Ex_ChangesInto_OAM_from_PokeTex(ssa->arc_no, ssa->index_chr, wk->heapid, 0, 0, 10, 10,
 				  char_work, rnd, 0, PARA_FRONT, mons_no);
 
-  // OAM�pVRAM�ɓ]��
+  // OAM用VRAMに転送
   DC_FlushRange(char_work, 0x20*10*10);
   {
 	NNSG2dImageProxy* plo = CLACT_ImageProxyGet( clwk );
@@ -797,7 +797,7 @@ static void MysteryLib_LoadPokeGra(CLACT_WORK_PTR clwk, POKEMON_PARAM *pp, int m
 //	GXS_LoadOBJ(char_work, POKEGRA_VRAM_OFFSET + 1*POKEGRA_VRAM_SIZE, POKEGRA_VRAM_SIZE);
   }
 
-  // �p���b�g�]��
+  // パレット転送
   {
 	NNSG2dImagePaletteProxy* plo = CLACT_PaletteProxyGet( clwk );
 	u32 addrs = NNS_G2dGetImagePaletteLocation( plo, NNS_G2D_VRAM_TYPE_2DSUB );
@@ -810,7 +810,7 @@ static void MysteryLib_LoadPokeGra(CLACT_WORK_PTR clwk, POKEMON_PARAM *pp, int m
 
 //------------------------------------------------------------------
 /**
- * @brief	�v���[���g�{�b�N�X
+ * @brief	プレゼントボックス
  */
 //------------------------------------------------------------------
 static void MysteryLib_SetGraPresent(MYSTERYLIB_WORK *wk, int type, GIFT_DELIVERY *deli)
@@ -827,7 +827,7 @@ static void MysteryLib_SetGraPresent(MYSTERYLIB_WORK *wk, int type, GIFT_DELIVER
 
 //------------------------------------------------------------------
 /**
- * @brief	�|�P����
+ * @brief	ポケモン
  */
 //------------------------------------------------------------------
 static void MysteryLib_SetGraPoke(MYSTERYLIB_WORK *wk, int type, GIFT_DELIVERY *deli)
@@ -846,14 +846,14 @@ static void MysteryLib_SetGraPoke(MYSTERYLIB_WORK *wk, int type, GIFT_DELIVERY *
   wk->giftact = MysteryLib_MakeCLACT(GF_BGL_SUB_DISP, wk->giftact, HW_LCD_WIDTH/2, 0, 1);
   pp = (POKEMON_PARAM *)&deli->data.pokemon.data;
   switch(type){
-  case MYSTERYGIFT_TYPE_POKEMON:	// �|�P����
-  case MYSTERYGIFT_TYPE_MOVIE:		// �f��z�z
+  case MYSTERYGIFT_TYPE_POKEMON:	// ポケモン
+  case MYSTERYGIFT_TYPE_MOVIE:		// 映画配布
     MysteryLib_LoadPokeGra(wk->giftact, pp, PokeParaGet(pp,ID_PARA_monsno,0), PokeParaGet(pp,ID_PARA_form_no,0), wk->PokeGra, &wk->PokeGraSsa);
     break;
-  case MYSTERYGIFT_TYPE_POKEEGG:	// �^�}�S
+  case MYSTERYGIFT_TYPE_POKEEGG:	// タマゴ
     MysteryLib_LoadPokeGra(wk->giftact, pp, MONSNO_TAMAGO, 0, wk->PokeGra, &wk->PokeGraSsa);
     break;
-  case MYSTERYGIFT_TYPE_RANGEREGG:	// �i�}�t�B�[�̃^�}�Sbattle/*.c
+  case MYSTERYGIFT_TYPE_RANGEREGG:	// ナマフィーのタマゴbattle/*.c
     MysteryLib_LoadPokeGra(wk->giftact, pp, MONSNO_TAMAGO, 1, wk->PokeGra, &wk->PokeGraSsa);
     break;
   }
@@ -861,7 +861,7 @@ static void MysteryLib_SetGraPoke(MYSTERYLIB_WORK *wk, int type, GIFT_DELIVERY *
 
 //------------------------------------------------------------------
 /**
- * @brief	�A�C�e��
+ * @brief	アイテム
  * @param	NONE
  * @return	NONE
  */
@@ -871,19 +871,19 @@ static void MysteryLib_SetGraItem(MYSTERYLIB_WORK *wk, int type, GIFT_DELIVERY *
   int item;
 
   switch(type){
-  case MYSTERYGIFT_TYPE_ITEM:		// �ǂ���
+  case MYSTERYGIFT_TYPE_ITEM:		// どうぐ
     item = deli->data.item.itemNo;
     break;
-  case MYSTERYGIFT_TYPE_MEMBERSCARD:	// �����o�[�Y�J�[�h
+  case MYSTERYGIFT_TYPE_MEMBERSCARD:	// メンバーズカード
     item = ITEM_MENBAAZUKAADO;
     break;
-  case MYSTERYGIFT_TYPE_LETTER:		// �I�[�L�h�̂Ă���
+  case MYSTERYGIFT_TYPE_LETTER:		// オーキドのてがみ
     item = ITEM_OOKIDONOTEGAMI;
     break;
-  case MYSTERYGIFT_TYPE_WHISTLE:	// �Ă񂩂��̂ӂ�
+  case MYSTERYGIFT_TYPE_WHISTLE:	// てんかいのふえ
     item = ITEM_TENKAINOHUE;
     break;
-  case MYSTERYGIFT_TYPE_SECRET_KEY:	//�閧�̌�
+  case MYSTERYGIFT_TYPE_SECRET_KEY:	//秘密の鍵
   	item = ITEM_HIMITUNOKAGI;
   	break;
   }
@@ -900,7 +900,7 @@ static void MysteryLib_SetGraItem(MYSTERYLIB_WORK *wk, int type, GIFT_DELIVERY *
 
 //------------------------------------------------------------------
 /**
- * @brief	�T�u��ʂ�BG�p���b�g��]��
+ * @brief	サブ画面のBGパレットを転送
  * @param	NONE
  * @return	NONE
  */
@@ -909,19 +909,19 @@ static void MysteryLib_InitGiftPal(void *p)
 {
   MYSTERYLIB_WORK *wk = (MYSTERYLIB_WORK *)p;
 
-  // �T�u��ʂa�f�p���b�g�]��
+  // サブ画面ＢＧパレット転送
   ArcUtil_PalSet(ARC_MYSTERY_GRA, NARC_mystery_fushigi_back_nclr, PALTYPE_SUB_BG, 16*2*8, 16*2*6, wk->heapid);
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	����ʂɃv���[���g�󂯎�艉�o��\��
+ * @brief	下画面にプレゼント受け取り演出を表示
  *
- * SUB_BG0	�i�q�͗l(�㏑������邩�猩���Ȃ��Ȃ��Ă�)
- * SUB_BG1	�w�i�a�f
- * SUB_BG2,3	���g�p
- * SUB_OAM	�v���[���g�\��
- * ���T�u��ʂ̂a�f�p���b�g���W�`�P�R�܂Ŏg�p
+ * SUB_BG0	格子模様(上書きされるから見えなくなってる)
+ * SUB_BG1	背景ＢＧ
+ * SUB_BG2,3	未使用
+ * SUB_OAM	プレゼント表示
+ * ※サブ画面のＢＧパレットを８〜１３まで使用
 */
 //------------------------------------------------------------------
 void MysteryLib_InitGift(GF_BGL_INI *ini, GIFT_DELIVERY *deli)
@@ -941,18 +941,18 @@ void MysteryLib_InitGift(GF_BGL_INI *ini, GIFT_DELIVERY *deli)
   palno = MysteryLib_GetGiftPalno(type);
 
 #if 0
-  // �T�u��ʂa�f�p���b�g�]��
+  // サブ画面ＢＧパレット転送
   ArcUtil_PalSet(ARC_MYSTERY_GRA, NARC_mystery_fushigi_back_nclr, PALTYPE_SUB_BG, 16*2*8, 16*2*6, wk->heapid);
 #endif
-  // �T�u���BG1�L�����]��
+  // サブ画面BG1キャラ転送
   ArcUtil_BgCharSet(ARC_MYSTERY_GRA, NARC_mystery_fushigi_back_lz_cngr, ini,
 		    GF_BGL_FRAME1_S, 0, 10*16*0x20, 1, wk->heapid);
-  // �T�u��ʃX�N���[���P
+  // サブ画面スクリーン１
 #if 0
   ArcUtil_ScrnSet(ARC_MYSTERY_GRA, NARC_mystery_fushigi_back_lz_cscr, ini, GF_BGL_FRAME1_S, 0, 32*24*2, 1, wk->heapid);
 #else
  {
-   // ArcUtil_ScrnSet���Ɣ񐂒����Ԓ���VRAM�]������Ă��܂��̂ŁA�C��
+   // ArcUtil_ScrnSetだと非垂直期間中にVRAM転送されてしまうので、修正
    NNSG2dScreenData* scrnData;
    void *arcData = ArcUtil_Load(ARC_MYSTERY_GRA, NARC_mystery_fushigi_back_lz_cscr, 1, wk->heapid, ALLOC_BOTTOM);
    NNS_G2dGetUnpackedScreenData( arcData, &scrnData );
@@ -966,37 +966,37 @@ void MysteryLib_InitGift(GF_BGL_INI *ini, GIFT_DELIVERY *deli)
     wk->bgl=ini;
 
   
-  // �ォ��~���Ă���A�N�^�[�̐ݒ�
+  // 上から降ってくるアクターの設定
   switch(type){
-  case MYSTERYGIFT_TYPE_RULE:		// ���[��
-  case MYSTERYGIFT_TYPE_GOODS:		// �O�b�Y
-  case MYSTERYGIFT_TYPE_ACCESSORY:	// �A�N�Z�T��
-  case MYSTERYGIFT_TYPE_POKETCH:	// �|�P�b�`
+  case MYSTERYGIFT_TYPE_RULE:		// ルール
+  case MYSTERYGIFT_TYPE_GOODS:		// グッズ
+  case MYSTERYGIFT_TYPE_ACCESSORY:	// アクセサリ
+  case MYSTERYGIFT_TYPE_POKETCH:	// ポケッチ
     MysteryLib_SetGraPresent(wk, type, deli);
     break;
-  case MYSTERYGIFT_TYPE_RANGEREGG:	// �i�}�t�B�[�̃^�}�S
+  case MYSTERYGIFT_TYPE_RANGEREGG:	// ナマフィーのタマゴ
     wk->giftact_wait = 120;
-  case MYSTERYGIFT_TYPE_POKEMON:	// �|�P����
-  case MYSTERYGIFT_TYPE_POKEEGG:	// �^�}�S
-  case MYSTERYGIFT_TYPE_MOVIE:		// �f��z�z
+  case MYSTERYGIFT_TYPE_POKEMON:	// ポケモン
+  case MYSTERYGIFT_TYPE_POKEEGG:	// タマゴ
+  case MYSTERYGIFT_TYPE_MOVIE:		// 映画配布
     MysteryLib_SetGraPoke(wk, type, deli);
     break;
-  case MYSTERYGIFT_TYPE_ITEM:		// �ǂ���
-  case MYSTERYGIFT_TYPE_MEMBERSCARD:	// �����o�[�Y�J�[�h
-  case MYSTERYGIFT_TYPE_LETTER:		// �I�[�L�h�̂Ă���
-  case MYSTERYGIFT_TYPE_WHISTLE:	// �Ă񂩂��̂ӂ�
-  case MYSTERYGIFT_TYPE_SECRET_KEY:	// �閧�̌�
+  case MYSTERYGIFT_TYPE_ITEM:		// どうぐ
+  case MYSTERYGIFT_TYPE_MEMBERSCARD:	// メンバーズカード
+  case MYSTERYGIFT_TYPE_LETTER:		// オーキドのてがみ
+  case MYSTERYGIFT_TYPE_WHISTLE:	// てんかいのふえ
+  case MYSTERYGIFT_TYPE_SECRET_KEY:	// 秘密の鍵
     MysteryLib_SetGraItem(wk, type, deli);
     break;
   }
-  // �ŏ��͔�\��
+  // 最初は非表示
   CLACT_SetDrawFlag(wk->giftact, 0);
 }
 
 
 //------------------------------------------------------------------
 /**
- * @brief	�w��̃o�b�t�@���Í���
+ * @brief	指定のバッファを暗号化
  * @param	NONE
  * @return	NONE
  */
@@ -1030,7 +1030,7 @@ void MysteryLib_CreateCryptoData(GIFT_COMM_PACK *gift_data, GIFT_DATA *data, int
   }
 #endif
 
-  // �r�[�R����񂩂�CRC�l�𐶐�
+  // ビーコン情報からCRC値を生成
   CrcTbl = sys_AllocMemory(heapid, sizeof(MATHCRC16Table));
   MATH_CRC16InitTable(CrcTbl);
   crc = MATH_CalcCRC16(CrcTbl, &gift_data->beacon, sizeof(GIFT_BEACON));
@@ -1049,7 +1049,7 @@ void MysteryLib_CreateCryptoData(GIFT_COMM_PACK *gift_data, GIFT_DATA *data, int
   OS_TPrintf("KEY: %04X %04X %04X %04X\n", key[0], key[1], key[2], key[3]);
 #endif
 
-  // MAC�A�h���X���L�[�Ƃ��ĈÍ���
+  // MACアドレスをキーとして暗号化
   rc4context = sys_AllocMemory(heapid, sizeof(CRYPTORC4Context));
   CRYPTO_RC4Init(rc4context, key, 8 );
   CRYPTO_RC4Encrypt(rc4context, &gift_data->data, sizeof(GIFT_DATA), data);
@@ -1070,7 +1070,7 @@ void MysteryLib_CreateCryptoData(GIFT_COMM_PACK *gift_data, GIFT_DATA *data, int
 
 //------------------------------------------------------------------
 /**
- * @brief	�Í������ꂽ�o�b�t�@��Decode
+ * @brief	暗号化されたバッファをDecode
  * @param	NONE
  * @return	NONE
  */
@@ -1088,9 +1088,9 @@ void MysteryLib_DecodeCryptoData(GIFT_COMM_PACK *gift_data, GIFT_DATA *data, int
   {
     u8 *p;
 
-    // ����������O�̃o�C�i���f�[�^��DTCM�ɕۑ�(�����������ꒃ�c)
+    // 複合化する前のバイナリデータをDTCMに保存(やり方が無茶苦茶…)
     memcpy((void *)0x027E0100, gift_data, sizeof(GIFT_COMM_PACK));
-    OS_TPrintf("�������O�̃f�[�^: %08X - %08X\n", 0x027E0100, 0x027E0100 + sizeof(GIFT_COMM_PACK));
+    OS_TPrintf("複合化前のデータ: %08X - %08X\n", 0x027E0100, 0x027E0100 + sizeof(GIFT_COMM_PACK));
 
     p = (u8 *)&gift_data->beacon;
     for(i = 0; i < 128; i++){
@@ -1109,13 +1109,13 @@ void MysteryLib_DecodeCryptoData(GIFT_COMM_PACK *gift_data, GIFT_DATA *data, int
     OS_TPrintf("\n");
   }
 #endif
-  // �r�[�R����񂩂�CRC�l�𐶐�
+  // ビーコン情報からCRC値を生成
   CrcTbl = sys_AllocMemory(heapid, sizeof(MATHCRC16Table));
   MATH_CRC16InitTable(CrcTbl);
   crc = MATH_CalcCRC16(CrcTbl, &gift_data->beacon, sizeof(GIFT_BEACON));
   sys_FreeMemoryEz(CrcTbl);
   
-  // �e��MAC�A�h���X�𓾂�
+  // 親のMACアドレスを得る
   bssDesc = CommMPGetWMBssDesc(0);
   memcpy(key, bssDesc->bssid, WM_SIZE_BSSID);
   key[3] = key[1];
@@ -1130,7 +1130,7 @@ void MysteryLib_DecodeCryptoData(GIFT_COMM_PACK *gift_data, GIFT_DATA *data, int
   OS_TPrintf("KEY: %04X %04X %04X %04X\n", key[0], key[1], key[2], key[3]);
 #endif
 
-  // MAC�A�h���X���L�[�Ƃ��ĕ�����
+  // MACアドレスをキーとして複合化
   rc4context = sys_AllocMemory(heapid, sizeof(CRYPTORC4Context));
   CRYPTO_RC4Init(rc4context, key, 8 );
   CRYPTO_RC4Encrypt(rc4context, &gift_data->data, sizeof(GIFT_DATA), data);
@@ -1152,7 +1152,7 @@ void MysteryLib_DecodeCryptoData(GIFT_COMM_PACK *gift_data, GIFT_DATA *data, int
 
 //------------------------------------------------------------------
 /**
- * @brief	���j���[�Ń��C���ړ����������ۂɌĂ΂��R�[���o�b�N
+ * @brief	メニューでライン移動があった際に呼ばれるコールバック
  * @param	NONE
  * @return	NONE
  */
@@ -1160,10 +1160,10 @@ void MysteryLib_DecodeCryptoData(GIFT_COMM_PACK *gift_data, GIFT_DATA *data, int
 void MysteryLib_MenuKeyMove(BMPLIST_WORK * wk, u32 param, u8 mode)
 {
   switch(mode){
-  case 0:		// �ʏ퓮��
+  case 0:		// 通常動作
     Snd_SePlay(SEQ_SE_DP_SELECT);
     break;
-  case 1:		// ���j���[�N����
+  case 1:		// メニュー起動時
     break;
   }
 }
@@ -1171,20 +1171,20 @@ void MysteryLib_MenuKeyMove(BMPLIST_WORK * wk, u32 param, u8 mode)
 
 //------------------------------------------------------------------
 /**
- * @brief	AGB�J�[�g���b�W�������o���荞�ݐݒ�
+ * @brief	AGBカートリッジ抜き検出割り込み設定
  * @param	NONE
  * @return	NONE
- * �� IrqTable��j��I�ɑ��삵�܂��c
+ * ※ IrqTableを破壊的に操作します…
 */
 //------------------------------------------------------------------
 static void CartridgeIrqFunc(void)
 {
   u32 val;
   if(PAD_DetectFold() == FALSE){
-    // �ӂ����܂��Ă��Ȃ���Ώ������~������
-    // �ӂ������Ă�ۂ̏�����main.c��sleep���A�㏈���ɔC����
-    // ������RTC�̓d�r�������ꍇ�ɂ̓J�[�g���b�W���h�����Ă��Ă����荞�݂�����̂ŁA
-    // �������o������"�����I��"������Ă����ꍇ�̂ݏ������~������
+    // ふたが閉まっていなければ処理を停止させる
+    // ふたが閉じてる際の処理はmain.cのsleep復帰後処理に任せる
+    // ただしRTCの電池が無い場合にはカートリッジが刺さっていても割り込みが入るので、
+    // 抜け検出をして"物理的に"抜かれていた場合のみ処理を停止させる
     if(CTRDG_IsAgbCartridge() == FALSE)
       CTRDG_TerminateForPulledOut();
   }
@@ -1212,7 +1212,7 @@ void MysteryLib_SetAgbCartridgeIntr2(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	�c�r�Z�[�u�V�[�P���X
+ * @brief	ＤＳセーブシーケンス
  * @param	NONE
  * @return	NONE
  */
@@ -1232,14 +1232,14 @@ int MysteryLib_SaveDSCard(void)
   switch(wk->save_seq){
   case MYSTERYLIB_SEQ_SAVE_INIT:
     sys_SoftResetNG(SOFTRESET_TYPE_SAVELOAD);
-    // DS���̃Z�[�u�A�����ݒ�
+    // DS側のセーブ、初期設定
     SaveData_DivSave_Init(wk->sv, SVBLK_ID_MAX);
     wk->save_seq++;
     break;
 
   case MYSTERYLIB_SEQ_SAVE_MAIN:
-    // �Z�[�u���C��
-    //    OS_TPrintf("�����Z�[�u��...\n");
+    // セーブメイン
+    //    OS_TPrintf("分割セーブ中...\n");
     result = SaveData_DivSave_Main(wk->sv);
     if(result == SAVE_RESULT_NG){
       wk->save_seq = MYSTERYLIB_SEQ_SAVE_NG;
@@ -1254,8 +1254,8 @@ int MysteryLib_SaveDSCard(void)
     break;
 
   case MYSTERYLIB_SEQ_SAVE_LAST:
-    // �Ō�̃Z�[�u�҂�
-    // ���ɂ���MysteryLib_DoLastSave�����s����ƍŌ�̃Z�[�u������
+    // 最後のセーブ待ち
+    // ↓にあるMysteryLib_DoLastSaveを実行すると最後のセーブが完了
 #if 0//def DEBUG_ONLY_FOR_mituhara
     OS_TPrintf("LAST-SAVE\n");
 #endif

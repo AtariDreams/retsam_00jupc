@@ -15,34 +15,34 @@
   do-indent.
 
   Revision 1.6  2004/07/19 06:52:06  seiki_masashi
-  ¯•Êq–¼‚Ì®—
+  è­˜åˆ¥å­åã®æ•´ç†
 
   Revision 1.5  2004/06/30 08:49:45  seiki_masashi
   algo_simple -> algo_light
   algo_standard -> algo_fine
   algo_accurate -> algo_superfine
-  V‚µ‚¢ algo_standard ‚Ì’Ç‰Á
+  æ–°ã—ã„ algo_standard ã®è¿½åŠ 
 
   Revision 1.4  2004/06/25 13:32:01  seiki_masashi
-  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€ 'Standard' ‚Ì’Ç‰Á
+  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ  'Standard' ã®è¿½åŠ 
 
   Revision 1.3  2004/06/24 08:10:50  seiki_masashi
-  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€ "Accurate" ‚ğ’Ç‰Á
+  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ  "Accurate" ã‚’è¿½åŠ 
 
   Revision 1.2  2004/06/24 07:03:16  seiki_masashi
-  ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ğ•ªŠ„E®—‚µ‚Ü‚µ‚½
+  ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ†å‰²ãƒ»æ•´ç†ã—ã¾ã—ãŸ
 
   Revision 1.1  2004/06/23 12:00:29  seiki_masashi
   add 'PRC*' to SDK
 
   Revision 1.5  2004/06/22 11:19:00  seiki_masashi
-  “®ì‰Â”\ƒo[ƒWƒ‡ƒ“(simple‚Ì‚İ)
+  å‹•ä½œå¯èƒ½ãƒãƒ¼ã‚¸ãƒ§ãƒ³(simpleã®ã¿)
 
   Revision 1.4  2004/06/17 08:14:52  seiki_masashi
   PRC_GetPrototypeDBBufferSizeEx
 
   Revision 1.3  2004/06/17 02:30:29  seiki_masashi
-  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚Ì·‚µ‘Ö‚¦‚ğ—eˆÕ‚É‚·‚é‚½‚ß‚É prc_algo_* ‚É•ªŠ„‚µ‚Ü‚µ‚½
+  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã®å·®ã—æ›¿ãˆã‚’å®¹æ˜“ã«ã™ã‚‹ãŸã‚ã« prc_algo_* ã«åˆ†å‰²ã—ã¾ã—ãŸ
 
   Revision 1.2  2004/06/17 00:52:36  seiki_masashi
   PRC_InitPrototypeDBEX, PRC_InitInputPatternEX
@@ -51,13 +51,13 @@
   rename ptrcg to prc.
 
   Revision 1.3  2004/06/15 08:10:55  seiki_masashi
-  ƒ_ƒ~[‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚ÅƒTƒ“ƒvƒ‹ƒvƒƒOƒ‰ƒ€‚ª“®ì‰Â”\‚É
+  ãƒ€ãƒŸãƒ¼ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ã‚µãƒ³ãƒ—ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãŒå‹•ä½œå¯èƒ½ã«
 
   Revision 1.2  2004/06/15 05:55:09  seiki_masashi
-  ƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ì‰ü‘P
+  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®æ”¹å–„
 
   Revision 1.1  2004/06/15 00:54:42  seiki_masashi
-  ƒCƒ“ƒ^[ƒtƒFƒCƒX‚ÌİŒv
+  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã®è¨­è¨ˆ
 
 
   $NoKeywords: $
@@ -82,7 +82,7 @@ extern "C" {
  *===========================================================================*/
 
 /*---------------------------------------------------------------------------*
-  ƒAƒ‹ƒSƒŠƒYƒ€ˆË‘¶‚ÌŒ^‚ÌéŒ¾
+  ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ä¾å­˜ã®å‹ã®å®£è¨€
  *---------------------------------------------------------------------------*/
 
 #include <nitro/prc/algo_standard.h>

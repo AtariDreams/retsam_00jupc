@@ -28,43 +28,43 @@
 # change SDK prefix iris -> nitro
 #
 # Revision 1.3  2003/12/16 09:45:31  yasu
-# nitro_sp ‚Ö‚Ì‘Î‰
+# nitro_sp ã¸ã®å¯¾å¿œ
 #
 # Revision 1.2  2003/11/30 09:35:19  yasu
-# ƒRƒ“ƒpƒCƒ‹—p ROOT ‚ÆƒCƒ“ƒXƒg[ƒ‹—p ROOT ‚ğ“Æ—§‚³‚¹‚½
+# ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ç”¨ ROOT ã¨ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ç”¨ ROOT ã‚’ç‹¬ç«‹ã•ã›ãŸ
 #
 # Revision 1.1  2003/11/17 01:54:50  yasu
-# ioreg ¶¬ƒXƒNƒŠƒvƒg‚ğ ioreg/ ˆÈ‰º‚ÖˆÚ“®
+# ioreg ç”Ÿæˆã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ ioreg/ ä»¥ä¸‹ã¸ç§»å‹•
 #
 # Revision 1.9  2003/11/14 12:04:21  nishida_kenji
-# fx’Ç‰Á
+# fxè¿½åŠ 
 #
 # Revision 1.8  2003/11/12 12:03:25  yasu
-# make clobber ‚Å INSTALL_TARGETS íœ‚·‚é‚æ‚¤‚É‚µ‚½
+# make clobber ã§ INSTALL_TARGETS å‰Šé™¤ã™ã‚‹ã‚ˆã†ã«ã—ãŸ
 #
 # Revision 1.7  2003/11/06 13:42:01  yasu
-# sp ‚Ö‚Ìƒ`ƒFƒCƒ“‚ğ•œŠˆ
+# sp ã¸ã®ãƒã‚§ã‚¤ãƒ³ã‚’å¾©æ´»
 #
 # Revision 1.6  2003/11/05 10:32:23  yasu
-# sp ‚Ö‚ÌƒŠƒ“ƒN‚ğˆêŠO‚µ‚Ä‚¨‚­
+# sp ã¸ã®ãƒªãƒ³ã‚¯ã‚’ä¸€æ™‚å¤–ã—ã¦ãŠã
 #
 # Revision 1.5  2003/11/05 09:58:40  yasu
-# NITRO_INC_DIR -> NITRO_INCDIR ‚ÌC³
+# NITRO_INC_DIR -> NITRO_INCDIR ã®ä¿®æ­£
 #
 # Revision 1.4  2003/11/05 07:05:14  yasu
-# commondefs/modulerule C³‚É”º‚¤•ÏX
-# sp/ ‚Ö‚Ìƒ`ƒFƒCƒ“‚Ìİ’è
+# commondefs/modulerule ä¿®æ­£ã«ä¼´ã†å¤‰æ›´
+# sp/ ã¸ã®ãƒã‚§ã‚¤ãƒ³ã®è¨­å®š
 #
 # Revision 1.3  2003/10/30 05:42:36  yasu
-# TARGET ‚Ìw’è‚Ü‚¿‚ª‚¢‚ÌC³
+# TARGET ã®æŒ‡å®šã¾ã¡ãŒã„ã®ä¿®æ­£
 #
 # Revision 1.2  2003/10/30 04:48:06  yasu
-# autogen ƒfƒBƒŒƒNƒgƒŠ -> hw ƒfƒBƒŒƒNƒgƒŠ
-# ƒCƒ“ƒXƒg[ƒ‹æ‚ğ $NitroSDK/include/nitro/hw ‚Ö
+# autogen ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª -> hw ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+# ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å…ˆã‚’ $NitroSDK/include/nitro/hw ã¸
 #
 # Revision 1.1  2003/10/29 13:27:27  yasu
-# make ‚Ì“`”d‚ÌƒtƒŒ[ƒ€ƒ[ƒNŠ®¬
-# all/install/clean/clobber ‚ªg‚¦‚é
+# make ã®ä¼æ’­ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯å®Œæˆ
+# all/install/clean/clobber ãŒä½¿ãˆã‚‹
 #
 # $NoKeywords:$
 #----------------------------------------------------------------------------

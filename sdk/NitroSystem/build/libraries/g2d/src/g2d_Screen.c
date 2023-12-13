@@ -21,15 +21,15 @@
 
 #define BG_MODE_WARNING 8
 
-// �g���p���b�g�X���b�g�̃T�C�Y
+// 拡張パレットスロットのサイズ
 #define NNS_G2D_BGEXTPLTT_SLOTSIZE  0x2000
 
-//---- �e�L�X�gBG�ł̒P�ʃv���[���̃T�C�Y�i�L�����N�^�P�ʁj
+//---- テキストBGでの単位プレーンのサイズ（キャラクタ単位）
 #define PLANE_WIDTH     32
 #define PLANE_HEIGHT    32
 
 
-// BG �g���p���b�g�X���b�g��\���񋓎q
+// BG 拡張パレットスロットを表す列挙子
 typedef enum NNSG2dBGExtPlttSlot
 {
     NNS_G2D_BGEXTPLTTSLOT_MAIN0,
@@ -44,7 +44,7 @@ typedef enum NNSG2dBGExtPlttSlot
 } NNSG2dBGExtPlttSlot;
 
 
-//---- �X�N���[���T�C�Y���l�����W�X�^�l�ϊ��p
+//---- スクリーンサイズ数値→レジスタ値変換用
 typedef struct ScreenSizeMap
 {
     u16 width;
@@ -54,7 +54,7 @@ typedef struct ScreenSizeMap
 ScreenSizeMap;
 
 
-// �e�L�X�gBG�̃X�N���[���T�C�Y�e�[�u��
+// テキストBGのスクリーンサイズテーブル
 static const ScreenSizeMap sTextScnSize[4] =
 {
     {256, 256, GX_BG_SCRSIZE_TEXT_256x256},
@@ -63,7 +63,7 @@ static const ScreenSizeMap sTextScnSize[4] =
     {512, 512, GX_BG_SCRSIZE_TEXT_512x512},
 };
 
-// �A�t�B��BG�̃X�N���[���T�C�Y�e�[�u��
+// アフィンBGのスクリーンサイズテーブル
 static const ScreenSizeMap sAffineScnSize[4] =
 {
     {128, 128, GX_BG_SCRSIZE_AFFINE_128x128},
@@ -72,7 +72,7 @@ static const ScreenSizeMap sAffineScnSize[4] =
     {1024, 1024, GX_BG_SCRSIZE_AFFINE_1024x1024},
 };
 
-// �A�t�B���g��BG�̃X�N���[���T�C�Y�e�[�u��
+// アフィン拡張BGのスクリーンサイズテーブル
 static const ScreenSizeMap sAffineExtScnSize[4] =
 {
     {128, 128, GX_BG_SCRSIZE_256x16PLTT_128x128},
@@ -92,7 +92,7 @@ static const u8 sBGTextModeTable[4][8] =
         /* 4 -> */ GX_BGMODE_4,
         /* 5 -> */ GX_BGMODE_5,
         /* 6 -> */ GX_BGMODE_6,
-        /* 7 -> */ BG_MODE_WARNING,                             // �ݒ�֎~
+        /* 7 -> */ BG_MODE_WARNING,                             // 設定禁止
     },
     {
         /* 0 -> */ GX_BGMODE_0,
@@ -102,7 +102,7 @@ static const u8 sBGTextModeTable[4][8] =
         /* 4 -> */ GX_BGMODE_4,
         /* 5 -> */ GX_BGMODE_5,
         /* 6 -> */ GX_BGMODE_6,
-        /* 7 -> */ BG_MODE_WARNING,                             // �ݒ�֎~
+        /* 7 -> */ BG_MODE_WARNING,                             // 設定禁止
     },
     {
         /* 0 -> */ GX_BGMODE_0,
@@ -112,33 +112,33 @@ static const u8 sBGTextModeTable[4][8] =
         /* 4 -> */ GX_BGMODE_3,
         /* 5 -> */ GX_BGMODE_3,
         /* 6 -> */ GX_BGMODE_0,
-        /* 7 -> */ (GXBGMode)(GX_BGMODE_0 + BG_MODE_WARNING),   // �ݒ�֎~
+        /* 7 -> */ (GXBGMode)(GX_BGMODE_0 + BG_MODE_WARNING),   // 設定禁止
     },
     {
         /* 0 -> */ GX_BGMODE_0,
         /* 1 -> */ GX_BGMODE_0,
-        /* 2 -> */ (GXBGMode)(GX_BGMODE_0 + BG_MODE_WARNING),   // BG2:�A�t�B��     -> �e�L�X�g
+        /* 2 -> */ (GXBGMode)(GX_BGMODE_0 + BG_MODE_WARNING),   // BG2:アフィン     -> テキスト
         /* 3 -> */ GX_BGMODE_0,
-        /* 4 -> */ (GXBGMode)(GX_BGMODE_0 + BG_MODE_WARNING),   // BG2:�A�t�B��     -> �e�L�X�g
-        /* 5 -> */ (GXBGMode)(GX_BGMODE_0 + BG_MODE_WARNING),   // BG2:�A�t�B���g�� -> �e�L�X�g
-        /* 6 -> */ (GXBGMode)(GX_BGMODE_0 + BG_MODE_WARNING),   // BG2:����BMP    -> �e�L�X�g
-        /* 7 -> */ (GXBGMode)(GX_BGMODE_0 + BG_MODE_WARNING),   // �ݒ�֎~
+        /* 4 -> */ (GXBGMode)(GX_BGMODE_0 + BG_MODE_WARNING),   // BG2:アフィン     -> テキスト
+        /* 5 -> */ (GXBGMode)(GX_BGMODE_0 + BG_MODE_WARNING),   // BG2:アフィン拡張 -> テキスト
+        /* 6 -> */ (GXBGMode)(GX_BGMODE_0 + BG_MODE_WARNING),   // BG2:大画面BMP    -> テキスト
+        /* 7 -> */ (GXBGMode)(GX_BGMODE_0 + BG_MODE_WARNING),   // 設定禁止
     }
 };
 
 
-// BG2 ���A�t�B��BG�ɕύX���鎞��BG���[�h�J�ڃe�[�u��
+// BG2 をアフィンBGに変更する時のBGモード遷移テーブル
 static const u8 sBGAffineModeTable[2][8] =
 {
     {
-        /* 0 -> */ (GXBGMode)(GX_BGMODE_2 + BG_MODE_WARNING),   // BG3:�e�L�X�g->�A�t�B��
+        /* 0 -> */ (GXBGMode)(GX_BGMODE_2 + BG_MODE_WARNING),   // BG3:テキスト->アフィン
         /* 1 -> */ GX_BGMODE_2,
         /* 2 -> */ GX_BGMODE_2,
         /* 3 -> */ GX_BGMODE_4,
         /* 4 -> */ GX_BGMODE_4,
         /* 5 -> */ GX_BGMODE_4,
         /* 6 -> */ GX_BGMODE_4,
-        /* 7 -> */ (GXBGMode)(GX_BGMODE_2 + BG_MODE_WARNING),   // �ݒ�֎~
+        /* 7 -> */ (GXBGMode)(GX_BGMODE_2 + BG_MODE_WARNING),   // 設定禁止
     },
     {
         /* 0 -> */ GX_BGMODE_1,
@@ -146,22 +146,22 @@ static const u8 sBGAffineModeTable[2][8] =
         /* 2 -> */ GX_BGMODE_2,
         /* 3 -> */ GX_BGMODE_1,
         /* 4 -> */ GX_BGMODE_2,
-        /* 5 -> */ (GXBGMode)(GX_BGMODE_1 + BG_MODE_WARNING),   // BG2:�A�t�B���g��->�e�L�X�g
-        /* 6 -> */ (GXBGMode)(GX_BGMODE_1 + BG_MODE_WARNING),   // BG2:����->�e�L�X�g
-        /* 7 -> */ (GXBGMode)(GX_BGMODE_1 + BG_MODE_WARNING),   // �ݒ�֎~
+        /* 5 -> */ (GXBGMode)(GX_BGMODE_1 + BG_MODE_WARNING),   // BG2:アフィン拡張->テキスト
+        /* 6 -> */ (GXBGMode)(GX_BGMODE_1 + BG_MODE_WARNING),   // BG2:大画面->テキスト
+        /* 7 -> */ (GXBGMode)(GX_BGMODE_1 + BG_MODE_WARNING),   // 設定禁止
     }
 };
 static const u8 sBG256x16PlttModeTable[2][8] =
 {
     {
-        /* 0 -> */ (GXBGMode)(GX_BGMODE_5 + BG_MODE_WARNING),   // BG3:�e�L�X�g->�A�t�B���g��
-        /* 1 -> */ (GXBGMode)(GX_BGMODE_5 + BG_MODE_WARNING),   // BG3:�A�t�B��->�A�t�B���g��
-        /* 2 -> */ (GXBGMode)(GX_BGMODE_5 + BG_MODE_WARNING),   // BG3:�A�t�B��->�A�t�B���g��
+        /* 0 -> */ (GXBGMode)(GX_BGMODE_5 + BG_MODE_WARNING),   // BG3:テキスト->アフィン拡張
+        /* 1 -> */ (GXBGMode)(GX_BGMODE_5 + BG_MODE_WARNING),   // BG3:アフィン->アフィン拡張
+        /* 2 -> */ (GXBGMode)(GX_BGMODE_5 + BG_MODE_WARNING),   // BG3:アフィン->アフィン拡張
         /* 3 -> */ GX_BGMODE_5,
         /* 4 -> */ GX_BGMODE_5,
         /* 5 -> */ GX_BGMODE_5,
         /* 6 -> */ GX_BGMODE_5,
-        /* 7 -> */ (GXBGMode)(GX_BGMODE_5 + BG_MODE_WARNING),   // �ݒ�֎~
+        /* 7 -> */ (GXBGMode)(GX_BGMODE_5 + BG_MODE_WARNING),   // 設定禁止
     },
     {
         /* 0 -> */ GX_BGMODE_3,
@@ -170,8 +170,8 @@ static const u8 sBG256x16PlttModeTable[2][8] =
         /* 3 -> */ GX_BGMODE_3,
         /* 4 -> */ GX_BGMODE_4,
         /* 5 -> */ GX_BGMODE_5,
-        /* 6 -> */ (GXBGMode)(GX_BGMODE_3 + BG_MODE_WARNING),   // BG2:����->�e�L�X�g
-        /* 7 -> */ (GXBGMode)(GX_BGMODE_3 + BG_MODE_WARNING),   // �ݒ�֎~
+        /* 6 -> */ (GXBGMode)(GX_BGMODE_3 + BG_MODE_WARNING),   // BG2:大画面->テキスト
+        /* 7 -> */ (GXBGMode)(GX_BGMODE_3 + BG_MODE_WARNING),   // 設定禁止
     }
 };
 
@@ -182,22 +182,22 @@ GXBGAreaOver NNSi_G2dBGAreaOver = GX_BG_AREAOVER_XLU;
 
 
 //****************************************************************************
-// static �֐�
+// static 関数
 //****************************************************************************
 
 //----------------------------------------------------------------------------
-// �C�����C���֐�
+// インライン関数
 //----------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
   Name:         IsMainBGExtPlttSlot
 
-  Description:  NNSG2dBGExtPlttSlot �^�̒l�����C����ʂ̊g���p���b�g�X���b�g��
-                �\���Ă��邩���肵�܂��B
+  Description:  NNSG2dBGExtPlttSlot 型の値がメイン画面の拡張パレットスロットを
+                表しているか判定します。
 
-  Arguments:    slot:   ����Ώ�
+  Arguments:    slot:   判定対象
 
-  Returns:      ���C����ʂ̊g���p���b�g�X���b�g��\���Ă���Ȃ� TRUE�B
+  Returns:      メイン画面の拡張パレットスロットを表しているなら TRUE。
  *---------------------------------------------------------------------------*/
 static NNS_G2D_INLINE BOOL IsMainBGExtPlttSlot(NNSG2dBGExtPlttSlot slot)
 {
@@ -209,15 +209,15 @@ static NNS_G2D_INLINE BOOL IsMainBGExtPlttSlot(NNSG2dBGExtPlttSlot slot)
 /*---------------------------------------------------------------------------*
   Name:         CalcTextScreenOffset
 
-  Description:  �e�L�X�gBG�ʂ̎w�肳�ꂽ�ʒu�̃X�N���[���x�[�X�����
-                �I�t�Z�b�g���擾���܂��B
+  Description:  テキストBG面の指定された位置のスクリーンベースからの
+                オフセットを取得します。
 
-  Arguments:    x:  �ʒu�w�� x �i�L�����N�^�P�ʁj
-                y:  �ʒu�w�� y �i�L�����N�^�P�ʁj
-                w:  �Ώ� BG �ʂ̕��i�L�����N�^�P�ʁj
-                h:  �Ώ� BG �ʂ̍����i�L�����N�^�P�ʁj
+  Arguments:    x:  位置指定 x （キャラクタ単位）
+                y:  位置指定 y （キャラクタ単位）
+                w:  対象 BG 面の幅（キャラクタ単位）
+                h:  対象 BG 面の高さ（キャラクタ単位）
 
-  Returns:      �w�肳�ꂽ�ʒu�̃I�t�Z�b�g�i�L�����N�^�P�ʁj
+  Returns:      指定された位置のオフセット（キャラクタ単位）
  *---------------------------------------------------------------------------*/
 static NNS_G2D_INLINE int CalcTextScreenOffset(int x, int y, int w, int h)
 {
@@ -242,12 +242,12 @@ static NNS_G2D_INLINE int CalcTextScreenOffset(int x, int y, int w, int h)
 /*---------------------------------------------------------------------------*
   Name:         GetCompressedPlttOriginalIndex
 
-  Description:  �w�肳�ꂽ�p���b�g�̈��k�O�̃I�t�Z�b�g���擾���܂��B
+  Description:  指定されたパレットの圧縮前のオフセットを取得します。
 
-  Arguments:    pCmpInfo:   �p���b�g���k���ւ̃|�C���^�B
-                idx:        �p���b�g�ԍ��B
+  Arguments:    pCmpInfo:   パレット圧縮情報へのポインタ。
+                idx:        パレット番号。
 
-  Returns:      �p���b�g�̃I�t�Z�b�g�i�o�C�g�P�ʁj
+  Returns:      パレットのオフセット（バイト単位）
  *---------------------------------------------------------------------------*/
 static NNS_G2D_INLINE u32 GetCompressedPlttOriginalIndex(
     const NNSG2dPaletteCompressInfo* pCmpInfo,
@@ -264,11 +264,11 @@ static NNS_G2D_INLINE u32 GetCompressedPlttOriginalIndex(
 /*---------------------------------------------------------------------------*
   Name:         GetPlttSize
 
-  Description:  �p���b�g�f�[�^��1�p���b�g������̃T�C�Y���擾���܂��B
+  Description:  パレットデータの1パレットあたりのサイズを取得します。
 
-  Arguments:    pPltData:   �p���b�g�f�[�^�ւ̃|�C���^�B
+  Arguments:    pPltData:   パレットデータへのポインタ。
 
-  Returns:      �p���b�g�̃T�C�Y�i�o�C�g�P�ʁj
+  Returns:      パレットのサイズ（バイト単位）
  *---------------------------------------------------------------------------*/
 static NNS_G2D_INLINE u32 GetPlttSize(const NNSG2dPaletteData* pPltData)
 {
@@ -290,22 +290,22 @@ static NNS_G2D_INLINE u32 GetPlttSize(const NNSG2dPaletteData* pPltData)
 
 
 //----------------------------------------------------------------------------
-// �ʏ�֐�
+// 通常関数
 //----------------------------------------------------------------------------
 
 /*---------------------------------------------------------------------------*
   Name:         SelectScnSize
 
-  Description:  �^����ꂽ�e�[�u�����Q�Ƃ��ăX�N���[���T�C�Y��ϊ����܂��B
-                �w�肳�ꂽ�X�N���[���T�C�Y�ȏ�ōŏ���BG�T�C�Y��Ԃ��܂��B
-                �w�肳�ꂽ�X�N���[���T�C�Y�ȏ��BG�����݂��Ȃ��ꍇ��
-                �ő��BG�T�C�Y��Ԃ��܂��B
+  Description:  与えられたテーブルを参照してスクリーンサイズを変換します。
+                指定されたスクリーンサイズ以上で最小のBGサイズを返します。
+                指定されたスクリーンサイズ以上のBGが存在しない場合は
+                最大のBGサイズを返します。
 
-  Arguments:    tbl:    �X�N���[���T�C�Y�ϊ��e�[�u��
-                w:      �s�N�Z���P�ʂ̃X�N���[����
-                h:      �s�N�Z���P�ʂ̃X�N���[����
+  Arguments:    tbl:    スクリーンサイズ変換テーブル
+                w:      ピクセル単位のスクリーン幅
+                h:      ピクセル単位のスクリーン高
 
-  Returns:      �Ή�����X�N���[���T�C�Y�f�[�^�ւ̃|�C���^�B
+  Returns:      対応するスクリーンサイズデータへのポインタ。
  *---------------------------------------------------------------------------*/
 static const ScreenSizeMap* SelectScnSize(const ScreenSizeMap tbl[4], int w, int h)
 {
@@ -327,11 +327,11 @@ static const ScreenSizeMap* SelectScnSize(const ScreenSizeMap tbl[4], int w, int
 /*---------------------------------------------------------------------------*
   Name:         ChangeBGModeByTable*
 
-  Description:  �e�[�u���ɏ]����BG���[�h��؂�ւ��܂��B
+  Description:  テーブルに従ってBGモードを切り替えます。
 
-  Arguments:    modeTable:  ���[�h�J�ڃe�[�u��
+  Arguments:    modeTable:  モード遷移テーブル
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void ChangeBGModeByTableMain(const u8 modeTable[])
 {
@@ -339,7 +339,7 @@ static void ChangeBGModeByTableMain(const u8 modeTable[])
     GXBG0As bg0as = IsBG03D() ? GX_BG0_AS_3D: GX_BG0_AS_2D;
     SDK_NULL_ASSERT(modeTable);
 
-    // ����BG�Ɏx�Ⴊ�o�郂�[�h�ύX���x��
+    // 他のBGに支障が出るモード変更を警告
     if( mode >= BG_MODE_WARNING )
     {
         mode -= BG_MODE_WARNING;
@@ -354,7 +354,7 @@ static void ChangeBGModeByTableSub(const u8 modeTable[])
     GXBGMode mode = (GXBGMode)modeTable[GetBGModeSub()];
     SDK_NULL_ASSERT(modeTable);
 
-    // ����BG�Ɏx�Ⴊ�o�郂�[�h�ύX���x��
+    // 他のBGに支障が出るモード変更を警告
     if( mode >= BG_MODE_WARNING )
     {
         mode -= BG_MODE_WARNING;
@@ -369,12 +369,12 @@ static void ChangeBGModeByTableSub(const u8 modeTable[])
 /*---------------------------------------------------------------------------*
   Name:         LoadBGPlttToExtendedPltt
 
-  Description:  �w�肳�ꂽ�g���p���b�g�X���b�g�Ƀp���b�g�f�[�^��ǂݍ��݂܂��B
+  Description:  指定された拡張パレットスロットにパレットデータを読み込みます。
 
-  Arguments:    slot:       �p���b�g�f�[�^��ǂݍ��ފg���p���b�g�X���b�g
-                pPltData:   �p���b�g�f�[�^�ւ̃|�C���^
+  Arguments:    slot:       パレットデータを読み込む拡張パレットスロット
+                pPltData:   パレットデータへのポインタ
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void LoadBGPlttToExtendedPltt(
     NNSG2dBGExtPlttSlot slot,
@@ -388,7 +388,7 @@ static void LoadBGPlttToExtendedPltt(
     u32 offset = (u32)( slot * NNS_G2D_BGEXTPLTT_SLOTSIZE );
     SDK_NULL_ASSERT(pPltData);
 
-    // �L���b�V���t���b�V��
+    // キャッシュフラッシュ
     DC_FlushRange(pPltData->pRawData, pPltData->szByte);
 
     if( IsMainBGExtPlttSlot(slot) )
@@ -435,10 +435,10 @@ static void LoadBGPlttToExtendedPltt(
 /*---------------------------------------------------------------------------*
   Name:         LoadBGPlttToNormalPltt
 
-  Description:  �W���p���b�g�Ƀp���b�g�f�[�^��ǂݍ��݂܂��B
+  Description:  標準パレットにパレットデータを読み込みます。
 
-  Arguments:    bMainDisplay:   �Ǎ���Ώۂ� BG �ʁB
-                pPltData:       �p���b�g�f�[�^�ւ̃|�C���^
+  Arguments:    bMainDisplay:   読込先対象の BG 面。
+                pPltData:       パレットデータへのポインタ
 
   Returns:
  *---------------------------------------------------------------------------*/
@@ -451,7 +451,7 @@ static void LoadBGPlttToNormalPltt(
     u8* pDst;
     SDK_NULL_ASSERT(pPltData);
 
-    // �L���b�V���t���b�V��
+    // キャッシュフラッシュ
     DC_FlushRange(pPltData->pRawData, pPltData->szByte);
 
     pDst = (u8*)( IsMainBG(bg) ? HW_BG_PLTT: HW_DB_BG_PLTT );
@@ -481,29 +481,29 @@ static void LoadBGPlttToNormalPltt(
 /*---------------------------------------------------------------------------*
   Name:         GetBGExtPlttSlot
 
-  Description:  �w�肳�ꂽ BG ���g�p����g���p���b�g�X���b�g���擾���܂��B
+  Description:  指定された BG が使用する拡張パレットスロットを取得します。
 
-  Arguments:    bg: �g�p����g���p���b�g�X���b�g�ԍ����擾������ BG
+  Arguments:    bg: 使用する拡張パレットスロット番号を取得したい BG
 
-  Returns:      bg ���g�p����g���p���b�g�X���b�g�ԍ�
+  Returns:      bg が使用する拡張パレットスロット番号
  *---------------------------------------------------------------------------*/
 static NNSG2dBGExtPlttSlot GetBGExtPlttSlot(NNSG2dBGSelect bg)
 {
-    // NNSG2dBGSelect => BGxCNT���W�X�^�I�t�Z�b�g �̕ϊ��e�[�u��
+    // NNSG2dBGSelect => BGxCNTレジスタオフセット の変換テーブル
     static const u16 addrTable[] =
     {
         REG_BG0CNT_OFFSET,
         REG_BG1CNT_OFFSET,
-        0,                      // �g�p����X���b�g�͌Œ�
-        0,                      // �g�p����X���b�g�͌Œ�
+        0,                      // 使用するスロットは固定
+        0,                      // 使用するスロットは固定
         REG_DB_BG0CNT_OFFSET,
         REG_DB_BG1CNT_OFFSET,
-        0,                      // �g�p����X���b�g�͌Œ�
-        0                       // �g�p����X���b�g�͌Œ�
+        0,                      // 使用するスロットは固定
+        0                       // 使用するスロットは固定
     };
     u32 addr;
     NNSG2dBGExtPlttSlot slot = (NNSG2dBGExtPlttSlot)bg;
-        // ��{�� (int)slot == (int)bg
+        // 基本は (int)slot == (int)bg
 
     NNS_G2D_BG_ASSERT(bg);
     addr = addrTable[bg];
@@ -514,7 +514,7 @@ static NNSG2dBGExtPlttSlot GetBGExtPlttSlot(NNSG2dBGSelect bg)
 
         if( (*(u16*)addr & REG_G2_BG0CNT_BGPLTTSLOT_MASK) != 0 )
         {
-            // BGPLTTSLOT�r�b�g�������Ă���ꍇ��
+            // BGPLTTSLOTビットがたっている場合は
             // (int)slot == (int)bg + 2
             slot += 2;
         }
@@ -528,16 +528,16 @@ static NNSG2dBGExtPlttSlot GetBGExtPlttSlot(NNSG2dBGSelect bg)
 /*---------------------------------------------------------------------------*
   Name:         SetBGnControlTo*
 
-  Description:  BGxCNT ���W�X�^�̐ݒ�� BG ���[�h�̕ύX���s���܂��B
+  Description:  BGxCNT レジスタの設定と BG モードの変更を行います。
 
-  Arguments:    n:          �Ώۂ� BG �ʁB
-                size:       �X�N���[���T�C�Y�B
-                cmode:      �J���[���[�h�B
-                areaOver:   �G���A�I�[�o�[�����B
-                scnBase:    BG �̃X�N���[���x�[�X�u���b�N�B
-                chrBase:    BG �̃L�����N�^�x�[�X�u���b�N�B
+  Arguments:    n:          対象の BG 面。
+                size:       スクリーンサイズ。
+                cmode:      カラーモード。
+                areaOver:   エリアオーバー処理。
+                scnBase:    BG のスクリーンベースブロック。
+                chrBase:    BG のキャラクタベースブロック。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void SetBGnControlToText(
     NNSG2dBGSelect n,
@@ -602,15 +602,15 @@ static void SetBGnControlTo256x16Pltt(
 /*---------------------------------------------------------------------------*
   Name:         BGAutoControlText
 
-  Description:  �X�N���[���f�[�^�ɏ]���� BGxCNT ���W�X�^���e�L�X�gBG�Ƃ���
-                �ݒ肵�܂��B������ BG ���[�h�̕ύX���s���܂��B
+  Description:  スクリーンデータに従って BGxCNT レジスタをテキストBGとして
+                設定します。同時に BG モードの変更も行います。
 
-  Arguments:    bg:         �R���g���[���Ώۂ� BG�B
-                pScnData:   �X�N���[���f�[�^�ւ̃|�C���^�B
-                scnBase:    BG �̃X�N���[���x�[�X
-                chrBase:    BG �̃L�����N�^�x�[�X
+  Arguments:    bg:         コントロール対象の BG。
+                pScnData:   スクリーンデータへのポインタ。
+                scnBase:    BG のスクリーンベース
+                chrBase:    BG のキャラクタベース
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void SetBGControlText(
     NNSG2dBGSelect bg,
@@ -640,15 +640,15 @@ static void SetBGControlText(
 /*---------------------------------------------------------------------------*
   Name:         BGAutoControlAffine
 
-  Description:  �X�N���[���f�[�^�ɏ]���� BGxCNT ���W�X�^���A�t�B��BG�Ƃ���
-                �ݒ肵�܂��B������ BG ���[�h�̕ύX���s���܂��B
+  Description:  スクリーンデータに従って BGxCNT レジスタをアフィンBGとして
+                設定します。同時に BG モードの変更も行います。
 
-  Arguments:    bg:         �R���g���[���Ώۂ� BG�B
-                pScnData:   �X�N���[���f�[�^�ւ̃|�C���^�B
-                scnBase:    BG �̃X�N���[���x�[�X
-                chrBase:    BG �̃L�����N�^�x�[�X
+  Arguments:    bg:         コントロール対象の BG。
+                pScnData:   スクリーンデータへのポインタ。
+                scnBase:    BG のスクリーンベース
+                chrBase:    BG のキャラクタベース
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void SetBGControlAffine(
     NNSG2dBGSelect bg,
@@ -681,15 +681,15 @@ static void SetBGControlAffine(
 /*---------------------------------------------------------------------------*
   Name:         BGAutoControlAffineExt
 
-  Description:  �X�N���[���f�[�^�ɏ]���� BGxCNT ���W�X�^���A�t�B���g��BG�Ƃ���
-                �ݒ肵�܂��B������ BG ���[�h�̕ύX���s���܂��B
+  Description:  スクリーンデータに従って BGxCNT レジスタをアフィン拡張BGとして
+                設定します。同時に BG モードの変更も行います。
 
-  Arguments:    bg:         �R���g���[���Ώۂ� BG�B
-                pScnData:   �X�N���[���f�[�^�ւ̃|�C���^�B
-                scnBase:    BG �̃X�N���[���x�[�X
-                chrBase:    BG �̃L�����N�^�x�[�X
+  Arguments:    bg:         コントロール対象の BG。
+                pScnData:   スクリーンデータへのポインタ。
+                scnBase:    BG のスクリーンベース
+                chrBase:    BG のキャラクタベース
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void SetBGControl256x16Pltt(
     NNSG2dBGSelect bg,
@@ -722,12 +722,12 @@ static void SetBGControl256x16Pltt(
 /*---------------------------------------------------------------------------*
   Name:         IsBGExtPlttSlotAssigned
 
-  Description:  �w�肳�ꂽ�g���p���b�g�X���b�g�� VRAM �����蓖�Ă��Ă��邩
-                ���肵�܂��B
+  Description:  指定された拡張パレットスロットに VRAM が割り当てられているか
+                判定します。
 
-  Arguments:    slot:   ����Ώۂ̊g���p���b�g�X���b�g
+  Arguments:    slot:   判定対象の拡張パレットスロット
 
-  Returns:      VRAM �����蓖�Ă��Ă���Ȃ� TRUE�B
+  Returns:      VRAM が割り当てられているなら TRUE。
  *---------------------------------------------------------------------------*/
 static BOOL IsBGExtPlttSlotAssigned(NNSG2dBGExtPlttSlot slot)
 {
@@ -753,16 +753,16 @@ static BOOL IsBGExtPlttSlotAssigned(NNSG2dBGExtPlttSlot slot)
 /*---------------------------------------------------------------------------*
   Name:         LoadBGPaletteSelect
 
-  Description:  �p���b�g�f�[�^�� VRAM �ɓǂݍ��݂܂��B
-                �p���b�g���g�p���� BG �ƁA�g���p���b�g���g�����ǂ�����
-                �ǂݍ��ݐ���w�肵�܂��B
+  Description:  パレットデータを VRAM に読み込みます。
+                パレットを使用する BG と、拡張パレットを使うかどうかで
+                読み込み先を指定します。
 
-  Arguments:    bg:         �ǂݍ��܂���p���b�g�f�[�^���g�p���� BG
-                bToExtPltt: TRUE �Ȃ�g���p���b�g�ցAFALSE �Ȃ�W���p���b�g��
-                            �ǂݍ��݂܂��B
-                pPltData:   �p���b�g�f�[�^�ւ̃|�C���^�B
+  Arguments:    bg:         読み込ませるパレットデータを使用する BG
+                bToExtPltt: TRUE なら拡張パレットへ、FALSE なら標準パレットへ
+                            読み込みます。
+                pPltData:   パレットデータへのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void LoadBGPaletteSelect(
     NNSG2dBGSelect bg,
@@ -792,16 +792,16 @@ static void LoadBGPaletteSelect(
 /*---------------------------------------------------------------------------*
   Name:         LoadBGPalette
 
-  Description:  �p���b�g�f�[�^�� VRAM �ɓǂݍ��݂܂��B
-                �p���b�g���g�p���� BG �� G2D�X�N���[���f�[�^����
-                �ǂݍ��ݐ���������肵�܂��B
+  Description:  パレットデータを VRAM に読み込みます。
+                パレットを使用する BG と G2Dスクリーンデータから
+                読み込み先を自動判定します。
 
-  Arguments:    bg:         �ǂݍ��܂���p���b�g�f�[�^���g�p���� BG
-                pPltData:   �p���b�g�f�[�^�ւ̃|�C���^�B
-                pScnData:   �ǂݍ��܂���p���b�g�f�[�^���g�p����
-                            �X�N���[���f�[�^�ւ̃|�C���^�B
+  Arguments:    bg:         読み込ませるパレットデータを使用する BG
+                pPltData:   パレットデータへのポインタ。
+                pScnData:   読み込ませるパレットデータを使用する
+                            スクリーンデータへのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void LoadBGPalette(
     NNSG2dBGSelect bg,
@@ -811,20 +811,20 @@ static void LoadBGPalette(
 )
 {
 /*
-    �g���p���b�g    |�L��           ����
-      �Ή��X���b�g  |�L��   ����    -
+    拡張パレット    |有効           無効
+      対応スロット  |有効   無効    -
     -------------------------------------
-    text    16x16   |�W��   �W��    �W��
-            256x1   |�g��   (�g��)  �W��
-            256x16  |�g��   (�g��)  [�W��]
-    affine  256x1   |�W��   �W��    �W��
-    extend  256x16  |�g��   (�g��)  [�W��]
+    text    16x16   |標準   標準    標準
+            256x1   |拡張   (拡張)  標準
+            256x16  |拡張   (拡張)  [標準]
+    affine  256x1   |標準   標準    標準
+    extend  256x16  |拡張   (拡張)  [標準]
 
-    () �t�͓��ߐF�ȊO�����ׂč��ɂȂ�
-    [] �t�̓p���b�g�w�肪���������
-    ���� ASSERT �Œ�~
+    () 付は透過色以外がすべて黒になる
+    [] 付はパレット指定が無視される
+    共に ASSERT で停止
 */
-    // TODO: �g���p���b�g�g�p���ł��o�b�N�h���b�v�F�ɂ͕W���p���b�g���g����
+    // TODO: 拡張パレット使用時でもバックドロップ色には標準パレットが使われる
     //*(GXRgb*)(HW_BG_PLTT) = pPltData->pRawData[0];
 
     NNS_G2D_BG_ASSERT(bg);
@@ -855,14 +855,14 @@ static void LoadBGPalette(
 /*---------------------------------------------------------------------------*
   Name:         LoadBGCharacter
 
-  Description:  �L�����N�^�f�[�^��Ώۂ�BG�p�Ƀ��[�h���܂��B
+  Description:  キャラクタデータを対象のBG用にロードします。
 
-  Arguments:    bg:         �Ώۂ� BG �ʁB
-                pChrData:   �L�����N�^�f�[�^�ւ̃|�C���^�B
-                pPosInfo:   �L�����N�^�ʒu���ւ̃|�C���^�B
-                            pChrData �������L�����N�^�łȂ��ꍇ�� NULL ���w��B
+  Arguments:    bg:         対象の BG 面。
+                pChrData:   キャラクタデータへのポインタ。
+                pPosInfo:   キャラクタ位置情報へのポインタ。
+                            pChrData が部分キャラクタでない場合は NULL を指定。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void LoadBGCharacter(
     NNSG2dBGSelect bg,
@@ -876,7 +876,7 @@ static void LoadBGCharacter(
     SDK_NULL_ASSERT(pChrData);
     SDK_ASSERT( pPosInfo == NULL || pPosInfo->srcPosX == 0 );
 
-    //---- �����L�����N�^�̏ꍇ�̓I�t�Z�b�g�Z�o
+    //---- 部分キャラクタの場合はオフセット算出
     if( pPosInfo != NULL )
     {
         int offsetChars = pPosInfo->srcPosY * pPosInfo->srcW;
@@ -895,12 +895,12 @@ static void LoadBGCharacter(
 /*---------------------------------------------------------------------------*
   Name:         LoadBGScreen
 
-  Description:  �X�N���[���f�[�^��Ώۂ�BG�p�Ƀ��[�h���܂��B
+  Description:  スクリーンデータを対象のBG用にロードします。
 
-  Arguments:    bg:         �Ώۂ� BG �ʁB
-                pScnData:   ���[�h����X�N���[���f�[�^�B
+  Arguments:    bg:         対象の BG 面。
+                pScnData:   ロードするスクリーンデータ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void LoadBGScreen(
     NNSG2dBGSelect bg,
@@ -916,10 +916,10 @@ static void LoadBGScreen(
     NNS_G2D_BG_ASSERT(bg);
     SDK_NULL_ASSERT(pScnData);
 
-    //---- �X�N���[���x�[�X�擾
+    //---- スクリーンベース取得
     pDstBase = (GXScrFmtText*)GetBGnScrPtr(bg);
 
-    //---- �]���\�ȃT�C�Y���Z�o
+    //---- 転送可能なサイズを算出
     {
         const int scn_cwidth  = pScnData->screenWidth / 8;
         const int scn_cheight = pScnData->screenHeight / 8;
@@ -930,7 +930,7 @@ static void LoadBGScreen(
     }
 
 
-    //---- �]��
+    //---- 転送
     DC_FlushRange( (void*)pScnData->rawData, pScnData->szByte );
     NNS_G2dBGLoadScreenRect(
         pDstBase,
@@ -950,17 +950,17 @@ static void LoadBGScreen(
 /*---------------------------------------------------------------------------*
   Name:         SetBGControlAuto
 
-  Description:  �Ώۂ� BG �ʂ� BG �R���g���[�����s���܂��B
+  Description:  対象の BG 面の BG コントロールを行います。
 
-  Arguments:    bg:             �Ώۂ� BG �ʁB
-                screenFormat:   BG�^�C�v�B
-                colorMode:      �J���[���[�h
-                screenWidth:    �X�N���[�����i�s�N�Z���P�ʁj
-                screenHeight:   �X�N���[�����i�s�N�Z���P�ʁj
-                schBase:        �X�N���[���x�[�X�u���b�N�B
-                chrBase:        �L�����N�^�x�[�X�u���b�N�B
+  Arguments:    bg:             対象の BG 面。
+                screenFormat:   BGタイプ。
+                colorMode:      カラーモード
+                screenWidth:    スクリーン幅（ピクセル単位）
+                screenHeight:   スクリーン高（ピクセル単位）
+                schBase:        スクリーンベースブロック。
+                chrBase:        キャラクタベースブロック。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void SetBGControlAuto(
     NNSG2dBGSelect bg,
@@ -998,21 +998,21 @@ static void SetBGControlAuto(
 /*---------------------------------------------------------------------------*
   Name:         LoadScreenPartText
 
-  Description:  �X�N���[���f�[�^���̎w�肳�ꂽ��`���o�b�t�@�̎w�肳�ꂽ�ʒu��
-                �R�s�[���܂��B
+  Description:  スクリーンデータ中の指定された矩形をバッファの指定された位置に
+                コピーします。
 
-  Arguments:    pScreenDst: �]�����_�ւ̃|�C���^�B
-                pScnData:   �]�����ƂȂ�X�N���[���f�[�^�ւ̃|�C���^�B
-                srcX:       �]�����������X���W�B�i�L�����N�^�P�ʁj
-                srcY:       �]�����������Y���W�B�i�L�����N�^�P�ʁj
-                dstX:       �]���捶�����X���W�B�i�L�����N�^�P�ʁj
-                dstY:       �]���捶�����Y���W�B�i�L�����N�^�P�ʁj
-                dstW:       �]����̈�̕��B�i�L�����N�^�P�ʁj
-                dstH:       �]����̈�̍����B�i�L�����N�^�P�ʁj
-                width:      �]������̈�̕��B�i�L�����N�^�P�ʁj
-                height:     �]������̈�̍����B�i�L�����N�^�P�ʁj
+  Arguments:    pScreenDst: 転送先基準点へのポインタ。
+                pScnData:   転送下となるスクリーンデータへのポインタ。
+                srcX:       転送元左上隅のX座標。（キャラクタ単位）
+                srcY:       転送元左上隅のY座標。（キャラクタ単位）
+                dstX:       転送先左上隅のX座標。（キャラクタ単位）
+                dstY:       転送先左上隅のY座標。（キャラクタ単位）
+                dstW:       転送先領域の幅。（キャラクタ単位）
+                dstH:       転送先領域の高さ。（キャラクタ単位）
+                width:      転送する領域の幅。（キャラクタ単位）
+                height:     転送する領域の高さ。（キャラクタ単位）
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void LoadScreenPartText(
     void* pScreenDst,
@@ -1030,7 +1030,7 @@ static void LoadScreenPartText(
     NNS_G2D_POINTER_ASSERT( pScreenDst );
     NNS_G2D_POINTER_ASSERT( pScnData );
 
-    //---- 1�L�������Ƀ}�b�s���O
+    //---- 1キャラ毎にマッピング
     {
         const int src_x_end             = srcX + width;
         const int src_y_end             = srcY + height;
@@ -1063,20 +1063,20 @@ static void LoadScreenPartText(
 /*---------------------------------------------------------------------------*
   Name:         LoadScreenPartAffine
 
-  Description:  �X�N���[���f�[�^���̎w�肳�ꂽ��`���o�b�t�@�̎w�肳�ꂽ�ʒu��
-                �R�s�[���܂��B
+  Description:  スクリーンデータ中の指定された矩形をバッファの指定された位置に
+                コピーします。
 
-  Arguments:    pScreenDst: �]�����_�ւ̃|�C���^�B
-                pScnData:   �]�����ƂȂ�X�N���[���f�[�^�ւ̃|�C���^�B
-                srcX:       �]�����������X���W�B�i�L�����N�^�P�ʁj
-                srcY:       �]�����������Y���W�B�i�L�����N�^�P�ʁj
-                dstX:       �]���捶�����X���W�B�i�L�����N�^�P�ʁj
-                dstY:       �]���捶�����Y���W�B�i�L�����N�^�P�ʁj
-                dstW:       �]����̈�̕��B�i�L�����N�^�P�ʁj
-                width:      �]������̈�̕��B�i�L�����N�^�P�ʁj
-                height:     �]������̈�̍����B�i�L�����N�^�P�ʁj
+  Arguments:    pScreenDst: 転送先基準点へのポインタ。
+                pScnData:   転送下となるスクリーンデータへのポインタ。
+                srcX:       転送元左上隅のX座標。（キャラクタ単位）
+                srcY:       転送元左上隅のY座標。（キャラクタ単位）
+                dstX:       転送先左上隅のX座標。（キャラクタ単位）
+                dstY:       転送先左上隅のY座標。（キャラクタ単位）
+                dstW:       転送先領域の幅。（キャラクタ単位）
+                width:      転送する領域の幅。（キャラクタ単位）
+                height:     転送する領域の高さ。（キャラクタ単位）
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void LoadScreenPartAffine(
     void* pScreenDst,
@@ -1093,7 +1093,7 @@ static void LoadScreenPartAffine(
     NNS_G2D_POINTER_ASSERT( pScreenDst );
     NNS_G2D_POINTER_ASSERT( pScnData );
 
-    //---- �P���ɋ�`��]��
+    //---- 単純に矩形を転送
     {
         const int src_y_end        = srcY + height;
         const int srcW             = pScnData->screenWidth / 8;
@@ -1119,20 +1119,20 @@ static void LoadScreenPartAffine(
 /*---------------------------------------------------------------------------*
   Name:         LoadScreenPart256x16Pltt
 
-  Description:  �X�N���[���f�[�^���̎w�肳�ꂽ��`���o�b�t�@�̎w�肳�ꂽ�ʒu��
-                �R�s�[���܂��B
+  Description:  スクリーンデータ中の指定された矩形をバッファの指定された位置に
+                コピーします。
 
-  Arguments:    pScreenDst: �]�����_�ւ̃|�C���^�B
-                pScnData:   �]�����ƂȂ�X�N���[���f�[�^�ւ̃|�C���^�B
-                srcX:       �]�����������X���W�B�i�L�����N�^�P�ʁj
-                srcY:       �]�����������Y���W�B�i�L�����N�^�P�ʁj
-                dstX:       �]���捶�����X���W�B�i�L�����N�^�P�ʁj
-                dstY:       �]���捶�����Y���W�B�i�L�����N�^�P�ʁj
-                dstW:       �]����̈�̕��B�i�L�����N�^�P�ʁj
-                width:      �]������̈�̕��B�i�L�����N�^�P�ʁj
-                height:     �]������̈�̍����B�i�L�����N�^�P�ʁj
+  Arguments:    pScreenDst: 転送先基準点へのポインタ。
+                pScnData:   転送下となるスクリーンデータへのポインタ。
+                srcX:       転送元左上隅のX座標。（キャラクタ単位）
+                srcY:       転送元左上隅のY座標。（キャラクタ単位）
+                dstX:       転送先左上隅のX座標。（キャラクタ単位）
+                dstY:       転送先左上隅のY座標。（キャラクタ単位）
+                dstW:       転送先領域の幅。（キャラクタ単位）
+                width:      転送する領域の幅。（キャラクタ単位）
+                height:     転送する領域の高さ。（キャラクタ単位）
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void LoadScreenPart256x16Pltt(
     void* pScreenDst,
@@ -1149,7 +1149,7 @@ static void LoadScreenPart256x16Pltt(
     NNS_G2D_POINTER_ASSERT( pScreenDst );
     NNS_G2D_POINTER_ASSERT( pScnData );
 
-    //---- �P���ɋ�`��]��
+    //---- 単純に矩形を転送
     {
         const int src_y_end      = srcY + height;
         const int srcW           = pScnData->screenWidth / 8;
@@ -1183,31 +1183,31 @@ static void LoadScreenPart256x16Pltt(
 
 
 //****************************************************************************
-// ���J�֐�
+// 公開関数
 //****************************************************************************
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dBGLoadElements
 
-  Description:  BG �ŗp����O���t�B�b�N�X�f�[�^��K�؂�VRAM�ɓǂݍ��݂܂��B
-                �Ώ� BG �� BGControl ���K�؂ɐݒ肳��Ă���K�v������܂��B
-                BG0-1�̊g���p���b�g�̓Ǎ���͊g���p���b�g�ւ� VRAM ��
-                ���蓖�ď󋵂��玩���I�ɔ��f���܂��B
-                Text BG �� 256x1 �p���b�g�͊g���p���b�g���L�����ǂ�����
-                ���[�h���؂�ւ��܂��B
+  Description:  BG で用いるグラフィックスデータを適切なVRAMに読み込みます。
+                対象 BG の BGControl が適切に設定されている必要があります。
+                BG0-1の拡張パレットの読込先は拡張パレットへの VRAM の
+                割り当て状況から自動的に判断します。
+                Text BG の 256x1 パレットは拡張パレットが有効かどうかで
+                ロード先を切り替えます。
 
-  Arguments:    bg:         ���[�h����f�[�^���g�p���� BG
-                pScnData:   VRAM �Ƀ��[�h����X�N���[���f�[�^�ւ̃|�C���^�B
-                            NULL �ł��\���܂��񂪁ApPltData �� NULL �łȂ�
-                            �ꍇ�� NULL �ł����Ă͂Ȃ�܂���B
-                pChrData:   VRAM �Ƀ��[�h����L�����N�^�f�[�^�ւ̃|�C���^�B
-                            NULL �̏ꍇ��VRAM�ɓǂݍ��݂܂���B
-                pPltData:   VRAM �Ƀ��[�h����p���b�g�f�[�^�ւ̃|�C���^�B
-                            NULL �̏ꍇ��VRAM�ɓǂݍ��݂܂���B
-                pPosInfo:   �L�����N�^���o�̈���ւ̃|�C���^�B
-                pCmpInfo:   �p���b�g���k���ւ̃|�C���^�B
+  Arguments:    bg:         ロードするデータを使用する BG
+                pScnData:   VRAM にロードするスクリーンデータへのポインタ。
+                            NULL でも構いませんが、pPltData が NULL でない
+                            場合は NULL であってはなりません。
+                pChrData:   VRAM にロードするキャラクタデータへのポインタ。
+                            NULL の場合はVRAMに読み込みません。
+                pPltData:   VRAM にロードするパレットデータへのポインタ。
+                            NULL の場合はVRAMに読み込みません。
+                pPosInfo:   キャラクタ抽出領域情報へのポインタ。
+                pCmpInfo:   パレット圧縮情報へのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void NNS_G2dBGLoadElementsEx(
     NNSG2dBGSelect bg,
@@ -1254,21 +1254,21 @@ void NNS_G2dBGLoadElementsEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dBGSetupEx
 
-  Description:  BG�̐ݒ���s���ABG�f�[�^��VRAM�ɓǂݍ��݂܂��B
+  Description:  BGの設定を行い、BGデータをVRAMに読み込みます。
 
-  Arguments:    bg:         �ΏۂƂ��� BG
-                pScnData:   BG �Ŏg�p����X�N���[���f�[�^�ւ̃|�C���^�B
-                            NULL �ł����Ă͂Ȃ�܂���B
-                pChrData:   BG �Ŏg�p����L�����N�^�f�[�^�ւ̃|�C���^�B
-                            NULL �̏ꍇ��VRAM�ɓǂݍ��݂܂���B
-                pPltData:   BG �Ŏg�p����p���b�g�f�[�^�ւ̃|�C���^�B
-                            NULL �̏ꍇ��VRAM�ɓǂݍ��݂܂���B
-                pPosInfo:   �L�����N�^���o�̈���ւ̃|�C���^�B
-                pCmpInfo:   �p���b�g���k���ւ̃|�C���^�B
-                scnBase:    BG �̃X�N���[���x�[�X�B
-                chrBase:    BG �̃L�����N�^�x�[�X�B
+  Arguments:    bg:         対象とする BG
+                pScnData:   BG で使用するスクリーンデータへのポインタ。
+                            NULL であってはなりません。
+                pChrData:   BG で使用するキャラクタデータへのポインタ。
+                            NULL の場合はVRAMに読み込みません。
+                pPltData:   BG で使用するパレットデータへのポインタ。
+                            NULL の場合はVRAMに読み込みません。
+                pPosInfo:   キャラクタ抽出領域情報へのポインタ。
+                pCmpInfo:   パレット圧縮情報へのポインタ。
+                scnBase:    BG のスクリーンベース。
+                chrBase:    BG のキャラクタベース。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void NNS_G2dBGSetupEx(
     NNSG2dBGSelect bg,
@@ -1315,21 +1315,21 @@ void NNS_G2dBGSetupEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dBGLoadScreenRect
 
-  Description:  �X�N���[���f�[�^���̎w�肳�ꂽ��`���o�b�t�@�̎w�肳�ꂽ�ʒu��
-                �R�s�[���܂��B
+  Description:  スクリーンデータ中の指定された矩形をバッファの指定された位置に
+                コピーします。
 
-  Arguments:    pScreenDst: �]�����_�ւ̃|�C���^�B
-                pScnData:   �]�����ƂȂ�X�N���[���f�[�^�ւ̃|�C���^�B
-                srcX:       �]�����������X���W�B�i�L�����N�^�P�ʁj
-                srcY:       �]�����������Y���W�B�i�L�����N�^�P�ʁj
-                dstX:       �]���捶�����X���W�B�i�L�����N�^�P�ʁj
-                dstY:       �]���捶�����Y���W�B�i�L�����N�^�P�ʁj
-                dstW:       �]����̈�̕��B�i�L�����N�^�P�ʁj
-                dstH:       �]����̈�̍����B�i�L�����N�^�P�ʁj
-                width:      �]������̈�̕��B�i�L�����N�^�P�ʁj
-                height:     �]������̈�̍����B�i�L�����N�^�P�ʁj
+  Arguments:    pScreenDst: 転送先基準点へのポインタ。
+                pScnData:   転送下となるスクリーンデータへのポインタ。
+                srcX:       転送元左上隅のX座標。（キャラクタ単位）
+                srcY:       転送元左上隅のY座標。（キャラクタ単位）
+                dstX:       転送先左上隅のX座標。（キャラクタ単位）
+                dstY:       転送先左上隅のY座標。（キャラクタ単位）
+                dstW:       転送先領域の幅。（キャラクタ単位）
+                dstH:       転送先領域の高さ。（キャラクタ単位）
+                width:      転送する領域の幅。（キャラクタ単位）
+                height:     転送する領域の高さ。（キャラクタ単位）
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void NNS_G2dBGLoadScreenRect(
     void* pScreenDst,
@@ -1347,7 +1347,7 @@ void NNS_G2dBGLoadScreenRect(
     NNS_G2D_POINTER_ASSERT( pScreenDst );
     NNS_G2D_POINTER_ASSERT( pScnData );
 
-    // ���͌�/�o�͐�͈̔͂𒴂����̈�͉������Ȃ��悤�Ƀp�����[�^�𒲐߂���
+    // 入力元/出力先の範囲を超えた領域は何もしないようにパラメータを調節する
     if( dstX < 0 )
     {
         const int adj = - dstX;

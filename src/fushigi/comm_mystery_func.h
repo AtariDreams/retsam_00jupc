@@ -9,11 +9,11 @@
 
 enum {
   COMMMYSTERYFUNC_ERROR_NONE = 0,
-  COMMMYSTERYFUNC_ERROR_VERSION,	// ”z•zƒo[ƒWƒ‡ƒ“‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚È‚©‚Á‚½
-  COMMMYSTERYFUNC_ERROR_HAVE,		// ‚·‚Å‚É‚à‚ç‚Á‚Ä‚¢‚½
-  COMMMYSTERYFUNC_ERROR_FULLGIFT,	// ”z’Bˆõ‚ªˆê”t
-  COMMMYSTERYFUNC_ERROR_FULLCARD,	// ƒJ[ƒh‚ªˆê”t
-  COMMMYSTERYFUNC_ERROR_GROUNDCHILD,	// ‚±‚ê‚Í‘·”zM
+  COMMMYSTERYFUNC_ERROR_VERSION,	// é…å¸ƒãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«å«ã¾ã‚Œã¦ã„ãªã‹ã£ãŸ
+  COMMMYSTERYFUNC_ERROR_HAVE,		// ã™ã§ã«ã‚‚ã‚‰ã£ã¦ã„ãŸ
+  COMMMYSTERYFUNC_ERROR_FULLGIFT,	// é…é”å“¡ãŒä¸€æ¯
+  COMMMYSTERYFUNC_ERROR_FULLCARD,	// ã‚«ãƒ¼ãƒ‰ãŒä¸€æ¯
+  COMMMYSTERYFUNC_ERROR_GROUNDCHILD,	// ã“ã‚Œã¯å­«é…ä¿¡
   COMMMYSTERYFUNC_ERROR_MAX
 };
 
@@ -21,7 +21,7 @@ enum {
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAM‰Šú‰»
+ * VRAMåˆæœŸåŒ–
  *
  * @param	none
  * @return	none
@@ -31,7 +31,7 @@ extern void CommMysteryFunc_VramBankSet(void);
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	BG‰Šú‰»
+ * @brief	BGåˆæœŸåŒ–
  * @param	none
  * @return	none
  */
@@ -40,7 +40,7 @@ extern void CommMysteryFunc_BgInit( GF_BGL_INI * ini );
 
 //------------------------------------------------------------------
 /**
- * @brief	‚¨‚­‚è‚à‚Ì‚ð‚à‚ç‚¦‚é‚©ƒ`ƒFƒbƒN
+ * @brief	ãŠãã‚Šã‚‚ã®ã‚’ã‚‚ã‚‰ãˆã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  * @param	NONE
  * @return	NONE
  */

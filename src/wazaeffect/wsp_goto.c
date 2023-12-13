@@ -1,52 +1,52 @@
 //==============================================================================
 /**
  * @file	wsp_goto.c
- * @brief	ä»íPÇ»ê‡ñæÇèëÇ≠
+ * @brief	Á∞°Âçò„Å™Ë™¨Êòé„ÇíÊõ∏„Åè
  * @author	goto
- * @date	2005.11.30(êÖ)
+ * @date	2005.11.30(Ê∞¥)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
 
-#include "common.h"				///< ïKê{
-#include "system/lib_pack.h"	///< ïKê{
-#include "west_sp.h"			///< ïKê{
-#include "wsp.h"				///< xxx.cÇ…ëŒÇ∑ÇÈxxx.hÇÕïKê{
+#include "common.h"				///< ÂøÖÈ†à
+#include "system/lib_pack.h"	///< ÂøÖÈ†à
+#include "west_sp.h"			///< ÂøÖÈ†à
+#include "wsp.h"				///< xxx.c„Å´ÂØæ„Åô„Çãxxx.h„ÅØÂøÖÈ†à
 
-#include "wazatool.h"			///< ãZÉGÉtÉFÉNÉgéxâáä÷êîåS
+#include "wazatool.h"			///< ÊäÄ„Ç®„Éï„Çß„ÇØ„ÉàÊîØÊè¥Èñ¢Êï∞ÈÉ°
 #include "we_tool.h"			///< 
 
 #include "ball_effect.h"
-#include "system/arc_tool.h"	///< ÉAÅ[ÉJÉCÉuóp
-#include "system/arc_util.h"	///< ÉAÅ[ÉJÉCÉuóp
+#include "system/arc_tool.h"	///< „Ç¢„Éº„Ç´„Ç§„ÉñÁî®
+#include "system/arc_util.h"	///< „Ç¢„Éº„Ç´„Ç§„ÉñÁî®
 
 #include "we_def.h"
 
 // =============================================================================
 //
-//	Å† åüçıóp
+//	‚ñ° Ê§úÁ¥¢Áî®
 //
-//		[ __WE_070__ ]	Ç©Ç¢ÇËÇ´
-//		[ __WE_074__ ]	ÇπÇ¢ÇøÇÂÇ§
-//		[ __WE_081__ ]	Ç≠Ç‡ÇÃÇ¢Ç∆
-//		[ __WE_096__ ]	ÉàÉKÇÃÉ|Å[ÉY
-//		[ __WE_100__ ]	ÉeÉåÉ|Å[Ég
-//		[ __WE_104__ ]	Ç©Ç∞Ç‘ÇÒÇµÇÒ
-//		[ __WE_106__ ]	Ç©ÇΩÇ≠Ç»ÇÈ
-//		[ __WE_107__ ]	ÇøÇ¢Ç≥Ç≠Ç»ÇÈ
-//		[ __WE_148__ ]	ÉtÉâÉbÉVÉÖ
-//		[ __WE_150__ ]	ÇÕÇÀÇÈ
-//		[ __WE_271__ ]	ÉgÉäÉbÉN
-//		[ __WE_339__ ]	ÉrÉãÉhÉAÉbÉv
-//		[ __WE_089__ ]	Ç∂ÇµÇÒ
-//		[ __WE_171__ ]	Ç†Ç≠Çﬁ
-//		[ __WE_175__ ]	Ç∂ÇΩÇŒÇΩ
-//		[ __WE_222__ ]	É}ÉOÉjÉ`ÉÖÅ[Éh
-//		[ __WE_316__ ]	Ç©Ç¨ÇÌÇØÇÈ
-//		[ __WE_333__ ]	Ç¬ÇÁÇÁÇŒÇË
-//		[ __WE_057__ ]	Ç»Ç›ÇÃÇË
+//		[ __WE_070__ ]	„Åã„ÅÑ„Çä„Åç
+//		[ __WE_074__ ]	„Åõ„ÅÑ„Å°„Çá„ÅÜ
+//		[ __WE_081__ ]	„Åè„ÇÇ„ÅÆ„ÅÑ„Å®
+//		[ __WE_096__ ]	„É®„Ç¨„ÅÆ„Éù„Éº„Ç∫
+//		[ __WE_100__ ]	„ÉÜ„É¨„Éù„Éº„Éà
+//		[ __WE_104__ ]	„Åã„Åí„Å∂„Çì„Åó„Çì
+//		[ __WE_106__ ]	„Åã„Åü„Åè„Å™„Çã
+//		[ __WE_107__ ]	„Å°„ÅÑ„Åï„Åè„Å™„Çã
+//		[ __WE_148__ ]	„Éï„É©„ÉÉ„Ç∑„É•
+//		[ __WE_150__ ]	„ÅØ„Å≠„Çã
+//		[ __WE_271__ ]	„Éà„É™„ÉÉ„ÇØ
+//		[ __WE_339__ ]	„Éì„É´„Éâ„Ç¢„ÉÉ„Éó
+//		[ __WE_089__ ]	„Åò„Åó„Çì
+//		[ __WE_171__ ]	„ÅÇ„Åè„ÇÄ
+//		[ __WE_175__ ]	„Åò„Åü„Å∞„Åü
+//		[ __WE_222__ ]	„Éû„Ç∞„Éã„ÉÅ„É•„Éº„Éâ
+//		[ __WE_316__ ]	„Åã„Åé„Çè„Åë„Çã
+//		[ __WE_333__ ]	„Å§„Çâ„Çâ„Å∞„Çä
+//		[ __WE_057__ ]	„Å™„Åø„ÅÆ„Çä
 //
 //
 // =============================================================================
@@ -54,7 +54,7 @@
 // -----------------------------------------
 //
 //
-//		[ __WE_081__ ]	Ç≠Ç‡ÇÃÇ¢Ç∆
+//		[ __WE_081__ ]	„Åè„ÇÇ„ÅÆ„ÅÑ„Å®
 //
 //
 // -----------------------------------------
@@ -68,7 +68,7 @@
 
 // -----------------------------------------
 //
-//	ç\ë¢ëÃ
+//	ÊßãÈÄ†‰Ωì
 //
 // -----------------------------------------
 typedef struct {
@@ -91,7 +91,7 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	É^ÉCÉÄÉeÅ[ÉuÉã
+//	„Çø„Ç§„É†„ÉÜ„Éº„Éñ„É´
 //
 // -----------------------------------------
 static const u8 we081_wait[][2] = {
@@ -103,7 +103,7 @@ static const u8 we081_wait[][2] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏTCB
+ * @brief	Âãï‰ΩúTCB
  *
  * @param	tcb	
  * @param	work	
@@ -119,7 +119,7 @@ static void We081_TCB(TCB_PTR tcb, void* work)
 
 	switch(wk->seq){
 	case 0:	
-		///< ÉuÉäÉìÉNÇµÇ»Ç™ÇÁï\é¶
+		///< „Éñ„É™„É≥„ÇØ„Åó„Å™„Åå„ÇâË°®Á§∫
 		wk->wait++;
 		for (i = 0; i < WeSysGPWorkGet(wk->wsp,0); i++){
 			{
@@ -146,20 +146,20 @@ static void We081_TCB(TCB_PTR tcb, void* work)
 			for (i = 0; i < WeSysGPWorkGet(wk->wsp, 0); i++){
 				CATS_ObjectEnableCap(wk->cap[i], CATS_ENABLE_TRUE);
 			}
-			wk->wait = 0;	// í˜ÇﬂïtÇØë“ÇøÇ…égÇ§
+			wk->wait = 0;	// Á∑†„ÇÅ‰ªò„ÅëÂæÖ„Å°„Å´‰Ωø„ÅÜ
 			wk->seq++;
 		}
 		break;
 	
 	case 1:
-		///< í˜ÇﬂïtÇØ
+		///< Á∑†„ÇÅ‰ªò„Åë
 		WazaTool_InitScaleRateEx(&wk->cm,
 								 100, 60, 100,100, 100, 10);
 		wk->seq++;
 		break;
 	
 	case 2:
-		///< í˜ÇﬂïtÇØ
+		///< Á∑†„ÇÅ‰ªò„Åë
 		if (WazaTool_CalcScaleRateEx(&wk->cm) == TRUE){
 			for (i = 0; i < WeSysGPWorkGet(wk->wsp, 0); i++){
 				f32 x, y;
@@ -175,7 +175,7 @@ static void We081_TCB(TCB_PTR tcb, void* work)
 		break;
 		
 	case 3:
-		///< ÉtÉFÅ[Éh
+		///< „Éï„Çß„Éº„Éâ
 		if (wk->eva > WE081_EVAM){ wk->eva--; }
 		if (wk->evb < WE081_EVBM){ wk->evb++; }
 		
@@ -204,7 +204,7 @@ static void We081_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	åƒÇ—èoÇµä÷êî
+ * @brief	Âëº„Å≥Âá∫„ÅóÈñ¢Êï∞
  *
  * @param	we_sys	
  * @param	csp	
@@ -277,14 +277,14 @@ void WestSp_CAT_WE_081(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 // -----------------------------------------
 //
 //
-//		[ __WE_070__ ]	Ç©Ç¢ÇËÇ´
+//		[ __WE_070__ ]	„Åã„ÅÑ„Çä„Åç
 //
 //
 // -----------------------------------------
 
 // -----------------------------------------
 //
-//	ç\ë¢ëÃ
+//	ÊßãÈÄ†‰Ωì
 //
 // -----------------------------------------
 typedef struct {
@@ -311,7 +311,7 @@ typedef struct {
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏä÷êî
+ * @brief	Âãï‰ΩúÈñ¢Êï∞
  *
  * @param	tcb	
  * @param	work	
@@ -326,7 +326,7 @@ static void We070_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->seq){
 	case 0:
-		///< èkÇ›
+		///< Á∏Æ„Åø
 		if (WazaTool_CalcScaleRate(&wk->cm) == TRUE){
 			WazaTool_CalcShake(&wk->shake);
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_X, wk->cm.x);
@@ -342,12 +342,12 @@ static void We070_TCB(TCB_PTR tcb, void* work)
 		}		
 		break;
 	case 1:
-		///< ê‘ÉtÉFÅ[Éh
+		///< Ëµ§„Éï„Çß„Éº„Éâ
 		SoftSpritePalFadeSet(wk->ssp, 0, WE070_END_EVY, WE070_SS_FADE_WAIT, WE070_SS_FADE_COL);
 		wk->seq++;
 		break;
 	case 2:
-		///< ÉtÉFÅ[Éhif (PaletteFadeCheck(wk->pfd) == 0
+		///< „Éï„Çß„Éº„Éâif (PaletteFadeCheck(wk->pfd) == 0
 		if (SoftSpritePalFadeExist(wk->ssp) == FALSE){
 			SoftSpritePalFadeSet(wk->ssp, WE070_END_EVY, 0, WE070_SS_FADE_WAIT, WE070_SS_FADE_COL);
 			wk->seq++;
@@ -355,7 +355,7 @@ static void We070_TCB(TCB_PTR tcb, void* work)
 		break;
 		
 	case 3:
-		///< ÉtÉFÅ[Éh
+		///< „Éï„Çß„Éº„Éâ
 		if (SoftSpritePalFadeExist(wk->ssp) == FALSE){
 			wk->fade_cnt++;
 			if (wk->fade_cnt >= WE070_FADE_CNT){
@@ -373,7 +373,7 @@ static void We070_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	case 4:
-		///< Ç—ÇÊÇÊÅ[Å[Å[ÇÒ
+		///< „Å≥„Çà„Çà„Éº„Éº„Éº„Çì
 		if (WazaTool_CalcScaleRate(&wk->cm) == TRUE){
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_X, wk->cm.x);
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_Y, wk->cm.y);
@@ -387,7 +387,7 @@ static void We070_TCB(TCB_PTR tcb, void* work)
 		}
 		break;
 	case 5:
-		///< Ç‡Ç«ÇÈ
+		///< „ÇÇ„Å©„Çã
 		if (WazaTool_CalcScaleRate(&wk->cm) == TRUE){
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_X, wk->cm.x);
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_Y, wk->cm.y);
@@ -413,7 +413,7 @@ static void We070_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	åƒÇ—èoÇµä÷êî
+ * @brief	Âëº„Å≥Âá∫„ÅóÈñ¢Êï∞
  *
  * @param	we_sys	
  *
@@ -436,13 +436,13 @@ void WestSp_WE_070(WE_SYS_PTR we_sys)
 	
 	wk->poke_h = WeSysPokeOfsGet(wk->wsp, WeSysATNoGet(wk->wsp));
 	
-	///< ägèk
+	///< Êã°Á∏Æ
 	WazaTool_InitScaleRate(&wk->cm,
 						   100,
 						   100,
 						   WeSysGPWorkGet(we_sys, 0),
 						   WeSysGPWorkGet(we_sys, 2));
-	///< óhÇÁÇµ
+	///< Êè∫„Çâ„Åó
 	WazaTool_InitShake(&wk->shake, 2,0,0,10);
 						   
 	
@@ -453,14 +453,14 @@ void WestSp_WE_070(WE_SYS_PTR we_sys)
 // -----------------------------------------
 //
 //
-//		[ __WE_339__ ]	ÉrÉãÉhÉAÉbÉv
+//		[ __WE_339__ ]	„Éì„É´„Éâ„Ç¢„ÉÉ„Éó
 //
 //
 // -----------------------------------------
 
 // -----------------------------------------
 //
-//	ç\ë¢ëÃ
+//	ÊßãÈÄ†‰Ωì
 //
 // -----------------------------------------
 typedef struct {
@@ -481,7 +481,7 @@ typedef struct {
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏä÷êî
+ * @brief	Âãï‰ΩúÈñ¢Êï∞
  *
  * @param	tcb	
  * @param	work	
@@ -496,7 +496,7 @@ static void We339_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->seq){
 	case 0:
-		///< â°èkÇ›
+		///< Ê®™Á∏Æ„Åø
 		if (WazaTool_CalcScaleRateEx(&wk->cm) == TRUE){
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_X, wk->cm.x);
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_Y, wk->cm.y);
@@ -511,7 +511,7 @@ static void We339_TCB(TCB_PTR tcb, void* work)
 		}		
 		break;
 	case 1:
-		///< ècèkÇ›
+		///< Á∏¶Á∏Æ„Åø
 		if (WazaTool_CalcScaleRateEx(&wk->cm) == TRUE){
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_X, wk->cm.x);
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_Y, wk->cm.y);
@@ -526,7 +526,7 @@ static void We339_TCB(TCB_PTR tcb, void* work)
 		}
 		break;
 	case 2:
-		///< ñﬂÇË
+		///< Êàª„Çä
 		if (WazaTool_CalcScaleRateEx(&wk->cm) == TRUE){
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_X, wk->cm.x);
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_Y, wk->cm.y);
@@ -541,7 +541,7 @@ static void We339_TCB(TCB_PTR tcb, void* work)
 		}
 		break;
 	case 3:
-		///< Ç⁄ÇÊÇÒ
+		///< „Åº„Çà„Çì
 		if (WazaTool_CalcScaleRateEx(&wk->cm) == TRUE){
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_X, wk->cm.x);
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_Y, wk->cm.y);
@@ -556,7 +556,7 @@ static void We339_TCB(TCB_PTR tcb, void* work)
 		}
 		break;
 	case 4:
-		///< ñﬂÇË
+		///< Êàª„Çä
 		if (WazaTool_CalcScaleRateEx(&wk->cm) == TRUE){
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_X, wk->cm.x);
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_Y, wk->cm.y);
@@ -581,7 +581,7 @@ static void We339_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	åƒÇ—èoÇµä÷êî
+ * @brief	Âëº„Å≥Âá∫„ÅóÈñ¢Êï∞
  *
  * @param	we_sys	
  *
@@ -602,7 +602,7 @@ void WestSp_WE_339(WE_SYS_PTR we_sys)
 	wk->dy  = SoftSpriteParaGet(wk->ssp, SS_PARA_POS_Y);
 	wk->poke_h = WeSysPokeOfsGet(wk->wsp, WeSysATNoGet(wk->wsp));
 
-	///< ägèk
+	///< Êã°Á∏Æ
 	WazaTool_InitScaleRateEx(&wk->cm, 100, 150, 100, 50, 100, 10);	
 	WEEffect_TCB_AddPriSet(wk->wsp, We339_TCB, wk);
 }
@@ -611,10 +611,10 @@ void WestSp_WE_339(WE_SYS_PTR we_sys)
 // -----------------------------------------
 //
 //
-//		[ __WE_104__ ]	Ç©Ç∞Ç‘ÇÒÇµÇÒ
+//		[ __WE_104__ ]	„Åã„Åí„Å∂„Çì„Åó„Çì
 //
-//		Å° Å† ñ{ëÃ Å† Å°
-//		ÇP ÇRÅ@Å@Å@ÇQ ÇO
+//		‚ñ† ‚ñ° Êú¨‰Ωì ‚ñ° ‚ñ†
+//		Ôºë Ôºì„ÄÄ„ÄÄ„ÄÄÔºí Ôºê
 //
 // -----------------------------------------
 #define WE104_OAM_MAX	(4)
@@ -631,7 +631,7 @@ void WestSp_WE_339(WE_SYS_PTR we_sys)
 
 // -----------------------------------------
 //
-//	ç\ë¢ëÃ
+//	ÊßãÈÄ†‰Ωì
 //
 // -----------------------------------------
 typedef struct {
@@ -657,7 +657,7 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	à⁄ìÆç¿ïWÉeÅ[ÉuÉã
+//	ÁßªÂãïÂ∫ßÊ®ô„ÉÜ„Éº„Éñ„É´
 //
 // -----------------------------------------
 static const s16 we_104_pos[][3] = {
@@ -670,7 +670,7 @@ static const s16 we_104_pos[][3] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏä÷êî
+ * @brief	Âãï‰ΩúÈñ¢Êï∞
  *
  * @param	tcb	
  * @param	work	
@@ -687,7 +687,7 @@ static void We104_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->seq){
 	case 0:
-		///< èâä˙âªèàóù
+		///< ÂàùÊúüÂåñÂá¶ÁêÜ
 		{
 			int no   = (wk->loop % 2) * 2;
 			int wait = (wk->loop + 1) / 2;
@@ -724,7 +724,7 @@ static void We104_TCB(TCB_PTR tcb, void* work)
 		wk->seq++;
 
 	case 1:
-		///< à⁄ìÆèàóù
+		///< ÁßªÂãïÂá¶ÁêÜ
 		res = 0;
 		for (i = 0; i < WE104_OAM_MAX; i++){
 			if (WazaTool_CalcStraightFx(&wk->cm[i]) == FALSE){
@@ -747,7 +747,7 @@ static void We104_TCB(TCB_PTR tcb, void* work)
 		break;
 		
 	case 2:
-		///< ï™êgÉtÉFÅ[ÉhÉAÉEÉg
+		///< ÂàÜË∫´„Éï„Çß„Éº„Éâ„Ç¢„Ç¶„Éà
 		if (wk->eva > 0){ wk->eva--; }
 		if (wk->evb < WE104_EVM){ wk->evb++; }
 		
@@ -770,7 +770,7 @@ static void We104_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	åƒÇ—èoÇµä÷êî
+ * @brief	Âëº„Å≥Âá∫„ÅóÈñ¢Êï∞
  *
  * @param	we_sys	
  *
@@ -900,7 +900,7 @@ static void We074_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->seq){
 	case 0:
-		///< ägèkÉpÉâÉÅÅ[É^Å[ê›íË
+		///< Êã°Á∏Æ„Éë„É©„É°„Éº„Çø„ÉºË®≠ÂÆö
 		WazaTool_InitScaleRate(&wk->cm,
 							   w074_step_data[wk->step][0],
 							   100,
@@ -920,7 +920,7 @@ static void We074_TCB(TCB_PTR tcb, void* work)
 		break;
 
 	case 1:
-		///< ägèk
+		///< Êã°Á∏Æ
 		if (WazaTool_CalcScaleRate(&wk->cm) == FALSE
 		&&	SoftSpritePalFadeExist(wk->ssp) == FALSE){
 			if (wk->cnt < WE074_CNT_MAX){
@@ -935,7 +935,7 @@ static void We074_TCB(TCB_PTR tcb, void* work)
 		break;
 
 	default:
-		///< èIóπ
+		///< ÁµÇ‰∫Ü
 		WEEffect_TCB_Delete(wk->wsp, tcb);
 		sys_FreeMemoryEz(wk);		
 		break;
@@ -960,7 +960,7 @@ void WestSp_WE_074(WE_SYS_PTR we_sys)
 // -----------------------------------------
 //
 //
-//		[ __WE_096__ ]	ÉàÉKÇÃÉ|Å[ÉY
+//		[ __WE_096__ ]	„É®„Ç¨„ÅÆ„Éù„Éº„Ç∫
 //
 //
 // -----------------------------------------
@@ -1006,7 +1006,7 @@ static void We096_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->seq){
 	case 0:
-		///< ägèkÉpÉâÉÅÅ[É^Å[ê›íË
+		///< Êã°Á∏Æ„Éë„É©„É°„Éº„Çø„ÉºË®≠ÂÆö
 		WazaTool_InitScaleRateEx(&wk->cm,
 								 w096_step_data[wk->cnt][0],
 								 w096_step_data[wk->cnt][1],
@@ -1018,7 +1018,7 @@ static void We096_TCB(TCB_PTR tcb, void* work)
 		break;
 
 	case 1:
-		///< ägèk
+		///< Êã°Á∏Æ
 		if (WazaTool_CalcScaleRateEx(&wk->cm) == FALSE){
 			if (wk->cnt < WE096_CNT_MAX){
 				wk->seq--;
@@ -1036,7 +1036,7 @@ static void We096_TCB(TCB_PTR tcb, void* work)
 		break;
 
 	default:
-		///< èIóπ
+		///< ÁµÇ‰∫Ü
 		WEEffect_TCB_Delete(wk->wsp, tcb);
 		sys_FreeMemoryEz(wk);		
 		break;
@@ -1062,7 +1062,7 @@ void WestSp_WE_096(WE_SYS_PTR we_sys)
 // -----------------------------------------
 //
 //
-//		[ __WE_100__ ]	ÉeÉåÉ|Å[Ég
+//		[ __WE_100__ ]	„ÉÜ„É¨„Éù„Éº„Éà
 //
 //
 // -----------------------------------------
@@ -1083,12 +1083,12 @@ typedef struct {
 
 #define WE100_CNT_MAX	(2)
 
-#define WE100_SSX1		(100)			///< êLÇ—ÇÈ
+#define WE100_SSX1		(100)			///< ‰º∏„Å≥„Çã
 #define WE100_SEX1		(10)
 #define WE100_SSY1		(100)
 #define WE100_SEY1		(180)
 
-#define WE100_SSX2		(WE100_SEX1)	///< àÍãCÇ…èkÇﬁ
+#define WE100_SSX2		(WE100_SEX1)	///< ‰∏ÄÊ∞ó„Å´Á∏Æ„ÇÄ
 #define WE100_SEX2		(10)
 #define WE100_SSY2		(WE100_SEY1)
 #define WE100_SEY2		(0)
@@ -1096,7 +1096,7 @@ typedef struct {
 #define WE100_SWAIT_1	(10)			///< wait
 #define WE100_SWAIT_2	(5)
 
-#define WE100_SXO		(0)				///< è„Ç…ïÇÇ≠
+#define WE100_SXO		(0)				///< ‰∏ä„Å´ÊµÆ„Åè
 #define WE100_SYO		(0)
 #define WE100_SYW		(5)				///< wait
 
@@ -1117,7 +1117,7 @@ static void AAA_AAA(TCB_PTR tcb, void* work)
 		DZ--;
 	}
 	SoftSpriteParaSet(ssp, SS_PARA_POS_Z, DZ);
-	OS_Printf("\nÅ° z = %d\n",DZ);
+	OS_Printf("\n‚ñ† z = %d\n",DZ);
 }
 */
 static void We100_TCB(TCB_PTR tcb, void* work)
@@ -1126,7 +1126,7 @@ static void We100_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->seq){
 	case 0:
-		///< ägèkÉpÉâÉÅÅ[É^Å[ê›íË
+		///< Êã°Á∏Æ„Éë„É©„É°„Éº„Çø„ÉºË®≠ÂÆö
 		WazaTool_InitScaleRateEx(&wk->cm,
 								 w100_step_data[wk->cnt][0], w100_step_data[wk->cnt][1],
 								 w100_step_data[wk->cnt][2], w100_step_data[wk->cnt][3], 100,
@@ -1136,7 +1136,7 @@ static void We100_TCB(TCB_PTR tcb, void* work)
 		break;
 
 	case 1:
-		///< ägèk
+		///< Êã°Á∏Æ
 		if (WazaTool_CalcScaleRateEx(&wk->cm) == FALSE){
 			wk->seq++;
 		}
@@ -1146,7 +1146,7 @@ static void We100_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	case 2:
-		///< è„à⁄ìÆê›íË
+		///< ‰∏äÁßªÂãïË®≠ÂÆö
 		WazaTool_InitStraightSyncFx(&wk->cm,
 									0, WE100_SYO,
 									SoftSpriteParaGet(wk->ssp, SS_PARA_POS_Y), WE100_SYO,
@@ -1155,7 +1155,7 @@ static void We100_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	case 3:
-		///< è„à⁄ìÆ
+		///< ‰∏äÁßªÂãï
 		if (WazaTool_CalcStraightFx(&wk->cm) == FALSE){
 			wk->seq++;
 		}
@@ -1163,7 +1163,7 @@ static void We100_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	case 4:
-		///< ägèkÉpÉâÉÅÅ[É^Å[ê›íË
+		///< Êã°Á∏Æ„Éë„É©„É°„Éº„Çø„ÉºË®≠ÂÆö
 		WazaTool_InitScaleRateEx(&wk->cm,
 								 w100_step_data[wk->cnt][0], w100_step_data[wk->cnt][1],
 								 w100_step_data[wk->cnt][2], w100_step_data[wk->cnt][3], 100,
@@ -1173,7 +1173,7 @@ static void We100_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	case 5:
-		///< ägèk
+		///< Êã°Á∏Æ
 		if (WazaTool_CalcScaleRateEx(&wk->cm) == FALSE){
 			wk->seq++;
 		}
@@ -1183,7 +1183,7 @@ static void We100_TCB(TCB_PTR tcb, void* work)
 		break;
 
 	default:
-		///< èIóπ
+		///< ÁµÇ‰∫Ü
 		SoftSpriteParaSet(wk->ssp, SS_PARA_POS_Y, wk->base_y);
 		SoftSpriteParaSet(wk->ssp, SS_PARA_VANISH, 1);
 		SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_X, 0x100);
@@ -1242,7 +1242,7 @@ typedef struct {
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏTCB
+ * @brief	Âãï‰ΩúTCB
  *
  * @param	tcb	
  * @param	work	
@@ -1255,7 +1255,7 @@ static void We148_TCB(TCB_PTR tcb, void* work)
 {
 	TWE_148_SYS* wk = (TWE_148_SYS*)work;
 #if 0
-	///< É\ÉtÉgÉtÉFÅ[Éhé¿å±
+	///< „ÇΩ„Éï„Éà„Éï„Çß„Éº„ÉâÂÆüÈ®ì
 	switch(wk->seq){
 	case 0:
 		wk->psp = PaletteSoftFade(wk->pfd, 
@@ -1294,14 +1294,14 @@ static void We148_TCB(TCB_PTR tcb, void* work)
 #if 1
 	switch(wk->seq){
 	case 0:
-		///< îwåiîíÇ≠
+		///< ËÉåÊôØÁôΩ„Åè
 		PaletteFadeReq(wk->pfd, PF_BIT_MAIN_BG, BT_HaikeiFadeBit(wk->wsp), WE148_FADE_WAIT, 0, 16, WE148_FADE_COL);
 		SoftSpritePalFadeSet(wk->ssp, 0, 16, WE148_SS_FADE_WAIT, WE148_SS_FADE_COL);
 		wk->seq++;
 		break;
 	
 	case 1:
-		///< ÉtÉFÅ[Éhë“Çø
+		///< „Éï„Çß„Éº„ÉâÂæÖ„Å°
 		if (PaletteFadeCheck(wk->pfd) == 0
 		&&	SoftSpritePalFadeExist(wk->ssp) == FALSE){
 			wk->seq++;
@@ -1309,21 +1309,21 @@ static void We148_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	case 2:
-		///< ë“Çø
+		///< ÂæÖ„Å°
 		if ((++wk->wait) > WE148_WAIT){
 			wk->seq++;
 		}
 		break;
 	
 	case 3:
-		///< ïúãA
+		///< Âæ©Â∏∞
 		PaletteFadeReq(wk->pfd, PF_BIT_MAIN_BG, BT_HaikeiFadeBit(wk->wsp), WE148_FADE_WAIT, 16, 0, WE148_FADE_COL);
 		SoftSpritePalFadeSet(wk->ssp, 16, 0, WE148_SS_FADE_WAIT, WE148_SS_FADE_COL);
 		wk->seq++;
 		break;
 	
 	case 4:
-		///< ÉtÉFÅ[Éhë“Çø
+		///< „Éï„Çß„Éº„ÉâÂæÖ„Å°
 		if (PaletteFadeCheck(wk->pfd) == 0
 		&&	SoftSpritePalFadeExist(wk->ssp) == FALSE){
 			wk->seq++;
@@ -1341,7 +1341,7 @@ static void We148_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	åƒÇ—èoÇµä÷êî
+ * @brief	Âëº„Å≥Âá∫„ÅóÈñ¢Êï∞
  *
  * @param	we_sys	
  *
@@ -1366,7 +1366,7 @@ void WestSp_WE_148(WE_SYS_PTR we_sys)
 // -----------------------------------------
 //
 //
-//		[ __WE_150__ ]	ÇÕÇÀÇÈ
+//		[ __WE_150__ ]	„ÅØ„Å≠„Çã
 //
 //
 // -----------------------------------------
@@ -1388,7 +1388,7 @@ typedef struct {
 
 #define WE150_CNT_MAX	(2)
 
-#define WE150_SSX1		(100)			///< êLÇ—ÇÈ
+#define WE150_SSX1		(100)			///< ‰º∏„Å≥„Çã
 #define WE150_SEX1		(120)
 #define WE150_SSY1		(100)
 #define WE150_SEY1		(80)
@@ -1429,7 +1429,7 @@ static const u8 w150_ud_data[][3] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏTCB
+ * @brief	Âãï‰ΩúTCB
  *
  * @param	tcb	
  * @param	work	
@@ -1444,7 +1444,7 @@ static void We150_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->seq){
 	case 0:
-		///< ägèkÉpÉâÉÅÅ[É^Å[ê›íË
+		///< Êã°Á∏Æ„Éë„É©„É°„Éº„Çø„ÉºË®≠ÂÆö
 		WazaTool_InitScaleRateEx(&wk->cm,
 								 w150_step_data[wk->cnt][0], w150_step_data[wk->cnt][1],
 								 w150_step_data[wk->cnt][2], w150_step_data[wk->cnt][3], 100,
@@ -1459,7 +1459,7 @@ static void We150_TCB(TCB_PTR tcb, void* work)
 		break;
 
 	case 1:
-		///< ägèk
+		///< Êã°Á∏Æ
 		{
 			int res = 0;
 			if (WazaTool_CalcScaleRateEx(&wk->cm) == FALSE){
@@ -1489,7 +1489,7 @@ static void We150_TCB(TCB_PTR tcb, void* work)
 		break;
 
 	default:
-		///< èIóπ
+		///< ÁµÇ‰∫Ü
 		WEEffect_TCB_Delete(wk->wsp, tcb);
 		sys_FreeMemoryEz(wk);		
 		break;
@@ -1499,7 +1499,7 @@ static void We150_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	åƒÇ—èoÇµä÷êî
+ * @brief	Âëº„Å≥Âá∫„ÅóÈñ¢Êï∞
  *
  * @param	we_sys	
  *
@@ -1550,7 +1550,7 @@ typedef struct {
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏTCB
+ * @brief	Âãï‰ΩúTCB
  *
  * @param	tcb	
  * @param	work	
@@ -1565,7 +1565,7 @@ static void We106_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->seq){
 	case 0:
-		///< ë“Çø
+		///< ÂæÖ„Å°
 		if ((++wk->wait) >= WE106_START_WAIT){
 			wk->wait = 0;
 			wk->seq++;
@@ -1573,7 +1573,7 @@ static void We106_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	case 1:
-		///< ï\é¶
+		///< Ë°®Á§∫
 		CATS_ObjectEnableCap(wk->cap,	 CATS_ENABLE_TRUE);
 		CATS_ObjectEnableCap(wk->cap_ow, CATS_ENABLE_TRUE);
 		CATS_ObjectObjModeSetCap(wk->cap_ow, GX_OAM_MODE_OBJWND);
@@ -1581,7 +1581,7 @@ static void We106_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	case 2:
-		///< ó¨ÇÍ
+		///< ÊµÅ„Çå
 		if ((++wk->wait) >= WE106_START_WAIT){
 			G2_SetWndOutsidePlane(WE_MASK_ALL, FALSE);
 			G2_SetWndOBJInsidePlane(WE_MASK_ALL, FALSE);
@@ -1593,7 +1593,7 @@ static void We106_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	default:
-		///< èIóπ
+		///< ÁµÇ‰∫Ü
 		GX_SetVisibleWnd(GX_WNDMASK_NONE);
 		WEEffect_TCB_Delete(wk->wsp, tcb);
 		sys_FreeMemoryEz(wk);		
@@ -1608,7 +1608,7 @@ static void We106_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	åƒÇ—èoÇµä÷êî
+ * @brief	Âëº„Å≥Âá∫„ÅóÈñ¢Êï∞
  *
  * @param	we_sys	
  *
@@ -1690,7 +1690,7 @@ static const u8 we_107_wait[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏTCB
+ * @brief	Âãï‰ΩúTCB
  *
  * @param	tcb	
  * @param	work	
@@ -1712,12 +1712,12 @@ static void We107_TCB(TCB_PTR tcb, void* work)
 		wk->seq++;
 		break;
 	case 1:
-		///< ÉÅÉCÉì
+		///< „É°„Ç§„É≥
 		ret = 0;
 		for (i = 0; i < WE107_CAP_MAX; i++){
 			switch(wk->oam[i].seq){
 			case 0:
-				///< èâä˙âª
+				///< ÂàùÊúüÂåñ
 				if ((++wk->oam[i].wait) >= we_107_wait[i]){
 					WazaTool_InitScaleRateEx(&wk->oam[i].cm, 100, 5, 100, 5, 100, 5);
 					wk->oam[i].seq++;
@@ -1725,7 +1725,7 @@ static void We107_TCB(TCB_PTR tcb, void* work)
 				break;
 
 			case 1:
-				///< èkè¨
+				///< Á∏ÆÂ∞è
 				if (WazaTool_CalcScaleRateEx(&wk->oam[i].cm) == FALSE){
 					wk->oam[i].seq++;
 				}
@@ -1768,7 +1768,7 @@ static void We107_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	case 2:
-		///< ägëÂèâä˙âª
+		///< Êã°Â§ßÂàùÊúüÂåñ
 		for (i = 0; i < WE107_CAP_MAX; i++){
 			CATS_ObjectObjModeSetCap(wk->oam[i].cap, GX_OAM_MODE_NORMAL);
 			WazaTool_InitScaleRateEx(&wk->oam[i].cm, 5, 100, 5, 100, 100, 5);
@@ -1777,7 +1777,7 @@ static void We107_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	case 3:
-		///< ägëÂ
+		///< Êã°Â§ß
 		ret = 0;
 		for (i = 0; i < WE107_CAP_MAX; i++){
 			if (WazaTool_CalcScaleRateEx(&wk->oam[i].cm) == FALSE){
@@ -1798,7 +1798,7 @@ static void We107_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	default:
-		///< èIóπ
+		///< ÁµÇ‰∫Ü
 		SoftSpriteParaSet(wk->ssp, SS_PARA_VISIBLE, 0);
 		WEEffect_TCB_Delete(wk->wsp, tcb);
 		sys_FreeMemoryEz(wk);
@@ -1810,7 +1810,7 @@ static void We107_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	åƒÇ—èoÇµä÷êî
+ * @brief	Âëº„Å≥Âá∫„ÅóÈñ¢Êï∞
  *
  * @param	we_sys	
  *
@@ -1912,7 +1912,7 @@ static const s16 we089_shake[] = { 12, 10, 8, 6, 4, 2, 1, 0 };
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏTCB
+ * @brief	Âãï‰ΩúTCB
  *
  * @param	tcb	
  * @param	work	
@@ -1937,7 +1937,7 @@ static void We089_TCB(TCB_PTR tcb, void* work)
 		wk->seq++;
 		
 	case 2:
-		///< Ç‰ÇÍïùèâä˙âª
+		///< „ÇÜ„ÇåÂπÖÂàùÊúüÂåñ
 		WazaTool_InitShake(&wk->shake, we089_shake[wk->step], 0, 0, 5);
 		
 		if (wk->fade == 0){
@@ -1952,7 +1952,7 @@ static void We089_TCB(TCB_PTR tcb, void* work)
 		wk->seq++;
 
 	case 3:
-		///< Ç‰ÇÍ
+		///< „ÇÜ„Çå
 		if (WazaTool_CalcShake(&wk->shake) == FALSE){
 			if (wk->step >= WE089_STEP_NUM){
 				wk->seq++;
@@ -1979,7 +1979,7 @@ static void We089_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	default:
-		///< èIóπèàóù
+		///< ÁµÇ‰∫ÜÂá¶ÁêÜ
 		WEEffect_TCB_Delete(wk->wsp, tcb);
 		sys_FreeMemoryEz(wk);
 		break;
@@ -1988,7 +1988,7 @@ static void We089_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	åƒÇ—èoÇµä÷êî
+ * @brief	Âëº„Å≥Âá∫„ÅóÈñ¢Êï∞
  *
  * @param	we_sys	
  *
@@ -2080,7 +2080,7 @@ typedef struct {
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏTCB
+ * @brief	Âãï‰ΩúTCB
  *
  * @param	tcb	
  * @param	work	
@@ -2095,7 +2095,7 @@ static void We171_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->seq){
 	case 0:
-		///< é¿çs
+		///< ÂÆüË°å
 		if (WazaTool_CalcStraightFx(&wk->cm) == FALSE){
 			wk->seq++;
 		}
@@ -2109,7 +2109,7 @@ static void We171_TCB(TCB_PTR tcb, void* work)
 		break;
 		
 	default:
-		///< èIóπèàóù
+		///< ÁµÇ‰∫ÜÂá¶ÁêÜ
 		WEEffect_TCB_Delete(wk->wsp, tcb);
 		sys_FreeMemoryEz(wk);
 		break;
@@ -2207,7 +2207,7 @@ static const int we175_rad[][2] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏTCB
+ * @brief	Âãï‰ΩúTCB
  *
  * @param	tcb	
  * @param	work	
@@ -2222,7 +2222,7 @@ static void We175_1_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->ts.seq){
 	case 0:
-		///< âÒì]èâä˙âª
+		///< ÂõûËª¢ÂàùÊúüÂåñ
 		{
 			int sr;
 			int er;
@@ -2244,7 +2244,7 @@ static void We175_1_TCB(TCB_PTR tcb, void* work)
 		wk->ts.seq++;
 		
 	case 1:
-		///< âÒì]
+		///< ÂõûËª¢
 		if (WazaTool_CalcMoveOne(&wk->cm) == TRUE){
 			SoftSpriteParaSet(wk->ssp[0], SS_PARA_ROT_Z, (u16)wk->cm.num);
 		}
@@ -2259,7 +2259,7 @@ static void We175_1_TCB(TCB_PTR tcb, void* work)
 		break;
 		
 	default:
-		///< èIóπ
+		///< ÁµÇ‰∫Ü
 		SoftSpriteParaSet(wk->ssp[0], SS_PARA_ROT_Z, 0);
 		
 		WEEffect_TCB_Delete(wk->ts.wsp, tcb);
@@ -2274,13 +2274,13 @@ static void We175_2_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->ts.seq){
 	case 0:
-		///< ÉuÉåèâä˙âª
+		///< „Éñ„É¨ÂàùÊúüÂåñ
 		WazaTool_InitShake(&wk->shake, wk->st.x, wk->st.y, wk->st.w, wk->st.n);
 		wk->ts.seq++;
 		break;
 	
 	case 1:
-		///< ÉuÉå
+		///< „Éñ„É¨
 		{
 			WT_POINT p;
 			
@@ -2293,7 +2293,7 @@ static void We175_2_TCB(TCB_PTR tcb, void* work)
 		break;
 		
 	default:
-		///< èIóπ
+		///< ÁµÇ‰∫Ü
 		WEEffect_TCB_Delete(wk->ts.wsp, tcb);
 		sys_FreeMemoryEz(wk);
 		break;
@@ -2302,7 +2302,7 @@ static void We175_2_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	åƒÇ—èoÇµä÷êî
+ * @brief	Âëº„Å≥Âá∫„ÅóÈñ¢Êï∞
  *
  * @param	we_sys	
  *
@@ -2366,7 +2366,7 @@ typedef struct {
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏTCB
+ * @brief	Âãï‰ΩúTCB
  *
  * @param	tcb	
  * @param	work	
@@ -2382,13 +2382,13 @@ static void We222_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->ts.seq){
 	case 0:
-		///< Ç‰ÇÍïùéwíË
+		///< „ÇÜ„ÇåÂπÖÊåáÂÆö
 		WazaTool_InitShake(&wk->cm, 2 + wk->pow, wk->pow, 0, 10);
 		wk->ts.seq++;
 		break;
 		
 	case 1:
-		///< Ç‰ÇÍ
+		///< „ÇÜ„Çå
 		if (WazaTool_CalcShake(&wk->cm) == FALSE){
 			wk->ts.seq++;
 		}
@@ -2482,7 +2482,7 @@ typedef struct {
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏTCB
+ * @brief	Âãï‰ΩúTCB
  *
  * @param	tcb	
  * @param	work	
@@ -2498,14 +2498,14 @@ static void We316_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->ts.seq){
 	case 0:
-		///< Ç‰ÇÍïùéwíË
+		///< „ÇÜ„ÇåÂπÖÊåáÂÆö
 		WazaTool_InitShake(&wk->cm[0], 20, 0, 0, 10);
 		WazaTool_InitShake(&wk->cm[1], 2, 0, 0, 10);
 		wk->ts.seq++;
 		break;
 		
 	case 1:
-		///< Ç‰ÇÍ
+		///< „ÇÜ„Çå
 		if (WazaTool_CalcShake(&wk->cm[0]) == FALSE){
 			wk->ts.seq++;
 		}
@@ -2551,14 +2551,14 @@ void WestSp_WE_316(WE_SYS_PTR we_sys)
 // -----------------------------------------
 //
 //
-//		[ __WE_333__ ]	Ç¬ÇÁÇÁÇŒÇË
+//		[ __WE_333__ ]	„Å§„Çâ„Çâ„Å∞„Çä
 //
 //
 // -----------------------------------------
 
 // -----------------------------------------
 //
-//	ç\ë¢ëÃ
+//	ÊßãÈÄ†‰Ωì
 //
 // -----------------------------------------
 typedef struct {
@@ -2582,7 +2582,7 @@ typedef struct {
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏTCB
+ * @brief	Âãï‰ΩúTCB
  *
  * @param	tcb	
  * @param	work	
@@ -2613,7 +2613,7 @@ static void We333_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	åƒÇ—èoÇµä÷êî
+ * @brief	Âëº„Å≥Âá∫„ÅóÈñ¢Êï∞
  *
  * @param	we_sys	
  * @param	csp	
@@ -2668,7 +2668,7 @@ void WestSp_CAT_WE_333(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 		r_vec *= -1;
 	}
 	
-	///< 1ìxé¿çs
+	///< 1Â∫¶ÂÆüË°å
 	if (r_vec > 0){
 		WazaTool_InitMoveOneSync(&wk->rd, FX_GET_ROTA_NUM(20) * r_vec, FX_GET_ROTA_NUM(130) * r_vec, 10);
 	}
@@ -2686,7 +2686,7 @@ void WestSp_CAT_WE_333(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 // -----------------------------------------
 //
 //
-//		[ __WE_057__ ]	Ç»Ç›ÇÃÇË
+//		[ __WE_057__ ]	„Å™„Åø„ÅÆ„Çä
 //
 //
 // -----------------------------------------
@@ -2869,7 +2869,7 @@ typedef struct {
 	int cnt;
 	int	wait;
 	
-	s16	ofs_x;		///< à⁄ìÆïù
+	s16	ofs_x;		///< ÁßªÂãïÂπÖ
 	
 	TWE_POKE_SYS	pp;
 
@@ -2942,27 +2942,27 @@ void WestSp_WE_253(WE_SYS_PTR we_sys)
 // -----------------------------------------
 //
 //
-//		[ __WE_271__ ]	ÉgÉäÉbÉN
+//		[ __WE_271__ ]	„Éà„É™„ÉÉ„ÇØ
 //
 //
 // -----------------------------------------
-#define WE271_EVP		(16)				///< ïœâªÉø
-#define WE271_EVP2		(2)					///< ïœâªÉø
-#define WE271_EVA		(16)				///< ÉøíËêî
+#define WE271_EVP		(16)				///< Â§âÂåñŒ±
+#define WE271_EVP2		(2)					///< Â§âÂåñŒ±
+#define WE271_EVA		(16)				///< Œ±ÂÆöÊï∞
 #define WE271_EVB		(0)
 #define WE271_EVAM		(0)
 #define WE271_EVBM		(16)
-#define WE271_OFS		(16)				///< ÉIÉtÉZÉbÉg
-#define WE271_CUP_1_X	(100)				///< ÉJÉbÉvï\é¶à íu
+#define WE271_OFS		(16)				///< „Ç™„Éï„Çª„ÉÉ„Éà
+#define WE271_CUP_1_X	(100)				///< „Ç´„ÉÉ„ÉóË°®Á§∫‰ΩçÁΩÆ
 #define WE271_CUP_1_Y	(40 - WE271_OFS + 20 + 10)
 #define WE271_CUP_2_X	(180)
 #define WE271_CUP_2_Y	(25  - WE271_OFS + 20 + 10)
-#define WE271_WAIT		(1)//(15)				///< ÉEÉFÉCÉg
+#define WE271_WAIT		(1)//(15)				///< „Ç¶„Çß„Ç§„Éà
 #define WE271_WAIT3		(10)
 #define WE271_WAIT4		(12)
 #define WE271_ROTA_WAIT	(15)
 
-#define WE271_BASE_CUP	(1)					///< ÉtÉâÉO
+#define WE271_BASE_CUP	(1)					///< „Éï„É©„Ç∞
 #define WE271_SUB_CUP	(0)
 
 #define WE271_CUP_FI_LINE	(WE271_CUP_1_Y+50)//(WE271_CUP_1_Y + 60)
@@ -2970,12 +2970,12 @@ void WestSp_WE_253(WE_SYS_PTR we_sys)
 
 // -----------------------------------------
 //
-//	ç\ë¢ëÃ
+//	ÊßãÈÄ†‰Ωì
 //
 // -----------------------------------------
 typedef struct {
 	CATS_ACT_PTR		cap;	///< OAM
-	WAZATOOL_CALCMOVE	cv[2];	///< ÉJÅ[ÉuåvéZóp	
+	WAZATOOL_CALCMOVE	cv[2];	///< „Ç´„Éº„ÉñË®àÁÆóÁî®	
 } TWE_271_CUP;
 
 typedef struct {
@@ -3035,7 +3035,7 @@ static const u8 w271_step_data[][5] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	âÒì]èâä˙âªä÷êî
+ * @brief	ÂõûËª¢ÂàùÊúüÂåñÈñ¢Êï∞
  *
  * @param	p_wtc	
  * @param	dir	
@@ -3071,7 +3071,7 @@ static void WE271_RotaInit(WAZATOOL_CALCMOVE* p_wtc, s8 dir, u8 base, u16 angle,
 
 //--------------------------------------------------------------
 /**
- * @brief	ìÆçÏTCB
+ * @brief	Âãï‰ΩúTCB
  *
  * @param	tcb	
  * @param	work	
@@ -3088,7 +3088,7 @@ static void We271_TCB(TCB_PTR tcb, void* work)
 
 	switch(wk->seq){
 	case eW271_SEQ_AFF_INIT:
-		///< èkÇﬁ
+		///< Á∏Æ„ÇÄ
 		WazaTool_InitScaleRateEx(&wk->cm,
 								 w271_step_data[wk->loop][0],
 								 w271_step_data[wk->loop][1],
@@ -3100,7 +3100,7 @@ static void We271_TCB(TCB_PTR tcb, void* work)
 		break;
 		
 	case eW271_SEQ_AFF_MAIN:
-		///< èkÇ›ë“Çø
+		///< Á∏Æ„ÅøÂæÖ„Å°
 		if (WazaTool_CalcScaleRateEx(&wk->cm) == TRUE){
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_X, wk->cm.x);
 			SoftSpriteParaSet(wk->ssp, SS_PARA_AFF_Y, wk->cm.y);
@@ -3129,7 +3129,7 @@ static void We271_TCB(TCB_PTR tcb, void* work)
 		break;
 		
 	case eW271_SEQ_FALL_INIT:
-		///< óéâ∫ó\îı
+		///< ËêΩ‰∏ã‰∫àÂÇô
 		{
 			s16 x, y;
 			CATS_ObjectPosGetCap(wk->cup[0].cap, &x, &y);
@@ -3145,7 +3145,7 @@ static void We271_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	case eW271_SEQ_FALL_MAIN:
-		///< ÉJÉbÉvóéâ∫ + ÉtÉFÅ[Éh
+		///< „Ç´„ÉÉ„ÉóËêΩ‰∏ã + „Éï„Çß„Éº„Éâ
 		{
 			s16 x, y;
 			CATS_ObjectPosGetCap(wk->cup[0].cap, &x, &y);
@@ -3241,7 +3241,7 @@ static void We271_TCB(TCB_PTR tcb, void* work)
 		break;
 
 	case eW271_SEQ_FADE_OUT:
-		///< ÉtÉFÅ[Éh
+		///< „Éï„Çß„Éº„Éâ
 		{
 			int ret = 0;
 
@@ -3303,7 +3303,7 @@ static void We271_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	åƒÇ—èoÇµä÷êî
+ * @brief	Âëº„Å≥Âá∫„ÅóÈñ¢Êï∞
  *
  * @param	we_sys	
  * @param	csp	

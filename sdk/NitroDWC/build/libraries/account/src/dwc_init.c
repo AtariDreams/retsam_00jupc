@@ -12,39 +12,39 @@
 
   $Log: dwc_init.c,v $
   Revision 1.11  2007/02/16 08:24:00  takayama
-  DWC_GetAuthenticatedUserId()��ǉ��B
+  DWC_GetAuthenticatedUserId()を追加。
 
   Revision 1.10  2007/02/13 07:42:45  nakata
-  DWCisconsoleidreadable�t���O�������B
+  DWCisconsoleidreadableフラグを消去。
 
   Revision 1.9  2007/02/13 02:52:32  nakata
-  DWC_GetConsoleId�֐��̂��߂̖{��ID�ǂݏo���\�t���O��ǉ��B
+  DWC_GetConsoleId関数のための本体ID読み出し可能フラグを追加。
 
   Revision 1.8  2005/12/15 05:35:16  arakit
-  �f�o�b�O�p��NVRAM�N���A�֐�DWC_Debug_ClearConsoleWiFiInfo()���폜���A
-  DWC_Init()�̑S�Ă̖߂�l��������悤��NVRAM��j�󂷂�f�o�b�O�֐�
-  DWC_Debug_DWCInitError()��ǉ������B
+  デバッグ用のNVRAMクリア関数DWC_Debug_ClearConsoleWiFiInfo()を削除し、
+  DWC_Init()の全ての戻り値を試せるようにNVRAMを破壊するデバッグ関数
+  DWC_Debug_DWCInitError()を追加した。
 
   Revision 1.7  2005/11/01 10:38:48  arakit
-  enum�̒Ԃ���C�������B
+  enumの綴りを修正した。
 
   Revision 1.6  2005/10/06 09:42:37  sasakit
-  version�𖄂ߍ��ނ悤�ɂ����B
+  versionを埋め込むようにした。
 
   Revision 1.5  2005/09/21 06:56:02  sasakit
-  �f�o�b�O�p�̖{��Wi-Fi���[�U�����폜����֐���ǉ��B
+  デバッグ用の本体Wi-Fiユーザ情報を削除する関数を追加。
 
   Revision 1.4  2005/09/02 10:14:23  sasakit
-  OS_Init()����NitroSDK�������֐����ĂԂ̂���߂āA���t�@�����X�ɖ��L����悤�ɂ����B
+  OS_Init()他のNitroSDK初期化関数を呼ぶのをやめて、リファレンスに明記するようにした。
 
   Revision 1.3  2005/08/31 09:47:01  sasakit
-  dwc_init�̖߂�l��ݒ肵���B
+  dwc_initの戻り値を設定した。
 
   Revision 1.2  2005/08/31 04:12:30  sasakit
-  util_wifiidtool.h�̈ړ��ɑΉ��B
+  util_wifiidtool.hの移動に対応。
 
   Revision 1.1  2005/08/31 02:29:44  sasakit
-  �������p�̃R�[�h��overlay�ŕ�������悤�ɁA���W���[���𕪂����B
+  初期化用のコードがoverlayで分けられるように、モジュールを分けた。
 
   Revision 1.4  2005/08/23 05:40:05  nakata
   Fixed the problem that is related to BM initialize.
@@ -52,17 +52,17 @@
   After  : Pass 32 BYTE alignmented memory space to BM as work memory.
 
   Revision 1.3  2005/08/22 12:06:57  sasakit
-  WiFiID���Ȃ��Ƃ��ɍ쐬����悤�ɖ߂����B
+  WiFiIDがないときに作成するように戻した。
 
   Revision 1.2  2005/08/20 06:59:56  sasakit
-  �w�b�_�C���N���[�h�K�[�h�̏����𓝈ꂵ���B
-  bm/dwc_init.h -> bm/dwc_bm_init.h�ɕύX
-  �w�b�_��Copyright�������B
-  �\���̖̂��O��Ԃ��ł��邾�����[���ɂ����Â����B
-  util_wifiidtool.h��dwc_backup.h�̊֌W���኱�C���B
+  ヘッダインクルードガードの書式を統一した。
+  bm/dwc_init.h -> bm/dwc_bm_init.hに変更
+  ヘッダにCopyrightをつけた。
+  構造体の名前空間をできるだけルールにちかづけた。
+  util_wifiidtool.hとdwc_backup.hの関係を若干修正。
 
   Revision 1.1  2005/08/19 12:12:10  sasakit
-  �����[�X�Ɍ����ďC��
+  リリースに向けて修正
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -106,7 +106,7 @@ DWC_Init( void* work )
 
     if ( ret < 0 )
     {
-        // NVRAM�̓��e���j�󂳂�Ă���B
+        // NVRAMの内容が破壊されている。
         if ( created )
         {
             return DWC_INIT_RESULT_DESTROY_USERID;
@@ -118,7 +118,7 @@ DWC_Init( void* work )
     }
     else if ( created )
     {
-        // NVRAM�͖��Ȃ����ǁA�Ȃ�������܂����B
+        // NVRAMは問題ないけど、なぜか作られました。
         return DWC_INIT_RESULT_CREATE_USERID;
     }
     
@@ -128,11 +128,11 @@ DWC_Init( void* work )
 /*---------------------------------------------------------------------------*
   Name:         DWC_GetAuthenticatedUserId
 
-  Description:  DS�{�̂̔F�؍ς݃��[�UID���擾����
+  Description:  DS本体の認証済みユーザIDを取得する
 
-  Arguments:    �Ȃ�
+  Arguments:    なし
 
-  Returns:      �F�؍ς݃��[�UID�i�F�؍ς݂łȂ��ꍇ�� 0 )
+  Returns:      認証済みユーザID（認証済みでない場合は 0 )
  *---------------------------------------------------------------------------*/
 u64 DWC_GetAuthenticatedUserId( void )
 {
@@ -147,7 +147,7 @@ extern BOOL  DWCi_BACKUPlRead(void* mem);
 extern BOOL  DWCi_BACKUPlWritePage(const void* data, const BOOL* page, void* work);
 static    char s_work[0x400] ATTRIBUTE_ALIGN(32);
 
-// NVRAM�̓���̉ӏ���j�󂵂�DWC_Init()�̃G���[�Ԃ�l���������߂̃f�o�b�O�֐�
+// NVRAMの特定の箇所を破壊してDWC_Init()のエラー返り値を試すためのデバッグ関数
 void DWC_Debug_DWCInitError( void* work, int dwc_init_error )
 {
     BOOL needCrc = FALSE;
@@ -155,55 +155,55 @@ void DWC_Debug_DWCInitError( void* work, int dwc_init_error )
 
     if ( dwc_init_error == DWC_INIT_RESULT_NOERROR ) return;
 
-    DWCi_BACKUPlInit(work);  // NVRAM�A�N�Z�X������
+    DWCi_BACKUPlInit(work);  // NVRAMアクセス初期化
 
     if ( dwc_init_error == DWC_INIT_RESULT_CREATE_USERID )
     {
-        DWCi_BACKUPlRead( s_work );  // NVRAM�ǂݍ���
+        DWCi_BACKUPlRead( s_work );  // NVRAM読み込み
 
-        // �y�[�W0��WiFi���̃����onotAttestedId, attestedUserId�̂݃N���A
+        // ページ0のWiFi情報のメンバnotAttestedId, attestedUserIdのみクリア
         MI_CpuClear8( &s_work[0xf0], 10 );
         s_work[0xf0+0x0a] &= ~0x3f;
 
         needCrc = TRUE;
-        crcPage = 0;     // �y�[�W0�̃f�[�^������������
+        crcPage = 0;     // ページ0のデータを書き換える
     }
     else if ( dwc_init_error == DWC_INIT_RESULT_DESTROY_USERID )
     {
-        DWCi_BACKUPlRead( s_work );  // NVRAM�ǂݍ���
+        DWCi_BACKUPlRead( s_work );  // NVRAM読み込み
 
-        // �y�[�W1��WiFi���̃����onotAttestedId, attestedUserId�̂݃N���A
+        // ページ1のWiFi情報のメンバnotAttestedId, attestedUserIdのみクリア
         MI_CpuClear8( &s_work[0x100+0xf0], 10 );
         s_work[0x100+0xf0+0x0a] &= ~0x3f;
 
-        // ���̌�y�[�W0�̃f�[�^��j�󂷂�̂ŁA�y�[�W0�ɃR�s�[����邱�ƂɂȂ�
-        // �y�[�W1��ap.state�ɁA�y�[�W0�ɂƂ��Đ������l���Z�b�g����
+        // この後ページ0のデータを破壊するので、ページ0にコピーされることになる
+        // ページ1のap.stateに、ページ0にとって正しい値をセットする
         s_work[0x100+0xef] = 1;
 
         needCrc = TRUE;
-        crcPage = 1;     // �y�[�W1�̃f�[�^������������
+        crcPage = 1;     // ページ1のデータを書き換える
     }
 
-    // WiFi���������������ꍇ�́ACRC�̍Čv�Z������NVRAM������������
+    // WiFi情報を書き換えた場合は、CRCの再計算をしてNVRAMを書き換える
     if ( needCrc )
     {
         u16 hash;
         BOOL page[4] = { FALSE, FALSE, FALSE, FALSE };
         MATHCRC16Table crc16_tbl;
         
-        // CRC ������
+        // CRC 初期化
     	MATH_CRC16InitTable( &crc16_tbl );
 
-        // CRC �Čv�Z
+        // CRC 再計算
   		hash = MATH_CalcCRC16( &crc16_tbl, (u16 *)&s_work[crcPage*0x100], 0xFE );
         *(u16 *)(&s_work[crcPage*0x100+0xFE]) = hash;
 
-        // �w��̃y�[�W�̂�NVRAM��������
+        // 指定のページのみNVRAM書き換え
         page[crcPage] = TRUE;
         DWCi_BACKUPlWritePage( s_work, page, work );
     }
 
-    // DWC_BM_Init()��DWC_INIT_OK�ȊO�ŏI�������邽�߂Ƀy�[�W0�̂݃N���A����
+    // DWC_BM_Init()をDWC_INIT_OK以外で終了させるためにページ0のみクリアする
     if ( dwc_init_error == DWC_INIT_RESULT_DESTROY_USERID ||
          dwc_init_error == DWC_INIT_RESULT_DESTROY_OTHER_SETTING )
     {

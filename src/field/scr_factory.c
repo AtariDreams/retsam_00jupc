@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_factory.c
- * @bfief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[(Žó•t‚Ü‚í‚è)
+ * @bfief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼(å—ä»˜ã¾ã‚ã‚Š)
  * @author	Satoshi Nohara
  * @date	07.09.18
  */
@@ -16,11 +16,11 @@
 #include "system/bmp_list.h"
 #include "system/get_text.h"
 #include "system/lib_pack.h"
-#include "gflib/strbuf_family.h"	//‹–‰Â§
-//ƒtƒB[ƒ‹ƒh
+#include "gflib/strbuf_family.h"	//è¨±å¯åˆ¶
+//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 #include "fieldsys.h"
 #include "field_subproc.h"
-//ƒXƒNƒŠƒvƒg
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 #include "script.h"
 #include "scrcmd.h"
 #include "scrcmd_def.h"
@@ -29,7 +29,7 @@
 #include "sysflag.h"
 #include "syswork.h"
 #include "scr_tool.h"
-//ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
+//ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 #include "savedata/frontier_savedata.h"
 #include "scr_factory.h"
 //#include "scr_factory_sub.h"
@@ -37,7 +37,7 @@
 #include "../frontier/factory_def.h"
 #include "application/factory.h"
 #include "../frontier/comm_command_frontier.h"
-//’ÊM
+//é€šä¿¡
 #include "communication/comm_def.h"
 #include "communication/comm_tool.h"
 #include "communication/comm_system.h"
@@ -45,7 +45,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 BOOL EvCmdFactorySetContinueNG( VM_MACHINE * core );
@@ -53,13 +53,13 @@ BOOL EvCmdFactorySetContinueNG( VM_MACHINE * core );
 
 //============================================================================================
 //
-//	ƒRƒ}ƒ“ƒh
+//	ã‚³ãƒžãƒ³ãƒ‰
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒtƒ@ƒNƒgƒŠ[Œp‘±NGƒZƒbƒg
+ * @brief		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ç¶™ç¶šNGã‚»ãƒƒãƒˆ
  * @param		core
  */
 //--------------------------------------------------------------------------------------------
@@ -73,12 +73,12 @@ BOOL EvCmdFactorySetContinueNG( VM_MACHINE * core )
 
 	score_wk = SaveData_GetFactoryScore( core->fsys->savedata );
 
-	//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‚ÌƒNƒŠƒA‚ð‘‚«o‚µ
+	//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"ã®ã‚¯ãƒªã‚¢ã‚’æ›¸ãå‡ºã—
 	buf8[0] = 0;
 	FACTORYSCORE_PutScoreData( score_wk, FACTORYSCORE_ID_CLEAR_FLAG, 
 							(level*FACTORY_TYPE_MAX)+type, buf8 );
 
-	//WIFI‚Ì‚Ý“ÁŽê
+	//WIFIã®ã¿ç‰¹æ®Š
 	if( type == FACTORY_TYPE_WIFI_MULTI ){
 
 		if( level == FACTORY_LEVEL_50 ){
@@ -92,12 +92,12 @@ BOOL EvCmdFactorySetContinueNG( VM_MACHINE * core )
 							Frontier_GetFriendIndex(clear_id), 0 );
 	}
 
-	//"Œ»Ý‚Ì˜AŸ”"‚ð0‚É‚·‚é
+	//"ç¾åœ¨ã®é€£å‹æ•°"ã‚’0ã«ã™ã‚‹
 	FrontierRecord_Set(	SaveData_GetFrontier(core->fsys->savedata), 
 						FactoryScr_GetWinRecordID(level,type),
 						Frontier_GetFriendIndex(FactoryScr_GetWinRecordID(level,type)), 0 );
 
-	//"Œ»Ý‚ÌŒðŠ·‰ñ”"‚ð0‚É‚·‚é
+	//"ç¾åœ¨ã®äº¤æ›å›žæ•°"ã‚’0ã«ã™ã‚‹
 	FrontierRecord_Set(	SaveData_GetFrontier(core->fsys->savedata), 
 						FactoryScr_GetTradeRecordID(level,type),
 						Frontier_GetFriendIndex(FactoryScr_GetTradeRecordID(level,type)), 0 );

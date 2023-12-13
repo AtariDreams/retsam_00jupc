@@ -20,32 +20,32 @@
   Fixed the bug that incorrect ingamesn is sent when auth is called in netcheck.
 
   Revision 1.9  2005/12/21 03:08:19  arakit
-  ���C�h������̕����񒷂�Ԃ��֐�DWCi_WStrLen()���쐬�����B
+  ワイド文字列の文字列長を返す関数DWCi_WStrLen()を作成した。
 
   Revision 1.8  2005/10/28 09:11:20  arakit
-  DWCi_GetCurrentTime()���폜�����B
+  DWCi_GetCurrentTime()を削除した。
 
   Revision 1.7  2005/09/16 07:27:13  arakit
-  �ėpkey/value������̍ő咷��4096�ɕύX
+  汎用key/value文字列の最大長を4096に変更
 
   Revision 1.6  2005/09/05 11:42:02  arakit
-  key/value�����񑀍�֐��̕����������P�p�����B
+  key/value文字列操作関数の文字数上限を撤廃した。
 
   Revision 1.5  2005/08/29 12:25:31  arakit
-  ���Ԍv���֐�DWCi_GetCurrentTime()��ǉ������B
+  時間計測関数DWCi_GetCurrentTime()を追加した。
 
   Revision 1.4  2005/08/29 06:34:15  arakit
-  �ėpkey/value�^������ǂݏ����֐���p�ӂ����B
+  汎用key/value型文字列読み書き関数を用意した。
 
   Revision 1.3  2005/08/23 13:53:05  arakit
-  �����_���֐���MATH_Rand*���g���悤�ɂ����B
+  ランダム関数にMATH_Rand*を使うようにした。
 
   Revision 1.2  2005/08/20 07:01:19  sasakit
-  �w�b�_�C���N���[�h�K�[�h�̏����𓝈ꂵ���B
-  bm/dwc_init.h -> bm/dwc_bm_init.h�ɕύX
-  �w�b�_��Copyright�������B
-  �\���̖̂��O��Ԃ��ł��邾�����[���ɂ����Â����B
-  util_wifiidtool.h��dwc_backup.h�̊֌W���኱�C���B
+  ヘッダインクルードガードの書式を統一した。
+  bm/dwc_init.h -> bm/dwc_bm_init.hに変更
+  ヘッダにCopyrightをつけた。
+  構造体の名前空間をできるだけルールにちかづけた。
+  util_wifiidtool.hとdwc_backup.hの関係を若干修正。
 
 
   $NoKeywords: $
@@ -61,7 +61,7 @@ extern "C" {
 //----------------------------------------------------------------------------
 // define
 //----------------------------------------------------------------------------
-// �ėpkey/value������̂��ꂼ��̍ő啶����
+// 汎用key/value文字列のそれぞれの最大文字列長
 #define DWC_COMMONSTR_MAX_KEY_VALUE_LEN 4096
     
 
@@ -84,38 +84,38 @@ extern "C" {
 // function - external
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  �ėpkey/value�^������쐬�֐�
-  �����@�Fkey       �ݒ肵����key������
-          value     �ݒ肵����value������
-          string    key/value�^������i�[��|�C���^
-          separator �e������𕪂����؂蕶��
-  �߂�l�F�Z�b�g���ꂽkey/value�����񒷁iNULL�I�[�܂܂��j
-  �p�r�@�Fkey/value�̕�������w�肵�ADWC�ėpkey/value��������쐬����
+  汎用key/value型文字列作成関数
+  引数　：key       設定したいkey文字列
+          value     設定したいvalue文字列
+          string    key/value型文字列格納先ポインタ
+          separator 各文字列を分ける区切り文字
+  戻り値：セットされたkey/value文字列長（NULL終端含まず）
+  用途　：key/valueの文字列を指定し、DWC汎用key/value文字列を作成する
  *---------------------------------------------------------------------------*/
 extern int  DWC_SetCommonKeyValueString(const char* key, const char* value, char* string, char separator);
 
 
 /*---------------------------------------------------------------------------*
-  �ėpkey/value�^������ǉ��֐�
-  �����@�Fkey       �ݒ肵����key������
-          value     �ݒ肵����value������
-          string    key/value�^������i�[��|�C���^
-          separator �e������𕪂����؂蕶��
-  �߂�l�Fkey/value�����񂪒ǉ����ꂽ���key/value�����񒷁iNULL�I�[�܂܂��j
-  �p�r�@�Fkey/value�̕�����������̕�����ɒǉ�����
+  汎用key/value型文字列追加関数
+  引数　：key       設定したいkey文字列
+          value     設定したいvalue文字列
+          string    key/value型文字列格納先ポインタ
+          separator 各文字列を分ける区切り文字
+  戻り値：key/value文字列が追加された後のkey/value文字列長（NULL終端含まず）
+  用途　：key/valueの文字列を既存の文字列に追加する
  *---------------------------------------------------------------------------*/
 extern int  DWC_AddCommonKeyValueString(const char* key, const char* value, char* string, char separator);
 
 
 /*---------------------------------------------------------------------------*
-  �ėpkey/value�^������value�擾�֐�
-  �����@�Fkey       ���o������key������
-          value     ���o����value������̊i�[��|�C���^�B
-          string    key/value�^������
-          separator �e������𕪂����؂蕶��
-  �߂�l�Fvalue�����񒷁iNULL�I�[�܂܂��j�B���݂��Ȃ�key���w�肵���ꍇ��-1��Ԃ�
-  �p�r�@�F�w�肵����؂蕶���ŋ�؂�ꂽDWC�ėpkey/value�^�����񂩂�A
-          �w�肳�ꂽkey������ɑΉ�����value��������擾����B
+  汎用key/value型文字列value取得関数
+  引数　：key       取り出したいkey文字列
+          value     取り出したvalue文字列の格納先ポインタ。
+          string    key/value型文字列
+          separator 各文字列を分ける区切り文字
+  戻り値：value文字列長（NULL終端含まず）。存在しないkeyを指定した場合は-1を返す
+  用途　：指定した区切り文字で区切られたDWC汎用key/value型文字列から、
+          指定されたkey文字列に対応するvalue文字列を取得する。
  *---------------------------------------------------------------------------*/
 extern int  DWC_GetCommonValueString(const char* key, char* value, const char* string, char separator);
 

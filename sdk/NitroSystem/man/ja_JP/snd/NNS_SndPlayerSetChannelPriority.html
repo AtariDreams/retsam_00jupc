@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndPlayerSetChannelPriority</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndPlayerSetChannelPriority</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerSetChannelPriority(
@@ -19,7 +19,7 @@
         int <var>priority</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA0LWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -27,43 +27,43 @@
 <tbody>
 <tr>
 <td><em><strong><code>handle</code></strong></em></td>
-<td>�T�E���h�n���h���̃|�C���^�ł��B</td>
+<td>サウンドハンドルのポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>priority</code></strong></em></td>
-<td>�����v���C�I���e�B�̒l�ł��B�l�͈̔͂� 0�`127�ŁA�傫���قǗD��x�������Ȃ�܂��B</td>
+<td>発音プライオリティの値です。値の範囲は 0〜127で、大きいほど優先度が高くなります。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAQMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAXMWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�V�[�P���X�̔����v���C�I���e�B��ύX���܂��B</p>
+シーケンスの発音プライオリティを変更します。</p>
       <p>
-�T�E���h�n���h��<em><strong><code>handle</code></strong></em>�Ɍ��т���ꂽ�V�[�P���X�̔����v���C�I���e�B��ύX���܂��B
-�T�E���h�n���h���������̏ꍇ�́A�������܂���B
+サウンドハンドル<em><strong><code>handle</code></strong></em>に結びつけられたシーケンスの発音プライオリティを変更します。
+サウンドハンドルが無効の場合は、何もしません。
 </p>
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-���̊֐��́A<tt class="function"><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeq*</a></tt>�֐���
-<tt class="function"><a href="NNS_SndArcPlayerStartSeqArc.html">NNS_SndArcPlayerStartSeqArc*</a></tt>�֐�����
-�Ăт�����Ă��܂��B
-�ēx�A���̊֐����Ăт����ƁA�ݒ肵���l���㏑������܂��B 
+この関数は、<tt class="function"><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeq*</a></tt>関数と
+<tt class="function"><a href="NNS_SndArcPlayerStartSeqArc.html">NNS_SndArcPlayerStartSeqArc*</a></tt>関数内で
+呼びだされています。
+再度、この関数を呼びだすと、設定した値が上書きされます。 
 </p>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeq*</a>, <a href="NNS_SndArcPlayerStartSeqArc.html">NNS_SndArcPlayerStartSeqArc*</a></p>
-<h2>����</h2>
-<p>2004/06/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
 </div>
 </body>
 </html>

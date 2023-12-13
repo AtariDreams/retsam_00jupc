@@ -1,11 +1,11 @@
 #ifndef _C01R0102_DEF_H_
 #define _C01R0102_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C01R0102_MIDDLEMAN1		(1)
 #define	SCRID_C01R0102_OLDMAN2		(2)
 #define	SCRID_C01R0102_PIPPI		(3)
 #define	SCRID_C01R0102_PURIN		(4)
-#define	SCRID_C01R0102_DATA_MAX		(4)		//最大数
+#define	SCRID_C01R0102_DATA_MAX		(4)		//譛螟ｧ謨ｰ
 
 #endif //_C01R0102_DEF_H_

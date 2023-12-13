@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fss_stage_sub.c
- * @bfief	�t�����e�B�A�V�X�e���X�N���v�g�R�}���h�T�u�F�X�e�[�W
+ * @bfief	フロンティアシステムスクリプトコマンドサブ：ステージ
  * @author	Satoshi Nohara
  * @date	07.06.08
  */
@@ -41,7 +41,7 @@
 
 //============================================================================================
 //
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //
 //============================================================================================
 STAGE_SCRWORK* StageScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u8 pos, u8 pos2 );
@@ -52,7 +52,7 @@ void StageScr_GetResult( STAGE_SCRWORK* wk, void* stage_call );
 u16 StageCall_GetRetWork( void* param, u8 pos );
 void StageScr_StageRenshouCopyExtra( STAGE_SCRWORK* wk, u16* ret_wk );
 
-//�ʐM
+//通信
 BOOL StageScr_CommSetSendBuf( STAGE_SCRWORK* wk, u16 type, u16 param );
 
 static u16 StageScr_TypeLevelRecordGet( SAVEDATA* sv, u8 type, u8 csr_pos, u16* l_num, u16* h_num );
@@ -63,22 +63,22 @@ static u16 StageScr_GetEnemyLevel( STAGE_SCRWORK* wk );
 
 //============================================================================================
 //
-//	�֐�
+//	関数
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	���[�N�G���A�m��
+ * @brief	ワークエリア確保
  *
- * @param	savedata		�Z�[�u�f�[�^�̃|�C���^
- * @param	init			�ŏ����炩�������炩
- * @param	type			�^�C�v(�V���O���A�_�u���Ȃ�)
- * @param	pos				�I�������|�P�����ʒu
- * @param	pos2			�I�������|�P�����ʒu
+ * @param	savedata		セーブデータのポインタ
+ * @param	init			最初からか続きからか
+ * @param	type			タイプ(シングル、ダブルなど)
+ * @param	pos				選択したポケモン位置
+ * @param	pos2			選択したポケモン位置
  * @param	none
  *	
- * �����Ȃ炸 StageScr_WorkRelease()�ŗ̈���J�����邱��
+ * ＊かならず StageScr_WorkRelease()で領域を開放すること
  */
 //--------------------------------------------------------------
 STAGE_SCRWORK* StageScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u8 pos, u8 pos2 )
@@ -88,30 +88,30 @@ STAGE_SCRWORK* StageScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u8 pos
 	u8 clear_flag,level,m_max;
 	u16	i,l_num,h_num,set_num;
 	POKEMON_PARAM* temp_poke;
-	static STAGE_SCRWORK* wk;					//���ƂŊm�F]]]]]]]]]]]]]]]]]]]]]]]]]
+	static STAGE_SCRWORK* wk;					//あとで確認]]]]]]]]]]]]]]]]]]]]]]]]]
 
 	wk = sys_AllocMemory( HEAPID_WORLD, sizeof(STAGE_SCRWORK) );
 	MI_CpuClear8( wk, sizeof(STAGE_SCRWORK) );
 
-	//�Z�[�u�f�[�^�擾
+	//セーブデータ取得
 	wk->stage_savedata	= SaveData_GetStageData( savedata );
 	wk->sv				= savedata;
 	wk->heapID			= HEAPID_WORLD;
-	wk->p_party			= PokeParty_AllocPartyWork( HEAPID_WORLD );		//�p�[�e�B�������m��
+	wk->p_party			= PokeParty_AllocPartyWork( HEAPID_WORLD );		//パーティメモリ確保
 	wk->pair_poke		= PokemonParam_AllocWork( HEAPID_WORLD );
 
 	stage_sv = wk->stage_savedata;
 	score_sv = SaveData_GetStageScore( savedata );
 
-	//�V�K���A�p����
+	//新規か、継続か
 	if( init == 0 ){
 		wk->type	= type;
 		m_max		= Stage_GetMinePokeNum( wk->type );
 		wk->round	= 0;
 
-		STAGEDATA_Init( stage_sv );	//���f�f�[�^������
+		STAGEDATA_Init( stage_sv );	//中断データ初期化
 
-		//WIFI�̂ݓ���
+		//WIFIのみ特殊
 		if( wk->type == STAGE_TYPE_WIFI_MULTI ){
 #if 0
 			clear_flag = FrontierRecord_Get(SaveData_GetFrontier(wk->sv), 
@@ -122,7 +122,7 @@ STAGE_SCRWORK* StageScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u8 pos
 #endif
 
 		}else{
-			//�N���A�������t���O���擾
+			//クリアしたかフラグを取得
 			clear_flag = (u8)STAGESCORE_GetScoreData(	score_sv, STAGESCORE_ID_CLEAR_FLAG, 
 														wk->type, 0, NULL );
 		}
@@ -134,18 +134,18 @@ STAGE_SCRWORK* StageScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u8 pos
 		}else{
 			wk->rensyou = 0;
 
-			//���݂̃o�g���^�C�v�̃^�C�v���x�����N���A����
+			//現在のバトルタイプのタイプレベルをクリアする
 			for( i=0; i < STAGE_TR_TYPE_MAX ;i++ ){
 				StageScr_TypeLevelRecordSet( wk->sv, wk->type, i, 0 );
 			}
 		}
 
-		//�I�������莝���|�P�����̈ʒu
+		//選択した手持ちポケモンの位置
 		wk->mine_poke_pos[0] = pos;
 		wk->mine_poke_pos[1] = pos2;
 
 	}else{
-		//���݂̃v���C�i�s�f�[�^�擾
+		//現在のプレイ進行データ取得
 		wk->type	= (u8)STAGEDATA_GetPlayData( stage_sv, STAGEDATA_ID_TYPE, 0, 0, NULL );
 		m_max = Stage_GetMinePokeNum( wk->type );
 		wk->round	= (u8)STAGEDATA_GetPlayData( stage_sv, STAGEDATA_ID_ROUND,0, 0, NULL );
@@ -154,7 +154,7 @@ STAGE_SCRWORK* StageScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u8 pos
 									Frontier_GetFriendIndex(StageScr_GetWinRecordID(wk->type)) );
 
 		//---------------------------------------------------------------------------------------
-		//�ۑ����Ă������莝���|�P�����ʒu���擾
+		//保存しておいた手持ちポケモン位置を取得
 		for( i=0; i < m_max ;i++ ){
 			wk->mine_poke_pos[i] = 
 				(u8)STAGEDATA_GetPlayData(stage_sv, STAGEDATA_ID_MINE_POKE_POS, i, 0, NULL );
@@ -162,7 +162,7 @@ STAGE_SCRWORK* StageScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u8 pos
 		}
 
 		//---------------------------------------------------------------------------------------
-		//�ۑ����Ă������G�g���[�i�[��index�擾
+		//保存しておいた敵トレーナーのindex取得
 		for( i=0; i < STAGE_LAP_MULTI_ENEMY_MAX ;i++ ){
 			wk->tr_index[i] = (u16)STAGEDATA_GetPlayData(	stage_sv, STAGEDATA_ID_TR_INDEX, 
 															i, 0, NULL);
@@ -170,7 +170,7 @@ STAGE_SCRWORK* StageScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u8 pos
 		}
 
 		//---------------------------------------------------------------------------------------
-		//�ۑ����Ă������G�|�P������index���擾
+		//保存しておいた敵ポケモンのindexを取得
 		for( i=0; i < STAGE_LAP_MULTI_ENEMY_MAX ;i++ ){
 			wk->enemy_poke_index[i] = (u8)STAGEDATA_GetPlayData( stage_sv, 
 														STAGEDATA_ID_ENEMY_POKE_INDEX, 
@@ -180,7 +180,7 @@ STAGE_SCRWORK* StageScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u8 pos
 
 	}
 
-	//�����A�C�e����ۑ����Ă���
+	//所持アイテムを保存しておく
 	for( i=0; i < m_max; i++ ){
 		temp_poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(wk->sv), 
 												wk->mine_poke_pos[i] );
@@ -190,26 +190,26 @@ STAGE_SCRWORK* StageScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u8 pos
 	wk->win_cnt	= 0;
 	wk->lap		= (u16)(wk->rensyou / STAGE_LAP_ENEMY_MAX);
 
-	//�ʐM�}���`�̂݃����N���x����10�Œ�ɂ��ăX�^�[�g������
+	//通信マルチのみランクレベルを10固定にしてスタートさせる
 	if( wk->type == STAGE_TYPE_MULTI ){
 
-		//�����͑S�Ẵ^�C�v���擾���ăZ�b�g�Ȃ̂�(/2)���Ȃ��Ă悢
+		//ここは全てのタイプを取得してセットなので(/2)しなくてよい
 		for( i=0; i < STAGE_TR_TYPE_MAX ;i++ ){
-			//�������̓��R�[�h�ł͂Ȃ��I
+			//★ここはレコードではない！
 			Stage_SetTypeLevel( i, &wk->type_level[STAGE_TYPE_MULTI][0], (STAGE_TYPE_LEVEL_MAX-1) );
 		}
 	}else{
 
-		//�����͑S�Ẵ^�C�v���擾���ăZ�b�g�Ȃ̂�(/2)���Ȃ��Ă悢
+		//ここは全てのタイプを取得してセットなので(/2)しなくてよい
 		for( i=0; i < STAGE_TR_TYPE_MAX ;i++ ){
 			set_num = StageScr_TypeLevelRecordGet(	savedata, wk->type, i, &l_num, &h_num );
 
-			//�������̓��R�[�h�ł͂Ȃ��I
+			//★ここはレコードではない！
 			Stage_SetTypeLevel( i, &wk->type_level[wk->type][0], set_num );
 		}
 	}
 
-	//�n���V�o�^
+	//地球儀登録
 	if( Stage_CommCheck(wk->type) == TRUE ){
 		FrontierTool_WifiHistory( wk->sv );
 	}
@@ -219,32 +219,32 @@ STAGE_SCRWORK* StageScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u8 pos
 
 //--------------------------------------------------------------
 /**
- * @brief	�G�g���[�i�[�ƓG�|�P������I�o����
+ * @brief	敵トレーナーと敵ポケモンを選出する
  *
- * @param	savedata	�Z�[�u�f�[�^�ւ̃|�C���^
- * @param	init		���������[�h BTWR_PLAY_NEW:���߂���ABTWR_PLAY_CONTINE:��������
+ * @param	savedata	セーブデータへのポインタ
+ * @param	init		初期化モード BTWR_PLAY_NEW:初めから、BTWR_PLAY_CONTINE:続きから
  */
 //--------------------------------------------------------------
 void StageScr_WorkEnemySet( STAGE_SCRWORK* wk, u16 init )
 {
-	//OS_Printf( "�O �p�� ����wk = %d\n", wk );
+	//OS_Printf( "前 継続 問題のwk = %d\n", wk );
 	
-	//�V�K���A�p����
+	//新規か、継続か
 	if( init == 0 ){
 		StageScr_InitEnemySet( wk );
 	}else{
 		StageScr_InitEnemySet( wk );
 	}
 
-	//OS_Printf( "�� �V�K ����wk = %d\n", wk );
+	//OS_Printf( "後 新規 問題のwk = %d\n", wk );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�K�F�G�g���[�i�[�A�G�|�P�����f�[�^�𐶐�
+ * @brief	新規：敵トレーナー、敵ポケモンデータを生成
  *
- * @param	wk		STAGE_SCRWORK�ւ̃|�C���^
+ * @param	wk		STAGE_SCRWORKへのポインタ
  */
 //--------------------------------------------------------------
 static void StageScr_InitEnemySet( STAGE_SCRWORK* wk )
@@ -254,42 +254,42 @@ static void StageScr_InitEnemySet( STAGE_SCRWORK* wk )
 	POKEMON_PARAM* temp_poke;
 	B_TOWER_POKEMON poke;
 
-	OS_Printf( "�V�K�F�f�[�^�𐶐�\n" );
+	OS_Printf( "新規：データを生成\n" );
 
 	brain_count = 0;
 
-	//�|�P�����^�C�v��I��ł���łȂ��ƃg���[�i�[�̃C���f�b�N�X�����肷�邱�Ƃ��ł��Ȃ�
+	//ポケモンタイプを選んでからでないとトレーナーのインデックスを決定することができない
 	
-	//�g���[�i�[index�쐬
+	//トレーナーindex作成
 	
-	//���肷��|�P���������V���O���ȊO��2�C�ɂȂ�
+	//決定するポケモン数がシングル以外は2匹になる
 	set_num = 1;
 	if( wk->type != STAGE_TYPE_SINGLE ){
 		set_num = STAGE_ENTRY_POKE_MAX;
 	}
 
-	//�������̓��R�[�h�ł͂Ȃ��I
+	//★ここはレコードではない！
 	level = Stage_GetTypeLevel( wk->csr_pos, &wk->type_level[wk->type][0] );
 
-	//�G�̃��x�����擾
+	//敵のレベルを取得
 	wk->enemy_level = StageScr_GetEnemyLevel( wk );
 
 	Stage_CreateTrType( wk->csr_pos, set_num, level, wk->round, wk->tr_index );
 	Stage_CreateTrIndex( wk->type, set_num, wk->lap, level, wk->round, wk->tr_index );
 
-	//���Ȃ��悤�ɂ��邽�߂�10�C�ŏ��ɐ����������������A
-	//�ǂ̃|�P�����^�C�v��I�Ԃ��͂��̎��łȂ��Ƃ킩��Ȃ��̂ŁA
-	//���񐶐�����
+	//被らないようにするために10匹最初に生成したい所だが、
+	//どのポケモンタイプを選ぶかはその時でないとわからないので、
+	//毎回生成する
 
-	//�u���[���̎��́A�I�o���郉���N�������̃��x���ɍ��킹��
-	set_pos = (wk->round * STAGE_ENTRY_POKE_MAX);		//�Z�b�g����ʒu
+	//ブレーンの時は、選出するランクを自分のレベルに合わせる
+	set_pos = (wk->round * STAGE_ENTRY_POKE_MAX);		//セットする位置
 	if( (wk->tr_index[set_pos] == STAGE_LEADER_TR_INDEX_1ST) ||
 		(wk->tr_index[set_pos] == STAGE_LEADER_TR_INDEX_2ND) ){
 
-		//�莝���|�P�����̃��x�����烉���N���擾
+		//手持ちポケモンのレベルからランクを取得
 		mine_lv = Stage_GetMineLevelRank( wk );
 		level = mine_lv;
-		OS_Printf( "�u���[���o�ꎞ�@�莝������Z�o���������N = %d\n", level );
+		OS_Printf( "ブレーン登場時　手持ちから算出したランク = %d\n", level );
 	}
 
 	if( wk->tr_index[set_pos] == STAGE_LEADER_TR_INDEX_1ST ){
@@ -300,10 +300,10 @@ static void StageScr_InitEnemySet( STAGE_SCRWORK* wk )
 		brain_count = 2;
 	}
 
-	//�|�P����index�쐬
+	//ポケモンindex作成
 	temp_poke = PokeParty_GetMemberPointer( wk->p_party, 0 );
 
-	//��������|�P������1�ł悢(�����|�P�������o���d�g�݂Ȃ̂�)
+	//生成するポケモンは1つでよい(同じポケモンを出す仕組みなので)
 	//Stage_CreatePokeIndex(	set_num, wk->poke_type, level, wk->round,
 	Stage_CreatePokeIndex(	1, wk->poke_type, level, wk->round,
 							PokeParaGet(temp_poke,ID_PARA_monsno,NULL),
@@ -313,7 +313,7 @@ static void StageScr_InitEnemySet( STAGE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	���[�N�G���A���J������
+ * @brief	ワークエリアを開放する
  */
 //--------------------------------------------------------------
 void StageScr_WorkRelease( STAGE_SCRWORK* wk )
@@ -338,21 +338,21 @@ void StageScr_WorkRelease( STAGE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	�^�C�v�I����ʌĂяo����̌��ʎ擾
+ * @brief	タイプ選択画面呼び出し後の結果取得
  *
- * @param	wk		STAGE_SCRWORK�̃|�C���^
+ * @param	wk		STAGE_SCRWORKのポインタ
  */
 //--------------------------------------------------------------
 void StageScr_GetResult( STAGE_SCRWORK* wk, void* stage_call )
 {
 	int i;
 
-	//���ʂ��擾����
+	//結果を取得する
 	wk->ret_work	= StageCall_GetRetWork( stage_call, 0 );
-	wk->csr_pos		= wk->ret_work;								//�J�[�\���ʒu
-	wk->poke_type	= Stage_GetPokeType( wk->ret_work );		//�J�[�\���ʒu�̃|�P�����^�C�v�擾
+	wk->csr_pos		= wk->ret_work;								//カーソル位置
+	wk->poke_type	= Stage_GetPokeType( wk->ret_work );		//カーソル位置のポケモンタイプ取得
 
-	//�J�[�\���ʒu�𒲐�
+	//カーソル位置を調整
 	if( wk->csr_pos >= 17 ){
 		wk->csr_pos = STAGE_TR_TYPE_MAX - 1;					//17
 	}
@@ -363,12 +363,12 @@ void StageScr_GetResult( STAGE_SCRWORK* wk, void* stage_call )
 
 //----------------------------------------------------------------------------
 /**
- * @brief	�o�g���X�e�[�W�̃|�P�����I����ʂł̌��ʂ��擾
+ * @brief	バトルステージのポケモン選択画面での結果を取得
  *
- * @param	param	STAGE_CALL_WORK�̃|�C���^
+ * @param	param	STAGE_CALL_WORKのポインタ
  * @param	pos		ret_work[pos](0-5)
  *
- * @return	"����"
+ * @return	"結果"
  */
 //----------------------------------------------------------------------------
 u16 StageCall_GetRetWork( void* param, u8 pos )
@@ -379,9 +379,9 @@ u16 StageCall_GetRetWork( void* param, u8 pos )
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�g���X�e�[�W�̊O���A���L�^���������݁A�Z�[�u���s��
+ * @brief   バトルステージの外部連勝記録を書き込み、セーブを行う
  *
- * @param	wk		STAGE_SCRWORK�̃|�C���^
+ * @param	wk		STAGE_SCRWORKのポインタ
  */
 //--------------------------------------------------------------
 void StageScr_StageRenshouCopyExtra( STAGE_SCRWORK* wk, u16* ret_wk )
@@ -389,11 +389,11 @@ void StageScr_StageRenshouCopyExtra( STAGE_SCRWORK* wk, u16* ret_wk )
 	LOAD_RESULT load_result;
 	SAVE_RESULT save_result;
 
-	//�O���Z�[�u�t�@�C�������[�h
-	//�풓�ɔz�u����Ă���t�����e�B�A���R�[�h����Z�b�g����l���擾
-	//�O���Z�[�u�̒l�Ɣ�r���A�傫����΃Z�b�g�@���@�O���Z�[�u���s
+	//外部セーブファイルをロード
+	//常駐に配置されているフロンティアレコードからセットする値を取得
+	//外部セーブの値と比較し、大きければセット　＞　外部セーブ実行
 
-	//WIFI�ȊO�͏�������
+	//WIFI以外は処理する
 	if( wk->type != STAGE_TYPE_WIFI_MULTI ){
 		*ret_wk = FrontierEx_StageRenshou_RenshouCopyExtra( wk->sv, 
 									StageScr_GetMaxWinRecordID(wk->type),
@@ -401,8 +401,8 @@ void StageScr_StageRenshouCopyExtra( STAGE_SCRWORK* wk, u16* ret_wk )
 									Frontier_GetFriendIndex(StageScr_GetMaxWinRecordID(wk->type)),
 									StageScr_GetExMaxWinRecordID(wk->type),
 									HEAPID_WORLD, &load_result, &save_result );
-		OS_Printf( "���[�h���� = %d\n", load_result );
-		OS_Printf( "�Z�[�u���� = %d\n", save_result );
+		OS_Printf( "ロード結果 = %d\n", load_result );
+		OS_Printf( "セーブ結果 = %d\n", save_result );
 	}else{
 		*ret_wk = FALSE;
 	}
@@ -433,10 +433,10 @@ void StageScr_SetClear( STAGE_SCRWORK* wk );
 
 //--------------------------------------------------------------
 /**
- * @brief	�x�ނƂ��Ɍ��݂̃v���C�󋵂��Z�[�u�ɏ����o��
+ * @brief	休むときに現在のプレイ状況をセーブに書き出す
  *
- * @param	wk		STAGE_SCRWORK�̃|�C���^
- * @param	mode	FR_MODE_CLEAR="�N���A",FR_MODE_LOSE="����",FR_MODE_REST="�x��"
+ * @param	wk		STAGE_SCRWORKのポインタ
+ * @param	mode	FR_MODE_CLEAR="クリア",FR_MODE_LOSE="負け",FR_MODE_REST="休む"
  */
 //--------------------------------------------------------------
 void StageScr_SaveRestPlayData( STAGE_SCRWORK* wk, u8 mode )
@@ -453,53 +453,53 @@ void StageScr_SaveRestPlayData( STAGE_SCRWORK* wk, u8 mode )
 
 	fr_sv = SaveData_GetFrontier( wk->sv );
 
-	//"�V���O���A�_�u���A�}���`�Awifi�}���`"�����o��
+	//"シングル、ダブル、マルチ、wifiマルチ"書き出し
 	buf8[0] = wk->type;
 	STAGEDATA_PutPlayData( wk->stage_savedata, STAGEDATA_ID_TYPE, 0, 0, buf8 );
 	
-	//�Z�[�u�t���O��L����ԂɃ��Z�b�g
+	//セーブフラグを有効状態にリセット
 	STAGEDATA_SetSaveFlag( wk->stage_savedata, TRUE );
 
-	//���ݒ��풆�̃|�P����
+	//現在挑戦中のポケモン
 	temp_poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(wk->sv), 
 											wk->mine_poke_pos[0] );
 	now_monsno = PokeParaGet( temp_poke, ID_PARA_monsno, NULL );
 
-	//"�A�����̃|�P�����i���o�["�擾
+	//"連勝中のポケモンナンバー"取得
 	record_monsno = FrontierRecord_Get(	fr_sv, 
 						StageScr_GetMonsNoRecordID(wk->type),
 						Frontier_GetFriendIndex(StageScr_GetMonsNoRecordID(wk->type)) );
 
-	//"���E���h��"�����o��(0-17�l�ڂ̉��l�ڂ�������炷)
+	//"ラウンド数"書き出し(0-17人目の何人目かをあわらす)
 	buf8[0] = wk->round;
 	//OS_Printf( "wk->round = %d\n", wk->round );
 	//OS_Printf( "buf8[0] = %d\n", buf8[0] );
 	STAGEDATA_PutPlayData( wk->stage_savedata, STAGEDATA_ID_ROUND, 0, 0, buf8 );
 
 #if 0
-	//�A�� / 10 = ����
-	//�A�� % 10 = ���l�ڂ�
+	//連勝 / 10 = 周回数
+	//連勝 % 10 = 何人目か
 #endif
-	//"�A����"�����o��(�u����27�l�ڂł��v�Ƃ����悤�Ɏg��)
+	//"連勝数"書き出し(「次は27人目です」というように使う)
 	//OS_Printf( "rensyou = %d\n", wk->rensyou );
 	FrontierRecord_Set(	fr_sv, StageScr_GetWinRecordID(wk->type), 
 						Frontier_GetFriendIndex(StageScr_GetWinRecordID(wk->type)), wk->rensyou );
 	
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//"�x��"�ȊO
+	//"休む"以外
 	if( mode != FR_MODE_REST ){
 
-		//������1�C�������̈�Ȃ��̂ŕK���㏑������
+		//ここは1匹分しか領域ないので必ず上書きする
 		//
-		//StageScr_StageRenshouCopyExtra(...)�̒��ŁA��(��)�ƊO���f�[�^�ɕۑ�����Ă���f�[�^���A
-		//��r���āA�O���f�[�^�̕��ɂ������㏑�����邩���ʂ��Ă���
+		//StageScr_StageRenshouCopyExtra(...)の中で、今(↑)と外部データに保存されているデータを、
+		//比較して、外部データの方にも今を上書きするか判別している
 		//
-		//���̗̈�̃f�[�^�͐��у{�[�h�ł����Ȃ��̂ő��v�Ȃ͂��B
+		//この領域のデータは成績ボードでも見ないので大丈夫なはず。
 
-		//WIFI�ȊO
+		//WIFI以外
 		if( wk->type != STAGE_TYPE_WIFI_MULTI ){
 
-			//1�C�������̈�Ȃ��̂ŕK���㏑������
+			//1匹分しか領域ないので必ず上書きする
 			FrontierRecord_Set(	fr_sv, 
 								StageScr_GetMaxWinRecordID(wk->type),
 								Frontier_GetFriendIndex(StageScr_GetMaxWinRecordID(wk->type)),
@@ -507,17 +507,17 @@ void StageScr_SaveRestPlayData( STAGE_SCRWORK* wk, u8 mode )
 
 		}else{
 
-			//�L�^�̃|�P�����ƁA���݂̃|�P��������v���Ȃ���
+			//記録のポケモンと、現在のポケモンが一致しない時
 			if( record_monsno != now_monsno ){
 
-				//1�C�������̈�Ȃ��̂ŕK���㏑������
+				//1匹分しか領域ないので必ず上書きする
 				FrontierRecord_Set(	fr_sv, 
 									StageScr_GetMaxWinRecordID(wk->type),
 									Frontier_GetFriendIndex(StageScr_GetMaxWinRecordID(wk->type)),
 									wk->rensyou );
 			}else{
 
-				//�����Ȃ�A��r���ăZ�b�g
+				//同じなら、比較してセット
 				FrontierRecord_SetIfLarge(	fr_sv,
 									StageScr_GetMaxWinRecordID(wk->type),
 									Frontier_GetFriendIndex(StageScr_GetMaxWinRecordID(wk->type)),
@@ -525,11 +525,11 @@ void StageScr_SaveRestPlayData( STAGE_SCRWORK* wk, u8 mode )
 			}
 		}
 
-		//"10�A��(�N���A)�������t���O"�����o��
+		//"10連勝(クリア)したかフラグ"書き出し
 		buf8[0] = wk->clear_flag;
 		STAGESCORE_PutScoreData( score_sv, STAGESCORE_ID_CLEAR_FLAG, wk->type, 0, buf8 );
 
-		//WIFI�̂ݓ���
+		//WIFIのみ特殊
 		if( wk->type == STAGE_TYPE_WIFI_MULTI ){
 			FrontierRecord_Set(	fr_sv, 
 						FRID_STAGE_MULTI_WIFI_CLEAR_BIT,
@@ -538,33 +538,33 @@ void StageScr_SaveRestPlayData( STAGE_SCRWORK* wk, u8 mode )
 	}
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 
-	//"�G�g���[�i�[�C���f�b�N�X"�����o��
+	//"敵トレーナーインデックス"書き出し
 	for( i=0; i < STAGE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		buf16[0] = wk->tr_index[i];
 		STAGEDATA_PutPlayData( wk->stage_savedata, STAGEDATA_ID_TR_INDEX, i, 0, buf16 );
 	}
 
-	//"�Q�����Ă���莝���|�P�����̈ʒu"�����o��
+	//"参加している手持ちポケモンの位置"書き出し
 	for( i=0; i < STAGE_ENTRY_POKE_MAX ;i++ ){
 		buf8[0] = wk->mine_poke_pos[i];
 		STAGEDATA_PutPlayData( wk->stage_savedata, STAGEDATA_ID_MINE_POKE_POS, i, 0, buf8 );
 	}
 
-	//�����͑S�Ẵ^�C�v���Z�b�g�Ȃ̂�(/2)���Ȃ��Ă悢
-	//"�^�C�v���Ƃ̃��x��"�����o��
+	//ここは全てのタイプをセットなので(/2)しなくてよい
+	//"タイプごとのレベル"書き出し
 	for( i=0; i < STAGE_TR_TYPE_MAX ;i++ ){
-		//�������̓��R�[�h�ł͂Ȃ��I
+		//★ここはレコードではない！
 		buf8[0] = Stage_GetTypeLevel( i, &wk->type_level[wk->type][0] );
 		StageScr_TypeLevelRecordSet( wk->sv, wk->type, i, buf8[0] );
 	}
 	
-	//"�G�|�P�����f�[�^�����Ȃ��悤�ɂ���"�����o��
+	//"敵ポケモンデータが被らないようにする"書き出し
 	for( i=0; i < STAGE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		buf16[0] = wk->enemy_poke_index[i];
 		STAGEDATA_PutPlayData( wk->stage_savedata, STAGEDATA_ID_ENEMY_POKE_INDEX, i, 0, buf16 );
 	}
 
-	//"�A�����̃|�P�����i���o�["�����o��
+	//"連勝中のポケモンナンバー"書き出し
 	FrontierRecord_Set(	fr_sv, 
 						StageScr_GetMonsNoRecordID(wk->type),
 						Frontier_GetFriendIndex(StageScr_GetMonsNoRecordID(wk->type)), 
@@ -574,9 +574,9 @@ void StageScr_SaveRestPlayData( STAGE_SCRWORK* wk, u8 mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	���E���h�����C���N�������g
+ * @brief	ラウンド数をインクリメント
  *
- * @param	wk		STAGE_SCRWORK�̃|�C���^
+ * @param	wk		STAGE_SCRWORKのポインタ
  */
 //--------------------------------------------------------------
 u16	StageScr_IncRound( STAGE_SCRWORK* wk )
@@ -587,9 +587,9 @@ u16	StageScr_IncRound( STAGE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	���E���h�����擾
+ * @brief	ラウンド数を取得
  *
- * @param	wk		STAGE_SCRWORK�̃|�C���^
+ * @param	wk		STAGE_SCRWORKのポインタ
  */
 //--------------------------------------------------------------
 u16	StageScr_GetRound( STAGE_SCRWORK* wk )
@@ -599,10 +599,10 @@ u16	StageScr_GetRound( STAGE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	�ΐ�g���[�i�[OBJ�R�[�h�擾
+ * @brief	対戦トレーナーOBJコード取得
  *
- * @param	wk		STAGE_SCRWORK�̃|�C���^
- * @param	param	0=1�l�ځA1=2�l��(�G�̃p�[�g�i�|)
+ * @param	wk		STAGE_SCRWORKのポインタ
+ * @param	param	0=1人目、1=2人目(敵のパートナ−)
  */
 //--------------------------------------------------------------
 u16 StageScr_GetEnemyObjCode( STAGE_SCRWORK* wk, u8 param )
@@ -611,92 +611,92 @@ u16 StageScr_GetEnemyObjCode( STAGE_SCRWORK* wk, u8 param )
 	B_TOWER_TRAINER_ROM_DATA* p_rom_tr;
 	u8 index;
 
-	//�擾����g���[�i�[�f�[�^�̃C���f�b�N�X���擾
+	//取得するトレーナーデータのインデックスを取得
 	index = (wk->round * STAGE_ENTRY_POKE_MAX) + param;
 
-	//ROM����g���[�i�[�f�[�^���m��
+	//ROMからトレーナーデータを確保
 	p_rom_tr = Frontier_TrainerDataGet( &bt_trd, wk->tr_index[index], HEAPID_WORLD, ARC_PL_BTD_TR );
 	sys_FreeMemoryEz( p_rom_tr );
 
-	//�g���[�i�[�^�C�v����OBJ�R�[�h���擾���Ă���
+	//トレーナータイプからOBJコードを取得してくる
 	return Frontier_TrType2ObjCode( bt_trd.tr_type );
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�s�킵�����̏���
+ * @brief	敗戦した時の処理
  *
- * @param	wk		STAGE_SCRWORK�̃|�C���^
+ * @param	wk		STAGE_SCRWORKのポインタ
  */
 //--------------------------------------------------------------
 void StageScr_SetLose( STAGE_SCRWORK* wk )
 {
 	int i;
-	OS_Printf( "\n�o�g���X�e�[�W�f�[�^�@�s��Z�b�g\n" );
+	OS_Printf( "\nバトルステージデータ　敗戦セット\n" );
 
-	//�������̓��R�[�h�ł͂Ȃ��I
-	//���x�����N���A
+	//★ここはレコードではない！
+	//レベルをクリア
 	Stage_ClearTypeLevel( &wk->type_level[wk->type][0] );	//STAGE_SCRWORK
 
-	//���݂�5�A���Ȃǂ�ۑ�����K�v������I
-	StageScr_SaveRestPlayData( wk, FR_MODE_LOSE );		//�Z�[�u�f�[�^�ɑ��
+	//現在の5連勝などを保存する必要がある！
+	StageScr_SaveRestPlayData( wk, FR_MODE_LOSE );		//セーブデータに代入
 
-	//�V�K���A�p�����́AWK_SCENE_STAGE_LOBBY�Ɋi�[����Ă���̂ŁA
-	//������round�Ȃǂ��N���A���Ȃ��Ă��A
-	//WK_SCENE_STAGE_LOBBY���p���ł͂Ȃ���ԂŃZ�[�u�����̂ŁA
-	//��t�ɘb�������Ă��A�V�K����ɂȂ胏�[�N�̓N���A�����B
+	//新規か、継続かは、WK_SCENE_STAGE_LOBBYに格納されているので、
+	//ここでroundなどをクリアしなくても、
+	//WK_SCENE_STAGE_LOBBYが継続ではない状態でセーブされるので、
+	//受付に話しかけても、新規判定になりワークはクリアされる。
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	10�A��(�N���A)�������̏���
+ * @brief	10連勝(クリア)した時の処理
  *
- * @param	wk		STAGE_SCRWORK�̃|�C���^
+ * @param	wk		STAGE_SCRWORKのポインタ
  */
 //--------------------------------------------------------------
 void StageScr_SetClear( STAGE_SCRWORK* wk )
 {
 	POKEMON_PARAM* temp_poke;
-	OS_Printf( "\n�o�g���X�e�[�W�f�[�^�@10�A��(�N���A)�Z�b�g\n" );
+	OS_Printf( "\nバトルステージデータ　10連勝(クリア)セット\n" );
 	
-	wk->clear_flag = 1;						//10�A��(�N���A)�������t���OON
+	wk->clear_flag = 1;						//10連勝(クリア)したかフラグON
 
-	//�A�����̃|�P�����i���o�[
+	//連勝中のポケモンナンバー
 	//temp_poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(wk->sv), 
 	//										wk->mine_poke_pos[0] );
 	//wk->clear_monsno[wk->type] = PokeParaGet( temp_poke, ID_PARA_monsno, NULL );
 
-	//wk->rensyou		= 0;				//���݂̘A����
+	//wk->rensyou		= 0;				//現在の連勝数
 	if( wk->lap < STAGE_LAP_MAX ){
-		wk->lap++;							//���񐔂̃C���N�������g
+		wk->lap++;							//周回数のインクリメント
 	}
 
 #if 0
-	//StageScr_CommGetLap�ł��ꂪ�o�Ȃ��悤�Ƀy�A���X�V
+	//StageScr_CommGetLapでずれが出ないようにペアも更新
 	if( wk->pair_lap < STAGE_LAP_MAX ){
-		wk->pair_lap++;						//���񐔂̃C���N�������g
+		wk->pair_lap++;						//周回数のインクリメント
 	}
 #endif
 
-	wk->round			= 0;				//�����l�ځH
-	StageScr_SaveRestPlayData( wk, FR_MODE_CLEAR );		//�Z�[�u�f�[�^�ɑ��
+	wk->round			= 0;				//今何人目？
+	StageScr_SaveRestPlayData( wk, FR_MODE_CLEAR );		//セーブデータに代入
 	return;
 }
 
 
 //==============================================================================================
 //
-//	�ʐM(CommStart)
+//	通信(CommStart)
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	���M�E�F�C�g�@
+ * @brief	送信ウェイト　
  *
- * @param	wk			STAGE_SCRWORK�^�̃|�C���^
- * @param	type		���M�^�C�v
+ * @param	wk			STAGE_SCRWORK型のポインタ
+ * @param	type		送信タイプ
  *
  * @retval	none
  */
@@ -735,15 +735,15 @@ BOOL StageScr_CommSetSendBuf( STAGE_SCRWORK* wk, u16 type, u16 param )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �X�e�[�W�N���A���ɖႦ��o�g���|�C���g���擾
+ * ステージクリア時に貰えるバトルポイントを取得
  *
  * @param	wk
  *
- * @return	"�Ⴆ��o�g���|�C���g"
+ * @return	"貰えるバトルポイント"
  *
- * �ʐM�}���`�͌Œ�B�V���O���A�_�u���͎����̂݁B
- * WIFI�͑���Ǝ��񐔓����B
- * �Ȃ̂Ŏ��񐔃`�F�b�N�͂���Ȃ��B
+ * 通信マルチは固定。シングル、ダブルは自分のみ。
+ * WIFIは相手と周回数同じ。
+ * なので周回数チェックはいらない。
  */
 //--------------------------------------------------------------------------------------------
 u16	StageScr_GetAddBtlPoint( STAGE_SCRWORK* wk );
@@ -752,43 +752,43 @@ u16	StageScr_GetAddBtlPoint( STAGE_SCRWORK* wk )
 	u8 add_bp;
 	static const u8 bppoint_normal[STAGE_LAP_MAX+1] = {0,
 									1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 
-									4, 6, 6, 8, 8, 10, 10, 12 };		//0,1���`18���ȍ~
+									4, 6, 6, 8, 8, 10, 10, 12 };		//0,1周〜18周以降
 
 	static const u8 bppoint_multi[STAGE_LAP_MAX+1] = {0,
 									6, 6, 6, 8, 8, 8, 10, 10, 10, 12, 
-									12, 14, 15, 17, 17, 20, 20, 23 };	//0,1���`18���ȍ~
+									12, 14, 15, 17, 17, 20, 20, 23 };	//0,1周〜18周以降
 
-	OS_Printf( "���� = %d\n", wk->lap );
-	OS_Printf( "�A���� = %d\n", wk->rensyou );
+	OS_Printf( "周回数 = %d\n", wk->lap );
+	OS_Printf( "連勝数 = %d\n", wk->rensyou );
 
-	//�V���O���A�_�u��
+	//シングル、ダブル
 	if( (wk->type == STAGE_TYPE_SINGLE) || (wk->type == STAGE_TYPE_DOUBLE) ){
 
-		//�ő���񐔃`�F�b�N
+		//最大周回数チェック
 		if( wk->lap >= STAGE_LAP_MAX ){
-			add_bp = bppoint_normal[ STAGE_LAP_MAX ];		//�e�[�u����+1���Ă���̂�
+			add_bp = bppoint_normal[ STAGE_LAP_MAX ];		//テーブルが+1しているので
 		}else{
 			add_bp = bppoint_normal[ wk->lap ];
 		}
 
-	//�}���`�AWIFI
+	//マルチ、WIFI
 	}else{
 
-		//�ő���񐔃`�F�b�N
+		//最大周回数チェック
 		if( wk->lap >= STAGE_LAP_MAX ){
-			add_bp = bppoint_multi[ STAGE_LAP_MAX ];		//�e�[�u����+1���Ă���̂�
+			add_bp = bppoint_multi[ STAGE_LAP_MAX ];		//テーブルが+1しているので
 		}else{
 			add_bp = bppoint_multi[ wk->lap ];
 		}
 	}
 
-	//�u���[���`�F�b�N
+	//ブレーンチェック
 	if( wk->type == STAGE_TYPE_SINGLE ){
 		if( (wk->rensyou == STAGE_LEADER_SET_1ST) || (wk->rensyou == STAGE_LEADER_SET_2ND) ){
 			add_bp = 20;
 		}
 
-	//�ʐM�}���`��BP�Œ�I
+	//通信マルチはBP固定！
 	}else if( wk->type == STAGE_TYPE_MULTI ){
 		add_bp = 12;
 	}
@@ -799,31 +799,31 @@ u16	StageScr_GetAddBtlPoint( STAGE_SCRWORK* wk )
 
 //==============================================================================================
 //
-//	�^�C�v���x���֘A
+//	タイプレベル関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * �^�C�v���x���̃��R�[�h���擾
+ * タイプレベルのレコードを取得
  *
  * @param	wk
  *
- * @return	"���R�[�h"
+ * @return	"レコード"
  */
 //--------------------------------------------------------------------------------------------
 static u16 StageScr_TypeLevelRecordGet( SAVEDATA* sv, u8 type, u8 csr_pos, u16* l_num, u16* h_num )
 {
 	u16 now_type_level;
 
-	//���݂̃^�C�v���x�����擾
+	//現在のタイプレベルを取得
 	now_type_level = FrontierRecord_Get(SaveData_GetFrontier(sv), 
 							StageScr_GetTypeLevelRecordID(type,csr_pos),
 							Frontier_GetFriendIndex(StageScr_GetTypeLevelRecordID(type,csr_pos)) );
 
-	now_type_level &= 0xff;				//1byte�����g��Ȃ�
-	*l_num = (now_type_level & 0xf);	//�^�C�v[0]
-	*h_num = (now_type_level >> 4);		//�^�C�v[1]�Ƃ����悤�Ɋi�[����Ă���
+	now_type_level &= 0xff;				//1byteしか使わない
+	*l_num = (now_type_level & 0xf);	//タイプ[0]
+	*h_num = (now_type_level >> 4);		//タイプ[1]というように格納されている
 
 	OS_Printf( "\n**************************\n" );
 	OS_Printf( "csr_pos = %d\n", csr_pos );
@@ -840,11 +840,11 @@ static u16 StageScr_TypeLevelRecordGet( SAVEDATA* sv, u8 type, u8 csr_pos, u16* 
 
 //--------------------------------------------------------------------------------------------
 /**
- * �^�C�v���x���̃��R�[�h���Z�b�g
+ * タイプレベルのレコードをセット
  *
  * @param	wk
  *
- * @return	"���R�[�h"
+ * @return	"レコード"
  */
 //--------------------------------------------------------------------------------------------
 static void StageScr_TypeLevelRecordSet( SAVEDATA* sv, u8 type, u8 csr_pos, u8 num )
@@ -854,15 +854,15 @@ static void StageScr_TypeLevelRecordSet( SAVEDATA* sv, u8 type, u8 csr_pos, u8 n
 	u8 set_num,total;
 	u16 l_num,h_num;
 
-	OS_Printf( "���R�[�h�ύX�O�̒l\n" );
+	OS_Printf( "レコード変更前の値\n" );
 	StageScr_TypeLevelRecordGet( sv, type, csr_pos, &l_num, &h_num );
 	total = ( (h_num << 4) | l_num );
 	OS_Printf( "total = %d\n", total );
 
-	offset	= ( csr_pos / 2 );			//�t���O�̃I�t�Z�b�g[0,1][2,3],,,
-	param	= ( csr_pos % 2 );			//�t���O�̂ǂ����4bit���擾
+	offset	= ( csr_pos / 2 );			//フラグのオフセット[0,1][2,3],,,
+	param	= ( csr_pos % 2 );			//フラグのどちらの4bitか取得
 
-	//�Z�b�g����ق��̂ݏ���
+	//セットするほうのみ消す
 	if( param == 0 ){
 		total = total & 0xf0;
 	}else{
@@ -870,11 +870,11 @@ static void StageScr_TypeLevelRecordSet( SAVEDATA* sv, u8 type, u8 csr_pos, u8 n
 	}
 	OS_Printf( "total = %d\n", total );
 
-	//�Z�b�g����l���r�b�g����
+	//セットする値をビット調整
 	set_num = (num << (4 * param));
 	OS_Printf( "set_num = %d\n", set_num );
 
-	//�i�[
+	//格納
 	total |= set_num;
 	OS_Printf( "total = %d\n", total );
 
@@ -883,7 +883,7 @@ static void StageScr_TypeLevelRecordSet( SAVEDATA* sv, u8 type, u8 csr_pos, u8 n
 					Frontier_GetFriendIndex(StageScr_GetTypeLevelRecordID(type,csr_pos)), total );
 
 #ifdef PM_DEBUG
-	OS_Printf( "���R�[�h�ύX��̒l\n" );
+	OS_Printf( "レコード変更後の値\n" );
 	StageScr_TypeLevelRecordGet( sv, type, csr_pos, &l_num, &h_num );
 #endif
 
@@ -892,11 +892,11 @@ static void StageScr_TypeLevelRecordSet( SAVEDATA* sv, u8 type, u8 csr_pos, u8 n
 
 //--------------------------------------------------------------
 /**
- * @brief	�S�Ẵ^�C�v�̃����N������ς݂̍ő�ɂȂ��Ă����璧�킵�Ă��Ȃ���Ԃɂ���
+ * @brief	全てのタイプのランクが挑戦済みの最大になっていたら挑戦していない状態にする
  *
- * @param	wk		STAGE_SCRWORK�̃|�C���^
+ * @param	wk		STAGE_SCRWORKのポインタ
  *
- * �����R�[�h�ł͂Ȃ�
+ * ★レコードではない
  */
 //--------------------------------------------------------------
 void StageScr_TypeLevelMaxOff( STAGE_SCRWORK* wk )
@@ -904,40 +904,40 @@ void StageScr_TypeLevelMaxOff( STAGE_SCRWORK* wk )
 	u8 rank;
 	int i;
 
-	//�}���`�ȊO�̎�
+	//マルチ以外の時
 	if( wk->type != STAGE_TYPE_MULTI ){
 
-		//�u???�v�͔������̂�17
+		//「???」は抜かすので17
 		//for( i=0; i < STAGE_TR_TYPE_MAX ;i++ ){
 		for( i=0; i < (STAGE_TR_TYPE_MAX-1) ;i++ ){
 
-			//�������̓��R�[�h�ł͂Ȃ��I
+			//★ここはレコードではない！
 			rank = Stage_GetTypeLevel(	i, &wk->type_level[wk->type][0] );
 			if( rank < STAGE_TYPE_LEVEL_MAX ){
 				break;
 			}
 		}
 
-		//�S�Ẵ^�C�v�̃����N������ς݂̍ő�ɂȂ��Ă���
+		//全てのタイプのランクが挑戦済みの最大になっていた
 		//if( i == STAGE_TR_TYPE_MAX ){
 		if( i == (STAGE_TR_TYPE_MAX-1) ){
 
-			//���킵�Ă��Ȃ��ő�ɂ���
+			//挑戦していない最大にする
 			//for( i=0; i < STAGE_TR_TYPE_MAX ;i++ ){
 			for( i=0; i < (STAGE_TR_TYPE_MAX-1) ;i++ ){
-				//�������̓��R�[�h�ł͂Ȃ��I
+				//★ここはレコードではない！
 				Stage_SetTypeLevel( i, &wk->type_level[wk->type][0], 
 									(STAGE_TYPE_LEVEL_MAX-1) );
 			}
 		}
 	}
 
-#if 0	//�f�o�b�N�Z�b�g
+#if 0	//デバックセット
 
-	//���킵�Ă��Ȃ��ő�ɂ���
+	//挑戦していない最大にする
 	//for( i=0; i < STAGE_TR_TYPE_MAX ;i++ ){
 	for( i=0; i < (STAGE_TR_TYPE_MAX-1) ;i++ ){
-		//�������̓��R�[�h�ł͂Ȃ��I
+		//★ここはレコードではない！
 		Stage_SetTypeLevel( i, &wk->type_level[wk->type][0], 
 							(STAGE_TYPE_LEVEL_MAX-1) );
 	}
@@ -948,29 +948,29 @@ void StageScr_TypeLevelMaxOff( STAGE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	���������v�Z
+ * @brief	平方根を計算
  *
- * @param	wk		STAGE_SCRWORK�̃|�C���^
+ * @param	wk		STAGE_SCRWORKのポインタ
  */
 //--------------------------------------------------------------
 void StageScr_Sqrt( STAGE_SCRWORK* wk )
 {
 	int poke_level;
 
-	//��ԍ����|�P�����̃��x�����擾
+	//一番高いポケモンのレベルを取得
 	poke_level = StageScr_CommGetPokeLevel( wk );
-	OS_Printf( "��ԍ���poke_level = %d\n", poke_level );
+	OS_Printf( "一番高いpoke_level = %d\n", poke_level );
 
-	//������
+	//平方根
 	wk->sqrt = StageScr_GetSqrt32( poke_level );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	���x��������
+ * @brief	レベルを決定
  *
- * @param	wk		STAGE_SCRWORK�̃|�C���^
+ * @param	wk		STAGE_SCRWORKのポインタ
  */
 //--------------------------------------------------------------
 static u16 StageScr_GetEnemyLevel( STAGE_SCRWORK* wk )
@@ -981,38 +981,38 @@ static u16 StageScr_GetEnemyLevel( STAGE_SCRWORK* wk )
 	u8 level;
 	float temp_f,hosei_zouka;
 
-	//OS_Printf( "temp_f = %d\n", temp3 );		//10�i
-	//OS_Printf( "temp_f = %x\n", temp3 );		//16�i
-	//OS_Printf( "temp_f = %f\n", temp3 );		//����
-	//FX_FX32_TO_F32(start_level)				//fx32��f32
+	//OS_Printf( "temp_f = %d\n", temp3 );		//10進
+	//OS_Printf( "temp_f = %x\n", temp3 );		//16進
+	//OS_Printf( "temp_f = %f\n", temp3 );		//小数
+	//FX_FX32_TO_F32(start_level)				//fx32→f32
 
-	//�������̓��R�[�h�ł͂Ȃ��I
+	//★ここはレコードではない！
 	level = Stage_GetTypeLevel( wk->csr_pos, &wk->type_level[wk->type][0] );
-	OS_Printf( "�^�C�v��level = %x\n", level );
+	OS_Printf( "タイプのlevel = %x\n", level );
 
-	//��ԍ����|�P�����̃��x�����擾
+	//一番高いポケモンのレベルを取得
 	poke_level = StageScr_CommGetPokeLevel( wk );
-	OS_Printf( "��ԍ���poke_level = %d\n", poke_level );
+	OS_Printf( "一番高いpoke_level = %d\n", poke_level );
 
-	//�}���`�̎��́A�v�Z�͂��Ȃ��Ă悢
+	//マルチの時は、計算はしなくてよい
 	if( wk->type == STAGE_TYPE_MULTI ){
-		OS_Printf( "�}���`�̓G�̃��x�� = %d\n", poke_level );
+		OS_Printf( "マルチの敵のレベル = %d\n", poke_level );
 		return poke_level;
 	}
 
 	///////////////////////////////////////////////////////////////////////////
-	//�������x���ݒ�
+	//初期レベル設定
 	start_level = ( FX32_CONST(poke_level) - (wk->sqrt * 3) );
-	OS_Printf( "�������x�� = %x\n", start_level );
+	OS_Printf( "初期レベル = %x\n", start_level );
 
 	///////////////////////////////////////////////////////////////////////////
-	//���^�C�v�I��␳(0�I���W���Ȃ̂�+1����)
+	//同タイプ選択補正(0オリジンなので+1する)
 	temp_f = ( FX_FX32_TO_F32(wk->sqrt) * 5.0 );
 
 	OS_Printf( "(poke_level / temp_f) = %f\n", (poke_level / temp_f) );
 	if( (poke_level / temp_f) < 1.0 ){
 		temp_f = 1.0;
-		OS_Printf( "1���� ���^�C�v�I��␳ = %f\n", temp_f );
+		OS_Printf( "1未満 同タイプ選択補正 = %f\n", temp_f );
 		temp_f = (float)(level+1-1);
 	}else{
 		temp1 = FX32_CONST( (level+1-1) * poke_level );
@@ -1021,33 +1021,33 @@ static u16 StageScr_GetEnemyLevel( STAGE_SCRWORK* wk )
 		temp_f = ( FX_FX32_TO_F32(temp1) / temp_f );
 		OS_Printf( "temp_f = %f\n", (FX_FX32_TO_F32(temp1) / temp_f) );		//OK 49/35=1.4
 	}
-	OS_Printf( "���^�C�v�I��␳ = %f\n", temp_f );
+	OS_Printf( "同タイプ選択補正 = %f\n", temp_f );
 
 	///////////////////////////////////////////////////////////////////////////
-	//��x�ł��I�񂾃^�C�v�̐����擾
+	//一度でも選んだタイプの数を取得
 	hosei_zouka = 0.0;
 	for( i=0; i < STAGE_TR_TYPE_MAX ;i++ ){
 
-		//�퓬������Ƀ^�C�v���x�����グ�Ă���̂ŁA
-		//���I�����Ă���J�[�\���ʒu�͖������ŃJ�E���g����悤�ɂ��Ă���
+		//戦闘勝利後にタイプレベルを上げているので、
+		//今選択しているカーソル位置は無条件でカウントするようにしている
 		if( i == wk->csr_pos ){
 			hosei_zouka+=1.0;
-			OS_Printf( "���I�����Ă���ʒu�̓J�E���g����\n" );
+			OS_Printf( "今選択している位置はカウントする\n" );
 		}else{
-			//�������̓��R�[�h�ł͂Ȃ��I
+			//★ここはレコードではない！
 			if( Stage_GetTypeLevel(i,&wk->type_level[wk->type][0]) > 0 ){
 				hosei_zouka+=1.0;
 				OS_Printf( "hosei_zouka ++\n" );
 			}
 		}
 	}
-	//�^�C�v�����I��␳
+	//タイプ増加選択補正
 	if( hosei_zouka != 0.0 ){
 		hosei_zouka-=1.0;
 	}
-	OS_Printf( "�^�C�v�����I��␳ = %d\n", hosei_zouka );
+	OS_Printf( "タイプ増加選択補正 = %d\n", hosei_zouka );
 	hosei_zouka*=0.5;
-	OS_Printf( "�^�C�v�����I��␳ = %d\n", hosei_zouka );
+	OS_Printf( "タイプ増加選択補正 = %d\n", hosei_zouka );
 
 	///////////////////////////////////////////////////////////////////////////
 	OS_Printf( "to_f32 start_level = %f\n", (FX_FX32_TO_F32(start_level)) );
@@ -1063,16 +1063,16 @@ static u16 StageScr_GetEnemyLevel( STAGE_SCRWORK* wk )
 #if 1
 	if( temp_f != (int)temp_f ){
 		ret_level++; 
-		OS_Printf( "�J�グ\n" );
+		OS_Printf( "繰上げ\n" );
 	}
 #else
 	if( (float)(temp_f - (int)temp_f) >= 0.5 ){
 		ret_level++; 
-		OS_Printf( "�J�グ\n" );
+		OS_Printf( "繰上げ\n" );
 	}
 #endif
 
-	//�����̃|�P�����̃��x������������A�����̃|�P�����̃��x���ɂ���
+	//自分のポケモンのレベルを上回ったら、自分のポケモンのレベルにする
 	if( ret_level > poke_level ){
 		ret_level = poke_level;
 	}
@@ -1081,7 +1081,7 @@ static u16 StageScr_GetEnemyLevel( STAGE_SCRWORK* wk )
 		ret_level = 100;
 	}
 
-	OS_Printf( "�G�̃��x�� = %d\n", ret_level );
+	OS_Printf( "敵のレベル = %d\n", ret_level );
 	return ret_level;
 }
 

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	wbtower.h
- * @bfief	WIFIƒoƒgƒ‹ƒ^ƒ[Ú‘±‰æ–Ê
+ * @bfief	WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æŽ¥ç¶šç”»é¢
  * @author	Akito Mori
  * @date	06.05.15
  */
@@ -16,38 +16,38 @@
 #include "wbtower_def.h"
 
 //============================================================================================
-//	’è‹`
+//	å®šç¾©
 //============================================================================================
 
-// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT WBTowerProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT WBTowerProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT WBTowerProc_End ( PROC * proc, int * seq );
 
 
-// Ú‘±ƒ‚[ƒh
+// æŽ¥ç¶šãƒ¢ãƒ¼ãƒ‰
 enum{
-	WIFI_BTOWER_MODE_DOWNLOAD=0,			// ƒ‹[ƒ€ƒf[ƒ^ƒ_ƒEƒ“ƒ[ƒh
-	WIFI_BTOWER_MODE_UPLOAD,				// Œ‹‰Êƒ_ƒEƒ“ƒ[ƒh
-	WIFI_BTOWER_MODE_LEADER,				// ƒŠ[ƒ_[ƒf[ƒ^ƒ_ƒEƒ“ƒ[ƒh
+	WIFI_BTOWER_MODE_DOWNLOAD=0,			// ãƒ«ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
+	WIFI_BTOWER_MODE_UPLOAD,				// çµæžœãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
+	WIFI_BTOWER_MODE_LEADER,				// ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 };
 
 
-// ƒ|ƒCƒ“ƒ^ŽQÆ‚¾‚¯‚Å‚«‚éWIFIƒoƒgƒ‹ƒ^ƒ[ƒ[ƒN\‘¢‘Ì
+// ãƒã‚¤ãƒ³ã‚¿å‚ç…§ã ã‘ã§ãã‚‹WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct WBTOWER_WORK WBTOWER_WORK;	
 
 
 typedef struct{
-	BTLTOWER_SCOREWORK	*btowerscore;		// ƒoƒgƒ‹ƒ^ƒ[¬Ñƒf[ƒ^
-	BTLTOWER_WIFI_DATA	*wifitowerdata;		// WIFIƒoƒgƒ‹ƒ^ƒ[ƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	SYSTEMDATA			*systemdata;		// ƒVƒXƒeƒ€ƒZ[ƒuƒf[ƒ^iDPWƒ‰ƒCƒuƒ‰ƒŠ—p‚Æ‚à‚¾‚¿ƒR[ƒh‚ð•Û‘¶j
-	SAVEDATA			*savedata;			// ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	CONFIG				*config;			// ƒRƒ“ƒtƒBƒO\‘¢‘Ì
-	DWCUserData			*MyUserData;		// ”FØÏ‚Ý‚ÌDWCUSERƒf[ƒ^‚µ‚©‚±‚È‚¢‚Í‚¸
-	int					mode;				// WIFIƒoƒgƒ‹ƒ^ƒ[Ú‘±ƒ‚[ƒh
-	int					profileId;			// GameSpyƒvƒƒtƒ@ƒCƒ‹ID
-	int					result;				// Œq‚¢‚¾Œ‹‰Ê‚ð“ü‚ê‚Ä•Ô‚·
-	int					connect;			// ‰‰ñ‚f‚r‚h‚c‚ðŽæ“¾‚µ‚½i1:Žæ“¾‚µ‚Ä‚«‚½ 0:‚à‚¤Ž‚Á‚Ä‚é)
+	BTLTOWER_SCOREWORK	*btowerscore;		// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æˆç¸¾ãƒ‡ãƒ¼ã‚¿
+	BTLTOWER_WIFI_DATA	*wifitowerdata;		// WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	SYSTEMDATA			*systemdata;		// ã‚·ã‚¹ãƒ†ãƒ ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼ˆDPWãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ã¨ã‚‚ã ã¡ã‚³ãƒ¼ãƒ‰ã‚’ä¿å­˜ï¼‰
+	SAVEDATA			*savedata;			// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	CONFIG				*config;			// ã‚³ãƒ³ãƒ•ã‚£ã‚°æ§‹é€ ä½“
+	DWCUserData			*MyUserData;		// èªè¨¼æ¸ˆã¿ã®DWCUSERãƒ‡ãƒ¼ã‚¿ã—ã‹ã“ãªã„ã¯ãš
+	int					mode;				// WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æŽ¥ç¶šãƒ¢ãƒ¼ãƒ‰
+	int					profileId;			// GameSpyãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ID
+	int					result;				// ç¹‹ã„ã çµæžœã‚’å…¥ã‚Œã¦è¿”ã™
+	int					connect;			// åˆå›žï¼§ï¼³ï¼©ï¼¤ã‚’å–å¾—ã—ãŸï¼ˆ1:å–å¾—ã—ã¦ããŸ 0:ã‚‚ã†æŒã£ã¦ã‚‹)
 }WBTOWER_PARAM;
 
 #endif	/* _WBTOWER_H_ */

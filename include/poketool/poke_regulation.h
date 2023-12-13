@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poke_regulation.h
- * @brief	ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ŒŸ¸—pƒvƒƒOƒ‰ƒ€
+ * @brief	ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³æ¤œæŸ»ç”¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	k.ohno
  * @date	2006.5.25
  */
@@ -13,27 +13,27 @@
 #include "savedata/regulation.h"
 #include "application/zukanlist/zkn_height_gram.h"
 
-// PokeRegulationMatchPartialPokeParty‚ÆPokeRegulationMatchFullPokeParty ‚Ì–ß‚è’l
+// PokeRegulationMatchPartialPokePartyã¨PokeRegulationMatchFullPokeParty ã®æˆ»ã‚Šå€¤
 enum{
-    POKE_REG_OK,               // ³í
-    POKE_REG_TOTAL_LV_FAILED,  // ƒg[ƒ^ƒ‹‚ÌLV‚ªƒI[ƒo[‚µ‚Ä‚¢‚é
-    POKE_REG_BOTH_POKE,        // “¯‚¶ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é
-    POKE_REG_BOTH_ITEM,        // “¯‚¶ƒAƒCƒeƒ€‚ª‚ ‚é
+    POKE_REG_OK,               // æ­£å¸¸
+    POKE_REG_TOTAL_LV_FAILED,  // ãƒˆãƒ¼ã‚¿ãƒ«ã®LVãŒã‚ªãƒ¼ãƒãƒ¼ã—ã¦ã„ã‚‹
+    POKE_REG_BOTH_POKE,        // åŒã˜ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹
+    POKE_REG_BOTH_ITEM,        // åŒã˜ã‚¢ã‚¤ãƒ†ãƒ ãŒã‚ã‚‹
 //--------------------------------------------------------
-    POKE_REG_NUM_FAILED,       // •K—v‚Èƒ|ƒPƒ‚ƒ“‚Ìl”‚ª–ž‚½‚³‚ê‚Ä‚¢‚È‚¢
-    POKE_REG_ILLEGAL_POKE,     // ðŒ‚É‡‚í‚È‚¢ƒ|ƒPƒ‚ƒ“‚ª‚¢‚½
+    POKE_REG_NUM_FAILED,       // å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³ã®äººæ•°ãŒæº€ãŸã•ã‚Œã¦ã„ãªã„
+    POKE_REG_ILLEGAL_POKE,     // æ¡ä»¶ã«åˆã‚ãªã„ãƒã‚±ãƒ¢ãƒ³ãŒã„ãŸ
 };
 
 extern ZKN_HEIGHT_GRAM_PTR PokeRegulationInit(int heap_id );
-// ƒ|ƒPƒ‚ƒ“‚ªƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚É“K‡‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚½‚çA}ŠÓ‚ð”jŠü
+// ãƒã‚±ãƒ¢ãƒ³ãŒãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«é©åˆã—ã¦ã„ã‚‹ã‹ã©ã†ã‹èª¿ã¹ãŸã‚‰ã€å›³é‘‘ã‚’ç ´æ£„
 extern void PokeRegulationEnd(ZKN_HEIGHT_GRAM_PTR pZKN);
-// ƒ|ƒPƒ‚ƒ“‚ªƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚É“K‡‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é  
+// ãƒã‚±ãƒ¢ãƒ³ãŒãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«é©åˆã—ã¦ã„ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹  
 extern BOOL PokeRegulationCheckPokePara(const REGULATION* pReg, POKEMON_PARAM* pp, ZKN_HEIGHT_GRAM_PTR pZKN);
-// ƒ|ƒPƒp[ƒeƒB‚ªƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ÉŠ®‘S“K‡‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é ƒoƒgƒ‹ÅIƒ`ƒFƒbƒN—p
+// ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£ãŒãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«å®Œå…¨é©åˆã—ã¦ã„ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹ ãƒãƒˆãƒ«æœ€çµ‚ãƒã‚§ãƒƒã‚¯ç”¨
 extern int PokeRegulationMatchFullPokeParty(const REGULATION* pReg, POKEPARTY * party,
                                             const ZKN_HEIGHT_GRAM_PTR pZKN, u8* sel);
-// ƒ|ƒPƒp[ƒeƒB’†‚ÉƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚É“K‡‚µ‚Ä‚¢‚é
-//  ƒp[ƒeƒB[‚ª‘g‚ß‚é‚©‚Ç‚¤‚©’²‚×‚é “K‰žŠO‚Ìƒ|ƒPƒ‚ƒ“‚ª‚¢‚Ä‚à‘åä•v  Žó‚¯•t‚¯—p
+// ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£ä¸­ã«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã«é©åˆã—ã¦ã„ã‚‹
+//  ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ãŒçµ„ã‚ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹ é©å¿œå¤–ã®ãƒã‚±ãƒ¢ãƒ³ãŒã„ã¦ã‚‚å¤§ä¸ˆå¤«  å—ã‘ä»˜ã‘ç”¨
 extern int PokeRegulationMatchPartialPokeParty(const REGULATION* pReg, POKEPARTY * party,ZKN_HEIGHT_GRAM_PTR pZKN);
 
 #endif// __POKE_REGULATION_H__

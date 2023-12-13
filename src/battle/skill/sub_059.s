@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_059.s
- *@brief	�퓬�V�[�P���X
- *			���߂��p���V�[�P���X
+ *@brief	戦闘シーケンス
+ *			しめつけ継続シーケンス
  *@author	HisashiSogabe
  *@data		2006.01.19
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_059:
-	//�����}�W�b�N�K�[�h�́A�󂯂Ȃ�
+	//特性マジックガードは、受けない
 	TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_WORK,TOKUSYU_MAZIKKUGAADO,SUB_059_END
 	IF				IF_FLAG_EQ,BUF_PARA_WAZA_WORK,WAZANO_MAKITUKU,MakiEffect
 	IF				IF_FLAG_EQ,BUF_PARA_WAZA_WORK,WAZANO_HONOONOUZU,HonouEffect

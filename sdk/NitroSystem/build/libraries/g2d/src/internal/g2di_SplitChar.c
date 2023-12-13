@@ -26,11 +26,11 @@
 /*---------------------------------------------------------------------------*
   Name:         IsSjisLeadByte
 
-  Description:  SJIS �̃��[�h�o�C�g���ǂ������肵�܂��B
+  Description:  SJIS のリードバイトかどうか判定します。
 
-  Arguments:    c:  ����Ώۂ̃o�C�g�f�[�^�B
+  Arguments:    c:  判定対象のバイトデータ。
 
-  Returns:      c ��SJIS�̃��[�h�o�C�g�Ȃ�TRUE��Ԃ��܂��B
+  Returns:      c がSJISのリードバイトならTRUEを返します。
  *---------------------------------------------------------------------------*/
 #define SJIS_LOW_WIDTH  0xBC
 #define SJIS_LOW_BASE   0x40
@@ -67,15 +67,15 @@ static NNS_G2D_INLINE BOOL IsSjisLeadByte( u8 c )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSplitChar*
 
-  Description:  NNSiG2dGetCharCallback �^�̕����R�[�h�؂�o���֐��ł��B
-                �o�C�g�X�g���[������ŏ��̕����̕����R�[�h���擾����ƂƂ���
-                �X�g���[���|�C���^�����̕����Ɉړ������܂��B
+  Description:  NNSiG2dGetCharCallback 型の文字コード切り出し関数です。
+                バイトストリームから最初の文字の文字コードを取得するとともに
+                ストリームポインタを次の文字に移動させます。
 
-  Arguments:    ppChar: �o�C�g�z��ւ̃|�C���^���i�[���Ă���o�b�t�@�ւ̃|�C���^�B
-                        �֐�����Ԃ�ƁA���̃|�C���^�̐�̃o�b�t�@�ɂ�
-                        ���̕����̐擪�ւ̃|�C���^���i�[����܂��B
+  Arguments:    ppChar: バイト配列へのポインタを格納しているバッファへのポインタ。
+                        関数から返ると、このポインタの先のバッファには
+                        次の文字の先頭へのポインタが格納されます。
 
-  Returns:      *ppChar �̍ŏ��̕����̕����R�[�h�B
+  Returns:      *ppChar の最初の文字の文字コード。
  *---------------------------------------------------------------------------*/
 
 // UTF-16
@@ -101,27 +101,27 @@ u16 NNSi_G2dSplitCharUTF8(const void** ppChar)
 
     NNS_G2D_POINTER_ASSERT( ppChar );
     NNS_G2D_POINTER_ASSERT( *ppChar );
-    NNS_G2D_ASSERT( (*(const u8*)*ppChar & 0xC0) != 0x80 );    // UTF-8��1�o�C�g�ڂ͍��L�����𖞂���
+    NNS_G2D_ASSERT( (*(const u8*)*ppChar & 0xC0) != 0x80 );    // UTF-8の1バイト目は左記条件を満たす
 
     pChar = (const u8*)*ppChar;
 
     if( (*pChar & 0x80) == 0x00 )
-        // 1�o�C�g����
+        // 1バイト文字
     {
         c = *pChar;
         *(u32*)ppChar += 1;
     }
     else if( (*pChar & 0xE0) == 0xC0 )
-        // 2�o�C�g����
+        // 2バイト文字
     {
         c = (u16)( ((*(pChar + 0) & 0x1F) << 6) |
                    ((*(pChar + 1) & 0x3F) << 0) );
         *(u32*)ppChar += 2;
     }
     else
-        // 3�o�C�g����
+        // 3バイト文字
     {
-    	// 4�o�C�g�ȏ�ɂ͑Ή����Ȃ�
+    	// 4バイト以上には対応しない
         NNS_G2D_ASSERT( (*pChar & 0xF0) == 0xE0 );
 
         c = (u16)(  ((*(pChar + 0) & 0x1F) << 12) |
@@ -133,7 +133,7 @@ u16 NNSi_G2dSplitCharUTF8(const void** ppChar)
     return c;
 }
 
-// Shift_JIS
+// UTF-8
 u16 NNSi_G2dSplitCharShiftJIS(const void** ppChar)
 {
     const u8* pChar;

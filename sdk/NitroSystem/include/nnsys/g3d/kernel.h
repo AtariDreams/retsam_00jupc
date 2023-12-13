@@ -30,7 +30,7 @@ extern "C" {
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// �\���̒�`�y��typedef
+// 構造体定義及びtypedef
 //
 
 #define NNS_G3D_SIZE_MAT_MAX_MAX 256
@@ -68,52 +68,52 @@ typedef u32 NNSG3dPlttKey;   // compatible with NNSGfdPlttKey
 /*---------------------------------------------------------------------------*
     NNSG3dAnmObj
 
-    NNSG3dRenderObj�ɎQ�Ƃ����\���́B�������̊m�ہE����̓��[�U�[������s��
-    �K�v������܂��B��������NNS_G3dAnmObjInit�֐��ōs���܂��B
-    ���̍\���̖̂����́A
-    �E�A�j���[�V�������\�[�X�Ƃ������������֐��̃y�A���w�肵�A
-    �E�A�j���[�V�������\�[�X�ƃ��f�����\�[�X�̊֘A�t�����s���A
-    �E�A�j���[�V�����̌��݂̃t���[����ێ����邱�Ƃł��B
+    NNSG3dRenderObjに参照される構造体。メモリの確保・解放はユーザーが自ら行う
+    必要があります。初期化はNNS_G3dAnmObjInit関数で行います。
+    この構造体の役割は、
+    ・アニメーションリソースとそれを処理する関数のペアを指定し、
+    ・アニメーションリソースとモデルリソースの関連付けを行い、
+    ・アニメーションの現在のフレームを保持することです。
 
-    frame:      �ǂ̃t���[�����Đ����邩�w�肷��B
-    ratio:      �A�j���[�V�����u�����h�֐����g�p����B
-    resAnm:     �X�̃A�j���[�V�������\�[�X�ւ̃|�C���^
-    funcAnm:    resAnm��frame�Ԗڂ̃t���[�����Đ�����֐��ւ̃|�C���^
-    next:       NNS_G3dRenderObjBindAnmObj, NNS_G3dRenderObjReleaseAnmObj��
-                �ݒ肳���B
-    resTex:     �e�N�X�`�����\�[�X�ւ̃|�C���^�B�A�j���[�V�������K�v�Ƃ���ꍇ�̂�
-                �ݒ肳���B
-    priority:   NNSG3dRenderObj�ɓo�^�����ۂ̗D�揇��
-    numMapData: ���f�����\�[�X�ƃA�j�����\�[�X�̃C���f�b�N�X�̑Ή����Ƃ�e�[�u��
-                �̃G���g���̐�
+    frame:      どのフレームを再生するか指定する。
+    ratio:      アニメーションブレンド関数が使用する。
+    resAnm:     個々のアニメーションリソースへのポインタ
+    funcAnm:    resAnmのframe番目のフレームを再生する関数へのポインタ
+    next:       NNS_G3dRenderObjBindAnmObj, NNS_G3dRenderObjReleaseAnmObjで
+                設定される。
+    resTex:     テクスチャリソースへのポインタ。アニメーションが必要とする場合のみ
+                設定される。
+    priority:   NNSG3dRenderObjに登録される際の優先順位
+    numMapData: モデルリソースとアニメリソースのインデックスの対応をとるテーブル
+                のエントリの数
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dAnmObj_
 {
     fx32                  frame;
     fx32                  ratio;
-    void*                 resAnm;     // ���\�[�X�t�@�C�����A�j���[�V�����f�[�^�u���b�N�ւ̃|�C���^
-    void*                 funcAnm;    // �e�A�j���[�V�����̊֐��|�C���^�ɃL���X�g�����B�f�t�H���g�����邪�ύX�ł���
+    void*                 resAnm;     // リソースファイル内アニメーションデータブロックへのポインタ
+    void*                 funcAnm;    // 各アニメーションの関数ポインタにキャストされる。デフォルトが入るが変更できる
     struct NNSG3dAnmObj_* next;
-    const NNSG3dResTex*   resTex;     // �e�N�X�`���u���b�N�̏�񂪕K�v�ȏꍇ(�e�N�X�`���p�^�[���A�j���[�V�����̂�)
+    const NNSG3dResTex*   resTex;     // テクスチャブロックの情報が必要な場合(テクスチャパターンアニメーションのみ)
     u8                    priority;
     u8                    numMapData;
-    u16                   mapData[1]; // numMapData�̔z��ɂȂ�(NNSG3dAnmObjMapData)
+    u16                   mapData[1]; // numMapData個の配列になる(NNSG3dAnmObjMapData)
 }
 NNSG3dAnmObj;
 
 //
-// NNSG3dAnmObj�ɕK�v�ȃ������̃T�C�Y�̓��f�����\�[�X�ƃA�j���[�V�����̃J�e�S�����猈�肳���B
-// �}�e���A���A�j���[�V�����̏ꍇ�́A�ȉ��̃}�N�����g�p����B
-// �{����sizeof(NNSG3dAnmObj) + sizeof(u16) * (pMdl->info.numMat - 1)
-// ����4�o�C�g���E�ɂ���
+// NNSG3dAnmObjに必要なメモリのサイズはモデルリソースとアニメーションのカテゴリから決定される。
+// マテリアルアニメーションの場合は、以下のマクロを使用する。
+// 本当はsizeof(NNSG3dAnmObj) + sizeof(u16) * (pMdl->info.numMat - 1)
+// だが4バイト境界にする
 //
 #define NNS_G3D_ANMOBJ_SIZE_MATANM(pMdl) ((sizeof(NNSG3dAnmObj) + sizeof(u16) * pMdl->info.numMat) & ~3)
 
 //
-// NNSG3dAnmObj�ɕK�v�ȃ������̃T�C�Y�̓��f�����\�[�X�ƃA�j���[�V�����̃J�e�S�����猈�肳���B
-// �W���C���g�A�j���[�V�����ƃr�W�r���e�B�A�j���[�V�����̏ꍇ�́A�ȉ��̃}�N�����g�p����B
-// �{����sizeof(NNSG3dAnmObj) + sizeof(u16) * (pMdl->info.numNode - 1)
-// ����4�o�C�g���E�ɂ���
+// NNSG3dAnmObjに必要なメモリのサイズはモデルリソースとアニメーションのカテゴリから決定される。
+// ジョイントアニメーションとビジビリティアニメーションの場合は、以下のマクロを使用する。
+// 本当はsizeof(NNSG3dAnmObj) + sizeof(u16) * (pMdl->info.numNode - 1)
+// だが4バイト境界にする
 //
 #define NNS_G3D_ANMOBJ_SIZE_JNTANM(pMdl) ((sizeof(NNSG3dAnmObj) + sizeof(u16) * pMdl->info.numNode) & ~3)
 #define NNS_G3D_ANMOBJ_SIZE_VISANM(pMdl) ((sizeof(NNSG3dAnmObj) + sizeof(u16) * pMdl->info.numNode) & ~3)
@@ -121,8 +121,8 @@ NNSG3dAnmObj;
 /*---------------------------------------------------------------------------*
     NNSG3dAnmObjMapData
 
-    NNSG3dAnmObj��mapData�z��Ɋi�[�����f�[�^�̂��߂̃��[�e�B���e�B�I��
-    �񋓌^�B
+    NNSG3dAnmObjのmapData配列に格納されるデータのためのユーティリティ的な
+    列挙型。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
@@ -134,25 +134,25 @@ NNSG3dAnmObjMapData;
 
 
 /*---------------------------------------------------------------------------*
-    �A�j���[�V�����u�����h�֐���typedef
+    アニメーションブレンド関数のtypedef
  *---------------------------------------------------------------------------*/
-// anm.h�Œ�`
+// anm.hで定義
 struct NNSG3dMatAnmResult_;
 struct NNSG3dJntAnmResult_;
 struct NNSG3dVisAnmResult_;
 
 
-// �}�e���A���A�j���[�V�����u�����h�֐�
+// マテリアルアニメーションブレンド関数
 typedef BOOL (*NNSG3dFuncAnmBlendMat)(struct NNSG3dMatAnmResult_*,
                                       const NNSG3dAnmObj*,
                                       u32);
 
-// �W���C���g�A�j���[�V�����u�����h�֐�
+// ジョイントアニメーションブレンド関数
 typedef BOOL (*NNSG3dFuncAnmBlendJnt)(struct NNSG3dJntAnmResult_*,
                                       const NNSG3dAnmObj*,
                                       u32);
 
-// �r�W�r���e�B�A�j���[�V�����u�����h�֐�
+// ビジビリティアニメーションブレンド関数
 typedef BOOL (*NNSG3dFuncAnmBlendVis)(struct NNSG3dVisAnmResult_*,
                                       const NNSG3dAnmObj*,
                                       u32);
@@ -161,26 +161,26 @@ typedef BOOL (*NNSG3dFuncAnmBlendVis)(struct NNSG3dVisAnmResult_*,
 /*---------------------------------------------------------------------------*
     NNSG3dRenderObjFlag
 
-    NNSG3dRenderObj�����t���O�ŁANNS_G3dDraw�̓�����J�X�^�}�C�Y�ł���B
+    NNSG3dRenderObjが持つフラグで、NNS_G3dDrawの動作をカスタマイズできる。
     
     NNS_G3D_RENDEROBJ_FLAG_RECORD
-        NNS_G3dDraw�̎��s���ɁArecJntAnm, recMatAnm�ɃW���C���g��}�e���A����
-        �v�Z���ʂ��X�g�A���܂��B���s�I�����ɂ��̃t���O�̓��Z�b�g����܂��B
-        ���̃t���O�����Z�b�g����Ă��āArecJntAnm, recMatAnm��NULL�Ŗ����ꍇ��
-        recJntAnm, recMatAnm���̌v�Z���ʂ����̂܂܎g�p����܂��B
+        NNS_G3dDrawの実行時に、recJntAnm, recMatAnmにジョイントやマテリアルの
+        計算結果をストアします。実行終了時にこのフラグはリセットされます。
+        このフラグがリセットされていて、recJntAnm, recMatAnmがNULLで無い場合は
+        recJntAnm, recMatAnm内の計算結果がそのまま使用されます。
     NNS_G3D_RENDEROBJ_FLAG_NOGECMD
-        NNS_G3dDraw�̎��s���ɁA�W�I���g���R�}���h�𑗐M���܂���B
+        NNS_G3dDrawの実行時に、ジオメトリコマンドを送信しません。
     NNS_G3D_RENDEROBJ_FLAG_SKIP_SBC_DRAW
-        NNS_G3dDraw�̎��s���ɁASBC�̕`��n�R�}���h�̎��s���X�L�b�v���܂��B
+        NNS_G3dDrawの実行時に、SBCの描画系コマンドの実行をスキップします。
     NNS_G3D_RENDEROBJ_FLAG_SKIP_SBC_MTXCALC
-        NNS_G3dDraw�̎��s���ɁASBC�̍s��v�Z�n�R�}���h�̎��s���X�L�b�v���܂��B
+        NNS_G3dDrawの実行時に、SBCの行列計算系コマンドの実行をスキップします。
 
     NNS_G3D_RENDEROBJ_FLAG_HINT_OBSOLETE
-        G3D�����ŃZ�b�g�^���Z�b�g�����t���O��hintXXXAnmExist���������Ȃ����
-        �̏ꍇ�Z�b�g����܂�(NNS_G3dRenderObjRemoveAnmObj���ꂽ�Ƃ��Z�b�g)
+        G3D内部でセット／リセットされるフラグでhintXXXAnmExistが正しくない状態
+        の場合セットされます(NNS_G3dRenderObjRemoveAnmObjされたときセット)
 
-    NNS_G3D_RENDEROBJ_FLAG_SKIP_SBC_DRAW��NNS_G3D_RENDEROBJ_FLAG_SKIP_SBC_MTXCALC��
-    g3dcvtr��-s�I�v�V���������ăR���o�[�g�������f���ɑ΂��ėL���ł��B
+    NNS_G3D_RENDEROBJ_FLAG_SKIP_SBC_DRAWとNNS_G3D_RENDEROBJ_FLAG_SKIP_SBC_MTXCALCは
+    g3dcvtrで-sオプションをつけてコンバートしたモデルに対して有効です。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
@@ -196,7 +196,7 @@ NNSG3dRenderObjFlag;
 /*---------------------------------------------------------------------------*
     NNSG3dSbcCallBackFunc
 
-    NNSG3dRS���Ɋi�[�����R�[���o�b�N�֐��ւ̃|�C���^
+    NNSG3dRS内に格納されるコールバック関数へのポインタ
  *---------------------------------------------------------------------------*/
 struct NNSG3dRS_;
 typedef void (*NNSG3dSbcCallBackFunc)(struct NNSG3dRS_*);
@@ -205,7 +205,7 @@ typedef void (*NNSG3dSbcCallBackFunc)(struct NNSG3dRS_*);
 /*---------------------------------------------------------------------------*
     NNSG3dSbcCallBackTiming
 
-    SBC���ߓ��ŋN������R�[���o�b�N�̃^�C�~���O��3��ނ���w��ł���B
+    SBC命令内で起動するコールバックのタイミングを3種類から指定できる。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
@@ -225,15 +225,15 @@ NNSG3dSbcCallBackTiming;
 /*---------------------------------------------------------------------------*
     NNSG3dRenderObj
 
-    �\���̂̃����o���͏�ɕω�����\��������
+    構造体のメンバ等は常に変化する可能性がある
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dRenderObj_
 {
     u32 flag; // NNSG3dRenderObjFlag
 
     // NOTICE:
-    // NNS_G3dDraw���ł�NNSG3dResMdl�̒��������������邱�Ƃ͂���܂���B
-    // (�R�[���o�b�N���g�����ꍇ���͏���)
+    // NNS_G3dDraw内ではNNSG3dResMdlの中味を書き換えることはありません。
+    // (コールバックを使った場合等は除く)
     NNSG3dResMdl*         resMdl;
     NNSG3dAnmObj*         anmMat;
     NNSG3dFuncAnmBlendMat funcBlendMat;
@@ -242,29 +242,29 @@ typedef struct NNSG3dRenderObj_
     NNSG3dAnmObj*         anmVis;
     NNSG3dFuncAnmBlendVis funcBlendVis;
 
-    // �R�[���o�b�N�p���
-    NNSG3dSbcCallBackFunc cbFunc;              // NULL�Ȃ�΃R�[���o�b�N�͂Ȃ��B
-    u8                    cbCmd;               // ��~�ʒu���R�}���h�Ŏw��BNNS_G3D_SBC_*****(res_struct.h�Œ�`)
-    u8                    cbTiming;            // NNSG3dSbcCallBackTiming(sbc.h�Œ�`)
+    // コールバック用情報
+    NNSG3dSbcCallBackFunc cbFunc;              // NULLならばコールバックはない。
+    u8                    cbCmd;               // 停止位置をコマンドで指定。NNS_G3D_SBC_*****(res_struct.hで定義)
+    u8                    cbTiming;            // NNSG3dSbcCallBackTiming(sbc.hで定義)
     u16                   dummy_;
 
-    // �����_�����O�J�n���O�ɌĂ΂��B��ʓI��NNS_G3dRS��
-    // �R�[���o�b�N�x�N�^��ݒ肷�邽�߂Ɏg����B
+    // レンダリング開始直前に呼ばれる。一般的にNNS_G3dRSの
+    // コールバックベクタを設定するために使われる。
     NNSG3dSbcCallBackFunc cbInitFunc;
 
-    // ���[�U�[���Ǘ�����̈�ւ̃|�C���^
-    // ���炩���߃|�C���^��ݒ肵�Ă����΃R�[���o�b�N�ł̎g�p���\.
+    // ユーザーが管理する領域へのポインタ
+    // あらかじめポインタを設定しておけばコールバックでの使用が可能.
     void*                 ptrUser;
 
     //
-    // �f�t�H���g�ł�resMdl���Ɋi�[����Ă���SBC���g�p���邪�A
-    // ptrUserSbc�Ƀ|�C���^���i�[���邱�Ƃɂ���āA���[�U�[��`��SBC��
-    // �g�p�����悤�ɂȂ�B
+    // デフォルトではresMdl内に格納されているSBCを使用するが、
+    // ptrUserSbcにポインタを格納することによって、ユーザー定義のSBCが
+    // 使用されるようになる。
     //
     // Example:
-    // �p�[�e�B�N���V�X�e�����ŁA�P���ȃ��f��(1�}�e���A��1�V�F�C�v)�����낢���
-    // �ꏊ�ɏo�������悤�ȏꍇ�A���̂悤��SBC�R�[�h���쐬���ăR�[�h�ւ̃|�C���^��
-    // ptrUserSbc�ɑ�����Ă����ƌ������悢�B
+    // パーティクルシステム等で、単純なモデル(1マテリアル1シェイプ)をいろいろな
+    // 場所に出したいような場合、次のようなSBCコードを作成してコードへのポインタを
+    // ptrUserSbcに代入しておくと効率がよい。
     // 
     // MAT[000] 0
     // MTX 0
@@ -276,43 +276,43 @@ typedef struct NNSG3dRenderObj_
     // SHP 0
     // RET
     //
-    // ���炩���ߍs��͍s��X�^�b�N�ɃZ�b�g���Ă����K�v������B
-    // �܂��A�}�e���A�����V�F�C�v���ɏ������ς������ꍇ�́A
-    // �R�[���o�b�N�ŕύX����̂��悢���낤�B
+    // あらかじめ行列は行列スタックにセットしておく必要がある。
+    // また、マテリアルをシェイプ毎に少しずつ変えたい場合は、
+    // コールバックで変更するのがよいだろう。
     //
     u8*                   ptrUserSbc;
 
     //
-    // �v�Z���ʂ̃o�b�t�@�����O�̈�ւ̃|�C���^
-    // �W���C���g�E�}�e���A���̌v�Z���ʂ𕡐��t���[���^�����̂̃��f��
-    // �Ŏg���܂킵�����ꍇ�́ArecJntAnm/recMatAnm�Ƀo�b�t�@���Z�b�g����B
+    // 計算結果のバッファリング領域へのポインタ
+    // ジョイント・マテリアルの計算結果を複数フレーム／複数体のモデル
+    // で使いまわしたい場合は、recJntAnm/recMatAnmにバッファをセットする。
     //
-    // flag��NNS_G3D_RENDEROBJ_FLAG_RECORD��ON�̂Ƃ��A
-    // recJntAnm, recMatAnm��NULL�łȂ����̂ɂ��āA
-    // ���ꂼ��}�e���A���E�W���C���g�̌v�Z���ʂ��L�^����Ă����B
+    // flagのNNS_G3D_RENDEROBJ_FLAG_RECORDがONのとき、
+    // recJntAnm, recMatAnmでNULLでないものについて、
+    // それぞれマテリアル・ジョイントの計算結果が記録されていく。
     //
-    // flag��NNS_G3D_RENDEROBJ_FLAG_RECORD��OFF�̂Ƃ��A
-    // recJntAnm, recMatAnm��NULL�łȂ����̂ɂ��āA
-    // ���ꂼ��}�e���A���E�W���C���g�̌v�Z���ʂƂ��ė��p���Ă����B
+    // flagのNNS_G3D_RENDEROBJ_FLAG_RECORDがOFFのとき、
+    // recJntAnm, recMatAnmがNULLでないものについて、
+    // それぞれマテリアル・ジョイントの計算結果として利用していく。
     //
-    // ���[�U�[��
-    // recJntAnm�ɂ��ẮA
-    // sizeof(NNSG3dJntAnmResult) * resMdl->info.numNode�o�C�g
-    // recMatAnm�ɂ��ẮA
-    // sizeof(NNSG3dMatAnmResult) * resMdl->info.numMat�o�C�g
-    // �̗̈���m�ۂ��Ă����Ȃ��Ă͂Ȃ�Ȃ��B
+    // ユーザーは
+    // recJntAnmについては、
+    // sizeof(NNSG3dJntAnmResult) * resMdl->info.numNodeバイト
+    // recMatAnmについては、
+    // sizeof(NNSG3dMatAnmResult) * resMdl->info.numMatバイト
+    // の領域を確保しておかなくてはならない。
     //
     struct NNSG3dJntAnmResult_*   recJntAnm;
     struct NNSG3dMatAnmResult_*   recMatAnm;
 
     //
-    // �A�j���[�V�������ǉ����ꂽ�Ƃ��AmatID/nodeID�ɑ΂��Ē�`����Ă����
-    // bit��1�ɂȂ�B�eID�͍ő�ł�256�܂łȂ̂ŁA8���[�h���ŊǗ��ł���B
-    // �������A�A�j���[�V�������폜���ꂽ�ꍇ�ɂ�bit��1�̂܂܂ł���B
-    // SBC�̃C���^�v���^�͂��̃t�B�[���h���`�F�b�N���āA
-    // NNSG3dFuncBlendMatXXX���R�[�����邩�ǂ��������肷��B
-    // ���ӂ��ׂ��Ȃ̂́Abit��0�̂Ƃ��́A����matID/nodeID�Ɋ֌W����
-    // �A�j���[�V�������Ȃ��A�Ƃ������Ƃ������m���ł��邱�Ƃł���B
+    // アニメーションが追加されたとき、matID/nodeIDに対して定義されていると
+    // bitが1になる。各IDは最大でも256個までなので、8ワードずつで管理できる。
+    // ただし、アニメーションが削除された場合にもbitは1のままである。
+    // SBCのインタプリタはこのフィールドをチェックして、
+    // NNSG3dFuncBlendMatXXXをコールするかどうかを決定する。
+    // 注意すべきなのは、bitが0のときは、そのmatID/nodeIDに関係した
+    // アニメーションがない、ということだけが確実であることである。
     //
     u32 hintMatAnmExist[NNS_G3D_SIZE_MAT_MAX / 32];
     u32 hintJntAnmExist[NNS_G3D_SIZE_JNT_MAX / 32];
@@ -320,13 +320,13 @@ typedef struct NNSG3dRenderObj_
 }
 NNSG3dRenderObj;
 
-// NNSG3dJntAnmResult�v�Z���ʂ��o�b�t�@�����O����ۂ�
-// �g�p����o�b�t�@�̃T�C�Y�v�Z�}�N��
+// NNSG3dJntAnmResult計算結果をバッファリングする際に
+// 使用するバッファのサイズ計算マクロ
 #define NNS_G3D_RENDEROBJ_JNTBUFFER_SIZE(numJnt) \
     ((u32)(sizeof(NNSG3dJntAnmResult) * (numJnt)))
 
-// NNSG3dMatAnmResult�v�Z���ʂ��o�b�t�@�����O����ۂ�
-// �g�p����o�b�t�@�̃T�C�Y�v�Z�}�N��
+// NNSG3dMatAnmResult計算結果をバッファリングする際に
+// 使用するバッファのサイズ計算マクロ
 #define NNS_G3D_RENDEROBJ_MATBUFFER_SIZE(numMat) \
     ((u32)(sizeof(NNSG3dMatAnmResult) * (numMat)))
 
@@ -336,7 +336,7 @@ NNSG3dRenderObj;
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// �֐��̐錾
+// 関数の宣言
 //
 
 //

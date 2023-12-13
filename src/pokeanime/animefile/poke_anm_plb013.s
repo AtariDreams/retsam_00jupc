@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	poke_anm013.s
- * @brief	‰¡‚Æ‚Ñ‚Í‚Ë@ƒXƒ‚[ƒ‹
+ * @brief	æ¨ªã¨ã³ã¯ã­ã€€ã‚¹ãƒ¢ãƒ¼ãƒ«
  * @author	saito
  * @date	
  *
@@ -18,90 +18,90 @@
 // =============================================================================
 //
 //
-//	‰¡‚Æ‚Ñ‚Í‚Ë@ƒXƒ‚[ƒ‹
+//	æ¨ªã¨ã³ã¯ã­ã€€ã‚¹ãƒ¢ãƒ¼ãƒ«
 //
 //
 // =============================================================================
 #define OFS_Y	( 6 )
 
 PAST_ANIME_PLB013:
-	//>”ò‚Ñ’µ‚Ë1‰ñ–Ú
-	//4‰ñ‚Ìˆ—‚Å0x8000i180‹j‚ðˆ—
+	//>é£›ã³è·³ã­1å›žç›®
+	//4å›žã®å‡¦ç†ã§0x8000ï¼ˆ180Â°ï¼‰ã‚’å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DY,OFS_Y,0x8000,0,4
-	//4‰ñ‚Ìˆ—‚Å8ˆÚ“®
+	//4å›žã®å‡¦ç†ã§8ç§»å‹•
 	CALL_MF_LINE_DIVTIME	APPLY_SET,0,TARGET_DX,8,4
-	//4‰ñ‚Ìˆ—‚Å0x800(11.25‹)ŒX‚­
+	//4å›žã®å‡¦ç†ã§0x800(11.25Â°)å‚¾ã
 	CALL_MF_LINE_DIVTIME	APPLY_SET,0,TARGET_ROT,0x800,4
 	HOLD_CMD
 	
-	//>”ò‚Ñ’µ‚Ë2`4‰ñ–Ú
+	//>é£›ã³è·³ã­2ã€œ4å›žç›®
 	START_LOOP	2
 		
-		//ƒXƒvƒ‰ƒCƒgˆÊ’u‚ðx=8‚ÉÝ’è dx‚ð0‚ÉÝ’è
+		//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆä½ç½®ã‚’x=8ã«è¨­å®š dxã‚’0ã«è¨­å®š
 		SET_ADD_PARAM		PARAM_X,USE_VAL,8,PARAM_SET
 		SET_ADD_PARAM		PARAM_DX,USE_VAL,0,PARAM_SET
 		APPLY_TRANS
-		//ƒXƒvƒ‰ƒCƒg‰ñ“]‚ð0x800‚ÉƒZƒbƒg
+		//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå›žè»¢ã‚’0x800ã«ã‚»ãƒƒãƒˆ
 		SET_ADD_PARAM		PARAM_ROT,USE_VAL,0x800,PARAM_SET
 		APPLY_AFFINE
 		
-		//6‰ñ‚Ìˆ—‚Å0x8000i180‹j‚ðˆ—
+		//6å›žã®å‡¦ç†ã§0x8000ï¼ˆ180Â°ï¼‰ã‚’å‡¦ç†
 		CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DY,OFS_Y,0x8000,0,6
-		//6‰ñ‚Ìˆ—‚Å-16ˆÚ“®
+		//6å›žã®å‡¦ç†ã§-16ç§»å‹•
 		CALL_MF_LINE_DIVTIME	APPLY_SET,0,TARGET_DX,-16,6
-		//6‰ñ‚Ìˆ—‚Å0x800`-0x800‚Ì-0x1000(22.5‹)•ªŒX‚­
+		//6å›žã®å‡¦ç†ã§0x800ã€œ-0x800ã®-0x1000(22.5Â°)åˆ†å‚¾ã
 		CALL_MF_LINE_DIVTIME	APPLY_ADD,0,TARGET_ROT,-0x1000,6
 		HOLD_CMD
 
-		//ƒXƒvƒ‰ƒCƒgˆÊ’u‚ðx=-8‚ÉÝ’è dx‚ð0‚ÉÝ’è
+		//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆä½ç½®ã‚’x=-8ã«è¨­å®š dxã‚’0ã«è¨­å®š
 		SET_ADD_PARAM		PARAM_X,USE_VAL,-8,PARAM_SET
 		SET_ADD_PARAM		PARAM_DX,USE_VAL,0,PARAM_SET
 		APPLY_TRANS
-		//ƒXƒvƒ‰ƒCƒg‰ñ“]‚ð-0x800‚ÉƒZƒbƒg
+		//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå›žè»¢ã‚’-0x800ã«ã‚»ãƒƒãƒˆ
 		SET_ADD_PARAM		PARAM_ROT,USE_VAL,-0x800,PARAM_SET
 		APPLY_AFFINE
 
-		//6‰ñ‚Ìˆ—‚Å0x8000i180‹j‚ðˆ—
+		//6å›žã®å‡¦ç†ã§0x8000ï¼ˆ180Â°ï¼‰ã‚’å‡¦ç†
 		CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DY,OFS_Y,0x8000,0,6
-		//6‰ñ‚Ìˆ—‚Å16ˆÚ“®
+		//6å›žã®å‡¦ç†ã§16ç§»å‹•
 		CALL_MF_LINE_DIVTIME	APPLY_SET,0,TARGET_DX,16,6
-		//6‰ñ‚Ìˆ—‚Å-0x800`0x800‚Ì0x1000(22.5‹)•ªŒX‚­
+		//6å›žã®å‡¦ç†ã§-0x800ã€œ0x800ã®0x1000(22.5Â°)åˆ†å‚¾ã
 		CALL_MF_LINE_DIVTIME	APPLY_ADD,0,TARGET_ROT,0x1000,6
 		HOLD_CMD
 
 	END_LOOP
 
-	//ƒXƒvƒ‰ƒCƒgˆÊ’u‚ðx=8‚ÉÝ’è dx‚ð0‚ÉÝ’è
+	//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆä½ç½®ã‚’x=8ã«è¨­å®š dxã‚’0ã«è¨­å®š
 	SET_ADD_PARAM		PARAM_X,USE_VAL,8,PARAM_SET
 	SET_ADD_PARAM		PARAM_DX,USE_VAL,0,PARAM_SET
 	APPLY_TRANS
-	//ƒXƒvƒ‰ƒCƒg‰ñ“]‚ð0x800‚ÉƒZƒbƒg
+	//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå›žè»¢ã‚’0x800ã«ã‚»ãƒƒãƒˆ
 	SET_ADD_PARAM		PARAM_ROT,USE_VAL,0x800,PARAM_SET
 	APPLY_AFFINE
 
-	//>”ò‚Ñ’µ‚Ë5‰ñ–Ú
-	//6‰ñ‚Ìˆ—‚Å0x8000i180‹j‚ðˆ—
+	//>é£›ã³è·³ã­5å›žç›®
+	//6å›žã®å‡¦ç†ã§0x8000ï¼ˆ180Â°ï¼‰ã‚’å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DY,OFS_Y,0x8000,0,6
-	//6‰ñ‚Ìˆ—‚Å-16ˆÚ“®
+	//6å›žã®å‡¦ç†ã§-16ç§»å‹•
 	CALL_MF_LINE_DIVTIME	APPLY_SET,0,TARGET_DX,-16,6
-	//6‰ñ‚Ìˆ—‚Å0x800`-0x800‚Ì-0x1000(22.5‹)•ªŒX‚­
+	//6å›žã®å‡¦ç†ã§0x800ã€œ-0x800ã®-0x1000(22.5Â°)åˆ†å‚¾ã
 	CALL_MF_LINE_DIVTIME	APPLY_ADD,0,TARGET_ROT,-0x1000,6
 	HOLD_CMD
 
-	//ƒXƒvƒ‰ƒCƒgˆÊ’u‚ðx=-8‚ÉÝ’è dx‚ð0‚ÉÝ’è
+	//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆä½ç½®ã‚’x=-8ã«è¨­å®š dxã‚’0ã«è¨­å®š
 	SET_ADD_PARAM		PARAM_X,USE_VAL,-8,PARAM_SET
 	SET_ADD_PARAM		PARAM_DX,USE_VAL,0,PARAM_SET
 	APPLY_TRANS
-	//ƒXƒvƒ‰ƒCƒg‰ñ“]‚ð-0x800‚ÉƒZƒbƒg
+	//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå›žè»¢ã‚’-0x800ã«ã‚»ãƒƒãƒˆ
 	SET_ADD_PARAM		PARAM_ROT,USE_VAL,-0x800,PARAM_SET
 	APPLY_AFFINE
 	
-	//>”ò‚Ñ’µ‚Ë6‰ñ–Ú
-	//6‰ñ‚Ìˆ—‚Å0x8000i180‹j‚ðˆ—
+	//>é£›ã³è·³ã­6å›žç›®
+	//6å›žã®å‡¦ç†ã§0x8000ï¼ˆ180Â°ï¼‰ã‚’å‡¦ç†
 	CALL_MF_CURVE_DIVTIME	APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DY,OFS_Y,0x8000,0,6
-	//6‰ñ‚Ìˆ—‚Å8ˆÚ“®
+	//6å›žã®å‡¦ç†ã§8ç§»å‹•
 	CALL_MF_LINE_DIVTIME	APPLY_SET,0,TARGET_DX,8,6
-	//6‰ñ‚Ìˆ—‚Å0x800(11.25‹)ŒX‚­
+	//6å›žã®å‡¦ç†ã§0x800(11.25Â°)å‚¾ã
 	CALL_MF_LINE_DIVTIME	APPLY_ADD,0,TARGET_ROT,0x800,6
 	HOLD_CMD
 	

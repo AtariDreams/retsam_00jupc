@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_101.s
- * @brief	ƒiƒCƒgƒwƒbƒh			101
+ * @brief	ãƒŠã‚¤ãƒˆãƒ˜ãƒƒãƒ‰			101
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡ƒiƒCƒgƒwƒbƒh			101
+//	â– ãƒŠã‚¤ãƒˆãƒ˜ãƒƒãƒ‰			101
 //
 //
 // =============================================================================
@@ -28,12 +28,12 @@ WEST_NAITOHEDDO:
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 0, 12, WE_PAL_BLACK,
 	WAIT_FLAG
 
-	// ƒ|ƒPƒ‚ƒ“OAM€”õ
+	// ãƒã‚±ãƒ¢ãƒ³OAMæº–å‚™
 	POKEOAM_RES_INIT
 
 	POKEOAM_RES_LOAD	0,
 
-	// •`‰æŠJŽn
+	// æç”»é–‹å§‹
 	POKEOAM_DROP		WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_0, WEDEF_POKE_RES_0,
 
 	PT_DROP_EX_2		WEDEF_DROP_M2, WEDEF_DROP_M2, WEDEF_POKE_CAP_ID_1, WEDEF_POKE_RES_1,
@@ -46,9 +46,9 @@ WEST_NAITOHEDDO:
 	
 	FUNC_CALL		WEST_SP_WE_101DF, 0,0,0,0,0,0,0,0,0
 
-	WAIT_FLAG	///<TCB‘Ò‚¿
+	WAIT_FLAG	///<TCBå¾…ã¡
 
-	// ƒ|ƒPƒ‚ƒ“OAM”jŠü
+	// ãƒã‚±ãƒ¢ãƒ³OAMç ´æ£„
 	POKEOAM_RES_FREE
 	POKEOAM_DROP_RESET	WEDEF_POKE_CAP_ID_0
 	PT_DROP_RESET_EX_2	WEDEF_POKE_CAP_ID_1

@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_ev_mg.h
- *	@brief		�~�j�Q�[���C�x���g
+ *	@brief		ミニゲームイベント
  *	@author		tomoya takahashi
  *	@data		2008.01.14
  *
@@ -19,42 +19,42 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	in_ok�ɓ����Ă���l
+///	in_okに入っている値
 //=====================================
 enum{
-	WFLBY_EV_MG_RET_NG_NUM,			// �l���������ς��œ���Ȃ�
-	WFLBY_EV_MG_RET_NG_PLAYING,		// �Q�[�����Ȃ̂œ���Ȃ�
-	WFLBY_EV_MG_RET_NG_TIME,		// �~�j�Q�[����I�����Ă���̂œ���Ȃ�
-	WFLBY_EV_MG_RET_NG_MIN,			// �K�v�Ȑl���������Ȃ�����
-	WFLBY_EV_MG_RET_NG_DISCON,		// �N�����ؒf����
-	WFLBY_EV_MG_RET_NG_MY,			// ����f����
-	WFLBY_EV_MG_RET_NG_BCAN,		// BCancel����
-	WFLBY_EV_MG_RET_NG_LOCK,		// �ȑO�e�̂Ƃ���BCancel�����̂ŎQ�����b�N��
+	WFLBY_EV_MG_RET_NG_NUM,			// 人数がいっぱいで入れない
+	WFLBY_EV_MG_RET_NG_PLAYING,		// ゲーム中なので入れない
+	WFLBY_EV_MG_RET_NG_TIME,		// ミニゲーム台終了しているので入れない
+	WFLBY_EV_MG_RET_NG_MIN,			// 必要な人数がそろわなかった
+	WFLBY_EV_MG_RET_NG_DISCON,		// 誰かが切断した
+	WFLBY_EV_MG_RET_NG_MY,			// 自ら断った
+	WFLBY_EV_MG_RET_NG_BCAN,		// BCancelした
+	WFLBY_EV_MG_RET_NG_LOCK,		// 以前親のときにBCancelしたので参加ロック中
 	WFLBY_EV_MG_RET_OK,
 };
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	�~�j�Q�[���Q���p�����[�^
+///	ミニゲーム参加パラメータ
 //=====================================
 typedef struct {
-	u8 in_ok;			// ��W�ɎQ���ł�����
-	u8 mg_type;			// DWC�~�j�Q�[���^�C�v
-	u8 wflby_mg_type;	// ���r�[���~�j�Q�[���^�C�v
-	u8 wflby_mg_status;	// �Q����ɐݒ肷��X�e�[�^�X
+	u8 in_ok;			// 募集に参加できたか
+	u8 mg_type;			// DWCミニゲームタイプ
+	u8 wflby_mg_type;	// ロビー内ミニゲームタイプ
+	u8 wflby_mg_status;	// 参加後に設定するステータス
 } WFLBY_EV_MG_PARAM;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 extern BOOL WFLBY_EV_MG_Start( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno );

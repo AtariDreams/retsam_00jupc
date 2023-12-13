@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wifi_2dchar.c
- *	@brief		wifi‚QDƒLƒƒƒ‰ƒNƒ^“Ç‚İ‚İƒVƒXƒeƒ€
+ *	@brief		wifiï¼’Dã‚­ãƒ£ãƒ©ã‚¯ã‚¿èª­ã¿è¾¼ã¿ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahshi
  *	@data		2007.02.07
  *
@@ -21,29 +21,29 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ƒLƒƒƒ‰ƒNƒ^[ƒCƒ“ƒfƒbƒNƒX
+///	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
 	WF_2DC_HERO,
 	WF_2DC_HEROINE,
@@ -187,7 +187,7 @@ enum {
 	WF_2DC_WANRIKY,
 	WF_2DC_WOMAN6,
 	
-	// –{‘fŞ
+	// æœ¬ç´ æ
 	WF_2DC_BRAINS1,
 	WF_2DC_BRAINS2,
 	WF_2DC_BRAINS3,
@@ -201,7 +201,7 @@ enum {
 	WF_2DC_DPHERO,
 	WF_2DC_DPHEROINE,
 
-	// ƒf[ƒ^‚Æ‚µ‚Ä‘g‚İ‚ñ‚Å‚¢‚È‚¢‚à‚Ì
+	// ãƒ‡ãƒ¼ã‚¿ã¨ã—ã¦çµ„ã¿è¾¼ã‚“ã§ã„ãªã„ã‚‚ã®
 /*
 	WF_2DC_ICPO,
 	WF_2DC_GKANBU4,
@@ -234,31 +234,31 @@ enum {
 	
 	WF_2DC_CHARNUM,
 } ;
-#define WF_2DC_RESM_OBJ_NUM	(WF_2DC_CHARNUM+1)	// ƒŠƒ\[ƒX”	+1‚Í‰A
+#define WF_2DC_RESM_OBJ_NUM	(WF_2DC_CHARNUM+1)	// ãƒªã‚½ãƒ¼ã‚¹æ•°	+1ã¯é™°
 
 
-// ƒŠƒ\[ƒXƒ^ƒCƒv
+// ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
 typedef enum {
-	WF_2DC_RES_NML,	// ’Êí
-	WF_2DC_RES_UNI,	// ƒ†ƒjƒIƒ“
+	WF_2DC_RES_NML,	// é€šå¸¸
+	WF_2DC_RES_UNI,	// ãƒ¦ãƒ‹ã‚ªãƒ³
 } WF_2DC_RESTYPE;
 
-// ƒA[ƒNƒnƒ“ƒhƒ‹ƒ^ƒCƒv
+// ã‚¢ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã‚¿ã‚¤ãƒ—
 enum{
-	WF_2DC_ARCHANDLE_NML,	// ’Êí
-	WF_2DC_ARCHANDLE_UNI,	// ƒ†ƒjƒIƒ“
+	WF_2DC_ARCHANDLE_NML,	// é€šå¸¸
+	WF_2DC_ARCHANDLE_UNI,	// ãƒ¦ãƒ‹ã‚ªãƒ³
 	WF_2DC_ARCHANDLE_NUM,
 };
 
 
 
 //
-#define WF_2DC_UNICHAR_NUM		(16)	// ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^‚Ì”
+#define WF_2DC_UNICHAR_NUM		(16)	// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®æ•°
 
 
 
-#define WF_2DC_RESMAN_NUM	(CLACT_U_MULTI_RES)	// ì¬‚·‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒ…”
-#define WF_2DC_ANMRESMAN_OBJNUM	( (WF_2DC_MOVENUM*2)+WF_2DC_UNICHAR_NUM+1 )	// ƒZƒ‹‚ÆƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒIƒuƒWƒFƒNƒg”	+1‚Í‰A
+#define WF_2DC_RESMAN_NUM	(CLACT_U_MULTI_RES)	// ä½œæˆã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ¥æ•°
+#define WF_2DC_ANMRESMAN_OBJNUM	( (WF_2DC_MOVENUM*2)+WF_2DC_UNICHAR_NUM+1 )	// ã‚»ãƒ«ã¨ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°	+1ã¯é™°
 enum{
 	WF_2DC_ANMRES_ANM_CELL,
 	WF_2DC_ANMRES_ANM_ANM,
@@ -271,56 +271,56 @@ static const u8 sc_WF_2DC_ANMRES_ANMCONTID[ WF_2DC_ANMRES_ANM_NUM ] = {
 	1,1,
 };
  
-// ’ÊíƒLƒƒƒ‰ƒNƒ^[
-#define WF_2DC_ARC_CHARIDX	( NARC_wifi2dchar_pl_boy01_NCLR )	// ƒLƒƒƒ‰ƒNƒ^ƒOƒ‰ƒtƒBƒbƒN‚ÌŠJn
-#define WF_2DC_ARC_GETNCL(x)	(((x)*2)+WF_2DC_ARC_CHARIDX)	// ƒpƒŒƒbƒgæ“¾
-#define WF_2DC_ARC_GETNCG(x)	(WF_2DC_ARC_GETNCL(x) + 1)		// ƒLƒƒƒ‰ƒNƒ^æ“¾
+// é€šå¸¸ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼
+#define WF_2DC_ARC_CHARIDX	( NARC_wifi2dchar_pl_boy01_NCLR )	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®é–‹å§‹
+#define WF_2DC_ARC_GETNCL(x)	(((x)*2)+WF_2DC_ARC_CHARIDX)	// ãƒ‘ãƒ¬ãƒƒãƒˆå–å¾—
+#define WF_2DC_ARC_GETNCG(x)	(WF_2DC_ARC_GETNCL(x) + 1)		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å–å¾—
 
-// ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^[
-#define WF_2DC_ARC_UNICHARIDX	( NARC_wifi_unionobj_wf_match_top_trainer_boy1_NCGR )	// ƒLƒƒƒ‰ƒNƒ^ƒOƒ‰ƒtƒBƒbƒN‚ÌŠJn
-#define WF_2DC_ARC_GETUNINCL	(NARC_wifi_unionobj_wf_match_top_trainer_NCLR)	// ƒpƒŒƒbƒgæ“¾
-#define WF_2DC_ARC_GETUNINCG(x)	(WF_2DC_ARC_UNICHARIDX + ((x) - WF_2DC_BOY1))		// ƒLƒƒƒ‰ƒNƒ^æ“¾
-#define WF_2DC_UNIPLTT_NUM		( 8 )	// ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^‚ªg—p‚·‚éƒpƒŒƒbƒg–{”
-#define WF_2DC_ARC_UNIANMIDX	( NARC_wifi_unionobj_normal00_NCER )	// ƒ†ƒjƒIƒ“ƒAƒjƒƒf[ƒ^
-#define WF_2DC_ARC_GETUNICEL(x)	(WF_2DC_ARC_UNIANMIDX+((x)*2))	// ƒZƒ‹dataidƒQƒbƒg
-#define WF_2DC_ARC_GETUNIANM(x)	(WF_2DC_ARC_GETUNICEL(x)+1)		// ƒAƒjƒdataidƒQƒbƒg
-
-
-// ƒŠƒ\[ƒXŠÇ—ID
-#define WF_2DC_ARC_CONTANMID	( 0x100 )	// ƒAƒjƒƒŠƒ\[ƒXŠÇ—ID
-#define WF_2DC_ARC_CONTSHADOWID	( 0x120 )	// ‰AƒŠƒ\[ƒXŠÇ—ID
-#define WF_2DC_ARC_CONTCHARID	( 0x200 )	// ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXŠÇ—ID
-#define WF_2DC_ARC_CONTUNIONPLTTID	( 0x402 )	// ƒ†ƒjƒIƒ“ƒpƒŒƒbƒgƒŠƒ\[ƒXŠÇ—ID
-												// ƒ†ƒjƒIƒ“‚Åo‚Ä‚­‚éƒLƒƒƒ‰ƒNƒ^‚ÌŠÇ—ID‚ÌêŠ‚È‚Ì‚Å‘åä•v
-#define WF_2DC_ARC_CONTUNIONANMID	(0x180)	// ƒ†ƒjƒIƒ“ƒAƒjƒƒŠƒ\[ƒXŠÇ—ID
-
-#define WF_2DC_ARC_TURNANMCHARSIZ			(0x800)	// U‚èŒü‚«‚Ì‚İ‚ÌƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY
-#define WF_2DC_ARC_TURNANMCHARSIZ_NOFLIP	(0x800)	// U‚èŒü‚«‚Ì‚İ‚ÌƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY
-#define WF_2DC_ARC_NORMALANMCHARSIZ			(0x1400)// •à‚«{U‚èŒü‚«‚Ì‚İ‚ÌƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY
-#define WF_2DC_ARC_NORMALANMCHARSIZ_NOTFLIP	(0x1800)// •à‚«{U‚èŒü‚«‚Ì‚İ‚ÌƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY	ƒtƒŠƒbƒv‚È‚µ‚ÌƒLƒƒƒ‰‚Ì‚Æ‚«
+// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼
+#define WF_2DC_ARC_UNICHARIDX	( NARC_wifi_unionobj_wf_match_top_trainer_boy1_NCGR )	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®é–‹å§‹
+#define WF_2DC_ARC_GETUNINCL	(NARC_wifi_unionobj_wf_match_top_trainer_NCLR)	// ãƒ‘ãƒ¬ãƒƒãƒˆå–å¾—
+#define WF_2DC_ARC_GETUNINCG(x)	(WF_2DC_ARC_UNICHARIDX + ((x) - WF_2DC_BOY1))		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å–å¾—
+#define WF_2DC_UNIPLTT_NUM		( 8 )	// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°
+#define WF_2DC_ARC_UNIANMIDX	( NARC_wifi_unionobj_normal00_NCER )	// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
+#define WF_2DC_ARC_GETUNICEL(x)	(WF_2DC_ARC_UNIANMIDX+((x)*2))	// ã‚»ãƒ«dataidã‚²ãƒƒãƒˆ
+#define WF_2DC_ARC_GETUNIANM(x)	(WF_2DC_ARC_GETUNICEL(x)+1)		// ã‚¢ãƒ‹ãƒ¡dataidã‚²ãƒƒãƒˆ
 
 
-// ŠeƒAƒjƒ‚ÌƒtƒŒ[ƒ€”
-#define WF_2DC_ANM_WAY_FRAME	(1)		// Œü‚«•Ï‚¦ƒAƒjƒ
-#define WF_2DC_ANM_WALK_FRAME	(WF_COMMON_WALK_FRAME)		// •à‚«ƒAƒjƒ
-#define WF_2DC_ANM_TURN_FRAME	(WF_COMMON_TURN_FRAME)		// U‚èŒü‚«ƒAƒjƒ
-#define WF_2DC_ANM_RUN_FRAME	(WF_COMMON_RUN_FRAME)		// ‘–‚èƒAƒjƒ
-#define WF_2DC_ANM_WALLWALK_FRAME	(WF_COMMON_WALLWALK_FRAME)	// •Ç•à‚«ƒAƒjƒ
-#define WF_2DC_ANM_SLOWWALK_FRAME	(WF_COMMON_SLOWWALK_FRAME)	// •Ç•à‚«ƒAƒjƒ
-#define WF_2DC_ANM_HIGHWALK2_FRAME	(WF_COMMON_HIGHWALK2_FRAME)	// ‚‘¬•à‚«ƒAƒjƒ
-#define WF_2DC_ANM_HIGHWALK4_FRAME	(WF_COMMON_HIGHWALK4_FRAME)	// ‚‘¬•à‚«ƒAƒjƒ
-#define WF_2DC_ANM_ROTA_FRAME	(0xff)	// ‰ñ“]ƒAƒjƒ
+// ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ID
+#define WF_2DC_ARC_CONTANMID	( 0x100 )	// ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ID
+#define WF_2DC_ARC_CONTSHADOWID	( 0x120 )	// é™°ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ID
+#define WF_2DC_ARC_CONTCHARID	( 0x200 )	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ID
+#define WF_2DC_ARC_CONTUNIONPLTTID	( 0x402 )	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ID
+												// ãƒ¦ãƒ‹ã‚ªãƒ³ã§å‡ºã¦ãã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ç®¡ç†IDã®å ´æ‰€ãªã®ã§å¤§ä¸ˆå¤«
+#define WF_2DC_ARC_CONTUNIONANMID	(0x180)	// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ID
 
-// ƒAƒjƒ‚ÌƒV[ƒPƒ“ƒX”
+#define WF_2DC_ARC_TURNANMCHARSIZ			(0x800)	// æŒ¯ã‚Šå‘ãã®ã¿æ™‚ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º
+#define WF_2DC_ARC_TURNANMCHARSIZ_NOFLIP	(0x800)	// æŒ¯ã‚Šå‘ãã®ã¿æ™‚ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º
+#define WF_2DC_ARC_NORMALANMCHARSIZ			(0x1400)// æ­©ãï¼‹æŒ¯ã‚Šå‘ãã®ã¿æ™‚ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º
+#define WF_2DC_ARC_NORMALANMCHARSIZ_NOTFLIP	(0x1800)// æ­©ãï¼‹æŒ¯ã‚Šå‘ãã®ã¿æ™‚ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º	ãƒ•ãƒªãƒƒãƒ—ãªã—ã®ã‚­ãƒ£ãƒ©ã®ã¨ã
+
+
+// å„ã‚¢ãƒ‹ãƒ¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+#define WF_2DC_ANM_WAY_FRAME	(1)		// å‘ãå¤‰ãˆã‚¢ãƒ‹ãƒ¡
+#define WF_2DC_ANM_WALK_FRAME	(WF_COMMON_WALK_FRAME)		// æ­©ãã‚¢ãƒ‹ãƒ¡
+#define WF_2DC_ANM_TURN_FRAME	(WF_COMMON_TURN_FRAME)		// æŒ¯ã‚Šå‘ãã‚¢ãƒ‹ãƒ¡
+#define WF_2DC_ANM_RUN_FRAME	(WF_COMMON_RUN_FRAME)		// èµ°ã‚Šã‚¢ãƒ‹ãƒ¡
+#define WF_2DC_ANM_WALLWALK_FRAME	(WF_COMMON_WALLWALK_FRAME)	// å£æ­©ãã‚¢ãƒ‹ãƒ¡
+#define WF_2DC_ANM_SLOWWALK_FRAME	(WF_COMMON_SLOWWALK_FRAME)	// å£æ­©ãã‚¢ãƒ‹ãƒ¡
+#define WF_2DC_ANM_HIGHWALK2_FRAME	(WF_COMMON_HIGHWALK2_FRAME)	// é«˜é€Ÿæ­©ãã‚¢ãƒ‹ãƒ¡
+#define WF_2DC_ANM_HIGHWALK4_FRAME	(WF_COMMON_HIGHWALK4_FRAME)	// é«˜é€Ÿæ­©ãã‚¢ãƒ‹ãƒ¡
+#define WF_2DC_ANM_ROTA_FRAME	(0xff)	// å›è»¢ã‚¢ãƒ‹ãƒ¡
+
+// ã‚¢ãƒ‹ãƒ¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°
 #define WF_2DC_ANM_ROTA			(4)
-#define WF_2DC_ANM_WALK			(5)		// •à‚«ƒAƒjƒ‚ÌƒV[ƒPƒ“ƒX”
-#define WF_2DC_ANM_RUN			(9)		// ‘–‚èƒAƒjƒ‚ÌƒV[ƒPƒ“ƒX”
+#define WF_2DC_ANM_WALK			(5)		// æ­©ãã‚¢ãƒ‹ãƒ¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°
+#define WF_2DC_ANM_RUN			(9)		// èµ°ã‚Šã‚¢ãƒ‹ãƒ¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°
 #define WF_2DC_ANM_FRAME		(2*FX32_ONE)	// 16 fure
 #define WF_2DC_ANM_SLOWFRAME (FX32_ONE)
 #define WF_2DC_ANM_HIGH2 (8*FX32_ONE)			// 
 #define WF_2DC_ANM_HIGH4 (6*FX32_ONE)
 	
-// ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^ƒe[ƒuƒ‹
+// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 WF_2DC_UnionChar[WF_2DC_UNICHAR_NUM] = {
 	WF_2DC_BOY1,
 	WF_2DC_BOY3,
@@ -341,52 +341,52 @@ static const u8 WF_2DC_UnionChar[WF_2DC_UNICHAR_NUM] = {
 };
 
 
-// ‚©‚°
+// ã‹ã’
 #define WF_2DC_SHADOW_MAT_OFS_X		( 8 )
 #define WF_2DC_SHADOW_MAT_OFS_Y		( 14 )
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXƒf[ƒ^
+///	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	WF_2DC_RESTYPE type;
 
-	CLACT_U_RES_OBJ_PTR resobj[2];	//CG PLƒŠƒ\[ƒXƒIƒuƒWƒF
-	u32					drawtype;	// “]‘—æ
-	WF_2DC_MOVETYPE		movetype;	// “®ìƒ^ƒCƒv
-	CLACT_HEADER		header;		// ƒAƒNƒ^[ƒwƒbƒ_[
+	CLACT_U_RES_OBJ_PTR resobj[2];	//CG PLãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+	u32					drawtype;	// è»¢é€å…ˆ
+	WF_2DC_MOVETYPE		movetype;	// å‹•ä½œã‚¿ã‚¤ãƒ—
+	CLACT_HEADER		header;		// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
 } WF_2DCRES;
 
 /*
 typedef struct {
-	CLACT_U_RES_OBJ_PTR resobj[2];	//CG PLƒŠƒ\[ƒXƒIƒuƒWƒF
-	u32					drawtype;	// “]‘—æ
-	WF_2DC_MOVETYPE		movetype;	// “®ìƒ^ƒCƒv
-	CLACT_HEADER		header;		// ƒAƒNƒ^[ƒwƒbƒ_[
+	CLACT_U_RES_OBJ_PTR resobj[2];	//CG PLãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+	u32					drawtype;	// è»¢é€å…ˆ
+	WF_2DC_MOVETYPE		movetype;	// å‹•ä½œã‚¿ã‚¤ãƒ—
+	CLACT_HEADER		header;		// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
 } WF_2DCRES;
 //*/
 
 //-------------------------------------
-///	ƒAƒjƒƒŠƒ\[ƒXƒf[ƒ^
+///	ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	CLACT_U_RES_OBJ_PTR resobj[WF_2DC_ANMRES_ANM_NUM];	// CE ANƒŠƒ\[ƒXƒIƒuƒWƒF
+	CLACT_U_RES_OBJ_PTR resobj[WF_2DC_ANMRES_ANM_NUM];	// CE ANãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
 } WF_2DCANMRES;
 
 
 //-------------------------------------
-/// 2DƒLƒƒƒ‰ƒNƒ^ƒ[ƒN
+/// 2Dã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WF_2DCWK {
-	const WF_2DCRES* cp_res;	// ƒŠƒ\[ƒXƒf[ƒ^
-	CLACT_WORK_PTR	p_clwk;		// l•¨
-	CLACT_WORK_PTR	p_shadow;	// ‰A
+	const WF_2DCRES* cp_res;	// ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
+	CLACT_WORK_PTR	p_clwk;		// äººç‰©
+	CLACT_WORK_PTR	p_shadow;	// é™°
 	WF_2DC_ANMTYPE	patanmtype;
 	WF_COMMON_WAY	patanmway;
 	s16				patanmframe;
@@ -394,16 +394,16 @@ typedef struct _WF_2DCWK {
 } WF_2DCWK;
 
 //-------------------------------------
-///	‰AƒŠƒ\[ƒX
+///	é™°ãƒªã‚½ãƒ¼ã‚¹
 //=====================================
 typedef struct {
-	CLACT_U_RES_OBJ_PTR resobj[4];	//ƒŠƒ\[ƒXƒIƒuƒWƒF
-	CLACT_HEADER		header;		// ƒAƒNƒ^[ƒwƒbƒ_[
+	CLACT_U_RES_OBJ_PTR resobj[4];	//ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+	CLACT_HEADER		header;		// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
 } WF_2DCSH_RES;
 
 
 //-------------------------------------
-///	2DƒLƒƒƒ‰ƒNƒ^ŠÇ—ƒVƒXƒeƒ€
+///	2Dã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _WF_2DCSYS {
 	CLACT_SET_PTR p_clset;
@@ -414,7 +414,7 @@ typedef struct _WF_2DCSYS {
 	WF_2DCANMRES	anmres[ WF_2DC_MOVENUM ];
 	WF_2DCANMRES	unionres[ WF_2DC_UNICHAR_NUM ];
 	WF_2DCSH_RES	shadowres;
-	u32				shadow_pri;		// ‰A‚Ìƒ\ƒtƒg—Dæ‡ˆÊŠJnˆÊ’u
+	u32				shadow_pri;		// é™°ã®ã‚½ãƒ•ãƒˆå„ªå…ˆé †ä½é–‹å§‹ä½ç½®
 	CLACT_U_RES_MANAGER_PTR p_res_man[ WF_2DC_RESMAN_NUM ];
 	CLACT_U_RES_OBJ_PTR p_unionpltt;
 	ARCHANDLE*	p_handle[WF_2DC_ARCHANDLE_NUM];
@@ -422,8 +422,8 @@ typedef struct _WF_2DCSYS {
 
 
 //-------------------------------------
-///	ƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹‚ÆƒLƒƒƒ‰ƒNƒ^ƒR[ƒh‚ğƒŠƒ“ƒN
-//‚·‚éƒf[ƒ^‚Ì\‘¢‘Ì
+///	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ã¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚³ãƒ¼ãƒ‰ã‚’ãƒªãƒ³ã‚¯
+//ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®æ§‹é€ ä½“
 //=====================================
 typedef struct {
 	u16 code;
@@ -433,11 +433,11 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒf[ƒ^•”
+ *					ãƒ‡ãƒ¼ã‚¿éƒ¨
  */
 //-----------------------------------------------------------------------------
 
-///	ƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹‚ÆƒLƒƒƒ‰ƒNƒ^ƒR[ƒh‚ğƒŠƒ“ƒN
+///	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ã¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚³ãƒ¼ãƒ‰ã‚’ãƒªãƒ³ã‚¯
 static const WF_2DC_CHARDATA FIELDOBJCODE_CharIdx[WF_2DC_CHARNUM] = {
 	{HERO,		WF_2DC_HERO},
 	{BOY1,		WF_2DC_BOY1},
@@ -588,11 +588,11 @@ static const WF_2DC_CHARDATA FIELDOBJCODE_CharIdx[WF_2DC_CHARNUM] = {
 	{BFSW2,			WF_2DC_BFSW2},
 	{WIFISM,		WF_2DC_WIFISM},
 	{WIFISW,		WF_2DC_WIFISW},
-	{DPHERO,		WF_2DC_DPHERO},		// DPålŒö’j
-	{DPHEROINE,		WF_2DC_DPHEROINE},	// DPålŒö—
+	{DPHERO,		WF_2DC_DPHERO},		// DPä¸»äººå…¬ç”·
+	{DPHEROINE,		WF_2DC_DPHEROINE},	// DPä¸»äººå…¬å¥³
 
 /*
-	// ƒf[ƒ^‚Æ‚µ‚Ä‘g‚İ‚ñ‚Å‚¢‚È‚¢‚à‚Ì
+	// ãƒ‡ãƒ¼ã‚¿ã¨ã—ã¦çµ„ã¿è¾¼ã‚“ã§ã„ãªã„ã‚‚ã®
 	{ICPO,			WF_2DC_ICPO},
 	{GKANBU4,		WF_2DC_GKANBU4},
 	{NAETLE,		WF_2DC_NAETLE},
@@ -623,7 +623,7 @@ static const WF_2DC_CHARDATA FIELDOBJCODE_CharIdx[WF_2DC_CHARNUM] = {
 	*/
 };
 
-/// ŠeƒAƒjƒ‚ÌI—¹ƒtƒŒ[ƒ€”
+/// å„ã‚¢ãƒ‹ãƒ¡ã®çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 static const u8 WF_2DC_AnmFrame[WF_2DC_ANMNUM] = {
 	WF_2DC_ANM_WAY_FRAME, 
 	WF_2DC_ANM_ROTA_FRAME, 
@@ -639,16 +639,16 @@ static const u8 WF_2DC_AnmFrame[WF_2DC_ANMNUM] = {
 
 //----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚ÉƒpƒŒƒbƒgƒJƒ‰[‚ğİ’è
+///	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã«ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®š
 //=====================================
 static void WF_2DC_PFDPalSet( WF_2DCSYS* p_sys, CLACT_U_RES_OBJ_PTR p_pal, u32 num );
 
 //-------------------------------------
-/// ƒAƒjƒƒŠƒ\[ƒXŠÖ˜A
+/// ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹é–¢é€£
 //=====================================
 static void WF_2DC_AnmResLoad( WF_2DCSYS* p_sys, WF_2DC_MOVETYPE movetype, u32 heap );
 static void WF_2DC_AnmResDel( WF_2DCSYS* p_sys, WF_2DC_MOVETYPE movetype );
@@ -658,7 +658,7 @@ static BOOL WF_2DC_AnmModeLinkCheck( u32 view_type, WF_2DC_MOVETYPE movetype );
 static u32 WF_2DC_AnmResContIdGet( WF_2DC_MOVETYPE movetype, u32 res_type, BOOL flip );
 
 //-------------------------------------
-/// ƒLƒƒƒ‰EƒpƒŒƒbƒgƒŠƒ\[ƒXŠÖ˜A
+/// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹é–¢é€£
 //=====================================
 static void WF_2DC_CharResLoad( WF_2DCSYS* p_sys, u32 char_no, u32 draw_type, WF_2DC_MOVETYPE movetype, u32 heap, WF_2DC_RESTYPE restype );
 static void WF_2DC_CharResLoadNml( WF_2DCSYS* p_sys, u32 char_no, u32 draw_type, WF_2DC_MOVETYPE movetype, u32 heap );
@@ -672,7 +672,7 @@ static WF_2DC_MOVETYPE WF_2DC_CharResMoveTypeGet( const WF_2DCRES* cp_res );
 
 
 //-------------------------------------
-///	‰AƒŠƒ\[ƒXŠÖ˜A
+///	é™°ãƒªã‚½ãƒ¼ã‚¹é–¢é€£
 //=====================================
 static void WF_2DC_ShResLoad( WF_2DCSYS* p_sys, u32 draw_type, u32 heap );
 static void WF_2DC_ShResDel( WF_2DCSYS* p_sys );
@@ -681,7 +681,7 @@ static BOOL WF_2DC_ShResCheck( const WF_2DCSH_RES* cp_shadowres );
 
 
 //-------------------------------------
-/// ƒ†ƒjƒIƒ“ƒŠƒ\[ƒXŠÖ˜A
+/// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒªã‚½ãƒ¼ã‚¹é–¢é€£
 //=====================================
 static void WF_2DC_UniCharPlttResLoad( WF_2DCSYS* p_sys, u32 draw_type, u32 heap );
 static void WF_2DC_UniCharPlttResDel( WF_2DCSYS* p_sys );
@@ -689,7 +689,7 @@ static void WF_2DC_UniCharAnmResLoad( WF_2DCSYS* p_sys, u32 heap );
 static void WF_2DC_UniCharAnmResDel( WF_2DCSYS* p_sys );
 
 //-------------------------------------
-/// ƒIƒuƒWƒFƒ[ƒN‘€ìŠÖ˜A
+/// ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯æ“ä½œé–¢é€£
 //=====================================
 static WF_2DCWK* WF_2DC_WkCleanGet( WF_2DCSYS* p_sys );
 static BOOL WF_2DC_WkCleanCheck( const WF_2DCWK* cp_wk );
@@ -697,7 +697,7 @@ static void WF_2DC_WkPatAnmUpdate( WF_2DCWK* p_wk );
 
 
 //-------------------------------------
-/// ƒAƒjƒŠÇ—ŠÖ˜A
+/// ã‚¢ãƒ‹ãƒ¡ç®¡ç†é–¢é€£
 //=====================================
 static void WF_2DC_WkPatAnmWayInit( WF_2DCWK* p_wk, WF_COMMON_WAY way );
 static void WF_2DC_WkPatAnmRotaInit( WF_2DCWK* p_wk, WF_COMMON_WAY way );
@@ -720,14 +720,14 @@ static void WF_2DC_WkPatAnmHighWalk4Main( WF_2DCWK* p_wk );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WIFI@2D•`‰æƒVƒXƒeƒ€ì¬
+ *	@brief	WIFIã€€2Dæç”»ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
  *
- *	@param	p_clset		g—p‚·‚éƒAƒNƒ^[ƒZƒbƒg
- *	@param	pfd			ƒpƒŒƒbƒgƒtƒF[ƒhƒ|ƒCƒ“ƒ^
- *	@param	objnum		ƒIƒuƒWƒFƒNƒg”
- *	@param	heap		ƒq[ƒv
+ *	@param	p_clset		ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+ *	@param	pfd			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+ *	@param	objnum		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ì¬‚µ‚½ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ *	@return	ä½œæˆã—ãŸã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 WF_2DCSYS* WF_2DC_SysInit( CLACT_SET_PTR p_clset, PALETTE_FADE_PTR p_pfd, u32 objnum, u32 heap )
@@ -735,34 +735,34 @@ WF_2DCSYS* WF_2DC_SysInit( CLACT_SET_PTR p_clset, PALETTE_FADE_PTR p_pfd, u32 ob
 	WF_2DCSYS* p_sys;
 	int i;
 
-	// ƒƒ‚ƒŠŠm•Û
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_sys = sys_AllocMemory( heap, sizeof(WF_2DCSYS) );
 	memset( p_sys, 0, sizeof(WF_2DCSYS) );
 
-	// ƒAƒNƒ^[ƒZƒbƒg‚Íã‚©‚ç‚à‚ç‚¤
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã¯ä¸Šã‹ã‚‰ã‚‚ã‚‰ã†
 	p_sys->p_clset = p_clset;
 
-	// ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
 	p_sys->p_pfd = p_pfd;
 
-	// ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	p_sys->p_handle[WF_2DC_ARCHANDLE_NML] = ArchiveDataHandleOpen( ARC_WIFI2DCHAR, heap );
 	p_sys->p_handle[WF_2DC_ARCHANDLE_UNI] = ArchiveDataHandleOpen( ARC_WIFIUNIONCHAR, heap );
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‰Šú‰»
-	for( i=0; i<2; i++ ){	// CGAPL‚ÍAƒLƒƒƒ‰ƒNƒ^•ª
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
+	for( i=0; i<2; i++ ){	// CGã€PLã¯ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åˆ†
 		p_sys->p_res_man[i] = CLACT_U_ResManagerInit( WF_2DC_RESM_OBJ_NUM, i, heap );
 	}
-	for( i=0; i<2; i++ ){	// CE,AN‚ÍƒAƒjƒƒ^ƒCƒv•ª
+	for( i=0; i<2; i++ ){	// CE,ANã¯ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—åˆ†
 		p_sys->p_res_man[i+2] = CLACT_U_ResManagerInit( WF_2DC_ANMRESMAN_OBJNUM, i+2, heap );
 	}
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	for( i=0; i<WF_2DC_MOVENUM; i++ ){
 		WF_2DC_AnmResLoad( p_sys, i, heap );
 	}
 
-	// ƒAƒNƒ^[ƒ[ƒNì¬
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_sys->objnum = objnum;
 	p_sys->p_wk = sys_AllocMemory( heap, sizeof(WF_2DCWK)*p_sys->objnum );
 	memset( p_sys->p_wk, 0, sizeof(WF_2DCWK)*p_sys->objnum );
@@ -772,40 +772,40 @@ WF_2DCSYS* WF_2DC_SysInit( CLACT_SET_PTR p_clset, PALETTE_FADE_PTR p_pfd, u32 ob
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WIFI@2D•`‰æƒVƒXƒeƒ€”jŠü
+ *	@brief	WIFIã€€2Dæç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_SysExit( WF_2DCSYS* p_sys )
 {
 	int i;
 	
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	for( i=0; i<p_sys->objnum; i++ ){
 		if( WF_2DC_WkCleanCheck( &p_sys->p_wk[i] ) == FALSE ){
 			WF_2DC_WkDel( &p_sys->p_wk[i] );
 		} 
 	}
 	
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒX”jŠü
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	for( i=0; i<WF_2DC_MOVENUM; i++ ){
 		WF_2DC_AnmResDel( p_sys, i );
 	}
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX”jŠü
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	WF_2DC_AllResDel( p_sys );
 
-	// ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒNƒ[ƒY
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
 	ArchiveDataHandleClose( p_sys->p_handle[WF_2DC_ARCHANDLE_NML] );
 	ArchiveDataHandleClose( p_sys->p_handle[WF_2DC_ARCHANDLE_UNI] );
 	
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	for( i=0; i<WF_2DC_RESMAN_NUM; i++ ){
 		CLACT_U_ResManagerDelete( p_sys->p_res_man[i] );
 	}
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_sys->p_wk );
 	sys_FreeMemoryEz( p_sys );
 }
@@ -813,18 +813,18 @@ void WF_2DC_SysExit( WF_2DCSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒX“o˜^
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
  *
- *	@param	p_sys			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	view_type		Œ©‚½–ÚiFIELDOBJCODEj
- *	@param	draw_type		“]‘—æ
- *	@param	movetype		“®ìƒ^ƒCƒv
- *	@param	heap			ƒq[ƒv
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	view_type		è¦‹ãŸç›®ï¼ˆFIELDOBJCODEï¼‰
+ *	@param	draw_type		è»¢é€å…ˆ
+ *	@param	movetype		å‹•ä½œã‚¿ã‚¤ãƒ—
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *
  *	draw_type
-	main‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAIN
-	sub‚É“o˜^ FNNS_G2D_VRAM_TYPE_2DSUB
-	—¼•û‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAX
+	mainã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAIN
+	subã«ç™»éŒ² ï¼šNNS_G2D_VRAM_TYPE_2DSUB
+	ä¸¡æ–¹ã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAX
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_ResSet( WF_2DCSYS* p_sys, u32 view_type, u32 draw_type, WF_2DC_MOVETYPE movetype, u32 heap )
@@ -832,23 +832,23 @@ void WF_2DC_ResSet( WF_2DCSYS* p_sys, u32 view_type, u32 draw_type, WF_2DC_MOVET
 	u32 char_no;
 	BOOL result;
 
-	// “Ç‚İ‚İ‰Â”\‚©ƒ`ƒFƒbƒN
+	// èª­ã¿è¾¼ã¿å¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯
 	result = WF_2DC_AnmModeLinkCheck( view_type, movetype );
 	GF_ASSERT( result );
 
-	// Œ©‚½–Ú‚Æ«•Ê‚©‚çƒLƒƒƒ‰ƒNƒ^[”Ô†æ“¾
+	// è¦‹ãŸç›®ã¨æ€§åˆ¥ã‹ã‚‰ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç•ªå·å–å¾—
 	char_no = WF_2DC_CharNoGet( view_type );
 	
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	WF_2DC_CharResLoad( p_sys, char_no, draw_type, movetype, heap, WF_2DC_RES_NML );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX”jŠü
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	view_type	Œ©‚½–ÚFIELDOBJCODE
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	view_type	è¦‹ãŸç›®FIELDOBJCODE
  *
  */
 //-----------------------------------------------------------------------------
@@ -858,50 +858,50 @@ void WF_2DC_ResDel( WF_2DCSYS* p_sys, u32 view_type )
 
 	char_no = WF_2DC_CharNoGet( view_type );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	WF_2DC_CharResDel( p_sys, char_no );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“Ç‚İ‚ñ‚Å‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	èª­ã¿è¾¼ã‚“ã§ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	view_type	Œ©‚½–ÚiFIELDOBJCODEj
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	view_type	è¦‹ãŸç›®ï¼ˆFIELDOBJCODEï¼‰
  *
- *	@retval	TRUE	“Ç‚İ‚ñ‚Å‚ ‚é
- *	@retval	FALSE	“Ç‚İ‚ñ‚Å‚È‚¢
+ *	@retval	TRUE	èª­ã¿è¾¼ã‚“ã§ã‚ã‚‹
+ *	@retval	FALSE	èª­ã¿è¾¼ã‚“ã§ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WF_2DC_ResCheck( const WF_2DCSYS* cp_sys, u32 view_type )
 {
 	u32 char_no;
 
-	// Œ©‚½–Ú‚Æ«•Ê‚©‚çƒLƒƒƒ‰ƒNƒ^[”Ô†æ“¾
+	// è¦‹ãŸç›®ã¨æ€§åˆ¥ã‹ã‚‰ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç•ªå·å–å¾—
 	char_no = WF_2DC_CharNoGet( view_type );
 	return WF_2DC_CharResCheck( cp_sys, char_no );	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘SƒŠƒ\[ƒX‚Ì”jŠü
+ *	@brief	å…¨ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_AllResDel( WF_2DCSYS* p_sys )
 {
 	int i;
 
-	// ƒ†ƒjƒIƒ“ƒŠƒ\[ƒX‚Ì”jŠü
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
 	if( p_sys->p_unionpltt != NULL ){
 		WF_2DC_UnionResDel( p_sys );
 	}
 	
-	// ‚»‚Ì‘¼‚ÌƒŠƒ\[ƒX‚Í‚«
+	// ãã®ä»–ã®ãƒªã‚½ãƒ¼ã‚¹ã¯ã
 	for( i=0; i<WF_2DC_CHARNUM; i++ ){
 		if( WF_2DC_CharResCheck( p_sys, i ) == TRUE ){
-			// ƒŠƒ\[ƒX”jŠü
+			// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 			WF_2DC_CharResDel( p_sys, i );
 		}
 	}
@@ -910,59 +910,59 @@ void WF_2DC_AllResDel( WF_2DCSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^‚Ì“o˜^
+ *	@brief	ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ç™»éŒ²
  *
- *	@param	p_sys			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	draw_type		“]‘—æ
- *	@param	movetype		“®ìƒ^ƒCƒv
- *	@param	heap			ƒq[ƒv
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	draw_type		è»¢é€å…ˆ
+ *	@param	movetype		å‹•ä½œã‚¿ã‚¤ãƒ—
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *
  *	draw_type
-	main‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAIN
-	sub‚É“o˜^ FNNS_G2D_VRAM_TYPE_2DSUB
-	—¼•û‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAX
+	mainã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAIN
+	subã«ç™»éŒ² ï¼šNNS_G2D_VRAM_TYPE_2DSUB
+	ä¸¡æ–¹ã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAX
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_UnionResSet( WF_2DCSYS* p_sys, u32 draw_type, WF_2DC_MOVETYPE movetype, u32 heap )
 {
 	int i;
 
-	// “®ì‰Â”\‚©ƒ`ƒFƒbƒN
-	// ålŒöˆÈŠO‚ÍA‘–‚èˆÈŠOó‚¯•t‚¯‚Ä‚¢‚È‚¢
+	// å‹•ä½œå¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯
+	// ä¸»äººå…¬ä»¥å¤–ã¯ã€èµ°ã‚Šä»¥å¤–å—ã‘ä»˜ã‘ã¦ã„ãªã„
 	GF_ASSERT( movetype != WF_2DC_MOVERUN );
 
 
-	// ƒ†ƒjƒIƒ“ƒAƒjƒƒŠƒ\[ƒX“Ç‚İ
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹èª­è¾¼ã¿
 	WF_2DC_UniCharPlttResLoad( p_sys, draw_type, heap );
 	
-	// ƒAƒjƒƒŠƒ\[ƒX“o˜^
+	// ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
 	WF_2DC_UniCharAnmResLoad( p_sys, heap );
 
 	for( i=0; i<WF_2DC_UNICHAR_NUM; i++ ){
-		// “Ç‚İ‚İ
+		// èª­ã¿è¾¼ã¿
 		WF_2DC_CharResLoad( p_sys, WF_2DC_UnionChar[i], draw_type, movetype, heap, WF_2DC_RES_UNI );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^‚ÌƒŠƒ\[ƒX‚Í‚«
+ *	@brief	ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹ã¯ã
  *
- *	@param	p_sys			ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_UnionResDel( WF_2DCSYS* p_sys )
 {
 	int i;
 
-	// ƒ†ƒjƒIƒ“ƒpƒŒƒbƒg”jŠü
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆç ´æ£„
 	WF_2DC_UniCharPlttResDel( p_sys );
 
-	// ƒAƒjƒƒŠƒ\[ƒX”jŠü
+	// ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	WF_2DC_UniCharAnmResDel( p_sys );
 
 	for( i=0; i<WF_2DC_UNICHAR_NUM; i++ ){
-		// ƒLƒƒƒ‰ƒNƒ^‚Í‚«
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¯ã
 		WF_2DC_CharResDel( p_sys, WF_2DC_UnionChar[i] );
 	}
 }
@@ -970,17 +970,17 @@ void WF_2DC_UnionResDel( WF_2DCSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰A‚ÌƒŠƒ\[ƒX‚ğ“Ç‚İ‚Ş
+ *	@brief	é™°ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
  *
- *	@param	p_sys			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	draw_type		“]‘—æ
- *	@param	shadow_pri		‰A‚Ì•\¦—Dæ‡ˆÊ
- *	@param	heap			ƒq[ƒvID
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	draw_type		è»¢é€å…ˆ
+ *	@param	shadow_pri		é™°ã®è¡¨ç¤ºå„ªå…ˆé †ä½
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—ID
  *
  *	draw_type
-	main‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAIN
-	sub‚É“o˜^ FNNS_G2D_VRAM_TYPE_2DSUB
-	—¼•û‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAX
+	mainã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAIN
+	subã«ç™»éŒ² ï¼šNNS_G2D_VRAM_TYPE_2DSUB
+	ä¸¡æ–¹ã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAX
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_ShadowResSet( WF_2DCSYS* p_sys, u32 draw_type, u32 shadow_pri, u32 heap )
@@ -991,9 +991,9 @@ void WF_2DC_ShadowResSet( WF_2DCSYS* p_sys, u32 draw_type, u32 shadow_pri, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰A‚ÌƒŠƒ\[ƒX‚ğ”jŠü‚·‚é
+ *	@brief	é™°ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã™ã‚‹
  *	
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_ShadowResDel( WF_2DCSYS* p_sys )
@@ -1003,15 +1003,15 @@ void WF_2DC_ShadowResDel( WF_2DCSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒAƒNƒ^[“o˜^
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_data		“o˜^ƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
  *	@param	view_type	FIELDOBJCODE
- *	@param	movetype	“®ìƒ^ƒCƒv
- *	@param	heap		ƒq[ƒv
+ *	@param	movetype	å‹•ä½œã‚¿ã‚¤ãƒ—
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WF_2DCWK* WF_2DC_WkAdd( WF_2DCSYS* p_sys, const WF_2DC_WKDATA* cp_data, u32 view_type, u32 heap )
@@ -1020,13 +1020,13 @@ WF_2DCWK* WF_2DC_WkAdd( WF_2DCSYS* p_sys, const WF_2DC_WKDATA* cp_data, u32 view
 	CLACT_ADD add;
 	u32 char_no;
 	
-	// ‹ó‚Ìƒ[ƒNæ“¾
+	// ç©ºã®ãƒ¯ãƒ¼ã‚¯å–å¾—
 	p_wk = WF_2DC_WkCleanGet( p_sys );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[æ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼å–å¾—
 	char_no = WF_2DC_CharNoGet( view_type );
 
-	// “Ç‚İ‚İÏ‚İƒ`ƒFƒbƒN
+	// èª­ã¿è¾¼ã¿æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( WF_2DC_CharResCheck( p_sys, char_no ) == TRUE );
 	
 	memset( &add, 0, sizeof(CLACT_ADD) );
@@ -1040,7 +1040,7 @@ WF_2DCWK* WF_2DC_WkAdd( WF_2DCSYS* p_sys, const WF_2DC_WKDATA* cp_data, u32 view
 	add.pri		= cp_data->pri;
 	add.heap	= heap;
 
-	// •\¦ƒGƒŠƒA
+	// è¡¨ç¤ºã‚¨ãƒªã‚¢
 	if( (p_sys->res[ char_no ].drawtype == NNS_G2D_VRAM_TYPE_MAX) || 
 		(p_sys->res[ char_no ].drawtype == NNS_G2D_VRAM_TYPE_2DMAIN) ){
 		add.DrawArea = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -1048,28 +1048,28 @@ WF_2DCWK* WF_2DC_WkAdd( WF_2DCSYS* p_sys, const WF_2DC_WKDATA* cp_data, u32 view
 		add.DrawArea = NNS_G2D_VRAM_TYPE_2DSUB;
 	}
 	
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	p_wk->p_clwk = CLACT_Add( &add );
 	CLACT_BGPriorityChg( p_wk->p_clwk, cp_data->bgpri );
 
-	// “®ìƒ‚[ƒh‚É‚æ‚è‰ŠúƒAƒjƒ‚ğ•ÏX
+	// å‹•ä½œãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã‚ŠåˆæœŸã‚¢ãƒ‹ãƒ¡ã‚’å¤‰æ›´
 	if( p_sys->res[ char_no ].movetype == WF_2DC_MOVENORMAL ){
-		// ‚µ‚½•à‚«
+		// ã—ãŸæ­©ã
 		CLACT_AnmChg( p_wk->p_clwk, WF_2DC_ANM_WALK+WF_COMMON_BOTTOM );
 	}else{
-		// ‰ºŒü‚«
+		// ä¸‹å‘ã
 		CLACT_AnmChg( p_wk->p_clwk, WF_COMMON_BOTTOM );
 	}
 
-	// ƒAƒjƒƒf[ƒ^‰Šú‰»
+	// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	p_wk->patanmtype = WF_2DC_ANMNONE;
 	p_wk->patanmframe = 0;
 	p_wk->patanmway = WF_COMMON_BOTTOM;
 
-	// ƒŠƒ\[ƒX•Û‘¶
+	// ãƒªã‚½ãƒ¼ã‚¹ä¿å­˜
 	p_wk->cp_res = &p_sys->res[ char_no ];
 
-	// ‰Aƒ[ƒN‚Ìì¬
+	// é™°ãƒ¯ãƒ¼ã‚¯ã®ä½œæˆ
 	if( WF_2DC_ShResCheck( &p_sys->shadowres ) ){
 
 		memset( &add, 0, sizeof(CLACT_ADD) );
@@ -1083,7 +1083,7 @@ WF_2DCWK* WF_2DC_WkAdd( WF_2DCSYS* p_sys, const WF_2DC_WKDATA* cp_data, u32 view
 		add.pri		= p_sys->shadow_pri;
 		add.heap	= heap;
 
-		// •\¦ƒGƒŠƒA
+		// è¡¨ç¤ºã‚¨ãƒªã‚¢
 		if( (p_sys->res[ char_no ].drawtype == NNS_G2D_VRAM_TYPE_MAX) || 
 			(p_sys->res[ char_no ].drawtype == NNS_G2D_VRAM_TYPE_2DMAIN) ){
 			add.DrawArea = NNS_G2D_VRAM_TYPE_2DMAIN;
@@ -1103,9 +1103,9 @@ WF_2DCWK* WF_2DC_WkAdd( WF_2DCSYS* p_sys, const WF_2DC_WKDATA* cp_data, u32 view
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_WkDel( WF_2DCWK* p_wk )
@@ -1119,11 +1119,11 @@ void WF_2DC_WkDel( WF_2DCWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^‚Ìæ“¾
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã®å–å¾—
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *	
- *	@return	ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
+ *	@return	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 CLACT_WORK_PTR WF_2DC_WkClWkGet( WF_2DCWK* p_wk )
@@ -1133,11 +1133,11 @@ CLACT_WORK_PTR WF_2DC_WkClWkGet( WF_2DCWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^‚Ìæ“¾
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã®å–å¾—
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *	
- *	@return	ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
+ *	@return	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 CONST_CLACT_WORK_PTR WF_2DC_WkConstClWkGet( const WF_2DCWK* cp_wk )
@@ -1147,11 +1147,11 @@ CONST_CLACT_WORK_PTR WF_2DC_WkConstClWkGet( const WF_2DCWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•W‚Ìİ’è
+ *	@brief	åº§æ¨™ã®è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_WkMatrixSet( WF_2DCWK* p_wk, s16 x, s16 y )
@@ -1172,17 +1172,17 @@ void WF_2DC_WkMatrixSet( WF_2DCWK* p_wk, s16 x, s16 y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•Wæ“¾
+ *	@brief	åº§æ¨™å–å¾—
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	x_y		ƒtƒ‰ƒO
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	x_y		ãƒ•ãƒ©ã‚°
  *
  *	x_y
 	WF_2DC_GET_X,
 	WF_2DC_GET_Y
  *
  *
- *	@return	ƒtƒ‰ƒO‚ÌÀ•W‚Ì’l
+ *	@return	ãƒ•ãƒ©ã‚°ã®åº§æ¨™ã®å€¤
  */
 //-----------------------------------------------------------------------------
 s16 WF_2DC_WkMatrixGet( WF_2DCWK* p_wk, WF_2DC_MAT x_y )
@@ -1199,10 +1199,10 @@ s16 WF_2DC_WkMatrixGet( WF_2DCWK* p_wk, WF_2DC_MAT x_y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\¦—Dæ‡ˆÊ‚ğİ’è
+ *	@brief	è¡¨ç¤ºå„ªå…ˆé †ä½ã‚’è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	pri		•\¦—Dæ‡ˆÊ
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	pri		è¡¨ç¤ºå„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_WkDrawPriSet( WF_2DCWK* p_wk, u16 pri )
@@ -1212,11 +1212,11 @@ void WF_2DC_WkDrawPriSet( WF_2DCWK* p_wk, u16 pri )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\¦—Dæ‡ˆÊ‚ğæ“¾
+ *	@brief	è¡¨ç¤ºå„ªå…ˆé †ä½ã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	•\¦—Dæ‡ˆÊ
+ *	@return	è¡¨ç¤ºå„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 u16 WF_2DC_WkDrawPriGet( const WF_2DCWK* cp_wk )
@@ -1226,10 +1226,10 @@ u16 WF_2DC_WkDrawPriGet( const WF_2DCWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“‚ği‚ß‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’é€²ã‚ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	frame	ƒtƒŒ[ƒ€
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	frame	ãƒ•ãƒ¬ãƒ¼ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_WkAnmAddFrame( WF_2DCWK* p_wk, fx32 frame )
@@ -1239,10 +1239,10 @@ void WF_2DC_WkAnmAddFrame( WF_2DCWK* p_wk, fx32 frame )
 
 //----------------------------------------------------------------------------
 /**
- *	@brie	•\¦”ñ•\¦İ’è
+ *	@brie	è¡¨ç¤ºéè¡¨ç¤ºè¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	flag	ƒtƒ‰ƒO
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag	ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_WkDrawFlagSet( WF_2DCWK* p_wk, BOOL flag )
@@ -1255,12 +1255,12 @@ void WF_2DC_WkDrawFlagSet( WF_2DCWK* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\¦”ñ•\¦æ“¾
+ *	@brief	è¡¨ç¤ºéè¡¨ç¤ºå–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	•\¦
- *	@retval	FALSE	”ñ•\¦
+ *	@retval	TRUE	è¡¨ç¤º
+ *	@retval	FALSE	éè¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 BOOL WF_2DC_WkDrawFlagGet( const WF_2DCWK* cp_wk )
@@ -1270,11 +1270,11 @@ BOOL WF_2DC_WkDrawFlagGet( const WF_2DCWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒ^ƒCƒv‚ğæ“¾‚·‚é
+ *	@brief	å‹•ä½œã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	“®ìƒ^ƒCƒv
+ *	@return	å‹•ä½œã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 WF_2DC_MOVETYPE WF_2DC_WkMoveTypeGet( const WF_2DCWK* cp_wk )
@@ -1284,11 +1284,11 @@ WF_2DC_MOVETYPE WF_2DC_WkMoveTypeGet( const WF_2DCWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒv‚ğæ“¾‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒv
+ *	@return	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 WF_2DC_ANMTYPE WF_2DC_WkAnmTypeGet( const WF_2DCWK* cp_wk )
@@ -1298,10 +1298,10 @@ WF_2DC_ANMTYPE WF_2DC_WkAnmTypeGet( const WF_2DCWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€İ’è
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	frame		ƒtƒŒ[ƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	frame		ãƒ•ãƒ¬ãƒ¼ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_WkAnmFrameSet( WF_2DCWK* p_wk, u16 frame )
@@ -1311,11 +1311,11 @@ void WF_2DC_WkAnmFrameSet( WF_2DCWK* p_wk, u16 frame )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€æ“¾
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒtƒŒ[ƒ€ƒCƒ“ƒfƒbƒNƒX
+ *	@return	ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 u16 WF_2DC_WkAnmFrameGet( const WF_2DCWK* cp_wk )
@@ -1325,11 +1325,11 @@ u16 WF_2DC_WkAnmFrameGet( const WF_2DCWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰A‚ÌˆÊ’u‚ğ‘€ì‚·‚é
+ *	@brief	é™°ã®ä½ç½®ã‚’æ“ä½œã™ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_WkShadowMatrixSet( WF_2DCWK* p_wk, s16 x, s16 y )
@@ -1349,11 +1349,11 @@ void WF_2DC_WkShadowMatrixSet( WF_2DCWK* p_wk, s16 x, s16 y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	PatternƒAƒjƒŠJn
+ *	@brief	Patternã‚¢ãƒ‹ãƒ¡é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	anmtype		ƒAƒjƒƒ^ƒCƒv
- *	@param	anmway		ƒAƒjƒ•ûŒü
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	anmtype		ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
+ *	@param	anmway		ã‚¢ãƒ‹ãƒ¡æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_WkPatAnmStart( WF_2DCWK* p_wk, WF_2DC_ANMTYPE anmtype, WF_COMMON_WAY anmway )
@@ -1384,21 +1384,21 @@ void WF_2DC_WkPatAnmStart( WF_2DCWK* p_wk, WF_2DC_ANMTYPE anmtype, WF_COMMON_WAY
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	PatternƒAƒjƒI—¹ƒ`ƒFƒbƒN
+ *	@brief	Patternã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WF_2DC_WkPatAnmEndCheck( const WF_2DCWK* cp_wk )
 {
-	if( WF_2DC_AnmFrame[ cp_wk->patanmtype ] == 0xff ){	// ƒ‹[ƒvİ’è
+	if( WF_2DC_AnmFrame[ cp_wk->patanmtype ] == 0xff ){	// ãƒ«ãƒ¼ãƒ—è¨­å®š
 		return FALSE;
 	}
 
-	//I—¹ƒ`ƒFƒbƒN
+	//çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( WF_2DC_AnmFrame[ cp_wk->patanmtype ] <= cp_wk->patanmframe ){
 		return TRUE;
 	}
@@ -1407,17 +1407,17 @@ BOOL WF_2DC_WkPatAnmEndCheck( const WF_2DCWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	PatternƒAƒjƒ‚ği‚ß‚é
+ *	@brief	Patternã‚¢ãƒ‹ãƒ¡ã‚’é€²ã‚ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	speed		ƒXƒs[ƒh
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	speed		ã‚¹ãƒ”ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 void WF_2DC_WkPatAnmAddFrame( WF_2DCWK* p_wk )
 {
 	BOOL updata = FALSE;
 	
-	if( WF_2DC_AnmFrame[ p_wk->patanmtype ] == 0xff ){	// ƒ‹[ƒvİ’è
+	if( WF_2DC_AnmFrame[ p_wk->patanmtype ] == 0xff ){	// ãƒ«ãƒ¼ãƒ—è¨­å®š
 		updata = TRUE;	
 	}else{	
 	
@@ -1427,7 +1427,7 @@ void WF_2DC_WkPatAnmAddFrame( WF_2DCWK* p_wk )
 	}
 
 	if( updata == TRUE ){
-		WF_2DC_WkPatAnmUpdate( p_wk );	// ƒAƒjƒXV
+		WF_2DC_WkPatAnmUpdate( p_wk );	// ã‚¢ãƒ‹ãƒ¡æ›´æ–°
 		p_wk->patanmframe ++;
 	}
 }
@@ -1435,16 +1435,16 @@ void WF_2DC_WkPatAnmAddFrame( WF_2DCWK* p_wk )
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *				ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_sys			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	movetype		“®ìƒ^ƒCƒv
- *	@param	heap			ƒq[ƒv
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	movetype		å‹•ä½œã‚¿ã‚¤ãƒ—
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_AnmResLoad( WF_2DCSYS* p_sys, WF_2DC_MOVETYPE movetype, u32 heap )
@@ -1491,10 +1491,10 @@ static void WF_2DC_AnmResLoad( WF_2DCSYS* p_sys, WF_2DC_MOVETYPE movetype, u32 h
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒX”jŠü
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_sys			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	movetype		“®ìƒ^ƒCƒv
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	movetype		å‹•ä½œã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_AnmResDel( WF_2DCSYS* p_sys, WF_2DC_MOVETYPE movetype )
@@ -1515,13 +1515,13 @@ static void WF_2DC_AnmResDel( WF_2DCSYS* p_sys, WF_2DC_MOVETYPE movetype )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒX@“Ç‚İ‚İÏ‚İ‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã€€èª­ã¿è¾¼ã¿æ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	movetype	“®ìƒ^ƒCƒv
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	movetype	å‹•ä½œã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	“Ç‚İ‚ñ‚Å‚ ‚é
- *	@retval	FALSE	“Ç‚İ‚ñ‚Å‚È‚¢
+ *	@retval	TRUE	èª­ã¿è¾¼ã‚“ã§ã‚ã‚‹
+ *	@retval	FALSE	èª­ã¿è¾¼ã‚“ã§ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WF_2DC_AnmResCheck( const WF_2DCSYS* cp_sys, WF_2DC_MOVETYPE movetype )
@@ -1534,11 +1534,11 @@ static BOOL WF_2DC_AnmResCheck( const WF_2DCSYS* cp_sys, WF_2DC_MOVETYPE movetyp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ©‚½–Ú‚©‚çƒLƒƒƒ‰ƒNƒ^NO‚ğæ“¾‚·‚é
+ *	@brief	è¦‹ãŸç›®ã‹ã‚‰ã‚­ãƒ£ãƒ©ã‚¯ã‚¿NOã‚’å–å¾—ã™ã‚‹
  *
- *	@param	view_type	Œ©‚½–ÚiFIELDOBJCODEj
+ *	@param	view_type	è¦‹ãŸç›®ï¼ˆFIELDOBJCODEï¼‰
  *
- *	@return	ƒLƒƒƒ‰ƒNƒ^NO
+ *	@return	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿NO
  */
 //-----------------------------------------------------------------------------
 static u32 WF_2DC_CharNoGet( u32 view_type )
@@ -1556,13 +1556,13 @@ static u32 WF_2DC_CharNoGet( u32 view_type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	w’è‚³‚ê‚½l•¨‚É“®ìƒ^ƒCƒv‚ğw’è‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	æŒ‡å®šã•ã‚ŒãŸäººç‰©ã«å‹•ä½œã‚¿ã‚¤ãƒ—ã‚’æŒ‡å®šã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	view_type		Œ©‚½–Ú
- *	@param	movetype		“®ìƒ^ƒCƒv
+ *	@param	view_type		è¦‹ãŸç›®
+ *	@param	movetype		å‹•ä½œã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	w’è‚Å‚«‚é
- *	@retval	FALSE	w’è‚Å‚«‚È‚¢
+ *	@retval	TRUE	æŒ‡å®šã§ãã‚‹
+ *	@retval	FALSE	æŒ‡å®šã§ããªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WF_2DC_AnmModeLinkCheck( u32 view_type, WF_2DC_MOVETYPE movetype )
@@ -1580,13 +1580,13 @@ static BOOL WF_2DC_AnmModeLinkCheck( u32 view_type, WF_2DC_MOVETYPE movetype )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒX‚ÌŠÇ—ID‚ğæ“¾‚·‚é
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ã®ç®¡ç†IDã‚’å–å¾—ã™ã‚‹
  *
- *	@param	movetype		“®ìƒ^ƒCƒv
- *	@param	res_type		ƒŠƒ\[ƒXƒ^ƒCƒv
- *	@param	flip			ƒLƒƒƒ‰ƒNƒ^‚ÌƒtƒŠƒbƒv‚Ì—L–³
+ *	@param	movetype		å‹•ä½œã‚¿ã‚¤ãƒ—
+ *	@param	res_type		ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *	@param	flip			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ãƒ•ãƒªãƒƒãƒ—ã®æœ‰ç„¡
  *
- *	@return	ƒŠƒ\[ƒXŠÇ—ID
+ *	@return	ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ID
  */
 //-----------------------------------------------------------------------------
 u32 WF_2DC_AnmResContIdGet( WF_2DC_MOVETYPE movetype, u32 res_type, BOOL flip )
@@ -1605,19 +1605,19 @@ u32 WF_2DC_AnmResContIdGet( WF_2DC_MOVETYPE movetype, u32 res_type, BOOL flip )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	char_no		ƒLƒƒƒ‰ƒNƒ^”Ô†
- *	@param	draw_type	“]‘—æ
- *	@param	movetype	“®ìƒ^ƒCƒv
- *	@param	heap		ƒq[ƒv
- *	@param	restype		ƒŠƒ\[ƒXƒ^ƒCƒv
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	char_no		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·
+ *	@param	draw_type	è»¢é€å…ˆ
+ *	@param	movetype	å‹•ä½œã‚¿ã‚¤ãƒ—
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	restype		ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_CharResLoad( WF_2DCSYS* p_sys, u32 char_no, u32 draw_type, WF_2DC_MOVETYPE movetype, u32 heap, WF_2DC_RESTYPE restype )
 {
-	// “Ç‚İ‚İÏ‚İ‚Å‚È‚¢‚±‚Æ‚ğƒ`ƒFƒbƒN
+	// èª­ã¿è¾¼ã¿æ¸ˆã¿ã§ãªã„ã“ã¨ã‚’ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_sys->res[ char_no ].resobj[0] == NULL );
 
 	if( restype == WF_2DC_RES_NML ){
@@ -1629,25 +1629,25 @@ static void WF_2DC_CharResLoad( WF_2DCSYS* p_sys, u32 char_no, u32 draw_type, WF
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^[ƒŠƒ\[ƒX“Ç‚İ‚İ’Êí
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿é€šå¸¸æ™‚
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	char_no		ƒLƒƒƒ‰ƒNƒ^”Ô†
- *	@param	draw_type	“]‘—æ
- *	@param	movetype	“®ìƒ^ƒCƒv
- *	@param	heap		ƒq[ƒv
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	char_no		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·
+ *	@param	draw_type	è»¢é€å…ˆ
+ *	@param	movetype	å‹•ä½œã‚¿ã‚¤ãƒ—
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_CharResLoadNml( WF_2DCSYS* p_sys, u32 char_no, u32 draw_type, WF_2DC_MOVETYPE movetype, u32 heap )
 {
 	NNSG2dCharacterData* p_char;
 	BOOL result;
-	BOOL flip;	// ƒtƒŠƒbƒv‚ğg—p‚·‚éƒLƒƒƒ‰ƒNƒ^‚©
+	BOOL flip;	// ãƒ•ãƒªãƒƒãƒ—ã‚’ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‹
 	u32 cell_contid, anm_contid;
 
 //	OS_Printf( "char_no %d\n", char_no );
 
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	p_sys->res[ char_no ].resobj[ 0 ] = 
 		CLACT_U_ResManagerResAddArcChar_ArcHandle(
 				p_sys->p_res_man[ 0 ], p_sys->p_handle[WF_2DC_ARCHANDLE_NML],
@@ -1662,56 +1662,56 @@ static void WF_2DC_CharResLoadNml( WF_2DCSYS* p_sys, u32 char_no, u32 draw_type,
 
 //	OS_TPrintf( "pltt contid=0x%x  ncl=%d\n", WF_2DC_ARC_CONTCHARID+char_no, WF_2DC_ARC_GETNCL( char_no ) );
 
-	//  ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^æ“¾
+	//  ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_char = CLACT_U_ResManagerGetResObjResChar( p_sys->res[ char_no ].resobj[ 0 ] );
 
-	// ƒtƒŠƒbƒv‚ğg—p‚·‚éƒLƒƒƒ‰ƒNƒ^‚©ƒTƒCƒY‚ğŒ©‚Ä’²‚×‚é
+	// ãƒ•ãƒªãƒƒãƒ—ã‚’ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‹ã‚µã‚¤ã‚ºã‚’è¦‹ã¦èª¿ã¹ã‚‹
 	if( p_char->szByte == WF_2DC_ARC_NORMALANMCHARSIZ_NOTFLIP ){
-		// ƒtƒŠƒbƒv‚È‚µ‚ÌƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY
+		// ãƒ•ãƒªãƒƒãƒ—ãªã—ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º
 		flip = FALSE;
 	}else{
-		// ‚»‚Ì‘¼‚Ìê‡‚ÍƒtƒŠƒbƒv‚ğg—p‚µ‚Ä‚¢‚é
+		// ãã®ä»–ã®å ´åˆã¯ãƒ•ãƒªãƒƒãƒ—ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹
 		flip = TRUE;	
 	}
 
-	// “]‘—ƒTƒCƒY’²®
+	// è»¢é€ã‚µã‚¤ã‚ºèª¿æ•´
 	if( movetype == WF_2DC_MOVETURN ){
-		// ƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY‚ğíŒ¸‚Å‚«‚é
-		if( flip ){	// ƒtƒŠƒbƒv‚Ì‚ ‚é‚È‚µ‚ÅƒTƒCƒY‚ª•Ï‚í‚é
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚ºã‚’å‰Šæ¸›ã§ãã‚‹
+		if( flip ){	// ãƒ•ãƒªãƒƒãƒ—ã®ã‚ã‚‹ãªã—ã§ã‚µã‚¤ã‚ºãŒå¤‰ã‚ã‚‹
 			p_char->szByte = WF_2DC_ARC_TURNANMCHARSIZ;
 		}else{
 			p_char->szByte = WF_2DC_ARC_TURNANMCHARSIZ_NOFLIP;
 		}
 	}else if( movetype == WF_2DC_MOVENORMAL ){
-		// ƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY‚ğíŒ¸‚Å‚«‚é
-		if( flip ){	// ƒtƒŠƒbƒv‚Ì‚ ‚é‚È‚µ‚ÅƒTƒCƒY‚ª•Ï‚í‚é
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚ºã‚’å‰Šæ¸›ã§ãã‚‹
+		if( flip ){	// ãƒ•ãƒªãƒƒãƒ—ã®ã‚ã‚‹ãªã—ã§ã‚µã‚¤ã‚ºãŒå¤‰ã‚ã‚‹
 			p_char->szByte = WF_2DC_ARC_NORMALANMCHARSIZ;
 		}else{
 			p_char->szByte = WF_2DC_ARC_NORMALANMCHARSIZ_NOTFLIP;
 		}
 	}
 	
-	// “]‘—
+	// è»¢é€
 	result = CLACT_U_CharManagerSetCharModeAdjustAreaCont( p_sys->res[ char_no ].resobj[0] );
 	GF_ASSERT( result );
 	result = CLACT_U_PlttManagerSetCleanArea( p_sys->res[ char_no ].resobj[1] );
 	GF_ASSERT( result );
 
-	// ƒpƒŒƒbƒgƒtƒF[ƒhİ’è
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰è¨­å®š
 	if( p_sys->p_pfd ){
 		WF_2DC_PFDPalSet( p_sys, p_sys->res[ char_no ].resobj[1], 1 );
 	}
 
-	// ƒŠƒ\[ƒX‚¾‚¯”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_sys->res[ char_no ].resobj[0] );
 	CLACT_U_ResManagerResOnlyDelete( p_sys->res[ char_no ].resobj[1] );
 
-	// ŠÇ—ƒpƒ‰ƒ[ƒ^İ’è
+	// ç®¡ç†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 	p_sys->res[ char_no ].drawtype = draw_type;
 	p_sys->res[ char_no ].movetype = movetype;
 	p_sys->res[ char_no ].type = WF_2DC_RES_NML;
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	cell_contid	= WF_2DC_AnmResContIdGet( movetype, CLACT_U_CELL_RES, flip );
 	anm_contid	= WF_2DC_AnmResContIdGet( movetype, CLACT_U_CELLANM_RES, flip );
 	CLACT_U_MakeHeader( &p_sys->res[ char_no ].header, 
@@ -1725,13 +1725,13 @@ static void WF_2DC_CharResLoadNml( WF_2DCSYS* p_sys, u32 char_no, u32 draw_type,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^[ƒŠƒ\[ƒX“Ç‚İ‚İ	ƒ†ƒjƒIƒ“
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿	ãƒ¦ãƒ‹ã‚ªãƒ³æ™‚
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	char_no		ƒLƒƒƒ‰ƒNƒ^”Ô†
- *	@param	draw_type	“]‘—æ
- *	@param	movetype	“®ìƒ^ƒCƒv
- *	@param	heap		ƒq[ƒv
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	char_no		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·
+ *	@param	draw_type	è»¢é€å…ˆ
+ *	@param	movetype	å‹•ä½œã‚¿ã‚¤ãƒ—
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_CharResLoadUni( WF_2DCSYS* p_sys, u32 char_no, u32 draw_type, WF_2DC_MOVETYPE movetype, u32 heap )
@@ -1740,12 +1740,12 @@ static void WF_2DC_CharResLoadUni( WF_2DCSYS* p_sys, u32 char_no, u32 draw_type,
 	BOOL result;
 	u32 union_idx;
 
-	// ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^‚Æ‚µ‚Ä‚Ìƒiƒ“ƒo[‚ğæ“¾
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¨ã—ã¦ã®ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	union_idx = char_no - WF_2DC_BOY1;
 
 //	OS_Printf( "char_no %d\n", char_no );
 
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	p_sys->res[ char_no ].resobj[ 0 ] = 
 		CLACT_U_ResManagerResAddArcChar_ArcHandle(
 				p_sys->p_res_man[ 0 ], p_sys->p_handle[WF_2DC_ARCHANDLE_UNI],
@@ -1753,33 +1753,33 @@ static void WF_2DC_CharResLoadUni( WF_2DCSYS* p_sys, u32 char_no, u32 draw_type,
 				FALSE, WF_2DC_ARC_CONTCHARID+char_no, draw_type, heap );
 
 
-	// “]‘—ƒTƒCƒY’²®
+	// è»¢é€ã‚µã‚¤ã‚ºèª¿æ•´
 	if( movetype == WF_2DC_MOVETURN ){
-		// ƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY‚ğíŒ¸‚Å‚«‚é
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚ºã‚’å‰Šæ¸›ã§ãã‚‹
 		p_char = CLACT_U_ResManagerGetResObjResChar( p_sys->res[ char_no ].resobj[ 0 ] );
 		p_char->szByte = WF_2DC_ARC_TURNANMCHARSIZ;
 	}else if( movetype == WF_2DC_MOVENORMAL ){
-		// ƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY‚ğíŒ¸‚Å‚«‚é
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚ºã‚’å‰Šæ¸›ã§ãã‚‹
 		p_char = CLACT_U_ResManagerGetResObjResChar( p_sys->res[ char_no ].resobj[ 0 ] );
 		p_char->szByte = WF_2DC_ARC_NORMALANMCHARSIZ;
 	}
 	
-	// “]‘—
+	// è»¢é€
 	result = CLACT_U_CharManagerSetCharModeAdjustAreaCont( p_sys->res[ char_no ].resobj[0] );
 	GF_ASSERT( result );
 
-	// ƒŠƒ\[ƒX‚¾‚¯”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_sys->res[ char_no ].resobj[0] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^•”•ª‚É‚ÍNULL‚ğ“ü‚ê‚Ä‚¨‚­
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿éƒ¨åˆ†ã«ã¯NULLã‚’å…¥ã‚Œã¦ãŠã
 	p_sys->res[ char_no ].resobj[1] = NULL;
 
-	// ŠÇ—ƒpƒ‰ƒ[ƒ^İ’è
+	// ç®¡ç†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 	p_sys->res[ char_no ].drawtype = draw_type;
 	p_sys->res[ char_no ].movetype = movetype;
 	p_sys->res[ char_no ].type = WF_2DC_RES_UNI;
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &p_sys->res[ char_no ].header, 
 			WF_2DC_ARC_CONTCHARID+char_no, WF_2DC_ARC_CONTUNIONPLTTID,
 			WF_2DC_ARC_CONTUNIONANMID+union_idx, 
@@ -1792,15 +1792,15 @@ static void WF_2DC_CharResLoadUni( WF_2DCSYS* p_sys, u32 char_no, u32 draw_type,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX”jŠü
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	char_no		ƒLƒƒƒ‰ƒNƒ^”Ô†
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	char_no		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_CharResDel( WF_2DCSYS* p_sys, u32 char_no )
 {
-	// “Ç‚İ‚İÏ‚İ‚Å‚ ‚é‚±‚Æ‚ğƒ`ƒFƒbƒN
+	// èª­ã¿è¾¼ã¿æ¸ˆã¿ã§ã‚ã‚‹ã“ã¨ã‚’ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_sys->res[ char_no ].resobj[0] != NULL );
 
 	if( p_sys->res[ char_no ].type == WF_2DC_RES_NML ){
@@ -1813,19 +1813,19 @@ static void WF_2DC_CharResDel( WF_2DCSYS* p_sys, u32 char_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX”jŠü	’Êí
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„	é€šå¸¸æ™‚
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	char_no		ƒLƒƒƒ‰ƒNƒ^”Ô†
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	char_no		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_CharResDelNml( WF_2DCSYS* p_sys, u32 char_no )
 {
-	// VRAMŠÇ—‚©‚ç”jŠü
+	// VRAMç®¡ç†ã‹ã‚‰ç ´æ£„
 	CLACT_U_CharManagerDelete( p_sys->res[ char_no ].resobj[0] );
 	CLACT_U_PlttManagerDelete( p_sys->res[ char_no ].resobj[1] );
 	
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( p_sys->p_res_man[0], p_sys->res[ char_no ].resobj[0] );
 	CLACT_U_ResManagerResDelete( p_sys->p_res_man[1], p_sys->res[ char_no ].resobj[1] );
 
@@ -1835,18 +1835,18 @@ static void WF_2DC_CharResDelNml( WF_2DCSYS* p_sys, u32 char_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX”jŠü	ƒ†ƒjƒIƒ“
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„	ãƒ¦ãƒ‹ã‚ªãƒ³æ™‚
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	char_no		ƒLƒƒƒ‰ƒNƒ^”Ô†
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	char_no		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_CharResDelUni( WF_2DCSYS* p_sys, u32 char_no )
 {
-	// VRAMŠÇ—‚©‚ç”jŠü
+	// VRAMç®¡ç†ã‹ã‚‰ç ´æ£„
 	CLACT_U_CharManagerDelete( p_sys->res[ char_no ].resobj[0] );
 	
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( p_sys->p_res_man[0], p_sys->res[ char_no ].resobj[0] );
 
 	p_sys->res[ char_no ].resobj[0] = NULL;
@@ -1854,13 +1854,13 @@ static void WF_2DC_CharResDelUni( WF_2DCSYS* p_sys, u32 char_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX‚ª“Ç‚İ‚Ü‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ãŒèª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	char_no		ƒLƒƒƒ‰ƒNƒ^”Ô†
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	char_no		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç•ªå·
  *
- *	@retval	TRUE	“Ç‚İ‚İŠ®—¹
- *	@retval	FALSE	“Ç‚İ‚ñ‚Å‚¢‚È‚¢
+ *	@retval	TRUE	èª­ã¿è¾¼ã¿å®Œäº†
+ *	@retval	FALSE	èª­ã¿è¾¼ã‚“ã§ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WF_2DC_CharResCheck( const WF_2DCSYS* cp_sys, u32 char_no )
@@ -1873,11 +1873,11 @@ static BOOL WF_2DC_CharResCheck( const WF_2DCSYS* cp_sys, u32 char_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ^ƒCƒv‚Ìæ“¾
+ *	@brief	æç”»ã‚¿ã‚¤ãƒ—ã®å–å¾—
  *
- *	@param	cp_res	ƒŠƒ\[ƒXƒ[ƒN
+ *	@param	cp_res	ãƒªã‚½ãƒ¼ã‚¹ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	•`‰æƒ^ƒCƒvæ“¾
+ *	@return	æç”»ã‚¿ã‚¤ãƒ—å–å¾—
  */
 //-----------------------------------------------------------------------------
 static u32 WF_2DC_CharResDrawTypeGet( const WF_2DCRES* cp_res )
@@ -1887,11 +1887,11 @@ static u32 WF_2DC_CharResDrawTypeGet( const WF_2DCRES* cp_res )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒ^ƒCƒvæ“¾
+ *	@brief	å‹•ä½œã‚¿ã‚¤ãƒ—å–å¾—
  *
- *	@param	cp_res	ƒŠƒ\[ƒXƒ[ƒN
+ *	@param	cp_res	ãƒªã‚½ãƒ¼ã‚¹ãƒ¯ãƒ¼ã‚¯
  *	
- *	@return	“®ìƒ^ƒCƒv
+ *	@return	å‹•ä½œã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static WF_2DC_MOVETYPE WF_2DC_CharResMoveTypeGet( const WF_2DCRES* cp_res )
@@ -1901,11 +1901,11 @@ static WF_2DC_MOVETYPE WF_2DC_CharResMoveTypeGet( const WF_2DCRES* cp_res )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰AƒŠƒ\[ƒX‚ğ“Ç‚İ‚Ş
+ *	@brief	é™°ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	draw_type	•\¦‰æ–Ê
- *	@param	heap		ƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	draw_type	è¡¨ç¤ºç”»é¢
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_ShResLoad( WF_2DCSYS* p_sys, u32 draw_type, u32 heap )
@@ -1916,7 +1916,7 @@ static void WF_2DC_ShResLoad( WF_2DCSYS* p_sys, u32 draw_type, u32 heap )
 	u32 hero_no;
 	GF_ASSERT( p_sys->shadowres.resobj[0] == NULL );
 
-	// ålŒö‚ª“Ç‚İ‚Ü‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚é
+	// ä¸»äººå…¬ãŒèª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 
 	hero_load = FALSE;
 	if( WF_2DC_CharResCheck( p_sys, WF_2DC_HERO ) == TRUE ){
@@ -1938,7 +1938,7 @@ static void WF_2DC_ShResLoad( WF_2DCSYS* p_sys, u32 draw_type, u32 heap )
 
 	GF_ASSERT_MSG( hero_load == TRUE, "shodow load miss  hero or heroine not load" );
 
-	// ƒAƒjƒƒŠƒ\[ƒX
+	// ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
 	for( i=0; i<2; i++ ){
 		p_sys->shadowres.resobj[i+2] = 
 			CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
@@ -1947,8 +1947,8 @@ static void WF_2DC_ShResLoad( WF_2DCSYS* p_sys, u32 draw_type, u32 heap )
 				WF_2DC_ARC_CONTSHADOWID, CLACT_U_CELL_RES+i, heap );
 	}
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX
-	// “Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹
+	// èª­ã¿è¾¼ã¿
 	p_sys->shadowres.resobj[0] = 
 		CLACT_U_ResManagerResAddArcChar_ArcHandle(
 				p_sys->p_res_man[0], p_sys->p_handle[WF_2DC_ARCHANDLE_NML],
@@ -1956,15 +1956,15 @@ static void WF_2DC_ShResLoad( WF_2DCSYS* p_sys, u32 draw_type, u32 heap )
 				FALSE, WF_2DC_ARC_CONTSHADOWID, draw_type, heap );
 
 	
-	// “]‘—
+	// è»¢é€
 	result = CLACT_U_CharManagerSetCharModeAdjustAreaCont( p_sys->shadowres.resobj[0] );
 	GF_ASSERT( result );
 
-	// ƒŠƒ\[ƒX‚¾‚¯”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_sys->shadowres.resobj[0] );
 
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &p_sys->shadowres.header, 
 			WF_2DC_ARC_CONTSHADOWID, WF_2DC_ARC_CONTCHARID+hero_no,
 			WF_2DC_ARC_CONTSHADOWID, WF_2DC_ARC_CONTSHADOWID,
@@ -1976,9 +1976,9 @@ static void WF_2DC_ShResLoad( WF_2DCSYS* p_sys, u32 draw_type, u32 heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰AƒŠƒ\[ƒX‚Ì”jŠü
+ *	@brief	é™°ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *	
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_ShResDel( WF_2DCSYS* p_sys )
@@ -1987,17 +1987,17 @@ static void WF_2DC_ShResDel( WF_2DCSYS* p_sys )
 	
 	if( WF_2DC_ShResCheck( &p_sys->shadowres ) == TRUE ){
 		
-		// ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX”jŠü
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 		{
-			// VRAMŠÇ—‚©‚ç”jŠü
+			// VRAMç®¡ç†ã‹ã‚‰ç ´æ£„
 			CLACT_U_CharManagerDelete( p_sys->shadowres.resobj[0] );
 			
-			// ƒŠƒ\[ƒX”jŠü
+			// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 			CLACT_U_ResManagerResDelete( p_sys->p_res_man[0], p_sys->shadowres.resobj[0] );
 			p_sys->shadowres.resobj[0] = NULL;
 		}
 
-		// ƒAƒjƒƒŠƒ\[ƒX”jŠü
+		// ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 		for( i=0; i<2; i++ ){
 			CLACT_U_ResManagerResDelete( p_sys->p_res_man[i+2],
 						p_sys->shadowres.resobj[i+2] );
@@ -2008,12 +2008,12 @@ static void WF_2DC_ShResDel( WF_2DCSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰AƒŠƒ\[ƒX‚ª“Ç‚İ‚Ü‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	é™°ãƒªã‚½ãƒ¼ã‚¹ãŒèª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_shadowres	ƒ[ƒN
+ *	@param	cp_shadowres	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒŠƒ\[ƒX“Ç‚İ‚İÏ‚İ
- *	@retval	FALSE	ƒŠƒ\[ƒX‚ª“Ç‚İ‚Ü‚ê‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿æ¸ˆã¿
+ *	@retval	FALSE	ãƒªã‚½ãƒ¼ã‚¹ãŒèª­ã¿è¾¼ã¾ã‚Œã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WF_2DC_ShResCheck( const WF_2DCSH_RES* cp_shadowres )
@@ -2027,10 +2027,10 @@ static BOOL WF_2DC_ShResCheck( const WF_2DCSH_RES* cp_shadowres )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^—pƒpƒŒƒbƒg“Ç‚İ
+ *	@brief	ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆèª­è¾¼ã¿
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	draw_type	•`‰æ–Ê
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	draw_type	æç”»é¢
  *	@param	heap
  */
 //-----------------------------------------------------------------------------
@@ -2040,7 +2040,7 @@ static void WF_2DC_UniCharPlttResLoad( WF_2DCSYS* p_sys, u32 draw_type, u32 heap
 
 	GF_ASSERT( p_sys->p_unionpltt == NULL );
 	
-	// ƒ†ƒjƒIƒ“ƒpƒŒƒbƒg“Ç‚İ‚İ
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	p_sys->p_unionpltt = 
 		CLACT_U_ResManagerResAddArcPltt_ArcHandle(
 				p_sys->p_res_man[ 1 ], p_sys->p_handle[WF_2DC_ARCHANDLE_UNI],
@@ -2048,31 +2048,31 @@ static void WF_2DC_UniCharPlttResLoad( WF_2DCSYS* p_sys, u32 draw_type, u32 heap
 				FALSE, WF_2DC_ARC_CONTUNIONPLTTID, draw_type, WF_2DC_UNIPLTT_NUM,
 				heap );
 
-	// “]‘—
+	// è»¢é€
 	result = CLACT_U_PlttManagerSetCleanArea( p_sys->p_unionpltt );
 	GF_ASSERT( result );
 
-	// ƒpƒŒƒbƒgƒtƒF[ƒhİ’è
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰è¨­å®š
 	if( p_sys->p_pfd ){
 		WF_2DC_PFDPalSet( p_sys, p_sys->p_unionpltt, WF_2DC_UNIPLTT_NUM );
 	}
 
-	// ƒŠƒ\[ƒX‚¾‚¯”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_sys->p_unionpltt );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^—pƒpƒŒƒbƒg”jŠü
+ *	@brief	ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_UniCharPlttResDel( WF_2DCSYS* p_sys )
 {
 	GF_ASSERT( p_sys->p_unionpltt != NULL );
 	
-	// ƒ†ƒjƒIƒ“ƒpƒŒƒbƒg”jŠü
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆç ´æ£„
 	CLACT_U_PlttManagerDelete( p_sys->p_unionpltt );
 	CLACT_U_ResManagerResDelete( p_sys->p_res_man[1], p_sys->p_unionpltt );
 	p_sys->p_unionpltt = NULL;
@@ -2080,9 +2080,9 @@ static void WF_2DC_UniCharPlttResDel( WF_2DCSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^—pƒAƒjƒƒŠƒ\[ƒX“Ç‚İ
+ *	@brief	ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç”¨ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹èª­è¾¼ã¿
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_UniCharAnmResLoad( WF_2DCSYS* p_sys, u32 heap )
@@ -2109,9 +2109,9 @@ static void WF_2DC_UniCharAnmResLoad( WF_2DCSYS* p_sys, u32 heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^—pƒAƒjƒƒŠƒ\[ƒX”jŠü
+ *	@brief	ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç”¨ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_UniCharAnmResDel( WF_2DCSYS* p_sys )
@@ -2135,11 +2135,11 @@ static void WF_2DC_UniCharAnmResDel( WF_2DCSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹ó‚Ìƒ[ƒN‚ğæ“¾
+ *	@brief	ç©ºã®ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
  *
- *	@param	p_sys	ƒ[ƒN
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‹ó‚Ìƒ[ƒN
+ *	@return	ç©ºã®ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WF_2DCWK* WF_2DC_WkCleanGet( WF_2DCSYS* p_sys )
@@ -2157,9 +2157,9 @@ static WF_2DCWK* WF_2DC_WkCleanGet( WF_2DCSYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	PatternƒAƒjƒXV
+ *	@brief	Patternã‚¢ãƒ‹ãƒ¡æ›´æ–°
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmUpdate( WF_2DCWK* p_wk )
@@ -2183,10 +2183,10 @@ static void WF_2DC_WkPatAnmUpdate( WF_2DCWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ûŒü•Ï‚¦ƒAƒjƒ‰Šú‰»
+ *	@brief	æ–¹å‘å¤‰ãˆã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	way		•ûŒü
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	way		æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmWayInit( WF_2DCWK* p_wk, WF_COMMON_WAY way )
@@ -2197,9 +2197,9 @@ static void WF_2DC_WkPatAnmWayInit( WF_2DCWK* p_wk, WF_COMMON_WAY way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]ƒAƒjƒ‰Šú‰»
+ *	@brief	å›è»¢ã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmRotaInit( WF_2DCWK* p_wk, WF_COMMON_WAY way )
@@ -2210,9 +2210,9 @@ static void WF_2DC_WkPatAnmRotaInit( WF_2DCWK* p_wk, WF_COMMON_WAY way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•à‚«ƒAƒjƒ‰Šú‰»
+ *	@brief	æ­©ãã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmWalkInit( WF_2DCWK* p_wk, WF_COMMON_WAY way )
@@ -2223,24 +2223,24 @@ static void WF_2DC_WkPatAnmWalkInit( WF_2DCWK* p_wk, WF_COMMON_WAY way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	U‚èŒü‚«ƒAƒjƒ‰Šú‰»
+ *	@brief	æŒ¯ã‚Šå‘ãã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmTurnInit( WF_2DCWK* p_wk, WF_COMMON_WAY way )
 {
 	CLACT_AnmChgCheck( p_wk->p_clwk, WF_2DC_ANM_WALK+p_wk->patanmway );
 
-	// Œã‚Åİ’è‚·‚é‚±‚Æ‚Å‚QƒtƒŒ[ƒ€–Ú‚Å•ûŒü‚ª•Ï‚í‚é
+	// å¾Œã§è¨­å®šã™ã‚‹ã“ã¨ã§ï¼’ãƒ•ãƒ¬ãƒ¼ãƒ ç›®ã§æ–¹å‘ãŒå¤‰ã‚ã‚‹
 	p_wk->patanmway = way;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘–‚èƒAƒjƒ‰Šú‰»
+ *	@brief	èµ°ã‚Šã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmRunInit( WF_2DCWK* p_wk, WF_COMMON_WAY way )
@@ -2251,9 +2251,9 @@ static void WF_2DC_WkPatAnmRunInit( WF_2DCWK* p_wk, WF_COMMON_WAY way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•Ç•ûŒü•à‚«ƒAƒjƒ‰Šú‰»
+ *	@brief	å£æ–¹å‘æ­©ãã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmWallWalkInit( WF_2DCWK* p_wk, WF_COMMON_WAY way )
@@ -2264,9 +2264,9 @@ static void WF_2DC_WkPatAnmWallWalkInit( WF_2DCWK* p_wk, WF_COMMON_WAY way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚ä‚Á‚­‚è•à‚«ƒAƒjƒ‰Šú‰»
+ *	@brief	ã‚†ã£ãã‚Šæ­©ãã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmSlowWalkInit( WF_2DCWK* p_wk, WF_COMMON_WAY way )
@@ -2277,10 +2277,10 @@ static void WF_2DC_WkPatAnmSlowWalkInit( WF_2DCWK* p_wk, WF_COMMON_WAY way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‘¬ƒAƒjƒ‚QƒtƒŒ[ƒ€
+ *	@brief	é«˜é€Ÿã‚¢ãƒ‹ãƒ¡ï¼’ãƒ•ãƒ¬ãƒ¼ãƒ 
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	way			•ûŒü
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	way			æ–¹å‘
  */		
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmHighWalk2Init( WF_2DCWK* p_wk, WF_COMMON_WAY way )
@@ -2291,10 +2291,10 @@ static void WF_2DC_WkPatAnmHighWalk2Init( WF_2DCWK* p_wk, WF_COMMON_WAY way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‘¬ƒAƒjƒ‚SƒtƒŒ[ƒ€
+ *	@brief	é«˜é€Ÿã‚¢ãƒ‹ãƒ¡ï¼”ãƒ•ãƒ¬ãƒ¼ãƒ 
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	way			•ûŒü
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	way			æ–¹å‘
  */		
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmHighWalk4Init( WF_2DCWK* p_wk, WF_COMMON_WAY way )
@@ -2305,9 +2305,9 @@ static void WF_2DC_WkPatAnmHighWalk4Init( WF_2DCWK* p_wk, WF_COMMON_WAY way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]ƒAƒjƒ
+ *	@brief	å›è»¢ã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmRotaMain( WF_2DCWK* p_wk )
@@ -2317,9 +2317,9 @@ static void WF_2DC_WkPatAnmRotaMain( WF_2DCWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•à‚«ƒAƒjƒƒƒCƒ“
+ *	@brief	æ­©ãã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmWalkMain( WF_2DCWK* p_wk )
@@ -2329,9 +2329,9 @@ static void WF_2DC_WkPatAnmWalkMain( WF_2DCWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	U‚èŒü‚«ƒAƒjƒ
+ *	@brief	æŒ¯ã‚Šå‘ãã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmTurnMain( WF_2DCWK* p_wk )
@@ -2345,9 +2345,9 @@ static void WF_2DC_WkPatAnmTurnMain( WF_2DCWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘–‚èƒAƒjƒƒƒCƒ“
+ *	@brief	èµ°ã‚Šã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmRunMain( WF_2DCWK* p_wk )
@@ -2357,9 +2357,9 @@ static void WF_2DC_WkPatAnmRunMain( WF_2DCWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•Ç•ûŒü•à‚«ƒAƒjƒƒƒCƒ“
+ *	@brief	å£æ–¹å‘æ­©ãã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmWallWalkMain( WF_2DCWK* p_wk )
@@ -2369,9 +2369,9 @@ static void WF_2DC_WkPatAnmWallWalkMain( WF_2DCWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚ä‚Á‚­‚è•à‚«ƒAƒjƒƒƒCƒ“
+ *	@brief	ã‚†ã£ãã‚Šæ­©ãã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmSlowWalkMain( WF_2DCWK* p_wk )
@@ -2381,9 +2381,9 @@ static void WF_2DC_WkPatAnmSlowWalkMain( WF_2DCWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‘¬‚QƒtƒŒƒAƒjƒƒƒCƒ“
+ *	@brief	é«˜é€Ÿï¼’ãƒ•ãƒ¬ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmHighWalk2Main( WF_2DCWK* p_wk )
@@ -2393,9 +2393,9 @@ static void WF_2DC_WkPatAnmHighWalk2Main( WF_2DCWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‘¬‚SƒtƒŒƒAƒjƒƒƒCƒ“
+ *	@brief	é«˜é€Ÿï¼”ãƒ•ãƒ¬ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_WkPatAnmHighWalk4Main( WF_2DCWK* p_wk )
@@ -2406,12 +2406,12 @@ static void WF_2DC_WkPatAnmHighWalk4Main( WF_2DCWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‚ªg‚í‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ãŒä½¿ã‚ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param cp_wk	ƒ[ƒN
+ *	@param cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval		TRUE@		–¢g—p
- *	@retval		FALSE		g—p’†
+ *	@retval		TRUEã€€		æœªä½¿ç”¨
+ *	@retval		FALSE		ä½¿ç”¨ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WF_2DC_WkCleanCheck( const WF_2DCWK* cp_wk )
@@ -2424,11 +2424,11 @@ static BOOL WF_2DC_WkCleanCheck( const WF_2DCWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^‚ğİ’è
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_pal		ƒpƒŒƒbƒgƒŠƒ\[ƒXƒf[ƒ^
- *	@param	num			”
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_pal		ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	num			æ•°
  */
 //-----------------------------------------------------------------------------
 static void WF_2DC_PFDPalSet( WF_2DCSYS* p_sys, CLACT_U_RES_OBJ_PTR p_pal, u32 num )

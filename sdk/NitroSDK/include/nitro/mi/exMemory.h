@@ -58,24 +58,24 @@
   fix header comment
 
   Revision 1.20  2004/03/25 07:26:05  yada
-  MIi_SetMainMemoryPriority ‚ğ MI_`‚É
+  MIi_SetMainMemoryPriority ã‚’ MI_ã€œã«
 
   Revision 1.19  2004/03/25 02:38:01  yada
   MI_SetMainMemoryPriority(), MI_SetCardProcessor(),MI_SetCartridgeProcessor()
-  ‚ğAMI_`‚©‚çMIi_` ‚É•ÏX‚µ“à•”ŠÖ”‚É‚·‚é‚æ‚¤‚É‚µ‚½B
+  ã‚’ã€MI_ã€œã‹ã‚‰MIi_ã€œ ã«å¤‰æ›´ã—å†…éƒ¨é–¢æ•°ã«ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.18  2004/03/25 02:19:48  yada
-  ARM7 ‚Å‚ÍAMI_SetMainMemoryPriority(), MI_SetCardProcessor(),
-  MI_SetCartridgeProcessor() ©‘Ì‚ğ’è‹`‚µ‚È‚¢‚æ‚¤‚É‚µ‚½B
+  ARM7 ã§ã¯ã€MI_SetMainMemoryPriority(), MI_SetCardProcessor(),
+  MI_SetCartridgeProcessor() è‡ªä½“ã‚’å®šç¾©ã—ãªã„ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.17  2004/03/12 12:11:42  yada
   only arrange spacing
 
   Revision 1.16  2004/03/10 01:17:41  yada
-  ASSERTC³
+  ASSERTä¿®æ­£
 
   Revision 1.15  2004/03/09 09:56:05  yada
-  ARM7‘¤‚Ì EXMEMCNT_LAEXMEMCNT_H ‹Lq‚É•¹‚¹‚½•ÏX
+  ARM7å´ã® EXMEMCNT_Lã€EXMEMCNT_H è¨˜è¿°ã«ä½µã›ãŸå¤‰æ›´
 
   Revision 1.14  2004/02/12 13:33:09  yasu
   include nitro/ioreg.h
@@ -93,33 +93,33 @@
   convert 'inline' to 'static inline' in header files
 
   Revision 1.9  2004/01/16 07:28:45  yada
-  processor ƒAƒT[ƒgC³
+  processor ã‚¢ã‚µãƒ¼ãƒˆä¿®æ­£
 
   Revision 1.8  2004/01/14 01:42:55  yada
-  ŠÖ”–¼•ÏX
-  OS_IrisCardPriority ¨ OS_CardProcessor
-  OS_CartridgePriority ¨ OS_CartridgeProcessor
+  é–¢æ•°åå¤‰æ›´
+  OS_IrisCardPriority â†’ OS_CardProcessor
+  OS_CartridgePriority â†’ OS_CartridgeProcessor
 
   Revision 1.7  2004/01/08 06:01:03  yada
-  Phi ‚Í Physical ‚É”ñ‚¸B–¼ÌC³
+  Phi ã¯ Physical ã«éãšã€‚åç§°ä¿®æ­£
 
   Revision 1.6  2003/12/25 09:42:57  yada
-  ASSERT‚Ì•s‹ï‡’ù³
+  ASSERTã®ä¸å…·åˆè¨‚æ­£
 
   Revision 1.5  2003/12/25 07:30:28  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.4  2003/12/18 12:15:15  yada
-  assertion’Ç‰Á
+  assertionè¿½åŠ 
 
   Revision 1.3  2003/12/18 07:16:40  yada
-  red-sdk d—l‚©‚ç•ÏX
+  red-sdk ä»•æ§˜ã‹ã‚‰å¤‰æ›´
 
   Revision 1.2  2003/12/08 12:17:34  yada
-  ‘å••ÏX
+  å¤§å¹…å¤‰æ›´
 
   Revision 1.1  2003/11/28 01:55:30  yada
-  REDSDK‚Ì03-11-27”½‰f
+  REDSDKã®03-11-27åæ˜ 
 
 
   $NoKeywords: $

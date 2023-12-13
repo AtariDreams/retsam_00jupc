@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_player.c
- * @bfief	’ÊM‚Å‘Šè‘¤‚ÌƒvƒŒ[ƒ„[‚ğ•\¦‚·‚é
+ * @bfief	é€šä¿¡ã§ç›¸æ‰‹å´ã®ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
  * @author	katsumi ohno
  * @date	05/07/14
  */
@@ -10,61 +10,61 @@
 #ifndef __COMM_PLAYER_H__
 #define	__COMM_PLAYER_H__
 
-// ‚ ‚è‚¦‚È‚¢À•W‚Ìê‡‚Ì–ß‚è’l
+// ã‚ã‚Šãˆãªã„åº§æ¨™ã®å ´åˆã®æˆ»ã‚Šå€¤
 #define COMM_PLAYER_INVALID_GRID (0xffff)
 
-/// ƒRƒ~ƒ…ƒjƒP[ƒVƒ‡ƒ“ƒvƒŒ[ƒ„[ŠÇ—ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+/// ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 extern BOOL CommPlayerManagerInitialize(void* work_area, FIELDSYS_WORK* pFSys,BOOL bUnder);
-/// ƒRƒ~ƒ…ƒjƒP[ƒVƒ‡ƒ“ƒvƒŒ[ƒ„[ŠÇ—ƒ}ƒl[ƒWƒƒ[I—¹
+/// ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼çµ‚äº†
 extern void CommPlayerManagerFinalize(BOOL bDel);
 
-/// ’ÊMƒvƒŒ[ƒ„[‚ğÁ‚·
+/// é€šä¿¡ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’æ¶ˆã™
 extern void CommPlayerManagerReset(void);
-/// ’ÊMƒvƒŒ[ƒ„[‚ğ•œ‹A‚·‚é
+/// é€šä¿¡ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’å¾©å¸°ã™ã‚‹
 extern void CommPlayerManagerReboot(void);
-/// ©•ª‚ğCOMM_PARENT_ID‚É‚à‚Ç‚·
+/// è‡ªåˆ†ã‚’COMM_PARENT_IDã«ã‚‚ã©ã™
 extern void CommPlayerManagerReInit(void);
-/// ‹Ù‹}’â~
+/// ç·Šæ€¥åœæ­¢
 extern void CommPlayerManagerStop(void);
-// ”é–§Šî’n‚Ö“ü‚èŒû‚ğ•Â‚¶‚Ä‚¢‚­‚Ì‚ÅƒvƒŒ[ƒ„[‚ğÁ‚·
+// ç§˜å¯†åŸºåœ°ã¸å…¥ã‚Šå£ã‚’é–‰ã˜ã¦ã„ãã®ã§ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’æ¶ˆã™
 extern void CommPlayerManagerDeletePlayers(void);
 
-/// ©•ª‚Ìƒf[ƒ^‚Ì‰Šú‰»
+/// è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 extern void CommPlayerMyDataInitialize(void);
-// ©“®Ú‘±‚µ‚½Û‚Ìƒf[ƒ^ˆøŒp‚¬
+// è‡ªå‹•æ¥ç¶šã—ãŸéš›ã®ãƒ‡ãƒ¼ã‚¿å¼•ç¶™ã
 extern void CommPlayerMyDataCopy(int netID);
-// ˆøŒp‚¬ƒf[ƒ^‚ğq‹@‚É‘—M
+// å¼•ç¶™ããƒ‡ãƒ¼ã‚¿ã‚’å­æ©Ÿã«é€ä¿¡
 extern void CommPlayerSendPosServer(BOOL bLiveMessage);
 
 
-/// ‚±‚ÌƒNƒ‰ƒX‚ª‰Šú‰»‚³‚ê‚½‚©‚Ç‚¤‚©‚ğ•Ô‚·
+/// ã“ã®ã‚¯ãƒ©ã‚¹ãŒåˆæœŸåŒ–ã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’è¿”ã™
 extern BOOL CommPlayerManagerIsInitialize(void);
-/// ©•ª‚ÌˆÊ’u‚ğ‘—M
+/// è‡ªåˆ†ã®ä½ç½®ã‚’é€ä¿¡
 extern void CommPlayerSendPosXZ(BOOL bLiveMessage,int xpos,int zpos);
-/// ©•ª‚ÌˆÊ’u‚ğ‘—M
+/// è‡ªåˆ†ã®ä½ç½®ã‚’é€ä¿¡
 extern void CommPlayerSendPos(BOOL bLiveMessage);
-/// ƒRƒ~ƒ…ƒjƒP[ƒVƒ‡ƒ“ƒvƒŒ[ƒ„[ƒ[ƒNŠÇ—ƒ[ƒNƒTƒCƒY
+/// ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãƒ¯ãƒ¼ã‚¯ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
 extern u32 CommPlayerGetWorkSize(void);
-/// ƒJ[ƒhî•ñ‚Ì—v‹ƒRƒ}ƒ“ƒh‚ğóM
+/// ã‚«ãƒ¼ãƒ‰æƒ…å ±ã®è¦æ±‚ã‚³ãƒãƒ³ãƒ‰ã‚’å—ä¿¡
 extern void CommPlayerRecvReqCardInfo(int netID, void* pData);
-/// ƒJ[ƒhî•ñ‚ÌóM
+/// ã‚«ãƒ¼ãƒ‰æƒ…å ±ã®å—ä¿¡
 extern void CommPlayerRecvCardInfo(int netID, int size, void* pData, void* pWork);
-/// ƒJ[ƒhî•ñ‚ÌƒTƒCƒY‚ğ•Ô‚·
+/// ã‚«ãƒ¼ãƒ‰æƒ…å ±ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
 extern int CommPlayerGetRecvCardInfoSize(void);
-/// êŠî•ñ‚ÌóM
+/// å ´æ‰€æƒ…å ±ã®å—ä¿¡
 extern void CommPlayerRecvPlace(int netID, int size, void* pData, void* pWork);
-/// ƒvƒŒ[ƒ„[‚ğÁ‚·î•ñ‚ğóM
+/// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’æ¶ˆã™æƒ…å ±ã‚’å—ä¿¡
 extern void CommPlayerRecvDelete(int netID, int size, void* pBuff, void* pWork);
-/// êŠî•ñ‚ÌƒTƒCƒY‚ğ•Ô‚·
+/// å ´æ‰€æƒ…å ±ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
 extern int CommPlayerGetRecvPlaceSize(void);
-/// ‰ï˜b‚ğ‘—M‚·‚é
-// g‚¤•K—v‚Í‚È‚¢‚Í‚¸‚È‚Ì‚Å••ˆó
+/// ä¼šè©±ã‚’é€ä¿¡ã™ã‚‹
+// ä½¿ã†å¿…è¦ã¯ãªã„ã¯ãšãªã®ã§å°å°
 //extern void CommPlayerSendTalk(int targetID, int msgSize, u16* pMsg);
-/// ‰ï˜bƒf[ƒ^‚ğóM‚·‚é
+/// ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹
 extern void CommPlayerRecvTalk(int netID, int size, void* pData, void* pWork);
-/// ‰ï˜bƒf[ƒ^‚ğóM‚·‚éiƒT[ƒo[‘¤j
+/// ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹ï¼ˆã‚µãƒ¼ãƒãƒ¼å´ï¼‰
 extern void CommPlayerRecvTalk_ServerSide(int netID, int size, void* pData, void* pWork);
-/// ’â~ó‘Ô‰ğœ
+/// åœæ­¢çŠ¶æ…‹è§£é™¤
 extern void CommPlayerRecvFreezeEnd(int netID, int size, void* pData, void* pWork);
 
 extern void CommPlayerRecvFixedTalk(int netID, int size, void* pData, void* pWork);
@@ -77,16 +77,16 @@ extern void CommPlayerSetMoveControl(BOOL bMoveControl);
 extern void CommPlayerSetMoveControl_Server(int netID, BOOL bMoveControl);
 extern void CommPlayerRecvMoveControl(int netID, int size, void* pData, void* pWork);
 
-// ƒgƒ‰ƒbƒv‚É‚©‚©‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+// ãƒˆãƒ©ãƒƒãƒ—ã«ã‹ã‹ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
 extern BOOL CommPlayerIsTrapBind(int targetID);
 extern void CommPlayerSetFEExclamationAdd(int netID);
 extern void CommPlayerSetFEOkAdd(int netID);
 extern void CommPlayerSetFENoneAdd(int netID);
-/// ƒlƒbƒgƒ[ƒNƒvƒŒ[ƒ„[‚ÌˆÚ“®ˆ—
+/// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®ç§»å‹•å‡¦ç†
 extern void CommPlayersMove(FIELDSYS_WORK * repw, BOOL bMoveControl);
-/// ƒlƒbƒgƒ[ƒNƒvƒŒ[ƒ„[‚ÌˆÚ“®ˆ—‚É‚È‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+/// ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®ç§»å‹•å‡¦ç†ã«ãªã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
 extern BOOL CommPlayerIsControl(void);
-// ‚±‚ÌƒvƒŒ[ƒ„[‚ª‚Â‚È‚ª‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+// ã“ã®ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãŒã¤ãªãŒã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
 extern BOOL CommPlayerIsActive(int netID);
 
 extern void CommPlayerHold_Control(void);
@@ -101,7 +101,7 @@ extern void CommPlayerRecvIDPlace(int netID, int size, void* pBuff, void* pWork)
 extern void CommPlayerClientMoveControl(int netID, int moveX, int moveZ, FIELDSYS_WORK* pFSys);
 extern int CommPlayerGetRecvIDPlaceSize(void);
 
-// ŠeƒvƒŒ[ƒ„[‚ÌÀ•W‚ğæ“¾‚·‚é S‚ª‚Â‚¢‚½‚çƒT[ƒo[
+// å„ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®åº§æ¨™ã‚’å–å¾—ã™ã‚‹ SãŒã¤ã„ãŸã‚‰ã‚µãƒ¼ãƒãƒ¼
 
 extern int CommPlayerGetPosDigFossilX(int netID);
 extern int CommPlayerGetPosDigFossilZ(int netID);
@@ -121,10 +121,10 @@ extern int CommPlayerGetPosSZOrg(int netID);
 extern int CommPlayerGetSDir(int netID);
 extern void CommPlayerSetLook_Server(int netID, int targetID);
 extern void CommPlayerSetLook(int netID, int targetID);
-// ó‘ÔƒZƒbƒg
+// çŠ¶æ…‹ã‚»ãƒƒãƒˆ
 extern void CommPlayerSetCondition(int victimNetID, int condition);
 extern void CommPlayerResetCondition(int victimNetID);
-// Šî’n‚É’¼ÚˆÚ“®
+// åŸºåœ°ã«ç›´æ¥ç§»å‹•
 extern void CommPlayerBaseTeleportClient(int netID, int x, int z, int dir);
 extern void CommPlayerBaseTeleportServer(int netID, int x, int z, int dir);
 
@@ -146,9 +146,9 @@ extern BOOL CommPlayerFlagDigCheck(int netID);
 extern int CommPlayerRecvFlagStateServerRetGetSize(void);
 extern void CommPlayerRecvFlagState(int netID, int size, void* pData, void* pWork);
 extern void CommPlayerRecvFlagStateServerRet(int netID, int size, void* pData, void* pWork);
-// ”½‘Î‚Ì•ûŒü‚ğ•Ô‚·
+// åå¯¾ã®æ–¹å‘ã‚’è¿”ã™
 extern int CommPlayerGetReverseDir(int dir);
-// ¬—‚·‚é•à”‚ğİ’è‚·‚é
+// æ··ä¹±ã™ã‚‹æ­©æ•°ã‚’è¨­å®šã™ã‚‹
 extern void CommPlayerSetGiddyStep(int netID,int count);
 extern void CommPlayerResetGiddyStep(int netID);
 
@@ -185,7 +185,7 @@ extern void CommPlayerRecvStartLineSet(int netID, int size, void* pData, void* p
 extern void CommPlayerMarkDelete(int netID);
 extern void CommPlayerSetFlagDisp(int netID);
 
-// Œ»ó‚Ìƒnƒ^ƒf[ƒ^‚ğ‘—‚é
+// ç¾çŠ¶ã®ãƒã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
 extern int CommPlayerNowFlagSize(void);
 extern u8* CommPlayerGetFlagRecvBuff( int netID, void* pWork, int size);
 extern void CommPlayerNowFlagSend(void);

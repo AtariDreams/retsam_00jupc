@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	client_tool_def.h
- * @bfief	í“¬ƒNƒ‰ƒCƒAƒ“ƒgƒc[ƒ‹ƒvƒƒOƒ‰ƒ€
+ * @bfief	æˆ¦é—˜ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ„ãƒ¼ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.07.25
  */
@@ -21,7 +21,7 @@
 #include	"b_bag.h"
 #include	"battle_input_type.h"
 
-///<POKEMON_ENCOUNT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<POKEMON_ENCOUNTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK		*bw;
@@ -43,17 +43,17 @@ typedef struct
 	int				rare;
 	
 	u8				form_no;
-	u8				dmmy[3];	//4ƒoƒCƒg‹«ŠEƒIƒtƒZƒbƒg
+	u8				dmmy[3];	//4ãƒã‚¤ãƒˆå¢ƒç•Œã‚ªãƒ•ã‚»ãƒƒãƒˆ
 }TCB_POKEMON_ENCOUNT;
 
-///<POKEMON_APPEAR—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<POKEMON_APPEARç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK			*bw;
 	CLIENT_PARAM		*cp;
-	BES_PTR				bes;			///< ƒ{[ƒ‹ƒGƒtƒFƒNƒg
+	BES_PTR				bes;			///< ãƒœãƒ¼ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	BMS_PTR				bms;
-	OAM_DROP_SYS*		ods;			///< OAM •ÏŠ·
+	OAM_DROP_SYS*		ods;			///< OAM å¤‰æ›
 
 	SOFT_SPRITE_ARC		ssa;
 	WE_SYS_PTR			wsp;
@@ -77,13 +77,13 @@ typedef struct
 	s8					ofs_x;
 	u8					rare;
 	u8					shadow;
-	u16					flag;			///<ŒJ‚èo‚µor•ßŠl¸”sƒtƒ‰ƒO
+	u16					flag;			///<ç¹°ã‚Šå‡ºã—oræ•ç²å¤±æ•—ãƒ•ãƒ©ã‚°
 	u8					wait;
 	u8					form_no;
 	int					migawari_flag;
 }TCB_POKEMON_APPEAR;
 
-///<POKEMON_RETURN—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<POKEMON_RETURNç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK			*bw;
@@ -104,7 +104,7 @@ typedef struct
 	int					migawari_flag;
 }TCB_POKEMON_RETURN;
 
-///<POKEMON_INHALE—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<POKEMON_INHALEç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -120,7 +120,7 @@ typedef struct
 	u16			dummy;
 }TCB_POKEMON_INHALE;
 
-///<TRAINER_ENCOUNT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<TRAINER_ENCOUNTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK		*bw;
@@ -141,7 +141,7 @@ typedef struct
 	int				scroll_time;
 }TCB_TRAINER_ENCOUNT;
 
-///<TRAINER_THROW—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<TRAINER_THROWç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK		*bw;
@@ -157,7 +157,7 @@ typedef struct
 	int				throw_type;
 }TCB_TRAINER_THROW;
 
-///<TRAINER_OUT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<TRAINER_OUTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK		*bw;
@@ -170,7 +170,7 @@ typedef struct
 	int				trtype;
 }TCB_TRAINER_OUT;
 
-///<TRAINER_IN—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<TRAINER_INç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK		*bw;
@@ -185,7 +185,7 @@ typedef struct
 	u16			dummy;
 }TCB_TRAINER_IN;
 
-///<HP_GAUGE_IN—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<HP_GAUGE_INç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -199,14 +199,14 @@ typedef struct
 	s16			hp;
 	u16			hpmax;
 	
-	s16			be_hp;		///<ó‚¯‚½ƒ_ƒ[ƒW(‰ñ•œ‚·‚éê‡‚Íƒ}ƒCƒiƒX‚Å“ü‚ê‚é) •Ï“®‚³‚¹‚é’l
-	s16			hp_work;	///<ƒQ[ƒW‘Œ¸ì‹Æ—pƒ[ƒN
+	s16			be_hp;		///<å—ã‘ãŸãƒ€ãƒ¡ãƒ¼ã‚¸(å›å¾©ã™ã‚‹å ´åˆã¯ãƒã‚¤ãƒŠã‚¹ã§å…¥ã‚Œã‚‹) å¤‰å‹•ã•ã›ã‚‹å€¤
+	s16			hp_work;	///<ã‚²ãƒ¼ã‚¸å¢—æ¸›ä½œæ¥­ç”¨ãƒ¯ãƒ¼ã‚¯
 	
 	u8			level;
 	u8			dummy[3];
 }TCB_HP_GAUGE_IN;
 
-///<COMMAND_SELECT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<COMMAND_SELECTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -231,14 +231,14 @@ typedef struct
 
 	u8			client_type;
 	u8			index;
-	s16			icon_hp;				//Œ»İ‚ÌHP
+	s16			icon_hp;				//ç¾åœ¨ã®HP
 
-	u16			icon_hpmax;				//Œ»İ‚ÌHPMAX
+	u16			icon_hpmax;				//ç¾åœ¨ã®HPMAX
 	u8			icon_status;
 	u8			no_reshuffle_client;
 }TCB_COMMAND_SELECT;
 
-///<WAZA_SELECT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<WAZA_SELECTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -259,7 +259,7 @@ typedef struct
 	u16			wazabit;
 }TCB_WAZA_SELECT;
 
-///<DIR_SELECT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<DIR_SELECTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -273,12 +273,12 @@ typedef struct
 
 	DIR_SELECT_POKE_PARAM	dspp[CLIENT_MAX];	
 
-	u16			range;			//Œø‰Ê”ÍˆÍ
-	u8			light_flag;		///1F“ü—Í‰æ–Ê”wŒi‚ğ–¾‚é‚­‚µ‚Ä‚­‚¾‚³‚¢
+	u16			range;			//åŠ¹æœç¯„å›²
+	u8			light_flag;		///1ï¼šå…¥åŠ›ç”»é¢èƒŒæ™¯ã‚’æ˜ã‚‹ãã—ã¦ãã ã•ã„
 	u8			dummy;
 }TCB_DIR_SELECT;
 
-///<POKEMON_SELECT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<POKEMON_SELECTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -303,7 +303,7 @@ typedef struct
 	u8			list_row[CLIENT_MAX][POKEMON_TEMOTI_MAX];
 }TCB_POKEMON_SELECT;
 
-///<ITEM_SELECT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<ITEM_SELECTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK			*bw;
@@ -328,7 +328,7 @@ typedef struct
 	u8					shutout_flag[CLIENT_MAX];
 }TCB_ITEM_SELECT;
 
-///<YES_NO_SELECT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<YES_NO_SELECTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -347,7 +347,7 @@ typedef struct
 	u16			msg_index;
 }TCB_YES_NO_SELECT;
 
-///<POKEMON_BLINK—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<POKEMON_BLINKç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -359,7 +359,7 @@ typedef struct
 	u8			dummy;
 }TCB_POKEMON_BLINK;
 
-///<HP_GAUGE_CALC—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<HP_GAUGE_CALCç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -378,7 +378,7 @@ typedef struct
 	u8			dummy[3];
 }TCB_HP_GAUGE_CALC;
 
-///<KIZETSU_EFFECT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<KIZETSU_EFFECTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK			*bw;
@@ -401,7 +401,7 @@ typedef struct
 	u16					henshin_flag;
 }TCB_KIZETSU_EFFECT;
 
-///<FADE_OUT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<FADE_OUTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -412,7 +412,7 @@ typedef struct
 	u8			dummy;
 }TCB_FADE_OUT;
 
-///<POKEMON_VANISH_ON_OFF—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<POKEMON_VANISH_ON_OFFç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK			*bw;
@@ -426,7 +426,7 @@ typedef struct
 	int					migawari_flag;
 }TCB_POKEMON_VANISH_ON_OFF;
 
-///<WAZA_EFFECT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<WAZA_EFFECTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK			*bw;
@@ -453,7 +453,7 @@ typedef struct
 	u8			dummy;
 }TCB_MESSAGE_WAIT;
 
-///<STATUS_EFFECT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<STATUS_EFFECTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -478,7 +478,7 @@ typedef struct
 	u8			dummy[3];
 }TCB_ALERT_MESSAGE_WAIT;
 
-///<ENCOUNT_EFFECT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<ENCOUNT_EFFECTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -491,7 +491,7 @@ typedef struct
 	u8			dummy;
 }TCB_ENCOUNT_EFFECT;
 
-///<LEVEL_UP_EFFECT—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<LEVEL_UP_EFFECTç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -503,7 +503,7 @@ typedef struct
 	u8			flag;
 }TCB_LEVEL_UP_EFFECT;
 
-///<WAZA_WASURE—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<WAZA_WASUREç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -519,7 +519,7 @@ typedef struct
 	u8			dummy;
 }TCB_WAZA_WASURE;
 
-///<MOSAIC_SET—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<MOSAIC_SETç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -535,7 +535,7 @@ typedef struct
 	u16			dummy;
 }TCB_MOSAIC_SET;
 
-///<BALL_GAUGE—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<BALL_GAUGEç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK	*bw;
@@ -546,11 +546,11 @@ typedef struct
 	u8			seq_no;
 
 	u8			status[POKEMON_TEMOTI_MAX];
-	u8			encount_change;		///<0:ƒGƒ“ƒJƒEƒ“ƒgA1:“ü‚ê‘Ö‚¦
+	u8			encount_change;		///<0:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã€1:å…¥ã‚Œæ›¿ãˆ
 	u8			dummy[1];
 }TCB_BALL_GAUGE;
 
-///<ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg„OAM•ÏŠ·—pTCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆï¼OAMå¤‰æ›ç”¨TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK			*bw;
@@ -561,10 +561,10 @@ typedef struct
 	u8					client_no;
 	u8					seq_no;
 	
-	u8 dummy[1];	///<4ƒoƒCƒg‹«ŠEƒIƒtƒZƒbƒg
+	u8 dummy[1];	///<4ãƒã‚¤ãƒˆå¢ƒç•Œã‚ªãƒ•ã‚»ãƒƒãƒˆ
 }TCB_SS_TO_OAM;
 
-///<OAM„ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚É–ß‚·TCBƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<OAMï¼ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«æˆ»ã™TCBãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct
 {
 	BATTLE_WORK			*bw;
@@ -575,7 +575,7 @@ typedef struct
 	u8					client_no;
 	u8					seq_no;
 	
-	u8 dummy[1];	///<4ƒoƒCƒg‹«ŠEƒIƒtƒZƒbƒg
+	u8 dummy[1];	///<4ãƒã‚¤ãƒˆå¢ƒç•Œã‚ªãƒ•ã‚»ãƒƒãƒˆ
 }TCB_OAM_TO_SS;
 
 

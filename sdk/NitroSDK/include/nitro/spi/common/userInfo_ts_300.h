@@ -12,13 +12,13 @@
 
   $Log: userInfo_ts_300.h,v $
   Revision 1.3  2006/10/17 05:28:26  okubata_ryoma
-  ŠØ‘”ÅIPL‚É‘Î‰ž
+  éŸ“å›½ç‰ˆIPLã«å¯¾å¿œ
 
   Revision 1.2  2006/01/18 02:12:38  kitase_hirotake
   do-indent
 
   Revision 1.1  2005/04/12 10:49:57  terui
-  ’†‘Œê‘Î‰ž‚Ìˆ×‚ÉV‹K’Ç‰ÁB
+  ä¸­å›½èªžå¯¾å¿œã®ç‚ºã«æ–°è¦è¿½åŠ ã€‚
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -32,35 +32,35 @@ extern "C" {
 /*===========================================================================*/
 
 /*---------------------------------------------------------------------------*
-    ’è”’è‹`
+    å®šæ•°å®šç¾©
  *---------------------------------------------------------------------------*/
-// ƒRƒ“ƒtƒBƒOÝ’èƒf[ƒ^ƒtƒH[ƒ}ƒbƒgƒo[ƒWƒ‡ƒ“
+// ã‚³ãƒ³ãƒ•ã‚£ã‚°è¨­å®šãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³
 #define NVRAM_CONFIG_DATA_VERSION           5
 #define NVRAM_CONFIG_DATA_EX_VERSION        1
 
-// ƒRƒ“ƒtƒBƒO“à‚ÌŠeŽíÝ’è’l
-#define NVRAM_CONFIG_NICKNAME_LENGTH        10  // ƒjƒbƒNƒl[ƒ€’·
-#define NVRAM_CONFIG_COMMENT_LENGTH         26  // ƒRƒƒ“ƒg’·
-#define NVRAM_CONFIG_FAVORITE_COLOR_MAX     16  // D‚«‚ÈF‚ÌÅ‘å”
+// ã‚³ãƒ³ãƒ•ã‚£ã‚°å†…ã®å„ç¨®è¨­å®šå€¤
+#define NVRAM_CONFIG_NICKNAME_LENGTH        10  // ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ é•·
+#define NVRAM_CONFIG_COMMENT_LENGTH         26  // ã‚³ãƒ¡ãƒ³ãƒˆé•·
+#define NVRAM_CONFIG_FAVORITE_COLOR_MAX     16  // å¥½ããªè‰²ã®æœ€å¤§æ•°
 
-// IPL2 ƒ^ƒCƒv
+// IPL2 ã‚¿ã‚¤ãƒ—
 #define NVRAM_CONFIG_IPL2_TYPE_ADDRESS      0x001d
 #define NVRAM_CONFIG_IPL2_TYPE_SIZE         1
 #define NVRAM_CONFIG_IPL2_TYPE_NORMAL       0xff
 #define NVRAM_CONFIG_IPL2_TYPE_EX_MASK      0x50
 
-// Œ¾ŒêÝ’èƒR[ƒh
-#define NVRAM_CONFIG_LANG_JAPANESE          0   // “ú–{Œê
-#define NVRAM_CONFIG_LANG_ENGLISH           1   // ‰pŒê
-#define NVRAM_CONFIG_LANG_FRENCH            2   // ƒtƒ‰ƒ“ƒXŒê
-#define NVRAM_CONFIG_LANG_GERMAN            3   // ƒhƒCƒcŒê
-#define NVRAM_CONFIG_LANG_ITALIAN           4   // ƒCƒ^ƒŠƒAŒê
-#define NVRAM_CONFIG_LANG_SPANISH           5   // ƒXƒyƒCƒ“Œê
-#define NVRAM_CONFIG_LANG_CHINESE           6   // ’†‘Œê
-#define NVRAM_CONFIG_LANG_HANGUL            7   // ŠØ‘Œê
-#define NVRAM_CONFIG_LANG_CODE_MAX          8   // Œ¾ŒêÝ’èƒR[ƒh‚ÌŽí—Þ”
+// è¨€èªžè¨­å®šã‚³ãƒ¼ãƒ‰
+#define NVRAM_CONFIG_LANG_JAPANESE          0   // æ—¥æœ¬èªž
+#define NVRAM_CONFIG_LANG_ENGLISH           1   // è‹±èªž
+#define NVRAM_CONFIG_LANG_FRENCH            2   // ãƒ•ãƒ©ãƒ³ã‚¹èªž
+#define NVRAM_CONFIG_LANG_GERMAN            3   // ãƒ‰ã‚¤ãƒ„èªž
+#define NVRAM_CONFIG_LANG_ITALIAN           4   // ã‚¤ã‚¿ãƒªã‚¢èªž
+#define NVRAM_CONFIG_LANG_SPANISH           5   // ã‚¹ãƒšã‚¤ãƒ³èªž
+#define NVRAM_CONFIG_LANG_CHINESE           6   // ä¸­å›½èªž
+#define NVRAM_CONFIG_LANG_HANGUL            7   // éŸ“å›½èªž
+#define NVRAM_CONFIG_LANG_CODE_MAX          8   // è¨€èªžè¨­å®šã‚³ãƒ¼ãƒ‰ã®ç¨®é¡žæ•°
 
-// ’Êí”Å‚Å‚Ì‘Î‰žŒ¾Œêƒrƒbƒgƒ}ƒbƒv
+// é€šå¸¸ç‰ˆã§ã®å¯¾å¿œè¨€èªžãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
 #define NVRAM_CONFIG_LANG_BITMAP_NORMAL     ( (0x0001 << NVRAM_CONFIG_LANG_JAPANESE ) \
                                             | (0x0001 << NVRAM_CONFIG_LANG_ENGLISH) \
                                             | (0x0001 << NVRAM_CONFIG_LANG_FRENCH) \
@@ -68,7 +68,7 @@ extern "C" {
                                             | (0x0001 << NVRAM_CONFIG_LANG_ITALIAN) \
                                             | (0x0001 << NVRAM_CONFIG_LANG_SPANISH) )
 
-// ’†‘”Å‚Å‚Ì‘Î‰žŒ¾Œêƒrƒbƒgƒ}ƒbƒv
+// ä¸­å›½ç‰ˆã§ã®å¯¾å¿œè¨€èªžãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
 #define NVRAM_CONFIG_LANG_BITMAP_CHINESE    ( (0x0001 << NVRAM_CONFIG_LANG_ENGLISH ) \
                                             | (0x0001 << NVRAM_CONFIG_LANG_FRENCH) \
                                             | (0x0001 << NVRAM_CONFIG_LANG_GERMAN) \
@@ -77,7 +77,7 @@ extern "C" {
                                             | (0x0001 << NVRAM_CONFIG_LANG_CHINESE) )
 
 
-// ŠØ‘”Å‚Å‚Ì‘Î‰žŒ¾Œêƒrƒbƒgƒ}ƒbƒv
+// éŸ“å›½ç‰ˆã§ã®å¯¾å¿œè¨€èªžãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
 #define NVRAM_CONFIG_LANG_BITMAP_HANGUL     ( (0x0001 << NVRAM_CONFIG_LANG_JAPANESE ) \
                                             | (0x0001 << NVRAM_CONFIG_LANG_ENGLISH) \
                                             | (0x0001 << NVRAM_CONFIG_LANG_FRENCH) \
@@ -86,144 +86,144 @@ extern "C" {
                                             | (0x0001 << NVRAM_CONFIG_LANG_HANGUL) )
 
 /*---------------------------------------------------------------------------*
-    \‘¢‘Ì’è‹`
+    æ§‹é€ ä½“å®šç¾©
  *---------------------------------------------------------------------------*/
-// ’a¶“úƒf[ƒ^(2byte)
+// èª•ç”Ÿæ—¥ãƒ‡ãƒ¼ã‚¿(2byte)
 typedef struct NVRAMConfigDate
 {
-    u8      month;                     // ŒŽ:01`12
-    u8      day;                       // “ú:01`31
+    u8      month;                     // æœˆ:01ã€œ12
+    u8      day;                       // æ—¥:01ã€œ31
 
 }
 NVRAMConfigDate;
 
-// ƒjƒbƒNƒl[ƒ€(22byte)
+// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ (22byte)
 typedef struct NVRAMConfigNickname
 {
-    u16     str[NVRAM_CONFIG_NICKNAME_LENGTH];  // ƒjƒbƒNƒl[ƒ€iUnicode(UTF16)‚ÅÅ‘å10•¶ŽšAI’[ƒR[ƒh‚È‚µj
-    u8      length;                    // •¶Žš”
+    u16     str[NVRAM_CONFIG_NICKNAME_LENGTH];  // ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼ˆUnicode(UTF16)ã§æœ€å¤§10æ–‡å­—ã€çµ‚ç«¯ã‚³ãƒ¼ãƒ‰ãªã—ï¼‰
+    u8      length;                    // æ–‡å­—æ•°
     u8      rsv;
 
 }
 NVRAMConfigNickname;
 
-// ƒRƒƒ“ƒg(54byte)
+// ã‚³ãƒ¡ãƒ³ãƒˆ(54byte)
 typedef struct NVRAMConfigComment
 {
-    u16     str[NVRAM_CONFIG_COMMENT_LENGTH];   //ƒRƒƒ“ƒgiUnicode(UTF16)‚ÅÅ‘å26•¶ŽšAI’[ƒR[ƒh‚È‚µj
-    u8      length;                    // •¶Žš”
+    u16     str[NVRAM_CONFIG_COMMENT_LENGTH];   //ã‚³ãƒ¡ãƒ³ãƒˆï¼ˆUnicode(UTF16)ã§æœ€å¤§26æ–‡å­—ã€çµ‚ç«¯ã‚³ãƒ¼ãƒ‰ãªã—ï¼‰
+    u8      length;                    // æ–‡å­—æ•°
     u8      rsv;
 
 }
 NVRAMConfigComment;
 
-// ƒI[ƒi[î•ñ(80byte)
+// ã‚ªãƒ¼ãƒŠãƒ¼æƒ…å ±(80byte)
 typedef struct NVRAMConfigOwnerInfo
 {
-    u8      favoriteColor:4;           // D‚«‚ÈF
-    u8      rsv:4;                     // —\–ñ
-    NVRAMConfigDate birthday;          // ’a¶“ú
+    u8      favoriteColor:4;           // å¥½ããªè‰²
+    u8      rsv:4;                     // äºˆç´„
+    NVRAMConfigDate birthday;          // èª•ç”Ÿæ—¥
     u8      pad;
-    NVRAMConfigNickname nickname;      // ƒjƒbƒNƒl[ƒ€
-    NVRAMConfigComment comment;        // ƒRƒƒ“ƒg
+    NVRAMConfigNickname nickname;      // ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
+    NVRAMConfigComment comment;        // ã‚³ãƒ¡ãƒ³ãƒˆ
 
 }
 NVRAMConfigOwnerInfo;
 
 
-// IPL—p–ÚŠo‚Ü‚µŽžŒvƒf[ƒ^(6byte)
+// IPLç”¨ç›®è¦šã¾ã—æ™‚è¨ˆãƒ‡ãƒ¼ã‚¿(6byte)
 typedef struct NVRAMConfigAlarm
 {
-    u8      hour;                      // ƒAƒ‰[ƒ€Žž:00`23
-    u8      minute;                    // ƒAƒ‰[ƒ€•ª:00`59
-    u8      second;                    // ƒAƒ‰[ƒ€•b:00`59
+    u8      hour;                      // ã‚¢ãƒ©ãƒ¼ãƒ æ™‚:00ã€œ23
+    u8      minute;                    // ã‚¢ãƒ©ãƒ¼ãƒ åˆ†:00ã€œ59
+    u8      second;                    // ã‚¢ãƒ©ãƒ¼ãƒ ç§’:00ã€œ59
     u8      pad;
-    u16     enableWeek:7;              // ‚Ç‚Ì—j“ú‚ÉƒAƒ‰[ƒ€‚ª—LŒø‚©‚Ìƒtƒ‰ƒOibit0:“ú bit1:ŒŽ..."1"‚ª—LŒøj
-    u16     alarmOn:1;                 // ƒAƒ‰[ƒ€ON,OFFi0:OFF, 1:ONj
-    u16     rsv:8;                     // —\–ñ
+    u16     enableWeek:7;              // ã©ã®æ›œæ—¥ã«ã‚¢ãƒ©ãƒ¼ãƒ ãŒæœ‰åŠ¹ã‹ã®ãƒ•ãƒ©ã‚°ï¼ˆbit0:æ—¥ bit1:æœˆ..."1"ãŒæœ‰åŠ¹ï¼‰
+    u16     alarmOn:1;                 // ã‚¢ãƒ©ãƒ¼ãƒ ON,OFFï¼ˆ0:OFF, 1:ONï¼‰
+    u16     rsv:8;                     // äºˆç´„
 
 }
 NVRAMConfigAlarm;
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹À•W•â³ƒf[ƒ^(12byte)
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™è£œæ­£ãƒ‡ãƒ¼ã‚¿(12byte)
 typedef struct NVRAMConfigTpCalibData
 {
-    u16     raw_x1;                    // ‘æ‚PƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ““_‚ÌTPŽæ“¾’lX
-    u16     raw_y1;                    // ‘æ‚PƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ““_‚ÌTPŽæ“¾’lY
-    u8      dx1;                       // ‘æ‚PƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ““_‚ÌLCDÀ•W X
-    u8      dy1;                       // ‘æ‚PƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ““_‚ÌLCDÀ•W Y
-    u16     raw_x2;                    // ‘æ‚QƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ““_‚ÌTPŽæ“¾’lX
-    u16     raw_y2;                    // ‘æ‚QƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ““_‚ÌTPŽæ“¾’lY
-    u8      dx2;                       // ‘æ‚QƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ““_‚ÌLCDÀ•W X
-    u8      dy2;                       // ‘æ‚QƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ““_‚ÌLCDÀ•W Y
+    u16     raw_x1;                    // ç¬¬ï¼‘ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç‚¹ã®TPå–å¾—å€¤X
+    u16     raw_y1;                    // ç¬¬ï¼‘ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç‚¹ã®TPå–å¾—å€¤Y
+    u8      dx1;                       // ç¬¬ï¼‘ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç‚¹ã®LCDåº§æ¨™ X
+    u8      dy1;                       // ç¬¬ï¼‘ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç‚¹ã®LCDåº§æ¨™ Y
+    u16     raw_x2;                    // ç¬¬ï¼’ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç‚¹ã®TPå–å¾—å€¤X
+    u16     raw_y2;                    // ç¬¬ï¼’ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç‚¹ã®TPå–å¾—å€¤Y
+    u8      dx2;                       // ç¬¬ï¼’ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç‚¹ã®LCDåº§æ¨™ X
+    u8      dy2;                       // ç¬¬ï¼’ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç‚¹ã®LCDåº§æ¨™ Y
 
 }
 NVRAMConfigTpCalibData;
 
-// ƒIƒvƒVƒ‡ƒ“î•ñ(12byte)
+// ã‚ªãƒ—ã‚·ãƒ§ãƒ³æƒ…å ±(12byte)
 typedef struct NVRAMConfigOption
 {
-    u16     language:3;                // Œ¾ŒêƒR[ƒh
-    u16     agbLcd:1;                  // AGBƒ‚[ƒh‚Å‹N“®‚·‚éŽž‚É‚Ç‚¿‚ç‚ÌLCD‚Å‹N“®‚·‚é‚©Hi0:TOP,1:BOTTOMj
-    u16     detectPullOutCardFlag:1;   // ƒJ[ƒh‚ªˆø‚«”²‚©‚ê‚½‚±‚Æ‚ðŽ¦‚·ƒtƒ‰ƒOB
-    u16     detectPullOutCtrdgFlag:1;  // ƒJ[ƒgƒŠƒbƒW‚ªˆø‚«”²‚©‚ê‚½‚±‚Æ‚ðŽ¦‚·ƒtƒ‰ƒOB
-    u16     autoBootFlag:1;            // ‹N“®ƒV[ƒPƒ“ƒX‚ÅAƒƒjƒ…[’âŽ~‚È‚µ‚ÅŽ©“®‹N“®‚·‚é‚©‚Ç‚¤‚©H
-    u16     rsv:4;                     // —\–ñB
-    u16     input_favoriteColor:1;     // D‚«‚ÈF‚ª“ü—Í‚³‚ê‚½‚©H
-    u16     input_tp:1;                // ƒ^ƒbƒ`ƒpƒlƒ‹‚ªƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ“‚³‚ê‚½‚©Hi  V  )
-    u16     input_language:1;          // Œ¾Œê“ü—Í‚ª‚³‚ê‚½‚©H@       (0:–¢Ý’è, 1:Ý’èÏ‚Ý)
-    u16     input_rtc:1;               // RTCÝ’è‚ª‚³‚ê‚½‚©H          (       V@@@@@ )
-    u16     input_nickname:1;          // ƒjƒbƒNƒl[ƒ€‚ª“ü—Í‚³‚ê‚½‚©H (       V@@@@@ )
-    u8      timezone;                  // ƒ^ƒCƒ€ƒ][ƒ“iŒ»Ý‚ÍƒŠƒU[ƒuj
-    u8      rtcClockAdjust;            // RTCƒNƒƒbƒN’²®’l
-    s64     rtcOffset;                 // RTCÝ’èŽž‚ÌƒIƒtƒZƒbƒg’liƒ†[ƒU[‚ªRTCÝ’è‚ð•ÏX‚·‚é“x‚É‚»‚Ì’l‚É‰ž‚¶‚Ä‘Œ¸‚µ‚Ü‚·Bj
+    u16     language:3;                // è¨€èªžã‚³ãƒ¼ãƒ‰
+    u16     agbLcd:1;                  // AGBãƒ¢ãƒ¼ãƒ‰ã§èµ·å‹•ã™ã‚‹æ™‚ã«ã©ã¡ã‚‰ã®LCDã§èµ·å‹•ã™ã‚‹ã‹ï¼Ÿï¼ˆ0:TOP,1:BOTTOMï¼‰
+    u16     detectPullOutCardFlag:1;   // ã‚«ãƒ¼ãƒ‰ãŒå¼•ãæŠœã‹ã‚ŒãŸã“ã¨ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°ã€‚
+    u16     detectPullOutCtrdgFlag:1;  // ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãŒå¼•ãæŠœã‹ã‚ŒãŸã“ã¨ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°ã€‚
+    u16     autoBootFlag:1;            // èµ·å‹•ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼åœæ­¢ãªã—ã§è‡ªå‹•èµ·å‹•ã™ã‚‹ã‹ã©ã†ã‹ï¼Ÿ
+    u16     rsv:4;                     // äºˆç´„ã€‚
+    u16     input_favoriteColor:1;     // å¥½ããªè‰²ãŒå…¥åŠ›ã•ã‚ŒãŸã‹ï¼Ÿ
+    u16     input_tp:1;                // ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãŒã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã•ã‚ŒãŸã‹ï¼Ÿï¼ˆ  ã€ƒ  )
+    u16     input_language:1;          // è¨€èªžå…¥åŠ›ãŒã•ã‚ŒãŸã‹ï¼Ÿã€€       (0:æœªè¨­å®š, 1:è¨­å®šæ¸ˆã¿)
+    u16     input_rtc:1;               // RTCè¨­å®šãŒã•ã‚ŒãŸã‹ï¼Ÿ          (       ã€ƒã€€ã€€ã€€ã€€ã€€ )
+    u16     input_nickname:1;          // ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ãŒå…¥åŠ›ã•ã‚ŒãŸã‹ï¼Ÿ (       ã€ƒã€€ã€€ã€€ã€€ã€€ )
+    u8      timezone;                  // ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ï¼ˆç¾åœ¨ã¯ãƒªã‚¶ãƒ¼ãƒ–ï¼‰
+    u8      rtcClockAdjust;            // RTCã‚¯ãƒ­ãƒƒã‚¯èª¿æ•´å€¤
+    s64     rtcOffset;                 // RTCè¨­å®šæ™‚ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ï¼ˆãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒRTCè¨­å®šã‚’å¤‰æ›´ã™ã‚‹åº¦ã«ãã®å€¤ã«å¿œã˜ã¦å¢—æ¸›ã—ã¾ã™ã€‚ï¼‰
 
 }
 NVRAMConfigOption;
 
 
-// ƒRƒ“ƒtƒBƒOŠeŽíÝ’èƒf[ƒ^(112byte)
+// ã‚³ãƒ³ãƒ•ã‚£ã‚°å„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿(112byte)
 typedef struct NVRAMConfigData
 {
-    u8      version;                   // ƒtƒ‰ƒbƒVƒ…Ši”[ƒf[ƒ^ƒtƒH[ƒ}ƒbƒg‚Ìƒo[ƒWƒ‡ƒ“
+    u8      version;                   // ãƒ•ãƒ©ãƒƒã‚·ãƒ¥æ ¼ç´ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
     u8      pad;
-    NVRAMConfigOwnerInfo owner;        // ƒI[ƒi[î•ñ
-    NVRAMConfigAlarm alarm;            // IPL—p–ÚŠo‚Ü‚µŽžŒvƒf[ƒ^
-    NVRAMConfigTpCalibData tp;         // ƒ^ƒbƒ`ƒpƒlƒ‹ƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^
-    NVRAMConfigOption option;          // ƒIƒvƒVƒ‡ƒ“
+    NVRAMConfigOwnerInfo owner;        // ã‚ªãƒ¼ãƒŠãƒ¼æƒ…å ±
+    NVRAMConfigAlarm alarm;            // IPLç”¨ç›®è¦šã¾ã—æ™‚è¨ˆãƒ‡ãƒ¼ã‚¿
+    NVRAMConfigTpCalibData tp;         // ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+    NVRAMConfigOption option;          // ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 
 }
 NVRAMConfigData;
 
-// ƒRƒ“ƒtƒBƒOŠeŽíÝ’èƒf[ƒ^‚ÌNVRAM•Û‘¶ŽžƒtƒH[ƒ}ƒbƒg(116byte)
+// ã‚³ãƒ³ãƒ•ã‚£ã‚°å„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿ã®NVRAMä¿å­˜æ™‚ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ(116byte)
 typedef struct NVRAMConfig
 {
-    NVRAMConfigData ncd;               // ƒRƒ“ƒtƒBƒOŠeŽíÝ’èƒf[ƒ^
-    u16     saveCount;                 // 0x00-0x7f ‚ðƒ‹[ƒv‚µ‚ÄƒJƒEƒ“ƒg‚µAƒJƒEƒ“ƒg’l‚ªV‚µ‚¢ƒf[ƒ^‚ª—LŒøB
-    u16     crc16;                     // ƒRƒ“ƒtƒBƒOŠeŽíÝ’èƒf[ƒ^‚Ì 16bit CRC
+    NVRAMConfigData ncd;               // ã‚³ãƒ³ãƒ•ã‚£ã‚°å„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿
+    u16     saveCount;                 // 0x00-0x7f ã‚’ãƒ«ãƒ¼ãƒ—ã—ã¦ã‚«ã‚¦ãƒ³ãƒˆã—ã€ã‚«ã‚¦ãƒ³ãƒˆå€¤ãŒæ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã€‚
+    u16     crc16;                     // ã‚³ãƒ³ãƒ•ã‚£ã‚°å„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿ã® 16bit CRC
 
 }
 NVRAMConfig;
 
-// ƒRƒ“ƒtƒBƒOŠg’£ŠeŽíÝ’èƒf[ƒ^(138byte)
+// ã‚³ãƒ³ãƒ•ã‚£ã‚°æ‹¡å¼µå„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿(138byte)
 typedef struct NVRAMConfigDataEx
 {
-    u8      version;                   // Šg’£ƒRƒ“ƒtƒBƒOî•ñ‚ÌŒ^ƒo[ƒWƒ‡ƒ“
-    u8      language;                  // Šg’£Œ¾ŒêƒR[ƒh( NVRAM_CONFIG_LANG_CHINESE ˆÈ~‚ÉŠg’£‚³‚ê‚½’l‚ªŠi”[‚³‚ê‚é )
-    u16     valid_language_bitmap;     // —LŒø‚ÈŒ¾ŒêƒR[ƒh‚ðŽ¦‚µ‚½ƒrƒbƒgƒ}ƒbƒv
+    u8      version;                   // æ‹¡å¼µã‚³ãƒ³ãƒ•ã‚£ã‚°æƒ…å ±ã®åž‹ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+    u8      language;                  // æ‹¡å¼µè¨€èªžã‚³ãƒ¼ãƒ‰( NVRAM_CONFIG_LANG_CHINESE ä»¥é™ã«æ‹¡å¼µã•ã‚ŒãŸå€¤ãŒæ ¼ç´ã•ã‚Œã‚‹ )
+    u16     valid_language_bitmap;     // æœ‰åŠ¹ãªè¨€èªžã‚³ãƒ¼ãƒ‰ã‚’ç¤ºã—ãŸãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
     u8      padding[256 - sizeof(NVRAMConfigData) - 4 - 4 - 2];
-    // NVRAMConfigEx ‚ÌƒTƒCƒY‚ª NVRAM 1ƒy[ƒW(256byte)‚É‚È‚é‚æ‚¤‚ÉƒpƒfƒBƒ“ƒO
+    // NVRAMConfigEx ã®ã‚µã‚¤ã‚ºãŒ NVRAM 1ãƒšãƒ¼ã‚¸(256byte)ã«ãªã‚‹ã‚ˆã†ã«ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
 }
 NVRAMConfigDataEx;
 
-// Šg’£‚³‚ê‚½ƒRƒ“ƒtƒBƒOŠeŽíÝ’èƒf[ƒ^‚ÌNVRAM•Û‘¶ŽžƒtƒH[ƒ}ƒbƒg(256byte)
+// æ‹¡å¼µã•ã‚ŒãŸã‚³ãƒ³ãƒ•ã‚£ã‚°å„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿ã®NVRAMä¿å­˜æ™‚ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ(256byte)
 typedef struct NVRAMConfigEx
 {
-    NVRAMConfigData ncd;               // ƒRƒ“ƒtƒBƒOŠeŽíÝ’èƒf[ƒ^
-    u16     saveCount;                 // 0x00-0x7f ‚ðƒ‹[ƒv‚µ‚ÄƒJƒEƒ“ƒg‚µAƒJƒEƒ“ƒg’l‚ªV‚µ‚¢ƒf[ƒ^‚ª—LŒøB
-    u16     crc16;                     // ƒRƒ“ƒtƒBƒOŠeŽíÝ’èƒf[ƒ^‚Ì 16bit CRC
-    NVRAMConfigDataEx ncd_ex;          // Šg’£ƒRƒ“ƒtƒBƒOŠeŽíÝ’èƒf[ƒ^
-    u16     crc16_ex;                  // Šg’£ƒRƒ“ƒtƒBƒOŠeŽíÝ’èƒf[ƒ^‚Ì 16bit CRC
+    NVRAMConfigData ncd;               // ã‚³ãƒ³ãƒ•ã‚£ã‚°å„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿
+    u16     saveCount;                 // 0x00-0x7f ã‚’ãƒ«ãƒ¼ãƒ—ã—ã¦ã‚«ã‚¦ãƒ³ãƒˆã—ã€ã‚«ã‚¦ãƒ³ãƒˆå€¤ãŒæ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã€‚
+    u16     crc16;                     // ã‚³ãƒ³ãƒ•ã‚£ã‚°å„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿ã® 16bit CRC
+    NVRAMConfigDataEx ncd_ex;          // æ‹¡å¼µã‚³ãƒ³ãƒ•ã‚£ã‚°å„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿
+    u16     crc16_ex;                  // æ‹¡å¼µã‚³ãƒ³ãƒ•ã‚£ã‚°å„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿ã® 16bit CRC
 
 }
 NVRAMConfigEx;

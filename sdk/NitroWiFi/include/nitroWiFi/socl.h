@@ -12,205 +12,205 @@
 
   $Log: socl.h,v $
   Revision 1.66  2007/06/20 08:45:22  yasu
-  SOCL_STATUS_RESET ‚Ì’Ç‰Á
+  SOCL_STATUS_RESET ã®è¿½åŠ 
 
   Revision 1.65  2006/03/10 09:20:22  kitase_hirotake
   INDENT SOURCE
 
   Revision 1.64  2006/01/25 13:21:45  yasu
-  Thread ƒRƒ}ƒ“ƒhƒLƒ…[‚ÌƒTƒCƒY‚ğ 8->32 ‚É•ÏX
+  Thread ã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ã®ã‚µã‚¤ã‚ºã‚’ 8->32 ã«å¤‰æ›´
 
   Revision 1.63  2005/12/06 11:54:51  yasu
-  TCP BLOCK Write ‚É‚¨‚¯‚é•s‹ï‡‚ÌC³
-  BLOCK ƒ‚[ƒh”»’è—p‚Ìƒ}ƒNƒ‚Ì“±“ü
+  TCP BLOCK Write ã«ãŠã‘ã‚‹ä¸å…·åˆã®ä¿®æ­£
+  BLOCK ãƒ¢ãƒ¼ãƒ‰åˆ¤å®šç”¨ã®ãƒã‚¯ãƒ­ã®å°å…¥
 
   Revision 1.62  2005/10/26 00:52:53  seiki_masashi
-  SOCL_Set/GetSslHandshakePriority ŠÖ”‚Ì’Ç‰Á
+  SOCL_Set/GetSslHandshakePriority é–¢æ•°ã®è¿½åŠ 
 
   Revision 1.61  2005/10/18 06:12:44  terui
-  TCP‘—MƒXƒ‹[ƒvƒbƒgŒüã‚ÉŠÖ˜A‚·‚é•ÏX
+  TCPé€ä¿¡ã‚¹ãƒ«ãƒ¼ãƒ—ãƒƒãƒˆå‘ä¸Šã«é–¢é€£ã™ã‚‹å¤‰æ›´
 
   Revision 1.60  2005/10/14 01:57:06  yasu
-  ƒRƒ}ƒ“ƒhƒLƒ…[‚ªˆê”t‚¾‚Á‚½‚Æ‚«‚É Close ˆ—‚ª•sŠ®‘S‚Èó‘Ô‚É‚È‚é‚±‚Æ‚ğC³
+  ã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ãŒä¸€æ¯ã ã£ãŸã¨ãã« Close å‡¦ç†ãŒä¸å®Œå…¨ãªçŠ¶æ…‹ã«ãªã‚‹ã“ã¨ã‚’ä¿®æ­£
 
   Revision 1.59  2005/09/28 11:39:56  yasu
-  ƒR[ƒh‚ğ®—
-  SOCL_CalmDown() ‚ğ’Ç‰Á
+  ã‚³ãƒ¼ãƒ‰ã‚’æ•´ç†
+  SOCL_CalmDown() ã‚’è¿½åŠ 
 
   Revision 1.58  2005/09/27 14:18:54  yasu
-  SOC_Close ‚Ì”ñ“¯Šú“®ìƒTƒ|[ƒg
+  SOC_Close ã®éåŒæœŸå‹•ä½œã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.57  2005/09/21 11:19:31  yasu
-  SOCL_SetYieldWait() ‚Ì’Ç‰Á
+  SOCL_SetYieldWait() ã®è¿½åŠ 
 
   Revision 1.56  2005/09/19 14:08:51  yasu
-  Closing ó‘Ô‚ğ’Ç‰Á‚µ‚½
+  Closing çŠ¶æ…‹ã‚’è¿½åŠ ã—ãŸ
 
   Revision 1.55  2005/09/17 03:05:05  seiki_masashi
-  s––‚Ì \x5c ‚ğ‰ñ”ğ
+  è¡Œæœ«ã® \x5c ã‚’å›é¿
 
   Revision 1.54  2005/09/16 12:13:30  yasu
-  ƒCƒxƒ“ƒgƒJƒEƒ“ƒ^‚ğ FinalRom ‚Å‚à—LŒø‚É‚·‚é
+  ã‚¤ãƒ™ãƒ³ãƒˆã‚«ã‚¦ãƒ³ã‚¿ã‚’ FinalRom ã§ã‚‚æœ‰åŠ¹ã«ã™ã‚‹
 
   Revision 1.53  2005/09/16 05:11:34  yasu
-  RequestedIP ‚Ìİ’è API ’Ç‰Á
+  RequestedIP ã®è¨­å®š API è¿½åŠ 
 
   Revision 1.52  2005/09/15 13:13:17  yasu
-  DHCP Requested IP ƒTƒ|[ƒg
+  DHCP Requested IP ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.51  2005/09/14 06:18:49  seiki_masashi
-  SOCL_AddRandomSeed ŠÖ”‚Ì’Ç‰Á
+  SOCL_AddRandomSeed é–¢æ•°ã®è¿½åŠ 
 
   Revision 1.50  2005/09/14 06:00:50  yasu
-  SOCLi_CheckCount ‚ÌƒTƒ|[ƒg
+  SOCLi_CheckCount ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.49  2005/09/08 05:35:45  yasu
-  ƒ\ƒPƒbƒgƒfƒXƒNƒŠƒvƒ^‚ª—LŒø’l‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ì”»’è‚ğ SOCL ‘¤‚Ås‚È‚¤‚±‚Æ‚É‚·‚é
+  ã‚½ã‚±ãƒƒãƒˆãƒ‡ã‚¹ã‚¯ãƒªãƒ—ã‚¿ãŒæœ‰åŠ¹å€¤ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šã‚’ SOCL å´ã§è¡Œãªã†ã“ã¨ã«ã™ã‚‹
 
   Revision 1.48  2005/09/02 08:45:31  yasu
-  SOCLConfig “à‚Ì IP ƒAƒhƒŒƒX‚Ìİ’è‚ğ•ÏX‚Å‚«‚é API ‚ğ—pˆÓ
+  SOCLConfig å†…ã® IP ã‚¢ãƒ‰ãƒ¬ã‚¹ã®è¨­å®šã‚’å¤‰æ›´ã§ãã‚‹ API ã‚’ç”¨æ„
 
   Revision 1.47  2005/09/01 06:40:26  yasu
-  ƒ\ƒPƒbƒg‚ª¶‚«‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ì”»’è‚ğˆêŒ³‰»
+  ã‚½ã‚±ãƒƒãƒˆãŒç”Ÿãã¦ã„ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šã‚’ä¸€å…ƒåŒ–
 
   Revision 1.46  2005/09/01 06:12:54  yasu
-  ƒ\ƒPƒbƒg‚ª¶‚«‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ì”»’è‚ğˆêŒ³‰»
+  ã‚½ã‚±ãƒƒãƒˆãŒç”Ÿãã¦ã„ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šã‚’ä¸€å…ƒåŒ–
 
   Revision 1.45  2005/08/26 03:48:52  yasu
-  SOCL_GetStatus ‚Ì UDP óMƒVƒXƒeƒ€•ÏX‚É‚Æ‚à‚È‚¤C³
+  SOCL_GetStatus ã® UDP å—ä¿¡ã‚·ã‚¹ãƒ†ãƒ å¤‰æ›´ã«ã¨ã‚‚ãªã†ä¿®æ­£
 
   Revision 1.44  2005/08/25 08:28:05  yasu
-  UDP óM‚É‚¨‚¯‚éƒoƒbƒtƒ@ƒŠƒ“ƒOˆ—’Ç‰Á
+  UDP å—ä¿¡ã«ãŠã‘ã‚‹ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°å‡¦ç†è¿½åŠ 
 
   Revision 1.43  2005/08/24 09:22:13  yasu
-  SOCL_SocketIsInvalid ’Ç‰Á
+  SOCL_SocketIsInvalid è¿½åŠ 
 
   Revision 1.42  2005/08/23 02:43:12  adachi_hiroaki
-  ˆê“I‚ÉRWIN‚ğMSS‚Ì8”{‚É
+  ä¸€æ™‚çš„ã«RWINã‚’MSSã®8å€ã«
 
   Revision 1.41  2005/08/22 04:32:07  yasu
-  UDP cps recvbuf ‚ÌƒTƒCƒY‚ğC³
+  UDP cps recvbuf ã®ã‚µã‚¤ã‚ºã‚’ä¿®æ­£
 
   Revision 1.40  2005/08/22 03:24:30  yasu
-  sndbuf ‚È‚Ç‚Ì’è‹`’l‚ğ MTU_MAX ‚È‚Ç‚Ì’l‚©‚çZo‚·‚é‚æ‚¤‚É‚µ‚½
+  sndbuf ãªã©ã®å®šç¾©å€¤ã‚’ MTU_MAX ãªã©ã®å€¤ã‹ã‚‰ç®—å‡ºã™ã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.39  2005/08/19 05:59:45  yasu
-  MTU ‚ÌƒfƒtƒHƒ‹ƒg’l‚ğ 576 ‚É•ÏX
+  MTU ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã‚’ 576 ã«å¤‰æ›´
 
   Revision 1.38  2005/08/19 05:06:54  yasu
-  mtu/rwin ‘Î‰
+  mtu/rwin å¯¾å¿œ
 
   Revision 1.37  2005/08/18 13:54:12  yasu
-  ƒ\ƒPƒbƒgƒŠƒXƒg‘€ì‚Ì’Ç‰Á
+  ã‚½ã‚±ãƒƒãƒˆãƒªã‚¹ãƒˆæ“ä½œã®è¿½åŠ 
 
   Revision 1.36  2005/08/18 08:55:37  yasu
-  SOCL_EALREADY ‚Ì’Ç‰Á
+  SOCL_EALREADY ã®è¿½åŠ 
 
   Revision 1.35  2005/08/17 11:49:03  yasu
-  SOC_InetAtoN C³
+  SOC_InetAtoN ä¿®æ­£
 
   Revision 1.34  2005/08/17 04:10:39  yasu
-  SOC_Poll ‚Ì‹@”\’Ç‰Á
+  SOC_Poll ã®æ©Ÿèƒ½è¿½åŠ 
 
   Revision 1.33  2005/08/13 09:37:53  yasu
-  consumed_min §Œä‚Ì’Ç‰Á
+  consumed_min åˆ¶å¾¡ã®è¿½åŠ 
 
   Revision 1.32  2005/08/12 09:53:45  yasu
-  ƒ\ƒPƒbƒg‚Ì“à•”ƒtƒ‰ƒO‚ğƒAƒNƒZƒX‚·‚éAPI ‚Ì®—
+  ã‚½ã‚±ãƒƒãƒˆã®å†…éƒ¨ãƒ•ãƒ©ã‚°ã‚’ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹API ã®æ•´ç†
 
   Revision 1.31  2005/08/11 08:33:38  yasu
-  —Dæ“xC³
+  å„ªå…ˆåº¦ä¿®æ­£
 
   Revision 1.30  2005/08/10 13:42:23  yasu
-  ƒoƒbƒtƒ@ƒTƒCƒY•ÏX
+  ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºå¤‰æ›´
 
   Revision 1.29  2005/08/10 09:33:51  seiki_masashi
-  SSL ‚ÌƒTƒ|[ƒg‚ğ’Ç‰Á
+  SSL ã®ã‚µãƒãƒ¼ãƒˆã‚’è¿½åŠ 
 
   Revision 1.28  2005/08/10 02:12:55  yasu
-  óM‘—MƒXƒŒƒbƒh‚Ì—Dæ“x‚ÌC³
+  å—ä¿¡é€ä¿¡ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆåº¦ã®ä¿®æ­£
 
   Revision 1.27  2005/08/09 12:27:46  yasu
-  TCP ‚Ì wrtbuf ƒTƒCƒY‚Ì•ÏX
+  TCP ã® wrtbuf ã‚µã‚¤ã‚ºã®å¤‰æ›´
 
   Revision 1.26  2005/08/09 09:53:36  yasu
-  Å‘å UDP ƒf[ƒ^ƒOƒ‰ƒ€’·‚ÌC³
+  æœ€å¤§ UDP ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ©ãƒ é•·ã®ä¿®æ­£
 
   Revision 1.25  2005/08/09 01:21:31  yasu
-  wrtbuf ƒTƒCƒY‚ÌC³
+  wrtbuf ã‚µã‚¤ã‚ºã®ä¿®æ­£
 
   Revision 1.24  2005/08/08 14:15:59  yasu
-  CPS ƒXƒŒƒbƒh‚Ì—Dæ“xİ’è
+  CPS ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆåº¦è¨­å®š
 
   Revision 1.23  2005/08/08 05:59:32  seiki_masashi
-  SSL ŠÖŒW‚Ì’è”’è‹`‚Ì’Ç‰Á
+  SSL é–¢ä¿‚ã®å®šæ•°å®šç¾©ã®è¿½åŠ 
 
   Revision 1.22  2005/08/07 13:08:45  yasu
-  ƒGƒ‰[ƒR[ƒh‚Ì–¼Ì‚Ì•\¦
+  ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã®åç§°ã®è¡¨ç¤º
 
   Revision 1.21  2005/08/06 11:56:43  seiki_masashi
-  SOCL_EnableSsl ‚ğ’Ç‰Á
+  SOCL_EnableSsl ã‚’è¿½åŠ 
 
   Revision 1.20  2005/08/05 05:05:57  seiki_masashi
-  cps.h ‚ÅQÆ‚³‚ê‚Ä‚¢‚é‚½‚ßA#include <nitro/math.h> ‚ğ’Ç‰Á
+  cps.h ã§å‚ç…§ã•ã‚Œã¦ã„ã‚‹ãŸã‚ã€#include <nitro/math.h> ã‚’è¿½åŠ 
 
   Revision 1.19  2005/08/02 06:17:18  yasu
-  SOCL_GetHostID ‚ÌŠÖ”‰»
+  SOCL_GetHostID ã®é–¢æ•°åŒ–
 
   Revision 1.18  2005/08/02 05:06:30  yasu
-  DHCP ‚ÌÅ’†‚Í ConfigError ’l‚Æ‚µ‚Ä Error ‚ğ•Ô‚³‚È‚¢‚æ‚¤‚ÉC³
+  DHCP ã®æœ€ä¸­ã¯ ConfigError å€¤ã¨ã—ã¦ Error ã‚’è¿”ã•ãªã„ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.17  2005/08/01 14:05:38  seiki_masashi
-  EAGAIN ‚ğ’Ç‰Á
+  EAGAIN ã‚’è¿½åŠ 
 
   Revision 1.16  2005/08/01 13:26:00  yasu
-  ƒXƒŒƒbƒhŠÖŒWƒpƒ‰ƒ[ƒ^C³
-  SOCL_Listen/Accept ‚Ì’Ç‰Á
+  ã‚¹ãƒ¬ãƒƒãƒ‰é–¢ä¿‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¿®æ­£
+  SOCL_Listen/Accept ã®è¿½åŠ 
 
   Revision 1.15  2005/08/01 08:52:58  yasu
-  SOCL_EWOULDBLOCK ‚Ì’Ç‰Á
+  SOCL_EWOULDBLOCK ã®è¿½åŠ 
 
   Revision 1.14  2005/08/01 04:56:36  yasu
-  SOC ƒXƒŒƒbƒh‚Ì—Dæ“x‚ğ‰º‚°‚é
+  SOC ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆåº¦ã‚’ä¸‹ã’ã‚‹
 
   Revision 1.13  2005/07/30 22:55:18  yasu
-  ğŒƒ}ƒNƒ–¼•ÏX
+  æ¡ä»¶ãƒã‚¯ãƒ­åå¤‰æ›´
 
   Revision 1.12  2005/07/30 22:30:59  yasu
-  “®ì‚·‚é‚æ‚¤‚ÉC³
+  å‹•ä½œã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.11  2005/07/30 15:34:39  yasu
-  ƒRƒ}ƒ“ƒhƒpƒCƒv•ª—£‚É‚Æ‚à‚È‚¤C³
+  ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—åˆ†é›¢ã«ã¨ã‚‚ãªã†ä¿®æ­£
 
   Revision 1.10  2005/07/28 11:15:17  yasu
-  SOC_Poll ‚ÌÀ‘•
+  SOC_Poll ã®å®Ÿè£…
 
   Revision 1.9  2005/07/27 12:23:07  yasu
-  sendto ‚Ì’Ç‰Á
+  sendto ã®è¿½åŠ 
 
   Revision 1.8  2005/07/27 11:59:48  yasu
-  SOC ŠÖ”’Ç‰Á
+  SOC é–¢æ•°è¿½åŠ 
 
   Revision 1.7  2005/07/26 00:08:01  yasu
-  SOC_Startup ‚Æ SOCL_Startup ‚Ì˜AŒ‹
+  SOC_Startup ã¨ SOCL_Startup ã®é€£çµ
 
   Revision 1.6  2005/07/25 10:15:01  yasu
-  SOC ƒ‰ƒCƒuƒ‰ƒŠ‚Ì’Ç‰Á
+  SOC ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®è¿½åŠ 
 
   Revision 1.5  2005/07/22 13:57:13  yasu
-  listen accept ‚Ì’Ç‰Á
+  listen accept ã®è¿½åŠ 
 
   Revision 1.4  2005/07/22 12:45:15  yasu
-  ”ñ“¯Šúˆ—‰¼À‘•
+  éåŒæœŸå‡¦ç†ä»®å®Ÿè£…
 
   Revision 1.3  2005/07/19 14:05:14  yasu
-  SOCL_Read/Write ’Ç‰Á
+  SOCL_Read/Write è¿½åŠ 
 
   Revision 1.2  2005/07/18 13:16:45  yasu
-  ‘—MóMƒXƒŒƒbƒh‚ğì¬‚·‚é
+  é€ä¿¡å—ä¿¡ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½œæˆã™ã‚‹
 
   Revision 1.1  2005/07/15 13:32:51  yasu
-  soc ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒwƒbƒ_‚ğ’²®
+  soc ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ˜ãƒƒãƒ€ã‚’èª¿æ•´
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -230,22 +230,22 @@ extern "C" {
 #endif
 
 //---------------------------------------------------------------------------
-//  SOCL ƒ‰ƒCƒuƒ‰ƒŠİ’è
+//  SOCL ãƒ©ã‚¤ãƒ–ãƒ©ãƒªè¨­å®š
 //---------------------------------------------------------------------------
-//  ”Ä—p
+//  æ±ç”¨
 typedef CPSInAddr   SOCLInAddr;
 #define SOCL2CPSInAddr(socl)    ((CPSInAddr) (socl))
 
-//  ‘—MƒXƒ‹[ƒvƒbƒgÅ“K‰»—pƒXƒCƒbƒ`
+//  é€ä¿¡ã‚¹ãƒ«ãƒ¼ãƒ—ãƒƒãƒˆæœ€é©åŒ–ç”¨ã‚¹ã‚¤ãƒƒãƒ
 #define SOCL_OPTIMIZE_TCP_SEND  1
 
 //---------------------------------------------------------------------------
 
-//  ƒ\ƒPƒbƒg\‘¢‘Ì
+//  ã‚½ã‚±ãƒƒãƒˆæ§‹é€ ä½“
 
 //---------------------------------------------------------------------------
 
-// ƒŠƒ“ƒNƒoƒbƒtƒ@
+// ãƒªãƒ³ã‚¯ãƒãƒƒãƒ•ã‚¡
 typedef struct SOCLiSocketRingBuffer
 {
     CPSSocBuf       area;   // struct {u32 size; u8* data;}
@@ -255,7 +255,7 @@ typedef struct SOCLiSocketRingBuffer
 
 } SOCLiSocketRingBuffer;
 
-// UDP ƒf[ƒ^ƒwƒbƒ_
+// UDP ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€
 typedef struct SOCLiSocketUdpData
 {
     struct SOCLiSocketUdpData*  next;
@@ -265,7 +265,7 @@ typedef struct SOCLiSocketUdpData
 
 } SOCLiSocketUdpData;
 
-// UDP ƒf[ƒ^ƒwƒbƒ_ƒRƒ“ƒgƒ[ƒ‹ƒuƒƒbƒN
+// UDP ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯
 typedef struct SOCLiSocketUdpDataControl
 {
     SOCLiSocketUdpData * volatile in;
@@ -276,58 +276,58 @@ typedef struct SOCLiSocketUdpDataControl
 
 } SOCLiSocketUdpDataControl;
 
-// ƒRƒ}ƒ“ƒhƒpƒCƒv
+// ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—
 typedef struct SOCLSocketCommandPipe
 {
-    OSMessageQueue  queue;  // Command ƒLƒ…[
-    OSThread        thread; // Command ÀsƒXƒŒƒbƒh
-    OSMutex         in_use; // Command “Š“ü‚Ì”r‘¼’²®—p
+    OSMessageQueue  queue;  // Command ã‚­ãƒ¥ãƒ¼
+    OSThread        thread; // Command å®Ÿè¡Œã‚¹ãƒ¬ãƒƒãƒ‰
+    OSMutex         in_use; // Command æŠ•å…¥ã®æ’ä»–èª¿æ•´ç”¨
 } SOCLiSocketCommandPipe;
 
-// óM—pƒRƒ}ƒ“ƒhƒpƒCƒv
+// å—ä¿¡ç”¨ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—
 typedef struct SOCLiSocketRecvCommandPipe
 {
     SOCLiSocketCommandPipe  h;
-    vs32    consumed;       // Á”ï‚³‚ê‚½óMƒoƒbƒtƒ@‚Ì—Ê
-    u16     consumed_min;   // Å¬‚Ì consume
-    s8      flag_noconsume; // CONSUME ‚·‚é‚©‚Ç‚¤‚©
+    vs32    consumed;       // æ¶ˆè²»ã•ã‚ŒãŸå—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®é‡
+    u16     consumed_min;   // æœ€å°ã® consume
+    s8      flag_noconsume; // CONSUME ã™ã‚‹ã‹ã©ã†ã‹
     u8      padding[1];
     SOCLiSocketUdpDataControl   udpdata;
 
-    // consumed ‚Í u16 sndbuf.size ‚ğƒ|ƒCƒ“ƒg‚·‚é‚ªA
-    // consumed ‚ÍŒvZ‰ß’ö‚Åˆê“I‚Éƒ}ƒCƒiƒX‚É‚È‚é‰Â”\«‚ª‚ ‚é‚Ì‚Å vu16 ‚Å
-    // ‚È‚­ vs32 ‚É consumed_min ‚ÍŒÅ’è’l‚È‚Ì‚Å u16 ‚É‚·‚é
+    // consumed ã¯ u16 sndbuf.size ã‚’ãƒã‚¤ãƒ³ãƒˆã™ã‚‹ãŒã€
+    // consumed ã¯è¨ˆç®—éç¨‹ã§ä¸€æ™‚çš„ã«ãƒã‚¤ãƒŠã‚¹ã«ãªã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ vu16 ã§
+    // ãªã vs32 ã« consumed_min ã¯å›ºå®šå€¤ãªã®ã§ u16 ã«ã™ã‚‹
 } SOCLiSocketRecvCommandPipe;
 
-// ‘—M—pƒRƒ}ƒ“ƒhƒpƒCƒv
+// é€ä¿¡ç”¨ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—
 typedef struct SOCLiSocketSendCommandPipe
 {
     SOCLiSocketCommandPipe  h;
     SOCLiSocketRingBuffer   buffer;     // struct {u32 size; u8* data;}
-    struct SOCLSocket*      exe_socket; // Send Àsƒ\ƒPƒbƒg
+    struct SOCLSocket*      exe_socket; // Send å®Ÿè¡Œã‚½ã‚±ãƒƒãƒˆ
 } SOCLiSocketSendCommandPipe;
 
-// ƒ\ƒPƒbƒg
+// ã‚½ã‚±ãƒƒãƒˆ
 typedef struct SOCLSocket
 {
-    CPSSoc  cps_socket;         // •K‚¸æ“ª‚É’u‚­‚±‚Æ(UDP ’…M CallBack ‚ÅQÆ‚·‚é‚½‚ß)
+    CPSSoc  cps_socket;         // å¿…ãšå…ˆé ­ã«ç½®ãã“ã¨(UDP ç€ä¿¡ CallBack ã§å‚ç…§ã™ã‚‹ãŸã‚)
     SOCLiSocketRecvCommandPipe*     recv_pipe;
     SOCLiSocketSendCommandPipe*     send_pipe;
-    vs32        result;         // ƒRƒ}ƒ“ƒhƒnƒ“ƒhƒ‰‚Ì Return ’l
-    vs16        state;          // ƒ\ƒPƒbƒg‚Ìó‘Ô
+    vs32        result;         // ã‚³ãƒãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ©ã® Return å€¤
+    vs16        state;          // ã‚½ã‚±ãƒƒãƒˆã®çŠ¶æ…‹
     s8          flag_block;     // OS_MESSAGE_NOBLOCK(0)/BLOCK(1)/BLOCK_NO_RESULT(3)
     s8          flag_mode;      // TCP(0)UDP(1)UDPSEND(2)ICMP(3)SSL(4)
     u16         local_port;
     u16         remote_port;
     SOCLInAddr  remote_ip;
 
-    struct SOCLSocket*  next;   // Ÿ‚Ìƒ\ƒPƒbƒg-ƒŠƒXƒg‚É‚æ‚éŠÇ—
+    struct SOCLSocket*  next;   // æ¬¡ã®ã‚½ã‚±ãƒƒãƒˆ-ãƒªã‚¹ãƒˆã«ã‚ˆã‚‹ç®¡ç†
 } SOCLSocket;
 
 // flag_block
 #define SOCL_FLAGBLOCK_BLOCK    OS_MESSAGE_BLOCK        // 1
 #define SOCL_FLAGBLOCK_NOBLOCK  OS_MESSAGE_NOBLOCK      // 0
-#define SOCL_FLAGBLOCK_NORESULT (OS_MESSAGE_BLOCK | 2)  // ƒRƒ}ƒ“ƒh‚Ì“Š“ü‚ÍƒuƒƒbƒN‚Ås‚È‚¤‚ª‚»‚Ìˆ—I—¹‚Í‘Ò‚½‚È‚¢
+#define SOCL_FLAGBLOCK_NORESULT (OS_MESSAGE_BLOCK | 2)  // ã‚³ãƒãƒ³ãƒ‰ã®æŠ•å…¥ã¯ãƒ–ãƒ­ãƒƒã‚¯ã§è¡Œãªã†ãŒãã®å‡¦ç†çµ‚äº†ã¯å¾…ãŸãªã„
 #define SOCL_FLAGISBLOCK(x)     ((x) & OS_MESSAGE_BLOCK)
 
 static inline BOOL SOCL_SocketIsBlock(SOCLSocket* socket)
@@ -437,7 +437,7 @@ static inline BOOL SOCL_SocketIsReset(SOCLSocket* socket)
 #define SOCL_MSG_DONTWAIT   0x04
 
 //---------------------------------------------------------------------------
-//  SSL ŠÖ˜A
+//  SSL é–¢é€£
 //---------------------------------------------------------------------------
 typedef CPSSslConnection    SOCLSslConnection;
 typedef CPSCaInfo       SOCLCaInfo;
@@ -455,20 +455,20 @@ typedef int (*SOCLSslAuthHandler) (int result, SOCLSslConnection*con, int level)
 #define SOCL_CERT_UNKNOWN_PUBKEYALGORITHM   CPS_CERT_UNKNOWN_PUBKEYALGORITHM
 
 //---------------------------------------------------------------------------
-//  ƒ\ƒPƒbƒgƒXƒŒƒbƒh‚ÌƒRƒ}ƒ“ƒhƒpƒPƒbƒg‚Ì\‘¢‘Ì
+//  ã‚½ã‚±ãƒƒãƒˆã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã®æ§‹é€ ä½“
 //---------------------------------------------------------------------------
-typedef int (*SOCLiCommandHandler) (void*);             // ƒRƒ}ƒ“ƒh‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+typedef int (*SOCLiCommandHandler) (void*);             // ã‚³ãƒãƒ³ãƒ‰ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
 //
 
-// ƒRƒ}ƒ“ƒh‹¤’Ê (‘S‚Ä‚ÌƒRƒ}ƒ“ƒhƒpƒPƒbƒg‚Ìæ“ª‚Í‚±‚ÌŒ`‚É‚È‚é)
+// ã‚³ãƒãƒ³ãƒ‰å…±é€š (å…¨ã¦ã®ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã®å…ˆé ­ã¯ã“ã®å½¢ã«ãªã‚‹)
 
 //
 typedef struct SOCLiCommandHeader
 {
-    SOCLiCommandHandler handler;    // ƒ\ƒPƒbƒgƒXƒŒƒbƒh‚©‚çŒÄ‚Ño‚·ŠÖ”
-    SOCLSocket*         socket;     // ‚±‚±‚Ö‚ÌƒAƒNƒZƒX‚Íó‘Ôƒtƒ‰ƒO•ÏX‚Ì‚İ
-    OSMessageQueue*     response;   // ƒR[ƒ‹ƒoƒbƒNŠ®—¹‚ÌƒŒƒXƒ|ƒ“ƒX‘—Mæ
+    SOCLiCommandHandler handler;    // ã‚½ã‚±ãƒƒãƒˆã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‘¼ã³å‡ºã™é–¢æ•°
+    SOCLSocket*         socket;     // ã“ã“ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã¯çŠ¶æ…‹ãƒ•ãƒ©ã‚°å¤‰æ›´ã®ã¿
+    OSMessageQueue*     response;   // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å®Œäº†ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹é€ä¿¡å…ˆ
     s8  flag_mode;                  // TCP(0) UDP(1) UDPSEND(2) ICMP(3) SSL(4)
     s8  flag_block;                 // OS_MESSAGE_NOBLOCK(0) or BLOCK(1)
     u8  padding[2];
@@ -477,7 +477,7 @@ typedef struct SOCLiCommandHeader
 
 //
 
-// ƒRƒ}ƒ“ƒh: SOCL_Socket
+// ã‚³ãƒãƒ³ãƒ‰: SOCL_Socket
 
 //
 typedef struct SOCLiCommandCreateSocket
@@ -488,50 +488,50 @@ typedef struct SOCLiCommandCreateSocket
 
 //
 
-// ƒRƒ}ƒ“ƒh: SOCL_Bind/SOCL_Connect
+// ã‚³ãƒãƒ³ãƒ‰: SOCL_Bind/SOCL_Connect
 
 //
 typedef struct SOCLiCommandBind
 {
     SOCLiCommandHeader  h;
-    u16         local_port;     // CPS_Bind ƒpƒ‰ƒ[ƒ^
-    u16         remote_port;    // CPS_Bind ƒpƒ‰ƒ[ƒ^
-    SOCLInAddr  remote_ip;      // CPS_Bind ƒpƒ‰ƒ[ƒ^
+    u16         local_port;     // CPS_Bind ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+    u16         remote_port;    // CPS_Bind ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+    SOCLInAddr  remote_ip;      // CPS_Bind ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 } SOCLiCommandBind;
 
 //
 
-// ƒRƒ}ƒ“ƒh: SOCL_ListenAccept
+// ã‚³ãƒãƒ³ãƒ‰: SOCL_ListenAccept
 
 //
 typedef struct SOCLiCommandListenAccept
 {
     SOCLiCommandHeader  h;
-    u16 local_port; // CPS_Bind ƒpƒ‰ƒ[ƒ^
+    u16 local_port; // CPS_Bind ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
     u8  padding[2];
-    volatile u16*           remote_port_ptr;    // CPS_SocWho ƒpƒ‰ƒ[ƒ^
-    volatile SOCLInAddr*    remote_ip_ptr;      // CPS_SocWho ƒpƒ‰ƒ[ƒ^
+    volatile u16*           remote_port_ptr;    // CPS_SocWho ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+    volatile SOCLInAddr*    remote_ip_ptr;      // CPS_SocWho ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 } SOCLiCommandListenAccept;
 
 //
 
-// ƒRƒ}ƒ“ƒh: SOCL_Read
+// ã‚³ãƒãƒ³ãƒ‰: SOCL_Read
 
 //
 typedef struct SOCLiCommandRead
 {
     SOCLiCommandHeader  h;
-    u8*         buffer;         // CPS_Read/Consume ƒpƒ‰ƒ[ƒ^
-    s32         buffer_len;     // CPS_Read/Consume ƒpƒ‰ƒ[ƒ^
-    u16*        remote_port;    // óM‘Šè PORT Ši”[êŠ
-    SOCLInAddr*     remote_ip;  // óM‘Šè IP   Ši”[êŠ
-    s8  flag_noconsume;         // Consume ‚ğs‚È‚¤‚©H
+    u8*         buffer;         // CPS_Read/Consume ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+    s32         buffer_len;     // CPS_Read/Consume ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+    u16*        remote_port;    // å—ä¿¡ç›¸æ‰‹ PORT æ ¼ç´å ´æ‰€
+    SOCLInAddr*     remote_ip;  // å—ä¿¡ç›¸æ‰‹ IP   æ ¼ç´å ´æ‰€
+    s8  flag_noconsume;         // Consume ã‚’è¡Œãªã†ã‹ï¼Ÿ
     u8  padding[3];
 } SOCLiCommandRead;
 
 //
 
-// ƒRƒ}ƒ“ƒh: SOCL_Consume
+// ã‚³ãƒãƒ³ãƒ‰: SOCL_Consume
 
 //
 typedef struct SOCLiCommandConsume
@@ -542,7 +542,7 @@ typedef struct SOCLiCommandConsume
 
 //
 
-// ƒRƒ}ƒ“ƒh: SOCL_Write
+// ã‚³ãƒãƒ³ãƒ‰: SOCL_Write
 
 //
 typedef struct SOCLiCommandWrite
@@ -562,7 +562,7 @@ typedef struct SOCLiCommandWrite
 
 //
 
-// ƒRƒ}ƒ“ƒh: SOCL_Shutdown
+// ã‚³ãƒãƒ³ãƒ‰: SOCL_Shutdown
 
 //
 typedef struct SOCLiCommandShutdown
@@ -573,7 +573,7 @@ typedef struct SOCLiCommandShutdown
 
 //
 
-// ƒRƒ}ƒ“ƒh: SOCL_Close
+// ã‚³ãƒãƒ³ãƒ‰: SOCL_Close
 
 //
 typedef struct SOCLiCommandClose
@@ -584,7 +584,7 @@ typedef struct SOCLiCommandClose
 
 //
 
-// ƒRƒ}ƒ“ƒh: SOCL_EnableSsl
+// ã‚³ãƒãƒ³ãƒ‰: SOCL_EnableSsl
 
 //
 typedef struct SOCLiCommandEnableSsl
@@ -594,8 +594,8 @@ typedef struct SOCLiCommandEnableSsl
 } SOCLiCommandEnableSsl;
 
 //
-// ‚Ç‚ÌƒRƒ}ƒ“ƒhƒpƒPƒbƒg‚Å‚àŠi”[‰Â”\‚ÈƒTƒCƒY‚ÌƒpƒPƒbƒg
-// ƒRƒ}ƒ“ƒh‚ª’Ç‰Á‚³‚ê‚é‚½‚Ñ‚É‚±‚±‚Éƒƒ“ƒo[‚ğ’Ç‰Á‚·‚é‚±‚Æ
+// ã©ã®ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã§ã‚‚æ ¼ç´å¯èƒ½ãªã‚µã‚¤ã‚ºã®ãƒ‘ã‚±ãƒƒãƒˆ
+// ã‚³ãƒãƒ³ãƒ‰ãŒè¿½åŠ ã•ã‚Œã‚‹ãŸã³ã«ã“ã“ã«ãƒ¡ãƒ³ãƒãƒ¼ã‚’è¿½åŠ ã™ã‚‹ã“ã¨
 //
 typedef union SOCLiCommandPacket
 {
@@ -613,17 +613,17 @@ typedef union SOCLiCommandPacket
 } SOCLiCommandPacket;
 
 //
-// ƒRƒ}ƒ“ƒhƒpƒPƒbƒgƒLƒ…[
+// ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã‚­ãƒ¥ãƒ¼
 //
-// “¯‚ÉƒLƒ…[ƒCƒ“ƒO‚³‚ê‚éƒ\ƒPƒbƒgƒRƒ}ƒ“ƒhƒpƒPƒbƒg‚ÌÅ‘å”D
-// ‚±‚ê‚ğæ“¾‚·‚é‚Æ‚«‚É‚à BLOCK ˆ—‚ªs‚È‚í‚ê‚é‚½‚ßA”‚ğ’´‚¦‚½
-// ‚Æ‚«‚É‚à’v–½“I‚É‚Í‚È‚ç‚È‚¢D(NOBLOCK ‚Ì‚ÍƒGƒ‰[‚Æ‚È‚é)
+// åŒæ™‚ã«ã‚­ãƒ¥ãƒ¼ã‚¤ãƒ³ã‚°ã•ã‚Œã‚‹ã‚½ã‚±ãƒƒãƒˆã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã®æœ€å¤§æ•°ï¼
+// ã“ã‚Œã‚’å–å¾—ã™ã‚‹ã¨ãã«ã‚‚ BLOCK å‡¦ç†ãŒè¡Œãªã‚ã‚Œã‚‹ãŸã‚ã€æ•°ã‚’è¶…ãˆãŸ
+// ã¨ãã«ã‚‚è‡´å‘½çš„ã«ã¯ãªã‚‰ãªã„ï¼(NOBLOCK ã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹)
 //
 #define SOCL_CMDPACKET_MAX  64
 
 //---------------------------------------------------------------------------
 
-//  ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»—pƒpƒ‰ƒ[ƒ^
+//  ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
 //---------------------------------------------------------------------------
 typedef struct
@@ -639,15 +639,15 @@ typedef struct
     void*  (*alloc) (u32);
     void (*free) (void*);
 
-    u32     cmd_packet_max;     // ƒRƒ}ƒ“ƒhƒpƒPƒbƒg‚ÌÅ‘å”
-    u32     lan_buffer_size;    // 0 ‚È‚ç *alloc ‚Å©—ÍŠm•Û
-    void*   lan_buffer;         // 0 ‚È‚ç default(16384)İ’è
+    u32     cmd_packet_max;     // ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã®æœ€å¤§æ•°
+    u32     lan_buffer_size;    // 0 ãªã‚‰ *alloc ã§è‡ªåŠ›ç¢ºä¿
+    void*   lan_buffer;         // 0 ãªã‚‰ default(16384)è¨­å®š
 
-    // CPS ƒXƒŒƒbƒh‚Ì—Dæ“x
-    // 0 ‚È‚ç SOCL_CPS_SOCKET_THREAD_PRIORITY
+    // CPS ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆåº¦
+    // 0 ãªã‚‰ SOCL_CPS_SOCKET_THREAD_PRIORITY
     s32     cps_thread_prio;
 
-    // ’ÊMƒoƒbƒtƒ@ƒTƒCƒY
+    // é€šä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
     s32     mtu;                //default 1500
     s32     rwin;
 } SOCLConfig;
@@ -691,7 +691,7 @@ static inline u32 SOCL_GetSslHandshakePriority(void)
 
 //---------------------------------------------------------------------------
 
-// ƒ\ƒPƒbƒg\‘¢‘Ì‰Šú‰»—pƒpƒ‰ƒ[ƒ^ (socl_const.c QÆ)
+// ã‚½ã‚±ãƒƒãƒˆæ§‹é€ ä½“åˆæœŸåŒ–ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ (socl_const.c å‚ç…§)
 
 //---------------------------------------------------------------------------
 typedef struct SOCLSocketThreadParam
@@ -709,17 +709,17 @@ typedef struct SOCLSocketBufferParam
     u16 sndbuf_size;
     u16 linbuf_size;
     u16 outbuf_size;
-    u16 wrtbuf_size;                        // ƒ‰ƒCƒg—pƒŠƒ“ƒOƒoƒbƒtƒ@
-    u16 udpbuf_size;                        // UDP óM—pƒoƒbƒtƒ@
+    u16 wrtbuf_size;                        // ãƒ©ã‚¤ãƒˆç”¨ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡
+    u16 udpbuf_size;                        // UDP å—ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡
 } SOCLSocketBufferParam;
 
 typedef struct SOCLSocketParam
 {
-    s8  flag_mode;                          // TCP/UDP İ’è 0:TCP 1:UDP 3:PING 4:SSL
+    s8  flag_mode;                          // TCP/UDP è¨­å®š 0:TCP 1:UDP 3:PING 4:SSL
     s8  flag_block;                         // BLOCK MODE   0:NOBLOCK 1:BLOCK
-    SOCLSocketBufferParam       buffer;     // ‘—óMƒoƒbƒtƒ@—pİ’è
-    SOCLSocketCommandPipeParam  recv_pipe;  // óMƒ\ƒPƒbƒgˆ—ƒXƒŒƒbƒh—p
-    SOCLSocketCommandPipeParam  send_pipe;  // ‘—Mƒ\ƒPƒbƒgˆ—ƒXƒŒƒbƒh—p
+    SOCLSocketBufferParam       buffer;     // é€å—ä¿¡ãƒãƒƒãƒ•ã‚¡ç”¨è¨­å®š
+    SOCLSocketCommandPipeParam  recv_pipe;  // å—ä¿¡ã‚½ã‚±ãƒƒãƒˆå‡¦ç†ã‚¹ãƒ¬ãƒƒãƒ‰ç”¨
+    SOCLSocketCommandPipeParam  send_pipe;  // é€ä¿¡ã‚½ã‚±ãƒƒãƒˆå‡¦ç†ã‚¹ãƒ¬ãƒƒãƒ‰ç”¨
 } SOCLSocketParam;
 
 extern SOCLSocketParam  SOCLSocketParamTCP;
@@ -731,7 +731,7 @@ extern SOCLSocketParam  SOCLSocketParamUDPSend;
 //--- TCP
 #define SOCL_TCP_SOCKET_CPS_RCVBUF_SIZE (1460 * 2)  // cps.rcvbuf_size
 
-// cps.rcvbuf ‚ğ consume ‚·‚éÅ¬‚Ì’·‚³(TCP ‚Ì ACK §Œä‚Ì‚½‚ß, UDP‚Í1ŒÅ’è)
+// cps.rcvbuf ã‚’ consume ã™ã‚‹æœ€å°ã®é•·ã•(TCP ã® ACK åˆ¶å¾¡ã®ãŸã‚, UDPã¯1å›ºå®š)
 #define SOCL_TCP_SOCKET_CPS_RCVBUF_CONSUME_MIN  1460
 
 #if SOCL_OPTIMIZE_TCP_SEND
@@ -750,8 +750,8 @@ extern SOCLSocketParam  SOCLSocketParamUDPSend;
 #define SOCL_TCP_SOCKET_SEND_THREAD_QUEUE_MAX   32      // thread.queue_max
 
 //--- UDP
-// SOCL_UDP_SOCKET_CPS_SNDBUF_SIZE ‚Í UDP ‚Å‘—‚é‚±‚Æ‚Ìo—ˆ‚éÅ‘åƒf[ƒ^ƒOƒ‰ƒ€’·
-// ‚ğ§Œä‚·‚é’l‚Æ‚È‚éD
+// SOCL_UDP_SOCKET_CPS_SNDBUF_SIZE ã¯ UDP ã§é€ã‚‹ã“ã¨ã®å‡ºæ¥ã‚‹æœ€å¤§ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ©ãƒ é•·
+// ã‚’åˆ¶å¾¡ã™ã‚‹å€¤ã¨ãªã‚‹ï¼
 #define SOCL_UDP_SOCKET_CPS_RCVBUF_SIZE         1472    // cps.rcvbuf_size
 #define SOCL_UDP_SOCKET_CPS_SNDBUF_SIZE         1514    // cps.buffer_size
 #define SOCL_UDP_SOCKET_SEND_WRTBUF_SIZE        (SOCL_UDP_SOCKET_CPS_SNDBUF_SIZE + 256 + 1) // wrtbuf_size
@@ -778,7 +778,7 @@ extern SOCLSocketParam  SOCLSocketParamUDPSend;
 #define SOCL_UDP_SNDBUF_NOCOPY_OFFSET   (14 + 20 + 8)
 
 //---------------------------------------------------------------------------
-//  API ƒvƒƒgƒ^ƒCƒvéŒ¾
+//  API ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //---------------------------------------------------------------------------
 int     SOCLi_StartupCommandPacketQueue(s32 cp_max_count);
 int     SOCLi_CleanupCommandPacketQueue(void);
@@ -866,7 +866,7 @@ int SOCL_EnableSsl(int s, SOCLSslConnection* con);
 #define SOCL_POLLWRITESTATUS    (SOCL_POLLWRNORM | SOCL_POLLERRORSTATUS)
 
 //---------------------------------------------------------------------------
-// ƒvƒ‰ƒCƒx[ƒgŠÖ”
+// ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 SOCLSocket*     SOCLi_StartupSocket(const SOCLSocketParam* param);
 void        SOCLi_CleanupSocket(SOCLSocket* socket);
 void        SOCLi_TrashSocket(void);
@@ -886,10 +886,10 @@ extern SOCLSocket*  SOCLiSocketListTrash;
 /*---------------------------------------------------------------------------*
   Name:         SOCL_TcpSocket/SOCL_UdpSocket
 
-  Description:  ƒfƒtƒHƒ‹ƒgƒpƒ‰ƒ[ƒ^‚ğg‚Á‚Äƒ\ƒPƒbƒg‚ğì¬‚·‚éD
-                inline ‚É‚·‚é‚±‚Æ‚ÅATCP/UDP ‚Ì”»’è‚ğƒRƒ“ƒpƒCƒ‹‚É
-                ‚¨‚¯‚éÅ“K‰»ˆ—‚É‰ğŒˆ‚µA•K—v‚Ì–³‚¢ƒpƒ‰ƒ[ƒ^ƒe[ƒuƒ‹‚ğ
-                deadstrip ‚É‚©‚¯‚é‚±‚Æ‚ğ‘_‚Á‚Ä‚¢‚éD
+  Description:  ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä½¿ã£ã¦ã‚½ã‚±ãƒƒãƒˆã‚’ä½œæˆã™ã‚‹ï¼
+                inline ã«ã™ã‚‹ã“ã¨ã§ã€TCP/UDP ã®åˆ¤å®šã‚’ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã«
+                ãŠã‘ã‚‹æœ€é©åŒ–å‡¦ç†æ™‚ã«è§£æ±ºã—ã€å¿…è¦ã®ç„¡ã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’
+                deadstrip ã«ã‹ã‘ã‚‹ã“ã¨ã‚’ç‹™ã£ã¦ã„ã‚‹ï¼
  *---------------------------------------------------------------------------*/
 static inline int SOCL_TcpSocket(void)
 {
@@ -909,7 +909,7 @@ static inline int SOCL_UdpSendSocket(void)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_Alloc/SOCLi_Free
 
-  Description:  SOCLStartup() ‚Åw’è‚³‚ê‚½ Alloc/Free ŠÖ”‚ğŒÄ‚Ño‚·‚½‚ß
+  Description:  SOCLStartup() ã§æŒ‡å®šã•ã‚ŒãŸ Alloc/Free é–¢æ•°ã‚’å‘¼ã³å‡ºã™ãŸã‚
  *---------------------------------------------------------------------------*/
 extern CPSConfig        SOCLiCPSConfig;
 extern const SOCLConfig*    SOCLiConfigPtr;
@@ -927,8 +927,8 @@ static inline void SOCLi_Free(void* ptr)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_GetHostPort
 
-  Description:  ©ƒzƒXƒg‚Ì host port ƒAƒhƒŒƒX‚ğæ“¾‚·‚é
-                ‚Ü‚¾æ“¾‚Å‚«‚Ä‚¢‚È‚È‚ç 0 ‚Æ‚È‚éD
+  Description:  è‡ªãƒ›ã‚¹ãƒˆã® host port ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
+                ã¾ã å–å¾—ã§ãã¦ã„ãªãªã‚‰ 0 ã¨ãªã‚‹ï¼
  *---------------------------------------------------------------------------*/
 static inline u16 SOCL_GetHostPort(int s)
 {
@@ -943,7 +943,7 @@ static inline u16 SOCL_GetHostPort(int s)
   Name:         SOCL_IsBlock
   Name:         SOCL_IsNoBlock
 
-  Description:  ƒ\ƒPƒbƒg‚Ìƒ^ƒCƒv‚ğæ“¾/İ’è‚·‚é
+  Description:  ã‚½ã‚±ãƒƒãƒˆã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—/è¨­å®šã™ã‚‹
  *---------------------------------------------------------------------------*/
 static inline void SOCL_SetBlock(int s)
 {
@@ -969,7 +969,7 @@ static inline BOOL SOCL_IsNoBlock(int s)
   Name:         SOCL_GetReadStatus
   Name:         SOCL_GetWriteStatus
 
-  Description:  ƒ\ƒPƒbƒg‚Ì R/W ó‘Ô‚ğæ“¾‚·‚é
+  Description:  ã‚½ã‚±ãƒƒãƒˆã® R/W çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
  *---------------------------------------------------------------------------*/
 static inline int SOCL_GetReadStatus(int s)
 {
@@ -984,9 +984,9 @@ static inline int SOCL_GetWriteStatus(int s)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_AddRandomSeed
 
-  Description:  SSL ‚Åg—p‚·‚é—”—p‚Ìí‚ğ˜a‚·‚é
-                OS_GetLowEntropyData ŠÖ”‚Ì•Ô‚è’l‚ğ’èŠú“I‚É—^‚¦‚é‚×‚«‚Å‚ ‚é
-                SOCL ‚Ì‰Šú‰»‘O‚Å‚àŒÄ‚Ño‚µ‰Â”\.
+  Description:  SSL ã§ä½¿ç”¨ã™ã‚‹ä¹±æ•°ç”¨ã®ç¨®ã‚’æ”ªæ‹Œã™ã‚‹
+                OS_GetLowEntropyData é–¢æ•°ã®è¿”ã‚Šå€¤ã‚’å®šæœŸçš„ã«ä¸ãˆã‚‹ã¹ãã§ã‚ã‚‹
+                SOCL ã®åˆæœŸåŒ–å‰ã§ã‚‚å‘¼ã³å‡ºã—å¯èƒ½.
  *---------------------------------------------------------------------------*/
 static inline void SOCL_AddRandomSeed(void* seed, u32 len)
 {
@@ -998,7 +998,7 @@ static inline void SOCL_AddRandomSeed(void* seed, u32 len)
 
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_CheckCount
-  Description:  “Á’è‚Ìˆ—‚ª‹N‚±‚Á‚½‰ñ”‚ğƒJƒEƒ“ƒg‚·‚é‚½‚ß‚ÌƒJƒEƒ“ƒ^
+  Description:  ç‰¹å®šã®å‡¦ç†ãŒèµ·ã“ã£ãŸå›æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ãŸã‚ã®ã‚«ã‚¦ãƒ³ã‚¿
  *---------------------------------------------------------------------------*/
 enum
 {
@@ -1006,7 +1006,7 @@ enum
     SOCL_CHECKCOUNT_UDPRCVCB_2,
     SOCL_CHECKCOUNT_MAX
 };
-extern u32 SOCLi_CheckCount[SOCL_CHECKCOUNT_MAX];   // –{‘Ì‚Í socl_read.c “à
+extern u32 SOCLi_CheckCount[SOCL_CHECKCOUNT_MAX];   // æœ¬ä½“ã¯ socl_read.c å†…
 #ifdef __cplusplus
 
 }

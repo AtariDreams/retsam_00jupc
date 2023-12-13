@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_G2dSetOamManagerAffine</title>
@@ -11,7 +11,7 @@
 
 <body>
 <h1 align="left">NNS_G2dSetOamManagerAffine</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -21,53 +21,53 @@
                          const MtxFx22*                mtx, 
                          u16                           idx );</CODE></pre>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pMan</font></strong></em></td>
-    <td width="87%">[OUT] OAM�}�l�[�W���̎���</td>
+    <td width="87%">[OUT] OAMマネージャの実態</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New"><CODE>mtx</CODE></font></strong></em></td>
-    <td width="87%">[IN] �A�t�B���ϊ��s��</td>
+    <td width="87%">[IN] アフィン変換行列</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New"><CODE>idx</CODE></font></strong></em></td>
-    <td width="87%">[IN] �A�t�B���p�����[�^�C���f�b�N�X</td>
+    <td width="87%">[IN] アフィンパラメータインデックス</td>
   </tr>
   </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B<BR>
+<h2>返り値</h2>
+<p>なし。<BR>
 </p>
-<H2>����</H2>
-<P>OAM�}�l�[�W���ɃA�t�B���p�����[�^���C���f�b�N�X�w��Őݒ肵�܂��B<BR>
-OAM�}�l�[�W�����̂ɂ���ĊǗ�����Ă��Ȃ��A�A�t�B���p�����[�^�ɑ΂��ėL���ł��B<BR>
-�A�t�B���p�����[�^�Ǘ���Ԃł�NNS_G2dEntryOamManagerAffine()�����g�p���������B<BR>
-OAM�}�l�[�W�����̂ɊǗ����ꂽ�A�t�B���p�����[�^�̈�ɑ΂��Đݒ���s�����ꍇ�́A�x�������܂��B<BR>
-NNS_G2dEntryOamAffine()����������܂����B�ȑO�̊֐��͕ʖ��Ƃ��Ďc����Ă��܂��B<BR>
+<H2>説明</H2>
+<P>OAMマネージャにアフィンパラメータをインデックス指定で設定します。<BR>
+OAMマネージャ実体によって管理されていない、アフィンパラメータに対して有効です。<BR>
+アフィンパラメータ管理状態ではNNS_G2dEntryOamManagerAffine()をご使用ください。<BR>
+OAMマネージャ実体に管理されたアフィンパラメータ領域に対して設定を行った場合は、警告をします。<BR>
+NNS_G2dEntryOamAffine()が改名されました。以前の関数は別名として残されています。<BR>
 </p>
 <BR>
-NNSG2dOamType�̒�`�͈ȉ��̂Ƃ���ł��B
+NNSG2dOamTypeの定義は以下のとおりです。
 <pre><CODE>
 typedef enum NNSG2dOamType
 {
-    NNS_G2D_OAMTYPE_INVALID = 0,            // �s���Ȏ��
+    NNS_G2D_OAMTYPE_INVALID = 0,            // 不正な種類
     NNS_G2D_OAMTYPE_MAIN,                   // Oam in Main 2D Graphics Engine.
     NNS_G2D_OAMTYPE_SUB,                    // Oam in Sub  2D Graphics Engine.
-    NNS_G2D_OAMTYPE_SOFTWAREEMULATION,      // 3D Graphics Engine �� �g�p���� �G�~�����[�V����
+    NNS_G2D_OAMTYPE_SOFTWAREEMULATION,      // 3D Graphics Engine を 使用した エミュレーション
     NNS_G2D_OAMTYPE_MAX         
     
 }NNSG2dOamType;
 </pre></CODE>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <CODE><A href="NNS_G2dEntryOamAffine.html">NNS_G2dEntryOamAffine</A><br></CODE>
 <CODE><A href="NNS_G2dEntryOamManagerAffine.html">NNS_G2dEntryOamManagerAffine</A><br>
 </CODE></p>
-<H2>����</H2>
-<P>2004/10/12 ��A�̏C���B�����̒ǉ��B</P>
-<P>2004/08/02 �֐������̎��{</P><P>2004/05/28 ����</P>
+<H2>履歴</H2>
+<P>2004/10/12 誤植の修正。説明の追加。</P>
+<P>2004/08/02 関数改名の実施</P><P>2004/05/28 初版</P>
 </body>
 </html>

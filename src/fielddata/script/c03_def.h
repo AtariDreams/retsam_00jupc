@@ -1,7 +1,7 @@
 #ifndef _C03_DEF_H_
 #define _C03_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C03_RIVAL		(1)
 #define	SCRID_C03_BOY2		(2)
 #define	SCRID_POS_C03_BOY2		(3)
@@ -24,6 +24,6 @@
 #define	SCRID_C03_GIRL3A		(20)
 #define	SCRID_C03_POKE1		(21)
 #define	SCRID_C03_POKE2		(22)
-#define	SCRID_C03_DATA_MAX		(22)		//最大数
+#define	SCRID_C03_DATA_MAX		(22)		//譛螟ｧ謨ｰ
 
 #endif //_C03_DEF_H_

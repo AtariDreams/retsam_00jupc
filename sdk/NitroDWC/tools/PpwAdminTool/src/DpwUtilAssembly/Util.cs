@@ -49,7 +49,7 @@ namespace AdminTool
                 case 6:
                     return Language.KR;
                 default:
-                    throw new Exception("Œ¾ŒêƒR[ƒh‚ª•s³‚Å‚·");
+                    throw new Exception("è¨€èªã‚³ãƒ¼ãƒ‰ãŒä¸æ­£ã§ã™");
             }
         }
 
@@ -72,7 +72,7 @@ namespace AdminTool
                 case Language.KR:
                     return 6;
                 default:
-                    throw new Exception("•s³‚ÈŒ¾ŒêƒR[ƒh‚ÌƒCƒ“ƒfƒbƒNƒX‚Å‚·B");
+                    throw new Exception("ä¸æ­£ãªè¨€èªã‚³ãƒ¼ãƒ‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§ã™ã€‚");
             }
         }
 
@@ -97,18 +97,18 @@ namespace AdminTool
 
             foreach (string line in lines)
             {
-                //ƒ^ƒu‚Å•ªŠ„
+                //ã‚¿ãƒ–ã§åˆ†å‰²
                 result.Add(new List<string>(line.Split('\t')));
             }
             return result;
         }
 
-        // byte‚ÌList‚ğƒGƒ“ƒfƒBƒAƒ“ˆË‘¶‚Åshort‚É‚·‚éBƒVƒXƒeƒ€‚ÌƒGƒ“ƒfƒBƒAƒ“‚Æ‹t‚É‚·‚é‚Æ‚«‚Íreverse‚ğtrue‚É‚·‚éB
+        // byteã®Listã‚’ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³ä¾å­˜ã§shortã«ã™ã‚‹ã€‚ã‚·ã‚¹ãƒ†ãƒ ã®ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³ã¨é€†ã«ã™ã‚‹ã¨ãã¯reverseã‚’trueã«ã™ã‚‹ã€‚
         public static List<ushort> BytesToUShorts(List<byte> list, bool reverse)
         {
             if(list.Count % 2 == 1)
             {
-                throw new Exception("—v‘f”‚ªŠï”‚Å‚·B");
+                throw new Exception("è¦ç´ æ•°ãŒå¥‡æ•°ã§ã™ã€‚");
             }
 
             List<ushort> result = new List<ushort>();
@@ -118,14 +118,14 @@ namespace AdminTool
             {
                 if (reverse ^ !BitConverter.IsLittleEndian)
                 {
-                    // ”½“]‚µ‚È‚¢
-                    // !reverse‚©‚ÂƒrƒbƒOƒGƒ“ƒfƒBƒAƒ“
-                    // reverse‚©‚ÂƒŠƒgƒ‹ƒGƒ“ƒfƒBƒAƒ“ ‚Ì‚Æ‚«
+                    // åè»¢ã—ãªã„
+                    // !reverseã‹ã¤ãƒ“ãƒƒã‚°ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³
+                    // reverseã‹ã¤ãƒªãƒˆãƒ«ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³ ã®ã¨ã
                     s = (ushort)(list[i] << 8 | list[i + 1]);
                 }
                 else
                 {
-                    // ”½“]‚·‚é
+                    // åè»¢ã™ã‚‹
                     s = (ushort)(list[i+1] << 8 | list[i]);
                 }
                 result.Add(s);
@@ -138,7 +138,7 @@ namespace AdminTool
             List<byte> result = new List<byte>();
             foreach (ushort s in list)
             {
-                byte[] bytes = BitConverter.GetBytes(s);    // GetBytes‚ÍƒVƒXƒeƒ€ƒGƒ“ƒfƒBƒAƒ“ˆË‘¶
+                byte[] bytes = BitConverter.GetBytes(s);    // GetBytesã¯ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³ä¾å­˜
                 if (reverse)
                 {
                     Array.Reverse(bytes);
@@ -167,14 +167,14 @@ namespace AdminTool
             return result;
         }
 
-        // NULL•¶š‚Æ‚»‚ÌŒã‚Ì•¶š‚ğíœ‚µ‚½‚à‚Ì‚ğ•Ô‚·
+        // NULLæ–‡å­—ã¨ãã®å¾Œã®æ–‡å­—ã‚’å‰Šé™¤ã—ãŸã‚‚ã®ã‚’è¿”ã™
         public static string TrimNullString(string str)
         {
             int index = str.IndexOf('\0');
             return str.Remove(index);
         }
 
-        // ƒ|ƒPƒR[ƒh‚ÌƒŠƒXƒg‚©‚çƒgƒŠƒ€‚³‚ê‚½Unicode•¶š—ñ‚É•ÏŠ·‚·‚éB
+        // ãƒã‚±ã‚³ãƒ¼ãƒ‰ã®ãƒªã‚¹ãƒˆã‹ã‚‰ãƒˆãƒªãƒ ã•ã‚ŒãŸUnicodeæ–‡å­—åˆ—ã«å¤‰æ›ã™ã‚‹ã€‚
         public static string UShortListToUnicodeString(List<ushort> pokeList)
         {
             List<byte> bytes = Util.UShortsToBytes(pokeList, false);
@@ -182,13 +182,13 @@ namespace AdminTool
         }
 
         public const string LFString = "<LF>";
-	    // <LF>‚©‚ç‰üsƒR[ƒh‚É•ÏŠ·‚·‚é
+	    // <LF>ã‹ã‚‰æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã«å¤‰æ›ã™ã‚‹
 	    public static string ConvMacroToLF(string src)
 	    {
 		    return src.Replace(LFString, "\n");
 	    }
 
-	    // ‰üsƒR[ƒh‚©‚ç<LF>‚É•ÏŠ·‚·‚é
+	    // æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‹ã‚‰<LF>ã«å¤‰æ›ã™ã‚‹
 	    public static string ConvLFToMacro(string src)
 	    {
 		    return src.Replace("\n", LFString);

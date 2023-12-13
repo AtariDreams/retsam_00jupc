@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	client.h
- * @bfief	戦闘クライアントプログラム
+ * @bfief	謌ｦ髣倥け繝ｩ繧､繧｢繝ｳ繝医�励Ο繧ｰ繝ｩ繝
  * @author	HisashiSogabe
  * @date	05.05.24
  */
@@ -14,7 +14,7 @@
 #include	"battle/battle_common.h"
 #include	"battle/fight.h"
 
-///<クライアント関数テーブルジャンプ用定数定義
+///<繧ｯ繝ｩ繧､繧｢繝ｳ繝磯未謨ｰ繝�繝ｼ繝悶Ν繧ｸ繝｣繝ｳ繝礼畑螳壽焚螳夂ｾｩ
 enum{
 	CL_ENCOUNT_EFFECT=1,
 	CL_POKEMON_ENCOUNT,

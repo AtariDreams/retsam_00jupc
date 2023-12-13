@@ -1,24 +1,24 @@
-#ƒ‰ƒ“ƒ_ƒ€‚Ìí‹›’Ş‚èƒ|ƒCƒ“ƒgƒf[ƒ^ì¬
-#ƒ}ƒbƒvƒ}ƒgƒŠƒbƒNƒX‚Ì‰¡•‚ª1‚Ì‚Æ‚«ê—p‚Ìˆ—‚Å‚·
+#ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®é­šé‡£ã‚Šãƒã‚¤ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
+#ãƒãƒƒãƒ—ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã®æ¨ªå¹…ãŒ1ã®ã¨ãå°‚ç”¨ã®å‡¦ç†ã§ã™
 
 def make_data(inFile, d_ary, w_ary,block_ofs)
 	idx_ary = Array.new(0)
 	water = 0
 	cnt = 0
 	while cnt<32*32
-		#‰ºˆÊ1ƒoƒCƒg“Ç‚Ş
+		#ä¸‹ä½1ãƒã‚¤ãƒˆèª­ã‚€
 		data = inFile.read(1)
-		#…ƒAƒgƒŠƒrƒ…[ƒg‚©ƒ`ƒFƒbƒN
+		#æ°´ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‹ãƒã‚§ãƒƒã‚¯
 		attr_str_ary = data.unpack("B8")
 		attr_str = attr_str_ary.shift
 		attr_str.insert(0,"0b")
 		attr = attr_str.to_i(0)
 		if attr == 21 then
 			idx_ary << (cnt+(32*32*block_ofs))
-			#…‚È‚ç‚ÎƒJƒEƒ“ƒgƒAƒbƒv
+			#æ°´ãªã‚‰ã°ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 			water = water+1
 		end
-		#ãˆÊ‚PƒoƒCƒg“Ç‚Ş(‰ğß‚Í‚µ‚È‚¢)
+		#ä¸Šä½ï¼‘ãƒã‚¤ãƒˆèª­ã‚€(è§£é‡ˆã¯ã—ãªã„)
 		data = inFile.read(1)
 		cnt = cnt+1
 	end
@@ -38,15 +38,15 @@ end
 
 fish_point = open("bin/fishing_point.bin","wb")
 fish_csv = open("fish.csv","r")
-## ƒ|ƒPƒ‚ƒ“–¼‚Ì‚Æ‚±‚ë‚Í“Ç‚İ”ò‚Î‚·
+## ãƒã‚±ãƒ¢ãƒ³åã®ã¨ã“ã‚ã¯èª­ã¿é£›ã°ã™
 while line = fish_csv.gets
 	if line =~/^#END/ then
 		break
 	end
 end	#while
 
-line = fish_csv.gets    ## 1s“Ç‚İ”ò‚Î‚µ
-#“Ç‚Şƒtƒ@ƒCƒ‹”‚ğƒ‰ƒCƒg
+line = fish_csv.gets    ## 1è¡Œèª­ã¿é£›ã°ã—
+#èª­ã‚€ãƒ•ã‚¡ã‚¤ãƒ«æ•°ã‚’ãƒ©ã‚¤ãƒˆ
 line = fish_csv.gets
 column = line.split ","
 file_num = column[0].chomp
@@ -64,7 +64,7 @@ while line = fish_csv.gets
 	column = line.split ","
 	name = column[0].chomp
 	path = "../../data/fld_map_data/" + name
-	#ƒtƒ@ƒCƒ‹ŠJ‚­
+	#ãƒ•ã‚¡ã‚¤ãƒ«é–‹ã
 	p path
 	bin_file = open(path,"rb")
 

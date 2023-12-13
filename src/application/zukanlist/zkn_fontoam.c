@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_fontoam.c
- *	@brief		}ŠÓƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€
+ *	@brief		å›³é‘‘ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2006.01.23
  *
@@ -24,48 +24,48 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	FONT_OAMƒVƒXƒeƒ€
+//	FONT_OAMã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _ZKN_FONTOAM_SYS{
-	FONTOAM_SYS_PTR		fontoam_sys;	// ƒtƒHƒ“ƒgƒVƒXƒeƒ€ƒf[ƒ^
-	CLACT_SET_PTR		clact_set;		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	GF_BGL_INI*			p_bg;			// bgƒVƒXƒeƒ€
-	ZKN_FONTOAM_DATA*	p_datatbl;		// ƒf[ƒ^ƒe[ƒuƒ‹
-	int		data_num;					// “o˜^‰Â”\”
-	int		heap;						// g—p‚·‚éƒq[ƒv
+	FONTOAM_SYS_PTR		fontoam_sys;	// ãƒ•ã‚©ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+	CLACT_SET_PTR		clact_set;		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	GF_BGL_INI*			p_bg;			// bgã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_FONTOAM_DATA*	p_datatbl;		// ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+	int		data_num;					// ç™»éŒ²å¯èƒ½æ•°
+	int		heap;						// ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 } ZKN_FONTOAM_SYS;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
@@ -76,11 +76,11 @@ static ZKN_FONTOAM_DATA* CleanFontOamDataGet( ZKN_FONTOAM_SYS_PTR fontoam_sys );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *	
- *	@param	cp_init		‰Šú‰»ƒf[ƒ^
+ *	@param	cp_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€ƒf[ƒ^
+ *	@return	ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -89,27 +89,27 @@ ZKN_FONTOAM_SYS_PTR ZKN_FONTOAM_InitSys( const ZKN_FONTOAM_SYS_INIT* cp_init )
 {
 	ZKN_FONTOAM_SYS_PTR p_fontoam;
 
-	// ƒƒ‚ƒŠŠm•Û
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_fontoam = sys_AllocMemory( cp_init->heap, sizeof(ZKN_FONTOAM_SYS) );
 	GF_ASSERT( p_fontoam );
 	memset( p_fontoam, 0, sizeof(ZKN_FONTOAM_SYS) );
 
-	// ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€ì¬
+	// ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	p_fontoam->fontoam_sys = FONTOAM_SysInit( cp_init->work_num, cp_init->heap );
 
-	// ƒf[ƒ^Ši”[ƒ[ƒNì¬
+	// ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_fontoam->p_datatbl = sys_AllocMemory( cp_init->heap, sizeof(ZKN_FONTOAM_DATA) * cp_init->work_num );
 	GF_ASSERT( p_fontoam->p_datatbl );
 	memset( p_fontoam->p_datatbl, 0, sizeof(ZKN_FONTOAM_DATA) * cp_init->work_num );
 	p_fontoam->data_num = cp_init->work_num;
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgİ’è
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆè¨­å®š
 	p_fontoam->clact_set = cp_init->clact_set;
 
-	// BGLİ’è
+	// BGLè¨­å®š
 	p_fontoam->p_bg = cp_init->p_bg;
 
-	// ƒq[ƒvIDİ’è
+	// ãƒ’ãƒ¼ãƒ—IDè¨­å®š
 	p_fontoam->heap	= cp_init->heap;
 
 	return p_fontoam;
@@ -118,9 +118,9 @@ ZKN_FONTOAM_SYS_PTR ZKN_FONTOAM_InitSys( const ZKN_FONTOAM_SYS_INIT* cp_init )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓƒtƒHƒ“ƒgƒVƒXƒeƒ€”jŠü
+ *	@brief	å›³é‘‘ãƒ•ã‚©ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	fontoam_sys		}ŠÓƒtƒHƒ“ƒgƒVƒXƒeƒ€
+ *	@param	fontoam_sys		å›³é‘‘ãƒ•ã‚©ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
@@ -145,7 +145,7 @@ void ZKN_FONTOAM_DeleteSys( ZKN_FONTOAM_SYS_PTR fontoam_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•¶š—ñOAMì¬
+ *	@brief	æ–‡å­—åˆ—OAMä½œæˆ
  *
  *	@param	cp_init 
  *
@@ -158,7 +158,7 @@ ZKN_FONTOAM_DATA* ZKN_FONTOAM_Make( const ZKN_FONTOAM_INIT* cp_init )
 {
 	int char_size;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘——ÌˆæŠm•Û
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€é ˜åŸŸç¢ºä¿
 	char_size = FONTOAM_NeedCharSize( cp_init->p_bmp, cp_init->draw_area, cp_init->heap ); 
 
 	return ZKN_FONTOAM_MakeCharOfs( cp_init, char_size );
@@ -166,12 +166,12 @@ ZKN_FONTOAM_DATA* ZKN_FONTOAM_Make( const ZKN_FONTOAM_INIT* cp_init )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“]‘——Ìˆæƒf[ƒ^‚ğw’è‚µ‚½ì¬
+ *	@brief	è»¢é€é ˜åŸŸãƒ‡ãƒ¼ã‚¿ã‚’æŒ‡å®šã—ãŸä½œæˆ
  *	
- *	@param	cp_init			‰Šú‰»ƒf[ƒ^
- *	@param	char_size		ƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY	
+ *	@param	cp_init			åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	char_size		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º	
  *
- *	@return	ì¬ƒf[ƒ^
+ *	@return	ä½œæˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 ZKN_FONTOAM_DATA* ZKN_FONTOAM_MakeCharOfs( const ZKN_FONTOAM_INIT* cp_init, int char_size )
@@ -179,15 +179,15 @@ ZKN_FONTOAM_DATA* ZKN_FONTOAM_MakeCharOfs( const ZKN_FONTOAM_INIT* cp_init, int 
 	FONTOAM_INIT fo_init;
 	ZKN_FONTOAM_DATA* p_make_data;
 
-	// ‹ó‚¢‚Ä‚¢‚éƒe[ƒuƒ‹‚ğæ“¾
+	// ç©ºã„ã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
 	p_make_data = CleanFontOamDataGet( cp_init->zkn_fontoam );
-	// ‚ ‚«‚È‚µ
+	// ã‚ããªã—
 	GF_ASSERT( p_make_data );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘——ÌˆæŠm•Û
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€é ˜åŸŸç¢ºä¿
 	CharVramAreaAlloc( char_size, CHARM_CONT_AREACONT, cp_init->draw_area, &p_make_data->char_data );
 	
-	// ƒtƒHƒ“ƒgOAMì¬
+	// ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆ
 	fo_init.fontoam_sys = cp_init->zkn_fontoam->fontoam_sys;
 	fo_init.bmp			= cp_init->p_bmp;
 	fo_init.clact_set	= cp_init->zkn_fontoam->clact_set;
@@ -208,7 +208,7 @@ ZKN_FONTOAM_DATA* ZKN_FONTOAM_MakeCharOfs( const ZKN_FONTOAM_INIT* cp_init, int 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒtƒHƒ“ƒgOAMƒf[ƒ^”jŠü
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
  *	@param	p_fontoam 
  *	
@@ -219,20 +219,20 @@ ZKN_FONTOAM_DATA* ZKN_FONTOAM_MakeCharOfs( const ZKN_FONTOAM_INIT* cp_init, int 
 //-----------------------------------------------------------------------------
 void ZKN_FONTOAM_Delete( ZKN_FONTOAM_DATA* p_fontoam )
 {
-	// ƒtƒHƒ“ƒgƒf[ƒ^”jŠü
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	FONTOAM_Delete( p_fontoam->p_fontoam );
 
-	// ƒLƒƒƒ‰ƒNƒ^ŠÇ——Ìˆæ”jŠü
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç®¡ç†é ˜åŸŸç ´æ£„
 	CharVramAreaFree( &p_fontoam->char_data );
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	memset( p_fontoam, 0, sizeof(ZKN_FONTOAM_DATA) );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŠÇ—‚µ‚Ä‚¢‚éFONTOAMƒf[ƒ^”jŠü
+ *	@brief	ç®¡ç†ã—ã¦ã„ã‚‹FONTOAMãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
  *	@param	fontoam_sys		 
  *
@@ -243,9 +243,9 @@ void ZKN_FONTOAM_Delete( ZKN_FONTOAM_DATA* p_fontoam )
 //-----------------------------------------------------------------------------
 void ZKN_FONTOAM_DeleteAll( ZKN_FONTOAM_SYS_PTR fontoam_sys )
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 
-	// ‘Sƒf[ƒ^”jŠü
+	// å…¨ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	for( i=0; i<fontoam_sys->data_num; i++ ){
 		if( CheckFontOamDataLive( &fontoam_sys->p_datatbl[ i ] ) ){
 			ZKN_FONTOAM_Delete( &fontoam_sys->p_datatbl[ i ] );
@@ -257,13 +257,13 @@ void ZKN_FONTOAM_DeleteAll( ZKN_FONTOAM_SYS_PTR fontoam_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
  *
- *	@param	fontoam_sys		ƒtƒHƒ“ƒgƒVƒXƒeƒ€
- *	@param	bmp_x			ƒrƒbƒgƒ}ƒbƒvƒTƒCƒY	iƒLƒƒƒ‰ƒNƒ^j
- *	@param	bmp_y			ƒrƒbƒgƒ}ƒbƒvƒTƒCƒY	iƒLƒƒƒ‰ƒNƒ^j
+ *	@param	fontoam_sys		ãƒ•ã‚©ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	bmp_x			ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚µã‚¤ã‚º	ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿ï¼‰
+ *	@param	bmp_y			ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚µã‚¤ã‚º	ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿ï¼‰
  *
- *	@return	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ *	@return	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  *
  */
@@ -282,9 +282,9 @@ GF_BGL_BMPWIN* ZKN_FONTOAM_GetBmp( ZKN_FONTOAM_SYS_PTR fontoam_sys, int bmp_x, i
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- *	@param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ *	@param	win		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  *	@return	none
  *
@@ -298,22 +298,22 @@ void ZKN_FONTOAM_DeleteBmp( GF_BGL_BMPWIN* win )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/15
-// ZKN_FONTOAM_PrintBmpStr() ‚Ì•Ô’l‚ğA•`‰æ‚µ‚½•¶š—ñ‚Ì’·‚³iƒsƒNƒZƒ‹’PˆÊj‚ğ
-// •Ô‚·‚æ‚¤‚É•ÏX
+// ZKN_FONTOAM_PrintBmpStr() ã®è¿”å€¤ã‚’ã€æç”»ã—ãŸæ–‡å­—åˆ—ã®é•·ã•ï¼ˆãƒ”ã‚¯ã‚»ãƒ«å˜ä½ï¼‰ã‚’
+// è¿”ã™ã‚ˆã†ã«å¤‰æ›´
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•¶š—ñ‘‚«‚İ
+ *	@brief	æ–‡å­—åˆ—æ›¸ãè¾¼ã¿
  *
- *	@param	fontoam_sys	ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€
- *	@param	win			ƒEƒBƒ“ƒhƒE	
- *	@param	dataID		ƒf[ƒ^ID
- *	@param	msgID		ƒƒbƒZ[ƒWID
- *	@param	bmp_x		•\¦À•W	iƒLƒƒƒ‰ƒNƒ^’PˆÊj
- *	@param	bmp_y		•\¦À•W	iƒLƒƒƒ‰ƒNƒ^’PˆÊj
+ *	@param	fontoam_sys	ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	win			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	
+ *	@param	dataID		ãƒ‡ãƒ¼ã‚¿ID
+ *	@param	msgID		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ *	@param	bmp_x		è¡¨ç¤ºåº§æ¨™	ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ï¼‰
+ *	@param	bmp_y		è¡¨ç¤ºåº§æ¨™	ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ï¼‰
  *
- *	@return	•`‰æ‚µ‚½•¶š—ñ‚Ì’·‚³iƒsƒNƒZƒ‹’PˆÊj
+ *	@return	æç”»ã—ãŸæ–‡å­—åˆ—ã®é•·ã•ï¼ˆãƒ”ã‚¯ã‚»ãƒ«å˜ä½ï¼‰
  *
  *
  */
@@ -328,7 +328,7 @@ u32 ZKN_FONTOAM_PrintBmpStr( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN* win
 	GF_ASSERT( p_msg_data );
 	p_str = MSGMAN_AllocString( p_msg_data, msgid );
 
-	// •¶š—ñ‘‚«‚İ
+	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿
 	GF_STR_PrintColor( win, FONT_BUTTON, p_str, bmp_x, bmp_y, MSG_NO_PUT, ZKN_FOTNOAM_COLOR, NULL );
 
 	width = FontProc_GetPrintStrWidth( FONT_BUTTON, p_str, 0 );
@@ -343,12 +343,12 @@ u32 ZKN_FONTOAM_PrintBmpStr( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN* win
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒv‚Ì’†‰›‚É•¶š—ñ‚ğ‘‚«‚Ş
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ä¸­å¤®ã«æ–‡å­—åˆ—ã‚’æ›¸ãè¾¼ã‚€
  *
- *	@param	fontoam_sys		ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€
- *	@param	win				ƒEƒBƒ“ƒhƒE
- *	@param	dataid			ƒf[ƒ^ID
- *	@param	msgid			ƒƒbƒZ[ƒWID
+ *	@param	fontoam_sys		ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	win				ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *	@param	dataid			ãƒ‡ãƒ¼ã‚¿ID
+ *	@param	msgid			ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  */
 //-----------------------------------------------------------------------------
 void ZKN_FONTOAM_PrintBmpStrCenter( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN* win, u32 dataid, u32 msgid )
@@ -365,11 +365,11 @@ void ZKN_FONTOAM_PrintBmpStrCenter( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPW
 	str_size = FontProc_GetPrintStrWidth(FONT_BUTTON, p_str, 0);
 	bmp_size = GF_BGL_BmpWinGet_SizeX( win ) * 8;
 
-	// ¶’[‚ÌƒIƒtƒZƒbƒg‚ğ‹‚ß‚é
+	// å·¦ç«¯ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’æ±‚ã‚ã‚‹
 	bmp_size = bmp_size - str_size;
 	bmp_size /= 2;
 
-	// •¶š—ñ‘‚«‚İ
+	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿
 	GF_STR_PrintColor( win, FONT_BUTTON, p_str, bmp_size, 0, MSG_NO_PUT, ZKN_FOTNOAM_COLOR, NULL );
 
 	STRBUF_Delete( p_str );
@@ -378,20 +378,20 @@ void ZKN_FONTOAM_PrintBmpStrCenter( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPW
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒv‚Ì‚ ‚éˆÊ’u‚ÉSTRBUF‚Ì•¶š—ñ‚ğ‘‚«‚Ş
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ã‚ã‚‹ä½ç½®ã«STRBUFã®æ–‡å­—åˆ—ã‚’æ›¸ãè¾¼ã‚€
  *
- *	@param	fontoam_sys	ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€
- *	@param	win			ƒEƒBƒ“ƒhƒE	
- *	@param	str			•¶š—ñƒf[ƒ^
- *	@param	bmp_x		•\¦À•W	iƒLƒƒƒ‰ƒNƒ^’PˆÊj
- *	@param	bmp_y		•\¦À•W	iƒLƒƒƒ‰ƒNƒ^’PˆÊj
+ *	@param	fontoam_sys	ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	win			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	
+ *	@param	str			æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿
+ *	@param	bmp_x		è¡¨ç¤ºåº§æ¨™	ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ï¼‰
+ *	@param	bmp_y		è¡¨ç¤ºåº§æ¨™	ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ï¼‰
  *
  *	@return
  */
 //-----------------------------------------------------------------------------
 void ZKN_FONTOAM_PrintBmpStrBuf( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN* win, STRBUF* str, int bmp_x, int bmp_y )
 {
-	// •¶š—ñ‘‚«‚İ
+	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿
 	GF_STR_PrintColor( win, FONT_BUTTON, str, bmp_x, bmp_y, MSG_NO_PUT, ZKN_FOTNOAM_COLOR, NULL );
 }
 
@@ -400,12 +400,12 @@ void ZKN_FONTOAM_PrintBmpStrBuf( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN*
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ˆø”‚ÌƒtƒHƒ“ƒgOAMƒf[ƒ^‚Éƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	å¼•æ•°ã®ãƒ•ã‚©ãƒ³ãƒˆOAMãƒ‡ãƒ¼ã‚¿ã«ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_data ƒf[ƒ^
+ *	@param	p_data ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE		“ü‚Á‚Ä‚¢‚é
- *	@retval	FALSE		“ü‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE		å…¥ã£ã¦ã„ã‚‹
+ *	@retval	FALSE		å…¥ã£ã¦ã„ãªã„
  *
  *
  */
@@ -422,11 +422,11 @@ static BOOL CheckFontOamDataLive( ZKN_FONTOAM_DATA* p_data )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ó‚¢‚Ä‚¢‚éFONTOAMƒf[ƒ^æ“¾
+ *	@brief	ç©ºã„ã¦ã„ã‚‹FONTOAMãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	fontoam_sys		ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€
+ *	@param	fontoam_sys		ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒJƒ‰‚ÌFONTOAMƒf[ƒ^ ‹ó‚¢‚Ä‚¢‚éƒe[ƒuƒ‹‚ª–³‚¢‚Æ‚«NULL
+ *	@return	ã‚«ãƒ©ã®FONTOAMãƒ‡ãƒ¼ã‚¿ ç©ºã„ã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ãŒç„¡ã„ã¨ãNULL
  *	
  *
  */

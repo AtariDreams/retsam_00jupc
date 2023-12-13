@@ -2,16 +2,16 @@
   Project:  simple particle library
   File:     spl_field.h
 
-  ƒtƒB[ƒ‹ƒhi‰^“®Œn‚Ö‚Ì‰e‹¿‚ğ‹y‚Ú‚·‚à‚Ìjˆ—
+  ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼ˆé‹å‹•ç³»ã¸ã®å½±éŸ¿ã‚’åŠã¼ã™ã‚‚ã®ï¼‰å‡¦ç†
 
-  ˆ—©‘Ì‚ÍSPLField‚Ì”z—ñ‚©‰½‚©‚ªs‚¤ƒtƒB[ƒ‹ƒh‚Ìí—Ş–ˆ‚É
-  ˆ—‚ğŒˆ‚ß‚Ä‚¢‚½‚Ì‚Å‚ÍŒø—¦‚ªˆ«‚¢‚©‚È‚Æ‚¢‚¤‚±‚Æ‚ÅA
-  ŠÖ”ƒ|ƒCƒ“ƒ^‚ÆƒLƒƒƒXƒg‚Åˆ—‚ğs‚¤Œ`‚ÉAAA
+  å‡¦ç†è‡ªä½“ã¯SPLFieldã®é…åˆ—ã‹ä½•ã‹ãŒè¡Œã†ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ç¨®é¡æ¯ã«
+  å‡¦ç†ã‚’æ±ºã‚ã¦ã„ãŸã®ã§ã¯åŠ¹ç‡ãŒæ‚ªã„ã‹ãªã¨ã„ã†ã“ã¨ã§ã€
+  é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã‚­ãƒ£ã‚¹ãƒˆã§å‡¦ç†ã‚’è¡Œã†å½¢ã«ã€ã€ã€
 
   $Id: spl_field.h,v 1.3 2005/11/09 09:53:26 matsuda Exp $
   $Log: spl_field.h,v $
   Revision 1.3  2005/11/09 09:53:26  matsuda
-  SPLƒ‰ƒCƒuƒ‰ƒŠ‚ªXV‚³‚ê‚½‚Ì‚ÅXV
+  SPLãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒæ›´æ–°ã•ã‚ŒãŸã®ã§æ›´æ–°
 
   Revision 1.7  2005/03/17 08:27:13  okane_shinji
   (none)
@@ -20,19 +20,19 @@
   (none)
 
   Revision 1.6  2004/11/26 06:07:31  okane_shinji
-  ‹@”\’Ç‰Á
+  æ©Ÿèƒ½è¿½åŠ 
 
   Revision 1.5  2004/07/02 06:24:03  okane_shinji
   (none)
 
   Revision 1.4  2004/07/02 06:21:37  okane_shinji
-  ”½”­ŒW”’Ç‰Á
+  åç™ºä¿‚æ•°è¿½åŠ 
 
   Revision 1.3  2004/07/02 01:11:24  okane_shinji
-  ŠÖ”E•Ï”–¼‘O•ÏX
+  é–¢æ•°ãƒ»å¤‰æ•°åå‰å¤‰æ›´
 
   Revision 1.2  2004/07/02 00:07:45  okane_shinji
-  ƒVƒ“ƒvƒ‹ƒRƒŠƒWƒ‡ƒ“ƒtƒB[ƒ‹ƒh‚ÆˆÊ’u‰ÁZƒ}ƒOƒlƒbƒgƒtƒB[ƒ‹ƒh‚ğ’Ç‰Á
+  ã‚·ãƒ³ãƒ—ãƒ«ã‚³ãƒªã‚¸ãƒ§ãƒ³ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¨ä½ç½®åŠ ç®—ãƒã‚°ãƒãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’è¿½åŠ 
 
   Revision 1.1  2004/04/08 00:23:26  konoh
   (none)
@@ -46,30 +46,30 @@
 
 struct SPLEmitter ;
 
-/* \‘¢‘Ì ------------------------------------------------------------------ */
+/* æ§‹é€ ä½“ ------------------------------------------------------------------ */
 
-// ƒtƒB[ƒ‹ƒhˆ—\‘¢‘Ì
+// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å‡¦ç†æ§‹é€ ä½“
 typedef struct SPLField
 {
     void (*p_exec)(const void*, SPLParticle*, VecFx32*, struct SPLEmitter* p_emtr );
     const void* p_obj;
 } SPLField;
 
-// d—ÍƒtƒB[ƒ‹ƒh
+// é‡åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 typedef struct SPLGravity
 {
     VecFx16 mag;
     u16 reserved0;
 } SPLGravity;
 
-// ƒ‰ƒ“ƒ_ƒ€ƒtƒB[ƒ‹ƒh
+// ãƒ©ãƒ³ãƒ€ãƒ ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 typedef struct SPLRandom
 {
     VecFx16 mag;
     u16 intvl;
 } SPLRandom;
 
-// ƒ}ƒOƒlƒbƒgƒtƒB[ƒ‹ƒh
+// ãƒã‚°ãƒãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 typedef struct SPLMagnet
 {
     VecFx32 pos;
@@ -77,17 +77,17 @@ typedef struct SPLMagnet
     u16     reserved0;
 } SPLMagnet;
 
-// ƒXƒsƒ“ƒtƒB[ƒ‹ƒh
+// ã‚¹ãƒ”ãƒ³ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 typedef struct SPLSpin
 {
     u16 radian;
     u16 axis_type;
 } SPLSpin;
 
-// ƒVƒ“ƒvƒ‹ƒRƒŠƒWƒ‡ƒ“ƒtƒB[ƒ‹ƒh
+// ã‚·ãƒ³ãƒ—ãƒ«ã‚³ãƒªã‚¸ãƒ§ãƒ³ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 typedef struct SPLSimpleCollisionField
 {
-    fx32 y ; // ƒCƒxƒ“ƒg‚ª‹N‚±‚éy•½–Ê‚Ì’l
+    fx32 y ; // ã‚¤ãƒ™ãƒ³ãƒˆãŒèµ·ã“ã‚‹yå¹³é¢ã®å€¤
     fx16 coeff_bounce ;
     
     struct
@@ -98,11 +98,11 @@ typedef struct SPLSimpleCollisionField
     } etc ;
 } SPLSimpleCollisionField ;
 
-// ˆÊ’u‚É‰ÁZƒtƒB[ƒ‹ƒhiƒ}ƒOƒlƒbƒg‚ÌˆŸíj
+// ä½ç½®ã«åŠ ç®—ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼ˆãƒã‚°ãƒãƒƒãƒˆã®äºœç¨®ï¼‰
 typedef struct SPLConvergence
 {
-    VecFx32 pos  ; // ‹z‚¢Šñ‚¹‚ç‚ê‚éêŠ
-    fx16    ratio; // ‹z‚¢Šñ‚¹‚ç‚ê‚é‹­‚³
+    VecFx32 pos  ; // å¸ã„å¯„ã›ã‚‰ã‚Œã‚‹å ´æ‰€
+    fx16    ratio; // å¸ã„å¯„ã›ã‚‰ã‚Œã‚‹å¼·ã•
     u16     reserved0;
 } SPLConvergence ;
 
@@ -111,16 +111,16 @@ typedef struct SPLConvergence
 /* ------------------------------------------------------------------------- */
 
 
-/* ’è‹`‚È‚Ç ---------------------------------------------------------------- */
+/* å®šç¾©ãªã© ---------------------------------------------------------------- */
 
-#define SPL_FLD_TYPE_NUM  6 // ƒtƒB[ƒ‹ƒh‚Ìí—Ş TODO:6‚Ö
+#define SPL_FLD_TYPE_NUM  6 // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ç¨®é¡ TODO:6ã¸
 
 #define SPL_FLD_SPIN_AXIS_TYPE_X   0
 #define SPL_FLD_SPIN_AXIS_TYPE_Y   1
 #define SPL_FLD_SPIN_AXIS_TYPE_Z   2
 
 
-// ƒVƒ“ƒvƒ‹ƒRƒŠƒWƒ‡ƒ“ƒtƒB[ƒ‹ƒh‚ÌƒCƒxƒ“ƒgƒ^ƒCƒv
+// ã‚·ãƒ³ãƒ—ãƒ«ã‚³ãƒªã‚¸ãƒ§ãƒ³ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
 #define SPL_FLD_SCF_EVENTTYPE_CESSER     0
 #define SPL_FLD_SCF_EVENTTYPE_REFLECTION 1
 
@@ -129,7 +129,7 @@ typedef struct SPLConvergence
 /* ------------------------------------------------------------------------- */
 
 
-/* ŠeíƒtƒB[ƒ‹ƒhˆ— ------------------------------------------------------ */
+/* å„ç¨®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å‡¦ç† ------------------------------------------------------ */
 
 extern void spl_calc_gravity(const void* p_obj, SPLParticle* p_ptcl, VecFx32* p_acc, struct SPLEmitter* p_emtr );
 extern void spl_calc_random(const void* p_obj, SPLParticle* p_ptcl, VecFx32* p_acc, struct SPLEmitter* p_emtr );

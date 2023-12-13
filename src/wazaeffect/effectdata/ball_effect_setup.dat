@@ -1,4 +1,4 @@
-//---- ƒRƒ“ƒo[ƒ^FSPAConv.exe  Version 1.13
+//---- ã‚³ãƒ³ãƒãƒ¼ã‚¿ï¼šSPAConv.exe  Version 1.13
 
 const char * const ball_effect_setup_tbl[] = {
 	"wazaeffect/effectdata/p_ball_effect.spa",	//0

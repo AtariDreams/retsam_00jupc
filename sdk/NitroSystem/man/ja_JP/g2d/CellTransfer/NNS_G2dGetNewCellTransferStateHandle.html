@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_G2dGetNewCellTransferStateHandle</title>
@@ -11,7 +11,7 @@
 
 <body>
 <h1 align="left">NNS_G2dGetNewCellTransferStateHandle</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -19,26 +19,26 @@
   <pre><CODE>u32 NNS_G2dGetNewCellTransferStateHandle();
   </CODE></pre>
   </dd>
-</dl><h2>����</h2>
-<p>�Ȃ�<BR>
+</dl><h2>引数</h2>
+<p>なし<BR>
 </p>
-<h2>�Ԃ�l</h2>
-<p>�Z��VRAM�]����ԃI�u�W�F�N�g�̃n���h��<BR>
+<h2>返り値</h2>
+<p>セルVRAM転送状態オブジェクトのハンドル<BR>
 </p>
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-�Z��VRAM�]����ԃI�u�W�F�N�g�̃n���h�����擾���܂��B<BR>
-�Z��VRAM�]����ԃI�u�W�F�N�g�ւ̑���͂��̃n���h�����g�p���čs���܂��B<BR>
-�n���h���̓Z���A�j���[�V�������̂̃����o�Ƃ��ĕۑ�����܂��B<BR>
-�n���h���̎擾�Ɏ��s�����ꍇ�� NNS_G2D_INVALID_CELL_TRANSFER_STATE_HANDLE ��Ԃ��܂��B<BR>
-�����ŃZ��VRAM�]����ԃI�u�W�F�N�g�o�b�t�@����`�T�����Ă��܂��B�i�p�t�H�[�}���X�N���e�B�J���ȏꏊ�ł̌Ăт����͔����Ă��������B�j<BR>
+セルVRAM転送状態オブジェクトのハンドルを取得します。<BR>
+セルVRAM転送状態オブジェクトへの操作はこのハンドルを使用して行います。<BR>
+ハンドルはセルアニメーション実体のメンバとして保存されます。<BR>
+ハンドルの取得に失敗した場合は NNS_G2D_INVALID_CELL_TRANSFER_STATE_HANDLE を返します。<BR>
+内部でセルVRAM転送状態オブジェクトバッファを線形探索しています。（パフォーマンスクリティカルな場所での呼びだしは避けてください。）<BR>
 <BR>
 <BR>
 </p>
 
-<h2>�Q��</h2>
-<p>�Ȃ�</p>
-<H2>����</H2>
-<P>2004/07/20 ����</P>
+<h2>参照</h2>
+<p>なし</p>
+<H2>履歴</H2>
+<P>2004/07/20 初版</P>
 </body>
 </html>

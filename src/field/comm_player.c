@@ -1,8 +1,8 @@
 //=============================================================================
 /**
  * @file	comm_player.c
- * @bfief	’ÊM‚Å‘Šè‘¤‚ÌƒvƒŒ[ƒ„[‚ğ•\¦‚·‚é
- *            ƒRƒ~ƒ…ƒjƒP[ƒVƒ‡ƒ“ƒvƒŒ[ƒ„[
+ * @bfief	é€šä¿¡ã§ç›¸æ‰‹å´ã®ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
+ *            ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼
  * @author	katsumi ohno
  * @date	05/07/14
  */
@@ -20,7 +20,7 @@
 #include "system/bmp_menu.h"
 #include "worldmap.h"
 #include "fieldobj.h"
-#include "fieldobj_code.h" //AC_WALK...“™ ƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh‚ª‚Ü‚Æ‚ß‚Ä‚ ‚è‚Ü‚·B
+#include "fieldobj_code.h" //AC_WALK...ç­‰ ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰ãŒã¾ã¨ã‚ã¦ã‚ã‚Šã¾ã™ã€‚
 #include "fieldsys.h"
 #include "fieldmap.h"
 #include "fld_bmp.h"
@@ -50,21 +50,21 @@
 #include "tv_topic.h"
 #include "sysflag.h"
 
-#include "d_ohno.h"  // ƒfƒoƒbƒO—p
+#include "d_ohno.h"  // ãƒ‡ãƒãƒƒã‚°ç”¨
 
 #include <nnsys/g3d/glbstate.h>
 
 
 //==============================================================================
-// ’è‹`
+// å®šç¾©
 //==============================================================================
 #include "comm_player_local.h"
 
-// ƒVƒ“ƒOƒ‹ƒgƒ“
+// ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³
 static CommPlayerWork* _pCommPlayerWork = NULL;
 
 
-// ug_player.c‚Ì‚İ‚Å—˜—p
+// ug_player.cã®ã¿ã§åˆ©ç”¨
 CommPlayerWork* CommPlayerGetInstance(void)
 {
     return _pCommPlayerWork;
@@ -72,7 +72,7 @@ CommPlayerWork* CommPlayerGetInstance(void)
 
 
 //==============================================================================
-// staticéŒ¾
+// staticå®£è¨€
 //==============================================================================
 
 static int _getBlowMoveCount( int counter,int bBigBlow );
@@ -93,15 +93,15 @@ static void _debugGyoeDisp(void);
 #endif
 
 //==============================================================================
-// ŠÖ”
+// é–¢æ•°
 //==============================================================================
 
 //==============================================================================
 /**
- * ƒlƒbƒgƒvƒŒ[ƒ„[ŠÇ—ƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
- *   ƒlƒbƒgƒvƒŒ[ƒ„[‚Ìq‹@ID‚ÆƒOƒ‰ƒtƒBƒbƒN‚ğŒ‹‚Ñ‚Â‚¯‚ÄŠÇ—‚µ‚Ä‚¢‚é
- * @param   work_area  ƒ[ƒNƒGƒŠƒA
- * @retval  BOOL TRUE ¬Œ÷   FALSE ¸”s ƒ[ƒNƒGƒŠƒA‚ğÁ‚µ‚Ä‚­‚¾‚³‚¢
+ * ãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
+ *   ãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®å­æ©ŸIDã¨ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’çµã³ã¤ã‘ã¦ç®¡ç†ã—ã¦ã„ã‚‹
+ * @param   work_area  ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢
+ * @retval  BOOL TRUE æˆåŠŸ   FALSE å¤±æ•— ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã‚’æ¶ˆã—ã¦ãã ã•ã„
  */
 //==============================================================================
 
@@ -109,7 +109,7 @@ BOOL CommPlayerManagerInitialize(void* work_area, FIELDSYS_WORK* pFSys, BOOL bUn
 {
     int i,j;
 
-    if(_pCommPlayerWork){  // ¡‚Ì‚Æ‚±‚ë‰½“x‚à‰Šú‰»‚³‚ê‚é‚Ì‚Å
+    if(_pCommPlayerWork){  // ä»Šã®ã¨ã“ã‚ä½•åº¦ã‚‚åˆæœŸåŒ–ã•ã‚Œã‚‹ã®ã§
         return FALSE;
     }
     if(_pCommPlayerWork == NULL){
@@ -156,8 +156,8 @@ BOOL CommPlayerManagerInitialize(void* work_area, FIELDSYS_WORK* pFSys, BOOL bUn
 
 //==============================================================================
 /**
- * ƒlƒbƒgƒvƒŒ[ƒ„[ŠÇ—ƒ}ƒl[ƒWƒƒ[‚Ì’†’fˆ—
- *   •\¦‚µ‚Ä‚¢‚½ƒlƒbƒgƒvƒŒ[ƒ„[‚ğÁ‚·
+ * ãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ä¸­æ–­å‡¦ç†
+ *   è¡¨ç¤ºã—ã¦ã„ãŸãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’æ¶ˆã™
  * @param   none
  * @retval  none
  */
@@ -186,8 +186,8 @@ void CommPlayerManagerReset(void)
 
 //==============================================================================
 /**
- * ƒlƒbƒgƒvƒŒ[ƒ„[ŠÇ—ƒ}ƒl[ƒWƒƒ[‚Ì•œ‹Aˆ—
- *   Á‚µ‚Ä‚¢‚½ƒlƒbƒgƒvƒŒ[ƒ„[‚ğÄ•\¦
+ * ãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å¾©å¸°å‡¦ç†
+ *   æ¶ˆã—ã¦ã„ãŸãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’å†è¡¨ç¤º
  * @param   none
  * @retval  none
  */
@@ -205,16 +205,16 @@ void CommPlayerManagerReboot(void)
     CommPlayerMyDataInitialize();
     CommPlayerSendPos(TRUE);
 
-//    OHNO_PRINT("©•ª‚ÌˆÊ’uC  %d %d \n",CommPlayerGetPosX(CommGetCurrentID()),CommPlayerGetPosZ(CommGetCurrentID()));
+//    OHNO_PRINT("è‡ªåˆ†ã®ä½ç½®C  %d %d \n",CommPlayerGetPosX(CommGetCurrentID()),CommPlayerGetPosZ(CommGetCurrentID()));
 //    x = Player_NowGPosXGet( _pCommPlayerWork->pFSys->player );
 //    z = Player_NowGPosZGet( _pCommPlayerWork->pFSys->player );
-//    OHNO_PRINT("©•ª‚ÌˆÊ’uF  %d %d \n",x,z);
+//    OHNO_PRINT("è‡ªåˆ†ã®ä½ç½®F  %d %d \n",x,z);
 }
 
 //==============================================================================
 /**
- * ƒlƒbƒgƒvƒŒ[ƒ„[ŠÇ—ƒ}ƒl[ƒWƒƒ[‚ÌI—¹ˆ—
- *   •\¦‚µ‚Ä‚¢‚½ƒlƒbƒgƒvƒŒ[ƒ„[‚ğÁ‚·
+ * ãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®çµ‚äº†å‡¦ç†
+ *   è¡¨ç¤ºã—ã¦ã„ãŸãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’æ¶ˆã™
  * @param   none
  * @retval  none
  */
@@ -251,7 +251,7 @@ void CommPlayerManagerFinalize(BOOL bDel)
 
 //==============================================================================
 /**
- * ƒlƒbƒgƒvƒŒ[ƒ„[ŠÇ—ƒ}ƒl[ƒWƒƒ[‚ÌÄ‰Šú‰»  COMM_PARENT_ID‚É–ß‚·
+ * ãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å†åˆæœŸåŒ–  COMM_PARENT_IDã«æˆ»ã™
  * @param   none
  * @retval  none
  */
@@ -306,7 +306,7 @@ void CommPlayerManagerReInit(void)
 
 //==============================================================================
 /**
- * ƒ^ƒXƒN‚ğ‹Ù‹}’â~
+ * ã‚¿ã‚¹ã‚¯ã‚’ç·Šæ€¥åœæ­¢
  * @param   none
  * @retval  none
  */
@@ -323,8 +323,8 @@ void CommPlayerManagerStop(void)
 
 //==============================================================================
 /**
- * ‚±‚ÌƒNƒ‰ƒX‚ª‰Šú‰»‚³‚ê‚½‚©‚Ç‚¤‚©‚ğ•Ô‚·
- * @retval  ‰Šú‰»‚³‚ê‚Ä‚¢‚ê‚ÎTRUE
+ * ã“ã®ã‚¯ãƒ©ã‚¹ãŒåˆæœŸåŒ–ã•ã‚ŒãŸã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @retval  åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚Œã°TRUE
  */
 //==============================================================================
 
@@ -335,7 +335,7 @@ BOOL CommPlayerManagerIsInitialize(void)
 
 //==============================================================================
 /**
- * ©•ª‚Ìƒf[ƒ^‚ğ‰Šú‰»
+ * è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
  * @param   none
  * @retval  none
  */
@@ -361,7 +361,7 @@ void CommPlayerMyDataInitialize(void)
 
 //==============================================================================
 /**
- * ©•ª‚Ìƒf[ƒ^‚ğƒRƒs[
+ * è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
  * @param   none
  * @retval  none
  */
@@ -401,7 +401,7 @@ void CommPlayerMyDataCopy(int netID)
 
 //==============================================================================
 /**
- * Œ»İ‚ÌˆÊ’u‚ğ‘—M  q‹@‚ªe‹@‚É©•ª‚ÌˆÊ’u‚ğ“`‚¦‚é
+ * ç¾åœ¨ã®ä½ç½®ã‚’é€ä¿¡  å­æ©ŸãŒè¦ªæ©Ÿã«è‡ªåˆ†ã®ä½ç½®ã‚’ä¼ãˆã‚‹
  * @param   none
  * @retval  none
  */
@@ -429,13 +429,13 @@ void CommPlayerSendPosXZ(BOOL bLiveMessage,int xpos,int zpos)
  //   _pCommPlayerWork->bMyMoveControl = FALSE;
   //  CommPlayerSetMoveControl(TRUE);
 //    _pCommPlayerWork->bMyMoveControl = TRUE;
-//    CommSendFixSizeData(CF_MOVE_CONTROL,&_pCommPlayerWork->bMyMoveControl);   // ‘—M‚·‚é
-   OHNO_SP_PRINT("q‹@‘¤ˆÚ“®ƒf[ƒ^‘—M %d %d %d\n",CommGetCurrentID(), xpos, zpos);
+//    CommSendFixSizeData(CF_MOVE_CONTROL,&_pCommPlayerWork->bMyMoveControl);   // é€ä¿¡ã™ã‚‹
+   OHNO_SP_PRINT("å­æ©Ÿå´ç§»å‹•ãƒ‡ãƒ¼ã‚¿é€ä¿¡ %d %d %d\n",CommGetCurrentID(), xpos, zpos);
 }
 
 //==============================================================================
 /**
- * Œ»İ‚ÌˆÊ’u‚ğ‘—M  q‹@‚ªe‹@‚É©•ª‚ÌˆÊ’u‚ğ“`‚¦‚é
+ * ç¾åœ¨ã®ä½ç½®ã‚’é€ä¿¡  å­æ©ŸãŒè¦ªæ©Ÿã«è‡ªåˆ†ã®ä½ç½®ã‚’ä¼ãˆã‚‹
  * @param   none
  * @retval  none
  */
@@ -452,7 +452,7 @@ void CommPlayerSendPos(BOOL bLiveMessage)
 
 //==============================================================================
 /**
- * Œ»İ‚ÌˆÊ’u‚ğ‘—M  q‹@‚ªe‹@‚É©•ª‚ÌˆÊ’u‚ğ“`‚¦‚é
+ * ç¾åœ¨ã®ä½ç½®ã‚’é€ä¿¡  å­æ©ŸãŒè¦ªæ©Ÿã«è‡ªåˆ†ã®ä½ç½®ã‚’ä¼ãˆã‚‹
  * @param   none
  * @retval  none
  */
@@ -466,18 +466,18 @@ void CommPlayerSendPosServer(BOOL bLiveMessage)
 //    int zpos = Player_NowGPosZGet( _pCommPlayerWork->pFSys->player );
     int xpos = _pCommPlayerWork->sPlayerPlaceServer[CommGetCurrentID()].xpos;
     int zpos = _pCommPlayerWork->sPlayerPlaceServer[CommGetCurrentID()].zpos;
-//    OHNO_PRINT("‚¢‚¿‘—MS %d %d %d\n",xpos,zpos,bLiveMessage);
+//    OHNO_PRINT("ã„ã¡é€ä¿¡S %d %d %d\n",xpos,zpos,bLiveMessage);
     CommPlayerSendPosXZ(bLiveMessage, xpos, zpos);
 }
 
 //==============================================================================
 /**
- * Œ»İ‚ÌˆÊ’u@w—ß‚ğ‘—M
- * @param   netID  ƒLƒƒƒ‰‚ÌID
- * @param   xpos  ƒOƒ[ƒoƒ‹XÀ•W
- * @param   zpos  ƒOƒ[ƒoƒ‹YÀ•W
- * @param   dir   Œü‚«
- * @param   dash  ƒ_ƒbƒVƒ…’†1
+ * ç¾åœ¨ã®ä½ç½®ã€€æŒ‡ä»¤ã‚’é€ä¿¡
+ * @param   netID  ã‚­ãƒ£ãƒ©ã®ID
+ * @param   xpos  ã‚°ãƒ­ãƒ¼ãƒãƒ«Xåº§æ¨™
+ * @param   zpos  ã‚°ãƒ­ãƒ¼ãƒãƒ«Yåº§æ¨™
+ * @param   dir   å‘ã
+ * @param   dash  ãƒ€ãƒƒã‚·ãƒ¥ä¸­1
  * @retval  none
  */
 //==============================================================================
@@ -486,7 +486,7 @@ static void _sendIDPlayerPos(int netID,const _PlayerPlace* pPP)
     u8 data[_IDPLACEDATA_SEND_SIZE+1];
     int x = pPP->xpos,z = pPP->zpos;
 
-    if(pPP->xpos < 0){   // ”ÍˆÍŠO‚Ìƒf[ƒ^‚Í•â³‚·‚é
+    if(pPP->xpos < 0){   // ç¯„å›²å¤–ã®ãƒ‡ãƒ¼ã‚¿ã¯è£œæ­£ã™ã‚‹
         x = 0;
     }
     else if(pPP->xpos >= 0xf000){
@@ -512,22 +512,22 @@ static void _sendIDPlayerPos(int netID,const _PlayerPlace* pPP)
     data[0] += ((pPP->dir % DIR_4_MAX) << 4);
     data[0] += (pPP->speed << 6);
 
-    OHNO_PRINT("SP POS‘—M %d  %d %d\n",netID, x, z);
+    OHNO_PRINT("SP POSé€ä¿¡ %d  %d %d\n",netID, x, z);
     CommSendData_ServerSide(CF_PLAYER_POS_ID, data, 0);
 }
 
 //==============================================================================
 /**
- * ©•ª‚ÌƒvƒŒ[ƒ„[‚ÌˆÊ’uî•ñ‚ğ’èŠú“I‚É‘—M‚·‚é‚½‚ß‚Ìƒ^ƒXƒN
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * è‡ªåˆ†ã®ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®ä½ç½®æƒ…å ±ã‚’å®šæœŸçš„ã«é€ä¿¡ã™ã‚‹ãŸã‚ã®ã‚¿ã‚¹ã‚¯
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		none
  * @retval  none
  */
 //==============================================================================
 void _commPlayerDataSendTask(void *work)
 {
-    // add‚Ì‚µ‚©g—p‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅAˆÊ’u•â³‚Í‚©‚©‚Á‚Ä‚¢‚È‚¢ 05.09.01
-    // ˆÊ’uî•ñ‚ğ‘—M
+    // addã®æ™‚ã—ã‹ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„ã®ã§ã€ä½ç½®è£œæ­£ã¯ã‹ã‹ã£ã¦ã„ãªã„ 05.09.01
+    // ä½ç½®æƒ…å ±ã‚’é€ä¿¡
     int mv = Player_MoveValueGet( _pCommPlayerWork->pFSys->player );
     int ms = Player_MoveStateGet( _pCommPlayerWork->pFSys->player );
     
@@ -539,22 +539,22 @@ void _commPlayerDataSendTask(void *work)
         }
     }
     if((OBJ_MOVE_VALUE_WALK == mv )&&(OBJ_MOVE_STATE_START == ms)){
-        // DSˆ—‚Ìê‡‚±‚±‚ğ‚Í‚¸‚·
+        // DSå‡¦ç†ã®å ´åˆã“ã“ã‚’ã¯ãšã™
         _pCommPlayerWork->moveSync = FALSE;
     }
 }
 
 //==============================================================================
 /**
- * ©•ª‚ÌƒvƒŒ[ƒ„[‚ÌˆÊ’uî•ñ‚ğq‹@‚Éí‚É‘—M‚·‚é‚½‚ß‚Ìƒ^ƒXƒN
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * è‡ªåˆ†ã®ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®ä½ç½®æƒ…å ±ã‚’å­æ©Ÿã«å¸¸ã«é€ä¿¡ã™ã‚‹ãŸã‚ã®ã‚¿ã‚¹ã‚¯
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		none
  * @retval  none
  */
 //==============================================================================
 static void _commPlayerDataSendTaskToChild(void *work)
 {
-    int i;  // ˆÊ’uî•ñ‚ğ‘—M
+    int i;  // ä½ç½®æƒ…å ±ã‚’é€ä¿¡
 
     for(i = 0; i < COMM_MACHINE_MAX; i++){
         if(_pCommPlayerWork->bActive[i]){
@@ -566,14 +566,14 @@ static void _commPlayerDataSendTaskToChild(void *work)
             }
         }
     }
-    _pCommPlayerWork->bPosAllSend = FALSE; // ƒtƒ‰ƒO‚ğ—‚Æ‚µ‚Ä‚¨‚­
+    _pCommPlayerWork->bPosAllSend = FALSE; // ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã—ã¦ãŠã
 }
 
 //==============================================================================
 /**
- * ƒlƒbƒgƒvƒŒ[ƒ„[ŠÇ—ƒ}ƒl[ƒWƒƒ[‚Ìƒ[ƒNƒTƒCƒYæ“¾
+ * ãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºå–å¾—
  * @param   none
- * @retval  u32   ƒ[ƒNƒTƒCƒY
+ * @retval  u32   ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -584,8 +584,8 @@ u32 CommPlayerGetWorkSize(void)
 
 //==============================================================================
 /**
- * ƒlƒbƒgƒvƒŒ[ƒ„[‚ğ’Ç‰Á
- * @param   netID  q‹@e‹@‚ÌID
+ * ãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’è¿½åŠ 
+ * @param   netID  å­æ©Ÿè¦ªæ©Ÿã®ID
  * @retval  none
  */
 //==============================================================================
@@ -596,21 +596,21 @@ static void _commPlayerAdd(u8 netID)
     PLAYER_STATE_PTR pPlayer;
 
     if(_pCommPlayerWork->pPlayer[netID]!=NULL){
-        return;  //‚·‚Å‚É‚¢‚éê‡
+        return;  //ã™ã§ã«ã„ã‚‹å ´åˆ
     }
     if(_pCommPlayerWork->bResetting){
-//        OHNO_PRINT("reset’† %d  \n", netID);
+//        OHNO_PRINT("resetä¸­ %d  \n", netID);
         return;  // 
     }
     {
         MYSTATUS* pMy = CommInfoGetMyStatus(netID);
         if(pMy==NULL){
-//            OHNO_PRINT("mystatus‚ª‚È‚©‚Á‚½ %d\n",netID);
+//            OHNO_PRINT("mystatusãŒãªã‹ã£ãŸ %d\n",netID);
         }
         if(pMy){
             if(!_pCommPlayerWork->bUnder){
                 if(netID != CommGetCurrentID()){
-                    // ‚à‚µ‘O‚Ì‚à‚Ì‚ª‚¢‚½‚ç
+                    // ã‚‚ã—å‰ã®ã‚‚ã®ãŒã„ãŸã‚‰
                     FIELD_OBJ_PTR pObj = FieldOBJSys_OBJIDSearch(_pCommPlayerWork->pFSys->fldobjsys,FLDOBJ_ID_PLAYER+netID+1);
                     if(pObj){
                         FieldOBJ_Delete(pObj);
@@ -628,10 +628,10 @@ static void _commPlayerAdd(u8 netID)
                                        _pCommPlayerWork->sPlayerPlace[netID].dir,
                                        HERO_FORM_NORMAL, MyStatus_GetMySex(pMy), ver, NULL );
             }
-            GF_ASSERT_RETURN(pPlayer && "NetPlayer¶¬‚Å‚«‚È‚©‚Á‚½",);
+            GF_ASSERT_RETURN(pPlayer && "NetPlayerç”Ÿæˆã§ããªã‹ã£ãŸ",);
             _pCommPlayerWork->pPlayer[netID] = pPlayer;
 
-                                                   //”»•ÊID
+                                                   //åˆ¤åˆ¥ID
             FieldOBJ_OBJIDSet(Player_FieldOBJGet(pPlayer),FLDOBJ_ID_PLAYER+netID+1);
             if(_pCommPlayerWork->bUnder){
                 UgMgrSetReturnLog(netID);  //LOG
@@ -651,9 +651,9 @@ static void _commPlayerAdd(u8 netID)
         }
     }
 	
-    // ˆÊ’uî•ñ‚ğ‘—‚è•Ô‚·
+    // ä½ç½®æƒ…å ±ã‚’é€ã‚Šè¿”ã™
 //    _pCommPlayerWork->moveSync = FALSE;
- /*   OHNO_PRINT("ƒlƒbƒgƒLƒƒƒ‰‚ğ“o˜^ %d (%d,%d)\n", netID,
+ /*   OHNO_PRINT("ãƒãƒƒãƒˆã‚­ãƒ£ãƒ©ã‚’ç™»éŒ² %d (%d,%d)\n", netID,
                _pCommPlayerWork->sPlayerPlace[netID].xpos,
                _pCommPlayerWork->sPlayerPlace[netID].zpos);
 */
@@ -661,8 +661,8 @@ static void _commPlayerAdd(u8 netID)
 
 //==============================================================================
 /**
- * ƒlƒbƒgƒvƒŒ[ƒ„[‚ğíœ
- * @param   netID  q‹@e‹@‚ÌID
+ * ãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’å‰Šé™¤
+ * @param   netID  å­æ©Ÿè¦ªæ©Ÿã®ID
  * @retval  none
  */
 //==============================================================================
@@ -714,8 +714,8 @@ static void _speedSend()
     if(PAD_BUTTON_B & sys.cont){
         speed = _SPEED_4;
     }
-//#ifdef DEBUG_ONLY_FOR_ohno  // ƒfƒoƒbƒOƒ_ƒbƒVƒ…‚Í‚¢‚ë‚¢‚ëĞ‚¢‚µ‚»‚¤‚È‚Ì‚ÅƒRƒƒ“ƒg‚É‚µ‚Ü‚µ‚½
-#ifdef PM_DEBUG   //ƒ}ƒŠƒIƒNƒ‰ƒu‚©‚ç‚Ì—v–]‚Å‰ğ‹Ö‚µ‚Ü‚µ‚½B•Ï‚ÈêŠ‚¢‚­‚Æ~‚Ü‚è‚Ü‚·‚Ì‚Å’ˆÓI
+//#ifdef DEBUG_ONLY_FOR_ohno  // ãƒ‡ãƒãƒƒã‚°ãƒ€ãƒƒã‚·ãƒ¥ã¯ã„ã‚ã„ã‚ç½ã„ã—ãã†ãªã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã«ã—ã¾ã—ãŸ
+#ifdef PM_DEBUG   //ãƒãƒªã‚ªã‚¯ãƒ©ãƒ–ã‹ã‚‰ã®è¦æœ›ã§è§£ç¦ã—ã¾ã—ãŸã€‚å¤‰ãªå ´æ‰€ã„ãã¨æ­¢ã¾ã‚Šã¾ã™ã®ã§æ³¨æ„ï¼
     else if(PAD_BUTTON_R & sys.cont){
         speed = _SPEED_2;
     }
@@ -726,8 +726,8 @@ static void _speedSend()
 
 //==============================================================================
 /**
- * CommPlayer‚Ì’Êíˆ—
- * @param   netID  q‹@e‹@‚ÌID
+ * CommPlayerã®é€šå¸¸å‡¦ç†
+ * @param   netID  å­æ©Ÿè¦ªæ©Ÿã®ID
  * @retval  none
  */
 //==============================================================================
@@ -739,16 +739,16 @@ static void _commPlayerTask(TCB_PTR tcb, void *work)
     if(CommIsInitialize()){
         _speedSend();
         if(CommGetCurrentID() == COMM_PARENT_ID){
-            _commPlayerDataSendTaskToChild(work); // q‹@‚ÉˆÊ’u‘—M
-            _commPlayerDataSendTask(work); // ˜b‚µ‚©‚¯ŠÇ—
+            _commPlayerDataSendTaskToChild(work); // å­æ©Ÿã«ä½ç½®é€ä¿¡
+            _commPlayerDataSendTask(work); // è©±ã—ã‹ã‘ç®¡ç†
             if(_pCommPlayerWork->pCondMgr){
-                CommPlayerCondStep(_pCommPlayerWork->pCondMgr);  // e‹@‚ÅƒRƒ“ƒfƒBƒVƒ‡ƒ“ˆ—
+                CommPlayerCondStep(_pCommPlayerWork->pCondMgr);  // è¦ªæ©Ÿã§ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å‡¦ç†
             }
         }
         else{
-            _commPlayerDataSendTask(work); // ˜b‚µ‚©‚¯ŠÇ—
+            _commPlayerDataSendTask(work); // è©±ã—ã‹ã‘ç®¡ç†
         }
-        _commPlayerAutoStep(work);  // ƒvƒŒƒCƒ„[‚Ìadd deleteŠÇ—
+        _commPlayerAutoStep(work);  // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®add deleteç®¡ç†
     }
 
     for(i = 0; i < COMM_MACHINE_MAX; i++){
@@ -765,8 +765,8 @@ static void _commPlayerTask(TCB_PTR tcb, void *work)
 
 //==============================================================================
 /**
- * ’ÊMó‘Ô‚ğŒ©‚ÄAƒlƒbƒgƒvƒŒ[ƒ„[‚ğ”z’u‚µ‚½‚è‚Í‚¸‚µ‚½‚è‚·‚é
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * é€šä¿¡çŠ¶æ…‹ã‚’è¦‹ã¦ã€ãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’é…ç½®ã—ãŸã‚Šã¯ãšã—ãŸã‚Šã™ã‚‹
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		none
  * @retval  none
  */
@@ -780,14 +780,14 @@ static void _commPlayerAutoStep(void *work)
     for(i = 0; i < COMM_MACHINE_MAX; i++){
 		
 /*
- *	’ÊMƒoƒO@no.0052
-yƒRƒƒVƒAƒ€‚ÅLƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚Æ‚Æ‚Ü‚éz
+ *	é€šä¿¡ãƒã‚°ã€€no.0052
+ã€ã‚³ãƒ­ã‚·ã‚¢ãƒ ã§Lãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã¨ã¨ã¾ã‚‹ã€‘
 
-uƒRƒƒVƒAƒ€v‚É“ü‚èALƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚Æƒr[ƒv‰¹‚Æ‹¤‚É‚Æ‚Ü‚è‚Ü‚·B
+ã€Œã‚³ãƒ­ã‚·ã‚¢ãƒ ã€ã«å…¥ã‚Šã€Lãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã¨ãƒ“ãƒ¼ãƒ—éŸ³ã¨å…±ã«ã¨ã¾ã‚Šã¾ã™ã€‚
 #ifdef PM_DEBUG
         if(sys.trg & PAD_BUTTON_L){
             if(CommPlayerIsTrapBind(i)){
-//                OHNO_PRINT("ƒRƒ“ƒfƒBƒVƒ‡ƒ“ˆÙí %d\n",i);
+//                OHNO_PRINT("ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ç•°å¸¸ %d\n",i);
             }
         }
 #endif
@@ -795,26 +795,26 @@ static void _commPlayerAutoStep(void *work)
         if(!CommIsConnect(i)){
             if(!(CommGetAloneMode() && (i == COMM_PARENT_ID))){
                 if((CommGetCurrentID() == COMM_PARENT_ID) && (_pCommPlayerWork->bUnder)){
-                    // í‚ÉŠÄ‹ Á‚·l‚Ì”é–§Šî’n‚É‚¢‚él‚ğ’Ç‚¢o‚·
+                    // å¸¸ã«ç›£è¦– æ¶ˆã™äººã®ç§˜å¯†åŸºåœ°ã«ã„ã‚‹äººã‚’è¿½ã„å‡ºã™
                     UgSecretBaseRemovePlayer( i );
                 }
             }
         }
-        if(CommIsConnect(i)  || (CommGetAloneMode() && (i == COMM_PARENT_ID)) ){  // ƒIƒ“ƒ‰ƒCƒ“‚È‚ç
+        if(CommIsConnect(i)  || (CommGetAloneMode() && (i == COMM_PARENT_ID)) ){  // ã‚ªãƒ³ãƒ©ã‚¤ãƒ³ãªã‚‰
             _playerMoveClient(i);
             if(_pCommPlayerWork->bUnder){
                 CommPlayerSetFlagDisp(i);
             }
         }
-        else{  // ƒIƒtƒ‰ƒCƒ“‚È‚ç
+        else{  // ã‚ªãƒ•ãƒ©ã‚¤ãƒ³ãªã‚‰
             if(_pCommPlayerWork->bActive[i]){
                 if((CommGetCurrentID() == COMM_PARENT_ID) && (_pCommPlayerWork->bUnder)){
-                    // Á‚·l‚Ìã©î•ñ‚ğ‚È‚­‚·
+                    // æ¶ˆã™äººã®ç½ æƒ…å ±ã‚’ãªãã™
                     CommTrapDeletePlayer_Server(i);
                     UgDigFossilResetPlayer(i);
                 }
                 {
-                    u8 creatureID = i;  // Ÿè‚ÉÁ‚·
+                    u8 creatureID = i;  // å‹æ‰‹ã«æ¶ˆã™
                     CommPlayerRecvDelete(0, 1, &creatureID, _pCommPlayerWork->pFSys);
                 }
             }
@@ -824,9 +824,9 @@ static void _commPlayerAutoStep(void *work)
 
 //==============================================================================
 /**
- * ©‹@‚ÌˆÚ“®‰Â”\ó‘Ô‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+ * è‡ªæ©Ÿã®ç§»å‹•å¯èƒ½çŠ¶æ…‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
  * @param   none
- * @retval  ©‹@‚ªˆÚ“®‰Â”\ó‘Ô‚Ìê‡TRUE
+ * @retval  è‡ªæ©ŸãŒç§»å‹•å¯èƒ½çŠ¶æ…‹ã®å ´åˆTRUE
  */
 //==============================================================================
 
@@ -840,9 +840,9 @@ BOOL CommPlayerIsMyMoveControl(void)
 
 //==============================================================================
 /**
- * ©‹@‚ÌˆÚ“®‰Â”\ó‘Ô‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
- *    ó‘Ô‚ğ‹L‰¯‚µ‚Ä‚¨‚¢‚Ä ƒgƒŠƒK[‚ğe‹@‚É‘—M‚·‚é
- * @param   bMoveControl  ©‹@‚ªˆÚ“®‰Â”\ó‘Ô‚©‚Ç‚¤‚©
+ * è‡ªæ©Ÿã®ç§»å‹•å¯èƒ½çŠ¶æ…‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+ *    çŠ¶æ…‹ã‚’è¨˜æ†¶ã—ã¦ãŠã„ã¦ ãƒˆãƒªã‚¬ãƒ¼ã‚’è¦ªæ©Ÿã«é€ä¿¡ã™ã‚‹
+ * @param   bMoveControl  è‡ªæ©ŸãŒç§»å‹•å¯èƒ½çŠ¶æ…‹ã‹ã©ã†ã‹
  * @retval  none
  */
 //==============================================================================
@@ -852,18 +852,18 @@ void CommPlayerSetMoveControl(BOOL bMoveControl)
     if(_pCommPlayerWork != NULL){
         if(_pCommPlayerWork->bMyMoveControl != bMoveControl){
             _pCommPlayerWork->bMyMoveControl = bMoveControl;
-        //    CommSendFixSizeData(CF_MOVE_CONTROL,&_pCommPlayerWork->bMyMoveControl);   // ‘—M‚·‚é
+        //    CommSendFixSizeData(CF_MOVE_CONTROL,&_pCommPlayerWork->bMyMoveControl);   // é€ä¿¡ã™ã‚‹
         }
 //        OHNO_PRINT("CF_MOVE_CONTROL \n");
-        CommSendFixSizeData(CF_MOVE_CONTROL,&_pCommPlayerWork->bMyMoveControl);   // ‘—M‚·‚é
+        CommSendFixSizeData(CF_MOVE_CONTROL,&_pCommPlayerWork->bMyMoveControl);   // é€ä¿¡ã™ã‚‹
     }
 }
 
 //==============================================================================
 /**
- * ©‹@‚ÌˆÚ“®‰Â”\ó‘Ô‚©‚Ç‚¤‚©‚ğİ’è‚·‚é
- *    ó‘Ô‚ğ‹L‰¯‚µ‚Ä‚¨‚¢‚Ä ƒgƒŠƒK[‚ğe‹@‚É‘—M‚·‚é
- * @param   bMoveControl  ©‹@‚ªˆÚ“®‰Â”\ó‘Ô‚©‚Ç‚¤‚©
+ * è‡ªæ©Ÿã®ç§»å‹•å¯èƒ½çŠ¶æ…‹ã‹ã©ã†ã‹ã‚’è¨­å®šã™ã‚‹
+ *    çŠ¶æ…‹ã‚’è¨˜æ†¶ã—ã¦ãŠã„ã¦ ãƒˆãƒªã‚¬ãƒ¼ã‚’è¦ªæ©Ÿã«é€ä¿¡ã™ã‚‹
+ * @param   bMoveControl  è‡ªæ©ŸãŒç§»å‹•å¯èƒ½çŠ¶æ…‹ã‹ã©ã†ã‹
  * @retval  none
  */
 //==============================================================================
@@ -873,17 +873,17 @@ static void _setMoveControlVSRoom(BOOL bMoveControl)
     if(_pCommPlayerWork != NULL){
         if(_pCommPlayerWork->bMyMoveControl != bMoveControl){
             _pCommPlayerWork->bMyMoveControl = bMoveControl;
-            CommSendFixSizeData(CF_MOVE_CONTROL,&_pCommPlayerWork->bMyMoveControl);   // ‘—M‚·‚é
+            CommSendFixSizeData(CF_MOVE_CONTROL,&_pCommPlayerWork->bMyMoveControl);   // é€ä¿¡ã™ã‚‹
         }
     }
 }
 
 //==============================================================================
 /**
- * ˆÚ“®‰Â”\ó‘Ô‚©‚Ç‚¤‚©‚ğóM‚·‚é   CF_MOVE_CONTROL
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    î•ñ‚Ìƒ|ƒCƒ“ƒ^
+ * ç§»å‹•å¯èƒ½çŠ¶æ…‹ã‹ã©ã†ã‹ã‚’å—ä¿¡ã™ã‚‹   CF_MOVE_CONTROL
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    æƒ…å ±ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -903,8 +903,8 @@ void CommPlayerRecvMoveControl(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * ‘SˆõˆÚ“®‚·‚é
- * @param   repw		  FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
+ * å…¨å“¡ç§»å‹•ã™ã‚‹
+ * @param   repw		  FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -916,14 +916,14 @@ void CommPlayersMove(FIELDSYS_WORK * repw, BOOL bMoveControl)
         return;
     }
     if(!_pCommPlayerWork->bUnder){
-        _setMoveControlVSRoom(bMoveControl);  // ©‹@‚ÌˆÚ“®ó‘Ô‚ğİ’è
+        _setMoveControlVSRoom(bMoveControl);  // è‡ªæ©Ÿã®ç§»å‹•çŠ¶æ…‹ã‚’è¨­å®š
         _pCommPlayerWork->bMoveControlVSRoom = bMoveControl;
     }
     if(repw->player){
         _pCommPlayerWork->pPlayer[CommGetCurrentID()] = repw->player;
     }
     if(CommIsInitialize() && (CommGetCurrentID() == COMM_PARENT_ID)){
-        // e‹@=SERVER‚¾‚¯ˆÚ“®ˆ—‚ğs‚¢Aq‹@‚Í‚»‚ÌŒ‹‰Ê‚Å“®‚­
+        // è¦ªæ©Ÿ=SERVERã ã‘ç§»å‹•å‡¦ç†ã‚’è¡Œã„ã€å­æ©Ÿã¯ãã®çµæœã§å‹•ã
         _commPlayerMove(NULL, _pCommPlayerWork);
     }
     if(CommIsInitialize() && (CommGetCurrentID() == COMM_PARENT_ID)){
@@ -939,10 +939,10 @@ void CommPlayersMove(FIELDSYS_WORK * repw, BOOL bMoveControl)
 
 //--------------------------------------------------------------
 /**
- * ƒL[ƒgƒŠƒKAƒvƒŒƒX‚©‚ç‰Ÿ‚³‚ê‚Ä‚¢‚é•ûŒü‚ğæ“¾
- * @param	key_trg 	ƒL[ƒgƒŠƒK
- * @param	key_prs		ƒL[ƒvƒŒƒX
- * @retval	int			‰Ÿ‚³‚ê‚Ä‚¢‚é•ûŒüBDIR_UP“™
+ * ã‚­ãƒ¼ãƒˆãƒªã‚¬ã€ãƒ—ãƒ¬ã‚¹ã‹ã‚‰æŠ¼ã•ã‚Œã¦ã„ã‚‹æ–¹å‘ã‚’å–å¾—
+ * @param	key_trg 	ã‚­ãƒ¼ãƒˆãƒªã‚¬
+ * @param	key_prs		ã‚­ãƒ¼ãƒ—ãƒ¬ã‚¹
+ * @retval	int			æŠ¼ã•ã‚Œã¦ã„ã‚‹æ–¹å‘ã€‚DIR_UPç­‰
  */
 //--------------------------------------------------------------
 static int _keyDirGet( u16 key_trg, u16 key_cont )
@@ -968,9 +968,9 @@ static int _keyDirGet( u16 key_trg, u16 key_cont )
 
 //--------------------------------------------------------------
 /**
- * •ûŒü‚©‚çƒL[‚ğ•Ô‚·
- * @param	dir 	•ûŒü
- * @retval	int		‰Ÿ‚³‚ê‚Ä‚¢‚éƒL[
+ * æ–¹å‘ã‹ã‚‰ã‚­ãƒ¼ã‚’è¿”ã™
+ * @param	dir 	æ–¹å‘
+ * @retval	int		æŠ¼ã•ã‚Œã¦ã„ã‚‹ã‚­ãƒ¼
  */
 //--------------------------------------------------------------
 static int _dirKeyGet( u16 dir )
@@ -990,9 +990,9 @@ static int _dirKeyGet( u16 dir )
 
 //==============================================================================
 /**
- * NPC‚ª‚¢‚é‚©‚Ç‚¤‚©‚ÌŒŸ¸
- * @param   limit   ƒe[ƒuƒ‹‚ÌŒÀŠE
- * @param   pFunc   ƒe[ƒuƒ‹‚ÉƒAƒNƒZƒX‚·‚é‚½‚ß‚ÌŠÖ”
+ * NPCãŒã„ã‚‹ã‹ã©ã†ã‹ã®æ¤œæŸ»
+ * @param   limit   ãƒ†ãƒ¼ãƒ–ãƒ«ã®é™ç•Œ
+ * @param   pFunc   ãƒ†ãƒ¼ãƒ–ãƒ«ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ãŸã‚ã®é–¢æ•°
  * @retval  none
  */
 //==============================================================================
@@ -1014,10 +1014,10 @@ BOOL CommPlayerNPCHitCheck(int x,int z)
 
 //==============================================================================
 /**
- * ’nŒ`‚ÆƒlƒbƒgƒvƒŒ[ƒ„[‚Ì‚ ‚½‚è‚ğ”»’è
- * @param   tcb      ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- * @param   work     ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @retval  HIT‘¶İ‚·‚éê‡TRUE  “®‚¯‚éê‡‚ÍFALSE
+ * åœ°å½¢ã¨ãƒãƒƒãƒˆãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®ã‚ãŸã‚Šã‚’åˆ¤å®š
+ * @param   tcb      ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   work     ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  HITå­˜åœ¨ã™ã‚‹å ´åˆTRUE  å‹•ã‘ã‚‹å ´åˆã¯FALSE
  */
 //==============================================================================
 
@@ -1031,7 +1031,7 @@ static BOOL _commGetHitAttr(int x, int z, int netID)
                 continue;
             }
             if((x == CommPlayerGetPosSX(i)) && (z == CommPlayerGetPosSZ(i))){
-//                OHNO_PRINT("ƒvƒŒ[ƒ„[“¯m‚Ì‚ ‚½‚è\n");
+//                OHNO_PRINT("ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼åŒå£«ã®ã‚ãŸã‚Š\n");
                 return TRUE;
             }
         }
@@ -1049,9 +1049,9 @@ static BOOL _commGetHitAttr(int x, int z, int netID)
 
 //--------------------------------------------------------------
 /**
- * ‚«”ò‚Î‚µ‚ÌˆÚ“®ƒJƒEƒ“ƒg
+ * å¹ãé£›ã°ã—ã®ç§»å‹•ã‚«ã‚¦ãƒ³ãƒˆ
  * @param	netID  id
- * @retval	ˆÚ“®’l
+ * @retval	ç§»å‹•å€¤
  */
 //--------------------------------------------------------------
 
@@ -1079,9 +1079,9 @@ static int _getBlowMoveCount( int counter, int bBigBlow)
 
 //==============================================================================
 /**
- * ƒXƒs[ƒh‚É‚ ‚í‚¹‚ÄˆÚ“®‚·‚éƒtƒŒ[ƒ€”‚ğ•Ô‚·
- * @param   speed  ˆÚ“®‘¬“x
- * @retval  ˆÚ“®‚·‚éƒtƒŒ[ƒ€”
+ * ã‚¹ãƒ”ãƒ¼ãƒ‰ã«ã‚ã‚ã›ã¦ç§»å‹•ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’è¿”ã™
+ * @param   speed  ç§»å‹•é€Ÿåº¦
+ * @retval  ç§»å‹•ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  */
 //==============================================================================
 
@@ -1095,9 +1095,9 @@ static int _getWalkCount(int speed)
 
 //==============================================================================
 /**
- * óM‚µ‚½ƒL[ƒf[ƒ^‚ğŒ³‚ÉˆÚ“®‚·‚é
- * @param   tcb      ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- * @param   work     ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * å—ä¿¡ã—ãŸã‚­ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å…ƒã«ç§»å‹•ã™ã‚‹
+ * @param   tcb      ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   work     ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1118,10 +1118,10 @@ static void _commPlayerMove(TCB_PTR tcb, void *work)
                 pCond = CommPlayerCondGetWork(_pCommPlayerWork->pCondMgr, i);
             }
             if(_pCommPlayerWork->bUnder){
-                if(CommSecretBaseIsTraveling(i)){   // êŠˆÚ“®’†
+                if(CommSecretBaseIsTraveling(i)){   // å ´æ‰€ç§»å‹•ä¸­
 #ifdef DEBUG_ONLY_FOR_ohno
                     if(sys.cont & PAD_BUTTON_START){
-//                        OHNO_PRINT("--”é–§Šî’nˆÚ“®’†\n");
+//                        OHNO_PRINT("--ç§˜å¯†åŸºåœ°ç§»å‹•ä¸­\n");
                     }
 #endif
                     continue;
@@ -1133,11 +1133,11 @@ static void _commPlayerMove(TCB_PTR tcb, void *work)
 
             if(_pCommPlayerWork->walkCount[i] == 0){
                 if(_pCommPlayerWork->bUnder){
-                    if(CommTrapCheckAndSendMessage( i )){ // ã©ˆ—
+                    if(CommTrapCheckAndSendMessage( i )){ // ç½ å‡¦ç†
                         continue;
                     }
                     if(!CommPlayerIsTrapBind(i)){
-                        if(UgSecretBaseTrapGoodsCheck( i )){ // ã©ˆ—
+                        if(UgSecretBaseTrapGoodsCheck( i )){ // ç½ å‡¦ç†
                             continue;
                         }
                     }
@@ -1169,7 +1169,7 @@ static void _commPlayerMove(TCB_PTR tcb, void *work)
                 _pCommPlayerWork->bMoveChange[i] = TRUE;
             }
             pPP->bHit = FALSE;
-//            if(_pCommPlayerWork->countHole[i] == 1){   //ŒŠ‚Ìã©
+//            if(_pCommPlayerWork->countHole[i] == 1){   //ç©´ã®ç½ 
 //                u8 bRet = TRUE;
 //                CommTrapRecvEnd(i, 1, &bRet,NULL);
 //                _pCommPlayerWork->countHole[i] = 0;
@@ -1185,7 +1185,7 @@ static void _commPlayerMove(TCB_PTR tcb, void *work)
             z = CommPlayerGetPosSZDirAdd(i);
             if((x!=COMM_PLAYER_INVALID_GRID) && (z !=COMM_PLAYER_INVALID_GRID) && (dir != DIR_NOT)){
                 if(pPP->dir != dir){
-                    // ˆÚ“®•ûŒü•ÏŠ·‚Ì‚İ
+                    // ç§»å‹•æ–¹å‘å¤‰æ›ã®ã¿
                     pPP->dir = dir;
                     _pCommPlayerWork->walkCount[i] = 4;
                     _pCommPlayerWork->bMoveChange[i]=TRUE;
@@ -1198,7 +1198,7 @@ static void _commPlayerMove(TCB_PTR tcb, void *work)
                     continue;
                 }
                 else if( _pCommPlayerWork->bUnder && (CommSecretBaseSingleStepFunc(i,x,z) == TRUE)){
-                    continue;  // ”é–§Šî’nˆÚ“®ŠJn
+                    continue;  // ç§˜å¯†åŸºåœ°ç§»å‹•é–‹å§‹
                 }
 #ifdef PM_DEBUG
                 else if(_commGetHitAttr( x, z, i) && !(pPP->speed == _SPEED_2)){
@@ -1214,7 +1214,7 @@ static void _commPlayerMove(TCB_PTR tcb, void *work)
                     pPP->xpos = x;
                     pPP->zpos = z;
                     pPP->dir = dir;
-                    OHNO_SP_PRINT("ƒT[ƒo[  MOVE  %d %d \n",x,z);
+                    OHNO_SP_PRINT("ã‚µãƒ¼ãƒãƒ¼  MOVE  %d %d \n",x,z);
                     _pCommPlayerWork->walkCount[i] = _getWalkCount(pPP->speed);
                     if(_pCommPlayerWork->giddyCounter[i]!=0){
                         _pCommPlayerWork->giddyCounter[i]--;
@@ -1231,10 +1231,10 @@ static void _commPlayerMove(TCB_PTR tcb, void *work)
 
 //==============================================================================
 /**
- * ˆÊ’u‚Ìî•ñ‚ğóM‚µ‚½   CF_PLAYER_POS
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ˆÚ“®î•ñƒ|ƒCƒ“ƒ^
+ * ä½ç½®ã®æƒ…å ±ã‚’å—ä¿¡ã—ãŸ   CF_PLAYER_POS
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ç§»å‹•æƒ…å ±ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1256,8 +1256,8 @@ void CommPlayerRecvPlace(int netID, int size, void* pBuff, void* pWork)
             return;
      //   }
     }
-    if(pPP->dir == DIR_NOT){  // ‚Ü‚¾‰Šúó‘Ô‚Ìê‡‚É
-        // ˆÊ’uƒf[ƒ^‚ğq‹@‚É‘—M‚·‚é
+    if(pPP->dir == DIR_NOT){  // ã¾ã åˆæœŸçŠ¶æ…‹ã®å ´åˆã«
+        // ä½ç½®ãƒ‡ãƒ¼ã‚¿ã‚’å­æ©Ÿã«é€ä¿¡ã™ã‚‹
 //        _pCommPlayerWork->bPosAllSend = TRUE;
         int i;
         for(i = 0; i < COMM_MACHINE_MAX; i++){
@@ -1273,12 +1273,12 @@ void CommPlayerRecvPlace(int netID, int size, void* pBuff, void* pWork)
     pPP->zpos += ((u32)pData[3] << 8) & 0xff00;
     pPP->dir = pData[4] & 0x0f;
 
-    OHNO_SP_PRINT("ˆÚ“®–½—ß %d %d %d %d\n", netID, pPP->xpos, pPP->zpos,pPP->dir);
+    OHNO_SP_PRINT("ç§»å‹•å‘½ä»¤ %d %d %d %d\n", netID, pPP->xpos, pPP->zpos,pPP->dir);
     _pCommPlayerWork->bActive[netID] = TRUE;
     _pCommPlayerWork->bMoveChange[netID] = TRUE;
 
 
-    if( GetHitAttr(_pCommPlayerWork->pFSys, pPP->xpos, pPP->zpos) ){ // ‘—‚ç‚ê‚Ä‚«‚½À•W‚ª•s³
+    if( GetHitAttr(_pCommPlayerWork->pFSys, pPP->xpos, pPP->zpos) ){ // é€ã‚‰ã‚Œã¦ããŸåº§æ¨™ãŒä¸æ­£
         GF_ASSERT_MSG(0,"pos %d %d\n",pPP->xpos, pPP->zpos);
     }
 }
@@ -1286,10 +1286,10 @@ void CommPlayerRecvPlace(int netID, int size, void* pBuff, void* pWork)
 
 //==============================================================================
 /**
- * ƒvƒŒ[ƒ„[‚ğÁ‚·–½—ß‚ğóM‚µ‚½  CF_PLAYER_DELETE
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ˆÚ“®î•ñƒ|ƒCƒ“ƒ^
+ * ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’æ¶ˆã™å‘½ä»¤ã‚’å—ä¿¡ã—ãŸ  CF_PLAYER_DELETE
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ç§»å‹•æƒ…å ±ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1305,7 +1305,7 @@ void CommPlayerRecvDelete(int netID, int size, void* pBuff, void* pWork)
     if(creatureID == CommGetCurrentID()){
         return;
     }
-    OHNO_SP_PRINT("ƒvƒŒ[ƒ„[‚ğÁ‚·–½—ß‚ğóM %d \n",creatureID);
+    OHNO_SP_PRINT("ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚’æ¶ˆã™å‘½ä»¤ã‚’å—ä¿¡ %d \n",creatureID);
 
     if(_pCommPlayerWork->bUnder){
         UgMgrStartReturnLog(creatureID);
@@ -1324,9 +1324,9 @@ void CommPlayerRecvDelete(int netID, int size, void* pBuff, void* pWork)
 
 //==============================================================================
 /**
- * êŠ‚ğ‘—‚éƒf[ƒ^‚ÌƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·
+ * å ´æ‰€ã‚’é€ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™
  * @param   none
- * @retval  ƒf[ƒ^ƒTƒCƒY
+ * @retval  ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1338,10 +1338,10 @@ int CommPlayerGetRecvPlaceSize(void)
 
 //==============================================================================
 /**
- * IDw’è‚ÅˆÊ’u‚Ìî•ñ‚ğóM‚µ‚½ CF_PLAYER_POS_ID
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ˆÚ“®î•ñƒ|ƒCƒ“ƒ^
+ * IDæŒ‡å®šã§ä½ç½®ã®æƒ…å ±ã‚’å—ä¿¡ã—ãŸ CF_PLAYER_POS_ID
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ç§»å‹•æƒ…å ±ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1355,7 +1355,7 @@ void CommPlayerRecvIDPlace(int netID, int size, void* pBuff, void* pWork)
 
     creatureID = pData[0] & 0xf;
     if(_pCommPlayerWork == NULL){
-        OHNO_SP_PRINT("----------ó‚¯æ‚ç‚È‚©‚Á‚½ PlaceID %d\n", creatureID);
+        OHNO_SP_PRINT("----------å—ã‘å–ã‚‰ãªã‹ã£ãŸ PlaceID %d\n", creatureID);
         return;
     }
     if(netID == CommGetCurrentID() && _pCommPlayerWork->bNotRecvMoveData){
@@ -1385,9 +1385,9 @@ void CommPlayerRecvIDPlace(int netID, int size, void* pBuff, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * •à‚¢‚½•à”‚ğƒJƒEƒ“ƒg‚·‚é
- * @param	dir		ˆÚ“®‚·‚é•ûŒüBDIR_UP“™
- * @retval	I—¹‚µ‚½‚çTRUE
+ * æ­©ã„ãŸæ­©æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹
+ * @param	dir		ç§»å‹•ã™ã‚‹æ–¹å‘ã€‚DIR_UPç­‰
+ * @retval	çµ‚äº†ã—ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -1409,9 +1409,9 @@ static void _walkCount(int netID)
 
 //--------------------------------------------------------------
 /**
- * ‚«”ò‚Î‚µ‚Ìã©‚ğ“¥‚ñ‚¾ê‡‚ÌˆÚ“®
- * @param	dir		ˆÚ“®‚·‚é•ûŒüBDIR_UP“™
- * @retval	I—¹‚µ‚½‚çTRUE
+ * å¹ãé£›ã°ã—ã®ç½ ã‚’è¸ã‚“ã å ´åˆã®ç§»å‹•
+ * @param	dir		ç§»å‹•ã™ã‚‹æ–¹å‘ã€‚DIR_UPç­‰
+ * @retval	çµ‚äº†ã—ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 static BOOL _blowAnim( int netID,int padTrg,int padCont,int speed )
@@ -1419,18 +1419,18 @@ static BOOL _blowAnim( int netID,int padTrg,int padCont,int speed )
     FIELD_OBJ_PTR fldobj;
     int idx, dir;
     u8 walkcmd[]={
-        AC_WALK_U_2F,				///<ã‚ÉˆÚ“®@2ƒtƒŒ[ƒ€
-        AC_WALK_D_2F,				///<‰º‚ÉˆÚ“®@2ƒtƒŒ[ƒ€
-        AC_WALK_L_2F,				///<¶‚ÉˆÚ“®@2ƒtƒŒ[ƒ€
-        AC_WALK_R_2F,				///<‰E‚ÉˆÚ“®@2ƒtƒŒ[ƒ€
-        AC_WALK_U_4F,				///<ã‚ÉˆÚ“®@4ƒtƒŒ[ƒ€
-        AC_WALK_D_4F,				///<‰º‚ÉˆÚ“®@4ƒtƒŒ[ƒ€
-        AC_WALK_L_4F,				///<¶‚ÉˆÚ“®@4ƒtƒŒ[ƒ€
-        AC_WALK_R_4F,				///<‰E‚ÉˆÚ“®@4ƒtƒŒ[ƒ€
-        AC_WALK_U_8F,				///<ã‚ÉˆÚ“®@8ƒtƒŒ[ƒ€
-        AC_WALK_D_8F,				///<‰º‚ÉˆÚ“®@8ƒtƒŒ[ƒ€
-        AC_WALK_L_8F,				///<¶‚ÉˆÚ“®@8ƒtƒŒ[ƒ€
-        AC_WALK_R_8F,				///<‰E‚ÉˆÚ“®@8ƒtƒŒ[ƒ€
+        AC_WALK_U_2F,				///<ä¸Šã«ç§»å‹•ã€€2ãƒ•ãƒ¬ãƒ¼ãƒ 
+        AC_WALK_D_2F,				///<ä¸‹ã«ç§»å‹•ã€€2ãƒ•ãƒ¬ãƒ¼ãƒ 
+        AC_WALK_L_2F,				///<å·¦ã«ç§»å‹•ã€€2ãƒ•ãƒ¬ãƒ¼ãƒ 
+        AC_WALK_R_2F,				///<å³ã«ç§»å‹•ã€€2ãƒ•ãƒ¬ãƒ¼ãƒ 
+        AC_WALK_U_4F,				///<ä¸Šã«ç§»å‹•ã€€4ãƒ•ãƒ¬ãƒ¼ãƒ 
+        AC_WALK_D_4F,				///<ä¸‹ã«ç§»å‹•ã€€4ãƒ•ãƒ¬ãƒ¼ãƒ 
+        AC_WALK_L_4F,				///<å·¦ã«ç§»å‹•ã€€4ãƒ•ãƒ¬ãƒ¼ãƒ 
+        AC_WALK_R_4F,				///<å³ã«ç§»å‹•ã€€4ãƒ•ãƒ¬ãƒ¼ãƒ 
+        AC_WALK_U_8F,				///<ä¸Šã«ç§»å‹•ã€€8ãƒ•ãƒ¬ãƒ¼ãƒ 
+        AC_WALK_D_8F,				///<ä¸‹ã«ç§»å‹•ã€€8ãƒ•ãƒ¬ãƒ¼ãƒ 
+        AC_WALK_L_8F,				///<å·¦ã«ç§»å‹•ã€€8ãƒ•ãƒ¬ãƒ¼ãƒ 
+        AC_WALK_R_8F,				///<å³ã«ç§»å‹•ã€€8ãƒ•ãƒ¬ãƒ¼ãƒ 
     };
 
 #if T1662_060815_FIX
@@ -1449,42 +1449,42 @@ static BOOL _blowAnim( int netID,int padTrg,int padCont,int speed )
     }
 #endif //T1662_060815_FIX
 
-    // “®‚«o‚·‚É•ûŒü‚ªˆá‚Á‚Ä‚¢‚½‚ç•Ï‰»‚³‚¹‚é
-    fldobj = Player_FieldOBJGet( _pCommPlayerWork->pPlayer[netID] );   //©‹@‚ÌƒtƒB[ƒ‹ƒhOBJƒ|ƒCƒ“ƒ^æ“¾
+    // å‹•ãå‡ºã™æ™‚ã«æ–¹å‘ãŒé•ã£ã¦ã„ãŸã‚‰å¤‰åŒ–ã•ã›ã‚‹
+    fldobj = Player_FieldOBJGet( _pCommPlayerWork->pPlayer[netID] );   //è‡ªæ©Ÿã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒã‚¤ãƒ³ã‚¿å–å¾—
     if(Player_DirGet(_pCommPlayerWork->pPlayer[netID])!=CommPlayerGetReverseDir(_pCommPlayerWork->blowDir[netID])){
         FieldOBJ_StatusBit_OFF( fldobj, FLDOBJ_STA_BIT_PAUSE_DIR );
         Player_DirSet(_pCommPlayerWork->pPlayer[netID], CommPlayerGetReverseDir(_pCommPlayerWork->blowDir[netID]));
         FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_PAUSE_DIR );
     }
 
-    if( FieldOBJ_AcmdEndCheck(fldobj) == TRUE ){ //ƒAƒjƒI—¹ƒ`ƒFƒbƒN
+    if( FieldOBJ_AcmdEndCheck(fldobj) == TRUE ){ //ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
 
 	}
 
-    if( FieldOBJ_AcmdSetCheck(fldobj) == TRUE ){//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
+    if( FieldOBJ_AcmdSetCheck(fldobj) == TRUE ){//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
         _walkCount(netID);
-        OHNO_SP_PRINT("‚«”ò‚Î‚µ“®ìC %d %d \n",netID, speed);
+        OHNO_SP_PRINT("å¹ãé£›ã°ã—å‹•ä½œC %d %d \n",netID, speed);
         switch( speed  ){
           case _SPEED_2:
-            FieldOBJ_AcmdSet( fldobj, walkcmd[_pCommPlayerWork->blowDir[netID]] ); //o—ˆ‚éB‰º•ûŒü‚ÉˆÚ“®
+            FieldOBJ_AcmdSet( fldobj, walkcmd[_pCommPlayerWork->blowDir[netID]] ); //å‡ºæ¥ã‚‹ã€‚ä¸‹æ–¹å‘ã«ç§»å‹•
             break;
           case _SPEED_4:
-            FieldOBJ_AcmdSet( fldobj, walkcmd[_pCommPlayerWork->blowDir[netID]+4] ); //o—ˆ‚éB‰º•ûŒü‚ÉˆÚ“®
+            FieldOBJ_AcmdSet( fldobj, walkcmd[_pCommPlayerWork->blowDir[netID]+4] ); //å‡ºæ¥ã‚‹ã€‚ä¸‹æ–¹å‘ã«ç§»å‹•
             break;
           case _SPEED_8:
-            FieldOBJ_AcmdSet( fldobj, walkcmd[_pCommPlayerWork->blowDir[netID]+8] ); //o—ˆ‚éB‰º•ûŒü‚ÉˆÚ“®
+            FieldOBJ_AcmdSet( fldobj, walkcmd[_pCommPlayerWork->blowDir[netID]+8] ); //å‡ºæ¥ã‚‹ã€‚ä¸‹æ–¹å‘ã«ç§»å‹•
             break;
         }
     }else{
-        OHNO_SP_PRINT("ƒAƒjƒƒZƒbƒg‚Å‚«‚È‚©‚Á‚½\n");
-        //@@@@@@‘¼‚ÌƒAƒjƒÀs’†‚É‚æ‚èo—ˆ‚È‚¢Bo—ˆ‚é‚Ü‚Å‘Ò‚Â
+        OHNO_SP_PRINT("ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ããªã‹ã£ãŸ\n");
+        //ã€€ã€€ã€€ã€€ã€€ã€€ä»–ã®ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œä¸­ã«ã‚ˆã‚Šå‡ºæ¥ãªã„ã€‚å‡ºæ¥ã‚‹ã¾ã§å¾…ã¤
     }
     return TRUE;
 }
 
 //==============================================================================
 /**
- * ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚ÌˆÚ“®ˆ—  ‚Pƒ}ƒX‚Ã‚Â‚µ‚©“®‚©‚È‚¢‚æ‚¤‚É‚È‚Á‚Ä‚¢‚é
+ * ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã®ç§»å‹•å‡¦ç†  ï¼‘ãƒã‚¹ã¥ã¤ã—ã‹å‹•ã‹ãªã„ã‚ˆã†ã«ãªã£ã¦ã„ã‚‹
  * @param   netID
  * @retval  none
  */
@@ -1500,7 +1500,7 @@ static void _playerMoveClient(int netID)
 
     pPP = &_pCommPlayerWork->sPlayerPlace[netID];
 
-    if(_pCommPlayerWork->walkCountClient[netID] != 0){  // Œ»ó
+    if(_pCommPlayerWork->walkCountClient[netID] != 0){  // ç¾çŠ¶
         _pCommPlayerWork->walkCountClient[netID]--;
         return;
     }
@@ -1576,11 +1576,11 @@ static void _playerMoveClient(int netID)
                 _pCommPlayerWork->forceDirFlg--;
 //                code = FieldOBJ_AcmdCodeDirChange( pPP->dir, AC_STAY_WALK_U_4F );
             }
-            else if(!CommIsSendMoveData() && _pCommPlayerWork->bUnder && (netID==CommGetCurrentID())){ //ˆÚ“®ƒƒbƒN‚É‚ÍˆÚ“®ƒAƒjƒ‚µ‚È‚¢
+            else if(!CommIsSendMoveData() && _pCommPlayerWork->bUnder && (netID==CommGetCurrentID())){ //ç§»å‹•ãƒ­ãƒƒã‚¯æ™‚ã«ã¯ç§»å‹•ã‚¢ãƒ‹ãƒ¡ã—ãªã„
                 code = Player_KeyMoveSelectAcmdCodeGet(
                     pPlayerState, pad, pad, sp, TRUE, JIKI_MOVE_HIT_BIT_NON);
             }
-            else if(((pad & ~PAD_BUTTON_B) == 0)  && (pPP->bHit) ){  // ˆÚ“®‚µ‚È‚­‚Ä—Ç‚­‚Ä‚ ‚½‚è‚ª‚ ‚éê‡
+            else if(((pad & ~PAD_BUTTON_B) == 0)  && (pPP->bHit) ){  // ç§»å‹•ã—ãªãã¦è‰¯ãã¦ã‚ãŸã‚ŠãŒã‚ã‚‹å ´åˆ
                 speed = _SPEED_16;
                 switch(pPP->dir){
                   case DIR_UP:
@@ -1605,8 +1605,8 @@ static void _playerMoveClient(int netID)
                 code = Player_KeyMoveSelectAcmdCodeGet(
                     pPlayerState, pad, pad, sp, TRUE, JIKI_MOVE_HIT_BIT_NON);
             }
-            if( Player_AcmdSetCheck(pPlayerState) == FALSE ){          //ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh’†
-                if( Player_MoveCancellCheck(pPlayerState) == FALSE ){  //ƒLƒƒƒ“ƒZƒ‹•s‰Â
+            if( Player_AcmdSetCheck(pPlayerState) == FALSE ){          //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ä¸­
+                if( Player_MoveCancellCheck(pPlayerState) == FALSE ){  //ã‚­ãƒ£ãƒ³ã‚»ãƒ«ä¸å¯
                     return;
                 }
             }
@@ -1628,9 +1628,9 @@ static void _playerMoveClient(int netID)
 
 //--------------------------------------------------------------
 /**
- * ‚«”ò‚Î‚µ‚Ìã©‚ğ“¥‚ñ‚¾ê‡‚ÌƒT[ƒo[ˆÚ“®
+ * å¹ãé£›ã°ã—ã®ç½ ã‚’è¸ã‚“ã å ´åˆã®ã‚µãƒ¼ãƒãƒ¼ç§»å‹•
  * @param	netID  id
- * @retval	I—¹‚µ‚½‚çTRUE
+ * @retval	çµ‚äº†ã—ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 static BOOL _blowMove( int netID , int cnt)
@@ -1645,7 +1645,7 @@ static BOOL _blowMove( int netID , int cnt)
         return TRUE;
     }
     _pCommPlayerWork->blowCounterS[netID]--;
-    if(1 == cnt){        // ’â~’†
+    if(1 == cnt){        // åœæ­¢ä¸­
         return TRUE;
     }
     x = CommPlayerGetPosSX(netID);
@@ -1680,17 +1680,17 @@ static BOOL _blowMove( int netID , int cnt)
         pPP->speed = _SPEED_8;
         break;
     }
-    OHNO_SP_PRINT("‚«”ò‚Î‚µ“®ì %d %d %d \n",netID, pPP->speed, _pCommPlayerWork->blowCounterS[netID]);
+    OHNO_SP_PRINT("å¹ãé£›ã°ã—å‹•ä½œ %d %d %d \n",netID, pPP->speed, _pCommPlayerWork->blowCounterS[netID]);
     return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * ‚«”ò‚Î‚µ‚Ìã©‚ğ“¥‚ñ‚¾ê‡‚ÌƒT[ƒo‘¤ˆÚ“®‚ğŠJn
+ * å¹ãé£›ã°ã—ã®ç½ ã‚’è¸ã‚“ã å ´åˆã®ã‚µãƒ¼ãƒå´ç§»å‹•ã‚’é–‹å§‹
  * @param	netID   i
- * @param	dir		ˆÚ“®‚·‚é•ûŒüBDIR_UP“™
- * @param	bBig    ‚«”ò‚Î‚³‚ê‚é‘å‚«‚³
- * @retval	I—¹‚µ‚½‚çTRUE
+ * @param	dir		ç§»å‹•ã™ã‚‹æ–¹å‘ã€‚DIR_UPç­‰
+ * @param	bBig    å¹ãé£›ã°ã•ã‚Œã‚‹å¤§ãã•
+ * @retval	çµ‚äº†ã—ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 void CommPlayerBlowStart( int netID, int dir , BOOL bBig)
@@ -1698,8 +1698,8 @@ void CommPlayerBlowStart( int netID, int dir , BOOL bBig)
     _PlayerPlace* pPP = &_pCommPlayerWork->sPlayerPlaceServer[netID];
     u8 buff[3];
     
-    pPP->dir = CommPlayerGetReverseDir(dir);  // Œü‚­•ûŒü
-    _pCommPlayerWork->blowDirS[netID] = dir;  // ”ò‚Î‚³‚ê‚é•ûŒü
+    pPP->dir = CommPlayerGetReverseDir(dir);  // å‘ãæ–¹å‘
+    _pCommPlayerWork->blowDirS[netID] = dir;  // é£›ã°ã•ã‚Œã‚‹æ–¹å‘
     if(bBig){
         _pCommPlayerWork->bBlowBigS[netID] = TRUE;
         _pCommPlayerWork->blowCounterS[netID] = _BIGBLOW_COUNTER_NUM_MAX;// + _BLOW_STOP_COUNT;
@@ -1717,9 +1717,9 @@ void CommPlayerBlowStart( int netID, int dir , BOOL bBig)
 
 //--------------------------------------------------------------
 /**
- * ‚«”ò‚Î‚µ‚Ìã©‚ğ‹­§I—¹‚·‚éê‡‚Ìˆ—
- * @param   victimNetID   ”íŠQÒID
- * @retval	I—¹‚µ‚½‚çTRUE
+ * å¹ãé£›ã°ã—ã®ç½ ã‚’å¼·åˆ¶çµ‚äº†ã™ã‚‹å ´åˆã®å‡¦ç†
+ * @param   victimNetID   è¢«å®³è€…ID
+ * @retval	çµ‚äº†ã—ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 void CommPlayerBlowExit(int victimNetID)
@@ -1730,9 +1730,9 @@ void CommPlayerBlowExit(int victimNetID)
 
 //--------------------------------------------------------------
 /**
- * ‚«”ò‚Î‚µ‚Ìã©‚ğŠJn‚·‚é
- * @param   victimNetID   ”íŠQÒID
- * @retval	I—¹‚µ‚½‚çTRUE
+ * å¹ãé£›ã°ã—ã®ç½ ã‚’é–‹å§‹ã™ã‚‹
+ * @param   victimNetID   è¢«å®³è€…ID
+ * @retval	çµ‚äº†ã—ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 void CommPlayerBlowFirst(int victimNetID)
@@ -1742,9 +1742,9 @@ void CommPlayerBlowFirst(int victimNetID)
 
 //--------------------------------------------------------------
 /**
- * ‚«”ò‚Î‚µ‚Ìã©‚ğ“¥‚ñ‚¾ê‡‚ÌˆÚ“®‚ğŠJn
- * @param	dir		ˆÚ“®‚·‚é•ûŒüBDIR_UP“™
- * @retval	I—¹‚µ‚½‚çTRUE
+ * å¹ãé£›ã°ã—ã®ç½ ã‚’è¸ã‚“ã å ´åˆã®ç§»å‹•ã‚’é–‹å§‹
+ * @param	dir		ç§»å‹•ã™ã‚‹æ–¹å‘ã€‚DIR_UPç­‰
+ * @retval	çµ‚äº†ã—ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 void CommPlayerBlowAnimStart( int netID, int dir , BOOL bBig)
@@ -1754,7 +1754,7 @@ void CommPlayerBlowAnimStart( int netID, int dir , BOOL bBig)
     if(_pCommPlayerWork->pPlayer[netID]==NULL){
       return;
     }
-    fldobj = Player_FieldOBJGet( _pCommPlayerWork->pPlayer[netID] );   //©‹@‚ÌƒtƒB[ƒ‹ƒhOBJƒ|ƒCƒ“ƒ^æ“¾
+    fldobj = Player_FieldOBJGet( _pCommPlayerWork->pPlayer[netID] );   //è‡ªæ©Ÿã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒã‚¤ãƒ³ã‚¿å–å¾—
 
     FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_PAUSE_DIR );
     FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_PAUSE_ANM );
@@ -1766,7 +1766,7 @@ void CommPlayerBlowAnimStart( int netID, int dir , BOOL bBig)
 
 //--------------------------------------------------------------
 /**
- * ‚«”ò‚Î‚µ‚Ìã©‚ğ“¥‚ñ‚¾ê‡‚ÌˆÚ“®‚ğ’â~
+ * å¹ãé£›ã°ã—ã®ç½ ã‚’è¸ã‚“ã å ´åˆã®ç§»å‹•ã‚’åœæ­¢
  * @param	netID   id
  * @retval	none
  */
@@ -1779,8 +1779,8 @@ void CommPlayerBlowAnimStop( int netID)
     }
     
     if(_pCommPlayerWork->blowDir[netID] != DIR_NOT){
-        fldobj = Player_FieldOBJGet( _pCommPlayerWork->pPlayer[netID] );   //©‹@‚ÌƒtƒB[ƒ‹ƒhOBJƒ|ƒCƒ“ƒ^æ“¾
-        FieldOBJ_AcmdEnd(fldobj); 			 //ƒAƒjƒŠ®‘SI—¹
+        fldobj = Player_FieldOBJGet( _pCommPlayerWork->pPlayer[netID] );   //è‡ªæ©Ÿã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãƒã‚¤ãƒ³ã‚¿å–å¾—
+        FieldOBJ_AcmdEnd(fldobj); 			 //ã‚¢ãƒ‹ãƒ¡å®Œå…¨çµ‚äº†
         FieldOBJ_StatusBit_OFF( fldobj, FLDOBJ_STA_BIT_PAUSE_DIR );
         FieldOBJ_StatusBit_OFF( fldobj, FLDOBJ_STA_BIT_PAUSE_ANM );
         _pCommPlayerWork->blowDir[netID] = DIR_NOT;
@@ -1789,9 +1789,9 @@ void CommPlayerBlowAnimStop( int netID)
 
 //==============================================================================
 /**
- * ID‚Â‚«‚ÅêŠ‚ğ‘—‚éƒf[ƒ^‚ÌƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·
+ * IDã¤ãã§å ´æ‰€ã‚’é€ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™
  * @param   none
- * @retval  ƒf[ƒ^ƒTƒCƒY
+ * @retval  ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1802,10 +1802,10 @@ int CommPlayerGetRecvIDPlaceSize(void)
 
 //==============================================================================
 /**
- * ‰ï˜bƒf[ƒ^‚ğóM‚µ‚Ü‚·
- * @param   netID         ‰ï˜b‚ğ‘—M‚µ‚Ä‚«‚½‘Šè
- * @param   size          óMƒf[ƒ^ƒTƒCƒY
- * @param   pData         ƒƒbƒZ[ƒW‚ªŠÜ‚Ü‚ê‚Ä‚¢‚éƒf[ƒ^
+ * ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ã¾ã™
+ * @param   netID         ä¼šè©±ã‚’é€ä¿¡ã—ã¦ããŸç›¸æ‰‹
+ * @param   size          å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData         ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå«ã¾ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1816,7 +1816,7 @@ int CommPlayerGetRecvIDPlaceSize(void)
 
 //void CommPlayerRecvTalk(int netID, int size, void* pData, void* pWork)
 //{
-    // ‚·‚®‚É‚İ‚ñ‚È‚É•ÔM
+    // ã™ãã«ã¿ã‚“ãªã«è¿”ä¿¡
 //    CommSendData_ServerSide(CF_TALK_DISP_SERVER_SIDE, pData, size);
 //}
 
@@ -1828,9 +1828,9 @@ int CommPlayerGetRecvIDPlaceSize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚ª’ÊM‚É‚æ‚éˆÚ“®ó‘Ô‚É‚ ‚é‚©‚Ç‚¤‚©
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ãŒé€šä¿¡ã«ã‚ˆã‚‹ç§»å‹•çŠ¶æ…‹ã«ã‚ã‚‹ã‹ã©ã†ã‹
  * @param   none
- * @retval  ’ÊM‚ÅˆÚ“®‚³‚¹‚éê‡TRUE
+ * @retval  é€šä¿¡ã§ç§»å‹•ã•ã›ã‚‹å ´åˆTRUE
  */
 //--------------------------------------------------------------
 
@@ -1842,7 +1842,7 @@ BOOL CommPlayerIsControl(void)
     if(!_pCommPlayerWork){
         return FALSE;
     }
-    if(!CommIsConnect(CommGetCurrentID()) ){  // ƒIƒ“ƒ‰ƒCƒ“‚È‚çOK
+    if(!CommIsConnect(CommGetCurrentID()) ){  // ã‚ªãƒ³ãƒ©ã‚¤ãƒ³ãªã‚‰OK
         return FALSE;
     }
     if(_pCommPlayerWork->bUnder && !CommIsUnderGroundMoveState()){
@@ -1854,8 +1854,8 @@ BOOL CommPlayerIsControl(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ¶‚«‚Ä‚é‚©‚Ç‚¤‚©
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
+ * @brief   ç”Ÿãã¦ã‚‹ã‹ã©ã†ã‹
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
  * @retval  ActiveFlg
  */
 //--------------------------------------------------------------
@@ -1867,9 +1867,9 @@ BOOL CommPlayerIsActive(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚ÌX‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  X‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®Xã®ä½ç½®ã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Xã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -1889,9 +1889,9 @@ int CommPlayerGetPosX(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚ÌZ‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  Z‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®Zã®ä½ç½®ã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Zã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -1911,9 +1911,9 @@ int CommPlayerGetPosZ(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚ÌX‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  X‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®Xã®ä½ç½®ã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Xã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -1927,9 +1927,9 @@ int CommPlayerGetPosXOrg(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚ÌZ‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  Z‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®Zã®ä½ç½®ã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Zã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -1943,9 +1943,9 @@ int CommPlayerGetPosZOrg(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚Ì–Ú‚Ì‘O‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  X‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®ç›®ã®å‰ã®ä½ç½®ã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Xã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -1960,9 +1960,9 @@ int CommPlayerGetPosXDirAdd(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚Ì–Ú‚Ì‘O‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  Z‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®ç›®ã®å‰ã®ä½ç½®ã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Zã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -1977,9 +1977,9 @@ int CommPlayerGetPosZDirAdd(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚ÌX‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  X‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®Xã®ä½ç½®ã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Xã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -1999,9 +1999,9 @@ int CommPlayerGetPosSX(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚ÌZ‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  Z‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®Zã®ä½ç½®ã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Zã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -2021,9 +2021,9 @@ int CommPlayerGetPosSZ(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚ÌX‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  X‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®Xã®ä½ç½®ã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Xã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -2037,9 +2037,9 @@ int CommPlayerGetPosSXOrg(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚ÌZ‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  Z‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®Zã®ä½ç½®ã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Zã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -2053,9 +2053,9 @@ int CommPlayerGetPosSZOrg(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚Ì–Ú‚Ì‘O‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  X‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®ç›®ã®å‰ã®ä½ç½®ã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Xã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -2070,9 +2070,9 @@ int CommPlayerGetPosSXDirAdd(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚Ì–Ú‚Ì‘O‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @retval  Z‚ÌêŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®ç›®ã®å‰ã®ä½ç½®ã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @retval  Zã®å ´æ‰€
  */
 //--------------------------------------------------------------
 
@@ -2087,8 +2087,8 @@ int CommPlayerGetPosSZDirAdd(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚Ìdir‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®dirã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
  * @retval  dir
  */
 //--------------------------------------------------------------
@@ -2103,8 +2103,8 @@ int CommPlayerGetDir(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[ƒLƒƒƒ‰‚Ìdir‚ğ•Ô‚·
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã®dirã‚’è¿”ã™
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
  * @retval  dir
  */
 //--------------------------------------------------------------
@@ -2119,9 +2119,9 @@ int CommPlayerGetSDir(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^[ƒQƒbƒg‚ÌŠp“x‚ğnetID‚Æ‹t•ûŒü‚É‚·‚é  ‚·‚é‚ÆŒü‚©‚¢‡‚¤‚Í‚¸
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @param   targetID ƒlƒbƒgƒ[ƒN‚Å‚Ìƒ^[ƒQƒbƒg‚ÌID
+ * @brief   ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®è§’åº¦ã‚’netIDã¨é€†æ–¹å‘ã«ã™ã‚‹  ã™ã‚‹ã¨å‘ã‹ã„åˆã†ã¯ãš
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @param   targetID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ID
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2136,9 +2136,9 @@ void CommPlayerSetLook_Server(int netID, int targetID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^[ƒQƒbƒg‚ÌŠp“x‚ğnetID‚Æ‹t•ûŒü‚É‚·‚é  ‚·‚é‚ÆŒü‚©‚¢‡‚¤‚Í‚¸
- * @param   netID ƒlƒbƒgƒ[ƒN‚Å‚ÌID
- * @param   targetID ƒlƒbƒgƒ[ƒN‚Å‚Ìƒ^[ƒQƒbƒg‚ÌID
+ * @brief   ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®è§’åº¦ã‚’netIDã¨é€†æ–¹å‘ã«ã™ã‚‹  ã™ã‚‹ã¨å‘ã‹ã„åˆã†ã¯ãš
+ * @param   netID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ID
+ * @param   targetID ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã§ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ID
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2151,10 +2151,10 @@ void CommPlayerSetLook(int netID, int targetID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[‚ª‚»‚±‚É‚¢‚é‚©‚Ç‚¤‚©
- * @param   xpos  êŠ
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãŒãã“ã«ã„ã‚‹ã‹ã©ã†ã‹
+ * @param   xpos  å ´æ‰€
  * @param   zpos
- * @retval  player‚ÌnetID
+ * @retval  playerã®netID
  */
 //--------------------------------------------------------------
 
@@ -2181,7 +2181,7 @@ int CommPlayerIsAlive(int xpos, int zpos)
 
 //--------------------------------------------------------------
 /**
- * @brief   ˆÚ“®§Œäƒtƒ‰ƒO‚Ìİ’è
+ * @brief   ç§»å‹•åˆ¶å¾¡ãƒ•ãƒ©ã‚°ã®è¨­å®š
  * @param   
  * @retval  none
  */
@@ -2202,9 +2202,9 @@ void CommPlayerSetMoveControl_Server(int netID, BOOL bMoveControl)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒ[ƒ„[‚ª‚°‚ñ‚«‚É‚¢‚é‚©‚Ç‚¤‚©
+ * @brief   ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãŒã’ã‚“ãã«ã„ã‚‹ã‹ã©ã†ã‹
  * @param   netID
- * @retval  ƒRƒ“ƒgƒ[ƒ‹‚Å‚«‚é‚È‚çTRUE æ‚è‚İ’†‚È‚çFALSE
+ * @retval  ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã§ãã‚‹ãªã‚‰TRUE å–ã‚Šè¾¼ã¿ä¸­ãªã‚‰FALSE
  */
 //--------------------------------------------------------------
 
@@ -2222,9 +2222,9 @@ BOOL CommPlayerGetMoveControl(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒ‹[ƒ€“à‚ÅƒvƒŒƒCƒ„[‚ª³‚µ‚¢ˆÊ’u‚É‚Â‚¢‚½‚©‚Ç‚¤‚©
+ * @brief   ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ å†…ã§ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ­£ã—ã„ä½ç½®ã«ã¤ã„ãŸã‹ã©ã†ã‹
  * @param   none
- * @retval  ˆÊ’u‚É‚Â‚¢‚½‚çTRUE
+ * @retval  ä½ç½®ã«ã¤ã„ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -2267,9 +2267,9 @@ BOOL CommPlayerCheckBattleJump(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   q‹@‚©‚ç ƒXƒ^[ƒgƒ‰ƒCƒ“ŒŸ¸‰Â”\ƒtƒ‰ƒO‚ª“’…
+ * @brief   å­æ©Ÿã‹ã‚‰ ã‚¹ã‚¿ãƒ¼ãƒˆãƒ©ã‚¤ãƒ³æ¤œæŸ»å¯èƒ½ãƒ•ãƒ©ã‚°ãŒåˆ°ç€
  * @param   none
- * @retval  ˆÊ’u‚É‚Â‚¢‚½‚çTRUE
+ * @retval  ä½ç½®ã«ã¤ã„ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -2287,9 +2287,9 @@ void CommPlayerRecvStartLineSet(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒ‹[ƒ€“à‚ÅƒvƒŒƒCƒ„[‚ª³‚µ‚¢ˆÊ’u‚É‚Â‚¢‚½‚©‚Ç‚¤‚©
+ * @brief   ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ å†…ã§ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ­£ã—ã„ä½ç½®ã«ã¤ã„ãŸã‹ã©ã†ã‹
  * @param   none
- * @retval  ˆÊ’u‚É‚Â‚¢‚½‚çTRUE
+ * @retval  ä½ç½®ã«ã¤ã„ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -2327,7 +2327,7 @@ static void CommPlayerCheckBattleJump_Server(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒ‹[ƒ€“à‚ÅƒvƒŒƒCƒ„[‚ª³‚µ‚¢ˆÊ’u‚É‚Â‚¢‚½‚Ì•ûŒüŠ·‚¦
+ * @brief   ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ å†…ã§ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ­£ã—ã„ä½ç½®ã«ã¤ã„ãŸæ™‚ã®æ–¹å‘æ›ãˆ
  * @param   none
  * @retval  none
  */
@@ -2352,9 +2352,9 @@ void CommPlayerBattleDirSet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒ‹[ƒ€“à‚Åƒ|ƒWƒVƒ‡ƒ“‚ÌŒã‚ë‚ÉˆÚ“®
+ * @brief   ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ å†…ã§ãƒã‚¸ã‚·ãƒ§ãƒ³ã®å¾Œã‚ã«ç§»å‹•
  * @param   none
- * @retval  ˆÊ’u‚É‚Â‚¢‚½‚çTRUE
+ * @retval  ä½ç½®ã«ã¤ã„ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -2364,12 +2364,12 @@ BOOL CommPlayerMoveBattlePos(void)
     int i,j,count=0,stand[4],dir;
     int ret = FALSE;
 
-    for(i = 0; i < machineMax; i++){  // ‘Sˆõ‚Ìƒf[ƒ^‚ª‚ ‚é‚±‚Æ‚ğŒŸ¸
+    for(i = 0; i < machineMax; i++){  // å…¨å“¡ã®ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã“ã¨ã‚’æ¤œæŸ»
 #if PLFIX_T1370
-		// ˆÈ‘O‚Ì‘‚«•û‚¾‚ÆA‰ŠúˆÊ’u‚ğƒNƒ‰ƒCƒAƒ“ƒg‚É‘—M‚¹‚¸‚É
-		// ˆÚ“®‚µ‚½’l‚ğ‘—M‚·‚é‚Ì‚ÅAƒLƒƒƒ‰ƒNƒ^‚ª”ò‚ñ‚ÅˆÚ“®‚µ‚½‚æ‚¤‚ÉŒ©‚¦‚Ä‚¢‚½B
-		// ‰Šúƒf[ƒ^‚ªóM‚³‚êAˆê“xƒNƒ‰ƒCƒAƒ“ƒg‚Éƒf[ƒ^‚ª‘—M‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚é
-		// ‚æ‚¤‚É•ÏX‚µ‚½
+		// ä»¥å‰ã®æ›¸ãæ–¹ã ã¨ã€åˆæœŸä½ç½®ã‚’ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«é€ä¿¡ã›ãšã«
+		// ç§»å‹•ã—ãŸå€¤ã‚’é€ä¿¡ã™ã‚‹ã®ã§ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒé£›ã‚“ã§ç§»å‹•ã—ãŸã‚ˆã†ã«è¦‹ãˆã¦ã„ãŸã€‚
+		// åˆæœŸãƒ‡ãƒ¼ã‚¿ãŒå—ä¿¡ã•ã‚Œã€ä¸€åº¦ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«ãƒ‡ãƒ¼ã‚¿ãŒé€ä¿¡ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+		// ã‚ˆã†ã«å¤‰æ›´ã—ãŸ
 		if( (_pCommPlayerWork->bActive[ i ] == FALSE) || (_pCommPlayerWork->bMoveChange[ i ] == TRUE) ){
 			return FALSE;
 		}
@@ -2394,9 +2394,9 @@ BOOL CommPlayerMoveBattlePos(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ¡‚Ì•ûŒü‚Æ”½‘Î‚Ì•ûŒü‚ğ•Ô‚·
- * @param   dir •ûŒü
- * @retval  ”½‘Î‚Ì•ûŒü
+ * @brief   ä»Šã®æ–¹å‘ã¨åå¯¾ã®æ–¹å‘ã‚’è¿”ã™
+ * @param   dir æ–¹å‘
+ * @retval  åå¯¾ã®æ–¹å‘
  */
 //--------------------------------------------------------------
 
@@ -2421,9 +2421,9 @@ int CommPlayerGetReverseDir(int dir)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚±‚ñ‚ç‚ñE‚Í‚ñ‚Ä‚ñ‚ª‘±‚­ŠÔƒ^ƒCƒ}[ƒZƒbƒg
+ * @brief   ã“ã‚“ã‚‰ã‚“ãƒ»ã¯ã‚“ã¦ã‚“ãŒç¶šãæ™‚é–“ã‚¿ã‚¤ãƒãƒ¼ã‚»ãƒƒãƒˆ
  * @param   netID   ID
- * @param   count   ƒJƒEƒ“ƒg
+ * @param   count   ã‚«ã‚¦ãƒ³ãƒˆ
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2436,7 +2436,7 @@ void CommPlayerSetGiddyStep(int netID,int count)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚±‚ñ‚ç‚ñE‚Í‚ñ‚Ä‚ñ‚ª‘±‚­ŠÔƒ^ƒCƒ}[‚ğ‹­§I—¹
+ * @brief   ã“ã‚“ã‚‰ã‚“ãƒ»ã¯ã‚“ã¦ã‚“ãŒç¶šãæ™‚é–“ã‚¿ã‚¤ãƒãƒ¼ã‚’å¼·åˆ¶çµ‚äº†
  * @param   netID   ID
  * @retval  none
  */
@@ -2449,9 +2449,9 @@ void CommPlayerResetGiddyStep(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚ ‚È—p@@•ûŒü‚Ì‚İ‹–‰Âƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * @brief   ã‚ãªç”¨ã€€ã€€æ–¹å‘ã®ã¿è¨±å¯ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  * @param   netID   ID
- * @param   count   ƒJƒEƒ“ƒg
+ * @param   count   ã‚«ã‚¦ãƒ³ãƒˆ
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -2465,7 +2465,7 @@ void CommPlayerSetHole(int netID,int count)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚ ‚È—p@@•ûŒü‚Ì‚İ‹–‰Âƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * @brief   ã‚ãªç”¨ã€€ã€€æ–¹å‘ã®ã¿è¨±å¯ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  * @param   netID   ID
  * @retval  none
  */
@@ -2478,7 +2478,7 @@ void CommPlayerResetHole(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   WalkCount‚ğ‚©‚¦‚·  ~‚Ü‚Á‚Ä‚é‚Ì‚©“®‚¢‚Ä‚¢‚é‚Ì‚©‚Ég—p
+ * @brief   WalkCountã‚’ã‹ãˆã™  æ­¢ã¾ã£ã¦ã‚‹ã®ã‹å‹•ã„ã¦ã„ã‚‹ã®ã‹ã«ä½¿ç”¨
  * @param   netID   ID
  * @retval  WalkCount
  */
@@ -2491,7 +2491,7 @@ int CommPlayerGetWalkCount(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   WalkCount‚ğ‚©‚¦‚·  ~‚Ü‚Á‚Ä‚é‚Ì‚©“®‚¢‚Ä‚¢‚é‚Ì‚©‚Ég—p
+ * @brief   WalkCountã‚’ã‹ãˆã™  æ­¢ã¾ã£ã¦ã‚‹ã®ã‹å‹•ã„ã¦ã„ã‚‹ã®ã‹ã«ä½¿ç”¨
  * @param   netID   ID
  * @retval  WalkCount
  */
@@ -2505,7 +2505,7 @@ int CommPlayerGetWalkCountServer(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   WalkCount‚ğ“ü‚ê‚é  ˆê’â~‚Ég‚¤
+ * @brief   WalkCountã‚’å…¥ã‚Œã‚‹  ä¸€æ™‚åœæ­¢ã«ä½¿ã†
  * @param   netID   ID
  * @retval  WalkCount
  */
@@ -2522,7 +2522,7 @@ void CommPlayerSetWalkCount(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊM‚µ‚½ã‚ÅƒvƒŒ[ƒ„[‚Ì•ûŒü‚ğ•ÏX‚·‚é
+ * @brief   é€šä¿¡ã—ãŸä¸Šã§ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®æ–¹å‘ã‚’å¤‰æ›´ã™ã‚‹
  * @param   int dir
  * @retval  none
  */
@@ -2537,7 +2537,7 @@ void CommPlayerSetDir(int dir)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ©‚½–Ú‚ÌƒvƒŒ[ƒ„[‚Ì•ûŒü‚ğ•ÏX‚·‚é
+ * @brief   è¦‹ãŸç›®ã®ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®æ–¹å‘ã‚’å¤‰æ›´ã™ã‚‹
  * @param   int netID
  * @param   int dir
  * @retval  none
@@ -2552,7 +2552,7 @@ void CommPlayerSetClientDir(int netID, int dir)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ©‚½–Ú‚ÌƒvƒŒ[ƒ„[‚Ì•ûŒü‚ğ“¾‚é
+ * @brief   è¦‹ãŸç›®ã®ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®æ–¹å‘ã‚’å¾—ã‚‹
  * @param   int netID
  * @retval  dir
  */
@@ -2568,7 +2568,7 @@ int CommPlayerGetClientDir(int netID)
 
 //--------------------------------------------------------------
 /**
- * @brief   “®‚«‚ğ~‚ß‚é
+ * @brief   å‹•ãã‚’æ­¢ã‚ã‚‹
  * @param   int netID
  * @retval  dir
  */
@@ -2580,12 +2580,12 @@ void CommPlayerHoldBit(int bit)
         _pCommPlayerWork->holdBit |= bit;
     }
     FieldSystemProc_SeqHold();
-    _pCommPlayerWork->bMyMoveControl = FALSE; // ©‹@‚Ìİ’è‚Ì‚İ@‘—M‚µ‚È‚¢
+    _pCommPlayerWork->bMyMoveControl = FALSE; // è‡ªæ©Ÿã®è¨­å®šã®ã¿ã€€é€ä¿¡ã—ãªã„
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ©‚½–Ú‚ÌƒvƒŒ[ƒ„[‚Ì•ûŒü‚ğ“¾‚é
+ * @brief   è¦‹ãŸç›®ã®ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®æ–¹å‘ã‚’å¾—ã‚‹
  * @param   int netID
  * @retval  dir
  */
@@ -2599,18 +2599,18 @@ void CommPlayerHoldBitEnd(int bit)
     }
 //    OHNO_PRINT("bitend %x\n",_pCommPlayerWork->holdBit);
 
-    if(_pCommPlayerWork->holdBit == _HOLD_TRAP){  // ƒgƒ‰ƒbƒv‚Ì‚İ‚É‚©‚©‚Á‚Ä‚¢‚é
+    if(_pCommPlayerWork->holdBit == _HOLD_TRAP){  // ãƒˆãƒ©ãƒƒãƒ—ã®ã¿ã«ã‹ã‹ã£ã¦ã„ã‚‹
         u8 bTRUE = TRUE;
-//        OHNO_PRINT("ƒT[ƒo[‰ğœ‚Ì‚İ‘—M\n");
-        CommSendFixSizeData(CF_MOVE_CONTROL,&bTRUE);   // ƒT[ƒo[‰ğœ‚Ì‚İ‘—M‚·‚é
+//        OHNO_PRINT("ã‚µãƒ¼ãƒãƒ¼è§£é™¤ã®ã¿é€ä¿¡\n");
+        CommSendFixSizeData(CF_MOVE_CONTROL,&bTRUE);   // ã‚µãƒ¼ãƒãƒ¼è§£é™¤ã®ã¿é€ä¿¡ã™ã‚‹
     }
     if(_pCommPlayerWork->holdBit == 0){
         if(_HOLD_TRAP != bit){
             FieldSystemProc_SeqHoldEnd();
 //            OHNO_PRINT("----CommPlayerHoldBitEnd- %d--\n",bit);
-            CommPlayerSetMoveControl(TRUE);  // ©‹@‚ÌˆÚ“®ó‘Ô‚ğİ’è
+            CommPlayerSetMoveControl(TRUE);  // è‡ªæ©Ÿã®ç§»å‹•çŠ¶æ…‹ã‚’è¨­å®š
         }
-        else{  // ƒgƒ‰ƒbƒv‰ğœ‚É‚Íƒtƒ‰ƒO‰ğœ‚ğƒT[ƒo[‚É‚Í‘—‚ç‚È‚¢
+        else{  // ãƒˆãƒ©ãƒƒãƒ—è§£é™¤æ™‚ã«ã¯ãƒ•ãƒ©ã‚°è§£é™¤ã‚’ã‚µãƒ¼ãƒãƒ¼ã«ã¯é€ã‚‰ãªã„
             FieldSystemProc_SeqHoldEnd();
             _pCommPlayerWork->bMyMoveControl = TRUE;
         }
@@ -2619,7 +2619,7 @@ void CommPlayerHoldBitEnd(int bit)
 
 //--------------------------------------------------------------
 /**
- * @brief   “®‚«‚ğ~‚ß‚é
+ * @brief   å‹•ãã‚’æ­¢ã‚ã‚‹
  * @param   int netID
  * @retval  dir
  */
@@ -2632,7 +2632,7 @@ void CommPlayerHoldBitOff(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   “®‚«‚ğ~‚ß‚é
+ * @brief   å‹•ãã‚’æ­¢ã‚ã‚‹
  * @param   int netID
  * @retval  dir
  */
@@ -2641,12 +2641,12 @@ void CommPlayerHoldBitOff(void)
 void CommPlayerHold(void)
 {
     FieldSystemProc_SeqHold();
-    _pCommPlayerWork->bMyMoveControl = FALSE; // ©‹@‚Ìİ’è‚Ì‚İ@‘—M‚µ‚È‚¢
+    _pCommPlayerWork->bMyMoveControl = FALSE; // è‡ªæ©Ÿã®è¨­å®šã®ã¿ã€€é€ä¿¡ã—ãªã„
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   “®‚«‚ğ~‚ß‚é
+ * @brief   å‹•ãã‚’æ­¢ã‚ã‚‹
  * @param   int netID
  * @retval  dir
  */
@@ -2654,12 +2654,12 @@ void CommPlayerHold(void)
 
 void CommPlayerHold_Control(void)
 {
-    _pCommPlayerWork->bMyMoveControl = FALSE; // ©‹@‚Ìİ’è‚Ì‚İ@‘—M‚µ‚È‚¢
+    _pCommPlayerWork->bMyMoveControl = FALSE; // è‡ªæ©Ÿã®è¨­å®šã®ã¿ã€€é€ä¿¡ã—ãªã„
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ©‚½–Ú‚ÌƒvƒŒ[ƒ„[‚Ì•ûŒü‚ğ“¾‚é
+ * @brief   è¦‹ãŸç›®ã®ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®æ–¹å‘ã‚’å¾—ã‚‹
  * @param   int netID
  * @retval  dir
  */
@@ -2669,15 +2669,15 @@ void CommPlayerHoldEnd(void)
 {
 //    OHNO_PRINT("CommPlayerHoldEnd\n");
     FieldSystemProc_SeqHoldEnd();
-    CommPlayerSetMoveControl(TRUE);  // ©‹@‚ÌˆÚ“®ó‘Ô‚ğİ’è
+    CommPlayerSetMoveControl(TRUE);  // è‡ªæ©Ÿã®ç§»å‹•çŠ¶æ…‹ã‚’è¨­å®š
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Å‰‚ÌƒRƒ“ƒgƒ[ƒ‹‚ğ‹–‰Â‚·‚é
- * @param   xpos  êŠ
+ * @brief   æœ€åˆã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’è¨±å¯ã™ã‚‹
+ * @param   xpos  å ´æ‰€
  * @param   zpos
- * @retval  player‚ÌnetID
+ * @retval  playerã®netID
  */
 //--------------------------------------------------------------
 
@@ -2693,17 +2693,17 @@ void CommPlayerFirstMoveEnable(void)
             _pCommPlayerWork->bFirstMoveEnable = TRUE;
         }
         else{
-//            CommPlayerSetMoveControl(FALSE); // Ú‘±‹Ö~
+//            CommPlayerSetMoveControl(FALSE); // æ¥ç¶šç¦æ­¢
         }
     }
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Å‰‚ÌƒRƒ“ƒgƒ[ƒ‹‚ğ‹Ö~
- * @param   xpos  êŠ
+ * @brief   æœ€åˆã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’ç¦æ­¢
+ * @param   xpos  å ´æ‰€
  * @param   zpos
- * @retval  player‚ÌnetID
+ * @retval  playerã®netID
  */
 //--------------------------------------------------------------
 
@@ -2712,7 +2712,7 @@ void CommPlayerFirstMoveDisable(void)
     if(_pCommPlayerWork->bFirstMoveEnable == FALSE){
         if(_pCommPlayerWork->bUnder){
             if(!UgMgrIsFirstMoveControlEnable(CommGetCurrentID())){
-                CommPlayerSetMoveControl(FALSE); // Ú‘±‹Ö~
+                CommPlayerSetMoveControl(FALSE); // æ¥ç¶šç¦æ­¢
             }
         }
     }
@@ -2720,10 +2720,10 @@ void CommPlayerFirstMoveDisable(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒjƒ…[‚ğ•Â‚¶‚½Û‚ÉƒvƒŒ[ƒ„[Œ©‚½–ÚˆÊ’u‚ğİ’è‚·‚é
- * @param   xpos  êŠ
+ * @brief   ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‰ã˜ãŸéš›ã«ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼è¦‹ãŸç›®ä½ç½®ã‚’è¨­å®šã™ã‚‹
+ * @param   xpos  å ´æ‰€
  * @param   zpos
- * @retval  player‚ÌnetID
+ * @retval  playerã®netID
  */
 //--------------------------------------------------------------
 
@@ -2746,7 +2746,7 @@ void CommPlayerSetForcePos(void)
         x = _pCommPlayerWork->sPlayerPlace[i].xpos;
         z = _pCommPlayerWork->sPlayerPlace[i].zpos;
         dir = _pCommPlayerWork->sPlayerPlace[i].dir;
-//        OHNO_PRINT("ˆÊ’u‚ğÄİ’è %d = %d %d\n",i,x,z);
+//        OHNO_PRINT("ä½ç½®ã‚’å†è¨­å®š %d = %d %d\n",i,x,z);
         FieldOBJ_NowPosGX_Set(pFOBJ, x);
         FieldOBJ_NowPosGZ_Set(pFOBJ, z);
         FieldOBJ_GPosDirInit(pFOBJ,x,0,z,dir);
@@ -2755,10 +2755,10 @@ void CommPlayerSetForcePos(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   Šp“x’²®‚ğ‰Â”\‚É‚·‚é
- * @param   xpos  êŠ
+ * @brief   è§’åº¦èª¿æ•´ã‚’å¯èƒ½ã«ã™ã‚‹
+ * @param   xpos  å ´æ‰€
  * @param   zpos
- * @retval  player‚ÌnetID
+ * @retval  playerã®netID
  */
 //--------------------------------------------------------------
 
@@ -2769,8 +2769,8 @@ void CommSetForceDir(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒT[ƒo‚©‚ç‚ÌˆÚ“®ƒf[ƒ^‚ğ–³‹‚·‚é
- * @param   bNotMove  ˆÚ‘—‚µ‚È‚¢‚Æ‚«TRUE
+ * @brief   ã‚µãƒ¼ãƒã‹ã‚‰ã®ç§»å‹•ãƒ‡ãƒ¼ã‚¿ã‚’ç„¡è¦–ã™ã‚‹
+ * @param   bNotMove  ç§»é€ã—ãªã„ã¨ãTRUE
  * @retval  none
  */
 //--------------------------------------------------------------

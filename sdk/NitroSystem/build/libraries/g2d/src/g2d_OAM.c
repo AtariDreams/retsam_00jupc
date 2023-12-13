@@ -25,9 +25,9 @@
 
 
 //
-// g2d_Oam_data.h ‚ÅéŒ¾‚³‚ê‚Ä‚¢‚éAƒe[ƒuƒ‹‚ÌÀ‘Ì‚ğ’è‹`‚µ‚Ü‚·B
-// êŠ‚Í‚±‚±‚ª“K“–‚Å‚Í‚È‚¢‚©‚à‚µ‚ê‚Ü‚¹‚ñB
-// ‚¢‚Ã‚ê‚×‚Â‚Ìƒtƒ@ƒCƒ‹‚Ö‚ÆˆÚ“®‚³‚ê‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B
+// g2d_Oam_data.h ã§å®£è¨€ã•ã‚Œã¦ã„ã‚‹ã€ãƒ†ãƒ¼ãƒ–ãƒ«ã®å®Ÿä½“ã‚’å®šç¾©ã—ã¾ã™ã€‚
+// å ´æ‰€ã¯ã“ã“ãŒé©å½“ã§ã¯ãªã„ã‹ã‚‚ã—ã‚Œã¾ã›ã‚“ã€‚
+// ã„ã¥ã‚Œã¹ã¤ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã¨ç§»å‹•ã•ã‚Œã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚
 //
 NNS_G2D_DEFINE_NNSI_OBJSIZEWTBL;
 NNS_G2D_DEFINE_NNSI_OBJSIZEHTBL;
@@ -35,14 +35,14 @@ NNS_G2D_DEFINE_NNSI_OBJSIZEHTBL;
 
 
 //------------------------------------------------------------------------------
-#define OAM_SETTING_INVISIBLE   192     // OAM Attribute •s‰Â‹İ’è
+#define OAM_SETTING_INVISIBLE   192     // OAM Attribute ä¸å¯è¦–è¨­å®š
 
 
-#define NUM_HW_OAM_ATTR         128     // OAM Attribute ”
-#define NUM_HW_OAM_AFFINE       32      // Affine paramater ”
-#define NUM_OAM_TYPES           3       // OAM ‚Ìí—Ş
+#define NUM_HW_OAM_ATTR         128     // OAM Attribute æ•°
+#define NUM_HW_OAM_AFFINE       32      // Affine paramater æ•°
+#define NUM_OAM_TYPES           3       // OAM ã®ç¨®é¡
 
-// OAM —Ìˆæ‚ª’N‚É‚àg—p‚³‚ê‚Ä‚¢‚È‚¢(g—p—\–ñƒe[ƒuƒ‹‚Ì‹K’è’l)
+// OAM é ˜åŸŸãŒèª°ã«ã‚‚ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„(ä½¿ç”¨äºˆç´„ãƒ†ãƒ¼ãƒ–ãƒ«ã®è¦å®šå€¤)
 #define OAM_NOT_USED            0xFFFF  
 
 #define GX_AFFINE_SIZE          sizeof( GXOamAffine )
@@ -50,7 +50,7 @@ NNS_G2D_DEFINE_NNSI_OBJSIZEHTBL;
 #define OAMATTR_SIZE            sizeof( u16 ) * 3
 
 //
-// OBJ ƒ[ƒh‚Ég—p‚³‚ê‚éŠÖ”
+// OBJ ãƒ­ãƒ¼ãƒ‰æ™‚ã«ä½¿ç”¨ã•ã‚Œã‚‹é–¢æ•°
 //
 typedef void (OBJLoadFunction)( const void *pSrc, u32 offset, u32 szByte );
 
@@ -60,31 +60,31 @@ typedef void (OBJLoadFunction)( const void *pSrc, u32 offset, u32 szByte );
 
 
 //------------------------------------------------------------------------------
-// OAMƒ}ƒl[ƒWƒƒ ‚Ì OAM ‚Ö‚Ì‘€ì‚ÌƒLƒƒƒbƒVƒ…
+// OAMãƒãƒãƒ¼ã‚¸ãƒ£ ã® OAM ã¸ã®æ“ä½œã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥
 // 
 typedef struct OamAttributeCache
 {
-    u16             reservationTable[NUM_HW_OAM_ATTR]; // g—p—\–ñƒe[ƒuƒ‹
-    GXOamAttr       oamBuffer       [NUM_HW_OAM_ATTR]; // OAM Attribute ‚Ìƒoƒbƒtƒ@
+    u16             reservationTable[NUM_HW_OAM_ATTR]; // ä½¿ç”¨äºˆç´„ãƒ†ãƒ¼ãƒ–ãƒ«
+    GXOamAttr       oamBuffer       [NUM_HW_OAM_ATTR]; // OAM Attribute ã®ãƒãƒƒãƒ•ã‚¡
     
 }OamAttributeCache;
 
 //------------------------------------------------------------------------------
-// Affine paramaters ‚Ö‚Ì‘€ìƒLƒƒƒVƒ…
-// OamAttributeCache ‚Æ oamBuffer ‚ğ ‹¤—L‚µ‚Ü‚·B
+// Affine paramaters ã¸ã®æ“ä½œã‚­ãƒ£ã‚·ãƒ¥
+// OamAttributeCache ã¨ oamBuffer ã‚’ å…±æœ‰ã—ã¾ã™ã€‚
 // 
 typedef struct OamAffineCache
 {
-    u16             reservationTable[NUM_HW_OAM_AFFINE]; // AffineParamater g—p—\–ñƒe[ƒuƒ‹
+    u16             reservationTable[NUM_HW_OAM_AFFINE]; // AffineParamater ä½¿ç”¨äºˆç´„ãƒ†ãƒ¼ãƒ–ãƒ«
     
 }OamAffineCache;
 
 //------------------------------------------------------------------------------
-// OAMƒ}ƒl[ƒWƒƒ ‚Ì OAM ‚Ö‚Ì‘€ì‚ÌƒLƒƒƒbƒVƒ…
+// OAMãƒãƒãƒ¼ã‚¸ãƒ£ ã® OAM ã¸ã®æ“ä½œã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥
 // 
-// ƒ}ƒl[ƒWƒƒ ‚Ì OAM ‚É‘Î‚·‚é‘€ì‚Í–{\‘¢‚É‚æ‚Á‚Äˆê’UƒLƒƒƒbƒVƒ…‚³‚ê‚Ü‚·B
-// ƒ†[ƒU ‚Í NNS_G2dApplyToHWXXX() ‚ÌŒÄ‚Ño‚µ‚É‚æ‚Á‚ÄAƒLƒƒƒbƒVƒ…‚Ì“à—e‚ğ
-// HW ‚É”½‰f‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+// ãƒãƒãƒ¼ã‚¸ãƒ£ ã® OAM ã«å¯¾ã™ã‚‹æ“ä½œã¯æœ¬æ§‹é€ ã«ã‚ˆã£ã¦ä¸€æ—¦ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã•ã‚Œã¾ã™ã€‚
+// ãƒ¦ãƒ¼ã‚¶ ã¯ NNS_G2dApplyToHWXXX() ã®å‘¼ã³å‡ºã—ã«ã‚ˆã£ã¦ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®å†…å®¹ã‚’
+// HW ã«åæ˜ ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 // 
 typedef struct OamCache
 {
@@ -97,8 +97,8 @@ typedef struct OamCache
 
 
 //------------------------------------------------------------------------------
-// —Bˆê‚Ì OamCache À‘Ì 
-// NNS_G2dInitOamManagerModule() ‚É‚æ‚Á‚Ä‰Šú‰»‚³‚ê‚Ü‚·B
+// å”¯ä¸€ã® OamCache å®Ÿä½“ 
+// NNS_G2dInitOamManagerModule() ã«ã‚ˆã£ã¦åˆæœŸåŒ–ã•ã‚Œã¾ã™ã€‚
 // 
 static OamCache                        oamCache_[NUM_OAM_TYPES];
 static u16                             numRegisterdInstance_ = 0x0;
@@ -114,7 +114,7 @@ static u16                             numRegisterdInstance_ = 0x0;
 
 
 //------------------------------------------------------------------------------
-// ŠÇ——Ìˆæ‚ª—LŒø‚©”»’è‚µ‚Ü‚·
+// ç®¡ç†é ˜åŸŸãŒæœ‰åŠ¹ã‹åˆ¤å®šã—ã¾ã™
 static NNS_G2D_INLINE BOOL IsManageAreaValid_( const NNSG2dOAMManageArea* pArea )
 {
     NNS_G2D_NULL_ASSERT( pArea );
@@ -124,7 +124,7 @@ static NNS_G2D_INLINE BOOL IsManageAreaValid_( const NNSG2dOAMManageArea* pArea 
 }
 
 //------------------------------------------------------------------------------
-// w’èƒ^ƒCƒv‚Ì OamCache ‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·B
+// æŒ‡å®šã‚¿ã‚¤ãƒ—ã® OamCache ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚
 // 
 static NNS_G2D_INLINE OamCache* GetOamCachePtr_( NNSG2dOamType type )
 {
@@ -135,7 +135,7 @@ static NNS_G2D_INLINE OamCache* GetOamCachePtr_( NNSG2dOamType type )
 
 
 //------------------------------------------------------------------------------
-// w’èƒ^ƒCƒv‚Ì ŠÇ——Ìˆæ—\–ñƒe[ƒuƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·B( OamAttr —p)
+// æŒ‡å®šã‚¿ã‚¤ãƒ—ã® ç®¡ç†é ˜åŸŸäºˆç´„ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚( OamAttr ç”¨)
 static NNS_G2D_INLINE u16* GetOamReservationTblPtr_( NNSG2dOamType type )
 {
     ASSERT_OAMTYPE_VALID( type );
@@ -147,7 +147,7 @@ static NNS_G2D_INLINE u16* GetOamReservationTblPtr_( NNSG2dOamType type )
     }
 }
 //------------------------------------------------------------------------------
-// w’èƒ^ƒCƒv‚Ì ŠÇ——Ìˆæ—\–ñƒe[ƒuƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·B( affine Paramater —p)
+// æŒ‡å®šã‚¿ã‚¤ãƒ—ã® ç®¡ç†é ˜åŸŸäºˆç´„ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚( affine Paramater ç”¨)
 static NNS_G2D_INLINE u16* GetAffineReservationTblPtr_( NNSG2dOamType type )
 {
     ASSERT_OAMTYPE_VALID( type );
@@ -160,7 +160,7 @@ static NNS_G2D_INLINE u16* GetAffineReservationTblPtr_( NNSG2dOamType type )
 }
 
 //------------------------------------------------------------------------------
-// OamAttr ƒoƒbƒtƒ@‚Ì index ”Ô–Ú ‚Ö‚Ìƒ|ƒCƒ“ƒ^ ‚ğæ“¾‚µ‚Ü‚·B
+// OamAttr ãƒãƒƒãƒ•ã‚¡ã® index ç•ªç›® ã¸ã®ãƒã‚¤ãƒ³ã‚¿ ã‚’å–å¾—ã—ã¾ã™ã€‚
 static NNS_G2D_INLINE GXOamAttr* GetOamBufferPtr_( NNSG2dOamType type, u16 index )
 {
     ASSERT_OAMTYPE_VALID( type );
@@ -173,8 +173,8 @@ static NNS_G2D_INLINE GXOamAttr* GetOamBufferPtr_( NNSG2dOamType type, u16 index
 }
 
 //------------------------------------------------------------------------------
-// Oam Affine paramater ƒoƒbƒtƒ@‚Ì index ”Ô–Ú ‚Ö‚Ìƒ|ƒCƒ“ƒ^ ‚ğæ“¾‚µ‚Ü‚·B
-// “à•”‚Å GetOamBufferPtr_() ‚ğ ŒÄ‚Ño‚µ‚Ä‚¢‚Ü‚·.
+// Oam Affine paramater ãƒãƒƒãƒ•ã‚¡ã® index ç•ªç›® ã¸ã®ãƒã‚¤ãƒ³ã‚¿ ã‚’å–å¾—ã—ã¾ã™ã€‚
+// å†…éƒ¨ã§ GetOamBufferPtr_() ã‚’ å‘¼ã³å‡ºã—ã¦ã„ã¾ã™.
 static NNS_G2D_INLINE GXOamAffine* GetAffineBufferPtr_( NNSG2dOamType type, u16 index )
 {
     ASSERT_OAMTYPE_VALID( type );
@@ -189,7 +189,7 @@ static NNS_G2D_INLINE GXOamAffine* GetAffineBufferPtr_( NNSG2dOamType type, u16 
 }
 
 //------------------------------------------------------------------------------
-// affine paramater ‚ğ æ“¾‚µ‚Ü‚·
+// affine paramater ã‚’ å–å¾—ã—ã¾ã™
 static NNS_G2D_INLINE void GetAffineParams_( NNSG2dOamType type, u16 idx, MtxFx22* pMtx )
 {
     ASSERT_OAMTYPE_VALID( type );
@@ -210,7 +210,7 @@ static NNS_G2D_INLINE void GetAffineParams_( NNSG2dOamType type, u16 idx, MtxFx2
 }
 
 //------------------------------------------------------------------------------
-// OamŠÇ——Ìˆæ‚ª‘¼‚ÌÀ‘Ì‚É‚æ‚Á‚Äg—p‚³‚ê‚Ä‚¢‚È‚¢‚©’²¸‚µ‚Ü‚·B
+// Oamç®¡ç†é ˜åŸŸãŒä»–ã®å®Ÿä½“ã«ã‚ˆã£ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„ã‹èª¿æŸ»ã—ã¾ã™ã€‚
 static NNS_G2D_INLINE BOOL IsOamNotUsed_( u16* pResvTblHead, u16 from, u16 to )
 {
     const u16*    pCursor   = pResvTblHead + from;
@@ -228,18 +228,18 @@ static NNS_G2D_INLINE BOOL IsOamNotUsed_( u16* pResvTblHead, u16 from, u16 to )
 }
 
 //------------------------------------------------------------------------------
-// V‚½‚ÈGUID‚ğæ“¾‚µ‚Ü‚·.
+// æ–°ãŸãªGUIDã‚’å–å¾—ã—ã¾ã™.
 static NNS_G2D_INLINE u16 GetNewGUID_()
 {
     return numRegisterdInstance_++;
 }
 
 //------------------------------------------------------------------------------
-// —Ìˆæ‚ğ ownerGUID ‚ÌŠÇ—‚·‚é—Ìˆæ‚Æ‚µ‚ÄA—\–ñ‚µ‚Ü‚·.
+// é ˜åŸŸã‚’ ownerGUID ã®ç®¡ç†ã™ã‚‹é ˜åŸŸã¨ã—ã¦ã€äºˆç´„ã—ã¾ã™.
 // 
-// ‘ÎÛ‚Æ‚È‚é—Ìˆæ ‚Í ‘¼‚Ìƒ}ƒl[ƒWƒƒ‚É‚æ‚Á‚Äg—p‚³‚ê‚Ä‚¢‚È‚¢•K—v‚ª‚ ‚è‚Ü‚·B
-// IsOamNotUsed_() ‚ğg—p‚µ‚Ä’²‚×‚Ä‚­‚¾‚³‚¢.
-// ğŒ‚ğ–‚½‚³‚È‚¢ê‡ ƒAƒT[ƒg‚É¸”s‚µ‚Ü‚·.
+// å¯¾è±¡ã¨ãªã‚‹é ˜åŸŸ ã¯ ä»–ã®ãƒãƒãƒ¼ã‚¸ãƒ£ã«ã‚ˆã£ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+// IsOamNotUsed_() ã‚’ä½¿ç”¨ã—ã¦èª¿ã¹ã¦ãã ã•ã„.
+// æ¡ä»¶ã‚’æº€ãŸã•ãªã„å ´åˆ ã‚¢ã‚µãƒ¼ãƒˆã«å¤±æ•—ã—ã¾ã™.
 // 
 static NNS_G2D_INLINE void DoReserveArea_( u16* pResvTblHead, u16 from, u16 to, u16 ownerGUID )
 {
@@ -262,7 +262,7 @@ static NNS_G2D_INLINE void DoReserveArea_( u16* pResvTblHead, u16 from, u16 to, 
 }
 
 //------------------------------------------------------------------------------
-// —\–ñ—Ìˆæ‚ğ‹­§“I‚É–¢g—pó‘Ô‚Ö‚Æİ’è‚µ‚Ü‚·B
+// äºˆç´„é ˜åŸŸã‚’å¼·åˆ¶çš„ã«æœªä½¿ç”¨çŠ¶æ…‹ã¸ã¨è¨­å®šã—ã¾ã™ã€‚
 static NNS_G2D_INLINE void DoRestoreArea_( u16* pResvTblHead, u16 from, u16 to )
 {
     NNS_G2D_NULL_ASSERT( pResvTblHead );
@@ -274,7 +274,7 @@ static NNS_G2D_INLINE void DoRestoreArea_( u16* pResvTblHead, u16 from, u16 to )
 }
     
 //------------------------------------------------------------------------------
-// ŠÇ——Ìˆæ‚Ì—]•ª‚ğæ“¾‚µ‚Ü‚·D
+// ç®¡ç†é ˜åŸŸã®ä½™åˆ†ã‚’å–å¾—ã—ã¾ã™ï¼
 static NNS_G2D_INLINE u16 GetCapacity_( const NNSG2dOAMManageArea* pArea )
 {
     NNS_G2D_NULL_ASSERT( pArea );
@@ -289,7 +289,7 @@ static NNS_G2D_INLINE u16 GetCapacity_( const NNSG2dOAMManageArea* pArea )
 }
 
 //------------------------------------------------------------------------------
-// ŠÇ——Ìˆæ‚Ìg—p”‚ğæ“¾‚µ‚Ü‚·D
+// ç®¡ç†é ˜åŸŸã®ä½¿ç”¨æ•°ã‚’å–å¾—ã—ã¾ã™ï¼
 static NNS_G2D_INLINE u16 GetNumOamUsed_( const NNSG2dOAMManageArea* pArea )
 {
     NNS_G2D_NULL_ASSERT( pArea );
@@ -304,7 +304,7 @@ static NNS_G2D_INLINE u16 GetNumOamUsed_( const NNSG2dOAMManageArea* pArea )
 }
 
 //------------------------------------------------------------------------------
-// ŠÇ——Ìˆæ‚ª\•ª‚È—]•ª‚ğ‚Â‚©’²¸‚µ‚Ü‚·D
+// ç®¡ç†é ˜åŸŸãŒååˆ†ãªä½™åˆ†ã‚’æŒã¤ã‹èª¿æŸ»ã—ã¾ã™ï¼
 static NNS_G2D_INLINE BOOL HasEnoughCapacity_( const NNSG2dOAMManageArea* pArea, u16 num )
 {
     NNS_G2D_NULL_ASSERT( pArea );
@@ -315,7 +315,7 @@ static NNS_G2D_INLINE BOOL HasEnoughCapacity_( const NNSG2dOAMManageArea* pArea,
 
 
 //------------------------------------------------------------------------------
-// Oam ƒoƒbƒtƒ@‚ÌŒ»İ‚ÌˆÊ’u‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·.
+// Oam ãƒãƒƒãƒ•ã‚¡ã®ç¾åœ¨ã®ä½ç½®ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™.
 static NNS_G2D_INLINE GXOamAttr* GetOamCurrentPtr_( NNSG2dOamManagerInstance* pMan )
 {
     NNS_G2D_NULL_ASSERT( pMan );
@@ -333,7 +333,7 @@ static NNS_G2D_INLINE GXOamAttr* GetOamCurrentPtr_( NNSG2dOamManagerInstance* pM
 }
 
 //------------------------------------------------------------------------------
-// Oam ƒoƒbƒtƒ@‚ÌŠÇ——Ìˆææ“ª‚ÌˆÊ’u‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·.
+// Oam ãƒãƒƒãƒ•ã‚¡ã®ç®¡ç†é ˜åŸŸå…ˆé ­ã®ä½ç½®ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™.
 static NNS_G2D_INLINE GXOamAttr* GetOamFromPtr_( NNSG2dOamManagerInstance* pMan )
 {
     NNS_G2D_NULL_ASSERT( pMan );
@@ -348,7 +348,7 @@ static NNS_G2D_INLINE GXOamAttr* GetOamFromPtr_( NNSG2dOamManagerInstance* pMan 
 }
 
 //------------------------------------------------------------------------------
-// ŠÇ——Ìˆæ‚ÌƒoƒCƒgƒTƒCƒY‚ğŠ“¾‚µ‚Ü‚·D
+// ç®¡ç†é ˜åŸŸã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºã‚’æ‰€å¾—ã—ã¾ã™ï¼
 static NNS_G2D_INLINE u32 GetSizeOfManageArea_( const NNSG2dOAMManageArea* pArea )
 {
     NNS_G2D_NULL_ASSERT( pArea );
@@ -364,7 +364,7 @@ static NNS_G2D_INLINE u32 GetSizeOfManageArea_( const NNSG2dOAMManageArea* pArea
 }
 
 //------------------------------------------------------------------------------
-// affine paramater ‚ğ İ’è‚µ‚Ü‚·
+// affine paramater ã‚’ è¨­å®šã—ã¾ã™
 static NNS_G2D_INLINE void SetAffineParams_( NNSG2dOamType type, const MtxFx22* mtx, u16 idx )
 {
     ASSERT_OAMTYPE_VALID( type );
@@ -384,9 +384,9 @@ static NNS_G2D_INLINE void SetAffineParams_( NNSG2dOamType type, const MtxFx22* 
 
 
 //------------------------------------------------------------------------------
-// GXOamAttr ‚ğ 3DGraphicsEngine_‚ğ—˜—p‚µ‚Ä•`‰æ‚µ‚Ü‚·B
+// GXOamAttr ã‚’ 3DGraphicsEngine_ã‚’åˆ©ç”¨ã—ã¦æç”»ã—ã¾ã™ã€‚
 // 
-// Affine Transform ‚ğ—˜—p‚·‚éê‡AScale ƒpƒ‰ƒ[ƒ^‚Ì ˆµ‚¢‚É‚Â‚¢‚Ä’ˆÓ‚ª•K—v‚Å‚·B
+// Affine Transform ã‚’åˆ©ç”¨ã™ã‚‹å ´åˆã€Scale ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã® æ‰±ã„ã«ã¤ã„ã¦æ³¨æ„ãŒå¿…è¦ã§ã™ã€‚
 // 
 static void DrawBy3DGraphicsEngine_
 ( 
@@ -417,16 +417,16 @@ static void DrawBy3DGraphicsEngine_
             posZ = -1;
             
             // 
-            // ’ˆÓ:
-            // ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•`‰æŠÖ”‚ÍƒJƒŒƒ“ƒgs—ñ‚Ì‰e‹¿‚ğó‚¯‚é
-            // ‚Ü‚½A•`‰æŒã‚ÌƒJƒŒƒ“ƒgs—ñ‚Í•ÏX‚³‚ê‚éi•Û‘¶‚³‚ê‚È‚¢jB
+            // æ³¨æ„:
+            // ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»é–¢æ•°ã¯ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—ã®å½±éŸ¿ã‚’å—ã‘ã‚‹
+            // ã¾ãŸã€æç”»å¾Œã®ã‚«ãƒ¬ãƒ³ãƒˆè¡Œåˆ—ã¯å¤‰æ›´ã•ã‚Œã‚‹ï¼ˆä¿å­˜ã•ã‚Œãªã„ï¼‰ã€‚
             // 
             G3_Identity();
             
             if( NNSi_G2dIsRSEnable( &pOam[i] ) )
             {
                 //
-                // affine ƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
+                // affine ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
                 // 
                 affineIdx = NNSi_G2dGetAffineIdx( &pOam[i] );
                 NNS_G2D_MINMAX_ASSERT( affineIdx, 0, NUM_HW_OAM_AFFINE );
@@ -444,7 +444,7 @@ static void DrawBy3DGraphicsEngine_
 
 
 //------------------------------------------------------------------------------
-// Oam ƒoƒbƒtƒ@‚ğƒfƒtƒHƒ‹ƒg’l‚Å‰Šú‰»‚µ‚Ü‚·B
+// Oam ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã§åˆæœŸåŒ–ã—ã¾ã™ã€‚
 static NNS_G2D_INLINE void ClearOamByDefaultValue_( NNSG2dOamType type )
 {
     ASSERT_OAMTYPE_VALID( type );
@@ -455,7 +455,7 @@ static NNS_G2D_INLINE void ClearOamByDefaultValue_( NNSG2dOamType type )
 }
 
 //------------------------------------------------------------------------------
-// Oam ŠÇ——Ìˆæ—\–ñƒe[ƒuƒ‹‚ğ–¢g—p‚Æ‚µ‚Ä‰Šú‰»‚µ‚Ü‚·B
+// Oam ç®¡ç†é ˜åŸŸäºˆç´„ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æœªä½¿ç”¨ã¨ã—ã¦åˆæœŸåŒ–ã—ã¾ã™ã€‚
 static NNS_G2D_INLINE void SetOamReservationTblNotUsed_( NNSG2dOamType type )
 {
     ASSERT_OAMTYPE_VALID( type );
@@ -466,7 +466,7 @@ static NNS_G2D_INLINE void SetOamReservationTblNotUsed_( NNSG2dOamType type )
 }
 
 //------------------------------------------------------------------------------
-// Affine paramater ŠÇ——Ìˆæ—\–ñƒe[ƒuƒ‹‚ğ–¢g—p‚Æ‚µ‚Ä‰Šú‰»‚µ‚Ü‚·B
+// Affine paramater ç®¡ç†é ˜åŸŸäºˆç´„ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æœªä½¿ç”¨ã¨ã—ã¦åˆæœŸåŒ–ã—ã¾ã™ã€‚
 static NNS_G2D_INLINE void SetAffineReservationTblNotUsed_( NNSG2dOamType type )
 {
     ASSERT_OAMTYPE_VALID( type );
@@ -477,8 +477,8 @@ static NNS_G2D_INLINE void SetAffineReservationTblNotUsed_( NNSG2dOamType type )
 }
         
 //------------------------------------------------------------------------------
-// CpuCopy ‚É‚æ‚é ‚n‚`‚lƒAƒgƒŠƒrƒ…[ƒg‚Ì“]‘—( for 2D Graphics Engine Main )
-// ¬‚³‚ÈƒuƒƒbƒN‚Å•ªŠ„“]‘—‚ğs‚¤•K—v‚ª”­¶‚µ‚½‚½‚ßì¬
+// CpuCopy ã«ã‚ˆã‚‹ ï¼¯ï¼¡ï¼­ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã®è»¢é€( for 2D Graphics Engine Main )
+// å°ã•ãªãƒ–ãƒ­ãƒƒã‚¯ã§åˆ†å‰²è»¢é€ã‚’è¡Œã†å¿…è¦ãŒç™ºç”Ÿã—ãŸãŸã‚ä½œæˆ
 static NNS_G2D_INLINE void CpuLoadOAMMain_(
     const void *pSrc,
     u32 offset,
@@ -491,8 +491,8 @@ static NNS_G2D_INLINE void CpuLoadOAMMain_(
 }
 
 //------------------------------------------------------------------------------
-// CpuCopy ‚É‚æ‚é ‚n‚`‚lƒAƒgƒŠƒrƒ…[ƒg‚Ì“]‘—( for 2D Graphics Engine Sub )
-// ¬‚³‚ÈƒuƒƒbƒN‚Å•ªŠ„“]‘—‚ğs‚¤•K—v‚ª”­¶‚µ‚½‚½‚ßì¬
+// CpuCopy ã«ã‚ˆã‚‹ ï¼¯ï¼¡ï¼­ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã®è»¢é€( for 2D Graphics Engine Sub )
+// å°ã•ãªãƒ–ãƒ­ãƒƒã‚¯ã§åˆ†å‰²è»¢é€ã‚’è¡Œã†å¿…è¦ãŒç™ºç”Ÿã—ãŸãŸã‚ä½œæˆ
 static NNS_G2D_INLINE void CpuLoadOAMSub_(
     const void *pSrc,
     u32 offset,
@@ -505,7 +505,7 @@ static NNS_G2D_INLINE void CpuLoadOAMSub_(
 }
 
 //------------------------------------------------------------------------------
-// Oam ‚Ìí—Ş‚©‚ç“KØ‚È “]‘—ŠÖ”ƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·
+// Oam ã®ç¨®é¡ã‹ã‚‰é©åˆ‡ãª è»¢é€é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™
 static NNS_G2D_INLINE OBJLoadFunction* GetOBJLoadFunction_( NNSG2dOamType type )
 {
     static OBJLoadFunction*       funcTbl[] =
@@ -521,8 +521,8 @@ static NNS_G2D_INLINE OBJLoadFunction* GetOBJLoadFunction_( NNSG2dOamType type )
 }
 
 //------------------------------------------------------------------------------
-// affine ƒpƒ‰ƒ[ƒ^ ‚ğ 2D Graphics Engine OAM  ‚Éƒ[ƒh‚µ‚Ü‚·
-// affine ƒpƒ‰ƒ[ƒ^ ‚Ì‚İ‚ğ•¡”‚Ì“]‘—‚É•ªŠ„‚µ‚Ä“]‘—‚µ‚Ü‚·
+// affine ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ã‚’ 2D Graphics Engine OAM  ã«ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
+// affine ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ã®ã¿ã‚’è¤‡æ•°ã®è»¢é€ã«åˆ†å‰²ã—ã¦è»¢é€ã—ã¾ã™
 // 
 static NNS_G2D_INLINE void LoadOneAffine_( const GXOamAffine* pAff, u32 offset, OBJLoadFunction* pOBJLoadFunc )
 {
@@ -535,17 +535,17 @@ static NNS_G2D_INLINE void LoadOneAffine_( const GXOamAffine* pAff, u32 offset, 
 }
 
 //------------------------------------------------------------------------------
-// ƒoƒbƒtƒ@‚Ì“à—e‚ğDMA‚ğg—p‚µ‚Ä‚‘¬‚ÉƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“‚É“]‘—‚µ‚Ü‚·
+// ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ã‚’DMAã‚’ä½¿ç”¨ã—ã¦é«˜é€Ÿã«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ã«è»¢é€ã—ã¾ã™
 static NNS_G2D_INLINE void LoadOamAndAffineFast_( NNSG2dOamType type, u16 fromIdx, u16 toIdx )
 {
     GXOamAttr* pFrom    = GetOamBufferPtr_( type, fromIdx );
     const u16  szByte   = (u16)(GX_OAMATTR_SIZE * (toIdx - fromIdx + 1) );
     u16        offset   = (u16)(GX_OAMATTR_SIZE * fromIdx);
     
-    // ƒLƒƒƒbƒVƒ…ƒtƒ‰ƒbƒVƒ…
+    // ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
     DC_FlushRange( pFrom, szByte );
 
-    // DMA “]‘—
+    // DMA è»¢é€
     switch( type )
     {
     case NNS_G2D_OAMTYPE_MAIN:
@@ -561,7 +561,7 @@ static NNS_G2D_INLINE void LoadOamAndAffineFast_( NNSG2dOamType type, u16 fromId
 }
 
 //------------------------------------------------------------------------------
-// OAM ƒAƒgƒŠƒrƒ…[ƒg‚ğ 2D Graphics Engine OAM ‚Éƒ[ƒh‚µ‚Ü‚·
+// OAM ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’ 2D Graphics Engine OAM ã«ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
 static NNS_G2D_INLINE void LoadOam_( NNSG2dOamType type, u16 fromIdx, u16 toIdx )
 {
     GXOamAttr* pFrom    = GetOamBufferPtr_( type, fromIdx );
@@ -574,7 +574,7 @@ static NNS_G2D_INLINE void LoadOam_( NNSG2dOamType type, u16 fromIdx, u16 toIdx 
     for( i = 0; i < numArea; i++ ) 
     {    
         //
-        // OAM ƒAƒgƒŠƒrƒ…[ƒg•”•ª‚Ì‚İ‚ğ“]‘—‚µ‚Ü‚·
+        // OAM ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆéƒ¨åˆ†ã®ã¿ã‚’è»¢é€ã—ã¾ã™
         // 
         (*pOBJLoadFunc)( pFrom, offset, OAMATTR_SIZE );
         
@@ -584,7 +584,7 @@ static NNS_G2D_INLINE void LoadOam_( NNSG2dOamType type, u16 fromIdx, u16 toIdx 
 }
 
 //------------------------------------------------------------------------------
-// affine ƒpƒ‰ƒ[ƒ^ ‚ğ 2D Graphics Engine OAM ‚Éƒ[ƒh‚µ‚Ü‚·
+// affine ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ã‚’ 2D Graphics Engine OAM ã«ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
 static NNS_G2D_INLINE void LoadAffine_( NNSG2dOamType type, u16 fromIdx, u16 toIdx )
 {
 
@@ -597,7 +597,7 @@ static NNS_G2D_INLINE void LoadAffine_( NNSG2dOamType type, u16 fromIdx, u16 toI
     for( i = 0; i < numArea; i++ ) 
     {    
         //
-        // ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^•”•ª‚Ì‚İ‚ğ“]‘—‚µ‚Ü‚·
+        // ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿éƒ¨åˆ†ã®ã¿ã‚’è»¢é€ã—ã¾ã™
         // 
         LoadOneAffine_( pFrom, offset, pOBJLoadFunc );
        
@@ -607,7 +607,7 @@ static NNS_G2D_INLINE void LoadAffine_( NNSG2dOamType type, u16 fromIdx, u16 toI
 }
         
 //------------------------------------------------------------------------------
-// OAM ƒAƒgƒŠƒrƒ…[ƒgƒoƒbƒtƒ@‚ğ‰Šú’l‚ÅƒŠƒZƒbƒg‚µ‚Ü‚·
+// OAM ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸå€¤ã§ãƒªã‚»ãƒƒãƒˆã—ã¾ã™
 static NNS_G2D_INLINE void ResetOam_( NNSG2dOamType type, u16 fromIdx, u16 toIdx )
 {
     GXOamAttr* pFrom    = GetOamBufferPtr_( type, fromIdx );
@@ -617,7 +617,7 @@ static NNS_G2D_INLINE void ResetOam_( NNSG2dOamType type, u16 fromIdx, u16 toIdx
     for( i = 0; i < numArea; i++ ) 
     {    
         //
-        // OAM ƒAƒgƒŠƒrƒ…[ƒg•”•ª‚Ì‚İ‚ğƒfƒtƒHƒ‹ƒg’l‚ÅƒtƒBƒ‹‚µ‚Ü‚·
+        // OAM ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆéƒ¨åˆ†ã®ã¿ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã§ãƒ•ã‚£ãƒ«ã—ã¾ã™
         //
         //MI_CpuFill16( pFrom, OAM_SETTING_INVISIBLE, sizeof( u16 ) );
         *((u16*)pFrom) = OAM_SETTING_INVISIBLE;
@@ -626,7 +626,7 @@ static NNS_G2D_INLINE void ResetOam_( NNSG2dOamType type, u16 fromIdx, u16 toIdx
 }
 
 //------------------------------------------------------------------------------
-// affine ƒpƒ‰ƒ[ƒ^ ƒoƒbƒtƒ@‚ğ‰Šú’l‚ÅƒŠƒZƒbƒg‚µ‚Ü‚·
+// affine ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸå€¤ã§ãƒªã‚»ãƒƒãƒˆã—ã¾ã™
 static NNS_G2D_INLINE void ResetAffine_( NNSG2dOamType type, u16 fromIdx, u16 toIdx )
 {
 
@@ -637,7 +637,7 @@ static NNS_G2D_INLINE void ResetAffine_( NNSG2dOamType type, u16 fromIdx, u16 to
     for( i = 0; i < numArea; i++ ) 
     {    
         //
-        // ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^•”•ª‚Ì‚İ‚ğƒfƒtƒHƒ‹ƒg’l‚ÅƒtƒBƒ‹‚µ‚Ü‚·
+        // ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿éƒ¨åˆ†ã®ã¿ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã§ãƒ•ã‚£ãƒ«ã—ã¾ã™
         // 
         pFrom->PA = OAM_SETTING_INVISIBLE;
         pFrom->PB = OAM_SETTING_INVISIBLE;
@@ -648,7 +648,7 @@ static NNS_G2D_INLINE void ResetAffine_( NNSG2dOamType type, u16 fromIdx, u16 to
 }
 
 //------------------------------------------------------------------------------
-// ƒ‰ƒCƒuƒ‰ƒŠ“à•”ŒöŠJ
+// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨å…¬é–‹
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -661,7 +661,7 @@ void* NNSi_G2dGetOamManagerInternalBufferForDebug( NNSG2dOamType type )
 
 
 //------------------------------------------------------------------------------
-// ŠO•”ŒöŠJ
+// å¤–éƒ¨å…¬é–‹
 //------------------------------------------------------------------------------
 
 
@@ -669,36 +669,36 @@ void* NNSi_G2dGetOamManagerInternalBufferForDebug( NNSG2dOamType type )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitOamManagerModule
 
-  Description:  OamManager ƒ‚ƒWƒ…[ƒ‹ ‚ğ ‰Šú‰»‚·‚é
-                ‚·‚×‚Ä‚Ì OamManager ƒ‚ƒWƒ…[ƒ‹ ƒƒ\ƒbƒh‚ÌÀs‚æ‚èæ‚ÉŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B
+  Description:  OamManager ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ« ã‚’ åˆæœŸåŒ–ã™ã‚‹
+                ã™ã¹ã¦ã® OamManager ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ« ãƒ¡ã‚½ãƒƒãƒ‰ã®å®Ÿè¡Œã‚ˆã‚Šå…ˆã«å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚
                 
-                “à•”‚Å
-                HW Oam ‚Ìƒƒ‚ƒŠƒtƒBƒ‹
-                Oam—\–ñƒe[ƒuƒ‹‚Ì‰Šú‰»‚ğs‚¢‚Ü‚·
+                å†…éƒ¨ã§
+                HW Oam ã®ãƒ¡ãƒ¢ãƒªãƒ•ã‚£ãƒ«
+                Oamäºˆç´„ãƒ†ãƒ¼ãƒ–ãƒ«ã®åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™
                 
                 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dInitOamManagerModule()
 {  
-    // Oamƒoƒbƒtƒ@
+    // Oamãƒãƒƒãƒ•ã‚¡
     ClearOamByDefaultValue_( NNS_G2D_OAMTYPE_MAIN );
     ClearOamByDefaultValue_( NNS_G2D_OAMTYPE_SUB );
     ClearOamByDefaultValue_( NNS_G2D_OAMTYPE_SOFTWAREEMULATION );
     
     NNSI_G2D_DEBUGMSG0("Initialize OamBuffer ... done.\n");
     
-    // OamAttr—\–ñƒe[ƒuƒ‹
+    // OamAtträºˆç´„ãƒ†ãƒ¼ãƒ–ãƒ«
     SetOamReservationTblNotUsed_( NNS_G2D_OAMTYPE_MAIN );
     SetOamReservationTblNotUsed_( NNS_G2D_OAMTYPE_SUB );
     SetOamReservationTblNotUsed_( NNS_G2D_OAMTYPE_SOFTWAREEMULATION );
     
     NNSI_G2D_DEBUGMSG0("Initialize Oam reservation table ... done.\n");
     
-    // affineƒpƒ‰ƒ[ƒ^—\–ñƒe[ƒuƒ‹
+    // affineãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿äºˆç´„ãƒ†ãƒ¼ãƒ–ãƒ«
     SetAffineReservationTblNotUsed_( NNS_G2D_OAMTYPE_MAIN );
     SetAffineReservationTblNotUsed_( NNS_G2D_OAMTYPE_SUB );
     SetAffineReservationTblNotUsed_( NNS_G2D_OAMTYPE_SOFTWAREEMULATION );
@@ -713,21 +713,21 @@ void NNS_G2dInitOamManagerModule()
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetNewManagerInstance
 
-  Description:  OamManager ‚Ì À‘Ì‚ğ‰Šú‰»‚·‚é
+  Description:  OamManager ã® å®Ÿä½“ã‚’åˆæœŸåŒ–ã™ã‚‹
                 
-                —v‹—Ìˆæ‚ª‚·‚Å‚É‘¼‚ÌÀ‘Ì‚É‚æ‚Á‚Äg—p‚³‚ê‚Ä‚¢‚éê‡‚ÍA
-                ‰Šú‰»‚É¸”s‚µFALSE‚ğ•Ô‚µ‚Ü‚·B
+                è¦æ±‚é ˜åŸŸãŒã™ã§ã«ä»–ã®å®Ÿä½“ã«ã‚ˆã£ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã€
+                åˆæœŸåŒ–ã«å¤±æ•—ã—FALSEã‚’è¿”ã—ã¾ã™ã€‚
                 
   
   
-  Arguments:    pMan:       [OUT] ƒ}ƒl[ƒWƒƒÀ‘Ì
-                from:       [IN]  g—p‚·‚éOamiŠJn”Ô†j
-                to:         [IN]  g—p‚·‚éOamiI—¹”Ô†j
-                type:       [IN]  Oam‚Ìí—Ş
+  Arguments:    pMan:       [OUT] ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿä½“
+                from:       [IN]  ä½¿ç”¨ã™ã‚‹Oamï¼ˆé–‹å§‹ç•ªå·ï¼‰
+                to:         [IN]  ä½¿ç”¨ã™ã‚‹Oamï¼ˆçµ‚äº†ç•ªå·ï¼‰
+                type:       [IN]  Oamã®ç¨®é¡
                 
-                from <= to ‚ğ–‚½‚·•K—v‚ª‚ ‚è‚Ü‚·B
+                from <= to ã‚’æº€ãŸã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 
-  Returns:      ‰Šú‰»‚Ì¬”Û
+  Returns:      åˆæœŸåŒ–ã®æˆå¦
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dGetNewManagerInstance
@@ -749,19 +749,19 @@ BOOL NNS_G2dGetNewManagerInstance
         NNS_G2D_NULL_ASSERT( pReserveTbl );
         
         //
-        // w’è‚³‚ê‚½—Ìˆæ‚ª–¢g—p‚Å‚ ‚ê‚Î...
+        // æŒ‡å®šã•ã‚ŒãŸé ˜åŸŸãŒæœªä½¿ç”¨ã§ã‚ã‚Œã°...
         //
         if( IsOamNotUsed_( pReserveTbl, from, to ) )
         {
             //
-            // À‘Ì‚Ö‚Ìƒpƒ‰ƒ[ƒ^‚Ì‘ã“ü‚ğs‚¤
+            // å®Ÿä½“ã¸ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä»£å…¥ã‚’è¡Œã†
             //
             pMan->GUID                          = GetNewGUID_();
             pMan->managedAttrArea.fromIdx       = from;
             pMan->managedAttrArea.toIdx         = to;
             pMan->managedAttrArea.currentIdx    = from;
             //
-            // ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚ğŠÇ—‚µ‚È‚¢—l‚Éİ’è
+            // ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç®¡ç†ã—ãªã„æ§˜ã«è¨­å®š
             //
             pMan->managedAffineArea.fromIdx    = NUM_HW_OAM_AFFINE;
             pMan->managedAffineArea.toIdx      = 0;
@@ -784,20 +784,20 @@ BOOL NNS_G2dGetNewManagerInstance
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitManagerInstanceAffine
 
-  Description:  OamManager ‚Ì À‘Ì Affine ŠÇ—•”•ª ‚ğ‰Šú‰»‚·‚é
+  Description:  OamManager ã® å®Ÿä½“ Affine ç®¡ç†éƒ¨åˆ† ã‚’åˆæœŸåŒ–ã™ã‚‹
                 
-                —v‹—Ìˆæ‚ª‚·‚Å‚É‘¼‚ÌÀ‘Ì‚É‚æ‚Á‚Äg—p‚³‚ê‚Ä‚¢‚éê‡‚ÍA
-                ‰Šú‰»‚É¸”s‚µFALSE‚ğ•Ô‚µ‚Ü‚·B
+                è¦æ±‚é ˜åŸŸãŒã™ã§ã«ä»–ã®å®Ÿä½“ã«ã‚ˆã£ã¦ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã€
+                åˆæœŸåŒ–ã«å¤±æ•—ã—FALSEã‚’è¿”ã—ã¾ã™ã€‚
                 
   
   
-  Arguments:    pMan:       [OUT] ƒ}ƒl[ƒWƒƒÀ‘Ì
-                from:       [IN]  g—p‚·‚éAffineiŠJn”Ô†j
-                to:         [IN]  g—p‚·‚éAffineiI—¹”Ô†j
+  Arguments:    pMan:       [OUT] ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿä½“
+                from:       [IN]  ä½¿ç”¨ã™ã‚‹Affineï¼ˆé–‹å§‹ç•ªå·ï¼‰
+                to:         [IN]  ä½¿ç”¨ã™ã‚‹Affineï¼ˆçµ‚äº†ç•ªå·ï¼‰
                 
-                from <= to ‚ğ–‚½‚·•K—v‚ª‚ ‚è‚Ü‚·B
+                from <= to ã‚’æº€ãŸã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 
-  Returns:      ‰Šú‰»‚Ì¬”Û
+  Returns:      åˆæœŸåŒ–ã®æˆå¦
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dInitManagerInstanceAffine
@@ -810,19 +810,19 @@ BOOL NNS_G2dInitManagerInstanceAffine
     NNS_G2D_NULL_ASSERT( pMan );
     NNS_G2D_ASSERT( from <= to );
 	NNS_G2D_ASSERT( to < NUM_HW_OAM_AFFINE );
-    // ‰Šú‰»Ï‚İ‚©H
+    // åˆæœŸåŒ–æ¸ˆã¿ã‹ï¼Ÿ
     
     {
         u16*        pReserveTbl = GetAffineReservationTblPtr_( pMan->type );
         NNS_G2D_NULL_ASSERT( pReserveTbl );
         
         //
-        // w’è‚³‚ê‚½—Ìˆæ‚ª–¢g—p‚Å‚ ‚ê‚Î...
+        // æŒ‡å®šã•ã‚ŒãŸé ˜åŸŸãŒæœªä½¿ç”¨ã§ã‚ã‚Œã°...
         //
         if( IsOamNotUsed_( pReserveTbl, from, to ) )
         {
             //
-            // À‘Ì‚Ö‚Ìƒpƒ‰ƒ[ƒ^‚Ì‘ã“ü‚ğs‚¤
+            // å®Ÿä½“ã¸ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä»£å…¥ã‚’è¡Œã†
             //
             pMan->managedAffineArea.fromIdx    = from;
             pMan->managedAffineArea.toIdx      = to;
@@ -842,19 +842,19 @@ BOOL NNS_G2dInitManagerInstanceAffine
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetNewOamManagerInstance
 
-  Description:  OamManager ‚Ì À‘Ì‚ğ‰Šú‰»‚µ‚Ü‚·
+  Description:  OamManager ã® å®Ÿä½“ã‚’åˆæœŸåŒ–ã—ã¾ã™
                 
-                OAMƒ}ƒl[ƒWƒƒ‚Ì‰Šú‰»‚ğ‚·‚éV‚µ‚¢API‚Å‚·B
+                OAMãƒãƒãƒ¼ã‚¸ãƒ£ã®åˆæœŸåŒ–ã‚’ã™ã‚‹æ–°ã—ã„APIã§ã™ã€‚
                 
-  Arguments:    pMan:           [OUT] ƒ}ƒl[ƒWƒƒÀ‘Ì
-                fromOBJ:        [IN]  g—p‚·‚éOamiŠJn”Ô†j
-                numOBJ:         [IN]  g—p‚·‚éOamŒÂ”(”ñƒ[ƒ’l)
-                fromAffine:     [IN]  g—p‚·‚éAffineiŠJn”Ô†j
-                numAffine:      [IN]  g—p‚·‚éƒAƒtƒBƒ“ŒÂ”(ƒ[ƒ‚à‰Â)
-                type:           [IN]  Oam‚Ìí—Ş
+  Arguments:    pMan:           [OUT] ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿä½“
+                fromOBJ:        [IN]  ä½¿ç”¨ã™ã‚‹Oamï¼ˆé–‹å§‹ç•ªå·ï¼‰
+                numOBJ:         [IN]  ä½¿ç”¨ã™ã‚‹Oamå€‹æ•°(éã‚¼ãƒ­å€¤)
+                fromAffine:     [IN]  ä½¿ç”¨ã™ã‚‹Affineï¼ˆé–‹å§‹ç•ªå·ï¼‰
+                numAffine:      [IN]  ä½¿ç”¨ã™ã‚‹ã‚¢ãƒ•ã‚£ãƒ³å€‹æ•°(ã‚¼ãƒ­ã‚‚å¯)
+                type:           [IN]  Oamã®ç¨®é¡
                 
                 
-  Returns:      ‰Šú‰»‚Ì¬”Û
+  Returns:      åˆæœŸåŒ–ã®æˆå¦
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dGetNewOamManagerInstance
@@ -873,7 +873,7 @@ BOOL NNS_G2dGetNewOamManagerInstance
 	NNS_G2D_ASSERT( numAffine <= NUM_HW_OAM_AFFINE );
     NNS_G2D_NULL_ASSERT( pMan );
     //
-    // OBJ ‚É‚Â‚¢‚Ä
+    // OBJ ã«ã¤ã„ã¦
     //
     {
         u16*        pReserveTbl = GetOamReservationTblPtr_( type );
@@ -881,12 +881,12 @@ BOOL NNS_G2dGetNewOamManagerInstance
         
         NNS_G2D_NULL_ASSERT( pReserveTbl );
         //
-        // w’è‚³‚ê‚½—Ìˆæ‚ª–¢g—p‚Å‚ ‚ê‚Î...
+        // æŒ‡å®šã•ã‚ŒãŸé ˜åŸŸãŒæœªä½¿ç”¨ã§ã‚ã‚Œã°...
         //
         if( IsOamNotUsed_( pReserveTbl, fromOBJ, toOBJ ) )
         {
             //
-            // À‘Ì‚Ö‚Ìƒpƒ‰ƒ[ƒ^‚Ì‘ã“ü‚ğs‚¤
+            // å®Ÿä½“ã¸ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä»£å…¥ã‚’è¡Œã†
             //
             pMan->GUID                          = GetNewGUID_();
             pMan->managedAttrArea.fromIdx       = fromOBJ;
@@ -903,7 +903,7 @@ BOOL NNS_G2dGetNewOamManagerInstance
     }
     
     //
-    // ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚É‚Â‚¢‚Ä
+    // ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«ã¤ã„ã¦
     //
     {
         u16*        pReserveTbl = GetAffineReservationTblPtr_( type );
@@ -913,8 +913,8 @@ BOOL NNS_G2dGetNewOamManagerInstance
         if( numAffine == 0 )
         {
             //
-            // ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^ ‚ğg—p‚µ‚È‚¢ê‡A•s³‚Èƒf[ƒ^‚ğ‘}“ü‚·‚é
-            // •s³‚Èƒf[ƒ^‚Ì‘}“ü‚Íd—v‚Å‚ ‚éBiƒ‚ƒWƒ…[ƒ‹“à•”‚Å‚Í•s³‚ÈŠÇ——Ìˆæİ’è‚ğ”»’è‚µ‚ÄAˆ—‚ğs‚¤Bj
+            // ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ã‚’ä½¿ç”¨ã—ãªã„å ´åˆã€ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã‚’æŒ¿å…¥ã™ã‚‹
+            // ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã®æŒ¿å…¥ã¯é‡è¦ã§ã‚ã‚‹ã€‚ï¼ˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å†…éƒ¨ã§ã¯ä¸æ­£ãªç®¡ç†é ˜åŸŸè¨­å®šã‚’åˆ¤å®šã—ã¦ã€å‡¦ç†ã‚’è¡Œã†ã€‚ï¼‰
             //
             pMan->managedAffineArea.fromIdx    = NUM_HW_OAM_AFFINE;
             pMan->managedAffineArea.toIdx      = 0;
@@ -922,11 +922,11 @@ BOOL NNS_G2dGetNewOamManagerInstance
             
         }else{
             //
-            // ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^ ‚ğg—p‚·‚éê‡
+            // ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ã‚’ä½¿ç”¨ã™ã‚‹å ´åˆ
             //
             const u16   toAffine       = (u16)(fromAffine + (numAffine - 1));
             //
-            // w’è‚³‚ê‚½—Ìˆæ‚ª–¢g—p‚Å‚ ‚ê‚Î...
+            // æŒ‡å®šã•ã‚ŒãŸé ˜åŸŸãŒæœªä½¿ç”¨ã§ã‚ã‚Œã°...
             //
             if( IsOamNotUsed_( pReserveTbl, fromAffine, toAffine ) )
             {
@@ -947,7 +947,7 @@ BOOL NNS_G2dGetNewOamManagerInstance
     pMan->type                          = type;
     
     //
-    // ‘Ø‚è‚È‚­‰Šú‰»‚ªŠ®—¹‚µ‚½
+    // æ»ã‚ŠãªãåˆæœŸåŒ–ãŒå®Œäº†ã—ãŸ
     //
     return TRUE;
 }
@@ -955,24 +955,24 @@ BOOL NNS_G2dGetNewOamManagerInstance
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetNewOamManagerInstanceAsFastTransferMode
 
-  Description:  OamManager ‚Ì À‘Ì‚ğ‰Šú‰»‚µ‚Ü‚·
+  Description:  OamManager ã® å®Ÿä½“ã‚’åˆæœŸåŒ–ã—ã¾ã™
                 
-                OAMƒ}ƒl[ƒWƒƒ‚Ì‰Šú‰»‚ğ‚·‚éV‚µ‚¢API‚Å‚·B
+                OAMãƒãƒãƒ¼ã‚¸ãƒ£ã®åˆæœŸåŒ–ã‚’ã™ã‚‹æ–°ã—ã„APIã§ã™ã€‚
                 
-                Šm•Û‚·‚é—Ìˆæ‚É§ŒÀ‚ª‘¶İ‚µ‚Ü‚·B
-                ‚Ü‚½AŠÇ—ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^—Ìˆæ‚ÍŠÇ—OAMƒAƒgƒŠƒrƒ…[ƒg—Ìˆæ“à‚ÉŠÜ‚Ü‚ê‚éAŒÂ”•ª‚¾‚¯
-                Š„‚è“–‚Ä‚ç‚ê‚Ü‚·B(—áFOAM 0 - 32 ”Ô => ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^ 0 - 8 ”Ô )
+                ç¢ºä¿ã™ã‚‹é ˜åŸŸã«åˆ¶é™ãŒå­˜åœ¨ã—ã¾ã™ã€‚
+                ã¾ãŸã€ç®¡ç†ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é ˜åŸŸã¯ç®¡ç†OAMã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆé ˜åŸŸå†…ã«å«ã¾ã‚Œã‚‹ã€å€‹æ•°åˆ†ã ã‘
+                å‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¾ã™ã€‚(ä¾‹ï¼šOAM 0 - 32 ç•ª => ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ 0 - 8 ç•ª )
                 
-                ƒoƒbƒtƒ@‚©‚çƒOƒ‰ƒtƒBƒbƒNƒXƒGƒ“ƒWƒ“‚Ö‚Ìƒf[ƒ^“]‘—‚ÌÛ‚É
-                ‚‘¬“]‘—‚ª‰Â”\‚Æ‚È‚Á‚Ä‚¢‚Ü‚·B
+                ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¨ãƒ³ã‚¸ãƒ³ã¸ã®ãƒ‡ãƒ¼ã‚¿è»¢é€ã®éš›ã«
+                é«˜é€Ÿè»¢é€ãŒå¯èƒ½ã¨ãªã£ã¦ã„ã¾ã™ã€‚
                 
-  Arguments:    pMan:           [OUT] ƒ}ƒl[ƒWƒƒÀ‘Ì
-                fromOBJ:        [IN]  g—p‚·‚éOamiŠJn”Ô†F4‚Ì”{”‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·j
-                numOBJ:         [IN]  g—p‚·‚éOamŒÂ”(”ñƒ[ƒ’lFF4‚Ì”{”‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·)
-                type:           [IN]  Oam‚Ìí—Ş
+  Arguments:    pMan:           [OUT] ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿä½“
+                fromOBJ:        [IN]  ä½¿ç”¨ã™ã‚‹Oamï¼ˆé–‹å§‹ç•ªå·ï¼š4ã®å€æ•°ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ï¼‰
+                numOBJ:         [IN]  ä½¿ç”¨ã™ã‚‹Oamå€‹æ•°(éã‚¼ãƒ­å€¤ï¼šï¼š4ã®å€æ•°ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™)
+                type:           [IN]  Oamã®ç¨®é¡
                 
                 
-  Returns:      ‰Šú‰»‚Ì¬”Û
+  Returns:      åˆæœŸåŒ–ã®æˆå¦
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dGetNewOamManagerInstanceAsFastTransferMode
@@ -990,7 +990,7 @@ BOOL NNS_G2dGetNewOamManagerInstanceAsFastTransferMode
     NNS_G2D_ASSERT( fromOBJ % 4 == 0 );
     NNS_G2D_ASSERT( numOBJ % 4 == 0 );
     //
-    // OBJ ‚É‚Â‚¢‚Ä
+    // OBJ ã«ã¤ã„ã¦
     //
     {
         u16*        pReserveTbl = GetOamReservationTblPtr_( type );
@@ -998,12 +998,12 @@ BOOL NNS_G2dGetNewOamManagerInstanceAsFastTransferMode
         
         NNS_G2D_NULL_ASSERT( pReserveTbl );
         //
-        // w’è‚³‚ê‚½—Ìˆæ‚ª–¢g—p‚Å‚ ‚ê‚Î...
+        // æŒ‡å®šã•ã‚ŒãŸé ˜åŸŸãŒæœªä½¿ç”¨ã§ã‚ã‚Œã°...
         //
         if( IsOamNotUsed_( pReserveTbl, fromOBJ, toOBJ ) )
         {
             //
-            // À‘Ì‚Ö‚Ìƒpƒ‰ƒ[ƒ^‚Ì‘ã“ü‚ğs‚¤
+            // å®Ÿä½“ã¸ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä»£å…¥ã‚’è¡Œã†
             //
             pMan->GUID                          = GetNewGUID_();
             pMan->managedAttrArea.fromIdx       = fromOBJ;
@@ -1020,7 +1020,7 @@ BOOL NNS_G2dGetNewOamManagerInstanceAsFastTransferMode
     }
     
     //
-    // ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚É‚Â‚¢‚Ä
+    // ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«ã¤ã„ã¦
     //
     {
         const u16   fromAffine     = (u16)(fromOBJ / 4);
@@ -1030,7 +1030,7 @@ BOOL NNS_G2dGetNewOamManagerInstanceAsFastTransferMode
         u16*        pReserveTbl = GetAffineReservationTblPtr_( type );
         NNS_G2D_NULL_ASSERT( pReserveTbl );        
         //
-        // w’è‚³‚ê‚½—Ìˆæ‚ª–¢g—p‚Å‚ ‚ê‚Î...
+        // æŒ‡å®šã•ã‚ŒãŸé ˜åŸŸãŒæœªä½¿ç”¨ã§ã‚ã‚Œã°...
         //
         if( IsOamNotUsed_( pReserveTbl, fromAffine, toAffine ) )
         {
@@ -1047,13 +1047,13 @@ BOOL NNS_G2dGetNewOamManagerInstanceAsFastTransferMode
     }
     
     //
-    // ‚‘¬“]‘—‰Â”\ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+    // é«˜é€Ÿè»¢é€å¯èƒ½ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
     //
     pMan->bFastTransferEnable           = TRUE;
     pMan->type                          = type;
     
     //
-    // ‘Ø‚è‚È‚­‰Šú‰»‚ªŠ®—¹‚µ‚½
+    // æ»ã‚ŠãªãåˆæœŸåŒ–ãŒå®Œäº†ã—ãŸ
     //
     return TRUE;
 }
@@ -1061,15 +1061,15 @@ BOOL NNS_G2dGetNewOamManagerInstanceAsFastTransferMode
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dEntryOamManagerOam
 
-  Description:  Oam ‚ğ “o˜^‚µ‚Ü‚·B
-                —v‹‚³‚ê‚½“o˜^‚Ì‚½‚ß‚Ì\•ª‚ÈOam‚ğ‚½‚È‚¢ê‡‚ÍA
-                ‰½‚à‚¹‚¸FALSE‚ğ•Ô‚µ‚Ü‚·B
+  Description:  Oam ã‚’ ç™»éŒ²ã—ã¾ã™ã€‚
+                è¦æ±‚ã•ã‚ŒãŸç™»éŒ²ã®ãŸã‚ã®ååˆ†ãªOamã‚’æŒãŸãªã„å ´åˆã¯ã€
+                ä½•ã‚‚ã›ãšFALSEã‚’è¿”ã—ã¾ã™ã€‚
                 
-  Arguments:    pMan:       [OUT] ƒ}ƒl[ƒWƒƒÀ‘Ì
-                pOam:       [IN]  “o˜^ ‚·‚é Oam ‚Ìæ“ªƒ|ƒCƒ“ƒ^
-                num:        [IN]  “o˜^ ‚·‚é Oam ”
+  Arguments:    pMan:       [OUT] ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿä½“
+                pOam:       [IN]  ç™»éŒ² ã™ã‚‹ Oam ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
+                num:        [IN]  ç™»éŒ² ã™ã‚‹ Oam æ•°
                 
-  Returns:      “o˜^‚Ì¬”Û
+  Returns:      ç™»éŒ²ã®æˆå¦
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dEntryOamManagerOam
@@ -1084,13 +1084,13 @@ BOOL NNS_G2dEntryOamManagerOam
     NNS_G2D_ASSERT( num != 0 );
     
     //
-    // \•ª‚È—e—Ê‚ª‚ ‚ê‚Î...
+    // ååˆ†ãªå®¹é‡ãŒã‚ã‚Œã°...
     //
     if( HasEnoughCapacity_( &pMan->managedAttrArea, num ) )
     {
         //
-        // ƒf[ƒ^‚ğƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é
-        // affine paramater ‚ğ ã‘‚«‚µ‚È‚¢‚æ‚¤‚ÉAƒƒ‚ƒŠƒRƒs[ ‚ğ •ªŠ„‚µ‚Äs‚¤B
+        // ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
+        // affine paramater ã‚’ ä¸Šæ›¸ãã—ãªã„ã‚ˆã†ã«ã€ãƒ¡ãƒ¢ãƒªã‚³ãƒ”ãƒ¼ ã‚’ åˆ†å‰²ã—ã¦è¡Œã†ã€‚
         //     
         int i = 0;
         GXOamAttr* pOamAttr = GetOamCurrentPtr_( pMan );
@@ -1106,7 +1106,7 @@ BOOL NNS_G2dEntryOamManagerOam
         }
         
         //
-        // ƒfƒoƒbƒNo—Í
+        // ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›
         //
         NNSI_G2D_DEBUGMSG1( "New Oam entry occur...  from %d to %d for GUID %d\n",
                              pMan->currentPos, 
@@ -1123,15 +1123,15 @@ BOOL NNS_G2dEntryOamManagerOam
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dEntryOamManagerOamWithAffineIdx
 
-  Description:  OAM ƒAƒgƒŠƒrƒ…[ƒgƒpƒ‰ƒ[ƒ^ ‚ğ affine index ‚ğw’è‚µ‚Ä “o˜^‚µ‚Ü‚·B
-                —v‹‚³‚ê‚½“o˜^‚Ì‚½‚ß‚Ì\•ª‚È—e—Ê‚ğ‚½‚È‚¢ê‡‚ÍA
-                ‰½‚à‚¹‚¸FALSE‚ğ•Ô‚µ‚Ü‚·B
+  Description:  OAM ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ã‚’ affine index ã‚’æŒ‡å®šã—ã¦ ç™»éŒ²ã—ã¾ã™ã€‚
+                è¦æ±‚ã•ã‚ŒãŸç™»éŒ²ã®ãŸã‚ã®ååˆ†ãªå®¹é‡ã‚’æŒãŸãªã„å ´åˆã¯ã€
+                ä½•ã‚‚ã›ãšFALSEã‚’è¿”ã—ã¾ã™ã€‚
                 
-  Arguments:    pMan:       [OUT] ƒ}ƒl[ƒWƒƒÀ‘Ì
-                pOam:       [IN]  “o˜^ ‚·‚é Affine Matrix 
-                affineIdx:  [IN]  OBJ ‚Ì QÆ‚·‚é Affine index 
+  Arguments:    pMan:       [OUT] ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿä½“
+                pOam:       [IN]  ç™»éŒ² ã™ã‚‹ Affine Matrix 
+                affineIdx:  [IN]  OBJ ã® å‚ç…§ã™ã‚‹ Affine index 
                 
-  Returns:      “o˜^‚Ì¬”Û
+  Returns:      ç™»éŒ²ã®æˆå¦
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dEntryOamManagerOamWithAffineIdx
@@ -1146,7 +1146,7 @@ BOOL NNS_G2dEntryOamManagerOamWithAffineIdx
    
     
     //
-    // \•ª‚È—e—Ê‚ª‚ ‚ê‚Î...
+    // ååˆ†ãªå®¹é‡ãŒã‚ã‚Œã°...
     //
     if( HasEnoughCapacity_( &pMan->managedAttrArea, 1 ) )
     {
@@ -1159,7 +1159,7 @@ BOOL NNS_G2dEntryOamManagerOamWithAffineIdx
         pOamAttr->attr2 = pOam->attr2;
         
         //
-        // affine Index ‚ªw’è‚³‚ê‚Ä‚¢‚½‚ç...
+        // affine Index ãŒæŒ‡å®šã•ã‚Œã¦ã„ãŸã‚‰...
         //
         if( NNS_G2D_OAM_AFFINE_IDX_NONE != affineIdx )
         {
@@ -1167,10 +1167,10 @@ BOOL NNS_G2dEntryOamManagerOamWithAffineIdx
             // G2_SetOBJEffect( pOamAttr, GX_OAM_EFFECT_AFFINE_DOUBLE, affineIdx );
             {
                 
-                // ‰ñ“]Šg‘åk¬ƒCƒl[ƒuƒ‹ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
-                // ƒAƒtƒBƒ“•ÏŠ·—LŒøƒtƒ‰ƒO‚ª—LŒø‚Éİ’è‚³‚ê‚Ä‚¢‚È‚¢ê‡
-                // oamAffinIdx ‚ğİ’è‚µ‚Ü‚¹‚ñ 
-                // ˆÈ‘O‚ÍƒAƒT[ƒg‚Å‹­§I—¹‚µ‚Ä‚¢‚Ü‚µ‚½B
+                // å›è»¢æ‹¡å¤§ç¸®å°ã‚¤ãƒãƒ¼ãƒ–ãƒ«ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
+                // ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›æœ‰åŠ¹ãƒ•ãƒ©ã‚°ãŒæœ‰åŠ¹ã«è¨­å®šã•ã‚Œã¦ã„ãªã„å ´åˆ
+                // oamAffinIdx ã‚’è¨­å®šã—ã¾ã›ã‚“ 
+                // ä»¥å‰ã¯ã‚¢ã‚µãƒ¼ãƒˆã§å¼·åˆ¶çµ‚äº†ã—ã¦ã„ã¾ã—ãŸã€‚
                 //
                 // NNS_G2D_ASSERT( pOamAttr->rsMode & 0x1 );
                 //
@@ -1193,16 +1193,16 @@ BOOL NNS_G2dEntryOamManagerOamWithAffineIdx
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetOamManagerAffine
 
-  Description:  Oam Affine ƒpƒ‰ƒ[ƒ^ ‚ğ index ‚ğw’è‚µ‚Ä “o˜^‚µ‚Ü‚·B
-                •s³‚ÈOAMí—ŞAƒCƒ“ƒfƒbƒNƒX‚ğw’è‚µ‚½ê‡‚ÍƒAƒT[ƒg‚É¸”s‚µ‚Ü‚·B
+  Description:  Oam Affine ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ã‚’ index ã‚’æŒ‡å®šã—ã¦ ç™»éŒ²ã—ã¾ã™ã€‚
+                ä¸æ­£ãªOAMç¨®é¡ã€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æŒ‡å®šã—ãŸå ´åˆã¯ã‚¢ã‚µãƒ¼ãƒˆã«å¤±æ•—ã—ã¾ã™ã€‚
                 
-                ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^ ŠÇ——Ìˆæ ‚Ö‚Ì‘‚«‚İ‚ª‚ ‚Á‚½ê‡‚ÍAŒx‚ğ•\¦‚µ‚Ü‚·B
+                ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ç®¡ç†é ˜åŸŸ ã¸ã®æ›¸ãè¾¼ã¿ãŒã‚ã£ãŸå ´åˆã¯ã€è­¦å‘Šã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
                 
-  Arguments:    type:      [OUT] OAMí—Ş
-                mtx:       [IN]  “o˜^ ‚·‚é Affine Matrix 
-                idx:       [IN]  Affine ‚ğ “o˜^ ‚·‚é index 
+  Arguments:    type:      [OUT] OAMç¨®é¡
+                mtx:       [IN]  ç™»éŒ² ã™ã‚‹ Affine Matrix 
+                idx:       [IN]  Affine ã‚’ ç™»éŒ² ã™ã‚‹ index 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetOamManagerAffine
@@ -1227,17 +1227,17 @@ void NNS_G2dSetOamManagerAffine
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dEntryOamManagerAffine
 
-  Description:  Oam Affine ƒpƒ‰ƒ[ƒ^ “o˜^‚µ‚Ü‚·B
-                “o˜^Œã Affineƒpƒ‰ƒ[ƒ^Index‚ğ•Ô‚µ‚Ü‚·B
-                —v‹‚³‚ê‚½“o˜^‚Ì‚½‚ß‚Ì\•ª‚È—e—Ê‚ğ‚½‚È‚¢ê‡‚ÍA
-                ‰½‚à‚¹‚¸ NNS_G2D_OAM_AFFINE_IDX_NONE ‚ğ•Ô‚µ‚Ü‚·B
+  Description:  Oam Affine ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ ç™»éŒ²ã—ã¾ã™ã€‚
+                ç™»éŒ²å¾Œ Affineãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿Indexã‚’è¿”ã—ã¾ã™ã€‚
+                è¦æ±‚ã•ã‚ŒãŸç™»éŒ²ã®ãŸã‚ã®ååˆ†ãªå®¹é‡ã‚’æŒãŸãªã„å ´åˆã¯ã€
+                ä½•ã‚‚ã›ãš NNS_G2D_OAM_AFFINE_IDX_NONE ã‚’è¿”ã—ã¾ã™ã€‚
                 
-                ‰Šú‰»‚ÉAƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚ğŠ„‚è“–‚Ä‚Ä‚¢‚È‚¢ê‡‚ÍƒAƒT[ƒg‚É¸”s‚µ‚Ü‚·B
+                åˆæœŸåŒ–æ™‚ã«ã€ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å‰²ã‚Šå½“ã¦ã¦ã„ãªã„å ´åˆã¯ã‚¢ã‚µãƒ¼ãƒˆã«å¤±æ•—ã—ã¾ã™ã€‚
                 
-  Arguments:    pMan:      [OUT] ƒ}ƒl[ƒWƒƒÀ‘Ì
-                mtx:       [IN]  “o˜^ ‚·‚é Affine Matrix 
+  Arguments:    pMan:      [OUT] ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿä½“
+                mtx:       [IN]  ç™»éŒ² ã™ã‚‹ Affine Matrix 
                 
-  Returns:      Affineƒpƒ‰ƒ[ƒ^Index
+  Returns:      Affineãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿Index
   
  *---------------------------------------------------------------------------*/
 u16 NNS_G2dEntryOamManagerAffine( NNSG2dOamManagerInstance* pMan, const MtxFx22* mtx )
@@ -1247,7 +1247,7 @@ u16 NNS_G2dEntryOamManagerAffine( NNSG2dOamManagerInstance* pMan, const MtxFx22*
     NNS_G2D_ASSERT( IsManageAreaValid_( &pMan->managedAffineArea ) );
     
     //
-    // \•ª‚È—e—Ê‚ª‚ ‚ê‚Î...
+    // ååˆ†ãªå®¹é‡ãŒã‚ã‚Œã°...
     //
     if( HasEnoughCapacity_( &pMan->managedAffineArea, 1 ) )
     {
@@ -1267,14 +1267,14 @@ u16 NNS_G2dEntryOamManagerAffine( NNSG2dOamManagerInstance* pMan, const MtxFx22*
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dApplyOamManagerToHW
 
-  Description:  OamManager “à•”buffer ‚ğ HW OAM ‚É“K—p‚µ‚Ü‚·
-                •`‰æ’†‚Ì‰æ–Ê‚É‰e‹¿‚ğ—^‚¦‚¸‚É”½‰f‚ğŠ®—¹‚·‚é‚½‚ß‚É‚ÍA
-                •`‰æƒuƒ‰ƒ“ƒN‚ÉÀs‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+  Description:  OamManager å†…éƒ¨buffer ã‚’ HW OAM ã«é©ç”¨ã—ã¾ã™
+                æç”»ä¸­ã®ç”»é¢ã«å½±éŸ¿ã‚’ä¸ãˆãšã«åæ˜ ã‚’å®Œäº†ã™ã‚‹ãŸã‚ã«ã¯ã€
+                æç”»ãƒ–ãƒ©ãƒ³ã‚¯ã«å®Ÿè¡Œã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
                 
-  Arguments:    pMan:                [OUT] ƒ}ƒl[ƒWƒƒÀ‘Ì
+  Arguments:    pMan:                [OUT] ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿä½“
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/     
 void NNS_G2dApplyOamManagerToHW( NNSG2dOamManagerInstance* pMan )
@@ -1284,7 +1284,7 @@ void NNS_G2dApplyOamManagerToHW( NNSG2dOamManagerInstance* pMan )
                     " For the NNS_G2D_OAMTYPE_SOFTWAREEMULATION type Manager, Use NNS_G2dApplyOamManagerToHWSprite() instead." );
     {
         //
-        // ‚‘¬“]‘—(OAMAttr‚ÆƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚ÌˆêŠ‡“]‘—)‚ª‰Â”\‚©H
+        // é«˜é€Ÿè»¢é€(OAMAttrã¨ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¸€æ‹¬è»¢é€)ãŒå¯èƒ½ã‹ï¼Ÿ
         //
         if( pMan->bFastTransferEnable )
         {
@@ -1310,14 +1310,14 @@ void NNS_G2dApplyOamManagerToHW( NNSG2dOamManagerInstance* pMan )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dApplyOamManagerToHWSprite 
 
-  Description:  3D Graphics Engine ‚ğ g—p‚µ‚Ä ƒ}ƒl[ƒWƒƒ‚Ì“à—e‚ğ•`‰æ‚µ‚Ü‚·
+  Description:  3D Graphics Engine ã‚’ ä½¿ç”¨ã—ã¦ ãƒãƒãƒ¼ã‚¸ãƒ£ã®å†…å®¹ã‚’æç”»ã—ã¾ã™
                 
-  Arguments:    pMan          :      [OUT] ƒ}ƒl[ƒWƒƒÀ‘Ì
-                pTexImageAttr :      [IN]  VRAM ƒeƒNƒXƒ`ƒƒƒCƒ[ƒW‚Ì‘®«
-                texBaseAddr   :      [IN]  VRAM ƒx[ƒXƒAƒhƒŒƒX
-                pltBaseAddr   :      [IN]  ƒpƒŒƒbƒg ƒx[ƒXƒAƒhƒŒƒX
+  Arguments:    pMan          :      [OUT] ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿä½“
+                pTexImageAttr :      [IN]  VRAM ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã®å±æ€§
+                texBaseAddr   :      [IN]  VRAM ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+                pltBaseAddr   :      [IN]  ãƒ‘ãƒ¬ãƒƒãƒˆ ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/     
 void NNS_G2dApplyOamManagerToHWSprite
@@ -1376,27 +1376,27 @@ void NNS_G2dApplyOamManagerToHWSprite
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dResetOamManagerBuffer
 
-  Description:  OamManager “à•” buffer ‚ğ ƒŠƒZƒbƒg‚µ‚Ü‚·B
+  Description:  OamManager å†…éƒ¨ buffer ã‚’ ãƒªã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
                 
-  Arguments:    pMan:                [OUT] ƒ}ƒl[ƒWƒƒÀ‘Ì
+  Arguments:    pMan:                [OUT] ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿä½“
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/ 
 void NNS_G2dResetOamManagerBuffer( NNSG2dOamManagerInstance* pMan )
 {
     NNS_G2D_NULL_ASSERT( pMan );
 
-    // ƒfƒtƒHƒ‹ƒg’l‚ÅƒŠƒZƒbƒg
+    // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã§ãƒªã‚»ãƒƒãƒˆ
     {
         //
-        // ‚‘¬“]‘—‰Â”\ó‘Ô‚È‚ç‚Î
+        // é«˜é€Ÿè»¢é€å¯èƒ½çŠ¶æ…‹ãªã‚‰ã°
         //
         if( pMan->bFastTransferEnable )
         {    
             //
-            // DMA ‚É‚æ‚Á‚Äˆê‹C‚Éƒƒ‚ƒŠƒtƒBƒ‹‚ğs‚¤
+            // DMA ã«ã‚ˆã£ã¦ä¸€æ°—ã«ãƒ¡ãƒ¢ãƒªãƒ•ã‚£ãƒ«ã‚’è¡Œã†
             //            
             const u32 szByte = GetSizeOfManageArea_( &pMan->managedAttrArea );
             void* pData = GetOamFromPtr_( pMan );
@@ -1407,7 +1407,7 @@ void NNS_G2dResetOamManagerBuffer( NNSG2dOamManagerInstance* pMan )
             
         }else{    
             //
-            // CPU ƒRƒs[‚É‚æ‚Á‚Ä×Ø‚ê‚Éƒƒ‚ƒŠƒtƒBƒ‹‚ğs‚¤
+            // CPU ã‚³ãƒ”ãƒ¼ã«ã‚ˆã£ã¦ç´°åˆ‡ã‚Œã«ãƒ¡ãƒ¢ãƒªãƒ•ã‚£ãƒ«ã‚’è¡Œã†
             //
             // OAM Attr
             ResetOam_( pMan->type, 
@@ -1415,7 +1415,7 @@ void NNS_G2dResetOamManagerBuffer( NNSG2dOamManagerInstance* pMan )
                        pMan->managedAttrArea.toIdx );
             
             //
-            // ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^‚ÌƒŠƒZƒbƒg‚Í•K—v‚È‚¢‚Í‚¸‚È‚Ì‚ÅAs‚í‚È‚¢—l‚É•ÏX‚µ‚Ü‚µ‚½B
+            // ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒªã‚»ãƒƒãƒˆã¯å¿…è¦ãªã„ã¯ãšãªã®ã§ã€è¡Œã‚ãªã„æ§˜ã«å¤‰æ›´ã—ã¾ã—ãŸã€‚
             //
             /*
             // affine params
@@ -1429,7 +1429,7 @@ void NNS_G2dResetOamManagerBuffer( NNSG2dOamManagerInstance* pMan )
         }
     }
     
-    // ƒJƒEƒ“ƒ^[‚ğƒŠƒZƒbƒg‚·‚é
+    // ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
     {
         pMan->managedAttrArea.currentIdx    = pMan->managedAttrArea.fromIdx;
         pMan->managedAffineArea.currentIdx  = pMan->managedAffineArea.fromIdx;
@@ -1441,13 +1441,13 @@ void NNS_G2dResetOamManagerBuffer( NNSG2dOamManagerInstance* pMan )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dApplyAndResetOamManagerBuffer
 
-  Description:  OamManager “à•” buffer ‚ğ HW OAM ‚É“K—p‚µ‚½ŒãA
-                OamManager “à•” buffer ‚ğ ƒŠƒZƒbƒg‚µ‚Ü‚·B
+  Description:  OamManager å†…éƒ¨ buffer ã‚’ HW OAM ã«é©ç”¨ã—ãŸå¾Œã€
+                OamManager å†…éƒ¨ buffer ã‚’ ãƒªã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
                 
-  Arguments:    pMan:                [OUT] ƒ}ƒl[ƒWƒƒÀ‘Ì
+  Arguments:    pMan:                [OUT] ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿä½“
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/    
 void NNS_G2dApplyAndResetOamManagerBuffer( NNSG2dOamManagerInstance* pMan )
@@ -1463,12 +1463,12 @@ void NNS_G2dApplyAndResetOamManagerBuffer( NNSG2dOamManagerInstance* pMan )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetOamManagerOamCapacity, NNS_G2dGetOamManagerAffineCapacity
 
-  Description:  —˜—p‰Â”\‚ÈƒŠƒ\[ƒX‚ÌŒÂ”‚ğæ“¾‚µ‚Ü‚·
+  Description:  åˆ©ç”¨å¯èƒ½ãªãƒªã‚½ãƒ¼ã‚¹ã®å€‹æ•°ã‚’å–å¾—ã—ã¾ã™
                 
-  Arguments:    pMan:                [IN]  ƒ}ƒl[ƒWƒƒÀ‘Ì
+  Arguments:    pMan:                [IN]  ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿä½“
                 
                 
-  Returns:      —˜—p‰Â”\‚ÈƒŠƒ\[ƒX‚ÌŒÂ”
+  Returns:      åˆ©ç”¨å¯èƒ½ãªãƒªã‚½ãƒ¼ã‚¹ã®å€‹æ•°
   
  *---------------------------------------------------------------------------*/
 u16     NNS_G2dGetOamManagerOamCapacity( NNSG2dOamManagerInstance* pMan )
@@ -1487,12 +1487,12 @@ u16     NNS_G2dGetOamManagerAffineCapacity( NNSG2dOamManagerInstance* pMan )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetOamBuffer
 
-  Description:  OAMƒ}ƒl[ƒWƒƒƒ‚ƒWƒ…[ƒ‹“à•”ƒoƒbƒtƒ@‚ÌQÆ‚ğæ“¾‚µ‚Ü‚·B
+  Description:  OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã®å‚ç…§ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    type:                [IN]  OAMƒoƒbƒtƒ@‚Ìí—Ş
+  Arguments:    type:                [IN]  OAMãƒãƒƒãƒ•ã‚¡ã®ç¨®é¡
                 
                 
-  Returns:      “à•”ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Returns:      å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
   
  *---------------------------------------------------------------------------*/
 GXOamAttr* NNS_G2dGetOamBuffer( NNSG2dOamType type )

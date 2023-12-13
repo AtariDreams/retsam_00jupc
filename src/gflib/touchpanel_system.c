@@ -2,7 +2,7 @@
 /**
  *
  *@file		touchpanel.c
- *@brief	�^�b�`�p�l���V�X�e���̎���
+ *@brief	タッチパネルシステムの実態
  *@author	tomoya takahashi
  *@data		2004.12.03
  *
@@ -17,54 +17,54 @@
 #include "gflib_os_print.h"
 
 /*-----------------------------------------------------------------------------
- *					�萔�錾
+ *					定数宣言
  ----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
- *					�\���̐錾
+ *					構造体宣言
  ----------------------------------------------------------------------------*/
 //----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-/// �^�b�`�p�l���V�X�e���p
-static u32 startSampling( u32 sync );		// �T���v�����O�̊J�n���߂�]��
-static u32 stopSampling( void );					// �T���v�����O��~
-//static u32 mainBuff( u32 last_idx );		// �o�b�t�@�ɃT���v�����O�f�[�^���i�[
-static u32 mainBuffComp( u32 type, u32 last_idx, u32 comp_num );	// ���k���[�h
-static u32 mainBuffJust( u32 type, u32 last_idx );	// ���̂܂܃o�b�t�@�Ɋi�[
-//static u32 mainBuffNoLoop( u32 type, u32 last_idx, u32 comp_num );				// ��̃o�b�t�@�����[�v���Ȃ��o�[�W����
-static void getThisSyncData( TP_ONE_DATA* pData, u32 last_idx );	// ���̃V���N�̃^�b�`�p�l���̏����擾
-static u32 modeBuff( u32 type, u32 last_idx, u32 comp_num );				// �o�b�t�@�����O���[�h�̃��C���֐�
+/// タッチパネルシステム用
+static u32 startSampling( u32 sync );		// サンプリングの開始命令を転送
+static u32 stopSampling( void );					// サンプリング停止
+//static u32 mainBuff( u32 last_idx );		// バッファにサンプリングデータを格納
+static u32 mainBuffComp( u32 type, u32 last_idx, u32 comp_num );	// 圧縮モード
+static u32 mainBuffJust( u32 type, u32 last_idx );	// そのままバッファに格納
+//static u32 mainBuffNoLoop( u32 type, u32 last_idx, u32 comp_num );				// 上のバッファがループしないバージョン
+static void getThisSyncData( TP_ONE_DATA* pData, u32 last_idx );	// このシンクのタッチパネルの情報を取得
+static u32 modeBuff( u32 type, u32 last_idx, u32 comp_num );				// バッファリングモードのメイン関数
 
 static void setStartBufferingParam( u32 SampFlag, u32 auto_samp, void* pBuff, u32 buffSize, u32 nowBuffPoint, u32 Sync );
 static void oneSyncBuffClean( TPData* pBuff, int num );
 
 //-------------------------------------
-// �^�b�`�p�l���A�G���p
+// タッチパネル、絵情報用
 //
-// �o�b�t�@���璸�_�ƃx�N�g���f�[�^���쐬����
+// バッファから頂点とベクトルデータを作成する
 static u32 makePointData( TPData* pBuff, u32 size, u16 check_num, Vec2DS32* p_work );
-// ���݂���ׂ���_�����`�F�b�N
+// 存在するべき交点数をチェック
 static u8	checkInVector( Vec2DS32* p_main_s, Vec2DS32* p_main_e, Vec2DS32* vect_1, Vec2DS32* vect_2, Vec2DS32* vect_3 );
-// �ŏI�_�ƍŏ��̓_���Ȃ���
+// 最終点と最初の点をつなげる
 static u32	crossToPict( TPData s_TPData, Vec2DS32* p_check, Vec2DS32* p_in, u32 dist );
-// ��_�܂ł̃f�[�^�ɂ���
+// 交点までのデータにする
 static u32 crossEndPict( Vec2DS32* p_work, u32* p_size, u8 flag );
 //----------------------------------------------------------------------------
 /**
- *					�O���[�o���ϐ��錾
+ *					グローバル変数宣言
  */
 //-----------------------------------------------------------------------------
 typedef struct {
-	TPData* pTouchPanelBuff;					// �o�b�t�@�|�C���^�i�[�p
-	u32		TouchPanelBuffSize;						// �o�b�t�@�T�C�Y�i�[�p
-	u32		TouchPanelSync;							// �P�t���[���ɉ���T���v�����O���邩
-	TPData	TouchPanelOneSync[ TP_ONE_SYNC_BUFF ];	// �P�t���[���ɃT���v�����O���ꂽ�f�[�^�i�[�p
-	u32		TouchPanelNowBuffPoint;					// ���o�b�t�@�Ƀf�[�^�����Ă���Ƃ���
-	u16		TouchPanelSampFlag;						// �T���v�����O�t���O
-	u16		TouchPanelExStop;						// �T���v�����O�������~�t���O
+	TPData* pTouchPanelBuff;					// バッファポインタ格納用
+	u32		TouchPanelBuffSize;						// バッファサイズ格納用
+	u32		TouchPanelSync;							// １フレームに何回サンプリングするか
+	TPData	TouchPanelOneSync[ TP_ONE_SYNC_BUFF ];	// １フレームにサンプリングされたデータ格納用
+	u32		TouchPanelNowBuffPoint;					// 今バッファにデータを入れているところ
+	u16		TouchPanelSampFlag;						// サンプリングフラグ
+	u16		TouchPanelExStop;						// サンプリング強制中止フラグ
 } TOUCH_PANEL_WORK;
 
 static TOUCH_PANEL_WORK TPWork;
@@ -73,7 +73,7 @@ static TOUCH_PANEL_WORK TPWork;
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�^�b�`�p�l�����g�p���鏀�����s���܂�
+ *@brief	タッチパネルを使用する準備を行います
  *
  *@param	none
  *
@@ -84,10 +84,10 @@ static TOUCH_PANEL_WORK TPWork;
 void InitTPSystem( void )
 {
 
-	// �X���[�v��~��
+	// スリープ停止中
 	GF_ASSERT( TPWork.TouchPanelExStop == FALSE );
 	
-	// �T���v�����O�t���O��������
+	// サンプリングフラグを初期化
 	TPWork.TouchPanelSampFlag = TP_SAMP_NONE;
 	TPWork.TouchPanelExStop = FALSE;
 }
@@ -95,15 +95,15 @@ void InitTPSystem( void )
 
 //----------------------------------------------------------------------------
 /**
- *@brief	�^�b�`�p�l���̃T���v�����O�J�n
+ *@brief	タッチパネルのサンプリング開始
  *
- *@param	p_buff�F�T���v�����O�f�[�^������o�b�t�@
- *@param	size�F�o�b�t�@�̃T�C�Y
- *@param	sync�F�P�t���[���ɉ���T���v�����O����̂�(MAX4)
+ *@param	p_buff：サンプリングデータを入れるバッファ
+ *@param	size：バッファのサイズ
+ *@param	sync：１フレームに何回サンプリングするのか(MAX4)
  *
- *@retval	TP_OK�F����
- *@retval�@	TP_FIFO_ERR�F�]�����s
- *@retval	TP_ERR�F�]���ȊO�̎��s
+ *@retval	TP_OK：成功
+ *@retval　	TP_FIFO_ERR：転送失敗
+ *@retval	TP_ERR：転送以外の失敗
  */
 //-----------------------------------------------------------------------------
 u32 InitTP( TPData* p_buff, u32 size, u32 sync )
@@ -112,52 +112,52 @@ u32 InitTP( TPData* p_buff, u32 size, u32 sync )
 	u32	result;
 	int i;
 
-	// �X���[�v��~��
+	// スリープ停止中
 	GF_ASSERT( TPWork.TouchPanelExStop == FALSE );
 	
-	// �^�b�`�p�l���T���v�����O�V�X�e���ɃT���v�����O�J�n���߂𑗂�A
-	// ����Ɏ��s���ꂽ�����`�F�b�N����
-	// �P�t���[���ɂT�ȏ�T���v�����O���悤�Ƃ�����G���[��Ԃ�
+	// タッチパネルサンプリングシステムにサンプリング開始命令を送り、
+	// 正常に実行されたかをチェックする
+	// １フレームに５以上サンプリングしようとしたらエラーを返す
 	if( (sync >= 5) || (sync <= 0) ){
 #ifdef TOUCHPANEL_SYSTEM_OS_PRINTF_ON
-		OS_Printf( "�P�t���[���̃T���v�����O�͂S���ō��ł��B%d�͂ł��܂���\n", sync );
+		OS_Printf( "１フレームのサンプリングは４が最高です。%dはできません\n", sync );
 #endif
 		return TP_ERR;
 	}
 
-	// �T���v�����O���Ȃ甲����
+	// サンプリング中なら抜ける
 	if( TPWork.TouchPanelSampFlag != TP_SAMP_NONE ){
 #ifdef TOUCHPANEL_SYSTEM_OS_PRINTF_ON
-		OS_Printf("InitTP�F�T���v�����O���ł�\n");
+		OS_Printf("InitTP：サンプリング中です\n");
 #endif
 		return TP_ERR;
 	}
 	
-	// �T���v�����O���ߓ]��
+	// サンプリング命令転送
 	result = startSampling( sync );
 
-	// �]���Ɏ��s������G���[��Ԃ�
+	// 転送に失敗したらエラーを返す
 	if( result != TP_OK ){
 		return result;
 	}
 
-	// �T���v�����O�f�[�^�ݒ�
+	// サンプリングデータ設定
 	setStartBufferingParam( TP_BUFFERING, TRUE,
 			p_buff, size, 0,
-			sync * 2 ); // 30�t���[������̂���
+			sync * 2 ); // 30フレーム動作のため
 
 	return TP_OK;
 }
 
 //----------------------------------------------------------------------------
 /**
- *@brief	�^�b�`�p�l���̃T���v�����O�J�n	�o�b�t�@�����O�Ȃ�
+ *@brief	タッチパネルのサンプリング開始	バッファリングなし
  *
- *@param	sync�F�P�t���[���ɉ���T���v�����O����̂�(MAX4)
+ *@param	sync：１フレームに何回サンプリングするのか(MAX4)
  *
- *@retval	TP_OK�F����
- *@retval�@	TP_FIFO_ERR�F�]�����s
- *@retval	TP_ERR�F�]���ȊO�̎��s
+ *@retval	TP_OK：成功
+ *@retval　	TP_FIFO_ERR：転送失敗
+ *@retval	TP_ERR：転送以外の失敗
  */
 //-----------------------------------------------------------------------------
 u32 InitTPNoBuff( u32 sync )
@@ -165,39 +165,39 @@ u32 InitTPNoBuff( u32 sync )
 	u32	result;
 	int i;
 
-	// �X���[�v��~��
+	// スリープ停止中
 	GF_ASSERT( TPWork.TouchPanelExStop == FALSE );
 	
-	// �^�b�`�p�l���T���v�����O�V�X�e���ɃT���v�����O�J�n���߂𑗂�A
-	// ����Ɏ��s���ꂽ�����`�F�b�N����
-	// �P�t���[���ɂT�ȏ�T���v�����O���悤�Ƃ�����G���[��Ԃ�
+	// タッチパネルサンプリングシステムにサンプリング開始命令を送り、
+	// 正常に実行されたかをチェックする
+	// １フレームに５以上サンプリングしようとしたらエラーを返す
 	if( (sync >= 5) || (sync <= 0) ){
 #ifdef TOUCHPANEL_SYSTEM_OS_PRINTF_ON
-		OS_Printf( "�P�t���[���̃T���v�����O�͂S���ō��ł��B%d�͂ł��܂���\n", sync );
+		OS_Printf( "１フレームのサンプリングは４が最高です。%dはできません\n", sync );
 #endif
 		return TP_ERR;
 	}
 
-	// �T���v�����O���Ȃ甲����
+	// サンプリング中なら抜ける
 	if( TPWork.TouchPanelSampFlag != TP_SAMP_NONE ){
 #ifdef TOUCHPANEL_SYSTEM_OS_PRINTF_ON
-		OS_Printf("InitTP�F�T���v�����O���ł�\n");
+		OS_Printf("InitTP：サンプリング中です\n");
 #endif
 		return TP_ERR;
 	}
 	
-	// �T���v�����O���ߓ]��
+	// サンプリング命令転送
 	result = startSampling( sync );
 
-	// �]���Ɏ��s������G���[��Ԃ�
+	// 転送に失敗したらエラーを返す
 	if( result != TP_OK ){
 		return result;
 	}
 
-	// �T���v�����O�f�[�^�ݒ�
+	// サンプリングデータ設定
 	setStartBufferingParam( TP_NO_BUFF, TRUE,
 			NULL, 0, 0,
-			sync * 2 ); // 30�t���[������̂���
+			sync * 2 ); // 30フレーム動作のため
 	
 
 	return TP_OK;
@@ -206,24 +206,24 @@ u32 InitTPNoBuff( u32 sync )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�T���v�����O�J�n���̃f�[�^�ݒ�
+ *	@brief	サンプリング開始時のデータ設定
  *
- *	@param	SampFlag		�T���v�����O�t���O
- *	@param	auto_samp		AUTO�T���v�����O�t���O
- *	@param	pBuff			�o�b�t�@�|�C���^
- *	@param	buffSize		�o�b�t�@�T�C�Y
- *	@param	nowBuffPoint	���T���v�����̈ʒu
- *	@param	Sync			�V���N��
+ *	@param	SampFlag		サンプリングフラグ
+ *	@param	auto_samp		AUTOサンプリングフラグ
+ *	@param	pBuff			バッファポインタ
+ *	@param	buffSize		バッファサイズ
+ *	@param	nowBuffPoint	今サンプル中の位置
+ *	@param	Sync			シンク数
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void setStartBufferingParam( u32 SampFlag, u32 auto_samp, void* pBuff, u32 buffSize, u32 nowBuffPoint, u32 Sync )
 {
-	// �T���v�����O�t���O���Z�b�g
+	// サンプリングフラグをセット
 	TPWork.TouchPanelSampFlag = SampFlag;
-	sys.tp_auto_samp = auto_samp;		// �V�X�e���̃t���O���I�[�g�T���v�����O���ɂ���
-	// �o�b�t�@�̃|�C���^�ƃT�C�Y���i�[
+	sys.tp_auto_samp = auto_samp;		// システムのフラグをオートサンプリング中にする
+	// バッファのポインタとサイズを格納
 	TPWork.pTouchPanelBuff = pBuff;
 	TPWork.TouchPanelBuffSize = buffSize;
 	TPWork.TouchPanelSync = Sync;
@@ -233,10 +233,10 @@ static void setStartBufferingParam( u32 SampFlag, u32 auto_samp, void* pBuff, u3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	1�V���N�p�o�b�t�@�̏�����
+ *	@brief	1シンク用バッファの初期化
  *
- *	@param	pBuff	�o�b�t�@
- *	@param	num		��
+ *	@param	pBuff	バッファ
+ *	@param	num		数
  *
  *	@return	none
  */
@@ -252,51 +252,51 @@ static void oneSyncBuffClean( TPData* pBuff, int num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�T���v�����O��~
+ *	@brief	サンプリング停止
  */
 //-----------------------------------------------------------------------------
 static u32 stopSampling( void )
 {
-	u32 check_num = 0;			// ������
-	u32 result;					// ����
-	int	i;						// ���[�v�p
+	u32 check_num = 0;			// チェック数
+	u32 result;					// 結果
+	int	i;						// ループ用
 
-	// ���݂̃T���v�����O���I������
-	// ����ɖ��߂̓]���������������Ǘ�����
+	// 現在のサンプリングを終了する
+	// 正常に命令の転送が完了したか管理する
 	//
-	// ���T���v�����O���Ă���̂�����
+	// 今サンプリングしているのかチェック
 	if( TPWork.TouchPanelSampFlag == TP_SAMP_NONE )
 	{
-		// �T���v�����O���Ă��Ȃ��̂łƂ܂�����Ԃł��B
+		// サンプリングしていないのでとまった状態です。
 		return TP_OK;
 	}
 
-	// �I�����߂��G���[���A���Ă���ԑ��葱����
-	// �iFIFO��ARM7�ɖ��߂𑗂��Ă��邽�߁A���������K�v������j
+	// 終了命令をエラーが帰ってくる間送り続ける
+	// （FIFOでARM7に命令を送っているため、同期を取る必要がある）
 	do
 	{
-		// �I�����߂𑗂�
+		// 終了命令を送る
 		TP_RequestAutoSamplingStopAsync();
 		
-		// ���߃��N�G�X�g�I���҂�
+		// 命令リクエスト終了待ち
 		TP_WaitBusy( TP_REQUEST_COMMAND_FLAG_AUTO_OFF );
 	
-		// �G���[�I�����Ă��Ȃ����`�F�b�N
+		// エラー終了していないかチェック
 		result = TP_CheckError( TP_REQUEST_COMMAND_FLAG_AUTO_OFF );
 		if( result != 0 )
 		{
-			check_num++;		// �G���[���J�E���g
+			check_num++;		// エラー数カウント
 		}
 
-		// �G���[���A���Ă��āA�G���[��������TP_REQUEST_CHECK_MAX�ȉ��̊ԃ��[�v
+		// エラーが帰っていて、エラーチェック数がTP_REQUEST_CHECK_MAX以下の間ループ
 	}while( (result != 0) && (check_num <= TP_REQUEST_CHECK_MAX) );
 
 
-	// check_num ���T���傫���Ƃ���FALSE��]��
+	// check_num が５より大きいときはFALSEを転送
 	if( check_num > TP_REQUEST_CHECK_MAX )
 	{
 #ifdef TOUCHPANEL_SYSTEM_OS_PRINTF_ON
-		OS_Printf( "�I�����ߓ]�����s\n" );
+		OS_Printf( "終了命令転送失敗\n" );
 #endif
 		return TP_FIFO_ERR;
 	}
@@ -306,13 +306,13 @@ static u32 stopSampling( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�T���v�����O���I������
+ *@brief	サンプリングを終了する
  *
  *@param	none
  *
- *@retval	TP_OK�F����
- *@retval�@	TP_FIFO_ERR�F�]�����s
- *@retval	TP_ERR�F�]���ȊO�̎��s
+ *@retval	TP_OK：成功
+ *@retval　	TP_FIFO_ERR：転送失敗
+ *@retval	TP_ERR：転送以外の失敗
  *
  */
 //-----------------------------------------------------------------------------
@@ -320,12 +320,12 @@ u32 StopTP( void )
 {
 	u32 result;
 
-	// �X���[�v��~��
+	// スリープ停止中
 	GF_ASSERT( TPWork.TouchPanelExStop == FALSE );
 	
 	result = stopSampling();
 	if( result == TP_OK ){
-		// �i�[���Ă������f�[�^�j��
+		// 格納しておいたデータ破棄
 		setStartBufferingParam( TP_SAMP_NONE, 0, NULL, 0, 0, 0 );
 	}
 	return result;
@@ -334,56 +334,56 @@ u32 StopTP( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�T���v�����O�����Ǘ����A���̏�Ԃ�Ԃ�	
+ *@brief	サンプリング情報を管理し、今の状態を返す	
  *
- *@param	pData�F���̃t���[���̏��(init�Ŏw�肵���T���v�����O�񐔕��̏��)
- *@param	type�F�T���v�����O��ʂ̔ԍ�
- *@param	comp_num�F�o�b�t�@�Ɋi�[����Ƃ��ɁAcomp_num�ʂ̂�����������i�[����
+ *@param	pData：このフレームの情報(initで指定したサンプリング回数分の情報)
+ *@param	type：サンプリング種別の番号
+ *@param	comp_num：バッファに格納するときに、comp_num位のさがあったら格納する
  *
- *@return	u32�F�T���v�����O��ʂɂ��ω�
-					type�FTP_BUFFERING		�T���v�����O���ꂽ�o�b�t�@�T�C�Y
-					type�FTP_NO_LOOP		�T���v�����O���ꂽ�o�b�t�@�T�C�Y
-											�o�b�t�@����t�ɂȂ����Ƃ� TP_END_BUFF
-					type�FTP_NO_BUFF		TP_OK
+ *@return	u32：サンプリング種別による変化
+					type：TP_BUFFERING		サンプリングされたバッファサイズ
+					type：TP_NO_LOOP		サンプリングされたバッファサイズ
+											バッファが一杯になったとき TP_END_BUFF
+					type：TP_NO_BUFF		TP_OK
 
-					type�FTP_SAMP_NOT_START	�T���v�����O�J�n����Ă��܂���
+					type：TP_SAMP_NOT_START	サンプリング開始されていません
  */
 //-----------------------------------------------------------------------------
 u32 MainTP( TP_ONE_DATA* pData, u32 type, u32 comp_num )
 {
-	u32 ret = TP_SAMP_NOT_START;	// �߂�l
-	u32 last_idx;					// �Ō�ɃT���v�����O���ꂽ�ʒu
+	u32 ret = TP_SAMP_NOT_START;	// 戻り値
+	u32 last_idx;					// 最後にサンプリングされた位置
 
-	// �X���[�v��~��
+	// スリープ停止中
 	GF_ASSERT( TPWork.TouchPanelExStop == FALSE );
 
-	// �T���v�����O����Ă��邩�`�F�b�N
+	// サンプリングされているかチェック
 	if( TPWork.TouchPanelSampFlag != TP_SAMP_NONE ){
 
-		// �Ō�ɃT���v�����O�����ʒu���擾
+		// 最後にサンプリングした位置を取得
 		last_idx  = TP_GetLatestIndexInAuto();
 		
-		// ��ʍ��W�ɕύX
+		// 画面座標に変更
 		ChangeTPDataBuff( TPWork.TouchPanelOneSync, TP_ONE_SYNC_BUFF );
 
-		// ���̃t���[���̏����擾
+		// このフレームの情報を取得
 		if( pData != NULL ){
 			getThisSyncData( pData, last_idx );
 		}
 		
-		// type�̃o�b�t�@�����O�܂��͍��̃t���[�������擾��
-		// �f�[�^���Z�b�g���ĕԂ�
-		// �܂��o�b�t�@�����O�����Init����Ă��邩�`�F�b�N
+		// typeのバッファリングまたは今のフレーム情報を取得し
+		// データをセットして返す
+		// まずバッファリングありでInitされているかチェック
 		if( TPWork.TouchPanelSampFlag == TP_BUFFERING ){
 			ret = modeBuff( type, last_idx, comp_num );	
 		}else{
-			// ���̑��̂Ƃ���TP_OK��Ԃ�
+			// その他のときはTP_OKを返す
 			ret = TP_OK;
 		}
 	}else{
 #ifdef TOUCHPANEL_SYSTEM_OS_PRINTF_ON
 	
-		OS_Printf( "MainTP�֐� warning�F�T���v�����O�J�n����Ă��܂���\n" );
+		OS_Printf( "MainTP関数 warning：サンプリング開始されていません\n" );
 #endif
 	}
 
@@ -393,22 +393,22 @@ u32 MainTP( TP_ONE_DATA* pData, u32 type, u32 comp_num )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���̍��W����ʍ��W�ɂ��ĕԂ�
+ *@brief	生の座標を画面座標にして返す
  *
- *@param	pData�F�ύX����^�b�`�p�l���f�[�^
+ *@param	pData：変更するタッチパネルデータ
  *
- *@return	�ύX��̃f�[�^
+ *@return	変更後のデータ
  *
  */
 //-----------------------------------------------------------------------------
 TPData ChangeTPData( TPData* pData )
 {
-	TPData sample;		// �擾�p
+	TPData sample;		// 取得用
 
-	// �X���[�v��~��
+	// スリープ停止中
 	GF_ASSERT( TPWork.TouchPanelExStop == FALSE );
 	
-	// ���̃^�b�`�p�l���l�����ʍ��W�ɕϊ����ĕԂ�
+	// 生のタッチパネル値から画面座標に変換して返す
 	TP_GetCalibratedPoint( &sample, pData );
 
 	return sample;
@@ -417,10 +417,10 @@ TPData ChangeTPData( TPData* pData )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���̍��W����ʍ��W�ɂ��ĕԂ�(TPData�z��p)
+ *@brief	生の座標を画面座標にして返す(TPData配列用)
  *
- *@param	pData�F�ύX����^�b�`�p�l���f�[�^�z��
- *@param	size�F�z��T�C�Y
+ *@param	pData：変更するタッチパネルデータ配列
+ *@param	size：配列サイズ
  *
  *@return	none
  *
@@ -428,10 +428,10 @@ TPData ChangeTPData( TPData* pData )
 //-----------------------------------------------------------------------------
 void ChangeTPDataBuff( TPData* pData, u32 size )
 {	
-	int i;		// ���[�v�p
+	int i;		// ループ用
 	TPData sample;
 
-	// ���̃^�b�`�p�l���l�����ʍ��W�ɕϊ����ĕԂ�
+	// 生のタッチパネル値から画面座標に変換して返す
 	for( i = 0; i < size; i++ ){
 		TP_GetCalibratedPoint( &sample, &(pData[ i ]) );
 		pData[ i ] = sample;
@@ -441,24 +441,24 @@ void ChangeTPDataBuff( TPData* pData, u32 size )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�X���[�v�����O�̒�~�@
+ *	@brief	スリープ処理前の停止　
  */
 //-----------------------------------------------------------------------------
 void ReStartTP_Sleep( void )
 {
 	u32 result;
 	
-	// ��~�����`�F�b�N
+	// 停止中かチェック
 	if( TPWork.TouchPanelExStop == FALSE ){
 		return ;
 	}
-	// �T���v�����O�����`�F�b�N
+	// サンプリング中かチェック
 	if( TPWork.TouchPanelSampFlag == TP_SAMP_NONE ){
 		return ;
 	}
 
-	// �T���v�����O���J�n������
-	result = startSampling( TPWork.TouchPanelSync / 2 );	// /2��30�V���N�̂���
+	// サンプリングを開始させる
+	result = startSampling( TPWork.TouchPanelSync / 2 );	// /2は30シンクのため
 	GF_ASSERT( result == TP_OK );
 
 	TPWork.TouchPanelExStop = FALSE;
@@ -466,22 +466,22 @@ void ReStartTP_Sleep( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�X���[�v�����O�̕��A
+ *	@brief	スリープ処理前の復帰
  */
 //-----------------------------------------------------------------------------
 void StopTP_Sleep( void )
 {
 	u32 result;
-	// ���łɒ�~�����`�F�b�N
+	// すでに停止中かチェック
 	if( TPWork.TouchPanelExStop == TRUE ){
 		return ;
 	}
-	// �T���v�����O�����`�F�b�N
+	// サンプリング中かチェック
 	if( TPWork.TouchPanelSampFlag == TP_SAMP_NONE ){
 		return ;
 	}
 
-	// �T���v�����O���~������
+	// サンプリングを停止させる
 	result = stopSampling();
 	GF_ASSERT( result == TP_OK );
 
@@ -491,12 +491,12 @@ void StopTP_Sleep( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�I�[�g�T���v�����O�J�n���߂�]��
+ *@brief	オートサンプリング開始命令を転送
  *
- *@param	sync�F�P�t���[���̃T���v�����O��
+ *@param	sync：１フレームのサンプリング数
  *
- *@return	TP_OK�F����
- *@return�@	TP_FIFO_ERR�F�]�����s
+ *@return	TP_OK：成功
+ *@return　	TP_FIFO_ERR：転送失敗
  *
  */
 //-----------------------------------------------------------------------------
@@ -506,36 +506,36 @@ static u32 startSampling( u32 sync )
 	u32	result;
 
 
-	// �J�n���߂��G���[���A���Ă���ԑ��葱����
-	// �iFIFO��ARM7�ɖ��߂𑗂��Ă��邽�߁A���������K�v������j
+	// 開始命令をエラーが帰ってくる間送り続ける
+	// （FIFOでARM7に命令を送っているため、同期を取る必要がある）
 	do
 	{
-		// �J�n���߂𑗂�
+		// 開始命令を送る
 		TP_RequestAutoSamplingStartAsync( 
-				0,			// �x�[�XV�J�E���g
-				sync,		// �P�t���[���ɉ���T���v�����O���邩
-				TPWork.TouchPanelOneSync,				// �T���v�����O�f�[�^�i�[�p�o�b�t�@
-				TP_ONE_SYNC_BUFF );		// �o�b�t�@�T�C�Y
+				0,			// ベースVカウント
+				sync,		// １フレームに何回サンプリングするか
+				TPWork.TouchPanelOneSync,				// サンプリングデータ格納用バッファ
+				TP_ONE_SYNC_BUFF );		// バッファサイズ
 		
-		// ���߃��N�G�X�g�I���҂�
+		// 命令リクエスト終了待ち
 		TP_WaitBusy( TP_REQUEST_COMMAND_FLAG_AUTO_ON );
 
-		// �G���[�I�����Ă��Ȃ����`�F�b�N
+		// エラー終了していないかチェック
 		result = TP_CheckError( TP_REQUEST_COMMAND_FLAG_AUTO_ON );
 		if( result != 0 )
 		{
-			check_num++;		// �G���[���J�E���g
+			check_num++;		// エラー数カウント
 		}
 
-		// �G���[���A���Ă��āA�G���[��������TP_REQUEST_CHECK_MAX�ȉ��̊ԃ��[�v
+		// エラーが帰っていて、エラーチェック数がTP_REQUEST_CHECK_MAX以下の間ループ
 	}while( (result != 0) && (check_num <= TP_REQUEST_CHECK_MAX) );
 
 
-	// check_num ���T���傫���Ƃ���FALSE��]��
+	// check_num が５より大きいときはFALSEを転送
 	if( check_num > TP_REQUEST_CHECK_MAX )
 	{
 #ifdef TOUCHPANEL_SYSTEM_OS_PRINTF_ON
-		OS_Printf( "�X�^�[�g���ߓ]�����s\n" );
+		OS_Printf( "スタート命令転送失敗\n" );
 #endif
 		return TP_FIFO_ERR;
 	}
@@ -546,90 +546,90 @@ static u32 startSampling( u32 sync )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�T���v�����O�����Ǘ����A���̏�Ԃ�Ԃ�
- *			�o�b�t�@�����O���[�h
+ *@brief	サンプリング情報を管理し、今の状態を返す
+ *			バッファリングモード
  *
- *@param	type�F�T���v�����O��ʂ̔ԍ�
- *@param	last_idx�F���X�g�C���f�b�N�X
- *@param	comp_num�F�o�b�t�@�Ɋi�[����Ƃ��ɁAcomp_num�ʂ̂�����������i�[����(���k���[�h���̂�)
+ *@param	type：サンプリング種別の番号
+ *@param	last_idx：ラストインデックス
+ *@param	comp_num：バッファに格納するときに、comp_num位のさがあったら格納する(圧縮モード時のみ)
  *
- *@return	�T���v�����O��ʂɂ��ω�
-					TP_BUFFERING---�T���v�����O���ꂽ�o�b�t�@�T�C�Y
-					TP_NO_LOOP---�T���v�����O���ꂽ�o�b�t�@�T�C�Y
-								 �o�b�t�@����t�ɂȂ����Ƃ� TP_END_BUFF
+ *@return	サンプリング種別による変化
+					TP_BUFFERING---サンプリングされたバッファサイズ
+					TP_NO_LOOP---サンプリングされたバッファサイズ
+								 バッファが一杯になったとき TP_END_BUFF
 					TP_NO_BUFF---TP_OK
  *
  */
 //-----------------------------------------------------------------------------
 static u32 modeBuff( u32 type, u32 last_idx, u32 comp_num )
 {		
-	u32 ret;		// �߂�l
+	u32 ret;		// 戻り値
 	
 	
 	//
-	// type�̃��[�h�Ńo�b�t�@�����O
+	// typeのモードでバッファリング
 	switch( type ){
 	case TP_BUFFERING:
 	case TP_NO_LOOP:
 		ret = mainBuffComp( type, last_idx, comp_num );
 		break;
 		
-	case TP_BUFFERING_JUST:	// ���̂܂܊i�[
+	case TP_BUFFERING_JUST:	// そのまま格納
 	case TP_NO_LOOP_JUST:
 		ret = mainBuffJust( type, last_idx );
 		break;
 
-	default:		// ���̑�
+	default:		// その他
 		ret = TP_OK;
-		break;			// �Ȃɂ����Ȃ�
+		break;			// なにもしない
 	}
 
 	return ret;
 }
 
-// �ʏ�ň��k���[�h�ɕύX
-// ���k�Ȃ��ł̃o�b�t�@�����O�͈��k�l�ɂO���w�肷��΂悢
+// 通常で圧縮モードに変更
+// 圧縮なしでのバッファリングは圧縮値に０を指定すればよい
 #if 0
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�o�b�t�@�Ɉ��k�Ȃ��ŁA���W���i�[
+ *@brief	バッファに圧縮なしで、座標を格納
  *
- *@param	last_idx�F�Ō�ɃT���v�����O�����ʒu
+ *@param	last_idx：最後にサンプリングした位置
  *
- *@return	�o�b�t�@�Ɋi�[�����T�C�Y
+ *@return	バッファに格納したサイズ
  *
  */
 //-----------------------------------------------------------------------------
 u32 mainBuff( u32 last_idx )
 {
-	int i;				// ���[�v�p
-	s16	samp_work;		// �T���v�����O��Ɨp
+	int i;				// ループ用
+	s16	samp_work;		// サンプリング作業用
 
 	//
-	// �^�b�`�p�l���̃T���v�����O�����Ǘ����A���̏�Ԃ�Ԃ�
+	// タッチパネルのサンプリング情報を管理し、今の状態を返す
 	//	
-	// �^�b�`�p�l���o�b�t�@�Ƃ��̃t���[���̃T���v�����O�f�[�^
-	// �Ɋi�[����
+	// タッチパネルバッファとこのフレームのサンプリングデータ
+	// に格納する
 	for( i = 0; i < TouchPanelSync; i++ ){
 		samp_work = last_idx - TouchPanelSync + i + 1;
 
-		// 0�ȉ��̂Ƃ��͍ŏI�v�f���ɂ���
+		// 0以下のときは最終要素数にする
 		if( samp_work < 0 ){
 			samp_work += TP_ONE_SYNC_BUFF;
 		}
 
-		// �L���ȃf�[�^�̎��o�b�t�@�Ɋi�[
+		// 有効なデータの時バッファに格納
 		if( (TouchPanelOneSync[ samp_work ].touch == TP_TOUCH_ON) &&
 			(TouchPanelOneSync[ samp_work ].validity == TP_VALIDITY_VALID) ){
-			// �T���v�����O�f�[�^�i�[
+			// サンプリングデータ格納
 			pTouchPanelBuff[ TouchPanelNowBuffPoint ] = TouchPanelOneSync[ samp_work ];				
-			TouchPanelNowBuffPoint = (TouchPanelNowBuffPoint + 1) % TouchPanelBuffSize;		// �o�b�t�@���������烋�[�v
+			TouchPanelNowBuffPoint = (TouchPanelNowBuffPoint + 1) % TouchPanelBuffSize;		// バッファが超えたらループ
 		}
 	}
 
 	
-	// �Ō�ɃT���v�����O���ꂽ�C���f�b�N�X��Ԃ�	
+	// 最後にサンプリングされたインデックスを返す	
 	return TouchPanelNowBuffPoint;
 }
 
@@ -644,58 +644,58 @@ static  inline int TouchPanel_GetDiff( int n1, int n2 )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�o�b�t�@�Ɉ��k���āA���W���i�[
+ *@brief	バッファに圧縮して、座標を格納
  *
- *@param	type		�o�b�t�@�����O�^�C�v
- *@param	last_idx	�Ō�ɃT���v�����O�����ʒu
- *@param	comp_num	�o�b�t�@�Ɋi�[����Ƃ��ɁAcomp_num�ʂ̂�����������i�[����
+ *@param	type		バッファリングタイプ
+ *@param	last_idx	最後にサンプリングした位置
+ *@param	comp_num	バッファに格納するときに、comp_num位のさがあったら格納する
  *
- *@return	�o�b�t�@�Ɋi�[�����T�C�Y
+ *@return	バッファに格納したサイズ
  *
  */
 //-----------------------------------------------------------------------------
 static u32 mainBuffComp( u32 type, u32 last_idx, u32 comp_num )
 {
-	int i;				// ���[�v�p
-	s32 dist_x;			// �����ǂ̂��炢���邩
-	s32 dist_y;			// �����ǂ̂��炢���邩
-	s16	samp_work;		// �T���v�����O��Ɨp
+	int i;				// ループ用
+	s32 dist_x;			// 差がどのくらいあるか
+	s32 dist_y;			// 差がどのくらいあるか
+	s16	samp_work;		// サンプリング作業用
 
 	//
-	// �^�b�`�p�l���̃T���v�����O�����Ǘ����A���̏�Ԃ�Ԃ�
+	// タッチパネルのサンプリング情報を管理し、今の状態を返す
 	//
-	// �^�b�`�p�l���o�b�t�@�Ƃ��̃t���[���̃T���v�����O�f�[�^
-	// �Ɋi�[����
+	// タッチパネルバッファとこのフレームのサンプリングデータ
+	// に格納する
 	for( i = 0; i < TPWork.TouchPanelSync; i++ ){
 		samp_work = last_idx - TPWork.TouchPanelSync + i + 1;
 
-		// 0�ȉ��̂Ƃ��͍ŏI�v�f���ɂ���
+		// 0以下のときは最終要素数にする
 		if( samp_work < 0 ){
 			samp_work += TP_ONE_SYNC_BUFF;
 		}
 
-		// �L���ȃf�[�^�̎��o�b�t�@�Ɋi�[
+		// 有効なデータの時バッファに格納
 		if( (TPWork.TouchPanelOneSync[ samp_work ].touch == TP_TOUCH_ON) &&
 			(TPWork.TouchPanelOneSync[ samp_work ].validity == TP_VALIDITY_VALID) ){
-			// �������߂�
+			// 差を求める
 			dist_x = TouchPanel_GetDiff(TPWork.pTouchPanelBuff[ TPWork.TouchPanelNowBuffPoint - 1 ].x, TPWork.TouchPanelOneSync[ samp_work ].x);
 			dist_y = TouchPanel_GetDiff(TPWork.pTouchPanelBuff[ TPWork.TouchPanelNowBuffPoint - 1 ].y, TPWork.TouchPanelOneSync[ samp_work ].y);
 			
-			// ����comp_num�ȏォ�`�F�b�N
+			// 差がcomp_num以上かチェック
 			if( (dist_x >= comp_num) ||
 				(dist_y >= comp_num)){
 					
-				// �T���v�����O�f�[�^�i�[
+				// サンプリングデータ格納
 				TPWork.pTouchPanelBuff[ TPWork.TouchPanelNowBuffPoint ] = TPWork.TouchPanelOneSync[ samp_work ];				
 				TPWork.TouchPanelNowBuffPoint++;
 				
-				// �o�b�t�@�T�C�Y�I�[�o�[�`�F�b�N
+				// バッファサイズオーバーチェック
 				if(TPWork.TouchPanelNowBuffPoint >= TPWork.TouchPanelBuffSize){
-					// �o�b�t�@�����[�v�����邩�`�F�b�N
+					// バッファをループさせるかチェック
 					if(type == TP_BUFFERING){
-						TPWork.TouchPanelNowBuffPoint %= TPWork.TouchPanelBuffSize;	// ���[�v������
+						TPWork.TouchPanelNowBuffPoint %= TPWork.TouchPanelBuffSize;	// ループさせる
 					}else{
-						return TP_END_BUFF;		// ���[�v�����Ȃ�
+						return TP_END_BUFF;		// ループさせない
 					}
 				}
 			}
@@ -703,102 +703,102 @@ static u32 mainBuffComp( u32 type, u32 last_idx, u32 comp_num )
 	}
 
 	
-	// �Ō�ɃT���v�����O���ꂽ�C���f�b�N�X��Ԃ�	
+	// 最後にサンプリングされたインデックスを返す	
 	return TPWork.TouchPanelNowBuffPoint;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�o�b�t�@�ɗL���f�[�^�A�^�b�`�̔���������Ɋi�[
+ *@brief	バッファに有効データ、タッチの判定をせずに格納
  *
- *@param	type		�o�b�t�@�����O�^�C�v
- *@param	last_idx	�Ō�ɃT���v�����O�����ʒu
+ *@param	type		バッファリングタイプ
+ *@param	last_idx	最後にサンプリングした位置
  *
- *@return	�o�b�t�@�Ɋi�[�����T�C�Y
+ *@return	バッファに格納したサイズ
  *
  */
 //-----------------------------------------------------------------------------
 static u32 mainBuffJust( u32 type, u32 last_idx )
 {
-	int i;				// ���[�v�p
-	s16	samp_work;		// �T���v�����O��Ɨp
+	int i;				// ループ用
+	s16	samp_work;		// サンプリング作業用
 
 	//
-	// �^�b�`�p�l���̃T���v�����O�����Ǘ����A���̏�Ԃ�Ԃ�
+	// タッチパネルのサンプリング情報を管理し、今の状態を返す
 	//
-	// �^�b�`�p�l���o�b�t�@�Ƃ��̃t���[���̃T���v�����O�f�[�^
-	// �Ɋi�[����
+	// タッチパネルバッファとこのフレームのサンプリングデータ
+	// に格納する
 	for( i = 0; i < TPWork.TouchPanelSync; i++ ){
 		samp_work = last_idx - TPWork.TouchPanelSync + i + 1;
 
-		// 0�ȉ��̂Ƃ��͍ŏI�v�f���ɂ���
+		// 0以下のときは最終要素数にする
 		if( samp_work < 0 ){
 			samp_work += TP_ONE_SYNC_BUFF;
 		}
 
-		// �T���v�����O�f�[�^�i�[
+		// サンプリングデータ格納
 		TPWork.pTouchPanelBuff[ TPWork.TouchPanelNowBuffPoint ] = TPWork.TouchPanelOneSync[ samp_work ];
 		TPWork.TouchPanelNowBuffPoint++;
 
-		// �o�b�t�@�T�C�Y�I�[�o�[�`�F�b�N
+		// バッファサイズオーバーチェック
 		if(TPWork.TouchPanelNowBuffPoint >= TPWork.TouchPanelBuffSize){
-			// �o�b�t�@�����[�v�����邩�`�F�b�N
+			// バッファをループさせるかチェック
 			if(type == TP_BUFFERING_JUST){
-				TPWork.TouchPanelNowBuffPoint %= TPWork.TouchPanelBuffSize;	// ���[�v������
+				TPWork.TouchPanelNowBuffPoint %= TPWork.TouchPanelBuffSize;	// ループさせる
 			}else{
-				return TP_END_BUFF;		// ���[�v�����Ȃ�
+				return TP_END_BUFF;		// ループさせない
 			}
 		}
 	}
 
 	
-	// �Ō�ɃT���v�����O���ꂽ�C���f�b�N�X��Ԃ�	
+	// 最後にサンプリングされたインデックスを返す	
 	return TPWork.TouchPanelNowBuffPoint;
 }
 
 
-// �o�b�t�@�����O�����̕����modeBuff()�݂̂ōs���悤�ɕύX
-// ��t�ɂȂ邩�̃`�F�b�N��modeBuff()���ĂԑO�ɍ쐬���A
-// �T���v�����O�͏I�����Ȃ��悤�ɕύX���܂�		05/03/29	tomoya
+// バッファリング処理の分岐はmodeBuff()のみで行うように変更
+// 一杯になるかのチェックをmodeBuff()を呼ぶ前に作成し、
+// サンプリングは終了しないように変更します		05/03/29	tomoya
 #if 0
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�o�b�t�@�����[�v���Ȃ��悤�Ƀo�b�t�@�Ɋi�[
+ *@brief	バッファがループしないようにバッファに格納
  *
- *@param	type�F���k������
- *@param	last_idx�F�Ō�ɃT���v�����O�����ʒu
- *@param	comp_num�F�o�b�t�@�Ɋi�[����Ƃ��ɁAcomp_num�ʂ̂�����������i�[����(���k���[�h���̂�)
+ *@param	type：圧縮方式か
+ *@param	last_idx：最後にサンプリングした位置
+ *@param	comp_num：バッファに格納するときに、comp_num位のさがあったら格納する(圧縮モード時のみ)
  *
- *@return	�o�b�t�@�Ɋi�[�����T�C�Y 
- *			�o�b�t�@����t�ɂȂ�A�X�g�b�v�������Ƃ��� TP_END_BUFF
+ *@return	バッファに格納したサイズ 
+ *			バッファが一杯になり、ストップさせたときは TP_END_BUFF
  *
  */
 //-----------------------------------------------------------------------------
 u32 mainBuffNoLoop( u32 type, u32 last_idx, u32 comp_num )
 {
 	u32 last_buff;
-	int	i;			// ���[�v�p
+	int	i;			// ループ用
 	
 	//
-	// �^�b�`�p�l���̃T���v�����O�����Ǘ����A���̏�Ԃ�Ԃ�
-	// ���̊֐��̓o�b�t�@�����[�v���Ȃ��悤�ɊǗ����܂��B
+	// タッチパネルのサンプリング情報を管理し、今の状態を返す
+	// この関数はバッファをループしないように管理します。
 	//
-	// ���k���[�h�łȂ����`�F�b�N
+	// 圧縮モードでないかチェック
 	switch( type ){
 	case TP_NO_LOOP:
-		// ���k�Ȃ�
+		// 圧縮なし
 		last_buff = mainBuff( last_idx );
 		break;
 	
 	case TP_NO_LOOP_COMP:
-		// ���k����
+		// 圧縮あり
 		last_buff = mainBuffComp( last_idx, comp_num );
 		break;
 
 	case TP_NO_LOOP_JUST:
-		// ���̂܂�
+		// そのまま
 		last_buff = mainBuffJust( last_idx );
 		break;
 
@@ -807,15 +807,15 @@ u32 mainBuffNoLoop( u32 type, u32 last_idx, u32 comp_num )
 		break;
 	}
 
-	// �������̃t���[���ōő���傫���Ȃ�Ȃ�I��
+	// もし次のフレームで最大より大きくなるなら終了
 	if( last_buff + TouchPanelSync >= TouchPanelBuffSize )
 	{
-		// �I���܂ōŏI�̒l������
+		// 終わりまで最終の値を入れる
 		for( i = last_buff; i < TouchPanelBuffSize; i++ ){
 			pTouchPanelBuff[ i ] = pTouchPanelBuff[ i - 1 ];
 		}
 
-		// �I��������K�v���Ȃ��̂ŏI���͂����Ȃ�
+		// 終了させる必要がないので終了はさせない
 //		while( StopTP() != TRUE ) ;
 
 		return TP_END_BUFF;
@@ -829,10 +829,10 @@ u32 mainBuffNoLoop( u32 type, u32 last_idx, u32 comp_num )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���̃V���N�̃T���v�����O�����擾
+ *@brief	このシンクのサンプリング情報を取得
  *
- *@param	pData�F���̃V���N�̃f�[�^�ۑ��p�̈�̃|�C���^
- *@param	last_idx�F�Ō�ɃT���v�����O�����ʒu
+ *@param	pData：このシンクのデータ保存用領域のポインタ
+ *@param	last_idx：最後にサンプリングした位置
  *
  *@return	none
  *
@@ -840,11 +840,11 @@ u32 mainBuffNoLoop( u32 type, u32 last_idx, u32 comp_num )
 //-----------------------------------------------------------------------------
 static void getThisSyncData( TP_ONE_DATA* pData, u32 last_idx )
 {
-	int i;				// ���[�v�p
-	s16	samp_work;		// �T���v�����O��Ɨp
+	int i;				// ループ用
+	s16	samp_work;		// サンプリング作業用
 
 	//
-	// ������
+	// 初期化
 	//
 	pData->Size = 0;
 	for( i = 0; i < TP_ONE_SYNC_DATAMAX; i++ ){
@@ -855,23 +855,23 @@ static void getThisSyncData( TP_ONE_DATA* pData, u32 last_idx )
 	}
 	
 	//
-	// �^�b�`�p�l���̃T���v�����O�����Ǘ����A���̏�Ԃ�Ԃ�
+	// タッチパネルのサンプリング情報を管理し、今の状態を返す
 	//
-	// �^�b�`�p�l���o�b�t�@�Ƃ��̃t���[���̃T���v�����O�f�[�^
-	// �Ɋi�[����
+	// タッチパネルバッファとこのフレームのサンプリングデータ
+	// に格納する
 	for( i = 0; i < TPWork.TouchPanelSync; i++ ){
 		samp_work = last_idx - TPWork.TouchPanelSync + i + 1;
 
-		// 0�ȉ��̂Ƃ��͍ŏI�v�f���ɂ���
+		// 0以下のときは最終要素数にする
 		if( samp_work < 0 ){
 			samp_work += TP_ONE_SYNC_BUFF;
 		}
 
 		//
-		// �L�������f�[�^���`�F�b�N
+		// 有効無効データかチェック
 		//
 		if( TPWork.TouchPanelOneSync[ samp_work ].validity == TP_VALIDITY_VALID ){	
-			// ���̃t���[���̃T���v�����O�����i�[
+			// このフレームのサンプリング情報を格納
 			pData->TPDataTbl[ pData->Size ]  = TPWork.TouchPanelOneSync[ samp_work ];
 			pData->Size++;
 		}
@@ -879,66 +879,66 @@ static void getThisSyncData( TP_ONE_DATA* pData, u32 last_idx )
 }
 
 //
-/// �^�b�`�p�l���̊G�̏��֌W�֐�
+/// タッチパネルの絵の情報関係関数
 //
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�^�b�`�p�l����񂩂�G�̏����쐬����
+ *@brief	タッチパネル情報から絵の情報を作成する
  *
- *@param	u32 type�F�^�C�v
- *@param	TPData* pBuff�F�^�b�`�p�l�����̃o�b�t�@
- *@param	u32 size�F�o�b�t�@�̗v�f��
- *@param	u16 check_num�F	�^�b�`�p�l���̓_�������炷�Ƃ��̊p�x
- *							�i����������Ɛ��x�������A�f�[�^�������Ȃ�j
- *@param	u32 dist�F�I�_�Ǝn�_���Ȃ���Ƃ��̏I�_�Ǝn�_�̒����̋��E��
-					�F�O�Ȃ���Ɛ����Ȃ��Ȃ�
-					�F�R�Q�O�Ȃ���Ɛ����΂ɂȂ���
- *@param	BOOL* p_cross�F�G�̏��͌�_�ŕ��Ă���̂�
- *@param	heap	�g�p����q�[�v
+ *@param	u32 type：タイプ
+ *@param	TPData* pBuff：タッチパネル情報のバッファ
+ *@param	u32 size：バッファの要素数
+ *@param	u16 check_num：	タッチパネルの点情報を減らすときの角度
+ *							（小さくすると精度が増し、データが多くなる）
+ *@param	u32 dist：終点と始点をつなげるときの終点と始点の長さの境界線
+					：０なら線と線をつなげない
+					：３２０なら線と線を絶対につなげる
+ *@param	BOOL* p_cross：絵の情報は交点で閉じているのか
+ *@param	heap	使用するヒープ
  *
- *@return	TP_PICTURE_DATA* �^�F�쐬�����G�̏��
- *		********��_�ŕ��Ă��Ȃ��Ă��f�[�^�͋A���Ă���̂ŁA
- *				���̊֐���ǂ񂾂�K���߂�l�̃f�[�^��j������
- *				�K�v������܂��B**********
+ *@return	TP_PICTURE_DATA* 型：作成した絵の情報
+ *		********交点で閉じていなくてもデータは帰ってくるので、
+ *				この関数を読んだら必ず戻り値のデータを破棄する
+ *				必要があります。**********
  *		
  *		
- *		���_�����P�`�Q�̃T�C�Y�̎��͕��Ă��Ȃ��G�̃f�[�^��Ԃ��܂��B
+ *		頂点数が１〜２のサイズの時は閉じていない絵のデータを返します。
  *
  */
 //-----------------------------------------------------------------------------
 TP_PICTURE_DATA* MakeTPPictureData( u32 type, TPData* pBuff, u32 size, u16 check_num, u32 dist, BOOL* p_cross, int heap )
 {
-	int i;						// ���[�v�p
-	u32 count;					// �K�v�Ȓ��_�ƃx�N�g���f�[�^��
-	Vec2DS32* p_work;			// �f�[�^�쐬�p�̒��_�ƃx�N�g���̃f�[�^
-	TP_PICTURE_DATA* p_ret;		// �߂�l�ŕԂ��G�f�[�^
-	u8	cross_flag = 0;			// �G�̃f�[�^��������
+	int i;						// ループ用
+	u32 count;					// 必要な頂点とベクトルデータ数
+	Vec2DS32* p_work;			// データ作成用の頂点とベクトルのデータ
+	TP_PICTURE_DATA* p_ret;		// 戻り値で返す絵データ
+	u8	cross_flag = 0;			// 絵のデータが閉じたか
 	
 	//
-	/// �^�b�`�p�l���̏�񂩂�G�̏����쐬����
-	/// �G�̏��Ƃ͒��_�Ǝ��̓_�܂ł̃x�N�g���ł��B
-	/// ���O����Ɏg�p���܂��B
+	/// タッチパネルの情報から絵の情報を作成する
+	/// 絵の情報とは頂点と次の点までのベクトルです。
+	/// 内外判定に使用します。
 	//
-	// ���_�x�N�g���f�[�^�쐬�p�̈���m��(��Ɨp�ŕK�v�ő�l���m��)
-	p_work = sys_AllocMemory( heap, sizeof(Vec2DS32) * (size + 1) );		// �n�_�ƏI�_���Ȃ��\��������̂Ł{�P
+	// 頂点ベクトルデータ作成用領域を確保(作業用で必要最大値分確保)
+	p_work = sys_AllocMemory( heap, sizeof(Vec2DS32) * (size + 1) );		// 始点と終点をつなぐ可能性があるので＋１
 	
 
 	//
-	// �}�`�f�[�^�̒��_��������
+	// 図形データの頂点数初期化
 	//
 	count = 0;
 
 	//
-	// �G�̏��f�[�^���쐬
+	// 絵の情報データを作成
 	//
 	if( size > 3 ){	
 		
-		// �S�ȏ�̂Ƃ��͒��_�����炷
+		// ４以上のときは頂点を減らす
 		count = makePointData( pBuff, size, check_num, p_work );
 	}else{
 		
-		// �R�ȉ��̎��͒��_�����炳�����ɂ��̂܂ܓ����
+		// ３以下の時は頂点を減らさせずにそのまま入れる
 		for( i = 0; i < size; i++ ){
 			p_work[ i ].x = pBuff[ i ].x;
 			p_work[ i ].y = pBuff[ i ].y;
@@ -947,46 +947,46 @@ TP_PICTURE_DATA* MakeTPPictureData( u32 type, TPData* pBuff, u32 size, u16 check
 	}
 
 
-	// p_cross�i���Ă��邩�j����Ă��Ȃ��iFALSE�j��
-	// ������
+	// p_cross（閉じているか）を閉じていない（FALSE）で
+	// 初期化
 	if( p_cross != NULL ){
 		*p_cross = FALSE;
 	}
 	
 	//
-	// ���_�����R�ȉ��̎��͌�_�͂��肦�Ȃ�
+	// 頂点数が３以下の時は交点はありえない
 	//
 	if( count > 3 ){
 		//
-		// ��_���P���[�h���`�F�b�N
+		// 交点が１つモードかチェック
 		//
 		if( (type == TP_MAKE_PICT_ONE_FAST) || 
 			(type == TP_MAKE_PICT_ONE_END)){
 			if( crossEndPict( p_work, &count, type ) == 1 ){
-				// �����f�[�^�ɂȂ���
+				// 閉じたデータになった
 				if( p_cross != NULL ){
 					*p_cross = TRUE;
 				}
-				// ����
+				// 閉じた
 				cross_flag = 1;
 			}
 		}
 	}
 
-	// ���ĂȂ����`�F�b�N
+	// 閉じてないかチェック
 	if( cross_flag == 0 ){
 		//
-		// ���_�����Q�ȉ��̎��͒����Ȃ̂ŏI�_�Ɛ擪���Ȃ���K�v���Ȃ�
+		// 頂点数が２以下の時は直線なので終点と先頭をつなげる必要がない
 		//
 		if( count > 2 ){
 	
 			//
-			// �I�_�Ɛ擪���Ȃ��邩�`�F�b�N
+			// 終点と先頭をつなげるかチェック
 			//
 			if( crossToPict( pBuff[ 0 ], &p_work[ count - 1 ], &p_work[ count ], dist ) == 1 ){
-				count++;		// �f�[�^����ꂽ���J�E���g
+				count++;		// データを入れた分カウント
 
-				// �����f�[�^�ɂȂ���
+				// 閉じたデータになった
 				if( p_cross != NULL ){
 					*p_cross = TRUE;
 				}
@@ -997,7 +997,7 @@ TP_PICTURE_DATA* MakeTPPictureData( u32 type, TPData* pBuff, u32 size, u16 check
 		
 		
 	//
-	// �쐬�������_�ƃx�N�g���f�[�^��TP_PICTURE_DATA�f�[�^�ɃR�s�[
+	// 作成した頂点とベクトルデータをTP_PICTURE_DATAデータにコピー
 	//
 	p_ret				= sys_AllocMemory( heap, sizeof(TP_PICTURE_DATA) );
 	p_ret->pPointData	= sys_AllocMemory( heap, sizeof(Vec2DS32) * count );
@@ -1005,13 +1005,13 @@ TP_PICTURE_DATA* MakeTPPictureData( u32 type, TPData* pBuff, u32 size, u16 check
 
 
 
-	// �R�s�[
+	// コピー
 	for( i = 0; i < count; i++ )
 	{
 		p_ret->pPointData[ i ] = p_work[ i ];
 
 #if 0
-		// �R�s�[���Ȃ���`��(�f�o�b�N�p)
+		// コピーしながら描画(デバック用)
 		if( i > 0 ){
 			drawVect( &p_ret->pPointData[ i - 1 ], &p_ret->pPointData[ i ] );
 		}
@@ -1021,7 +1021,7 @@ TP_PICTURE_DATA* MakeTPPictureData( u32 type, TPData* pBuff, u32 size, u16 check
 	}
 
 
-	// ��Ɨp�̈��j��
+	// 作業用領域を破棄
 	sys_FreeMemoryEz( p_work );
 
 	return p_ret;
@@ -1030,29 +1030,29 @@ TP_PICTURE_DATA* MakeTPPictureData( u32 type, TPData* pBuff, u32 size, u16 check
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�I�_�Ǝn�_���q����
+ *@brief	終点と始点を繋げる
  *
- *@param	TPData s_TPData�F�n�_�̃f�[�^
- *@param	Vec2DS32* p_check�F�I�_�̃|�C���^
- *@param	Vec2DS32* p_in�F�i�[����ʒu�̃|�C���^
- *@param	u32 dist�F����Ă��Ă悢����
+ *@param	TPData s_TPData：始点のデータ
+ *@param	Vec2DS32* p_check：終点のポインタ
+ *@param	Vec2DS32* p_in：格納する位置のポインタ
+ *@param	u32 dist：離れていてよい距離
  *
- *@return	u32�^�F�Ȃ������@�P�F�q����
+ *@return	u32型：つなげたか　１：繋げた
  *
  */
 //-----------------------------------------------------------------------------
 static u32	crossToPict( TPData s_TPData, Vec2DS32* p_check, Vec2DS32* p_in, u32 dist )
 {
 	//
-	// �I�_�Ɛ擪���Ȃ��邩�`�F�b�N
+	// 終点と先頭をつなげるかチェック
 	//
 	if( GetVectorDistance( s_TPData.x, s_TPData.y,
 				p_check->x, p_check->y ) <= dist ){
-		// �擪�Ƃ�������
-		// �^�b�`�p�l���̏��̗L���ȍŏ��̃f�[�^�ƗL���ȍŌ�̃f�[�^�̃x�N�g�����Ō�ɃZ�b�g����
+		// 先頭とくっつける
+		// タッチパネルの情報の有効な最初のデータと有効な最後のデータのベクトルを最後にセットする
 		//
-		p_in->x = s_TPData.x;		// �x�N�g�����W
-		p_in->y = s_TPData.y;		// �x�N�g�����W
+		p_in->x = s_TPData.x;		// ベクトル座標
+		p_in->y = s_TPData.y;		// ベクトル座標
 
 		return 1;
 	}
@@ -1064,34 +1064,34 @@ static u32	crossToPict( TPData s_TPData, Vec2DS32* p_check, Vec2DS32* p_in, u32 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	p_work�̃f�[�^����_�܂ł̃f�[�^�ɂ���
+ *@brief	p_workのデータを交点までのデータにする
  *
- *@param	Vec2DS32* p_work�F�G�̃f�[�^
- *@param	u32* p_size�F���̃f�[�^
- *@param	u8 flag�F��ԍŏ��̌�_�̃f�[�^�ɂ��邩�A�Ō�̌�_�̃f�[�^�ɂ��邩
+ *@param	Vec2DS32* p_work：絵のデータ
+ *@param	u32* p_size：そのデータ
+ *@param	u8 flag：一番最初の交点のデータにするか、最後の交点のデータにするか
  *
- *@return	u32�^�F��_���������� �P�F������
+ *@return	u32型：交点があったか １：あった
  *
  */
 //-----------------------------------------------------------------------------
 static u32 crossEndPict( Vec2DS32* p_work, u32* p_size, u8 flag )
 {
-	int i, j;					// ���[�v�p
-	int cross_i, cross_j;		// ��_�̂�����i��j�̒l
-	Vec2DS32 cross_mat;			// ��_���W
-	Vec2DS32 cross_tmp;			// ��_���W�ۑ��p
-	u8	cross_num;				// ��_����������
+	int i, j;					// ループ用
+	int cross_i, cross_j;		// 交点のあったiとjの値
+	Vec2DS32 cross_mat;			// 交点座標
+	Vec2DS32 cross_tmp;			// 交点座標保存用
+	u8	cross_num;				// 交点があった数
 	
 	
-	// �t���O��������
+	// フラグを初期化
 	cross_num = 0;
 
 	//
-	// �擪�̃x�N�g�������_�̈ʒu�����߂�
+	// 先頭のベクトルから交点の位置を求める
 	//
 	for( i = 0; i < *p_size - 1; i++ ){
 		for( j = *p_size - 2; j >= 0; j-- ){
-			// ����i��j���t�]�����������_�͂Ȃ�
+			// もしiとjが逆転したらもう交点はない
 			if( i + 1 >= j ){
 				break;
 			}
@@ -1100,39 +1100,39 @@ static u32 crossEndPict( Vec2DS32* p_work, u32* p_size, u8 flag )
 								  &p_work[ j ], &p_work[ j + 1 ], 
 								  &cross_mat) == 1 )
 			{
-				cross_i = i;			// ��_�̂�����i
-				cross_j = j;			// ��_�̂�����j
-				cross_num++;			// ��_���J�E���g
-				cross_tmp = cross_mat;	// ��_�ۑ�
+				cross_i = i;			// 交点のあったi
+				cross_j = j;			// 交点のあったj
+				cross_num++;			// 交点数カウント
+				cross_tmp = cross_mat;	// 交点保存
 				break;
 			}
 		}
 
-		// ��_�����������`�F�b�N
+		// 交点があったかチェック
 		if( (cross_num == 1) && (flag == TP_MAKE_PICT_ONE_FAST) ){
 			break;
 		}
 	}
 
 	//
-	// ��_�����������`�F�b�N
+	// 交点があったかチェック
 	//
 	if( cross_num > 0 ){
 		//
-		// i + 1�Ƃ�����_�̂������x�N�g���̐擪�̒��_
-		// cross_mat�̒��g����_�̍��W
+		// i + 1とｊが交点のあったベクトルの先頭の頂点
+		// cross_matの中身が交点の座標
 		// 
-		// p_work��0�ƍŌ�̃f�[�^�̈ʒu�Ɍ�_���W���Z�b�g���Ai������j���傫�������폜
+		// p_workの0と最後のデータの位置に交点座標をセットし、i未満とjより大きい情報を削除
 		p_work[ 0 ] = cross_tmp;
 	
 		*p_size = 1;
-		// i�̏����O����j - (i +1)�ɂȂ�܂ł߂�
+		// iの情報を０からj - (i +1)になるまでつめる
 		for( i = cross_i + 1; i < cross_j; i++ ){
 			p_work[ *p_size ] = p_work[ i ];
-			(*p_size)++;		// �f�[�^���J�E���g
+			(*p_size)++;		// データ数カウント
 		}
 		p_work[ *p_size ] = cross_tmp;
-		(*p_size)++;		// �f�[�^���J�E���g
+		(*p_size)++;		// データ数カウント
 		return 1;
 	}
 
@@ -1142,18 +1142,18 @@ static u32 crossEndPict( Vec2DS32* p_work, u32* p_size, u8 flag )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�s�N�`���[�f�[�^��j������
+ *@brief	ピクチャーデータを破棄する
  *
- *@param	TP_PICTURE_DATA* pPictData�F�G�̃f�[�^
+ *@param	TP_PICTURE_DATA* pPictData：絵のデータ
  *
- *@return	�Ȃ�
+ *@return	なし
  *
  */
 //-----------------------------------------------------------------------------
 void DestTPPictureData( TP_PICTURE_DATA* pPictData )
 {
 	//
-	// �s�N�`���[�f�[�^��j��
+	// ピクチャーデータを破棄
 	//
 	if( pPictData != NULL ){
 		sys_FreeMemoryEz( pPictData->pPointData );
@@ -1164,31 +1164,31 @@ void DestTPPictureData( TP_PICTURE_DATA* pPictData )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�^�b�`�p�l���f�[�^���璸�_�ƃx�N�g���̃f�[�^���쐬����
+ *@brief	タッチパネルデータから頂点とベクトルのデータを作成する
  *
- *@param	Vec2DS32* p_point�F���_�ƃx�N�g���f�[�^
+ *@param	Vec2DS32* p_point：頂点とベクトルデータ
  *
- *@return	u32�^�F�f�[�^��
+ *@return	u32型：データ数
  *
  */
 //-----------------------------------------------------------------------------
 static u32 makePointData( TPData* pBuff, u32 size, u16 check_num, Vec2DS32* p_work )
 {
-	int	i, j;			// ���[�v�p
-	u32 count;			// �J�E���^
-	u32	next;			// �`�F�b�N���鎟�̒��_
+	int	i, j;			// ループ用
+	u32 count;			// カウンタ
+	u32	next;			// チェックする次の頂点
 
 	
 	//
-	// �G�̏��쐬
+	// 絵の情報作成
 	//
-	count = 0;		// �J�E���^������
+	count = 0;		// カウンタ初期化
 	i = 0;
 	while( i <= size - 3 ){
 
-		// ���̓_���Z�b�g	
+		// 次の点をセット	
 		next = i + 1;
-		// �`�F�b�N���x�N�g���Q�̗v�f����j�ɃZ�b�g
+		// チェックすベクトル２の要素数をjにセット
 		j = next + 1;
 		
 		while( GetVectorAngle( 
@@ -1197,33 +1197,33 @@ static u32 makePointData( TPData* pBuff, u32 size, u16 check_num, Vec2DS32* p_wo
 				pBuff[ i ].x, pBuff[ i ].y,
 				pBuff[ j ].x, pBuff[ j ].y ) <= check_num ){
 			//
-			// �G�̏��ɃZ�b�g����_��T��
+			// 絵の情報にセットする点を探す
 			//
 			j++;
 
-			// �T�C�Y�ɂȂ�����I��
+			// サイズになったら終了
 			if( j >= size )
 			{
-				break;		// �v�f�̃}�b�N�X�ɂȂ����甲����
+				break;		// 要素のマックスになったら抜ける
 			}
 		}
 
 		//
-		// i�̓_���Z�b�g<F9>
-		// j - 1�̓_�܂ł͊i�[���Ȃ��Ă悢�Bj - 1����`�F�b�N���Ă���
+		// iの点をセット<F9>
+		// j - 1の点までは格納しなくてよい。j - 1からチェックしていく
 		//
-		p_work[ count ].x = pBuff[ i ].x;		// �x�N�g���J�n���W
-		p_work[ count ].y = pBuff[ i ].y;		// �x�N�g���J�n���W
+		p_work[ count ].x = pBuff[ i ].x;		// ベクトル開始座標
+		p_work[ count ].y = pBuff[ i ].y;		// ベクトル開始座標
 		count++;
 
-		// �I�_��(j - 1)�̒l��i�ɃZ�b�g
+		// 終点の(j - 1)の値をiにセット
 		i = j - 1;
 
 	}
 	
 	// 
-	// �_���c��Q�ȉ��ɂȂ��Ă��܂����̂Ń`�F�b�N�ł��Ȃ�����
-	// �Ō��i����size -1�̒l�ɂȂ�܂ō��W������
+	// 点が残り２つ以下になってしまったのでチェックできないため
+	// 最後にiからsize -1の値になるまで座標を入れる
 	// 
 	while( i < size ){
 		p_work[ count ].x = pBuff[ i ].x;
@@ -1238,13 +1238,13 @@ static u32 makePointData( TPData* pBuff, u32 size, u16 check_num, Vec2DS32* p_wo
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	���O����
+ *@brief	内外判定
  *
- *@param	TP_PICTURE_DATA* pData�F�G�̃f�[�^
- *@param	u16 x�F������W��
- *@param	u16 y�F������W����
+ *@param	TP_PICTURE_DATA* pData：絵のデータ
+ *@param	u16 x：判定座標横
+ *@param	u16 y：判定座標たて
  *
- *@return	u32�^�F�O�F�O�@�P�F��
+ *@return	u32型：０：外　１：内
  *
  */
 //-----------------------------------------------------------------------------

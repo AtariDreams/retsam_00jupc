@@ -28,14 +28,14 @@
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—ƒc[ƒ‹‚Ì‚Ü‚Æ‚ß
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ãƒ„ãƒ¼ãƒ«ã®ã¾ã¨ã‚
  */
 //------------------------------------------------------------------
 typedef struct SUBSCRN_FUNCLIST{
-	void (*set_init)(FIELDSYS_WORK *);		///<ƒTƒu‰æ–Ê‰Šú‰»ˆ—ƒŠƒNƒGƒXƒgŠÖ”
-	BOOL (*wait_init)(FIELDSYS_WORK *);		///<ƒTƒu‰æ–Ê‰Šú‰»ˆ—‘Ò‚¿ŠÖ”
-	void (*set_quit)(FIELDSYS_WORK *);		///<ƒTƒu‰æ–ÊI—¹ˆ—ƒŠƒNƒGƒXƒgŠÖ”
-	BOOL (*wait_quit)(FIELDSYS_WORK *);		///<ƒTƒu‰æ–ÊI—¹ˆ—‘Ò‚¿ŠÖ”
+	void (*set_init)(FIELDSYS_WORK *);		///<ã‚µãƒ–ç”»é¢åˆæœŸåŒ–å‡¦ç†ãƒªã‚¯ã‚¨ã‚¹ãƒˆé–¢æ•°
+	BOOL (*wait_init)(FIELDSYS_WORK *);		///<ã‚µãƒ–ç”»é¢åˆæœŸåŒ–å‡¦ç†å¾…ã¡é–¢æ•°
+	void (*set_quit)(FIELDSYS_WORK *);		///<ã‚µãƒ–ç”»é¢çµ‚äº†å‡¦ç†ãƒªã‚¯ã‚¨ã‚¹ãƒˆé–¢æ•°
+	BOOL (*wait_quit)(FIELDSYS_WORK *);		///<ã‚µãƒ–ç”»é¢çµ‚äº†å‡¦ç†å¾…ã¡é–¢æ•°
 }SUBSCRN_FUNCLIST;
 
 
@@ -56,39 +56,39 @@ static BOOL FieldSubScreen_WaitQuit_Union(FIELDSYS_WORK * fsys);
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Ê§Œä—pŠÖ”ŒS
+ * @brief	ã‚µãƒ–ç”»é¢åˆ¶å¾¡ç”¨é–¢æ•°éƒ¡
  *
- * ƒTƒu‰æ–Ê‚ÉŠÖ‚·‚é‰Šú‰»ˆ—‚âI—¹ˆ—‚ğ‚Ü‚Æ‚ß‚½‚à‚ÌB
- * ‚±‚±‚É‚Ü‚Æ‚ß‚é‚±‚Æ‚ÅƒtƒB[ƒ‹ƒhƒ}ƒbƒv–{‘Ì‚©‚çÚ×ˆ—‚ğ
- * •ª—£‚µ‚Ä‚¢‚éB
+ * ã‚µãƒ–ç”»é¢ã«é–¢ã™ã‚‹åˆæœŸåŒ–å‡¦ç†ã‚„çµ‚äº†å‡¦ç†ã‚’ã¾ã¨ã‚ãŸã‚‚ã®ã€‚
+ * ã“ã“ã«ã¾ã¨ã‚ã‚‹ã“ã¨ã§ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—æœ¬ä½“ã‹ã‚‰è©³ç´°å‡¦ç†ã‚’
+ * åˆ†é›¢ã—ã¦ã„ã‚‹ã€‚
  */
 //------------------------------------------------------------------
 static const SUBSCRN_FUNCLIST SubScreenFuncList[] = {
-	{	///’ÊíƒtƒB[ƒ‹ƒh—p’è‹`
-		FieldSubScreen_Init_Normal,			// ‰Šú‰»
-		NULL,								// ‰Šú‰»ˆ—I—¹‘Ò‚¿
-		FieldSubScreen_Quit_Normal,			// I—¹ˆ—ƒŠƒNƒGƒXƒg
-		FieldSubScreen_WaitQuit_Normal,		// I—¹ˆ—‘Ò‚¿
+	{	///é€šå¸¸ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨å®šç¾©
+		FieldSubScreen_Init_Normal,			// åˆæœŸåŒ–
+		NULL,								// åˆæœŸåŒ–å‡¦ç†çµ‚äº†å¾…ã¡
+		FieldSubScreen_Quit_Normal,			// çµ‚äº†å‡¦ç†ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+		FieldSubScreen_WaitQuit_Normal,		// çµ‚äº†å‡¦ç†å¾…ã¡
 	},
-	{	///’Yz—p’è‹`
+	{	///ç‚­é‰±ç”¨å®šç¾©
 		FieldSubScreen_Init_Under,
 		NULL,
 		FieldSubScreen_Quit_Under,
 		FieldSubScreen_WaitQuit_Under,
 	},
 
-	{	/// ƒ†ƒjƒIƒ“ƒ‹[ƒ€—p’è‹`
-		FieldSubScreen_Init_Union,			// ‰Šú‰»
-		NULL,								// ‰Šú‰»ˆ—I—¹‘Ò‚¿
-		FieldSubScreen_Quit_Union,			// I—¹ˆ—ƒŠƒNƒGƒXƒg
-		FieldSubScreen_WaitQuit_Union,	// I—¹ˆ—‘Ò‚¿
+	{	/// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨å®šç¾©
+		FieldSubScreen_Init_Union,			// åˆæœŸåŒ–
+		NULL,								// åˆæœŸåŒ–å‡¦ç†çµ‚äº†å¾…ã¡
+		FieldSubScreen_Quit_Union,			// çµ‚äº†å‡¦ç†ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+		FieldSubScreen_WaitQuit_Union,	// çµ‚äº†å‡¦ç†å¾…ã¡
 	
 	},
 	{
-		FieldBeforePoketch_Init,			// ‰Šú‰»
-		NULL,								// ‰Šú‰»ˆ—I—¹‘Ò‚¿
-		FieldBeforePoketch_QuitReq,			// I—¹ˆ—ƒŠƒNƒGƒXƒg
-		FieldBeforePoketch_QuitWait,		// I—¹ˆ—‘Ò‚¿
+		FieldBeforePoketch_Init,			// åˆæœŸåŒ–
+		NULL,								// åˆæœŸåŒ–å‡¦ç†çµ‚äº†å¾…ã¡
+		FieldBeforePoketch_QuitReq,			// çµ‚äº†å‡¦ç†ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+		FieldBeforePoketch_QuitWait,		// çµ‚äº†å‡¦ç†å¾…ã¡
 	},
 };
 
@@ -107,14 +107,14 @@ static int GetType(FIELDSYS_WORK * fsys)
 //============================================================================================
 //
 //
-//		ƒtƒB[ƒ‹ƒhƒ}ƒbƒv‚©‚çŒÄ‚Î‚ê‚éƒTƒu‰æ–Êˆ—ŠÖ”
+//		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã‚µãƒ–ç”»é¢å‡¦ç†é–¢æ•°
 //
 //
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—F‰Šú‰»ƒŠƒNƒGƒXƒg
- * @param	fsys	ƒQ[ƒ€ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ï¼šåˆæœŸåŒ–ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+ * @param	fsys	ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void FieldSubScreen_Init(FIELDSYS_WORK * fsys)
@@ -124,9 +124,9 @@ void FieldSubScreen_Init(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—F‰Šú‰»‘Ò‚¿
- * @param	fsys	ƒQ[ƒ€ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL	TRUE‚Ì‚Æ‚«Aˆ—I—¹
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ï¼šåˆæœŸåŒ–å¾…ã¡
+ * @param	fsys	ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL	TRUEã®ã¨ãã€å‡¦ç†çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL FieldSubScreen_WaitInit(FIELDSYS_WORK * fsys)
@@ -141,8 +141,8 @@ BOOL FieldSubScreen_WaitInit(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—FI—¹ƒŠƒNƒGƒXƒg
- * @param	fsys	ƒQ[ƒ€ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ï¼šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+ * @param	fsys	ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void FieldSubScreen_Quit(FIELDSYS_WORK * fsys)
@@ -152,9 +152,9 @@ void FieldSubScreen_Quit(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—FI—¹‘Ò‚¿
- * @param	fsys	ƒQ[ƒ€ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL	TRUE‚Ì‚Æ‚«Aˆ—I—¹
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ï¼šçµ‚äº†å¾…ã¡
+ * @param	fsys	ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL	TRUEã®ã¨ãã€å‡¦ç†çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL FieldSubScreen_WaitQuit(FIELDSYS_WORK * fsys)
@@ -166,14 +166,14 @@ BOOL FieldSubScreen_WaitQuit(FIELDSYS_WORK * fsys)
 //============================================================================================
 //
 //
-//		ƒTƒu‰æ–Ê‚²‚Æ‚ÌŒÂ•ÊŠÖ”
+//		ã‚µãƒ–ç”»é¢ã”ã¨ã®å€‹åˆ¥é–¢æ•°
 //
 //
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—F‰Šú‰»ƒŠƒNƒGƒXƒgF’ÊíƒtƒB[ƒ‹ƒh—p
- * @param	fsys	ƒQ[ƒ€ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ï¼šåˆæœŸåŒ–ãƒªã‚¯ã‚¨ã‚¹ãƒˆï¼šé€šå¸¸ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨
+ * @param	fsys	ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void FieldSubScreen_Init_Normal(FIELDSYS_WORK * fsys)
@@ -183,19 +183,19 @@ static void FieldSubScreen_Init_Normal(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—F‰Šú‰»ƒŠƒNƒGƒXƒgF’Yz—p
- * @param	fsys	ƒQ[ƒ€ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ï¼šåˆæœŸåŒ–ãƒªã‚¯ã‚¨ã‚¹ãƒˆï¼šç‚­é‰±ç”¨
+ * @param	fsys	ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void FieldSubScreen_Init_Under(FIELDSYS_WORK * fsys)
 {
-	CommStateFieldUnderOptionReboot();  // ’n‰º—p’ÊM‚ÌƒIƒvƒVƒ‡ƒ“‚ğ•œ‹A
+	CommStateFieldUnderOptionReboot();  // åœ°ä¸‹ç”¨é€šä¿¡ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å¾©å¸°
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—F‰Šú‰»ƒŠƒNƒGƒXƒgFƒ†ƒjƒIƒ“ƒ‹[ƒ€—p—p
- * @param	fsys	ƒQ[ƒ€ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ï¼šåˆæœŸåŒ–ãƒªã‚¯ã‚¨ã‚¹ãƒˆï¼šãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ç”¨ç”¨
+ * @param	fsys	ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void FieldSubScreen_Init_Union(FIELDSYS_WORK * fsys)
@@ -207,8 +207,8 @@ static void FieldSubScreen_Init_Union(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—FI—¹ƒŠƒNƒGƒXƒgF’ÊíƒtƒB[ƒ‹ƒh—p
- * @param	fsys	ƒQ[ƒ€ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ï¼šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆï¼šé€šå¸¸ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨
+ * @param	fsys	ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void FieldSubScreen_Quit_Normal(FIELDSYS_WORK * fsys)
@@ -218,19 +218,19 @@ static void FieldSubScreen_Quit_Normal(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—FI—¹ƒŠƒNƒGƒXƒgF’YB—p
- * @param	fsys	ƒQ[ƒ€ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ï¼šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆï¼šç‚­å‘ç”¨
+ * @param	fsys	ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void FieldSubScreen_Quit_Under(FIELDSYS_WORK * fsys)
 {
-	CommStateFieldUnderOptionReset();  // ’n‰º—p’ÊM‚ÌƒIƒvƒVƒ‡ƒ“‚ğ”jŠü
+	CommStateFieldUnderOptionReset();  // åœ°ä¸‹ç”¨é€šä¿¡ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ç ´æ£„
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—FI—¹ƒŠƒNƒGƒXƒgF’YB—p
- * @param	fsys	ƒQ[ƒ€ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ï¼šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆï¼šç‚­å‘ç”¨
+ * @param	fsys	ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void FieldSubScreen_Quit_Union(FIELDSYS_WORK * fsys)
@@ -242,9 +242,9 @@ static void FieldSubScreen_Quit_Union(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—FI—¹‘Ò‚¿F’ÊíƒtƒB[ƒ‹ƒh—p
- * @param	fsys	ƒQ[ƒ€ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL	TRUE‚Ì‚Æ‚«Aˆ—I—¹
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ï¼šçµ‚äº†å¾…ã¡ï¼šé€šå¸¸ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨
+ * @param	fsys	ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL	TRUEã®ã¨ãã€å‡¦ç†çµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL FieldSubScreen_WaitQuit_Normal(FIELDSYS_WORK * fsys)
@@ -254,9 +254,9 @@ static BOOL FieldSubScreen_WaitQuit_Normal(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—FI—¹‘Ò‚¿Fƒ†ƒjƒIƒ“—p
- * @param	fsys	ƒQ[ƒ€ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL	TRUE‚Ì‚Æ‚«Aˆ—I—¹
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ï¼šçµ‚äº†å¾…ã¡ï¼šãƒ¦ãƒ‹ã‚ªãƒ³ç”¨
+ * @param	fsys	ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL	TRUEã®ã¨ãã€å‡¦ç†çµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL FieldSubScreen_WaitQuit_Union(FIELDSYS_WORK * fsys)
@@ -266,14 +266,14 @@ static BOOL FieldSubScreen_WaitQuit_Union(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Êˆ—FI—¹‘Ò‚¿F’Yz—p
- * @param	fsys	ƒQ[ƒ€ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL	TRUE‚Ì‚Æ‚«Aˆ—I—¹
+ * @brief	ã‚µãƒ–ç”»é¢å‡¦ç†ï¼šçµ‚äº†å¾…ã¡ï¼šç‚­é‰±ç”¨
+ * @param	fsys	ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL	TRUEã®ã¨ãã€å‡¦ç†çµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL FieldSubScreen_WaitQuit_Under(FIELDSYS_WORK * fsys)
 {
-	//I—¹ğŒ—œA–³ğŒ‚ÅTRUE‚ğ•Ô‚·
+	//çµ‚äº†æ¡ä»¶æ¢¨ã€ç„¡æ¡ä»¶ã§TRUEã‚’è¿”ã™
 	return TRUE;
 }
 

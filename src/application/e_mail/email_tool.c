@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	email_tool.c
- * @brief	Eƒ[ƒ‹Fƒc[ƒ‹—Ş
+ * @brief	Eãƒ¡ãƒ¼ãƒ«ï¼šãƒ„ãƒ¼ãƒ«é¡
  * @author	matsuda
- * @date	2007.10.22(Œ)
+ * @date	2007.10.22(æœˆ)
  */
 //==============================================================================
 #include "common.h"
@@ -18,9 +18,9 @@
 #include "application/email_main.h"
 
 //==============================================================================
-//	ASCIIƒR[ƒh•ÏŠ·ƒe[ƒuƒ‹
+//	ASCIIã‚³ãƒ¼ãƒ‰å¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«
 //==============================================================================
-///STRCODE, ASCIIƒR[ƒh•ÏŠ·ƒe[ƒuƒ‹(Eƒ[ƒ‹‚Åg—p‚·‚é•¶š‚Ì‚İ)
+///STRCODE, ASCIIã‚³ãƒ¼ãƒ‰å¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«(Eãƒ¡ãƒ¼ãƒ«ã§ä½¿ç”¨ã™ã‚‹æ–‡å­—ã®ã¿)
 static const struct{
 	u16 str_code;
 	char ascii_code;
@@ -42,11 +42,11 @@ static const struct{
 
 //--------------------------------------------------------------
 /**
- * @brief   STRCODE‚ğASCIIƒR[ƒh‚É•ÏŠ·
+ * @brief   STRCODEã‚’ASCIIã‚³ãƒ¼ãƒ‰ã«å¤‰æ›
  *
- * @param   src			•ÏŠ·Œ³ƒƒbƒZ[ƒW
- * @param   dest		•ÏŠ·Œã‚ÌASCIIƒR[ƒh‘ã“üæ
- * @param   heap_id		ƒq[ƒvID
+ * @param   src			å¤‰æ›å…ƒãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @param   dest		å¤‰æ›å¾Œã®ASCIIã‚³ãƒ¼ãƒ‰ä»£å…¥å…ˆ
+ * @param   heap_id		ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 void Email_Strcode_to_Ascii(STRBUF *src, char *dest, int heap_id)
@@ -77,7 +77,7 @@ void Email_Strcode_to_Ascii(STRBUF *src, char *dest, int heap_id)
 				break;
 			}
 		}
-		GF_ASSERT(i < NELEMS(AsciiConvertTbl));	//ƒqƒbƒg‚µ‚È‚¢•¶š‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é
+		GF_ASSERT(i < NELEMS(AsciiConvertTbl));	//ãƒ’ãƒƒãƒˆã—ãªã„æ–‡å­—ãŒå«ã¾ã‚Œã¦ã„ã‚‹
 		pos++;
 		spos++;
 	}
@@ -92,11 +92,11 @@ void Email_Strcode_to_Ascii(STRBUF *src, char *dest, int heap_id)
 }
 //--------------------------------------------------------------
 /**
- * @brief   ASCIIƒR[ƒh‚ğSTRCODE‚É•ÏŠ·
+ * @brief   ASCIIã‚³ãƒ¼ãƒ‰ã‚’STRCODEã«å¤‰æ›
  *
- * @param   src			•ÏŠ·Œ³ƒƒbƒZ[ƒW
- * @param   dest		•ÏŠ·Œã‚ÌSTRCODE‘ã“üæ
- * @param   heap_id		ƒq[ƒvID
+ * @param   src			å¤‰æ›å…ƒãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @param   dest		å¤‰æ›å¾Œã®STRCODEä»£å…¥å…ˆ
+ * @param   heap_id		ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 void Email_Ascii_to_Strcode(char *src, STRBUF *dest, int heap_id)
@@ -117,7 +117,7 @@ void Email_Ascii_to_Strcode(char *src, STRBUF *dest, int heap_id)
 				break;
 			}
 		}
-		GF_ASSERT(i < NELEMS(AsciiConvertTbl));	//ƒqƒbƒg‚µ‚È‚¢•¶š‚ªŠÜ‚Ü‚ê‚Ä‚¢‚é
+		GF_ASSERT(i < NELEMS(AsciiConvertTbl));	//ãƒ’ãƒƒãƒˆã—ãªã„æ–‡å­—ãŒå«ã¾ã‚Œã¦ã„ã‚‹
 		pos++;
 	}
 	

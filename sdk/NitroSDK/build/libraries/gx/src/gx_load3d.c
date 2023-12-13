@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.16  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.15  2005/02/28 05:26:13  yosizaki
   do-indent.
@@ -30,10 +30,10 @@
   make possible to change DMA No.
 
   Revision 1.11  2004/07/09 05:51:37  takano_makoto
-  GX_LoadTexExAGX_LoadTex‚Å”ñ˜A‘±‚ÈVRAMƒoƒ“ƒN‚ªŠ„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚éê‡‚Ì•s‹ï‡’Ç‰ÁC³
+  GX_LoadTexExã€GX_LoadTexã§éé€£ç¶šãªVRAMãƒãƒ³ã‚¯ãŒå‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¦ã„ã‚‹å ´åˆã®ä¸å…·åˆè¿½åŠ ä¿®æ­£
 
   Revision 1.10  2004/07/05 10:09:43  takano_makoto
-  GX_LoadTexExAGX_LoadTex‚Å”ñ˜A‘±‚ÈVRAMƒoƒ“ƒN‚ªŠ„‚è“–‚Ä‚ç‚ê‚Ä‚¢‚éê‡‚Ì•s‹ï‡C³B
+  GX_LoadTexExã€GX_LoadTexã§éé€£ç¶šãªVRAMãƒãƒ³ã‚¯ãŒå‰²ã‚Šå½“ã¦ã‚‰ã‚Œã¦ã„ã‚‹å ´åˆã®ä¸å…·åˆä¿®æ­£ã€‚
 
   Revision 1.9  2004/02/20 07:22:03  nishida_kenji
   Add GX_LoadTexEx and GX_LoadTexPlttEx.

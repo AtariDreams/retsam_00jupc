@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_004.s
- *@brief	�퓬�V�[�P���X
- *			�����V�[�P���X
+ *@brief	戦闘シーケンス
+ *			勝利シーケンス
  *@author	HisashiSogabe
  *@data		2005.07.29
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_004:
-	//���������񂩂��ӂ��������Ă�����A��Ԉُ�𒼂�
+	//特性しぜんかいふくをもっていたら、状態異常を直す
 	SIZENKAIHUKU_CHECK	SIDE_MINE_1,SUB_004_MINE2
 	PSP_VALUE			VAL_SET,SIDE_MINE_1,ID_PSP_condition,0
 SUB_004_MINE2:
@@ -81,7 +81,7 @@ SUB_004_NEXT:
 KobanCheck:
 	MONOHIROI
 	KOBAN_CHECK
-	//���΂�J�E���^���O�Ȃ烁�b�Z�[�W�Ȃ�
+	//こばんカウンタが０ならメッセージなし
 	IF				IF_FLAG_EQ,BUF_PARA_MSG_WORK,0,NoMessage
 	MESSAGE			MoneyPickUpMsg,TAG_TRNAME_NUM,SIDE_MINE,SIDE_WORK
 	SERVER_WAIT

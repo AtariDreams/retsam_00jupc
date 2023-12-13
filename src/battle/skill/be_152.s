@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_152.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			152�@�܂Ђ̒ǉ����ʁ{�V�C���u���߁v��Ԃ̂Ƃ��Ɏg�p����ƕK�������B
- *				�u�͂�v���Ɩ�������50���B�����ł���G�ɍU���ł��܂��B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			152　まひの追加効果＋天気が「あめ」状態のときに使用すると必ず命中。
+ *				「はれ」だと命中率が50％。空を飛んでいる敵に攻撃できます。
  *
  *@author	HisashiSogabe
  *@data		2006.02.02

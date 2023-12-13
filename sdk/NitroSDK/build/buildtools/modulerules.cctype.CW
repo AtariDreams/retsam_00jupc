@@ -13,88 +13,88 @@
 #
 # $Log: modulerules.cctype.CW,v $
 # Revision 1.74  2007/07/09 12:53:01  yasu
-# NITRO_TRGNAME �̃T�|�[�g
+# NITRO_TRGNAME のサポート
 #
 # Revision 1.73  2007/04/23 04:22:40  yasu
-# ����N�x�̏C��
+# 著作年度の修正
 #
 # Revision 1.72  2007/04/10 05:52:41  yasu
-# MAKELCF_FORMAT �� ?= �ɂ���Ē�`����悤�ɕύX
+# MAKELCF_FORMAT を ?= によって定義するように変更
 #
 # Revision 1.71  2006/06/06 04:39:45  okubata_ryoma
-# CW�̃R���p�C���ƃ����J�̃o�[�W��������ǋL
+# CWのコンパイラとリンカのバージョン情報を追記
 #
 # Revision 1.70  2006/06/06 04:32:06  yasu
-# build �o�[�W������ 2�`3���̏ꍇ�́A100 �{����
+# build バージョンで 2〜3桁の場合は、100 倍する
 #
 # Revision 1.69  2006/06/06 01:02:28  yasu
-# build �o�[�W�����ɂ����ď����_�ȉ��̒l���E���悤�ɕύX
+# build バージョンにおいて小数点以下の値を拾うように変更
 #
 # Revision 1.68  2006/05/10 02:07:35  yasu
-# makelcf �� -V �I�v�V�����̑Ή�
+# makelcf の -V オプションの対応
 #
 # Revision 1.67  2006/05/01 01:15:43  okubata_ryoma
-# CW�o�[�W������r���@�̕ύX�ɂƂ��Ȃ��ύX
+# CWバージョン比較方法の変更にともなう変更
 #
 # Revision 1.66  2006/03/20 08:01:28  okubata_ryoma
-# sed �R�}���h�̃o�[�W�����ɂ��r���h�G���[��h�����߂̏C��
+# sed コマンドのバージョンによるビルドエラーを防ぐための修正
 #
 # Revision 1.65  2006/02/21 00:11:15  okubata_ryoma
 # Copyright fix
 #
 # Revision 1.64  2006/02/13 08:32:39  okubata_ryoma
-# CW2.0beta�ւ̑Ή�
+# CW2.0betaへの対応
 #
 # Revision 1.63  2005/09/17 06:17:51  yasu
-# �R���p�C���̃o�[�W������񏈗��̏C��
+# コンパイラのバージョン情報処理の修正
 #
 # Revision 1.62  2005/09/17 04:56:24  yasu
-# �R���p�C���̃o�[�W�������̍X�V
+# コンパイラのバージョン情報の更新
 #
 # Revision 1.61  2005/08/23 05:12:25  yasu
-# precompile �w�b�_�쐬���� SDK �֘A�łȂ� -D �I�v�V������r������
+# precompile ヘッダ作成時に SDK 関連でない -D オプションを排除する
 #
 # Revision 1.60  2005/08/08 00:06:56  yasu
-# mongoose �̃r���h�΍�̂��� TARGET_BIN_BASENAME ���`���ATARGET_NAME �Ǝg��������
+# mongoose のビルド対策のため TARGET_BIN_BASENAME を定義し、TARGET_NAME と使い分ける
 #
 # Revision 1.59  2005/08/07 13:15:48  yasu
-# ���C�u�����p�X�� vpath �ɐݒ�
+# ライブラリパスを vpath に設定
 #
 # Revision 1.58  2005/07/26 07:29:58  yasu
-# �v���R���p�C���w�b�_�̃L���b�V���ʒu��ύX����
+# プリコンパイルヘッダのキャッシュ位置を変更した
 #
 # Revision 1.57  2005/07/26 00:40:56  seiki_masashi
-# �v���R���p�C���w�b�_�̍쐬���� -include ���_�~�[�ɒu��
+# プリコンパイルヘッダの作成時に -include をダミーに置換
 #
 # Revision 1.56  2005/07/25 05:02:02  yasu
-# PCH �̍폜�̃g���K�� make clean ���� make clobber �ɕύX
+# PCH の削除のトリガを make clean から make clobber に変更
 #
 # Revision 1.55  2005/07/25 01:31:12  yasu
-# .pch -> .mch �ւ̕ύX
+# .pch -> .mch への変更
 #
 # Revision 1.54  2005/07/21 11:55:21  yasu
-# EDEPENDS_NEF/BIN ��ǉ�
+# EDEPENDS_NEF/BIN を追加
 #
 # Revision 1.53  2005/07/14 05:11:49  yasu
-# �v���R���p�C���w�b�_�� C �� C++ �ŕ��ʂ���
+# プリコンパイルヘッダを C と C++ で分別する
 #
 # Revision 1.52  2005/07/14 02:27:36  yasu
-# NITRO_STD_PCHDR �����W���[�����ɗ}���ł���d�g�݂̒ǉ�
+# NITRO_STD_PCHDR をモジュール毎に抑制できる仕組みの追加
 #
 # Revision 1.51  2005/07/11 06:12:37  yasu
-# pch �t�@�C���̈ˑ��֌W�̃`�F�b�N�̒ǉ�
+# pch ファイルの依存関係のチェックの追加
 #
 # Revision 1.50  2005/07/08 13:25:23  yasu
-# �v���R���p�C���w�b�_�̃e�X�g�T�|�[�g
+# プリコンパイルヘッダのテストサポート
 #
 # Revision 1.49  2005/06/22 09:40:07  yasu
-# ELIBRARIES �̃T�|�[�g
+# ELIBRARIES のサポート
 #
 # Revision 1.48  2005/06/02 00:10:41  seiki_masashi
-# copyright �\�L�̏C��
+# copyright 表記の修正
 #
 # Revision 1.47  2005/06/01 07:33:30  seiki_masashi
-# #include �̃T�[�`�p�X�̐擪�ɌĂяo�����t�@�C���̂���f�B���N�g����ǉ�
+# #include のサーチパスの先頭に呼び出し元ファイルのあるディレクトリを追加
 #
 # Revision 1.46  2004/12/27 03:51:22  yasu
 # Change CC->MWCC , AS->MWAS, LD->MWLD and AR->MWAR
@@ -199,39 +199,39 @@
 # support overlay
 #
 # Revision 1.12	 2003/12/10 05:12:48  yasu
-# �\�[�X�t�@�C���w��� xxxx/src.c �̌`�����g����悤�ɕύX
-# Makefile.srcs �̒ǉ�
-# IS_NITRO_DIR ����`���Ă���ꍇ�� IS Debugger ���C�u�����������N����悤�C��
+# ソースファイル指定に xxxx/src.c の形式を使えるように変更
+# Makefile.srcs の追加
+# IS_NITRO_DIR が定義してある場合に IS Debugger ライブラリをリンクするよう修正
 #
 # Revision 1.11	 2003/12/02 04:53:06  yasu
-# �w�b�_�̕\�L�C��
+# ヘッダの表記修正
 #
 # Revision 1.10	 2003/12/02 03:45:11  yasu
-# IS-NITRO-EMULATOR �p���C�u���������̏C��
+# IS-NITRO-EMULATOR 用ライブラリ向けの修正
 #
 # Revision 1.9	2003/12/01 11:30:55  yasu
-# ROM �쐬�c�[���� objcopy -> elftobin �֕ύX����
+# ROM 作成ツールを objcopy -> elftobin へ変更した
 #
 # Revision 1.8	2003/11/28 02:01:12  yasu
-# CW for NITRO �̕W�����C�u���������ւ���
+# CW for NITRO の標準ライブラリを取り替えた
 #
 # Revision 1.7	2003/11/17 01:30:43  yasu
-# C++ �̒�`�� C �̒�`�ƕ���
+# C++ の定義を C の定義と分離
 #
 # Revision 1.6	2003/11/11 03:06:31  yasu
-# base.a �̈ʒu�̎w��� lcf �t�@�C���ōs�Ȃ����Ƃɂ����̂őO��̏C���𖳌��ɂ���
+# base.a の位置の指定は lcf ファイルで行なうことにしたので前回の修正を無効にした
 #
 # Revision 1.5	2003/11/11 02:12:16  yasu
-# base.a �� OBJS �̑O�Ƀ����N����悤�ɏC��
+# base.a を OBJS の前にリンクするように修正
 #
 # Revision 1.4	2003/11/06 10:38:39  yasu
-# ���C�u�����̃T�[�`�p�X�̐ݒ�~�X�̏C��
+# ライブラリのサーチパスの設定ミスの修正
 #
 # Revision 1.3	2003/11/05 09:14:17  yasu
-# ���C�u���������p���[���ǉ�
+# ライブラリ生成用ルール追加
 #
 # Revision 1.2	2003/11/05 07:12:36  yasu
-# �R���p�C���̈ˑ����[���̉�����
+# コンパイルの依存ルールの仮完成
 #
 # Revision 1.1	2003/10/29 06:47:28  yasu
 # Support "make clean/clobber" only
@@ -395,8 +395,8 @@ MAKELCF_DEFS	= -DNITROSDK_ROOT='$(ROOT)'			\
 MAKELCF_FORMAT	?= -V$(CW_MAJOR_VER)
 
 #
-# NITRO_TRGNAME ����`����Ă����� static �Z�N�V�����̖��O�̑���� 
-# TARGET_NAME �̒l���t�@�C���� PREFIX �Ƃ��Ďg��
+# NITRO_TRGNAME が定義されていたら static セクションの名前の代わりに 
+# TARGET_NAME の値をファイルの PREFIX として使う
 #
 MAKELCF_TRGNAME	?= $(if $(NITRO_TRGNAME),-T $(TARGET_NAME))
 

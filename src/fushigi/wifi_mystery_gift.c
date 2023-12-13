@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	wifi_mystery_figt.c
- * @bfief	WiFi ‚Ó‚µ‚¬‚È@‚¨‚­‚è‚à‚Ì
+ * @bfief	WiFi ãµã—ããªã€€ãŠãã‚Šã‚‚ã®
  * @author	Satoshi Mitsuhara
  * @date	06.06.23
  *
@@ -20,52 +20,52 @@
 #include "comm_mystery_gift.h"
 #include "mysterylib.h"
 
-// ƒRƒ“ƒpƒCƒ‹’è‹`
+// ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«å®šç¾©
 
 #define NETCONFIG_USE_HEAP		1
 #define USE_AUTHSERVER_RELEASE
 
-// «‚»‚Ì‚Ü‚ÜROM‚É“ü‚ê‚é‚ÆŠëŒ¯‚È‚Ì‚ÅAŒã‚ÅˆÃ†‰»‚ğl‚¦‚æ‚¤‚Ëc
+// â†“ãã®ã¾ã¾ROMã«å…¥ã‚Œã‚‹ã¨å±é™ºãªã®ã§ã€å¾Œã§æš—å·åŒ–ã‚’è€ƒãˆã‚ˆã†ã­â€¦
 // MatchComment: change WIFI_ND_LOGIN_NAME from CPUJ to CPUE and WIFI_ND_LOGIN_PASSWD to correct password
-#define WIFI_ND_LOGIN_NAME		"CPUE"	//"ADAJ"			// ƒƒOƒCƒ“–¼
+#define WIFI_ND_LOGIN_NAME		"CPUE"	//"ADAJ"			// ãƒ­ã‚°ã‚¤ãƒ³å
 #ifdef USE_AUTHSERVER_RELEASE
-#define WIFI_ND_LOGIN_PASSWD		"DwuCXmdJfPVLBnKA"	//"E3npkZwqAHyGCNVb"	// ƒpƒXƒ[ƒh(–{”ÔƒT[ƒo)
+#define WIFI_ND_LOGIN_PASSWD		"DwuCXmdJfPVLBnKA"	//"E3npkZwqAHyGCNVb"	// ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰(æœ¬ç•ªã‚µãƒ¼ãƒ)
 #else
-#define WIFI_ND_LOGIN_PASSWD		"uSAejwyGLTh4vFxM"	//"XqQPTBt56uEndmND"	// ƒpƒXƒ[ƒh(ƒeƒXƒgƒT[ƒo)
+#define WIFI_ND_LOGIN_PASSWD		"uSAejwyGLTh4vFxM"	//"XqQPTBt56uEndmND"	// ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰(ãƒ†ã‚¹ãƒˆã‚µãƒ¼ãƒ)
 #endif
 
 #define WIFI_FILE_ATTR1			""
 #define WIFI_FILE_ATTR2			""
 #define WIFI_FILE_ATTR3			""
 
-// -- ND ‚ÉŠÖ˜A‚µ‚½’è” --
-#if 0		///< ‘¼‚Å‚àg‚¤‚Ì‚Åƒwƒbƒ_[‚ÉˆÚ“®‚µ‚½
+// -- ND ã«é–¢é€£ã—ãŸå®šæ•° --
+#if 0		///< ä»–ã§ã‚‚ä½¿ã†ã®ã§ãƒ˜ãƒƒãƒ€ãƒ¼ã«ç§»å‹•ã—ãŸ
 enum {
-  WIFI_MYSTERYGIFT_COMM_INIT = WIFI_MYSTERYGIFT_BASE,// ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»             0
-  WIFI_MYSTERYGIFT_COMM_INIT_WAIT,		// ƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»‚ªŠ®—¹‚·‚é‚Ü‚Å‘Ò‚Â      1
+  WIFI_MYSTERYGIFT_COMM_INIT = WIFI_MYSTERYGIFT_BASE,// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–             0
+  WIFI_MYSTERYGIFT_COMM_INIT_WAIT,		// ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–ãŒå®Œäº†ã™ã‚‹ã¾ã§å¾…ã¤      1
 
-  WIFI_MYSTERYGIFT_CONNECT_INET,		// ƒCƒ“ƒ^[ƒlƒbƒg‚Ö‚ÌÚ‘±€”õ                2
-  WIFI_MYSTERYGIFT_CONNECT_WAIT_INET,		// Ú‘±‚³‚ê‚é‚Ü‚Å‘Ò‚Â                    3
+  WIFI_MYSTERYGIFT_CONNECT_INET,		// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã¸ã®æ¥ç¶šæº–å‚™                2
+  WIFI_MYSTERYGIFT_CONNECT_WAIT_INET,		// æ¥ç¶šã•ã‚Œã‚‹ã¾ã§å¾…ã¤                    3
 
-  WIFI_MYSTERYGIFT_NASLOGIN_START,		// ”FØƒT[ƒo[‚ÖƒƒOƒCƒ“ŠJn                4
-  WIFI_MYSTERYGIFT_NASLOGIN_WAIT,		// ”FØƒT[ƒo[‚ÖƒƒOƒCƒ“Š®—¹‚Ü‚Å‘Ò‚Â        5
+  WIFI_MYSTERYGIFT_NASLOGIN_START,		// èªè¨¼ã‚µãƒ¼ãƒãƒ¼ã¸ãƒ­ã‚°ã‚¤ãƒ³é–‹å§‹                4
+  WIFI_MYSTERYGIFT_NASLOGIN_WAIT,		// èªè¨¼ã‚µãƒ¼ãƒãƒ¼ã¸ãƒ­ã‚°ã‚¤ãƒ³å®Œäº†ã¾ã§å¾…ã¤        5
   
-  WIFI_MYSTERYGIFT_NDLIB_INIT,			// ƒ_ƒEƒ“ƒ[ƒhˆ—ŠJn
-  WIFI_MYSTERYGIFT_SET_ATTR,			// ƒtƒ@ƒCƒ‹ƒAƒNƒZƒX‘®«‚Ìİ’è
-  WIFI_MYSTERYGIFT_GET_FILENUM,			// ƒT[ƒo[‚É‚ ‚éƒtƒ@ƒCƒ‹”‚ğ“¾‚é
-  WIFI_MYSTERYGIFT_GET_FILELIST,		// ƒT[ƒo[‚É‚ ‚éƒtƒ@ƒCƒ‹ƒŠƒXƒg‚ğ“¾‚é
-  WIFI_MYSTERYGIFT_GET_FILE,			// ƒtƒ@ƒCƒ‹‚ğæ“¾ŠJn
-  WIFI_MYSTERYGIFT_GETTING_FILE,		// ƒtƒ@ƒCƒ‹æ“¾’†
+  WIFI_MYSTERYGIFT_NDLIB_INIT,			// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å‡¦ç†é–‹å§‹
+  WIFI_MYSTERYGIFT_SET_ATTR,			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ã‚¯ã‚»ã‚¹å±æ€§ã®è¨­å®š
+  WIFI_MYSTERYGIFT_GET_FILENUM,			// ã‚µãƒ¼ãƒãƒ¼ã«ã‚ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«æ•°ã‚’å¾—ã‚‹
+  WIFI_MYSTERYGIFT_GET_FILELIST,		// ã‚µãƒ¼ãƒãƒ¼ã«ã‚ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆã‚’å¾—ã‚‹
+  WIFI_MYSTERYGIFT_GET_FILE,			// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—é–‹å§‹
+  WIFI_MYSTERYGIFT_GETTING_FILE,		// ãƒ•ã‚¡ã‚¤ãƒ«å–å¾—ä¸­
 
-  WIFI_MYSTERYGIFT_DOWNLOAD_CANCEL,		// ƒ_ƒEƒ“ƒ[ƒh‚ğƒ†[ƒU[‚ªƒLƒƒƒ“ƒZƒ‹‚µ‚½   c
-  WIFI_MYSTERYGIFT_DOWNLOAD_COMPLETE,		// ƒ_ƒEƒ“ƒ[ƒh³íI—¹                  d
-  WIFI_MYSTERYGIFT_DOWNLOAD_ERROR_LOOP,		// ƒGƒ‰[ˆ—‘Ò‚¿                         e
-  WIFI_MYSTERYGIFT_DOWNLOAD_ERROR_WAIT,		// callback‚ªŒÄ‚Ño‚³‚ê‚é‚Ü‚Åˆ—‚ğ‘Ò‚Â     f
-  WIFI_MYSTERYGIFT_DOWNLOAD_ERROR,		// ƒGƒ‰[•\¦Œã‚Ì•œ‹Aˆ—                    10
+  WIFI_MYSTERYGIFT_DOWNLOAD_CANCEL,		// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚’ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸ   c
+  WIFI_MYSTERYGIFT_DOWNLOAD_COMPLETE,		// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æ­£å¸¸çµ‚äº†                  d
+  WIFI_MYSTERYGIFT_DOWNLOAD_ERROR_LOOP,		// ã‚¨ãƒ©ãƒ¼å‡¦ç†å¾…ã¡                         e
+  WIFI_MYSTERYGIFT_DOWNLOAD_ERROR_WAIT,		// callbackãŒå‘¼ã³å‡ºã•ã‚Œã‚‹ã¾ã§å‡¦ç†ã‚’å¾…ã¤     f
+  WIFI_MYSTERYGIFT_DOWNLOAD_ERROR,		// ã‚¨ãƒ©ãƒ¼è¡¨ç¤ºå¾Œã®å¾©å¸°å‡¦ç†                    10
   WIFI_MYSTERYGIFT_DOWNLOAD_ERROR_WAIT2,
   
-  WIFI_MYSTERYGIFT_WAIT_CALLBACK1,		// ƒR[ƒ‹ƒoƒbƒNˆ—‚ªŒÄ‚Î‚ê‚é‚Ü‚Å‘Ò‚Â
-  WIFI_MYSTERYGIFT_WAIT_CALLBACK2,		// ƒR[ƒ‹ƒoƒbƒNˆ—‚ªŒÄ‚Î‚ê‚é‚Ü‚Å‘Ò‚Â
+  WIFI_MYSTERYGIFT_WAIT_CALLBACK1,		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†ãŒå‘¼ã°ã‚Œã‚‹ã¾ã§å¾…ã¤
+  WIFI_MYSTERYGIFT_WAIT_CALLBACK2,		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†ãŒå‘¼ã°ã‚Œã‚‹ã¾ã§å¾…ã¤
 
   WIFI_MYSTERYGIFT_MAX
 };
@@ -78,26 +78,26 @@ static BOOL callbackflag2;
 static wifi_result;
 static DWCNdFileInfo fileInfo[ FILE_NUM ];
 
-// ƒvƒƒgƒ^ƒCƒvéŒ¾
+// ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 static void NdCleanupCallback( void );
 
-// –{‘Ì‚Ícomm_mystery_gift.c
+// æœ¬ä½“ã¯comm_mystery_gift.c
 
 int WifiMysteryGift_Main(PROC *proc, int *seq);
 
 
 /*-------------------------------------------------------------------------*
  * Name        : AllocFunc
- * Description : ƒƒ‚ƒŠŠm•ÛŠÖ”
- * Arguments   : name  - Šm•Û‚·‚é–¼‘O
- *             : size  - Šm•Û‚·‚éƒTƒCƒY
- *             : align - Šm•Û‚·‚éƒAƒ‰ƒCƒƒ“ƒg
- * Returns     : *void - Šm•Û‚µ‚½ƒ|ƒCƒ“ƒ^
+ * Description : ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°
+ * Arguments   : name  - ç¢ºä¿ã™ã‚‹åå‰
+ *             : size  - ç¢ºä¿ã™ã‚‹ã‚µã‚¤ã‚º
+ *             : align - ç¢ºä¿ã™ã‚‹ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆ
+ * Returns     : *void - ç¢ºä¿ã—ãŸãƒã‚¤ãƒ³ã‚¿
  *
- * sys_AllocMemory‚Í4byte‹«ŠE‚Å•Ô‚Á‚Ä‚­‚é‚½‚ßA‚»‚ê‚ğ–³—‚â‚è32byte‹«ŠE‚Ö
- * ƒAƒ‰ƒCƒƒ“ƒg‚µ’¼‚·B
- * •Ô‚·ƒAƒhƒŒƒX-4‚Ì4byte‚ÉŒ³‚Ìalloc‚µ‚½ƒAƒhƒŒƒX‚ğ•Û‘¶‚µ‚Ä‚¨‚¢‚ÄA
- * free‚·‚éÛ‚É‚Í‚»‚Ì’l‚ğQÆ‚µ‚ÄƒtƒŠ[‚·‚é‚æ‚¤‚É‚µ‚Ä‚ ‚é
+ * sys_AllocMemoryã¯4byteå¢ƒç•Œã§è¿”ã£ã¦ãã‚‹ãŸã‚ã€ãã‚Œã‚’ç„¡ç†ã‚„ã‚Š32byteå¢ƒç•Œã¸
+ * ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã—ç›´ã™ã€‚
+ * è¿”ã™ã‚¢ãƒ‰ãƒ¬ã‚¹-4ã®4byteã«å…ƒã®allocã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã—ã¦ãŠã„ã¦ã€
+ * freeã™ã‚‹éš›ã«ã¯ãã®å€¤ã‚’å‚ç…§ã—ã¦ãƒ•ãƒªãƒ¼ã™ã‚‹ã‚ˆã†ã«ã—ã¦ã‚ã‚‹
  *-------------------------------------------------------------------------*/
 static void* AllocFunc( DWCAllocType name, u32 size, int align )
 {
@@ -106,18 +106,18 @@ static void* AllocFunc( DWCAllocType name, u32 size, int align )
   u32 *base;
 
   //  OS_TPrintf("org: %5d -> new: ", size);
-  // ƒTƒCƒY‚ğ32ƒoƒCƒgƒAƒ‰ƒCƒƒ“ƒg•ª‚¾‚¯‰ÁZ‚·‚é
+  // ã‚µã‚¤ã‚ºã‚’32ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆåˆ†ã ã‘åŠ ç®—ã™ã‚‹
   size = (((size + sizeof(void *)) + 32) & ~31) + 32;
   //  OS_TPrintf("%5d\n", size);
-  // ƒƒ‚ƒŠŠm•Û
+  // ãƒ¡ãƒ¢ãƒªç¢ºä¿
   ptr = sys_AllocMemory(HEAPID_MYSTERYGIFT, size);
-  // ptr‚ğ32ƒoƒCƒg‹«ŠE‚É•ÏX‚µbase‚Ö’è‹`
+  // ptrã‚’32ãƒã‚¤ãƒˆå¢ƒç•Œã«å¤‰æ›´ã—baseã¸å®šç¾©
   base = (u32 *)(((u32)ptr + 32) & ~31);
-  // ‚»‚Ì-4ƒoƒCƒgêŠ‚Éfree‚·‚éÛ‚ÌƒAƒhƒŒƒX‚ğ‘ã“ü
+  // ãã®-4ãƒã‚¤ãƒˆå ´æ‰€ã«freeã™ã‚‹éš›ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä»£å…¥
   base--;
   *base = (u32)ptr;
   //  OS_TPrintf("Alloc: %08X [%08X], %d [%2d]\n", ptr, base, size, align);
-  // ƒAƒvƒŠ‚Ö•Ô‚·’l‚Í32ƒoƒCƒg‹«ŠE
+  // ã‚¢ãƒ—ãƒªã¸è¿”ã™å€¤ã¯32ãƒã‚¤ãƒˆå¢ƒç•Œ
   base++;
   return base;
 }
@@ -125,10 +125,10 @@ static void* AllocFunc( DWCAllocType name, u32 size, int align )
 
 /*-------------------------------------------------------------------------*
  * Name        : FreeFunc
- * Description : ƒƒ‚ƒŠŠJ•úŠÖ”
- * Arguments   : name - ŠJ•ú‚·‚éƒƒ‚ƒŠ–¼
- *             : *ptr - ‰ğ•ú‚·‚éƒƒ‚ƒŠ‚Ìƒ|ƒCƒ“ƒ^
- *             : size - ‰ğ•ú‚·‚éƒTƒCƒY
+ * Description : ãƒ¡ãƒ¢ãƒªé–‹æ”¾é–¢æ•°
+ * Arguments   : name - é–‹æ”¾ã™ã‚‹ãƒ¡ãƒ¢ãƒªå
+ *             : *ptr - è§£æ”¾ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®ãƒã‚¤ãƒ³ã‚¿
+ *             : size - è§£æ”¾ã™ã‚‹ã‚µã‚¤ã‚º
  * Returns     : None.
  *-------------------------------------------------------------------------*/
 static void FreeFunc( DWCAllocType name, void* ptr, u32 size  )
@@ -145,7 +145,7 @@ static void FreeFunc( DWCAllocType name, void* ptr, u32 size  )
 
 //------------------------------------------------------------------
 /**
- * @brief	•œ‹A•s‰Â”\‚ÈƒGƒ‰[‚ªo‚½ê‡‚Ìˆ—
+ * @brief	å¾©å¸°ä¸å¯èƒ½ãªã‚¨ãƒ©ãƒ¼ãŒå‡ºãŸå ´åˆã®å‡¦ç†
  * @param	NONE
  * @return	NONE
  */
@@ -155,7 +155,7 @@ static void cleanup_callback(void)
 {
   cleanup_callback_flag = TRUE;
 }
-// ‚±‚Á‚¿‚ª“o˜^
+// ã“ã£ã¡ãŒç™»éŒ²
 static int WifiMysteryGift_DispError(MYSTERYGIFT_WORK *wk)
 {
   DWCError err;
@@ -175,7 +175,7 @@ static int WifiMysteryGift_DispError(MYSTERYGIFT_WORK *wk)
 
   return WIFI_MYSTERYGIFT_DOWNLOAD_ERROR_WAIT;
 }
-// ƒGƒ‰[‚Ì‘Î‰ˆ—(À‘Ô)
+// ã‚¨ãƒ©ãƒ¼ã®å¯¾å¿œå‡¦ç†(å®Ÿæ…‹)
 static int WifiMysteryGift_ExecError(MYSTERYGIFT_WORK *wk)
 {
   DWCInetResult result;
@@ -193,7 +193,7 @@ static int WifiMysteryGift_ExecError(MYSTERYGIFT_WORK *wk)
     cleanup_callback_flag = TRUE;
     break;
   }
-  WirelessIconEasyEnd();	// ’ÊMƒAƒCƒRƒ“‚ğíœ
+  WirelessIconEasyEnd();	// é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚’å‰Šé™¤
 
   wk->wifi_errflag = FALSE;
   return WIFI_MYSTERYGIFT_DOWNLOAD_ERROR_WAIT;
@@ -203,7 +203,7 @@ static int WifiMysteryGift_ExecError(MYSTERYGIFT_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±‚Ìó‘Ô‚ğ’²‚×‚é
+ * @brief	ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæ¥ç¶šã®çŠ¶æ…‹ã‚’èª¿ã¹ã‚‹
  * @param	NONE
  * @return	NONE
  */
@@ -216,9 +216,9 @@ static BOOL CheckWifiConnect(MYSTERYGIFT_WORK *wk)
   
 
   switch(DWC_GetInetStatus()){
-  case DWC_CONNECTINET_STATE_ERROR:		// Ú‘±¸”s
+  case DWC_CONNECTINET_STATE_ERROR:		// æ¥ç¶šå¤±æ•—
 #if 0
-    // ƒGƒ‰[•\¦
+    // ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
     err = DWC_GetLastError( &errcode );
     MIT_PRINTF( "   Error occurred %d %d.\n", err, errcode );
     wk->wifi_errmsg = mydwc_errorType(-errcode);
@@ -227,10 +227,10 @@ static BOOL CheckWifiConnect(MYSTERYGIFT_WORK *wk)
     DWC_CleanupInet();
 #endif
     break;
-  case DWC_CONNECTINET_STATE_FATAL_ERROR:	// Ú‘±¸”s
-    // •œ‹A•s‰Â”\‚ÈƒGƒ‰[‚ÍCommStateWifiFusigiStart(...)‚ª•ßŠl‚·‚é
+  case DWC_CONNECTINET_STATE_FATAL_ERROR:	// æ¥ç¶šå¤±æ•—
+    // å¾©å¸°ä¸å¯èƒ½ãªã‚¨ãƒ©ãƒ¼ã¯CommStateWifiFusigiStart(...)ãŒæ•ç²ã™ã‚‹
     break;
-  case DWC_CONNECTINET_STATE_CONNECTED:		// Ú‘±¬Œ÷
+  case DWC_CONNECTINET_STATE_CONNECTED:		// æ¥ç¶šæˆåŠŸ
     MIT_PRINTF( "   CONNECTED!!!.\n" );
     if( DWC_GetApInfo(&apinfo) == TRUE ) {
       MIT_PRINTF( "   DWCApInfo.aptype = %d\n", apinfo.aptype );
@@ -252,7 +252,7 @@ static BOOL CheckWifiConnect(MYSTERYGIFT_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒR[ƒ‹ƒoƒbƒNˆ—‚ğ‘Ò‚Â
+ * @brief	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†ã‚’å¾…ã¤
  * @param	NONE
  * @return	NONE
  */
@@ -268,7 +268,7 @@ static void WaitNdCallBack(MYSTERYGIFT_WORK *wk, int *seq, int next_seq)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒR[ƒ‹ƒoƒbƒN‚Qˆ—‚ğ‘Ò‚Â
+ * @brief	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ï¼’å‡¦ç†ã‚’å¾…ã¤
  * @param	NONE
  * @return	NONE
  */
@@ -279,8 +279,8 @@ static void WaitNdCallBack2(MYSTERYGIFT_WORK *wk, int result, int *seq, int next
     wifi_result = result;
     wk->wifi_next_seq = next_seq;
     *seq = WIFI_MYSTERYGIFT_WAIT_CALLBACK2;
-    if(! DWC_NdCleanupAsync( NdCleanupCallback ) ){  //FALSE‚Ìê‡ƒR[ƒ‹ƒoƒbƒN‚ªŒÄ‚Î‚ê‚È‚¢
-        OHNO_PRINT("DWC_NdCleanupAsync‚É¸”s\n");
+    if(! DWC_NdCleanupAsync( NdCleanupCallback ) ){  //FALSEã®å ´åˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒå‘¼ã°ã‚Œãªã„
+        OHNO_PRINT("DWC_NdCleanupAsyncã«å¤±æ•—\n");
         *seq = false_seq;
     }
 }
@@ -288,7 +288,7 @@ static void WaitNdCallBack2(MYSTERYGIFT_WORK *wk, int result, int *seq, int next
 
 /*-------------------------------------------------------------------------*
  * Name        : NdCallback
- * Description : ND—pƒR[ƒ‹ƒoƒbƒN
+ * Description : NDç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * Arguments   : None.
  * Returns     : None.
  *-------------------------------------------------------------------------*/
@@ -322,7 +322,7 @@ static void NdCallback(DWCNdCallbackReason reason, DWCNdError error, int servere
     break;
   case DWC_ND_ERROR_HTTP:
     MIT_PRINTF("DWC_ND_HTTPERR\n");
-    // ƒtƒ@ƒCƒ‹”‚Ìæ“¾‚Å‚g‚s‚s‚oƒGƒ‰[‚ª”­¶‚µ‚½ê‡‚Íƒ_ƒEƒ“ƒ[ƒhƒT[ƒo‚ÉŒq‚ª‚Á‚Ä‚¢‚È‚¢‰Â”\«‚ª‚‚¢
+    // ãƒ•ã‚¡ã‚¤ãƒ«æ•°ã®å–å¾—ã§ï¼¨ï¼´ï¼´ï¼°ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã¯ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚µãƒ¼ãƒã«ç¹‹ãŒã£ã¦ã„ãªã„å¯èƒ½æ€§ãŒé«˜ã„
     if( reason == DWC_ND_CBREASON_GETFILELISTNUM )
       {
           MIT_PRINTF( "It is not possible to connect download server.\n." );
@@ -347,7 +347,7 @@ static void NdCallback(DWCNdCallbackReason reason, DWCNdError error, int servere
 
 /*-------------------------------------------------------------------------*
  * Name        : NdCleanupCallback
- * Description : DWC_NdCleanupAsync—pƒR[ƒ‹ƒoƒbƒN
+ * Description : DWC_NdCleanupAsyncç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * Arguments   : None.
  * Returns     : None.
  *-------------------------------------------------------------------------*/
@@ -373,9 +373,9 @@ static void NdCleanupCallback( void )
 
 static void _commEnd(void)
 {
-      // ’ÊMƒAƒCƒRƒ“‚ğíœ
+      // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚’å‰Šé™¤
       WirelessIconEasyEnd();
-      // ƒGƒ‰[ŠÇ——pˆ—‚ÌI—¹
+      // ã‚¨ãƒ©ãƒ¼ç®¡ç†ç”¨å‡¦ç†ã®çµ‚äº†
       CommStateWifiFusigiEnd();
       DpwCommonOverlayEnd();
       DwcOverlayEnd();
@@ -384,14 +384,14 @@ static void _commEnd(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒgƒ‹ƒvƒƒZƒXFƒƒCƒ“
- * @param	proc				ƒvƒƒZƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq				ƒV[ƒPƒ“ƒX—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	ND_RESULT_EXECUTE		Às’†
- * @return	ND_RESULT_COMPLETE		³íƒ_ƒEƒ“ƒ[ƒhI—¹
- * @return	ND_RESULT_NOT_FOUND_FILES	ƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½
- * @return	ND_RESULT_DOWNLOAD_CANCEL	ƒ†[ƒU[‚©‚çƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½
- * @return	ND_RESULT_DOWNLOAD_ERROR	‚È‚ñ‚ç‚©‚ÌƒGƒ‰[‚ª‹N‚«‚½
+ * @brief	ã‚¿ã‚¤ãƒˆãƒ«ãƒ—ãƒ­ã‚»ã‚¹ï¼šãƒ¡ã‚¤ãƒ³
+ * @param	proc				ãƒ—ãƒ­ã‚»ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq				ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	ND_RESULT_EXECUTE		å®Ÿè¡Œä¸­
+ * @return	ND_RESULT_COMPLETE		æ­£å¸¸ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰çµ‚äº†
+ * @return	ND_RESULT_NOT_FOUND_FILES	ãƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
+ * @return	ND_RESULT_DOWNLOAD_CANCEL	ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‹ã‚‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ
+ * @return	ND_RESULT_DOWNLOAD_ERROR	ãªã‚“ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ãŒèµ·ããŸ
  */
 //--------------------------------------------------------------------------------------------
 int WifiMysteryGift_Main(PROC *proc, int *seq)
@@ -400,11 +400,11 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
   DWCNasLoginState nasloginstate;
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
 
-  // ƒGƒ‰[‚ªo‚Ä‚¢‚½‚çˆ—‚·‚é
+  // ã‚¨ãƒ©ãƒ¼ãŒå‡ºã¦ã„ãŸã‚‰å‡¦ç†ã™ã‚‹
 //  if(wk->wifi_errflag == TRUE)
   //  *seq = WifiMysteryGift_ExecError(wk);
 
-  // InetÚ‘±Œã‚Í–ˆƒtƒŒ[ƒ€s‚¤Ú‘±ˆÛ‚µ‚Ä‚é‚©ƒ`ƒFƒbƒN
+  // Inetæ¥ç¶šå¾Œã¯æ¯ãƒ•ãƒ¬ãƒ¼ãƒ è¡Œã†æ¥ç¶šç¶­æŒã—ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
   if(wk->wifi_check_func){
     if(wk->wifi_check_func() == TRUE)
       *seq = WifiMysteryGift_DispError(wk);
@@ -421,7 +421,7 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
 
     switch(*seq){
   case WIFI_MYSTERYGIFT_COMM_INIT:
-    // ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»
+    // ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–
     CommVRAMDInitialize();
     DwcOverlayStart();
     DpwCommonOverlayStart();
@@ -429,13 +429,13 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
     break;
 
   case WIFI_MYSTERYGIFT_COMM_INIT_WAIT:
-    /// VRAMD‚ÖƒCƒNƒjƒ…[ƒ‚ƒ“‚ª“ü‚é‚Ì‚ğ‘Ò‚Â
+    /// VRAMDã¸ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³ãŒå…¥ã‚‹ã®ã‚’å¾…ã¤
     if(CommIsVRAMDInitialize()){
-      // ƒfƒoƒbƒO•\¦ƒŒƒxƒ‹w’è
+      // ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºãƒ¬ãƒ™ãƒ«æŒ‡å®š
       DWC_SetReportLevel((unsigned long)(DWC_REPORTFLAG_ALL & ~DWC_REPORTFLAG_QR2_REQ));
-      // ƒƒ‚ƒŠŠm•ÛŠÖ”İ’è
+      // ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°è¨­å®š
       DWC_SetMemFunc( AllocFunc, FreeFunc );
-      // ƒGƒ‰[ŠÇ——pˆ—‚ÌŠJn
+      // ã‚¨ãƒ©ãƒ¼ç®¡ç†ç”¨å‡¦ç†ã®é–‹å§‹
       CommStateWifiFusigiStart(wk->sv);
       *seq = WIFI_MYSTERYGIFT_CONNECT_INET;
     }
@@ -443,30 +443,30 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
 
     
   case WIFI_MYSTERYGIFT_CONNECT_INET:
-    // ƒCƒ“ƒ^[ƒlƒbƒg‚Ö‚ÌÚ‘±ˆ—
+    // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã¸ã®æ¥ç¶šå‡¦ç†
     DWC_InitInetEx(&wk->stConnCtrl,COMM_DMA_NO,COMM_POWERMODE,COMM_SSL_PRIORITY);
 
 #if defined( USE_AUTHSERVER_RELEASE )
     DWC_SetAuthServer( GF_DWC_CONNECTINET_AUTH_TYPE );
 #endif
-    // Ú‘±ŠJn
+    // æ¥ç¶šé–‹å§‹
     DWC_ConnectInetAsync();
-    // ’ÊMƒAƒCƒRƒ“‚ğ•\¦
+    // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤º
     WirelessIconEasy();
     *seq =  WIFI_MYSTERYGIFT_CONNECT_WAIT_INET;
     wk->wifi_cancel = FALSE;
     break;
 
   case WIFI_MYSTERYGIFT_CONNECT_WAIT_INET:		// #####
-    // ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Â
+    // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæ¥ç¶šãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤
         DWC_ProcessInet();
-        if(DWC_CheckInet() == FALSE){          // ‚Ü‚¾Ú‘±ˆ—‚ªI—¹‚µ‚Ä‚¢‚È‚¢
+        if(DWC_CheckInet() == FALSE){          // ã¾ã æ¥ç¶šå‡¦ç†ãŒçµ‚äº†ã—ã¦ã„ãªã„
         } else {
-            // Ú‘±ˆ—‚ªI—¹‚µ‚½
+            // æ¥ç¶šå‡¦ç†ãŒçµ‚äº†ã—ãŸ
             if(CheckWifiConnect(wk) == TRUE){
                 MIT_PRINTF("Success.\n");
                 if(wk->wifi_cancel == TRUE){
-                    // ƒ†[ƒU[‚É‚æ‚éƒLƒƒƒ“ƒZƒ‹‚ª“ü‚Á‚Ä‚¢‚½
+                    // ãƒ¦ãƒ¼ã‚¶ãƒ¼ã«ã‚ˆã‚‹ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãŒå…¥ã£ã¦ã„ãŸ
                     wifi_result = ND_RESULT_DOWNLOAD_CANCEL;
                     *seq = WIFI_MYSTERYGIFT_DOWNLOAD_COMPLETE;
                 } else {
@@ -476,7 +476,7 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
                 *seq = WifiMysteryGift_DispError(wk);
             }
         }
-        // ƒ†[ƒU[‚É‚æ‚éƒLƒƒƒ“ƒZƒ‹
+        // ãƒ¦ãƒ¼ã‚¶ãƒ¼ã«ã‚ˆã‚‹ã‚­ãƒ£ãƒ³ã‚»ãƒ«
         if(sys.trg & PAD_BUTTON_CANCEL)
             wk->wifi_cancel = TRUE;
         break;
@@ -490,27 +490,27 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
     break;
 
   case WIFI_MYSTERYGIFT_NASLOGIN_WAIT:
-    // ƒƒOƒCƒ“I—¹‚Ü‚Å‘Ò‚Â
+    // ãƒ­ã‚°ã‚¤ãƒ³çµ‚äº†ã¾ã§å¾…ã¤
     nasloginstate = DWC_NASLoginProcess();
 
     if(nasloginstate == DWC_NASLOGIN_STATE_SUCCESS){
-      *seq = WIFI_MYSTERYGIFT_NDLIB_INIT;			// ƒƒOƒCƒ“¬Œ÷
+      *seq = WIFI_MYSTERYGIFT_NDLIB_INIT;			// ãƒ­ã‚°ã‚¤ãƒ³æˆåŠŸ
         wk->wifi_check_func = DWC_UpdateConnection;
     } else if(nasloginstate == DWC_NASLOGIN_STATE_ERROR){
-        OHNO_PRINT("ƒƒOƒCƒ“¸”s\n");
-        *seq = WifiMysteryGift_DispError(wk);			// ƒƒOƒCƒ“¸”s
+        OHNO_PRINT("ãƒ­ã‚°ã‚¤ãƒ³å¤±æ•—\n");
+        *seq = WifiMysteryGift_DispError(wk);			// ãƒ­ã‚°ã‚¤ãƒ³å¤±æ•—
         DWC_CleanupInet();
     } else if(nasloginstate == DWC_NASLOGIN_STATE_CANCELED){
       wifi_result = ND_RESULT_DOWNLOAD_CANCEL;
-      *seq = WIFI_MYSTERYGIFT_DOWNLOAD_COMPLETE;		// ƒLƒƒƒ“ƒZƒ‹ˆ—
+      *seq = WIFI_MYSTERYGIFT_DOWNLOAD_COMPLETE;		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
     }
-    // ƒ†[ƒU[‚É‚æ‚éƒLƒƒƒ“ƒZƒ‹
+    // ãƒ¦ãƒ¼ã‚¶ãƒ¼ã«ã‚ˆã‚‹ã‚­ãƒ£ãƒ³ã‚»ãƒ«
     if(sys.trg & PAD_BUTTON_CANCEL)
       DWC_NASLoginAbort();
     break;
     
   case WIFI_MYSTERYGIFT_NDLIB_INIT:
-    // Ndƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»
+    // Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–
     if(DWC_NdInitAsync( NdCallback, WIFI_ND_LOGIN_NAME, WIFI_ND_LOGIN_PASSWD ) == FALSE){
       OS_TPrintf( "DWC_NdInitAsync: Failed\n" );
       *seq = WifiMysteryGift_DispError(wk);
@@ -520,12 +520,12 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
     break;
 
   case WIFI_MYSTERYGIFT_SET_ATTR:
-    // ƒLƒƒƒ“ƒZƒ‹ˆ—‚ª“ü‚Á‚Ä‚¢‚ê‚Î”²‚¯‚é
+    // ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†ãŒå…¥ã£ã¦ã„ã‚Œã°æŠœã‘ã‚‹
     if(wk->wifi_cancel == TRUE){
         WaitNdCallBack2(wk, ND_RESULT_DOWNLOAD_CANCEL, seq, WIFI_MYSTERYGIFT_DOWNLOAD_CANCEL,WIFI_MYSTERYGIFT_DOWNLOAD_CANCEL);
       break;
     }
-    // ƒtƒ@ƒCƒ‹‘®«‚Ìİ’è
+    // ãƒ•ã‚¡ã‚¤ãƒ«å±æ€§ã®è¨­å®š
     if(DWC_NdSetAttr(WIFI_FILE_ATTR1, WIFI_FILE_ATTR2, WIFI_FILE_ATTR3) == FALSE){
       OS_TPrintf( "DWC_NdSetAttr: Failed\n." );
       *seq = WifiMysteryGift_DispError(wk);
@@ -535,7 +535,7 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
     break;
     
   case WIFI_MYSTERYGIFT_GET_FILENUM:
-    // ƒT[ƒo[‚É‚¨‚©‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚Ì”‚ğ“¾‚é
+    // ã‚µãƒ¼ãƒãƒ¼ã«ãŠã‹ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’å¾—ã‚‹
     if(DWC_NdGetFileListNumAsync(&wk->server_filenum) == FALSE){
       OS_TPrintf( "DWC_NdGetFileListNumAsync: Failed.\n" );
       *seq = WifiMysteryGift_DispError(wk);
@@ -546,10 +546,10 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
     
   case WIFI_MYSTERYGIFT_GET_FILELIST:
     if(wk->server_filenum != 1){
-      // ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚È‚©‚Á‚½A‚Ü‚½‚Í‘½‚·‚¬‚½ê‡
+      // ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã‹ã£ãŸã€ã¾ãŸã¯å¤šã™ããŸå ´åˆ
         WaitNdCallBack2(wk, ND_RESULT_NOT_FOUND_FILES, seq, WIFI_MYSTERYGIFT_DOWNLOAD_COMPLETE,WIFI_MYSTERYGIFT_DOWNLOAD_COMPLETE);
     } else {
-      // ƒtƒ@ƒCƒ‹‚ª‚P‚Â‚¾‚¯‚ ‚Á‚½
+      // ãƒ•ã‚¡ã‚¤ãƒ«ãŒï¼‘ã¤ã ã‘ã‚ã£ãŸ
       if(DWC_NdGetFileListAsync(fileInfo, 0, FILE_NUM) == FALSE){
 	OS_TPrintf( "DWC_NdGetFileListNumAsync: Failed.\n" );
 	*seq = WifiMysteryGift_DispError(wk);
@@ -560,7 +560,7 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
     break;
 
   case WIFI_MYSTERYGIFT_GET_FILE:
-    // ƒtƒ@ƒCƒ‹“Ç‚İ‚İŠJn
+    // ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿é–‹å§‹
     if(DWC_NdGetFileAsync( &fileInfo[ 0 ], wk->filebuffer, WIFI_MYSTERYFILE_SIZE) == FALSE){
       OS_TPrintf( "DWC_NdGetFileAsync: Failed.\n" );
       *seq = WifiMysteryGift_DispError(wk);
@@ -571,15 +571,15 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
     break;
 
   case WIFI_MYSTERYGIFT_GETTING_FILE:		// #####
-    // ƒtƒ@ƒCƒ‹“Ç‚İ‚İ’†
+    // ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ä¸­
     if(callbackflag1 == FALSE){
-      // ƒtƒ@ƒCƒ‹“Ç‚İ‚İ’†
+      // ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ä¸­
 
       if(sys.trg & PAD_BUTTON_CANCEL){
-	// ƒ_ƒEƒ“ƒ[ƒhƒLƒƒƒ“ƒZƒ‹
+	// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	WaitNdCallBack2(wk, ND_RESULT_DOWNLOAD_CANCEL, seq, WIFI_MYSTERYGIFT_DOWNLOAD_CANCEL,WIFI_MYSTERYGIFT_DOWNLOAD_CANCEL);
       } else {
-	// is“x‚ğ•\¦
+	// é€²è¡Œåº¦ã‚’è¡¨ç¤º
 	if(DWC_NdGetProgress( &wk->recived, &wk->contentlen ) == TRUE){
 	  if(wk->percent != (wk->recived*100)/wk->contentlen){
 	    wk->percent = (wk->recived*100)/wk->contentlen;
@@ -590,10 +590,10 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
 
     } else {
       if(wk->wifi_cancel == FALSE){
-	// ƒtƒ@ƒCƒ‹“Ç‚İ‚İI—¹
+	// ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿çµ‚äº†
 	WaitNdCallBack2(wk, ND_RESULT_COMPLETE, seq, WIFI_MYSTERYGIFT_DOWNLOAD_COMPLETE,WIFI_MYSTERYGIFT_DOWNLOAD_COMPLETE);
       } else {
-	// ƒ_ƒEƒ“ƒ[ƒhƒLƒƒƒ“ƒZƒ‹
+	// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	WaitNdCallBack2(wk, ND_RESULT_DOWNLOAD_CANCEL, seq, WIFI_MYSTERYGIFT_DOWNLOAD_COMPLETE,WIFI_MYSTERYGIFT_DOWNLOAD_COMPLETE);
       }
     }
@@ -604,7 +604,7 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
       *seq = WIFI_MYSTERYGIFT_DOWNLOAD_COMPLETE;
     } else {
       wk->wifi_check_func = NULL;
-      // ƒGƒ‰[ŠÇ——pˆ—‚ÌI—¹
+      // ã‚¨ãƒ©ãƒ¼ç®¡ç†ç”¨å‡¦ç†ã®çµ‚äº†
         _commEnd();
 
       MIT_PRINTF("download cancel\n");
@@ -616,7 +616,7 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
     MIT_PRINTF("inet disabling...\n");
     if(DWC_CleanupInetAsync() == TRUE){
       wk->wifi_check_func = NULL;
-      // ƒGƒ‰[ŠÇ——pˆ—‚ÌI—¹
+      // ã‚¨ãƒ©ãƒ¼ç®¡ç†ç”¨å‡¦ç†ã®çµ‚äº†
         _commEnd();
 
       MIT_PRINTF("Internet close complete\n");
@@ -646,7 +646,7 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
 
       wk->wifi_check_func = NULL;
       DWC_ClearError();
-      // ƒGƒ‰[ŠÇ——pˆ—‚ÌI—¹
+      // ã‚¨ãƒ©ãƒ¼ç®¡ç†ç”¨å‡¦ç†ã®çµ‚äº†
         _commEnd();
         MIT_PRINTF("dounload error\n");
       return ND_RESULT_DOWNLOAD_ERROR;
@@ -655,7 +655,7 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
     
 
   case WIFI_MYSTERYGIFT_WAIT_CALLBACK1:		// #####
-    // ƒR[ƒ‹ƒoƒbƒNˆ—‚ğ‘Ò‚Â
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†ã‚’å¾…ã¤
     if(callbackflag1 == TRUE){
         callbackflag1 = FALSE;
         if(callback1_result!=DWC_ND_ERROR_NONE){
@@ -665,18 +665,18 @@ int WifiMysteryGift_Main(PROC *proc, int *seq)
         *seq = wk->wifi_next_seq;
     }
     } else if(sys.trg & PAD_BUTTON_CANCEL){
-      OS_TPrintf("ƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚µ‚½ 3 \n");
+      OS_TPrintf("ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¾ã—ãŸ 3 \n");
       wk->wifi_cancel = TRUE;
     }
     break;
 
   case WIFI_MYSTERYGIFT_WAIT_CALLBACK2:
-    // ƒR[ƒ‹ƒoƒbƒNˆ—‚ğ‘Ò‚Â
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†ã‚’å¾…ã¤
     if(callbackflag2 == TRUE){
       callbackflag2 = FALSE;
       *seq = wk->wifi_next_seq;
     } else if(sys.trg & PAD_BUTTON_CANCEL){
-      OS_TPrintf("ƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚µ‚½ 3 \n");
+      OS_TPrintf("ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¾ã—ãŸ 3 \n");
       wk->wifi_cancel = TRUE;
     }
     break;

@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_c09gym0101evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c09gym0101_flag_change
 _EVENT_DATA		ev_c09gym0101_leader
@@ -26,50 +26,50 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_c09gym0101_flag_change:
-	//_“a‘OƒCƒxƒ“ƒg‚ªI—¹‚µ‚Ä‚¢‚½‚ç
+	//ç¥žæ®¿å‰ã‚¤ãƒ™ãƒ³ãƒˆãŒçµ‚äº†ã—ã¦ã„ãŸã‚‰
 	_IF_FLAGON_JUMP	FE_C09_GYMLEADER_DEL,ev_c09gym0101_flag_change_gymleader
 	_END
 
-//_“a‘OƒCƒxƒ“ƒg‚ªI—¹‚µ‚Ä‚¢‚½‚ç
+//ç¥žæ®¿å‰ã‚¤ãƒ™ãƒ³ãƒˆãŒçµ‚äº†ã—ã¦ã„ãŸã‚‰
 ev_c09gym0101_flag_change_gymleader:
 	_FLAG_SET		FV_C09_GYMLEADER
 	_END
 
 
 /********************************************************************/
-/*							ƒWƒ€ƒŠ[ƒ_[							*/
+/*							ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼							*/
 /********************************************************************/
 ev_c09gym0101_leader:
 	_TALK_OBJ_START
 
-	//ƒNƒƒKƒlƒoƒbƒ`Žæ“¾Ï‚Ý
+	//ã‚¯ãƒ­ã‚¬ãƒãƒãƒƒãƒå–å¾—æ¸ˆã¿
 	_SYS_FLAG_BADGE_GET	BADGE_ID_C09,SCWK_ANSWER
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,1,ev_c09gym0101_leader_badge_get
 
-	/*–`Œ¯ƒm[ƒgƒf[ƒ^ì¬*/
+	/*å†’é™ºãƒŽãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ*/
 	_FNOTE_DATA_MAKE	FNOTE_ID_GYMBEFORE,ZONE_ID_C09GYM0101,0,0,0
 
-	//‚æ‚¤‚±‚»I@ƒ|ƒPƒ‚ƒ“ƒWƒ€‚Ö¥
+	//ã‚ˆã†ã“ãï¼ã€€ãƒã‚±ãƒ¢ãƒ³ã‚¸ãƒ ã¸â–¼
 	_TALK_KEYWAIT	msg_c09gym0101_leader_01
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	LEADER6_01,0
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_c09gym0101_common_battle_lose
 
-	//‚±‚Ì@ƒoƒbƒW‚ð@‚«‚Ý‚É@‚í‚½‚»‚¤I
+	//ã“ã®ã€€ãƒãƒƒã‚¸ã‚’ã€€ãã¿ã«ã€€ã‚ãŸãã†ï¼
 	_TALK_KEYWAIT	msg_c09gym0101_leader_02
 
-	//(ƒƒbƒZ[ƒW‚ð•ª‚¯‚È‚¢‚ÆME‚ð–Â‚ç‚·ƒ^ƒCƒ~ƒ“ƒO‚ª‚¨‚©‚µ‚¢‚©‚àH)
+	//(ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’åˆ†ã‘ãªã„ã¨MEã‚’é³´ã‚‰ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒãŠã‹ã—ã„ã‹ã‚‚ï¼Ÿ)
 
-	//ƒWƒ€ƒoƒbƒW‚ð@‚à‚ç‚Á‚½I
+	//ã‚¸ãƒ ãƒãƒƒã‚¸ã‚’ã€€ã‚‚ã‚‰ã£ãŸï¼
 	_PLAYER_NAME	0
 	_TALKMSG		msg_c09gym0101_leader_03
 	_ME_PLAY		SEQ_BADGE
 	_ME_WAIT
 
-	//ƒoƒbƒW‚ð–á‚Á‚½ó‘Ô‚Ö
+	//ãƒãƒƒã‚¸ã‚’è²°ã£ãŸçŠ¶æ…‹ã¸
 	_SYS_FLAG_BADGE_SET	BADGE_ID_C09
 	_ADD_SCORE		SCORE_ID_GYM_LEADER_WIN
 	_TRAINER_FLAG_SET	COLDELITEM_06
@@ -79,10 +79,10 @@ ev_c09gym0101_leader:
 	_TRAINER_FLAG_SET	COLDELITEW_07
 	_TRAINER_FLAG_SET	COLDELITEW_09
 
-	/*–`Œ¯ƒm[ƒgƒf[ƒ^ì¬*/
+	/*å†’é™ºãƒŽãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ*/
 	_FNOTE_DATA_MAKE	FNOTE_ID_GYMAFTER,ZONE_ID_C09GYM0101,LEADER6_01,0,0
 
-	/*ƒgƒoƒŠ‚ÌƒMƒ“ƒK’c‚ðÁ‚·*/
+	/*ãƒˆãƒãƒªã®ã‚®ãƒ³ã‚¬å›£ã‚’æ¶ˆã™*/
 	_FLAG_SET		FV_C07_GINGAM
 
 	_TALK_KEYWAIT	msg_c09gym0101_leader_04
@@ -90,21 +90,21 @@ ev_c09gym0101_leader:
 	_JUMP			ev_c09gym0101_leader_item_get
 
 //--------------------------------------------------------------------
-//‹Zƒ}ƒVƒ““üŽè
+//æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹
 //
-//	SCWK_TEMP0	ƒAƒCƒeƒ€ƒiƒ“ƒo[
-//	SCWK_TEMP1	ŒÂ”
+//	SCWK_TEMP0	ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+//	SCWK_TEMP1	å€‹æ•°
 //--------------------------------------------------------------------
 ev_c09gym0101_leader_item_get:
 	_LDVAL			SCWK_TEMP0,ITEM_WAZAMASIN72
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€“üŽèo—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c09gym0101_leader_item_get_fail	//Ž¸”s
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c09gym0101_leader_item_get_fail	//å¤±æ•—
 
-	//ƒAƒCƒeƒ€“üŽè¬Œ÷
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹æˆåŠŸ
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
 	_FLAG_SET		FE_C09_GYM_ITEM_GET
 
@@ -117,7 +117,7 @@ ev_c09gym0101_leader_item_get:
 	_END
 
 //--------------------------------------------------------------------
-//“üŽèŽ¸”s
+//å…¥æ‰‹å¤±æ•—
 //--------------------------------------------------------------------
 ev_c09gym0101_leader_item_get_fail:
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
@@ -126,11 +126,11 @@ ev_c09gym0101_leader_item_get_fail:
 	_END
 
 //--------------------------------------------------------------------
-//ƒoƒbƒWƒQƒbƒgÏ‚Ý
+//ãƒãƒƒã‚¸ã‚²ãƒƒãƒˆæ¸ˆã¿
 //--------------------------------------------------------------------
 ev_c09gym0101_leader_badge_get:
 
-	//‹Zƒ}ƒVƒ““üŽè‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç
+	//æŠ€ãƒžã‚·ãƒ³å…¥æ‰‹ã—ã¦ã„ãªã‹ã£ãŸã‚‰
 	_IF_FLAGOFF_JUMP	FE_C09_GYM_ITEM_GET,ev_c09gym0101_leader_item_get
 
 	_TALKMSG		msg_c09gym0101_leader_06
@@ -141,7 +141,7 @@ ev_c09gym0101_leader_badge_get:
 
 
 /********************************************************************/
-/*							‹¤’Ê”s–kˆ—							*/
+/*							å…±é€šæ•—åŒ—å‡¦ç†							*/
 /********************************************************************/
 ev_c09gym0101_common_battle_lose:
 	_TRAINER_LOSE
@@ -150,16 +150,16 @@ ev_c09gym0101_common_battle_lose:
 
 
 /********************************************************************/
-/*							ƒAƒhƒoƒCƒX								*/
+/*							ã‚¢ãƒ‰ãƒã‚¤ã‚¹								*/
 /********************************************************************/
 ev_c09gym0101_advice:
 	_TALK_OBJ_START
 
-	//ƒoƒbƒ`Žæ“¾Ï‚Ý
+	//ãƒãƒƒãƒå–å¾—æ¸ˆã¿
 	_SYS_FLAG_BADGE_GET	BADGE_ID_C09,SCWK_ANSWER
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,1,ev_c09gym0101_advice_02
 
-	//ƒNƒŠƒA‘O
+	//ã‚¯ãƒªã‚¢å‰
 	_TALKMSG		msg_c09gym0101_sunglaases_01
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -167,7 +167,7 @@ ev_c09gym0101_advice:
 	_END
 
 ev_c09gym0101_advice_02:
-	//ƒNƒŠƒAŒã
+	//ã‚¯ãƒªã‚¢å¾Œ
 	_PLAYER_NAME	0
 	_TALKMSG		msg_c09gym0101_sunglaases_02
 	_LAST_KEYWAIT
@@ -177,16 +177,16 @@ ev_c09gym0101_advice_02:
 
 
 /********************************************************************/
-/*							ŠÅ”Â									*/
+/*							çœ‹æ¿									*/
 /********************************************************************/
 ev_c09gym0101_statue:
 	_TALK_START
 
-	//ƒoƒbƒ`Žæ“¾Ï‚Ý
+	//ãƒãƒƒãƒå–å¾—æ¸ˆã¿
 	_SYS_FLAG_BADGE_GET	BADGE_ID_C09,SCWK_ANSWER
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,1,ev_c09gym0101_statue_02
 
-	//ŠÅ”Â@ƒNƒŠƒA‘O
+	//çœ‹æ¿ã€€ã‚¯ãƒªã‚¢å‰
 	_RIVAL_NAME		0
 	_RIVAL_NAME		1
 	_TALKMSG		msg_c09gym0101_statue_01
@@ -195,7 +195,7 @@ ev_c09gym0101_statue:
 	_TALK_END
 	_END
 
-//ŠÅ”Â@ƒNƒŠƒAŒã
+//çœ‹æ¿ã€€ã‚¯ãƒªã‚¢å¾Œ
 ev_c09gym0101_statue_02:
 	_RIVAL_NAME		0
 	_PLAYER_NAME	1

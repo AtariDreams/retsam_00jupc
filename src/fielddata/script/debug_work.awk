@@ -1,4 +1,4 @@
-#savework.h -> テーブルへ　by tomo 060527
+#savework.h -> 繝�繝ｼ繝悶Ν縺ｸ縲by tomo 060527
 
 BEGIN{
 	printf("typedef struct{\n");

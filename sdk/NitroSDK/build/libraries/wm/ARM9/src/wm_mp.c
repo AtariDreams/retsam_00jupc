@@ -12,13 +12,13 @@
 
   $Log: wm_mp.c,v $
   Revision 1.26  2007/11/12 09:49:57  seiki_masashi
-  q‹@‘—M—e—Ê‚Ì•ÏX‚ÉŠÖ‚·‚é§ŒÀ‚ğŠÉ˜a
+  å­æ©Ÿé€ä¿¡å®¹é‡ã®å¤‰æ›´ã«é–¢ã™ã‚‹åˆ¶é™ã‚’ç·©å’Œ
 
   Revision 1.25  2007/05/10 01:01:29  yasu
-  ’˜ì”N“xC³
+  è‘—ä½œå¹´åº¦ä¿®æ­£
 
   Revision 1.24  2007/05/02 08:44:06  seiki_masashi
-  WM_StartMPEx ŠÖ”‚Å‚Ì’Ç‰Áİ’èƒpƒ‰ƒ[ƒ^‚Ì‰e‹¿‚ªˆê“I‚É‚È‚é‚æ‚¤•ÏX
+  WM_StartMPEx é–¢æ•°ã§ã®è¿½åŠ è¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å½±éŸ¿ãŒä¸€æ™‚çš„ã«ãªã‚‹ã‚ˆã†å¤‰æ›´
 
   Revision 1.23  2006/07/06 11:20:52  okubata_ryoma
   undo
@@ -27,65 +27,65 @@
   do-indent
 
   Revision 1.19  2005/12/09 11:09:42  seiki_masashi
-  ignoreSizePrecheckMode ‚Ì”»’è‚ğC³
+  ignoreSizePrecheckMode ã®åˆ¤å®šã‚’ä¿®æ­£
 
   Revision 1.18  2005/12/01 13:58:14  seiki_masashi
-  ignoreSizePrecheckMode ‚Ì’Ç‰Á
-  maxFrequency ‚Ì’Ç‰Á
-  ‘—óMƒTƒCƒYŠÖ˜A‚Ìˆ—‚Ì®—
+  ignoreSizePrecheckMode ã®è¿½åŠ 
+  maxFrequency ã®è¿½åŠ 
+  é€å—ä¿¡ã‚µã‚¤ã‚ºé–¢é€£ã®å‡¦ç†ã®æ•´ç†
 
   Revision 1.17  2005/11/25 00:45:19  seiki_masashi
-  mask ‚ğ WMMPParam \‘¢‘Ì“à‚ÉˆÚ“®
+  mask ã‚’ WMMPParam æ§‹é€ ä½“å†…ã«ç§»å‹•
 
   Revision 1.16  2005/11/24 03:05:00  seiki_masashi
-  WM_SetMPParameter ŠÖ”‚ÆŠÖ˜A‚·‚éŠÖ”‚ğ’Ç‰Á
-  WM_StartMP(Ex) ŠÖ”‚ğ WMMPParam \‘¢‘Ì‚ğg—p‚·‚é‚æ‚¤‚É•ÏX
+  WM_SetMPParameter é–¢æ•°ã¨é–¢é€£ã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
+  WM_StartMP(Ex) é–¢æ•°ã‚’ WMMPParam æ§‹é€ ä½“ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.15  2005/11/22 09:02:06  seiki_masashi
-  MATH_CountPopulation ŠÖ”‚ğ—˜—p‚·‚é‚æ‚¤‚É•ÏX
+  MATH_CountPopulation é–¢æ•°ã‚’åˆ©ç”¨ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.14  2005/04/11 02:06:54  seiki_masashi
   small fix
 
   Revision 1.13  2005/04/11 01:25:25  seiki_masashi
-  WM_StartMP ‚Éq‹@‚Ì‚Æ‚«‚¾‚¯È“d—Íƒ‚[ƒh‚ÌŠm”F‚ğ‚·‚é‚æ‚¤‚É•ÏX
+  WM_StartMP æ™‚ã«å­æ©Ÿã®ã¨ãã ã‘çœé›»åŠ›ãƒ¢ãƒ¼ãƒ‰ã®ç¢ºèªã‚’ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.12  2005/03/08 06:45:26  terui
-  ƒpƒ[ƒZ[ƒuƒ‚[ƒh‚Å‚È‚¢‚ÆMPŠJn‚ğ§ŒÀ‚·‚éƒ`ƒFƒbƒN‚ğ’Ç‰ÁB
+  ãƒ‘ãƒ¯ãƒ¼ã‚»ãƒ¼ãƒ–ãƒ¢ãƒ¼ãƒ‰ã§ãªã„ã¨MPé–‹å§‹ã‚’åˆ¶é™ã™ã‚‹ãƒã‚§ãƒƒã‚¯ã‚’è¿½åŠ ã€‚
 
   Revision 1.11  2005/02/28 05:26:35  yosizaki
   do-indent.
 
   Revision 1.10  2005/02/14 06:40:04  terui
-  minPollBmpMode‚Ìó‘Ô‚É‚æ‚èAƒf[ƒ^“]‘—Š—vŠÔ‚ğƒ`ƒFƒbƒN‚·‚éƒ^ƒCƒ~ƒ“ƒO‚ğ•ÏXB
+  minPollBmpModeã®çŠ¶æ…‹ã«ã‚ˆã‚Šã€ãƒ‡ãƒ¼ã‚¿è»¢é€æ‰€è¦æ™‚é–“ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’å¤‰æ›´ã€‚
 
   Revision 1.9  2005/01/11 07:46:10  takano_makoto
   fix copyright header.
 
   Revision 1.8  2005/01/06 02:04:44  seiki_masashi
-  WM_StartMP, WM_SetMPData, WM_SetMPDataToPort ‚Ì inline ‰»
-  áŠ±‚ÌƒR[ƒh‚ÌÅ“K‰»
+  WM_StartMP, WM_SetMPData, WM_SetMPDataToPort ã® inline åŒ–
+  è‹¥å¹²ã®ã‚³ãƒ¼ãƒ‰ã®æœ€é©åŒ–
 
   Revision 1.7  2004/11/29 04:55:35  seiki_masashi
   fix typo
 
   Revision 1.6  2004/11/29 04:40:57  seiki_masashi
-  SetMPDataToPort ‚Ì sendData ‚ª StartMP ‚Ì sendBuf ‚Æ“™‚µ‚¢ê‡‚ÍƒGƒ‰[‚É
+  SetMPDataToPort ã® sendData ãŒ StartMP ã® sendBuf ã¨ç­‰ã—ã„å ´åˆã¯ã‚¨ãƒ©ãƒ¼ã«
 
   Revision 1.5  2004/10/22 04:37:28  terui
-  WMErrCode‚Æ‚µ‚ÄintŒ^‚ğ•Ô‚µ‚Ä‚¢‚½ŠÖ”‚É‚Â‚¢‚ÄAWMErrCode—ñ‹“Œ^‚ğ•Ô‚·‚æ‚¤‚É•ÏXB
+  WMErrCodeã¨ã—ã¦intå‹ã‚’è¿”ã—ã¦ã„ãŸé–¢æ•°ã«ã¤ã„ã¦ã€WMErrCodeåˆ—æŒ™å‹ã‚’è¿”ã™ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.4  2004/10/05 09:25:45  seiki_masashi
-  WM_SetMPData* ‚Ìˆø”ƒ`ƒFƒbƒNƒR[ƒh‚ğ’Ç‰Á
+  WM_SetMPData* ã®å¼•æ•°ãƒã‚§ãƒƒã‚¯ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ 
 
   Revision 1.3  2004/10/03 07:49:37  ooe
-  ipl_branch‚Æƒ}[ƒWB ignoreFatalErrorƒtƒ‰ƒO‚É‘Î‰B
+  ipl_branchã¨ãƒãƒ¼ã‚¸ã€‚ ignoreFatalErrorãƒ•ãƒ©ã‚°ã«å¯¾å¿œã€‚
 
   Revision 1.2  2004/09/13 04:10:20  seiki_masashi
-  WM_SetMPFrequency ‚Ì’Ç‰Á
+  WM_SetMPFrequency ã®è¿½åŠ 
 
   Revision 1.1  2004/09/10 11:03:30  terui
-  wm.c‚Ì•ªŠ„‚É”º‚¢AV‹KuploadB
+  wm.cã®åˆ†å‰²ã«ä¼´ã„ã€æ–°è¦uploadã€‚
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -95,32 +95,32 @@
 
 
 /*---------------------------------------------------------------------------*
-    “à•”ŠÖ”’è‹`
+    å†…éƒ¨é–¢æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
-    ŠÖ”’è‹`
+    é–¢æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
   Name:         WMi_StartMP
 
-  Description:  MP’ÊM‚ğŠJn‚·‚éBe‹@Eq‹@‹¤’ÊŠÖ”B
+  Description:  MPé€šä¿¡ã‚’é–‹å§‹ã™ã‚‹ã€‚è¦ªæ©Ÿãƒ»å­æ©Ÿå…±é€šé–¢æ•°ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                recvBuf     -   óMƒf[ƒ^Ši”[ƒoƒbƒtƒ@B
-                                ARM7‚ª’¼Úƒf[ƒ^‚ğ‘‚«o‚·‚Ì‚ÅAƒLƒƒƒbƒVƒ…‚É’ˆÓB
-                recvBufSize -   óMƒf[ƒ^Ši”[ƒoƒbƒtƒ@‚ÌƒTƒCƒYB
-                                WM_GetReceiveBufferSize() ‚Ì•Ô‚è’l‚æ‚è‚à‘å‚«‚¢•K—v‚ª‚ ‚éB
-                sendBuf     -   ‘—Mƒf[ƒ^Ši”[ƒoƒbƒtƒ@B
-                                ARM7‚ª’¼Úƒf[ƒ^‚ğ‘‚«o‚·‚Ì‚ÅAƒLƒƒƒbƒVƒ…‚É’ˆÓB
-                sendBufSize -   ‘—Mƒf[ƒ^Ši”[ƒoƒbƒtƒ@‚ÌƒTƒCƒYB
-                                WM_GetSendBufferSize() ‚Ì•Ô‚è’l‚æ‚è‚à‘å‚«‚¢•K—v‚ª‚ ‚éB
-                tmpParam    -   MP ‚ÌŠJn‘O‚Éİ’è‚·‚é MP ’ÊM‚Ìˆêƒpƒ‰ƒ[ƒ^‚Ì\‘¢‘ÌB
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                recvBuf     -   å—ä¿¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã€‚
+                                ARM7ãŒç›´æ¥ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™ã®ã§ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«æ³¨æ„ã€‚
+                recvBufSize -   å—ä¿¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
+                                WM_GetReceiveBufferSize() ã®è¿”ã‚Šå€¤ã‚ˆã‚Šã‚‚å¤§ãã„å¿…è¦ãŒã‚ã‚‹ã€‚
+                sendBuf     -   é€ä¿¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã€‚
+                                ARM7ãŒç›´æ¥ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™ã®ã§ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«æ³¨æ„ã€‚
+                sendBufSize -   é€ä¿¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
+                                WM_GetSendBufferSize() ã®è¿”ã‚Šå€¤ã‚ˆã‚Šã‚‚å¤§ãã„å¿…è¦ãŒã‚ã‚‹ã€‚
+                tmpParam    -   MP ã®é–‹å§‹å‰ã«è¨­å®šã™ã‚‹ MP é€šä¿¡ã®ä¸€æ™‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WMi_StartMP(WMCallbackFunc callback,
                       u16 *recvBuf,
@@ -130,11 +130,11 @@ WMErrCode WMi_StartMP(WMCallbackFunc callback,
     WMArm9Buf *p = WMi_GetSystemWork();
     WMStatus *status = p->status;
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     result = WMi_CheckStateEx(2, WM_STATE_PARENT, WM_STATE_CHILD);
     WM_CHECK_RESULT(result);
 
-    // q‹@‚Å‚Íƒpƒ[ƒZ[ƒuƒ‚[ƒh‚Å‚È‚¢ê‡‚Í MPŠJn‹Ö~
+    // å­æ©Ÿã§ã¯ãƒ‘ãƒ¯ãƒ¼ã‚»ãƒ¼ãƒ–ãƒ¢ãƒ¼ãƒ‰ã§ãªã„å ´åˆã¯ MPé–‹å§‹ç¦æ­¢
     DC_InvalidateRange(&(status->aid), 2);
     DC_InvalidateRange(&(status->pwrMgtMode), 2);
     if (status->aid != 0 && status->pwrMgtMode != 1)
@@ -143,33 +143,33 @@ WMErrCode WMi_StartMP(WMCallbackFunc callback,
         return WM_ERRCODE_ILLEGAL_STATE;
     }
 
-    // MPó‘ÔŠm”F
-    DC_InvalidateRange(&(status->mp_flag), 4);  // ARM7ƒXƒe[ƒ^ƒX—Ìˆæ‚ÌƒLƒƒƒbƒVƒ…‚ğ–³Œø‰»
+    // MPçŠ¶æ…‹ç¢ºèª
+    DC_InvalidateRange(&(status->mp_flag), 4);  // ARM7ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é ˜åŸŸã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ç„¡åŠ¹åŒ–
     if (status->mp_flag == TRUE)
     {
         WM_WARNING("Already started MP protocol. So can't execute request.\n");
         return WM_ERRCODE_ILLEGAL_STATE;
     }
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
-    if ((recvBufSize & 0x3f) != 0)     // recvBufSize/2 ‚ª 32Byte ‚Ì”{”
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
+    if ((recvBufSize & 0x3f) != 0)     // recvBufSize/2 ãŒ 32Byte ã®å€æ•°
     {
         WM_WARNING("Parameter \"recvBufSize\" is not a multiple of 64.\n");
         return WM_ERRCODE_INVALID_PARAM;
     }
-    if ((sendBufSize & 0x1f) != 0)     // sendBufSize ‚ª 32Byte ‚Ì”{”
+    if ((sendBufSize & 0x1f) != 0)     // sendBufSize ãŒ 32Byte ã®å€æ•°
     {
         WM_WARNING("Parameter \"sendBufSize\" is not a multiple of 32.\n");
         return WM_ERRCODE_INVALID_PARAM;
     }
     if ((u32)recvBuf & 0x01f)
     {
-        // ƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN‚ÍŒx‚Ì‚İ‚ÅƒGƒ‰[‚É‚Í‚µ‚È‚¢
+        // ã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯ã¯è­¦å‘Šã®ã¿ã§ã‚¨ãƒ©ãƒ¼ã«ã¯ã—ãªã„
         WM_WARNING("Parameter \"recvBuf\" is not 32-byte aligned.\n");
     }
     if ((u32)sendBuf & 0x01f)
     {
-        // ƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN‚ÍŒx‚Ì‚İ‚ÅƒGƒ‰[‚É‚Í‚µ‚È‚¢
+        // ã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯ã¯è­¦å‘Šã®ã¿ã§ã‚¨ãƒ©ãƒ¼ã«ã¯ã—ãªã„
         WM_WARNING("Parameter \"sendBuf\" is not 32-byte aligned.\n");
     }
 
@@ -177,7 +177,7 @@ WMErrCode WMi_StartMP(WMCallbackFunc callback,
                        sizeof(status->mp_ignoreSizePrecheckMode));
     if (status->mp_ignoreSizePrecheckMode == FALSE)
     {
-        // ‘—óMƒTƒCƒY‚Ì–‘Oƒ`ƒFƒbƒN‚ğs‚¤
+        // é€å—ä¿¡ã‚µã‚¤ã‚ºã®äº‹å‰ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
         if (recvBufSize < WM_GetMPReceiveBufferSize())
         {
             WM_WARNING("Parameter \"recvBufSize\" is not enough size.\n");
@@ -189,7 +189,7 @@ WMErrCode WMi_StartMP(WMCallbackFunc callback,
             return WM_ERRCODE_INVALID_PARAM;
         }
 #ifndef SDK_FINALROM
-        // ƒf[ƒ^“]‘—Š—vŠÔ‚ğŠm”F
+        // ãƒ‡ãƒ¼ã‚¿è»¢é€æ‰€è¦æ™‚é–“ã‚’ç¢ºèª
         DC_InvalidateRange(&(status->state), 2);
         if (status->state == WM_STATE_PARENT)
         {
@@ -201,10 +201,10 @@ WMErrCode WMi_StartMP(WMCallbackFunc callback,
 #endif
     }
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_START_MP, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     {
         WMStartMPReq Req;
 
@@ -212,7 +212,7 @@ WMErrCode WMi_StartMP(WMCallbackFunc callback,
 
         Req.apiid = WM_APIID_START_MP;
         Req.recvBuf = (u32 *)recvBuf;
-        Req.recvBufSize = (u32)(recvBufSize / 2);       // ƒoƒbƒtƒ@‚P‚Â•ª‚ÌƒTƒCƒY
+        Req.recvBufSize = (u32)(recvBufSize / 2);       // ãƒãƒƒãƒ•ã‚¡ï¼‘ã¤åˆ†ã®ã‚µã‚¤ã‚º
         Req.sendBuf = (u32 *)sendBuf;
         Req.sendBufSize = (u32)sendBufSize;
 
@@ -229,33 +229,33 @@ WMErrCode WMi_StartMP(WMCallbackFunc callback,
 /*---------------------------------------------------------------------------*
   Name:         WM_StartMPEx
 
-  Description:  MP’ÊM‚ğŠJn‚·‚éBÚ×‚È“®ìƒ‚[ƒh‚ªw’è‰Â”\Be‹@Eq‹@‹¤’ÊŠÖ”B
+  Description:  MPé€šä¿¡ã‚’é–‹å§‹ã™ã‚‹ã€‚è©³ç´°ãªå‹•ä½œãƒ¢ãƒ¼ãƒ‰ãŒæŒ‡å®šå¯èƒ½ã€‚è¦ªæ©Ÿãƒ»å­æ©Ÿå…±é€šé–¢æ•°ã€‚
 
-  Arguments:    callback        -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                recvBuf         -   óMƒf[ƒ^Ši”[ƒoƒbƒtƒ@B
-                                    ARM7‚ª’¼Úƒf[ƒ^‚ğ‘‚«o‚·‚Ì‚ÅAƒLƒƒƒbƒVƒ…‚É’ˆÓB
-                recvBufSize     -   óMƒf[ƒ^Ši”[ƒoƒbƒtƒ@‚ÌƒTƒCƒYB
-                                    WM_GetReceiveBufferSize() ‚Ì•Ô‚è’l‚æ‚è‚à‘å‚«‚¢•K—v‚ª‚ ‚éB
-                sendBuf         -   ‘—Mƒf[ƒ^Ši”[ƒoƒbƒtƒ@B
-                                    ARM7‚ª’¼Úƒf[ƒ^‚ğ‘‚«o‚·‚Ì‚ÅAƒLƒƒƒbƒVƒ…‚É’ˆÓB
-                sendBufSize     -   ‘—Mƒf[ƒ^Ši”[ƒoƒbƒtƒ@‚ÌƒTƒCƒYB
-                                    WM_GetSendBufferSize() ‚Ì•Ô‚è’l‚æ‚è‚à‘å‚«‚¢•K—v‚ª‚ ‚éB
-                mpFreq          -   1ƒtƒŒ[ƒ€‚É‰½‰ñ MP ’ÊM‚ğ‚·‚é‚©B
-                                    0 ‚Å˜A‘±‘—Mƒ‚[ƒhBe‹@‚Ì‚İˆÓ–¡‚ğ‚ÂB
-                defaultRetryCount - 0`7”Ôƒ|[ƒg‚Ì’ÊM‚ÌÛ‚ÉA‘—M‚É¸”s‚µ‚½ê‡‚É
-                                    ƒŠƒgƒ‰ƒC‚ğs‚¤•W€‚Ì‰ñ”B0 ‚ÅƒŠƒgƒ‰ƒC‚ğs‚í‚È‚¢B
-                minPollBmpMode  -   MP ’ÊM‚Ì pollBitmap ‚ğ‘—M‚·‚é packet ‚Ìˆ¶æ‚É‰‚¶‚Ä
-                                    Å’áŒÀ‚ÌW‡‚É—}‚¦‚é“®ìƒ‚[ƒhB
-                singlePacketMode -  1 ‰ñ‚Ì MP ‚É‚Â‚¢‚Äˆê‚Â‚Ì packet ‚µ‚©‘—‚ç‚È‚­‚È‚é
-                                    “Áê‚È“®ìƒ‚[ƒhB
-                fixFreqMode     -   ƒŠƒgƒ‰ƒC‚É‚æ‚é MP ’ÊM‚Ì‘‰Á‚ğ‹Ö~‚·‚é“Áê‚È“®ìƒ‚[ƒhB
-                                    1ƒtƒŒ[ƒ€’†‚Ì MP ’ÊM‚Ì‰ñ”‚ğ‚¿‚å‚¤‚Ç mpFreq ‰ñ‚ÉŒÅ’èB
+  Arguments:    callback        -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                recvBuf         -   å—ä¿¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã€‚
+                                    ARM7ãŒç›´æ¥ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™ã®ã§ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«æ³¨æ„ã€‚
+                recvBufSize     -   å—ä¿¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
+                                    WM_GetReceiveBufferSize() ã®è¿”ã‚Šå€¤ã‚ˆã‚Šã‚‚å¤§ãã„å¿…è¦ãŒã‚ã‚‹ã€‚
+                sendBuf         -   é€ä¿¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã€‚
+                                    ARM7ãŒç›´æ¥ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™ã®ã§ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«æ³¨æ„ã€‚
+                sendBufSize     -   é€ä¿¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
+                                    WM_GetSendBufferSize() ã®è¿”ã‚Šå€¤ã‚ˆã‚Šã‚‚å¤§ãã„å¿…è¦ãŒã‚ã‚‹ã€‚
+                mpFreq          -   1ãƒ•ãƒ¬ãƒ¼ãƒ ã«ä½•å› MP é€šä¿¡ã‚’ã™ã‚‹ã‹ã€‚
+                                    0 ã§é€£ç¶šé€ä¿¡ãƒ¢ãƒ¼ãƒ‰ã€‚è¦ªæ©Ÿã®ã¿æ„å‘³ã‚’æŒã¤ã€‚
+                defaultRetryCount - 0ã€œ7ç•ªãƒãƒ¼ãƒˆã®é€šä¿¡ã®éš›ã«ã€é€ä¿¡ã«å¤±æ•—ã—ãŸå ´åˆã«
+                                    ãƒªãƒˆãƒ©ã‚¤ã‚’è¡Œã†æ¨™æº–ã®å›æ•°ã€‚0 ã§ãƒªãƒˆãƒ©ã‚¤ã‚’è¡Œã‚ãªã„ã€‚
+                minPollBmpMode  -   MP é€šä¿¡æ™‚ã® pollBitmap ã‚’é€ä¿¡ã™ã‚‹ packet ã®å®›å…ˆã«å¿œã˜ã¦
+                                    æœ€ä½é™ã®é›†åˆã«æŠ‘ãˆã‚‹å‹•ä½œãƒ¢ãƒ¼ãƒ‰ã€‚
+                singlePacketMode -  1 å›ã® MP ã«ã¤ã„ã¦ä¸€ã¤ã® packet ã—ã‹é€ã‚‰ãªããªã‚‹
+                                    ç‰¹æ®Šãªå‹•ä½œãƒ¢ãƒ¼ãƒ‰ã€‚
+                fixFreqMode     -   ãƒªãƒˆãƒ©ã‚¤ã«ã‚ˆã‚‹ MP é€šä¿¡ã®å¢—åŠ ã‚’ç¦æ­¢ã™ã‚‹ç‰¹æ®Šãªå‹•ä½œãƒ¢ãƒ¼ãƒ‰ã€‚
+                                    1ãƒ•ãƒ¬ãƒ¼ãƒ ä¸­ã® MP é€šä¿¡ã®å›æ•°ã‚’ã¡ã‚‡ã†ã© mpFreq å›ã«å›ºå®šã€‚
 
-                ignoreFatalError -  FatalError”­¶‚ÉAutoDisconnect‚ğs‚È‚í‚È‚­‚È‚éB
+                ignoreFatalError -  FatalErrorç™ºç”Ÿæ™‚ã«AutoDisconnectã‚’è¡Œãªã‚ãªããªã‚‹ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode
 WM_StartMPEx(WMCallbackFunc callback,
@@ -293,23 +293,23 @@ WM_StartMPEx(WMCallbackFunc callback,
 /*---------------------------------------------------------------------------*
   Name:         WM_StartMP
 
-  Description:  MP’ÊM‚ğŠJn‚·‚éBe‹@Eq‹@‹¤’ÊŠÖ”B
+  Description:  MPé€šä¿¡ã‚’é–‹å§‹ã™ã‚‹ã€‚è¦ªæ©Ÿãƒ»å­æ©Ÿå…±é€šé–¢æ•°ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                recvBuf     -   óMƒf[ƒ^Ši”[ƒoƒbƒtƒ@B
-                                ARM7‚ª’¼Úƒf[ƒ^‚ğ‘‚«o‚·‚Ì‚ÅAƒLƒƒƒbƒVƒ…‚É’ˆÓB
-                recvBufSize -   óMƒf[ƒ^Ši”[ƒoƒbƒtƒ@‚ÌƒTƒCƒYB
-                                WM_GetReceiveBufferSize() ‚Ì•Ô‚è’l‚æ‚è‚à‘å‚«‚¢•K—v‚ª‚ ‚éB
-                sendBuf     -   ‘—Mƒf[ƒ^Ši”[ƒoƒbƒtƒ@B
-                                ARM7‚ª’¼Úƒf[ƒ^‚ğ‘‚«o‚·‚Ì‚ÅAƒLƒƒƒbƒVƒ…‚É’ˆÓB
-                sendBufSize -   ‘—Mƒf[ƒ^Ši”[ƒoƒbƒtƒ@‚ÌƒTƒCƒYB
-                                WM_GetSendBufferSize() ‚Ì•Ô‚è’l‚æ‚è‚à‘å‚«‚¢•K—v‚ª‚ ‚éB
-                mpFreq      -   1ƒtƒŒ[ƒ€‚É‰½‰ñ MP ’ÊM‚ğ‚·‚é‚©B
-                                0 ‚Å˜A‘±‘—Mƒ‚[ƒhBe‹@‚Ì‚İˆÓ–¡‚ğ‚ÂB
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                recvBuf     -   å—ä¿¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã€‚
+                                ARM7ãŒç›´æ¥ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™ã®ã§ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«æ³¨æ„ã€‚
+                recvBufSize -   å—ä¿¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
+                                WM_GetReceiveBufferSize() ã®è¿”ã‚Šå€¤ã‚ˆã‚Šã‚‚å¤§ãã„å¿…è¦ãŒã‚ã‚‹ã€‚
+                sendBuf     -   é€ä¿¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã€‚
+                                ARM7ãŒç›´æ¥ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™ã®ã§ã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«æ³¨æ„ã€‚
+                sendBufSize -   é€ä¿¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
+                                WM_GetSendBufferSize() ã®è¿”ã‚Šå€¤ã‚ˆã‚Šã‚‚å¤§ãã„å¿…è¦ãŒã‚ã‚‹ã€‚
+                mpFreq      -   1ãƒ•ãƒ¬ãƒ¼ãƒ ã«ä½•å› MP é€šä¿¡ã‚’ã™ã‚‹ã‹ã€‚
+                                0 ã§é€£ç¶šé€ä¿¡ãƒ¢ãƒ¼ãƒ‰ã€‚è¦ªæ©Ÿã®ã¿æ„å‘³ã‚’æŒã¤ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StartMP(WMCallbackFunc callback,
                      u16 *recvBuf, u16 recvBufSize, u16 *sendBuf, u16 sendBufSize, u16 mpFreq)
@@ -328,28 +328,28 @@ WMErrCode WM_StartMP(WMCallbackFunc callback,
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPParameter
 
-  Description:  MP ’ÊM—p‚ÌŠeíƒpƒ‰ƒ[ƒ^‚ğİ’è‚·‚é
+  Description:  MP é€šä¿¡ç”¨ã®å„ç¨®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                param       -   MP ’ÊM—p‚Ìƒpƒ‰ƒ[ƒ^‚ğŠi”[‚µ‚½\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                param       -   MP é€šä¿¡ç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãŸæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetMPParameter(WMCallbackFunc callback, const WMMPParam * param)
 {
     WMErrCode result;
     WMArm9Buf *p = WMi_GetSystemWork();
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     result = WMi_CheckInitialized();
     WM_CHECK_RESULT(result);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_SET_MP_PARAMETER, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     {
         WMSetMPParameterReq Req;
 
@@ -368,14 +368,14 @@ WMErrCode WM_SetMPParameter(WMCallbackFunc callback, const WMMPParam * param)
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPChildSize
 
-  Description:  1‰ñ‚ÌMP’ÊM‚Å‚Ìq‹@‚Ì‘—MƒoƒCƒg”‚ğİ’è‚·‚éB
+  Description:  1å›ã®MPé€šä¿¡ã§ã®å­æ©Ÿã®é€ä¿¡ãƒã‚¤ãƒˆæ•°ã‚’è¨­å®šã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                childSize   -   q‹@‚Ì‘—MƒoƒCƒg”B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                childSize   -   å­æ©Ÿã®é€ä¿¡ãƒã‚¤ãƒˆæ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetMPChildSize(WMCallbackFunc callback, u16 childSize)
 {
@@ -391,14 +391,14 @@ WMErrCode WM_SetMPChildSize(WMCallbackFunc callback, u16 childSize)
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPParentSize
 
-  Description:  1‰ñ‚ÌMP’ÊM‚Å‚Ìe‹@‚Ì‘—MƒoƒCƒg”‚ğİ’è‚·‚éB
+  Description:  1å›ã®MPé€šä¿¡ã§ã®è¦ªæ©Ÿã®é€ä¿¡ãƒã‚¤ãƒˆæ•°ã‚’è¨­å®šã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                childSize   -   e‹@‚Ì‘—MƒoƒCƒg”B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                childSize   -   è¦ªæ©Ÿã®é€ä¿¡ãƒã‚¤ãƒˆæ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetMPParentSize(WMCallbackFunc callback, u16 parentSize)
 {
@@ -414,15 +414,15 @@ WMErrCode WM_SetMPParentSize(WMCallbackFunc callback, u16 parentSize)
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPFrequency
 
-  Description:  1ƒtƒŒ[ƒ€‚É‰½‰ñ MP ’ÊM‚·‚é‚©‚ğØ‚è‘Ö‚¦‚éBe‹@—pŠÖ”B
+  Description:  1ãƒ•ãƒ¬ãƒ¼ãƒ ã«ä½•å› MP é€šä¿¡ã™ã‚‹ã‹ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã€‚è¦ªæ©Ÿç”¨é–¢æ•°ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                mpFreq      -   1ƒtƒŒ[ƒ€‚É‰½‰ñ MP ’ÊM‚ğ‚·‚é‚©B
-                                0 ‚Å˜A‘±‘—Mƒ‚[ƒhB
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                mpFreq      -   1ãƒ•ãƒ¬ãƒ¼ãƒ ã«ä½•å› MP é€šä¿¡ã‚’ã™ã‚‹ã‹ã€‚
+                                0 ã§é€£ç¶šé€ä¿¡ãƒ¢ãƒ¼ãƒ‰ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetMPFrequency(WMCallbackFunc callback, u16 mpFreq)
 {
@@ -439,15 +439,15 @@ WMErrCode WM_SetMPFrequency(WMCallbackFunc callback, u16 mpFreq)
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPInterval
 
-  Description:  1ƒtƒŒ[ƒ€’†‚É˜A‘±‚µ‚Ä MP ’ÊM‚ğs‚¤ê‡‚ÌŠÔŠu‚ğİ’è‚·‚éB
+  Description:  1ãƒ•ãƒ¬ãƒ¼ãƒ ä¸­ã«é€£ç¶šã—ã¦ MP é€šä¿¡ã‚’è¡Œã†å ´åˆã®é–“éš”ã‚’è¨­å®šã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                parentInterval - 1ƒtƒŒ[ƒ€’†‚É˜A‘±‚µ‚Äs‚¤ê‡‚Ìe‹@‚Ì MP ’ÊMŠÔŠu (ms)
-                childInterval  - 1ƒtƒŒ[ƒ€’†‚É˜A‘±‚µ‚Äs‚¤ê‡‚Ìq‹@‚ª MP ’ÊM‚ğ€”õ‚·‚éŠÔŠu (ms)
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                parentInterval - 1ãƒ•ãƒ¬ãƒ¼ãƒ ä¸­ã«é€£ç¶šã—ã¦è¡Œã†å ´åˆã®è¦ªæ©Ÿã® MP é€šä¿¡é–“éš” (ms)
+                childInterval  - 1ãƒ•ãƒ¬ãƒ¼ãƒ ä¸­ã«é€£ç¶šã—ã¦è¡Œã†å ´åˆã®å­æ©ŸãŒ MP é€šä¿¡ã‚’æº–å‚™ã™ã‚‹é–“éš” (ms)
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetMPInterval(WMCallbackFunc callback, u16 parentInterval, u16 childInterval)
 {
@@ -464,15 +464,15 @@ WMErrCode WM_SetMPInterval(WMCallbackFunc callback, u16 parentInterval, u16 chil
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPTiming
 
-  Description:  ƒtƒŒ[ƒ€“¯Šú’ÊMƒ‚[ƒh‚É MP ’ÊM‚Ì€”õ‚ğŠJn‚·‚éƒ^ƒCƒ~ƒ“ƒO‚ğİ’è‚·‚éB
+  Description:  ãƒ•ãƒ¬ãƒ¼ãƒ åŒæœŸé€šä¿¡ãƒ¢ãƒ¼ãƒ‰æ™‚ã« MP é€šä¿¡ã®æº–å‚™ã‚’é–‹å§‹ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’è¨­å®šã™ã‚‹ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                parentVCount -  ƒtƒŒ[ƒ€“¯Šú’ÊM‚Ìe‹@ˆ—‚ÌŠJn V Count
-                childVCount  -  ƒtƒŒ[ƒ€“¯Šú’ÊM‚Ìq‹@ˆ—‚ÌŠJn V Count
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                parentVCount -  ãƒ•ãƒ¬ãƒ¼ãƒ åŒæœŸé€šä¿¡æ™‚ã®è¦ªæ©Ÿå‡¦ç†ã®é–‹å§‹ V Count
+                childVCount  -  ãƒ•ãƒ¬ãƒ¼ãƒ åŒæœŸé€šä¿¡æ™‚ã®å­æ©Ÿå‡¦ç†ã®é–‹å§‹ V Count
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetMPTiming(WMCallbackFunc callback, u16 parentVCount, u16 childVCount)
 {
@@ -489,20 +489,20 @@ WMErrCode WM_SetMPTiming(WMCallbackFunc callback, u16 parentVCount, u16 childVCo
 /*---------------------------------------------------------------------------*
   Name:         WM_SetMPDataToPortEx
 
-  Description:  MP’ÊM‚É‚Ä‘—M‚·‚éƒf[ƒ^‚ğ—\–ñ‚·‚éBe‹@Eq‹@‹¤’ÊŠÖ”B
+  Description:  MPé€šä¿¡ã«ã¦é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’äºˆç´„ã™ã‚‹ã€‚è¦ªæ©Ÿãƒ»å­æ©Ÿå…±é€šé–¢æ•°ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                arg         -   callback ‚É“n‚³‚ê‚éˆø”
-                sendData    -   ‘—M—\–ñ‚·‚éƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                                ‚±‚Ìƒf[ƒ^‚ÌÀ‘Ì‚Í‹­§“I‚ÉƒLƒƒƒbƒVƒ…ƒXƒgƒA‚³‚ê‚é“_‚É’ˆÓB
-                sendDataSize -  ‘—M—\–ñ‚·‚éƒf[ƒ^‚ÌƒTƒCƒYB
-                destBitmap  -   ‘—Mæq‹@‚ğ¦‚· aid ‚Ì bitmap ‚ğw’èB
-                port        -   ‘—M‚·‚éƒ|[ƒg”Ô†B
-                prio        -   —Dæ“x (0:Å‚`3:Å’á)
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                arg         -   callback ã«æ¸¡ã•ã‚Œã‚‹å¼•æ•°
+                sendData    -   é€ä¿¡äºˆç´„ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                                ã“ã®ãƒ‡ãƒ¼ã‚¿ã®å®Ÿä½“ã¯å¼·åˆ¶çš„ã«ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚¹ãƒˆã‚¢ã•ã‚Œã‚‹ç‚¹ã«æ³¨æ„ã€‚
+                sendDataSize -  é€ä¿¡äºˆç´„ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã€‚
+                destBitmap  -   é€ä¿¡å…ˆå­æ©Ÿã‚’ç¤ºã™ aid ã® bitmap ã‚’æŒ‡å®šã€‚
+                port        -   é€ä¿¡ã™ã‚‹ãƒãƒ¼ãƒˆç•ªå·ã€‚
+                prio        -   å„ªå…ˆåº¦ (0:æœ€é«˜ã€œ3:æœ€ä½)
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode
 WM_SetMPDataToPortEx(WMCallbackFunc callback, void *arg, const u16 *sendData, u16 sendDataSize,
@@ -515,11 +515,11 @@ WM_SetMPDataToPortEx(WMCallbackFunc callback, void *arg, const u16 *sendData, u1
     WMArm9Buf *p = WMi_GetSystemWork();
     WMStatus *status = p->status;
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     result = WMi_CheckStateEx(2, WM_STATE_MP_PARENT, WM_STATE_MP_CHILD);
     WM_CHECK_RESULT(result);
 
-    // •K—v‚Èî•ñ‚ğWMStatus\‘¢‘Ì‚©‚çæ“¾
+    // å¿…è¦ãªæƒ…å ±ã‚’WMStatusæ§‹é€ ä½“ã‹ã‚‰å–å¾—
     DC_InvalidateRange(&(status->aid), 2);
     isParent = (status->aid == 0) ? TRUE : FALSE;
     if (isParent == TRUE)
@@ -530,7 +530,7 @@ WM_SetMPDataToPortEx(WMCallbackFunc callback, void *arg, const u16 *sendData, u1
         mpReadyBitmap = status->mp_readyBitmap;
     }
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     if (sendData == NULL)
     {
         WM_WARNING("Parameter \"sendData\" must not be NULL.\n");
@@ -543,7 +543,7 @@ WM_SetMPDataToPortEx(WMCallbackFunc callback, void *arg, const u16 *sendData, u1
     }
     if ((u32)sendData & 0x01f)
     {
-        // ƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN‚ÍŒx‚Ì‚İ‚ÅƒGƒ‰[‚É‚Í‚µ‚È‚¢
+        // ã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯ã¯è­¦å‘Šã®ã¿ã§ã‚¨ãƒ©ãƒ¼ã«ã¯ã—ãªã„
         WM_WARNING("Parameter \"sendData\" is not 32-byte aligned.\n");
     }
     DC_InvalidateRange(&(status->mp_sendBuf), 2);
@@ -554,7 +554,7 @@ WM_SetMPDataToPortEx(WMCallbackFunc callback, void *arg, const u16 *sendData, u1
         return WM_ERRCODE_INVALID_PARAM;
     }
 
-    // ‘—MƒTƒCƒYƒ`ƒFƒbƒN
+    // é€ä¿¡ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
     if (sendDataSize > WM_SIZE_MP_DATA_MAX)
     {
         WM_WARNING("Parameter \"sendDataSize\" is over limit.\n");
@@ -568,7 +568,7 @@ WM_SetMPDataToPortEx(WMCallbackFunc callback, void *arg, const u16 *sendData, u1
     }
 
 #ifndef SDK_FINALROM
-    // ƒf[ƒ^“]‘—Š—vŠÔ‚ğŠm”F
+    // ãƒ‡ãƒ¼ã‚¿è»¢é€æ‰€è¦æ™‚é–“ã‚’ç¢ºèª
     DC_InvalidateRange(&(status->mp_current_minPollBmpMode), 2);
     if (isParent && status->mp_current_minPollBmpMode)
     {
@@ -579,12 +579,12 @@ WM_SetMPDataToPortEx(WMCallbackFunc callback, void *arg, const u16 *sendData, u1
     }
 #endif
 
-    // w’èƒoƒbƒtƒ@‚ÌƒLƒƒƒbƒVƒ…‚ğ‘‚«o‚µ
+    // æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’æ›¸ãå‡ºã—
     DC_StoreRange((void *)sendData, sendDataSize);
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^‚·‚é•K—v‚È‚µ
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²ã™ã‚‹å¿…è¦ãªã—
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_SET_MP_DATA, 7,
                              (u32)sendData,
                              (u32)sendDataSize,
@@ -597,24 +597,24 @@ WM_SetMPDataToPortEx(WMCallbackFunc callback, void *arg, const u16 *sendData, u1
 /*---------------------------------------------------------------------------*
   Name:         WM_EndMP
 
-  Description:  MP’ÊM‚ğ’â~‚·‚éBe‹@Eq‹@‹¤’ÊŠÖ”B
+  Description:  MPé€šä¿¡ã‚’åœæ­¢ã™ã‚‹ã€‚è¦ªæ©Ÿãƒ»å­æ©Ÿå…±é€šé–¢æ•°ã€‚
 
-  Arguments:    callback    -   ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+  Arguments:    callback    -   éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B”ñ“¯Šúˆ—‚ª³í‚ÉŠJn‚³‚ê‚½ê‡‚É
-                                WM_ERRCODE_OPERATING‚ª•Ô‚³‚êA‚»‚ÌŒãƒR[ƒ‹ƒoƒbƒN‚É
-                                ”ñ“¯Šúˆ—‚ÌŒ‹‰Ê‚ª‰ü‚ß‚Ä“n‚³‚ê‚éB
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚éåŒæœŸå‡¦ç†ãŒæ­£å¸¸ã«é–‹å§‹ã•ã‚ŒãŸå ´åˆã«
+                                WM_ERRCODE_OPERATINGãŒè¿”ã•ã‚Œã€ãã®å¾Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«
+                                éåŒæœŸå‡¦ç†ã®çµæœãŒæ”¹ã‚ã¦æ¸¡ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EndMP(WMCallbackFunc callback)
 {
     WMErrCode result;
     WMArm9Buf *p = WMi_GetSystemWork();
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     result = WMi_CheckStateEx(2, WM_STATE_MP_PARENT, WM_STATE_MP_CHILD);
     WM_CHECK_RESULT(result);
 
-    // MPó‘ÔŠm”F
+    // MPçŠ¶æ…‹ç¢ºèª
     DC_InvalidateRange(&(p->status->mp_flag), 4);
     if (p->status->mp_flag == FALSE)
     {
@@ -622,10 +622,10 @@ WMErrCode WM_EndMP(WMCallbackFunc callback)
         return WM_ERRCODE_ILLEGAL_STATE;
     }
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
     WMi_SetCallbackTable(WM_APIID_END_MP, callback);
 
-    // ARM7‚ÉFIFO‚Å’Ê’m
+    // ARM7ã«FIFOã§é€šçŸ¥
     result = WMi_SendCommand(WM_APIID_END_MP, 0);
     WM_CHECK_RESULT(result);
 

@@ -1,6 +1,6 @@
 /**
  *	@file	fld_mailbox.c
- *	@brief	ƒtƒB[ƒ‹ƒhƒ[ƒ‹ƒ{ƒbƒNƒXˆ—
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹å‡¦ç†
  *	@author	Miyuki Iwasawa
  *	@date	06.03.03
  */
@@ -56,21 +56,21 @@ typedef struct{
 }MENU_PARAM;
 
 typedef enum{
- MIDX_SELECT,	//‚Ç‚¤‚µ‚Ü‚·‚©H
- MIDX_DSEL,		//“à—e‚ªÁ‚¦‚Ü‚·‚ª‚¢‚¢‚Å‚·‚©H
- MIDX_POKE,		//ƒ|ƒPƒ‚ƒ“‚É‚à‚½‚¹‚Ü‚·‚©H
- MIDX_TOBAG,	//ƒoƒbƒO‚É‚à‚Ç‚µ‚Ü‚·‚©H
- MIDX_BAGFULL,	//ƒoƒbƒO‚ª‚¢‚Á‚Ï‚¢
- MIDX_POKECANCEL,	//‚à‚½‚¹‚é‚Ì‚ğ‚â‚ß‚Ü‚µ‚½
+ MIDX_SELECT,	//ã©ã†ã—ã¾ã™ã‹ï¼Ÿ
+ MIDX_DSEL,		//å†…å®¹ãŒæ¶ˆãˆã¾ã™ãŒã„ã„ã§ã™ã‹ï¼Ÿ
+ MIDX_POKE,		//ãƒã‚±ãƒ¢ãƒ³ã«ã‚‚ãŸã›ã¾ã™ã‹ï¼Ÿ
+ MIDX_TOBAG,	//ãƒãƒƒã‚°ã«ã‚‚ã©ã—ã¾ã™ã‹ï¼Ÿ
+ MIDX_BAGFULL,	//ãƒãƒƒã‚°ãŒã„ã£ã±ã„
+ MIDX_POKECANCEL,	//ã‚‚ãŸã›ã‚‹ã®ã‚’ã‚„ã‚ã¾ã—ãŸ
  MIDX_MAX,
 }MBOX_MSGIDX;
 
 typedef struct _MAILBOX_MSG{
-	WORDSET* wset;	//ƒ[ƒN
-	STRBUF*	tmp;	//”Ä—p
+	WORDSET* wset;	//ãƒ¯ãƒ¼ã‚¯
+	STRBUF*	tmp;	//æ±ç”¨
 
-	STRBUF* ebuf;	//‚â‚ß‚é
-	STRBUF* tbuf;	//ƒ^ƒCƒgƒ‹
+	STRBUF* ebuf;	//ã‚„ã‚ã‚‹
+	STRBUF* tbuf;	//ã‚¿ã‚¤ãƒˆãƒ«
 	STRBUF*	mbuf[MIDX_MAX];
 }MAILBOX_MSG;
 
@@ -122,14 +122,14 @@ typedef struct _MAIL_BOX_MAIN{
 	
 	PLIST_DATA*	plist;
 #ifdef PM_DEBUG
-	u16	deb_flag;	///<ƒfƒoƒbƒOƒRƒ“ƒpƒCƒ‹‚Ì‚İ—LŒø‚Èƒtƒ‰ƒO
-	u16 deb_design;	///<ƒfƒoƒbƒO‚Ì‚İ—LŒø‚ÈƒfƒUƒCƒ“ƒtƒ‰ƒO
+	u16	deb_flag;	///<ãƒ‡ãƒãƒƒã‚°ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ™‚ã®ã¿æœ‰åŠ¹ãªãƒ•ãƒ©ã‚°
+	u16 deb_design;	///<ãƒ‡ãƒãƒƒã‚°æ™‚ã®ã¿æœ‰åŠ¹ãªãƒ‡ã‚¶ã‚¤ãƒ³ãƒ•ãƒ©ã‚°
 #endif	//PM_DEBUG
 }MAIL_BOX_MAIN;
 
 
 //===============================================
-//’è”’è‹`
+//å®šæ•°å®šç¾©
 //===============================================
 #define FADEOUT		WIPE_TYPE_FADEOUT
 #define FADEIN		WIPE_TYPE_FADEIN
@@ -142,7 +142,7 @@ typedef struct _MAIL_BOX_MAIN{
 #define BMPL_MENU_WIN_PAL	(FLD_MENUFRAME_PAL)
 #define BMPL_TALK_WIN_PAL	(FLD_MESFRAME_PAL)
 
-//‰ï˜bƒEƒBƒ“ƒhƒE
+//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_TALK_PX	(FLD_MSG_WIN_PX)
 #define BMPL_TALK_PY	(FLD_MSG_WIN_PY)
 #define BMPL_TALK_SX	(FLD_MSG_WIN_SX)
@@ -150,7 +150,7 @@ typedef struct _MAIL_BOX_MAIN{
 #define BMPL_TALK_PAL	(FLD_MSG_WIN_PAL)
 #define BMPL_TALK_CGX	(BMPL_MENU_WIN_CGX-BMPL_TALK_SX*BMPL_TALK_SY)
 
-//YNƒEƒBƒ“ƒhƒE
+//YNã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_YESNO_PX	(FLD_YESNO_WIN_PX)
 #define BMPL_YESNO_PY	(FLD_YESNO_WIN_PY)
 #define BMPL_YESNO_SX	(FLD_YESNO_WIN_SX)
@@ -158,12 +158,12 @@ typedef struct _MAIL_BOX_MAIN{
 #define BMPL_YESNO_PAL	(FLD_YESNO_WIN_PAL)
 #define BMPL_YESNO_CGX	(BMPL_TALK_CGX-BMPL_YESNO_SX*BMPL_YESNO_SY)
 
-//©‘O‚ÌƒEƒBƒ“ƒhƒE
+//è‡ªå‰ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define MAILBOX_CGX_START	(BMPL_YESNO_CGX)
 #define MAILBOX_FRAME	(FLD_MBGFRM_FONT)
 #define MAILBOX_FPAL	(FLD_SYSFONT_PAL)
 
-//ƒ[ƒ‹ƒŠƒXƒgƒEƒBƒ“ƒhƒE
+//ãƒ¡ãƒ¼ãƒ«ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define MLIST_WIN_SX	(12)
 #define MLIST_WIN_SY	(16)
 #define MLIST_WIN_PX	(31-MLIST_WIN_SX)
@@ -171,7 +171,7 @@ typedef struct _MAIL_BOX_MAIN{
 #define MLIST_WIN_CGXNUM	(MLIST_WIN_SX*MLIST_WIN_SY)
 #define MLIST_WIN_CGX	(MAILBOX_CGX_START-MLIST_WIN_CGXNUM)
 
-//ƒAƒNƒVƒ‡ƒ“‘I‘ğƒEƒBƒ“ƒhƒE
+//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³é¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define MENU_WIN_SX	(14)
 #define MENU_WIN_SY	(8)
 #define MENU_WIN_PX	(1)
@@ -179,7 +179,7 @@ typedef struct _MAIL_BOX_MAIN{
 #define MENU_WIN_CGXNUM	(MENU_WIN_SX*((MENU_WIN_SY+1)*2))
 #define MENU_WIN_CGX	(MAILBOX_CGX_START-MLIST_WIN_CGXNUM)
 
-//ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE
+//ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define TITLE_WIN_PX	(1)
 #define TITLE_WIN_PY	(1)
 #define TITLE_WIN_SX	(9)
@@ -188,35 +188,35 @@ typedef struct _MAIL_BOX_MAIN{
 #define TITLE_WIN_CGX	(MLIST_WIN_CGX-TITLE_WIN_CGXNUM)
 
 //------------------------------------------------------------------
-///	€–ÚƒŠƒXƒgƒf[ƒ^
+///	é …ç›®ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 //------------------------------------------------------------------
 static const BMPLIST_HEADER MailListHeader = {
-	NULL,			//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,				//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,		//‚Ps‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,				//GF_BGL_BMPWIN\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	0,			//ƒŠƒXƒg€–Ú”
-	7,					//•\¦Å‘å€–Ú”
-	2,					//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	10,					//€–Ú•\¦‚wÀ•W
-	1,					//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,					//•\¦‚xÀ•W
-	FBMP_COL_BLACK,		//•¶šF
-	FBMP_COL_WHITE,		//”wŒiF
-	FBMP_COL_BLK_SDW,	//•¶š‰eF
-	0,					//•¶šŠÔŠu‚w
-	1,					//•¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,	//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,		//•¶šw’è
-	0,					//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
-	NULL,				//ƒ[ƒNƒ|ƒCƒ“ƒ^
+	NULL,			//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,				//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,		//ï¼‘è¡Œã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,				//GF_BGL_BMPWINæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	0,			//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	7,					//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	2,					//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	10,					//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	1,					//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,					//è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_BLACK,		//æ–‡å­—è‰²
+	FBMP_COL_WHITE,		//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,	//æ–‡å­—å½±è‰²
+	0,					//æ–‡å­—é–“éš”ï¼¸
+	1,					//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,	//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,		//æ–‡å­—æŒ‡å®š
+	0,					//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
+	NULL,				//ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 };
 
 #define MAILMENU_EXIT	(0xFFFF)
 #define MAILMENU_BUFLEN	(10)
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/23
-// ƒƒbƒZ[ƒW—pƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğŠg‘å
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’æ‹¡å¤§
 #define MAILMSG_BUFLEN	(128)
 // ----------------------------------------------------------------------------
 
@@ -235,7 +235,7 @@ static const MENU_PARAM normalMenu[] = {
 };
 
 //===============================================
-///ƒvƒƒgƒ^ƒCƒv
+///ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //===============================================
 void EventCmd_MailBoxCall( GMEVENT_CONTROL *event);
 void MailBox_Call(void* fsys,int* end_flag);
@@ -257,7 +257,7 @@ static void MailBox_MailPokeCancel(TCB_PTR tcb,void* work);
 static void MailBox_DelMail2PokeCall(TCB_PTR tcb,void* work);
 
 //*********************************************************************
-//ƒ[ƒJƒ‹ƒTƒu
+//ãƒ­ãƒ¼ã‚«ãƒ«ã‚µãƒ–
 static void mbox_NextTcb(MAIL_BOX_MAIN* wk,TCB_FUNC first,TCB_FUNC second);
 static void mbox_MAIL_LIST_Clear(MAIL_LIST* dat,u8 id);
 static void mbox_MAIL_LIST_ArrayInit(MAIL_LIST* dat,u8 num,int heapID);
@@ -294,10 +294,10 @@ static int mbox_PokeListCall(MAIL_BOX_MAIN* wk,int mode);
 static int mbox_MailCall(MAIL_BOX_MAIN* wk);
 
 //===============================================
-///ƒOƒ[ƒoƒ‹
+///ã‚°ãƒ­ãƒ¼ãƒãƒ«
 //===============================================
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒXŒÄ‚Ño‚µ•‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹å‘¼ã³å‡ºã—ï¼†åˆæœŸåŒ–
  */
 void MailBox_Call(void* fsys,int* end_flag)
 {
@@ -306,7 +306,7 @@ void MailBox_Call(void* fsys,int* end_flag)
 
 	sys_CreateHeap(HEAPID_BASE_APP,HEAPID_MAILBOX,0x5000);
 	
-	//ƒ[ƒNƒGƒŠƒAæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢å–å¾—
 	HeapStatePush();
 
 	wk = sys_AllocMemory(HEAPID_MAILBOX,sizeof(MAIL_BOX_MAIN));
@@ -315,7 +315,7 @@ void MailBox_Call(void* fsys,int* end_flag)
 	wk->end_flag = end_flag;
 
 #ifdef PM_DEBUG
-	//ƒfƒoƒbƒOƒtƒ‰ƒO‘ã‚í‚è‚É—˜—p
+	//ãƒ‡ãƒãƒƒã‚°ãƒ•ãƒ©ã‚°ä»£ã‚ã‚Šã«åˆ©ç”¨
 	wk->deb_flag = *end_flag;
 	*end_flag = 0;
 #endif	//PM_DEBUG
@@ -328,15 +328,15 @@ void MailBox_Call(void* fsys,int* end_flag)
 	wk->msg_spd = CONFIG_GetMsgPrintSpeed(SaveData_GetConfig(sv));
 	wk->win_type = CONFIG_GetWindowType(SaveData_GetConfig(sv));
 
-	//MAIL_LIST\‘¢‘Ì”z—ñ‚Ì‰Šú‰»
+	//MAIL_LISTæ§‹é€ ä½“é…åˆ—ã®åˆæœŸåŒ–
 	mbox_MAIL_LIST_ArrayInit(wk->mailList,MAIL_STOCK_PASOCOM,wk->heapID);
-	//ƒZ[ƒuƒf[ƒ^æ“¾
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 	mbox_GetSaveData(wk,sv,wk->heapID);
 
-	//ƒƒbƒZ[ƒWƒŠƒ\[ƒXì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚½ãƒ¼ã‚¹ä½œæˆ
 	mbox_MsgResInit(wk);
 	
-	//‰ŠúƒŠƒXƒgì¬
+	//åˆæœŸãƒªã‚¹ãƒˆä½œæˆ
 	wk->tcb = TCB_Add(MailBox_MailListInit,wk,0);
 
 #ifdef PM_DEBUG
@@ -346,14 +346,14 @@ void MailBox_Call(void* fsys,int* end_flag)
 #endif	//PM_DEBUG
 }
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒXI—¹ˆ—
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹çµ‚äº†å‡¦ç†
  */
 void MailBox_Exit(MAIL_BOX_MAIN* wk)
 {
 	TCB_Delete(wk->tcb);
-	*(wk->end_flag) = 1;	//I—¹ƒtƒ‰ƒOON
+	*(wk->end_flag) = 1;	//çµ‚äº†ãƒ•ãƒ©ã‚°ON
 
-	//ƒƒbƒZ[ƒWƒŠƒ\[ƒX”jŠü
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	mbox_MsgResRelease(wk);
 
 #ifdef PM_DEBUG
@@ -362,7 +362,7 @@ void MailBox_Exit(MAIL_BOX_MAIN* wk)
 	}
 #endif	//PM_DEBUG
 	
-	//MAIL_LIST\‘¢‘Ì”z—ñƒŠƒ\[ƒX‚Ì‰ğ•ú
+	//MAIL_LISTæ§‹é€ ä½“é…åˆ—ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
 	mbox_MAIL_LIST_ArrayEnd(wk->mailList,MAIL_STOCK_PASOCOM);
 	sys_FreeMemoryEz(wk);
 
@@ -372,10 +372,10 @@ void MailBox_Exit(MAIL_BOX_MAIN* wk)
 }
 
 //==================================================
-//ƒƒCƒ“ƒŠƒXƒgŠÖ˜Aƒ^ƒXƒN
+//ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆé–¢é€£ã‚¿ã‚¹ã‚¯
 //==================================================
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒXI—¹ƒR[ƒ‹
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹çµ‚äº†ã‚³ãƒ¼ãƒ«
  */
 static void MailBox_ExitCall(TCB_PTR tcb,void* work)
 {
@@ -385,20 +385,20 @@ static void MailBox_ExitCall(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒXƒƒCƒ“ƒŠƒXƒg‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆåˆæœŸåŒ–
  */
 static void MailBox_MailListInit(TCB_PTR tcb,void* work)
 {
 	MAIL_BOX_MAIN* wk = (MAIL_BOX_MAIN*)work;
 
-	//ƒRƒ‚ƒ“ƒŠƒ\[ƒX‰Šú‰»
+	//ã‚³ãƒ¢ãƒ³ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
 	mbox_ComResInit(wk);
 	mbox_MailListInit(wk);
 	TCB_ChangeFunc(tcb,MailBox_MailListKeyIn);
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒXƒƒCƒ“ƒŠƒXƒgƒRƒ“ƒgƒ[ƒ‰
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
  */
 static void MailBox_MailListKeyIn(TCB_PTR tcb,void* work)
 {
@@ -408,7 +408,7 @@ static void MailBox_MailListKeyIn(TCB_PTR tcb,void* work)
 	ret_code = BmpListMain(wk->blistWk);
 
 	if(wk->fca != NULL){
-		//ƒAƒNƒ^[ƒAƒjƒ
+		//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡
 		FActCom_Main(wk->fca);
 	}
 	if(sys.trg & PAD_BUTTON_CANCEL){
@@ -435,7 +435,7 @@ static void MailBox_MailListKeyIn(TCB_PTR tcb,void* work)
 
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒXƒZƒŒƒNƒgƒŠƒXƒg‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã‚»ãƒ¬ã‚¯ãƒˆãƒªã‚¹ãƒˆåˆæœŸåŒ–
  */
 static void MailBox_SelectListInit(TCB_PTR tcb,void* work)
 {
@@ -443,11 +443,11 @@ static void MailBox_SelectListInit(TCB_PTR tcb,void* work)
 
 	switch(wk->seq){
 	case 0:	
-		//ƒRƒ‚ƒ“ƒŠƒ\[ƒX‰Šú‰»
+		//ã‚³ãƒ¢ãƒ³ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
 		mbox_ComResInit(wk);
 		mbox_SelectListInit(wk,0,0);
 
-		//ƒ[ƒ‹‚ğ‚Ç‚¤‚µ‚Ü‚·‚©ƒƒbƒZ[ƒW•`‰æ
+		//ãƒ¡ãƒ¼ãƒ«ã‚’ã©ã†ã—ã¾ã™ã‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 		mbox_PrintTalkMsg(wk,MIDX_SELECT,wk->msg_spd,FALSE,TRUE);
 		++wk->seq;
 		break;
@@ -463,7 +463,7 @@ static void MailBox_SelectListInit(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒXƒZƒŒƒNƒgƒŠƒXƒgƒL[æ“¾
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã‚»ãƒ¬ã‚¯ãƒˆãƒªã‚¹ãƒˆã‚­ãƒ¼å–å¾—
  */
 static void MailBox_SelectListKeyIn(TCB_PTR tcb,void* work)
 {
@@ -494,10 +494,10 @@ static void MailBox_SelectListKeyIn(TCB_PTR tcb,void* work)
 		case BOX_MENU_EXIT:
 			mbox_NextTcb(wk,MailBox_SelectListExit,MailBox_MailListInit);
 			break;
-		case BOX_MENU_DEL:	//ƒ[ƒ‹‚ğÁ‚·
+		case BOX_MENU_DEL:	//ãƒ¡ãƒ¼ãƒ«ã‚’æ¶ˆã™
 			mbox_NextTcb(wk,MailBox_MailDelSelect,NULL);
 			break;
-		case BOX_MENU_TRANS:	//ƒ|ƒPƒ‚ƒ“‚É‚½‚¹‚é
+		case BOX_MENU_TRANS:	//ãƒã‚±ãƒ¢ãƒ³ã«æŒãŸã›ã‚‹
 			mbox_NextTcb(wk,MailBox_PokeListCall,MailBox_MailPokeCancel);
 			break;
 		case BOX_MENU_VIEW:
@@ -511,7 +511,7 @@ static void MailBox_SelectListKeyIn(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX@ƒ[ƒ‹ƒŠƒXƒg‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã€€ãƒ¡ãƒ¼ãƒ«ãƒªã‚¹ãƒˆè§£æ”¾
  */
 static void MailBox_MailListExit(TCB_PTR tcb,void* work)
 {
@@ -523,7 +523,7 @@ static void MailBox_MailListExit(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX ƒZƒŒƒNƒgƒŠƒXƒg‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ ã‚»ãƒ¬ã‚¯ãƒˆãƒªã‚¹ãƒˆè§£æ”¾
  */
 static void MailBox_SelectListExit(TCB_PTR tcb,void* work)
 {
@@ -535,7 +535,7 @@ static void MailBox_SelectListExit(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒRƒ}ƒ“ƒhŒÄ‚Ño‚µƒ^ƒXƒN
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ã‚³ãƒãƒ³ãƒ‰å‘¼ã³å‡ºã—ã‚¿ã‚¹ã‚¯
  */
 static void MailBox_MailCall(TCB_PTR tcb,void* work)
 {
@@ -555,7 +555,7 @@ static void MailBox_MailCall(TCB_PTR tcb,void* work)
 		}
 		break;
 	case 2:
-		//ƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJnI—¹‘Ò‚¿
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹çµ‚äº†å¾…ã¡
 		if(!mbox_FieldSetCall(wk)){
 			return;
 		}
@@ -564,7 +564,7 @@ static void MailBox_MailCall(TCB_PTR tcb,void* work)
 		if(!mbox_FadeCall(wk,FADEIN)){
 			return;
 		}
-		//ƒŠƒXƒgÄ¶
+		//ãƒªã‚¹ãƒˆå†ç”Ÿ
 		mbox_ComResInit(wk);
 		mbox_MailListInit(wk);
 		wk->seq = 0;
@@ -576,7 +576,7 @@ static void MailBox_MailCall(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ[ƒ‹‚ğÁ‚·‘I‘ğƒTƒuƒ^ƒXƒN
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ã‚’æ¶ˆã™é¸æŠã‚µãƒ–ã‚¿ã‚¹ã‚¯
  */
 static void MailBox_MailDelSelect(TCB_PTR tcb,void* work)
 {
@@ -585,53 +585,53 @@ static void MailBox_MailDelSelect(TCB_PTR tcb,void* work)
 
 	switch(wk->seq){
 	case 0:
-		//ƒ[ƒ‹‚ğÁ‚µ‚Ü‚·‚©ƒƒbƒZ[ƒW‚ğ•`‰æ
+		//ãƒ¡ãƒ¼ãƒ«ã‚’æ¶ˆã—ã¾ã™ã‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æç”»
 		mbox_PrintTalkMsg(wk,MIDX_DSEL,wk->msg_spd,FALSE,TRUE);
 		break;
 	case 1:
 		if(!mbox_TalkMsgWait(wk)){
 			return;
 		}
-		//YNƒEƒBƒ“ƒhƒE•\¦
+		//YNã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 		mbox_YesNoInit(wk);
 		break;
 	case 2:
-		//YN‘I‘ğ‘Ò‚¿
+		//YNé¸æŠå¾…ã¡
 		ret = mbox_YesNoWait(wk);
 		if(ret < 0){
-			return;	//‘I‘ğ’†
+			return;	//é¸æŠä¸­
 		}
-		if(ret){	//Á‚·
-			//ƒ|ƒPƒ‚ƒ“‚É‚½‚¹‚Ü‚·‚©H
+		if(ret){	//æ¶ˆã™
+			//ãƒã‚±ãƒ¢ãƒ³ã«æŒãŸã›ã¾ã™ã‹ï¼Ÿ
 			mbox_PrintTalkMsg(wk,MIDX_POKE,wk->msg_spd,FALSE,FALSE);
 			wk->seq = 4;
-		}else{	//Á‚³‚È‚¢
+		}else{	//æ¶ˆã•ãªã„
 			wk->seq = 3;
 		}
 		return;
-	case 3:	//ƒ[ƒ‹ƒŠƒXƒg‚É–ß‚é
+	case 3:	//ãƒ¡ãƒ¼ãƒ«ãƒªã‚¹ãƒˆã«æˆ»ã‚‹
 		mbox_TalkMsgClear(wk);
 		mbox_NextTcb(wk,MailBox_SelectListExit,MailBox_MailListInit);	
 		wk->seq = 0;
 		return;
-	case 4:	//ƒ|ƒPƒ‚ƒ“‚É‚½‚¹‚é‚©‚Ç‚¤‚©‘I‘ğ‚·‚é
+	case 4:	//ãƒã‚±ãƒ¢ãƒ³ã«æŒãŸã›ã‚‹ã‹ã©ã†ã‹é¸æŠã™ã‚‹
 		if(!mbox_TalkMsgWait(wk)){
 			return;
 		}
-		//YNƒEƒBƒ“ƒhƒE•\¦
+		//YNã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 		mbox_YesNoInit(wk);
 		break;
 	case 5:
-		//YN‘I‘ğ‘Ò‚¿
+		//YNé¸æŠå¾…ã¡
 		ret = mbox_YesNoWait(wk);
 		if(ret < 0){
-			return;	//‘I‘ğ’†
+			return;	//é¸æŠä¸­
 		}
-		if(ret){	//‚à‚½‚¹‚é
-			//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ^ƒXƒN‚Ö
+		if(ret){	//ã‚‚ãŸã›ã‚‹
+			//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚¿ã‚¹ã‚¯ã¸
 			mbox_NextTcb(wk,MailBox_DelMail2PokeCall,NULL);
 		}else{
-			//ƒoƒbƒO‚Éƒ[ƒ‹‚ğ–ß‚·ƒ^ƒXƒN‚Ö
+			//ãƒãƒƒã‚°ã«ãƒ¡ãƒ¼ãƒ«ã‚’æˆ»ã™ã‚¿ã‚¹ã‚¯ã¸
 			mbox_NextTcb(wk,MailBox_MailDelExe,MailBox_SelectListExit);
 		}
 		mbox_TalkMsgClear(wk);
@@ -643,7 +643,7 @@ static void MailBox_MailDelSelect(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ[ƒ‹‚ğÁ‚·ˆ—ƒ^ƒXƒN
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ã‚’æ¶ˆã™å‡¦ç†ã‚¿ã‚¹ã‚¯
  */
 static void MailBox_MailDelExe(TCB_PTR tcb,void* work)
 {
@@ -654,12 +654,12 @@ static void MailBox_MailDelExe(TCB_PTR tcb,void* work)
 	case 0:
 	#if 1
 		if(wk->next_tcb == NULL){
-			//‘I‘ğƒŠƒXƒgƒŠƒXƒgÄ¶
+			//é¸æŠãƒªã‚¹ãƒˆãƒªã‚¹ãƒˆå†ç”Ÿ
 			mbox_ComResInit(wk);
 			mbox_SelectListInit(wk,0,1);
 		}
 #endif
-		//ƒ[ƒ‹‚ğƒoƒbƒO‚É–ß‚·ˆ—Às
+		//ãƒ¡ãƒ¼ãƒ«ã‚’ãƒãƒƒã‚°ã«æˆ»ã™å‡¦ç†å®Ÿè¡Œ
 		if(mbox_MailReturnBag(wk)){
 			mbox_PrintTalkMsg(wk,MIDX_TOBAG,wk->msg_spd,FALSE,TRUE);
 		}else{
@@ -676,7 +676,7 @@ static void MailBox_MailDelExe(TCB_PTR tcb,void* work)
 			return;
 		}
 		mbox_TalkMsgClear(wk);
-		//ƒ[ƒ‹ƒŠƒXƒg‚É–ß‚é
+		//ãƒ¡ãƒ¼ãƒ«ãƒªã‚¹ãƒˆã«æˆ»ã‚‹
 		mbox_NextTcb(wk,MailBox_SelectListExit,MailBox_MailListInit);
 		wk->seq = 0;
 		return;
@@ -686,7 +686,7 @@ static void MailBox_MailDelExe(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg@ŒÄ‚Ño‚µƒ^ƒXƒN
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€€å‘¼ã³å‡ºã—ã‚¿ã‚¹ã‚¯
  */
 static void MailBox_PokeListCall(TCB_PTR tcb,void* work)
 {
@@ -701,13 +701,13 @@ static void MailBox_PokeListCall(TCB_PTR tcb,void* work)
 		}
 		mbox_ListFree(wk,LIST_SELECT);
 		break;	
-	case 1:	//ƒŠƒXƒgŒÄ‚Ño‚µ
+	case 1:	//ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
 		if(!mbox_PokeListCall(wk,PL_MODE_MAILBOX)){
 			return;
 		}
 		break;
-	case 2:	//ƒŠƒXƒgI—¹‘Ò‚¿
-		//ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+	case 2:	//ãƒªã‚¹ãƒˆçµ‚äº†å¾…ã¡
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 		if(!mbox_FieldSetCall(wk)){
 			return;
 		}
@@ -724,7 +724,7 @@ static void MailBox_PokeListCall(TCB_PTR tcb,void* work)
 			wk->seq = 0;
 			return;	
 		}
-		//ƒ|ƒPƒ‚ƒ“‚É‚½‚¹‚éˆ—
+		//ãƒã‚±ãƒ¢ãƒ³ã«æŒãŸã›ã‚‹å‡¦ç†
 		mbox_Mail2Poke(wk,pos,FALSE);	
 		mbox_NextTcb(wk,MailBox_MailListInit,NULL);	
 		wk->seq = 0;
@@ -735,7 +735,7 @@ static void MailBox_PokeListCall(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒ[ƒ‹‚ğƒ|ƒPƒ‚ƒ“‚É‚½‚¹‚é‚Ì‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚½‚ÌƒƒbƒZ[ƒWˆ—
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ã‚’ãƒã‚±ãƒ¢ãƒ³ã«æŒãŸã›ã‚‹ã®ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸæ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
  */
 static void MailBox_MailPokeCancel(TCB_PTR tcb,void* work)
 {
@@ -744,7 +744,7 @@ static void MailBox_MailPokeCancel(TCB_PTR tcb,void* work)
 
 	switch(wk->seq){
 	case 0:
-		//‘I‘ğƒŠƒXƒgƒŠƒXƒgÄ¶
+		//é¸æŠãƒªã‚¹ãƒˆãƒªã‚¹ãƒˆå†ç”Ÿ
 		mbox_ComResInit(wk);
 		mbox_SelectListInit(wk,0,2);
 
@@ -760,7 +760,7 @@ static void MailBox_MailPokeCancel(TCB_PTR tcb,void* work)
 			return;
 		}
 		mbox_TalkMsgClear(wk);
-		//ƒ[ƒ‹ƒŠƒXƒg‚É–ß‚é
+		//ãƒ¡ãƒ¼ãƒ«ãƒªã‚¹ãƒˆã«æˆ»ã‚‹
 		mbox_NextTcb(wk,MailBox_SelectListExit,MailBox_MailListInit);
 		wk->seq = 0;
 		return;
@@ -770,7 +770,7 @@ static void MailBox_MailPokeCancel(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	Á‚µ‚½ƒ[ƒ‹‚ğƒ|ƒPƒ‚ƒ“‚É‚½‚¹‚é@ŒÄ‚Ño‚µƒ^ƒXƒN
+ *	@brief	æ¶ˆã—ãŸãƒ¡ãƒ¼ãƒ«ã‚’ãƒã‚±ãƒ¢ãƒ³ã«æŒãŸã›ã‚‹ã€€å‘¼ã³å‡ºã—ã‚¿ã‚¹ã‚¯
  */
 static void MailBox_DelMail2PokeCall(TCB_PTR tcb,void* work)
 {
@@ -786,8 +786,8 @@ static void MailBox_DelMail2PokeCall(TCB_PTR tcb,void* work)
 		}
 		mbox_ListFree(wk,LIST_SELECT);
 		/*
-		 * ‚±‚Ì“_‚Å‚ÌƒAƒCƒeƒ€”‚ª0‚Å‚È‚¯‚ê‚ÎAƒ[ƒ‹‚ğƒ|ƒPƒ‚ƒ“‚É‚½‚¹‚½‚Æ‚«‚É
-		 * ƒAƒCƒeƒ€”‚ª‚PŒ¸‚Á‚Ä‚¢‚é‚Ì‚ÅA‚Ğ‚Æ‚Â‘‚â‚·
+		 * ã“ã®æ™‚ç‚¹ã§ã®ã‚¢ã‚¤ãƒ†ãƒ æ•°ãŒ0ã§ãªã‘ã‚Œã°ã€ãƒ¡ãƒ¼ãƒ«ã‚’ãƒã‚±ãƒ¢ãƒ³ã«æŒãŸã›ãŸã¨ãã«
+		 * ã‚¢ã‚¤ãƒ†ãƒ æ•°ãŒï¼‘æ¸›ã£ã¦ã„ã‚‹ã®ã§ã€ã²ã¨ã¤å¢—ã‚„ã™
 		 */
 		if(MyItem_GetItemNum(wk->itemSave,wk->mailList[wk->selectID].itemno,wk->heapID) > 0){
 			wk->additem_f = 1;
@@ -796,7 +796,7 @@ static void MailBox_DelMail2PokeCall(TCB_PTR tcb,void* work)
 		}
 		break;
 	case 1:
-		//ƒ[ƒ‹‚ğ‚½‚¹‚éƒ|ƒPƒ‚ƒ“‚ğ‘I‘ğ‚³‚¹‚é
+		//ãƒ¡ãƒ¼ãƒ«ã‚’æŒãŸã›ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’é¸æŠã•ã›ã‚‹
 		if(!mbox_PokeListCall(wk,PL_MODE_ITEMSET)){
 			return;
 		}
@@ -805,26 +805,26 @@ static void MailBox_DelMail2PokeCall(TCB_PTR tcb,void* work)
 		sys_FreeMemoryEz(wk->plist);
 
 		if(ret_mode != PL_RET_MAILSET || pos == PL_SEL_POS_EXIT){
-			//ƒ[ƒ‹‚ğ‚½‚¹‚é‚Ì‚ğ~‚ß‚é
+			//ãƒ¡ãƒ¼ãƒ«ã‚’æŒãŸã›ã‚‹ã®ã‚’æ­¢ã‚ã‚‹
 			wk->next_tcb = MailBox_MailDelExe;
 			wk->seq = 4;
 			return;
 		}
 		wk->selPos = pos;
-		//ƒŠƒXƒg‚Ìƒ`ƒFƒCƒ“‚©‚çŠO‚µ‚Ä‚¨‚­
+		//ãƒªã‚¹ãƒˆã®ãƒã‚§ã‚¤ãƒ³ã‹ã‚‰å¤–ã—ã¦ãŠã
 //		mbox_MailChainOut(wk,wk->selectID);
 
-		//—LŒøƒtƒ‰ƒO‚ğoff‚µ‚Ä‚¨‚­
+		//æœ‰åŠ¹ãƒ•ãƒ©ã‚°ã‚’offã—ã¦ãŠã
 		wk->mailList[wk->selectID].valid = 0;
 		break;
 	case 2:
-		//ƒ[ƒ‹ì¬
+		//ãƒ¡ãƒ¼ãƒ«ä½œæˆ
 		ret = mbox_MailCall(wk);
 		if(!ret){
 			return;
 		}
 		if(ret == 1){
-			//ƒ[ƒ‹‚ğ‚½‚¹‚é‚Ì‚ğ~‚ß‚é
+			//ãƒ¡ãƒ¼ãƒ«ã‚’æŒãŸã›ã‚‹ã®ã‚’æ­¢ã‚ã‚‹
 			wk->next_tcb = MailBox_MailDelExe;
 			wk->seq = 4;
 			return;
@@ -832,17 +832,17 @@ static void MailBox_DelMail2PokeCall(TCB_PTR tcb,void* work)
 		wk->next_tcb = MailBox_MailListInit;
 		break;
 	case 3:
-		//ƒ[ƒ‹‚ğ‚½‚¹‚Ü‚µ‚½‰æ–Ê‚ğ•\¦
+		//ãƒ¡ãƒ¼ãƒ«ã‚’æŒãŸã›ã¾ã—ãŸç”»é¢ã‚’è¡¨ç¤º
 		if(!mbox_PokeListCall(wk,PL_MODE_MAILSET)){
 			return;
 		}
 		sys_FreeMemoryEz(wk->plist);
-		//ƒ|ƒPƒ‚ƒ“‚É‚½‚¹‚éˆ—
+		//ãƒã‚±ãƒ¢ãƒ³ã«æŒãŸã›ã‚‹å‡¦ç†
 		mbox_Mail2Poke(wk,wk->selPos,wk->additem_f);
-		wk->additem_f = 0;	//ƒtƒ‰ƒOƒNƒŠƒA
+		wk->additem_f = 0;	//ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
 		break;
 	case 4:
-		//ƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJnI—¹‘Ò‚¿
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹çµ‚äº†å¾…ã¡
 		if(!mbox_FieldSetCall(wk)){
 			return;
 		}
@@ -851,7 +851,7 @@ static void MailBox_DelMail2PokeCall(TCB_PTR tcb,void* work)
 		if(!mbox_FadeCall(wk,FADEIN)){
 			return;
 		}
-		//ƒoƒbƒO‚Éƒ[ƒ‹‚ğ–ß‚·ƒ^ƒXƒN‚Ö
+		//ãƒãƒƒã‚°ã«ãƒ¡ãƒ¼ãƒ«ã‚’æˆ»ã™ã‚¿ã‚¹ã‚¯ã¸
 		mbox_NextTcb(wk,wk->next_tcb,NULL);
 		wk->seq = 0;
 		return;
@@ -859,9 +859,9 @@ static void MailBox_DelMail2PokeCall(TCB_PTR tcb,void* work)
 	++wk->seq;
 }
 //=======================================================================
-///ƒTƒu
+///ã‚µãƒ–
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒXƒƒCƒ“ƒŠƒXƒg‰Šú‰»ƒ^ƒXƒN
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆåˆæœŸåŒ–ã‚¿ã‚¹ã‚¯
  */
 static void mbox_MailListInit(MAIL_BOX_MAIN* wk)
 {
@@ -878,26 +878,26 @@ static void mbox_MailListInit(MAIL_BOX_MAIN* wk)
 		},
 	};
 
-	//ƒJ[ƒ\ƒ‹ƒAƒNƒ^[‰Šú‰»
+	//ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	wk->fca = FComAct_Init(wk->heapID);
 	FComAct_CursorPosSet(wk->fca,200,10,138);
 	FComAct_SetDrawFlg(wk->fca,FCA_UCURSOR,TRUE);
 	FComAct_SetDrawFlg(wk->fca,FCA_DCURSOR,TRUE);
 
-	//ƒEƒBƒ“ƒhƒEì¬
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	GF_BGL_BmpWinAddEx(wk->bgl,&(wk->bmpwin),&bmp[0]);
 	GF_BGL_BmpWinAddEx(wk->bgl,&(wk->titlewin),&bmp[1]);
 	GF_BGL_BmpWinDataFill(&wk->bmpwin,WINCLR_COL(FBMP_COL_WHITE));
 	GF_BGL_BmpWinDataFill(&wk->titlewin,WINCLR_COL(FBMP_COL_WHITE));
 
 	
-	//BMPƒƒjƒ…[ƒŠƒXƒgì¬(ƒTƒCƒY+[‚â‚ß‚é]•ª‚ğŠm•Û)
+	//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆä½œæˆ(ã‚µã‚¤ã‚º+[ã‚„ã‚ã‚‹]åˆ†ã‚’ç¢ºä¿)
 	wk->menulist = BMP_MENULIST_Create(wk->listSize+1,wk->heapID);
 	
 	for(i = 0;i < MAIL_STOCK_PASOCOM;i++){
 		
 		pl = &(wk->mailList[i]);
-		//ƒ‰ƒCƒ^[–¼æ“¾
+		//ãƒ©ã‚¤ã‚¿ãƒ¼åå–å¾—
 		if(!pl->valid){
 #ifdef PM_DEBUG			
 			if(wk->deb_flag != 2){
@@ -910,11 +910,11 @@ static void mbox_MailListInit(MAIL_BOX_MAIN* wk)
 		BMP_MENULIST_AddString(wk->menulist,pl->name,pl->id);
 		size++;
 	}
-	//u‚â‚ß‚év‚ğ’Ç‰Á
+	//ã€Œã‚„ã‚ã‚‹ã€ã‚’è¿½åŠ 
 	BMP_MENULIST_AddString(wk->menulist,wk->msgDat.ebuf,MAILMENU_EXIT);
 	size++;
 	
-	//BMPƒŠƒXƒgİ’è
+	//BMPãƒªã‚¹ãƒˆè¨­å®š
 	MI_CpuCopy8((void*)&MailListHeader,(void*)&(wk->bmplist_h),sizeof(BMPLIST_HEADER));
 	wk->bmplist_h.win = &(wk->bmpwin);
 	wk->bmplist_h.list = wk->menulist;
@@ -924,7 +924,7 @@ static void mbox_MailListInit(MAIL_BOX_MAIN* wk)
 	wk->bmplist_h.call_back = mbox_CB_MailListMove;
 	wk->bmplist_h.icon = mbox_CB_MailListLine;
 
-	//ƒŠƒXƒgíœƒtƒ‰ƒOon‚È‚çƒJ[ƒ\ƒ‹ˆÊ’u’²®
+	//ãƒªã‚¹ãƒˆå‰Šé™¤ãƒ•ãƒ©ã‚°onãªã‚‰ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®èª¿æ•´
 	if(wk->listdel_f){
 		if(wk->List == 0){
 			if(wk->Cursor != 0 && wk->Cursor >= (size-1)){
@@ -940,7 +940,7 @@ static void mbox_MailListInit(MAIL_BOX_MAIN* wk)
 	wk->blistWk = BmpListSet(&(wk->bmplist_h),wk->List,wk->Cursor,wk->heapID);
 	BmpMenuWinWrite( &wk->bmpwin, WINDOW_TRANS_ON, BMPL_MENU_WIN_CGX, BMPL_MENU_WIN_PAL );
 	
-	//ƒ^ƒCƒgƒ‹•`‰æ
+	//ã‚¿ã‚¤ãƒˆãƒ«æç”»
 	GF_STR_PrintColor(&wk->titlewin, FONT_SYSTEM,wk->msgDat.tbuf,
 		2, 0, MSG_ALLPUT, TALK_FCOL, NULL );
 	//	GF_BGL_BmpWinOn(&wk->titlewin);
@@ -949,12 +949,12 @@ static void mbox_MailListInit(MAIL_BOX_MAIN* wk)
 	
 	GF_BGL_LoadScreenV_Req(wk->bgl,MAILBOX_FRAME);
 
-	//ƒŠƒXƒgƒ‚[ƒh•Û‘¶
+	//ãƒªã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ä¿å­˜
 	wk->listMode = 0;
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX@ƒ[ƒ‹ƒŠƒXƒgƒ‰ƒCƒ“ƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã€€ãƒ¡ãƒ¼ãƒ«ãƒªã‚¹ãƒˆãƒ©ã‚¤ãƒ³ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  */
 static void mbox_CB_MailListLine(BMPLIST_WORK* work,u32 param,u8 y)
 {
@@ -973,21 +973,21 @@ static void mbox_CB_MailListLine(BMPLIST_WORK* work,u32 param,u8 y)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX@ƒ[ƒ‹ƒŠƒXƒgƒJ[ƒ\ƒ‹ˆÚ“®ƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã€€ãƒ¡ãƒ¼ãƒ«ãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  */
 static void mbox_CB_MailListMove(BMPLIST_WORK * work, u32 param, u8 mode)
 {
 	u16	scr,cur,ct;
 	MAIL_BOX_MAIN* wk = (MAIL_BOX_MAIN*)BmpListParamGet(work,BMPLIST_ID_WORK);
 	
-	//ƒJ[ƒ\ƒ‹ˆÚ“®
+	//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 	BmpListPosGet( work, &scr, &cur );
 	ct = BmpListParamGet(work,BMPLIST_ID_COUNT);
 
 	if(!mode){
 		Snd_SePlay(SEQ_SE_DP_SELECT);
 	}
-	//–îˆóƒ}[ƒN•`‰æƒRƒ“ƒgƒ[ƒ‹
+	//çŸ¢å°ãƒãƒ¼ã‚¯æç”»ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 	if(scr == 0){
 		FComAct_SetDrawFlg(wk->fca,FCA_UCURSOR,FALSE);
 	}else{
@@ -1001,7 +1001,7 @@ static void mbox_CB_MailListMove(BMPLIST_WORK * work, u32 param, u8 mode)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒXƒZƒŒƒNƒgƒŠƒXƒg‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã‚»ãƒ¬ã‚¯ãƒˆãƒªã‚¹ãƒˆåˆæœŸåŒ–
  */
 static void mbox_SelectListInit(MAIL_BOX_MAIN* wk,u8 list,u8 cur)
 {
@@ -1012,7 +1012,7 @@ static void mbox_SelectListInit(MAIL_BOX_MAIN* wk,u8 list,u8 cur)
 		MENU_WIN_SX, MENU_WIN_SY, MAILBOX_FPAL, MENU_WIN_CGX
 	};
 
-	//BMPƒƒjƒ…[ƒŠƒXƒgì¬
+	//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆä½œæˆ
 	size = NELEMS(normalMenu);
 	wk->menulist = BMP_MENULIST_Create(size,wk->heapID);
 	GF_BGL_BmpWinAddEx(wk->bgl,&(wk->bmpwin),&bmp);
@@ -1023,7 +1023,7 @@ static void mbox_SelectListInit(MAIL_BOX_MAIN* wk,u8 list,u8 cur)
 			wk->pMsg, normalMenu[i].str_id, normalMenu[i].param );
 	}
 	
-	//BMPƒŠƒXƒgİ’è
+	//BMPãƒªã‚¹ãƒˆè¨­å®š
 	MI_CpuCopy8((void*)&MailListHeader,(void*)&(wk->bmplist_h),sizeof(BMPLIST_HEADER));
 	wk->bmplist_h.win = &(wk->bmpwin);
 	wk->bmplist_h.list = wk->menulist;
@@ -1037,12 +1037,12 @@ static void mbox_SelectListInit(MAIL_BOX_MAIN* wk,u8 list,u8 cur)
 	BmpMenuWinWrite( &wk->bmpwin, WINDOW_TRANS_ON, BMPL_MENU_WIN_CGX, BMPL_MENU_WIN_PAL );	
 	GF_BGL_LoadScreenV_Req(wk->bgl,MAILBOX_FRAME);	
 
-	//ƒŠƒXƒgƒ‚[ƒh•Û‘¶
+	//ãƒªã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ä¿å­˜
 	wk->listMode = 1;
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX@ƒZƒŒƒNƒgƒŠƒXƒgƒJ[ƒ\ƒ‹ˆÚ“®ƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã€€ã‚»ãƒ¬ã‚¯ãƒˆãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  */
 static void mbox_CB_SelectListMove(BMPLIST_WORK * work, u32 param, u8 mode)
 {
@@ -1052,17 +1052,17 @@ static void mbox_CB_SelectListMove(BMPLIST_WORK * work, u32 param, u8 mode)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX ƒ[ƒ‹ƒŠƒXƒg—Ìˆæ‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ ãƒ¡ãƒ¼ãƒ«ãƒªã‚¹ãƒˆé ˜åŸŸè§£æ”¾
  */
 static void mbox_MailListEnd(MAIL_BOX_MAIN* wk)
 {
 	u16	list,cur;
 	
-	//BMPƒŠƒXƒg‚ÌŠJ•ú
-	BmpListExit(wk->blistWk,&list,&cur);	//ƒŠƒXƒg”jŠü
-	BMP_MENULIST_Delete(wk->menulist);	//ƒƒjƒ…[•¶š—ñ”jŠü
+	//BMPãƒªã‚¹ãƒˆã®é–‹æ”¾
+	BmpListExit(wk->blistWk,&list,&cur);	//ãƒªã‚¹ãƒˆç ´æ£„
+	BMP_MENULIST_Delete(wk->menulist);	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ–‡å­—åˆ—ç ´æ£„
 	
-	//BMPWIN”jŠü
+	//BMPWINç ´æ£„
 	GF_BGL_BmpWinOff(&(wk->titlewin));	//WindowOFF
 	BmpMenuWinClear( &(wk->titlewin),WINDOW_TRANS_ON);
 	GF_BGL_BmpWinDel(&(wk->titlewin));	//BMP Window Del
@@ -1071,11 +1071,11 @@ static void mbox_MailListEnd(MAIL_BOX_MAIN* wk)
 	BmpMenuWinClear( &(wk->bmpwin),WINDOW_TRANS_ON);
 	GF_BGL_BmpWinDel(&(wk->bmpwin));	//BMP Window Del
 
-	//ƒJ[ƒ\ƒ‹ˆÊ’u•Û‘¶
+	//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ä¿å­˜
 	wk->List = list;
 	wk->Cursor = cur;
 
-	//ƒAƒNƒ^[ƒJ[ƒ\ƒ‹”jŠü
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ç ´æ£„
 	if(wk->fca != NULL){
 		FComAct_Delete(wk->fca);
 		wk->fca = NULL;
@@ -1085,19 +1085,19 @@ static void mbox_MailListEnd(MAIL_BOX_MAIN* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX ƒZƒŒƒNƒgƒŠƒXƒg—Ìˆæ‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ ã‚»ãƒ¬ã‚¯ãƒˆãƒªã‚¹ãƒˆé ˜åŸŸè§£æ”¾
  */
 static void mbox_SelectListEnd(MAIL_BOX_MAIN* wk)
 {
 	u16	list,cur;
 	
-	//BMPWIN”jŠü
+	//BMPWINç ´æ£„
 	GF_BGL_BmpWinOff(&(wk->bmpwin));	//WindowOFF
 	
-	//BMPƒŠƒXƒg‚ÌŠJ•ú
+	//BMPãƒªã‚¹ãƒˆã®é–‹æ”¾
 	BmpMenuWinClear( &(wk->bmpwin),WINDOW_TRANS_ON);
-	BmpListExit(wk->blistWk,&list,&cur);	//ƒŠƒXƒg”jŠü
-	BMP_MENULIST_Delete(wk->menulist);	//ƒƒjƒ…[•¶š—ñ”jŠü
+	BmpListExit(wk->blistWk,&list,&cur);	//ãƒªã‚¹ãƒˆç ´æ£„
+	BMP_MENULIST_Delete(wk->menulist);	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ–‡å­—åˆ—ç ´æ£„
 	GF_BGL_BmpWinDel(&(wk->bmpwin));	//BMP Window Del
 	
 	mbox_TalkMsgClear(wk);
@@ -1109,10 +1109,10 @@ static void mbox_SelectListEnd(MAIL_BOX_MAIN* wk)
  *	@brief	
  */
 //===================================================
-//ƒ[ƒJƒ‹
+//ãƒ­ãƒ¼ã‚«ãƒ«
 //===================================================
 /**
- *	@brief	TCBƒtƒ@ƒ“ƒNƒVƒ‡ƒ“ƒ`ƒFƒ“ƒW
+ *	@brief	TCBãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ãƒã‚§ãƒ³ã‚¸
  */
 static void mbox_NextTcb(MAIL_BOX_MAIN* wk,TCB_FUNC first,TCB_FUNC second)
 {
@@ -1122,7 +1122,7 @@ static void mbox_NextTcb(MAIL_BOX_MAIN* wk,TCB_FUNC first,TCB_FUNC second)
 }
 
 /**
- *	@brief	MAP_LIST\‘¢‘Ì‚ğ‹óó‘Ô‚É‰Šú‰»
+ *	@brief	MAP_LISTæ§‹é€ ä½“ã‚’ç©ºçŠ¶æ…‹ã«åˆæœŸåŒ–
  */
 static void mbox_MAIL_LIST_Clear(MAIL_LIST* dat,u8 id)
 {
@@ -1136,7 +1136,7 @@ static void mbox_MAIL_LIST_Clear(MAIL_LIST* dat,u8 id)
 }
 
 /**
- *	@brief	MAP_LIST\‘¢‘Ì”z—ñ‚ğ‰Šú‰»
+ *	@brief	MAP_LISTæ§‹é€ ä½“é…åˆ—ã‚’åˆæœŸåŒ–
  */
 static void mbox_MAIL_LIST_ArrayInit(MAIL_LIST* dat,u8 num,int heapID)
 {
@@ -1149,7 +1149,7 @@ static void mbox_MAIL_LIST_ArrayInit(MAIL_LIST* dat,u8 num,int heapID)
 }
 
 /**
- *	@brief	MAP_LIST\‘¢‘Ì”z—ñ“à‚ÌƒŠƒ\[ƒX‚ğ‰ğ•ú
+ *	@brief	MAP_LISTæ§‹é€ ä½“é…åˆ—å†…ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾
  */
 static void mbox_MAIL_LIST_ArrayEnd(MAIL_LIST* dat,u8 num)
 {
@@ -1163,7 +1163,7 @@ static void mbox_MAIL_LIST_ArrayEnd(MAIL_LIST* dat,u8 num)
 }
 
 /**
- *	brief	ƒZ[ƒuƒf[ƒ^‚ğæ“¾
+ *	brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  */
 static void mbox_GetSaveData(MAIL_BOX_MAIN* wk,SAVEDATA* savedata,int heapID)
 {
@@ -1174,14 +1174,14 @@ static void mbox_GetSaveData(MAIL_BOX_MAIN* wk,SAVEDATA* savedata,int heapID)
 	
 	MAIL_LIST	*pNow,*pLast;
 	
-	//ƒ[ƒ‹ƒuƒƒbƒNƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^æ“¾
+	//ãƒ¡ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	pBlock = SaveData_GetMailBlock(savedata);
 	wk->pBlock = pBlock;
 
-	//ƒAƒCƒeƒ€ƒf[ƒ^ƒZ[ƒuƒ|ƒCƒ“ƒ^æ“¾
+	//ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	wk->itemSave = SaveData_GetMyItem(savedata);
 
-	//ƒf[ƒ^æ“¾ƒeƒ“ƒ|ƒ‰ƒŠì¬
+	//ãƒ‡ãƒ¼ã‚¿å–å¾—ãƒ†ãƒ³ãƒãƒ©ãƒªä½œæˆ
 	mail = MailData_CreateWork(heapID);
 	
 	for(i = 0;i < MAIL_STOCK_PASOCOM;i++){
@@ -1201,49 +1201,49 @@ static void mbox_GetSaveData(MAIL_BOX_MAIN* wk,SAVEDATA* savedata,int heapID)
 #endif
 			continue;
 		}
-		pNow->valid = 1;	//—LŒøƒtƒ‰ƒOOn
-		pNow->sex = MailData_GetWriterSex(mail);//ƒ‰ƒCƒ^[«•Êæ“¾
+		pNow->valid = 1;	//æœ‰åŠ¹ãƒ•ãƒ©ã‚°On
+		pNow->sex = MailData_GetWriterSex(mail);//ãƒ©ã‚¤ã‚¿ãƒ¼æ€§åˆ¥å–å¾—
 		pNow->design = MailData_GetDesignNo(mail);
-		pNow->itemno = MailItemNumGet(pNow->design);//ƒAƒCƒeƒ€NOæ“¾
+		pNow->itemno = MailItemNumGet(pNow->design);//ã‚¢ã‚¤ãƒ†ãƒ NOå–å¾—
 		STRBUF_SetStringCode(pNow->name,MailData_GetWriterName(mail));
 
-		//zŠÂƒŠƒXƒgì¬
+		//å¾ªç’°ãƒªã‚¹ãƒˆä½œæˆ
 		pNow->prev = wk->listEnd;
 		pLast->next = pNow->id;
 
-		wk->listEnd = pNow->id;	//ÅŒã‚ğXV
+		wk->listEnd = pNow->id;	//æœ€å¾Œã‚’æ›´æ–°
 		wk->listSize++;
 		if(wk->listStart == 0xFF){
-			wk->listStart = i;	//ƒXƒ^[ƒgNO‚ğæ“¾
+			wk->listStart = i;	//ã‚¹ã‚¿ãƒ¼ãƒˆNOã‚’å–å¾—
 		}
 	}
 
-	//zŠÂƒŠƒXƒg‚ğ•Â‚¶‚é
+	//å¾ªç’°ãƒªã‚¹ãƒˆã‚’é–‰ã˜ã‚‹
 	wk->mailList[wk->listEnd].next = wk->listStart;
 	wk->mailList[wk->listStart].prev = wk->listEnd;
 	
-	//ƒ[ƒ‹ƒ[ƒN”jŠü
+	//ãƒ¡ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz(mail);
 }
 
 /**
- *	@brief	ƒJƒŒƒ“ƒgƒ[ƒ‹‚ğƒŠƒXƒgƒ`ƒFƒCƒ“‚©‚çŠO‚·ˆ—
+ *	@brief	ã‚«ãƒ¬ãƒ³ãƒˆãƒ¡ãƒ¼ãƒ«ã‚’ãƒªã‚¹ãƒˆãƒã‚§ã‚¤ãƒ³ã‹ã‚‰å¤–ã™å‡¦ç†
  */
 static void mbox_MailChainOut(MAIL_BOX_MAIN* wk,u8 id)
 {
 	MAIL_LIST* pNow;
 	pNow = &(wk->mailList[id]);
 	
-	//ƒ[ƒ‹ƒf[ƒ^‚ğƒŠƒXƒg‚©‚çíœ
+	//ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
 	wk->mailList[pNow->prev].next = pNow->next;
 	wk->mailList[pNow->next].prev = pNow->prev;
 	wk->mailList[id].valid = 0;
-	//ƒŠƒXƒg‚ª‚Ğ‚Æ‚ÂŒ¸‚Á‚½ƒtƒ‰ƒO‚ğ—§‚Ä‚Ä‚¨‚­
+	//ãƒªã‚¹ãƒˆãŒã²ã¨ã¤æ¸›ã£ãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦ãŠã
 	wk->listdel_f = 1;
 }
 
 /**
- *	@brief	ƒ[ƒ‹‚ğƒoƒbƒO‚É–ß‚·ˆ—
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ã‚’ãƒãƒƒã‚°ã«æˆ»ã™å‡¦ç†
  */
 static BOOL mbox_MailReturnBag(MAIL_BOX_MAIN* wk)
 {
@@ -1254,28 +1254,28 @@ static BOOL mbox_MailReturnBag(MAIL_BOX_MAIN* wk)
 	
 	ret = MyItem_AddCheck(wk->itemSave,pNow->itemno,1,wk->heapID);
 	
-	//ƒ[ƒ‹ƒAƒCƒeƒ€‚ğƒoƒbƒO‚É’Ç‰Á
+	//ãƒ¡ãƒ¼ãƒ«ã‚¢ã‚¤ãƒ†ãƒ ã‚’ãƒãƒƒã‚°ã«è¿½åŠ 
 	if(ret){
 		MyItem_AddItem(wk->itemSave,pNow->itemno,1,wk->heapID);
 	}
-	//ƒ[ƒ‹ƒZ[ƒuƒf[ƒ^‚ğƒNƒŠƒA
+	//ãƒ¡ãƒ¼ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢
 	MAIL_DelMailData(wk->pBlock,MAILBLOCK_PASOCOM,wk->selectID);
 
 #if 0
-	if(!pNow->valid){	//ƒŠƒXƒg‚©‚çíœÏ‚İ‚È‚ç‚±‚±‚Å‹A‚é
+	if(!pNow->valid){	//ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤æ¸ˆã¿ãªã‚‰ã“ã“ã§å¸°ã‚‹
 		return ret;
 	}
 #endif
-	//ƒ[ƒ‹ƒf[ƒ^‚ğƒŠƒXƒg‚©‚çíœ
+	//ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
 	mbox_MailChainOut(wk,wk->selectID);
 
-	//ƒŠƒXƒg\‘¢‘Ì‚ğƒNƒŠƒA
+	//ãƒªã‚¹ãƒˆæ§‹é€ ä½“ã‚’ã‚¯ãƒªã‚¢
 	mbox_MAIL_LIST_Clear(pNow,wk->selectID);
 	return ret;
 }
 
 /**
- *	@brief	ƒ[ƒ‹‚ğƒ|ƒPƒ‚ƒ“‚É‚½‚¹‚éˆ—
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ã‚’ãƒã‚±ãƒ¢ãƒ³ã«æŒãŸã›ã‚‹å‡¦ç†
  */
 static void mbox_Mail2Poke(MAIL_BOX_MAIN* wk,u8 pokeno,BOOL addItem)
 {
@@ -1288,27 +1288,27 @@ static void mbox_Mail2Poke(MAIL_BOX_MAIN* wk,u8 pokeno,BOOL addItem)
 	if(!pNow->valid){
 		return;
 	}
-	//POKEPARAæ“¾
+	//POKEPARAå–å¾—
 	pp = SaveData_GetTemotiPokemon(GameSystem_GetSaveData(wk->fsys));
 	poke = PokeParty_GetMemberPointer(pp,pokeno);	
 	
-	//ƒ|ƒPƒ‚ƒ“‚Éƒ[ƒ‹‚ğˆÚ‚·
+	//ãƒã‚±ãƒ¢ãƒ³ã«ãƒ¡ãƒ¼ãƒ«ã‚’ç§»ã™
 	MailSys_MoveMailPaso2Poke(wk->pBlock,wk->selectID,poke,wk->heapID);
 
 	if(addItem){
-		//ƒ[ƒ‹‚ğÁ‚µ‚Ä‚©‚ç‚½‚¹‚½ê‡AƒAƒCƒeƒ€‚ªÁ”ï‚³‚ê‚Ä‚¢‚é‚Ì‚Å‚Ğ‚Æ‚Â’Ç‰Á‚·‚é
+		//ãƒ¡ãƒ¼ãƒ«ã‚’æ¶ˆã—ã¦ã‹ã‚‰æŒãŸã›ãŸå ´åˆã€ã‚¢ã‚¤ãƒ†ãƒ ãŒæ¶ˆè²»ã•ã‚Œã¦ã„ã‚‹ã®ã§ã²ã¨ã¤è¿½åŠ ã™ã‚‹
 		if(MyItem_AddCheck(wk->itemSave,pNow->itemno,1,wk->heapID)){
-			//ƒ[ƒ‹ƒAƒCƒeƒ€‚ğƒoƒbƒO‚É’Ç‰Á
+			//ãƒ¡ãƒ¼ãƒ«ã‚¢ã‚¤ãƒ†ãƒ ã‚’ãƒãƒƒã‚°ã«è¿½åŠ 
 			MyItem_AddItem(wk->itemSave,pNow->itemno,1,wk->heapID);
 		}
 	}
-	//ƒ[ƒ‹ƒf[ƒ^‚ğƒŠƒXƒg‚©‚çíœ
+	//ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
 	mbox_MailChainOut(wk,wk->selectID);
 	mbox_MAIL_LIST_Clear(pNow,wk->selectID);
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX@ƒƒbƒZ[ƒWƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 static void mbox_MsgResInit(MAIL_BOX_MAIN* wk)
 {
@@ -1332,7 +1332,7 @@ static void mbox_MsgResInit(MAIL_BOX_MAIN* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX@ƒƒbƒZ[ƒWƒŠƒ\[ƒX‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 static void mbox_MsgResRelease(MAIL_BOX_MAIN* wk)
 {
@@ -1350,14 +1350,14 @@ static void mbox_MsgResRelease(MAIL_BOX_MAIN* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒXview ƒRƒ‚ƒ“ƒŠƒ\[ƒX‚Ìæ“¾
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹view ã‚³ãƒ¢ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã®å–å¾—
  */
 static void mbox_ComResInit(MAIL_BOX_MAIN* wk)
 {
-	//BGLæ“¾
+	//BGLå–å¾—
 	wk->bgl = FieldBglIniGet(wk->fsys);
 
-	//ƒRƒ‚ƒ“ƒEƒBƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+	//ã‚³ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 	TalkWinGraphicSet(wk->bgl,MAILBOX_FRAME,
 			BMPL_TALK_WIN_CGX,BMPL_TALK_WIN_PAL,wk->win_type,wk->heapID);
 	MenuWinGraphicSet(wk->bgl,MAILBOX_FRAME,
@@ -1366,7 +1366,7 @@ static void mbox_ComResInit(MAIL_BOX_MAIN* wk)
 	SystemFontPaletteLoad(PALTYPE_MAIN_BG,FLD_SYSFONT_PAL*32,wk->heapID);
 	TalkFontPaletteLoad(PALTYPE_MAIN_BG,FLD_MESFONT_PAL*32,wk->heapID);
 
-	//ƒRƒ‚ƒ“ƒEƒBƒ“ƒhƒEAdd
+	//ã‚³ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Add
 	GF_BGL_BmpWinAdd(
 			wk->bgl, &wk->msgwin, MAILBOX_FRAME,
 			BMPL_TALK_PX,BMPL_TALK_PY,BMPL_TALK_SX,BMPL_TALK_SY,
@@ -1375,7 +1375,7 @@ static void mbox_ComResInit(MAIL_BOX_MAIN* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒXview ƒRƒ‚ƒ“ƒŠƒ\[ƒX‚Ì‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹view ã‚³ãƒ¢ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  */
 static void mbox_ComResRelease(MAIL_BOX_MAIN* wk)
 {
@@ -1386,7 +1386,7 @@ static void mbox_ComResRelease(MAIL_BOX_MAIN* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX@‰ï˜bƒƒbƒZ[ƒW•`‰æ
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã€€ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
  */
 static void mbox_PrintTalkMsg(MAIL_BOX_MAIN* wk,MBOX_MSGIDX idx,u8 spd,u8 del_f,int win_f)
 {
@@ -1411,17 +1411,17 @@ static void mbox_PrintTalkMsg(MAIL_BOX_MAIN* wk,MBOX_MSGIDX idx,u8 spd,u8 del_f,
 	}else{
 		msg = wk->msgDat.mbuf[idx];
 	}
-	//ƒƒbƒZ[ƒW•`‰æ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 	wk->msgIdx = GF_STR_PrintColor(
 		&wk->msgwin, FONT_TALK, msg,
 		0, 0, spd, TALK_FCOL, NULL );
 
 	GF_BGL_BmpWinOn(&wk->msgwin);
-	wk->msgwin_f = del_f;	//ƒƒbƒZ[ƒW‘Ò‚¿Œã‚ÉƒEƒBƒ“ƒhƒE‚ğƒNƒŠƒA‚·‚é‚©‚Ç‚¤‚©H
+	wk->msgwin_f = del_f;	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾…ã¡å¾Œã«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã‹ã©ã†ã‹ï¼Ÿ
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX@‰ï˜bƒƒbƒZ[ƒWI—¹‘Ò‚¿
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã€€ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
  */
 static void mbox_TalkMsgClear(MAIL_BOX_MAIN* wk)
 {
@@ -1430,7 +1430,7 @@ static void mbox_TalkMsgClear(MAIL_BOX_MAIN* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX@‰ï˜bƒƒbƒZ[ƒWI—¹‘Ò‚¿
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã€€ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
  */
 static BOOL mbox_TalkMsgWait(MAIL_BOX_MAIN* wk)
 {
@@ -1444,7 +1444,7 @@ static BOOL mbox_TalkMsgWait(MAIL_BOX_MAIN* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX@YNƒEƒBƒ“ƒhƒE‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã€€YNã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  */
 static void mbox_YesNoInit(MAIL_BOX_MAIN* wk)
 {
@@ -1458,15 +1458,15 @@ static void mbox_YesNoInit(MAIL_BOX_MAIN* wk)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒX@YN‘I‘ğ‘Ò‚¿
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã€€YNé¸æŠå¾…ã¡
  */
 static int mbox_YesNoWait(MAIL_BOX_MAIN* wk)
 {
 	switch( BmpYesNoSelectMain( wk->ynmenu_wk, wk->heapID) ){
-	case 0:	//‚Í‚¢
+	case 0:	//ã¯ã„
 //		Snd_SePlay(PORUC_SE_DECIDE);
 		return TRUE;
-	case BMPMENU_CANCEL: //‚¢‚¢‚¦
+	case BMPMENU_CANCEL: //ã„ã„ãˆ
 //		Snd_SePlay(PORUC_SE_DECIDE);
 		return FALSE;
 	}
@@ -1474,7 +1474,7 @@ static int mbox_YesNoWait(MAIL_BOX_MAIN* wk)
 }
 
 /**
- *	@brief	ƒtƒF[ƒhŒÄ‚Ño‚µ
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‘¼ã³å‡ºã—
  */
 static int mbox_FadeCall(MAIL_BOX_MAIN* wk,int type)
 {
@@ -1496,22 +1496,22 @@ static int mbox_FadeCall(MAIL_BOX_MAIN* wk,int type)
 }
 
 /**
- *	@brief	ƒtƒB[ƒ‹ƒhƒvƒƒZƒX•œ‹AƒR[ƒ‹
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°ã‚³ãƒ¼ãƒ«
  */
 static int mbox_FieldSetCall(MAIL_BOX_MAIN* wk)
 {
 	switch(wk->sub_seq){
 	case 0:
-		//ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 		FieldEvent_Cmd_SetMapProc(wk->fsys);
 		wk->sub_seq++;
 		break;		
 	case 1:
-		//ƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJnI—¹‘Ò‚¿
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹çµ‚äº†å¾…ã¡
 		if(!FieldEvent_Cmd_WaitMapProcStart(wk->fsys)){
 			break;
 		}
-		//ƒCƒxƒ“ƒgƒtƒbƒN
+		//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒƒã‚¯
 #ifdef PM_DEBUG
 		if(wk->deb_flag){
 			FieldSystemProc_SeqHold();
@@ -1519,13 +1519,13 @@ static int mbox_FieldSetCall(MAIL_BOX_MAIN* wk)
 			return TRUE;
 		}
 #endif	//PM_DEBUG
-		//ƒpƒ\ƒRƒ“ƒAƒjƒ•œ‹A
+		//ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡å¾©å¸°
 		FLD_SCR_ANM_PASO_Setup(wk->fsys,SCR_PASO_ANM_NO);
 		FLD_SCR_ANM_PASO_PasoOnAnm(wk->fsys,SCR_PASO_ANM_NO);
 		wk->sub_seq++;
 		break;
 	case 2:
-		//ƒpƒ\ƒRƒ“ƒAƒjƒ‘Ò‚¿
+		//ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡å¾…ã¡
 		if(!F3DASub_WaitAnimation(wk->fsys->AnimeContMng,SCR_PASO_ANM_NO)){
 			break;
 		}
@@ -1536,24 +1536,24 @@ static int mbox_FieldSetCall(MAIL_BOX_MAIN* wk)
 }
 
 /**
- *	@brief	ƒŠƒXƒgÁ‹
+ *	@brief	ãƒªã‚¹ãƒˆæ¶ˆå»
  */
 static int mbox_ListFree(MAIL_BOX_MAIN* wk,u8 mode)
 {
 #ifdef PM_DEBUG
 	if(wk->deb_flag == 0){
-		//ƒpƒ\ƒRƒ“ƒAƒjƒ‰ğ•ú
+		//ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡è§£æ”¾
 		FLD_SCR_ANM_DOOR_FreeDoor(wk->fsys,SCR_PASO_ANM_NO);
 	}
 #else
-	//ƒpƒ\ƒRƒ“ƒAƒjƒ‰ğ•ú
+	//ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡è§£æ”¾
 	FLD_SCR_ANM_DOOR_FreeDoor(wk->fsys,SCR_PASO_ANM_NO);
 #endif
 	if(mode == LIST_MAIL){
-		//ƒ[ƒ‹ƒŠƒXƒg‰ğ•ú
+		//ãƒ¡ãƒ¼ãƒ«ãƒªã‚¹ãƒˆè§£æ”¾
 		mbox_MailListEnd(wk);
 	}else{
-		//ƒŠƒXƒgƒŠƒ\[ƒX‰ğ•ú
+		//ãƒªã‚¹ãƒˆãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 		mbox_SelectListEnd(wk);
 	}
 	mbox_ComResRelease(wk);
@@ -1561,7 +1561,7 @@ static int mbox_ListFree(MAIL_BOX_MAIN* wk,u8 mode)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
  */
 static int mbox_PokeListCall(MAIL_BOX_MAIN* wk,int mode)
 {
@@ -1598,7 +1598,7 @@ static int mbox_PokeListCall(MAIL_BOX_MAIN* wk,int mode)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ŒÄ‚Ño‚µ
+ *	@brief	ãƒ¡ãƒ¼ãƒ«å‘¼ã³å‡ºã—
  */
 static int mbox_MailCall(MAIL_BOX_MAIN* wk)
 {
@@ -1607,23 +1607,23 @@ static int mbox_MailCall(MAIL_BOX_MAIN* wk)
 	switch(wk->sub_seq){
 	case 0:
 		if(wk->mailList[wk->selectID].valid){
-			//ƒ[ƒ‹‚ğŒ©‚é
+			//ãƒ¡ãƒ¼ãƒ«ã‚’è¦‹ã‚‹
 			wk->param =  FieldMailView_InitCall(wk->fsys,
 				MAILBLOCK_PASOCOM,wk->selectID,wk->heapID);
 		}else{
 #ifdef PM_DEBUG
 			if(wk->deb_flag == 2){
-				//ƒfƒoƒbƒOƒ[ƒ‹ì¬
+				//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ¼ãƒ«ä½œæˆ
 				wk->param =  FieldMailCreate_InitCall( wk->fsys,
 					MAILBLOCK_PASOCOM,0,wk->deb_design,wk->heapID);
 			}else{
-				//Á‚µ‚½ƒ[ƒ‹‚ğƒ|ƒPƒ‚ƒ“‚É‚½‚¹‚é‚Æ‚«‚Ìƒ[ƒ‹ì¬
+				//æ¶ˆã—ãŸãƒ¡ãƒ¼ãƒ«ã‚’ãƒã‚±ãƒ¢ãƒ³ã«æŒãŸã›ã‚‹ã¨ãã®ãƒ¡ãƒ¼ãƒ«ä½œæˆ
 				wk->param =  FieldMailCreate_InitCall( wk->fsys,
 					MAILBLOCK_PASOCOM,wk->selPos,
 					wk->mailList[wk->selectID].design,wk->heapID);
 			}
 #else
-			//Á‚µ‚½ƒ[ƒ‹‚ğƒ|ƒPƒ‚ƒ“‚É‚½‚¹‚é‚Æ‚«‚Ìƒ[ƒ‹ì¬
+			//æ¶ˆã—ãŸãƒ¡ãƒ¼ãƒ«ã‚’ãƒã‚±ãƒ¢ãƒ³ã«æŒãŸã›ã‚‹ã¨ãã®ãƒ¡ãƒ¼ãƒ«ä½œæˆ
 			wk->param =  FieldMailCreate_InitCall( wk->fsys,
 				MAILBLOCK_PASOCOM,wk->selPos,
 				wk->mailList[wk->selectID].design,wk->heapID);
@@ -1632,13 +1632,13 @@ static int mbox_MailCall(MAIL_BOX_MAIN* wk)
 		wk->sub_seq++;
 		break;
 	case 1:
-		//ƒvƒƒZƒXI—¹‘Ò‚¿
+		//ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 		if(FieldEvent_Cmd_WaitSubProcEnd(wk->fsys)){
 			break;
 		}
 		if(MailSys_IsDataCreate(wk->param)){
 			wk->mailList[wk->selectID].valid = 1;
-			//ì¬ƒf[ƒ^‚ğƒZ[ƒuƒf[ƒ^‚É”½‰f
+			//ä½œæˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 			MailSys_PushDataToSave(wk->param,MAILBLOCK_PASOCOM,wk->mailList[wk->selectID].id);
 #ifdef PM_DEBUG
 			if(wk->deb_flag==2){
@@ -1658,7 +1658,7 @@ static int mbox_MailCall(MAIL_BOX_MAIN* wk)
 }
 
 //========================================================
-//	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒh
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰
 //========================================================
 typedef struct _MAILBOX_EVENT{
 	int	ret_val;
@@ -1667,9 +1667,9 @@ typedef struct _MAILBOX_EVENT{
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒ‹ƒ{ƒbƒNƒXƒCƒxƒ“ƒg 
+ * @brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã‚¤ãƒ™ãƒ³ãƒˆ 
  * @param	ev	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL MyPCEvent_MailBox( GMEVENT_CONTROL *ev )
@@ -1679,7 +1679,7 @@ static BOOL MyPCEvent_MailBox( GMEVENT_CONTROL *ev )
 
 	switch (wk->seq) {
 	case 0:
-		//ƒ[ƒ‹ƒ{ƒbƒNƒXƒ^ƒXƒN“o˜^
+		//ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã‚¿ã‚¹ã‚¯ç™»éŒ²
 		MailBox_Call(fsys,&(wk->ret_val));
 		wk->seq++;
 		break;
@@ -1695,9 +1695,9 @@ static BOOL MyPCEvent_MailBox( GMEVENT_CONTROL *ev )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒ‹ƒ{ƒbƒNƒXƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+ * @brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
  * @param	event	GMEVENT_CONTROL*
- * @param	dir		ˆÚ“®•ûŒü
+ * @param	dir		ç§»å‹•æ–¹å‘
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */

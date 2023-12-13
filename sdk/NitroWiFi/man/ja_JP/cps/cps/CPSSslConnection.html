@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CPSSslConnection</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">CPSSslConnection</h1>
 
 
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
@@ -84,50 +84,50 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p>SSL�R�l�N�V�������`����\���̂ł��B<BR>
-<CODE><A href="CPSSoc.html">CPSSoc</A></CODE>���̃t�B�[���h����|�C���g����܂��B<BR>
-�w�ǂ̃t�B�[���h�̓V�X�e�����ݒ肵�܂��B�A�v���P�[�V�������ݒ肵�Ȃ���΂Ȃ�Ȃ��t�B�[���h�͈ȉ��̒ʂ�B</p>
+<p>SSLコネクションを定義する構造体です。<BR>
+<CODE><A href="CPSSoc.html">CPSSoc</A></CODE>内のフィールドからポイントされます。<BR>
+殆どのフィールドはシステムが設定します。アプリケーションが設定しなければならないフィールドは以下の通り。</p>
 <TABLE border="1">
 	<TBODY>
 		<TR>
 			<TD width="25%"><EM><STRONG><CODE>server_name</CODE></STRONG></EM></TD>
-			<TD width="75%">NULL�łȂ��ꍇ�A�ؖ����̃T�[�o��(Common Name)�Ƃ̔�r���s���A���̌��ʂ��R�[���o�b�N�֐��ɓn����܂��B<BR>
-			�ؖ����̃T�[�o���Ƃ��Ẵ��C���h�J�[�h���T�|�[�g���Ă��܂��B</TD>
+			<TD width="75%">NULLでない場合、証明書のサーバ名(Common Name)との比較が行われ、その結果がコールバック関数に渡されます。<BR>
+			証明書のサーバ名としてのワイルドカードをサポートしています。</TD>
 		</TR>
 		<TR>
 			<TD><EM><STRONG><CODE>auth_callback</CODE></STRONG></EM></TD>
-			<TD>�ؖ����̔F�؍�Ƃ��I���x�ɌĂяo����܂��B�ŏ��̃p�����[�^�Ƃ��ăG���[�R�[�h���A��Ԗڂ̃p�����[�^�Ƃ���CPSSslConnection�ւ̃|�C���^���A�O�ڂ̃p�����[�^�Ƃ��ĔF�؃`�F�[�����̒i��(�����l��0)���n����܂��B<BR>
-			�n���ꂽ�G���[�R�[�h��ύX���ĕԂ����Ƃɂ���ăG���[�𖳎����邱�Ƃ��o���܂��B0�ȊO��Ԃ��ƔF�؂͎��s���܂��B</TD>
+			<TD>証明書の認証作業が終わる度に呼び出されます。最初のパラメータとしてエラーコードが、二番目のパラメータとしてCPSSslConnectionへのポインタが、三つ目のパラメータとして認証チェーン内の段数(初期値は0)が渡されます。<BR>
+			渡されたエラーコードを変更して返すことによってエラーを無視することが出来ます。0以外を返すと認証は失敗します。</TD>
 		</TR>
 	</TBODY>
 </TABLE>
-<P>auth_callback�ɓn�����CPSSslConnection *����A�ȉ��̃t�B�[���h���Q�Ƃ��邱�Ƃ��o���܂��B</P>
+<P>auth_callbackに渡されるCPSSslConnection *から、以下のフィールドを参照することが出来ます。</P>
 <TABLE border="1">
 	<TBODY>
 		<TR>
 			<TD width="25%"><EM><STRONG><CODE>cert<BR>
 			certlen</CODE></STRONG></EM></TD>
-			<TD width="75%">���ݔF�؍�ƒ��̏ؖ����ւ̃|�C���^�A�����B���̏ؖ��������ɂ���<CODE><A href="CPSCaInfo.html">CPSCaInfo</A></CODE>����胋�[�g�ؖ��ɒǉ����邱�Ƃ��o���܂��B</TD>
+			<TD width="75%">現在認証作業中の証明書へのポインタ、長さ。この証明書を元にして<CODE><A href="CPSCaInfo.html">CPSCaInfo</A></CODE>を作りルート証明に追加することが出来ます。</TD>
 		</TR>
 		<TR>
 			<TD><EM><STRONG><CODE>subject</CODE></STRONG></EM></TD>
-			<TD>�ؖ�����subject�B</TD>
+			<TD>証明書のsubject。</TD>
 		</TR>
 		<TR>
 			<TD><EM><STRONG><CODE>issuer</CODE></STRONG></EM></TD>
-			<TD>�ؖ�����issuer�B</TD>
+			<TD>証明書のissuer。</TD>
 		</TR>
 	</TBODY>
 </TABLE>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P>
 <CODE><A href="CPSSoc.html">CPSSoc</A></CODE>, <CODE><A href="CPSCaInfo.html">CPSCaInfo</A></CODE>
 </P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-Ver. 2005/10/24 ����</P>
+Ver. 2005/10/24 初版</P>
 </body>
 </html>

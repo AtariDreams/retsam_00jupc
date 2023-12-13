@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	visual_tool.h
- * @brief	�r�W���A������c�[���ނ̃w�b�_
+ * @brief	ビジュアル部門ツール類のヘッダ
  * @author	matsuda
- * @date	2005.12.10(�y)
+ * @date	2005.12.10(土)
  */
 //==============================================================================
 #ifndef __VISUAL_TOOL_H__
@@ -11,12 +11,12 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///�r�W���A������m�[�}����b���b�Z�[�W��ID��`
-///(��VisualTalkMsgData�e�[�u���ƕ��т𓯂��ɂ��Ă������I�I)
+///ビジュアル部門ノーマル会話メッセージのID定義
+///(※VisualTalkMsgDataテーブルと並びを同じにしておく事！！)
 enum{
-	A_TALK_VISUAL_NULL,			///<���b�Z�[�W�w��Ȃ�
+	A_TALK_VISUAL_NULL,			///<メッセージ指定なし
 	
 	A_TALK_VISUAL_HOST_01,
 	A_TALK_VISUAL_HOST_PRACTICE_01,
@@ -35,15 +35,15 @@ enum{
 };
 
 
-///�ϋq�n�[�g�̃A�j���^�C�v
+///観客ハートのアニメタイプ
 enum{
-	AUDIENCE_HEART_ANMTYPE_BP,		///<�u���[�_�[�|�C���g�ɂ��n�[�g
-	AUDIENCE_HEART_ANMTYPE_CLIP,	///<�N���b�v�ɂ��n�[�g
+	AUDIENCE_HEART_ANMTYPE_BP,		///<ブリーダーポイントによるハート
+	AUDIENCE_HEART_ANMTYPE_CLIP,	///<クリップによるハート
 };
 
 
 //==============================================================================
-//	�O���֐��錾
+//	外部関数宣言
 //==============================================================================
 extern void VT_SoftSpriteAdd(VISUAL_SYSTEM_PARAM *sys, int breeder_no);
 extern void VT_SoftSpriteDel(VISUAL_SYSTEM_PARAM *sys, int breeder_no);

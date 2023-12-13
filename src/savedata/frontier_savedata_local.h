@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_savedata_local.h
- * @brief	ƒtƒƒ“ƒeƒBƒAƒZ[ƒuƒf[ƒ^
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  * @author	matsuda
- * @date	2007.04.26(–Ø)
+ * @date	2007.04.26(æœ¨)
  */
 //==============================================================================
 #ifndef __FRONTIER_SAVEDATA_LOCAL_H__
@@ -18,76 +18,76 @@
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- *	ƒtƒƒ“ƒeƒBƒAŽ{Ý‚ÌƒŒƒR[ƒhƒf[ƒ^\‘¢‘Ì
+ *	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ã®ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 typedef struct _FRONTIER_RECORD_SAVEWORK{
 	u16 record[FRID_MAX];
-	u16 wififriend_record[WIFILIST_FRIEND_MAX][FRID_WIFI_MAX - FRID_MAX];//—F’BŽè’ –ˆ‚ÉŽ‚ÂƒŒƒR[ƒh
+	u16 wififriend_record[WIFILIST_FRIEND_MAX][FRID_WIFI_MAX - FRID_MAX];//å‹é”æ‰‹å¸³æ¯Žã«æŒã¤ãƒ¬ã‚³ãƒ¼ãƒ‰
 }FRONTIER_RECORD_SAVEWORK;
 
 
 //--------------------------------------------------------------
 /**
- *	ƒtƒƒ“ƒeƒBƒAƒZ[ƒuƒ[ƒN
+ *	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 struct _FRONTIER_SAVEWORK{
 	
 	//--------------------------------------------------------------
-	//	ŠeŽ{Ý‚ÌƒŒƒR[ƒhƒf[ƒ^
+	//	å„æ–½è¨­ã®ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
 	//--------------------------------------------------------------
 	FRONTIER_RECORD_SAVEWORK frontier_record;
 	
 	
 	//--------------------------------------------------------------
-	//	ƒvƒŒƒCƒf[ƒ^(‹¤’Ê)
+	//	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿(å…±é€š)
 	//--------------------------------------------------------------
 	union{
-		struct _BTLTOWER_PLAYWORK	play_tower;		//ƒoƒgƒ‹ƒ^ƒ[
-		struct _FACTORYDATA			play_factory;	//ƒtƒ@ƒNƒgƒŠ[
-		struct _STAGEDATA			play_stage;		//ƒXƒe[ƒW
-		struct _CASTLEDATA			play_castle;	//ƒLƒƒƒbƒXƒ‹
-		struct _ROULETTEDATA		play_roulette;	//ƒ‹[ƒŒƒbƒg
-	//	FACTORY_PLAYWORK play_factory;		//ƒtƒ@ƒNƒgƒŠ[
+		struct _BTLTOWER_PLAYWORK	play_tower;		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+		struct _FACTORYDATA			play_factory;	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
+		struct _STAGEDATA			play_stage;		//ã‚¹ãƒ†ãƒ¼ã‚¸
+		struct _CASTLEDATA			play_castle;	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+		struct _ROULETTEDATA		play_roulette;	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
+	//	FACTORY_PLAYWORK play_factory;		//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 	};
 	
 	//--------------------------------------------------------------
-	//	ŒÂ•Êƒf[ƒ^
+	//	å€‹åˆ¥ãƒ‡ãƒ¼ã‚¿
 	//--------------------------------------------------------------
-	//ƒoƒgƒ‹ƒ^ƒ[
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 	struct{
-		struct _BTLTOWER_SCOREWORK	score;			//ƒXƒRƒAƒf[ƒ^
-		struct _BTLTOWER_PLAYER_MSG	player_msg;		//WiFi ƒvƒŒƒCƒ„[ƒƒbƒZ[ƒWƒf[ƒ^
-		struct _BTLTOWER_WIFI_DATA	wifi;			//WiFi ƒf[ƒ^
+		struct _BTLTOWER_SCOREWORK	score;			//ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿
+		struct _BTLTOWER_PLAYER_MSG	player_msg;		//WiFi ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+		struct _BTLTOWER_WIFI_DATA	wifi;			//WiFi ãƒ‡ãƒ¼ã‚¿
 	}tower;
 	
-	//ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
+	//ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 	struct{
-		struct _FACTORYSCORE score;					//ƒXƒRƒAƒf[ƒ^
+		struct _FACTORYSCORE score;					//ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿
 	}factory;
 
-	//ƒoƒgƒ‹ƒXƒe[ƒW
+	//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
 	struct{
-		struct _STAGESCORE score;					//ƒXƒRƒAƒf[ƒ^
+		struct _STAGESCORE score;					//ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿
 	}stage;
 
-	//ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
+	//ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 	struct{
-		struct _CASTLESCORE score;					//ƒXƒRƒAƒf[ƒ^
+		struct _CASTLESCORE score;					//ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿
 	}castle;
 
-	//ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg
+	//ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 	struct{
-		struct _ROULETTESCORE score;				//ƒXƒRƒAƒf[ƒ^
+		struct _ROULETTESCORE score;				//ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿
 	}roulette;
 
-	//ƒtƒ@ƒNƒgƒŠ[
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 //	struct{
 //		u32 test;
 //	}factory;

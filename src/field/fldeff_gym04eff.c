@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_gym04eff.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@‘ƒWƒ€ƒGƒtƒFƒNƒg
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  * @author	kagaya
  * @data	05.07.13
  *
@@ -38,12 +38,12 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_GYM04EFFŒ^
+///	FE_GYM04EFFå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_GYM04EFF * FE_GYM04EFF_PTR;
 
 //--------------------------------------------------------------
-///	FE_GYM04EFF\‘¢‘Ì
+///	FE_GYM04EFFæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_GYM04EFF
 {
@@ -54,10 +54,10 @@ typedef struct _TAG_FE_GYM04EFF
 	EOA_PTR eoa_eff[FUNSUI_NUM_MAX];
 }FE_GYM04EFF;
 
-#define FE_GYM04EFF_SIZE (sizeof(FE_GYM04EFF)) ///<FE_GYM04EFFƒTƒCƒY
+#define FE_GYM04EFF_SIZE (sizeof(FE_GYM04EFF)) ///<FE_GYM04EFFã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	GYM04EFF_ADD_H\‘¢‘Ì
+///	GYM04EFF_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -65,23 +65,23 @@ typedef struct
 	FE_GYM04EFF_PTR gym04eff;	///<FE_GYM04EFF_PTR
 }GYM04EFF_ADD_H;
 
-#define GYM04EFF_ADD_H_SIZE (sizeof(GYM04EFF_ADD_H)) ///<GYM04EFF_ADD_HƒTƒCƒY
+#define GYM04EFF_ADD_H_SIZE (sizeof(GYM04EFF_ADD_H)) ///<GYM04EFF_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	GYM04EFF_WORK\‘¢‘Ì
+///	GYM04EFF_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	int anm_end_del_flag;
 	FRO_ANM ranm;
 	FRO_OBJ robj;
-	GYM04EFF_ADD_H head;						///<’Ç‰Á‚ÌGYM04EFF_ADD_H
+	GYM04EFF_ADD_H head;						///<è¿½åŠ æ™‚ã®GYM04EFF_ADD_H
 }GYM04EFF_WORK;
 
-#define GYM04EFF_WORK_SIZE (sizeof(GYM04EFF_WORK))	///<GYM04EFF_WORKƒTƒCƒY
+#define GYM04EFF_WORK_SIZE (sizeof(GYM04EFF_WORK))	///<GYM04EFF_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Gym04Eff_GraphicInit( FE_GYM04EFF_PTR gym04eff );
 static void Gym04Eff_GraphicDelete( FE_GYM04EFF_PTR gym04eff );
@@ -89,11 +89,11 @@ static void Gym04Eff_GraphicDelete( FE_GYM04EFF_PTR gym04eff );
 static const EOA_H_NPP DATA_EoaH_Gym04Eff;
 
 //==============================================================================
-//	‘ƒWƒ€ƒGƒtƒFƒNƒg@ƒVƒXƒeƒ€
+//	è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘ƒWƒ€ƒGƒtƒFƒNƒg‰Šú‰»
+ * è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_GYM04EFF_PTR	FE_GYM04EFF_PTR
  */
@@ -111,7 +111,7 @@ void * FE_Gym04Eff_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ‘ƒWƒ€ƒGƒtƒFƒNƒgíœ
+ * è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‰Šé™¤
  * @param	gym04eff		FE_GYM04EFF_PTR
  * @retval	nothing
  */
@@ -124,15 +124,15 @@ void FE_Gym04Eff_Delete( void *work )
 }
 
 //==============================================================================
-//	‘ƒWƒ€ƒGƒtƒFƒNƒg	ƒp[ƒc
+//	è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 
 //==============================================================================
-//	‘ƒWƒ€ƒGƒtƒFƒNƒg@ƒOƒ‰ƒtƒBƒbƒN
+//	è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘ƒWƒ€ƒGƒtƒFƒNƒg ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	gym04eff	FE_GYM04EFF_PTR
  * @retval	nothing
  */
@@ -143,7 +143,7 @@ static void Gym04Eff_GraphicInit( FE_GYM04EFF_PTR gym04 )
 		gym04->fes, &gym04->m_rmdl, 0,
 		NARC_fldeff_gym04_hunsui_nsbmd, ALLOC_FR );
 	
-	//ƒƒCƒ“ƒŠƒ\[ƒX‚Ì‚İƒ[ƒh
+	//ãƒ¡ã‚¤ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã®ã¿ãƒ­ãƒ¼ãƒ‰
 	FE_FROAnm_AnmResSetArcLoad(
 		gym04->fes, &gym04->m_ranm_a, 0,
 		NARC_fldeff_gym04_hunsui_a_nsbtp, ALLOC_FR );
@@ -154,7 +154,7 @@ static void Gym04Eff_GraphicInit( FE_GYM04EFF_PTR gym04 )
 
 //--------------------------------------------------------------
 /**
- * ‘ƒWƒ€ƒGƒtƒFƒNƒg ƒOƒ‰ƒtƒBƒbƒNíœ
+ * è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	gym04eff	FE_GYM04EFF_PTR
  * @retval	nothing
  */
@@ -167,13 +167,13 @@ static void Gym04Eff_GraphicDelete( FE_GYM04EFF_PTR gym04 )
 }
 
 //==============================================================================
-//	‘ƒWƒ€ƒGƒtƒFƒNƒg@EOA
+//	è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‘ƒWƒ€ƒGƒtƒFƒNƒg’Ç‰Á
+ * è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¿½åŠ 
  * @param	fsys	FIELDSYS_WORK *
- * @param	type	GYM04EFF_FUNSUI_LEFT“™
+ * @param	type	GYM04EFF_FUNSUI_LEFTç­‰
  * @param	nothing
  */
 //--------------------------------------------------------------
@@ -228,9 +228,9 @@ void FE_FldOBJGym04EffSet( FIELDSYS_WORK *fsys, int type )
 
 //--------------------------------------------------------------
 /**
- * ‘ƒWƒ€ƒGƒtƒFƒNƒg@•¬…I—¹
+ * è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€å™´æ°´çµ‚äº†
  * @param	fes		FIELDSYS_WORK *
- * @param	type	GYM04EFF_FUNSUI_LEFT“™
+ * @param	type	GYM04EFF_FUNSUI_LEFTç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -269,10 +269,10 @@ void FE_FldOBJGym04EffEndSet( FIELDSYS_WORK *fsys, int type )
 
 //--------------------------------------------------------------
 /**
- * EOA ‘ƒWƒ€ƒGƒtƒFƒNƒg@‰Šú‰»
+ * EOA è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaGym04Eff_Init( EOA_PTR eoa, void *wk )
@@ -289,7 +289,7 @@ static int EoaGym04Eff_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‘ƒWƒ€ƒGƒtƒFƒNƒg@íœ
+ * EOA è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -303,7 +303,7 @@ static void EoaGym04Eff_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‘ƒWƒ€ƒGƒtƒFƒNƒg@“®ì
+ * EOA è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -328,7 +328,7 @@ static void EoaGym04Eff_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‘ƒWƒ€ƒGƒtƒFƒNƒg@•`‰æ
+ * EOA è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -346,7 +346,7 @@ static void EoaGym04Eff_Draw( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	‘ƒWƒ€ƒGƒtƒFƒNƒgEOA_H
+///	è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆEOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Gym04Eff =
 {

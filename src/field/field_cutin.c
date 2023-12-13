@@ -2,7 +2,7 @@
 /**
  * 
  * @file	field_cutin.c
- * @brief	ƒtƒB[ƒ‹ƒh@ƒJƒbƒgƒCƒ“
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ã‚«ãƒƒãƒˆã‚¤ãƒ³
  * @author	kagaya
  * @data	05.07.13
  */
@@ -42,7 +42,7 @@
 #define CUTIN_ZOOM (NUM_FX32(120))
 
 //--------------------------------------------------------------
-///ƒJƒbƒgƒCƒ““®ìI—¹
+///ã‚«ãƒƒãƒˆã‚¤ãƒ³å‹•ä½œçµ‚äº†
 //--------------------------------------------------------------
 enum
 {
@@ -52,7 +52,7 @@ enum
 };
 
 //--------------------------------------------------------------
-//	tcb	ƒvƒ‰ƒCƒIƒŠƒeƒB
+//	tcb	ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum
 {
@@ -66,7 +66,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒAƒNƒ^[ƒvƒ‰ƒCƒIƒŠƒeƒB
+///	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum
 {
@@ -79,7 +79,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	©‹@ƒAƒjƒ”Ô†
+///	è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡ç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -93,55 +93,55 @@ enum
 };
 
 //--------------------------------------------------------------
-//	BGƒtƒŒ[ƒ€
+//	BGãƒ•ãƒ¬ãƒ¼ãƒ 
 //--------------------------------------------------------------
-///ƒJƒbƒgƒCƒ“g—pBGƒtƒŒ[ƒ€
+///ã‚«ãƒƒãƒˆã‚¤ãƒ³ä½¿ç”¨BGãƒ•ãƒ¬ãƒ¼ãƒ 
 #define CUTIN_BG_FRAME (FLD_MBGFRM_FONT)
-///ƒEƒBƒ“ƒhƒEw’èBGƒtƒŒ[ƒ€
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æŒ‡å®šBGãƒ•ãƒ¬ãƒ¼ãƒ 
 #define CUTIN_BG_WINMASK (GX_WND_PLANEMASK_BG3)
-///ƒEƒBƒ“ƒhƒEw’èBGƒtƒŒ[ƒ€@ƒ}ƒXƒN
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æŒ‡å®šBGãƒ•ãƒ¬ãƒ¼ãƒ ã€€ãƒã‚¹ã‚¯
 #define CUTIN_BG_WINMASK_NOT (~CUTIN_BG_WINMASK)
 
-///ƒJƒbƒgƒCƒ“’†S
+///ã‚«ãƒƒãƒˆã‚¤ãƒ³ä¸­å¿ƒ
 #define CUTIN_SY (96-40)
 #define CUTIN_CY (96)
 #define CUTIN_EY (96+40)
 
 //--------------------------------------------------------------
-//	BGƒLƒƒƒ‰ƒNƒ^
+//	BGã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 //--------------------------------------------------------------
-#define CUTIN_BG_SET_CHAR_OFFSET (0)			//ƒJƒbƒgƒCƒ“BGƒLƒƒƒ‰g—pˆÊ’uƒIƒtƒZƒbƒg
+#define CUTIN_BG_SET_CHAR_OFFSET (0)			//ã‚«ãƒƒãƒˆã‚¤ãƒ³BGã‚­ãƒ£ãƒ©ä½¿ç”¨ä½ç½®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 //--------------------------------------------------------------
-//	BGƒpƒŒƒbƒg
+//	BGãƒ‘ãƒ¬ãƒƒãƒˆ
 //--------------------------------------------------------------
-///BG ƒpƒŒƒbƒgƒTƒCƒY
+///BG ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚º
 #define BG_PLTT_SIZE (32)
-///ƒJƒbƒgƒCƒ“‚Åg—p‚·‚éƒpƒŒƒbƒg”Ô†
+///ã‚«ãƒƒãƒˆã‚¤ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 #define CUTIN_BG_PLTT_NO (12)
-///ƒJƒbƒgƒCƒ“‚Åg—p‚·‚éƒpƒŒƒbƒgƒTƒCƒY
+///ã‚«ãƒƒãƒˆã‚¤ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚º
 #define CUTIN_BG_PLTT_SIZE (BG_PLTT_SIZE*1)
-///ƒJƒbƒgƒCƒ“BGƒpƒŒƒbƒgg—pˆÊ’uƒIƒtƒZƒbƒg
+///ã‚«ãƒƒãƒˆã‚¤ãƒ³BGãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨ä½ç½®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define	CUTIN_BG_SET_PLTT_OFFSET (BG_PLTT_SIZE*CUTIN_BG_PLTT_NO)
 
 //--------------------------------------------------------------
-//	ƒEƒBƒ“ƒhƒE
+//	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //--------------------------------------------------------------
-///g—pƒEƒBƒ“ƒhƒE
+///ä½¿ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define CUTIN_WND (GX_WNDMASK_W0)
 
 //--------------------------------------------------------------
-//	ƒAƒNƒ^[
+//	ã‚¢ã‚¯ã‚¿ãƒ¼
 //--------------------------------------------------------------
-///ƒZƒ‹ƒAƒNƒ^[‘”
+///ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç·æ•°
 #define CUTIN_CA_MAX (32)
-///EOA‘”
+///EOAç·æ•°
 #define CUTIN_EOA_MAX (32)
 
 //--------------------------------------------------------------
-//	ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX
+//	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹
 //--------------------------------------------------------------
-///ƒLƒƒƒ‰g—p”
+///ã‚­ãƒ£ãƒ©ä½¿ç”¨æ•°
 enum
 {
 	CUTIN_CAUSE_CHAR_LIGHT,
@@ -153,7 +153,7 @@ enum
 	CUTIN_CAUSE_CHAR_MAX,
 };
 
-///ƒLƒƒƒ‰ID
+///ã‚­ãƒ£ãƒ©ID
 enum
 {
 	CUTIN_CAID_CHAR_BIRD = 0,
@@ -163,7 +163,7 @@ enum
 	CUTIN_CAID_CHAR_MAX,
 };
 
-///ƒpƒŒƒbƒgg—p”
+///ãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨æ•°
 enum
 {
 	CUTIN_CAUSE_PLTT_HERO_BIRD = 0,
@@ -174,7 +174,7 @@ enum
 	CUTIN_CAUSE_PLTT_MAX,
 };
 
-///ƒpƒŒƒbƒgID
+///ãƒ‘ãƒ¬ãƒƒãƒˆID
 enum
 {
 	CUTIN_CAID_PLTT_HERO_BIRD = 0,
@@ -183,7 +183,7 @@ enum
 	CUTIN_CAID_PLTT_MAX,
 };
 
-///ƒZƒ‹g—p”
+///ã‚»ãƒ«ä½¿ç”¨æ•°
 enum
 {
 	CUTIN_CAUSE_CELL_LIGHT = 0,
@@ -195,7 +195,7 @@ enum
 	CUTIN_CAUSE_CELL_MAX,
 };
 
-///ƒZƒ‹ID
+///ã‚»ãƒ«ID
 enum
 {
 	CUTIN_CAID_CELL_BIRD = 0,
@@ -205,7 +205,7 @@ enum
 	CUTIN_CAID_CELL_MAX,
 };
 
-///ƒAƒjƒg—p”
+///ã‚¢ãƒ‹ãƒ¡ä½¿ç”¨æ•°
 enum
 {
 	CUTIN_CAUSE_ANM_LIGHT = 0,
@@ -215,7 +215,7 @@ enum
 	CUTIN_CAUSE_ANM_MAX,
 };
 
-///ƒAƒjƒID
+///ã‚¢ãƒ‹ãƒ¡ID
 enum
 {
 	CUTIN_CAID_ANM_LIGHT = 0, 
@@ -224,7 +224,7 @@ enum
 };
 
 //--------------------------------------------------------------
-//	ŒõƒAƒjƒ
+//	å…‰ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 enum
 {
@@ -233,7 +233,7 @@ enum
 };
 
 //--------------------------------------------------------------
-//	ŒõüÁ‹ƒtƒ‰ƒO
+//	å…‰ç·šæ¶ˆå»ãƒ•ãƒ©ã‚°
 //--------------------------------------------------------------
 enum
 {
@@ -243,7 +243,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	’¹“®ìƒXƒe[ƒ^ƒX
+///	é³¥å‹•ä½œã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //--------------------------------------------------------------
 enum
 {
@@ -255,7 +255,7 @@ enum
 };
 
 //--------------------------------------------------------------
-//	’¹“®ìƒ^ƒCƒv
+//	é³¥å‹•ä½œã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 enum
 {
@@ -265,7 +265,7 @@ enum
 };
 
 //--------------------------------------------------------------
-//	©‹@“®ìƒ^ƒCƒv
+//	è‡ªæ©Ÿå‹•ä½œã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 enum
 {
@@ -275,7 +275,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒJƒƒ‰ˆÚ“®ƒ^ƒCƒv
+///	ã‚«ãƒ¡ãƒ©ç§»å‹•ã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 enum
 {
@@ -290,7 +290,7 @@ enum
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	CUTIN_WORK\‘¢‘Ì
+///	CUTIN_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -361,7 +361,7 @@ typedef struct
 #define CUTIN_WORK_SIZE (sizeof(CUTIN_WORK))
 
 //--------------------------------------------------------------
-//	NARC_ID\‘¢‘Ì
+//	NARC_IDæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -370,7 +370,7 @@ typedef struct
 }NARC_ID;
 
 //--------------------------------------------------------------
-///	BIRD_ADD_H\‘¢‘Ì
+///	BIRD_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -378,7 +378,7 @@ typedef struct
 }BIRD_ADD_H;
 
 //--------------------------------------------------------------
-///	BIRD_WORK\‘¢‘Ì
+///	BIRD_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -418,7 +418,7 @@ typedef struct
 }JIKI_MOVE_H;
 
 //--------------------------------------------------------------
-///	JIKI_MOVE_WORK\‘¢‘Ì
+///	JIKI_MOVE_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -432,7 +432,7 @@ typedef struct
 }JIKI_MOVE_WORK;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static CUTIN_WORK * CutIn_AllocMemory( FIELDSYS_WORK *fsys );
 static void CutIn_FreeMemory( CUTIN_WORK *cut );
@@ -554,7 +554,7 @@ static const NARC_ID DATA_NArcID_AlwaysAnime[CUTIN_CAUSE_ANM_ALWAYS_MAX];
 //
 //==============================================================================
 //--------------------------------------------------------------
-//	’¹“®ìƒ^ƒCƒv
+//	é³¥å‹•ä½œã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 enum
 {
@@ -563,7 +563,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	CIP_CLACT_RES_OBJ\‘¢‘Ì
+///	CIP_CLACT_RES_OBJæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -575,7 +575,7 @@ typedef struct
 #define CIP_CLACT_RES_OBJ_SIZE (sizeof(CIP_CLACT_RES_OBJ))
 
 //--------------------------------------------------------------
-///	CIP_CLACT_SETDATA\‘¢‘Ì
+///	CIP_CLACT_SETDATAæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -600,7 +600,7 @@ typedef struct
 }CIP_CLACT_SETDATA;
 
 //--------------------------------------------------------------
-///	’…—¤g—pƒLƒƒƒ‰ID
+///	ç€é™¸ä½¿ç”¨ã‚­ãƒ£ãƒ©ID
 //--------------------------------------------------------------
 enum
 {
@@ -610,7 +610,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	’…—¤g—pƒpƒŒƒbƒgID
+///	ç€é™¸ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆID
 //--------------------------------------------------------------
 enum
 {
@@ -620,7 +620,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	’…—¤g—pƒZƒ‹ID
+///	ç€é™¸ä½¿ç”¨ã‚»ãƒ«ID
 //--------------------------------------------------------------
 enum
 {
@@ -630,7 +630,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	’…—¤g—pƒAƒjƒID
+///	ç€é™¸ä½¿ç”¨ã‚¢ãƒ‹ãƒ¡ID
 //--------------------------------------------------------------
 enum
 {
@@ -639,7 +639,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	SKYL_WORK\‘¢‘Ì
+///	SKYL_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -666,21 +666,21 @@ static void * Cip_AllocMemory( u32 heap, int size );
 static void Cip_PlayerVanishSet( FIELDSYS_WORK *fsys, int flag );
 
 //==============================================================================
-//	ƒZƒ‹ƒAƒNƒ^[
+//	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgƒf[ƒ^‰Šú‰»
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  * @param	clactset	CIP_CLACT_SETDATA
- * @param	actmax		ƒAƒNƒ^[Å‘å”
- * @param	charmax		ƒLƒƒƒ‰“o˜^Å‘å”
- * @param	plttmax		ƒpƒŒƒbƒg“o˜^Å‘å”
- * @param	cellmax		ƒZƒ‹“o˜^Å‘å”
- * @param	anmmax		ƒAƒjƒ“o˜^Å‘å”
- * @param	charnonid	ƒLƒƒƒ‰“o˜^‚É–³‚µ‚Æ”»’f‚·‚éID
- * @param	plttnonid	ƒpƒŒƒbƒg“o˜^‚É–³‚µ‚Æ”»’f‚·‚éID
- * @param	cellnonid	ƒZƒ‹“o˜^‚É–³‚µ‚Æ”»’f‚·‚éID
- * @param	anmnonid	ƒAƒjƒ“o˜^‚É–³‚µ‚Æ”»’f‚·‚éID
+ * @param	actmax		ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
+ * @param	charmax		ã‚­ãƒ£ãƒ©ç™»éŒ²æœ€å¤§æ•°
+ * @param	plttmax		ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æœ€å¤§æ•°
+ * @param	cellmax		ã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
+ * @param	anmmax		ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
+ * @param	charnonid	ã‚­ãƒ£ãƒ©ç™»éŒ²æ™‚ã«ç„¡ã—ã¨åˆ¤æ–­ã™ã‚‹ID
+ * @param	plttnonid	ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æ™‚ã«ç„¡ã—ã¨åˆ¤æ–­ã™ã‚‹ID
+ * @param	cellnonid	ã‚»ãƒ«ç™»éŒ²æ™‚ã«ç„¡ã—ã¨åˆ¤æ–­ã™ã‚‹ID
+ * @param	anmnonid	ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æ™‚ã«ç„¡ã—ã¨åˆ¤æ–­ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -692,7 +692,7 @@ static void Cip_ClActSetDataInit(
 {
 	int i;
 	
-	//ƒpƒ‰ƒƒ^‰Šú‰»
+	//ãƒ‘ãƒ©ãƒ¡ã‚¿åˆæœŸåŒ–
 	set->resobj_char_max = charmax;
 	set->resobj_pltt_max = plttmax;
 	set->resobj_cell_max = cellmax;
@@ -702,17 +702,17 @@ static void Cip_ClActSetDataInit(
 	set->resobj_cell_nonid = cellnonid;
 	set->resobj_anm_nonid = anmnonid;
 	
-	//ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	set->clact_set = CLACT_U_SetEasyInit( actmax, &set->clact_easydata, HEAPID_FIELD );
 	CLACT_U_SetSubSurfaceMatrix( &set->clact_easydata, 0, FX32_CONST(512) );
 
-	//ƒŠƒ\[ƒX‰Šú‰»
+	//ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
 	set->clact_resm_char = CLACT_U_ResManagerInit( charmax, CLACT_U_CHAR_RES, HEAPID_FIELD );
 	set->clact_resm_pltt = CLACT_U_ResManagerInit( plttmax, CLACT_U_PLTT_RES, HEAPID_FIELD );
 	set->clact_resm_cell = CLACT_U_ResManagerInit( cellmax, CLACT_U_CELL_RES, HEAPID_FIELD );
 	set->clact_resm_anm = CLACT_U_ResManagerInit( anmmax, CLACT_U_CELLANM_RES, HEAPID_FIELD );
 	
-	//ƒŠƒ\[ƒXOBJ‰Šú‰»
+	//ãƒªã‚½ãƒ¼ã‚¹OBJåˆæœŸåŒ–
 	set->clact_resobj_char = Cip_AllocMemory( HEAPID_FIELD, CIP_CLACT_RES_OBJ_SIZE * charmax );
 	set->clact_resobj_pltt = Cip_AllocMemory( HEAPID_FIELD, CIP_CLACT_RES_OBJ_SIZE * plttmax );
 	set->clact_resobj_cell = Cip_AllocMemory( HEAPID_FIELD, CIP_CLACT_RES_OBJ_SIZE * cellmax );
@@ -726,7 +726,7 @@ static void Cip_ClActSetDataInit(
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgƒf[ƒ^íœ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å‰Šé™¤
  * @param	clactset	CIP_CLACT_SETDATA
  * @retval	nothing
  */
@@ -735,7 +735,7 @@ static void Cip_ClActSetDataDelete( CIP_CLACT_SETDATA *set )
 {
 	int i;
 	
-	//VRAM‚É“WŠJ‚³‚ê‚½ƒLƒƒƒ‰AƒpƒŒƒbƒgíœ
+	//VRAMã«å±•é–‹ã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆå‰Šé™¤
 	for( i = 0; i < set->resobj_char_max; i++ ){
 		if( set->clact_resobj_char[i].id != set->resobj_char_nonid ){
 			CLACT_U_CharManagerDelete( set->clact_resobj_char[i].resobj );
@@ -748,7 +748,7 @@ static void Cip_ClActSetDataDelete( CIP_CLACT_SETDATA *set )
 		}
 	}
 	
-	//ƒZƒ‹AƒAƒjƒ“WŠJ—Ìˆæ”jŠü
+	//ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡å±•é–‹é ˜åŸŸç ´æ£„
 	for( i = 0; i < set->resobj_cell_max; i++ ){
 		if( set->clact_resobj_cell[i].id != set->resobj_cell_nonid ){
 			CLACT_U_ResManagerResOnlyDelete( set->clact_resobj_cell[i].resobj );
@@ -771,19 +771,19 @@ static void Cip_ClActSetDataDelete( CIP_CLACT_SETDATA *set )
 	sys_FreeMemoryEz( set->clact_resobj_cell );
 	sys_FreeMemoryEz( set->clact_resobj_anm );
 	
-	//ƒAƒNƒ^[‘S•”íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼å…¨éƒ¨å‰Šé™¤
 	CLACT_DelAllSet( set->clact_set );
-	//ƒZƒ‹ƒAƒNƒ^[”jŠü
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	CLACT_DestSet( set->clact_set );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰“o˜^
+ * ã‚­ãƒ£ãƒ©ç™»éŒ²
  * @param	set		CIP_CLACT_SETDATA
  * @param	hand	ARCHANDLE *
- * @param	arcid	ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	id “o˜^ID
+ * @param	arcid	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	id ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -803,14 +803,14 @@ static void Cip_ClActCharAdd( CIP_CLACT_SETDATA *set, ARCHANDLE *hand, int arcid
 		}
 	}
 	
-	GF_ASSERT( 0 && "Cip_ClActCharAdd()“o˜^‚Å‚«‚È‚¢" );
+	GF_ASSERT( 0 && "Cip_ClActCharAdd()ç™»éŒ²ã§ããªã„" );
 }
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒLƒƒƒ‰ID‚ğVRAMƒGƒŠƒA‚ÖƒZƒbƒg
+ * æŒ‡å®šã•ã‚ŒãŸã‚­ãƒ£ãƒ©IDã‚’VRAMã‚¨ãƒªã‚¢ã¸ã‚»ãƒƒãƒˆ
  * @param	set		CIP_CLACT_SETDATA
- * @param	id		“o˜^ID
+ * @param	id		ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -825,14 +825,14 @@ static void Cip_ClActCharVramAreaSet( CIP_CLACT_SETDATA *set, int id )
 		}
 	}
 	
-	GF_ASSERT( 0 && "Cip_ClActCharAreaCont()IDˆÙí" );
+	GF_ASSERT( 0 && "Cip_ClActCharAreaCont()IDç•°å¸¸" );
 }
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒLƒƒƒ‰ID‚Å“WŠJ‚µ‚½—Ìˆæ‚ğ”jŠü
+ * æŒ‡å®šã•ã‚ŒãŸã‚­ãƒ£ãƒ©IDã§å±•é–‹ã—ãŸé ˜åŸŸã‚’ç ´æ£„
  * @param	set		CIP_CLACT_SETDATA
- * @param	id		“o˜^ID
+ * @param	id		ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -847,16 +847,16 @@ static void Cip_ClActCharResDelete( CIP_CLACT_SETDATA *set, int id )
 		}
 	}
 	
-	GF_ASSERT( 0 && "Cip_ClActCharResDelete()IDˆÙí" );
+	GF_ASSERT( 0 && "Cip_ClActCharResDelete()IDç•°å¸¸" );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒg“o˜^
+ * ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²
  * @param	set		CIP_CLACT_SETDATA
  * @param	hand	ARCHANDLE *
- * @param	arcid	ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	id	“o˜^ID
+ * @param	arcid	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	id	ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -876,14 +876,14 @@ static void Cip_ClActPlttAdd( CIP_CLACT_SETDATA *set, ARCHANDLE *hand, int arcid
 		}
 	}
 	
-	GF_ASSERT( 0 && "Cip_ClActPlttAdd()“o˜^‚Å‚«‚È‚¢" );
+	GF_ASSERT( 0 && "Cip_ClActPlttAdd()ç™»éŒ²ã§ããªã„" );
 }
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒpƒŒƒbƒgID‚ğVRAMƒGƒŠƒA‚ÖƒZƒbƒg
+ * æŒ‡å®šã•ã‚ŒãŸãƒ‘ãƒ¬ãƒƒãƒˆIDã‚’VRAMã‚¨ãƒªã‚¢ã¸ã‚»ãƒƒãƒˆ
  * @param	set		CIP_CLACT_SETDATA
- * @param	id		“o˜^ID
+ * @param	id		ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -898,14 +898,14 @@ static void Cip_ClActPlttVramAreaSet( CIP_CLACT_SETDATA *set, int id )
 		}
 	}
 	
-	GF_ASSERT( 0 && "Cip_ClActPlttAreaCont()IDˆÙí" );
+	GF_ASSERT( 0 && "Cip_ClActPlttAreaCont()IDç•°å¸¸" );
 }
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒpƒŒƒbƒgID‚Å“WŠJ‚µ‚½—Ìˆæ‚ğ”jŠü
+ * æŒ‡å®šã•ã‚ŒãŸãƒ‘ãƒ¬ãƒƒãƒˆIDã§å±•é–‹ã—ãŸé ˜åŸŸã‚’ç ´æ£„
  * @param	set		CIP_CLACT_SETDATA
- * @param	id		“o˜^ID
+ * @param	id		ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -920,16 +920,16 @@ static void Cip_ClActPlttResDelete( CIP_CLACT_SETDATA *set, int id )
 		}
 	}
 	
-	GF_ASSERT( 0 && "Cip_ClActPlttResDelete()IDˆÙí" );
+	GF_ASSERT( 0 && "Cip_ClActPlttResDelete()IDç•°å¸¸" );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹“o˜^
+ * ã‚»ãƒ«ç™»éŒ²
  * @param	set		CIP_CLACT_SETDATA
  * @param	hand	ARCHANDLE *
- * @param	arcid	ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	id	“o˜^ID
+ * @param	arcid	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	id	ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -949,16 +949,16 @@ static void Cip_ClActCellAdd( CIP_CLACT_SETDATA *set, ARCHANDLE *hand, int arcid
 		}
 	}
 	
-	GF_ASSERT( 0 && "Cip_ClActCellAdd()“o˜^‚Å‚«‚È‚¢" );
+	GF_ASSERT( 0 && "Cip_ClActCellAdd()ç™»éŒ²ã§ããªã„" );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ“o˜^
+ * ã‚¢ãƒ‹ãƒ¡ç™»éŒ²
  * @param	set		CIP_CLACT_SETDATA
  * @param	hand	ARCHANDLE *
- * @param	arcid	ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	id	“o˜^ID
+ * @param	arcid	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	id	ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -978,21 +978,21 @@ static void Cip_ClActAnmAdd( CIP_CLACT_SETDATA *set, ARCHANDLE *hand, int arcid,
 		}
 	}
 	
-	GF_ASSERT( 0 && "Cip_ClActAnmAdd()“o˜^‚Å‚«‚È‚¢" );
+	GF_ASSERT( 0 && "Cip_ClActAnmAdd()ç™»éŒ²ã§ããªã„" );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[’Ç‰Á
+ * ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  * @param	set			CLACT_SETDATA
- * @param	mtx			•\¦À•W
- * @param	char_id		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ID
- * @param	pltt_id		ƒpƒŒƒbƒgƒf[ƒ^ID
- * @param	cell_id		ƒZƒ‹ƒf[ƒ^ID
- * @param	cellanm_id	ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ID	–³‚¢‚Æ‚«‚ÍCLACT_U_HEADER_DATA_NONE
- * @param	bg_pri		BGƒvƒ‰ƒCƒIƒŠƒeƒB
- * @param	act_pri		ƒAƒNƒ^[ƒvƒ‰ƒCƒIƒŠƒeƒB
- * @retval	CLACT_WORK_PTR	’Ç‰Á‚³‚ê‚½
+ * @param	mtx			è¡¨ç¤ºåº§æ¨™
+ * @param	char_id		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ID
+ * @param	pltt_id		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ID
+ * @param	cell_id		ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ID
+ * @param	cellanm_id	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ID	ç„¡ã„ã¨ãã¯CLACT_U_HEADER_DATA_NONE
+ * @param	bg_pri		BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @param	act_pri		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @retval	CLACT_WORK_PTR	è¿½åŠ ã•ã‚ŒãŸ
  */
 //--------------------------------------------------------------
 static CLACT_WORK_PTR Cip_ClActAdd( CIP_CLACT_SETDATA *set, const VecFx32 *vec,
@@ -1032,9 +1032,9 @@ static CLACT_WORK_PTR Cip_ClActAdd( CIP_CLACT_SETDATA *set, const VecFx32 *vec,
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‚ÌÀ•W‚ğæ“¾
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®åº§æ¨™ã‚’å–å¾—
  * @param	act		CLACT_WORK_PTR
- * @param	mtx		À•WŠi”[æ
+ * @param	mtx		åº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1046,9 +1046,9 @@ static void Cip_ClActMatrixGet( CLACT_WORK_PTR act, VecFx32 *mtx )
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‚ÌŠgk—¦‚ğæ“¾
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®æ‹¡ç¸®ç‡ã‚’å–å¾—
  * @param	act		CLACT_WORK_PTR
- * @param	mtx		À•WŠi”[æ
+ * @param	mtx		åº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1060,10 +1060,10 @@ static void Cip_ClActScaleGet( CLACT_WORK_PTR act, VecFx32 *scale )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[@’¹’Ç‰Á
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ã€€é³¥è¿½åŠ 
  * @param	set		CIP_CLACT_SETDATA
- * @param	mtx		•\¦À•W
- * @param	act_pri	ƒAƒNƒ^[ŠÔƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param	mtx		è¡¨ç¤ºåº§æ¨™
+ * @param	act_pri	ã‚¢ã‚¯ã‚¿ãƒ¼é–“ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  * @retval	CLACT_WORK_PTR	CLACT_WORK_PTR
  */
 //--------------------------------------------------------------
@@ -1088,9 +1088,9 @@ static CLACT_WORK_PTR Cip_ClActAdd_Bird( CIP_CLACT_SETDATA *set )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[@©‹@’Ç‰Á
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ã€€è‡ªæ©Ÿè¿½åŠ 
  * @param	set		CIP_CLACT_SETDATA
- * @param	sex		PM_MALE“™
+ * @param	sex		PM_MALEç­‰
  * @retval	CLACT_WORK_PTR	CLACT_WORK_PTR
  */
 //--------------------------------------------------------------
@@ -1114,10 +1114,10 @@ static CLACT_WORK_PTR Cip_ClActAdd_Hero( CIP_CLACT_SETDATA *set, int sex )
 }
 
 //==============================================================================
-//	’¹
+//	é³¥
 //==============================================================================
 //--------------------------------------------------------------
-///	NEW_BIRD_ADD_H\‘¢‘Ì
+///	NEW_BIRD_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -1128,7 +1128,7 @@ typedef struct
 }NEW_BIRD_ADD_H;
 
 //--------------------------------------------------------------
-///	NEW_BIRD_WORK\‘¢‘Ì
+///	NEW_BIRD_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -1163,7 +1163,7 @@ int (* const * const NEW_DATA_EoaBirdMoveTbl[])( NEW_BIRD_WORK * );
 
 //--------------------------------------------------------------
 /**
- * EOA ’¹’Ç‰Á
+ * EOA é³¥è¿½åŠ 
  * @param
  * @retval
  */
@@ -1193,9 +1193,9 @@ static EOA_PTR Bird_Init( FIELDSYS_WORK *fsys,
 
 //--------------------------------------------------------------
 /**
- * EOA ’¹“®ìó‘Ôƒ`ƒFƒbƒN
+ * EOA é³¥å‹•ä½œçŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
  * @param	eoa		EOA_PTR
- * @retval	int		BIRD_MOVESTATE_NON“™
+ * @retval	int		BIRD_MOVESTATE_NONç­‰
  */
 //--------------------------------------------------------------
 static int Bird_MoveStateGet( EOA_PTR eoa )
@@ -1206,7 +1206,7 @@ static int Bird_MoveStateGet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ’¹@‰Šú‰»
+ * EOA é³¥ã€€åˆæœŸåŒ–
  * @param
  * @retval
  */
@@ -1223,7 +1223,7 @@ static int NEW_EoaBird_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’¹íœ
+ * EOA é³¥å‰Šé™¤
  * @param
  * @retval
  */
@@ -1238,7 +1238,7 @@ static void Bird_Delete( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ’¹@íœ
+ * EOA é³¥ã€€å‰Šé™¤
  * @param
  * @retval
  */
@@ -1251,7 +1251,7 @@ static void NEW_EoaBird_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’¹@“®ì
+ * EOA é³¥ã€€å‹•ä½œ
  * @param
  * @retval
  */
@@ -1266,7 +1266,7 @@ static void NEW_EoaBird_Move( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H@’¹
+///	EOA_Hã€€é³¥
 //--------------------------------------------------------------
 static const EOA_H_NPP NEW_DATA_EoaH_Bird =
 {
@@ -1278,11 +1278,11 @@ static const EOA_H_NPP NEW_DATA_EoaH_Bird =
 };
 
 //==============================================================================
-//	’¹“®ì
+//	é³¥å‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@‰½‚à–³‚µ‚Ö•ÏX
+ * é³¥å‹•ä½œã€€ä½•ã‚‚ç„¡ã—ã¸å¤‰æ›´
  * @param	eoa		EOA_PTR
  * @retval	nothing
  */
@@ -1297,9 +1297,9 @@ static void Bird_MoveChange_Non( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@–³‚µ
+ * é³¥å‹•ä½œã€€ç„¡ã—
  * @param	work	BIRD_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int NEW_BirdMove_Non( NEW_BIRD_WORK *work )
@@ -1310,7 +1310,7 @@ static int NEW_BirdMove_Non( NEW_BIRD_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	’¹“®ì@“®ì–³‚µ BIRD_MOVETYPE_NON
+//	é³¥å‹•ä½œã€€å‹•ä½œç„¡ã— BIRD_MOVETYPE_NON
 //--------------------------------------------------------------
 static int (* const NEW_DATA_EoaBirdMoveTbl_Non[])( NEW_BIRD_WORK * ) =
 {
@@ -1318,11 +1318,11 @@ static int (* const NEW_DATA_EoaBirdMoveTbl_Non[])( NEW_BIRD_WORK * ) =
 };
 
 //==============================================================================
-///	’¹“®ì@’…’nŠJn
+///	é³¥å‹•ä½œã€€ç€åœ°é–‹å§‹
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@’…’nŠJn‚Ö•ÏX
+ * é³¥å‹•ä½œã€€ç€åœ°é–‹å§‹ã¸å¤‰æ›´
  * @param	eoa		EOA_PTR
  * @retval	nothing
  */
@@ -1384,9 +1384,9 @@ static void Bird_MoveChange_LandingStart( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@’…’nŠJn@‰ŠúˆÚ“®
+ * é³¥å‹•ä½œã€€ç€åœ°é–‹å§‹ã€€åˆæœŸç§»å‹•
  * @param	work	BIRD_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int NEW_BirdMove_LandingStartInit( NEW_BIRD_WORK *work )
@@ -1442,9 +1442,9 @@ static int NEW_BirdMove_LandingStartInit( NEW_BIRD_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@’…’n@ƒ^[ƒ“‰Šú‰»
+ * é³¥å‹•ä½œã€€ç€åœ°ã€€ã‚¿ãƒ¼ãƒ³åˆæœŸåŒ–
  * @param	work	BIRD_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int NEW_BirdMove_LandingTurnInit( NEW_BIRD_WORK *work )
@@ -1463,7 +1463,7 @@ static int NEW_BirdMove_LandingTurnInit( NEW_BIRD_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@’…’n@ƒ^[ƒ“
+ * é³¥å‹•ä½œã€€ç€åœ°ã€€ã‚¿ãƒ¼ãƒ³
  * @param
  * @retval
  */
@@ -1511,9 +1511,9 @@ static int NEW_BirdMove_LandingTurn( NEW_BIRD_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@’…’n@ƒ^[ƒ“Š®—¹
+ * é³¥å‹•ä½œã€€ç€åœ°ã€€ã‚¿ãƒ¼ãƒ³å®Œäº†
  * @param	work	BIRD_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int NEW_BirdMove_LandingTurnEnd( NEW_BIRD_WORK *work )
@@ -1529,9 +1529,9 @@ static int NEW_BirdMove_LandingTurnEnd( NEW_BIRD_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@’…’n@ƒ^[ƒ“Š®—¹Œã‚Ìˆê¡‘Ò‚¿
+ * é³¥å‹•ä½œã€€ç€åœ°ã€€ã‚¿ãƒ¼ãƒ³å®Œäº†å¾Œã®ä¸€å¯¸å¾…ã¡
  * @param	work	BIRD_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int NEW_BirdMove_LandingTurnEndWait( NEW_BIRD_WORK *work )
@@ -1572,7 +1572,7 @@ static int NEW_BirdMove_LandingTurnEndWait( NEW_BIRD_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@ƒ{[ƒ‹Ši”[
+ * é³¥å‹•ä½œã€€ãƒœãƒ¼ãƒ«æ ¼ç´
  * @param
  * @retval
  */
@@ -1628,9 +1628,9 @@ static int NEW_BirdMove_LandingBallIn( NEW_BIRD_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@’…’nŠJn@ƒeƒXƒgI—¹
+ * é³¥å‹•ä½œã€€ç€åœ°é–‹å§‹ã€€ãƒ†ã‚¹ãƒˆçµ‚äº†
  * @param	work	BIRD_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int NEW_BirdMove_LandingBallInEndWait( NEW_BIRD_WORK *work )
@@ -1657,9 +1657,9 @@ static int NEW_BirdMove_LandingBallInEndWait( NEW_BIRD_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@’…’nŠJn@I—¹
+ * é³¥å‹•ä½œã€€ç€åœ°é–‹å§‹ã€€çµ‚äº†
  * @param	work	BIRD_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int NEW_BirdMove_LandingEnd( NEW_BIRD_WORK *work )
@@ -1668,7 +1668,7 @@ static int NEW_BirdMove_LandingEnd( NEW_BIRD_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	’¹“®ì@’…’nŠJn BIRD_MOVETYPE_LANDING_START
+//	é³¥å‹•ä½œã€€ç€åœ°é–‹å§‹ BIRD_MOVETYPE_LANDING_START
 //--------------------------------------------------------------
 static int (* const NEW_DATA_EoaBirdMoveTbl_LandingStart[])( NEW_BIRD_WORK * ) =
 {
@@ -1683,7 +1683,7 @@ static int (* const NEW_DATA_EoaBirdMoveTbl_LandingStart[])( NEW_BIRD_WORK * ) =
 };
 
 //--------------------------------------------------------------
-///	’¹@“®ìƒe[ƒuƒ‹
+///	é³¥ã€€å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const * const NEW_DATA_EoaBirdMoveTbl[])( NEW_BIRD_WORK * ) =
 {
@@ -1692,11 +1692,11 @@ static int (* const * const NEW_DATA_EoaBirdMoveTbl[])( NEW_BIRD_WORK * ) =
 };
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“—pƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ç”¨ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
  * @param
  * @retval
  */
@@ -1708,7 +1708,7 @@ static ARCHANDLE * Cip_ArcHandleOpen( void )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒF[ƒhƒCƒ“@ƒzƒƒCƒg
+ * ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€ãƒ›ãƒ¯ã‚¤ãƒˆ
  * @param	nothing
  * @retval	nothing
  */
@@ -1722,7 +1722,7 @@ static void Cip_FadeInWhite( void )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒF[ƒhƒAƒEƒg@ƒzƒƒCƒg
+ * ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã€€ãƒ›ãƒ¯ã‚¤ãƒˆ
  * @param	nothing
  * @retval	nothing
  */
@@ -1736,7 +1736,7 @@ static void Cip_FadeOutWhite( void )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒF[ƒhI—¹ƒ`ƒFƒbƒN
+ * ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	nothing
  * @retval	nothing
  */
@@ -1752,9 +1752,9 @@ static int Cip_FadeEndCheck( void )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ ©‹@•\¦A”ñ•\¦
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ è‡ªæ©Ÿè¡¨ç¤ºã€éè¡¨ç¤º
  * @param	fsys	FIELDSYS_WORK
- * @param	flag	TRUE=”ñ•\¦@FALSE=•\¦
+ * @param	flag	TRUE=éè¡¨ç¤ºã€€FALSE=è¡¨ç¤º
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1765,13 +1765,13 @@ static void Cip_PlayerVanishSet( FIELDSYS_WORK *fsys, int flag )
 }
 
 //==============================================================================
-//	ƒJƒbƒgƒCƒ“
+//	ã‚«ãƒƒãƒˆã‚¤ãƒ³
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒh@ƒJƒbƒgƒCƒ“ 
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ã‚«ãƒƒãƒˆã‚¤ãƒ³ 
  * @param	
- * @retval	TCB_PTR		ƒJƒbƒgƒCƒ““®ìTCB_PTR
+ * @retval	TCB_PTR		ã‚«ãƒƒãƒˆã‚¤ãƒ³å‹•ä½œTCB_PTR
  */
 //--------------------------------------------------------------
 TCB_PTR FieldCutIn_Init(
@@ -1784,9 +1784,9 @@ TCB_PTR FieldCutIn_Init(
 	cut->sex = hero_sex;
 	cut->cutin_type = cutin_type;
 	
-	if( cutin_type == CUTIN_TYPE_HIDEN ){	//”é“`‹Z
+	if( cutin_type == CUTIN_TYPE_HIDEN ){	//ç§˜ä¼æŠ€
 		tcb = TCB_Add( CutIn_UpdateTCB, cut, TCBPRI_CUTIN_UPDATE );
-	}else{									//‹ó
+	}else{									//ç©º
 		tcb = TCB_Add( CutInSky_UpdateTCB, cut, TCBPRI_CUTIN_UPDATE );
 	}
 	
@@ -1795,7 +1795,7 @@ TCB_PTR FieldCutIn_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“I—¹ƒ`ƒFƒbƒN
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³çµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param
  * @retval
  */
@@ -1808,7 +1808,7 @@ int FieldCutIn_EndCheck( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“I—¹
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³çµ‚äº†
  * @param
  * @retval
  */
@@ -1822,7 +1822,7 @@ void FieldCutIn_End( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ƒ[ƒNŠm•Û
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  * @param	
  * @retval
  */
@@ -1837,7 +1837,7 @@ static CUTIN_WORK * CutIn_AllocMemory( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ƒ[ƒNŠJ•ú
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
  * @param	
  * @retval
  */
@@ -1848,19 +1848,19 @@ static void CutIn_FreeMemory( CUTIN_WORK *cut )
 }
 
 //==============================================================================
-//	ƒJƒbƒgƒCƒ“@ƒ}ƒbƒvƒCƒxƒ“ƒg
+//	ã‚«ãƒƒãƒˆã‚¤ãƒ³ã€€ãƒãƒƒãƒ—ã‚¤ãƒ™ãƒ³ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒJƒbƒgƒCƒ“ƒtƒB[ƒ‹ƒhƒCƒxƒ“ƒg
+//	ã‚«ãƒƒãƒˆã‚¤ãƒ³ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¤ãƒ™ãƒ³ãƒˆ
 //--------------------------------------------------------------
 //void FieldEvent_Sorawotobu( 
 
 //==============================================================================
-//	ƒJƒbƒgƒCƒ“@“®ì
+//	ã‚«ãƒƒãƒˆã‚¤ãƒ³ã€€å‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ““®ì
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³å‹•ä½œ
  * @param
  * @retval
  */
@@ -1885,9 +1885,9 @@ static void CutIn_UpdateTCB( TCB_PTR tcb, void *work )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 0@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 0ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_GraphicInit( CUTIN_WORK *cut )
@@ -1900,9 +1900,9 @@ static int CutInMove_GraphicInit( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 0@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»Š®—¹‘Ò‚¿
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 0ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–å®Œäº†å¾…ã¡
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_GraphicInitWait( CUTIN_WORK *cut )
@@ -1928,9 +1928,9 @@ static int CutInMove_GraphicInitWait( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 0@ƒEƒBƒ“ƒhƒE‰Šú‰»
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 0ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_WndInit( CUTIN_WORK *cut )
@@ -1951,9 +1951,9 @@ static int CutInMove_WndInit( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@ƒEƒBƒ“ƒhƒEˆÚ“®@‰¡ü
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç§»å‹•ã€€æ¨ªç·š
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_WndMove0( CUTIN_WORK *cut )
@@ -1975,9 +1975,9 @@ static int CutInMove_WndMove0( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@ƒEƒBƒ“ƒhƒEˆÚ“®@c‚ÉŠJ‚­
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç§»å‹•ã€€ç¸¦ã«é–‹ã
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_WndMove1( CUTIN_WORK *cut )
@@ -2004,7 +2004,7 @@ static int CutInMove_WndMove1( CUTIN_WORK *cut )
 	cut->win_setflag = TRUE;
 	
 	if( cut->win_y0 == NUMFX32(CUTIN_SY) && cut->win_y1 == NUMFX32(CUTIN_EY) ){
-		CutIn_ClactAutoAnimeStart( cut->clact_hero );	//©‹@ƒAƒjƒŠJn
+		CutIn_ClactAutoAnimeStart( cut->clact_hero );	//è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡é–‹å§‹
 		cut->seq_no++;
 	}
 	
@@ -2013,9 +2013,9 @@ static int CutInMove_WndMove1( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@©‹@è‚ğ‚©‚´‚·ƒAƒjƒ
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€è‡ªæ©Ÿæ‰‹ã‚’ã‹ã–ã™ã‚¢ãƒ‹ãƒ¡
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_HeroAnime( CUTIN_WORK *cut )
@@ -2033,9 +2033,9 @@ static int CutInMove_HeroAnime( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@ƒ|ƒPƒ‚ƒ““oê 0
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€ãƒã‚±ãƒ¢ãƒ³ç™»å ´ 0
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_PokeMove0( CUTIN_WORK *cut )
@@ -2059,9 +2059,9 @@ static int CutInMove_PokeMove0( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@ƒ|ƒPƒ‚ƒ““oê 1@Œ¸‘¬
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€ãƒã‚±ãƒ¢ãƒ³ç™»å ´ 1ã€€æ¸›é€Ÿ
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_PokeMove1( CUTIN_WORK *cut )
@@ -2090,9 +2090,9 @@ static int CutInMove_PokeMove1( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@ƒ|ƒPƒ‚ƒ““oê 1@’†S‚Åˆê¡‘Ò‚¿
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€ãƒã‚±ãƒ¢ãƒ³ç™»å ´ 1ã€€ä¸­å¿ƒã§ä¸€å¯¸å¾…ã¡
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_PokeMove2( CUTIN_WORK *cut )
@@ -2110,9 +2110,9 @@ static int CutInMove_PokeMove2( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@ƒ|ƒPƒ‚ƒ““oê 1@‰æ–ÊŠO‚Ö
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€ãƒã‚±ãƒ¢ãƒ³ç™»å ´ 1ã€€ç”»é¢å¤–ã¸
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_PokeMove3( CUTIN_WORK *cut )
@@ -2141,9 +2141,9 @@ static int CutInMove_PokeMove3( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@ƒEƒBƒ“ƒhƒE•Â‚¶‚é
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‰ã˜ã‚‹
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_WndClose( CUTIN_WORK *cut )
@@ -2179,9 +2179,9 @@ static int CutInMove_WndClose( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_GraphicDelete( CUTIN_WORK *cut )
@@ -2194,9 +2194,9 @@ static int CutInMove_GraphicDelete( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@ƒEƒBƒ“ƒhƒEÁ‹
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¶ˆå»
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_WndClear( CUTIN_WORK *cut )
@@ -2208,9 +2208,9 @@ static int CutInMove_WndClear( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@I—¹
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€çµ‚äº†
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_End( CUTIN_WORK *cut )
@@ -2220,7 +2220,7 @@ static int CutInMove_End( CUTIN_WORK *cut )
 }
 
 //--------------------------------------------------------------
-///	ƒJƒbƒgƒCƒ““®ìƒe[ƒuƒ‹
+///	ã‚«ãƒƒãƒˆã‚¤ãƒ³å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_CutInUpdateTbl[])( CUTIN_WORK *cut ) =
 {
@@ -2241,11 +2241,11 @@ static int (* const DATA_CutInUpdateTbl[])( CUTIN_WORK *cut ) =
 };
 
 //==============================================================================
-//	ƒJƒbƒgƒCƒ““®ì@‹ó‚ğ”ò‚Ô
+//	ã‚«ãƒƒãƒˆã‚¤ãƒ³å‹•ä½œã€€ç©ºã‚’é£›ã¶
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ““®ì@‹ó‚ğ”ò‚Ô
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³å‹•ä½œã€€ç©ºã‚’é£›ã¶
  * @param
  * @retval
  */
@@ -2270,9 +2270,9 @@ static void CutInSky_UpdateTCB( TCB_PTR tcb, void *work )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»Š®—¹‘Ò‚¿
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–å®Œäº†å¾…ã¡
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_SkyGraphicInitWait( CUTIN_WORK *cut )
@@ -2298,7 +2298,7 @@ static int CutInMove_SkyGraphicInitWait( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“@ƒ|ƒPƒ‚ƒ“ŠGíœ
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ã€€ãƒã‚±ãƒ¢ãƒ³çµµå‰Šé™¤
  * @param
  * @retval
  */
@@ -2312,7 +2312,7 @@ static int CutInMove_PokeGraphicDelete( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“@’¹ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ã€€é³¥ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param
  * @retval
  */
@@ -2327,7 +2327,7 @@ static int CutInMove_BirdGraphicInit( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“@’¹ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»‘Ò‚¿
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ã€€é³¥ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–å¾…ã¡
  * @param
  * @retval
  */
@@ -2346,16 +2346,16 @@ static int CutInMove_BirdGraphicInitWait( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@’¹ƒXƒ^[ƒg
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€é³¥ã‚¹ã‚¿ãƒ¼ãƒˆ
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_BirdStartUp( CUTIN_WORK *cut )
 {
 	CutIn_BirdInit( cut );
 	CutIn_BirdMoveChange_StartUp( cut );
-	CutIn_WndPlaneOutsideOBJ_ON( cut );								//ŠO‘¤‚ÌOBJ•\¦ON
+	CutIn_WndPlaneOutsideOBJ_ON( cut );								//å¤–å´ã®OBJè¡¨ç¤ºON
 	CutIn_PlayerVanishSet( cut, TRUE );
 	
 	cut->seq_no++;
@@ -2364,9 +2364,9 @@ static int CutInMove_BirdStartUp( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@’¹ƒXƒ^[ƒg@I—¹‘Ò‚¿
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€é³¥ã‚¹ã‚¿ãƒ¼ãƒˆã€€çµ‚äº†å¾…ã¡
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_BirdStartUpWait( CUTIN_WORK *cut )
@@ -2382,9 +2382,9 @@ static int CutInMove_BirdStartUpWait( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@’¹ƒXƒ^[ƒgI—¹Œã‚Ìˆê¡‘Ò‚¿‚Ì‚¿“‹æ
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€é³¥ã‚¹ã‚¿ãƒ¼ãƒˆçµ‚äº†å¾Œã®ä¸€å¯¸å¾…ã¡ã®ã¡æ­ä¹—
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_BirdStartUpAfterWait( CUTIN_WORK *cut )
@@ -2402,9 +2402,9 @@ static int CutInMove_BirdStartUpAfterWait( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@’¹“‹æ@“‹æ‘Ò‚¿
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€é³¥æ­ä¹—ã€€æ­ä¹—å¾…ã¡
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_BirdRideONWait( CUTIN_WORK *cut )
@@ -2423,9 +2423,9 @@ static int CutInMove_BirdRideONWait( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@ƒEƒBƒ“ƒhƒE•Â‚¶‚é
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‰ã˜ã‚‹
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_BirdRideONWndClose( CUTIN_WORK *cut )
@@ -2474,9 +2474,9 @@ static int CutInMove_BirdRideONWndClose( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@’¹“‹æ@‰æ–ÊŠO‘Ò‚¿
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€é³¥æ­ä¹—ã€€ç”»é¢å¤–å¾…ã¡
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_BirdRideONEndWait( CUTIN_WORK *cut )
@@ -2512,9 +2512,9 @@ static int CutInMove_BirdRideONEndWait( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“ 1@ƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ 1ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
  * @param	cut		CUTIN_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int CutInMove_BirdRideONFadeOutWait( CUTIN_WORK *cut )
@@ -2527,7 +2527,7 @@ static int CutInMove_BirdRideONFadeOutWait( CUTIN_WORK *cut )
 }
 
 //--------------------------------------------------------------
-///	ƒJƒbƒgƒCƒ““®ìƒe[ƒuƒ‹
+///	ã‚«ãƒƒãƒˆã‚¤ãƒ³å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_CutInSkyUpdateTbl[])( CUTIN_WORK *cut ) =
 {
@@ -2560,11 +2560,11 @@ static int (* const DATA_CutInSkyUpdateTbl[])( CUTIN_WORK *cut ) =
 };
 
 //==============================================================================
-//	Vƒuƒ‰ƒ“ƒN“®ì
+//	Vãƒ–ãƒ©ãƒ³ã‚¯å‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * Vƒuƒ‰ƒ“ƒN‰Šú‰»ŠÖ”’Ç‰Á
+ * Vãƒ–ãƒ©ãƒ³ã‚¯åˆæœŸåŒ–é–¢æ•°è¿½åŠ 
  * @param	
  * @retval
  */
@@ -2578,7 +2578,7 @@ static void CutIn_VIntrInitTcbAdd( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * Vƒuƒ‰ƒ“ƒN’¹‰Šú‰»ŠÖ”’Ç‰Á
+ * Vãƒ–ãƒ©ãƒ³ã‚¯é³¥åˆæœŸåŒ–é–¢æ•°è¿½åŠ 
  * @param	
  * @retval
  */
@@ -2592,7 +2592,7 @@ static void CutIn_VIntrBirdInitTcbAdd( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * Vƒuƒ‰ƒ“ƒN“®ìŠÖ”íœ
+ * Vãƒ–ãƒ©ãƒ³ã‚¯å‹•ä½œé–¢æ•°å‰Šé™¤
  * @param	
  * @retval
  */
@@ -2607,7 +2607,7 @@ static void CutIn_VIntrTcbDelete( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * Vƒuƒ‰ƒ“ƒN@‰Šú‰»ŠÖ”
+ * Vãƒ–ãƒ©ãƒ³ã‚¯ã€€åˆæœŸåŒ–é–¢æ•°
  * @param	
  * @retval
  */
@@ -2647,7 +2647,7 @@ static void CutIn_VIntrInitTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * VWait@‰Šú‰»ŠÖ”
+ * VWaitã€€åˆæœŸåŒ–é–¢æ•°
  * @param	
  * @retval
  */
@@ -2658,7 +2658,7 @@ static void CutIn_VWaitInitTcb( TCB_PTR tcb, void *wk )
 	CUTIN_WORK *cutin = wk;
 	
 	if( cutin->tcb_vintr_seq == 1 ){
-		//VRAM‚ÉƒLƒƒƒ‰AƒpƒŒƒbƒg”z’uŒãAƒ[ƒNƒŠƒ\[ƒX‚ğ”jŠü
+		//VRAMã«ã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆé…ç½®å¾Œã€ãƒ¯ãƒ¼ã‚¯ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„
 		for( i = 0; i < CUTIN_CAUSE_CHAR_MAX; i++ ){
 			if( cutin->clact_resobj_char[i] != NULL ){
 				CLACT_U_ResManagerResOnlyDelete( cutin->clact_resobj_char[i] );
@@ -2688,7 +2688,7 @@ static void CutIn_VWaitInitTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * Vƒuƒ‰ƒ“ƒN@’¹‰Šú‰»ŠÖ”
+ * Vãƒ–ãƒ©ãƒ³ã‚¯ã€€é³¥åˆæœŸåŒ–é–¢æ•°
  * @param	
  * @retval
  */
@@ -2711,7 +2711,7 @@ static void CutIn_VIntrBirdInitTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * VWait@’¹‰Šú‰»ŠÖ”
+ * VWaitã€€é³¥åˆæœŸåŒ–é–¢æ•°
  * @param	
  * @retval
  */
@@ -2731,11 +2731,11 @@ static void CutIn_VWaitBirdInitTcb( TCB_PTR tcb, void *wk )
 }
 
 //==============================================================================
-//	ƒOƒ‰ƒtƒBƒbƒN
+//	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	
  * @retval
  */
@@ -2769,7 +2769,7 @@ static void CutIn_GraphicInit( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒbƒgƒCƒ“@ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ã‚«ãƒƒãƒˆã‚¤ãƒ³ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	
  * @retval
  */
@@ -2791,7 +2791,7 @@ static void CutIn_GraphicDelete( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
  * @param
  * @retval
  */
@@ -2802,11 +2802,11 @@ static ARCHANDLE * CutIn_ArcHandleOpen( void )
 }
 
 //==============================================================================
-//	ƒZƒ‹ƒAƒNƒ^[
+//	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  * @param
  * @retval
  */
@@ -2815,17 +2815,17 @@ static void CutIn_ClactInit( CUTIN_WORK *cutin, ARCHANDLE *ahand )
 {
 	int i;
 	
-	//ƒ|ƒPƒ‚ƒ“ƒXƒvƒ‰ƒCƒgƒA[ƒJƒCƒuî•ñæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æƒ…å ±å–å¾—
 	CutIn_PokeGraSoftSpriteArcMake( cutin, &cutin->ssa );
 	
-	//ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	cutin->clact_set = CLACT_U_SetEasyInit(
 			CUTIN_CA_MAX, &cutin->clact_easydata, HEAPID_FIELD );
 
 	CLACT_U_SetSubSurfaceMatrix( &cutin->clact_easydata, 0, FX32_CONST(512) );
 
 
-	//ƒŠƒ\[ƒX‰Šú‰»
+	//ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
 	cutin->clact_resm_char =
 		CLACT_U_ResManagerInit( CUTIN_CAUSE_CHAR_MAX, CLACT_U_CHAR_RES, HEAPID_FIELD );
 	cutin->clact_resm_pltt =
@@ -2835,7 +2835,7 @@ static void CutIn_ClactInit( CUTIN_WORK *cutin, ARCHANDLE *ahand )
 	cutin->clact_resm_anime =
 		CLACT_U_ResManagerInit( CUTIN_CAUSE_ANM_MAX, CLACT_U_CELLANM_RES, HEAPID_FIELD );
 	
-	//ƒLƒƒƒ‰ƒŠƒ\[ƒX“WŠJ
+	//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹å±•é–‹
 	for( i = 0; i < CUTIN_CAUSE_CHAR_ALWAYS_MAX; i++ ){
 		cutin->clact_resobj_char[i] =
 			CLACT_U_ResManagerResAddArcChar_ArcHandle(
@@ -2858,10 +2858,10 @@ static void CutIn_ClactInit( CUTIN_WORK *cutin, ARCHANDLE *ahand )
 				NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_FIELD );
 	}
 	
-	i++;	//Ÿ‚ÌƒŠƒ\[ƒXOBJ‚Ö
+	i++;	//æ¬¡ã®ãƒªã‚½ãƒ¼ã‚¹OBJã¸
 	cutin->clact_resobj_char[i] = CutIn_PokeGraResmAddCharDummy( cutin, ahand );
 	
-	//ƒpƒŒƒbƒgƒŠƒ\[ƒX“WŠJ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹å±•é–‹
 	for( i = 0; i < CUTIN_CAUSE_PLTT_ALWAYS_MAX; i++ ){
 		cutin->clact_resobj_pltt[i] =
 			CLACT_U_ResManagerResAddArcPltt_ArcHandle(
@@ -2871,7 +2871,7 @@ static void CutIn_ClactInit( CUTIN_WORK *cutin, ARCHANDLE *ahand )
 	}
 	
 	if( cutin->sex == PM_MALE ){	//hero
-		//Œõü‚Æ“¯ˆê
+		//å…‰ç·šã¨åŒä¸€
 	}else{							//heroine
 		cutin->clact_resobj_pltt[i] =
 			CLACT_U_ResManagerResAddArcPltt_ArcHandle(
@@ -2879,12 +2879,12 @@ static void CutIn_ClactInit( CUTIN_WORK *cutin, ARCHANDLE *ahand )
 				NARC_field_cutin_heroine_NCLR, FALSE, CUTIN_CAID_PLTT_HEROINE,
 				NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAPID_FIELD );
 		
-		i++;	//Ÿ‚ÌƒŠƒ\[ƒXOBJ‚Ö
+		i++;	//æ¬¡ã®ãƒªã‚½ãƒ¼ã‚¹OBJã¸
 	}
 	
 	cutin->clact_resobj_pltt[i] = CutIn_PokeGraResmAddPlttDummy( cutin, ahand );
 	
-	//ƒZƒ‹“WŠJ
+	//ã‚»ãƒ«å±•é–‹
 	for( i = 0; i < CUTIN_CAUSE_CELL_ALWAYS_MAX; i++ ){
 		cutin->clact_resobj_cell[i] =
 			CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
@@ -2907,14 +2907,14 @@ static void CutIn_ClactInit( CUTIN_WORK *cutin, ARCHANDLE *ahand )
 				CLACT_U_CELL_RES, HEAPID_FIELD );
 	}
 	
-	i++;	//Ÿ‚ÌƒŠƒ\[ƒX‚Ö
+	i++;	//æ¬¡ã®ãƒªã‚½ãƒ¼ã‚¹ã¸
 	cutin->clact_resobj_cell[i] =
 		CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			cutin->clact_resm_cell, ahand,
 			NARC_field_cutin_poke_oam_NCER, FALSE, CUTIN_CAID_CELL_POKE,
 			CLACT_U_CELL_RES, HEAPID_FIELD );
 	
-	//ƒAƒjƒ“WŠJ
+	//ã‚¢ãƒ‹ãƒ¡å±•é–‹
 	for( i = 0; i < CUTIN_CAUSE_ANM_ALWAYS_MAX; i++ ){
 		cutin->clact_resobj_anime[i] =
 			CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
@@ -2943,7 +2943,7 @@ static void CutIn_ClactInit( CUTIN_WORK *cutin, ARCHANDLE *ahand )
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[”jŠü
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  * @param
  * @retval
  */
@@ -2952,7 +2952,7 @@ static void CutIn_ClactDest( CUTIN_WORK *cutin )
 {
 	int i;
 	
-	//VRAM‚É“WŠJ‚³‚ê‚½ƒLƒƒƒ‰AƒpƒŒƒbƒgíœ
+	//VRAMã«å±•é–‹ã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆå‰Šé™¤
 	for( i = 0; i < CUTIN_CAUSE_CHAR_MAX; i++ ){
 		if( cutin->clact_resobj_char[i] != NULL ){
 			CLACT_U_CharManagerDelete( cutin->clact_resobj_char[i] );
@@ -2965,7 +2965,7 @@ static void CutIn_ClactDest( CUTIN_WORK *cutin )
 		}
 	}
 	
-	//ƒZƒ‹AƒAƒjƒg—p—Ìˆæ”jŠü
+	//ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡ä½¿ç”¨é ˜åŸŸç ´æ£„
 	for( i = 0; i < CUTIN_CAUSE_CELL_MAX; i++ ){
 		if( cutin->clact_resobj_cell[i] != NULL ){
 			CLACT_U_ResManagerResOnlyDelete( cutin->clact_resobj_cell[i] );
@@ -2983,15 +2983,15 @@ static void CutIn_ClactDest( CUTIN_WORK *cutin )
 	CLACT_U_ResManagerDelete( cutin->clact_resm_cell );
 	CLACT_U_ResManagerDelete( cutin->clact_resm_anime );
 	
-	//ƒAƒNƒ^[‘S•”íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼å…¨éƒ¨å‰Šé™¤
 	CLACT_DelAllSet( cutin->clact_set );
-	//ƒZƒ‹ƒAƒNƒ^[”jŠü
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	CLACT_DestSet( cutin->clact_set );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[•`‰æ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æç”»
  * @param
  * @retval
  */
@@ -3005,13 +3005,13 @@ static void CutIn_ClactDraw( CUTIN_WORK *cutin )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[’Ç‰Á
- * @param	char_id				ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ID
- * @param	pltt_id				ƒpƒŒƒbƒgƒf[ƒ^ID
- * @param	cell_id				ƒZƒ‹ƒf[ƒ^ID
- * @param	cellanm_id			ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ID	–³‚¢‚Æ‚«‚ÍCLACT_U_HEADER_DATA_NONE
- * @param	bg_pri				BGƒvƒ‰ƒCƒIƒŠƒeƒB
- * @param	act_pri				ƒAƒNƒ^[ƒvƒ‰ƒCƒIƒŠƒeƒB
+ * ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
+ * @param	char_id				ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ID
+ * @param	pltt_id				ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ID
+ * @param	cell_id				ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ID
+ * @param	cellanm_id			ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ID	ç„¡ã„ã¨ãã¯CLACT_U_HEADER_DATA_NONE
+ * @param	bg_pri				BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @param	act_pri				ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  * @retval
  */
 //--------------------------------------------------------------
@@ -3060,7 +3060,7 @@ static CLACT_WORK_PTR CutIn_ClActAdd( CUTIN_WORK *cutin, const VecFx32 *vec,
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[@ƒ‰ƒCƒg’Ç‰Á
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒ©ã‚¤ãƒˆè¿½åŠ 
  * @retval
  */
 //--------------------------------------------------------------
@@ -3079,7 +3079,7 @@ static CLACT_WORK_PTR CutIn_ClactAdd_Light(
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[@©‹@’Ç‰Á
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ã€€è‡ªæ©Ÿè¿½åŠ 
  * @retval
  */
 //--------------------------------------------------------------
@@ -3103,7 +3103,7 @@ static CLACT_WORK_PTR CutIn_ClactAdd_Hero( CUTIN_WORK *cutin, const VecFx32 *vec
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[@©‹@ƒI[ƒgƒAƒjƒŠJn
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ã€€è‡ªæ©Ÿã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡é–‹å§‹
  * @retval
  */
 //--------------------------------------------------------------
@@ -3115,7 +3115,7 @@ static void CutIn_ClactAutoAnimeStart( CLACT_WORK_PTR act )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[@’¹’Ç‰Á
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ã€€é³¥è¿½åŠ 
  * @retval
  */
 //--------------------------------------------------------------
@@ -3140,7 +3140,7 @@ static CLACT_WORK_PTR CutIn_ClactAdd_Bird(
 
 //--------------------------------------------------------------
 /**
- * ’¹ƒOƒ‰ƒtƒBƒbƒN’Ç‰Á
+ * é³¥ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¿½åŠ 
  * @param
  * @retval
  */
@@ -3182,7 +3182,7 @@ static void CutIn_ClActBirdGraphicInit( CUTIN_WORK *cutin )
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * BGƒpƒŒƒbƒg‰Šú‰»
+ * BGãƒ‘ãƒ¬ãƒƒãƒˆåˆæœŸåŒ–
  * @param
  * @retval
  */
@@ -3200,7 +3200,7 @@ static void CutIn_BGPaletteInit( ARCHANDLE *ahand, u32 arc_id, NNSG2dPaletteData
 
 //--------------------------------------------------------------
 /**
- * BGƒLƒƒƒ‰‰Šú‰»
+ * BGã‚­ãƒ£ãƒ©åˆæœŸåŒ–
  * @param
  * @retval
  */
@@ -3213,7 +3213,7 @@ static void CutIn_BGCharInit(
 	buf = ArchiveDataLoadAllocByHandle( ahand, arc_id, HEAPID_FIELD );
 	NNS_G2dGetUnpackedCharacterData( buf, pChar );
 	#ifdef DEBUG_ONLY_FOR_kagaya
-	OS_Printf( "ƒJƒbƒgƒCƒ“BGƒLƒƒƒ‰ƒTƒCƒY =%xH\n", (*pChar)->szByte );
+	OS_Printf( "ã‚«ãƒƒãƒˆã‚¤ãƒ³BGã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º =%xH\n", (*pChar)->szByte );
 	#endif
 	GF_BGL_LoadCharacter( ini, CUTIN_BG_FRAME,
 		(*pChar)->pRawData, (*pChar)->szByte, CUTIN_BG_SET_CHAR_OFFSET );
@@ -3222,7 +3222,7 @@ static void CutIn_BGCharInit(
 
 //--------------------------------------------------------------
 /**
- * BGƒXƒNƒŠ[ƒ“‰Šú‰»
+ * BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³åˆæœŸåŒ–
  * @param
  * @retval
  */
@@ -3245,7 +3245,7 @@ static void CutIn_BGScreenInit(
 
 //--------------------------------------------------------------
 /**
- * BGƒXƒNƒŠ[ƒ“ƒNƒŠƒA
+ * BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢
  * @param
  * @retval
  */
@@ -3257,11 +3257,11 @@ static void CutIn_BGScreenClear( GF_BGL_INI *ini )
 }
 
 //==============================================================================
-//	ƒEƒBƒ“ƒhƒE
+//	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒEƒBƒ“ƒhƒE‰Šú‰»
+ * ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  * @param
  * @retval
  */
@@ -3280,7 +3280,7 @@ static void CutIn_WndInit( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒEƒBƒ“ƒhƒE•\¦ON
+ * ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºON
  * @param
  * @retval
  */
@@ -3293,7 +3293,7 @@ static void CutIn_WndON( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒEƒBƒ“ƒhƒE•\¦OFF
+ * ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºOFF
  * @param
  * @retval
  */
@@ -3306,7 +3306,7 @@ static void CutIn_WndOFF( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒEƒBƒ“ƒhƒE•\¦İ’è‰Šú‰»
+ * ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºè¨­å®šåˆæœŸåŒ–
  * @param
  * @retval
  */
@@ -3314,20 +3314,20 @@ static void CutIn_WndOFF( CUTIN_WORK *cut )
 static void CutIn_WndPlaneInit( CUTIN_WORK *cut )
 {
 #if 0
-	G2_SetWnd0InsidePlane(											//“à‘¤
-			CUTIN_BG_WINMASK|GX_WND_PLANEMASK_OBJ,					//BG‚ÆOBJ
-			FALSE );												//ƒ¿–³Œø
+	G2_SetWnd0InsidePlane(											//å†…å´
+			CUTIN_BG_WINMASK|GX_WND_PLANEMASK_OBJ,					//BGã¨OBJ
+			FALSE );												//Î±ç„¡åŠ¹
 	
 	G2_SetWndOutsidePlane(
-			(GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|			//OBJ‚ÆƒJƒbƒgƒCƒ“BGˆÈŠO—LŒø
+			(GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|			//OBJã¨ã‚«ãƒƒãƒˆã‚¤ãƒ³BGä»¥å¤–æœ‰åŠ¹
 			 GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_BG3|
 			 GX_WND_PLANEMASK_OBJ) &
 			CUTIN_BG_WINMASK_NOT, TRUE );
 #else
-	cut->win0_inside =	CUTIN_BG_WINMASK|GX_WND_PLANEMASK_OBJ;		//BG‚ÆOBJ
-	cut->win0_inside_alpha = FALSE;									//ƒ¿–³Œø
+	cut->win0_inside =	CUTIN_BG_WINMASK|GX_WND_PLANEMASK_OBJ;		//BGã¨OBJ
+	cut->win0_inside_alpha = FALSE;									//Î±ç„¡åŠ¹
 	cut->win0_outside =
-			(GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|			//OBJ‚ÆƒJƒbƒgƒCƒ“BGˆÈŠO—LŒø
+			(GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|			//OBJã¨ã‚«ãƒƒãƒˆã‚¤ãƒ³BGä»¥å¤–æœ‰åŠ¹
 			 GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_BG3|
 			 GX_WND_PLANEMASK_OBJ) &
 			CUTIN_BG_WINMASK_NOT;
@@ -3337,7 +3337,7 @@ static void CutIn_WndPlaneInit( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒEƒBƒ“ƒhƒE•\¦İ’è@ŠO‚·‚×‚Ä—LŒø
+ * ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºè¨­å®šã€€å¤–ã™ã¹ã¦æœ‰åŠ¹
  * @param
  * @retval
  */
@@ -3347,13 +3347,13 @@ static void CutIn_WndPlaneOutsideOBJ_ON( CUTIN_WORK *cut )
 #if 0	
 	G2_SetWndOutsidePlane(
 			(GX_WND_PLANEMASK_OBJ|
-			 GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|			//OBJ‚ÆƒJƒbƒgƒCƒ“BGˆÈŠO—LŒø
+			 GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|			//OBJã¨ã‚«ãƒƒãƒˆã‚¤ãƒ³BGä»¥å¤–æœ‰åŠ¹
 			 GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_BG3) &
 			CUTIN_BG_WINMASK_NOT, TRUE );
 #else
 	cut->win0_outside = 
 			(GX_WND_PLANEMASK_OBJ|
-			 GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|			//OBJ‚ÆƒJƒbƒgƒCƒ“BGˆÈŠO—LŒø
+			 GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|			//OBJã¨ã‚«ãƒƒãƒˆã‚¤ãƒ³BGä»¥å¤–æœ‰åŠ¹
 			 GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_BG3) &
 			CUTIN_BG_WINMASK_NOT;
 	cut->win0_outside_alpha = TRUE;
@@ -3362,7 +3362,7 @@ static void CutIn_WndPlaneOutsideOBJ_ON( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ƒEƒBƒ“ƒhƒE•\¦ˆÊ’uƒZƒbƒg
+ * ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä½ç½®ã‚»ãƒƒãƒˆ
  * @param
  * @retval
  */
@@ -3414,24 +3414,24 @@ static void Cip_VIntrTcbWindow( TCB_PTR tcb, void *wk )
 {
 	CUTIN_WORK *cut = wk;
 	
-	if( cut->win_setflag == FALSE ){		//ƒpƒ‰ƒƒ^˜M‚è’†
+	if( cut->win_setflag == FALSE ){		//ãƒ‘ãƒ©ãƒ¡ã‚¿å¼„ã‚Šä¸­
 		return;
 	}
 	
 	GX_SetVisibleWnd( cut->win0_visible );
-	G2_SetWnd0InsidePlane( cut->win0_inside, cut->win0_inside_alpha );	//“à‘¤
-	G2_SetWndOutsidePlane( cut->win0_outside, cut->win0_outside_alpha );	//ŠO‘¤
+	G2_SetWnd0InsidePlane( cut->win0_inside, cut->win0_inside_alpha );	//å†…å´
+	G2_SetWndOutsidePlane( cut->win0_outside, cut->win0_outside_alpha );	//å¤–å´
 	G2_SetWnd0Position(
 		cut->win_x0/FX32_ONE, cut->win_y0/FX32_ONE,
 		cut->win_x1/FX32_ONE, cut->win_y1/FX32_ONE );
 }
 
 //==============================================================================
-//	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN
+//	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * SOFT_SPRITE_ARC¶¬
+ * SOFT_SPRITE_ARCç”Ÿæˆ
  * @param	cut	
  * @retval
  */
@@ -3443,7 +3443,7 @@ static void CutIn_PokeGraSoftSpriteArcMake( CUTIN_WORK *cut, SOFT_SPRITE_ARC *ss
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ŠG‚ğOAM•ÏŠ·‚µ‚½ƒoƒbƒtƒ@‚ğæ“¾
+ * ãƒã‚±ãƒ¢ãƒ³çµµã‚’OAMå¤‰æ›ã—ãŸãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—
  * @param
  * @retval
  */
@@ -3451,7 +3451,7 @@ static void CutIn_PokeGraSoftSpriteArcMake( CUTIN_WORK *cut, SOFT_SPRITE_ARC *ss
 static void * CutIn_PokeGraOamGet( POKEMON_PARAM *param, SOFT_SPRITE_ARC *ssa, u32 heap_id )
 {
 	void *buf = sys_AllocMemory( HEAPID_FIELD, (32*10)*10 );
-	GF_ASSERT( buf != NULL && "CutIn_PokeGraOamGet()ƒoƒbƒtƒ@æ“¾¸”s\n" );
+	GF_ASSERT( buf != NULL && "CutIn_PokeGraOamGet()ãƒãƒƒãƒ•ã‚¡å–å¾—å¤±æ•—\n" );
 	
 #if 0	
 	ChangesInto_BattlePokeData(	ssa->arc_no, ssa->index_chr, heap_id, buf );
@@ -3469,7 +3469,7 @@ static void * CutIn_PokeGraOamGet( POKEMON_PARAM *param, SOFT_SPRITE_ARC *ssa, u
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒpƒŒƒbƒgƒoƒbƒtƒ@‚ğæ“¾
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—
  * @param
  * @retval
  */
@@ -3483,7 +3483,7 @@ static void * CutIn_PokeGraPlttGet( SOFT_SPRITE_ARC *ssa, u32 heap_id )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒ|ƒPƒ‚ƒ“ƒLƒƒƒ‰ƒ_ƒ~[“o˜^
+ * ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚±ãƒ¢ãƒ³ã‚­ãƒ£ãƒ©ãƒ€ãƒŸãƒ¼ç™»éŒ²
  * @param
  * @retval
  */
@@ -3502,7 +3502,7 @@ static CLACT_U_RES_OBJ_PTR CutIn_PokeGraResmAddCharDummy( CUTIN_WORK *cutin, ARC
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒ|ƒPƒ‚ƒ“ƒLƒƒƒ‰VRAM“]‘—
+ * ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚±ãƒ¢ãƒ³ã‚­ãƒ£ãƒ©VRAMè»¢é€
  * @param
  * @retval
  */
@@ -3523,7 +3523,7 @@ static void CutIn_PokeGraResmSetCleanAreaChar( CUTIN_WORK *cutin, void *buf )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒ|ƒPƒ‚ƒ“ƒpƒŒƒbƒgƒ_ƒ~[“o˜^
+ * ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆãƒ€ãƒŸãƒ¼ç™»éŒ²
  * @param
  * @retval
  */
@@ -3542,7 +3542,7 @@ static CLACT_U_RES_OBJ_PTR CutIn_PokeGraResmAddPlttDummy( CUTIN_WORK *cutin, ARC
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒ|ƒPƒ‚ƒ“ƒLƒƒƒ‰VRAM“]‘—
+ * ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚±ãƒ¢ãƒ³ã‚­ãƒ£ãƒ©VRAMè»¢é€
  * @param
  * @retval
  */
@@ -3569,7 +3569,7 @@ static void CutIn_PokeGraResmSetCleanAreaPltt( CUTIN_WORK *cutin, void *buf )
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param
  * @retval
  */
@@ -3620,7 +3620,7 @@ static void CutIn_PokeGraResmDelete( CUTIN_WORK *cutin )
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“@ƒZƒ‹ƒAƒNƒ^[’Ç‰Á
+ * ãƒã‚±ãƒ¢ãƒ³ã€€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  * @param
  * @retval
  */
@@ -3637,7 +3637,7 @@ static CLACT_WORK_PTR CutIn_ClactAdd_Poke( CUTIN_WORK *cutin, const VecFx32 *vec
 }
 
 //==============================================================================
-//	EOA Œõü
+//	EOA å…‰ç·š
 //==============================================================================
 typedef struct
 {
@@ -3674,7 +3674,7 @@ static const EOA_H_NPP DATA_EoaH_Light;
 #define LIGHT_MAX (13)
 
 //--------------------------------------------------------------
-///	’Ç‰Áƒe[ƒuƒ‹
+///	è¿½åŠ ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const LIGHT_SET_POS DATA_LightSetPosTbl[LIGHT_MAX] =
 {
@@ -3698,7 +3698,7 @@ static const LIGHT_SET_POS DATA_LightSetPosTbl[LIGHT_MAX] =
 
 //--------------------------------------------------------------
 /**
- * Œõü’Ç‰Á
+ * å…‰ç·šè¿½åŠ 
  * @param
  * @retval
  */
@@ -3729,7 +3729,7 @@ static void CutIn_LightSet( CUTIN_WORK *cut, int windel )
 
 //--------------------------------------------------------------
 /**
- * EOA Œõü’Ç‰Á
+ * EOA å…‰ç·šè¿½åŠ 
  * @param	
  * @retval
  */
@@ -3750,7 +3750,7 @@ static void CutIn_EoaLightAdd( CUTIN_WORK *cut,
 
 //--------------------------------------------------------------
 /**
- * EOA Œõü@‰Šú‰»
+ * EOA å…‰ç·šã€€åˆæœŸåŒ–
  * @param
  * @retval
  */
@@ -3774,7 +3774,7 @@ static int EoaLight_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Œõü@íœ
+ * EOA å…‰ç·šã€€å‰Šé™¤
  * @param
  * @retval
  */
@@ -3787,7 +3787,7 @@ static void EoaLight_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Œõü@“®ì
+ * EOA å…‰ç·šã€€å‹•ä½œ
  * @param
  * @retval
  */
@@ -3825,7 +3825,7 @@ static void EoaLight_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Œõü@•`‰æ
+ * EOA å…‰ç·šã€€æç”»
  * @param
  * @retval
  */
@@ -3836,7 +3836,7 @@ static void EoaLight_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H@Œõü
+///	EOA_Hã€€å…‰ç·š
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Light =
 {
@@ -3848,11 +3848,11 @@ static const EOA_H_NPP DATA_EoaH_Light =
 };
 
 //==============================================================================
-//	EOA		’¹
+//	EOA		é³¥
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOA ’¹’Ç‰Á
+ * EOA é³¥è¿½åŠ 
  * @param
  * @retval
  */
@@ -3870,7 +3870,7 @@ static void CutIn_BirdInit( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * EOA ’¹I—¹ƒ`ƒFƒbƒN
+ * EOA é³¥çµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param
  * @retval
  */
@@ -3883,7 +3883,7 @@ static int CutIn_BirdMoveStateGet( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * EOA ’¹íœ
+ * EOA é³¥å‰Šé™¤
  * @param
  * @retval
  */
@@ -3898,7 +3898,7 @@ static void CutIn_BirdDelete( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * EOA ’¹@‰Šú‰»
+ * EOA é³¥ã€€åˆæœŸåŒ–
  * @param
  * @retval
  */
@@ -3919,7 +3919,7 @@ static int EoaBird_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’¹@íœ
+ * EOA é³¥ã€€å‰Šé™¤
  * @param
  * @retval
  */
@@ -3932,7 +3932,7 @@ static void EoaBird_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’¹@“®ì
+ * EOA é³¥ã€€å‹•ä½œ
  * @param
  * @retval
  */
@@ -3948,7 +3948,7 @@ static void EoaBird_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ’¹@•`‰æ
+ * EOA é³¥ã€€æç”»
  * @param
  * @retval
  */
@@ -3959,7 +3959,7 @@ static void EoaBird_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H@’¹
+///	EOA_Hã€€é³¥
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Bird =
 {
@@ -3971,7 +3971,7 @@ static const EOA_H_NPP DATA_EoaH_Bird =
 };
 
 //--------------------------------------------------------------
-///	’¹@“®ìƒe[ƒuƒ‹
+///	é³¥ã€€å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const * const DATA_EoaBirdMoveTbl[])( BIRD_WORK * ) =
 {
@@ -3981,11 +3981,11 @@ static int (* const * const DATA_EoaBirdMoveTbl[])( BIRD_WORK * ) =
 };
 
 //==============================================================================
-//	’¹“®ì@‚È‚µ
+//	é³¥å‹•ä½œã€€ãªã—
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚Æ‚è“®ì@‚È‚µ‚É•ÏX
+ * ã¨ã‚Šå‹•ä½œã€€ãªã—ã«å¤‰æ›´
  * @param
  * @retval
  */
@@ -4000,7 +4000,7 @@ static void CutIn_BirdMoveChange_Non( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@‚È‚µ
+ * é³¥å‹•ä½œã€€ãªã—
  * @param
  * @retval
  */
@@ -4013,7 +4013,7 @@ static int BirdMove_Non( BIRD_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	’¹@‰½‚à‚È‚µ BIRD_MOVETYPE_NON
+//	é³¥ã€€ä½•ã‚‚ãªã— BIRD_MOVETYPE_NON
 //--------------------------------------------------------------
 static int (* const DATA_EoaBirdMoveTbl_Non[])( BIRD_WORK * ) =
 {
@@ -4021,11 +4021,11 @@ static int (* const DATA_EoaBirdMoveTbl_Non[])( BIRD_WORK * ) =
 };
 
 //==============================================================================
-//	’¹“®ì@START_UP
+//	é³¥å‹•ä½œã€€START_UP
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@START_UP‚É•ÏX
+ * é³¥å‹•ä½œã€€START_UPã«å¤‰æ›´
  * @param
  * @retval
  */
@@ -4058,7 +4058,7 @@ static void CutIn_BirdMoveChange_StartUp( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@START_UP 0
+ * é³¥å‹•ä½œã€€START_UP 0
  * @param
  * @retval
  */
@@ -4111,7 +4111,7 @@ static int BirdMove_StartUp_0( BIRD_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@START_UP I—¹
+ * é³¥å‹•ä½œã€€START_UP çµ‚äº†
  * @param
  * @retval
  */
@@ -4122,7 +4122,7 @@ static int BirdMove_StartUp_End( BIRD_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	’¹@BIRD_MOVETYPE_START_UP
+//	é³¥ã€€BIRD_MOVETYPE_START_UP
 //--------------------------------------------------------------
 static int (* const DATA_EoaBirdMoveTbl_StartUp[])( BIRD_WORK * ) =
 {
@@ -4131,11 +4131,11 @@ static int (* const DATA_EoaBirdMoveTbl_StartUp[])( BIRD_WORK * ) =
 };
 
 //==============================================================================
-//	’¹“®ì@
+//	é³¥å‹•ä½œã€€
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@RIDE_ON‚É•ÏX
+ * é³¥å‹•ä½œã€€RIDE_ONã«å¤‰æ›´
  * @param
  * @retval
  */
@@ -4194,7 +4194,7 @@ static void CutIn_BirdMoveChange_RideON( CUTIN_WORK *cut )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@RIDE_ON 0
+ * é³¥å‹•ä½œã€€RIDE_ON 0
  * @param
  * @retval
  */
@@ -4279,7 +4279,7 @@ static int BirdMove_RideON_0( BIRD_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@RIDE_ON 1
+ * é³¥å‹•ä½œã€€RIDE_ON 1
  * @param
  * @retval
  */
@@ -4313,7 +4313,7 @@ static int BirdMove_RideON_1( BIRD_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@RIDE_ON 2
+ * é³¥å‹•ä½œã€€RIDE_ON 2
  * @param
  * @retval
  */
@@ -4375,7 +4375,7 @@ static int BirdMove_RideON_2( BIRD_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ’¹“®ì@RIDE_ON I—¹
+ * é³¥å‹•ä½œã€€RIDE_ON çµ‚äº†
  * @param
  * @retval
  */
@@ -4386,7 +4386,7 @@ static int BirdMove_RideON_End( BIRD_WORK *work )
 }
 
 //--------------------------------------------------------------
-//	’¹@BIRD_MOVETYPE_RIDE_ON
+//	é³¥ã€€BIRD_MOVETYPE_RIDE_ON
 //--------------------------------------------------------------
 static int (* const DATA_EoaBirdMoveTbl_RideON[])( BIRD_WORK * ) =
 {
@@ -4397,11 +4397,11 @@ static int (* const DATA_EoaBirdMoveTbl_RideON[])( BIRD_WORK * ) =
 };
 
 //==============================================================================
-//	EOA ©‹@“®ì
+//	EOA è‡ªæ©Ÿå‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOA ©‹@‘€ì’Ç‰Á
+ * EOA è‡ªæ©Ÿæ“ä½œè¿½åŠ 
  * @param
  * @retval
  */
@@ -4420,7 +4420,7 @@ static EOA_PTR CutIn_EoaJikiMoveAdd( EOA_SYS_PTR eoa_sys, CLACT_WORK_PTR act )
 
 //--------------------------------------------------------------
 /**
- * EOA ©‹@“®ìI—¹ƒ`ƒFƒbƒN
+ * EOA è‡ªæ©Ÿå‹•ä½œçµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param
  * @retval
  */
@@ -4433,7 +4433,7 @@ static int CutIn_EoaJikiMoveEndCheck( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ì@‰½‚à‚È‚µ‚É•ÏX
+ * è‡ªæ©Ÿå‹•ä½œã€€ä½•ã‚‚ãªã—ã«å¤‰æ›´
  * @param
  * @retval
  */
@@ -4446,7 +4446,7 @@ static void CutIn_EoaJikiMoveChange_Non( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ì@ƒWƒƒƒ“ƒv“®ì‚É•ÏX
+ * è‡ªæ©Ÿå‹•ä½œã€€ã‚¸ãƒ£ãƒ³ãƒ—å‹•ä½œã«å¤‰æ›´
  * @param
  * @retval
  */
@@ -4470,7 +4470,7 @@ static void CutIn_EoaJikiMoveChange_Jump( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ì@’…’n“®ì‚É•ÏX
+ * è‡ªæ©Ÿå‹•ä½œã€€ç€åœ°å‹•ä½œã«å¤‰æ›´
  * @param
  * @retval
  */
@@ -4493,7 +4493,7 @@ static void CutIn_EoaJikiMoveChange_Landing( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ©‹@“®ì@‰Šú‰»
+ * EOA è‡ªæ©Ÿå‹•ä½œã€€åˆæœŸåŒ–
  * @param	eoa
  * @param	wk	EOA work
  * @retval
@@ -4513,7 +4513,7 @@ static int EoaJikiMove_Init( EOA_PTR eoa, void *wk )
 #define JIKI_MOVE_LANDING_FRAME (4)
 
 //------------------------------------------
-//	¼Ş¬İÌßµÌ¾¯ÄÃ°ÌŞÙ
+//	ã‚¸ãƒ£ãƒ³ãƒ—ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //------------------------------------------
 static const fx32 JikiJumpOffsTbl[JIKI_MOVE_JUMP_FRAME] =	
 {
@@ -4529,7 +4529,7 @@ static const fx32 JikiLandingOffsTbl[JIKI_MOVE_LANDING_FRAME] =
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ì@ƒWƒƒƒ“ƒv
+ * è‡ªæ©Ÿå‹•ä½œã€€ã‚¸ãƒ£ãƒ³ãƒ—
  * @param
  * @retval
  */
@@ -4557,7 +4557,7 @@ static void JikiMove_Jump( EOA_PTR eoa, JIKI_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ©‹@“®ì@’…’n
+ * è‡ªæ©Ÿå‹•ä½œã€€ç€åœ°
  * @param
  * @retval
  */
@@ -4584,7 +4584,7 @@ static void JikiMove_Landing( EOA_PTR eoa, JIKI_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA ©‹@@“®ì
+ * EOA è‡ªæ©Ÿã€€å‹•ä½œ
  * @param
  * @retval
  */
@@ -4600,7 +4600,7 @@ static void EoaJikiMove_Move( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H ©‹@“®ì
+///	EOA_H è‡ªæ©Ÿå‹•ä½œ
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_JikiMove =
 {
@@ -4612,7 +4612,7 @@ static const EOA_H_NPP DATA_EoaH_JikiMove =
 };
 
 //==============================================================================
-//	EOA ƒJƒƒ‰
+//	EOA ã‚«ãƒ¡ãƒ©
 //==============================================================================
 typedef struct
 {
@@ -4639,7 +4639,7 @@ static const EOA_H_NPP DATA_EoaH_CameraMove;
 
 //--------------------------------------------------------------
 /**
- * EOA@ƒJƒƒ‰ˆÚ“®’Ç‰Á
+ * EOAã€€ã‚«ãƒ¡ãƒ©ç§»å‹•è¿½åŠ 
  * @param
  * @retval
  */
@@ -4663,7 +4663,7 @@ static EOA_PTR CutIn_EoaCutInCameraMoveAdd(
 
 //--------------------------------------------------------------
 /**
- * EOA ƒJƒƒ‰ ‰Šú‰»
+ * EOA ã‚«ãƒ¡ãƒ© åˆæœŸåŒ–
  * @param
  * @retval
  */
@@ -4683,7 +4683,7 @@ static int EoaCutInCameraMove_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒJƒƒ‰ ƒY[ƒ€ƒCƒ“‚É
+ * EOA ã‚«ãƒ¡ãƒ© ã‚ºãƒ¼ãƒ ã‚¤ãƒ³ã«
  * @param
  * @retval
  */
@@ -4697,7 +4697,7 @@ static void EoaCutInCameraMoveChange_ZoomIn( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒJƒƒ‰ ƒY[ƒ€ƒAƒEƒg‚É
+ * EOA ã‚«ãƒ¡ãƒ© ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆã«
  * @param
  * @retval
  */
@@ -4711,7 +4711,7 @@ static void EoaCutInCameraMoveChange_ZoomOut( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒJƒƒ‰ ’…’n—pƒY[ƒ€ƒCƒ“‚É
+ * EOA ã‚«ãƒ¡ãƒ© ç€åœ°ç”¨ã‚ºãƒ¼ãƒ ã‚¤ãƒ³ã«
  * @param
  * @retval
  */
@@ -4725,7 +4725,7 @@ static void EoaCutInCameraMoveChange_ZoomInLanding( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒJƒƒ‰ ’…’n—pƒY[ƒ€ƒAƒEƒg‚É
+ * EOA ã‚«ãƒ¡ãƒ© ç€åœ°ç”¨ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆã«
  * @param
  * @retval
  */
@@ -4739,7 +4739,7 @@ static void EoaCutInCameraMoveChange_ZoomOutLanding( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒƒ‰“®ì@ƒY[ƒ€
+ * ã‚«ãƒ¡ãƒ©å‹•ä½œã€€ã‚ºãƒ¼ãƒ 
  * @param
  * @retval
  */
@@ -4761,7 +4761,7 @@ static void CutInCameraMove_ZoomIn( CAMERA_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒƒ‰“®ì@ƒY[ƒ€ƒAƒEƒg
+ * ã‚«ãƒ¡ãƒ©å‹•ä½œã€€ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ
  * @param
  * @retval
  */
@@ -4787,7 +4787,7 @@ static void CutInCameraMove_ZoomOut( CAMERA_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒƒ‰“®ì@’…’n—pƒY[ƒ€
+ * ã‚«ãƒ¡ãƒ©å‹•ä½œã€€ç€åœ°ç”¨ã‚ºãƒ¼ãƒ 
  * @param
  * @retval
  */
@@ -4809,7 +4809,7 @@ static void CutInCameraMove_ZoomInLanding( CAMERA_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒƒ‰“®ì@’…’n—pƒY[ƒ€ƒAƒEƒg
+ * ã‚«ãƒ¡ãƒ©å‹•ä½œã€€ç€åœ°ç”¨ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ
  * @param
  * @retval
  */
@@ -4835,7 +4835,7 @@ static void CutInCameraMove_ZoomOutLanding( CAMERA_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒJƒƒ‰ˆÚ“®@“®ì
+ * EOA ã‚«ãƒ¡ãƒ©ç§»å‹•ã€€å‹•ä½œ
  * @param
  * @retval
  */
@@ -4873,16 +4873,16 @@ static const EOA_H_NPP DATA_EoaH_CameraMove =
 };
 
 //==============================================================================
-//	‚»‚ç‚ğ‚Æ‚Ô@’…—¤
+//	ãã‚‰ã‚’ã¨ã¶ã€€ç€é™¸
 //==============================================================================
 static void SkyL_UpdateTCB( TCB_PTR tcb, void *wk );
 int (* const DATA_SkyLUpdateTbl[])( SKYL_WORK *skyl );
 
 //--------------------------------------------------------------
 /**
- * ‚»‚ç‚ğ‚Æ‚Ô@’…—¤
+ * ãã‚‰ã‚’ã¨ã¶ã€€ç€é™¸
  * @param	fsys	FIELDSYS_WORK
- * @param	sex		©‹@«•Ê PM_FEMAL“™
+ * @param	sex		è‡ªæ©Ÿæ€§åˆ¥ PM_FEMALç­‰
  * @retval
  */
 //--------------------------------------------------------------
@@ -4900,9 +4900,9 @@ TCB_PTR FieldHidenSkyLanding_Init( FIELDSYS_WORK *fsys, int sex )
 
 //--------------------------------------------------------------
 /**
- * ‚»‚ç‚ğ‚Æ‚Ô@’…—¤I—¹ƒ`ƒFƒbƒN
- * @param	tcb		FieldHidenSkyLanding_Init()–ß‚è’l
- * @retval	int		TRUE=I—¹ FALSE=‚Ü‚¾
+ * ãã‚‰ã‚’ã¨ã¶ã€€ç€é™¸çµ‚äº†ãƒã‚§ãƒƒã‚¯
+ * @param	tcb		FieldHidenSkyLanding_Init()æˆ»ã‚Šå€¤
+ * @retval	int		TRUE=çµ‚äº† FALSE=ã¾ã 
  */
 //--------------------------------------------------------------
 int FieldHidenSkyLanding_EndCheck( TCB_PTR tcb )
@@ -4913,8 +4913,8 @@ int FieldHidenSkyLanding_EndCheck( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * ‚»‚ç‚ğ‚Æ‚Ô@’…—¤I—¹
- * @param	tcb		FieldHidenSkyLanding_Init()–ß‚è’l
+ * ãã‚‰ã‚’ã¨ã¶ã€€ç€é™¸çµ‚äº†
+ * @param	tcb		FieldHidenSkyLanding_Init()æˆ»ã‚Šå€¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4927,7 +4927,7 @@ void FieldHidenSkyLanding_End( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * ‚»‚ç‚ğ‚Æ‚Ô@’…—¤“®ì tcb
+ * ãã‚‰ã‚’ã¨ã¶ã€€ç€é™¸å‹•ä½œ tcb
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -4948,9 +4948,9 @@ static void SkyL_UpdateTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ‹ó‚ğ”ò‚Ô’…—¤@©‹@‚ğÁ‚·
+ * ç©ºã‚’é£›ã¶ç€é™¸ã€€è‡ªæ©Ÿã‚’æ¶ˆã™
  * @param	skyl	SKYL_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int SkyL_PlayerVanish( SKYL_WORK *skyl ){
@@ -4961,9 +4961,9 @@ static int SkyL_PlayerVanish( SKYL_WORK *skyl ){
 
 //--------------------------------------------------------------
 /**
- * ‹ó‚ğ”ò‚Ô’…—¤@‰Šú‰»
+ * ç©ºã‚’é£›ã¶ç€é™¸ã€€åˆæœŸåŒ–
  * @param	skyl	SKYL_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int SkyL_Init( SKYL_WORK *skyl )
@@ -5024,9 +5024,9 @@ static int SkyL_Init( SKYL_WORK *skyl )
 
 //--------------------------------------------------------------
 /**
- * ‹ó‚ğ”ò‚Ô’…—¤@ƒAƒNƒ^[‰Šú‰»
+ * ç©ºã‚’é£›ã¶ç€é™¸ã€€ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  * @param	skyl	SKYL_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int SkyL_ActorInit( SKYL_WORK *skyl )
@@ -5044,9 +5044,9 @@ static int SkyL_ActorInit( SKYL_WORK *skyl )
 
 //--------------------------------------------------------------
 /**
- * ‹ó‚ğ”ò‚Ô’…—¤@’¹’…—¤I—¹‘Ò‚¿
+ * ç©ºã‚’é£›ã¶ç€é™¸ã€€é³¥ç€é™¸çµ‚äº†å¾…ã¡
  * @param	skyl	SKYL_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int SkyL_BirdLandingStartWait( SKYL_WORK *skyl )
@@ -5062,9 +5062,9 @@ static int SkyL_BirdLandingStartWait( SKYL_WORK *skyl )
 
 //--------------------------------------------------------------
 /**
- * ‹ó‚ğ”ò‚Ô’…—¤@I—¹ 0
+ * ç©ºã‚’é£›ã¶ç€é™¸ã€€çµ‚äº† 0
  * @param	skyl	SKYL_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int SkyL_End0( SKYL_WORK *skyl )
@@ -5080,9 +5080,9 @@ static int SkyL_End0( SKYL_WORK *skyl )
 
 //--------------------------------------------------------------
 /**
- * ‹ó‚ğ”ò‚Ô’…—¤@I—¹
+ * ç©ºã‚’é£›ã¶ç€é™¸ã€€çµ‚äº†
  * @param	skyl	SKYL_WORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int SkyL_End1( SKYL_WORK *skyl )
@@ -5091,7 +5091,7 @@ static int SkyL_End1( SKYL_WORK *skyl )
 }
 
 //--------------------------------------------------------------
-//	‹ó‚ğ”ò‚Ô’…’n“®ìƒe[ƒuƒ‹
+//	ç©ºã‚’é£›ã¶ç€åœ°å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_SkyLUpdateTbl[])( SKYL_WORK *skyl ) =
 {
@@ -5105,26 +5105,26 @@ static int (* const DATA_SkyLUpdateTbl[])( SKYL_WORK *skyl ) =
 };
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒƒ‚ƒŠŠm•Û
- * @param	size	Šm•Û‚·‚éƒTƒCƒY
- * @retval	void*	Šm•Û‚µ‚½ƒƒ‚ƒŠ
+ * ãƒ¡ãƒ¢ãƒªç¢ºä¿
+ * @param	size	ç¢ºä¿ã™ã‚‹ã‚µã‚¤ã‚º
+ * @retval	void*	ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒª
  */
 //--------------------------------------------------------------
 static void * Cip_AllocMemory( u32 heap, int size )
 {
 	void *mem = sys_AllocMemoryLo( heap, size );
-	GF_ASSERT( mem != NULL && "cutin_AllocMemory()ƒƒ‚ƒŠŠm•Û¸”s" );
+	GF_ASSERT( mem != NULL && "cutin_AllocMemory()ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—" );
 	memset( mem, 0, size );
 	return( mem );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ ©‹@•\¦A”ñ•\¦
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ è‡ªæ©Ÿè¡¨ç¤ºã€éè¡¨ç¤º
  * @param	cut		CUTIN_WORK
  * @retval	nothing
  */
@@ -5137,7 +5137,7 @@ static void CutIn_PlayerVanishSet( CUTIN_WORK *cut, int flag )
 }
 
 //==============================================================================
-//	EOA OAM©‹@•\¦ŠÄ‹
+//	EOA OAMè‡ªæ©Ÿè¡¨ç¤ºç›£è¦–
 //==============================================================================
 //--------------------------------------------------------------
 //
@@ -5234,14 +5234,14 @@ static void Cip_HeroWinVanishDel( CUTIN_WORK *cutin )
 }
 
 //==============================================================================
-//	ƒJƒbƒgƒCƒ“@ƒEƒBƒ“ƒhƒE
+//	ã‚«ãƒƒãƒˆã‚¤ãƒ³ã€€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //==============================================================================
 
 //==============================================================================
-//	data	ƒZƒ‹ƒAƒNƒ^[
+//	data	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒLƒƒƒ‰
+///	ã‚­ãƒ£ãƒ©
 //--------------------------------------------------------------
 static const NARC_ID DATA_NArcID_AlwaysChar[CUTIN_CAUSE_CHAR_ALWAYS_MAX] =
 {
@@ -5249,7 +5249,7 @@ static const NARC_ID DATA_NArcID_AlwaysChar[CUTIN_CAUSE_CHAR_ALWAYS_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒpƒŒƒbƒg
+///	ãƒ‘ãƒ¬ãƒƒãƒˆ
 //--------------------------------------------------------------
 static const NARC_ID DATA_NArcID_AlwaysPltt[CUTIN_CAUSE_PLTT_ALWAYS_MAX] =
 {
@@ -5257,7 +5257,7 @@ static const NARC_ID DATA_NArcID_AlwaysPltt[CUTIN_CAUSE_PLTT_ALWAYS_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹
+///	ã‚»ãƒ«
 //--------------------------------------------------------------
 static const NARC_ID DATA_NArcID_AlwaysCell[CUTIN_CAUSE_CELL_ALWAYS_MAX] =
 {
@@ -5265,7 +5265,7 @@ static const NARC_ID DATA_NArcID_AlwaysCell[CUTIN_CAUSE_CELL_ALWAYS_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒAƒjƒ
+///	ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const NARC_ID DATA_NArcID_AlwaysAnime[CUTIN_CAUSE_ANM_ALWAYS_MAX] =
 {
@@ -5273,18 +5273,18 @@ static const NARC_ID DATA_NArcID_AlwaysAnime[CUTIN_CAUSE_ANM_ALWAYS_MAX] =
 };
 
 //==============================================================================
-//	ƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+//	ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
 //==============================================================================
 
 #if 0
 //--------------------------------------------------------------
 /**
- * ”é“`‹Z‚»‚ç‚ğ”ò‚ÔƒJƒbƒgƒCƒ“¨ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+ * ç§˜ä¼æŠ€ãã‚‰ã‚’é£›ã¶ã‚«ãƒƒãƒˆã‚¤ãƒ³â†’ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
  * @param	fsys		FIELDSYS_WORK *
- * @param	param		•\¦‚·‚éPOKEMON_PARAM *
- * @param	zone_id		‘JˆÚ‚·‚éƒ][ƒ“ID
- * @param	map_gx		‘JˆÚæoŒ»ˆÊ’uƒOƒŠƒbƒhXÀ•W
- * @param	map_gz		‘JˆÚæoŒ»ˆÊ’uƒOƒŠƒbƒhZÀ•W
+ * @param	param		è¡¨ç¤ºã™ã‚‹POKEMON_PARAM *
+ * @param	zone_id		é·ç§»ã™ã‚‹ã‚¾ãƒ¼ãƒ³ID
+ * @param	map_gx		é·ç§»å…ˆå‡ºç¾ä½ç½®ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	map_gz		é·ç§»å…ˆå‡ºç¾ä½ç½®ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5306,9 +5306,9 @@ void * EventSet_CutInSkyMapChange( FIELDSYS_WORK *fsys,
 
 //--------------------------------------------------------------
 /**
- * ‹ó‚ğ”ò‚ÔƒJƒbƒgƒCƒ“¨ƒ}ƒbƒv‘JˆÚ
+ * ç©ºã‚’é£›ã¶ã‚«ãƒƒãƒˆã‚¤ãƒ³â†’ãƒãƒƒãƒ—é·ç§»
  * @param	event	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL GMEVENT_CutInSkyMapChange( GMEVENT_CONTROL *event )

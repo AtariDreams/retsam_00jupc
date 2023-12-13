@@ -19,39 +19,39 @@ extern "C" {
 #include <nitro/wm.h>
 
 /*---------------------------------------------------------------------------*
-    �\���̒�`
+    構造体定義
  *---------------------------------------------------------------------------*/
 
 typedef enum WCStatus {
-	WC_STATUS_READY = 0,               // ���������
-	WC_STATUS_ERROR,                   // �ǂ��ɂ��Ȃ�Ȃ��G���[���
-	WC_STATUS_BUSY,                    // ��ԑJ�ڒ��ɂ��r�W�[���
-	WC_STATUS_PARENT,                  // �e�@�Ƃ��Đڑ��ςݏ��
-	WC_STATUS_CHILD,                   // �q�@�Ƃ��Đڑ��ςݏ��
-	WC_STATUS_END,                     // �I����� (Target�̂�)
+	WC_STATUS_READY = 0,               // 初期化状態
+	WC_STATUS_ERROR,                   // どうにもならないエラー状態
+	WC_STATUS_BUSY,                    // 状態遷移中につきビジー状態
+	WC_STATUS_PARENT,                  // 親機として接続済み状態
+	WC_STATUS_CHILD,                   // 子機として接続済み状態
+	WC_STATUS_END,                     // 終了状態 (Targetのみ)
 	WC_STATUS_MAX
 } WCStatus;
 
-// API�̃R�[���o�b�N�ŕԂ��X�e�[�g�R�[�h
+// APIのコールバックで返すステートコード
 typedef enum WPBStateCode {
-	WPB_STATECODE_START,        /* ����Ⴂ�ҋ@�J�n */
-	WPB_STATECODE_PARENT_FOUND, /* �e�@�𔭌����� */
-	WPB_STATECODE_CONNECTED,    /* �ڑ����� */
-	WPB_STATECODE_EXCHANGED,    /* �f�[�^�������� */
-	WPB_STATECODE_DISCONNECTED, /* �ؒf�ʒm */
-	WPB_STATECODE_END,          /* ����Ⴂ�ҋ@�I�� */
+	WPB_STATECODE_START,        /* すれ違い待機開始 */
+	WPB_STATECODE_PARENT_FOUND, /* 親機を発見した */
+	WPB_STATECODE_CONNECTED,    /* 接続完了 */
+	WPB_STATECODE_EXCHANGED,    /* データ交換完了 */
+	WPB_STATECODE_DISCONNECTED, /* 切断通知 */
+	WPB_STATECODE_END,          /* すれ違い待機終了 */
 	WPB_STATECODE_MAX
 } WPBStateCode;
 
-// �R�[���o�b�N�̈���
+// コールバックの引数
 typedef struct WPBCallback {
-	u16             state;               // �R�[���o�b�N�̔��������v�����
-	u16             errcode;             // �񓯊������̌���
-	u16             wlCmdID;             // �G���[�ƂȂ����R�}���h��ID
-	u16             wlResult;            // �G���[�ƂȂ����v���R�[�h
-	const WMBssDesc *bssDesc;            // ���������e�@���
-	u16             bssDescCount;        // ���������e�@��
-	u8              macAddress[WM_SIZE_BSSID]; // ����Ⴂ�����MAC�A�h���X
+	u16             state;               // コールバックの発生した要因種別
+	u16             errcode;             // 非同期処理の結果
+	u16             wlCmdID;             // エラーとなったコマンドのID
+	u16             wlResult;            // エラーとなった要因コード
+	const WMBssDesc *bssDesc;            // 発見した親機情報
+	u16             bssDescCount;        // 発見した親機数
+	u8              macAddress[WM_SIZE_BSSID]; // すれ違い相手のMACアドレス
 	const void      *extinfo;
 	const void      *send_ptr;
 	int             send_size;
@@ -59,10 +59,10 @@ typedef struct WPBCallback {
 	int             recv_size;
 } WPBCallback;
 
-// WPB API�̃R�[���o�b�N�̌^
+// WPB APIのコールバックの型
 typedef void (*WPBCallbackFunc)(WPBCallback *arg);
 
-// ���[�N�G���A
+// ワークエリア
 #define PASS_PACKET_SIZE                 512
 #define PASS_BUFFER_SIZE                 (PASS_PACKET_SIZE - 4)
 #define WPBC_PARENT_DATA_SIZE_MAX        PASS_PACKET_SIZE
@@ -84,78 +84,78 @@ typedef struct WPBBuf {
 		WMScanExParam param;
 		u32           dummy[96 / sizeof(u32)]; /* fixme */
 	} wmScanExParam;
-	/* �X�L�����o�b�t�@ */
+	/* スキャンバッファ */
 	u16           scanBuf[WM_SIZE_SCAN_EX_BUF / sizeof(u16) * 3];
 	u16           recvBuf[WPB_RECEIVE_BUFFER / sizeof(u16)];
 	u16           sendBuf[WPB_SEND_BUFFER / sizeof(u16)];
 	u16           gameInfo[WM_SIZE_USER_GAMEINFO / sizeof(u16)];
 
 	WPBCallbackFunc wpbCallback;
-	WCStatus wcStatus;              // ���݂̏�Ԃ��Ǘ�
-	WCStatus wcTarget;              // ��ԕύX�̖ڕW���Ǘ�
-	BOOL     wcSendFlag;            // ���M�����t���O(�ʏ�MP���[�h��)
+	WCStatus wcStatus;              // 現在の状態を管理
+	WCStatus wcTarget;              // 状態変更の目標を管理
+	BOOL     wcSendFlag;            // 送信完了フラグ(通常MPモード時)
 	u16      sChannel;
 	u16      sChannelBusyRatio;
 	BOOL     measure_channel_flag;
-	/* �e�@������ */
+	/* 親機発見数 */
 	u16             child_found_num;
 	u16             pad_1; /* padding */
 	u16             *current_bssdesc_ptr;
-	/* �ڑ����̐e�@BssDesc�|�C���^(�q�@�p�f�[�^) */
+	/* 接続中の親機BssDescポインタ(子機用データ) */
 	const WMBssDesc *parent_bssdesc_ptr;
 } WPBBuf;
 
 /*---------------------------------------------------------------------------*
-    �֐���`
+    関数定義
  *---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*
   Name:         WPB_SetBuffer
 
-  Description:  ���C�u�����Ŏg�p����o�b�t�@���w�肷��B
-                WPB_SetGameInfo�̑O�ɌĂяo���K�v������B
+  Description:  ライブラリで使用するバッファを指定する。
+                WPB_SetGameInfoの前に呼び出す必要がある。
 
-  Arguments:    wpbBuf       - �Ăяo�����ɂ���Ċm�ۂ��ꂽ�o�b�t�@�ւ̃|�C���^���w�肷��B
-                               32�o�C�g�A���C������Ă���K�v������B
+  Arguments:    wpbBuf       - 呼び出し元によって確保されたバッファへのポインタを指定する。
+                               32バイトアラインされている必要がある。
 
-  Returns:      WMErrCode    -   �������ʂ�Ԃ��B
-                WM_ERRCODE_SUCCESS       : ����������Ɋ���
-                WM_ERRCODE_INVALID_PARAM : �֐��Ɏw�肵���p�����[�^���s��
+  Returns:      WMErrCode    -   処理結果を返す。
+                WM_ERRCODE_SUCCESS       : 処理が正常に完了
+                WM_ERRCODE_INVALID_PARAM : 関数に指定したパラメータが不正
  *---------------------------------------------------------------------------*/
 WMErrCode WPB_SetBuffer(WPBBuf *wpbBuf);
 
 /*---------------------------------------------------------------------------*
   Name:         WPB_SetCallback
 
-  Description:  �R�[���o�b�N�֐���ݒ肷��B
-                WPB_Start�̑O�ɌĂяo���K�v������B
-                ���̊֐��̎��s�O�ɁAWPB_SetBuffer���Ăяo���K�v������B
+  Description:  コールバック関数を設定する。
+                WPB_Startの前に呼び出す必要がある。
+                この関数の実行前に、WPB_SetBufferを呼び出す必要がある。
 
-  Arguments:    callback  -   ���[�U�[�ւ̃R�[���o�b�N�֐��i�C�x���g�������ɃR�[���o�b�N�����j
+  Arguments:    callback  -   ユーザーへのコールバック関数（イベント発生時にコールバックされる）
 
-  Returns:      WMErrCode    -   �������ʂ�Ԃ��B
-                WM_ERRCODE_SUCCESS       : ����������Ɋ���
-                WM_ERRCODE_FAILED : �����Ɏ��s (WPB_SetBuffer���Ăяo����Ă��Ȃ�)
+  Returns:      WMErrCode    -   処理結果を返す。
+                WM_ERRCODE_SUCCESS       : 処理が正常に完了
+                WM_ERRCODE_FAILED : 処理に失敗 (WPB_SetBufferが呼び出されていない)
  *---------------------------------------------------------------------------*/
 WMErrCode WPB_SetCallback(WPBCallbackFunc callback);
 
 /*---------------------------------------------------------------------------*
   Name:         WPB_SetGameInfo
 
-  Description:  �e�@�Ƃ��ĕK�v�ȃp�����[�^��ݒ肷��B
-                WPB_Start���s�O�ɁA�K��1�x�Ăяo���K�v������B
-                ����Ⴂ�ҋ@���ɂ��Ăяo����B
-                ���̊֐��̎��s�O�ɁAWPB_SetBuffer���Ăяo���K�v������B
+  Description:  親機として必要なパラメータを設定する。
+                WPB_Start発行前に、必ず1度呼び出す必要がある。
+                すれ違い待機中にも呼び出せる。
+                この関数の実行前に、WPB_SetBufferを呼び出す必要がある。
 
-  Arguments:    gameInfo       -   ���[�U�[�Q�[�����ւ̃|�C���^���w�肷��B
-                gameInfoLength -   ���[�U�[�Q�[�����̃T�C�Y���w�肷��B
-                                   �ő�� 112 �o�C�g�܂Ŏw�肷�邱�Ƃ��ł���B
-                ggid           -   �Q�[���O���[�vID���w�肷��B
+  Arguments:    gameInfo       -   ユーザーゲーム情報へのポインタを指定する。
+                gameInfoLength -   ユーザーゲーム情報のサイズを指定する。
+                                   最大で 112 バイトまで指定することができる。
+                ggid           -   ゲームグループIDを指定する。
 
-  Returns:      WMErrCode    -   �������ʂ�Ԃ��B
-                WM_ERRCODE_SUCCESS       : ����������Ɋ���
-                WM_ERRCODE_FAILED : �����Ɏ��s (WPB_SetBuffer���Ăяo����Ă��Ȃ�)
-                WM_ERRCODE_ILLEGAL_STATE : ���łɂ���Ⴂ�ڑ����m�����A�ʐM��
-                WM_ERRCODE_INVALID_PARAM : �֐��Ɏw�肵���p�����[�^���s��
+  Returns:      WMErrCode    -   処理結果を返す。
+                WM_ERRCODE_SUCCESS       : 処理が正常に完了
+                WM_ERRCODE_FAILED : 処理に失敗 (WPB_SetBufferが呼び出されていない)
+                WM_ERRCODE_ILLEGAL_STATE : すでにすれ違い接続が確立し、通信中
+                WM_ERRCODE_INVALID_PARAM : 関数に指定したパラメータが不正
  *---------------------------------------------------------------------------*/
 WMErrCode WPB_SetGameInfo(const u16 *gameInfo,
 						  u16       gameInfoLength,
@@ -163,29 +163,29 @@ WMErrCode WPB_SetGameInfo(const u16 *gameInfo,
 /*---------------------------------------------------------------------------*
   Name:         WPB_Start
 
-  Description:  ����Ⴂ�ʐM�ҋ@��Ԃɂ���BWM��Ԃ�WM_READY�̂Ƃ��Ɏg�p�\�B
-                ���̊֐��̎��s�O�ɁAWPB_SetGameInfo���Ăяo���K�v������B
+  Description:  すれ違い通信待機状態にする。WM状態がWM_READYのときに使用可能。
+                この関数の実行前に、WPB_SetGameInfoを呼び出す必要がある。
 
   Arguments:    None.
 
-  Returns:      WMErrCode    -   �������ʂ�Ԃ��B
-                WM_ERRCODE_SUCCESS       : ����������Ɋ���
-                WM_ERRCODE_ILLEGAL_STATE : ���łɂ���Ⴂ�ڑ����m�����A�ʐM��
-                WM_ERRCODE_INVALID_PARAM : �֐��Ɏw�肵���p�����[�^���s��
+  Returns:      WMErrCode    -   処理結果を返す。
+                WM_ERRCODE_SUCCESS       : 処理が正常に完了
+                WM_ERRCODE_ILLEGAL_STATE : すでにすれ違い接続が確立し、通信中
+                WM_ERRCODE_INVALID_PARAM : 関数に指定したパラメータが不正
  *---------------------------------------------------------------------------*/
 WMErrCode WPB_Start();
 
 /*---------------------------------------------------------------------------*
   Name:         WPB_End
 
-  Description:  ����Ⴂ�ʐM�ҋ@��Ԃ��I������B
-                �������j�b�g�ւ̓d���������~�߁AWM_READY �X�e�[�g�Ɉڍs����B
+  Description:  すれ違い通信待機状態を終了する。
+                無線ユニットへの電源供給を止め、WM_READY ステートに移行する。
 
   Arguments:    None.
 
-  Returns:      WMErrCode    -   �������ʂ�Ԃ��B
-                WM_ERRCODE_SUCCESS       : ����������Ɋ���
-                WM_ERRCODE_ILLEGAL_STATE : ����Ⴂ�ʐM�ҋ@���łȂ�
+  Returns:      WMErrCode    -   処理結果を返す。
+                WM_ERRCODE_SUCCESS       : 処理が正常に完了
+                WM_ERRCODE_ILLEGAL_STATE : すれ違い通信待機中でない
  *---------------------------------------------------------------------------*/
 WMErrCode WPB_End(void);
 
@@ -196,14 +196,14 @@ void WPB_ForceFinish(void);
 /*---------------------------------------------------------------------------*
   Name:         WPB_CheckParent
 
-  Description:  �e�@���̃��X�g����AGGID ����v������̂�Ԃ��B
-                �������݂����ꍇ�́A�����_���ɑI������B
+  Description:  親機情報のリストから、GGID が一致するものを返す。
+                複数存在した場合は、ランダムに選択する。
 
-  Arguments:    bssDesc       -  ���������e�@���̏W��
-                bssDescCount  -  ���������e�@�̐�
+  Arguments:    bssDesc       -  発見した親機情報の集合
+                bssDescCount  -  発見した親機の数
                 ggid          -  GGID
 
-  Returns:      const WMBssDesc *  -  GGID ����v�����e�@����Ԃ��B��v������̂��Ȃ��ꍇ�� NULL ��Ԃ��B
+  Returns:      const WMBssDesc *  -  GGID が一致した親機情報を返す。一致するものがない場合は NULL を返す。
  *---------------------------------------------------------------------------*/
 const WMBssDesc *WPB_TestParent(const WMBssDesc *bssDesc,
 								int bssDescCount, u32 ggid);

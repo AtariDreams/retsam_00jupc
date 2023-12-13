@@ -4,16 +4,16 @@ extern PROC_RESULT Syoujyou_Init( PROC * proc, int * seq );
 extern PROC_RESULT Syoujyou_Main( PROC * proc, int * seq );
 extern PROC_RESULT Syoujyou_Exit( PROC * proc, int * seq );
 
-// ƒ^ƒCƒv
+// ã‚¿ã‚¤ãƒ—
 enum {
 	SYOUJYOU_TYPE_SINOU = 0,
 	SYOUJYOU_TYPE_ZENKOKU,
 };
 
 //----------------------------------
-//Œ^éŒ¾
+//å‹å®£è¨€
 //----------------------------------
-///ˆø”\‘¢‘Ì
+///å¼•æ•°æ§‹é€ ä½“
 typedef struct SYOUJYOU_INI_tag
 {
 	SAVEDATA*	savedata;

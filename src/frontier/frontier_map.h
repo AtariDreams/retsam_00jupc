@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_map.h
- * @brief	ƒtƒƒ“ƒeƒBƒAƒ}ƒbƒv‚Ìƒwƒbƒ_
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒžãƒƒãƒ—ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2007.04.04(…)
+ * @date	2007.04.04(æ°´)
  */
 //==============================================================================
 #ifndef __FRONTIER_MAP_H__
@@ -16,162 +16,162 @@
 #include "application/wifi_2dmap/wf2dmap_cmdq.h"
 
 #include "system/clact_tool.h"
-#include "frontier_particle.h"		//FRP_PTR’è‹`‚Ì‚½‚ß
-#include "frontier_main.h"			//FSS_CHAR_RESOURCE_DATA’è‹`‚Ì‚½‚ß
+#include "frontier_particle.h"		//FRP_PTRå®šç¾©ã®ãŸã‚
+#include "frontier_main.h"			//FSS_CHAR_RESOURCE_DATAå®šç¾©ã®ãŸã‚
 
 #include "fs_usescript.h"
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒtƒƒ“ƒeƒBƒAƒ}ƒbƒv‚ÅŠm•Û‚·‚éƒq[ƒvƒTƒCƒY
+///ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒžãƒƒãƒ—ã§ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚º
 #define FRONTIERMAP_ALLOC_SIZE		(0x90000)
 
-///ƒtƒB[ƒ‹ƒhã‚Åo‚¹‚éOBJÅ‘å”
+///ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¸Šã§å‡ºã›ã‚‹OBJæœ€å¤§æ•°
 #define FIELD_OBJ_MAX				(32)
-///ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXAÅ‘åŠÇ—”
+///ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã€æœ€å¤§ç®¡ç†æ•°
 #define FIELD_OBJ_RESOURCE_MAX		(24)
 
-///ƒ}ƒbƒvX•ûŒüƒOƒŠƒbƒh”
+///ãƒžãƒƒãƒ—Xæ–¹å‘ã‚°ãƒªãƒƒãƒ‰æ•°
 #define MAP_GRID_MAX_X				(256 / 16)
-///ƒ}ƒbƒvY•ûŒüƒOƒŠƒbƒh”
+///ãƒžãƒƒãƒ—Yæ–¹å‘ã‚°ãƒªãƒƒãƒ‰æ•°
 #define MAP_GRID_MAX_Y				(256 / 16)
 
-///–³Œø‚ÈƒvƒŒƒCID
+///ç„¡åŠ¹ãªãƒ—ãƒ¬ã‚¤ID
 #define FIELD_PLAYID_NULL			(0xffff)
 
-///article_resource_id‚ÅŽg—p‚µ‚Ä‚¢‚È‚¢ê‡‚Ì’l
+///article_resource_idã§ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆã®å€¤
 #define SCR_ACTWORK_RESOURCE_ID_NULL	(0xffff)
 
 //--------------------------------------------------------------
-//	OBJWK‚ÌƒVƒXƒeƒ€‘¤‚Å‚ ‚ç‚©‚¶‚ßŠm•Û‚·‚éˆÊ’u
+//	OBJWKã®ã‚·ã‚¹ãƒ†ãƒ å´ã§ã‚ã‚‰ã‹ã˜ã‚ç¢ºä¿ã™ã‚‹ä½ç½®
 //--------------------------------------------------------------
-///ƒvƒŒƒCƒ„[(Ž©‹@)‚ÌobjwkŽg—pˆÊ’u
+///ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼(è‡ªæ©Ÿ)ã®objwkä½¿ç”¨ä½ç½®
 #define FIELD_OBJ_PLAYER		(FIELD_OBJ_MAX - 1)
-///’ÊM‘ŠŽè‚ÌobjwkŽg—pˆÊ’u
+///é€šä¿¡ç›¸æ‰‹ã®objwkä½¿ç”¨ä½ç½®
 #define FIELD_OBJ_SIO_PLAYER	(FIELD_OBJ_MAX - 2)
 
 //--------------------------------------------------------------
-//	ƒtƒŒ[ƒ€”Ô†
+//	ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
 //--------------------------------------------------------------
-///ƒEƒBƒ“ƒhƒEEƒƒbƒZ[ƒW–Ê‚ÌƒtƒŒ[ƒ€
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é¢ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define FRMAP_FRAME_WIN					(GF_BGL_FRAME1_M)
-///ƒGƒtƒFƒNƒg–Ê(or ‘½d–Ê)‚ÌƒtƒŒ[ƒ€
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢(or å¤šé‡é¢)ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define FRMAP_FRAME_EFF					(GF_BGL_FRAME2_M)
-///”wŒi–Ê‚ÌƒtƒŒ[ƒ€
+///èƒŒæ™¯é¢ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define FRMAP_FRAME_MAP					(GF_BGL_FRAME3_M)
 
-///ƒTƒu‰æ–ÊFŠÏ‹q–Ê‚ÌƒtƒŒ[ƒ€
+///ã‚µãƒ–ç”»é¢ï¼šè¦³å®¢é¢ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define FRMAP_FRAME_SUB_AUDIENCE		(GF_BGL_FRAME0_S)
 
-///BG”Ô†FƒEƒBƒ“ƒhƒE
+///BGç•ªå·ï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define FRMAP_BGNO_WIN			(1)
-///BG”Ô†FƒGƒtƒFƒNƒg
+///BGç•ªå·ï¼šã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 #define FRMAP_BGNO_EFF			(2)
-///BG”Ô†F”wŒi
+///BGç•ªå·ï¼šèƒŒæ™¯
 #define FRMAP_BGNO_BACKGROUND	(3)
 
-///GX_WND”Ô†FƒGƒtƒFƒNƒg
+///GX_WNDç•ªå·ï¼šã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 #define FRMAP_GX_WND_EFF			(GX_WND_PLANEMASK_BG2)
 
-///<3D–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///<3Dé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define FRMAP_3DBG_PRIORITY		(0)
-///ƒEƒBƒ“ƒhƒE–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define FRMAP_BGPRI_WIN			(0)
-///ƒGƒtƒFƒNƒg–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define FRMAP_BGPRI_EFF			(1)
-///”wŒi–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///èƒŒæ™¯é¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define FRMAP_BGPRI_MAP			(3)
 
-///OBJƒLƒƒƒ‰ƒNƒ^[‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///OBJã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define FRMAP_BGPRI_CHARACTER	(2)
 
-///<ƒTƒu‰æ–ÊF”wŒi–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
-///ŠÏ‹q–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///<ã‚µãƒ–ç”»é¢ï¼šèƒŒæ™¯é¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+///è¦³å®¢é¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define FRMAP_BGPRI_SUB_AUDIENCE	(3)
 
 
 //--------------------------------------------------------------
-//	ƒAƒNƒ^[
+//	ã‚¢ã‚¯ã‚¿ãƒ¼
 //--------------------------------------------------------------
-///ƒTƒu‰æ–Ê‚ÌƒT[ƒtƒF[ƒXˆÊ’u
+///ã‚µãƒ–ç”»é¢ã®ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ä½ç½®
 #define FMAP_SUB_ACTOR_DISTANCE		(512 * FX32_ONE)
 
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJŽn
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define FMAP_OAM_START_MAIN			(0)
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define FMAP_OAM_END_MAIN				(128)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define FMAP_OAM_AFFINE_START_MAIN		(0)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define FMAP_OAM_AFFINE_END_MAIN		(32)
-///ƒTƒu	OAMŠÇ——ÌˆæEŠJŽn
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define FMAP_OAM_START_SUB				(0)
-///ƒTƒu	OAMŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define FMAP_OAM_END_SUB				(128)
-///ƒTƒu ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn
+///ã‚µãƒ– ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define FMAP_OAM_AFFINE_START_SUB		(0)
-///ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define FMAP_OAM_AFFINE_END_SUB		(32)
 
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒLƒƒƒ‰ƒNƒ^IDŠÇ—”(ã‰æ–Ê{‰º‰æ–Ê)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿IDç®¡ç†æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define FMAP_CHAR_MAX					(96)
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define FMAP_CHAR_VRAMSIZE_MAIN			(0x10000)	//(1024 * 0x40)	//64K
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define FMAP_CHAR_VRAMSIZE_SUB			(512 * 0x20)	//32K
 
-///ƒƒCƒ“‰æ–Ê{ƒTƒu‰æ–Ê‚ÅŽg—p‚·‚éƒAƒNƒ^[‘”
-#define FMAP_ACTOR_MAX					(64 + 64)	//ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê
-///OBJ‚ÅŽg—p‚·‚éƒpƒŒƒbƒg–{”(ã‰æ–Ê{‰º‰æ–Ê)
+///ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‹ã‚µãƒ–ç”»é¢ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç·æ•°
+#define FMAP_ACTOR_MAX					(64 + 64)	//ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢
+///OBJã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define FMAP_OAM_PLTT_MAX				(16 + 16)
 
-///OAMƒŠƒ\[ƒXFƒLƒƒƒ‰“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚­ãƒ£ãƒ©ç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define FMAP_OAMRESOURCE_CHAR_MAX		(FMAP_CHAR_MAX)
-///OAMƒŠƒ\[ƒXFƒpƒŒƒbƒg“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define FMAP_OAMRESOURCE_PLTT_MAX		(FMAP_OAM_PLTT_MAX)
-///OAMƒŠƒ\[ƒXFƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define FMAP_OAMRESOURCE_CELL_MAX		(64)
-///OAMƒŠƒ\[ƒXFƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define FMAP_OAMRESOURCE_CELLANM_MAX	(64)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒžãƒ«ãƒã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define FMAP_OAMRESOURCE_MCELL_MAX		(8)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define FMAP_OAMRESOURCE_MCELLANM_MAX	(8)
 
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///FMap_ActorSetŠÖ”‚Ìˆø”F‹ó‚«—Ìˆæ‚ðŒŸõ‚µ‚Ä“o˜^
+///FMap_ActorSeté–¢æ•°ã®å¼•æ•°ï¼šç©ºãé ˜åŸŸã‚’æ¤œç´¢ã—ã¦ç™»éŒ²
 #define FMAP_ACT_POS_AUTO		(-1)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///”z’u•¨ƒAƒNƒ^[\‘¢‘Ì
+///é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼æ§‹é€ ä½“
 typedef struct{
-	CATS_ACT_PTR act[ACTWORK_MAX];///<ƒXƒNƒŠƒvƒgã‚Å¶¬‚µ‚ÄŠÇ—‚·‚éê‡‚Ìƒ|ƒCƒ“ƒ^•Û‘¶êŠ
-	u16 act_id[ACTWORK_MAX];	///<ƒXƒNƒŠƒvƒgã‚Å¶¬‚µ‚ÄŠÇ—‚·‚éê‡‚Ìact_id•Û‘¶êŠ
-	u32 anmbit;				///<ƒAƒjƒ“®ì‚Ì—L–³(1ƒrƒbƒg’PˆÊ‚ÅŠÇ—)
-	u16 resource_id[ACTWORK_RESOURCE_MAX];	///<ƒXƒNƒŠƒvƒgã‚Å¶¬‚µ‚½ƒAƒNƒ^[ƒŠƒ\[ƒX‚ÌID•Û‘¶êŠ
+	CATS_ACT_PTR act[ACTWORK_MAX];///<ã‚¹ã‚¯ãƒªãƒ—ãƒˆä¸Šã§ç”Ÿæˆã—ã¦ç®¡ç†ã™ã‚‹å ´åˆã®ãƒã‚¤ãƒ³ã‚¿ä¿å­˜å ´æ‰€
+	u16 act_id[ACTWORK_MAX];	///<ã‚¹ã‚¯ãƒªãƒ—ãƒˆä¸Šã§ç”Ÿæˆã—ã¦ç®¡ç†ã™ã‚‹å ´åˆã®act_idä¿å­˜å ´æ‰€
+	u32 anmbit;				///<ã‚¢ãƒ‹ãƒ¡å‹•ä½œã®æœ‰ç„¡(1ãƒ“ãƒƒãƒˆå˜ä½ã§ç®¡ç†)
+	u16 resource_id[ACTWORK_RESOURCE_MAX];	///<ã‚¹ã‚¯ãƒªãƒ—ãƒˆä¸Šã§ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã®IDä¿å­˜å ´æ‰€
 }FMAP_ARTICLE_ACT;
 
-///’nk§Œä\‘¢‘Ì
+///åœ°éœ‡åˆ¶å¾¡æ§‹é€ ä½“
 typedef struct{
-	TCB_PTR tcb;				///<’nk“®ìŽÀsƒ^ƒXƒN
-	s16 shake_x;				///<—h‚êX
-	s16 shake_y;				///<—h‚êY
-	s8 wait;					///<’nk‘Ò‚¿
-	s8 wait_max;				///<ƒEƒFƒCƒgÅ‘å’l
-	s8 loop;					///<’nk‰ñ”
+	TCB_PTR tcb;				///<åœ°éœ‡å‹•ä½œå®Ÿè¡Œã‚¿ã‚¹ã‚¯
+	s16 shake_x;				///<æºã‚ŒX
+	s16 shake_y;				///<æºã‚ŒY
+	s8 wait;					///<åœ°éœ‡å¾…ã¡
+	s8 wait_max;				///<ã‚¦ã‚§ã‚¤ãƒˆæœ€å¤§å€¤
+	s8 loop;					///<åœ°éœ‡å›žæ•°
 	
 	u8 padding;
 }FMAP_SHAKE_WORK;
 
-///WINDOW§Œä\‘¢‘Ì
+///WINDOWåˆ¶å¾¡æ§‹é€ ä½“
 typedef struct{
 	TCB_PTR tcb;
 	u8 x1;
@@ -185,69 +185,69 @@ typedef struct{
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeƒBƒAƒ}ƒbƒvƒVƒXƒeƒ€ƒ[ƒN
+ * @brief   ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒžãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 typedef struct _FRONTIERMAP_PROC_WORK{
-	//-- ƒVƒXƒeƒ€Œn --//
+	//-- ã‚·ã‚¹ãƒ†ãƒ ç³» --//
 	GF_BGL_INI *bgl;
-	PALETTE_FADE_PTR pfd;			///<ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	PALETTE_FADE_PTR pfd;			///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	FMAIN_PTR fmain;
 	GF_G3DMAN *g3Dman;
-	FRP_PTR frp;					///<ƒtƒƒ“ƒeƒBƒAƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	FRP_PTR frp;					///<ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	//2Dƒ}ƒbƒvƒVƒXƒeƒ€ƒ‚ƒWƒ…[ƒ‹
-	WF2DMAP_OBJSYS *objsys;		///<ƒIƒuƒWƒFƒNƒgŠÇ—ƒ‚ƒWƒ…[ƒ‹
-//	WF2DMAP_OBJWK *objwk[FIELD_OBJ_MAX];	///<ƒIƒuƒWƒFƒNƒgƒ[ƒN
-	//ƒ}ƒbƒvƒf[ƒ^ŠÇ—ƒ‚ƒWƒ…[ƒ‹
-	WF2DMAP_MAPSYS *mapsys;		///<ƒ}ƒbƒvƒf[ƒ^ŠÇ—ƒ‚ƒWƒ…[ƒ‹
-	//ƒXƒNƒ[ƒ‹ƒf[ƒ^ŠÇ—ƒ‚ƒWƒ…[ƒ‹
-	WF2DMAP_SCROLL scrollsys;	///<ƒXƒNƒ[ƒ‹ƒf[ƒ^ŠÇ—ƒ‚ƒWƒ…[ƒ‹(¦‚±‚ê‚¾‚¯ŽÀ‘Ì)
-	//ƒIƒuƒWƒFƒNƒgƒf[ƒ^•`‰æƒ‚ƒWƒ…[ƒ‹
-	WF2DMAP_OBJDRAWSYS *drawsys;	///<ƒIƒuƒWƒFƒNƒgƒf[ƒ^•`‰æƒ‚ƒWƒ…[ƒ‹
-//	WF2DMAP_OBJDRAWWK *drawwk[FIELD_OBJ_MAX];	///<•`‰æƒIƒuƒWƒFƒNƒgƒ[ƒN
-	//ƒXƒNƒ[ƒ‹ƒf[ƒ^•`‰æƒ‚ƒWƒ…[ƒ‹
-	WF2DMAP_SCRDRAW *scrdrawsys;		///<ƒXƒNƒ[ƒ‹ƒf[ƒ^•`‰æƒ‚ƒWƒ…[ƒ‹
-	WF2DMAP_SCRDRAW *multi_scrdrawsys;	///<ƒXƒNƒ[ƒ‹ƒf[ƒ^•`‰æƒ‚ƒWƒ…[ƒ‹(‘½d–Ê—p)
-	//ƒRƒ}ƒ“ƒhƒLƒ…[
-	WF2DMAP_REQCMDQ *reqcmd_q;		///<ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh
-	WF2DMAP_ACTCMDQ *actcmd_q;		///<ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh
+	//2Dãƒžãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+	WF2DMAP_OBJSYS *objsys;		///<ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+//	WF2DMAP_OBJWK *objwk[FIELD_OBJ_MAX];	///<ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+	//ãƒžãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+	WF2DMAP_MAPSYS *mapsys;		///<ãƒžãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+	WF2DMAP_SCROLL scrollsys;	///<ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«(â€»ã“ã‚Œã ã‘å®Ÿä½“)
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿æç”»ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+	WF2DMAP_OBJDRAWSYS *drawsys;	///<ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿æç”»ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+//	WF2DMAP_OBJDRAWWK *drawwk[FIELD_OBJ_MAX];	///<æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿æç”»ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+	WF2DMAP_SCRDRAW *scrdrawsys;		///<ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿æç”»ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+	WF2DMAP_SCRDRAW *multi_scrdrawsys;	///<ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿æç”»ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«(å¤šé‡é¢ç”¨)
+	//ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼
+	WF2DMAP_REQCMDQ *reqcmd_q;		///<ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰
+	WF2DMAP_ACTCMDQ *actcmd_q;		///<ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰
 	
-	//ƒZƒ‹ƒAƒNƒ^[
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 	struct{
 		CATS_SYS_PTR		csp;
 		CATS_RES_PTR		crp;
 	}clactsys;
 
-	//”z’u•¨ƒAƒNƒ^[
-	FMAP_ARTICLE_ACT article;		///<”z’u•¨ƒAƒNƒ^[
+	//é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼
+	FMAP_ARTICLE_ACT article;		///<é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼
 	
-	//ƒ|ƒPƒ‚ƒ“ƒAƒNƒ^[
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼
 	CATS_ACT_PTR poke_cap[POKE_DISP_MANAGER_ID_NUM];
 	
-	//ƒV[ƒ“ƒf[ƒ^‚Ì‰Šú“®ìŠÖ”“à‚ÅAlloc‚µ‚½ê‡‚Ìƒ|ƒCƒ“ƒ^•ÛŽ—Ìˆæ
+	//ã‚·ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸå‹•ä½œé–¢æ•°å†…ã§Allocã—ãŸå ´åˆã®ãƒã‚¤ãƒ³ã‚¿ä¿æŒé ˜åŸŸ
 	void *scene_func_work_ptr;
 	
-	//-- ƒ[ƒJƒ‹ --//
-	TCB_PTR objupdate_tcb;			///<ƒIƒuƒWƒFƒNƒgƒVƒXƒeƒ€XVˆ—
-	TCB_PTR cmdjudgeupdate_tcb;		///<ƒRƒ}ƒ“ƒh”»’fŽÀsˆ—
-	TCB_PTR update_tcb;				///<ƒVƒXƒeƒ€XVˆ—
-	TCB_PTR vintr_tcb;				///<Vƒuƒ‰ƒ“ƒNŠ„‚èž‚Ýƒ^ƒXƒN
+	//-- ãƒ­ãƒ¼ã‚«ãƒ« --//
+	TCB_PTR objupdate_tcb;			///<ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ æ›´æ–°å‡¦ç†
+	TCB_PTR cmdjudgeupdate_tcb;		///<ã‚³ãƒžãƒ³ãƒ‰åˆ¤æ–­å®Ÿè¡Œå‡¦ç†
+	TCB_PTR update_tcb;				///<ã‚·ã‚¹ãƒ†ãƒ æ›´æ–°å‡¦ç†
+	TCB_PTR vintr_tcb;				///<Vãƒ–ãƒ©ãƒ³ã‚¯å‰²ã‚Šè¾¼ã¿ã‚¿ã‚¹ã‚¯
 	
-	FMAP_SHAKE_WORK shake_work;		///<’nk§Œä\‘¢‘Ì
-	FMAP_WND_WORK wnd_work;			///<Window§Œä\‘¢‘Ì
+	FMAP_SHAKE_WORK shake_work;		///<åœ°éœ‡åˆ¶å¾¡æ§‹é€ ä½“
+	FMAP_WND_WORK wnd_work;			///<Windowåˆ¶å¾¡æ§‹é€ ä½“
 	
 	u16 seq;
-	u16 tbl_seq_no;					///<ƒƒCƒ“ƒV[ƒPƒ“ƒXƒe[ƒuƒ‹‚Ì”Ô†
-	u8 proc_mode;					///<Œ»Ý‚Ì“®ìó‹µ
-	u8 func_scene_id;				///<ƒV[ƒ“–ˆ‚ÉŽÀs‚³‚ê‚é‰Šú(I—¹)“®ìŠÖ”‚ÌƒV[ƒ“ID
+	u16 tbl_seq_no;					///<ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç•ªå·
+	u8 proc_mode;					///<ç¾åœ¨ã®å‹•ä½œçŠ¶æ³
+	u8 func_scene_id;				///<ã‚·ãƒ¼ãƒ³æ¯Žã«å®Ÿè¡Œã•ã‚Œã‚‹åˆæœŸ(çµ‚äº†)å‹•ä½œé–¢æ•°ã®ã‚·ãƒ¼ãƒ³ID
 
-	u8 main_end;					///<TRUE:ƒƒCƒ“ˆ—I—¹
+	u8 main_end;					///<TRUE:ãƒ¡ã‚¤ãƒ³å‡¦ç†çµ‚äº†
 }FRONTIERMAP_WORK;
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern FMAP_PTR FrontierMap_Init(FMAIN_PTR fmain);
 extern BOOL FrontierMap_Main(FMAP_PTR fmap);

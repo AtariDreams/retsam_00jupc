@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wf2dmap_cmdq.h
- *	@brief		ƒRƒ}ƒ“ƒhƒLƒ…[
+ *	@brief		ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼
  *	@author		tomoya takahashi
  *	@data		2007.03.28
  *
@@ -22,73 +22,73 @@
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh	ƒLƒ…[
- *		i‚ ‚Á‚½‚ç•Ö—˜‚È‚Ì‚Åì¬‚µ‚Ü‚µ‚½j
+ *		ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰	ã‚­ãƒ¥ãƒ¼
+ *		ï¼ˆã‚ã£ãŸã‚‰ä¾¿åˆ©ãªã®ã§ä½œæˆã—ã¾ã—ãŸï¼‰
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh	ƒLƒ…[
+///	ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰	ã‚­ãƒ¥ãƒ¼
 //=====================================
 typedef struct _WF2DMAP_ACTCMDQ WF2DMAP_ACTCMDQ;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-//@ƒVƒXƒeƒ€ƒ[ƒN
+//ã€€ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 GLOBAL WF2DMAP_ACTCMDQ* WF2DMAP_ACTCMDQSysInit( u32 buffnum, u32 heapID );
 GLOBAL void WF2DMAP_ACTCMDQSysExit( WF2DMAP_ACTCMDQ* p_sys );
 
-// ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ðÝ’è
+// ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚’è¨­å®š
 GLOBAL void WF2DMAP_ACTCMDQSysCmdPush( WF2DMAP_ACTCMDQ* p_sys, const WF2DMAP_ACTCMD* cp_buff );
-// ƒRƒ}ƒ“ƒhƒf[ƒ^Žæ“¾ 
+// ã‚³ãƒžãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿å–å¾— 
 GLOBAL BOOL WF2DMAP_ACTCMDQSysCmdPop( WF2DMAP_ACTCMDQ* p_sys, WF2DMAP_ACTCMD* p_cmd );
-// ƒoƒbƒtƒ@”Žæ“¾
+// ãƒãƒƒãƒ•ã‚¡æ•°å–å¾—
 GLOBAL u32 WF2DMAP_ACTCMDQSysBuffNumGet( const WF2DMAP_ACTCMDQ* cp_sys );
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒLƒ…[
- *		i‚ ‚Á‚½‚ç•Ö—˜‚È‚Ì‚Åì¬‚µ‚Ü‚µ‚½j
+ *		ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼
+ *		ï¼ˆã‚ã£ãŸã‚‰ä¾¿åˆ©ãªã®ã§ä½œæˆã—ã¾ã—ãŸï¼‰
  */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒLƒ…[
+///	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼
 //=====================================
 typedef struct _WF2DMAP_REQCMDQ WF2DMAP_REQCMDQ;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-//@ƒVƒXƒeƒ€ƒ[ƒN
+//ã€€ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 GLOBAL WF2DMAP_REQCMDQ* WF2DMAP_REQCMDQSysInit( u32 buffnum, u32 heapID );
 GLOBAL void WF2DMAP_REQCMDQSysExit( WF2DMAP_REQCMDQ* p_sys );
 
-// ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh‚ðÝ’è
+// ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚’è¨­å®š
 GLOBAL void WF2DMAP_REQCMDQSysCmdPush( WF2DMAP_REQCMDQ* p_sys, const WF2DMAP_REQCMD* cp_cmd );
-// ƒRƒ}ƒ“ƒhƒf[ƒ^Žæ“¾ 
+// ã‚³ãƒžãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿å–å¾— 
 GLOBAL BOOL WF2DMAP_REQCMDQSysCmdPop( WF2DMAP_REQCMDQ* p_sys, WF2DMAP_REQCMD* p_cmd );
 
-// ƒoƒbƒtƒ@”Žæ“¾
+// ãƒãƒƒãƒ•ã‚¡æ•°å–å¾—
 GLOBAL u32 WF2DMAP_REQCMDQSysBuffNumGet( const WF2DMAP_REQCMDQ* cp_sys );
 
 #undef	GLOBAL

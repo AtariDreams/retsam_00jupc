@@ -12,7 +12,7 @@
 
   $Log: defval.c,v $
   Revision 1.12  2006/03/29 13:13:22  yasu
-  IF-ELSE-ENDIF ÇÃÉTÉ|Å[Ég
+  IF-ELSE-ENDIF „ÅÆ„Çµ„Éù„Éº„Éà
 
   Revision 1.11  2006/01/18 02:11:19  kitase_hirotake
   do-indent

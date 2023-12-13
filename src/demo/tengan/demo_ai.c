@@ -35,10 +35,10 @@ static void Illuminant_Z_Update( ILLUMINANT* wk );
 
 enum {
 	
-	eAI_TYPE_SET,				///< “Á’è‚ÌˆÊ’u‚ÖˆÚ“®‚·‚é
-	eAI_TYPE_TURN,				///< ‚ ‚é“_‚ð’†S‚É‰ñ“]‚·‚é
-	eAI_TYPE_SETTLING,			///< ‚ ‚é“_‚ÉŽû‘©‚·‚é
-	eAI_TYPE_IRREGULARITY,		///< •s‹K‘¥‚È“®‚«‚ð‚·‚é
+	eAI_TYPE_SET,				///< ç‰¹å®šã®ä½ç½®ã¸ç§»å‹•ã™ã‚‹
+	eAI_TYPE_TURN,				///< ã‚ã‚‹ç‚¹ã‚’ä¸­å¿ƒã«å›žè»¢ã™ã‚‹
+	eAI_TYPE_SETTLING,			///< ã‚ã‚‹ç‚¹ã«åŽæŸã™ã‚‹
+	eAI_TYPE_IRREGULARITY,		///< ä¸è¦å‰‡ãªå‹•ãã‚’ã™ã‚‹
 		
 };
 
@@ -57,7 +57,7 @@ static void ( * const AI_Table[] )( ILLUMINANT* wk ) = {
 
 //--------------------------------------------------------------
 /**
- * @brief	“_‚©‚ç“_{”¼Œa‚Ü‚Å‚ÌˆÚ“®
+ * @brief	ç‚¹ã‹ã‚‰ç‚¹ï¼‹åŠå¾„ã¾ã§ã®ç§»å‹•
  *
  * @param	x1	
  * @param	y1	
@@ -110,7 +110,7 @@ static BOOL Homing( s16 x1, s16 y1, f32 x2, f32 y2, f32* mx, f32* my, f32 speed,
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒz[ƒ~ƒ“ƒO‚³‚¹‚éŠÖ”
+ * @brief	ãƒ›ãƒ¼ãƒŸãƒ³ã‚°ã•ã›ã‚‹é–¢æ•°
  *
  * @param	wk	
  * @param	tx	
@@ -158,7 +158,7 @@ static BOOL Homing_Move( ILLUMINANT* wk, s16 tx, s16 ty, f32 speed, int r )
 
 //--------------------------------------------------------------
 /**
- * @brief	“Á’è‚ÌˆÊ’u‚Ü‚Ås‚­
+ * @brief	ç‰¹å®šã®ä½ç½®ã¾ã§è¡Œã
  *
  * @param	wk	
  *
@@ -174,7 +174,7 @@ static void AI_Set( ILLUMINANT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚»‚Ìê‚Å‰ñ“]‚·‚é
+ * @brief	ãã®å ´ã§å›žè»¢ã™ã‚‹
  *
  * @param	wk	
  *
@@ -213,7 +213,7 @@ static void AI_Turn_Ex( ILLUMINANT* wk, int x, int y, int xr, int yr )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚ ‚é“_‚ÉŒü‚©‚Á‚ÄˆÚ“®‚·‚é
+ * @brief	ã‚ã‚‹ç‚¹ã«å‘ã‹ã£ã¦ç§»å‹•ã™ã‚‹
  *
  * @param	wk	
  *
@@ -250,7 +250,7 @@ static void AI_Settling( ILLUMINANT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚ ‚é“_‚ÅŽû‘©‚·‚é
+ * @brief	ã‚ã‚‹ç‚¹ã§åŽæŸã™ã‚‹
  *
  * @param	wk	
  *
@@ -286,7 +286,7 @@ static void AI_Irregularity( ILLUMINANT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ZÀ•W‚Å‚Ì—Dæ“xƒAƒbƒvƒf[ƒg
+ * @brief	Zåº§æ¨™ã§ã®å„ªå…ˆåº¦ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
  *
  * @param	wk	
  *
@@ -312,7 +312,7 @@ static void Illuminant_Z_Update( ILLUMINANT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	íŽž“®‚­TCB
+ * @brief	å¸¸æ™‚å‹•ãTCB
  *
  * @param	tcb	
  * @param	work	
@@ -334,7 +334,7 @@ void Illuminant_AI_TCB( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒ“‚O—p
+ * @brief	ã‚·ãƒ¼ãƒ³ï¼ç”¨
  *
  * @param	tcb	
  * @param	work	

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	floor_touch.c
- * @brief	3D���ʃ^�b�`����
+ * @brief	3D床面タッチ処理
  * @author	saito
  * @date	2006.02.21
  *
@@ -16,13 +16,13 @@
 
 typedef struct TP_TO_3D_tag
 {
-//	u16 AngleX	//X���J�����A���O��
-	u16 HView;	// ��������p/2
-	u16 WView;	// ��������p/2
-	VecFx32	CamPos;	// �J�����ʒu�x�N�g��
-	VecFx32 Norm;	//���ʂ̖@���x�N�g��
-	fx32 Numer;	//�@���x�N�g���ƃJ�����ʒu�x�N�g���̓���
-	MtxFx43 AngleRotMat;	//�J�����A���O����]�s��
+//	u16 AngleX	//X軸カメラアングル
+	u16 HView;	// 垂直視野角/2
+	u16 WView;	// 水平視野角/2
+	VecFx32	CamPos;	// カメラ位置ベクトル
+	VecFx32 Norm;	//平面の法線ベクトル
+	fx32 Numer;	//法線ベクトルとカメラ位置ベクトルの内積
+	MtxFx43 AngleRotMat;	//カメラアングル回転行列
 
 	GF_CAMERA_PTR CameraPtr;
 	VecFx32 Target;
@@ -41,7 +41,7 @@ TP_TO_3D_PTR FTouch_GetTpTo3DPtr(void)
 static GRID_POINT MakeGridPointFromVecFx32(const VecFx32 inPoint )
 {
 	GRID_POINT grid;
-	//�O���b�h�ɂ���
+	//グリッドにする
 	
 	grid.x=inPoint.x / (16*FX32_ONE);
 	grid.z=inPoint.z / (16*FX32_ONE);
@@ -59,12 +59,12 @@ VecFx32 FTouch_CalcTpXYTo3D(const u16 inX, const u16 inY, const TP_TO_3D_PTR inP
 	u8 pos_y,pos_x;
 	u16 rot_x,rot_y;
 
-	//����0�̕��ʂƂ̌�_�Ȃ̂ŃZ�b�g���Ă��܂�
+	//ｙ＝0の平面との交点なのでセットしてしまう
 	target_vec.y = 0;
 	
 	vec = GFC_GetLookTarget(inParam->CameraPtr);
 	{	
-		MtxFx43 mat;	//�ėp�s��ϐ�
+		MtxFx43 mat;	//汎用行列変数
 		VecFx32 dst_vec;
 		VecFx32 base={0,0,-FX32_ONE};
 
@@ -93,7 +93,7 @@ VecFx32 FTouch_CalcTpXYTo3D(const u16 inX, const u16 inY, const TP_TO_3D_PTR inP
 			MTX_MultVec43(&dst_vec, &mat, &dst_vec);
 
 			MTX_MultVec43(&dst_vec, &inParam->AngleRotMat, &dst_vec);
-			//���ʂƂ̌�_�����߂�
+			//平面との交点を求める
 			{
 				VecFx32 cross_point;
 				fx32 t;
@@ -127,7 +127,7 @@ void FTouch_SetUpTpTo3DParam(TP_TO_3D_PTR	outParam, const GF_CAMERA_PTR camera_p
 	ang = GFC_GetCameraAngle(camera_ptr);
 	outParam->HView = GFC_GetCameraPerspWay(camera_ptr);
 
-	//�A�X�y�N�g��4�F3�̎��̐�������p/2�����߂�
+	//アスペクト比4：3の時の水平視野角/2を求める
 	{
 		fx32 tan;
 		tan = FX_Div(FX_SinIdx(outParam->HView),FX_CosIdx(outParam->HView));
@@ -153,10 +153,10 @@ void FTouch_FreeUnderGroundTP(TP_TO_3D_PTR *ptr)
 {
 	
     if((*ptr)==NULL){
-		OS_Printf("�Q�x�Ă΂�Ă���\������\n");
+		OS_Printf("２度呼ばれている可能性あり\n");
 		return;
 	}
-	GF_ASSERT((*ptr)!=NULL&&"���ł�NULL�ł�");
+	GF_ASSERT((*ptr)!=NULL&&"すでにNULLです");
 	sys_FreeMemoryEz((*ptr));
 	(*ptr) = NULL;
 }

@@ -1,13 +1,13 @@
 ##-----------------------------------------------------------------------------
 #**
-#*			}ŠÓ•ª•z}—pƒf[ƒ^ì¬ƒƒCƒNƒtƒ@ƒCƒ‹
-#			ì¬Œã‚É•K—v‚Èƒtƒ@ƒCƒ‹‚ğã‚ÌŠK‘w‚ÉƒRƒs[‚·‚é
+#*			å›³é‘‘åˆ†å¸ƒå›³ç”¨ãƒ‡ãƒ¼ã‚¿ä½œæˆãƒ¡ã‚¤ã‚¯ãƒ•ã‚¡ã‚¤ãƒ«
+#			ä½œæˆå¾Œã«å¿…è¦ãªãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸Šã®éšå±¤ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 #**
 ##-----------------------------------------------------------------------------
 
 SUBDIRS		=
 
-#ƒRƒs[‚µ‚Ä‚­‚éƒfƒBƒŒƒNƒgƒŠ
+#ã‚³ãƒ”ãƒ¼ã—ã¦ãã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 MAP_MATRIX_XLS_DIR	= ..\\..\\..\\..\\fielddata\\mapmatrix\\
 MSGCNV2_DIC_DIR		= ..\\..\\..\\..\\fielddata\\encountdata\\
 ENCDATA_EX_DIR		= ..\\..\\..\\..\\fielddata\\encdata_ex\\
@@ -21,18 +21,18 @@ ZUKAN_DIR			= ..\\..\\
 ZUKAN_DATA_DIR		= ..\\
 ZUKAN_INCLUDE_DIR	= ..\\..\\..\\..\\..\\include\\application\\zukanlist\\
 
-#ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒtƒ@ƒCƒ‹–¼
+#ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«å
 ENC_DATA_FILE_DIAMOND	= PMDencount.csv
 ENC_DATA_FILE_PEARL		= PMPencount.csv
 ENC_DATA_FILE_PLATINUM	= PMPLencount.csv
 
-#ƒRƒs[æ
+#ã‚³ãƒ”ãƒ¼å…ˆ
 CPY_DIR	= .
 
 #dat_file
 DAT_FILE := $(wildcard *.dat) 
 
-#ˆË‘¶‚·‚éƒtƒ@ƒCƒ‹
+#ä¾å­˜ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«
 MAKE_FILE	= map_matrix.xls \
 			  monsno.h \
 			  msgcnv2.dic \
@@ -40,7 +40,7 @@ MAKE_FILE	= map_matrix.xls \
 			  zone_id.h \
  			  encdata_ex.xls
 
-#}ŠÓÃŞ°ÀƒRƒ“ƒo[ƒgˆË‘¶
+#å›³é‘‘ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒãƒ¼ãƒˆä¾å­˜
 ZKN_MAKE_FILE = pokezukan.txt \
 				zukan_data.xls	
 
@@ -48,7 +48,7 @@ ZKN_MAKE_FILE = pokezukan.txt \
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#Make‚Å¶¬‚³‚ê‚é*.bin/*.narc‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.bin/*.narcã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(wildcard *.narc) \
 			  zkn_rangeid.h \
 			  zkn_comment_00.gmm
@@ -60,39 +60,39 @@ include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 #do-build:file_cp zukan_data.narc zukan_enc_diamond.narc zukan_enc_pearl.narc  zukan_enc_platinum.narc make_file_copy
 do-build:file_cp zukan_data.narc zukan_enc_platinum.narc make_file_copy
 
-#ƒtƒ@ƒCƒ‹ƒRƒs[
+#ãƒ•ã‚¡ã‚¤ãƒ«ã‚³ãƒ”ãƒ¼
 file_cp:
 	xcopy /d /y $(MAP_MATRIX_XLS_DIR)map_matrix.xls $(CPY_DIR)
 	xcopy /d /y $(MSGCNV2_DIC_DIR)msgcnv2.dic $(CPY_DIR)
-	xcopy /d /y $(PMDPENCOUNT_CSV_DIR)$(ENC_DATA_FILE_DIAMOND) $(CPY_DIR)	#ƒ_ƒCƒ„
-	xcopy /d /y $(PMDPENCOUNT_CSV_DIR)$(ENC_DATA_FILE_PEARL) $(CPY_DIR)	#@ƒp[ƒ‹
-	xcopy /d /y $(PMDPENCOUNT_CSV_DIR)$(ENC_DATA_FILE_PLATINUM) $(CPY_DIR)	#@ƒvƒ‰ƒ`ƒi
+	xcopy /d /y $(PMDPENCOUNT_CSV_DIR)$(ENC_DATA_FILE_DIAMOND) $(CPY_DIR)	#ãƒ€ã‚¤ãƒ¤
+	xcopy /d /y $(PMDPENCOUNT_CSV_DIR)$(ENC_DATA_FILE_PEARL) $(CPY_DIR)	#ã€€ãƒ‘ãƒ¼ãƒ«
+	xcopy /d /y $(PMDPENCOUNT_CSV_DIR)$(ENC_DATA_FILE_PLATINUM) $(CPY_DIR)	#ã€€ãƒ—ãƒ©ãƒãƒŠ
 	xcopy /d /y $(MONSNO_H_DIR)monsno.h $(CPY_DIR)
 	xcopy /d /y $(ZONEID_H_DIR)zone_id.h $(CPY_DIR)
 	xcopy /d /y $(CP_SCR_DIR)pokezukan.txt $(CPY_DIR)
 	xcopy /d /y $(ENCDATA_EX_DIR)encdata_ex.xls $(CPY_DIR)
 
-#}ŠÓƒf[ƒ^ƒRƒ“ƒo[ƒg
+#å›³é‘‘ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 zukan_data.narc:$(ZKN_MAKE_FILE)
-#	perl	pokezukan_tamago_cut.pl		#ƒ^ƒ}ƒS‚É‚Â‚¢‚Ä‚Ìs‚ğ”jŠü
-#	ƒMƒ‰ƒeƒBƒi@ƒAƒiƒU[ƒtƒHƒ‹ƒ€ê—p	
+#	perl	pokezukan_tamago_cut.pl		#ã‚¿ãƒã‚´ã«ã¤ã„ã¦ã®è¡Œã‚’ç ´æ£„
+#	ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€ã‚¢ãƒŠã‚¶ãƒ¼ãƒ•ã‚©ãƒ«ãƒ å°‚ç”¨	
 	rm csv_0D_cut.pl
 	cp csv_0D_cut_gira.pl csv_0D_cut.pl
 	zkn_excel_cnv.exe zukan_data_gira.xls
 
-	#ƒA[ƒJƒCƒu
-	nnsarc -c -i -n zukan_data_gira.narc -S zkn_arc_list.lst	#ƒMƒ‰ƒeƒBƒi‚Ì‰ò
+	#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+	nnsarc -c -i -n zukan_data_gira.narc -S zkn_arc_list.lst	#ã‚®ãƒ©ãƒ†ã‚£ãƒŠã®å¡Š
 	#GMM
 	MessageEditor -nw -s zkn_gram.gmm -i $(GMM_TMP_DIR)template.gmt zkn_gram.gmm 
 	MessageEditor -nw -s zkn_height.gmm -i $(GMM_TMP_DIR)template.gmt zkn_height.gmm 
 	cp zkn_gram.gmm $(GMM_CPY_DIR)zkn_gram_gira.gmm
 	cp zkn_height.gmm $(GMM_CPY_DIR)zkn_height_gira.gmm
 
-	#’Êíƒf[ƒ^
+	#é€šå¸¸ãƒ‡ãƒ¼ã‚¿
 	rm csv_0D_cut.pl
 	cp csv_0D_cut_normal.pl csv_0D_cut.pl
 	zkn_excel_cnv.exe zukan_data.xls
-	#ƒƒbƒZ[ƒWÃŞ°ÀƒRƒ“ƒo[ƒg
+	#ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 	MessageEditor -nw -s zkn_comment_00.gmm -i $(GMM_TMP_DIR)template.gmt zkn_comment_00.gmm 
 	MessageEditor -nw -s zkn_comment_01.gmm -i $(GMM_TMP_DIR)template.gmt zkn_comment_01.gmm 
 #	MessageEditor -nw -s zkn_comment_02.gmm -i $(GMM_TMP_DIR)template.gmt zkn_comment_02.gmm 
@@ -101,29 +101,29 @@ zukan_data.narc:$(ZKN_MAKE_FILE)
 	MessageEditor -nw -s zkn_type.gmm -i $(GMM_TMP_DIR)template.gmt zkn_type.gmm 
 	MessageEditor -nw -s zkn_worldname.gmm -i $(GMM_TMP_DIR)template.gmt zkn_worldname.gmm
 #	MessageEditor -nw -s zkn_worldtype.gmm -i $(GMM_TMP_DIR)template.gmt zkn_worldtype.gmm
-	#ŠO‘ŒêÃŞ°Àƒ\[ƒXƒRƒs[
-#	cp zkn_worldtext.c $(ZUKAN_DIR)		#‘Sƒ|ƒPƒ‚ƒ“‚ğo‚·‚½‚ß’â~
-#	cp zkn_worldtext.h $(ZUKAN_DIR)		#‘Sƒ|ƒPƒ‚ƒ“‚ğo‚·‚½‚ß’â~
-	#Œ`IDƒwƒbƒ_
+	#å¤–å›½èªãƒ‡ãƒ¼ã‚¿ã‚½ãƒ¼ã‚¹ã‚³ãƒ”ãƒ¼
+#	cp zkn_worldtext.c $(ZUKAN_DIR)		#å…¨ãƒã‚±ãƒ¢ãƒ³ã‚’å‡ºã™ãŸã‚åœæ­¢
+#	cp zkn_worldtext.h $(ZUKAN_DIR)		#å…¨ãƒã‚±ãƒ¢ãƒ³ã‚’å‡ºã™ãŸã‚åœæ­¢
+	#å½¢IDãƒ˜ãƒƒãƒ€
 	cp zkn_form_id.h $(ZUKAN_DATA_DIR)
-	#GMMƒRƒs[
+	#GMMã‚³ãƒ”ãƒ¼
 	cp zkn_comment_00.gmm $(GMM_CPY_DIR)
 	cp zkn_comment_01.gmm $(GMM_CPY_DIR)
 #	cp zkn_comment_02.gmm $(GMM_CPY_DIR)
 	cp zkn_gram.gmm $(GMM_CPY_DIR)
 	cp zkn_height.gmm $(GMM_CPY_DIR)
 	cp zkn_type.gmm $(GMM_CPY_DIR)
-#	cp zkn_worldname.gmm $(GMM_CPY_DIR)	#‘Sƒ|ƒPƒ‚ƒ“‚ğo‚·‚½‚ß’â~
+#	cp zkn_worldname.gmm $(GMM_CPY_DIR)	#å…¨ãƒã‚±ãƒ¢ãƒ³ã‚’å‡ºã™ãŸã‚åœæ­¢
 #	cp zkn_worldtype.gmm $(GMM_CPY_DIR)
 	cp zkn_sort_akstnhmyrw_idx.h $(ZUKAN_INCLUDE_DIR)
 
-	#ƒA[ƒJƒCƒu
+	#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 	nnsarc -c -i -n zukan_data.narc -S zkn_arc_list.lst
 
 	
-#•ª•zÃŞ°Àì¬
+#åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ä½œæˆ
 zukan_enc_diamond.narc:$(MAKE_FILE) $(ENC_DATA_FILE_DIAMOND)
-	#ƒ_ƒCƒ„
+	#ãƒ€ã‚¤ãƒ¤
 	perl range_data_morning_make.pl $(ENC_DATA_FILE_DIAMOND)
 	perl range_data_noon_make.pl $(ENC_DATA_FILE_DIAMOND)
 	perl range_data_night_make.pl $(ENC_DATA_FILE_DIAMOND)
@@ -132,7 +132,7 @@ zukan_enc_diamond.narc:$(MAKE_FILE) $(ENC_DATA_FILE_DIAMOND)
 	nnsarc -c -i -n zukan_enc_diamond.narc -S zkn_arc_enc.lst
 
 zukan_enc_pearl.narc:$(MAKE_FILE) $(ENC_DATA_FILE_PEARL)
-	#ƒp[ƒ‹
+	#ãƒ‘ãƒ¼ãƒ«
 	perl range_data_morning_make.pl $(ENC_DATA_FILE_PEARL)
 	perl range_data_noon_make.pl $(ENC_DATA_FILE_PEARL)
 	perl range_data_night_make.pl $(ENC_DATA_FILE_PEARL)
@@ -141,7 +141,7 @@ zukan_enc_pearl.narc:$(MAKE_FILE) $(ENC_DATA_FILE_PEARL)
 	nnsarc -c -i -n zukan_enc_pearl.narc -S zkn_arc_enc.lst
 
 zukan_enc_platinum.narc:$(MAKE_FILE) $(ENC_DATA_FILE_PLATINUM)
-	#ƒvƒ‰ƒ`ƒi
+	#ãƒ—ãƒ©ãƒãƒŠ
 	perl range_data_morning_make.pl $(ENC_DATA_FILE_PLATINUM)
 	perl range_data_noon_make.pl $(ENC_DATA_FILE_PLATINUM)
 	perl range_data_night_make.pl $(ENC_DATA_FILE_PLATINUM)
@@ -150,7 +150,7 @@ zukan_enc_platinum.narc:$(MAKE_FILE) $(ENC_DATA_FILE_PLATINUM)
 	nnsarc -c -i -n zukan_enc_platinum.narc -S zkn_arc_enc.lst
 
 make_file_copy:
-	#ƒtƒ@ƒCƒ‹‚ğãˆÊ‚ÉƒRƒs[
+	#ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸Šä½ã«ã‚³ãƒ”ãƒ¼
 	cp *.narc ../
 	cp *.naix ../
 	cp zkn_rangeid.h ../

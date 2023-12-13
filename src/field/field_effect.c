@@ -2,7 +2,7 @@
 /**
  * 
  * @file	field_effect.c
- * @brief	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  * @author	kagaya
  * @data	05.07.13
  *
@@ -17,21 +17,21 @@
 //==============================================================================
 //debug
 #ifdef PM_DEBUG
-#define DEBUG_FE_EOA_USE_CHECK			//—LŒø‚ÅEOA’Ç‰ÁŠÄ‹
+#define DEBUG_FE_EOA_USE_CHECK			//æœ‰åŠ¹ã§EOAè¿½åŠ ç›£è¦–
 #endif
 
-///ƒrƒ‹ƒ{[ƒhƒeƒNƒXƒ`ƒƒ“]‘—TCBƒvƒ‰ƒCƒIƒŠƒeƒB
+///ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_VINTR_BLACT_TEX_LOAD (0xff)
 #define TCBPRI_VWAIT_BLACT_TEX_LOAD (0xff)
 
-//ƒVƒXƒeƒ€‘S‘Ì‚Ì‰Šú‰»”jŠüƒ^ƒXƒN
+//ã‚·ã‚¹ãƒ†ãƒ å…¨ä½“ã®åˆæœŸåŒ–ç ´æ£„ã‚¿ã‚¹ã‚¯
 #define FLD_3DOBJ_TEXTRANS_TCB_PRI	( 1024 )
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	\‘¢‘Ì–¼’è‹`
+///	æ§‹é€ ä½“åå®šç¾©
 //--------------------------------------------------------------
 ///FE_SUBPROC_REGDATA
 typedef struct _TAG_SUBPROC_REGDATA SUBPROC_REGDATA;
@@ -41,51 +41,51 @@ typedef struct _TAG_FE_BLACT FE_BLACT;
 typedef struct _TAG_FE_BLACT_H_ID FE_BLACT_H_ID;
 
 //--------------------------------------------------------------
-///	FE_SYS\‘¢‘Ì
+///	FE_SYSæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_SYS
 {
-	u32 heap_id;								///<ƒq[ƒvID
-//	u32 fe_heap_id;								///<ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgê—pƒq[ƒvID
-	u32 reg_max;								///<ƒGƒtƒFƒNƒg“o˜^Å‘å”
-	u32 eoa_max;								///<EOAÅ‘å”
-	u32 blact_max;								///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Å‘å”
+	u32 heap_id;								///<ãƒ’ãƒ¼ãƒ—ID
+//	u32 fe_heap_id;								///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå°‚ç”¨ãƒ’ãƒ¼ãƒ—ID
+	u32 reg_max;								///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™»éŒ²æœ€å¤§æ•°
+	u32 eoa_max;								///<EOAæœ€å¤§æ•°
+	u32 blact_max;								///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
 	
 //	LRES *lres;									///<LRES *
 	FIELDSYS_WORK *fsys;						///<FIELDSYS_WORK *
 	SUBPROC_REGDATA *subproc_regdata;			///<FE_SUBPROC_REGDATA
 	
-	ARCHANDLE *arc_handle;						///<ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgƒA[ƒJƒCƒuƒf[ƒ^ƒnƒ“ƒhƒ‹
+	ARCHANDLE *arc_handle;						///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ«
 	EOA_SYS_PTR eoa_sys;						///<EOA_SYS_PTR
 	FE_BLACT *fe_blact;							///<FE_BLACT *
 }FE_SYS;
 
-#define FE_SYS_SIZE (sizeof(FE_SYS))			///<FE_SYSƒTƒCƒY
+#define FE_SYS_SIZE (sizeof(FE_SYS))			///<FE_SYSã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	SUBPROC_REGDATA\‘¢‘Ì
+///	SUBPROC_REGDATAæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_SUBPROC_REGDATA
 {
-	u32 id;						///<ƒTƒuƒvƒƒZƒX“o˜^ID FE_PROC_MAX=–³‚µ
-	void *subproc_work;			///<ƒTƒuƒvƒƒZƒX‚Åg—p‚·‚éƒ[ƒN* NULL=–³‚µ
+	u32 id;						///<ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ç™»éŒ²ID FE_PROC_MAX=ç„¡ã—
+	void *subproc_work;			///<ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯* NULL=ç„¡ã—
 };
 
 #define SUBPROC_REGDATA_SIZE (sizeof(SUBPROC_REGDATA))	///<SUBPROC_REGDATA SIZE
 
 //--------------------------------------------------------------
-///	FE_BLACT\‘¢‘Ì
+///	FE_BLACTæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_BLACT
 {
-	u32 gp_heap_id;								///<ƒOƒ‰ƒtƒBƒbƒN—pƒq[ƒv—Ìˆæ‚ğì¬‚·‚éƒq[ƒvID
-	u16 blact_max;										///<ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Å‘å”
-	u16 mdl_max;										///<ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^Å‘å”
-	u16 anm_max;										///<ƒAƒjƒƒf[ƒ^Å‘å”
-	u16 tex_max;										///<ƒeƒNƒXƒ`ƒƒƒf[ƒ^Å‘å”
+	u32 gp_heap_id;								///<ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç”¨ãƒ’ãƒ¼ãƒ—é ˜åŸŸã‚’ä½œæˆã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
+	u16 blact_max;										///<ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
+	u16 mdl_max;										///<ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•°
+	u16 anm_max;										///<ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•°
+	u16 tex_max;										///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•°
 	BLACT_SET_PTR set_ptr;								///<BLACT_SET_PTR
-	LRES *lres_mdl;										///<ƒ‚ƒfƒ‹—pLRES *
-	LRES *lres_anm;										///<ƒAƒjƒ—pLRES *
+	LRES *lres_mdl;										///<ãƒ¢ãƒ‡ãƒ«ç”¨LRES *
+	LRES *lres_anm;										///<ã‚¢ãƒ‹ãƒ¡ç”¨LRES *
 	TEXRES_MANAGER_PTR resm_tex;						///<TEXRES_MANAGER_PTR
 	FE_BLACT_H_ID *head_manage;							///<FE_BLACT_H_ID
 	BLACT_HEADER *head_tbl;								///<BLACT_HEADER
@@ -94,30 +94,30 @@ typedef struct _TAG_FE_BLACT
 #define FE_BLACT_SIZE (sizeof(FE_BLACT))				///<FE_BLACT SIZE
 
 //--------------------------------------------------------------
-///	FE_BLACT_HEADER_ID\‘¢‘Ì
+///	FE_BLACT_HEADER_IDæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_BLACT_H_ID
 {
-	u32 id;														///<“o˜^ID
-	BLACT_HEADER *head;											///<ƒwƒbƒ_[*
+	u32 id;														///<ç™»éŒ²ID
+	BLACT_HEADER *head;											///<ãƒ˜ãƒƒãƒ€ãƒ¼*
 };
 
 #define FE_BLACT_H_ID_SIZE (sizeof(FE_BLACT_H_ID))				///<FE_BLACT_H_ID SIZE
 
 //--------------------------------------------------------------
-///	FE_VINTR_TEX_WORK\‘¢‘Ì
+///	FE_VINTR_TEX_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	u32 trans_end;												///<VRAM“]‘—I—¹ƒtƒ‰ƒO
-	u32 id;														///<“o˜^‚·‚éID
-	TEXRES_MANAGER_PTR resm_tex;								///<“]‘—‚·‚éTEXRES_MANAGER_PTR
+	u32 trans_end;												///<VRAMè»¢é€çµ‚äº†ãƒ•ãƒ©ã‚°
+	u32 id;														///<ç™»éŒ²ã™ã‚‹ID
+	TEXRES_MANAGER_PTR resm_tex;								///<è»¢é€ã™ã‚‹TEXRES_MANAGER_PTR
 }FE_VINTR_TEX_WORK;
 
 #define FE_VINTR_TEX_WORK_SIZE (sizeof(FE_VINTR_TEX_WORK))
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static u32 fe_HeapIDGet( const FE_SYS *fes );
 
@@ -166,19 +166,19 @@ static void DEBUG_FeEoaUseCheck_Del( EOA_PTR eoa );
 #endif
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒVƒXƒeƒ€
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒVƒXƒeƒ€‰Šú‰»
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  * @param	fsys		FIELDSYS_WORK *
- * @param	reg_max		“o˜^‚·‚éƒGƒtƒFƒNƒgÅ‘å”
- * @param	heap_id		ƒ[ƒN‚Ég—p‚·‚éƒq[ƒvID
- * @param	worksize	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg‚ÅŠm•Û‚·‚éƒ[ƒN—ÌˆæÅ‘åƒTƒCƒY
+ * @param	reg_max		ç™»éŒ²ã™ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæœ€å¤§æ•°
+ * @param	heap_id		ãƒ¯ãƒ¼ã‚¯ã«ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
+ * @param	worksize	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§ç¢ºä¿ã™ã‚‹ãƒ¯ãƒ¼ã‚¯é ˜åŸŸæœ€å¤§ã‚µã‚¤ã‚º
  * @retval	FE_SYS_PTR	FE_SYS_PTR
  * 
- * worksize‚Í“o˜^‚³‚ê‚éƒGƒtƒFƒNƒgAEOAAƒrƒ‹ƒ{[ƒh“™A
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg‘S‘Ì‚Åg—p‚³‚ê‚é—Ê‚ğl—¶‚µ‚Ä‚­‚¾‚³‚¢
+ * worksizeã¯ç™»éŒ²ã•ã‚Œã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€EOAã€ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ç­‰ã€
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå…¨ä½“ã§ä½¿ç”¨ã•ã‚Œã‚‹é‡ã‚’è€ƒæ…®ã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------
 FE_SYS * FE_Init( FIELDSYS_WORK *fsys, u32 reg_max, u32 heap_id )
@@ -213,10 +213,10 @@ FE_SYS * FE_Init( FIELDSYS_WORK *fsys, u32 reg_max, u32 heap_id )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg ƒpƒ‰ƒƒ^‰Šú‰» EOA
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ ãƒ‘ãƒ©ãƒ¡ã‚¿åˆæœŸåŒ– EOA
  * @param	fes			FE_SYS_PTR
- * @param	eoa_max		EOAÅ‘å”
- * @param	blact_max	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Å‘å”
+ * @param	eoa_max		EOAæœ€å¤§æ•°
+ * @param	blact_max	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -228,16 +228,16 @@ void FE_ParamInit_EOA( FE_SYS *fes, u32 eoa_max )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg ƒpƒ‰ƒƒ^‰Šú‰» ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ ãƒ‘ãƒ©ãƒ¡ã‚¿åˆæœŸåŒ– ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼
  * @param	fes			FE_SYS_PTR
- * @param	gp_heap_id		ƒOƒ‰ƒtƒBƒbƒN—p—Ìˆæ‚ğŠm•Û‚·‚éƒq[ƒv—Ìˆæ‚ğì¬‚·‚éƒq[ƒvID
- * @param	act_max			ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Å‘å”
- * @param	mdl_max			ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^Å‘å”
- * @param	anm_max			ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^Å‘å”
- * @param	tex_max			ƒeƒNƒXƒ`ƒƒƒf[ƒ^Å‘å”
- * @param	mdl_size		ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^—p‚ÉŠm•Û‚·‚é—ÌˆæƒTƒCƒY
- * @param	anm_size		ƒAƒjƒƒf[ƒ^—p‚ÉŠm•Û‚·‚é—ÌˆæƒTƒCƒY
- * @param	tex_size		ƒeƒNƒXƒ`ƒƒƒf[ƒ^—p‚ÉŠm•Û‚·‚é—ÌˆæƒTƒCƒY
+ * @param	gp_heap_id		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç”¨é ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—é ˜åŸŸã‚’ä½œæˆã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
+ * @param	act_max			ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
+ * @param	mdl_max			ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•°
+ * @param	anm_max			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•°
+ * @param	tex_max			ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•°
+ * @param	mdl_size		ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ç”¨ã«ç¢ºä¿ã™ã‚‹é ˜åŸŸã‚µã‚¤ã‚º
+ * @param	anm_size		ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ç”¨ã«ç¢ºä¿ã™ã‚‹é ˜åŸŸã‚µã‚¤ã‚º
+ * @param	tex_size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿ç”¨ã«ç¢ºä¿ã™ã‚‹é ˜åŸŸã‚µã‚¤ã‚º
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -253,16 +253,16 @@ void FE_ParamInit_BlAct(
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒGƒtƒFƒNƒg“o˜^
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™»éŒ²
  * @param	fes		FE_SYS *
- * @param	id		“o˜^‚·‚éƒGƒtƒFƒNƒgID FE_FLD_SHADOW“™
+ * @param	id		ç™»éŒ²ã™ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆID FE_FLD_SHADOWç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
 void FE_EffectRegist( FE_SYS *fes, u32 id )
 {
 	if( fe_SubProcRegDataIDSearch(fes,id) != NULL ){
-		GF_ASSERT( 0 && "FE_EffectRegist()Šù‚É‚»‚ÌID‚Í“o˜^Ï‚İ‚Å‚·" );
+		GF_ASSERT( 0 && "FE_EffectRegist()æ—¢ã«ãã®IDã¯ç™»éŒ²æ¸ˆã¿ã§ã™" );
 		return;
 	}
 	
@@ -271,9 +271,9 @@ void FE_EffectRegist( FE_SYS *fes, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒGƒtƒFƒNƒg•¡”“o˜^
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¤‡æ•°ç™»éŒ²
  * @param	fes		FE_SYS *
- * @param	id_tbl	“o˜^‚·‚éƒGƒtƒFƒNƒgID‚ğ‚Ü‚Æ‚ß‚½u32Œ^‚Ì”z—ñBI’[‚ÉFE_PROC_MAX
+ * @param	id_tbl	ç™»éŒ²ã™ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆIDã‚’ã¾ã¨ã‚ãŸu32å‹ã®é…åˆ—ã€‚çµ‚ç«¯ã«FE_PROC_MAX
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -287,10 +287,10 @@ void FE_EffectRegistMore( FE_SYS *fes, const u32 *id_tbl )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒGƒtƒFƒNƒg“o˜^ƒ`ƒFƒbƒN
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™»éŒ²ãƒã‚§ãƒƒã‚¯
  * @param	fes		FE_SYS *
- * @param	id		“o˜^ƒ`ƒFƒbƒN‚·‚éƒGƒtƒFƒNƒgID FE_FLD_SHADOW“™
- * @retval	int		TRUE=“o˜^Ï‚İ FALSE=“o˜^‚³‚ê‚Ä‚¢‚È‚¢
+ * @param	id		ç™»éŒ²ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆID FE_FLD_SHADOWç­‰
+ * @retval	int		TRUE=ç™»éŒ²æ¸ˆã¿ FALSE=ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 int FE_EffectRegistCheck( FE_SYS *fes, u32 id )
@@ -304,9 +304,9 @@ int FE_EffectRegistCheck( FE_SYS *fes, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒGƒtƒFƒNƒgíœ
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‰Šé™¤
  * @param	fes		FE_SYS *
- * @param	id		íœ‚·‚éƒGƒtƒFƒNƒgID FE_FLD_SHADOW“™
+ * @param	id		å‰Šé™¤ã™ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆID FE_FLD_SHADOWç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -317,7 +317,7 @@ void FE_EffectDelete( FE_SYS *fes, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@•`‰æ
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€æç”»
  * @param	fes	FE_SYS *
  * @retval	nothing
  */
@@ -329,7 +329,7 @@ void FE_Draw( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgƒVƒXƒeƒ€íœ
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
  * @param	fes			FE_SYS_PTR
  * @retval	nothing
  */
@@ -347,15 +347,15 @@ void FE_Delete( FE_SYS *fes )
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒp[ƒc
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgê—p—Ìˆæ‚©‚çƒƒ‚ƒŠŠm•Û
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå°‚ç”¨é ˜åŸŸã‹ã‚‰ãƒ¡ãƒ¢ãƒªç¢ºä¿
  * @param	fes		FE_SYS_PTR
- * @param	size	Šm•Û‚·‚éƒTƒCƒY
+ * @param	size	ç¢ºä¿ã™ã‚‹ã‚µã‚¤ã‚º
  * @param	type	ALLOCTYPE
- * @retval	void*	Šm•Û‚µ‚½ƒTƒCƒY@NULL=Šm•Ûo—ˆ‚È‚¢(ASSERTB
+ * @retval	void*	ç¢ºä¿ã—ãŸã‚µã‚¤ã‚ºã€€NULL=ç¢ºä¿å‡ºæ¥ãªã„(ASSERTã€‚
  */
 //--------------------------------------------------------------
 void * FE_AllocMemory( const FE_SYS *fes, u32 size, ALLOCTYPE type )
@@ -368,12 +368,12 @@ void * FE_AllocMemory( const FE_SYS *fes, u32 size, ALLOCTYPE type )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgê—p—Ìˆæ‚©‚çƒƒ‚ƒŠŠm•ÛBŠm•Û‚µ‚½—Ìˆæ‚Íw’è’l‚ÅƒNƒŠƒA‚³‚ê‚éB
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå°‚ç”¨é ˜åŸŸã‹ã‚‰ãƒ¡ãƒ¢ãƒªç¢ºä¿ã€‚ç¢ºä¿ã—ãŸé ˜åŸŸã¯æŒ‡å®šå€¤ã§ã‚¯ãƒªã‚¢ã•ã‚Œã‚‹ã€‚
  * @param	fes		FE_SYS_PTR
- * @param	size	Šm•Û‚·‚éƒTƒCƒYB
+ * @param	size	ç¢ºä¿ã™ã‚‹ã‚µã‚¤ã‚ºã€‚
  * @param	type	ALLOCTYPE
- * @param	clear	–„‚ßs‚­‚·’l
- * @retval	void*	Šm•Û‚µ‚½ƒTƒCƒY@NULL=Šm•Ûo—ˆ‚È‚¢(ASSERTB
+ * @param	clear	åŸ‹ã‚å°½ãã™å€¤
+ * @retval	void*	ç¢ºä¿ã—ãŸã‚µã‚¤ã‚ºã€€NULL=ç¢ºä¿å‡ºæ¥ãªã„(ASSERTã€‚
  */
 //--------------------------------------------------------------
 void * FE_AllocClearMemory( const FE_SYS *fes, u32 size, ALLOCTYPE type, u32 clear )
@@ -385,8 +385,8 @@ void * FE_AllocClearMemory( const FE_SYS *fes, u32 size, ALLOCTYPE type, u32 cle
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgê—p—Ìˆæ‚©‚çæ“¾‚µ‚½ƒƒ‚ƒŠ‚ğŠJ•ú
- * @param	alloc	FE_AllocMemory()‚ÅŠm•Û‚µ‚½ƒƒ‚ƒŠ
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå°‚ç”¨é ˜åŸŸã‹ã‚‰å–å¾—ã—ãŸãƒ¡ãƒ¢ãƒªã‚’é–‹æ”¾
+ * @param	alloc	FE_AllocMemory()ã§ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒª
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -397,7 +397,7 @@ void FE_FreeMemory( void *alloc )
 
 //------------------------------------------------------------------
 /**
- * NitroSystem ƒ‰ƒCƒuƒ‰ƒŠŒnŠÖ”‚ª—v‹‚·‚éƒAƒƒP[ƒ^‚ğì¬‚·‚é
+ * NitroSystem ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç³»é–¢æ•°ãŒè¦æ±‚ã™ã‚‹ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
  */
 //------------------------------------------------------------------
 void FE_InitAllocator( FE_SYS *fes, NNSFndAllocator *pAllocator )
@@ -407,10 +407,10 @@ void FE_InitAllocator( FE_SYS *fes, NNSFndAllocator *pAllocator )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒGƒtƒFƒNƒg‚Åg—p‚µ‚Ä‚¢‚éƒ[ƒN‚ğæ“¾
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
  * @param	fes		FE_SYS *
- * @param	id		æ“¾‚·‚éƒGƒtƒFƒNƒgID FE_FLD_SHADOW“™
- * @retval	void*	id‚Åg—p‚µ‚Ä‚¢‚éƒ[ƒN@NULL=“o˜^‚³‚ê‚Ä‚¢‚È‚¢ NULLAASSERT()
+ * @param	id		å–å¾—ã™ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆID FE_FLD_SHADOWç­‰
+ * @retval	void*	idã§ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã€€NULL=ç™»éŒ²ã•ã‚Œã¦ã„ãªã„ NULLæ™‚ã€ASSERT()
  */
 //--------------------------------------------------------------
 void * FE_EffectWorkGet( FE_SYS *fes, u32 id )
@@ -428,7 +428,7 @@ void * FE_EffectWorkGet( FE_SYS *fes, u32 id )
 
 //--------------------------------------------------------------
 /**
- * FIELDSYS_WORKæ“¾
+ * FIELDSYS_WORKå–å¾—
  * @param	fes				FE_SYS_PTR
  * @retval	FIELDSYS_WORK	FIELDSYS_WORK *
  */
@@ -440,7 +440,7 @@ FIELDSYS_WORK * FE_FieldSysWorkGet( const FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * FIELD_OBJ_PTR‚©‚çFE_SYS *æ“¾
+ * FIELD_OBJ_PTRã‹ã‚‰FE_SYS *å–å¾—
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	FE_SYS*		FE_SYS *
  */
@@ -452,13 +452,13 @@ FE_SYS * FE_FieldOBJ_FE_SYS_Get( CONST_FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒp[ƒc@ƒ[ƒJƒ‹
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ãƒ‘ãƒ¼ãƒ„ã€€ãƒ­ãƒ¼ã‚«ãƒ«
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgê—pƒq[ƒvIDæ“¾
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå°‚ç”¨ãƒ’ãƒ¼ãƒ—IDå–å¾—
  * @param	fes		FE_SYS_PTR
- * @retval	u32		ƒq[ƒvID
+ * @retval	u32		ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 static u32 fe_HeapIDGet( const FE_SYS *fes )
@@ -468,9 +468,9 @@ static u32 fe_HeapIDGet( const FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgê—pƒq[ƒvIDæ“¾
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå°‚ç”¨ãƒ’ãƒ¼ãƒ—IDå–å¾—
  * @param	fes		FE_SYS_PTR
- * @retval	u32		ƒq[ƒvID
+ * @retval	u32		ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 u32 FE_HeapIDGet( const FE_SYS *fes )
@@ -479,11 +479,11 @@ u32 FE_HeapIDGet( const FE_SYS *fes )
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒA[ƒJƒCƒuƒf[ƒ^
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg—pƒA[ƒJƒCƒuƒf[ƒ^ƒI[ƒvƒ“
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ¼ãƒ—ãƒ³
  * @param	fes		FE_SYS *
  * @retval	nothing
  */
@@ -495,7 +495,7 @@ static void fe_ArcHandleOpen( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg—pƒA[ƒJƒCƒuƒf[ƒ^ƒNƒ[ƒY
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒ­ãƒ¼ã‚º
  * @param	fes		FE_SYS *
  * @retval	nothing
  */
@@ -507,7 +507,7 @@ static void fe_ArcHandleClose( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg—pƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹æ“¾
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«å–å¾—
  * @param	fes		FE_SYS *
  * @retval	nothing
  */
@@ -519,10 +519,10 @@ ARCHANDLE * FE_ArcHandleGet( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg—pƒA[ƒJƒCƒuƒf[ƒ^‚ÌƒTƒCƒY‚ğæ“¾
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
  * @param	fes		FE_SYS *
- * @param	datid	ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXID
- * @retval	u32		datidƒf[ƒ^ƒTƒCƒY
+ * @param	datid	ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ID
+ * @retval	u32		datidãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //--------------------------------------------------------------
 u32 FE_ArcDataSizeGet( FE_SYS *fes, u32 datid )
@@ -533,10 +533,10 @@ u32 FE_ArcDataSizeGet( FE_SYS *fes, u32 datid )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg—pƒA[ƒJƒCƒuƒf[ƒ^‚ğæ“¾
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  * @param	fes		FE_SYS *
- * @param	datid	ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXID
- * @param	buf		datidƒ[ƒhæ
+ * @param	datid	ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ID
+ * @param	buf		datidãƒ­ãƒ¼ãƒ‰å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -547,11 +547,11 @@ void FE_ArcDataLoad( FE_SYS *fes, u32 datid, void *buf )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg—pƒA[ƒJƒCƒuƒf[ƒ^‚ğ“WŠJæ‚Ì—Ìˆæ‚ğŠm•Û‚µAæ“¾B
- * —Ìˆæ‚ÍƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg—pƒq[ƒv—ÌˆæBŠJ•ú‚ÍFE_FreeMemory()
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’å±•é–‹å…ˆã®é ˜åŸŸã‚’ç¢ºä¿ã—ã€å–å¾—ã€‚
+ * é ˜åŸŸã¯ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ’ãƒ¼ãƒ—é ˜åŸŸã€‚é–‹æ”¾ã¯FE_FreeMemory()
  * @param	fes		FE_SYS *
- * @param	datid	ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXID
- * @retval	void*	ƒA[ƒJƒCƒuƒf[ƒ^‚ğ“Ç‚İ‚ñ‚¾—Ìˆæ *
+ * @param	datid	ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ID
+ * @retval	void*	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚“ã é ˜åŸŸ *
  */
 //--------------------------------------------------------------
 void * FE_ArcDataLoadAlloc( FE_SYS *fes, u32 datid, ALLOCTYPE type )
@@ -563,11 +563,11 @@ void * FE_ArcDataLoadAlloc( FE_SYS *fes, u32 datid, ALLOCTYPE type )
 }
 
 //==============================================================================
-//	SUBPROC_REGDATAŠÖ˜A
+//	SUBPROC_REGDATAé–¢é€£
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * SUBPROC_REGDATA ‘S‰Šú‰»
+ * SUBPROC_REGDATA å…¨åˆæœŸåŒ–
  * @param	fes		FE_SYS
  * @retval	nothing
  */
@@ -585,9 +585,9 @@ static void fe_SubProcRegDataInitAll( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * SUBPROC_REGDATA w’èID‚Ì‰Šú‰»ŠÖ”ŒÄ‚Ño‚µA“o˜^
+ * SUBPROC_REGDATA æŒ‡å®šIDã®åˆæœŸåŒ–é–¢æ•°å‘¼ã³å‡ºã—ã€ç™»éŒ²
  * @param	fes		FE_SYS
- * @param	id		FE_FLD_SHADOW“™
+ * @param	id		FE_FLD_SHADOWç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -606,7 +606,7 @@ static void fe_SubProcRegDataIDSet( FE_SYS *fes, u32 id )
 
 //--------------------------------------------------------------
 /**
- * SUBPROC_REGDATA w’èSUBPROC_REGDATA‚ÌíœŠÖ”ŒÄ‚Ño‚µAíœ
+ * SUBPROC_REGDATA æŒ‡å®šSUBPROC_REGDATAã®å‰Šé™¤é–¢æ•°å‘¼ã³å‡ºã—ã€å‰Šé™¤
  * @param	fes		FE_SYS
  * @param	subproc	SUBPROC_REGDATA *
  * @retval	nothing
@@ -621,22 +621,22 @@ static void fe_SubProcRegDataDelete( FE_SYS *fes, SUBPROC_REGDATA *subproc )
 
 //--------------------------------------------------------------
 /**
- * SUBPROC_REGDATA w’èID‚ÌíœŠÖ”ŒÄ‚Ño‚µAíœ
+ * SUBPROC_REGDATA æŒ‡å®šIDã®å‰Šé™¤é–¢æ•°å‘¼ã³å‡ºã—ã€å‰Šé™¤
  * @param	fes		FE_SYS
- * @param	id		FE_FLD_SHADOW“™
+ * @param	id		FE_FLD_SHADOWç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void fe_SubProcRegDataIDDelete( FE_SYS *fes, u32 id )
 {
 	SUBPROC_REGDATA *subproc = fe_SubProcRegDataIDSearch( fes, id );
-	GF_ASSERT( subproc != NULL && "fe_SubProcRegDataIDDelete()IDˆê’v–³‚µ\n" );
+	GF_ASSERT( subproc != NULL && "fe_SubProcRegDataIDDelete()IDä¸€è‡´ç„¡ã—\n" );
 	fe_SubProcRegDataDelete( fes, subproc );
 }
 
 //--------------------------------------------------------------
 /**
- * SUBPROC_REGDATA “o˜^‚³‚ê‚Ä‚¢‚éID‚ğ‘S‚Äíœ
+ * SUBPROC_REGDATA ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹IDã‚’å…¨ã¦å‰Šé™¤
  * @param	fes		FE_SYS
  * @retval	nothing
  */
@@ -657,9 +657,9 @@ static void fe_SubProcRegDataDeleteAll( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * SUBPROC_REGDATA ‹ó‚«’T‚µ
+ * SUBPROC_REGDATA ç©ºãæ¢ã—
  * @param	fes		FE_SYS
- * @retval	SUBPROC_REGDATA* ‹ó‚¢‚Ä‚¢‚éSUBPROC_REGDATA*@NULL=‹ó‚«–³‚µ
+ * @retval	SUBPROC_REGDATA* ç©ºã„ã¦ã„ã‚‹SUBPROC_REGDATA*ã€€NULL=ç©ºãç„¡ã—
  */
 //--------------------------------------------------------------
 static SUBPROC_REGDATA * fe_SubProcRegDataSpaceSearch( FE_SYS *fes )
@@ -675,16 +675,16 @@ static SUBPROC_REGDATA * fe_SubProcRegDataSpaceSearch( FE_SYS *fes )
 		subproc++; max--;
 	}
 	
-	GF_ASSERT( 0 && "fe_SubProcRegDataSpaceSearch()‹ó‚«–³‚µ" );
+	GF_ASSERT( 0 && "fe_SubProcRegDataSpaceSearch()ç©ºãç„¡ã—" );
 	return( NULL );
 }
 
 //--------------------------------------------------------------
 /**
- * SUBPROC_REGDATA ˆê’vID’T‚µ
+ * SUBPROC_REGDATA ä¸€è‡´IDæ¢ã—
  * @param	fes		FE_SYS
- * @param	id		ŒŸõID FE_FLD_SHADOW“™
- * @retval	SUBPROC_REGDATA* ‹ó‚¢‚Ä‚¢‚éSUBPROC_REGDATA*@NULL=‹ó‚«–³‚µ
+ * @param	id		æ¤œç´¢ID FE_FLD_SHADOWç­‰
+ * @retval	SUBPROC_REGDATA* ç©ºã„ã¦ã„ã‚‹SUBPROC_REGDATA*ã€€NULL=ç©ºãç„¡ã—
  */
 //--------------------------------------------------------------
 static SUBPROC_REGDATA * fe_SubProcRegDataIDSearch( FE_SYS *fes, u32 id )
@@ -705,7 +705,7 @@ static SUBPROC_REGDATA * fe_SubProcRegDataIDSearch( FE_SYS *fes, u32 id )
 
 //--------------------------------------------------------------
 /**
- * SUBPROC_REGDATA ‰Šú‰»
+ * SUBPROC_REGDATA åˆæœŸåŒ–
  * @param	subproc	SUBPROC_REGDATA
  * @retval	nothing
  */
@@ -718,10 +718,10 @@ static void SubProcRegDataInit( SUBPROC_REGDATA *subproc )
 
 //--------------------------------------------------------------
 /**
- * SUBPROC_REGDATA ƒZƒbƒg
+ * SUBPROC_REGDATA ã‚»ãƒƒãƒˆ
  * @param	subproc	SUBPROC_REGDATA
- * @param	id		FE_FLD_SHADOW“™
- * @param	work	w’èidŠÖ”‚Åg—p‚·‚éƒ[ƒN
+ * @param	id		FE_FLD_SHADOWç­‰
+ * @param	work	æŒ‡å®šidé–¢æ•°ã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -733,9 +733,9 @@ static void SubProcRegDataSet( SUBPROC_REGDATA *subproc, u32 id, void *work )
 
 //--------------------------------------------------------------
 /**
- * SUBPROC_REGDATA@‹ó‚«ƒ`ƒFƒbƒN
+ * SUBPROC_REGDATAã€€ç©ºããƒã‚§ãƒƒã‚¯
  * @param	subproc	SUBPROC_REGDATA
- * @retval	int	TRUE=‹ó‚«@FALSE=‹ó‚¢‚Ä‚¢‚È‚¢
+ * @retval	int	TRUE=ç©ºãã€€FALSE=ç©ºã„ã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 static int SubProcRegDataSpaceCheck( const SUBPROC_REGDATA *subproc )
@@ -749,8 +749,8 @@ static int SubProcRegDataSpaceCheck( const SUBPROC_REGDATA *subproc )
 
 //--------------------------------------------------------------
 /**
- * ƒGƒtƒFƒNƒgID -> FE_SUBPROC_DATAæ“¾
- * @param	id		FE_FLD_SHADOW“™
+ * ã‚¨ãƒ•ã‚§ã‚¯ãƒˆID -> FE_SUBPROC_DATAå–å¾—
+ * @param	id		FE_FLD_SHADOWç­‰
  * @retval	FE_SUBPROC_DATA FE_SUBPROC_DATA *
  */
 //--------------------------------------------------------------
@@ -766,16 +766,16 @@ static const FE_SUBPROC_DATA * SubProcIDDataGet( u32 id )
 		tbl++;
 	}
 	
-	GF_ASSERT( 0 && "SubProcDataGet()“o˜^‚³‚ê‚Ä‚¢‚È‚¢ID‚Å‚·" );
+	GF_ASSERT( 0 && "SubProcDataGet()ç™»éŒ²ã•ã‚Œã¦ã„ãªã„IDã§ã™" );
 	return( NULL );
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@EOA
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOA‰Šú‰»
+ * EOAåˆæœŸåŒ–
  * @param	fes		FE_SYS
  * @retval	nothing
  */
@@ -787,7 +787,7 @@ static void fe_EoaInit( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * EOAíœ
+ * EOAå‰Šé™¤
  * @param	fes		FE_SYS
  * @retval	nothing
  */
@@ -802,7 +802,7 @@ static void fe_EoaDelete( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * EOA•`‰æ
+ * EOAæç”»
  * @param	fes	FE_SYS *
  * @retval	nothing
  */
@@ -815,18 +815,18 @@ static void fe_EoaDraw( FE_SYS *fes )
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@EOA@ƒp[ƒc
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€EOAã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOA’Ç‰Á@À‘Ì‚ÍEOA_Add_NPP()
+ * EOAè¿½åŠ ã€€å®Ÿä½“ã¯EOA_Add_NPP()
  * @param	fes		FE_SYS_PTR
- * @param	EOA_H_NPP	’Ç‰Á‚³‚ê‚éî•ñ‚ª“Z‚ß‚ç‚ê‚½EOA_H_NPP
- * @param	mtx			‰ŠúˆÊ’u
- * @param	prm			’Ç‰Á‚·‚éEOA‚Öw’è‚·‚éƒpƒ‰ƒƒ^
- * @param	ptr			’Ç‰Á‚·‚éEOA‚Öw’è‚·‚éƒ|ƒCƒ“ƒ^
- * @param	pri			’Ç‰Á‚·‚éEOA‚Ì“®ìƒvƒ‰ƒCƒIƒŠƒeƒB
- * @retval	EOA_PTR		’Ç‰Á‚³‚ê‚½EOA_PTR ’Ç‰Á¸”s@‹­§I—¹
+ * @param	EOA_H_NPP	è¿½åŠ ã•ã‚Œã‚‹æƒ…å ±ãŒçºã‚ã‚‰ã‚ŒãŸEOA_H_NPP
+ * @param	mtx			åˆæœŸä½ç½®
+ * @param	prm			è¿½åŠ ã™ã‚‹EOAã¸æŒ‡å®šã™ã‚‹ãƒ‘ãƒ©ãƒ¡ã‚¿
+ * @param	ptr			è¿½åŠ ã™ã‚‹EOAã¸æŒ‡å®šã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
+ * @param	pri			è¿½åŠ ã™ã‚‹EOAã®å‹•ä½œãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @retval	EOA_PTR		è¿½åŠ ã•ã‚ŒãŸEOA_PTR è¿½åŠ å¤±æ•—æ™‚ã€€å¼·åˆ¶çµ‚äº†
  */
 //--------------------------------------------------------------
 EOA_PTR FE_EoaAddNpp( const FE_SYS *fes, const EOA_H_NPP *head,
@@ -838,7 +838,7 @@ EOA_PTR FE_EoaAddNpp( const FE_SYS *fes, const EOA_H_NPP *head,
 	es = fes->eoa_sys;
 	eoa = EOA_Add_NPP( es, head, mtx, prm, ptr, pri );
 	
-	GF_ASSERT( eoa != NULL && "FE_EoaAddNpp() EOA‚Ì’Ç‰Á‚É¸”sc" );
+	GF_ASSERT( eoa != NULL && "FE_EoaAddNpp() EOAã®è¿½åŠ ã«å¤±æ•—â€¦" );
 	
 #ifdef DEBUG_FE_EOA_USE_CHECK
 	DEBUG_FeEoaUseCheck_Add( eoa, head );
@@ -849,8 +849,8 @@ EOA_PTR FE_EoaAddNpp( const FE_SYS *fes, const EOA_H_NPP *head,
 
 //--------------------------------------------------------------
 /**
- * EOAíœ@À‘Ì‚ÍEOA_Delete()
- * ¦ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg‚Åg—p‚µ‚Ä‚¢‚éEOA”cˆ¬‚Ìˆ×Aíœ‚ÌÛA‚±‚¿‚ç‚ğg‚¤
+ * EOAå‰Šé™¤ã€€å®Ÿä½“ã¯EOA_Delete()
+ * â€»ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§ä½¿ç”¨ã—ã¦ã„ã‚‹EOAæŠŠæ¡ã®ç‚ºã€å‰Šé™¤ã®éš›ã€ã“ã¡ã‚‰ã‚’ä½¿ã†
  * @param	eoa		EOA_PTR
  * @retval	nothing
  */
@@ -865,20 +865,20 @@ void FE_EoaDelete( EOA_PTR eoa )
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‰Šú‰»@ƒƒCƒ“
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–ã€€ãƒ¡ã‚¤ãƒ³
  * @param	fes				FE_SYS *
- * @param	gp_heap_id		ƒOƒ‰ƒtƒBƒbƒN—p—Ìˆæ‚ğŠm•Û‚·‚éƒq[ƒv—Ìˆæ‚ğì¬‚·‚éƒq[ƒvID
- * @param	act_max			ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Å‘å”
- * @param	mdl_max			ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^Å‘å”
- * @param	anm_max			ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^Å‘å”
- * @param	tex_max			ƒeƒNƒXƒ`ƒƒƒf[ƒ^Å‘å”
- * @param	mdl_size		ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^—p‚ÉŠm•Û‚·‚é—ÌˆæƒTƒCƒY
- * @param	anm_size		ƒAƒjƒƒf[ƒ^—p‚ÉŠm•Û‚·‚é—ÌˆæƒTƒCƒY
- * @param	tex_size		ƒeƒNƒXƒ`ƒƒƒf[ƒ^—p‚ÉŠm•Û‚·‚é—ÌˆæƒTƒCƒY
+ * @param	gp_heap_id		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç”¨é ˜åŸŸã‚’ç¢ºä¿ã™ã‚‹ãƒ’ãƒ¼ãƒ—é ˜åŸŸã‚’ä½œæˆã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
+ * @param	act_max			ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
+ * @param	mdl_max			ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•°
+ * @param	anm_max			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•°
+ * @param	tex_max			ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•°
+ * @param	mdl_size		ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ç”¨ã«ç¢ºä¿ã™ã‚‹é ˜åŸŸã‚µã‚¤ã‚º
+ * @param	anm_size		ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ç”¨ã«ç¢ºä¿ã™ã‚‹é ˜åŸŸã‚µã‚¤ã‚º
+ * @param	tex_size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿ç”¨ã«ç¢ºä¿ã™ã‚‹é ˜åŸŸã‚µã‚¤ã‚º
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -904,7 +904,7 @@ static void fe_BlActInit(
 	fba->lres_anm = LRes_Init(
 		gp_heap_id, HEAPID_FIELD_FE_BLACT_ANM, anm_size, anm_max );
 	
-	fba->resm_tex = TEXRESM_Init( tex_max, gp_heap_id );		//‚Ç‚¤‚µ‚æ‚¤‚©
+	fba->resm_tex = TEXRESM_Init( tex_max, gp_heap_id );		//ã©ã†ã—ã‚ˆã†ã‹
 	fe_BlActHeaderManageInit( fes, fba, act_max );
 	
 	set.WorkNum = act_max;
@@ -914,7 +914,7 @@ static void fe_BlActInit(
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[íœ
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  * @param	fes				FE_SYS *
  * @retval	nothing
  */
@@ -937,15 +937,15 @@ static void fe_BlActDelete( FE_SYS *fes )
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg—pƒrƒ‹ƒ{[ƒhƒAƒNƒ^[@ƒp[ƒc
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰Á@À‘Ì‚ÍBLACT_Add()
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ã€€å®Ÿä½“ã¯BLACT_Add()
  * @param	fes			FE_SYS
  * @param	head		BLACT_HEADER *
- * @param	vec			À•W
- * @retval	BLACT_WORK	BLACT_WORK_PTR ¸”s=‹­§I—¹
+ * @param	vec			åº§æ¨™
+ * @retval	BLACT_WORK	BLACT_WORK_PTR å¤±æ•—=å¼·åˆ¶çµ‚äº†
  */
 //--------------------------------------------------------------
 BLACT_WORK_PTR FE_BlActAdd( FE_SYS *fes, 
@@ -964,7 +964,7 @@ BLACT_WORK_PTR FE_BlActAdd( FE_SYS *fes,
 	add.scale	= scale;
 	
 	act = BLACT_Add( &add );
-	GF_ASSERT( act != NULL && "FE_BlActAdd()ƒAƒNƒ^[’Ç‰Á¸”s ƒAƒNƒ^[’e”•s‘«‚©?" );
+	GF_ASSERT( act != NULL && "FE_BlActAdd()ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ å¤±æ•— ã‚¢ã‚¯ã‚¿ãƒ¼å¼¾æ•°ä¸è¶³ã‹?" );
 	
 	if( act != NULL ){
 		NNS_G3dMdlSetMdlFogEnableFlagAll( BLACT_MdlResGet(act), TRUE );
@@ -976,12 +976,12 @@ BLACT_WORK_PTR FE_BlActAdd( FE_SYS *fes,
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[’Ç‰Á@À‘Ì‚ÍBLACT_Add()B
- * ƒwƒbƒ_[w’è‚ÍFE_BlActHeaderManageAdd()‚Åw’è‚µ‚½IDB
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ã€€å®Ÿä½“ã¯BLACT_Add()ã€‚
+ * ãƒ˜ãƒƒãƒ€ãƒ¼æŒ‡å®šã¯FE_BlActHeaderManageAdd()ã§æŒ‡å®šã—ãŸIDã€‚
  * @param	fes			FE_SYS
- * @param	id			ƒwƒbƒ_[“o˜^ID
- * @param	vec			À•W
- * @retval	BLACT_WORK	BLACT_WORK_PTR ¸”s=‹­§I—¹
+ * @param	id			ãƒ˜ãƒƒãƒ€ãƒ¼ç™»éŒ²ID
+ * @param	vec			åº§æ¨™
+ * @retval	BLACT_WORK	BLACT_WORK_PTR å¤±æ•—=å¼·åˆ¶çµ‚äº†
  */
 //--------------------------------------------------------------
 BLACT_WORK_PTR FE_BlActAddID( FE_SYS *fes, u32 id, const VecFx32 *vec )
@@ -993,15 +993,15 @@ BLACT_WORK_PTR FE_BlActAddID( FE_SYS *fes, u32 id, const VecFx32 *vec )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[“o˜^
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç™»éŒ²
  * @param	fes			FE_SYS *
- * @param	id			“o˜^ID
- * @param	mdl				ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚Ö‚Ì*
- * @param	anm				ƒAƒjƒƒŠƒ\[ƒX‚Ö‚Ì*
- * @param	tex				ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ö‚Ì*
- * @param	tex_key			í’“Œ^‚Ìê‡‚ÍƒL[æ“¾—pTEXRES_OBJ_PTR‚ğw’èBNULL=“]‘—Œ^‚ÅƒZƒbƒg
- * @param	anm_tbl			ƒrƒ‹ƒ{[ƒhƒAƒjƒ const BLACT_ANIME_TBL *
- * @retval	BLACT_HEADER “o˜^‚³‚ê‚½BLACT_HEADER * ’Ç‰ÁÏ‚İ‚Ìê‡‚Í‚»‚Ì—Ìˆæ‚ğ•Ô‚· ’Ç‰Á¸”s=ASSERT
+ * @param	id			ç™»éŒ²ID
+ * @param	mdl				ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã¸ã®*
+ * @param	anm				ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã¸ã®*
+ * @param	tex				ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¸ã®*
+ * @param	tex_key			å¸¸é§å‹ã®å ´åˆã¯ã‚­ãƒ¼å–å¾—ç”¨TEXRES_OBJ_PTRã‚’æŒ‡å®šã€‚NULL=è»¢é€å‹ã§ã‚»ãƒƒãƒˆ
+ * @param	anm_tbl			ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ãƒ‹ãƒ¡ const BLACT_ANIME_TBL *
+ * @retval	BLACT_HEADER ç™»éŒ²ã•ã‚ŒãŸBLACT_HEADER * è¿½åŠ æ¸ˆã¿ã®å ´åˆã¯ãã®é ˜åŸŸã‚’è¿”ã™ è¿½åŠ å¤±æ•—=ASSERT
  */
 //--------------------------------------------------------------
 BLACT_HEADER * FE_BlActHeaderManageAdd( FE_SYS *fes, u32 id,
@@ -1015,15 +1015,15 @@ BLACT_HEADER * FE_BlActHeaderManageAdd( FE_SYS *fes, u32 id,
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[“o˜^ ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[—˜—p
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç™»éŒ² ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆ©ç”¨
  * @param	fes			FE_SYS *
- * @param	id			“o˜^ID
- * @param	mdl_id		FE_BlActResAdd_Mdl()‚Å“o˜^‚µ‚½ID
- * @param	anm_id		FE_BlActResAdd_Anm()‚Å“o˜^‚µ‚½ID
- * @param	tex_id		FE_BlActResAdd_Tex()‚Å“o˜^‚µ‚½ID
- * @param	tex_flag	FE_BLACT_TEX_VRAM“™
- * @param	anm_tbl		ƒrƒ‹ƒ{[ƒhƒAƒjƒ const BLACT_ANIME_TBL *
- * @retval	BLACT_HEADER “o˜^‚³‚ê‚½BLACT_HEADER * ’Ç‰ÁÏ‚İ‚Ìê‡‚Í‚»‚Ì—Ìˆæ‚ğ•Ô‚· ’Ç‰Á¸”s=ASSERT
+ * @param	id			ç™»éŒ²ID
+ * @param	mdl_id		FE_BlActResAdd_Mdl()ã§ç™»éŒ²ã—ãŸID
+ * @param	anm_id		FE_BlActResAdd_Anm()ã§ç™»éŒ²ã—ãŸID
+ * @param	tex_id		FE_BlActResAdd_Tex()ã§ç™»éŒ²ã—ãŸID
+ * @param	tex_flag	FE_BLACT_TEX_VRAMç­‰
+ * @param	anm_tbl		ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ãƒ‹ãƒ¡ const BLACT_ANIME_TBL *
+ * @retval	BLACT_HEADER ç™»éŒ²ã•ã‚ŒãŸBLACT_HEADER * è¿½åŠ æ¸ˆã¿ã®å ´åˆã¯ãã®é ˜åŸŸã‚’è¿”ã™ è¿½åŠ å¤±æ•—=ASSERT
  */
 //--------------------------------------------------------------
 BLACT_HEADER * FE_BlActHeaderManageAddResmID(
@@ -1043,7 +1043,7 @@ BLACT_HEADER * FE_BlActHeaderManageAddResmID(
 	TEXANM_UnPackLoadFile( anm, &anmdata );
 	
 	tex_obj = TEXRESM_GetResObj( fba->resm_tex, tex_id );
-	GF_ASSERT( tex_obj != NULL && "FE_BlActHeaderManageAddResmID()ƒeƒNƒXƒ`ƒƒ–¢“o˜^IDw’è" );
+	GF_ASSERT( tex_obj != NULL && "FE_BlActHeaderManageAddResmID()ãƒ†ã‚¯ã‚¹ãƒãƒ£æœªç™»éŒ²IDæŒ‡å®š" );
 	tex = TEXRESM_GetResPTR( tex_obj );
 	
 	if( tex_flag == FE_BLACT_TEX_TRANS ){
@@ -1051,20 +1051,20 @@ BLACT_HEADER * FE_BlActHeaderManageAddResmID(
 	}
 	
 	head = fe_BlActHeaderManageAdd( fba, id, mdl, &anmdata, tex, tex_obj, anm_tbl );
-	GF_ASSERT( head != NULL && "FE_BlActHeaderManageAdd()“o˜^”ƒI[ƒo[‚É‚æ‚é’Ç‰Á¸”s" );
+	GF_ASSERT( head != NULL && "FE_BlActHeaderManageAdd()ç™»éŒ²æ•°ã‚ªãƒ¼ãƒãƒ¼ã«ã‚ˆã‚‹è¿½åŠ å¤±æ•—" );
 	
 	return( head );
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg—pƒrƒ‹ƒ{[ƒhƒAƒNƒ^[@ƒwƒbƒ_[ƒ}ƒl[ƒWƒƒ
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒ˜ãƒƒãƒ€ãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ£
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒwƒbƒ_[—ÌˆæŠm•Û@—Ìˆæ‚ÍFE_AllocMemory()‚ÅŠm•Û
+ * ãƒ˜ãƒƒãƒ€ãƒ¼é ˜åŸŸç¢ºä¿ã€€é ˜åŸŸã¯FE_AllocMemory()ã§ç¢ºä¿
  * @param	fes		FE_SYS
  * @param	fba		FE_BLACT
- * @param	max		ƒwƒbƒ_[Å‘å”
+ * @param	max		ãƒ˜ãƒƒãƒ€ãƒ¼æœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1090,7 +1090,7 @@ static void fe_BlActHeaderManageInit( FE_SYS *fes, FE_BLACT *fba, u32 max )
 
 //--------------------------------------------------------------
 /**
- * ƒwƒbƒ_[—Ìˆæíœ
+ * ãƒ˜ãƒƒãƒ€ãƒ¼é ˜åŸŸå‰Šé™¤
  * @param	fba		FE_BLACT
  * @retval	nothing
  */
@@ -1103,9 +1103,9 @@ static void fe_BlActHeaderManageDelete( FE_BLACT *fba )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ŠÇ——ÌˆæŠJ•ú
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç®¡ç†é ˜åŸŸé–‹æ”¾
  * @param	fba			FE_BLACT *
- * @param	id			ŠJ•ú‚·‚éID
+ * @param	id			é–‹æ”¾ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1119,20 +1119,20 @@ static void fe_BlActHeaderManageFree( FE_BLACT *fba, u32 id )
 		ma++; max--;
 	}while( max );	
 	
-	GF_ASSERT( 0 && "fe_BlActHeaderManageFree()“o˜^‚³‚ê‚Ä‚¢‚È‚¢ƒwƒbƒ_[ID‚Å‚·" );
+	GF_ASSERT( 0 && "fe_BlActHeaderManageFree()ç™»éŒ²ã•ã‚Œã¦ã„ãªã„ãƒ˜ãƒƒãƒ€ãƒ¼IDã§ã™" );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ŠÇ——Ìˆæ‚Öƒwƒbƒ_[’Ç‰Á
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç®¡ç†é ˜åŸŸã¸ãƒ˜ãƒƒãƒ€ãƒ¼è¿½åŠ 
  * @param	fba				FE_BLACT *
- * @param	id				“o˜^‚·‚éID
- * @param	mdl				ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚Ö‚Ì*
- * @param	anm				ƒAƒjƒƒŠƒ\[ƒX‚Ö‚Ì*
- * @param	tex				ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ö‚Ì*
- * @param	tex_key			í’“Œ^‚Ìê‡‚ÍƒL[æ“¾—pTEXRES_OBJ_PTR‚ğw’èBNULL=“]‘—Œ^‚ÅƒZƒbƒg
- * @param	anm_tbl			ƒrƒ‹ƒ{[ƒhƒAƒjƒ BLACT_ANIME_TBL *
- * @retval	BLACT_HEADER	ƒwƒbƒ_[—Ìˆæ‚Ö‚Ì*BNULL=¸”s
+ * @param	id				ç™»éŒ²ã™ã‚‹ID
+ * @param	mdl				ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã¸ã®*
+ * @param	anm				ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã¸ã®*
+ * @param	tex				ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¸ã®*
+ * @param	tex_key			å¸¸é§å‹ã®å ´åˆã¯ã‚­ãƒ¼å–å¾—ç”¨TEXRES_OBJ_PTRã‚’æŒ‡å®šã€‚NULL=è»¢é€å‹ã§ã‚»ãƒƒãƒˆ
+ * @param	anm_tbl			ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ãƒ‹ãƒ¡ BLACT_ANIME_TBL *
+ * @retval	BLACT_HEADER	ãƒ˜ãƒƒãƒ€ãƒ¼é ˜åŸŸã¸ã®*ã€‚NULL=å¤±æ•—
  */
 //--------------------------------------------------------------
 static BLACT_HEADER * fe_BlActHeaderManageAdd( FE_BLACT *fba, u32 id,
@@ -1147,7 +1147,7 @@ static BLACT_HEADER * fe_BlActHeaderManageAdd( FE_BLACT *fba, u32 id,
 		u32 max = fba->blact_max;
 		FE_BLACT_H_ID *ma = fba->head_manage;
 		
-		do{ if(ma->id==id){ return(ma->head); }					//“o˜^Ï‚İ
+		do{ if(ma->id==id){ return(ma->head); }					//ç™»éŒ²æ¸ˆã¿
 			ma++; max--;
 		}while( max );
 		
@@ -1159,7 +1159,7 @@ static BLACT_HEADER * fe_BlActHeaderManageAdd( FE_BLACT *fba, u32 id,
 		}while( max );
 	}
 	
-	GF_ASSERT( head != NULL && "fe_BlActHeaderManageAdd() ƒrƒ‹ƒ{[ƒhƒwƒbƒ_[–”t"  );
+	GF_ASSERT( head != NULL && "fe_BlActHeaderManageAdd() ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒ˜ãƒƒãƒ€ãƒ¼æº€æ¯"  );
 	
 	memset( head, 0, sizeof(BLACT_HEADER) );
 	
@@ -1179,10 +1179,10 @@ static BLACT_HEADER * fe_BlActHeaderManageAdd( FE_BLACT *fba, u32 id,
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ŠÇ——Ìˆæ@ƒwƒbƒ_[æ“¾
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç®¡ç†é ˜åŸŸã€€ãƒ˜ãƒƒãƒ€ãƒ¼å–å¾—
  * @param	fba				FE_BLACT *
- * @param	id				æ“¾‚·‚é‚·‚éID
- * @retval	BLACT_HEADER	ƒwƒbƒ_[—Ìˆæ‚Ö‚Ì*BNULL=¸”s
+ * @param	id				å–å¾—ã™ã‚‹ã™ã‚‹ID
+ * @retval	BLACT_HEADER	ãƒ˜ãƒƒãƒ€ãƒ¼é ˜åŸŸã¸ã®*ã€‚NULL=å¤±æ•—
  */
 //--------------------------------------------------------------
 static BLACT_HEADER * fe_BlActHeaderManageGet( FE_BLACT *fba, u32 id )
@@ -1194,16 +1194,16 @@ static BLACT_HEADER * fe_BlActHeaderManageGet( FE_BLACT *fba, u32 id )
 		ma++; max--;
 	}while( max );
 	
-	GF_ASSERT( 0 && "fe_BlActHeaderManageGet()ID“o˜^–³‚µ"  );
+	GF_ASSERT( 0 && "fe_BlActHeaderManageGet()IDç™»éŒ²ç„¡ã—"  );
 	return( NULL );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ŠÇ——Ìˆæƒwƒbƒ_[æ“¾
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç®¡ç†é ˜åŸŸãƒ˜ãƒƒãƒ€ãƒ¼å–å¾—
  * @param	fes				FE_SYS *
- * @param	id				æ“¾‚·‚éID
- * @retal	BLACT_HEADER	ƒwƒbƒ_[—Ìˆæ‚Ö‚Ì*BNULL=“o˜^‚³‚ê‚Ä‚¢‚È‚¢
+ * @param	id				å–å¾—ã™ã‚‹ID
+ * @retal	BLACT_HEADER	ãƒ˜ãƒƒãƒ€ãƒ¼é ˜åŸŸã¸ã®*ã€‚NULL=ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 BLACT_HEADER * FE_BlActHeaderManageGet( FE_SYS *fes, u32 id )
@@ -1214,9 +1214,9 @@ BLACT_HEADER * FE_BlActHeaderManageGet( FE_SYS *fes, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[ŠÇ——ÌˆæŠJ•ú
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ç®¡ç†é ˜åŸŸé–‹æ”¾
  * @param	fes			FE_SYS *
- * @param	id			ŠJ•ú‚·‚éID
+ * @param	id			é–‹æ”¾ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1227,15 +1227,15 @@ void FE_BlActHeaderManageFree( FE_SYS *fes, u32 id )
 }
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg@ƒrƒ‹ƒ{[ƒhƒŠƒ\[ƒX@ƒp[ƒc
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒªã‚½ãƒ¼ã‚¹ã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒX”z’u@ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^
+ * ãƒªã‚½ãƒ¼ã‚¹é…ç½®ã€€ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿
  * @param	fes		FE_SYS *
- * @param	id		“o˜^‚·‚éID
- * @param	data	”z’u‚·‚éƒf[ƒ^
- * @param	size	dataƒTƒCƒY
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
+ * @param	data	é…ç½®ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ * @param	size	dataã‚µã‚¤ã‚º
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1248,10 +1248,10 @@ void FE_BlActResAdd_Mdl( FE_SYS *fes, u32 id, const void *data, u32 size )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒX”z’u@ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^@ƒA[ƒJƒCƒu
+ * ãƒªã‚½ãƒ¼ã‚¹é…ç½®ã€€ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  * @param	fes		FE_SYS *
- * @param	id		“o˜^‚·‚éID
- * @param	datid	“o˜^‚·‚éƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXID
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
+ * @param	datid	ç™»éŒ²ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1263,10 +1263,10 @@ void FE_BlActResAdd_MdlArc( FE_SYS *fes, u32 id, u32 datid )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXæ“¾@ƒ‚ƒfƒ‹ƒf[ƒ^
+ * ãƒªã‚½ãƒ¼ã‚¹å–å¾—ã€€ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿
  * @param	fes		FE_SYS *
- * @param	id		æ“¾‚·‚éID
- * @retval	void*	idƒŠƒ\[ƒX
+ * @param	id		å–å¾—ã™ã‚‹ID
+ * @retval	void*	idãƒªã‚½ãƒ¼ã‚¹
  */
 //--------------------------------------------------------------
 void * FE_BlActResGet_Mdl( FE_SYS *fes, u32 id )
@@ -1278,9 +1278,9 @@ void * FE_BlActResGet_Mdl( FE_SYS *fes, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXíœ@ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^
+ * ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤ã€€ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿
  * @param	fes		FE_SYS *
- * @param	id		íœ‚·‚éID
+ * @param	id		å‰Šé™¤ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1292,11 +1292,11 @@ void FE_BlActResDelete_Mdl( FE_SYS *fes, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒX”z’u@ƒAƒjƒƒf[ƒ^
+ * ãƒªã‚½ãƒ¼ã‚¹é…ç½®ã€€ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
  * @param	fes		FE_SYS *
- * @param	id		“o˜^‚·‚éID
- * @param	data	”z’u‚·‚éƒf[ƒ^
- * @param	size	dataƒTƒCƒY
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
+ * @param	data	é…ç½®ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ * @param	size	dataã‚µã‚¤ã‚º
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1309,10 +1309,10 @@ void FE_BlActResAdd_Anm( FE_SYS *fes, u32 id, const void *data, u32 size )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒX”z’u@ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^@ƒA[ƒJƒCƒu
+ * ãƒªã‚½ãƒ¼ã‚¹é…ç½®ã€€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  * @param	fes		FE_SYS *
- * @param	id		“o˜^‚·‚éID
- * @param	datid	“o˜^‚·‚éƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXID
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
+ * @param	datid	ç™»éŒ²ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1324,10 +1324,10 @@ void FE_BlActResAdd_AnmArc( FE_SYS *fes, u32 id, u32 datid )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXæ“¾@ƒAƒjƒƒf[ƒ^
+ * ãƒªã‚½ãƒ¼ã‚¹å–å¾—ã€€ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
  * @param	fes		FE_SYS *
- * @param	id		æ“¾‚·‚éID
- * @retval	void*	idƒŠƒ\[ƒX
+ * @param	id		å–å¾—ã™ã‚‹ID
+ * @retval	void*	idãƒªã‚½ãƒ¼ã‚¹
  */
 //--------------------------------------------------------------
 void * FE_BlActResGet_Anm( FE_SYS *fes, u32 id )
@@ -1339,9 +1339,9 @@ void * FE_BlActResGet_Anm( FE_SYS *fes, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXíœ@ƒAƒjƒƒf[ƒ^
+ * ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤ã€€ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
  * @param	fes		FE_SYS *
- * @param	id		íœ‚·‚éID
+ * @param	id		å‰Šé™¤ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1353,12 +1353,12 @@ void FE_BlActResDelete_Anm( FE_SYS *fes, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒX”z’u@ƒeƒNƒXƒ`ƒƒƒf[ƒ^
+ * ãƒªã‚½ãƒ¼ã‚¹é…ç½®ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿
  * @param	fes		FE_SYS *
- * @param	id		“o˜^‚·‚éID
- * @param	data	”z’u‚·‚éƒf[ƒ^
- * @param	size	dataƒTƒCƒY
- * @param	texcut	TEXRESM_TEX_CUT_FALSE“™
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
+ * @param	data	é…ç½®ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ * @param	size	dataã‚µã‚¤ã‚º
+ * @param	texcut	TEXRESM_TEX_CUT_FALSEç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1366,17 +1366,17 @@ void FE_BlActResAdd_Tex( FE_SYS *fes, u32 id, void *data, u32 texcut )
 {
 	FE_BLACT *fba = fes->fe_blact;
 	TEXRES_OBJ_PTR obj = TEXRESM_AddAndAllocVramKeyResNormal( fba->resm_tex, data, id, texcut, fe_HeapIDGet(fes) );
-	GF_ASSERT( obj != NULL && "FE_BlActResAdd_Tex()’Ç‰Á¸”s" );
+	GF_ASSERT( obj != NULL && "FE_BlActResAdd_Tex()è¿½åŠ å¤±æ•—" );
 	fe_VIntrWaitTexLoadSet( fes, id, fba->resm_tex );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒX”z’u@ƒeƒNƒXƒ`ƒƒƒf[ƒ^AƒA[ƒJƒCƒuB
+ * ãƒªã‚½ãƒ¼ã‚¹é…ç½®ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿ã€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã€‚
  * @param	fes		FE_SYS *
- * @aram	id		“o˜^‚·‚éID
- * @param	dataid	ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXID
- * @param	texcut	TEXRESM_TEX_CUT_FALSE“™
+ * @aram	id		ç™»éŒ²ã™ã‚‹ID
+ * @param	dataid	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ID
+ * @param	texcut	TEXRESM_TEX_CUT_FALSEç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1385,16 +1385,16 @@ void FE_BlActResAdd_TexArc( FE_SYS *fes, u32 id, u32 datid, u32 texcut )
 	FE_BLACT *fba = fes->fe_blact;
 	void *buf = FE_ArcDataLoadAlloc( fes, datid, ALLOC_LO );
 	TEXRES_OBJ_PTR obj = TEXRESM_AddAndAllocVramKeyResNormal( fba->resm_tex, buf, id, texcut, fe_HeapIDGet(fes) );
-	GF_ASSERT( obj != NULL && "FE_BlActResAdd_Tex()’Ç‰Á¸”s" );
+	GF_ASSERT( obj != NULL && "FE_BlActResAdd_Tex()è¿½åŠ å¤±æ•—" );
 	fe_VIntrWaitTexLoadSet( fes, id, fba->resm_tex );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXæ“¾@ƒeƒNƒXƒ`ƒƒƒf[ƒ^
+ * ãƒªã‚½ãƒ¼ã‚¹å–å¾—ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿
  * @param	fes		FE_SYS *
- * @param	id		æ“¾‚·‚éID
- * @retval	void*	idƒŠƒ\[ƒX
+ * @param	id		å–å¾—ã™ã‚‹ID
+ * @retval	void*	idãƒªã‚½ãƒ¼ã‚¹
  */
 //--------------------------------------------------------------
 void * FE_BlActResGet_Tex( FE_SYS *fes, u32 id )
@@ -1407,11 +1407,11 @@ void * FE_BlActResGet_Tex( FE_SYS *fes, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXíœ@ƒeƒNƒXƒ`ƒƒƒf[ƒ^
+ * ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿
  * @param	fes		FE_SYS *
- * @param	id		“o˜^‚·‚éID
- * @param	data	”z’u‚·‚éƒf[ƒ^
- * @param	size	dataƒTƒCƒY
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
+ * @param	data	é…ç½®ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ * @param	size	dataã‚µã‚¤ã‚º
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1423,7 +1423,7 @@ void FE_BlActResDelete_Tex( FE_SYS *fes, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒf[ƒ^Vƒuƒ‰ƒ“ƒN“]‘—ì¬
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿Vãƒ–ãƒ©ãƒ³ã‚¯è»¢é€ä½œæˆ
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work *
  * @retval	nothing
@@ -1441,7 +1441,7 @@ static void fe_VIntrWaitTexLoadSet( FE_SYS *fes, u32 id, TEXRES_MANAGER_PTR resm
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒf[ƒ^Vƒuƒ‰ƒ“ƒN“]‘— tcb
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿Vãƒ–ãƒ©ãƒ³ã‚¯è»¢é€ tcb
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work *
  * @retval	nothing
@@ -1457,7 +1457,7 @@ static void fe_VIntrTCB_TexLoad( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒf[ƒ^Vƒuƒ‰ƒ“ƒNŒã‚ÌŠJ•ú tcb
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿Vãƒ–ãƒ©ãƒ³ã‚¯å¾Œã®é–‹æ”¾ tcb
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work *
  * @retval	nothing
@@ -1479,7 +1479,7 @@ static void fe_VWaitTCB_TexLoad( TCB_PTR tcb, void *wk )
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgƒpƒ‰ƒƒ^w’è FRO_MDL_ResSetArcLoad()
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ‘ãƒ©ãƒ¡ã‚¿æŒ‡å®š FRO_MDL_ResSetArcLoad()
  * @param	fes		FE_SYS
  * @param	rmdl	FRO_MDL
  * @param	idx	
@@ -1496,7 +1496,7 @@ void FE_FROMdl_ResSetArcLoad( FE_SYS *fes, FRO_MDL *rmdl,
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgƒpƒ‰ƒƒ^w’è FRO_MDL_ResSetArcLoad()&FRO_MDL_TexTransBindVTaskAdd()
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ‘ãƒ©ãƒ¡ã‚¿æŒ‡å®š FRO_MDL_ResSetArcLoad()&FRO_MDL_TexTransBindVTaskAdd()
  * @param	fes		FE_SYS
  * @param	rmdl	FRO_MDL
  * @param	idx	
@@ -1514,11 +1514,11 @@ void FE_FROMdl_ResSetArcLoadTexTrans( FE_SYS *fes, FRO_MDL *rmdl,
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgƒpƒ‰ƒƒ^w’è FRO_ANM_AnmResSetArcLoad()
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ‘ãƒ©ãƒ¡ã‚¿æŒ‡å®š FRO_ANM_AnmResSetArcLoad()
  * @param	fes		FE_SYS
  * @param	ranm	FRO_ANM
- * @param	idx		æ“¾‚·‚éƒAƒjƒƒŠƒ\[ƒXƒCƒ“ƒfƒbƒNƒX
- * @param	arc_idx	ƒA[ƒJƒCƒu“àƒAƒjƒƒŠƒ\[ƒXƒCƒ“ƒfƒbƒNƒX
+ * @param	idx		å–å¾—ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	arc_idx	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  * @param	alloc_type	ALLOC_TYPE
  * @retval	nothing
  */
@@ -1531,12 +1531,12 @@ void FE_FROAnm_AnmResSetArcLoad( FE_SYS *fes, FRO_ANM *ranm,
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgƒpƒ‰ƒƒ^w’è FE_FROAnm_AnmResObjInitSame()
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ‘ãƒ©ãƒ¡ã‚¿æŒ‡å®š FE_FROAnm_AnmResObjInitSame()
  * @param	fes		FE_SYS
  * @param	ranm	FRO_ANM
  * @param	rmdl	FRO_MDL
- * @param	pRes	ƒAƒjƒƒŠƒ\[ƒX
- * @param	idx		QÆƒŠƒ\[ƒXƒCƒ“ƒfƒbƒNƒX
+ * @param	pRes	ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
+ * @param	idx		å‚ç…§ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1552,7 +1552,7 @@ void FE_FROAnm_AnmResObjInitSame( FE_SYS *fes, FRO_ANM *ranm, const FRO_MDL *rmd
 #if 0
 //--------------------------------------------------------------
 /**
- * simple_3DModelSet@ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg”Å
+ * simple_3DModelSetã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç‰ˆ
  * @param	
  * @retval
  */
@@ -1563,21 +1563,21 @@ void FE_simple3DModelInitOnly( FE_SYS *fes,
     NNSG3dResTex *texture = NULL;
     BOOL status;
 	
-	texture = NNS_G3dGetTex( *resFile );						//ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXæ“¾
+	texture = NNS_G3dGetTex( *resFile );						//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	
 	if( texture != NULL ){
-		if( TexKeyLive(texture) == FALSE ){		// ƒeƒNƒXƒ`ƒƒ‚ªVram‚É“WŠJ‚³‚ê‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+		if( TexKeyLive(texture) == FALSE ){		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒVramã«å±•é–‹ã•ã‚Œã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			DC_FlushRange( *resFile, (*resFile)->fileSize );
 			
-			// ƒfƒtƒHƒ‹ƒg‚Ì‰Šú‰»ŠÖ”‚ğƒR[ƒ‹‚µ‚ÄƒZƒbƒgƒAƒbƒv‚·‚é
+			// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®åˆæœŸåŒ–é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«ã—ã¦ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 			status = NNS_G3dResDefaultSetup( *resFile );
 			GF_ASSERT( status && "NNS_G3dResDefaultSetup failed" );
 		}
 	}
  	 
-    // G3D: ƒ‚ƒfƒ‹‚Ìæ“¾
-    // nsbmd‚Íƒ‚ƒfƒ‹‚ğ•¡”ŠÜ‚Ş‚±‚Æ‚ª‚Å‚«‚é‚Ì‚ÅAƒCƒ“ƒfƒbƒNƒX(ƒ‚ƒfƒ‹‚ª‚P‚Â‚Ìê‡‚Í0)
-    // ‚ğw’è‚µ‚Ä‚P‚Â‚Ìƒ‚ƒfƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚éB
+    // G3D: ãƒ¢ãƒ‡ãƒ«ã®å–å¾—
+    // nsbmdã¯ãƒ¢ãƒ‡ãƒ«ã‚’è¤‡æ•°å«ã‚€ã“ã¨ãŒã§ãã‚‹ã®ã§ã€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(ãƒ¢ãƒ‡ãƒ«ãŒï¼‘ã¤ã®å ´åˆã¯0)
+    // ã‚’æŒ‡å®šã—ã¦ï¼‘ã¤ã®ãƒ¢ãƒ‡ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
     *model = NNS_G3dGetMdlByIdx( NNS_G3dGetMdlSet(*resFile), 0 );
 	GF_ASSERT( model && "NNS_G3dGetMdlByIdx() failed" );
 	NNS_G3dRenderObjInit( object_p, *model );
@@ -1585,7 +1585,7 @@ void FE_simple3DModelInitOnly( FE_SYS *fes,
 
 //--------------------------------------------------------------
 /**
- * simple_3DModelSet@ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg”Å
+ * simple_3DModelSetã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç‰ˆ
  * @param	
  * @retval
  */
@@ -1599,7 +1599,7 @@ void FE_simple3DModelInit( FE_SYS *fes, u32 dataid, ALLOCTYPE type,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒfƒ‹“]‘—ƒ^ƒXƒN
+ *	@brief	ãƒ¢ãƒ‡ãƒ«è»¢é€ã‚¿ã‚¹ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void FLD_3DObjMdlTransTcb( TCB_PTR tcb, void* p_work )
@@ -1612,7 +1612,7 @@ static void FLD_3DObjMdlTransTcb( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒ‚ƒfƒ‹“Ç‚İ‚İ
+ *	@brief	ï¼“Dãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿
  */
 //-----------------------------------------------------------------------------
 void FE_3DObjMdlLoad( FE_SYS *fes, FLD_3DOBJ_MDL *p_mdl, u32 dataid, ALLOCTYPE type )
@@ -1623,14 +1623,14 @@ void FE_3DObjMdlLoad( FE_SYS *fes, FLD_3DOBJ_MDL *p_mdl, u32 dataid, ALLOCTYPE t
 	p_mdl->pMdlTex		= NNS_G3dGetTex( p_mdl->pResMdl );
 	
 	if( p_mdl->pMdlTex ){
-		// ƒeƒNƒXƒ`ƒƒƒf[ƒ^“]‘—
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿è»¢é€
 		VIntrTCB_Add( FLD_3DObjMdlTransTcb, p_mdl, FLD_3DOBJ_TEXTRANS_TCB_PRI );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+ *	@brief	ï¼“Dã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  */
 //-----------------------------------------------------------------------------
 void FE_3DObjAnmLoad(
@@ -1665,7 +1665,7 @@ u32 DebugFeEoaUseCheck_HeadTbl[DB_FE_EOA_USE_CHECK_MAX];
 u32 DebugFeEoaUseCheck_EoaTbl[DB_FE_EOA_USE_CHECK_MAX];
 
 //--------------------------------------------------------------
-//	eoa ’Ç‰Áƒ`ƒFƒbƒN@‰Šú‰»
+//	eoa è¿½åŠ ãƒã‚§ãƒƒã‚¯ã€€åˆæœŸåŒ–
 //--------------------------------------------------------------
 static void DEBUG_FeEoaUseCheck_Init( FE_SYS *fes )
 {
@@ -1680,7 +1680,7 @@ static void DEBUG_FeEoaUseCheck_Init( FE_SYS *fes )
 }
 
 //--------------------------------------------------------------
-//	eoa ’Ç‰Áƒ`ƒFƒbƒN@’Ç‰Á
+//	eoa è¿½åŠ ãƒã‚§ãƒƒã‚¯ã€€è¿½åŠ 
 //--------------------------------------------------------------
 static void DEBUG_FeEoaUseCheck_Add( EOA_PTR eoa, const EOA_H_NPP *head )
 {
@@ -1699,7 +1699,7 @@ static void DEBUG_FeEoaUseCheck_Add( EOA_PTR eoa, const EOA_H_NPP *head )
 }
 
 //--------------------------------------------------------------
-//	eoa ’Ç‰Áƒ`ƒFƒbƒN@íœ
+//	eoa è¿½åŠ ãƒã‚§ãƒƒã‚¯ã€€å‰Šé™¤
 //--------------------------------------------------------------
 static void DEBUG_FeEoaUseCheck_Del( EOA_PTR eoa )
 {

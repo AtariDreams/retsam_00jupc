@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_312.s
- * @brief	ƒAƒƒ}ƒZƒ‰ƒs[			312
+ * @brief	ã‚¢ãƒ­ãƒžã‚»ãƒ©ãƒ”ãƒ¼			312
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡ƒAƒƒ}ƒZƒ‰ƒs[			312
+//	â– ã‚¢ãƒ­ãƒžã‚»ãƒ©ãƒ”ãƒ¼			312
 //
 //
 // =============================================================================
@@ -27,11 +27,11 @@ WEST_AROMASERAPII:
 	
 	LOAD_PARTICLE_DROP	0,W_312_SPA
 	
-	///< ”wŒiƒAƒjƒ
+	///< èƒŒæ™¯ã‚¢ãƒ‹ãƒ¡
 	ADD_PARTICLE 	0,W_312_312_AROMA_BALL,	 EMTFUNC_DEFENCE_POS
 	ADD_PARTICLE 	0,W_312_312_HANABIRA,	 EMTFUNC_DEFENCE_POS
 
-	///< ƒtƒF[ƒhIN
+	///< ãƒ•ã‚§ãƒ¼ãƒ‰IN
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 0, 0, 8, WE_PAL_GREEN_2,
 	WAIT_FLAG
 	
@@ -39,13 +39,13 @@ WEST_AROMASERAPII:
 	WAIT			60
 	SE_L			SEQ_SE_DP_W234
 
-	///< ƒtƒF[ƒhOUT
+	///< ãƒ•ã‚§ãƒ¼ãƒ‰OUT
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 0, 8, 0, WE_PAL_GREEN_2,
 	WAIT_FLAG
 
 	SE_WAITPLAY_L	SEQ_SE_DP_REAPOKE,23
 
-	///< ‰ñ•œƒAƒjƒ
+	///< å›žå¾©ã‚¢ãƒ‹ãƒ¡
 	ADD_PARTICLE 	0,W_312_312_KIRA_BURN, 	 EMTFUNC_AT_SIDE
 	ADD_PARTICLE 	0,W_312_312_CIRCLE_BURN, EMTFUNC_AT_SIDE
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6,  WE_TOOL_M1, 0, 1, WE_PAL_WHITE, WEDEF_FADE_PARAM,0

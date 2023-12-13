@@ -12,7 +12,7 @@
 
   $Log: os_emulator.c,v $
   Revision 1.22  2006/04/25 23:58:19  okubata_ryoma
-  •Ô‚è’l‚ªƒŠƒtƒ@ƒŒƒ“ƒX‚Ì‹Lq‚ÆˆÙ‚È‚é’l‚ğ•Ô‚·‚Æ‚¢‚¤•s‹ï‡C³
+  è¿”ã‚Šå€¤ãŒãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®è¨˜è¿°ã¨ç•°ãªã‚‹å€¤ã‚’è¿”ã™ã¨ã„ã†ä¸å…·åˆä¿®æ­£
 
   Revision 1.21  2006/01/18 02:11:30  kitase_hirotake
   do-indent
@@ -21,10 +21,10 @@
   do-indent.
 
   Revision 1.19  2005/02/18 08:51:35  yasu
-  ’˜ì”N“x•ÏX
+  è‘—ä½œå¹´åº¦å¤‰æ›´
 
   Revision 1.18  2005/02/18 06:20:18  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.17  2004/09/22 00:25:38  yada
   OS_GetConsole() Type returns constant value
@@ -58,28 +58,28 @@
   OS_IsRunOnEmulator returns by FALSE if ARM7
 
   Revision 1.7  2004/02/13 02:26:56  yada
-  ARM9‚ÆAMR7 ‚ÅƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹ê‡‚í‚¯
+  ARM9ã¨AMR7 ã§ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å ´åˆã‚ã‘
 
   Revision 1.6  2004/02/12 11:08:30  yada
-  ARM9/ARM7 U‚è•ª‚¯ì‹Æ
+  ARM9/ARM7 æŒ¯ã‚Šåˆ†ã‘ä½œæ¥­
 
   Revision 1.5  2004/02/06 09:29:43  yasu
-  OS_IsRunEmulator ‚Ì”F¯ˆ—‚ğˆê“x‚¾‚¯‚É‚µ‚½D
+  OS_IsRunEmulator ã®èªè­˜å‡¦ç†ã‚’ä¸€åº¦ã ã‘ã«ã—ãŸï¼
 
   Revision 1.4  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.3  2003/12/25 07:31:26  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.2  2003/11/30 04:20:26  yasu
-  OS_EnableInterrupt/DisableInterrupt ‚Ì–ß‚è’l‚ÌŒ^‚Ì•ÏX
+  OS_EnableInterrupt/DisableInterrupt ã®æˆ»ã‚Šå€¤ã®å‹ã®å¤‰æ›´
 
   Revision 1.1  2003/11/29 01:25:46  yada
-  ƒtƒ@ƒCƒ‹–¼Ì•ÏX
+  ãƒ•ã‚¡ã‚¤ãƒ«åç§°å¤‰æ›´
 
   Revision 1.1  2003/11/25 11:17:37  yasu
-  ƒGƒ~ƒ…ƒŒ[ƒ^‚Ì©“®”»•Ê’Ç‰Á
+  ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚¿ã®è‡ªå‹•åˆ¤åˆ¥è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

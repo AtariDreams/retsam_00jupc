@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	world_trade.h
- * @bfief	¢ŠEŒðŠ·ˆ—
+ * @bfief	ä¸–ç•Œäº¤æ›å‡¦ç†
  * @author	Akito Mori
  * @date	06.04.16
  */
@@ -21,36 +21,36 @@
 
 
 //============================================================================================
-//	’è‹`
+//	å®šç¾©
 //============================================================================================
 
-// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT WorldTradeProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT WorldTradeProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT WorldTradeProc_End ( PROC * proc, int * seq );
 
-// ƒ|ƒCƒ“ƒ^ŽQÆ‚¾‚¯‚Å‚«‚é¢ŠEŒðŠ·ƒ[ƒN\‘¢‘Ì
+// ãƒã‚¤ãƒ³ã‚¿å‚ç…§ã ã‘ã§ãã‚‹ä¸–ç•Œäº¤æ›ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct _WORLDTRADE_WORK WORLDTRADE_WORK;	
 
 
 typedef struct{
-	WORLDTRADE_DATA *worldtrade_data;	// ¢ŠEŒðŠ·ƒf[ƒ^
-	SYSTEMDATA		*systemdata;		// ƒVƒXƒeƒ€ƒZ[ƒuƒf[ƒ^iDPWƒ‰ƒCƒuƒ‰ƒŠ—p‚Æ‚à‚¾‚¿ƒR[ƒh‚ð•Û‘¶j
-	POKEPARTY       *myparty;			// ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“
-	BOX_DATA        *mybox;				// ƒ{ƒbƒNƒXƒf[ƒ^
-	ZUKAN_WORK      *zukanwork;			// }ŠÓƒf[ƒ^
-	WIFI_LIST		*wifilist;			// ‚Æ‚à‚¾‚¿Žè’ 
-	WIFI_HISTORY	*wifihistory;		// ’n‹…‹Vƒf[ƒ^
-	MYSTATUS		*mystatus;			// ƒgƒŒ[ƒi[î•ñ
-	SAVEDATA		*savedata;			// ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	CONFIG			*config;			// ƒRƒ“ƒtƒBƒO\‘¢‘Ì
-	RECORD			*record;			// ƒŒƒR[ƒhƒR[ƒi[ƒ|ƒCƒ“ƒ^
-	FNOTE_DATA		*fnote;				// –`Œ¯ƒm[ƒgƒ|ƒCƒ“ƒ^
-	MYITEM			*myitem;			// ƒAƒCƒeƒ€ƒ|ƒPƒbƒgƒ|ƒCƒ“ƒ^
-	int				zukanmode;			// }ŠÓƒ‚[ƒhiƒVƒ“ƒIƒEE‘S‘)
-	int				profileId;			// GameSpyƒvƒƒtƒ@ƒCƒ‹ID
-	int				contestflag;		// ƒRƒ“ƒeƒXƒgŒ©‚¦‚Ä‚é‚©ƒtƒ‰ƒO
-	int				connect;			// ‰‰ñ‚f‚r‚h‚c‚ðŽæ“¾‚µ‚½i1:Žæ“¾‚µ‚Ä‚«‚½ 0:‚à‚¤Ž‚Á‚Ä‚é)
+	WORLDTRADE_DATA *worldtrade_data;	// ä¸–ç•Œäº¤æ›ãƒ‡ãƒ¼ã‚¿
+	SYSTEMDATA		*systemdata;		// ã‚·ã‚¹ãƒ†ãƒ ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼ˆDPWãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ã¨ã‚‚ã ã¡ã‚³ãƒ¼ãƒ‰ã‚’ä¿å­˜ï¼‰
+	POKEPARTY       *myparty;			// æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³
+	BOX_DATA        *mybox;				// ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+	ZUKAN_WORK      *zukanwork;			// å›³é‘‘ãƒ‡ãƒ¼ã‚¿
+	WIFI_LIST		*wifilist;			// ã¨ã‚‚ã ã¡æ‰‹å¸³
+	WIFI_HISTORY	*wifihistory;		// åœ°çƒå„€ãƒ‡ãƒ¼ã‚¿
+	MYSTATUS		*mystatus;			// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±
+	SAVEDATA		*savedata;			// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	CONFIG			*config;			// ã‚³ãƒ³ãƒ•ã‚£ã‚°æ§‹é€ ä½“
+	RECORD			*record;			// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	FNOTE_DATA		*fnote;				// å†’é™ºãƒŽãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿
+	MYITEM			*myitem;			// ã‚¢ã‚¤ãƒ†ãƒ ãƒã‚±ãƒƒãƒˆãƒã‚¤ãƒ³ã‚¿
+	int				zukanmode;			// å›³é‘‘ãƒ¢ãƒ¼ãƒ‰ï¼ˆã‚·ãƒ³ã‚ªã‚¦ãƒ»å…¨å›½)
+	int				profileId;			// GameSpyãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«ID
+	int				contestflag;		// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆè¦‹ãˆã¦ã‚‹ã‹ãƒ•ãƒ©ã‚°
+	int				connect;			// åˆå›žï¼§ï¼³ï¼©ï¼¤ã‚’å–å¾—ã—ãŸï¼ˆ1:å–å¾—ã—ã¦ããŸ 0:ã‚‚ã†æŒã£ã¦ã‚‹)
 
 }WORLDTRADE_PARAM;
 

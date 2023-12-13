@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	dance.h
- * @brief	�_���X����̃w�b�_
+ * @brief	ダンス部門のヘッダ
  * @author	matsuda
- * @date	2005.12.10(�y)
+ * @date	2005.12.10(土)
  */
 //==============================================================================
 #ifndef __DANCE_H__
@@ -29,95 +29,95 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///�T�u��ʂ̃T�[�t�F�[�X�ʒu
+///サブ画面のサーフェース位置
 #define DANCE_SUB_ACTOR_DISTANCE		(256 * FX32_ONE)
 
 //--------------------------------------------------------------
-//	�Q�[���o�����X�p�����[�^
+//	ゲームバランスパラメータ
 //--------------------------------------------------------------
-///1���Ԃɂ�����t���[����
+///1分間にかかるフレーム数
 #define ONE_MIN_FRAME		(60 * 30)
 
-///���Ă���Ȃ̃��C���̏��ߐ��F4���q
+///鳴っている曲のメインの小節数：4拍子
 #define TEMPO_BASE_ONPU_4		(16)
-///���Ă���Ȃ̃��C���̏��ߐ��F3���q
+///鳴っている曲のメインの小節数：3拍子
 #define TEMPO_BASE_ONPU_3		(12)
 
-///1���߂ɂ�����t���[���������߂鎞�ɍs���Œ菬�����̂��߂̏�Z��
+///1小節にかけるフレーム数を求める時に行う固定小数化のための乗算分
 #define ONE_TEMPO_CALC_DECIMAL		(10000)
 
-///�_���X�̏��ߐ�(�����܂�)�F4���q
+///ダンスの小節数(裏拍含む)：4拍子
 #define DANCE_BEAT_4			(TEMPO_BASE_ONPU_4 * 2)
-///�_���X�̏��ߐ�(�����܂�)�F3���q
+///ダンスの小節数(裏拍含む)：3拍子
 #define DANCE_BEAT_3			(TEMPO_BASE_ONPU_3 * 2)
-///�_���X�̏��ߐ�(�����܂�)�F�e���q�̒��ōő�̃r�[�g��
+///ダンスの小節数(裏拍含む)：各拍子の中で最大のビート数
 #define DANCE_BEAT_MAX			(DANCE_BEAT_4)
 
-///1�x�̃_���X�Ŏ��s�o����ő�_���X��
+///1度のダンスで実行出来る最大ダンス回数
 #define DANCING_MAX				(8)
-///���C���_���T�[�̗�������鐔
+///メインダンサーの履歴を取る数
 #define DANCING_RECORD_MAX		(DANCING_MAX)
-///�_���X�A�j���[�V�����̗\��o�b�t�@��
+///ダンスアニメーションの予約バッファ数
 #define DANCE_STEP_REQUEST_MAX	(DANCE_BEAT_MAX)
 
-///�]���p�l���̈ړ����xY
+///評価パネルの移動速度Y
 #define REVIEW_PANEL_SPEED_Y		(-4)
 
-///4�����������tick��
+///4分音符一つ分のtick数
 #define QUARTER_NOTE_TICK			(48)
 
-///tick��music_vcount������n�߂����A���t���[�����ꂽ��␳�����邩
-///(���l��傫������قǁA�L�͈͂ɓn���Ă��ꂪ���e�����u�Ԃ�T���B
-/// ���̕��A����Ă��鎞�Ԃ͎����I�ɋ��e�����܂ł͒����Ȃ�B
-/// �A���A2�t���[���ȏ�̂��ꂪ����ꍇ�́A�����Ŏw�肵�Ă���t���[���Ɋ֌W�Ȃ�
-/// �␳������̂ŁA����Ă���̂�1�t���[�������ł���B
-/// �t�ɒl������������ƁA����n�߂Ă�������tick�̒l�ŕ␳�����̂ŁA
-/// �Ȃƃ^�C�~���O�̂���Ă���t���[�����͏��Ȃ��Ȃ邪�Atick�̃J�E���^�̐�����A
-/// 188tick, 188tick, 190tick... �̂悤�ɓ���������2�񑱂�����A1��΂��Đ�����
-/// �オ��ꍇ������B
+///tickとmusic_vcountがずれ始めた時、何フレームずれたら補正を入れるか
+///(数値を大きくするほど、広範囲に渡ってずれが許容される瞬間を探す。
+/// その分、ずれている時間は自動的に許容されるまでは長くなる。
+/// 但し、2フレーム以上のずれがある場合は、ここで指定しているフレームに関係なく
+/// 補正が入るので、ずれているのは1フレームだけである。
+/// 逆に値を小さくすると、ずれ始めてもすぐにtickの値で補正されるので、
+/// 曲とタイミングのずれているフレーム数は少なくなるが、tickのカウンタの性質上、
+/// 188tick, 188tick, 190tick... のように同じ数字が2回続いた後、1個飛ばして数字が
+/// 上がる場合がある。
 #define MUSIC_VCOUNT_HOSEI_COUNT	(18)
 
 
-///�^�b�`��Ɏ��̃^�b�`�`�F�b�N���o����܂ł̃E�F�C�g�Ɍ��Z������E�F�C�g�l
-///(4�������̒������x�̊��Ԃ������Ȃ�����ƁA����4�������̑O�オ�������炢�̂ŁA
-/// ���������E�F�C�g��Z������ׂ̌��Z�l)
+///タッチ後に次のタッチチェックが出来るまでのウェイトに減算させるウェイト値
+///(4分音符の長さ丁度の期間を押せなくすると、次の4分音符の前後が押しずらいので、
+/// 少しだけウェイトを短くする為の減算値)
 #define DANCE_TOUCH_WAIT_SUB_OFFSET		(2)
 
 
-///�����q��
+///何拍子か
 enum{
-	RHYTHM_NO_4,		///<4���q
-	RHYTHM_NO_3,		///<3���q
+	RHYTHM_NO_4,		///<4拍子
+	RHYTHM_NO_3,		///<3拍子
 };
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///�o�b�N�_���T�[�ɑ������ރv���C�I���e�B
+///バックダンサーに足しこむプライオリティ
 #define DANCE_BACK_IMC_ADD_PRI		(-100)
 
-///�|�P������ʒuZ(���C���_���T�[)
+///ポケモン定位置Z(メインダンサー)
 #define DANCE_POKEPOS_Z_MAIN		(APPEAR_Z_TYPE_AA)
-///�|�P������ʒuZ(�o�b�N�_���T�[)
+///ポケモン定位置Z(バックダンサー)
 #define DANCE_POKEPOS_Z_SUB			(DANCE_POKEPOS_Z_MAIN - 0x80)
 
-///���C���_���T�[�̃|�P�����g�k��(XY����)
+///メインダンサーのポケモン拡縮率(XY共通)
 #define DANCE_POKEAFF_MAIN		(0x0100)
-///�o�b�N�_���T�[�̃|�P�����g�k��(XY����)
+///バックダンサーのポケモン拡縮率(XY共通)
 #define DANCE_POKEAFF_BACK		(0x00c0)	//(0x0080)
 
-///�Ȑi�s�o�[1���������h�b�g��
+///曲進行バー1つが持つ横幅ドット数
 #define MUSIC_BAR_ONE_LEN	(8)
 
-///�����A�N�^�[�𓯎��ɏo����ő吔(���C���_���T�[�{�o�b�N�_���T�[)
-#define ONPU_ACTOR_MAX		((DANCE_BEAT_MAX / 2) * BREEDER_MAX + 4)	//+4�͕ی��ő��߂�
+///音符アクターを同時に出せる最大数(メインダンサー＋バックダンサー)
+#define ONPU_ACTOR_MAX		((DANCE_BEAT_MAX / 2) * BREEDER_MAX + 4)	//+4は保険で多めに
 
-///�]���p�l���A�N�^�[�𓯎��ɏo����ő吔
+///評価パネルアクターを同時に出せる最大数
 #define REVIEW_ACTOR_MAX		(3)
 
-///�]���^�C�v
+///評価タイプ
 enum{
 	REVIEW_TYPE_EXCELLENT,
 	REVIEW_TYPE_GOOD,
@@ -126,216 +126,216 @@ enum{
 	REVIEW_TYPE_MAX,
 };
 
-///�_���X���僁�C����ʂŎg�p����t�H���gOAM�̍ő吔
+///ダンス部門メイン画面で使用するフォントOAMの最大数
 #define DANCE_FONTOAM_MAX_MAIN	(REVIEW_TYPE_MAX * REVIEW_ACTOR_MAX)
 
-///�u���[�_�[1�l�������ɏo���鐯�G�t�F�N�g�ő吔
+///ブリーダー1人が同時に出せる星エフェクト最大数
 #define STAR_EFF_MAX			(16)
-///���̐��𑝂₵�čs����̃|�C���g
+///星の数を増やして行く基準のポイント
 #define STAR_LVUP_POINT			(2)
 
 //--------------------------------------------------------------
-//	���[�e�[�V�����ʒu
+//	ローテーション位置
 //--------------------------------------------------------------
-///���[�e�[�V�����ʒu
+///ローテーション位置
 enum{
-	DANCE_ROTATION_POS_A,		///<���C��
-	DANCE_ROTATION_POS_B,		///<���ɗx��|�P����
+	DANCE_ROTATION_POS_A,		///<メイン
+	DANCE_ROTATION_POS_B,		///<次に踊るポケモン
 	DANCE_ROTATION_POS_C,
 	DANCE_ROTATION_POS_D,
 };
 
 //--------------------------------------------------------------
-//	�o�b�t�@
+//	バッファ
 //--------------------------------------------------------------
-///������o�b�t�@�̃T�C�Y
-#define DANCE_MESSAGE_BUF_SIZE	(2*160)		///<�b��łP�U�O������
+///文字列バッファのサイズ
+#define DANCE_MESSAGE_BUF_SIZE	(2*160)		///<暫定で１６０文字分
 
-///�p���b�g���ԃo�b�t�@�̃T�C�Y
+///パレット中間バッファのサイズ
 #define DANCE_MIDDLE_PALWORK_SIZE	(0x200)
 
 //--------------------------------------------------------------
-//	�t���[���ԍ�
+//	フレーム番号
 //--------------------------------------------------------------
-///�E�B���h�E�E���b�Z�[�W�ʂ̃t���[��
+///ウィンドウ・メッセージ面のフレーム
 #define DANCE_FRAME_WIN				(GF_BGL_FRAME1_M)
-///�G�t�F�N�g�ʂ̃t���[��
+///エフェクト面のフレーム
 #define DANCE_FRAME_EFF				(GF_BGL_FRAME2_M)
-///�w�i�ʂ̃t���[��
+///背景面のフレーム
 #define DANCE_FRAME_BACKGROUND		(GF_BGL_FRAME3_M)
 
-///<BG�ԍ��F�E�B���h�E
+///<BG番号：ウィンドウ
 #define DANCE_BGNO_WIN			(1)
-///<BG�ԍ��F�G�t�F�N�g
+///<BG番号：エフェクト
 #define DANCE_BGNO_EFF			(2)
-///<BG�ԍ��F�w�i
+///<BG番号：背景
 #define DANCE_BGNO_BACKGROUND	(3)
 
-///<3D�ʂ�BG�v���C�I���e�B
+///<3D面のBGプライオリティ
 #define DANCE_3DBG_PRIORITY		(2)
-///�E�B���h�E�ʂ�BG�v���C�I���e�B
+///ウィンドウ面のBGプライオリティ
 #define DANCE_BGPRI_WIN			(0)
-///�G�t�F�N�g�ʂ�BG�v���C�I���e�B
+///エフェクト面のBGプライオリティ
 #define DANCE_BGPRI_EFF			(0)
-///�w�i�ʂ�BG�v���C�I���e�B
+///背景面のBGプライオリティ
 #define DANCE_BGPRI_BACKGROUND	(3)
 
 
 //--------------------------------------------------------------
-//	BMP�E�B���h�E
+//	BMPウィンドウ
 //--------------------------------------------------------------
 enum{
-	DANCE_BMPWIN_TALK,		///<��b�E�B���h�E
-	DANCE_BMPWIN_PANEL,		///<�Ŕ��b�Z�[�W
+	DANCE_BMPWIN_TALK,		///<会話ウィンドウ
+	DANCE_BMPWIN_PANEL,		///<看板メッセージ
 	
 	DANCE_BMPWIN_MAX,
 };
 
 //--------------------------------------------------------------
-//	��b�E�B���h�E
+//	会話ウィンドウ
 //--------------------------------------------------------------
-///��b�E�B���h�E�̃L�����N�^�]���I�t�Z�b�g(�L�����N�^�P��)
+///会話ウィンドウのキャラクタ転送オフセット(キャラクタ単位)
 #define DANCE_TALKWIN_CGX_OFFSET	(1)
-///��b�E�B���h�E�w�i�F
+///会話ウィンドウ背景色
 #define DANCE_TALKWIN_BACK_COLOR	(15)
-///��b�E�B���h�E�̃p���b�g�ԍ�
+///会話ウィンドウのパレット番号
 #define DANCE_TALKWIN_PALNO		(14)
 
 //--------------------------------------------------------------
-//	�G�t�F�N�g��
+//	エフェクト面
 //--------------------------------------------------------------
-///�ǂ񂿂傤�̃p���b�g�ԍ�
+///どんちょうのパレット番号
 #define DONTYOU_PALNO			(0xc)
 
-///�_���X�������ɔ킹�锼����BG�̃p���b�g�ԍ�
+///ダンスした時に被せる半透明BGのパレット番号
 #define DANCE_ALPHA_BG_PALNO	(DONTYOU_PALNO)
 
 //--------------------------------------------------------------
-//	����
+//	譜面
 //--------------------------------------------------------------
-///���ʂ̐F�^�C�v
+///譜面の色タイプ
 typedef enum{
-	FUMENCOLOR_MAIN,		///<���C���_���T�[�̕��ʐF
-	FUMENCOLOR_BACK,		///<�o�b�N�_���T�[�̕��ʐF
-	FUMENCOLOR_NULL,		///<�w��Ȃ�
+	FUMENCOLOR_MAIN,		///<メインダンサーの譜面色
+	FUMENCOLOR_BACK,		///<バックダンサーの譜面色
+	FUMENCOLOR_NULL,		///<指定なし
 }FUMENCOLOR_TYPE;
 
-///���C���_���T�[�̕��ʂ̃J���[�ʒu
+///メインダンサーの譜面のカラー位置
 #define FUMEN_MAIN_COLOR_POS		(2 * 16 + 9)
-///���C���_���T�[�̕��ʂŎg�p���Ă���J���[��
+///メインダンサーの譜面で使用しているカラー数
 #define FUMEN_MAIN_COLOR_NUM		(2)
 
-///���C���_���T�[�̕��ʂ̃p���b�g�ԍ�
+///メインダンサーの譜面のパレット番号
 #define FUMEN_PALNO_MAIN			(4)
-///�o�b�N�_���T�[�̕��ʂ̃p���b�g�ԍ�
+///バックダンサーの譜面のパレット番号
 #define FUMEN_PALNO_BACK			(3)
-///�Ȑi�s�o�[�̃p���b�g�ԍ�
+///曲進行バーのパレット番号
 #define FUMEN_PALNO_MUSICBAR		(2)
 
 //--------------------------------------------------------------
-//	�t�F�[�h
+//	フェード
 //--------------------------------------------------------------
-///�_���X����J�n���ɂ������Ă���n�[�h�t�F�[�h�̑Ώۃv���[��
+///ダンス部門開始時にかかっているハードフェードの対象プレーン
 #define DANCE_OPENING_BRIGHTNESS_PALNE		(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ)
-///�_���X����J�n���ɂ������Ă���n�[�h�t�F�[�h�̋P�x(16 �` -16)
+///ダンス部門開始時にかかっているハードフェードの輝度(16 〜 -16)
 #define DANCE_OPENING_BRIGHTNESS_EVY		(-6)
 
-///��ʑS�̃t�F�[�h�p��BG�t�F�[�h�r�b�g(��b�E�B���h�E�A�t�H���g�A���[�J���C�Y�p������)
+///画面全体フェード用のBGフェードビット(会話ウィンドウ、フォント、ローカライズ用を除く)
 #define DANCE_DISP_BG_FADE_BIT			(0x1fff ^ ((1<<FUMEN_PALNO_MAIN) | (1<<FUMEN_PALNO_BACK) | (1 << FUMEN_PALNO_MUSICBAR)))
-///��ʑS�̃t�F�[�h�p��OBJ�t�F�[�h�r�b�g(�ʐM�A�C�R���A���[�J���C�Y�p������)
+///画面全体フェード用のOBJフェードビット(通信アイコン、ローカライズ用を除く)
 #define DANCE_DISP_OBJ_FADE_BIT			(0x3fff)
-///��ʑS�̃t�F�[�h�p��BG�J���[��(��b�E�B���h�E�A�t�H���g�A���[�J���C�Y�p������)
+///画面全体フェード用のBGカラー数(会話ウィンドウ、フォント、ローカライズ用を除く)
 #define DANCE_DISP_BG_COLOR_NUM		(16 * 13)
-///��ʑS�̃t�F�[�h�p��OBJ�J���[��(�ʐM�A�C�R���A���[�J���C�Y�p������)
+///画面全体フェード用のOBJカラー数(通信アイコン、ローカライズ用を除く)
 #define DANCE_DISP_OBJ_COLOR_NUM	(16 * 14)
 
 //--------------------------------------------------------------
-//	�_���X�������ɔ킹�锼����BG
+//	ダンスした時に被せる半透明BG
 //--------------------------------------------------------------
-///�_���X���s������BG�^�C�v
+///ダンス実行半透明BGタイプ
 enum{
-	DANCE_BGALPHA_TYPE_NULL,	///<�����Ȃ�(�J���[�p���b�g��0�ʒu(�����F)���̃_�~�[
-	DANCE_BGALPHA_TYPE_UP,		///<������BG�F��
-	DANCE_BGALPHA_TYPE_DOWN,	///<������BG�F��
-	DANCE_BGALPHA_TYPE_LEFT,	///<������BG�F��
-	DANCE_BGALPHA_TYPE_RIGHT,	///<������BG�F�E
-	DANCE_BGALPHA_TYPE_FAILED,	///<������BG�F���s
+	DANCE_BGALPHA_TYPE_NULL,	///<何もなし(カラーパレットの0位置(抜き色)分のダミー
+	DANCE_BGALPHA_TYPE_UP,		///<半透明BG：上
+	DANCE_BGALPHA_TYPE_DOWN,	///<半透明BG：下
+	DANCE_BGALPHA_TYPE_LEFT,	///<半透明BG：左
+	DANCE_BGALPHA_TYPE_RIGHT,	///<半透明BG：右
+	DANCE_BGALPHA_TYPE_FAILED,	///<半透明BG：失敗
 };
 
-///�_���X���s������BG�̑�1�Ώۖ�
+///ダンス実行半透明BGの第1対象面
 #define DANCE_BGALPHA_PLANE_1		(GX_BLEND_PLANEMASK_BG2)
-///�_���X���s������BG�̑�2�Ώۖ�
+///ダンス実行半透明BGの第2対象面
 #define DANCE_BGALPHA_PLANE_2		(GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD)
 
 //--------------------------------------------------------------
-//	�p�[�e�B�N��
+//	パーティクル
 //--------------------------------------------------------------
-///�_���X�p�[�e�B�N���̃f�t�H���gZ�ʒu
+///ダンスパーティクルのデフォルトZ位置
 #define DANCE_PARTICLE_DEFAULT_Z		(-5248)
-///�p�[�e�B�N����΍��W�F���[
+///パーティクル絶対座標：左端
 #define DANCE_PARTICLE_LEFT				(-28600)
-///�p�[�e�B�N����΍��W�F�E�[
+///パーティクル絶対座標：右端
 #define DANCE_PARTICLE_RIGHT			(-DANCE_PARTICLE_LEFT)
 
-///���ʂ̒��SY���W
+///譜面の中心Y座標
 #define DANCE_PARTICLE_FUMEN_CENTER_Y	(-17700)
 
-///���߃p�[�e�B�N��(Lv1)�̐�΍��W�F����
+///決めパーティクル(Lv1)の絶対座標：左側
 #define DANCE_PARTICLE_FINISH_LEFT_LV1		(-13000)
-///���߃p�[�e�B�N��(Lv1)�̐�΍��W�F�E��
+///決めパーティクル(Lv1)の絶対座標：右側
 #define DANCE_PARTICLE_FINISH_RIGHT_LV1		((-DANCE_PARTICLE_FINISH_LEFT_LV1) + 7500)
-///���߃p�[�e�B�N��(Lv1)�̐�΍��W�FY
+///決めパーティクル(Lv1)の絶対座標：Y
 #define DANCE_PARTICLE_FINISH_Y_LV1			(-6300)
 
-///���߃p�[�e�B�N��(Lv2)�̐�΍��W�F����
+///決めパーティクル(Lv2)の絶対座標：左側
 #define DANCE_PARTICLE_FINISH_LEFT_LV2		(DANCE_PARTICLE_FINISH_LEFT_LV1 - 4000)
-///���߃p�[�e�B�N��(Lv2)�̐�΍��W�F�E��
+///決めパーティクル(Lv2)の絶対座標：右側
 #define DANCE_PARTICLE_FINISH_RIGHT_LV2		(DANCE_PARTICLE_FINISH_RIGHT_LV1 - 4000)
-///���߃p�[�e�B�N��(Lv2)�̐�΍��W�FY
+///決めパーティクル(Lv2)の絶対座標：Y
 #define DANCE_PARTICLE_FINISH_Y_LV2			(DANCE_PARTICLE_FINISH_Y_LV1)
 
 
 //--------------------------------------------------------------
-//	�A�N�^�[BG�v���C�I���e�B
+//	アクターBGプライオリティ
 //--------------------------------------------------------------
-///�Ȑi�s�o�[�A�N�^�[��BG�v���C�I���e�B
+///曲進行バーアクターのBGプライオリティ
 #define DANCE_BGPRI_MUSIC_BAR	(1)
-///�����A�N�^�[��BG�v���C�I���e�B
+///音符アクターのBGプライオリティ
 #define DANCE_BGPRI_ONPU		(DANCE_BGPRI_BACKGROUND)	//(1)
-///�]���p�l���A�N�^�[��BG�v���C�I���e�B
+///評価パネルアクターのBGプライオリティ
 #define DANCE_BGPRI_REVIEW		(1)
-///�����J�[�\���A�N�^�[��BG�v���C�I���e�B
+///自分カーソルアクターのBGプライオリティ
 #define DANCE_BGPRI_MY_CURSOR		(1)
-///�v�����A�N�^�[��BG�v���C�I���e�B
+///プリンアクターのBGプライオリティ
 #define DANCE_BGPRI_PRIN		(1)
-///�e�A�N�^�[��BG�v���C�I���e�B
+///影アクターのBGプライオリティ
 #define DANCE_BGPRI_SHADOW		(DANCE_BGPRI_BACKGROUND)
-///���A�N�^�[��BG�v���C�I���e�B
+///星アクターのBGプライオリティ
 #define DANCE_BGPRI_STAR		(DANCE_BGPRI_BACKGROUND)
-///�~���[�W�b�N���C���A�N�^�[��BG�v���C�I���e�B
+///ミュージックラインアクターのBGプライオリティ
 #define DANCE_BGPRI_MUS_LINE	(DANCE_BGPRI_BACKGROUND)
 
 //--------------------------------------------------------------
-//	�A�N�^�[�\�t�g�v���C�I���e�B
+//	アクターソフトプライオリティ
 //--------------------------------------------------------------
 enum{
 	DANCE_SOFTPRI_START = 10,
 	
-	DANCE_PRIN,						///<�v����
+	DANCE_PRIN,						///<プリン
 	
-	DANCE_SOFTPRI_REVIEW_FONT,		///<�]���p�l���A�N�^�[�̏�ɏ��t�H���gOAM
-	DANCE_SOFTPRI_REVIEW,			///<�]���p�l���A�N�^�[
+	DANCE_SOFTPRI_REVIEW_FONT,		///<評価パネルアクターの上に乗るフォントOAM
+	DANCE_SOFTPRI_REVIEW,			///<評価パネルアクター
 	
-	DANCE_SOFTPRI_MUS_LINE,			///<�~���[�W�b�N���C��
-	DANCE_SOFTPRI_MUSIC_BAR,		///<�Ȑi�s�o�[�A�N�^�[
-	DANCE_SOFTPRI_ONPU = DANCE_SOFTPRI_MUSIC_BAR + 30,				///<�����A�N�^�[
-	DANCE_SOFTPRI_MY_CURSOR,		///<�����J�[�\���A�N�^�[
+	DANCE_SOFTPRI_MUS_LINE,			///<ミュージックライン
+	DANCE_SOFTPRI_MUSIC_BAR,		///<曲進行バーアクター
+	DANCE_SOFTPRI_ONPU = DANCE_SOFTPRI_MUSIC_BAR + 30,				///<音符アクター
+	DANCE_SOFTPRI_MY_CURSOR,		///<自分カーソルアクター
 
-	DANCE_SOFTPRI_STAR,				///<��
-	DANCE_SOFTPRI_SHADOW,			///<�e
+	DANCE_SOFTPRI_STAR,				///<星
+	DANCE_SOFTPRI_SHADOW,			///<影
 };
 
-///�����^�C�v
+///音符タイプ
 enum{
 	ONPU_TYPE_A,
 	ONPU_TYPE_B,
@@ -343,7 +343,7 @@ enum{
 	ONPU_TYPE_MAX,
 };
 
-///�_���X�^�C�v
+///ダンスタイプ
 enum{
 	DANCE_STEP_NONE,
 	
@@ -353,13 +353,13 @@ enum{
 	DANCE_STEP_RIGHT,
 };
 
-///�_���T�[�^�C�v
+///ダンサータイプ
 enum{
-	DANCER_MAIN,	///<���C���_���T�[
-	DANCER_BACK,	///<�o�b�N�_���T�[
+	DANCER_MAIN,	///<メインダンサー
+	DANCER_BACK,	///<バックダンサー
 };
 
-///�_���X�̃��O
+///ダンスのラグ
 enum{
 	DANCE_LAG_EXCELLENT_A,
 	DANCE_LAG_EXCELLENT_B,
@@ -370,7 +370,7 @@ enum{
 	DANCE_LAG_MAX = DANCE_LAG_FAILED,
 };
 
-///�_���X�̃��O���̓��_
+///ダンスのラグ毎の得点
 enum{
 	DANCE_POINT_EXCELLENT_A = 2,
 	DANCE_POINT_EXCELLENT_B = 2,
@@ -379,41 +379,41 @@ enum{
 };
 
 //--------------------------------------------------------------
-//	�X�N���[���R�[�h
+//	スクリーンコード
 //--------------------------------------------------------------
-///�Ȑi�s�o�[�̐擪�X�N���[���R�[�h
+///曲進行バーの先頭スクリーンコード
 #define MUSIC_BAR_FAST_SCRN_CODE_BASE		(0x200c)
-///�Ȑi�s�o�[�̃��[�^�[���^���̃X�N���[���R�[�h
+///曲進行バーのメーター満タンのスクリーンコード
 #define MUSIC_BAR_FAST_SCRN_CODE_FULL		(MUSIC_BAR_FAST_SCRN_CODE_BASE + 8)
-///�Ȑi�s�o�[�̐擪�X�N���[���R�[�h
+///曲進行バーの先頭スクリーンコード
 #define MUSIC_BAR_SECOND_SCRN_CODE_BASE		(0x202c)
-///�Ȑi�s�o�[�̃��[�^�[���^���̃X�N���[���R�[�h
+///曲進行バーのメーター満タンのスクリーンコード
 #define MUSIC_BAR_SECOND_SCRN_CODE_FULL		(MUSIC_BAR_SECOND_SCRN_CODE_BASE + 8)
-///�Ȑi�s�o�[�̐擪�X�N���[���R�[�h
+///曲進行バーの先頭スクリーンコード
 #define MUSIC_BAR_THERD_SCRN_CODE_BASE		(0x204c)
-///�Ȑi�s�o�[�̃��[�^�[���^���̃X�N���[���R�[�h
+///曲進行バーのメーター満タンのスクリーンコード
 #define MUSIC_BAR_THERD_SCRN_CODE_FULL		(MUSIC_BAR_THERD_SCRN_CODE_BASE + 8)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///�����̃A�j���^�C�v
+///音符のアニメタイプ
 enum{
-	ONPU_ANMTYPE_MINE,			///<�����p����
-	ONPU_ANMTYPE_ENEMY,			///<�G�p����
-	ONPU_ANMTYPE_HISTORY,		///<����p����
+	ONPU_ANMTYPE_MINE,			///<自分用音符
+	ONPU_ANMTYPE_ENEMY,			///<敵用音符
+	ONPU_ANMTYPE_HISTORY,		///<履歴用音符
 };
 
 
-///���b�Z�[�W�^�O
+///メッセージタグ
 enum{
-	DTAG_NONE,		///<�^�O�Ȃ�
+	DTAG_NONE,		///<タグなし
 	
-	DTAG_NICK,		///<�j�b�N�l�[��
-	DTAG_RANK,		///<�R���e�X�g�����N
-	DTAG_NUM,		///<���l
-	DTAG_OYA_NICK,	///<�e���A�j�b�N�l�[��
-	DTAG_NICK_NUM,	///<�j�b�N�l�[���A���l
+	DTAG_NICK,		///<ニックネーム
+	DTAG_RANK,		///<コンテストランク
+	DTAG_NUM,		///<数値
+	DTAG_OYA_NICK,	///<親名、ニックネーム
+	DTAG_NICK_NUM,	///<ニックネーム、数値
 	DTAG_RANK_NUM_OYA_NICK,
 	
 	DTAG_MAX,
@@ -421,29 +421,29 @@ enum{
 
 
 //==============================================================================
-//	�\���̒�`
+//	構造体定義
 //==============================================================================
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///4���q��3���q�ŕς���Ă���f�[�^�ނ��܂Ƃ߂��\����
+///4拍子か3拍子で変わってくるデータ類をまとめた構造体
 typedef struct{
-	u16 bg_scrn_index;		///<BG�X�N���[��INDEX
+	u16 bg_scrn_index;		///<BGスクリーンINDEX
 	
-	u8 tempo_base_onpu;		///<���Ă���Ȃ̃��C���̏��ߐ�
-	u8 bar_num;				///<�Ȑi�s�o�[�̉�����(�L�����N�^�P��)
+	u8 tempo_base_onpu;		///<鳴っている曲のメインの小節数
+	u8 bar_num;				///<曲進行バーの横幅数(キャラクタ単位)
 }RHYTHM_DATA;
 
-///���Y���f�[�^�擾���̃f�[�^�C���f�b�N�X
+///リズムデータ取得時のデータインデックス
 enum{
-	RHYTHM_IDX_BG_SCRN_INDEX,	///<BG�X�N���[��INDEX
+	RHYTHM_IDX_BG_SCRN_INDEX,	///<BGスクリーンINDEX
 	
-	RHYTHM_IDX_TEMPO_BASE_ONPU,		///<���Ă���Ȃ̃��C���̏��ߐ�
+	RHYTHM_IDX_TEMPO_BASE_ONPU,		///<鳴っている曲のメインの小節数
 
-	RHYTHM_IDX_BAR_NUM,			///<�Ȑi�s�o�[�̉�����(�L�����N�^�P��)
-	RHYTHM_IDX_BAR_LEN,			///<�Ȑi�s�o�[1���������h�b�g��
-	RHYTHM_IDX_BEAT,			///<�_���X�̏��ߐ�(�����܂�)
+	RHYTHM_IDX_BAR_NUM,			///<曲進行バーの横幅数(キャラクタ単位)
+	RHYTHM_IDX_BAR_LEN,			///<曲進行バー1つが持つ横幅ドット数
+	RHYTHM_IDX_BEAT,			///<ダンスの小節数(裏拍含む)
 };
 
 //--------------------------------------------------------------
@@ -454,155 +454,155 @@ typedef struct{
 }DANCE_EXIT_PARAM;
 
 //--------------------------------------------------------------
-//	���b�Z�[�W
+//	メッセージ
 //--------------------------------------------------------------
-///���Z���僁�b�Z�[�W�f�[�^
+///演技部門メッセージデータ
 typedef struct{
-	u16 msg_id;				///<���b�Z�[�WID
-	u8 msg_tag;				///<�^�O�R�[�h
+	u16 msg_id;				///<メッセージID
+	u8 msg_tag;				///<タグコード
 }DANCE_MESSAGE_PARAM;
 
-///���b�Z�[�W�^�O�W�J����ꍇ�A�Q�Ƃ����p�����[�^��
+///メッセージタグ展開する場合、参照されるパラメータ類
 typedef struct{
-	u8 mine_brd;		///<MINE���w�肳��Ă������ɎQ�Ƃ���u���[�_�[�̔ԍ�
-	u8 enemy_brd;		///<ENEMY���w�肳��Ă������ɎQ�Ƃ���u���[�_�[�̔ԍ�
-	u16 wazano;			///<WAZA���w�肳��Ă������ɎQ�Ƃ���Z�ԍ�
-	u8 num;				///<NUM���w�肳��Ă������ɕ\�����鐔�l
-	u8 judge_no;		///<JUDGE���w�肳��Ă������ɎQ�Ƃ���R���̔ԍ�
+	u8 mine_brd;		///<MINEが指定されていた時に参照するブリーダーの番号
+	u8 enemy_brd;		///<ENEMYが指定されていた時に参照するブリーダーの番号
+	u16 wazano;			///<WAZAが指定されていた時に参照する技番号
+	u8 num;				///<NUMが指定されていた時に表示する数値
+	u8 judge_no;		///<JUDGEが指定されていた時に参照する審判の番号
 }DTAG_PARAM;
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///�]���p�l���G�t�F�N�g�^�X�N
+///評価パネルエフェクトタスク
 typedef struct{
 	CATS_ACT_PTR cap;
 	ADV_FONTACT *fontact;
-	TCB_PTR tcb;			///<����^�X�N�ւ̃|�C���^
+	TCB_PTR tcb;			///<動作タスクへのポインタ
 	
 	s32 work;
 	u8 seq;
 }REVIEW_PANEL_TASK_WORK;
 
-///�v�������샏�[�N
+///プリン動作ワーク
 typedef struct{
-	TCB_PTR tcb;			///<�v�������상�C���^�X�N�ւ̃|�C���^
-	CATS_ACT_PTR cap;		///<�v�����A�N�^�[�ւ̃|�C���^
-	struct _DANCE_PROC_WORK *dpw;	///<�_���X����Ǘ����[�N�ւ̃|�C���^
+	TCB_PTR tcb;			///<プリン動作メインタスクへのポインタ
+	CATS_ACT_PTR cap;		///<プリンアクターへのポインタ
+	struct _DANCE_PROC_WORK *dpw;	///<ダンス部門管理ワークへのポインタ
 	
 	u8 seq;
 }PRIN_WORK;
 
-///�e���샏�[�N
+///影動作ワーク
 typedef struct{
-	TCB_PTR tcb;			///<�e���상�C���^�X�N�ւ̃|�C���^
-	CATS_ACT_PTR cap;		///<�e�A�N�^�[�ւ̃|�C���^
-	struct _DANCE_PROC_WORK *dpw;	///<�_���X����Ǘ����[�N�ւ̃|�C���^
-	CONTEST_IMC_WORK *imcwork;	///<�Ώۂ̃|�P�����C���[�W�N���b�v�ւ̃|�C���^
+	TCB_PTR tcb;			///<影動作メインタスクへのポインタ
+	CATS_ACT_PTR cap;		///<影アクターへのポインタ
+	struct _DANCE_PROC_WORK *dpw;	///<ダンス部門管理ワークへのポインタ
+	CONTEST_IMC_WORK *imcwork;	///<対象のポケモンイメージクリップへのポインタ
 	
 	u8 seq;
-	u8 homing;				///<TRUE:�ǔ�ON�AFALSE:�ǔ�OFF
-	u8 homing_jump;			///<TRUE:�ǔ�ON�AFALSE:�ǔ�OFF
-	u8 breeder_no;			///<�e��S������u���[�_�[�ԍ�
-	s8 height;				///<�|�P�����̍���
+	u8 homing;				///<TRUE:追尾ON、FALSE:追尾OFF
+	u8 homing_jump;			///<TRUE:追尾ON、FALSE:追尾OFF
+	u8 breeder_no;			///<影を担当するブリーダー番号
+	s8 height;				///<ポケモンの高さ
 }SHADOW_WORK;
 
-///�X�|�b�g���C�g���샏�[�N
+///スポットライト動作ワーク
 typedef struct{
-	TCB_PTR tcb;			///<�X�|�b�g���C�g���상�C���^�X�N�ւ̃|�C���^
-	CATS_ACT_PTR cap;		///<�A�N�^�[�ւ̃|�C���^
-	struct _DANCE_PROC_WORK *dpw;	///<�_���X����Ǘ����[�N�ւ̃|�C���^
+	TCB_PTR tcb;			///<スポットライト動作メインタスクへのポインタ
+	CATS_ACT_PTR cap;		///<アクターへのポインタ
+	struct _DANCE_PROC_WORK *dpw;	///<ダンス部門管理ワークへのポインタ
 	
 	u8 seq;
-	u8 breeder_no;			///<�X�|�b�g���C�g��S������u���[�_�[�ԍ�
-	s8 height;				///<�|�P�����̍���
+	u8 breeder_no;			///<スポットライトを担当するブリーダー番号
+	s8 height;				///<ポケモンの高さ
 }SPOTLIGHT_WORK;
 
-///�����샏�[�N
+///星動作ワーク
 typedef struct{
-	TCB_PTR tcb;			///<�����상�C���^�X�N�ւ̃|�C���^
-	CATS_ACT_PTR cap;		///<���A�N�^�[�ւ̃|�C���^
+	TCB_PTR tcb;			///<星動作メインタスクへのポインタ
+	CATS_ACT_PTR cap;		///<星アクターへのポインタ
 	
-	s32 x;					///<���ݍ��WX(����8�r�b�g����)
-	s32 y;					///<���ݍ��WY(����8�r�b�g����)
-	s32 add_x;				///<X�������Z�l
-	s32 up_power;			///<�W�����v��
-	u16 life_frame;			///<�����t���[��
+	s32 x;					///<現在座標X(下位8ビット小数)
+	s32 y;					///<現在座標Y(下位8ビット小数)
+	s32 add_x;				///<X方向加算値
+	s32 up_power;			///<ジャンプ力
+	u16 life_frame;			///<生存フレーム
 }STAR_WORK;
 
-///�~���[�W�b�N���C�����샏�[�N
+///ミュージックライン動作ワーク
 typedef struct{
-	TCB_PTR tcb;			///<�����상�C���^�X�N�ւ̃|�C���^
-	CATS_ACT_PTR cap;		///<���A�N�^�[�ւ̃|�C���^
+	TCB_PTR tcb;			///<星動作メインタスクへのポインタ
+	CATS_ACT_PTR cap;		///<星アクターへのポインタ
 	
-	s32 x;					///<���ݍ��WX(����8�r�b�g����)
-	s32 y;					///<���ݍ��WY(����8�r�b�g����)
-	s32 add_x;				///<X�������Z�l
-	s32 up_power;			///<�W�����v��
-	u16 life_frame;			///<�����t���[��
+	s32 x;					///<現在座標X(下位8ビット小数)
+	s32 y;					///<現在座標Y(下位8ビット小数)
+	s32 add_x;				///<X方向加算値
+	s32 up_power;			///<ジャンプ力
+	u16 life_frame;			///<生存フレーム
 }MUSLINE_WORK;
 
-///���ʃt���b�V�����샏�[�N
+///譜面フラッシュ動作ワーク
 typedef struct{
-	struct _DANCE_PROC_WORK *dpw;	///<�_���X����Ǘ����[�N�ւ̃|�C���^
-	TCB_PTR tcb;			///<���ʃt���b�V�����C������^�X�N�ւ̃|�C���^
-	u16 evy;				///<EVY�l(����8�r�b�g����)
-	u8 color_pos;			///<�t�F�[�h�J�n�J���[�ʒu
-	u8 occ;					///<TRUE�F�G�t�F�N�g�N����
+	struct _DANCE_PROC_WORK *dpw;	///<ダンス部門管理ワークへのポインタ
+	TCB_PTR tcb;			///<譜面フラッシュメイン動作タスクへのポインタ
+	u16 evy;				///<EVY値(下位8ビット小数)
+	u8 color_pos;			///<フェード開始カラー位置
+	u8 occ;					///<TRUE：エフェクト起動中
 }FUMEN_FLASH_WORK;
 
-///�|�P�����풓�A�j���p���[�N
+///ポケモン常駐アニメ用ワーク
 typedef struct{
-	struct _DANCE_PROC_WORK *dpw;	///<�_���X����Ǘ����[�N�ւ̃|�C���^
-	TCB_PTR tcb;			///<�A�j�����s�^�X�N�ւ̃|�C���^
-	SOFT_SPRITE *ss;		///<�Ώۂ̃|�P�����\�t�g�E�F�A�X�v���C�g�ւ̃|�C���^
-	CONTEST_IMC_WORK *imcwork;	///<�Ώۂ̃|�P�����C���[�W�N���b�v�ւ̃|�C���^
-	s32 aff_z;				///<�g�k�ׂ̈�Z���W(����8�r�b�g����)
-	s32 move_sin;			///<�ړ��A�j���̌��݂�Sin�l
+	struct _DANCE_PROC_WORK *dpw;	///<ダンス部門管理ワークへのポインタ
+	TCB_PTR tcb;			///<アニメ実行タスクへのポインタ
+	SOFT_SPRITE *ss;		///<対象のポケモンソフトウェアスプライトへのポインタ
+	CONTEST_IMC_WORK *imcwork;	///<対象のポケモンイメージクリップへのポインタ
+	s32 aff_z;				///<拡縮の為のZ座標(下位8ビット小数)
+	s32 move_sin;			///<移動アニメの現在のSin値
 	
-	u8 aff_loop;			///<�g�k�A�j���J��Ԃ���
-	u8 rotation_pos;		///<���[�e�[�V�����ʒu
-	u8 breeder_no;			///<�u���[�_�[�ԍ�
+	u8 aff_loop;			///<拡縮アニメ繰り返し回数
+	u8 rotation_pos;		///<ローテーション位置
+	u8 breeder_no;			///<ブリーダー番号
 	u8 aff_seq;
 	u8 move_seq;
 	
-	u32 move_stop_sin;		///<�ړ��A�j���F��~�������̊p�x
+	u32 move_stop_sin;		///<移動アニメ：停止した時の角度
 	
-	u8 move_stop_req:1;		///<1:�ړ��A�j����~���N�G�X�g(�ʏ�ʒu�ɖ߂������~)
-	u8 move_stop:1;			///<1:�ړ��A�j����~(����~)
-	u8 move_start_req:1;	///<1:�ړ��A�j���J�n���N�G�X�g
-	u8 move_init:1;			///<1:�����N��
+	u8 move_stop_req:1;		///<1:移動アニメ停止リクエスト(通常位置に戻ったら停止)
+	u8 move_stop:1;			///<1:移動アニメ停止(即停止)
+	u8 move_start_req:1;	///<1:移動アニメ開始リクエスト
+	u8 move_init:1;			///<1:初期起動
 
-	u8 aff_stop_req:1;		///<1:�g�k�A�j����~���N�G�X�g(�ʏ�Affine�T�C�Y�ɖ߂������~)
-	u8 aff_stop:1;			///<1:�g�k�A�j������~
-	u8 aff_dir:1;			///<�g�k�A�j���̕���(0:��O�ցA1:����)
+	u8 aff_stop_req:1;		///<1:拡縮アニメ停止リクエスト(通常Affineサイズに戻ったら停止)
+	u8 aff_stop:1;			///<1:拡縮アニメ即停止
+	u8 aff_dir:1;			///<拡縮アニメの方向(0:手前へ、1:奥へ)
 }POKE_DEF_ANM_WORK;
 
-///�p�[�e�B�N�������󂯓n���p�e���|�������[�N
+///パーティクル引数受け渡し用テンポラリワーク
 typedef struct{
-	s32 x;				///<���WX
-	s32 y;				///<���WY
-	s32 z;				///<���WZ
-	fx32 gen_num;		///<���o���[�g
+	s32 x;				///<座標X
+	s32 y;				///<座標Y
+	s32 z;				///<座標Z
+	fx32 gen_num;		///<放出レート
 }DANCE_PARTICLE_TEMP_WORK;
 
-///�_���X���s����̃p�����[�^(1frame�̒ʐM�őS�đ���M�o����悤��20�o�C�g�ȓ��Ɏ��߂鎖!!)
+///ダンス実行動作のパラメータ(1frameの通信で全て送受信出来るように20バイト以内に収める事!!)
 typedef struct{
-	u16 frame;			///<�_���X�������̃t���[����
-	u8 breeder_no;		///<�u���[�_�[�ԍ�(���̃_���X�������u���[�_�[)
-	u8 dance_step;		///<�_���X�̎��(�㉺���E)
-	u8 review_type;		///<�]���^�C�v(REVIEW_TYPE_EXCELLENT��)
-	u8 lag_type;		///<���O�^�C�v
-	u8 hit_beat;		///<�����ߖڂ�]���Ώۂɂ�����
-	u8 rotation_pos;	///<���[�e�[�V�����ʒu
+	u16 frame;			///<ダンスした時のフレーム数
+	u8 breeder_no;		///<ブリーダー番号(このダンスをしたブリーダー)
+	u8 dance_step;		///<ダンスの種類(上下左右)
+	u8 review_type;		///<評価タイプ(REVIEW_TYPE_EXCELLENT等)
+	u8 lag_type;		///<ラグタイプ
+	u8 hit_beat;		///<何小節目を評価対象にしたか
+	u8 rotation_pos;	///<ローテーション位置
 	
-	u8 finish:1;		///<TRUE:�Ō�̃_���X�A���߃|�[�Y
-	u8 button_failed:1;	///<TRUE:�������{�^�������C���_���T�[�ƈ����
-	u8 occ:1;			///<�L�������t���O(TRUE:�f�[�^�L��)
+	u8 finish:1;		///<TRUE:最後のダンス、決めポーズ
+	u8 button_failed:1;	///<TRUE:押したボタンがメインダンサーと違った
+	u8 occ:1;			///<有効無効フラグ(TRUE:データ有効)
 	u8 :6;
 }DANCING_PARAM;
 
-///<�_���X�̂��ꋖ�e�͈�(EXCELLENT_A,B,GOOD_A,B)
+///<ダンスのずれ許容範囲(EXCELLENT_A,B,GOOD_A,B)
 typedef struct{
 	u8 excellent_a;
 	u8 excellent_b;
@@ -610,27 +610,27 @@ typedef struct{
 	u8 good_b;
 }DANCE_LAG_DATA;
 
-///�_���X���y�i�s�f�[�^
+///ダンス音楽進行データ
 typedef struct{
-	u16 music_id;				///<��ID
-	u16 tempo;					///<�Ȃ̃e���|
-	u8 loop;					///<�J��Ԃ���
-	u8 touch_count;				///<�^�b�`(�_���X)�o�����
-	u8 ready_count;				///<�������Ԃ̏��ߐ�
-	u8 rotation_count;			///<���[�e�[�V�����̏��ߐ�
-	DANCE_LAG_DATA lag;			///<�_���X�̂��ꋖ�e�͈�(EXCELLENT_A,B,GOOD_A,B)
+	u16 music_id;				///<曲ID
+	u16 tempo;					///<曲のテンポ
+	u8 loop;					///<繰り返し回数
+	u8 touch_count;				///<タッチ(ダンス)出来る回数
+	u8 ready_count;				///<準備時間の小節数
+	u8 rotation_count;			///<ローテーションの小節数
+	DANCE_LAG_DATA lag;			///<ダンスのずれ許容範囲(EXCELLENT_A,B,GOOD_A,B)
 }DANCE_MUSIC_DATA;
 
-///�_���X�A�j���[�V�������[�N�̃G�t�F�N�g����Ŏg�p���郏�[�N
+///ダンスアニメーションワークのエフェクト動作で使用するワーク
 typedef struct{
-	//�ǂ̃X�e�b�v�ł����ʂŎg�p����ł��낤���[�N
-	s32 start_x;		///<�A�j���J�n�O��X���W
-	s32 start_y;		///<�A�j���J�n�O��Y���W
-	s32 x;				///<���ݍ��WX
-	s32 y;				///<���ݍ��WY
+	//どのステップでも共通で使用するであろうワーク
+	s32 start_x;		///<アニメ開始前のX座標
+	s32 start_y;		///<アニメ開始前のY座標
+	s32 x;				///<現在座標X
+	s32 y;				///<現在座標Y
 	u8 seq;
 	
-	//�e�X�e�b�v���ɓƎ��Ŏ����[�N
+	//各ステップ毎に独自で持つワーク
 	union{
 		struct{
 			s16 up_power;
@@ -652,29 +652,29 @@ typedef struct{
 	};
 }MOVE_EFF_WORK;
 
-///�_���X�A�j���[�V�������[�N
+///ダンスアニメーションワーク
 typedef struct{
-	u8 dance_step[DANCE_STEP_REQUEST_MAX];	///<�_���X�̎��(DANCE_STEP_???)
+	u8 dance_step[DANCE_STEP_REQUEST_MAX];	///<ダンスの種類(DANCE_STEP_???)
 	
-	u8 work_pos;							///<���ݎw���Ă���dance_step���[�N�̔z��ʒu
+	u8 work_pos;							///<現在指しているdance_stepワークの配列位置
 	u8 rotation_pos;
-	u8 finish;								///<TRUE:�Ō�̌��߃_���X
-	u8 point;								///<�_���X�������̍��v���_
+	u8 finish;								///<TRUE:最後の決めダンス
+	u8 point;								///<ダンスした時の合計得点
 	
-	MOVE_EFF_WORK eff;						///<�G�t�F�N�g����p�̃��[�N
+	MOVE_EFF_WORK eff;						///<エフェクト動作用のワーク
 }DANCE_MOVE_WORK;
 
-///�_���X�pAI���[�N
+///ダンス用AIワーク
 typedef struct{
 	union{
-		//���C���_���T�[�p���[�N
+		//メインダンサー用ワーク
 		struct{
-			u32 hit_frame[DANCING_MAX];			///<�_���X�����s����t���[��
+			u32 hit_frame[DANCING_MAX];			///<ダンスを実行するフレーム
 			u8 tp_type[DANCING_MAX];
 			u8 occ[DANCING_MAX];
 		}main;
 
-		//�o�b�N�_���T�[�p���[�N
+		//バックダンサー用ワーク
 		struct{
 			u32 frame;
 			u8 tp_type;
@@ -682,16 +682,16 @@ typedef struct{
 		}back;
 	};
 
-	//���p���[�N
-	u32 random_seed;					///<AI�v�Z�p�̃����_���̎�
-	s16 touch_wait;						///<�^�b�`�o���Ȃ��t���[�����J�E���g
-	u8 touch_count;						///<�_���X�����񐔂��J�E���g
-	u8 breeder_no;						///<AI���g�̃u���[�_�[�ԍ�
-	u8 rotation_pos;					///<���[�e�[�V�����ʒu
-	u8 character;						///<���i
+	//共用ワーク
+	u32 random_seed;					///<AI計算用のランダムの種
+	s16 touch_wait;						///<タッチ出来ないフレームをカウント
+	u8 touch_count;						///<ダンスした回数をカウント
+	u8 breeder_no;						///<AI自身のブリーダー番号
+	u8 rotation_pos;					///<ローテーション位置
+	u8 character;						///<性格
 }DANCE_AI_WORK;
 
-///���C���V�[�P���X���Ŏg�p���郍�[�J�����[�N
+///メインシーケンス内で使用するローカルワーク
 typedef struct{
 	u16 seq;
 	u16 select_seq;
@@ -700,104 +700,104 @@ typedef struct{
 
 //--------------------------------------------------------------
 /**
- * @brief   �_���X����i�s�p�����[�^(���݋Z���o���Ă���|�P�����̐i�s�p�����[�^)
+ * @brief   ダンス部門進行パラメータ(現在技を出しているポケモンの進行パラメータ)
  */
 //--------------------------------------------------------------
 typedef struct{
-	u8 now_breeder;					///<���ݏ�ɏo�Ă���u���[�_�[�̔ԍ�
-	u8 now_count;					///<���ݏ�ɏo�Ă���u���[�_�[�����ԖڂɃA�s�[�����Ă��邩
+	u8 now_breeder;					///<現在場に出ているブリーダーの番号
+	u8 now_count;					///<現在場に出ているブリーダーが何番目にアピールしているか
 	
-	u8 breeder_rotation[BREEDER_MAX];	///<���݂̃u���[�_�[�̃��[�e�[�V��������
-										///<���C���_���T�[���珇�X�Ƀu���[�_�[�ԍ��������Ă܂�
+	u8 breeder_rotation[BREEDER_MAX];	///<現在のブリーダーのローテーション並び
+										///<メインダンサーから順々にブリーダー番号が入ってます
 
-	u32 one_tempo_frame;			///<1���ߐi�ނ̂ɕK�v�ȃt���[����
-									///<(�������FONE_TEMPO_CALC_DECIMAL��Z�����A�ȉ�����)
-	u32 all_tempo_frame;			///<��ʒ[����[�܂Ői�ނ̂ɕK�v�ȃt���[����(����)
-	u16 tempo;						///<�_���X�Ȃ̃e���|
+	u32 one_tempo_frame;			///<1小節進むのに必要なフレーム数
+									///<(整数部：ONE_TEMPO_CALC_DECIMAL乗算部分、以下小数)
+	u32 all_tempo_frame;			///<画面端から端まで進むのに必要なフレーム数(整数)
+	u16 tempo;						///<ダンス曲のテンポ
 
-	u32 ai_random_seed[BREEDER_MAX];	///<AI�p�̃����_���̎�
+	u32 ai_random_seed[BREEDER_MAX];	///<AI用のランダムの種
 	
-	DANCE_MUSIC_DATA musicdata;		///<���y�i�s�f�[�^
+	DANCE_MUSIC_DATA musicdata;		///<音楽進行データ
 
-	DTAG_PARAM a_talk_tagpara;		///<�m�[�}����b�F�^�O�W�J�p�p�����[�^
-	u8 a_talk_id;					///<�m�[�}����bID(A_TALK_DANCE_???)
-	u8 a_talk_bmpwin_close_wait;	///<���b�Z�[�W��\���������Ă���E�B���h�E�����܂ł�wait
-	u8 a_talk_bmpwin_not_close;		///<TRUE:�E�B���h�E������ɏI��
+	DTAG_PARAM a_talk_tagpara;		///<ノーマル会話：タグ展開用パラメータ
+	u8 a_talk_id;					///<ノーマル会話ID(A_TALK_DANCE_???)
+	u8 a_talk_bmpwin_close_wait;	///<メッセージを表示しきってからウィンドウを閉じるまでのwait
+	u8 a_talk_bmpwin_not_close;		///<TRUE:ウィンドウを閉じずに終了
 }DANCE_ADVANCE_PARAM;
 
 //--------------------------------------------------------------
 /**
- * @brief   �_���X����Q�[���i�s�p�����[�^
+ * @brief   ダンス部門ゲーム進行パラメータ
  *
- * ���̃p�����[�^������ΑS��ʂ��č\�z�o���邾���̏�񂪓����Ă��܂��B
- * �ʐM���̓T�[�o�[����q�@�̓f�[�^���󂯎�鎖�ɂȂ�܂��B
- * ��{�I�Ƀ��j���[��ʂ���̉�ʕ��A�̂悤�Ȏ����Ȃ�����A
- * �X�̎q�@���Œl���Q�Ƃ��鎖�͂Ȃ��͂��ł��B
+ * このパラメータがあれば全画面を再構築出来るだけの情報が入っています。
+ * 通信時はサーバーから子機はデータを受け取る事になります。
+ * 基本的にメニュー画面からの画面復帰のような事がない限り、
+ * 個々の子機側で値を参照する事はないはずです。
  */
 //--------------------------------------------------------------
 typedef struct{
-	u8 breeder_sort[BREEDER_MAX];	///<�Z���o������(�o�鏇�Ƀu���[�_�[�ԍ��������Ă܂�)
-	u8 breeder_end_count;			///<�s�����I�������u���[�_�[�̐����J�E���g
+	u8 breeder_sort[BREEDER_MAX];	///<技を出す順番(出る順にブリーダー番号が入ってます)
+	u8 breeder_end_count;			///<行動が終了したブリーダーの数をカウント
 
-	u8 breeder_rotation[BREEDER_MAX];	///<���݂̃u���[�_�[�̃��[�e�[�V��������
-										///<���C���_���T�[���珇�X�Ƀu���[�_�[�ԍ��������Ă܂�
+	u8 breeder_rotation[BREEDER_MAX];	///<現在のブリーダーのローテーション並び
+										///<メインダンサーから順々にブリーダー番号が入ってます
 	
-	s16 dance_point[BREEDER_MAX];	///<�l�������_���X�|�C���g
+	s16 dance_point[BREEDER_MAX];	///<獲得したダンスポイント
 	
-	u32 music_id;					///<�_���X�̋�ID
+	u32 music_id;					///<ダンスの曲ID
 
-	u32 one_tempo_frame;			///<1���ߐi�ނ̂ɕK�v�ȃt���[����
-									///<(�������FONE_TEMPO_CALC_DECIMAL��Z�����A�ȉ�����)
-	u32 all_tempo_frame;			///<��ʒ[����[�܂Ői�ނ̂ɕK�v�ȃt���[����(����)
-	u32 ready_frame;				///<�������Ԃ̃t���[����(�������FONE_TEMPO_CALC_DECIMAL��Z)
-	u32 rotation_frame;		///<���[�e�[�V�������Ԃ̃t���[����(�������FONE_TEMPO_CALC_DECIMAL��Z)
-	u32 tick_frame;			///<1�t���[������tick �Ȃ̂�(�������FONE_TEMPO_CALC_DECIMAL��Z)
-	u16 tempo;						///<�_���X�Ȃ̃e���|
+	u32 one_tempo_frame;			///<1小節進むのに必要なフレーム数
+									///<(整数部：ONE_TEMPO_CALC_DECIMAL乗算部分、以下小数)
+	u32 all_tempo_frame;			///<画面端から端まで進むのに必要なフレーム数(整数)
+	u32 ready_frame;				///<準備時間のフレーム数(整数部：ONE_TEMPO_CALC_DECIMAL乗算)
+	u32 rotation_frame;		///<ローテーション時間のフレーム数(整数部：ONE_TEMPO_CALC_DECIMAL乗算)
+	u32 tick_frame;			///<1フレーム＝何tick なのか(整数部：ONE_TEMPO_CALC_DECIMAL乗算)
+	u16 tempo;						///<ダンス曲のテンポ
 	
-	u8 touch_count;					///<�^�b�`�o����ő��
+	u8 touch_count;					///<タッチ出来る最大回数
 
-	u8 rhythm_no;				///<�����q�̋Ȃ��B�v���`�i����ǉ��BDP�ł�4�o�C�g�I�t�Z�b�g�̂͂�
+	u8 rhythm_no;				///<何拍子の曲か。プラチナから追加。DPでは4バイトオフセットのはず
 }DANCE_GAME_PARAM;
 
 //--------------------------------------------------------------
 /**
- * @brief   ���ߑ���M�p�p�����[�^
+ * @brief   命令送受信用パラメータ
  * 
- * �T�[�o�[�Ƃ̖��߂̑���M�Ɏg�p���܂�
+ * サーバーとの命令の送受信に使用します
  */
 //--------------------------------------------------------------
 typedef struct{
 	u8 breeder_no;
 	
-	u8 buffer[255];					///<�e���߂Ōʂɓn���f�[�^���ς��ꍇ�A�������g�p
+	u8 buffer[255];					///<各命令で個別に渡すデータが変わる場合、ここを使用
 }DANCE_ORDER_PARAM;
 
-///�p���b�g���ԃo�b�t�@
+///パレット中間バッファ
 typedef struct{
-	u16 *buf;			///<���ԃo�b�t�@�ւ̃|�C���^
-	u16 evy;			///<EVY�l(����8�r�b�g����)
-	u16 fade_bit;		///<�t�F�[�hBIT
-	u16 now_evy;		///<���݂�EVY�l(����8�r�b�g����)
-	u16 end_evy;		///<�I��EVY�l(����8�r�b�g����)
-	s16 add_evy;		///<EVY���Z�l
-	u16 next_rgb;		///<�ύX��̃J���[
-	u8 req;				///<TRUE:�t�F�[�h���N�G�X�g��
-	u8 occ;				///<TRUE:���ԃo�b�t�@���g�p����
+	u16 *buf;			///<中間バッファへのポインタ
+	u16 evy;			///<EVY値(下位8ビット小数)
+	u16 fade_bit;		///<フェードBIT
+	u16 now_evy;		///<現在のEVY値(下位8ビット小数)
+	u16 end_evy;		///<終了EVY値(下位8ビット小数)
+	s16 add_evy;		///<EVY加算値
+	u16 next_rgb;		///<変更後のカラー
+	u8 req;				///<TRUE:フェードリクエスト中
+	u8 occ;				///<TRUE:中間バッファを使用する
 }DANCE_MIDDLE_FADE;
 
 //--------------------------------------------------------------
 /**
- * @brief   �Q�[����ʂ��\�����邽�߂ɕK�v�ȃV�X�e���f�[�^�ނ����\����
+ * @brief   ゲーム画面を構成するために必要なシステムデータ類を持つ構造体
  *
- * �ʐM���ł��S�Ẵ}�V���Ōʂɍ쐬����܂�
- * �e�X�^�b�t�����ߎ�M���A���̃}�V���X�Ő����������̃��[�N�o�b�t�@��n�����ɂȂ�܂�
+ * 通信時でも全てのマシンで個別に作成されます
+ * 各スタッフが命令受信時、そのマシン個々で生成したこのワークバッファを渡す事になります
  */
 //--------------------------------------------------------------
 typedef struct{
-	CONTEST_GAME_PARAM *c_game;		///<�R���e�X�g�i�s�p�����[�^(��t�Ŋ��ɒʐM�ς݂̃f�[�^�ւ̃|�C���^���������B�Q�Ɨp)
+	CONTEST_GAME_PARAM *c_game;		///<コンテスト進行パラメータ(受付で既に通信済みのデータへのポインタを持つだけ。参照用)
 	
-	//�C���[�W�N���b�v
-	CONTEST_IMC_WORK imcwork[BREEDER_MAX];	///<�C���[�W�N���b�v�֘A���[�N
+	//イメージクリップ
+	CONTEST_IMC_WORK imcwork[BREEDER_MAX];	///<イメージクリップ関連ワーク
 
 	SOFT_SPRITE_MANAGER	*soft_sprite;
 	SOFT_SPRITE *ss[BREEDER_MAX];
@@ -805,108 +805,108 @@ typedef struct{
 	CATS_RES_PTR		crp;
 	GF_BGL_INI *bgl;
 	GF_BGL_BMPWIN win[DANCE_BMPWIN_MAX];
-	MSGDATA_MANAGER *dance_msg;	///<�_���X���僁�b�Z�[�W�p���b�Z�[�W�}�l�[�W���̃|�C���^
+	MSGDATA_MANAGER *dance_msg;	///<ダンス部門メッセージ用メッセージマネージャのポインタ
 	WORDSET *wordset;
-	STRBUF *msg_buf;				///<Alloc����������o�b�t�@�ւ̃|�C���^
-	PALETTE_FADE_PTR pfd;			///<�p���b�g�t�F�[�h�V�X�e���ւ̃|�C���^
-	FONTOAM_SYS_PTR fontoam_sys;	///<�t�H���gOAM�V�X�e���ւ̃|�C���^
+	STRBUF *msg_buf;				///<Allocした文字列バッファへのポインタ
+	PALETTE_FADE_PTR pfd;			///<パレットフェードシステムへのポインタ
+	FONTOAM_SYS_PTR fontoam_sys;	///<フォントOAMシステムへのポインタ
 	
-	EXCHR_PARAM exchr_param[BREEDER_MAX];		///<�Z�G�t�F�N�g�p�L�����W�J�o�b�t�@
+	EXCHR_PARAM exchr_param[BREEDER_MAX];		///<技エフェクト用キャラ展開バッファ
 
-	CATS_ACT_PTR onpu_cap[ONPU_ACTOR_MAX];		///<�����A�N�^�[�̃|�C���^
+	CATS_ACT_PTR onpu_cap[ONPU_ACTOR_MAX];		///<音符アクターのポインタ
 	
-	CATS_ACT_PTR my_cursor_cap;		///<�����J�[�\���A�N�^�[�̃|�C���^
-	TCB_PTR my_cursor_tcb;			///<�����J�[�\���^�X�N��TCB�|�C���^
+	CATS_ACT_PTR my_cursor_cap;		///<自分カーソルアクターのポインタ
+	TCB_PTR my_cursor_tcb;			///<自分カーソルタスクのTCBポインタ
 	
-	FUMEN_FLASH_WORK fumen_flash;	///<���ʃt���b�V�����샏�[�N
-	PRIN_WORK *prin_sys;			///<�v�������샏�[�N
-	SHADOW_WORK shadow[BREEDER_MAX];	///<�e���샏�[�N
-	SPOTLIGHT_WORK spotlight[BREEDER_MAX];	///<�X�|�b�g���C�g���샏�[�N
-	STAR_WORK star[BREEDER_MAX][STAR_EFF_MAX];	///<�����샏�[�N
-	MUSLINE_WORK musline;	///<�~���[�W�b�N���C�����[�N
+	FUMEN_FLASH_WORK fumen_flash;	///<譜面フラッシュ動作ワーク
+	PRIN_WORK *prin_sys;			///<プリン動作ワーク
+	SHADOW_WORK shadow[BREEDER_MAX];	///<影動作ワーク
+	SPOTLIGHT_WORK spotlight[BREEDER_MAX];	///<スポットライト動作ワーク
+	STAR_WORK star[BREEDER_MAX][STAR_EFF_MAX];	///<星動作ワーク
+	MUSLINE_WORK musline;	///<ミュージックラインワーク
 	
-	REVIEW_PANEL_TASK_WORK rptw[REVIEW_ACTOR_MAX];	///<�]���p�l������^�X�N�̃��[�N
-	CATS_ACT_PTR review_cap[REVIEW_ACTOR_MAX];		///<�]���p�l���A�N�^�[�̃|�C���^
-	ADV_FONTACT fontact[REVIEW_TYPE_MAX][REVIEW_ACTOR_MAX];	///<�]���p�l����̃t�H���g�A�N�^�[
+	REVIEW_PANEL_TASK_WORK rptw[REVIEW_ACTOR_MAX];	///<評価パネル動作タスクのワーク
+	CATS_ACT_PTR review_cap[REVIEW_ACTOR_MAX];		///<評価パネルアクターのポインタ
+	ADV_FONTACT fontact[REVIEW_TYPE_MAX][REVIEW_ACTOR_MAX];	///<評価パネル上のフォントアクター
 
-	const DANCE_MUSIC_DATA *musicdata;		///<���y�i�s�f�[�^�ւ̃|�C���^
+	const DANCE_MUSIC_DATA *musicdata;		///<音楽進行データへのポインタ
 
-	u8 jump_up[BREEDER_MAX];		///<TRUE:�W�����vOK�B�@FALSE:�W�����v�֎~("��"����)
+	u8 jump_up[BREEDER_MAX];		///<TRUE:ジャンプOK。　FALSE:ジャンプ禁止("上"動作)
 	
-	u8 talk_msg_index;				///<�����`�惋�[�`���̃C���f�b�N�X
+	u8 talk_msg_index;				///<文字描画ルーチンのインデックス
 	
-	u8 excellent_count[BREEDER_MAX];		///<Excellent�A���擾��(�S�Ẵ_���X�p��)
-	u8 now_excellent_count[BREEDER_MAX];	///<Excellent�A���擾��(���̕��ʂ̃_���X�̂�)
-	u8 now_failed_count[BREEDER_MAX];		///<FAILED�擾��(���̕��ʂ̃_���X�̂�)
-	u8 now_back_excellent_all_count;		///<�o�b�N�_���T�[��Excellent�擾��
-	u8 now_back_good_all_count;				///<�o�b�N�_���T�[��Good�擾��
-	u8 now_back_failed_all_count;			///<�o�b�N�_���T�[��Failed�擾��
-	u8 succession_count[BREEDER_MAX];		///<�A���_���X��(�S�Ẵ_���X�p��)
-	u8 my_dancing_rotation_pos;				///<�_���X���̎����̃��[�e�[�V�����ʒu
+	u8 excellent_count[BREEDER_MAX];		///<Excellent連続取得回数(全てのダンス継続)
+	u8 now_excellent_count[BREEDER_MAX];	///<Excellent連続取得回数(今の譜面のダンスのみ)
+	u8 now_failed_count[BREEDER_MAX];		///<FAILED取得回数(今の譜面のダンスのみ)
+	u8 now_back_excellent_all_count;		///<バックダンサーのExcellent取得回数
+	u8 now_back_good_all_count;				///<バックダンサーのGood取得回数
+	u8 now_back_failed_all_count;			///<バックダンサーのFailed取得回数
+	u8 succession_count[BREEDER_MAX];		///<連続ダンス回数(全てのダンス継続)
+	u8 my_dancing_rotation_pos;				///<ダンス中の自分のローテーション位置
 }DANCE_SYSTEM_PARAM;
 
 //--------------------------------------------------------------
 /**
- * @brief   �_���X����Ǘ����[�N
+ * @brief   ダンス部門管理ワーク
  *
- * �_���X����S�̂��Ǘ�����匳�̃��[�N�ɂȂ�܂��B
- * �ʐM���ł��S�Ẵ}�V���Ōʂɍ쐬����܂�
+ * ダンス部門全体を管理する大元のワークになります。
+ * 通信時でも全てのマシンで個別に作成されます
  */
 //--------------------------------------------------------------
 typedef struct _DANCE_PROC_WORK{
-	CONTEST_SYSTEM *consys;			///<�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
-	TCB_PTR update_tcb;				///<�V�X�e���X�V����
-	TCB_PTR move_tcb;				///<�|�P�����_���X�G�t�F�N�g���s�^�X�N�ւ̃|�C���^
-	PTC_PTR ptc;					///<�풓�p�[�e�B�N���V�X�e��
+	CONTEST_SYSTEM *consys;			///<コンテストシステムワークへのポインタ
+	TCB_PTR update_tcb;				///<システム更新処理
+	TCB_PTR move_tcb;				///<ポケモンダンスエフェクト実行タスクへのポインタ
+	PTC_PTR ptc;					///<常駐パーティクルシステム
 	GF_G3DMAN *g3Dman;
 	
-	DANCE_SYSTEM_PARAM sys;			///<�_���X����V�X�e���f�[�^�p�����[�^
-	DANCE_GAME_PARAM d_game;			///<�Q�[���i�s�p�����[�^
-	DANCE_ADVANCE_PARAM advance;		///<�i�s�p�����[�^
-	DANCE_ORDER_PARAM order[BREEDER_MAX];	///<���߃p�����[�^
-	DANCE_MOVE_WORK move[BREEDER_MAX];		///<�_���X�A�j���[�V�������[�N
-	POKE_DEF_ANM_WORK pda[BREEDER_MAX];		///<�|�P�����풓�A�j���p���[�N
+	DANCE_SYSTEM_PARAM sys;			///<ダンス部門システムデータパラメータ
+	DANCE_GAME_PARAM d_game;			///<ゲーム進行パラメータ
+	DANCE_ADVANCE_PARAM advance;		///<進行パラメータ
+	DANCE_ORDER_PARAM order[BREEDER_MAX];	///<命令パラメータ
+	DANCE_MOVE_WORK move[BREEDER_MAX];		///<ダンスアニメーションワーク
+	POKE_DEF_ANM_WORK pda[BREEDER_MAX];		///<ポケモン常駐アニメ用ワーク
 
-	DANCE_MIDDLE_FADE middle_fade;	///<�p���b�g���ԃo�b�t�@
+	DANCE_MIDDLE_FADE middle_fade;	///<パレット中間バッファ
 
-	DANCE_PARTICLE_TEMP_WORK particle_temp;	///<�p�[�e�B�N�������󂯓n���p�e���|�������[�N
+	DANCE_PARTICLE_TEMP_WORK particle_temp;	///<パーティクル引数受け渡し用テンポラリワーク
 	
-	void *dip;						///<�T�u��ʐ���V�X�e���\���̂ւ̃|�C���^
+	void *dip;						///<サブ画面制御システム構造体へのポインタ
 	
-	u8 music_vcount_flag;			///<TRUE�F�Ȑi�s�t���[���J�E���g�A�b�v
-	u64 music_vcount;				///<�Ȑi�s�̃t���[���m�F(�ȂƂ���Ȃ��悤��Vblank��++����)
-	u64 music_vcount_start;			///<�_���X���J�n��������V�J�E���^���L��
-	u32 music_vcount_hosei_count;	///<�␳���Ȃ���΂����Ȃ��t���[�������܂��Ă��鐔
-	u32 tick_temp;					///<tick�̒l��ۑ�
+	u8 music_vcount_flag;			///<TRUE：曲進行フレームカウントアップ
+	u64 music_vcount;				///<曲進行のフレーム確認(曲とずれないようにVblankで++する)
+	u64 music_vcount_start;			///<ダンスを開始した時のVカウンタを記憶
+	u32 music_vcount_hosei_count;	///<補正しなければいけないフレームが貯まっている数
+	u32 tick_temp;					///<tickの値を保存
 	
 	u16 seq;
-	u16 tbl_seq_no;					///<���C���V�[�P���X�e�[�u���̔ԍ�
-	u8 proc_mode;					///<���݂̓����
+	u16 tbl_seq_no;					///<メインシーケンステーブルの番号
+	u8 proc_mode;					///<現在の動作状況
 
 #if 0
-	//-- ����M�o�b�t�@ --//
-	u32 request_bit;				///<���߂��o���Ă���r�b�g
-	u8 transmit_buf[TRANSMIT_BUF_SIZE];	///<���M�p�o�b�t�@
-	u8 receive_buf[RECEIVE_BUF_SIZE];	///<��M�p�o�b�t�@
-	u8 transmit_flag;				///<TRUE�F���M�҂��B�@FALSE:�V���ȃf�[�^�Z�b�g�\ 
-	u8 receive_flag;				///<TRUE�F�f�[�^��M����
+	//-- 送受信バッファ --//
+	u32 request_bit;				///<命令を出しているビット
+	u8 transmit_buf[TRANSMIT_BUF_SIZE];	///<送信用バッファ
+	u8 receive_buf[RECEIVE_BUF_SIZE];	///<受信用バッファ
+	u8 transmit_flag;				///<TRUE：送信待ち。　FALSE:新たなデータセット可能 
+	u8 receive_flag;				///<TRUE：データ受信した
 #endif
-	CONTEST_ORDER_WORK cow;			///<����M���[�N
+	CONTEST_ORDER_WORK cow;			///<送受信ワーク
 
-	DANCING_PARAM dancing[BREEDER_MAX];		///<�_���X���s����̃p�����[�^
-	DANCING_PARAM maindancer_record[DANCING_RECORD_MAX];	///<���C���_���T�[�̃_���X����(�ʐM���A�f�[�^�͌X�̂��̏ꏊ�Ɏ�M����鎖�ɂȂ�A�N���C�A���g���ꂼ�ꂪ�������g��DANCE_PROC_WORK�̂��̏ꏊ���Q�Ƃ��鎖�ɂȂ�܂�)
+	DANCING_PARAM dancing[BREEDER_MAX];		///<ダンス実行動作のパラメータ
+	DANCING_PARAM maindancer_record[DANCING_RECORD_MAX];	///<メインダンサーのダンス履歴(通信時、データは個々のこの場所に受信される事になり、クライアントそれぞれが自分自身のDANCE_PROC_WORKのこの場所を参照する事になります)
 
-	DANCE_LOCAL_WORK local;			///<���[�J�����[�N
-	u8 main_end;					///<TRUE:���C�������I��
+	DANCE_LOCAL_WORK local;			///<ローカルワーク
+	u8 main_end;					///<TRUE:メイン処理終了
 	
-	u8 bord_msg_flag;				///<TRUE:�Ŕ��b�Z�[�W�\����
+	u8 bord_msg_flag;				///<TRUE:看板メッセージ表示中
 	
-	u8 dp_sio;						///<TRUE:DP�����������ʐM�ΐ�
+	u8 dp_sio;						///<TRUE:DPが混ざった通信対戦
 }DANCE_PROC_WORK;
 
 
 //==============================================================================
-//	�O���֐��錾
+//	外部関数宣言
 //==============================================================================
 extern PROC_RESULT DanceProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT DanceProc_Main( PROC * proc, int * seq );
@@ -919,7 +919,7 @@ extern void TestParticleDance(DANCE_PROC_WORK *dpw);
 #endif
 
 //==============================================================================
-//	�O���f�[�^�錾
+//	外部データ宣言
 //==============================================================================
 extern const PROC_DATA ContestDanceProcData;
 

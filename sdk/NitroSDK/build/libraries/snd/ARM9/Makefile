@@ -13,10 +13,10 @@
 #
 # $Log: Makefile,v $
 # Revision 1.9  2005/04/13 00:13:11  ida
-# ’˜ìŒ ”NŽŸ•\‹L‚ðXV
+# è‘—ä½œæ¨©å¹´æ¬¡è¡¨è¨˜ã‚’æ›´æ–°
 #
 # Revision 1.8  2005/04/12 06:16:12  ida
-# SND‚ðNITRO-SDK‚ÖˆÚÝ
+# SNDã‚’NITRO-SDKã¸ç§»è¨­
 #
 # Revision 1.9  2004/11/22 04:28:45  ida
 # delete snd_init.c
@@ -31,7 +31,7 @@
 # add snd_alarm.c
 #
 # Revision 1.5  2004/06/14 04:42:49  nishida
-# ƒXƒyƒ‹ƒ~ƒXiinsructionsj‚ðC³B
+# ã‚¹ãƒšãƒ«ãƒŸã‚¹ï¼ˆinsructionsï¼‰ã‚’ä¿®æ­£ã€‚
 #
 # Revision 1.4  2004/06/11 01:52:37  ida
 # port -> command

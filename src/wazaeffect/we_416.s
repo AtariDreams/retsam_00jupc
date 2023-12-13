@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_001.s
- * @brief	‚Í‚½‚­
+ * @brief	ã¯ãŸã
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡‚Í‚½‚­
+//	â– ã¯ãŸã
 //
 //
 // =============================================================================
@@ -42,7 +42,7 @@ WEST_Hataku:
 	FUNC_CALL		WEST_SP_WE_T10,	4, 4, +32, -16, WE_TOOL_M1 | WE_TOOL_SSP
 	WAIT_FLAG
 		
-	///< —­‚ß
+	///< æºœã‚
 	ADD_PARTICLE 	0,W_416_416_RING, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_EP, OPERATOR_AXIS_NONE, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 

@@ -1,6 +1,6 @@
 /**
  *	@file	poru_3d.c
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@3DŠÖ˜A
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€3Dé–¢é€£
  *	@author	Miyuki iwasawa
  *	@date	06.03.28
  */
@@ -18,19 +18,19 @@
 #include "poru_3d.h"
 
 //======================================================
-//ƒvƒƒgƒ^ƒCƒv
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //======================================================
 static void PoruDemo_CameraInit(PORU3D_WORK* wk,int heapID);
 static void PoruDemo_SoftSpriteInit(PORU3D_WORK* wk,PORUDEMO_POKE* poke,int heapID);
 
 /**
- *	@brief	3DŠÖ˜A‰Šú‰»
+ *	@brief	3Dé–¢é€£åˆæœŸåŒ–
  */
 void PoruDemo_3DInit(PORU3D_WORK* wk,PORUDEMO_POKE* poke,int heapID)
 {
 	MI_CpuClear8(wk,sizeof(PORU3D_WORK));
 
-	NNS_G3dInit();		// NitroSystem:‚R‚cƒGƒ“ƒWƒ“‚Ì‰Šú‰»
+	NNS_G3dInit();		// NitroSystem:ï¼“ï¼¤ã‚¨ãƒ³ã‚¸ãƒ³ã®åˆæœŸåŒ–
 	G3X_Init();
 	G3X_InitMtxStack();
 	G3X_SetShading( GX_SHADING_TOON );
@@ -43,10 +43,10 @@ void PoruDemo_3DInit(PORU3D_WORK* wk,PORUDEMO_POKE* poke,int heapID)
 	G3_SwapBuffers( GX_SORTMODE_AUTO, GX_BUFFERMODE_W );
 	G3_ViewPort( 0, 0, 255, 191 );
 
-	//ƒJƒƒ‰‰Šú‰»
+	//ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–
 	PoruDemo_CameraInit(wk,heapID);
 
-	//ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‰Šú‰»
+	//ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸåŒ–
 	PoruDemo_SoftSpriteInit(wk,poke,heapID);
 	
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
@@ -54,7 +54,7 @@ void PoruDemo_3DInit(PORU3D_WORK* wk,PORUDEMO_POKE* poke,int heapID)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@3DƒƒCƒ“
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€3Dãƒ¡ã‚¤ãƒ³
  */
 void PoruDemo_3DMain(PORU3D_WORK* wk)
 {
@@ -74,7 +74,7 @@ void PoruDemo_3DMain(PORU3D_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@3DƒŠƒ\[ƒX‰ğ•ú
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€3Dãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 void PoruDemo_3DRelease(PORU3D_WORK* wk)
 {
@@ -83,9 +83,9 @@ void PoruDemo_3DRelease(PORU3D_WORK* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚@ƒJƒƒ‰İ’è
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢ã€€ã‚«ãƒ¡ãƒ©è¨­å®š
  */
-static void PoruDemo_CameraInit(PORU3D_WORK* wk,int heapID)		// ƒJƒƒ‰
+static void PoruDemo_CameraInit(PORU3D_WORK* wk,int heapID)		// ã‚«ãƒ¡ãƒ©
 {
 	VecFx32	camera_pos = {0,0,0x10000};
 	CAMERA_ANGLE angle = {0,0,0};
@@ -101,7 +101,7 @@ static void PoruDemo_CameraInit(PORU3D_WORK* wk,int heapID)		// ƒJƒƒ‰
 }
 
 /**
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‰Šú‰»
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåˆæœŸåŒ–
  */
 static void PoruDemo_SoftSpriteInit(PORU3D_WORK* wk,PORUDEMO_POKE* poke,int heapID)
 {

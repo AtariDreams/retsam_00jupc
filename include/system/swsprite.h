@@ -2,7 +2,7 @@
 /**
  *
  *	@file		swsprite.h
- *	@brief		ƒXƒvƒ‰ƒCƒg•\¦ƒVƒXƒeƒ€
+ *	@brief		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆè¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2005.09.13
  *
@@ -23,60 +23,60 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// UV’lİ’èæ“¾ƒtƒ‰ƒO
+// UVå€¤è¨­å®šå–å¾—ãƒ•ãƒ©ã‚°
 enum{
-	SWSP_UVUL,		// ¶ã
-	SWSP_UVLR,		// ‰E‰º
+	SWSP_UVUL,		// å·¦ä¸Š
+	SWSP_UVLR,		// å³ä¸‹
 };
 
-// HVƒtƒŠƒbƒvİ’èæ“¾ƒtƒ‰ƒO
+// HVãƒ•ãƒªãƒƒãƒ—è¨­å®šå–å¾—ãƒ•ãƒ©ã‚°
 enum{
-	SWSP_FLIPH,		// HƒtƒŠƒbƒv
-	SWSP_FLIPV,		// VƒtƒŠƒbƒv
+	SWSP_FLIPH,		// Hãƒ•ãƒªãƒƒãƒ—
+	SWSP_FLIPV,		// Vãƒ•ãƒªãƒƒãƒ—
 };
 
-// ‰ñ“]Šp‚Ìİ’èæ“¾ƒtƒ‰ƒO
+// å›è»¢è§’ã®è¨­å®šå–å¾—ãƒ•ãƒ©ã‚°
 enum{
-	SWSP_ROT_X,		// X²‰ñ“]Šp“x
-	SWSP_ROT_Y,		// Y²‰ñ“]Šp“x
-	SWSP_ROT_Z		// X²‰ñ“]Šp“x
+	SWSP_ROT_X,		// Xè»¸å›è»¢è§’åº¦
+	SWSP_ROT_Y,		// Yè»¸å›è»¢è§’åº¦
+	SWSP_ROT_Z		// Xè»¸å›è»¢è§’åº¦
 };
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	imageClip—p
-//	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•`‰æƒVƒXƒeƒ€
-//	ƒf[ƒ^Ši”[\‘¢‘Ì
+//	imageClipç”¨
+//	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ 
+//	ãƒ‡ãƒ¼ã‚¿æ ¼ç´æ§‹é€ ä½“
 //=====================================
 typedef struct SWSP_SYS_tag*	SWSP_SYS_PTR;
 
 //-------------------------------------
 //	
-//	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
 //
 //=====================================
 typedef struct SWSP_CHAR_tag*	SWSP_CHAR_PTR;
 
 //-------------------------------------
 //	
-//	ƒpƒŒƒbƒgƒf[ƒ^
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct SWSP_PLTT_tag*	SWSP_PLTT_PTR;
 
 //-------------------------------------
 //	
-//	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•\¦ƒf[ƒ^
-//	‚ğ‚P‚Â‚É‚Ü‚Æ‚ß‚½ƒIƒuƒWƒFƒNƒgƒf[ƒ^
+//	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆè¡¨ç¤ºãƒ‡ãƒ¼ã‚¿
+//	ã‚’ï¼‘ã¤ã«ã¾ã¨ã‚ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct SWSP_OBJ_tag*	SWSP_OBJ_PTR;
@@ -85,53 +85,53 @@ typedef struct SWSP_OBJ_tag*	SWSP_OBJ_PTR;
 
 //-------------------------------------
 //	
-//	ƒVƒXƒeƒ€“o˜^ƒf[ƒ^
+//	ã‚·ã‚¹ãƒ†ãƒ ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct {
-	int obj_num;		// •\¦ƒIƒuƒWƒFƒNƒg“o˜^”
-	int char_num;		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“o˜^”
-	int pltt_num;		// ƒpƒŒƒbƒgƒf[ƒ^“o˜^”
-	int heap;			// g—pƒq[ƒv
+	int obj_num;		// è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²æ•°
+	int char_num;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç™»éŒ²æ•°
+	int pltt_num;		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ç™»éŒ²æ•°
+	int heap;			// ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
 } SWSP_SYSDATA;
 
 //-------------------------------------
 //	
-//	ƒLƒƒƒ‰ƒNƒ^“o˜^ƒf[ƒ^
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct {
-	SWSP_SYS_PTR		s_sys;		// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒVƒXƒeƒ€
-	NNSG2dCharacterData*	res_file;	// ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX
+	SWSP_SYS_PTR		s_sys;		// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	NNSG2dCharacterData*	res_file;	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹
 } SWSP_CHARDATA;
 
 //-------------------------------------
 //	
-//	ƒpƒŒƒbƒg“o˜^ƒf[ƒ^
+//	ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct {
-	SWSP_SYS_PTR	s_sys;		// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒVƒXƒeƒ€
-	NNSG2dPaletteData*	res_file;	// ƒpƒŒƒbƒgƒŠƒ\[ƒX
-	u32		load_num;				// “]‘—ƒpƒŒƒbƒg”
+	SWSP_SYS_PTR	s_sys;		// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	NNSG2dPaletteData*	res_file;	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
+	u32		load_num;				// è»¢é€ãƒ‘ãƒ¬ãƒƒãƒˆæ•°
 } SWSP_PLTTDATA;
 
 //-------------------------------------
 //	
-//	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
-//	•\¦ƒIƒuƒWƒF“o˜^ƒf[ƒ^
+//	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
+//	è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct {
-	SWSP_SYS_PTR	s_sys;	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒVƒXƒeƒ€
-	SWSP_CHAR_PTR	p_char;	// g—pƒLƒƒƒ‰ƒNƒ^
-	SWSP_PLTT_PTR	p_pltt;	// g—pƒpƒŒƒbƒg
-	s16					m_x;	// À•W‚˜
-	s16					m_y;	// À•W‚™
-	u16					rota;	// ‰ñ“]
-	fx32				alpha;	// “§–¾’l
-	int					pri;	// •\¦—Dæ‡ˆÊ
-	u16					pltt_offs;	// ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+	SWSP_SYS_PTR	s_sys;	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	SWSP_CHAR_PTR	p_char;	// ä½¿ç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+	SWSP_PLTT_PTR	p_pltt;	// ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
+	s16					m_x;	// åº§æ¨™ï½˜
+	s16					m_y;	// åº§æ¨™ï½™
+	u16					rota;	// å›è»¢
+	fx32				alpha;	// é€æ˜å€¤
+	int					pri;	// è¡¨ç¤ºå„ªå…ˆé †ä½
+	u16					pltt_offs;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
 } SWSP_ADDDATA;
 
 
@@ -139,18 +139,18 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	imageClip•`‰æ—pƒ\ƒtƒgƒEƒFƒAƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	imageClipæç”»ç”¨ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	data		ƒVƒXƒeƒ€‰Šú‰»ƒf[ƒ^
- *	@param	heap		g—pƒq[ƒv
+ *	@param	data		ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *	@return	SWSPRITE_PTR	ƒ\ƒtƒgƒEƒFƒAƒVƒXƒeƒ€ƒf[ƒ^
+ *	@return	SWSPRITE_PTR	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -160,9 +160,9 @@ GLOBAL SWSP_SYS_PTR SWSP_SysInit( const SWSP_SYSDATA* data );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	data	ƒ\ƒtƒgƒEƒFƒAƒVƒXƒeƒ€ƒf[ƒ^
+ *	@param	data	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -174,9 +174,9 @@ GLOBAL void SWSP_SysDelete( SWSP_SYS_PTR data );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief		•\¦‚·‚é
+ *	@brief		è¡¨ç¤ºã™ã‚‹
  *
- *	@param		data ƒVƒXƒeƒ€“à‚Ì•\¦ƒIƒuƒWƒFƒNƒg‚ğ•\¦‚·‚é
+ *	@param		data ã‚·ã‚¹ãƒ†ãƒ å†…ã®è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¡¨ç¤ºã™ã‚‹
  *
  *	@return		none
  *
@@ -188,11 +188,11 @@ GLOBAL void SWSP_SysDraw( SWSP_SYS_PTR data );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì\‘¢‘ÌƒTƒCƒY‚ğ•Ô‚·
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ã‚µã‚¤ã‚ºã‚’è¿”ã™
  *
  *	@param	none
  *
- *	@return	int	ƒTƒCƒY
+ *	@return	int	ã‚µã‚¤ã‚º
  *
  *
  */
@@ -202,11 +202,11 @@ GLOBAL int SWSP_GetCharDataSize( void );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^\‘¢‘Ì‚ÌƒTƒCƒY‚ğ•Ô‚·
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
  *
  *	@param	none
  *
- *	@return	int		ƒTƒCƒY
+ *	@return	int		ã‚µã‚¤ã‚º
  *
  *
  */
@@ -216,11 +216,11 @@ GLOBAL int SWSP_GetPlttDataSize( void );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒgƒf[ƒ^\‘¢‘Ì‚ÌƒTƒCƒY‚ğæ“¾‚·‚é
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
  *
  *	@param	none
  *
- *	@return	int		ƒTƒCƒY
+ *	@return	int		ã‚µã‚¤ã‚º
  *
  *
  */
@@ -230,12 +230,12 @@ GLOBAL int SWSP_GetSpriteDataSize( void );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	”z—ñ‚ÅƒIƒuƒWƒFƒNƒg‚ğŠi”[‚·‚é—Ìˆæ‚ğ—pˆÓ‚µ‚½‚Æ‚«‚Ì—v‘f”‚Ìƒf[ƒ^æ“¾—pŠÖ”
+ *	@brief	é…åˆ—ã§ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ ¼ç´ã™ã‚‹é ˜åŸŸã‚’ç”¨æ„ã—ãŸã¨ãã®è¦ç´ æ•°ã®ãƒ‡ãƒ¼ã‚¿å–å¾—ç”¨é–¢æ•°
  *
- *	@param	obj		ƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^‚ğŠi”[‚µ‚Ä‚¢‚é”z—ñ
- *	@param	no		æ“¾‚·‚é—v‘f”
+ *	@param	obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿ã‚’æ ¼ç´ã—ã¦ã„ã‚‹é…åˆ—
+ *	@param	no		å–å¾—ã™ã‚‹è¦ç´ æ•°
  *
- *	@return	SWSP_CHAR_PTR	—v‘f‚Ìƒf[ƒ^
+ *	@return	SWSP_CHAR_PTR	è¦ç´ ã®ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -245,12 +245,12 @@ GLOBAL SWSP_CHAR_PTR SWSP_GetCharDataNo( SWSP_CHAR_PTR obj, int no );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	”z—ñ‚ÅƒIƒuƒWƒFƒNƒg‚ğŠi”[‚·‚é—Ìˆæ‚ğ—pˆÓ‚µ‚½‚Æ‚«‚Ì—v‘f”‚Ìƒf[ƒ^æ“¾—pŠÖ”
+ *	@brief	é…åˆ—ã§ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ ¼ç´ã™ã‚‹é ˜åŸŸã‚’ç”¨æ„ã—ãŸã¨ãã®è¦ç´ æ•°ã®ãƒ‡ãƒ¼ã‚¿å–å¾—ç”¨é–¢æ•°
  *
- *	@param	obj		ƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^‚ğŠi”[‚µ‚Ä‚¢‚é”z—ñ
- *	@param	no		æ“¾‚·‚é—v‘f”
+ *	@param	obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿ã‚’æ ¼ç´ã—ã¦ã„ã‚‹é…åˆ—
+ *	@param	no		å–å¾—ã™ã‚‹è¦ç´ æ•°
  *
- *	@return	SWSP_PLTT_PTR	—v‘f‚Ìƒf[ƒ^
+ *	@return	SWSP_PLTT_PTR	è¦ç´ ã®ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -260,12 +260,12 @@ GLOBAL SWSP_PLTT_PTR SWSP_GetPlttDataNo( SWSP_PLTT_PTR obj, int no );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	”z—ñ‚ÅƒIƒuƒWƒFƒNƒg‚ğŠi”[‚·‚é—Ìˆæ‚ğ—pˆÓ‚µ‚½‚Æ‚«‚Ì—v‘f”‚Ìƒf[ƒ^æ“¾—pŠÖ”
+ *	@brief	é…åˆ—ã§ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ ¼ç´ã™ã‚‹é ˜åŸŸã‚’ç”¨æ„ã—ãŸã¨ãã®è¦ç´ æ•°ã®ãƒ‡ãƒ¼ã‚¿å–å¾—ç”¨é–¢æ•°
  *
- *	@param	obj		ƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^‚ğŠi”[‚µ‚Ä‚¢‚é”z—ñ
- *	@param	no		æ“¾‚·‚é—v‘f”
+ *	@param	obj		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿ã‚’æ ¼ç´ã—ã¦ã„ã‚‹é…åˆ—
+ *	@param	no		å–å¾—ã™ã‚‹è¦ç´ æ•°
  *
- *	@return	SWSP_OBJ_PTR	—v‘f‚Ìƒf[ƒ^
+ *	@return	SWSP_OBJ_PTR	è¦ç´ ã®ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -275,11 +275,11 @@ GLOBAL SWSP_OBJ_PTR SWSP_GetSpriteDataNo( SWSP_OBJ_PTR obj, int no );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg—pƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- *	@param	data	“Ç‚İ‚ŞƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ 
+ *	@param	data	èª­ã¿è¾¼ã‚€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ 
  *
- *	@return	SWSP_CHAR_PTR	“Ç‚İ‚ñ‚¾ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *	@return	SWSP_CHAR_PTR	èª­ã¿è¾¼ã‚“ã ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -289,9 +289,9 @@ GLOBAL SWSP_CHAR_PTR SWSP_CharLoad( const SWSP_CHARDATA* data );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”jŠü
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	data	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *	@param	data	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -303,7 +303,7 @@ GLOBAL void SWSP_CharDelete( SWSP_CHAR_PTR data );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‘S”jŠü
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å…¨ç ´æ£„
  *
  *	@param	none
  *
@@ -317,11 +317,11 @@ GLOBAL void SWSP_CharDeleteAll( SWSP_SYS_PTR data );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg—pƒpƒŒƒbƒgƒf[ƒ^‚ğ“Ç‚İ‚Ş
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- *	@param	data	“Ç‚İ‚ŞƒpƒŒƒbƒgƒf[ƒ^ 
+ *	@param	data	èª­ã¿è¾¼ã‚€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ 
  *
- *	@return	SWSP_PLTT_PTR	“Ç‚İ‚ñ‚¾ƒpƒŒƒbƒgƒf[ƒ^
+ *	@return	SWSP_PLTT_PTR	èª­ã¿è¾¼ã‚“ã ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -331,9 +331,9 @@ GLOBAL SWSP_PLTT_PTR SWSP_PlttLoad( const SWSP_PLTTDATA* data );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg—pƒpƒŒƒbƒgƒf[ƒ^”jŠü
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	data	”jŠü‚·‚éƒpƒŒƒbƒgƒf[ƒ^
+ *	@param	data	ç ´æ£„ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -345,7 +345,7 @@ GLOBAL void SWSP_PlttDelete( SWSP_PLTT_PTR data );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^‘S”jŠü
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å…¨ç ´æ£„
  *
  *	@param	none
  *
@@ -359,11 +359,11 @@ GLOBAL void SWSP_PlttDeleteAll( SWSP_SYS_PTR data );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•\¦“o˜^
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆè¡¨ç¤ºç™»éŒ²
  *
- *	@param	add		“o˜^ƒf[ƒ^
+ *	@param	add		ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	SWSP_OBJ_PTR	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@return	SWSP_OBJ_PTR	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
  *
  */
@@ -373,9 +373,9 @@ GLOBAL SWSP_OBJ_PTR SWSP_Add( const SWSP_ADDDATA* add );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•\¦ƒf[ƒ^”jŠü
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆè¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	sp_obj ”jŠü‚·‚éƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@param	sp_obj ç ´æ£„ã™ã‚‹ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return
  *
@@ -387,7 +387,7 @@ GLOBAL void SWSP_Delete( SWSP_OBJ_PTR sp_obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg•\¦ƒf[ƒ^‘S”jŠü
+ *	@brief	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆè¡¨ç¤ºãƒ‡ãƒ¼ã‚¿å…¨ç ´æ£„
  *
  *	@param	none
  *
@@ -401,10 +401,10 @@ GLOBAL void SWSP_DeleteAll( SWSP_SYS_PTR data );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg‚Ì•\¦/”ñ•\¦İ’è
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®è¡¨ç¤º/éè¡¨ç¤ºè¨­å®š
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒFƒNƒg
- *	@param	draw	•\¦/•\¦		(TRUE / FALSE)
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	draw	è¡¨ç¤º/è¡¨ç¤º		(TRUE / FALSE)
  *
  *	@return	none
  *
@@ -416,12 +416,12 @@ GLOBAL void SWSP_SetSpriteDraw( SWSP_OBJ_PTR obj, BOOL draw );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg‚Ì•\¦/”ñ•\¦‚ğæ“¾
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®è¡¨ç¤º/éè¡¨ç¤ºã‚’å–å¾—
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒFƒNƒg
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
- *	@retval	TRUE	•\¦
- *	@retval	FALSE	”ñ•\¦
+ *	@retval	TRUE	è¡¨ç¤º
+ *	@retval	FALSE	éè¡¨ç¤º
  *
  *
  */
@@ -431,11 +431,11 @@ GLOBAL BOOL SWSP_GetSpriteDraw( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒgÀ•Wİ’è
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåº§æ¨™è¨­å®š
  *
- *	@param	obj		ƒIƒuƒWƒF	
- *	@param	x		À•W‚˜
- *	@param	y		À•W‚™
+ *	@param	obj		ã‚ªãƒ–ã‚¸ã‚§	
+ *	@param	x		åº§æ¨™ï½˜
+ *	@param	y		åº§æ¨™ï½™
  *
  *	@return	none
  *
@@ -447,11 +447,11 @@ GLOBAL void SWSP_SetSpritePos( SWSP_OBJ_PTR obj, s16 x, s16 y );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒgÀ•W‚ğæ“¾
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåº§æ¨™ã‚’å–å¾—
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	NNSG2dSVec2 À•W(ƒƒ“ƒo s16 x  s16 y)
+ *	@return	NNSG2dSVec2 åº§æ¨™(ãƒ¡ãƒ³ãƒ s16 x  s16 y)
  *
  *
  */
@@ -461,11 +461,11 @@ GLOBAL NNSG2dSVec2 SWSP_GetSpritePos( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg’†SÀ•Wİ’è	(¶ãÀ•W‚©‚ç‚ÌÀ•W)
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆä¸­å¿ƒåº§æ¨™è¨­å®š	(å·¦ä¸Šåº§æ¨™ã‹ã‚‰ã®åº§æ¨™)
  *
- *	@param	obj		ƒIƒuƒWƒF	
- *	@param	x		À•W‚˜
- *	@param	y		À•W‚™
+ *	@param	obj		ã‚ªãƒ–ã‚¸ã‚§	
+ *	@param	x		åº§æ¨™ï½˜
+ *	@param	y		åº§æ¨™ï½™
  *
  *	@return	none
  *
@@ -477,11 +477,11 @@ GLOBAL void SWSP_SetSpriteCenterPos( SWSP_OBJ_PTR obj, s16 x, s16 y );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg’†SÀ•W‚ğæ“¾ (¶ãÀ•W‚©‚ç‚ÌÀ•W)
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆä¸­å¿ƒåº§æ¨™ã‚’å–å¾— (å·¦ä¸Šåº§æ¨™ã‹ã‚‰ã®åº§æ¨™)
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	NNSG2dSVec2 À•W(ƒƒ“ƒo s16 x  s16 y)
+ *	@return	NNSG2dSVec2 åº§æ¨™(ãƒ¡ãƒ³ãƒ s16 x  s16 y)
  *
  *
  */
@@ -491,11 +491,11 @@ GLOBAL NNSG2dSVec2 SWSP_GetSpriteCenterPos( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Šg‘åk¬’l‚ğİ’è
+ *	@brief	æ‹¡å¤§ç¸®å°å€¤ã‚’è¨­å®š
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	x		‚˜Šgk’l
- *	@param	y		‚™Šgk’l
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	x		ï½˜æ‹¡ç¸®å€¤
+ *	@param	y		ï½™æ‹¡ç¸®å€¤
  *
  *	@return	none
  *
@@ -507,11 +507,11 @@ GLOBAL void SWSP_SetSpriteScale( SWSP_OBJ_PTR obj, fx32 x, fx32 y );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Šg‘åk¬’l‚ğæ“¾
+ *	@brief	æ‹¡å¤§ç¸®å°å€¤ã‚’å–å¾—
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	x		‚˜À•Wæ“¾æ
- *	@param	y		‚™À•Wæ“¾æ
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	x		ï½˜åº§æ¨™å–å¾—å…ˆ
+ *	@param	y		ï½™åº§æ¨™å–å¾—å…ˆ
  *
  *	@return	none
  *
@@ -523,11 +523,11 @@ GLOBAL void SWSP_GetSpriteScale( SWSP_OBJ_PTR obj, fx32* x, fx32* y );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒgƒTƒCƒY‚ğİ’è
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚µã‚¤ã‚ºã‚’è¨­å®š
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	x		ƒTƒCƒY‚˜
- *	@param	y		ƒTƒCƒY‚™
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	x		ã‚µã‚¤ã‚ºï½˜
+ *	@param	y		ã‚µã‚¤ã‚ºï½™
  *
  *	@return	none
  *
@@ -539,11 +539,11 @@ GLOBAL void SWSP_SetSpriteSize( SWSP_OBJ_PTR obj, int x, int y );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒgƒTƒCƒY‚ğæ“¾
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚µã‚¤ã‚ºã‚’å–å¾—
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	NNSG2dSVec2	ƒXƒvƒ‰ƒCƒgƒTƒCƒYiƒƒ“ƒo s16 x s16 yj
+ *	@return	NNSG2dSVec2	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚µã‚¤ã‚ºï¼ˆãƒ¡ãƒ³ãƒ s16 x s16 yï¼‰
  *
  *
  */
@@ -553,10 +553,10 @@ GLOBAL NNSG2dSVec2 SWSP_GetSpriteSize( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg•\¦—Dæ‡ˆÊ‚ğİ’è
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆè¡¨ç¤ºå„ªå…ˆé †ä½ã‚’è¨­å®š
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	priority	•\¦—Dæ‡ˆÊ
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	priority	è¡¨ç¤ºå„ªå…ˆé †ä½
  *
  *	@return	none
  *
@@ -568,11 +568,11 @@ GLOBAL void SWSP_SetSpritePriority( SWSP_OBJ_PTR obj, int priority );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg‚Ì•\¦—Dæ‡ˆÊ‚ğİ’è
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®è¡¨ç¤ºå„ªå…ˆé †ä½ã‚’è¨­å®š
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	int		•\¦—Dæ‡ˆÊ
+ *	@return	int		è¡¨ç¤ºå„ªå…ˆé †ä½
  *
  *
  */
@@ -582,10 +582,10 @@ GLOBAL int SWSP_GetSpritePriority( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg‚Ìƒ¿’l‚ğİ’è
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®Î±å€¤ã‚’è¨­å®š
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	alpha	ƒ¿’l
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	alpha	Î±å€¤
  *
  *	@return	none
  *
@@ -597,9 +597,9 @@ GLOBAL void SWSP_SetSpriteAlpha( SWSP_OBJ_PTR obj, u8 alpha );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg‚Ìƒ¿’l‚ğæ“¾
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®Î±å€¤ã‚’å–å¾—
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return
  *
@@ -611,10 +611,10 @@ GLOBAL u8 SWSP_GetSpriteAlpha( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief		ƒXƒvƒ‰ƒCƒg‚ÌF‚ğİ’è
+ *	@brief		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®è‰²ã‚’è¨­å®š
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	color		ƒfƒBƒtƒ…[ƒYƒJƒ‰[
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	color		ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºã‚«ãƒ©ãƒ¼
  */
 //-----------------------------------------------------------------------------
 GLOBAL void SWSP_SetSpriteDiffColor( SWSP_OBJ_PTR obj, GXRgb color );
@@ -622,11 +622,11 @@ GLOBAL void SWSP_SetSpriteDiffColor( SWSP_OBJ_PTR obj, GXRgb color );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief		ƒXƒvƒ‰ƒCƒg‚ÌƒfƒBƒtƒ…[ƒYF‚ğæ“¾
+ *	@brief		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²ã‚’å–å¾—
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
- *	@retval	ƒJƒ‰[
+ *	@retval	ã‚«ãƒ©ãƒ¼
  */
 //-----------------------------------------------------------------------------
 GLOBAL GXRgb SWSP_GetSpriteDiffColor( SWSP_OBJ_PTR obj );
@@ -634,10 +634,10 @@ GLOBAL GXRgb SWSP_GetSpriteDiffColor( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg‚ÌƒeƒNƒXƒ`ƒƒƒAƒgƒŠƒrƒ…[ƒg‚ğİ’è
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’è¨­å®š
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	tex_attr	ƒeƒNƒXƒ`ƒƒƒAƒgƒŠƒrƒ…[ƒgƒ|ƒCƒ“ƒ^
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	tex_attr	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿
  *	
  *	@return	none
  *
@@ -649,11 +649,11 @@ GLOBAL void SWSP_SetSpriteTexAttr( SWSP_OBJ_PTR obj, NNSG2dImageAttr* tex_attr )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg‚ÌƒeƒNƒXƒ`ƒƒƒAƒgƒŠƒrƒ…[ƒg‚ğæ“¾
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’å–å¾—
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	NNSG2dImageAttr*	ƒeƒNƒXƒ`ƒƒƒAƒgƒŠƒrƒ…[ƒg
+ *	@return	NNSG2dImageAttr*	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  *
  *
  */
@@ -663,10 +663,10 @@ GLOBAL NNSG2dImageAttr* SWSP_GetSpriteTexAttr( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒXİ’è
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹è¨­å®š
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	tex_addr	ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒX
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	tex_addr	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *	@return	none
  *
@@ -678,11 +678,11 @@ GLOBAL void SWSP_SetSpriteTexAddr( SWSP_OBJ_PTR obj, u32 tex_addr );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒX‚ğæ“¾
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	u32		ƒeƒNƒXƒ`ƒƒƒAƒhƒŒƒX
+ *	@return	u32		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *
  */
@@ -692,10 +692,10 @@ GLOBAL u32 SWSP_GetSpriteTexAddr( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg‚ÌƒpƒŒƒbƒgƒAƒhƒŒƒXİ’è
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹è¨­å®š
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	pltt_addr	ƒpƒŒƒbƒgƒAƒhƒŒƒX
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	pltt_addr	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *	@return	none
  *
@@ -707,11 +707,11 @@ GLOBAL void SWSP_SetSpritePlttAddr( SWSP_OBJ_PTR obj, u32 pltt_addr );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg‚ÌƒpƒŒƒbƒgƒAƒhƒŒƒXæ“¾
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	u32		ƒpƒŒƒbƒgƒAƒhƒŒƒX
+ *	@return	u32		ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *
  */
@@ -721,10 +721,10 @@ GLOBAL u32 SWSP_GetSpritePlttAddr( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	pltt_offs	ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	pltt_offs	ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  *	@return	none
  *
@@ -736,11 +736,11 @@ GLOBAL void SWSP_SetSpritePlttOffs( SWSP_OBJ_PTR obj, u32 pltt_offs );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒIƒtƒZƒbƒgæ“¾
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	u32		ƒIƒtƒZƒbƒg
+ *	@return	u32		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  *
  */
@@ -751,18 +751,18 @@ GLOBAL u32 SWSP_GetSpritePlttOffs( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒgƒtƒŠƒbƒvİ’è
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ•ãƒªãƒƒãƒ—è¨­å®š
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	flip_flg	ƒtƒŠƒbƒvƒtƒ‰ƒO
- *	@param	flip		ƒtƒŠƒbƒv‚³‚¹‚é‚©	TRUE@‚³‚¹‚é@FALSE@‚³‚¹‚È‚¢
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	flip_flg	ãƒ•ãƒªãƒƒãƒ—ãƒ•ãƒ©ã‚°
+ *	@param	flip		ãƒ•ãƒªãƒƒãƒ—ã•ã›ã‚‹ã‹	TRUEã€€ã•ã›ã‚‹ã€€FALSEã€€ã•ã›ãªã„
  *
  *	@return	none
  *
-	// HVƒtƒŠƒbƒvİ’èæ“¾ƒtƒ‰ƒO
+	// HVãƒ•ãƒªãƒƒãƒ—è¨­å®šå–å¾—ãƒ•ãƒ©ã‚°
 	enum{
-		SWSP_FLIPH,		// HƒtƒŠƒbƒv
-		SWSP_FLIPV,		// VƒtƒŠƒbƒv
+		SWSP_FLIPH,		// Hãƒ•ãƒªãƒƒãƒ—
+		SWSP_FLIPV,		// Vãƒ•ãƒªãƒƒãƒ—
 	};
  *
  */
@@ -772,17 +772,17 @@ GLOBAL void SWSP_SetSpriteFlip( SWSP_OBJ_PTR obj, int flip_flg, BOOL flip );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief		ƒXƒvƒ‰ƒCƒg‚ÌƒtƒŠƒbƒv‚ğæ“¾
+ *	@brief		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒ•ãƒªãƒƒãƒ—ã‚’å–å¾—
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	flip_flg	HVƒtƒŠƒbƒvƒtƒ‰ƒO
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	flip_flg	HVãƒ•ãƒªãƒƒãƒ—ãƒ•ãƒ©ã‚°
  *
- *	@return	BOOL	TRUE	ƒtƒŠƒbƒv‚·‚é	FALSE
+ *	@return	BOOL	TRUE	ãƒ•ãƒªãƒƒãƒ—ã™ã‚‹	FALSE
  *
-	// HVƒtƒŠƒbƒvİ’èæ“¾ƒtƒ‰ƒO
+	// HVãƒ•ãƒªãƒƒãƒ—è¨­å®šå–å¾—ãƒ•ãƒ©ã‚°
 	enum{
-		SWSP_FLIPH,		// HƒtƒŠƒbƒv
-		SWSP_FLIPV,		// VƒtƒŠƒbƒv
+		SWSP_FLIPH,		// Hãƒ•ãƒªãƒƒãƒ—
+		SWSP_FLIPV,		// Vãƒ•ãƒªãƒƒãƒ—
 	};
  *
  *
@@ -793,10 +793,10 @@ GLOBAL BOOL SWSP_GetSpriteFlip( SWSP_OBJ_PTR obj, int flip_flg );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰ñ“]Špz‚ğİ’è
+ *	@brief	å›è»¢è§’zã‚’è¨­å®š
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	rota		İ’è‚·‚éŠp“x
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	rota		è¨­å®šã™ã‚‹è§’åº¦
  *
  *	@return
  *
@@ -807,11 +807,11 @@ GLOBAL void SWSP_SetSpriteRotZ( SWSP_OBJ_PTR obj, u16 rota );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰ñ“]Šp“xZ‚ğæ“¾
+ *	@brief	å›è»¢è§’åº¦Zã‚’å–å¾—
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	u16		‰ñ“]Šp“x
+ *	@return	u16		å›è»¢è§’åº¦
  *
  *
  */
@@ -824,10 +824,10 @@ GLOBAL u16 SWSP_GetSpriteRotZ( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒgcolor‚ğİ’èiƒ|ƒŠƒSƒ“colorj
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆcolorã‚’è¨­å®šï¼ˆãƒãƒªã‚´ãƒ³colorï¼‰
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	color	ƒ|ƒŠƒSƒ“color
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	color	ãƒãƒªã‚´ãƒ³color
  *
  *	@return	none
  *
@@ -839,11 +839,11 @@ GLOBAL void SWSP_SetSpriteColor( SWSP_OBJ_PTR obj, GXRgb color );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒgcoloræ“¾
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆcolorå–å¾—
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	GXRgb	colorƒf[ƒ^
+ *	@return	GXRgb	colorãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -853,20 +853,20 @@ GLOBAL GXRgb SWSP_GetSpriteColor( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg‚ÌUV’l‚ğİ’è
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®UVå€¤ã‚’è¨­å®š
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	LR_flg		¶ã@‰E‰ºƒtƒ‰ƒO
- *	@param	u			U’l	i‰¡j
- *	@param	v			V’l	icj
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	LR_flg		å·¦ä¸Šã€€å³ä¸‹ãƒ•ãƒ©ã‚°
+ *	@param	u			Uå€¤	ï¼ˆæ¨ªï¼‰
+ *	@param	v			Vå€¤	ï¼ˆç¸¦ï¼‰
  *
  *	@return	none
  *
  *
-	// UV’lİ’èæ“¾ƒtƒ‰ƒO
+	// UVå€¤è¨­å®šå–å¾—ãƒ•ãƒ©ã‚°
 	enum{
-		SWSP_UVUL,		// ¶ã
-		SWSP_UVLR,		// ‰E‰º
+		SWSP_UVUL,		// å·¦ä¸Š
+		SWSP_UVLR,		// å³ä¸‹
 	};
  *
  */
@@ -876,17 +876,17 @@ GLOBAL void SWSP_SetSpriteUV( SWSP_OBJ_PTR obj, int LR_flg, fx32 u, f32 v );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg‚ÌUV’l‚ğæ“¾
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®UVå€¤ã‚’å–å¾—
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	LR_flg		¶ãA‰E‰ºƒtƒ‰ƒO
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	LR_flg		å·¦ä¸Šã€å³ä¸‹ãƒ•ãƒ©ã‚°
  *
- *	@return	NNSG2dFVec2 UV’l	iƒƒ“ƒo x=u  y=vj
+ *	@return	NNSG2dFVec2 UVå€¤	ï¼ˆãƒ¡ãƒ³ãƒ x=u  y=vï¼‰
  *
-	// UV’lİ’èæ“¾ƒtƒ‰ƒO
+	// UVå€¤è¨­å®šå–å¾—ãƒ•ãƒ©ã‚°
 	enum{
-		SWSP_UVUL,		// ¶ã
-		SWSP_UVLR,		// ‰E‰º
+		SWSP_UVUL,		// å·¦ä¸Š
+		SWSP_UVLR,		// å³ä¸‹
 	};
  *
  */
@@ -896,11 +896,11 @@ GLOBAL NNSG2dFVec2 SWSP_GetSpriteUV( SWSP_OBJ_PTR obj, int LR_flg  );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰ñ“]‚Ì’†S‚ğİ’è
+ *	@brief	å›è»¢ã®ä¸­å¿ƒã‚’è¨­å®š
  *
- *	@param	obj		ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
+ *	@param	obj		ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
  *
  *	@return	none
  *
@@ -912,11 +912,11 @@ GLOBAL void SWSP_SetSpriteRotO( SWSP_OBJ_PTR obj, s16 x, s16 y );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg‚Ì‰ñ“]’†SÀ•W‚Ìæ“¾
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®å›è»¢ä¸­å¿ƒåº§æ¨™ã®å–å¾—
  *
- *	@param	SWSP_OBJ_PTR obj	ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒFƒNƒg
+ *	@param	SWSP_OBJ_PTR obj	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
- *	@return	NNSG2dSVec2		‰ñ“]’†SÀ•W	
+ *	@return	NNSG2dSVec2		å›è»¢ä¸­å¿ƒåº§æ¨™	
  *
  *
  */
@@ -926,19 +926,19 @@ GLOBAL NNSG2dSVec2 SWSP_GetSpriteRotO( SWSP_OBJ_PTR obj );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰ñ“]Šp‚ğİ’è
+ *	@brief	å›è»¢è§’ã‚’è¨­å®š
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	XYZ_flg		‰ñ“]Šp²‚Ìƒtƒ‰ƒO
- *	@param	rota		İ’è‚·‚éŠp“x
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	XYZ_flg		å›è»¢è§’è»¸ã®ãƒ•ãƒ©ã‚°
+ *	@param	rota		è¨­å®šã™ã‚‹è§’åº¦
  *
  *	@return
  *
-	// ‰ñ“]Šp‚Ìİ’èæ“¾ƒtƒ‰ƒO
+	// å›è»¢è§’ã®è¨­å®šå–å¾—ãƒ•ãƒ©ã‚°
 	enum{
-		SWSP_ROT_X,		// X²‰ñ“]Šp“x
-		SWSP_ROT_Y,		// Y²‰ñ“]Šp“x
-		SWSP_ROT_Z		// X²‰ñ“]Šp“x
+		SWSP_ROT_X,		// Xè»¸å›è»¢è§’åº¦
+		SWSP_ROT_Y,		// Yè»¸å›è»¢è§’åº¦
+		SWSP_ROT_Z		// Xè»¸å›è»¢è§’åº¦
 	};
  *
  */
@@ -948,18 +948,18 @@ GLOBAL void SWSP_SetSpriteRot( SWSP_OBJ_PTR obj, int XYZ_flg, u16 rota );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰ñ“]Šp“x‚ğæ“¾
+ *	@brief	å›è»¢è§’åº¦ã‚’å–å¾—
  *
- *	@param	obj			ƒXƒvƒ‰ƒCƒgƒIƒuƒWƒF
- *	@param	XYZ_flg		æ“¾‚·‚é‰ñ“]Šp²‚Ìƒtƒ‰ƒO
+ *	@param	obj			ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚ªãƒ–ã‚¸ã‚§
+ *	@param	XYZ_flg		å–å¾—ã™ã‚‹å›è»¢è§’è»¸ã®ãƒ•ãƒ©ã‚°
  *
- *	@return	u16		‰ñ“]Šp“x
+ *	@return	u16		å›è»¢è§’åº¦
  *
-	// ‰ñ“]Šp‚Ìİ’èæ“¾ƒtƒ‰ƒO
+	// å›è»¢è§’ã®è¨­å®šå–å¾—ãƒ•ãƒ©ã‚°
 	enum{
-		SWSP_ROT_X,		// X²‰ñ“]Šp“x
-		SWSP_ROT_Y,		// Y²‰ñ“]Šp“x
-		SWSP_ROT_Z		// X²‰ñ“]Šp“x
+		SWSP_ROT_X,		// Xè»¸å›è»¢è§’åº¦
+		SWSP_ROT_Y,		// Yè»¸å›è»¢è§’åº¦
+		SWSP_ROT_Z		// Xè»¸å›è»¢è§’åº¦
 	};
  *
  */

@@ -15,7 +15,7 @@
   update copyright.
 
   Revision 1.19  2006/03/20 01:58:35  ida
-  muteƒV[ƒPƒ“ƒXƒRƒ}ƒ“ƒh‘Î‰
+  muteã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚³ãƒãƒ³ãƒ‰å¯¾å¿œ
 
   Revision 1.18  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -24,10 +24,10 @@
   sound patch for NITRO-System 2005/01/31
 
   Revision 1.6  2005/01/06 04:07:49  ida
-  ’˜ìŒ ”NŸ•\‹L‚ğXV
+  è‘—ä½œæ¨©å¹´æ¬¡è¡¨è¨˜ã‚’æ›´æ–°
 
   Revision 1.5  2005/01/05 06:48:16  ida
-  printvarƒV[ƒPƒ“ƒXƒRƒ}ƒ“ƒh’Ç‰Á
+  printvarã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚³ãƒãƒ³ãƒ‰è¿½åŠ 
 
   Revision 1.4  2004/05/10 01:58:38  ida
   add volume2(expression) command

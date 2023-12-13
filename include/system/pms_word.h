@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pms_word.h
- * @bfief	�ȈՉ�b�p�P��f�[�^��舵��
+ * @bfief	簡易会話用単語データ取り扱い
  * @author	taya
  * @date	06.01.20
  */
@@ -29,7 +29,7 @@ extern BOOL GetWordSorceID( PMS_WORD pms_word, u32* fileID, u32* wordID );
 
 
 //===================================================================================
-// �Z�[�u�f�[�^����
+// セーブデータ処理
 //===================================================================================
 #include "savedata/savedata.h"
 
@@ -37,17 +37,17 @@ typedef struct _PMSW_SAVEDATA	PMSW_SAVEDATA;
 
 //--------------------------------------------------
 /**
- *	�e�����������Ƃ΂�ID
- *	�igmm�ƘA�����Ă��邽�ߏ��Ԃ͌Œ�j
+ *	各国あいさつことばのID
+ *	（gmmと連動しているため順番は固定）
  */
 //--------------------------------------------------
 typedef enum {
-	PMSW_AISATSU_JP,	// ���{��
-	PMSW_AISATSU_EN,	// �p��
-	PMSW_AISATSU_FR,	// �t�����X��
-	PMSW_AISATSU_IT,	// �C�^���A��
-	PMSW_AISATSU_GE,	// �h�C�c��
-	PMSW_AISATSU_SP,	// �X�y�C����
+	PMSW_AISATSU_JP,	// 日本語
+	PMSW_AISATSU_EN,	// 英語
+	PMSW_AISATSU_FR,	// フランス語
+	PMSW_AISATSU_IT,	// イタリア語
+	PMSW_AISATSU_GE,	// ドイツ語
+	PMSW_AISATSU_SP,	// スペイン語
 
 	PMSW_AISATSU_HIDE_MAX,
 }PMSW_AISATSU_ID;
@@ -55,7 +55,7 @@ typedef enum {
 
 //--------------------------------------------------
 /**
- *	������Ƃ΂̍ő吔
+ *	難解ことばの最大数
  */
 //--------------------------------------------------
 enum {
@@ -74,7 +74,7 @@ extern void PMSW_SetAisatsuFlag( PMSW_SAVEDATA* saveData, PMSW_AISATSU_ID id );
 
 
 
-// �Z�[�u�f�[�^�����V�X�e���p
+// セーブデータ処理システム用
 extern u32 PMSW_GetSaveDataSize(void);
 extern void PMSW_InitSaveData( void* work );
 
@@ -82,13 +82,13 @@ extern void PMSW_InitSaveData( void* work );
 
 //-----------------------------------------------------------------------------
 /**
- *		�������Ƃ΁@�����p�@�d���Ȃ��P��e�[�u��
- *		0x5ACbyte�g�p
+ *		あいことば　生成用　重複なし単語テーブル
+ *		0x5ACbyte使用
  */
 //-----------------------------------------------------------------------------
 typedef struct _PMSW_AIKOTOBA_TBL	PMSW_AIKOTOBA_TBL;
 
-// PMSW_AIKOTOBATBL_GetWordIdx�̃G���[�R�[�h
+// PMSW_AIKOTOBATBL_GetWordIdxのエラーコード
 #define PMSW_AIKOTOBA_WORD_NONE	( -1 )	
 
 extern PMSW_AIKOTOBA_TBL* PMSW_AIKOTOBATBL_Init( u32 heapID );

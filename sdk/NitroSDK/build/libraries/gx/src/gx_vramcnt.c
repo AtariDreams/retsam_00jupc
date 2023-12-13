@@ -18,16 +18,16 @@
   do-indent.
 
   Revision 1.42  2005/02/15 08:13:27  terui
-  GX_TrySetBankFor* �֐���ǉ��B
-  �R�[�h���L���̂��߁AGX_SetBankFor* �֐��������B
-  GX_ResetBankFor* �֐��̔r���m�F���@��ύX�B
-  GX_DisableBankFor* �֐��̔r���m�F���@��ύX�B
+  GX_TrySetBankFor* 関数を追加。
+  コード共有化のため、GX_SetBankFor* 関数を改造。
+  GX_ResetBankFor* 関数の排他確認方法を変更。
+  GX_DisableBankFor* 関数の排他確認方法を変更。
 
   Revision 1.41  2005/02/09 09:20:31  terui
-  VRAM�o���N�؂�ւ����ɔr���`�F�b�N���s���悤�ɉ����B
+  VRAMバンク切り替え時に排他チェックを行うように改造。
 
   Revision 1.40  2004/12/06 07:37:26  takano_makoto
-  GX_SetBankForBGEx�̈�����GX_VRAM_BG_NONE���w��ł��Ȃ��悤�ɏC��
+  GX_SetBankForBGExの引数にGX_VRAM_BG_NONEが指定できないように修正
 
   Revision 1.39  2004/11/25 11:13:43  takano_makoto
   add GX_SetBankForBGEx
@@ -1279,11 +1279,11 @@ extern vu16 GXi_VRamLockId;
 /*---------------------------------------------------------------------------*
   Name:         GxCheckExclusive
 
-  Description:  �o���N��؂�ւ��悤�Ƃ���VRAM�ɑ΂��Ĕr�����b�N�������܂��B
-                ���ɑ��̃��C�u�������ɂ���Ĕr�����b�N����Ă���ꍇ�́A�{��
-                �͔r�����b�N�����������܂ő҂ׂ��ł����A�����ł�Panic���܂��B
+  Description:  バンクを切り替えようとするVRAMに対して排他ロックをかけます。
+                既に他のライブラリ等によって排他ロックされている場合は、本来
+                は排他ロックが解除されるまで待つべきですが、ここではPanicします。
 
-  Arguments:    vramMap -   �r�����b�N��������VRAM�Q�̃o���NID�̘_���a�B
+  Arguments:    vramMap -   排他ロックをかけるVRAM群のバンクIDの論理和。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1362,10 +1362,10 @@ BOOL GX_TrySetBankForBG(GXVRamBG bg)
 
 /*---------------------------------------------------------------------------*/
 /* 
- * inline�����ď����ł����x�̌����}�肽�����A���̊֐���inline�錾�����
- * CW�R���p�C���������� 3�̕�inline�֐������̊֐������Ă��܂��A��肢������
- * �֐��R�[���̃I�[�o�[�w�b�h���������Ă��܂����ʂƂȂ�B
- * ����� 2005/02/15 ���݁A���֐������֐��Ƃ��Ē�`���Ă����B
+ * inline化して少しでも速度の向上を図りたいが、この関数をinline宣言すると
+ * CWコンパイラが内部の 3つの別inline関数を実体関数化してしまい、よりいっそう
+ * 関数コールのオーバーヘッドが増加してしまう結果となる。
+ * よって 2005/02/15 現在、当関数を実関数として定義しておく。
  */
 static void GxSetBankForBGEx(GXVRamBG bg1, GXVRamBG bg2)
 {

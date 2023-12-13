@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ug_base_layout.c
- * @brief	”é–§Šî’n‚É“ü‚Á‚½Û‚ÌƒŒƒCƒAƒEƒgˆ—
+ * @brief	ç§˜å¯†åŸºåœ°ã«å…¥ã£ãŸéš›ã®ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆå‡¦ç†
  * @author	saito
  * @date	2006.03.03
  *
@@ -19,8 +19,8 @@
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *	’n‰º”é–§Šî’nƒOƒbƒYƒZƒbƒgƒAƒbƒv
- *	@param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ *	åœ°ä¸‹ç§˜å¯†åŸºåœ°ã‚°ãƒƒã‚ºã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
+ *	@param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  *	@retval	none
 */
@@ -38,33 +38,33 @@ void BaseLayout_SetupUGBaseGoodsObj(FIELDSYS_WORK * fsys)
 	
 	base_data = CommUgSetupSecretBaseData(fsys->savedata);
 	if (base_data==NULL){
-		return;	//’nã‚Æ‚İ‚È‚µAƒŠƒ^[ƒ“
+		return;	//åœ°ä¸Šã¨ã¿ãªã—ã€ãƒªã‚¿ãƒ¼ãƒ³
 	}
 	
-	//ƒIƒtƒZƒbƒgæ“¾
+	//ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 	block_x = UgManUgSetupSecretBaseBlockX();
 	block_z = UgManUgSetupSecretBaseBlockZ();
 	
 	for(i=0;i<32;i++){
 		goods_no = SecretBaseData_GetGoodsType(base_data, i);
-		//ƒOƒbƒYƒiƒ“ƒo[‚©‚çc‰¡ƒTƒCƒY‚ğæ“¾
+		//ã‚°ãƒƒã‚ºãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ç¸¦æ¨ªã‚µã‚¤ã‚ºã‚’å–å¾—
 		w = GOODS_GetGoodsSizeX(goods_no);
 		d = GOODS_GetGoodsSizeZ(goods_no);
 		if (goods_no != GOODS_INVALID){
 			x = SecretBaseData_GetGoodsXPos(base_data, i);
 			z = SecretBaseData_GetGoodsZPos(base_data, i);
-			//Fx32Œ^‚É•ÏŠ·
+			//Fx32å‹ã«å¤‰æ›
 			trans.x = x*(FX32_ONE*16);
 			trans.z = z*(FX32_ONE*16);
-			trans.y = FX32_ONE;	//‚¿‚å‚Á‚Æ‚ ‚°‚Æ‚­
-			//ƒIƒtƒZƒbƒg•t‰Á
+			trans.y = FX32_ONE;	//ã¡ã‚‡ã£ã¨ã‚ã’ã¨ã
+			//ã‚ªãƒ•ã‚»ãƒƒãƒˆä»˜åŠ 
 			trans.x += (block_x*FX32_ONE*16*32);
 			trans.z += (block_z*FX32_ONE*16*32);
-			//ƒTƒCƒY‚É‚æ‚éƒIƒtƒZƒbƒg•t‰Á
+			//ã‚µã‚¤ã‚ºã«ã‚ˆã‚‹ã‚ªãƒ•ã‚»ãƒƒãƒˆä»˜åŠ 
 			trans.x += (w*FX32_ONE*8);
 			trans.z += (d*FX32_ONE*8);
 			obj_id = MAPRES_GetObjIDFromModelFile(fsys->MapResource, goods_no);
-			//OBJ“o˜^
+			//OBJç™»éŒ²
 			M3DO_SetMap3DObjExp(fsys->Map3DObjExp,
 								fsys->MapResource,
 								obj_id,

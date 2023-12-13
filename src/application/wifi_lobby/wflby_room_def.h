@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_room_def.h
- *	@brief		WiFiƒƒr[	•”‰®ƒVƒXƒeƒ€	\‘¢‘Ì’è‹`
+ *	@brief		WiFiãƒ­ãƒ“ãƒ¼	éƒ¨å±‹ã‚·ã‚¹ãƒ†ãƒ 	æ§‹é€ ä½“å®šç¾©
  *	@author		tomoya takahashi
  *	@data		2007.11.26
  *
@@ -31,12 +31,12 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-/// Lêê—pƒƒbƒZ[ƒW
+/// åºƒå ´å°‚ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 //=====================================
 typedef enum{
 	WFLBY_DEFMSG_TYPE_INFO,
@@ -47,22 +47,22 @@ typedef enum{
 } WFLBY_DEFMSG_TYPE;
 
 //-------------------------------------
-///	LêYESNOƒEƒBƒ“ƒhƒE–ß‚è’l
+///	åºƒå ´YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æˆ»ã‚Šå€¤
 //=====================================
 typedef enum {
-	WFLBY_ROOM_YESNO_OK,	// ‚Í‚¢
-	WFLBY_ROOM_YESNO_NO,	// ‚¢‚¢‚¦
-	WFLBY_ROOM_YESNO_WAIT,	// ‘I‚Ñ’†
+	WFLBY_ROOM_YESNO_OK,	// ã¯ã„
+	WFLBY_ROOM_YESNO_NO,	// ã„ã„ãˆ
+	WFLBY_ROOM_YESNO_WAIT,	// é¸ã³ä¸­
 } WFLBY_ROOM_YESNO_RET;
 
 //-------------------------------------
-///	ƒvƒŒƒCƒ„[“üêí’“ƒCƒxƒ“ƒg’è”
+///	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¥å ´å¸¸é§ã‚¤ãƒ™ãƒ³ãƒˆå®šæ•°
 //=====================================
 enum {
-	WFLBY_EV_DEF_PLAYERIN_NORMAL,	// ’Êí“üê
-	WFLBY_EV_DEF_PLAYERIN_GRID,		// ƒOƒŠƒbƒh‚ðŽw’è‚µ‚Ä“üê(SUBCHAN‚©‚ç‚Ì‘Þ”ð)
-	WFLBY_EV_DEF_PLAYERIN_MINIGAME,	// ƒOƒŠƒbƒh‚ðŽw’è‚µ‚Ä“üê(ƒ~ƒjƒQ[ƒ€‚©‚ç‚Ì‘Þ”ð)
-	WFLBY_EV_DEF_PLAYERIN_ANKETO,	// ƒOƒŠƒbƒh‚ðŽw’è‚µ‚Ä“üê(ƒAƒ“ƒP[ƒg‚©‚ç‚Ì‘Þ”ð)
+	WFLBY_EV_DEF_PLAYERIN_NORMAL,	// é€šå¸¸å…¥å ´
+	WFLBY_EV_DEF_PLAYERIN_GRID,		// ã‚°ãƒªãƒƒãƒ‰ã‚’æŒ‡å®šã—ã¦å…¥å ´(SUBCHANã‹ã‚‰ã®é€€é¿)
+	WFLBY_EV_DEF_PLAYERIN_MINIGAME,	// ã‚°ãƒªãƒƒãƒ‰ã‚’æŒ‡å®šã—ã¦å…¥å ´(ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‹ã‚‰ã®é€€é¿)
+	WFLBY_EV_DEF_PLAYERIN_ANKETO,	// ã‚°ãƒªãƒƒãƒ‰ã‚’æŒ‡å®šã—ã¦å…¥å ´(ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã‹ã‚‰ã®é€€é¿)
 	WFLBY_EV_DEF_PLAYERIN_NUM,
 } ;
 
@@ -70,16 +70,16 @@ enum {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// •”‰®‚Ìƒ[ƒN
+// éƒ¨å±‹ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct _WFLBY_ROOMWK WFLBY_ROOMWK;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
 extern WFLBY_SYSTEM* WFLBY_ROOM_GetSystemData( WFLBY_ROOMWK* p_wk );
@@ -91,12 +91,12 @@ extern WFLBY_CAMERA* WFLBY_ROOM_GetCamera( WFLBY_ROOMWK* p_wk );
 extern WFLBY_EVENT* WFLBY_ROOM_GetEvent( WFLBY_ROOMWK* p_wk );	
 
 
-// ’ÊMƒGƒ‰[ƒ`ƒFƒbƒN‚ÌONOFF
-// ‰Šú’lFALSE
+// é€šä¿¡ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã®ONOFF
+// åˆæœŸå€¤FALSE
 extern void WFLBY_ROOM_SetErrorCheckFlag( WFLBY_ROOMWK* p_wk, BOOL flag );
 extern BOOL WFLBY_ROOM_GetErrorCheckFlag( const WFLBY_ROOMWK* cp_wk );
 
-// ƒtƒ‰ƒOŠÖ˜A
+// ãƒ•ãƒ©ã‚°é–¢é€£
 extern u32 WFLBY_ROOM_GetPlno( const WFLBY_ROOMWK* cp_wk );
 extern BOOL WFLBY_ROOM_GetFadeFlag( const WFLBY_ROOMWK* cp_wk );
 extern BOOL WFLBY_ROOM_GetEndFlag( const WFLBY_ROOMWK* cp_wk );
@@ -108,15 +108,15 @@ extern u8 WFLBY_ROOM_GetEvNo( const WFLBY_ROOMWK* cp_wk );
 extern void WFLBY_ROOM_OffTimeOutCheck( WFLBY_ROOMWK* p_wk );
 
 #if PL_T0867_080716_FIX
-// ŽålŒö“®ì
+// ä¸»äººå…¬å‹•ä½œ
 extern void WFLBY_ROOM_SetPlayerEventAfterMove( WFLBY_ROOMWK* p_wk, BOOL flag );
 extern BOOL WFLBY_ROOM_CheckPlayerEventAfterMove( const WFLBY_ROOMWK* cp_wk );
 #endif
 
-// NPCƒ[ƒJƒ‹ŠÂ‹«‰ï˜b‰Â”\ƒ`ƒFƒbƒN
+// NPCãƒ­ãƒ¼ã‚«ãƒ«ç’°å¢ƒä¼šè©±å¯èƒ½ãƒã‚§ãƒƒã‚¯
 extern void WFLBY_ROOM_SetNpcTalkBusy( WFLBY_ROOMWK* p_wk, u8 plno, BOOL busy );
 extern BOOL WFBLY_ROOM_CheckNpcTalkBusy( const WFLBY_ROOMWK* cp_wk, u8 plno );
-// NPCƒ[ƒJƒ‹ŠÂ‹«î•ñ•\Ž¦‰Â”\ƒ`ƒFƒbƒN
+// NPCãƒ­ãƒ¼ã‚«ãƒ«ç’°å¢ƒæƒ…å ±è¡¨ç¤ºå¯èƒ½ãƒã‚§ãƒƒã‚¯
 extern void WFLBY_ROOM_SetNpcInfoDrawBusy( WFLBY_ROOMWK* p_wk, u8 plno, BOOL busy );
 extern BOOL WFBLY_ROOM_CheckNpcInfoDrawBusy( const WFLBY_ROOMWK* cp_wk, u8 plno );
 
@@ -177,7 +177,7 @@ extern void WFLBY_ROOM_MSG_SetAisatsuGerMany( WFLBY_ROOMWK* p_wk, u32 bufID, u32
 extern void WFLBY_ROOM_MSG_SetAisatsuSpain( WFLBY_ROOMWK* p_wk, u32 bufID, u32 time_zone );
 extern void WFLBY_ROOM_MSG_SetWazaType( WFLBY_ROOMWK* p_wk, u32 bufID, WFLBY_POKEWAZA_TYPE type );
 
-// ‚µ‚½‰æ–ÊƒRƒ“ƒgƒ[ƒ‹
+// ã—ãŸç”»é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 extern void WFLBY_ROOM_UNDERWIN_TrCardOn( WFLBY_ROOMWK* p_wk, u32 idx, BOOL aikotoba );
 extern void WFLBY_ROOM_UNDERWIN_TrCardGadGetChange( WFLBY_ROOMWK* p_wk, WFLBY_ITEMTYPE item );
 extern void WFLBY_ROOM_UNDERWIN_TrCardWazaTypeWrite( WFLBY_ROOMWK* p_wk );
@@ -187,8 +187,8 @@ extern BOOL WFLBY_ROOM_UNDERWIN_TrCardGetDraw( const WFLBY_ROOMWK* cp_wk );
 extern BOOL WFLBY_ROOM_UNDERWIN_TrCardCheckCanOff( const WFLBY_ROOMWK* cp_wk );
 extern BOOL WFLBY_ROOM_UNDERWIN_CheckSeqNormal( const WFLBY_ROOMWK* cp_wk );
 
-// ƒKƒWƒFƒbƒg‚ð‹N“®‚·‚é‚©ƒ`ƒFƒbƒN
-// ƒ`ƒFƒbƒNŒãƒtƒ‰ƒO‚ªŽ©“®‚ÅOFF‚É‚È‚è‚Ü‚·
+// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚’èµ·å‹•ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+// ãƒã‚§ãƒƒã‚¯å¾Œãƒ•ãƒ©ã‚°ãŒè‡ªå‹•ã§OFFã«ãªã‚Šã¾ã™
 extern void WFLBY_ROOM_GadGet_Get( WFLBY_ROOMWK* p_wk );
 extern void WFLBY_ROOM_GadGet_SetStop( WFLBY_ROOMWK* p_wk, BOOL stop );
 extern void WFLBY_ROOM_GadGet_ClearLockWait( WFLBY_ROOMWK* p_wk );
@@ -198,7 +198,7 @@ extern BOOL WFLBY_ROOM_GadGet_PlayWait( const WFLBY_ROOMWK* cp_wk, u32 idx );
 extern void WFLBY_ROOM_UNDERWIN_FloatBttnOn( WFLBY_ROOMWK* p_wk );
 extern void WFLBY_ROOM_UNDERWIN_FloatBttnOff( WFLBY_ROOMWK* p_wk );
 
-// ƒtƒ[ƒg‚Ì—h‚êƒAƒjƒî•ñ‚ðŽæ“¾
+// ãƒ•ãƒ­ãƒ¼ãƒˆã®æºã‚Œã‚¢ãƒ‹ãƒ¡æƒ…å ±ã‚’å–å¾—
 extern BOOL WFLBY_ROOM_FLOAT_CheckShakeAnm( const WFLBY_ROOMWK* cp_wk, u32 floatidx );
 
 #endif		// __WFLBY_ROOM_DEF_H__

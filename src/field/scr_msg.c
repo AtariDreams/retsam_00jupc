@@ -1,14 +1,14 @@
 //============================================================================================
 /**
  * @file	scr_msg.c
- * @bfief	ƒXƒNƒŠƒvƒg‚Åg—p‚·‚éƒƒbƒZ[ƒWˆ—
+ * @bfief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
  * @author	Satoshi Nohara
  * @date	06.05.02
  */
 //============================================================================================
 #include "common.h"
 #include "gflib/msg_print.h"
-#include "gflib/strbuf_family.h"	//‹–‰Â§
+#include "gflib/strbuf_family.h"	//è¨±å¯åˆ¶
 
 #include "system/lib_pack.h"
 #include "system/window.h"
@@ -36,7 +36,7 @@ enum {
 
 //-------------------------------------------------------------
 /**
- *	ƒƒbƒZ[ƒWo—Íƒpƒ‰ƒ[ƒ^
+ *	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡ºåŠ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-------------------------------------------------------------
 typedef struct {
@@ -69,8 +69,8 @@ static void ScrPutMsgCore( SCR_MSG_PARAM* msg_param, int font );
 
 //------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWo—Í‚ÌŠg’£ƒpƒ‰ƒ[ƒ^‚ğƒfƒtƒHƒ‹ƒg’l‚Å‰Šú‰»‚·‚é
- *i‚±‚ÌŒãA•K—v‚ÈŒÂŠ‚Ì‚İ‚ğ•ÏX‚·‚ê‚Î—Ç‚¢j
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡ºåŠ›ã®æ‹¡å¼µãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã§åˆæœŸåŒ–ã™ã‚‹
+ *ï¼ˆã“ã®å¾Œã€å¿…è¦ãªå€‹æ‰€ã®ã¿ã‚’å¤‰æ›´ã™ã‚Œã°è‰¯ã„ï¼‰
  *
  * @param   ex_param		
  * @param   core		
@@ -87,12 +87,12 @@ void ScrTalk_InitExParam( SCR_TALK_EX_PARAM* ex_param, VM_MACHINE* core )
 
 //--------------------------------------------------------------
 /**
- *	‰ï˜bƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒEo—Í
+ *	ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‡ºåŠ›
  *
- * @param	core		VM_MACHINEŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	skip		ƒƒbƒZ[ƒWƒXƒLƒbƒvƒtƒ‰ƒO
- * @param   ex_param	Šg’£ƒpƒ‰ƒ[ƒ^(•s—v‚Èê‡‚ÍNULL)
+ * @param	core		VM_MACHINEå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	skip		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ãƒ•ãƒ©ã‚°
+ * @param   ex_param	æ‹¡å¼µãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿(ä¸è¦ãªå ´åˆã¯NULL)
  *
  * @retval	none
  */
@@ -126,12 +126,12 @@ void ScrTalkMsg( VM_MACHINE * core, const MSGDATA_MANAGER * msgman, u16 msg_id, 
 
 //--------------------------------------------------------------
 /**
- *	‰ï˜bƒEƒBƒ“ƒhƒEo—ÍiˆêŠ‡•\¦j
+ *	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‡ºåŠ›ï¼ˆä¸€æ‹¬è¡¨ç¤ºï¼‰
  *
- * @param	core		VM_MACHINEŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msgman		ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	skip		ƒƒbƒZ[ƒWƒXƒLƒbƒvƒtƒ‰ƒO
+ * @param	core		VM_MACHINEå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msgman		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	skip		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ãƒ•ãƒ©ã‚°
  *
  * @retval	none
  */
@@ -149,9 +149,9 @@ void TalkMsgAllPut(VM_MACHINE * core, const MSGDATA_MANAGER * msgman, int msg_id
 
 //--------------------------------------------------------------
 /**
- * ƒpƒ‰ƒ[ƒ^‚©‚çŠÈˆÕ‰ï˜bƒf[ƒ^‚ğ¶¬AƒƒbƒZ[ƒWo—Í‚·‚é
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ç°¡æ˜“ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡ºåŠ›ã™ã‚‹
  *
- * @param	core		VM_MACHINEŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		VM_MACHINEå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	stype		
  * @param	sid
  * @param	word0
@@ -177,7 +177,7 @@ void TalkMsgPMSParam( VM_MACHINE * core, u16 stype, u16 sid, u16 word0, s16 word
 	}
 	else
 	{
-		// skip == 0xff ‚¾‚Á‚½‚ç ˆêŠ‡•\¦‚·‚é
+		// skip == 0xff ã ã£ãŸã‚‰ ä¸€æ‹¬è¡¨ç¤ºã™ã‚‹
 		ScrPutMsgCore( &param, TALK_FONT_DEFAULT );
 	}
 }
@@ -185,10 +185,10 @@ void TalkMsgPMSParam( VM_MACHINE * core, u16 stype, u16 sid, u16 word0, s16 word
 //--------------------------------------------------------------
 /**
  *
- * @brief	©‘O‚Åì¬‚µ‚½WORDSET‚ğg—p‚µ‚Äƒ^ƒO“WŠJ
- * @param	core		VM_MACHINEŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	skip		ƒƒbƒZ[ƒWƒXƒLƒbƒvƒtƒ‰ƒO
+ * @brief	è‡ªå‰ã§ä½œæˆã—ãŸWORDSETã‚’ä½¿ç”¨ã—ã¦ã‚¿ã‚°å±•é–‹
+ * @param	core		VM_MACHINEå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	skip		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ãƒ•ãƒ©ã‚°
  *
  * @retval	none
  */
@@ -229,11 +229,11 @@ void TalkMsgExtraWordSet( VM_MACHINE * core, WORDSET* wordset, u8 msg_id, u8 ski
 
 //------------------------------------------------------------------
 /**
- * ƒvƒŒƒCƒ„[CONFIGƒf[ƒ^‚©‚çƒƒbƒZ[ƒW‘¬“x‚ğæ“¾
+ * ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼CONFIGãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€Ÿåº¦ã‚’å–å¾—
  *
  * @param   core		
  *
- * @retval  u8		ƒƒbƒZ[ƒW‘¬“x
+ * @retval  u8		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€Ÿåº¦
  */
 //------------------------------------------------------------------
 static u8 GetConfigMsgSpeed( VM_MACHINE* core )
@@ -243,10 +243,10 @@ static u8 GetConfigMsgSpeed( VM_MACHINE* core )
 
 //------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgƒ[ƒN‚©‚ç•¶šo—Í‚É•K—v‚È‹¤’Êƒpƒ‰ƒ[ƒ^‚ğ“Ç‚İo‚·
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯ã‹ã‚‰æ–‡å­—å‡ºåŠ›ã«å¿…è¦ãªå…±é€šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™
  *
  * @param   fsys		
- * @param   param		“Ç‚İo‚µ‚½ƒpƒ‰ƒ[ƒ^‚Ì•Û‘¶æ\‘¢‘Ì
+ * @param   param		èª­ã¿å‡ºã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¿å­˜å…ˆæ§‹é€ ä½“
  *
  */
 //------------------------------------------------------------------
@@ -262,12 +262,12 @@ static void ReadMsgParam( FIELDSYS_WORK* fsys, SCR_MSG_PARAM* param )
 }
 //------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgƒ[ƒN‚©‚ç•¶šo—Í‚É•K—v‚È‹¤’Êƒpƒ‰ƒ[ƒ^‚ğ“Ç‚İo‚·
- * (WORDSET‚ğ©‘O‚Ì‚à‚Ì‚ğg‚¤ƒo[ƒWƒ‡ƒ“)
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯ã‹ã‚‰æ–‡å­—å‡ºåŠ›ã«å¿…è¦ãªå…±é€šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™
+ * (WORDSETã‚’è‡ªå‰ã®ã‚‚ã®ã‚’ä½¿ã†ãƒãƒ¼ã‚¸ãƒ§ãƒ³)
  *
  * @param   fsys
- * @param	WORDSET*	©‘O‚Åì¬‚µ‚½WORDSET‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   param		“Ç‚İo‚µ‚½ƒpƒ‰ƒ[ƒ^‚Ì•Û‘¶æ\‘¢‘Ì
+ * @param	WORDSET*	è‡ªå‰ã§ä½œæˆã—ãŸWORDSETã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   param		èª­ã¿å‡ºã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¿å­˜å…ˆæ§‹é€ ä½“
  *
  */
 //------------------------------------------------------------------
@@ -284,7 +284,7 @@ static void ReadMsgParamExWord( FIELDSYS_WORK* fsys,WORDSET* wordset,SCR_MSG_PAR
 
 //------------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒE“o˜^E•\¦
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç™»éŒ²ãƒ»è¡¨ç¤º
  *
  * @param   fsys		
  * @param   param		
@@ -304,7 +304,7 @@ static void AddBitmapWin( FIELDSYS_WORK* fsys, SCR_MSG_PARAM* param )
 
 //------------------------------------------------------------------
 /**
- * o—Í•¶š—ñ‚ğƒpƒ‰ƒ[ƒ^“à•”ƒoƒbƒtƒ@‚É“Ç‚İ‚İ
+ * å‡ºåŠ›æ–‡å­—åˆ—ã‚’ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã«èª­ã¿è¾¼ã¿
  *
  * @param   param		
  * @param   msgman		
@@ -320,7 +320,7 @@ static void LoadPrintString( SCR_MSG_PARAM* param, const MSGDATA_MANAGER* msgman
 
 //------------------------------------------------------------------
 /**
- * ŠÈˆÕ‰ï˜bƒf[ƒ^‚©‚ç•¶š—ñ‚ğ¶¬‚µAƒpƒ‰ƒ[ƒ^“à•”ƒoƒbƒtƒ@‚É“Ç‚İ‚İ
+ * ç°¡æ˜“ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ–‡å­—åˆ—ã‚’ç”Ÿæˆã—ã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã«èª­ã¿è¾¼ã¿
  *
  * @param   param		
  * @param   stype		
@@ -335,7 +335,7 @@ static void CreatePrintStringByPmsParam( SCR_MSG_PARAM* param, u16 stype, u16 si
 	PMS_DATA     pms;
 	STRBUF* tmpBuf;
 
-	// ŠÈˆÕ‰ï˜bƒf[ƒ^¶¬
+	// ç°¡æ˜“ä¼šè©±ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	PMSDAT_Clear(&pms);
 	PMSDAT_SetSentence( &pms, stype, sid );
 	PMSDAT_SetWord( &pms, 0, word0 );
@@ -349,7 +349,7 @@ static void CreatePrintStringByPmsParam( SCR_MSG_PARAM* param, u16 stype, u16 si
 
 //------------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒE‚ÉƒƒbƒZ[ƒW‚ğ—¬‚·ˆ—‚ğŠJn
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æµã™å‡¦ç†ã‚’é–‹å§‹
  *
  * @param   msg_param		
  * @param   font		
@@ -367,7 +367,7 @@ static void ScrTalkMsgCore( SCR_MSG_PARAM* msg_param, int font, int speed, int s
 
 //------------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒE‚ÉƒƒbƒZ[ƒW‚ğˆêŠ‡•\¦‚·‚é
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä¸€æ‹¬è¡¨ç¤ºã™ã‚‹
  *
  * @param   msg_param		
  * @param   font		

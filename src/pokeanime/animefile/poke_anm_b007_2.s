@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	poke_anm_b007_2.s
- * @brief	c‰¡‚Éˆø‚Á’£‚é
+ * @brief	ç¸¦æ¨ªã«å¼•ã£å¼µã‚‹
  * @author	
  * @date	
  *
@@ -18,15 +18,15 @@
 // =============================================================================
 //
 //
-//	”w–Ê	c‰¡‚Éˆø‚Á’£‚éƒm[ƒ}ƒ‹
+//	èƒŒé¢	ç¸¦æ¨ªã«å¼•ã£å¼µã‚‹ãƒŽãƒ¼ãƒžãƒ«
 //
 //
 // =============================================================================
 PAST_ANIME_B007_2:
-	//15‰ñ‚Ìƒ‹[ƒv‚Å180‹i0x8000jˆ—
+	//15å›žã®ãƒ«ãƒ¼ãƒ—ã§180Â°ï¼ˆ0x8000ï¼‰å‡¦ç†
 	CALL_MF_CURVE_DIVTIME APPLY_SET,0,CURVE_SIN,TARGET_RY,0x3c,0x8000,0,15
 	CALL_MF_CURVE_DIVTIME APPLY_SET,0,CURVE_SIN,TARGET_RX,0x3c,0x8000,0,15
-	//ƒEƒFƒCƒg4@7‰ñ‚Ìƒ‹[ƒv‚Å4Žü0x40000j•ªˆ—
+	//ã‚¦ã‚§ã‚¤ãƒˆ4ã€€7å›žã®ãƒ«ãƒ¼ãƒ—ã§4å‘¨0x40000ï¼‰åˆ†å‡¦ç†
 	CALL_MF_CURVE_DIVTIME APPLY_SYNTHE,4,CURVE_SIN,TARGET_RY,0xc,0x40000,0,7
 	CALL_MF_CURVE_DIVTIME APPLY_SYNTHE,4,CURVE_SIN,TARGET_RX,0xc,0x40000,0,7
 	HOLD_CMD

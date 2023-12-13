@@ -2,7 +2,7 @@
 /**
  *
  * @file	ev_trainer.c
- * @brief	ƒgƒŒ[ƒi[‹üƒCƒxƒ“ƒg
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šã‚¤ãƒ™ãƒ³ãƒˆ
  * @author	kagaya
  * @data	05.10.03
  *
@@ -27,44 +27,44 @@
 //==============================================================================
 //	define
 //==============================================================================
-#define EYE_MEET_MOVE_TCB_PRI (0xff)					///<‹üˆÚ“®TCBƒvƒ‰ƒCƒIƒŠƒeƒB@’´“K“–
-#define EYE_MEET_GYOE_END_WAIT (30)						///<!ƒ}[ƒNoŒ»Œã‚ÌŠÔ@ƒtƒŒ[ƒ€’PˆÊ
-#define EYE_MEET_MOVE_END_WAIT (8)						///<‹üˆÚ“®Œã‚ÌŠÔ@ƒtƒŒ[ƒ€’PˆÊ
+#define EYE_MEET_MOVE_TCB_PRI (0xff)					///<è¦–ç·šç§»å‹•TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã€€è¶…é©å½“
+#define EYE_MEET_GYOE_END_WAIT (30)						///<!ãƒãƒ¼ã‚¯å‡ºç¾å¾Œã®é–“ã€€ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½
+#define EYE_MEET_MOVE_END_WAIT (8)						///<è¦–ç·šç§»å‹•å¾Œã®é–“ã€€ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½
 
 //--------------------------------------------------------------
-///	‹üˆÚ“®ˆ—”Ô†
+///	è¦–ç·šç§»å‹•å‡¦ç†ç•ªå·
 //--------------------------------------------------------------
 enum
 {
 	SEQNO_TRMOVE_INIT = 0,
-	SEQNO_TRMOVE_OBJMOVE_WAIT,							///<“®ì’â~‘Ò‚¿
-	SEQNO_TRMOVE_JIKIMOVE_WAIT,							///<©‹@“®ìI—¹‘Ò‚¿
-	SEQNO_TRMOVE_DIR_CHANGE,							///<•ûŒü•ÏX
-	SEQNO_TRMOVE_DIR_CHANGE_WAIT,						///<•ûŒü•ÏX‘Ò‚¿
-	SEQNO_TRMOVE_GYOE_SET,								///<!ƒZƒbƒg
-	SEQNO_TRMOVE_GYOE_WAIT,								///<!‘Ò‚¿
-	SEQNO_TRMOVE_HIDE_PULLOFF_SET,						///<‰B‚ê–ª’E‚¬ƒZƒbƒg
-	SEQNO_TRMOVE_HIDE_PULLOFF_WAIT,						///<‰B‚ê–ªI—¹‘Ò‚¿
-	SEQNO_TRMOVE_GYOE_END_WAIT,							///<!I—¹Œã‘Ò‚¿
-	SEQNO_TRMOVE_MOVE_RANGE_CHECK,						///<ˆÚ“®‹——£ƒ`ƒFƒbƒN
-	SEQNO_TRMOVE_MOVE_START,							///<ˆÚ“®ŠJn
-	SEQNO_TRMOVE_MOVE,									///<ˆÚ“®’†
-	SEQNO_TRMOVE_MOVE_END_WAIT,							///<ˆÚ“®I—¹Œã‘Ò‚¿
-	SEQNO_TRMOVE_JIKI_TURN_SET,							///<©‹@U‚èŒü‚«ƒZƒbƒg
-	SEQNO_TRMOVE_JIKI_TURN,								///<©‹@U‚èŒü‚«
-	SEQNO_TRMOVE_ACMD_END,								///<ƒAƒjƒI—¹
-	SEQNO_TRMOVE_END,									///<I—¹
+	SEQNO_TRMOVE_OBJMOVE_WAIT,							///<å‹•ä½œåœæ­¢å¾…ã¡
+	SEQNO_TRMOVE_JIKIMOVE_WAIT,							///<è‡ªæ©Ÿå‹•ä½œçµ‚äº†å¾…ã¡
+	SEQNO_TRMOVE_DIR_CHANGE,							///<æ–¹å‘å¤‰æ›´
+	SEQNO_TRMOVE_DIR_CHANGE_WAIT,						///<æ–¹å‘å¤‰æ›´å¾…ã¡
+	SEQNO_TRMOVE_GYOE_SET,								///<!ã‚»ãƒƒãƒˆ
+	SEQNO_TRMOVE_GYOE_WAIT,								///<!å¾…ã¡
+	SEQNO_TRMOVE_HIDE_PULLOFF_SET,						///<éš ã‚Œè“‘è„±ãã‚»ãƒƒãƒˆ
+	SEQNO_TRMOVE_HIDE_PULLOFF_WAIT,						///<éš ã‚Œè“‘çµ‚äº†å¾…ã¡
+	SEQNO_TRMOVE_GYOE_END_WAIT,							///<!çµ‚äº†å¾Œå¾…ã¡
+	SEQNO_TRMOVE_MOVE_RANGE_CHECK,						///<ç§»å‹•è·é›¢ãƒã‚§ãƒƒã‚¯
+	SEQNO_TRMOVE_MOVE_START,							///<ç§»å‹•é–‹å§‹
+	SEQNO_TRMOVE_MOVE,									///<ç§»å‹•ä¸­
+	SEQNO_TRMOVE_MOVE_END_WAIT,							///<ç§»å‹•çµ‚äº†å¾Œå¾…ã¡
+	SEQNO_TRMOVE_JIKI_TURN_SET,							///<è‡ªæ©ŸæŒ¯ã‚Šå‘ãã‚»ãƒƒãƒˆ
+	SEQNO_TRMOVE_JIKI_TURN,								///<è‡ªæ©ŸæŒ¯ã‚Šå‘ã
+	SEQNO_TRMOVE_ACMD_END,								///<ã‚¢ãƒ‹ãƒ¡çµ‚äº†
+	SEQNO_TRMOVE_END,									///<çµ‚äº†
 };
 
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒO
+//	ãƒ‡ãƒãƒƒã‚°
 //--------------------------------------------------------------
 
 //==============================================================================
 //	typedef strcut
 //==============================================================================
 //--------------------------------------------------------------
-///	‹üƒqƒbƒgŠi”[
+///	è¦–ç·šãƒ’ãƒƒãƒˆæ ¼ç´
 //--------------------------------------------------------------
 typedef struct
 {
@@ -77,38 +77,38 @@ typedef struct
 }EYE_MEET_HITDATA;
 
 //--------------------------------------------------------------
-//	‹üƒCƒxƒ“ƒgƒ[ƒN
+//	è¦–ç·šã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 //--------------------------------------------------------------
 typedef struct
 {
-	int seq_no;											///<ˆ—”Ô†
+	int seq_no;											///<å‡¦ç†ç•ªå·
 	FIELDSYS_WORK *fsys;								///<FIELDSYS_WORK *
 	FIELD_OBJ_PTR fldobj;								///<FIELD_OBJ_PTR
 	TCB_PTR tcb_eye_meet;								///<TCB_PTR
 }EYE_MEET_EVENT_WORK;
 
-#define EYE_MEET_EVENT_WORK_SIZE (sizeof(EYE_MEET_EVENT_WORK)) ///<EYE_MEET_EVENT_WORKƒTƒCƒY
+#define EYE_MEET_EVENT_WORK_SIZE (sizeof(EYE_MEET_EVENT_WORK)) ///<EYE_MEET_EVENT_WORKã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-//	‹üƒqƒbƒgˆÚ“®ˆ——pƒ[ƒN
+//	è¦–ç·šãƒ’ãƒƒãƒˆç§»å‹•å‡¦ç†ç”¨ãƒ¯ãƒ¼ã‚¯
 //--------------------------------------------------------------
 typedef struct
 {
-	int seq_no;											///<ˆ—”Ô†
-	int end_flag;										///<I—¹ƒtƒ‰ƒO
-	int dir;											///<ˆÚ“®•ûŒü
-	int range;											///<ˆÚ“®‹——£
-	int gyoe_type;										///<!ƒ^ƒCƒv
-	int tr_type;										///<ƒgƒŒ[ƒi[ƒ^ƒCƒv
-	int sisen_no;										///<‹ü”Ô†
-	int count;											///<ˆÚ“®ƒJƒEƒ“ƒg
-	EOA_PTR gyoe;										///<ƒMƒ‡ƒG[EOA_PTR
-	FIELD_OBJ_PTR fldobj;								///<ˆÚ“®‚ğs‚¤FIELD_OBJ_PTR
-	PLAYER_STATE_PTR jiki;								///<©‹@PLAYER_STATE_PTR
+	int seq_no;											///<å‡¦ç†ç•ªå·
+	int end_flag;										///<çµ‚äº†ãƒ•ãƒ©ã‚°
+	int dir;											///<ç§»å‹•æ–¹å‘
+	int range;											///<ç§»å‹•è·é›¢
+	int gyoe_type;										///<!ã‚¿ã‚¤ãƒ—
+	int tr_type;										///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
+	int sisen_no;										///<è¦–ç·šç•ªå·
+	int count;											///<ç§»å‹•ã‚«ã‚¦ãƒ³ãƒˆ
+	EOA_PTR gyoe;										///<ã‚®ãƒ§ã‚¨ãƒ¼EOA_PTR
+	FIELD_OBJ_PTR fldobj;								///<ç§»å‹•ã‚’è¡Œã†FIELD_OBJ_PTR
+	PLAYER_STATE_PTR jiki;								///<è‡ªæ©ŸPLAYER_STATE_PTR
 	FIELDSYS_WORK *fsys;								//FIELDSYS_WORK
 }EYE_MEET_MOVE_WORK;
 
-#define EYE_MEET_MOVE_WORK_SIZE (sizeof(EYE_MEET_MOVE_WORK)) ///<EYE_MEET_MOVE_WORKƒTƒCƒY
+#define EYE_MEET_MOVE_WORK_SIZE (sizeof(EYE_MEET_MOVE_WORK)) ///<EYE_MEET_MOVE_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
 //	static
@@ -137,14 +137,14 @@ static void TrEyeMeetMoveTCB( TCB_PTR tcb, void *wk );
 int (* const DATA_EyeMeetMoveTbl[])( EYE_MEET_MOVE_WORK *work );
 
 //==============================================================================
-//	ƒgƒŒ[ƒi[‹üˆ—
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šå‡¦ç†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹üƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK *
- * @param	vs2		ƒ_ƒuƒ‹ƒoƒgƒ‹‰Â”\‚© TRUE=‰Â”\ FALSE=•s‰Â
- * @retval	int		TRUE=ƒgƒŒ[ƒi[‹üƒCƒxƒ“ƒg”­“®
+ * @param	vs2		ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«å¯èƒ½ã‹ TRUE=å¯èƒ½ FALSE=ä¸å¯
+ * @retval	int		TRUE=ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  */
 //--------------------------------------------------------------
 int EvTrainerEyeCheck( FIELDSYS_WORK *fsys, BOOL vs2 )
@@ -157,17 +157,17 @@ int EvTrainerEyeCheck( FIELDSYS_WORK *fsys, BOOL vs2 )
 		return( FALSE );
 	}
 	
-	if( hit0.tr_type == SCR_EYE_TR_TYPE_SINGLE ){						//ƒVƒ“ƒOƒ‹
+	if( hit0.tr_type == SCR_EYE_TR_TYPE_SINGLE ){						//ã‚·ãƒ³ã‚°ãƒ«
 		FIELD_OBJ_PTR fldobj;
 		EYE_MEET_HITDATA hit1;
 		
-		EventSet_Script( fsys, SCRID_TRAINER_MOVE_BATTLE, hit0.fldobj ); //ƒXƒNƒŠƒvƒg‹N“®
+		EventSet_Script( fsys, SCRID_TRAINER_MOVE_BATTLE, hit0.fldobj ); //ã‚¹ã‚¯ãƒªãƒ—ãƒˆèµ·å‹•
 		
 		if( vs2 == FALSE || TrainerEyeCheck(fsys,fos,player,hit0.fldobj,&hit1) == FALSE ){
-			EventSet_TrainerEyeData( fsys, hit0.fldobj,					//ƒVƒ“ƒOƒ‹ƒZƒbƒg
+			EventSet_TrainerEyeData( fsys, hit0.fldobj,					//ã‚·ãƒ³ã‚°ãƒ«ã‚»ãƒƒãƒˆ
 				hit0.range, hit0.dir, hit0.scr_id, hit0.tr_id,
 				SCR_EYE_TR_TYPE_SINGLE, SCR_EYE_TR_0 );
-			OS_Printf( "ƒgƒŒ[ƒi[ƒVƒ“ƒOƒ‹ƒqƒbƒg\n" );
+			OS_Printf( "ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚·ãƒ³ã‚°ãƒ«ãƒ’ãƒƒãƒˆ\n" );
 			return( TRUE );
 		}
 		
@@ -178,22 +178,22 @@ int EvTrainerEyeCheck( FIELDSYS_WORK *fsys, BOOL vs2 )
 			hit1.range, hit1.dir, hit1.scr_id, hit1.tr_id,
 				SCR_EYE_TR_TYPE_TAG, SCR_EYE_TR_1 );
 		
-		OS_Printf( "ƒgƒŒ[ƒi[ƒ^ƒbƒOƒqƒbƒg@ƒ_ƒuƒ‹\n" );
+		OS_Printf( "ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ãƒƒã‚°ãƒ’ãƒƒãƒˆã€€ãƒ€ãƒ–ãƒ«\n" );
 		return( TRUE );
 	}
 	
-	if( hit0.tr_type == SCR_EYE_TR_TYPE_DOUBLE ){						//ƒ_ƒuƒ‹
+	if( hit0.tr_type == SCR_EYE_TR_TYPE_DOUBLE ){						//ãƒ€ãƒ–ãƒ«
 		FIELD_OBJ_PTR fldobj;
 		EYE_MEET_HITDATA hit1;
 		
-		if( vs2 == FALSE ){												//ƒ_ƒuƒ‹•s‰Â
+		if( vs2 == FALSE ){												//ãƒ€ãƒ–ãƒ«ä¸å¯
 			return( FALSE );
 		}
 		
 		fldobj = TrainerPairCheck( fsys, fos, hit0.fldobj, hit0.tr_id );
 		TrainerEyeHitDataSet( &hit1, fldobj, hit0.range, hit0.dir );
 		
-		EventSet_Script( fsys, SCRID_TRAINER_MOVE_BATTLE, hit0.fldobj );//ƒXƒNƒŠƒvƒg‹N“®
+		EventSet_Script( fsys, SCRID_TRAINER_MOVE_BATTLE, hit0.fldobj );//ã‚¹ã‚¯ãƒªãƒ—ãƒˆèµ·å‹•
 		
 		EventSet_TrainerEyeData( fsys, hit0.fldobj,
 				hit0.range, hit0.dir, hit0.scr_id, hit0.tr_id,
@@ -202,23 +202,23 @@ int EvTrainerEyeCheck( FIELDSYS_WORK *fsys, BOOL vs2 )
 				hit1.range, hit1.dir, hit1.scr_id, hit1.tr_id,
 				SCR_EYE_TR_TYPE_DOUBLE, SCR_EYE_TR_1 );
 		
-		OS_Printf( "ƒgƒŒ[ƒi[ƒ_ƒuƒ‹ƒqƒbƒg\n" );
+		OS_Printf( "ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ€ãƒ–ãƒ«ãƒ’ãƒƒãƒˆ\n" );
 		return( TRUE );
 	}
 	
-	GF_ASSERT( 0 && "EvTrainerEyeCheck() ‹üƒ^ƒCƒv•s³\n" );
+	GF_ASSERT( 0 && "EvTrainerEyeCheck() è¦–ç·šã‚¿ã‚¤ãƒ—ä¸æ­£\n" );
 	return( FALSE );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹üƒ`ƒFƒbƒN
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK *
  * @param	fos		FIELD_OBJ_SYS_PTR
  * @param	jiki	PLAYER_STATE_PTR
- * @param	nonobj	‘ÎÛŠO‚Æ‚·‚éOBJ NULL=‘¶İ‚µ‚È‚¢
+ * @param	nonobj	å¯¾è±¡å¤–ã¨ã™ã‚‹OBJ NULL=å­˜åœ¨ã—ãªã„
  * @param	hit		EYE_MEET_HITDATA *
- * @retval	int		TRUE=ƒgƒŒ[ƒi[‹üƒqƒbƒg
+ * @retval	int		TRUE=ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static int TrainerEyeCheck( FIELDSYS_WORK *fsys, FIELD_OBJ_SYS_PTR fos,
@@ -237,7 +237,7 @@ static int TrainerEyeCheck( FIELDSYS_WORK *fsys, FIELD_OBJ_SYS_PTR fos,
 		
 			if( range != EYE_CHECK_NOHIT ){
 				if( CheckEventFlagTrainer(fsys,FldOBJTrainerIDGet(fldobj)) == FALSE ){
-					TrainerEyeHitDataSet( hit, fldobj, range, dir );		//–¢í“¬
+					TrainerEyeHitDataSet( hit, fldobj, range, dir );		//æœªæˆ¦é—˜
 					return( TRUE );
 				}
 			}
@@ -249,11 +249,11 @@ static int TrainerEyeCheck( FIELDSYS_WORK *fsys, FIELD_OBJ_SYS_PTR fos,
 
 //--------------------------------------------------------------
 /**
- * ‹üƒqƒbƒg‚µ‚½î•ñ‚ğŠi”[‚·‚é
+ * è¦–ç·šãƒ’ãƒƒãƒˆã—ãŸæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹
  * @param	hit		EYE_MEET_HITDATA
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	range	‹ü‹——£
- * @param	dir		ˆÚ“®•ûŒü
+ * @param	range	è¦–ç·šè·é›¢
+ * @param	dir		ç§»å‹•æ–¹å‘
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -270,9 +270,9 @@ static void TrainerEyeHitDataSet(
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒ^ƒCƒvæ“¾
+ * ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—å–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		EV_TYPE_TRAINER“™
+ * @retval	int		EV_TYPE_TRAINERç­‰
  */
 //--------------------------------------------------------------
 static int TrainerEventTypeGet( CONST_FIELD_OBJ_PTR fldobj )
@@ -293,15 +293,15 @@ static int TrainerEventTypeGet( CONST_FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	‹üƒ`ƒFƒbƒN
+//	è¦–ç·šãƒã‚§ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹üƒ`ƒFƒbƒN@ƒOƒ[ƒoƒ‹
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šãƒã‚§ãƒƒã‚¯ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«
  * @param	fldobj		FIELD_OBJ_PTR
  * @param	jiki		PLAYER_STATE_PTR
- * @param	hit_dir		‹üƒqƒbƒg‚ÌˆÚ“®•ûŒüBDIR_UP“™
- * @retval	int			‹üƒqƒbƒg‚Ì©‹@‚Ü‚Å‚ÌƒOƒŠƒbƒh‹——£BEYE_CHECK_NOHIT=ƒGƒ‰[
+ * @param	hit_dir		è¦–ç·šãƒ’ãƒƒãƒˆæ™‚ã®ç§»å‹•æ–¹å‘ã€‚DIR_UPç­‰
+ * @retval	int			è¦–ç·šãƒ’ãƒƒãƒˆæ™‚ã®è‡ªæ©Ÿã¾ã§ã®ã‚°ãƒªãƒƒãƒ‰è·é›¢ã€‚EYE_CHECK_NOHIT=ã‚¨ãƒ©ãƒ¼
  */
 //--------------------------------------------------------------
 int EvTrainer_EyeRangeCheck( CONST_FIELD_OBJ_PTR fldobj, PLAYER_STATE_PTR jiki, int *hit_dir )
@@ -311,11 +311,11 @@ int EvTrainer_EyeRangeCheck( CONST_FIELD_OBJ_PTR fldobj, PLAYER_STATE_PTR jiki, 
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹ü”ÍˆÍƒ`ƒFƒbƒN
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šç¯„å›²ãƒã‚§ãƒƒã‚¯
  * @param	fldobj		FIELD_OBJ_PTR
  * @param	jiki		PLAYER_STATE_PTR
- * @param	hit_dir		‹üƒqƒbƒg‚ÌˆÚ“®•ûŒüBDIR_UP“™
- * @retval	int			‹üƒqƒbƒg‚Ì©‹@‚Ü‚Å‚ÌƒOƒŠƒbƒh‹——£BEYE_CHECK_NOHIT=ƒGƒ‰[
+ * @param	hit_dir		è¦–ç·šãƒ’ãƒƒãƒˆæ™‚ã®ç§»å‹•æ–¹å‘ã€‚DIR_UPç­‰
+ * @retval	int			è¦–ç·šãƒ’ãƒƒãƒˆæ™‚ã®è‡ªæ©Ÿã¾ã§ã®ã‚°ãƒªãƒƒãƒ‰è·é›¢ã€‚EYE_CHECK_NOHIT=ã‚¨ãƒ©ãƒ¼
  */
 //--------------------------------------------------------------
 static int TrEyeRangeCheck( CONST_FIELD_OBJ_PTR fldobj, PLAYER_STATE_PTR jiki, int *hit_dir )
@@ -342,7 +342,7 @@ static int TrEyeRangeCheck( CONST_FIELD_OBJ_PTR fldobj, PLAYER_STATE_PTR jiki, i
 		return( EYE_CHECK_NOHIT );
 	}
 	
-	if( type == EV_TYPE_TRAINER_EYEALL ){						//4•ûŒü
+	if( type == EV_TYPE_TRAINER_EYEALL ){						//4æ–¹å‘
 		jx = Player_NowGPosXGet( jiki );
 		jz = Player_NowGPosZGet( jiki );
 		range = FieldOBJ_ParamGet( fldobj, FLDOBJ_PARAM_0 );
@@ -370,12 +370,12 @@ static int TrEyeRangeCheck( CONST_FIELD_OBJ_PTR fldobj, PLAYER_STATE_PTR jiki, i
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹ü”ÍˆÍƒ`ƒFƒbƒN@ƒOƒ[ƒoƒ‹@ˆø”w’è
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šç¯„å›²ãƒã‚§ãƒƒã‚¯ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ã€€å¼•æ•°æŒ‡å®š
  * @param	fldobj		FIELD_OBJ_PTR
  * @param	jiki		PLAYER_STATE_PTR
- * @param	eye_dir		‹ü•ûŒü
- * @param	eye_range	‹ü‹——£
- * @retval	int			‹üƒqƒbƒg‚Ì©‹@‚Ü‚Å‚ÌƒOƒŠƒbƒh‹——£BEYE_CHECK_NOHIT=ƒGƒ‰[
+ * @param	eye_dir		è¦–ç·šæ–¹å‘
+ * @param	eye_range	è¦–ç·šè·é›¢
+ * @retval	int			è¦–ç·šãƒ’ãƒƒãƒˆæ™‚ã®è‡ªæ©Ÿã¾ã§ã®ã‚°ãƒªãƒƒãƒ‰è·é›¢ã€‚EYE_CHECK_NOHIT=ã‚¨ãƒ©ãƒ¼
  */
 //--------------------------------------------------------------
 int EvTrainer_EyeRangeHitCheck(
@@ -396,14 +396,14 @@ int EvTrainer_EyeRangeHitCheck(
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹üƒ`ƒFƒbƒN
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		‹ü•ûŒü@DIR_UP“™
- * @param	range	‹ü‹——£
- * @param	x		©‹@ƒOƒŠƒbƒhX
- * @param	z		©‹@ƒOƒŠƒbƒhz
- * @param	y		©‹@‚‚³
- * @retval	int		©‹@‚Ö‚ÌƒOƒŠƒbƒh‹——£@EYE_CHECK_NOHIT=ƒqƒbƒg‚È‚µ
+ * @param	dir		è¦–ç·šæ–¹å‘ã€€DIR_UPç­‰
+ * @param	range	è¦–ç·šè·é›¢
+ * @param	x		è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰X
+ * @param	z		è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰z
+ * @param	y		è‡ªæ©Ÿé«˜ã•
+ * @retval	int		è‡ªæ©Ÿã¸ã®ã‚°ãƒªãƒƒãƒ‰è·é›¢ã€€EYE_CHECK_NOHIT=ãƒ’ãƒƒãƒˆãªã—
  */
 //--------------------------------------------------------------
 static int TrEyeLineCheck( CONST_FIELD_OBJ_PTR fldobj, int dir, int range, int x, int z, int y )
@@ -413,13 +413,13 @@ static int TrEyeLineCheck( CONST_FIELD_OBJ_PTR fldobj, int dir, int range, int x
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹üƒ`ƒFƒbƒN@ã
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šãƒã‚§ãƒƒã‚¯ã€€ä¸Š
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	range	‹ü‹——£
- * @param	jx		©‹@ƒOƒŠƒbƒhX
- * @param	jz		©‹@ƒOƒŠƒbƒhz
- * @param	jy		©‹@‚‚³
- * @retval	int		©‹@‚Ö‚Ì‹——£@0=ƒqƒbƒg‚È‚µ
+ * @param	range	è¦–ç·šè·é›¢
+ * @param	jx		è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰X
+ * @param	jz		è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰z
+ * @param	jy		è‡ªæ©Ÿé«˜ã•
+ * @retval	int		è‡ªæ©Ÿã¸ã®è·é›¢ã€€0=ãƒ’ãƒƒãƒˆãªã—
  */
 //--------------------------------------------------------------
 static int TrEyeLineCheck_Up( CONST_FIELD_OBJ_PTR fldobj, int range, int jx, int jz, int jy )
@@ -441,13 +441,13 @@ static int TrEyeLineCheck_Up( CONST_FIELD_OBJ_PTR fldobj, int range, int jx, int
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹üƒ`ƒFƒbƒN@‰º
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šãƒã‚§ãƒƒã‚¯ã€€ä¸‹
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	range	‹ü‹——£
- * @param	jx		©‹@ƒOƒŠƒbƒhX
- * @param	jz		©‹@ƒOƒŠƒbƒhz
- * @param	jy		©‹@‚‚³
- * @retval	int		©‹@‚Ö‚Ì‹——£@0=ƒqƒbƒg‚È‚µ
+ * @param	range	è¦–ç·šè·é›¢
+ * @param	jx		è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰X
+ * @param	jz		è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰z
+ * @param	jy		è‡ªæ©Ÿé«˜ã•
+ * @retval	int		è‡ªæ©Ÿã¸ã®è·é›¢ã€€0=ãƒ’ãƒƒãƒˆãªã—
  */
 //--------------------------------------------------------------
 static int TrEyeLineCheck_Down( CONST_FIELD_OBJ_PTR fldobj, int range, int jx, int jz, int jy )
@@ -469,13 +469,13 @@ static int TrEyeLineCheck_Down( CONST_FIELD_OBJ_PTR fldobj, int range, int jx, i
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹üƒ`ƒFƒbƒN@¶
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šãƒã‚§ãƒƒã‚¯ã€€å·¦
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	range	‹ü‹——£
- * @param	jx		©‹@ƒOƒŠƒbƒhX
- * @param	jz		©‹@ƒOƒŠƒbƒhz
- * @param	jy		©‹@‚‚³
- * @retval	int		©‹@‚Ö‚Ì‹——£@0=ƒqƒbƒg‚È‚µ
+ * @param	range	è¦–ç·šè·é›¢
+ * @param	jx		è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰X
+ * @param	jz		è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰z
+ * @param	jy		è‡ªæ©Ÿé«˜ã•
+ * @retval	int		è‡ªæ©Ÿã¸ã®è·é›¢ã€€0=ãƒ’ãƒƒãƒˆãªã—
  */
 //--------------------------------------------------------------
 static int TrEyeLineCheck_Left( CONST_FIELD_OBJ_PTR fldobj, int range, int jx, int jz, int jy )
@@ -497,13 +497,13 @@ static int TrEyeLineCheck_Left( CONST_FIELD_OBJ_PTR fldobj, int range, int jx, i
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹üƒ`ƒFƒbƒN@‰E
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šãƒã‚§ãƒƒã‚¯ã€€å³
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	range	‹ü‹——£
- * @param	jx		©‹@ƒOƒŠƒbƒhX
- * @param	jz		©‹@ƒOƒŠƒbƒhz
- * @param	jy		©‹@‚‚³
- * @retval	int		©‹@‚Ö‚Ì‹——£@0=ƒqƒbƒg‚È‚µ
+ * @param	range	è¦–ç·šè·é›¢
+ * @param	jx		è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰X
+ * @param	jz		è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰z
+ * @param	jy		è‡ªæ©Ÿé«˜ã•
+ * @retval	int		è‡ªæ©Ÿã¸ã®è·é›¢ã€€0=ãƒ’ãƒƒãƒˆãªã—
  */
 //--------------------------------------------------------------
 static int TrEyeLineCheck_Right( CONST_FIELD_OBJ_PTR fldobj, int range, int jx, int jz, int jy )
@@ -524,7 +524,7 @@ static int TrEyeLineCheck_Right( CONST_FIELD_OBJ_PTR fldobj, int range, int jx, 
 }
 
 //--------------------------------------------------------------
-///	‹üƒ`ƒFƒbƒNƒe[ƒuƒ‹
+///	è¦–ç·šãƒã‚§ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const TrEyeLineCheckTbl[])(CONST_FIELD_OBJ_PTR,int range,int jx,int jz,int jy) =
 {
@@ -535,15 +535,15 @@ static int (* const TrEyeLineCheckTbl[])(CONST_FIELD_OBJ_PTR,int range,int jx,in
 };
 
 //==============================================================================
-//	‹ü”»’è@ƒp[ƒc
+//	è¦–ç·šåˆ¤å®šã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‹ü”ÍˆÍˆÚ“®”»’è
- * @param	fldobj		ƒ`ƒFƒbƒN‘ÎÛFIELD_OBJ_PTR
- * @param	dir			ˆÚ“®•ûŒü
- * @param	range		ˆÚ“®‹——£
- * @retval	int			TRUE=ˆÚ“®•s‰Â
+ * è¦–ç·šç¯„å›²ç§»å‹•åˆ¤å®š
+ * @param	fldobj		ãƒã‚§ãƒƒã‚¯å¯¾è±¡FIELD_OBJ_PTR
+ * @param	dir			ç§»å‹•æ–¹å‘
+ * @param	range		ç§»å‹•è·é›¢
+ * @retval	int			TRUE=ç§»å‹•ä¸å¯
  */
 //--------------------------------------------------------------
 static int TrEyeLineMoveHitCheck( CONST_FIELD_OBJ_PTR fldobj, int dir, int range )
@@ -564,10 +564,10 @@ static int TrEyeLineMoveHitCheck( CONST_FIELD_OBJ_PTR fldobj, int dir, int range
 	
 	for( i = 0; i < (range-1); i++ ){
 		ret = FieldOBJ_MoveHitCheckNow( fldobj, x, y, z, dir );
-		ret &= ~FLDOBJ_MOVE_HIT_BIT_LIM;						//ˆÚ“®§ŒÀ‚ğ–³‹‚·‚é
+		ret &= ~FLDOBJ_MOVE_HIT_BIT_LIM;						//ç§»å‹•åˆ¶é™ã‚’ç„¡è¦–ã™ã‚‹
 		
 		if( ret ){
-			return( TRUE );										//ˆÚ“®§ŒÀˆÈŠO‚Åƒqƒbƒg
+			return( TRUE );										//ç§»å‹•åˆ¶é™ä»¥å¤–ã§ãƒ’ãƒƒãƒˆ
 		}
 		
 		x += FieldOBJ_DirAddValueGX( dir );
@@ -575,9 +575,9 @@ static int TrEyeLineMoveHitCheck( CONST_FIELD_OBJ_PTR fldobj, int dir, int range
 	}
 	
 	ret = FieldOBJ_MoveHitCheckNow( fldobj, x, y, z, dir );
-	ret &= ~FLDOBJ_MOVE_HIT_BIT_LIM;							//ˆÚ“®§ŒÀ‚ğ–³‹‚·‚é
+	ret &= ~FLDOBJ_MOVE_HIT_BIT_LIM;							//ç§»å‹•åˆ¶é™ã‚’ç„¡è¦–ã™ã‚‹
 	
-	if( ret == FLDOBJ_MOVE_HIT_BIT_OBJ ){						//OBJÕ“Ë(©‹@)‚Ì‚İ
+	if( ret == FLDOBJ_MOVE_HIT_BIT_OBJ ){						//OBJè¡çª(è‡ªæ©Ÿ)ã®ã¿
 		return( FALSE );
 	}
 	
@@ -586,9 +586,9 @@ static int TrEyeLineMoveHitCheck( CONST_FIELD_OBJ_PTR fldobj, int dir, int range
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚çƒgƒŒ[ƒi[IDæ“¾
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDå–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		ƒgƒŒ[ƒi[ID
+ * @retval	int		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
  */
 //--------------------------------------------------------------
 static int FldOBJTrainerIDGet( FIELD_OBJ_PTR fldobj )
@@ -601,9 +601,9 @@ static int FldOBJTrainerIDGet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚çƒgƒŒ[ƒi[IDæ“¾@ƒOƒ[ƒoƒ‹
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDå–å¾—ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		ƒgƒŒ[ƒi[ID
+ * @retval	int		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
  */
 //--------------------------------------------------------------
 int EvTrainerFldOBJTrainerIDGet( FIELD_OBJ_PTR fldobj )
@@ -613,11 +613,11 @@ int EvTrainerFldOBJTrainerIDGet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * “¯ˆê‚ÌƒgƒŒ[ƒi[ID‚ğ‚Â‘Š•û‚ğ’T‚·
+ * åŒä¸€ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’æŒã¤ç›¸æ–¹ã‚’æ¢ã™
  * @param	fsys	FIELDSYS_WORK
  * @param	fos		FIELD_OBJ_SYS_PTR
- * @param	tr_obj	‘Š•û‚ğ’T‚µ‚Ä‚¢‚éFIELD_OBJ_PTR
- * @param	tr_id	ƒgƒŒ[ƒi[ID
+ * @param	tr_obj	ç›¸æ–¹ã‚’æ¢ã—ã¦ã„ã‚‹FIELD_OBJ_PTR
+ * @param	tr_id	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
  * @retval	fldobj	FIELD_OBJ_PTR
  */
 //--------------------------------------------------------------
@@ -641,16 +641,16 @@ static FIELD_OBJ_PTR TrainerPairCheck(
 		}
 	}
 	
-	GF_ASSERT( 0 && "TrainerPairCheck() ƒyƒA•sİc\n" );
+	GF_ASSERT( 0 && "TrainerPairCheck() ãƒšã‚¢ä¸åœ¨â€¦\n" );
 	return( NULL );
 }
 
 //--------------------------------------------------------------
 /**
- * ‘ÎÛ‚ÌƒtƒB[ƒ‹ƒhOBJ‚ªƒgƒŒ[ƒi[í‰Â”\‚©‚Ç‚¤‚©
+ * å¯¾è±¡ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãŒãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦å¯èƒ½ã‹ã©ã†ã‹
  * @param	fsys	FIELDSYS_WORK
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int	TRUE=‰Â”\ FALSE=•s‰Â
+ * @retval	int	TRUE=å¯èƒ½ FALSE=ä¸å¯
  */
 //--------------------------------------------------------------
 int EvTrainer_FightFlagCheck( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj )
@@ -667,20 +667,20 @@ int EvTrainer_FightFlagCheck( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	‹üƒqƒbƒg‚É‚æ‚éˆÚ“®
+//	è¦–ç·šãƒ’ãƒƒãƒˆã«ã‚ˆã‚‹ç§»å‹•
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®ˆ—’Ç‰Á
+ * è¦–ç·šç§»å‹•å‡¦ç†è¿½åŠ 
  * @param	fsys	FIELDSYS_WORK
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ˆÚ“®•ûŒü
- * @param	range	ˆÚ“®‹——£
- * @param	gyoe	!ƒ}[ƒN§Œä
- * @param	tr_type	ƒgƒŒ[ƒi[ƒ^ƒCƒv
- * @param	work_pos ‹üƒqƒbƒgƒ[ƒN—v‘f” 0=‹üå 1=ƒyƒA
- * @retval	tcb		ˆÚ“®ˆ—TCB_PTR
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	range	ç§»å‹•è·é›¢
+ * @param	gyoe	!ãƒãƒ¼ã‚¯åˆ¶å¾¡
+ * @param	tr_type	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
+ * @param	work_pos è¦–ç·šãƒ’ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯è¦ç´ æ•° 0=è¦–ç·šä¸» 1=ãƒšã‚¢
+ * @retval	tcb		ç§»å‹•å‡¦ç†TCB_PTR
  */
 //--------------------------------------------------------------
 TCB_PTR EvTrainerEyeMoveSet( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj, PLAYER_STATE_PTR jiki,
@@ -691,9 +691,9 @@ TCB_PTR EvTrainerEyeMoveSet( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj, PLAYER_S
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®ˆ—I—¹ƒ`ƒFƒbƒN
- * @param	tcb		EvTrainerEyeMoveSet()‚Ì–ß‚è’l
- * @retval	int 	TRUE=I—¹@FALSE=‚Ü‚¾
+ * è¦–ç·šç§»å‹•å‡¦ç†çµ‚äº†ãƒã‚§ãƒƒã‚¯
+ * @param	tcb		EvTrainerEyeMoveSet()ã®æˆ»ã‚Šå€¤
+ * @retval	int 	TRUE=çµ‚äº†ã€€FALSE=ã¾ã 
  */
 //--------------------------------------------------------------
 int EvTrainerEyeMoveEndCheck( TCB_PTR tcb )
@@ -704,8 +704,8 @@ int EvTrainerEyeMoveEndCheck( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®ˆ—I—¹
- * @param	tcb		EvTrainerEyeMoveSet()‚Ì–ß‚è’l
+ * è¦–ç·šç§»å‹•å‡¦ç†çµ‚äº†
+ * @param	tcb		EvTrainerEyeMoveSet()ã®æˆ»ã‚Šå€¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -716,13 +716,13 @@ void EvTrainerEyeMoveEnd( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®ˆ—’Ç‰Á
+ * è¦–ç·šç§»å‹•å‡¦ç†è¿½åŠ 
  * @param	fsys	FIELDSYS_WORK
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	jiki	PLAYER_STATE_PTR
- * @param	dir		ˆÚ“®•ûŒü
- * @param	range	ˆÚ“®‹——£
- * @retval	TCB_PTR	ˆÚ“®ˆ—‚ğs‚¤TCB_PTR
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	range	ç§»å‹•è·é›¢
+ * @retval	TCB_PTR	ç§»å‹•å‡¦ç†ã‚’è¡Œã†TCB_PTR
  */
 //--------------------------------------------------------------
 static TCB_PTR TrEyeMeetMoveAddTcb( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj, PLAYER_STATE_PTR jiki,
@@ -732,7 +732,7 @@ static TCB_PTR TrEyeMeetMoveAddTcb( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj, P
 	EYE_MEET_MOVE_WORK *work;
 	
 	work = sys_AllocMemoryLo( HEAPID_FIELD, EYE_MEET_MOVE_WORK_SIZE );
-	GF_ASSERT( work != NULL && "TrEyeMeetMoveAddTcb()ƒ[ƒNŠm•Û¸”s" );
+	GF_ASSERT( work != NULL && "TrEyeMeetMoveAddTcb()ãƒ¯ãƒ¼ã‚¯ç¢ºä¿å¤±æ•—" );
 	
 	memset( work, 0, EYE_MEET_MOVE_WORK_SIZE );
 	
@@ -746,16 +746,16 @@ static TCB_PTR TrEyeMeetMoveAddTcb( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj, P
 	work->jiki = jiki;
 	
 	tcb = TCB_Add( TrEyeMeetMoveTCB, work, EYE_MEET_MOVE_TCB_PRI );
-	GF_ASSERT( tcb != NULL && "TrEyeMeetMoveAddTcb()TCB’Ç‰Á¸”s" );
+	GF_ASSERT( tcb != NULL && "TrEyeMeetMoveAddTcb()TCBè¿½åŠ å¤±æ•—" );
 	
 	return( tcb );
 }
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®ˆ—I—¹ƒ`ƒFƒbƒN
- * @param	tcb		TrEyeMeetMoveAddTcb()‚Ì–ß‚è’lTCB_PTR
- * @retval	int		TRUE=I—¹
+ * è¦–ç·šç§»å‹•å‡¦ç†çµ‚äº†ãƒã‚§ãƒƒã‚¯
+ * @param	tcb		TrEyeMeetMoveAddTcb()ã®æˆ»ã‚Šå€¤TCB_PTR
+ * @retval	int		TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static int TrEyeMeetMoveEndCheck( TCB_PTR tcb )
@@ -767,8 +767,8 @@ static int TrEyeMeetMoveEndCheck( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®ˆ—I—¹
- * @param	tcb		TrEyeMeetMoveAddTcb()‚Ì–ß‚è’lTCB_PTR
+ * è¦–ç·šç§»å‹•å‡¦ç†çµ‚äº†
+ * @param	tcb		TrEyeMeetMoveAddTcb()ã®æˆ»ã‚Šå€¤TCB_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -783,7 +783,7 @@ static void TrEyeMeetMoveEnd( TCB_PTR tcb )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®ˆ—@TCB
+ * è¦–ç·šç§»å‹•å‡¦ç†ã€€TCB
  * @param	tcb		TCB_PTR
  * @param	wk		TCB work
  * @retval	nothing
@@ -800,9 +800,9 @@ static void TrEyeMeetMoveTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@‰Šú‰»
+ * è¦–ç·šç§»å‹•ã€€åˆæœŸåŒ–
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_Init( EYE_MEET_MOVE_WORK *work )
@@ -819,9 +819,9 @@ static int EyeMeetMove_Init( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@OBJ“®ìI—¹‘Ò‚¿
+ * è¦–ç·šç§»å‹•ã€€OBJå‹•ä½œçµ‚äº†å¾…ã¡
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_OBJMoveWait( EYE_MEET_MOVE_WORK *work )
@@ -841,9 +841,9 @@ static int EyeMeetMove_OBJMoveWait( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@©‹@ˆÚ“®I—¹‘Ò‚¿
+ * è¦–ç·šç§»å‹•ã€€è‡ªæ©Ÿç§»å‹•çµ‚äº†å¾…ã¡
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_JikiMoveWait( EYE_MEET_MOVE_WORK *work )
@@ -856,7 +856,7 @@ static int EyeMeetMove_JikiMoveWait( EYE_MEET_MOVE_WORK *work )
 	
 	{
 		u32 code = FieldOBJ_MoveCodeGet( work->fldobj );
-		OS_Printf( "ƒgƒŒ[ƒi[“®ìƒR[ƒh=0x%x\n", code );
+		OS_Printf( "ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å‹•ä½œã‚³ãƒ¼ãƒ‰=0x%x\n", code );
 		
 		switch( code ){
 		case MV_HIDE_SNOW:
@@ -874,9 +874,9 @@ static int EyeMeetMove_JikiMoveWait( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@ˆÚ“®æ‚ÖŒü‚«‚ğ•Ï‚¦‚é 
+ * è¦–ç·šç§»å‹•ã€€ç§»å‹•å…ˆã¸å‘ãã‚’å¤‰ãˆã‚‹ 
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_DirChange( EYE_MEET_MOVE_WORK *work )
@@ -896,9 +896,9 @@ static int EyeMeetMove_DirChange( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@ˆÚ“®æ‚ÖŒü‚«‚ğ•Ï‚¦‚é@‘Ò‚¿
+ * è¦–ç·šç§»å‹•ã€€ç§»å‹•å…ˆã¸å‘ãã‚’å¤‰ãˆã‚‹ã€€å¾…ã¡
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_DirChangeWait( EYE_MEET_MOVE_WORK *work )
@@ -913,9 +913,9 @@ static int EyeMeetMove_DirChangeWait( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@‚Ñ‚Á‚­‚èƒ}[ƒNoŒ»
+ * è¦–ç·šç§»å‹•ã€€ã³ã£ãã‚Šãƒãƒ¼ã‚¯å‡ºç¾
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_GyoeSet( EYE_MEET_MOVE_WORK *work )
@@ -927,9 +927,9 @@ static int EyeMeetMove_GyoeSet( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@‚Ñ‚Á‚­‚èƒ}[ƒN•\¦I—¹‘Ò‚¿
+ * è¦–ç·šç§»å‹•ã€€ã³ã£ãã‚Šãƒãƒ¼ã‚¯è¡¨ç¤ºçµ‚äº†å¾…ã¡
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_GyoeWait( EYE_MEET_MOVE_WORK *work )
@@ -944,9 +944,9 @@ static int EyeMeetMove_GyoeWait( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@‰B‚ê–ª’E‚¬
+ * è¦–ç·šç§»å‹•ã€€éš ã‚Œè“‘è„±ã
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_HidePullOFFSet( EYE_MEET_MOVE_WORK *work )
@@ -958,9 +958,9 @@ static int EyeMeetMove_HidePullOFFSet( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@‰B‚ê–ª’E‚¬I—¹‘Ò‚¿
+ * è¦–ç·šç§»å‹•ã€€éš ã‚Œè“‘è„±ãçµ‚äº†å¾…ã¡
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_HidePullOFFWait( EYE_MEET_MOVE_WORK *work )
@@ -974,9 +974,9 @@ static int EyeMeetMove_HidePullOFFWait( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@‚Ñ‚Á‚­‚èƒ}[ƒN•\¦I—¹Œã‚ÌŠÔ
+ * è¦–ç·šç§»å‹•ã€€ã³ã£ãã‚Šãƒãƒ¼ã‚¯è¡¨ç¤ºçµ‚äº†å¾Œã®é–“
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_GyoeEndWait( EYE_MEET_MOVE_WORK *work )
@@ -993,14 +993,14 @@ static int EyeMeetMove_GyoeEndWait( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@ˆÚ“®‹——£ƒ`ƒFƒbƒN
+ * è¦–ç·šç§»å‹•ã€€ç§»å‹•è·é›¢ãƒã‚§ãƒƒã‚¯
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_MoveRangeCheck( EYE_MEET_MOVE_WORK *work )
 {
-	if( work->range <= 1 ){									//©‹@–Ú‚Ì‘O ˆÚ“®‚·‚é•K—v‚È‚µ
+	if( work->range <= 1 ){									//è‡ªæ©Ÿç›®ã®å‰ ç§»å‹•ã™ã‚‹å¿…è¦ãªã—
 		work->seq_no = SEQNO_TRMOVE_MOVE_END_WAIT;
 		return( TRUE );	
 	}
@@ -1011,9 +1011,9 @@ static int EyeMeetMove_MoveRangeCheck( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@ˆÚ“®ŠJn
+ * è¦–ç·šç§»å‹•ã€€ç§»å‹•é–‹å§‹
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_MoveStart( EYE_MEET_MOVE_WORK *work )
@@ -1031,9 +1031,9 @@ static int EyeMeetMove_MoveStart( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@ˆÚ“®’†
+ * è¦–ç·šç§»å‹•ã€€ç§»å‹•ä¸­
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_Move( EYE_MEET_MOVE_WORK *work )
@@ -1042,16 +1042,16 @@ static int EyeMeetMove_Move( EYE_MEET_MOVE_WORK *work )
 		return( FALSE );
 	}
 	
-	work->range--;											//ˆê•àŒ¸‚ç‚·
+	work->range--;											//ä¸€æ­©æ¸›ã‚‰ã™
 	work->seq_no = SEQNO_TRMOVE_MOVE_RANGE_CHECK;
 	return( TRUE );
 }
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@ˆÚ“®I—¹ŒãA©‹@‚Ì•ûŒü‚ÖŒü‚©‚¹‚é
+ * è¦–ç·šç§»å‹•ã€€ç§»å‹•çµ‚äº†å¾Œã€è‡ªæ©Ÿã®æ–¹å‘ã¸å‘ã‹ã›ã‚‹
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_MoveEndWait( EYE_MEET_MOVE_WORK *work )
@@ -1069,9 +1069,9 @@ static int EyeMeetMove_MoveEndWait( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@©‹@‚ğU‚èŒü‚©‚¹‚é
+ * è¦–ç·šç§»å‹•ã€€è‡ªæ©Ÿã‚’æŒ¯ã‚Šå‘ã‹ã›ã‚‹
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_JikiTurnSet( EYE_MEET_MOVE_WORK *work )
@@ -1103,9 +1103,9 @@ static int EyeMeetMove_JikiTurnSet( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@©‹@U‚èŒü‚«I—¹‘Ò‚¿
+ * è¦–ç·šç§»å‹•ã€€è‡ªæ©ŸæŒ¯ã‚Šå‘ãçµ‚äº†å¾…ã¡
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_JikiTurn( EYE_MEET_MOVE_WORK *work )
@@ -1126,15 +1126,15 @@ static int EyeMeetMove_JikiTurn( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@ƒAƒjƒI—¹
+ * è¦–ç·šç§»å‹•ã€€ã‚¢ãƒ‹ãƒ¡çµ‚äº†
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_AcmdEnd( EYE_MEET_MOVE_WORK *work )
 {
 	FieldOBJ_AcmdEnd( work->fldobj );
-//	FieldOBJ_StatusBit_OFF( work->fldobj, FLDOBJ_STA_BIT_PAUSE_MOVE );	//ƒ|[ƒY‚©‚¯‚Á‚Ï
+//	FieldOBJ_StatusBit_OFF( work->fldobj, FLDOBJ_STA_BIT_PAUSE_MOVE );	//ãƒãƒ¼ã‚ºã‹ã‘ã£ã±
 	if( GYM_GimmickCodeCheck(work->fsys, FLD_GIMMICK_GHOST_GYM) == FALSE 
 			|| GYM_PlGhostGymTrainerMoveCodeChange(work->fsys,work->fldobj) == FALSE ){
 		FieldOBJ_MoveCodeChange( work->fldobj, MV_DMY );
@@ -1146,9 +1146,9 @@ static int EyeMeetMove_AcmdEnd( EYE_MEET_MOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üˆÚ“®@I—¹
+ * è¦–ç·šç§»å‹•ã€€çµ‚äº†
  * @param	work	EYE_MEET_MOVE_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int EyeMeetMove_End( EYE_MEET_MOVE_WORK *work )
@@ -1158,7 +1158,7 @@ static int EyeMeetMove_End( EYE_MEET_MOVE_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	‹üˆÚ“®ˆ—ƒe[ƒuƒ‹
+///	è¦–ç·šç§»å‹•å‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_EyeMeetMoveTbl[])( EYE_MEET_MOVE_WORK *work ) =
 {
@@ -1183,16 +1183,16 @@ static int (* const DATA_EyeMeetMoveTbl[])( EYE_MEET_MOVE_WORK *work ) =
 };
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒh
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰
 //	add nohara
 //==============================================================================
 #if 0
 //--------------------------------------------------------------
 /**
- * ‹üƒCƒxƒ“ƒg‹N“® 
+ * è¦–ç·šã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹• 
  * @param	fsys		FIELDSYS_WORK
- * @param	fldobj		‘ÎÛƒtƒB[ƒ‹ƒhOBJ
- * @param	tcb			‹üˆÚ“®TCB_PTR
+ * @param	fldobj		å¯¾è±¡ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ
+ * @param	tcb			è¦–ç·šç§»å‹•TCB_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1201,7 +1201,7 @@ static void TrEyeMeetEventStart( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj, TCB_
 	EYE_MEET_EVENT_WORK *work;
 	
 	work = sys_AllocMemoryLo( HEAPID_FIELD, EYE_MEET_EVENT_WORK_SIZE );
-	GF_ASSERT( work != NULL && "TrEyeMeetEventStart()ƒ[ƒNŠm•Û¸”s" );
+	GF_ASSERT( work != NULL && "TrEyeMeetEventStart()ãƒ¯ãƒ¼ã‚¯ç¢ºä¿å¤±æ•—" );
 	
 	memset( work, 0, EYE_MEET_EVENT_WORK_SIZE );
 	
@@ -1214,7 +1214,7 @@ static void TrEyeMeetEventStart( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj, TCB_
 
 //--------------------------------------------------------------
 /**
- * ‹üƒCƒxƒ“ƒgI—¹
+ * è¦–ç·šã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  * @param	work		EYE_MEET_EVENT_WORK
  * @retval	nothing
  */
@@ -1226,9 +1226,9 @@ static void TrEyeMeetEventEnd( EYE_MEET_EVENT_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‹üƒCƒxƒ“ƒg
+ * è¦–ç·šã‚¤ãƒ™ãƒ³ãƒˆ
  * @param	ev		GMEVENT_CONTROL	*
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL TrEyeMeetEvent( GMEVENT_CONTROL *ev )
@@ -1258,12 +1258,12 @@ static BOOL TrEyeMeetEvent( GMEVENT_CONTROL *ev )
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹üˆÚ“®TCB’Ç‰Á
- * @param	fldobj	‘ÎÛ‚ÌFIELD_OBJ_PTR
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šç§»å‹•TCBè¿½åŠ 
+ * @param	fldobj	å¯¾è±¡ã®FIELD_OBJ_PTR
  * @param	jiki	PLAYER_STATE
- * @param	dir		ˆÚ“®•ûŒü
- * @param	range	ˆÚ“®‹——£
- * @retval	TCB_PTR	‹üˆÚ“®TCB_PTR
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @param	range	ç§»å‹•è·é›¢
+ * @retval	TCB_PTR	è¦–ç·šç§»å‹•TCB_PTR
  */
 //--------------------------------------------------------------
 TCB_PTR EvCall_TrEyeMeetMoveAddTcb(
@@ -1274,10 +1274,10 @@ TCB_PTR EvCall_TrEyeMeetMoveAddTcb(
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹ü‹——£æ“¾
- * @param	fldobj	‘ÎÛFIELD_OBJ_PTR
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šè·é›¢å–å¾—
+ * @param	fldobj	å¯¾è±¡FIELD_OBJ_PTR
  * @param	jiki	PLAYER_STATE_PTR
- * @retval	int		‹ü‹——£Bƒqƒbƒg‚È‚µ=-1
+ * @retval	int		è¦–ç·šè·é›¢ã€‚ãƒ’ãƒƒãƒˆãªã—=-1
  */
 //--------------------------------------------------------------
 int EvCall_TrEyeRangeCheck( CONST_FIELD_OBJ_PTR fldobj, PLAYER_STATE_PTR jiki )
@@ -1288,10 +1288,10 @@ int EvCall_TrEyeRangeCheck( CONST_FIELD_OBJ_PTR fldobj, PLAYER_STATE_PTR jiki )
 
 //--------------------------------------------------------------
 /**
- * ‹üƒCƒxƒ“ƒg‹N“® 
+ * è¦–ç·šã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹• 
  * @param	fsys		FIELDSYS_WORK
- * @param	fldobj		‘ÎÛƒtƒB[ƒ‹ƒhOBJ
- * @param	tcb			‹üˆÚ“®TCB_PTR
+ * @param	fldobj		å¯¾è±¡ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ
+ * @param	tcb			è¦–ç·šç§»å‹•TCB_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1301,7 +1301,7 @@ void GMEVENT_Call_TrEyeMeetEventStart(
 	EYE_MEET_EVENT_WORK *work;
 	
 	work = sys_AllocMemoryLo( HEAPID_FIELD, EYE_MEET_EVENT_WORK_SIZE );
-	GF_ASSERT( work != NULL && "TrEyeMeetEventStart()ƒ[ƒNŠm•Û¸”s" );
+	GF_ASSERT( work != NULL && "TrEyeMeetEventStart()ãƒ¯ãƒ¼ã‚¯ç¢ºä¿å¤±æ•—" );
 	
 	memset( work, 0, EYE_MEET_EVENT_WORK_SIZE );
 	

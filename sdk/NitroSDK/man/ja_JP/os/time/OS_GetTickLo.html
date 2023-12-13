@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>OS_GetTickLo</TITLE>
@@ -9,29 +9,29 @@
 </HEAD>
 <BODY>
 <H1 align="left">OS_GetTickLo</H1>
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
   <PRE><CODE>u16 OS_GetTickLo( void );
   </CODE></PRE>
 </DL>
-<H2>����</H2>
-<P>�Ȃ��B</P>
-<H2>�Ԃ�l</H2>
-<P>�`�b�N�l�̉���16�r�b�g</P>
-<H2>����</H2>
-<P>�`�b�N�l�̉���16�r�b�g���擾���܂��B<BR>
-���̊֐��ȑO��OS_InitTick() �Ń`�b�N���������s���Ă���K�v������܂��B<BR>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>チック値の下位16ビット</P>
+<H2>説明</H2>
+<P>チック値の下位16ビットを取得します。<BR>
+この関数以前にOS_InitTick() でチック初期化が行われている必要があります。<BR>
 <BR>
-�`�b�N�l�͓����ł�16bit �^�C�}�J�E���^�l�ƁA���̃^�C�}�̊��荞�݉񐔃J�E���^����쐬���Ă��܂����AOS_GetTickLo()
-�ł� ���̂���16bit�̃^�C�}�J�E���^�l��Ԃ��܂��B</P>
-<H2>�Q��</H2>
+チック値は内部では16bit タイマカウンタ値と、そのタイマの割り込み回数カウンタから作成していますが、OS_GetTickLo()
+では そのうち16bitのタイマカウンタ値を返します。</P>
+<H2>参照</H2>
 <P><CODE><A href="OS_InitTick.html">OS_InitTick</A>, <A href="OS_SetTick.html">OS_SetTick</A>,
 <A href="OS_GetTick.html">OS_GetTick</A><BR>
 </CODE></P>
-<H2>����</H2>
-<P>2004/02/25 systemClock��tick ��<BR>
-2004/02/24 ����</P>
+<H2>履歴</H2>
+<P>2004/02/25 systemClock→tick へ<BR>
+2004/02/24 初版</P>
 </BODY>
 </HTML>

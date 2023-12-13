@@ -1,8 +1,8 @@
 //=============================================================================
 /**
  * @file	ug_trap.h
- * @brief	�n����㩏���ۑ�����N���X
-             �P�U�~�P�U�������݂��Ȃ��̂ŁA���̕������m�ۂ��Ă���܂�
+ * @brief	地下の罠情報を保存するクラス
+             １６×１６しか存在しないので、その分だけ確保してあります
  * @author	Katsumi Ohno
  * @date    2005.09.28
  */
@@ -11,13 +11,13 @@
 #ifndef __UG_TRAP_H__
 #define __UG_TRAP_H__
 
-// 0286 �e�@�����b�Z�[�W�g���b�v�ɂ�����������Ɉړ��g���b�v�ɂ�����Ɠ����Ȃ��Ȃ�
+// 0286 親機がメッセージトラップにかかった直後に移動トラップにかかると動けなくなる
 #define PL_080528_UNDERGROUND_0286_FIX  (0)
 
 #include "gflib/bg_system.h"
 #include "savedata/undergrounddata.h"
 
-#define TRAP_NUM_SINGLE_MAX (UG_TRAP_PLACE_NUM_MAX)      ///< ��l�̏ꍇ�̃g���b�v�ő吔
+#define TRAP_NUM_SINGLE_MAX (UG_TRAP_PLACE_NUM_MAX)      ///< 一人の場合のトラップ最大数
 
 #include "field/ug_itemtype.h"
 
@@ -73,10 +73,10 @@ extern BOOL CommTrapFrontTrapDefuse(int netID, Grid* pTouch, u8 bTrapFull);
 extern void CommTrapTouch(int netID, Grid* pTouch);
 extern int CommTrapInfoRecvTrapDefuseSize(void);
 
-extern void CommTrapDirBreak(int netID);  // ��Q���Œ��f����
+extern void CommTrapDirBreak(int netID);  // 障害物で中断した
 extern void CommTrapRecvDirBreak(int netID, int size, void* pData, void* pWork);
 
-/// �^�b�`�p�l�����^�b�`���Ă���ꍇ�̂���������������
+/// タッチパネルをタッチしている場合のすす払い消し処理
 extern void CommTrapSmogTouch(Grid* pGrid, GF_BGL_INI * bgl);
 
 extern void CommTrapSendRelease(int netID, int targetID);
@@ -89,7 +89,7 @@ extern void CommTrapRecvEndResult(int netID, int size, void* pData, void* pWork)
 extern void CommTrapRecvRelease(int netID, int size, void* pData, void* pWork);
 extern int CommTrapGetReleaseSize(void);
 
-/// ������㩂̏ꏊ�𓾂�
+/// 自分の罠の場所を得る
 extern int CommTrapGetMyTrapX(int index);
 extern int CommTrapGetMyTrapZ(int index);
 extern int UgTrapGetNatureTrapX(int index);
@@ -105,7 +105,7 @@ extern void UgTrapRecvNatureRadarPos(int netID, int size, void* pData, void* pWo
 extern int UgTrapGetNatureTrapRadarSize(void);
 
 
-// 㩎��s�֐�
+// 罠実行関数
 extern void UgTrapProcess(GF_BGL_INI* bgl);
 extern void CommTrapRecvPriEnd(int netID, int size, void* pData, void* pWork);
 extern void UgTrapTurnDispEnd(int netID);

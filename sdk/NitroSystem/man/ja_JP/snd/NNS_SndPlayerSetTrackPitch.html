@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndPlayerSetTrackPitch</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndPlayerSetTrackPitch</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerSetTrackPitch(
@@ -20,7 +20,7 @@
         int <var>pitch</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAHMWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -28,49 +28,49 @@
 <tbody>
 <tr>
 <td><em><strong><code>handle</code></strong></em></td>
-<td>�T�E���h�n���h���̃|�C���^�ł��B</td>
+<td>サウンドハンドルのポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>trackBitMask</code></strong></em></td>
-<td>�g���b�N�r�b�g�}�X�N�ł��B</td>
+<td>トラックビットマスクです。</td>
 </tr>
 <tr>
 <td><em><strong><code>pitch</code></strong></em></td>
-<td>�����ω��̒l�ł��B�l�͈̔͂́A-32768�`32767�ł��B</td>
+<td>音程変化の値です。値の範囲は、-32768〜32767です。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAENWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDALNWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�V�[�P���X�g���b�N�̉�����ύX���܂��B
+シーケンストラックの音程を変更します。
 </p>
       <p>
-�T�E���h�n���h��<em><strong><code>handle</code></strong></em>�ɁA���т���ꂽ�V�[�P���X�̃g���b�N�s�b�`��ύX���܂��B
-�T�E���h�n���h���������̏ꍇ�́A�������܂���B 
+サウンドハンドル<em><strong><code>handle</code></strong></em>に、結びつけられたシーケンスのトラックピッチを変更します。
+サウンドハンドルが無効の場合は、何もしません。 
 </p>
       <p>
-<em><strong><code>trackBitMask</code></strong></em>�ŁA�ݒ肷��g���b�N���w�肵�܂��B
-���ʃr�b�g���珇�ɁA�g���b�N0�A�g���b�N1�A�g���b�N2�A�A�A��\���A�r�b�g�������Ă���g���b�N�S�Ăɑ΂��āA
-������ύX���܂��B
-�Ⴆ�΁A�g���b�N2�ƃg���b�N5�̉�����ύX�������ꍇ�́A (1 &lt;&lt; 2) | (1 &lt;&lt; 5) ���Ȃ킿�A0x0024 �Ƃ��܂��B 
+<em><strong><code>trackBitMask</code></strong></em>で、設定するトラックを指定します。
+下位ビットから順に、トラック0、トラック1、トラック2、、、を表し、ビットが立っているトラック全てに対して、
+音程を変更します。
+例えば、トラック2とトラック5の音程を変更したい場合は、 (1 &lt;&lt; 2) | (1 &lt;&lt; 5) すなわち、0x0024 とします。 
 </p>
       <p>
-<em><strong><code>pitch</code></strong></em>�͐��̒l�ō������ցA���̒l�ŒႢ���֕ω����܂��B
- �}64�ł��傤�ǔ����ω����܂��B�i�ĂԂ��тɌ��ʂ��ݐς����킯�ł͂���܂���j
+<em><strong><code>pitch</code></strong></em>は正の値で高い方へ、負の値で低い方へ変化します。
+ ±64でちょうど半音変化します。（呼ぶたびに効果が累積されるわけではありません）
 </p>
     </div>
-<h2>�Q��</h2>
-<p>�Ȃ��B</p>
-<h2>����</h2>
-<p>2004/06/01 �T�E���h�n���h���̓V�[�P���X�ƌ��т��悤�ɋL�q�C��<br>2004/04/01 ����<br></p>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2004/06/01 サウンドハンドルはシーケンスと結びつくように記述修正<br>2004/04/01 初版<br></p>
 </div>
 </body>
 </html>

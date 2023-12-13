@@ -1,11 +1,11 @@
 //===========================================================================
 /**
  * @file	field_subproc.c
- * @brief	ƒtƒB[ƒ‹ƒh‚Å‚ÌƒTƒuƒvƒƒZƒXŒÄ‚Ño‚µŠÖ˜A
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ã®ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹å‘¼ã³å‡ºã—é–¢é€£
  * @author	GAME FREAK Inc.
  * @date	2005.10.21
  * 
- * fieldsys.c‚©‚çØ‚è—£‚µ‚Äì¬‚µ‚½
+ * fieldsys.cã‹ã‚‰åˆ‡ã‚Šé›¢ã—ã¦ä½œæˆã—ãŸ
  *
  */
 //===========================================================================
@@ -72,8 +72,8 @@
 
 #include "itemtool/myitem.h"
 
-#include "communication/communication.h"  // ’ÊMˆ—‚Ì‚½‚ß
-#include "communication/comm_state.h"  // ’ÊMˆ—‚Ì‚½‚ß
+#include "communication/communication.h"  // é€šä¿¡å‡¦ç†ã®ãŸã‚
+#include "communication/comm_state.h"  // é€šä¿¡å‡¦ç†ã®ãŸã‚
 #include "comm_union_def.h"
 #include "comm_union.h"
 
@@ -106,7 +106,7 @@
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”F‰Šú‰»Fí“¬iƒeƒXƒgj
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–ï¼šæˆ¦é—˜ï¼ˆãƒ†ã‚¹ãƒˆï¼‰
  */
 //------------------------------------------------------------------
 static PROC_RESULT TestBattleProc_Init(PROC * proc, int * seq)
@@ -115,7 +115,7 @@ static PROC_RESULT TestBattleProc_Init(PROC * proc, int * seq)
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FƒƒCƒ“Fí“¬iƒeƒXƒgj
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³ï¼šæˆ¦é—˜ï¼ˆãƒ†ã‚¹ãƒˆï¼‰
  */
 //------------------------------------------------------------------
 static PROC_RESULT TestBattleProc_Main(PROC * proc, int * seq)
@@ -128,7 +128,7 @@ static PROC_RESULT TestBattleProc_Main(PROC * proc, int * seq)
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒXŠÖ”FI—¹Fí“¬iƒeƒXƒgj
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†ï¼šæˆ¦é—˜ï¼ˆãƒ†ã‚¹ãƒˆï¼‰
  */
 //------------------------------------------------------------------
 static PROC_RESULT TestBattleProc_End(PROC * proc, int * seq)
@@ -138,12 +138,12 @@ static PROC_RESULT TestBattleProc_End(PROC * proc, int * seq)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒX’è‹`ƒf[ƒ^Fí“¬iƒeƒXƒgj
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿ï¼šæˆ¦é—˜ï¼ˆãƒ†ã‚¹ãƒˆï¼‰
  */
 //------------------------------------------------------------------
 FS_EXTERN_OVERLAY(battle);
 
-//frontier_system‚©‚çŒÄ‚Ño‚·‚½‚ß‚ÉstaticŠO‚µ‚Ü‚µ‚½
+//frontier_systemã‹ã‚‰å‘¼ã³å‡ºã™ãŸã‚ã«staticå¤–ã—ã¾ã—ãŸ
 const PROC_DATA TestBattleProcData = {
 	TestBattleProc_Init,
 	TestBattleProc_Main,
@@ -177,14 +177,14 @@ static const u8 FieldMenuBagList[] = {
 	BAG_POKE_NUTS, BAG_POKE_SEAL, BAG_POKE_BATTLE, BAG_POKE_EVENT, 0xff
 };
 //------------------------------------------------------------------
-//	ƒoƒbƒO
+//	ãƒãƒƒã‚°
 //------------------------------------------------------------------
 void FieldBag_SubProcSet( FIELDSYS_WORK * fsys, void * buf )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(fld_bag);
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	const PROC_DATA BagProcData = {
 		BagProc_Init,
 		BagProc_Main,
@@ -220,10 +220,10 @@ void * FieldBag_SetProc( FIELDSYS_WORK * fsys, ITEMCHECK_WORK * icwk )
 
 //------------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒg‚©‚çƒoƒbƒO‰æ–Ê‚ğŒÄ‚Ño‚µ
+ * ã‚¤ãƒ™ãƒ³ãƒˆã‹ã‚‰ãƒãƒƒã‚°ç”»é¢ã‚’å‘¼ã³å‡ºã—
  * @param	fsys
- * @param	mode	ƒoƒbƒO‚Ìw’èiEVBAG_MODE‚Ì’è‹`‚ğQÆj
- * @return	void *	ƒoƒbƒO‰æ–Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	mode	ãƒãƒƒã‚°ã®æŒ‡å®šï¼ˆEVBAG_MODEã®å®šç¾©ã‚’å‚ç…§ï¼‰
+ * @return	void *	ãƒãƒƒã‚°ç”»é¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void * FieldBagEvent_SetProc( FIELDSYS_WORK * fsys, EVBAG_MODE mode )
@@ -254,9 +254,9 @@ void * FieldBagEvent_SetProc( FIELDSYS_WORK * fsys, EVBAG_MODE mode )
 
 //------------------------------------------------------------------
 /**
- * ƒoƒbƒO‰æ–Ê‚Å‘I‘ğ‚µ‚½‚Ç‚¤‚®‚ğó‚¯æ‚é
- * @param	void *	ƒoƒbƒO‰æ–Êƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	u16		‘I‘ğ‚µ‚½‚Ç‚¤‚®‚Ìƒiƒ“ƒo[i‚O‚Ì‚Æ‚«AƒLƒƒƒ“ƒZƒ‹j
+ * ãƒãƒƒã‚°ç”»é¢ã§é¸æŠã—ãŸã©ã†ãã‚’å—ã‘å–ã‚‹
+ * @param	void *	ãƒãƒƒã‚°ç”»é¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	u16		é¸æŠã—ãŸã©ã†ãã®ãƒŠãƒ³ãƒãƒ¼ï¼ˆï¼ã®ã¨ãã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«ï¼‰
  */
 //------------------------------------------------------------------
 u16 FieldBagEvent_GetSelectedItem(void * param)
@@ -273,14 +273,14 @@ u16 FieldBagEvent_GetSelectedItem(void * param)
 //===========================================================================
 //===========================================================================
 //------------------------------------------------------------------
-//	–Ø‚ÌÀƒ^ƒO
+//	æœ¨ã®å®Ÿã‚¿ã‚°
 //------------------------------------------------------------------
 void FieldNutsTag_SetProc( FIELDSYS_WORK * fsys, void * buf )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(nuts_tag);
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	const PROC_DATA NutsTagProcData = {
 		NutsTagProc_Init,
 		NutsTagProc_Main,
@@ -295,14 +295,14 @@ void FieldNutsTag_SetProc( FIELDSYS_WORK * fsys, void * buf )
 //===========================================================================
 //===========================================================================
 //------------------------------------------------------------------
-//	–`Œ¯ƒm[ƒg
+//	å†’é™ºãƒãƒ¼ãƒˆ
 //------------------------------------------------------------------
 void FieldFantasyNote_SetProc( FIELDSYS_WORK * fsys, void * buf )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(fnote);
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	const PROC_DATA FantasyNoteProcData = {
 		FantasyNoteProc_Init,
 		FantasyNoteProc_Main,
@@ -329,13 +329,13 @@ void FieldPokeStatus_SetProc( FIELDSYS_WORK * fsys, void * psd )
 //============================================================================================
 //
 //
-//			ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
+//			ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
 //
 //
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µƒpƒ‰ƒ[ƒ^¶¬
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç”Ÿæˆ
  * @param	heapID
  * @param	fsys
  * @param	type
@@ -359,14 +359,14 @@ static PLIST_DATA * PLISTDATA_Create(int heapID, FIELDSYS_WORK * fsys, int type,
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhƒƒjƒ…[‚©‚ç‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
  */
 //------------------------------------------------------------------
 void * FieldPokeList_SetProc( FIELDSYS_WORK * fsys, SKILLCHECK_WORK * scwk, u8 pos )
 {
 	PLIST_DATA * pld = PLISTDATA_Create(HEAPID_WORLD, fsys, PL_TYPE_SINGLE, PL_MODE_FIELD);
-	pld->scwk = scwk;			//‚í‚´g—pğŒ
-	pld->ret_sel = pos;			//‘I‘ğ‰ŠúˆÊ’u
+	pld->scwk = scwk;			//ã‚ã–ä½¿ç”¨æ¡ä»¶
+	pld->ret_sel = pos;			//é¸æŠåˆæœŸä½ç½®
 	GameSystem_StartSubProc( fsys, &PokeListProcData, pld );
 
 	return pld;
@@ -374,10 +374,10 @@ void * FieldPokeList_SetProc( FIELDSYS_WORK * fsys, SKILLCHECK_WORK * scwk, u8 p
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‚©‚ç‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µi‘I‘ğ‚Ì‚İj
- * @param	heap	g—p‚·‚éƒq[ƒv‚Ìw’è
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	void *	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‹ã‚‰ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—ï¼ˆé¸æŠã®ã¿ï¼‰
+ * @param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	void *	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void * FieldPokeListEvent_SetProc(int heap, FIELDSYS_WORK * fsys)
@@ -390,10 +390,10 @@ void * FieldPokeListEvent_SetProc(int heap, FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‚©‚ç‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µiƒQ[ƒ€“àŒğŠ·j
- * @param	heap	g—p‚·‚éƒq[ƒv‚Ìw’è
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	void *	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‹ã‚‰ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—ï¼ˆã‚²ãƒ¼ãƒ å†…äº¤æ›ï¼‰
+ * @param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	void *	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void * FieldPokeListEventNpcTrade_SetProc(int heap, FIELDSYS_WORK * fsys)
@@ -405,9 +405,9 @@ void * FieldPokeListEventNpcTrade_SetProc(int heap, FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‘I‘ğŒ‹‰Ê‚Ìæ“¾
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		‘I‘ğŒ‹‰Ê
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆé¸æŠçµæœã®å–å¾—
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		é¸æŠçµæœ
  */
 //------------------------------------------------------------------
 int FieldPokeListEvent_GetSelect(void * wk)
@@ -418,11 +418,11 @@ int FieldPokeListEvent_GetSelect(void * wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‚©‚ç‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ(‚»‚¾‚Ä‚âê—p”Åj
- * @param	heap	g—p‚·‚éƒq[ƒv‚Ìw’è
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pos 	‰ŠúˆÊ’u
- * @return	void *	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‹ã‚‰ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—(ãã ã¦ã‚„å°‚ç”¨ç‰ˆï¼‰
+ * @param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pos 	åˆæœŸä½ç½®
+ * @return	void *	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void * SodateyaPokeListEvent_SetProc(int heap, FIELDSYS_WORK * fsys, int pos)
@@ -436,9 +436,9 @@ void * SodateyaPokeListEvent_SetProc(int heap, FIELDSYS_WORK * fsys, int pos)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‘I‘ğŒ‹‰Ê‚Ìƒ‚[ƒhæ“¾
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		‘I‘ğŒ‹‰Ê
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆé¸æŠçµæœã®ãƒ¢ãƒ¼ãƒ‰å–å¾—
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		é¸æŠçµæœ
  */
 //------------------------------------------------------------------
 int FieldPokeListEvent_GetMode(void * wk)
@@ -449,9 +449,9 @@ int FieldPokeListEvent_GetMode(void * wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‘I‘ğŒ‹‰Ê‚Ìæ“¾
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX—pƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		‘I‘ğŒ‹‰Ê
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é¸æŠçµæœã®å–å¾—
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		é¸æŠçµæœ
  */
 //------------------------------------------------------------------
 int FieldPokeStatusEvent_GetPos(void * wk)
@@ -462,19 +462,19 @@ int FieldPokeStatusEvent_GetPos(void * wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ†ƒjƒIƒ“ƒ‹[ƒ€‘Îí‚Ì‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
- * @param	heap	g—p‚·‚éƒq[ƒv‚Ìw’è
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	void *	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ å¯¾æˆ¦ã®æ™‚ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
+ * @param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	void *	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void * UnionPokeListEvent_SetProc(int heap, FIELDSYS_WORK * fsys)
 {
 	PLIST_DATA * pld = PLISTDATA_Create(HEAPID_WORLD, fsys, PL_TYPE_SINGLE, PL_MODE_SELECT);
-	pld->in_min = 2;		// Q‰ÁÅ¬”
-	pld->in_max = 2;		// Q‰ÁÅ‘å”
-	pld->in_lv  = 30;		// Q‰ÁƒŒƒxƒ‹
-	pld->reg    = NULL;		// ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ŠÖŒW‚È‚µ
+	pld->in_min = 2;		// å‚åŠ æœ€å°æ•°
+	pld->in_max = 2;		// å‚åŠ æœ€å¤§æ•°
+	pld->in_lv  = 30;		// å‚åŠ ãƒ¬ãƒ™ãƒ«
+	pld->reg    = NULL;		// ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³é–¢ä¿‚ãªã—
 
 	GameSystem_StartSubProc( fsys, &PokeListProcData, pld );
 
@@ -489,11 +489,11 @@ typedef struct {
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ†ƒjƒIƒ“ƒ‹[ƒ€‘Îí—pƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‘I‘ğ‘Ò‚¿ƒCƒxƒ“ƒg
+ * @brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ å¯¾æˆ¦ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆé¸æŠå¾…ã¡ã‚¤ãƒ™ãƒ³ãƒˆ
  *
  * @param   event		
  *
- * @retval  BOOL		TRUE:ƒCƒxƒ“ƒgI—¹
+ * @retval  BOOL		TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL GMEVENT_UnionPokeList(GMEVENT_CONTROL * event)
@@ -521,15 +521,15 @@ static BOOL GMEVENT_UnionPokeList(GMEVENT_CONTROL * event)
 	case SEQ_POKELIST_WAIT:
 		if (!FieldEvent_Cmd_WaitSubProcEnd(fsys)) {
 			switch (upw->pld->ret_sel) {
-			case PL_SEL_POS_EXIT:	//‚â‚ß‚é
+			case PL_SEL_POS_EXIT:	//ã‚„ã‚ã‚‹
 				Union_BattlePokeListResult( UNION_BATTLE_POKELIST_NG );
 				*seq = SEQ_POKELIST_DECIDE;
 				break;
-			case PL_SEL_POS_ENTER:	//Œˆ’è
+			case PL_SEL_POS_ENTER:	//æ±ºå®š
 				Union_BattlePokeListResult( UNION_BATTLE_POKELIST_OK );
 				*seq = SEQ_POKELIST_DECIDE;
 				break;
-			default:				//‚»‚Ì‘¼‹­‚³‚ğŒ©‚é
+			default:				//ãã®ä»–ï¼å¼·ã•ã‚’è¦‹ã‚‹
 				*seq = SEQ_POKESTATUS_CALL;
 			}
 		}
@@ -557,12 +557,12 @@ static BOOL GMEVENT_UnionPokeList(GMEVENT_CONTROL * event)
 
 //==============================================================================
 /**
- * @brief   ƒ†ƒjƒIƒ“ƒ‹[ƒ€‘Îí—pƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
+ * @brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ å¯¾æˆ¦ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
  *
  * @param   event		
  * @param   heapID		
  *
- * @retval  void *		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @retval  void *		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 void * EventCmd_PokeListSelect(GMEVENT_CONTROL * event, int heapID)
@@ -573,10 +573,10 @@ void * EventCmd_PokeListSelect(GMEVENT_CONTROL * event, int heapID)
 	upw = sys_AllocMemory(heapID, sizeof(UNION_PMLIST_WORK));
 	upw->heapID = heapID;
 	pld = PLISTDATA_Create(heapID, fsys, PL_TYPE_SINGLE, PL_MODE_SELECT);
-	pld->in_min = 2;		// Q‰ÁÅ¬”
-	pld->in_max = 2;		// Q‰ÁÅ‘å”
-	pld->in_lv  = 30;		// Q‰ÁƒŒƒxƒ‹
-	pld->reg    = NULL;		// ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ŠÖŒW‚È‚µ
+	pld->in_min = 2;		// å‚åŠ æœ€å°æ•°
+	pld->in_max = 2;		// å‚åŠ æœ€å¤§æ•°
+	pld->in_lv  = 30;		// å‚åŠ ãƒ¬ãƒ™ãƒ«
+	pld->reg    = NULL;		// ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³é–¢ä¿‚ãªã—
 	upw->pld = pld;
 	FieldEvent_Call(event, GMEVENT_UnionPokeList, upw);
 	return pld;
@@ -585,14 +585,14 @@ void * EventCmd_PokeListSelect(GMEVENT_CONTROL * event, int heapID)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒRƒ“ƒeƒXƒgQ‰Á‘I‘ğƒCƒxƒ“ƒg‚©‚ç‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
- * @param	heap	g—p‚·‚éƒq[ƒv‚Ìw’è
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ é¸æŠã‚¤ãƒ™ãƒ³ãƒˆã‹ã‚‰ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
+ * @param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   con_type	CONTYPE_???
  * @param   con_rank	CONRANK_???
- * @param   sio_flag	TRUE:’ÊMó•tA@FALSE:ˆêl—pó•t
- * @param   pos			Å‰‚ÉŠJ‚­‚ÌƒJ[ƒ\ƒ‹‰ŠúˆÊ’u
- * @return	void *	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sio_flag	TRUE:é€šä¿¡å—ä»˜ã€ã€€FALSE:ä¸€äººç”¨å—ä»˜
+ * @param   pos			æœ€åˆã«é–‹ãæ™‚ã®ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸä½ç½®
+ * @return	void *	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void * ContestPokeListEvent_SetProc(int heap, FIELDSYS_WORK * fsys, 
@@ -600,12 +600,12 @@ void * ContestPokeListEvent_SetProc(int heap, FIELDSYS_WORK * fsys,
 {
 	PLIST_DATA * pld = PLISTDATA_Create(HEAPID_WORLD, fsys, PL_TYPE_SINGLE, PL_MODE_CONTEST);
 	pld->ret_sel = pos;
-	pld->con_mode = CONMODE_GRAND;	//ˆê–{‰»‚³‚ê‚½‚Ì‚ÅAƒOƒ‰ƒ“ƒhŒÅ’è
-	pld->con_type = con_type;		//ƒRƒ“ƒeƒXƒgƒ^ƒCƒv
+	pld->con_mode = CONMODE_GRAND;	//ä¸€æœ¬åŒ–ã•ã‚ŒãŸã®ã§ã€ã‚°ãƒ©ãƒ³ãƒ‰å›ºå®š
+	pld->con_type = con_type;		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—
 	if(sio_flag == FALSE){
 		pld->con_rank = con_rank;
 	}
-	else{	//’ÊM‚Ì‚ÍQ‰ÁƒtƒŠ[‚É‚·‚é‚½‚ßANORMALŒÅ’è‚É‚·‚é
+	else{	//é€šä¿¡ã®æ™‚ã¯å‚åŠ ãƒ•ãƒªãƒ¼ã«ã™ã‚‹ãŸã‚ã€NORMALå›ºå®šã«ã™ã‚‹
 		pld->con_rank = CONRANK_NORMAL;
 	}
 	GameSystem_StartSubProc( fsys, &PokeListProcData, pld );
@@ -615,13 +615,13 @@ void * ContestPokeListEvent_SetProc(int heap, FIELDSYS_WORK * fsys,
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒRƒ“ƒeƒXƒgQ‰Á‘I‘ğƒCƒxƒ“ƒg‚©‚ç‚Ìƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXŒÄ‚Ño‚µ
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ é¸æŠã‚¤ãƒ™ãƒ³ãƒˆã‹ã‚‰ã®ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—
  * 
- * @param	heap	g—p‚·‚éƒq[ƒv‚Ìw’è
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pos		Å‰‚ÉŠJ‚­è‚¿ŠJnˆÊ’u
+ * @param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos		æœ€åˆã«é–‹ãæ‰‹æŒã¡é–‹å§‹ä½ç½®
  *
- * @return	void *	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @return	void *	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void * ContestPokeStatusEvent_SetProc(int heap, FIELDSYS_WORK * fsys, int pos)
@@ -649,10 +649,10 @@ void * ContestPokeStatusEvent_SetProc(int heap, FIELDSYS_WORK * fsys, int pos)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚®‚é‚®‚éŒğŠ·ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pos		ƒ|ƒPƒ‚ƒ“ƒZƒŒƒNƒg‰ŠúˆÊ’u 0-5
- * @return	void *	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãã‚‹ãã‚‹äº¤æ›ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pos		ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¬ã‚¯ãƒˆåˆæœŸä½ç½® 0-5
+ * @return	void *	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void * Guru2ListEvent_SetProc( FIELDSYS_WORK * fsys, int pos )
@@ -675,20 +675,20 @@ PSTATUS_DATA * PSTATUS_Temoti_Create(FIELDSYS_WORK* fsys,int heapID, int mode)
 	SAVEDATA	*sv;
 
 	static const u8 PST_PageTbl[] = {
-		PST_PAGE_INFO,			// uƒ|ƒPƒ‚ƒ“‚¶‚å‚¤‚Ù‚¤v
-		PST_PAGE_MEMO,			// uƒgƒŒ[ƒi[ƒƒ‚v
-		PST_PAGE_PARAM,			// uƒ|ƒPƒ‚ƒ“‚Ì‚¤‚è‚å‚­v
-		PST_PAGE_CONDITION,		// uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
-		PST_PAGE_B_SKILL,		// u‚½‚½‚©‚¤‚í‚´v
-		PST_PAGE_C_SKILL,		// uƒRƒ“ƒeƒXƒg‚í‚´v
-		PST_PAGE_RIBBON,		// u‚«‚Ë‚ñƒŠƒ{ƒ“v
-		PST_PAGE_RET,			// u‚à‚Ç‚év
+		PST_PAGE_INFO,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã˜ã‚‡ã†ã»ã†ã€
+		PST_PAGE_MEMO,			// ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã€
+		PST_PAGE_PARAM,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã†ã‚Šã‚‡ãã€
+		PST_PAGE_CONDITION,		// ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
+		PST_PAGE_B_SKILL,		// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+		PST_PAGE_C_SKILL,		// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
+		PST_PAGE_RIBBON,		// ã€Œãã­ã‚“ãƒªãƒœãƒ³ã€
+		PST_PAGE_RET,			// ã€Œã‚‚ã©ã‚‹ã€
 		PST_PAGE_MAX
 	};
 	
 	sv = fsys->savedata;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‚ğŒÄ‚Ño‚·
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å‘¼ã³å‡ºã™
 	//
 	psd = sys_AllocMemoryLo(heapID, sizeof(PSTATUS_DATA));
 	MI_CpuClear8(psd,sizeof(PSTATUS_DATA));
@@ -710,20 +710,20 @@ PSTATUS_DATA * PSTATUS_Temoti_Create(FIELDSYS_WORK* fsys,int heapID, int mode)
 }
 
 //------------------------------------------------------------------
-//	‚í‚´–Y‚êƒŠƒXƒg
+//	ã‚ã–å¿˜ã‚Œãƒªã‚¹ãƒˆ
 //------------------------------------------------------------------
 static const u8 PST_PageTbl_WazaSet[] = {
-	PST_PAGE_B_SKILL,		// u‚½‚½‚©‚¤‚í‚´v
-	PST_PAGE_C_SKILL,		// uƒRƒ“ƒeƒXƒg‚í‚´v
-//	PST_PAGE_RET,			// u‚à‚Ç‚év
+	PST_PAGE_B_SKILL,		// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+	PST_PAGE_C_SKILL,		// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
+//	PST_PAGE_RET,			// ã€Œã‚‚ã©ã‚‹ã€
 	PST_PAGE_MAX
 };
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‚©‚ç‚Ì‚í‚´ƒŠƒXƒgŒÄ‚Ño‚µ(‚í‚´–Y‚êj
- * @param	heap	g—p‚·‚éƒq[ƒv‚Ìw’è
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	void *	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‹ã‚‰ã®ã‚ã–ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—(ã‚ã–å¿˜ã‚Œï¼‰
+ * @param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	void *	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void * FieldWazaListEvent_SetProc(int heap, FIELDSYS_WORK * fsys, u8 pos)
@@ -749,9 +749,9 @@ void * FieldWazaListEvent_SetProc(int heap, FIELDSYS_WORK * fsys, u8 pos)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚í‚´ƒŠƒXƒg‘I‘ğŒ‹‰Ê‚Ìæ“¾i‹Z–Y‚ê—pj
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		‘I‘ğŒ‹‰Ê
+ * @brief	ã‚ã–ãƒªã‚¹ãƒˆé¸æŠçµæœã®å–å¾—ï¼ˆæŠ€å¿˜ã‚Œç”¨ï¼‰
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		é¸æŠçµæœ
  */
 //------------------------------------------------------------------
 int FieldWazaListEvent_GetSelect(void * wk)
@@ -763,14 +763,14 @@ int FieldWazaListEvent_GetSelect(void * wk)
 //============================================================================================
 //============================================================================================
 //------------------------------------------------------------------
-// ƒ{ƒbƒNƒXŠÖ˜A
+// ãƒœãƒƒã‚¯ã‚¹é–¢é€£
 //------------------------------------------------------------------
 void FieldBox_SetProc( FIELDSYS_WORK * fsys, BOX_PROC_PARAM* param )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(overlay_box);
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA BoxProcData = {
 		BoxProc_Init,
 		BoxProc_Main,
@@ -785,20 +785,20 @@ void FieldBox_SetProc( FIELDSYS_WORK * fsys, BOX_PROC_PARAM* param )
 
 
 //==============================================================================================
-// ŠÈˆÕ‰ï˜b‰æ–Ê
+// ç°¡æ˜“ä¼šè©±ç”»é¢
 //==============================================================================================
 //------------------------------------------------------------------
 //------------------------------------------------------------------
 typedef struct {
-	u16 * result;		///<“ü—Í‚µ‚½‚©‚Ç‚¤‚©‚ÌŒ‹‰Ê‚ğ•Ô‚·ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u16 * pms1;			///<“ü—Í’PŒê‚P‚ğ•Ô‚·ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u16 * pms2;			///<“ü—Í’PŒê‚Q‚ğ•Ô‚·ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	PMSI_PARAM * param;	///<ŠÈˆÕ‰ï˜b“ü—Í‚É•K—v‚Èƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	u16 * result;		///<å…¥åŠ›ã—ãŸã‹ã©ã†ã‹ã®çµæœã‚’è¿”ã™ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u16 * pms1;			///<å…¥åŠ›å˜èªï¼‘ã‚’è¿”ã™ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u16 * pms2;			///<å…¥åŠ›å˜èªï¼’ã‚’è¿”ã™ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	PMSI_PARAM * param;	///<ç°¡æ˜“ä¼šè©±å…¥åŠ›ã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 }PMSEVENT_WORK;
 
 //------------------------------------------------------------------
 /**
- * @brief	ŠÈˆÕ‰ï˜bŒÄ‚Ño‚µƒCƒxƒ“ƒg
+ * @brief	ç°¡æ˜“ä¼šè©±å‘¼ã³å‡ºã—ã‚¤ãƒ™ãƒ³ãƒˆ
  */
 //------------------------------------------------------------------
 static BOOL GMEVENT_PMSInput(GMEVENT_CONTROL * event)
@@ -819,14 +819,14 @@ static BOOL GMEVENT_PMSInput(GMEVENT_CONTROL * event)
 		break;
 	case 2:
 		if (PMSI_PARAM_CheckCanceled(pew->param) || !PMSI_PARAM_CheckModified(pew->param)) {
-			*(pew->result) = FALSE;	//ƒLƒƒƒ“ƒZƒ‹A‚ ‚é‚¢‚Í•ÏX‚È‚µ
+			*(pew->result) = FALSE;	//ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€ã‚ã‚‹ã„ã¯å¤‰æ›´ãªã—
 		} else {
-			*(pew->result) = TRUE;	//“ü—Í‚³‚ê‚½
+			*(pew->result) = TRUE;	//å…¥åŠ›ã•ã‚ŒãŸ
 			if (pew->pms2 == NULL) {
-				//’PŒêˆê‚Â‚Ìê‡
+				//å˜èªä¸€ã¤ã®å ´åˆ
 				*(pew->pms1) = PMSI_PARAM_GetInputDataSingle(pew->param);
 			} else {
-				//’PŒê“ñ‚Â‚Ìê‡
+				//å˜èªäºŒã¤ã®å ´åˆ
 				PMS_WORD result[2];
 				PMSI_PARAM_GetInputDataDouble(pew->param, result);
 				*(pew->pms1) = result[0];
@@ -843,7 +843,7 @@ static BOOL GMEVENT_PMSInput(GMEVENT_CONTROL * event)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFŠÈˆÕ‰ï˜bŒÄ‚Ño‚µ
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šç°¡æ˜“ä¼šè©±å‘¼ã³å‡ºã—
  */
 //------------------------------------------------------------------
 void EventCmd_PMSInput(GMEVENT_CONTROL * event, u16 * result, u16 * pms1, u16 * pms2)
@@ -856,12 +856,12 @@ void EventCmd_PMSInput(GMEVENT_CONTROL * event, u16 * result, u16 * pms1, u16 * 
 	pew->pms1 = pms1;
 	pew->pms2 = pms2;
 	if (pms2 == NULL) {
-		//’PŒêˆê‚Â‚Ìê‡
+		//å˜èªä¸€ã¤ã®å ´åˆ
 		pew->param = PMSI_PARAM_Create(PMSI_MODE_SINGLE,
 				PMSI_GUIDANCE_DEFAULT, fsys->savedata, HEAPID_EVENT);
 		PMSI_PARAM_SetInitializeDataSingle(pew->param, *pms1);
 	} else {
-		//’PŒê“ñ‚Â‚Ìê‡
+		//å˜èªäºŒã¤ã®å ´åˆ
 		pew->param = PMSI_PARAM_Create(PMSI_MODE_DOUBLE,
 				PMSI_GUIDANCE_DEFAULT, fsys->savedata, HEAPID_EVENT);
 		PMSI_PARAM_SetInitializeDataDouble(pew->param, *pms1, *pms2);
@@ -871,15 +871,15 @@ void EventCmd_PMSInput(GMEVENT_CONTROL * event, u16 * result, u16 * pms1, u16 * 
 }
 
 //------------------------------------------------------------------
-// ŠÈˆÕ‰ï˜b‰æ–Ê
+// ç°¡æ˜“ä¼šè©±ç”»é¢
 //------------------------------------------------------------------
 
 void FieldProc_SetPmsInput( FIELDSYS_WORK* fsys, PMSI_PARAM* param )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(overlay_pmsi);
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA proc_data = {
 		PMSInput_Init,
 		PMSInput_Main,
@@ -896,30 +896,30 @@ void FieldProc_SetPmsInput( FIELDSYS_WORK* fsys, PMSI_PARAM* param )
 //==============================================================================================
 //==============================================================================================
 //-------------------------------------------------------------------
-// ƒ^ƒEƒ“ƒ}ƒbƒvŠÖ˜A
+// ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—é–¢é€£
 //-------------------------------------------------------------------
 #define  OSP_TMAP_HEAP_SIZE 0
 
 //-------------------------------------------------------------------
 /**
- *	@brief	ƒtƒB[ƒ‹ƒh ƒ[ƒ‹ƒhƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹ŒÄ‚Ño‚µ
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‘¼ã³å‡ºã—
  *
  *	@param	fsys FIELDSYS_WORK *
- *	@param	mode	u8:ŒÄ‚Ño‚µƒ‚[ƒh(enum TMAP_MODE)
- *	@param	work	void*:ƒ[ƒN‚ÌˆøŒp‚¬
+ *	@param	mode	u8:å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰(enum TMAP_MODE)
+ *	@param	work	void*:ãƒ¯ãƒ¼ã‚¯ã®å¼•ç¶™ã
  *
- *	@retval	0:¬Œ÷
- *	@retval else	¸”s
+ *	@retval	0:æˆåŠŸ
+ *	@retval else	å¤±æ•—
  */
 //-------------------------------------------------------------------
 void FieldTMap_SetProc(FIELDSYS_WORK *fsys, TOWNMAP_PARAM * tp)
 {
 	TMAP_IO_DAT* wk;
 
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(townmap);
 
-	///ƒI[ƒo[ƒŒƒCƒvƒƒZƒX’è‹`ƒf[ƒ^
+	///ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	const PROC_DATA TMapProcData = {
 		TMapProc_Init,
 		TMapProc_Main,
@@ -942,7 +942,7 @@ void * FieldMenuTMap_SetProc( FIELDSYS_WORK * fsys )
 	
 	tp = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(TOWNMAP_PARAM));
 
-	//ƒf[ƒ^ƒZƒbƒg
+	//ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	FieldTMap_CallDataSet(fsys,tp,TMAP_MNORMAL);
 	FieldTMap_SetProc( fsys, tp );
 	return tp;
@@ -951,18 +951,18 @@ void * FieldMenuTMap_SetProc( FIELDSYS_WORK * fsys )
 
 //-------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–ÊŒÄ‚Ño‚µ(ƒtƒB[ƒ‹ƒh‚©‚ç)
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢å‘¼ã³å‡ºã—(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹ã‚‰)
  *
  *	@param	fsys FIELDSYS_WORK *
- *	@param	CONFIG*	:ƒRƒ“ƒtƒBƒOƒZ[ƒuƒf[ƒ^ƒnƒ“ƒhƒ‰‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	CONFIG*	:ã‚³ãƒ³ãƒ•ã‚£ã‚°ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ãƒ‰ãƒ©ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-------------------------------------------------------------------
 static void ConfigTool_SetProc(FIELDSYS_WORK* fsys,CONFIG* sp)
 {
-	//ƒI[ƒo[ƒŒƒCID’è‹`
+	//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®šç¾©
 	FS_EXTERN_OVERLAY(config);
 
-	//ƒI[ƒo[ƒŒƒCƒvƒƒZƒX’è‹`ƒf[ƒ^
+	//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA ConfigProcData = {
 		ConfigProc_Init,
 		ConfigProc_Main,
@@ -974,12 +974,12 @@ static void ConfigTool_SetProc(FIELDSYS_WORK* fsys,CONFIG* sp)
 }
 
 /**
- *	@brief	ƒRƒ“ƒtƒBƒO‰æ–ÊƒtƒB[ƒ‹ƒhƒƒjƒ…[ŒÄ‚Ño‚µ
+ *	@brief	ã‚³ãƒ³ãƒ•ã‚£ã‚°ç”»é¢ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—
  *	
  *	@param	fsys FIELDSYS_WORK *
  *
- *	@retval	CONFIG_PARAM* :“à•”Šm•Û‚µ‚½ƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *						@@ŒÄ‚Ño‚µ‘¤‚ª–¾¦“I‚É‰ğ•ú‚·‚é•K—v‚ ‚è
+ *	@retval	CONFIG_PARAM* :å†…éƒ¨ç¢ºä¿ã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *						ã€€ã€€å‘¼ã³å‡ºã—å´ãŒæ˜ç¤ºçš„ã«è§£æ”¾ã™ã‚‹å¿…è¦ã‚ã‚Š
  */
 void * FieldConfig_SetProc( FIELDSYS_WORK * fsys )
 {
@@ -988,7 +988,7 @@ void * FieldConfig_SetProc( FIELDSYS_WORK * fsys )
 
 	cp = sys_AllocMemoryLo(HEAPID_WORLD,sizeof(CONFIG_PARAM));
 
-	//ƒRƒ“ƒtƒBƒOƒZ[ƒuƒf[ƒ^æ“¾
+	//ã‚³ãƒ³ãƒ•ã‚£ã‚°ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 	sp = SaveData_GetConfig(GameSystem_GetSaveData(fsys));
 	ConfigTool_SetProc(fsys,sp);
 
@@ -999,10 +999,10 @@ void * FieldConfig_SetProc( FIELDSYS_WORK * fsys )
 //==============================================================================================
 extern const PROC_DATA MailSysProcData;
 /**
- *	@brief	ƒ[ƒ‹ì¬ŒÄ‚Ño‚µ(ƒtƒB[ƒ‹ƒh‚©‚ç)
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ä½œæˆå‘¼ã³å‡ºã—(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹ã‚‰)
  *
  *	@param	fsys FIELDSYS_WORK *
- *	@param	MAIL_PARAM*	:ƒ[ƒ‹ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	MAIL_PARAM*	:ãƒ¡ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 static void MailSys_SetProc(FIELDSYS_WORK* fsys,MAIL_PARAM* mp)
 {
@@ -1010,14 +1010,14 @@ static void MailSys_SetProc(FIELDSYS_WORK* fsys,MAIL_PARAM* mp)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ì¬‰æ–ÊƒtƒB[ƒ‹ƒhƒƒjƒ…[ŒÄ‚Ño‚µ
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ä½œæˆç”»é¢ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—
  *	
  *	@param	fsys FIELDSYS_WORK *
  *
- *	@retval	MAIL_PARAM* :“à•”Šm•Û‚µ‚½ƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *						@@ŒÄ‚Ño‚µ‘¤‚ª–¾¦“I‚É‰ğ•ú‚·‚é•K—v‚ ‚è
+ *	@retval	MAIL_PARAM* :å†…éƒ¨ç¢ºä¿ã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *						ã€€ã€€å‘¼ã³å‡ºã—å´ãŒæ˜ç¤ºçš„ã«è§£æ”¾ã™ã‚‹å¿…è¦ã‚ã‚Š
  *
- *					TRUE‚È‚çƒ[ƒ‹‚ğì¬AFALSE‚Ì‚Í–¢ì¬
+ *					TRUEãªã‚‰ãƒ¡ãƒ¼ãƒ«ã‚’ä½œæˆã€FALSEã®æ™‚ã¯æœªä½œæˆ
  */
 MAIL_PARAM * FieldMailCreate_InitCall( FIELDSYS_WORK * fsys ,
 		MAILBLOCK_ID blockID,u8 poke_pos,u8 design,int heapID)
@@ -1029,7 +1029,7 @@ MAIL_PARAM * FieldMailCreate_InitCall( FIELDSYS_WORK * fsys ,
 
 #if 0
 	if(pRet == NULL){
-		return NULL;	//ì¬‹ó‚«—Ìˆæ‚ª‚È‚¢
+		return NULL;	//ä½œæˆç©ºãé ˜åŸŸãŒãªã„
 	}
 #endif
 	MailSys_SetProc(fsys,pRet);
@@ -1037,17 +1037,17 @@ MAIL_PARAM * FieldMailCreate_InitCall( FIELDSYS_WORK * fsys ,
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æ‰æ–ÊƒtƒB[ƒ‹ƒhƒƒjƒ…[ŒÄ‚Ño‚µ
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ç”»é¢ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—
  *	
  *	@param	fsys FIELDSYS_WORK *
  *
- *	@retval	MAIL_PARAM* :“à•”Šm•Û‚µ‚½ƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *						@@ŒÄ‚Ño‚µ‘¤‚ª–¾¦“I‚É‰ğ•ú‚·‚é•K—v‚ ‚è
+ *	@retval	MAIL_PARAM* :å†…éƒ¨ç¢ºä¿ã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *						ã€€ã€€å‘¼ã³å‡ºã—å´ãŒæ˜ç¤ºçš„ã«è§£æ”¾ã™ã‚‹å¿…è¦ã‚ã‚Š
  *
- *	–‹óƒ[ƒ‹‚ğ•\¦‚µ‚½‚¢ê‡‚É‚Í
- *		MAILBLOCK_ID‚É MAILBLOCK_NULL‚ğ
- *		dataID ‚É ƒfƒUƒCƒ“No@‚ğ
- *	@“n‚µ‚ÄŒÄ‚Ño‚µ‚Ü‚·
+ *	ï¼Šç©ºãƒ¡ãƒ¼ãƒ«ã‚’è¡¨ç¤ºã—ãŸã„å ´åˆã«ã¯
+ *		MAILBLOCK_IDã« MAILBLOCK_NULLã‚’
+ *		dataID ã« ãƒ‡ã‚¶ã‚¤ãƒ³Noã€€ã‚’
+ *	ã€€æ¸¡ã—ã¦å‘¼ã³å‡ºã—ã¾ã™
  */
 MAIL_PARAM * FieldMailView_InitCall( FIELDSYS_WORK * fsys,
 		MAILBLOCK_ID blockID,u8 dataID,int heapID)
@@ -1055,7 +1055,7 @@ MAIL_PARAM * FieldMailView_InitCall( FIELDSYS_WORK * fsys,
 	MAIL_PARAM*	pRet;
 
 	if(blockID == MAILBLOCK_NULL){
-		//ŠG•¿‚Ì‚İ‚ÌƒvƒŒƒrƒ…[
+		//çµµæŸ„ã®ã¿ã®ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼
 		pRet = MailSys_GetWorkViewPrev(GameSystem_GetSaveData(fsys),dataID,heapID);
 	}else{
 		pRet = MailSys_GetWorkView(GameSystem_GetSaveData(fsys),
@@ -1068,12 +1068,12 @@ MAIL_PARAM * FieldMailView_InitCall( FIELDSYS_WORK * fsys,
 }
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æ‰æ–ÊƒtƒB[ƒ‹ƒhƒƒjƒ…[ŒÄ‚Ño‚µ(ƒ|ƒPƒ‚ƒ“ƒ[ƒ‹)
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ç”»é¢ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—(ãƒã‚±ãƒ¢ãƒ³ãƒ¡ãƒ¼ãƒ«)
  *	
  *	@param	fsys FIELDSYS_WORK *
  *
- *	@retval	MAIL_PARAM* :“à•”Šm•Û‚µ‚½ƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *						@@ŒÄ‚Ño‚µ‘¤‚ª–¾¦“I‚É‰ğ•ú‚·‚é•K—v‚ ‚è
+ *	@retval	MAIL_PARAM* :å†…éƒ¨ç¢ºä¿ã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *						ã€€ã€€å‘¼ã³å‡ºã—å´ãŒæ˜ç¤ºçš„ã«è§£æ”¾ã™ã‚‹å¿…è¦ã‚ã‚Š
  *
  */
 MAIL_PARAM * FieldMailViewPoke_InitCall( FIELDSYS_WORK * fsys,
@@ -1090,11 +1090,11 @@ MAIL_PARAM * FieldMailViewPoke_InitCall( FIELDSYS_WORK * fsys,
 
 //-----------------------------------------------------------------------------
 /**
-*	ƒ|ƒ‹ƒgŠÖ˜A
+*	ãƒãƒ«ãƒˆé–¢é€£
 */
 //-----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒXƒTƒuƒvƒƒZƒX“o˜^
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ç™»éŒ²
  */
 static void PorutoSys_SetProc(FIELDSYS_WORK* fsys,PORUTO_PARAM* pp)
 {
@@ -1102,7 +1102,7 @@ static void PorutoSys_SetProc(FIELDSYS_WORK* fsys,PORUTO_PARAM* pp)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒXŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹å‘¼ã³å‡ºã—
  */
 PORUTO_PARAM* FieldPorutoCase_InitCall(FIELDSYS_WORK* fsys,int heapID)
 {
@@ -1115,20 +1115,20 @@ PORUTO_PARAM* FieldPorutoCase_InitCall(FIELDSYS_WORK* fsys,int heapID)
 }
 
 /**
- *	@brief	ƒtƒB[ƒ‹ƒh ƒ^ƒ[ƒAƒvƒŠŒÄ‚Ño‚µ
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒªå‘¼ã³å‡ºã—
  *
  *	@param	fsys FIELDSYS_WORK *
- *	@param	work	void*:ƒ[ƒN‚ÌˆøŒp‚¬
+ *	@param	work	void*:ãƒ¯ãƒ¼ã‚¯ã®å¼•ç¶™ã
  *
- *	@retval	0:¬Œ÷
- *	@retval else	¸”s
+ *	@retval	0:æˆåŠŸ
+ *	@retval else	å¤±æ•—
  */
 void BTowerApp_SetProc(FIELDSYS_WORK *fsys,BTOWER_APP_PARAM * ap)
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(btower_app);
 
-	///ƒI[ƒo[ƒŒƒCƒvƒƒZƒX’è‹`ƒf[ƒ^
+	///ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	const PROC_DATA BTowerAppProcData = {
 		BTowerAppProc_Init,
 		BTowerAppProc_Main,
@@ -1141,11 +1141,11 @@ void BTowerApp_SetProc(FIELDSYS_WORK *fsys,BTOWER_APP_PARAM * ap)
 }
 //-----------------------------------------------------------------------------
 /**
-*	ƒCƒ[ƒWƒNƒŠƒbƒvŠÖ˜A
+*	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—é–¢é€£
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒCƒ[ƒWƒNƒŠƒbƒv@ÀsƒCƒxƒ“ƒgƒ[ƒN
+//	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã€€å®Ÿè¡Œã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	u32 seq;
@@ -1156,7 +1156,7 @@ typedef struct {
 
 
 //--------------------------------------------------------------------------------------------
-//	ƒNƒŠƒbƒvƒf[ƒ^ì¬
+//	ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 //--------------------------------------------------------------------------------------------
 static IMC_PROC_WORK* ImageClip_DataMake( int heap, SAVEDATA* p_savedata, int pos, BOOL* p_save_flg, BOOL reference )
 {
@@ -1167,15 +1167,15 @@ static IMC_PROC_WORK* ImageClip_DataMake( int heap, SAVEDATA* p_savedata, int po
 	IMC_TELEVISION_SAVEDATA* p_save_one;
 	IMC_ITEM_SAVEDATA* p_save_item;
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒv‚É“n‚·ƒf[ƒ^ì¬
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã«æ¸¡ã™ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	imc_w = sys_AllocMemory( heap, sizeof( IMC_PROC_WORK ) );
 	memset( imc_w, 0, sizeof( IMC_PROC_WORK ) );
 
-	//ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(p_savedata), pos);
 
 	imc_w->p_poke_para = poke;
-	// ƒZ[ƒuƒf[ƒ^
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 	p_save = SaveData_GetImcSaveData( p_savedata );
 	p_save_one = ImcSaveData_GetTelevisionSaveData( p_save, 0 );
 	p_save_item = ImcSaveData_GetItemSaveData( p_save );
@@ -1193,7 +1193,7 @@ static IMC_PROC_WORK* ImageClip_DataMake( int heap, SAVEDATA* p_savedata, int po
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒŒƒr—pƒCƒ[ƒWƒNƒŠƒbƒv@ŠÇ—ƒCƒxƒ“ƒg
+ *	@brief	ãƒ†ãƒ¬ãƒ“ç”¨ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã€€ç®¡ç†ã‚¤ãƒ™ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_ImcClip_TV(GMEVENT_CONTROL * event)
@@ -1203,75 +1203,75 @@ static BOOL GMEVENT_ImcClip_TV(GMEVENT_CONTROL * event)
 
 	switch( p_imc_w->seq ){
 	case 0:
-		// ƒCƒ[ƒWƒNƒŠƒbƒvŒÄ‚Ño‚µ
+		// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—å‘¼ã³å‡ºã—
 		FieldImageClip_SetProc( fsys, p_imc_w->p_imc_w );
 		p_imc_w->seq ++;
 		break;
 
 	case 1:	
-		// I—¹‘Ò‚¿
-		if( FieldEvent_Cmd_WaitSubProcEnd(fsys) == FALSE ){		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+		// çµ‚äº†å¾…ã¡
+		if( FieldEvent_Cmd_WaitSubProcEnd(fsys) == FALSE ){		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 			if( p_imc_w->imc_save_flg == TRUE ){
 				*p_imc_w->result = 1;
 			}else{
 				*p_imc_w->result = 0;
 			}
-			// ƒ[ƒN‚Ì”jŠü
+			// ãƒ¯ãƒ¼ã‚¯ã®ç ´æ£„
 			sys_FreeMemoryEz( p_imc_w->p_imc_w );
 			sys_FreeMemoryEz( p_imc_w );
-			return TRUE;	// I—¹
+			return TRUE;	// çµ‚äº†
 		}
 		break;
 	}
-	return FALSE;	// ‘±s
+	return FALSE;	// ç¶šè¡Œ
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒv@ƒeƒŒƒr‹Ç—p@ƒCƒxƒ“ƒgŠJn
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã€€ãƒ†ãƒ¬ãƒ“å±€ç”¨ã€€ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
  *
- *	@param	event		ƒCƒxƒ“ƒg
- *	@param	result		–ß‚è’lŠi”[ƒ[ƒN	ƒXƒNƒŠƒvƒg—p‚È‚Ì‚Åu16
- *	@param	p_save		ƒZ[ƒuƒf[ƒ^
- *	@param	pos			ƒ|ƒPƒp[ƒeƒB[ˆÊ’u
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆ
+ *	@param	result		æˆ»ã‚Šå€¤æ ¼ç´ãƒ¯ãƒ¼ã‚¯	ã‚¹ã‚¯ãƒªãƒ—ãƒˆç”¨ãªã®ã§u16
+ *	@param	p_save		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	pos			ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ä½ç½®
  */
 //-----------------------------------------------------------------------------
 void EventCmd_ImcClipTvStart(GMEVENT_CONTROL * event, u16* result, SAVEDATA* p_save, u16 pos, u16 reference )
 {
 	IMGCLIP_TVEVENT_WORK* p_imc_w;
 
-	// ƒCƒxƒ“ƒgƒ[ƒNì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_imc_w  = sys_AllocMemory( HEAPID_EVENT, sizeof(IMGCLIP_TVEVENT_WORK) );
 	memset( p_imc_w, 0, sizeof(IMGCLIP_TVEVENT_WORK) );
 	
-	// ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^ì¬
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_imc_w->p_imc_w = ImageClip_DataMake( HEAPID_EVENT, p_save, pos, &p_imc_w->imc_save_flg, reference );
 	p_imc_w->result = result;
 
-	// ƒCƒxƒ“ƒg¶¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆç”Ÿæˆ
 	FieldEvent_Call(event, GMEVENT_ImcClip_TV, p_imc_w);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒNƒZƒbƒg
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯ã‚»ãƒƒãƒˆ
  *
- *	@param	fsys		ƒtƒB[ƒ‹ƒhƒ[ƒN
- *	@param	buff		ƒf[ƒ^ƒoƒbƒtƒ@	i¡‚ÍNULLj
+ *	@param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param	buff		ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡	ï¼ˆä»Šã¯NULLï¼‰
  *
- *	@retval		TRUE	¬Œ÷
- *	@retval		FALSE	¸”s
+ *	@retval		TRUE	æˆåŠŸ
+ *	@retval		FALSE	å¤±æ•—
  *
  *
  */
 //-----------------------------------------------------------------------------
 BOOL FieldImageClip_SetProc( FIELDSYS_WORK * fsys, void* buff )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(ol_imageclip);
 	
-	// ƒvƒƒbƒNƒf[ƒ^
+	// ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static PROC_DATA IMC_SYS_Proc = {
 		IMC_ProcInit,
 		IMC_ProcMain,
@@ -1287,23 +1287,23 @@ BOOL FieldImageClip_SetProc( FIELDSYS_WORK * fsys, void* buff )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvViewerƒvƒƒbƒNƒZƒbƒg
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—Viewerãƒ—ãƒ­ãƒƒã‚¯ã‚»ãƒƒãƒˆ
  *
- *	@param	fsys		ƒtƒB[ƒ‹ƒhƒ[ƒN
- *	@param	buff		ƒf[ƒ^ƒoƒbƒtƒ@	i¡‚ÍNULLj
+ *	@param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param	buff		ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡	ï¼ˆä»Šã¯NULLï¼‰
  *
- *	@retval		TRUE	¬Œ÷
- *	@retval		FALSE	¸”s
+ *	@retval		TRUE	æˆåŠŸ
+ *	@retval		FALSE	å¤±æ•—
  *
  *
  */
 //-----------------------------------------------------------------------------
 BOOL FieldImageClipViewer_SetProc( FIELDSYS_WORK * fsys, void* buff )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(ol_imageclip);
 	
-	// ƒvƒƒbƒNƒf[ƒ^
+	// ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static PROC_DATA IMC_SYS_Proc = {
 		IMC_Prev_ProcInit,
 		IMC_Prev_ProcMain,
@@ -1319,9 +1319,9 @@ BOOL FieldImageClipViewer_SetProc( FIELDSYS_WORK * fsys, void* buff )
 
 //-----------------------------------------------------------------------------
 /**
-*	–¼‘O“ü—Í(ålŒöEƒ|ƒPƒ‚ƒ“Eƒ{ƒbƒNƒX)
+*	åå‰å…¥åŠ›(ä¸»äººå…¬ãƒ»ãƒã‚±ãƒ¢ãƒ³ãƒ»ãƒœãƒƒã‚¯ã‚¹)
 *
-* @param param(“à—e‚Ínamein.h‚ğQÆj
+* @param param(å†…å®¹ã¯namein.hã‚’å‚ç…§ï¼‰
 *
 */
 //-----------------------------------------------------------------------------
@@ -1336,14 +1336,14 @@ void NameInput_SetProc( FIELDSYS_WORK * fsys, void *param)
 //==============================================================================
 //
 //
-//				’ÊMŒğŠ·ƒŠƒXƒg‰æ–ÊŒÄ‚Ño‚µ
+//				é€šä¿¡äº¤æ›ãƒªã‚¹ãƒˆç”»é¢å‘¼ã³å‡ºã—
 //
 //
 //==============================================================================
-// ƒI[ƒo[ƒŒƒCIDéŒ¾
+// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 FS_EXTERN_OVERLAY(tradelist);
 
-// ƒvƒƒbƒNƒf[ƒ^
+// ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 static PROC_DATA TradeListProcData = {
 	TradeListProc_Init,
 	TradeListProc_Main,
@@ -1351,7 +1351,7 @@ static PROC_DATA TradeListProcData = {
 	FS_OVERLAY_ID(tradelist),
 };
 
-// ŒğŠ·ƒfƒ‚
+// äº¤æ›ãƒ‡ãƒ¢
 #include "demo/demo_trade.h"
 #include "system/timezone.h"
 #include "ev_time.h"
@@ -1370,13 +1370,13 @@ typedef struct {
 	TRADELIST_PARAM		tradeparam;
 	DEMO_TRADE_PARAM	demoparam;
 	SHINKA_WORK			*shinka_work;
-	int					times;			// ŒğŠ·ƒŠƒXƒg‚ğŒÄ‚ñ‚¾‰ñ”
+	int					times;			// äº¤æ›ãƒªã‚¹ãƒˆã‚’å‘¼ã‚“ã å›æ•°
 }TRADE_CONTROL_WORK;
 
 
 //------------------------------------------------------------------
 /**
- * ŒğŠ·ƒŠƒXƒg‰æ–Êƒpƒ‰ƒ[ƒ^\’z
+ * äº¤æ›ãƒªã‚¹ãƒˆç”»é¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹ç¯‰
  *
  * @param   param		
  * @param   fsys		
@@ -1403,7 +1403,7 @@ static void  SetupTradeListParam( TRADELIST_PARAM* param, FIELDSYS_WORK* fsys )
 }
 //------------------------------------------------------------------
 /**
- * ŒğŠ·ƒŠƒXƒg‰æ–Êƒpƒ‰ƒ[ƒ^”jŠü
+ * äº¤æ›ãƒªã‚¹ãƒˆç”»é¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç ´æ£„
  *
  * @param   param		
  *
@@ -1452,7 +1452,7 @@ BOOL GMEVENT_UnionTradeList(GMEVENT_CONTROL * event)
 		tcw->seq ++;
 		break;
 
-//	‚±‚ê‚ğŒÄ‚Ô•K—v‚Í‚ ‚é‚Ì‚©HH
+//	ã“ã‚Œã‚’å‘¼ã¶å¿…è¦ã¯ã‚ã‚‹ã®ã‹ï¼Ÿï¼Ÿ
 //	case 2:
 //		EventCmd_StartFieldMap(event);
 
@@ -1465,7 +1465,7 @@ BOOL GMEVENT_UnionTradeList(GMEVENT_CONTROL * event)
 		tcw->seq ++;
 		break;
 	case 4:
-		/* ŒğŠ·ƒfƒ‚ŒÄ‚Ño‚µ@ */
+		/* äº¤æ›ãƒ‡ãƒ¢å‘¼ã³å‡ºã—ã€€ */
 		tcw->demoparam.partner  = tcw->tradeparam.result_partner;
 		tcw->demoparam.sendPoke = PPPPointerGet(tcw->tradeparam.result_sendPoke);
 		tcw->demoparam.recvPoke = PPPPointerGet(tcw->tradeparam.result_recvPoke);
@@ -1492,13 +1492,13 @@ BOOL GMEVENT_UnionTradeList(GMEVENT_CONTROL * event)
 		tcw->seq = 5;
 		break;
 	case 5:
-		// i‰»”»’è
+		// é€²åŒ–åˆ¤å®š
 		{
 			int item     = PokeParaGet( tcw->tradeparam.result_recvPoke, ID_PARA_item, NULL );
 			int shinkano;
 			int shinka_cond;
 			
-			//ˆø”POKEPARTY‚Í¶¬‚Å‚«‚È‚¢‚ª‚ ‚é‚Ì‚ÅANULLw’èii‰»ƒ`ƒFƒbƒN‘¤‚Å‘Îˆj by soga 2006.05.18
+			//å¼•æ•°POKEPARTYã¯ç”Ÿæˆã§ããªã„æ™‚ãŒã‚ã‚‹ã®ã§ã€NULLæŒ‡å®šï¼ˆé€²åŒ–ãƒã‚§ãƒƒã‚¯å´ã§å¯¾å‡¦ï¼‰ by soga 2006.05.18
 			if((shinkano=PokeShinkaCheck( NULL, tcw->tradeparam.result_recvPoke, TUUSHIN_SHINKA, item, &shinka_cond))!=0){
 				sys_CreateHeap( HEAPID_BASE_APP, HEAPID_TRADELIST, 0x30000 );
 				tcw->shinka_work = ShinkaInit(	NULL,//ppt
@@ -1521,14 +1521,14 @@ BOOL GMEVENT_UnionTradeList(GMEVENT_CONTROL * event)
 		}
 		break;
 	case 6:
-		// i‰»I—¹‘Ò‚¿
+		// é€²åŒ–çµ‚äº†å¾…ã¡
 		if(ShinkaEndCheck(tcw->shinka_work)){
 
-			// i‰»Œã‚Ìƒ|ƒPƒ‚ƒ“‚ğ‚Ä‚à‚¿‚É”½‰f‚³‚¹‚é
+			// é€²åŒ–å¾Œã®ãƒã‚±ãƒ¢ãƒ³ã‚’ã¦ã‚‚ã¡ã«åæ˜ ã•ã›ã‚‹
 			PokeCopyPPtoPP( tcw->tradeparam.result_recvPoke, 
 							PokeParty_GetMemberPointer(tcw->tradeparam.myparty, tcw->tradeparam.exchangepos));
 
-			// i‰»ƒfƒ‚Œãn––
+			// é€²åŒ–ãƒ‡ãƒ¢å¾Œå§‹æœ«
 			ShinkaEnd( tcw->shinka_work );
 			sys_DeleteHeap( HEAPID_TRADELIST );
 
@@ -1538,14 +1538,14 @@ BOOL GMEVENT_UnionTradeList(GMEVENT_CONTROL * event)
 		break;
 	
 	case 7:
-		// ŒğŠ·ƒfƒ‚‘S‚ÄI—¹B‚Ü‚½ŒğŠ·ƒŠƒXƒg‚Ö
+		// äº¤æ›ãƒ‡ãƒ¢å…¨ã¦çµ‚äº†ã€‚ã¾ãŸäº¤æ›ãƒªã‚¹ãƒˆã¸
 
-		// ŒğŠ·ƒŠƒXƒg‚És‚Á‚½‰ñ”‚ğ‘‚â‚·i‚Q‰ñ–ÚˆÈ~‚ÍƒZ[ƒu‚ª“ü‚éj
+		// äº¤æ›ãƒªã‚¹ãƒˆã«è¡Œã£ãŸå›æ•°ã‚’å¢—ã‚„ã™ï¼ˆï¼’å›ç›®ä»¥é™ã¯ã‚»ãƒ¼ãƒ–ãŒå…¥ã‚‹ï¼‰
 		tcw->tradeparam.times++;
 		tcw->seq = 2;
 
 		{
-			// ƒXƒRƒA‰ÁZ
+			// ã‚¹ã‚³ã‚¢åŠ ç®—
 			RECORD *record = SaveData_GetRecord( fsys->savedata );
 			RECORD_Score_Add( record, SCORE_ID_COMM_TRADE_POKE );
 
@@ -1575,7 +1575,7 @@ FS_EXTERN_OVERLAY(oekaki_board);
 
 //============================================================================================
 //============================================================================================
-// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 const PROC_DATA OekakiProcData = {
 	OekakiProc_Init,
 	OekakiProc_Main,
@@ -1584,7 +1584,7 @@ const PROC_DATA OekakiProcData = {
 };
 
 FS_EXTERN_OVERLAY(record_corner);
-// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 const PROC_DATA RecordCornerProcData = {
 	RecordCornerProc_Init,
 	RecordCornerProc_Main,
@@ -1594,7 +1594,7 @@ const PROC_DATA RecordCornerProcData = {
 
 //==============================================================================
 /**
- * $brief   ‚¨ŠG‚©‚«ƒ{[ƒhŒÄ‚Ño‚µ
+ * $brief   ãŠçµµã‹ããƒœãƒ¼ãƒ‰å‘¼ã³å‡ºã—
  *
  * @param   fsys		
  *
@@ -1618,7 +1618,7 @@ void OekakiBoard_SetProc( FIELDSYS_WORK *fsys )
 
 //==============================================================================
 /**
- * $brief   ƒŒƒR[ƒhƒR[ƒi[ŒÄ‚Ño‚µ
+ * $brief   ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼å‘¼ã³å‡ºã—
  *
  * @param   fsys		
  *
@@ -1643,7 +1643,7 @@ void * RecordCorner_SetProc( FIELDSYS_WORK *fsys )
 //===========================================================================
 //===========================================================================
 FS_EXTERN_OVERLAY(wifi_note);
-// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 const PROC_DATA WifiNoteProcData = {
 	WifiNoteProc_Init,
 	WifiNoteProc_Main,
@@ -1653,7 +1653,7 @@ const PROC_DATA WifiNoteProcData = {
 
 //==============================================================================
 /**
- * $brief   WIFI‚Æ‚à‚¾‚¿è’ ŒÄ‚Ño‚µ
+ * $brief   WIFIã¨ã‚‚ã ã¡æ‰‹å¸³å‘¼ã³å‡ºã—
  *
  * @param   fsys		
  *
@@ -1668,7 +1668,7 @@ void WifiNote_SetProc( FIELDSYS_WORK *fsys,SAVEDATA* pSaveData )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒŒƒR[ƒ_[
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
  *
  * @param	fsys	
  * @param	pSaveData	
@@ -1685,20 +1685,20 @@ void BattleRecorder_SetProc( FIELDSYS_WORK *fsys,SAVEDATA* pSaveData )
 
 //===========================================================================
 //
-//		–¼‘O“ü—ÍŒÄ‚Ño‚µ
+//		åå‰å…¥åŠ›å‘¼ã³å‡ºã—
 //
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	–¼‘O“ü—Í§Œä—pƒ[ƒN
+ * @brief	åå‰å…¥åŠ›åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯
  */
 //------------------------------------------------------------------
 typedef struct{
-	int seq;				///<§ŒäƒV[ƒPƒ“ƒXƒ[ƒN
-	int pos;				///<‘ÎÛ‚Æ‚È‚éƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u
-	u16* ret_work;			///<Œ‹‰Ê‚ğ•Ô‚·‚½‚ß‚Ìu16‚Ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	NAMEIN_PARAM * namein;	///<–¼‘O“ü—Íƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	STRBUF * org_name_buf;	///<Œ³‚Ì–¼‘O‚ğ•Û‚·‚é‚½‚ßSTRBUF‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	int seq;				///<åˆ¶å¾¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¯ãƒ¼ã‚¯
+	int pos;				///<å¯¾è±¡ã¨ãªã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®
+	u16* ret_work;			///<çµæœã‚’è¿”ã™ãŸã‚ã®u16ã®ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	NAMEIN_PARAM * namein;	///<åå‰å…¥åŠ›ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	STRBUF * org_name_buf;	///<å…ƒã®åå‰ã‚’ä¿æŒã™ã‚‹ãŸã‚STRBUFã¸ã®ãƒã‚¤ãƒ³ã‚¿
 }NAMEIN_EVENT_WORK;
 
 static void namein_str_set(GMEVENT_CONTROL * event);
@@ -1730,29 +1730,29 @@ static BOOL GMEVENT_Sub_NameIn(GMEVENT_CONTROL * event)
 	case 3:
 		if (new->namein->mode == NAMEIN_POKEMON) {
 			if (STRBUF_Compare(new->namein->strbuf, new->org_name_buf) == 0) {
-				//ƒ|ƒPƒ‚ƒ“ƒ‚[ƒh‚ÅA‚Æ‚Á‚Ä‚¨‚¢‚½•¶š—ñ‚Æ“¯‚¶‚à‚Ì‚ğ“ü—Í‚µ‚½ê‡
-				//ƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚É‚·‚é
+				//ãƒã‚±ãƒ¢ãƒ³ãƒ¢ãƒ¼ãƒ‰ã§ã€ã¨ã£ã¦ãŠã„ãŸæ–‡å­—åˆ—ã¨åŒã˜ã‚‚ã®ã‚’å…¥åŠ›ã—ãŸå ´åˆ
+				//ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã«ã™ã‚‹
 				new->namein->cancel = 1;
 			}
 		} else if (new->namein->mode == NAMEIN_RANDOMGROUP) {
 			const STRCODE * name = STRBUF_GetStringCodePointer(new->namein->strbuf);
 			RANDOM_GROUP * rg = SaveData_GetRandomGroup(fsys->savedata);
 			if (RandomGroup_SameGroupNameCheck(rg, name)) {
-				//ƒOƒ‹[ƒv–¼“ü—Í‚ÅA‚Æ‚Á‚Ä‚¨‚¢‚½•¶š—ñ‚Æ“¯‚¶‚à‚Ì‚ğ“ü—Í‚µ‚½ê‡
-				//“¯‚¶I‚Æ‚¢‚¤ƒR[ƒh‚ğ•Ô‚·
+				//ã‚°ãƒ«ãƒ¼ãƒ—åå…¥åŠ›ã§ã€ã¨ã£ã¦ãŠã„ãŸæ–‡å­—åˆ—ã¨åŒã˜ã‚‚ã®ã‚’å…¥åŠ›ã—ãŸå ´åˆ
+				//åŒã˜ï¼ã¨ã„ã†ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
 				new->namein->cancel = 2;
 			}
 		}
 
 		if (new->namein->cancel == 0 ) {
-			namein_str_set(event);						//“ü—Í‚µ‚½•¶š—ñ‚Åã‘‚«
+			namein_str_set(event);						//å…¥åŠ›ã—ãŸæ–‡å­—åˆ—ã§ä¸Šæ›¸ã
 		}
 
 		if( new->ret_work != NULL ){
-			*new->ret_work = new->namein->cancel;		//Œ‹‰Ê‚ğƒ[ƒN‚É‘ã“ü
+			*new->ret_work = new->namein->cancel;		//çµæœã‚’ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥
 		}
 		
-		NameIn_ParamDelete(new->namein);				// –¼‘O“ü—Íƒ[ƒN‚ğ‰ğ•ú
+		NameIn_ParamDelete(new->namein);				// åå‰å…¥åŠ›ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾
 		STRBUF_Delete(new->org_name_buf);
 		sys_FreeMemoryEz(new);
 		return TRUE;
@@ -1795,14 +1795,14 @@ static void namein_str_set(GMEVENT_CONTROL * event)
 			RandomGroup_SetName(rg, RANDOMGROUP_MINE, RANDOMGROUP_NAME_GROUP, new->namein->strbuf);
 		}
 		break;
-	case NAMEIN_STONE:	//r224Î”è
+	case NAMEIN_STONE:	//r224çŸ³ç¢‘
 		{
 			MISC * misc = SaveData_GetMisc(fsys->savedata);
 			MISC_SetMonumentName(misc,new->namein->strbuf);
 		}
 		break;
 	//case NAMEIN_BOX:
-		//–¢‘Î‰
+		//æœªå¯¾å¿œ
 		break;
 	};
 
@@ -1811,19 +1811,19 @@ static void namein_str_set(GMEVENT_CONTROL * event)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhF–¼‘O“ü—ÍŒÄ‚Ño‚µ
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	mode		“ü—Íƒ‚[ƒh(application/namein.hQÆ)
- * @param	info		’jE—Aƒ|ƒPƒ‚ƒ“‚ÌŠJ”­NO‚È‚Ç
- * @param	wordmax		“ü—Í•¶šÅ‘å”
- * @param	pos			è‚¿‚Ì‰½”Ô–Ú‚©(•K—v‚È‚¢‚Æ‚«‚Í0)
- * @param	str			–¼‘O“ü—Í‰æ–Ê‚Å•\¦‚³‚ê‚é•¶š—ñ(‰½‚à•\¦‚µ‚½‚­‚È‚¢‚ÍNULL)
- * @param	ret_work	“ü—Í•¶š‚ª‚O•¶šB‚à‚µ‚­‚ÍÅ‰‚Æ“¯‚¶‚¾‚Á‚½ê‡‚Ìƒtƒ‰ƒO‚ğæ“¾‚·‚éƒ[ƒN(NULL)
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šåå‰å…¥åŠ›å‘¼ã³å‡ºã—
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	mode		å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰(application/namein.hå‚ç…§)
+ * @param	info		ç”·ãƒ»å¥³ã€ãƒã‚±ãƒ¢ãƒ³ã®é–‹ç™ºNOãªã©
+ * @param	wordmax		å…¥åŠ›æ–‡å­—æœ€å¤§æ•°
+ * @param	pos			æ‰‹æŒã¡ã®ä½•ç•ªç›®ã‹(å¿…è¦ãªã„ã¨ãã¯0)
+ * @param	str			åå‰å…¥åŠ›ç”»é¢ã§è¡¨ç¤ºã•ã‚Œã‚‹æ–‡å­—åˆ—(ä½•ã‚‚è¡¨ç¤ºã—ãŸããªã„æ™‚ã¯NULL)
+ * @param	ret_work	å…¥åŠ›æ–‡å­—ãŒï¼æ–‡å­—ã€‚ã‚‚ã—ãã¯æœ€åˆã¨åŒã˜ã ã£ãŸå ´åˆã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹ãƒ¯ãƒ¼ã‚¯(NULL)
  *
- * ƒtƒB[ƒ‹ƒhƒvƒƒZƒXI—¹¨–¼‘O“ü—Í¨ƒtƒB[ƒ‹ƒhƒvƒƒZƒXÄŠJ‚ğs‚¤B
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†â†’åå‰å…¥åŠ›â†’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹å†é–‹ã‚’è¡Œã†ã€‚
  *
- * ƒ‚[ƒh‚ğNAMEIN_POKEMON(ƒ|ƒPƒ‚ƒ“–¼)ANAMEIN_BOX(ƒ{ƒbƒNƒX–¼)‚É‚µ‚½‚ÌA
- * “ü—Í‚³‚ê‚½•¶š—ñ‚Åã‘‚«‚·‚éˆ—‚ÍA–¢ì¬‚Å‚·B(namein_str_set)
+ * ãƒ¢ãƒ¼ãƒ‰ã‚’NAMEIN_POKEMON(ãƒã‚±ãƒ¢ãƒ³å)ã€NAMEIN_BOX(ãƒœãƒƒã‚¯ã‚¹å)ã«ã—ãŸæ™‚ã®ã€
+ * å…¥åŠ›ã•ã‚ŒãŸæ–‡å­—åˆ—ã§ä¸Šæ›¸ãã™ã‚‹å‡¦ç†ã¯ã€æœªä½œæˆã§ã™ã€‚(namein_str_set)
  */
 //------------------------------------------------------------------
 void EventCmd_NameIn(GMEVENT_CONTROL * event, int mode, int info, int wordmax, int pos, const STRCODE* str, u16* ret_work)
@@ -1840,22 +1840,22 @@ void EventCmd_NameIn(GMEVENT_CONTROL * event, int mode, int info, int wordmax, i
 
 	switch( mode ) {
 	case NAMEIN_POKEMON:
-		//ƒ|ƒPƒ‚ƒ“ƒ‚[ƒh‚¾‚Á‚½‚ç
+		//ãƒã‚±ãƒ¢ãƒ³ãƒ¢ãƒ¼ãƒ‰ã ã£ãŸã‚‰
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), param->pos );
 		param->namein->sex  = PokeParaGet( poke, ID_PARA_sex, NULL );
 		param->namein->form = PokeParaGet( poke, ID_PARA_form_no, NULL );
 		if (str != NULL) {
-			//ƒ|ƒPƒ‚ƒ“ƒ‚[ƒh‚Å•¶š—ñ‚ğ“n‚³‚ê‚Ä‚¢‚éê‡‚Í”äŠr—p‚É•Û‘¶‚µ‚Ä‚¨‚­
+			//ãƒã‚±ãƒ¢ãƒ³ãƒ¢ãƒ¼ãƒ‰ã§æ–‡å­—åˆ—ã‚’æ¸¡ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯æ¯”è¼ƒç”¨ã«ä¿å­˜ã—ã¦ãŠã
 			STRBUF_SetStringCode( param->org_name_buf, str );
 		}
 		break;
 	case NAMEIN_RANDOMGROUP:
-		//ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒvƒ‚[ƒh‚¾‚Á‚½‚ç”äŠr—p‚É•¶š—ñ‚ğæ‚Á‚Ä‚¨‚­
+		//ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—ãƒ¢ãƒ¼ãƒ‰ã ã£ãŸã‚‰æ¯”è¼ƒç”¨ã«æ–‡å­—åˆ—ã‚’å–ã£ã¦ãŠã
 		STRBUF_SetStringCode( param->org_name_buf, str );
 		break;
 	default:
 		if( str != NULL ){
-		//ƒ|ƒPƒ‚ƒ“ƒ‚[ƒhˆÈŠO‚ÅA•¶š—ñ‚ğ“n‚³‚ê‚Ä‚¢‚ê‚ÎƒfƒtƒHƒ‹ƒg‚Æ‚µ‚Äİ’è‚·‚é
+		//ãƒã‚±ãƒ¢ãƒ³ãƒ¢ãƒ¼ãƒ‰ä»¥å¤–ã§ã€æ–‡å­—åˆ—ã‚’æ¸¡ã•ã‚Œã¦ã„ã‚Œã°ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¨ã—ã¦è¨­å®šã™ã‚‹
 			STRBUF_SetStringCode( param->namein->strbuf, str );
 		}
 		break;
@@ -1865,14 +1865,14 @@ void EventCmd_NameIn(GMEVENT_CONTROL * event, int mode, int info, int wordmax, i
 }
 
 //------------------------------------------------------------------
-//	ƒgƒŒ[ƒi[ƒJ[ƒhŠÖ˜A
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰é–¢é€£
 //------------------------------------------------------------------
 void FieldTrCard_SetProc( FIELDSYS_WORK * fsys, TR_CARD_DATA *tcd )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(trainer_card);
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA TrCardProcData = {
 		TrCardProc_Init,
 		TrCardProc_Main,
@@ -1885,22 +1885,22 @@ void FieldTrCard_SetProc( FIELDSYS_WORK * fsys, TR_CARD_DATA *tcd )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒvƒƒbƒNƒZƒbƒg
+ *	@brief	å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ã‚»ãƒƒãƒˆ
  *
- *	@param	fsys		ƒtƒB[ƒ‹ƒhƒ[ƒN
- *	@param	p_rearent	}ŠÓ‚É•K—v‚Èƒf[ƒ^	(ZKN_PEARENT_DATA)
+ *	@param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rearent	å›³é‘‘ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿	(ZKN_PEARENT_DATA)
  *
- *	@retval		TRUE	¬Œ÷
- *	@retval		FALSE	¸”s
+ *	@retval		TRUE	æˆåŠŸ
+ *	@retval		FALSE	å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 BOOL FieldZukan_SetProc( FIELDSYS_WORK * fsys, void* p_pearent )
 {
 
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(ol_zukan);
 
-	// }ŠÓƒvƒƒbƒNƒf[ƒ^
+	// å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA ZKN_SYS_Proc = {	
 		ZKN_ProcInit,
 		ZKN_ProcMain,
@@ -1916,22 +1916,22 @@ BOOL FieldZukan_SetProc( FIELDSYS_WORK * fsys, void* p_pearent )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠJnƒ|ƒPƒ‚ƒ“‘I‘ğƒvƒƒbƒNƒZƒbƒg
+ *	@brief	é–‹å§‹ãƒã‚±ãƒ¢ãƒ³é¸æŠãƒ—ãƒ­ãƒƒã‚¯ã‚»ãƒƒãƒˆ
  *
- *	@param	fsys		ƒtƒB[ƒ‹ƒhƒ[ƒN
- *	@param	p_rearent	ŠJnƒ|ƒPƒ‚ƒ“‘I‘ğ‚É•K—v‚Èƒf[ƒ^
+ *	@param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rearent	é–‹å§‹ãƒã‚±ãƒ¢ãƒ³é¸æŠã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿
  *
- *	@retval		TRUE	¬Œ÷
- *	@retval		FALSE	¸”s
+ *	@retval		TRUE	æˆåŠŸ
+ *	@retval		FALSE	å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 void Field_EVPokeSelect_SetProc( FIELDSYS_WORK * fsys, EV_POKESELECT_PEARENT_DATA* p_pearent )
 {
 
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(ev_pokeselect);
 
-	// }ŠÓƒvƒƒbƒNƒf[ƒ^
+	// å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA EV_PokeSelect_Proc = {	
 		EV_PokeSelect_ProcInit,
 		EV_PokeSelect_ProcMain,
@@ -1945,7 +1945,7 @@ void Field_EVPokeSelect_SetProc( FIELDSYS_WORK * fsys, EV_POKESELECT_PEARENT_DAT
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹ƒJƒXƒ^ƒ}ƒCƒYŒÄ‚Ño‚µ
+ * @brief	ãƒœãƒ¼ãƒ«ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºå‘¼ã³å‡ºã—
  *
  * @param	fsys	
  * @param	buff	
@@ -1967,7 +1967,7 @@ BOOL Field_CustomBall_SetProc( FIELDSYS_WORK * fsys, void* buff )
 
 //==============================================================================
 /**
- * $brief   ©•ªƒTƒCƒ“ì¬‰æ–ÊŒÄ‚Ño‚µ
+ * $brief   è‡ªåˆ†ã‚µã‚¤ãƒ³ä½œæˆç”»é¢å‘¼ã³å‡ºã—
  *
  * @param   fsys		
  *
@@ -1980,7 +1980,7 @@ void Field_MySign_SetProc( FIELDSYS_WORK *fsys )
 
 	FS_EXTERN_OVERLAY(mysign);
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	const PROC_DATA MySignProcData = {
 		MySignProc_Init,
 		MySignProc_Main,
@@ -1993,7 +1993,7 @@ void Field_MySign_SetProc( FIELDSYS_WORK *fsys )
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒğŠ·‰æ–Ê‚ğŒÄ‚Ño‚·
+ * $brief   ä¸–ç•Œäº¤æ›ç”»é¢ã‚’å‘¼ã³å‡ºã™
  *
  * @param   fsys		
  *
@@ -2007,7 +2007,7 @@ void Field_WorldTrade_SetProc( FIELDSYS_WORK *fsys, int connect )
 	FS_EXTERN_OVERLAY(worldtrade);
 
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	const PROC_DATA WorldTradeProcData = {
 		WorldTradeProc_Init,
 		WorldTradeProc_Main,
@@ -2040,7 +2040,7 @@ void Field_WorldTrade_SetProc( FIELDSYS_WORK *fsys, int connect )
 
 //==============================================================================
 /**
- * $brief   WIFIƒoƒgƒ‹ƒ^ƒ[Ú‘±‰æ–Ê‚ğŒÄ‚Ño‚·
+ * $brief   WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æ¥ç¶šç”»é¢ã‚’å‘¼ã³å‡ºã™
  *
  * @param   fsys		
  *
@@ -2054,7 +2054,7 @@ void* Field_WifiBattleTowerConnect_SetProc( FIELDSYS_WORK *fsys, int mode, int c
 	WBTOWER_PARAM *param;
 	FS_EXTERN_OVERLAY(dpw_tower);
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	const PROC_DATA WBTowerProcData = {
 		WBTowerProc_Init,
 		WBTowerProc_Main,
@@ -2071,17 +2071,17 @@ void* Field_WifiBattleTowerConnect_SetProc( FIELDSYS_WORK *fsys, int mode, int c
 	param->MyUserData    = WifiList_GetMyUserInfo( SaveData_GetWifiListData(fsys->savedata) );
 	param->savedata      = fsys->savedata;
 	param->profileId     = mydwc_getMyGSID(SaveData_GetWifiListData(fsys->savedata));
-	param->mode          = mode;	// btower.hQÆ
+	param->mode          = mode;	// btower.hå‚ç…§
 	param->connect       = connect;
 
 #if 1
-	//ƒvƒ‰ƒ`ƒiBTS ’ÊM 090
-	//Œ´ˆöFresult‚Ì‰Šú‰»‚ªs‚í‚ê‚Ä‚¢‚È‚¢
+	//ãƒ—ãƒ©ãƒãƒŠBTS é€šä¿¡ 090
+	//åŸå› ï¼šresultã®åˆæœŸåŒ–ãŒè¡Œã‚ã‚Œã¦ã„ãªã„
 	//
-	//DP‚Ì‚ÍAresult‚É“K“–‚È’l‚ª“ü‚Á‚Ä‚¢‚½‚Ì‚ÅA
-	//ƒXƒNƒŠƒvƒg‚ÅWIFI_BTOWER_RESULT_SUCCESS‚Ì•ªŠò‚Éˆø‚Á‚©‚©‚ç‚È‚©‚Á‚½B
+	//DPã®æ™‚ã¯ã€resultã«é©å½“ãªå€¤ãŒå…¥ã£ã¦ã„ãŸã®ã§ã€
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§WIFI_BTOWER_RESULT_SUCCESSã®åˆ†å²ã«å¼•ã£ã‹ã‹ã‚‰ãªã‹ã£ãŸã€‚
 	//
-	//WBTOWER_PARAM‚ğ0ƒNƒŠƒA‚·‚é‚ÆA‰½‚ª‚ ‚é‚©‚í‚©‚ç‚È‚¢‚Ì‚ÅAresult‚Ì‚İƒLƒƒƒ“ƒZƒ‹‚ğ‘ã“ü
+	//WBTOWER_PARAMã‚’0ã‚¯ãƒªã‚¢ã™ã‚‹ã¨ã€ä½•ãŒã‚ã‚‹ã‹ã‚ã‹ã‚‰ãªã„ã®ã§ã€resultã®ã¿ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã‚’ä»£å…¥
 	param->result		= WIFI_BTOWER_RESULT_CANCEL;
 #endif
 
@@ -2093,7 +2093,7 @@ void* Field_WifiBattleTowerConnect_SetProc( FIELDSYS_WORK *fsys, int mode, int c
 //============================================================================================
 //
 //
-//		WiFi’n‹…‹V•\¦
+//		WiFiåœ°çƒå„€è¡¨ç¤º
 //
 //
 //============================================================================================
@@ -2102,7 +2102,7 @@ void* Field_WifiBattleTowerConnect_SetProc( FIELDSYS_WORK *fsys, int mode, int c
 FS_EXTERN_OVERLAY(wifiearth);
 //-----------------------------------------------------------------------------
 /**
- * @brief	WiFi’n‹…‹V—pPROC’è‹`ƒf[ƒ^
+ * @brief	WiFiåœ°çƒå„€ç”¨PROCå®šç¾©ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const PROC_DATA Earth_Demo_proc_data = {
@@ -2114,8 +2114,8 @@ static const PROC_DATA Earth_Demo_proc_data = {
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	WiFi’n‹…‹V‰æ–ÊŒÄ‚Ño‚µ
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	WiFiåœ°çƒå„€ç”»é¢å‘¼ã³å‡ºã—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void Field_WifiEarth_SetProc(FIELDSYS_WORK * fsys)
@@ -2126,17 +2126,17 @@ void Field_WifiEarth_SetProc(FIELDSYS_WORK * fsys)
 
 //==============================================================================================
 //
-// “a“°“ü‚èƒfƒ‚ŒÄ‚Ño‚µ
+// æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¢å‘¼ã³å‡ºã—
 //
 //==============================================================================================
 #include  "demo/demo_dendou.h"
 
 void Field_DendouDemo_SetProc( FIELDSYS_WORK * fsys, DEMO_DENDOU_PARAM* param )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(demo_dendou);
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA proc_data = {
 		DemoDendouPROC_Init,
 		DemoDendouPROC_Main,
@@ -2150,7 +2150,7 @@ void Field_DendouDemo_SetProc( FIELDSYS_WORK * fsys, DEMO_DENDOU_PARAM* param )
 
 //==============================================================================================
 //
-//		“a“°“ü‚èƒpƒ\ƒRƒ“‰æ–Ê
+//		æ®¿å ‚å…¥ã‚Šãƒ‘ã‚½ã‚³ãƒ³ç”»é¢
 //
 //==============================================================================================
 FS_EXTERN_OVERLAY(dendou_pc);
@@ -2160,7 +2160,7 @@ FS_EXTERN_OVERLAY(dendou_pc);
 
 void * Field_DendouPC_Call( FIELDSYS_WORK* fsys )
 {
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA proc_data = {
 		DendouPc_PROC_Init,
 		DendouPc_PROC_Main,
@@ -2183,14 +2183,14 @@ void * Field_DendouPC_Call( FIELDSYS_WORK* fsys )
 
 //==============================================================================================
 //
-// ƒGƒ“ƒfƒBƒ“ƒOƒfƒ‚ŒÄ‚Ño‚µ
+// ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ‡ãƒ¢å‘¼ã³å‡ºã—
 //
 //==============================================================================================
 void Field_EndingDemo_SetProc( FIELDSYS_WORK * fsys, ENDING_PARENT_PARAM* param )
 {
 	FS_EXTERN_OVERLAY(demo_ending);
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA proc_data = {
 		EndingProc_Init,
 		EndingProc_Main,
@@ -2204,12 +2204,12 @@ void Field_EndingDemo_SetProc( FIELDSYS_WORK * fsys, ENDING_PARENT_PARAM* param 
 
 //==============================================================================================
 //
-//	‹Z‹³‚¦Ev‚¢o‚µ
+//	æŠ€æ•™ãˆãƒ»æ€ã„å‡ºã—
 //
 //==============================================================================================
 void WazaOshie_ProcSet( FIELDSYS_WORK * fsys , WAZAOSHIE_DATA * wk )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(waza_oshie);
 
 	const PROC_DATA ProcData = {
@@ -2224,12 +2224,12 @@ void WazaOshie_ProcSet( FIELDSYS_WORK * fsys , WAZAOSHIE_DATA * wk )
 
 //==============================================================================================
 //
-//	‘Dƒfƒ‚
+//	èˆ¹ãƒ‡ãƒ¢
 //
 //==============================================================================================
 void ShipDemo_ProcSet( FIELDSYS_WORK * fsys , void * wk )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(ship_demo);	
 	const PROC_DATA ProcData = {
 		ShipDemoProc_Init,
@@ -2243,12 +2243,12 @@ void ShipDemo_ProcSet( FIELDSYS_WORK * fsys , void * wk )
 
 //==============================================================================================
 //
-//	‘Dƒfƒ‚ ƒKƒŠƒ“ƒR
+//	èˆ¹ãƒ‡ãƒ¢ ã‚¬ãƒªãƒ³ã‚³
 //
 //==============================================================================================
 void ShipDemoGarinko_ProcSet( FIELDSYS_WORK * fsys , void * wk )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(ship_demo);	
 	const PROC_DATA ProcData = {
 		ShipDemoGarinkoProc_Init,
@@ -2262,14 +2262,14 @@ void ShipDemoGarinko_ProcSet( FIELDSYS_WORK * fsys , void * wk )
 
 //==============================================================================================
 //
-//	ƒ^ƒ}ƒS‚¤‚Ü‚ê‚éƒfƒ‚
+//	ã‚¿ãƒã‚´ã†ã¾ã‚Œã‚‹ãƒ‡ãƒ¢
 //
 //==============================================================================================
 #include "../demo/egg/egg.h"	//EGG_CALL_PARAM	EventCmd_EGGProc
 #include "sodateya.h"			//SodateyaSearchHatchingEgg
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒ}ƒSY‚Ü‚ê‚éƒfƒ‚
+ * @brief	ã‚¿ãƒã‚´ç”£ã¾ã‚Œã‚‹ãƒ‡ãƒ¢
  */
 //-----------------------------------------------------------------------------
 void Field_EggDemo_Call(FIELDSYS_WORK * fsys)
@@ -2279,7 +2279,7 @@ void Field_EggDemo_Call(FIELDSYS_WORK * fsys)
 	POKEMON_PARAM * pp = SodateyaSearchHatchingEgg(party);
 
 	GF_ASSERT(pp != NULL);
-	TVTOPIC_Entry_Watch_HatchEgg(fsys, pp);		//ƒeƒŒƒrƒgƒsƒbƒN¶¬
+	TVTOPIC_Entry_Watch_HatchEgg(fsys, pp);		//ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆ
 	ecp.pp   = pp;
 	ecp.cfg  = SaveData_GetConfig(fsys->savedata);
 	ecp.my	 = SaveData_GetMyStatus(fsys->savedata);
@@ -2290,27 +2290,27 @@ void Field_EggDemo_Call(FIELDSYS_WORK * fsys)
 
 //==============================================================================================
 //
-//	ƒXƒƒbƒg
+//	ã‚¹ãƒ­ãƒƒãƒˆ
 //
 //==============================================================================================
 #include "savedata/coin.h"
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒƒbƒgŠÖ”ƒZƒbƒg
+ *	@brief	ã‚¹ãƒ­ãƒƒãƒˆé–¢æ•°ã‚»ãƒƒãƒˆ
  *
- *	@param	fsys		ƒtƒB[ƒ‹ƒhƒ[ƒN
- *	@param	hard		‘äİ’è
+ *	@param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param	hard		å°è¨­å®š
  *
- *	@retval		TRUE	¬Œ÷
- *	@retval		FALSE	¸”s
+ *	@retval		TRUE	æˆåŠŸ
+ *	@retval		FALSE	å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 BOOL FieldSlot_SetProc( FIELDSYS_WORK *fsys, SLOT_PARAM *slotparam )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(slot);
 	
-	//ƒXƒƒbƒgƒvƒƒZƒXƒf[ƒ^
+	//ã‚¹ãƒ­ãƒƒãƒˆãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA SlotProc = {	
 		SlotProc_Init,
 		SlotProc_Main,
@@ -2392,7 +2392,7 @@ void EventCmd_SlotMachine(GMEVENT_CONTROL * event, int id)
 	
 	scw->slotparam.hard = get_slot_setting( fsys->savedata, id);
 
-	//ƒXƒƒbƒg‚Å—V‚ñ‚¾‚çƒXƒRƒA‰ÁZ
+	//ã‚¹ãƒ­ãƒƒãƒˆã§éŠã‚“ã ã‚‰ã‚¹ã‚³ã‚¢åŠ ç®—
 	RECORD_Score_Add(SaveData_GetRecord(fsys->savedata), SCORE_ID_PLAY_SLOT);
 
 	FieldEvent_Call(event, GMEVENT_SlotMachine, scw);
@@ -2400,7 +2400,7 @@ void EventCmd_SlotMachine(GMEVENT_CONTROL * event, int id)
 
 //------------------------------------------------------------------
 /**
- * ƒXƒƒbƒg‘ä‚Ì“ïˆÕ“x‚ğæ“¾iƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒv‚Åİ’è‚ğ‹¤—L‚·‚éj
+ * ã‚¹ãƒ­ãƒƒãƒˆå°ã®é›£æ˜“åº¦ã‚’å–å¾—ï¼ˆãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—ã§è¨­å®šã‚’å…±æœ‰ã™ã‚‹ï¼‰
  *
  * @param   sv		
  * @param   id		
@@ -2447,10 +2447,10 @@ static u8 get_slot_setting( SAVEDATA* sv, u8 id )
 
 //==============================================================================================
 //
-//		ƒAƒNƒZƒTƒŠ[ƒVƒ‡ƒbƒv
+//		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‚·ãƒ§ãƒƒãƒ—
 //
-//		¦ƒTƒuƒvƒƒZƒXØ‘Ö‚ğs‚¤‚í‚¯‚Å‚Í‚È‚¢‚ªAƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ‚Æ‚µ‚Ä
-//		@‚±‚Ìƒ\[ƒX‚É‚¨‚¢‚Ä‚¢‚é
+//		â€»ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹åˆ‡æ›¿ã‚’è¡Œã†ã‚ã‘ã§ã¯ãªã„ãŒã€ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ã¨ã—ã¦
+//		ã€€ã“ã®ã‚½ãƒ¼ã‚¹ã«ãŠã„ã¦ã„ã‚‹
 //
 //==============================================================================================
 //-----------------------------------------------------------------------------
@@ -2482,27 +2482,27 @@ void EventCmd_AcceShop(GMEVENT_CONTROL * event)
 
 //==============================================================================================
 //
-//	•\²ó
+//	è¡¨å½°çŠ¶
 //
 //==============================================================================================
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\²óŒÄ‚Ño‚µ
+ *	@brief	è¡¨å½°çŠ¶å‘¼ã³å‡ºã—
  *
- *	@param	fsys		ƒtƒB[ƒ‹ƒhƒ[ƒN
- *	@param	heapID		ƒq[ƒv‚h‚c
- *	@param	type		SYOUJYOU_TYPE_SINOU:ƒVƒ“ƒIƒEƒRƒ“ƒv, SYOUJYOU_TYPE_ZENKOKU:‘S‘ƒRƒ“ƒv
+ *	@param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
+ *	@param	type		SYOUJYOU_TYPE_SINOU:ã‚·ãƒ³ã‚ªã‚¦ã‚³ãƒ³ãƒ—, SYOUJYOU_TYPE_ZENKOKU:å…¨å›½ã‚³ãƒ³ãƒ—
  *
- *	@retval	ini			ˆø”ƒpƒ‰ƒ[ƒ^ƒ|ƒCƒ“ƒ^
+ *	@retval	ini			å¼•æ•°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 #include "demo/syoujyou.h"
 void* Syoujyou_SetProc( FIELDSYS_WORK * fsys, int heapID, int type )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY( syoujyou );
 	
-	//ÜóƒvƒƒZƒXƒf[ƒ^
+	//è³çŠ¶ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA SyoujyouProc = {	
 		Syoujyou_Init,
 		Syoujyou_Main,
@@ -2521,14 +2521,14 @@ void* Syoujyou_SetProc( FIELDSYS_WORK * fsys, int heapID, int type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒAƒ‚ƒjƒ^[
+ *	@brief		ãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¢ãƒ‹ã‚¿ãƒ¼
  *
- *	@param		fsys		ƒtƒB[ƒ‹ƒhƒ[ƒN
- *	@param		type		ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹‚È‚Ç(src/frontier/stage_def.hQÆ)
- *	@param		fr_no		{İƒiƒ“ƒo[
- *	@param		heapID		ƒq[ƒvID
+ *	@param		fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param		type		ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ãªã©(src/frontier/stage_def.hå‚ç…§)
+ *	@param		fr_no		æ–½è¨­ãƒŠãƒ³ãƒãƒ¼
+ *	@param		heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval		"FRONTIER_MONITOR_CALLŒ^‚Ìƒ|ƒCƒ“ƒ^"
+ *	@retval		"FRONTIER_MONITOR_CALLå‹ã®ãƒã‚¤ãƒ³ã‚¿"
  */
 //-----------------------------------------------------------------------------
 #include "application/frontier_monitor.h"
@@ -2536,10 +2536,10 @@ void* FrontierMonitor_SetProc( FIELDSYS_WORK * fsys, u8 type, u8 fr_no, u16 mons
 {
 	FRONTIER_MONITOR_CALL* bsm_call_wk;
 
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(frontier_monitor);
 	
-	// ƒvƒƒbƒNƒf[ƒ^
+	// ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static PROC_DATA FrontierMonitorProc = {
 		FrontierMonitorProc_Init,
 		FrontierMonitorProc_Main,
@@ -2561,7 +2561,7 @@ void* FrontierMonitor_SetProc( FIELDSYS_WORK * fsys, u8 type, u8 fr_no, u16 mons
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‚·‚éˆ×‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊFƒTƒuƒvƒƒZƒX“o˜^
+ * @brief   ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ã™ã‚‹ç‚ºã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ï¼šã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ç™»éŒ²
  *
  * @param   fsys		
  * @param   heapID		
@@ -2595,7 +2595,7 @@ PLIST_DATA * FieldFormChangePokeList_SetProc(FIELDSYS_WORK* fsys,int heapID, int
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‚Ìƒfƒ‚‰æ–ÊFƒTƒuƒvƒƒZƒX“o˜^
+ * @brief   ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ã®ãƒ‡ãƒ¢ç”»é¢ï¼šã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ç™»éŒ²
  *
  * @param   fsys		
  * @param   heapID		
@@ -2611,10 +2611,10 @@ FORMDEMO_CALL_DATA * FieldFormChangeDemo_SetProc(FIELDSYS_WORK* fsys,int pos, in
 	POKEMON_PARAM * pp;
 	FORMDEMO_CALL_DATA *fcd;
 
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(form_demo);
 	
-	// ƒvƒƒbƒNƒf[ƒ^
+	// ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static PROC_DATA FormDemoProc = {
 		FormDemoProc_Init,
 		FormDemoProc_Main,
@@ -2622,7 +2622,7 @@ FORMDEMO_CALL_DATA * FieldFormChangeDemo_SetProc(FIELDSYS_WORK* fsys,int pos, in
 		FS_OVERLAY_ID(form_demo),
 	};
 	
-	Snd_Stop();	//ƒTƒEƒ“ƒh‘S’â~
+	Snd_Stop();	//ã‚µã‚¦ãƒ³ãƒ‰å…¨åœæ­¢
 
 	party = SaveData_GetTemotiPokemon(fsys->savedata);
 	pp   = PokeParty_GetMemberPointer( party, pos );
@@ -2643,12 +2643,12 @@ FORMDEMO_CALL_DATA * FieldFormChangeDemo_SetProc(FIELDSYS_WORK* fsys,int pos, in
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒXƒNƒ‰ƒbƒ`
+ *	@brief		ã‚¹ã‚¯ãƒ©ãƒƒãƒ
  *
- *	@param		fsys		ƒtƒB[ƒ‹ƒhƒ[ƒN
- *	@param		heapID		ƒq[ƒvID
+ *	@param		fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param		heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@retval		"SCRATCH_CALL_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^"
+ *	@retval		"SCRATCH_CALL_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿"
  */
 //-----------------------------------------------------------------------------
 #include "application/scratch.h"
@@ -2656,10 +2656,10 @@ void* Scratch_SetProc( FIELDSYS_WORK * fsys, int heapID )
 {
 	SCRATCH_CALL_WORK* scratch_call_wk;
 
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(scratch);
 	
-	// ƒvƒƒbƒNƒf[ƒ^
+	// ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static PROC_DATA ScratchProc = {
 		ScratchProc_Init,
 		ScratchProc_Main,
@@ -2680,21 +2680,21 @@ void* Scratch_SetProc( FIELDSYS_WORK * fsys, int heapID )
 }
 
 static const u8 waza_oshie_page[] = {
-	PST_PAGE_B_SKILL,		// u‚½‚½‚©‚¤‚í‚´v
-	PST_PAGE_C_SKILL,		// uƒRƒ“ƒeƒXƒg‚í‚´v
+	PST_PAGE_B_SKILL,		// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+	PST_PAGE_C_SKILL,		// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
 	PST_PAGE_MAX
 };
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‹³‚¦‚ÌƒXƒe[ƒ^ƒX‰æ–ÊŒÄ‚Ño‚µ
+ * æŠ€æ•™ãˆã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢å‘¼ã³å‡ºã—
  *
- * @param	heap	g—p‚·‚éƒq[ƒv‚Ìw’è
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pos		è‚¿ˆÊ’u
- * @param   waza	Šo‚¦‚é‹Z
+ * @param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos		æ‰‹æŒã¡ä½ç½®
+ * @param   waza	è¦šãˆã‚‹æŠ€
  *
- * @return	void*	Šm•Û‚µ‚½ƒXƒe[ƒ^ƒX‚Ìƒ|ƒCƒ“ƒ^
+ * @return	void*	ç¢ºä¿ã—ãŸã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 void* WazaOshiePokeStatusEvent_SetProc( int heap, FIELDSYS_WORK* fsys, u16 pos ,u16 waza )
@@ -2725,18 +2725,18 @@ void* WazaOshiePokeStatusEvent_SetProc( int heap, FIELDSYS_WORK* fsys, u16 pos ,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒŒƒR[ƒ_[(GDSƒ‚[ƒh)‚ğŒÄ‚Ño‚·
+ * @brief   ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼(GDSãƒ¢ãƒ¼ãƒ‰)ã‚’å‘¼ã³å‡ºã™
  *
  * @param   fsys		
- * @param   connect		‰‰ñÚ‘±‚©‚Ç‚¤‚©(0:2“x–ÚˆÈ~A0ˆÈŠO:‰‰ñÚ‘±)
- * @param   gds_mode	ŒÄ‚Ño‚·GDS‹@”\(BR_MODE_GDS_???)
+ * @param   connect		åˆå›æ¥ç¶šã‹ã©ã†ã‹(0:2åº¦ç›®ä»¥é™ã€0ä»¥å¤–:åˆå›æ¥ç¶š)
+ * @param   gds_mode	å‘¼ã³å‡ºã™GDSæ©Ÿèƒ½(BR_MODE_GDS_???)
  *
  * @retval  
  *
- * connectƒtƒ‰ƒO‚ÍƒlƒbƒgÚ‘±‚Ìu‚Í‚¢ / ‚¢‚¢‚¦v‚ğo‚·‚©‚Ç‚¤‚©‚Ì”»’è‚Åg—pB
- * ‰‰ñÚ‘±‚Ìê‡‚ÍA‚±‚±‚É—ˆ‚é‘O‚ÉGSƒvƒƒtƒ@ƒCƒ‹IDæ“¾‚ÅA
- * ƒlƒbƒg‚ÉÚ‘±‚·‚é‚©u‚Í‚¢ / ‚¢‚¢‚¦v‘I‘ğ‚ğ‚µ‚Ä‚¢‚é‚Ì‚ÅAƒoƒgƒ‹ƒŒƒR[ƒ_[‘¤‚Å‚Í
- * ‘I‘ğ‚Ío‚³‚È‚¢‚æ‚¤‚É‚·‚éB
+ * connectãƒ•ãƒ©ã‚°ã¯ãƒãƒƒãƒˆæ¥ç¶šæ™‚ã®ã€Œã¯ã„ / ã„ã„ãˆã€ã‚’å‡ºã™ã‹ã©ã†ã‹ã®åˆ¤å®šã§ä½¿ç”¨ã€‚
+ * åˆå›æ¥ç¶šã®å ´åˆã¯ã€ã“ã“ã«æ¥ã‚‹å‰ã«GSãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«IDå–å¾—ã§ã€
+ * ãƒãƒƒãƒˆã«æ¥ç¶šã™ã‚‹ã‹ã€Œã¯ã„ / ã„ã„ãˆã€é¸æŠã‚’ã—ã¦ã„ã‚‹ã®ã§ã€ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼å´ã§ã¯
+ * é¸æŠã¯å‡ºã•ãªã„ã‚ˆã†ã«ã™ã‚‹ã€‚
  */
 //--------------------------------------------------------------
 void Field_Gds_SetProc( FIELDSYS_WORK *fsys, int connect, int gds_mode )
@@ -2744,7 +2744,7 @@ void Field_Gds_SetProc( FIELDSYS_WORK *fsys, int connect, int gds_mode )
 	GDSPROC_PARAM *param;
 	FS_EXTERN_OVERLAY(gds_comm);
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	const PROC_DATA GdsMainProcData = {
 		GdsMainProc_Init,
 		GdsMainProc_Main,
@@ -2785,7 +2785,7 @@ void Field_Gds_SetProc( FIELDSYS_WORK *fsys, int connect, int gds_mode )
 //============================================================================================
 //
 //
-//		}‘ŠÙTV•\¦
+//		å›³æ›¸é¤¨TVè¡¨ç¤º
 //
 //
 //============================================================================================
@@ -2794,7 +2794,7 @@ void Field_Gds_SetProc( FIELDSYS_WORK *fsys, int connect, int gds_mode )
 FS_EXTERN_OVERLAY(library_tv);
 //-----------------------------------------------------------------------------
 /**
- * @brief	}‘ŠÙTV—pPROC’è‹`ƒf[ƒ^
+ * @brief	å›³æ›¸é¤¨TVç”¨PROCå®šç¾©ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const PROC_DATA LibraryTV_proc_data = {
@@ -2806,8 +2806,8 @@ static const PROC_DATA LibraryTV_proc_data = {
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	}‘ŠÙTVŒÄ‚Ño‚µ
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	å›³æ›¸é¤¨TVå‘¼ã³å‡ºã—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void Field_LibraryTV_SetProc(FIELDSYS_WORK * fsys)
@@ -2819,7 +2819,7 @@ void Field_LibraryTV_SetProc(FIELDSYS_WORK * fsys)
 //============================================================================================
 //
 //
-//		”j‚ê‚½¢ŠE“Ë“üƒfƒ‚
+//		ç ´ã‚ŒãŸä¸–ç•Œçªå…¥ãƒ‡ãƒ¢
 //
 //
 //============================================================================================
@@ -2828,7 +2828,7 @@ void Field_LibraryTV_SetProc(FIELDSYS_WORK * fsys)
 FS_EXTERN_OVERLAY(warp);
 //-----------------------------------------------------------------------------
 /**
- * @brief	”j‚ê‚½¢ŠE“Ë“üƒfƒ‚PROC’è‹`ƒf[ƒ^
+ * @brief	ç ´ã‚ŒãŸä¸–ç•Œçªå…¥ãƒ‡ãƒ¢PROCå®šç¾©ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const PROC_DATA HakaiWarp_proc_data = {
@@ -2840,8 +2840,8 @@ static const PROC_DATA HakaiWarp_proc_data = {
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	”j‚ê‚½¢ŠE“Ë“üƒfƒ‚‰æ–ÊŒÄ‚Ño‚µ
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ç ´ã‚ŒãŸä¸–ç•Œçªå…¥ãƒ‡ãƒ¢ç”»é¢å‘¼ã³å‡ºã—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void Field_HakaiWarp_SetProc(FIELDSYS_WORK * fsys)

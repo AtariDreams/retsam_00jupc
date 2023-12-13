@@ -1,5 +1,5 @@
 /* MSL
- * Copyright © 2003 Freescale Corporation.  All rights reserved.
+ * Copyright 2003 Freescale Corporation.  All rights reserved.
  *
  * $Date: 2005/12/12 20:55:49 $
  * $Revision: 1.2.8.1 $

@@ -1,70 +1,70 @@
 //==============================================================================================
 /**
  * @file	snd_play.h
- * @brief	�T�E���h�Đ��֐�
+ * @brief	サウンド再生関数
  * @author	Satoshi Nohara
  * @date	2005.06.09
  *
- * �֘A�t�@�C�� snd_tool.h
+ * 関連ファイル snd_tool.h
  */
 //==============================================================================================
 
 //==============================================================================================
 //
-//	extern�錾
+//	extern宣言
 //
 //==============================================================================================
 
 //==============================================================================================
 //
-//	BGM�֘A
+//	BGM関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BANK_BASIC�ō쐬����BGM�Đ�(�S�ă��[�h�ς݃f�[�^���Đ�)
+ * @brief	BANK_BASICで作成したBGM再生(全てロード済みデータを再生)
  *
- * @param	no		BGM�i���o�[
+ * @param	no		BGMナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  *
- * �f�[�^�̃��[�h����������܂���B�ʏ�͎g�p���܂���B
+ * データのロード処理が入りません。通常は使用しません。
  */
 //--------------------------------------------------------------
 extern BOOL Snd_BgmPlayBasicData( u16 no );
 
 //--------------------------------------------------------------
 /**
- * @brief	BGM�Đ�(SE�̏�ɐς񂾃f�[�^���J�����āABGM�f�[�^�̃��[�h���s��)
+ * @brief	BGM再生(SEの上に積んだデータを開放して、BGMデータのロードを行う)
  *
- * @param	no		BGM�i���o�[
+ * @param	no		BGMナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 extern BOOL Snd_BgmPlay( u16 no );
 
 //--------------------------------------------------------------
 /**
- * @brief	���oBGM�Đ�(���C�o���A�T�|�[�g�A��Ă�)
+ * @brief	演出BGM再生(ライバル、サポート、つれてけ)
  *
- * @param	scene	�V�[��(���)�i���o�[
- * @param	no		BGM�i���o�[
+ * @param	scene	シーン(場面)ナンバー
+ * @param	no		BGMナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  *
- * �A�����BGM�ȂǂŎg�p����I
+ * 連れ歩きBGMなどで使用する！
  */
 //--------------------------------------------------------------
 extern BOOL Snd_PlayerFieldDemoBgmPlay( u8 scene, u16 no );
 
 //--------------------------------------------------------------
 /**
- * @brief	BGM��~
+ * @brief	BGM停止
  *
- * @param	no		BGM�i���o�[
- * @param	frame	�w�肵���t���[���������ď��X�ɉ��ʂ𗎂Ƃ��Ă���
+ * @param	no		BGMナンバー
+ * @param	frame	指定したフレーム数かけて徐々に音量を落としていく
  *
  * @retval	none
  */
@@ -73,26 +73,26 @@ extern void Snd_BgmStop( u16 no, int frame );
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X�t�F�[�h�C��(BGM�̂�)(�V�[����`��snd_tool.h�Q��)
+ * @brief	シーケンスフェードイン(BGMのみ)(シーン定義はsnd_tool.h参照)
  *
- * @param	vol		�t�F�[�h�C����̃{�����[��(0-127)
- * @param	frame	�t���[����
- * @param	flag	"BGM_FADEIN_START_VOL_NOW = ���݂̉��ʂ���FADEIN"
- * @param	(flag)	"BGM_FADEIN_START_VOL_MIN = ����0����FADEIN"
+ * @param	vol		フェードイン後のボリューム(0-127)
+ * @param	frame	フレーム数
+ * @param	flag	"BGM_FADEIN_START_VOL_NOW = 現在の音量からFADEIN"
+ * @param	(flag)	"BGM_FADEIN_START_VOL_MIN = 音量0からFADEIN"
  *
  * @retval	none
  *
- * �t�F�[�h�J�E���^�[���Z�b�g���Ă��܂�
+ * フェードカウンターをセットしています
  */
 //--------------------------------------------------------------
 extern void Snd_BgmFadeIn( int vol, int frame, int flag );
 
 //--------------------------------------------------------------
 /**
- * @brief	�V�[�P���X�t�F�[�h�A�E�g(BGM�̂�)(�V�[����`��snd_tool.h�Q��)
+ * @brief	シーケンスフェードアウト(BGMのみ)(シーン定義はsnd_tool.h参照)
  *
- * @param	vol		�t�F�[�h�A�E�g��̃{�����[��(0-127)
- * @param	frame	�t���[����
+ * @param	vol		フェードアウト後のボリューム(0-127)
+ * @param	frame	フレーム数
  *
  * @retval	none
  */
@@ -101,29 +101,29 @@ extern void Snd_BgmFadeOut( int vol, int frame );
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�F�[�h�I���҂�
+ * @brief	フェード終了待ち
  *
  * @param	none
  *
- * @retval	"0=�I���A0�ȊO�̓t�F�[�h�J�E���^�[�̒l"
+ * @retval	"0=終了、0以外はフェードカウンターの値"
  */
 //--------------------------------------------------------------
 extern int Snd_FadeCheck();
 
 //--------------------------------------------------------------
 /**
- * @brief	BGM�I���҂�
+ * @brief	BGM終了待ち
  *
- * @param	no		BGM�i���o�[
+ * @param	no		BGMナンバー
  *
- * @retval	"�Đ���=TRUE�A�Đ��I��=FALSE"
+ * @retval	"再生中=TRUE、再生終了=FALSE"
  */
 //--------------------------------------------------------------
 extern int Snd_BgmPlayCheck( u16 no );
 
 //--------------------------------------------------------------
 /**
- * @brief	�S�Ă̍Đ����̃V�[�P���X���~
+ * @brief	全ての再生中のシーケンスを停止
  *
  * @param	none
  *
@@ -134,7 +134,7 @@ extern void Snd_Stop(void);
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�B�[���hBGM�ȊO�̑S�Ă̍Đ����̃V�[�P���X���~
+ * @brief	フィールドBGM以外の全ての再生中のシーケンスを停止
  *
  * @param	none
  *
@@ -146,51 +146,51 @@ extern void Snd_StopEx(void);
 
 //==============================================================================================
 //
-//	SE�֘A
+//	SE関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	SE�Đ� + �p������
+ * @brief	SE再生 + パン操作
  *
- * @param	no		SE�i���o�[
- * @param	pan		-128 �` 127
+ * @param	no		SEナンバー
+ * @param	pan		-128 〜 127
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 extern BOOL Snd_SePlayPan( u16 no, int pan );
 
 //--------------------------------------------------------------
 /**
- * @brief	SE�Đ�
+ * @brief	SE再生
  *
- * @param	no		SE�i���o�[
+ * @param	no		SEナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 extern BOOL Snd_SePlay( u16 no );
 
 //--------------------------------------------------------------
 /**
- * @brief	SE�Đ�(�w�肵���v���C���[�i���o�[�ōĐ�)
+ * @brief	SE再生(指定したプレイヤーナンバーで再生)
  *
- * @param	no			SE�i���o�[
- * @param	playerNo	�v���C���[�i���o�[
+ * @param	no			SEナンバー
+ * @param	playerNo	プレイヤーナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 extern BOOL Snd_SePlayEx( u16 no, int playerNo );
 
 //--------------------------------------------------------------
 /**
- * @brief	SE��~(�V�[�P���X�i���o�[�w���)
+ * @brief	SE停止(シーケンスナンバー指定版)
  *
- * @param	no		SE�ԍ�
- * @param	frame	�w�肵���t���[���������ď��X�ɉ��ʂ𗎂Ƃ��Ă���
+ * @param	no		SE番号
+ * @param	frame	指定したフレーム数かけて徐々に音量を落としていく
  *
  * @retval	none
  */
@@ -199,82 +199,82 @@ extern void Snd_SeStopBySeqNo( u16 no, int frame );
 
 //--------------------------------------------------------------
 /**
- * @brief	SE��~(�T�E���h�n���h���w���)
+ * @brief	SE停止(サウンドハンドル指定版)
  *
- * @param	type	�T�E���h�n���h���^�C�v
- * @param	frame	�w�肵���t���[���������ď��X�ɉ��ʂ𗎂Ƃ��Ă���
+ * @param	type	サウンドハンドルタイプ
+ * @param	frame	指定したフレーム数かけて徐々に音量を落としていく
  *
  * @retval	none
  *
- * �T�E���h�n���h���������̏ꍇ�́A�������܂���B 
+ * サウンドハンドルが無効の場合は、何もしません。 
  */
 //--------------------------------------------------------------
 extern void Snd_SeStop( int type, int frame );
 
 //--------------------------------------------------------------
 /**
- * @brief	�S�Ă�SE��~
+ * @brief	全てのSE停止
  *
- * @param	frame	�w�肵���t���[���������ď��X�ɉ��ʂ𗎂Ƃ��Ă���
+ * @param	frame	指定したフレーム数かけて徐々に音量を落としていく
  *
  * @retval	none
  *
- * �T�E���h�n���h���������̏ꍇ�́A�������܂���B 
+ * サウンドハンドルが無効の場合は、何もしません。 
  */
 //--------------------------------------------------------------
 extern void Snd_SeStopAll( int frame );
 
 //--------------------------------------------------------------
 /**
- * @brief	SE�I���҂�
+ * @brief	SE終了待ち
  *
- * @param	no		SE�i���o�[
+ * @param	no		SEナンバー
  *
- * @retval	"�Đ���=TRUE�A�Đ��I��=FALSE"
+ * @retval	"再生中=TRUE、再生終了=FALSE"
  *
- * �w�肵��SE���I�����Ă��邩�`�F�b�N�ł͂Ȃ��A
- * �w�肵��SE�̎g�p����v���C���[�ɁA
- * �Đ����̃V�[�P���X�����邩�̃`�F�b�N�ł��B
+ * 指定したSEが終了しているかチェックではなく、
+ * 指定したSEの使用するプレイヤーに、
+ * 再生中のシーケンスがあるかのチェックです。
  */
 //--------------------------------------------------------------
 extern int Snd_SePlayCheck(u16 no);
 
 //--------------------------------------------------------------
 /**
- * @brief	�S�Ă�SE�I���҂�
+ * @brief	全てのSE終了待ち
  *
  * @param	none
  *
- * @retval	"�Đ���=TRUE�A�Đ��I��=FALSE"
+ * @retval	"再生中=TRUE、再生終了=FALSE"
  */
 //--------------------------------------------------------------
 extern int Snd_SePlayCheckAll();
 
 //--------------------------------------------------------------
 /**
- * @brief	SE��PAN(���)��ύX
+ * @brief	SEのPAN(定位)を変更
  *
- * @param	no		SE�i���o�[
- * @param	bitmask	�g���b�N�r�b�g�}�X�N
- * @param	pan		-128 �` 127
+ * @param	no		SEナンバー
+ * @param	bitmask	トラックビットマスク
+ * @param	pan		-128 〜 127
  *
  * @retval	none
  *
- * trackBitMask�ŁA�ݒ肷��g���b�N���w�肵�܂��B
- * ���ʃr�b�g���珇�ɁA�g���b�N0�A�g���b�N1�A�g���b�N2�A�A�A��\���A
- * �r�b�g�������Ă���g���b�N�S�Ăɑ΂��āA�p����ύX���܂��B
+ * trackBitMaskで、設定するトラックを指定します。
+ * 下位ビットから順に、トラック0、トラック1、トラック2、、、を表し、
+ * ビットが立っているトラック全てに対して、パンを変更します。
  *
- * �Ⴆ�΁A�g���b�N2�ƃg���b�N5�̃p����ύX�������ꍇ�́A 
- * (1 << 2) | (1 << 5) ���Ȃ킿�A0x0024 �Ƃ��܂��B 
+ * 例えば、トラック2とトラック5のパンを変更したい場合は、 
+ * (1 << 2) | (1 << 5) すなわち、0x0024 とします。 
  */
 //--------------------------------------------------------------
 extern void Snd_SePanSet( u16 no, u16 bitmask, int pan );
 
 //--------------------------------------------------------------
 /**
- * @brief	�S�Ă�SE��PAN(���)��ύX
+ * @brief	全てのSEのPAN(定位)を変更
  *
- * @param	pan		-128 �` 127
+ * @param	pan		-128 〜 127
  *
  * @retval	none
  */
@@ -284,112 +284,112 @@ extern void Snd_SePanSetAll( int pan );
 
 //==============================================================================================
 //
-//	�|�P���������֘A
+//	ポケモン鳴き声関連
 //
 //==============================================================================================
  
 //--------------------------------------------------------------
 /**
- * @brief	�|�P���������Đ�(�����ōĐ��O�ɒ�~���Ă΂�܂�)
+ * @brief	ポケモン鳴き声再生(内部で再生前に停止が呼ばれます)
  *
- * @param	monsno	�|�P�����i���o�[
- * @param	form_no	�t�H�����i���o�[
+ * @param	monsno	ポケモンナンバー
+ * @param	form_no	フォルムナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  *
- * ��O�Ƃ��āA�R�[���X���g�p���鎞�́A��~�͌Ă΂�܂���B
+ * 例外として、コーラスを使用する時は、停止は呼ばれません。
  *
- * �|�P�����i���o�[�ƁA�����V�[�P���X�f�[�^�̕��т��������m�F����I
- * (�S���}�Ӄi���o�[�ɑΉ����Ă���炵���B050722��V��������)
+ * ポケモンナンバーと、鳴き声シーケンスデータの並びが同じか確認する！
+ * (全国図鑑ナンバーに対応しているらしい。050722一之瀬さんより)
  *
- * <����>
- * �V�[�P���X�A�[�J�C�u���ƁA�v���C���[�q�[�v���g���Ȃ��I
- * �V�[�P���X���ƁA�v���C���[�q�[�v���g����I
+ * <メモ>
+ * シーケンスアーカイブだと、プレイヤーヒープが使えない！
+ * シーケンスだと、プレイヤーヒープが使える！
  */
 //--------------------------------------------------------------
 extern BOOL Snd_PMVoicePlay( u16 monsno, u8 form_no );
  
 //--------------------------------------------------------------
 /**
- * @brief	�|�P���������Đ�(�E�F�C�g�w�肠��)
+ * @brief	ポケモン鳴き声再生(ウェイト指定あり)
  *
- * @param	monsno	�|�P�����i���o�[
- * @param	wait	�E�F�C�g
- * @param	form_no	�t�H�����i���o�[
+ * @param	monsno	ポケモンナンバー
+ * @param	wait	ウェイト
+ * @param	form_no	フォルムナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 extern BOOL Snd_PMVoiceWaitPlay( u16 monsno, u8 wait, u8 form_no );
 
 //--------------------------------------------------------------
 /**
- * @brief	�|�P����������~(�T�E���h�n���h���w���)
+ * @brief	ポケモン鳴き声停止(サウンドハンドル指定版)
  *
- * @param	p		�T�E���h�n���h���̃A�h���X
- * @param	frame	�w�肵���t���[���������ď��X�ɉ��ʂ𗎂Ƃ��Ă���
+ * @param	p		サウンドハンドルのアドレス
+ * @param	frame	指定したフレーム数かけて徐々に音量を落としていく
  *
  * @retval	none
  *
- * �T�E���h�n���h���������̏ꍇ�́A�������܂���B 
+ * サウンドハンドルが無効の場合は、何もしません。 
  *
- * �R�[���X(������p)�T�E���h�n���h������~�����Ă��܂��B
+ * コーラス(鳴き声専用)サウンドハンドルも停止させています。
  */
 //--------------------------------------------------------------
 extern void Snd_PMVoiceStop( int frame );
 
 //--------------------------------------------------------------
 /**
- * @brief	�|�P���������I���҂�
+ * @brief	ポケモン鳴き声終了待ち
  *
  * @param	none
  *
- * @retval	"�Đ���=1�ȏ�A�Đ��I��=0"
+ * @retval	"再生中=1以上、再生終了=0"
  */
 //--------------------------------------------------------------
 extern int Snd_PMVoicePlayCheck(void);
 
 //--------------------------------------------------------------
 /**
- * @brief	�|�P���������p�^�[���Z�b�g
+ * @brief	ポケモン鳴き声パターンセット
  *
- * @param	ptn		�p�^�[��(snd_tool.h�Q��)
- * @param	monsno	�|�P�����i���o�[
- * @param	pan		-128 �` 127
- * @param	vol		�{�����[��(0-127)
- * @param	heap_id	�q�[�vID
- * @param	form_no	�t�H�����i���o�[
+ * @param	ptn		パターン(snd_tool.h参照)
+ * @param	monsno	ポケモンナンバー
+ * @param	pan		-128 〜 127
+ * @param	vol		ボリューム(0-127)
+ * @param	heap_id	ヒープID
+ * @param	form_no	フォルムナンバー
  *
- * @retval	"����=TRUE�A���s=FALSE"
+ * @retval	"成功=TRUE、失敗=FALSE"
  *
- * �g�p���Ă��Ȃ������ɂ́A"PV_PTN_PARAM_NONE"��n���Ă����ĉ�����
+ * 使用していない引数には、"PV_PTN_PARAM_NONE"を渡しておいて下さい
  */
 //--------------------------------------------------------------
 extern BOOL Snd_PMVoicePlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 form_no );
  
 //--------------------------------------------------------------
 /**
- * @brief	�E�F�C�g���Z�b�g���Ďw�肵���|�P�����������Đ�
+ * @brief	ウェイトをセットして指定したポケモン鳴き声を再生
  *
- * @param	ptn		�p�^�[��(snd_tool.h�Q��)
- * @param	monsno	�|�P�����i���o�[
- * @param	pan		-128 �` 127
- * @param	vol		�{�����[��(0-127)
- * @param	heap_id	�q�[�vID
- * @param	wait	�E�F�C�g
- * @param	form_no	�t�H�����i���o�[
+ * @param	ptn		パターン(snd_tool.h参照)
+ * @param	monsno	ポケモンナンバー
+ * @param	pan		-128 〜 127
+ * @param	vol		ボリューム(0-127)
+ * @param	heap_id	ヒープID
+ * @param	wait	ウェイト
+ * @param	form_no	フォルムナンバー
  *
  * @retval	none
  *
- * �|�P�����A�j�����Ȃ���������Đ����鎞�ɌĂ΂��̂ŁA
- * �o�g���̓o��ȂǂŎg�p����̂ŁA�p�^�[���A�p���Ȃǂ̏�񂪕K�v�ɂȂ�
+ * ポケモンアニメしながら鳴き声を再生する時に呼ばれるので、
+ * バトルの登場などで使用するので、パターン、パンなどの情報が必要になる
  */
 //--------------------------------------------------------------
 extern void Snd_PMVoiceWaitPlayEx( int ptn, u16 monsno, int pan, int vol, int heap_id, u8 wait, u8 form_no );
  
 //--------------------------------------------------------------
 /**
- * @brief	�|�P�������������N���A
+ * @brief	ポケモン鳴き声情報をクリア
  *
  * @param	none
  *
@@ -400,10 +400,10 @@ extern void Snd_PMVoiceWorkClear( void );
 
 //--------------------------------------------------------------
 /**
- * @brief	�}�ӃR�[���X�Đ�
+ * @brief	図鑑コーラス再生
  *
- * @param	no			�|�P�����i���o�[
- * @param	chorus_vol	�R�[���X�`�����l���{�����[��(0-127)
+ * @param	no			ポケモンナンバー
+ * @param	chorus_vol	コーラスチャンネルボリューム(0-127)
  *
  * @retval	none
  */
@@ -413,19 +413,19 @@ extern void Snd_PMVoicePlayPtn_ZukanChorus( u16 no, int chorus_vol );
 
 //==============================================================================================
 //
-//	ME�֘A
-//	BGM�̔g�`�̂݊J�����đ��v(����Ȃ��Ɨe�ʑ���Ȃ����m�F)
+//	ME関連
+//	BGMの波形のみ開放して大丈夫(入れないと容量足りないか確認)
 //
-//	�g�p��1(ME�I����A���ʃE�F�C�g���Z�b�g����BGM�ĊJ)
+//	使用例1(ME終了後、共通ウェイトをセットしてBGM再開)
 //	Snd_MePlay(bgm,&wk)
 //	if( Snd_MePlayCheckBgmPlay(&wk) == FALSE ){
 //
-//	�g�p��2(ME�I����A����BGM�ĊJ)
+//	使用例2(ME終了後、すぐBGM再開)
 //	Snd_MePlay(bgm,&wk)
 //	wk = 0;
 //	if( Snd_MePlayCheckBgmPlay(&wk) == FALSE ){
 //
-//	�g�p��3(ME�I����A�E�F�C�g���w�肵��BGM�ĊJ)
+//	使用例3(ME終了後、ウェイトを指定してBGM再開)
 //	Snd_MePlay(bgm,&wk)
 //	wk = 120;
 //	if( Snd_MePlayCheckBgmPlay(&wk) == FALSE ){
@@ -434,48 +434,48 @@ extern void Snd_PMVoicePlayPtn_ZukanChorus( u16 no, int chorus_vol );
 
 //--------------------------------------------------------------
 /**
- * @brief	BGM�|�[�Y �� ME�Đ�
+ * @brief	BGMポーズ → ME再生
  *
- * @param	no			ME�i���o�[
+ * @param	no			MEナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  *
- * �E�F�C�g���[�N��ME���ʃE�F�C�g�l���Z�b�g����܂�
+ * ウェイトワークにME共通ウェイト値がセットされます
  */
 //--------------------------------------------------------------
 extern BOOL Snd_MePlay( u16 no );
 
 //--------------------------------------------------------------
 /**
- * @brief	ME�I���҂�
+ * @brief	ME終了待ち
  *
  * @param	none
  *
- * @retval	"�Đ���=TRUE�A�Đ��I��=FALSE"
+ * @retval	"再生中=TRUE、再生終了=FALSE"
  */
 //--------------------------------------------------------------
 extern int Snd_MePlayCheck(void);
 
 //--------------------------------------------------------------
 /**
- * @brief	ME��~
+ * @brief	ME停止
  *
- * @param	frame	�w�肵���t���[���������ď��X�ɉ��ʂ𗎂Ƃ��Ă���
+ * @param	frame	指定したフレーム数かけて徐々に音量を落としていく
  *
  * @retval	none
  *
- * �T�E���h�n���h���������̏ꍇ�́A�������܂���B 
+ * サウンドハンドルが無効の場合は、何もしません。 
  */
 //--------------------------------------------------------------
 //extern void Snd_MeStop( int frame );
 
 //--------------------------------------------------------------
 /**
- * @brief	ME�I���҂� �� �I����A�E�F�C�g�����Ă���BGM�𕜋A������
+ * @brief	ME終了待ち → 終了後、ウェイトを入れてからBGMを復帰させる
  *
  * @param	none
  *
- * @retval	"ME�Đ���=TRUE�A�E�F�C�g��=TRUE�ABGM�ĊJ=FALSE"
+ * @retval	"ME再生中=TRUE、ウェイト中=TRUE、BGM再開=FALSE"
  */
 //--------------------------------------------------------------
 extern int Snd_MePlayCheckBgmPlay(void);
@@ -483,77 +483,77 @@ extern int Snd_MePlayCheckBgmPlay(void);
 
 //==============================================================================================
 //
-//	�g��Ȃ������B�B�B
+//	使わないかも。。。
 //
 //==============================================================================================
 #if 0
 //--------------------------------------------------------------
 /**
- * @brief	BGM�f�[�^�����[�h
+ * @brief	BGMデータをロード
  *
- * @param	no		BGM�i���o�[
+ * @param	no		BGMナンバー
  *
- * @retval	"����=TRUE�A���s=FALSE"
+ * @retval	"成功=TRUE、失敗=FALSE"
  *
- * �g�p��(1)	�}�b�v�f�[�^����擾����BGM�f�[�^�����[�h����
- * Snd_HeapLoadState( SE���[�h��̊K�w�i���o�[ );	//BGM���J��
- * Snd_LoadBgm( map->bgm );							//BGM���[�h
+ * 使用例(1)	マップデータから取得したBGMデータをロードする
+ * Snd_HeapLoadState( SEロード後の階層ナンバー );	//BGMを開放
+ * Snd_LoadBgm( map->bgm );							//BGMロード
  *
- * �g�p��(2)	�w�肵��BGM�f�[�^�����[�h����
- * Snd_HeapLoadState( SE���[�h��̊K�w�i���o�[ );	//BGM���J��
- * Snd_LoadBgm( SEQ_DOORO_X3 );						//BGM���[�h
+ * 使用例(2)	指定したBGMデータをロードする
+ * Snd_HeapLoadState( SEロード後の階層ナンバー );	//BGMを開放
+ * Snd_LoadBgm( SEQ_DOORO_X3 );						//BGMロード
  *
- * ���H�A���̋��ڂł́ABGM�f�[�^�̂݃��[�h���邱�ƂɂȂ�̂ŁA
- * SE�ABGM�̏��Ƀf�[�^�����[�h����悤�ɂ��āABGM���J���A���[�h�Ƃ�������ɂ���
+ * 道路、町の境目では、BGMデータのみロードすることになるので、
+ * SE、BGMの順にデータをロードするようにして、BGMを開放、ロードという流れにする
  */
 //--------------------------------------------------------------
 extern int Snd_LoadBgm( u16 no );
 
 //--------------------------------------------------------------
 /**
- * @brief	�莝���|�P�����������[�h
+ * @brief	手持ちポケモン鳴き声ロード
  *
  * @param	none
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  *
- * �K�w�ۑ��͂��Ă��Ȃ��I
+ * 階層保存はしていない！
  */
 //--------------------------------------------------------------
 extern int Snd_LoadTemotiPMVoice();
 
 //--------------------------------------------------------------
 /**
- * @brief	�w�肵���|�P�����������[�h
+ * @brief	指定したポケモン鳴き声ロード
  *
- * @param	no		�|�P�����i���o�[
+ * @param	no		ポケモンナンバー
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  *
- * �K�w�ۑ��͂��Ă��Ȃ��I
+ * 階層保存はしていない！
  */
 //--------------------------------------------------------------
 extern int Snd_LoadPMVoice( u16 no );
 
 //--------------------------------------------------------------
 /**
- * @brief	�t�F�[�h�I���҂�
+ * @brief	フェード終了待ち
  *
  * @param	none
  *
- * @retval	"�Đ��I��=0�A0�ȊO�̓t�F�[�h�J�E���^�[�̒l"
+ * @retval	"再生終了=0、0以外はフェードカウンターの値"
  *
- * �t�F�[�h�J�E���^�[�����炷���������Ă��܂�
+ * フェードカウンターを減らす処理をしています
  */
 //--------------------------------------------------------------
 extern int Snd_BgmFadeCheck(void);
 
 //--------------------------------------------------------------
 /**
- * @brief	�|�P����������~(�V�[�P���X�i���o�[�w���)
+ * @brief	ポケモン鳴き声停止(シーケンスナンバー指定版)
  *
- * @param	no		BGM�ԍ�
- * @param	frame	�w�肵���t���[���������ď��X�ɉ��ʂ𗎂Ƃ��Ă���
+ * @param	no		BGM番号
+ * @param	frame	指定したフレーム数かけて徐々に音量を落としていく
  *
  * @retval	none
  */

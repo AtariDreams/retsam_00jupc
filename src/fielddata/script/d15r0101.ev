@@ -10,11 +10,11 @@
 	.include	"../../../src/field/move_pokemon_def.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d15r0101_init_change
 _EVENT_DATA		ev_d15r0101_legend_01
@@ -29,22 +29,22 @@ ev_d15r0101_init_change:
 
 
 /********************************************************************/
-/*	ƒ€[ƒoƒXƒCƒxƒ“ƒgŠJŽn											*/
+/*	ãƒ ãƒ¼ãƒã‚¹ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹											*/
 /********************************************************************/
 ev_d15r0101_legend_01:
 	_TALK_OBJ_START
 
 	_POKE_WINDOW_PUT	MONSNO_MUUBASU,PM_FEMALE
 	_AB_KEYWAIT
-	_POKE_WINDOW_DEL		/*ƒ|ƒPƒ‚ƒ“ƒEƒBƒ“ƒhƒEÁ‹Ž*/
+	_POKE_WINDOW_DEL		/*ãƒã‚±ãƒ¢ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¶ˆåŽ»*/
 	
-	//ƒ€[ƒoƒX–Â‚«º
+	//ãƒ ãƒ¼ãƒã‚¹é³´ãå£°
 	_VOICE_PLAY			MONSNO_MUUBASU,0
-	//ƒ€[ƒoƒXˆê•à‰º‚ª‚é(³–Ê‚©‚ç˜b‚µ‚©‚¯‚½‚Æ‚«‚¾‚¯)
+	//ãƒ ãƒ¼ãƒã‚¹ä¸€æ­©ä¸‹ãŒã‚‹(æ­£é¢ã‹ã‚‰è©±ã—ã‹ã‘ãŸã¨ãã ã‘)
 	_PLAYER_DIR_GET		SCWK_ANSWER
 	_IFVAL_CALL			SCWK_ANSWER,EQ,DIR_UP,ev_d15r0101_legend_anm_move
 
-	//Á‚µƒAƒjƒ
+	//æ¶ˆã—ã‚¢ãƒ‹ãƒ¡
 	_OBJ_PAUSE_CLEAR	D15R0101_LEGEND_01
 	_FLDOBJ_BLINK_ANM	D15R0101_LEGEND_01,6,8
 	_OBJ_PAUSE			D15R0101_LEGEND_01
@@ -52,17 +52,17 @@ ev_d15r0101_legend_01:
 	_FLAG_SET			FV_D15R0101_LEGEND
 	_OBJ_DEL			D15R0101_LEGEND_01
 
-	//ƒ€[ƒoƒXˆÚ“®ƒ|ƒPƒ‚ƒ“‚É’Ç‰Á
+	//ãƒ ãƒ¼ãƒã‚¹ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã«è¿½åŠ 
 	_ADD_MOVE_POKE		MOVE_POKE_MUUBASU
 
-	/*“|‚µ‚Ä‚µ‚Ü‚Á‚Ä‚ÌÄ“x˜b‚µ‚©‚¯‚ÍA‚±‚±‚ÅI—¹‚³‚¹‚é*/
+	/*å€’ã—ã¦ã—ã¾ã£ã¦ã®å†åº¦è©±ã—ã‹ã‘ã¯ã€ã“ã“ã§çµ‚äº†ã•ã›ã‚‹*/
 	_IFVAL_JUMP			SYS_WORK_MUUBASU_GET,EQ,3,ev_d15r0101_end
 
-	//ŽO“úŒŽ‚Ì‰HoŒ»
+	//ä¸‰æ—¥æœˆã®ç¾½å‡ºç¾
 	_FLAG_RESET			FV_FLD_ITEM_92
 	_OBJ_ADD			D15R0101_FLD_ITEM_01
 
-	//ƒNƒŠƒAƒtƒ‰ƒOon(•ßŠl‚Å‚Í‚È‚¢‚Ì‚Å’ˆÓI)
+	//ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°on(æ•ç²ã§ã¯ãªã„ã®ã§æ³¨æ„ï¼)
 	_FLAG_SET			FE_D15R0101_LEGEND_CLEAR
 
 	_TALK_KEYWAIT		msg_d15r0101_sppoke9_01
@@ -71,17 +71,17 @@ ev_d15r0101_legend_01:
 	_TALK_OBJ_END
 	_END
 
-/*“|‚µ‚Ä‚µ‚Ü‚Á‚Ä‚ÌÄ“x˜b‚µ‚©‚¯‚ÍA‚±‚±‚ÅI—¹‚³‚¹‚é*/
+/*å€’ã—ã¦ã—ã¾ã£ã¦ã®å†åº¦è©±ã—ã‹ã‘ã¯ã€ã“ã“ã§çµ‚äº†ã•ã›ã‚‹*/
 ev_d15r0101_end:
 	_LDVAL				SYS_WORK_MUUBASU_GET,0
 	_TALK_OBJ_END
 	_END
 
 //--------------------------------------------------------------------
-//ƒ€[ƒoƒX@”ò‚Ñ‹Ž‚èƒCƒxƒ“ƒg
+//ãƒ ãƒ¼ãƒã‚¹ã€€é£›ã³åŽ»ã‚Šã‚¤ãƒ™ãƒ³ãƒˆ
 //--------------------------------------------------------------------
 ev_d15r0101_legend_anm_move:
-	//ƒAƒCƒeƒ€ˆÊ’u‚¸‚ç‚·
+	//ã‚¢ã‚¤ãƒ†ãƒ ä½ç½®ãšã‚‰ã™
 	_SXY_POS_CHANGE		D15R0101_FLD_ITEM_01,16,14
 	
 	_OBJ_ANIME	D15R0101_LEGEND_01,anm_d15r0101_legend_move
@@ -89,7 +89,7 @@ ev_d15r0101_legend_anm_move:
 	_RET
 
 //--------------------------------------------------------------------
-//ƒ€[ƒoƒXˆê•à‰œ‚Ö
+//ãƒ ãƒ¼ãƒã‚¹ä¸€æ­©å¥¥ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d15r0101_legend_move
 	_ANIME_DATA	AC_DIR_PAUSE_ON,1

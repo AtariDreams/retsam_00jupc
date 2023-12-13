@@ -12,12 +12,12 @@
 
 
 /** -----------------------------------------------------------------
-  “à•”•Ï”
+  å†…éƒ¨å¤‰æ•°
   -------------------------------------------------------------------*/
 static DWCTransportInfo*			sTransInfo = NULL;
 
 /** -----------------------------------------------------------------
-  “à•”ŠÖ”
+  å†…éƒ¨é–¢æ•°
   -------------------------------------------------------------------*/
 static DWCTransportConnection*	DWCs_GetTransConnection	( u8 aid );
 
@@ -43,7 +43,7 @@ static s32			DWCs_GetRequiredHeaderSize			( u16 type );
 
 
 /** -----------------------------------------------------------------
-  ƒ†[ƒU[‚ÉŒöŠJ‚·‚éReliable‘—M‰Â”\”»’èŠÖ”
+  ãƒ¦ãƒ¼ã‚¶ãƒ¼ã«å…¬é–‹ã™ã‚‹Reliableé€ä¿¡å¯èƒ½åˆ¤å®šé–¢æ•°
   -------------------------------------------------------------------*/
 BOOL
 DWC_IsSendableReliable( u8 aid )
@@ -52,7 +52,7 @@ DWC_IsSendableReliable( u8 aid )
 }
 
 /** -----------------------------------------------------------------
-  ƒ‰ƒCƒuƒ‰ƒŠ‚Ì‚İ‚Åg—p‚·‚éReliable‘—M‰Â”\”»’èŠÖ”
+  ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã¿ã§ä½¿ç”¨ã™ã‚‹Reliableé€ä¿¡å¯èƒ½åˆ¤å®šé–¢æ•°
   -------------------------------------------------------------------*/
 BOOL
 DWCi_IsSendableReliable( u8 aid, u16 type )
@@ -63,20 +63,20 @@ DWCi_IsSendableReliable( u8 aid, u16 type )
          ( ( type == DWC_SEND_TYPE_USERDATA ) && ! DWC_IsValidAID( aid ) ) ||
          ! DWCi_IsValidAID( aid ) )
     {
-        // Šù‚ÉƒNƒ[ƒY‚³‚ê‚½ƒRƒlƒNƒVƒ‡ƒ“‚É‘—M‚µ‚æ‚¤‚Æ‚µ‚½ê‡
-        // ©•ª‚ÌAID‚É‘—M‚µ‚æ‚¤‚Æ‚µ‚½ê‡‚à‚±‚±‚É—ˆ‚é
+        // æ—¢ã«ã‚¯ãƒ­ãƒ¼ã‚ºã•ã‚ŒãŸã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã«é€ä¿¡ã—ã‚ˆã†ã¨ã—ãŸå ´åˆ
+        // è‡ªåˆ†ã®AIDã«é€ä¿¡ã—ã‚ˆã†ã¨ã—ãŸå ´åˆã‚‚ã“ã“ã«æ¥ã‚‹
 		DWC_Printf( DWC_REPORTFLAG_WARNING, "aid %d is unavailable.\n", aid );
 		return FALSE;
 	}
     
-	// ‘—M’†‚Ìƒf[ƒ^‚ª‚ ‚é‚È‚çFALSE‚ğ•Ô‚µ‚ÄI—¹‚·‚é
+	// é€ä¿¡ä¸­ã®ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ãªã‚‰FALSEã‚’è¿”ã—ã¦çµ‚äº†ã™ã‚‹
 	if ( DWCs_GetSendState( aid ) == DWC_TRANSPORT_SEND_BUSY )
 	{
 		DWC_Printf( DWC_REPORTFLAG_SEND_INFO, "+++ Cannot send to %d from %d (busy)\n", aid, DWC_GetMyAID() );
 		return FALSE;
 	}
 
-	// ƒwƒbƒ_[‚ğ‘—M‚·‚éˆ×‚ÌOutgoingBuffer‚Ì‹ó‚«‚ª‚ ‚é‚©Šm”F
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’é€ä¿¡ã™ã‚‹ç‚ºã®OutgoingBufferã®ç©ºããŒã‚ã‚‹ã‹ç¢ºèª
 	freeSpace = DWCs_GetOutgoingBufferFreeSize( aid );
 
 	if ( freeSpace < DWCs_GetRequiredHeaderSize( type ) )
@@ -89,7 +89,7 @@ DWCi_IsSendableReliable( u8 aid, u16 type )
 }
 
 /** -----------------------------------------------------------------
-  ƒ†[ƒU[‚ÉŒöŠJ‚·‚éReliable‘—M
+  ãƒ¦ãƒ¼ã‚¶ãƒ¼ã«å…¬é–‹ã™ã‚‹Reliableé€ä¿¡
   -------------------------------------------------------------------*/
 BOOL
 DWC_SendReliable(
@@ -101,7 +101,7 @@ DWC_SendReliable(
 }
 
 /** -----------------------------------------------------------------
-  ƒ‰ƒCƒuƒ‰ƒŠ‚Ì‚İ‚Åg—p‚·‚éReliable‘—M
+  ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã¿ã§ä½¿ç”¨ã™ã‚‹Reliableé€ä¿¡
   -------------------------------------------------------------------*/
 BOOL
 DWCi_SendReliable(
@@ -125,24 +125,24 @@ DWCi_SendReliable(
         return FALSE;
     }
 
-    // ‘—Mó‘Ô‚Ìƒpƒ‰ƒ[ƒ^‚ğ‰Šú‰»
+    // é€ä¿¡çŠ¶æ…‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
     transConnection->sendState			= DWC_TRANSPORT_SEND_BUSY; 
 	transConnection->sendBuffer			= buffer;				
 	transConnection->sendingSize		= 0;					
 	transConnection->requestSendSize	= size;					
 
-    // ‘—Mƒf[ƒ^‘S‘Ì‚ÌƒTƒCƒY‚ğ‘—M‚·‚é
+    // é€ä¿¡ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã®ã‚µã‚¤ã‚ºã‚’é€ä¿¡ã™ã‚‹
 	DWCs_EncodeHeader( &header, type, size );
     DWCs_Send( aid, (const u8*) &header, sizeof( DWCTransportHeader ), TRUE ); 
 
-    // ‘—MƒTƒCƒY‚ğŒˆ‚ß‚é
+    // é€ä¿¡ã‚µã‚¤ã‚ºã‚’æ±ºã‚ã‚‹
 	if( size > sTransInfo->sendSplitMax ){
 		sendSize = sTransInfo->sendSplitMax;
 	}else{
 		sendSize = size;
 	}
 
-    // ƒf[ƒ^–{‘Ì‚ğ‘—M‚·‚éˆ×‚ÌOutgoingBuffer‚Ì‹ó‚«‚ª‚ ‚é‚©’²‚×‚é
+    // ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã‚’é€ä¿¡ã™ã‚‹ç‚ºã®OutgoingBufferã®ç©ºããŒã‚ã‚‹ã‹èª¿ã¹ã‚‹
 	freeSpace = DWCs_GetOutgoingBufferFreeSize( aid );
 #if 1
 	DWC_Printf(
@@ -153,8 +153,8 @@ DWCi_SendReliable(
 #endif
 	if ( sendSize > freeSpace )
     {
-		// OutgoingBuffer‚Ì‹ó‚«‚ª‚È‚¢I
-        // DWCi_TransportProcess‚Å‘—M‚·‚é
+		// OutgoingBufferã®ç©ºããŒãªã„ï¼
+        // DWCi_TransportProcessã§é€ä¿¡ã™ã‚‹
 		DWC_Printf(
 			DWC_REPORTFLAG_SEND_INFO,
 			"DWCi_SendReliable:sendSize > freeSpace:aid = %d,%d,%d,vcount = %d\n",
@@ -163,10 +163,10 @@ DWCi_SendReliable(
         return TRUE;
     }
 
-    // ƒf[ƒ^–{‘Ì‚ğ‘—M‚·‚é
+    // ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã‚’é€ä¿¡ã™ã‚‹
 	DWCs_Send( aid, buffer, sendSize, TRUE ); 
     
-    // ‘—MÏ‚İƒTƒCƒY‚ğXV
+    // é€ä¿¡æ¸ˆã¿ã‚µã‚¤ã‚ºã‚’æ›´æ–°
     transConnection->sendingSize += sendSize;
 
 	DWC_Printf(
@@ -175,20 +175,20 @@ DWCi_SendReliable(
 		aid, transConnection->sendingSize, transConnection->requestSendSize, freeSpace - sendSize, OS_GetVBlankCount()
 	);
 
-    // ‘—MÏ‚İƒTƒCƒY‚Æ‘—M—\’èƒTƒCƒY‚ªˆê’v‚µ‚½‚çŠ®—¹
+    // é€ä¿¡æ¸ˆã¿ã‚µã‚¤ã‚ºã¨é€ä¿¡äºˆå®šã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ãŸã‚‰å®Œäº†
 	if ( transConnection->sendingSize == transConnection->requestSendSize )
 	{
         // [arakit] main 051026
         int reqSendSize = transConnection->requestSendSize;
         
-        // ‘—Mó‘Ô‚Ìƒpƒ‰ƒ[ƒ^‚ğƒŠƒZƒbƒg
+        // é€ä¿¡çŠ¶æ…‹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
 		transConnection->sendState			= DWC_TRANSPORT_SEND_READY;
 		transConnection->sendBuffer			= NULL;
         transConnection->sendingSize		= 0;	
 		transConnection->requestSendSize	= 0;
         // [arakit] main 051026
         
-		// ‘—MŠ®—¹ƒR[ƒ‹ƒoƒbƒNiƒ†[ƒUƒf[ƒ^‘—M‚Ì‚İj
+		// é€ä¿¡å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ï¼ˆãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿é€ä¿¡æ™‚ã®ã¿ï¼‰
 		if ( sTransInfo->sendCallback && type == DWC_SEND_TYPE_USERDATA )
 		{
             // [arakit] main 051026
@@ -200,7 +200,7 @@ DWCi_SendReliable(
 }
 
 /** -----------------------------------------------------------------
-  Bitmapw’èReliable‘—M
+  BitmapæŒ‡å®šReliableé€ä¿¡
   -------------------------------------------------------------------*/
 u32
 DWC_SendReliableBitmap(
@@ -216,18 +216,18 @@ DWC_SendReliableBitmap(
         aidbit = aid ? ( 1 << aid ) : 1U;
         if ( ( bitmap & aidbit ) && ( aid != DWC_GetMyAID() ) )
         {
-            // Reliable‘—M‚ğs‚¢A¸”s‚µ‚½‚ç¸”s‚µ‚½aid‚Ìbit‚ğ‰º‚°‚é
+            // Reliableé€ä¿¡ã‚’è¡Œã„ã€å¤±æ•—ã—ãŸã‚‰å¤±æ•—ã—ãŸaidã®bitã‚’ä¸‹ã’ã‚‹
             if ( ! DWC_SendReliable( aid, buffer, size ) )
                 bitmap &= ~aidbit;
         }
-        // ©•ª‚ÌAID‚Ìƒrƒbƒg‚à—§‚Ä‚Ä“n‚³‚ê‚½ê‡‚ÍA‚»‚ê‚ğ‰º‚°‚¸‚É•Ô‚·
+        // è‡ªåˆ†ã®AIDã®ãƒ“ãƒƒãƒˆã‚‚ç«‹ã¦ã¦æ¸¡ã•ã‚ŒãŸå ´åˆã¯ã€ãã‚Œã‚’ä¸‹ã’ãšã«è¿”ã™
     }
 
     return bitmap;
 }
 
 /** -----------------------------------------------------------------
-  Unreliable‘—M
+  Unreliableé€ä¿¡
   -------------------------------------------------------------------*/
 BOOL
 DWC_SendUnreliable(
@@ -242,7 +242,7 @@ DWC_SendUnreliable(
 
     if ( ! DWC_IsValidAID( aid ) )
     {
-        // Šù‚ÉƒNƒ[ƒY‚³‚ê‚½ƒRƒlƒNƒVƒ‡ƒ“‚É‘—M‚µ‚æ‚¤‚Æ‚µ‚½ê‡
+        // æ—¢ã«ã‚¯ãƒ­ãƒ¼ã‚ºã•ã‚ŒãŸã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã«é€ä¿¡ã—ã‚ˆã†ã¨ã—ãŸå ´åˆ
         DWC_Printf( DWC_REPORTFLAG_WARNING, "aid %d is now unavailable.\n", aid );
         return FALSE;
     }
@@ -257,7 +257,7 @@ DWC_SendUnreliable(
 
 	DWC_Printf( DWC_REPORTFLAG_SEND_INFO, "[U] aid = %d, size = %d, vcount = %d\n", aid, size, OS_GetVBlankCount() );    
     
-	// ‘—MŠ®—¹ƒR[ƒ‹ƒoƒbƒN
+	// é€ä¿¡å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 	if ( sTransInfo->sendCallback )
 	{
 		sTransInfo->sendCallback( size, aid );
@@ -267,7 +267,7 @@ DWC_SendUnreliable(
 }
 
 /** -----------------------------------------------------------------
-  Bitmapw’èUnreliable‘—M
+  BitmapæŒ‡å®šUnreliableé€ä¿¡
   -------------------------------------------------------------------*/
 u32
 DWC_SendUnreliableBitmap(
@@ -283,18 +283,18 @@ DWC_SendUnreliableBitmap(
         aidbit = aid ? ( 1 << aid ) : 1U;
         if ( bitmap & aidbit && ( aid != DWC_GetMyAID() ) )
         {
-            // Unreliable‘—M‚ğs‚¢A¸”s‚µ‚½‚ç¸”s‚µ‚½aid‚Ìbit‚ğ‰º‚°‚é
+            // Unreliableé€ä¿¡ã‚’è¡Œã„ã€å¤±æ•—ã—ãŸã‚‰å¤±æ•—ã—ãŸaidã®bitã‚’ä¸‹ã’ã‚‹
             if ( ! DWC_SendUnreliable( aid, buffer, size ) )
                 bitmap &= ~aidbit;
         }
-        // ©•ª‚ÌAID‚Ìƒrƒbƒg‚à—§‚Ä‚Ä“n‚³‚ê‚½ê‡‚ÍA‚»‚ê‚ğ‰º‚°‚¸‚É•Ô‚·
+        // è‡ªåˆ†ã®AIDã®ãƒ“ãƒƒãƒˆã‚‚ç«‹ã¦ã¦æ¸¡ã•ã‚ŒãŸå ´åˆã¯ã€ãã‚Œã‚’ä¸‹ã’ãšã«è¿”ã™
     }
 
     return bitmap;
 }
 
 /** -----------------------------------------------------------------
-  óMƒoƒbƒtƒ@‚ğİ’è
+  å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’è¨­å®š
   -------------------------------------------------------------------*/
 BOOL
 DWC_SetRecvBuffer(
@@ -307,7 +307,7 @@ DWC_SetRecvBuffer(
     SDK_ASSERT( recvBuffer );
     SDK_ASSERT( size > 0 );    
 
-    // ƒf[ƒ^‚ğóM’†‚È‚çFALSE‚ğ•Ô‚µ‚ÄI—¹
+    // ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ä¸­ãªã‚‰FALSEã‚’è¿”ã—ã¦çµ‚äº†
     if ( DWCs_GetRecvState( aid ) == DWC_TRANSPORT_RECV_BODY )
     {
 	    DWC_Printf( DWC_REPORTFLAG_RECV_INFO, "+++ Cannot set recv buffer\n" );
@@ -315,11 +315,11 @@ DWC_SetRecvBuffer(
         return FALSE;
     }
          
-	// óMƒoƒbƒtƒ@‚ğİ’è
+	// å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’è¨­å®š
 	connection->recvBuffer		= recvBuffer;
 	connection->recvBufferSize	= size;	
 
-    // óMî•ñ‚ğ‰Šú‰»‚·‚é
+    // å—ä¿¡æƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹
 	connection->recvState		= DWC_TRANSPORT_RECV_HEADER;    
     connection->recvingSize		= 0;
 	connection->requestRecvSize	= 0;
@@ -353,7 +353,7 @@ DWC_Ping( u8 aid )
 }
 
 /** -----------------------------------------------------------------
-  ‘—MƒR[ƒ‹ƒoƒbƒN‚ğİ’è
+  é€ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®š
   -------------------------------------------------------------------*/
 BOOL
 DWC_SetUserSendCallback( DWCUserSendCallback callback )
@@ -366,7 +366,7 @@ DWC_SetUserSendCallback( DWCUserSendCallback callback )
 }
 
 /** -----------------------------------------------------------------
-  óMƒR[ƒ‹ƒoƒbƒN‚ğİ’è
+  å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®š
   -------------------------------------------------------------------*/
 BOOL
 DWC_SetUserRecvCallback( DWCUserRecvCallback callback )
@@ -379,7 +379,7 @@ DWC_SetUserRecvCallback( DWCUserRecvCallback callback )
 }
 
 /** -----------------------------------------------------------------
-  óMƒ^ƒCƒ€ƒAƒEƒgƒR[ƒ‹ƒoƒbƒN‚ğİ’è
+  å—ä¿¡ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®š
   -------------------------------------------------------------------*/
 BOOL
 DWC_SetUserRecvTimeoutCallback( DWCUserRecvTimeoutCallback callback )
@@ -392,7 +392,7 @@ DWC_SetUserRecvTimeoutCallback( DWCUserRecvTimeoutCallback callback )
 }
 
 /** -----------------------------------------------------------------
-  PingƒR[ƒ‹ƒoƒbƒN‚ğİ’è
+  Pingã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®š
   -------------------------------------------------------------------*/
 BOOL
 DWC_SetUserPingCallback( DWCUserPingCallback callback )
@@ -405,7 +405,7 @@ DWC_SetUserPingCallback( DWCUserPingCallback callback )
 }
 
 /** -----------------------------------------------------------------
-  ‘—M•ªŠ„Å‘åƒTƒCƒY‚ğİ’è
+  é€ä¿¡åˆ†å‰²æœ€å¤§ã‚µã‚¤ã‚ºã‚’è¨­å®š
   -------------------------------------------------------------------*/
 BOOL
 DWC_SetSendSplitMax( u16 sendSplitMax )
@@ -425,7 +425,7 @@ DWC_SetSendSplitMax( u16 sendSplitMax )
 }
 
 /** -----------------------------------------------------------------
-  Reliable‘—M‚Ìƒwƒbƒ_[‚ğì¬‚·‚é
+  Reliableé€ä¿¡ã®ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’ä½œæˆã™ã‚‹
   -------------------------------------------------------------------*/
 static void
 DWCs_EncodeHeader(
@@ -433,7 +433,7 @@ DWCs_EncodeHeader(
 	u16					type,
     int					size )
 {
-    // Reliable‘—M‚Ìƒwƒbƒ_[‚Å‚ ‚é‚±‚Æ‚ğ¯•Ê‚·‚éˆ×‚É•t‚¯‚é•¶š—ñ
+    // Reliableé€ä¿¡ã®ãƒ˜ãƒƒãƒ€ãƒ¼ã§ã‚ã‚‹ã“ã¨ã‚’è­˜åˆ¥ã™ã‚‹ç‚ºã«ä»˜ã‘ã‚‹æ–‡å­—åˆ—
     strncpy( header->magicStrings, DWC_MAGIC_STRINGS, DWC_MAGIC_STRINGS_LEN );
 
     header->type = type;
@@ -441,14 +441,14 @@ DWCs_EncodeHeader(
 }
 
 /** -----------------------------------------------------------------
-  Reliable‘—M‚Ìƒwƒbƒ_[‚ğ‰ğÍ‚·‚é
+  Reliableé€ä¿¡ã®ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’è§£æã™ã‚‹
   -------------------------------------------------------------------*/
 static u16
 DWCs_DecodeHeader( const DWCTransportHeader* message )
 {
     DWCTransportHeader			header;
 
-    // ƒAƒ‰ƒCƒƒ“ƒg‚³‚ê‚½ƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é
+    // ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
     MI_CpuCopy8( message, (u8*) &header, sizeof( DWCTransportHeader ) );
 
     if ( ( memcmp( header.magicStrings, DWC_MAGIC_STRINGS, DWC_MAGIC_STRINGS_LEN ) == 0 ) )
@@ -460,7 +460,7 @@ DWCs_DecodeHeader( const DWCTransportHeader* message )
 }
 
 /** -----------------------------------------------------------------
-  Reliable‘—M‚Ìƒwƒbƒ_[‘—M‚É•K—v‚È—e—Ê‚ğæ“¾
+  Reliableé€ä¿¡ã®ãƒ˜ãƒƒãƒ€ãƒ¼é€ä¿¡ã«å¿…è¦ãªå®¹é‡ã‚’å–å¾—
   -------------------------------------------------------------------*/
 static s32
 DWCs_GetRequiredHeaderSize( u16 type )
@@ -472,12 +472,12 @@ DWCs_GetRequiredHeaderSize( u16 type )
     case DWC_SEND_TYPE_MATCH_SYN:
     case DWC_SEND_TYPE_MATCH_SYN_ACK:
     case DWC_SEND_TYPE_MATCH_ACK:
-        // ƒ}ƒbƒ`ƒƒCƒN“¯Šú’²®ƒf[ƒ^‘—M‚ÍA‹ó‚«‚ª‘«‚è‚È‚­‚ÄTransportProcess()
-        // ‚Å‚Ì‘—M‚É‰ñ‚³‚ê‚é‚Æ¢‚é‚Ì‚ÅAƒf[ƒ^–{‘Ì•ª‚àŠÜ‚ß‚½‹ó‚«‚ª•K—v
+        // ãƒãƒƒãƒãƒ¡ã‚¤ã‚¯åŒæœŸèª¿æ•´ãƒ‡ãƒ¼ã‚¿é€ä¿¡æ™‚ã¯ã€ç©ºããŒè¶³ã‚Šãªãã¦TransportProcess()
+        // ã§ã®é€ä¿¡ã«å›ã•ã‚Œã‚‹ã¨å›°ã‚‹ã®ã§ã€ãƒ‡ãƒ¼ã‚¿æœ¬ä½“åˆ†ã‚‚å«ã‚ãŸç©ºããŒå¿…è¦
         size = sizeof( DWCTransportHeader ) + DWC_MATCH_SYN_DATA_BODY_SIZE;
         break;
     default:
-        // ’Êí‚Íƒwƒbƒ_ƒTƒCƒY•ª‚Ì‹ó‚«‚ª‚ ‚ê‚Î—Ç‚¢
+        // é€šå¸¸ã¯ãƒ˜ãƒƒãƒ€ã‚µã‚¤ã‚ºåˆ†ã®ç©ºããŒã‚ã‚Œã°è‰¯ã„
         size = sizeof( DWCTransportHeader );
         break;
     }
@@ -486,12 +486,12 @@ DWCs_GetRequiredHeaderSize( u16 type )
 }
 
 /** -----------------------------------------------------------------
-  óMƒ^ƒCƒ€ƒAƒEƒgŠÔi’PˆÊƒ~ƒŠ•bj‚ğİ’è
+  å—ä¿¡ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“ï¼ˆå˜ä½ãƒŸãƒªç§’ï¼‰ã‚’è¨­å®š
   -------------------------------------------------------------------*/
 BOOL
 DWC_SetRecvTimeoutTime( u8 aid, u32 time )
 {
-	// GT2Connected‚É‚È‚é‘O‚Éİ’è‚Å‚«‚é‚æ‚¤‚É‚µ‚½
+	// GT2Connectedã«ãªã‚‹å‰ã«è¨­å®šã§ãã‚‹ã‚ˆã†ã«ã—ãŸ
 #if 0
     GT2Connection connection = DWCi_GetGT2Connection( aid );
 
@@ -512,7 +512,7 @@ DWC_SetRecvTimeoutTime( u8 aid, u32 time )
 #ifndef SDK_FINALROM
 
 /** -----------------------------------------------------------------
-  ‘—M‚É’x‰„‚³‚¹‚éŠÔi’PˆÊ: msj‚ğİ’è‚·‚é
+  é€ä¿¡æ™‚ã«é…å»¶ã•ã›ã‚‹æ™‚é–“ï¼ˆå˜ä½: msï¼‰ã‚’è¨­å®šã™ã‚‹
   -------------------------------------------------------------------*/
 BOOL
 DWC_SetSendDelay( u16 delay, u8 aid )
@@ -530,8 +530,8 @@ DWC_SetSendDelay( u16 delay, u8 aid )
     
 	if ( delay )
     {
-		// ƒR[ƒ‹ƒoƒbƒN‚ğİ’è‚·‚é
-        // Šù‚É’x‰„‚Ì’l‚ªİ’è‚³‚ê‚Ä‚¢‚é‚È‚çAƒR[ƒ‹ƒoƒbƒN‚àİ’è‚³‚ê‚Ä‚¢‚é‚Í‚¸
+		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®šã™ã‚‹
+        // æ—¢ã«é…å»¶ã®å€¤ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ãªã‚‰ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚‚è¨­å®šã•ã‚Œã¦ã„ã‚‹ã¯ãš
         if ( ! sTransInfo->connections[aid].sendDelay )
         {
 	        if ( ! gt2AddSendFilter( connection, DWCs_SendFilterCallbackDelay ) )
@@ -552,7 +552,7 @@ DWC_SetSendDelay( u16 delay, u8 aid )
 }
 
 /** -----------------------------------------------------------------
-  óM‚É’x‰„‚³‚¹‚éŠÔi’PˆÊ: msj‚ğİ’è‚·‚é
+  å—ä¿¡æ™‚ã«é…å»¶ã•ã›ã‚‹æ™‚é–“ï¼ˆå˜ä½: msï¼‰ã‚’è¨­å®šã™ã‚‹
   -------------------------------------------------------------------*/
 BOOL
 DWC_SetRecvDelay( u16 delay, u8 aid )
@@ -570,8 +570,8 @@ DWC_SetRecvDelay( u16 delay, u8 aid )
     
     if ( delay )
     {
-		// ƒR[ƒ‹ƒoƒbƒN‚ğİ’è‚·‚é
-        // Šù‚É’x‰„‚Ì’l‚ªİ’è‚³‚ê‚Ä‚¢‚é‚È‚çAŠù‚ÉƒR[ƒ‹ƒoƒbƒN‚àİ’è‚³‚ê‚Ä‚¢‚é‚Í‚¸
+		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®šã™ã‚‹
+        // æ—¢ã«é…å»¶ã®å€¤ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ãªã‚‰ã€æ—¢ã«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚‚è¨­å®šã•ã‚Œã¦ã„ã‚‹ã¯ãš
         if ( ! sTransInfo->connections[aid].recvDelay )
         {
 	        if ( ! gt2AddReceiveFilter( connection, DWCs_RecvFilterCallbackDelay ) )
@@ -592,7 +592,7 @@ DWC_SetRecvDelay( u16 delay, u8 aid )
 }
 
 /** -----------------------------------------------------------------
-  ‘—M‚ÌƒpƒPƒbƒgƒƒX—¦‚ğİ’è
+  é€ä¿¡æ™‚ã®ãƒ‘ã‚±ãƒƒãƒˆãƒ­ã‚¹ç‡ã‚’è¨­å®š
   -------------------------------------------------------------------*/
 BOOL
 DWC_SetSendDrop( u8 drop, u8 aid )
@@ -627,7 +627,7 @@ DWC_SetSendDrop( u8 drop, u8 aid )
 }
 
 /** -----------------------------------------------------------------
-  óM‚ÌƒpƒPƒbƒgƒƒX—¦‚ğİ’è
+  å—ä¿¡æ™‚ã®ãƒ‘ã‚±ãƒƒãƒˆãƒ­ã‚¹ç‡ã‚’è¨­å®š
   -------------------------------------------------------------------*/
 BOOL
 DWC_SetRecvDrop( u8 drop, u8 aid )
@@ -664,7 +664,7 @@ DWC_SetRecvDrop( u8 drop, u8 aid )
 #endif	// SDK_FINALROM
 
 /** -----------------------------------------------------------------
-  ‰Šú‰»
+  åˆæœŸåŒ–
   -------------------------------------------------------------------*/
 void
 DWCi_InitTransport( DWCTransportInfo* info )
@@ -677,12 +677,12 @@ DWCi_InitTransport( DWCTransportInfo* info )
 	sTransInfo->sendSplitMax = DWC_TRANSPORT_SEND_MAX;
 
 #ifndef	SDK_FINALROM
-	// ’x‰„‚ÆƒpƒPƒbƒgƒƒX‚ÌƒGƒ~ƒ…ƒŒ[ƒg‚É•K—v‚È‰Šú‰»
+	// é…å»¶ã¨ãƒ‘ã‚±ãƒƒãƒˆãƒ­ã‚¹ã®ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ãƒˆã«å¿…è¦ãªåˆæœŸåŒ–
     
-    // —”‚Ì‰Šú‰»
+    // ä¹±æ•°ã®åˆæœŸåŒ–
 	MATH_InitRand16( &sTransInfo->context, sTransInfo->seed );
 
-    // ’x‰„”­¶‚Ég—p‚·‚é”z—ñ‚ğŠm•Û
+    // é…å»¶ç™ºç”Ÿã«ä½¿ç”¨ã™ã‚‹é…åˆ—ã‚’ç¢ºä¿
 	sTransInfo->delayedSend = ArrayNew( sizeof( DWCDelayedMessage ), 10, DWCs_DelayedMessageFree );
 	sTransInfo->delayedRecv = ArrayNew( sizeof( DWCDelayedMessage ), 10, DWCs_DelayedMessageFree );
 
@@ -690,7 +690,7 @@ DWCi_InitTransport( DWCTransportInfo* info )
 }
 
 /** -----------------------------------------------------------------
-  óMƒR[ƒ‹ƒoƒbƒN
+  å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
   -------------------------------------------------------------------*/
 void
 DWCi_RecvCallback(
@@ -723,7 +723,7 @@ DWCi_RecvCallback(
 }
 
 /** -----------------------------------------------------------------
-  PingƒR[ƒ‹ƒoƒbƒN
+  Pingã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
   -------------------------------------------------------------------*/
 void
 DWCi_PingCallback
@@ -740,7 +740,7 @@ DWCi_PingCallback
 }
 
 /** -----------------------------------------------------------------
-  ˆê“x‚É‘—M‚Å‚«‚È‚©‚Á‚½ƒf[ƒ^‚ª‚ ‚éê‡‚ÍA‚±‚±‚Å‘—M‚·‚é
+  ä¸€åº¦ã«é€ä¿¡ã§ããªã‹ã£ãŸãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¯ã€ã“ã“ã§é€ä¿¡ã™ã‚‹
   -------------------------------------------------------------------*/
 void
 DWCi_TransportProcess( void )
@@ -762,7 +762,7 @@ DWCi_TransportProcess( void )
 
 		aid = aidList[i];
 
-		// óMƒ^ƒCƒ€ƒAƒEƒgŠÔ‚Ìƒ`ƒFƒbƒN
+		// å—ä¿¡ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“ã®ãƒã‚§ãƒƒã‚¯
 		if( DWC_IsValidAID( aid ) )
 		{
 		    DWCTransportConnection*	transConnection;
@@ -780,13 +780,13 @@ DWCi_TransportProcess( void )
 					DWC_Printf( DWC_REPORTFLAG_RECV_INFO, "DWCi_TransportProcess:timeout aid=%d,time=%d[ms],timeout time=%d[ms]\n", aid, time, transConnection->recvTimeoutTime );
 					sTransInfo->recvTimeoutCallback( aid );
 
-					//ŠÔ‚ğƒŠƒZƒbƒg‚·‚é
+					//æ™‚é–“ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 					transConnection->previousRecvTick = currentTick;
 				}
 			}
 		}
 
-        // ‘—M’†‚Ìƒf[ƒ^‚ª‚ ‚é
+        // é€ä¿¡ä¸­ã®ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹
 		if( aid != DWC_GetMyAID() && DWCs_GetSendState( aid ) == DWC_TRANSPORT_SEND_BUSY )
 		{
 			s32 restSize;
@@ -796,17 +796,17 @@ DWCi_TransportProcess( void )
 
             transConnection = DWCs_GetTransConnection( aid );
 
-			// –¢‘—MƒTƒCƒY‚ğ‹‚ß‚é            
+			// æœªé€ä¿¡ã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã‚‹            
             restSize = transConnection->requestSendSize - transConnection->sendingSize; 
 
-			// ‘—MƒTƒCƒY‚ğŒˆ‚ß‚é
+			// é€ä¿¡ã‚µã‚¤ã‚ºã‚’æ±ºã‚ã‚‹
 			if( restSize > sTransInfo->sendSplitMax ){
 				sendSize = sTransInfo->sendSplitMax;
 			}else{
 				sendSize = restSize;
 			}
 
-            // OutgoingBuffer‚Ì‹ó‚«ƒTƒCƒY‚ğŠm”F‚·‚é
+            // OutgoingBufferã®ç©ºãã‚µã‚¤ã‚ºã‚’ç¢ºèªã™ã‚‹
 			freeSpace = DWCs_GetOutgoingBufferFreeSize( aid );
 			if ( freeSpace < sendSize )
             {
@@ -816,7 +816,7 @@ DWCi_TransportProcess( void )
 
             DWCs_Send( aid, (u8*) transConnection->sendBuffer + transConnection->sendingSize, sendSize, TRUE );
 
-		    // ‘—MÏ‚İƒTƒCƒY‚ğXV            
+		    // é€ä¿¡æ¸ˆã¿ã‚µã‚¤ã‚ºã‚’æ›´æ–°            
 			transConnection->sendingSize += sendSize;
 
 			DWC_Printf(
@@ -836,7 +836,7 @@ DWCi_TransportProcess( void )
 				transConnection->requestSendSize	= 0;
                 // [arakit] main 051026
                 
-				// ‘—MŠ®—¹ƒR[ƒ‹ƒoƒbƒN
+				// é€ä¿¡å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 				if ( sTransInfo->sendCallback )
 				{
                     // [arakit] main 051026
@@ -850,7 +850,7 @@ DWCi_TransportProcess( void )
 #if 0
 		{
 			OSTick now = OS_GetTick();
-			// ’x‰„”­¶‚ğƒ`ƒFƒbƒN‚·‚é
+			// é…å»¶ç™ºç”Ÿã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 			if ( sTransInfo->connections[aid].sendDelay )        
 			{
 				DWCs_DelayCheck( sTransInfo->delayedSend, now, TRUE );
@@ -876,7 +876,7 @@ DWCi_TransportProcess( void )
 }
 
 /** -----------------------------------------------------------------
-  ƒRƒlƒNƒVƒ‡ƒ“ŠÇ—î•ñ‚ğƒNƒŠƒA
+  ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ç®¡ç†æƒ…å ±ã‚’ã‚¯ãƒªã‚¢
   -------------------------------------------------------------------*/
 void
 DWCi_ClearTransConnection( u8 aid )
@@ -884,7 +884,7 @@ DWCi_ClearTransConnection( u8 aid )
 
     if ( !sTransInfo ) return ;
 
-#if 1  // ‚Ğ‚Æ‚Ü‚¸ƒoƒbƒtƒ@‚ÍƒNƒŠƒA‚µ‚È‚¢
+#if 1  // ã²ã¨ã¾ãšãƒãƒƒãƒ•ã‚¡ã¯ã‚¯ãƒªã‚¢ã—ãªã„
     sTransInfo->connections[aid].sendingSize     = 0;
 	sTransInfo->connections[aid].recvingSize     = 0;
     sTransInfo->connections[aid].requestSendSize = 0;
@@ -902,13 +902,13 @@ DWCi_ClearTransConnection( u8 aid )
 }
 
 /** -----------------------------------------------------------------
-  ƒgƒ‰ƒ“ƒXƒ|[ƒg§ŒäƒIƒuƒWƒFƒNƒg‚ğƒNƒŠƒA
+  ãƒˆãƒ©ãƒ³ã‚¹ãƒãƒ¼ãƒˆåˆ¶å¾¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚¯ãƒªã‚¢
   -------------------------------------------------------------------*/
 void
 DWCi_ShutdownTransport( void )
 {
 #ifndef	SDK_FINALROM
-    // ’x‰„”­¶‚Ég—p‚·‚é”z—ñ‚ğŠJ•úB
+    // é…å»¶ç™ºç”Ÿã«ä½¿ç”¨ã™ã‚‹é…åˆ—ã‚’é–‹æ”¾ã€‚
 	ArrayFree( sTransInfo->delayedSend );
 	ArrayFree( sTransInfo->delayedRecv );
 #endif	// SDK_FINALROM
@@ -917,7 +917,7 @@ DWCi_ShutdownTransport( void )
 }
 
 /** -----------------------------------------------------------------
-  Aid‚©‚çDWCTransportConnection‚ğæ“¾
+  Aidã‹ã‚‰DWCTransportConnectionã‚’å–å¾—
   -------------------------------------------------------------------*/
 static DWCTransportConnection*
 DWCs_GetTransConnection( u8 aid )
@@ -928,7 +928,7 @@ DWCs_GetTransConnection( u8 aid )
 }
 
 /** -----------------------------------------------------------------
-  ‘—Mó‘Ô‚ğæ“¾
+  é€ä¿¡çŠ¶æ…‹ã‚’å–å¾—
   -------------------------------------------------------------------*/
 static int
 DWCs_GetSendState( u8 aid )
@@ -937,7 +937,7 @@ DWCs_GetSendState( u8 aid )
 }
 
 /** -----------------------------------------------------------------
-  óMó‘Ô‚ğæ“¾
+  å—ä¿¡çŠ¶æ…‹ã‚’å–å¾—
   -------------------------------------------------------------------*/
 static int
 DWCs_GetRecvState( u8 aid )
@@ -946,7 +946,7 @@ DWCs_GetRecvState( u8 aid )
 }
 
 /** -----------------------------------------------------------------
-  gt2Send‚Ìƒ‰ƒbƒvŠÖ”@(‘—Mæ‚ğAid‚Åw’è‚·‚é)
+  gt2Sendã®ãƒ©ãƒƒãƒ—é–¢æ•°ã€€(é€ä¿¡å…ˆã‚’Aidã§æŒ‡å®šã™ã‚‹)
   -------------------------------------------------------------------*/
 void
 DWCs_Send(
@@ -961,7 +961,7 @@ DWCs_Send(
 }
 
 /** -----------------------------------------------------------------
-  Reliable‘—M‚³‚ê‚½ƒf[ƒ^‚ğóM
+  Reliableé€ä¿¡ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡
   -------------------------------------------------------------------*/
 static void
 DWCs_HandleReliableMessage( 
@@ -979,32 +979,32 @@ DWCs_HandleReliableMessage(
         if ( type >= DWC_SEND_TYPE_MATCH_SYN &&
              type <= DWC_SEND_TYPE_MATCH_ACK )
         {
-            // óMƒoƒbƒtƒ@‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢‚­‚Ä‚àAƒVƒXƒeƒ€ƒf[ƒ^ƒwƒbƒ_‚È‚ç
-            // ƒwƒbƒ_ˆµ‚¢‚ÅóM‚·‚é
+            // å—ä¿¡ãƒãƒƒãƒ•ã‚¡ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„ãã¦ã‚‚ã€ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ãªã‚‰
+            // ãƒ˜ãƒƒãƒ€æ‰±ã„ã§å—ä¿¡ã™ã‚‹
             DWCs_RecvDataHeader( aid, (DWCTransportHeader*) message, size );
         }
         else
         {
-        	// óMƒoƒbƒtƒ@‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅAóM‚µ‚½ƒf[ƒ^‚ğÌ‚Ä‚é
+        	// å—ä¿¡ãƒãƒƒãƒ•ã‚¡ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„ã®ã§ã€å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’æ¨ã¦ã‚‹
 			DWC_Printf( DWC_REPORTFLAG_RECV_INFO, "+++ Recv buffer is not set\n" );
         }
         break;
     case DWC_TRANSPORT_RECV_HEADER:
-		// ƒwƒbƒ_[i‘—M‚³‚ê‚Ä‚­‚é—\’è‚ÌƒTƒCƒYj‚ğóM
+		// ãƒ˜ãƒƒãƒ€ãƒ¼ï¼ˆé€ä¿¡ã•ã‚Œã¦ãã‚‹äºˆå®šã®ã‚µã‚¤ã‚ºï¼‰ã‚’å—ä¿¡
         DWCs_RecvDataHeader( aid, (DWCTransportHeader*) message, size );	
         break;
     case DWC_TRANSPORT_RECV_BODY:
-		// ƒf[ƒ^–{‘Ì‚ğóM
+		// ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã‚’å—ä¿¡
         DWCs_RecvDataBody( aid, message, size );
         break;
     case DWC_TRANSPORT_RECV_SYSTEM_DATA:
-        // ƒVƒXƒeƒ€ƒf[ƒ^i“à•”g—pƒf[ƒ^j‚ğóM
+        // ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ï¼ˆå†…éƒ¨ä½¿ç”¨ãƒ‡ãƒ¼ã‚¿ï¼‰ã‚’å—ä¿¡
         DWCs_RecvSystemDataBody ( aid, message, size );
         break;
     case DWC_TRANSPORT_RECV_ERROR:
-		// ƒf[ƒ^‚ğÌ‚Ä‚é
+		// ãƒ‡ãƒ¼ã‚¿ã‚’æ¨ã¦ã‚‹
 		DWC_Printf( DWC_REPORTFLAG_RECV_INFO, "+++ Recv size is too large ( buffer size = %d < %d )\n", sTransInfo->connections[ aid ].recvBufferSize, size );
-        // ƒwƒbƒ_[‘Ò‚¿ó‘Ô‚É–ß‚·		
+        // ãƒ˜ãƒƒãƒ€ãƒ¼å¾…ã¡çŠ¶æ…‹ã«æˆ»ã™		
 		sTransInfo->connections[ aid ].recvState		= DWC_TRANSPORT_RECV_HEADER; 
 		sTransInfo->connections[ aid ].recvingSize		= 0;
 		sTransInfo->connections[ aid ].requestRecvSize	= 0;
@@ -1018,7 +1018,7 @@ DWCs_HandleReliableMessage(
 }
 
 /** -----------------------------------------------------------------
-  Unreliable‘—M‚³‚ê‚½ƒf[ƒ^‚ğóM
+  Unreliableé€ä¿¡ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡
   -------------------------------------------------------------------*/
 static void
 DWCs_HandleUnreliableMessage( 
@@ -1032,7 +1032,7 @@ DWCs_HandleUnreliableMessage(
 	if ( transConnection->recvBuffer &&
 		 transConnection->recvBufferSize >= size )
 	{
-		// óMƒR[ƒ‹ƒoƒbƒN
+		// å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 		if ( sTransInfo->recvCallback )
 		{
 			sTransInfo->recvCallback( aid, message, size );
@@ -1051,7 +1051,7 @@ DWCs_HandleUnreliableMessage(
 }
 
 /** -----------------------------------------------------------------
-  Reliable‘—M‚³‚ê‚½ƒf[ƒ^‚Ìƒwƒbƒ_[‚ğæ“¾
+  Reliableé€ä¿¡ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã®ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’å–å¾—
   -------------------------------------------------------------------*/
 static void
 DWCs_RecvDataHeader( 
@@ -1063,14 +1063,14 @@ DWCs_RecvDataHeader(
 	DWCTransportConnection*	connection = &sTransInfo->connections[ aid ];
 	DWCTransportHeader		header;
 
-    // ƒwƒbƒ_óM‘O‚ÌrecvState‚ğ‹L˜^
+    // ãƒ˜ãƒƒãƒ€å—ä¿¡å‰ã®recvStateã‚’è¨˜éŒ²
     connection->lastRecvState = (u8)DWCs_GetRecvState( aid );
 
-    // ƒwƒbƒ_[‚ğ‰ğÍ‚·‚é
+    // ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’è§£æã™ã‚‹
     switch ( type = DWCs_DecodeHeader( message ) )
     {
     case DWC_SEND_TYPE_USERDATA:
-		// DWC_SEND_TYPE_USERDATA‚Íƒ†[ƒU[‚ª‘—M‚µ‚½ƒf[ƒ^
+		// DWC_SEND_TYPE_USERDATAã¯ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒé€ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿
  		if ( size != sizeof( DWCTransportHeader ) )
  		{
 			DWC_Printf( DWC_REPORTFLAG_RECV_INFO, "+++ Invalid header from aid %d\n", aid );
@@ -1079,10 +1079,10 @@ DWCs_RecvDataHeader(
         
         MI_CpuCopy8( message, &header, sizeof(DWCTransportHeader) );
 
-        connection->requestRecvSize	= header.size;	// ‘—M‚³‚ê‚Ä‚­‚é—\’è‚ÌƒTƒCƒY‚ğæ“¾
-        connection->recvingSize		= 0;			// óM’†ƒTƒCƒY‚ğ0‚É–ß‚·
+        connection->requestRecvSize	= header.size;	// é€ä¿¡ã•ã‚Œã¦ãã‚‹äºˆå®šã®ã‚µã‚¤ã‚ºã‚’å–å¾—
+        connection->recvingSize		= 0;			// å—ä¿¡ä¸­ã‚µã‚¤ã‚ºã‚’0ã«æˆ»ã™
 
-        // “KØ‚ÈƒTƒCƒY‚ÌóMƒoƒbƒtƒ@‚ªİ’è‚³‚ê‚Ä‚¢‚ê‚ÎóM‚·‚é
+        // é©åˆ‡ãªã‚µã‚¤ã‚ºã®å—ä¿¡ãƒãƒƒãƒ•ã‚¡ãŒè¨­å®šã•ã‚Œã¦ã„ã‚Œã°å—ä¿¡ã™ã‚‹
         if ( connection->recvBuffer &&
              connection->recvBufferSize >= connection->requestRecvSize )
         {
@@ -1097,7 +1097,7 @@ DWCs_RecvDataHeader(
     case DWC_SEND_TYPE_MATCH_SYN:
     case DWC_SEND_TYPE_MATCH_SYN_ACK:
     case DWC_SEND_TYPE_MATCH_ACK:
-        // ƒ}ƒbƒ`ƒƒCƒNŠ®—¹“¯Šú’²®ƒwƒbƒ_‚ğóM
+        // ãƒãƒƒãƒãƒ¡ã‚¤ã‚¯å®Œäº†åŒæœŸèª¿æ•´ãƒ˜ãƒƒãƒ€ã‚’å—ä¿¡
         DWC_Printf( DWC_REPORTFLAG_RECV_INFO, "Received system header.\n" );
         connection->recvState = DWC_TRANSPORT_RECV_SYSTEM_DATA;
         break;
@@ -1107,12 +1107,12 @@ DWCs_RecvDataHeader(
         break;
     }
 
-    // ÅŒã‚ÉóM‚µ‚½ƒwƒbƒ_ƒ^ƒCƒv‚ğ‹L˜^
+    // æœ€å¾Œã«å—ä¿¡ã—ãŸãƒ˜ãƒƒãƒ€ã‚¿ã‚¤ãƒ—ã‚’è¨˜éŒ²
     connection->lastRecvType = type;
 }
 
 /** -----------------------------------------------------------------
-  Reliable‘—M‚³‚ê‚½ƒf[ƒ^‚Ì–{‘Ì‚ğóM
+  Reliableé€ä¿¡ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã®æœ¬ä½“ã‚’å—ä¿¡
   -------------------------------------------------------------------*/
 static void
 DWCs_RecvDataBody( 
@@ -1127,7 +1127,7 @@ DWCs_RecvDataBody(
 
 	if ( DWCs_GetRecvState( aid ) == DWC_TRANSPORT_RECV_BODY )
 	{		
-	    // ƒI[ƒoƒtƒ[‚Ìƒ`ƒFƒbƒN
+	    // ã‚ªãƒ¼ãƒãƒ•ãƒ­ãƒ¼ã®ãƒã‚§ãƒƒã‚¯
         if ( connection->recvingSize + size > connection->recvBufferSize )
         {
             //OS_Panic( "[DWC] Recv buffer over flow\n" );
@@ -1152,12 +1152,12 @@ DWCs_RecvDataBody(
 	{
 		requestSize = connection->requestRecvSize;
 
-        // ƒwƒbƒ_[‘Ò‚¿ó‘Ô‚É–ß‚·		
+        // ãƒ˜ãƒƒãƒ€ãƒ¼å¾…ã¡çŠ¶æ…‹ã«æˆ»ã™		
 		connection->recvState		= DWC_TRANSPORT_RECV_HEADER; 
 		connection->recvingSize		= 0;
 		connection->requestRecvSize	= 0;				
 
-        // óMŠ®—¹ƒR[ƒ‹ƒoƒbƒN
+        // å—ä¿¡å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 		if ( sTransInfo->recvCallback )
 		{
 			sTransInfo->recvCallback( aid, connection->recvBuffer, requestSize );
@@ -1171,7 +1171,7 @@ DWCs_RecvDataBody(
 }
 
 /** -----------------------------------------------------------------
-  Reliable‘—M‚³‚ê‚½ƒVƒXƒeƒ€ƒf[ƒ^‚Ì–{‘Ì‚ğóM
+  Reliableé€ä¿¡ã•ã‚ŒãŸã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã®æœ¬ä½“ã‚’å—ä¿¡
   -------------------------------------------------------------------*/
 static void
 DWCs_RecvSystemDataBody( 
@@ -1182,9 +1182,9 @@ DWCs_RecvSystemDataBody(
 #pragma unused( size )
     DWCTransportConnection*	transConnection = DWCs_GetTransConnection( aid );
 
-    // recvState‚ğAƒVƒXƒeƒ€ƒf[ƒ^óM‘O‚Ìó‘Ô‚É–ß‚·B
-    // ƒR[ƒ‹ƒoƒbƒN“à‚ÅDWC_SetRecvBuffer()‚ğŒÄ‚Î‚ê‚é‚±‚Æ‚à‚ ‚é‚Ì‚ÅA
-    // ‚±‚±‚Å–ß‚·•K—v‚ª‚ ‚éB
+    // recvStateã‚’ã€ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿å—ä¿¡å‰ã®çŠ¶æ…‹ã«æˆ»ã™ã€‚
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å†…ã§DWC_SetRecvBuffer()ã‚’å‘¼ã°ã‚Œã‚‹ã“ã¨ã‚‚ã‚ã‚‹ã®ã§ã€
+    // ã“ã“ã§æˆ»ã™å¿…è¦ãŒã‚ã‚‹ã€‚
     transConnection->recvState = transConnection->lastRecvState;
 
     switch ( transConnection->lastRecvType )
@@ -1192,14 +1192,14 @@ DWCs_RecvSystemDataBody(
     case DWC_SEND_TYPE_MATCH_SYN:
     case DWC_SEND_TYPE_MATCH_SYN_ACK:
     case DWC_SEND_TYPE_MATCH_ACK:
-        // ƒ}ƒbƒ`ƒƒCƒN“¯Šú’²®ƒf[ƒ^óM
+        // ãƒãƒƒãƒãƒ¡ã‚¤ã‚¯åŒæœŸèª¿æ•´ãƒ‡ãƒ¼ã‚¿å—ä¿¡æ™‚
         DWCi_ProcessMatchSynPacket( aid, transConnection->lastRecvType, (u8 *)message );
         break;
     }
 }
 
 /** -----------------------------------------------------------------
-  ’x‰„‚ğ”­¶‚³‚¹‚½ƒf[ƒ^‚ª‚ ‚é‚È‚ç‘—óM‚·‚é
+  é…å»¶ã‚’ç™ºç”Ÿã•ã›ãŸãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ãªã‚‰é€å—ä¿¡ã™ã‚‹
   -------------------------------------------------------------------*/
 static void
 DWCs_DelayCheck(
@@ -1224,7 +1224,7 @@ DWCs_DelayCheck(
     {
 		msg = (DWCDelayedMessage*) ArrayNth( delayedMessages, i );
 
-        // startTime‚©‚ç‰ß‚¬‚½ŠÔ‚ªdelayTime‚æ‚è‘å‚«‚­‚È‚Á‚½‚ç‘—óM‚·‚é
+        // startTimeã‹ã‚‰éããŸæ™‚é–“ãŒdelayTimeã‚ˆã‚Šå¤§ãããªã£ãŸã‚‰é€å—ä¿¡ã™ã‚‹
 		if ( OS_TicksToMilliSeconds( now - msg->startTime ) > msg->delayTime )
 		{
 			if ( send )
@@ -1248,7 +1248,7 @@ DWCs_DelayCheck(
 
 			    if ( freeSpace > msg->size )
 			    {
-	                // ‘—M
+	                // é€ä¿¡
 	                gt2FilteredSend( msg->connection, msg->filterID, msg->message, msg->size, msg->reliable );
 			    }
                 else
@@ -1258,11 +1258,11 @@ DWCs_DelayCheck(
             }
             else
             {
-                // óM
+                // å—ä¿¡
                 gt2FilteredReceive( msg->connection, msg->filterID, msg->message, msg->size, msg->reliable );
             }
 
-            // ‘—óM‚µ‚½ƒf[ƒ^‚ğíœ
+            // é€å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤
 			ArrayDeleteAt( delayedMessages, i );
         }
         else
@@ -1273,7 +1273,7 @@ DWCs_DelayCheck(
 }
 
 /** -----------------------------------------------------------------
-  ’x‰„”­¶—p‚Ìƒoƒbƒtƒ@‚É‘—óMƒf[ƒ^‚ğŠi”[‚·‚é
+  é…å»¶ç™ºç”Ÿç”¨ã®ãƒãƒƒãƒ•ã‚¡ã«é€å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
   -------------------------------------------------------------------*/
 static void
 DWCs_AddDelayMessage(
@@ -1305,12 +1305,12 @@ DWCs_AddDelayMessage(
     msg.startTime	= OS_GetTick();
     msg.delayTime	= delayValue;
 
-    // ”z—ñ‚Ìæ“ª‚É’Ç‰Á
+    // é…åˆ—ã®å…ˆé ­ã«è¿½åŠ 
 	ArrayInsertAt( array, &msg, 0 );    
 }
 
 /** -----------------------------------------------------------------
-  ”z—ñŠJ•ú
+  é…åˆ—é–‹æ”¾
   -------------------------------------------------------------------*/
 static void
 DWCs_DelayedMessageFree( void* elem )
@@ -1321,12 +1321,12 @@ DWCs_DelayedMessageFree( void* elem )
 }
 
 /** -----------------------------------------------------------------
-  Outgoing Buffer‚Ì‹ó‚«ƒTƒCƒY‚ğæ“¾
+  Outgoing Bufferã®ç©ºãã‚µã‚¤ã‚ºã‚’å–å¾—
   -------------------------------------------------------------------*/
 static int
 DWCs_GetOutgoingBufferFreeSize( u8 aid )
 {
-	static const int	gamespyUseSize	= 512; // ‘—MˆÈŠO‚Åg—p‚·‚é•ª‚àŠm•Û‚·‚é•K—v‚ª‚ ‚é‚İ‚½‚¢
+	static const int	gamespyUseSize	= 512; // é€ä¿¡ä»¥å¤–ã§ä½¿ç”¨ã™ã‚‹åˆ†ã‚‚ç¢ºä¿ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã¿ãŸã„
 	GT2Connection		connection		= DWCi_GetGT2Connection( aid );
     int					free;
 
@@ -1340,7 +1340,7 @@ DWCs_GetOutgoingBufferFreeSize( u8 aid )
 #ifndef	SDK_FINALROM
 
 /** -----------------------------------------------------------------
-  ‘—MƒpƒPƒbƒgƒƒX‚ğ”­¶‚³‚¹‚é
+  é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆãƒ­ã‚¹ã‚’ç™ºç”Ÿã•ã›ã‚‹
   -------------------------------------------------------------------*/
 static void
 DWCs_SendFilterCallbackDrop(
@@ -1352,7 +1352,7 @@ DWCs_SendFilterCallbackDrop(
 {
     if ( ! reliable && MATH_Rand16(  &sTransInfo->context, 100 ) < sTransInfo->sendDrop ) 
     {
-		// ‘—M‚¹‚¸‚ÉI—¹‚·‚é
+		// é€ä¿¡ã›ãšã«çµ‚äº†ã™ã‚‹
         DWC_Printf( DWC_REPORTFLAG_SEND_INFO, "Packet loss\n" );
         return;				
     }
@@ -1361,7 +1361,7 @@ DWCs_SendFilterCallbackDrop(
 }
 
 /** -----------------------------------------------------------------
-  óMƒpƒPƒbƒgƒƒX‚ğ”­¶‚³‚¹‚é
+  å—ä¿¡ãƒ‘ã‚±ãƒƒãƒˆãƒ­ã‚¹ã‚’ç™ºç”Ÿã•ã›ã‚‹
   -------------------------------------------------------------------*/
 static void
 DWCs_RecvFilterCallbackDrop(
@@ -1373,7 +1373,7 @@ DWCs_RecvFilterCallbackDrop(
 {
     if ( ! reliable && MATH_Rand16(  &sTransInfo->context, 100 ) < sTransInfo->recvDrop ) 
     {
-		// óM‚¹‚¸‚ÉI—¹‚·‚é
+		// å—ä¿¡ã›ãšã«çµ‚äº†ã™ã‚‹
         DWC_Printf( DWC_REPORTFLAG_RECV_INFO, "Packet loss\n" );
         return;				
     }
@@ -1382,7 +1382,7 @@ DWCs_RecvFilterCallbackDrop(
 }
 
 /** -----------------------------------------------------------------
-  ‘—M‚É’x‰„‚ğ”­¶‚³‚¹‚é
+  é€ä¿¡ã«é…å»¶ã‚’ç™ºç”Ÿã•ã›ã‚‹
   -------------------------------------------------------------------*/
 static void
 DWCs_SendFilterCallbackDelay(
@@ -1398,7 +1398,7 @@ DWCs_SendFilterCallbackDelay(
 }
 
 /** -----------------------------------------------------------------
-  óM‚É’x‰„‚ğ”­¶‚³‚¹‚é
+  å—ä¿¡ã«é…å»¶ã‚’ç™ºç”Ÿã•ã›ã‚‹
   -------------------------------------------------------------------*/
 static void
 DWCs_RecvFilterCallbackDelay(

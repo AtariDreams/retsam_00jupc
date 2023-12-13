@@ -1,6 +1,6 @@
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>DWC_NdSetAttr</TITLE>
 		<LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
 	<BODY>
 		<H1>DWC_NdSetAttr</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>
@@ -20,56 +20,56 @@ BOOL DWC_NdSetAttr( const char* attr1, const char* attr2, const char* attr3 )
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-		  �_�E�����[�h���C�u�����ɑ΂��đ����������ݒ肵�܂��B����������͂��ꂼ��10�����ȓ��̃k�������I�[����ASCII��������w�肵�Ă��������B
+		  ダウンロードライブラリに対して属性文字列を設定します。属性文字列はそれぞれ10文字以内のヌル文字終端したASCII文字列を指定してください。
 		</P>
 		<P>
-		  ����������̓_�E�����[�h�T�[�o���_�E�����[�h�\�ȃt�@�C����I������ۂ̊�ƂȂ�܂��B<BR>
-		  3�̑���������͈ȉ��̂悤�ȕ��@�ŕ]������A3�̑���������̑S�ĂŃ_�E�����[�h�\�ƕ]�����ꂽ�Ƃ��ɂ��̃t�@�C���̓_�E�����[�h�\�Ȃ��̂Ƃ��Ĉ����܂��B<BR>
+		  属性文字列はダウンロードサーバがダウンロード可能なファイルを選択する際の基準となります。<BR>
+		  3つの属性文字列は以下のような方法で評価され、3つの属性文字列の全てでダウンロード可能と評価されたときにそのファイルはダウンロード可能なものとして扱われます。<BR>
 		</P>
 		<UL>
-			<LI>����������ɒl���ݒ肳��Ă���ꍇ�́A���̑��������񂪃T�[�o���Őݒ肳�ꂽ����������Ɗ��S��v�����ꍇ�Ƀ_�E�����[�h�\�ƕ]������܂��B
-			<LI>���������񂪋󕶎���̏ꍇ�́A�������Ń_�E�����[�h�\�ƕ]������܂��B
+			<LI>属性文字列に値が設定されている場合は、その属性文字列がサーバ側で設定された属性文字列と完全一致した場合にダウンロード可能と評価されます。
+			<LI>属性文字列が空文字列の場合は、無条件でダウンロード可能と評価されます。
 		</P>
 		</UL>
 		<P>
-		  ���̊֐����Ăяo������<a href="DWC_NdGetFileListNumAsync.html"><code>DWC_NdGetFileListNumAsync</code></a>�֐��A<a href="DWC_NdGetFileListAsync.html"><code>DWC_NdGetFileListAsync</code></a>�֐��A<a href="DWC_NdGetFileAsync.html"><code>DWC_NdGetFileAsync</code></a>�֐��̊e�֐����Ăяo�����ꍇ�́A�S�Ă̑����ɋ󕶎��񂪐ݒ肳�ꂽ��Ԃœ��삵�܂��B
+		  この関数を呼び出さずに<a href="DWC_NdGetFileListNumAsync.html"><code>DWC_NdGetFileListNumAsync</code></a>関数、<a href="DWC_NdGetFileListAsync.html"><code>DWC_NdGetFileListAsync</code></a>関数、<a href="DWC_NdGetFileAsync.html"><code>DWC_NdGetFileAsync</code></a>関数の各関数を呼び出した場合は、全ての属性に空文字列が設定された状態で動作します。
 		</P>
 
-		<H2>����</H2>
+		<H2>引数</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>attr1</CODE></STRONG></EM></TD>
-					<TD width="75%">�ݒ肷�鑮��������1�ւ̃|�C���^</TD>
+					<TD width="75%">設定する属性文字列1へのポインタ</TD>
 				</TR>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>attr2</CODE></STRONG></EM></TD>
-					<TD width="75%">�ݒ肷�鑮��������2�ւ̃|�C���^</TD>
+					<TD width="75%">設定する属性文字列2へのポインタ</TD>
 				</TR>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>attr3</CODE></STRONG></EM></TD>
-					<TD width="75%">�ݒ肷�鑮��������3�ւ̃|�C���^</TD>
+					<TD width="75%">設定する属性文字列3へのポインタ</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
-					<TD width="75%">����</TD>
+					<TD width="75%">成功</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
-					<TD width="75%">���s</TD>
+					<TD width="75%">失敗</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 			<code>
 			<a href="DWC_NdGetFileListNumAsync.html">DWC_NdGetFileListNumAsync</a>,
@@ -78,9 +78,9 @@ BOOL DWC_NdSetAttr( const char* attr1, const char* attr2, const char* attr3 )
 			</code>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2006/04/26 ����<BR>
+			2006/04/26 初版<BR>
 		</P>
 
 	</BODY>

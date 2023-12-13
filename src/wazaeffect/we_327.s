@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_327.s
- * @brief	ƒXƒJƒCƒAƒbƒp[			327
+ * @brief	ã‚¹ã‚«ã‚¤ã‚¢ãƒƒãƒ‘ãƒ¼			327
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡ƒXƒJƒCƒAƒbƒp[			327
+//	â– ã‚¹ã‚«ã‚¤ã‚¢ãƒƒãƒ‘ãƒ¼			327
 //
 //
 // =============================================================================
@@ -44,7 +44,7 @@ WEST_SUKAIAPPAA:
 	ADD_PARTICLE 	0,W_327_327_LINE, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_EP, OPERATOR_AXIS_NONE, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 
-	///< ƒqƒbƒg
+	///< ãƒ’ãƒƒãƒˆ
 	FUNC_CALL		WEST_SP_WT_SHAKE, 5, 2, 0, 1, 12,  WE_TOOL_E1 | WE_TOOL_SSP,
 	WAIT			1
 	ADD_PARTICLE 	0,W_327_327_HIT_MARK, EMTFUNC_FIELD_OPERATOR

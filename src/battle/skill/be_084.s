@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_084.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			084@–ˆƒ^[ƒ““G‚Ì‚©‚ç‚g‚o‚ð’D‚¢A’D‚Á‚½”’l•ª‚Ì‚g‚o‚ª‰ñ•œ‚·‚éi‹Z‚ð‚©‚¯‚½ƒ|ƒPƒ‚ƒ“‚ª‚¢‚È‚­‚È‚Á‚Ä‚àAŒø‰Ê‚ÍŽ‘±‚·‚éj
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			084ã€€æ¯Žã‚¿ãƒ¼ãƒ³æ•µã®ã‹ã‚‰ï¼¨ï¼°ã‚’å¥ªã„ã€å¥ªã£ãŸæ•°å€¤åˆ†ã®ï¼¨ï¼°ãŒå›žå¾©ã™ã‚‹ï¼ˆæŠ€ã‚’ã‹ã‘ãŸãƒã‚±ãƒ¢ãƒ³ãŒã„ãªããªã£ã¦ã‚‚ã€åŠ¹æžœã¯æŒç¶šã™ã‚‹ï¼‰
  *
  *@author	HisashiSogabe
  *@data		2006.01.19

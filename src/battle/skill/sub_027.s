@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_027.s
- *@brief	�퓬�V�[�P���X
- *			������̒ǉ����ʃV�[�P���X
+ *@brief	戦闘シーケンス
+ *			こおりの追加効果シーケンス
  *@author	HisashiSogabe
  *@data		2005.12.05
  *
@@ -15,53 +15,53 @@
 	.include	"waza_seq_def.h"
 
 SUB_027:
-	//�����}�O�}�̂�낢�������Ă���Ƃ��́A���s����i������Ԃ�`�F�b�N�̂��߂ɍŏ�ʁj
+	//特性マグマのよろいを持っているときは、失敗する（かたやぶりチェックのために最上位）
 	KATAYABURI_TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_TSUIKA,TOKUSYU_MAGUMANOYOROI,TokuseiNoKoori
-	//�V�󖳌��n�̓����́A�V��`�F�b�N�𖳎�
+	//天候無効系の特性は、天候チェックを無視
 	NOOTENKI_CHECK				SUB_027_NEXT
-	//�V�󂪂͂�̎��́A������Ȃ�
+	//天候がはれの時は、こおらない
 	IF							IF_FLAG_BIT,BUF_PARA_FIELD_CONDITION,FIELD_CONDITION_HARE_ALL,Umakukimaran
 SUB_027_NEXT:
-	//�Ԑڒǉ��̏ꍇ�A���Ղ�`�F�b�N������
+	//間接追加の場合、りんぷんチェックをする
 	IF				IF_FLAG_NE,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_INDIRECT,NoRinpun
-	//�������Ղ�������Ă���Ƃ��́A���s����i������Ԃ�`�F�b�N�̂��߂ɍŏ�ʁj
+	//特性りんぷんを持っているときは、失敗する（かたやぶりチェックのために最上位）
 	KATAYABURI_TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_TSUIKA,TOKUSYU_RINPUN,Umakukimaran
 NoRinpun:
-//���ڒǉ��̏ꍇ�AWAZAOUT�V�[�P���X�Ń��b�Z�[�W���o���Ȃ��̂ŁA�����ŏo��
+//直接追加の場合、WAZAOUTシーケンスでメッセージを出さないので、ここで出す
 	IF				IF_FLAG_NE,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_DIRECT,NoAttackMsg
 	ATTACK_MESSAGE
 	SERVER_WAIT
 NoAttackMsg:
 
-//�݂������o����Ă���Ƃ��́A���s����
+//みがわりを出されているときは、失敗する
 	MIGAWARI_CHECK	SIDE_TSUIKA,Umakukimaran
 
-//���łɂ������Ă���ꍇ�́A���s����
+//すでにこおっている場合は、失敗する
 	IF_PSP			IF_FLAG_BIT,SIDE_TSUIKA,ID_PSP_condition,CONDITION_KOORI,AlreadyKoori
 
-//������^�C�v�ɂ͌��ʂ��Ȃ�
+//こおりタイプには効果がない
 	IF_PSP			IF_FLAG_EQ,SIDE_TSUIKA,ID_PSP_type1,KOORI_TYPE,Koukanai
 	IF_PSP			IF_FLAG_EQ,SIDE_TSUIKA,ID_PSP_type2,KOORI_TYPE,Koukanai
 
-//���łɏ�Ԉُ�ɂȂ��Ă���ꍇ�́A���s����
+//すでに状態異常になっている場合は、失敗する
 	IF_PSP			IF_FLAG_NE,SIDE_TSUIKA,ID_PSP_condition,0,Umakukimaran
 
-//�킴���͂���Ă���Ƃ��́A���܂����܂��ɂ���
+//わざがはずれているときは、うまくきまらんにする
 	IF				IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_NOHIT_CHG,Umakukimaran
 
-//����҂̂܂���Ŏ���Ă���ꍇ�́A���s����
+//しんぴのまもりで守られている場合は、失敗する
 	IF				IF_FLAG_BIT,BUF_PARA_SIDE_CONDITION_TSUIKA,SIDE_CONDITION_SHINPI,ShinpiNoKoori
 
-//���ڒǉ��̏ꍇ�AWAZAOUT�V�[�P���X�ŋZ�G�t�F�N�g���o���Ȃ��̂ŁA�����ŏo��
+//直接追加の場合、WAZAOUTシーケンスで技エフェクトを出さないので、ここで出す
 	IF				IF_FLAG_NE,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_DIRECT,NoWazaEffect
 	WAZA_EFFECT		SIDE_ATTACK
 	SERVER_WAIT
 NoWazaEffect:
 	STATUS_EFFECT	SIDE_TSUIKA,STATUS_KOORI
 	SERVER_WAIT
-	//������t���O�𗧂Ă�
+	//こおりフラグを立てる
 	PSP_VALUE		VAL_BIT,SIDE_TSUIKA,ID_PSP_condition,CONDITION_KOORI
-	//���ߌn�t���O�𗎂Ƃ�
+	//ため系フラグを落とす
 	KEEP_OFF		SIDE_TSUIKA
 	MESSAGE			KooriMineMsg,TAG_NICK,SIDE_TSUIKA
 	SERVER_WAIT
@@ -69,53 +69,53 @@ NoWazaEffect:
 	WAIT			MSG_WAIT
 	SEQ_END
 
-//���܂����܂�Ȃ��Ƃ�
+//うまくきまらないとき
 Umakukimaran:
-//�Ԑڒǉ��̏ꍇ�A���b�Z�[�W���o���Ȃ�
+//間接追加の場合、メッセージを出さない
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_INDIRECT,SUB_027_RET
 	WAIT			MSG_WAIT
 	GOSUB			SUB_SEQ_UMAKUKIMARAN
 	BRANCH			SUB_027_RET
 
-//���łɂ������Ă���Ƃ�
+//すでにこおっているとき
 AlreadyKoori:
-//�Ԑڒǉ��̏ꍇ�A���b�Z�[�W���o���Ȃ�
+//間接追加の場合、メッセージを出さない
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_INDIRECT,SUB_027_RET
 	WAIT			MSG_WAIT
-	//���󃁃b�Z�[�W���Ȃ�
+	//現状メッセージがない
 //	MESSAGE			AlreadyKooriMineMsg,TAG_NICK,SIDE_TSUIKA
 	BRANCH			SUB_027_END
 
-//���������Ȃ��Ƃ�
+//こうかがないとき
 Koukanai:
-//�Ԑڒǉ��̏ꍇ�A���b�Z�[�W���o���Ȃ�
+//間接追加の場合、メッセージを出さない
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_INDIRECT,SUB_027_RET
 	WAIT			MSG_WAIT
 	MESSAGE			KoukanaiMineMsg,TAG_NICK,SIDE_TSUIKA
 	BRANCH			SUB_027_END
 
-//�����ł������h��
+//特性でこおりを防ぐ
 TokuseiNoKoori:
-//�Ԑڒǉ��̏ꍇ�A���b�Z�[�W���o���Ȃ�
+//間接追加の場合、メッセージを出さない
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_INDIRECT,SUB_027_RET
 	ATTACK_MESSAGE
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//���󃁃b�Z�[�W���Ȃ�
+	//現状メッセージがない
 //	MESSAGE			MagumanoyoroiMineMsg,TAG_NICK_TOKU,SIDE_TSUIKA,SIDE_TSUIKA
 	BRANCH			SUB_027_END
 
 
-//����҂̂܂���Ŗh���ꂽ�Ƃ�
+//しんぴのまもりで防がれたとき
 ShinpiNoKoori:
-//�Ԑڒǉ��̏ꍇ�A���b�Z�[�W���o���Ȃ�
+//間接追加の場合、メッセージを出さない
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_INDIRECT,SUB_027_RET
 	WAIT			MSG_WAIT
 	MESSAGE			ShinpiGuardMineMsg,TAG_NICK,SIDE_TSUIKA
 SUB_027_END:
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//WazaStatusMessage�𖳌��ɂ��邽�߂ɂ��̃t���O�𗧂Ă�
+	//WazaStatusMessageを無効にするためにこのフラグを立てる
 	//VALUE			VAL_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_SIPPAI_RENZOKU_CHECK
 	VALUE			VAL_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_SIPPAI
 SUB_027_RET:

@@ -1,7 +1,7 @@
 #ifndef _R205A_DEF_H_
 #define _R205A_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R205A_FLAG_CHANGE		(1)
 #define	SCRID_R205A_BOY1		(2)
 #define	SCRID_R205A_BOY2		(3)
@@ -12,6 +12,6 @@
 #define	SCRID_R205A_SIGN1		(8)
 #define	SCRID_R205A_SIGN2		(9)
 #define	SCRID_R205A_SIGN3		(10)
-#define	SCRID_R205A_DATA_MAX		(10)		//最大数
+#define	SCRID_R205A_DATA_MAX		(10)		//譛螟ｧ謨ｰ
 
 #endif //_R205A_DEF_H_

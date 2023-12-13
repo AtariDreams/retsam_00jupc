@@ -18,7 +18,7 @@
   indent source
 
   Revision 1.8  2006/11/16 10:42:15  takano_makoto
-  MB_FakeSetVerboseScanCallbackŠÖ”‚ğ’Ç‰Á
+  MB_FakeSetVerboseScanCallbacké–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.7  2006/03/13 06:34:02  yosizaki
   add MB_FAKESCAN_PARENT_BEACON.
@@ -27,16 +27,16 @@
   do-indent
 
   Revision 1.5  2005/12/01 09:15:37  takano_makoto
-  MB_FAKE_WORK_SIZE‚ğ’Ç‰Á
+  MB_FAKE_WORK_SIZEã‚’è¿½åŠ 
 
   Revision 1.4  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.3  2005/02/28 05:26:24  yosizaki
   do-indent.
 
   Revision 1.2  2004/11/24 23:44:44  takano_makoto
-  MB_FakeReadParentBssDesc, MB_FakeEnd‚ğ’Ç‰Á
+  MB_FakeReadParentBssDesc, MB_FakeEndã‚’è¿½åŠ 
 
   Revision 1.1  2004/11/22 12:57:34  takano_makoto
   Initial update.
@@ -56,7 +56,7 @@ extern "C" {
 #include <nitro/mb/mb.h>
 
 // 
-// MB_FakeInit()‚Ìˆø”‚Æ‚µ‚Ä•K—v‚Èƒ[ƒNƒoƒbƒtƒ@‚ÌƒTƒCƒY‚Å‚·B
+// MB_FakeInit()ã®å¼•æ•°ã¨ã—ã¦å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã§ã™ã€‚
 #define     MB_FAKE_WORK_SIZE       (0x5f20)
 
 enum
@@ -69,24 +69,24 @@ enum
 };
 
 /*
- * ƒXƒLƒƒƒ“e‹@‚Ì’Ê’mƒR[ƒ‹ƒoƒbƒN
+ * ã‚¹ã‚­ãƒ£ãƒ³è¦ªæ©Ÿã®é€šçŸ¥ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  */
 typedef struct
 {
-    u16     index;                     // æ“¾‚µ‚½e‹@‚ÌŠÇ——pƒCƒ“ƒfƒNƒX
+    u16     index;                     // å–å¾—ã—ãŸè¦ªæ©Ÿã®ç®¡ç†ç”¨ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹
     u16     padding;
-    MBGameInfo *gameInfo;              // e‹@ƒQ[ƒ€î•ñ
-    WMBssDesc *bssDesc;                // e‹@Ú‘±î•ñ
+    MBGameInfo *gameInfo;              // è¦ªæ©Ÿã‚²ãƒ¼ãƒ æƒ…å ±
+    WMBssDesc *bssDesc;                // è¦ªæ©Ÿæ¥ç¶šæƒ…å ±
 }
 MBFakeScanCallback;
 
 /*
- * ƒGƒ‰[’Ê’mƒR[ƒ‹ƒoƒbƒN
+ * ã‚¨ãƒ©ãƒ¼é€šçŸ¥ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  */
 typedef struct
 {
-    u16     apiid;                     // APIƒR[ƒh
-    u16     errcode;                   // ƒGƒ‰[ƒR[ƒh
+    u16     apiid;                     // APIã‚³ãƒ¼ãƒ‰
+    u16     errcode;                   // ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 }
 MBFakeScanErrorCallback;
 

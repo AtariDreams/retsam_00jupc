@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		dwc_lobbylib.h
- *	@brief		ƒƒr[ƒT[ƒoŠÇ—ŠÖ”
+ *	@brief		ãƒ­ãƒ“ãƒ¼ã‚µãƒ¼ãƒç®¡ç†é–¢æ•°
  *	@author		tomoya takahashi
  *	@data		2007.12.06
  *
@@ -18,131 +18,131 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ƒ`ƒƒƒ“ƒlƒ‹ƒXƒe[ƒ^ƒX
+///	ãƒãƒ£ãƒ³ãƒãƒ«ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //=====================================
 typedef enum {
-    DWC_LOBBY_CHANNEL_STATE_NONE,           // ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚Ä‚¢‚È‚¢B
-    DWC_LOBBY_CHANNEL_STATE_LOGINWAIT,		// ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽº’†B
-    DWC_LOBBY_CHANNEL_STATE_CONNECT,		// ƒ`ƒƒƒ“ƒlƒ‹‚É“üŽºÏ‚ÝB
-    DWC_LOBBY_CHANNEL_STATE_LOGOUTWAIT,     // ƒ`ƒƒƒ“ƒlƒ‹‚É‘ÞŽº’†B
-    DWC_LOBBY_CHANNEL_STATE_ERROR           // ƒ`ƒƒƒ“ƒlƒ‹ó‘Ô‚ðŽæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B
+    DWC_LOBBY_CHANNEL_STATE_NONE,           // ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ã¦ã„ãªã„ã€‚
+    DWC_LOBBY_CHANNEL_STATE_LOGINWAIT,		// ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤ä¸­ã€‚
+    DWC_LOBBY_CHANNEL_STATE_CONNECT,		// ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥å®¤æ¸ˆã¿ã€‚
+    DWC_LOBBY_CHANNEL_STATE_LOGOUTWAIT,     // ãƒãƒ£ãƒ³ãƒãƒ«ã«é€€å®¤ä¸­ã€‚
+    DWC_LOBBY_CHANNEL_STATE_ERROR           // ãƒãƒ£ãƒ³ãƒãƒ«çŠ¶æ…‹ã‚’å–å¾—ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚
 } DWC_LOBBY_CHANNEL_STATE;
 
 
 
 //-------------------------------------
-///	•”‰®î•ñŽæ“¾’è”
+///	éƒ¨å±‹æƒ…å ±å–å¾—å®šæ•°
 //=====================================
 typedef enum {
-	DWC_LOBBY_ROOMDATA_LOCKTIME,		// ƒ`ƒƒƒ“ƒlƒ‹‚ðƒƒbƒN‚·‚éŽžŠÔ
-	DWC_LOBBY_ROOMDATA_RANDOM,			// ƒT[ƒo‚©‚ç¶¬‚³‚ê‚éƒ‰ƒ“ƒ_ƒ€’l
-	DWC_LOBBY_ROOMDATA_ROOMTYPE,		// •”‰®‚Ìƒ^ƒCƒv
-	DWC_LOBBY_ROOMDATA_SEASON,			// ‹Gß”Ô†
-	DWC_LOBBY_ROOMDATA_ARCEUS,			// ƒAƒ‹ƒZƒEƒX‚Ì•\Ž¦‚ð‹–‰Â‚·‚é‚© 
-	DWC_LOBBY_ROOMDATA_CLOSETIME,		// •”‰®‚ÌƒƒbƒN‚©‚çƒNƒ[ƒY‚Ü‚Å‚ÌŽžŠÔ
-	DWC_LOBBY_ROOMDATA_FIRESTART,		// •”‰®‚ÌƒƒbƒN‚©‚ç‰Ô‰ÎŠJŽn‚Ü‚Å‚ÌŽžŠÔ
-	DWC_LOBBY_ROOMDATA_FIREEND,			// •”‰®‚ÌƒƒbƒN‚©‚ç‰Ô‰ÎI—¹‚Ü‚Å‚ÌŽžŠÔ
-	DWC_LOBBY_ROOMDATA_MAX,				// ƒVƒXƒeƒ€“à‚ÅŽg—p‚µ‚Ü‚·
+	DWC_LOBBY_ROOMDATA_LOCKTIME,		// ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹æ™‚é–“
+	DWC_LOBBY_ROOMDATA_RANDOM,			// ã‚µãƒ¼ãƒã‹ã‚‰ç”Ÿæˆã•ã‚Œã‚‹ãƒ©ãƒ³ãƒ€ãƒ å€¤
+	DWC_LOBBY_ROOMDATA_ROOMTYPE,		// éƒ¨å±‹ã®ã‚¿ã‚¤ãƒ—
+	DWC_LOBBY_ROOMDATA_SEASON,			// å­£ç¯€ç•ªå·
+	DWC_LOBBY_ROOMDATA_ARCEUS,			// ã‚¢ãƒ«ã‚»ã‚¦ã‚¹ã®è¡¨ç¤ºã‚’è¨±å¯ã™ã‚‹ã‹ 
+	DWC_LOBBY_ROOMDATA_CLOSETIME,		// éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯ã‹ã‚‰ã‚¯ãƒ­ãƒ¼ã‚ºã¾ã§ã®æ™‚é–“
+	DWC_LOBBY_ROOMDATA_FIRESTART,		// éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯ã‹ã‚‰èŠ±ç«é–‹å§‹ã¾ã§ã®æ™‚é–“
+	DWC_LOBBY_ROOMDATA_FIREEND,			// éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯ã‹ã‚‰èŠ±ç«çµ‚äº†ã¾ã§ã®æ™‚é–“
+	DWC_LOBBY_ROOMDATA_MAX,				// ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã—ã¾ã™
 } DWC_LOBBY_ROOMDATA_TYPE;	
 
 //-------------------------------------
-///	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒ^ƒCƒv
+///	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã‚¿ã‚¤ãƒ—
 //=====================================
 typedef enum {
-	DWC_LOBBY_SUBCHAN_FOOT1,			// ‘«Õƒ{[ƒh‚P
-	DWC_LOBBY_SUBCHAN_FOOT2,			// ‘«Õƒ{[ƒh‚Q
-	DWC_LOBBY_SUBCHAN_CLOCK,			// ¢ŠEŽžŒv
-	DWC_LOBBY_SUBCHAN_NEWS,				// ƒƒr[ƒjƒ…[ƒX
-	DWC_LOBBY_SUBCHAN_NONE,				// ƒVƒXƒeƒ€“à‚ÅŽg—p‚µ‚Ü‚·
+	DWC_LOBBY_SUBCHAN_FOOT1,			// è¶³è·¡ãƒœãƒ¼ãƒ‰ï¼‘
+	DWC_LOBBY_SUBCHAN_FOOT2,			// è¶³è·¡ãƒœãƒ¼ãƒ‰ï¼’
+	DWC_LOBBY_SUBCHAN_CLOCK,			// ä¸–ç•Œæ™‚è¨ˆ
+	DWC_LOBBY_SUBCHAN_NEWS,				// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹
+	DWC_LOBBY_SUBCHAN_NONE,				// ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã—ã¾ã™
 } DWC_LOBBY_SUBCHAN_TYPE;
 
 //-------------------------------------
-///	ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒƒOƒCƒ“‘Ò‚¿
+///	ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ãƒ­ã‚°ã‚¤ãƒ³å¾…ã¡
 //=====================================
 typedef enum {
-	DWC_LOBBY_SUBCHAN_LOGIN_WAIT,			// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚ÉƒƒOƒCƒ“‘Ò‹@’†
-	DWC_LOBBY_SUBCHAN_LOGIN_OK,				// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚ÉƒƒOƒCƒ“Š®—¹
-	DWC_LOBBY_SUBCHAN_LOGIN_NG,				// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚ÉƒƒOƒCƒ“Ž¸”s
+	DWC_LOBBY_SUBCHAN_LOGIN_WAIT,			// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«ãƒ­ã‚°ã‚¤ãƒ³å¾…æ©Ÿä¸­
+	DWC_LOBBY_SUBCHAN_LOGIN_OK,				// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«ãƒ­ã‚°ã‚¤ãƒ³å®Œäº†
+	DWC_LOBBY_SUBCHAN_LOGIN_NG,				// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«ãƒ­ã‚°ã‚¤ãƒ³å¤±æ•—
 } DWC_LOBBY_SUBCHAN_LOGIN_RESULT;
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
 //=====================================
 typedef enum {
-	DWC_LOBBY_MG_BALLSLOW,			// ‹Ê‚¢‚ê
-	DWC_LOBBY_MG_BALANCEBALL,		// ‹Êæ‚è
-	DWC_LOBBY_MG_BALLOON,			// •—‘D‚í‚è
-	DWC_LOBBY_MG_NUM,				// ƒVƒXƒeƒ€“à‚ÅŽg—p‚µ‚Ü‚·
+	DWC_LOBBY_MG_BALLSLOW,			// çŽ‰ã„ã‚Œ
+	DWC_LOBBY_MG_BALANCEBALL,		// çŽ‰ä¹—ã‚Š
+	DWC_LOBBY_MG_BALLOON,			// é¢¨èˆ¹ã‚ã‚Š
+	DWC_LOBBY_MG_NUM,				// ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã—ã¾ã™
 } DWC_LOBBY_MG_TYPE;
 
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€ƒGƒ“ƒgƒŠ[–ß‚è’l
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¨ãƒ³ãƒˆãƒªãƒ¼æˆ»ã‚Šå€¤
 //=====================================
 typedef enum {
-	DWC_LOBBY_MG_ENTRYNONE,			// ‰½‚à‚µ‚Ä‚¢‚È‚¢
-	DWC_LOBBY_MG_ENTRYWAIT,			// ƒGƒ“ƒgƒŠ[’†
-	DWC_LOBBY_MG_ENTRYOK,			// ƒGƒ“ƒgƒŠ[Š®—¹
-	DWC_LOBBY_MG_ENTRYNG,			// ƒGƒ“ƒgƒŠ[Ž¸”s
+	DWC_LOBBY_MG_ENTRYNONE,			// ä½•ã‚‚ã—ã¦ã„ãªã„
+	DWC_LOBBY_MG_ENTRYWAIT,			// ã‚¨ãƒ³ãƒˆãƒªãƒ¼ä¸­
+	DWC_LOBBY_MG_ENTRYOK,			// ã‚¨ãƒ³ãƒˆãƒªãƒ¼å®Œäº†
+	DWC_LOBBY_MG_ENTRYNG,			// ã‚¨ãƒ³ãƒˆãƒªãƒ¼å¤±æ•—
 } DWC_LOBBY_MG_ENTRYRET;
 
 //-------------------------------------
-///	“Š•[ó‘Ô
+///	æŠ•ç¥¨çŠ¶æ…‹
 //=====================================
 typedef enum {
-	DWC_LOBBY_ANKETO_STATE_NONE,	// ‘—M‘O	
-	DWC_LOBBY_ANKETO_STATE_SENDING,	// ‘—M’†
-	DWC_LOBBY_ANKETO_STATE_SENDOK,	// ‘—M¬Œ÷
-	DWC_LOBBY_ANKETO_STATE_SENDNG,	// ‘—MŽ¸”s
+	DWC_LOBBY_ANKETO_STATE_NONE,	// é€ä¿¡å‰	
+	DWC_LOBBY_ANKETO_STATE_SENDING,	// é€ä¿¡ä¸­
+	DWC_LOBBY_ANKETO_STATE_SENDOK,	// é€ä¿¡æˆåŠŸ
+	DWC_LOBBY_ANKETO_STATE_SENDNG,	// é€ä¿¡å¤±æ•—
 } DWC_LOBBY_ANKETO_STATE;
 
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒgƒf[ƒ^
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef enum {
-	DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_SERIAL,	// ¡‚ÌŽ¿–â’Ê‚µ”Ô†
-	DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_NO,		// ¡‚ÌŽ¿–â”Ô†
-	DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_SPECIAL,	// ¡‚ÌŽ¿–â‚ªƒXƒyƒVƒƒƒ‹‚©
-	DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_NINI,	// ¡‚ÌŽ¿–â‚ª”CˆÓŽ¿–â‚©
+	DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_SERIAL,	// ä»Šã®è³ªå•é€šã—ç•ªå·
+	DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_NO,		// ä»Šã®è³ªå•ç•ªå·
+	DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_SPECIAL,	// ä»Šã®è³ªå•ãŒã‚¹ãƒšã‚·ãƒ£ãƒ«ã‹
+	DWC_LOBBY_ANKETO_DATA_NOW_QUESTION_NINI,	// ä»Šã®è³ªå•ãŒä»»æ„è³ªå•ã‹
 	
-	DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_SERIAL,	// ‘O‰ñ‚ÌŽ¿–â’Ê‚µ”Ô†
-	DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_NO,		// ‘O‰ñ‚ÌŽ¿–â”Ô†
-	DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_SPECIAL,// ‘O‰ñ‚ÌŽ¿–â‚ªƒXƒyƒVƒƒƒ‹‚©
-	DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_NINI,	// ‘O‰ñ‚ÌŽ¿–â‚ª”CˆÓŽ¿–â‚©
+	DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_SERIAL,	// å‰å›žã®è³ªå•é€šã—ç•ªå·
+	DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_NO,		// å‰å›žã®è³ªå•ç•ªå·
+	DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_SPECIAL,// å‰å›žã®è³ªå•ãŒã‚¹ãƒšã‚·ãƒ£ãƒ«ã‹
+	DWC_LOBBY_ANKETO_DATA_LAST_QUESTION_NINI,	// å‰å›žã®è³ªå•ãŒä»»æ„è³ªå•ã‹
 
-	DWC_LOBBY_ANKETO_DATA_LAST_RESULT_A,	// ‘O‰ñ‚ÌŽ¿–â‚ªŒ‹‰ÊA
-	DWC_LOBBY_ANKETO_DATA_LAST_RESULT_B,	// ‘O‰ñ‚ÌŽ¿–â‚ªŒ‹‰ÊB
-	DWC_LOBBY_ANKETO_DATA_LAST_RESULT_C,	// ‘O‰ñ‚ÌŽ¿–â‚ªŒ‹‰ÊC
+	DWC_LOBBY_ANKETO_DATA_LAST_RESULT_A,	// å‰å›žã®è³ªå•ãŒçµæžœA
+	DWC_LOBBY_ANKETO_DATA_LAST_RESULT_B,	// å‰å›žã®è³ªå•ãŒçµæžœB
+	DWC_LOBBY_ANKETO_DATA_LAST_RESULT_C,	// å‰å›žã®è³ªå•ãŒçµæžœC
 
-	DWC_LOBBY_ANKETO_DATA_MAX,	// DATAÅ‘å”
+	DWC_LOBBY_ANKETO_DATA_MAX,	// DATAæœ€å¤§æ•°
 } DWC_LOBBY_ANKETO_DATA;
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒgƒƒbƒZ[ƒWî•ñ
-//	”CˆÓŽ¿–â
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æƒ…å ±
+//	ä»»æ„è³ªå•
 //=====================================
 typedef enum {
-	DWC_LOBBY_ANKETO_MESSAGE_NOW_QUESTION,	// ¡‚Ì–â‘è
-	DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_00,	// ¡‚Ì‰ñ“šA
-	DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_01,	// ¡‚Ì‰ñ“šB
-	DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_02,	// ¡‚Ì‰ñ“šC
+	DWC_LOBBY_ANKETO_MESSAGE_NOW_QUESTION,	// ä»Šã®å•é¡Œ
+	DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_00,	// ä»Šã®å›žç­”A
+	DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_01,	// ä»Šã®å›žç­”B
+	DWC_LOBBY_ANKETO_MESSAGE_NOW_ANSWER_02,	// ä»Šã®å›žç­”C
 
-	DWC_LOBBY_ANKETO_MESSAGE_LAST_QUESTION,		// ‘O‰ñ‚Ì–â‘è
-	DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_00,	// ‘O‰ñ‚Ì‰ñ“šA
-	DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_01,	// ‘O‰ñ‚Ì‰ñ“šB
-	DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_02,	// ‘O‰ñ‚Ì‰ñ“šC
+	DWC_LOBBY_ANKETO_MESSAGE_LAST_QUESTION,		// å‰å›žã®å•é¡Œ
+	DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_00,	// å‰å›žã®å›žç­”A
+	DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_01,	// å‰å›žã®å›žç­”B
+	DWC_LOBBY_ANKETO_MESSAGE_LAST_ANSWER_02,	// å‰å›žã®å›žç­”C
 
-	DWC_LOBBY_ANKETO_MESSAGE_MAX,	// MESSAGEÅ‘å”
+	DWC_LOBBY_ANKETO_MESSAGE_MAX,	// MESSAGEæœ€å¤§æ•°
 } DWC_LOBBY_ANKETO_MESSAGE;
 
 //-------------------------------------
-///	WŒvŒ¾ŒêŽæ“¾—p
+///	é›†è¨ˆè¨€èªžå–å¾—ç”¨
 //=====================================
 typedef enum {
 	DWC_LOBBY_ANKETO_LANGUAGE_NOW,
@@ -153,105 +153,105 @@ typedef enum {
 
 
 //-------------------------------------
-///	‘ÞŽºŽÒ¢ŠE’n}ƒf[ƒ^
+///	é€€å®¤è€…ä¸–ç•Œåœ°å›³ãƒ‡ãƒ¼ã‚¿
 //=====================================
-#define DWC_WLDDATA_MAX		(20)	// Å‘åŠi”[’nˆæ”
+#define DWC_WLDDATA_MAX		(20)	// æœ€å¤§æ ¼ç´åœ°åŸŸæ•°
 
 
 //-------------------------------------
-///	ƒ†[ƒU—ñ‹“
+///	ãƒ¦ãƒ¼ã‚¶åˆ—æŒ™
 //=====================================
-#define DWC_LOBBY_USERIDTBL_IDX_NONE	( 0xffffffff )		// ƒ†[ƒUID‚©‚çƒe[ƒuƒ‹ƒCƒ“ƒfƒbƒNƒXŽæ“¾Ž¸”s–ß‚è’l
+#define DWC_LOBBY_USERIDTBL_IDX_NONE	( 0xffffffff )		// ãƒ¦ãƒ¼ã‚¶IDã‹ã‚‰ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—å¤±æ•—æˆ»ã‚Šå€¤
 
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒ€ƒŠƒ~ƒbƒg
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ ãƒªãƒŸãƒƒãƒˆ
 //=====================================
 #define DWC_LOBBY_MG_TIMELIMIT	(60)
 
 
 //-------------------------------------
-///	VIPî•ñ
+///	VIPæƒ…å ±
 //=====================================
-#define DWC_LOBBY_VIP_BUFFNUM	( 128 )		// ƒoƒbƒtƒ@”
-#define DWC_LOBBY_VIP_KEYNONE	( 0 )		// ‡Œ¾—t‚ª‚È‚¢‚Æ‚«‚ÌƒL[’l
+#define DWC_LOBBY_VIP_BUFFNUM	( 128 )		// ãƒãƒƒãƒ•ã‚¡æ•°
+#define DWC_LOBBY_VIP_KEYNONE	( 0 )		// åˆè¨€è‘‰ãŒãªã„ã¨ãã®ã‚­ãƒ¼å€¤
 
 
 //-------------------------------------
-/// ƒAƒ“ƒP[ƒg@’è”
+/// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã€€å®šæ•°
 //=====================================
-#define DWC_LOBBY_ANKETO_NOT_QUESTION	( PPW_LOBBY_INVALID_QUESTION_NO )	// –³Œø‚ÈŽ¿–â
+#define DWC_LOBBY_ANKETO_NOT_QUESTION	( PPW_LOBBY_INVALID_QUESTION_NO )	// ç„¡åŠ¹ãªè³ªå•
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
 /**
- *	@brief		ƒvƒŒƒCƒ„[“üŽºƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^
+ *	@brief		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¥å®¤ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹
  *
- *	@param		userid		ƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ†[ƒUID
- *	@param		cp_profile	‚»‚Ìƒ†[ƒU‚ÌƒvƒƒtƒB[ƒ‹
- *	@param		p_work		ì‹Æƒ[ƒN
- *	@param		mydata		Ž©•ª‚Ìƒf[ƒ^
+ *	@param		userid		ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ¦ãƒ¼ã‚¶ID
+ *	@param		cp_profile	ãã®ãƒ¦ãƒ¼ã‚¶ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param		p_work		ä½œæ¥­ãƒ¯ãƒ¼ã‚¯
+ *	@param		mydata		è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿
  */
 //=====================================
 typedef void (*pDWC_LOBBY_UserInCallBack)( s32 userid, const void* cp_profile, void* p_work, BOOL mydata );
 
 //-------------------------------------
 /**
- *	@brief		ƒvƒŒƒCƒ„[‘ÞŽºƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^
+ *	@brief		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼é€€å®¤ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹
  *
- *	@param		userid		ƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ†[ƒUID
- *	@param		p_work		ì‹Æƒ[ƒN
+ *	@param		userid		ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ¦ãƒ¼ã‚¶ID
+ *	@param		p_work		ä½œæ¥­ãƒ¯ãƒ¼ã‚¯
  */
 //=====================================
 typedef void (*pDWC_LOBBY_UserOutCallBack)( s32 userid, void* p_work );
 
 //-------------------------------------
 /**
- *	@brief		ƒvƒƒtƒB[ƒ‹XVƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^
+ *	@brief		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«æ›´æ–°ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹
  *
- *	@param		userid		ƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ†[ƒUID
- *	@param		cp_profile	‚»‚Ìƒ†[ƒU‚ÌƒvƒƒtƒB[ƒ‹
- *	@param		p_work		ì‹Æƒ[ƒN
+ *	@param		userid		ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ¦ãƒ¼ã‚¶ID
+ *	@param		cp_profile	ãã®ãƒ¦ãƒ¼ã‚¶ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param		p_work		ä½œæ¥­ãƒ¯ãƒ¼ã‚¯
  */
 //=====================================
 typedef void (*pDWC_LOBBY_UserProfileUpDateCallBack)( s32 userid, const void* cp_profile, void* p_work );
 
 //-------------------------------------
 /**
- *	@brief		ŽžŠÔƒCƒxƒ“ƒg”­¶ƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^
+ *	@brief		æ™‚é–“ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹
  *
- *	@param		event		ƒCƒxƒ“ƒgŽí—Þ
- *	@param		p_work		ì‹Æƒ[ƒN
+ *	@param		event		ã‚¤ãƒ™ãƒ³ãƒˆç¨®é¡ž
+ *	@param		p_work		ä½œæ¥­ãƒ¯ãƒ¼ã‚¯
  */
 //=====================================
 typedef void (*pDWC_LOBBY_EventCallBack)( PPW_LOBBY_TIME_EVENT event, void* p_work );
 
 //-------------------------------------
 /**
- *	@brief		“üŽºŽž•s³ƒ`ƒFƒbƒNŒãƒvƒƒtƒB[ƒ‹ŽóMƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^
+ *	@brief		å…¥å®¤æ™‚ä¸æ­£ãƒã‚§ãƒƒã‚¯å¾Œãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹
  *
- *	@param		cp_profile	ƒ`ƒFƒbƒNŒã‚ÌƒvƒƒtƒB[ƒ‹
- *	@param		p_work		ì‹Æƒ[ƒN
+ *	@param		cp_profile	ãƒã‚§ãƒƒã‚¯å¾Œã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param		p_work		ä½œæ¥­ãƒ¯ãƒ¼ã‚¯
  */
 //=====================================
 typedef void (*pDWC_LOBBY_CheckProfileCallBack)( const void* cp_profile, u32 profile_size, void* p_work );
 
 //-------------------------------------
-///	Wi-Fiƒƒr[ƒR[ƒ‹ƒoƒbƒNƒZƒbƒg\‘¢‘Ì
+///	Wi-Fiãƒ­ãƒ“ãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚»ãƒƒãƒˆæ§‹é€ ä½“
 //=====================================
 typedef struct {
-	pDWC_LOBBY_UserInCallBack				p_user_in;			// ƒvƒŒƒCƒ„[“üŽº
-	pDWC_LOBBY_UserOutCallBack				p_user_out;			// ƒvƒŒƒCƒ„[‘ÞŽº
-	pDWC_LOBBY_UserProfileUpDateCallBack	p_profile_update;	// ƒvƒŒƒCƒ„[ƒvƒƒtƒB[ƒ‹XV
-	pDWC_LOBBY_EventCallBack				p_event;			// ƒCƒxƒ“ƒg”­¶
-	pDWC_LOBBY_CheckProfileCallBack			p_check_profile;	// “üŽºŽž•s³ƒ`ƒFƒbƒNŒãƒvƒƒtƒB[ƒ‹ŽóM
+	pDWC_LOBBY_UserInCallBack				p_user_in;			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¥å®¤
+	pDWC_LOBBY_UserOutCallBack				p_user_out;			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼é€€å®¤
+	pDWC_LOBBY_UserProfileUpDateCallBack	p_profile_update;	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«æ›´æ–°
+	pDWC_LOBBY_EventCallBack				p_event;			// ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿ
+	pDWC_LOBBY_CheckProfileCallBack			p_check_profile;	// å…¥å®¤æ™‚ä¸æ­£ãƒã‚§ãƒƒã‚¯å¾Œãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å—ä¿¡
 } DWC_LOBBY_CALLBACK;
 
 
@@ -260,21 +260,21 @@ typedef struct {
 
 //-------------------------------------
 /**
- *	@brief		ƒƒbƒZ[ƒWŽóMƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^
+ *	@brief		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹
  *
- *	@param		userid		ƒ`ƒƒƒ“ƒlƒ‹‚Ìƒ†[ƒUID
- *	@param		cp_data		ŽóMƒf[ƒ^
- *	@param		size		ƒTƒCƒY
- *	@param		p_work		ƒ†[ƒUì‹Æ—pƒ[ƒN
+ *	@param		userid		ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ¦ãƒ¼ã‚¶ID
+ *	@param		cp_data		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ *	@param		size		ã‚µã‚¤ã‚º
+ *	@param		p_work		ãƒ¦ãƒ¼ã‚¶ä½œæ¥­ç”¨ãƒ¯ãƒ¼ã‚¯
  */
 //=====================================
 typedef void (*pDWC_LOBBY_MsgDataRecvCallBack)( s32 userid, const void* cp_data, u32 size, void* p_work );
 //-------------------------------------
-///	ƒƒbƒZ[ƒWƒf[ƒ^ƒRƒ}ƒ“ƒhƒf[ƒ^
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚³ãƒžãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	pDWC_LOBBY_MsgDataRecvCallBack		p_func;			// ŽóMƒR[ƒ‹ƒoƒbƒNŠÖ”
-	u32									size;			// ƒf[ƒ^ƒTƒCƒY
+	pDWC_LOBBY_MsgDataRecvCallBack		p_func;			// å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	u32									size;			// ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 } DWC_LOBBY_MSGCOMMAND;
 
 
@@ -283,7 +283,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	ƒ`ƒƒƒ“ƒlƒ‹“àƒ†[ƒUID—ñ‹“
+///	ãƒãƒ£ãƒ³ãƒãƒ«å†…ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™
 //=====================================
 typedef struct {
 	u32			num;
@@ -294,116 +294,116 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹
-extern void DWC_LOBBY_Init( u32 heapID, SAVEDATA* p_save, u32 profilesize, const DWC_LOBBY_CALLBACK* cp_callback,  void* p_callbackwork );	// ƒ[ƒN‚Ì‰Šú‰»
-extern void DWC_LOBBY_Exit( void );												// ƒ[ƒN‚Ì”jŠü
-extern DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_Update( void );						// ƒƒr[‚ÌXVŠÖ”
-extern PPW_LOBBY_ERROR DWC_LOBBY_GetErr( void );								// ƒƒr[ƒGƒ‰[ó‘ÔŽæ“¾
-extern s32 DWC_LOBBY_GetErrNo( PPW_LOBBY_ERROR error );								// ƒƒr[ƒGƒ‰[ó‘ÔŽæ“¾
-extern BOOL DWC_LOBBY_Login( const void* cp_loginprofile );						// ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚ÖƒƒOƒCƒ“
-extern BOOL DWC_LOBBY_LoginEx( const void* cp_loginprofile, u32 prefix );			// ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚ÖƒƒOƒCƒ“	“üŽºƒ`ƒƒƒ“ƒlƒ‹‚ð‘I‘ð
-extern BOOL DWC_LOBBY_LoginWait( void );										// ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹ƒƒOƒCƒ“Š®—¹‘Ò‚¿
-extern void DWC_LOBBY_Logout( void );										// ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹ƒƒOƒAƒEƒg
-extern BOOL DWC_LOBBY_LogoutWait( void );										// ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹ƒƒOƒAƒEƒgŠ®—¹‘Ò‚¿
-extern DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_GetState( void );						// ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚Ìó‘Ô
-extern BOOL DWC_LOBBY_CheckExcessFlood( void );	// ’ÊM‰ßèó‘ÔŽæ“¾	Žæ“¾Œãƒtƒ‰ƒO‚ðOFF‚É‚µ‚Ü‚·
-extern BOOL DWC_LOBBY_CheckProfileError( void );							// ƒvƒƒtƒB[ƒ‹î•ñ•s³ƒ`ƒFƒbƒN
+// ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«
+extern void DWC_LOBBY_Init( u32 heapID, SAVEDATA* p_save, u32 profilesize, const DWC_LOBBY_CALLBACK* cp_callback,  void* p_callbackwork );	// ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
+extern void DWC_LOBBY_Exit( void );												// ãƒ¯ãƒ¼ã‚¯ã®ç ´æ£„
+extern DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_Update( void );						// ãƒ­ãƒ“ãƒ¼ã®æ›´æ–°é–¢æ•°
+extern PPW_LOBBY_ERROR DWC_LOBBY_GetErr( void );								// ãƒ­ãƒ“ãƒ¼ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹å–å¾—
+extern s32 DWC_LOBBY_GetErrNo( PPW_LOBBY_ERROR error );								// ãƒ­ãƒ“ãƒ¼ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹å–å¾—
+extern BOOL DWC_LOBBY_Login( const void* cp_loginprofile );						// ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã¸ãƒ­ã‚°ã‚¤ãƒ³
+extern BOOL DWC_LOBBY_LoginEx( const void* cp_loginprofile, u32 prefix );			// ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã¸ãƒ­ã‚°ã‚¤ãƒ³	å…¥å®¤ãƒãƒ£ãƒ³ãƒãƒ«ã‚’é¸æŠž
+extern BOOL DWC_LOBBY_LoginWait( void );										// ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ãƒ­ã‚°ã‚¤ãƒ³å®Œäº†å¾…ã¡
+extern void DWC_LOBBY_Logout( void );										// ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ãƒ­ã‚°ã‚¢ã‚¦ãƒˆ
+extern BOOL DWC_LOBBY_LogoutWait( void );										// ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå®Œäº†å¾…ã¡
+extern DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_GetState( void );						// ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã®çŠ¶æ…‹
+extern BOOL DWC_LOBBY_CheckExcessFlood( void );	// é€šä¿¡éŽå‰°çŠ¶æ…‹å–å¾—	å–å¾—å¾Œãƒ•ãƒ©ã‚°ã‚’OFFã«ã—ã¾ã™
+extern BOOL DWC_LOBBY_CheckProfileError( void );							// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«æƒ…å ±ä¸æ­£ãƒã‚§ãƒƒã‚¯
 
-// ƒvƒƒtƒB[ƒ‹ƒf[ƒ^
-extern s32 DWC_LOBBY_GetMyUserID( void );							// Ž©•ª‚Ìƒ†[ƒUID
-extern void DWC_LOBBY_SetMyProfile( const void* cp_data );			// Ž©•ª‚ÌƒvƒƒtƒB[ƒ‹‚ðXV
-extern const void* DWC_LOBBY_GetMyProfile( void );					// Ž©•ª‚ÌƒvƒƒtƒB[ƒ‹‚ðŽæ“¾
-extern const void* DWC_LOBBY_GetUserProfile( s32 userid );			// l‚ÌƒvƒƒtƒB[ƒ‹‚ðŽæ“¾
-extern void DWC_LOBBY_GetLoginTime( s32 userid, s64* p_time );		// ƒƒOƒCƒ“‚µ‚½ŽžŠÔ‚ðŽæ“¾
-extern s32	DWC_LOBBY_GetOldUser( void );							// ˆê”ÔÌ‚©‚ç‚¢‚éƒvƒŒƒCƒ„[‚ðŽæ“¾
-extern s32	DWC_LOBBY_GetOldUser_UserDesc( s32 desc_user );			// Ø’f‚³‚ê‚élˆÈŠO‚Åˆê”ÔÌ‚©‚ç‚¢‚éƒvƒŒƒCƒ„[‚ðŽæ“¾
+// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
+extern s32 DWC_LOBBY_GetMyUserID( void );							// è‡ªåˆ†ã®ãƒ¦ãƒ¼ã‚¶ID
+extern void DWC_LOBBY_SetMyProfile( const void* cp_data );			// è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’æ›´æ–°
+extern const void* DWC_LOBBY_GetMyProfile( void );					// è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å–å¾—
+extern const void* DWC_LOBBY_GetUserProfile( s32 userid );			// äººã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å–å¾—
+extern void DWC_LOBBY_GetLoginTime( s32 userid, s64* p_time );		// ãƒ­ã‚°ã‚¤ãƒ³ã—ãŸæ™‚é–“ã‚’å–å¾—
+extern s32	DWC_LOBBY_GetOldUser( void );							// ä¸€ç•ªæ˜”ã‹ã‚‰ã„ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å–å¾—
+extern s32	DWC_LOBBY_GetOldUser_UserDesc( s32 desc_user );			// åˆ‡æ–­ã•ã‚Œã‚‹äººä»¥å¤–ã§ä¸€ç•ªæ˜”ã‹ã‚‰ã„ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å–å¾—
 
-// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ROOM
-extern BOOL DWC_LOBBY_SUBCHAN_Login( DWC_LOBBY_SUBCHAN_TYPE channel );			// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚ÖƒƒOƒCƒ“
-extern DWC_LOBBY_SUBCHAN_LOGIN_RESULT DWC_LOBBY_SUBCHAN_LoginWait( void );								// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚ÖƒƒOƒCƒ“‘Ò‚¿
-extern BOOL DWC_LOBBY_SUBCHAN_Logout( void );									// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒƒOƒAƒEƒg
-extern BOOL DWC_LOBBY_SUBCHAN_LogoutWait( void );								// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹ƒƒOƒAƒEƒg‘Ò‚¿
-extern DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_SUBCHAN_GetState( void );				// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚Ìó‘Ô
-extern BOOL DWC_LOBBY_SUBCHAN_LoginCheck( DWC_LOBBY_SUBCHAN_TYPE channel );						// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚Ìl”‚ðƒ`ƒFƒbƒN‚µ‚Ä“ü‚ê‚éó‘Ô‚©ƒ`ƒFƒbƒN
+// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ROOM
+extern BOOL DWC_LOBBY_SUBCHAN_Login( DWC_LOBBY_SUBCHAN_TYPE channel );			// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã¸ãƒ­ã‚°ã‚¤ãƒ³
+extern DWC_LOBBY_SUBCHAN_LOGIN_RESULT DWC_LOBBY_SUBCHAN_LoginWait( void );								// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã¸ãƒ­ã‚°ã‚¤ãƒ³å¾…ã¡
+extern BOOL DWC_LOBBY_SUBCHAN_Logout( void );									// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ãƒ­ã‚°ã‚¢ã‚¦ãƒˆ
+extern BOOL DWC_LOBBY_SUBCHAN_LogoutWait( void );								// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå¾…ã¡
+extern DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_SUBCHAN_GetState( void );				// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã®çŠ¶æ…‹
+extern BOOL DWC_LOBBY_SUBCHAN_LoginCheck( DWC_LOBBY_SUBCHAN_TYPE channel );						// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã®äººæ•°ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦å…¥ã‚Œã‚‹çŠ¶æ…‹ã‹ãƒã‚§ãƒƒã‚¯
 
-// ƒ†[ƒUID—ñ‹“Žæ“¾
-// ƒ`ƒƒƒ“ƒlƒ‹“à‚É’N‚ª‚¢‚é‚Ì‚©‚í‚©‚é
-extern void DWC_LOBBY_GetUserIDTbl( DWC_LOBBY_CHANNEL_USERID* p_data );			// ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹“àƒ†[ƒUID—ñ‹“Žæ“¾
-extern void DWC_LOBBY_SUBCHAN_GetUserIDTbl( DWC_LOBBY_CHANNEL_USERID* p_data );	// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹“àƒ†[ƒUID—ñ‹“Žæ“¾
-extern u32	DWC_LOBBY_GetUserIDIdx( s32 userid );								// ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹“à‚Ìƒ†[ƒUID‚©‚ç—ñ‹““à‚ÌINDEX‚ð‹‚ß‚é
-extern u32	DWC_LOBBY_SUBCHAN_GetUserIDIdx( s32 userid );						// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹“à‚Ìƒ†[ƒUID‚©‚ç—ñ‹““à‚ÌINDEX‚ð‹‚ß‚é
-extern s32	DWC_LOBBY_GetUserIdxID( u32 idx );								// ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹“à‚ÌINDEX‚©‚çƒ†[ƒUID‚ð‹‚ß‚é
-extern s32	DWC_LOBBY_SUBCHAN_GetUserIdxID( u32 idx );						// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹“à‚ÌINDEX‚©‚çƒ†[ƒUID‚ð‹‚ß‚é
+// ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™å–å¾—
+// ãƒãƒ£ãƒ³ãƒãƒ«å†…ã«èª°ãŒã„ã‚‹ã®ã‹ã‚ã‹ã‚‹
+extern void DWC_LOBBY_GetUserIDTbl( DWC_LOBBY_CHANNEL_USERID* p_data );			// ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«å†…ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™å–å¾—
+extern void DWC_LOBBY_SUBCHAN_GetUserIDTbl( DWC_LOBBY_CHANNEL_USERID* p_data );	// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«å†…ãƒ¦ãƒ¼ã‚¶IDåˆ—æŒ™å–å¾—
+extern u32	DWC_LOBBY_GetUserIDIdx( s32 userid );								// ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«å†…ã®ãƒ¦ãƒ¼ã‚¶IDã‹ã‚‰åˆ—æŒ™å†…ã®INDEXã‚’æ±‚ã‚ã‚‹
+extern u32	DWC_LOBBY_SUBCHAN_GetUserIDIdx( s32 userid );						// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«å†…ã®ãƒ¦ãƒ¼ã‚¶IDã‹ã‚‰åˆ—æŒ™å†…ã®INDEXã‚’æ±‚ã‚ã‚‹
+extern s32	DWC_LOBBY_GetUserIdxID( u32 idx );								// ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«å†…ã®INDEXã‹ã‚‰ãƒ¦ãƒ¼ã‚¶IDã‚’æ±‚ã‚ã‚‹
+extern s32	DWC_LOBBY_SUBCHAN_GetUserIdxID( u32 idx );						// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«å†…ã®INDEXã‹ã‚‰ãƒ¦ãƒ¼ã‚¶IDã‚’æ±‚ã‚ã‚‹
 
-// ƒƒr[ƒf[ƒ^
-extern void DWC_LOBBY_GetTime( s64* p_time );		// Œ»Ý‚ÌGMT
-extern void DWC_LOBBY_GetOpenTime( s64* p_time );	// •”‰®‚ðì¬‚µ‚½ŽžŠÔ
-extern void DWC_LOBBY_GetLockTime( s64* p_time );	// •”‰®‚ðƒƒbƒN‚µ‚½ŽžŠÔ
-extern u32 DWC_LOBBY_GetRoomData( DWC_LOBBY_ROOMDATA_TYPE type );	// Šeî•ñ‚ðŽæ“¾
+// ãƒ­ãƒ“ãƒ¼ãƒ‡ãƒ¼ã‚¿
+extern void DWC_LOBBY_GetTime( s64* p_time );		// ç¾åœ¨ã®GMT
+extern void DWC_LOBBY_GetOpenTime( s64* p_time );	// éƒ¨å±‹ã‚’ä½œæˆã—ãŸæ™‚é–“
+extern void DWC_LOBBY_GetLockTime( s64* p_time );	// éƒ¨å±‹ã‚’ãƒ­ãƒƒã‚¯ã—ãŸæ™‚é–“
+extern u32 DWC_LOBBY_GetRoomData( DWC_LOBBY_ROOMDATA_TYPE type );	// å„æƒ…å ±ã‚’å–å¾—
 
 
-// ‘ÞŽºŽÒ‚Ì‘ƒf[ƒ^
+// é€€å®¤è€…ã®å›½ãƒ‡ãƒ¼ã‚¿
 extern BOOL DWC_LOBBY_WLDDATA_Send( void );
 extern BOOL DWC_LOBBY_WLDDATA_SendWait( void );
-extern u16 DWC_LOBBY_WLDDATA_GetNation( u8 index );		// ‘ÞŽºŽÒ‚Ì‘ID
-extern u8 DWC_LOBBY_WLDDATA_GetArea( u8 index );		// ‘ÞŽºŽÒ‚Ì’nˆæID
-extern BOOL DWC_LOBBY_WLDDATA_GetDataFlag( u8 index );	// ‘ÞŽºŽÒ‘ƒf[ƒ^‚ª‚ ‚é‚©
+extern u16 DWC_LOBBY_WLDDATA_GetNation( u8 index );		// é€€å®¤è€…ã®å›½ID
+extern u8 DWC_LOBBY_WLDDATA_GetArea( u8 index );		// é€€å®¤è€…ã®åœ°åŸŸID
+extern BOOL DWC_LOBBY_WLDDATA_GetDataFlag( u8 index );	// é€€å®¤è€…å›½ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹
 
 
-// ƒƒbƒZ[ƒW‘—ŽóM
-// LOBBY_‰½‚à‚È‚µ		ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹—p
-// LOBBY_SUBCHAN		ƒTƒuƒ`ƒƒƒ“ƒlƒ‹—p
-//						i‘«Õƒ{[ƒhA¢ŠEŽžŒvAƒjƒ…[ƒX‚Ì‚È‚©‚Å¡Ž©•ª‚ª‚¢‚éƒ`ƒƒƒ“ƒlƒ‹j
-extern void DWC_LOBBY_SetMsgCmd( const DWC_LOBBY_MSGCOMMAND* cp_tbl, u32 tblnum, void* p_work );			// ƒRƒ}ƒ“ƒh‚ÌÝ’è
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€å—ä¿¡
+// LOBBY_ä½•ã‚‚ãªã—		ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ç”¨
+// LOBBY_SUBCHAN		ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ç”¨
+//						ï¼ˆè¶³è·¡ãƒœãƒ¼ãƒ‰ã€ä¸–ç•Œæ™‚è¨ˆã€ãƒ‹ãƒ¥ãƒ¼ã‚¹ã®ãªã‹ã§ä»Šè‡ªåˆ†ãŒã„ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«ï¼‰
+extern void DWC_LOBBY_SetMsgCmd( const DWC_LOBBY_MSGCOMMAND* cp_tbl, u32 tblnum, void* p_work );			// ã‚³ãƒžãƒ³ãƒ‰ã®è¨­å®š
 extern void DWC_LOBBY_SUBCHAN_SetMsgCmd( const DWC_LOBBY_MSGCOMMAND* cp_tbl, u32 tblnum, void* p_work );
-extern void DWC_LOBBY_CleanMsgCmd( void );															// ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹‚ð”jŠü
+extern void DWC_LOBBY_CleanMsgCmd( void );															// ã‚³ãƒžãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç ´æ£„
 extern void DWC_LOBBY_SUBCHAN_CleanMsgCmd( void );
-extern void DWC_LOBBY_SendChannelMsg( u32 type, const void* cp_data, u32 size );					// ƒ`ƒƒƒ“ƒlƒ‹‘S‘Ì‚É‘—M
-extern void DWC_LOBBY_SendPlayerMsg( u32 type, s32 userid, const void* cp_data, u32 size );						// ŒÂl‚É‘Î‚µ‚Ä‘—M
-extern void DWC_LOBBY_SUBCHAN_SendMsg( u32 type, const void* cp_data, u32 size );					// ƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚Íƒ`ƒƒƒ“ƒlƒ‹‘S‘Ì‚Ì‘—M‚µ‚©‚È‚¢
+extern void DWC_LOBBY_SendChannelMsg( u32 type, const void* cp_data, u32 size );					// ãƒãƒ£ãƒ³ãƒãƒ«å…¨ä½“ã«é€ä¿¡
+extern void DWC_LOBBY_SendPlayerMsg( u32 type, s32 userid, const void* cp_data, u32 size );						// å€‹äººã«å¯¾ã—ã¦é€ä¿¡
+extern void DWC_LOBBY_SUBCHAN_SendMsg( u32 type, const void* cp_data, u32 size );					// ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã¯ãƒãƒ£ãƒ³ãƒãƒ«å…¨ä½“ã®é€ä¿¡ã—ã‹ãªã„
 
-// ƒ~ƒjƒQ[ƒ€•åW
-// ‚±‚ÌŠÖ”‚ÌƒAƒNƒZƒX‚ÍCOMM_STATE‚ªs‚¢‚Ü‚·B
-// P2PŠÖŒW‚Ìî•ñ‚ÌŽæ“¾‚ÍCOMM_`ŠÖ”‚Ås‚Á‚Ä‚­‚¾‚³‚¢B
-extern BOOL DWC_LOBBY_MG_StartRecruit( DWC_LOBBY_MG_TYPE type, u32 maxnum );	// •åWŠJŽn
-extern void DWC_LOBBY_MG_EndRecruit( void );					// •åWI—¹
-extern void DWC_LOBBY_MG_StartGame( void );						// ¡‚Ìó‘Ô‚ÅƒQ[ƒ€‚ðŠJŽn‚³‚¹‚é
-extern BOOL DWC_LOBBY_MG_CheckStartGame( void );				// ŽQ‰Á‚µ‚Ä‚¢‚éƒQ[ƒ€‚ðŠJŽn‚·‚é‚©ƒ`ƒFƒbƒN
-extern void DWC_LOBBY_MG_EndConnect( void );					// P2P’ÊM‚ÌI—¹
-extern BOOL DWC_LOBBY_MG_ForceEnd( void );						// •åW‚ðI—¹‚·‚é•K—v‚ª‚ ‚é‚©
-extern BOOL DWC_LOBBY_MG_CheckRecruit( DWC_LOBBY_MG_TYPE type );// •åWî•ñ‚ÌŽæ“¾
-extern BOOL DWC_LOBBY_MG_CheckEntryOk( DWC_LOBBY_MG_TYPE type );// ƒGƒ“ƒgƒŠ[‚Å‚«‚é‚©ƒ`ƒFƒbƒN
-extern u32 DWC_LOBBY_MG_GetRest( DWC_LOBBY_MG_TYPE type );		// ‚ ‚Æ‰½l‚Í‚¢‚ê‚é‚©
-extern u32 DWC_LOBBY_MG_GetEntryNum( DWC_LOBBY_MG_TYPE type );	// ‰½l•åW‚ÉŽQ‰Á‚µ‚Ä‚¢‚é‚©
-extern BOOL DWC_LOBBY_MG_Entry( DWC_LOBBY_MG_TYPE type );		// •åW‚ÉŽQ‰Á
-extern s32 DWC_LOBBY_MG_GetTimeLimit( DWC_LOBBY_MG_TYPE type );	// •åW‚Ì§ŒÀŽžŠÔ‚ðŽæ“¾‚·‚é
-extern DWC_LOBBY_MG_ENTRYRET DWC_LOBBY_MG_EntryWait( void );	// •åWŽQ‰ÁŠ®—¹‘Ò‚¿
-extern DWC_LOBBY_MG_TYPE DWC_LOBBY_MG_GetConnectType( void );	// Ú‘±’†‚Ìƒ~ƒjƒQ[ƒ€‚ðŽæ“¾
-extern s32 DWC_LOBBY_MG_GetParentUserID( void );				// e‚Ìuserid‚ðŽæ“¾
-extern BOOL DWC_LOBBY_MG_MyParent( void );						// Ž©•ª‚ªe‚©ƒ`ƒFƒbƒN
-extern BOOL DWC_LOBBY_MG_CheckConnect( void );					// ’N‚©‚ÆP2Pó‘Ô‚É‚ ‚é‚©ƒ`ƒFƒbƒN
+// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†
+// ã“ã®é–¢æ•°ã®ã‚¢ã‚¯ã‚»ã‚¹ã¯COMM_STATEãŒè¡Œã„ã¾ã™ã€‚
+// P2Pé–¢ä¿‚ã®æƒ…å ±ã®å–å¾—ã¯COMM_ã€œé–¢æ•°ã§è¡Œã£ã¦ãã ã•ã„ã€‚
+extern BOOL DWC_LOBBY_MG_StartRecruit( DWC_LOBBY_MG_TYPE type, u32 maxnum );	// å‹Ÿé›†é–‹å§‹
+extern void DWC_LOBBY_MG_EndRecruit( void );					// å‹Ÿé›†çµ‚äº†
+extern void DWC_LOBBY_MG_StartGame( void );						// ä»Šã®çŠ¶æ…‹ã§ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã•ã›ã‚‹
+extern BOOL DWC_LOBBY_MG_CheckStartGame( void );				// å‚åŠ ã—ã¦ã„ã‚‹ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+extern void DWC_LOBBY_MG_EndConnect( void );					// P2Pé€šä¿¡ã®çµ‚äº†
+extern BOOL DWC_LOBBY_MG_ForceEnd( void );						// å‹Ÿé›†ã‚’çµ‚äº†ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹
+extern BOOL DWC_LOBBY_MG_CheckRecruit( DWC_LOBBY_MG_TYPE type );// å‹Ÿé›†æƒ…å ±ã®å–å¾—
+extern BOOL DWC_LOBBY_MG_CheckEntryOk( DWC_LOBBY_MG_TYPE type );// ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+extern u32 DWC_LOBBY_MG_GetRest( DWC_LOBBY_MG_TYPE type );		// ã‚ã¨ä½•äººã¯ã„ã‚Œã‚‹ã‹
+extern u32 DWC_LOBBY_MG_GetEntryNum( DWC_LOBBY_MG_TYPE type );	// ä½•äººå‹Ÿé›†ã«å‚åŠ ã—ã¦ã„ã‚‹ã‹
+extern BOOL DWC_LOBBY_MG_Entry( DWC_LOBBY_MG_TYPE type );		// å‹Ÿé›†ã«å‚åŠ 
+extern s32 DWC_LOBBY_MG_GetTimeLimit( DWC_LOBBY_MG_TYPE type );	// å‹Ÿé›†ã®åˆ¶é™æ™‚é–“ã‚’å–å¾—ã™ã‚‹
+extern DWC_LOBBY_MG_ENTRYRET DWC_LOBBY_MG_EntryWait( void );	// å‹Ÿé›†å‚åŠ å®Œäº†å¾…ã¡
+extern DWC_LOBBY_MG_TYPE DWC_LOBBY_MG_GetConnectType( void );	// æŽ¥ç¶šä¸­ã®ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚’å–å¾—
+extern s32 DWC_LOBBY_MG_GetParentUserID( void );				// è¦ªã®useridã‚’å–å¾—
+extern BOOL DWC_LOBBY_MG_MyParent( void );						// è‡ªåˆ†ãŒè¦ªã‹ãƒã‚§ãƒƒã‚¯
+extern BOOL DWC_LOBBY_MG_CheckConnect( void );					// èª°ã‹ã¨P2PçŠ¶æ…‹ã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 
-// VIPƒf[ƒ^Žæ“¾
+// VIPãƒ‡ãƒ¼ã‚¿å–å¾—
 extern BOOL DWC_LOBBY_VIP_CheckVip( s32 userid );
 extern s32 DWC_LOBBY_VIP_GetAikotobaKey( s32 userid );
 
 
-// ƒAƒ“ƒP[ƒgƒf[ƒ^
-extern void DWC_LOBBY_ANKETO_SubMit( s32 select );					// “Š•[‘—M
-extern DWC_LOBBY_ANKETO_STATE DWC_LOBBY_ANKETO_WaitSubMit( void );	// “Š•[Š®—¹‘Ò‚¿
-extern s32 DWC_LOBBY_ANKETO_GetData( DWC_LOBBY_ANKETO_DATA type );	// ƒAƒ“ƒP[ƒgƒf[ƒ^Žæ“¾
-extern u16* DWC_LOBBY_ANKETO_GetMessage( DWC_LOBBY_ANKETO_MESSAGE type );	// ƒAƒ“ƒP[ƒgƒƒbƒZ[ƒWŽæ“¾
+// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+extern void DWC_LOBBY_ANKETO_SubMit( s32 select );					// æŠ•ç¥¨é€ä¿¡
+extern DWC_LOBBY_ANKETO_STATE DWC_LOBBY_ANKETO_WaitSubMit( void );	// æŠ•ç¥¨å®Œäº†å¾…ã¡
+extern s32 DWC_LOBBY_ANKETO_GetData( DWC_LOBBY_ANKETO_DATA type );	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
+extern u16* DWC_LOBBY_ANKETO_GetMessage( DWC_LOBBY_ANKETO_MESSAGE type );	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 extern BOOL DWC_LOBBY_ANKETO_GetLanguageSummarize( DWC_LOBBY_ANKETO_LANGUAGE_DATA type, u32 lang );
 
 
 #ifdef PM_DEBUG
-// ƒfƒoƒbƒN—pƒXƒPƒWƒ…[ƒ‹Ý’è
+// ãƒ‡ãƒãƒƒã‚¯ç”¨ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«è¨­å®š
 extern void DWC_LOBBY_DEBUG_SetRoomData( u32 locktime, u32 random, u8 roomtype, u8 season );
-extern void DWC_LOBBY_DEBUG_PlayerIN( const void* cp_data, s32 userid );			// ‚»‚Ìl‚ð‚¢‚é‚±‚Æ‚É‚·‚é
-extern void DWC_LOBBY_DEBUG_SetProfile( const void* cp_data, u32 userid );			// ‚»‚Ìl‚ð‚¢‚é‚±‚Æ‚É‚·‚é
+extern void DWC_LOBBY_DEBUG_PlayerIN( const void* cp_data, s32 userid );			// ãã®äººã‚’ã„ã‚‹ã“ã¨ã«ã™ã‚‹
+extern void DWC_LOBBY_DEBUG_SetProfile( const void* cp_data, u32 userid );			// ãã®äººã‚’ã„ã‚‹ã“ã¨ã«ã™ã‚‹
 
 #endif
 

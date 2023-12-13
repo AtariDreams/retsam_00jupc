@@ -2,7 +2,7 @@
 /**
  *
  * @file	slot_main.c
- * @brief	ƒ~ƒjƒQ[ƒ€@ƒXƒƒbƒg@ƒƒCƒ“
+ * @brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã€€ã‚¹ãƒ­ãƒƒãƒˆã€€ãƒ¡ã‚¤ãƒ³
  * @author	kagaya
  * @data	05.07.13
  *
@@ -16,9 +16,9 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒoƒOC³
+///	ãƒã‚°ä¿®æ­£
 //--------------------------------------------------------------
-/* ƒXƒƒbƒgƒQ[ƒ€Aƒ{[ƒiƒXƒQ[ƒ€I—¹’¼Œã‚ÉƒXƒƒbƒgƒQ[ƒ€‚ğI—¹‚·‚é‚ÆƒtƒŠ[ƒY‚·‚éƒoƒO‚ğC³ */
+/* ã‚¹ãƒ­ãƒƒãƒˆã‚²ãƒ¼ãƒ ã€ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ çµ‚äº†ç›´å¾Œã«ã‚¹ãƒ­ãƒƒãƒˆã‚²ãƒ¼ãƒ ã‚’çµ‚äº†ã™ã‚‹ã¨ãƒ•ãƒªãƒ¼ã‚ºã™ã‚‹ãƒã‚°ã‚’ä¿®æ­£ */
 #define BUGFIX_061101_FIX (1)
 
 //--------------------------------------------------------------
@@ -27,38 +27,38 @@
 //----
 #ifdef DEBUG_ON_SLOT
 //----
-//#define DEBUG_DDISPTEST							//‰º‰æ–ÊƒeƒXƒg
-//#define DEBUG_BONUS_COUNT_TEST (4)				//‹­§ƒ{[ƒiƒXÅ‘å‰ñ”
-//#define DEBUG_LOTTERY_S_FORCE (LOTTERY_HITBIT_BELL)	//‹­§–ğ
+//#define DEBUG_DDISPTEST							//ä¸‹ç”»é¢ãƒ†ã‚¹ãƒˆ
+//#define DEBUG_BONUS_COUNT_TEST (4)				//å¼·åˆ¶ãƒœãƒ¼ãƒŠã‚¹æœ€å¤§å›æ•°
+//#define DEBUG_LOTTERY_S_FORCE (LOTTERY_HITBIT_BELL)	//å¼·åˆ¶å½¹
 //#define DEBUG_LOTTERY_S_RND
 //----
 #endif
 //----
 
 //--------------------------------------------------------------
-///	‚Ü‚­‚ë
+///	ã¾ãã‚
 //--------------------------------------------------------------
 #define FADE_CHANGE( before, after, evy )					\
 			( before + ( ( after - before ) * evy >> 4 ) )
 
 //--------------------------------------------------------------
-//	ƒVƒ“ƒ{ƒ‹
+//	ã‚·ãƒ³ãƒœãƒ«
 //--------------------------------------------------------------
-#define PAD_KEYALL (PAD_KEY_UP|PAD_KEY_DOWN|PAD_KEY_LEFT|PAD_KEY_RIGHT)	///<ƒL[‘S‰Ÿ‚µ
-#define PAD_END 		(PAD_BUTTON_START)			///<I—¹ƒ{ƒ^ƒ“
-#define PAD_BET 		(PAD_BUTTON_X)				///<ƒxƒbƒhƒ{ƒ^ƒ“
-#define PAD_GAMESTART	(PAD_KEY_DOWN|PAD_BUTTON_X)	///<ƒQ[ƒ€ŠJnƒ{ƒ^ƒ“
+#define PAD_KEYALL (PAD_KEY_UP|PAD_KEY_DOWN|PAD_KEY_LEFT|PAD_KEY_RIGHT)	///<ã‚­ãƒ¼å…¨æŠ¼ã—
+#define PAD_END 		(PAD_BUTTON_START)			///<çµ‚äº†ãƒœã‚¿ãƒ³
+#define PAD_BET 		(PAD_BUTTON_X)				///<ãƒ™ãƒƒãƒ‰ãƒœã‚¿ãƒ³
+#define PAD_GAMESTART	(PAD_KEY_DOWN|PAD_BUTTON_X)	///<ã‚²ãƒ¼ãƒ é–‹å§‹ãƒœã‚¿ãƒ³
 
 #define PAD_REELPUSH0	(PAD_BUTTON_Y)
 #define PAD_REELPUSH1	(PAD_BUTTON_B)
 #define PAD_REELPUSH2	(PAD_BUTTON_A)
 
-#define PAD_PAYOUT_SKIP	(PAD_BUTTON_X)				///<x•¥‚¢ƒXƒLƒbƒvƒ{ƒ^ƒ“
+#define PAD_PAYOUT_SKIP	(PAD_BUTTON_X)				///<æ”¯æ‰•ã„ã‚¹ã‚­ãƒƒãƒ—ãƒœã‚¿ãƒ³
 
-#define REEL_SPEED_DEF (NUM_FX32(16))				///<ƒŠ[ƒ‹ƒXƒs[ƒh
-//#define REEL_SPEED_DEF (NUM_FX32(1))				///<ƒŠ[ƒ‹ƒXƒs[ƒh
+#define REEL_SPEED_DEF (NUM_FX32(16))				///<ãƒªãƒ¼ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰
+//#define REEL_SPEED_DEF (NUM_FX32(1))				///<ãƒªãƒ¼ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰
 
-#define SLIP_MAX (4)								///<ƒXƒxƒŠÅ‘å
+#define SLIP_MAX (4)								///<ã‚¹ãƒ™ãƒªæœ€å¤§
 
 #ifdef DEBUG_BONUS_COUNT_TEST
 #define BONUS_GAME_COUNT (DEBUG_BONUS_COUNT_TEST)
@@ -70,46 +70,46 @@
 #define LINE_EVY_BET_1 (12)
 
 //--------------------------------------------------------------
-///	‰‰oŒn
+///	æ¼”å‡ºç³»
 //--------------------------------------------------------------
-///ƒ{ƒ^ƒ“‰Ÿ‚µŠJn‚Ü‚Å‚ÌƒEƒFƒCƒg
+///ãƒœã‚¿ãƒ³æŠ¼ã—é–‹å§‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define GE_FXFRAME_BTN_PUSHWAIT (NUM_FX32(8))
 
 #define PUSHWAIT (GE_FXFRAME_BTN_PUSHWAIT)
 
-///’ÊíƒQ[ƒ€@’Š‘I–³‚µƒ~ƒX‚ÌƒEƒFƒCƒg
+///é€šå¸¸ã‚²ãƒ¼ãƒ ã€€æŠ½é¸ç„¡ã—ãƒŸã‚¹æ™‚ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define GE_FXFRAME_NOHIT_MISS_WAIT (NUM_FX32(8))
-///’ÊíƒQ[ƒ€@q–ğƒqƒbƒg‚Ìƒ{[ƒ‹–ß‚èŠJnƒtƒŒ[ƒ€
+///é€šå¸¸ã‚²ãƒ¼ãƒ ã€€å­å½¹ãƒ’ãƒƒãƒˆæ™‚ã®ãƒœãƒ¼ãƒ«æˆ»ã‚Šé–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define GE_FXFRAME_HITS_BALL_BACK_START (NUM_FX32(30))
-///’ÊíƒQ[ƒ€@ƒŠƒvƒŒƒCƒqƒbƒg‚Ìƒ{[ƒ‹–ß‚èŠJnƒtƒŒ[ƒ€
+///é€šå¸¸ã‚²ãƒ¼ãƒ ã€€ãƒªãƒ—ãƒ¬ã‚¤ãƒ’ãƒƒãƒˆæ™‚ã®ãƒœãƒ¼ãƒ«æˆ»ã‚Šé–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define GE_FXFRAME_HITRP_BALL_BACK_START (NUM_FX32(15))
-///’ÊíƒQ[ƒ€@ƒ{[ƒiƒXƒ‚[ƒhq–ğ‚Ìƒsƒbƒs“oêŠJnƒtƒŒ[ƒ€
+///é€šå¸¸ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰å­å½¹æ™‚ã®ãƒ”ãƒƒãƒ”ç™»å ´é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define GE_FXFRAME_HITBMODE_PIP_START (NUM_FX32(30))
-///’ÊíƒQ[ƒ€@ƒ{[ƒiƒXƒ‚[ƒhƒŠƒvƒŒƒC‚Ìƒsƒbƒs“oêƒtƒŒ[ƒ€
+///é€šå¸¸ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ãƒªãƒ—ãƒ¬ã‚¤æ™‚ã®ãƒ”ãƒƒãƒ”ç™»å ´ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define GE_FXFRAME_HITBMODE_REPLAY_PIP_START (NUM_FX32(8))
 
 //--------------------------------------------------------------
-///	ƒQ[ƒ€ƒvƒƒZƒX–ß‚è’l
+///	ã‚²ãƒ¼ãƒ ãƒ—ãƒ­ã‚»ã‚¹æˆ»ã‚Šå€¤
 //--------------------------------------------------------------
 typedef enum
 {
-	RET_NON = 0,///<“Á‚É–³‚µ
-	RET_NEXT,	///<Ÿ‚Ö
-	RET_END,	///<I—¹
+	RET_NON = 0,///<ç‰¹ã«ç„¡ã—
+	RET_NEXT,	///<æ¬¡ã¸
+	RET_END,	///<çµ‚äº†
 }GAMERET;
 
 //--------------------------------------------------------------
-///	ƒL[–ß‚è’l
+///	ã‚­ãƒ¼æˆ»ã‚Šå€¤
 //--------------------------------------------------------------
 typedef enum
 {
-	PAD_NON = 0,	///<“–‚½‚è–³‚µ
-	PAD_ON,			///<“–‚½‚è—L‚è
-	PAD_SAME,		///<ˆê’v
+	PAD_NON = 0,	///<å½“ãŸã‚Šç„¡ã—
+	PAD_ON,			///<å½“ãŸã‚Šæœ‰ã‚Š
+	PAD_SAME,		///<ä¸€è‡´
 }PADRET;
 
 //--------------------------------------------------------------
-///	ƒ‰ƒCƒ“ƒpƒŒƒbƒgƒAƒjƒ–ß‚è’l
+///	ãƒ©ã‚¤ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡æˆ»ã‚Šå€¤
 //--------------------------------------------------------------
 enum
 {
@@ -118,31 +118,31 @@ enum
 };
 
 //--------------------------------------------------------------
-///	Œ–¾‚©‚èí—Ş
+///	æœˆæ˜ã‹ã‚Šç¨®é¡
 //--------------------------------------------------------------
 typedef enum
 {
-	MOON_LIGHT = 0,	//ŒŒõ
-	MOON_RED,		//‹Å
+	MOON_LIGHT = 0,	//æœˆå…‰
+	MOON_RED,		//æš
 }MOONTYPE;
 
 //--------------------------------------------------------------
-///	Ô‚¢Œƒtƒ‰ƒO
+///	èµ¤ã„æœˆãƒ•ãƒ©ã‚°
 //--------------------------------------------------------------
 typedef enum
 {
-	MOONRED_NON,		//Ô‚¢Œˆø‚«“–‚Ä–³‚µ
-	MOONRED_HIT,		//Ô‚¢Œˆø‚«“–‚Ä
-	MOONRED_SUCCESS,	//Ô‚¢Œˆø‚«¬Œ÷
+	MOONRED_NON,		//èµ¤ã„æœˆå¼•ãå½“ã¦ç„¡ã—
+	MOONRED_HIT,		//èµ¤ã„æœˆå¼•ãå½“ã¦
+	MOONRED_SUCCESS,	//èµ¤ã„æœˆå¼•ãæˆåŠŸ
 	MOONRED_MISS,
 }MOONRED;
 
 //--------------------------------------------------------------
-///	ƒQ[ƒ€ƒV[ƒPƒ“ƒX
+///	ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //--------------------------------------------------------------
 enum
 {
-	//’ÊíƒQ[ƒ€
+	//é€šå¸¸ã‚²ãƒ¼ãƒ 
 	SEQNO_GAME_INIT = 0,
 	SEQNO_BET,
 	SEQNO_GAME_START_BUTTON_PUSH_WAIT,
@@ -166,7 +166,7 @@ enum
 	SEQNO_HIT_PAYOUT_BONUS_WAIT_NEXT,
 	SEQNO_HIT_REPLAY_BONUS_START,
 	SEQNO_HIT_REPLAY_BONUS_WAIT_NEXT,
-	//ƒ{[ƒiƒXƒ‚[ƒh
+	//ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰
 	SEQNO_BMODE_NORMAL_GAME_CHANGE_INIT,
 	SEQNO_BMODE_NORMAL_GAME_REPLAY_INIT,
 	SEQNO_BMODE_INIT,
@@ -185,7 +185,7 @@ enum
 	SEQNO_BMODE_HIT_REPLAY_WAIT_NEXT,
 	SEQNO_BMODE_HIT_SEVEN_START,
 	SEQNO_BMODE_HIT_SEVEN_WAIT_NEXT,
-	//ƒ{[ƒiƒXƒQ[ƒ€
+	//ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ 
 	SEQNO_BGAME_INIT_FIRST,
 	SEQNO_BGAME_INIT,
 	SEQNO_BGAME_START,
@@ -204,7 +204,7 @@ enum
 	SEQNO_BGAME_ANENCORE,
 	SEQNO_BGAME_PIP_RECOVER,
 	SEQNO_BGAME_PIP_OUT,
-	//ƒƒbƒZ[ƒWAI—¹
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€çµ‚äº†
 	SEQNO_MSGSET_CREDIT_3,
 	SEQNO_MSGSET_CREDIT_0,
 	SEQNO_MSGSET_CREDIT_MAX,
@@ -214,7 +214,7 @@ enum
 };
 
 //--------------------------------------------------------------
-//	ƒŠ[ƒ‹§Œä
+//	ãƒªãƒ¼ãƒ«åˆ¶å¾¡
 //--------------------------------------------------------------
 enum
 {
@@ -227,7 +227,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä
+///	ä¸‹ç”»é¢åˆ¶å¾¡
 //--------------------------------------------------------------
 enum
 {
@@ -248,7 +248,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	w·‚µ
+///	æŒ‡å·®ã—
 //--------------------------------------------------------------
 enum
 {
@@ -265,7 +265,7 @@ enum
 //	typedef
 //==============================================================================
 //--------------------------------------------------------------
-///	PLTT\‘¢‘Ì
+///	PLTTæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -285,7 +285,7 @@ typedef struct
 }PIPNAVI;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void slotMain_InitPosSet( SLOTMAIN *main );
 
@@ -417,7 +417,7 @@ static const PIPNAVI DATA_BonusGamePipNaveTbl[YUBI_MAX];
 static const int DATA_ButtonPos[3][2];
 
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒO
+//	ãƒ‡ãƒãƒƒã‚°
 //--------------------------------------------------------------
 #ifdef PM_DEBUG
 static void DEBUG_reelHitPatternCheck( SLOTMAIN *main, u32 lottery_bit );
@@ -442,11 +442,11 @@ static void DEBUG_SlotHitLineCount( SLOTMAIN *main );
 #endif	//PM_DEBUG
 
 //==============================================================================
-//	ƒXƒƒbƒg@ƒQ[ƒ€ƒVƒXƒeƒ€
+//	ã‚¹ãƒ­ãƒƒãƒˆã€€ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒXƒƒbƒg@ƒQ[ƒ€ƒVƒXƒeƒ€‰Šú‰»
+ * ã‚¹ãƒ­ãƒƒãƒˆã€€ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -471,8 +471,8 @@ void SlotMain_GameInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒƒbƒg@ƒQ[ƒ€ƒVƒXƒeƒ€íœ
- * ¦–‘O‚ÉEOAAƒZƒ‹ƒAƒNƒ^[‚Ííœ‚³‚ê‚Ä‚¢‚é
+ * ã‚¹ãƒ­ãƒƒãƒˆã€€ã‚²ãƒ¼ãƒ ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
+ * â€»äº‹å‰ã«EOAã€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã¯å‰Šé™¤ã•ã‚Œã¦ã„ã‚‹
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -487,7 +487,7 @@ void SlotMain_GameDelete( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒƒbƒg@‰ŠúˆÊ’uƒZƒbƒg
+ * ã‚¹ãƒ­ãƒƒãƒˆã€€åˆæœŸä½ç½®ã‚»ãƒƒãƒˆ
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -506,13 +506,13 @@ static void slotMain_InitPosSet( SLOTMAIN *main )
 }
 
 //==============================================================================
-//	ƒXƒƒbƒg@ƒQ[ƒ€ƒƒCƒ“
+//	ã‚¹ãƒ­ãƒƒãƒˆã€€ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒXƒƒbƒgƒQ[ƒ€ˆ—
+ * ã‚¹ãƒ­ãƒƒãƒˆã‚²ãƒ¼ãƒ å‡¦ç†
  * @param	main	SLOTMAIN *
- * @retval	int		TRUE=I—¹
+ * @retval	int		TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 int SlotMain_Game( SLOTMAIN *main )
@@ -544,7 +544,7 @@ int SlotMain_Game( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒQ[ƒ€‰Šú‰»
+ * ã‚²ãƒ¼ãƒ ã€€ã‚²ãƒ¼ãƒ åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -580,7 +580,7 @@ static GAMERET Game_Init( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒxƒbƒg
+ * ã‚²ãƒ¼ãƒ ã€€ãƒ™ãƒƒãƒˆ
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -606,7 +606,7 @@ static GAMERET Game_Bet( SLOTMAIN *main )
 	}
 #endif
 	
-	if( keyTrg(PAD_END) != PAD_NON ){	//I—¹
+	if( keyTrg(PAD_END) != PAD_NON ){	//çµ‚äº†
 		PlttEff_EoaLineBetAnmDelete( main );
 		main->seq_no = SEQNO_GAME_END;
 		return( RET_NON );
@@ -628,7 +628,7 @@ static GAMERET Game_Bet( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒxƒbƒgŒã‚ÌƒXƒ^[ƒgƒ{ƒ^ƒ“‘Ò‚¿
+ * ã‚²ãƒ¼ãƒ ã€€ãƒ™ãƒƒãƒˆå¾Œã®ã‚¹ã‚¿ãƒ¼ãƒˆãƒœã‚¿ãƒ³å¾…ã¡
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -642,7 +642,7 @@ static GAMERET Game_GameStartButtonPushWait( SLOTMAIN *main )
 	}
 #endif
 	
-	if( keyTrg(PAD_END) != PAD_NON ){	//I—¹
+	if( keyTrg(PAD_END) != PAD_NON ){	//çµ‚äº†
 		main->credit += BET_LOWEST;
 		main->seq_no = SEQNO_GAME_END;
 		return( RET_NON );
@@ -658,7 +658,7 @@ static GAMERET Game_GameStartButtonPushWait( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒQ[ƒ€ƒXƒ^[ƒg‰Šú‰»
+ * ã‚²ãƒ¼ãƒ ã€€ã‚²ãƒ¼ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆåˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -719,7 +719,7 @@ static GAMERET Game_GameStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒ{ƒ^ƒ“‰Ÿ‚µŠJn‚Ü‚Å‚Ìˆê¡‘Ò‚¿
+ * ã‚²ãƒ¼ãƒ ã€€ãƒœã‚¿ãƒ³æŠ¼ã—é–‹å§‹ã¾ã§ã®ä¸€å¯¸å¾…ã¡
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -739,7 +739,7 @@ static GAMERET Game_ReelPushStartWait( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒŠ[ƒ‹ƒ{ƒ^ƒ“‰Ÿ‚µ
+ * ã‚²ãƒ¼ãƒ ã€€ãƒªãƒ¼ãƒ«ãƒœã‚¿ãƒ³æŠ¼ã—
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -800,7 +800,7 @@ static GAMERET Game_ReelPush( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒŠ[ƒ‹’â~‘Ò‚¿
+ * ã‚²ãƒ¼ãƒ ã€€ãƒªãƒ¼ãƒ«åœæ­¢å¾…ã¡
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -820,7 +820,7 @@ static GAMERET Game_ReelStopWait( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒqƒbƒgƒ`ƒFƒbƒN
+ * ã‚²ãƒ¼ãƒ ã€€ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -831,43 +831,43 @@ static GAMERET Game_HitCheck( SLOTMAIN *main )
 	
 	main->reel_hit_pattern = pat;
 	
-	if( pat == REEL_PATTERN_MAX ){								//ŠO‚ê
-		if( (main->lottery_bit & LOTTERY_HITBIT_BONUS_AND) ){	//ŠO‚ê‚Ä‚àƒ{[ƒiƒXƒ‚[ƒh‚Ö
+	if( pat == REEL_PATTERN_MAX ){								//å¤–ã‚Œ
+		if( (main->lottery_bit & LOTTERY_HITBIT_BONUS_AND) ){	//å¤–ã‚Œã¦ã‚‚ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã¸
 			main->seq_no = SEQNO_HIT_MISS_BONUS_START;
 			return( RET_NEXT );
 		}
 		
-		if( (main->lottery_bit != LOTTERY_HITBIT_NON) ){		//’Š‘I‚ ‚èŠO‚ê
+		if( (main->lottery_bit != LOTTERY_HITBIT_NON) ){		//æŠ½é¸ã‚ã‚Šå¤–ã‚Œ
 			main->seq_no = SEQNO_HIT_MISS_START;
 			return( RET_NEXT );
 		}
 		
-		main->seq_no = SEQNO_NOHIT_MISS_START;					//‘fŠO‚ê
+		main->seq_no = SEQNO_NOHIT_MISS_START;					//ç´ å¤–ã‚Œ
 		return( RET_NEXT );
 	}
 	
-	if( (main->lottery_bit & LOTTERY_HITBIT_BONUS_AND) ){		//ƒ{[ƒiƒXƒ‚[ƒh“–‚½‚è
-		if( (main->lottery_bit & LOTTERY_HITBIT_REPLAY_B) ){	//ƒŠƒvƒŒƒC
+	if( (main->lottery_bit & LOTTERY_HITBIT_BONUS_AND) ){		//ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰å½“ãŸã‚Š
+		if( (main->lottery_bit & LOTTERY_HITBIT_REPLAY_B) ){	//ãƒªãƒ—ãƒ¬ã‚¤
 			main->seq_no = SEQNO_HIT_REPLAY_BONUS_START;
-		}else{													//q–ğ
+		}else{													//å­å½¹
 			main->seq_no = SEQNO_HIT_PAYOUT_BONUS_START;
 		}
 		
 		return( RET_NEXT );
 	}
 	
-	if( pat == REEL_REPLAY ){									//ƒŠƒvƒŒƒC
+	if( pat == REEL_REPLAY ){									//ãƒªãƒ—ãƒ¬ã‚¤
 		main->seq_no = SEQNO_HIT_REPLAY_START;
 		return( RET_NEXT );
 	}
 	
-	main->seq_no = SEQNO_HIT_PAYOUT_START;						//q–ğ“–‚½‚è
+	main->seq_no = SEQNO_HIT_PAYOUT_START;						//å­å½¹å½“ãŸã‚Š
 	return( RET_NEXT );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@’Š‘I–³‚µŠO‚ê@ŠJn
+ * ã‚²ãƒ¼ãƒ ã€€æŠ½é¸ç„¡ã—å¤–ã‚Œã€€é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -883,7 +883,7 @@ static GAMERET Game_NoHitMissStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@’Š‘I–³‚µŠO‚ê@ˆê¡‘Ò‚¿‚Ì‚¿–ß‚é
+ * ã‚²ãƒ¼ãƒ ã€€æŠ½é¸ç„¡ã—å¤–ã‚Œã€€ä¸€å¯¸å¾…ã¡ã®ã¡æˆ»ã‚‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -902,7 +902,7 @@ static GAMERET Game_NoHitMissWaitNext( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@’Š‘I‚ ‚èŠO‚ê@ŠJn
+ * ã‚²ãƒ¼ãƒ ã€€æŠ½é¸ã‚ã‚Šå¤–ã‚Œã€€é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -918,7 +918,7 @@ static GAMERET Game_HitMissStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@’Š‘I‚ ‚èŠO‚ê@ƒ{[ƒ‹‘Ò‚¿‚Ì‚¿–ß‚é
+ * ã‚²ãƒ¼ãƒ ã€€æŠ½é¸ã‚ã‚Šå¤–ã‚Œã€€ãƒœãƒ¼ãƒ«å¾…ã¡ã®ã¡æˆ»ã‚‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -936,7 +936,7 @@ static GAMERET Game_HitMissWaitNext( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@’Š‘I‚ ‚èƒqƒbƒg@ƒyƒCƒAƒEƒgŠJn
+ * ã‚²ãƒ¼ãƒ ã€€æŠ½é¸ã‚ã‚Šãƒ’ãƒƒãƒˆã€€ãƒšã‚¤ã‚¢ã‚¦ãƒˆé–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -954,7 +954,7 @@ static GAMERET Game_HitPayOutStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@’Š‘I‚ ‚èƒqƒbƒg@ƒyƒCƒAƒEƒg’†
+ * ã‚²ãƒ¼ãƒ ã€€æŠ½é¸ã‚ã‚Šãƒ’ãƒƒãƒˆã€€ãƒšã‚¤ã‚¢ã‚¦ãƒˆä¸­
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -979,7 +979,7 @@ static GAMERET Game_HitPayOutWaitNext( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒŠƒvƒŒƒCƒqƒbƒg@ŠJn
+ * ã‚²ãƒ¼ãƒ ã€€ãƒªãƒ—ãƒ¬ã‚¤ãƒ’ãƒƒãƒˆã€€é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -996,7 +996,7 @@ static GAMERET Game_HitReplayStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒŠƒvƒŒƒCƒqƒbƒg@‘Ò‚¿
+ * ã‚²ãƒ¼ãƒ ã€€ãƒªãƒ—ãƒ¬ã‚¤ãƒ’ãƒƒãƒˆã€€å¾…ã¡
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1021,7 +1021,7 @@ static GAMERET Game_HitReplayWaitNext( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ŠO‚ê‚Åƒ{[ƒiƒXƒqƒbƒg@ŠJn
+ * ã‚²ãƒ¼ãƒ ã€€å¤–ã‚Œã§ãƒœãƒ¼ãƒŠã‚¹ãƒ’ãƒƒãƒˆã€€é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1040,7 +1040,7 @@ static GAMERET Game_HitMissBonusStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ŠO‚ê‚Åƒ{[ƒiƒXƒqƒbƒg@ƒ{[ƒ‹’â~‘Ò‚¿
+ * ã‚²ãƒ¼ãƒ ã€€å¤–ã‚Œã§ãƒœãƒ¼ãƒŠã‚¹ãƒ’ãƒƒãƒˆã€€ãƒœãƒ¼ãƒ«åœæ­¢å¾…ã¡
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1060,7 +1060,7 @@ static GAMERET Game_HitMissBonusBallStopWait( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ŠO‚ê‚Åƒ{[ƒiƒXƒqƒbƒg@ƒsƒbƒs“oê‘Ò‚¿ŒãAƒ{[ƒiƒXƒ‚[ƒh‚Ö
+ * ã‚²ãƒ¼ãƒ ã€€å¤–ã‚Œã§ãƒœãƒ¼ãƒŠã‚¹ãƒ’ãƒƒãƒˆã€€ãƒ”ãƒƒãƒ”ç™»å ´å¾…ã¡å¾Œã€ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã¸
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1077,7 +1077,7 @@ static GAMERET Game_HitMissBonusWaitNext( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒ{[ƒiƒXƒqƒbƒg@ƒyƒCƒAƒEƒg•ƒsƒbƒs“oê@ŠJn
+ * ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ãƒ’ãƒƒãƒˆã€€ãƒšã‚¤ã‚¢ã‚¦ãƒˆï¼†ãƒ”ãƒƒãƒ”ç™»å ´ã€€é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1098,7 +1098,7 @@ static GAMERET Game_HitPayOutBonusStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒ{[ƒiƒXƒqƒbƒg@ƒyƒCƒAƒEƒg•ƒsƒbƒs“oê@‘Ò‚¿Œãƒ{[ƒiƒXƒ‚[ƒh‚Ö
+ * ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ãƒ’ãƒƒãƒˆã€€ãƒšã‚¤ã‚¢ã‚¦ãƒˆï¼†ãƒ”ãƒƒãƒ”ç™»å ´ã€€å¾…ã¡å¾Œãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã¸
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1123,7 +1123,7 @@ static GAMERET Game_HitPayOutBonusWaitNext( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒ{[ƒiƒXƒqƒbƒg@ƒŠƒvƒŒƒC•ƒsƒbƒs“oê@ŠJn
+ * ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ãƒ’ãƒƒãƒˆã€€ãƒªãƒ—ãƒ¬ã‚¤ï¼†ãƒ”ãƒƒãƒ”ç™»å ´ã€€é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1143,7 +1143,7 @@ static GAMERET Game_HitReplayBonusStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒ{[ƒiƒXƒqƒbƒg@ƒŠƒvƒŒƒC•ƒsƒbƒs“oê@‘Ò‚¿Œãƒ{[ƒiƒXƒ‚[ƒh‚Ö
+ * ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ãƒ’ãƒƒãƒˆã€€ãƒªãƒ—ãƒ¬ã‚¤ï¼†ãƒ”ãƒƒãƒ”ç™»å ´ã€€å¾…ã¡å¾Œãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã¸
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1167,11 +1167,11 @@ static GAMERET Game_HitReplayBonusWaitNext( SLOTMAIN *main )
 }
 
 //==============================================================================
-//	ƒQ[ƒ€@ƒ{[ƒiƒXƒ‚[ƒh
+//	ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@’ÊíƒQ[ƒ€Aq–ğ‚©‚ç‚ÌˆÚs‰Šú‰»
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€é€šå¸¸ã‚²ãƒ¼ãƒ ã€å­å½¹ã‹ã‚‰ã®ç§»è¡ŒåˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1185,7 +1185,7 @@ static GAMERET Game_BMode_NormalGameChangeInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@’ÊíƒQ[ƒ€AƒŠƒvƒŒƒC‚©‚ç‚ÌˆÚs‰Šú‰»
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€é€šå¸¸ã‚²ãƒ¼ãƒ ã€ãƒªãƒ—ãƒ¬ã‚¤ã‹ã‚‰ã®ç§»è¡ŒåˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1199,7 +1199,7 @@ static GAMERET Game_BMode_NormalGameReplayChangeInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@‰Šú‰»
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1234,7 +1234,7 @@ static GAMERET Game_BMode_Init( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@ƒxƒbƒg
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€ãƒ™ãƒƒãƒˆ
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1260,7 +1260,7 @@ static GAMERET Game_BMode_Bet( SLOTMAIN *main )
 	}
 #endif
 	
-	if( keyTrg(PAD_END) != PAD_NON ){	//I—¹
+	if( keyTrg(PAD_END) != PAD_NON ){	//çµ‚äº†
 		main->seq_no = SEQNO_GAME_END;
 		PlttEff_EoaLineBetAnmDelete( main );
 		return( RET_NON );
@@ -1282,7 +1282,7 @@ static GAMERET Game_BMode_Bet( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@ƒxƒbƒgŒã‚ÌƒXƒ^[ƒgƒ{ƒ^ƒ“‘Ò‚¿
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€ãƒ™ãƒƒãƒˆå¾Œã®ã‚¹ã‚¿ãƒ¼ãƒˆãƒœã‚¿ãƒ³å¾…ã¡
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1296,7 +1296,7 @@ static GAMERET Game_BMode_GameStartButtonPushWait( SLOTMAIN *main )
 	}
 #endif
 	
-	if( keyTrg(PAD_END) != PAD_NON ){	//I—¹
+	if( keyTrg(PAD_END) != PAD_NON ){	//çµ‚äº†
 		main->credit += BET_LOWEST;
 		main->seq_no = SEQNO_GAME_END;
 		return( RET_NON );
@@ -1312,7 +1312,7 @@ static GAMERET Game_BMode_GameStartButtonPushWait( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@ƒQ[ƒ€ƒXƒ^[ƒg
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€ã‚²ãƒ¼ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆ
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1374,7 +1374,7 @@ static GAMERET Game_BMode_GameStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@ƒ{ƒ^ƒ“‰Ÿ‚µŠJn‘Ò‚¿
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€ãƒœã‚¿ãƒ³æŠ¼ã—é–‹å§‹å¾…ã¡
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1394,7 +1394,7 @@ static GAMERET Game_BMode_ReelPushStartWait( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒ{[ƒiƒXƒ‚[ƒh@ƒŠ[ƒ‹ƒ{ƒ^ƒ“‰Ÿ‚µ
+ * ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€ãƒªãƒ¼ãƒ«ãƒœã‚¿ãƒ³æŠ¼ã—
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1456,7 +1456,7 @@ static GAMERET Game_BMode_ReelPush( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒ{[ƒiƒXƒ‚[ƒh@ƒŠ[ƒ‹’â~‘Ò‚¿
+ * ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€ãƒªãƒ¼ãƒ«åœæ­¢å¾…ã¡
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1476,7 +1476,7 @@ static GAMERET Game_BMode_ReelStopWait( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒ{[ƒiƒXƒ‚[ƒh@ƒqƒbƒgƒ`ƒFƒbƒN
+ * ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1487,28 +1487,28 @@ static GAMERET Game_BMode_HitCheck( SLOTMAIN *main )
 	
 	main->reel_hit_pattern = pat;
 	
-	if( pat == REEL_PATTERN_MAX ){								//ŠO‚ê
+	if( pat == REEL_PATTERN_MAX ){								//å¤–ã‚Œ
 		main->seq_no = SEQNO_BMODE_MISS_START;
 		return( RET_NEXT );
 	}
 	
-	if( (main->lottery_bit & LOTTERY_HITBIT_SEVEN_AND) ){		//7ƒqƒbƒg
+	if( (main->lottery_bit & LOTTERY_HITBIT_SEVEN_AND) ){		//7ãƒ’ãƒƒãƒˆ
 		main->seq_no = SEQNO_BMODE_HIT_SEVEN_START;
 		return( RET_NEXT );
 	}
 	
-	if( pat == REEL_REPLAY ){									//ƒŠƒvƒŒƒC
+	if( pat == REEL_REPLAY ){									//ãƒªãƒ—ãƒ¬ã‚¤
 		main->seq_no = SEQNO_BMODE_HIT_REPLAY_START;
 		return( RET_NEXT );
 	}
 	
-	main->seq_no = SEQNO_BMODE_HIT_PAYOUT_START;				//q–ğ“–‚½‚è
+	main->seq_no = SEQNO_BMODE_HIT_PAYOUT_START;				//å­å½¹å½“ãŸã‚Š
 	return( RET_NEXT );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@’Š‘I–³‚µŠO‚ê@ŠJn
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€æŠ½é¸ç„¡ã—å¤–ã‚Œã€€é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1524,7 +1524,7 @@ static GAMERET Game_BMode_MissStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@’Š‘I–³‚µŠO‚ê@ˆê¡‘Ò‚¿‚Ì‚¿–ß‚é
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€æŠ½é¸ç„¡ã—å¤–ã‚Œã€€ä¸€å¯¸å¾…ã¡ã®ã¡æˆ»ã‚‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1544,7 +1544,7 @@ static GAMERET Game_BMode_MissWaitNext( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@’Š‘I‚ ‚èƒqƒbƒg@ƒyƒCƒAƒEƒgŠJn
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€æŠ½é¸ã‚ã‚Šãƒ’ãƒƒãƒˆã€€ãƒšã‚¤ã‚¢ã‚¦ãƒˆé–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1562,7 +1562,7 @@ static GAMERET Game_BMode_HitPayOutStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@’Š‘I‚ ‚èƒqƒbƒg@ƒyƒCƒAƒEƒg‚Ì‚¿–ß‚é
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€æŠ½é¸ã‚ã‚Šãƒ’ãƒƒãƒˆã€€ãƒšã‚¤ã‚¢ã‚¦ãƒˆã®ã¡æˆ»ã‚‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1580,7 +1580,7 @@ static GAMERET Game_BMode_HitPayOutWaitNext( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@’Š‘I‚ ‚èƒqƒbƒg@ƒŠƒvƒŒƒCŠJn
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€æŠ½é¸ã‚ã‚Šãƒ’ãƒƒãƒˆã€€ãƒªãƒ—ãƒ¬ã‚¤é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1597,7 +1597,7 @@ static GAMERET Game_BMode_HitReplayStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@ƒŠƒvƒŒƒCƒqƒbƒg@‘Ò‚¿
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€ãƒªãƒ—ãƒ¬ã‚¤ãƒ’ãƒƒãƒˆã€€å¾…ã¡
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1621,7 +1621,7 @@ static GAMERET Game_BMode_HitReplayWaitNext( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@ƒrƒbƒOƒqƒbƒg@ŠJn
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€ãƒ“ãƒƒã‚°ãƒ’ãƒƒãƒˆã€€é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1643,7 +1643,7 @@ static GAMERET Game_BMode_HitSevenStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒ‚[ƒh@ƒrƒbƒOƒqƒbƒg@x•¥‚¢‘Ò‚¿‚Ì‚¿ƒ{[ƒiƒXƒQ[ƒ€‚Ö
+ * ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã€€ãƒ“ãƒƒã‚°ãƒ’ãƒƒãƒˆã€€æ”¯æ‰•ã„å¾…ã¡ã®ã¡ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã¸
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1661,11 +1661,11 @@ static GAMERET Game_BMode_HitSevenWaitNext( SLOTMAIN *main )
 }
 
 //==============================================================================
-//	ƒQ[ƒ€@ƒ{[ƒiƒXƒQ[ƒ€
+//	ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@‰‰ñ‚Ì‚İ‚Ì‰Šú‰»
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€åˆå›ã®ã¿ã®åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1683,15 +1683,15 @@ static GAMERET Game_BGame_InitFirst( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@‰Šú‰»
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
 //--------------------------------------------------------------
 static GAMERET Game_BGame_Init( SLOTMAIN *main )
 {
-	main->bonus_hit_count++;							//ƒŒƒR[ƒh‚Éƒvƒ‰ƒX‚³‚ê‚éƒJƒEƒ“ƒg
-	main->bonus_continue_count++;						//ƒ{[ƒiƒX‰ñ”
+	main->bonus_hit_count++;							//ãƒ¬ã‚³ãƒ¼ãƒ‰ã«ãƒ—ãƒ©ã‚¹ã•ã‚Œã‚‹ã‚«ã‚¦ãƒ³ãƒˆ
+	main->bonus_continue_count++;						//ãƒœãƒ¼ãƒŠã‚¹å›æ•°
 	
 	if( main->bonus_continue_count > 999 ){
 		main->bonus_continue_count = 999;
@@ -1699,10 +1699,10 @@ static GAMERET Game_BGame_Init( SLOTMAIN *main )
 	
 	SlotSubEoa_MoonFontInit( main, main->bonus_continue_count );
 	
-	main->bonus_count = BONUS_GAME_COUNT + 1;			//+1=Ÿ‚ÅƒJƒEƒ“ƒg‚³‚ê‚éˆ×
-	main->bonus_game_flag = TRUE;						//ƒ{[ƒiƒXƒQ[ƒ€
-	main->bonus_moonlight_flag = FALSE;					//ŒŒõ
-	main->bonus_moonlight_red_flag = MOONRED_NON;		//‹Å
+	main->bonus_count = BONUS_GAME_COUNT + 1;			//+1=æ¬¡ã§ã‚«ã‚¦ãƒ³ãƒˆã•ã‚Œã‚‹ç‚º
+	main->bonus_game_flag = TRUE;						//ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ 
+	main->bonus_moonlight_flag = FALSE;					//æœˆå…‰
+	main->bonus_moonlight_red_flag = MOONRED_NON;		//æš
 	main->bonus_game_end_flag = FALSE;
 
 	if( LotteryCheck_BonusContinue(main) == FALSE ){
@@ -1715,7 +1715,7 @@ static GAMERET Game_BGame_Init( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@ŠJn
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1750,7 +1750,7 @@ static GAMERET Game_BGame_Start( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@ƒxƒbƒg
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€ãƒ™ãƒƒãƒˆ
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1782,7 +1782,7 @@ static GAMERET Game_BGame_Bet( SLOTMAIN *main )
 	}
 #endif
 	
-	if( keyTrg(PAD_END) != PAD_NON ){	//I—¹
+	if( keyTrg(PAD_END) != PAD_NON ){	//çµ‚äº†
 		main->seq_no = SEQNO_GAME_END;
 		return( RET_NON );
 	}
@@ -1809,7 +1809,7 @@ static GAMERET Game_BGame_Bet( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@ƒxƒbƒgŒã‚ÌƒXƒ^[ƒgƒ{ƒ^ƒ“‘Ò‚¿
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€ãƒ™ãƒƒãƒˆå¾Œã®ã‚¹ã‚¿ãƒ¼ãƒˆãƒœã‚¿ãƒ³å¾…ã¡
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1823,7 +1823,7 @@ static GAMERET Game_BGame_GameStartButtonPushWait( SLOTMAIN *main )
 	}
 #endif
 	
-	if( keyTrg(PAD_END) != PAD_NON ){	//I—¹
+	if( keyTrg(PAD_END) != PAD_NON ){	//çµ‚äº†
 		main->credit += BET_LOWEST_BONUS;
 		main->seq_no = SEQNO_GAME_END;
 		return( RET_NON );
@@ -1839,7 +1839,7 @@ static GAMERET Game_BGame_GameStartButtonPushWait( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@ƒQ[ƒ€ƒXƒ^[ƒg
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€ã‚²ãƒ¼ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆ
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -1929,7 +1929,7 @@ static GAMERET Game_BGame_GameStart( SLOTMAIN *main )
 	return( RET_NEXT );
 }
 
-#if 0	//Ô‚¢ŒŒãAŠO‚¹‚Îˆø‚«‘±‚«ŒŒõƒ`ƒƒƒ“ƒXƒAƒŠ
+#if 0	//èµ¤ã„æœˆå¾Œã€å¤–ã›ã°å¼•ãç¶šãæœˆå…‰ãƒãƒ£ãƒ³ã‚¹ã‚¢ãƒª
 static GAMERET Game_BGame_GameStart( SLOTMAIN *main )
 {
 	main->game_count++;
@@ -1960,7 +1960,7 @@ static GAMERET Game_BGame_GameStart( SLOTMAIN *main )
 	
 	if( main->bonus_moonlight_flag == FALSE &&
 		main->bonus_moonlight_red_flag == MOONRED_NON ){
-		OS_Printf( "Ô‚¢Œƒ`ƒFƒbƒN\n" );
+		OS_Printf( "èµ¤ã„æœˆãƒã‚§ãƒƒã‚¯\n" );
 		
 		if( LotteryCheck_MoonLightRed(main) == TRUE ){
 			main->bonus_moonlight_red_flag = MOONRED_HIT;
@@ -1975,7 +1975,7 @@ static GAMERET Game_BGame_GameStart( SLOTMAIN *main )
 #endif
 		
 		if( main->bonus_moonlight_red_flag == MOONRED_HIT ){
-			OS_Printf( "Ô‚¢Œ@”­“®\n" );
+			OS_Printf( "èµ¤ã„æœˆã€€ç™ºå‹•\n" );
 			PlttEff_MountMoonLight( main, MOON_RED );
 		}
 	}
@@ -1984,7 +1984,7 @@ static GAMERET Game_BGame_GameStart( SLOTMAIN *main )
 		(main->bonus_moonlight_red_flag == MOONRED_NON ||
 		 main->bonus_moonlight_red_flag == MOONRED_MISS) ){
 		
-		OS_Printf( "ŒŒõƒ`ƒFƒbƒN\n" );
+		OS_Printf( "æœˆå…‰ãƒã‚§ãƒƒã‚¯\n" );
 		
 		if( LotteryCheck_MoonLight(main) == TRUE ){
 			main->bonus_moonlight_flag = TRUE;
@@ -1998,7 +1998,7 @@ static GAMERET Game_BGame_GameStart( SLOTMAIN *main )
 		}
 #endif
 		if( main->bonus_moonlight_flag == TRUE ){
-			OS_Printf( "ŒŒõ@”­“®‚Æ¬—§\n" );
+			OS_Printf( "æœˆå…‰ã€€ç™ºå‹•ã¨æˆç«‹\n" );
 			PlttEff_MountMoonLight( main, MOON_LIGHT );
 		}
 	}
@@ -2015,7 +2015,7 @@ static GAMERET Game_BGame_GameStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@ƒ{ƒ^ƒ“‰Ÿ‚µŠJn‘Ò‚¿
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€ãƒœã‚¿ãƒ³æŠ¼ã—é–‹å§‹å¾…ã¡
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2036,7 +2036,7 @@ static GAMERET Game_BGame_ReelPushStartWait( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@ƒŠ[ƒ‹ƒ{ƒ^ƒ“‰Ÿ‚µ
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€ãƒªãƒ¼ãƒ«ãƒœã‚¿ãƒ³æŠ¼ã—
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2098,7 +2098,7 @@ static GAMERET Game_BGame_ReelPush( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@ƒŠ[ƒ‹’â~‘Ò‚¿
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€ãƒªãƒ¼ãƒ«åœæ­¢å¾…ã¡
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2118,7 +2118,7 @@ static GAMERET Game_BGame_ReelStopWait( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@ƒqƒbƒgƒ`ƒFƒbƒN
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2130,8 +2130,8 @@ static GAMERET Game_BGame_HitCheck( SLOTMAIN *main )
 	
 	main->reel_hit_pattern = pat;
 	
-	if( pat == REEL_PATTERN_MAX ){								//ƒqƒbƒg–³‚µ
-		if( main->bonus_moonlight_red_flag == MOONRED_HIT ){	//ƒŠƒvƒŒƒCŠO‚µ
+	if( pat == REEL_PATTERN_MAX ){								//ãƒ’ãƒƒãƒˆç„¡ã—
+		if( main->bonus_moonlight_red_flag == MOONRED_HIT ){	//ãƒªãƒ—ãƒ¬ã‚¤å¤–ã—
 			main->bonus_moonlight_red_flag = MOONRED_MISS;
 		}
 		
@@ -2139,17 +2139,17 @@ static GAMERET Game_BGame_HitCheck( SLOTMAIN *main )
 		return( RET_NEXT );									
 	}
 	
-	if( main->bonus_moonlight_red_flag == MOONRED_HIT ){	//ƒŠƒvƒŒƒCŠO‚µ
+	if( main->bonus_moonlight_red_flag == MOONRED_HIT ){	//ãƒªãƒ—ãƒ¬ã‚¤å¤–ã—
 		main->bonus_moonlight_red_flag = MOONRED_SUCCESS;
 	}
 	
-	main->seq_no = SEQNO_BGAME_PAYOUT_START;				//“–‚½‚è
+	main->seq_no = SEQNO_BGAME_PAYOUT_START;				//å½“ãŸã‚Š
 	return( RET_NEXT );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@ƒ~ƒX
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€ãƒŸã‚¹
  * @param	main	SLOTMAIN
  * @retval	GAMERET GAMERET
  */
@@ -2160,7 +2160,7 @@ static GAMERET Game_BGame_MissStart( SLOTMAIN *main )
 	DDC_TypeChange( main, DDISP_PIP_STOP );
 	
 	if( (int)main->bonus_count <= 1 ){
-		main->seq_no = SEQNO_BGAME_ONE_GAME_FINISH;			//‚PƒQ[ƒ€Á‰»‚Ö
+		main->seq_no = SEQNO_BGAME_ONE_GAME_FINISH;			//ï¼‘ã‚²ãƒ¼ãƒ æ¶ˆåŒ–ã¸
 	}else{
 		main->seq_no = SEQNO_BGAME_START;
 	}
@@ -2170,7 +2170,7 @@ static GAMERET Game_BGame_MissStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@x•¥‚¢@ŠJn
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€æ”¯æ‰•ã„ã€€é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2190,7 +2190,7 @@ static GAMERET Game_BGame_PayOutStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@x•¥‚¢‘Ò‚¿ŒãŸ‚Ö
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€æ”¯æ‰•ã„å¾…ã¡å¾Œæ¬¡ã¸
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2204,9 +2204,9 @@ static GAMERET Game_BGame_PayOutWaitNext( SLOTMAIN *main )
 	DDC_TypeChange( main, DDISP_PIP_STOP );
 	
 	if( (int)main->bonus_count <= 1 ){
-		main->seq_no = SEQNO_BGAME_ONE_GAME_FINISH;				//ƒŒ[ƒgƒ_ƒEƒ“
+		main->seq_no = SEQNO_BGAME_ONE_GAME_FINISH;				//ãƒ¬ãƒ¼ãƒˆãƒ€ã‚¦ãƒ³
 	}else{
-		main->seq_no = SEQNO_BGAME_START;					//ŸƒQ[ƒ€‚Ö
+		main->seq_no = SEQNO_BGAME_START;					//æ¬¡ã‚²ãƒ¼ãƒ ã¸
 	}
 	
 	return( RET_NEXT );
@@ -2214,7 +2214,7 @@ static GAMERET Game_BGame_PayOutWaitNext( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@‚PƒQ[ƒ€Á‰»
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€ï¼‘ã‚²ãƒ¼ãƒ æ¶ˆåŒ–
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2238,7 +2238,7 @@ static GAMERET Game_BGame_OneGameFinish( SLOTMAIN *main )
 	}
 #endif
 	
-	main->bonus_count--;	//0‚Ö
+	main->bonus_count--;	//0ã¸
 	GF_ASSERT( main->bonus_count == 0 );
 	
 	if( main->bonus_game_end_flag == TRUE && main->bonus_moonlight_flag == FALSE ){
@@ -2253,7 +2253,7 @@ static GAMERET Game_BGame_OneGameFinish( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒQ[ƒ€@Œp‘±—¦ƒ_ƒEƒ“
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€ç¶™ç¶šç‡ãƒ€ã‚¦ãƒ³
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2265,8 +2265,8 @@ static GAMERET Game_BGame_RateDown( SLOTMAIN *main )
 	LotterySet_BonusContinueDown( main );
 	bceff = LotteryGet_BonusContinueEffect( main );
 	
-	if( main->bonus_moonlight_flag == TRUE ){				//ŒŒõ
-		bceff = BCEFF_ANENCORE;								//ƒAƒ“ƒR[ƒ‹‚Ö
+	if( main->bonus_moonlight_flag == TRUE ){				//æœˆå…‰
+		bceff = BCEFF_ANENCORE;								//ã‚¢ãƒ³ã‚³ãƒ¼ãƒ«ã¸
 	}
 	
 #ifdef DEBUG_ON_SLOT
@@ -2284,20 +2284,20 @@ static GAMERET Game_BGame_RateDown( SLOTMAIN *main )
 		return( RET_NON );
 	}
 	
-	if( bceff == BCEFF_BACK ){								//ƒsƒbƒs–ß‚è‰‰o
+	if( bceff == BCEFF_BACK ){								//ãƒ”ãƒƒãƒ”æˆ»ã‚Šæ¼”å‡º
 		DDC_TypeChange( main, DDISP_PIP_RECOVER );
 		main->seq_no = SEQNO_BGAME_PIP_RECOVER;
 		return( RET_NON );
 	}
 	
 	Snd_PMVoicePlay( MONSNO_PIPPI, 0 );
-	main->seq_no = SEQNO_BGAME_INIT;						//ŸƒQ[ƒ€‚Ö
+	main->seq_no = SEQNO_BGAME_INIT;						//æ¬¡ã‚²ãƒ¼ãƒ ã¸
 	return( RET_NON );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒ{[ƒiƒXƒQ[ƒ€@ƒAƒ“ƒR[ƒ‹
+ * ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€ã‚¢ãƒ³ã‚³ãƒ¼ãƒ«
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2314,7 +2314,7 @@ static GAMERET Game_BGame_Anencore( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒ{[ƒiƒXƒQ[ƒ€@ƒsƒbƒs•œŠˆ
+ * ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€ãƒ”ãƒƒãƒ”å¾©æ´»
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2331,7 +2331,7 @@ static GAMERET Game_BGame_PipRecover( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒ{[ƒiƒXƒQ[ƒ€@ƒsƒbƒs‘Şê
+ * ã‚²ãƒ¼ãƒ ã€€ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ã€€ãƒ”ãƒƒãƒ”é€€å ´
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2353,11 +2353,11 @@ static GAMERET Game_BGame_PipOut( SLOTMAIN *main )
 }
 
 //==============================================================================
-//	ƒQ[ƒ€@I—¹@ƒƒbƒZ[ƒW
+//	ã‚²ãƒ¼ãƒ ã€€çµ‚äº†ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒRƒCƒ“3–‡ˆÈ‰ºƒƒbƒZ[ƒWŠJn
+ * ã‚²ãƒ¼ãƒ ã€€ã‚³ã‚¤ãƒ³3æšä»¥ä¸‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2371,7 +2371,7 @@ static GAMERET Game_MsgCredit3Start( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒRƒCƒ“0ƒƒbƒZ[ƒWŠJn
+ * ã‚²ãƒ¼ãƒ ã€€ã‚³ã‚¤ãƒ³0ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2385,7 +2385,7 @@ static GAMERET Game_MsgCredit0Start( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒRƒCƒ“50000ƒƒbƒZ[ƒWŠJn
+ * ã‚²ãƒ¼ãƒ ã€€ã‚³ã‚¤ãƒ³50000ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–‹å§‹
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2399,7 +2399,7 @@ static GAMERET Game_MsgCreditMaxStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@ƒƒbƒZ[ƒW•\¦¨Ÿ‚Ö
+ * ã‚²ãƒ¼ãƒ ã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºâ†’æ¬¡ã¸
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2416,7 +2416,7 @@ static GAMERET Game_MsgWaitNext( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒQ[ƒ€@I—¹
+ * ã‚²ãƒ¼ãƒ ã€€çµ‚äº†
  * @param	main	SLOTMAIN
  * @retval	GAMERET	GAMERET
  */
@@ -2428,11 +2428,11 @@ static GAMERET Game_End( SLOTMAIN *main )
 }
 
 //--------------------------------------------------------------
-///	ƒXƒƒbƒgƒQ[ƒ€“®ìƒe[ƒuƒ‹
+///	ã‚¹ãƒ­ãƒƒãƒˆã‚²ãƒ¼ãƒ å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static GAMERET (* const DATA_SlotGameTbl[SEQNO_MAX])( SLOTMAIN *main ) =
 {
-	//’ÊíƒQ[ƒ€
+	//é€šå¸¸ã‚²ãƒ¼ãƒ 
 	Game_Init,
 	Game_Bet,
 	Game_GameStartButtonPushWait,
@@ -2456,7 +2456,7 @@ static GAMERET (* const DATA_SlotGameTbl[SEQNO_MAX])( SLOTMAIN *main ) =
 	Game_HitPayOutBonusWaitNext,
 	Game_HitReplayBonusStart,
 	Game_HitReplayBonusWaitNext,
-	//ƒ{[ƒiƒXƒ‚[ƒh
+	//ãƒœãƒ¼ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰
 	Game_BMode_NormalGameChangeInit,
 	Game_BMode_NormalGameReplayChangeInit,
 	Game_BMode_Init,
@@ -2475,7 +2475,7 @@ static GAMERET (* const DATA_SlotGameTbl[SEQNO_MAX])( SLOTMAIN *main ) =
 	Game_BMode_HitReplayWaitNext,
 	Game_BMode_HitSevenStart,
 	Game_BMode_HitSevenWaitNext,
-	//ƒ{[ƒiƒXƒQ[ƒ€
+	//ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ 
 	Game_BGame_InitFirst,
 	Game_BGame_Init,
 	Game_BGame_Start,
@@ -2494,7 +2494,7 @@ static GAMERET (* const DATA_SlotGameTbl[SEQNO_MAX])( SLOTMAIN *main ) =
 	Game_BGame_Anencore,
 	Game_BGame_PipRecover,
 	Game_BGame_PipOut,
-	//ƒƒbƒZ[ƒWAI—¹
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€çµ‚äº†
 	Game_MsgCredit3Start,
 	Game_MsgCredit0Start,
 	Game_MsgCreditMaxStart,
@@ -2503,11 +2503,11 @@ static GAMERET (* const DATA_SlotGameTbl[SEQNO_MAX])( SLOTMAIN *main ) =
 };
 
 //==============================================================================
-//@ƒŠ[ƒ‹§Œä
+//ã€€ãƒªãƒ¼ãƒ«åˆ¶å¾¡
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹§Œäˆ—ƒZƒbƒg
+ * ãƒªãƒ¼ãƒ«åˆ¶å¾¡å‡¦ç†ã‚»ãƒƒãƒˆ
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -2528,7 +2528,7 @@ static void slot_ReelControlSet( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹§Œäˆ—íœ
+ * ãƒªãƒ¼ãƒ«åˆ¶å¾¡å‡¦ç†å‰Šé™¤
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -2541,7 +2541,7 @@ static void slot_ReelControlDelete( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹§Œä@‰ñ“]‚·‚é
+ * ãƒªãƒ¼ãƒ«åˆ¶å¾¡ã€€å›è»¢ã™ã‚‹
  * @param	main	SLOTMAIN
  * @param	no		REEL_NUM
  * @retval	nothing
@@ -2555,7 +2555,7 @@ static void ReelControlScrollSet( SLOTMAIN *main, REEL_NUM no )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹§Œä@’â~‚·‚é
+ * ãƒªãƒ¼ãƒ«åˆ¶å¾¡ã€€åœæ­¢ã™ã‚‹
  * @param	main	SLOTMAIN
  * @param	no		REEL_NUM
  * @retval	nothing
@@ -2568,10 +2568,10 @@ static void ReelControlStopSet( SLOTMAIN *main, REEL_NUM no )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹§Œä@ƒXƒNƒ[ƒ‹ƒ`ƒFƒbƒN
+ * ãƒªãƒ¼ãƒ«åˆ¶å¾¡ã€€ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯
  * @param	main	SLOTMAIN
  * @param	no		REEL_NUM
- * @retval	int		TRUE=‰ñ“]’†
+ * @retval	int		TRUE=å›è»¢ä¸­
  */
 //--------------------------------------------------------------
 static int ReelControlScrollCheck( SLOTMAIN *main, REEL_NUM no )
@@ -2581,7 +2581,7 @@ static int ReelControlScrollCheck( SLOTMAIN *main, REEL_NUM no )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹§Œä“®ì
+ * ãƒªãƒ¼ãƒ«åˆ¶å¾¡å‹•ä½œ
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -2597,10 +2597,10 @@ static void ReelControlTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹§Œä@–³‚µ
+ * ãƒªãƒ¼ãƒ«åˆ¶å¾¡ã€€ç„¡ã—
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN *
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int ReelControl_Non( REELCONTROL *reel, SLOTMAIN *main )
@@ -2610,10 +2610,10 @@ static int ReelControl_Non( REELCONTROL *reel, SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹§Œä@ƒXƒNƒ[ƒ‹
+ * ãƒªãƒ¼ãƒ«åˆ¶å¾¡ã€€ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN *
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int ReelControl_Scroll( REELCONTROL *reel, SLOTMAIN *main )
@@ -2624,10 +2624,10 @@ static int ReelControl_Scroll( REELCONTROL *reel, SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹§Œä@’â~ƒZƒbƒg
+ * ãƒªãƒ¼ãƒ«åˆ¶å¾¡ã€€åœæ­¢ã‚»ãƒƒãƒˆ
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN *
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int ReelControl_StopSet( REELCONTROL *reel, SLOTMAIN *main )
@@ -2661,10 +2661,10 @@ static int ReelControl_StopSet( REELCONTROL *reel, SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹§Œä@’â~
+ * ãƒªãƒ¼ãƒ«åˆ¶å¾¡ã€€åœæ­¢
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN *
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int ReelControl_Stop( REELCONTROL *reel, SLOTMAIN *main )
@@ -2695,7 +2695,7 @@ static int ReelControl_Stop( REELCONTROL *reel, SLOTMAIN *main )
 		reel->frame = 0;
 		reel->seq_no++;
 		
-		if( flag == FALSE ){	//ƒŠ[ƒ‹“®‚©‚µ‚Ä‚¢‚È‚¢
+		if( flag == FALSE ){	//ãƒªãƒ¼ãƒ«å‹•ã‹ã—ã¦ã„ãªã„
 			return( TRUE );
 		}
 	}
@@ -2705,10 +2705,10 @@ static int ReelControl_Stop( REELCONTROL *reel, SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹§Œä@’â~U“®
+ * ãƒªãƒ¼ãƒ«åˆ¶å¾¡ã€€åœæ­¢æŒ¯å‹•
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN *
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int ReelControl_StopShake( REELCONTROL *reel, SLOTMAIN *main )
@@ -2733,7 +2733,7 @@ static int ReelControl_StopShake( REELCONTROL *reel, SLOTMAIN *main )
 }
 
 //--------------------------------------------------------------
-///	ƒŠ[ƒ‹§Œäƒe[ƒuƒ‹
+///	ãƒªãƒ¼ãƒ«åˆ¶å¾¡ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_ReelControlTbl[RC_MAX])( REELCONTROL *reel, SLOTMAIN *main ) =
 {
@@ -2745,14 +2745,14 @@ static int (* const DATA_ReelControlTbl[RC_MAX])( REELCONTROL *reel, SLOTMAIN *m
 };
 
 //==============================================================================
-//	ƒŠ[ƒ‹@ƒXƒxƒŠ
+//	ãƒªãƒ¼ãƒ«ã€€ã‚¹ãƒ™ãƒª
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹ƒqƒbƒgƒXƒxƒŠƒZƒbƒg
+ * ãƒªãƒ¼ãƒ«ãƒ’ãƒƒãƒˆã‚¹ãƒ™ãƒªã‚»ãƒƒãƒˆ
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=ƒqƒbƒg FALSE=“–‚½‚è–³‚µ
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ FALSE=å½“ãŸã‚Šç„¡ã—
  */
 //--------------------------------------------------------------
 static int ReelSlip_Hit( REELCONTROL *reel, SLOTMAIN *main )
@@ -2773,10 +2773,10 @@ static int ReelSlip_Hit( REELCONTROL *reel, SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹ƒqƒbƒgƒXƒxƒŠƒZƒbƒg@ƒ{[ƒiƒX’P‹R
+ * ãƒªãƒ¼ãƒ«ãƒ’ãƒƒãƒˆã‚¹ãƒ™ãƒªã‚»ãƒƒãƒˆã€€ãƒœãƒ¼ãƒŠã‚¹å˜é¨
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=ƒqƒbƒg FALSE=“–‚½‚è–³‚µ
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ FALSE=å½“ãŸã‚Šç„¡ã—
  */
 //--------------------------------------------------------------
 static int ReelSlipBonus_Hit( REELCONTROL *reel, SLOTMAIN *main )
@@ -2793,10 +2793,10 @@ static int ReelSlipBonus_Hit( REELCONTROL *reel, SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚O@ƒqƒbƒgƒXƒxƒŠ
+ * ãƒªãƒ¼ãƒ«ï¼ã€€ãƒ’ãƒƒãƒˆã‚¹ãƒ™ãƒª
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=ƒqƒbƒg FALSE=–³‚µ
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 static int Reel0Slip_HitSlip( REELCONTROL *reel, SLOTMAIN *main )
@@ -2816,11 +2816,11 @@ static int Reel0Slip_HitSlip( REELCONTROL *reel, SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚P@ƒqƒbƒgƒXƒxƒŠ
+ * ãƒªãƒ¼ãƒ«ï¼‘ã€€ãƒ’ãƒƒãƒˆã‚¹ãƒ™ãƒª
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
  * @param	hit		REEL_PATTERN
- * @retval	int		TRUE=ƒqƒbƒg FALSE=–³‚µ
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 static int Reel1Slip_HitSlip( REELCONTROL *reel, SLOTMAIN *main )
@@ -2840,10 +2840,10 @@ static int Reel1Slip_HitSlip( REELCONTROL *reel, SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚Q@ƒqƒbƒgƒXƒxƒŠ
+ * ãƒªãƒ¼ãƒ«ï¼’ã€€ãƒ’ãƒƒãƒˆã‚¹ãƒ™ãƒª
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=ƒqƒbƒg FALSE=–³‚µ
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 static int Reel2Slip_HitSlip( REELCONTROL *reel, SLOTMAIN *main )
@@ -2863,11 +2863,11 @@ static int Reel2Slip_HitSlip( REELCONTROL *reel, SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚O@ƒqƒbƒgƒXƒxƒŠ@‰‰ñ
+ * ãƒªãƒ¼ãƒ«ï¼ã€€ãƒ’ãƒƒãƒˆã‚¹ãƒ™ãƒªã€€åˆå›
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
  * @param	hit		REEL_PATTERN
- * @retval	int		TRUE=ƒqƒbƒg FALSE=–³‚µ
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 static int Reel0Slip_HitSlipFirst( REELCONTROL *reel, SLOTMAIN *main, REEL_PATTERN hit )
@@ -2875,7 +2875,7 @@ static int Reel0Slip_HitSlipFirst( REELCONTROL *reel, SLOTMAIN *main, REEL_PATTE
 	int i,j,max,prm,rnd;
 	int no = reel->reel_no;
 	
-	for( i = 1; i <= 3; i++ ){							//Œ»”Õ–Ê
+	for( i = 1; i <= 3; i++ ){							//ç¾ç›¤é¢
 		if(	Slot_ReelPatternGridGet(main,no,i) == hit ){
 			for( j = 0; (i+j) <= 3; j++ ){ 
 				if( Reel0Slip_PatCherry1HitCheck(main,j,hit) == TRUE ){
@@ -2899,7 +2899,7 @@ static int Reel0Slip_HitSlipFirst( REELCONTROL *reel, SLOTMAIN *main, REEL_PATTE
 		if( Slot_ReelPatternGridGet(main,no,1-i) == hit ){
 			for( j = 0; j < 3; j++ ){
 				if( Reel0Slip_PatCherry1HitCheck(main,i+j,hit) == TRUE ){
-					//0,1‚Ìê‡‚ÍˆÊ’uƒ‰ƒ“ƒ_ƒ€‚Åã‰ºŠ„‚èU‚è
+					//0,1ã®å ´åˆã¯ä½ç½®ãƒ©ãƒ³ãƒ€ãƒ ã§ä¸Šä¸‹å‰²ã‚ŠæŒ¯ã‚Š
 					if( j == 0 ){
 						prm = rnd % 4;
 						if( prm == 0 && Reel0Slip_PatCherry1HitCheck(main,i+2,hit) == TRUE ){
@@ -2935,11 +2935,11 @@ static int Reel0Slip_HitSlipFirst( REELCONTROL *reel, SLOTMAIN *main, REEL_PATTE
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹0@ƒqƒbƒgƒXƒxƒŠ@Šù‚É~‚ß‚Ä‚¢‚éƒŠ[ƒ‹ƒAƒŠ
+ * ãƒªãƒ¼ãƒ«0ã€€ãƒ’ãƒƒãƒˆã‚¹ãƒ™ãƒªã€€æ—¢ã«æ­¢ã‚ã¦ã„ã‚‹ãƒªãƒ¼ãƒ«ã‚¢ãƒª
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
  * @param	hit		REEL_PATTERN
- * @retval	int		TRUE=ƒqƒbƒg FALSE=–³‚µ
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 static int Reel0Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATTERN hit )
@@ -2951,7 +2951,7 @@ static int Reel0Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATTE
 		return( FALSE );
 	}
 	
-	//Œ»”Õ–Êƒ`ƒFƒbƒN
+	//ç¾ç›¤é¢ãƒã‚§ãƒƒã‚¯
 	if( Reel0Slip_PatCherry1HitCheck(main,0,hit) == TRUE ){
 		if( Slot_ReelPatternGridGet(main,no,pos0) == hit ){
 			reel->reel_hit_grid_y = pos0;
@@ -2978,7 +2978,7 @@ static int Reel0Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATTE
 		max = REEL_PT_MAX;
 	}
 	
-	if( pos1 == 0 ){			//pos0‚Ì‚İ
+	if( pos1 == 0 ){			//pos0ã®ã¿
 		for( i = 1; i <= max; i++ ){
 			if( Slot_ReelPatternGridGet(main,no,pos0-i) == hit ){
 				if( Reel0Slip_PatCherry1HitCheck(main,i,hit) == TRUE ){
@@ -3001,7 +3001,7 @@ static int Reel0Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATTE
 	//pos0,1 hit
 	if( pos2 == 0 ){
 		for( i = 1; i <= max; i++ ){
-			if( (i&0x01) ){				//—Dæ‡ˆÊ 0‚©‚ç
+			if( (i&0x01) ){				//å„ªå…ˆé †ä½ 0ã‹ã‚‰
 				if( Slot_ReelPatternGridGet(main,no,pos0-i) == hit ){
 					if( Reel0Slip_PatCherry1HitCheck(main,i,hit) == TRUE ){
 						reel->reel_hit_grid_y = pos0;
@@ -3017,7 +3017,7 @@ static int Reel0Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATTE
 						return( TRUE );
 					}
 				}
-			}else{							//‚P‚©‚ç
+			}else{							//ï¼‘ã‹ã‚‰
 				if( Slot_ReelPatternGridGet(main,no,pos1-i) == hit ){
 					if( Reel0Slip_PatCherry1HitCheck(main,i,hit) == TRUE ){
 						reel->reel_hit_grid_y = pos1;
@@ -3127,11 +3127,11 @@ static int Reel0Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATTE
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹1,2@ƒqƒbƒgƒXƒxƒŠ@‰‰ñ
+ * ãƒªãƒ¼ãƒ«1,2ã€€ãƒ’ãƒƒãƒˆã‚¹ãƒ™ãƒªã€€åˆå›
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
  * @param	hit		REEL_PATTERN
- * @retval	int		TRUE=ƒqƒbƒg FALSE=–³‚µ
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 static int Reel12Slip_HitSlipFirst( REELCONTROL *reel, SLOTMAIN *main, REEL_PATTERN hit )
@@ -3139,7 +3139,7 @@ static int Reel12Slip_HitSlipFirst( REELCONTROL *reel, SLOTMAIN *main, REEL_PATT
 	int i,j,max;
 	int no = reel->reel_no;
 	
-	for( i = 1; i <= 3; i++ ){							//Œ»”Õ–Ê
+	for( i = 1; i <= 3; i++ ){							//ç¾ç›¤é¢
 		if( Slot_ReelPatternGridGet(main,no,i) == hit ){
 			reel->reel_hit_grid_y = i;
 			reel->reel_slip_grid_y = 0;
@@ -3157,19 +3157,19 @@ static int Reel12Slip_HitSlipFirst( REELCONTROL *reel, SLOTMAIN *main, REEL_PATT
 		if( Slot_ReelPatternGridGet(main,no,1-i) == hit ){
 			j = i % 4;
 			
-			if( j == 1 ){						//ƒXƒxƒŠ1 ->@‰º
+			if( j == 1 ){						//ã‚¹ãƒ™ãƒª1 ->ã€€ä¸‹
 				reel->reel_hit_grid_y = 3;
 				reel->reel_slip_grid_y = i + 2;
 				return( TRUE );
 			}
 			
-			if( j == 2 || j == 3 ){				//ƒXƒxƒŠ2,3 -> ’†
+			if( j == 2 || j == 3 ){				//ã‚¹ãƒ™ãƒª2,3 -> ä¸­
 				reel->reel_hit_grid_y = 2;
 				reel->reel_slip_grid_y = i + 1;
 				return( TRUE );
 			}
 			
-			reel->reel_hit_grid_y = 1;			//ƒXƒxƒŠ4 ->@ã
+			reel->reel_hit_grid_y = 1;			//ã‚¹ãƒ™ãƒª4 ->ã€€ä¸Š
 			reel->reel_slip_grid_y = i;
 			return( TRUE );
 		}
@@ -3186,11 +3186,11 @@ static int Reel12Slip_HitSlipFirst( REELCONTROL *reel, SLOTMAIN *main, REEL_PATT
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹12‹¤’Ê@ƒqƒbƒgƒXƒxƒŠ@Šù‚É~‚ß‚Ä‚¢‚éƒŠ[ƒ‹ƒAƒŠ
+ * ãƒªãƒ¼ãƒ«12å…±é€šã€€ãƒ’ãƒƒãƒˆã‚¹ãƒ™ãƒªã€€æ—¢ã«æ­¢ã‚ã¦ã„ã‚‹ãƒªãƒ¼ãƒ«ã‚¢ãƒª
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
  * @param	hit		REEL_PATTERN
- * @retval	int		TRUE=ƒqƒbƒg FALSE=–³‚µ
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 static int Reel12Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATTERN hit )
@@ -3201,7 +3201,7 @@ static int Reel12Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATT
 		return( FALSE );
 	}
 	
-	//Œ»”Õ–Êƒ`ƒFƒbƒN
+	//ç¾ç›¤é¢ãƒã‚§ãƒƒã‚¯
 	if( Slot_ReelPatternGridGet(main,no,pos0) == hit ){
 		reel->reel_hit_grid_y = pos0;
 		reel->reel_slip_grid_y = 0;
@@ -3226,7 +3226,7 @@ static int Reel12Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATT
 		max = REEL_PT_MAX;
 	}
 	
-	if( pos1 == 0 ){			//pos0‚Ì‚İ
+	if( pos1 == 0 ){			//pos0ã®ã¿
 		for( i = 1; i <= max; i++ ){
 			if( Slot_ReelPatternGridGet(main,no,pos0-i) == hit ){
 				reel->reel_hit_grid_y = pos0;
@@ -3250,9 +3250,9 @@ static int Reel12Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATT
 	{
 	/*	if( no == REEL_1 ){
 			if( pos2 == 0 ){
-				OS_Printf( "ƒŠ[ƒ‹1ƒXƒxƒŠ@2‰ÓŠ@prm=%d,0x01=%d\n", prm, (prm&0x01) );
+				OS_Printf( "ãƒªãƒ¼ãƒ«1ã‚¹ãƒ™ãƒªã€€2ç®‡æ‰€ã€€prm=%d,0x01=%d\n", prm, (prm&0x01) );
 			}else{
-				OS_Printf( "ƒŠ[ƒ‹1ƒXƒxƒŠ@3‰ÓŠ@prm=%d,0x01=%d\n", prm, (prm&0x01) );
+				OS_Printf( "ãƒªãƒ¼ãƒ«1ã‚¹ãƒ™ãƒªã€€3ç®‡æ‰€ã€€prm=%d,0x01=%d\n", prm, (prm&0x01) );
 			}
 		} */
 	}
@@ -3261,7 +3261,7 @@ static int Reel12Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATT
 	//pos0,1 hit
 	if( pos2 == 0 ){
 		if( (prm & 0x01) ){
-			for( i = 1; i <= max; i++ ){						//—Dæ‡ˆÊ 0‚©‚ç
+			for( i = 1; i <= max; i++ ){						//å„ªå…ˆé †ä½ 0ã‹ã‚‰
 				if( Slot_ReelPatternGridGet(main,no,pos0-i) == hit ){
 					reel->reel_hit_grid_y = pos0;
 					reel->reel_slip_grid_y = i;
@@ -3276,7 +3276,7 @@ static int Reel12Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATT
 					return( TRUE );
 				}
 			}
-		}else{													//1‚©‚ç
+		}else{													//1ã‹ã‚‰
 			for( i = 1; i <= max; i++ ){
 				if( Slot_ReelPatternGridGet(main,no,pos1-i) == hit ){
 					reel->reel_hit_grid_y = pos1;
@@ -3305,7 +3305,7 @@ static int Reel12Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATT
 	
 	prm %= 3;
 	
-	if( prm == 0 ){				//—Dæ‡ˆÊ@0‚©‚ç
+	if( prm == 0 ){				//å„ªå…ˆé †ä½ã€€0ã‹ã‚‰
 		for( i = 1; i <= max; i++ ){
 			if( Slot_ReelPatternGridGet(main,no,pos0-i) == hit ){
 				reel->reel_hit_grid_y = pos0;
@@ -3329,7 +3329,7 @@ static int Reel12Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATT
 				return( TRUE );
 			}
 		}
-	}else if( prm == 1 ){			//—Dæ‡ˆÊ@1‚©‚ç
+	}else if( prm == 1 ){			//å„ªå…ˆé †ä½ã€€1ã‹ã‚‰
 		for( i = 1; i <= max; i++ ){
 			if( Slot_ReelPatternGridGet(main,no,pos1-i) == hit ){
 				reel->reel_hit_grid_y = pos1;
@@ -3353,7 +3353,7 @@ static int Reel12Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATT
 				return( TRUE );
 			}
 		}	
-	}else{						//—Dæ‡ˆÊ@2‚©‚ç
+	}else{						//å„ªå…ˆé †ä½ã€€2ã‹ã‚‰
 		for( i = 1; i <= max; i++ ){
 			if( Slot_ReelPatternGridGet(main,no,pos2-i) == hit ){
 				reel->reel_hit_grid_y = pos2;
@@ -3390,11 +3390,11 @@ static int Reel12Slip_HitSlipAfter( REELCONTROL *reel, SLOTMAIN *main, REEL_PATT
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚O‚P‚Q@ƒqƒbƒgƒXƒxƒŠ@ƒ{[ƒiƒX
+ * ãƒªãƒ¼ãƒ«ï¼ï¼‘ï¼’ã€€ãƒ’ãƒƒãƒˆã‚¹ãƒ™ãƒªã€€ãƒœãƒ¼ãƒŠã‚¹
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
  * @param	hit		REEL_PATTERN
- * @retval	int		TRUE=ƒqƒbƒg FALSE=–³‚µ
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ FALSE=ç„¡ã—
  */
 //--------------------------------------------------------------
 static int Reel012SlipBonus_HitSlip( REELCONTROL *reel, SLOTMAIN *main, REEL_PATTERN hit )
@@ -3427,7 +3427,7 @@ static int Reel012SlipBonus_HitSlip( REELCONTROL *reel, SLOTMAIN *main, REEL_PAT
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹ƒnƒYƒŒƒXƒxƒŠƒZƒbƒg
+ * ãƒªãƒ¼ãƒ«ãƒã‚ºãƒ¬ã‚¹ãƒ™ãƒªã‚»ãƒƒãƒˆ
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
  * @retval	nothing
@@ -3439,11 +3439,11 @@ static void ReelSlip_Miss( REELCONTROL *reel, SLOTMAIN *main )
 	
 	count = ReelSlip_StopReelCountGet( main );
 	
-	if( reel->reel_no != 0 && count < 2 ){		//0ˆÈŠO‚ÅÅŒã‚Å‚È‚¢ê‡‚ÍƒXƒxƒŠ–³‚µ
+	if( reel->reel_no != 0 && count < 2 ){		//0ä»¥å¤–ã§æœ€å¾Œã§ãªã„å ´åˆã¯ã‚¹ãƒ™ãƒªç„¡ã—
 		return; 
 	}
 	
-	if( reel->reel_no == 0 && count < 2 ){		//0‚Å’â~2‚Ü‚Å‚È‚çˆÓ’n‚Å‚à’Pƒ`ƒFƒŠ[ŠO‚µ
+	if( reel->reel_no == 0 && count < 2 ){		//0ã§åœæ­¢2ã¾ã§ãªã‚‰æ„åœ°ã§ã‚‚å˜ãƒã‚§ãƒªãƒ¼å¤–ã—
 		for( i = 0; i <= REEL_PT_MAX; i++ ){
 			if( Reel0Slip_Cherry1HitCheck(main,i) == FALSE ){
 				reel->reel_slip_grid_y = i;
@@ -3494,7 +3494,7 @@ static void ReelSlip_Miss( REELCONTROL *reel, SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹ƒnƒYƒŒƒXƒxƒŠƒZƒbƒg@ƒ{[ƒiƒX
+ * ãƒªãƒ¼ãƒ«ãƒã‚ºãƒ¬ã‚¹ãƒ™ãƒªã‚»ãƒƒãƒˆã€€ãƒœãƒ¼ãƒŠã‚¹
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
  * @retval	nothing
@@ -3506,11 +3506,11 @@ static void ReelSlipBonus_Miss( REELCONTROL *reel, SLOTMAIN *main )
 	
 	count = ReelSlip_StopReelCountGet( main );
 	
-	if( reel->reel_no != 0 && count < 2 ){		//0ˆÈŠO‚ÅÅŒã‚Å‚È‚¢ê‡‚ÍƒXƒxƒŠ–³‚µ
+	if( reel->reel_no != 0 && count < 2 ){		//0ä»¥å¤–ã§æœ€å¾Œã§ãªã„å ´åˆã¯ã‚¹ãƒ™ãƒªç„¡ã—
 		return; 
 	}
 	
-	if( reel->reel_no == 0 && count < 2 ){		//0‚Å’â~”‚QˆÈ‰º‚È‚çˆÓ’n‚Å‚à’Pƒ`ƒFƒŠ[ŠO‚µ
+	if( reel->reel_no == 0 && count < 2 ){		//0ã§åœæ­¢æ•°ï¼’ä»¥ä¸‹ãªã‚‰æ„åœ°ã§ã‚‚å˜ãƒã‚§ãƒªãƒ¼å¤–ã—
 		for( i = 0; i < REEL_PT_MAX; i++ ){
 			if( Slot_ReelPatternGridGet(main,0,2-i) != REEL_CHERRY ){
 				reel->reel_slip_grid_y = i;
@@ -3558,7 +3558,7 @@ static void ReelSlipBonus_Miss( REELCONTROL *reel, SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * Šù‚É’â~“®ì‚ğs‚Á‚Ä‚¢‚éƒŠ[ƒ‹‚ğƒJƒEƒ“ƒg
+ * æ—¢ã«åœæ­¢å‹•ä½œã‚’è¡Œã£ã¦ã„ã‚‹ãƒªãƒ¼ãƒ«ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
  * @param	main	SLOTMAIN
  * @retval	int		0,1,2,3
  */
@@ -3572,10 +3572,10 @@ static int ReelSlip_StopReelCountGet( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ‰‰ñ’â~‚©‚Ç‚¤‚©
+ * åˆå›åœæ­¢ã‹ã©ã†ã‹
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=‰‰ñ
+ * @retval	int		TRUE=åˆå›
  */
 //--------------------------------------------------------------
 static int ReelSlip_StartSlipCheck( REELCONTROL *reel, SLOTMAIN *main )
@@ -3609,13 +3609,13 @@ static int ReelSlip_StartSlipCheck( REELCONTROL *reel, SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * “–‚½‚èˆÊ’uæ“¾
+ * å½“ãŸã‚Šä½ç½®å–å¾—
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @param	pos0	~‚ßŠ‚»‚Ì0 0=–³‚µ
- * @param	pos1	~‚ßŠ‚»‚Ì1 0=–³‚µ
- * @param	pos1	~‚ßŠ‚»‚Ì2 0=–³‚µ
- * @retval	int		TRUE=ƒ|ƒW‚ ‚è
+ * @param	pos0	æ­¢ã‚æ‰€ãã®0 0=ç„¡ã—
+ * @param	pos1	æ­¢ã‚æ‰€ãã®1 0=ç„¡ã—
+ * @param	pos1	æ­¢ã‚æ‰€ãã®2 0=ç„¡ã—
+ * @retval	int		TRUE=ãƒã‚¸ã‚ã‚Š
  */
 //--------------------------------------------------------------
 static int ReelSlip_HitStopPosGet(
@@ -3637,13 +3637,13 @@ static int ReelSlip_HitStopPosGet(
 	
 	switch( reel->reel_no ){
 	case REEL_0:
-		if( st1 != REEL_ST_SCROLL && st2 != REEL_ST_SCROLL ){		//1,2~‚ß
-			if( hit1 == hit2 ){										//•½s
+		if( st1 != REEL_ST_SCROLL && st2 != REEL_ST_SCROLL ){		//1,2æ­¢ã‚
+			if( hit1 == hit2 ){										//å¹³è¡Œ
 				*pos0 = hit1;
 				return( TRUE );
 			}
 			
-			if( hit2 == 1 ){										//Î‚ßã
+			if( hit2 == 1 ){										//æ–œã‚ä¸Š
 				*pos0 = 3;
 				return( TRUE );
 			}
@@ -3652,8 +3652,8 @@ static int ReelSlip_HitStopPosGet(
 			return( TRUE );
 		}
 		
-		if( st1 != REEL_ST_SCROLL ){								//^‚ñ’†‚Ì‚İ‚Æ‚Ü‚è
-			if( hit1 == 2 ){										//’†‚È‚ç‰¡‚ÉÎ‚ß‚É
+		if( st1 != REEL_ST_SCROLL ){								//çœŸã‚“ä¸­ã®ã¿ã¨ã¾ã‚Š
+			if( hit1 == 2 ){										//ä¸­ãªã‚‰æ¨ªã«æ–œã‚ã«
 				*pos0 = 1;
 				*pos1 = 2;
 				*pos2 = 3;
@@ -3664,27 +3664,27 @@ static int ReelSlip_HitStopPosGet(
 			return( TRUE );
 		}
 		
-		if( hit2 == 2 ){											//‰E‚Ì‚İ
-			*pos0 = hit2;											//Î‚ß‚Ì—]’n–³‚µ
+		if( hit2 == 2 ){											//å³ã®ã¿
+			*pos0 = hit2;											//æ–œã‚ã®ä½™åœ°ç„¡ã—
 			return( TRUE );
 		}
 		
-		*pos0 = 1;													//1,3 ‹¤’Ê
+		*pos0 = 1;													//1,3 å…±é€š
 		*pos1 = 3;
 		return( TRUE );
 	case REEL_1:
-		if( st0 != REEL_ST_SCROLL && st2 != REEL_ST_SCROLL ){		//0,2~‚ß
-			if( hit0 == hit2 ){										//•½s
+		if( st0 != REEL_ST_SCROLL && st2 != REEL_ST_SCROLL ){		//0,2æ­¢ã‚
+			if( hit0 == hit2 ){										//å¹³è¡Œ
 				*pos0 = hit0;
 				return( TRUE );
 			}
 			
-			*pos0 = 2;												//Î‚ßˆÈŠO—]’n–³‚µ
+			*pos0 = 2;												//æ–œã‚ä»¥å¤–ä½™åœ°ç„¡ã—
 			return( TRUE );
 		}
 		
 		if( st0 != REEL_ST_SCROLL ){
-			if( hit0 == 2 ){										//^‚ñ’†ˆÈŠO—]’n–³‚µ
+			if( hit0 == 2 ){										//çœŸã‚“ä¸­ä»¥å¤–ä½™åœ°ç„¡ã—
 				*pos0 = 2;
 				return( TRUE );
 			}
@@ -3700,7 +3700,7 @@ static int ReelSlip_HitStopPosGet(
 			return( TRUE );
 		}
 		
-		if( hit2 == 2 ){											//^‚ñ’†ˆÈŠO‚Ì—]’n–³‚µ
+		if( hit2 == 2 ){											//çœŸã‚“ä¸­ä»¥å¤–ã®ä½™åœ°ç„¡ã—
 			*pos0 = 2;
 			return( TRUE );
 		}
@@ -3715,8 +3715,8 @@ static int ReelSlip_HitStopPosGet(
 		*pos1 = 3;
 		return( TRUE );
 	case REEL_2:
-		if( st0 != REEL_ST_SCROLL && st1 != REEL_ST_SCROLL ){		//0,1~‚ß
-			if( hit0 == hit1 ){										//•½s
+		if( st0 != REEL_ST_SCROLL && st1 != REEL_ST_SCROLL ){		//0,1æ­¢ã‚
+			if( hit0 == hit1 ){										//å¹³è¡Œ
 				*pos0 = hit0;
 				return( TRUE );
 			}
@@ -3730,18 +3730,18 @@ static int ReelSlip_HitStopPosGet(
 			return( TRUE );
 		}
 		
-		if( st0 != REEL_ST_SCROLL ){				//0‚Ì‚İ
+		if( st0 != REEL_ST_SCROLL ){				//0ã®ã¿
 			if( hit0 == 2 ){						
 				*pos0 = 2;
 				return( TRUE );
 			}
 			
-			*pos0 = 1;								//1,3‹¤’Ê
+			*pos0 = 1;								//1,3å…±é€š
 			*pos1 = 3;
 			return( TRUE );
 		}
-													//1‚Ì‚İ
-		if( hit1 == 2 ){							//’†‚È‚ç‚R‚Â
+													//1ã®ã¿
+		if( hit1 == 2 ){							//ä¸­ãªã‚‰ï¼“ã¤
 			*pos0 = 1;
 			*pos1 = 2;
 			*pos2 = 3;
@@ -3758,11 +3758,11 @@ static int ReelSlip_HitStopPosGet(
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚O@w’è‚³‚ê‚½ƒIƒtƒZƒbƒg‚Å’Pƒ`ƒFƒŠ[ƒ`ƒFƒbƒN
+ * ãƒªãƒ¼ãƒ«ï¼ã€€æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ•ã‚»ãƒƒãƒˆã§å˜ãƒã‚§ãƒªãƒ¼ãƒã‚§ãƒƒã‚¯
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @param	offs	ƒIƒtƒZƒbƒg
- * @retval	int		TRUE=ƒAƒŠ
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	int		TRUE=ã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int Reel0Slip_Cherry1HitCheck( SLOTMAIN *main, int offs )
@@ -3781,33 +3781,33 @@ static int Reel0Slip_Cherry1HitCheck( SLOTMAIN *main, int offs )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚O@’Pƒ`ƒFƒŠ[ƒqƒbƒgƒ`ƒFƒbƒN
+ * ãƒªãƒ¼ãƒ«ï¼ã€€å˜ãƒã‚§ãƒªãƒ¼ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @param	offs	ƒIƒtƒZƒbƒg
- * @retval	int		TRUE=–³‚µ
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	int		TRUE=ç„¡ã—
  */
 //--------------------------------------------------------------
 static int Reel0Slip_PatCherry1HitCheck( SLOTMAIN *main, int offs, REEL_PATTERN hit )
 {
-	if( hit == REEL_CHERRY ){				//ƒ`ƒFƒŠ[ƒqƒbƒgOK
+	if( hit == REEL_CHERRY ){				//ãƒã‚§ãƒªãƒ¼ãƒ’ãƒƒãƒˆOK
 		return( TRUE );
 	}
 	
 	if( Reel0Slip_Cherry1HitCheck(main,offs) == FALSE ){
-		return( TRUE );						//”Õ–Ê‚Éƒ`ƒFƒŠ[–³‚µ
+		return( TRUE );						//ç›¤é¢ã«ãƒã‚§ãƒªãƒ¼ç„¡ã—
 	}
 	
-	return( FALSE );						//ƒ`ƒFƒŠ[–³‚µ‚Å”Õ–Êƒ`ƒFƒŠ[
+	return( FALSE );						//ãƒã‚§ãƒªãƒ¼ç„¡ã—ã§ç›¤é¢ãƒã‚§ãƒªãƒ¼
 }
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚O@w’è‚³‚ê‚½ƒIƒtƒZƒbƒg‚Å“–‚½‚è‚ª‚ ‚é‚©B–‘O‚É‚Q‚Â~‚Ü‚Á‚Ä‚¢‚é–‚ªğŒ
+ * ãƒªãƒ¼ãƒ«ï¼ã€€æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ•ã‚»ãƒƒãƒˆã§å½“ãŸã‚ŠãŒã‚ã‚‹ã‹ã€‚äº‹å‰ã«ï¼’ã¤æ­¢ã¾ã£ã¦ã„ã‚‹äº‹ãŒæ¡ä»¶
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @param	offs	ƒIƒtƒZƒbƒg
- * @retval	int		TRUE=ƒAƒŠ
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	int		TRUE=ã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int Reel0Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs )
@@ -3816,7 +3816,7 @@ static int Reel0Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 	int slip1 = main->reelcont[REEL_1].reel_slip_grid_y;
 	int slip2 = main->reelcont[REEL_2].reel_slip_grid_y;
 	
-	//1-1-1ƒ`ƒFƒbƒN
+	//1-1-1ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 1-offs );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 1-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 1-slip2 );
@@ -3825,7 +3825,7 @@ static int Reel0Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 		return( TRUE );
 	}
 	
-	//2-2-2ƒ`ƒFƒbƒN
+	//2-2-2ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 2-offs );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 2-slip2 );
@@ -3834,7 +3834,7 @@ static int Reel0Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 		return( TRUE );
 	}
 	
-	//3-3-3ƒ`ƒFƒbƒN
+	//3-3-3ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 3-offs );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 3-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 3-slip2 );
@@ -3843,7 +3843,7 @@ static int Reel0Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 		return( TRUE );
 	}
 	
-	//1-2-3ƒ`ƒFƒbƒN
+	//1-2-3ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 1-offs );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 3-slip2 );
@@ -3853,7 +3853,7 @@ static int Reel0Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 	}
 	
 	
-	//3-2-1ƒ`ƒFƒbƒN
+	//3-2-1ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 3-offs );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 1-slip2 );
@@ -3867,11 +3867,11 @@ static int Reel0Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚P@w’è‚³‚ê‚½ƒIƒtƒZƒbƒg‚Å“–‚½‚è‚ª‚ ‚é‚©B–‘O‚É‚Q‚Â~‚Ü‚Á‚Ä‚¢‚é–‚ªğŒ
+ * ãƒªãƒ¼ãƒ«ï¼‘ã€€æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ•ã‚»ãƒƒãƒˆã§å½“ãŸã‚ŠãŒã‚ã‚‹ã‹ã€‚äº‹å‰ã«ï¼’ã¤æ­¢ã¾ã£ã¦ã„ã‚‹äº‹ãŒæ¡ä»¶
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @param	offs	ƒIƒtƒZƒbƒg
- * @retval	int		TRUE=ƒAƒŠ
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	int		TRUE=ã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int Reel1Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs )
@@ -3880,7 +3880,7 @@ static int Reel1Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 	int slip0 = main->reelcont[REEL_0].reel_slip_grid_y;
 	int slip2 = main->reelcont[REEL_2].reel_slip_grid_y;
 	
-	//1-1-1ƒ`ƒFƒbƒN
+	//1-1-1ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 1-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 1-offs );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 1-slip2 );
@@ -3889,7 +3889,7 @@ static int Reel1Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 		return( TRUE );
 	}
 	
-	//2-2-2ƒ`ƒFƒbƒN
+	//2-2-2ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 2-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-offs );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 2-slip2 );
@@ -3898,7 +3898,7 @@ static int Reel1Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 		return( TRUE );
 	}
 	
-	//3-3-3ƒ`ƒFƒbƒN
+	//3-3-3ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 3-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 3-offs );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 3-slip2 );
@@ -3907,7 +3907,7 @@ static int Reel1Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 		return( TRUE );
 	}
 	
-	//1-2-3ƒ`ƒFƒbƒN
+	//1-2-3ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 1-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-offs );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 3-slip2 );
@@ -3916,7 +3916,7 @@ static int Reel1Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 		return( TRUE );
 	}
 	
-	//3-2-1ƒ`ƒFƒbƒN
+	//3-2-1ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 3-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-offs );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 1-slip2 );
@@ -3930,11 +3930,11 @@ static int Reel1Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚Q@w’è‚³‚ê‚½ƒIƒtƒZƒbƒg‚Å“–‚½‚è‚ª‚ ‚é‚©B–‘O‚É‚Q‚Â~‚Ü‚Á‚Ä‚¢‚é–‚ªğŒ
+ * ãƒªãƒ¼ãƒ«ï¼’ã€€æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ•ã‚»ãƒƒãƒˆã§å½“ãŸã‚ŠãŒã‚ã‚‹ã‹ã€‚äº‹å‰ã«ï¼’ã¤æ­¢ã¾ã£ã¦ã„ã‚‹äº‹ãŒæ¡ä»¶
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @param	offs	ƒIƒtƒZƒbƒg
- * @retval	int		TRUE=ƒAƒŠ
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	int		TRUE=ã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int Reel2Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs )
@@ -3943,7 +3943,7 @@ static int Reel2Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 	int slip0 = main->reelcont[REEL_0].reel_slip_grid_y;
 	int slip1 = main->reelcont[REEL_1].reel_slip_grid_y;
 	
-	//1-1-1ƒ`ƒFƒbƒN
+	//1-1-1ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 1-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 1-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 1-offs );
@@ -3952,7 +3952,7 @@ static int Reel2Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 		return( TRUE );
 	}
 	
-	//2-2-2ƒ`ƒFƒbƒN
+	//2-2-2ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 2-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 2-offs );
@@ -3961,7 +3961,7 @@ static int Reel2Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 		return( TRUE );
 	}
 	
-	//3-3-3ƒ`ƒFƒbƒN
+	//3-3-3ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 3-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 3-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 3-offs );
@@ -3970,7 +3970,7 @@ static int Reel2Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 		return( TRUE );
 	}
 	
-	//1-2-3ƒ`ƒFƒbƒN
+	//1-2-3ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 1-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 3-offs );
@@ -3979,7 +3979,7 @@ static int Reel2Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 		return( TRUE );
 	}
 	
-	//3-2-1ƒ`ƒFƒbƒN
+	//3-2-1ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 3-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 1-offs );
@@ -3993,11 +3993,11 @@ static int Reel2Slip_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚O@‚P–‡“q‚¯@w’è‚³‚ê‚½ƒIƒtƒZƒbƒg‚Å“–‚½‚è‚ª‚ ‚é‚©B–‘O‚É‚Q‚Â~‚Ü‚Á‚Ä‚¢‚é–‚ªğŒ
+ * ãƒªãƒ¼ãƒ«ï¼ã€€ï¼‘æšè³­ã‘ã€€æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ•ã‚»ãƒƒãƒˆã§å½“ãŸã‚ŠãŒã‚ã‚‹ã‹ã€‚äº‹å‰ã«ï¼’ã¤æ­¢ã¾ã£ã¦ã„ã‚‹äº‹ãŒæ¡ä»¶
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @param	offs	ƒIƒtƒZƒbƒg
- * @retval	int		TRUE=ƒAƒŠ
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	int		TRUE=ã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int Reel0SlipBonus_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs )
@@ -4006,7 +4006,7 @@ static int Reel0SlipBonus_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int
 	int slip1 = main->reelcont[REEL_1].reel_slip_grid_y;
 	int slip2 = main->reelcont[REEL_2].reel_slip_grid_y;
 	
-	//2-2-2ƒ`ƒFƒbƒN
+	//2-2-2ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 2-offs );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 2-slip2 );
@@ -4020,11 +4020,11 @@ static int Reel0SlipBonus_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚P@‚P–‡“q‚¯@w’è‚³‚ê‚½ƒIƒtƒZƒbƒg‚Å“–‚½‚è‚ª‚ ‚é‚©B–‘O‚É‚Q‚Â~‚Ü‚Á‚Ä‚¢‚é–‚ªğŒ
+ * ãƒªãƒ¼ãƒ«ï¼‘ã€€ï¼‘æšè³­ã‘ã€€æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ•ã‚»ãƒƒãƒˆã§å½“ãŸã‚ŠãŒã‚ã‚‹ã‹ã€‚äº‹å‰ã«ï¼’ã¤æ­¢ã¾ã£ã¦ã„ã‚‹äº‹ãŒæ¡ä»¶
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @param	offs	ƒIƒtƒZƒbƒg
- * @retval	int		TRUE=ƒAƒŠ
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	int		TRUE=ã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int Reel1SlipBonus_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs )
@@ -4033,7 +4033,7 @@ static int Reel1SlipBonus_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int
 	int slip0 = main->reelcont[REEL_0].reel_slip_grid_y;
 	int slip2 = main->reelcont[REEL_2].reel_slip_grid_y;
 	
-	//2-2-2ƒ`ƒFƒbƒN
+	//2-2-2ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 2-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-offs );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 2-slip2 );
@@ -4047,11 +4047,11 @@ static int Reel1SlipBonus_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚Q@‚P–‡“q‚¯@w’è‚³‚ê‚½ƒIƒtƒZƒbƒg‚Å“–‚½‚è‚ª‚ ‚é‚©B–‘O‚É‚Q‚Â~‚Ü‚Á‚Ä‚¢‚é–‚ªğŒ
+ * ãƒªãƒ¼ãƒ«ï¼’ã€€ï¼‘æšè³­ã‘ã€€æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ•ã‚»ãƒƒãƒˆã§å½“ãŸã‚ŠãŒã‚ã‚‹ã‹ã€‚äº‹å‰ã«ï¼’ã¤æ­¢ã¾ã£ã¦ã„ã‚‹äº‹ãŒæ¡ä»¶
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @param	offs	ƒIƒtƒZƒbƒg
- * @retval	int		TRUE=ƒAƒŠ
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	int		TRUE=ã‚¢ãƒª
  */
 //--------------------------------------------------------------
 static int Reel2SlipBonus_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int offs )
@@ -4060,7 +4060,7 @@ static int Reel2SlipBonus_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int
 	int slip0 = main->reelcont[REEL_0].reel_slip_grid_y;
 	int slip1 = main->reelcont[REEL_1].reel_slip_grid_y;
 	
-	//2-2-2ƒ`ƒFƒbƒN
+	//2-2-2ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 2-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 2-offs );
@@ -4074,11 +4074,11 @@ static int Reel2SlipBonus_OffsetHitCheck( REELCONTROL *reel, SLOTMAIN *main, int
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‚O@w’è‚³‚ê‚½ƒIƒtƒZƒbƒg‚Å•¡”“–‚½‚è‚ª‚ ‚é‚©B–‘O‚É‚Q‚Â~‚Ü‚Á‚Ä‚¢‚é–‚ªğŒ
+ * ãƒªãƒ¼ãƒ«ï¼ã€€æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ•ã‚»ãƒƒãƒˆã§è¤‡æ•°å½“ãŸã‚ŠãŒã‚ã‚‹ã‹ã€‚äº‹å‰ã«ï¼’ã¤æ­¢ã¾ã£ã¦ã„ã‚‹äº‹ãŒæ¡ä»¶
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @param	offs	ƒIƒtƒZƒbƒg
- * @retval	int		ƒqƒbƒgƒJƒEƒ“ƒg 0=“–‚½‚è–³‚µ 1=“–‚½‚è 2 <=•¡”
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	int		ãƒ’ãƒƒãƒˆã‚«ã‚¦ãƒ³ãƒˆ 0=å½“ãŸã‚Šç„¡ã— 1=å½“ãŸã‚Š 2 <=è¤‡æ•°
  */
 //--------------------------------------------------------------
 static int Reel0Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int offs )
@@ -4088,7 +4088,7 @@ static int Reel0Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 	int slip1 = main->reelcont[REEL_1].reel_slip_grid_y;
 	int slip2 = main->reelcont[REEL_2].reel_slip_grid_y;
 	
-	//1-1-1ƒ`ƒFƒbƒN
+	//1-1-1ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 1-offs );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 1-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 1-slip2 );
@@ -4099,7 +4099,7 @@ static int Reel0Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 		}
 	}
 	
-	//2-2-2ƒ`ƒFƒbƒN
+	//2-2-2ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 2-offs );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 2-slip2 );
@@ -4108,7 +4108,7 @@ static int Reel0Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 		count++;
 	}
 	
-	//3-3-3ƒ`ƒFƒbƒN
+	//3-3-3ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 3-offs );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 3-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 3-slip2 );
@@ -4119,7 +4119,7 @@ static int Reel0Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 		}
 	}
 	
-	//1-2-3ƒ`ƒFƒbƒN
+	//1-2-3ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 1-offs );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 3-slip2 );
@@ -4129,7 +4129,7 @@ static int Reel0Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 	}
 	
 	
-	//3-2-1ƒ`ƒFƒbƒN
+	//3-2-1ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 3-offs );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 1-slip2 );
@@ -4143,11 +4143,11 @@ static int Reel0Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹1@w’è‚³‚ê‚½ƒIƒtƒZƒbƒg‚Å•¡”“–‚½‚è‚ª‚ ‚é‚©B–‘O‚É‚Q‚Â~‚Ü‚Á‚Ä‚¢‚é–‚ªğŒ
+ * ãƒªãƒ¼ãƒ«1ã€€æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ•ã‚»ãƒƒãƒˆã§è¤‡æ•°å½“ãŸã‚ŠãŒã‚ã‚‹ã‹ã€‚äº‹å‰ã«ï¼’ã¤æ­¢ã¾ã£ã¦ã„ã‚‹äº‹ãŒæ¡ä»¶
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @param	offs	ƒIƒtƒZƒbƒg
- * @retval	int		ƒqƒbƒgƒJƒEƒ“ƒg 0=“–‚½‚è–³‚µ 1=“–‚½‚è 2 <=•¡”
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	int		ãƒ’ãƒƒãƒˆã‚«ã‚¦ãƒ³ãƒˆ 0=å½“ãŸã‚Šç„¡ã— 1=å½“ãŸã‚Š 2 <=è¤‡æ•°
  */
 //--------------------------------------------------------------
 static int Reel1Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int offs )
@@ -4157,7 +4157,7 @@ static int Reel1Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 	int slip0 = main->reelcont[REEL_0].reel_slip_grid_y;
 	int slip2 = main->reelcont[REEL_2].reel_slip_grid_y;
 	
-	//1-1-1ƒ`ƒFƒbƒN
+	//1-1-1ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 1-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 1-offs );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 1-slip2 );
@@ -4168,7 +4168,7 @@ static int Reel1Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 		}
 	}
 	
-	//2-2-2ƒ`ƒFƒbƒN
+	//2-2-2ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 2-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-offs );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 2-slip2 );
@@ -4177,7 +4177,7 @@ static int Reel1Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 		count++;
 	}
 	
-	//3-3-3ƒ`ƒFƒbƒN
+	//3-3-3ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 3-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 3-offs );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 3-slip2 );
@@ -4188,7 +4188,7 @@ static int Reel1Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 		}
 	}
 	
-	//1-2-3ƒ`ƒFƒbƒN
+	//1-2-3ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 1-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-offs );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 3-slip2 );
@@ -4197,7 +4197,7 @@ static int Reel1Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 		count++;
 	}
 	
-	//3-2-1ƒ`ƒFƒbƒN
+	//3-2-1ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 3-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-offs );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 1-slip2 );
@@ -4211,11 +4211,11 @@ static int Reel1Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹1@w’è‚³‚ê‚½ƒIƒtƒZƒbƒg‚Å•¡”“–‚½‚è‚ª‚ ‚é‚©B–‘O‚É‚Q‚Â~‚Ü‚Á‚Ä‚¢‚é–‚ªğŒ
+ * ãƒªãƒ¼ãƒ«1ã€€æŒ‡å®šã•ã‚ŒãŸã‚ªãƒ•ã‚»ãƒƒãƒˆã§è¤‡æ•°å½“ãŸã‚ŠãŒã‚ã‚‹ã‹ã€‚äº‹å‰ã«ï¼’ã¤æ­¢ã¾ã£ã¦ã„ã‚‹äº‹ãŒæ¡ä»¶
  * @param	reel	REELCONTROL
  * @param	main	SLOTMAIN
- * @param	offs	ƒIƒtƒZƒbƒg
- * @retval	int		ƒqƒbƒgƒJƒEƒ“ƒg 0=“–‚½‚è–³‚µ 1=“–‚½‚è 2 <=•¡”
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @retval	int		ãƒ’ãƒƒãƒˆã‚«ã‚¦ãƒ³ãƒˆ 0=å½“ãŸã‚Šç„¡ã— 1=å½“ãŸã‚Š 2 <=è¤‡æ•°
  */
 //--------------------------------------------------------------
 static int Reel2Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int offs )
@@ -4225,7 +4225,7 @@ static int Reel2Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 	int slip0 = main->reelcont[REEL_0].reel_slip_grid_y;
 	int slip1 = main->reelcont[REEL_1].reel_slip_grid_y;
 	
-	//1-1-1ƒ`ƒFƒbƒN
+	//1-1-1ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 1-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 1-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 1-offs );
@@ -4236,7 +4236,7 @@ static int Reel2Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 		}
 	}
 	
-	//2-2-2ƒ`ƒFƒbƒN
+	//2-2-2ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 2-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 2-offs );
@@ -4245,7 +4245,7 @@ static int Reel2Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 		count++;
 	}
 	
-	//3-3-3ƒ`ƒFƒbƒN
+	//3-3-3ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 3-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 3-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 3-offs );
@@ -4256,7 +4256,7 @@ static int Reel2Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 		}
 	}
 	
-	//1-2-3ƒ`ƒFƒbƒN
+	//1-2-3ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 1-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 3-offs );
@@ -4265,7 +4265,7 @@ static int Reel2Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 		count++;
 	}
 	
-	//3-2-1ƒ`ƒFƒbƒN
+	//3-2-1ãƒã‚§ãƒƒã‚¯
 	pat0 = Slot_ReelPatternGridGet( main, 0, 3-slip0 );
 	pat1 = Slot_ReelPatternGridGet( main, 1, 2-slip1 );
 	pat2 = Slot_ReelPatternGridGet( main, 2, 1-offs );
@@ -4278,14 +4278,14 @@ static int Reel2Slip_OffsetHitCountGet( REELCONTROL *reel, SLOTMAIN *main, int o
 }
 
 //==============================================================================
-//	ƒŠ[ƒ‹‰ñ“]
+//	ãƒªãƒ¼ãƒ«å›è»¢
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‰ñ“]
+ * ãƒªãƒ¼ãƒ«å›è»¢
  * @param	main	SLOTMAIN
  * @param	no		REEL_NUM
- * @param	y		ˆÚ“®—Ê
+ * @param	y		ç§»å‹•é‡
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4298,11 +4298,11 @@ static void ReelScroll( SLOTMAIN *main, REEL_NUM no, fx32 y )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‰ñ“]@ƒOƒŠƒbƒh
+ * ãƒªãƒ¼ãƒ«å›è»¢ã€€ã‚°ãƒªãƒƒãƒ‰
  * @param	main	SLOTMAIN
  * @param	no		REEL_NUM
- * @param	y		ˆÚ“®—Ê
- * @retval	fx32	ƒOƒŠƒbƒh—]‚è
+ * @param	y		ç§»å‹•é‡
+ * @retval	fx32	ã‚°ãƒªãƒƒãƒ‰ä½™ã‚Š
  */
 //--------------------------------------------------------------
 static fx32 ReelScrollGrid( SLOTMAIN *main, REEL_NUM no, fx32 y )
@@ -4324,13 +4324,13 @@ static fx32 ReelScrollGrid( SLOTMAIN *main, REEL_NUM no, fx32 y )
 }
 
 //==============================================================================
-//	’Š‘I
+//	æŠ½é¸
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ’Š‘IŠm—¦‚ÌŒ³‚ğæ“¾
+ * æŠ½é¸ç¢ºç‡ã®å…ƒã‚’å–å¾—
  * @param	main	SLOTMAIN
- * @retval	u32		Œ³
+ * @retval	u32		å…ƒ
  */
 //--------------------------------------------------------------
 static u32 LotteryProbGet( SLOTMAIN *main )
@@ -4341,10 +4341,10 @@ static u32 LotteryProbGet( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ’Š‘I‚ÆŒ³Œ¸Z
- * @param	hit		ƒqƒbƒgŠm—¦
- * @param	prob	’Š‘I—¦
- * @retval	int		TRUE=ƒqƒbƒg
+ * æŠ½é¸ã¨å…ƒæ¸›ç®—
+ * @param	hit		ãƒ’ãƒƒãƒˆç¢ºç‡
+ * @param	prob	æŠ½é¸ç‡
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static int LotteryProbCheck( u32 hit, u32 *mprob )
@@ -4365,9 +4365,9 @@ static int LotteryProbCheck( u32 hit, u32 *mprob )
 
 //--------------------------------------------------------------
 /**
- * Šî–{’Š‘I A
+ * åŸºæœ¬æŠ½é¸ A
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=ƒqƒbƒg
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static int LotteryCheck_Basic( SLOTMAIN *main )
@@ -4375,7 +4375,7 @@ static int LotteryCheck_Basic( SLOTMAIN *main )
 	u32 prob = LotteryProbGet( main );
 	u32 hit = DATA_SlotBasicLotteryA[main->hard];
 	
-//	OS_Printf( "’Š‘IA HIT=0x%x,PROB=0x%x\n", hit, prob );
+//	OS_Printf( "æŠ½é¸A HIT=0x%x,PROB=0x%x\n", hit, prob );
 	
 	if( hit > prob ){
 		return( TRUE );
@@ -4386,9 +4386,9 @@ static int LotteryCheck_Basic( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * q–ğ’Š‘I@A
+ * å­å½¹æŠ½é¸ã€€A
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=ƒqƒbƒg
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static int LotterySet_SmallA( SLOTMAIN *main )
@@ -4480,9 +4480,9 @@ static int LotterySet_SmallA( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ’Š‘I@’Êíƒiƒr”­¶ƒ`ƒFƒbƒN
+ * æŠ½é¸ã€€é€šå¸¸ãƒŠãƒ“ç™ºç”Ÿãƒã‚§ãƒƒã‚¯
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=”­¶,FALSE=ƒnƒYƒŒ
+ * @retval	int		TRUE=ç™ºç”Ÿ,FALSE=ãƒã‚ºãƒ¬
  */
 //--------------------------------------------------------------
 static int LotteryCheck_Navi( SLOTMAIN *main )
@@ -4499,7 +4499,7 @@ static int LotteryCheck_Navi( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * Œp‘±—¦Š„‚èU‚è
+ * ç¶™ç¶šç‡å‰²ã‚ŠæŒ¯ã‚Š
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -4526,19 +4526,19 @@ static void LotterySet_BonusContinueBase( SLOTMAIN *main )
 		}
 	}
 	
-	//–{—ˆA—ˆ‚é–‚Í–³‚¢
+	//æœ¬æ¥ã€æ¥ã‚‹äº‹ã¯ç„¡ã„
 	i--;
 	main->bonus_continue_type = cb[i].type;
 	main->bonus_continue_prob_type = cb[i].prob_type;
 	main->bonus_continue_prob = DATA_ContinueBonusTypeParam[main->bonus_continue_type];
 	
-	OS_Printf( "Œp‘±—¦ˆÙí\n" );
+	OS_Printf( "ç¶™ç¶šç‡ç•°å¸¸\n" );
 	GF_ASSERT( 0 && "LotterySet_BonusContinueBase() prob error" );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒsƒbƒsƒ^ƒCƒv’Š‘I
+ * ãƒ”ãƒƒãƒ”ã‚¿ã‚¤ãƒ—æŠ½é¸
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -4586,9 +4586,9 @@ static void LotterySet_PipType( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * Šî–{’Š‘IB
+ * åŸºæœ¬æŠ½é¸B
  * @param	main	SLOTMAIN *
- * @retval	int		TRUE=“–‘I FALSE=—‘I
+ * @retval	int		TRUE=å½“é¸ FALSE=è½é¸
  */
 //--------------------------------------------------------------
 static int LotteryCheck_BasicLotteryB( SLOTMAIN *main )
@@ -4605,9 +4605,9 @@ static int LotteryCheck_BasicLotteryB( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * q–ğ’Š‘IB
+ * å­å½¹æŠ½é¸B
  * @param	main	SLOTMAIN *
- * @retval	int		TRUE=ƒqƒbƒg
+ * @retval	int		TRUE=ãƒ’ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static void LotterySet_BasicLotteryB( SLOTMAIN *main )
@@ -4651,19 +4651,19 @@ static void LotterySet_BasicLotteryB( SLOTMAIN *main )
 		return;
 	}
 	
-	if( LotteryProbCheck(lot[0],&prob) == TRUE ){	//ƒ`ƒFƒŠ[
+	if( LotteryProbCheck(lot[0],&prob) == TRUE ){	//ãƒã‚§ãƒªãƒ¼
 		main->lottery_bit |= LOTTERY_HITBIT_CHERRY;
 		main->cherry_hit_count++;
 		return;
 	}
 	
-	if( LotteryProbCheck(lot[1],&prob) == TRUE ){	//ƒXƒCƒJ
+	if( LotteryProbCheck(lot[1],&prob) == TRUE ){	//ã‚¹ã‚¤ã‚«
 		main->lottery_bit |= LOTTERY_HITBIT_SUIKA;
 		main->suika_hit_count++;
 		return;
 	}
 	
-	if( LotteryProbCheck(lot[1],&prob) == TRUE ){	//ƒxƒ‹
+	if( LotteryProbCheck(lot[1],&prob) == TRUE ){	//ãƒ™ãƒ«
 		main->lottery_bit |= LOTTERY_HITBIT_BELL;
 		main->bell_hit_count++;
 		return;
@@ -4675,9 +4675,9 @@ static void LotterySet_BasicLotteryB( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ŒŒõƒtƒ‰ƒbƒVƒ…’Š‘I
+ * æœˆå…‰ãƒ•ãƒ©ãƒƒã‚·ãƒ¥æŠ½é¸
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=“–‘I
+ * @retval	int		TRUE=å½“é¸
  */
 //--------------------------------------------------------------
 static int LotteryCheck_MoonLight( SLOTMAIN *main )
@@ -4690,9 +4690,9 @@ static int LotteryCheck_MoonLight( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * Ô‚¢Œ’Š‘I
+ * èµ¤ã„æœˆæŠ½é¸
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=“–‘I
+ * @retval	int		TRUE=å½“é¸
  */
 //--------------------------------------------------------------
 static int LotteryCheck_MoonLightRed( SLOTMAIN *main )
@@ -4705,24 +4705,24 @@ static int LotteryCheck_MoonLightRed( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXŒp‘±ƒ`ƒFƒbƒN
+ * ãƒœãƒ¼ãƒŠã‚¹ç¶™ç¶šãƒã‚§ãƒƒã‚¯
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=Œp‘± FALSE=I—¹
+ * @retval	int		TRUE=ç¶™ç¶š FALSE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static int LotteryCheck_BonusContinue( SLOTMAIN *main )
 {
 	u32 hit = main->bonus_continue_prob;
 	u32 prob = LotteryProbGet( main );
-	OS_Printf( "ƒ{[ƒiƒXŒp‘±ƒ`ƒFƒbƒN@Œp‘±—¦=%d,”»’è’l=%d ", hit, prob );
-	if( prob < hit ){ OS_Printf("Œp‘±\n"); return( TRUE ); }
-	OS_Printf( "‚Í‚¸‚ê\n" );
+	OS_Printf( "ãƒœãƒ¼ãƒŠã‚¹ç¶™ç¶šãƒã‚§ãƒƒã‚¯ã€€ç¶™ç¶šç‡=%d,åˆ¤å®šå€¤=%d ", hit, prob );
+	if( prob < hit ){ OS_Printf("ç¶™ç¶š\n"); return( TRUE ); }
+	OS_Printf( "ã¯ãšã‚Œ\n" );
 	return( FALSE );
 }
 
 //--------------------------------------------------------------
 /**
- * Œp‘±—¦ƒ_ƒEƒ“
+ * ç¶™ç¶šç‡ãƒ€ã‚¦ãƒ³
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -4747,13 +4747,13 @@ static void LotterySet_BonusContinueDown( SLOTMAIN *main )
 		bonus = 0;
 	}
 	
-	OS_Printf( "Œp‘±—¦ƒ_ƒEƒ“”»’è@Œ»İ=%d,”»’èŒã=%d\n", main->bonus_continue_prob, bonus );
+	OS_Printf( "ç¶™ç¶šç‡ãƒ€ã‚¦ãƒ³åˆ¤å®šã€€ç¾åœ¨=%d,åˆ¤å®šå¾Œ=%d\n", main->bonus_continue_prob, bonus );
 	main->bonus_continue_prob = bonus;
 }
 
 //--------------------------------------------------------------
 /**
- * Œp‘±‰‰oæ“¾
+ * ç¶™ç¶šæ¼”å‡ºå–å¾—
  * @param	main	SLOTMAIN
  * @retval	BCEFF	BCEFF
  */
@@ -4779,14 +4779,14 @@ static BCEFF LotteryGet_BonusContinueEffect( SLOTMAIN *main )
 		}
 	}
 	
-	OS_Printf( "Œp‘±‰‰oƒGƒ‰[ prec=0x%x\n", main->bonus_continue_prob );
+	OS_Printf( "ç¶™ç¶šæ¼”å‡ºã‚¨ãƒ©ãƒ¼ prec=0x%x\n", main->bonus_continue_prob );
 	GF_ASSERT( 0 && "LotteryGet_BonusContinueEffect() bonus prec erroe" );
 	return( BCEFF_NON );
 }
 
 //--------------------------------------------------------------
 /**
- * w·‚µƒ^ƒCƒvƒZƒbƒg
+ * æŒ‡å·®ã—ã‚¿ã‚¤ãƒ—ã‚»ãƒƒãƒˆ
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -4797,11 +4797,11 @@ static void LotterySet_Yubisashi( SLOTMAIN *main )
 }
 
 //==============================================================================
-//	x•¥‚¢§Œä
+//	æ”¯æ‰•ã„åˆ¶å¾¡
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * x•¥‚¢§Œäˆ—ƒZƒbƒg
+ * æ”¯æ‰•ã„åˆ¶å¾¡å‡¦ç†ã‚»ãƒƒãƒˆ
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -4817,7 +4817,7 @@ static void slot_PayOutControlSet( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * x•¥‚¢§Œäˆ—íœ
+ * æ”¯æ‰•ã„åˆ¶å¾¡å‡¦ç†å‰Šé™¤
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -4829,7 +4829,7 @@ static void slot_PayOutControlDelete( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * x•¥‚¢§Œä@x•¥‚¢‚Ö
+ * æ”¯æ‰•ã„åˆ¶å¾¡ã€€æ”¯æ‰•ã„ã¸
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -4843,7 +4843,7 @@ static void PayOutControlPayOutSet( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * x•¥‚¢§Œä@x•¥‚¢I—¹ƒ`ƒFƒbƒN
+ * æ”¯æ‰•ã„åˆ¶å¾¡ã€€æ”¯æ‰•ã„çµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -4855,7 +4855,7 @@ static int PayOutControlEndCheck( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * x•¥‚¢§Œä“®ì
+ * æ”¯æ‰•ã„åˆ¶å¾¡å‹•ä½œ
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -4970,7 +4970,7 @@ static void PayOutControlTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒyƒCƒAƒEƒg@ƒ‰ƒCƒ“ƒAƒjƒƒZƒbƒg
+ * ãƒšã‚¤ã‚¢ã‚¦ãƒˆã€€ãƒ©ã‚¤ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
  * @param	work	PAYOUTCONTROL
  * @retval	nothing
  */
@@ -5001,13 +5001,13 @@ static void PayOutLineAnimeSet( PAYOUTCONTROL *work )
 }
 
 //==============================================================================
-//	‰º‰æ–Ê§Œä
+//	ä¸‹ç”»é¢åˆ¶å¾¡
 //==============================================================================
 static void DDispCont_ControlTCB( TCB_PTR tcb, void *wk );
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œäˆ—ƒZƒbƒg
+ * ä¸‹ç”»é¢åˆ¶å¾¡å‡¦ç†ã‚»ãƒƒãƒˆ
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -5029,7 +5029,7 @@ static void slot_DDispControlSet( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œäˆ—íœ
+ * ä¸‹ç”»é¢åˆ¶å¾¡å‡¦ç†å‰Šé™¤
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -5042,9 +5042,9 @@ static void slot_DDispControlDelete( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä•ÏX@ƒpƒ‰ƒƒ^İ’è‚Í©‘O‚Å
+ * ä¸‹ç”»é¢åˆ¶å¾¡å¤‰æ›´ã€€ãƒ‘ãƒ©ãƒ¡ã‚¿è¨­å®šã¯è‡ªå‰ã§
  * @param	main	SLOTMAIN
- * @param	type	DDISP_NON“™
+ * @param	type	DDISP_NONç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5059,9 +5059,9 @@ static void DDC_TypeChange( SLOTMAIN *main, u32 type )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§ŒäI—¹ƒ`ƒFƒbƒN
+ * ä¸‹ç”»é¢åˆ¶å¾¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	main	SLOTMAIN
- * @param	type	DDISP_NON“™
+ * @param	type	DDISP_NONç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5073,7 +5073,7 @@ static int DDC_EndCheck( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê@ƒ{[ƒiƒXƒQ[ƒ€ƒtƒHƒ“ƒgƒZƒbƒg
+ * ä¸‹ç”»é¢ã€€ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ãƒ•ã‚©ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -5089,7 +5089,7 @@ static void DDC_BonusFontSet( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê@ƒ{[ƒiƒXƒQ[ƒ€ƒtƒHƒ“ƒgíœ
+ * ä¸‹ç”»é¢ã€€ãƒœãƒ¼ãƒŠã‚¹ã‚²ãƒ¼ãƒ ãƒ•ã‚©ãƒ³ãƒˆå‰Šé™¤
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -5105,7 +5105,7 @@ static void DDC_BonusFontDelete( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä“®ì
+ * ä¸‹ç”»é¢åˆ¶å¾¡å‹•ä½œ
  * @param	tcb			TCB_PTR
  * @param	work		tcb work
  * @retval	nothing
@@ -5125,9 +5125,9 @@ static void DDispCont_ControlTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‰‰ñ‰ñ“]@‰Šú‰»
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«åˆå›å›è»¢ã€€åˆæœŸåŒ–
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_MBallSpinStart_Init( DDISPCONTROL *work )
@@ -5139,9 +5139,9 @@ static int DDCM_MBallSpinStart_Init( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‰‰ñ‰ñ“]@‰Šú‰»‘Ò‚¿
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«åˆå›å›è»¢ã€€åˆæœŸåŒ–å¾…ã¡
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_MBallSpinStart_InitWait( DDISPCONTROL *work )
@@ -5157,9 +5157,9 @@ static int DDCM_MBallSpinStart_InitWait( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹“]‚ª‚èI—¹‘Ò‚¿
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«è»¢ãŒã‚Šçµ‚äº†å¾…ã¡
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_MBallSpinStart_Wait( DDISPCONTROL *work )
@@ -5176,9 +5176,9 @@ static int DDCM_MBallSpinStart_Wait( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@I—¹@‹¤’Ê
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€çµ‚äº†ã€€å…±é€š
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_End( DDISPCONTROL *work )
@@ -5187,7 +5187,7 @@ static int DDCM_End( DDISPCONTROL *work )
 }
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@–³‚µ
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€ç„¡ã—
 //--------------------------------------------------------------
 static int (* const DDCM_Non[])( DDISPCONTROL *work ) =
 {
@@ -5195,7 +5195,7 @@ static int (* const DDCM_Non[])( DDISPCONTROL *work ) =
 };
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹’Ç‰Á‚Æ‰ñ“]
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«è¿½åŠ ã¨å›è»¢
 //--------------------------------------------------------------
 static int (* const DDCM_MBallSpinStart[])( DDISPCONTROL *work ) =
 {
@@ -5207,9 +5207,9 @@ static int (* const DDCM_MBallSpinStart[])( DDISPCONTROL *work ) =
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‰æ–ÊŠO‚Ö@‰Šú‰»
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ç”»é¢å¤–ã¸ã€€åˆæœŸåŒ–
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_MBallSpinOut_Init( DDISPCONTROL *work )
@@ -5221,9 +5221,9 @@ static int DDCM_MBallSpinOut_Init( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‰æ–ÊŠO‚Ö@ˆÚ“®I—¹‘Ò‚¿
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ç”»é¢å¤–ã¸ã€€ç§»å‹•çµ‚äº†å¾…ã¡
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_MBallSpinOut_Wait( DDISPCONTROL *work )
@@ -5238,7 +5238,7 @@ static int DDCM_MBallSpinOut_Wait( DDISPCONTROL *work )
 }
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‰æ–ÊŠO‚Ö
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ç”»é¢å¤–ã¸
 //--------------------------------------------------------------
 static int (* const DDCM_MBallSpinOut[])( DDISPCONTROL *work ) =
 {
@@ -5249,9 +5249,9 @@ static int (* const DDCM_MBallSpinOut[])( DDISPCONTROL *work ) =
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs“oê@ƒ{[ƒ‹ƒI[ƒvƒ“@‰Šú‰»
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”ç™»å ´ã€€ãƒœãƒ¼ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³ã€€åˆæœŸåŒ–
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipStart_Init( DDISPCONTROL *work )
@@ -5263,9 +5263,9 @@ static int DDCM_PipStart_Init( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs“oê@ƒ{[ƒ‹ƒI[ƒvƒ“@‘Ò‚¿
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”ç™»å ´ã€€ãƒœãƒ¼ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³ã€€å¾…ã¡
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipStart_BallOpenWait( DDISPCONTROL *work )
@@ -5281,9 +5281,9 @@ static int DDCM_PipStart_BallOpenWait( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs“oê@‰Œ‚Æƒsƒbƒs“oê@‰Šú‰»
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”ç™»å ´ã€€ç…™ã¨ãƒ”ãƒƒãƒ”ç™»å ´ã€€åˆæœŸåŒ–
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipStart_KemuriPipInit( DDISPCONTROL *work )
@@ -5299,15 +5299,15 @@ static int DDCM_PipStart_KemuriPipInit( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs“oê@‰Œ‚Æƒsƒbƒs“oê@‘Ò‚¿
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”ç™»å ´ã€€ç…™ã¨ãƒ”ãƒƒãƒ”ç™»å ´ã€€å¾…ã¡
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipStart_KemuriPipWait( DDISPCONTROL *work )
 {
 	if( SlotSubEoa_PipMoveEndCheck(work->eoa_pip) == TRUE ){
-		EOA_Delete( work->eoa_balleff );	//‰Œíœ
+		EOA_Delete( work->eoa_balleff );	//ç…™å‰Šé™¤
 		work->end_flag = TRUE;
 		work->seq_no++;
 	}
@@ -5316,7 +5316,7 @@ static int DDCM_PipStart_KemuriPipWait( DDISPCONTROL *work )
 }
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@ƒsƒbƒs“oê
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”ç™»å ´
 //--------------------------------------------------------------
 static int (* const DDCM_PipStart[])( DDISPCONTROL *work ) =
 {
@@ -5329,9 +5329,9 @@ static int (* const DDCM_PipStart[])( DDISPCONTROL *work ) =
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs‹‚é@‰Šú‰»
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”å»ã‚‹ã€€åˆæœŸåŒ–
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipBack_Init( DDISPCONTROL *work )
@@ -5344,9 +5344,9 @@ static int DDCM_PipBack_Init( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs‹‚é@ƒsƒbƒs‘Ò‚¿
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”å»ã‚‹ã€€ãƒ”ãƒƒãƒ”å¾…ã¡
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipBack_PipWait( DDISPCONTROL *work )
@@ -5364,9 +5364,9 @@ static int DDCM_PipBack_PipWait( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs‹‚é@ƒ{[ƒ‹•Â‚¶‚é
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”å»ã‚‹ã€€ãƒœãƒ¼ãƒ«é–‰ã˜ã‚‹
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipBack_BallCloseWait( DDISPCONTROL *work )
@@ -5381,9 +5381,9 @@ static int DDCM_PipBack_BallCloseWait( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs‹‚é@ƒ{[ƒ‹‹‚é
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”å»ã‚‹ã€€ãƒœãƒ¼ãƒ«å»ã‚‹
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipBack_BallOutWait( DDISPCONTROL *work )
@@ -5398,7 +5398,7 @@ static int DDCM_PipBack_BallOutWait( DDISPCONTROL *work )
 }
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@ƒsƒbƒs‹‚é
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”å»ã‚‹
 //--------------------------------------------------------------
 static int (* const DDCM_PipBack[])( DDISPCONTROL *work ) =
 {
@@ -5411,9 +5411,9 @@ static int (* const DDCM_PipBack[])( DDISPCONTROL *work ) =
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒAƒ“ƒR[ƒ‹@‰Šú‰»
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ã‚¢ãƒ³ã‚³ãƒ¼ãƒ«ã€€åˆæœŸåŒ–
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_Anencore_Init( DDISPCONTROL *work )
@@ -5427,9 +5427,9 @@ static int DDCM_Anencore_Init( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒAƒ“ƒR[ƒ‹@ƒsƒJƒ`ƒ…ƒE“oê
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ã‚¢ãƒ³ã‚³ãƒ¼ãƒ«ã€€ãƒ”ã‚«ãƒãƒ¥ã‚¦ç™»å ´
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_Anencore_PikaStart( DDISPCONTROL *work )
@@ -5448,9 +5448,9 @@ static int DDCM_Anencore_PikaStart( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒAƒ“ƒR[ƒ‹@ƒpƒ^ƒpƒ^
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ã‚¢ãƒ³ã‚³ãƒ¼ãƒ«ã€€ãƒ‘ã‚¿ãƒ‘ã‚¿
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_Anencore_PataWait( DDISPCONTROL *work )
@@ -5467,7 +5467,7 @@ static int DDCM_Anencore_PataWait( DDISPCONTROL *work )
 }
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@ƒAƒ“ƒR[ƒ‹
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€ã‚¢ãƒ³ã‚³ãƒ¼ãƒ«
 //--------------------------------------------------------------
 static int (* const DDCM_Anencore[])( DDISPCONTROL *work ) =
 {
@@ -5479,9 +5479,9 @@ static int (* const DDCM_Anencore[])( DDISPCONTROL *work ) =
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒsw·‚µ@‰Šú‰»
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”æŒ‡å·®ã—ã€€åˆæœŸåŒ–
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipYubi_Init( DDISPCONTROL *work )
@@ -5497,9 +5497,9 @@ static int DDCM_PipYubi_Init( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒsw·‚µ@ƒZƒbƒg
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”æŒ‡å·®ã—ã€€ã‚»ãƒƒãƒˆ
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipYubi_Set( DDISPCONTROL *work )
@@ -5523,7 +5523,7 @@ static int DDCM_PipYubi_Set( DDISPCONTROL *work )
 }
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@ƒsƒbƒsw·‚µ
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”æŒ‡å·®ã—
 //--------------------------------------------------------------
 static int (* const DDCM_Yubi[])( DDISPCONTROL *work ) =
 {
@@ -5534,9 +5534,9 @@ static int (* const DDCM_Yubi[])( DDISPCONTROL *work ) =
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs’â~@‰Šú‰»
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”åœæ­¢ã€€åˆæœŸåŒ–
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipStop_Init( DDISPCONTROL *work )
@@ -5547,7 +5547,7 @@ static int DDCM_PipStop_Init( DDISPCONTROL *work )
 }
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@ƒsƒbƒs’â~
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”åœæ­¢
 //--------------------------------------------------------------
 static int (* const DDCM_PipStop[])( DDISPCONTROL *work ) =
 {
@@ -5557,9 +5557,9 @@ static int (* const DDCM_PipStop[])( DDISPCONTROL *work ) =
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒ{[ƒiƒXI—¹@‰Šú‰»
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒœãƒ¼ãƒŠã‚¹çµ‚äº†ã€€åˆæœŸåŒ–
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_BonusEnd_Init( DDISPCONTROL *work )
@@ -5573,9 +5573,9 @@ static int DDCM_BonusEnd_Init( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒ{[ƒiƒXI—¹@ƒsƒbƒs‹‚é@ƒsƒbƒs‘Ò‚¿
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒœãƒ¼ãƒŠã‚¹çµ‚äº†ã€€ãƒ”ãƒƒãƒ”å»ã‚‹ã€€ãƒ”ãƒƒãƒ”å¾…ã¡
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_BonusEnd_PipWait( DDISPCONTROL *work )
@@ -5593,9 +5593,9 @@ static int DDCM_BonusEnd_PipWait( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒ{[ƒiƒXI—¹@ƒ{[ƒ‹•Â‚¶‚é
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒœãƒ¼ãƒŠã‚¹çµ‚äº†ã€€ãƒœãƒ¼ãƒ«é–‰ã˜ã‚‹
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_BonusEnd_BallCloseWait( DDISPCONTROL *work )
@@ -5613,9 +5613,9 @@ static int DDCM_BonusEnd_BallCloseWait( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒ{[ƒiƒXI—¹@Œ‹‰Ê•\¦‘Ò‚¿
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒœãƒ¼ãƒŠã‚¹çµ‚äº†ã€€çµæœè¡¨ç¤ºå¾…ã¡
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipBack_ReultWait( DDISPCONTROL *work )
@@ -5633,9 +5633,9 @@ static int DDCM_PipBack_ReultWait( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒ{[ƒiƒXI—¹@ƒ{[ƒ‹‹‚é
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒœãƒ¼ãƒŠã‚¹çµ‚äº†ã€€ãƒœãƒ¼ãƒ«å»ã‚‹
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_BonusEnd_BallOutWait( DDISPCONTROL *work )
@@ -5650,7 +5650,7 @@ static int DDCM_BonusEnd_BallOutWait( DDISPCONTROL *work )
 }
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@ƒ{[ƒiƒXI—¹
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒœãƒ¼ãƒŠã‚¹çµ‚äº†
 //--------------------------------------------------------------
 static int (* const DDCM_BonusEnd[])( DDISPCONTROL *work ) =
 {
@@ -5664,9 +5664,9 @@ static int (* const DDCM_BonusEnd[])( DDISPCONTROL *work ) =
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒsƒpƒ^ƒpƒ^@‰Šú‰»
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”ãƒ‘ã‚¿ãƒ‘ã‚¿ã€€åˆæœŸåŒ–
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipPataPata_Init( DDISPCONTROL *work )
@@ -5678,7 +5678,7 @@ static int DDCM_PipPataPata_Init( DDISPCONTROL *work )
 }
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@ƒsƒbƒsƒpƒ^ƒpƒ^
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”ãƒ‘ã‚¿ãƒ‘ã‚¿
 //--------------------------------------------------------------
 static int (* const DDCM_PipPataPata[])( DDISPCONTROL *work ) =
 {
@@ -5688,9 +5688,9 @@ static int (* const DDCM_PipPataPata[])( DDISPCONTROL *work ) =
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs–œÎ@‰Šú‰»
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”ä¸‡æ­³ã€€åˆæœŸåŒ–
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipBanzai_Init( DDISPCONTROL *work )
@@ -5702,7 +5702,7 @@ static int DDCM_PipBanzai_Init( DDISPCONTROL *work )
 }
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@ƒsƒbƒs–œÎ
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”ä¸‡æ­³
 //--------------------------------------------------------------
 static int (* const DDCM_PipBanzai[])( DDISPCONTROL *work ) =
 {
@@ -5712,9 +5712,9 @@ static int (* const DDCM_PipBanzai[])( DDISPCONTROL *work ) =
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹’â~@‰Šú‰»
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«åœæ­¢ã€€åˆæœŸåŒ–
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_MBallStop_Init( DDISPCONTROL *work )
@@ -5726,7 +5726,7 @@ static int DDCM_MBallStop_Init( DDISPCONTROL *work )
 }
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹’â~
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«åœæ­¢
 //--------------------------------------------------------------
 static int (* const DDCM_MBallStop[])( DDISPCONTROL *work ) =
 {
@@ -5736,9 +5736,9 @@ static int (* const DDCM_MBallStop[])( DDISPCONTROL *work ) =
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs•œŠˆ@‰Šú‰»@ƒsƒbƒs–ß‚é
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”å¾©æ´»ã€€åˆæœŸåŒ–ã€€ãƒ”ãƒƒãƒ”æˆ»ã‚‹
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipRecover_Init( DDISPCONTROL *work )
@@ -5752,9 +5752,9 @@ static int DDCM_PipRecover_Init( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs•œŠˆ@ƒsƒbƒs–ß‚è’¬
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”å¾©æ´»ã€€ãƒ”ãƒƒãƒ”æˆ»ã‚Šç”º
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipRecover_PipWait( DDISPCONTROL *work )
@@ -5773,9 +5773,9 @@ static int DDCM_PipRecover_PipWait( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs•œŠˆ@ƒ{[ƒ‹Ši”[Œãˆê¡‘Ò‚¿
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”å¾©æ´»ã€€ãƒœãƒ¼ãƒ«æ ¼ç´å¾Œä¸€å¯¸å¾…ã¡
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipRecover_BallInWait( DDISPCONTROL *work )
@@ -5793,9 +5793,9 @@ static int DDCM_PipRecover_BallInWait( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs•œŠˆ@ƒ{[ƒ‹ƒI[ƒvƒ“@‘Ò‚¿
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”å¾©æ´»ã€€ãƒœãƒ¼ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³ã€€å¾…ã¡
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipRecover_BallOpenWait( DDISPCONTROL *work )
@@ -5812,9 +5812,9 @@ static int DDCM_PipRecover_BallOpenWait( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs•œŠˆ@‰Œ‚ÆƒsƒbƒsÄ“oê@‰Šú‰»
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”å¾©æ´»ã€€ç…™ã¨ãƒ”ãƒƒãƒ”å†ç™»å ´ã€€åˆæœŸåŒ–
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipRecover_KemuriPipInit( DDISPCONTROL *work )
@@ -5830,15 +5830,15 @@ static int DDCM_PipRecover_KemuriPipInit( DDISPCONTROL *work )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê§Œä@ƒsƒbƒs•œŠˆ@‰Œ‚Æƒsƒbƒs“oê@‘Ò‚¿
+ * ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”å¾©æ´»ã€€ç…™ã¨ãƒ”ãƒƒãƒ”ç™»å ´ã€€å¾…ã¡
  * @param	work	DDISPCONTROL
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int DDCM_PipRecover_KemuriPipWait( DDISPCONTROL *work )
 {
 	if( SlotSubEoa_PipMoveEndCheck(work->eoa_pip) == TRUE ){
-		EOA_Delete( work->eoa_balleff );	//‰Œíœ
+		EOA_Delete( work->eoa_balleff );	//ç…™å‰Šé™¤
 		work->end_flag = TRUE;
 		work->seq_no++;
 	}
@@ -5847,7 +5847,7 @@ static int DDCM_PipRecover_KemuriPipWait( DDISPCONTROL *work )
 }
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@ƒsƒbƒs•œŠˆ
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€ãƒ”ãƒƒãƒ”å¾©æ´»
 //--------------------------------------------------------------
 static int (* const DDCM_PipRecover[])( DDISPCONTROL *work ) =
 {
@@ -5861,7 +5861,7 @@ static int (* const DDCM_PipRecover[])( DDISPCONTROL *work ) =
 };
 
 //--------------------------------------------------------------
-///	‰º‰æ–Ê§Œä@“®ìƒe[ƒuƒ‹
+///	ä¸‹ç”»é¢åˆ¶å¾¡ã€€å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const * const DATA_DDCM_Tbl[DDISP_MAX])( DDISPCONTROL *work ) =
 {
@@ -5881,11 +5881,11 @@ static int (* const * const DATA_DDCM_Tbl[DDISP_MAX])( DDISPCONTROL *work ) =
 };
 
 //==============================================================================
-//	ƒpƒŒƒbƒg§Œä
+//	ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶å¾¡
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒg§Œä@‰Šú‰»
+ * ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶å¾¡ã€€åˆæœŸåŒ–
  * @param	main
  * @retval	nothing
  */
@@ -5942,7 +5942,7 @@ static void slot_PlttControlSet( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒg§Œä@íœ
+ * ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶å¾¡ã€€å‰Šé™¤
  * @param	main
  * @retval	nothing
  */
@@ -5953,10 +5953,10 @@ static void slot_PlttControlDelete( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * NNSG2dPaletteData‚Ì¶ƒpƒŒƒbƒg‚ğƒRƒs[
+ * NNSG2dPaletteDataã®ç”Ÿãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚³ãƒ”ãƒ¼
  * @param	pPltt	NNSG2dPaletteData
- * @param	offs	‰½”Ô–Ú‚©
- * @param	dest	ƒRƒs[æ
+ * @param	offs	ä½•ç•ªç›®ã‹
+ * @param	dest	ã‚³ãƒ”ãƒ¼å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5973,11 +5973,11 @@ static void PlttCopy( NNSG2dPaletteData *pPltt, int offs, u16 *dest )
 
 //--------------------------------------------------------------
 /**
- * w’èF•ÏX
- * @param	base		Œ³ƒpƒŒƒbƒg
- * @param	target		–Ú•WƒpƒŒƒbƒg
- * @param	evy			0-16  0=Œ³ 8=’†ŠÔ 16=–Ú•W
- * @param	dest		Œ‹‰ÊŠi”[æ
+ * æŒ‡å®šè‰²å¤‰æ›´
+ * @param	base		å…ƒãƒ‘ãƒ¬ãƒƒãƒˆ
+ * @param	target		ç›®æ¨™ãƒ‘ãƒ¬ãƒƒãƒˆ
+ * @param	evy			0-16  0=å…ƒ 8=ä¸­é–“ 16=ç›®æ¨™
+ * @param	dest		çµæœæ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5997,11 +5997,11 @@ static void ColorTargetFade( u16 base, u16 target, u16 evy, u16 *dest )
 
 //--------------------------------------------------------------
 /**
- * w’èF•ÏX 16F
- * @param	base		Œ³ƒpƒŒƒbƒg
- * @param	target		–Ú•WƒpƒŒƒbƒg
- * @param	evy			0-16  0=Œ³ 8=’†ŠÔ 16=–Ú•W
- * @param	dest		Œ‹‰ÊŠi”[æ
+ * æŒ‡å®šè‰²å¤‰æ›´ 16è‰²
+ * @param	base		å…ƒãƒ‘ãƒ¬ãƒƒãƒˆ
+ * @param	target		ç›®æ¨™ãƒ‘ãƒ¬ãƒƒãƒˆ
+ * @param	evy			0-16  0=å…ƒ 8=ä¸­é–“ 16=ç›®æ¨™
+ * @param	dest		çµæœæ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -6014,11 +6014,11 @@ static void ColorTargetFade16( const u16 *base, const u16 *target, u16 evy, u16 
 
 //--------------------------------------------------------------
 /**
- * w’èBG‚ÖƒpƒŒƒbƒgƒZƒbƒg
+ * æŒ‡å®šBGã¸ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
  * @param	main	SLOTMAIN
- * @param	fram	BGƒtƒŒ[ƒ€
- * @param	no		ƒZƒbƒg‚·‚éƒpƒŒƒbƒg”Ô†
- * @param	pltt	ƒZƒbƒgƒpƒŒƒbƒg
+ * @param	fram	BGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	no		ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+ * @param	pltt	ã‚»ãƒƒãƒˆãƒ‘ãƒ¬ãƒƒãƒˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -6028,10 +6028,10 @@ static void PaletteBGSet( SLOTMAIN *main, u32 frame, int no, u16 *pltt )
 }
 
 //==============================================================================
-//	ƒŠ[ƒ‹ƒpƒŒƒbƒg‘€ì
+//	ãƒªãƒ¼ãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆæ“ä½œ
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒxƒbƒgƒ‰ƒCƒ“•ÊƒpƒŒƒbƒg
+///	ãƒ™ãƒƒãƒˆãƒ©ã‚¤ãƒ³åˆ¥ãƒ‘ãƒ¬ãƒƒãƒˆ
 //--------------------------------------------------------------
 static int DATA_LinePlttNoTbl[LINE_MAX] =
 {
@@ -6044,7 +6044,7 @@ static int DATA_LinePlttNoTbl[LINE_MAX] =
 
 //--------------------------------------------------------------
 /**
- * ƒxƒbƒgƒ‰ƒCƒ““_“”
+ * ãƒ™ãƒƒãƒˆãƒ©ã‚¤ãƒ³ç‚¹ç¯
  * @param	main	SLOTMAIN
  * @param	no		LINENO
  * @retval	nothing
@@ -6059,7 +6059,7 @@ static void PlttEff_LineLightON( SLOTMAIN *main, LINENO no )
 
 //--------------------------------------------------------------
 /**
- * ƒxƒbƒgƒ‰ƒCƒ“Á“”
+ * ãƒ™ãƒƒãƒˆãƒ©ã‚¤ãƒ³æ¶ˆç¯
  * @param	main	SLOTMAIN
  * @param	no		LINENO
  * @retval	nothing
@@ -6074,7 +6074,7 @@ static void PlttEff_LineLightOFF( SLOTMAIN *main, LINENO no )
 
 //--------------------------------------------------------------
 /**
- * ƒxƒbƒgƒ‰ƒCƒ“@ƒxƒbƒgF‚Ö
+ * ãƒ™ãƒƒãƒˆãƒ©ã‚¤ãƒ³ã€€ãƒ™ãƒƒãƒˆè‰²ã¸
  * @param	main	SLOTMAIN
  * @param	no		LINENO
  * @retval	nothing
@@ -6094,7 +6094,7 @@ static void PlttEff_LineLightBet( SLOTMAIN *main, LINENO no )
 
 //--------------------------------------------------------------
 /**
- * ƒxƒbƒgƒ‰ƒCƒ“@ƒxƒbƒgF‚Ö@ˆê–‡Š|‚¯ê—p‚Å‚¿‚å‚Á‚Æ”Z‚¢–Ú
+ * ãƒ™ãƒƒãƒˆãƒ©ã‚¤ãƒ³ã€€ãƒ™ãƒƒãƒˆè‰²ã¸ã€€ä¸€æšæ›ã‘å°‚ç”¨ã§ã¡ã‚‡ã£ã¨æ¿ƒã„ç›®
  * @param	main	SLOTMAIN
  * @param	no		LINENO
  * @retval	nothing
@@ -6114,7 +6114,7 @@ static void PlttEff_LineLightBetOne( SLOTMAIN *main, LINENO no )
 
 //--------------------------------------------------------------
 /**
- * ‘Sƒ‰ƒCƒ““_“”
+ * å…¨ãƒ©ã‚¤ãƒ³ç‚¹ç¯
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -6126,7 +6126,7 @@ static void PlttEff_LineLightONAll( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ‘Sƒ‰ƒCƒ“Á“”
+ * å…¨ãƒ©ã‚¤ãƒ³æ¶ˆç¯
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -6138,7 +6138,7 @@ static void PlttEff_LineLightOFFAll( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ‘Sƒ‰ƒCƒ“ƒxƒbƒg“_“”
+ * å…¨ãƒ©ã‚¤ãƒ³ãƒ™ãƒƒãƒˆç‚¹ç¯
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -6178,7 +6178,7 @@ static const EOA_H_NPP DATA_EoaH_LineAnm;
 
 //--------------------------------------------------------------
 /**
- * EOA ƒxƒbƒgƒ‰ƒCƒ“ƒqƒbƒgƒAƒjƒ
+ * EOA ãƒ™ãƒƒãƒˆãƒ©ã‚¤ãƒ³ãƒ’ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
  */
 //--------------------------------------------------------------
 static EOA_PTR PlttEff_EoaLineHitAnm( SLOTMAIN *main, LINENO no, u32 payout )
@@ -6198,7 +6198,7 @@ static EOA_PTR PlttEff_EoaLineHitAnm( SLOTMAIN *main, LINENO no, u32 payout )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒxƒbƒgƒ‰ƒCƒ“ƒqƒbƒgƒAƒjƒ@–ß‚è’l
+ * EOA ãƒ™ãƒƒãƒˆãƒ©ã‚¤ãƒ³ãƒ’ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã€€æˆ»ã‚Šå€¤
  */
 //--------------------------------------------------------------
 static int PlttEff_EoaLineHitAnmRetGet( EOA_PTR eoa )
@@ -6209,10 +6209,10 @@ static int PlttEff_EoaLineHitAnmRetGet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒxƒbƒgƒ‰ƒCƒ“ƒqƒbƒgƒAƒjƒ@‰Šú‰»
+ * EOA ãƒ™ãƒƒãƒˆãƒ©ã‚¤ãƒ³ãƒ’ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³í‰Šú‰»
+ * @retval	int		TRUE=æ­£å¸¸åˆæœŸåŒ–
  */
 //--------------------------------------------------------------
 static int eoaLineHitAnm_Init( EOA_PTR eoa, void *wk )
@@ -6229,7 +6229,7 @@ static int eoaLineHitAnm_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒxƒbƒgƒ‰ƒCƒ“ƒqƒbƒgƒAƒjƒ@íœ
+ * EOA ãƒ™ãƒƒãƒˆãƒ©ã‚¤ãƒ³ãƒ’ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -6243,7 +6243,7 @@ static void eoaLineHitAnm_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒxƒbƒgƒ‰ƒCƒ“ƒqƒbƒgƒAƒjƒ@“®ì
+ * EOA ãƒ™ãƒƒãƒˆãƒ©ã‚¤ãƒ³ãƒ’ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -6276,10 +6276,10 @@ static void eoaLineHitAnm_Move( EOA_PTR eoa, void *wk )
 			work->count++;
 			
 			if( work->count >= 4 ){
-				if( work->payout ){				//x•¥‚¢‚ ‚è
+				if( work->payout ){				//æ”¯æ‰•ã„ã‚ã‚Š
 					work->seq_no++;
 					work->ret = LINERET_UP;
-				}else{							//x•¥‚¢–³‚µ(ƒŠƒvƒŒƒC“™
+				}else{							//æ”¯æ‰•ã„ç„¡ã—(ãƒªãƒ—ãƒ¬ã‚¤ç­‰
 					work->seq_no = 4;
 					work->ret = LINERET_UP;
 				}
@@ -6313,7 +6313,7 @@ static void eoaLineHitAnm_Move( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H ƒ‰ƒCƒ“ƒpƒŒƒbƒgƒAƒjƒ
+///	EOA_H ãƒ©ã‚¤ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_LineAnm =
 {
@@ -6351,7 +6351,7 @@ static const EOA_H_NPP DATA_EoaH_LineBetAnm;
 
 //--------------------------------------------------------------
 /**
- * EOA ƒxƒbƒg‘£‚µƒAƒjƒƒZƒbƒg
+ * EOA ãƒ™ãƒƒãƒˆä¿ƒã—ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 static void PlttEff_EoaLineBetAnmStart( SLOTMAIN *main )
@@ -6365,7 +6365,7 @@ static void PlttEff_EoaLineBetAnmStart( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒxƒbƒg‘£‚µƒAƒjƒíœ
+ * EOA ãƒ™ãƒƒãƒˆä¿ƒã—ã‚¢ãƒ‹ãƒ¡å‰Šé™¤
  */
 //--------------------------------------------------------------
 static void PlttEff_EoaLineBetAnmDelete( SLOTMAIN *main )
@@ -6516,10 +6516,10 @@ static void LB_Anime( LINEBETANMWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒxƒbƒgƒAƒjƒ@‰Šú‰»
+ * EOA ãƒ™ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³í‰Šú‰»
+ * @retval	int		TRUE=æ­£å¸¸åˆæœŸåŒ–
  */
 //--------------------------------------------------------------
 static int eoaLineBetAnm_Init( EOA_PTR eoa, void *wk )
@@ -6532,7 +6532,7 @@ static int eoaLineBetAnm_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒxƒbƒgƒAƒjƒ@íœ
+ * EOA ãƒ™ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -6544,7 +6544,7 @@ static void eoaLineBetAnm_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒxƒbƒgƒAƒjƒ@“®ì
+ * EOA ãƒ™ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -6557,7 +6557,7 @@ static void eoaLineBetAnm_Move( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H ƒ‰ƒCƒ“ƒxƒbƒgƒpƒŒƒbƒgƒAƒjƒ
+///	EOA_H ãƒ©ã‚¤ãƒ³ãƒ™ãƒƒãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_LineBetAnm =
 {
@@ -6569,7 +6569,7 @@ static const EOA_H_NPP DATA_EoaH_LineBetAnm =
 };
 
 //==============================================================================
-//	ƒpƒŒƒbƒgƒGƒtƒFƒNƒg@‰º‰æ–Ê
+//	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€ä¸‹ç”»é¢
 //==============================================================================
 //--------------------------------------------------------------
 ///	PLTTC_MOUNT
@@ -6588,7 +6588,7 @@ static void MountMoonLightTcb( TCB_PTR tcb, void *wk );
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–ÊˆÃ‚­
+ * ä¸‹ç”»é¢æš—ã
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -6604,7 +6604,7 @@ static void PlttEff_MountKuraku( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê–¾‚é‚­
+ * ä¸‹ç”»é¢æ˜ã‚‹ã
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -6620,7 +6620,7 @@ static void PlttEff_MountAkaruku( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–ÊŒŒõ
+ * ä¸‹ç”»é¢æœˆå…‰
  * @param	main	SLOTMAIN
  * @param	type	MOONTYPE
  * @retval	nothing
@@ -6639,7 +6639,7 @@ static void PlttEff_MountMoonLight( SLOTMAIN *main, MOONTYPE type )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–ÊˆÃ‚­@TCB“®ì
+ * ä¸‹ç”»é¢æš—ãã€€TCBå‹•ä½œ
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -6679,7 +6679,7 @@ static void MountKurakuTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–Ê–¾‚é‚­@TCB“®ì
+ * ä¸‹ç”»é¢æ˜ã‚‹ãã€€TCBå‹•ä½œ
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -6719,7 +6719,7 @@ static void MountAkarukuTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ‰º‰æ–ÊŒŒõƒtƒ‰ƒbƒVƒ…@TCB“®ì
+ * ä¸‹ç”»é¢æœˆå…‰ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã€€TCBå‹•ä½œ
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -6779,13 +6779,13 @@ static void MountMoonLightTcb( TCB_PTR tcb, void *wk )
 }
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹ŠG•¿æ“¾
+ * ãƒªãƒ¼ãƒ«çµµæŸ„å–å¾—
  * @param	no		REEL_NUM
- * @param	offs	ƒIƒtƒZƒbƒg@ƒOƒŠƒbƒh’PˆÊ
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆã€€ã‚°ãƒªãƒƒãƒ‰å˜ä½
  * @retval	REEL_PATTERN	REEL_PATTERN
  */
 //--------------------------------------------------------------
@@ -6802,9 +6802,9 @@ REEL_PATTERN Slot_ReelPatternGet( SLOTMAIN *main, REEL_NUM no, int offs )
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹ŠG•¿æ“¾@ƒOƒŠƒbƒh•â³ƒAƒŠ
+ * ãƒªãƒ¼ãƒ«çµµæŸ„å–å¾—ã€€ã‚°ãƒªãƒƒãƒ‰è£œæ­£ã‚¢ãƒª
  * @param	no		REEL_NUM
- * @param	offs	ƒIƒtƒZƒbƒg@ƒOƒŠƒbƒh’PˆÊ
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆã€€ã‚°ãƒªãƒƒãƒ‰å˜ä½
  * @retval	REEL_PATTERN	REEL_PATTERN
  */
 //--------------------------------------------------------------
@@ -6821,8 +6821,8 @@ REEL_PATTERN Slot_ReelPatternGridGet( SLOTMAIN *main, REEL_NUM no, int offs )
 
 //--------------------------------------------------------------
 /**
- * ƒL[ƒgƒŠƒKƒ`ƒFƒbƒN
- * @param	pad		PAD_BUTTON_A“™
+ * ã‚­ãƒ¼ãƒˆãƒªã‚¬ãƒã‚§ãƒƒã‚¯
+ * @param	pad		PAD_BUTTON_Aç­‰
  * @retval	PADRET	PADRET
  */
 //--------------------------------------------------------------
@@ -6837,8 +6837,8 @@ static PADRET keyTrg( u32 pad )
 
 //--------------------------------------------------------------
 /**
- * ƒqƒbƒgƒrƒbƒg->“–‚½‚èŠG•¿
- * @param	bit	LOTTERY_HITBIT_REPLAY“™
+ * ãƒ’ãƒƒãƒˆãƒ“ãƒƒãƒˆ->å½“ãŸã‚ŠçµµæŸ„
+ * @param	bit	LOTTERY_HITBIT_REPLAYç­‰
  * @retval	REEL_PATTERN REEL_PATTERN
  */
 //--------------------------------------------------------------
@@ -6873,9 +6873,9 @@ static REEL_PATTERN lotteryHitBitPattern( u32 bit )
 
 //--------------------------------------------------------------
 /**
- * 1-1-1“–‚½‚èŠG•¿æ“¾
+ * 1-1-1å½“ãŸã‚ŠçµµæŸ„å–å¾—
  * @param	main	SLOTMAIN
- * @retval	REEL_PATTERN	REEL_PATTERN_MAX=–³‚µ
+ * @retval	REEL_PATTERN	REEL_PATTERN_MAX=ç„¡ã—
  */
 //--------------------------------------------------------------
 static REEL_PATTERN reelHitPatternGet_111( SLOTMAIN *main )
@@ -6895,9 +6895,9 @@ static REEL_PATTERN reelHitPatternGet_111( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * 2-2-2“–‚½‚èŠG•¿æ“¾
+ * 2-2-2å½“ãŸã‚ŠçµµæŸ„å–å¾—
  * @param	main	SLOTMAIN
- * @retval	REEL_PATTERN	REEL_PATTERN_MAX=–³‚µ
+ * @retval	REEL_PATTERN	REEL_PATTERN_MAX=ç„¡ã—
  */
 //--------------------------------------------------------------
 static REEL_PATTERN reelHitPatternGet_222( SLOTMAIN *main )
@@ -6917,9 +6917,9 @@ static REEL_PATTERN reelHitPatternGet_222( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * 3-3-3“–‚½‚èŠG•¿æ“¾
+ * 3-3-3å½“ãŸã‚ŠçµµæŸ„å–å¾—
  * @param	main	SLOTMAIN
- * @retval	REEL_PATTERN	REEL_PATTERN_MAX=–³‚µ
+ * @retval	REEL_PATTERN	REEL_PATTERN_MAX=ç„¡ã—
  */
 //--------------------------------------------------------------
 static REEL_PATTERN reelHitPatternGet_333( SLOTMAIN *main )
@@ -6939,9 +6939,9 @@ static REEL_PATTERN reelHitPatternGet_333( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * 1-2-3“–‚½‚èŠG•¿æ“¾
+ * 1-2-3å½“ãŸã‚ŠçµµæŸ„å–å¾—
  * @param	main	SLOTMAIN
- * @retval	REEL_PATTERN	REEL_PATTERN_MAX=–³‚µ
+ * @retval	REEL_PATTERN	REEL_PATTERN_MAX=ç„¡ã—
  */
 //--------------------------------------------------------------
 static REEL_PATTERN reelHitPatternGet_123( SLOTMAIN *main )
@@ -6961,9 +6961,9 @@ static REEL_PATTERN reelHitPatternGet_123( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * 3-2-1“–‚½‚èŠG•¿æ“¾
+ * 3-2-1å½“ãŸã‚ŠçµµæŸ„å–å¾—
  * @param	main	SLOTMAIN
- * @retval	REEL_PATTERN	REEL_PATTERN_MAX=–³‚µ
+ * @retval	REEL_PATTERN	REEL_PATTERN_MAX=ç„¡ã—
  */
 //--------------------------------------------------------------
 static REEL_PATTERN reelHitPatternGet_321( SLOTMAIN *main )
@@ -6983,10 +6983,10 @@ static REEL_PATTERN reelHitPatternGet_321( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * Œ»”Õ–Ê“–‚½‚èŠG•¿æ“¾
+ * ç¾ç›¤é¢å½“ãŸã‚ŠçµµæŸ„å–å¾—
  * @param	main	SLOTMAIN
- * @param	lottery_bit	LOTTERY_HITBIT_NON“™
- * @retval	REEL_PATTERN	REEL_PATTERN_MAX=–³‚µ
+ * @param	lottery_bit	LOTTERY_HITBIT_NONç­‰
+ * @retval	REEL_PATTERN	REEL_PATTERN_MAX=ç„¡ã—
  */
 //--------------------------------------------------------------
 static REEL_PATTERN reelHitPatternGet( SLOTMAIN *main, u32 lottery_bit, u32 *line )
@@ -7016,10 +7016,10 @@ static REEL_PATTERN reelHitPatternGet( SLOTMAIN *main, u32 lottery_bit, u32 *lin
 
 //--------------------------------------------------------------
 /**
- * Œ»”Õ–Ê“–‚½‚èŠG•¿æ“¾@ƒ{[ƒiƒX’P‹R
+ * ç¾ç›¤é¢å½“ãŸã‚ŠçµµæŸ„å–å¾—ã€€ãƒœãƒ¼ãƒŠã‚¹å˜é¨
  * @param	main	SLOTMAIN
- * @param	lottery_bit	LOTTERY_HITBIT_NON“™
- * @retval	REEL_PATTERN	REEL_PATTERN_MAX=–³‚µ
+ * @param	lottery_bit	LOTTERY_HITBIT_NONç­‰
+ * @retval	REEL_PATTERN	REEL_PATTERN_MAX=ç„¡ã—
  */
 //--------------------------------------------------------------
 static REEL_PATTERN reelHitPatternGetBonus( SLOTMAIN *main, u32 lottery_bit, u32 *line )
@@ -7039,8 +7039,8 @@ static REEL_PATTERN reelHitPatternGetBonus( SLOTMAIN *main, u32 lottery_bit, u32
 
 //--------------------------------------------------------------
 /**
- * ’Š‘Iƒrƒbƒg‚©‚çƒ{[ƒ‹ƒ^ƒCƒvæ“¾
- * @param	bit		LOTTERY_HITBIT_REPLAY“™
+ * æŠ½é¸ãƒ“ãƒƒãƒˆã‹ã‚‰ãƒœãƒ¼ãƒ«ã‚¿ã‚¤ãƒ—å–å¾—
+ * @param	bit		LOTTERY_HITBIT_REPLAYç­‰
  * @retval	BALLTYPE	BALLTYPE
  */
 //--------------------------------------------------------------
@@ -7068,7 +7068,7 @@ static BALLTYPE Lottery_NaviBallGet( u32 bit )
 
 //--------------------------------------------------------------
 /**
- * ’â~ƒ{ƒ^ƒ“ƒNƒŠƒA
+ * åœæ­¢ãƒœã‚¿ãƒ³ã‚¯ãƒªã‚¢
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -7080,9 +7080,9 @@ static void StopButtonClear( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ’â~ƒ{ƒ^ƒ“Ši”[
+ * åœæ­¢ãƒœã‚¿ãƒ³æ ¼ç´
  * @param	main	SLOTMAIN
- * @param	btn		Ši”[‚·‚éƒ{ƒ^ƒ“
+ * @param	btn		æ ¼ç´ã™ã‚‹ãƒœã‚¿ãƒ³
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -7096,7 +7096,7 @@ static void StopButtonSet( SLOTMAIN *main, u32 btn )
 
 //--------------------------------------------------------------
 /**
- * ’â~ƒ{ƒ^ƒ“ƒ`ƒFƒbƒN 012
+ * åœæ­¢ãƒœã‚¿ãƒ³ãƒã‚§ãƒƒã‚¯ 012
  * @param	main	SLOTMAIN
  * @retval	int		TRUE=012
  */
@@ -7118,7 +7118,7 @@ static int StopButtonCheck012( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ’â~ƒ{ƒ^ƒ“ƒ`ƒFƒbƒN w·‚µ
+ * åœæ­¢ãƒœã‚¿ãƒ³ãƒã‚§ãƒƒã‚¯ æŒ‡å·®ã—
  * @param	main	SLOTMAIN
  * @retval	int		TRUE=012
  */
@@ -7141,7 +7141,7 @@ static int StopButtonCheckYubisashi( SLOTMAIN *main )
 #ifdef DEBUG_ON_SLOT
 //--------------------------------------------------------------
 /**
- * ’â~ƒ{ƒ^ƒ“ƒ`ƒFƒbƒN w·‚µ@ƒfƒoƒbƒO—p
+ * åœæ­¢ãƒœã‚¿ãƒ³ãƒã‚§ãƒƒã‚¯ æŒ‡å·®ã—ã€€ãƒ‡ãƒãƒƒã‚°ç”¨
  * @param	main	SLOTMAIN
  * @retval	int		TRUE=012
  */
@@ -7189,7 +7189,7 @@ static u32 DEBUG_StopButtonGetYubisashi( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒgƒŠƒrƒ…[ƒg@‰Ÿ‚µ‚½
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã€€æŠ¼ã—ãŸ
  * @param	main	SLOTMAIN
  * @param	no		REEL_NUM
  * @retval	nothing
@@ -7204,7 +7204,7 @@ static void ReelButtonAttr_ON( SLOTMAIN *main, REEL_NUM no )
 
 //--------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒgƒŠƒrƒ…[ƒg@‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢
+ * ãƒœã‚¿ãƒ³ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã€€æŠ¼ã•ã‚Œã¦ã„ãªã„
  * @param	main	SLOTMAIN
  * @param	no		REEL_NUM
  * @retval	nothing
@@ -7219,9 +7219,9 @@ static void ReelButtonAttr_OFF( SLOTMAIN *main, REEL_NUM no )
 
 //--------------------------------------------------------------
 /**
- * x•¥‚¢@Šî–{q–ğ
+ * æ”¯æ‰•ã„ã€€åŸºæœ¬å­å½¹
  * @param	main	SLOTMAIN *
- * @retval	u32 x•¥‚¢”
+ * @retval	u32 æ”¯æ‰•ã„æ•°
  */
 //--------------------------------------------------------------
 static u32 PayOutCoinGet_Small( SLOTMAIN *main )
@@ -7258,7 +7258,7 @@ static const u32 DATA_ContBonusTypeHitBit[CONT_BONUS_TYPE_MAX] =
 };
 
 //--------------------------------------------------------------
-///	w·‚µƒe[ƒuƒ‹
+///	æŒ‡å·®ã—ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const PIPNAVI DATA_BonusGamePipNaveTbl[YUBI_MAX] =
 {
@@ -7289,7 +7289,7 @@ static const PIPNAVI DATA_BonusGamePipNaveTbl[YUBI_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒ{ƒ^ƒ“ˆÊ’u
+///	ãƒœã‚¿ãƒ³ä½ç½®
 //--------------------------------------------------------------
 static const int DATA_ButtonPos[3][2] =
 {
@@ -7299,13 +7299,13 @@ static const int DATA_ButtonPos[3][2] =
 };
 
 //==============================================================================
-//	ƒfƒoƒbƒO
+//	ãƒ‡ãƒãƒƒã‚°
 //==============================================================================
 //----
 #ifdef PM_DEBUG
 //----
 //--------------------------------------------------------------
-///	ƒfƒoƒbƒO@’Š‘IŠG•¿ƒ`ƒFƒbƒN
+///	ãƒ‡ãƒãƒƒã‚°ã€€æŠ½é¸çµµæŸ„ãƒã‚§ãƒƒã‚¯
 //--------------------------------------------------------------
 static void DEBUG_reelHitPatternCheck( SLOTMAIN *main, u32 lottery_bit )
 {
@@ -7313,7 +7313,7 @@ static void DEBUG_reelHitPatternCheck( SLOTMAIN *main, u32 lottery_bit )
 	u32 count = 0;
 	REEL_PATTERN hit111,hit222,hit333,hit123,hit321,lt_hit;
 	
-	//•¡”“–‚½‚èƒ`ƒFƒbƒN
+	//è¤‡æ•°å½“ãŸã‚Šãƒã‚§ãƒƒã‚¯
 	hit111 = reelHitPatternGet_111( main );
 	if( hit111 != REEL_PATTERN_MAX ){ count++; }
 	hit222 = reelHitPatternGet_222( main );
@@ -7331,15 +7331,15 @@ static void DEBUG_reelHitPatternCheck( SLOTMAIN *main, u32 lottery_bit )
 		GF_ASSERT( 0 && "SLOT ERROR HIT PLURAL" );
 	}
 	
-	if( count == 0 ){			//“–‚½‚è–³‚µ
+	if( count == 0 ){			//å½“ãŸã‚Šç„¡ã—
 		return;
 	}
 	
-	//’Š‘I‚³‚ê‚½“–‚½‚è‚©‚Ç‚¤‚©
+	//æŠ½é¸ã•ã‚ŒãŸå½“ãŸã‚Šã‹ã©ã†ã‹
 	lt_hit = lotteryHitBitPattern( lottery_bit );
 		
 	if( lt_hit == REEL_PATTERN_MAX ){
-		OS_Printf( "SLOT DEBUG NOBIT HIT@PTN=%d\n", lt_hit );
+		OS_Printf( "SLOT DEBUG NOBIT HITã€€PTN=%d\n", lt_hit );
 		GF_ASSERT( 0 && "SLOT ERROR MISS HIT" );
 	}
 	
@@ -7358,7 +7358,7 @@ static void DEBUG_reelHitPatternCheck( SLOTMAIN *main, u32 lottery_bit )
 }
 
 //--------------------------------------------------------------
-//	‰æ–ÊƒeƒXƒg
+//	ç”»é¢ãƒ†ã‚¹ãƒˆ
 //--------------------------------------------------------------
 #ifdef DEBUG_DDISPTEST
 static int DEBUG_DDispTest( SLOTMAIN *main )
@@ -7418,7 +7418,7 @@ static int DEBUG_DDispTest( SLOTMAIN *main )
 #endif	//DEBUG_DDISPTEST
 
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒOƒEƒBƒ“ƒhƒE
+//	ãƒ‡ãƒãƒƒã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //--------------------------------------------------------------
 #ifdef DEBUG_ON_SLOT
 static void DebugCharPut(u16 *screen, char c, int x, int y)
@@ -7429,7 +7429,7 @@ static void DebugCharPut(u16 *screen, char c, int x, int y)
 	if(c=='='){
 		c = 0x30+10;
 	}
-	if(c=='-'){   // ƒ}ƒCƒiƒX•\¦‚ªo‚Ä‚¢‚È‚©‚Á‚½‚Ì‚ÅM‚É’uŠ·
+	if(c=='-'){   // ãƒã‚¤ãƒŠã‚¹è¡¨ç¤ºãŒå‡ºã¦ã„ãªã‹ã£ãŸã®ã§Mã«ç½®æ›
 		c = 'M';
 	}
 	screen[x+y*32] = (BGF_SLOT_PANO_FONT<<12)+(c-0x2F);
@@ -7675,7 +7675,7 @@ static int DEBUG_DebugProc( SLOTMAIN *main )
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 		work->seq_no++;
 		return( TRUE );
-	case 2:	//ƒfƒoƒbƒOî•ñ
+	case 2:	//ãƒ‡ãƒãƒƒã‚°æƒ…å ±
 		if( keyTrg(PAD_BUTTON_B) ){
 			GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 			work->seq_no = 0;
@@ -7725,7 +7725,7 @@ static int DEBUG_DebugProc( SLOTMAIN *main )
 		
 		DEBUG_SlotDataPrint( main );
 		return( TRUE );
-	case 3:	//’Š‘Iƒtƒ‰ƒO@‘€ì
+	case 3:	//æŠ½é¸ãƒ•ãƒ©ã‚°ã€€æ“ä½œ
 		if( keyTrg(PAD_BUTTON_A) ){
 			switch( work->lottery_no ){
 			case DATA_YAKU_BONUS_END:
@@ -7792,7 +7792,7 @@ static int DEBUG_DebugProc( SLOTMAIN *main )
 		
 		DEBUG_SlotDataLotteryPrint( main, work->lottery_no );
 		return( TRUE );
-	case 4:	//ƒRƒCƒ“‘Œ¸
+	case 4:	//ã‚³ã‚¤ãƒ³å¢—æ¸›
 		if( keyTrg(PAD_BUTTON_B) ){
 			GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 			work->seq_no = 0;
@@ -7831,7 +7831,7 @@ static int DEBUG_DebugProc( SLOTMAIN *main )
 		
 		DEBUG_SlotDataCoinPrint( main );
 		return( TRUE );
-	case 5:	//ƒqƒbƒgƒ‰ƒCƒ“ƒJƒEƒ“ƒg”•\¦
+	case 5:	//ãƒ’ãƒƒãƒˆãƒ©ã‚¤ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæ•°è¡¨ç¤º
 		if( keyTrg(PAD_BUTTON_B) ){
 			GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 			work->seq_no = 0;
@@ -7847,9 +7847,9 @@ static int DEBUG_DebugProc( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒfƒoƒbƒOƒI[ƒgƒvƒŒƒC@ƒL[ƒ`ƒFƒbƒN
+ * ãƒ‡ãƒãƒƒã‚°ã‚ªãƒ¼ãƒˆãƒ—ãƒ¬ã‚¤ã€€ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=ƒI[ƒg
+ * @retval	int		TRUE=ã‚ªãƒ¼ãƒˆ
  */
 //--------------------------------------------------------------
 static int DEBUG_AutoPlayEndCheck( SLOTMAIN *main )
@@ -7866,9 +7866,9 @@ static int DEBUG_AutoPlayEndCheck( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒfƒoƒbƒOƒI[ƒgƒvƒŒƒC@‰Šú‰»
+ * ãƒ‡ãƒãƒƒã‚°ã‚ªãƒ¼ãƒˆãƒ—ãƒ¬ã‚¤ã€€åˆæœŸåŒ–
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=ƒI[ƒg
+ * @retval	int		TRUE=ã‚ªãƒ¼ãƒˆ
  */
 //--------------------------------------------------------------
 static void DEBUG_AutoPlayInit( SLOTMAIN *main )
@@ -7880,9 +7880,9 @@ static void DEBUG_AutoPlayInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒfƒoƒbƒOƒI[ƒgƒvƒŒƒCƒ`ƒFƒbƒN
+ * ãƒ‡ãƒãƒƒã‚°ã‚ªãƒ¼ãƒˆãƒ—ãƒ¬ã‚¤ãƒã‚§ãƒƒã‚¯
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=ƒI[ƒg
+ * @retval	int		TRUE=ã‚ªãƒ¼ãƒˆ
  */
 //--------------------------------------------------------------
 static int DEBUG_AutoPlayCheck( SLOTMAIN *main )
@@ -7898,9 +7898,9 @@ static int DEBUG_AutoPlayCheck( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒfƒoƒbƒOƒI[ƒgƒvƒŒƒC@ƒ{ƒ^ƒ“‰Ÿ‚µƒ`ƒFƒbƒN
+ * ãƒ‡ãƒãƒƒã‚°ã‚ªãƒ¼ãƒˆãƒ—ãƒ¬ã‚¤ã€€ãƒœã‚¿ãƒ³æŠ¼ã—ãƒã‚§ãƒƒã‚¯
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=‰Ÿ‚µ‚½
+ * @retval	int		TRUE=æŠ¼ã—ãŸ
  */
 //--------------------------------------------------------------
 static int DEBUG_AutoPlayPushCheck( SLOTMAIN *main )
@@ -7922,7 +7922,7 @@ static int DEBUG_AutoPlayPushCheck( SLOTMAIN *main )
 }
 
 //--------------------------------------------------------------
-///	‰Šú‰»
+///	åˆæœŸåŒ–
 //--------------------------------------------------------------
 static void DEBUG_SlotInit( SLOTMAIN *main )
 {
@@ -7933,7 +7933,7 @@ static void DEBUG_SlotInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒqƒbƒgƒ‰ƒCƒ“ƒJƒEƒ“ƒg
+ * ãƒ’ãƒƒãƒˆãƒ©ã‚¤ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
  */
 //--------------------------------------------------------------
 static void DEBUG_SlotHitLineCount( SLOTMAIN *main )

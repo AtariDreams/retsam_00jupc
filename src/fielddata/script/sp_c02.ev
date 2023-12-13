@@ -1,9 +1,9 @@
 //====================================================================
 //							sp_c02.gmm
 //
-//	������X�N���v�g�t�@�C���𕪂��闝�R��
-//	����X�N���v�g�̓]�[���؂�ւ��������Ƀ��[�h����K�v������
-//	��ɂ����Ă����Ȃ��Ƃ����Ȃ��̂ŁA�e�ʍ팸�̂��߂ɕ����Ă���
+//	＜特殊スクリプトファイルを分ける理由＞
+//	特殊スクリプトはゾーン切り替えした時にロードする必要がある
+//	常にもっておかないといけないので、容量削減のために分けている
 //====================================================================
 	.text
 
@@ -11,7 +11,7 @@
 	.include	"c02_def.h"
 
 //--------------------------------------------------------------------
-//							����X�N���v�g
+//							特殊スクリプト
 //--------------------------------------------------------------------
 _FLAG_CHANGE_LABEL	SCRID_C02_FLAG_CHANGE
 _INIT_CHANGE_LABEL	SCRID_C02_INIT_CHANGE
@@ -19,7 +19,7 @@ _SCENE_CHANGE_LABEL	sp_c02_tbl
 _SP_EVENT_DATA_END
 
 sp_c02_tbl:
-	//���[�N�A��r����l�A�X�N���v�gID
+	//ワーク、比較する値、スクリプトID
 	_SCENE_CHANGE_DATA	WK_SCENE_C02,2,SCRID_C02_RIVAL_GYM_AFTER
 	_SCENE_CHANGE_DATA	WK_SCENE_C02,4,SCRID_C02_DOCTOR_L02_NEWS
 	_SCENE_CHANGE_DATA	WK_SCENE_C02R0401,3,SCRID_C02_SEAMAN_EVENT_B

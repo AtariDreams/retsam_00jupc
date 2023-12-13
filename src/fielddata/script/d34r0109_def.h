@@ -1,13 +1,13 @@
 #ifndef _D34R0109_DEF_H_
 #define _D34R0109_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D34R0109_FLAG_CHANGE		(1)
 #define	SCRID_D34R0109_GIRA_WARP		(2)
 #define	SCRID_D34R0109_SIRONA00		(3)
 #define	SCRID_D34R0109_SIROAKA00		(4)
 #define	SCRID_D34R0109_AKAGI_TALK00		(5)
 #define	SCRID_D34R0109_SIRONA_TALK00		(6)
-#define	SCRID_D34R0109_DATA_MAX		(6)		//最大数
+#define	SCRID_D34R0109_DATA_MAX		(6)		//譛螟ｧ謨ｰ
 
 #endif //_D34R0109_DEF_H_

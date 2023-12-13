@@ -1,7 +1,7 @@
 #ifndef _D32R0601_DEF_H_
 #define _D32R0601_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_ROULETTE_LOBBY		(1)
 #define	SCRID_ROULETTE_LOBBY_CONTINUE		(2)
 #define	SCRID_ROULETTE_LOBBY_CONTINUE_NG		(3)
@@ -19,6 +19,6 @@
 #define	SCRID_D32R0601_FLAG_CHANGE		(15)
 #define	SCRID_D32R0601_MOUNT_01		(16)
 #define	SCRID_D32R0601_MOUNT_02		(17)
-#define	SCRID_D32R0601_DATA_MAX		(17)		//最大数
+#define	SCRID_D32R0601_DATA_MAX		(17)		//譛螟ｧ謨ｰ
 
 #endif //_D32R0601_DEF_H_

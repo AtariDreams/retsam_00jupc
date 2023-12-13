@@ -2,7 +2,7 @@
 //==============================================================================================
 /**
  * @file	d_battle.c
- * @brief	í“¬—pƒfƒoƒbƒOƒc[ƒ‹
+ * @brief	æˆ¦é—˜ç”¨ãƒ‡ãƒãƒƒã‚°ãƒ„ãƒ¼ãƒ«
  * @author	sogabe
  * @date	2006.04.14
  */
@@ -51,14 +51,14 @@
 
 #include "debug/d_battle.h"
 
-#include "battle/fight_def.h"		///<ServerParam“à‚ÉƒfƒoƒbƒOƒpƒ‰ƒ[ƒ^ƒƒ“ƒo‚ğ’Ç‰Á‚µ‚Ä‚¢‚é‚½‚ßA‹–‰Â
-#include "battle/server_def.h"		///<ServerParam“à‚ÉƒfƒoƒbƒOƒpƒ‰ƒ[ƒ^ƒƒ“ƒo‚ğ’Ç‰Á‚µ‚Ä‚¢‚é‚½‚ßA‹–‰Â
+#include "battle/fight_def.h"		///<ServerParamå†…ã«ãƒ‡ãƒãƒƒã‚°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¡ãƒ³ãƒã‚’è¿½åŠ ã—ã¦ã„ã‚‹ãŸã‚ã€è¨±å¯
+#include "battle/server_def.h"		///<ServerParamå†…ã«ãƒ‡ãƒãƒƒã‚°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¡ãƒ³ãƒã‚’è¿½åŠ ã—ã¦ã„ã‚‹ãŸã‚ã€è¨±å¯
 
 u32	debug_battle_work=0;
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 
@@ -135,7 +135,7 @@ static	int		DebugBattleSelMonsNoCalc(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int
 #define	CRITICAL_X			(16)
 #define	CRITICAL_Y			(96)
 
-#define	ADD_STATUS_MAX		(8-1)	//’Ç‰ÁŒø‰Ê100%Œn‚Ìƒy[ƒW‚Ì€–Ú”i0ƒIƒŠƒWƒ“‚È‚Ì‚ÅA-1‚·‚éj
+#define	ADD_STATUS_MAX		(8-1)	//è¿½åŠ åŠ¹æœ100%ç³»ã®ãƒšãƒ¼ã‚¸ã®é …ç›®æ•°ï¼ˆ0ã‚ªãƒªã‚¸ãƒ³ãªã®ã§ã€-1ã™ã‚‹ï¼‰
 
 #define	REMAIN_HEAP_X	(16)
 #define	REMAIN_HEAP_Y	(112)
@@ -181,13 +181,13 @@ static	int		DebugBattleSelMonsNoCalc(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int
 #define	BOOT_AI_DATA_Y2	(16)
 
 enum{
-	SEQ_ADD_STATUS=0,	///<’Ç‰ÁŒø‰Ê100%Œn
-	SEQ_STATUS,			///<ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‘€ì
-	SEQ_COMMAND,		///<‘I‘ğƒRƒ}ƒ“ƒh‘€ì
-	SEQ_YUBIHURU_DEBUG,	///<‚ä‚Ñ‚ğ‚Ó‚éƒfƒoƒbƒO
-	SEQ_BOOT_AI,		///<‹N“®‚`‚hŠm”F
+	SEQ_ADD_STATUS=0,	///<è¿½åŠ åŠ¹æœ100%ç³»
+	SEQ_STATUS,			///<ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ“ä½œ
+	SEQ_COMMAND,		///<é¸æŠã‚³ãƒãƒ³ãƒ‰æ“ä½œ
+	SEQ_YUBIHURU_DEBUG,	///<ã‚†ã³ã‚’ãµã‚‹ãƒ‡ãƒãƒƒã‚°
+	SEQ_BOOT_AI,		///<èµ·å‹•ï¼¡ï¼©ç¢ºèª
 
-	SEQ_END				///<‚±‚Ìã‚É’Ç‰Á
+	SEQ_END				///<ã“ã®ä¸Šã«è¿½åŠ 
 };
 
 enum{
@@ -244,12 +244,12 @@ enum{
 #define	COL_PARA_DOWN	(GF_PRINTCOLOR_MAKE(PARA_DOWN_LETTER,PARA_DOWN_SHADOW,PARA_DOWN_GROUND))
 
 static	const	u16	pal[]={
-		GX_RGB(31,31,31),				//0:”’
-		GX_RGB(13,13,13),				//1:”Z‚¢ŠD
-		GX_RGB(24,24,24),				//2:”–‚¢ŠD
-		GX_RGB(15,31,15),				//3:‚¤‚·‚İ‚Ç‚è
-		GX_RGB(31,15,15),				//4:‚¤‚·‚ ‚©
-		GX_RGB(15,15,31),				//5:‚¤‚·‚ ‚¨
+		GX_RGB(31,31,31),				//0:ç™½
+		GX_RGB(13,13,13),				//1:æ¿ƒã„ç°
+		GX_RGB(24,24,24),				//2:è–„ã„ç°
+		GX_RGB(15,31,15),				//3:ã†ã™ã¿ã©ã‚Š
+		GX_RGB(31,15,15),				//4:ã†ã™ã‚ã‹
+		GX_RGB(15,15,31),				//5:ã†ã™ã‚ãŠ
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
@@ -259,14 +259,14 @@ static	const	u16	pal[]={
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
-		GX_RGB(31,31,31),				//15:”’
+		GX_RGB(31,31,31),				//15:ç™½
 };
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOƒoƒgƒ‹ƒc[ƒ‹‰Šú‰»
+ * @brief	ãƒ‡ãƒãƒƒã‚°ãƒãƒˆãƒ«ãƒ„ãƒ¼ãƒ«åˆæœŸåŒ–
  *
- * @param	bw		í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw		æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 void	DebugBattleInit(BATTLE_WORK *bw)
@@ -307,12 +307,12 @@ void	DebugBattleInit(BATTLE_WORK *bw)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOƒoƒgƒ‹ƒc[ƒ‹MAIN
+ * @brief	ãƒ‡ãƒãƒƒã‚°ãƒãƒˆãƒ«ãƒ„ãƒ¼ãƒ«MAIN
  *
- * @param	bw		í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	flag	í“¬‚ğÅ‰‚©‚ç‚â‚è’¼‚·‹@”\—pƒtƒ‰ƒO
+ * @param	bw		æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	flag	æˆ¦é—˜ã‚’æœ€åˆã‹ã‚‰ã‚„ã‚Šç›´ã™æ©Ÿèƒ½ç”¨ãƒ•ãƒ©ã‚°
  *
- * @retval	FALSE:Às’† TRUE:ƒfƒoƒbƒOƒ‚[ƒhI—¹
+ * @retval	FALSE:å®Ÿè¡Œä¸­ TRUE:ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL	DebugBattleMain(BATTLE_WORK *bw,BOOL *flag)
@@ -387,13 +387,13 @@ BOOL	DebugBattleMain(BATTLE_WORK *bw,BOOL *flag)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOƒoƒgƒ‹ƒc[ƒ‹ƒ|ƒPƒ‚ƒ““ü‚ê‘Ö‚¦§Œä
+ * @brief	ãƒ‡ãƒãƒƒã‚°ãƒãƒˆãƒ«ãƒ„ãƒ¼ãƒ«ãƒã‚±ãƒ¢ãƒ³å…¥ã‚Œæ›¿ãˆåˆ¶å¾¡
  *
- * @param[in]	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	client_no	§Œä‚·‚éClientNo
- * @param[out]	pos			“ü‚ê‘Ö‚¦‚éƒ|ƒPƒ‚ƒ“‚ÌSelMonsNo
+ * @param[in]	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	client_no	åˆ¶å¾¡ã™ã‚‹ClientNo
+ * @param[out]	pos			å…¥ã‚Œæ›¿ãˆã‚‹ãƒã‚±ãƒ¢ãƒ³ã®SelMonsNo
  *
- * @retval	FALSE:Às’† TRUE:ƒfƒoƒbƒOƒ‚[ƒhI—¹
+ * @retval	FALSE:å®Ÿè¡Œä¸­ TRUE:ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL	DebugBattlePokemonReshuffle(BATTLE_WORK *bw,int client_no,int *pos)
@@ -455,9 +455,9 @@ BOOL	DebugBattlePokemonReshuffle(BATTLE_WORK *bw,int client_no,int *pos)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOƒoƒgƒ‹ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgÀ•W•\¦
+ * @brief	ãƒ‡ãƒãƒƒã‚°ãƒãƒˆãƒ«ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆåº§æ¨™è¡¨ç¤º
  *
- * @param[in]	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 #define	TYPE_AA_X	(0)
@@ -597,10 +597,10 @@ void	DebugSoftSpritePosPut(BATTLE_WORK *bw)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒO‰æ–Ê¶¬
+ * @brief	ãƒ‡ãƒãƒƒã‚°ç”»é¢ç”Ÿæˆ
  *
- * @param	bw		í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw		æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DebugBattleScreenMake(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -652,10 +652,10 @@ static	void	DebugBattleScreenMake(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOƒV[ƒPƒ“ƒX
+ * @brief	ãƒ‡ãƒãƒƒã‚°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	bw		í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw		æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DebugBattleSequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -681,10 +681,10 @@ static	void	DebugBattleSequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOƒV[ƒPƒ“ƒXi’Ç‰ÁŒø‰Ê100%Œnj
+ * @brief	ãƒ‡ãƒãƒƒã‚°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆè¿½åŠ åŠ¹æœ100%ç³»ï¼‰
  *
- * @param	bw		í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw		æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DebugBattleAddStatusSequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -770,10 +770,10 @@ static	void	DebugBattleAddStatusSequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOƒV[ƒPƒ“ƒXiƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX•ÏXŒnj
+ * @brief	ãƒ‡ãƒãƒƒã‚°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å¤‰æ›´ç³»ï¼‰
  *
- * @param	bw		í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw		æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DebugBattleStatusSequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -930,10 +930,10 @@ static	void	DebugBattleStatusSequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOƒV[ƒPƒ“ƒXiƒ|ƒPƒ‚ƒ“‘€ìŒnj
+ * @brief	ãƒ‡ãƒãƒƒã‚°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆãƒã‚±ãƒ¢ãƒ³æ“ä½œç³»ï¼‰
  *
- * @param	bw		í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw		æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DebugBattleCommandSequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -944,7 +944,7 @@ static	void	DebugBattleCommandSequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 	command=sp->client_act_work[dbp->client_no][ACT_PARA_ACT_NO]-SERVER_FIGHT_COMMAND_NO;
 
-	//‰½‚©•ÒW‚³‚ê‚½‚çAƒ|ƒPƒ‚ƒ““ü‚ê‘Ö‚¦§Œä‚àON‚É‚·‚é
+	//ä½•ã‹ç·¨é›†ã•ã‚ŒãŸã‚‰ã€ãƒã‚±ãƒ¢ãƒ³å…¥ã‚Œæ›¿ãˆåˆ¶å¾¡ã‚‚ONã«ã™ã‚‹
 	if(sys.trg & PAD_BUTTON_ALL){
 		dbp->debug_flag|=DEBUG_FLAG_RESHUFFLE_CONTROL;
 	}
@@ -975,7 +975,7 @@ static	void	DebugBattleCommandSequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 		}
 		break;
 	case 1:
-		//ƒAƒCƒeƒ€A‚É‚°‚é‚ÍA‚È‚µ‚Ì•ûŒü‚Å
+		//ã‚¢ã‚¤ãƒ†ãƒ ã€ã«ã’ã‚‹ã¯ã€ãªã—ã®æ–¹å‘ã§
 		if(sys.trg & PAD_BUTTON_ALL){
 			if(sp->client_act_work[dbp->client_no][ACT_PARA_ACT_NO]==SERVER_FIGHT_COMMAND_NO){
 				if((ST_ServerReshuffleCheck(bw,sp,dbp->client_no)==TRUE)&&
@@ -1062,10 +1062,10 @@ static	void	DebugBattleCommandSequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOƒV[ƒPƒ“ƒXi‚ä‚Ñ‚ğ‚Ó‚éƒfƒoƒbƒOj
+ * @brief	ãƒ‡ãƒãƒƒã‚°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆã‚†ã³ã‚’ãµã‚‹ãƒ‡ãƒãƒƒã‚°ï¼‰
  *
- * @param	bw		í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw		æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DebugBattleYubihuruDebugSequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1162,10 +1162,10 @@ static	void	DebugBattleYubihuruDebugSequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOƒV[ƒPƒ“ƒXi‹N“®AIŠm”Fj
+ * @brief	ãƒ‡ãƒãƒƒã‚°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆèµ·å‹•AIç¢ºèªï¼‰
  *
- * @param	bw		í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw		æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DebugBattleBootAISequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1188,10 +1188,10 @@ static	void	DebugBattleBootAISequence(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	‹Z‘I‘ğAct
+ * @brief	æŠ€é¸æŠAct
  *
- * @param	bw		í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw		æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DebugBattleWazaSelect(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1247,10 +1247,10 @@ static	void	DebugBattleWazaSelect(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‘I‘ğAct
+ * @brief	ãƒã‚±ãƒ¢ãƒ³é¸æŠAct
  *
- * @param	bw		í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw		æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DebugBattlePokemonSelect(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1274,9 +1274,9 @@ static	void	DebugBattlePokemonSelect(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	’Ç‰ÁŒø‰Ê100%€–ÚPut
+ * @brief	è¿½åŠ åŠ¹æœ100%é …ç›®Put
  *
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_AddStatusPut(DEBUG_BATTLE_PARAM *dbp)
@@ -1294,9 +1294,9 @@ static	void	DB_AddStatusPut(DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	“Á«”­“®100%€–ÚPut
+ * @brief	ç‰¹æ€§ç™ºå‹•100%é …ç›®Put
  *
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_TokuseiPut(DEBUG_BATTLE_PARAM *dbp)
@@ -1314,9 +1314,9 @@ static	void	DB_TokuseiPut(DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	‘•”õŒø‰Ê100%€–ÚPut
+ * @brief	è£…å‚™åŠ¹æœ100%é …ç›®Put
  *
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_SoubiPut(DEBUG_BATTLE_PARAM *dbp)
@@ -1334,9 +1334,9 @@ static	void	DB_SoubiPut(DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ_ƒ[ƒW—”‚ğŒÅ’è
+ * @brief	ãƒ€ãƒ¡ãƒ¼ã‚¸ä¹±æ•°ã‚’å›ºå®š
  *
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_DamageLockPut(DEBUG_BATTLE_PARAM *dbp)
@@ -1354,9 +1354,9 @@ static	void	DB_DamageLockPut(DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ““ü‚ê‘Ö‚¦‚ğ§Œä
+ * @brief	ãƒã‚±ãƒ¢ãƒ³å…¥ã‚Œæ›¿ãˆã‚’åˆ¶å¾¡
  *
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_ReshuffleControlPut(DEBUG_BATTLE_PARAM *dbp)
@@ -1374,9 +1374,9 @@ static	void	DB_ReshuffleControlPut(DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	‚¨‚µ‚á‚×‚èƒ‰ƒ“ƒNŒÅ’è‚ğ§Œä
+ * @brief	ãŠã—ã‚ƒã¹ã‚Šãƒ©ãƒ³ã‚¯å›ºå®šã‚’åˆ¶å¾¡
  *
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_OsyaberiRankPut(DEBUG_BATTLE_PARAM *dbp)
@@ -1390,9 +1390,9 @@ static	void	DB_OsyaberiRankPut(DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	‹}Š‚©‚È‚ç‚¸‚ğ§Œä
+ * @brief	æ€¥æ‰€ã‹ãªã‚‰ãšã‚’åˆ¶å¾¡
  *
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_CriticalPut(DEBUG_BATTLE_PARAM *dbp)
@@ -1410,10 +1410,10 @@ static	void	DB_CriticalPut(DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒq[ƒv‚Ìc‚èƒƒ‚ƒŠ‚ğ•\¦
+ * @brief	ãƒ’ãƒ¼ãƒ—ã®æ®‹ã‚Šãƒ¡ãƒ¢ãƒªã‚’è¡¨ç¤º
  *
- * @param	bw		í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw		æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_RemainHeapPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1435,11 +1435,11 @@ static	void	DB_RemainHeapPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒ_ƒ€‚Ìí‚ğ•\¦
+ * @brief	ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã‚’è¡¨ç¤º
  *
- * @param	bw		í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp		í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	mode	”’l•\¦ƒ‚[ƒhw’è
+ * @param	bw		æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp		æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	mode	æ•°å€¤è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
  */
 //--------------------------------------------------------------
 static	void	DB_RandomSeedPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int mode)
@@ -1456,9 +1456,9 @@ static	void	DB_RandomSeedPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int mode)
 /**
  * @brief	ClientTypePut
  *
- * @param	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp			í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	client_no	ClientType‚ğ•\¦‚·‚éƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
+ * @param	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp			æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	client_no	ClientTypeã‚’è¡¨ç¤ºã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
  */
 //--------------------------------------------------------------
 static	void	DB_ClientTypePut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int client_no)
@@ -1474,10 +1474,10 @@ static	void	DB_ClientTypePut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int client_
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‚ƒ“ƒXƒ^[–¼Put
+ * @brief	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åPut
  *
- * @param	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp			í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp			æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_MonsNamePut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1490,21 +1490,21 @@ static	void	DB_MonsNamePut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 	MSGMAN_GetString(dbp->msg_m,DB_CLIENT_TYPE_AA+BattleWorkClientTypeGet(bw,dbp->client_no),dbp->msg_buf);
 	GF_STR_PrintColor(dbp->win,FONT_SYSTEM,dbp->msg_buf,TYPE_X,TYPE_Y,0,COL_NORMAL,NULL);
 	
-	//ƒ‚ƒ“ƒXƒ^[–¼
+	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å
 	msg_m=MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_monsname_dat,HEAPID_BATTLE);
 	MSGMAN_GetString(msg_m,ST_ServerPokemonServerParamGet(bw->server_param,dbp->client_no,ID_PSP_monsno,NULL),dbp->msg_buf);
 	GF_STR_PrintColor(dbp->win,FONT_SYSTEM,dbp->msg_buf,MONS_NAME_X,MONS_NAME_Y,0,COL_NORMAL,NULL);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠÖ˜Aíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£é–¢é€£å‰Šé™¤
 	MSGMAN_Delete(msg_m);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‚ƒ“ƒXƒ^[ƒXƒe[ƒ^ƒXPut
+ * @brief	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹Put
  *
- * @param	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp			í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp			æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_MonsStatusAllPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1518,11 +1518,11 @@ static	void	DB_MonsStatusAllPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‚ƒ“ƒXƒ^[ƒXƒe[ƒ^ƒXPut
+ * @brief	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹Put
  *
- * @param	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp			í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	pos			•\¦ƒXƒe[ƒ^ƒXˆÊ’u
+ * @param	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp			æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	pos			è¡¨ç¤ºã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ä½ç½®
  */
 //--------------------------------------------------------------
 static	void	DB_MonsStatusPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int pos)
@@ -1535,7 +1535,7 @@ static	void	DB_MonsStatusPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int pos)
 	MSGMAN_GetString(dbp->msg_m,DB_STATUS_POW+pos,dbp->msg_buf);
 	GF_STR_PrintColor(dbp->win,FONT_SYSTEM,dbp->msg_buf,STATUS_X,STATUS_Y+16*pos,0,COL_NORMAL,NULL);
 
-	//ƒXƒe[ƒ^ƒX’l
+	//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å€¤
 	para=ST_ServerPokemonServerParamGet(bw->server_param,dbp->client_no,ID_PSP_abiritycnt_pow+pos,NULL);
 	STRBUF_SetNumber(dbp->msg_buf,para,2,NUMBER_DISPTYPE_SPACE,NUMBER_CODETYPE_DEFAULT);
 	GF_STR_PrintColor(dbp->win,FONT_SYSTEM,dbp->msg_buf,STATUS_NUM_X,STATUS_NUM_Y+16*pos,0,COL_NORMAL,NULL);
@@ -1543,10 +1543,10 @@ static	void	DB_MonsStatusPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int pos)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒRƒ}ƒ“ƒhPut
+ * @brief	ã‚³ãƒãƒ³ãƒ‰Put
  *
- * @param	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp			í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp			æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_CommandPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1568,10 +1568,10 @@ static	void	DB_CommandPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒRƒ}ƒ“ƒhƒf[ƒ^Put
+ * @brief	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿Put
  *
- * @param	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp			í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp			æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_CommandDataPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1593,10 +1593,10 @@ static	void	DB_CommandDataPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	‘I‘ğ‹ZPut
+ * @brief	é¸æŠæŠ€Put
  *
- * @param	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp			í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp			æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_WazaPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1613,12 +1613,12 @@ static	void	DB_WazaPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 	pos=sp->client_act_work[dbp->client_no][ACT_PARA_WORK]-1;
 	
-	//‹Z–¼
+	//æŠ€å
 	msg_m=MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_wazaname_dat,HEAPID_BATTLE);
 	MSGMAN_GetString(msg_m,ST_ServerPokemonServerParamGet(sp,dbp->client_no,ID_PSP_waza1+pos,NULL),dbp->msg_buf);
 	GF_STR_PrintColor(dbp->win,FONT_SYSTEM,dbp->msg_buf,WAZA_X+12*5,WAZA_Y,0,COL_NORMAL,NULL);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠÖ˜Aíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£é–¢é€£å‰Šé™¤
 	MSGMAN_Delete(msg_m);
 
 	//PP
@@ -1630,10 +1630,10 @@ static	void	DB_WazaPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	UŒ‚‘ÎÛPut
+ * @brief	æ”»æ’ƒå¯¾è±¡Put
  *
- * @param	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp			í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp			æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_DirPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1653,23 +1653,23 @@ static	void	DB_DirPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 	MSGMAN_GetString(dbp->msg_m,DB_CLIENT_TYPE_AA+BattleWorkClientTypeGet(bw,pos),dbp->msg_buf);
 	GF_STR_PrintColor(dbp->win,FONT_SYSTEM,dbp->msg_buf,DIR_X+12*5,DIR_Y,0,COL_NORMAL,NULL);
 	
-	//ƒ‚ƒ“ƒXƒ^[–¼
+	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å
 	msg_m=MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_monsname_dat,HEAPID_BATTLE);
 	MSGMAN_GetString(msg_m,ST_ServerPokemonServerParamGet(bw->server_param,pos,ID_PSP_monsno,NULL),dbp->msg_buf);
 	GF_STR_PrintColor(dbp->win,FONT_SYSTEM,dbp->msg_buf,DIR_X+12*6,DIR_Y,0,COL_NORMAL,NULL);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠÖ˜Aíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£é–¢é€£å‰Šé™¤
 	MSGMAN_Delete(msg_m);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	“ü‚ê‘Ö‚¦‘ÎÛPut
+ * @brief	å…¥ã‚Œæ›¿ãˆå¯¾è±¡Put
  *
- * @param	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp			í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	client_no	“ü‚ê‘Ö‚¦‘ÎÛƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
- * @param	pos			“ü‚ê‘Ö‚¦‘ÎÛˆÊ’u
+ * @param	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp			æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	client_no	å…¥ã‚Œæ›¿ãˆå¯¾è±¡ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
+ * @param	pos			å…¥ã‚Œæ›¿ãˆå¯¾è±¡ä½ç½®
  */
 //--------------------------------------------------------------
 static	void	DB_PokemonPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int client_no,int pos)
@@ -1691,21 +1691,21 @@ static	void	DB_PokemonPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int client_no,
 	STRBUF_SetNumber(dbp->msg_buf,pos+1,1,NUMBER_DISPTYPE_SPACE,NUMBER_CODETYPE_DEFAULT);
 	GF_STR_PrintColor(dbp->win,FONT_SYSTEM,dbp->msg_buf,POKEMON_X+12*5,POKEMON_Y,0,COL_NORMAL,NULL);
 
-	//ƒ‚ƒ“ƒXƒ^[–¼
+	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å
 	msg_m=MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_monsname_dat,HEAPID_BATTLE);
 	MSGMAN_GetString(msg_m,PokeParaGet(pp,ID_PARA_monsno,NULL),dbp->msg_buf);
 	GF_STR_PrintColor(dbp->win,FONT_SYSTEM,dbp->msg_buf,POKEMON_X+12*6,POKEMON_Y,0,COL_NORMAL,NULL);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠÖ˜Aíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£é–¢é€£å‰Šé™¤
 	MSGMAN_Delete(msg_m);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	‚ä‚Ñ‚ğ‚Ó‚éƒfƒoƒbƒOPut
+ * @brief	ã‚†ã³ã‚’ãµã‚‹ãƒ‡ãƒãƒƒã‚°Put
  *
- * @param	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp			í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp			æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_YubihuruDebugPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1726,12 +1726,12 @@ static	void	DB_YubihuruDebugPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //--------------------------------------------------------------
 /**
- * @brief	‚ä‚Ñ‚ğ‚Ó‚éƒfƒoƒbƒO‹ZPut
+ * @brief	ã‚†ã³ã‚’ãµã‚‹ãƒ‡ãƒãƒƒã‚°æŠ€Put
  *
- * @param	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp			í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	pos			ƒJ[ƒ\ƒ‹ˆÊ’u
- * @param	mode		”’l•\¦ƒ‚[ƒhw’è
+ * @param	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp			æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	pos			ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+ * @param	mode		æ•°å€¤è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
  */
 //--------------------------------------------------------------
 static	void	DB_YubihuruDebugWazaPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int pos,int mode)
@@ -1745,21 +1745,21 @@ static	void	DB_YubihuruDebugWazaPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int 
 //	GF_STR_PrintColor(dbp->win,FONT_SYSTEM,dbp->msg_buf,YUBIHURU_WAZA_X,YUBIHURU_WAZA_Y+16*pos,0,COL_NORMAL,NULL);
 	DebugBattleNumPut(dbp,YUBIHURU_WAZA_X,YUBIHURU_WAZA_Y+16*pos,dbp->yubihuru_waza[pos],3,dbp->cur_pos_keta,mode);
 
-	//‹Z–¼
+	//æŠ€å
 	msg_m=MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_wazaname_dat,HEAPID_BATTLE);
 	MSGMAN_GetString(msg_m,dbp->yubihuru_waza[pos],dbp->msg_buf);
 	GF_STR_PrintColor(dbp->win,FONT_SYSTEM,dbp->msg_buf,YUBIHURU_WAZA_X+12*3,YUBIHURU_WAZA_Y+16*pos,0,COL_NORMAL,NULL);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠÖ˜Aíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£é–¢é€£å‰Šé™¤
 	MSGMAN_Delete(msg_m);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	‹N“®‚`‚hŠm”F‰æ–Ê•`‰æ
+ * @brief	èµ·å‹•ï¼¡ï¼©ç¢ºèªç”»é¢æç”»
  *
- * @param	bw			í“¬—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param	dbp			í“¬ƒfƒoƒbƒO—pƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param	bw			æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	dbp			æˆ¦é—˜ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static	void	DB_BootAIPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1794,13 +1794,13 @@ static	void	DB_BootAIPut(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 		ai_bit=ai_bit>>1;
 		ai_no++;
 	}
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠÖ˜Aíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£é–¢é€£å‰Šé™¤
 	MSGMAN_Delete(msg_m);
 }
 
 //==============================================================================================
 //
-//	ƒƒjƒ…[ƒJ[ƒ\ƒ‹ˆÚ“®
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 //
 //==============================================================================================
 static	void	CursorMove(DEBUG_BATTLE_PARAM *dbp,int pos)
@@ -1813,7 +1813,7 @@ static	void	CursorMove(DEBUG_BATTLE_PARAM *dbp,int pos)
 
 //==============================================================================================
 //
-//	ƒy[ƒW–ˆ‚ÌClientNo‰Šú‰»ˆ—
+//	ãƒšãƒ¼ã‚¸æ¯ã®ClientNoåˆæœŸåŒ–å‡¦ç†
 //
 //==============================================================================================
 static	void	DebugBattleClientNoInit(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
@@ -1832,7 +1832,7 @@ static	void	DebugBattleClientNoInit(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp)
 
 //==============================================================================================
 //
-//	”’l•\¦
+//	æ•°å€¤è¡¨ç¤º
 //
 //==============================================================================================
 static	void	DebugBattleNumPut(DEBUG_BATTLE_PARAM *dbp,int x,int y,int param,int keta,int pos,int mode)
@@ -1874,7 +1874,7 @@ static	void	DebugBattleNumPut(DEBUG_BATTLE_PARAM *dbp,int x,int y,int param,int 
 
 //==============================================================================================
 //
-//	”’l•\¦
+//	æ•°å€¤è¡¨ç¤º
 //
 //==============================================================================================
 static	void	DebugBattleHexNumPut(DEBUG_BATTLE_PARAM *dbp,int x,int y,int param,int keta,int pos,int mode)
@@ -1904,7 +1904,7 @@ static	void	DebugBattleHexNumPut(DEBUG_BATTLE_PARAM *dbp,int x,int y,int param,i
 
 //==============================================================================================
 //
-//	”’l•ÒW
+//	æ•°å€¤ç·¨é›†
 //
 //==============================================================================================
 static	int	DebugBattleNumCalc(DEBUG_BATTLE_PARAM *dbp,u32 *param,int keta,int min,int max,int mode)
@@ -1985,7 +1985,7 @@ static	int	DebugBattleNumCalc(DEBUG_BATTLE_PARAM *dbp,u32 *param,int keta,int mi
 
 //==============================================================================================
 //
-//	”’l•ÒW
+//	æ•°å€¤ç·¨é›†
 //
 //==============================================================================================
 static	int	DebugBattleHexNumCalc(DEBUG_BATTLE_PARAM *dbp,u32 *param,int keta,int min,int max,int mode)
@@ -2064,7 +2064,7 @@ static	int	DebugBattleHexNumCalc(DEBUG_BATTLE_PARAM *dbp,u32 *param,int keta,int
 
 //==============================================================================================
 //
-//	ŒJ‚èo‚¹‚éSelMonsNo‚ğ•Ô‚·
+//	ç¹°ã‚Šå‡ºã›ã‚‹SelMonsNoã‚’è¿”ã™
 //
 //==============================================================================================
 static	int		DebugBattleSelMonsNoCalc(BATTLE_WORK *bw,DEBUG_BATTLE_PARAM *dbp,int client_no,int pos,int ofs)

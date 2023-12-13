@@ -12,14 +12,14 @@
 
   $Log: dwc_http.h,v $
   Revision 1.49  2006/11/07 04:49:50  nakata
-  –¼‘O‰ğŒˆŒã‚ÌIPƒAƒhƒŒƒX‚ğæ“¾‚Å‚«‚é‚æ‚¤‚É•ÏX
+  åå‰è§£æ±ºå¾Œã®IPã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã§ãã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.48  2006/03/10 04:07:15  nakata
-  DWC_Http‚ª128•¶šˆÈã‚ÌURL‚ÅƒtƒŠ[ƒY‚·‚é–â‘è‚ğC³
+  DWC_HttpãŒ128æ–‡å­—ä»¥ä¸Šã®URLã§ãƒ•ãƒªãƒ¼ã‚ºã™ã‚‹å•é¡Œã‚’ä¿®æ­£
 
   Revision 1.47  2006/03/02 05:21:58  nakata
-  DWC_Svcƒ‚ƒWƒ…[ƒ‹’Ç‰Á
-  DWC_Util_Alloc/DWC_Util_FreeŠÖ”‚Ì–¼‘O‚ğDWC_Auth_Alloc/DWC_Auth_FreeŠÖ”‚É–¼‘O‚ğ•ÏX
+  DWC_Svcãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«è¿½åŠ 
+  DWC_Util_Alloc/DWC_Util_Freeé–¢æ•°ã®åå‰ã‚’DWC_Auth_Alloc/DWC_Auth_Freeé–¢æ•°ã«åå‰ã‚’å¤‰æ›´
 
   Revision 1.46  2005/12/21 12:02:19  nakata
   Rollback Auth related code to versiont "2005-11-21 08:00:00"
@@ -46,10 +46,10 @@
   DWC_Http now recognises "http://xxx:yyy/zzz" style URL that has custom port number.
 
   Revision 1.26  2005/10/18 00:09:11  sasakit
-  DWC‚ÌauthÚ‘±‚ÉƒXƒŒƒbƒhƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ‰º‚°‚é‹@”\‚ğ‚â‚ß‚½B
+  DWCã®authæ¥ç¶šæ™‚ã«ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’ã‚„ã‚ãŸã€‚
 
   Revision 1.25  2005/10/17 06:33:14  sasakit
-  SSLÀs’†‚ÌƒXƒŒƒbƒhƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ’²®‚·‚é‹@”\‚ğ—LŒø‰»‚µ‚½B
+  SSLå®Ÿè¡Œä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’èª¿æ•´ã™ã‚‹æ©Ÿèƒ½ã‚’æœ‰åŠ¹åŒ–ã—ãŸã€‚
 
   Revision 1.24  2005/10/07 13:10:53  nakata
   Added SSL priority setting code to DWC_Http. But disabled by DWC_HTTP_SETSSLPRIO switch.
@@ -79,11 +79,11 @@
   Add runtime custom nas setting function to DWC_Auth.
 
   Revision 1.17  2005/08/20 07:01:18  sasakit
-  ƒwƒbƒ_ƒCƒ“ƒNƒ‹[ƒhƒK[ƒh‚Ì‘®‚ğ“ˆê‚µ‚½B
-  bm/dwc_init.h -> bm/dwc_bm_init.h‚É•ÏX
-  ƒwƒbƒ_‚ÉCopyright‚ğ‚Â‚¯‚½B
-  \‘¢‘Ì‚Ì–¼‘O‹óŠÔ‚ğ‚Å‚«‚é‚¾‚¯ƒ‹[ƒ‹‚É‚¿‚©‚Ã‚¯‚½B
-  util_wifiidtool.h‚Ædwc_backup.h‚ÌŠÖŒW‚ğáŠ±C³B
+  ãƒ˜ãƒƒãƒ€ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚¬ãƒ¼ãƒ‰ã®æ›¸å¼ã‚’çµ±ä¸€ã—ãŸã€‚
+  bm/dwc_init.h -> bm/dwc_bm_init.hã«å¤‰æ›´
+  ãƒ˜ãƒƒãƒ€ã«Copyrightã‚’ã¤ã‘ãŸã€‚
+  æ§‹é€ ä½“ã®åå‰ç©ºé–“ã‚’ã§ãã‚‹ã ã‘ãƒ«ãƒ¼ãƒ«ã«ã¡ã‹ã¥ã‘ãŸã€‚
+  util_wifiidtool.hã¨dwc_backup.hã®é–¢ä¿‚ã‚’è‹¥å¹²ä¿®æ­£ã€‚
 
 
   $NoKeywords: $
@@ -102,20 +102,20 @@ extern "C" {
 #endif // [nakata] __cplusplus
 
 //=============================================================================
-// [nakata] ’è‹`
+// [nakata] å®šç¾©
 //=============================================================================
 
-// [nakata] URL‚ÌÅ‘å’·
+// [nakata] URLã®æœ€å¤§é•·
 #define DWCHTTP_MAXURL			256
 
-// [nakata] ƒXƒ^ƒbƒNƒTƒCƒY
+// [nakata] ã‚¹ã‚¿ãƒƒã‚¯ã‚µã‚¤ã‚º
 #define DWCHTTP_STACKSIZE		4096
 
 #define DWCHTTP_MAX_LABELVALUE	32
 
-// [nakata] SSLƒvƒ‰ƒCƒIƒŠƒeƒBİ’è‚ğON‚É‚·‚é‚Æ‚«‚Ídefine‚·‚é‚±‚Æ
-// [nakata] ‚½‚¾‚µ“s‡‚Ìˆ«‚¢SVC_WaitVBlankIntr()‚ª‚È‚¢‚±‚Æ‚ğ\•ª‚ÉŠm”F‚·‚é‚±‚ÆI
-//#define DWC_HTTP_SETSSLPRIO // [sasakit] —\‘zˆÈã‚ÉƒuƒƒbƒN‚·‚é‚Ì‚Å‚â‚ß‚½B
+// [nakata] SSLãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£è¨­å®šã‚’ONã«ã™ã‚‹ã¨ãã¯defineã™ã‚‹ã“ã¨
+// [nakata] ãŸã ã—éƒ½åˆã®æ‚ªã„SVC_WaitVBlankIntr()ãŒãªã„ã“ã¨ã‚’ååˆ†ã«ç¢ºèªã™ã‚‹ã“ã¨ï¼
+//#define DWC_HTTP_SETSSLPRIO // [sasakit] äºˆæƒ³ä»¥ä¸Šã«ãƒ–ãƒ­ãƒƒã‚¯ã™ã‚‹ã®ã§ã‚„ã‚ãŸã€‚
 
 typedef enum
 {
@@ -133,14 +133,14 @@ typedef enum
 	DWCHTTP_E_MAX
 } DWCHttpError;
 
-// [nakata] POST‚©GET‚©‚ğŒˆ’è‚·‚éƒtƒ‰ƒO
+// [nakata] POSTã‹GETã‹ã‚’æ±ºå®šã™ã‚‹ãƒ•ãƒ©ã‚°
 typedef enum
 {
 	DWCHTTP_POST,
 	DWCHTTP_GET
 } DWCHttpAction;
 
-// [nakata] ƒoƒbƒtƒ@‚ğ‚Ü‚Æ‚ß‚ÄŠÇ—‚·‚é‚½‚ß‚Ì\‘¢‘Ì
+// [nakata] ãƒãƒƒãƒ•ã‚¡ã‚’ã¾ã¨ã‚ã¦ç®¡ç†ã™ã‚‹ãŸã‚ã®æ§‹é€ ä½“
 typedef struct {
 	char *buffer;
 	char *write_index;
@@ -148,14 +148,14 @@ typedef struct {
 	unsigned long length;
 } DWCHttpBuffer;
 
-// [nakata] ƒ‰ƒxƒ‹‚ÆŒ‹‰Ê‚Ì•¶š—ñ‚ğ‘Î‚É‚µ‚ÄŠÇ—‚·‚é‚½‚ß‚Ì\‘¢‘Ì
+// [nakata] ãƒ©ãƒ™ãƒ«ã¨çµæœã®æ–‡å­—åˆ—ã‚’å¯¾ã«ã—ã¦ç®¡ç†ã™ã‚‹ãŸã‚ã®æ§‹é€ ä½“
 typedef struct
 {
 	char *label;
 	char *value;
 } DWCHttpLabelValue;
 
-// [nakata] ƒ‰ƒxƒ‹‚Ì‰ò‚ğŠÇ—‚·‚é‚½‚ß‚Ì\‘¢‘Ì
+// [nakata] ãƒ©ãƒ™ãƒ«ã®å¡Šã‚’ç®¡ç†ã™ã‚‹ãŸã‚ã®æ§‹é€ ä½“
 typedef struct
 {
 	DWCHttpLabelValue *entry;
@@ -163,7 +163,7 @@ typedef struct
 	int index;
 } DWCHttpParseResult;
 
-// [nakata] DWCHttp‰Šú‰»ƒpƒ‰ƒ[ƒ^
+// [nakata] DWCHttpåˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct {
 	const char		*url;
 	DWCHttpAction	action;
@@ -177,160 +177,160 @@ typedef struct {
 	int				timeout;
 } DWCHttpParam;
 
-// [nakata] DWCHttp‚ªg—p‚·‚é“à•”î•ñ‚ğŠi”[‚·‚é‚½‚ß‚Ì\‘¢‘Ì
+// [nakata] DWCHttpãŒä½¿ç”¨ã™ã‚‹å†…éƒ¨æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®æ§‹é€ ä½“
 
 typedef struct {
 	unsigned char	stack[DWCHTTP_STACKSIZE];
 	
-	// [nakata] ‰Šú‰»ƒtƒ‰ƒO
+	// [nakata] åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
 	u8				initflag;
 	
-	// [nakata] ‰Šú‰»ƒpƒ‰ƒ[ƒ^
+	// [nakata] åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	DWCHttpParam	param;
-	DWCHttpError	error;					// [nakata] ÅŒã‚É”­¶‚µ‚½ƒGƒ‰[ƒR[ƒh
+	DWCHttpError	error;					// [nakata] æœ€å¾Œã«ç™ºç”Ÿã—ãŸã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 	
-	// [nakata] ƒzƒXƒg/SSLŠÖ˜A
-	char			url[DWCHTTP_MAXURL];	// [nakata] URL•Û‘¶—p”z—ñ
-	char			*hostname;				// [nakata] ƒzƒXƒg–¼‚Ö‚Ìƒ|ƒCƒ“ƒ^(url“à‚Ì‚Ç‚±‚©‚ğw‚·)
-	char			*filepath;				// [nakata] ƒtƒ@ƒCƒ‹ƒpƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^(url“à‚Ì‚Ç‚±‚©‚ğw‚·)
-	u32				hostip;					// [nakata] –¼‘O‰ğŒˆ‚ÌŒ‹‰Ê“¾‚ç‚ê‚½IPƒAƒhƒŒƒX
-	BOOL			ssl_enabled;				// [nakata] SSL‚ğg—p‚·‚é‚©‚µ‚È‚¢‚©‚Ìƒtƒ‰ƒO
+	// [nakata] ãƒ›ã‚¹ãƒˆ/SSLé–¢é€£
+	char			url[DWCHTTP_MAXURL];	// [nakata] URLä¿å­˜ç”¨é…åˆ—
+	char			*hostname;				// [nakata] ãƒ›ã‚¹ãƒˆåã¸ã®ãƒã‚¤ãƒ³ã‚¿(urlå†…ã®ã©ã“ã‹ã‚’æŒ‡ã™)
+	char			*filepath;				// [nakata] ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿(urlå†…ã®ã©ã“ã‹ã‚’æŒ‡ã™)
+	u32				hostip;					// [nakata] åå‰è§£æ±ºã®çµæœå¾—ã‚‰ã‚ŒãŸIPã‚¢ãƒ‰ãƒ¬ã‚¹
+	BOOL			ssl_enabled;				// [nakata] SSLã‚’ä½¿ç”¨ã™ã‚‹ã‹ã—ãªã„ã‹ã®ãƒ•ãƒ©ã‚°
 	unsigned short		port;
 	
-	// [nakata] CPSƒ\ƒPƒbƒgŠÖ˜A
+	// [nakata] CPSã‚½ã‚±ãƒƒãƒˆé–¢é€£
 	CPSSoc				soc;
 	CPSSslConnection	con;
 	unsigned char		*lowrecvbuf;//[1460*2];
 	unsigned char		*lowsendbuf;//[1514];
 	u32					lowentropydata[OS_LOW_ENTROPY_DATA_SIZE/sizeof(u32)];
 	
-	// [nakata] ‘—óMƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^‚È‚Ç
+	// [nakata] é€å—ä¿¡ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿ãªã©
 	int				num_postitem;
 	DWCHttpBuffer	req;
 	DWCHttpBuffer	rep;
 	
-	// [nakata] ‚æ‚­g‚¤’l‚ğ•Û‚·‚é—Ìˆæ
+	// [nakata] ã‚ˆãä½¿ã†å€¤ã‚’ä¿æŒã™ã‚‹é ˜åŸŸ
 	OSMutex			content_len_mutex;
 	int				content_len;
 	int				receivedbody_len;
 	
-	// [nakata] óMƒf[ƒ^ƒp[ƒXŒ‹‰ÊŠi”[—Ìˆæ
+	// [nakata] å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãƒ‘ãƒ¼ã‚¹çµæœæ ¼ç´é ˜åŸŸ
 	DWCHttpLabelValue	labelvalue[DWCHTTP_MAX_LABELVALUE];
 
-	// [nakata] ‘—óMƒXƒŒƒbƒhŠÖ˜A
+	// [nakata] é€å—ä¿¡ã‚¹ãƒ¬ãƒƒãƒ‰é–¢é€£
 	OSThread		thread;
 	OSMutex			mutex;
 	BOOL			abort;
 } DWCHttp;
 
 //=============================================================================
-// [nakata] ŠÖ”
+// [nakata] é–¢æ•°
 //=============================================================================
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWC_Http‚Åg—p‚·‚é\‘¢‘Ì‚Ì‰Šú‰»/ƒƒ‚ƒŠŠm•Û
-// ˆø” : http              - ˆ—‘ÎÛ‚ÌDWC_Http\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-//      : max_recv_bodysize - óM‚·‚éÅ‘å‚ÌƒpƒPƒbƒg’·
-//      : alloc             - “à•”‚Åg—p‚·‚éƒƒ‚ƒŠŠm•ÛŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
-//      : free              - “à•”‚Åg—p‚·‚éƒƒ‚ƒŠ‰ğ•úŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
-// •Ô’l : BOOL  - TRUE  : ¬Œ÷
-//                FALSE : ¸”s
+// æ©Ÿèƒ½ : DWC_Httpã§ä½¿ç”¨ã™ã‚‹æ§‹é€ ä½“ã®åˆæœŸåŒ–/ãƒ¡ãƒ¢ãƒªç¢ºä¿
+// å¼•æ•° : http              - å‡¦ç†å¯¾è±¡ã®DWC_Httpæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+//      : max_recv_bodysize - å—ä¿¡ã™ã‚‹æœ€å¤§ã®ãƒ‘ã‚±ãƒƒãƒˆé•·
+//      : alloc             - å†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+//      : free              - å†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªè§£æ”¾é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+// è¿”å€¤ : BOOL  - TRUE  : æˆåŠŸ
+//                FALSE : å¤±æ•—
 //-----------------------------------------------------------------------------
 DWCHttpError DWC_Http_Create(DWCHttp *http, DWCHttpParam *param);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWC_Http‚Åg—p‚µ‚½ƒƒ‚ƒŠ‰ğ•ú/ƒ\ƒPƒbƒgƒNƒ[ƒY/SSL‰ğ•ú
-// ˆø” : http  - ˆ—‘ÎÛ‚ÌDWC_Http\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-// •Ô’l : BOOL  - TRUE  : ¬Œ÷
-//                FALSE : ¸”s
+// æ©Ÿèƒ½ : DWC_Httpã§ä½¿ç”¨ã—ãŸãƒ¡ãƒ¢ãƒªè§£æ”¾/ã‚½ã‚±ãƒƒãƒˆã‚¯ãƒ­ãƒ¼ã‚º/SSLè§£æ”¾
+// å¼•æ•° : http  - å‡¦ç†å¯¾è±¡ã®DWC_Httpæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+// è¿”å€¤ : BOOL  - TRUE  : æˆåŠŸ
+//                FALSE : å¤±æ•—
 //-----------------------------------------------------------------------------
 void DWC_Http_Destroy(DWCHttp *http);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWCHttpƒXƒŒƒbƒhì¬ŠÖ”
+// æ©Ÿèƒ½ : DWCHttpã‚¹ãƒ¬ãƒƒãƒ‰ä½œæˆé–¢æ•°
 //        
-// ˆø” : http - ˆ—‘ÎÛ‚ÌDWC_Http\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-//      : prio - HTTPƒXƒŒƒbƒh—Dæ“x
-// •Ô’l : DWCHttpError
+// å¼•æ•° : http - å‡¦ç†å¯¾è±¡ã®DWC_Httpæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+//      : prio - HTTPã‚¹ãƒ¬ãƒƒãƒ‰å„ªå…ˆåº¦
+// è¿”å€¤ : DWCHttpError
 //-----------------------------------------------------------------------------
 void DWC_Http_StartThread(DWCHttp *http, u32 prio);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWCHttpƒAƒ{[ƒg
+// æ©Ÿèƒ½ : DWCHttpã‚¢ãƒœãƒ¼ãƒˆ
 //        
-// ˆø” : http  - ˆ—‘ÎÛ‚ÌDWC_Http\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-// •Ô’l : ‚È‚µ
+// å¼•æ•° : http  - å‡¦ç†å¯¾è±¡ã®DWC_Httpæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+// è¿”å€¤ : ãªã—
 //-----------------------------------------------------------------------------
 void DWC_Http_Abort(DWCHttp *http);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWCHttpóMî•ñæ“¾
+// æ©Ÿèƒ½ : DWCHttpå—ä¿¡æƒ…å ±å–å¾—
 //        
-// ˆø” : http - ˆ—‘ÎÛ‚ÌDWC_Http\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-// •Ô’l : int  - 0‚©‚ç255 óMƒp[ƒZƒ“ƒe[ƒW
-//             - -1       óM’†‚Å‚È‚¢
+// å¼•æ•° : http - å‡¦ç†å¯¾è±¡ã®DWC_Httpæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+// è¿”å€¤ : int  - 0ã‹ã‚‰255 å—ä¿¡ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸
+//             - -1       å—ä¿¡ä¸­ã§ãªã„
 //-----------------------------------------------------------------------------
 int DWC_Http_GetRecvProgress(DWCHttp *http);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : ‘—Mƒwƒbƒ_‚É€–Ú‚ğ’Ç‰Á‚·‚é
-// ˆø” : http  - ˆ—‘ÎÛ‚ÌDWC_Http\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-//      : label - ƒ‰ƒxƒ‹(NULLI’[‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚é)
-//      : data  - ƒf[ƒ^(NULLI’[‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚é)
-// •Ô’l : DWCHttpError
+// æ©Ÿèƒ½ : é€ä¿¡ãƒ˜ãƒƒãƒ€ã«é …ç›®ã‚’è¿½åŠ ã™ã‚‹
+// å¼•æ•° : http  - å‡¦ç†å¯¾è±¡ã®DWC_Httpæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+//      : label - ãƒ©ãƒ™ãƒ«(NULLçµ‚ç«¯ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹)
+//      : data  - ãƒ‡ãƒ¼ã‚¿(NULLçµ‚ç«¯ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹)
+// è¿”å€¤ : DWCHttpError
 //-----------------------------------------------------------------------------
 DWCHttpError DWC_Http_Add_HeaderItem(DWCHttp *http, char *label, char *data);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : ‘—MPOSTî•ñ‚ÉBase64ƒGƒ“ƒR[ƒh‚µ‚½€–Ú‚ğ’Ç‰Á‚·‚é
-// ˆø” : http      - ˆ—‘ÎÛ‚ÌDWC_Http\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-//      : label     - ƒ‰ƒxƒ‹(NULLI’[‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚é)
-//      : data      - ƒf[ƒ^(NULLI’[‚µ‚Ä‚¢‚È‚­‚Ä‚à‚æ‚¢)
-//      : data_len  - ƒf[ƒ^’·
-// •Ô’l : DWCHttpError
+// æ©Ÿèƒ½ : é€ä¿¡POSTæƒ…å ±ã«Base64ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã—ãŸé …ç›®ã‚’è¿½åŠ ã™ã‚‹
+// å¼•æ•° : http      - å‡¦ç†å¯¾è±¡ã®DWC_Httpæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+//      : label     - ãƒ©ãƒ™ãƒ«(NULLçµ‚ç«¯ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹)
+//      : data      - ãƒ‡ãƒ¼ã‚¿(NULLçµ‚ç«¯ã—ã¦ã„ãªãã¦ã‚‚ã‚ˆã„)
+//      : data_len  - ãƒ‡ãƒ¼ã‚¿é•·
+// è¿”å€¤ : DWCHttpError
 //-----------------------------------------------------------------------------
 DWCHttpError DWC_Http_Add_PostBase64Item(DWCHttp *http, const char *label, const char *data, unsigned long data_len);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : ‘—MƒpƒPƒbƒg‚ÌBODY‚Éw’è‚µ‚½•¶š—ñ‚ğ’Ç‰Á‚·‚é
-// ˆø” : http      - ˆ—‘ÎÛ‚ÌDWC_Http\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-//      : data      - ƒf[ƒ^(NULLI’[‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î‚È‚ç‚È‚¢)
-//      : data_len  - ƒf[ƒ^’·
-// •Ô’l : DWCHttpError
+// æ©Ÿèƒ½ : é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã®BODYã«æŒ‡å®šã—ãŸæ–‡å­—åˆ—ã‚’è¿½åŠ ã™ã‚‹
+// å¼•æ•° : http      - å‡¦ç†å¯¾è±¡ã®DWC_Httpæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+//      : data      - ãƒ‡ãƒ¼ã‚¿(NULLçµ‚ç«¯ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ãªã‚‰ãªã„)
+//      : data_len  - ãƒ‡ãƒ¼ã‚¿é•·
+// è¿”å€¤ : DWCHttpError
 //-----------------------------------------------------------------------------
 DWCHttpError DWC_Http_Add_Body(DWCHttp *http, const char *data);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWCHttp“à‚Ì‘—MƒpƒPƒbƒg‚ÉContent-LengthƒtƒB[ƒ‹ƒh‚ğ’Ç‰Á‚µ‘—M‰Â”\ó‘Ô‚É‚·‚é
+// æ©Ÿèƒ½ : DWCHttpå†…ã®é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã«Content-Lengthãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’è¿½åŠ ã—é€ä¿¡å¯èƒ½çŠ¶æ…‹ã«ã™ã‚‹
 //        
-// ˆø” : http  - ˆ—‘ÎÛ‚ÌDWC_Http\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-// •Ô’l : DWCHttpError
+// å¼•æ•° : http  - å‡¦ç†å¯¾è±¡ã®DWC_Httpæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+// è¿”å€¤ : DWCHttpError
 //-----------------------------------------------------------------------------
 DWCHttpError DWC_Http_FinishHeader(DWCHttp *http);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : óMƒpƒPƒbƒg‚Ìƒwƒbƒ_ƒGƒ“ƒgƒŠ/FORMî•ñ•¶š—ñ‚ğƒ‰ƒxƒ‹•t‚«•¶š—ñ‚Æ‚µ‚Äarray_entry‚ÉŠi”[
-//        óMƒpƒPƒbƒg‚Ì“à—e‚Íƒkƒ‹•¶š‚Å”j‰ó‚³‚ê‚é
+// æ©Ÿèƒ½ : å—ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã®ãƒ˜ãƒƒãƒ€ã‚¨ãƒ³ãƒˆãƒª/FORMæƒ…å ±æ–‡å­—åˆ—ã‚’ãƒ©ãƒ™ãƒ«ä»˜ãæ–‡å­—åˆ—ã¨ã—ã¦array_entryã«æ ¼ç´
+//        å—ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã®å†…å®¹ã¯ãƒŒãƒ«æ–‡å­—ã§ç ´å£Šã•ã‚Œã‚‹
 //        
-// ˆø” : http - ˆ—‘ÎÛ‚ÌDWCHttp‚Ö‚Ìƒ|ƒCƒ“ƒ^
-//        noparsebody - TRUE‚È‚ç‚ÎHTTP BODY‚ğƒp[ƒX‚¹‚¸‚ÉhttpbodyƒGƒ“ƒgƒŠ‚Æ‚µ‚Ä“o˜^‚·‚é
-//        buffer      - ‰ğÍ‘ÎÛ‚ÌHTTPƒpƒPƒbƒg
-// •Ô’l : BOOL - TRUE  : ‰ğÍ¬Œ÷ 
-//               FALSE : ‰ğÍ•s‰Â”\‚ÈHTTP
+// å¼•æ•° : http - å‡¦ç†å¯¾è±¡ã®DWCHttpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+//        noparsebody - TRUEãªã‚‰ã°HTTP BODYã‚’ãƒ‘ãƒ¼ã‚¹ã›ãšã«httpbodyã‚¨ãƒ³ãƒˆãƒªã¨ã—ã¦ç™»éŒ²ã™ã‚‹
+//        buffer      - è§£æå¯¾è±¡ã®HTTPãƒ‘ã‚±ãƒƒãƒˆ
+// è¿”å€¤ : BOOL - TRUE  : è§£ææˆåŠŸ 
+//               FALSE : è§£æä¸å¯èƒ½ãªHTTP
 //-----------------------------------------------------------------------------
 BOOL DWC_Http_ParseResult(DWCHttp *http, BOOL noparsebody);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWCHttp‚ÌTCPÚ‘±ƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ•Ï‰»‚³‚¹‚é
-// ˆø” : prio - ƒvƒ‰ƒCƒIƒŠƒeƒB(0‚©‚ç31)
-// •Ô’l : ‚È‚µ
+// æ©Ÿèƒ½ : DWCHttpã®TCPæ¥ç¶šæ™‚ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’å¤‰åŒ–ã•ã›ã‚‹
+// å¼•æ•° : prio - ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£(0ã‹ã‚‰31)
+// è¿”å€¤ : ãªã—
 //-----------------------------------------------------------------------------
 #ifdef DWC_HTTP_SETSSLPRIO
 void DWC_Http_SetSSLPrio(u32 prio);
 #endif
 
 //-----------------------------------------------------------------------------
-// ƒp[ƒXŒ‹‰Ê‘€ìŒnŠÖ”ŒQ
+// ãƒ‘ãƒ¼ã‚¹çµæœæ“ä½œç³»é–¢æ•°ç¾¤
 //-----------------------------------------------------------------------------
 char	*DWC_Http_GetResult(DWCHttp *http, char *label);
 int		DWC_Http_GetBase64DecodedResult(DWCHttp *http, char *label, char *buffer, unsigned long buffer_len);

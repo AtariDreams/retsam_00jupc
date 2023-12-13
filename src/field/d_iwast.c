@@ -1,6 +1,6 @@
 /**
  *	@file	d_iwast.c
- *	@brief	ƒfƒoƒbƒO—pŠâàVí’“•”ƒ\[ƒX
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ç”¨å²©æ¾¤å¸¸é§éƒ¨ã‚½ãƒ¼ã‚¹
  *	@author	Miyuki Iwasawa
  *	@date	06.06.01
  */
@@ -60,7 +60,7 @@ void DebugMiyukiFuncCall(TCB_PTR tcb,void* work)
 			break;
 		}
 		DebugMiyukiViewEnd(wp);
-		//ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“ŽÀsAƒvƒƒZƒX“o˜^
+		//ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³å®Ÿè¡Œã€ãƒ—ãƒ­ã‚»ã‚¹ç™»éŒ²
 		{
 			void (*dproc_call)(void*);
 			dproc_call = wp->UserFunc;
@@ -70,11 +70,11 @@ void DebugMiyukiFuncCall(TCB_PTR tcb,void* work)
 		wp->seq = DMSEQ_FUNC;
 		break;
 	case DMSEQ_FUNC:
-		//ƒvƒƒZƒXI—¹‘Ò‚¿
+		//ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 		if(FieldEvent_Cmd_WaitSubProcEnd(wp->fsys)){
 			break;
 		}
-		//ƒƒ‚ƒŠ‚ðŠm•Û‚µ‚Ä‚¢‚ê‚Î‰ð•ú
+		//ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚Œã°è§£æ”¾
 		if(wp->subWork != NULL){
 			switch(wp->func_mode){
 			case 1:
@@ -105,15 +105,15 @@ void DebugMiyukiFuncCall(TCB_PTR tcb,void* work)
 		}else{
 			wp->seq = DMSEQ_FADEIN;
 		}
-		//ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 		FieldEvent_Cmd_SetMapProc(wp->fsys);
 		break;
 	case DMSEQ_FADEIN:
-		//ƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJŽnI—¹‘Ò‚¿
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹çµ‚äº†å¾…ã¡
 		if(FieldEvent_Cmd_WaitMapProcStart(wp->fsys)){
-			//ƒfƒoƒbƒOƒƒjƒ…[•œ‹A
+			//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼å¾©å¸°
 			DebugMiyukiViewInit(wp,wp->fsys,wp->List,wp->Cursor);
-			//ƒuƒ‰ƒbƒNƒCƒ“ƒŠƒNƒGƒXƒg
+			//ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 			wp->wipe_f = 0;
 			WIPE_SYS_Start(WIPE_PATTERN_WMS,
 				WIPE_TYPE_FADEIN,
@@ -132,7 +132,7 @@ void DebugMiyukiFuncCall(TCB_PTR tcb,void* work)
 		wp->seq = DMSEQ_FADEOUT;
 		break;
 	case DMSEQ_JUMPIN:
-		//ƒtƒB[ƒ‹ƒhƒvƒƒZƒXŠJŽnI—¹‘Ò‚¿
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹çµ‚äº†å¾…ã¡
 		if(FieldEvent_Cmd_WaitMapProcStart(wp->fsys)){
 			wp->wipe_f = 0;
 			WIPE_SYS_Start(WIPE_PATTERN_WMS,
@@ -153,17 +153,17 @@ void DebugMiyukiFuncCall(TCB_PTR tcb,void* work)
 			wp->ret_zone,DOOR_ID_JUMP_CODE,
 			wp->ret_x*32+16,wp->ret_z*32+16, DIR_DOWN);
 		
-		//ƒfƒoƒbƒOƒ[ƒNƒƒ‚ƒŠŠJ•ú
+		//ãƒ‡ãƒãƒƒã‚°ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 		sys_FreeMemoryEz(work);
 		TCB_Delete(tcb);
 
-		//OBJ“™‚Ì“®ì’âŽ~‰ðœ
+		//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 		FieldSystemProc_SeqHoldEnd();
 		break;
 	}
 }
 
-//ƒfƒoƒbƒOƒ[ƒ‹ƒ{ƒbƒNƒXI—¹‘Ò‚¿
+//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹çµ‚äº†å¾…ã¡
 void DebugMiyukiSubMenuWait(TCB_PTR tcb,void* work)
 {
 	_DebugIwaWork	*wp = (_DebugIwaWork*)work;
@@ -172,7 +172,7 @@ void DebugMiyukiSubMenuWait(TCB_PTR tcb,void* work)
 		return;
 	}
 	wp->ret_val = 0;
-	//ƒfƒoƒbƒOƒƒjƒ…[•œ‹A
+	//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼å¾©å¸°
 	DebugMiyukiViewInit(wp,wp->fsys,wp->List,wp->Cursor);
 	TCB_ChangeFunc(tcb,DebugMiyukiMain);
 }

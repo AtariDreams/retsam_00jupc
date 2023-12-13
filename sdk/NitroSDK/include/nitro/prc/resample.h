@@ -15,25 +15,25 @@
   do-indent
 
   Revision 1.5  2005/03/04 13:37:05  seiki_masashi
-  PRC_ResampleStrokes_* ‚ЄЌмђ¬‚Мђ¬ЊчЃEЋё”s‚р•Ф‚·‚ж‚¤‚Й•ПЌX
+  PRC_ResampleStrokes_* гЃЊдЅњж€ђгЃ®ж€ђеЉџгѓ»е¤±ж•—г‚’иї”гЃ™г‚€гЃ†гЃ«е¤‰ж›ґ
 
   Revision 1.4  2005/02/28 05:26:01  yosizaki
   do-indent.
 
   Revision 1.3  2004/07/19 06:52:06  seiki_masashi
-  ЋЇ•КЋq–ј‚Мђ®—ќ
+  и­е€Ґе­ђеђЌгЃ®ж•ґзђ†
 
   Revision 1.2  2004/07/09 00:13:15  seiki_masashi
   PRCi_Resample* -> PRC_Resample*
 
   Revision 1.1  2004/06/24 07:03:10  seiki_masashi
-  ѓwѓbѓ_ѓtѓ@ѓCѓ‹‚р•ЄЉ„ЃEђ®—ќ‚µ‚Ь‚µ‚Ѕ
+  гѓгѓѓгѓЂгѓ•г‚Ўг‚¤гѓ«г‚’е€†е‰Ігѓ»ж•ґзђ†гЃ—гЃѕгЃ—гЃџ
 
   Revision 1.1  2004/06/23 12:00:29  seiki_masashi
   add 'PRC*' to SDK
 
   Revision 1.1  2004/06/22 11:19:00  seiki_masashi
-  “®Ќм‰В”\ѓoЃ[ѓWѓ‡ѓ“(simple‚М‚Э)
+  е‹•дЅњеЏЇиѓЅгѓђгѓјг‚ёгѓ§гѓі(simpleгЃ®гЃї)
 
 
   $NoKeywords: $
@@ -64,16 +64,16 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         PRC_ResampleStrokes_None
 
-  Description:  ѓЉѓTѓ“ѓvѓЉѓ“ѓO‚µ‚Ь‚№‚с.
+  Description:  гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ—гЃѕгЃ›г‚“.
 
-  Arguments:    selectedPoints, pSelectedPointNum Њ‹‰К‚Є•Ф‚йѓ|ѓCѓ“ѓ^
-                maxPointCount       “ь—Н“_ђ”‚МЏгЊА(pen up marker ‚рЉЬ‚Ю)
-                maxStrokeCount      ‰жђ”‚МЏгЊА
-                strokes             ђ®Њ`‘O‚Мђ¶“ь—НЌА•W’l.
-                threshold           ѓЉѓTѓ“ѓvѓ‹‚Ми‡’l
-                buffer              Ќм‹Ж—М€ж(sizeof(int)*maxPointCount •K—v)
+  Arguments:    selectedPoints, pSelectedPointNum зµђжћњгЃЊиї”г‚‹гѓќг‚¤гѓіг‚ї
+                maxPointCount       е…ҐеЉ›з‚№ж•°гЃ®дёЉй™ђ(pen up marker г‚’еђ«г‚Ђ)
+                maxStrokeCount      з”»ж•°гЃ®дёЉй™ђ
+                strokes             ж•ґеЅўе‰ЌгЃ®з”џе…ҐеЉ›еє§жЁ™еЂ¤.
+                threshold           гѓЄг‚µгѓігѓ—гѓ«гЃ®й–ѕеЂ¤
+                buffer              дЅњжҐ­й еџџ(sizeof(int)*maxPointCount еї…и¦Ѓ)
 
-  Returns:      ѓЉѓTѓ“ѓvѓЉѓ“ѓO‚Йђ¬Њч‚µ‚Ѕ‚зђ^.
+  Returns:      гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ«ж€ђеЉџгЃ—гЃџг‚‰зњџ.
  *---------------------------------------------------------------------------*/
 BOOL
  
@@ -86,16 +86,16 @@ BOOL
 /*---------------------------------------------------------------------------*
   Name:         PRC_ResampleStrokes_Distance
 
-  Description:  ѓVѓeѓBѓuѓЌѓbѓN‹——Ј‚рЉоЏЂ‚ЙѓЉѓTѓ“ѓvѓЉѓ“ѓO‚µ‚Ь‚·.
+  Description:  г‚·гѓ†г‚Јгѓ–гѓ­гѓѓг‚Їи·ќй›ўг‚’еџєжє–гЃ«гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ—гЃѕгЃ™.
 
-  Arguments:    selectedPoints, pSelectedPointNum Њ‹‰К‚Є•Ф‚йѓ|ѓCѓ“ѓ^
-                maxPointCount       “ь—Н“_ђ”‚МЏгЊА(pen up marker ‚рЉЬ‚Ю)
-                maxStrokeCount      ‰жђ”‚МЏгЊА
-                strokes             ђ®Њ`‘O‚Мђ¶“ь—НЌА•W’l.
-                threshold           ѓЉѓTѓ“ѓvѓ‹‚Ми‡’l
-                buffer              Ќм‹Ж—М€ж(sizeof(int)*maxPointCount •K—v)
+  Arguments:    selectedPoints, pSelectedPointNum зµђжћњгЃЊиї”г‚‹гѓќг‚¤гѓіг‚ї
+                maxPointCount       е…ҐеЉ›з‚№ж•°гЃ®дёЉй™ђ(pen up marker г‚’еђ«г‚Ђ)
+                maxStrokeCount      з”»ж•°гЃ®дёЉй™ђ
+                strokes             ж•ґеЅўе‰ЌгЃ®з”џе…ҐеЉ›еє§жЁ™еЂ¤.
+                threshold           гѓЄг‚µгѓігѓ—гѓ«гЃ®й–ѕеЂ¤
+                buffer              дЅњжҐ­й еџџ(sizeof(int)*maxPointCount еї…и¦Ѓ)
 
-  Returns:      ѓЉѓTѓ“ѓvѓЉѓ“ѓO‚Йђ¬Њч‚µ‚Ѕ‚зђ^.
+  Returns:      гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ«ж€ђеЉџгЃ—гЃџг‚‰зњџ.
  *---------------------------------------------------------------------------*/
 BOOL
  
@@ -108,16 +108,16 @@ BOOL
 /*---------------------------------------------------------------------------*
   Name:         PRC_ResampleStrokes_Angle
 
-  Description:  Љp“x‚рЉоЏЂ‚ЙѓЉѓTѓ“ѓvѓЉѓ“ѓO‚µ‚Ь‚·.
+  Description:  и§’еє¦г‚’еџєжє–гЃ«гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ—гЃѕгЃ™.
 
-  Arguments:    selectedPoints, pSelectedPointNum Њ‹‰К‚Є•Ф‚йѓ|ѓCѓ“ѓ^
-                maxPointCount       “ь—Н“_ђ”‚МЏгЊА(pen up marker ‚рЉЬ‚Ю)
-                maxStrokeCount      ‰жђ”‚МЏгЊА
-                strokes             ђ®Њ`‘O‚Мђ¶“ь—НЌА•W’l.
-                threshold           ѓЉѓTѓ“ѓvѓ‹‚Ми‡’l
-                buffer              Ќм‹Ж—М€ж(sizeof(int)*maxPointCount •K—v)
+  Arguments:    selectedPoints, pSelectedPointNum зµђжћњгЃЊиї”г‚‹гѓќг‚¤гѓіг‚ї
+                maxPointCount       е…ҐеЉ›з‚№ж•°гЃ®дёЉй™ђ(pen up marker г‚’еђ«г‚Ђ)
+                maxStrokeCount      з”»ж•°гЃ®дёЉй™ђ
+                strokes             ж•ґеЅўе‰ЌгЃ®з”џе…ҐеЉ›еє§жЁ™еЂ¤.
+                threshold           гѓЄг‚µгѓігѓ—гѓ«гЃ®й–ѕеЂ¤
+                buffer              дЅњжҐ­й еџџ(sizeof(int)*maxPointCount еї…и¦Ѓ)
 
-  Returns:      ѓЉѓTѓ“ѓvѓЉѓ“ѓO‚Йђ¬Њч‚µ‚Ѕ‚зђ^.
+  Returns:      гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ«ж€ђеЉџгЃ—гЃџг‚‰зњџ.
  *---------------------------------------------------------------------------*/
 BOOL
  
@@ -130,16 +130,16 @@ BOOL
 /*---------------------------------------------------------------------------*
   Name:         PRC_ResampleStrokes_Recursive
 
-  Description:  ЌД‹A“IЋи–@‚ЕѓЉѓTѓ“ѓvѓЉѓ“ѓO‚µ‚Ь‚·.
+  Description:  е†Ќеё°зљ„ж‰‹жі•гЃ§гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ—гЃѕгЃ™.
 
-  Arguments:    selectedPoints, pSelectedPointNum Њ‹‰К‚Є•Ф‚йѓ|ѓCѓ“ѓ^
-                maxPointCount       “ь—Н“_ђ”‚МЏгЊА(pen up marker ‚рЉЬ‚Ю)
-                maxStrokeCount      ‰жђ”‚МЏгЊА
-                strokes             ђ®Њ`‘O‚Мђ¶“ь—НЌА•W’l.
-                threshold           ѓЉѓTѓ“ѓvѓ‹‚Ми‡’l
-                buffer              Ќм‹Ж—М€ж(sizeof(int)*maxPointCount •K—v)
+  Arguments:    selectedPoints, pSelectedPointNum зµђжћњгЃЊиї”г‚‹гѓќг‚¤гѓіг‚ї
+                maxPointCount       е…ҐеЉ›з‚№ж•°гЃ®дёЉй™ђ(pen up marker г‚’еђ«г‚Ђ)
+                maxStrokeCount      з”»ж•°гЃ®дёЉй™ђ
+                strokes             ж•ґеЅўе‰ЌгЃ®з”џе…ҐеЉ›еє§жЁ™еЂ¤.
+                threshold           гѓЄг‚µгѓігѓ—гѓ«гЃ®й–ѕеЂ¤
+                buffer              дЅњжҐ­й еџџ(sizeof(int)*maxPointCount еї…и¦Ѓ)
 
-  Returns:      ѓЉѓTѓ“ѓvѓЉѓ“ѓO‚Йђ¬Њч‚µ‚Ѕ‚зђ^.
+  Returns:      гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ«ж€ђеЉџгЃ—гЃџг‚‰зњџ.
  *---------------------------------------------------------------------------*/
 BOOL
  

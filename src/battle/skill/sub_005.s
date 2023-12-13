@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_005.s
- *@brief	�퓬�V�[�P���X
- *			�����V�[�P���X
+ *@brief	戦闘シーケンス
+ *			負けシーケンス
  *@author	HisashiSogabe
  *@data		2005.07.29
  *
@@ -26,10 +26,10 @@ SUB_005:
 
 	OKODUKAI_CALC
 
-	//�����z���O�̎��̓��b�Z�[�W�\�����Ȃ�
+	//罰金額が０の時はメッセージ表示しない
 	IF				IF_FLAG_EQ,BUF_PARA_MSG_WORK,0,SUB_005_RET
 
-	//�g���[�i�[��̎��͐�p���b�Z�[�W��
+	//トレーナー戦の時は専用メッセージへ
 	IF				IF_FLAG_BIT,BUF_PARA_FIGHT_TYPE,FIGHT_TYPE_TRAINER,TrainerLose
 
 	MESSAGE			LostMsg,TAG_TRNAME_NUM,SIDE_MINE,SIDE_WORK
@@ -63,7 +63,7 @@ TowerLose:
 	IF_PSP			IF_FLAG_EQ,SIDE_ENEMY_1,ID_PSP_hp,0,Enemy2
 	POKEMON_RETURN	SIDE_ENEMY_1
 Enemy2:
-	//2vs2�킶��Ȃ���΁A�ȍ~�𖳎�
+	//2vs2戦じゃなければ、以降を無視
 	IF				IF_FLAG_NBIT,BUF_PARA_FIGHT_TYPE,FIGHT_TYPE_2vs2,PokemonReturnWait
 	IF_PSP			IF_FLAG_EQ,SIDE_ENEMY_2,ID_PSP_hp,0,PokemonReturnWait
 	POKEMON_RETURN	SIDE_ENEMY_2

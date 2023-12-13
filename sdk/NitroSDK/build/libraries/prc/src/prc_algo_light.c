@@ -18,45 +18,45 @@
   do-indent.
 
   Revision 1.4  2004/07/19 06:52:06  seiki_masashi
-  ¯•Êq–¼‚Ì®—
+  è­˜åˆ¥å­åã®æ•´ç†
 
   Revision 1.3  2004/07/05 02:37:54  seiki_masashi
-  prevRatio ‚Ìœ‹
+  prevRatio ã®é™¤å»
 
   Revision 1.2  2004/06/30 12:53:44  seiki_masashi
-  —LŠQ‚É‚È‚è‚¤‚é ASSERT ‚Ìíœ
+  æœ‰å®³ã«ãªã‚Šã†ã‚‹ ASSERT ã®å‰Šé™¤
 
   Revision 1.1  2004/06/30 08:49:24  seiki_masashi
   algo_simple -> algo_light
   algo_standard -> algo_fine
   algo_accurate -> algo_superfine
-  V‚µ‚¢ algo_standard ‚Ì’Ç‰Á
+  æ–°ã—ã„ algo_standard ã®è¿½åŠ 
 
   Revision 1.5  2004/06/29 07:25:02  seiki_masashi
-  ƒoƒOC³
-  }Ø‚è‚ÌÀ‘•
+  ãƒã‚°ä¿®æ­£
+  æåˆ‡ã‚Šã®å®Ÿè£…
 
   Revision 1.4  2004/06/25 03:02:55  seiki_masashi
-  ŠeŠÖ”‚©‚ç bufferSize ‚Ìw’è‚ğíœ
-  GetRecognitionBufferSize* ‚Ì’Ç‰Á
+  å„é–¢æ•°ã‹ã‚‰ bufferSize ã®æŒ‡å®šã‚’å‰Šé™¤
+  GetRecognitionBufferSize* ã®è¿½åŠ 
 
   Revision 1.3  2004/06/24 08:08:33  seiki_masashi
   fix typo
 
   Revision 1.2  2004/06/24 07:03:39  seiki_masashi
-  ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ğ•ªŠ„E®—‚µ‚Ü‚µ‚½
+  ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ†å‰²ãƒ»æ•´ç†ã—ã¾ã—ãŸ
 
   Revision 1.1  2004/06/23 11:59:30  seiki_masashi
   add 'PRC*' to SDK
 
   Revision 1.3  2004/06/22 11:19:00  seiki_masashi
-  “®ì‰Â”\ƒo[ƒWƒ‡ƒ“(light‚Ì‚İ)
+  å‹•ä½œå¯èƒ½ãƒãƒ¼ã‚¸ãƒ§ãƒ³(lightã®ã¿)
 
   Revision 1.2  2004/06/17 08:14:52  seiki_masashi
   PRC_GetPrototypeDBBufferSizeEx
 
   Revision 1.1  2004/06/17 02:30:29  seiki_masashi
-  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚Ì·‚µ‘Ö‚¦‚ğ—eˆÕ‚É‚·‚é‚½‚ß‚É prc_algo_* ‚É•ªŠ„‚µ‚Ü‚µ‚½
+  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã®å·®ã—æ›¿ãˆã‚’å®¹æ˜“ã«ã™ã‚‹ãŸã‚ã« prc_algo_* ã«åˆ†å‰²ã—ã¾ã—ãŸ
 
   Revision 1.2  2004/06/17 00:52:36  seiki_masashi
   PRC_InitPrototypeDBEX, PRC_InitInputPatternEX
@@ -86,15 +86,15 @@
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognitionBufferSizeEx_Light
 
-  Description:  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ª•K—v‚Æ‚·‚éƒ[ƒN—Ìˆæ‚Ì‘å‚«‚³‚ğ
-                ŒvZ‚µ‚Ü‚·.
+  Description:  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒå¿…è¦ã¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®å¤§ãã•ã‚’
+                è¨ˆç®—ã—ã¾ã™.
 
-  Arguments:    maxPointCount   “ü—Í“_”‚ÌãŒÀ(pen up marker ‚ğŠÜ‚Ş)
-                maxStrokeCount  ‰æ”‚ÌãŒÀ
-                protoDB         Œ©–{DB.
-                param           ”F¯ˆ—‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^.
+  Arguments:    maxPointCount   å…¥åŠ›ç‚¹æ•°ã®ä¸Šé™(pen up marker ã‚’å«ã‚€)
+                maxStrokeCount  ç”»æ•°ã®ä¸Šé™
+                protoDB         è¦‹æœ¬DB.
+                param           èªè­˜å‡¦ç†ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿.
 
-  Returns:      ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ª•K—v‚Æ‚·‚éƒƒ‚ƒŠ—Ê.
+  Returns:      èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒå¿…è¦ã¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé‡.
  *---------------------------------------------------------------------------*/
 u32
 PRC_GetRecognitionBufferSizeEx_Light(int maxPointCount,
@@ -107,29 +107,29 @@ PRC_GetRecognitionBufferSizeEx_Light(int maxPointCount,
     (void)protoDB;
     (void)param;
 
-    return 1;                          // OS_Alloc(0) ‚ÍƒGƒ‰[‚Æ‚È‚é‚½‚ß
+    return 1;                          // OS_Alloc(0) ã¯ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹ãŸã‚
 }
 
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognizedEntriesEx_Light
 
-  Description:  Œ©–{DB‚Ì“Á’è‚Ì kind ‚ÌƒGƒ“ƒgƒŠ‚Æ“ü—Íƒpƒ^[ƒ“‚ğ”äŠr‚µ‚Ä”F¯‚µ,
-                Œ‹‰Ê‚ÌãˆÊ numRanking ˆÊ‚ğ•Ô‚µ‚Ü‚·.
+  Description:  è¦‹æœ¬DBã®ç‰¹å®šã® kind ã®ã‚¨ãƒ³ãƒˆãƒªã¨å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’æ¯”è¼ƒã—ã¦èªè­˜ã—,
+                çµæœã®ä¸Šä½ numRanking ä½ã‚’è¿”ã—ã¾ã™.
 
-  Arguments:    resultEntries   ”F¯Œ‹‰Ê‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ“ü‚ê‚é”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                ‹‚ß‚éŒÂ”ˆÈ‰º‚µ‚©”F¯‚Å‚«‚È‚©‚Á‚½ê‡A
-                                c‚è‚Í NULL ‚Å–„‚ß‚ç‚ê‚Ü‚·.
-                resultScores    ”F¯Œ‹‰Ê‚ÌƒXƒRƒA‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                numRanking      result* ‚É•Ô‚·ŒÂ”
-                buffer          ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ªg—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                (—ÌˆæƒTƒCƒY>=PRC_GetRecognitionBufferSize ‚Ì•Ô‚è’l)
-                input           “ü—Íƒpƒ^[ƒ“.
-                protoDB         Œ©–{DB.
-                kindMask        ŠeŒ©–{DBƒGƒ“ƒgƒŠ‚Ì kind ’l‚Æ‚Ì˜_—Ï‚ğ‚Æ‚è,
-                                ”ñƒ[ƒ‚Å‚ ‚ê‚Î—LŒø‚Æ‚İ‚È‚µ‚Ü‚·.
-                param           ”F¯ˆ—‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^.
+  Arguments:    resultEntries   èªè­˜çµæœã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å…¥ã‚Œã‚‹é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                æ±‚ã‚ã‚‹å€‹æ•°ä»¥ä¸‹ã—ã‹èªè­˜ã§ããªã‹ã£ãŸå ´åˆã€
+                                æ®‹ã‚Šã¯ NULL ã§åŸ‹ã‚ã‚‰ã‚Œã¾ã™.
+                resultScores    èªè­˜çµæœã®ã‚¹ã‚³ã‚¢ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                numRanking      result* ã«è¿”ã™å€‹æ•°
+                buffer          èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                (é ˜åŸŸã‚µã‚¤ã‚º>=PRC_GetRecognitionBufferSize ã®è¿”ã‚Šå€¤)
+                input           å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³.
+                protoDB         è¦‹æœ¬DB.
+                kindMask        å„è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã® kind å€¤ã¨ã®è«–ç†ç©ã‚’ã¨ã‚Š,
+                                éã‚¼ãƒ­ã§ã‚ã‚Œã°æœ‰åŠ¹ã¨ã¿ãªã—ã¾ã™.
+                param           èªè­˜å‡¦ç†ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿.
 
-  Returns:      ”äŠr‚³‚ê‚½Œ©–{DBã‚Ìƒpƒ^[ƒ“”.
+  Returns:      æ¯”è¼ƒã•ã‚ŒãŸè¦‹æœ¬DBä¸Šã®ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°.
  *---------------------------------------------------------------------------*/
 int
 PRC_GetRecognizedEntriesEx_Light(PRCPrototypeEntry **resultEntries,
@@ -167,8 +167,8 @@ PRC_GetRecognizedEntriesEx_Light(PRCPrototypeEntry **resultEntries,
         int     iPattern;
         fx32    border;
 
-        border = FX32_ONE;             // ‘«Ø‚èƒ‰ƒCƒ“ ‚±‚Ì’l‚ğ FX32_ONE/2 ‚È‚Ç‚·‚é‚ÆÅ‰‚©‚ç 0.5 ˆÈ‰º‚ÌƒXƒRƒA‚ª”»’è‚³‚ê‚È‚¢
-        border *= 32768;               // “à•” score ‚ÌŒW”
+        border = FX32_ONE;             // è¶³åˆ‡ã‚Šãƒ©ã‚¤ãƒ³ ã“ã®å€¤ã‚’ FX32_ONE/2 ãªã©ã™ã‚‹ã¨æœ€åˆã‹ã‚‰ 0.5 ä»¥ä¸‹ã®ã‚¹ã‚³ã‚¢ãŒåˆ¤å®šã•ã‚Œãªã„
+        border *= 32768;               // å†…éƒ¨ score ã®ä¿‚æ•°
 
         proto = protoDB->patterns;
 
@@ -189,30 +189,30 @@ PRC_GetRecognizedEntriesEx_Light(PRCPrototypeEntry **resultEntries,
 
             wholeScore = 0;
 
-            // •â³‚Ì•ª‚ğ–ß‚µ‚½’l‚ğ‘«Ø‚èİ’è
+            // è£œæ­£ã®åˆ†ã‚’æˆ»ã—ãŸå€¤ã‚’è¶³åˆ‡ã‚Šè¨­å®š
             patternBorder = border;
             if (proto->entry->correction != 0)
             {
-                // patternBorder *= 1 / (FX32_ONE - correction) ‚ğ–{“–‚Í‚µ‚È‚¢‚Æ‚¢‚¯‚È‚¢‚Æ‚±‚ë‚ğ
-                // “K“–‚É’¼ü‚Å‹ß—‚µ‚Ä‚æ‚è‘å‚«‚¢’l‚Å‚Í‚µ‚å‚é
+                // patternBorder *= 1 / (FX32_ONE - correction) ã‚’æœ¬å½“ã¯ã—ãªã„ã¨ã„ã‘ãªã„ã¨ã“ã‚ã‚’
+                // é©å½“ã«ç›´ç·šã§è¿‘ä¼¼ã—ã¦ã‚ˆã‚Šå¤§ãã„å€¤ã§ã¯ã—ã‚‡ã‚‹
                 if (proto->entry->correction < -FX32_ONE)
                 {
-                    patternBorder >>= 1;        // 1/2 ˆÈ‰º‚Å‹ß—
+                    patternBorder >>= 1;        // 1/2 ä»¥ä¸‹ã§è¿‘ä¼¼
                 }
                 else if (proto->entry->correction < 0)
                 {
-                    // -1 < correction < 0 ‚Å‚Í correction/2+1 ‚Å‹ß—
+                    // -1 < correction < 0 ã§ã¯ correction/2+1 ã§è¿‘ä¼¼
                     patternBorder = FX_Mul(patternBorder, FX32_ONE + proto->entry->correction / 2);
                 }
                 else if (proto->entry->correction < FX32_ONE / 2)
                 {
-                    // 0 < correction < 1/2 ‚Å‚Í correction*2+1 ‚Å‹ß—
+                    // 0 < correction < 1/2 ã§ã¯ correction*2+1 ã§è¿‘ä¼¼
                     patternBorder = FX_Mul(patternBorder, FX32_ONE + proto->entry->correction * 2);
                 }
                 else
                 {
                     patternBorder = FX32_ONE * 32768;
-                }                      // ‘«Ø‚è‚ğ‚ ‚«‚ç‚ß‚é
+                }                      // è¶³åˆ‡ã‚Šã‚’ã‚ãã‚‰ã‚ã‚‹
             }
 
             for (iStroke = 0; iStroke < inputData->strokeCount; iStroke++)
@@ -241,24 +241,24 @@ PRC_GetRecognizedEntriesEx_Light(PRCPrototypeEntry **resultEntries,
                 protoRatio = &protoData->lineSegmentRatioToStrokeArray[protoStrokeIndex];
                 inputRatio = &inputData->lineSegmentRatioToStrokeArray[inputStrokeIndex];
 
-                strokeRatio = protoData->strokeRatios[iStroke]; // ‚±‚±‚ğ inputData-> ‚É‚·‚é‚ÆA“ü—Í‚Ì‰æ‚Ì”äd‚ğd‹‚µ‚½d‚İ•t‚¯‚É‚È‚é
+                strokeRatio = protoData->strokeRatios[iStroke]; // ã“ã“ã‚’ inputData-> ã«ã™ã‚‹ã¨ã€å…¥åŠ›ã®ç”»ã®æ¯”é‡ã‚’é‡è¦–ã—ãŸé‡ã¿ä»˜ã‘ã«ãªã‚‹
 
-                // ‘«Ø‚èƒŒƒxƒ‹‚Ìİ’è
+                // è¶³åˆ‡ã‚Šãƒ¬ãƒ™ãƒ«ã®è¨­å®š
                 if (strokeRatio == FX32_ONE)
                 {
                     localBorder = patternBorder;
                 }
                 else if (strokeRatio >= FX32_ONE / 2)
                 {
-                    localBorder = patternBorder * 2;    // ‘½‚ß‚É‚Æ‚é•ª‚É‚Í–â‘è‚È‚µ
+                    localBorder = patternBorder * 2;    // å¤šã‚ã«ã¨ã‚‹åˆ†ã«ã¯å•é¡Œãªã—
                 }
                 else if (strokeRatio >= FX32_ONE / 3)
                 {
-                    localBorder = patternBorder * 3;    // ‘½‚ß‚É‚Æ‚é•ª‚É‚Í–â‘è‚È‚µ
+                    localBorder = patternBorder * 3;    // å¤šã‚ã«ã¨ã‚‹åˆ†ã«ã¯å•é¡Œãªã—
                 }
                 else
                 {
-                    localBorder = FX32_ONE * 32768;     // ‘«Ø‚è‚ğl‚¦‚È‚¢
+                    localBorder = FX32_ONE * 32768;     // è¶³åˆ‡ã‚Šã‚’è€ƒãˆãªã„
                 }
 
                 SDK_ASSERT(protoSize >= 2);
@@ -292,10 +292,10 @@ PRC_GetRecognizedEntriesEx_Light(PRCPrototypeEntry **resultEntries,
                         protoNextRatio -= inputNextRatio;
                         inputNextRatio = inputRatio[iInput];
                     }
-                    // ‘«Ø‚èƒ`ƒFƒbƒN
+                    // è¶³åˆ‡ã‚Šãƒã‚§ãƒƒã‚¯
                     if (score > localBorder)
                     {
-                        // Å’áˆÊŒó•â‚É‚àˆø‚Á‚©‚©‚éŒ©‚İ‚ª‚È‚­‚È‚Á‚½
+                        // æœ€ä½ä½å€™è£œã«ã‚‚å¼•ã£ã‹ã‹ã‚‹è¦‹è¾¼ã¿ãŒãªããªã£ãŸ
                         wholeScore = FX32_ONE * 32768;
                         goto quit_compare;
                     }
@@ -312,7 +312,7 @@ PRC_GetRecognizedEntriesEx_Light(PRCPrototypeEntry **resultEntries,
 //                wholeScore = FX_Mul(wholeScore, FX32_ONE - proto->entry->correction)
 //                            + proto->entry->correction;
 
-            // ‚±‚Ì’iŠK‚Å‚Í¬‚³‚¢ƒXƒRƒA‚Ì‚Ù‚¤‚ª‚æ‚¢‚±‚Æ‚É’ˆÓ
+            // ã“ã®æ®µéšã§ã¯å°ã•ã„ã‚¹ã‚³ã‚¢ã®ã»ã†ãŒã‚ˆã„ã“ã¨ã«æ³¨æ„
           quit_compare:
             numCompared++;
             if (resultScores[numRanking - 1] > wholeScore)
@@ -333,12 +333,12 @@ PRC_GetRecognizedEntriesEx_Light(PRCPrototypeEntry **resultEntries,
                         resultEntries[i + 1] = tmpEntry;
                     }
                 }
-                // ‘«Ø‚èƒXƒRƒA‚Ìİ’è
+                // è¶³åˆ‡ã‚Šã‚¹ã‚³ã‚¢ã®è¨­å®š
                 border = resultScores[numRanking - 1];
             }
         }
     }
-    // ƒXƒRƒA‚Ì³‹K‰»
+    // ã‚¹ã‚³ã‚¢ã®æ­£è¦åŒ–
     {
         int     iRank;
         fx32    score;

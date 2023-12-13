@@ -1,7 +1,7 @@
 //====================================================================
 //								c10r0112
 //
-//	LOCALWORK3	‹­§ƒCƒxƒ“ƒg”­“®
+//	LOCALWORK3	å¼·åˆ¶ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
 //====================================================================
 
 	.text
@@ -11,11 +11,11 @@
 	.include	"../eventdata/zone_c10r0112evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c10r0112_dendou_before
 _EVENT_DATA		ev_c10r0112_champ
@@ -35,11 +35,11 @@ ev_c10r0112_champ:
 ev_c10r0112_dendou_before:
 	_EVENT_START
 
-	/*Ž©“®‚Åi‚Þ*/
+	/*è‡ªå‹•ã§é€²ã‚€*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c10r0112_player_00
 	_OBJ_ANIME_WAIT
 
-	/*ƒ`ƒƒƒ“ƒsƒIƒ“‹ßŠñ‚è*/
+	/*ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³è¿‘å¯„ã‚Š*/
 	_SXY_POS_CHANGE	C10R0112_CHAMP,6,14
 	_FLAG_RESET		FV_C10R0112_CHAMP
 	_OBJ_ADD		C10R0112_CHAMP
@@ -51,7 +51,7 @@ ev_c10r0112_dendou_before:
 	_TALK_KEYWAIT	msg_c10r0112_champion_01
 	_TALK_CLOSE
 
-	/*”ŽŽm“oê*/
+	/*åšå£«ç™»å ´*/
 	_SXY_POS_CHANGE	C10R0112_DOCTOR,4,14
 	_FLAG_RESET		FV_C10R0112_DOCTOR
 	_OBJ_ADD		C10R0112_DOCTOR
@@ -66,7 +66,7 @@ ev_c10r0112_dendou_before:
 	_TALK_KEYWAIT	msg_c10r0112_doctor_01
 	_TALK_CLOSE
 
-	/*uIv*/
+	/*ã€Œï¼ã€*/
 	_OBJ_ANIME		C10R0112_CHAMP,anm_c10r0112_champ_02
 	_OBJ_ANIME_WAIT
 
@@ -75,7 +75,7 @@ ev_c10r0112_dendou_before:
 	_PLAYER_NAME	0
 	_TALK_KEYWAIT	msg_c10r0112_doctor_02
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME		C10R0112_CHAMP,anm_c10r0112_champ_30
 	_OBJ_ANIME_WAIT
 
@@ -96,12 +96,12 @@ c10r0112_dendou_female:
 	_TALK_KEYWAIT	msg_c10r0112_champion_05
 	_JUMP			common_c10r0112_dendou
 
-/*‹¤’Êˆ—*/
+/*å…±é€šå‡¦ç†*/
 common_c10r0112_dendou:
 	_TALK_KEYWAIT	msg_c10r0112_champion_06
 	_TALK_CLOSE
 
-	/*“a“°•”‰®‚Ö*/
+	/*æ®¿å ‚éƒ¨å±‹ã¸*/
 	_OBJ_ANIME		C10R0112_CHAMP,anm_c10r0112_champ_20
 	_OBJ_ANIME		C10R0112_DOCTOR,anm_c10r0112_doctor_20
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c10r0112_player_01
@@ -114,7 +114,7 @@ common_c10r0112_dendou:
 	_END
 
 //--------------------------------------------------------------------
-//”ŽŽm	‹ßŠñ‚è
+//åšå£«	è¿‘å¯„ã‚Š
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0112_doctor_01
 	_ANIME_DATA	AC_WALK_U_8F,8
@@ -122,7 +122,7 @@ _ANIME_LABEL anm_c10r0112_doctor_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//”ŽŽm	“a“°•”‰®‚Ö
+//åšå£«	æ®¿å ‚éƒ¨å±‹ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0112_doctor_20
 	_ANIME_DATA	AC_WAIT_8F,3
@@ -133,7 +133,7 @@ _ANIME_LABEL anm_c10r0112_doctor_20
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ`ƒƒƒ“ƒsƒIƒ“	‹ßŠñ‚è
+//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³	è¿‘å¯„ã‚Š
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0112_champ_01
 	_ANIME_DATA	AC_WALK_U_8F,8
@@ -141,7 +141,7 @@ _ANIME_LABEL anm_c10r0112_champ_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ`ƒƒƒ“ƒsƒIƒ“	ƒrƒbƒNƒŠ
+//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³	ãƒ“ãƒƒã‚¯ãƒª
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0112_champ_02
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
@@ -149,14 +149,14 @@ _ANIME_LABEL anm_c10r0112_champ_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ`ƒƒƒ“ƒsƒIƒ“	˜b‚·
+//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³	è©±ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0112_champ_30
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ`ƒƒƒ“ƒsƒIƒ“	“a“°•”‰®‚Ö
+//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³	æ®¿å ‚éƒ¨å±‹ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0112_champ_20
 	_ANIME_DATA	AC_WALK_U_8F,2
@@ -166,7 +166,7 @@ _ANIME_LABEL anm_c10r0112_champ_20
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	i‚Þ
+//ä¸»äººå…¬	é€²ã‚€
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0112_player_00
 	_ANIME_DATA	AC_WALK_U_8F,17
@@ -175,7 +175,7 @@ _ANIME_LABEL anm_c10r0112_player_00
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	U‚èŒü‚«
+//ä¸»äººå…¬	æŒ¯ã‚Šå‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0112_player_100
 	_ANIME_DATA	AC_WAIT_8F,6
@@ -183,21 +183,21 @@ _ANIME_LABEL anm_c10r0112_player_100
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	‰E
+//ä¸»äººå…¬	å³
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0112_player_10
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	¶
+//ä¸»äººå…¬	å·¦
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0112_player_20
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	“a“°•”‰®‚Ö
+//ä¸»äººå…¬	æ®¿å ‚éƒ¨å±‹ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0112_player_01
 	_ANIME_DATA	AC_WAIT_8F,1

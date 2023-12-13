@@ -735,7 +735,7 @@ static u16 ConvRanger2DP(u16 code)
   for(i = 0; i < sizeof(Ranger2DpTable) / sizeof(STRCODETABLE); i++)
     if(code == Ranger2DpTable[i].ranger)
       return Ranger2DpTable[i].dp;
-  // コードが見つからなかったら「？」を返す
+  // 繧ｳ繝ｼ繝峨′隕九▽縺九ｉ縺ｪ縺九▲縺溘ｉ縲鯉ｼ溘阪ｒ霑斐☆
   return hate_;
 }
 
@@ -745,7 +745,7 @@ static u16 ConvDP2Ranger(u16 code)
   for(i = 0; i < sizeof(Ranger2DpTable) / sizeof(STRCODETABLE); i++)
     if(code == Ranger2DpTable[i].dp)
       return Ranger2DpTable[i].ranger;
-  // コードが見つからなかったら「？」を返す
+  // 繧ｳ繝ｼ繝峨′隕九▽縺九ｉ縺ｪ縺九▲縺溘ｉ縲鯉ｼ溘阪ｒ霑斐☆
   return ranger_hate_;
 }
 

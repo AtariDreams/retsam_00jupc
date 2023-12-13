@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ƒGƒŠƒAƒf[ƒ^ì¬
+# Project:  ã‚¨ãƒªã‚¢ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -38,12 +38,12 @@ AREABM_LIST = abmlst_files
 
 TEXSET_LIST = $(TEXSET_DIR)/g3_texset
 #----------------------------------------------------------------------------
-#	‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·‚ğ‰Â”\‚É‚·‚é‚½‚ß‚Ìİ’è
+#	ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã‚’å¯èƒ½ã«ã™ã‚‹ãŸã‚ã®è¨­å®š
 #----------------------------------------------------------------------------
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#‹¤’Ê•Ï”’è‹`
+#å…±é€šå¤‰æ•°å®šç¾©
 include $(DP_ROOT)/commondefs.GF
 
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
@@ -51,7 +51,7 @@ include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 #----------------------------------------------------------------------------
 #
 #----------------------------------------------------------------------------
-#Make‚Å¶¬‚³‚ê‚é*.bin‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.binã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(TARGET_ARC) $(ENUMHEADER) $(BINDATA) $(TXTDATA) $(BUILD_DIR)/$(AREABUILD_ARC) $(TEXSET_DIR)/$(TEXSET_ARC) $(AREABM_LIST)
 
 LINCLUDES		= $(NITROSDK_ROOT)/include
@@ -60,7 +60,7 @@ LINCLUDES		+= $(DP_ROOT)/src/field
 LINCLUDES	+= $(dir $<)
 
 #----------------------------------------------------------------------------
-#	ƒc[ƒ‹‚Ö‚ÌƒpƒXw’è
+#	ãƒ„ãƒ¼ãƒ«ã¸ã®ãƒ‘ã‚¹æŒ‡å®š
 #----------------------------------------------------------------------------
 LISTMK		= listmk.rb
 AREACONV	= Area.exe
@@ -69,67 +69,67 @@ ABMLIST_MK	= ruby abmlstmk.rb
 TEXSET_MK	 = ruby mklst_texset.rb
 
 #----------------------------------------------------------------------------
-#	ƒŠƒXƒgì¬‚Ì“Ç‚İ‚İŒ³ƒtƒ@ƒCƒ‹
+#	ãƒªã‚¹ãƒˆä½œæˆæ™‚ã®èª­ã¿è¾¼ã¿å…ƒãƒ•ã‚¡ã‚¤ãƒ«
 #----------------------------------------------------------------------------
 BUILD_LIST	=	build_list.txt
 TEX_LIST	=	tex_list.txt
 MOVE_LIST	=	move_list.txt
 
 #----------------------------------------------------------------------------
-#	’†ŠÔƒtƒ@ƒCƒ‹
+#	ä¸­é–“ãƒ•ã‚¡ã‚¤ãƒ«
 #----------------------------------------------------------------------------
 #BUILD	=	build
 #TEXSET	=	texset
 
 #----------------------------------------------------------------------------
 #
-#	ƒ‹[ƒ‹’è‹`
+#	ãƒ«ãƒ¼ãƒ«å®šç¾©
 #
 #----------------------------------------------------------------------------
 #do-build: $(TARGET_ARC) mkabmlst 
 do-build: $(TARGET_ARC) $(AREABM_LIST)
 
 $(TARGET_ARC): $(XLS)
-	$(MAKE) convxls				#ƒGƒNƒZƒ‹ƒRƒ“ƒo[ƒg
-	$(MAKE) convert				#ƒRƒ“ƒo[ƒg
-	$(MAKE) mkabmlst			#ƒGƒŠƒA”z’uƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹ƒŠƒXƒgì¬
-	$(MAKE) mktexsetlst			#ƒeƒNƒXƒ`ƒƒƒZƒbƒgŒ³ƒf[ƒ^ƒŠƒXƒgì¬
-	$(MAKE) makearc				#ƒGƒŠƒAƒf[ƒ^ƒA[ƒJƒCƒu
-	$(MAKE) addnew				#V‹K‹óƒf[ƒ^’Ç‰Á
-	$(MAKE) movelist			#ƒŠƒXƒgƒtƒ@ƒCƒ‹ˆÚ“®
-	$(MAKE) -C $(BUILD_DIR)			#”z’uƒf[ƒ^ƒA[ƒJƒCƒu
+	$(MAKE) convxls				#ã‚¨ã‚¯ã‚»ãƒ«ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+	$(MAKE) convert				#ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+	$(MAKE) mkabmlst			#ã‚¨ãƒªã‚¢é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆä½œæˆ
+	$(MAKE) mktexsetlst			#ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆå…ƒãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆä½œæˆ
+	$(MAKE) makearc				#ã‚¨ãƒªã‚¢ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+	$(MAKE) addnew				#æ–°è¦ç©ºãƒ‡ãƒ¼ã‚¿è¿½åŠ 
+	$(MAKE) movelist			#ãƒªã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ç§»å‹•
+	$(MAKE) -C $(BUILD_DIR)			#é…ç½®ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 	$(MAKE) -C $(TEXSET_DIR)
-	$(MAKE) -C $(MMODEL_DIR)	#“®ìƒ‚ƒfƒ‹ƒŠƒXƒgƒA[ƒJƒCƒu
+	$(MAKE) -C $(MMODEL_DIR)	#å‹•ä½œãƒ¢ãƒ‡ãƒ«ãƒªã‚¹ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 
-#ƒGƒNƒZƒ‹ƒRƒ“ƒo[ƒg
+#ã‚¨ã‚¯ã‚»ãƒ«ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 convxls:
 	area_id.bat
 	
-#ƒRƒ“ƒo[ƒg
+#ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 convert:
 	$(AREACONV)
 	
-#ƒA[ƒJƒCƒuì¬
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä½œæˆ
 makearc:
 	nnsarc -i -c -l -n $(TARGET_ARC) -S $(ARCLIST)  > arc_result.txt
 
-#V‹K‚É‹óƒf[ƒ^‚ğƒfƒBƒŒƒNƒgƒŠ‚É’Ç‰Á
+#æ–°è¦ã«ç©ºãƒ‡ãƒ¼ã‚¿ã‚’ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«è¿½åŠ 
 addnew:
 	$(NEWFILE) $(BUILDXLSLIST) $(BUILD_DIR) $(ORGAREAXLS)
 	$(NEWFILE) $(TEX_IMD_LIST) $(DATASRC) $(ORGTEXSET)
 
-#ƒŠƒXƒgƒtƒ@ƒCƒ‹ˆÚ“®
+#ãƒªã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ç§»å‹•
 movelist:
 	ruby $(LISTMK) $(BUILD_LIST) tmp $(BUILD_DIR)/$(BUILD_LIST)
 	-rm $(BUILD_LIST)
 	ruby $(LISTMK) $(TEX_LIST) $(NSBTXFILES_DIR) $(TEXSET_DIR)/$(TEX_LIST)
 	-rm $(TEX_LIST)
 
-#area build listì¬
+#area build listä½œæˆ
 mkabmlst:
 	$(ABMLIST_MK) $(AREA_TABLE) $(AREABM_LIST)
 
-#ƒ}ƒbƒvƒeƒNƒXƒ`ƒƒƒZƒbƒgƒŠƒXƒgì¬
+#ãƒãƒƒãƒ—ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆãƒªã‚¹ãƒˆä½œæˆ
 mktexsetlst:
 	$(TEXSET_MK) $(AREA_TABLE) $(TEXSET_LIST)
 #----------------------------------------------------------------------------

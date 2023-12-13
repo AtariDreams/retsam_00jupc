@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FSOverlayID, FS_OVERLAY_ID, FS_EXTERN_OVERLAY</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FSOverlayID, FS_OVERLAY_ID, FS_EXTERN_OVERLAY</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -26,38 +26,38 @@ typedef u32 FSOverlayID;
 </dd>
 </dl>
 
-<H2>����</H2>
-<P><A href="overlay/FS_LoadOverlay.html">FS_LoadOverlay</A>�֐��A<A href="overlay/FS_UnloadOverlay.html">FS_UnloadOverlay</A>�֐��Ɏw�肷��I�[�o�[���C���W���[����ID���`���܂��B<BR>
-������ makerom �ɂ�胊���N���ɐ��������̂ŁA�v���O�������ł͈ȉ��̂悤�Ɏg�p���܂��B<BR>
+<H2>説明</H2>
+<P><A href="overlay/FS_LoadOverlay.html">FS_LoadOverlay</A>関数、<A href="overlay/FS_UnloadOverlay.html">FS_UnloadOverlay</A>関数に指定するオーバーレイモジュールのIDを定義します。<BR>
+これらは makerom によりリンク時に生成されるので、プログラム側では以下のように使用します。<BR>
 <BR>
 <BR>
-(1) .lsf �t�@�C���ɂăI�[�o�[���C���w�肵�܂��B<BR>
+(1) .lsf ファイルにてオーバーレイを指定します。<BR>
 <BR>
-��:<BR>
+例:<BR>
 <CODE>Overlay overlay_1<BR>
 {<BR>
   After  main<BR>
   Object  func_1.o<BR>
 }</CODE><BR>
 <BR>
-(2) �v���O�������ɂă}�N�����g�p���ăI�[�o�[���CID��錾���܂��B<BR>
+(2) プログラム内にてマクロを使用してオーバーレイIDを宣言します。<BR>
 <BR>
-��:<BR>
+例:<BR>
 <CODE>FS_EXTERN_OVERLAY(overlay_1);</CODE><BR>
 <BR>
 <BR>
-(3) <A href="overlay/FS_LoadOverlay.html">FS_LoadOverlay</A>�֐��A<A href="overlay/FS_UnloadOverlay.html">FS_UnloadOverlay</A>�֐��ɃI�[�o�[���CID���w�肵�܂��B<BR>
+(3) <A href="overlay/FS_LoadOverlay.html">FS_LoadOverlay</A>関数、<A href="overlay/FS_UnloadOverlay.html">FS_UnloadOverlay</A>関数にオーバーレイIDを指定します。<BR>
 <BR>
-��:<BR>
+例:<BR>
 <CODE>FS_LoadOverlay(MI_PROCESSOR_ARM9, FS_OVERLAY_ID(overlay_1));</CODE><BR>
 <BR>
-�܂���<BR>
+または<BR>
 <BR>
 <CODE>FSOverlayID id = FS_OVERLAY_ID(overlay_1);<BR>
 FS_LoadOverlay(MI_PROCESSOR_ARM9, id);</CODE><BR>
 <BR>
 </P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="fs_overlay_info_type.html">FSOverlayInfo</A><BR>
 <A href="overlay/FS_LoadOverlayInfo.html">FS_LoadOverlayInfo</A>
@@ -65,13 +65,13 @@ FS_LoadOverlay(MI_PROCESSOR_ARM9, id);</CODE><BR>
 <A href="overlay/FS_UnloadOverlay.html">FS_UnloadOverlay</A> 
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/06/02 &amp;��&amp;amp;�֏C��<br>
-2004/11/02 �\���̒�`���w�b�_�t�@�C���Ɠ���ɒ���<br>
-2004/09/24 �����N�C��<br>
-2004/04/08 FSOverlayID �̌^�ύX�ɂ��L�q�C��<BR>
-2004/04/05 ����<BR>
+2005/06/02 &amp;を&amp;amp;へ修正<br>
+2004/11/02 構造体定義をヘッダファイルと同一に訂正<br>
+2004/09/24 リンク修正<br>
+2004/04/08 FSOverlayID の型変更による記述修正<BR>
+2004/04/05 初版<BR>
 </P>
 </body>
 </html>

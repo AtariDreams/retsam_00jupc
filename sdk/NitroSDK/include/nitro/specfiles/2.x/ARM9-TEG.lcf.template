@@ -12,16 +12,16 @@
 #
 #  $Log: ARM9-TEG.lcf.template,v $
 #  Revision 1.2  2006/03/30 00:31:29  yasu
-#  NUMBER_OVERLAYS ‚ð NUMBER.OVERLAYS ‚ÉC³
+#  NUMBER_OVERLAYS ã‚’ NUMBER.OVERLAYS ã«ä¿®æ­£
 #
 #  Revision 1.1  2005/09/05 01:38:31  yasu
-#  ƒ^ƒO‚ÌC³‘O‚Ì template ‚ðŽû˜^
+#  ã‚¿ã‚°ã®ä¿®æ­£å‰ã® template ã‚’åŽéŒ²
 #
 #  Revision 1.26  2005/08/26 11:22:16  yasu
-#  ITCM/DTCM ‚Ö‚Ì overlay ‚Ì‘Î‰ž
+#  ITCM/DTCM ã¸ã® overlay ã®å¯¾å¿œ
 #
 #  Revision 1.25  2005/06/20 12:29:20  yasu
-#  Surffix -> Suffix C³
+#  Surffix -> Suffix ä¿®æ­£
 #
 #  Revision 1.24  2005/06/17 03:16:11  yasu
 #  fix copyright header

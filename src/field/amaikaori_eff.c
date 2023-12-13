@@ -2,7 +2,7 @@
 /**
  *
  *	@file		amaikaori_eff.c
- *	@brief		ŠÃ‚¢‚èƒGƒtƒFƒNƒg
+ *	@brief		ç”˜ã„é¦™ã‚Šã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *	@author		tomoya takahashi
  *	@data		2006.05.01
  *
@@ -25,26 +25,26 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define AMAIKAORI_USE_BG_MSK	( GX_PLANEMASK_BG2 )
@@ -53,11 +53,11 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	“®ìƒ[ƒN
+//	å‹•ä½œãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	int x;
@@ -68,7 +68,7 @@ typedef struct {
 } AMAIKAORI_MOVE_WORK;
 
 //-------------------------------------
-//	ŠÃ‚¢‚èƒ[ƒN
+//	ç”˜ã„é¦™ã‚Šãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	AMAIKAORI_MOVE_WORK alpha;
@@ -76,7 +76,7 @@ typedef struct {
 } AMAIKAORI_WORK;
 
 //-------------------------------------
-//	ŠÃ‚¢‚èƒ[ƒN	–Ø˜R‚ê“ú—p
+//	ç”˜ã„é¦™ã‚Šãƒ¯ãƒ¼ã‚¯	æœ¨æ¼ã‚Œæ—¥ç”¨
 //=====================================
 typedef struct {
 	void*				p_plttbuff;
@@ -110,7 +110,7 @@ static int AMAIKAORI_DEBUG_SEQ = (0);
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void Amaikaori_SetUpBG( GF_BGL_INI* bg_ini );
@@ -124,97 +124,97 @@ void AmaikaoriDebugMain( TCB_PTR tcb, void* p_work )
 		AMAIKAORI_DEBUG_SEQ = (AMAIKAORI_DEBUG_SEQ + 1) % 6;
 		switch( AMAIKAORI_DEBUG_SEQ ){
 		case 0:
-			OS_Printf( "ŠJnƒ¿’l\n" );
+			OS_Printf( "é–‹å§‹Î±å€¤\n" );
 			break;
 
 		case 1:
-			OS_Printf( "I—¹ƒ¿’l\n" );
+			OS_Printf( "çµ‚äº†Î±å€¤\n" );
 			break;
 
 		case 2:
-			OS_Printf( "ƒ¿‰ÁZ¶³İÀ\n" );
+			OS_Printf( "Î±åŠ ç®—ã‚«ã‚¦ãƒ³ã‚¿\n" );
 			break;
 
 		case 3:
-			OS_Printf( "ƒ¿Œ¸Z¶³İÀ\n" );
+			OS_Printf( "Î±æ¸›ç®—ã‚«ã‚¦ãƒ³ã‚¿\n" );
 			break;
 
 		case 4:
-			OS_Printf( "“V‹C‚Å‚¾‚ß‚È‚Æ‚«‚ÌƒRƒƒ“ƒg‘Ò‚¿\n" );
+			OS_Printf( "å¤©æ°—ã§ã ã‚ãªã¨ãã®ã‚³ãƒ¡ãƒ³ãƒˆå¾…ã¡\n" );
 			break;
 			
 		case 5:
-			OS_Printf( "ƒ¿Å‘å‚ÌƒEƒGƒCƒg\n" );
+			OS_Printf( "Î±æœ€å¤§æ™‚ã®ã‚¦ã‚¨ã‚¤ãƒˆ\n" );
 			break;
 		}
 	}
 
 	if( sys.trg & PAD_BUTTON_L ){
-		OS_Printf( "‘Sƒf[ƒ^•\¦\n" );
-		OS_Printf( "ŠJnƒ¿’l %d\n", AMAIKAORI_ALPHA_S );
-		OS_Printf( "I—¹ƒ¿’l %d\n", AMAIKAORI_ALPHA_E );
-		OS_Printf( "ƒ¿‰ÁZ¶³İÀ %d\n", AMAIKAORI_ALPHA_COUNT );
-		OS_Printf( "ƒ¿Œ¸Z¶³İÀ %d\n", AMAIKAORI_ALPHA_COUNT_END );
-		OS_Printf( "“V‹C‚Å‚¾‚ß‚È‚Æ‚«‚ÌƒRƒƒ“ƒg‘Ò‚¿ %d\n", AMAIKAORI_EVENT_WEATHER_COMM_WAIT );
+		OS_Printf( "å…¨ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º\n" );
+		OS_Printf( "é–‹å§‹Î±å€¤ %d\n", AMAIKAORI_ALPHA_S );
+		OS_Printf( "çµ‚äº†Î±å€¤ %d\n", AMAIKAORI_ALPHA_E );
+		OS_Printf( "Î±åŠ ç®—ã‚«ã‚¦ãƒ³ã‚¿ %d\n", AMAIKAORI_ALPHA_COUNT );
+		OS_Printf( "Î±æ¸›ç®—ã‚«ã‚¦ãƒ³ã‚¿ %d\n", AMAIKAORI_ALPHA_COUNT_END );
+		OS_Printf( "å¤©æ°—ã§ã ã‚ãªã¨ãã®ã‚³ãƒ¡ãƒ³ãƒˆå¾…ã¡ %d\n", AMAIKAORI_EVENT_WEATHER_COMM_WAIT );
 	}
 	
 	switch( AMAIKAORI_DEBUG_SEQ ){
 	case 0:
 		if( sys.repeat & PAD_BUTTON_A ){
 			AMAIKAORI_ALPHA_S ++;
-			OS_Printf( "ŠJnƒ¿’l %d\n", AMAIKAORI_ALPHA_S );
+			OS_Printf( "é–‹å§‹Î±å€¤ %d\n", AMAIKAORI_ALPHA_S );
 		}else if( sys.repeat & PAD_BUTTON_Y ){
 			AMAIKAORI_ALPHA_S --;
-			OS_Printf( "ŠJnƒ¿’l %d\n", AMAIKAORI_ALPHA_S );
+			OS_Printf( "é–‹å§‹Î±å€¤ %d\n", AMAIKAORI_ALPHA_S );
 		}
 		break;
 
 	case 1:
 		if( sys.repeat & PAD_BUTTON_A ){
 			AMAIKAORI_ALPHA_E ++;
-			OS_Printf( "I—¹ƒ¿’l %d\n", AMAIKAORI_ALPHA_E );
+			OS_Printf( "çµ‚äº†Î±å€¤ %d\n", AMAIKAORI_ALPHA_E );
 		}else if( sys.repeat & PAD_BUTTON_Y ){
 			AMAIKAORI_ALPHA_E --;
-			OS_Printf( "I—¹ƒ¿’l %d\n", AMAIKAORI_ALPHA_E );
+			OS_Printf( "çµ‚äº†Î±å€¤ %d\n", AMAIKAORI_ALPHA_E );
 		}
 		break;
 
 	case 2:
 		if( sys.repeat & PAD_BUTTON_A ){
 			AMAIKAORI_ALPHA_COUNT ++;
-			OS_Printf( "ƒ¿‰ÁZ¶³İÀ %d\n", AMAIKAORI_ALPHA_COUNT );
+			OS_Printf( "Î±åŠ ç®—ã‚«ã‚¦ãƒ³ã‚¿ %d\n", AMAIKAORI_ALPHA_COUNT );
 		}else if( sys.repeat & PAD_BUTTON_Y ){
 			AMAIKAORI_ALPHA_COUNT --;
-			OS_Printf( "ƒ¿‰ÁZ¶³İÀ %d\n", AMAIKAORI_ALPHA_COUNT );
+			OS_Printf( "Î±åŠ ç®—ã‚«ã‚¦ãƒ³ã‚¿ %d\n", AMAIKAORI_ALPHA_COUNT );
 		}
 		break;
 
 	case 3:
 		if( sys.repeat & PAD_BUTTON_A ){
 			AMAIKAORI_ALPHA_COUNT_END ++;
-			OS_Printf( "ƒ¿Œ¸Z¶³İÀ %d\n", AMAIKAORI_ALPHA_COUNT_END );
+			OS_Printf( "Î±æ¸›ç®—ã‚«ã‚¦ãƒ³ã‚¿ %d\n", AMAIKAORI_ALPHA_COUNT_END );
 		}else if( sys.repeat & PAD_BUTTON_Y ){
 			AMAIKAORI_ALPHA_COUNT_END --;
-			OS_Printf( "ƒ¿Œ¸Z¶³İÀ %d\n", AMAIKAORI_ALPHA_COUNT_END );
+			OS_Printf( "Î±æ¸›ç®—ã‚«ã‚¦ãƒ³ã‚¿ %d\n", AMAIKAORI_ALPHA_COUNT_END );
 		}
 		break;
 
 	case 4:
 		if( sys.repeat & PAD_BUTTON_A ){
 			AMAIKAORI_EVENT_WEATHER_COMM_WAIT ++;
-			OS_Printf( "“V‹C‚Å‚¾‚ß‚È‚Æ‚«‚ÌƒRƒƒ“ƒg‘Ò‚¿ %d\n", AMAIKAORI_EVENT_WEATHER_COMM_WAIT );
+			OS_Printf( "å¤©æ°—ã§ã ã‚ãªã¨ãã®ã‚³ãƒ¡ãƒ³ãƒˆå¾…ã¡ %d\n", AMAIKAORI_EVENT_WEATHER_COMM_WAIT );
 		}else if( sys.repeat & PAD_BUTTON_Y ){
 			AMAIKAORI_EVENT_WEATHER_COMM_WAIT --;
-			OS_Printf( "“V‹C‚Å‚¾‚ß‚È‚Æ‚«‚ÌƒRƒƒ“ƒg‘Ò‚¿ %d\n", AMAIKAORI_EVENT_WEATHER_COMM_WAIT );
+			OS_Printf( "å¤©æ°—ã§ã ã‚ãªã¨ãã®ã‚³ãƒ¡ãƒ³ãƒˆå¾…ã¡ %d\n", AMAIKAORI_EVENT_WEATHER_COMM_WAIT );
 		}
 		break;
 	case 5:
 		if( sys.repeat & PAD_BUTTON_A ){
 			AMAIKAORI_EVENT_ALPHA_MAX_WAIT ++;
-			OS_Printf( "ƒ¿Å‘å’l‚ÌƒEƒGƒCƒg %d\n", AMAIKAORI_EVENT_ALPHA_MAX_WAIT );
+			OS_Printf( "Î±æœ€å¤§å€¤æ™‚ã®ã‚¦ã‚¨ã‚¤ãƒˆ %d\n", AMAIKAORI_EVENT_ALPHA_MAX_WAIT );
 		}else if( sys.repeat & PAD_BUTTON_Y ){
 			AMAIKAORI_EVENT_ALPHA_MAX_WAIT --;
-			OS_Printf( "ƒ¿Å‘å’l‚ÌƒEƒGƒCƒg %d\n", AMAIKAORI_EVENT_ALPHA_MAX_WAIT );
+			OS_Printf( "Î±æœ€å¤§å€¤æ™‚ã®ã‚¦ã‚¨ã‚¤ãƒˆ %d\n", AMAIKAORI_EVENT_ALPHA_MAX_WAIT );
 		}
 		break;
 	}
@@ -224,19 +224,19 @@ void AmaikaoriDebugMain( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Šú‰»ˆ—	–Ø˜R‚ê“ú
+ *	@brief	åˆæœŸåŒ–å‡¦ç†	æœ¨æ¼ã‚Œæ—¥
  */
 //-----------------------------------------------------------------------------
 static void FLDMAP_Amaikaori_Komorebi_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
 {
 	AMAIKAORI_PALANM_WORK* p_data = p_work;
 	
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_data->p_plttbuff = ArcUtil_PalDataGet( ARC_WEATHER_SYS_GRA, NARC_WEATHER_SYS_KOGOREBI_NCLR, &p_data->p_pltt, HEAPID_FIELD );
 	
 	p_data->end = FALSE;
 
-	// ƒtƒF[ƒhŒW”ŒvZ®ì¬
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ä¿‚æ•°è¨ˆç®—å¼ä½œæˆ
 	AmaikaoriMoveReq( &p_data->fade, AMAIKAORI_FADE_EVY_START, AMAIKAORI_FADE_EVY_END, AMAIKAORI_ALPHA_COUNT );
 
 	
@@ -245,20 +245,20 @@ static void FLDMAP_Amaikaori_Komorebi_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WOR
 	// BGON
 	GF_Disp_GX_VisibleControl( AMAIKAORI_USE_BG_MSK, VISIBLE_ON );
 
-	// ‰¹‚È‚ç‚·  
+	// éŸ³ãªã‚‰ã™  
 	Snd_SePlay( SE_AMAIKAORI );
 }
 static void FLDMAP_AmaikaoriEndEff_Komorebi_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
 {
 	AMAIKAORI_PALANM_WORK* p_data = p_work;
 	
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_data->p_plttbuff = ArcUtil_PalDataGet( ARC_WEATHER_SYS_GRA, NARC_WEATHER_SYS_KOGOREBI_NCLR, &p_data->p_pltt, HEAPID_FIELD );
 	
 	
 	p_data->end = FALSE;
 
-	// ƒtƒF[ƒhŒW”ŒvZ®ì¬
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ä¿‚æ•°è¨ˆç®—å¼ä½œæˆ
 	AmaikaoriMoveReq( &p_data->fade, AMAIKAORI_FADE_EVY_END, AMAIKAORI_FADE_EVY_START, AMAIKAORI_ALPHA_COUNT );
 
 	p_data->end = FALSE;
@@ -267,7 +267,7 @@ static void FLDMAP_AmaikaoriEndEff_Komorebi_Init(FLDMAPFUNC_WORK * p_fwk, FIELDS
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”jŠüˆ—	–Ø˜R‚ê“ú
+ *	@brief	ç ´æ£„å‡¦ç†	æœ¨æ¼ã‚Œæ—¥
  */
 //-----------------------------------------------------------------------------
 static void FLDMAP_Amaikaori_Komorebi_Delete(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -278,7 +278,7 @@ static void FLDMAP_Amaikaori_Komorebi_Delete(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_W
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ˆ—	–Ø˜R‚ê“ú
+ *	@brief	ãƒ¡ã‚¤ãƒ³å‡¦ç†	æœ¨æ¼ã‚Œæ—¥
  */
 //-----------------------------------------------------------------------------
 static void FLDMAP_Amaikaori_Komorebi_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -296,7 +296,7 @@ static void FLDMAP_Amaikaori_Komorebi_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WOR
 	}
 	ColorConceChange( p_data->p_pltt->pRawData, p_data->palbuf, 0x1, p_data->fade.x, AMAIKAORI_COLOR );
 
-	// “]‘—
+	// è»¢é€
 	GF_BGL_PaletteSet( AMAIKAORI_USE_BG_FRM, p_data->palbuf, 32, AMAIKAORI_USE_PLTT*32 );
 }
 
@@ -306,7 +306,7 @@ static void FLDMAP_Amaikaori_Komorebi_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WOR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Šú‰»ˆ—
+ *	@brief	åˆæœŸåŒ–å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FLDMAP_Amaikaori_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -316,7 +316,7 @@ static void FLDMAP_Amaikaori_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsy
 	Amaikaori_SetUpBG( p_fsys->bgl );
 	AmaikaoriMoveReq( &p_data->alpha, AMAIKAORI_ALPHA_S, AMAIKAORI_ALPHA_E, AMAIKAORI_ALPHA_COUNT );
 	p_data->end = FALSE;
-	// Alphaİ’è
+	// Alphaè¨­å®š
 	G2_SetBlendAlpha( AMAIKAORI_USE_BG_MSK, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, AMAIKAORI_ALPHA_S, 16 - AMAIKAORI_ALPHA_S );
 
 	
@@ -325,7 +325,7 @@ static void FLDMAP_Amaikaori_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsy
 	// BGON
 	GF_Disp_GX_VisibleControl( AMAIKAORI_USE_BG_MSK, VISIBLE_ON );
 
-	// ‰¹‚È‚ç‚·  
+	// éŸ³ãªã‚‰ã™  
 	Snd_SePlay( SE_AMAIKAORI );
 }
 static void FLDMAP_AmaikaoriEndEff_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -335,7 +335,7 @@ static void FLDMAP_AmaikaoriEndEff_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK *
 	Amaikaori_SetUpBG( p_fsys->bgl );
 	AmaikaoriMoveReq( &p_data->alpha, AMAIKAORI_ALPHA_E, AMAIKAORI_ALPHA_S, AMAIKAORI_ALPHA_COUNT_END );
 	p_data->end = FALSE;
-	// Alphaİ’è
+	// Alphaè¨­å®š
 	G2_SetBlendAlpha( AMAIKAORI_USE_BG_MSK, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, AMAIKAORI_ALPHA_E, 16 - AMAIKAORI_ALPHA_E );
 
 	
@@ -343,7 +343,7 @@ static void FLDMAP_AmaikaoriEndEff_Init(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK *
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”jŠüˆ—
+ *	@brief	ç ´æ£„å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FLDMAP_Amaikaori_Delete(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -353,7 +353,7 @@ static void FLDMAP_Amaikaori_Delete(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_f
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ˆ—
+ *	@brief	ãƒ¡ã‚¤ãƒ³å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FLDMAP_Amaikaori_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -374,7 +374,7 @@ static void FLDMAP_Amaikaori_Main(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsy
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æˆ—
+ *	@brief	æç”»å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void FLDMAP_Amaikaori_Draw(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsys, void * p_work)
@@ -386,11 +386,11 @@ static void FLDMAP_Amaikaori_Draw(FLDMAPFUNC_WORK * p_fwk, FIELDSYS_WORK * p_fsy
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÃ‚¢‚èƒGƒtƒFƒNƒgŠJn
+ *	@brief	ç”˜ã„é¦™ã‚Šã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 FLDMAPFUNC_WORK* FLDMAP_Amaikaori_Start( FIELDSYS_WORK* fsys )
@@ -411,9 +411,9 @@ FLDMAPFUNC_WORK* FLDMAP_Amaikaori_Start( FIELDSYS_WORK* fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÃ‚¢‚èI—¹ƒGƒtƒFƒNƒg
+ *	@brief	ç”˜ã„é¦™ã‚Šçµ‚äº†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- *	@param	fsys ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	fsys ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return
  */
@@ -437,9 +437,9 @@ FLDMAPFUNC_WORK* FLDMAP_AmaikaoriEndEff_Start( FIELDSYS_WORK* fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÃ‚¢‚èƒ[ƒN”jŠü
+ *	@brief	ç”˜ã„é¦™ã‚Šãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_eff	ƒGƒtƒFƒNƒgƒ[ƒN
+ *	@param	p_eff	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -451,12 +451,12 @@ void FLDMAP_Amaikaori_End( FLDMAPFUNC_WORK* p_eff )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÃ‚¢‚èI—¹ƒ`ƒFƒbƒN
+ *	@brief	ç”˜ã„é¦™ã‚Šçµ‚äº†ãƒã‚§ãƒƒã‚¯
  *	
- *	@param	p_eff	ƒGƒtƒFƒNƒgƒ[ƒN
+ *	@param	p_eff	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL FLDMAP_Amaikaori_EndCheck( FLDMAPFUNC_WORK* p_eff )
@@ -467,9 +467,9 @@ BOOL FLDMAP_Amaikaori_EndCheck( FLDMAPFUNC_WORK* p_eff )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø˜R‚ê“ú—p	ŠÃ‚¢‚èƒGƒtƒFƒNƒg	ŠJn
+ *	@brief	æœ¨æ¼ã‚Œæ—¥ç”¨	ç”˜ã„é¦™ã‚Šã‚¨ãƒ•ã‚§ã‚¯ãƒˆ	é–‹å§‹
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 FLDMAPFUNC_WORK* FLDMAP_Amaikaori_Komorebi_Start( FIELDSYS_WORK* fsys )
@@ -490,9 +490,9 @@ FLDMAPFUNC_WORK* FLDMAP_Amaikaori_Komorebi_Start( FIELDSYS_WORK* fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø˜R‚ê“ú—p	ŠÃ‚¢‚èƒGƒtƒFƒNƒg	ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢‚Æ‚«
+ *	@brief	æœ¨æ¼ã‚Œæ—¥ç”¨	ç”˜ã„é¦™ã‚Šã‚¨ãƒ•ã‚§ã‚¯ãƒˆ	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„ã¨ã
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 FLDMAPFUNC_WORK* FLDMAP_AmaikaoriEndEff_Komorebi_Start( FIELDSYS_WORK* fsys )
@@ -513,12 +513,12 @@ FLDMAPFUNC_WORK* FLDMAP_AmaikaoriEndEff_Komorebi_Start( FIELDSYS_WORK* fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒ`ƒFƒbƒN
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_eff	ƒ[ƒN
+ *	@param	p_eff	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL FLDMAP_Amaikaori_Komorebi_EndCheck( FLDMAPFUNC_WORK* p_eff )
@@ -532,7 +532,7 @@ BOOL FLDMAP_Amaikaori_Komorebi_EndCheck( FLDMAPFUNC_WORK* p_eff )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGİ’è
+ *	@brief	BGè¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void Amaikaori_SetUpBG( GF_BGL_INI* bg_ini )
@@ -540,28 +540,28 @@ static void Amaikaori_SetUpBG( GF_BGL_INI* bg_ini )
 	GXRgb color = AMAIKAORI_COLOR;
 	u8* p_char_buff;
 	
-	// ƒJƒ‰[ƒpƒŒƒbƒg“]‘—
+	// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	GF_BGL_PaletteSet( AMAIKAORI_USE_BG_FRM, &color, sizeof(short), (AMAIKAORI_USE_PLTT * 32) + 2 );
 
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
 	p_char_buff = sys_AllocMemory( HEAPID_FIELD, sizeof(u8)*32 );
 	memset( p_char_buff, 0x11, sizeof(u8)*32 );
 	GF_BGL_LoadCharacter( bg_ini, AMAIKAORI_USE_BG_FRM, p_char_buff, sizeof(u8)*32, 1 );
 	sys_FreeMemoryEz( p_char_buff );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
 	GF_BGL_ScrClearCode( bg_ini, AMAIKAORI_USE_BG_FRM, (AMAIKAORI_USE_PLTT << 12) | 1 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”Ä—p“®ìƒŠƒNƒGƒXƒg
+ *	@brief	æ±ç”¨å‹•ä½œãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *	
- *	@param	p_work	ƒ[ƒN
- *	@param	s_x		ŠJn’l
- *	@param	e_x		I—¹’l
- *	@param	count_max	ƒJƒEƒ“ƒgÅ‘å’l
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x		é–‹å§‹å€¤
+ *	@param	e_x		çµ‚äº†å€¤
+ *	@param	count_max	ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§å€¤
  *
  *	@return	none
  */
@@ -578,19 +578,19 @@ static void AmaikaoriMoveReq( AMAIKAORI_MOVE_WORK* p_work, int s_x, int e_x, int
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”Ä—p“®ìƒƒCƒ“
+ *	@brief	æ±ç”¨å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL	AmaikaoriMoveMain( AMAIKAORI_MOVE_WORK* p_work )
 {
 	int w_x;
 
-	// Œ»İÀ•Wæ“¾
+	// ç¾åœ¨åº§æ¨™å–å¾—
 	w_x = p_work->dis_x * p_work->count;
 	w_x = w_x / p_work->count_max;
 
@@ -618,37 +618,37 @@ static BOOL	AmaikaoriMoveMain( AMAIKAORI_MOVE_WORK* p_work )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒCƒxƒ“ƒg
+ *		ã‚¤ãƒ™ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
-	FLDMAP_AMAIKAORI_WEATHER_CHECK,		// “V‹Cƒ`ƒFƒbƒN
-	FLDMAP_AMAIKAORI_START_0,	// ƒGƒtƒFƒNƒgŠJn
-	FLDMAP_AMAIKAORI_END_0,		// I—¹ƒ`ƒFƒbƒN
-	FLDMAP_AMAIKAORI_MAX_WAIT,	// Å‚‚É‚©‚©‚Á‚½ó‘Ô‚Åweight
-	FLDMAP_AMAIKAORI_START_1,	// ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢‚Æ‚«‚Ì@ƒGƒtƒFƒNƒgŠJn
-	FLDMAP_AMAIKAORI_END_1,		// ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢‚Æ‚«‚Ì@I—¹ƒ`ƒFƒbƒN
-	FLDMAP_AMAIKAORI_ENCOUNT,	// ƒGƒ“ƒJƒEƒ“ƒgƒXƒ^[ƒg
-	FLDMAP_AMAIKAORI_WEATHER_END,		// “V‹C‚Ì‚¹‚¢‚Å‚ ‚Ü‚¢‚©‚¨‚è‚ğo‚¹‚È‚©‚Á‚½‚Æ‚«
-	FLDMAP_AMAIKAORI_NOENCOUNT,	// ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚©‚Á‚½‚Æ‚«
-	FLDMAP_AMAIKAORI_SCRPT_END,	// ƒXƒNƒŠƒvƒgI—¹
+	FLDMAP_AMAIKAORI_WEATHER_CHECK,		// å¤©æ°—ãƒã‚§ãƒƒã‚¯
+	FLDMAP_AMAIKAORI_START_0,	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
+	FLDMAP_AMAIKAORI_END_0,		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
+	FLDMAP_AMAIKAORI_MAX_WAIT,	// æœ€é«˜ã«ã‹ã‹ã£ãŸçŠ¶æ…‹ã§weight
+	FLDMAP_AMAIKAORI_START_1,	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„ã¨ãã®ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
+	FLDMAP_AMAIKAORI_END_1,		// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„ã¨ãã®ã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯
+	FLDMAP_AMAIKAORI_ENCOUNT,	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¹ã‚¿ãƒ¼ãƒˆ
+	FLDMAP_AMAIKAORI_WEATHER_END,		// å¤©æ°—ã®ã›ã„ã§ã‚ã¾ã„ã‹ãŠã‚Šã‚’å‡ºã›ãªã‹ã£ãŸã¨ã
+	FLDMAP_AMAIKAORI_NOENCOUNT,	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã‹ã£ãŸã¨ã
+	FLDMAP_AMAIKAORI_SCRPT_END,	// ã‚¹ã‚¯ãƒªãƒ—ãƒˆçµ‚äº†
 };
 
 //-------------------------------------
-//	ŠÃ‚¢‚èƒCƒxƒ“ƒgƒ[ƒN
+//	ç”˜ã„é¦™ã‚Šã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _EVENT_AMAIKAORI_EFF_WORK{
 	FLDMAPFUNC_WORK* p_fwk;
-	BOOL bd_bg_flip;	// –¶‚Ì‚Æ‚«BD‚ÆBG‚ğØ‚è‘Ö‚¦‚é
-	BOOL komorebi;		// –Ø˜R‚ê“ú‚Ì‚Æ‚«TRUE
+	BOOL bd_bg_flip;	// éœ§ã®ã¨ãBDã¨BGã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
+	BOOL komorebi;		// æœ¨æ¼ã‚Œæ—¥ã®ã¨ãTRUE
 	u16 seq;
 	s16 wait;
 } ;
 
-// –¶‚Ì‚Æ‚«BG‚ÆBD‚ğØ‚è‘Ö‚¦‚é
+// éœ§ã®ã¨ãBGã¨BDã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 #define AMAIKAORI_FOG_BG_PL	(6)
 #define AMAIKAORI_FOG_BG_PL_OFS	((AMAIKAORI_FOG_BG_PL*32)+4)
 #define AMAIKAORI_FOG_BG_PL_DAT	( 0x7fff )
@@ -658,7 +658,7 @@ typedef struct _EVENT_AMAIKAORI_EFF_WORK{
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BD‚ğ•‚ÉƒŠƒZƒbƒg
+ *	@brief	BDã‚’é»’ã«ãƒªã‚»ãƒƒãƒˆ
  *
  *	@param	fsys 
  */
@@ -670,20 +670,20 @@ static void FLDMAP_Amaikaori_BDReset( FIELDSYS_WORK* fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–¶BG‚ğBD‚ÉƒtƒŠƒbƒv
+ *	@brief	éœ§BGã‚’BDã«ãƒ•ãƒªãƒƒãƒ—
  *
  *	@param	fsys 
  */
 //-----------------------------------------------------------------------------
 static void FLDMAP_Amaikaori_BGFlipBD( FIELDSYS_WORK* fsys )
 {
-	// ƒoƒbƒNƒhƒƒbƒv‚ğ^‚Á”’‚É
+	// ãƒãƒƒã‚¯ãƒ‰ãƒ­ãƒƒãƒ—ã‚’çœŸã£ç™½ã«
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME2_M, AMAIKAORI_FOG_BG_PL_DAT );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BD‚ğ–¶BG‚ÉƒtƒŠƒbƒv
+ *	@brief	BDã‚’éœ§BGã«ãƒ•ãƒªãƒƒãƒ—
  *
  *	@param	fsys 
  */
@@ -695,21 +695,21 @@ static void FLDMAP_Amaikaori_BDFlipBG( FIELDSYS_WORK* fsys )
 
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 	
-	// BG‚ğ^‚Á”’‚É
+	// BGã‚’çœŸã£ç™½ã«
 	G2_SetBG2Priority(3);
 	GF_BGL_PaletteSet( FLD_MBGFRM_EFFECT2, &col, 2, AMAIKAORI_FOG_BG_PL_OFS );
-	GF_BGL_CharFill( fsys->bgl, FLD_MBGFRM_EFFECT2, AMAIKAORI_FOG_BG_CHR_DAT, 1, AMAIKAORI_FOG_BG_CHR_OFS );	// 1ƒLƒƒƒ‰–Ú‚ğ^‚Á”’‚É‚·‚é
+	GF_BGL_CharFill( fsys->bgl, FLD_MBGFRM_EFFECT2, AMAIKAORI_FOG_BG_CHR_DAT, 1, AMAIKAORI_FOG_BG_CHR_OFS );	// 1ã‚­ãƒ£ãƒ©ç›®ã‚’çœŸã£ç™½ã«ã™ã‚‹
 	GF_BGL_ScrClearCode( fsys->bgl, FLD_MBGFRM_EFFECT2, AMAIKAORI_FOG_BG_SCR_DAT );
 
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 
-	// ƒoƒbƒNƒhƒƒbƒv•
+	// ãƒãƒƒã‚¯ãƒ‰ãƒ­ãƒƒãƒ—é»’
 	FLDMAP_Amaikaori_BDReset( fsys );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BD‚ğƒƒbƒZ[ƒWBG‚ÉƒtƒŠƒbƒv
+ *	@brief	BDã‚’ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸BGã«ãƒ•ãƒªãƒƒãƒ—
  *
  *	@param	fsys 
  */
@@ -721,23 +721,23 @@ static void FLDMAP_Amaikaori_BDFlipMessegeBG( FIELDSYS_WORK* fsys )
 
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 	
-	// BG‚ğ^‚Á”’‚É
+	// BGã‚’çœŸã£ç™½ã«
 	G2_SetBG3Priority(3);
 	GF_BGL_PaletteSet( FLD_MBGFRM_FONT, &col, 2, AMAIKAORI_FOG_BG_PL_OFS );
-	GF_BGL_CharFill( fsys->bgl, FLD_MBGFRM_FONT, AMAIKAORI_FOG_BG_CHR_DAT, 1, AMAIKAORI_FOG_BG_CHR_OFS );	// 1ƒLƒƒƒ‰–Ú‚ğ^‚Á”’‚É‚·‚é
+	GF_BGL_CharFill( fsys->bgl, FLD_MBGFRM_FONT, AMAIKAORI_FOG_BG_CHR_DAT, 1, AMAIKAORI_FOG_BG_CHR_OFS );	// 1ã‚­ãƒ£ãƒ©ç›®ã‚’çœŸã£ç™½ã«ã™ã‚‹
 
 	GF_BGL_ScrClearCode( fsys->bgl, FLD_MBGFRM_FONT, AMAIKAORI_FOG_BG_SCR_DAT );
 
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );
 
-	// ƒoƒbƒNƒhƒƒbƒv•
+	// ãƒãƒƒã‚¯ãƒ‰ãƒ­ãƒƒãƒ—é»’
 	FLDMAP_Amaikaori_BDReset( fsys );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ø˜R‚ê“úƒGƒtƒFƒNƒg‚É‚·‚é“V‹Cƒ`ƒFƒbƒN
+ *	@brief	æœ¨æ¼ã‚Œæ—¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«ã™ã‚‹å¤©æ°—ãƒã‚§ãƒƒã‚¯
  *
  *	@param	fsys 
  *
@@ -752,7 +752,7 @@ static BOOL FLDMAP_Amaikaori_Komorebi_ChangeCheck( FIELDSYS_WORK* fsys )
 	u32 weather_no;
 	int i;
 
-	// ‚Ü‚¸‚Í“V‹CƒVƒXƒeƒ€‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ã¾ãšã¯å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( fsys->fldmap->weather_data == NULL ){
 		return FALSE;
 	}
@@ -769,12 +769,12 @@ static BOOL FLDMAP_Amaikaori_Komorebi_ChangeCheck( FIELDSYS_WORK* fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BD@‚Æ@BG–Ê‚ğØ‚è•Ô‚é@Ä‰¼‘z‚ÉBG‚ğo‚µ‚Ä‚¢‚é‚à‚Ì‚Ì‚İ‚Å‚«‚é
+ *	@brief	BDã€€ã¨ã€€BGé¢ã‚’åˆ‡ã‚Šè¿”ã‚‹ã€€å†ä»®æƒ³ã«BGã‚’å‡ºã—ã¦ã„ã‚‹ã‚‚ã®ã®ã¿ã§ãã‚‹
  *
- *	@param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
+ *	@param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	TRUE	Ø‚è‘Ö‚¦‚é
- *	@retval	FALSE	Ø‚è‘Ö‚¦‚È‚¢
+ *	@retval	TRUE	åˆ‡ã‚Šæ›¿ãˆã‚‹
+ *	@retval	FALSE	åˆ‡ã‚Šæ›¿ãˆãªã„
  */
 //-----------------------------------------------------------------------------
 #define FLDMAP_AMAIKAORI_DBG_CHG_WEATHER	(1)
@@ -786,7 +786,7 @@ static BOOL FLDMAP_Amaikaori_BD_BG_ChangeCheck( FIELDSYS_WORK* fsys )
 	u32 weather_no;
 	int i;
 
-	// ‚Ü‚¸‚Í“V‹CƒVƒXƒeƒ€‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ã¾ãšã¯å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( fsys->fldmap->weather_data == NULL ){
 		return FALSE;
 	}
@@ -803,9 +803,9 @@ static BOOL FLDMAP_Amaikaori_BD_BG_ChangeCheck( FIELDSYS_WORK* fsys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÃ‚¢‚è‚ªo—ˆ‚é“V‹C‚©ƒ`ƒFƒbƒN
- *	@retval	TRUE	o—ˆ‚é
- *	@retval	FALSE	o—ˆ‚È‚¢
+ *	@brief	ç”˜ã„é¦™ã‚ŠãŒå‡ºæ¥ã‚‹å¤©æ°—ã‹ãƒã‚§ãƒƒã‚¯
+ *	@retval	TRUE	å‡ºæ¥ã‚‹
+ *	@retval	FALSE	å‡ºæ¥ãªã„
  */
 //-----------------------------------------------------------------------------
 #define FLDMAP_AMAIKAORI_NONE_WEATHER	( 18 )
@@ -819,13 +819,13 @@ static BOOL FLDMAP_Amaikaori_WeatherCheck( FIELDSYS_WORK* fsys )
 		WEATHER_SYS_SNOWSTORM,
 		WEATHER_SYS_SNOWSTORM_H,
 		WEATHER_SYS_SANDSTORM,
-		WEATHER_SYS_SNOW_STORM_BG,// BGg—pá	OAM FOG BG
-		WEATHER_SYS_STORM,		// »—’		OAM FOG
-		WEATHER_SYS_MIST1,			// –¶•¥‚¢‚Ì–¶	FOG	BG
-		WEATHER_SYS_MIST2,			// –¶•¥‚¢‚Ì–¶	FOG	BG
-		WEATHER_SYS_FLASH,			// ƒtƒ‰ƒbƒVƒ…		BG
-		WEATHER_SYS_CLOUDINESS,		// “Ü‚è		BG	
-		WEATHER_SYS_VOLCANO,		// ‰ÎRŠD	OAM FOG BG
+		WEATHER_SYS_SNOW_STORM_BG,// BGä½¿ç”¨å¹é›ª	OAM FOG BG
+		WEATHER_SYS_STORM,		// ç ‚åµ		OAM FOG
+		WEATHER_SYS_MIST1,			// éœ§æ‰•ã„ã®éœ§	FOG	BG
+		WEATHER_SYS_MIST2,			// éœ§æ‰•ã„ã®éœ§	FOG	BG
+		WEATHER_SYS_FLASH,			// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥		BG
+		WEATHER_SYS_CLOUDINESS,		// æ›‡ã‚Š		BG	
+		WEATHER_SYS_VOLCANO,		// ç«å±±ç°	OAM FOG BG
 		WEATHER_SYS_MYSTIC,
 		WEATHER_SYS_SPARK_EFF,
 		WEATHER_SYS_DOUKUTU00,
@@ -834,7 +834,7 @@ static BOOL FLDMAP_Amaikaori_WeatherCheck( FIELDSYS_WORK* fsys )
 	u32 weather_no;
 	int i;
 
-	// ‚Ü‚¸‚Í“V‹CƒVƒXƒeƒ€‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ã¾ãšã¯å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( fsys->fldmap->weather_data == NULL ){
 		return FALSE;
 	}
@@ -850,7 +850,7 @@ static BOOL FLDMAP_Amaikaori_WeatherCheck( FIELDSYS_WORK* fsys )
 	return TRUE;
 }
 
-// ƒGƒtƒFƒNƒgI—¹ŠÖ”
+// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†é–¢æ•°
 static void FLDMAP_Amaikaori_WorkDelete( EVENT_AMAIKAORI_EFF_WORK* p_work )
 {
 	if( p_work->p_fwk ){
@@ -861,7 +861,7 @@ static void FLDMAP_Amaikaori_WorkDelete( EVENT_AMAIKAORI_EFF_WORK* p_work )
 }
 
 
-// ƒ[ƒNƒTƒCƒY
+// ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
 u32 FLDMAP_Amaikaori_WorkSize( void )
 {
 	return sizeof( EVENT_AMAIKAORI_EFF_WORK );
@@ -870,12 +870,12 @@ u32 FLDMAP_Amaikaori_WorkSize( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÃ‚¢‚èƒCƒxƒ“ƒg@§Œä•”•ª	ƒ[ƒN‚Ì‚Í‚«‚à‚µ‚Ü‚·@Šm•Û‚ÍŠO
+ *	@brief	ç”˜ã„é¦™ã‚Šã‚¤ãƒ™ãƒ³ãƒˆã€€åˆ¶å¾¡éƒ¨åˆ†	ãƒ¯ãƒ¼ã‚¯ã®ã¯ãã‚‚ã—ã¾ã™ã€€ç¢ºä¿ã¯å¤–
  *
- *	@param	event	ƒCƒxƒ“ƒgƒ[ƒN
+ *	@param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL FLDMAP_AmaikaoriEvent( GMEVENT_CONTROL * event )
@@ -885,14 +885,14 @@ BOOL FLDMAP_AmaikaoriEvent( GMEVENT_CONTROL * event )
 	BOOL result;
 	
 	switch( p_work->seq ){
-	case FLDMAP_AMAIKAORI_WEATHER_CHECK:		// “V‹Cƒ`ƒFƒbƒN
+	case FLDMAP_AMAIKAORI_WEATHER_CHECK:		// å¤©æ°—ãƒã‚§ãƒƒã‚¯
 		if( FLDMAP_Amaikaori_WeatherCheck( fsys ) == TRUE ){
 			p_work->seq = FLDMAP_AMAIKAORI_START_0;
 
-			// –Ø˜R‚ê“úƒ`ƒFƒbƒN
+			// æœ¨æ¼ã‚Œæ—¥ãƒã‚§ãƒƒã‚¯
 			p_work->komorebi = FLDMAP_Amaikaori_Komorebi_ChangeCheck( fsys );
 
-			// –¶‚Ì‚Æ‚«BD‚ÆBG‚ğ“ü‚ê‘Ö‚¦
+			// éœ§ã®ã¨ãBDã¨BGã‚’å…¥ã‚Œæ›¿ãˆ
 			p_work->bd_bg_flip = FLDMAP_Amaikaori_BD_BG_ChangeCheck( fsys );
 			if( p_work->bd_bg_flip ){
 				FLDMAP_Amaikaori_BGFlipBD( fsys );
@@ -900,11 +900,11 @@ BOOL FLDMAP_AmaikaoriEvent( GMEVENT_CONTROL * event )
 			
 		}else{
 			p_work->seq = FLDMAP_AMAIKAORI_WEATHER_END;
-			p_work->wait = AMAIKAORI_EVENT_WEATHER_COMM_WAIT;	// 1•b‚Ìweight
+			p_work->wait = AMAIKAORI_EVENT_WEATHER_COMM_WAIT;	// 1ç§’ã®weight
 		}
 		break;
 		
-	case FLDMAP_AMAIKAORI_START_0:	// ƒGƒtƒFƒNƒgŠJn
+	case FLDMAP_AMAIKAORI_START_0:	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
 		if( p_work->komorebi == FALSE ){
 			p_work->p_fwk = FLDMAP_Amaikaori_Start( fsys );		
 		}else{
@@ -916,7 +916,7 @@ BOOL FLDMAP_AmaikaoriEvent( GMEVENT_CONTROL * event )
 		GF_Disp_GX_VisibleControl( AMAIKAORI_USE_BG_MSK, VISIBLE_ON );
 		break;
 		
-	case FLDMAP_AMAIKAORI_END_0:		// I—¹ƒ`ƒFƒbƒN
+	case FLDMAP_AMAIKAORI_END_0:		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( p_work->komorebi == FALSE ){
 			result = FLDMAP_Amaikaori_EndCheck( p_work->p_fwk );
 		}else{
@@ -929,13 +929,13 @@ BOOL FLDMAP_AmaikaoriEvent( GMEVENT_CONTROL * event )
 		break;
 
 
-	case FLDMAP_AMAIKAORI_MAX_WAIT:	// Å‚‚É‚©‚©‚Á‚½ó‘Ô‚Åweight
+	case FLDMAP_AMAIKAORI_MAX_WAIT:	// æœ€é«˜ã«ã‹ã‹ã£ãŸçŠ¶æ…‹ã§weight
 		p_work->wait --;
-		// ƒ][ƒ“‚ªƒGƒ“ƒJƒEƒ“ƒgOK‚©ƒ`ƒFƒbƒN
+		// ã‚¾ãƒ¼ãƒ³ãŒã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆOKã‹ãƒã‚§ãƒƒã‚¯
 		if( ZoneData_GetEncountFlag(fsys->location->zone_id) ){
 			if( p_work->wait < 0 ){
 				{
-					//ƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN
+					//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
 					u8 attr;
 					int x,z;
 
@@ -943,22 +943,22 @@ BOOL FLDMAP_AmaikaoriEvent( GMEVENT_CONTROL * event )
 					z = Player_NowGPosZGet( fsys->player );
 					attr = (u8)GetAttributeLSB( fsys, x, z );
 					if (EncSet_CheckEncount( fsys, attr)){
-						// ƒGƒ“ƒJƒEƒ“ƒg‚·‚é
+						// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹
 						p_work->seq = FLDMAP_AMAIKAORI_ENCOUNT;
 					}else{
-						// ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+						// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
 						p_work->seq = FLDMAP_AMAIKAORI_START_1;
 					}
 				}
 			}
 		}else{
-			// ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+			// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
 			p_work->seq = FLDMAP_AMAIKAORI_START_1;
 		}
 		break;
 		
-	case FLDMAP_AMAIKAORI_START_1:	// ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢‚Æ‚«‚Ì@ƒGƒtƒFƒNƒgŠJn
-		FLDMAP_Amaikaori_End( p_work->p_fwk );	// ¡‚Ü‚Å‚ÌƒGƒtƒFƒNƒgƒ[ƒN”jŠü
+	case FLDMAP_AMAIKAORI_START_1:	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„ã¨ãã®ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
+		FLDMAP_Amaikaori_End( p_work->p_fwk );	// ä»Šã¾ã§ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		if( p_work->komorebi == FALSE ){
 			p_work->p_fwk = FLDMAP_AmaikaoriEndEff_Start( fsys );
 		}else{
@@ -967,7 +967,7 @@ BOOL FLDMAP_AmaikaoriEvent( GMEVENT_CONTROL * event )
 		p_work->seq = FLDMAP_AMAIKAORI_END_1;
 		break;
 		
-	case FLDMAP_AMAIKAORI_END_1:		// ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢‚Æ‚«‚Ì@I—¹ƒ`ƒFƒbƒN
+	case FLDMAP_AMAIKAORI_END_1:		// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„ã¨ãã®ã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯
 
 		if( p_work->komorebi == FALSE ){
 			result = FLDMAP_Amaikaori_EndCheck( p_work->p_fwk );
@@ -981,10 +981,10 @@ BOOL FLDMAP_AmaikaoriEvent( GMEVENT_CONTROL * event )
 				G2_BlendNone();
 				GF_BGL_PrioritySet( AMAIKAORI_USE_BG_FRM, 3 );
 
-				// ƒXƒNƒŠ[ƒ“ƒNƒŠƒA
+				// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢
 				GF_BGL_ScrClear(fsys->bgl, AMAIKAORI_USE_BG_FRM );
 			}else{
-				// –Ø˜R‚ê“ú‚È‚ç‚P‚É‚·‚é
+				// æœ¨æ¼ã‚Œæ—¥ãªã‚‰ï¼‘ã«ã™ã‚‹
 				GF_BGL_PrioritySet( AMAIKAORI_USE_BG_FRM, 1 );
 			}
 
@@ -992,15 +992,15 @@ BOOL FLDMAP_AmaikaoriEvent( GMEVENT_CONTROL * event )
 		}
 		break;
 		
-	case FLDMAP_AMAIKAORI_ENCOUNT:	// ƒGƒ“ƒJƒEƒ“ƒgƒXƒ^[ƒg
+	case FLDMAP_AMAIKAORI_ENCOUNT:	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¹ã‚¿ãƒ¼ãƒˆ
 		{
 			BOOL rc;
 
-			// ƒ[ƒN”jŠü
+			// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 			FLDMAP_Amaikaori_WorkDelete( p_work );
 
-			// –¶ƒGƒ“ƒJƒEƒ“ƒg‚·‚é‚Ì‚ÅAƒƒbƒZ[ƒW–Ê‚É
-			// ‚µ‚ëBG‚ğƒtƒŠƒbƒv‚·‚é
+			// éœ§ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ã®ã§ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é¢ã«
+			// ã—ã‚BGã‚’ãƒ•ãƒªãƒƒãƒ—ã™ã‚‹
 			if( p_work->bd_bg_flip ){
 				FLDMAP_Amaikaori_BDFlipMessegeBG( fsys );
 			}
@@ -1008,29 +1008,29 @@ BOOL FLDMAP_AmaikaoriEvent( GMEVENT_CONTROL * event )
 			rc = SetSweetEncount(fsys, event);
 			GF_ASSERT(rc);
 		}
-		break;	// ‚±‚±‚©‚ç‚ÍAƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg‚ÉˆÚs‚³‚ê‚é
+		break;	// ã“ã“ã‹ã‚‰ã¯ã€ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«ç§»è¡Œã•ã‚Œã‚‹
 		
-	case FLDMAP_AMAIKAORI_WEATHER_END:		// “V‹C‚Ì‚¹‚¢‚Å‚ ‚Ü‚¢‚©‚¨‚è‚ğo‚¹‚È‚©‚Á‚½‚Æ‚«
+	case FLDMAP_AMAIKAORI_WEATHER_END:		// å¤©æ°—ã®ã›ã„ã§ã‚ã¾ã„ã‹ãŠã‚Šã‚’å‡ºã›ãªã‹ã£ãŸã¨ã
 		p_work->wait --;
 		if( p_work->wait < 0 ){
-			// ƒƒbƒZ[ƒW•\¦
+			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 			EventCall_Script( event, SCRID_SWEET_WEATHER, NULL, NULL );
 			p_work->seq = FLDMAP_AMAIKAORI_SCRPT_END;
 		}
 		break;
 		
-	case FLDMAP_AMAIKAORI_NOENCOUNT:	// ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚©‚Á‚½‚Æ‚«
-		// ƒƒbƒZ[ƒW•\¦
+	case FLDMAP_AMAIKAORI_NOENCOUNT:	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã‹ã£ãŸã¨ã
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		EventCall_Script( event, SCRID_SWEET_NO_ENC, NULL, NULL );
 
 		p_work->seq = FLDMAP_AMAIKAORI_SCRPT_END;
 		break;
 
 	case FLDMAP_AMAIKAORI_SCRPT_END:
-		// ƒ[ƒN”jŠü
+		// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		FLDMAP_Amaikaori_WorkDelete( p_work );
 
-		// –¶‚Ì‚Æ‚«BG‚ÆBD‚ğØ‚è‘Ö‚¦‚é
+		// éœ§ã®ã¨ãBGã¨BDã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 		if( p_work->bd_bg_flip ){
 			FLDMAP_Amaikaori_BDFlipBG( fsys );
 		}
@@ -1038,7 +1038,7 @@ BOOL FLDMAP_AmaikaoriEvent( GMEVENT_CONTROL * event )
 		return TRUE;
 
 	default:
-		// ‚¨‚©‚µ‚¢
+		// ãŠã‹ã—ã„
 		GF_ASSERT( 0 );
 		break;
 	}

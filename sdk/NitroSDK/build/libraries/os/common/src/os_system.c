@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.32  2006/01/10 06:07:34  okubata_ryoma
-  OS_TerminateŠÖ˜A‚ÌŠÖ”‚ğ•Êƒtƒ@ƒCƒ‹‚ÖˆÚ“®
+  OS_Terminateé–¢é€£ã®é–¢æ•°ã‚’åˆ¥ãƒ•ã‚¡ã‚¤ãƒ«ã¸ç§»å‹•
 
   Revision 1.31  2005/12/08 07:06:09  okubata_ryoma
   small fix
@@ -24,7 +24,7 @@
   small fix
 
   Revision 1.29  2005/11/25 08:30:20  terui
-  OS_WaitVBlankIntr“à‚ÅSVC_WaitByLoop‚ğŒÄ‚Ô‚æ‚¤‚É‰ü’è
+  OS_WaitVBlankIntrå†…ã§SVC_WaitByLoopã‚’å‘¼ã¶ã‚ˆã†ã«æ”¹å®š
 
   Revision 1.28  2005/11/22 09:11:28  yosizaki
   support SDK_ENABLE_ARM7_PRINT.
@@ -42,16 +42,16 @@
   add OS_Exit()
 
   Revision 1.23  2005/03/04 11:09:27  yasu
-  __declspec(weak) ‚ğ SDK_WEAK_SYMBOL ‚É’u‚«Š·‚¦
+  __declspec(weak) ã‚’ SDK_WEAK_SYMBOL ã«ç½®ãæ›ãˆ
 
   Revision 1.22  2005/02/28 05:26:29  yosizaki
   do-indent.
 
   Revision 1.21  2005/02/18 08:51:35  yasu
-  ’˜ì”N“x•ÏX
+  è‘—ä½œå¹´åº¦å¤‰æ›´
 
   Revision 1.20  2005/02/18 06:22:20  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.19  2004/11/24 10:55:51  yada
   Let OS_Terminate() and OS_Halt() be weak symbols.
@@ -75,17 +75,17 @@
   add "bx lr" in OS_Halt() for ARM9
 
   Revision 1.12  2004/04/06 01:37:45  yada
-  OS_Terminate() ’Ç‰Á
+  OS_Terminate() è¿½åŠ 
 
   Revision 1.11  2004/03/29 02:56:32  yada
-  OS_Halt() ‚Í SVC_Halt() ‚ğŒÄ‚Ô‚æ‚¤‚É•ÏX
+  OS_Halt() ã¯ SVC_Halt() ã‚’å‘¼ã¶ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.10  2004/03/26 02:53:46  yasu
   apply systemcall 2 for OS_Halt at ARM7
 
   Revision 1.9  2004/03/04 09:47:04  yada
-  OSDisableInterrupt() ‚ğ IRQ ‹Ö~‚É‚µ‚½B
-  IRQ/FIQ ‹Ö~‚É‚Í•ÊŠÖ”‚ğ—pˆÓ‚µ‚½B
+  OSDisableInterrupt() ã‚’ IRQ ç¦æ­¢ã«ã—ãŸã€‚
+  IRQ/FIQ ç¦æ­¢ã«ã¯åˆ¥é–¢æ•°ã‚’ç”¨æ„ã—ãŸã€‚
 
   Revision 1.8  2004/02/27 01:55:00  yasu
   add OS_SpinWait, move OS_Halt into os_system.c
@@ -94,22 +94,22 @@
   uncomment all if ARM7
 
   Revision 1.6  2004/02/10 12:12:43  yada
-  OS_GetDTCMAddress, OS_GetITCMAddress ‚ğ os_tcm.c‚ÉˆÚs
+  OS_GetDTCMAddress, OS_GetITCMAddress ã‚’ os_tcm.cã«ç§»è¡Œ
 
   Revision 1.5  2004/02/10 11:21:47  yada
   (none)
 
   Revision 1.4  2004/02/10 11:19:56  yada
-  Interrupt ŠÖŒW‚Ìinline ‚ğ‚â‚ß‚é
+  Interrupt é–¢ä¿‚ã®inline ã‚’ã‚„ã‚ã‚‹
 
   Revision 1.3  2004/02/10 02:29:27  yada
-  ARM9‚É‚µ‚©—LŒø‚Å‚È‚¢ƒR[ƒh‚Ìifdef
+  ARM9ã«ã—ã‹æœ‰åŠ¹ã§ãªã„ã‚³ãƒ¼ãƒ‰ã®ifdef
 
   Revision 1.2  2004/02/10 01:25:30  yasu
   include code32.h
 
   Revision 1.1  2004/02/09 11:36:55  yada
-  OS_GetDTCMAddress, OS_GetITCMAddress ì¬
+  OS_GetDTCMAddress, OS_GetITCMAddress ä½œæˆ
 
 
   $NoKeywords: $

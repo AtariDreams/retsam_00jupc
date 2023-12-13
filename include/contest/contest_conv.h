@@ -1,12 +1,12 @@
 //==============================================================================
 /**
  * @file	contest_conv.h
- * @brief	ƒRƒ“ƒeƒXƒg‚ÅŽg‚í‚ê‚éƒf[ƒ^—Þ‚Ì\‘¢‘Ì’è‹`‚È‚Ç
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã§ä½¿ã‚ã‚Œã‚‹ãƒ‡ãƒ¼ã‚¿é¡žã®æ§‹é€ ä½“å®šç¾©ãªã©
  * @author	matsuda
- * @date	2006.05.02(‰Î)
+ * @date	2006.05.02(ç«)
  * 
- * elf2bin‚ðŽg—p‚µ‚½cƒ\[ƒX‚©‚ç‚àinclude‚³‚ê‚é‚½‚ßA‚ ‚Ü‚èŠO•”ƒtƒ@ƒCƒ‹‚Ìinclude‚ð
- * ‚·‚é•K—v‚ª‚È‚¢‚æ‚¤‚É‚µ‚Ä‚¨‚­‚±‚Æ
+ * elf2binã‚’ä½¿ç”¨ã—ãŸcã‚½ãƒ¼ã‚¹ã‹ã‚‰ã‚‚includeã•ã‚Œã‚‹ãŸã‚ã€ã‚ã¾ã‚Šå¤–éƒ¨ãƒ•ã‚¡ã‚¤ãƒ«ã®includeã‚’
+ * ã™ã‚‹å¿…è¦ãŒãªã„ã‚ˆã†ã«ã—ã¦ãŠãã“ã¨
  */
 //==============================================================================
 #ifndef __CONTEST_CONV_H__
@@ -14,156 +14,156 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
-//	“oêƒ^ƒCƒ~ƒ“ƒO
+//	ç™»å ´ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 //--------------------------------------------------------------
 enum{
-	HOF_BOTH,			///<—¼•û
-	HOF_BEFORE,			///<“a“°‘O‚É“oê
-	HOF_AFTER,			///<“a“°Œã‚É“oê
-	HOF_SPECIAL,		///<•K‚¸1loê
+	HOF_BOTH,			///<ä¸¡æ–¹
+	HOF_BEFORE,			///<æ®¿å ‚å‰ã«ç™»å ´
+	HOF_AFTER,			///<æ®¿å ‚å¾Œã«ç™»å ´
+	HOF_SPECIAL,		///<å¿…ãš1äººå‡ºå ´
 
-	//íœ—\’è‚Ì’è‹`
-	PALACE_BOTH = 0,			///<—¼•û
-	PALACE_BEFORE,			///<“a“°‘O‚É“oê
-	PALACE_AFTER,			///<“a“°Œã‚É“oê
+	//å‰Šé™¤äºˆå®šã®å®šç¾©
+	PALACE_BOTH = 0,			///<ä¸¡æ–¹
+	PALACE_BEFORE,			///<æ®¿å ‚å‰ã«ç™»å ´
+	PALACE_AFTER,			///<æ®¿å ‚å¾Œã«ç™»å ´
 };
 
-///ƒuƒŠ[ƒ_[‚Ì«Ši
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®æ€§æ ¼
 enum{
-	BRD_CHARACTER_ELITE,		///<ƒGƒŠ[ƒg
-	BRD_CHARACTER_JACKPOT,		///<‘åŒŠ
-	BRD_CHARACTER_SINCERE,		///<½ŽÀ
-	BRD_CHARACTER_WEAK,			///<Žã‚¢
+	BRD_CHARACTER_ELITE,		///<ã‚¨ãƒªãƒ¼ãƒˆ
+	BRD_CHARACTER_JACKPOT,		///<å¤§ç©´
+	BRD_CHARACTER_SINCERE,		///<èª å®Ÿ
+	BRD_CHARACTER_WEAK,			///<å¼±ã„
 	
 	BRD_CHARACTER_MAX,
 };
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒRƒ“ƒeƒXƒg‹Zƒf[ƒ^
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	u8 ap_no;		///<ƒAƒs[ƒ‹No
-	u8 contype;		///<ƒRƒ“ƒeƒXƒg‹Zƒ^ƒCƒv(CONTYPE_STYLE“™)
+	u8 ap_no;		///<ã‚¢ãƒ”ãƒ¼ãƒ«No
+	u8 contype;		///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ã‚¿ã‚¤ãƒ—(CONTYPE_STYLEç­‰)
 	
 	u16 dummy;
 }CONWAZA_DATA;
 
-///ƒAƒs[ƒ‹‹ZŒø‰Êƒf[ƒ^
+///ã‚¢ãƒ”ãƒ¼ãƒ«æŠ€åŠ¹æžœãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	u16 setumei_u_id;	///<‹Zà–¾•¶ã’i‚ÌƒƒbƒZ[ƒWID
-	u16 setumei_d_id;	///<‹Zà–¾•¶‰º’i‚ÌƒƒbƒZ[ƒWID
-	s8 ap_point;		///<ƒAƒs[ƒ‹ƒ|ƒCƒ“ƒg(ƒ}ƒCƒiƒX‚ÌŽž‚Í–WŠQ’l)
+	u16 setumei_u_id;	///<æŠ€èª¬æ˜Žæ–‡ä¸Šæ®µã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+	u16 setumei_d_id;	///<æŠ€èª¬æ˜Žæ–‡ä¸‹æ®µã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+	s8 ap_point;		///<ã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆ(ãƒžã‚¤ãƒŠã‚¹ã®æ™‚ã¯å¦¨å®³å€¤)
 	
-	u16 kouka_msgid_a;	///<‹ZŒø‰ÊƒƒbƒZ[ƒWIDFA
-	u8 kouka_msgtag_a;	///<‹ZŒø‰ÊƒƒbƒZ[ƒWID:A‚Ìƒ^ƒO
-	u16 kouka_msgid_b;	///<‹ZŒø‰ÊƒƒbƒZ[ƒWIDFB
-	u8 kouka_msgtag_b;	///<‹ZŒø‰ÊƒƒbƒZ[ƒWID:B‚Ìƒ^ƒO
-	u16 kouka_msgid_c;	///<‹ZŒø‰ÊƒƒbƒZ[ƒWIDFC
-	u8 kouka_msgtag_c;	///<‹ZŒø‰ÊƒƒbƒZ[ƒWID:C‚Ìƒ^ƒO
-	u16 kouka_msgid_d;	///<‹ZŒø‰ÊƒƒbƒZ[ƒWIDFD
-	u8 kouka_msgtag_d;	///<‹ZŒø‰ÊƒƒbƒZ[ƒWID:D‚Ìƒ^ƒO
+	u16 kouka_msgid_a;	///<æŠ€åŠ¹æžœãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDï¼šA
+	u8 kouka_msgtag_a;	///<æŠ€åŠ¹æžœãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID:Aã®ã‚¿ã‚°
+	u16 kouka_msgid_b;	///<æŠ€åŠ¹æžœãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDï¼šB
+	u8 kouka_msgtag_b;	///<æŠ€åŠ¹æžœãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID:Bã®ã‚¿ã‚°
+	u16 kouka_msgid_c;	///<æŠ€åŠ¹æžœãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDï¼šC
+	u8 kouka_msgtag_c;	///<æŠ€åŠ¹æžœãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID:Cã®ã‚¿ã‚°
+	u16 kouka_msgid_d;	///<æŠ€åŠ¹æžœãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDï¼šD
+	u8 kouka_msgtag_d;	///<æŠ€åŠ¹æžœãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID:Dã®ã‚¿ã‚°
 
-	u16 sp_msgid;		///<“ÁŽêƒƒbƒZ[ƒWID
-	u8 sp_msgtag;		///<“ÁŽêƒƒbƒZ[ƒWID‚Ìƒ^ƒO
+	u16 sp_msgid;		///<ç‰¹æ®Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+	u8 sp_msgtag;		///<ç‰¹æ®Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã®ã‚¿ã‚°
 }APWAZA_DATA;
 
 
-///ƒuƒŠ[ƒ_[ƒf[ƒ^
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	u32	personal_rnd;					//ŒÂ«—”
-	u32 id_no;							//ƒ|ƒPƒ‚ƒ“‚ÌID
+	u32	personal_rnd;					//å€‹æ€§ä¹±æ•°
+	u32 id_no;							//ãƒã‚±ãƒ¢ãƒ³ã®ID
 	
-	u16 obj_code;						///<ƒtƒB[ƒ‹ƒh‚ÌOBJƒR[ƒh
-	u16 trainer_type;					///<ƒgƒŒ[ƒi[ƒ^ƒCƒv
+	u16 obj_code;						///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®OBJã‚³ãƒ¼ãƒ‰
+	u16 trainer_type;					///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
 	
-	u16	waza[WAZA_TEMOTI_MAX];			///<ŽèŽ‚¿‹Z”Ô†
+	u16	waza[WAZA_TEMOTI_MAX];			///<æ‰‹æŒã¡æŠ€ç•ªå·
 
-	u16 monsno;							///<ƒ|ƒPƒ‚ƒ“”Ô†(ŠJ”­NO)
-	u16 nickname_id;					///<ƒjƒbƒNƒl[ƒ€ƒƒbƒZ[ƒWID
+	u16 monsno;							///<ãƒã‚±ãƒ¢ãƒ³ç•ªå·(é–‹ç™ºNO)
+	u16 nickname_id;					///<ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 
-	u16 name_id;						///<ƒuƒŠ[ƒ_[–¼ƒƒbƒZ[ƒWID
-	u8 style;							//‚©‚Á‚±‚æ‚³
-	u8 beautiful;						//‚¤‚Â‚­‚µ‚³
+	u16 name_id;						///<ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼åãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+	u8 style;							//ã‹ã£ã“ã‚ˆã•
+	u8 beautiful;						//ã†ã¤ãã—ã•
 
-	u8 cute;							//‚©‚í‚¢‚³
-	u8 clever;							//‚©‚µ‚±‚³
-	u8 strong;							//‚½‚­‚Ü‚µ‚³
-	u8 fur;								//–Ñ‰
+	u8 cute;							//ã‹ã‚ã„ã•
+	u8 clever;							//ã‹ã—ã“ã•
+	u8 strong;							//ãŸãã¾ã—ã•
+	u8 fur;								//æ¯›è‰¶
 	
-	u16 rank:3;							///<ŽQ‰Á‰Â”\ƒ‰ƒ“ƒN
-	u16 part_style:1;					///<ŠiD‚æ‚³ƒRƒ“ƒeƒXƒgŽQ‰Á‰Â”\ 
-	u16 part_beautiful:1;				///<”ü‚µ‚³ƒRƒ“ƒeƒXƒgŽQ‰Á‰Â”\ 
-	u16 part_cute:1;					///<‰Âˆ¤‚³ƒRƒ“ƒeƒXƒgŽQ‰Á‰Â”\ 
-	u16 part_clever:1;					///<Œ«‚³ƒRƒ“ƒeƒXƒgŽQ‰Á‰Â”\ 
-	u16 part_strong:1;					///<ç—‚µ‚³ƒRƒ“ƒeƒXƒgŽQ‰Á‰Â”\ 
-	u16 part_tutorial:1;				///<ƒ`ƒ…[ƒgƒŠƒAƒ‹ŽQ‰Á‰Â”\ 
-	u16 part_practice:1;				///<—ûKŽQ‰Á‰Â”\ 
-	u16 appear:2;						///<“oêƒ^ƒCƒ~ƒ“ƒO
-	u16 sex:2;							///<«•Ê
-	u16 character:2;					///<«Ši
-	u8 clip_no_flowery;					///<ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^”Ô†(‰Ø‚â‚©‚È‚à‚Ì)
-	u8 clip_no_simple;					///<ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^”Ô†(ƒVƒ“ƒvƒ‹‚È‚à‚Ì)
+	u16 rank:3;							///<å‚åŠ å¯èƒ½ãƒ©ãƒ³ã‚¯
+	u16 part_style:1;					///<æ ¼å¥½ã‚ˆã•ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ å¯èƒ½ 
+	u16 part_beautiful:1;				///<ç¾Žã—ã•ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ å¯èƒ½ 
+	u16 part_cute:1;					///<å¯æ„›ã•ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ å¯èƒ½ 
+	u16 part_clever:1;					///<è³¢ã•ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ å¯èƒ½ 
+	u16 part_strong:1;					///<é€žã—ã•ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ å¯èƒ½ 
+	u16 part_tutorial:1;				///<ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«å‚åŠ å¯èƒ½ 
+	u16 part_practice:1;				///<ç·´ç¿’å‚åŠ å¯èƒ½ 
+	u16 appear:2;						///<ç™»å ´ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+	u16 sex:2;							///<æ€§åˆ¥
+	u16 character:2;					///<æ€§æ ¼
+	u8 clip_no_flowery;					///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç•ªå·(è¯ã‚„ã‹ãªã‚‚ã®)
+	u8 clip_no_simple;					///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç•ªå·(ã‚·ãƒ³ãƒ—ãƒ«ãªã‚‚ã®)
 
-	u8 clip_no_artificial;				///<ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^”Ô†(lH‚Ì‚à‚Ì)
-	u8 clip_no_natural;					///<ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^”Ô†(Ž©‘R‚Ì‚à‚Ì)
-	u8 clip_no_colorful;				///<ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^”Ô†(F‚Â‚«‚Ì‚à‚Ì)
-	u8 clip_no_lively;					///<ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^”Ô†(‚É‚¬‚â‚©‚È‚à‚Ì)
+	u8 clip_no_artificial;				///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç•ªå·(äººå·¥ã®ã‚‚ã®)
+	u8 clip_no_natural;					///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç•ªå·(è‡ªç„¶ã®ã‚‚ã®)
+	u8 clip_no_colorful;				///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç•ªå·(è‰²ã¤ãã®ã‚‚ã®)
+	u8 clip_no_lively;					///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç•ªå·(ã«ãŽã‚„ã‹ãªã‚‚ã®)
 
-	u8 clip_no_refresh;					///<ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^”Ô†(‚·‚Á‚«‚è‚µ‚½‚à‚Ì)
-	u8 clip_no_limit;					///<ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^”Ô†(ƒMƒŠƒMƒŠ‚Ì‚à‚Ì)
-	u8 clip_no_softly;					///<ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^”Ô†(‚ä‚é‚â‚©‚È‚à‚Ì)
-	u8 clip_no_gorgeous;				///<ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^”Ô†(‚«‚ç‚Ñ‚â‚©‚Ì‚à‚Ì)
+	u8 clip_no_refresh;					///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç•ªå·(ã™ã£ãã‚Šã—ãŸã‚‚ã®)
+	u8 clip_no_limit;					///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç•ªå·(ã‚®ãƒªã‚®ãƒªã®ã‚‚ã®)
+	u8 clip_no_softly;					///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç•ªå·(ã‚†ã‚‹ã‚„ã‹ãªã‚‚ã®)
+	u8 clip_no_gorgeous;				///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç•ªå·(ãã‚‰ã³ã‚„ã‹ã®ã‚‚ã®)
 
-	u8 clip_no_elegant;					///<ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^”Ô†(ã•i‚È‚à‚Ì)
-	u8 clip_no_showy;					///<ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^”Ô†(”hŽè‚È‚à‚Ì)
-	u8 popularity;						///<l‹C
-	u8 version;							///<ƒuƒŠ[ƒ_[ƒf[ƒ^‚ðì¬‚µ‚½ROM‚Ìƒo[ƒWƒ‡ƒ“
+	u8 clip_no_elegant;					///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç•ªå·(ä¸Šå“ãªã‚‚ã®)
+	u8 clip_no_showy;					///<ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç•ªå·(æ´¾æ‰‹ãªã‚‚ã®)
+	u8 popularity;						///<äººæ°—
+	u8 version;							///<ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ãŸROMã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
-//	u8 dummy[2];			///<4ƒoƒCƒg‹«ŠEƒ_ƒ~[
+//	u8 dummy[2];			///<4ãƒã‚¤ãƒˆå¢ƒç•Œãƒ€ãƒŸãƒ¼
 	
 }BREEDER_DATA;
 
 
-///R”»ƒf[ƒ^
+///å¯©åˆ¤ãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	u16 name_id;					///<–¼‘OID
-	u16 obj_code;					///<ƒtƒB[ƒ‹ƒh‚ÌOBJƒR[ƒh
+	u16 name_id;					///<åå‰ID
+	u16 obj_code;					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®OBJã‚³ãƒ¼ãƒ‰
 	
-	u16 condition_style:2;			///<•]‰¿ƒRƒ“ƒfƒBƒVƒ‡ƒ“(ŠiD‚æ‚³)
-	u16 condition_beautiful:2;		///<•]‰¿ƒRƒ“ƒfƒBƒVƒ‡ƒ“(”ü‚µ‚³)
-	u16 condition_cute:2;			///<•]‰¿ƒRƒ“ƒfƒBƒVƒ‡ƒ“(‰Âˆ¤‚³)
-	u16 condition_clever:2;			///<•]‰¿ƒRƒ“ƒfƒBƒVƒ‡ƒ“(Œ«‚³)
-	u16 condition_strong:2;			///<•]‰¿ƒRƒ“ƒfƒBƒVƒ‡ƒ“(ç—‚µ‚³)
-	u16 rank:2;						///<ŽQ‰Á‰Â”\ƒ‰ƒ“ƒN
-	u16 guest:1;					///<ƒQƒXƒgƒtƒ‰ƒO(TRUE=ƒQƒXƒg)
+	u16 condition_style:2;			///<è©•ä¾¡ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³(æ ¼å¥½ã‚ˆã•)
+	u16 condition_beautiful:2;		///<è©•ä¾¡ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³(ç¾Žã—ã•)
+	u16 condition_cute:2;			///<è©•ä¾¡ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³(å¯æ„›ã•)
+	u16 condition_clever:2;			///<è©•ä¾¡ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³(è³¢ã•)
+	u16 condition_strong:2;			///<è©•ä¾¡ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³(é€žã—ã•)
+	u16 rank:2;						///<å‚åŠ å¯èƒ½ãƒ©ãƒ³ã‚¯
+	u16 guest:1;					///<ã‚²ã‚¹ãƒˆãƒ•ãƒ©ã‚°(TRUE=ã‚²ã‚¹ãƒˆ)
 	u16 	:3;
 	
-	u16 dummy;			///<4ƒoƒCƒg‹«ŠEƒ_ƒ~[
+	u16 dummy;			///<4ãƒã‚¤ãƒˆå¢ƒç•Œãƒ€ãƒŸãƒ¼
 }JUDGE_DATA;
 
 
-///ƒRƒ“ƒeƒXƒgFƒCƒ[ƒWƒNƒŠƒbƒvƒAƒNƒZƒTƒŠƒf[ƒ^\‘¢‘Ì
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct{
-	u8 no;			///<ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
+	u8 no;			///<ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
 	u8 x;			///<X
 	u8 y;			///<Y
-	s8 pri;			///<—Dæ‡ˆÊ
+	s8 pri;			///<å„ªå…ˆé †ä½
 }CON_IMC_ACCE_DATA;
 
-///ƒRƒ“ƒeƒXƒgFƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^\‘¢‘Ì
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct{
 	CON_IMC_ACCE_DATA acce[CON_IMAGE_ACCE_MAX_MASTER];
-	u8 acce_data_num;	//acce‚É“ü‚Á‚Ä‚¢‚éƒf[ƒ^”
+	u8 acce_data_num;	//acceã«å…¥ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿æ•°
 	
 	s8 mons_pri;
 	s8 bg;
 
-	u8 dummy;		///<4ƒoƒCƒg‹«ŠEƒIƒtƒZƒbƒg
+	u8 dummy;		///<4ãƒã‚¤ãƒˆå¢ƒç•Œã‚ªãƒ•ã‚»ãƒƒãƒˆ
 }CON_IMC_DATA;
 
 

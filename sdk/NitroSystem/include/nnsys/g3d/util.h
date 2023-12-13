@@ -29,7 +29,7 @@ extern "C" {
 #endif
 
 #ifdef __cplusplus
-// C++�̏ꍇ�������Ȃ���16�����ڂ��g�p�ł��Ȃ�����
+// C++の場合こうしないと16文字目を使用できないため
 #define NNS_G3D_UTIL_RESNAME_LEN 17
 #else
 #define NNS_G3D_UTIL_RESNAME_LEN 16
@@ -39,9 +39,9 @@ extern "C" {
 /*---------------------------------------------------------------------------*
     NNSG3dUtilResName
 
-    ���\�[�X�����v���O�������Œ�`����Ƃ��Ɏg�p����鋤�p��
-    NNS_G3D_DEFRESNAME��ʂ��Ďg�p����̂��悢�B
-    C++�ł�16������t�g����悤�ɂ��邽�߂ɑ��݂���B
+    リソース名をプログラム内で定義するときに使用される共用体
+    NNS_G3D_DEFRESNAMEを通して使用するのがよい。
+    C++でも16文字一杯使えるようにするために存在する。
  *---------------------------------------------------------------------------*/
 typedef union
 {
@@ -59,21 +59,21 @@ NNSG3dUtilResName;
 /*---------------------------------------------------------------------------*
     NNS_G3D_DEFRESNAME
 
-    �v���O�����Ń��\�[�X�����g�p����ꍇ�Ɏg�p����}�N���B
-    C++�ł�16���������ς��g����B
+    プログラムでリソース名を使用する場合に使用するマクロ。
+    C++でも16文字いっぱい使える。
 
     WARNING
-    �R���p�C���̎�����static�ȗ̈�͂��炩����0�ŃN���A�����悤�ɂȂ���
-    ���Ȃ��Ă͂Ȃ�Ȃ��B
+    コンパイラの実装がstaticな領域はあらかじめ0でクリアされるようになって
+    いなくてはならない。
  *---------------------------------------------------------------------------*/
 #define NNS_G3D_DEFRESNAME(var, str) \
     static const NNSG3dUtilResName var ATTRIBUTE_ALIGN(4) = { str }
 
 
 //
-// �����񃊃e�������g�p���Č�������ꍇ�̃}�N��
+// 文字列リテラルを使用して検索する場合のマクロ
 // NOTICE:
-// �C�����C���֐������Ă͂����Ȃ�
+// インライン関数化してはいけない
 //
 #define NNS_G3D_GET_JNTID(pMdl, pJntID, literal)                                          \
     do {                                                                                  \
@@ -101,7 +101,7 @@ NNSG3dUtilResName;
 
 
 //
-// �A�j���[�V�������\�[�X�t�@�C������A�j���[�V�������\�[�X���擾
+// アニメーションリソースファイルからアニメーションリソースを取得
 //
 #define NNS_G3D_GET_ANM(pRes, pResAnm, literal)                                           \
     do {                                                                                  \
@@ -111,7 +111,7 @@ NNSG3dUtilResName;
 
 
 //
-// �r�b�g�x�N�g��
+// ビットベクトル
 //
 NNS_G3D_INLINE BOOL NNSi_G3dBitVecCheck(const u32* vec, u32 idx);
 NNS_G3D_INLINE void NNSi_G3dBitVecSet(u32* vec, u32 idx);
@@ -119,7 +119,7 @@ NNS_G3D_INLINE void NNSi_G3dBitVecReset(u32* vec, u32 idx);
 
 
 //
-// �s��X�^�b�N����̎擾�ƕύX
+// 行列スタックからの取得と変更
 //
 void NNS_G3dGetCurrentMtx(MtxFx43* m, MtxFx33* n);
 BOOL NNS_G3dGetResultMtx(const NNSG3dRenderObj* pRenderObj,
@@ -133,12 +133,12 @@ BOOL NNS_G3dSetResultMtx(const NNSG3dRenderObj* pRenderObj,
 
 
 //
-// �f�t�H���g�̃C�j�V�����C�Y
+// デフォルトのイニシャライズ
 //
 void NNS_G3dInit(void);
 
 //
-// SBC��̓��[�e�B���e�B
+// SBC解析ユーティリティ
 //
 int NNS_G3dGetSbcCmdLen(const u8* c);
 const u8* NNS_G3dSearchSbcCmd(const u8* c, u8 cmd);
@@ -146,13 +146,13 @@ const u8* NNS_G3dGetParentNodeID(int* parentID, const u8* sbc, u32 nodeID);
 int NNS_G3dGetChildNodeIDList(u8* idList, const u8* sbc, u32 nodeID);
 
 //
-// ���\�[�X�Z�b�g�A�b�v�E�I���������[�e�B���e�B
+// リソースセットアップ・終了処理ユーティリティ
 //
 BOOL NNS_G3dResDefaultSetup(void* pResData);
 void NNS_G3dResDefaultRelease(void* pResData);
 
 //
-// ���W�ϊ����[�e�B���e�B
+// 座標変換ユーティリティ
 //
 int NNS_G3dLocalOriginToScrPos(int* px, int* py);
 int NNS_G3dWorldPosToScrPos(const VecFx32* pWorld, int* px, int* py);

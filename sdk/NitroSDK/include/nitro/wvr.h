@@ -18,7 +18,7 @@
   Update copyright.
 
   Revision 1.2  2005/02/16 10:32:54  terui
-  ARM9‘¤‚ÌincludeƒpƒX‚ğ’Ç‰ÁB
+  ARM9å´ã®includeãƒ‘ã‚¹ã‚’è¿½åŠ ã€‚
 
   Revision 1.1  2004/12/20 00:43:47  terui
   Initial upload.

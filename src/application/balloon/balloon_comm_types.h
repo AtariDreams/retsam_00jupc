@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	balloon_comm_types.h
- * @brief	•—‘Dƒ~ƒjƒQ[ƒ€‚Å’ÊM‚µ‚ ‚¤ƒf[ƒ^Œ^‚Ì’è‹`
+ * @brief	é¢¨èˆ¹ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã§é€šä¿¡ã—ã‚ã†ãƒ‡ãƒ¼ã‚¿åž‹ã®å®šç¾©
  * @author	matsuda
- * @date	2007.11.26(ŒŽ)
+ * @date	2007.11.26(æœˆ)
  */
 //==============================================================================
 #ifndef __BALLOON_COMM_TYPES_H__
@@ -11,100 +11,100 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///–½—ßƒR[ƒh
+///å‘½ä»¤ã‚³ãƒ¼ãƒ‰
 enum{
-	ORDER_CODE_NULL,		///<‹ó‚«
+	ORDER_CODE_NULL,		///<ç©ºã
 	
 	ORDER_CODE_AIR,
 	ORDER_CODE_EXPLODED,
 	ORDER_CODE_APPEAR,
 
-	ORDER_CODE_START,		///<ƒ~ƒjƒQ[ƒ€ŠJŽn
-	ORDER_CODE_FINISH,		///<ƒ~ƒjƒQ[ƒ€I—¹
-	ORDER_CODE_TIMING,		///<“¯Šú‘Ò‚¿
+	ORDER_CODE_START,		///<ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é–‹å§‹
+	ORDER_CODE_FINISH,		///<ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµ‚äº†
+	ORDER_CODE_TIMING,		///<åŒæœŸå¾…ã¡
 
-	ORDER_CODE_TOUCHPEN_DEMO,	///<ƒ^ƒbƒ`ƒyƒ“ƒfƒ‚
+	ORDER_CODE_TOUCHPEN_DEMO,	///<ã‚¿ãƒƒãƒãƒšãƒ³ãƒ‡ãƒ¢
 	
-	ORDER_CODE_MAX,			///<–½—ßƒR[ƒhI’[
+	ORDER_CODE_MAX,			///<å‘½ä»¤ã‚³ãƒ¼ãƒ‰çµ‚ç«¯
 };
 
-///‘—ŽóMƒoƒbƒtƒ@‚Ìƒ`ƒF[ƒ“”(’™‚ß‚Ä‚¨‚¯‚é”)
+///é€å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚§ãƒ¼ãƒ³æ•°(è²¯ã‚ã¦ãŠã‘ã‚‹æ•°)
 #define SIO_BUFFER_CHAIN_MAX		(60)
 
 
-///“¯ŠúŽæ‚èƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh
+///åŒæœŸå–ã‚Šãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰
 enum{
-	TIMING_REQ_NULL,				///<ƒŠƒNƒGƒXƒg‚È‚µ
+	TIMING_REQ_NULL,				///<ãƒªã‚¯ã‚¨ã‚¹ãƒˆãªã—
 	//----------------------------
 	
-	TIMING_REQ_NORMAL,				///<‘¦“¯ŠúŽæ‚è
+	TIMING_REQ_NORMAL,				///<å³åŒæœŸå–ã‚Š
 
-	TIMING_REQ_START_AFTER,			///<ƒQ[ƒ€ŠJŽn‰‰o‚ªI—¹‚µ‚½‚ç“¯ŠúŽæ‚è
-	TIMING_REQ_FINISH_AFTER,		///<ƒQ[ƒ€I—¹‰‰o‚ªI—¹‚µ‚½‚ç“¯ŠúŽæ‚è
+	TIMING_REQ_START_AFTER,			///<ã‚²ãƒ¼ãƒ é–‹å§‹æ¼”å‡ºãŒçµ‚äº†ã—ãŸã‚‰åŒæœŸå–ã‚Š
+	TIMING_REQ_FINISH_AFTER,		///<ã‚²ãƒ¼ãƒ çµ‚äº†æ¼”å‡ºãŒçµ‚äº†ã—ãŸã‚‰åŒæœŸå–ã‚Š
 
-	TIMING_REQ_APPEAR_AFTER,		///<•—‘D‚ª“oê‚µ‚½‚ç“¯ŠúŽæ‚è
-	TIMING_REQ_EXPLODED_AFTER,		///<”j—ôƒGƒtƒFƒNƒg‚ªI—¹‚µ‚½‚ç“¯ŠúŽæ‚è
+	TIMING_REQ_APPEAR_AFTER,		///<é¢¨èˆ¹ãŒç™»å ´ã—ãŸã‚‰åŒæœŸå–ã‚Š
+	TIMING_REQ_EXPLODED_AFTER,		///<ç ´è£‚ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚äº†ã—ãŸã‚‰åŒæœŸå–ã‚Š
 	
-	TIMING_REQ_TOUCHPEN_DEMO_AFTER,	///<ƒ^ƒbƒ`ƒyƒ“ƒfƒ‚‚ªI—¹‚µ‚½‚ç“¯ŠúŽæ‚è
+	TIMING_REQ_TOUCHPEN_DEMO_AFTER,	///<ã‚¿ãƒƒãƒãƒšãƒ³ãƒ‡ãƒ¢ãŒçµ‚äº†ã—ãŸã‚‰åŒæœŸå–ã‚Š
 	
 	//----------------------------
-	TIMING_REQ_WAIT,				///<“¯ŠúM†‚Í‘—‚Á‚ÄA‘¼‚Ìl‚ÌM†‘Ò‚¿
+	TIMING_REQ_WAIT,				///<åŒæœŸä¿¡å·ã¯é€ã£ã¦ã€ä»–ã®äººã®ä¿¡å·å¾…ã¡
 };
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 
-///“¯ŠúŽæ‚è
+///åŒæœŸå–ã‚Š
 typedef struct{
-	u8 timing_req;		///<“¯ŠúŽæ‚è‚ÌŽí—Þ
-	u8 timing_no;		///<“¯ŠúŽæ‚è”Ô†
+	u8 timing_req;		///<åŒæœŸå–ã‚Šã®ç¨®é¡ž
+	u8 timing_no;		///<åŒæœŸå–ã‚Šç•ªå·
 	
 	u8 dummy[2];
 }BALLOON_TIMING;
 
-///ƒQ[ƒ€ŠJŽn
+///ã‚²ãƒ¼ãƒ é–‹å§‹
 typedef struct{
-	u8 timing_req;		///<“¯ŠúŽæ‚è‚ÌŽí—Þ
-	u8 timing_no;		///<“¯ŠúŽæ‚è”Ô†
+	u8 timing_req;		///<åŒæœŸå–ã‚Šã®ç¨®é¡ž
+	u8 timing_no;		///<åŒæœŸå–ã‚Šç•ªå·
 	
 	u8 dummy[2];
 }BALLOON_START;
 
-///ƒQ[ƒ€I—¹
+///ã‚²ãƒ¼ãƒ çµ‚äº†
 typedef struct{
-	u8 timing_req;		///<“¯ŠúŽæ‚è‚ÌŽí—Þ
-	u8 timing_no;		///<“¯ŠúŽæ‚è”Ô†
+	u8 timing_req;		///<åŒæœŸå–ã‚Šã®ç¨®é¡ž
+	u8 timing_no;		///<åŒæœŸå–ã‚Šç•ªå·
 	
 	u8 dummy[2];
 }BALLOON_FINISH;
 
-///”­¶‚µ‚½‹ó‹C—Ê
+///ç™ºç”Ÿã—ãŸç©ºæ°—é‡
 typedef struct{
-	u8 net_id;			///<’ÊMID
+	u8 net_id;			///<é€šä¿¡ID
 	u8 booster_type;	///<BOOSTER_TYPE_???
-	u16 no;				///<•—‘D”Ô†(ƒQ[ƒ€‚ªŽn‚Ü‚Á‚Ä‰½ŒÂ–Ú‚Ì•—‘D‚©)
-	s32 air;			///<‹ó‹C(ƒu[ƒXƒ^[AƒŒƒA‚ª‚È‚¢ƒˆ‚È‹ó‹C—Ê)
-	s32 last_air;		///<ƒu[ƒXƒ^[AƒŒƒA•â³•ªž‚Ý‚ÌÅI“I‚È‹ó‹C—Ê
-	u8 booster_occ;		///<ƒu[ƒXƒ^[‚ÌÝ’è—L–³(TRUE:Ý’èÏ‚Ý)
+	u16 no;				///<é¢¨èˆ¹ç•ªå·(ã‚²ãƒ¼ãƒ ãŒå§‹ã¾ã£ã¦ä½•å€‹ç›®ã®é¢¨èˆ¹ã‹)
+	s32 air;			///<ç©ºæ°—(ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã€ãƒ¬ã‚¢ãŒãªã„ç´”ç²‹ãªç©ºæ°—é‡)
+	s32 last_air;		///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã€ãƒ¬ã‚¢è£œæ­£åˆ†è¾¼ã¿ã®æœ€çµ‚çš„ãªç©ºæ°—é‡
+	u8 booster_occ;		///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®è¨­å®šæœ‰ç„¡(TRUE:è¨­å®šæ¸ˆã¿)
 	u8 padding[3];
 }BALLOON_AIR_DATA;
 
-///”j—ô‚µ‚½•—‘D”Ô†î•ñ
+///ç ´è£‚ã—ãŸé¢¨èˆ¹ç•ªå·æƒ…å ±
 typedef struct{
-	u16 no;				///<•—‘D”Ô†(ƒQ[ƒ€‚ªŽn‚Ü‚Á‚Ä‰½ŒÂ–Ú‚Ì•—‘D‚©)
+	u16 no;				///<é¢¨èˆ¹ç•ªå·(ã‚²ãƒ¼ãƒ ãŒå§‹ã¾ã£ã¦ä½•å€‹ç›®ã®é¢¨èˆ¹ã‹)
 
 	u8 timing_req;
 	u8 timing_no;
 }BALLOON_EXPLODED;
 
-///V‚µ‚­“oê‚·‚é•—‘Dî•ñ
+///æ–°ã—ãç™»å ´ã™ã‚‹é¢¨èˆ¹æƒ…å ±
 typedef struct{
-	u16 no;				///<•—‘D”Ô†(ƒQ[ƒ€‚ªŽn‚Ü‚Á‚Ä‰½ŒÂ–Ú‚Ì•—‘D‚©)
-	u8 level;			///<•—‘DƒŒƒxƒ‹(BALLOON_LEVEL_???)
+	u16 no;				///<é¢¨èˆ¹ç•ªå·(ã‚²ãƒ¼ãƒ ãŒå§‹ã¾ã£ã¦ä½•å€‹ç›®ã®é¢¨èˆ¹ã‹)
+	u8 level;			///<é¢¨èˆ¹ãƒ¬ãƒ™ãƒ«(BALLOON_LEVEL_???)
 	
 	u8 timing_req;
 	u8 timing_no;
@@ -115,11 +115,11 @@ typedef struct{
 
 //--------------------------------------------------------------
 /**
- *	ƒQ[ƒ€’†‚Ì‘—ŽóMƒf[ƒ^\‘¢‘Ì
+ *	ã‚²ãƒ¼ãƒ ä¸­ã®é€å—ä¿¡ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 typedef struct{
-	int order_code;		///<–½—ßƒR[ƒh
+	int order_code;		///<å‘½ä»¤ã‚³ãƒ¼ãƒ‰
 	
 	union{
 		BALLOON_TIMING timing;
@@ -134,7 +134,7 @@ typedef struct{
 
 //--------------------------------------------------------------
 /**
- *	‘—ŽóMƒoƒbƒtƒ@(ƒ`ƒF[ƒ“ƒŠƒXƒg‚Æ‚µ‚Äˆµ‚¤)
+ *	é€å—ä¿¡ãƒãƒƒãƒ•ã‚¡(ãƒã‚§ãƒ¼ãƒ³ãƒªã‚¹ãƒˆã¨ã—ã¦æ‰±ã†)
  */
 //--------------------------------------------------------------
 typedef struct{

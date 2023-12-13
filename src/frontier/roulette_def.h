@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	roulette_def.h
- * @bfief	�u�o�g�����[���b�g�v��`
+ * @bfief	「バトルルーレット」定義
  * @author	Satoshi Nohara
  * @date	07.09.06
  */
@@ -12,39 +12,39 @@
 
 //============================================================================================
 //
-//	��`(enum�֎~)
+//	定義(enum禁止)
 //
 //============================================================================================
-#define ROULETTE_LAP_ENEMY_MAX		(7)							//1�T���̓G�g���[�i�[�̍ő吔
-#define ROULETTE_LAP_MAX			(8)							///���[���b�g�̍ő����
-#define ROULETTE_LAP_MULTI_ENEMY_MAX	(ROULETTE_LAP_ENEMY_MAX*2)//�}���`1�T���̓G�g���[�i�[�̍ő吔
+#define ROULETTE_LAP_ENEMY_MAX		(7)							//1週毎の敵トレーナーの最大数
+#define ROULETTE_LAP_MAX			(8)							///ルーレットの最大周回数
+#define ROULETTE_LAP_MULTI_ENEMY_MAX	(ROULETTE_LAP_ENEMY_MAX*2)//マルチ1週毎の敵トレーナーの最大数
 
-#define ROULETTE_ENTRY_POKE_MAX		(3)							//�v���C���[1�l�̍ő�Q���|�P������
+#define ROULETTE_ENTRY_POKE_MAX		(3)							//プレイヤー1人の最大参加ポケモン数
 
-//�^�C�v
+//タイプ
 #define ROULETTE_TYPE_SINGLE		(0)
 #define ROULETTE_TYPE_DOUBLE		(1)
 #define ROULETTE_TYPE_MULTI			(2)
 #define ROULETTE_TYPE_WIFI_MULTI	(3)
-#define ROULETTE_TYPE_MAX			(4)							//�ő吔
+#define ROULETTE_TYPE_MAX			(4)							//最大数
 
-//�|�P������
-#define ROULETTE_MINE_POKE_MAX	(4)									//�����|�P�����f�[�^�̍ő吔
-#define ROULETTE_ENEMY_POKE_MAX	(4)									//�G�|�P�����f�[�^�̍ő吔
-#define ROULETTE_TOTAL_POKE_MAX	(ROULETTE_MINE_POKE_MAX+ROULETTE_ENEMY_POKE_MAX)//���`�F�b�N�Ɏg�p
+//ポケモン数
+#define ROULETTE_MINE_POKE_MAX	(4)									//味方ポケモンデータの最大数
+#define ROULETTE_ENEMY_POKE_MAX	(4)									//敵ポケモンデータの最大数
+#define ROULETTE_TOTAL_POKE_MAX	(ROULETTE_MINE_POKE_MAX+ROULETTE_ENEMY_POKE_MAX)//被りチェックに使用
 
-//�߂�l�ɕK�v�ȃ��[�N�̐�
-#define	ROULETTE_PARTY_POKE_MAX		(6)								//POKEPARTY�̃|�P������(6���ő�)
+//戻り値に必要なワークの数
+#define	ROULETTE_PARTY_POKE_MAX		(6)								//POKEPARTYのポケモン数(6が最大)
 #define ROULETTE_RET_WORK_MAX		(ROULETTE_PARTY_POKE_MAX)		//ret_work[]
 #define ROULETTE_SEL_WORK_MAX		(ROULETTE_PARTY_POKE_MAX)		//sel_poke_no[]
 
-//�߂�l
-#define ROULETTE_RET_CANCEL			(0xff)							//�������Ȃ��ŃL�����Z������
+//戻り値
+#define ROULETTE_RET_CANCEL			(0xff)							//何もしないでキャンセルした
 
-#define CSR_WAIT_TBL_MAX			(8)								//�J�[�\���X�s�[�h�e�[�u���ő吔
+#define CSR_WAIT_TBL_MAX			(8)								//カーソルスピードテーブル最大数
 
 //--------------------------------------------------------------------------------------------
-//ROULETTE_SCRWORK�̎擾�R�[�h(roulette.s�Ŏg�p)
+//ROULETTE_SCRWORKの取得コード(roulette.sで使用)
 //--------------------------------------------------------------------------------------------
 //#define FR_ID_SET_MODE					(0)
 //#define FR_ID_SET_LEVEL					(1)
@@ -102,7 +102,7 @@
 
 
 //--------------------------------------------------------------------------------------------
-//d32r0501.ev�Ŏg�p
+//d32r0501.evで使用
 //--------------------------------------------------------------------------------------------
 #define ROULETTE_TOOL_CHK_ENTRY_POKE_NUM	(0)
 #define ROULETTE_TOOL_GET_CLEAR_FLAG		(1)
@@ -114,11 +114,11 @@
 //--------------------------------------------------------------------------------------------
 //
 //--------------------------------------------------------------------------------------------
-//�ʐM�o�b�t�@�̃T�C�Y(send_buf,recv_buf)
+//通信バッファのサイズ(send_buf,recv_buf)
 #define ROULETTE_COMM_BUF_LEN			(40)				//34*2=68
 #define ROULETTE_HUGE_BUF_LEN			(512)//(1024)
 
-//�ʐM�^�C�v
+//通信タイプ
 //fssc_roulette_sub.c
 #define ROULETTE_COMM_BASIC				(0)
 #define ROULETTE_COMM_TR				(1)
@@ -126,25 +126,25 @@
 #define ROULETTE_COMM_RETIRE			(3)
 #define ROULETTE_COMM_TRADE_YESNO		(4)
 #define ROULETTE_COMM_TEMOTI			(5)
-//�����N�ʐM
+//ランク通信
 #define ROULETTE_COMM_RANK_PAIR			(30)
 #define ROULETTE_COMM_RANK_UP_TYPE		(31)
 #define ROULETTE_COMM_RANK_CSR_POS		(32)
 
-//�ʐM����1�l�̃|�P������
+//通信時の1人のポケモン数
 #define	ROULETTE_COMM_POKE_NUM			(2)
 
-//�ʐM����2�l�̃|�P������
+//通信時の2人のポケモン数
 #define	ROULETTE_COMM_POKE_TOTAL_NUM	(2*2)
 
-//����(�}���`�Ȃ�G�̐���4�ȂǁA1�l�������2�ɂȂ�)
+//総数(マルチなら敵の数が4など、1人あたりは2になる)
 #define ROULETTE_FLAG_SOLO				(0)					//2
 #define ROULETTE_FLAG_TOTAL				(1)					//2+2=4
 
-//�ʐM�l��
+//通信人数
 #define ROULETTE_COMM_PLAYER_NUM		(2)
 
-//�e�̌���
+//親の決定
 #define ROULETTE_SCR_MENU_NONE			(0)
 #define ROULETTE_SCR_MENU_TEMOTI		(1)
 #define ROULETTE_SCR_MENU_TRAINER		(2)
@@ -153,14 +153,14 @@
 #define ROULETTE_SCR_MENU_NUKEMITI		(5)
 #define ROULETTE_SCR_MENU_MAX			(6)
 
-//�u�߂�v�\���E�F�C�g
+//「戻る」表示ウェイト
 #define ROULETTE_MODORU_WAIT			(15)
 
 
 //--------------------------------------------------------------------------------------------
-//�C�x���g�i���o�[(�p�l���i���o�[)(���炳�Ȃ��I)
+//イベントナンバー(パネルナンバー)(ずらさない！)
 //--------------------------------------------------------------------------------------------
-#define ROULETTE_EV_ENEMY_HP_DOWN		( 0 )			//�G
+#define ROULETTE_EV_ENEMY_HP_DOWN		( 0 )			//敵
 #define ROULETTE_EV_ENEMY_DOKU			( 1 )
 #define ROULETTE_EV_ENEMY_MAHI			( 2 )
 #define ROULETTE_EV_ENEMY_YAKEDO		( 3 )
@@ -169,7 +169,7 @@
 #define ROULETTE_EV_ENEMY_SEED_GET		( 6 )
 #define ROULETTE_EV_ENEMY_ITEM_GET		( 7 )
 #define ROULETTE_EV_ENEMY_LV_UP			( 8 )
-#define ROULETTE_EV_MINE_HP_DOWN		( 9 )			//����
+#define ROULETTE_EV_MINE_HP_DOWN		( 9 )			//味方
 #define ROULETTE_EV_MINE_DOKU			( 10 )
 #define ROULETTE_EV_MINE_MAHI			( 11 )
 #define ROULETTE_EV_MINE_YAKEDO			( 12 )
@@ -178,7 +178,7 @@
 #define ROULETTE_EV_MINE_SEED_GET		( 15 )
 #define ROULETTE_EV_MINE_ITEM_GET		( 16 )
 #define ROULETTE_EV_MINE_LV_UP			( 17 )
-#define ROULETTE_EV_PLACE_HARE			( 18 )			//��ɋN����
+#define ROULETTE_EV_PLACE_HARE			( 18 )			//場に起きる
 #define ROULETTE_EV_PLACE_AME			( 19 )
 #define ROULETTE_EV_PLACE_SUNAARASI		( 20 )
 #define ROULETTE_EV_PLACE_ARARE			( 21 )
@@ -187,15 +187,15 @@
 #define ROULETTE_EV_PLACE_SPEED_UP		( 24 )
 #define ROULETTE_EV_PLACE_SPEED_DOWN	( 25 )
 #define ROULETTE_EV_PLACE_RANDOM		( 26 )
-#define ROULETTE_EV_EX_POKE_CHANGE		( 27 )			//����
+#define ROULETTE_EV_EX_POKE_CHANGE		( 27 )			//特殊
 #define ROULETTE_EV_EX_BP_GET			( 28 )
 #define ROULETTE_EV_EX_BTL_WIN			( 29 )
 #define ROULETTE_EV_EX_SUKA				( 30 )
 #define ROULETTE_EV_EX_BP_GET_BIG		( 31 )
-#define ROULETTE_EV_MAX					( 32 )			//�ő吔
+#define ROULETTE_EV_MAX					( 32 )			//最大数
 #define ROULETTE_EV_NONE				( ROULETTE_EV_MAX )
 
-//�C�x���g�J�n�ʒu(roulette_def.h�ɂ���C�x���g�i���o�[���炳�Ȃ��悤�ɂ���I)
+//イベント開始位置(roulette_def.hにあるイベントナンバーずらさないようにする！)
 #define ROULETTE_EV_ENEMY_START			( ROULETTE_EV_ENEMY_HP_DOWN )
 #define ROULETTE_EV_MINE_START			( ROULETTE_EV_MINE_HP_DOWN )
 #define ROULETTE_EV_PLACE_START			( ROULETTE_EV_PLACE_HARE )
@@ -203,7 +203,7 @@
 
 
 //--------------------------------------------------------------------------------------------
-//�p�l���̃J���[��`
+//パネルのカラー定義
 //--------------------------------------------------------------------------------------------
 #define ROULETTE_PANEL_COLOR_RED		( 0 )
 #define ROULETTE_PANEL_COLOR_BLACK		( 1 )
@@ -215,12 +215,12 @@
 //--------------------------------------------------------------------------------------------
 //
 //--------------------------------------------------------------------------------------------
-//���񐔂ɂ���āA��{���x��ݒ肷��悤�ɂȂ����̂ŁA���̒�`�͈Ӗ����Ȃ�
-#define CSR_SPEED_LEVEL_DEFAULT			(3)				//�J�[�\���X�s�[�h�̃f�t�H���g���x��
+//周回数によって、基本速度を設定するようになったので、この定義は意味がない
+#define CSR_SPEED_LEVEL_DEFAULT			(3)				//カーソルスピードのデフォルトレベル
 
-//���R�[�h�Z�b�g�ɓn���O�ɐ��������Ȃ��ƃ_���I
-//�d�l���́u�Z�[�u�f�[�^�ɂ��āv�̗��ɍő吔�������Ă���
-#define ROULETTE_RENSYOU_MAX			(9999)			//�A����
+//レコードセットに渡す前に制限かけないとダメ！
+//仕様書の「セーブデータについて」の欄に最大数が書いてある
+#define ROULETTE_RENSYOU_MAX			(9999)			//連勝数
 
 
 #endif	//__ROULETTE_DEF_H__

@@ -23,13 +23,13 @@
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_GetMaskBits
 
-  Description:  u32‚Ìƒf[ƒ^‚Ìˆê•”‚Ìƒrƒbƒg—ñ‚ğæ“¾‚µ‚Ü‚·B
+  Description:  u32ã®ãƒ‡ãƒ¼ã‚¿ã®ä¸€éƒ¨ã®ãƒ“ãƒƒãƒˆåˆ—ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    data  : æ‚èo‚µ‚½‚¢ƒf[ƒ^‚ÌŠi”[‚³‚ê‚½u32ƒf[ƒ^
-                shift : ƒrƒbƒg—ñ‚Ì‰E‚ÉƒVƒtƒg‚·‚é”
-                mask  : ƒVƒtƒg‚µ‚½Œã‚Ìƒrƒbƒg—ñ‚É“K—p‚·‚éƒrƒbƒgƒ}ƒXƒN
+  Arguments:    data  : å–ã‚Šå‡ºã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´ã•ã‚ŒãŸu32ãƒ‡ãƒ¼ã‚¿
+                shift : ãƒ“ãƒƒãƒˆåˆ—ã®å³ã«ã‚·ãƒ•ãƒˆã™ã‚‹æ•°
+                mask  : ã‚·ãƒ•ãƒˆã—ãŸå¾Œã®ãƒ“ãƒƒãƒˆåˆ—ã«é©ç”¨ã™ã‚‹ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
 
-  Returns:      ”²‚«o‚µ‚½ƒrƒbƒg—ñ
+  Returns:      æŠœãå‡ºã—ãŸãƒ“ãƒƒãƒˆåˆ—
  *---------------------------------------------------------------------------*/
 static inline u32
 DWCi_Acc_GetMaskBits( u32 data,
@@ -42,15 +42,15 @@ DWCi_Acc_GetMaskBits( u32 data,
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_GetMaskBits
 
-  Description:  u32‚æ‚è’Z‚¢ƒrƒbƒg—ñ‚ğu32‚Ìƒf[ƒ^‚Ìˆê•”‚ÉŠi”[‚µ‚Ü‚·B
+  Description:  u32ã‚ˆã‚ŠçŸ­ã„ãƒ“ãƒƒãƒˆåˆ—ã‚’u32ã®ãƒ‡ãƒ¼ã‚¿ã®ä¸€éƒ¨ã«æ ¼ç´ã—ã¾ã™ã€‚
 
-  Arguments:    ptr   : Ši”[‚µ‚½‚¢u32ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                data  : Ši”[‚µ‚½‚¢ƒrƒbƒg—ñ
-                shift : ƒrƒbƒg—ñ‚Ì¶‚ÉƒVƒtƒg‚·‚é”
-                mask  : ƒVƒtƒg‚·‚é‘O‚Ìƒrƒbƒg—ñ‚É“K—p‚·‚éƒrƒbƒgƒ}ƒXƒN
+  Arguments:    ptr   : æ ¼ç´ã—ãŸã„u32ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                data  : æ ¼ç´ã—ãŸã„ãƒ“ãƒƒãƒˆåˆ—
+                shift : ãƒ“ãƒƒãƒˆåˆ—ã®å·¦ã«ã‚·ãƒ•ãƒˆã™ã‚‹æ•°
+                mask  : ã‚·ãƒ•ãƒˆã™ã‚‹å‰ã®ãƒ“ãƒƒãƒˆåˆ—ã«é©ç”¨ã™ã‚‹ãƒ“ãƒƒãƒˆãƒã‚¹ã‚¯
 
-  Returns:      ƒrƒbƒg—ñ‚ªƒ}ƒXƒN‚Éû‚Ü‚Á‚Ä‚¢‚ê‚ÎAŒ‹‰Ê‚ğ‘‚«‚ñ‚ÅTRUE
-                û‚Ü‚Á‚Ä‚¢‚È‚¯‚ê‚ÎA‰½‚à‚¹‚¸‚ÉFALSE
+  Returns:      ãƒ“ãƒƒãƒˆåˆ—ãŒãƒã‚¹ã‚¯ã«åã¾ã£ã¦ã„ã‚Œã°ã€çµæœã‚’æ›¸ãè¾¼ã‚“ã§TRUE
+                åã¾ã£ã¦ã„ãªã‘ã‚Œã°ã€ä½•ã‚‚ã›ãšã«FALSE
  *---------------------------------------------------------------------------*/
 static BOOL
 DWCi_Acc_SetMaskBits( u32* ptr,
@@ -58,7 +58,7 @@ DWCi_Acc_SetMaskBits( u32* ptr,
                       u32  shift,
                       u32  mask )
 {
-    // data‚ªmask“à‚Éû‚Ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒNB
+    // dataãŒmaskå†…ã«åã¾ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã€‚
     if ( (data & ~mask) != 0 )
     {
         return FALSE;
@@ -72,9 +72,9 @@ DWCi_Acc_SetMaskBits( u32* ptr,
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_GetUserId
 
-  Description:  DWCAccLoginId\‘¢‘Ì‚©‚çUserID‚ğæ“¾‚µ‚Ü‚·B
+  Description:  DWCAccLoginIdæ§‹é€ ä½“ã‹ã‚‰UserIDã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    userdata : ƒ†[ƒUƒf[ƒ^‚ÌŠi”[‚³‚ê‚½DWCAccLoginId\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    userdata : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´ã•ã‚ŒãŸDWCAccLoginIdæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
   Returns:      UserID 64bits
  *---------------------------------------------------------------------------*/
@@ -91,9 +91,9 @@ DWCi_Acc_GetUserId( const DWCAccLoginId* userdata )
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_GetPlayerId
 
-  Description:  DWCAccLoginId\‘¢‘Ì‚©‚çPlayerID‚ğæ“¾‚µ‚Ü‚·B
+  Description:  DWCAccLoginIdæ§‹é€ ä½“ã‹ã‚‰PlayerIDã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    userdata : ƒ†[ƒUƒf[ƒ^‚ÌŠi”[‚³‚ê‚½DWCAccLoginId\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    userdata : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´ã•ã‚ŒãŸDWCAccLoginIdæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
   Returns:      PlayerID 32bits
  *---------------------------------------------------------------------------*/
@@ -106,11 +106,11 @@ DWCi_Acc_GetPlayerId( const DWCAccLoginId* userdata )
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_GetFriendKey
 
-  Description:  DWCAccFriendKey\‘¢‘Ì‚©‚ç—F’B“o˜^Œ®‚ğæ“¾‚µ‚Ü‚·B
+  Description:  DWCAccFriendKeyæ§‹é€ ä½“ã‹ã‚‰å‹é”ç™»éŒ²éµã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    data : ƒ†[ƒUƒf[ƒ^‚ÌŠi”[‚³‚ê‚½DWCAccFriendKey\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    data : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´ã•ã‚ŒãŸDWCAccFriendKeyæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      —F’B“o˜^Œ® 64bits
+  Returns:      å‹é”ç™»éŒ²éµ 64bits
  *---------------------------------------------------------------------------*/
 u64
 DWCi_Acc_GetFriendKey( const DWCAccFriendKey* data )
@@ -121,11 +121,11 @@ DWCi_Acc_GetFriendKey( const DWCAccFriendKey* data )
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_GetGsProfileId
 
-  Description:  DWCAccFriendKey\‘¢‘Ì‚©‚çgsProfileId‚ğæ“¾‚µ‚Ü‚·B
+  Description:  DWCAccFriendKeyæ§‹é€ ä½“ã‹ã‚‰gsProfileIdã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    data : ƒ†[ƒUƒf[ƒ^‚ÌŠi”[‚³‚ê‚½DWCAccGsProfileId\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    data : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´ã•ã‚ŒãŸDWCAccGsProfileIdæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      —F’B“o˜^Œ® 64bits
+  Returns:      å‹é”ç™»éŒ²éµ 64bits
  *---------------------------------------------------------------------------*/
 int
 DWCi_Acc_GetGsProfileId( const DWCAccGsProfileId* data )
@@ -137,12 +137,12 @@ DWCi_Acc_GetGsProfileId( const DWCAccGsProfileId* data )
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_SetUserId
 
-  Description:  DWCAccLoginId\‘¢‘Ì‚ÉUserID‚ğŠi”[‚µ‚Ü‚·B
+  Description:  DWCAccLoginIdæ§‹é€ ä½“ã«UserIDã‚’æ ¼ç´ã—ã¾ã™ã€‚
 
-  Arguments:    userdata : ƒ†[ƒUƒf[ƒ^‚ğŠi”[‚·‚éDWCAccLoginId\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    userdata : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹DWCAccLoginIdæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
                 userid   : UserID 64bits
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWCi_Acc_SetUserId( DWCAccLoginId*  userdata,
@@ -150,7 +150,7 @@ DWCi_Acc_SetUserId( DWCAccLoginId*  userdata,
 {
     if ( !DWCi_Acc_SetMaskBits( &userdata->id_data, (u32)(userid>>32), DWC_ACC_USERID_HI32_SHIFT, DWC_ACC_USERID_HI32_MASK ) )
     {
-        // userid‚ª”ÍˆÍŠO‚Ì’lB
+        // useridãŒç¯„å›²å¤–ã®å€¤ã€‚
     }
     userdata->userid_lo32 = (u32)userid;
 }
@@ -158,12 +158,12 @@ DWCi_Acc_SetUserId( DWCAccLoginId*  userdata,
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_SetPlayerId
 
-  Description:  DWCAccLoginId\‘¢‘Ì‚ÉPlayerID‚ğŠi”[‚µ‚Ü‚·B
+  Description:  DWCAccLoginIdæ§‹é€ ä½“ã«PlayerIDã‚’æ ¼ç´ã—ã¾ã™ã€‚
 
-  Arguments:    userdata : ƒ†[ƒUƒf[ƒ^‚ğŠi”[‚·‚éDWCAccLoginId\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    userdata : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹DWCAccLoginIdæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
                 playerid : PlayerID 64bits
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWCi_Acc_SetPlayerId( DWCAccLoginId*    userdata,
@@ -175,12 +175,12 @@ DWCi_Acc_SetPlayerId( DWCAccLoginId*    userdata,
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_SetPlayerId
 
-  Description:  DWCAccLoginId\‘¢‘Ì‚ÉPlayerID‚ğŠi”[‚µ‚Ü‚·B
+  Description:  DWCAccLoginIdæ§‹é€ ä½“ã«PlayerIDã‚’æ ¼ç´ã—ã¾ã™ã€‚
 
-  Arguments:    userdata : ƒ†[ƒUƒf[ƒ^‚ğŠi”[‚·‚éDWCAccLoginId\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    userdata : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹DWCAccLoginIdæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
                 playerid : PlayerID 64bits
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWCi_Acc_SetFriendKey( DWCAccFriendKey* data,
@@ -193,12 +193,12 @@ DWCi_Acc_SetFriendKey( DWCAccFriendKey* data,
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_SetGsProfileId
 
-  Description:  DWCAccLoginId\‘¢‘Ì‚ÉGsProfileId‚ğŠi”[‚µ‚Ü‚·B
+  Description:  DWCAccLoginIdæ§‹é€ ä½“ã«GsProfileIdã‚’æ ¼ç´ã—ã¾ã™ã€‚
 
-  Arguments:    userdata  : ƒ†[ƒUƒf[ƒ^‚ğŠi”[‚·‚éDWCAccLoginId\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    userdata  : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹DWCAccLoginIdæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
                 friendkey : PlayerID 64bits
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWCi_Acc_SetGsProfileId( DWCAccGsProfileId* data, int gs_profile_id )
@@ -209,11 +209,11 @@ DWCi_Acc_SetGsProfileId( DWCAccGsProfileId* data, int gs_profile_id )
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_GetFlags
 
-  Description:  DWCAccFlag\‘¢‘Ì‚Ìƒtƒ‰ƒO‚ğæ“¾‚µ‚Ü‚·B
+  Description:  DWCAccFlagæ§‹é€ ä½“ã®ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    userdata : ƒ†[ƒUƒf[ƒ^‚ğŠi”[‚·‚éDWCAccLoginId\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    userdata : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹DWCAccLoginIdæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ƒtƒ‰ƒOi—LŒø12bitsj
+  Returns:      ãƒ•ãƒ©ã‚°ï¼ˆæœ‰åŠ¹12bitsï¼‰
  *---------------------------------------------------------------------------*/
 static u32
 DWCi_Acc_GetFlags( const DWCAccFlag* userdata )
@@ -221,7 +221,7 @@ DWCi_Acc_GetFlags( const DWCAccFlag* userdata )
     return DWCi_Acc_GetMaskBits( userdata->flags, DWC_ACC_FLAGS_SHIFT, DWC_ACC_FLAGS_MASK );
 }
 
-// ƒf[ƒ^ƒ^ƒCƒv
+// ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
 static u32
 DWCi_Acc_GetFlag_DataType( const DWCAccFlag* userdata )
 {
@@ -231,13 +231,13 @@ DWCi_Acc_GetFlag_DataType( const DWCAccFlag* userdata )
 /*---------------------------------------------------------------------------*
   Name:         DWC_IsBuddyFriendData
 
-  Description:  DWCAccFriendData\‘¢‘Ì‚ÉGSƒvƒƒtƒ@ƒCƒ‹ID‚ªŠi”[‚³‚ê‚Ä‚¢‚é‚Æ‚«A
-                —F’Bî•ñ‚ªŠù‚ÉƒT[ƒoã‚Å—F’BŠÖŒW‚É‚È‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚éB
+  Description:  DWCAccFriendDataæ§‹é€ ä½“ã«GSãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«IDãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã¨ãã€
+                å‹é”æƒ…å ±ãŒæ—¢ã«ã‚µãƒ¼ãƒä¸Šã§å‹é”é–¢ä¿‚ã«ãªã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹ã€‚
 
-  Arguments:    frienddata : ƒtƒŒƒ“ƒhƒf[ƒ^‚ğŠi”[‚·‚éDWCAccFriendData\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    frienddata : ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹DWCAccFriendDataæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      TRUE  : Šù‚É—F’BŠÖŒW‚É‚È‚Á‚Ä‚¢‚é
-                FALSE : ‚Ü‚¾‚È‚Á‚Ä‚¢‚È‚¢B
+  Returns:      TRUE  : æ—¢ã«å‹é”é–¢ä¿‚ã«ãªã£ã¦ã„ã‚‹
+                FALSE : ã¾ã ãªã£ã¦ã„ãªã„ã€‚
  *---------------------------------------------------------------------------*/
 BOOL
 DWC_IsBuddyFriendData( const DWCAccFriendData* frienddata )
@@ -258,13 +258,13 @@ DWC_IsBuddyFriendData( const DWCAccFriendData* frienddata )
 /*---------------------------------------------------------------------------*
   Name:         DWC_
 
-  Description:  DWCAccFriendData\‘¢‘Ì‚ÉGSƒvƒƒtƒ@ƒCƒ‹ID‚ªŠi”[‚³‚ê‚Ä‚¢‚é‚Æ‚«A
-                —F’Bî•ñ‚ªŠù‚ÉƒT[ƒoã‚Å—F’BŠÖŒW‚É‚È‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğŠm”F‚·‚éB
+  Description:  DWCAccFriendDataæ§‹é€ ä½“ã«GSãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«IDãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã¨ãã€
+                å‹é”æƒ…å ±ãŒæ—¢ã«ã‚µãƒ¼ãƒä¸Šã§å‹é”é–¢ä¿‚ã«ãªã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹ã€‚
 
-  Arguments:    frienddata : ƒtƒŒƒ“ƒhƒf[ƒ^‚ğŠi”[‚·‚éDWCAccFriendData\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    frienddata : ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹DWCAccFriendDataæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      TRUE  : Šù‚É—F’BŠÖŒW‚É‚È‚Á‚Ä‚¢‚é
-                FALSE : ‚Ü‚¾‚È‚Á‚Ä‚¢‚È‚¢B
+  Returns:      TRUE  : æ—¢ã«å‹é”é–¢ä¿‚ã«ãªã£ã¦ã„ã‚‹
+                FALSE : ã¾ã ãªã£ã¦ã„ãªã„ã€‚
  *---------------------------------------------------------------------------*/
 int
 DWC_GetFriendDataType( const DWCAccFriendData* frienddata )
@@ -276,12 +276,12 @@ DWC_GetFriendDataType( const DWCAccFriendData* frienddata )
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_SetFlags
 
-  Description:  DWCAccLoginId\‘¢‘Ì‚Éƒtƒ‰ƒO‚ğŠi”[‚µ‚Ü‚·B
+  Description:  DWCAccLoginIdæ§‹é€ ä½“ã«ãƒ•ãƒ©ã‚°ã‚’æ ¼ç´ã—ã¾ã™ã€‚
 
-  Arguments:    userdata : ƒ†[ƒUƒf[ƒ^‚ğŠi”[‚·‚éDWCAccLoginId\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                flags    : ƒtƒ‰ƒOi—LŒø12bitsj
+  Arguments:    userdata : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹DWCAccLoginIdæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                flags    : ãƒ•ãƒ©ã‚°ï¼ˆæœ‰åŠ¹12bitsï¼‰
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 static void
 DWCi_Acc_SetFlags( DWCAccFlag* userdata,
@@ -290,7 +290,7 @@ DWCi_Acc_SetFlags( DWCAccFlag* userdata,
     DWCi_Acc_SetMaskBits( &userdata->flags, flags, DWC_ACC_FLAGS_SHIFT, DWC_ACC_FLAGS_MASK );
 }
 
-// ƒf[ƒ^ƒ^ƒCƒv
+// ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
 static void
 DWCi_Acc_SetFlag_DataType( DWCAccFlag* userdata,
                            int         type )
@@ -307,12 +307,12 @@ DWCi_Acc_SetFlag_DataType( DWCAccFlag* userdata,
 /*---------------------------------------------------------------------------*
   Name:         DWCi_SetBuddyFriendData
 
-  Description:  DWCAccFriendData\‘¢‘Ì‚ÉGSƒvƒƒtƒ@ƒCƒ‹ID‚ªŠi”[‚³‚ê‚Ä‚¢‚é‚Æ‚«A
-                —F’Bî•ñ‚ªŠù‚ÉƒT[ƒoã‚Å—F’BŠÖŒW‚É‚È‚Á‚Ä‚¢‚½‚çAƒZƒbƒg‚·‚éB
+  Description:  DWCAccFriendDataæ§‹é€ ä½“ã«GSãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«IDãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã¨ãã€
+                å‹é”æƒ…å ±ãŒæ—¢ã«ã‚µãƒ¼ãƒä¸Šã§å‹é”é–¢ä¿‚ã«ãªã£ã¦ã„ãŸã‚‰ã€ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
 
-  Arguments:    frienddata : ƒtƒŒƒ“ƒhƒf[ƒ^‚ğŠi”[‚·‚éDWCAccFriendData\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    frienddata : ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹DWCAccFriendDataæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWCi_SetBuddyFriendData( DWCAccFriendData* frienddata )
@@ -332,12 +332,12 @@ DWCi_SetBuddyFriendData( DWCAccFriendData* frienddata )
 /*---------------------------------------------------------------------------*
   Name:         DWC_ClearBuddyFlagFriendData
 
-  Description:  DWCAccFriendData\‘¢‘Ì‚ÉGSƒvƒƒtƒ@ƒCƒ‹ID‚ªŠi”[‚³‚ê‚Ä‚¢‚é‚Æ‚«‚ÅA
-                —F’Bî•ñ‚ÉƒZƒbƒg‚³‚ê‚½—F’B¬—§ƒtƒ‰ƒO‚ğƒNƒŠƒA‚·‚éB
+  Description:  DWCAccFriendDataæ§‹é€ ä½“ã«GSãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«IDãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã¨ãã§ã€
+                å‹é”æƒ…å ±ã«ã‚»ãƒƒãƒˆã•ã‚ŒãŸå‹é”æˆç«‹ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
 
-  Arguments:    frienddata : ƒtƒŒƒ“ƒhƒf[ƒ^‚ğŠi”[‚·‚éDWCAccFriendData\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    frienddata : ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹DWCAccFriendDataæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_ClearBuddyFlagFriendData( DWCAccFriendData* frienddata )
@@ -357,11 +357,11 @@ DWC_ClearBuddyFlagFriendData( DWCAccFriendData* frienddata )
 /*---------------------------------------------------------------------------*
   Name:         DWC_Acc_CreateFriendKey
 
-  Description:  GS ProfileId‚©‚çA—F’B“o˜^Œ®‚ğ¶¬‚µ‚Ü‚·B
+  Description:  GS ProfileIdã‹ã‚‰ã€å‹é”ç™»éŒ²éµã‚’ç”Ÿæˆã—ã¾ã™ã€‚
 
-  Arguments:    userdata : —F’B“o˜^Œ®‚ÌŒ³‚Æ‚È‚éGS Profile ID‚ÌŠi”[‚³‚ê‚½\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    userdata : å‹é”ç™»éŒ²éµã®å…ƒã¨ãªã‚‹GS Profile IDã®æ ¼ç´ã•ã‚ŒãŸæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 u64
 DWC_Acc_CreateFriendKey( int gs_profile_id,
@@ -375,7 +375,7 @@ DWC_Acc_CreateFriendKey( int gs_profile_id,
     code[1] = gamecode;
 
     MATH_CRC8InitTable( &table );
-    crc = MATH_CalcCRC8( &table, code, sizeof( code ) ) & 0x7f; // 7bits‚Ì‚İ—LŒø
+    crc = MATH_CalcCRC8( &table, code, sizeof( code ) ) & 0x7f; // 7bitsã®ã¿æœ‰åŠ¹
 
     return ( ((u64)crc << 32) | (u32)gs_profile_id );
 }
@@ -384,13 +384,13 @@ DWC_Acc_CreateFriendKey( int gs_profile_id,
 /*---------------------------------------------------------------------------*
   Name:         DWC_CheckFriendKey
 
-  Description:  —F’B“o˜^Œ®‚ª³‚µ‚¢‚à‚Ì‚©‚Ç‚¤‚©‚ğŠm”F‚µ‚Ü‚·B
+  Description:  å‹é”ç™»éŒ²éµãŒæ­£ã—ã„ã‚‚ã®ã‹ã©ã†ã‹ã‚’ç¢ºèªã—ã¾ã™ã€‚
 
-  Arguments:    userdata  : ƒ†[ƒUƒf[ƒ^
-                friendkey : —F’B“o˜^Œ®
+  Arguments:    userdata  : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿
+                friendkey : å‹é”ç™»éŒ²éµ
 
-  Returns:      TRUE  : ³‚µ‚¢
-                FALSE : •s³‚ÈƒR[ƒh
+  Returns:      TRUE  : æ­£ã—ã„
+                FALSE : ä¸æ­£ãªã‚³ãƒ¼ãƒ‰
  *---------------------------------------------------------------------------*/
 BOOL
 DWC_CheckFriendKey( const DWCAccUserData* userdata, u64 friendkey )
@@ -401,13 +401,13 @@ DWC_CheckFriendKey( const DWCAccUserData* userdata, u64 friendkey )
 /*---------------------------------------------------------------------------*
   Name:         DWC_Acc_CheckFriendKey
 
-  Description:  —F’B“o˜^Œ®‚ª³‚µ‚¢‚à‚Ì‚©‚Ç‚¤‚©‚ğŠm”F‚µ‚Ü‚·B
+  Description:  å‹é”ç™»éŒ²éµãŒæ­£ã—ã„ã‚‚ã®ã‹ã©ã†ã‹ã‚’ç¢ºèªã—ã¾ã™ã€‚
 
-  Arguments:    friendkey : —F’B“o˜^Œ®
-                gamecode  : •s³‚ÈƒR[ƒh‚ÌƒL[‚Æ‚È‚é’l
+  Arguments:    friendkey : å‹é”ç™»éŒ²éµ
+                gamecode  : ä¸æ­£ãªã‚³ãƒ¼ãƒ‰ã®ã‚­ãƒ¼ã¨ãªã‚‹å€¤
 
-  Returns:      TRUE  : ³‚µ‚¢
-                FALSE : •s³‚ÈƒR[ƒh
+  Returns:      TRUE  : æ­£ã—ã„
+                FALSE : ä¸æ­£ãªã‚³ãƒ¼ãƒ‰
  *---------------------------------------------------------------------------*/
 BOOL
 DWC_Acc_CheckFriendKey( u64 friendkey,
@@ -417,14 +417,14 @@ DWC_Acc_CheckFriendKey( u64 friendkey,
     u32 code[2];
     int crc;
 
-    // •‰‚ÌGSƒvƒƒtƒ@ƒCƒ‹ID‚Í•s³
+    // è² ã®GSãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«IDã¯ä¸æ­£
     if ( friendkey & 0x80000000 ) return FALSE;
 
     code[0] = (u32)friendkey;
     code[1] = gamecode;
 
     MATH_CRC8InitTable( &table );
-    crc = MATH_CalcCRC8( &table, code, sizeof( code ) ) & 0x7f; // 7bits‚Ì‚İ—LŒø
+    crc = MATH_CalcCRC8( &table, code, sizeof( code ) ) & 0x7f; // 7bitsã®ã¿æœ‰åŠ¹
 
     if ( crc != (friendkey >> 32) )
     {
@@ -437,13 +437,13 @@ DWC_Acc_CheckFriendKey( u64 friendkey,
 /*---------------------------------------------------------------------------*
   Name:         DWC_Acc_FriendKeyToGsProfileId
 
-  Description:  —F’B“o˜^Œ®‚©‚çGS ProfileId‚ğæ‚èo‚µ‚Ü‚·B
+  Description:  å‹é”ç™»éŒ²éµã‹ã‚‰GS ProfileIdã‚’å–ã‚Šå‡ºã—ã¾ã™ã€‚
 
-  Arguments:    friendkey : —F’B“o˜^Œ®
-                gamecode  : •s³‚ÈƒR[ƒh‚ÌƒL[‚Æ‚È‚é’l
+  Arguments:    friendkey : å‹é”ç™»éŒ²éµ
+                gamecode  : ä¸æ­£ãªã‚³ãƒ¼ãƒ‰ã®ã‚­ãƒ¼ã¨ãªã‚‹å€¤
 
-  Returns:      0‚Ì‚Æ‚«‚ÍAæ“¾¸”si•s³‚È—F’B“o˜^Œ®j
-                ‚»‚êˆÈŠO‚Ì‚Æ‚«‚ÍAGS ProfileId
+  Returns:      0ã®ã¨ãã¯ã€å–å¾—å¤±æ•—ï¼ˆä¸æ­£ãªå‹é”ç™»éŒ²éµï¼‰
+                ãã‚Œä»¥å¤–ã®ã¨ãã¯ã€GS ProfileId
  *---------------------------------------------------------------------------*/
 int
 DWC_Acc_FriendKeyToGsProfileId( u64 friendkey,
@@ -460,12 +460,12 @@ DWC_Acc_FriendKeyToGsProfileId( u64 friendkey,
 /*---------------------------------------------------------------------------*
   Name:         DWC_FriendKeyToString
 
-  Description:  —F’B“o˜^Œ®‚ğ”š‚Å•\Œ»‚³‚ê‚½•¶š—ñ‚É•ÏŠ·‚µ‚Ü‚·B
+  Description:  å‹é”ç™»éŒ²éµã‚’æ•°å­—ã§è¡¨ç¾ã•ã‚ŒãŸæ–‡å­—åˆ—ã«å¤‰æ›ã—ã¾ã™ã€‚
 
-  Arguments:    string      •¶š—ñ‚Ìo—Íæ
-                friendkey   “ü—Í‚·‚é—F’B“o˜^Œ®i”’l•\Œ»j
+  Arguments:    string      æ–‡å­—åˆ—ã®å‡ºåŠ›å…ˆ
+                friendkey   å…¥åŠ›ã™ã‚‹å‹é”ç™»éŒ²éµï¼ˆæ•°å€¤è¡¨ç¾ï¼‰
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void DWC_FriendKeyToString( char* string, u64 friendKey )
 {
@@ -475,11 +475,11 @@ void DWC_FriendKeyToString( char* string, u64 friendKey )
 /*---------------------------------------------------------------------------*
   Name:         DWC_StringToFriendKey
 
-  Description:  ”š‚Å•\Œ»‚³‚ê‚½•¶š—ñ‚ğ—F’B“o˜^Œ®i”’l•\Œ»j‚É•ÏŠ·‚µ‚Ü‚·B
+  Description:  æ•°å­—ã§è¡¨ç¾ã•ã‚ŒãŸæ–‡å­—åˆ—ã‚’å‹é”ç™»éŒ²éµï¼ˆæ•°å€¤è¡¨ç¾ï¼‰ã«å¤‰æ›ã—ã¾ã™ã€‚
 
-  Arguments:    string      “ü—Í‚·‚é”š‚Å•\Œ»‚³‚ê‚½•¶š—ñ
+  Arguments:    string      å…¥åŠ›ã™ã‚‹æ•°å­—ã§è¡¨ç¾ã•ã‚ŒãŸæ–‡å­—åˆ—
 
-  Returns:      —F’B“o˜^Œ®i”’l•\Œ»j
+  Returns:      å‹é”ç™»éŒ²éµï¼ˆæ•°å€¤è¡¨ç¾ï¼‰
  *---------------------------------------------------------------------------*/
 u64 DWC_StringToFriendKey( const char* string )
 {
@@ -504,14 +504,14 @@ u64 DWC_StringToFriendKey( const char* string )
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_U64ToString32
 
-  Description:  32i•¶š—ñ‚É•ÏŠ·‚µ‚Ü‚·B5bits‚ğ1•¶š‚Å•\Œ»‚µ‚Ü‚·B
+  Description:  32é€²æ–‡å­—åˆ—ã«å¤‰æ›ã—ã¾ã™ã€‚5bitsã‚’1æ–‡å­—ã§è¡¨ç¾ã—ã¾ã™ã€‚
 
-  Arguments:    num    : •ÏŠ·‚·‚é”’l
-                bitnum : •ÏŠ·‚·‚éƒrƒbƒg’·
-                result : Œ‹‰Ê‚ğŠi”[‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@B(bitnum+4)/5 + 1ƒoƒCƒg
-                         •ª‚Ì—Ìˆæ‚ª•K—v‚Å‚·B
+  Arguments:    num    : å¤‰æ›ã™ã‚‹æ•°å€¤
+                bitnum : å¤‰æ›ã™ã‚‹ãƒ“ãƒƒãƒˆé•·
+                result : çµæœã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡ã€‚(bitnum+4)/5 + 1ãƒã‚¤ãƒˆ
+                         åˆ†ã®é ˜åŸŸãŒå¿…è¦ã§ã™ã€‚
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 static void
 DWCi_Acc_U64ToString32( u64   num,
@@ -530,21 +530,21 @@ DWCi_Acc_U64ToString32( u64   num,
         num >>= 5;
     }
 
-    *( result + loopnum ) = 0; // NULLI’[‚ğ“ü‚ê‚éB
+    *( result + loopnum ) = 0; // NULLçµ‚ç«¯ã‚’å…¥ã‚Œã‚‹ã€‚
 }
 
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_LoginIdToUserName
 
-  Description:  DWCAccLoginId\‘¢‘Ì‚ÌƒƒOƒCƒ“ID‚ğ•¶š—ñ•\Œ»‚É•ÏŠ·‚µ‚Ü‚·B
-                ƒ†[ƒUID9Œ…{ƒQ[ƒ€ƒR[ƒh{ƒvƒŒƒCƒ„[ID7Œ…‚É‚È‚è‚Ü‚·B
-                NULLI’[‚ğŠÜ‚ß‚Ä21ƒoƒCƒg‚Ìo—Í—Ìˆæ‚ª•K—v‚Å‚·B
+  Description:  DWCAccLoginIdæ§‹é€ ä½“ã®ãƒ­ã‚°ã‚¤ãƒ³IDã‚’æ–‡å­—åˆ—è¡¨ç¾ã«å¤‰æ›ã—ã¾ã™ã€‚
+                ãƒ¦ãƒ¼ã‚¶ID9æ¡ï¼‹ã‚²ãƒ¼ãƒ ã‚³ãƒ¼ãƒ‰ï¼‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID7æ¡ã«ãªã‚Šã¾ã™ã€‚
+                NULLçµ‚ç«¯ã‚’å«ã‚ã¦21ãƒã‚¤ãƒˆã®å‡ºåŠ›é ˜åŸŸãŒå¿…è¦ã§ã™ã€‚
 
-  Arguments:    loginid  : ƒ†[ƒUƒf[ƒ^‚ÌŠi”[‚³‚ê‚½DWCAccLoginId\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                gamecode : ƒQ[ƒ€ƒR[ƒh
-                username : Œ‹‰Ê‚ğŠi”[‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@B21ƒoƒCƒg•K—v‚Å‚·B
+  Arguments:    loginid  : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´ã•ã‚ŒãŸDWCAccLoginIdæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                gamecode : ã‚²ãƒ¼ãƒ ã‚³ãƒ¼ãƒ‰
+                username : çµæœã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡ã€‚21ãƒã‚¤ãƒˆå¿…è¦ã§ã™ã€‚
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWCi_Acc_LoginIdToUserName( const DWCAccLoginId* loginid,
@@ -567,12 +567,12 @@ DWCi_Acc_LoginIdToUserName( const DWCAccLoginId* loginid,
 /*---------------------------------------------------------------------------*
   Name:         DWC_Acc_CreateUserData
 
-  Description:  ƒ†[ƒUƒf[ƒ^‚ğì¬‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¾ã™ã€‚
 
-  Arguments:    userdata  : ƒ†[ƒUƒf[ƒ^‚ğŠi”[‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@
-                gamecode  : ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚É”C“V“°‚ªŠ„‚è“–‚Ä‚éƒQ[ƒ€ƒR[ƒh
+  Arguments:    userdata  : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡
+                gamecode  : ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã«ä»»å¤©å ‚ãŒå‰²ã‚Šå½“ã¦ã‚‹ã‚²ãƒ¼ãƒ ã‚³ãƒ¼ãƒ‰
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWCi_Acc_CreateUserData( DWCAccUserData* userdata, u32 gamecode )
@@ -581,33 +581,33 @@ DWCi_Acc_CreateUserData( DWCAccUserData* userdata, u32 gamecode )
 
     MI_CpuClear8( userdata, DWC_ACC_USERDATA_BUFSIZE );
 
-    // ƒ†[ƒUî•ñ‚Ìİ’è
+    // ãƒ¦ãƒ¼ã‚¶æƒ…å ±ã®è¨­å®š
     userdata->size = DWC_ACC_USERDATA_BUFSIZE;
     userdata->gs_profile_id = 0;
     userdata->gamecode = gamecode;
 
-    // ƒeƒ“ƒ|ƒ‰ƒŠ‚ÌLoginId‚ğ¶¬‚·‚éB
+    // ãƒ†ãƒ³ãƒãƒ©ãƒªã®LoginIdã‚’ç”Ÿæˆã™ã‚‹ã€‚
     DWCi_Acc_CreateTempLoginId( &userdata->pseudo );
 
-    // Userdata‚ğì¬‚·‚é‚Æ‚«‚ÍA”FØ‚³‚ê‚½ID‚Í¶¬‚Å‚«‚È‚¢‚Ì‚ÅA“ü‚ê‚È‚¢B
+    // Userdataã‚’ä½œæˆã™ã‚‹ã¨ãã¯ã€èªè¨¼ã•ã‚ŒãŸIDã¯ç”Ÿæˆã§ããªã„ã®ã§ã€å…¥ã‚Œãªã„ã€‚
     DWCi_Acc_SetFlag_DataType( (DWCAccFlag*)&userdata->authentic, DWC_ACC_FRIENDDATA_NODATA   );
 
-    // CRC‚ÌŒvZ
+    // CRCã®è¨ˆç®—
     MATH_CRC32InitTable( &table );
     userdata->crc32 = MATH_CalcCRC32( &table, userdata, sizeof( DWCAccUserData ) - 4 );
 
-    // dirtyƒtƒ‰ƒO‚ğ—§‚Ä‚éB
+    // dirtyãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹ã€‚
     userdata->flag |= DWC_ACC_USERDATA_DIRTY;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_CreateTempLoginId
 
-  Description:  ƒeƒ“ƒ|ƒ‰ƒŠƒƒOƒCƒ“ID‚ğì¬‚µ‚Ü‚·B
+  Description:  ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ­ã‚°ã‚¤ãƒ³IDã‚’ä½œæˆã—ã¾ã™ã€‚
 
-  Arguments:    loginid  : Šm”F‚·‚éƒƒOƒCƒ“ID‚ªŠi”[‚³‚ê‚½ƒ|ƒCƒ“ƒ^
+  Arguments:    loginid  : ç¢ºèªã™ã‚‹ãƒ­ã‚°ã‚¤ãƒ³IDãŒæ ¼ç´ã•ã‚ŒãŸãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWCi_Acc_CreateTempLoginId( DWCAccLoginId* loginid )
@@ -617,14 +617,14 @@ DWCi_Acc_CreateTempLoginId( DWCAccLoginId* loginid )
 	u32					buffer[8];
 	u32					i;
 	
-	// [nakata] ƒ‰ƒ“ƒ_ƒ€ƒRƒ“ƒeƒLƒXƒg‚Ì‰Šú‰»‚ğTickƒx[ƒX‚©‚çLowEntropyDataƒx[ƒX‚É•ÏX
+	// [nakata] ãƒ©ãƒ³ãƒ€ãƒ ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®åˆæœŸåŒ–ã‚’Tickãƒ™ãƒ¼ã‚¹ã‹ã‚‰LowEntropyDataãƒ™ãƒ¼ã‚¹ã«å¤‰æ›´
 	OS_GetLowEntropyData(buffer);
 	for(i=1; i<8; i++) {
 		buffer[i] = buffer[i]^buffer[i-1];
 	}
     MATH_InitRand32( &randcontext, buffer[7] );
 
-    // –{‘Ì‚Ìƒ†[ƒUID‚ğ“ü‚ê‚éB
+    // æœ¬ä½“ã®ãƒ¦ãƒ¼ã‚¶IDã‚’å…¥ã‚Œã‚‹ã€‚
     DWC_Auth_GetId( &authid );
     if ( authid.flg )
     {
@@ -635,7 +635,7 @@ DWCi_Acc_CreateTempLoginId( DWCAccLoginId* loginid )
         DWCi_Acc_SetUserId( loginid, authid.notAttestedId );
     }
 #if 0
-    DWCi_Acc_SetPlayerId( loginid, 1 ); // ƒfƒoƒbƒO—p‚ÉŒÅ’è’l‚É‚·‚éB
+    DWCi_Acc_SetPlayerId( loginid, 1 ); // ãƒ‡ãƒãƒƒã‚°ç”¨ã«å›ºå®šå€¤ã«ã™ã‚‹ã€‚
 #else
     DWCi_Acc_SetPlayerId( loginid, MATH_Rand32( &randcontext, 0 ) );
 #endif
@@ -645,12 +645,12 @@ DWCi_Acc_CreateTempLoginId( DWCAccLoginId* loginid )
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_CheckConsoleUserId
 
-  Description:  ƒƒOƒCƒ“ID‚Ìƒ†[ƒUID‚ÆƒRƒ“ƒ\[ƒ‹‚Ìƒ†[ƒUID‚ğ”äŠr‚·‚é
+  Description:  ãƒ­ã‚°ã‚¤ãƒ³IDã®ãƒ¦ãƒ¼ã‚¶IDã¨ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã®ãƒ¦ãƒ¼ã‚¶IDã‚’æ¯”è¼ƒã™ã‚‹
 
-  Arguments:    loginid  : Šm”F‚·‚éƒƒOƒCƒ“ID‚ªŠi”[‚³‚ê‚½ƒ|ƒCƒ“ƒ^
+  Arguments:    loginid  : ç¢ºèªã™ã‚‹ãƒ­ã‚°ã‚¤ãƒ³IDãŒæ ¼ç´ã•ã‚ŒãŸãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      TRUE  : “¯‚¶
-                FALSE : ˆá‚¤
+  Returns:      TRUE  : åŒã˜
+                FALSE : é•ã†
  *---------------------------------------------------------------------------*/
 BOOL
 DWCi_Acc_CheckConsoleUserId( const DWCAccLoginId* loginid )
@@ -671,12 +671,12 @@ DWCi_Acc_CheckConsoleUserId( const DWCAccLoginId* loginid )
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_IsValidLoginId
 
-  Description:  ƒƒOƒCƒ“ID‚ª³‚µ‚¢‚à‚Ì‚©‚Ç‚¤‚©‚ğŠm”F‚µ‚Ü‚·B
+  Description:  ãƒ­ã‚°ã‚¤ãƒ³IDãŒæ­£ã—ã„ã‚‚ã®ã‹ã©ã†ã‹ã‚’ç¢ºèªã—ã¾ã™ã€‚
 
-  Arguments:    loginid  : Šm”F‚·‚éƒƒOƒCƒ“ID‚ªŠi”[‚³‚ê‚½ƒ|ƒCƒ“ƒ^
+  Arguments:    loginid  : ç¢ºèªã™ã‚‹ãƒ­ã‚°ã‚¤ãƒ³IDãŒæ ¼ç´ã•ã‚ŒãŸãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      TRUE  : loginID‚ªŠi”[‚³‚ê‚Ä‚¢‚é
-                FALSE : Ši”[‚³‚ê‚Ä‚¢‚é‚à‚Ì‚ÍƒƒOƒCƒ“ID‚Å‚Í‚È‚¢
+  Returns:      TRUE  : loginIDãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹
+                FALSE : æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã¯ãƒ­ã‚°ã‚¤ãƒ³IDã§ã¯ãªã„
  *---------------------------------------------------------------------------*/
 BOOL
 DWCi_Acc_IsValidLoginId( const DWCAccLoginId* loginid )
@@ -687,12 +687,12 @@ DWCi_Acc_IsValidLoginId( const DWCAccLoginId* loginid )
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_IsAuthentic
 
-  Description:  ƒ†[ƒUƒf[ƒ^‚ª”FØÏ‚İ‚©‚Ç‚¤‚©‚ğŠm”F‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ãŒèªè¨¼æ¸ˆã¿ã‹ã©ã†ã‹ã‚’ç¢ºèªã—ã¾ã™ã€‚
 
-  Arguments:    userdata  : Šm”F‚·‚éƒ†[ƒUƒf[ƒ^‚ªŠi”[‚³‚ê‚½ƒ|ƒCƒ“ƒ^
+  Arguments:    userdata  : ç¢ºèªã™ã‚‹ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚ŒãŸãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      TRUE  : Šù‚É”FØÏ‚İB
-                FALSE : ‚Ü‚¾”FØ‚ğó‚¯‚Ä‚¢‚È‚¢B
+  Returns:      TRUE  : æ—¢ã«èªè¨¼æ¸ˆã¿ã€‚
+                FALSE : ã¾ã èªè¨¼ã‚’å—ã‘ã¦ã„ãªã„ã€‚
  *---------------------------------------------------------------------------*/
 BOOL
 DWCi_Acc_IsAuthentic( const DWCAccUserData* userdata )
@@ -703,12 +703,12 @@ DWCi_Acc_IsAuthentic( const DWCAccUserData* userdata )
 /*---------------------------------------------------------------------------*
   Name:         DWC_IsValidFriendData / DWCi_Acc_IsValidFriendData
 
-  Description:  FriendData‚É—LŒø‚Èƒf[ƒ^‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚Ü‚·B
+  Description:  FriendDataã«æœ‰åŠ¹ãªãƒ‡ãƒ¼ã‚¿ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã¾ã™ã€‚
 
-  Arguments:    frienddata : FriendData\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    frienddata : FriendDataæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      TRUE  : —LŒø‚Èƒf[ƒ^
-                FALSE : –³Œø‚Èƒf[ƒ^iƒf[ƒ^‚È‚µj
+  Returns:      TRUE  : æœ‰åŠ¹ãªãƒ‡ãƒ¼ã‚¿
+                FALSE : ç„¡åŠ¹ãªãƒ‡ãƒ¼ã‚¿ï¼ˆãƒ‡ãƒ¼ã‚¿ãªã—ï¼‰
  *---------------------------------------------------------------------------*/
 BOOL
 DWC_IsValidFriendData( const DWCAccFriendData* frienddata )
@@ -723,7 +723,7 @@ DWC_IsValidFriendData( const DWCAccFriendData* frienddata )
     return TRUE;
 }
 
-// ‰ß‹‚ÌŒİŠ·«‚Ì‚½‚ßB
+// éå»ã®äº’æ›æ€§ã®ãŸã‚ã€‚
 BOOL
 DWCi_Acc_IsValidFriendData( const DWCAccFriendData* frienddata )
 {
@@ -733,12 +733,12 @@ DWCi_Acc_IsValidFriendData( const DWCAccFriendData* frienddata )
 /*---------------------------------------------------------------------------*
   Name:         DWC_CreateUserData
 
-  Description:  ƒ†[ƒUƒf[ƒ^‚ğ¶¬‚µ‚Ü‚·B‚±‚Ìƒ†[ƒUƒf[ƒ^‚ğƒoƒbƒNƒAƒbƒvƒƒ‚ƒŠ‚É
-                •Û‘¶‚µ‚Ä‚­‚¾‚³‚¢B
+  Description:  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã—ã¾ã™ã€‚ã“ã®ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¡ãƒ¢ãƒªã«
+                ä¿å­˜ã—ã¦ãã ã•ã„ã€‚
 
-  Arguments:    userdata  : ¶¬‚³‚ê‚½ƒ†[ƒUƒf[ƒ^‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^
+  Arguments:    userdata  : ç”Ÿæˆã•ã‚ŒãŸãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_CreateUserData( DWCAccUserData* userdata, u32 gamecode )
@@ -749,12 +749,12 @@ DWC_CreateUserData( DWCAccUserData* userdata, u32 gamecode )
 /*---------------------------------------------------------------------------*
   Name:         DWC_CheckUserData
 
-  Description:  ƒ†[ƒUƒf[ƒ^‚ğŒŸ¸‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’æ¤œæŸ»ã—ã¾ã™ã€‚
 
-  Arguments:    userdata  : ŒŸ¸‚·‚éƒ†[ƒUƒf[ƒ^‚ªŠi”[‚³‚ê‚½ƒ|ƒCƒ“ƒ^
+  Arguments:    userdata  : æ¤œæŸ»ã™ã‚‹ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚ŒãŸãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      TRUE  : ³í
-                FALSE : ”j‰ó‚³‚ê‚Ä‚¢‚é
+  Returns:      TRUE  : æ­£å¸¸
+                FALSE : ç ´å£Šã•ã‚Œã¦ã„ã‚‹
  *---------------------------------------------------------------------------*/
 BOOL
 DWC_CheckUserData( const DWCAccUserData* userdata )
@@ -771,12 +771,12 @@ DWC_CheckUserData( const DWCAccUserData* userdata )
 /*---------------------------------------------------------------------------*
   Name:         DWC_CheckHasProfile
 
-  Description:  ƒ†[ƒUƒf[ƒ^‚ªŠù‚Éƒvƒƒtƒ@ƒCƒ‹ID‚ğæ“¾‚µ‚Ä‚¢‚é‚©‚ğŠm”F‚·‚éB
+  Description:  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ãŒæ—¢ã«ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«IDã‚’å–å¾—ã—ã¦ã„ã‚‹ã‹ã‚’ç¢ºèªã™ã‚‹ã€‚
 
-  Arguments:    userdata  : ŒŸ¸‚·‚éƒ†[ƒUƒf[ƒ^‚ªŠi”[‚³‚ê‚½ƒ|ƒCƒ“ƒ^
+  Arguments:    userdata  : æ¤œæŸ»ã™ã‚‹ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚ŒãŸãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      TRUE  : Šù‚ÉProfileId‚ğæ“¾‚µ‚Ä‚¢‚é
-                FALSE : ProfileId‚Í‚Ü‚¾æ“¾‚³‚ê‚Ä‚¢‚È‚¢
+  Returns:      TRUE  : æ—¢ã«ProfileIdã‚’å–å¾—ã—ã¦ã„ã‚‹
+                FALSE : ProfileIdã¯ã¾ã å–å¾—ã•ã‚Œã¦ã„ãªã„
  *---------------------------------------------------------------------------*/
 BOOL
 DWC_CheckHasProfile( const DWCAccUserData* userdata )
@@ -787,12 +787,12 @@ DWC_CheckHasProfile( const DWCAccUserData* userdata )
 /*---------------------------------------------------------------------------*
   Name:         DWC_CheckValidConsole
 
-  Description:  ƒ†[ƒUƒf[ƒ^‚Æ–{‘Ì‚Ì®‡«‚ğŠm”F‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã¨æœ¬ä½“ã®æ•´åˆæ€§ã‚’ç¢ºèªã—ã¾ã™ã€‚
 
-  Arguments:    userdata  : ŒŸ¸‚·‚éƒ†[ƒUƒf[ƒ^‚ªŠi”[‚³‚ê‚½ƒ|ƒCƒ“ƒ^
+  Arguments:    userdata  : æ¤œæŸ»ã™ã‚‹ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚ŒãŸãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      TRUE  : –{‘Ì‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒ†[ƒUID‚ÆƒpƒXƒ[ƒh‚Íg—p‰Â”\ 
-                FALSE : g—p•s‰Â
+  Returns:      TRUE  : æœ¬ä½“ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¦ãƒ¼ã‚¶IDã¨ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã¯ä½¿ç”¨å¯èƒ½ 
+                FALSE : ä½¿ç”¨ä¸å¯
  *---------------------------------------------------------------------------*/
 BOOL
 DWC_CheckValidConsole( const DWCAccUserData* userdata )
@@ -801,7 +801,7 @@ DWC_CheckValidConsole( const DWCAccUserData* userdata )
 
     if ( DWCi_Acc_GetFlag_DataType( (DWCAccFlag*)&userdata->authentic ) == DWC_ACC_FRIENDDATA_NODATA )
     {
-        // ”FØ‚³‚ê‚½ƒƒOƒCƒ“ID‚ª‚È‚¯‚ê‚ÎATRUE
+        // èªè¨¼ã•ã‚ŒãŸãƒ­ã‚°ã‚¤ãƒ³IDãŒãªã‘ã‚Œã°ã€TRUE
         return TRUE;
     }
 
@@ -809,7 +809,7 @@ DWC_CheckValidConsole( const DWCAccUserData* userdata )
 
     if ( !authid.flg )
     {
-        // ”FØ‚³‚ê‚½ƒƒOƒCƒ“ID‚ª‚ ‚é‚É‚à‚©‚©‚í‚ç‚¸A–{‘Ì‚Ìƒ†[ƒUID‚ª”FØ‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎAFALSE
+        // èªè¨¼ã•ã‚ŒãŸãƒ­ã‚°ã‚¤ãƒ³IDãŒã‚ã‚‹ã«ã‚‚ã‹ã‹ã‚ã‚‰ãšã€æœ¬ä½“ã®ãƒ¦ãƒ¼ã‚¶IDãŒèªè¨¼ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã€FALSE
         return FALSE;
     }
 
@@ -819,13 +819,13 @@ DWC_CheckValidConsole( const DWCAccUserData* userdata )
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_SetUserIdToUserData
 
-  Description:  ƒ†[ƒUƒf[ƒ^‚ÉUserID/PlayerID‚È‚Ç‚Ìî•ñ‚ğƒZƒbƒg‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã«UserID/PlayerIDãªã©ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
 
-  Arguments:    userdata  : ƒ†[ƒUƒf[ƒ^‚ğŠi”[‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@
-                userid    : ƒ†[ƒUID
-                playerid  : ƒvƒŒ[ƒ„[ID
+  Arguments:    userdata  : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡
+                userid    : ãƒ¦ãƒ¼ã‚¶ID
+                playerid  : ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ID
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWCi_Acc_SetLoginIdToUserData( DWCAccUserData*      userdata,
@@ -834,17 +834,17 @@ DWCi_Acc_SetLoginIdToUserData( DWCAccUserData*      userdata,
 {
     MATHCRC32Table      table;
 
-    // loginID‚Ìİ’è
+    // loginIDã®è¨­å®š
     userdata->authentic = *loginid;
 
-    // gs_profile_id‚Ìİ’è
+    // gs_profile_idã®è¨­å®š
     userdata->gs_profile_id = gs_profile_id;
 
-    // CRC‚ÌŒvZ
+    // CRCã®è¨ˆç®—
     MATH_CRC32InitTable( &table );
     userdata->crc32 = MATH_CalcCRC32( &table, userdata, sizeof( DWCAccUserData ) - 4 );
 
-    // dirtyƒtƒ‰ƒO‚ğ—§‚Ä‚éB
+    // dirtyãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹ã€‚
     userdata->flag |= DWC_ACC_USERDATA_DIRTY;
 }
 
@@ -852,12 +852,12 @@ DWCi_Acc_SetLoginIdToUserData( DWCAccUserData*      userdata,
 /*---------------------------------------------------------------------------*
   Name:         DWC_CheckDirtyFlag / DWCi_Acc_IsDirty
 
-  Description:  ƒ†[ƒUƒf[ƒ^‚Ì•ÏXƒtƒ‰ƒOƒ`ƒFƒbƒN‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®å¤‰æ›´ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
 
-  Arguments:    userdata  : ƒ†[ƒUƒf[ƒ^‚ğŠi”[‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@
+  Arguments:    userdata  : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡
 
-  Returns:      TRUE  : •ÏX‚³‚ê‚Ä‚¢‚éB
-                FALSE : •ÏX‚³‚ê‚Ä‚¢‚È‚¢B
+  Returns:      TRUE  : å¤‰æ›´ã•ã‚Œã¦ã„ã‚‹ã€‚
+                FALSE : å¤‰æ›´ã•ã‚Œã¦ã„ãªã„ã€‚
  *---------------------------------------------------------------------------*/
 BOOL
 DWC_CheckDirtyFlag( const DWCAccUserData* userdata )
@@ -874,11 +874,11 @@ DWCi_Acc_IsDirty( const DWCAccUserData* userdata )
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_ClearDirty
 
-  Description:  ƒ†[ƒUƒf[ƒ^‚Ì•ÏXƒtƒ‰ƒO‚ğƒNƒŠƒA‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢ã—ã¾ã™ã€‚
 
-  Arguments:    userdata  : ƒ†[ƒUƒf[ƒ^‚ğŠi”[‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@
+  Arguments:    userdata  : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_ClearDirtyFlag( DWCAccUserData* userdata )
@@ -893,7 +893,7 @@ DWCi_Acc_ClearDirty( DWCAccUserData* userdata )
 
     userdata->flag &= ~DWC_ACC_USERDATA_DIRTY;
 
-    // CRC‚ÌŒvZ
+    // CRCã®è¨ˆç®—
     MATH_CRC32InitTable( &table );
     userdata->crc32 = MATH_CalcCRC32( &table, userdata, sizeof( DWCAccUserData ) - 4 );
 }
@@ -901,11 +901,11 @@ DWCi_Acc_ClearDirty( DWCAccUserData* userdata )
 /*---------------------------------------------------------------------------*
   Name:         DWCi_Acc_TestFlagFunc
 
-  Description:  ƒeƒXƒg—p‚Ì“à•”ŠÖ”B
+  Description:  ãƒ†ã‚¹ãƒˆç”¨ã®å†…éƒ¨é–¢æ•°ã€‚
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWCi_Acc_TestFlagFunc( void )
@@ -943,12 +943,12 @@ DWCi_Acc_TestFlagFunc( void )
 /*---------------------------------------------------------------------------*
   Name:         DWC_GetFriendKey
 
-  Description:  FriendData‚©‚ç—F’B“o˜^Œ®‚ğæ“¾‚µ‚Ü‚·B
+  Description:  FriendDataã‹ã‚‰å‹é”ç™»éŒ²éµã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    frienddata : FriendData\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    frienddata : FriendDataæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      0ˆÈŠO : —F’B“o˜^Œ®
-                0     : “ü—Í‚ª³‚µ‚­‚È‚¢
+  Returns:      0ä»¥å¤– : å‹é”ç™»éŒ²éµ
+                0     : å…¥åŠ›ãŒæ­£ã—ããªã„
  *---------------------------------------------------------------------------*/
 u64
 DWC_GetFriendKey( const DWCAccFriendData* frienddata )
@@ -964,14 +964,14 @@ DWC_GetFriendKey( const DWCAccFriendData* frienddata )
 /*---------------------------------------------------------------------------*
   Name:         DWC_GetGsProfileId
 
-  Description:  FriendData‚©‚çgsProfileId‚ğæ“¾‚µ‚Ü‚·B
+  Description:  FriendDataã‹ã‚‰gsProfileIdã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    userdata   : ©•ª‚Ìƒ†[ƒUƒf[ƒ^‚ÌŠi”[‚³‚ê‚Ä‚¢‚éƒ|ƒCƒ“ƒ^
-                frienddata : FriendData\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    userdata   : è‡ªåˆ†ã®ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒã‚¤ãƒ³ã‚¿
+                frienddata : FriendDataæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      0ˆÈŠO : gsProfileId
-                0     : “ü—Í‚ª³‚µ‚­‚È‚¢
-                -1    : ‰¼ID -> LoginID•¶š—ñƒf[ƒ^‚ğæ“¾‚µ‚ÄAŒŸõ‚µ‚Ä‚­‚¾‚³‚¢B
+  Returns:      0ä»¥å¤– : gsProfileId
+                0     : å…¥åŠ›ãŒæ­£ã—ããªã„
+                -1    : ä»®ID -> LoginIDæ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ã¦ã€æ¤œç´¢ã—ã¦ãã ã•ã„ã€‚
  *---------------------------------------------------------------------------*/
 int
 DWC_GetGsProfileId( const DWCAccUserData* userdata,
@@ -1014,13 +1014,13 @@ DWC_GetGsProfileId( const DWCAccUserData* userdata,
 /*---------------------------------------------------------------------------*
   Name:         DWC_CreateFriendKey
 
-  Description:  ƒ†[ƒUƒf[ƒ^‚©‚çA‘Šè‚É“n‚·—F’B“o˜^Œ®‚ğ¶¬‚µ‚Ü‚·B
-                —F’B“o˜^Œ®‚ÍƒQ[ƒ€ƒR[ƒh‚ÉˆË‘¶‚µ‚Ü‚·B
+  Description:  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã€ç›¸æ‰‹ã«æ¸¡ã™å‹é”ç™»éŒ²éµã‚’ç”Ÿæˆã—ã¾ã™ã€‚
+                å‹é”ç™»éŒ²éµã¯ã‚²ãƒ¼ãƒ ã‚³ãƒ¼ãƒ‰ã«ä¾å­˜ã—ã¾ã™ã€‚
 
-  Arguments:    userdata : ©•ª‚Ìƒ†[ƒUƒf[ƒ^‚ÌŠi”[‚³‚ê‚Ä‚¢‚éƒ|ƒCƒ“ƒ^
+  Arguments:    userdata : è‡ªåˆ†ã®ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      0ˆÈŠO : —F’B“o˜^Œ®
-                0     : “ü—Í‚ª³‚µ‚­‚È‚¢i‚½‚Æ‚¦‚ÎAgsProfileId–¢æ“¾‚È‚Çj
+  Returns:      0ä»¥å¤– : å‹é”ç™»éŒ²éµ
+                0     : å…¥åŠ›ãŒæ­£ã—ããªã„ï¼ˆãŸã¨ãˆã°ã€gsProfileIdæœªå–å¾—ãªã©ï¼‰
  *---------------------------------------------------------------------------*/
 u64
 DWC_CreateFriendKey( const DWCAccUserData* userdata )
@@ -1038,12 +1038,12 @@ DWC_CreateFriendKey( const DWCAccUserData* userdata )
 /*---------------------------------------------------------------------------*
   Name:         DWC_CreateFriendKeyToken
 
-  Description:  —F’BƒŠƒXƒg‚ÉŠi”[‚·‚é‚½‚ß‚ÌFriendData‚ğ—F’B“o˜^Œ®‚©‚çì¬‚µ‚Ü‚·B
+  Description:  å‹é”ãƒªã‚¹ãƒˆã«æ ¼ç´ã™ã‚‹ãŸã‚ã®FriendDataã‚’å‹é”ç™»éŒ²éµã‹ã‚‰ä½œæˆã—ã¾ã™ã€‚
 
-  Arguments:    token      : FriendData‚ğŠi”[‚·‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^
-                friend_key : —F’B“o˜^Œ®
+  Arguments:    token      : FriendDataã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿
+                friend_key : å‹é”ç™»éŒ²éµ
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_CreateFriendKeyToken( DWCAccFriendData* token,
@@ -1057,12 +1057,12 @@ DWC_CreateFriendKeyToken( DWCAccFriendData* token,
 /*---------------------------------------------------------------------------*
   Name:         DWC_CreateExchangeToken
 
-  Description:  —F’BƒŠƒXƒg‚ÉŠi”[‚·‚é‚½‚ß‚ÌFriendData‚ğUserData‚©‚çì¬‚µ‚Ü‚·B
+  Description:  å‹é”ãƒªã‚¹ãƒˆã«æ ¼ç´ã™ã‚‹ãŸã‚ã®FriendDataã‚’UserDataã‹ã‚‰ä½œæˆã—ã¾ã™ã€‚
 
-  Arguments:    userdata : ƒ†[ƒUƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒ|ƒCƒ“ƒ^
-                token      : FriendData‚ğŠi”[‚·‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    userdata : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒã‚¤ãƒ³ã‚¿
+                token      : FriendDataã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_CreateExchangeToken( const DWCAccUserData* userdata,
@@ -1077,9 +1077,9 @@ DWC_CreateExchangeToken( const DWCAccUserData* userdata,
     }
     else
     {
-        // ‚¢‚ë‚¢‚ë‚Èƒtƒ‰ƒO‚ğ“ü‚ê‚ÄAŠm—¦‚ğã‚°‚æ‚¤‚Æ‚µ‚½‚ªA‰¼ID‚ğ¶¬‚·‚é–{‘Ì‚Æ
-        // ƒlƒbƒg‚É‚Â‚È‚®–{ID‚ğæ“¾‚·‚é–{‘Ì‚Ì”›‚è‚ğ“ü‚ê‚È‚¢‚æ‚¤‚É‚µ‚½‚½‚ßA‚Ù‚Æ‚ñ‚Ç‚Ì
-        // î•ñ‚Í–³‘Ê‚É‚È‚Á‚Ä‚µ‚Ü‚¤B
+        // ã„ã‚ã„ã‚ãªãƒ•ãƒ©ã‚°ã‚’å…¥ã‚Œã¦ã€ç¢ºç‡ã‚’ä¸Šã’ã‚ˆã†ã¨ã—ãŸãŒã€ä»®IDã‚’ç”Ÿæˆã™ã‚‹æœ¬ä½“ã¨
+        // ãƒãƒƒãƒˆã«ã¤ãªãæœ¬IDã‚’å–å¾—ã™ã‚‹æœ¬ä½“ã®ç¸›ã‚Šã‚’å…¥ã‚Œãªã„ã‚ˆã†ã«ã—ãŸãŸã‚ã€ã»ã¨ã‚“ã©ã®
+        // æƒ…å ±ã¯ç„¡é§„ã«ãªã£ã¦ã—ã¾ã†ã€‚
         token->login_id = userdata->pseudo;
     }
 }
@@ -1087,12 +1087,12 @@ DWC_CreateExchangeToken( const DWCAccUserData* userdata,
 /*---------------------------------------------------------------------------*
   Name:         DWC_SetGsProfileId
 
-  Description:  —F’BƒŠƒXƒg‚ÉgsProfileId‚ğŠi”[‚µ‚Ü‚·B
+  Description:  å‹é”ãƒªã‚¹ãƒˆã«gsProfileIdã‚’æ ¼ç´ã—ã¾ã™ã€‚
 
-  Arguments:    frienddata    : FriendData\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    frienddata    : FriendDataæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
                 gs_profile_id : gsProfileId
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_SetGsProfileId( DWCAccFriendData* frienddata,
@@ -1107,13 +1107,13 @@ DWC_SetGsProfileId( DWCAccFriendData* frienddata,
 /*---------------------------------------------------------------------------*
   Name:         DWC_LoginIdToUserName
 
-  Description:  —F’B‚ğŒŸõ‚·‚é‚½‚ß‚Ìƒ†[ƒUƒl[ƒ€‚ğæ“¾‚µ‚Ü‚·B
+  Description:  å‹é”ã‚’æ¤œç´¢ã™ã‚‹ãŸã‚ã®ãƒ¦ãƒ¼ã‚¶ãƒãƒ¼ãƒ ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    userdata : ƒ†[ƒUƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒ|ƒCƒ“ƒ^
-                token    : FriendData‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒ|ƒCƒ“ƒ^
-                username : Œ‹‰Ê‚ğo—Í‚·‚éƒoƒbƒtƒ@(DWC_ACC_USERNAME_STRING_BUFSIZE)
+  Arguments:    userdata : ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒã‚¤ãƒ³ã‚¿
+                token    : FriendDataãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒã‚¤ãƒ³ã‚¿
+                username : çµæœã‚’å‡ºåŠ›ã™ã‚‹ãƒãƒƒãƒ•ã‚¡(DWC_ACC_USERNAME_STRING_BUFSIZE)
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_LoginIdToUserName( const DWCAccUserData* userdata,
@@ -1126,13 +1126,13 @@ DWC_LoginIdToUserName( const DWCAccUserData* userdata,
 /*---------------------------------------------------------------------------*
   Name:         DWC_IsEqualFriendData
 
-  Description:  —F’Bî•ñDWCFriendData‚ª“¯‚¶‚©‚Ç‚¤‚©‚ğŠm”F‚µ‚Ü‚·B
+  Description:  å‹é”æƒ…å ±DWCFriendDataãŒåŒã˜ã‹ã©ã†ã‹ã‚’ç¢ºèªã—ã¾ã™ã€‚
 
-  Arguments:    frienddata1 : ”äŠr‚·‚é—F’Bî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                frienddata2 : ”äŠr‚·‚é—F’Bî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    frienddata1 : æ¯”è¼ƒã™ã‚‹å‹é”æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                frienddata2 : æ¯”è¼ƒã™ã‚‹å‹é”æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      TRUE  : “¯‚¶
-                FALSE : ˆá‚¤
+  Returns:      TRUE  : åŒã˜
+                FALSE : é•ã†
  *---------------------------------------------------------------------------*/
 BOOL
 DWC_IsEqualFriendData( const DWCAccFriendData* frienddata1,

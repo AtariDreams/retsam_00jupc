@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	poke_anm_b014_2.s
- * @brief	‚¿‚À‚ñ‚Å@–c‚ç‚Þ
+ * @brief	ã¡ã¢ã‚“ã§ã€€è†¨ã‚‰ã‚€
  * @author	
  * @date	
  *
@@ -18,7 +18,7 @@
 // =============================================================================
 //
 //
-//	”w–Ê	‚¿‚À‚ñ‚Å@–c‚ç‚Þ
+//	èƒŒé¢	ã¡ã¢ã‚“ã§ã€€è†¨ã‚‰ã‚€
 //
 //
 // =============================================================================
@@ -26,36 +26,36 @@
 #define TIME		(20)
 
 PAST_ANIME_B014_2:
-	SET_WORK_VAL		WORK0,0		//ƒJƒEƒ“ƒ^
+	SET_WORK_VAL		WORK0,0		//ã‚«ã‚¦ãƒ³ã‚¿
 	START_LOOP	TIME
-		//Šp“x‚ðŒvŽZ‚µ‚ÄWORK2‚ÉƒZƒbƒg
+		//è§’åº¦ã‚’è¨ˆç®—ã—ã¦WORK2ã«ã‚»ãƒƒãƒˆ
 		MUL_WORK_VAL	WORK2,CALC_VAL,WORK0,0x10000
 		DIV_WORK_VAL	WORK2,CALC_WORK,CALC_VAL,WORK2,TIME_MAX
 		
-		//WORK1‚ÉWORK0‚ð2‚ÅŠ„‚Á‚½—]‚è‚ðƒZƒbƒg
+		//WORK1ã«WORK0ã‚’2ã§å‰²ã£ãŸä½™ã‚Šã‚’ã‚»ãƒƒãƒˆ
 		MOD_WORK_VAL	WORK1,CALC_WORK,CALC_VAL,WORK0,2
-		//WORK1‚ª0‚Ì‚Æ‚«	WORK3‚É0x20‚ðƒZƒbƒg
+		//WORK1ãŒ0ã®ã¨ã	WORK3ã«0x20ã‚’ã‚»ãƒƒãƒˆ
 		SET_IFWORKVAL	USE_VAL,WORK1,0,COMP_EQUAL,USE_VAL,WORK3,0x20
-		//WORK1‚ª1‚Ì‚Æ‚«	WORK3‚É0x8‚ðƒZƒbƒg
+		//WORK1ãŒ1ã®ã¨ã	WORK3ã«0x8ã‚’ã‚»ãƒƒãƒˆ
 		SET_IFWORKVAL	USE_VAL,WORK1,1,COMP_EQUAL,USE_VAL,WORK3,0x8
 		
-		//WORK4‚ÉƒTƒCƒ“ŒvŽZŒ‹‰Ê‚ðƒZƒbƒg@Šp“xWORK2,U•WORK3AˆÊ‘Š0
+		//WORK4ã«ã‚µã‚¤ãƒ³è¨ˆç®—çµæžœã‚’ã‚»ãƒƒãƒˆã€€è§’åº¦WORK2,æŒ¯å¹…WORK3ã€ä½ç›¸0
 		SET_WORK_VAL_SIN	WORK4,WORK2,USE_WORK,WORK3,USE_VAL,0
 
-		//WORK5‚ÉŠgk—¦‚ðƒZƒbƒg
+		//WORK5ã«æ‹¡ç¸®çŽ‡ã‚’ã‚»ãƒƒãƒˆ
 		SUB_WORK_VAL		WORK5,CALC_VAL,CALC_WORK,0,WORK4
 
-		//ƒAƒjƒƒf[ƒ^‚ÉƒZƒbƒg
+		//ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã«ã‚»ãƒƒãƒˆ
 		SET_ADD_PARAM		PARAM_RX,USE_WORK,WORK5,PARAM_SET
 		SET_ADD_PARAM		PARAM_RY,USE_WORK,WORK5,PARAM_SET
 
-		//ƒXƒvƒ‰ƒCƒg‚É”½‰f
+		//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«åæ˜ 
 		APPLY_AFFINE
 		
-		//ƒJƒEƒ“ƒgƒAƒbƒv
+		//ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 		ADD_WORK_VAL	WORK0,CALC_VAL,WORK0,1
 
-		//•`‰æƒŠƒNƒGƒXƒg
+		//æç”»ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		SET_REQUEST
 	END_LOOP
 	

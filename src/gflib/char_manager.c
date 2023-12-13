@@ -1,7 +1,7 @@
 //[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
 /**
  *	@file		char_manager.c
- *	@brief		ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‚ÌÀ‘Ô•”
+ *	@brief		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å®Ÿæ…‹éƒ¨
  *	@author		tomoya takahashi
  *	@data		2004.11.22
  */
@@ -17,135 +17,135 @@
 
 
 #ifdef PM_DEBUG
-//#define DEBUG_PRINT_VRAM_CONT	// VRAMŠÇ—î•ñ‚ğƒvƒŠƒ“ƒg
+//#define DEBUG_PRINT_VRAM_CONT	// VRAMç®¡ç†æƒ…å ±ã‚’ãƒ—ãƒªãƒ³ãƒˆ
 #endif
 
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
-#define		CHAR_VRAM_TRANS_SHIFT	(8)		// Vramƒ‚[ƒh‚©‚Ìƒtƒ‰ƒO‚ÉƒVƒtƒg
+#define		CHAR_VRAM_TRANS_SHIFT	(8)		// Vramãƒ¢ãƒ¼ãƒ‰ã‹ã®ãƒ•ãƒ©ã‚°ã«ã‚·ãƒ•ãƒˆ
 
 #define	CHAR_DATA_ID_NONE	(0xffffffff)
 
-// Vram—ÌˆæŠÇ—’è”
-#define CHAR_VRAM_BANK_GET_ERR	(0xffffffff)				// ƒTƒCƒY‚ª‚È‚¢‚Æ‚«‚Ì–ß‚è’l
-#define CHAR_ONE_SIZE	(32)		// ‚PƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY
+// Vramé ˜åŸŸç®¡ç†å®šæ•°
+#define CHAR_VRAM_BANK_GET_ERR	(0xffffffff)				// ã‚µã‚¤ã‚ºãŒãªã„ã¨ãã®æˆ»ã‚Šå€¤
+#define CHAR_ONE_SIZE	(32)		// ï¼‘ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º
 
 
-/// ƒtƒ‰ƒO‚Ìİ’è
+/// ãƒ•ãƒ©ã‚°ã®è¨­å®š
 enum
 {
-	CHAR_MAN_NONE,			// “®ì‚È‚µ
-	CHAR_MAN_DO_NORMAL,		// NORMAL“®ì’†
-	CHAR_MAN_WAIT_VRAM_ORIG,// Vram“]‘—‚ÌƒIƒŠƒWƒiƒ‹ƒf[ƒ^‘Ò‚¿ó‘Ô
-	CHAR_MAN_DO_VRAM_ORIG,	// Vram“]‘—‚ÌƒIƒŠƒWƒiƒ‹ƒf[ƒ^“®ì’†
-	CHAR_MAN_DO_VRAM_COPY,	// Vram“]‘—‚ÌCopyƒf[ƒ^“®ì’†
+	CHAR_MAN_NONE,			// å‹•ä½œãªã—
+	CHAR_MAN_DO_NORMAL,		// NORMALå‹•ä½œä¸­
+	CHAR_MAN_WAIT_VRAM_ORIG,// Vramè»¢é€ã®ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿å¾…ã¡çŠ¶æ…‹
+	CHAR_MAN_DO_VRAM_ORIG,	// Vramè»¢é€ã®ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿å‹•ä½œä¸­
+	CHAR_MAN_DO_VRAM_COPY,	// Vramè»¢é€ã®Copyãƒ‡ãƒ¼ã‚¿å‹•ä½œä¸­
 };
 
-// ƒLƒƒƒ‰ƒNƒ^‹«ŠEŒvZ—p
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œè¨ˆç®—ç”¨
 enum{
-	CHAR_MAN_LIM_SUB,		// ‚ ‚Ü‚è‚ğØ‚èæ‚é
-	CHAR_MAN_LIM_ADD		// ‚ ‚Ü‚è‚ğ–„‚ß‚é
+	CHAR_MAN_LIM_SUB,		// ã‚ã¾ã‚Šã‚’åˆ‡ã‚Šå–ã‚‹
+	CHAR_MAN_LIM_ADD		// ã‚ã¾ã‚Šã‚’åŸ‹ã‚ã‚‹
 };
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒe[ƒuƒ‹
+///	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 //
 typedef struct
 {
-	NNSG2dCharacterData*	pCharData;	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^\‘¢‘Ì(‘å–{ƒf[ƒ^‚Ì•Û)
+	NNSG2dCharacterData*	pCharData;	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“(å¤§æœ¬ãƒ‡ãƒ¼ã‚¿ã®ä¿æŒ)
 	NNS_G2D_VRAM_TYPE		type;		// VramType
-										// main‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAIN = 1
-										// sub‚É“o˜^ FNNS_G2D_VRAM_TYPE_2DSUB = 2
-										// —¼•û‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAX = 3
-	u8			vramType;				// Vram“]‘—‚©‚Ìƒtƒ‰ƒO	‚PFVram“]‘—
-	u32			act_num;				// “o˜^@¯•ÊID
-	NNSG2dImageProxy	ImageProxy;		// ƒCƒ[ƒWƒvƒƒNƒV
-	u32			offset;					// ©•ª‚Ìƒx[ƒXƒAƒhƒŒƒX
-	u32			sub_offset;				// ƒTƒu‚ÌƒIƒtƒZƒbƒg
-	u8			flag;					// g—p‚µ‚Ä‚¢‚é‚©‚Ìƒtƒ‰ƒO
-	BOOL		mapModeAdjust;			// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ğ¡‚Ìó‘Ô‚É‡‚í‚¹‚é‚©
-	u32			cont_type;				// VramƒRƒ“ƒgƒ[ƒ‹ƒ^ƒCƒv
+										// mainã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAIN = 1
+										// subã«ç™»éŒ² ï¼šNNS_G2D_VRAM_TYPE_2DSUB = 2
+										// ä¸¡æ–¹ã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAX = 3
+	u8			vramType;				// Vramè»¢é€ã‹ã®ãƒ•ãƒ©ã‚°	ï¼‘ï¼šVramè»¢é€
+	u32			act_num;				// ç™»éŒ²ã€€è­˜åˆ¥ID
+	NNSG2dImageProxy	ImageProxy;		// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
+	u32			offset;					// è‡ªåˆ†ã®ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+	u32			sub_offset;				// ã‚µãƒ–ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u8			flag;					// ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
+	BOOL		mapModeAdjust;			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ä»Šã®çŠ¶æ…‹ã«åˆã‚ã›ã‚‹ã‹
+	u32			cont_type;				// Vramã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ—
 	
-	BOOL		have_area;				// VramƒGƒŠƒA‚ğ•Û‚µ‚Ä‚¢‚é‚©
-	u32			have_szByte;			// VramŠm•ÛƒTƒCƒYƒƒCƒ“
-	u32			have_szByteSub;			// VramŠm•ÛƒTƒCƒYƒTƒu
+	BOOL		have_area;				// Vramã‚¨ãƒªã‚¢ã‚’ä¿æŒã—ã¦ã„ã‚‹ã‹
+	u32			have_szByte;			// Vramç¢ºä¿ã‚µã‚¤ã‚ºãƒ¡ã‚¤ãƒ³
+	u32			have_szByteSub;			// Vramç¢ºä¿ã‚µã‚¤ã‚ºã‚µãƒ–
 } CHAR_DATA_TBL;
 
 
 
 //-------------------------------------
 //	
-//	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[\‘¢‘Ì
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
-	CHAR_DATA_TBL*	charDataTbl;	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒe[ƒuƒ‹
-	int		charDataNum;			// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”
-	int		charDataNow;			// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“o˜^” 
-	u32		Offset;					// “Ç‚İ‚İ‚ÌƒIƒtƒZƒbƒg
-	u32		SubOffset;				// ƒTƒuVram‚ÌƒIƒtƒZƒbƒg
-	s32		MainObjVramSize;		// ƒƒCƒ“‰æ–Ê‚ÌVramBank‚ÌƒTƒCƒY
-	s32		SubObjVramSize;			// ƒTƒu‰æ–Ê‚ÌVramBank‚ÌƒTƒCƒY
-	s32		MainVramTransStart;		// ƒƒCƒ“‰æ–Ê‚ÌVramŠÇ——Ìˆæ‚ÌƒXƒ^[ƒgˆÊ’u
-	s32		SubVramTransStart;		// ƒTƒu‰æ–Ê‚ÌVramŠÇ——Ìˆæ‚ÌƒXƒ^[ƒgˆÊ’u
-	u32		TransAreaMainSize;		// ƒƒCƒ“‰æ–Ê‚ÌVramŠÇ——Ìˆæ	i1024‚Ì“à‚¢‚­‚Â‚ğ“]‘—‚Ég‚¤‚©‚ğw’è‚µ‚Ü‚·j
-	u32		TransAreaSubSize;		// ƒƒCƒ“‰æ–Ê‚ÌVramŠÇ——Ìˆæ	i1024‚Ì“à‚¢‚­‚Â‚ğ“]‘—‚Ég‚¤‚©‚ğw’è‚µ‚Ü‚·j
-	u32		MainModeCharLimit;		// ƒƒCƒ“‰æ–Ê‚ÌƒLƒƒƒ‰ƒNƒ^‹«ŠE
-	u32		SubModeCharLimit;		// ƒTƒu‰æ–Ê‚ÌƒLƒƒƒ‰ƒNƒ^‹«ŠE
-	u8*		TransAreaFlagMain;		// VramBank”•ª‚Ìƒtƒ‰ƒOƒƒCƒ“‰æ–Ê—p
-	u8*		TransAreaFlagSub;		// VramBank”•ª‚Ìƒtƒ‰ƒOƒTƒu‰æ–Ê—p
+	CHAR_DATA_TBL*	charDataTbl;	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+	int		charDataNum;			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿æ•°
+	int		charDataNow;			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç™»éŒ²æ•° 
+	u32		Offset;					// èª­ã¿è¾¼ã¿æ™‚ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32		SubOffset;				// ã‚µãƒ–Vramã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	s32		MainObjVramSize;		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®VramBankã®ã‚µã‚¤ã‚º
+	s32		SubObjVramSize;			// ã‚µãƒ–ç”»é¢ã®VramBankã®ã‚µã‚¤ã‚º
+	s32		MainVramTransStart;		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®Vramç®¡ç†é ˜åŸŸã®ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®
+	s32		SubVramTransStart;		// ã‚µãƒ–ç”»é¢ã®Vramç®¡ç†é ˜åŸŸã®ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®
+	u32		TransAreaMainSize;		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®Vramç®¡ç†é ˜åŸŸ	ï¼ˆ1024ã®å†…ã„ãã¤ã‚’è»¢é€ã«ä½¿ã†ã‹ã‚’æŒ‡å®šã—ã¾ã™ï¼‰
+	u32		TransAreaSubSize;		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®Vramç®¡ç†é ˜åŸŸ	ï¼ˆ1024ã®å†…ã„ãã¤ã‚’è»¢é€ã«ä½¿ã†ã‹ã‚’æŒ‡å®šã—ã¾ã™ï¼‰
+	u32		MainModeCharLimit;		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œ
+	u32		SubModeCharLimit;		// ã‚µãƒ–ç”»é¢ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œ
+	u8*		TransAreaFlagMain;		// VramBankæ•°åˆ†ã®ãƒ•ãƒ©ã‚°ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨
+	u8*		TransAreaFlagSub;		// VramBankæ•°åˆ†ã®ãƒ•ãƒ©ã‚°ã‚µãƒ–ç”»é¢ç”¨
 } CHAR_MANAGER_DATA;
 
 
 //----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
-static void cleanCharData(CHAR_DATA_TBL* data);		// ‰Šú‰»
-static BOOL LoadCharData(const CHAR_MANAGER_HEADER* pEntData, CHAR_DATA_TBL* pCharData);		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+static void cleanCharData(CHAR_DATA_TBL* data);		// åˆæœŸåŒ–
+static BOOL LoadCharData(const CHAR_MANAGER_HEADER* pEntData, CHAR_DATA_TBL* pCharData);		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 static CHAR_DATA_TBL* getImageProxyTbl(const NNSG2dImageProxy* pImage);
-static BOOL TransCharData(CHAR_DATA_TBL* tbl);		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ“]‘—‚·‚é
-static BOOL TransCharOffset(CHAR_DATA_TBL* tbl);	// Offset“]‘—ƒ‚[ƒh
-static BOOL TransCharAreaCont(CHAR_DATA_TBL* tbl);	// areaCont“]‘—ƒ‚[ƒh
+static BOOL TransCharData(CHAR_DATA_TBL* tbl);		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
+static BOOL TransCharOffset(CHAR_DATA_TBL* tbl);	// Offsetè»¢é€ãƒ¢ãƒ¼ãƒ‰
+static BOOL TransCharAreaCont(CHAR_DATA_TBL* tbl);	// areaContè»¢é€ãƒ¢ãƒ¼ãƒ‰
 
-static void setTransChar( CHAR_DATA_TBL* pCharData, u32 p_offset, u32 p_sub_offset );	// “]‘—ƒ}ƒl[ƒWƒƒ[‚ÉƒZƒbƒg
+static void setTransChar( CHAR_DATA_TBL* pCharData, u32 p_offset, u32 p_sub_offset );	// è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«ã‚»ãƒƒãƒˆ
 
 static BOOL getvramTransOffset(int type, u32* main, u32* sub, u32 szByte, u32* get_size, u32* get_size_sub);
 static void setvramTransOffsetProxy(CHAR_DATA_TBL* data, u32 main, u32 sub);
 static void setvramTransBitData(int type, u32 main, u32 sub, u32 szByte, u32 szByteSub);
 
-static void transVramChar( void* p_data );				// ƒLƒƒƒ‰ƒNƒ^
+static void transVramChar( void* p_data );				// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 static void transVramCharCore( CHAR_DATA_TBL* data, int vram_type);
-static void transVramCharVramMode( void* p_data );		// Vram“]‘—ƒAƒjƒƒ‚[ƒh‚ÌƒLƒƒƒ‰ƒNƒ^
+static void transVramCharVramMode( void* p_data );		// Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ¢ãƒ¼ãƒ‰ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 static void transVramCharVramModeCore( CHAR_DATA_TBL* data, int vram_type);
-static u32 getTransAreaSize( u8* p_trans_flag );		// Vram“]‘—VramŠÇ——Ìˆæ‚ÌƒTƒCƒYæ“¾—p
+static u32 getTransAreaSize( u8* p_trans_flag );		// Vramè»¢é€Vramç®¡ç†é ˜åŸŸã®ã‚µã‚¤ã‚ºå–å¾—ç”¨
 
-static CHAR_DATA_TBL* getCharData( void );				// ‹ó‚Ìƒf[ƒ^ƒe[ƒuƒ‹‚ğæ“¾
-static void setObjVramSize( void );						// Vramƒoƒ“ƒN‚ÌƒTƒCƒY‚ğƒZƒbƒg
-static void dellCharData( CHAR_DATA_TBL* pCharData );	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ”jŠü
-static void delCharTblTransArea( CHAR_DATA_TBL* pCharData );	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ÌVramƒGƒŠƒA‚ğŠJ•ú
-static CHAR_DATA_TBL* getCharDataPtr( int id );			// id‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğæ“¾
-static void MakeTransArea( u32 main_size, u32 sub_size, int heap );		// Vram“]‘——pVramƒGƒŠƒA‚Ìì¬
-static void DellTransArea( u8* p_trans_flag );					// Vram“]‘——pVramƒGƒŠƒA‚Ì”jŠü
-static void TransAreaInit( u8* p_trans_flag );			// Vram“]‘——pVramƒGƒŠƒA‚Ì‰Šú‰»
+static CHAR_DATA_TBL* getCharData( void );				// ç©ºã®ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
+static void setObjVramSize( void );						// Vramãƒãƒ³ã‚¯ã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
+static void dellCharData( CHAR_DATA_TBL* pCharData );	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
+static void delCharTblTransArea( CHAR_DATA_TBL* pCharData );	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®Vramã‚¨ãƒªã‚¢ã‚’é–‹æ”¾
+static CHAR_DATA_TBL* getCharDataPtr( int id );			// idã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+static void MakeTransArea( u32 main_size, u32 sub_size, int heap );		// Vramè»¢é€ç”¨Vramã‚¨ãƒªã‚¢ã®ä½œæˆ
+static void DellTransArea( u8* p_trans_flag );					// Vramè»¢é€ç”¨Vramã‚¨ãƒªã‚¢ã®ç ´æ£„
+static void TransAreaInit( u8* p_trans_flag );			// Vramè»¢é€ç”¨Vramã‚¨ãƒªã‚¢ã®åˆæœŸåŒ–
 
-static void TransBitSet( u32 num, u32 size, u8* p_trans_flag );	// “]‘—‚µ‚½ƒGƒŠƒA‚Ìƒrƒbƒg‚ğİ’è
-static u32 TransBitCheck( u32 size, u8* p_trans_flag );	// “]‘—‚µ‚½ƒTƒCƒY‚ÌƒGƒŠƒA‚ªc‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
-static void TransBitClean( u32 start_num, u32 size, u8* p_trans_flag );	// •Ô‹p‚µ‚½ƒGƒŠƒA‚ğ‰Šú‰»‚·‚é
+static void TransBitSet( u32 num, u32 size, u8* p_trans_flag );	// è»¢é€ã—ãŸã‚¨ãƒªã‚¢ã®ãƒ“ãƒƒãƒˆã‚’è¨­å®š
+static u32 TransBitCheck( u32 size, u8* p_trans_flag );	// è»¢é€ã—ãŸã‚µã‚¤ã‚ºã®ã‚¨ãƒªã‚¢ãŒæ®‹ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+static void TransBitClean( u32 start_num, u32 size, u8* p_trans_flag );	// è¿”å´ã—ãŸã‚¨ãƒªã‚¢ã‚’åˆæœŸåŒ–ã™ã‚‹
 
 static int charModeAdjust( CHAR_DATA_TBL* pCharData, int type );
 
 
-// “]‘—‚·‚×‚«ƒIƒtƒZƒbƒg’l‚ğæ“¾‚·‚éŠÖ”
+// è»¢é€ã™ã¹ãã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’å–å¾—ã™ã‚‹é–¢æ•°
 static BOOL modeNormOffsetGet( u32 szByte, int type, u32* offs_main, u32* offs_sub );
 static void modeNormOffsetMove( u32 szByte, int type );
 
@@ -166,24 +166,24 @@ static void DEBUG_Print_VitArea( u8* p_trans_flag );
 
 //----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 static CHAR_MANAGER_DATA*	CharManager = NULL;
-// ŒãX‚Í‚±‚Ìƒf[ƒ^‚ğŠO•”‚Ì‚¿A
-// ŠeŠÖ”‚Ìˆø”‚É‚±‚Ìƒf[ƒ^‚ğ“n‚µ‚Ä“®ì‚·‚é‚æ‚¤‚É‚·‚é
-// ¡‚Í’N‚É‚½‚¹‚ê‚Î‚æ‚¢‚Ì‚©‚í‚©‚ç‚È‚¢‚½‚ßA©•ª‚Å‚Â
+// å¾Œã€…ã¯ã“ã®ãƒ‡ãƒ¼ã‚¿ã‚’å¤–éƒ¨ã®æŒã¡ã€
+// å„é–¢æ•°ã®å¼•æ•°ã«ã“ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ¸¡ã—ã¦å‹•ä½œã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
+// ä»Šã¯èª°ã«æŒãŸã›ã‚Œã°ã‚ˆã„ã®ã‹ã‚ã‹ã‚‰ãªã„ãŸã‚ã€è‡ªåˆ†ã§æŒã¤
 
 
 //
-// ƒOƒ[ƒoƒ‹ŠÖ”
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°
 //
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	  ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‚ğ‰Šú‰»
+ *@brief	  ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’åˆæœŸåŒ–
  *
- *@param	CharMakeData	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[ì¬ƒf[ƒ^
+ *@param	CharMakeData	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -191,7 +191,7 @@ static CHAR_MANAGER_DATA*	CharManager = NULL;
 //-----------------------------------------------------------------------------
 void InitCharManager( const CHAR_MANAGER_MAKE* CharMakeData )
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	InitCharManagerReg( CharMakeData, GX_GetOBJVRamModeChar(), GXS_GetOBJVRamModeChar() );
 }
 
@@ -199,11 +199,11 @@ void InitCharManager( const CHAR_MANAGER_MAKE* CharMakeData )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ‚ğ‰Šú‰»
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ã‚’åˆæœŸåŒ–
  *
- *	@param	CharMakeData	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒì¬ƒf[ƒ^
- *	@param	modeMain		ƒLƒƒƒ‰ƒNƒ^ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh@ƒƒCƒ“‰æ–Ê
- *	@param	modeSub			ƒLƒƒƒ‰ƒNƒ^ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh@ƒTƒu‰æ–Ê
+ *	@param	CharMakeData	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆãƒ‡ãƒ¼ã‚¿
+ *	@param	modeMain		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã€€ãƒ¡ã‚¤ãƒ³ç”»é¢
+ *	@param	modeSub			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã€€ã‚µãƒ–ç”»é¢
  *
  *	@return	none
  *
@@ -227,15 +227,15 @@ void InitCharManagerReg( const CHAR_MANAGER_MAKE* CharMakeData, GXOBJVRamModeCha
 			cleanCharData(CharManager->charDataTbl + i);	
 		}
 
-		// ƒLƒƒƒ‰ƒNƒ^‹«ŠEæ“¾
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œå–å¾—
 		CharManager->MainModeCharLimit = CharModeMinNum( modeMain );
 		CharManager->SubModeCharLimit = CharModeMinNum( modeSub );
-		// ƒŒƒWƒXƒ^‚Éİ’è
+		// ãƒ¬ã‚¸ã‚¹ã‚¿ã«è¨­å®š
 		GX_SetOBJVRamModeChar( modeMain );
 		GXS_SetOBJVRamModeChar( modeSub );
 
 
-		// ƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒY‚¸‚Â‚ÅVram‚ğŠÇ—‚·‚é—Ìˆæ‚ğì¬
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºãšã¤ã§Vramã‚’ç®¡ç†ã™ã‚‹é ˜åŸŸã‚’ä½œæˆ
 		main_size_cm = getCharModeNum( CharMakeData->VramTransAreaMain,
 										CharManager->MainModeCharLimit );
 		sub_size_cm = getCharModeNum( CharMakeData->VramTransAreaSub,
@@ -247,7 +247,7 @@ void InitCharManagerReg( const CHAR_MANAGER_MAKE* CharMakeData, GXOBJVRamModeCha
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‚ğŠ®‘S‚É”jŠü‚µ‚Ü‚·B
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’å®Œå…¨ã«ç ´æ£„ã—ã¾ã™ã€‚
  *
  *@param	none
  *
@@ -272,49 +272,49 @@ void DeleteCharManager(void)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	  ƒ[ƒh‚ğŠJn‚·‚éŠÖ”	(“à•”ŠÇ—‚ÌƒIƒtƒZƒbƒg‚ğ‰Šú‰»)
+ *@brief	  ãƒ­ãƒ¼ãƒ‰ã‚’é–‹å§‹ã™ã‚‹é–¢æ•°	(å†…éƒ¨ç®¡ç†ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’åˆæœŸåŒ–)
  *
- *@param	  start_offsetF“Ç‚İ‚İŠJnoffset
+ *@param	  start_offsetï¼šèª­ã¿è¾¼ã¿é–‹å§‹offset
  *
  *@return	  none
  *
  */
 //-----------------------------------------------------------------------------
-///ƒƒCƒ“–Ê
+///ãƒ¡ã‚¤ãƒ³é¢
 void CharLoadStart( u32 start_offset )
 {
 	CharManager->Offset = start_offset;
-	setObjVramSize();			// Vram‚ÌƒTƒCƒY‚ğƒZƒbƒg
+	setObjVramSize();			// Vramã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 }
 
-/// ƒTƒu–Ê
+/// ã‚µãƒ–é¢
 void CharLoadStartSub( u32 start_offset )
 {
 	CharManager->SubOffset = start_offset;
-	setObjVramSize();			// Vram‚ÌƒTƒCƒY‚ğƒZƒbƒg
+	setObjVramSize();			// Vramã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 }
 
-/// ‘S‘Ì
+/// å…¨ä½“
 void CharLoadStartAll( void )
 {
 	CharManager->Offset    = 0;
 	CharManager->SubOffset = 0;
 	TransAreaInit( CharManager->TransAreaFlagMain );
 	TransAreaInit( CharManager->TransAreaFlagSub );
-	setObjVramSize();			// Vram‚ÌƒTƒCƒY‚ğƒZƒbƒg
+	setObjVramSize();			// Vramã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	AreaContŠÖ”—p	g—p‹Ö~—Ìˆæİ’è
+ *	@brief	AreaConté–¢æ•°ç”¨	ä½¿ç”¨ç¦æ­¢é ˜åŸŸè¨­å®š
  *
- *	@param	offset		g—p‹Ö~ƒIƒtƒZƒbƒgˆÊ’u
- *	@param	size		g—p‹Ö~ƒTƒCƒY
- *	@param	disp		‰æ–Ê
+ *	@param	offset		ä½¿ç”¨ç¦æ­¢ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
+ *	@param	size		ä½¿ç”¨ç¦æ­¢ã‚µã‚¤ã‚º
+ *	@param	disp		ç”»é¢
  *
  *	disp
- *		main‚É“o˜^FNNS_G2D_VRAM_TYPE_2DMAIN = 1
- *		sub‚É“o˜^ FNNS_G2D_VRAM_TYPE_2DSUB = 2
+ *		mainã«ç™»éŒ²ï¼šNNS_G2D_VRAM_TYPE_2DMAIN = 1
+ *		subã«ç™»éŒ² ï¼šNNS_G2D_VRAM_TYPE_2DSUB = 2
  *
  *	@return	none
  */
@@ -324,9 +324,9 @@ void SetReserveAreaContCharManager( u32 offset, u32 size, u32 disp )
 	int start_offset;
 	int set_size;
 	
-	// ŠÇ—ƒrƒbƒgİ’è
+	// ç®¡ç†ãƒ“ãƒƒãƒˆè¨­å®š
 	if( disp == NNS_G2D_VRAM_TYPE_2DMAIN ){
-		// offset‚ªŠÇ——ÌˆæˆÈ‰º‚Ì‚Æ‚«‚à‚ ‚é‚Ì‚ÅAƒPƒA‚µ‚Ä‚¨‚­
+		// offsetãŒç®¡ç†é ˜åŸŸä»¥ä¸‹ã®ã¨ãã‚‚ã‚ã‚‹ã®ã§ã€ã‚±ã‚¢ã—ã¦ãŠã
 		getReserveAreaContData( 
 				CharManager->MainVramTransStart,
 				offset, size,
@@ -337,7 +337,7 @@ void SetReserveAreaContCharManager( u32 offset, u32 size, u32 disp )
 		}
 	}else{
 
-		// offset‚ªŠÇ——ÌˆæˆÈ‰º‚Ì‚Æ‚«‚à‚ ‚é‚Ì‚ÅAƒPƒA‚µ‚Ä‚¨‚­
+		// offsetãŒç®¡ç†é ˜åŸŸä»¥ä¸‹ã®ã¨ãã‚‚ã‚ã‚‹ã®ã§ã€ã‚±ã‚¢ã—ã¦ãŠã
 		getReserveAreaContData( 
 				CharManager->SubVramTransStart,
 				offset, size,
@@ -353,12 +353,12 @@ void SetReserveAreaContCharManager( u32 offset, u32 size, u32 disp )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^’P‘Ì‚ğƒZƒbƒg‚µ‚Äƒ[ƒh
+ *@brief		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å˜ä½“ã‚’ã‚»ãƒƒãƒˆã—ã¦ãƒ­ãƒ¼ãƒ‰
  *
- *@param		pChatDataFƒLƒƒƒ‰ƒNƒ^ENTRYƒf[ƒ^
+ *@param		pChatDataï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿ENTRYãƒ‡ãƒ¼ã‚¿
  *
- *@retval		TRUE FƒZƒbƒg‚Å‚«‚½  
- *@retval		FALSEFƒZƒbƒg‚Å‚«‚È‚©‚Á‚½
+ *@retval		TRUE ï¼šã‚»ãƒƒãƒˆã§ããŸ  
+ *@retval		FALSEï¼šã‚»ãƒƒãƒˆã§ããªã‹ã£ãŸ
  *
  */
 //-----------------------------------------------------------------------------
@@ -366,35 +366,35 @@ BOOL CharSet( const CHAR_MANAGER_HEADER* pCharData )
 {
 	CHAR_DATA_TBL* tbl;
 	u32* p_offset;
-	u8 dell_flag = 0;		// ”jŠüƒtƒ‰ƒO
-	u32	vram_limit;			// Vram‚ÌÅ‘åƒTƒCƒY	
+	u8 dell_flag = 0;		// ç ´æ£„ãƒ•ãƒ©ã‚°
+	u32	vram_limit;			// Vramã®æœ€å¤§ã‚µã‚¤ã‚º	
 
 	if(CheckCharID(pCharData->id) == TRUE){
-		GF_ASSERT(0&&("ID‚ªd•¡‚µ‚Ä‚¢‚Ü‚·"));
+		GF_ASSERT(0&&("IDãŒé‡è¤‡ã—ã¦ã„ã¾ã™"));
 	}
 
 	//
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğƒe[ƒuƒ‹‚ÉƒZƒbƒg
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«ã«ã‚»ãƒƒãƒˆ
 	//
 	tbl = getCharData();
 	if( tbl == NULL ){
-		GF_ASSERT(0&&("ƒf[ƒ^“o˜^ƒe[ƒuƒ‹MAX‚Å‚·B‚à‚¤“o˜^‚Å‚«‚Ü‚¹‚ñB"));
-		return FALSE;		// “o˜^•s‰Â”\ 
+		GF_ASSERT(0&&("ãƒ‡ãƒ¼ã‚¿ç™»éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«MAXã§ã™ã€‚ã‚‚ã†ç™»éŒ²ã§ãã¾ã›ã‚“ã€‚"));
+		return FALSE;		// ç™»éŒ²ä¸å¯èƒ½ 
 	}
 
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	if(LoadCharData(pCharData, tbl) == FALSE){
 		return FALSE;
 	}
 
-	// Vram‚É“]‘—‚·‚é
+	// Vramã«è»¢é€ã™ã‚‹
 	if( TransCharData(tbl) == FALSE ){
 		DelChar( tbl->act_num );
 		return FALSE;
 	}
 
-	// “o˜^”ƒAƒbƒh
+	// ç™»éŒ²æ•°ã‚¢ãƒƒãƒ‰
 	CharManager->charDataNow++;
 
 	return TRUE;
@@ -406,24 +406,24 @@ BOOL CharSet( const CHAR_MANAGER_HEADER* pCharData )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ•¡”ƒZƒbƒg
+ *@brief		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è¤‡æ•°ã‚»ãƒƒãƒˆ
  *
- *@param		pChatDataFƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
- *@param		num			”z—ñ—v‘f”
+ *@param		pChatDataï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+ *@param		num			é…åˆ—è¦ç´ æ•°
  *
- *@return		‚¢‚­‚Â“o˜^¬Œ÷‚µ‚½‚©
+ *@return		ã„ãã¤ç™»éŒ²æˆåŠŸã—ãŸã‹
  *
  */
 //-----------------------------------------------------------------------------
 u16 CharSets( const CHAR_MANAGER_HEADER* pCharData, int num )
 {
-	int i;	// ƒ‹[ƒv—p
+	int i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 
-	// CHAR_END‚ª‚­‚é‚Ü‚Å“Ç‚İ‚Ş
+	// CHAR_ENDãŒãã‚‹ã¾ã§èª­ã¿è¾¼ã‚€
 	for(i=0;i<num;i++){
-		// “Ç‚İ‚İ•ƒZƒbƒgˆ—
+		// èª­ã¿è¾¼ã¿ï¼†ã‚»ãƒƒãƒˆå‡¦ç†
 		if( CharSet( pCharData + i ) == FALSE ){
-			// ¸”s
+			// å¤±æ•—
 			break;
 		}
 	}
@@ -434,13 +434,13 @@ u16 CharSets( const CHAR_MANAGER_HEADER* pCharData, int num )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^’P‘Ì‚ğƒZƒbƒg‚µ‚Äƒ[ƒh
- *				ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ğ¡‚Ìó‘Ô‚É•ÏX‚·‚éƒ‚[ƒh
+ *@brief		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å˜ä½“ã‚’ã‚»ãƒƒãƒˆã—ã¦ãƒ­ãƒ¼ãƒ‰
+ *				ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ä»Šã®çŠ¶æ…‹ã«å¤‰æ›´ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰
  *
- *@param		pChatDataFƒLƒƒƒ‰ƒNƒ^ENTRYƒf[ƒ^
+ *@param		pChatDataï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿ENTRYãƒ‡ãƒ¼ã‚¿
  *
- *@retval		TRUE FƒZƒbƒg‚Å‚«‚½  
- *@retval		FALSEFƒZƒbƒg‚Å‚«‚È‚©‚Á‚½
+ *@retval		TRUE ï¼šã‚»ãƒƒãƒˆã§ããŸ  
+ *@retval		FALSEï¼šã‚»ãƒƒãƒˆã§ããªã‹ã£ãŸ
  *
  */
 //-----------------------------------------------------------------------------
@@ -448,39 +448,39 @@ BOOL CharSetCharModeAdjust( const CHAR_MANAGER_HEADER* pCharData )
 {
 	CHAR_DATA_TBL* tbl;
 	u32* p_offset;
-	u8 dell_flag = 0;		// ”jŠüƒtƒ‰ƒO
-	u32	vram_limit;			// Vram‚ÌÅ‘åƒTƒCƒY	
+	u8 dell_flag = 0;		// ç ´æ£„ãƒ•ãƒ©ã‚°
+	u32	vram_limit;			// Vramã®æœ€å¤§ã‚µã‚¤ã‚º	
 
 	if(CheckCharID(pCharData->id) == TRUE){
-		GF_ASSERT(0&&("ID‚ªd•¡‚µ‚Ä‚¢‚Ü‚·"));
+		GF_ASSERT(0&&("IDãŒé‡è¤‡ã—ã¦ã„ã¾ã™"));
 	}
 
 	//
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğƒe[ƒuƒ‹‚ÉƒZƒbƒg
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«ã«ã‚»ãƒƒãƒˆ
 	//
 	tbl = getCharData();
 	if( tbl == NULL ){
-		GF_ASSERT(0&&("ƒf[ƒ^“o˜^ƒe[ƒuƒ‹MAX‚Å‚·B‚à‚¤“o˜^‚Å‚«‚Ü‚¹‚ñB"));
-		return FALSE;		// “o˜^•s‰Â”\ 
+		GF_ASSERT(0&&("ãƒ‡ãƒ¼ã‚¿ç™»éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«MAXã§ã™ã€‚ã‚‚ã†ç™»éŒ²ã§ãã¾ã›ã‚“ã€‚"));
+		return FALSE;		// ç™»éŒ²ä¸å¯èƒ½ 
 	}
 
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	if(LoadCharData(pCharData, tbl) == FALSE){
 		return FALSE;
 	}
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ìƒ‚[ƒh‚ğ¡‚Ìó‘Ô‚É•ÏX‚·‚é
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ¢ãƒ¼ãƒ‰ã‚’ä»Šã®çŠ¶æ…‹ã«å¤‰æ›´ã™ã‚‹
 	tbl->mapModeAdjust = TRUE;
 	
 
-	// Vram‚É“]‘—‚·‚é
+	// Vramã«è»¢é€ã™ã‚‹
 	if( TransCharData(tbl) == FALSE ){
 		DelChar( tbl->act_num );
 		return FALSE;
 	}
 
-	// “o˜^”ƒAƒbƒh
+	// ç™»éŒ²æ•°ã‚¢ãƒƒãƒ‰
 	CharManager->charDataNow++;
 
 	return TRUE;
@@ -489,24 +489,24 @@ BOOL CharSetCharModeAdjust( const CHAR_MANAGER_HEADER* pCharData )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ•¡”ƒZƒbƒg
- *				ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ğ¡‚Ìó‘Ô‚É•ÏX‚·‚éƒ‚[ƒh
+ *@brief		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è¤‡æ•°ã‚»ãƒƒãƒˆ
+ *				ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ä»Šã®çŠ¶æ…‹ã«å¤‰æ›´ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰
  *
- *@param		pChatData	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”z—ñ
- *@param		num			”z—ñ—v‘f”
+ *@param		pChatData	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿é…åˆ—
+ *@param		num			é…åˆ—è¦ç´ æ•°
  *
- *@return		‚¢‚­‚Â“o˜^¬Œ÷‚µ‚½‚©
+ *@return		ã„ãã¤ç™»éŒ²æˆåŠŸã—ãŸã‹
  */
 //-----------------------------------------------------------------------------
 u16 CharSetsCharModeAdjust( const CHAR_MANAGER_HEADER* pCharData, int num )
 {
-	int i;	// ƒ‹[ƒv—p
+	int i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 
-	// CHAR_END‚ª‚­‚é‚Ü‚Å“Ç‚İ‚Ş
+	// CHAR_ENDãŒãã‚‹ã¾ã§èª­ã¿è¾¼ã‚€
 	for(i=0;i<num;i++){
-		// “Ç‚İ‚İ•ƒZƒbƒgˆ—
+		// èª­ã¿è¾¼ã¿ï¼†ã‚»ãƒƒãƒˆå‡¦ç†
 		if( CharSetCharModeAdjust( pCharData + i ) == FALSE ){
-			// ¸”s
+			// å¤±æ•—
 			break;
 		}
 	}
@@ -517,12 +517,12 @@ u16 CharSetsCharModeAdjust( const CHAR_MANAGER_HEADER* pCharData, int num )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	id‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ª‚à‚¤“o˜^‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *@brief	idã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãŒã‚‚ã†ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *@param	id		ƒ`ƒFƒbƒN‚·‚éid
+ *@param	id		ãƒã‚§ãƒƒã‚¯ã™ã‚‹id
  *
- *@retval	TRUE	“o˜^‚³‚ê‚Ä‚¢‚é
- *@retval	FALSE	“o˜^‚³‚ê‚Ä‚¢‚È‚¢
+ *@retval	TRUE	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹
+ *@retval	FALSE	ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
  *
  *
  */
@@ -543,20 +543,20 @@ BOOL CheckCharID(int id)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŠÇ—ID‚ÌVram‚ÉƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ“]‘—‚·‚é
+ *	@brief	ç®¡ç†IDã®Vramã«ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
  *
- *	@param	id				“]‘—æ‚Ìƒf[ƒ^id
- *	@param	pCharData		“]‘—‚·‚éƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *	@param	id				è»¢é€å…ˆã®ãƒ‡ãƒ¼ã‚¿id
+ *	@param	pCharData		è»¢é€ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
- * ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ÌƒTƒCƒY‚ªˆê‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·
+ * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºãŒä¸€ç·’ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
  *
  */
 //-----------------------------------------------------------------------------
 void CharDataChg( int id, NNSG2dCharacterData* pCharData )
 {
-	CHAR_DATA_TBL* tbl;	// ƒLƒƒƒ‰ƒNƒ^ƒe[ƒuƒ‹
+	CHAR_DATA_TBL* tbl;	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 
 	GF_ASSERT( pCharData );
 	
@@ -566,7 +566,7 @@ void CharDataChg( int id, NNSG2dCharacterData* pCharData )
 
 	if( (tbl->type & NNS_G2D_VRAM_TYPE_2DMAIN) ){
 		// Vram
-		// “]‘—ƒ}ƒl[ƒWƒƒ‚Å“]‘—
+		// è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ã§è»¢é€
 		AddVramTransferManager(
 			NNS_GFD_DST_2D_OBJ_CHAR_MAIN,
 			tbl->offset,
@@ -576,7 +576,7 @@ void CharDataChg( int id, NNSG2dCharacterData* pCharData )
 	}
 	if( tbl->type & NNS_G2D_VRAM_TYPE_2DSUB ){
 		// Vram
-		// “]‘—ƒ}ƒl[ƒWƒƒ‚Å“]‘—
+		// è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ã§è»¢é€
 		AddVramTransferManager(
 			NNS_GFD_DST_2D_OBJ_CHAR_SUB,
 			tbl->sub_offset,
@@ -590,11 +590,11 @@ void CharDataChg( int id, NNSG2dCharacterData* pCharData )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚ ‚Æ‚¢‚­‚Â“o˜^‚Å‚«‚é‚Ì‚©‚ğ•Ô‚·
+ *@brief	ã‚ã¨ã„ãã¤ç™»éŒ²ã§ãã‚‹ã®ã‹ã‚’è¿”ã™
  *
  *@param	none
  *
- *@return	int		c‚è“o˜^‰Â”\”
+ *@return	int		æ®‹ã‚Šç™»éŒ²å¯èƒ½æ•°
  *
  *
  */
@@ -607,9 +607,9 @@ int CheckCharRest(void)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ”jŠü
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
- *@param	id		ƒLƒƒƒ‰ƒNƒ^id
+ *@param	id		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿id
  *
  *@return	none
  *
@@ -617,26 +617,26 @@ int CheckCharRest(void)
 //-----------------------------------------------------------------------------
 void DelChar( int id )
 {
-	CHAR_DATA_TBL* tbl;		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+	CHAR_DATA_TBL* tbl;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
 	int flag = 1;
 	do{
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì—v‘f”‚ğæ“¾
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®è¦ç´ æ•°ã‚’å–å¾—
 		tbl = getCharDataPtr(id);
 		GF_ASSERT(tbl);
 	
-		// ƒRƒs[‚Í”jŠü
+		// ã‚³ãƒ”ãƒ¼ã¯ç ´æ£„
 		if(tbl->flag == CHAR_MAN_DO_VRAM_COPY){
 			DelVramTransData( &tbl->ImageProxy );	
 		}else{
-			// ƒIƒŠƒWƒiƒ‹ƒf[ƒ^‚Ì”jŠü‚És‚­
+			// ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ™‚ç ´æ£„ã«è¡Œã
 			flag = 0;
 		}
 	}while( flag );
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ”jŠü‚·‚é
-	// ‰Ò“®’†‚©ƒ`ƒFƒbƒN
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹
+	// ç¨¼å‹•ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( (tbl->flag != CHAR_MAN_NONE) ){
-		// ”jŠü
+		// ç ´æ£„
 		dellCharData( tbl );
 		CharManager->charDataNow--;
 	}
@@ -645,7 +645,7 @@ void DelChar( int id )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‘SƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ”jŠü
+ *@brief	å…¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
  *@param	none
  *
@@ -658,13 +658,13 @@ void DelCharAll( void )
 	int i;
 
 	//
-	// ‘SƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ”jŠü
+	// å…¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
 	//
-	// ƒLƒƒƒ‰ƒNƒ^ID‚Ìƒe[ƒuƒ‹‚ğ’T‚·
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿IDã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ¢ã™
 	for( i = 0; i < CharManager->charDataNum; i++ ){
-		// ‰Ò“®’†‚©ƒ`ƒFƒbƒN
+		// ç¨¼å‹•ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 		if( CharManager->charDataTbl[ i ].flag != CHAR_MAN_NONE ){
-			// ƒf[ƒ^”jŠü
+			// ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 			dellCharData( &CharManager->charDataTbl[ i ] );
 			CharManager->charDataNow--;
 		}
@@ -674,11 +674,11 @@ void DelCharAll( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID‚ÌƒCƒ[ƒWƒvƒƒNƒV‚ğæ“¾
+ *@brief	IDã®ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·ã‚’å–å¾—
  *
- *@param	id			ƒLƒƒƒ‰ƒNƒ^ID
+ *@param	id			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
  *
- *@return	ID‚ÌƒvƒƒNƒV
+ *@return	IDã®ãƒ—ãƒ­ã‚¯ã‚·
  *
  */
 //-----------------------------------------------------------------------------
@@ -686,11 +686,11 @@ NNSG2dImageProxy* GetCharIDProxy( int id )
 {
 	CHAR_DATA_TBL* tbl;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì—v‘f”‚ğæ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®è¦ç´ æ•°ã‚’å–å¾—
 	tbl = getCharDataPtr(id);
 	GF_ASSERT(tbl);
 
-	// ‰Ò“®’†‚Å‚È‚¯‚ê‚ÎNULL‚ğ•Ô‚·
+	// ç¨¼å‹•ä¸­ã§ãªã‘ã‚Œã°NULLã‚’è¿”ã™
 	if( tbl->flag == CHAR_MAN_NONE ){
 		return NULL;
 	}
@@ -701,11 +701,11 @@ NNSG2dImageProxy* GetCharIDProxy( int id )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğæ“¾
+ *@brief	IDã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *@param	pImageFƒCƒ[ƒWƒvƒƒNƒVƒ|ƒCƒ“ƒ^
+ *@param	pImageï¼šã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·ãƒã‚¤ãƒ³ã‚¿
  *
- *@return	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *@return	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
  */
 //-----------------------------------------------------------------------------
@@ -721,63 +721,63 @@ NNSG2dCharacterData* GetCharIDData( const NNSG2dImageProxy* pImage )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹Vram“]‘—ƒAƒjƒ[ƒVƒ‡ƒ“—p‚ÌƒLƒƒƒ‰ƒNƒ^ƒvƒƒNƒV‚ğæ“¾
+ *@brief	ã‚»ãƒ«Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ—ãƒ­ã‚¯ã‚·ã‚’å–å¾—
  *
- *@param	id			ƒLƒƒƒ‰ƒNƒ^ID
- *@param	szByte		g—pƒTƒCƒY
+ *@param	id			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ID
+ *@param	szByte		ä½¿ç”¨ã‚µã‚¤ã‚º
  *
- *@retval	ƒCƒ[ƒWƒvƒƒNƒV
- *@retval	NULL			ƒIƒŠƒWƒiƒ‹‚Íg—p’†‚È‚Ì‚ÅƒRƒs[‚ğì¬‚µ‚Ä‚­‚¾‚³‚¢
+ *@retval	ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
+ *@retval	NULL			ã‚ªãƒªã‚¸ãƒŠãƒ«ã¯ä½¿ç”¨ä¸­ãªã®ã§ã‚³ãƒ”ãƒ¼ã‚’ä½œæˆã—ã¦ãã ã•ã„
  *
  *
  */
 //-----------------------------------------------------------------------------
 NNSG2dImageProxy* GetCharVramTransData( int id, u32 szByte )
 {
-	u32	offset, offset_sub;		// ƒIƒtƒZƒbƒg
-	CHAR_DATA_TBL* now_tbl;	// ¡“o˜^Ï‚İƒe[ƒuƒ‹
-	CHAR_DATA_TBL* pTbl;	// “o˜^‚·‚éƒe[ƒuƒ‹
-	u32	size_m, size_s;		// ÀÛ‚ÉŠm•Û‚µ‚½VramƒTƒCƒY
+	u32	offset, offset_sub;		// ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	CHAR_DATA_TBL* now_tbl;	// ä»Šç™»éŒ²æ¸ˆã¿ãƒ†ãƒ¼ãƒ–ãƒ«
+	CHAR_DATA_TBL* pTbl;	// ç™»éŒ²ã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«
+	u32	size_m, size_s;		// å®Ÿéš›ã«ç¢ºä¿ã—ãŸVramã‚µã‚¤ã‚º
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì—v‘f”‚ğæ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®è¦ç´ æ•°ã‚’å–å¾—
 	now_tbl = getCharDataPtr(id);
 	GF_ASSERT(now_tbl);
 	
-	// ‰Ò“®’†‚Å‚È‚¯‚ê‚ÎNULL‚ğ•Ô‚·
+	// ç¨¼å‹•ä¸­ã§ãªã‘ã‚Œã°NULLã‚’è¿”ã™
 	if( now_tbl->flag == CHAR_MAN_NONE ){
 		return NULL;
 	}
 	
 	//
-	// Vram‚ÌƒTƒCƒY‚ª‚µ‚æ‚¤‚·‚é‰æ–Ê‚ÌVram‚É‚ ‚é‚©ƒ`ƒFƒbƒN
+	// Vramã®ã‚µã‚¤ã‚ºãŒã—ã‚ˆã†ã™ã‚‹ç”»é¢ã®Vramã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	//
 	getvramTransOffset(now_tbl->type, &offset, &offset_sub, szByte, &size_m, &size_s);
 
-	// ƒIƒŠƒWƒiƒ‹ƒf[ƒ^‚ªg—p’†‚È‚çƒGƒ‰[‚ğ•Ô‚·
+	// ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ãŒä½¿ç”¨ä¸­ãªã‚‰ã‚¨ãƒ©ãƒ¼ã‚’è¿”ã™
 	if( now_tbl->flag == CHAR_MAN_DO_VRAM_ORIG ){
 		
 		return NULL;
 		
 	}else{
-		// ƒIƒŠƒWƒiƒ‹‚ªg‚¦‚é‚È‚çƒIƒŠƒWƒiƒ‹‚ğg—p
-		// ƒtƒ‰ƒO‚ğÀs‚É‚·‚é
+		// ã‚ªãƒªã‚¸ãƒŠãƒ«ãŒä½¿ãˆã‚‹ãªã‚‰ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚’ä½¿ç”¨
+		// ãƒ•ãƒ©ã‚°ã‚’å®Ÿè¡Œã«ã™ã‚‹
 		now_tbl->flag = CHAR_MAN_DO_VRAM_ORIG;
 		pTbl = now_tbl;
 	}
 
-	// ƒvƒƒNƒV‚ğƒZƒbƒg
+	// ãƒ—ãƒ­ã‚¯ã‚·ã‚’ã‚»ãƒƒãƒˆ
 	setvramTransOffsetProxy(pTbl, offset, offset_sub);
 
-	// VramƒGƒŠƒA•Û
+	// Vramã‚¨ãƒªã‚¢ä¿æŒ
 	pTbl->have_area = TRUE;
 	pTbl->have_szByte		= size_m;
 	pTbl->have_szByteSub	= size_s;
 
-	// “]‘—
+	// è»¢é€
 	transVramCharVramMode(pTbl);
 
 	//
-	// Vram—Ìˆæƒtƒ‰ƒO‚ğg—p’†‚É‚·‚é
+	// Vramé ˜åŸŸãƒ•ãƒ©ã‚°ã‚’ä½¿ç”¨ä¸­ã«ã™ã‚‹
 	//
 	setvramTransBitData(pTbl->type, offset, offset_sub, size_m, size_s);
 
@@ -787,40 +787,40 @@ NNSG2dImageProxy* GetCharVramTransData( int id, u32 szByte )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹Vram“]‘—ƒAƒjƒ[ƒVƒ‡ƒ“—p‚ÌƒLƒƒƒ‰ƒNƒ^ƒvƒƒNƒV‚ğƒRƒs[‚µ‚Äæ“¾
+ *@brief	ã‚»ãƒ«Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ—ãƒ­ã‚¯ã‚·ã‚’ã‚³ãƒ”ãƒ¼ã—ã¦å–å¾—
  *
- *@param	Orig	ƒIƒŠƒWƒiƒ‹ƒCƒ[ƒWƒvƒƒNƒV
+ *@param	Orig	ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
  *
- *@return	ƒRƒs[‚µ‚ÄVram“]‘—ƒIƒtƒZƒbƒg‚ğæ“¾‚µ‚½ƒCƒ[ƒWƒvƒƒNƒV
- *@return	NULL	ƒIƒŠƒWƒiƒ‹‚ªg—p’†‚Å‚È‚¢‰Â”\«‚ª‚ ‚è‚Ü‚·B
+ *@return	ã‚³ãƒ”ãƒ¼ã—ã¦Vramè»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å–å¾—ã—ãŸã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
+ *@return	NULL	ã‚ªãƒªã‚¸ãƒŠãƒ«ãŒä½¿ç”¨ä¸­ã§ãªã„å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 NNSG2dImageProxy* GetCharVramTransProxyCopy( const NNSG2dImageProxy* Orig )
 {
 	CHAR_DATA_TBL* data;
 	CHAR_DATA_TBL* copy;
-	u32 main, sub;		// ƒIƒtƒZƒbƒg
-	u32	size_m, size_s;	// ÀÛ‚ÉŠm•Û‚µ‚½VramƒTƒCƒY
+	u32 main, sub;		// ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32	size_m, size_s;	// å®Ÿéš›ã«ç¢ºä¿ã—ãŸVramã‚µã‚¤ã‚º
 	u32 data_size;
 	
 
-	// ƒCƒ[ƒWƒvƒƒNƒV‚Ìƒe[ƒuƒ‹æ“¾
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·ã®ãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 	data = getImageProxyTbl(Orig);
 	GF_ASSERT(data);
 	
-	// ƒRƒs[ææ“¾
+	// ã‚³ãƒ”ãƒ¼å…ˆå–å¾—
 	copy = getCharData();
 	GF_ASSERT(copy);
 
-	// ƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+	// ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 	if(data->flag != CHAR_MAN_DO_VRAM_ORIG){
 		return NULL;
 	}
 
-	// ƒRƒs[
+	// ã‚³ãƒ”ãƒ¼
 	*copy = *data;
 
-	// ƒtƒ‰ƒO‚ğƒRƒs[‚É‚·‚é
+	// ãƒ•ãƒ©ã‚°ã‚’ã‚³ãƒ”ãƒ¼ã«ã™ã‚‹
 	copy->flag = CHAR_MAN_DO_VRAM_COPY;
 
 	if( copy->type & NNS_G2D_VRAM_TYPE_2DMAIN ){
@@ -829,20 +829,20 @@ NNSG2dImageProxy* GetCharVramTransProxyCopy( const NNSG2dImageProxy* Orig )
 		data_size = copy->have_szByteSub;
 	}
 	
-	// ƒIƒtƒZƒbƒgæ“¾
+	// ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 	getvramTransOffset(copy->type, &main, &sub, data_size, &size_m, &size_s);
 
-	// ƒvƒƒNƒV‚Éİ’è
+	// ãƒ—ãƒ­ã‚¯ã‚·ã«è¨­å®š
 	setvramTransOffsetProxy(copy, main, sub);
 
-	// VramƒGƒŠƒA•Û
+	// Vramã‚¨ãƒªã‚¢ä¿æŒ
 	copy->have_area = TRUE;
 	copy->have_szByte = size_m;
 	copy->have_szByteSub = size_s;
 	
 	transVramCharVramMode( (void*)copy );
 
-	// Vram—Ìˆæƒtƒ‰ƒO‚ğg—p’†‚É‚·‚é
+	// Vramé ˜åŸŸãƒ•ãƒ©ã‚°ã‚’ä½¿ç”¨ä¸­ã«ã™ã‚‹
 	setvramTransBitData(copy->type, main, sub, size_m, size_s );
 
 	return &copy->ImageProxy;
@@ -851,10 +851,10 @@ NNSG2dImageProxy* GetCharVramTransProxyCopy( const NNSG2dImageProxy* Orig )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹Vram“]‘—ƒAƒjƒ‚ÌVram—Ìˆæ‚ğŠJ•ú
+ *@brief	ã‚»ãƒ«Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ã®Vramé ˜åŸŸã‚’é–‹æ”¾
  *
- *@param	pImageF”jŠü‚·‚éƒLƒƒƒ‰ƒNƒ^—Ìˆæ‚Ì
- *			ƒCƒ[ƒWƒvƒƒNƒV
+ *@param	pImageï¼šç ´æ£„ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿é ˜åŸŸã®
+ *			ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
  *
  *@return	none
  *
@@ -862,17 +862,17 @@ NNSG2dImageProxy* GetCharVramTransProxyCopy( const NNSG2dImageProxy* Orig )
 //-----------------------------------------------------------------------------
 void DelVramTransData( const NNSG2dImageProxy* pImage )
 {
-	int i;			// ƒ‹[ƒv—p
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 	//
-	// ƒvƒƒNƒV‚Ìƒ|ƒCƒ“ƒ^‚Æ“¯‚¶ƒvƒƒNƒV‚ğ’T‚·
+	// ãƒ—ãƒ­ã‚¯ã‚·ã®ãƒã‚¤ãƒ³ã‚¿ã¨åŒã˜ãƒ—ãƒ­ã‚¯ã‚·ã‚’æ¢ã™
 	// 
 	for( i = 0; i < CharManager->charDataNum; i++ )
 	{
-		// ‰Ò“®’†‚©ƒ`ƒFƒbƒN
+		// ç¨¼å‹•ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 		if( (CharManager->charDataTbl[ i ].flag == CHAR_MAN_DO_VRAM_ORIG) || 
 			(CharManager->charDataTbl[ i ].flag == CHAR_MAN_DO_VRAM_COPY) ){
-			// ID‚ğƒ`ƒFƒbƒN
+			// IDã‚’ãƒã‚§ãƒƒã‚¯
 			if( &CharManager->charDataTbl[ i ].ImageProxy == pImage ){
 				break;
 			}	
@@ -883,17 +883,17 @@ void DelVramTransData( const NNSG2dImageProxy* pImage )
 		return ;
 	}
 
-	// VramƒGƒŠƒA‚Ì‰ğ•ú
+	// Vramã‚¨ãƒªã‚¢ã®è§£æ”¾
 	delCharTblTransArea( CharManager->charDataTbl + i );
 
 	//
-	// ƒtƒ‰ƒO‚ğƒ`ƒFƒ“
-	// ƒIƒŠƒWƒiƒ‹‚©ƒ`ƒFƒbƒN
+	// ãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒ³
+	// ã‚ªãƒªã‚¸ãƒŠãƒ«ã‹ãƒã‚§ãƒƒã‚¯
 	if( CharManager->charDataTbl[ i ].flag == CHAR_MAN_DO_VRAM_ORIG ){
-		// ‘Ò‚¿ó‘Ô‚É‚·‚é
+		// å¾…ã¡çŠ¶æ…‹ã«ã™ã‚‹
 		CharManager->charDataTbl[ i ].flag = CHAR_MAN_WAIT_VRAM_ORIG;
 	}else{
-		// Copy‚Ì‚Íƒf[ƒ^‚È‚µó‘Ô‚É‚·‚é
+		// Copyã®æ™‚ã¯ãƒ‡ãƒ¼ã‚¿ãªã—çŠ¶æ…‹ã«ã™ã‚‹
 		CharManager->charDataTbl[ i ].flag = CHAR_MAN_NONE;
 		cleanCharData( &CharManager->charDataTbl[ i ] );
 	}
@@ -902,23 +902,23 @@ void DelVramTransData( const NNSG2dImageProxy* pImage )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	NNSG2dCharacterData‚ğg—p‚µ‚È‚¢‚Æ‚«‚ÌVramƒGƒŠƒAŠm•Û—p
+ *	@brief	NNSG2dCharacterDataã‚’ä½¿ç”¨ã—ãªã„ã¨ãã®Vramã‚¨ãƒªã‚¢ç¢ºä¿ç”¨
  *
- *	@param	szByte		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒTƒCƒY
- *	@param	cont_type	VramƒRƒ“ƒgƒ[ƒ‹ƒ^ƒCƒv
- *	@param	type		“o˜^‰æ–Ê
- *	@param	allocData	Šm•Ûƒf[ƒ^Ši”[æ
+ *	@param	szByte		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ *	@param	cont_type	Vramã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ—
+ *	@param	type		ç™»éŒ²ç”»é¢
+ *	@param	allocData	ç¢ºä¿ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
- *	@retval	TRUE	—ÌˆæŠm•Û‚Å‚«‚½
- *	@retval	FALSE	—ÌˆæŠm•Û‚Å‚«‚È‚©‚Á‚½
+ *	@retval	TRUE	é ˜åŸŸç¢ºä¿ã§ããŸ
+ *	@retval	FALSE	é ˜åŸŸç¢ºä¿ã§ããªã‹ã£ãŸ
  *
  *	cont_type
- *		CHARM_CONT_OFFSET	ƒIƒtƒZƒbƒgƒ^ƒCƒv
- *		CHARM_CONT_AREACONT	ƒGƒŠƒAƒRƒ“ƒgƒ[ƒ‹ƒ^ƒCƒv
+ *		CHARM_CONT_OFFSET	ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚¿ã‚¤ãƒ—
+ *		CHARM_CONT_AREACONT	ã‚¨ãƒªã‚¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ—
  *
  *	type
- *		NNS_G2D_VRAM_TYPE_2DMAIN	ƒƒCƒ“‰æ–ÊVRAM
- *		NNS_G2D_VRAM_TYPE_2DSUB		ƒTƒu‰æ–ÊVRAM
+ *		NNS_G2D_VRAM_TYPE_2DMAIN	ãƒ¡ã‚¤ãƒ³ç”»é¢VRAM
+ *		NNS_G2D_VRAM_TYPE_2DSUB		ã‚µãƒ–ç”»é¢VRAM
  *
  */
 //-----------------------------------------------------------------------------
@@ -930,15 +930,15 @@ BOOL CharVramAreaAlloc( int szByte, int cont_type, int type, CHAR_MANAGER_ALLOCD
 	
 	if( cont_type == CHARM_CONT_OFFSET ){
 		
-		// “]‘—‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+		// è»¢é€ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		check = modeNormOffsetGet( szByte, type, &offs_m, &offs_s );
 
 		if(check){
 
-			// ƒIƒtƒZƒbƒg‚ğ‚¸‚ç‚·
+			// ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ãšã‚‰ã™
 			modeNormOffsetMove( szByte, type );
 
-			// Šm•Ûƒf[ƒ^ì¬
+			// ç¢ºä¿ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 			allocData->type = type;
 			allocData->alloc_size	= szByte;
 			if( type == NNS_G2D_VRAM_TYPE_2DMAIN ){
@@ -951,14 +951,14 @@ BOOL CharVramAreaAlloc( int szByte, int cont_type, int type, CHAR_MANAGER_ALLOCD
 
 	}else{
 		
-		// “]‘—‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+		// è»¢é€ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		check = getvramTransOffset(type, &offs_m, &offs_s, szByte, &size_m, &size_s);
 		if(check){
 
-			// Vram—Ìˆæƒtƒ‰ƒO‚ğg—p’†‚É‚·‚é
+			// Vramé ˜åŸŸãƒ•ãƒ©ã‚°ã‚’ä½¿ç”¨ä¸­ã«ã™ã‚‹
 			setvramTransBitData(type, offs_m, offs_s, size_m, size_s);
 
-			// Šm•Ûƒf[ƒ^ì¬
+			// ç¢ºä¿ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 			allocData->type = type;
 			if( type == NNS_G2D_VRAM_TYPE_2DMAIN ){
 				allocData->alloc_size	= size_m;
@@ -977,27 +977,27 @@ BOOL CharVramAreaAlloc( int szByte, int cont_type, int type, CHAR_MANAGER_ALLOCD
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	NNSG2dCharacterData‚ğg—p‚µ‚È‚¢‚Æ‚«‚ÌVramƒGƒŠƒA”jŠü—p
- *			cont_type = CHARM_CONT_AREACONT‚Ì‚Æ‚«‚æ‚¤
+ *	@brief	NNSG2dCharacterDataã‚’ä½¿ç”¨ã—ãªã„ã¨ãã®Vramã‚¨ãƒªã‚¢ç ´æ£„ç”¨
+ *			cont_type = CHARM_CONT_AREACONTã®ã¨ãã‚ˆã†
  *
- *	@param	allocData	“o˜^ƒf[ƒ^
+ *	@param	allocData	ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
  * 
  *	@return	none
  *
- * ƒIƒtƒZƒbƒg‚¸‚ç‚µƒ‚[ƒh‚ÅŠm•Û‚µ‚½‚à‚Ì‚Í‰ğ•ú‚Å‚«‚Ü‚¹‚ñ
+ * ã‚ªãƒ•ã‚»ãƒƒãƒˆãšã‚‰ã—ãƒ¢ãƒ¼ãƒ‰ã§ç¢ºä¿ã—ãŸã‚‚ã®ã¯è§£æ”¾ã§ãã¾ã›ã‚“
  *
  */
 //-----------------------------------------------------------------------------
 void CharVramAreaFree( CHAR_MANAGER_ALLOCDATA* allocData )
 {
-	int cm_s;		// ƒLƒƒƒ‰ƒNƒ^‹«ŠE’PˆÊ‚ÌƒTƒCƒY
-	int cm_ofs;		// ƒLƒƒƒ‰ƒNƒ^‹«ŠE’PˆÊ‚ÌƒIƒtƒZƒbƒg
+	int cm_s;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œå˜ä½ã®ã‚µã‚¤ã‚º
+	int cm_ofs;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œå˜ä½ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	
 	if( allocData->conttype == CHARM_CONT_OFFSET ){
 		return ;
 	}
 	
-	// ƒZƒ‹VramƒAƒjƒ‚Ì—Ìˆæ‚ğŠJ•ú
+	// ã‚»ãƒ«Vramã‚¢ãƒ‹ãƒ¡ã®é ˜åŸŸã‚’é–‹æ”¾
 	if( allocData->type & NNS_G2D_VRAM_TYPE_2DMAIN ){
 		cm_s = getCharModeNum( allocData->alloc_size ,CharManager->MainModeCharLimit);
 		cm_ofs = getCharModeNum( allocData->alloc_ofs - CharManager->MainVramTransStart, CharManager->MainModeCharLimit );
@@ -1021,18 +1021,18 @@ void CharVramAreaFree( CHAR_MANAGER_ALLOCDATA* allocData )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^‚Ìæ“¾
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿ã®å–å¾—
  *
  *	@param	none
  *
- *	@return	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
+ *	@return	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void* CharManagerPtrGet( void )
 {
 	void* buff;
 	
-	// ”jŠüÏ‚İ‚ÌƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ‚Å‚·
+	// ç ´æ£„æ¸ˆã¿ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ã§ã™
 	GF_ASSERT( CharManager );
 
 	buff = CharManager;
@@ -1042,16 +1042,16 @@ void* CharManagerPtrGet( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^‚ğİ’è
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿ã‚’è¨­å®š
  *
- *	@param	pdata	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
+ *	@param	pdata	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void CharManagerPtrSet( void* pdata )
 {
-	// ‚Ü‚¾”jŠü‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Éã‘‚«‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·
+	// ã¾ã ç ´æ£„ã•ã‚Œã¦ã„ãªã„ã®ã«ä¸Šæ›¸ãã—ã‚ˆã†ã¨ã—ã¦ã„ã¾ã™
 	GF_ASSERT( CharManager == NULL );
 
 	CharManager = pdata;
@@ -1059,14 +1059,14 @@ void CharManagerPtrSet( void* pdata )
 
 
 //
-// ƒvƒ‰ƒCƒx[ƒgŠÖ”
+// ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 //
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ‰Šú‰»
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
  *
- *@param	data	ƒf[ƒ^
+ *@param	data	ãƒ‡ãƒ¼ã‚¿
  *
  *@return	void
  *
@@ -1089,32 +1089,32 @@ static void cleanCharData(CHAR_DATA_TBL* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- *@param	pEntData		ENTRYƒf[ƒ^
- *@param	pCharData		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İƒe[ƒuƒ‹
+ *@param	pEntData		ENTRYãƒ‡ãƒ¼ã‚¿
+ *@param	pCharData		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ãƒ†ãƒ¼ãƒ–ãƒ«
  *
- *@return	BOOL	¬Œ÷FTRUE	¸”sFFALSE	(ƒpƒX‚ª‚ ‚Á‚Ä‚¢‚È‚¢@–”‚Íƒƒ‚ƒŠ‚ª‚½‚è‚È‚¢)
+ *@return	BOOL	æˆåŠŸï¼šTRUE	å¤±æ•—ï¼šFALSE	(ãƒ‘ã‚¹ãŒã‚ã£ã¦ã„ãªã„ã€€åˆã¯ãƒ¡ãƒ¢ãƒªãŒãŸã‚Šãªã„)
  *
  *
  */
 //-----------------------------------------------------------------------------
 static BOOL LoadCharData(const CHAR_MANAGER_HEADER* pEntData, CHAR_DATA_TBL* pCharData)
 {
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	pCharData->pCharData = pEntData->res_file;
 	
-	// ID‚ğİ’è
+	// IDã‚’è¨­å®š
 	pCharData->act_num = pEntData->id;
 	
-	// ƒe[ƒuƒ‹ƒZƒbƒg
-	pCharData->type		= pEntData->type;	// VramType‚ğƒZƒbƒg
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ã‚»ãƒƒãƒˆ
+	pCharData->type		= pEntData->type;	// VramTypeã‚’ã‚»ãƒƒãƒˆ
 	pCharData->vramType	= pCharData->pCharData->characterFmt >> CHAR_VRAM_TRANS_SHIFT;
 
-	// ƒRƒ“ƒgƒ[ƒ‹ƒ^ƒCƒvİ’è
+	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ—è¨­å®š
 	pCharData->cont_type = pEntData->cont_type;
 
-	// VramŠÇ—ƒf[ƒ^
+	// Vramç®¡ç†ãƒ‡ãƒ¼ã‚¿
 	pCharData->have_area = FALSE;
 	pCharData->have_szByte		= 0;
 	pCharData->have_szByteSub	= 0;
@@ -1125,26 +1125,26 @@ static BOOL LoadCharData(const CHAR_MANAGER_HEADER* pEntData, CHAR_DATA_TBL* pCh
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒCƒ[ƒWƒvƒƒNƒV‚Æ“¯‚¶ƒe[ƒuƒ‹‚ğ’T‚·
+ *@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·ã¨åŒã˜ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ¢ã™
  *
- *@param	pImage		’T‚·ƒe[ƒuƒ‹‚ÌƒCƒ[ƒWƒvƒƒNƒV
+ *@param	pImage		æ¢ã™ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
  *
- *@return	CHAR_DATA_TBL*	Œ©‚Â‚©‚Á‚½ƒe[ƒuƒ‹
+ *@return	CHAR_DATA_TBL*	è¦‹ã¤ã‹ã£ãŸãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *
  */
 //-----------------------------------------------------------------------------
 static CHAR_DATA_TBL* getImageProxyTbl(const NNSG2dImageProxy* pImage)
 {
-	int i;			// ƒ‹[ƒv—p
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	//
-	// ƒvƒƒNƒV‚Ìƒ|ƒCƒ“ƒ^‚Æ“¯‚¶ƒvƒƒNƒV‚ğ’T‚µ‚»‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ•Ô‚·
+	// ãƒ—ãƒ­ã‚¯ã‚·ã®ãƒã‚¤ãƒ³ã‚¿ã¨åŒã˜ãƒ—ãƒ­ã‚¯ã‚·ã‚’æ¢ã—ãã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
 	// 
 	for( i = 0; i < CharManager->charDataNum; i++ ){
-		// ‰Ò“®’†‚©ƒ`ƒFƒbƒN
+		// ç¨¼å‹•ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 		if( CharManager->charDataTbl[ i ].flag != CHAR_MAN_NONE ){
-			// ID‚ğƒ`ƒFƒbƒN
+			// IDã‚’ãƒã‚§ãƒƒã‚¯
 			if( &CharManager->charDataTbl[ i ].ImageProxy == pImage ){
 				break;
 			}	
@@ -1161,31 +1161,31 @@ static CHAR_DATA_TBL* getImageProxyTbl(const NNSG2dImageProxy* pImage)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
  *
- *@param	pCharData	ƒGƒ“ƒgƒŠ[ƒf[ƒ^
- *@param	tbl			ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *@param	pCharData	ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *@param	tbl			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
- *@return	BOOL	¬Œ÷FTRUE	¸”sFFALSE	iVramƒTƒCƒY‚ª‘«‚è‚È‚¢j
+ *@return	BOOL	æˆåŠŸï¼šTRUE	å¤±æ•—ï¼šFALSE	ï¼ˆVramã‚µã‚¤ã‚ºãŒè¶³ã‚Šãªã„ï¼‰
  *
  *
  */
 //-----------------------------------------------------------------------------
 static BOOL TransCharData(CHAR_DATA_TBL* tbl)
 {
-	BOOL dell_flag = TRUE;	// Vram‚É“ü‚ç‚È‚¢‚Æ‚«FALSE‚É‚È‚é
+	BOOL dell_flag = TRUE;	// Vramã«å…¥ã‚‰ãªã„ã¨ãFALSEã«ãªã‚‹
 	
-	// Vram“]‘—‚©ƒ`ƒFƒbƒN
+	// Vramè»¢é€ã‹ãƒã‚§ãƒƒã‚¯
 	if( tbl->vramType ){
-		tbl->flag = CHAR_MAN_WAIT_VRAM_ORIG;// Vram“]‘—‘Ò‹@’†
+		tbl->flag = CHAR_MAN_WAIT_VRAM_ORIG;// Vramè»¢é€å¾…æ©Ÿä¸­
 	}else{
-		tbl->flag = CHAR_MAN_DO_NORMAL;		// ’Êíg—p’†
+		tbl->flag = CHAR_MAN_DO_NORMAL;		// é€šå¸¸ä½¿ç”¨ä¸­
 
 		if(tbl->cont_type == CHARM_CONT_OFFSET){
-			// ƒIƒtƒZƒbƒg‚¸‚ç‚µƒ‚[ƒh
+			// ã‚ªãƒ•ã‚»ãƒƒãƒˆãšã‚‰ã—ãƒ¢ãƒ¼ãƒ‰
 			dell_flag = TransCharOffset( tbl );
 		}else{
-			// ƒGƒŠƒAƒRƒ“ƒgƒ[ƒ‹ƒ‚[ƒh
+			// ã‚¨ãƒªã‚¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
 			dell_flag = TransCharAreaCont( tbl );
 		}
 	}
@@ -1196,30 +1196,30 @@ static BOOL TransCharData(CHAR_DATA_TBL* tbl)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŠÇ—ƒ^ƒCƒvƒIƒtƒZƒbƒg‚Å“]‘—
+ *	@brief	ç®¡ç†ã‚¿ã‚¤ãƒ—ã‚ªãƒ•ã‚»ãƒƒãƒˆã§è»¢é€
  *
- *	@param	tbl		ƒe[ƒuƒ‹
+ *	@param	tbl		ãƒ†ãƒ¼ãƒ–ãƒ«
  *
- *	@retval	TRUE	“]‘—¬Œ÷
- *	@retval	FALSE	“]‘—¸”s
+ *	@retval	TRUE	è»¢é€æˆåŠŸ
+ *	@retval	FALSE	è»¢é€å¤±æ•—
  *
  *
  */
 //-----------------------------------------------------------------------------
 static BOOL TransCharOffset(CHAR_DATA_TBL* tbl)
 {
-	BOOL dell_flag = TRUE;	// Vram‚É“ü‚ç‚È‚¢‚Æ‚«FALSE‚É‚È‚é
-	u32 offs_m, offs_s;		// ƒƒCƒ“ƒTƒuƒIƒtƒZƒbƒg
+	BOOL dell_flag = TRUE;	// Vramã«å…¥ã‚‰ãªã„ã¨ãFALSEã«ãªã‚‹
+	u32 offs_m, offs_s;		// ãƒ¡ã‚¤ãƒ³ã‚µãƒ–ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-	// ƒIƒtƒZƒbƒgæ“¾
+	// ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 	dell_flag = modeNormOffsetGet( tbl->pCharData->szByte, tbl->type, &offs_m, &offs_s );
 	
 	if( dell_flag ){
 		
-		// “]‘—
+		// è»¢é€
 		setTransChar( tbl, offs_m, offs_s );
 		
-		// ƒIƒtƒZƒbƒgˆÚ“®
+		// ã‚ªãƒ•ã‚»ãƒƒãƒˆç§»å‹•
 		modeNormOffsetMove( tbl->pCharData->szByte, tbl->type );
 	}
 
@@ -1229,43 +1229,43 @@ static BOOL TransCharOffset(CHAR_DATA_TBL* tbl)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŠÇ—ƒ^ƒCƒvƒGƒŠƒAƒRƒ“ƒgƒ[ƒ‹‚Å“]‘—
+ *	@brief	ç®¡ç†ã‚¿ã‚¤ãƒ—ã‚¨ãƒªã‚¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã§è»¢é€
  *
- *	@param	tbl		ƒLƒƒƒ‰ƒNƒ^ƒe[ƒuƒ‹
+ *	@param	tbl		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  *
- *	@retval	TRUE	“]‘—¬Œ÷
- *	@retval	FALSE	“]‘—¸”s
+ *	@retval	TRUE	è»¢é€æˆåŠŸ
+ *	@retval	FALSE	è»¢é€å¤±æ•—
  *
  *
  */
 //-----------------------------------------------------------------------------
 static BOOL TransCharAreaCont(CHAR_DATA_TBL* tbl)
 {
-	u32	offset, offset_sub;		// ƒIƒtƒZƒbƒg
-	u32 size_m, size_s;			// ÀÛ‚ÉŠm•Û‚µ‚½VramƒTƒCƒY
+	u32	offset, offset_sub;		// ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u32 size_m, size_s;			// å®Ÿéš›ã«ç¢ºä¿ã—ãŸVramã‚µã‚¤ã‚º
 	BOOL check;
 
 	//
-	// Vram‚ÌƒTƒCƒY‚ª‚µ‚æ‚¤‚·‚é‰æ–Ê‚ÌVram‚É‚ ‚é‚©ƒ`ƒFƒbƒN
+	// Vramã®ã‚µã‚¤ã‚ºãŒã—ã‚ˆã†ã™ã‚‹ç”»é¢ã®Vramã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	//
 	check = getvramTransOffset(tbl->type, &offset, &offset_sub, tbl->pCharData->szByte, &size_m, &size_s);
-	// —ÌˆæŠm•Û¸”s
+	// é ˜åŸŸç¢ºä¿å¤±æ•—
 	if( check == FALSE ){
 		return FALSE;
 	}
 
-	// ƒIƒtƒZƒbƒg‚ğƒZƒbƒg
+	// ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
 	setvramTransOffsetProxy(tbl, offset, offset_sub);
 
-	// VramƒGƒŠƒA•Û
+	// Vramã‚¨ãƒªã‚¢ä¿æŒ
 	tbl->have_area = TRUE;
 	tbl->have_szByte = size_m;
 	tbl->have_szByteSub = size_s;
 
-	// “]‘—
+	// è»¢é€
 	transVramChar(tbl);
 
-	// Vram—Ìˆæƒtƒ‰ƒO‚ğg—p’†‚É‚·‚é
+	// Vramé ˜åŸŸãƒ•ãƒ©ã‚°ã‚’ä½¿ç”¨ä¸­ã«ã™ã‚‹
 	setvramTransBitData(tbl->type, offset, offset_sub, size_m, size_s);
 
 	return TRUE;
@@ -1274,9 +1274,9 @@ static BOOL TransCharAreaCont(CHAR_DATA_TBL* tbl)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ”jŠü‚·‚é
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹
  *
- *@param	pCharDataFƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *@param	pCharDataï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
  *@return	 none
  *
@@ -1284,33 +1284,33 @@ static BOOL TransCharAreaCont(CHAR_DATA_TBL* tbl)
 //-----------------------------------------------------------------------------
 static void dellCharData( CHAR_DATA_TBL* pCharData )
 {
-	// VramƒGƒŠƒA‚ğ•Û‚µ‚Ä‚¢‚é‚Æ‚«‚Í•Ô‚·
+	// Vramã‚¨ãƒªã‚¢ã‚’ä¿æŒã—ã¦ã„ã‚‹ã¨ãã¯è¿”ã™
 	if(pCharData->have_area){		
 		delCharTblTransArea( pCharData );	
 	}
 	
-	// ƒf[ƒ^”jŠü
+	// ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	cleanCharData(pCharData);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚±‚ÌƒpƒX‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì—v‘f”‚ğæ“¾
+ *@brief	ã“ã®ãƒ‘ã‚¹ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®è¦ç´ æ•°ã‚’å–å¾—
  *
- *@param	id		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^id
+ *@param	id		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿id
  *
- *@return	CHAR_DATA_TBL* ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒe[ƒuƒ‹
+ *@return	CHAR_DATA_TBL* ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  */
 //-----------------------------------------------------------------------------
 static CHAR_DATA_TBL* getCharDataPtr( int id )
 {
-	int	i;		// ƒ‹[ƒv—p
+	int	i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
-	// ID‚Ìƒf[ƒ^‚ğŒŸõ‚µ‚ÄƒvƒƒNƒV‚ğ•Ô‚·
+	// IDã®ãƒ‡ãƒ¼ã‚¿ã‚’æ¤œç´¢ã—ã¦ãƒ—ãƒ­ã‚¯ã‚·ã‚’è¿”ã™
 	for( i = 0; i < CharManager->charDataNum; i++ ){
-		// ID‚ğƒ`ƒFƒbƒN
+		// IDã‚’ãƒã‚§ãƒƒã‚¯
 		if( CharManager->charDataTbl[i].act_num == id ){
 			return &CharManager->charDataTbl[i];
 		}	
@@ -1322,12 +1322,12 @@ static CHAR_DATA_TBL* getCharDataPtr( int id )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒ‚[ƒh‚ğ‡‚í‚¹‚é
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¢ãƒ¼ãƒ‰ã‚’åˆã‚ã›ã‚‹
  *
- *	@param	pCharData	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
- *	@param	type		Vramƒ^ƒCƒv
+ *	@param	pCharData	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+ *	@param	type		Vramã‚¿ã‚¤ãƒ—
  *
- *	@return	int		ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh
+ *	@return	int		ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰
  *
  *
  */
@@ -1346,11 +1346,11 @@ static int charModeAdjust( CHAR_DATA_TBL* pCharData, int type )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—ˆ—‚ğVƒuƒ‰ƒ“ƒNˆ—ƒ^ƒXƒN‚ÉƒZƒbƒg
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€å‡¦ç†ã‚’Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†ã‚¿ã‚¹ã‚¯ã«ã‚»ãƒƒãƒˆ
  *
- *@param	pCharDataFƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
- *@param	p_offsetFƒIƒtƒZƒbƒg’l
- *@param	p_sub_offsetFƒTƒu‰æ–Ê‚ÌƒIƒtƒZƒbƒg’l
+ *@param	pCharDataï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+ *@param	p_offsetï¼šã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
+ *@param	p_sub_offsetï¼šã‚µãƒ–ç”»é¢ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 	*
  *@return	none
  *
@@ -1359,16 +1359,16 @@ static int charModeAdjust( CHAR_DATA_TBL* pCharData, int type )
 static void setTransChar( CHAR_DATA_TBL* pCharData, u32 p_offset, u32 p_sub_offset )
 {
 	//
-	// offset’l‚ğƒZƒbƒg‚µ‚ÄƒTƒCƒY•ª‚¸‚ç‚·
+	// offsetå€¤ã‚’ã‚»ãƒƒãƒˆã—ã¦ã‚µã‚¤ã‚ºåˆ†ãšã‚‰ã™
 	//
 	pCharData->offset		= p_offset;
 	pCharData->sub_offset	= p_sub_offset;
 
-	// ‚¸‚ç‚·
-	// Vram“]‘—‚©ƒ`ƒFƒbƒN
+	// ãšã‚‰ã™
+	// Vramè»¢é€ã‹ãƒã‚§ãƒƒã‚¯
 	if( !pCharData->vramType )
 	{
-		// Vram“]‘—
+		// Vramè»¢é€
 		transVramChar((void*)pCharData);
 	}
 }
@@ -1376,17 +1376,17 @@ static void setTransChar( CHAR_DATA_TBL* pCharData, u32 p_offset, u32 p_sub_offs
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Vram‚É“]‘—‚·‚é“]‘—ƒIƒtƒZƒbƒg‚ğæ“¾
+ *@brief	Vramã«è»¢é€ã™ã‚‹è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å–å¾—
  *
- *@param	type		•\¦æ
- *@param	main		ƒƒCƒ“ƒIƒtƒZƒbƒgŠi”[æ
- *@param	sub			ƒTƒuƒIƒtƒZƒbƒgŠi”[æ
- *@param	szByte		ƒTƒCƒY
- *@param	get_size	ƒƒCƒ“ÀÛ‚ÉŠm•Û‚µ‚½ƒTƒCƒY
- *@param	get_size_subƒTƒuÀÛ‚ÉŠm•Û‚µ‚½ƒTƒCƒY
+ *@param	type		è¡¨ç¤ºå…ˆ
+ *@param	main		ãƒ¡ã‚¤ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆæ ¼ç´å…ˆ
+ *@param	sub			ã‚µãƒ–ã‚ªãƒ•ã‚»ãƒƒãƒˆæ ¼ç´å…ˆ
+ *@param	szByte		ã‚µã‚¤ã‚º
+ *@param	get_size	ãƒ¡ã‚¤ãƒ³å®Ÿéš›ã«ç¢ºä¿ã—ãŸã‚µã‚¤ã‚º
+ *@param	get_size_subã‚µãƒ–å®Ÿéš›ã«ç¢ºä¿ã—ãŸã‚µã‚¤ã‚º
  *
- *@retval	TRUE	—ÌˆæŠm•Û¬Œ÷
- *@retval	FALSE	—ÌˆæŠm•Û¸”s
+ *@retval	TRUE	é ˜åŸŸç¢ºä¿æˆåŠŸ
+ *@retval	FALSE	é ˜åŸŸç¢ºä¿å¤±æ•—
  *
  *
  */
@@ -1397,43 +1397,43 @@ static BOOL getvramTransOffset(int type, u32* main, u32* sub, u32 szByte, u32* g
 	
 	
 	if( type & NNS_G2D_VRAM_TYPE_2DMAIN ){
-		// ƒTƒCƒY‚ğƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒY‚ÅŠ„‚èØ‚ê‚é’l‚É‚·‚é
+		// ã‚µã‚¤ã‚ºã‚’ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºã§å‰²ã‚Šåˆ‡ã‚Œã‚‹å€¤ã«ã™ã‚‹
 		*get_size = getCharModeLimNum( szByte, CharManager->MainModeCharLimit, CHAR_MAN_LIM_ADD );
 		
 		
-		// ƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒY‚Ì’PˆÊ‚É‚·‚é
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºã®å˜ä½ã«ã™ã‚‹
 		size_cm = getCharModeNum( *get_size, CharManager->MainModeCharLimit );	
 
-		// ƒƒCƒ“‰æ–Ê‘¤
+		// ãƒ¡ã‚¤ãƒ³ç”»é¢å´
 		*main = TransBitCheck( size_cm, CharManager->TransAreaFlagMain );
 		
-		// ƒGƒ‰[‚ª‹A‚Á‚Ä‚«‚½‚ç‚à‚¤–³—
+		// ã‚¨ãƒ©ãƒ¼ãŒå¸°ã£ã¦ããŸã‚‰ã‚‚ã†ç„¡ç†
 		if( *main == CHAR_VRAM_BANK_GET_ERR ){
-			GF_ASSERT(0&&("OAM‚ÌƒLƒƒƒ‰ƒNƒ^—Ìˆææ“¾ƒI[ƒo["));
+			GF_ASSERT(0&&("OAMã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿é ˜åŸŸå–å¾—ã‚ªãƒ¼ãƒãƒ¼"));
 			return FALSE;
 		}
 
-		// ƒIƒtƒZƒbƒg’l‚ğƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒY‚©‚çƒoƒCƒgƒTƒCƒY‚É•ÏX
+		// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºã‹ã‚‰ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºã«å¤‰æ›´
 		*main = getCharModeNum_byte( *main, CharManager->MainModeCharLimit );
 	}
 
 	if( type & NNS_G2D_VRAM_TYPE_2DSUB ){
-		// ƒTƒCƒY‚ğƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒY‚ÅŠ„‚èØ‚ê‚é’l‚É‚·‚é
+		// ã‚µã‚¤ã‚ºã‚’ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºã§å‰²ã‚Šåˆ‡ã‚Œã‚‹å€¤ã«ã™ã‚‹
 		*get_size_sub = getCharModeLimNum( szByte, CharManager->SubModeCharLimit, CHAR_MAN_LIM_ADD );
 		
-		// ƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒY‚Ì’PˆÊ‚É‚·‚é
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºã®å˜ä½ã«ã™ã‚‹
 		size_cm = getCharModeNum( *get_size_sub, CharManager->SubModeCharLimit );	
 		
-		// ƒTƒu‰æ–Ê‘¤
+		// ã‚µãƒ–ç”»é¢å´
 		*sub = TransBitCheck( size_cm, CharManager->TransAreaFlagSub );
 
-		// ƒGƒ‰[‚ª‹A‚Á‚Ä‚«‚½‚ç‚à‚¤–³—
+		// ã‚¨ãƒ©ãƒ¼ãŒå¸°ã£ã¦ããŸã‚‰ã‚‚ã†ç„¡ç†
 		if( *sub == CHAR_VRAM_BANK_GET_ERR ){
-			GF_ASSERT(0&&("OAM‚ÌƒLƒƒƒ‰ƒNƒ^—Ìˆææ“¾ƒI[ƒo["));
+			GF_ASSERT(0&&("OAMã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿é ˜åŸŸå–å¾—ã‚ªãƒ¼ãƒãƒ¼"));
 			return FALSE;
 		}
 
-		// ƒIƒtƒZƒbƒg’l‚ğƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒY‚©‚çƒoƒCƒgƒTƒCƒY‚É•ÏX
+		// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºã‹ã‚‰ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºã«å¤‰æ›´
 		*sub = getCharModeNum_byte( *sub, CharManager->SubModeCharLimit );
 	}
 
@@ -1443,11 +1443,11 @@ static BOOL getvramTransOffset(int type, u32* main, u32* sub, u32 szByte, u32* g
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒvƒƒNƒV‚ÉVram“]‘——pƒIƒtƒZƒbƒg‚ğİ’è
+ *@brief	ãƒ—ãƒ­ã‚¯ã‚·ã«Vramè»¢é€ç”¨ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨­å®š
  *
- *@param	data	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒe[ƒuƒ‹
- *@param	main	ƒƒCƒ“ƒIƒtƒZƒbƒg
- *@param	sub		ƒTƒuƒIƒtƒZƒbƒg
+ *@param	data	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ *@param	main	ãƒ¡ã‚¤ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *@param	sub		ã‚µãƒ–ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  *@return	none
  *
@@ -1456,10 +1456,10 @@ static BOOL getvramTransOffset(int type, u32* main, u32* sub, u32 szByte, u32* g
 //-----------------------------------------------------------------------------
 static void setvramTransOffsetProxy(CHAR_DATA_TBL* data, u32 main, u32 sub)
 {
-	if( data->type & NNS_G2D_VRAM_TYPE_2DMAIN ){		// ƒƒCƒ“‰æ–Ê•\¦‚Ì
+	if( data->type & NNS_G2D_VRAM_TYPE_2DMAIN ){		// ãƒ¡ã‚¤ãƒ³ç”»é¢è¡¨ç¤ºã®æ™‚
 		data->offset = main + CharManager->MainVramTransStart;
 	}
-	if( data->type & NNS_G2D_VRAM_TYPE_2DSUB ){			// ƒTƒu‰æ–Ê•\¦‚Ì
+	if( data->type & NNS_G2D_VRAM_TYPE_2DSUB ){			// ã‚µãƒ–ç”»é¢è¡¨ç¤ºã®æ™‚
 		data->sub_offset = sub + CharManager->SubVramTransStart;
 	}
 }
@@ -1467,13 +1467,13 @@ static void setvramTransOffsetProxy(CHAR_DATA_TBL* data, u32 main, u32 sub)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒvƒƒNƒV‚ÉVram“]‘——pƒIƒtƒZƒbƒg‚ğİ’è
+ *@brief	ãƒ—ãƒ­ã‚¯ã‚·ã«Vramè»¢é€ç”¨ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨­å®š
  *
- *@param	type	‰æ–Êƒ^ƒCƒv
- *@param	main	ƒƒCƒ“ƒIƒtƒZƒbƒg
- *@param	sub		ƒTƒuƒIƒtƒZƒbƒg
- *@param	szByte		ƒƒCƒ“ƒTƒCƒY
- *@param	szByteSub	ƒTƒuƒTƒCƒY
+ *@param	type	ç”»é¢ã‚¿ã‚¤ãƒ—
+ *@param	main	ãƒ¡ã‚¤ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *@param	sub		ã‚µãƒ–ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *@param	szByte		ãƒ¡ã‚¤ãƒ³ã‚µã‚¤ã‚º
+ *@param	szByteSub	ã‚µãƒ–ã‚µã‚¤ã‚º
  *
  *@return	none
  *
@@ -1486,13 +1486,13 @@ static void setvramTransBitData(int type, u32 main, u32 sub, u32 szByte, u32 szB
 	int offs_cm;
 	
 	
-	if( type & NNS_G2D_VRAM_TYPE_2DMAIN ){		// ƒƒCƒ“‰æ–Ê•\¦‚Ì
+	if( type & NNS_G2D_VRAM_TYPE_2DMAIN ){		// ãƒ¡ã‚¤ãƒ³ç”»é¢è¡¨ç¤ºã®æ™‚
 		size_cm = getCharModeNum( szByte, CharManager->MainModeCharLimit );	
 		offs_cm = getCharModeNum( main, CharManager->MainModeCharLimit );	
 		TransBitSet( offs_cm, size_cm, CharManager->TransAreaFlagMain );
 
 	}
-	if( type & NNS_G2D_VRAM_TYPE_2DSUB ){			// ƒTƒu‰æ–Ê•\¦‚Ì
+	if( type & NNS_G2D_VRAM_TYPE_2DSUB ){			// ã‚µãƒ–ç”»é¢è¡¨ç¤ºã®æ™‚
 		size_cm = getCharModeNum( szByteSub, CharManager->SubModeCharLimit );	
 		offs_cm = getCharModeNum( sub, CharManager->SubModeCharLimit );	
 		TransBitSet( offs_cm, size_cm, CharManager->TransAreaFlagSub );
@@ -1502,9 +1502,9 @@ static void setvramTransBitData(int type, u32 main, u32 sub, u32 szByte, u32 szB
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Vblank“à‚Ås‚¤ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ÌVram‚Ö‚Ì“]‘—
+ *@brief	Vblankå†…ã§è¡Œã†ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®Vramã¸ã®è»¢é€
  *
- *@param	p_dataF“]‘—‚·‚éƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *@param	p_dataï¼šè»¢é€ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -1512,14 +1512,14 @@ static void setvramTransBitData(int type, u32 main, u32 sub, u32 szByte, u32 szB
 //-----------------------------------------------------------------------------
 static void transVramChar( void* p_data )
 {
-	CHAR_DATA_TBL* p_char_data = (CHAR_DATA_TBL*)p_data;		// ƒLƒƒƒXƒg‚µ‚Äƒf[ƒ^æ“¾
-	int mapping_mode;		// ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh
+	CHAR_DATA_TBL* p_char_data = (CHAR_DATA_TBL*)p_data;		// ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãƒ‡ãƒ¼ã‚¿å–å¾—
+	int mapping_mode;		// ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰
 
-	// ƒvƒƒNƒV‚Ì‰Šú‰»
+	// ãƒ—ãƒ­ã‚¯ã‚·ã®åˆæœŸåŒ–
 	NNS_G2dInitImageProxy(&p_char_data->ImageProxy);
 	
 	//
-	// Vram‚Ö“Ç‚İ‚Ş
+	// Vramã¸èª­ã¿è¾¼ã‚€
 	//
 	if( p_char_data->type != NNS_G2D_VRAM_TYPE_MAX )
 	{
@@ -1528,7 +1528,7 @@ static void transVramChar( void* p_data )
 	}
 	else
 	{
-		// —¼•û‚É“o˜^
+		// ä¸¡æ–¹ã«ç™»éŒ²
 		transVramCharCore( p_char_data, NNS_G2D_VRAM_TYPE_2DMAIN);
 		
 		transVramCharCore( p_char_data, NNS_G2D_VRAM_TYPE_2DSUB);
@@ -1539,10 +1539,10 @@ static void transVramChar( void* p_data )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“]‘—ƒRƒAŠÖ”
+ *	@brief	è»¢é€ã‚³ã‚¢é–¢æ•°
  *
- *	@param	data			ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
- *	@param	vram_type		Vramƒ^ƒCƒv
+ *	@param	data			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+ *	@param	vram_type		Vramã‚¿ã‚¤ãƒ—
  *
  *	@return	none
  *
@@ -1571,27 +1571,27 @@ static void transVramCharCore( CHAR_DATA_TBL* data, int vram_type)
 	
 	if(mapping_mode == GX_OBJVRAMMODE_CHAR_2D){
 		NNS_G2dLoadImage2DMapping( 
-				data->pCharData,		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
-				offset,					// ƒLƒƒƒ‰ƒNƒ^ƒx[ƒXƒAƒhƒŒƒX
+				data->pCharData,		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+				offset,					// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
 				vram_type,					// VramType
-				&data->ImageProxy );	// ƒCƒ[ƒWƒvƒƒNƒV
+				&data->ImageProxy );	// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
 	}else{
 		NNS_G2dLoadImage1DMapping( 
-				data->pCharData,		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
-				offset,					// ƒLƒƒƒ‰ƒNƒ^ƒx[ƒXƒAƒhƒŒƒX
+				data->pCharData,		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+				offset,					// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
 				vram_type,					// VramType
-				&data->ImageProxy );	// ƒCƒ[ƒWƒvƒƒNƒV
+				&data->ImageProxy );	// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
 		
 	}
 
 	//if(vram_type == NNS_G2D_VRAM_TYPE_2DMAIN){
 	//	if(GX_GetOBJVRamModeChar() != before_mapping){
-	//		OS_Printf("ƒLƒƒƒ‰“]‘—‚É‚æ‚èOBJƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ª•ÏX‚³‚ê‚Ü‚µ‚½\n");
+	//		OS_Printf("ã‚­ãƒ£ãƒ©è»¢é€ã«ã‚ˆã‚ŠOBJãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒå¤‰æ›´ã•ã‚Œã¾ã—ãŸ\n");
 	//	}
 	//}
 	//else{
 	//	if(GXS_GetOBJVRamModeChar() != before_mapping){
-	//		OS_Printf("ƒLƒƒƒ‰“]‘—‚É‚æ‚èOBJƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ª•ÏX‚³‚ê‚Ü‚µ‚½\n");
+	//		OS_Printf("ã‚­ãƒ£ãƒ©è»¢é€ã«ã‚ˆã‚ŠOBJãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒå¤‰æ›´ã•ã‚Œã¾ã—ãŸ\n");
 	//	}
 	//}
 }
@@ -1599,10 +1599,10 @@ static void transVramCharCore( CHAR_DATA_TBL* data, int vram_type)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Vblank“à‚Ås‚¤ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ÌVram‚Ö‚Ì“]‘—
- *						Vram“]‘—ƒAƒjƒƒ‚[ƒh‚ÌƒLƒƒƒ‰ƒNƒ^
+ *@brief	Vblankå†…ã§è¡Œã†ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®Vramã¸ã®è»¢é€
+ *						Vramè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ¢ãƒ¼ãƒ‰ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
  *
- *@param	p_dataF“]‘—‚·‚éƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *@param	p_dataï¼šè»¢é€ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -1610,13 +1610,13 @@ static void transVramCharCore( CHAR_DATA_TBL* data, int vram_type)
 //-----------------------------------------------------------------------------
 static void transVramCharVramMode( void* p_data )
 {
-	CHAR_DATA_TBL* p_char_data = (CHAR_DATA_TBL*)p_data;		// ƒLƒƒƒXƒg‚µ‚Äƒf[ƒ^æ“¾
+	CHAR_DATA_TBL* p_char_data = (CHAR_DATA_TBL*)p_data;		// ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ãƒ‡ãƒ¼ã‚¿å–å¾—
 
-	// ƒvƒƒNƒV‚Ì‰Šú‰»
+	// ãƒ—ãƒ­ã‚¯ã‚·ã®åˆæœŸåŒ–
 	NNS_G2dInitImageProxy(&p_char_data->ImageProxy);
 	
 	//
-	// Vram‚Ö“Ç‚İ‚Ş
+	// Vramã¸èª­ã¿è¾¼ã‚€
 	//
 	if( p_char_data->type != NNS_G2D_VRAM_TYPE_MAX )
 	{
@@ -1624,7 +1624,7 @@ static void transVramCharVramMode( void* p_data )
 	}
 	else
 	{
-		// —¼•û‚É“o˜^
+		// ä¸¡æ–¹ã«ç™»éŒ²
 		transVramCharVramModeCore( p_char_data, NNS_G2D_VRAM_TYPE_2DMAIN );
 		transVramCharVramModeCore( p_char_data, NNS_G2D_VRAM_TYPE_2DSUB );
 	}
@@ -1632,7 +1632,7 @@ static void transVramCharVramMode( void* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VRAM“]‘—Core
+ *	@brief	VRAMè»¢é€Core
  */
 //-----------------------------------------------------------------------------
 static void transVramCharVramModeCore( CHAR_DATA_TBL* data, int vram_type)
@@ -1656,19 +1656,19 @@ static void transVramCharVramModeCore( CHAR_DATA_TBL* data, int vram_type)
 	}
 	
 	NNS_G2dLoadImageVramTransfer( 
-			data->pCharData,		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
-			offset,					// ƒLƒƒƒ‰ƒNƒ^ƒx[ƒXƒAƒhƒŒƒX
+			data->pCharData,		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+			offset,					// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
 			vram_type,				// VramType
-			&data->ImageProxy );	// ƒCƒ[ƒWƒvƒƒNƒV
+			&data->ImageProxy );	// ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚¯ã‚·
 
 	//if(vram_type == NNS_G2D_VRAM_TYPE_2DMAIN){
 	//	if(GX_GetOBJVRamModeChar() != before_mapping){
-	//		OS_Printf("ƒLƒƒƒ‰“]‘—‚É‚æ‚èOBJƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ª•ÏX‚³‚ê‚Ü‚µ‚½\n");
+	//		OS_Printf("ã‚­ãƒ£ãƒ©è»¢é€ã«ã‚ˆã‚ŠOBJãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒå¤‰æ›´ã•ã‚Œã¾ã—ãŸ\n");
 	//	}
 	//}
 	//else{
 	//	if(GXS_GetOBJVRamModeChar() != before_mapping){
-	//		OS_Printf("ƒLƒƒƒ‰“]‘—‚É‚æ‚èOBJƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ª•ÏX‚³‚ê‚Ü‚µ‚½\n");
+	//		OS_Printf("ã‚­ãƒ£ãƒ©è»¢é€ã«ã‚ˆã‚ŠOBJãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ãŒå¤‰æ›´ã•ã‚Œã¾ã—ãŸ\n");
 	//	}
 	//}
 }
@@ -1676,35 +1676,35 @@ static void transVramCharVramModeCore( CHAR_DATA_TBL* data, int vram_type)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‹ó‚Ìƒf[ƒ^ƒe[ƒuƒ‹‚ğæ“¾
+ *@brief	ç©ºã®ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
  *
  *@param	none
  *	
- *@return	CHAR_DATA_TBL* Œ^F‚©‚ç‚Ìƒe[ƒuƒ‹	NULL‚Ì‚Í‚à‚¤‹ó‚Ìƒe[ƒuƒ‹‚ª‚È‚¢
+ *@return	CHAR_DATA_TBL* å‹ï¼šã‹ã‚‰ã®ãƒ†ãƒ¼ãƒ–ãƒ«	NULLã®æ™‚ã¯ã‚‚ã†ç©ºã®ãƒ†ãƒ¼ãƒ–ãƒ«ãŒãªã„
  *
  */
 //-----------------------------------------------------------------------------
 static CHAR_DATA_TBL* getCharData( void )
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 	//
-	// ‹ó‚Ìƒf[ƒ^ƒe[ƒuƒ‹‚ğæ“¾
+	// ç©ºã®ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
 	//
 	for( i = 0; i < CharManager->charDataNum; i++ ){
-		// ‚ ‚¢‚Ä‚¢‚é‚Æ‚±‚ë‚ğƒT[ƒ`
+		// ã‚ã„ã¦ã„ã‚‹ã¨ã“ã‚ã‚’ã‚µãƒ¼ãƒ
 		if( CharManager->charDataTbl[ i ].flag == CHAR_MAN_NONE ){
 			return &CharManager->charDataTbl[ i ];
 		}
 	}
 
-	return NULL;		// “o˜^•s‰Â”\ 
+	return NULL;		// ç™»éŒ²ä¸å¯èƒ½ 
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	  ƒIƒuƒWƒF‚ÌVramƒTƒCƒY‚ğƒZƒbƒg
+ *@brief	  ã‚ªãƒ–ã‚¸ã‚§ã®Vramã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
  *
  *@param	 none
  *
@@ -1714,18 +1714,18 @@ static CHAR_DATA_TBL* getCharData( void )
 //-----------------------------------------------------------------------------
 static void setObjVramSize( void )
 {
-	GXVRamOBJ vram_bank;			// Vramƒoƒ“ƒNæ“¾—p
-	GXVRamSubOBJ sub_vram_bank;		// ƒTƒu‰æ–Ê‚ÌVramƒoƒ“ƒNæ“¾—p
+	GXVRamOBJ vram_bank;			// Vramãƒãƒ³ã‚¯å–å¾—ç”¨
+	GXVRamSubOBJ sub_vram_bank;		// ã‚µãƒ–ç”»é¢ã®Vramãƒãƒ³ã‚¯å–å¾—ç”¨
 	int vram_cont_area_size;
 	
 	//
-	// Vramƒoƒ“ƒN‚Ìó‘Ô‚ğæ“¾‚µ‚Ä
-	// VramƒTƒCƒYƒZƒbƒg
+	// Vramãƒãƒ³ã‚¯ã®çŠ¶æ…‹ã‚’å–å¾—ã—ã¦
+	// Vramã‚µã‚¤ã‚ºã‚»ãƒƒãƒˆ
 	//
-	// ƒƒCƒ“‘¤
+	// ãƒ¡ã‚¤ãƒ³å´
 	vram_bank = GX_GetBankForOBJ();
 	switch( vram_bank ){
-	case GX_VRAM_OBJ_NONE:		// ‚È‚µ
+	case GX_VRAM_OBJ_NONE:		// ãªã—
 		CharManager->MainObjVramSize = 0;
 		break;
 
@@ -1765,10 +1765,10 @@ static void setObjVramSize( void )
 		break;
 	}
 	
-	// ƒTƒu‘¤
+	// ã‚µãƒ–å´
 	sub_vram_bank = GX_GetBankForSubOBJ();
 	switch( sub_vram_bank ){
-	case GX_VRAM_SUB_OBJ_NONE:		// ‚È‚µ
+	case GX_VRAM_SUB_OBJ_NONE:		// ãªã—
 		CharManager->SubObjVramSize = 0;
 		break;
 
@@ -1786,7 +1786,7 @@ static void setObjVramSize( void )
 	}
 
 	//
-	// Vram“]‘——pŠÇ——ÌˆæƒXƒ^[ƒgˆÊ’u 
+	// Vramè»¢é€ç”¨ç®¡ç†é ˜åŸŸã‚¹ã‚¿ãƒ¼ãƒˆä½ç½® 
 	//
 	vram_cont_area_size = getCharModeNum_byte( CharManager->TransAreaMainSize, CharManager->MainModeCharLimit );
 	CharManager->MainVramTransStart = CharManager->MainObjVramSize - vram_cont_area_size;
@@ -1795,25 +1795,25 @@ static void setObjVramSize( void )
 	CharManager->SubVramTransStart = CharManager->SubObjVramSize - vram_cont_area_size;
 
 	//
-	// Vram“]‘——pŠÇ——ÌˆæƒXƒ^[ƒgˆÊ’u‚ª‚O–¢–‚É‚È‚Á‚½‚çƒGƒ‰[‚ğƒvƒŠƒ“ƒg‚·‚é
+	// Vramè»¢é€ç”¨ç®¡ç†é ˜åŸŸã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®ãŒï¼æœªæº€ã«ãªã£ãŸã‚‰ã‚¨ãƒ©ãƒ¼ã‚’ãƒ—ãƒªãƒ³ãƒˆã™ã‚‹
 	//
 	GF_ASSERT_MSG( ((CharManager->MainVramTransStart >= 0)&&(CharManager->SubVramTransStart >= 0)),
-				"warningFVram“]‘——pƒZƒ‹‚ÌVram—ÌˆæŠÇ——Ìˆæ‚ÌƒTƒCƒY‚æ‚èAVramƒoƒ“ƒN‚ÌŠ„‚è“–‚Ä‚ª­‚È‚¢‚Å‚·B\n" );
+				"warningï¼šVramè»¢é€ç”¨ã‚»ãƒ«ã®Vramé ˜åŸŸç®¡ç†é ˜åŸŸã®ã‚µã‚¤ã‚ºã‚ˆã‚Šã€Vramãƒãƒ³ã‚¯ã®å‰²ã‚Šå½“ã¦ãŒå°‘ãªã„ã§ã™ã€‚\n" );
 	GF_ASSERT_MSG( ((CharManager->MainVramTransStart >= 0)&&(CharManager->SubVramTransStart >= 0)),
-				"warningFVram“]‘——pƒZƒ‹‚ÌVram—Ìˆæ‚ÍƒƒCƒ“[byte] ƒTƒu[byte]‚Å‚·B\n" );
+				"warningï¼šVramè»¢é€ç”¨ã‚»ãƒ«ã®Vramé ˜åŸŸã¯ãƒ¡ã‚¤ãƒ³[byte] ã‚µãƒ–[byte]ã§ã™ã€‚\n" );
 }
 
 //
-// Vram—ÌˆæŠÇ——p
+// Vramé ˜åŸŸç®¡ç†ç”¨
 //
-// ‚±‚ÌŠÇ——Ìˆæ‚Í"InitCharManager()ŠÖ”"‚É“n‚µ‚½AVram—p—ÌˆæƒTƒCƒY•ªŠm•Û‚³‚ê‚Ü‚·B
-//@”z’uˆÊ’u‚Í"CharManager->MainVramTransStart""CharManager->SubVramTransStart"
-//	‚©‚ç"CharManager->TransAreaMainSize","CharManager->TransAreaSubSize"•ª‚Å‚·B
+// ã“ã®ç®¡ç†é ˜åŸŸã¯"InitCharManager()é–¢æ•°"ã«æ¸¡ã—ãŸã€Vramç”¨é ˜åŸŸã‚µã‚¤ã‚ºåˆ†ç¢ºä¿ã•ã‚Œã¾ã™ã€‚
+//ã€€é…ç½®ä½ç½®ã¯"CharManager->MainVramTransStart""CharManager->SubVramTransStart"
+//	ã‹ã‚‰"CharManager->TransAreaMainSize","CharManager->TransAreaSubSize"åˆ†ã§ã™ã€‚
 //
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒƒCƒ“AƒTƒu‚Ì—¼ŠÇ——Ìˆæ‚ğ‰Šú‰»
+ *@brief	ãƒ¡ã‚¤ãƒ³ã€ã‚µãƒ–ã®ä¸¡ç®¡ç†é ˜åŸŸã‚’åˆæœŸåŒ–
  *
  *@param	none
  *
@@ -1829,12 +1829,12 @@ void TransAreaInitAll( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	  Vram“]‘—ƒZƒ‹—pVramŠÇ——Ìˆæ‚ğì¬
+ *@brief	  Vramè»¢é€ã‚»ãƒ«ç”¨Vramç®¡ç†é ˜åŸŸã‚’ä½œæˆ
  *
- *@param	main_sizeFƒƒCƒ“‰æ–Ê‘¤‚ÌƒTƒCƒY(ƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒY)
- *@param	sub_sizeFƒTƒu‰æ–Ê‘¤‚ÌƒTƒCƒY(ƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒY)
- *@param	main_limit	ƒƒCƒ“‰æ–ÊƒLƒƒƒ‰ƒNƒ^‹«ŠE
- *@param	sub_limit	ƒTƒu‰æ–ÊƒLƒƒƒ‰ƒNƒ^‹«ŠE
+ *@param	main_sizeï¼šãƒ¡ã‚¤ãƒ³ç”»é¢å´ã®ã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚º)
+ *@param	sub_sizeï¼šã‚µãƒ–ç”»é¢å´ã®ã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚º)
+ *@param	main_limit	ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œ
+ *@param	sub_limit	ã‚µãƒ–ç”»é¢ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œ
  *
  *@return	none
  *
@@ -1843,12 +1843,12 @@ void TransAreaInitAll( void )
 static void MakeTransArea( u32 main_size, u32 sub_size, int heap )
 {
 	//
-	// ƒTƒCƒY‚ğ•Ï”‚ÉŠi”[‚µAŠÇ——Ìˆæ‚ğÄæ“¾‚·‚é
+	// ã‚µã‚¤ã‚ºã‚’å¤‰æ•°ã«æ ¼ç´ã—ã€ç®¡ç†é ˜åŸŸã‚’å†å–å¾—ã™ã‚‹
 	//
 	CharManager->TransAreaMainSize = main_size;
 	CharManager->TransAreaSubSize = sub_size;
 
-	// —Ìˆæ‰ğ•ú
+	// é ˜åŸŸè§£æ”¾
 	if(CharManager->TransAreaFlagMain != NULL){
 		sys_FreeMemoryEz( CharManager->TransAreaFlagMain );
 	}
@@ -1856,7 +1856,7 @@ static void MakeTransArea( u32 main_size, u32 sub_size, int heap )
 		sys_FreeMemoryEz( CharManager->TransAreaFlagSub );
 	}
 
-	// —ÌˆæŠm•Û
+	// é ˜åŸŸç¢ºä¿
 	if(CharManager->TransAreaMainSize != 0){
 		CharManager->TransAreaFlagMain = sys_AllocMemory( heap, sizeof(u8) * (main_size / 8) );
 	}
@@ -1864,16 +1864,16 @@ static void MakeTransArea( u32 main_size, u32 sub_size, int heap )
 		CharManager->TransAreaFlagSub = sys_AllocMemory( heap, sizeof(u8) * (sub_size / 8) );
 	}
 
-	// —Ìˆæ‚ğ‰Šú‰»
+	// é ˜åŸŸã‚’åˆæœŸåŒ–
 	TransAreaInitAll();
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	  Vram“]‘—ƒZƒ‹—pVramŠÇ——Ìˆæ‚ğ”jŠü
+ *@brief	  Vramè»¢é€ã‚»ãƒ«ç”¨Vramç®¡ç†é ˜åŸŸã‚’ç ´æ£„
  *
- *@param	p_trans_flagFƒƒCƒ“‰æ–Ê‚©ƒTƒu‰æ–Ê‚©‚Ìƒtƒ‰ƒO
+ *@param	p_trans_flagï¼šãƒ¡ã‚¤ãƒ³ç”»é¢ã‹ã‚µãƒ–ç”»é¢ã‹ã®ãƒ•ãƒ©ã‚°
  *
  *@return	none
  *
@@ -1881,20 +1881,20 @@ static void MakeTransArea( u32 main_size, u32 sub_size, int heap )
 //-----------------------------------------------------------------------------
 static void DellTransArea( u8* p_trans_flag )
 {	
-	// NULL ƒ`ƒFƒbƒN
+	// NULL ãƒã‚§ãƒƒã‚¯
 	if(p_trans_flag != NULL){
 		//
-		// ƒƒCƒ“‰æ–ÊƒTƒu‰æ–Ê‚Ç‚Á‚¿‚©ƒ`ƒFƒbƒN
+		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µãƒ–ç”»é¢ã©ã£ã¡ã‹ãƒã‚§ãƒƒã‚¯
 		//
 		if( p_trans_flag == CharManager->TransAreaFlagMain ){
 			CharManager->TransAreaMainSize = 0;
 
-			// ”jŠü
+			// ç ´æ£„
 			sys_FreeMemoryEz( p_trans_flag );	
 		}else{
 			CharManager->TransAreaSubSize = 0;
 
-			// ”jŠü
+			// ç ´æ£„
 			sys_FreeMemoryEz( p_trans_flag );
 		}
 
@@ -1905,11 +1905,11 @@ static void DellTransArea( u8* p_trans_flag )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒƒCƒ“AƒTƒu‚Ì—¼ŠÇ——Ìˆæ‚ÌƒTƒCƒY‚ğæ“¾
+ *@brief	ãƒ¡ã‚¤ãƒ³ã€ã‚µãƒ–ã®ä¸¡ç®¡ç†é ˜åŸŸã®ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
- *@param	p_trans_flagFƒƒCƒ“‚©ƒTƒu‚Ìƒtƒ‰ƒO
+ *@param	p_trans_flagï¼šãƒ¡ã‚¤ãƒ³ã‹ã‚µãƒ–ã®ãƒ•ãƒ©ã‚°
  *
- *@return	ƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY
+ *@return	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º
  *
  * 
  */
@@ -1917,7 +1917,7 @@ static void DellTransArea( u8* p_trans_flag )
 static u32 getTransAreaSize( u8* p_trans_flag )
 {
 	//
-	// ƒƒCƒ“–Ê‚©ƒTƒu–Ê‚©ƒ`ƒFƒbƒN
+	// ãƒ¡ã‚¤ãƒ³é¢ã‹ã‚µãƒ–é¢ã‹ãƒã‚§ãƒƒã‚¯
 	//
 	if( p_trans_flag == CharManager->TransAreaFlagMain ){
 		return 	CharManager->TransAreaMainSize;
@@ -1931,9 +1931,9 @@ static u32 getTransAreaSize( u8* p_trans_flag )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“]‘—æƒGƒŠƒA‚Ìƒtƒ‰ƒO‚Ì‰Šú‰»
+ *@brief	è»¢é€å…ˆã‚¨ãƒªã‚¢ã®ãƒ•ãƒ©ã‚°ã®åˆæœŸåŒ–
  *
- *@param	p_trans_flagFƒƒCƒ“‚©ƒTƒu‚Ìƒtƒ‰ƒO
+ *@param	p_trans_flagï¼šãƒ¡ã‚¤ãƒ³ã‹ã‚µãƒ–ã®ãƒ•ãƒ©ã‚°
  *
  *@return	none
  *
@@ -1941,18 +1941,18 @@ static u32 getTransAreaSize( u8* p_trans_flag )
 //-----------------------------------------------------------------------------
 static void TransAreaInit( u8* p_trans_flag )
 {
-	int i;					// ƒ‹[ƒv—p
-	u32	char_vram_max;		// —ÌˆæÅ‘å”ƒZƒbƒg—p
+	int i;					// ãƒ«ãƒ¼ãƒ—ç”¨
+	u32	char_vram_max;		// é ˜åŸŸæœ€å¤§æ•°ã‚»ãƒƒãƒˆç”¨
 
-	// NULLƒ`ƒFƒbƒN
+	// NULLãƒã‚§ãƒƒã‚¯
 	if( p_trans_flag != NULL ){
 	
-		// ƒTƒCƒYæ“¾
+		// ã‚µã‚¤ã‚ºå–å¾—
 		char_vram_max = getTransAreaSize( p_trans_flag );
 
 		
 		//
-		// —Ìˆæ‚Ì‰Šú‰»
+		// é ˜åŸŸã®åˆæœŸåŒ–
 		memset( p_trans_flag, 0, sizeof(u8) * (char_vram_max / 8) );
 /*		for( i = 0; i < char_vram_max / 8; i++ )
 		{
@@ -1964,11 +1964,11 @@ static void TransAreaInit( u8* p_trans_flag )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒoƒCƒg‚ğw’è‚µ‚Äg—p’†‚ğƒZƒbƒg
+ *@brief	ãƒã‚¤ãƒˆã‚’æŒ‡å®šã—ã¦ä½¿ç”¨ä¸­ã‚’ã‚»ãƒƒãƒˆ
  *
- *@param	num		ŠJnƒoƒCƒg
- *@param	size	g—pƒTƒCƒY		’PˆÊiƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒYj
- *@param	p_trans_flagFƒƒCƒ“‚©ƒTƒu‚Ìƒtƒ‰ƒO
+ *@param	num		é–‹å§‹ãƒã‚¤ãƒˆ
+ *@param	size	ä½¿ç”¨ã‚µã‚¤ã‚º		å˜ä½ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºï¼‰
+ *@param	p_trans_flagï¼šãƒ¡ã‚¤ãƒ³ã‹ã‚µãƒ–ã®ãƒ•ãƒ©ã‚°
  *
  *@return	none
  *
@@ -1976,35 +1976,35 @@ static void TransAreaInit( u8* p_trans_flag )
 //-----------------------------------------------------------------------------
 static void TransBitSet( u32 num, u32 size, u8* p_trans_flag )
 {
-	int i;			// ƒ‹[ƒv—p
-	u32	char_vram_max;		// —ÌˆæÅ‘å”ƒZƒbƒg—p
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	u32	char_vram_max;		// é ˜åŸŸæœ€å¤§æ•°ã‚»ãƒƒãƒˆç”¨
 
 
 	
-	// NULL ƒ`ƒFƒbƒN
+	// NULL ãƒã‚§ãƒƒã‚¯
 	if(p_trans_flag != NULL){
 		
-		// ƒTƒCƒYæ“¾
+		// ã‚µã‚¤ã‚ºå–å¾—
 		char_vram_max = getTransAreaSize( p_trans_flag );
 		
 		//
-		// “]‘—ƒtƒ‰ƒO‚É‚P‚ğƒZƒbƒg‚µ‚Ä‚¢‚­
+		// è»¢é€ãƒ•ãƒ©ã‚°ã«ï¼‘ã‚’ã‚»ãƒƒãƒˆã—ã¦ã„ã
 		//
 		for( i = num; i < num + size; i++ )
 		{
 			u32 byte8;
 			u8 byte1, mask;
 			
-			// ƒI[ƒo[‚µ‚½‚ç”²‚¯‚é
+			// ã‚ªãƒ¼ãƒãƒ¼ã—ãŸã‚‰æŠœã‘ã‚‹
 			if( i >= char_vram_max )
 			{
 				break;
 			}
 				
-			// ƒZƒbƒg
+			// ã‚»ãƒƒãƒˆ
 			byte8_byte1_Get( i, &byte8, &byte1 );
 
-			// ¡‚©‚ç‚½‚½‚¹‚é‚Æ‚±‚ë‚ª‚·‚Å‚É‚½‚½‚³‚ê‚Ä‚¢‚é
+			// ä»Šã‹ã‚‰ãŸãŸã›ã‚‹ã¨ã“ã‚ãŒã™ã§ã«ãŸãŸã•ã‚Œã¦ã„ã‚‹
 			GF_ASSERT( (p_trans_flag[ byte8 ] & (1 << byte1)) == 0 );
 
 			mask = (1 << byte1);
@@ -2021,44 +2021,44 @@ static void TransBitSet( u32 num, u32 size, u8* p_trans_flag )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒTƒCƒY•ª‚Ì—Ìˆæ‚ªŠJ‚¢‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *@brief	ã‚µã‚¤ã‚ºåˆ†ã®é ˜åŸŸãŒé–‹ã„ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *@param	sizeFƒTƒCƒY	’PˆÊiƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒYj
- *@param	p_trans_flag	ƒƒCƒ“‚©ƒTƒu‚Ìƒtƒ‰ƒO
+ *@param	sizeï¼šã‚µã‚¤ã‚º	å˜ä½ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºï¼‰
+ *@param	p_trans_flag	ãƒ¡ã‚¤ãƒ³ã‹ã‚µãƒ–ã®ãƒ•ãƒ©ã‚°
  *
- *@return	ƒIƒtƒZƒbƒg	’PˆÊiƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒYj
- *				‚¾‚ß‚È‚Æ‚«‚Í0xffffffff(CHAR_VRAM_BANK_GET_ERR)
+ *@return	ã‚ªãƒ•ã‚»ãƒƒãƒˆ	å˜ä½ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºï¼‰
+ *				ã ã‚ãªã¨ãã¯0xffffffff(CHAR_VRAM_BANK_GET_ERR)
  *
  */
 //-----------------------------------------------------------------------------
 static u32 TransBitCheck( u32 size, u8* p_trans_flag )
 {
-	int i, j;			// ƒ‹[ƒv—p
-	u32	char_vram_max;		// —ÌˆæÅ‘å”ƒZƒbƒg—p
+	int i, j;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	u32	char_vram_max;		// é ˜åŸŸæœ€å¤§æ•°ã‚»ãƒƒãƒˆç”¨
 	
-	// NULL ƒ`ƒFƒbƒN
+	// NULL ãƒã‚§ãƒƒã‚¯
 	if(p_trans_flag != NULL){
 
-		// ƒTƒCƒYæ“¾
+		// ã‚µã‚¤ã‚ºå–å¾—
 		char_vram_max = getTransAreaSize( p_trans_flag );
 		
-		// “]‘—ƒTƒCƒY•ª‚ ‚¢‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		// è»¢é€ã‚µã‚¤ã‚ºåˆ†ã‚ã„ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		for( i = 0; i < char_vram_max; i++ )
 		{
 			u32 byte8;
 			u8 byte1, mask;
-			// ‚ ‚¢‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+			// ã‚ã„ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			byte8_byte1_Get( i, &byte8, &byte1 );
 			mask = (1 << byte1);
 
-			// ƒ`ƒFƒbƒN
+			// ãƒã‚§ãƒƒã‚¯
 			j = 0;
 			while( ((p_trans_flag[ byte8 ] & mask) == 0) && (j <= size) ){
 				int num = i + j;
 				byte8_byte1_Get( num, &byte8, &byte1 );
 				mask = (1 << byte1);
 
-				// num‚ªchar_vram_maxˆÈã‚È‚ç”²‚¯‚é
+				// numãŒchar_vram_maxä»¥ä¸Šãªã‚‰æŠœã‘ã‚‹
 				if( num >= char_vram_max ){
 					return CHAR_VRAM_BANK_GET_ERR;
 				}
@@ -2066,7 +2066,7 @@ static u32 TransBitCheck( u32 size, u8* p_trans_flag )
 				j++;
 			}
 
-			// size‚É‚È‚Á‚½‚ç”²‚¯‚é
+			// sizeã«ãªã£ãŸã‚‰æŠœã‘ã‚‹
 			if( j > size ){
 				return i;
 			}
@@ -2080,12 +2080,12 @@ static u32 TransBitCheck( u32 size, u8* p_trans_flag )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	w’è‚³‚ê‚½“]‘—æƒGƒŠƒA‚Ìƒtƒ‰ƒO‚Ì‰Šú‰»
+ *@brief	æŒ‡å®šã•ã‚ŒãŸè»¢é€å…ˆã‚¨ãƒªã‚¢ã®ãƒ•ãƒ©ã‚°ã®åˆæœŸåŒ–
  *
- *@param	start_num		‰Šú‰»ŠJnƒoƒCƒg”	’PˆÊiƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒYj
- *@param	size			‰Šú‰»ƒTƒCƒY		’PˆÊiƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒYj
- *@param	limit			ƒLƒƒƒ‰ƒNƒ^‹«ŠE
- *@param	p_trans_flag	ƒƒCƒ“‚©ƒTƒu‚Ìƒtƒ‰ƒO
+ *@param	start_num		åˆæœŸåŒ–é–‹å§‹ãƒã‚¤ãƒˆæ•°	å˜ä½ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºï¼‰
+ *@param	size			åˆæœŸåŒ–ã‚µã‚¤ã‚º		å˜ä½ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºï¼‰
+ *@param	limit			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œ
+ *@param	p_trans_flag	ãƒ¡ã‚¤ãƒ³ã‹ã‚µãƒ–ã®ãƒ•ãƒ©ã‚°
  *
  *@return	none
  *
@@ -2093,21 +2093,21 @@ static u32 TransBitCheck( u32 size, u8* p_trans_flag )
 //-----------------------------------------------------------------------------
 static void TransBitClean( u32 start_num, u32 size, u8* p_trans_flag )
 {
-	int i;			// ƒ‹[ƒv—p
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
 
 
-	// NULL ƒ`ƒFƒbƒN
+	// NULL ãƒã‚§ãƒƒã‚¯
 	if(p_trans_flag != NULL){
-		// —Ìˆæ‚Ì‰Šú‰»
+		// é ˜åŸŸã®åˆæœŸåŒ–
 		for( i = start_num; i < start_num + size; i++ )
 		{
 			u32 byte8;
 			u8 byte1, mask;
 			
-			// ‰Šú‰»
+			// åˆæœŸåŒ–
 			byte8_byte1_Get( i, &byte8, &byte1 );
 
-			// ¡‚©‚çÁ‚·‚Æ‚±‚ë‚ª‚·‚Å‚ÉÁ‚³‚ê‚Ä‚¢‚é
+			// ä»Šã‹ã‚‰æ¶ˆã™ã¨ã“ã‚ãŒã™ã§ã«æ¶ˆã•ã‚Œã¦ã„ã‚‹
 			GF_ASSERT( (p_trans_flag[ byte8 ] & (1 << byte1)) );
 
 			mask = (1 << byte1) ^ 0xff;
@@ -2119,9 +2119,9 @@ static void TransBitClean( u32 start_num, u32 size, u8* p_trans_flag )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒe[ƒuƒ‹‚Ì“]‘—ƒGƒŠƒA‚ğŠJ•ú
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã®è»¢é€ã‚¨ãƒªã‚¢ã‚’é–‹æ”¾
  *
- *	@param	pCharData	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *	@param	pCharData	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -2134,7 +2134,7 @@ static void delCharTblTransArea( CHAR_DATA_TBL* pCharData )
 	u32 size_cm;
 	
 	//
-	// ƒZƒ‹VramƒAƒjƒ‚Ì—Ìˆæ‚ğŠJ•ú
+	// ã‚»ãƒ«Vramã‚¢ãƒ‹ãƒ¡ã®é ˜åŸŸã‚’é–‹æ”¾
 	//
 	if( pCharData->type & NNS_G2D_VRAM_TYPE_2DMAIN ){
 		offs_cm = getCharModeNum( NNS_G2dGetImageLocation(&pCharData->ImageProxy,NNS_G2D_VRAM_TYPE_2DMAIN ) - CharManager->MainVramTransStart, CharManager->MainModeCharLimit );
@@ -2152,18 +2152,18 @@ static void delCharTblTransArea( CHAR_DATA_TBL* pCharData )
 				size_cm,
 				CharManager->TransAreaFlagSub );
 	}
-	pCharData->have_area = FALSE;	// VramƒGƒŠƒA‰ğ•ú‚µ‚½‚Ì‚Å
+	pCharData->have_area = FALSE;	// Vramã‚¨ãƒªã‚¢è§£æ”¾ã—ãŸã®ã§
 }
 
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒ‚[ƒh‚©‚ç‰½ƒLƒƒƒ‰‚¸‚Â“]‘—‚·‚é‚×‚«‚©æ“¾
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰ä½•ã‚­ãƒ£ãƒ©ãšã¤è»¢é€ã™ã‚‹ã¹ãã‹å–å¾—
  *
- *	@param	mode		ƒLƒƒƒ‰ƒNƒ^ƒ‚[ƒh
+ *	@param	mode		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¢ãƒ¼ãƒ‰
  *
- *	@return	int			“]‘—‚·‚é‚×‚«ƒLƒƒƒ‰ƒNƒ^”
+ *	@return	int			è»¢é€ã™ã‚‹ã¹ãã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ•°
  *
  *
  */
@@ -2196,17 +2196,17 @@ int CharModeMinNum( int mode )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒŠƒ~ƒbƒg‚Ì’l‚É‚ ‚í‚¹‚é
+ *	@brief	ãƒªãƒŸãƒƒãƒˆã®å€¤ã«ã‚ã‚ã›ã‚‹
  *
- *	@param	num		ƒŠƒ~ƒbƒg‚É‚ ‚í‚¹‚é’l(byte’PˆÊ)
- *	@param	limit	ƒŠƒ~ƒbƒg
- *	@param	flag	Ø‚èæ‚è‚©–„‚ß‚é‚©‚Ìƒtƒ‰ƒO
+ *	@param	num		ãƒªãƒŸãƒƒãƒˆã«ã‚ã‚ã›ã‚‹å€¤(byteå˜ä½)
+ *	@param	limit	ãƒªãƒŸãƒƒãƒˆ
+ *	@param	flag	åˆ‡ã‚Šå–ã‚Šã‹åŸ‹ã‚ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
  *
- *	@return	int		ƒŠƒ~ƒbƒg‚É‚ ‚í‚¹‚½’l
+ *	@return	int		ãƒªãƒŸãƒƒãƒˆã«ã‚ã‚ã›ãŸå€¤
  *
  *flag
- *	CHAR_MAN_LIM_SUB,		// ‚ ‚Ü‚è‚ğØ‚èæ‚é
- *	CHAR_MAN_LIM_ADD		// ‚ ‚Ü‚è‚ğ–„‚ß‚é
+ *	CHAR_MAN_LIM_SUB,		// ã‚ã¾ã‚Šã‚’åˆ‡ã‚Šå–ã‚‹
+ *	CHAR_MAN_LIM_ADD		// ã‚ã¾ã‚Šã‚’åŸ‹ã‚ã‚‹
  *
  */
 //-----------------------------------------------------------------------------
@@ -2226,12 +2226,12 @@ static int getCharModeLimNum( int num, int limit, int flag )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^‹«ŠE‚Å‚ÌƒTƒCƒY‚ğæ“¾
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã§ã®ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
- *	@param	szByte	ƒoƒCƒgƒTƒCƒY
- *	@param	limit	ƒLƒƒƒ‰ƒNƒ^‹«ŠE
+ *	@param	szByte	ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
+ *	@param	limit	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œ
  *
- *	@return	int		ƒLƒƒƒ‰ƒNƒ^‹«ŠE‚Å‚ÌƒTƒCƒY
+ *	@return	int		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã§ã®ã‚µã‚¤ã‚º
  *
  *
  */
@@ -2247,12 +2247,12 @@ static int getCharModeNum( int szByte, int limit )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒY‚©‚çƒoƒCƒgƒTƒCƒY‚É•ÏX
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºã‹ã‚‰ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºã«å¤‰æ›´
  *
- *	@param	szChar	ƒLƒƒƒ‰ƒNƒ^‹«ŠEƒTƒCƒY‚Ì’l
- *	@param	limit	ƒLƒƒƒ‰ƒNƒ^‹«ŠE”
+ *	@param	szChar	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã‚µã‚¤ã‚ºã®å€¤
+ *	@param	limit	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œæ•°
  *
- *	@return	int		ƒoƒCƒgƒTƒCƒY
+ *	@return	int		ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
  *
  *
  */
@@ -2267,15 +2267,15 @@ static int getCharModeNum_byte( int szChar, int limit )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒm[ƒ}ƒ‹ƒRƒ“ƒgƒ[ƒ‹ƒ^ƒCƒv‚Ì¡“]‘—‚·‚×‚«ƒIƒtƒZƒbƒg’l‚ğæ“¾
+ *	@brief	ãƒãƒ¼ãƒãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ—æ™‚ã®ä»Šè»¢é€ã™ã¹ãã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’å–å¾—
  *
- *	@param	szByte		“]‘—ƒf[ƒ^ƒTƒCƒY
- *	@param	type		“]‘—æ
- *	@param	offs_main	ƒƒCƒ““]‘—æŠi”[æ
- *	@param	offs_sub	ƒTƒu“]‘—æŠi”[æ
+ *	@param	szByte		è»¢é€ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ *	@param	type		è»¢é€å…ˆ
+ *	@param	offs_main	ãƒ¡ã‚¤ãƒ³è»¢é€å…ˆæ ¼ç´å…ˆ
+ *	@param	offs_sub	ã‚µãƒ–è»¢é€å…ˆæ ¼ç´å…ˆ
  *
- *	@retval	TRUE	“]‘—‚·‚é—Ìˆæ‚ª‚ ‚Á‚½
- *	@retval	FALSE	—Ìˆæ‚È‚µ	offs_main offs_sub‚Ì’l–³Œø
+ *	@retval	TRUE	è»¢é€ã™ã‚‹é ˜åŸŸãŒã‚ã£ãŸ
+ *	@retval	FALSE	é ˜åŸŸãªã—	offs_main offs_subã®å€¤ç„¡åŠ¹
  *
  *
  */
@@ -2284,9 +2284,9 @@ static BOOL modeNormOffsetGet( u32 szByte, int type, u32* offs_main, u32* offs_s
 {
 	BOOL ret = TRUE;
 	
-	// ƒƒCƒ“‰æ–Ê‚©ƒTƒu‰æ–Ê‚©ƒ`ƒFƒbƒN
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‹ã‚µãƒ–ç”»é¢ã‹ãƒã‚§ãƒƒã‚¯
 	if( type & NNS_G2D_VRAM_TYPE_2DMAIN ){
-		// VramƒŠƒ~ƒbƒgƒ`ƒFƒbƒN
+		// VramãƒªãƒŸãƒƒãƒˆãƒã‚§ãƒƒã‚¯
 		if( (CharManager->Offset + szByte) > CharManager->MainVramTransStart ){
 			GF_ASSERT(0);
 			ret = FALSE;
@@ -2296,7 +2296,7 @@ static BOOL modeNormOffsetGet( u32 szByte, int type, u32* offs_main, u32* offs_s
 		}
 	}
 	if( type & NNS_G2D_VRAM_TYPE_2DSUB ){
-		// VramƒŠƒ~ƒbƒgƒ`ƒFƒbƒN
+		// VramãƒªãƒŸãƒƒãƒˆãƒã‚§ãƒƒã‚¯
 		if( (CharManager->SubOffset + szByte) > CharManager->SubVramTransStart ){
 			GF_ASSERT(0);
 			ret = FALSE;
@@ -2312,10 +2312,10 @@ static BOOL modeNormOffsetGet( u32 szByte, int type, u32* offs_main, u32* offs_s
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒOƒ[ƒoƒ‹‚ÌƒIƒtƒZƒbƒg‚ğƒTƒCƒY•ª‚¸‚ç‚·
+ *	@brief	ã‚°ãƒ­ãƒ¼ãƒãƒ«ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ã‚µã‚¤ã‚ºåˆ†ãšã‚‰ã™
  *
- *	@param	szByte		ƒoƒCƒgƒTƒCƒY
- *	@param	type		•\¦æ‰æ–Ê
+ *	@param	szByte		ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
+ *	@param	type		è¡¨ç¤ºå…ˆç”»é¢
  *
  *	@return	none
  *
@@ -2324,11 +2324,11 @@ static BOOL modeNormOffsetGet( u32 szByte, int type, u32* offs_main, u32* offs_s
 //-----------------------------------------------------------------------------
 static void modeNormOffsetMove( u32 szByte, int type )
 {
-	// ƒƒCƒ“‰æ–Ê‚©ƒTƒu‰æ–Ê‚©ƒ`ƒFƒbƒN
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‹ã‚µãƒ–ç”»é¢ã‹ãƒã‚§ãƒƒã‚¯
 	if( type & NNS_G2D_VRAM_TYPE_2DMAIN ){
 		CharManager->Offset += szByte;
 
-		// ƒIƒtƒZƒbƒg‚ğƒLƒƒƒ‰ƒNƒ^‹«ŠE‚ÅŠ„‚èØ‚ê‚é’l‚É‚·‚é
+		// ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å¢ƒç•Œã§å‰²ã‚Šåˆ‡ã‚Œã‚‹å€¤ã«ã™ã‚‹
 		CharManager->Offset = getCharModeLimNum( CharManager->Offset, CharManager->MainModeCharLimit, CHAR_MAN_LIM_ADD );
 	}
 	if( type & NNS_G2D_VRAM_TYPE_2DSUB ){
@@ -2341,11 +2341,11 @@ static void modeNormOffsetMove( u32 szByte, int type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒCƒg8ƒoƒCƒg1‚Ì’l‚ğæ“¾
+ *	@brief	ãƒã‚¤ãƒˆ8ãƒã‚¤ãƒˆ1ã®å€¤ã‚’å–å¾—
  *
- *	@param	num		’l
- *	@param	byte8	8ƒrƒbƒg’PˆÊ‚Ì’l
- *	@param	byte1	8ƒrƒbƒg’PˆÊ“à‚Ì1ƒrƒbƒg’PˆÊ‚Ì’l
+ *	@param	num		å€¤
+ *	@param	byte8	8ãƒ“ãƒƒãƒˆå˜ä½ã®å€¤
+ *	@param	byte1	8ãƒ“ãƒƒãƒˆå˜ä½å†…ã®1ãƒ“ãƒƒãƒˆå˜ä½ã®å€¤
  *
  *	@return	none
  */
@@ -2358,13 +2358,13 @@ static void byte8_byte1_Get( int num, u32* byte8, u8* byte1 )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÇ——Ìˆæ‚Ì‹Ö~İ’èÃŞ°Àì¬
+ *	@brief	ç®¡ç†é ˜åŸŸã®ç¦æ­¢è¨­å®šãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	areacont_start	ŠÇ——ÌˆæŠJnƒIƒtƒZƒbƒg
- *	@param	offset			‹Ö~İ’èƒIƒtƒZƒbƒg
- *	@param	size			ƒTƒCƒY
- *	@param	start_offset	ŠJnƒIƒtƒZƒbƒgŠi”[æ
- *	@param	set_size		ƒTƒCƒYŠi”[æ
+ *	@param	areacont_start	ç®¡ç†é ˜åŸŸé–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	offset			ç¦æ­¢è¨­å®šã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	size			ã‚µã‚¤ã‚º
+ *	@param	start_offset	é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆæ ¼ç´å…ˆ
+ *	@param	set_size		ã‚µã‚¤ã‚ºæ ¼ç´å…ˆ
  *
  *	@return	none
  */
@@ -2373,8 +2373,8 @@ static void getReserveAreaContData( u32 areacont_start, u32 offset, u32 size, in
 {
 	*start_offset = offset - areacont_start;
 	if( *start_offset < 0 ){
-		// ƒIƒtƒZƒbƒg‚ğ0‚É‚µ‚Ä‘«‚è‚È‚¢•ª‚ÌƒTƒCƒY‚ğsize‚©‚çˆø‚­‚Æ
-		// ‚¿‚å‚¤‚Ç—Ç‚­‚È‚é
+		// ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’0ã«ã—ã¦è¶³ã‚Šãªã„åˆ†ã®ã‚µã‚¤ã‚ºã‚’sizeã‹ã‚‰å¼•ãã¨
+		// ã¡ã‚‡ã†ã©è‰¯ããªã‚‹
 		*set_size = size + *start_offset;
 		*start_offset = 0;
 	}else{
@@ -2389,7 +2389,7 @@ static void getReserveAreaContData( u32 areacont_start, u32 offset, u32 size, in
 static void DEBUG_Print_VitArea( u8* p_trans_flag )
 {
 	int i;
-	u32	char_vram_max;		// —ÌˆæÅ‘å”ƒZƒbƒg—p
+	u32	char_vram_max;		// é ˜åŸŸæœ€å¤§æ•°ã‚»ãƒƒãƒˆç”¨
 	u32 byte8;
 	u8 byte1, mask;
 
@@ -2405,7 +2405,7 @@ static void DEBUG_Print_VitArea( u8* p_trans_flag )
 	
 	for(i=0; i<CharManager->TransAreaMainSize; i++){
 
-		// ƒZƒbƒg
+		// ã‚»ãƒƒãƒˆ
 		byte8_byte1_Get( i, &byte8, &byte1 );
 
 		if( (p_trans_flag[ byte8 ] & (1 << byte1)) == 0 ){

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wsp_tomoya.c
- *	@brief		tomoya ‚Ìì¬‚µ‚½‹ZƒGƒtƒFƒNƒg
+ *	@brief		tomoya ã®ä½œæˆã—ãŸæŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *	@author		tomoya takahashi
  *	@data		2005.12.15
  *
@@ -13,62 +13,62 @@
 //	include
 //
 // -----------------------------------------
-#include "common.h"				///< •K{
-#include "system/lib_pack.h"	///< •K{
+#include "common.h"				///< å¿…é ˆ
+#include "system/lib_pack.h"	///< å¿…é ˆ
 #include "we_def.h"
-#include "west_sp.h"			///< •K{
-#include "wsp_sample.h"			///< xxx.c‚É‘Î‚·‚éxxx.h‚Í•K{
-#include "wsp.h"			///< xxx.c‚É‘Î‚·‚éxxx.h‚Í•K{
+#include "west_sp.h"			///< å¿…é ˆ
+#include "wsp_sample.h"			///< xxx.cã«å¯¾ã™ã‚‹xxx.hã¯å¿…é ˆ
+#include "wsp.h"			///< xxx.cã«å¯¾ã™ã‚‹xxx.hã¯å¿…é ˆ
 
-#include "wazatool.h"			///< ‹ZƒGƒtƒFƒNƒgx‰‡ŠÖ”ŒS
+#include "wazatool.h"			///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ”¯æ´é–¢æ•°éƒ¡
 #include "we_tool.h"			///< 
 
 #include "ball_effect.h"
-#include "system/arc_tool.h"				///< ƒA[ƒJƒCƒu—p
-#include "system/arc_util.h"				///< ƒA[ƒJƒCƒu—p
-#include "system/brightness.h"				///< ƒuƒ‰ƒCƒgƒlƒX
+#include "system/arc_tool.h"				///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨
+#include "system/arc_util.h"				///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨
+#include "system/brightness.h"				///< ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹
 #include "system/wipe.h"
 
 //-------------------------------------
 //	
-//	‚Å‚ñ‚±‚¤‚¹‚Á‚©
+//	ã§ã‚“ã“ã†ã›ã£ã‹
 //	
 //=====================================
 #define WE098_OAM_MAX	(2)
-#define WE098_ROTA_NUM	(1)		// ‰ñ“]”
-#define WE098_SYNC		(8)		// ƒVƒ“ƒN”
-#define WE098_SYNC_ZAN	(10)	// c‘œ‚ÌƒVƒ“ƒN”
-#define WE098_DO_WAIT	(2)		// c‘œÀs‘Ò‚¿
-#define WE098_ALPHA_OAM	(26)	// OAM‚ÉŠ|‚¯‚éƒ¿’l
-#define WE098_ALPHA_BG	(5)		// BG‚ÉŠ|‚¯‚éƒ¿’l
+#define WE098_ROTA_NUM	(1)		// å›è»¢æ•°
+#define WE098_SYNC		(8)		// ã‚·ãƒ³ã‚¯æ•°
+#define WE098_SYNC_ZAN	(10)	// æ®‹åƒã®ã‚·ãƒ³ã‚¯æ•°
+#define WE098_DO_WAIT	(2)		// æ®‹åƒå®Ÿè¡Œå¾…ã¡
+#define WE098_ALPHA_OAM	(26)	// OAMã«æ›ã‘ã‚‹Î±å€¤
+#define WE098_ALPHA_BG	(5)		// BGã«æ›ã‘ã‚‹Î±å€¤
 typedef struct{
 
 	WE_SYS_PTR		we_sys;
 	CATS_RES_PTR	crp;
 	
-	SOFT_SPRITE*		at_ssp;		// UŒ‚ƒ|ƒPƒ‚ƒ“
-	WAZATOOL_CALCMOVE	at_wtc;		// ƒ|ƒPƒ‚ƒ““®ìƒf[ƒ^
-	CATS_ACT_PTR		at_cap[ WE098_OAM_MAX ];	// c‘œOAM‚ÌƒAƒNƒ^[ƒf[ƒ^
-	WAZATOOL_ZANZOU		at_wtz;		// c‘œ“®ìƒf[ƒ^
-	s16					at_pos_x;	// ƒ|ƒPƒ‚ƒ“ƒfƒtƒHƒ‹ƒgÀ•W
-	s16					at_pos_y;	// ƒ|ƒPƒ‚ƒ“ƒfƒtƒHƒ‹ƒgÀ•W
-	s16					cap_ofs_y;	// OAMƒIƒtƒZƒbƒgY
+	SOFT_SPRITE*		at_ssp;		// æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³
+	WAZATOOL_CALCMOVE	at_wtc;		// ãƒã‚±ãƒ¢ãƒ³å‹•ä½œãƒ‡ãƒ¼ã‚¿
+	CATS_ACT_PTR		at_cap[ WE098_OAM_MAX ];	// æ®‹åƒOAMã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	WAZATOOL_ZANZOU		at_wtz;		// æ®‹åƒå‹•ä½œãƒ‡ãƒ¼ã‚¿
+	s16					at_pos_x;	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåº§æ¨™
+	s16					at_pos_y;	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåº§æ¨™
+	s16					cap_ofs_y;	// OAMã‚ªãƒ•ã‚»ãƒƒãƒˆY
 
 /*
-	SOFT_SPRITE*		df_ssp;		// ç”õƒ|ƒPƒ‚ƒ“
-	WAZATOOL_CALCMOVE	df_wtc;		// ƒ|ƒPƒ‚ƒ““®ìƒf[ƒ^
-	s16					df_pos_x;	// ƒ|ƒPƒ‚ƒ“ƒfƒtƒHƒ‹ƒgÀ•W
-	s16					df_pos_y;	// ƒ|ƒPƒ‚ƒ“ƒfƒtƒHƒ‹ƒgÀ•W
+	SOFT_SPRITE*		df_ssp;		// å®ˆå‚™ãƒã‚±ãƒ¢ãƒ³
+	WAZATOOL_CALCMOVE	df_wtc;		// ãƒã‚±ãƒ¢ãƒ³å‹•ä½œãƒ‡ãƒ¼ã‚¿
+	s16					df_pos_x;	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåº§æ¨™
+	s16					df_pos_y;	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåº§æ¨™
 */
 } TWE_098_SYS;
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚Å‚ñ‚±‚¤‚¹‚Á‚©	“®ìTCB
+ *	@brief	ã§ã‚“ã“ã†ã›ã£ã‹	å‹•ä½œTCB
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	‚Å‚ñ‚±‚¤‚¹‚Á‚©“®ìƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ã§ã‚“ã“ã†ã›ã£ã‹å‹•ä½œãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -77,36 +77,36 @@ static void We098_TCB(TCB_PTR tcb, void* work)
 {
 	TWE_098_SYS* wk = work;
 	BOOL check[3];
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 
 
-	// “®ì‚ªŠ®‘S‚ÉI‚í‚é‚Ü‚Å‘Ò‚Á‚ÄI—¹
-	// “®ì•”
+	// å‹•ä½œãŒå®Œå…¨ã«çµ‚ã‚ã‚‹ã¾ã§å¾…ã£ã¦çµ‚äº†
+	// å‹•ä½œéƒ¨
 	check[0] = WazaTool_CalcAndReflectRotaFxSsp( &wk->at_wtc, wk->at_pos_x, wk->at_pos_y, wk->at_ssp );
 	check[1] = WazaTool_CalcZanzou( &wk->at_wtz );
 //	check[2] = WazaTool_CalcAndReflectShakeSsp( &wk->df_wtc, wk->df_pos_x, wk->df_pos_y, wk->df_ssp );
 	check[2] = FALSE;
 
-	// c‘œOAM•`‰æ
+	// æ®‹åƒOAMæç”»
 	CATS_Draw(wk->crp);	
 
-	// I—¹ƒ`ƒFƒbƒN•”
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯éƒ¨
 	for( i=0; i<3; i++ ){
-		// ŒvZ“r’†‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+		// è¨ˆç®—é€”ä¸­ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( check[i] == TRUE ){
-			// ‘±s
+			// ç¶šè¡Œ
 			return ;
 		}
 	}
 
-	// Œ³À•W‚ğİ’è
+	// å…ƒåº§æ¨™ã‚’è¨­å®š
 	SoftSpriteParaSet( wk->at_ssp, SS_PARA_POS_X, wk->at_pos_x );
 	SoftSpriteParaSet( wk->at_ssp, SS_PARA_POS_Y, wk->at_pos_y + (WAZATOOL_DEF_ROTA_W_Y >> FX32_SHIFT) );
 //	SoftSpriteParaSet( wk->df_ssp, SS_PARA_POS_X, wk->df_pos_x );
 //	SoftSpriteParaSet( wk->df_ssp, SS_PARA_POS_Y, wk->df_pos_y );
 
 
-	// I—¹
+	// çµ‚äº†
 	WEEffect_TCB_Delete(wk->we_sys, tcb);
 	sys_FreeMemoryEz(wk);
 }
@@ -114,33 +114,33 @@ static void We098_TCB(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚Å‚ñ‚±‚¤‚¹‚Á‚©‚ÌÀs
+ *	@brief	ã§ã‚“ã“ã†ã›ã£ã‹ã®å®Ÿè¡Œ
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
- * poke_oam‚Éƒ|ƒPƒ‚ƒ“‚ÌŠG‚ğƒhƒƒbƒv‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚·@WE098_OAM_MAX
+ * poke_oamã«ãƒã‚±ãƒ¢ãƒ³ã®çµµã‚’ãƒ‰ãƒ­ãƒƒãƒ—ã—ã¦ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€€WE098_OAM_MAX
  *
- * we_sys‚©‚çó‚¯æ‚éˆø”‚È‚µ
+ * we_sysã‹ã‚‰å—ã‘å–ã‚‹å¼•æ•°ãªã—
  *
- * OBJ	”wŒiA‚R‚„–Ê‚ÌƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒfƒBƒ“ƒO‚ğs‚¢‚Ü‚·B
+ * OBJ	èƒŒæ™¯ã€ï¼“ï½„é¢ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã‚’è¡Œã„ã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
 void WestSp_WE_098( WE_SYS_PTR we_sys )
 {
 	TWE_098_SYS* wk;
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	int vec_x;
-	WAZATOOL_CALCMOVE	at_zan_wtc;	// c‘œƒ|ƒPƒ‚ƒ““®ìƒf[ƒ^
+	WAZATOOL_CALCMOVE	at_zan_wtc;	// æ®‹åƒãƒã‚±ãƒ¢ãƒ³å‹•ä½œãƒ‡ãƒ¼ã‚¿
 	
 	wk = sys_AllocMemory(WeSysHeapAreaGet(we_sys), sizeof(TWE_098_SYS));
 
 	wk->we_sys	= we_sys;
 	wk->crp		= WeSysPokeCrpGet(wk->we_sys);
 	
-	// ƒ|ƒPƒ‚ƒ“@ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒf[ƒ^æ“¾
+	// ãƒã‚±ãƒ¢ãƒ³ã€€ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
 	wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 	wk->at_pos_x = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_X );
 	wk->at_pos_y = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_Y );
@@ -149,10 +149,10 @@ void WestSp_WE_098( WE_SYS_PTR we_sys )
 /*	wk->df_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysDFNoGet(wk->we_sys) );
 	wk->df_pos_x = SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_X );
 	wk->df_pos_y = SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_Y );//*/
-	// À•W‚ğ‰ñ“]‚ÌY••ªã‚É•â³
+	// åº§æ¨™ã‚’å›è»¢ã®Yå¹…åˆ†ä¸Šã«è£œæ­£
 	wk->at_pos_y -= WAZATOOL_DEF_ROTA_W_Y >> FX32_SHIFT;
 
-	// ƒ|ƒPƒ‚ƒ“@“®ìƒf[ƒ^ì¬
+	// ãƒã‚±ãƒ¢ãƒ³ã€€å‹•ä½œãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	WazaTool_MakeDefRota( 
 			&wk->at_wtc,
 			WE098_ROTA_NUM, WE098_SYNC );
@@ -163,22 +163,22 @@ void WestSp_WE_098( WE_SYS_PTR we_sys )
 			WE098_SHAKE_SYNC / WE098_SHAKE_NUM,
 			WE098_SHAKE_NUM );//*/
 
-	// c‘œ“®ìƒf[ƒ^ì¬
+	// æ®‹åƒå‹•ä½œãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	WazaTool_MakeDefRota(
 			&at_zan_wtc,
 			WE098_ROTA_NUM, WE098_SYNC_ZAN );
 
-	// ƒxƒNƒgƒ‹‚ğ‚ ‚í‚¹‚é
-	// UŒ‚‘¤
+	// ãƒ™ã‚¯ãƒˆãƒ«ã‚’ã‚ã‚ã›ã‚‹
+	// æ”»æ’ƒå´
 	vec_x = WazaTool_VecChangeX( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 	wk->at_wtc.work[2] *= vec_x;
 	at_zan_wtc.work[2] *= vec_x;
 	
-	// –hŒä‘¤
+	// é˜²å¾¡å´
 //	vec_x = WazaTool_VecChangeX( wk->we_sys, WeSysDFNoGet(wk->we_sys) );
 //	wk->df_wtc.x *= vec_x;
 
-	// c‘œƒf[ƒ^æ“¾
+	// æ®‹åƒãƒ‡ãƒ¼ã‚¿å–å¾—
 	for( i=0; i<WE098_OAM_MAX; i++ ){
 		wk->at_cap[ i ] = WeSysPokeCapGet(wk->we_sys, i);
 		CATS_ObjectPriSetCap( wk->at_cap[ i ], WAZAEFF_ACT_SOFTPRI );
@@ -192,8 +192,8 @@ void WestSp_WE_098( WE_SYS_PTR we_sys )
 			wk->at_cap[0], wk->at_cap[1], NULL, NULL );
 
 
-	// c‘œ‚ÌF‚ğİ’è
-	// ƒAƒ‹ƒtƒ@‚ğŠ|‚¯‚é
+	// æ®‹åƒã®è‰²ã‚’è¨­å®š
+	// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’æ›ã‘ã‚‹
 	WET_DefaultBlendSet(wk->we_sys, WET_DEFAULT_BLEND, WET_DEFAULT_BLEND);
 	
 	
@@ -203,7 +203,7 @@ void WestSp_WE_098( WE_SYS_PTR we_sys )
 
 //-------------------------------------
 //	
-//	ƒhƒŠƒ‹‚­‚¿‚Î‚µ
+//	ãƒ‰ãƒªãƒ«ãã¡ã°ã—
 //	
 //=====================================
 enum{
@@ -227,28 +227,28 @@ typedef struct{
 
 	WE_SYS_PTR		we_sys;
 	
-	int						seq;		// ƒV[ƒPƒ“ƒX
-	s16						wait;		// ƒEƒFƒCƒg
-	SOFT_SPRITE*			at_ssp;		// UŒ‚ƒ|ƒPƒ‚ƒ“
-	WAZATOOL_CALCMOVE		at_wtc;		// ƒ|ƒPƒ‚ƒ““®ìƒf[ƒ^
-	WAZATOOL_CALCMOVE_ONE	at_wtc_r;	// ƒ|ƒPƒ‚ƒ““®ìƒf[ƒ^‰ñ“]
-	s16						at_pos_x;	// ƒ|ƒPƒ‚ƒ“ƒfƒtƒHƒ‹ƒgÀ•W
-	s16						at_pos_y;	// ƒ|ƒPƒ‚ƒ“ƒfƒtƒHƒ‹ƒgÀ•W
+	int						seq;		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	s16						wait;		// ã‚¦ã‚§ã‚¤ãƒˆ
+	SOFT_SPRITE*			at_ssp;		// æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³
+	WAZATOOL_CALCMOVE		at_wtc;		// ãƒã‚±ãƒ¢ãƒ³å‹•ä½œãƒ‡ãƒ¼ã‚¿
+	WAZATOOL_CALCMOVE_ONE	at_wtc_r;	// ãƒã‚±ãƒ¢ãƒ³å‹•ä½œãƒ‡ãƒ¼ã‚¿å›è»¢
+	s16						at_pos_x;	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåº§æ¨™
+	s16						at_pos_y;	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåº§æ¨™
 
 /*	
-	SOFT_SPRITE*		df_ssp;		// ç”õƒ|ƒPƒ‚ƒ“
-	WAZATOOL_CALCMOVE	df_wtc;		// ƒ|ƒPƒ‚ƒ““®ìƒf[ƒ^
-	s16					df_pos_x;	// ƒ|ƒPƒ‚ƒ“ƒfƒtƒHƒ‹ƒgÀ•W
-	s16					df_pos_y;	// ƒ|ƒPƒ‚ƒ“ƒfƒtƒHƒ‹ƒgÀ•W
+	SOFT_SPRITE*		df_ssp;		// å®ˆå‚™ãƒã‚±ãƒ¢ãƒ³
+	WAZATOOL_CALCMOVE	df_wtc;		// ãƒã‚±ãƒ¢ãƒ³å‹•ä½œãƒ‡ãƒ¼ã‚¿
+	s16					df_pos_x;	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåº§æ¨™
+	s16					df_pos_y;	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåº§æ¨™
 */
 } TWE_065_SYS;
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒhƒŠƒ‹‚­‚¿‚Î‚µ	“®ìTCB
+ *	@brief	ãƒ‰ãƒªãƒ«ãã¡ã°ã—	å‹•ä½œTCB
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒhƒŠƒ‹‚­‚¿‚Î‚µ“®ìƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ‰ãƒªãƒ«ãã¡ã°ã—å‹•ä½œãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -312,8 +312,8 @@ static void We065_TCB(TCB_PTR tcb, void* work)
 		}
 		break;
 
-	case WE065_END:			// I—¹
-		// Œ³À•W‚ğİ’è
+	case WE065_END:			// çµ‚äº†
+		// å…ƒåº§æ¨™ã‚’è¨­å®š
 		SoftSpriteParaSet( wk->at_ssp, SS_PARA_POS_X, wk->at_pos_x );
 		SoftSpriteParaSet( wk->at_ssp, SS_PARA_POS_Y, wk->at_pos_y );
 
@@ -321,7 +321,7 @@ static void We065_TCB(TCB_PTR tcb, void* work)
 /*		SoftSpriteParaSet( wk->df_ssp, SS_PARA_POS_X, wk->df_pos_x );
 		SoftSpriteParaSet( wk->df_ssp, SS_PARA_POS_Y, wk->df_pos_y );//*/
 
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		break;
@@ -331,20 +331,20 @@ static void We065_TCB(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒhƒŠƒ‹‚­‚¿‚Î‚µ‚ÌÀs
+ *	@brief	ãƒ‰ãƒªãƒ«ãã¡ã°ã—ã®å®Ÿè¡Œ
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
- * we_sys‚©‚çó‚¯æ‚éˆø”‚È‚µ
+ * we_sysã‹ã‚‰å—ã‘å–ã‚‹å¼•æ•°ãªã—
  *
  */
 //-----------------------------------------------------------------------------
 void WestSp_WE_065( WE_SYS_PTR we_sys )
 {
 	TWE_065_SYS* wk;
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	int vec_x;
 	int vec_x_df;
 	
@@ -354,7 +354,7 @@ void WestSp_WE_065( WE_SYS_PTR we_sys )
 	wk->we_sys	= we_sys;
 	wk->seq = 0;	
 
-	// ƒ|ƒPƒ‚ƒ“@ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒf[ƒ^æ“¾
+	// ãƒã‚±ãƒ¢ãƒ³ã€€ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
 	wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 	wk->at_pos_x = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_X );
 	wk->at_pos_y = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_Y );
@@ -363,25 +363,25 @@ void WestSp_WE_065( WE_SYS_PTR we_sys )
 	wk->df_pos_x = SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_X );
 	wk->df_pos_y = SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_Y );//*/
 
-	// ƒ|ƒPƒ‚ƒ“@“®ìƒf[ƒ^ì¬
+	// ãƒã‚±ãƒ¢ãƒ³ã€€å‹•ä½œãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	WazaTool_InitStraightSyncFx( &wk->at_wtc, 0, WE065_MOVE_WIDTH, 0, 0, WE065_MOVE_SYNC );
 	WazaTool_InitMoveOneSync( &wk->at_wtc_r, 0, FX_GET_ROTA_NUM(WE065_ROTA_DIS), WE065_ROTA1_SYNC );
 	
 //	WazaTool_InitShake( &wk->df_wtc, WE065_SHAKE_WIDTH, 0, WE065_SHAKE_SYNC, WE065_SHAKE_NUM );
 	
 
-	// ƒxƒNƒgƒ‹‚ğ‚ ‚í‚¹‚é
-	// UŒ‚‘¤
+	// ãƒ™ã‚¯ãƒˆãƒ«ã‚’ã‚ã‚ã›ã‚‹
+	// æ”»æ’ƒå´
 	vec_x = WazaTool_VecChangeX( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 	wk->at_wtc.work[1] *= vec_x;
 	wk->at_wtc_r.work[1] *= vec_x;
 
-/*	// –hŒä‘¤
+/*	// é˜²å¾¡å´
 	wk->df_wtc.x *= vec_x;//*/
 
 	vec_x_df = WazaTool_VecChangeX( wk->we_sys, WeSysDFNoGet(wk->we_sys) );
 
-	// UŒ‚‰ñ“]ˆÊ’uİ’è
+	// æ”»æ’ƒå›è»¢ä½ç½®è¨­å®š
 	{
 		int ats = WET_SideCheck(we_sys, WeSysATNoGet(wk->we_sys));
 		int dfs = WET_SideCheck(we_sys, WeSysDFNoGet(wk->we_sys));
@@ -405,16 +405,16 @@ void WestSp_WE_065( WE_SYS_PTR we_sys )
 
 //-------------------------------------
 //	
-//	ƒXƒv[ƒ“‚Ü‚°
+//	ã‚¹ãƒ—ãƒ¼ãƒ³ã¾ã’
 //	
 //=====================================
-//ŒÂX‚ÌƒXƒv[ƒ“ƒIƒuƒWƒFƒNƒg‚Ì“®ìƒV[ƒPƒ“ƒX
+//å€‹ã€…ã®ã‚¹ãƒ—ãƒ¼ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	WE134_SPOON_OBJ_MOVE1,
 	WE134_SPOON_OBJ_MOVE2,
 	WE134_SPOOP_OBJ_END
 };
-//‘S‘Ì‚Ì—¬‚ê
+//å…¨ä½“ã®æµã‚Œ
 enum{
 	WE134_MATRIX_INIT,
 	WE134_FADE_IN,
@@ -425,7 +425,7 @@ enum{
 	WE134_END
 };
 
-#define WE134_SPOON_NUM		(3)		// c‘œ{–{•¨
+#define WE134_SPOON_NUM		(3)		// æ®‹åƒï¼‹æœ¬ç‰©
 #define WE134_ZANZOU_NUM	(2)
 #define WE134_ROTA1_S		( FX_GET_ROTA_NUM(90) )
 #define WE134_ROTA1_E		( FX_GET_ROTA_NUM(270) )
@@ -441,18 +441,18 @@ enum{
 #define WE134_ROTA_SP_W		( -1 * FX32_ONE )
 
 
-// ŒÂX‚ÌƒXƒv[ƒ“\‘¢‘Ì
+// å€‹ã€…ã®ã‚¹ãƒ—ãƒ¼ãƒ³æ§‹é€ ä½“
 typedef struct {
 	CATS_ACT_PTR	cap;
 	WAZATOOL_CALCMOVE wtc;
-	WAZATOOL_CALCMOVE_ONE add_sp;		// ‰ñ“]ƒXƒs[ƒh‰Á‘¬“x
-	s16 def_sp_x;	// X•ûŒü‰ñ“]‚ÌƒfƒtƒHƒ‹ƒgƒXƒs[ƒh
+	WAZATOOL_CALCMOVE_ONE add_sp;		// å›è»¢ã‚¹ãƒ”ãƒ¼ãƒ‰åŠ é€Ÿåº¦
+	s16 def_sp_x;	// Xæ–¹å‘å›è»¢ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚¹ãƒ”ãƒ¼ãƒ‰
 	s16	pos_x;
 	s16 pos_y;
 	int seq;
-	BOOL do_flag;	// ÀsŠJnƒtƒ‰ƒO
+	BOOL do_flag;	// å®Ÿè¡Œé–‹å§‹ãƒ•ãƒ©ã‚°
 } TWE_134_SPOON;
-// ƒXƒv[ƒ“‚Ü‚°‘S‘Ìƒf[ƒ^
+// ã‚¹ãƒ—ãƒ¼ãƒ³ã¾ã’å…¨ä½“ãƒ‡ãƒ¼ã‚¿
 typedef struct {
 	WE_SYS_PTR	we_sys;
 	CATS_SYS_PTR csp;
@@ -469,20 +469,20 @@ typedef struct {
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒv[ƒ“‚Ü‚°@c‘œƒIƒuƒWƒF‚Ìì¬
+ *	@brief	ã‚¹ãƒ—ãƒ¼ãƒ³ã¾ã’ã€€æ®‹åƒã‚ªãƒ–ã‚¸ã‚§ã®ä½œæˆ
  *
- *	@param	spoon		ƒXƒv[ƒ“c‘œƒIƒuƒWƒFƒf[ƒ^Ši”[æ
- *	@param	csp			clact_toolƒVƒXƒeƒ€ƒ[ƒN
- *	@param	crp			clact_toolƒŠƒ\[ƒXƒ[ƒN
- *	@param	cp_coap		ƒZƒ‹ƒAƒNƒ^[î•ñ
- *	@param	cp_parent	eƒXƒv[ƒ“
+ *	@param	spoon		ã‚¹ãƒ—ãƒ¼ãƒ³æ®‹åƒã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	csp			clact_toolã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	crp			clact_toolãƒªã‚½ãƒ¼ã‚¹ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_coap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æƒ…å ±
+ *	@param	cp_parent	è¦ªã‚¹ãƒ—ãƒ¼ãƒ³
  *
  *	@return
  */
 //-----------------------------------------------------------------------------
 static void We_CAT_WE_134_ZanzouInit( TWE_134_SPOON* spoon, CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_OBJECT_ADD_PARAM_S* cp_coap, const TWE_134_SPOON* cp_parent )
 {
-	//ƒXƒv[ƒ“ƒAƒbƒh
+	//ã‚¹ãƒ—ãƒ¼ãƒ³ã‚¢ãƒƒãƒ‰
 	spoon->cap		= CATS_ObjectAdd_S(csp, crp, cp_coap);
 	spoon->wtc		= cp_parent->wtc;
 	spoon->add_sp	= cp_parent->add_sp;
@@ -492,7 +492,7 @@ static void We_CAT_WE_134_ZanzouInit( TWE_134_SPOON* spoon, CATS_SYS_PTR csp, CA
 	spoon->seq		= cp_parent->seq;
 	spoon->do_flag	= FALSE;
 
-	// •\¦OFF
+	// è¡¨ç¤ºOFF
 	CATS_ObjectEnableCap( spoon->cap, FALSE );
 
 	CATS_ObjectPriSetCap( spoon->cap, WAZAEFF_ACT_SOFTPRI );
@@ -501,22 +501,22 @@ static void We_CAT_WE_134_ZanzouInit( TWE_134_SPOON* spoon, CATS_SYS_PTR csp, CA
 
 static void We_CAT_WE_134_ZanzouDelete( TWE_134_SPOON* spoon )
 {
-	//ƒXƒv[ƒ“”jŠü
+	//ã‚¹ãƒ—ãƒ¼ãƒ³ç ´æ£„
 	CATS_ActorPointerDelete_S(spoon->cap);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æON/OFF@İ’è
+ *	@brief	æç”»ON/OFFã€€è¨­å®š
  *
- *	@param	spoon	ƒXƒv[ƒ“ƒf[ƒ^
- *	@param	flag	•`‰æON/OFF
+ *	@param	spoon	ã‚¹ãƒ—ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	flag	æç”»ON/OFF
  *
  *	@return	none
  *
  *	flag
- *		TRUE	•\¦
- *		FALSE	”ñ•\¦
+ *		TRUE	è¡¨ç¤º
+ *		FALSE	éè¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 static void We_CAT_WE_134_SpoonDrawFlag( TWE_134_SPOON* spoon, BOOL flag )
@@ -528,12 +528,12 @@ static void We_CAT_WE_134_SpoonDrawFlag( TWE_134_SPOON* spoon, BOOL flag )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒv[ƒ““®ì
+ *	@brief	ã‚¹ãƒ—ãƒ¼ãƒ³å‹•ä½œ
  *
- *	@param	spoon	ƒXƒv[ƒ“ƒ[ƒN
+ *	@param	spoon	ã‚¹ãƒ—ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	Š®—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	å®Œäº†
  *
  *
  */
@@ -548,7 +548,7 @@ static BOOL We134_SpoonMove( TWE_134_SPOON* spoon )
 	case WE134_SPOON_OBJ_MOVE1:
 	case WE134_SPOON_OBJ_MOVE2:
 		if( WazaTool_CalcRotaFx( &spoon->wtc ) ){
-			// ‰Á‘¬
+			// åŠ é€Ÿ
 			WazaTool_CalcCosOne( &spoon->add_sp );
 			spoon->wtc.work[5] = spoon->def_sp_x + spoon->add_sp.num;
 
@@ -556,9 +556,9 @@ static BOOL We134_SpoonMove( TWE_134_SPOON* spoon )
 					spoon->pos_x + spoon->wtc.x,
 					spoon->pos_y + spoon->wtc.y	);
 		}else{
-			// MOVE2ˆÈŠO‚ÍŸ‚Ì“®ì‚Ì‰Šú‰»‚ğs‚¤
+			// MOVE2ä»¥å¤–ã¯æ¬¡ã®å‹•ä½œã®åˆæœŸåŒ–ã‚’è¡Œã†
 			if( spoon->seq < WE134_SPOON_OBJ_MOVE2 ){
-				// ‰ñ“]ˆÚ“®
+				// å›è»¢ç§»å‹•
 				if( spoon->seq == WE134_SPOON_OBJ_MOVE1 ){
 					WazaTool_InitRotaSpeedFx( &spoon->wtc,
 							spoon->wtc.work[1], WE134_ROTA2_E,
@@ -566,7 +566,7 @@ static BOOL We134_SpoonMove( TWE_134_SPOON* spoon )
 							spoon->wtc.work[2], spoon->wtc.work[4],
 							WE134_ROTA_SP );
 				}
-				// ˆÚ“®‰Á‘¬“x
+				// ç§»å‹•åŠ é€Ÿåº¦
 				WazaTool_InitSinCosOneSyncFx( &spoon->add_sp,
 						WE134_ROTA_SP_S, WE134_ROTA_SP_E,
 						WE134_ROTA_SP_W, spoon->wtc.work[0]);
@@ -584,10 +584,10 @@ static BOOL We134_SpoonMove( TWE_134_SPOON* spoon )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒv[ƒ“‚Ü‚°	“®ìTCB
+ *	@brief	ã‚¹ãƒ—ãƒ¼ãƒ³ã¾ã’	å‹•ä½œTCB
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒXƒv[ƒ“‚Ü‚°“®ìƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ã‚¹ãƒ—ãƒ¼ãƒ³ã¾ã’å‹•ä½œãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -595,7 +595,7 @@ static BOOL We134_SpoonMove( TWE_134_SPOON* spoon )
 static void We134_TCB(TCB_PTR tcb, void* work)
 {
 	TWE_134_SYS* wk = work;
-	int i;	// ƒ‹[ƒv—p
+	int i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 	BOOL check = FALSE;
 	BOOL check_sub;
 	
@@ -609,7 +609,7 @@ static void We134_TCB(TCB_PTR tcb, void* work)
 		G2_ChangeBlendAlpha( (wk->fade_count / 10), 31 - (wk->fade_count / 10) );
 		
 		if( wk->fade_count >= 310 ){
-			// ƒƒCƒ“ƒIƒuƒWƒF‚ÌƒIƒuƒWƒFƒ‚[ƒh‚ğ•’Ê‚É‚·‚é
+			// ãƒ¡ã‚¤ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã®ã‚ªãƒ–ã‚¸ã‚§ãƒ¢ãƒ¼ãƒ‰ã‚’æ™®é€šã«ã™ã‚‹
 			CATS_ObjectObjModeSetCap(wk->main.cap, GX_OAM_MODE_NORMAL);
 
 			wk->seq++;
@@ -617,16 +617,16 @@ static void We134_TCB(TCB_PTR tcb, void* work)
 		break;
 
 	case WE134_FADE_IN_END:
-		// c‘œ‚Ìƒ¿’l‚É•ÏX
+		// æ®‹åƒã®Î±å€¤ã«å¤‰æ›´
 		G2_ChangeBlendAlpha( WET_DEFAULT_BLEND, WET_DEFAULT_BLEND );
 		wk->seq++;
 		break;
 
 	case WE134_OBJ_MOVE:
-		// ÀsŠJnƒ`ƒFƒbƒN•”
+		// å®Ÿè¡Œé–‹å§‹ãƒã‚§ãƒƒã‚¯éƒ¨
 		if( wk->wait <= 0 ){
 			wk->sub[ wk->count ].do_flag = TRUE;
-			// •\¦ON
+			// è¡¨ç¤ºON
 			CATS_ObjectEnableCap( wk->sub[ wk->count ].cap, TRUE );
 			
 			wk->count ++;
@@ -636,31 +636,31 @@ static void We134_TCB(TCB_PTR tcb, void* work)
 			wk->wait --;
 		}
 
-		// “®ì•”
+		// å‹•ä½œéƒ¨
 		check = We134_SpoonMove( &wk->main );
 		for( i=0; i<WE134_ZANZOU_NUM; i++ ){
 			check_sub = We134_SpoonMove( &wk->sub[ i ] );
 
-			// c‘œ‚Í“®ì‚ªI‚í‚Á‚½‚ç•\¦OFF
+			// æ®‹åƒã¯å‹•ä½œãŒçµ‚ã‚ã£ãŸã‚‰è¡¨ç¤ºOFF
 			if( check_sub == FALSE ){
 				We_CAT_WE_134_SpoonDrawFlag( &wk->sub[ i ], FALSE );
 			}
 			check |= check_sub;
 		}
 
-		// ‘S“®ìI—¹‚µ‚½‚çI‚í‚è
+		// å…¨å‹•ä½œçµ‚äº†ã—ãŸã‚‰çµ‚ã‚ã‚Š
 		if( check == FALSE ){
 			wk->seq++;
 		}
 		break;
 
 	case WE134_SPOON_CURVE:
-		// ƒAƒjƒ[ƒVƒ‡ƒ“‚³‚¹‚é
+		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹
 		CATS_ObjectUpdateCap( wk->main.cap );
 
-		// ƒAƒjƒI—¹‘Ò‚¿
+		// ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 		if( CLACT_AnmActiveCheck( wk->main.cap->act ) == FALSE ){
-			// ƒƒCƒ“ƒIƒuƒWƒF‚ğ”¼“§–¾ƒIƒuƒWƒFƒ‚[ƒh‚É•ÏX
+			// ãƒ¡ã‚¤ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚’åŠé€æ˜ã‚ªãƒ–ã‚¸ã‚§ãƒ¢ãƒ¼ãƒ‰ã«å¤‰æ›´
 			CATS_ObjectObjModeSetCap(wk->main.cap, GX_OAM_MODE_XLU);
 			wk->seq ++;
 		}
@@ -676,32 +676,32 @@ static void We134_TCB(TCB_PTR tcb, void* work)
 		break;
 
 	case WE134_END:
-		// c‘œƒf[ƒ^”jŠü
+		// æ®‹åƒãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		for( i=0; i<WE134_ZANZOU_NUM; i++ ){
 			We_CAT_WE_134_ZanzouDelete( &wk->sub[ i ] );			
 		}
 
-		// mainOAM”jŠü
+		// mainOAMç ´æ£„
 		CATS_ActorPointerDelete_S(wk->main.cap);
 		
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;
 	}
 
-	// OAM•`‰æ
+	// OAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒXƒv[ƒ“‚Ü‚°—pƒ^ƒXƒN
+ * @brief	ã‚¹ãƒ—ãƒ¼ãƒ³ã¾ã’ç”¨ã‚¿ã‚¹ã‚¯
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -710,7 +710,7 @@ void WestSp_CAT_WE_134(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 {
 	TWE_134_SYS* wk;
 	TCATS_OBJECT_ADD_PARAM_S coap;
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	int at_client;
 	int width;
 
@@ -723,12 +723,12 @@ void WestSp_CAT_WE_134(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	wk->count	= 0;
 	wk->seq		= 0;
 
-	// ƒ|ƒPƒ‚ƒ“‚Ì”z’u‚©‚ç‚ä‚ê‚é‰¡•ûŒü‚ğŒˆ’è
+	// ãƒã‚±ãƒ¢ãƒ³ã®é…ç½®ã‹ã‚‰ã‚†ã‚Œã‚‹æ¨ªæ–¹å‘ã‚’æ±ºå®š
 	at_client = WeSysATNoGet(we_sys); 
 	width = WazaTool_VecChangeX( we_sys, at_client );
 	width *= WE134_ROTA_WIDHT;
 
-	// ƒƒCƒ“ƒXƒv[ƒ“ƒf[ƒ^ì¬
+	// ãƒ¡ã‚¤ãƒ³ã‚¹ãƒ—ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	wk->main.cap	= cap;
 	wk->main.seq	= WE134_SPOON_OBJ_MOVE1;
 	WazaTool_InitRotaSpeedFx( &wk->main.wtc, 
@@ -741,28 +741,28 @@ void WestSp_CAT_WE_134(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 			WE134_ROTA_SP_W, wk->main.wtc.work[0]);
 
 	wk->main.def_sp_x = wk->main.wtc.work[5];
-	wk->main.do_flag = TRUE;	// ƒƒCƒ“‚Í‚¢‚«‚È‚èˆÚ“®
-	// À•W‚ÍUŒ‚‘¤‚ğİ’è
+	wk->main.do_flag = TRUE;	// ãƒ¡ã‚¤ãƒ³ã¯ã„ããªã‚Šç§»å‹•
+	// åº§æ¨™ã¯æ”»æ’ƒå´ã‚’è¨­å®š
 	wk->main.pos_x	= GetWazaEffPos(we_sys, at_client, PM_X);
 	wk->main.pos_y	= GetWazaEffPos(we_sys, at_client, PM_Y);
 	CATS_ObjectPosSetCap( wk->main.cap, wk->main.pos_x, wk->main.pos_y );
 	CATS_ObjectPriSetCap( wk->main.cap, WAZAEFF_ACT_SOFTPRI );
 	CATS_ObjectBGPriSetCap( wk->main.cap, WAZAEFF_ACT_BGPRI );
 	
-	// ƒTƒuƒXƒv[ƒ“ƒf[ƒ^ì¬
+	// ã‚µãƒ–ã‚¹ãƒ—ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	coap   = WeSysCoapGet(wk->we_sys);
 	coap.x = wk->main.pos_x;
 	coap.y = wk->main.pos_y;
 	for( i=0; i<WE134_ZANZOU_NUM; i++ ){
 
 		We_CAT_WE_134_ZanzouInit( 
-				&wk->sub[ i ],			// ƒf[ƒ^Ši”[æ
-				wk->csp, wk->crp,		// ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€
-				&coap,					// ƒZƒ‹ƒAƒNƒ^[“o˜^ƒf[ƒ^
-				&wk->main );			// eƒIƒuƒWƒF
+				&wk->sub[ i ],			// ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+				wk->csp, wk->crp,		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+				&coap,					// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
+				&wk->main );			// è¦ªã‚ªãƒ–ã‚¸ã‚§
 	}
 
-	// ƒtƒF[ƒhİ’è
+	// ãƒ•ã‚§ãƒ¼ãƒ‰è¨­å®š
 	wk->fade_count = 0;
 	WET_DefaultBlendSet(wk->we_sys, 0, 31);
 	CATS_ObjectObjModeSetCap(wk->main.cap, GX_OAM_MODE_XLU);
@@ -776,7 +776,7 @@ void WestSp_CAT_WE_134(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 //-------------------------------------
 //	
-//	‚Ë‚ñ‚è‚«
+//	ã­ã‚“ã‚Šã
 //	
 //=====================================
 enum{
@@ -786,7 +786,7 @@ enum{
 	WE093_DF_MOVE2,
 	WE093_END,
 };
-#define WE093_SHAKE_MOVE	(2)	// ‰¡—h‚ê•
+#define WE093_SHAKE_MOVE	(2)	// æ¨ªæºã‚Œå¹…
 #define WE093_SHAKE_SYNC	(1)	
 #define WE093_SHAKE_DFNUM	(6)
 
@@ -818,16 +818,16 @@ typedef struct {
 	int seq;
 	int wait;
 
-/*	// UŒ‚
+/*	// æ”»æ’ƒ
 	WAZATOOL_CALCMOVE at_wtc;
 	SOFT_SPRITE*	at_ssp;
 	s16	at_x;
 	s16 at_y;//*/
 
-	// –hŒä
+	// é˜²å¾¡
 	WAZATOOL_CALCMOVE df_wtc;
 	WAZATOOL_CALCMOVE df_scale;
-	CATS_ACT_PTR	df_cap;	// c‘œOAM‚ÌƒAƒNƒ^[ƒf[ƒ^
+	CATS_ACT_PTR	df_cap;	// æ®‹åƒOAMã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
 	SOFT_SPRITE*	df_ssp;
 	s16 df_x;
 	s16 df_y;
@@ -839,7 +839,7 @@ typedef struct {
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–hŒäƒ|ƒPƒ‚ƒ“‚ÌÀ•W@Šg‘å’lİ’è
+ *	@brief	é˜²å¾¡ãƒã‚±ãƒ¢ãƒ³ã®åº§æ¨™ã€€æ‹¡å¤§å€¤è¨­å®š
  *
  *	@param	TWE_093_SYS* wk 
  *
@@ -863,7 +863,7 @@ static void We093_DFPokeParamSet( TWE_093_SYS* wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”O—ÍTCB
+ *	@brief	å¿µåŠ›TCB
  *
  *	@param	tcb
  *	@param	work
@@ -879,7 +879,7 @@ static void We093_TCB(TCB_PTR tcb, void* work)
 	switch( wk->seq ){
 /*	case WE093_AT_MOVE:
 		
-		// poke“®ì•”
+		// pokeå‹•ä½œéƒ¨
 		if( WazaTool_CalcAndReflectShakeSsp( &wk->at_wtc, wk->at_x, wk->at_y, wk->at_ssp ) == FALSE ){
 			SoftSpriteParaSet( wk->at_ssp, SS_PARA_POS_X, wk->at_x );
 			SoftSpriteParaSet( wk->at_ssp, SS_PARA_POS_Y, wk->at_y );
@@ -895,15 +895,15 @@ static void We093_TCB(TCB_PTR tcb, void* work)
 		}
 		break;//*/
 
-	case WE093_DF_MOVE1:	// Šg‘åMAX‚Ü‚Å
+	case WE093_DF_MOVE1:	// æ‹¡å¤§MAXã¾ã§
 		WazaTool_CalcShake( &wk->df_wtc );
 		check = WazaTool_CalcScaleRateEx( &wk->df_scale );
 
-		// À•W@Šg‘å’lİ’è
+		// åº§æ¨™ã€€æ‹¡å¤§å€¤è¨­å®š
 		We093_DFPokeParamSet( wk );
 		
 		if( check == FALSE ){
-			// Šg‘åŒvZ
+			// æ‹¡å¤§è¨ˆç®—
 			WazaTool_InitScaleRateEx( &wk->df_scale,
 					WE093_Z_SCALE_XE,WE093_Z_SCALE_XS, 
 					WE093_Z_SCALE_YE,WE093_Z_SCALE_YS,
@@ -914,11 +914,11 @@ static void We093_TCB(TCB_PTR tcb, void* work)
 		}
 		break;
 
-	case WE093_DF_MOVE2:	// k¬‚¨‚í‚è‚Ü‚Å
+	case WE093_DF_MOVE2:	// ç¸®å°ãŠã‚ã‚Šã¾ã§
 		WazaTool_CalcShake( &wk->df_wtc );
 		check = WazaTool_CalcScaleRateEx( &wk->df_scale );
 
-		// À•W@Šg‘å’lİ’è
+		// åº§æ¨™ã€€æ‹¡å¤§å€¤è¨­å®š
 		We093_DFPokeParamSet( wk );
 		
 		if( check == FALSE ){
@@ -930,26 +930,26 @@ static void We093_TCB(TCB_PTR tcb, void* work)
 		
 	case WE093_END:
 
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;	
 	}
 
-	// c‘œOAM•`‰æ
+	// æ®‹åƒOAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚Ë‚ñ‚è‚«
+ *	@brief	ã­ã‚“ã‚Šã
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
- * we_sys‚©‚çó‚¯æ‚éˆø”‚È‚µ
+ * we_sysã‹ã‚‰å—ã‘å–ã‚‹å¼•æ•°ãªã—
  *
  */
 //-----------------------------------------------------------------------------
@@ -965,7 +965,7 @@ void WestSp_WE_093( WE_SYS_PTR we_sys )
 	wk->seq		= 0;
 	wk->wait	= 0;
 	
-	// ƒ|ƒPƒ‚ƒ“@ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒf[ƒ^æ“¾
+	// ãƒã‚±ãƒ¢ãƒ³ã€€ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
 /*	wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 	wk->at_x = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_X );
 	wk->at_y = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_Y );//*/
@@ -976,32 +976,32 @@ void WestSp_WE_093( WE_SYS_PTR we_sys )
 
 	wk->cap_ofs_y = SoftSpriteParaGet( wk->df_ssp, SS_PARA_SHADOW_HEIGHT );
 
-	// ƒpƒŒƒbƒgƒtƒF[ƒh
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 //	PaletteFadeReq();
 
-	// ƒ|ƒPƒ‚ƒ“@“®ìƒf[ƒ^ì¬
+	// ãƒã‚±ãƒ¢ãƒ³ã€€å‹•ä½œãƒ‡ãƒ¼ã‚¿ä½œæˆ
 //	WazaTool_InitShake( &wk->at_wtc, WE093_SHAKE_MOVE, 0, WE093_SHAKE_SYNC, WE093_SHAKE_ATNUM );
 	WazaTool_InitShake( &wk->df_wtc, WE093_SHAKE_MOVE, 0, WE093_SHAKE_SYNC, WE093_SHAKE_DFNUM );
 
-	// c‘œƒf[ƒ^ì¬
-	// c‘œƒf[ƒ^æ“¾
+	// æ®‹åƒãƒ‡ãƒ¼ã‚¿ä½œæˆ
+	// æ®‹åƒãƒ‡ãƒ¼ã‚¿å–å¾—
 	wk->df_cap = WeSysPokeCapGet(wk->we_sys, 0);
 	CATS_ObjectObjModeSetCap(wk->df_cap, GX_OAM_MODE_XLU);
 	CATS_ObjectAffineSetCap(wk->df_cap, CLACT_AFFINE_DOUBLE);
 	CATS_ObjectPriSetCap( wk->df_cap, WAZAEFF_ACT_SOFTPRI );
 	CATS_ObjectBGPriSetCap( wk->df_cap, WAZAEFF_ACT_BGPRI );
 
-	// Šg‘åŒvZ
+	// æ‹¡å¤§è¨ˆç®—
 	WazaTool_InitScaleRateEx( &wk->df_scale,
 			WE093_Z_SCALE_XS, WE093_Z_SCALE_XE,
 			WE093_Z_SCALE_YS, WE093_Z_SCALE_YE,
 			WE093_Z_SCALE_D,
 			WE093_Z_SCALE_ADD_SYNC);
 
-	// ŠgkU‚é‚¦“®ì‚ÌƒXƒCƒbƒ`
+	// æ‹¡ç¸®æŒ¯ã‚‹ãˆå‹•ä½œã®ã‚¹ã‚¤ãƒƒãƒ
 	wk->s_ofs_switch = 1;
 
-	// ”¼“§–¾Š|‚¯‚é
+	// åŠé€æ˜æ›ã‘ã‚‹
 	WET_DefaultBlendSet(wk->we_sys,
 			WE093_Z_ALPHA, WE093_Z_BG_ALPHA);
 
@@ -1011,7 +1011,7 @@ void WestSp_WE_093( WE_SYS_PTR we_sys )
 
 //-------------------------------------
 //	
-//	‚Æ‚¯‚é
+//	ã¨ã‘ã‚‹
 //	
 //=====================================
 enum{
@@ -1023,9 +1023,9 @@ enum{
 };
 #define WE151_SIN_BUFF	(72)
 #define WE151_ROTA_ADD	( FX_GET_ROTA_NUM(5) )
-#define WE151_ROTA_WIDTH	(8*FX32_ONE)	// ”¼Œa
+#define WE151_ROTA_WIDTH	(8*FX32_ONE)	// åŠå¾„
 
-#define WE151_SCROLL_SP	(80)		// ’PˆÊ‚Í®”*100
+#define WE151_SCROLL_SP	(80)		// å˜ä½ã¯æ•´æ•°*100
 
 #define WE151_MOVEY_END	(40)
 #define WE151_MOVEX_END	(80)
@@ -1033,7 +1033,7 @@ enum{
 
 #define WE151_ALPHA_FADE_SYNC	( 16 )
 
-#define WE151_HEIGHT_ERR	(-8)	// ‚±‚ÌƒTƒCƒY•ªƒ|ƒPƒ‚ƒ“‚ÌŠG‚Ìã‚Æ‰º‚ğƒJƒbƒg
+#define WE151_HEIGHT_ERR	(-8)	// ã“ã®ã‚µã‚¤ã‚ºåˆ†ãƒã‚±ãƒ¢ãƒ³ã®çµµã®ä¸Šã¨ä¸‹ã‚’ã‚«ãƒƒãƒˆ
 
 #define WE151_FADE_WAIT_NUM	(8)
 typedef struct{
@@ -1048,13 +1048,13 @@ typedef struct{
 	s16		start;
 	s16		end;
 	
-	// ƒ‰ƒXƒ^[ƒf[ƒ^
+	// ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
 	WAZATOOL_SCRLASTER_PTR	lst;
 
-	// c‰¡Lk”äŒvZ
+	// ç¸¦æ¨ªä¼¸ç¸®æ¯”è¨ˆç®—
 	WAZATOOL_CALCMOVE	move_param;
 
-	// ƒAƒ‹ƒtƒ@ƒtƒF[ƒh
+	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰
 	WAZATOOL_ALPHA_FADE	alpha_fade;
 } TWE_151_SYS;
 
@@ -1063,7 +1063,7 @@ static void We151_BuffClean( TWE_151_SYS* wk, void* buff )
 {
 	u32 num;
 	
-	// ƒoƒbƒtƒ@“à‚ğ‰Šú’l‚Å‰Šú‰»
+	// ãƒãƒƒãƒ•ã‚¡å†…ã‚’åˆæœŸå€¤ã§åˆæœŸåŒ–
 	num = ((-wk->at_y & 0xffff) << 16) | (-wk->at_x & 0xffff);
 	MI_CpuFill32( buff, num, sizeof(u32) * LASTER_SCROLL_BUFF_SIZE );
 }
@@ -1071,12 +1071,12 @@ static void We151_BuffClean( TWE_151_SYS* wk, void* buff )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[“®ì•”•ª
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼å‹•ä½œéƒ¨åˆ†
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“r’†
- *	@retval	FALSE	I—¹
+ *	@retval	TRUE	é€”ä¸­
+ *	@retval	FALSE	çµ‚äº†
  *
  *
  */
@@ -1090,30 +1090,30 @@ static BOOL We151_RasterMove( TWE_151_SYS* wk )
 	int in_buff;
 
 	buff = WazaTool_GetScrLasterWriteBuff( wk->lst );
-	// ƒoƒbƒtƒ@‰Šú‰»
+	// ãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–
 	We151_BuffClean( wk, buff );
 
-	// ŒvZ•”
-	// c‰¡Lk
+	// è¨ˆç®—éƒ¨
+	// ç¸¦æ¨ªä¼¸ç¸®
 	ret = WazaTool_CalcStraightFx( &wk->move_param );
 	
-	// ’lİ’è•”
-	// cLk
-	// ‰¡•½sˆÚ“®
+	// å€¤è¨­å®šéƒ¨
+	// ç¸¦ä¼¸ç¸®
+	// æ¨ªå¹³è¡Œç§»å‹•
 	for( i=wk->start; i<=wk->end; i++ ){
 		set_x = buff[i] & 0xffff;
 		set_y = buff[i] >> 16;
 
-		// cLkİ’è
+		// ç¸¦ä¼¸ç¸®è¨­å®š
 		set_y -= ( (wk->end - i) * (wk->move_param.y) ) / 100;
 		set_x -= ( ((wk->start + (SOFT_SPRITE_SIZE_Y/2)) - i) * (wk->move_param.x) ) / 100;
 
-		// 1‚Â‘O‚Ìƒoƒbƒtƒ@‚É“ü‚ê‚Ä‚¨‚­
+		// 1ã¤å‰ã®ãƒãƒƒãƒ•ã‚¡ã«å…¥ã‚Œã¦ãŠã
 		in_buff = i - 1;
 		if( in_buff < 0 ){
 			in_buff += 192;
 		}
-		// İ’è
+		// è¨­å®š
 		buff[in_buff] = WazaTool_GetLasterBuffMatrixData( set_x, set_y );
 	}
 	
@@ -1123,10 +1123,10 @@ static BOOL We151_RasterMove( TWE_151_SYS* wk )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚Æ‚¯‚é
+ *	@brief	ã¨ã‘ã‚‹
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1142,7 +1142,7 @@ static void We151_TCB(TCB_PTR tcb, void* work)
 		if( We151_RasterMove( wk ) == FALSE ){
 			wk->seq++;
 			WET_DefaultBGEffectBlendSet( wk->we_sys, 31, 0 );
-			// ƒAƒ‹ƒtƒ@ƒtƒF[ƒh“o˜^
+			// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰ç™»éŒ²
 			WazaTool_StartAlphaFade( &wk->alpha_fade,
 					31, 0, 0, 31, WE151_ALPHA_FADE_SYNC);
 		}
@@ -1151,11 +1151,11 @@ static void We151_TCB(TCB_PTR tcb, void* work)
 	case WE151_FADE_OUT:
 		We151_RasterMove( wk );
 		
-		// ƒAƒ‹ƒtƒ@ƒtƒF[ƒhI—¹‘Ò‚¿
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 		if( WazaTool_EndCheckAlphaFade( &wk->alpha_fade ) ){
 			wk->seq ++;
 			
-			// ƒ‰ƒXƒ^[ƒVƒXƒeƒ€ƒXƒgƒbƒv
+			// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ã‚¹ãƒˆãƒƒãƒ—
 			WazaTool_StopScrLaster( wk->lst );
 			wk->count = 0;
 		}
@@ -1168,7 +1168,7 @@ static void We151_TCB(TCB_PTR tcb, void* work)
 
 		wk->count ++;
 		if( wk->count > WE151_FADE_WAIT_NUM ){
-			// ƒtƒF[ƒhƒCƒ“ŠJn
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹
 			WazaTool_StartAlphaFade( &wk->alpha_fade,
 					0, 31, 31, 0, WE151_ALPHA_FADE_SYNC);
 			wk->seq++;
@@ -1176,9 +1176,9 @@ static void We151_TCB(TCB_PTR tcb, void* work)
 		break;
 
 	case WE151_FADE_IN:
-		// ƒAƒ‹ƒtƒ@ƒtƒF[ƒhI—¹‘Ò‚¿
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 		if( WazaTool_EndCheckAlphaFade( &wk->alpha_fade ) ){
-			// ƒ|ƒPƒ‚ƒ“•\¦
+			// ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤º
 			SoftSpriteParaSet( wk->at_ssp, SS_PARA_VANISH, 0 );
 		
 			wk->seq++;
@@ -1187,17 +1187,17 @@ static void We151_TCB(TCB_PTR tcb, void* work)
 
 	case WE151_END:
 
-		// ƒ‰ƒXƒ^[ƒVƒXƒeƒ€”jŠü
+		// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 		WazaTool_DeleteScrLaster( wk->lst );
 
 		GF_BGL_PrioritySet( BT_BGL_FrameGet(wk->we_sys, WES_BF_EFFECT), BT_BGPriorityGet( wk->we_sys, WES_BF_EFFECT ) );
 		GF_BGL_PrioritySet( GF_BGL_FRAME0_M, BT_3DPriorityGet(wk->we_sys) );
 		
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒNƒŠƒA
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
 		GF_BGL_ClearCharSet( BT_BGL_FrameGet(wk->we_sys, WES_BF_EFFECT), 0x4000, 0, WeSysHeapAreaGet(wk->we_sys) );
 		GF_BGL_ScrClear( WeSysBGLPointerGet(wk->we_sys) ,BT_BGL_FrameGet(wk->we_sys, WES_BF_EFFECT) );
 		
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		break;
@@ -1210,9 +1210,9 @@ static void We151_TCB(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚Æ‚¯‚é
+ *	@brief	ã¨ã‘ã‚‹
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1231,23 +1231,23 @@ void WestSp_WE_151( WE_SYS_PTR we_sys )
 
 	wk->we_sys	= we_sys;
 
-	// WE151ƒ^ƒXƒN“o˜^
+	// WE151ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	tcb = WEEffect_TCB_AddPriSet(wk->we_sys, We151_TCB, wk);
 
-	// UŒ‚‘¤ƒ|ƒPƒ‚ƒ“ƒf[ƒ^æ“¾
+	// æ”»æ’ƒå´ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
 	wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 	wk->at_x = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_X );
 	wk->at_y = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_Y );
 	wk->at_y -= SoftSpriteParaGet(wk->at_ssp, SS_PARA_SHADOW_HEIGHT);
 
-	// ¶ãÀ•W‚É•ÏX
+	// å·¦ä¸Šåº§æ¨™ã«å¤‰æ›´
 	wk->at_x -= SOFT_SPRITE_SIZE_X / 2;
 	wk->at_y -= SOFT_SPRITE_SIZE_Y / 2;
 
-	// ƒ|ƒPƒ‚ƒ“”ñ•\¦
+	// ãƒã‚±ãƒ¢ãƒ³éè¡¨ç¤º
 	SoftSpriteParaSet( wk->at_ssp, SS_PARA_VANISH, 1 );
 
-	// ƒxƒNƒgƒ‹‚ğ®‚¦‚é
+	// ãƒ™ã‚¯ãƒˆãƒ«ã‚’æ•´ãˆã‚‹
 	vec_x = WazaTool_VecChangeX( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 
 	wk->start	= wk->at_y + WE151_HEIGHT_ERR;
@@ -1260,41 +1260,41 @@ void WestSp_WE_151( WE_SYS_PTR we_sys )
 		wk->end = 192;
 	}
 	
-	// ƒ‰ƒXƒ^[‰Šú‰»
+	// ãƒ©ã‚¹ã‚¿ãƒ¼åˆæœŸåŒ–
 	wk->lst = WazaTool_InitScrLaster( 
-			wk->start,					// ŠJn
-			wk->end,					// I—¹
-			WE151_ROTA_ADD,				// ‰ñ“]Šp•ÏX’l
-			WE151_ROTA_WIDTH * vec_x,	// ”¼Œa
-			WE151_SCROLL_SP,			// ƒXƒNƒ[ƒ‹ƒXƒs[ƒh
+			wk->start,					// é–‹å§‹
+			wk->end,					// çµ‚äº†
+			WE151_ROTA_ADD,				// å›è»¢è§’å¤‰æ›´å€¤
+			WE151_ROTA_WIDTH * vec_x,	// åŠå¾„
+			WE151_SCROLL_SP,			// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰
 			BT_BGL_BGNoGet(we_sys, WES_BF_EFFECT),	// BGNO
-			TCB_GetPriority(tcb)+ 1,		// ƒ^ƒXƒN—Dæ‡ˆÊ
+			TCB_GetPriority(tcb)+ 1,		// ã‚¿ã‚¹ã‚¯å„ªå…ˆé †ä½
 			WazaTool_GetLasterBuffMatrixData( wk->at_x, wk->at_y ),
 			WeSysHeapAreaGet(we_sys) );
 	
-	// c‰¡Lk”ä
+	// ç¸¦æ¨ªä¼¸ç¸®æ¯”
 	WazaTool_InitStraightSyncFx( &wk->move_param,
 			0, WE151_MOVEX_END,
 			0, WE151_MOVEY_END,
 			WE151_MOVE_SYNC );
 
-	// c‰¡Lk”ä
-	wk->move_param.work[1] *= vec_x;	// ‰¡•ûŒü‚ÌƒxƒNƒgƒ‹
+	// ç¸¦æ¨ªä¼¸ç¸®æ¯”
+	wk->move_param.work[1] *= vec_x;	// æ¨ªæ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«
 
-	// “–‚Ä‚éOBJ‚ÌˆÊ’u‚É‚æ‚èBGpriority‚ğ•ÏX‚·‚é
+	// å½“ã¦ã‚‹OBJã®ä½ç½®ã«ã‚ˆã‚ŠBGpriorityã‚’å¤‰æ›´ã™ã‚‹
 	client_type = WET_ClientTypeGet( wk->we_sys, WeSysATNoGet(we_sys) );
 	if( (client_type == CLIENT_TYPE_B) || (client_type == CLIENT_TYPE_C) ){
 		GF_BGL_PrioritySet( BT_BGL_FrameGet(wk->we_sys, WES_BF_EFFECT), BT_3DPriorityGet(wk->we_sys) );
 		GF_BGL_PrioritySet( GF_BGL_FRAME0_M, BT_3DPriorityGet(wk->we_sys) + 1 );
 	}
 
-	// 1‰ñŒÄ‚Ô
+	// 1å›å‘¼ã¶
 	We151_TCB( tcb, wk );
 }
 
 //-------------------------------------
 //	
-//	ƒiƒCƒgƒwƒbƒh
+//	ãƒŠã‚¤ãƒˆãƒ˜ãƒƒãƒ‰
 //	
 //=====================================
 enum{
@@ -1335,18 +1335,18 @@ typedef struct {
 	int			seq;
 	int			count;
 	
-	// UŒ‚‘¤CAT
+	// æ”»æ’ƒå´CAT
 	CATS_ACT_PTR			at_cap;
 	WAZATOOL_CALCMOVE		at_scale;
 	WAZATOOL_CALCMOVE_ONE	at_alpha;
-	BOOL contest_x_flip;		// ƒRƒ“ƒeƒXƒg‚Ì‚Æ‚«TRUE
+	BOOL contest_x_flip;		// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ã¨ãTRUE
 } TWE_101AT_SYS;
 
 typedef struct {
 	WE_SYS_PTR	we_sys;
 	int			seq;
 	
-	// –hŒä‘¤
+	// é˜²å¾¡å´
 	SOFT_SPRITE*		df_ssp;
 	CATS_ACT_PTR		df_cap;
 	BOOL				cap_move;
@@ -1362,10 +1362,10 @@ typedef struct {
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒiƒCƒgƒwƒbƒh
+ *	@brief	ãƒŠã‚¤ãƒˆãƒ˜ãƒƒãƒ‰
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1406,7 +1406,7 @@ static void We101AT_TCB(TCB_PTR tcb, void* work)
 		CATS_ObjectScaleSetCap( wk->at_cap, s_x, s_y );
 //		check = WazaTool_CalcAndReflectScaleRateCap( &wk->at_scale, wk->at_cap );
 		if( check == FALSE ){
-			// ƒIƒuƒWƒFƒEƒBƒ“ƒhƒEOAM”ñ•\¦
+			// ã‚ªãƒ–ã‚¸ã‚§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦OAMéè¡¨ç¤º
 			CATS_ObjectEnableCap( wk->at_cap, FALSE );
 			wk->seq++;
 		}
@@ -1414,23 +1414,23 @@ static void We101AT_TCB(TCB_PTR tcb, void* work)
 		
 	case WE101_ATEND:
 
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return ;
 	}
 
-	// c‘œOAM•`‰æ
+	// æ®‹åƒOAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒiƒCƒgƒwƒbƒh
+ *	@brief	ãƒŠã‚¤ãƒˆãƒ˜ãƒƒãƒ‰
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1446,19 +1446,19 @@ static void We101DF_TCB(TCB_PTR tcb, void* work)
 	case WE101_DF_POKEBLACKOUT:
 		WazaTool_CalcShake( &wk->df_shake );
 		WazaTool_SetSspMatrix( &wk->df_shake, wk->df_ssp, wk->df_x, wk->df_y );
-		// ‚Qvs‚Qƒ|ƒPƒ‚ƒ“‚©‚Ô‚è–â‘è‚Ì‚½‚ß
+		// ï¼’vsï¼’ãƒã‚±ãƒ¢ãƒ³ã‹ã¶ã‚Šå•é¡Œã®ãŸã‚
 		if( wk->cap_move == TRUE ){
 			WazaTool_SetCapMatrix( &wk->df_shake, wk->df_cap, wk->df_x, wk->df_y - wk->oam_y );
 		}
 		if( SoftSpritePalFadeExist( wk->df_ssp ) == FALSE ){
-			// palƒtƒF[ƒh
+			// palãƒ•ã‚§ãƒ¼ãƒ‰
 			SoftSpritePalFadeSet( wk->df_ssp, WE101_DF_BLACK_FADE_E, WE101_DF_BLACK_FADE_S, WE101_DF_BLACK_FADE_WAIT, WE101_DF_BLACK_FADE_COL );
 
-			// ‚Qvs‚Qƒ|ƒPƒ‚ƒ“‚©‚Ô‚è–â‘è‚Ì‚½‚ß
+			// ï¼’vsï¼’ãƒã‚±ãƒ¢ãƒ³ã‹ã¶ã‚Šå•é¡Œã®ãŸã‚
 			if( wk->cap_move == TRUE ){
 				int plt_bit;
 
-				// ƒpƒŒƒbƒgƒtƒF[ƒh
+				// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 				plt_bit = 1 << WazaTool_CapPlttNoGet( wk->df_cap );
 
 				PaletteFadeReq(WeSysPFDGet(wk->we_sys), PF_BIT_MAIN_OBJ, plt_bit, WE101_DF_BLACK_FADE_WAIT, WE101_DF_BLACK_FADE_E, WE101_DF_BLACK_FADE_S, WE101_DF_BLACK_FADE_COL);
@@ -1471,7 +1471,7 @@ static void We101DF_TCB(TCB_PTR tcb, void* work)
 	case WE101_DF_POKEBLACKIN:
 		check = WazaTool_CalcShake( &wk->df_shake );
 		WazaTool_SetSspMatrix( &wk->df_shake, wk->df_ssp, wk->df_x, wk->df_y );
-		// ‚Qvs‚Qƒ|ƒPƒ‚ƒ“‚©‚Ô‚è–â‘è‚Ì‚½‚ß
+		// ï¼’vsï¼’ãƒã‚±ãƒ¢ãƒ³ã‹ã¶ã‚Šå•é¡Œã®ãŸã‚
 		if( wk->cap_move == TRUE ){
 			WazaTool_SetCapMatrix( &wk->df_shake, wk->df_cap, wk->df_x, wk->df_y - wk->oam_y );
 		}
@@ -1480,14 +1480,14 @@ static void We101DF_TCB(TCB_PTR tcb, void* work)
 			SoftSpriteParaSet( wk->df_ssp, SS_PARA_POS_X, wk->df_x );
 			SoftSpriteParaSet( wk->df_ssp, SS_PARA_POS_Y, wk->df_y );
 
-			// ‚QVS‚Qƒ|ƒPƒ‚ƒ“‚©‚Ô‚è–â‘è‚Ì‚½‚ß
+			// ï¼’VSï¼’ãƒã‚±ãƒ¢ãƒ³ã‹ã¶ã‚Šå•é¡Œã®ãŸã‚
 			if( wk->cap_move == TRUE ){
 #if AFTER_MASTER_070426_85_EUR_FIX
 				if( BT_WazaKoukaCheck( wk->we_sys, WeSysDFNoGet(wk->we_sys) ) == FALSE ){
-					SoftSpriteParaSet( wk->df_ssp, SS_PARA_VANISH, 0 );	// ssp”ñ•\¦
+					SoftSpriteParaSet( wk->df_ssp, SS_PARA_VANISH, 0 );	// sspéè¡¨ç¤º
 				}
 #else
-				SoftSpriteParaSet( wk->df_ssp, SS_PARA_VANISH, 0 );	// ssp”ñ•\¦
+				SoftSpriteParaSet( wk->df_ssp, SS_PARA_VANISH, 0 );	// sspéè¡¨ç¤º
 #endif
 				CATS_ObjectPosSetCap( wk->df_cap, wk->df_x, wk->df_y - wk->oam_y );
 			}
@@ -1497,7 +1497,7 @@ static void We101DF_TCB(TCB_PTR tcb, void* work)
 		break;
 		
 	case WE101_DF_END:
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return ;
@@ -1507,9 +1507,9 @@ static void We101DF_TCB(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒiƒCƒgƒwƒbƒh
+ *	@brief	ãƒŠã‚¤ãƒˆãƒ˜ãƒƒãƒ‰
  
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1527,20 +1527,20 @@ void WestSp_WE_101AT( WE_SYS_PTR we_sys )
 	wk->we_sys	= we_sys;
 	wk->crp		= WeSysPokeCrpGet(wk->we_sys);
 
-	// ƒRƒ“ƒeƒXƒg‚©ƒ`ƒFƒbƒN
+	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‹ãƒã‚§ãƒƒã‚¯
 	wk->contest_x_flip = WES_ContestFlag_Get(we_sys);
 
 
-	// UŒ‚‘¤ƒf[ƒ^ì¬
+	// æ”»æ’ƒå´ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	wk->at_cap = WeSysPokeCapGet(wk->we_sys, 0);
-	// Šgk“®ì
+	// æ‹¡ç¸®å‹•ä½œ
 	WazaTool_InitScaleRate( &wk->at_scale, WE101_AT_SCALE_START, WE101_AT_SCALE_END, WE101_AT_SCALE_END, WE101_AT_SCALE_SYNC );
-	// ƒAƒ‹ƒtƒ@
+	// ã‚¢ãƒ«ãƒ•ã‚¡
 	WazaTool_InitMoveOneSyncFx( &wk->at_alpha, WE101_AT_ALPHA_START, WE101_AT_ALPHA_END, WE101_AT_ALPHA_SYNC );
-	// ƒAƒ‹ƒtƒ@İ’è
+	// ã‚¢ãƒ«ãƒ•ã‚¡è¨­å®š
 	CATS_ObjectObjModeSetCap( wk->at_cap, GX_OAM_MODE_XLU );
 	WET_DefaultBlendSet( wk->we_sys, 0, 31 );
-	// Šgkİ’è
+	// æ‹¡ç¸®è¨­å®š
 	CATS_ObjectAffineSetCap( wk->at_cap, CLACT_AFFINE_DOUBLE );
 	
 	if(wk->contest_x_flip == TRUE){
@@ -1552,16 +1552,16 @@ void WestSp_WE_101AT( WE_SYS_PTR we_sys )
 	CATS_ObjectPriSetCap( wk->at_cap, WAZAEFF_ACT_SOFTPRI );
 	CATS_ObjectBGPriSetCap( wk->at_cap, WAZAEFF_ACT_BGPRI );
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	WEEffect_TCB_AddPriSet(wk->we_sys, We101AT_TCB, wk);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒiƒCƒgƒwƒbƒh
+ *	@brief	ãƒŠã‚¤ãƒˆãƒ˜ãƒƒãƒ‰
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1580,64 +1580,64 @@ void WestSp_WE_101DF( WE_SYS_PTR we_sys )
 
 	wk->we_sys	= we_sys;
 
-	// –hŒä‘¤ƒf[ƒ^ì¬
+	// é˜²å¾¡å´ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	wk->df_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysDFNoGet(wk->we_sys) );
 	wk->df_x = SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_X );
 	wk->df_y = SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_Y );
 	wk->oam_y = SoftSpriteParaGet(wk->df_ssp, SS_PARA_SHADOW_HEIGHT);
-	// ‰¡—h‚ê
+	// æ¨ªæºã‚Œ
 	WazaTool_InitShake( &wk->df_shake, WE101_DF_SHAKE_WIDTH,0,WE101_DF_SHAKE_SYNC,WE101_DF_SHAKE_NUM );
 		
-	// ƒxƒNƒgƒ‹‚ğ‚ ‚í‚¹‚é
+	// ãƒ™ã‚¯ãƒˆãƒ«ã‚’ã‚ã‚ã›ã‚‹
 	vec_x = WazaTool_VecChangeX( wk->we_sys, WeSysDFNoGet( wk->we_sys ) );
 	wk->df_shake.x += vec_x;
 
-	// palƒtƒF[ƒh
+	// palãƒ•ã‚§ãƒ¼ãƒ‰
 	SoftSpritePalFadeSet( wk->df_ssp, WE101_DF_BLACK_FADE_S, WE101_DF_BLACK_FADE_E, WE101_DF_BLACK_FADE_WAIT, WE101_DF_BLACK_FADE_COL );
 
-	// Defenseƒ}ƒXƒN—pƒZƒ‹
+	// Defenseãƒã‚¹ã‚¯ç”¨ã‚»ãƒ«
 	wk->df_cap = WeSysPokeCapGet(wk->we_sys, 1);
 
 	at_client = WET_ClientTypeGet( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 	df_client = WET_ClientTypeGet( wk->we_sys, WeSysDFNoGet(wk->we_sys) );
 
-	// UŒ‚‚ªA‚Åç”õ‚ªC
-	// UŒ‚‚ªD‚Åç”õ‚ªB
-	// ‚Ì‚¾‚¯SSP‚ğÁ‚µCAP‚¾‚¯‚Å“®‚³‚·‚é
-	// ‚QVS‚Qƒ|ƒPƒ‚ƒ“‚©‚Ô‚è–â‘è‚Ì‚½‚ß
+	// æ”»æ’ƒãŒAã§å®ˆå‚™ãŒC
+	// æ”»æ’ƒãŒDã§å®ˆå‚™ãŒB
+	// ã®æ™‚ã ã‘SSPã‚’æ¶ˆã—CAPã ã‘ã§å‹•ã•ã™ã‚‹
+	// ï¼’VSï¼’ãƒã‚±ãƒ¢ãƒ³ã‹ã¶ã‚Šå•é¡Œã®ãŸã‚
 	if( ((at_client == CLIENT_TYPE_A) && (df_client == CLIENT_TYPE_C)) ||
 		((at_client == CLIENT_TYPE_D) && (df_client == CLIENT_TYPE_B)) ){
 		int plt_bit;
-		// ƒpƒŒƒbƒgƒtƒF[ƒh
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 		plt_bit = 1 << WazaTool_CapPlttNoGet( wk->df_cap );
 		PaletteFadeReq(WeSysPFDGet(wk->we_sys), PF_BIT_MAIN_OBJ, plt_bit, WE101_DF_BLACK_FADE_WAIT, WE101_DF_BLACK_FADE_S, WE101_DF_BLACK_FADE_E, WE101_DF_BLACK_FADE_COL);
 		wk->cap_move = TRUE;
 #if AFTER_MASTER_070426_85_EUR_FIX
 		if( BT_WazaKoukaCheck( wk->we_sys, WeSysDFNoGet(wk->we_sys) ) == FALSE ){
-			SoftSpriteParaSet( wk->df_ssp, SS_PARA_VANISH, 1 );	// ssp”ñ•\¦
+			SoftSpriteParaSet( wk->df_ssp, SS_PARA_VANISH, 1 );	// sspéè¡¨ç¤º
 		}
 #else
-		SoftSpriteParaSet( wk->df_ssp, SS_PARA_VANISH, 1 );	// ssp”ñ•\¦
+		SoftSpriteParaSet( wk->df_ssp, SS_PARA_VANISH, 1 );	// sspéè¡¨ç¤º
 #endif
 	}
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	WEEffect_TCB_AddPriSet(wk->we_sys, We101DF_TCB, wk);
 }
 
 //-------------------------------------
 //	
-//	‚¤‚ç‚İ
+//	ã†ã‚‰ã¿
 //	
 //=====================================
-// Œõ‚éƒ|ƒPƒ‚ƒ“‚Ì•û
+// å…‰ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ–¹
 enum{
 	WE180_INIT,
 	WE180_MAIN,
 	WE180_END,
 };
 
-// ƒ‰ƒXƒ^[ƒ|ƒPƒ‚ƒ“‚Ì•û
+// ãƒ©ã‚¹ã‚¿ãƒ¼ãƒã‚±ãƒ¢ãƒ³ã®æ–¹
 enum{
 	WE180_L_FADEIN,
 	WE180_L_MAIN,
@@ -1645,7 +1645,7 @@ enum{
 	WE180_L_END,
 };
 
-/*// ƒpƒŒƒbƒgƒtƒF[ƒh
+/*// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 enum{
 	WE180_P_FADEOUT_INIT,
 	WE180_P_FADEOUT_MAIN,
@@ -1679,15 +1679,15 @@ typedef struct {
 	int			sub_seq;
 	int			pl_fade_seq;
 
-/*	// UŒ‚—p
-	SOFT_SPRITE* at_ssp;	// Œõ‚ç‚¹‚éƒXƒvƒ‰ƒCƒg
+/*	// æ”»æ’ƒç”¨
+	SOFT_SPRITE* at_ssp;	// å…‰ã‚‰ã›ã‚‹ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 	int at_pl_count;//*/
 	
-	// –hŒä—p
+	// é˜²å¾¡ç”¨
 	SOFT_SPRITE* df_ssp;
 	WAZATOOL_SCRLASTER_PTR	lst;
-	PALETTE_FADE_PTR	pfd;	// BG‚ÌƒpƒŒƒbƒgƒtƒF[ƒh
-	WAZATOOL_ALPHA_FADE alpha;	// ƒAƒ‹ƒtƒ@ƒtƒF[ƒh
+	PALETTE_FADE_PTR	pfd;	// BGã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+	WAZATOOL_ALPHA_FADE alpha;	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰
 	int df_count;
 
 	CATS_ACT_PTR		df_cap;
@@ -1756,7 +1756,7 @@ static BOOL We180_LasterObj( TWE_180_SYS* wk )
 		if( wk->df_count < 0 ){
 			wk->sub_seq++;
 
-			// ƒtƒF[ƒhƒAƒEƒg€”õ
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæº–å‚™
 			WazaTool_StartAlphaFade( &wk->alpha,
 					WE180_FADEIN_ALPHA1_ED, WE180_FADEIN_ALPHA1_ST, 
 					 WE180_FADEIN_ALPHA2_ED, WE180_FADEIN_ALPHA2_ST,
@@ -1768,7 +1768,7 @@ static BOOL We180_LasterObj( TWE_180_SYS* wk )
 		if( WazaTool_EndCheckAlphaFade( &wk->alpha ) == TRUE ){
 			wk->sub_seq ++;
 
-			// ƒ‰ƒXƒ^[”jŠü
+			// ãƒ©ã‚¹ã‚¿ãƒ¼ç ´æ£„
 			WazaTool_DeleteScrLaster( wk->lst );
 		}
 		break;
@@ -1784,7 +1784,7 @@ static BOOL We180_LasterObj( TWE_180_SYS* wk )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¤‚ç‚İ
+ *	@brief	ã†ã‚‰ã¿
  *
  *
  *	@return	none
@@ -1819,10 +1819,10 @@ static void We180_TCB( TCB_PTR tcb, void* work )
 
 	case WE180_MAIN:
 
-		// Œõ‚ç‚¹‚é
+		// å…‰ã‚‰ã›ã‚‹
 		check = We180_LasterObj( wk );
 		
-		// ƒ‰ƒXƒ^[‚Ì•û‚ªI‚í‚é‚Ì‚ğ‘Ò‚Â
+		// ãƒ©ã‚¹ã‚¿ãƒ¼ã®æ–¹ãŒçµ‚ã‚ã‚‹ã®ã‚’å¾…ã¤
 		if( check ){
 			wk->seq ++;
 		}
@@ -1830,7 +1830,7 @@ static void We180_TCB( TCB_PTR tcb, void* work )
 		
 	case WE180_END:
 
-		// ƒGƒtƒFƒNƒgBG—Dæ‡ˆÊ•ÏX
+		// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGå„ªå…ˆé †ä½å¤‰æ›´
 		GF_BGL_PrioritySet( BT_BGL_FrameGet(wk->we_sys, WES_BF_EFFECT), BT_BGPriorityGet( wk->we_sys, WES_BF_EFFECT ) );
 		GF_BGL_PrioritySet( GF_BGL_FRAME0_M, BT_3DPriorityGet(wk->we_sys) );
 		
@@ -1842,11 +1842,11 @@ static void We180_TCB( TCB_PTR tcb, void* work )
 		SoftSpriteParaSet( wk->df_ssp, SS_PARA_VANISH, 0 );
 #endif
 
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒNƒŠƒA
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
 		GF_BGL_ClearCharSet( BT_BGL_FrameGet(wk->we_sys, WES_BF_EFFECT), 0x4000, 0, WeSysHeapAreaGet(wk->we_sys) );
 		GF_BGL_ScrClear( WeSysBGLPointerGet(wk->we_sys) ,BT_BGL_FrameGet(wk->we_sys, WES_BF_EFFECT) );
 		
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		break;
@@ -1856,9 +1856,9 @@ static void We180_TCB( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¤‚ç‚İ
+ *	@brief	ã†ã‚‰ã¿
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1877,7 +1877,7 @@ void WestSp_WE_180( WE_SYS_PTR we_sys )
 	wk->we_sys	= we_sys;
 	wk->pfd		= WeSysPFDGet(wk->we_sys);
 
-	// ƒAƒ‹ƒtƒ@ƒtƒF[ƒh
+	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰
 	WET_DefaultBGEffectBlendSet( wk->we_sys, WE180_FADEIN_ALPHA1_ST, WE180_FADEIN_ALPHA2_ST );
 	WazaTool_StartAlphaFade( &wk->alpha,
 			WE180_FADEIN_ALPHA1_ST, WE180_FADEIN_ALPHA1_ED,
@@ -1885,11 +1885,11 @@ void WestSp_WE_180( WE_SYS_PTR we_sys )
 			WE180_FADEIN_ALPHA_SYNC );
 
 
-/*	// UŒ‚‘¤
+/*	// æ”»æ’ƒå´
 	wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 //*/
 
-	// –hŒä‘¤
+	// é˜²å¾¡å´
 	// 
 	wk->df_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysDFNoGet(wk->we_sys) );
 	e_x = SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_X );
@@ -1898,7 +1898,7 @@ void WestSp_WE_180( WE_SYS_PTR we_sys )
 	e_x -= (SOFT_SPRITE_SIZE_X / 2);
 	e_y -= (SOFT_SPRITE_SIZE_Y / 2);
 
-	// ’†‚ÌƒŒƒCƒ„[‚ÉBG‚ğ“ü‚ê‚é‚½‚ß‚Ìˆ—
+	// ä¸­ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«BGã‚’å…¥ã‚Œã‚‹ãŸã‚ã®å‡¦ç†
 	wk->df_cap = WeSysPokeCapGet(wk->we_sys, 0);
 	client_type = WET_ClientTypeGet( wk->we_sys, WeSysDFNoGet(wk->we_sys) );
 	if( (client_type == CLIENT_TYPE_D) ||
@@ -1907,14 +1907,14 @@ void WestSp_WE_180( WE_SYS_PTR we_sys )
 		CATS_ObjectBGPriSetCap( wk->df_cap, 2 );
 	}else{
 
-		// ƒGƒtƒFƒNƒgBG‚ğ‚RD–Ê‚Ìã‚É‚·‚é
+		// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGã‚’ï¼“Dé¢ã®ä¸Šã«ã™ã‚‹
 		GF_BGL_PrioritySet( BT_BGL_FrameGet(wk->we_sys, WES_BF_EFFECT), BT_3DPriorityGet(wk->we_sys) );
 		GF_BGL_PrioritySet( GF_BGL_FRAME0_M, BT_3DPriorityGet(wk->we_sys) + 1 );
 		CATS_ObjectEnableCap( wk->df_cap, FALSE );
 	}
 
 	
-	// ƒ‰ƒXƒ^[
+	// ãƒ©ã‚¹ã‚¿ãƒ¼
 	wk->lst = WazaTool_InitScrLaster( 
 			e_y,
 			e_y + SOFT_SPRITE_SIZE_Y,
@@ -1926,17 +1926,17 @@ void WestSp_WE_180( WE_SYS_PTR we_sys )
 			WazaTool_GetLasterBuffMatrixData( -e_x, -e_y ),
 			WeSysHeapAreaGet(we_sys) );
 
-	// ƒpƒŒƒbƒgƒtƒF[ƒh
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 	plt_bit = 1 << (BATTLE_PAL_EFF_0);
 	ColorConceChangePfd( wk->pfd, FADE_MAIN_BG, plt_bit, 8, 0x0 );
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	WEEffect_TCB_AddPriSet(wk->we_sys, We180_TCB, wk);
 }
 
 //-------------------------------------
 //	
-//	‚ä‚Ñ‚ğ‚Ó‚é
+//	ã‚†ã³ã‚’ãµã‚‹
 //	
 //=====================================
 enum{
@@ -1960,7 +1960,7 @@ enum{
 #define WE118_ROTA_OFS_X	( -12 )
 #define WE118_ROTA_OFS_Y	( 12 )
 
-// À•W•â³
+// åº§æ¨™è£œæ­£
 #define WE118_MATRIX_OFSX	( 40 )
 #define WE118_MATRIX_OFSY	( 0 )
 
@@ -1970,7 +1970,7 @@ typedef struct {
 	CATS_RES_PTR crp;
 	int	seq;
 
-	//@è
+	//ã€€æ‰‹
 	CATS_ACT_PTR			hand_cap;
 	WAZATOOL_CALCMOVE		hand_scale;
 	WAZATOOL_CALCMOVE_ONE	hand_rota;
@@ -1979,15 +1979,15 @@ typedef struct {
 
 	int sum_flip;
 	
-	// ŒãX‚ÍŒã‚ë‚ÌŠG
+	// å¾Œã€…ã¯å¾Œã‚ã®çµµ
 } TWE_118_SYS;
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚ä‚Ñ‚ğ‚Ó‚é	“®ìTCB
+ *	@brief	ã‚†ã³ã‚’ãµã‚‹	å‹•ä½œTCB
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒXƒv[ƒ“‚Ü‚°“®ìƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ã‚¹ãƒ—ãƒ¼ãƒ³ã¾ã’å‹•ä½œãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2001,10 +2001,10 @@ static void We118_TCB(TCB_PTR tcb, void* work)
 
 	switch( wk->seq ){
 	case WE118_FADEIN:
-		// ŒvZ
+		// è¨ˆç®—
 		check = WazaTool_CalcScaleRate( &wk->hand_scale );
 		
-		// ’lİ’è
+		// å€¤è¨­å®š
 		if( check == TRUE ){
 			WazaTool_CalcScaleRateToClactScale( &wk->hand_scale, &s_x, &s_y );
 			CATS_ObjectScaleSetCap( wk->hand_cap, s_x * wk->sum_flip, s_y );
@@ -2012,8 +2012,8 @@ static void We118_TCB(TCB_PTR tcb, void* work)
 			wk->seq++;
 			wk->hand_rota_count = WE118_ROTA_NUM;
 				
-			// ƒtƒF[ƒhƒAƒEƒg‚Ìİ’è‚ğs‚¤
-			WazaTool_InitScaleRate(		// Šgk
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®è¨­å®šã‚’è¡Œã†
+			WazaTool_InitScaleRate(		// æ‹¡ç¸®
 					&wk->hand_scale,
 					WE118_FADE_SCALE_E,
 					WE118_FADE_SCALE_D,
@@ -2025,7 +2025,7 @@ static void We118_TCB(TCB_PTR tcb, void* work)
 		
 	case WE118_MAIN:
 		check = WazaTool_CalcMoveOne( &wk->hand_rota );
-		// ‰ñ“]Šeİ’è
+		// å›è»¢å„è¨­å®š
 		CATS_ObjectRotationSetCap( wk->hand_cap, wk->hand_rota.num );
 		
 		if( check == FALSE ){
@@ -2036,7 +2036,7 @@ static void We118_TCB(TCB_PTR tcb, void* work)
 				rota_e = wk->hand_rota_end;
 				wk->hand_rota_end = wk->hand_rota.num;
 				
-				// ‰ñ“]‰Šú‰»
+				// å›è»¢åˆæœŸåŒ–
 				WazaTool_InitMoveOneSync( 
 						&wk->hand_rota,
 						rota_s,
@@ -2051,10 +2051,10 @@ static void We118_TCB(TCB_PTR tcb, void* work)
 		break;
 		
 	case WE118_FADEOUT:
-		// ŒvZ
+		// è¨ˆç®—
 		check = WazaTool_CalcScaleRate( &wk->hand_scale );
 		
-		// ’lİ’è
+		// å€¤è¨­å®š
 		if( check == TRUE ){
 			WazaTool_CalcScaleRateToClactScale( &wk->hand_scale, &s_x, &s_y );
 			CATS_ObjectScaleSetCap( wk->hand_cap, s_x * wk->sum_flip, s_y );
@@ -2066,28 +2066,28 @@ static void We118_TCB(TCB_PTR tcb, void* work)
 		break;
 		
 	case WE118_END:
-		// I—¹
-		// OAM”jŠü
+		// çµ‚äº†
+		// OAMç ´æ£„
 		CATS_ActorPointerDelete_S(wk->hand_cap);
 
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return ;
 	}
 
-	// OAM•`‰æ
+	// OAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	w‚ğ‚Ó‚é—pƒ^ƒXƒN
+ * @brief	æŒ‡ã‚’ãµã‚‹ç”¨ã‚¿ã‚¹ã‚¯
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -2106,7 +2106,7 @@ void WestSp_CAT_WE_118(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 	vec_x = WazaTool_VecChangeX( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 
-	// ƒRƒ“ƒeƒXƒg‚Ì‚Æ‚«ƒtƒŠƒbƒv
+	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ã¨ããƒ•ãƒªãƒƒãƒ—
 	if( ContestFlipCheck(wk->we_sys, WEDEF_DROP_M1 ) == TRUE ){
 		wk->sum_flip = -1;
 		con_chg_x = vec_x * -1;
@@ -2116,11 +2116,11 @@ void WestSp_CAT_WE_118(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	}
 	
 
-	// À•W‚ÍUŒ‚‘¤‚ğİ’è
+	// åº§æ¨™ã¯æ”»æ’ƒå´ã‚’è¨­å®š
 	at_x	= GetWazaEffPos(we_sys, WeSysATNoGet(wk->we_sys), PM_X);
 	at_y	= GetWazaEffPos(we_sys, WeSysATNoGet(wk->we_sys), PM_Y);
 	
-	// è“®ìƒpƒ‰ƒ[ƒ^İ’è
+	// æ‰‹å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 	wk->hand_cap		= cap;
 	CATS_ObjectAffineSetCap( wk->hand_cap, CLACT_AFFINE_DOUBLE );
 	CATS_ObjectScaleSetCap( wk->hand_cap, WE118_FADE_SCALE_S, WE118_FADE_SCALE_S );
@@ -2138,7 +2138,7 @@ void WestSp_CAT_WE_118(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	}
 
 		
-	WazaTool_InitScaleRate(		// Šgk
+	WazaTool_InitScaleRate(		// æ‹¡ç¸®
 			&wk->hand_scale,
 			WE118_FADE_SCALE_S,		
 			WE118_FADE_SCALE_D,
@@ -2165,13 +2165,13 @@ void WestSp_CAT_WE_118(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 	}
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	WEEffect_TCB_AddPriSet(wk->we_sys, We118_TCB, wk);
 }
 
 //-------------------------------------
 //	
-//	‚©‚ç‚İ‚Â‚­
+//	ã‹ã‚‰ã¿ã¤ã
 //	
 //=====================================
 enum{
@@ -2189,7 +2189,7 @@ enum{
 #define WE132_SCALE_SYNC	( 8 )
 #define WE132_FLIP_ROTA	( FX_GET_ROTA_NUM(45) )
 #define WE132_UNDER_MAT_OFS	(16)
-#define WE132_GRASS_MAT_OFS	(10)		// ‚±‚ÌÀ•W‚Ã‚Âã‚É•\¦‚µ‚Ä‚­
+#define WE132_GRASS_MAT_OFS	(10)		// ã“ã®åº§æ¨™ã¥ã¤ä¸Šã«è¡¨ç¤ºã—ã¦ã
 
 #define WE132_SHAKE_WIDTH	( 4 )
 #define WE132_SHAKE_NUM		( 1 )
@@ -2197,12 +2197,12 @@ enum{
 
 #define WE132_GRASS_ADD_WAIT	( 4 )
 
-// ‘ƒIƒuƒWƒF
+// è‰ã‚ªãƒ–ã‚¸ã‚§
 typedef struct{
 	
 	CATS_ACT_PTR cap;
 	
-	// ‰ñ“]‚ÆŠg‘åƒpƒ‰ƒ[ƒ^
+	// å›è»¢ã¨æ‹¡å¤§ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	WAZATOOL_CALCMOVE		scale;
 	BOOL	flip;
 	int		scale_num;
@@ -2210,7 +2210,7 @@ typedef struct{
 	int		next_scale_e;
 } TWE_132_GRASS;
 
-// 132‚ÌƒIƒuƒWƒF
+// 132ã®ã‚ªãƒ–ã‚¸ã‚§
 typedef struct {
 	WE_SYS_PTR	we_sys;
 	CATS_SYS_PTR csp;
@@ -2220,21 +2220,21 @@ typedef struct {
 	int wait;
 	int count;
 
-	// –hŒä‘¤
+	// é˜²å¾¡å´
 	SOFT_SPRITE*	df_ssp;
 	s16				df_x;
 	s16				df_y;
 	WAZATOOL_CALCMOVE shake;
 	
 
-	// ‘ƒf[ƒ^
+	// è‰ãƒ‡ãƒ¼ã‚¿
 	TWE_132_GRASS	grass[ WE132_OAM_NUM ];
 	int grass_count;
 } TWE_132_SYS;
 
 static void TWE_132_GrassInit( TWE_132_GRASS* wk, CATS_ACT_PTR cap, s16 x, s16 y, BOOL flip )
 {
-	// ‰ŠúƒJ
+	// åˆæœŸã‚«
 	wk->cap = cap;
 	WazaTool_InitScaleRate(
 			&wk->scale,
@@ -2251,33 +2251,33 @@ static void TWE_132_GrassInit( TWE_132_GRASS* wk, CATS_ACT_PTR cap, s16 x, s16 y
 	CATS_ObjectPosSetCap( wk->cap, x, y );
 	CATS_ObjectPosSetCap( wk->cap, x, y );
 
-	// ƒ_ƒuƒ‹ƒAƒtƒBƒ“
+	// ãƒ€ãƒ–ãƒ«ã‚¢ãƒ•ã‚£ãƒ³
 	CATS_ObjectAffineSetCap( wk->cap, CLACT_AFFINE_DOUBLE );
 	
 	CATS_ObjectPriSetCap( wk->cap, WAZAEFF_ACT_SOFTPRI );
 	CATS_ObjectBGPriSetCap( wk->cap, WAZAEFF_ACT_BGPRI );
 
 	if( flip ){
-		// ƒtƒŠƒbƒv‚³‚¹‚é
+		// ãƒ•ãƒªãƒƒãƒ—ã•ã›ã‚‹
 		CATS_ObjectScaleSetCap( wk->cap, -1, 1 );
 	}
 
-	// •`‰æƒIƒt
+	// æç”»ã‚ªãƒ•
 	CATS_ObjectEnableCap( wk->cap, FALSE );
 }
 
 static void TWE_132_GrassDelete( TWE_132_GRASS* wk )
 {
-	// OAM”jŠü
+	// OAMç ´æ£„
 	CATS_ActorPointerDelete_S(wk->cap);
 }
 
 static void TWE_132_GrassDrawOn( TWE_132_GRASS* wk )
 {
-	// •`‰æƒIƒt
+	// æç”»ã‚ªãƒ•
 	CATS_ObjectEnableCap( wk->cap, TRUE );
 		
-	// ƒI[ƒgƒAƒjƒ‚³‚¹‚é
+	// ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹
 	CATS_ObjectAutoAnimeSetCap( wk->cap, TRUE );
 }
 
@@ -2287,10 +2287,10 @@ static BOOL TWE_132_GrassMove( TWE_132_GRASS* wk )
 	f32	s_x, s_y;
 	int tmp;
 
-	// ŒvZ•”
+	// è¨ˆç®—éƒ¨
 	check = WazaTool_CalcScaleRate( &wk->scale );
 
-	// Šgk‚ğscale_num‰ñ‘±‚¯‚é
+	// æ‹¡ç¸®ã‚’scale_numå›ç¶šã‘ã‚‹
 	if( check == TRUE ){
 
 		WazaTool_CalcScaleRateToClactScale( &wk->scale, &s_x, &s_y );
@@ -2325,7 +2325,7 @@ static BOOL TWE_132_GrassMove( TWE_132_GRASS* wk )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚©‚ç‚İ‚Â‚­@TCB
+ *	@brief	ã‹ã‚‰ã¿ã¤ãã€€TCB
  *
  *	@param	tcb
  *	@param	work 
@@ -2344,7 +2344,7 @@ static void We132_TCB( TCB_PTR tcb, void* work )
 	switch( wk->seq ){
 	case WE132_OAM_MOVE:
 		if( wk->wait >= WE132_GRASS_ADD_WAIT ){
-			// ‚P‚Â“o˜^
+			// ï¼‘ã¤ç™»éŒ²
 			wk->wait = 0;
 			TWE_132_GrassDrawOn( &wk->grass[ wk->count ] );
 			wk->count++;
@@ -2357,7 +2357,7 @@ static void We132_TCB( TCB_PTR tcb, void* work )
 		break;
 		
 	case WE132_SHAKE:
-		// ƒ|ƒPƒ‚ƒ“‚ğƒVƒFƒCƒN
+		// ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚·ã‚§ã‚¤ã‚¯
 		if( WazaTool_CalcAndReflectShakeSsp( &wk->shake, wk->df_x, wk->df_y, wk->df_ssp ) == FALSE ){
 			wk->seq++;
 		}
@@ -2381,24 +2381,24 @@ static void We132_TCB( TCB_PTR tcb, void* work )
 			TWE_132_GrassDelete( wk->grass + i );
 		}
 
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return ;
 	}
 
-	// OAM•`‰æ
+	// OAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‚©‚ç‚İ‚Â‚­—pƒ^ƒXƒN
+ * @brief	ã‹ã‚‰ã¿ã¤ãç”¨ã‚¿ã‚¹ã‚¯
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -2406,7 +2406,7 @@ static void We132_TCB( TCB_PTR tcb, void* work )
 void WestSp_CAT_WE_132(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap)
 {
 	TWE_132_SYS* wk;
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	int df_client;
 	int set_y;
 	int flip_flg;
@@ -2417,10 +2417,10 @@ void WestSp_CAT_WE_132(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	wk->csp		= csp;
 	wk->crp		= crp;
 
-	// ƒ|ƒPƒ‚ƒ“‚Ì”z’u‚©‚ç‚ä‚ê‚é‰¡•ûŒü‚ğŒˆ’è
+	// ãƒã‚±ãƒ¢ãƒ³ã®é…ç½®ã‹ã‚‰ã‚†ã‚Œã‚‹æ¨ªæ–¹å‘ã‚’æ±ºå®š
 	df_client = WeSysDFNoGet(we_sys); 
 
-	// À•W‚Í–hŒä‘¤‚ğİ’è
+	// åº§æ¨™ã¯é˜²å¾¡å´ã‚’è¨­å®š
 	wk->df_ssp = WeSysSoftSpritePointerGet( wk->we_sys, df_client );
 	wk->df_x	= SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_X );
 	wk->df_y	= SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_Y );
@@ -2432,12 +2432,12 @@ void WestSp_CAT_WE_132(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 			WE132_SHAKE_NUM
 			);
 
-	// ‘ƒIƒuƒWƒFì¬
-	set_y = wk->df_y + WE132_UNDER_MAT_OFS;	// ƒ|ƒPƒ‚ƒ“‚Ì’ê•Ó‚ÌÀ•W‚É‚·‚é
+	// è‰ã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
+	set_y = wk->df_y + WE132_UNDER_MAT_OFS;	// ãƒã‚±ãƒ¢ãƒ³ã®åº•è¾ºã®åº§æ¨™ã«ã™ã‚‹
 	flip_flg = 0;
 	coap   = WeSysCoapGet(wk->we_sys);
 	for( i=0; i<WE132_OAM_NUM; i++ ){
-		// ‚OŒÂ‚ß‚Íˆø”‚Ìcap‚ğg—p
+		// ï¼å€‹ã‚ã¯å¼•æ•°ã®capã‚’ä½¿ç”¨
 		if( i == 0 ){
 			
 			TWE_132_GrassInit( &wk->grass[ i ], cap, wk->df_x, set_y, flip_flg );
@@ -2456,7 +2456,7 @@ void WestSp_CAT_WE_132(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 //-------------------------------------
 //	
-//	‚Ù‚Ëƒu[ƒƒ‰ƒ“
+//	ã»ã­ãƒ–ãƒ¼ãƒ¡ãƒ©ãƒ³
 //	
 //=====================================
 enum{
@@ -2487,20 +2487,20 @@ typedef struct{
 	CATS_RES_PTR crp;
 	int seq;
 	
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	SOFT_SPRITE* at_ssp;
 	s16	at_x;
 	s16	at_y;
 	WAZATOOL_CALCMOVE at_move;
 	s32 vec_x;
 
-/*	// –hŒä‘¤
+/*	// é˜²å¾¡å´
 	WAZATOOL_CALCMOVE df_move;//*/
 	SOFT_SPRITE* df_ssp;
 	s16	df_x;
 	s16	df_y;
 	
-	// œ
+	// éª¨
 	CATS_ACT_PTR	bone_obj;
 	WAZATOOL_CALCMOVE bone_param1;
 	WAZATOOL_CALCMOVE bone_param2;
@@ -2509,7 +2509,7 @@ typedef struct{
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚Ù‚Ë‚Ô[‚ß‚ç‚ñ
+ *	@brief	ã»ã­ã¶ãƒ¼ã‚ã‚‰ã‚“
  *
  *	@param	TCB_PTR tcb
  *	@param	work 
@@ -2535,7 +2535,7 @@ static void We155_TCB( TCB_PTR tcb, void* work )
 					WE155_AT_MOVE_SYNC_0 );
 			wk->seq++;
 		}
-		return;	// OAM•`‰æ‚µ‚È‚¢‚½‚ß
+		return;	// OAMæç”»ã—ãªã„ãŸã‚
 		
 	case WE155_AT_MOVE0_1:
 		if( WazaTool_CalcStraightFx( &wk->at_move ) ){
@@ -2551,10 +2551,10 @@ static void We155_TCB( TCB_PTR tcb, void* work )
 					WE155_AT_MOVE_SYNC );
 			wk->seq++;
 		}
-		return;	// OAM•`‰æ‚µ‚È‚¢‚½‚ß
+		return;	// OAMæç”»ã—ãªã„ãŸã‚
 
 	case WE155_BONE_AT_DF:
-		// œ“®‚©‚·
+		// éª¨å‹•ã‹ã™
 		if( WazaTool_CalcAndReflectCurveFxCap( &wk->bone_param1, &wk->bone_param2, wk->bone_obj ) == FALSE ){
 
 			WazaTool_InitCurveYFx( 
@@ -2569,15 +2569,15 @@ static void We155_TCB( TCB_PTR tcb, void* work )
 		break;
 		
 	case WE155_BONE_DF_AT:
-		// ƒ|ƒPƒ‚ƒ“‚ğ“®‚©‚·
+		// ãƒã‚±ãƒ¢ãƒ³ã‚’å‹•ã‹ã™
 //		WazaTool_CalcAndReflectShakeSsp( &wk->df_move, wk->df_x, wk->df_y, wk->df_ssp );
 
-		// œ‚ğ“®‚©‚·
+		// éª¨ã‚’å‹•ã‹ã™
 		if( WazaTool_CalcAndReflectCurveFxCap( &wk->bone_param1, &wk->bone_param2, wk->bone_obj ) == FALSE ){
 /*			SoftSpriteParaSet( wk->df_ssp, SS_PARA_POS_X, wk->df_x );
 			SoftSpriteParaSet( wk->df_ssp, SS_PARA_POS_Y, wk->df_y );//*/
 
-			// œ•\¦OFF
+			// éª¨è¡¨ç¤ºOFF
 			CATS_ObjectEnableCap( wk->bone_obj, FALSE );
 			wk->seq++;
 		}
@@ -2611,24 +2611,24 @@ static void We155_TCB( TCB_PTR tcb, void* work )
 	case WE155_END:
 		CATS_ActorPointerDelete_S(wk->bone_obj);
 
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return ;
 	}
 
-	// OAM•`‰æ
+	// OAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	œ—pƒ^ƒXƒN“o˜^
+ * @brief	éª¨ç”¨ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -2644,7 +2644,7 @@ void WestSp_CAT_WE_155(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 	wk->vec_x = WazaTool_VecChangeX( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(we_sys) );
 	wk->at_x	= SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_X );
 	wk->at_y	= SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_Y );
@@ -2654,7 +2654,7 @@ void WestSp_CAT_WE_155(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 			0, 0,
 			WE155_AT_MOVE_SYNC );
 
-	// –hŒä‘¤
+	// é˜²å¾¡å´
 	wk->df_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysDFNoGet(we_sys) );
 	wk->df_x	= SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_X );
 	wk->df_y	= SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_Y );
@@ -2664,7 +2664,7 @@ void WestSp_CAT_WE_155(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 			WE155_SHAKE_SYNC,
 			WE155_SHAKE_NUM );//*/
 
-	// œ
+	// éª¨
 	wk->bone_obj = cap;
 	CATS_ObjectAutoAnimeSetCap( wk->bone_obj, TRUE );
 	CATS_ObjectPriSetCap( wk->bone_obj, WAZAEFF_ACT_SOFTPRI );
@@ -2682,7 +2682,7 @@ void WestSp_CAT_WE_155(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 //-------------------------------------
 //	
-//	‚¾‚Ü‚µ‚¤‚¿
+//	ã ã¾ã—ã†ã¡
 //	
 //=====================================
 enum{
@@ -2709,7 +2709,7 @@ typedef struct {
 	int seq;
 	int wait;
 
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	SOFT_SPRITE* at_ssp;
 	CATS_ACT_PTR at_cap;
 	s16	at_x;
@@ -2719,7 +2719,7 @@ typedef struct {
 
 	s16 cap_ofs_y;
 
-/*	// –hŒä‘¤
+/*	// é˜²å¾¡å´
 	SOFT_SPRITE* df_ssp;
 	s16	df_x;
 	s16	df_y;
@@ -2730,7 +2730,7 @@ typedef struct {
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¾‚Ü‚µ“¢‚¿
+ *	@brief	ã ã¾ã—è¨ã¡
  *
  *	@param	tcb
  *	@param	work 
@@ -2746,9 +2746,9 @@ static void We185_TCB( TCB_PTR tcb, void* work )
 	
 	switch( wk->seq ){
 	case WE185_AT_FADE_OUT:
-		// ƒAƒ‹ƒtƒ@‚ÍŸè‚É‚¨‚í‚é
+		// ã‚¢ãƒ«ãƒ•ã‚¡ã¯å‹æ‰‹ã«ãŠã‚ã‚‹
 		
-		// ‰ñ“]ŒvZ
+		// å›è»¢è¨ˆç®—
 		if( WazaTool_CalcAndReflectRotaFxCap( &wk->at_move, wk->at_x, wk->at_y - wk->cap_ofs_y, wk->at_cap ) == FALSE ){
 			wk->seq++;
 			wk->wait = WE185_DF_SHAKE_WAIT;
@@ -2760,7 +2760,7 @@ static void We185_TCB( TCB_PTR tcb, void* work )
 		if( wk->wait < 0 ){
 			wk->seq++;
 
-			// ƒtƒF[ƒhƒCƒ“€”õ
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³æº–å‚™
 			WazaTool_StartAlphaFade(
 					&wk->at_alpha,
 					WE185_FADE_ALPHA_E, WE185_FADE_ALPHA_S,
@@ -2780,19 +2780,19 @@ static void We185_TCB( TCB_PTR tcb, void* work )
 		break;
 
 	case WE185_END:
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return ;
 	}
-	// OAM•`‰æ
+	// OAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¾‚Ü‚µ‚¤‚¿
+ *	@brief	ã ã¾ã—ã†ã¡
  *
  *	@param	we_sys 
  *
@@ -2812,7 +2812,7 @@ void WestSp_WE_185( WE_SYS_PTR we_sys )
 
 	vec_x = WazaTool_VecChangeX( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(we_sys) );
 	wk->at_x	= SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_X );
 	wk->at_y	= SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_Y );
@@ -2835,7 +2835,7 @@ void WestSp_WE_185( WE_SYS_PTR we_sys )
 			);
 	wk->at_move.work[2] *= vec_x;
 
-/*	// –hŒä‘¤
+/*	// é˜²å¾¡å´
 	wk->df_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysDFNoGet(we_sys) );
 	wk->df_x	= SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_X );
 	wk->df_y	= SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_Y );
@@ -2847,13 +2847,13 @@ void WestSp_WE_185( WE_SYS_PTR we_sys )
 
 	WEEffect_TCB_AddPriSet(wk->we_sys, We185_TCB, wk);
 
-	// OAM•`‰æ
+	// OAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //-------------------------------------
 //	
-//	•|‚¢Šç
+//	æ€–ã„é¡”
 //	
 //=====================================
 enum{
@@ -2880,7 +2880,7 @@ enum{
 #define WE184_MOVE_WIDTH	( 64 )
 #define WE184_MOVE_HEIGH	( -16 )
 #define WE184_MOVE_HEIGH_MY	( -48 )
-#define WE184_MOVE_SYNC		( 32 )		// Šç‚ª“®‚­‚µ‚ñ‚­
+#define WE184_MOVE_SYNC		( 32 )		// é¡”ãŒå‹•ãã—ã‚“ã
 #define WE184_MOVE_X_OFS	( 32 )	//*/
 
 #define WE184_SCALE_RATE_S	( 10 )
@@ -2891,7 +2891,7 @@ enum{
 #define WE184_MOVE_WIDTH	( 0 )
 #define WE184_MOVE_HEIGH	( -8 )
 #define WE184_MOVE_HEIGH_MY	( -24 )
-#define WE184_MOVE_SYNC		( 32 )		// Šç‚ª“®‚­‚µ‚ñ‚­
+#define WE184_MOVE_SYNC		( 32 )		// é¡”ãŒå‹•ãã—ã‚“ã
 #define WE184_MOVE_X_OFS	( 32 )	//*/
 
 #define WE184_FACE_SCALE_RATE_S	( 5 )
@@ -2906,12 +2906,12 @@ typedef struct {
 	CATS_RES_PTR crp;
 	int seq;
 	
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	SOFT_SPRITE* at_ssp;
 	WAZATOOL_CALCMOVE at_scale;
 	int poke_seq;
 	
-	// •|‚¢Šç
+	// æ€–ã„é¡”
 	CATS_ACT_PTR face_obj;
 	int face_seq;
 	WAZATOOL_CALCMOVE face_scale;
@@ -2929,7 +2929,7 @@ static BOOL We184_PokeMove( TWE184_SYS* wk )
 	switch( wk->poke_seq ){
 	case WE184_POKE_SCALE_UP:
 		if( WazaTool_CalcScaleRate( &wk->at_scale ) ){
-			// Šgk
+			// æ‹¡ç¸®
 			SoftSpriteParaSet( wk->at_ssp, SS_PARA_AFF_Y, wk->at_scale.y );
 		}else{
 			wk->poke_seq++;
@@ -2944,7 +2944,7 @@ static BOOL We184_PokeMove( TWE184_SYS* wk )
 		
 	case WE184_POKE_SCALE_DOWN:
 		if( WazaTool_CalcScaleRate( &wk->at_scale ) ){
-			// Šgk
+			// æ‹¡ç¸®
 			SoftSpriteParaSet( wk->at_ssp, SS_PARA_AFF_Y, wk->at_scale.y );
 		}else{
 			SoftSpriteParaSet( wk->at_ssp, SS_PARA_AFF_Y, 0x100 );
@@ -2967,14 +2967,14 @@ static BOOL We184_FaceMove( TWE184_SYS* wk )
 	
 	switch( wk->face_seq ){
 	case WE184_FACE_MOVE:
-		// ŒvZ•”
-		// ‘S‚Ä“¯‚¶ƒtƒŒ[ƒ€‚Å“®‚­
+		// è¨ˆç®—éƒ¨
+		// å…¨ã¦åŒã˜ãƒ•ãƒ¬ãƒ¼ãƒ ã§å‹•ã
 		WazaTool_CalcAndReflectScaleRateCap( &wk->face_scale, wk->face_obj );
 		check = WazaTool_CalcStraightFx( &wk->face_move );
 
 		if( check ){
 
-			// À•WˆÚ“®
+			// åº§æ¨™ç§»å‹•
 			WazaTool_SetCapMatrix( &wk->face_move, wk->face_obj, wk->face_x, wk->face_y );
 		}else{
 			wk->face_seq++;
@@ -3015,24 +3015,24 @@ static void We184_TCB( TCB_PTR tcb, void* work )
 		
 	case WE184_END:
 		CATS_ActorPointerDelete_S(wk->face_obj);
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;
 	}
 
-	// OAM•`‰æ
+	// OAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	•|‚¢Šç—pƒ^ƒXƒN“o˜^
+ * @brief	æ€–ã„é¡”ç”¨ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -3054,7 +3054,7 @@ void WestSp_CAT_WE_184(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	vec_x = WazaTool_VecChangeX( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 	vec_y = WazaTool_VecChangeY( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(we_sys) );
 	at_x	= SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_X );
 	at_y	= SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_Y );
@@ -3066,7 +3066,7 @@ void WestSp_CAT_WE_184(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 			WE184_SCALE_SYNC );
 
 
-	// ‚©‚¨
+	// ã‹ãŠ
 	wk->face_obj = cap;
 	CATS_ObjectAutoAnimeSetCap( wk->face_obj, TRUE );
 	CATS_ObjectAffineSetCap( wk->face_obj, CLACT_AFFINE_DOUBLE );
@@ -3106,7 +3106,7 @@ void WestSp_CAT_WE_184(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 //-------------------------------------
 //	
-//	‚İ‚â‚Ô‚é
+//	ã¿ã‚„ã¶ã‚‹
 //	
 //=====================================
 enum{
@@ -3135,10 +3135,10 @@ typedef struct {
 	CATS_RES_PTR crp;
 	int seq;
 	
-	// –hŒä‘¤
+	// é˜²å¾¡å´
 	SOFT_SPRITE* df_ssp;
 	
-	// ‚Ş‚µ‚ß‚ª‚Ë
+	// ã‚€ã—ã‚ãŒã­
 	CATS_ACT_PTR cap;
 	WAZATOOL_CALCMOVE cap_move;
 	WAZATOOL_ALPHA_FADE cap_alpha;
@@ -3206,7 +3206,7 @@ static void We193_TCB( TCB_PTR tcb, void* work )
 
 	switch( wk->seq ){
 	case WE193_MOVE_INIT:
-		// ‰Šú‰»ˆ—
+		// åˆæœŸåŒ–å‡¦ç†
 		wk->cap_wait ++;
 		if( wk->cap_wait > WE193_MOVE_WAIT ){
 			We193_InitCap( wk );
@@ -3216,7 +3216,7 @@ static void We193_TCB( TCB_PTR tcb, void* work )
 		break;
 		
 	case WE193_MOVE_MAIN:
-		// ŒvZ•”
+		// è¨ˆç®—éƒ¨
 		if( WazaTool_CalcStraightFx( &wk->cap_move ) ){
 			WazaTool_SetCapMatrix( &wk->cap_move, wk->cap, wk->cap_x, wk->cap_y );
 		}else{
@@ -3225,13 +3225,13 @@ static void We193_TCB( TCB_PTR tcb, void* work )
 			if( wk->cap_count < WE193_MOVE_COUNT ){
 				wk->seq = WE193_MOVE_INIT;
 
-				// Œ»İˆÊ’u‚ğ•Û‘¶
+				// ç¾åœ¨ä½ç½®ã‚’ä¿å­˜
 				wk->cap_x += wk->cap_move.x;
 				wk->cap_y += wk->cap_move.y;
 			}else{
 				
 				wk->seq ++;
-				// ƒtƒF[ƒhƒAƒEƒgİ’è
+				// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆè¨­å®š
 				CATS_ObjectObjModeSetCap( wk->cap, GX_OAM_MODE_XLU );
 				WazaTool_StartAlphaFade( 
 						&wk->cap_alpha,
@@ -3239,7 +3239,7 @@ static void We193_TCB( TCB_PTR tcb, void* work )
 						0, 16,
 						WE193_FADEOUT_ALPHA_SYNC );
 				
-				// ƒpƒŒƒbƒgƒtƒF[ƒh
+				// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 				SoftSpritePalFadeSet( wk->df_ssp,
 						WE193_POKE_FADE_S, WE193_POKE_FADE_E,
 						WE193_POKE_FADE_WAIT,
@@ -3254,7 +3254,7 @@ static void We193_TCB( TCB_PTR tcb, void* work )
 		}
 		if( SoftSpritePalFadeExist( wk->df_ssp ) == FALSE ){
 			wk->seq++;
-			// ƒpƒŒƒbƒgƒtƒF[ƒh
+			// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 			SoftSpritePalFadeSet( wk->df_ssp,
 					WE193_POKE_FADE_E, WE193_POKE_FADE_S,
 					WE193_POKE_FADE_WAIT,
@@ -3270,24 +3270,24 @@ static void We193_TCB( TCB_PTR tcb, void* work )
 		
 	case WE193_END:
 		CATS_ActorPointerDelete_S(wk->cap);
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;
 	}
 
-	// OAM•`‰æ
+	// OAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‚İ‚â‚Ô‚é—pƒ^ƒXƒN“o˜^
+ * @brief	ã¿ã‚„ã¶ã‚‹ç”¨ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -3301,11 +3301,11 @@ void WestSp_CAT_WE_193(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	wk->csp		= csp;
 	wk->crp		= crp;
 
-	// –hŒä‘¤
+	// é˜²å¾¡å´
 	wk->df_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysDFNoGet(we_sys) );
 
 
-	// ’Šá‹¾
+	// è™«çœ¼é¡
 	wk->cap = cap;
 	CATS_ObjectPriSetCap( wk->cap, WAZAEFF_ACT_SOFTPRI );
 	CATS_ObjectBGPriSetCap( wk->cap, WAZAEFF_ACT_BGPRI );
@@ -3317,7 +3317,7 @@ void WestSp_CAT_WE_193(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 //-------------------------------------
 //	
-//	ƒƒbƒNƒIƒ“
+//	ãƒ­ãƒƒã‚¯ã‚ªãƒ³
 //	
 //=====================================
 enum{
@@ -3351,13 +3351,13 @@ typedef struct {
 	CATS_RES_PTR crp;
 	int seq;
 	
-	// –hŒä‘¤
+	// é˜²å¾¡å´
 	SOFT_SPRITE* df_ssp;
 
-	// ƒ|ƒPƒ‚ƒ“ƒtƒF[ƒh—p
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨
 	SOFT_SPRITE* fade_ssp[4];
 	
-	// ƒƒbƒNƒIƒ“
+	// ãƒ­ãƒƒã‚¯ã‚ªãƒ³
 	CATS_ACT_PTR cap;
 	WAZATOOL_CALCMOVE cap_move;
 	s16	cap_x;
@@ -3411,7 +3411,7 @@ static void We199_TCB( TCB_PTR tcb, void* work )
 
 	switch( wk->seq ){
 	case WE199_MOVE_INIT:
-		// ‰Šú‰»ˆ—
+		// åˆæœŸåŒ–å‡¦ç†
 		wk->cap_wait ++;
 		if( wk->cap_wait > WE199_MOVE_WAIT ){
 			We199_InitCap( wk );
@@ -3421,7 +3421,7 @@ static void We199_TCB( TCB_PTR tcb, void* work )
 		break;
 		
 	case WE199_MOVE_MAIN:
-		// ŒvZ•”
+		// è¨ˆç®—éƒ¨
 		if( WazaTool_CalcStraightFx( &wk->cap_move ) ){
 			WazaTool_SetCapMatrix( &wk->cap_move, wk->cap, wk->cap_x, wk->cap_y );
 		}else{
@@ -3430,7 +3430,7 @@ static void We199_TCB( TCB_PTR tcb, void* work )
 			if( wk->cap_count < WE199_MOVE_COUNT ){
 				wk->seq = WE199_MOVE_INIT;
 
-				// Œ»İˆÊ’u‚ğ•Û‘¶
+				// ç¾åœ¨ä½ç½®ã‚’ä¿å­˜
 				wk->cap_x += wk->cap_move.x;
 				wk->cap_y += wk->cap_move.y;
 			}else{
@@ -3438,8 +3438,8 @@ static void We199_TCB( TCB_PTR tcb, void* work )
 				wk->seq ++;
 				wk->cap_wait = WE199_FLASH_WAIT;
 
-				// ƒI[ƒgƒAƒjƒ
-				// ƒAƒjƒƒV[ƒPƒ“ƒX•ÏX
+				// ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡
+				// ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				CATS_ObjectAnimeSeqSetCap( wk->cap, 1 );
 				CATS_ObjectAutoAnimeSetCap( wk->cap, TRUE );
 			}
@@ -3457,7 +3457,7 @@ static void We199_TCB( TCB_PTR tcb, void* work )
 					SoftSpritePalFadeSet( wk->fade_ssp[i], 14, 16, 0, 0xffff );
 				}
 			}
-/*			// ƒuƒ‰ƒCƒgƒlƒXŠJn
+/*			// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹é–‹å§‹
 			WIPE_SYS_Start( 
 					WIPE_PATTERN_M,
 					WIPE_TYPE_FADEOUT,
@@ -3473,7 +3473,7 @@ static void We199_TCB( TCB_PTR tcb, void* work )
 		if( PaletteFadeCheck(WeSysPFDGet(wk->we_sys)) == 0 ){
 			wk->seq++;
 /*
-			// ƒuƒ‰ƒCƒgƒlƒXŠJn
+			// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹é–‹å§‹
 			WIPE_SYS_Start( 
 					WIPE_PATTERN_M,
 					WIPE_TYPE_FADEIN,
@@ -3508,7 +3508,7 @@ static void We199_TCB( TCB_PTR tcb, void* work )
 		if( wk->cap_wait < 0 ){
 			wk->cap_wait = WE199_SWITCH_WAIT;
 			wk->cap_count --;
-			if( wk->cap_count < 0 ){	// ‰ñ”“_–Å‚µ‚½‚çI—¹
+			if( wk->cap_count < 0 ){	// å›æ•°ç‚¹æ»…ã—ãŸã‚‰çµ‚äº†
 				wk->seq ++;
 			}else{
 				CATS_ObjectEnableCap( wk->cap, wk->cap_vanish );
@@ -3519,24 +3519,24 @@ static void We199_TCB( TCB_PTR tcb, void* work )
 		
 	case WE199_END:
 		CATS_ActorPointerDelete_S(wk->cap);
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;
 	}
 
-	// OAM•`‰æ
+	// OAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒƒbƒNƒIƒ“—pƒ^ƒXƒN“o˜^
+ * @brief	ãƒ­ãƒƒã‚¯ã‚ªãƒ³ç”¨ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -3551,14 +3551,14 @@ void WestSp_CAT_WE_199(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	wk->csp		= csp;
 	wk->crp		= crp;
 
-	// –hŒä‘¤
+	// é˜²å¾¡å´
 	wk->df_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysDFNoGet(we_sys) );
 
 	for( i=0; i<4; i++ ){
 		wk->fade_ssp[i] = WeSysSoftSpritePointerGet( wk->we_sys, i );
 	}
 
-	// ’Šá‹¾
+	// è™«çœ¼é¡
 	wk->cap = cap;
 	CATS_ObjectPriSetCap( wk->cap, WAZAEFF_ACT_SOFTPRI );
 	CATS_ObjectBGPriSetCap( wk->cap, WAZAEFF_ACT_BGPRI );
@@ -3569,7 +3569,7 @@ void WestSp_CAT_WE_199(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	CATS_ObjectObjModeSetCap( wk->cap, GX_OAM_MODE_XLU );
 	wk->cap_wait = WE199_MOVE_WAIT_INIT;
 
-	// ƒ¿İ’è
+	// Î±è¨­å®š
 //	WET_DefaultBlendSet(wk->we_sys, 31, 26 );
 
 	G2_SetBlendAlpha( GX_BLEND_PLANEMASK_NONE,
@@ -3582,7 +3582,7 @@ void WestSp_CAT_WE_199(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 //-------------------------------------
 //	
-//	‚ ‚Ü‚¦‚é
+//	ã‚ã¾ãˆã‚‹
 //	
 //=====================================
 enum{
@@ -3609,17 +3609,17 @@ enum{
 
 #define WE204_ROTA_OFS_X	( 16 )
 
-// ƒ[ƒN
+// ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	int	seq;
 	WE_SYS_PTR	we_sys;			
 	
-	// ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒf[ƒ^
+	// ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿
 	SOFT_SPRITE* at_ssp;
 	s16 at_x;
 	s16 at_y;
 
-	// ‰ñ“]ŒvZ—pƒ[ƒN
+	// å›è»¢è¨ˆç®—ç”¨ãƒ¯ãƒ¼ã‚¯
 	WAZATOOL_CALCMOVE_ONE	calc_rota;
 	WAZATOOL_CALCMOVE		calc_move;
 	int count;
@@ -3639,8 +3639,8 @@ static void TWe204_RotaInit( TWE204_SYS* wk, BOOL flip )
 			WE204_ROTA_E,
 			WE204_ROTA_SYNC	);
 
-	// ‰ñ“]•ûŒü
-	// ‰ñ“]²İ’è
+	// å›è»¢æ–¹å‘
+	// å›è»¢è»¸è¨­å®š
 	if( flip ){
 		wk->calc_rota.work[1] *= -1;
 		SoftSpriteParaSet( wk->at_ssp, SS_PARA_ROT_CX, WE204_ROTA_OFS_X );
@@ -3738,7 +3738,7 @@ static void We204_TCB( TCB_PTR tcb, void* work )
 		break;
 
 	case WE204_END:
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;
@@ -3748,7 +3748,7 @@ static void We204_TCB( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚ ‚Ü‚¦‚é
+ *	@brief	ã‚ã¾ãˆã‚‹
  *
  *	@param	we_sys 
  *
@@ -3767,7 +3767,7 @@ void WestSp_WE_204( WE_SYS_PTR we_sys )
 
 	vec_x = WazaTool_VecChangeX( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	if (WeSysGPWorkGet(we_sys, 0) == 0){
 		wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(we_sys) );
 		wk->at_x = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_X );
@@ -3779,10 +3779,10 @@ void WestSp_WE_204( WE_SYS_PTR we_sys )
 		wk->at_y = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_Y );
 	}
 
-	// ‰ñ“]’†SŠp“xİ’è
+	// å›è»¢ä¸­å¿ƒè§’åº¦è¨­å®š
 	SoftSpriteParaSet( wk->at_ssp, SS_PARA_ROT_CY, WE204_ROTA_C_Y );
 
-	// ‰ñ“]ƒf[ƒ^‰Šú‰»
+	// å›è»¢ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	if( vec_x == 1 ){
 		wk->flip_flg = 0;
 	}else{
@@ -3796,7 +3796,7 @@ void WestSp_WE_204( WE_SYS_PTR we_sys )
 
 //-------------------------------------
 //	
-//	‚¢‚Î‚é
+//	ã„ã°ã‚‹
 //	
 //=====================================
 enum{
@@ -3826,7 +3826,7 @@ typedef struct {
 	int seq;
 	int wait;
 	
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	SOFT_SPRITE* at_ssp;
 	WAZATOOL_CALCMOVE at_scale;
 	int at_wait;
@@ -3844,7 +3844,7 @@ static BOOL We207_MoveAtPoke( TWE207_SYS* wk )
 	switch( wk->at_seq ){
 	case WE207_AT_SCALE_UP:
 		if( WazaTool_CalcAndReflectScaleRateSsp( &wk->at_scale, wk->at_ssp ) ){
-			// ‘«‚É‚ ‚í‚¹‚é
+			// è¶³ã«ã‚ã‚ã›ã‚‹
 			WazaTool_PokeOffsetSet( wk->at_ssp, wk->at_y, wk->at_h, wk->at_scale.work[4], WAZAEFF_OFS_MODE_BOTTOM);
 		}else{
 			wk->at_seq++;
@@ -3867,7 +3867,7 @@ static BOOL We207_MoveAtPoke( TWE207_SYS* wk )
 
 	case WE207_AT_SCALE_DOWN:
 		if( WazaTool_CalcAndReflectScaleRateSsp( &wk->at_scale, wk->at_ssp ) ){
-			// ‘«‚É‚ ‚í‚¹‚é
+			// è¶³ã«ã‚ã‚ã›ã‚‹
 			WazaTool_PokeOffsetSet( wk->at_ssp, wk->at_y, wk->at_h, wk->at_scale.work[4], WAZAEFF_OFS_MODE_BOTTOM);
 		}else{
 			wk->at_seq++;
@@ -3905,7 +3905,7 @@ static void We207_TCB( TCB_PTR tcb, void* work )
 		
 
 	case WE207_END:
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;
@@ -3916,7 +3916,7 @@ static void We207_TCB( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚ ‚Ü‚¦‚é
+ *	@brief	ã‚ã¾ãˆã‚‹
  *
  *	@param	we_sys 
  *
@@ -3933,7 +3933,7 @@ void WestSp_WE_207_MAIN( WE_SYS_PTR we_sys )
 	wk = WET_ALLOC_MEMORY(we_sys, TWE207_SYS);
 	wk->we_sys	= we_sys;
 
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(we_sys) );
 	WazaTool_InitScaleRate(
 			&wk->at_scale,
@@ -3953,7 +3953,7 @@ void WestSp_WE_207_MAIN( WE_SYS_PTR we_sys )
 
 //-------------------------------------
 //	
-//	‚­‚ë‚¢‚Ü‚È‚´‚µ
+//	ãã‚ã„ã¾ãªã–ã—
 //	
 //=====================================
 enum{
@@ -3982,7 +3982,7 @@ enum{
 #define WE212_SCALE_D	( 10 )
 #define WE212_SCALE_E	( 10 * WE212_SCALE_OUT_KETA )
 #define WE212_SYNC_S	( 4 * WE212_SCALE_OUT_KETA )
-#define WE212_SCALE_OUT_DIV	( 3 )	// 1/WE212_SCALE_OUT_DIV‚Ã‚ÂŒ¸‚ç‚µ‚Ä‚¢‚­
+#define WE212_SCALE_OUT_DIV	( 3 )	// 1/WE212_SCALE_OUT_DIVã¥ã¤æ¸›ã‚‰ã—ã¦ã„ã
 #define WE212_SCALDE_NUM	(2)
  
 #define WE212_ALPHA_S	( 16 )
@@ -4009,7 +4009,7 @@ typedef struct {
 	int seq;
 	int flash_wait;
 	
-	// ‚­‚ë‚¢‚Ü‚È‚´‚µ
+	// ãã‚ã„ã¾ãªã–ã—
 	CATS_ACT_PTR cap;
 	WAZATOOL_CALCMOVE		cap_scale;
 	WAZATOOL_ALPHA_FADE		cap_alpha;
@@ -4159,12 +4159,12 @@ static void We212_TCB( TCB_PTR tcb, void* work )
 
 	case WE212_CAP_ANIME:
 		
-		// ƒtƒ‰ƒbƒVƒ…ƒ^ƒXƒNİ’è
+		// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¿ã‚¹ã‚¯è¨­å®š
 		if( wk->flash_wait == 0 ){
 
 //			PaletteFadeReq(WeSysPFDGet(wk->we_sys), PF_BIT_MAIN_BG, BT_HaikeiFadeBit( wk->we_sys ), WE212_FLASH_SYNC, 0, 16, 0xffff);
 			
-			// ƒuƒ‰ƒCƒgƒlƒXŠJn	ƒtƒ‰ƒbƒVƒ…ƒAƒEƒg
+			// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹é–‹å§‹	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆ
 			ChangeBrightnessRequest( 
 					WE212_FLASH_SYNC,
 					BRIGHTNESS_WHITE,
@@ -4186,7 +4186,7 @@ static void We212_TCB( TCB_PTR tcb, void* work )
 				
 //				PaletteFadeReq(WeSysPFDGet(wk->we_sys), PF_BIT_MAIN_BG, BT_HaikeiFadeBit( wk->we_sys ), WE212_FLASH_SYNC, 16, 0, 0xffff);
 				
-				// ƒuƒ‰ƒCƒgƒlƒXŠJn	ƒtƒ‰ƒbƒVƒ…ƒCƒ“
+				// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹é–‹å§‹	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¤ãƒ³
 				ChangeBrightnessRequest( 
 						WE212_FLASH_SYNC,
 						BRIGHTNESS_NORMAL,
@@ -4197,7 +4197,7 @@ static void We212_TCB( TCB_PTR tcb, void* work )
 			}
 		}
 		
-		// ƒAƒjƒI—¹‘Ò‚¿
+		// ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 		if( CATS_ObjectAnimeActiveCheckCap( wk->cap ) == FALSE ){
 			wk->seq ++;
 		}
@@ -4228,24 +4228,24 @@ static void We212_TCB( TCB_PTR tcb, void* work )
 		
 	case WE212_END:
 		CATS_ActorPointerDelete_S(wk->cap);
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;
 	}
 
-	// OAM•`‰æ
+	// OAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‚­‚ë‚¢‚Ü‚È‚´‚µ—pƒ^ƒXƒN“o˜^
+ * @brief	ãã‚ã„ã¾ãªã–ã—ç”¨ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -4260,7 +4260,7 @@ void WestSp_CAT_WE_212(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	wk->csp		= csp;
 	wk->crp		= crp;
 
-	// ‚­‚ë‚¢‚Ü‚È‚´‚µ
+	// ãã‚ã„ã¾ãªã–ã—
 	wk->cap = cap;
 	CATS_ObjectPriSetCap( wk->cap, WAZAEFF_ACT_SOFTPRI );
 	CATS_ObjectBGPriSetCap( wk->cap, WAZAEFF_ACT_BGPRI );
@@ -4278,7 +4278,7 @@ void WestSp_CAT_WE_212(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 //-------------------------------------
 //	
-//	‚¨‚ñ‚ª‚¦‚µ
+//	ãŠã‚“ãŒãˆã—
 //	
 //=====================================
 enum{
@@ -4293,7 +4293,7 @@ typedef struct {
 	int	seq;
 	WE_SYS_PTR	we_sys;			
 	
-	// ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒf[ƒ^
+	// ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿
 	SOFT_SPRITE* at_ssp;
 	s16	at_x;
 	s16 at_y;
@@ -4351,7 +4351,7 @@ static void We216_TCB( TCB_PTR tcb, void* work )
 		break;
 		
 	case WE216_SHAKE_END:
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		break;
@@ -4360,9 +4360,9 @@ static void We216_TCB( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‚¨‚ñ‚ª‚¦‚µ—pƒ^ƒXƒN“o˜^
+ * @brief	ãŠã‚“ãŒãˆã—ç”¨ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -4374,12 +4374,12 @@ void WestSp_WE_216( WE_SYS_PTR we_sys )
 	wk = WET_ALLOC_MEMORY(we_sys, TWE216_SYS);
 	wk->we_sys	= we_sys;
 
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(we_sys) );
 	wk->at_x = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_X );
 	wk->at_y = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_Y );
 
-	// ã‰º‰^“®
+	// ä¸Šä¸‹é‹å‹•
 	wk->at_move_count = 0;
 
 	WEEffect_TCB_AddPriSet(wk->we_sys, We216_TCB, wk);
@@ -4388,7 +4388,7 @@ void WestSp_WE_216( WE_SYS_PTR we_sys )
 
 //-------------------------------------
 //	
-//	‚ ‚Ä‚İ‚È‚°
+//	ã‚ã¦ã¿ãªã’
 //	
 //=====================================
 enum{
@@ -4412,13 +4412,13 @@ typedef struct {
 	WE_SYS_PTR	we_sys;			
 	int vec_x;
 	
-	// UŒ‚—p
+	// æ”»æ’ƒç”¨
 	SOFT_SPRITE* at_ssp;
 	s16	at_x;
 	s16 at_y;
 	WAZATOOL_CALCMOVE	at_move;
 
-	// –hŒä—p
+	// é˜²å¾¡ç”¨
 	SOFT_SPRITE* df_ssp;
 	s16	df_x;
 	s16 df_y;
@@ -4431,7 +4431,7 @@ static void We233_TCB( TCB_PTR tcb, void* work )
 
 	switch( wk->seq ){
 	case WE233_AT_ROTA_INIT:
-		// ‰ñ“]“®ì‰Šú‰»
+		// å›è»¢å‹•ä½œåˆæœŸåŒ–
 		WazaTool_MakeDefRota( 
 				&wk->at_move,
 				WE233_ROTA_NUM,
@@ -4447,7 +4447,7 @@ static void We233_TCB( TCB_PTR tcb, void* work )
 			SoftSpriteParaSet( wk->at_ssp, SS_PARA_POS_X, wk->at_x );
 			SoftSpriteParaSet( wk->at_ssp, SS_PARA_POS_Y, wk->at_y );
 
-			// •½sˆÚ“®ˆ—
+			// å¹³è¡Œç§»å‹•å‡¦ç†
 			WazaTool_InitStraightSyncFx( 
 					&wk->at_move,
 					wk->at_x, wk->at_x + WE233_STRAIGHT_MOVE_X,
@@ -4457,7 +4457,7 @@ static void We233_TCB( TCB_PTR tcb, void* work )
 			wk->at_move.work[1] *= wk->vec_x;
 			wk->seq++;
 
-			// ŠŠ‚ç‚©‚É‚·‚é‚½‚ß
+			// æ»‘ã‚‰ã‹ã«ã™ã‚‹ãŸã‚
 			WazaTool_CalcStraightFx( &wk->at_move );
 			SoftSpriteParaSet( wk->at_ssp, SS_PARA_POS_X, wk->at_move.x );
 		}
@@ -4469,7 +4469,7 @@ static void We233_TCB( TCB_PTR tcb, void* work )
 			SoftSpriteParaSet( wk->at_ssp, SS_PARA_POS_X, wk->at_move.x );
 		}else{
 
-			// “G•½sˆÚ“®ˆ—
+			// æ•µå¹³è¡Œç§»å‹•å‡¦ç†
 			WazaTool_InitStraightSyncFx( 
 					&wk->df_move,
 					wk->df_x, wk->df_x + (WE233_STRAIGHT_MOVE_X * wk->vec_x),
@@ -4486,7 +4486,7 @@ static void We233_TCB( TCB_PTR tcb, void* work )
 			SoftSpriteParaSet( wk->df_ssp, SS_PARA_POS_X, wk->df_move.x );
 		}else{
 
-			// •½sˆÚ“®ˆ—
+			// å¹³è¡Œç§»å‹•å‡¦ç†
 			WazaTool_InitStraightSyncFx( 
 					&wk->at_move,
 					wk->at_move.x, wk->at_x,
@@ -4504,7 +4504,7 @@ static void We233_TCB( TCB_PTR tcb, void* work )
 		}else{
 			SoftSpriteParaSet( wk->at_ssp, SS_PARA_POS_X, wk->at_x );
 
-			// “G•½sˆÚ“®ˆ—
+			// æ•µå¹³è¡Œç§»å‹•å‡¦ç†
 			WazaTool_InitStraightSyncFx( 
 					&wk->df_move,
 					wk->df_move.x, wk->df_x,
@@ -4527,7 +4527,7 @@ static void We233_TCB( TCB_PTR tcb, void* work )
 		break;
 		
 	case WE233_END:
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		break;
@@ -4536,9 +4536,9 @@ static void We233_TCB( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‚ ‚Ä‚İ‚È‚°—pƒ^ƒXƒN“o˜^
+ * @brief	ã‚ã¦ã¿ãªã’ç”¨ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -4552,12 +4552,12 @@ void WestSp_WE_233( WE_SYS_PTR we_sys )
 
 	wk->vec_x = WazaTool_VecChangeX( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(we_sys) );
 	wk->at_x = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_X );
 	wk->at_y = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_Y );
 
-	// –hŒä‘¤
+	// é˜²å¾¡å´
 	wk->df_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysDFNoGet(we_sys) );
 	wk->df_x = SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_X );
 	wk->df_y = SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_Y );
@@ -4568,7 +4568,7 @@ void WestSp_WE_233( WE_SYS_PTR we_sys )
 
 //-------------------------------------
 //	
-//	‚¢‚¿‚á‚à‚ñ
+//	ã„ã¡ã‚ƒã‚‚ã‚“
 //	
 //=====================================
 enum{
@@ -4609,7 +4609,7 @@ enum{
 #define WE259_CAP_MAT_XOFS_SUB	( 4 )
 #define WE259_CAP_MAT_YOFS_SUB	( 24 )//*/
 
-#define WE259_CAP_MAT_R			( 48*FX32_ONE )	// ”¼ŒaƒTƒCƒY
+#define WE259_CAP_MAT_R			( 48*FX32_ONE )	// åŠå¾„ã‚µã‚¤ã‚º
 #define WE259_CAP_MAT_ROTA		( FX_GET_ROTA_NUM( 90 ) / (WE259_CAP_OBJ_NUM/2) )
 
 #define WE259_CAP_WAIT_MAX	( 8 )
@@ -4623,7 +4623,7 @@ typedef struct {
 	int count;
 	int wait;
 
-	// UŒ‚ƒIƒuƒWƒFƒNƒg
+	// æ”»æ’ƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	SOFT_SPRITE* at_ssp;
 	WAZATOOL_CALCMOVE	at_scale;
 	int ssp_seq;
@@ -4631,14 +4631,14 @@ typedef struct {
 	s16 ssp_y;
 	s16 poke_h;
 	
-	// ‚¢‚¿‚á‚à‚ñƒIƒuƒWƒFƒNƒg
+	// ã„ã¡ã‚ƒã‚‚ã‚“ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	CATS_ACT_PTR	cap[ WE259_CAP_OBJ_NUM ];
 	int cap_seq[ WE259_CAP_OBJ_NUM  ];
 	int cap_wait[ WE259_CAP_OBJ_NUM ];
 	
 } TWE259_SYS;
 
-// ƒ|ƒPƒ‚ƒ““®ì€”õ
+// ãƒã‚±ãƒ¢ãƒ³å‹•ä½œæº–å‚™
 static void We259_SSP_Init( TWE259_SYS* wk )
 {
 	wk->ssp_seq = 0;
@@ -4731,29 +4731,29 @@ static void We259_CAP_Init( CATS_ACT_PTR cap, int* p_cap_seq, fx32 frame )
 	CATS_ObjectEnableCap( cap, TRUE );
 	CATS_ObjectAutoAnimeSetCap( cap, TRUE );
 	CATS_ObjectAutoAnimeSpeedSetCap( cap, frame );
-	// ƒAƒjƒƒV[ƒPƒ“ƒXƒ`ƒFƒ“ƒW
+	// ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒ³ã‚¸
 	CATS_ObjectAnimeSeqSetCap( cap, 0 );		
 	CATS_ObjectAnimeFrameSetCap(cap, 0 );
 
 
-	// 55ƒtƒŒ[ƒ€æ‚É‚·‚é‚ß‚é
+	// 55ãƒ•ãƒ¬ãƒ¼ãƒ å…ˆã«ã™ã‚‹ã‚ã‚‹
 	CATS_ObjectUpdateNumCap( cap, 55*FX32_ONE );
 }
 
-// ƒAƒjƒ[ƒVƒ‡ƒ“‚³‚¹‚é
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹
 static BOOL We259_CAP_Move( CATS_ACT_PTR cap, int* p_cap_seq )
 {
 	BOOL ret = FALSE;
 	
 	switch( *p_cap_seq ){
-	case 0:		// I—¹ƒ`ƒFƒbƒN
+	case 0:		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( CATS_ObjectAnimeActiveCheckCap( cap ) == FALSE ){
 			(*p_cap_seq)++;
 			ret = TRUE;
 		}
 		break;
 
-	case 1:		// I—¹
+	case 1:		// çµ‚äº†
 		ret = TRUE;
 		break;
 	
@@ -4783,7 +4783,7 @@ static void We259_TCB( TCB_PTR tcb, void* work )
 		check1 = We259_SSP_Move( wk );
 		check2 = We259_CAP_Move( wk->cap[ wk->count ], &wk->cap_seq[ wk->count ] );
 		if( (check1 == check2) && (check1 == TRUE) ){
-			// ƒAƒjƒƒV[ƒPƒ“ƒXƒ`ƒFƒ“ƒW
+			// ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒ³ã‚¸
 			CATS_ObjectAnimeSeqSetCap( wk->cap[ wk->count ], 1 );		
 			wk->seq++;
 		}
@@ -4822,25 +4822,25 @@ static void We259_TCB( TCB_PTR tcb, void* work )
 			CATS_ActorPointerDelete_S(wk->cap[i]);
 		}
 		
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;
 	}
 
-	// OAM•`‰æ
+	// OAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‚¢‚¿‚á‚à‚ñ—pƒ^ƒXƒN“o˜^
+ * @brief	ã„ã¡ã‚ƒã‚‚ã‚“ç”¨ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -4860,20 +4860,20 @@ void WestSp_CAT_WE_259(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	wk->csp		= csp;
 	wk->crp		= crp;
 
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(wk->we_sys) );
 	at_x = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_X );
 	at_y = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_Y );
 
 	
-	// ƒ|ƒPƒ‚ƒ“‚Ì‚‚³@‚Æ@ˆÊ’u‚ğæ“¾
+	// ãƒã‚±ãƒ¢ãƒ³ã®é«˜ã•ã€€ã¨ã€€ä½ç½®ã‚’å–å¾—
 	wk->ssp_y = at_y;
 	wk->poke_h	= WeSysPokeOfsGet(wk->we_sys, WeSysATNoGet(wk->we_sys));
 	
 
-	// ‚¢‚¿‚á‚à‚ñ
+	// ã„ã¡ã‚ƒã‚‚ã‚“
 	coap   = WeSysCoapGet(wk->we_sys);
-	// c‚è•ª‚ÌƒIƒuƒWƒFƒNƒg‚àì¬
+	// æ®‹ã‚Šåˆ†ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚‚ä½œæˆ
 	for( i=0; i<WE259_CAP_OBJ_NUM; i++ ){
 		if( i==0 ){
 			wk->cap[ i ] = cap;
@@ -4882,7 +4882,7 @@ void WestSp_CAT_WE_259(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 		}
 		CATS_ObjectEnableCap( wk->cap[i], FALSE );
 
-		// ”z’uˆÊ’uİ’è
+		// é…ç½®ä½ç½®è¨­å®š
 		//     5 4
 		//    3   2
 		//   1     0
@@ -4892,17 +4892,17 @@ void WestSp_CAT_WE_259(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 		cap_x = FX_Mul( FX_CosIdx( WE259_CAP_MAT_ROTA*(i/2) ), WE259_CAP_MAT_R ) >> FX32_SHIFT;
 		cap_y = FX_Mul( FX_SinIdx( WE259_CAP_MAT_ROTA*(i/2) ), WE259_CAP_MAT_R ) >> FX32_SHIFT;
 		if( (i % 2) == 0 ){
-			// ‹ô”=‰E‘¤
+			// å¶æ•°=å³å´
 			cap_x = at_x + cap_x;
 			CATS_ObjectFlipSetCap( wk->cap[i], TRUE );
 		}else{
-			// Šï”¶‘¤
+			// å¥‡æ•°ï¼å·¦å´
 			cap_x = at_x - cap_x;
 		}
 		cap_y = at_y - cap_y;
 		CATS_ObjectPosSetCap( wk->cap[i], cap_x, cap_y );
 
-		// waitİ’è
+		// waitè¨­å®š
 		if( i < 2 ){
 			wk->cap_wait[ i ] = WE259_CAP_WAIT_MAX;
 		}else{
@@ -4916,7 +4916,7 @@ void WestSp_CAT_WE_259(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 //-------------------------------------
 //	
-//	ƒoƒgƒ“ƒ^ƒbƒ`
+//	ãƒãƒˆãƒ³ã‚¿ãƒƒãƒ
 //	
 //=====================================
 enum{
@@ -4941,12 +4941,12 @@ typedef struct {
 	CATS_RES_PTR crp;
 	int seq;
 
-	// UŒ‚ƒIƒuƒWƒFƒNƒg
+	// æ”»æ’ƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	SOFT_SPRITE* at_ssp;
 	WAZATOOL_CALCMOVE	at_scale;
 	WAZATOOL_CALCMOVE	at_move;
 	
-	// ƒ{[ƒ‹ƒIƒuƒWƒFƒNƒg
+	// ãƒœãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	CATS_ACT_PTR	cap;
 	WAZATOOL_CALCMOVE	cap_move;
 	int cap_seq;
@@ -4961,12 +4961,12 @@ static void We226_TCB( TCB_PTR tcb, void* work )
 	int ofs_x, ofs_y;
 
 	switch( wk->seq ){
-	case WE226_OPEN_BALL_INIT:	// ƒ{[ƒ‹‚¨[‚Õ‚ñ‰Šú‰»
+	case WE226_OPEN_BALL_INIT:	// ãƒœãƒ¼ãƒ«ãŠãƒ¼ã·ã‚“åˆæœŸåŒ–
 		CATS_ObjectAutoAnimeSetCap( wk->cap, TRUE );
 		wk->seq++;
 		break;
 		
-	case WE226_OPEN_BALL:	// ƒ{[ƒ‹ƒI[ƒvƒ“
+	case WE226_OPEN_BALL:	// ãƒœãƒ¼ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 		if( CATS_ObjectAnimeActiveCheckCap( wk->cap ) == FALSE ){
 			CATS_ObjectAutoAnimeSetCap( wk->cap, FALSE );
 			wk->seq++;
@@ -4989,7 +4989,7 @@ static void We226_TCB( TCB_PTR tcb, void* work )
 		}
 		break;
 		
-	case WE266_POKE_IN_BALL:	// ƒ|ƒPƒ‚ƒ“‚ğ‚Ú[‚é‚Ì‚È‚©‚Ö
+	case WE266_POKE_IN_BALL:	// ãƒã‚±ãƒ¢ãƒ³ã‚’ã¼ãƒ¼ã‚‹ã®ãªã‹ã¸
 		WazaTool_CalcAndReflectStraightFxSsp( &wk->at_move, wk->at_ssp );
 		if( WazaTool_CalcAndReflectScaleRateSsp( &wk->at_scale, wk->at_ssp ) == FALSE ){
 			SoftSpriteParaSet( wk->at_ssp, SS_PARA_VANISH, TRUE );
@@ -5003,7 +5003,7 @@ static void We226_TCB( TCB_PTR tcb, void* work )
 		}
 		break;
 		
-	case WE266_CLOSE_BALL:		// ƒ{[ƒ‹‚ğ‚Æ‚¶‚é
+	case WE266_CLOSE_BALL:		// ãƒœãƒ¼ãƒ«ã‚’ã¨ã˜ã‚‹
 		if( CATS_ObjectAnimeActiveCheckCap( wk->cap ) == FALSE ){
 
 			CATS_ObjectAutoAnimeSetCap( wk->cap, FALSE );
@@ -5030,24 +5030,24 @@ static void We226_TCB( TCB_PTR tcb, void* work )
 	case WE226_END:
 		CATS_ActorPointerDelete_S(wk->cap);
 		
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;
 	}
 
-	// OAM•`‰æ
+	// OAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ“ƒ^ƒbƒ`—pƒ^ƒXƒN“o˜^
+ * @brief	ãƒãƒˆãƒ³ã‚¿ãƒƒãƒç”¨ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -5063,7 +5063,7 @@ void WestSp_CAT_WE_226(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	wk->crp		= crp;
 
 
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	wk->at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(we_sys) );
 	SoftSpriteParaSet( wk->at_ssp, SS_PARA_VANISH, FALSE );
 //	wk->cap_x = SoftSpriteParaGet( wk->at_ssp, SS_PARA_POS_X );
@@ -5071,7 +5071,7 @@ void WestSp_CAT_WE_226(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	wk->cap_x = GetWazaEffPos(we_sys, WeSysATNoGet(we_sys), PM_X);
 	wk->cap_y = GetWazaEffPos(we_sys, WeSysATNoGet(we_sys), PM_Y);
 	
-	//ƒ{[ƒ‹ƒIƒuƒWƒF
+	//ãƒœãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
 	wk->cap = cap;
 	CATS_ObjectPriSetCap( wk->cap, WAZAEFF_ACT_SOFTPRI );
 	CATS_ObjectBGPriSetCap( wk->cap, WAZAEFF_ACT_BGPRI );
@@ -5084,7 +5084,7 @@ void WestSp_CAT_WE_226(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 //-------------------------------------
 //	
-//	‚¨‚«‚İ‚â‚°
+//	ãŠãã¿ã‚„ã’
 //	
 //=====================================
 enum{
@@ -5144,7 +5144,7 @@ typedef struct {
 	int poke_h;
 	int dy;
 
-	// ƒ|ƒPƒ‚ƒ“‚©‚°
+	// ãƒã‚±ãƒ¢ãƒ³ã‹ã’
 	CATS_ACT_PTR	poke_cap_at;
 	CATS_ACT_PTR	poke_cap_df;
 
@@ -5158,7 +5158,7 @@ typedef struct {
 	int cap_wait;
 	
 	WAZATOOL_ALPHA_FADE	cap_alpha;
-	PALETTE_FADE_PTR	pfd;	// ƒpƒŒƒbƒgƒtƒF[ƒh
+	PALETTE_FADE_PTR	pfd;	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 
 	BOOL contest_at;
 	BOOL contest_df;
@@ -5174,7 +5174,7 @@ static void We262_SetPlttColorCap( TWE262_SYS* wk, CATS_ACT_PTR cap )
 {
 	int plt_bit;
 
-	// ƒpƒŒƒbƒgƒtƒF[ƒh
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 	plt_bit = 1 << WazaTool_CapPlttNoGet( cap );
 	
 	ColorConceChangePfd( wk->pfd, FADE_MAIN_OBJ, plt_bit, 8, 0x0 );
@@ -5209,7 +5209,7 @@ static void We262_ScaleOutInit( TWE262_SYS* wk )
 	CATS_ObjectEnableCap( wk->poke_cap_at_msk, We262_MskOnOff[ client_type ] );
 	CATS_ObjectEnableCap( wk->poke_cap_at, TRUE );
 
-	// Šg‘åk¬‚ÍƒRƒ“ƒeƒXƒg‚ª‚ ‚é‚Ì‚Å¶‰E”½“]‚àl‚¦‚é
+	// æ‹¡å¤§ç¸®å°ã¯ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãŒã‚ã‚‹ã®ã§å·¦å³åè»¢ã‚‚è€ƒãˆã‚‹
 	WazaTool_CalcScaleRateToClactScale( &wk->cap_scale1, &s_x, &s_y );
 	if( wk->contest_at == TRUE ){
 		s_x = -s_x;
@@ -5228,7 +5228,7 @@ static BOOL We262_ScaleOutMove( TWE262_SYS* wk )
 	case WE262_SCALEOUT_Y:
 
 		WazaTool_CalcScaleRateEx( &wk->cap_scale1 );
-		// Šg‘åk¬‚ÍƒRƒ“ƒeƒXƒg‚ª‚ ‚é‚Ì‚Å¶‰E”½“]‚àl‚¦‚é
+		// æ‹¡å¤§ç¸®å°ã¯ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãŒã‚ã‚‹ã®ã§å·¦å³åè»¢ã‚‚è€ƒãˆã‚‹
 		WazaTool_CalcScaleRateToClactScale( &wk->cap_scale1, &s_x, &s_y );
 		if( wk->contest_at == TRUE ){
 			s_x = -s_x;
@@ -5258,10 +5258,10 @@ static BOOL We262_ScaleOutMove( TWE262_SYS* wk )
 		WazaTool_CalcScaleRateEx( &wk->cap_scale1 );
 		if( WazaTool_CalcScaleRate( &wk->cap_scale2 ) ){
 			
-			// ’lİ’è
+			// å€¤è¨­å®š
 			wk->cap_scale1.x = wk->cap_scale2.x;
 
-			// Šg‘åk¬‚ÍƒRƒ“ƒeƒXƒg‚ª‚ ‚é‚Ì‚Å¶‰E”½“]‚àl‚¦‚é
+			// æ‹¡å¤§ç¸®å°ã¯ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãŒã‚ã‚‹ã®ã§å·¦å³åè»¢ã‚‚è€ƒãˆã‚‹
 			WazaTool_CalcScaleRateToClactScale( &wk->cap_scale1, &s_x, &s_y );
 			if( wk->contest_at == TRUE ){
 				s_x = -s_x;
@@ -5274,7 +5274,7 @@ static BOOL We262_ScaleOutMove( TWE262_SYS* wk )
 					wk->cap_scale1.work[4], WAZAEFF_OFS_MODE_BOTTOM);//*/
 		}else{
 			wk->cap_seq++;
-			// •\¦OFF
+			// è¡¨ç¤ºOFF
 			CATS_ObjectEnableCap( wk->poke_cap_at_msk, FALSE );
 			CATS_ObjectEnableCap( wk->poke_cap_at, FALSE );
 			ret = TRUE;
@@ -5314,7 +5314,7 @@ static void We262_ScaleInInit( TWE262_SYS* wk )
 			WE262_SCALEIN_SYNC
 			);
 
-	// ‚P‰ñ’l‚ğİ’è
+	// ï¼‘å›å€¤ã‚’è¨­å®š
 	WazaTool_CalcScaleRateToClactScale( &wk->cap_scale1, &s_x, &s_y );
 	if( wk->contest_df == TRUE ){
 		s_x = -s_x;
@@ -5350,7 +5350,7 @@ static BOOL We262_ScaleInMove( TWE262_SYS* wk )
 	case WE262_SCALEIN_XY_MOVE:
 		WazaTool_CalcAndReflectStraightFxCap( &wk->cap_move, wk->poke_cap_df );
 		
-		// Šg‘åk¬‚ÍƒRƒ“ƒeƒXƒg‚ª‚ ‚é‚Ì‚Å¶‰E”½“]‚àl‚¦‚é
+		// æ‹¡å¤§ç¸®å°ã¯ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãŒã‚ã‚‹ã®ã§å·¦å³åè»¢ã‚‚è€ƒãˆã‚‹
 		check = WazaTool_CalcScaleRateEx( &wk->cap_scale1 );
 		WazaTool_CalcScaleRateToClactScale( &wk->cap_scale1, &s_x, &s_y );
 
@@ -5432,22 +5432,22 @@ static void We262_TCB( TCB_PTR tcb, void* work )
 		break;
 		
 	case WE262_END:
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		break;
 	}
 
-	// c‘œOAM•`‰æ
+	// æ®‹åƒOAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‚¨‚«‚İ‚â‚°—pƒ^ƒXƒN“o˜^
+ * @brief	ãŠãã¿ã‚„ã’ç”¨ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -5465,24 +5465,24 @@ void WestSp_WE_262( WE_SYS_PTR we_sys )
 	wk->pfd		= WeSysPFDGet(wk->we_sys);
 
 
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(we_sys) );
 	at_x = SoftSpriteParaGet( ssp, SS_PARA_POS_X );
 	at_y = SoftSpriteParaGet( ssp, SS_PARA_POS_Y );
 	at_y -= SoftSpriteParaGet( ssp, SS_PARA_SHADOW_HEIGHT );
 
-	// –hŒä‘¤
+	// é˜²å¾¡å´
 	ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysDFNoGet(we_sys) );
 	df_x = SoftSpriteParaGet( ssp, SS_PARA_POS_X );
 	df_y = SoftSpriteParaGet( ssp, SS_PARA_POS_Y );
 	df_y -= SoftSpriteParaGet( ssp, SS_PARA_SHADOW_HEIGHT );
 
-	// UŒ‚‘¤@‚‚³@ˆÊ’u‚ğæ“¾
+	// æ”»æ’ƒå´ã€€é«˜ã•ã€€ä½ç½®ã‚’å–å¾—
 	wk->dy = at_y;
 	wk->poke_h = WeSysPokeOfsGet(wk->we_sys, WeSysATNoGet(wk->we_sys));
 	
-	//‚©‚°
-	// ©•ª‚Ì‰e
+	//ã‹ã’
+	// è‡ªåˆ†ã®å½±
 	wk->poke_cap_at = WeSysPokeCapGet(wk->we_sys, 0);
 	CATS_ObjectPriSetCap( wk->poke_cap_at, WAZAEFF_ACT_SOFTPRI );
 	CATS_ObjectBGPriSetCap( wk->poke_cap_at, WAZAEFF_ACT_BGPRI );
@@ -5491,7 +5491,7 @@ void WestSp_WE_262( WE_SYS_PTR we_sys )
 	CATS_ObjectObjModeSetCap(wk->poke_cap_at, GX_OAM_MODE_XLU);
 	CATS_ObjectAffineSetCap( wk->poke_cap_at, CLACT_AFFINE_DOUBLE );
 
-	// ‘Šè‚Ì‰e
+	// ç›¸æ‰‹ã®å½±
 	wk->poke_cap_df = WeSysPokeCapGet(wk->we_sys, 1);
 	CATS_ObjectPriSetCap( wk->poke_cap_df, WAZAEFF_ACT_SOFTPRI );
 	CATS_ObjectBGPriSetCap( wk->poke_cap_df, WAZAEFF_ACT_BGPRI );
@@ -5501,11 +5501,11 @@ void WestSp_WE_262( WE_SYS_PTR we_sys )
 	CATS_ObjectAffineSetCap( wk->poke_cap_df, CLACT_AFFINE_DOUBLE );
 	CATS_ObjectAffinePosSetCap( wk->poke_cap_df, 0, SOFT_SPRITE_SIZE_Y / 2 );
 
-	// ƒRƒ“ƒeƒXƒgƒ`ƒFƒbƒN
+	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒã‚§ãƒƒã‚¯
 	wk->contest_at = ContestFlipCheck(wk->we_sys, WEDEF_DROP_M1 ); 
 	wk->contest_df = ContestFlipCheck(wk->we_sys, WEDEF_DROP_E1 ); 
 
-	// ƒ}ƒXƒN—p
+	// ãƒã‚¹ã‚¯ç”¨
 	wk->poke_cap_at_msk = WeSysPokeCapGet(wk->we_sys, 2);
 	wk->poke_cap_df_msk = WeSysPokeCapGet(wk->we_sys, 3);
 
@@ -5519,7 +5519,7 @@ void WestSp_WE_262( WE_SYS_PTR we_sys )
 
 //-------------------------------------
 //	
-//	‚Ó‚¤‚¢‚ñ
+//	ãµã†ã„ã‚“
 //	
 //=====================================
 enum{
@@ -5531,7 +5531,7 @@ enum{
 };
 
 #define WE286_ZANZOU_NUM		( 3 )
-#define WE286_ZANZOU_FUU_OAM	( 0 )	// ••OAM‚Ì—v‘f”
+#define WE286_ZANZOU_FUU_OAM	( 0 )	// å°OAMã®è¦ç´ æ•°
 #define WE286_ZANZOU_SCALE_S	( 25 )
 #define WE286_ZANZOU_SCALE_E	( 10 )
 #define WE286_ZANZOU_SCALE_D	( 10 )
@@ -5550,13 +5550,13 @@ typedef struct {
 	CATS_RES_PTR crp;
 	int seq;
 
-	// –hŒä‘¤
+	// é˜²å¾¡å´
 	SOFT_SPRITE* df_ssp;
 	WAZATOOL_CALCMOVE	df_move;
 	s16 df_x;
 	s16 df_y;
 	
-	// ••ˆóc‘œƒIƒuƒWƒFƒNƒg
+	// å°å°æ®‹åƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	CATS_ACT_PTR zz_cap[ WE286_ZANZOU_NUM ];
 	WAZATOOL_ZANZOU zz_sys;
 	WAZATOOL_CALCMOVE	zz_move;
@@ -5580,9 +5580,9 @@ static void We286_ZZScaleInInit( TWE286_SYS* wk )
 			WE286_ZANZOU_WAIT,
 			WE286_ZANZOU_NUM,
 			WAZATOOL_ZANZOU_TYPE_SCALE,
-			wk->zz_cap[ 2 ],		// ‚»‚Ì‘¼
-			wk->zz_cap[ 1 ],		// ‚»‚Ì‘¼
-			wk->zz_cap[ WE286_ZANZOU_FUU_OAM ],		// ••
+			wk->zz_cap[ 2 ],		// ãã®ä»–
+			wk->zz_cap[ 1 ],		// ãã®ä»–
+			wk->zz_cap[ WE286_ZANZOU_FUU_OAM ],		// å°
 			NULL
 			);
 }
@@ -5605,9 +5605,9 @@ static void We286_ZZScaleOutInit( TWE286_SYS* wk )
 			WE286_ZANZOU_OUT_WAIT,
 			WE286_ZANZOU_NUM,
 			WAZATOOL_ZANZOU_TYPE_SCALE,
-			wk->zz_cap[ WE286_ZANZOU_FUU_OAM ],		// ••
-			wk->zz_cap[ 1 ],		// ‚»‚Ì‘¼
-			wk->zz_cap[ 2 ],		// ‚»‚Ì‘¼
+			wk->zz_cap[ WE286_ZANZOU_FUU_OAM ],		// å°
+			wk->zz_cap[ 1 ],		// ãã®ä»–
+			wk->zz_cap[ 2 ],		// ãã®ä»–
 			NULL
 			);
 
@@ -5630,7 +5630,7 @@ static void We286_TCB( TCB_PTR tcb, void* work )
 			CATS_ObjectEnableCap( wk->zz_cap[ WE286_ZANZOU_FUU_OAM ], TRUE );
 			wk->seq++;
 
-			// ƒ|ƒPƒ‚ƒ“ƒVƒFƒCƒN
+			// ãƒã‚±ãƒ¢ãƒ³ã‚·ã‚§ã‚¤ã‚¯
 			WazaTool_InitShake( 
 					&wk->df_move,
 					WE286_SHAKE_X,
@@ -5669,12 +5669,12 @@ static void We286_TCB( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‚Ó‚¤‚¢‚ñ—pƒ^ƒXƒN“o˜^
+ * @brief	ãµã†ã„ã‚“ç”¨ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -5690,22 +5690,22 @@ void WestSp_CAT_WE_286(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	wk->csp		= csp;
 	wk->crp		= crp;
 
-	// –hŒä‘¤
+	// é˜²å¾¡å´
 	wk->df_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysDFNoGet(we_sys) );
 	wk->df_x = SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_X );
 	wk->df_y = SoftSpriteParaGet( wk->df_ssp, SS_PARA_POS_Y );
 	wk->df_y -= SoftSpriteParaGet( wk->df_ssp, SS_PARA_SHADOW_HEIGHT );
 	
-	// c‘œ
+	// æ®‹åƒ
 	coap   = WeSysCoapGet(we_sys);
 	for( i=0; i<WE286_ZANZOU_NUM; i++ ){
 		if( i == WE286_ZANZOU_FUU_OAM ){
 			wk->zz_cap[ i ] = cap;
-			// Å‰‚ÌƒAƒNƒ^[‚Íˆá‚¤ŠG‚É‚È‚é
+			// æœ€åˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ã¯é•ã†çµµã«ãªã‚‹
 			CATS_ObjectAnimeSeqSetCap( wk->zz_cap[ i ], 1 );
 		}else{
 			wk->zz_cap[ i ] = CATS_ObjectAdd_S(wk->csp, wk->crp, &coap);
-			// ‚Ù‚©‚Í”¼“§–¾
+			// ã»ã‹ã¯åŠé€æ˜
 			CATS_ObjectObjModeSetCap( wk->zz_cap[ i ], GX_OAM_MODE_XLU );
 		}
 		CATS_ObjectPriSetCap( wk->zz_cap[ i ], WAZAEFF_ACT_SOFTPRI );
@@ -5721,7 +5721,7 @@ void WestSp_CAT_WE_286(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 //-------------------------------------
 //	
-//	‚¨‚ñ‚Ë‚ñ
+//	ãŠã‚“ã­ã‚“
 //	
 //=====================================
 enum{
@@ -5733,8 +5733,8 @@ enum{
 };
 
 
-#define WE288_CAP_NUM			( 6 )	// ‚±‚±‚©‚¦‚½‚ç288.s‚à‚©‚¦‚é
-#define WE288_CAP_H_SUM			( 5 )	// ã‰º‚Í‰½”{‘¬‚Å“®‚©‚·‚©
+#define WE288_CAP_NUM			( 6 )	// ã“ã“ã‹ãˆãŸã‚‰288.sã‚‚ã‹ãˆã‚‹
+#define WE288_CAP_H_SUM			( 5 )	// ä¸Šä¸‹ã¯ä½•å€é€Ÿã§å‹•ã‹ã™ã‹
 #define WE288_CAP_H_DIS			( FX32_ONE*10 )
 #define WE288_CAP_ROTA_S		( FX_GET_ROTA_NUM( 0 ) )
 #define WE288_CAP_ROTA_E		( FX_GET_ROTA_NUM( 180 ) )
@@ -5755,10 +5755,10 @@ typedef struct {
 
 	int vec_x;
 
-	//‚¨‚ñ‚Ë‚ñ
+	//ãŠã‚“ã­ã‚“
 	CATS_ACT_PTR cap[ WE288_CAP_NUM ];
-	WAZATOOL_CALCMOVE cap_move[ WE288_CAP_NUM ];	// ‰¡ˆÚ“®
-	WAZATOOL_ALPHA_FADE cap_alpha;	// ƒAƒ‹ƒtƒ@•ÏŠ·
+	WAZATOOL_CALCMOVE cap_move[ WE288_CAP_NUM ];	// æ¨ªç§»å‹•
+	WAZATOOL_ALPHA_FADE cap_alpha;	// ã‚¢ãƒ«ãƒ•ã‚¡å¤‰æ›
 	s16 cap_cx;
 	s16 cap_cy;
 } TWE288_SYS;
@@ -5770,7 +5770,7 @@ static void We288_CapInit( TWE288_SYS* wk, int vec_x )
 
 	rota_offs_one = FX_GET_ROTA_NUM( 360 ) / WE288_CAP_NUM;
 	
-	// ŒvZƒf[ƒ^ì¬
+	// è¨ˆç®—ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	for( i=0; i<WE288_CAP_NUM; i++ ){
 		WazaTool_InitRotaFx(
 				&wk->cap_move[ i ],
@@ -5794,19 +5794,19 @@ static void We288_CapMove( TWE288_SYS* wk )
 
 	for( i=0; i<WE288_CAP_NUM; i++ ){
 		
-		// ŒvZ
+		// è¨ˆç®—
 		WazaTool_CalcRotaFx( &wk->cap_move[ i ] );
 		
-		// yƒIƒtƒZƒbƒgÀ•W‚ğ‹‚ß‚é
+		// yã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™ã‚’æ±‚ã‚ã‚‹
 		rota = wk->cap_move[ i ].work[ 1 ] * WE288_CAP_H_SUM;
 		ofs_y = FX_Mul( FX_SinIdx( rota ), WE288_CAP_H_DIS*wk->vec_x ) >> FX32_SHIFT;
 
-		// ”½‰f
+		// åæ˜ 
 		CATS_ObjectPosSetCap( wk->cap[ i ],
 				wk->cap_cx + wk->cap_move[ i ].x,
 				wk->cap_cy + ofs_y );
 
-		// Šp“x‚ÅBG—Dæ‡ˆÊ‚ğ•Ï‚¦‚é
+		// è§’åº¦ã§BGå„ªå…ˆé †ä½ã‚’å¤‰ãˆã‚‹
 		if( (wk->cap_move[ i ].work[ 1 ] >= FX_GET_ROTA_NUM(90)) &&
 			(wk->cap_move[ i ].work[ 1 ] <= FX_GET_ROTA_NUM(269)) ){
 			
@@ -5825,7 +5825,7 @@ static void We288_TCB( TCB_PTR tcb, void* work )
 
 	switch( wk->seq ){
 	case WE288_MOVE_START:
-		// ƒAƒ‹ƒtƒ@İ’è
+		// ã‚¢ãƒ«ãƒ•ã‚¡è¨­å®š
 		WET_DefaultBlendSet( wk->we_sys,
 				WE288_CAP_ALPHA_S, 16 - WE288_CAP_ALPHA_S );
 		WazaTool_StartAlphaFade(
@@ -5834,7 +5834,7 @@ static void We288_TCB( TCB_PTR tcb, void* work )
 				16 - WE288_CAP_ALPHA_S, 16 - WE288_CAP_ALPHA_E,
 				WE288_CAP_ALPHA_SYNC
 				);
-		// ƒIƒuƒWƒF
+		// ã‚ªãƒ–ã‚¸ã‚§
 		We288_CapInit( wk, wk->vec_x );
 		We288_CapMove( wk );
 		wk->seq++;
@@ -5883,12 +5883,12 @@ static void We288_TCB( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‚¨‚ñ‚Ë‚ñ—pƒ^ƒXƒN“o˜^
+ * @brief	ãŠã‚“ã­ã‚“ç”¨ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -5905,12 +5905,12 @@ void WestSp_CAT_WE_288(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	wk->csp		= csp;
 	wk->crp		= crp;
 
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(we_sys) );
 	wk->cap_cx = SoftSpriteParaGet( at_ssp, SS_PARA_POS_X );
 	wk->cap_cy = SoftSpriteParaGet( at_ssp, SS_PARA_POS_Y );
 	
-	// ‚¨‚ñ‚Ë‚ñ
+	// ãŠã‚“ã­ã‚“
 	coap   = WeSysCoapGet(we_sys);
 	for( i=0; i<WE288_CAP_NUM ; i++ ){
 		if( i == 0 ){
@@ -5931,11 +5931,11 @@ void WestSp_CAT_WE_288(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 //-------------------------------------
 //	
-//	‚­‚³‚Ô‚¦
+//	ãã•ã¶ãˆ
 //	
 //=====================================
-#define WE320_CAP_NUM	( 15 )		// ‚±‚±‚©‚¦‚½‚çwe_320.s‚à•Ï‚¦‚é
-#define WE320_CAP_GRA_NUM	( 3 )	// ŠG‚Ìí—Ş
+#define WE320_CAP_NUM	( 15 )		// ã“ã“ã‹ãˆãŸã‚‰we_320.sã‚‚å¤‰ãˆã‚‹
+#define WE320_CAP_GRA_NUM	( 3 )	// çµµã®ç¨®é¡
 #define WE320_CAP_STR_SX	( 0 )
 #define WE320_CAP_STR_EX	( 256 )
 #define WE320_CAP_STR_SY	( 0 )
@@ -5957,9 +5957,9 @@ typedef struct {
 	int vec_x;
 	int vec_y;
 
-	//‰¹•„
+	//éŸ³ç¬¦
 	CATS_ACT_PTR cap[ WE320_CAP_NUM ];
-	WAZATOOL_CALCMOVE cap_move[ WE320_CAP_NUM ];	// Î‚ßˆÚ“®
+	WAZATOOL_CALCMOVE cap_move[ WE320_CAP_NUM ];	// æ–œã‚ç§»å‹•
 	int cap_wait;
 	int cap_count;
 } TWE320_SYS;
@@ -5996,12 +5996,12 @@ static BOOL We320_CapObjMove( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_wtc )
 
 		rota = cap_x * WE320_CAP_Y_OFS_ROTA;
 		
-		// xÀ•W‚É‚æ‚èYÀ•W‚Ì”g‚ÆŠg‘åk¬’l‚ğŒˆ‚ß‚é
-		// YÀ•W
+		// xåº§æ¨™ã«ã‚ˆã‚ŠYåº§æ¨™ã®æ³¢ã¨æ‹¡å¤§ç¸®å°å€¤ã‚’æ±ºã‚ã‚‹
+		// Yåº§æ¨™
 		ofs_y = FX_Mul( FX_SinIdx( rota ), WE320_CAP_Y_HEIGHT ) >> FX32_SHIFT;
 		CATS_ObjectPosSetCap( cap, cap_x, cap_y + ofs_y );
 
-		// Šgk’l
+		// æ‹¡ç¸®å€¤
 		scale_work = FX_Mul( FX_SinIdx( rota ), WE320_CAP_SCALE_NUM );
 		scale_work *= -1;
 		scale = WE320_CAP_SCALE_DEF + FX_FX32_TO_F32( scale_work );
@@ -6017,7 +6017,7 @@ static BOOL We320_CapObjManager( TWE320_SYS* wk )
 	int i;
 	BOOL check;
 	
-	// ”­ËŠÇ—
+	// ç™ºå°„ç®¡ç†
 	if( wk->cap_count < WE320_CAP_NUM ){
 		wk->cap_wait++;
 		if( wk->cap_wait > WE320_CAP_START_WAIT ){
@@ -6031,13 +6031,13 @@ static BOOL We320_CapObjManager( TWE320_SYS* wk )
 		}
 	}
 
-	// “®ìŠÇ—
+	// å‹•ä½œç®¡ç†
 	for( i = 0; i < wk->cap_count; i++ ){
 
 		check = We320_CapObjMove( wk->cap[ i ], &wk->cap_move[ i ] );
 	}
 
-	// I—¹ƒ`ƒFƒbƒN•”
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯éƒ¨
 	if( wk->cap_count >= WE320_CAP_NUM ){
 		if( check == TRUE ){
 			return TRUE;
@@ -6054,7 +6054,7 @@ static void We320_TCB( TCB_PTR tcb, void* work )
 
 	if( We320_CapObjManager(wk) ){
 
-		// I—¹
+		// çµ‚äº†
 		for( i=0; i<WE320_CAP_NUM; i++ ){
 			CATS_ActorPointerDelete_S(wk->cap[ i ]);
 		}
@@ -6068,12 +6068,12 @@ static void We320_TCB( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‘“J—pƒ^ƒXƒN“o˜^
+ * @brief	è‰ç¬›ç”¨ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -6091,12 +6091,12 @@ void WestSp_CAT_WE_320(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	wk->csp		= csp;
 	wk->crp		= crp;
 
-	// UŒ‚‘¤
+	// æ”»æ’ƒå´
 	at_ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysATNoGet(we_sys) );
 	at_x = SoftSpriteParaGet( at_ssp, SS_PARA_POS_X );
 	at_y = SoftSpriteParaGet( at_ssp, SS_PARA_POS_Y );
 	
-	// ‰¹•„
+	// éŸ³ç¬¦
 	coap   = WeSysCoapGet(we_sys);
 	for( i=0; i<WE320_CAP_NUM ; i++ ){
 		if( i == 0 ){
@@ -6110,7 +6110,7 @@ void WestSp_CAT_WE_320(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 		CATS_ObjectEnableCap(wk->cap[ i ], FALSE);
 		CATS_ObjectPosSetCap( wk->cap[ i ], at_x, at_y );
 
-		// ŠG‚ğ•ÏX
+		// çµµã‚’å¤‰æ›´
 		CATS_ObjectAnimeSeqSetCap( wk->cap[ i ], i % WE320_CAP_GRA_NUM );
 	}
 	
@@ -6123,11 +6123,11 @@ void WestSp_CAT_WE_320(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 
 //-------------------------------------
 //	
-//	‚¶‚ñ‚Â‚¤‚è‚«
+//	ã˜ã‚“ã¤ã†ã‚Šã
 //	
 //=====================================
 
-// ‚¶‚ñ‚Â‚¤‚è‚«@–hŒä‘¤“®ì
+// ã˜ã‚“ã¤ã†ã‚Šãã€€é˜²å¾¡å´å‹•ä½œ
 enum{
 	WE326_DF_SWITCH,
 	WE326_DF_WAIT,
@@ -6212,11 +6212,11 @@ static void We326DF_BuffSet( TWE326_DF_SYS* wk )
 		end = 192;
 	}
 	
-	// k‚í‚¹‚é‚½‚ß‰ñ“]”¼Œa‚Ì•‚ğ•â³‚·‚éƒ^ƒCƒ~ƒ“ƒO‚ğ
-	// ŒğŒİ‚É•Ï‚¦‚é
+	// éœ‡ã‚ã›ã‚‹ãŸã‚å›è»¢åŠå¾„ã®å¹…ã‚’è£œæ­£ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’
+	// äº¤äº’ã«å¤‰ãˆã‚‹
 	wk->rota_width_ofs_flg *= -1;
 	
-	// sinƒJ[ƒu‚ğì¬•wodth_a‚ÆÀ•W‚™‚ğg—p‚µ‚Ä‰¡ˆÚ“®’l‚ğ‹‚ß‚é
+	// sinã‚«ãƒ¼ãƒ–ã‚’ä½œæˆï¼†wodth_aã¨åº§æ¨™ï½™ã‚’ä½¿ç”¨ã—ã¦æ¨ªç§»å‹•å€¤ã‚’æ±‚ã‚ã‚‹
 	for( i= start; i< end; i++ ){
 
 		if( i & 2 ){
@@ -6229,11 +6229,11 @@ static void We326DF_BuffSet( TWE326_DF_SYS* wk )
 		ofs_x = FX_Mul( FX_SinIdx( rota_num ), width ) >> FX32_SHIFT;
 		ofs_x += ((i - wk->center_y) * wk->width_a) / 10;
 
-		// ’lİ’è
+		// å€¤è¨­å®š
 		now_x = wk->init_num & 0xffff;
 		now_y = wk->init_num >> 16;
 
-		// 1‚Â‘O‚Ìƒoƒbƒtƒ@‚É“ü‚ê‚Ä‚¨‚­
+		// 1ã¤å‰ã®ãƒãƒƒãƒ•ã‚¡ã«å…¥ã‚Œã¦ãŠã
 		in_buff = i - 1;
 		if( in_buff < 0 ){
 			in_buff += 192;
@@ -6280,7 +6280,7 @@ static void We326DF_TCB( TCB_PTR tcb, void* work )
 		GF_BGL_PrioritySet( BT_BGL_FrameGet(wk->we_sys, WES_BF_EFFECT), BT_BGPriorityGet( wk->we_sys, WES_BF_EFFECT ) );
 		GF_BGL_PrioritySet( GF_BGL_FRAME0_M, BT_3DPriorityGet(wk->we_sys) );
 
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒNƒŠƒA
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
 		GF_BGL_ClearCharSet( BT_BGL_FrameGet(wk->we_sys, WES_BF_EFFECT), 0x4000, 0, WeSysHeapAreaGet(wk->we_sys) );
 		GF_BGL_ScrClear( WeSysBGLPointerGet(wk->we_sys) ,BT_BGL_FrameGet(wk->we_sys, WES_BF_EFFECT) );
 		
@@ -6293,9 +6293,9 @@ static void We326DF_TCB( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	_’Ê—Í‚ğ‚¤‚¯‚½ƒGƒtƒFƒNƒg
+ *	@brief	ç¥é€šåŠ›ã‚’ã†ã‘ãŸã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- *	@param	we_sys		‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€
+ *	@param	we_sys		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  */
@@ -6310,7 +6310,7 @@ void WestSp_WE_326DF(WE_SYS_PTR we_sys)
 	wk = WET_ALLOC_MEMORY(we_sys, TWE326_DF_SYS);
 	wk->we_sys	= we_sys;
 	
-	// –hŒä‘¤À•W‚ğæ“¾
+	// é˜²å¾¡å´åº§æ¨™ã‚’å–å¾—
 	wk->ssp = WeSysSoftSpritePointerGet( wk->we_sys, WeSysDFNoGet(we_sys) );
 	ssp_x = SoftSpriteParaGet( wk->ssp, SS_PARA_POS_X );
 	ssp_y = SoftSpriteParaGet( wk->ssp, SS_PARA_POS_Y );
@@ -6331,7 +6331,7 @@ void WestSp_WE_326DF(WE_SYS_PTR we_sys)
 	
 	wk->init_num = WazaTool_GetLasterBuffMatrixData( -ssp_x, -wk->effect_y );
 
-	// ƒ‰ƒXƒ^[ƒVƒXƒeƒ€ì¬
+	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	wk->p_laster = WazaTool_InitDefLaster( 
 			WazaTool_GetLasterBGDestAddr( BT_BGL_BGNoGet(wk->we_sys, WES_BF_EFFECT) ),
 			wk->init_num,
@@ -6341,7 +6341,7 @@ void WestSp_WE_326DF(WE_SYS_PTR we_sys)
 	wk->rota_width_ofs_flg = 1;
 
 
-	// “–‚Ä‚éOBJ‚ÌˆÊ’u‚É‚æ‚èBGpriority‚ğ•ÏX‚·‚é
+	// å½“ã¦ã‚‹OBJã®ä½ç½®ã«ã‚ˆã‚ŠBGpriorityã‚’å¤‰æ›´ã™ã‚‹
 	client_type = WET_ClientTypeGet( wk->we_sys, WeSysDFNoGet(we_sys) );
 	if( (client_type == CLIENT_TYPE_B) || (client_type == CLIENT_TYPE_C) ){
 		GF_BGL_PrioritySet( BT_BGL_FrameGet(wk->we_sys, WES_BF_EFFECT), BT_3DPriorityGet(wk->we_sys) );
@@ -6354,10 +6354,10 @@ void WestSp_WE_326DF(WE_SYS_PTR we_sys)
 
 //-------------------------------------
 //	
-//	‚Ë‚±‚¾‚Ü‚µ
+//	ã­ã“ã ã¾ã—
 //	
 //=====================================
-// wndƒ}ƒXƒN`ƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh
+// wndãƒã‚¹ã‚¯ã€œãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰
 enum{
 	WE252_BACK_MASKFADE_START,
 	WE252_BACK_MASKFADE,
@@ -6388,10 +6388,10 @@ typedef struct {
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚Ë‚±‚¾‚Ü‚µ‚Ì”wŒiƒGƒtƒFƒNƒg
+ *	@brief	ã­ã“ã ã¾ã—ã®èƒŒæ™¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -6411,7 +6411,7 @@ static void We252Back_TCB( TCB_PTR tcb, void* work )
 				0,0,
 				WE252_BACK_MSKFADE_SYNC
 				);
-		// ƒ}ƒXƒNİ’è
+		// ãƒã‚¹ã‚¯è¨­å®š
 		GX_SetVisibleWnd( GX_WNDMASK_W0 );
 		WET_DefaultWndMskSet( 
 				wk->we_sys,
@@ -6427,7 +6427,7 @@ static void We252Back_TCB( TCB_PTR tcb, void* work )
 		if( wk->wait < 0 ){
 
 			PaletteFadeReq(WeSysPFDGet(wk->we_sys), PF_BIT_MAIN_BG, BT_HaikeiFadeBit( wk->we_sys ), WE252_BACK_BRIN_SYNC, 0, 16, 0xffff);
-/*			// ƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh
+/*			// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰
 			ChangeBrightnessRequest(
 					WE252_BACK_BROUT_SYNC,
 					BRIGHTNESS_WHITE,
@@ -6456,12 +6456,12 @@ static void We252Back_TCB( TCB_PTR tcb, void* work )
 		if( PaletteFadeCheck(WeSysPFDGet(wk->we_sys)) == 0 ){
 			wk->seq++;
 
-			// ƒEƒBƒ“ƒhƒEƒ}ƒXƒNOFF
+			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯OFF
 			GX_SetVisibleWnd( GX_WNDMASK_NONE );
 
 			PaletteFadeReq(WeSysPFDGet(wk->we_sys), PF_BIT_MAIN_BG, BT_HaikeiFadeBit( wk->we_sys ), WE252_BACK_BRIN_SYNC, 16, 0, 0xffff);
 			
-			// ƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh
+			// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰
 /*			ChangeBrightnessRequest(
 					WE252_BACK_BRIN_SYNC,
 					BRIGHTNESS_NORMAL,
@@ -6488,9 +6488,9 @@ static void We252Back_TCB( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚Ë‚±‚¾‚Ü‚µ‚ğ‚¤‚¯‚½ƒGƒtƒFƒNƒg
+ *	@brief	ã­ã“ã ã¾ã—ã‚’ã†ã‘ãŸã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- *	@param	we_sys		‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€
+ *	@param	we_sys		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  */
@@ -6569,24 +6569,24 @@ static void WeCat252_DrawCapTcb( TCB_PTR tcb, void* work )
 		
 	case WE252_CAP_END:
 		CATS_ActorPointerDelete_S(wk->cap);
-		// I—¹
+		// çµ‚äº†
 		WEEffect_TCB_Delete(wk->we_sys, tcb);
 		sys_FreeMemoryEz(wk);
 		return;
 	}
 
-	// OAM•`‰æ
+	// OAMæç”»
 	CATS_Draw(wk->crp);	
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒI[ƒgƒAƒjƒ‚ªI‚í‚é‚Ü‚Å•`‰æ
+ * @brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ãŒçµ‚ã‚ã‚‹ã¾ã§æç”»
  *
- *	@param	we_sys	‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ƒ[ƒN
- *	@param	csp		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒVƒXƒeƒ€
- *	@param	crp		ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒXƒVƒXƒeƒ€
- *	@param	cap		ƒZƒ‹ƒAƒNƒ^[ƒc[ƒ‹ƒIƒuƒWƒF
+ *	@param	we_sys	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	csp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	crp		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cap		ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ„ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  */
@@ -6610,7 +6610,7 @@ void WestSp_CAT_WE_252_DrawCap(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR
 
 //-------------------------------------
 //	
-//	ƒ|ƒPƒ‚ƒ“‚ğk‚¦‚³‚¹‚È‚ª‚çŠgk
+//	ãƒã‚±ãƒ¢ãƒ³ã‚’éœ‡ãˆã•ã›ãªãŒã‚‰æ‹¡ç¸®
 //	
 //=====================================
 enum{
@@ -6638,11 +6638,11 @@ typedef struct {
 	WE_SYS_PTR we_sys;
 	int seq;
 
-	s16 dy;			// ¡‚Ìƒ|ƒWƒVƒ‡ƒ“
-	s16 dx;			// ¡‚Ìƒ|ƒWƒVƒ‡ƒ“
-	s16 poke_h;		// ƒ|ƒPƒ‚ƒ“‚Ì‚‚³
+	s16 dy;			// ä»Šã®ãƒã‚¸ã‚·ãƒ§ãƒ³
+	s16 dx;			// ä»Šã®ãƒã‚¸ã‚·ãƒ§ãƒ³
+	s16 poke_h;		// ãƒã‚±ãƒ¢ãƒ³ã®é«˜ã•
 
-	// ƒ|ƒPƒ‚ƒ“
+	// ãƒã‚±ãƒ¢ãƒ³
 	SOFT_SPRITE*	ssp;
 	WAZATOOL_CALCMOVE	ssp_scale;
 	WAZATOOL_CALCMOVE	ssp_shak;
@@ -6652,8 +6652,8 @@ typedef struct {
 	int scale_sy;
 	int scale_ey;
 	int scale_d;
-	int scale_num;		// L‚Ñ‚Äk‚Ş‚ğ‚P‚Æ‚µ‚½‰ñ”
-	int scale_sync;		// L‚Ñ‚Äk‚Ş‚É‚P‰ñ‚Ì‚µ‚ñ‚­”
+	int scale_num;		// ä¼¸ã³ã¦ç¸®ã‚€ã‚’ï¼‘ã¨ã—ãŸå›æ•°
+	int scale_sync;		// ä¼¸ã³ã¦ç¸®ã‚€ã«ï¼‘å›ã®ã—ã‚“ãæ•°
 } TWE252_POKE_SSP_SCALE_UPDOWN;
 
 static void We252SSPPokeScaleUpDownTCB( TCB_PTR tcb, void* work )
@@ -6721,11 +6721,11 @@ static void We252SSPPokeScaleUpDownTCB( TCB_PTR tcb, void* work )
 				wk->ssp,
 				wk->dy, wk->poke_h,
 				wk->ssp_scale.work[4], WAZAEFF_OFS_MODE_BOTTOM);//*/
-		// Šgk’l‚ğİ’è
+		// æ‹¡ç¸®å€¤ã‚’è¨­å®š
 		if( check == FALSE ){
 			wk->scale_num --;
 			if( wk->scale_num <= 0 ){
-				// I—¹
+				// çµ‚äº†
 				wk->seq++;
 			}else{
 				wk->seq = WE252_POKE_SSP_SCALEUP_INIT;
@@ -6749,9 +6749,9 @@ static void We252SSPPokeScaleUpDownTCB( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	POKE_SSP ‚ğL‚Ñk‚İ‚³‚¹‚é	
+ *	@brief	POKE_SSP ã‚’ä¼¸ã³ç¸®ã¿ã•ã›ã‚‹	
  *
- *	@param	we_sys		‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€
+ *	@param	we_sys		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  */
@@ -6765,7 +6765,7 @@ void WestSp_WE_252SSPPoke(WE_SYS_PTR we_sys)
 
 	wk->poke_h	= WeSysPokeOfsGet(wk->we_sys, WeSysDFNoGet(wk->we_sys));
 
-	// ƒ|ƒPƒ‚ƒ“æ“¾
+	// ãƒã‚±ãƒ¢ãƒ³å–å¾—
 	wk->ssp = WeSysSoftSpritePointerGet(wk->we_sys, WeSysDFNoGet(wk->we_sys));
 	wk->dy = SoftSpriteParaGet( wk->ssp, SS_PARA_POS_Y );
 	wk->dx = SoftSpriteParaGet( wk->ssp, SS_PARA_POS_X );
@@ -6794,7 +6794,7 @@ void WestSp_WE_252SSPPoke(WE_SYS_PTR we_sys)
 
 //-------------------------------------
 //	
-//	ƒƒKƒz[ƒ“
+//	ãƒ¡ã‚¬ãƒ›ãƒ¼ãƒ³
 //	
 //=====================================
 
@@ -6828,9 +6828,9 @@ static void We_224TCB( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒƒKƒz[ƒ““®ìƒ^ƒXƒN“o˜^
+ *	@brief	ãƒ¡ã‚¬ãƒ›ãƒ¼ãƒ³å‹•ä½œã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys		‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€
+ *	@param	we_sys		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  */
@@ -6846,7 +6846,7 @@ void WestSp_WE_224(WE_SYS_PTR we_sys)
 	wk->we_sys	= we_sys;
 	wk->crp		= WeSysCrpGet( we_sys );
 
-	// capæ“¾
+	// capå–å¾—
 	at_client = WeSysATNoGet( we_sys );
 	if( WET_SideCheck( we_sys, at_client ) == SIDE_MINE ){
 		wk->cap = WeSysOamCapGet( we_sys, 0 );
@@ -6858,18 +6858,18 @@ void WestSp_WE_224(WE_SYS_PTR we_sys)
 		CATS_ActorPointerDelete_S( WeSysOamCapGet( we_sys, 0 ) );
 	}
 
-	// •ûŒüƒxƒNƒgƒ‹æ“¾
+	// æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«å–å¾—
 	vec_x = WazaTool_VecChangeX( we_sys, at_client );
 	vec_y = WazaTool_VecChangeY( we_sys, at_client );
 
-	// ƒƒKƒz[ƒ“À•Wİ’è
+	// ãƒ¡ã‚¬ãƒ›ãƒ¼ãƒ³åº§æ¨™è¨­å®š
 	cap_x = GetWazaEffPos( we_sys, at_client, PM_X );
 	cap_y = GetWazaEffPos( we_sys, at_client, PM_Y );
 	cap_x += MEGAHOON_POS_X_OFS * vec_x;
 	cap_y += MEGAHOON_POS_Y_OFS * vec_y;
 	CATS_ObjectPosSetCap( wk->cap, cap_x, cap_y );
 
-	// ƒƒKƒz[ƒ““®ìİ’è
+	// ãƒ¡ã‚¬ãƒ›ãƒ¼ãƒ³å‹•ä½œè¨­å®š
 	WazaTool_InitStraightSyncFx(
 			&wk->cap_move,
 			cap_x, cap_x + (MEGAHOON_MOVE_X * vec_x),
@@ -6882,14 +6882,14 @@ void WestSp_WE_224(WE_SYS_PTR we_sys)
 }
 
 
-// UŒ‚‘¤“®ì
+// æ”»æ’ƒå´å‹•ä½œ
 enum{
 	WE224AT_SHAKE_INIT,
 	WE224AT_SHAKE,
-	WE224AT_MOVE1,		// “G‚Ì‚Ù‚¤‚ÉˆÚ“®
-	WE224AT_WAIT,		// ‘Ò‹@
-	WE224AT_MOVE2,		// –ß‚é
-	WE224AT_END,		// I—¹
+	WE224AT_MOVE1,		// æ•µã®ã»ã†ã«ç§»å‹•
+	WE224AT_WAIT,		// å¾…æ©Ÿ
+	WE224AT_MOVE2,		// æˆ»ã‚‹
+	WE224AT_END,		// çµ‚äº†
 };
 #define WE224AT_SHAKE_X		( 4 )
 #define WE224AT_SHAKE_NUM	( 4 )
@@ -6908,7 +6908,7 @@ typedef struct{
 	int vec_x;
 	int vec_y;
 
-	// ƒ|ƒPƒ‚ƒ“
+	// ãƒã‚±ãƒ¢ãƒ³
 	SOFT_SPRITE*	ssp;
 	s16				ssp_x;
 	s16				ssp_y;
@@ -6920,7 +6920,7 @@ typedef struct{
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	UŒ‚‘¤“®ì
+ *	@brief	æ”»æ’ƒå´å‹•ä½œ
  *
  *	@param	tcb		
  *	@param	work 
@@ -6950,7 +6950,7 @@ static void We_224ATTCB( TCB_PTR tcb, void* work )
 		if( WazaTool_CalcAndReflectShakeSsp( &wk->ssp_shake, wk->ssp_x, wk->ssp_y, wk->ssp ) == FALSE ){
 			wk->seq++;
 
-			// ’¼üˆÚ“®İ’è
+			// ç›´ç·šç§»å‹•è¨­å®š
 			WazaTool_InitStraightSyncFx(
 					&wk->ssp_move,
 					wk->ssp_x, wk->ssp_x + (WE224AT_MOVE_X * wk->vec_x),
@@ -6960,19 +6960,19 @@ static void We_224ATTCB( TCB_PTR tcb, void* work )
 		}
 		break;
 		
-	case WE224AT_MOVE1:		// “G‚Ì‚Ù‚¤‚ÉˆÚ“®
+	case WE224AT_MOVE1:		// æ•µã®ã»ã†ã«ç§»å‹•
 		if( WazaTool_CalcAndReflectStraightFxSsp( &wk->ssp_move, wk->ssp ) == FALSE ){
 			wk->seq++;
 			wk->wait = WE224AT_WAIT_NUM;
 		}
 		break;
 		
-	case WE224AT_WAIT:		// ‘Ò‹@
+	case WE224AT_WAIT:		// å¾…æ©Ÿ
 		wk->wait --;
 		if( wk->wait < 0 ){
 			wk->seq++;
 
-			// ’¼üˆÚ“®İ’è
+			// ç›´ç·šç§»å‹•è¨­å®š
 			WazaTool_InitStraightSyncFx(
 					&wk->ssp_move,
 					wk->ssp_x + (WE224AT_MOVE_X * wk->vec_x), wk->ssp_x, 
@@ -6982,13 +6982,13 @@ static void We_224ATTCB( TCB_PTR tcb, void* work )
 		}
 		break;
 		
-	case WE224AT_MOVE2:		// –ß‚é
+	case WE224AT_MOVE2:		// æˆ»ã‚‹
 		if( WazaTool_CalcAndReflectStraightFxSsp( &wk->ssp_move, wk->ssp ) == FALSE ){
 			wk->seq++;
 		}
 		break;
 		
-	case WE224AT_END:		// I—¹
+	case WE224AT_END:		// çµ‚äº†
 		SoftSpriteParaSet( wk->ssp, SS_PARA_POS_X, wk->ssp_x );
 		SoftSpriteParaSet( wk->ssp, SS_PARA_POS_Y, wk->ssp_y );
 		
@@ -7001,9 +7001,9 @@ static void We_224ATTCB( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒƒKƒz[ƒ“UŒ‚‘¤“®ìƒ^ƒXƒN“o˜^
+ *	@brief	ãƒ¡ã‚¬ãƒ›ãƒ¼ãƒ³æ”»æ’ƒå´å‹•ä½œã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys		‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€
+ *	@param	we_sys		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  */
@@ -7016,13 +7016,13 @@ void WestSp_WE_224AT(WE_SYS_PTR we_sys)
 	wk = WET_ALLOC_MEMORY(we_sys, TWE224AT_SYS);
 	wk->we_sys	= we_sys;
 
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ì¬
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	at_client = WeSysATNoGet( we_sys );
 	wk->ssp = WeSysSoftSpritePointerGet( we_sys, at_client );
 	wk->ssp_x = SoftSpriteParaGet( wk->ssp, SS_PARA_POS_X );
 	wk->ssp_y = SoftSpriteParaGet( wk->ssp, SS_PARA_POS_Y );
 
-	// •ûŒüƒxƒNƒgƒ‹æ“¾
+	// æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«å–å¾—
 	wk->vec_x = WazaTool_VecChangeX( we_sys, at_client );
 	wk->vec_y = WazaTool_VecChangeY( we_sys, at_client );
 
@@ -7031,7 +7031,7 @@ void WestSp_WE_224AT(WE_SYS_PTR we_sys)
 }
 
 
-// –hŒä‘¤“®ì
+// é˜²å¾¡å´å‹•ä½œ
 enum{
 	WE224DF_MOVE1_INIT,
 	WE224DF_MOVE1,
@@ -7053,7 +7053,7 @@ typedef struct{
 	int vec_x;
 	int vec_y;
 
-	// ƒ|ƒPƒ‚ƒ“
+	// ãƒã‚±ãƒ¢ãƒ³
 	SOFT_SPRITE*	ssp;
 	s16				ssp_x;
 	s16				ssp_y;
@@ -7065,7 +7065,7 @@ typedef struct{
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	UŒ‚‘¤“®ì
+ *	@brief	æ”»æ’ƒå´å‹•ä½œ
  *
  *	@param	tcb		
  *	@param	work 
@@ -7082,7 +7082,7 @@ static void We_224DFTCB( TCB_PTR tcb, void* work )
 
 	switch( wk->seq ){
 	case WE224DF_MOVE1_INIT:
-		// ’¼üˆÚ“®İ’è
+		// ç›´ç·šç§»å‹•è¨­å®š
 		WazaTool_InitStraightSyncFx(
 				&wk->ssp_move,
 				wk->ssp_x, wk->ssp_x + (WE224DF_MOVE_X * wk->vec_x),
@@ -7093,7 +7093,7 @@ static void We_224DFTCB( TCB_PTR tcb, void* work )
 		break;
 		
 		
-	case WE224DF_MOVE1:		// “G‚Ì‚Ù‚¤‚ÉˆÚ“®
+	case WE224DF_MOVE1:		// æ•µã®ã»ã†ã«ç§»å‹•
 		if( WazaTool_CalcAndReflectStraightFxSsp( &wk->ssp_move, wk->ssp ) == FALSE ){
 			wk->seq++;
 			WazaTool_InitShake(
@@ -7112,7 +7112,7 @@ static void We_224DFTCB( TCB_PTR tcb, void* work )
 		if( WazaTool_CalcAndReflectShakeSsp( &wk->ssp_shake, x, y, wk->ssp ) == FALSE ){
 			wk->seq++;
 
-			// ’¼üˆÚ“®İ’è
+			// ç›´ç·šç§»å‹•è¨­å®š
 			WazaTool_InitStraightSyncFx(
 					&wk->ssp_move,
 					wk->ssp_x + (WE224DF_MOVE_X * wk->vec_x), wk->ssp_x, 
@@ -7123,13 +7123,13 @@ static void We_224DFTCB( TCB_PTR tcb, void* work )
 		}
 		break;
 		
-	case WE224DF_MOVE2:		// –ß‚é
+	case WE224DF_MOVE2:		// æˆ»ã‚‹
 		if( WazaTool_CalcAndReflectStraightFxSsp( &wk->ssp_move, wk->ssp ) == FALSE ){
 			wk->seq++;
 		}
 		break;
 		
-	case WE224DF_END:		// I—¹
+	case WE224DF_END:		// çµ‚äº†
 		SoftSpriteParaSet( wk->ssp, SS_PARA_POS_X, wk->ssp_x );
 		SoftSpriteParaSet( wk->ssp, SS_PARA_POS_Y, wk->ssp_y );
 		
@@ -7142,9 +7142,9 @@ static void We_224DFTCB( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒƒKƒz[ƒ“UŒ‚‘¤“®ìƒ^ƒXƒN“o˜^
+ *	@brief	ãƒ¡ã‚¬ãƒ›ãƒ¼ãƒ³æ”»æ’ƒå´å‹•ä½œã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- *	@param	we_sys		‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€
+ *	@param	we_sys		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  */
@@ -7157,13 +7157,13 @@ void WestSp_WE_224DF(WE_SYS_PTR we_sys)
 	wk = WET_ALLOC_MEMORY(we_sys, TWE224DF_SYS);
 	wk->we_sys	= we_sys;
 
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ì¬
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	at_client = WeSysDFNoGet( we_sys );
 	wk->ssp = WeSysSoftSpritePointerGet( we_sys, at_client );
 	wk->ssp_x = SoftSpriteParaGet( wk->ssp, SS_PARA_POS_X );
 	wk->ssp_y = SoftSpriteParaGet( wk->ssp, SS_PARA_POS_Y );
 
-	// •ûŒüƒxƒNƒgƒ‹æ“¾
+	// æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«å–å¾—
 	wk->vec_x = WazaTool_VecChangeX( we_sys, at_client );
 	wk->vec_y = WazaTool_VecChangeY( we_sys, at_client );
 

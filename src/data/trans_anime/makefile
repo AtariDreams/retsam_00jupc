@@ -1,6 +1,6 @@
 #----------------------------------------------------------------------------
 #
-#	�t�B�[���h�]���A�j���e�N�X�`���pMakefile
+#	フィールド転送アニメテクスチャ用Makefile
 #
 #	2007.04.17
 #	AkitoMori GAME FREAK inc.
@@ -12,9 +12,9 @@ OUTPUT_ARC_NAME    = fldtanime.narc
 TRANS_ANIME_DATA   = tanime.bin
 ARC		   = nnsarc
 
-#�����t�H���_����imd�͑S�ăR���o�[�g�Ώۂ�
-#�������A�R���o�[�g���Ă�xls�t�@�C���Ƀ��X�g�őΏۂɓ����Ă��Ȃ���
-#�A�[�J�C�u�ɂ͊܂܂�܂���B
+#同じフォルダ内のimdは全てコンバート対象に
+#ただし、コンバートしてもxlsファイルにリストで対象に入っていないと
+#アーカイブには含まれません。
 SRC      	   = $(wildcard *.imd)
 TEXTURES 	   = $(SRC:.imd=.nsbtx)
 LIST_TXT   	   = $(LIST_FILE:.xls=.txt)
@@ -22,22 +22,22 @@ OUTPUT_SCRIPT_NAME = $(OUTPUT_ARC_NAME:.narc=.scr)
 OUTPUT_NAIX_NAME   = $(OUTPUT_ARC_NAME:.narc=.naix)
 
 
-# --------�ˑ�����g���q------------
+# --------依存する拡張子------------
 .SUFFIXES: .narc .nsbtx .imd .xls
 
 
-# --------�ŏI�t�@�C��------------
+# --------最終ファイル------------
 build: $(OUTPUT_ARC_NAME)
 
-# --------�G�N�Z���t�@�C����csv�t�@�C��------------
+# --------エクセルファイル→csvファイル------------
 $(LIST_TXT): $(LIST_FILE)
 	$(EXCELLCONV)  -p 1 -s csv $(LIST_FILE)
 
-# --------imd��nsbmd���[���̋L�q------------
+# --------imd→nsbmdルールの記述------------
 .imd.nsbtx :
 	g3dcvtr $< -o $@ -etex
 
-# --------�ŏI�t�@�C���i�A�[�J�C�u�f�[�^�j�̐���------------
+# --------最終ファイル（アーカイブデータ）の生成------------
 $(OUTPUT_ARC_NAME): $(LIST_TXT) $(TEXTURES)
 	ruby transanime.rb $(LIST_TXT) $(TRANS_ANIME_DATA) $(OUTPUT_SCRIPT_NAME)
 	$(ARC) -c -i -n $(OUTPUT_ARC_NAME) -S $(OUTPUT_SCRIPT_NAME)
@@ -49,7 +49,7 @@ all:
 	$(MAKE) clean
 	$(MAKE)
 
-# --------�r���f�[�^�S�폜------------
+# --------途中データ全削除------------
 clean:
 	-rm *.nsbtx
 	-rm *.txt

@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.8  2005/03/29 00:59:03  yasu
-  PATCH ƒtƒB[ƒ‹ƒh‚Ì”p~
+  PATCH ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®å»ƒæ­¢
 
   Revision 1.7  2005/02/28 05:26:24  yosizaki
   do-indent.
@@ -62,14 +62,14 @@ tFormat;
 typedef struct
 {
     u8      reserve[32];               // 
-    u32     rom_offset;                // “]‘—Œ³ ROM ƒIƒtƒZƒbƒg
-    u32     entry_address;             // ÀsŠJnƒAƒhƒŒƒX
-    u32     ram_address;               // “]‘—æ RAM ƒAƒhƒŒƒX
-    u32     size;                      // “]‘—ƒTƒCƒY
+    u32     rom_offset;                // è»¢é€å…ƒ ROM ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+    u32     entry_address;             // å®Ÿè¡Œé–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+    u32     ram_address;               // è»¢é€å…ˆ RAM ã‚¢ãƒ‰ãƒ¬ã‚¹
+    u32     size;                      // è»¢é€ã‚µã‚¤ã‚º
 }
 tRomHeader;
 
-#define ROMOFFSET_MODULE9       0x00000020      // ARM9 í’“ƒ‚ƒWƒ…[ƒ‹î•ñ—Ìˆæ
+#define ROMOFFSET_MODULE9       0x00000020      // ARM9 å¸¸é§ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«æƒ…å ±é ˜åŸŸ
 
 typedef struct
 {
@@ -132,16 +132,16 @@ int main(int argc, char *argv[])
     }
 
     //
-    // ROM ƒtƒ@ƒCƒ‹‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ì”»’è
-    //          ‚±‚±‚Å‚ÍÀsŠJnƒAƒhƒŒƒX‚Æ“]‘—æ RAM ƒAƒhƒŒƒX‚ª
-    //          0x02000000-0x027fffff ‚ÌŠÔ‚Å‚ ‚é‚©”»’è‚µ‚Ä‚¢‚éD
+    // ROM ãƒ•ã‚¡ã‚¤ãƒ«ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®š
+    //          ã“ã“ã§ã¯å®Ÿè¡Œé–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨è»¢é€å…ˆ RAM ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒ
+    //          0x02000000-0x027fffff ã®é–“ã§ã‚ã‚‹ã‹åˆ¤å®šã—ã¦ã„ã‚‹ï¼
     //
     if ((romHeader.ram_address & 0xff800000) != 0x02000000 ||
         (romHeader.entry_address & 0xff800000) != 0x02000000)
     {
         //
-        // ROM ƒtƒ@ƒCƒ‹‚Å‚È‚¯‚ê‚Î ROM ƒwƒbƒ_î•ñ‚Í”jŠü(0ƒNƒŠƒA)‚µA
-        // ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^‚ğæ“ª‚É–ß‚·
+        // ROM ãƒ•ã‚¡ã‚¤ãƒ«ã§ãªã‘ã‚Œã° ROM ãƒ˜ãƒƒãƒ€æƒ…å ±ã¯ç ´æ£„(0ã‚¯ãƒªã‚¢)ã—ã€
+        // ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‚’å…ˆé ­ã«æˆ»ã™
         //
         (void)memset(&romHeader, 0, sizeof(tRomHeader));
         rewind(fp);
@@ -153,11 +153,11 @@ int main(int argc, char *argv[])
     while (1 == fread(buffer, sizeof(u32), 1, fp))
     {
         //
-        // ROM ã‚Å
+        // ROM ä¸Šã§
         //      buffer[2] versionInfo
         //      buffer[1] magicCodeBE
         //      buffer[0] magicCodeLE
-        // ‚Ì‡‚É magicCode ‚ª•À‚ñ‚Å‚¢‚é‚Ì‚ğ”»’è‚µAversionInfo ‚ğ•\¦‚·‚é
+        // ã®é †ã« magicCode ãŒä¸¦ã‚“ã§ã„ã‚‹ã®ã‚’åˆ¤å®šã—ã€versionInfo ã‚’è¡¨ç¤ºã™ã‚‹
         //
         if (buffer[1] == magicCodeBE && buffer[0] == magicCodeLE)
         {
@@ -170,10 +170,10 @@ int main(int argc, char *argv[])
             v.relnumber_major = relnumber / 100;
             v.relnumber_minor = relnumber % 100;
 
-            switch (v.relstep / 100)   // ‰º3Œ…‚Ì”»’è
+            switch (v.relstep / 100)   // ä¸‹3æ¡ã®åˆ¤å®š
             {
                 //
-                // “Áê‚È”Ô†‚Ì”»’è
+                // ç‰¹æ®Šãªç•ªå·ã®åˆ¤å®š
                 //
             case RELSTEP_PR6:
                 if (v.relnumber_minor == 50)
@@ -203,7 +203,7 @@ int main(int argc, char *argv[])
             default:
 
                 //
-                // ’Êí‚Ì”Ô†‚Ì”»’è(”š‚ªŒã’u‚³‚ê‚é‚à‚Ì)
+                // é€šå¸¸ã®ç•ªå·ã®åˆ¤å®š(æ•°å­—ãŒå¾Œç½®ã•ã‚Œã‚‹ã‚‚ã®)
                 //
                 switch (v.relclass)
                 {
@@ -229,7 +229,7 @@ int main(int argc, char *argv[])
             printf("NITRO-SDK VERSION: %d.%02d", v.major, v.minor);
 
             //
-            // ƒŠƒŠ[ƒXƒNƒ‰ƒX–¼(test/PR/RC e.t.c.) ‚Ì•\¦
+            // ãƒªãƒªãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹å(test/PR/RC e.t.c.) ã®è¡¨ç¤º
             //
             if (v.relname)
             {
@@ -255,7 +255,7 @@ int main(int argc, char *argv[])
             }
 
             //
-            // í’“—Ìˆæ“à‚©‚Ç‚¤‚©‚Ì”»’è
+            // å¸¸é§é ˜åŸŸå†…ã‹ã©ã†ã‹ã®åˆ¤å®š
             //
             if ((u32)ftell(fp) - romHeader.rom_offset < romHeader.size)
             {
@@ -270,7 +270,7 @@ int main(int argc, char *argv[])
     fclose(fp);
 
     //
-    // ’l‚Ìİ’è‚ª–³‚©‚Á‚½‚Æ‚«‚ÌƒƒbƒZ[ƒW
+    // å€¤ã®è¨­å®šãŒç„¡ã‹ã£ãŸã¨ãã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
     //
     if (v.major == 0)
     {

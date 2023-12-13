@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndWaveOutSetVolume</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndWaveOutSetVolume</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndWaveOutSetVolume(
@@ -19,7 +19,7 @@
         int <var>volume</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDADMWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -27,11 +27,11 @@
 <tbody>
 <tr>
 <td><em><strong><code>handle</code></strong></em></td>
-<td>�g�`�Đ��n���h���ł��B</td>
+<td>波形再生ハンドルです。</td>
 </tr>
 <tr>
 <td><em><strong><code>volume</code></strong></em></td>
-<td>�{�����[���l�ł��B�l�͈̔͂́A0�`127�ł��B</td>
+<td>ボリューム値です。値の範囲は、0〜127です。</td>
 </tr>
 </tbody>
 </table>
@@ -39,27 +39,27 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAZMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAANWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�g�`�Đ��̃{�����[����ύX���܂��B
-���łɒ�~���̔g�`�Đ��n���h��<em><strong><code>handle</code></strong></em>�ɑ΂��A���̊֐����Ăт����Ă��������܂���B
+波形再生のボリュームを変更します。
+すでに停止中の波形再生ハンドル<em><strong><code>handle</code></strong></em>に対し、この関数を呼びだしても何もしません。
 </p>
       <p>
-���̊֐��́A�Đ����Ƀ{�����[����ύX���邽�߂ɌĂт����܂��B
-�Đ��J�n���̃{�����[����ݒ肵�����ꍇ�́A
-<tt class="function"><a href="NNS_SndWaveOutStart.html">NNS_SndWaveOutStart</a></tt>�֐�
-�̈����Őݒ肵�Ă��������B
+この関数は、再生中にボリュームを変更するために呼びだします。
+再生開始時のボリュームを設定したい場合は、
+<tt class="function"><a href="NNS_SndWaveOutStart.html">NNS_SndWaveOutStart</a></tt>関数
+の引数で設定してください。
 </p>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndWaveOutStart.html">NNS_SndWaveOutStart</a></p>
-<h2>����</h2>
-<p>2004/10/19 �Ăяo�����̒��ӏ����ǉ�<br>2004/07/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/10/19 呼び出し方の注意書き追加<br>2004/07/01 初版<br></p>
 </div>
 </body>
 </html>

@@ -26,33 +26,33 @@ NNSGfdFuncFreePlttVram  NNS_GfdDefaultFuncFreePlttVram  = FreePlttVram_;
 /*---------------------------------------------------------------------------*
   Name:         AllocPlttVram_
 
-  Description:  ƒƒ‚ƒŠŠm•Û‚Ìƒ_ƒ~[ŠÖ”BƒfƒtƒHƒ‹ƒg‚Ìƒƒ‚ƒŠŠm•ÛŠÖ”‚ª“o˜^‚³‚ê
-  				‚Ä‚¢‚È‚¢ŽžA‚±‚ÌŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªç¢ºä¿ã®ãƒ€ãƒŸãƒ¼é–¢æ•°ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°ãŒç™»éŒ²ã•ã‚Œ
+  				ã¦ã„ãªã„æ™‚ã€ã“ã®é–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã™ã€‚
                  
-  Arguments:   szByte           :  ƒTƒCƒY
-               bPltt4           :  4FƒeƒNƒXƒ`ƒƒ‚©H
-               bAllocFromHead   :  —Ìˆææ“ªi‰ºˆÊj‚©‚çŠm•Û‚·‚é‚©H
+  Arguments:   szByte           :  ã‚µã‚¤ã‚º
+               bPltt4           :  4è‰²ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ï¼Ÿ
+               bAllocFromHead   :  é ˜åŸŸå…ˆé ­ï¼ˆä¸‹ä½ï¼‰ã‹ã‚‰ç¢ºä¿ã™ã‚‹ã‹ï¼Ÿ
                             
-  Returns:     ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒL[
+  Returns:     ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  *---------------------------------------------------------------------------*/
 static NNSGfdPlttKey
 AllocPlttVram_( u32 /* szByte */, BOOL /* b4Pltt */, u32 /* bAllocFromLo */ )
 {
     NNS_GFD_WARNING("no default AllocPlttVram function.");
 
-    // ƒGƒ‰[FƒGƒ‰[‚ð•\Œ»‚·‚éPlttKey‚ð‚©‚¦‚·
+    // ã‚¨ãƒ©ãƒ¼ï¼šã‚¨ãƒ©ãƒ¼ã‚’è¡¨ç¾ã™ã‚‹PlttKeyã‚’ã‹ãˆã™
     return NNS_GFD_ALLOC_ERROR_PLTTKEY;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         FreePlttTexVram_
 
-  Description:  ƒƒ‚ƒŠŠJ•ú‚Ìƒ_ƒ~[ŠÖ”BƒfƒtƒHƒ‹ƒg‚Ìƒƒ‚ƒŠ‰ð•úŠÖ”‚ª“o˜^‚³‚ê
-  				‚Ä‚¢‚È‚¢ŽžA‚±‚ÌŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªé–‹æ”¾ã®ãƒ€ãƒŸãƒ¼é–¢æ•°ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ¡ãƒ¢ãƒªè§£æ”¾é–¢æ•°ãŒç™»éŒ²ã•ã‚Œ
+  				ã¦ã„ãªã„æ™‚ã€ã“ã®é–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã™ã€‚
                  
-  Arguments:   plttKey          :   ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒL[
+  Arguments:   plttKey          :   ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
                             
-  Returns:     ¬”Ûi0 ‚È‚ç‚Î ¬Œ÷)
+  Returns:     æˆå¦ï¼ˆ0 ãªã‚‰ã° æˆåŠŸ)
  *---------------------------------------------------------------------------*/
 static int
 FreePlttVram_( NNSGfdPlttKey /* plttKey */ )

@@ -1,7 +1,7 @@
 #ifndef _D34R0108_DEF_H_
 #define _D34R0108_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D34R0108_FLAG_CHANGE		(1)
 #define	SCRID_D34R0108_SIRONA00		(2)
 #define	SCRID_D34R0108_SIRONA01		(3)
@@ -10,6 +10,6 @@
 #define	SCRID_D34R0108_FALLROCK_YUKU		(6)
 #define	SCRID_D34R0108_FALLROCK_AGU		(7)
 #define	SCRID_D34R0108_HOLE_MSG		(8)
-#define	SCRID_D34R0108_DATA_MAX		(8)		//最大数
+#define	SCRID_D34R0108_DATA_MAX		(8)		//譛螟ｧ謨ｰ
 
 #endif //_D34R0108_DEF_H_

@@ -18,10 +18,10 @@
   do-indent.
 
   Revision 1.68  2005/02/09 09:18:47  terui
-  ARM9‚É‚¨‚¯‚é‰Šú‰»‚ÉVRAM‚Ì”r‘¼§Œä‚ğ‰Šú‰»‚·‚é‹@”\‚ğ’Ç‰ÁB
+  ARM9ã«ãŠã‘ã‚‹åˆæœŸåŒ–æ™‚ã«VRAMã®æ’ä»–åˆ¶å¾¡ã‚’åˆæœŸåŒ–ã™ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã€‚
 
   Revision 1.67  2004/12/27 04:45:24  takano_makoto
-  ƒŒƒWƒXƒ^‚ÌGetterŠÖ”‚ğ’Ç‰Á
+  ãƒ¬ã‚¸ã‚¹ã‚¿ã®Getteré–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.66  2004/10/21 13:43:21  yasu
   Change GX_SetVCounterEqVal->GX_SetVCountEqVal
@@ -45,20 +45,20 @@
   revise GX_SetGraphicsMode to write bgMode and bg0_2d3d always.
 
   Revision 1.59  2004/07/28 12:23:37  takano_makoto
-  ASSERT‚Ì’Ç‰Á
+  ASSERTã®è¿½åŠ 
 
   Revision 1.57  2004/06/03 08:31:55  yasu
   Add re-initializing guard on TEG vcount workaround
 
   Revision 1.56  2004/06/02 12:36:01  takano_makoto
-  REG_POWCNT‚ÌLCDƒZƒŒƒNƒgƒŒƒWƒXƒ^‚Ì‰Šú’l‚ğ1‚Ö•ÏX
+  REG_POWCNTã®LCDã‚»ãƒ¬ã‚¯ãƒˆãƒ¬ã‚¸ã‚¹ã‚¿ã®åˆæœŸå€¤ã‚’1ã¸å¤‰æ›´
 
   Revision 1.55  2004/03/17 07:27:18  yasu
   do sdk_indent
 
   Revision 1.54  2004/03/08 05:37:18  yada
-  VCOUNT190-203‚ÌworkAround‚Ì
-  üŠúVCount‚Ì’x‰„‹–—e”ÍˆÍ‚ğİ’è‚µ‚½B
+  VCOUNT190-203ã®workAroundã®
+  å‘¨æœŸVCountã®é…å»¶è¨±å®¹ç¯„å›²ã‚’è¨­å®šã—ãŸã€‚
 
   Revision 1.53  2004/02/24 05:26:32  yasu
   Enable WA for TEG vblank problem

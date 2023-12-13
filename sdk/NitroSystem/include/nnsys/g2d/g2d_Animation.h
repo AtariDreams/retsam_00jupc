@@ -26,8 +26,8 @@ extern "C" {
 
 
 //
-// �������s�����֐��̕ʖ�
-// �݊����ێ��̂��ߕʖ��Ƃ��ĈȑO�̊֐���錾���܂��B
+// 改名を行った関数の別名
+// 互換性維持のため別名として以前の関数を宣言します。
 // 
 #define NNS_G2dGetCurrentElement               NNS_G2dGetAnimCtrlCurrentElement
 #define NNS_G2dGetNextElement                  NNS_G2dGetAnimCtrlNextElement
@@ -57,9 +57,9 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dAnimFrame
 
-  Description:  �A�j���[�V�������̂ւ̃|�C���^�ƁA�\���t���[�����̃y�A�ł�
-                �A�j���[�V�����̍ŏ��P�ʂł��B
-                ������Frame��NNSG2dAnimSequence���`�����܂��B
+  Description:  アニメーション実体へのポインタと、表示フレーム数のペアです
+                アニメーションの最小単位です。
+                複数個のFrame列がNNSG2dAnimSequenceを形成します。
                 
  *---------------------------------------------------------------------------*/
 typedef NNSG2dAnimFrameData NNSG2dAnimFrame;
@@ -68,9 +68,9 @@ typedef NNSG2dAnimFrameData NNSG2dAnimFrame;
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dAnimSequence
 
-  Description:  ��A�̃A�j���[�V�����f�[�^������킵�܂��B
-                ������Frame��������܂�
-                Sequence���ł� ���ׂĂ� NNSG2dAnimFrame �� ����NNSG2dAnimationType�������܂��B
+  Description:  一連のアニメーションデータをあらわします。
+                複数個のFrame列を持ちます
+                Sequence内では すべての NNSG2dAnimFrame が 同一NNSG2dAnimationTypeを持ちます。
                 
  *---------------------------------------------------------------------------*/
 typedef NNSG2dAnimSequenceData NNSG2dAnimSequence;
@@ -78,7 +78,7 @@ typedef NNSG2dAnimSequenceData NNSG2dAnimSequence;
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dAnmCallBackPtr
 
-  Description:  �A�j���[�V���� �R�[���o�b�N
+  Description:  アニメーション コールバック
                 
  *---------------------------------------------------------------------------*/
 // data = NNSG2dAnimCallBackFunctor.param
@@ -89,15 +89,15 @@ typedef void (*NNSG2dAnmCallBackPtr)( u32 data, fx32 currentFrame );
   
   Name:         NNSG2dAnmCallbackType
 
-  Description:  �A�j���[�V���� �R�[���o�b�N �̎��
+  Description:  アニメーション コールバック の種類
                 
  *---------------------------------------------------------------------------*/
 typedef enum NNSG2dAnmCallbackType
 {    
     NNS_G2D_ANMCALLBACKTYPE_NONE = 0,  
-    NNS_G2D_ANMCALLBACKTYPE_LAST_FRM,  // �A�j���[�V�����V�[�P���X�̍ŏI�t���[���I�����ɂ�т���
-    NNS_G2D_ANMCALLBACKTYPE_SPEC_FRM,  // �w��t���[���̍Đ����ɌĂт����B
-    NNS_G2D_ANMCALLBACKTYPE_EVER_FRM,  // ���t���[���Ăяo���B
+    NNS_G2D_ANMCALLBACKTYPE_LAST_FRM,  // アニメーションシーケンスの最終フレーム終了時によびだす
+    NNS_G2D_ANMCALLBACKTYPE_SPEC_FRM,  // 指定フレームの再生時に呼びだす。
+    NNS_G2D_ANMCALLBACKTYPE_EVER_FRM,  // 毎フレーム呼び出す。
     AnmCallbackType_MAX
 
 }NNSG2dAnmCallbackType;
@@ -106,18 +106,18 @@ typedef enum NNSG2dAnmCallbackType
   
   Name:         NNSG2dAnimCallBackFunctor
 
-  Description:  �A�j���[�V���� �R�[���o�b�N �̊֐��|�C���^�ƁA
-                �Ăяo�����Ɉ����Ƃ��ēn�����A���[�U��`u32�f�[�^���O���[�v������T�O
-                NNSG2dAnimController �ɕێ�����܂�
-                // �ʖ� NNSG2dAnimCallBackFunctor ���ǉ�����܂���
+  Description:  アニメーション コールバック の関数ポインタと、
+                呼び出し時に引数として渡される、ユーザ定義u32データをグループ化する概念
+                NNSG2dAnimController に保持されます
+                // 別名 NNSG2dAnimCallBackFunctor が追加されました
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dCallBackFunctor
 {   
-    NNSG2dAnmCallbackType          type;            // �R�[���o�b�N�̎��
-    u32                            param;           // ���[�U���p�\�p�����[�^
-    NNSG2dAnmCallBackPtr           pFunc;           // �R�[���o�b�N�֐��|�C���^
-    u16                            frameIdx;        // �t���[���ԍ�( type == NNS_G2D_ANMCALLBACKTYPE_SPEC_FRM���Ɏg�p)
-    u16                            pad16_;          // �p�f�B���O
+    NNSG2dAnmCallbackType          type;            // コールバックの種類
+    u32                            param;           // ユーザ利用可能パラメータ
+    NNSG2dAnmCallBackPtr           pFunc;           // コールバック関数ポインタ
+    u16                            frameIdx;        // フレーム番号( type == NNS_G2D_ANMCALLBACKTYPE_SPEC_FRM時に使用)
+    u16                            pad16_;          // パディング
     
 }NNSG2dCallBackFunctor, NNSG2dAnimCallBackFunctor;
 
@@ -127,40 +127,40 @@ typedef struct NNSG2dCallBackFunctor
   
   Name:         NNSG2dAnimController
 
-  Description:  �A�j���[�V�����̏�Ԃ�ێ�����\��
-                �A�j���[�V�����f�[�^��ێ����܂�
+  Description:  アニメーションの状態を保持する構造
+                アニメーションデータを保持します
                 
  *---------------------------------------------------------------------------*/
 typedef struct NNSG2dAnimController
 {
-    const NNSG2dAnimFrame*      pCurrent;               // ���݂̃A�j���[�V�����t���[��
-    const NNSG2dAnimFrame*      pActiveCurrent;         // ���݂̃A�j���[�V�����t���[��(�L���ȕ\���ΏۂɌ���)
-                                                        // �ʏ�́ApCurrent�Ɠ���̒l�������܂��B
-                                                        // �\���t���[�����[���t���[���̃A�j���[�V�����t���[��
-                                                        // �𐳂����\�����邽�߂ɗ��p����܂��B
-                                                        // ��{�I�ɁA�\���t���[�����[���t���[���ł͖����t���[����
-                                                        // �����܂����A�ȑO�̃o�[�W�����Ƃ̌݊����ێ��̂��߁A
-                                                        // �\���t���[�����[���t���[���݂̂���\�������V�[�P���X�̏ꍇ
-                                                        // ��pCurrent�̏����ʒu�Ɠ���̈ʒu���w�������A
-                                                        // NULL�ɐݒ肳��邱�Ƃ͂���܂���B
+    const NNSG2dAnimFrame*      pCurrent;               // 現在のアニメーションフレーム
+    const NNSG2dAnimFrame*      pActiveCurrent;         // 現在のアニメーションフレーム(有効な表示対象に限る)
+                                                        // 通常は、pCurrentと同一の値を持ちます。
+                                                        // 表示フレーム数ゼロフレームのアニメーションフレーム
+                                                        // を正しく表示するために利用されます。
+                                                        // 基本的に、表示フレームがゼロフレームでは無いフレームを
+                                                        // 示しますが、以前のバージョンとの互換性維持のため、
+                                                        // 表示フレームがゼロフレームのみから構成されるシーケンスの場合
+                                                        // もpCurrentの初期位置と同一の位置を指し示し、
+                                                        // NULLに設定されることはありません。
     
-    BOOL                        bReverse;               // �t�Đ��t���O
-    BOOL                        bActive;                // �A�N�e�B�u�t���O
+    BOOL                        bReverse;               // 逆再生フラグ
+    BOOL                        bActive;                // アクティブフラグ
 
-    fx32                        currentTime;            // ���݂̎���
-    fx32                        speed;                  // �X�s�[�h
+    fx32                        currentTime;            // 現在の時間
+    fx32                        speed;                  // スピード
     
-    NNSG2dAnimationPlayMode     overriddenPlayMode;     // �Đ����[�h���v���O���}���I�[�o�[���C�h����ۂɐݒ肳��܂��B
-                                                        // �K��l�FNNS_G2D_ANIMATIONPLAYMODE_INVALID
+    NNSG2dAnimationPlayMode     overriddenPlayMode;     // 再生モードをプログラマがオーバーライドする際に設定されます。
+                                                        // 規定値：NNS_G2D_ANIMATIONPLAYMODE_INVALID
                                                         
-    const NNSG2dAnimSequence*   pAnimSequence;          // �֘A�t�����ꂽ�A�A�j���[�V�����V�[�P���X
-    NNSG2dAnimCallBackFunctor   callbackFunctor;        // �R�[���o�b�N�t�@���N�^
+    const NNSG2dAnimSequence*   pAnimSequence;          // 関連付けされた、アニメーションシーケンス
+    NNSG2dAnimCallBackFunctor   callbackFunctor;        // コールバックファンクタ
     
 }NNSG2dAnimController;
 
 
 //------------------------------------------------------------------------------
-// �֐��v���g�^�C�v
+// 関数プロトタイプ
 //------------------------------------------------------------------------------
 
 void NNSi_G2dCallbackFuncHandling
@@ -240,7 +240,7 @@ void NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame
 );
 
 //------------------------------------------------------------------------------
-// ���C�u��������������J�֐�
+// ライブラリ内部限定公開関数
 BOOL NNSi_G2dIsAnimCtrlLoopAnim( const NNSG2dAnimController* pAnimCtrl );
 
 //------------------------------------------------------------------------------

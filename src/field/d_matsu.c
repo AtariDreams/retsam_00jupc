@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	d_matsu.c
- * @brief	¼“cƒfƒoƒbƒO—pƒtƒ@ƒCƒ‹(”ñí’“•¨)
+ * @brief	æ¾ç”°ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ•ã‚¡ã‚¤ãƒ«(éå¸¸é§ç‰©)
  * @author	matsuda
- * @date	2005.06.20(Œ)
+ * @date	2005.06.20(æœˆ)
  */
 //==============================================================================
 
@@ -51,7 +51,7 @@
 
 
 //==============================================================================
-//	ƒI[ƒo[ƒŒƒCID‚ÌexternéŒ¾
+//	ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDã®externå®£è¨€
 //==============================================================================
 /* overlay id in *.lcf */
 FS_EXTERN_OVERLAY(test_first);
@@ -60,7 +60,7 @@ FS_EXTERN_OVERLAY(test_itcm);
 FS_EXTERN_OVERLAY(test_second_abc);
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 enum{
 	DEBUG_GDS_START = 100,
@@ -72,18 +72,18 @@ enum{
 };
 
 //==============================================================================
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ¼“cƒfƒoƒbƒO—p\‘¢‘Ì(ƒOƒ[ƒoƒ‹•Ï”)
+ * @brief   æ¾ç”°ãƒ‡ãƒãƒƒã‚°ç”¨æ§‹é€ ä½“(ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°)
  */
 //--------------------------------------------------------------
 typedef struct{
-	u8 dance_rotation_off;		///<1:ƒ_ƒ“ƒX‚Ìƒ[ƒe[ƒVƒ‡ƒ“‚È‚µ
+	u8 dance_rotation_off;		///<1:ãƒ€ãƒ³ã‚¹ã®ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ãªã—
 }DMATSU_GLOBAL_WORK;
 
-///ƒRƒ“ƒeƒXƒg‚Ìƒ‰ƒ“ƒNAƒ^ƒCƒv‘I‘ğ‰æ–Ê—pƒ[ƒN
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒ©ãƒ³ã‚¯ã€ã‚¿ã‚¤ãƒ—é¸æŠç”»é¢ç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	GF_BGL_BMPWIN win;
 	FIELDSYS_WORK *fsys;
@@ -103,25 +103,25 @@ typedef struct{
 #define FCOLS_GREEN	(GF_PRINTCOLOR_MAKE(FBMP_COL_GREEN,FBMP_COL_GRN_SDW,FBMP_COL_WHITE))
 
 //==============================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
 //==============================================================================
-///1:ƒ[ƒe[ƒVƒ‡ƒ“‚È‚µB@0:ƒ[ƒe[ƒVƒ‡ƒ“‚ ‚è@2:ƒ_ƒ“ƒX‰ñ”§ŒÀ‚È‚µ
+///1:ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ãªã—ã€‚ã€€0:ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã‚ã‚Šã€€2:ãƒ€ãƒ³ã‚¹å›æ•°åˆ¶é™ãªã—
 extern u8 DmatsuWork_DanceRotationOff;
 
 //==============================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //==============================================================================
 typedef void (*pDMFunc)(DMATSU_WORK *);
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void DMRes_BalloonStart(FIELDSYS_WORK *fsys, int proc_flag, int mode);
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void DM_MenuMain(TCB_PTR tcb, void *work);
 static void DM_MenuExit(DMATSU_WORK *dm);
@@ -169,9 +169,9 @@ extern BOOL GMEVENT_DebugConStart(GMEVENT_CONTROL * event);
 #endif
 
 //==============================================================================
-//	ƒfƒoƒbƒOƒƒjƒ…[ƒŠƒXƒg—pƒf[ƒ^“™
+//	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿ç­‰
 //==============================================================================
-///ƒfƒoƒbƒOƒƒjƒ…[‚Ì€–Ú
+///ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é …ç›®
 static const struct {
 	u32  str_id;
 	u32  param;
@@ -211,26 +211,26 @@ static const struct {
 
 #define LIST_MENU_MAX		(NELEMS(DebugMenuParamList))
 
-///ƒfƒoƒbƒOƒƒjƒ…[‚ÌƒŠƒXƒg
+///ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆ
 static const BMPLIST_HEADER DebugMenuListHeader = {
-	NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	NULL,
-	LIST_MENU_MAX,	// ƒŠƒXƒg€–Ú”
-	11,//LIST_MENU_MAX,						// •\¦Å‘å€–Ú”
-	0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	8,						// €–Ú•\¦‚wÀ•W
-	0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	0,						// •\¦‚xÀ•W
-	FBMP_COL_WHITE,			// •¶šF
-	FBMP_COL_BLACK,			// ”wŒiF
-	FBMP_COL_BLK_SDW,		// •¶š‰eF
-	0,						// •¶šŠÔŠu‚w
-	16,						// •¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,				// •¶šw’è
-	0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	LIST_MENU_MAX,	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+	11,//LIST_MENU_MAX,						// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_WHITE,			// æ–‡å­—è‰²
+	FBMP_COL_BLACK,			// èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+	0,						// æ–‡å­—é–“éš”ï¼¸
+	16,						// æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,				// æ–‡å­—æŒ‡å®š
+	0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 
@@ -238,7 +238,7 @@ static const BMPLIST_HEADER DebugMenuListHeader = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒI[ƒo[ƒŒƒCƒeƒXƒg
+ * @brief   ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ†ã‚¹ãƒˆ
  *
  * @param   tcb		
  * @param   work		
@@ -261,11 +261,11 @@ static void TestOverlayStart(TCB_PTR tcb, void *work)
 	
 	//OS_PrintServer();
 
-	//Še\ƒL[‚É‚æ‚Á‚ÄƒI[ƒo[ƒŒƒC“Ç‚İo‚µ
+	//å„åæ™‚ã‚­ãƒ¼ã«ã‚ˆã£ã¦ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤èª­ã¿å‡ºã—
 	if(sys.trg & PAD_KEY_RIGHT){
-		//‚Ü‚¸“¯‚¶‹óŠÔ‚ğg—p‚µ‚Ä‚¢‚éƒI[ƒo[ƒŒƒC‚ğ‘S‚ÄƒAƒ“ƒ[ƒh
+		//ã¾ãšåŒã˜ç©ºé–“ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’å…¨ã¦ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰
 		Overlay_UnloadSameArea(FS_OVERLAY_ID(test_first));
-		//©•ª©g‚ğƒI[ƒo[ƒŒƒCÀs
+		//è‡ªåˆ†è‡ªèº«ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤å®Ÿè¡Œ
 		Overlay_Load(FS_OVERLAY_ID(test_first), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 	}
 	else if(sys.trg & PAD_KEY_DOWN){
@@ -282,7 +282,7 @@ static void TestOverlayStart(TCB_PTR tcb, void *work)
 		Overlay_Load(FS_OVERLAY_ID(test_second_abc), OVERLAY_LOAD_SYNCHRONIZE_2);
 	}
 
-	//Šeƒ{ƒ^ƒ“‚É‚æ‚Á‚ÄƒI[ƒo[ƒŒƒC‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹“à‚ÌŠÖ”ŒÄ‚Ño‚µ
+	//å„ãƒœã‚¿ãƒ³ã«ã‚ˆã£ã¦ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®é–¢æ•°å‘¼ã³å‡ºã—
 	if (sys.trg & PAD_BUTTON_A){
 		test_overlay_func_1();
 	}
@@ -307,7 +307,7 @@ static void TestOverlayStart(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ¼“cƒfƒoƒbƒOˆ—AŒÄ‚Ño‚µŒû
+ * @brief   æ¾ç”°ãƒ‡ãƒãƒƒã‚°å‡¦ç†ã€å‘¼ã³å‡ºã—å£
  */
 //--------------------------------------------------------------
 void DebugMatsudaInit(FIELDSYS_WORK *fsys)
@@ -318,14 +318,14 @@ void DebugMatsudaInit(FIELDSYS_WORK *fsys)
 	dm = sys_AllocMemory(HEAPID_BASE_DEBUG, sizeof(DMATSU_WORK));
 	memset(dm, 0, sizeof(DMATSU_WORK));
 	
-	//BMPƒEƒBƒ“ƒhƒE¶¬
+	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
 	GF_BGL_BmpWinAdd(fsys->bgl, &dm->bmpwin, 
 		FLD_MBGFRM_FONT, 1, 1, 25, 22, 13, 1);
 	dm->fsys = fsys;
 	
 	dm->listmenu = BMP_MENULIST_Create(LIST_MENU_MAX, HEAPID_BASE_DEBUG);
 
-	//•¶š—ñƒŠƒXƒgì¬
+	//æ–‡å­—åˆ—ãƒªã‚¹ãƒˆä½œæˆ
 	{
 		MSGDATA_MANAGER *man;
 		STRBUF * str_buf;
@@ -354,10 +354,10 @@ void DebugMatsudaInit(FIELDSYS_WORK *fsys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ¼“c—pƒfƒoƒbƒOƒƒjƒ…[ƒŠƒXƒg‘I‘ğ
+ * @brief   æ¾ç”°ç”¨ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆé¸æŠ
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒfƒoƒbƒO—p¼“cƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ‡ãƒãƒƒã‚°ç”¨æ¾ç”°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DM_MenuMain(TCB_PTR tcb, void *work)
@@ -398,8 +398,8 @@ static void DM_MenuMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ¼“c—pƒfƒoƒbƒOƒƒjƒ…[ƒŠƒXƒg‚ğ•Â‚¶‚é
- * @param   dm		ƒfƒoƒbƒO—p¼“cƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ¾ç”°ç”¨ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã‚’é–‰ã˜ã‚‹
+ * @param   dm		ãƒ‡ãƒãƒƒã‚°ç”¨æ¾ç”°ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DM_MenuExit(DMATSU_WORK *dm)
@@ -454,7 +454,7 @@ static void DM_ExtraSave(DMATSU_WORK *dm)
 	SaveData_Extra_SaveBattleRecData(dm->fsys->savedata, (void*)buff, LOADDATA_MYREC);
 	sys_FreeMemoryEz(buff);
 #ifdef DEBUG_ONLY_FOR_matsuda
-	OS_TPrintf("ƒZ[ƒuŠ®—¹\n");
+	OS_TPrintf("ã‚»ãƒ¼ãƒ–å®Œäº†\n");
 #endif
 
 
@@ -489,7 +489,7 @@ static void DM_ExtraLoad(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DŠ„‚èƒ~ƒjƒQ[ƒ€ŒÄ‚Ño‚µ
+ * @brief   é¢¨èˆ¹å‰²ã‚ŠãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‘¼ã³å‡ºã—
  *
  * @param   dm		
  *
@@ -506,7 +506,7 @@ static void DM_BalloonStart(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   GDS(ƒoƒgƒ‹ƒŒƒR[ƒ_[)ŒÄ‚Ño‚µ
+ * @brief   GDS(ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼)å‘¼ã³å‡ºã—
  *
  * @param   dm		
  *
@@ -518,7 +518,7 @@ static void DM_BalloonStart(DMATSU_WORK *dm)
 static void DM_GDSRecorderStart(DMATSU_WORK *dm)
 {
 	if(mydwc_checkMyGSID(dm->fsys->savedata) == FALSE){
-		//©•ª‚ÌGSID‚ğ‚Á‚Ä‚¢‚È‚¢‚Æ‚±‚ÌƒfƒoƒbƒO‚Íg‚¦‚È‚¢
+		//è‡ªåˆ†ã®GSIDã‚’æŒã£ã¦ã„ãªã„ã¨ã“ã®ãƒ‡ãƒãƒƒã‚°ã¯ä½¿ãˆãªã„
 		GF_ASSERT(0);
 	}
 	DM_ConModeSelectInit(dm, DEBUG_GDS_START);
@@ -526,7 +526,7 @@ static void DM_GDSRecorderStart(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   GDSƒ‰ƒCƒuƒ‰ƒŠƒeƒXƒgŒÄ‚Ño‚µ
+ * @brief   GDSãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ†ã‚¹ãƒˆå‘¼ã³å‡ºã—
  *
  * @param   dm		
  *
@@ -538,7 +538,7 @@ static void DM_GDSRecorderStart(DMATSU_WORK *dm)
 static void DM_GDSLibStart(DMATSU_WORK *dm)
 {
 	if(mydwc_checkMyGSID(dm->fsys->savedata) == FALSE){
-		//©•ª‚ÌGSID‚ğ‚Á‚Ä‚¢‚È‚¢‚Æ‚±‚ÌƒfƒoƒbƒO‚Íg‚¦‚È‚¢
+		//è‡ªåˆ†ã®GSIDã‚’æŒã£ã¦ã„ãªã„ã¨ã“ã®ãƒ‡ãƒãƒƒã‚°ã¯ä½¿ãˆãªã„
 		GF_ASSERT(0);
 	}
 	dm->proc_flag = DMATSU_PROC_FLAG_GDS;
@@ -548,7 +548,7 @@ static void DM_GDSLibStart(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘«Õƒ{[ƒhŒÄ‚Ño‚µ
+ * @brief   è¶³è·¡ãƒœãƒ¼ãƒ‰å‘¼ã³å‡ºã—
  *
  * @param   dm		
  *
@@ -565,7 +565,7 @@ static void DM_FootprintStart(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg‚Ìƒ‰ƒ“ƒNAƒ^ƒCƒv‘I‘ğ‰æ–Ê‰Šú‰»
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒ©ãƒ³ã‚¯ã€ã‚¿ã‚¤ãƒ—é¸æŠç”»é¢åˆæœŸåŒ–
  *
  * @param   dm		
  * @param   debug_mode		
@@ -586,13 +586,13 @@ static void DM_ConModeSelectInit(DMATSU_WORK *dm, int debug_mode)
 	dcw->fsys = dm->fsys;
 	dcw->debug_mode = debug_mode;
 	
-	//BMPƒEƒBƒ“ƒhƒE‚ğ’Ç‰Á
+	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¿½åŠ 
 	GF_BGL_BmpWinAdd(dcw->fsys->bgl, &dcw->win, FLD_MBGFRM_FONT, 2, 2, 12, 4,
 			FLD_SYSFONT_PAL, 1);
 	GF_BGL_BmpWinDataFill(&dcw->win,APP_WINCLR_COL(FBMP_COL_WHITE));
 	GF_BGL_BmpWinOn(&dcw->win);
 
-	//•¶šƒZƒbƒg’Ç‰Á
+	//æ–‡å­—ã‚»ãƒƒãƒˆè¿½åŠ 
 	dcw->msgman = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG,
 			NARC_msg_debug_matsu_dat, HEAPID_BASE_DEBUG);
 	dcw->rank_str = STRBUF_Create(30, HEAPID_BASE_DEBUG);
@@ -603,7 +603,7 @@ static void DM_ConModeSelectInit(DMATSU_WORK *dm, int debug_mode)
 	dcw->tcb = TCB_Add(DM_ConModeSelectMain, dcw, 100);
 }
 
-///ƒRƒ“ƒeƒXƒg‚Ìƒ‰ƒ“ƒNAƒ^ƒCƒv‘I‘ğI—¹ˆ—
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒ©ãƒ³ã‚¯ã€ã‚¿ã‚¤ãƒ—é¸æŠçµ‚äº†å‡¦ç†
 static void DM_ConModeSelectEnd(DEBUG_CONMODE_WORK *dcw)
 {
 	GF_BGL_BmpWinOff(&dcw->win);
@@ -617,7 +617,7 @@ static void DM_ConModeSelectEnd(DEBUG_CONMODE_WORK *dcw)
 	sys_FreeMemoryEz(dcw);
 }
 
-///ƒRƒ“ƒeƒXƒg‚Ìƒ‰ƒ“ƒNAƒ^ƒCƒv‘I‘ğƒƒCƒ“
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒ©ãƒ³ã‚¯ã€ã‚¿ã‚¤ãƒ—é¸æŠãƒ¡ã‚¤ãƒ³
 static void DM_ConModeSelectMain(TCB_PTR tcb, void *work)
 {
 	DEBUG_CONMODE_WORK *dcw = work;
@@ -675,14 +675,14 @@ static void DM_ConModeSelectMain(TCB_PTR tcb, void *work)
 			DMRes_BalloonStart(dcw->fsys, 
 				DMATSU_PROC_FLAG_GDS_RECORDER, dcw->rank + BR_MODE_GDS_BV);
 		}
-		else{	//ƒRƒ“ƒeƒXƒg
+		else{	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 			DebugContest_FieldConnectStart(fsys, debug_mode, rank, type);
 		}
 		return;
 	}
 }
 
-///ƒ‰ƒ“ƒNAƒ‚[ƒh‚ÌƒƒbƒZ[ƒWÄ•`‰æ
+///ãƒ©ãƒ³ã‚¯ã€ãƒ¢ãƒ¼ãƒ‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å†æç”»
 static void DM_ConModeSelectMsgWrite(DEBUG_CONMODE_WORK *dcw)
 {
 	GF_PRINTCOLOR rank_col, type_col;
@@ -716,7 +716,7 @@ static void DM_ConModeSelectMsgWrite(DEBUG_CONMODE_WORK *dcw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgF‰‰‹Z—Í•”–åŠJn
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šæ¼”æŠ€åŠ›éƒ¨é–€é–‹å§‹
  *
  * @param   dm		
  *
@@ -734,7 +734,7 @@ static void DM_ActingStart(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒrƒWƒ…ƒAƒ‹•”–åŠJn
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€é–‹å§‹
  *
  * @param   dm		
  *
@@ -752,7 +752,7 @@ static void DM_VisualStart(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒCƒ[ƒWƒNƒŠƒbƒv„ƒrƒWƒ…ƒAƒ‹•”–åŠJn
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ï¼ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€é–‹å§‹
  *
  * @param   dm		
  *
@@ -770,7 +770,7 @@ static void DM_ClipVisualStart(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒ_ƒ“ƒX•”–åŠJn
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€é–‹å§‹
  *
  * @param   dm		
  *
@@ -792,7 +792,7 @@ static void DM_DanceStart(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒ_ƒ“ƒX•”–åŠJn(‘S‚Ä‚Ìl•ª‰¹•„‚Åƒ_ƒ“ƒX)
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€é–‹å§‹(å…¨ã¦ã®å››åˆ†éŸ³ç¬¦ã§ãƒ€ãƒ³ã‚¹)
  *
  * @param   dm		
  *
@@ -810,7 +810,7 @@ static void DM_DanceNoneLimitStart(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒ_ƒ“ƒX•”–åŠJn(ƒ[ƒe[ƒVƒ‡ƒ“‚ ‚è)
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€é–‹å§‹(ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã‚ã‚Š)
  *
  * @param   dm		
  *
@@ -827,7 +827,7 @@ static void DM_DanceRotatinOn(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒ_ƒ“ƒX•”–åŠJn(ƒ[ƒe[ƒVƒ‡ƒ“‚È‚µ)
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€é–‹å§‹(ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ãªã—)
  *
  * @param   dm		
  *
@@ -845,7 +845,7 @@ static void DM_DanceRotationOff(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒ_ƒ“ƒX•”–åŠJn
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€é–‹å§‹
  *
  * @param   dm		
  *
@@ -862,7 +862,7 @@ static void DM_ContestSioStart(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFŒ‹‰Ê”­•\ŠJn
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šçµæœç™ºè¡¨é–‹å§‹
  *
  * @param   dm		
  *
@@ -879,7 +879,7 @@ static void DM_ResultStart(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒoƒbƒOƒRƒ“ƒeƒXƒgŒÄ‚Ño‚µ
+ * @brief   ãƒ‡ãƒãƒƒã‚°ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‘¼ã³å‡ºã—
  *
  * @param   fsys		
  * @param   debug_mode		DEBUG_CON_???
@@ -914,10 +914,10 @@ static void DebugContest_FieldConnectStart(FIELDSYS_WORK *fsys, int debug_mode, 
 //--------------------------------------------------------------
 static void DM_Capture(DMATSU_WORK *dm)
 {
-	FIELD_OBJ_PTR fldobj;		//‘ÎÛ‚ÌƒtƒB[ƒ‹ƒhOBJ‚Ìƒ|ƒCƒ“ƒ^
+	FIELD_OBJ_PTR fldobj;		//å¯¾è±¡ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ãƒã‚¤ãƒ³ã‚¿
 	int *task_work;
 	
-	//©‹@‚ªƒLƒƒƒvƒ`ƒƒ[‚É“ü‚ç‚È‚¢‚æ‚¤‚É”ñ•\¦‚É‚·‚é
+	//è‡ªæ©ŸãŒã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã«å…¥ã‚‰ãªã„ã‚ˆã†ã«éè¡¨ç¤ºã«ã™ã‚‹
 	fldobj	= FieldOBJSys_OBJIDSearch(dm->fsys->fldobjsys, FLDOBJ_ID_PLAYER);
 	GF_ASSERT(fldobj != NULL);
 	FieldOBJ_StatusBitSet_Vanish(fldobj, TRUE);
@@ -935,20 +935,20 @@ static void CaptureTask(TCB_PTR tcb, void *work)
 	int *task_work =work;
 	
 	switch(*task_work){
-	case 0:		//©‹@‚Ì”ñ•\¦‚ª•K‚¸”½‰f‚³‚ê‚é‚æ‚¤‚É1‰ñ‘Ò‚Â
+	case 0:		//è‡ªæ©Ÿã®éè¡¨ç¤ºãŒå¿…ãšåæ˜ ã•ã‚Œã‚‹ã‚ˆã†ã«1å›å¾…ã¤
 		break;
 	case 1:
 		MI_CpuClearFast( (void*)HW_LCDC_VRAM_C, HW_VRAM_C_SIZE );
 		GX_SetCapture(
-				GX_CAPTURE_SIZE_256x192,			// ƒLƒƒƒvƒ`ƒƒƒTƒCƒY
-				GX_CAPTURE_MODE_A,			// ƒLƒƒƒvƒ`ƒƒƒ‚[ƒh
-				GX_CAPTURE_SRCA_3D,				// ƒLƒƒƒvƒ`ƒƒƒuƒŒƒ“ƒhA
-				GX_CAPTURE_SRCB_VRAM_0x00000,				// ƒLƒƒƒvƒ`ƒƒƒuƒŒƒ“ƒhB
-				GX_CAPTURE_DEST_VRAM_C_0x00000,			// “]‘—Vram
-				0,						// ƒuƒŒƒ“ƒhŒW”A
-				0);						// ƒuƒŒƒ“ƒhŒW”B
+				GX_CAPTURE_SIZE_256x192,			// ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚µã‚¤ã‚º
+				GX_CAPTURE_MODE_A,			// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¢ãƒ¼ãƒ‰
+				GX_CAPTURE_SRCA_3D,				// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ–ãƒ¬ãƒ³ãƒ‰A
+				GX_CAPTURE_SRCB_VRAM_0x00000,				// ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ–ãƒ¬ãƒ³ãƒ‰B
+				GX_CAPTURE_DEST_VRAM_C_0x00000,			// è»¢é€Vram
+				0,						// ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°A
+				0);						// ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°B
 
-		//LCDC‚Éƒƒ‚ƒŠƒ}ƒbƒsƒ“ƒO
+		//LCDCã«ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ”ãƒ³ã‚°
 		GX_SetBankForLCDC(GX_VRAM_LCDC_C);
 	//	GX_SetGraphicsMode(GX_DISPMODE_VRAM_C, GX_BGMODE_0, GX_BG0_AS_3D);
 	
@@ -1051,7 +1051,7 @@ extern void DMRes_FssTest(DMATSU_WORK *dm);
 
 //--------------------------------------------------------------
 /**
- * @brief   FSSŒnƒXƒNƒŠƒvƒgƒeƒXƒgÀs
+ * @brief   FSSç³»ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ã‚¹ãƒˆå®Ÿè¡Œ
  *
  * @param   dm		
  *
@@ -1069,7 +1069,7 @@ static void DM_FssTest(DMATSU_WORK *dm)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒeƒXƒg
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ†ã‚¹ãƒˆ
  *
  * @param   dm		
  *
@@ -1090,9 +1090,9 @@ typedef struct{
 	
 }TEST_PARTICLE_WORK;
 
-///í“¬ƒp[ƒeƒBƒNƒ‹‚ÌƒJƒƒ‰ƒjƒAİ’è
+///æˆ¦é—˜ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚«ãƒ¡ãƒ©ãƒ‹ã‚¢è¨­å®š
 #define BP_NEAR			(FX32_ONE)
-///í“¬ƒp[ƒeƒBƒNƒ‹‚ÌƒJƒƒ‰ƒtƒ@[İ’è
+///æˆ¦é—˜ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚«ãƒ¡ãƒ©ãƒ•ã‚¡ãƒ¼è¨­å®š
 #define BP_FAR			(FX32_ONE * 900)
 
 static void FieldParticleTest(DMATSU_WORK *dm)
@@ -1118,11 +1118,11 @@ static void TestTCB_Particle(TCB_PTR tcb, void *work)
 	void *resource;
 	
 	switch(tpw->seq){
-	case 0:		//‰Šú‰»
-		Particle_SystemWorkInit();	//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	case 0:		//åˆæœŸåŒ–
+		Particle_SystemWorkInit();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 		tpw->seq++;
 		break;
-	case 1:		//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ì¬
+	case 1:		//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 		heap = sys_AllocMemory(heap_id, PARTICLE_LIB_HEAP_SIZE);
 		tpw->ptc = Particle_SystemCreate(sAllocTex, sAllocTexPalette, heap, 
 			PARTICLE_LIB_HEAP_SIZE, TRUE, heap_id);
@@ -1131,22 +1131,22 @@ static void TestTCB_Particle(TCB_PTR tcb, void *work)
 
 		tpw->seq++;
 		break;
-	case 2:		//ƒŠƒ\[ƒX“Ç‚İ‚İ•“o˜^
+	case 2:		//ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ï¼†ç™»éŒ²
 		resource = Particle_ArcResourceLoad(
 			ARC_PARTICLE_DATA, NARC_particledata_w_001_spa, heap_id);
 		Particle_ResourceSet(tpw->ptc, resource, PTC_AUTOTEX_LNK | PTC_AUTOPLTT_LNK, TRUE);
 		
 		tpw->seq++;
 		break;
-	case 3:		//ƒp[ƒeƒBƒNƒ‹¶¬
+	case 3:		//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç”Ÿæˆ
 		Particle_CreateEmitterCallback(tpw->ptc, 0, NULL, NULL);
 		break;
-	case 4:		//ƒp[ƒeƒBƒNƒ‹Às
+	case 4:		//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«å®Ÿè¡Œ
 		if(TestParticle_Main() == FALSE){
 			tpw->seq++;
 		}
 		break;
-	case 5:		//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€”jŠü
+	case 5:		//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 		heap = Particle_HeapPtrGet(tpw->ptc);
 		Particle_SystemExit(tpw->ptc);
 		sys_FreeMemoryEz(heap);
@@ -1162,9 +1162,9 @@ static void TestTCB_Particle(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬—pƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€EƒƒCƒ“ŠÖ”(ŒvZE•`‰æˆ—‚È‚Ç‚ğÀs)
+ * @brief   æˆ¦é—˜ç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ»ãƒ¡ã‚¤ãƒ³é–¢æ•°(è¨ˆç®—ãƒ»æç”»å‡¦ç†ãªã©ã‚’å®Ÿè¡Œ)
  *
- * @param   ptc		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ptc		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static int TestParticle_Main(void)
@@ -1180,26 +1180,26 @@ static int TestParticle_Main(void)
 	}
 	
 
-	draw_num = Particle_DrawAll();	//ƒp[ƒeƒBƒNƒ‹•`‰æ
+	draw_num = Particle_DrawAll();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æç”»
 
 	if(draw_num > 0){
-		//ƒp[ƒeƒBƒNƒ‹‚Ì•`‰æ‚ªI—¹‚µ‚½‚Ì‚ÅAÄ‚Ñƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg—pƒJƒƒ‰‚Éİ’è
+		//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®æç”»ãŒçµ‚äº†ã—ãŸã®ã§ã€å†ã³ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ã‚«ãƒ¡ãƒ©ã«è¨­å®š
 		GF_G3X_Reset();
 	}
 
-	Particle_CalcAll();	//ƒp[ƒeƒBƒNƒ‹ŒvZ
+	Particle_CalcAll();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«è¨ˆç®—
 
 	return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒNƒXƒ`ƒƒVRAMƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param   is4x4comp	4x4ˆ³kƒeƒNƒXƒ`ƒƒ‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO(TRUE=ˆ³kƒeƒNƒXƒ`ƒƒ)
+ * @param   size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param   is4x4comp	4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°(TRUE=åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£)
  *
- * @retval  “Ç‚İ‚İ‚ğŠJn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @retval  èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------
 static u32 sAllocTex(u32 size, BOOL is4x4comp)
@@ -1209,7 +1209,7 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 	
 	key = NNS_GfdAllocTexVram(size, is4x4comp, 0);
 	GF_ASSERT(key != NNS_GFD_ALLOC_ERROR_TEXKEY);
-	Particle_LnkTexKeySet(key);		//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_LnkTexKeySet(key);		//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	
 	address = NNS_GfdGetTexKeyAddr(key);
 #ifdef DEBUG_ONLY_FOR_matsuda
@@ -1220,15 +1220,15 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgVRAMƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆVRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param	size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param	is4pltt		4FƒpƒŒƒbƒg‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+ * @param	size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param	is4pltt		4è‰²ãƒ‘ãƒ¬ãƒƒãƒˆã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
  *
- * @retval	“Ç‚İ‚İ‚ğŠJn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @retval	èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * directŒ`®‚ÌƒeƒNƒXƒ`ƒƒ‚Ìê‡ASPL_LoadTexPlttByCallbackFunction‚Í
- * ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚Ño‚µ‚Ü‚¹‚ñB
+ * directå½¢å¼ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã€SPL_LoadTexPlttByCallbackFunctionã¯
+ * ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¾ã›ã‚“ã€‚
  */
 //--------------------------------------------------------------
 static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
@@ -1238,9 +1238,9 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 	
 	key = NNS_GfdAllocPlttVram(size, is4pltt, NNS_GFD_ALLOC_FROM_LOW);
 	if(key == NNS_GFD_ALLOC_ERROR_PLTTKEY){
-		GF_ASSERT(0 && "ƒp[ƒeƒBƒNƒ‹‚ÅƒpƒŒƒbƒg‚ÌŠm•Û‚ªo—ˆ‚Ü‚¹‚ñI\n");
+		GF_ASSERT(0 && "ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã§ãƒ‘ãƒ¬ãƒƒãƒˆã®ç¢ºä¿ãŒå‡ºæ¥ã¾ã›ã‚“ï¼\n");
 	}
-	Particle_PlttLnkTexKeySet(key);	//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_PlttLnkTexKeySet(key);	//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	address = NNS_GfdGetPlttKeyAddr(key);
 #ifdef DEBUG_ONLY_FOR_matsuda
 	OS_TPrintf("vram=%d\n", address);

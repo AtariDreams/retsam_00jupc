@@ -21,32 +21,32 @@
   fix copyright header.
 
   Revision 1.10  2005/01/07 12:30:24  terui
-  MIC_AdjustAutoSampling[Async]ŠÖ”‚ð’Ç‰ÁB
+  MIC_AdjustAutoSampling[Async]é–¢æ•°ã‚’è¿½åŠ ã€‚
 
   Revision 1.9  2004/12/03 05:40:03  terui
-  MIC‚ÌŽ©“®ƒTƒ“ƒvƒŠƒ“ƒOŽž‚É”²‚¯‚½ƒf[ƒ^‚ð–¾Ž¦“I‚ÉŽ¦‚·‹@”\’Ç‰Á‚É‘Î‰žB
+  MICã®è‡ªå‹•ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°æ™‚ã«æŠœã‘ãŸãƒ‡ãƒ¼ã‚¿ã‚’æ˜Žç¤ºçš„ã«ç¤ºã™æ©Ÿèƒ½è¿½åŠ ã«å¯¾å¿œã€‚
 
   Revision 1.8  2004/11/04 07:12:12  terui
-  ƒRƒƒ“ƒgC³B
+  ã‚³ãƒ¡ãƒ³ãƒˆä¿®æ­£ã€‚
 
   Revision 1.7  2004/11/02 04:30:47  terui
-  ƒRƒƒ“ƒgC³
+  ã‚³ãƒ¡ãƒ³ãƒˆä¿®æ­£
 
   Revision 1.6  2004/09/17 09:36:03  terui
-  MIC_StartAutoSampling(Async)‚Ìƒpƒ‰ƒ[ƒ^•ÏX‚É”º‚¤C³B
+  MIC_StartAutoSampling(Async)ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰æ›´ã«ä¼´ã†ä¿®æ­£ã€‚
 
   Revision 1.5  2004/07/13 09:21:21  terui
-  •„†•t‚«‚ÌƒTƒ“ƒvƒŠƒ“ƒOŽí•Ê’Ç‰Á‚É”º‚¤•ÏX
+  ç¬¦å·ä»˜ãã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç¨®åˆ¥è¿½åŠ ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.4  2004/06/03 04:09:09  terui
-  Å’ZƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg’è‹`‚ð•ÏX
+  æœ€çŸ­ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆå®šç¾©ã‚’å¤‰æ›´
 
   Revision 1.3  2004/06/01 02:02:08  terui
-  MICSamplingRate‚É‘ã•\“I‚ÈƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg‚Ì’è‹`‚ð’Ç‰ÁB
+  MICSamplingRateã«ä»£è¡¨çš„ãªã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆã®å®šç¾©ã‚’è¿½åŠ ã€‚
 
   Revision 1.2  2004/06/01 00:54:39  terui
-  ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg’è‹`‚ðíœB
-  ƒTƒ|[ƒg‚·‚éÅ’ZƒTƒ“ƒvƒŠƒ“ƒOŽüŠú‚ð’è‹`B
+  ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆå®šç¾©ã‚’å‰Šé™¤ã€‚
+  ã‚µãƒãƒ¼ãƒˆã™ã‚‹æœ€çŸ­ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æœŸã‚’å®šç¾©ã€‚
 
   Revision 1.1  2004/05/31 08:39:06  terui
   Initial upload.
@@ -68,76 +68,76 @@ extern "C" {
 
 
 /*---------------------------------------------------------------------------*
-    ’è”’è‹`
+    å®šæ•°å®šç¾©
  *---------------------------------------------------------------------------*/
-// ˆ—Œ‹‰Ê’è‹`
+// å‡¦ç†çµæžœå®šç¾©
 typedef enum MICResult
 {
-    MIC_RESULT_SUCCESS = 0,            // ¬Œ÷
-    MIC_RESULT_BUSY,                   // ”r‘¼§Œä’†
-    MIC_RESULT_ILLEGAL_PARAMETER,      // •s³‚Èƒpƒ‰ƒ[ƒ^
-    MIC_RESULT_SEND_ERROR,             // PXI‚É‚æ‚é‘—M‚ÉŽ¸”s
-    MIC_RESULT_INVALID_COMMAND,        // •s–¾‚ÈƒRƒ}ƒ“ƒh
-    MIC_RESULT_ILLEGAL_STATUS,         // ˆ—ŽÀs•s‰Â”\‚Èó‘Ô
-    MIC_RESULT_FATAL_ERROR,            // ã‹LˆÈŠO‚ÌƒGƒ‰[
+    MIC_RESULT_SUCCESS = 0,            // æˆåŠŸ
+    MIC_RESULT_BUSY,                   // æŽ’ä»–åˆ¶å¾¡ä¸­
+    MIC_RESULT_ILLEGAL_PARAMETER,      // ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+    MIC_RESULT_SEND_ERROR,             // PXIã«ã‚ˆã‚‹é€ä¿¡ã«å¤±æ•—
+    MIC_RESULT_INVALID_COMMAND,        // ä¸æ˜Žãªã‚³ãƒžãƒ³ãƒ‰
+    MIC_RESULT_ILLEGAL_STATUS,         // å‡¦ç†å®Ÿè¡Œä¸å¯èƒ½ãªçŠ¶æ…‹
+    MIC_RESULT_FATAL_ERROR,            // ä¸Šè¨˜ä»¥å¤–ã®ã‚¨ãƒ©ãƒ¼
     MIC_RESULT_MAX
 }
 MICResult;
 
-// ƒTƒ“ƒvƒŠƒ“ƒOŽí•Ê’è‹`
+// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç¨®åˆ¥å®šç¾©
 typedef enum MICSamplingType
 {
-    MIC_SAMPLING_TYPE_8BIT = 0,        //  8ƒrƒbƒgƒTƒ“ƒvƒŠƒ“ƒO
-    MIC_SAMPLING_TYPE_12BIT,           // 12ƒrƒbƒgƒTƒ“ƒvƒŠƒ“ƒO
-    MIC_SAMPLING_TYPE_SIGNED_8BIT,     // •„†•t‚« 8ƒrƒbƒgƒTƒ“ƒvƒŠƒ“ƒO
-    MIC_SAMPLING_TYPE_SIGNED_12BIT,    // •„†•t‚«12ƒrƒbƒgƒTƒ“ƒvƒŠƒ“ƒO
+    MIC_SAMPLING_TYPE_8BIT = 0,        //  8ãƒ“ãƒƒãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°
+    MIC_SAMPLING_TYPE_12BIT,           // 12ãƒ“ãƒƒãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°
+    MIC_SAMPLING_TYPE_SIGNED_8BIT,     // ç¬¦å·ä»˜ã 8ãƒ“ãƒƒãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°
+    MIC_SAMPLING_TYPE_SIGNED_12BIT,    // ç¬¦å·ä»˜ã12ãƒ“ãƒƒãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°
     MIC_SAMPLING_TYPE_12BIT_FILTER_OFF,
     MIC_SAMPLING_TYPE_SIGNED_12BIT_FILTER_OFF,
     MIC_SAMPLING_TYPE_MAX
 }
 MICSamplingType;
 
-// ‘ã•\“I‚ÈƒTƒ“ƒvƒŠƒ“ƒOŽüŠú‚ðARM7‚ÌƒNƒƒbƒN”‚Å’è‹`
+// ä»£è¡¨çš„ãªã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æœŸã‚’ARM7ã®ã‚¯ãƒ­ãƒƒã‚¯æ•°ã§å®šç¾©
 typedef enum MICSamplingRate
 {
-    MIC_SAMPLING_RATE_8K = (HW_CPU_CLOCK_ARM7 / 8000),  // –ñ  8.0   kHz
-    MIC_SAMPLING_RATE_11K = (HW_CPU_CLOCK_ARM7 / 11025),        // –ñ 11.025 kHz
-    MIC_SAMPLING_RATE_16K = (HW_CPU_CLOCK_ARM7 / 16000),        // –ñ 16.0   kHz
-    MIC_SAMPLING_RATE_22K = (HW_CPU_CLOCK_ARM7 / 22050),        // –ñ 22.05  kHz
-    MIC_SAMPLING_RATE_32K = (HW_CPU_CLOCK_ARM7 / 32000),        // –ñ 32.0   kHz
+    MIC_SAMPLING_RATE_8K = (HW_CPU_CLOCK_ARM7 / 8000),  // ç´„  8.0   kHz
+    MIC_SAMPLING_RATE_11K = (HW_CPU_CLOCK_ARM7 / 11025),        // ç´„ 11.025 kHz
+    MIC_SAMPLING_RATE_16K = (HW_CPU_CLOCK_ARM7 / 16000),        // ç´„ 16.0   kHz
+    MIC_SAMPLING_RATE_22K = (HW_CPU_CLOCK_ARM7 / 22050),        // ç´„ 22.05  kHz
+    MIC_SAMPLING_RATE_32K = (HW_CPU_CLOCK_ARM7 / 32000),        // ç´„ 32.0   kHz
     MIC_SAMPLING_RATE_LIMIT = 1024
 }
 MICSamplingRate;
 
 /*---------------------------------------------------------------------------*
-    \‘¢‘Ì’è‹`
+    æ§‹é€ ä½“å®šç¾©
  *---------------------------------------------------------------------------*/
-// ƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^’è‹`
+// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹å®šç¾©
 typedef void (*MICCallback) (MICResult result, void *arg);
 
-// ƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO—pÝ’è’è‹`
+// ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç”¨è¨­å®šå®šç¾©
 typedef struct MICAutoParam
 {
-    MICSamplingType type;              // ƒTƒ“ƒvƒŠƒ“ƒOŽí•Ê
-    void   *buffer;                    // Œ‹‰ÊŠi”[ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    u32     size;                      // ƒoƒbƒtƒ@ƒTƒCƒY
-    u32     rate;                      // ƒTƒ“ƒvƒŠƒ“ƒOŽüŠú( ARM7‚ÌƒNƒƒbƒN” )
-    BOOL    loop_enable;               // ƒoƒbƒtƒ@ƒtƒ‹Žž‚Ìƒ‹[ƒv‰Â”Û
-    MICCallback full_callback;         // ƒoƒbƒtƒ@ƒtƒ‹Žž‚ÌƒR[ƒ‹ƒoƒbƒN
-    void   *full_arg;                  // ã‹LƒR[ƒ‹ƒoƒbƒN‚ÉŽw’è‚·‚éˆø”
+    MICSamplingType type;              // ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç¨®åˆ¥
+    void   *buffer;                    // çµæžœæ ¼ç´ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    u32     size;                      // ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+    u32     rate;                      // ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æœŸ( ARM7ã®ã‚¯ãƒ­ãƒƒã‚¯æ•° )
+    BOOL    loop_enable;               // ãƒãƒƒãƒ•ã‚¡ãƒ•ãƒ«æ™‚ã®ãƒ«ãƒ¼ãƒ—å¯å¦
+    MICCallback full_callback;         // ãƒãƒƒãƒ•ã‚¡ãƒ•ãƒ«æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+    void   *full_arg;                  // ä¸Šè¨˜ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«æŒ‡å®šã™ã‚‹å¼•æ•°
 
 }
 MICAutoParam;
 
 
 /*---------------------------------------------------------------------------*
-    ŠÖ”’è‹`
+    é–¢æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
   Name:         MIC_Init
 
-  Description:  ƒ}ƒCƒNƒ‰ƒCƒuƒ‰ƒŠ‚ð‰Šú‰»‚·‚éB
+  Description:  ãƒžã‚¤ã‚¯ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
 
   Arguments:    None.
 
@@ -148,112 +148,112 @@ void    MIC_Init(void);
 /*---------------------------------------------------------------------------*
   Name:         MIC_DoSamplingAsync
 
-  Description:  ƒ}ƒCƒN‚ðˆê‰ñ”ñ“¯Šú‚ÉƒTƒ“ƒvƒŠƒ“ƒO‚·‚éB
+  Description:  ãƒžã‚¤ã‚¯ã‚’ä¸€å›žéžåŒæœŸã«ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã™ã‚‹ã€‚
 
-  Arguments:    type      - ƒTƒ“ƒvƒŠƒ“ƒOŽí•Ê‚ðŽw’èB
-                buf       - ƒTƒ“ƒvƒŠƒ“ƒOƒf[ƒ^‚ðŠi”[‚·‚éƒoƒbƒtƒ@‚ðŽw’èB
-                callback  - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ðŽw’èB
-                arg       - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µŽž‚Ìˆø”‚ðŽw’èB
+  Arguments:    type      - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç¨®åˆ¥ã‚’æŒ‡å®šã€‚
+                buf       - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                callback  - éžåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg       - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      MICResult - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJŽn‚Ìˆ—Œ‹‰Ê‚ð•Ô‚·B
+  Returns:      MICResult - éžåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæžœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 MICResult MIC_DoSamplingAsync(MICSamplingType type, void *buf, MICCallback callback, void *arg);
 
 /*---------------------------------------------------------------------------*
   Name:         MIC_StartAutoSamplingAsync
 
-  Description:  ƒ}ƒCƒN‚ÌŽ©“®ƒTƒ“ƒvƒŠƒ“ƒO‚ð”ñ“¯Šú‚ÉŠJŽn‚·‚éB
+  Description:  ãƒžã‚¤ã‚¯ã®è‡ªå‹•ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚’éžåŒæœŸã«é–‹å§‹ã™ã‚‹ã€‚
 
-  Arguments:    param     - Ž©“®ƒTƒ“ƒvƒŠƒ“ƒOÝ’è‚ð\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ÅŽw’èB
-                callback  - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ðŽw’èB
-                arg       - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µŽž‚Ìˆø”‚ðŽw’èB
+  Arguments:    param     - è‡ªå‹•ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°è¨­å®šã‚’æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã§æŒ‡å®šã€‚
+                callback  - éžåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg       - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      MICResult - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJŽn‚Ìˆ—Œ‹‰Ê‚ð•Ô‚·B
+  Returns:      MICResult - éžåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæžœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 MICResult MIC_StartAutoSamplingAsync(const MICAutoParam *param, MICCallback callback, void *arg);
 
 /*---------------------------------------------------------------------------*
   Name:         MIC_StopAutoSamplingAsync
 
-  Description:  ƒ}ƒCƒN‚ÌŽ©“®ƒTƒ“ƒvƒŠƒ“ƒO‚ð”ñ“¯Šú‚É’âŽ~‚·‚éB
+  Description:  ãƒžã‚¤ã‚¯ã®è‡ªå‹•ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚’éžåŒæœŸã«åœæ­¢ã™ã‚‹ã€‚
 
-  Arguments:    callback  - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ðŽw’èB
-                arg       - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µŽž‚Ìˆø”‚ðŽw’èB
+  Arguments:    callback  - éžåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg       - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      MICResult - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJŽn‚Ìˆ—Œ‹‰Ê‚ð•Ô‚·B
+  Returns:      MICResult - éžåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæžœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 MICResult MIC_StopAutoSamplingAsync(MICCallback callback, void *arg);
 
 /*---------------------------------------------------------------------------*
   Name:         MIC_AdjustAutoSamplingAsync
 
-  Description:  ƒ}ƒCƒN‚ÌŽ©“®ƒTƒ“ƒvƒŠƒ“ƒO‚É‚¨‚¯‚éƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg‚ð”ñ“¯Šú‚É
-                ’²®‚·‚éB
+  Description:  ãƒžã‚¤ã‚¯ã®è‡ªå‹•ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã«ãŠã‘ã‚‹ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆã‚’éžåŒæœŸã«
+                èª¿æ•´ã™ã‚‹ã€‚
 
-  Arguments:    rate         - ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg‚ðŽw’èB
-                callback     - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ðŽw’èB
-                arg          - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µŽž‚Ìˆø”‚ðŽw’èB
+  Arguments:    rate         - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆã‚’æŒ‡å®šã€‚
+                callback     - éžåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg          - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      MICResult    - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJŽn‚Ìˆ—Œ‹‰Ê‚ð•Ô‚·B
+  Returns:      MICResult    - éžåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæžœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 MICResult MIC_AdjustAutoSamplingAsync(u32 rate, MICCallback callback, void *arg);
 
 /*---------------------------------------------------------------------------*
   Name:         MIC_GetLastSamplingAddress
 
-  Description:  ƒ}ƒCƒN‚ÌÅVƒTƒ“ƒvƒŠƒ“ƒOŒ‹‰ÊŠi”[ƒAƒhƒŒƒX‚ðŽæ“¾‚·‚éB
+  Description:  ãƒžã‚¤ã‚¯ã®æœ€æ–°ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°çµæžœæ ¼ç´ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
 
   Arguments:    None.
 
-  Returns:      void* - ƒTƒ“ƒvƒŠƒ“ƒOŒ‹‰ÊŠi”[ƒAƒhƒŒƒX‚ð•Ô‚·B
-                        ‚Ü‚¾ƒTƒ“ƒvƒŠƒ“ƒO‚µ‚Ä‚¢‚È‚¢ê‡‚ÍNULL‚ð•Ô‚·B
+  Returns:      void* - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°çµæžœæ ¼ç´ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ã€‚
+                        ã¾ã ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã—ã¦ã„ãªã„å ´åˆã¯NULLã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 void   *MIC_GetLastSamplingAddress(void);
 
 /*---------------------------------------------------------------------------*
   Name:         MIC_DoSampling
 
-  Description:  ƒ}ƒCƒN‚ðˆê‰ñƒTƒ“ƒvƒŠƒ“ƒO‚·‚éB
+  Description:  ãƒžã‚¤ã‚¯ã‚’ä¸€å›žã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã™ã‚‹ã€‚
 
-  Arguments:    type      - ƒTƒ“ƒvƒŠƒ“ƒOŽí•Ê‚ðŽw’èB
-                buf       - ƒTƒ“ƒvƒŠƒ“ƒOƒf[ƒ^‚ðŠi”[‚·‚éƒoƒbƒtƒ@‚ðŽw’èB
+  Arguments:    type      - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç¨®åˆ¥ã‚’æŒ‡å®šã€‚
+                buf       - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
 
-  Returns:      MICResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ð•Ô‚·B
+  Returns:      MICResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæžœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 MICResult MIC_DoSampling(MICSamplingType type, void *buf);
 
 /*---------------------------------------------------------------------------*
   Name:         MIC_StartAutoSampling
 
-  Description:  ƒ}ƒCƒN‚ÌŽ©“®ƒTƒ“ƒvƒŠƒ“ƒO‚ðŠJŽn‚·‚éB
+  Description:  ãƒžã‚¤ã‚¯ã®è‡ªå‹•ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚’é–‹å§‹ã™ã‚‹ã€‚
 
-  Arguments:    param     - Ž©“®ƒTƒ“ƒvƒŠƒ“ƒOÝ’è‚ð\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ÅŽw’èB
+  Arguments:    param     - è‡ªå‹•ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°è¨­å®šã‚’æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã§æŒ‡å®šã€‚
 
-  Returns:      MICResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ð•Ô‚·B
+  Returns:      MICResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæžœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 MICResult MIC_StartAutoSampling(const MICAutoParam *param);
 
 /*---------------------------------------------------------------------------*
   Name:         MIC_StopAutoSampling
 
-  Description:  ƒ}ƒCƒN‚ÌŽ©“®ƒTƒ“ƒvƒŠƒ“ƒO‚ð’âŽ~‚·‚éB
-                Ž©“®ƒTƒ“ƒvƒŠƒ“ƒOŠJŽnŽž‚Éƒ‹[ƒvŽw’è‚µ‚È‚©‚Á‚½ê‡‚Íƒoƒbƒtƒ@‚ª
-                –„‚Ü‚Á‚½Žž“_‚ÅŽ©“®“I‚ÉƒTƒ“ƒvƒŠƒ“ƒO‚Í’âŽ~‚³‚ê‚éB
+  Description:  ãƒžã‚¤ã‚¯ã®è‡ªå‹•ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã‚’åœæ­¢ã™ã‚‹ã€‚
+                è‡ªå‹•ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°é–‹å§‹æ™‚ã«ãƒ«ãƒ¼ãƒ—æŒ‡å®šã—ãªã‹ã£ãŸå ´åˆã¯ãƒãƒƒãƒ•ã‚¡ãŒ
+                åŸ‹ã¾ã£ãŸæ™‚ç‚¹ã§è‡ªå‹•çš„ã«ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã¯åœæ­¢ã•ã‚Œã‚‹ã€‚
 
   Arguments:    None.
 
-  Returns:      MICResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ð•Ô‚·B
+  Returns:      MICResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæžœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 MICResult MIC_StopAutoSampling(void);
 
 /*---------------------------------------------------------------------------*
   Name:         MIC_AdjustAutoSampling
 
-  Description:  ƒ}ƒCƒN‚ÌŽ©“®ƒTƒ“ƒvƒŠƒ“ƒO‚É‚¨‚¯‚éƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg‚ð’²®‚·‚éB
+  Description:  ãƒžã‚¤ã‚¯ã®è‡ªå‹•ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã«ãŠã‘ã‚‹ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆã‚’èª¿æ•´ã™ã‚‹ã€‚
 
-  Arguments:    rate      - ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg‚ðŽw’èB
+  Arguments:    rate      - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆã‚’æŒ‡å®šã€‚
 
-  Returns:      MICResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ð•Ô‚·B
+  Returns:      MICResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæžœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 MICResult MIC_AdjustAutoSampling(u32 rate);
 

@@ -1,6 +1,6 @@
 /**
  *	@file	tmap_act.h
- *	@brief	タウンマップモジュール　セルアクター制御
+ *	@brief	繧ｿ繧ｦ繝ｳ繝槭ャ繝励Δ繧ｸ繝･繝ｼ繝ｫ縲繧ｻ繝ｫ繧｢繧ｯ繧ｿ繝ｼ蛻ｶ蠕｡
  *	@data	05.12.21
  *	@author	Miyuki Iwasawa
  */

@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	actin_order.h
- * @brief	‰‰‹Z—Í•”–åF–½—ß‚ğŠeƒXƒ^ƒbƒt‚É‘—M‚Ìƒwƒbƒ_
+ * @brief	æ¼”æŠ€åŠ›éƒ¨é–€ï¼šå‘½ä»¤ã‚’å„ã‚¹ã‚¿ãƒƒãƒ•ã«é€ä¿¡ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2005.11.29(‰Î)
+ * @date	2005.11.29(ç«)
  */
 //==============================================================================
 #ifndef __ACTIN_ORDER_H__
@@ -12,44 +12,44 @@
 #include "contest_order.h"
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
 /**
- *     –½—ßƒR[ƒh
- * 					¦OrderFuncTbl‚Æ•K‚¸•À‚Ñ‚ğ“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆI
+ *     å‘½ä»¤ã‚³ãƒ¼ãƒ‰
+ * 					â€»OrderFuncTblã¨å¿…ãšä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼
  */
 //--------------------------------------------------------------
 enum{
-	AORDER_NO_SAMPLE,			///<ƒTƒ“ƒvƒ‹
-	AORDER_NO_ACTIN_EXIT,		///<‰‰‹Z—Í•”–åI—¹
-	AORDER_NO_OPENING_EFFECT,	///<ƒI[ƒvƒjƒ“ƒOƒGƒtƒFƒNƒg
-	AORDER_NO_ENDING_EFFECT,	///<ƒGƒ“ƒfƒBƒ“ƒOƒGƒtƒFƒNƒg
-	AORDER_NO_POKEMON_IN,		///<ƒ|ƒPƒ‚ƒ““oê
-	AORDER_NO_POKEMON_OUT,		///<ƒ|ƒPƒ‚ƒ“‘Şê
-	AORDER_NO_WAZAEFFECT_BEFORE,	///<‹ZƒGƒtƒFƒNƒg‚ğo‚·‘O‚Ìˆ—
-	AORDER_NO_WAZAEFFECT,		///<‹ZƒGƒtƒFƒNƒgo‚·
-	AORDER_NO_USER_SELECT,		///<‹Z‘I‘ğ
-	AORDER_NO_APPEAL_REVIEW,	///<‹Z‚Ì•]‰¿(‰‰o)
-	AORDER_NO_APPEAL_FIRST,		///<‹Z‚Ì•]‰¿(‰‰o)
-	AORDER_NO_APPEAL_KOUKA,		///<‹Z‚ÌŒø‰Ê(‰‰o)
-	AORDER_NO_APPEAL_SPECIAL_KOUKA,	///<‹Z‚Ì“Á•ÊŒø‰Ê(‰‰o)
-	AORDER_NO_APPEAL_VOLTAGE,		///<‹Z‚Ìƒ{ƒ‹ƒe[ƒW(‰‰o)
-	AORDER_NO_REVIEW_AFTER,			///<‘Sˆõ‰‰‹ZI—¹Œã‚É”­¶‚·‚éŒø‰Ê(‰‰o)
-	AORDER_NO_REVIEW_END,			///<‘S‚Ä‚Ì‰‰‹ZI—¹Œã‚É”­¶‚·‚éŒø‰Ê(‰‰o)
-	AORDER_NO_JUDGE_SUFFER,			///<R”»”í‚è(‰‰o)
-	AORDER_NO_JUDGE_WAZA,			///<R”»”í‚è‹ZŒø‰Ê
-	AORDER_NO_JUDGE_COMMENT,		///<R”»ƒRƒƒ“ƒg
-	AORDER_NO_TURN_PARAM_UPDATE,	///<ƒ^[ƒ“I—¹Œã‚Ìƒpƒ‰ƒ[ƒ^‘—óM
-	AORDER_NO_TALK,					///<‰ï˜bƒƒbƒZ[ƒW•\¦
-	AORDER_NO_TURNEND_EFF,			///<ƒ^[ƒ“I—¹Œã‚ÌƒGƒtƒFƒNƒgÀs
+	AORDER_NO_SAMPLE,			///<ã‚µãƒ³ãƒ—ãƒ«
+	AORDER_NO_ACTIN_EXIT,		///<æ¼”æŠ€åŠ›éƒ¨é–€çµ‚äº†
+	AORDER_NO_OPENING_EFFECT,	///<ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	AORDER_NO_ENDING_EFFECT,	///<ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	AORDER_NO_POKEMON_IN,		///<ãƒã‚±ãƒ¢ãƒ³ç™»å ´
+	AORDER_NO_POKEMON_OUT,		///<ãƒã‚±ãƒ¢ãƒ³é€€å ´
+	AORDER_NO_WAZAEFFECT_BEFORE,	///<æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™å‰ã®å‡¦ç†
+	AORDER_NO_WAZAEFFECT,		///<æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‡ºã™
+	AORDER_NO_USER_SELECT,		///<æŠ€é¸æŠ
+	AORDER_NO_APPEAL_REVIEW,	///<æŠ€ã®è©•ä¾¡(æ¼”å‡º)
+	AORDER_NO_APPEAL_FIRST,		///<æŠ€ã®è©•ä¾¡(æ¼”å‡º)
+	AORDER_NO_APPEAL_KOUKA,		///<æŠ€ã®åŠ¹æœ(æ¼”å‡º)
+	AORDER_NO_APPEAL_SPECIAL_KOUKA,	///<æŠ€ã®ç‰¹åˆ¥åŠ¹æœ(æ¼”å‡º)
+	AORDER_NO_APPEAL_VOLTAGE,		///<æŠ€ã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸(æ¼”å‡º)
+	AORDER_NO_REVIEW_AFTER,			///<å…¨å“¡æ¼”æŠ€çµ‚äº†å¾Œã«ç™ºç”Ÿã™ã‚‹åŠ¹æœ(æ¼”å‡º)
+	AORDER_NO_REVIEW_END,			///<å…¨ã¦ã®æ¼”æŠ€çµ‚äº†å¾Œã«ç™ºç”Ÿã™ã‚‹åŠ¹æœ(æ¼”å‡º)
+	AORDER_NO_JUDGE_SUFFER,			///<å¯©åˆ¤è¢«ã‚Š(æ¼”å‡º)
+	AORDER_NO_JUDGE_WAZA,			///<å¯©åˆ¤è¢«ã‚ŠæŠ€åŠ¹æœ
+	AORDER_NO_JUDGE_COMMENT,		///<å¯©åˆ¤ã‚³ãƒ¡ãƒ³ãƒˆ
+	AORDER_NO_TURN_PARAM_UPDATE,	///<ã‚¿ãƒ¼ãƒ³çµ‚äº†å¾Œã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€å—ä¿¡
+	AORDER_NO_TALK,					///<ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	AORDER_NO_TURNEND_EFF,			///<ã‚¿ãƒ¼ãƒ³çµ‚äº†å¾Œã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œ
 };
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒI[ƒvƒjƒ“ƒOƒGƒtƒFƒNƒgFƒ[ƒJƒ‹\‘¢‘Ì
+///ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	ACTIN_PROC_WORK *apw;
 	CORDER_HEAD req_head;
@@ -58,7 +58,7 @@ typedef struct{
 	u8 seq;
 }AOLOCAL_OPENING_EFF;
 
-///ƒGƒ“ƒfƒBƒ“ƒOƒGƒtƒFƒNƒgFƒ[ƒJƒ‹\‘¢‘Ì
+///ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	ACTIN_PROC_WORK *apw;
 	CORDER_HEAD req_head;
@@ -70,7 +70,7 @@ typedef struct{
 	u8 a_talk_id;
 }AOLOCAL_ENDING_EFF;
 
-///ƒ|ƒPƒ‚ƒ““oêE‘Şêƒ[ƒJƒ‹\‘¢‘Ì
+///ãƒã‚±ãƒ¢ãƒ³ç™»å ´ãƒ»é€€å ´ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	ACTIN_PROC_WORK *apw;
 	CORDER_HEAD req_head;
@@ -82,7 +82,7 @@ typedef struct{
 	s16 wait;
 }AOLOCAL_POKE_INOUT;
 
-///‹ZƒGƒtƒFƒNƒgÀs‘OFƒ[ƒJƒ‹\‘¢‘Ì
+///æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œå‰ï¼šãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	ACTIN_PROC_WORK *apw;
 	CORDER_HEAD req_head;
@@ -98,7 +98,7 @@ typedef struct{
 	u8 a_talk_id;
 }AOLOCAL_WAZAEFF_BEFORE;
 
-///‹ZƒGƒtƒFƒNƒgFƒ[ƒJƒ‹\‘¢‘Ì
+///æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	ACTIN_PROC_WORK *apw;
 	CORDER_HEAD req_head;
@@ -117,13 +117,13 @@ typedef struct{
 	CON_WAZAEFF_PARAM wazapara;
 }AOLOCAL_WAZAEFF;
 
-///ƒ†[ƒU[‚ª‘I‘ğ‚µ‚½‹Z”Ô†AR”»”Ô†‚Ìƒf[ƒ^
+///ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒé¸æŠã—ãŸæŠ€ç•ªå·ã€å¯©åˆ¤ç•ªå·ã®ãƒ‡ãƒ¼ã‚¿
 typedef struct{
 	u16 waza_no;
 	u16 judge_no;
 }USER_SELECT_DATA;
 
-///‹Z‘I‘ğFƒ[ƒJƒ‹\‘¢‘Ì
+///æŠ€é¸æŠï¼šãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	ACTIN_PROC_WORK *apw;
 	CORDER_HEAD req_head;
@@ -133,7 +133,7 @@ typedef struct{
 	USER_SELECT_DATA usd;
 }AOLOCAL_WAZASELECT;
 
-///o‚µ‚½‹Z‚Ì•]‰¿(‰‰o)Fƒ[ƒJƒ‹\‘¢‘Ì
+///å‡ºã—ãŸæŠ€ã®è©•ä¾¡(æ¼”å‡º)ï¼šãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	ACTIN_PROC_WORK *apw;
 	CORDER_HEAD req_head;
@@ -158,7 +158,7 @@ typedef struct{
 	VOLTAGE_POINT_ANIME_WORK *vaw;
 }AOLOCAL_APPEALREVIEW;
 
-///R”»”í‚èFƒ[ƒJƒ‹\‘¢‘Ì
+///å¯©åˆ¤è¢«ã‚Šï¼šãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	ACTIN_PROC_WORK *apw;
 	CORDER_HEAD req_head;
@@ -176,7 +176,7 @@ typedef struct{
 	VOLTAGE_POINT_ANIME_WORK *vaw;
 }AOLOCAL_JUDGESUFFER;
 
-///ƒ^[ƒ“I—¹Œã‚ÌƒGƒtƒFƒNƒgFƒ[ƒJƒ‹\‘¢‘Ì
+///ã‚¿ãƒ¼ãƒ³çµ‚äº†å¾Œã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	ACTIN_PROC_WORK *apw;
 	CORDER_HEAD req_head;
@@ -192,7 +192,7 @@ typedef struct{
 	u8 audience_anm_end;
 }AOLOCAL_TURNEND_EFF;
 
-///‰ï˜bƒƒbƒZ[ƒW‚Ì•\¦
+///ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
 typedef struct{
 	ACTIN_PROC_WORK *apw;
 	CORDER_HEAD req_head;
@@ -202,15 +202,15 @@ typedef struct{
 	u8 breeder_no;
 	u8 close_wait;
 
-	ATAG_PARAM a_talk_tagpara;		///<ƒm[ƒ}ƒ‹‰ï˜bFƒ^ƒO“WŠJ—pƒpƒ‰ƒ[ƒ^
-	u8 a_talk_id;					///<ƒm[ƒ}ƒ‹‰ï˜bID(A_TALK_???)
-	u8 a_talk_bmpwin_close_wait;	///<ƒƒbƒZ[ƒW‚ğ•\¦‚µ‚«‚Á‚Ä‚©‚çƒEƒBƒ“ƒhƒE‚ğ•Â‚¶‚é‚Ü‚Å‚Ìwait
-	u8 a_talk_bmpwin_not_close;		///<TRUE:ƒEƒBƒ“ƒhƒE‚ğ•Â‚¶‚¸‚ÉI—¹
+	ATAG_PARAM a_talk_tagpara;		///<ãƒãƒ¼ãƒãƒ«ä¼šè©±ï¼šã‚¿ã‚°å±•é–‹ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	u8 a_talk_id;					///<ãƒãƒ¼ãƒãƒ«ä¼šè©±ID(A_TALK_???)
+	u8 a_talk_bmpwin_close_wait;	///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ãã£ã¦ã‹ã‚‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹ã¾ã§ã®wait
+	u8 a_talk_bmpwin_not_close;		///<TRUE:ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ãšã«çµ‚äº†
 }AOLOCAL_TALK_PUT;
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void ActinOrder_WorkInit(ACTIN_PROC_WORK *apw);
 

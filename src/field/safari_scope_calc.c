@@ -1,7 +1,7 @@
 //===========================================================================
 /**
  * @file	safari_scope_calc.c
- * @brief	ƒTƒtƒ@ƒŠ–]‰“‹¾
+ * @brief	ã‚µãƒ•ã‚¡ãƒªæœ›é é¡
  * @author	Nozomu Saito
  * @date	2006.04.24
  * 
@@ -46,11 +46,11 @@ typedef struct SCOPE_DATA_tag
 
 //--------------------------------------------------------------------------------------------
 /**
- * –]‰“‹¾‚Éo‚·ƒ|ƒPƒ‚ƒ“‚ÌŒˆ’è
+ * æœ›é é¡ã«å‡ºã™ãƒã‚±ãƒ¢ãƒ³ã®æ±ºå®š
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	int		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ * @return	int		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 //--------------------------------------------------------------------------------------------
 int SSC_GetSafScpMons(FIELDSYS_WORK * fsys)
@@ -59,7 +59,7 @@ int SSC_GetSafScpMons(FIELDSYS_WORK * fsys)
 	BOOL book_get;
 	int monsno[ENC_MONS_NUM_NORMAL];
 	ENCOUNT_DATA *data;
-	//fsys‚©‚çƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚ğæ“¾
+	//fsysã‹ã‚‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	data = (ENCOUNT_DATA*)EventData_GetEncountData(fsys);
 
 	for(i=0;i<ENC_MONS_NUM_NORMAL;i++){
@@ -68,30 +68,30 @@ int SSC_GetSafScpMons(FIELDSYS_WORK * fsys)
 
 	book_get = ZukanWork_GetZenkokuZukanFlag(SaveData_GetZukanWork(GameSystem_GetSaveData(fsys)));
 
-	//ƒTƒtƒ@ƒŠ“Áê˜gƒZƒbƒg
+	//ã‚µãƒ•ã‚¡ãƒªç‰¹æ®Šæ ã‚»ãƒƒãƒˆ
 	SafariEnc_SetSafariEnc(	EncDataSave_GetRandSeed(
 								EncDataSave_GetSaveDataPtr(fsys->savedata), ENC_RND_SEED_SAFARI),
 							book_get,
 							fsys->location->zone_id,
 							&monsno[SP_ENC_1], &monsno[SP_ENC_2]);
-	//’‹–éƒe[ƒuƒ‹·‚µ‘Ö‚¦
+	//æ˜¼å¤œãƒ†ãƒ¼ãƒ–ãƒ«å·®ã—æ›¿ãˆ
 	EncSet_SetTimeZoneEnc(data, &monsno[TIME_ENC_1], &monsno[TIME_ENC_2]);	
 	
-	//‚`‚f‚aƒXƒƒbƒgƒe[ƒuƒ‹·‚µ‘Ö‚¦
+	//ï¼¡ï¼§ï¼¢ã‚¹ãƒ­ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å·®ã—æ›¿ãˆ
 	AgbSlotEnc_SetAgbSlotEnc(data, book_get, &monsno[AGB_ENC_1], &monsno[AGB_ENC_2]);
 	
-	//ƒ‰ƒ“ƒ_ƒ€‚Å1•C‘Io
+	//ãƒ©ãƒ³ãƒ€ãƒ ã§1åŒ¹é¸å‡º
 	return monsno[gf_p_rand(ENC_MONS_NUM_NORMAL)];
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * –]‰“‹¾’‹“_ƒŠƒXƒgì¬
+ * æœ›é é¡æ³¨è¦–ç‚¹ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	inHeapID	ƒq[ƒv‚h‚c
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	inHeapID	ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	ptr			ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	ptr			ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 SSC_SD_PTR SSC_CreateScopePointList(const int inHeapID, FIELDSYS_WORK * fsys)
@@ -100,26 +100,26 @@ SSC_SD_PTR SSC_CreateScopePointList(const int inHeapID, FIELDSYS_WORK * fsys)
 	SSC_SD_PTR ptr;
 	ptr = sys_AllocMemoryLo(inHeapID, sizeof(SCOPE_DATA));
 	ptr->fsys = fsys;
-	//ƒf[ƒ^‚ğƒ[ƒh
+	//ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 	{
 		u8 no;
 		SCOPE_VIEWSPOT *spot;
 		spot = ArchiveDataLoadMallocLo(ARC_ENCDATA_EX, NARC_encdata_ex_safari_scope_bin, HEAPID_FIELD);
 //		spot = sys_LoadFile(HEAPID_FIELD,"data/safari_scope.bin" );
-		//ƒ‰ƒ“ƒ_ƒ€‚Å5‰ÓŠæ“¾
+		//ãƒ©ãƒ³ãƒ€ãƒ ã§5ç®‡æ‰€å–å¾—
 		for(i=0;i<SCOPE_DISP_CNT;i++){
 			no = gf_p_rand(SPOT_LIST_MAX);
 			ptr->Spot[i].X = spot[no].X;
 			ptr->Spot[i].Z = spot[no].Z;
 //			OS_Printf("xz=%d,%d\n",spot[no].X,spot[no].Z);
 		}
-		//6‚Â–Ú‚Í–]‰“‹¾‚ÌêŠi–ß‚Á‚Ä‚­‚éˆÊ’uj
+		//6ã¤ç›®ã¯æœ›é é¡ã®å ´æ‰€ï¼ˆæˆ»ã£ã¦ãã‚‹ä½ç½®ï¼‰
 		{
 			ptr->Spot[SCOPE_DISP_CNT].X = Player_NowGPosXGet( fsys->player );
 			ptr->Spot[SCOPE_DISP_CNT].Z = Player_NowGPosZGet( fsys->player );
 			ptr->ReturnZoneID = fsys->location->zone_id;
 		}
-		//ƒf[ƒ^‰ğ•ú
+		//ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 		sys_FreeMemoryEz(spot);
 	}
 	
@@ -128,9 +128,9 @@ SSC_SD_PTR SSC_CreateScopePointList(const int inHeapID, FIELDSYS_WORK * fsys)
 
 //--------------------------------------------------------------------------------------------
 /**
- * –]‰“‹¾’‹“_ƒŠƒXƒg”jŠü
+ * æœ›é é¡æ³¨è¦–ç‚¹ãƒªã‚¹ãƒˆç ´æ£„
  *
- * @param	ptr	–]‰“‹¾ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	ptr	æœ›é é¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none	
  */
@@ -142,10 +142,10 @@ void SSC_RereaseScopePointList(SSC_SD_PTR ptr)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒP[ƒVƒ‡ƒ“ƒZƒbƒg
+ * ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
  *
- * @param	inNo	–]‰“‹¾‚ğŒ©‚½‰ñ”
- * @param	ptr		–]‰“‹¾ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inNo	æœ›é é¡ã‚’è¦‹ãŸå›æ•°
+ * @param	ptr		æœ›é é¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -157,7 +157,7 @@ void SSC_SetNextLocation(const u8 inNo, SSC_SD_PTR ptr)
 
 	if (inNo == 0){
 		int matrix_id;
-		matrix_id = MATRIX_ID_DUN0602;	///ƒTƒtƒ@ƒŠ
+		matrix_id = MATRIX_ID_DUN0602;	///ã‚µãƒ•ã‚¡ãƒª
 		block_x = ptr->Spot[inNo].X/32;
 		block_z = ptr->Spot[inNo].Z/32;
 		zone_id = GetZoneIDFromMatID(matrix_id, block_x, block_z );
@@ -173,10 +173,10 @@ void SSC_SetNextLocation(const u8 inNo, SSC_SD_PTR ptr)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒWƒƒƒ“ƒv
+ * ã‚¸ãƒ£ãƒ³ãƒ—
  *
- * @param		event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
- * @param		ptr		–]‰“‹¾ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param		event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
+ * @param		ptr		æœ›é é¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  * @return		none
  */
 //--------------------------------------------------------------------------------------------
@@ -187,10 +187,10 @@ void SSC_JumpMap(GMEVENT_CONTROL * event, SSC_SD_PTR ptr)
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ÿ‚Ìƒ[‰ÆƒVƒ‡ƒ“ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * æ¬¡ã®ãƒ­ãƒ¼å®¶ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  *
- * @param		ptr					–]‰“‹¾ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @return		LOCATION_WORK *		ƒƒP[ƒVƒ‡ƒ“ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param		ptr					æœ›é é¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @return		LOCATION_WORK *		ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 LOCATION_WORK *SSC_GetNextLocaton(SSC_SD_PTR ptr)

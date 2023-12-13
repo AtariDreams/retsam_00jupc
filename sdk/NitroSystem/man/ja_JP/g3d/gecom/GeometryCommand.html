@@ -1,24 +1,24 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
-	<TITLE>�W�I���g���R�}���h�֐�</TITLE>
+	<TITLE>ジオメトリコマンド関数</TITLE>
 	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </HEAD>
 
 <BODY>
 
-<H1 align="left">�W�I���g���R�}���h�֐�</H1>
+<H1 align="left">ジオメトリコマンド関数</H1>
 
-<H2>�֐��ꗗ</H2>
+<H2>関数一覧</H2>
 <TABLE border="1" width="100%">
 	<THEAD>
 		<TR>
-			<TH width="25%">NNS_G3dGe* �֐�</TH>
-			<TH>�Ή�����NITRO-SDK API</TH>
-			<TH>���l</TH>
+			<TH width="25%">NNS_G3dGe* 関数</TH>
+			<TH>対応するNITRO-SDK API</TH>
+			<TH>備考</TH>
 		</TR>
 	</THEAD>
 	<TBODY>
@@ -85,7 +85,7 @@
 		<TR>
 			<TD>NNS_G3dGeScaleVec</TD>
 			<TD>(G3_Scale)</TD>
-			<TD>������3��fx32�^�ł͂Ȃ�1��VecFx32�^�Ŏ󂯎��B</TD>
+			<TD>引数を3つのfx32型ではなく1つのVecFx32型で受け取る。</TD>
 		</TR>
 		<TR>
 			<TD>NNS_G3dGeTranslate</TD>
@@ -95,7 +95,7 @@
 		<TR>
 			<TD>NNS_G3dGeTranslateVec</TD>
 			<TD>(G3_Translate)</TD>
-			<TD>������3��fx32�^�ł͂Ȃ�1��VecFx32�^�Ŏ󂯎��B</TD>
+			<TD>引数を3つのfx32型ではなく1つのVecFx32型で受け取る。</TD>
 		</TR>
 		<TR>
 			<TD>NNS_G3dGeColor</TD>
@@ -215,22 +215,22 @@
 	</TBODY>
 </TABLE>
 
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-<CODE>NNS_G3dGeBufferOP_N</CODE>�֐��o�R�ŃW�I���g���R�}���h�𔭍s���܂��B</P>
+<CODE>NNS_G3dGeBufferOP_N</CODE>関数経由でジオメトリコマンドを発行します。</P>
 <P>
-���ꂼ��̊֐��̈����y�ѓ����NITRO-SDK�̑Ή�����API�Ɠ����ł��B
-�B��قȂ�̂́A�R�}���h�𒼐ڃW�I���g���G���W���ɑ���̂ł͂Ȃ�
-<CODE>NNS_G3dGeBufferOP_N()</CODE>��ʂ����Ƃɂ����<CODE>NNS_G3dGeSendDL</CODE>�֐��Ɩ������N�������ƂȂ����M����_�ł��B</P>
+それぞれの関数の引数及び動作はNITRO-SDKの対応するAPIと同じです。
+唯一異なるのは、コマンドを直接ジオメトリエンジンに送るのではなく
+<CODE>NNS_G3dGeBufferOP_N()</CODE>を通すことによって<CODE>NNS_G3dGeSendDL</CODE>関数と矛盾を起こすことなく送信する点です。</P>
 
-<H2>�Q��</H2>
+<H2>参照</H2>
 <P><CODE>
 <A href="NNS_G3dGeBufferOP_N.html">NNS_G3dGeBufferOP_N</A>
 </CODE></P>
 
 
-<H2>����</H2>
-<P>2004/08/02 ����</P>
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
 </BODY>
 
 </HTML>

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	castle_def.h
- * @bfief	�u�o�g���L���b�X���v��`
+ * @bfief	「バトルキャッスル」定義
  * @author	Satoshi Nohara
  * @date	07.07.04
  */
@@ -12,46 +12,46 @@
 
 //============================================================================================
 //
-//	��`(enum�֎~)
+//	定義(enum禁止)
 //
 //============================================================================================
-#define CASTLE_LAP_ENEMY_MAX	(7)							//1�T���̓G�g���[�i�[�̍ő吔
-#define CASTLE_LAP_MAX			(8)							///�L���b�X���̍ő����
-#define CASTLE_LAP_MULTI_ENEMY_MAX	(CASTLE_LAP_ENEMY_MAX*2)//�}���`1�T���̓G�g���[�i�[�̍ő吔
+#define CASTLE_LAP_ENEMY_MAX	(7)							//1週毎の敵トレーナーの最大数
+#define CASTLE_LAP_MAX			(8)							///キャッスルの最大周回数
+#define CASTLE_LAP_MULTI_ENEMY_MAX	(CASTLE_LAP_ENEMY_MAX*2)//マルチ1週毎の敵トレーナーの最大数
 
-#define CASTLE_ENTRY_POKE_MAX	(3)							//�v���C���[1�l�̍ő�Q���|�P������
+#define CASTLE_ENTRY_POKE_MAX	(3)							//プレイヤー1人の最大参加ポケモン数
 
-//�^�C�v
+//タイプ
 #define CASTLE_TYPE_SINGLE		(0)
 #define CASTLE_TYPE_DOUBLE		(1)
 #define CASTLE_TYPE_MULTI		(2)
 #define CASTLE_TYPE_WIFI_MULTI	(3)
-#define CASTLE_TYPE_MAX			(4)							//�ő吔
+#define CASTLE_TYPE_MAX			(4)							//最大数
 
-//�|�P������
-#define CASTLE_MINE_POKE_MAX	(4)							//�����|�P�����f�[�^�̍ő吔
-#define CASTLE_ENEMY_POKE_MAX	(4)							//�G�|�P�����f�[�^�̍ő吔
-#define CASTLE_TOTAL_POKE_MAX	(CASTLE_MINE_POKE_MAX+CASTLE_ENEMY_POKE_MAX)	//���`�F�b�N�Ɏg�p
+//ポケモン数
+#define CASTLE_MINE_POKE_MAX	(4)							//味方ポケモンデータの最大数
+#define CASTLE_ENEMY_POKE_MAX	(4)							//敵ポケモンデータの最大数
+#define CASTLE_TOTAL_POKE_MAX	(CASTLE_MINE_POKE_MAX+CASTLE_ENEMY_POKE_MAX)	//被りチェックに使用
 
-//�߂�l�ɕK�v�ȃ��[�N�̐�
-#define	CASTLE_PARTY_POKE_MAX	(6)							//POKEPARTY�̃|�P������(6���ő�)
+//戻り値に必要なワークの数
+#define	CASTLE_PARTY_POKE_MAX	(6)							//POKEPARTYのポケモン数(6が最大)
 #define CASTLE_RET_WORK_MAX		(CASTLE_PARTY_POKE_MAX)		//ret_work[]
 #define CASTLE_SEL_WORK_MAX		(CASTLE_PARTY_POKE_MAX)		//sel_poke_no[]
 
-//�߂�l
-#define CASTLE_RET_CANCEL		(0xff)						//�������Ȃ��ŃL�����Z������
+//戻り値
+#define CASTLE_RET_CANCEL		(0xff)						//何もしないでキャンセルした
 
-//�g�pCP
-#define CP_USE_NUKEMITI			(50)						//������
+//使用CP
+#define CP_USE_NUKEMITI			(50)						//抜け道
 
-//����
+//桁数
 #define CASTLE_KETA_CP			(4)
 #define CASTLE_KETA_RANK		(1)
 #define CASTLE_KETA_STATUS		(3)
 #define CASTLE_KETA_LV			(3)
 #define CASTLE_KETA_HP			(3)
 
-//CASTLE_SCRWORK�̎擾�R�[�h(castle.s�Ŏg�p)
+//CASTLE_SCRWORKの取得コード(castle.sで使用)
 //#define FC_ID_SET_MODE					(0)
 //#define FC_ID_SET_LEVEL					(1)
 #define FC_ID_SET_TYPE					(2)
@@ -98,18 +98,18 @@
 #define FC_ID_BRAIN_APPEAR_MSG_CHK		(43)
 #define FC_ID_WIFI_MULTI_CP_TEMP		(44)
 
-//d32r0501.ev�Ŏg�p
+//d32r0501.evで使用
 #define CASTLE_TOOL_CHK_ENTRY_POKE_NUM	(0)
 #define CASTLE_TOOL_GET_CLEAR_FLAG		(1)
 #define CASTLE_TOOL_GET_CLEAR_MONSNO	(2)
 #define CASTLE_TOOL_SET_NEW_CHALLENGE	(3)
 #define CASTLE_TOOL_SELECT_POKE			(4)
 
-//�ʐM�o�b�t�@�̃T�C�Y(send_buf,recv_buf)
+//通信バッファのサイズ(send_buf,recv_buf)
 #define CASTLE_COMM_BUF_LEN			(40)				//34*2=68
 #define CASTLE_HUGE_BUF_LEN			(512)//(1024)
 
-//�ʐM�^�C�v
+//通信タイプ
 //fssc_castle_sub.c
 #define CASTLE_COMM_BASIC			(0)
 #define CASTLE_COMM_TR				(1)
@@ -118,42 +118,42 @@
 #define CASTLE_COMM_RETIRE			(4)
 #define CASTLE_COMM_TRADE_YESNO		(5)
 #define CASTLE_COMM_TEMOTI			(6)
-//�莝���ʐM
+//手持ち通信
 #define CASTLE_COMM_MINE_PAIR			(10)
 #define CASTLE_COMM_MINE_UP_TYPE		(11)
 #define CASTLE_COMM_MINE_CSR_POS		(12)
 #define CASTLE_COMM_MINE_MODORU			(13)
-//�G�g���[�i�[�ʐM
+//敵トレーナー通信
 #define CASTLE_COMM_ENEMY_PAIR			(20)
 #define CASTLE_COMM_ENEMY_UP_TYPE		(21)
 #define CASTLE_COMM_ENEMY_CSR_POS		(22)
 #define CASTLE_COMM_ENEMY_MODORU		(23)
-//�����N�ʐM
+//ランク通信
 #define CASTLE_COMM_RANK_PAIR			(30)
 #define CASTLE_COMM_RANK_UP_TYPE		(31)
 #define CASTLE_COMM_RANK_CSR_POS		(32)
 #define CASTLE_COMM_RANK_MODORU			(33)
 
-//�ʐM����1�l�̃|�P������
+//通信時の1人のポケモン数
 #define	CASTLE_COMM_POKE_NUM		(2)
 
-//�ʐM����2�l�̃|�P������
+//通信時の2人のポケモン数
 #define	CASTLE_COMM_POKE_TOTAL_NUM	(2*2)
 
-//����(�}���`�Ȃ�G�̐���4�ȂǁA1�l�������2�ɂȂ�)
+//総数(マルチなら敵の数が4など、1人あたりは2になる)
 #define CASTLE_FLAG_SOLO			(0)					//2
 #define CASTLE_FLAG_TOTAL			(1)					//2+2=4
 
-//�����N�̎��(�����ӂ��A�����^���A���傤�ق�)
+//ランクの種類(かいふく、レンタル、じょうほう)
 #define CASTLE_RANK_TYPE_KAIHUKU	(0)
 #define CASTLE_RANK_TYPE_RENTAL		(1)
 #define CASTLE_RANK_TYPE_INFO		(2)
 #define CASTLE_RANK_TYPE_MAX		(3)
 
-//�ʐM�l��
+//通信人数
 #define CASTLE_COMM_PLAYER_NUM		(2)
 
-//�e�̌���
+//親の決定
 #define CASTLE_SCR_MENU_NONE		(0)
 #define CASTLE_SCR_MENU_TEMOTI		(1)
 #define CASTLE_SCR_MENU_TRAINER		(2)
@@ -162,17 +162,17 @@
 #define CASTLE_SCR_MENU_NUKEMITI	(5)
 #define CASTLE_SCR_MENU_MAX			(6)
 
-//�u�߂�v�\���E�F�C�g
+//「戻る」表示ウェイト
 //#define CASTLE_MODORU_WAIT			(15)
 #define CASTLE_MODORU_WAIT			(30)
 
-#define CASTLE_NAME_CP_START_X		(16)		//����̖��O�{�b�o�E�B���h�E�̂b�o�J�n�w
+#define CASTLE_NAME_CP_START_X		(16)		//左上の名前＋ＣＰウィンドウのＣＰ開始Ｘ
 
-//���R�[�h�Z�b�g�ɓn���O�ɐ��������Ȃ��ƃ_���I
-//�d�l���́u�Z�[�u�f�[�^�ɂ��āv�̗��ɍő吔�������Ă���
-#define CASTLE_RENSYOU_MAX			(9999)				//�A�����̍ő吔
-#define CASTLE_CP_MAX				(9999)				//�����Ă���CP�̍ő吔
-#define CASTLE_USE_CP_MAX			(9999)				//�g�p����CP�̍ő吔
+//レコードセットに渡す前に制限かけないとダメ！
+//仕様書の「セーブデータについて」の欄に最大数が書いてある
+#define CASTLE_RENSYOU_MAX			(9999)				//連勝数の最大数
+#define CASTLE_CP_MAX				(9999)				//持っているCPの最大数
+#define CASTLE_USE_CP_MAX			(9999)				//使用したCPの最大数
 
 
 #endif	//__CASTLE_DEF_H__

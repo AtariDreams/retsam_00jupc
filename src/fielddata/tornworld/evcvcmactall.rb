@@ -1,19 +1,19 @@
 ##################################################################
 #	evcvcmactall.rb
-#	‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒCƒxƒ“ƒgƒf[ƒ^A
-#	ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^ƒtƒ@ƒCƒ‹‘S‚Ä‚ÌƒRƒ“ƒo[ƒg‚Æˆê——¶¬
-#	evflist.rb ¶¬‚·‚éˆê——ƒtƒ@ƒCƒ‹–¼
-#	ŠO•” "exec" "system"
+#	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã€
+#	ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«å…¨ã¦ã®ã‚³ãƒ³ãƒãƒ¼ãƒˆã¨ä¸€è¦§ç”Ÿæˆ
+#	evflist.rb ç”Ÿæˆã™ã‚‹ä¸€è¦§ãƒ•ã‚¡ã‚¤ãƒ«å
+#	å¤–éƒ¨ "exec" "system"
 ##################################################################
 
-#ƒ‰ƒCƒuƒ‰ƒŠ
-require "evcmactcv.rb"	#ƒf[ƒ^ƒRƒ“ƒo[ƒg
+#ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
+require "evcmactcv.rb"	#ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 
-#’è”
+#å®šæ•°
 
 #=================================================================
-#	ƒCƒxƒ“ƒgƒWƒƒƒ“ƒvƒtƒ@ƒCƒ‹ƒRƒ“ƒo[ƒg
-#	list ‘‚«‚İæƒtƒ@ƒCƒ‹
+#	ã‚¤ãƒ™ãƒ³ãƒˆã‚¸ãƒ£ãƒ³ãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+#	list æ›¸ãè¾¼ã¿å…ˆãƒ•ã‚¡ã‚¤ãƒ«
 #	TW_EVDATALIST_CMACT
 #=================================================================
 def ev_make_cmactdata( list )
@@ -31,11 +31,11 @@ def ev_make_cmactdata( list )
 			binname = name.sub( /\.xls/, "\.bin" )
 			txtname = name.sub( /\.xls/, "\.txt" )
 			list.printf( " \\\n" )
-			list.printf( "\t%s", winpath+binname )		# ƒtƒ‹ƒpƒX
+			list.printf( "\t%s", winpath+binname )		# ãƒ•ãƒ«ãƒ‘ã‚¹
 			
 			system( convert, winpath+name )				# xls -> txt
 			
-			ret = evcmactcv_txtfileconv( winpath+txtname )	# ƒoƒCƒiƒŠ•ÏŠ·
+			ret = evcmactcv_txtfileconv( winpath+txtname )	# ãƒã‚¤ãƒŠãƒªå¤‰æ›
 			if( ret == 1 )
 				break
 			end
@@ -44,17 +44,17 @@ def ev_make_cmactdata( list )
 		end
 	}
 	
-	#ƒfƒBƒŒƒNƒgƒŠ‚ğ•Â‚¶‚é
+	#ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’é–‰ã˜ã‚‹
 	dir.close
 	
-	#ƒtƒ@ƒCƒ‹”o—Í
+	#ãƒ•ã‚¡ã‚¤ãƒ«æ•°å‡ºåŠ›
 	printf( "tw cmactfile count %d\n", count-1 )
 	
 	return ret
 end
 
 #=================================================================
-#	ƒCƒxƒ“ƒgƒtƒ@ƒCƒ‹ƒRƒ“ƒo[ƒg
+#	ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 #=================================================================
 path = ARGV[0]
 if( path == @nil )
@@ -68,6 +68,6 @@ ret = ev_make_cmactdata( list )
 
 list.close
 
-if( ret == 1 )			#ƒGƒ‰[
+if( ret == 1 )			#ã‚¨ãƒ©ãƒ¼
 	File.delete( path )
 end

@@ -21,7 +21,7 @@
   add CARDRomHeader.
 
   Revision 1.14  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ðC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.13  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -91,7 +91,7 @@ extern "C"
 /*****************************************************************************/
 /* declarations */
 
-/* ROM ƒwƒbƒ_ —Ìˆæî•ñ\‘¢‘Ì */
+/* ROM ãƒ˜ãƒƒãƒ€ é ˜åŸŸæƒ…å ±æ§‹é€ ä½“ */
 typedef struct
 {
     u32     offset;
@@ -99,59 +99,59 @@ typedef struct
 }
 CARDRomRegion;
 
-/* ROM ƒwƒbƒ_ \‘¢‘Ì */
+/* ROM ãƒ˜ãƒƒãƒ€ æ§‹é€ ä½“ */
 typedef struct
 {
 
-    /* 0x000-0x020 [ƒVƒXƒeƒ€—\–ñ—Ìˆæ] */
-    char    game_name[12];             /* ƒ\ƒtƒgƒ^ƒCƒgƒ‹–¼ */
-    u32     game_code;                 /* ƒCƒjƒVƒƒƒ‹ƒR[ƒh */
-    u16     maker_code;                /* ƒ[ƒJ[ƒR[ƒh */
-    u8      product_id;                /* –{‘ÌƒR[ƒh */
-    u8      device_type;               /* ƒfƒoƒCƒXƒ^ƒCƒv */
-    u8      device_size;               /* ƒfƒoƒCƒX—e—Ê */
-    u8      reserved_A[9];             /* ƒVƒXƒeƒ€—\–ñ A */
-    u8      game_version;              /* ƒ\ƒtƒgƒo[ƒWƒ‡ƒ“ */
-    u8      property;                  /* “à•”Žg—pƒtƒ‰ƒO */
+    /* 0x000-0x020 [ã‚·ã‚¹ãƒ†ãƒ äºˆç´„é ˜åŸŸ] */
+    char    game_name[12];             /* ã‚½ãƒ•ãƒˆã‚¿ã‚¤ãƒˆãƒ«å */
+    u32     game_code;                 /* ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ */
+    u16     maker_code;                /* ãƒ¡ãƒ¼ã‚«ãƒ¼ã‚³ãƒ¼ãƒ‰ */
+    u8      product_id;                /* æœ¬ä½“ã‚³ãƒ¼ãƒ‰ */
+    u8      device_type;               /* ãƒ‡ãƒã‚¤ã‚¹ã‚¿ã‚¤ãƒ— */
+    u8      device_size;               /* ãƒ‡ãƒã‚¤ã‚¹å®¹é‡ */
+    u8      reserved_A[9];             /* ã‚·ã‚¹ãƒ†ãƒ äºˆç´„ A */
+    u8      game_version;              /* ã‚½ãƒ•ãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³ */
+    u8      property;                  /* å†…éƒ¨ä½¿ç”¨ãƒ•ãƒ©ã‚° */
 
-    /* 0x020-0x040 [í’“ƒ‚ƒWƒ…[ƒ‹—pƒpƒ‰ƒ[ƒ^] */
-    void   *main_rom_offset;           /* ARM9 “]‘—Œ³ ROM ƒIƒtƒZƒbƒg */
-    void   *main_entry_address;        /* ARM9 ŽÀsŠJŽnƒAƒhƒŒƒX(–¢ŽÀ‘•) */
-    void   *main_ram_address;          /* ARM9 “]‘—æ RAM ƒIƒtƒZƒbƒg */
-    u32     main_size;                 /* ARM9 “]‘—ƒTƒCƒY */
-    void   *sub_rom_offset;            /* ARM7 “]‘—Œ³ ROM ƒIƒtƒZƒbƒg */
-    void   *sub_entry_address;         /* ARM7 ŽÀsŠJŽnƒAƒhƒŒƒX(–¢ŽÀ‘•) */
-    void   *sub_ram_address;           /* ARM7 “]‘—æ RAM ƒIƒtƒZƒbƒg */
-    u32     sub_size;                  /* ARM7 “]‘—ƒTƒCƒY */
+    /* 0x020-0x040 [å¸¸é§ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿] */
+    void   *main_rom_offset;           /* ARM9 è»¢é€å…ƒ ROM ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
+    void   *main_entry_address;        /* ARM9 å®Ÿè¡Œé–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹(æœªå®Ÿè£…) */
+    void   *main_ram_address;          /* ARM9 è»¢é€å…ˆ RAM ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
+    u32     main_size;                 /* ARM9 è»¢é€ã‚µã‚¤ã‚º */
+    void   *sub_rom_offset;            /* ARM7 è»¢é€å…ƒ ROM ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
+    void   *sub_entry_address;         /* ARM7 å®Ÿè¡Œé–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹(æœªå®Ÿè£…) */
+    void   *sub_ram_address;           /* ARM7 è»¢é€å…ˆ RAM ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
+    u32     sub_size;                  /* ARM7 è»¢é€ã‚µã‚¤ã‚º */
 
-    /* 0x040-0x050 [ƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹—pƒpƒ‰ƒ[ƒ^] */
-    CARDRomRegion fnt;                 /* ƒtƒ@ƒCƒ‹ƒl[ƒ€ƒe[ƒuƒ‹ */
-    CARDRomRegion fat;                 /* ƒtƒ@ƒCƒ‹ƒAƒƒP[ƒVƒ‡ƒ“ƒe[ƒuƒ‹ */
+    /* 0x040-0x050 [ãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿] */
+    CARDRomRegion fnt;                 /* ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ ãƒ†ãƒ¼ãƒ–ãƒ« */
+    CARDRomRegion fat;                 /* ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ« */
 
-    /* 0x050-0x060 [ƒI[ƒo[ƒŒƒCƒwƒbƒ_ƒe[ƒuƒ‹—pƒpƒ‰ƒ[ƒ^] */
-    CARDRomRegion main_ovt;            /* ARM9 ƒI[ƒo[ƒŒƒCƒwƒbƒ_ƒe[ƒuƒ‹ */
-    CARDRomRegion sub_ovt;             /* ARM7 ƒI[ƒo[ƒŒƒCƒwƒbƒ_ƒe[ƒuƒ‹ */
+    /* 0x050-0x060 [ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ˜ãƒƒãƒ€ãƒ†ãƒ¼ãƒ–ãƒ«ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿] */
+    CARDRomRegion main_ovt;            /* ARM9 ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ˜ãƒƒãƒ€ãƒ†ãƒ¼ãƒ–ãƒ« */
+    CARDRomRegion sub_ovt;             /* ARM7 ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ˜ãƒƒãƒ€ãƒ†ãƒ¼ãƒ–ãƒ« */
 
-    /* 0x060-0x070 [ƒVƒXƒeƒ€—\–ñ—Ìˆæ] */
-    u8      rom_param_A[8];            /* ƒ}ƒXƒN ROM ƒRƒ“ƒgƒ[ƒ‹ƒpƒ‰ƒ[ƒ^ A */
-    u32     banner_offset;             /* ƒoƒi[ƒtƒ@ƒCƒ‹ ROM ƒIƒtƒZƒbƒg */
-    u16     secure_crc;                /* ƒZƒLƒ…ƒA—Ìˆæ CRC */
-    u8      rom_param_B[2];            /* ƒ}ƒXƒN ROM ƒRƒ“ƒgƒ[ƒ‹ƒpƒ‰ƒ[ƒ^ B */
+    /* 0x060-0x070 [ã‚·ã‚¹ãƒ†ãƒ äºˆç´„é ˜åŸŸ] */
+    u8      rom_param_A[8];            /* ãƒžã‚¹ã‚¯ ROM ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ A */
+    u32     banner_offset;             /* ãƒãƒŠãƒ¼ãƒ•ã‚¡ã‚¤ãƒ« ROM ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
+    u16     secure_crc;                /* ã‚»ã‚­ãƒ¥ã‚¢é ˜åŸŸ CRC */
+    u8      rom_param_B[2];            /* ãƒžã‚¹ã‚¯ ROM ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ B */
 
-    /* 0x070-0x078 [ƒI[ƒgƒ[ƒhƒpƒ‰ƒ[ƒ^] */
-    void   *main_autoload_done;        /* ARM9 ƒI[ƒgƒ[ƒhƒtƒbƒNƒAƒhƒŒƒX */
-    void   *sub_autoload_done;         /* ARM7 ƒI[ƒgƒ[ƒhƒtƒbƒNƒAƒhƒŒƒX */
+    /* 0x070-0x078 [ã‚ªãƒ¼ãƒˆãƒ­ãƒ¼ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿] */
+    void   *main_autoload_done;        /* ARM9 ã‚ªãƒ¼ãƒˆãƒ­ãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ */
+    void   *sub_autoload_done;         /* ARM7 ã‚ªãƒ¼ãƒˆãƒ­ãƒ¼ãƒ‰ãƒ•ãƒƒã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ */
 
-    /* 0x078-0x0C0 [ƒVƒXƒeƒ€—\–ñ—Ìˆæ] */
-    u8      rom_param_C[8];            /* ƒ}ƒXƒN ROM ƒRƒ“ƒgƒ[ƒ‹ƒpƒ‰ƒ[ƒ^ C */
-    u32     rom_size;                  /* ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ÅI ROM ƒIƒtƒZƒbƒg */
-    u32     header_size;               /* ROM ƒwƒbƒ_ƒTƒCƒY */
-    u8      reserved_B[0x38];          /* ƒVƒXƒeƒ€—\–ñ B */
+    /* 0x078-0x0C0 [ã‚·ã‚¹ãƒ†ãƒ äºˆç´„é ˜åŸŸ] */
+    u8      rom_param_C[8];            /* ãƒžã‚¹ã‚¯ ROM ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ C */
+    u32     rom_size;                  /* ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³æœ€çµ‚ ROM ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
+    u32     header_size;               /* ROM ãƒ˜ãƒƒãƒ€ã‚µã‚¤ã‚º */
+    u8      reserved_B[0x38];          /* ã‚·ã‚¹ãƒ†ãƒ äºˆç´„ B */
 
-    /* 0x0C0-0x160 [ƒVƒXƒeƒ€—\–ñ—Ìˆæ] */
-    u8      logo_data[0x9C];           /* NINTENDO ƒƒSƒCƒ[ƒWƒf[ƒ^ */
-    u16     logo_crc;                  /* NINTENDO ƒƒS CRC */
-    u16     header_crc;                /* ROM “à“o˜^ƒf[ƒ^ CRC */
+    /* 0x0C0-0x160 [ã‚·ã‚¹ãƒ†ãƒ äºˆç´„é ˜åŸŸ] */
+    u8      logo_data[0x9C];           /* NINTENDO ãƒ­ã‚´ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ */
+    u16     logo_crc;                  /* NINTENDO ãƒ­ã‚´ CRC */
+    u16     header_crc;                /* ROM å†…ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ CRC */
 
 }
 CARDRomHeader;
@@ -160,7 +160,7 @@ CARDRomHeader;
 /*****************************************************************************/
 /* constants */
 
-/* ROM ƒGƒŠƒAEƒTƒCƒY */
+/* ROM ã‚¨ãƒªã‚¢ãƒ»ã‚µã‚¤ã‚º */
 #define CARD_ROM_PAGE_SIZE	512
 
 
@@ -170,11 +170,11 @@ CARDRomHeader;
 /*---------------------------------------------------------------------------*
   Name:         CARD_GetRomRegionFNT
 
-  Description:  ROM ƒwƒbƒ_‚Ì FNT —Ìˆæî•ñ‚ðŽæ“¾‚·‚é.
+  Description:  ROM ãƒ˜ãƒƒãƒ€ã® FNT é ˜åŸŸæƒ…å ±ã‚’å–å¾—ã™ã‚‹.
 
   Arguments:    None.
 
-  Returns:      ROM ƒwƒbƒ_‚Ì FNT —Ìˆæî•ñ ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
+  Returns:      ROM ãƒ˜ãƒƒãƒ€ã® FNT é ˜åŸŸæƒ…å ± ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
  *---------------------------------------------------------------------------*/
 static inline const CARDRomRegion *CARD_GetRomRegionFNT(void)
 {
@@ -184,11 +184,11 @@ static inline const CARDRomRegion *CARD_GetRomRegionFNT(void)
 /*---------------------------------------------------------------------------*
   Name:         CARD_GetRomRegionFAT
 
-  Description:  ROM ƒwƒbƒ_‚Ì FAT —Ìˆæî•ñ‚ðŽæ“¾‚·‚é.
+  Description:  ROM ãƒ˜ãƒƒãƒ€ã® FAT é ˜åŸŸæƒ…å ±ã‚’å–å¾—ã™ã‚‹.
 
   Arguments:    None.
 
-  Returns:      ROM ƒwƒbƒ_‚Ì FAT —Ìˆæî•ñ ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
+  Returns:      ROM ãƒ˜ãƒƒãƒ€ã® FAT é ˜åŸŸæƒ…å ± ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
  *---------------------------------------------------------------------------*/
 static inline const CARDRomRegion *CARD_GetRomRegionFAT(void)
 {
@@ -198,11 +198,11 @@ static inline const CARDRomRegion *CARD_GetRomRegionFAT(void)
 /*---------------------------------------------------------------------------*
   Name:         CARD_GetRomRegionOVT
 
-  Description:  ROM ƒwƒbƒ_‚Ì OVT —Ìˆæî•ñ‚ðŽæ“¾‚·‚é.
+  Description:  ROM ãƒ˜ãƒƒãƒ€ã® OVT é ˜åŸŸæƒ…å ±ã‚’å–å¾—ã™ã‚‹.
 
   Arguments:    None.
 
-  Returns:      ROM ƒwƒbƒ_‚Ì OVT —Ìˆæî•ñ ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
+  Returns:      ROM ãƒ˜ãƒƒãƒ€ã® OVT é ˜åŸŸæƒ…å ± ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
  *---------------------------------------------------------------------------*/
 static inline const CARDRomRegion *CARD_GetRomRegionOVT(MIProcessor target)
 {
@@ -212,19 +212,19 @@ static inline const CARDRomRegion *CARD_GetRomRegionOVT(MIProcessor target)
 }
 
 /*
- *	ˆÈ‰º‚ÌŠÖ”‚Í CARD ãƒfƒoƒCƒX‚Ö‚Ì’á…€ƒAƒNƒZƒX‚ð’ñ‹Ÿ‚µ‚Ü‚·.
- *	‚±‚ê‚ç‚ÌŽg—p‚ÉÛ‚µ‚Ä‚Í•K‚¸Š’èƒoƒX‚ÌÝ’è‚ðŽ©ŒÈŠÇ—‚µ‚Ä‚­‚¾‚³‚¢.
+ *	ä»¥ä¸‹ã®é–¢æ•°ã¯ CARD ä¸Šãƒ‡ãƒã‚¤ã‚¹ã¸ã®ä½Žæ°´æº–ã‚¢ã‚¯ã‚»ã‚¹ã‚’æä¾›ã—ã¾ã™.
+ *	ã“ã‚Œã‚‰ã®ä½¿ç”¨ã«éš›ã—ã¦ã¯å¿…ãšæ‰€å®šãƒã‚¹ã®è¨­å®šã‚’è‡ªå·±ç®¡ç†ã—ã¦ãã ã•ã„.
  *
- *	TEG ‚©‚ÂƒJ[ƒgƒŠƒbƒW‚Å‚ÌŠÂ‹«‰º‚É‚¨‚¢‚Ä‚Í
- *	ƒAƒNƒZƒX‘ÎÛ‚ð“à•”“I‚ÉƒJ[ƒgƒŠƒbƒW‚Ö•ÏX‚µ‚Ü‚·‚Ì‚Å,
- *	“®ì“Á«‚ðœ‚¢‚ÄŠî–{“I‚É“¯—l‚Èˆ—‚ª‰Â”\‚Å‚·.
+ *	TEG ã‹ã¤ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã§ã®ç’°å¢ƒä¸‹ã«ãŠã„ã¦ã¯
+ *	ã‚¢ã‚¯ã‚»ã‚¹å¯¾è±¡ã‚’å†…éƒ¨çš„ã«ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã¸å¤‰æ›´ã—ã¾ã™ã®ã§,
+ *	å‹•ä½œç‰¹æ€§ã‚’é™¤ã„ã¦åŸºæœ¬çš„ã«åŒæ§˜ãªå‡¦ç†ãŒå¯èƒ½ã§ã™.
  *
  *	CARD_LockRom() / CARD_UnlockRom() /
- *	CARD_LockBackup() / CARD_UnlockBackup() ‚Í
- *	OS_LockCard() ‚Ü‚½‚Í OS_LockCartridge() ‚Ì‚Ç‚¿‚ç‚ð
- *	Žg—p‚·‚×‚«‚©“®“I‚É”»’f‚µ‚Ä‚±‚ê‚ðŒÄ‚Ño‚µ‚Ü‚·.
- *	‚Ü‚½, ROM ‚ÆƒoƒbƒNƒAƒbƒv‚Ì—¼•û‚ð“¯Žž‚ÉƒAƒNƒZƒX‚µ‚È‚¢‚æ‚¤
- *	“à•”‚Å”r‘¼§Œä‚ªs‚í‚ê‚Ü‚·.
+ *	CARD_LockBackup() / CARD_UnlockBackup() ã¯
+ *	OS_LockCard() ã¾ãŸã¯ OS_LockCartridge() ã®ã©ã¡ã‚‰ã‚’
+ *	ä½¿ç”¨ã™ã¹ãã‹å‹•çš„ã«åˆ¤æ–­ã—ã¦ã“ã‚Œã‚’å‘¼ã³å‡ºã—ã¾ã™.
+ *	ã¾ãŸ, ROM ã¨ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã®ä¸¡æ–¹ã‚’åŒæ™‚ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„ã‚ˆã†
+ *	å†…éƒ¨ã§æŽ’ä»–åˆ¶å¾¡ãŒè¡Œã‚ã‚Œã¾ã™.
  */
 
 #if	defined(SDK_TEG)
@@ -258,32 +258,32 @@ void    CARD_LockRom(u16 lock_id);
 void    CARD_UnlockRom(u16 lock_id);
 
 /*
- *	ˆÈ‰º‚Í ROM ‚Ö“Ç‚Ýž‚ÝƒAƒNƒZƒX‚·‚é“¯Šú / ”ñ“¯ŠúŠÖ”‚Å‚·.
- *	ŠÖ”“à‚Å‚Ìƒn[ƒhƒEƒFƒA§Œä‚ÍˆÈ‰º‚Ì‚Æ‚¨‚è‚Å‚·.
+ *	ä»¥ä¸‹ã¯ ROM ã¸èª­ã¿è¾¼ã¿ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹åŒæœŸ / éžåŒæœŸé–¢æ•°ã§ã™.
+ *	é–¢æ•°å†…ã§ã®ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢åˆ¶å¾¡ã¯ä»¥ä¸‹ã®ã¨ãŠã‚Šã§ã™.
  *
- *	EDMA ‚ðŽw’è‚³‚ê‚Ä‚¢‚ê‚Î MI_StopDma() ‚Å–¾Ž¦“I‚É’âŽ~‚µ‚Ä‚©‚çŽg—p‚·‚é
- *	EDMA ‚ð”ÍˆÍŠO‚ÉŽw’è‚·‚é‚Æ CPU “]‘—‚ðŽg—p‚·‚é
- *	E‘O‰ñ‚ÌƒAƒNƒZƒX‚ªŠ®—¹‚µ‚Ä‚¢‚È‚¯‚ê‚ÎŠ®—¹‚Ü‚ÅƒuƒƒbƒLƒ“ƒO‚·‚é
+ *	ãƒ»DMA ã‚’æŒ‡å®šã•ã‚Œã¦ã„ã‚Œã° MI_StopDma() ã§æ˜Žç¤ºçš„ã«åœæ­¢ã—ã¦ã‹ã‚‰ä½¿ç”¨ã™ã‚‹
+ *	ãƒ»DMA ã‚’ç¯„å›²å¤–ã«æŒ‡å®šã™ã‚‹ã¨ CPU è»¢é€ã‚’ä½¿ç”¨ã™ã‚‹
+ *	ãƒ»å‰å›žã®ã‚¢ã‚¯ã‚»ã‚¹ãŒå®Œäº†ã—ã¦ã„ãªã‘ã‚Œã°å®Œäº†ã¾ã§ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ã™ã‚‹
  *
- *	ƒJ[ƒh“]‘—‘¬“x‚»‚Ì‚à‚Ì‚ÍÅ‘å 5.96[MB/s] ‚Å‚·‚ª,
- *	ŽÀÛ‚Ì API ‚Å‚Í‚¢‚­‚ç‚©‚ÌƒI[ƒo[ƒwƒbƒh‚ðŠÜ‚Ý‚Ü‚·.
- *	CPU ‚É‚æ‚é“¯Šú“]‘—‚Ìê‡‚Í‚Ù‚Ú 100% ‚Ì‘¬“x‚ðŽÀŒ»‚Å‚«‚Ü‚·.
- *	DMA ‚ðŽg—p‚µ‚½”ñ“¯Šú“]‘—‚Ìê‡‚Í 90 ` 95%  ‚Æ‚È‚è‚Ü‚·‚ª,
- *	“]‘—’†‚Ì‘½‚­‚ÌŽžŠÔ‚Å CPU ‚ª•À—ñ‚ÉŽÀs‚Å‚«‚Ü‚·.
- *	‚³‚ç‚É, ‚±‚ÌÅ‘å’l‚Í“]‘—ðŒ‚ªÅ—Ç‚Ìê‡‚ÉŒÀ’è‚³‚ê‚Ü‚·.
+ *	ã‚«ãƒ¼ãƒ‰è»¢é€é€Ÿåº¦ãã®ã‚‚ã®ã¯æœ€å¤§ 5.96[MB/s] ã§ã™ãŒ,
+ *	å®Ÿéš›ã® API ã§ã¯ã„ãã‚‰ã‹ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ˜ãƒƒãƒ‰ã‚’å«ã¿ã¾ã™.
+ *	CPU ã«ã‚ˆã‚‹åŒæœŸè»¢é€ã®å ´åˆã¯ã»ã¼ 100% ã®é€Ÿåº¦ã‚’å®Ÿç¾ã§ãã¾ã™.
+ *	DMA ã‚’ä½¿ç”¨ã—ãŸéžåŒæœŸè»¢é€ã®å ´åˆã¯ 90 ã€œ 95%  ã¨ãªã‚Šã¾ã™ãŒ,
+ *	è»¢é€ä¸­ã®å¤šãã®æ™‚é–“ã§ CPU ãŒä¸¦åˆ—ã«å®Ÿè¡Œã§ãã¾ã™.
+ *	ã•ã‚‰ã«, ã“ã®æœ€å¤§å€¤ã¯è»¢é€æ¡ä»¶ãŒæœ€è‰¯ã®å ´åˆã«é™å®šã•ã‚Œã¾ã™.
  */
 /*---------------------------------------------------------------------------*
   Name:         CARDi_ReadRom
 
-  Description:  ROM ƒŠ[ƒh‚ÌŠî–{ŠÖ”
+  Description:  ROM ãƒªãƒ¼ãƒ‰ã®åŸºæœ¬é–¢æ•°
 
-  Arguments:    dma        Žg—p‚·‚é DMA ƒ`ƒƒƒ“ƒlƒ‹
-                src        “]‘—Œ³ƒIƒtƒZƒbƒg
-                dst        “]‘—æƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
-                is_async   ”ñ“¯Šúƒ‚[ƒh‚ðŽw’è‚·‚é‚È‚ç TRUE
+  Arguments:    dma        ä½¿ç”¨ã™ã‚‹ DMA ãƒãƒ£ãƒ³ãƒãƒ«
+                src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        è»¢é€å…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
+                is_async   éžåŒæœŸãƒ¢ãƒ¼ãƒ‰ã‚’æŒ‡å®šã™ã‚‹ãªã‚‰ TRUE
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -316,14 +316,14 @@ void    CARD_WaitRomAsync(void);
 /*---------------------------------------------------------------------------*
   Name:         CARD_ReadRomAsync
 
-  Description:  ”ñ“¯Šú ROM ƒŠ[ƒh
+  Description:  éžåŒæœŸ ROM ãƒªãƒ¼ãƒ‰
 
-  Arguments:    dma        Žg—p‚·‚é DMA ƒ`ƒƒƒ“ƒlƒ‹
-                src        “]‘—Œ³ƒIƒtƒZƒbƒg
-                dst        “]‘—æƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
-                callback   Š®—¹ƒR[ƒ‹ƒoƒbƒN (•sŽg—p‚È‚ç NULL)
-                arg        Š®—¹ƒR[ƒ‹ƒoƒbƒN‚Ìˆø” (•sŽg—p‚È‚ç–³Ž‹‚³‚ê‚é)
+  Arguments:    dma        ä½¿ç”¨ã™ã‚‹ DMA ãƒãƒ£ãƒ³ãƒãƒ«
+                src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        è»¢é€å…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
+                callback   å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (ä¸ä½¿ç”¨ãªã‚‰ NULL)
+                arg        å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•° (ä¸ä½¿ç”¨ãªã‚‰ç„¡è¦–ã•ã‚Œã‚‹)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -337,12 +337,12 @@ static inline void CARD_ReadRomAsync(u32 dma,
 /*---------------------------------------------------------------------------*
   Name:         CARD_ReadRom
 
-  Description:  “¯Šú ROM ƒŠ[ƒh
+  Description:  åŒæœŸ ROM ãƒªãƒ¼ãƒ‰
 
-  Arguments:    dma        Žg—p‚·‚é DMA ƒ`ƒƒƒ“ƒlƒ‹
-                src        “]‘—Œ³ƒIƒtƒZƒbƒg
-                dst        “]‘—æƒƒ‚ƒŠƒAƒhƒŒƒX
-                len        “]‘—ƒTƒCƒY
+  Arguments:    dma        ä½¿ç”¨ã™ã‚‹ DMA ãƒãƒ£ãƒ³ãƒãƒ«
+                src        è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                dst        è»¢é€å…ˆãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                len        è»¢é€ã‚µã‚¤ã‚º
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

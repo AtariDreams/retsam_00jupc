@@ -2,7 +2,7 @@
 /**
  * 
  * @file	slot_clact.c
- * @brief	ƒ~ƒjƒQ[ƒ€@ƒXƒƒbƒg@ƒZƒ‹ƒAƒNƒ^[
+ * @brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã€€ã‚¹ãƒ­ãƒƒãƒˆã€€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
  * @author	kagaya
  * @data	05.07.13
  *
@@ -22,12 +22,12 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	\‘¢‘Ì’è‹`
+///	æ§‹é€ ä½“å®šç¾©
 //--------------------------------------------------------------
 typedef struct _TAG_CLACTRESOBJ CLACTRESOBJ;
 
 //--------------------------------------------------------------
-///	CLACTRESOBJ\‘¢‘Ì
+///	CLACTRESOBJæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_CLACTRESOBJ
 {
@@ -39,7 +39,7 @@ typedef struct _TAG_CLACTRESOBJ
 #define CLACTRESOBJ_SIZE (sizeof(CLACTRESOBJ))
 
 //--------------------------------------------------------------
-///	CLACTSETDATA\‘¢‘Ì
+///	CLACTSETDATAæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_CLACTSETDATA
 {
@@ -74,22 +74,22 @@ static void ClActCharVIntrTCB( TCB_PTR tcb, void *wk );
 static void ClActPlttVIntrTCB( TCB_PTR tcb, void *wk );
 
 //==============================================================================
-//	ƒZƒ‹ƒAƒNƒ^[@ƒVƒXƒeƒ€
+//	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgƒf[ƒ^‰Šú‰»
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  * @param	heap_id		HEAPID
- * @param	actmax		ƒAƒNƒ^[Å‘å”
- * @param	transmax	“]‘—ƒZƒ‹ƒAƒNƒ^[Å‘å”
- * @param	charmax		ƒLƒƒƒ‰“o˜^Å‘å”
- * @param	plttmax		ƒpƒŒƒbƒg“o˜^Å‘å”
- * @param	cellmax		ƒZƒ‹“o˜^Å‘å”
- * @param	anmmax		ƒAƒjƒ“o˜^Å‘å”
- * @param	charnonid	ƒLƒƒƒ‰“o˜^‚É–³‚µ‚Æ”»’f‚·‚éID
- * @param	plttnonid	ƒpƒŒƒbƒg“o˜^‚É–³‚µ‚Æ”»’f‚·‚éID
- * @param	cellnonid	ƒZƒ‹“o˜^‚É–³‚µ‚Æ”»’f‚·‚éID
- * @param	anmnonid	ƒAƒjƒ“o˜^‚É–³‚µ‚Æ”»’f‚·‚éID
+ * @param	actmax		ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
+ * @param	transmax	è»¢é€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
+ * @param	charmax		ã‚­ãƒ£ãƒ©ç™»éŒ²æœ€å¤§æ•°
+ * @param	plttmax		ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æœ€å¤§æ•°
+ * @param	cellmax		ã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
+ * @param	anmmax		ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
+ * @param	charnonid	ã‚­ãƒ£ãƒ©ç™»éŒ²æ™‚ã«ç„¡ã—ã¨åˆ¤æ–­ã™ã‚‹ID
+ * @param	plttnonid	ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æ™‚ã«ç„¡ã—ã¨åˆ¤æ–­ã™ã‚‹ID
+ * @param	cellnonid	ã‚»ãƒ«ç™»éŒ²æ™‚ã«ç„¡ã—ã¨åˆ¤æ–­ã™ã‚‹ID
+ * @param	anmnonid	ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æ™‚ã«ç„¡ã—ã¨åˆ¤æ–­ã™ã‚‹ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -102,10 +102,10 @@ CLACTSETDATA * ClActSetDataInit(
 	CLACTSETDATA *set = sys_AllocMemory( heap_id, CLACTSETDATA_SIZE );
 	GF_ASSERT( set != NULL );
 	
-	//ƒq[ƒvIDƒZƒbƒg
+	//ãƒ’ãƒ¼ãƒ—IDã‚»ãƒƒãƒˆ
 	set->heap_id = heap_id;
 	
-	//ƒpƒ‰ƒƒ^‰Šú‰»
+	//ãƒ‘ãƒ©ãƒ¡ã‚¿åˆæœŸåŒ–
 	set->resobj_char_max = charmax;
 	set->resobj_pltt_max = plttmax;
 	set->resobj_cell_max = cellmax;
@@ -115,20 +115,20 @@ CLACTSETDATA * ClActSetDataInit(
 	set->resobj_cell_nonid = cellnonid;
 	set->resobj_anm_nonid = anmnonid;
 	
-	//ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	set->clact_set = CLACT_U_SetEasyInit( actmax, &set->clact_easydata, heap_id );
 	
-	//“]‘—ƒ}ƒl[ƒWƒƒ‰Šú‰»
+	//è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
 	set->cellTransArray = InitCellTransfer( transmax, heap_id );
 	initVramTransferManagerHeap( transmax, heap_id );
 	
-	//ƒŠƒ\[ƒX‰Šú‰»
+	//ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
 	set->clact_resm_char = CLACT_U_ResManagerInit( charmax, CLACT_U_CHAR_RES, heap_id );
 	set->clact_resm_pltt = CLACT_U_ResManagerInit( plttmax, CLACT_U_PLTT_RES, heap_id );
 	set->clact_resm_cell = CLACT_U_ResManagerInit( cellmax, CLACT_U_CELL_RES, heap_id );
 	set->clact_resm_anm = CLACT_U_ResManagerInit( anmmax, CLACT_U_CELLANM_RES, heap_id );
 	
-	//ƒŠƒ\[ƒXOBJ‰Šú‰»
+	//ãƒªã‚½ãƒ¼ã‚¹OBJåˆæœŸåŒ–
 	set->clact_resobj_char = sys_AllocMemory( heap_id, CLACTRESOBJ_SIZE * charmax );
 	set->clact_resobj_pltt = sys_AllocMemory( heap_id, CLACTRESOBJ_SIZE * plttmax );
 	set->clact_resobj_cell = sys_AllocMemory( heap_id, CLACTRESOBJ_SIZE * cellmax );
@@ -148,7 +148,7 @@ CLACTSETDATA * ClActSetDataInit(
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgƒf[ƒ^íœ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å‰Šé™¤
  * @param	clactset	CLACTSETDATA
  * @retval	nothing
  */
@@ -157,7 +157,7 @@ void ClActSetDataDelete( CLACTSETDATA *set )
 {
 	u32 i;
 	
-	//VRAM‚É“WŠJ‚³‚ê‚½ƒLƒƒƒ‰AƒpƒŒƒbƒgíœ
+	//VRAMã«å±•é–‹ã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆå‰Šé™¤
 	for( i = 0; i < set->resobj_char_max; i++ ){
 		if( set->clact_resobj_char[i].id != set->resobj_char_nonid ){
 			CLACT_U_CharManagerDelete( set->clact_resobj_char[i].resobj );
@@ -170,7 +170,7 @@ void ClActSetDataDelete( CLACTSETDATA *set )
 		}
 	}
 	
-	//ƒZƒ‹AƒAƒjƒ“WŠJ—Ìˆæ”jŠü
+	//ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡å±•é–‹é ˜åŸŸç ´æ£„
 	for( i = 0; i < set->resobj_cell_max; i++ ){
 		if( set->clact_resobj_cell[i].id != set->resobj_cell_nonid ){
 			CLACT_U_ResManagerResOnlyDelete( set->clact_resobj_cell[i].resobj );
@@ -193,22 +193,22 @@ void ClActSetDataDelete( CLACTSETDATA *set )
 	sys_FreeMemoryEz( set->clact_resobj_cell );
 	sys_FreeMemoryEz( set->clact_resobj_anm );
 	
-	//ƒZƒ‹“]‘—ƒ}ƒl[ƒWƒƒíœ
+	//ã‚»ãƒ«è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£å‰Šé™¤
 	DellVramTransferManager();
 	DeleteCellTransfer( set->cellTransArray );
 	
-	//ƒAƒNƒ^[‘S•”íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼å…¨éƒ¨å‰Šé™¤
 	CLACT_DelAllSet( set->clact_set );
-	//ƒZƒ‹ƒAƒNƒ^[”jŠü
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	CLACT_DestSet( set->clact_set );
 	
-	//ŠJ•ú
+	//é–‹æ”¾
 	sys_FreeMemoryEz( set );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgƒf[ƒ^@•`‰æ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã€€æç”»
  * @param	set			CLACTSETDATA
  * @retval	nothing
  */
@@ -221,11 +221,11 @@ void ClActSetDataDraw( CLACTSETDATA *set )
 
 //--------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰“o˜^
+ * ã‚­ãƒ£ãƒ©ç™»éŒ²
  * @param	set		CLACTSETDATA
  * @param	hand	ARCHANDLE *
- * @param	arcid	ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	id “o˜^ID
+ * @param	arcid	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	id ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -245,14 +245,14 @@ void ClActCharAdd( CLACTSETDATA *set, u32 type, ARCHANDLE *hand, u32 arcid, u32 
 		}
 	}
 	
-	GF_ASSERT( 0 && "ClActCharAdd()“o˜^‚Å‚«‚È‚¢" );
+	GF_ASSERT( 0 && "ClActCharAdd()ç™»éŒ²ã§ããªã„" );
 }
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒLƒƒƒ‰ID‚ğVRAMƒGƒŠƒA‚ÖƒZƒbƒg
+ * æŒ‡å®šã•ã‚ŒãŸã‚­ãƒ£ãƒ©IDã‚’VRAMã‚¨ãƒªã‚¢ã¸ã‚»ãƒƒãƒˆ
  * @param	set		CLACTSETDATA
- * @param	id		“o˜^ID
+ * @param	id		ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -267,14 +267,14 @@ void ClActCharVramAreaSet( CLACTSETDATA *set, u32 id )
 		}
 	}
 	
-	GF_ASSERT( 0 && "ClActCharAreaCont()IDˆÙí" );
+	GF_ASSERT( 0 && "ClActCharAreaCont()IDç•°å¸¸" );
 }
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒLƒƒƒ‰ID‚Å“WŠJ‚µ‚½—Ìˆæ‚ğ”jŠü
+ * æŒ‡å®šã•ã‚ŒãŸã‚­ãƒ£ãƒ©IDã§å±•é–‹ã—ãŸé ˜åŸŸã‚’ç ´æ£„
  * @param	set		CLACTSETDATA
- * @param	id		“o˜^ID
+ * @param	id		ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -289,12 +289,12 @@ void ClActCharResDelete( CLACTSETDATA *set, u32 id )
 		}
 	}
 	
-	GF_ASSERT( 0 && "ClActCharResDelete()IDˆÙí" );
+	GF_ASSERT( 0 && "ClActCharResDelete()IDç•°å¸¸" );
 }
 
 //--------------------------------------------------------------
 /**
- * Vƒuƒ‰ƒ“ƒN@ƒLƒƒƒ‰“]‘—
+ * Vãƒ–ãƒ©ãƒ³ã‚¯ã€€ã‚­ãƒ£ãƒ©è»¢é€
  * @param	tcb	TCB_PTR
  * @param	wk	tcb work *
  * @retval	nothing
@@ -314,11 +314,11 @@ static void ClActCharVIntrTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒg“o˜^
+ * ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²
  * @param	set		CLACTSETDATA
  * @param	hand	ARCHANDLE *
- * @param	arcid	ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	id	“o˜^ID
+ * @param	arcid	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	id	ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -338,14 +338,14 @@ void ClActPlttAdd( CLACTSETDATA *set, u32 type, ARCHANDLE *hand, u32 arcid, u32 
 		}
 	}
 	
-	GF_ASSERT( 0 && "ClActPlttAdd()“o˜^‚Å‚«‚È‚¢" );
+	GF_ASSERT( 0 && "ClActPlttAdd()ç™»éŒ²ã§ããªã„" );
 }
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒpƒŒƒbƒgID‚ğVRAMƒGƒŠƒA‚ÖƒZƒbƒg
+ * æŒ‡å®šã•ã‚ŒãŸãƒ‘ãƒ¬ãƒƒãƒˆIDã‚’VRAMã‚¨ãƒªã‚¢ã¸ã‚»ãƒƒãƒˆ
  * @param	set		CLACTSETDATA
- * @param	id		“o˜^ID
+ * @param	id		ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -360,14 +360,14 @@ void ClActPlttVramAreaSet( CLACTSETDATA *set, u32 id )
 		}
 	}
 	
-	GF_ASSERT( 0 && "ClActPlttAreaCont()IDˆÙí" );
+	GF_ASSERT( 0 && "ClActPlttAreaCont()IDç•°å¸¸" );
 }
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒpƒŒƒbƒgID‚Å“WŠJ‚µ‚½—Ìˆæ‚ğ”jŠü
+ * æŒ‡å®šã•ã‚ŒãŸãƒ‘ãƒ¬ãƒƒãƒˆIDã§å±•é–‹ã—ãŸé ˜åŸŸã‚’ç ´æ£„
  * @param	set		CLACTSETDATA
- * @param	id		“o˜^ID
+ * @param	id		ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -382,12 +382,12 @@ void ClActPlttResDelete( CLACTSETDATA *set, u32 id )
 		}
 	}
 	
-	GF_ASSERT( 0 && "ClActPlttResDelete()IDˆÙí" );
+	GF_ASSERT( 0 && "ClActPlttResDelete()IDç•°å¸¸" );
 }
 
 //--------------------------------------------------------------
 /**
- * Vƒuƒ‰ƒ“ƒN@ƒpƒŒƒbƒg“]‘—
+ * Vãƒ–ãƒ©ãƒ³ã‚¯ã€€ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
  * @param	tcb	TCB_PTR
  * @param	wk	tcb work *
  * @retval	nothing
@@ -407,9 +407,9 @@ static void ClActPlttVIntrTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒpƒŒƒbƒgID‚ÌƒvƒƒLƒV‚ğæ“¾
+ * æŒ‡å®šã•ã‚ŒãŸãƒ‘ãƒ¬ãƒƒãƒˆIDã®ãƒ—ãƒ­ã‚­ã‚·ã‚’å–å¾—
  * @param	set		CLACTSETDATA
- * @param	id	“o˜^ID
+ * @param	id	ç™»éŒ²ID
  * @retval	NNSG2dImageProxy NNSG2dImageProxy
  */
 //--------------------------------------------------------------
@@ -427,17 +427,17 @@ const NNSG2dImagePaletteProxy * ClActPlttProxyGet( CLACTSETDATA *set, u32 id )
 		}
 	}
 	
-	GF_ASSERT( 0 && "ClActPlttProxyGet()ID–³‚µ" );
+	GF_ASSERT( 0 && "ClActPlttProxyGet()IDç„¡ã—" );
 	return( NULL );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹“o˜^
+ * ã‚»ãƒ«ç™»éŒ²
  * @param	set		CLACTSETDATA
  * @param	hand	ARCHANDLE *
- * @param	arcid	ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	id	“o˜^ID
+ * @param	arcid	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	id	ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -457,16 +457,16 @@ void ClActCellAdd( CLACTSETDATA *set, ARCHANDLE *hand, u32 arcid, u32 id )
 		}
 	}
 	
-	GF_ASSERT( 0 && "ClActCellAdd()“o˜^‚Å‚«‚È‚¢" );
+	GF_ASSERT( 0 && "ClActCellAdd()ç™»éŒ²ã§ããªã„" );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ“o˜^
+ * ã‚¢ãƒ‹ãƒ¡ç™»éŒ²
  * @param	set		CLACTSETDATA
  * @param	hand	ARCHANDLE *
- * @param	arcid	ƒA[ƒJƒCƒuƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	id	“o˜^ID
+ * @param	arcid	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	id	ç™»éŒ²ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -486,17 +486,17 @@ void ClActAnmAdd( CLACTSETDATA *set, ARCHANDLE *hand, u32 arcid, u32 id )
 		}
 	}
 	
-	GF_ASSERT( 0 && "ClActAnmAdd()“o˜^‚Å‚«‚È‚¢" );
+	GF_ASSERT( 0 && "ClActAnmAdd()ç™»éŒ²ã§ããªã„" );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[@w’èID‚Å“o˜^‚³‚ê‚Ä‚¢‚éƒOƒ‰ƒtƒBƒbƒN‚ğíœ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€æŒ‡å®šIDã§ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å‰Šé™¤
  * @param	clactset	CLACTSETDATA
- * @param	charid		ƒLƒƒƒ‰IDBíœ‚µ‚È‚¢ê‡‚ÍnonID
- * @param	plttid		ƒpƒŒƒbƒgIDBíœ‚µ‚È‚¢ê‡‚ÍnonID
- * @param	cellid		ƒZƒ‹IDBíœ‚µ‚È‚¢ê‡‚ÍnonID
- * @param	anmid		ƒAƒjƒIDBíœ‚µ‚È‚¢ê‡‚ÍnonID
+ * @param	charid		ã‚­ãƒ£ãƒ©IDã€‚å‰Šé™¤ã—ãªã„å ´åˆã¯nonID
+ * @param	plttid		ãƒ‘ãƒ¬ãƒƒãƒˆIDã€‚å‰Šé™¤ã—ãªã„å ´åˆã¯nonID
+ * @param	cellid		ã‚»ãƒ«IDã€‚å‰Šé™¤ã—ãªã„å ´åˆã¯nonID
+ * @param	anmid		ã‚¢ãƒ‹ãƒ¡IDã€‚å‰Šé™¤ã—ãªã„å ´åˆã¯nonID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -504,7 +504,7 @@ void ClActGraphicDelete( CLACTSETDATA *set, u32 charid, u32 plttid, u32 cellid, 
 {
 	u32 i;
 	
-	if( charid != set->resobj_char_nonid ){					//ƒLƒƒƒ‰
+	if( charid != set->resobj_char_nonid ){					//ã‚­ãƒ£ãƒ©
 		for( i = 0; i < set->resobj_char_max; i++ ){
 			if( set->clact_resobj_char[i].id == charid ){
 				CLACT_U_CharManagerDelete( set->clact_resobj_char[i].resobj );
@@ -516,7 +516,7 @@ void ClActGraphicDelete( CLACTSETDATA *set, u32 charid, u32 plttid, u32 cellid, 
 		}
 	}
 	
-	if( plttid != set->resobj_pltt_nonid ){					//ƒpƒŒƒbƒg
+	if( plttid != set->resobj_pltt_nonid ){					//ãƒ‘ãƒ¬ãƒƒãƒˆ
 		for( i = 0; i < set->resobj_pltt_max; i++ ){
 			if( set->clact_resobj_pltt[i].id == plttid ){
 				CLACT_U_PlttManagerDelete( set->clact_resobj_pltt[i].resobj );
@@ -528,7 +528,7 @@ void ClActGraphicDelete( CLACTSETDATA *set, u32 charid, u32 plttid, u32 cellid, 
 		}
 	}
 	
-	if( cellid != set->resobj_cell_nonid ){					//ƒZƒ‹
+	if( cellid != set->resobj_cell_nonid ){					//ã‚»ãƒ«
 		for( i = 0; i < set->resobj_cell_max; i++ ){
 			if( set->clact_resobj_cell[i].id == cellid ){
 				CLACT_U_ResManagerResOnlyDelete( set->clact_resobj_cell[i].resobj );
@@ -540,7 +540,7 @@ void ClActGraphicDelete( CLACTSETDATA *set, u32 charid, u32 plttid, u32 cellid, 
 		}
 	}
 	
-	if( anmid != set->resobj_anm_nonid ){					//ƒAƒjƒ
+	if( anmid != set->resobj_anm_nonid ){					//ã‚¢ãƒ‹ãƒ¡
 		for( i = 0; i < set->resobj_anm_max; i++ ){
 			if( set->clact_resobj_anm[i].id == anmid ){
 				CLACT_U_ResManagerResOnlyDelete( set->clact_resobj_anm[i].resobj );
@@ -555,15 +555,15 @@ void ClActGraphicDelete( CLACTSETDATA *set, u32 charid, u32 plttid, u32 cellid, 
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[’Ç‰Á
+ * ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  * @param	set			CLACTSETDATA
- * @param	mtx			•\¦À•W
- * @param	char_id		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ID
- * @param	pltt_id		ƒpƒŒƒbƒgƒf[ƒ^ID
- * @param	cell_id		ƒZƒ‹ƒf[ƒ^ID
- * @param	cellanm_id	ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ID	–³‚¢‚Æ‚«‚ÍCLACT_U_HEADER_DATA_NONE
- * @param	bg_pri		BGƒvƒ‰ƒCƒIƒŠƒeƒB
- * @param	act_pri		ƒAƒNƒ^[ƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param	mtx			è¡¨ç¤ºåº§æ¨™
+ * @param	char_id		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ID
+ * @param	pltt_id		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ID
+ * @param	cell_id		ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ID
+ * @param	cellanm_id	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ID	ç„¡ã„ã¨ãã¯CLACT_U_HEADER_DATA_NONE
+ * @param	bg_pri		BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @param	act_pri		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -611,7 +611,7 @@ void ClActAdd( CLACTSETDATA *set, CLACT_WORK_EX *actwork,
 
 //--------------------------------------------------------------
 /**
- * ƒAƒNƒ^[”jŠü
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  * @param	actwork	CLACT_WORK_EX
  * @retval	nothing
  */
@@ -628,9 +628,9 @@ void ClActDelete( CLACT_WORK_EX *actwork )
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‚ÌÀ•W‚ğæ“¾
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®åº§æ¨™ã‚’å–å¾—
  * @param	act		CLACT_WORK_PTR
- * @param	mtx		À•WŠi”[æ
+ * @param	mtx		åº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -642,9 +642,9 @@ void ClActMatrixGet( CLACT_WORK_PTR act, VecFx32 *mtx )
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‚ÌŠgk—¦‚ğæ“¾
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®æ‹¡ç¸®ç‡ã‚’å–å¾—
  * @param	act		CLACT_WORK_PTR
- * @param	mtx		À•WŠi”[æ
+ * @param	mtx		åº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------

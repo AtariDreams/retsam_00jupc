@@ -1,6 +1,6 @@
 /**
  *	@file	fld_nmixer.c
- *	@brief	ƒtƒB[ƒ‹ƒh—p@ƒiƒbƒcƒ~ƒLƒT[ƒ\[ƒX
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨ã€€ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã‚½ãƒ¼ã‚¹
  *	@author	Miyuki Iwasawa
  *	@date	06.04.06
  */
@@ -22,16 +22,16 @@
 
 #include "application/nutmixer.h"
 
-///ƒvƒƒgƒ^ƒCƒv
+///ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 NUTMIXER_PARAM* NutMixer_CreateCallWork(int mode,SAVEDATA* savedata,int heapID, FNOTE_DATA * fnote);
 NUTMIXER_PARAM* FieldNutMixer_InitCall(FIELDSYS_WORK* fsys,int mode,int heapID);
 NUTMIXER_PARAM* FieldNutMixer_InitCallWiFi(FIELDSYS_WORK* fsys,int heapID,BOOL vchat);
 
 /**
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[ŒÄ‚Ño‚µƒ[ƒNƒf[ƒ^ì¬
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	mode	NUTMIXER_CALL_LOCAL:0	ˆêlƒvƒŒƒCƒ‚[ƒh
- *					NUTMIXER_CALL_COMM:1	’ÊMƒ‚[ƒh
+ *	@param	mode	NUTMIXER_CALL_LOCAL:0	ä¸€äººãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰
+ *					NUTMIXER_CALL_COMM:1	é€šä¿¡ãƒ¢ãƒ¼ãƒ‰
  */
 NUTMIXER_PARAM* NutMixer_CreateCallWork(int mode,SAVEDATA* savedata,int heapID, FNOTE_DATA * fnote)
 {
@@ -40,7 +40,7 @@ NUTMIXER_PARAM* NutMixer_CreateCallWork(int mode,SAVEDATA* savedata,int heapID, 
 	wk = sys_AllocMemory(heapID,sizeof(NUTMIXER_PARAM));
 	MI_CpuClear8(wk,sizeof(NUTMIXER_PARAM));
 
-	//ƒZ[ƒuƒf[ƒ^ƒuƒƒbƒNæ“¾
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯å–å¾—
 	wk->SaveData = savedata;
 	wk->poruSave = SaveData_GetPorutoBlock(savedata);
 	wk->mySave = SaveData_GetMyStatus(savedata);
@@ -49,7 +49,7 @@ NUTMIXER_PARAM* NutMixer_CreateCallWork(int mode,SAVEDATA* savedata,int heapID, 
 	wk->fnote = fnote;
 	wk->wifi_pofin = FALSE;
 
-	//“®ìƒ‚[ƒhæ“¾
+	//å‹•ä½œãƒ¢ãƒ¼ãƒ‰å–å¾—
 	wk->sys_mode = mode;
 
 	return wk;
@@ -57,15 +57,15 @@ NUTMIXER_PARAM* NutMixer_CreateCallWork(int mode,SAVEDATA* savedata,int heapID, 
 
 //-----------------------------------------------------------------------------
 /**
-*	ƒiƒbƒcƒ~ƒLƒT[ŠÖ˜A
+*	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼é–¢é€£
 */
 //-----------------------------------------------------------------------------
 /**
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[ƒTƒuƒvƒƒZƒX“o˜^
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ç™»éŒ²
  */
 static void NutMixer_SetProc(FIELDSYS_WORK* fsys,NUTMIXER_PARAM* np)
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(nuts_mixer_common);
 
 	
@@ -81,10 +81,10 @@ static void NutMixer_SetProc(FIELDSYS_WORK* fsys,NUTMIXER_PARAM* np)
 }
 
 /**
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[ŒÄ‚Ño‚µ
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼å‘¼ã³å‡ºã—
  *
- *	@param	mode	NUTMIXER_CALL_LOCAL:0	ˆêlƒvƒŒƒCƒ‚[ƒh
- *					NUTMIXER_CALL_COMM:1	’ÊMƒ‚[ƒh
+ *	@param	mode	NUTMIXER_CALL_LOCAL:0	ä¸€äººãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰
+ *					NUTMIXER_CALL_COMM:1	é€šä¿¡ãƒ¢ãƒ¼ãƒ‰
  */
 NUTMIXER_PARAM* FieldNutMixer_InitCall(FIELDSYS_WORK* fsys,int mode,int heapID)
 {
@@ -97,7 +97,7 @@ NUTMIXER_PARAM* FieldNutMixer_InitCall(FIELDSYS_WORK* fsys,int mode,int heapID)
 }
 
 /**
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[ WIFIŒÄ‚Ño‚µ
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ WIFIå‘¼ã³å‡ºã—
  */
 NUTMIXER_PARAM* FieldNutMixer_InitCallWiFi(FIELDSYS_WORK* fsys,int heapID,BOOL vchat)
 {

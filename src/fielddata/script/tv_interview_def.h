@@ -1,7 +1,7 @@
 #ifndef _TV_INTERVIEW_DEF_H_
 #define _TV_INTERVIEW_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_TV_INTERVIEW_01		(10150)
 #define	SCRID_TV_INTERVIEW_02		(10151)
 #define	SCRID_TV_INTERVIEW_03		(10152)
@@ -21,6 +21,6 @@
 #define	SCRID_TV_INTERVIEW_17		(10166)
 #define	SCRID_TV_INTERVIEW_18		(10167)
 #define	SCRID_TV_INTERVIEW_19		(10168)
-#define	SCRID_TV_INTERVIEW_DATA_MAX		(19)		//最大数
+#define	SCRID_TV_INTERVIEW_DATA_MAX		(19)		//譛螟ｧ謨ｰ
 
 #endif //_TV_INTERVIEW_DEF_H_

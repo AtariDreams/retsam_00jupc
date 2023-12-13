@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_006.s
- *@brief	�퓬�V�[�P���X
- *			�C��V�[�P���X
+ *@brief	戦闘シーケンス
+ *			気絶シーケンス
  *@author	HisashiSogabe
  *@data		2005.07.29
  *
@@ -23,7 +23,7 @@ SUB_006:
 	MESSAGE			KizetsuMineMsg,TAG_NICK,SIDE_KIZETSU
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//�ʏ�̋C�⏈������́A�o���l�擾�����𔭐������Ȃ�
+	//通常の気絶処理からは、経験値取得処理を発生させない
 	IF				IF_FLAG_BIT,BUF_PARA_SERVER_STATUS_FLAG2,SERVER_STATUS_FLAG2_NO_EXP_KIZETSU,NoExpGet
 //	GOSUB			SUB_SEQ_GET_EXP
 NoExpGet:

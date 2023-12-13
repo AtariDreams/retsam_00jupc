@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_actor.c
- * @brief	ƒtƒƒ“ƒeƒBƒA2Dƒ}ƒbƒv‚ÅŽg—p‚·‚éƒAƒNƒ^[
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢2Dãƒžãƒƒãƒ—ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
  * @author	matsuda
- * @date	2007.05.30(…)
+ * @date	2007.05.30(æ°´)
  */
 //==============================================================================
 #include "common.h"
@@ -17,106 +17,106 @@
 
 
 //==============================================================================
-//	ƒAƒNƒ^[ƒwƒbƒ_
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 //==============================================================================
 //==============================================================================
 //
-//	ƒAƒNƒ^[ƒwƒbƒ_
-//			ƒŠƒ\[ƒXID‚ð‚»‚Ì‚Ü‚Üƒ}ƒl[ƒWƒƒ‚ÌŠÇ—ID‚Æ‚µ‚Ä‚àŽg—p‚µ‚Ä‚¢‚Ü‚·
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
+//			ãƒªã‚½ãƒ¼ã‚¹IDã‚’ãã®ã¾ã¾ãƒžãƒãƒ¼ã‚¸ãƒ£ã®ç®¡ç†IDã¨ã—ã¦ã‚‚ä½¿ç”¨ã—ã¦ã„ã¾ã™
 //
-//	¦frontier_act_id.h‚ÉFrontierArticleActorHeadTbl‚Ì•À‚Ñ‚Å’è‹`‚ð‘‚­‚±‚ÆI
+//	â€»frontier_act_id.hã«FrontierArticleActorHeadTblã®ä¸¦ã³ã§å®šç¾©ã‚’æ›¸ãã“ã¨ï¼
 //
 //==============================================================================
 static const TCATS_OBJECT_ADD_PARAM_S FrontierArticleActorHeadTbl[] = {
 	//ACTID_TEST_BALL
 	{
 		0, 0, 0,						//x, y, z
-		0, ACT_SOFTPRI_TEST, 0,			//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-		NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-		{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
+		0, ACT_SOFTPRI_TEST, 0,			//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+		{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
 #if 0
-			TEST_BALL32K_NCGR_BIN,		//ƒLƒƒƒ‰
-			TEST_BALL32K_NCLR,				//ƒpƒŒƒbƒg
-			TEST_BALL32K_NCER_BIN,		//ƒZƒ‹
-			TEST_BALL32K_NANR_BIN,		//ƒZƒ‹ƒAƒjƒ
+			TEST_BALL32K_NCGR_BIN,		//ã‚­ãƒ£ãƒ©
+			TEST_BALL32K_NCLR,				//ãƒ‘ãƒ¬ãƒƒãƒˆ
+			TEST_BALL32K_NCER_BIN,		//ã‚»ãƒ«
+			TEST_BALL32K_NANR_BIN,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 #else
-			BT_OBJ_DOOR_NCGR_BIN,		//ƒLƒƒƒ‰
-			BT_OBJ_DOOR_NCLR,			//ƒpƒŒƒbƒg
-			BT_OBJ_DOOR_NCER_BIN,		//ƒZƒ‹
-			BT_OBJ_DOOR_NANR_BIN,		//ƒZƒ‹ƒAƒjƒ
+			BT_OBJ_DOOR_NCGR_BIN,		//ã‚­ãƒ£ãƒ©
+			BT_OBJ_DOOR_NCLR,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+			BT_OBJ_DOOR_NCER_BIN,		//ã‚»ãƒ«
+			BT_OBJ_DOOR_NANR_BIN,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 #endif
-			CLACT_U_HEADER_DATA_NONE,	//ƒ}ƒ‹ƒ`ƒZƒ‹
-			CLACT_U_HEADER_DATA_NONE,	//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+			CLACT_U_HEADER_DATA_NONE,	//ãƒžãƒ«ãƒã‚»ãƒ«
+			CLACT_U_HEADER_DATA_NONE,	//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		},
-		ACT_BGPRI_TEST,					//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-		0,								//VRAM“]‘—ƒtƒ‰ƒO
+		ACT_BGPRI_TEST,					//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+		0,								//VRAMè»¢é€ãƒ•ãƒ©ã‚°
 	},
 /*	//ACTID_TEST_BALL2
 	{
 		0, 0, 0,						//x, y, z
-		0, ACT_SOFTPRI_TEST, 0,			//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-		NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-		{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-			TEST_BALL32K_NCGR_BIN,		//ƒLƒƒƒ‰
-			TEST_BALL32K_NCLR,				//ƒpƒŒƒbƒg
-			TEST_BALL32K_NCER_BIN,		//ƒZƒ‹
-			TEST_BALL32K_NANR_BIN,		//ƒZƒ‹ƒAƒjƒ
-			CLACT_U_HEADER_DATA_NONE,	//ƒ}ƒ‹ƒ`ƒZƒ‹
-			CLACT_U_HEADER_DATA_NONE,	//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+		0, ACT_SOFTPRI_TEST, 0,			//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+		{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+			TEST_BALL32K_NCGR_BIN,		//ã‚­ãƒ£ãƒ©
+			TEST_BALL32K_NCLR,				//ãƒ‘ãƒ¬ãƒƒãƒˆ
+			TEST_BALL32K_NCER_BIN,		//ã‚»ãƒ«
+			TEST_BALL32K_NANR_BIN,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			CLACT_U_HEADER_DATA_NONE,	//ãƒžãƒ«ãƒã‚»ãƒ«
+			CLACT_U_HEADER_DATA_NONE,	//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		},
-		ACT_BGPRI_TEST,					//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-		0,								//VRAM“]‘—ƒtƒ‰ƒO
+		ACT_BGPRI_TEST,					//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+		0,								//VRAMè»¢é€ãƒ•ãƒ©ã‚°
 	},
 */
 	//ACTID_TOWER_DOOR
 	{
 		0, 0, 0,						//x, y, z
-		0, ACT_SOFTPRI_TEST, 0,			//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-		NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-		{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-			BT_OBJ_DOOR_NCGR_BIN,		//ƒLƒƒƒ‰
-			BT_OBJ_DOOR_NCLR,			//ƒpƒŒƒbƒg
-			BT_OBJ_DOOR_NCER_BIN,		//ƒZƒ‹
-			BT_OBJ_DOOR_NANR_BIN,		//ƒZƒ‹ƒAƒjƒ
-			CLACT_U_HEADER_DATA_NONE,	//ƒ}ƒ‹ƒ`ƒZƒ‹
-			CLACT_U_HEADER_DATA_NONE,	//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+		0, ACT_SOFTPRI_TEST, 0,			//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+		{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+			BT_OBJ_DOOR_NCGR_BIN,		//ã‚­ãƒ£ãƒ©
+			BT_OBJ_DOOR_NCLR,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+			BT_OBJ_DOOR_NCER_BIN,		//ã‚»ãƒ«
+			BT_OBJ_DOOR_NANR_BIN,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			CLACT_U_HEADER_DATA_NONE,	//ãƒžãƒ«ãƒã‚»ãƒ«
+			CLACT_U_HEADER_DATA_NONE,	//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		},
-		ACT_BGPRI_TEST,					//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-		0,								//VRAM“]‘—ƒtƒ‰ƒO
+		ACT_BGPRI_TEST,					//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+		0,								//VRAMè»¢é€ãƒ•ãƒ©ã‚°
 	},
 
 	//ACTID_ROULETTE_RAMP
 	{
 		0, 0, 0,						//x, y, z
-		0, ACT_SOFTPRI_TEST, 0,			//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-		NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-		{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-			BR_RAMP_NCGR_BIN,			//ƒLƒƒƒ‰
-			BR_RAMP_NCLR,				//ƒpƒŒƒbƒg
-			BR_RAMP_NCER_BIN,			//ƒZƒ‹
-			BR_RAMP_NANR_BIN,			//ƒZƒ‹ƒAƒjƒ
-			CLACT_U_HEADER_DATA_NONE,	//ƒ}ƒ‹ƒ`ƒZƒ‹
-			CLACT_U_HEADER_DATA_NONE,	//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+		0, ACT_SOFTPRI_TEST, 0,			//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+		{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+			BR_RAMP_NCGR_BIN,			//ã‚­ãƒ£ãƒ©
+			BR_RAMP_NCLR,				//ãƒ‘ãƒ¬ãƒƒãƒˆ
+			BR_RAMP_NCER_BIN,			//ã‚»ãƒ«
+			BR_RAMP_NANR_BIN,			//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			CLACT_U_HEADER_DATA_NONE,	//ãƒžãƒ«ãƒã‚»ãƒ«
+			CLACT_U_HEADER_DATA_NONE,	//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		},
-		ACT_BGPRI_TEST,					//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-		0,								//VRAM“]‘—ƒtƒ‰ƒO
+		ACT_BGPRI_TEST,					//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+		0,								//VRAMè»¢é€ãƒ•ãƒ©ã‚°
 	},
 
 	//ACTID_ROULETTE_POKEPANEL
 	{
 		0, 0, 0,						//x, y, z
-		0, ACT_SOFTPRI_TEST, 0,			//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-		NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-		{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-			BR_POKEPANEL_NCGR_BIN,		//ƒLƒƒƒ‰
-			BR_POKEPANEL_NCLR,			//ƒpƒŒƒbƒg
-			BR_POKEPANEL_NCER_BIN,		//ƒZƒ‹
-			BR_POKEPANEL_NANR_BIN,		//ƒZƒ‹ƒAƒjƒ
-			CLACT_U_HEADER_DATA_NONE,	//ƒ}ƒ‹ƒ`ƒZƒ‹
-			CLACT_U_HEADER_DATA_NONE,	//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+		0, ACT_SOFTPRI_TEST, 0,			//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+		{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+			BR_POKEPANEL_NCGR_BIN,		//ã‚­ãƒ£ãƒ©
+			BR_POKEPANEL_NCLR,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+			BR_POKEPANEL_NCER_BIN,		//ã‚»ãƒ«
+			BR_POKEPANEL_NANR_BIN,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			CLACT_U_HEADER_DATA_NONE,	//ãƒžãƒ«ãƒã‚»ãƒ«
+			CLACT_U_HEADER_DATA_NONE,	//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		},
-		ACT_BGPRI_TEST,					//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-		0,								//VRAM“]‘—ƒtƒ‰ƒO
+		ACT_BGPRI_TEST,					//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+		0,								//VRAMè»¢é€ãƒ•ãƒ©ã‚°
 	},
 
 };
@@ -164,8 +164,8 @@ void FAct_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE* hdl,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌƒŠƒ\[ƒX‚ð‰ð•ú‚·‚é
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void FAct_ResourceFree(CATS_RES_PTR crp, u16 act_id)
@@ -175,7 +175,7 @@ void FAct_ResourceFree(CATS_RES_PTR crp, u16 act_id)
 	GF_ASSERT(act_id < NELEMS(FrontierArticleActorHeadTbl));
 	obj_head = &FrontierArticleActorHeadTbl[act_id];
 
-	//ƒŠƒ\[ƒX‰ð•ú
+	//ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	CATS_FreeResourceChar(crp, obj_head->id[CLACT_U_CHAR_RES]);
 	CATS_FreeResourcePltt(crp, obj_head->id[CLACT_U_PLTT_RES]);
 	CATS_FreeResourceCell(crp, obj_head->id[CLACT_U_CELL_RES]);

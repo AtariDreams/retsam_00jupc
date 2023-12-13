@@ -24,23 +24,23 @@
   add HW_PRV_WRAM_RED_RESERVED area
 
   Revision 1.9  2004/03/24 05:17:35  yada
-  ARM7ê—pWRAMÅãˆÊƒAƒhƒŒƒX‚ğplatform‚ÉˆË‘¶‚µ‚È‚¢‚æ‚¤‚É‚µ‚½
+  ARM7å°‚ç”¨WRAMæœ€ä¸Šä½ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’platformã«ä¾å­˜ã—ãªã„ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.8  2004/03/23 07:41:29  yada
-  TEG‚Å‚È‚¢‚Æ‚«‚ÌAARM7ê—pWRAM‚ğl—¶
+  TEGã§ãªã„ã¨ãã®ã€ARM7å°‚ç”¨WRAMã‚’è€ƒæ…®
 
   Revision 1.7  2004/02/17 08:51:00  yada
   (none)
 
   Revision 1.6  2004/02/17 08:20:44  yada
-  ŒÅ’è‚ÌSYSƒ‚[ƒhƒXƒ^ƒbƒNˆÊ’u’è‹`‚ğ”rœ
+  å›ºå®šã®SYSãƒ¢ãƒ¼ãƒ‰ã‚¹ã‚¿ãƒƒã‚¯ä½ç½®å®šç¾©ã‚’æ’é™¤
 
   Revision 1.5  2004/02/16 09:38:30  yada
-  ƒXƒ^ƒbƒN’è‹`C³B
-  ƒVƒXƒeƒ€—\–ñ—Ìˆæ‚ğ0x20->0x40‚ÉB
+  ã‚¹ã‚¿ãƒƒã‚¯å®šç¾©ä¿®æ­£ã€‚
+  ã‚·ã‚¹ãƒ†ãƒ äºˆç´„é ˜åŸŸã‚’0x20->0x40ã«ã€‚
 
   Revision 1.4  2004/02/13 02:17:03  yada
-  ƒXƒ^ƒbƒNƒTƒCƒY–¼Ì•ÏX
+  ã‚¹ã‚¿ãƒƒã‚¯ã‚µã‚¤ã‚ºåç§°å¤‰æ›´
 
   Revision 1.3  2004/02/12 13:32:25  yasu
   change include guards
@@ -49,10 +49,10 @@
   change SDK prefix iris -> nitro
 
   Revision 1.1  2003/12/22 14:05:31  yasu
-  V‹K’Ç‰Á
+  æ–°è¦è¿½åŠ 
 
   Revision 1.1  2003/12/16 10:56:38  yasu
-  spcode ‚©‚çˆÚ“®
+  spcode ã‹ã‚‰ç§»å‹•
 
   Revision 1.1  2003/12/16 06:29:59  ida
   (none)

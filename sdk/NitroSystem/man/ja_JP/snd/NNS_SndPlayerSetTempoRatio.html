@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndPlayerSetTempoRatio</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,13 +11,13 @@
 <div></div>
 </div>
 <h1>NNS_SndPlayerSetTempoRatio</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerSetTempoRatio( NNSSndHandle* <var>handle</var>, int <var>ratio</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDADMWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -25,38 +25,38 @@
 <tbody>
 <tr>
 <td><em><strong><code>handle</code></strong></em></td>
-<td>�T�E���h�n���h���̃|�C���^�ł��B</td>
+<td>サウンドハンドルのポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>ratio</code></strong></em></td>
-<td>�e���|�̔{���ł��B</td>
+<td>テンポの倍率です。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAZMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAANWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�V�[�P���X�̃e���|��ύX���܂��B</p>
+シーケンスのテンポを変更します。</p>
       <p>
-�T�E���h�n���h��<em><strong><code>handle</code></strong></em>�Ɍ��т���ꂽ�V�[�P���X�̃e���|��ύX���܂��B
-�T�E���h�n���h���������̏ꍇ�́A�������܂���B
+サウンドハンドル<em><strong><code>handle</code></strong></em>に結びつけられたシーケンスのテンポを変更します。
+サウンドハンドルが無効の場合は、何もしません。
 </p>
       <p>
-���X�̃e���|���A<em><strong><code>ratio</code></strong></em>/256�{���܂��B
-�i�ĂԂ��тɁA�ݐς����킯�ł͂���܂���j
+元々のテンポを、<em><strong><code>ratio</code></strong></em>/256倍します。
+（呼ぶたびに、累積されるわけではありません）
 </p>
     </div>
-<h2>�Q��</h2>
-<p>�Ȃ��B</p>
-<h2>����</h2>
-<p>2004/06/01 �T�E���h�n���h���̓V�[�P���X�ƌ��т��悤�ɋL�q�C��<br>2004/04/01 ����<br></p>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2004/06/01 サウンドハンドルはシーケンスと結びつくように記述修正<br>2004/04/01 初版<br></p>
 </div>
 </body>
 </html>

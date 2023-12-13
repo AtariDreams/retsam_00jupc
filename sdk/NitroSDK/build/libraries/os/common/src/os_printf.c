@@ -27,31 +27,31 @@
   OS_PutString() is deadstripped in case of SDK_FINALROM
 
   Revision 1.46  2005/06/23 12:08:37  yasu
-  SDK_LITTLE_ENDIAN ‚ğg—p‚µ‚È‚¢‚æ‚¤‚ÉC³
+  SDK_LITTLE_ENDIAN ã‚’ä½¿ç”¨ã—ãªã„ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.45  2005/06/07 09:49:34  yasu
-  UnitTest ‘Îô‚Ì‚½‚ß OSi_Panic ‚Ì OS_Terminate ŒÄ‚Ño‚µ‚ğ•ÏX‰Â”\‚É‚·‚é
+  UnitTest å¯¾ç­–ã®ãŸã‚ OSi_Panic ã® OS_Terminate å‘¼ã³å‡ºã—ã‚’å¤‰æ›´å¯èƒ½ã«ã™ã‚‹
 
   Revision 1.44  2005/03/04 11:09:27  yasu
-  __declspec(weak) ‚ğ SDK_WEAK_SYMBOL ‚É’u‚«Š·‚¦
+  __declspec(weak) ã‚’ SDK_WEAK_SYMBOL ã«ç½®ãæ›ãˆ
 
   Revision 1.43  2005/02/28 05:26:29  yosizaki
   do-indent.
 
   Revision 1.42  2005/02/28 04:26:25  yosizaki
-  SDK_NO_MESSAGE ‚ÉŠÖ‚·‚é¬‚³‚ÈC³.
+  SDK_NO_MESSAGE ã«é–¢ã™ã‚‹å°ã•ãªä¿®æ­£.
 
   Revision 1.41  2005/02/18 06:22:52  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.40  2005/02/04 11:02:15  yasu
-  ’˜ì”N‚ÌC³
+  è‘—ä½œå¹´ã®ä¿®æ­£
 
   Revision 1.39  2005/01/31 03:16:15  seiki_masashi
-  œZ‚Ìœ‹‚Ì‚½‚ßAí‚É‘¬“x—Dæ‚ÅÅ“K‰»‚ğs‚¤‚æ‚¤‚Éw’è
+  é™¤ç®—ã®é™¤å»ã®ãŸã‚ã€å¸¸ã«é€Ÿåº¦å„ªå…ˆã§æœ€é©åŒ–ã‚’è¡Œã†ã‚ˆã†ã«æŒ‡å®š
 
   Revision 1.38  2005/01/28 12:58:25  seiki_masashi
-  OS_VSNPrintf ‚ÅœZ‚ğ‚Å‚«‚é‚¾‚¯g‚í‚È‚¢‚æ‚¤‚É•ÏX
+  OS_VSNPrintf ã§é™¤ç®—ã‚’ã§ãã‚‹ã ã‘ä½¿ã‚ãªã„ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.37  2004/11/24 11:07:37  yada
   Let a few functions be weak symbol.
@@ -117,7 +117,7 @@
   nitro_sp.h -> nitro.h
 
   Revision 1.16  2004/02/13 01:50:10  yada
-  ARM9‚ÆAMR7 ‚ÅƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹ê‡‚í‚¯
+  ARM9ã¨AMR7 ã§ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«å ´åˆã‚ã‘
 
   Revision 1.15  2004/02/05 08:38:44  yada
   only modify comment
@@ -132,62 +132,62 @@
   workaround for OS_Warning, OS_Panic
 
   Revision 1.11  2003/12/25 07:31:26  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.10  2003/12/17 08:21:56  yasu
-  ARM7 ‚Æ‚Ì‹¤—pƒR[ƒh‰»
+  ARM7 ã¨ã®å…±ç”¨ã‚³ãƒ¼ãƒ‰åŒ–
 
   Revision 1.9  2003/12/16 10:46:16  yasu
-  ARM9/7 ‹¤—pƒR[ƒh‰»
+  ARM9/7 å…±ç”¨ã‚³ãƒ¼ãƒ‰åŒ–
 
   Revision 1.8  2003/12/12 05:03:48  yasu
-  vsprintf ‚Ì strb ‘Î‰”Å‚ªƒŠƒŠ[ƒX‚³‚ê‚é‚Ü‚Å‚Ìƒ[ƒNƒAƒ‰ƒEƒ“ƒh’Ç‰Á
+  vsprintf ã® strb å¯¾å¿œç‰ˆãŒãƒªãƒªãƒ¼ã‚¹ã•ã‚Œã‚‹ã¾ã§ã®ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ©ã‚¦ãƒ³ãƒ‰è¿½åŠ 
 
   Revision 1.7  2003/12/10 12:20:50  yasu
-  IS ƒ‰ƒCƒuƒ‰ƒŠ‚ÉŠÖ‚·‚é¬C³
+  IS ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«é–¢ã™ã‚‹å°ä¿®æ­£
 
   Revision 1.6  2003/12/10 10:57:08  yasu
-  ISDPrint ‚Ì‘g‚İ‚İ
-  TEG ƒ{[ƒh‚Ö‚Ìo—Í‰Â”\‚É‚È‚é
+  ISDPrint ã®çµ„ã¿è¾¼ã¿
+  TEG ãƒœãƒ¼ãƒ‰ã¸ã®å‡ºåŠ›å¯èƒ½ã«ãªã‚‹
 
   Revision 1.5  2003/12/02 07:28:59  yasu
-  warning ‚Ì‰ñ”ğ
+  warning ã®å›é¿
 
   Revision 1.4  2003/12/02 06:51:51  yasu
-  ‹ós•ÏX
+  ç©ºè¡Œå¤‰æ›´
 
   Revision 1.3  2003/12/02 03:44:50  yasu
-  IS-IRIS-EMULATOR —pƒ‰ƒCƒuƒ‰ƒŠŒü‚¯‚ÌC³‚Q
+  IS-IRIS-EMULATOR ç”¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå‘ã‘ã®ä¿®æ­£ï¼’
 
   Revision 1.2  2003/12/02 02:38:49  yasu
-  ISDebugger ‚Å‚Ì printout ‚Ì‘g‚İ‚İ‚Ì‰’iŠK
+  ISDebugger ã§ã® printout ã®çµ„ã¿è¾¼ã¿ã®åˆæ®µéš
 
   Revision 1.1  2003/11/29 01:25:46  yada
-  ƒtƒ@ƒCƒ‹–¼Ì•ÏX
+  ãƒ•ã‚¡ã‚¤ãƒ«åç§°å¤‰æ›´
 
   Revision 1.8  2003/11/25 11:17:37  yasu
-  ƒGƒ~ƒ…ƒŒ[ƒ^‚Ì©“®”»•Ê’Ç‰Á
+  ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚¿ã®è‡ªå‹•åˆ¤åˆ¥è¿½åŠ 
 
   Revision 1.7  2003/11/25 00:03:44  yasu
-  OS_PutChar/OS_PutString/OS_VPrintf ‚ÌŒöŠJ
+  OS_PutChar/OS_PutString/OS_VPrintf ã®å…¬é–‹
 
   Revision 1.6  2003/11/21 12:20:31  yada
-  reg_EMU_CONSOLE_OUT ‚ğ reg_OS_EMU_CONSOLE_OUT ‚É‚µ‚½B
+  reg_EMU_CONSOLE_OUT ã‚’ reg_OS_EMU_CONSOLE_OUT ã«ã—ãŸã€‚
 
   Revision 1.5  2003/11/14 08:07:46  yasu
-  string buffer ‚ğƒXƒ^ƒbƒN‚©‚çæ‚é‚Ì‚ğ~‚ß‚Ä static ‚É‚·‚é
+  string buffer ã‚’ã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰å–ã‚‹ã®ã‚’æ­¢ã‚ã¦ static ã«ã™ã‚‹
 
   Revision 1.4  2003/11/14 07:46:00  yasu
-  ”÷C³
+  å¾®ä¿®æ­£
 
   Revision 1.3  2003/11/14 06:14:03  yasu
-  OS_Warning() OS_Panic() ‚Ì’Ç‰Á
+  OS_Warning() OS_Panic() ã®è¿½åŠ 
 
   Revision 1.2  2003/11/13 11:59:01  yasu
-  ‰”Åì¬
+  åˆç‰ˆä½œæˆ
 
   Revision 1.1  2003/11/13 11:24:08  yasu
-  ‰”Åì¬ ƒGƒ~ƒ…ƒŒ[ƒ^‘¤‚ÌÀ‘•‚ªI‚í‚Á‚Ä‚¢‚È‚¢‚½‚ß“®ì‚µ‚È‚¢‚Æv‚í‚ê‚é
+  åˆç‰ˆä½œæˆ ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚¿å´ã®å®Ÿè£…ãŒçµ‚ã‚ã£ã¦ã„ãªã„ãŸã‚å‹•ä½œã—ãªã„ã¨æ€ã‚ã‚Œã‚‹
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -331,7 +331,7 @@ static void OS_PutStringAris(const char *str)
 #ifndef SDK_FINALROM
 static void OS_PutStringISD(const char *str)
 {
-    // ISDPrint ‚Ì‰Šú‰»ˆ—
+    // ISDPrint ã®åˆæœŸåŒ–å‡¦ç†
     OS_InitLock();
 
     OS_PutString = ISDPrint;
@@ -1328,8 +1328,8 @@ SDK_WEAK_SYMBOL int OS_VSNPrintfEx(char *dst, size_t len, const char *fmt, va_li
                             u32     v = (u32)val;
                             while (v != 0)
                             {
-                                // u32 ‚Æ’è”‚ÌœZ‚Å‚ ‚ê‚ÎAƒRƒ“ƒpƒCƒ‰‚ª©“®“I‚É
-                                // ƒ}ƒWƒbƒNƒiƒ“ƒo[‚ğg—p‚µ‚½ÏZ‚É•ÏŠ·‚·‚é
+                                // u32 ã¨å®šæ•°ã®é™¤ç®—ã§ã‚ã‚Œã°ã€ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ãŒè‡ªå‹•çš„ã«
+                                // ãƒã‚¸ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼ã‚’ä½¿ç”¨ã—ãŸç©ç®—ã«å¤‰æ›ã™ã‚‹
                                 u32     r = v / 10;
                                 int     d = (int)(v - (r * 10));
                                 v = r;

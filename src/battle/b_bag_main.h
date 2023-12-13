@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	b_plist_main.h
- * @brief	í“¬—pƒoƒbƒO‰æ–Ê
+ * @brief	æˆ¦é—˜ç”¨ãƒãƒƒã‚°ç”»é¢
  * @author	Hiroyuki Nakamura
  * @date	05.02.10
  */
@@ -19,83 +19,83 @@
 #include "finger_cursor.h"
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// ƒpƒŒƒbƒg’è‹`
-#define	BBAG_PAL_BTN_FONT	( 0 )		///< ƒpƒŒƒbƒg00Fƒ{ƒ^ƒ“ƒtƒHƒ“ƒg‚Åg—p‚µ‚Ä‚Ü‚·
-//#define	BPL_PAL_SYS_WIN	( 12 )		///< ƒpƒŒƒbƒg12FƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE
-#define	BBAG_PAL_SYS_FONT	( 4 )		///< ƒpƒŒƒbƒg13FƒVƒXƒeƒ€ƒtƒHƒ“ƒg
-#define	BBAG_PAL_TALK_WIN	( 14 )		///< ƒpƒŒƒbƒg14F‰ï˜bƒEƒBƒ“ƒhƒE
-#define	BBAG_PAL_TALK_FONT	( 15 )		///< ƒpƒŒƒbƒg15F‰ï˜bƒtƒHƒ“ƒg
+// ãƒ‘ãƒ¬ãƒƒãƒˆå®šç¾©
+#define	BBAG_PAL_BTN_FONT	( 0 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ00ï¼šãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆã§ä½¿ç”¨ã—ã¦ã¾ã™
+//#define	BPL_PAL_SYS_WIN	( 12 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ12ï¼šã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+#define	BBAG_PAL_SYS_FONT	( 4 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ13ï¼šã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
+#define	BBAG_PAL_TALK_WIN	( 14 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ14ï¼šä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+#define	BBAG_PAL_TALK_FONT	( 15 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ15ï¼šä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆ
 
-// BMPƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
-// ƒy[ƒW‚P
+// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+// ãƒšãƒ¼ã‚¸ï¼‘
 enum {
-	WIN_P1_HP = 0,		// uHP/PP‚©‚¢‚Ó‚­v
-	WIN_P1_ZYOUTAI,		// u‚¶‚å‚¤‚½‚¢‚©‚¢‚Ó‚­v
-	WIN_P1_BALL,		// uƒ{[ƒ‹v
-	WIN_P1_BATTLE,		// u‚¹‚ñ‚Æ‚¤‚æ‚¤v
-	WIN_P1_LASTITEM,	// u‚³‚¢‚²‚É‚Â‚©‚Á‚½‚Ç‚¤‚®v
+	WIN_P1_HP = 0,		// ã€ŒHP/PPã‹ã„ãµãã€
+	WIN_P1_ZYOUTAI,		// ã€Œã˜ã‚‡ã†ãŸã„ã‹ã„ãµãã€
+	WIN_P1_BALL,		// ã€Œãƒœãƒ¼ãƒ«ã€
+	WIN_P1_BATTLE,		// ã€Œã›ã‚“ã¨ã†ã‚ˆã†ã€
+	WIN_P1_LASTITEM,	// ã€Œã•ã„ã”ã«ã¤ã‹ã£ãŸã©ã†ãã€
 	WIN_P1_MAX
 };
 
-// ƒy[ƒW‚Q
+// ãƒšãƒ¼ã‚¸ï¼’
 enum {
-	WIN_P2_NAME1 = 0,	// “¹‹ï–¼‚P
-	WIN_P2_NUM1,		// “¹‹ï”‚P
-	WIN_P2_NAME2,		// “¹‹ï–¼‚Q
-	WIN_P2_NUM2,		// “¹‹ï”‚Q
-	WIN_P2_NAME3,		// “¹‹ï–¼‚R
-	WIN_P2_NUM3,		// “¹‹ï”‚R
-	WIN_P2_NAME4,		// “¹‹ï–¼‚S
-	WIN_P2_NUM4,		// “¹‹ï”‚S
-	WIN_P2_NAME5,		// “¹‹ï–¼‚T
-	WIN_P2_NUM5,		// “¹‹ï”‚T
-	WIN_P2_NAME6,		// “¹‹ï–¼‚U
-	WIN_P2_NUM6,		// “¹‹ï”‚U
+	WIN_P2_NAME1 = 0,	// é“å…·åï¼‘
+	WIN_P2_NUM1,		// é“å…·æ•°ï¼‘
+	WIN_P2_NAME2,		// é“å…·åï¼’
+	WIN_P2_NUM2,		// é“å…·æ•°ï¼’
+	WIN_P2_NAME3,		// é“å…·åï¼“
+	WIN_P2_NUM3,		// é“å…·æ•°ï¼“
+	WIN_P2_NAME4,		// é“å…·åï¼”
+	WIN_P2_NUM4,		// é“å…·æ•°ï¼”
+	WIN_P2_NAME5,		// é“å…·åï¼•
+	WIN_P2_NUM5,		// é“å…·æ•°ï¼•
+	WIN_P2_NAME6,		// é“å…·åï¼–
+	WIN_P2_NUM6,		// é“å…·æ•°ï¼–
 
-	WIN_P2_NAME1_S,		// “¹‹ï–¼‚PiƒXƒƒbƒv—pj
-	WIN_P2_NUM1_S,		// “¹‹ï”‚PiƒXƒƒbƒv—pj
-	WIN_P2_NAME2_S,		// “¹‹ï–¼‚QiƒXƒƒbƒv—pj
-	WIN_P2_NUM2_S,		// “¹‹ï”‚QiƒXƒƒbƒv—pj
-	WIN_P2_NAME3_S,		// “¹‹ï–¼‚RiƒXƒƒbƒv—pj
-	WIN_P2_NUM3_S,		// “¹‹ï”‚RiƒXƒƒbƒv—pj
-	WIN_P2_NAME4_S,		// “¹‹ï–¼‚SiƒXƒƒbƒv—pj
-	WIN_P2_NUM4_S,		// “¹‹ï”‚SiƒXƒƒbƒv—pj
-	WIN_P2_NAME5_S,		// “¹‹ï–¼‚TiƒXƒƒbƒv—pj
-	WIN_P2_NUM5_S,		// “¹‹ï”‚TiƒXƒƒbƒv—pj
-	WIN_P2_NAME6_S,		// “¹‹ï–¼‚UiƒXƒƒbƒv—pj
-	WIN_P2_NUM6_S,		// “¹‹ï”‚UiƒXƒƒbƒv—pj
+	WIN_P2_NAME1_S,		// é“å…·åï¼‘ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
+	WIN_P2_NUM1_S,		// é“å…·æ•°ï¼‘ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
+	WIN_P2_NAME2_S,		// é“å…·åï¼’ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
+	WIN_P2_NUM2_S,		// é“å…·æ•°ï¼’ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
+	WIN_P2_NAME3_S,		// é“å…·åï¼“ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
+	WIN_P2_NUM3_S,		// é“å…·æ•°ï¼“ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
+	WIN_P2_NAME4_S,		// é“å…·åï¼”ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
+	WIN_P2_NUM4_S,		// é“å…·æ•°ï¼”ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
+	WIN_P2_NAME5_S,		// é“å…·åï¼•ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
+	WIN_P2_NUM5_S,		// é“å…·æ•°ï¼•ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
+	WIN_P2_NAME6_S,		// é“å…·åï¼–ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
+	WIN_P2_NUM6_S,		// é“å…·æ•°ï¼–ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ç”¨ï¼‰
 
-	WIN_P2_POCKET,		// ƒ|ƒPƒbƒg–¼
-	WIN_P2_PAGENUM,		// ƒy[ƒW”iƒAƒCƒeƒ€”j
+	WIN_P2_POCKET,		// ãƒã‚±ãƒƒãƒˆå
+	WIN_P2_PAGENUM,		// ãƒšãƒ¼ã‚¸æ•°ï¼ˆã‚¢ã‚¤ãƒ†ãƒ æ•°ï¼‰
 
 	WIN_P2_MAX
 };
 
-// ƒy[ƒW‚R
+// ãƒšãƒ¼ã‚¸ï¼“
 enum {
-	WIN_P3_NAME = 0,	// “¹‹ï–¼
-	WIN_P3_NUM,			// ŒÂ”
-	WIN_P3_INFO,		// à–¾
-	WIN_P3_USE,			// u‚Â‚©‚¤v
+	WIN_P3_NAME = 0,	// é“å…·å
+	WIN_P3_NUM,			// å€‹æ•°
+	WIN_P3_INFO,		// èª¬æ˜
+	WIN_P3_USE,			// ã€Œã¤ã‹ã†ã€
 	WIN_P3_MAX
 };
 
-// ƒy[ƒWID
+// ãƒšãƒ¼ã‚¸ID
 enum {
-	BBAG_PAGE_POCKET = 0,	// ƒ|ƒPƒbƒg‘I‘ğƒy[ƒW
-	BBAG_PAGE_MAIN,			// ƒAƒCƒeƒ€‘I‘ğƒy[ƒW
-	BBAG_PAGE_ITEM			// ƒAƒCƒeƒ€g—pƒy[ƒW
+	BBAG_PAGE_POCKET = 0,	// ãƒã‚±ãƒƒãƒˆé¸æŠãƒšãƒ¼ã‚¸
+	BBAG_PAGE_MAIN,			// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠãƒšãƒ¼ã‚¸
+	BBAG_PAGE_ITEM			// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ãƒšãƒ¼ã‚¸
 };
 
-// ƒy[ƒW‚P‚Ì‘I‘ğID
+// ãƒšãƒ¼ã‚¸ï¼‘ã®é¸æŠID
 enum {
-	BBAG_P1_LASTITEM = BBAG_POKE_MAX,	// ÅŒã‚Ég—p‚µ‚½“¹‹ï
-	BBAG_P1_RETURN						// –ß‚é
+	BBAG_P1_LASTITEM = BBAG_POKE_MAX,	// æœ€å¾Œã«ä½¿ç”¨ã—ãŸé“å…·
+	BBAG_P1_RETURN						// æˆ»ã‚‹
 };
 
-// ƒZƒ‹ƒAƒNƒ^[‚ÌID
+// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ID
 enum {
 	BBAG_CA_ITEM1 = 0,
 	BBAG_CA_ITEM2,
@@ -108,67 +108,67 @@ enum {
 	BBAG_CA_MAX
 };
 
-#define	BBAG_POCKET_IN_MAX		( 36 )		// Šeƒ|ƒPƒbƒg‚É“ü‚é”
+#define	BBAG_POCKET_IN_MAX		( 36 )		// å„ãƒã‚±ãƒƒãƒˆã«å…¥ã‚‹æ•°
 
 
-#define	BBAG_BANM_MAX_N	( 3 )		// ƒ{ƒ^ƒ“ƒAƒjƒƒpƒ^[ƒ“”i’Êíj
-#define	BBAG_BANM_MAX_E	( 4 )		// ƒ{ƒ^ƒ“ƒAƒjƒƒpƒ^[ƒ“”i‰Ÿ‚¹‚È‚¢ƒ{ƒ^ƒ“‚ ‚èj
-// ƒ|ƒPƒbƒgƒ{ƒ^ƒ“ƒTƒCƒY
+#define	BBAG_BANM_MAX_N	( 3 )		// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°ï¼ˆé€šå¸¸ï¼‰
+#define	BBAG_BANM_MAX_E	( 4 )		// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°ï¼ˆæŠ¼ã›ãªã„ãƒœã‚¿ãƒ³ã‚ã‚Šï¼‰
+// ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define	BBAG_BSX_POCKET	( 16 )
 #define	BBAG_BSY_POCKET	( 9 )
-// g—pƒ{ƒ^ƒ“ƒTƒCƒY
+// ä½¿ç”¨ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define	BBAG_BSX_USE	( 26 )
 #define	BBAG_BSY_USE	( 5 )
-// –ß‚éƒ{ƒ^ƒ“ƒTƒCƒY
+// æˆ»ã‚‹ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define	BBAG_BSX_RET	( 5 )
 #define	BBAG_BSY_RET	( 5 )
-// ƒAƒCƒeƒ€ƒ{ƒ^ƒ“ƒTƒCƒY
+// ã‚¢ã‚¤ãƒ†ãƒ ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define	BBAG_BSX_ITEM	( 16 )
 #define	BBAG_BSY_ITEM	( 6 )
-// ‘O‚Ìƒy[ƒW‚Öƒ{ƒ^ƒ“ƒTƒCƒY
+// å‰ã®ãƒšãƒ¼ã‚¸ã¸ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define	BBAG_BSX_UP		( 5 )
 #define	BBAG_BSY_UP		( 5 )
-// Ÿ‚Ìƒy[ƒW‚Öƒ{ƒ^ƒ“ƒTƒCƒY
+// æ¬¡ã®ãƒšãƒ¼ã‚¸ã¸ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define	BBAG_BSX_DOWN	( 5 )
 #define	BBAG_BSY_DOWN	( 5 )
-// ƒ|ƒPƒbƒgƒ{ƒ^ƒ“‚ÌƒAƒCƒRƒ“ƒTƒCƒY
+// ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚µã‚¤ã‚º
 #define	BBAG_BSX_ICON	( 4 )
 #define	BBAG_BSY_ICON	( 4 )
 
 typedef struct {
-	BBAG_DATA * dat;		// ŠO•”QÆƒf[ƒ^
+	BBAG_DATA * dat;		// å¤–éƒ¨å‚ç…§ãƒ‡ãƒ¼ã‚¿
 
-	GF_BGL_INI * bgl;		// BGƒf[ƒ^
+	GF_BGL_INI * bgl;		// BGãƒ‡ãƒ¼ã‚¿
 
-	PALETTE_FADE_PTR pfd;	// ƒpƒŒƒbƒgƒtƒF[ƒhƒf[ƒ^
+	PALETTE_FADE_PTR pfd;	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
 
-	NUMFONT * nfnt;				// 8x8ƒtƒHƒ“ƒg
-	MSGDATA_MANAGER * mman;		// ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ
-	WORDSET * wset;				// ’PŒêƒZƒbƒg
-	STRBUF * msg_buf;			// ƒƒbƒZ[ƒW—pƒoƒbƒtƒ@
+	NUMFONT * nfnt;				// 8x8ãƒ•ã‚©ãƒ³ãƒˆ
+	MSGDATA_MANAGER * mman;		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£
+	WORDSET * wset;				// å˜èªã‚»ãƒƒãƒˆ
+	STRBUF * msg_buf;			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ãƒãƒƒãƒ•ã‚¡
 
-	GF_BGL_BMPWIN	talk_win;	// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^i’Êíj
-	GF_BGL_BMPWIN * add_win;	// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^i’Ç‰Áj
-	u8	bmp_add_max;			// ’Ç‰Á‚µ‚½BMP‚Ì”
-	u8	p2_swap;				// ƒy[ƒW‚Q‚ÌƒXƒƒbƒv•`‰æƒtƒ‰ƒO
-	u8	midx;					// ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+	GF_BGL_BMPWIN	talk_win;	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ï¼ˆé€šå¸¸ï¼‰
+	GF_BGL_BMPWIN * add_win;	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ï¼ˆè¿½åŠ ï¼‰
+	u8	bmp_add_max;			// è¿½åŠ ã—ãŸBMPã®æ•°
+	u8	p2_swap;				// ãƒšãƒ¼ã‚¸ï¼’ã®ã‚¹ãƒ¯ãƒƒãƒ—æç”»ãƒ•ãƒ©ã‚°
+	u8	midx;					// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	BAPP_CURSOR_MVWK * cmv_wk;	// ƒJ[ƒ\ƒ‹§Œäƒ[ƒN
+	BAPP_CURSOR_MVWK * cmv_wk;	// ã‚«ãƒ¼ã‚½ãƒ«åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 
-	FINGER_PTR	finger;			// •ßŠlƒfƒ‚—pwƒJ[ƒ\ƒ‹
+	FINGER_PTR	finger;			// æ•ç²ãƒ‡ãƒ¢ç”¨æŒ‡ã‚«ãƒ¼ã‚½ãƒ«
 
-	MINEITEM	pocket[5][BBAG_POCKET_IN_MAX];	// ƒ|ƒPƒbƒgƒf[ƒ^
+	MINEITEM	pocket[5][BBAG_POCKET_IN_MAX];	// ãƒã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 
-	CATS_RES_PTR	crp;				// ƒŠƒ\[ƒXŠÇ—
-	CATS_ACT_PTR	cap[BBAG_CA_MAX];	// OAM‚ÌCAP
+	CATS_RES_PTR	crp;				// ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†
+	CATS_ACT_PTR	cap[BBAG_CA_MAX];	// OAMã®CAP
 
-	// ƒ{ƒ^ƒ“ƒAƒjƒƒXƒNƒŠ[ƒ“ƒf[ƒ^
-	u16	btn_pocket[BBAG_BANM_MAX_N][BBAG_BSX_POCKET*BBAG_BSY_POCKET];	// ƒ|ƒPƒbƒgƒ{ƒ^ƒ“
-	u16	btn_use[BBAG_BANM_MAX_E][BBAG_BSX_USE*BBAG_BSY_USE];			// g—pƒ{ƒ^ƒ“
-	u16	btn_ret[BBAG_BANM_MAX_N][BBAG_BSX_RET*BBAG_BSY_RET];			// –ß‚éƒ{ƒ^ƒ“
-	u16	btn_item[BBAG_BANM_MAX_E][BBAG_BSX_ITEM*BBAG_BSY_ITEM];			// ƒAƒCƒeƒ€
-	u16	btn_up[BBAG_BANM_MAX_E][BBAG_BSX_UP*BBAG_BSY_UP];				// ‘O‚Ìƒy[ƒW‚Ö
-	u16	btn_down[BBAG_BANM_MAX_E][BBAG_BSX_DOWN*BBAG_BSY_DOWN];			// Ÿ‚Ìƒy[ƒW‚Ö
+	// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16	btn_pocket[BBAG_BANM_MAX_N][BBAG_BSX_POCKET*BBAG_BSY_POCKET];	// ãƒã‚±ãƒƒãƒˆãƒœã‚¿ãƒ³
+	u16	btn_use[BBAG_BANM_MAX_E][BBAG_BSX_USE*BBAG_BSY_USE];			// ä½¿ç”¨ãƒœã‚¿ãƒ³
+	u16	btn_ret[BBAG_BANM_MAX_N][BBAG_BSX_RET*BBAG_BSY_RET];			// æˆ»ã‚‹ãƒœã‚¿ãƒ³
+	u16	btn_item[BBAG_BANM_MAX_E][BBAG_BSX_ITEM*BBAG_BSY_ITEM];			// ã‚¢ã‚¤ãƒ†ãƒ 
+	u16	btn_up[BBAG_BANM_MAX_E][BBAG_BSX_UP*BBAG_BSY_UP];				// å‰ã®ãƒšãƒ¼ã‚¸ã¸
+	u16	btn_down[BBAG_BANM_MAX_E][BBAG_BSX_DOWN*BBAG_BSY_DOWN];			// æ¬¡ã®ãƒšãƒ¼ã‚¸ã¸
 
 	u16	btn_icon_hp[BBAG_BANM_MAX_N][BBAG_BSX_ICON*BBAG_BSY_ICON];
 	u16	btn_icon_st[BBAG_BANM_MAX_N][BBAG_BSX_ICON*BBAG_BSY_ICON];
@@ -182,34 +182,34 @@ typedef struct {
 	u8	btn_mode:4;
 	u8	btn_win[8];
 
-	u8	seq;			// ƒƒCƒ“ƒV[ƒPƒ“ƒX
-	u8	ret_seq;		// •œ‹AƒV[ƒPƒ“ƒX
-	u8	page;			// ƒy[ƒWID
-	u8	poke_id;		// ƒ|ƒPƒbƒgID
+	u8	seq;			// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	ret_seq;		// å¾©å¸°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	page;			// ãƒšãƒ¼ã‚¸ID
+	u8	poke_id;		// ãƒã‚±ãƒƒãƒˆID
 
-	s8	page_mv;		// ƒAƒCƒeƒ€‘I‘ğƒy[ƒW‚ÌˆÚ“®•ûŒü
+	s8	page_mv;		// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠãƒšãƒ¼ã‚¸ã®ç§»å‹•æ–¹å‘
 
-	u8	item_max[5];	// ƒAƒCƒeƒ€”
-	u8	scr_max[5];		// ƒAƒCƒeƒ€ƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^Å‘å’l
+	u8	item_max[5];	// ã‚¢ã‚¤ãƒ†ãƒ æ•°
+	u8	scr_max[5];		// ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿æœ€å¤§å€¤
 
-	u8	get_seq;		// •ßŠlƒfƒ‚ƒV[ƒPƒ“ƒX
-	u8	get_cnt;		// •ßŠlƒfƒ‚ƒJƒEƒ“ƒ^
-//	u8	get_anm;		// •ßŠlƒfƒ‚ƒJ[ƒ\ƒ‹ƒAƒjƒƒtƒ‰ƒO
+	u8	get_seq;		// æ•ç²ãƒ‡ãƒ¢ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	get_cnt;		// æ•ç²ãƒ‡ãƒ¢ã‚«ã‚¦ãƒ³ã‚¿
+//	u8	get_anm;		// æ•ç²ãƒ‡ãƒ¢ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
 
 }BBAG_WORK;
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * g—p‚·‚éƒ|ƒPƒ‚ƒ“‚ğæ“¾
+ * ä½¿ç”¨ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’å–å¾—
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ƒ|ƒPƒ‚ƒ“ˆÊ’u
+ * @return	ãƒã‚±ãƒ¢ãƒ³ä½ç½®
  */
 //--------------------------------------------------------------------------------------------
 int BattleBag_SelMonsNoGet( BBAG_WORK * wk );

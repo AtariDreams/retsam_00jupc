@@ -1,11 +1,11 @@
-#�G�N�Z���̉��s\r\n��\n�ɂ���
-#"�𖳂���
+#エクセルの改行\r\nを\nにする
+#"を無くす
 if( @ARGV < 1 ){
-	print( "���� �ϊ��t�@�C���p�X\n" );
+	print( "引数 変換ファイルパス\n" );
 	exit 1;
 }
 
-#�t�@�C���I�[�v��
+#ファイルオープン
 open( INFILE, $ARGV[ 0 ] );
 @file_data = <INFILE>;
 close( INFILE );
@@ -13,12 +13,12 @@ close( INFILE );
 $count = 0;
 $flag	= 0;
 
-#�ŏ��̂P�A�Q�s�͍��ږ��Ȃ̂Ŕj��
+#最初の１、２行は項目名なので破棄
 foreach $data( @file_data ){
 	while( $data =~ s/"// ){};
 	while( $data =~ s/\r\n/\t/ ){};
 
-	#�A�����Ă���\t�͂��������̂Ŏ��
+	#連続している\tはおかしいので取る
 	while( $data =~ s/\t\t/\t/ ){};
 
 	if( $flag < 2 ){
@@ -31,7 +31,7 @@ foreach $data( @file_data ){
 	}
 }
 
-#��ԍŌ�Ƀ^�u���΂ɂ���
+#一番最後にタブを絶対につける
 @tmp = split( "\t", $out_put[ $count - 1 ] );
 $out_put[ $count - 1 ] = join( "\t", @tmp );
 $out_put[ $count - 1 ] = "$out_put[ $count - 1 ]\t";

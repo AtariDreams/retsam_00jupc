@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>CTRDG_SetPhiClock</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">CTRDG_SetPhiClock</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -20,54 +20,54 @@
   <BR>
   <CODE>void CTRDG_SetPhiClock( CTRDGPhiClock clock )</CODE></dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>clock</STRONG></EM></TD>
-      <TD width="87%">PHI�[�q�o�͐���̎w��</TD>
+      <TD width="87%">PHI端子出力制御の指定</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
+<h2>返り値</h2>
+<p>なし。</p>
 
-<H2>����</H2>
-<P>PHI�[�q�o�͐���̐ݒ���s���܂��B</P>
-<P>���� <B><I>clock</I></B> �� <CODE>CTRDGPhiClock</CODE> �񋓌^�ŁA�ȉ��̈Ӗ��������܂��B</P>
+<H2>説明</H2>
+<P>PHI端子出力制御の設定を行います。</P>
+<P>引数 <B><I>clock</I></B> は <CODE>CTRDGPhiClock</CODE> 列挙型で、以下の意味を持ちます。</P>
 <TABLE>
   <TBODY>
     <TR>
       <TD bgcolor="#eeeeee"><CODE>CTRDG_PHI_CLOCK_LOW</CODE></TD>
-      <TD bgcolor="#eeeeee">Low���x���o��</TD>
+      <TD bgcolor="#eeeeee">Lowレベル出力</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee"><CODE>CTRDG_PHI_CLOCK_4MHZ</CODE></TD>
-      <TD bgcolor="#eeeeee">4.19MHz�N���b�N�o��</TD>
+      <TD bgcolor="#eeeeee">4.19MHzクロック出力</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee"><CODE>CTRDG_PHI_CLOCK_8MHZ</CODE></TD>
-      <TD bgcolor="#eeeeee">8.38MHz�N���b�N�o��</TD>
+      <TD bgcolor="#eeeeee">8.38MHzクロック出力</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee"><CODE>CTRDG_PHI_CLOCK_16MHZ</CODE></TD>
-      <TD bgcolor="#eeeeee">16.76MHz�N���b�N�o��</TD>
+      <TD bgcolor="#eeeeee">16.76MHzクロック出力</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
-���̊֐��� ARM9, ARM7 �̗������s���܂��B</P>
-<P>���̊֐��� �X���b�h�Z�[�t�ł͂���܂���B</P>
-<h2>��������</h2>
-<P>ARM9, ARM7�����ŁAIO���W�X�^�� EXMEMCNT(0x4000204)�ɃA�N�Z�X���Ă��܂��B�܂����̂��߂�
-PXI �����ARM7 �ɖ��߂𑗂��Ă��܂��B</P>
-<h2>�Q��</h2>
+この関数で ARM9, ARM7 の両方を行います。</P>
+<P>この関数は スレッドセーフではありません。</P>
+<h2>内部動作</h2>
+<P>ARM9, ARM7両方で、IOレジスタの EXMEMCNT(0x4000204)にアクセスしています。またそのために
+PXI を介してARM7 に命令を送っています。</P>
+<h2>参照</h2>
 <p><CODE><A href="CTRDG_GetPhiClock.html">CTRDG_GetPhiClock</A><br>
 </CODE></p>
 
-<H2>����</H2>
-<P>2006/04/28 MI_ ���� CTRDG_ �Ɉړ��B�܂�ARM7,ARM9 ������ݒ肷��悤�ɏC��<BR>
-2003/12/18 ����</P>
+<H2>履歴</H2>
+<P>2006/04/28 MI_ から CTRDG_ に移動。またARM7,ARM9 両方を設定するように修正<BR>
+2003/12/18 初版</P>
 </body>
 </html>

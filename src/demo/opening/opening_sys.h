@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	opneing_sys.h
- * @brief	ƒI[ƒvƒjƒ“ƒO ƒVƒXƒeƒ€@
+ * @brief	ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚° ã‚·ã‚¹ãƒ†ãƒ ã€€
  * @author	Satoshi Nohara
  * @date	2005.12.08
  */
@@ -20,10 +20,10 @@
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
-extern const PROC_DATA OpeningProcData;				//ƒvƒƒZƒX’è‹`ƒf[ƒ^
+extern const PROC_DATA OpeningProcData;				//ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 
 extern PROC_RESULT OpeningProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT OpeningProc_Main( PROC * proc, int * seq );
@@ -31,10 +31,10 @@ extern PROC_RESULT OpeningProc_End( PROC * proc, int * seq );
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒrƒbƒgƒ}ƒbƒvID
+//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ID
 enum{
 	BMPWIN_MENU_1 = 0,
 	BMPWIN_GUIDE,
@@ -42,73 +42,73 @@ enum{
 	BMPWIN_OOKIDO,
 	BMPWIN_YESNO,
 	BMPWIN_IDSEL,
-	OPENING_BMPWIN_MAX,								//BMPƒEƒBƒ“ƒhƒE‚Ì”
+	OPENING_BMPWIN_MAX,								//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ•°
 };
 
-#define OPENING_MENU_MAX		(4)					//ƒƒjƒ…[‚Ì”
+#define OPENING_MENU_MAX		(4)					//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æ•°
 
 #define OP_FRM_FONT				(GF_BGL_FRAME1_M)
 
-//ƒpƒŒƒbƒg’è‹`
-#define OP_TALKWIN_PAL			(10)				//‰ï˜bƒEƒBƒ“ƒhƒEŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define OP_MENU_PAL				(11)				//ƒƒjƒ…[ƒEƒBƒ“ƒhƒEŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define OP_MSGFONT_PAL			(12)				//MSGƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define OP_FONT_PAL				(13)				//SYSTEMƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
+//ãƒ‘ãƒ¬ãƒƒãƒˆå®šç¾©
+#define OP_TALKWIN_PAL			(10)				//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define OP_MENU_PAL				(11)				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define OP_MSGFONT_PAL			(12)				//MSGãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define OP_FONT_PAL				(13)				//SYSTEMãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 
-//OBJƒiƒ“ƒo[
+//OBJãƒŠãƒ³ãƒãƒ¼
 #define OP_OBJ_HAKASE			(0)
 #define OP_OBJ_RIVAL			(1)
 #define OP_OBJ_KAGE				(2)
 
-#define OP_VANISH_ON			(0)					//”ñ•\Ž¦
-#define OP_VANISH_OFF			(1)					//•\Ž¦
+#define OP_VANISH_ON			(0)					//éžè¡¨ç¤º
+#define OP_VANISH_OFF			(1)					//è¡¨ç¤º
 
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
 typedef struct OPENING_WORK_tag
 {
-	GF_BGL_INI* bgl;								//BGLƒf[ƒ^
-	GF_BGL_BMPWIN bmpwin[OPENING_BMPWIN_MAX];		//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_INI* bgl;								//BGLãƒ‡ãƒ¼ã‚¿
+	GF_BGL_BMPWIN bmpwin[OPENING_BMPWIN_MAX];		//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
-	MSGDATA_MANAGER* msgman;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;								//’PŒêƒZƒbƒg
-	STRBUF* msg_buf;								//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
-	STRBUF* tmp_buf;								//ƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
-	STRBUF* menu_buf[OPENING_MENU_MAX];				//ƒƒjƒ…[ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	MSGDATA_MANAGER* msgman;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;								//å˜èªžã‚»ãƒƒãƒˆ
+	STRBUF* msg_buf;								//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+	STRBUF* tmp_buf;								//ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+	STRBUF* menu_buf[OPENING_MENU_MAX];				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 
 	STRCODE str[PERSON_NAME_SIZE + EOM_SIZE];
 	PROC* proc;
 
-	CONFIG* config;									//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^
-	SAVEDATA* sv;									//ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
+	CONFIG* config;									//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿
+	SAVEDATA* sv;									//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 
 	u16 count;
 	u8 sub_seq;
-	u8 msg_index;									//ƒƒbƒZ[ƒWindex
+	u8 msg_index;									//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸index
 
-	u8 sex;											//«•Ê
-	u8 cancel;										//‚â‚è’¼‚µƒtƒ‰ƒO
+	u8 sex;											//æ€§åˆ¥
+	u8 cancel;										//ã‚„ã‚Šç›´ã—ãƒ•ãƒ©ã‚°
 	u8 dmy3;
 	u8 dmy4;
 
-	//BMPƒƒjƒ…[(bmp_menu.h)
-	BMPMENU_HEADER MenuH;							//BMPƒƒjƒ…[ƒwƒbƒ_[
-	BMPMENU_WORK * mw;								//BMPƒƒjƒ…[ƒ[ƒN
-	BMPMENU_DATA Data[OPENING_MENU_MAX];			//BMPƒƒjƒ…[ƒf[ƒ^
-	u32 ret_work;									//‘I‘ð‚µ‚½ƒpƒ‰ƒ[ƒ^
+	//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼(bmp_menu.h)
+	BMPMENU_HEADER MenuH;							//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	BMPMENU_WORK * mw;								//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	BMPMENU_DATA Data[OPENING_MENU_MAX];			//BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	u32 ret_work;									//é¸æŠžã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
 	fx32 ScaleX;
 	fx32 ScaleY;
 
 	OPENING_OBJ_WORK ObjWork;
 
-	PALETTE_FADE_PTR pfd;							//ƒpƒŒƒbƒgƒtƒF[ƒh
+	PALETTE_FADE_PTR pfd;							//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 
-	TCB_PTR	tcb;									//–¼‘O“ü—ÍŠÄŽ‹TCB
+	TCB_PTR	tcb;									//åå‰å…¥åŠ›ç›£è¦–TCB
 }OPENING_WORK;
 
 

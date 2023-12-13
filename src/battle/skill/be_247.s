@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_247.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			247�@����̓������y�ӂ݂�z�ɂ�����B�y�Ȃ܂��z�ɂ͂����Ȃ��B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			247　相手の特性を【ふみん】にかえる。【なまけ】にはきかない。
  *
  *@author	HisashiSogabe
  *@data		2005.10.03

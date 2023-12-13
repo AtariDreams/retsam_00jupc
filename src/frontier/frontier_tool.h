@@ -1,27 +1,27 @@
 //==============================================================================
 /**
  * @file	frontier_tool.h
- * @brief	ƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒA{İ‚Å‹¤’Ê‚Åg‚¦‚é‚æ‚¤‚Èƒc[ƒ‹
+ * @brief	ãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ã§å…±é€šã§ä½¿ãˆã‚‹ã‚ˆã†ãªãƒ„ãƒ¼ãƒ«
  * @author	matsuda
- * @date	2007.03.27(‰Î)
+ * @date	2007.03.27(ç«)
  */
 //==============================================================================
 #ifndef __FRONTIER_TOOL_H__
 #define __FRONTIER_TOOL_H__
 
-#include "gflib/msg_print.h"	// STRCODE ’è‹`‚Ì‚½‚ß(b_tower_data.h—p)
-#include "battle/battle_common.h"	//(b_tower_data.h—p)
+#include "gflib/msg_print.h"	// STRCODE å®šç¾©ã®ãŸã‚(b_tower_data.hç”¨)
+#include "battle/battle_common.h"	//(b_tower_data.hç”¨)
 #include "system/wordset.h"		//
-#include "system/buflen.h"		//(b_tower_data.h—p)
-#include "savedata/b_tower.h"	//(b_tower_data.h—p)
+#include "system/buflen.h"		//(b_tower_data.hç”¨)
+#include "savedata/b_tower.h"	//(b_tower_data.hç”¨)
 #include "battle/b_tower_data.h"
 #include "battle/tr_ai_def.h"
 
 #define FRONTIER_LEVEL_50		(120)		//LV50
-#define FRONTIER_LEVEL_OPEN		(121)		//ƒI[ƒvƒ“(LV100)
+#define FRONTIER_LEVEL_OPEN		(121)		//ã‚ªãƒ¼ãƒ—ãƒ³(LV100)
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern B_TOWER_TRAINER_ROM_DATA * Frontier_TrainerRomDataGet(u16 trainer_index,int heap_id,int arcTR);
 extern void Frontier_PokemonRomDataGet(B_TOWER_POKEMON_ROM_DATA *prd,int index, int arcID);

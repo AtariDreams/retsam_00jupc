@@ -16,19 +16,19 @@ typedef struct
 
 typedef struct {
 
-	u8	data[SVLD_DATA_SIZE];	//ƒZ[ƒuƒf[ƒ^
+	u8	data[SVLD_DATA_SIZE];	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 
-	u16	blocknum;	//ƒuƒƒbƒNƒiƒ“ƒo[
-	u16	sumcheck;	//ƒTƒ€ƒ`ƒFƒbƒNƒf[ƒ^
-	u32	save_id;	//ƒZ[ƒuŽ¯•Êƒf[ƒ^
-	u32	save_count;	//ƒZ[ƒuƒJƒEƒ“ƒ^[i—š—ðj
+	u16	blocknum;	//ãƒ–ãƒ­ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼
+	u16	sumcheck;	//ã‚µãƒ ãƒã‚§ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+	u32	save_id;	//ã‚»ãƒ¼ãƒ–è­˜åˆ¥ãƒ‡ãƒ¼ã‚¿
+	u32	save_count;	//ã‚»ãƒ¼ãƒ–ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ï¼ˆå±¥æ­´ï¼‰
 }SVLDSYS_DATA;
 
 
 
 #define SVLD_MIRROR_SIZE	(14)
-#define	SVLD_ID				(0x08012025)	//ƒwƒbƒ_ƒXƒe[ƒ^ƒX’è‹`iƒQ[ƒ€”FØ‚h‚cj
-#define	SVLD_BLOCK_SIZE		(0xf80)		//ƒZƒNƒ^“–‚½‚è‚ÌƒZ[ƒuƒf[ƒ^ƒTƒCƒY
+#define	SVLD_ID				(0x08012025)	//ãƒ˜ãƒƒãƒ€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å®šç¾©ï¼ˆã‚²ãƒ¼ãƒ èªè¨¼ï¼©ï¼¤ï¼‰
+#define	SVLD_BLOCK_SIZE		(0xf80)		//ã‚»ã‚¯ã‚¿å½“ãŸã‚Šã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 
 static POKEMON_ROM_HEADER _pokeromheader;
 
@@ -43,7 +43,7 @@ static u32 _counter;
 AGBPOKE_SAVEDATA *_data;
 
 static int s_savingsector = 0;
-// ‚O”Ô‚ª‚ ‚éƒZƒNƒ^
+// ï¼ç•ªãŒã‚ã‚‹ã‚»ã‚¯ã‚¿
 static int _startsector;
 
 static u16 LoadStatusCheck( void *buffer, int *newsector, u32 *main_counter);
@@ -59,8 +59,8 @@ static BOOL flash_init()
 
 //==============================================================================
 /**
- * agbpoke_*‚ªŒÄ‚Ño‚³‚ê‚é‘O‚ÉA‚±‚ÌŠÖ”‚ðƒR[ƒ‹‚µ‚Ä‚­‚¾‚³‚¢B
- * @retval  TRUEc‰Šú‰»¬Œ÷@FALSEc‰Šú‰»Ž¸”s
+ * agbpoke_*ãŒå‘¼ã³å‡ºã•ã‚Œã‚‹å‰ã«ã€ã“ã®é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«ã—ã¦ãã ã•ã„ã€‚
+ * @retval  TRUEâ€¦åˆæœŸåŒ–æˆåŠŸã€€FALSEâ€¦åˆæœŸåŒ–å¤±æ•—
  */
 //==============================================================================
 int agbpoke_init( void *buffer )
@@ -68,7 +68,7 @@ int agbpoke_init( void *buffer )
 	_data = (AGBPOKE_SAVEDATA *) buffer;
 	if( _softtype != NULL ) 
 	{
-	  //		OS_Panic("agbpoke_init‚ªˆÈ‘OŒÄ‚Ño‚³‚ê‚Ä‚¢‚Ü‚·B");
+	  //		OS_Panic("agbpoke_initãŒä»¥å‰å‘¼ã³å‡ºã•ã‚Œã¦ã„ã¾ã™ã€‚");
 		return AGBPOKE_ERROR_OTHER;
 	}
 	
@@ -80,8 +80,8 @@ int agbpoke_init( void *buffer )
 
 	if( _softtype->version == SOFTTYPE_RS  /* && _softtype->country == LANGTYPE_JP */ )
 	{
-		// ƒ‹ƒrƒTƒtƒ@“ú–{Œê”ÅE–k•Ä”Å‚Ì‚ÝAƒƒ€ƒwƒbƒ_‚É‘Î‰ž‚µ‚Ä‚¢‚È‚¢B
-		// Žg‚¤‚à‚Ì‚ÝƒRƒs[
+		// ãƒ«ãƒ“ã‚µãƒ•ã‚¡æ—¥æœ¬èªžç‰ˆãƒ»åŒ—ç±³ç‰ˆã®ã¿ã€ãƒ­ãƒ ãƒ˜ãƒƒãƒ€ã«å¯¾å¿œã—ã¦ã„ãªã„ã€‚
+		// ä½¿ã†ã‚‚ã®ã¿ã‚³ãƒ”ãƒ¼
 		_pokeromheader.MyData_size = RSINDEX_MYDATASIZE;
 		_pokeromheader.Fld_size	= RSINDEX_FLDSIZE;
 		_pokeromheader.event_flag_offset = RSINDEX_EVENTFLAG;
@@ -92,15 +92,15 @@ int agbpoke_init( void *buffer )
 		CTRDG_CpuCopy32( (void*)0x08000100, (void*)&_pokeromheader, sizeof(POKEMON_ROM_HEADER));
 	}
 
-	// ƒtƒ‰ƒbƒVƒ…‚Ì‰Šú‰»B•K‚¸ƒCƒjƒVƒƒƒ‹ƒR[ƒh‚ðŠm”F‚µ‚Ä‚©‚çI	
+	// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã®åˆæœŸåŒ–ã€‚å¿…ãšã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ã‚’ç¢ºèªã—ã¦ã‹ã‚‰ï¼	
 	if( !flash_init() )
 	{
-		OS_TPrintf("ƒtƒ‰ƒbƒVƒ…‰Šú‰»‚ÉŽ¸”s\n");
+		OS_TPrintf("ãƒ•ãƒ©ãƒƒã‚·ãƒ¥åˆæœŸåŒ–ã«å¤±æ•—\n");
 		return AGBPOKE_ERROR_NOFLASH;
 	}
 	else
 	{
-		OS_TPrintf("ƒtƒ‰ƒbƒVƒ…‰Šú‰»Š®—¹\n");
+		OS_TPrintf("ãƒ•ãƒ©ãƒƒã‚·ãƒ¥åˆæœŸåŒ–å®Œäº†\n");
 	}
 
 	return AGBPOKE_ERROR_OK;
@@ -113,8 +113,8 @@ void agbpoke_preinit(void)
 
 //==============================================================================
 /**
- * ‚³‚³‚Á‚Ä‚¢‚éƒ\ƒtƒg‚ÌƒCƒjƒVƒƒƒ‹ƒR[ƒh‚ðŽæ“¾‚µ‚Ü‚·B
- * @retval  TRUEc‰Šú‰»¬Œ÷@FALSEc‰Šú‰»Ž¸”s
+ * ã•ã•ã£ã¦ã„ã‚‹ã‚½ãƒ•ãƒˆã®ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã—ã¾ã™ã€‚
+ * @retval  TRUEâ€¦åˆæœŸåŒ–æˆåŠŸã€€FALSEâ€¦åˆæœŸåŒ–å¤±æ•—
  */
 //==============================================================================
 u32 agbpoke_getInitialCode()
@@ -124,8 +124,8 @@ u32 agbpoke_getInitialCode()
 
 //==============================================================================
 /**
- * ‚³‚³‚Á‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“ƒ\ƒtƒg‚ÌƒQ[ƒ€Ží—Þ‚ð•Ô‚µ‚Ü‚·B
- * @retval  ƒJƒZƒbƒg‚Ìƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv
+ * ã•ã•ã£ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚½ãƒ•ãƒˆã®ã‚²ãƒ¼ãƒ ç¨®é¡žã‚’è¿”ã—ã¾ã™ã€‚
+ * @retval  ã‚«ã‚»ãƒƒãƒˆã®ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—
  */
 //==============================================================================
 int agbpoke_getPokemonType()
@@ -135,8 +135,8 @@ int agbpoke_getPokemonType()
 
 //==============================================================================
 /**
- * ‚³‚³‚Á‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“ƒ\ƒtƒg‚ÌŒ¾Œê‚ð•Ô‚·B
- * @retval  ƒJƒZƒbƒg‚ÌŒ¾Œê
+ * ã•ã•ã£ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚½ãƒ•ãƒˆã®è¨€èªžã‚’è¿”ã™ã€‚
+ * @retval  ã‚«ã‚»ãƒƒãƒˆã®è¨€èªž
  */
 //==============================================================================
 int agbpoke_getPokemonLanguage()
@@ -146,22 +146,22 @@ int agbpoke_getPokemonLanguage()
 
 //==============================================================================
 /**
- * AGBƒJ[ƒh‚ª³‚µ‚­‚³‚³‚Á‚Ä‚¢‚é‚©A”O“ü‚è‚É”»’è‚µ‚Ü‚·B
- * AGBƒXƒƒbƒg‚Ì‰˜‚ê“™‚ÅAƒf[ƒ^ÁŽ¸‚ÌŠëŒ¯‚ª‚È‚¢‚æ‚¤A
- * •K‚¸‘‚«ž‚Þ‘O‚É‚±‚ÌŠÖ”‚Å”»’è‚·‚é‚±‚ÆB
- * @param   list, ƒCƒjƒVƒƒƒ‹ƒR[ƒh‚ÌƒŠƒXƒgB
- * @param   size, ƒCƒjƒVƒƒƒ‹ƒR[ƒh‚ÌƒŠƒXƒg‚Ì€–Ú”B
- * @retval  NULLcŽ¸”sA‚»‚êˆÈŠOcˆê’v‚µ‚½ƒCƒjƒVƒƒƒ‹ƒR[ƒh‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * AGBã‚«ãƒ¼ãƒ‰ãŒæ­£ã—ãã•ã•ã£ã¦ã„ã‚‹ã‹ã€å¿µå…¥ã‚Šã«åˆ¤å®šã—ã¾ã™ã€‚
+ * AGBã‚¹ãƒ­ãƒƒãƒˆã®æ±šã‚Œç­‰ã§ã€ãƒ‡ãƒ¼ã‚¿æ¶ˆå¤±ã®å±é™ºãŒãªã„ã‚ˆã†ã€
+ * å¿…ãšæ›¸ãè¾¼ã‚€å‰ã«ã“ã®é–¢æ•°ã§åˆ¤å®šã™ã‚‹ã“ã¨ã€‚
+ * @param   list, ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ã®ãƒªã‚¹ãƒˆã€‚
+ * @param   size, ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ã®ãƒªã‚¹ãƒˆã®é …ç›®æ•°ã€‚
+ * @retval  NULLâ€¦å¤±æ•—ã€ãã‚Œä»¥å¤–â€¦ä¸€è‡´ã—ãŸã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 static int check_agb(const AGBSOFT_TYPE *list, int size)
 {
 	u32 code;
 	_softtype = NULL;
-	// ƒJ[ƒgƒŠƒbƒWƒXƒƒbƒg‚ÉƒJ[ƒgƒŠƒbƒW‚ª‚³‚³‚Á‚Ä‚¢‚é‚©”»’è
+	// ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã‚¹ãƒ­ãƒƒãƒˆã«ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãŒã•ã•ã£ã¦ã„ã‚‹ã‹åˆ¤å®š
 	if( !CTRDG_IsAgbCartridge() ) return AGBPOKE_ERROR_NOROM;
 	
-	// ƒCƒjƒVƒƒƒ‹ƒR[ƒh‚ðŽæ“¾B
+	// ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã€‚
 	code = CTRDG_GetAgbGameCode();
 	{
 		int i;
@@ -175,32 +175,32 @@ static int check_agb(const AGBSOFT_TYPE *list, int size)
 		}
 		if( _softtype == NULL )
 		{
-			OS_TPrintf("ƒCƒjƒVƒƒƒ‹ƒR[ƒh‚ªˆê’v‚µ‚Ü‚¹‚ñB\n");
+			OS_TPrintf("ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ãŒä¸€è‡´ã—ã¾ã›ã‚“ã€‚\n");
 			return AGBPOKE_ERROR_NOTPOKEMON;
 		}
 	}
 
-	// ƒCƒjƒVƒƒƒ‹ƒR[ƒh‚Éˆê’v‚µ‚½‚Ì‚ÅAƒƒ€‚ð“Ç‚Ýo‚µ‚Ì‹–‰Â
+	// ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ã«ä¸€è‡´ã—ãŸã®ã§ã€ãƒ­ãƒ ã‚’èª­ã¿å‡ºã—ã®è¨±å¯
 	CTRDG_Enable( TRUE );
 	
-	// ƒƒ€ƒwƒbƒ_î•ñ‚ðŽæ“¾B
+	// ãƒ­ãƒ ãƒ˜ãƒƒãƒ€æƒ…å ±ã‚’å–å¾—ã€‚
 	{
 		u32 romheader[0xc0/4];
 		u8 *castdata = (u8*)&(romheader[0]);
 		CTRDG_CpuCopy32( (void*)0x08000000, (void*)&(romheader[0]), 0xc0);
-		// ”C“V“°ƒƒSƒ`ƒFƒbƒNB
+		// ä»»å¤©å ‚ãƒ­ã‚´ãƒã‚§ãƒƒã‚¯ã€‚
 		{
 			int i;
 			for(i = 0; i < sizeof(nintendo_logo); i++)
 			{
 				if( nintendo_logo[i] != castdata[4 + i] )
 				{
-					OS_TPrintf("”C“V“°ƒƒS‚ªˆê’v‚µ‚Ü‚¹‚ñB\n");	
+					OS_TPrintf("ä»»å¤©å ‚ãƒ­ã‚´ãŒä¸€è‡´ã—ã¾ã›ã‚“ã€‚\n");	
 					return AGBPOKE_ERROR_READ;
 				}
 			}
 		}
-		// •â”ƒ`ƒFƒbƒN‚ðs‚¤B
+		// è£œæ•°ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã€‚
 		{
 			int i;
 			u8 sum = 0;
@@ -211,7 +211,7 @@ static int check_agb(const AGBSOFT_TYPE *list, int size)
 			sum = (u8)(-(sum + 0x19));
 			if( castdata[0xbd] != sum )
 			{
-				OS_TPrintf("•â”ƒ`ƒFƒbƒN‚ÉŽ¸”s‚µ‚Ü‚µ‚½B\n");
+				OS_TPrintf("è£œæ•°ãƒã‚§ãƒƒã‚¯ã«å¤±æ•—ã—ã¾ã—ãŸã€‚\n");
 				return AGBPOKE_ERROR_READ;
 			}
 		}
@@ -222,7 +222,7 @@ static int check_agb(const AGBSOFT_TYPE *list, int size)
 
 //*************************************************************************
 //=========================================================================
-//				ƒTƒuƒ‹[ƒ`ƒ“
+//				ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³
 //=========================================================================
 //*************************************************************************
 static	u16	SumCheckCalc(u32* dat_adr, u16 size)
@@ -240,7 +240,7 @@ static	u16	SumCheckCalc(u32* dat_adr, u16 size)
 
 static u32 loadNormalFile3(const char* path, void *dest, int index, int size) 
 {
-	// ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚©‚çƒ[ƒh
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ãƒ­ãƒ¼ãƒ‰
 	FSFile f;
 	u32 l2;
 
@@ -264,7 +264,7 @@ static u32 loadNormalFile3(const char* path, void *dest, int index, int size)
 
 static void LoadSector(int i, void *dest)
 {
-	// SDK‚ªo—ˆŽŸ‘æŽÀ‘•
+	// SDKãŒå‡ºæ¥æ¬¡ç¬¬å®Ÿè£…
 //	loadNormalFile3( "savedata050916_repair.bin", dest, i * SVLD_SECTOR_SIZE, SVLD_SECTOR_SIZE);
 #if 0
   {
@@ -303,11 +303,11 @@ static void *getSectorPtr(int no)
 
 //==============================================================================
 /**
- * ƒ~ƒ‰[ƒŠƒ“ƒO‚Ì‚¤‚¿‚Ð‚Æ‚Â‚ðƒ`ƒFƒbƒN
- * @param   mirrorc‚O‚©‚P 
- * @param   countercƒJƒEƒ“ƒ^[‚ª“ü‚Á‚Ä‚­‚éB
- * @param   buffer   cSVLD_SECTOR_SIZE •K—v
- * @retval  NULLcŽ¸”sA‚»‚êˆÈŠOcˆê’v‚µ‚½ƒCƒjƒVƒƒƒ‹ƒR[ƒh‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * ãƒŸãƒ©ãƒ¼ãƒªãƒ³ã‚°ã®ã†ã¡ã²ã¨ã¤ã‚’ãƒã‚§ãƒƒã‚¯
+ * @param   mirrorâ€¦ï¼ã‹ï¼‘ 
+ * @param   counterâ€¦ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãŒå…¥ã£ã¦ãã‚‹ã€‚
+ * @param   buffer   â€¦SVLD_SECTOR_SIZE å¿…è¦
+ * @retval  NULLâ€¦å¤±æ•—ã€ãã‚Œä»¥å¤–â€¦ä¸€è‡´ã—ãŸã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 static u16 check_mirror(int mirror, void *buffer, u32 *counter)
@@ -324,22 +324,22 @@ static u16 check_mirror(int mirror, void *buffer, u32 *counter)
 	for(i = 0; i < SVLD_MIRROR_SIZE; i++){
 		LoadSector(i % 14 + mirror * SVLD_MIRROR_SIZE, (void *)data);
 		DC_FlushRange(data, SVLD_SECTOR_SIZE);
-		//‚h‚cŠm”F
+		//ï¼©ï¼¤ç¢ºèª
 #if 0
 		OS_Printf("[%2d] : %08X\n", i, data->save_id);
 #endif	
 		if(data->save_id == SVLD_ID){
 			null_f = 1;
-			//ƒTƒ€ƒ`ƒFƒbƒNŠm”F
+			//ã‚µãƒ ãƒã‚§ãƒƒã‚¯ç¢ºèª
 			sumcheck = 
 				SumCheckCalc( (u32*)data->data, getSectorSize(data->blocknum) );
 			if(data->sumcheck == sumcheck){
 				*counter = data->save_count;
-				block_flag |= (0x00000001 << data->blocknum);	//ƒuƒƒbƒN•âŠ®î•ñ
+				block_flag |= (0x00000001 << data->blocknum);	//ãƒ–ãƒ­ãƒƒã‚¯è£œå®Œæƒ…å ±
 			}
 		}
 	}
-	//ƒ~ƒ‰[‚P•âŠ®î•ñŠm”F
+	//ãƒŸãƒ©ãƒ¼ï¼‘è£œå®Œæƒ…å ±ç¢ºèª
 	if(null_f){
 		if(block_flag == ((0xffffffff << SVLD_MIRROR_SIZE) ^ 0xffffffff)){
 			return SVLD_RET_OK;
@@ -353,10 +353,10 @@ static u16 check_mirror(int mirror, void *buffer, u32 *counter)
 
 //==============================================================================
 /**
- * “ñ‚Â‚Ìƒ~ƒ‰[ƒŠƒ“ƒO‚ð”äŠr
- * @param   newsectorcV‚µ‚¢ƒZƒNƒ^[‚Ì”Ô†‚ª“ü‚Á‚Ä‚­‚é(0‚©1)
- * @param   buffer   cSVLD_SECTOR_SIZE •K—v
- * @retval  NULLcŽ¸”sA‚»‚êˆÈŠOcˆê’v‚µ‚½ƒCƒjƒVƒƒƒ‹ƒR[ƒh‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * äºŒã¤ã®ãƒŸãƒ©ãƒ¼ãƒªãƒ³ã‚°ã‚’æ¯”è¼ƒ
+ * @param   newsectorâ€¦æ–°ã—ã„ã‚»ã‚¯ã‚¿ãƒ¼ã®ç•ªå·ãŒå…¥ã£ã¦ãã‚‹(0ã‹1)
+ * @param   buffer   â€¦SVLD_SECTOR_SIZE å¿…è¦
+ * @retval  NULLâ€¦å¤±æ•—ã€ãã‚Œä»¥å¤–â€¦ä¸€è‡´ã—ãŸã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 static u16 LoadStatusCheck( void *buffer, int *newsector, u32 *main_counter)
@@ -371,12 +371,12 @@ static u16 LoadStatusCheck( void *buffer, int *newsector, u32 *main_counter)
 	OS_Printf("[%d] - [%d]\n", f1, f2);
 #endif
 	
-	//ó‘Ô”»•Ê
+	//çŠ¶æ…‹åˆ¤åˆ¥
 	if( (f1 == SVLD_RET_OK) && (f2 == SVLD_RET_OK) )
 	{
 		if(((counter1 == 0xffffffff)&&(counter2 == 0x00000000))
 			||((counter1 == 0x00000000)&&(counter2 == 0xffffffff))){
-			//—š—ðƒJƒ“ƒXƒgˆ—i‚È‚¢‚ÆŽv‚¤‚ª”O‚Ì‚½‚ßj
+			//å±¥æ­´ã‚«ãƒ³ã‚¹ãƒˆå‡¦ç†ï¼ˆãªã„ã¨æ€ã†ãŒå¿µã®ãŸã‚ï¼‰
 			if( (counter1 + 1) < (counter2 + 1) ){
 				*main_counter = counter2;
 				*newsector = 1;
@@ -393,40 +393,40 @@ static u16 LoadStatusCheck( void *buffer, int *newsector, u32 *main_counter)
 				*newsector = 0;
 			}
 		}
-		return	SVLD_RET_OK;//ƒ~ƒ‰[‚PF¶‘¶Aƒ~ƒ‰[‚QF¶‘¶
+		return	SVLD_RET_OK;//ãƒŸãƒ©ãƒ¼ï¼‘ï¼šç”Ÿå­˜ã€ãƒŸãƒ©ãƒ¼ï¼’ï¼šç”Ÿå­˜
 	}
 
 	if((f1 == SVLD_RET_OK)&&(f2 != SVLD_RET_OK)){
 		*main_counter	= counter1;
 		if(f2 == SVLD_RET_NG){
 			*newsector = 0;
-			return	SVLD_RET_NG;//ƒ~ƒ‰[‚PF¶‘¶Aƒ~ƒ‰[‚QFŽ€–SiŒxj
+			return	SVLD_RET_NG;//ãƒŸãƒ©ãƒ¼ï¼‘ï¼šç”Ÿå­˜ã€ãƒŸãƒ©ãƒ¼ï¼’ï¼šæ­»äº¡ï¼ˆè­¦å‘Šï¼‰
 		}else{
 			*newsector = 0;
-			return	SVLD_RET_OK;//ƒ~ƒ‰[‚PF¶‘¶Aƒ~ƒ‰[‚QF‰Šúi‚ ‚è‚¦‚È‚¢‚ªˆê‰žj
+			return	SVLD_RET_OK;//ãƒŸãƒ©ãƒ¼ï¼‘ï¼šç”Ÿå­˜ã€ãƒŸãƒ©ãƒ¼ï¼’ï¼šåˆæœŸï¼ˆã‚ã‚Šãˆãªã„ãŒä¸€å¿œï¼‰
 		}
 	}
 	if((f2 == SVLD_RET_OK)&&(f1 != SVLD_RET_OK)){
 		*main_counter	= counter2;
 		if(f1 == SVLD_RET_NG){
 			*newsector = 1;
-			return	SVLD_RET_NG;//ƒ~ƒ‰[‚PFŽ€–SAƒ~ƒ‰[‚QF¶‘¶iŒxj
+			return	SVLD_RET_NG;//ãƒŸãƒ©ãƒ¼ï¼‘ï¼šæ­»äº¡ã€ãƒŸãƒ©ãƒ¼ï¼’ï¼šç”Ÿå­˜ï¼ˆè­¦å‘Šï¼‰
 		}else{
 			*newsector = 1;
-			return	SVLD_RET_OK;//ƒ~ƒ‰[‚PF‰ŠúAƒ~ƒ‰[‚QF¶‘¶iÅ‰‚Í‚±‚êj
+			return	SVLD_RET_OK;//ãƒŸãƒ©ãƒ¼ï¼‘ï¼šåˆæœŸã€ãƒŸãƒ©ãƒ¼ï¼’ï¼šç”Ÿå­˜ï¼ˆæœ€åˆã¯ã“ã‚Œï¼‰
 		}
 	}
 
 	if((f1 == SVLD_RET_NULL)&&(f2 == SVLD_RET_NULL)){
 		*main_counter = 0;
 		*newsector = 0;
-		return	SVLD_RET_NULL;//ƒ~ƒ‰[‚PF‰ŠúAƒ~ƒ‰[‚QF‰Šú
+		return	SVLD_RET_NULL;//ãƒŸãƒ©ãƒ¼ï¼‘ï¼šåˆæœŸã€ãƒŸãƒ©ãƒ¼ï¼’ï¼šåˆæœŸ
 	}
 
-	//‚»‚Ì‘¼i‚ ‚è‚¦‚È‚¢‚ª”O‚Ì‚½‚ßj
-	//ƒ~ƒ‰[‚PFŽ€–SAƒ~ƒ‰[‚QFŽ€–S
-	//ƒ~ƒ‰[‚PF‰ŠúAƒ~ƒ‰[‚QFŽ€–S
-	//ƒ~ƒ‰[‚PFŽ€–SAƒ~ƒ‰[‚QF‰Šúi‰Šú•s—Ç‚Å‚ ‚é‚©‚àHj
+	//ãã®ä»–ï¼ˆã‚ã‚Šãˆãªã„ãŒå¿µã®ãŸã‚ï¼‰
+	//ãƒŸãƒ©ãƒ¼ï¼‘ï¼šæ­»äº¡ã€ãƒŸãƒ©ãƒ¼ï¼’ï¼šæ­»äº¡
+	//ãƒŸãƒ©ãƒ¼ï¼‘ï¼šåˆæœŸã€ãƒŸãƒ©ãƒ¼ï¼’ï¼šæ­»äº¡
+	//ãƒŸãƒ©ãƒ¼ï¼‘ï¼šæ­»äº¡ã€ãƒŸãƒ©ãƒ¼ï¼’ï¼šåˆæœŸï¼ˆåˆæœŸä¸è‰¯ã§ã‚ã‚‹ã‹ã‚‚ï¼Ÿï¼‰
 	*main_counter	= 0;
 	*newsector	= 0;
 	return	SVLD_RET_DESTROY;
@@ -434,8 +434,8 @@ static u16 LoadStatusCheck( void *buffer, int *newsector, u32 *main_counter)
 
 //==============================================================================
 /**
- * ƒf[ƒ^‚ðƒ[ƒh‚·‚éB
- * @retval  Œ‹‰ÊB
+ * ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã€‚
+ * @retval  çµæžœã€‚
  */
 //==============================================================================
 static int _newer_sector;
@@ -463,15 +463,15 @@ int agbpoke_LoadDATA()
 		SVLDSYS_DATA *data = (SVLDSYS_DATA*) _data->buffer;
 		for(i = 0; i < SVLD_MIRROR_SIZE; i++){
 			LoadSector(i + _newer_sector * SVLD_MIRROR_SIZE, (void *)data);
-			//‚h‚cŠm”F
+			//ï¼©ï¼¤ç¢ºèª
 			if(data->save_id == SVLD_ID){
-				//ƒTƒ€ƒ`ƒFƒbƒNŠm”F
+				//ã‚µãƒ ãƒã‚§ãƒƒã‚¯ç¢ºèª
 				u16 sumcheck = SumCheckCalc( (u32*)data->data, getSectorSize(data->blocknum) );
 				if(data->sumcheck == sumcheck){
 					_counter = data->save_count;
-					block_flag |= (0x00000001 << data->blocknum);	//ƒuƒƒbƒN•âŠ®î•ñ
+					block_flag |= (0x00000001 << data->blocknum);	//ãƒ–ãƒ­ãƒƒã‚¯è£œå®Œæƒ…å ±
 					
-					// ƒf[ƒ^‚ðƒRƒs[
+					// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 					MI_CpuCopy32( (u32*)data->data, getSectorPtr(data->blocknum), getSectorSize(data->blocknum) );
 					
 					if( data->blocknum == 0 ) _startsector = i;
@@ -483,13 +483,13 @@ int agbpoke_LoadDATA()
 		{
 			return AGBPOKE_ERROR_OK;
 		}else{
-			// ˆê‰ñ‚Í“Ç‚ß‚Ä‚é‚Ì‚¾‚©‚çA“Ç‚Ýž‚Ýƒ~ƒXB
-			// ”O‚Ì‚½‚ßA·ž‚Ý‚È‚¨‚µ‚Ä‚à‚ç‚Á‚½‚Ù‚¤‚ª‚¢‚¢H
+			// ä¸€å›žã¯èª­ã‚ã¦ã‚‹ã®ã ã‹ã‚‰ã€èª­ã¿è¾¼ã¿ãƒŸã‚¹ã€‚
+			// å¿µã®ãŸã‚ã€å·®è¾¼ã¿ãªãŠã—ã¦ã‚‚ã‚‰ã£ãŸã»ã†ãŒã„ã„ï¼Ÿ
 			return AGBPOKE_ERROR_READ;
 		}
 	}
 	
-	return AGBPOKE_ERROR_DESTROY;  //‚±‚±‚É‚­‚é‚±‚Æ‚ÍƒvƒƒOƒ‰ƒ€‚ÌƒoƒOˆÈŠO‚Í‚È‚¢
+	return AGBPOKE_ERROR_DESTROY;  //ã“ã“ã«ãã‚‹ã“ã¨ã¯ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ãƒã‚°ä»¥å¤–ã¯ãªã„
 }
 
 static u8 SaveSector(u8 sector_num,u8* data)
@@ -505,8 +505,8 @@ static u8 SaveSector(u8 sector_num,u8* data)
 
 //==============================================================================
 /**
- * ƒf[ƒ^‚ðƒZ[ƒu‚·‚éBAGBPOKE_ERROR_CONTINUEˆÈŠO‚Ì’l‚ª•Ô‚·‚Ü‚ÅŒÄ‚Ño‚µ‚Ä‰º‚³‚¢B
- * @retval  Œ‹‰ÊB
+ * ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ã™ã‚‹ã€‚AGBPOKE_ERROR_CONTINUEä»¥å¤–ã®å€¤ãŒè¿”ã™ã¾ã§å‘¼ã³å‡ºã—ã¦ä¸‹ã•ã„ã€‚
+ * @retval  çµæžœã€‚
  */
 //==============================================================================
 
@@ -525,7 +525,7 @@ int agbpoke_saveEdit( ){
 		_counter++;
 	}
 	
-	// ‰½‚©ŒÄ‚Ño‚µ‚ª‚¨‚©‚µ‚¢
+	// ä½•ã‹å‘¼ã³å‡ºã—ãŒãŠã‹ã—ã„
 	if( _target_mirror < 0 ) return AGBPOKE_ERROR_NG;
 	
 	MI_CpuClear32( data, SVLD_SECTOR_SIZE );
@@ -555,9 +555,9 @@ int agbpoke_saveEdit( ){
 
 //==============================================================================
 /**
- * ƒf[ƒ^‚ð”ñ“¯Šú‚ÅƒZ[ƒu‚·‚éB
- * AGBPOKE_ERROR_CONTINUEˆÈŠO‚Ì’l‚ª•Ô‚·‚Ü‚ÅŒÄ‚Ño‚µ‚Ä‰º‚³‚¢B
- * @retval  Œ‹‰ÊB
+ * ãƒ‡ãƒ¼ã‚¿ã‚’éžåŒæœŸã§ã‚»ãƒ¼ãƒ–ã™ã‚‹ã€‚
+ * AGBPOKE_ERROR_CONTINUEä»¥å¤–ã®å€¤ãŒè¿”ã™ã¾ã§å‘¼ã³å‡ºã—ã¦ä¸‹ã•ã„ã€‚
+ * @retval  çµæžœã€‚
  */
 //==============================================================================
 enum
@@ -576,7 +576,7 @@ static u32 saveCallback(struct CTRDGTaskInfo_tag *info);
 	
 static void saveSub(int index)
 {
-	// ‰½‚©ŒÄ‚Ño‚µ‚ª‚¨‚©‚µ‚¢
+	// ä½•ã‹å‘¼ã³å‡ºã—ãŒãŠã‹ã—ã„
 	SVLDSYS_DATA *data = (SVLDSYS_DATA*) _data->buffer;	
 	_async_state = ASYNC_STATE_WRITING;
 	MI_CpuClear32( data, SVLD_SECTOR_SIZE );
@@ -596,12 +596,12 @@ static u32 saveCallback(struct CTRDGTaskInfo_tag *info)
 //	OS_TPrintf("callback\n");
 	if( info->result == 0)
 	{
-		// ¬Œ÷	
+		// æˆåŠŸ	
 		s_savingsector++;
 		if( s_savingsector >= SVLD_MIRROR_SIZE ) 
 		{
 			s_savingsector = 0;
-//			OS_TPrintf("Š®—¹\n", s_savingsector);
+//			OS_TPrintf("å®Œäº†\n", s_savingsector);
 			_async_state = ASYNC_STATE_STOP;
 			return 0;
 		}
@@ -617,7 +617,7 @@ static u32 saveCallback(struct CTRDGTaskInfo_tag *info)
 	}
 	else
 	{
-		// Ž¸”s	
+		// å¤±æ•—	
 		_async_state =  ASYNC_STATE_WRITEERROR;
 	}
 	return 0;
@@ -639,7 +639,7 @@ BOOL agbpoke_saveEdit_Async()
 		return FALSE;	
 	}
 	
-	// ‰½‚©ŒÄ‚Ño‚µ‚ª‚¨‚©‚µ‚¢
+	// ä½•ã‹å‘¼ã³å‡ºã—ãŒãŠã‹ã—ã„
 	if( _target_mirror < 0 ) return FALSE;
 	saveSub(s_savingsector);
 	return TRUE;
@@ -686,10 +686,10 @@ int agbpoke_check_status(void)
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾‚·‚éB
- * @param   newsectorcV‚µ‚¢ƒZƒNƒ^[‚Ì”Ô†‚ª“ü‚Á‚Ä‚­‚é(0‚©1)
- * @param   buffer   cSVLD_SECTOR_SIZE •K—v
- * @retval  Œ‹‰ÊB
+ * ãƒ‘ã‚½ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
+ * @param   newsectorâ€¦æ–°ã—ã„ã‚»ã‚¯ã‚¿ãƒ¼ã®ç•ªå·ãŒå…¥ã£ã¦ãã‚‹(0ã‹1)
+ * @param   buffer   â€¦SVLD_SECTOR_SIZE å¿…è¦
+ * @retval  çµæžœã€‚
  */
 //==============================================================================
 POKEBOX_SAVE_DATA *agbpoke_getPCdata()
@@ -699,15 +699,15 @@ POKEBOX_SAVE_DATA *agbpoke_getPCdata()
 
 //==============================================================================
 /**
- * }ŠÓ‚ð‚à‚Á‚Ä‚¢‚é‚©”»’èB
- * @retval  Œ‹‰ÊB
+ * å›³é‘‘ã‚’ã‚‚ã£ã¦ã„ã‚‹ã‹åˆ¤å®šã€‚
+ * @retval  çµæžœã€‚
  */
 //==============================================================================
 BOOL gbapoke_hasZukan()
 {
- 	// }ŠÓ‚ðŽ‚Á‚Ä‚¢‚é‚Ç‚¤‚©
+ 	// å›³é‘‘ã‚’æŒã£ã¦ã„ã‚‹ã©ã†ã‹
 	if( _softtype->version == SOFTTYPE_RS ) {
-		// ƒ‹ƒrƒTƒtƒ@
+		// ãƒ«ãƒ“ã‚µãƒ•ã‚¡
 		if(_data->Fld[_pokeromheader.event_flag_offset + SYSFLAG_START / 8] & 0x02) {
 			return TRUE;
 		} else {
@@ -741,26 +741,26 @@ BOOL gbapoke_hasZukan()
 
 //==============================================================================
 /**
- * ƒ|ƒPƒ‚ƒ“ƒZƒ“ƒ^[“à‚ÅƒZ[ƒu‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
- * @retval  Œ‹‰ÊB
+ * ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ³ã‚¿ãƒ¼å†…ã§ã‚»ãƒ¼ãƒ–ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
+ * @retval  çµæžœã€‚
  */
 //==============================================================================
 BOOL gbapoke_inPokemonCenter()
 {
 	if( _softtype->version == SOFTTYPE_RS ) {
-		//Fld.MapID‚ÍŒ»Ý‚Ìƒ}ƒbƒv‚ðŽw‚·Bƒƒ“ƒodiv_id‚Æmap_id‚É‚æ‚Á‚Ä
-		//ŒÂ•Ê‚Ìƒ}ƒbƒv‚ðŽ¯•Ê‚Å‚«‚éB
+		//Fld.MapIDã¯ç¾åœ¨ã®ãƒžãƒƒãƒ—ã‚’æŒ‡ã™ã€‚ãƒ¡ãƒ³ãƒdiv_idã¨map_idã«ã‚ˆã£ã¦
+		//å€‹åˆ¥ã®ãƒžãƒƒãƒ—ã‚’è­˜åˆ¥ã§ãã‚‹ã€‚
 		MapID *temp;
 		
 		temp = (MapID *)&(_data->Fld[4]);
 		
-		//Žg—p‚·‚éƒ}ƒbƒvƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ªAƒ|ƒPƒZƒ“‚Ìê‡‚ÍTRUE‚ð•Ô‚·
+		//ä½¿ç”¨ã™ã‚‹ãƒžãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒã€ãƒã‚±ã‚»ãƒ³ã®å ´åˆã¯TRUEã‚’è¿”ã™
 			if (
-			// ƒ|ƒPƒZƒ“‚PF
+			// ãƒã‚±ã‚»ãƒ³ï¼‘F
 				rsmap_DivisionList[temp->div_id][temp->map_id] == MAPSCRNID_PC01 ||
-			// ƒ|ƒPƒZƒ“‚QF
+			// ãƒã‚±ã‚»ãƒ³ï¼’F
 				rsmap_DivisionList[temp->div_id][temp->map_id] == MAPSCRNID_PC02 ||
-			// ƒ|ƒPƒZƒ“‚PFiƒtƒGƒ“j
+			// ãƒã‚±ã‚»ãƒ³ï¼‘Fï¼ˆãƒ•ã‚¨ãƒ³ï¼‰
 				rsmap_DivisionList[temp->div_id][temp->map_id] == MAPSCRNID_PC01_1
 			) {	
 			return 1;
@@ -779,36 +779,36 @@ void *agbpoke_GetMyDataPtr(void)
 
 
 static const AGBSOFT_TYPE support_softs[30] = {
-  { 'JVXA', SOFTTYPE_RS, CASTYPE_RUBY, LANGTYPE_JP },		// ƒ‹ƒr[“ú–{Œê”Å
-  { 'EVXA', SOFTTYPE_RS, CASTYPE_RUBY, LANGTYPE_US },		// ƒ‹ƒr[–k•Ä”Å
-  { 'FVXA', SOFTTYPE_RS, CASTYPE_RUBY, LANGTYPE_FR },		// ƒ‹ƒr[ƒtƒ‰ƒ“ƒX”Å
-  { 'DVXA', SOFTTYPE_RS, CASTYPE_RUBY, LANGTYPE_GE },		// ƒ‹ƒr[ƒhƒCƒc”Å
-  { 'SVXA', SOFTTYPE_RS, CASTYPE_RUBY, LANGTYPE_SP },		// ƒ‹ƒr[ƒXƒyƒCƒ“”Å
-  { 'IVXA', SOFTTYPE_RS, CASTYPE_RUBY, LANGTYPE_IT },		// ƒ‹ƒr[ƒCƒ^ƒŠƒA”Å
-  { 'JPXA', SOFTTYPE_RS, CASTYPE_SAPPHIRE, LANGTYPE_JP },	// ƒTƒtƒ@ƒCƒA“ú–{Œê”Å
-  { 'EPXA', SOFTTYPE_RS, CASTYPE_SAPPHIRE, LANGTYPE_US },	// ƒTƒtƒ@ƒCƒA–k•Ä”Å
-  { 'FPXA', SOFTTYPE_RS, CASTYPE_SAPPHIRE, LANGTYPE_FR },	// ƒTƒtƒ@ƒCƒAƒtƒ‰ƒ“ƒX”Å
-  { 'DPXA', SOFTTYPE_RS, CASTYPE_SAPPHIRE, LANGTYPE_GE },	// ƒTƒtƒ@ƒCƒAƒhƒCƒc”Å
-  { 'SPXA', SOFTTYPE_RS, CASTYPE_SAPPHIRE, LANGTYPE_SP },	// ƒTƒtƒ@ƒCƒAƒXƒyƒCƒ“”Å
-  { 'IPXA', SOFTTYPE_RS, CASTYPE_SAPPHIRE, LANGTYPE_IT },	// ƒTƒtƒ@ƒCƒAƒCƒ^ƒŠƒA”Å
-  { 'JRPB', SOFTTYPE_FL, CASTYPE_RED, LANGTYPE_JP },		// ƒtƒ@ƒCƒAƒŒƒbƒh“ú–{Œê”Å
-  { 'ERPB', SOFTTYPE_FL, CASTYPE_RED, LANGTYPE_US },		// ƒtƒ@ƒCƒAƒŒƒbƒh–k•Ä”Å
-  { 'FRPB', SOFTTYPE_FL, CASTYPE_RED, LANGTYPE_FR },		// ƒtƒ@ƒCƒAƒŒƒbƒhƒtƒ‰ƒ“ƒX”Å
-  { 'DRPB', SOFTTYPE_FL, CASTYPE_RED, LANGTYPE_GE },		// ƒtƒ@ƒCƒAƒŒƒbƒhƒhƒCƒc”Å
-  { 'SRPB', SOFTTYPE_FL, CASTYPE_RED, LANGTYPE_SP },		// ƒtƒ@ƒCƒAƒŒƒbƒhƒXƒyƒCƒ“”Å
-  { 'IRPB', SOFTTYPE_FL, CASTYPE_RED, LANGTYPE_IT },		// ƒtƒ@ƒCƒAƒŒƒbƒhƒCƒ^ƒŠƒA”Å
-  { 'JGPB', SOFTTYPE_FL, CASTYPE_GREEN, LANGTYPE_JP },		// ƒŠ[ƒtƒOƒŠ[ƒ““ú–{Œê”Å
-  { 'EGPB', SOFTTYPE_FL, CASTYPE_GREEN, LANGTYPE_US },		// ƒŠ[ƒtƒOƒŠ[ƒ“–k•Ä”Å
-  { 'FGPB', SOFTTYPE_FL, CASTYPE_GREEN, LANGTYPE_FR },		// ƒŠ[ƒtƒOƒŠ[ƒ“ƒtƒ‰ƒ“ƒX”Å
-  { 'DGPB', SOFTTYPE_FL, CASTYPE_GREEN, LANGTYPE_GE },		// ƒŠ[ƒtƒOƒŠ[ƒ“ƒhƒCƒc”Å
-  { 'SGPB', SOFTTYPE_FL, CASTYPE_GREEN, LANGTYPE_SP },		// ƒŠ[ƒtƒOƒŠ[ƒ“ƒXƒyƒCƒ“”Å
-  { 'IGPB', SOFTTYPE_FL, CASTYPE_GREEN, LANGTYPE_IT },		// ƒŠ[ƒtƒOƒŠ[ƒ“ƒCƒ^ƒŠƒA”Å
-  { 'JEPB', SOFTTYPE_EM, CASTYPE_EMERALD, LANGTYPE_JP },	// ƒGƒƒ‰ƒ‹ƒh“ú–{Œê”Å
-  { 'EEPB', SOFTTYPE_EM, CASTYPE_EMERALD, LANGTYPE_US },	// ƒGƒƒ‰ƒ‹ƒh–k•Ä”Å
-  { 'FEPB', SOFTTYPE_EM, CASTYPE_EMERALD, LANGTYPE_FR },	// ƒGƒƒ‰ƒ‹ƒhƒtƒ‰ƒ“ƒX”Å
-  { 'DEPB', SOFTTYPE_EM, CASTYPE_EMERALD, LANGTYPE_GE },	// ƒGƒƒ‰ƒ‹ƒhƒhƒCƒc”Å
-  { 'SEPB', SOFTTYPE_EM, CASTYPE_EMERALD, LANGTYPE_SP },	// ƒGƒƒ‰ƒ‹ƒhƒXƒyƒCƒ“”Å
-  { 'IEPB', SOFTTYPE_EM, CASTYPE_EMERALD, LANGTYPE_IT },	// ƒGƒƒ‰ƒ‹ƒhƒCƒ^ƒŠƒA”Å
+  { 'JVXA', SOFTTYPE_RS, CASTYPE_RUBY, LANGTYPE_JP },		// ãƒ«ãƒ“ãƒ¼æ—¥æœ¬èªžç‰ˆ
+  { 'EVXA', SOFTTYPE_RS, CASTYPE_RUBY, LANGTYPE_US },		// ãƒ«ãƒ“ãƒ¼åŒ—ç±³ç‰ˆ
+  { 'FVXA', SOFTTYPE_RS, CASTYPE_RUBY, LANGTYPE_FR },		// ãƒ«ãƒ“ãƒ¼ãƒ•ãƒ©ãƒ³ã‚¹ç‰ˆ
+  { 'DVXA', SOFTTYPE_RS, CASTYPE_RUBY, LANGTYPE_GE },		// ãƒ«ãƒ“ãƒ¼ãƒ‰ã‚¤ãƒ„ç‰ˆ
+  { 'SVXA', SOFTTYPE_RS, CASTYPE_RUBY, LANGTYPE_SP },		// ãƒ«ãƒ“ãƒ¼ã‚¹ãƒšã‚¤ãƒ³ç‰ˆ
+  { 'IVXA', SOFTTYPE_RS, CASTYPE_RUBY, LANGTYPE_IT },		// ãƒ«ãƒ“ãƒ¼ã‚¤ã‚¿ãƒªã‚¢ç‰ˆ
+  { 'JPXA', SOFTTYPE_RS, CASTYPE_SAPPHIRE, LANGTYPE_JP },	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢æ—¥æœ¬èªžç‰ˆ
+  { 'EPXA', SOFTTYPE_RS, CASTYPE_SAPPHIRE, LANGTYPE_US },	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢åŒ—ç±³ç‰ˆ
+  { 'FPXA', SOFTTYPE_RS, CASTYPE_SAPPHIRE, LANGTYPE_FR },	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢ãƒ•ãƒ©ãƒ³ã‚¹ç‰ˆ
+  { 'DPXA', SOFTTYPE_RS, CASTYPE_SAPPHIRE, LANGTYPE_GE },	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢ãƒ‰ã‚¤ãƒ„ç‰ˆ
+  { 'SPXA', SOFTTYPE_RS, CASTYPE_SAPPHIRE, LANGTYPE_SP },	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢ã‚¹ãƒšã‚¤ãƒ³ç‰ˆ
+  { 'IPXA', SOFTTYPE_RS, CASTYPE_SAPPHIRE, LANGTYPE_IT },	// ã‚µãƒ•ã‚¡ã‚¤ã‚¢ã‚¤ã‚¿ãƒªã‚¢ç‰ˆ
+  { 'JRPB', SOFTTYPE_FL, CASTYPE_RED, LANGTYPE_JP },		// ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¬ãƒƒãƒ‰æ—¥æœ¬èªžç‰ˆ
+  { 'ERPB', SOFTTYPE_FL, CASTYPE_RED, LANGTYPE_US },		// ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¬ãƒƒãƒ‰åŒ—ç±³ç‰ˆ
+  { 'FRPB', SOFTTYPE_FL, CASTYPE_RED, LANGTYPE_FR },		// ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¬ãƒƒãƒ‰ãƒ•ãƒ©ãƒ³ã‚¹ç‰ˆ
+  { 'DRPB', SOFTTYPE_FL, CASTYPE_RED, LANGTYPE_GE },		// ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¬ãƒƒãƒ‰ãƒ‰ã‚¤ãƒ„ç‰ˆ
+  { 'SRPB', SOFTTYPE_FL, CASTYPE_RED, LANGTYPE_SP },		// ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¬ãƒƒãƒ‰ã‚¹ãƒšã‚¤ãƒ³ç‰ˆ
+  { 'IRPB', SOFTTYPE_FL, CASTYPE_RED, LANGTYPE_IT },		// ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¬ãƒƒãƒ‰ã‚¤ã‚¿ãƒªã‚¢ç‰ˆ
+  { 'JGPB', SOFTTYPE_FL, CASTYPE_GREEN, LANGTYPE_JP },		// ãƒªãƒ¼ãƒ•ã‚°ãƒªãƒ¼ãƒ³æ—¥æœ¬èªžç‰ˆ
+  { 'EGPB', SOFTTYPE_FL, CASTYPE_GREEN, LANGTYPE_US },		// ãƒªãƒ¼ãƒ•ã‚°ãƒªãƒ¼ãƒ³åŒ—ç±³ç‰ˆ
+  { 'FGPB', SOFTTYPE_FL, CASTYPE_GREEN, LANGTYPE_FR },		// ãƒªãƒ¼ãƒ•ã‚°ãƒªãƒ¼ãƒ³ãƒ•ãƒ©ãƒ³ã‚¹ç‰ˆ
+  { 'DGPB', SOFTTYPE_FL, CASTYPE_GREEN, LANGTYPE_GE },		// ãƒªãƒ¼ãƒ•ã‚°ãƒªãƒ¼ãƒ³ãƒ‰ã‚¤ãƒ„ç‰ˆ
+  { 'SGPB', SOFTTYPE_FL, CASTYPE_GREEN, LANGTYPE_SP },		// ãƒªãƒ¼ãƒ•ã‚°ãƒªãƒ¼ãƒ³ã‚¹ãƒšã‚¤ãƒ³ç‰ˆ
+  { 'IGPB', SOFTTYPE_FL, CASTYPE_GREEN, LANGTYPE_IT },		// ãƒªãƒ¼ãƒ•ã‚°ãƒªãƒ¼ãƒ³ã‚¤ã‚¿ãƒªã‚¢ç‰ˆ
+  { 'JEPB', SOFTTYPE_EM, CASTYPE_EMERALD, LANGTYPE_JP },	// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰æ—¥æœ¬èªžç‰ˆ
+  { 'EEPB', SOFTTYPE_EM, CASTYPE_EMERALD, LANGTYPE_US },	// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰åŒ—ç±³ç‰ˆ
+  { 'FEPB', SOFTTYPE_EM, CASTYPE_EMERALD, LANGTYPE_FR },	// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰ãƒ•ãƒ©ãƒ³ã‚¹ç‰ˆ
+  { 'DEPB', SOFTTYPE_EM, CASTYPE_EMERALD, LANGTYPE_GE },	// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰ãƒ‰ã‚¤ãƒ„ç‰ˆ
+  { 'SEPB', SOFTTYPE_EM, CASTYPE_EMERALD, LANGTYPE_SP },	// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰ã‚¹ãƒšã‚¤ãƒ³ç‰ˆ
+  { 'IEPB', SOFTTYPE_EM, CASTYPE_EMERALD, LANGTYPE_IT },	// ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰ã‚¤ã‚¿ãƒªã‚¢ç‰ˆ
 };
 
 static u8 nintendo_logo[] = 

@@ -18,7 +18,7 @@
   do-indent
 
   Revision 1.3  2005/10/19 07:48:57  okubata_ryoma
-  #pragma difine_section のパラメータの記述方法の修正
+  #pragma difine_section 縺ｮ繝代Λ繝｡繝ｼ繧ｿ縺ｮ險倩ｿｰ譁ｹ豕輔�ｮ菫ｮ豁｣
 
   Revision 1.2  2005/02/28 05:26:02  yosizaki
   do-indent.

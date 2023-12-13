@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	gds_profile_local.h
- * @brief	GDSƒvƒƒtƒB[ƒ‹‚Ìƒ[ƒJƒ‹ƒwƒbƒ_
+ * @brief	GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®ãƒ­ãƒ¼ã‚«ãƒ«ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2007.08.22(…)
+ * @date	2007.08.22(æ°´)
  */
 //==============================================================================
 #ifndef __GT_GDS_PROFILE_LOCAL_H__
@@ -13,56 +13,56 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///–¼‘O‚ÌƒTƒCƒY(EOMž‚Ý)
+///åå‰ã®ã‚µã‚¤ã‚º(EOMè¾¼ã¿)
 #define GT_PLW_TRAINER_NAME_SIZE	(7+1)	//PERSON_NAME_SIZE + EOM_SIZE
 
-///ƒCƒxƒ“ƒg˜^‰æ‚ÌŽ©ŒÈÐ‰îƒƒbƒZ[ƒW•¶Žš”
+///ã‚¤ãƒ™ãƒ³ãƒˆéŒ²ç”»ã®è‡ªå·±ç´¹ä»‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ–‡å­—æ•°
 #define GT_EVENT_SELF_INTRO			(40)
 
-///Ž©ŒÈÐ‰îƒƒbƒZ[ƒW‚Ì•\Ž¦Œ`Ž®
+///è‡ªå·±ç´¹ä»‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤ºå½¢å¼
 enum{
-	GT_MESSAGE_FLAG_NORMAL,		///<ŠÈˆÕ‰ï˜b
-	GT_MESSAGE_FLAG_EVENT,		///<ƒtƒŠ[ƒ[ƒh
+	GT_MESSAGE_FLAG_NORMAL,		///<ç°¡æ˜“ä¼šè©±
+	GT_MESSAGE_FLAG_EVENT,		///<ãƒ•ãƒªãƒ¼ãƒ¯ãƒ¼ãƒ‰
 };
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
 /**
- *	GDSƒvƒƒtƒB[ƒ‹\‘¢‘Ì
+ *	GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«æ§‹é€ ä½“
  *		128byte
  */
 //--------------------------------------------------------------
 typedef struct {
-	GT_STRCODE name[GT_PLW_TRAINER_NAME_SIZE];	///< –¼‘O(EOMž‚Ý)		16
-	u32 player_id;							///< ƒvƒŒƒCƒ„[ID		4
-	u8 player_sex;							///< ƒvƒŒƒCƒ„[«•Ê
-	u8 birthday_month;						///< ƒvƒŒƒCƒ„[‚Ì’a¶ŒŽ
-	u8 trainer_view;						///< ƒ†ƒjƒIƒ“ƒ‹[ƒ€“à‚Å‚ÌŒ©‚½–Ú
+	GT_STRCODE name[GT_PLW_TRAINER_NAME_SIZE];	///< åå‰(EOMè¾¼ã¿)		16
+	u32 player_id;							///< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID		4
+	u8 player_sex;							///< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ€§åˆ¥
+	u8 birthday_month;						///< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®èª•ç”Ÿæœˆ
+	u8 trainer_view;						///< ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ å†…ã§ã®è¦‹ãŸç›®
 
-	u8 country_code;						///< Z‚ñ‚Å‚¢‚é‘ƒR[ƒh
-	u8 local_code;							///< Z‚ñ‚Å‚¢‚é’n•ûƒR[ƒh
+	u8 country_code;						///< ä½ã‚“ã§ã„ã‚‹å›½ã‚³ãƒ¼ãƒ‰
+	u8 local_code;							///< ä½ã‚“ã§ã„ã‚‹åœ°æ–¹ã‚³ãƒ¼ãƒ‰
 
-	u8 version_code;						///< ƒo[ƒWƒ‡ƒ“ƒR[ƒh
-	u8 language;							///< Œ¾ŒêƒR[ƒh
+	u8 version_code;						///< ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
+	u8 language;							///< è¨€èªžã‚³ãƒ¼ãƒ‰
 	
-	u8 egg_flag:1;							///< 1=ƒ^ƒ}ƒS
-	u8 form_no:7;							///< ƒ|ƒPƒ‚ƒ“ƒtƒHƒ‹ƒ€”Ô†
-	u16 monsno;								///< ƒ|ƒPƒ‚ƒ“”Ô†		2
+	u8 egg_flag:1;							///< 1=ã‚¿ãƒžã‚´
+	u8 form_no:7;							///< ãƒã‚±ãƒ¢ãƒ³ãƒ•ã‚©ãƒ«ãƒ ç•ªå·
+	u16 monsno;								///< ãƒã‚±ãƒ¢ãƒ³ç•ªå·		2
 	
-	u8 message_flag;						///< ŠÈˆÕ‰ï˜bAƒtƒŠ[ƒ[ƒh‚Ç‚¿‚ç‚ðŽg—p‚·‚é‚©
+	u8 message_flag;						///< ç°¡æ˜“ä¼šè©±ã€ãƒ•ãƒªãƒ¼ãƒ¯ãƒ¼ãƒ‰ã©ã¡ã‚‰ã‚’ä½¿ç”¨ã™ã‚‹ã‹
 	u8 padding;
-	//PMS_DATA self_introduction;			///< Ž©ŒÈÐ‰î(ŠÈˆÕ‰ï˜b)	8
+	//PMS_DATA self_introduction;			///< è‡ªå·±ç´¹ä»‹(ç°¡æ˜“ä¼šè©±)	8
 	union{
-		GT_PMS_DATA self_introduction;				///< Ž©ŒÈÐ‰î(ŠÈˆÕ‰ï˜b)	8
-		GT_STRCODE event_self_introduction[GT_EVENT_SELF_INTRO];	///< Ž©ŒÈÐ‰î(ƒCƒxƒ“ƒg—pƒtƒŠ[ƒ[ƒh(EOMž‚Ý))
+		GT_PMS_DATA self_introduction;				///< è‡ªå·±ç´¹ä»‹(ç°¡æ˜“ä¼šè©±)	8
+		GT_STRCODE event_self_introduction[GT_EVENT_SELF_INTRO];	///< è‡ªå·±ç´¹ä»‹(ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ•ãƒªãƒ¼ãƒ¯ãƒ¼ãƒ‰(EOMè¾¼ã¿))
 	};
 	
-	u8 work[12];							///< —\”õ				12
+	u8 work[12];							///< äºˆå‚™				12
 	
 	GT_GDS_CRC crc;							///< CRC						4
 }GT_GDS_PROFILE;

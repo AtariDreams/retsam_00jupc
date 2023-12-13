@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndArcGetSeqArcSeqCount</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,13 +11,13 @@
 <div></div>
 </div>
 <h1>NNS_SndArcGetSeqArcSeqCount</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">u32 NNS_SndArcGetSeqArcSeqCount( int <var>seqArcNo</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAWLWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -25,7 +25,7 @@
 <tbody>
 <tr>
 <td><em><strong><code>seqArcNo</code></strong></em></td>
-<td>�V�[�P���X�A�[�J�C�u�ԍ��ł��B</td>
+<td>シーケンスアーカイブ番号です。</td>
 </tr>
 </tbody>
 </table>
@@ -33,28 +33,28 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAFMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�V�[�P���X�A�[�J�C�u���̃V�[�P���X�̌���Ԃ��܂��B
-�V�[�P���X�A�[�J�C�u�ԍ��������̏ꍇ�́A0��Ԃ��܂��B</p>
+      <p>シーケンスアーカイブ中のシーケンスの個数を返します。
+シーケンスアーカイブ番号が無効の場合は、0を返します。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAMMWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�V�[�P���X�A�[�J�C�u���̃V�[�P���X�̌����擾���܂��B
+シーケンスアーカイブ中のシーケンスの個数を取得します。
 </p>
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-���炩���߁A�Y���V�[�P���X�A�[�J�C�u�̃f�[�^����������Ƀ��[�h����Ă��Ȃ���΂Ȃ�܂���B
-���[�h����Ă��Ȃ��ꍇ�́A0��Ԃ��܂��B
+あらかじめ、該当シーケンスアーカイブのデータがメモリ上にロードされていなければなりません。
+ロードされていない場合は、0を返します。
 </p>
 </div>
     </div>
-<h2>�Q��</h2>
-<p>�Ȃ��B</p>
-<h2>����</h2>
-<p>2004/09/13 ����<br></p>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2004/09/13 初版<br></p>
 </div>
 </body>
 </html>

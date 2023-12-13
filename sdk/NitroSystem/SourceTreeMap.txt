@@ -13,80 +13,80 @@
   $Revision: 1.17 $
 -------------------------------------------------------------------------------
 
-œƒ\[ƒXƒcƒŠ[‚ÌƒfƒBƒŒƒNƒgƒŠƒ}ƒbƒv
+â—ã‚½ãƒ¼ã‚¹ãƒ„ãƒªãƒ¼ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒžãƒƒãƒ—
 
-ˆÈ‰º‚ÍANITRO-Systemƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ\[ƒXƒcƒŠ[‘S‘Ì}‚Å‚·B
+ä»¥ä¸‹ã¯ã€NITRO-Systemãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚½ãƒ¼ã‚¹ãƒ„ãƒªãƒ¼å…¨ä½“å›³ã§ã™ã€‚
 
 
-$NitroSystem            NITRO-System‚ÌROOTƒfƒBƒŒƒNƒgƒŠ
- „ 
- „¥„Ÿdocs                   ƒhƒLƒ…ƒƒ“ƒg
- „   „   
- „   „¥„ŸReadme                 -  NITRO-System ƒŠƒŠ[ƒX‚ÉŠÖ‚·‚éƒhƒLƒ…ƒƒ“ƒg(‚Ü‚¸‚±‚¿‚ç‚Ö)
- „   „¥„ŸFoundation             -  NITRO-Foundationƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒhƒLƒ…ƒƒ“ƒg
- „   „¥„ŸGraphicsFoundation     -  NITRO-GraphicsFoundationƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒhƒLƒ…ƒƒ“ƒg
- „   „¥„ŸG2D                    -  NITRO-2DGraphicsƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒhƒLƒ…ƒƒ“ƒg
- „   „¥„ŸG3D                    -  NITRO-3DGraphicsƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒhƒLƒ…ƒƒ“ƒg
- „   „¥„ŸNitroComposer          -  NITRO-Composer‚ÌƒhƒLƒ…ƒƒ“ƒg
- „   „¥„Ÿmcs                    -  Multiple Channel Streamƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒhƒLƒ…ƒƒ“ƒg
- „   „¤„ŸNitroPlayer            -  NITRO-Player‚ÌƒhƒLƒ…ƒƒ“ƒg
- „ 
- „¥„Ÿbuild                  ƒrƒ‹ƒhƒfƒBƒŒƒNƒgƒŠ
- „   „ 
- „   „¥„Ÿbuildtools             -  ƒrƒ‹ƒh‚É•K—v‚Èƒtƒ@ƒCƒ‹
- „   „ 
- „   „¥„Ÿdemos                  -  ƒfƒ‚ƒAƒvƒŠƒP[ƒVƒ‡ƒ“
- „   „   „ 
- „   „   „¥„Ÿfnd                -  -  NITRO-Foundationƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒfƒ‚
- „   „   „¥„Ÿgfd                -  -  NITRO-GraphicsFoundationƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒfƒ‚
- „   „   „¥„Ÿg2d                -  -  NITRO-2DGraphicsƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒfƒ‚
- „   „   „¥„Ÿg3d                -  -  NITRO-3DGraphicsƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒfƒ‚
- „   „   „¥„Ÿsnd                -  -  NITRO-Composerƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒfƒ‚
- „   „   „¥„Ÿmcs                -  -  Muitiple Channel Streamƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒfƒ‚
- „   „   „¤„ŸIDE                -  -  CodeWarrior IDE ƒvƒƒWƒFƒNƒgƒTƒ“ƒvƒ‹
- „   „ 
- „   „¤„Ÿlibraries              -  ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ\[ƒX
- „       „ 
- „       „¥„Ÿfnd                -  -  NITRO-Foundationƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ\[ƒX
- „       „¥„Ÿgfd                -  -  NITRO-GraphincsFoundationƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ\[ƒX
- „       „¥„Ÿg2d                -  -  NITRO-2DGraphicsƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ\[ƒX
- „       „¥„Ÿg3d                -  -  NITRO-3DGraphicsƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ\[ƒX
- „       „¥„Ÿsnd                -  -  NITRO-Composerƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ\[ƒX
- „       „¤„Ÿmcs                -  -  Muitiple Channel Streamƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ\[ƒX
- „ 
- „¥„Ÿinclude                ƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹
- „   „ 
- „   „¤„Ÿnnsys                  - NITRO-System—pƒwƒbƒ_ƒtƒ@ƒCƒ‹
- „       „ 
- „       „¥„Ÿfnd                -  -  NITRO-Foundationƒwƒbƒ_ƒtƒ@ƒCƒ‹
- „       „¥„Ÿgfd                -  -  NITRO-GraphincsFoundationƒwƒbƒ_ƒtƒ@ƒCƒ‹
- „       „¥„Ÿg2d                -  -  NITRO-2DGraphicsƒwƒbƒ_ƒtƒ@ƒCƒ‹
- „       „¥„Ÿg3d                -  -  NITRO-3DGraphicsƒwƒbƒ_ƒtƒ@ƒCƒ‹
- „       „¥„Ÿsnd                -  -  NITRO-Composerƒwƒbƒ_ƒtƒ@ƒCƒ‹
- „       „¤„Ÿmcs                -  -  Muitiple Channel Streamƒwƒbƒ_ƒtƒ@ƒCƒ‹
- „ 
- „¥„Ÿman                    ƒŠƒtƒ@ƒŒƒ“ƒXƒ}ƒjƒ…ƒAƒ‹iHTMLj
- „   „ 
- „   „¤„Ÿja_JP                  -  “ú–{Œê
- „ 
- „¥„Ÿlib                    ƒ‰ƒCƒuƒ‰ƒŠ‚Ìì¬æ
- „   „   
- „   „¤„ŸARM9-TS                -  ƒƒCƒ“ƒvƒƒZƒbƒT TSˆÈ~—pƒ‰ƒCƒuƒ‰ƒŠ
- „       „ 
- „       „¥„ŸDebug              -  -  Debug   ”Å
- „       „¥„ŸRelease            -  -  Release ”Å
- „       „¤„ŸRom                -  -  ÅIROM ”Å
- „ 
- „¤„Ÿtools                  NITRO-Systemƒc[ƒ‹
-     „ 
-     „¥„Ÿnitro                  -  NITROŽÀ‹@—pƒc[ƒ‹
-     „   „ 
-     „   „¤„ŸSoundPlayer        -  -  ƒTƒEƒ“ƒhƒvƒŒƒCƒ„ŠÖŒW‚Ìƒtƒ@ƒCƒ‹
-     „ 
-     „¤„Ÿwin                    -  Windows—pƒc[ƒ‹
-         „ 
-         „¥„Ÿbin                -  -  ƒRƒ“ƒo[ƒ^“™‚ÌŽÀsƒtƒ@ƒCƒ‹
-         „¥„Ÿfontcvtr           -  -  ƒtƒHƒ“ƒgƒRƒ“ƒo[ƒ^
-         „¥„Ÿmcsserver          -  -  mcsƒT[ƒo
-         „¤„ŸNitroPlayer        -  -  NITRO-Player
+$NitroSystem            NITRO-Systemã®ROOTãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+ â”‚
+ â”œâ”€docs                   ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+ â”‚  â”‚  
+ â”‚  â”œâ”€Readme                 -  NITRO-System ãƒªãƒªãƒ¼ã‚¹ã«é–¢ã™ã‚‹ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ(ã¾ãšã“ã¡ã‚‰ã¸)
+ â”‚  â”œâ”€Foundation             -  NITRO-Foundationãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+ â”‚  â”œâ”€GraphicsFoundation     -  NITRO-GraphicsFoundationãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+ â”‚  â”œâ”€G2D                    -  NITRO-2DGraphicsãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+ â”‚  â”œâ”€G3D                    -  NITRO-3DGraphicsãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+ â”‚  â”œâ”€NitroComposer          -  NITRO-Composerã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+ â”‚  â”œâ”€mcs                    -  Multiple Channel Streamãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+ â”‚  â””â”€NitroPlayer            -  NITRO-Playerã®ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ
+ â”‚
+ â”œâ”€build                  ãƒ“ãƒ«ãƒ‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+ â”‚  â”‚
+ â”‚  â”œâ”€buildtools             -  ãƒ“ãƒ«ãƒ‰ã«å¿…è¦ãªãƒ•ã‚¡ã‚¤ãƒ«
+ â”‚  â”‚
+ â”‚  â”œâ”€demos                  -  ãƒ‡ãƒ¢ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
+ â”‚  â”‚  â”‚
+ â”‚  â”‚  â”œâ”€fnd                -  -  NITRO-Foundationãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‡ãƒ¢
+ â”‚  â”‚  â”œâ”€gfd                -  -  NITRO-GraphicsFoundationãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‡ãƒ¢
+ â”‚  â”‚  â”œâ”€g2d                -  -  NITRO-2DGraphicsãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‡ãƒ¢
+ â”‚  â”‚  â”œâ”€g3d                -  -  NITRO-3DGraphicsãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‡ãƒ¢
+ â”‚  â”‚  â”œâ”€snd                -  -  NITRO-Composerãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‡ãƒ¢
+ â”‚  â”‚  â”œâ”€mcs                -  -  Muitiple Channel Streamãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‡ãƒ¢
+ â”‚  â”‚  â””â”€IDE                -  -  CodeWarrior IDE ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚µãƒ³ãƒ—ãƒ«
+ â”‚  â”‚
+ â”‚  â””â”€libraries              -  ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚½ãƒ¼ã‚¹
+ â”‚      â”‚
+ â”‚      â”œâ”€fnd                -  -  NITRO-Foundationãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚½ãƒ¼ã‚¹
+ â”‚      â”œâ”€gfd                -  -  NITRO-GraphincsFoundationãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚½ãƒ¼ã‚¹
+ â”‚      â”œâ”€g2d                -  -  NITRO-2DGraphicsãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚½ãƒ¼ã‚¹
+ â”‚      â”œâ”€g3d                -  -  NITRO-3DGraphicsãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚½ãƒ¼ã‚¹
+ â”‚      â”œâ”€snd                -  -  NITRO-Composerãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚½ãƒ¼ã‚¹
+ â”‚      â””â”€mcs                -  -  Muitiple Channel Streamãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚½ãƒ¼ã‚¹
+ â”‚
+ â”œâ”€include                ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«
+ â”‚  â”‚
+ â”‚  â””â”€nnsys                  - NITRO-Systemç”¨ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+ â”‚      â”‚
+ â”‚      â”œâ”€fnd                -  -  NITRO-Foundationãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+ â”‚      â”œâ”€gfd                -  -  NITRO-GraphincsFoundationãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+ â”‚      â”œâ”€g2d                -  -  NITRO-2DGraphicsãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+ â”‚      â”œâ”€g3d                -  -  NITRO-3DGraphicsãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+ â”‚      â”œâ”€snd                -  -  NITRO-Composerãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+ â”‚      â””â”€mcs                -  -  Muitiple Channel Streamãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+ â”‚
+ â”œâ”€man                    ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ï¼ˆHTMLï¼‰
+ â”‚  â”‚
+ â”‚  â””â”€ja_JP                  -  æ—¥æœ¬èªž
+ â”‚
+ â”œâ”€lib                    ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ä½œæˆå…ˆ
+ â”‚  â”‚  
+ â”‚  â””â”€ARM9-TS                -  ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ãƒƒã‚µ TSä»¥é™ç”¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
+ â”‚      â”‚
+ â”‚      â”œâ”€Debug              -  -  Debug   ç‰ˆ
+ â”‚      â”œâ”€Release            -  -  Release ç‰ˆ
+ â”‚      â””â”€Rom                -  -  æœ€çµ‚ROM ç‰ˆ
+ â”‚
+ â””â”€tools                  NITRO-Systemãƒ„ãƒ¼ãƒ«
+     â”‚
+     â”œâ”€nitro                  -  NITROå®Ÿæ©Ÿç”¨ãƒ„ãƒ¼ãƒ«
+     â”‚  â”‚
+     â”‚  â””â”€SoundPlayer        -  -  ã‚µã‚¦ãƒ³ãƒ‰ãƒ—ãƒ¬ã‚¤ãƒ¤é–¢ä¿‚ã®ãƒ•ã‚¡ã‚¤ãƒ«
+     â”‚
+     â””â”€win                    -  Windowsç”¨ãƒ„ãƒ¼ãƒ«
+         â”‚
+         â”œâ”€bin                -  -  ã‚³ãƒ³ãƒãƒ¼ã‚¿ç­‰ã®å®Ÿè¡Œãƒ•ã‚¡ã‚¤ãƒ«
+         â”œâ”€fontcvtr           -  -  ãƒ•ã‚©ãƒ³ãƒˆã‚³ãƒ³ãƒãƒ¼ã‚¿
+         â”œâ”€mcsserver          -  -  mcsã‚µãƒ¼ãƒ
+         â””â”€NitroPlayer        -  -  NITRO-Player
 

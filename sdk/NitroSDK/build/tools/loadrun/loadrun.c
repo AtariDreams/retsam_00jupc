@@ -21,7 +21,7 @@
   --type (device type) option was deleted
 
   Revision 1.12  2005/09/05 01:34:33  yasu
-  version.h ‚ðŽQÆ‚µƒ\[ƒXƒtƒ@ƒCƒ‹‚ÌÅ‹ß‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ð•\Ž¦‚·‚é‚æ‚¤‚É‚·‚é
+  version.h ã‚’å‚ç…§ã—ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã®æœ€è¿‘ã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã‚’è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
 
   Revision 1.11  2005/09/01 07:21:24  yada
   change exit status
@@ -33,7 +33,7 @@
   become to be able to load from stdin
 
   Revision 1.8  2005/08/29 10:00:01  seiki_masashi
-  •W€o—Í‚Ìƒoƒbƒtƒ@ƒŠƒ“ƒO‚ð–³Œø‰»
+  æ¨™æº–å‡ºåŠ›ã®ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°ã‚’ç„¡åŠ¹åŒ–
 
   Revision 1.7  2005/08/25 02:16:11  yada
   able to use Abort string at QuietMode
@@ -77,43 +77,43 @@
 #include <nitro_win32.h>
 #include <nitro/os/common/system.h>
 
-//---- ƒo[ƒWƒ‡ƒ“•¶Žš—ñ
+//---- ãƒãƒ¼ã‚¸ãƒ§ãƒ³æ–‡å­—åˆ—
 #define VERSION_STRING     " 1.12  Copyright 2005,2006 Nintendo. All right reserved."
-// 1.12 ƒwƒ‹ƒv•\Ž¦‚ðC³
-// 1.11 ƒfƒoƒCƒXƒ^ƒCƒvíœ
-// 1.10 ƒ\[ƒXƒtƒ@ƒCƒ‹‚ÌÅ‹ß‚Ìƒ^ƒCƒ€ƒXƒ^ƒ“ƒv•\Ž¦
-// 1.9 loadrunŽ©g‚Ìexit status ‚ð•ÏX‚µ‚½
-// 1.8 OS_Exit() ‚©‚ç‚ÌI—¹•¶Žš—ñ‚É‘Î‰ž‚µ‚½
-// 1.7 •W€“ü—Í‚©‚ç“Ç‚ß‚é‚æ‚¤‚É‚µ‚½
-// 1.6 •W€o—Í‚Ìƒoƒbƒtƒ@ƒŠƒ“ƒO‚ð–³Œø‰»‚µ‚½
-// 1.5 QuietMode ‚Å‚à•¶Žš—ñI—¹‚ð‰Â”\‚É‚µ‚½
-// 1.4 ƒ‰ƒbƒv•\Ž¦ŽÀ‘•
-// 1.3 ŽÀsƒ^ƒCƒ€ƒAƒEƒgŽÀ‘•
-// 1.2 ctrl-c ‚Å’âŽ~‚µ‚½‚Æ‚«‚Ìˆ—‚ð•ÏX
-// 1.1 ctrl-c ‚Å’âŽ~‚µ‚½‚Æ‚«‚ÉƒXƒƒbƒg‚ðƒIƒt‚É‚·‚é‚æ‚¤‚É‚µ‚½
-// 1.0 ŒöŠJ
+// 1.12 ãƒ˜ãƒ«ãƒ—è¡¨ç¤ºã‚’ä¿®æ­£
+// 1.11 ãƒ‡ãƒã‚¤ã‚¹ã‚¿ã‚¤ãƒ—å‰Šé™¤
+// 1.10 ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã®æœ€è¿‘ã®ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—è¡¨ç¤º
+// 1.9 loadrunè‡ªèº«ã®exit status ã‚’å¤‰æ›´ã—ãŸ
+// 1.8 OS_Exit() ã‹ã‚‰ã®çµ‚äº†æ–‡å­—åˆ—ã«å¯¾å¿œã—ãŸ
+// 1.7 æ¨™æº–å…¥åŠ›ã‹ã‚‰èª­ã‚ã‚‹ã‚ˆã†ã«ã—ãŸ
+// 1.6 æ¨™æº–å‡ºåŠ›ã®ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°ã‚’ç„¡åŠ¹åŒ–ã—ãŸ
+// 1.5 QuietMode ã§ã‚‚æ–‡å­—åˆ—çµ‚äº†ã‚’å¯èƒ½ã«ã—ãŸ
+// 1.4 ãƒ©ãƒƒãƒ—è¡¨ç¤ºå®Ÿè£…
+// 1.3 å®Ÿè¡Œã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå®Ÿè£…
+// 1.2 ctrl-c ã§åœæ­¢ã—ãŸã¨ãã®å‡¦ç†ã‚’å¤‰æ›´
+// 1.1 ctrl-c ã§åœæ­¢ã—ãŸã¨ãã«ã‚¹ãƒ­ãƒƒãƒˆã‚’ã‚ªãƒ•ã«ã™ã‚‹ã‚ˆã†ã«ã—ãŸ
+// 1.0 å…¬é–‹
 
-//---- exit ”Ô†
-#define EXIT_NUM_NO_ERROR               207     // ¬Œ÷I—¹(’A‚µA¡‰ñ‚Í‚±‚ê‚É‚È‚é‚±‚Æ‚Í‚È‚¢)
-#define EXIT_NUM_USER_SIGNAL            206     // ƒ†[ƒU‚É‚æ‚é‹­§I—¹(ctrl-C)
-#define EXIT_NUM_EXEC_TIME_OUT          205     // ŽÀsƒ^ƒCƒ€ƒAƒEƒg‚Å‹­§I—¹
-#define EXIT_NUM_TIME_OUT               204     // •\Ž¦ƒ^ƒCƒ€ƒAƒEƒg‚Å‹­§I—¹
-#define EXIT_NUM_SHOW_DEVICES           203     // ƒfƒoƒCƒXƒŠƒXƒg•\Ž¦‚ÅI—¹
-#define EXIT_NUM_SHOW_USAGE             202     // ƒwƒ‹ƒv•\Ž¦‚ÅI—¹
-#define EXIT_NUM_SHOW_VERSION           201     // ƒo[ƒWƒ‡ƒ“•\Ž¦‚ÅI—¹
-#define EXIT_NUM_STRING_ABORT           200     // •¶Žš—ñ‚É‚æ‚é‹­§I—¹
+//---- exit ç•ªå·
+#define EXIT_NUM_NO_ERROR               207     // æˆåŠŸçµ‚äº†(ä½†ã—ã€ä»Šå›žã¯ã“ã‚Œã«ãªã‚‹ã“ã¨ã¯ãªã„)
+#define EXIT_NUM_USER_SIGNAL            206     // ãƒ¦ãƒ¼ã‚¶ã«ã‚ˆã‚‹å¼·åˆ¶çµ‚äº†(ctrl-C)
+#define EXIT_NUM_EXEC_TIME_OUT          205     // å®Ÿè¡Œã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã§å¼·åˆ¶çµ‚äº†
+#define EXIT_NUM_TIME_OUT               204     // è¡¨ç¤ºã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã§å¼·åˆ¶çµ‚äº†
+#define EXIT_NUM_SHOW_DEVICES           203     // ãƒ‡ãƒã‚¤ã‚¹ãƒªã‚¹ãƒˆè¡¨ç¤ºã§çµ‚äº†
+#define EXIT_NUM_SHOW_USAGE             202     // ãƒ˜ãƒ«ãƒ—è¡¨ç¤ºã§çµ‚äº†
+#define EXIT_NUM_SHOW_VERSION           201     // ãƒãƒ¼ã‚¸ãƒ§ãƒ³è¡¨ç¤ºã§çµ‚äº†
+#define EXIT_NUM_STRING_ABORT           200     // æ–‡å­—åˆ—ã«ã‚ˆã‚‹å¼·åˆ¶çµ‚äº†
 
-#define EXIT_NUM_NO_DEVICE              -1      // Žg—p‰Â”\‚ÈƒfƒoƒCƒX‚ª‚È‚¢
-#define EXIT_NUM_UNKNOWN_OPTION         -2      // ‘z’èŠO‚ÌƒIƒvƒVƒ‡ƒ“‚ªŽw’è‚³‚ê‚½
-#define EXIT_NUM_ILLEGAL_OPTION         -3      // ƒIƒvƒVƒ‡ƒ“‚ÌŽg—p•û–@‚ªˆá‚¤
-#define EXIT_NUM_NO_INPUT_FILE          -4      // Žw’è‚Ìƒtƒ@ƒCƒ‹‚ª‚È‚¢orƒI[ƒvƒ“‚Å‚«‚È‚¢
-#define EXIT_NUM_NOT_CONNECT            -5      // ƒfƒoƒCƒX‚Ö‚ÌÚ‘±Ž¸”s
-#define EXIT_NUM_CANNOT_USE_CARTRIDGE   -6      // ƒJ[ƒgƒŠƒbƒW‚ÌƒƒbƒN‚ÉŽ¸”s
-#define EXIT_NUM_CANNOT_USE_CARD        -7      // ƒJ[ƒh‚ÌƒƒbƒN‚ÉŽ¸”s
-#define EXIT_NUM_PRINTF_ERROR           -8      // printfƒf[ƒ^ˆµ‚¢’†‚ÌƒGƒ‰[
-#define EXIT_NUM_LOADING_ERROR          -9      // ƒ[ƒh’†‚ÌƒGƒ‰[
+#define EXIT_NUM_NO_DEVICE              -1      // ä½¿ç”¨å¯èƒ½ãªãƒ‡ãƒã‚¤ã‚¹ãŒãªã„
+#define EXIT_NUM_UNKNOWN_OPTION         -2      // æƒ³å®šå¤–ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒæŒ‡å®šã•ã‚ŒãŸ
+#define EXIT_NUM_ILLEGAL_OPTION         -3      // ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®ä½¿ç”¨æ–¹æ³•ãŒé•ã†
+#define EXIT_NUM_NO_INPUT_FILE          -4      // æŒ‡å®šã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒãªã„orã‚ªãƒ¼ãƒ—ãƒ³ã§ããªã„
+#define EXIT_NUM_NOT_CONNECT            -5      // ãƒ‡ãƒã‚¤ã‚¹ã¸ã®æŽ¥ç¶šå¤±æ•—
+#define EXIT_NUM_CANNOT_USE_CARTRIDGE   -6      // ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®ãƒ­ãƒƒã‚¯ã«å¤±æ•—
+#define EXIT_NUM_CANNOT_USE_CARD        -7      // ã‚«ãƒ¼ãƒ‰ã®ãƒ­ãƒƒã‚¯ã«å¤±æ•—
+#define EXIT_NUM_PRINTF_ERROR           -8      // printfãƒ‡ãƒ¼ã‚¿æ‰±ã„ä¸­ã®ã‚¨ãƒ©ãƒ¼
+#define EXIT_NUM_LOADING_ERROR          -9      // ãƒ­ãƒ¼ãƒ‰ä¸­ã®ã‚¨ãƒ©ãƒ¼
 
-//---- ƒfƒoƒCƒXŽw’è—p
+//---- ãƒ‡ãƒã‚¤ã‚¹æŒ‡å®šç”¨
 char   *gDeviceName[] = {
     "CGBUSB", "CGBSCSI", "NITROUSB", "NITROUIC", NULL
 };
@@ -124,45 +124,45 @@ int     gDeviceTypeArray[] = {
     ISNTD_DEVICE_IS_NITRO_UIC
 };
 
-//---- “®ìƒ‚[ƒh
-BOOL    gQuietMode = FALSE;            // quiet ƒ‚[ƒh
-BOOL    gVerboseMode = FALSE;          // verbose ƒ‚[ƒh
-BOOL    gDebugMode = FALSE;            // debug ƒ‚[ƒh
+//---- å‹•ä½œãƒ¢ãƒ¼ãƒ‰
+BOOL    gQuietMode = FALSE;            // quiet ãƒ¢ãƒ¼ãƒ‰
+BOOL    gVerboseMode = FALSE;          // verbose ãƒ¢ãƒ¼ãƒ‰
+BOOL    gDebugMode = FALSE;            // debug ãƒ¢ãƒ¼ãƒ‰
 
-BOOL    gStdinMode = FALSE;            // stdin ƒ‚[ƒh
+BOOL    gStdinMode = FALSE;            // stdin ãƒ¢ãƒ¼ãƒ‰
 
-BOOL    gIsTypeSpecified = FALSE;      // ƒfƒoƒCƒXƒ^ƒCƒvŽw’è‚ ‚è‚©H
-int     gSpecifiedType;                // ‚ ‚éê‡‚ÌƒfƒoƒCƒXƒ^ƒCƒv
+BOOL    gIsTypeSpecified = FALSE;      // ãƒ‡ãƒã‚¤ã‚¹ã‚¿ã‚¤ãƒ—æŒ‡å®šã‚ã‚Šã‹ï¼Ÿ
+int     gSpecifiedType;                // ã‚ã‚‹å ´åˆã®ãƒ‡ãƒã‚¤ã‚¹ã‚¿ã‚¤ãƒ—
 
-BOOL    gIsSerialSpecified = FALSE;    // ƒVƒŠƒAƒ‹”Ô†Žw’è‚ ‚è‚©H
-int     gSpecifiedSerial;              // ‚ ‚éê‡‚ÌƒVƒŠƒAƒ‹”Ô†
+BOOL    gIsSerialSpecified = FALSE;    // ã‚·ãƒªã‚¢ãƒ«ç•ªå·æŒ‡å®šã‚ã‚Šã‹ï¼Ÿ
+int     gSpecifiedSerial;              // ã‚ã‚‹å ´åˆã®ã‚·ãƒªã‚¢ãƒ«ç•ªå·
 
-BOOL    gIsCartridgeLocked = FALSE;    // ƒJ[ƒgƒŠƒbƒWƒXƒƒbƒg‚ðƒƒbƒN‚·‚é‚©
-BOOL    gIsCardLocked = FALSE;         // ƒJ[ƒhƒXƒƒbƒg‚ðƒƒbƒN‚·‚é‚©
+BOOL    gIsCartridgeLocked = FALSE;    // ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã‚¹ãƒ­ãƒƒãƒˆã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹ã‹
+BOOL    gIsCardLocked = FALSE;         // ã‚«ãƒ¼ãƒ‰ã‚¹ãƒ­ãƒƒãƒˆã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹ã‹
 
-int     gTimeOutTime = 0;              // ƒ^ƒCƒ€ƒAƒEƒgŽžŠÔ(•b) (0 ‚Í‚È‚µ)
-BOOL    gTimeOutOccured = FALSE;       // ƒ^ƒCƒ€ƒAƒEƒg‚ª”­¶‚µ‚½‚©
+int     gTimeOutTime = 0;              // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“(ç§’) (0 ã¯ãªã—)
+BOOL    gTimeOutOccured = FALSE;       // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãŒç™ºç”Ÿã—ãŸã‹
 
-int     gExecTimeOutTime = 0;          // ŽÀsƒ^ƒCƒ€ƒAƒEƒgŽžŠÔ(•b) (0 ‚Í‚È‚µ)
-int     gExecTimeOutOccured = FALSE;   // ŽÀsƒ^ƒCƒ€ƒAƒEƒg‚ª”­¶‚µ‚½‚©
+int     gExecTimeOutTime = 0;          // å®Ÿè¡Œã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“(ç§’) (0 ã¯ãªã—)
+int     gExecTimeOutOccured = FALSE;   // å®Ÿè¡Œã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãŒç™ºç”Ÿã—ãŸã‹
 
-char   *gAbortString = NULL;           // ‹­§I—¹•¶Žš—ñ
-BOOL    gStringAborted = FALSE;        // ‹­§I—¹•¶Žš—ñ‚É‚æ‚Á‚ÄI‚í‚Á‚½‚©‚Ç‚¤‚©
+char   *gAbortString = NULL;           // å¼·åˆ¶çµ‚äº†æ–‡å­—åˆ—
+BOOL    gStringAborted = FALSE;        // å¼·åˆ¶çµ‚äº†æ–‡å­—åˆ—ã«ã‚ˆã£ã¦çµ‚ã‚ã£ãŸã‹ã©ã†ã‹
 
-BOOL    gExitAborted = FALSE;          // OS_Exit() I—¹
-int     gExitStatusNum = EXIT_NUM_STRING_ABORT; // OS_Exit()‚É‚æ‚Á‚ÄI‚í‚Á‚½‚Æ‚«‚Ì•Ô‚è’l
-int     gExitStrLength;                // I—¹•¶Žš—ñ‚ÌƒTƒCƒY
+BOOL    gExitAborted = FALSE;          // OS_Exit() çµ‚äº†
+int     gExitStatusNum = EXIT_NUM_STRING_ABORT; // OS_Exit()ã«ã‚ˆã£ã¦çµ‚ã‚ã£ãŸã¨ãã®è¿”ã‚Šå€¤
+int     gExitStrLength;                // çµ‚äº†æ–‡å­—åˆ—ã®ã‚µã‚¤ã‚º
 
-//---- NITROƒ‰ƒCƒuƒ‰ƒŠ—p
+//---- NITROãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨
 HINSTANCE gDllInstance;
 NITRODEVICEHANDLE gDeviceHandle;
 NITRODEVICEID gDeviceId;
 
-//---- ƒfƒoƒCƒX‚ÉÚ‘±‚µ‚½‚©(ƒXƒƒbƒg‚ÌƒXƒCƒbƒ`—p)
+//---- ãƒ‡ãƒã‚¤ã‚¹ã«æŽ¥ç¶šã—ãŸã‹(ã‚¹ãƒ­ãƒƒãƒˆã®ã‚¹ã‚¤ãƒƒãƒç”¨)
 BOOL    gDeviceConnected = FALSE;
 
 
-//---- ƒfƒoƒCƒXƒŠƒXƒg
+//---- ãƒ‡ãƒã‚¤ã‚¹ãƒªã‚¹ãƒˆ
 #define DEVICE_MAX_NUM      256
 #define DEVICE_SERIAL_NONE  0x7fffffff // means no specified
 ISNTDDevice gDeviceList[DEVICE_MAX_NUM];
@@ -172,19 +172,19 @@ int     gConnectedDeviceNum = 0;
 int     gDeviceTypeSpecified = ISNTD_DEVICE_NONE;
 int     gDeviceSerialSpecified = DEVICE_SERIAL_NONE;    // means no specified
 
-//---- “ü—Íƒtƒ@ƒCƒ‹
+//---- å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ«
 #define FILE_NAME_MAX_SIZE  1024
 FILE   *gInputFile;
 char    gInputFileNameString[FILE_NAME_MAX_SIZE];
 BOOL    gIsInputFileOpened = FALSE;
 
-//---- ŽžŠÔ
-time_t  gStartTime = 0;                // ƒXƒ^[ƒgŽž
-BOOL    gIsLineHead = TRUE;            // s“ª‚©‚Ç‚¤‚©
+//---- æ™‚é–“
+time_t  gStartTime = 0;                // ã‚¹ã‚¿ãƒ¼ãƒˆæ™‚åˆ»
+BOOL    gIsLineHead = TRUE;            // è¡Œé ­ã‹ã©ã†ã‹
 BOOL    gShowLapTime = FALSE;
 
-//---- ƒVƒOƒiƒ‹
-BOOL    gStoppedByUser = FALSE;        // ƒ†[ƒU‚ÉŽ~‚ß‚ç‚ê‚½‚©‚Ç‚¤‚©
+//---- ã‚·ã‚°ãƒŠãƒ«
+BOOL    gStoppedByUser = FALSE;        // ãƒ¦ãƒ¼ã‚¶ã«æ­¢ã‚ã‚‰ã‚ŒãŸã‹ã©ã†ã‹
 
 
 #define printfIfNotQuiet(...)    do{if(!gQuietMode){printf(__VA_ARGS__);}}while(0)
@@ -197,20 +197,20 @@ BOOL    outputString(char *buf, int bufSize);
 
   Description:  similar to exit()
 
-  Arguments:    exitNum : exit()”Ô†
+  Arguments:    exitNum : exit()ç•ªå·
 
   Returns:      None
  *---------------------------------------------------------------------------*/
 void myExit(int exitNum)
 {
-    //---- ƒJ[ƒgƒŠƒbƒW‚ÆƒJ[ƒh‚ÌƒXƒƒbƒg‚ðƒIƒt‚É
+    //---- ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã¨ã‚«ãƒ¼ãƒ‰ã®ã‚¹ãƒ­ãƒƒãƒˆã‚’ã‚ªãƒ•ã«
     if (gDeviceConnected)
     {
         (void)ISNTD_CartridgeSlotPower(gDeviceHandle, FALSE);
         (void)ISNTD_CardSlotPower(gDeviceHandle, FALSE);
     }
 
-    //---- DLL—Ìˆæ‰ð•ú
+    //---- DLLé ˜åŸŸè§£æ”¾
     ISNTD_FreeDll();
 
     if (!gQuietMode)
@@ -243,7 +243,7 @@ void myExit(int exitNum)
 /*---------------------------------------------------------------------------*
   Name:         listDevice
 
-  Description:  ƒfƒoƒCƒX‚Ìˆê——•\Ž¦‚µ‚ÄI‚í‚é
+  Description:  ãƒ‡ãƒã‚¤ã‚¹ã®ä¸€è¦§è¡¨ç¤ºã—ã¦çµ‚ã‚ã‚‹
 
   Arguments:    None
 
@@ -253,7 +253,7 @@ void listDevice(void)
 {
     int     n;
 
-    //---- ƒfƒoƒCƒX“Ç‚Ýž‚Ý
+    //---- ãƒ‡ãƒã‚¤ã‚¹èª­ã¿è¾¼ã¿
     gConnectedDeviceNum = ISNTD_GetDeviceList(&gDeviceList[0], DEVICE_MAX_NUM);
     if (gConnectedDeviceNum < 0)
     {
@@ -288,7 +288,7 @@ void listDevice(void)
         }
     }
 
-    //---- ŒŸõŒ‹‰Ê
+    //---- æ¤œç´¢çµæžœ
     printf("%d device(s) found.\n", gConnectedDeviceNum);
 
     myExit(EXIT_NUM_SHOW_DEVICES);
@@ -305,27 +305,27 @@ void listDevice(void)
  *---------------------------------------------------------------------------*/
 void searchDevice(void)
 {
-    //---- ƒfƒoƒCƒX‚ª–³‚©‚Á‚½ê‡
+    //---- ãƒ‡ãƒã‚¤ã‚¹ãŒç„¡ã‹ã£ãŸå ´åˆ
     if (gConnectedDeviceNum <= 0)
     {
         displayErrorAndExit(EXIT_NUM_NO_DEVICE, "found no device.");
     }
 
-    //---- ‚È‚É‚©‚ÌŽw’è‚ª‚ ‚ê‚Î
+    //---- ãªã«ã‹ã®æŒ‡å®šãŒã‚ã‚Œã°
     if (gDeviceTypeSpecified != ISNTD_DEVICE_NONE || gDeviceSerialSpecified != DEVICE_SERIAL_NONE)
     {
         int     n;
         gCurrentDevice = -1;
         for (n = 0; n < gConnectedDeviceNum; n++)
         {
-            //---- Žw’èƒfƒoƒCƒX‚Æ‚Ìƒ}ƒbƒ`”»’è
+            //---- æŒ‡å®šãƒ‡ãƒã‚¤ã‚¹ã¨ã®ãƒžãƒƒãƒåˆ¤å®š
             if (gDeviceTypeSpecified != ISNTD_DEVICE_NONE
                 && gDeviceTypeSpecified != gDeviceList[n].type)
             {
                 continue;
             }
 
-            //---- Žw’èƒVƒŠƒAƒ‹‚Æ‚Ìƒ}ƒbƒ`”»’è
+            //---- æŒ‡å®šã‚·ãƒªã‚¢ãƒ«ã¨ã®ãƒžãƒƒãƒåˆ¤å®š
             if (gDeviceSerialSpecified != DEVICE_SERIAL_NONE
                 && gDeviceSerialSpecified != gDeviceList[n].serial)
             {
@@ -336,13 +336,13 @@ void searchDevice(void)
             break;
         }
     }
-    //---- Žw’è‚ª‚È‚¢‚È‚çÅ‰‚Ì‚à‚Ì
+    //---- æŒ‡å®šãŒãªã„ãªã‚‰æœ€åˆã®ã‚‚ã®
     else
     {
         gCurrentDevice = 0;
     }
 
-    //---- Žw’è‚µ‚½‚à‚Ì‚ª‚È‚¢A‚Ü‚½‚ÍŠÔˆá‚Á‚Ä‚¢‚é
+    //---- æŒ‡å®šã—ãŸã‚‚ã®ãŒãªã„ã€ã¾ãŸã¯é–“é•ã£ã¦ã„ã‚‹
     if (gCurrentDevice < 0
         || gDeviceList[gCurrentDevice].type == ISNTD_DEVICE_NONE
         || gDeviceList[gCurrentDevice].type == ISNTD_DEVICE_UNKNOWN)
@@ -354,7 +354,7 @@ void searchDevice(void)
 /*---------------------------------------------------------------------------*
   Name:         displayUsage
 
-  Description:  Žg‚¢•û‚ð•\Ž¦‚·‚é
+  Description:  ä½¿ã„æ–¹ã‚’è¡¨ç¤ºã™ã‚‹
 
   Arguments:    None.
 
@@ -389,7 +389,7 @@ void displayUsage(void)
 /*---------------------------------------------------------------------------*
   Name:         displayVersion
 
-  Description:  ƒo[ƒWƒ‡ƒ“•\Ž¦‚·‚é
+  Description:  ãƒãƒ¼ã‚¸ãƒ§ãƒ³è¡¨ç¤ºã™ã‚‹
 
   Arguments:    None.
 
@@ -403,7 +403,7 @@ void displayVersion(void)
 /*---------------------------------------------------------------------------*
   Name:         displayErrorAndExit
 
-  Description:  ƒGƒ‰[‚ð•\Ž¦‚·‚é
+  Description:  ã‚¨ãƒ©ãƒ¼ã‚’è¡¨ç¤ºã™ã‚‹
 
   Arguments:    None.
 
@@ -413,7 +413,7 @@ void displayErrorAndExit(int exitNum, char *message)
 {
     printf("*** loadrun: Error: %s\n", message);
 
-    //---- DLL—Ìˆæ‰ð•ú
+    //---- DLLé ˜åŸŸè§£æ”¾
     ISNTD_FreeDll();
 
     exit(exitNum);
@@ -441,11 +441,11 @@ void parseOption(int argc, char *argv[])
         {"verbose", no_argument, NULL, 'v'},
         {"list", no_argument, NULL, 'L'},
         {"lap", no_argument, NULL, 'l'},
-        {"debug", no_argument, NULL, 'D'},      //‰B‚µƒIƒvƒVƒ‡ƒ“
+        {"debug", no_argument, NULL, 'D'},      //éš ã—ã‚ªãƒ—ã‚·ãƒ§ãƒ³
         {"version", no_argument, NULL, '1'},
         {"stdin", no_argument, NULL, 'I'},
         {"standard-input", no_argument, NULL, 'I'},
-        {"type", required_argument, 0, 'd'},    //‰B‚µƒIƒvƒVƒ‡ƒ“
+        {"type", required_argument, 0, 'd'},    //éš ã—ã‚ªãƒ—ã‚·ãƒ§ãƒ³
         {"serial", required_argument, 0, 's'},
         {"timeout", required_argument, 0, 't'},
         {"exec-timeout", required_argument, 0, 'T'},
@@ -474,32 +474,32 @@ void parseOption(int argc, char *argv[])
 
         switch (c)
         {
-        case 'I':                     //---- •W€“ü—Í
+        case 'I':                     //---- æ¨™æº–å…¥åŠ›
             gStdinMode = TRUE;
             break;
-        case 'h':                     //---- ƒwƒ‹ƒv•\Ž¦
+        case 'h':                     //---- ãƒ˜ãƒ«ãƒ—è¡¨ç¤º
             helpFlag = TRUE;
             break;
-        case 'q':                     //---- quietƒ‚[ƒh
+        case 'q':                     //---- quietãƒ¢ãƒ¼ãƒ‰
             gQuietMode = TRUE;
             break;
-        case 'v':                     //---- verboseƒ‚[ƒh
+        case 'v':                     //---- verboseãƒ¢ãƒ¼ãƒ‰
             gVerboseMode = TRUE;
             break;
-        case 'D':                     //---- debugƒ‚[ƒh
+        case 'D':                     //---- debugãƒ¢ãƒ¼ãƒ‰
             gDebugMode = TRUE;
             break;
-        case '1':                     //---- ƒo[ƒWƒ‡ƒ“•\Ž¦
+        case '1':                     //---- ãƒãƒ¼ã‚¸ãƒ§ãƒ³è¡¨ç¤º
             displayVersion();
             myExit(EXIT_NUM_SHOW_VERSION);
             break;
-        case 'L':                     //---- ƒfƒoƒCƒX‚Ìˆê——
+        case 'L':                     //---- ãƒ‡ãƒã‚¤ã‚¹ã®ä¸€è¦§
             listDevice();
             break;
-        case 'l':                     //---- ƒ‰ƒbƒvƒ^ƒCƒ€
+        case 'l':                     //---- ãƒ©ãƒƒãƒ—ã‚¿ã‚¤ãƒ 
             gShowLapTime = TRUE;
             break;
-        case 'd':                     //---- ƒfƒoƒCƒX
+        case 'd':                     //---- ãƒ‡ãƒã‚¤ã‚¹
             optionStr = (char *)(optarg + ((*optarg == '=') ? 1 : 0));
             {
                 int     n;
@@ -518,11 +518,11 @@ void parseOption(int argc, char *argv[])
                 }
             }
             break;
-        case 's':                     //---- ƒVƒŠƒAƒ‹Žw’è
+        case 's':                     //---- ã‚·ãƒªã‚¢ãƒ«æŒ‡å®š
             optionStr = (char *)(optarg + ((*optarg == '=') ? 1 : 0));
             gDeviceSerialSpecified = atoi(optionStr);
             break;
-        case 'c':                     //---- ƒJ[ƒhƒXƒƒbƒgƒƒbƒN
+        case 'c':                     //---- ã‚«ãƒ¼ãƒ‰ã‚¹ãƒ­ãƒƒãƒˆãƒ­ãƒƒã‚¯
             optionStr = (char *)(optarg + ((*optarg == '=') ? 1 : 0));
             if (!strcmp(optionStr, "ON") || !strcmp(optionStr, "on"))
             {
@@ -537,7 +537,7 @@ void parseOption(int argc, char *argv[])
                 displayErrorAndExit(EXIT_NUM_ILLEGAL_OPTION, "illegal value for card slot option.");
             }
             break;
-        case 'C':                     //---- ƒJ[ƒgƒŠƒbƒWƒXƒƒbƒgƒƒbƒN
+        case 'C':                     //---- ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã‚¹ãƒ­ãƒƒãƒˆãƒ­ãƒƒã‚¯
             optionStr = (char *)(optarg + ((*optarg == '=') ? 1 : 0));
             if (!strcmp(optionStr, "ON") || !strcmp(optionStr, "on"))
             {
@@ -553,7 +553,7 @@ void parseOption(int argc, char *argv[])
                                     "illegal value for cartridge slot option.");
             }
             break;
-        case 't':                     //---- ÅI•\Ž¦‚©‚ç‚Ìƒ^ƒCƒ€ƒAƒEƒgŽžŠÔ
+        case 't':                     //---- æœ€çµ‚è¡¨ç¤ºã‹ã‚‰ã®ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“
             optionStr = (char *)(optarg + ((*optarg == '=') ? 1 : 0));
             gTimeOutTime = atoi(optionStr);
             if (gTimeOutTime <= 0)
@@ -562,7 +562,7 @@ void parseOption(int argc, char *argv[])
                                     "illegal value for abort timeout option.");
             }
             break;
-        case 'T':                     //---- ŽÀsƒ^ƒCƒ€ƒAƒEƒgŽžŠÔ
+        case 'T':                     //---- å®Ÿè¡Œã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“
             optionStr = (char *)(optarg + ((*optarg == '=') ? 1 : 0));
             gExecTimeOutTime = atoi(optionStr);
             if (gExecTimeOutTime <= 0)
@@ -571,7 +571,7 @@ void parseOption(int argc, char *argv[])
                                     "illegal value for abort exec timeout option.");
             }
             break;
-        case 'a':                     //---- I—¹•¶Žš—ñ
+        case 'a':                     //---- çµ‚äº†æ–‡å­—åˆ—
             gAbortString = (char *)(optarg + ((*optarg == '=') ? 1 : 0));
             {
                 int     length = strlen(gAbortString);
@@ -587,7 +587,7 @@ void parseOption(int argc, char *argv[])
         }
     }
 
-    //---- ƒwƒ‹ƒv•\Ž¦
+    //---- ãƒ˜ãƒ«ãƒ—è¡¨ç¤º
     {
         BOOL    isDisplayHelp = FALSE;
 
@@ -611,7 +611,7 @@ void parseOption(int argc, char *argv[])
         }
     }
 
-    //---- “ü—Íƒtƒ@ƒCƒ‹–¼
+    //---- å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ«å
     if (!gStdinMode)
     {
         strncpy(gInputFileNameString, argv[optind], FILE_NAME_MAX_SIZE);
@@ -629,7 +629,7 @@ void parseOption(int argc, char *argv[])
         }
     }
 
-    //---- î•ñ•\Ž¦
+    //---- æƒ…å ±è¡¨ç¤º
     if (gVerboseMode)
     {
         printf("Print time out : %d sec.\n", gTimeOutTime);
@@ -658,7 +658,7 @@ void loadFile(void)
     unsigned int address = 0;
     //int fileSize;
 
-    //---- ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“
+    //---- ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
     if (gStdinMode)
     {
         gInputFile = stdin;
@@ -673,23 +673,23 @@ void loadFile(void)
     }
     gIsInputFileOpened = TRUE;
 
-    //---- ƒfƒoƒCƒX‚Ö‚ÌÚ‘±
+    //---- ãƒ‡ãƒã‚¤ã‚¹ã¸ã®æŽ¥ç¶š
     if ((gDeviceHandle = ISNTD_DeviceOpen(gDeviceList[gCurrentDevice].ntdId)) == NULL)
     {
         displayErrorAndExit(EXIT_NUM_NOT_CONNECT, "cannot connect device.");
     }
     gDeviceConnected = TRUE;
 
-    //---- ƒŠƒZƒbƒg‚Ì”­s
+    //---- ãƒªã‚»ãƒƒãƒˆã®ç™ºè¡Œ
     ISNTD_Reset(gDeviceHandle, TRUE);
     Sleep(1000);
 
-    //---- ƒtƒ@ƒCƒ‹ƒTƒCƒYŽæ“¾
+    //---- ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºå–å¾—
     //fseek( gInputFile, 0L, SEEK_END );
     //fileSize = ftell( gInputFile );
     //fseek( gInputFile, 0L, SEEK_SET );
 
-    //---- 16KB‚¸‚Â“]‘—‚·‚é
+    //---- 16KBãšã¤è»¢é€ã™ã‚‹
     while (1)
     {
         char    buf[16384];
@@ -701,7 +701,7 @@ void loadFile(void)
             break;
         }
 
-        //---- “]‘—
+        //---- è»¢é€
         if (!ISNTD_WriteROM(gDeviceHandle, buf, address, size))
         {
             displayErrorAndExit(EXIT_NUM_LOADING_ERROR, "troubled while loading input file.");
@@ -718,7 +718,7 @@ void loadFile(void)
         }
     }
 
-    //---- ƒtƒ@ƒCƒ‹ƒNƒ[ƒY
+    //---- ãƒ•ã‚¡ã‚¤ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
     if (gStdinMode)
     {
         _setmode(_fileno(gInputFile), O_TEXT);
@@ -738,7 +738,7 @@ void loadFile(void)
 /*---------------------------------------------------------------------------*
   Name:         setSlopPower
 
-  Description:  ƒXƒƒbƒg‚Ìƒpƒ[ˆ—
+  Description:  ã‚¹ãƒ­ãƒƒãƒˆã®ãƒ‘ãƒ¯ãƒ¼å‡¦ç†
 
   Arguments:    None.
 
@@ -746,7 +746,7 @@ void loadFile(void)
  *---------------------------------------------------------------------------*/
 void setSlotPower(void)
 {
-    //---- ƒJ[ƒgƒŠƒbƒWƒXƒƒbƒg‚ðƒƒbƒN‚·‚é
+    //---- ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã‚¹ãƒ­ãƒƒãƒˆã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹
     if (gIsCartridgeLocked)
     {
         if (!ISNTD_CartridgeSlotPower(gDeviceHandle, TRUE))
@@ -755,7 +755,7 @@ void setSlotPower(void)
         }
     }
 
-    //---- ƒJ[ƒhƒXƒƒbƒg‚ðƒƒbƒN‚·‚é
+    //---- ã‚«ãƒ¼ãƒ‰ã‚¹ãƒ­ãƒƒãƒˆã‚’ãƒ­ãƒƒã‚¯ã™ã‚‹
     if (gIsCardLocked)
     {
         if (!ISNTD_CardSlotPower(gDeviceHandle, TRUE))
@@ -764,7 +764,7 @@ void setSlotPower(void)
         }
     }
 
-    //---- ƒŠƒZƒbƒg‚Ì‰ðœ
+    //---- ãƒªã‚»ãƒƒãƒˆã®è§£é™¤
     Sleep(1000);
     ISNTD_Reset(gDeviceHandle, FALSE);
 }
@@ -772,7 +772,7 @@ void setSlotPower(void)
 /*---------------------------------------------------------------------------*
   Name:         procPrint
 
-  Description:  printfˆ—
+  Description:  printfå‡¦ç†
 
   Arguments:    None.
 
@@ -786,11 +786,11 @@ NITROArch archNum[] = {
 #define PRINT_ONETIME_SIZE  512
 //#define PRINT_ONETIME_SIZE    16
 
-//---- Œ‹‡‚µ‚Ä•\Ž¦‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@
+//---- çµåˆã—ã¦è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡
 static char gConbineBuf[PRINT_ONETIME_SIZE * 2 + 2] = "\0";
 static char *gConbineBufPtr = &gConbineBuf[0];
 
-//---- Œ‹‡‚µ‚Ä•¶Žš—ñ‚ð”äŠr‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@
+//---- çµåˆã—ã¦æ–‡å­—åˆ—ã‚’æ¯”è¼ƒã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡
 static char gLineBuf[PRINT_ONETIME_SIZE + 1];
 
 
@@ -798,14 +798,14 @@ void procPrintf(void)
 {
     int     blankTime = 0;
 
-    //---- I—¹•¶Žš—ñ‚ÌƒTƒCƒY
+    //---- çµ‚äº†æ–‡å­—åˆ—ã®ã‚µã‚¤ã‚º
     gExitStrLength = strlen(OS_EXIT_STRING_1);
 
     while (1)
     {
         BOOL    isOutputString = FALSE;
 
-        //---- ƒ†[ƒU‚ÉŽ~‚ß‚ç‚ê‚½ê‡
+        //---- ãƒ¦ãƒ¼ã‚¶ã«æ­¢ã‚ã‚‰ã‚ŒãŸå ´åˆ
         if (gStoppedByUser)
         {
             myExit(EXIT_NUM_USER_SIGNAL);
@@ -819,7 +819,7 @@ void procPrintf(void)
 
             for (n = 0; n < 2; n++)
             {
-                //---- •\Ž¦ƒf[ƒ^Žæ“¾
+                //---- è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿å–å¾—
                 if (!ISNTD_GetDebugPrint
                     (gDeviceHandle, archNum[n], tmpBuf, &dataSize, PRINT_ONETIME_SIZE))
                 {
@@ -829,13 +829,13 @@ void procPrintf(void)
                 }
                 tmpBuf[dataSize] = '\0';
 
-                //---- •\Ž¦ƒf[ƒ^‚ª‚ ‚é‚È‚ç•\Ž¦
+                //---- è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ãªã‚‰è¡¨ç¤º
                 if (dataSize)
                 {
-                    //---- •\Ž¦‚µ‚½A‚Æ‹L‰¯
+                    //---- è¡¨ç¤ºã—ãŸã€ã¨è¨˜æ†¶
                     isOutputString = TRUE;
 
-                    //---- o—Í
+                    //---- å‡ºåŠ›
                     if (!outputString(tmpBuf, dataSize))
                     {
                         break;
@@ -844,32 +844,32 @@ void procPrintf(void)
             }
         }
 
-        //---- I—¹‚·‚é‚©
+        //---- çµ‚äº†ã™ã‚‹ã‹
         if (gStringAborted || gExitAborted)
         {
             break;
         }
 
-        //---- •¶Žš•\Ž¦‚µ‚Ä‚¢‚È‚¢ê‡
+        //---- æ–‡å­—è¡¨ç¤ºã—ã¦ã„ãªã„å ´åˆ
         if (!isOutputString)
         {
             Sleep(100);
             blankTime += 100;
 
-            //---- ƒ^ƒCƒ€ƒAƒEƒg”»’è
+            //---- ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆåˆ¤å®š
             if (gTimeOutTime && blankTime > gTimeOutTime * 1000)
             {
                 gTimeOutOccured = TRUE;
                 break;
             }
         }
-        //---- •¶Žš•\Ž¦‚µ‚½ê‡
+        //---- æ–‡å­—è¡¨ç¤ºã—ãŸå ´åˆ
         else
         {
             blankTime = 0;
         }
 
-        //---- ƒ^ƒCƒ€ƒAƒEƒg’²¸
+        //---- ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆèª¿æŸ»
         if (gExecTimeOutTime > 0)
         {
             time_t  currentTime;
@@ -926,24 +926,24 @@ BOOL outputString(char *buf, int bufSize)
     {
         char   *crPtr = strchr(p, '\n');
 
-        //---- \n ‚ª‚È‚¢
+        //---- \n ãŒãªã„
         if (!crPtr)
         {
-            //----”äŠr—p‚É•Û‘¶
+            //----æ¯”è¼ƒç”¨ã«ä¿å­˜
             strcat(gConbineBufPtr, p);
             gConbineBufPtr += strlen(p);
 
-            //---- Žž•\Ž¦
+            //---- æ™‚åˆ»è¡¨ç¤º
             if (!gQuietMode && gIsLineHead && gShowLapTime)
             {
                 showLapTime();
             }
             gIsLineHead = FALSE;
 
-            //---- •\Ž¦
+            //---- è¡¨ç¤º
             printfIfNotQuiet(p);
 
-            //---- ƒoƒbƒtƒ@ƒI[ƒo[‚È‚ç”jŠü(\n‚ð“ü‚ê‚Ä‚¢‚È‚¢o—Í‘¤‚ÌÓ”C)
+            //---- ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ¼ãƒãƒ¼ãªã‚‰ç ´æ£„(\nã‚’å…¥ã‚Œã¦ã„ãªã„å‡ºåŠ›å´ã®è²¬ä»»)
             if (gConbineBufPtr - &gConbineBuf[0] > PRINT_ONETIME_SIZE)
             {
                 gConbineBufPtr = &gConbineBuf[0];
@@ -953,37 +953,37 @@ BOOL outputString(char *buf, int bufSize)
             break;
         }
 
-        //---- \n ‚Ü‚Å‚ðƒRƒs[
+        //---- \n ã¾ã§ã‚’ã‚³ãƒ”ãƒ¼
         {
             int     n = crPtr - p + 1;
 
-            //---- ”äŠr—p‚ÉŒ‹‡
+            //---- æ¯”è¼ƒç”¨ã«çµåˆ
             strncpy(gConbineBufPtr, p, n);
             gConbineBufPtr[n] = '\0';
 
-            //---- •\Ž¦—p
+            //---- è¡¨ç¤ºç”¨
             strncpy(&gLineBuf[0], p, n);
             gLineBuf[n] = '\0';
         }
 
-        //---- Žž•\Ž¦
+        //---- æ™‚åˆ»è¡¨ç¤º
         if (!gQuietMode && gIsLineHead && gShowLapTime)
         {
             showLapTime();
         }
         gIsLineHead = TRUE;
 
-        //---- s•\Ž¦
+        //---- è¡Œè¡¨ç¤º
         printfIfNotQuiet(gLineBuf);
 
-        //---- ‹­§I—¹•¶Žš—ñ‚Æ‚Ì”äŠr
+        //---- å¼·åˆ¶çµ‚äº†æ–‡å­—åˆ—ã¨ã®æ¯”è¼ƒ
         if (gAbortString && !strncmp(gConbineBuf, gAbortString, abortStrLength))
         {
             gStringAborted = TRUE;
             return FALSE;
         }
 
-        //---- OS_Exit ‚É‚æ‚éI—¹
+        //---- OS_Exit ã«ã‚ˆã‚‹çµ‚äº†
         if (!strncmp(gConbineBuf, OS_EXIT_STRING_1, gExitStrLength))
         {
             gExitAborted = TRUE;
@@ -1027,50 +1027,50 @@ void signalHandler(int sig)
  *---------------------------------------------------------------------------*/
 int main(int argc, char *argv[])
 {
-    //---- DLL ‰Šú‰»
+    //---- DLL åˆæœŸåŒ–
     ISNTD_InitDll();
 
-    //---- •W€o—Í‚Ìƒoƒbƒtƒ@ƒŠƒ“ƒO‚Ì–³Œø‰»
+    //---- æ¨™æº–å‡ºåŠ›ã®ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°ã®ç„¡åŠ¹åŒ–
     setvbuf(stdout, NULL, _IONBF, 0);
 
-    //---- ƒIƒvƒVƒ‡ƒ“‰ðÍ
+    //---- ã‚ªãƒ—ã‚·ãƒ§ãƒ³è§£æž
     parseOption(argc, argv);
 
-    //---- ƒfƒoƒCƒX“Ç‚Ýž‚Ý
+    //---- ãƒ‡ãƒã‚¤ã‚¹èª­ã¿è¾¼ã¿
     gConnectedDeviceNum = ISNTD_GetDeviceList(&gDeviceList[0], DEVICE_MAX_NUM);
     if (gConnectedDeviceNum < 0)
     {
         displayErrorAndExit(EXIT_NUM_NO_DEVICE, "Cannot access devices.");
     }
 
-    //---- ƒfƒoƒCƒXŒŸõ
+    //---- ãƒ‡ãƒã‚¤ã‚¹æ¤œç´¢
     searchDevice();
 
-    //---- “Ç‚Ýž‚Ý
+    //---- èª­ã¿è¾¼ã¿
     loadFile();
 
-    //---- ƒVƒOƒiƒ‹Ý’è
+    //---- ã‚·ã‚°ãƒŠãƒ«è¨­å®š
     (void)signal(SIGINT, signalHandler);
 
-    //---- ƒXƒƒbƒg
+    //---- ã‚¹ãƒ­ãƒƒãƒˆ
     setSlotPower();
 
-    //---- ƒXƒ^[ƒgŽžŽæ“¾
+    //---- ã‚¹ã‚¿ãƒ¼ãƒˆæ™‚åˆ»å–å¾—
     (void)time(&gStartTime);
 
-    //----printfˆ—
+    //----printfå‡¦ç†
     procPrintf();
 
-    //---- I—¹
-    if (gExitAborted)                  //---- OS_Exit() I—¹
+    //---- çµ‚äº†
+    if (gExitAborted)                  //---- OS_Exit() çµ‚äº†
     {
         myExit(gExitStatusNum);
     }
-    else if (gStringAborted)           //---- •¶Žš—ñI—¹
+    else if (gStringAborted)           //---- æ–‡å­—åˆ—çµ‚äº†
     {
         myExit(EXIT_NUM_STRING_ABORT);
     }
-    else if (gTimeOutOccured)          //---- ƒ^ƒCƒ€ƒAƒEƒg
+    else if (gTimeOutOccured)          //---- ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
     {
         myExit(EXIT_NUM_TIME_OUT);
     }
@@ -1078,7 +1078,7 @@ int main(int argc, char *argv[])
     {
         myExit(EXIT_NUM_EXEC_TIME_OUT);
     }
-    else                               //---- ’ÊíI—¹
+    else                               //---- é€šå¸¸çµ‚äº†
     {
         myExit(EXIT_NUM_NO_ERROR);
     }

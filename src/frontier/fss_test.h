@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	fss_test.h
- * @brief	�ȒP�Ȑ���������
+ * @brief	簡単な説明を書く
  * @author	matsuda
- * @date	2007.04.04(��)
+ * @date	2007.04.04(水)
  *
- * �����ɐF�X�ȉ�����������Ă��悢
+ * ここに色々な解説等を書いてもよい
  *
  */
 //==============================================================================
@@ -14,42 +14,42 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
 //--------------------------------------------------------------
-//	�t���[���ԍ�
+//	フレーム番号
 //--------------------------------------------------------------
-///�E�B���h�E�E���b�Z�[�W�ʂ̃t���[��
+///ウィンドウ・メッセージ面のフレーム
 #define FSSTEST_FRAME_WIN				(GF_BGL_FRAME1_M)
-///�G�t�F�N�g�ʂ̃t���[��
+///エフェクト面のフレーム
 #define FSSTEST_FRAME_EFF				(GF_BGL_FRAME2_M)
-///�w�i�ʂ̃t���[��
+///背景面のフレーム
 #define FSSTEST_FRAME_BACKGROUND			(GF_BGL_FRAME3_M)
 
-///�T�u��ʁF�ϋq�ʂ̃t���[��
+///サブ画面：観客面のフレーム
 #define FSSTEST_FRAME_SUB_AUDIENCE		(GF_BGL_FRAME0_S)
 
-///BG�ԍ��F�E�B���h�E
+///BG番号：ウィンドウ
 #define FSSTEST_BGNO_WIN			(1)
-///BG�ԍ��F�G�t�F�N�g
+///BG番号：エフェクト
 #define FSSTEST_BGNO_EFF			(2)
-///BG�ԍ��F�w�i
+///BG番号：背景
 #define FSSTEST_BGNO_BACKGROUND	(3)
 
-///GX_WND�ԍ��F�G�t�F�N�g
+///GX_WND番号：エフェクト
 #define FSSTEST_GX_WND_EFF			(GX_WND_PLANEMASK_BG2)
 
-///<3D�ʂ�BG�v���C�I���e�B
+///<3D面のBGプライオリティ
 #define FSSTEST_3DBG_PRIORITY		(1)
-///�E�B���h�E�ʂ�BG�v���C�I���e�B
+///ウィンドウ面のBGプライオリティ
 #define FSSTEST_BGPRI_WIN			(2)
-///�G�t�F�N�g�ʂ�BG�v���C�I���e�B
+///エフェクト面のBGプライオリティ
 #define FSSTEST_BGPRI_EFF			(1)
-///�w�i�ʂ�BG�v���C�I���e�B
+///背景面のBGプライオリティ
 #define FSSTEST_BGPRI_BACKGROUND		(3)
 
-///<�T�u��ʁF�w�i�ʂ�BG�v���C�I���e�B
-///�ϋq�ʂ�BG�v���C�I���e�B
+///<サブ画面：背景面のBGプライオリティ
+///観客面のBGプライオリティ
 #define FSSTEST_BGPRI_SUB_AUDIENCE	(3)
 
 

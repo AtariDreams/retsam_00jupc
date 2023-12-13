@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fssc_roulette.c
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒ‹[ƒŒƒbƒg
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
  * @author	Satoshi Nohara
  * @date	07.09.06
  */
@@ -32,7 +32,7 @@
 #include "field/scr_tool.h"
 #include "field/eventflag.h"
 #include "field/evwkdef.h"
-#include "gflib/strbuf_family.h"				//‹–‰Â§
+#include "gflib/strbuf_family.h"				//è¨±å¯åˆ¶
 
 #include "../field/field_battle.h"				//BattleParam_IsWinResult
 #include "../field/field_subproc.h"				//TestBattleProcData
@@ -61,7 +61,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 BOOL FSSC_RouletteWorkAlloc( FSS_TASK * core );
@@ -85,11 +85,11 @@ BOOL FSSC_CPWrite( FSS_TASK * core );
 BOOL FSSC_RouletteDecideEvNoFunc( FSS_TASK * core );
 BOOL FSSC_RouletteChgItemKeepVanish(FSS_TASK* core);
 
-//ƒp[ƒeƒBƒNƒ‹‘€ì
+//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æ“ä½œ
 static void Particle_CallBack02( EMIT_PTR emit );
 static void ParticleAddEmitterEx( FSS_TASK *core, ROULETTE_SCRWORK* br_scr_wk, u16 emit_no );
 
-//“n‚µ‚½ƒ[ƒN‚Ì‰ð•úˆ—
+//æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†
 static void RouletteFreeMemory( void *parent_work );
 
 //static void Roulette_ResColorChange( void );
@@ -97,15 +97,15 @@ static void RouletteFreeMemory( void *parent_work );
 
 //============================================================================================
 //
-//	ƒRƒ}ƒ“ƒh
+//	ã‚³ãƒžãƒ³ãƒ‰
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒbƒXƒ‹ƒ[ƒNŠm•Û
+ * @brief	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- * @param	core	‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core	ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -126,15 +126,15 @@ BOOL FSSC_RouletteWorkAlloc( FSS_TASK * core )
 	wk = RouletteScr_WorkAlloc( ex_param->savedata, init, type, pos1, pos2, pos3, work );
 	Frontier_SysWorkSet( core->fss->fmain, wk );
 
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒLƒƒƒbƒXƒ‹ƒ[ƒNŠm•Û\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯ç¢ºä¿\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒbƒXƒ‹ƒ[ƒN‰Šú‰»
+ * @brief	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- * @param	core	‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core	ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -148,15 +148,15 @@ BOOL FSSC_RouletteWorkInit( FSS_TASK * core )
 
 	RouletteScr_WorkInit( br_scr_wk, init );
 
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒLƒƒƒbƒXƒ‹ƒ[ƒN‰Šú‰»\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒbƒXƒ‹ƒ[ƒNíœ
+ * @brief	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -166,15 +166,15 @@ BOOL FSSC_RouletteWorkFree( FSS_TASK * core )
 	ROULETTE_SCRWORK* br_scr_wk;
 	br_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 	RouletteScr_WorkRelease( br_scr_wk );
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒLƒƒƒbƒXƒ‹ƒ[ƒNŠJ•ú\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ¯ãƒ¼ã‚¯é–‹æ”¾\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒLƒƒƒbƒXƒ‹ƒ‰ƒ“ƒNƒAƒbƒv‰æ–ÊŒÄ‚Ño‚µ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ç”»é¢å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -186,10 +186,10 @@ BOOL FSSC_RouletteRankUpCall( FSS_TASK * core)
 	ROULETTE_CALL_WORK* roulette_call;
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
 
-	//ƒI[ƒo[ƒŒƒCIDéŒ¾
+	//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY( roulette );
 	
-	//ƒLƒƒƒbƒXƒ‹ƒvƒƒZƒXƒf[ƒ^
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA RouletteProc = {	
 		RouletteProc_Init,
 		RouletteProc_Main,
@@ -199,7 +199,7 @@ BOOL FSSC_RouletteRankUpCall( FSS_TASK * core)
 
 	br_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	OS_Printf( "ƒLƒƒƒbƒXƒ‹ƒ‰ƒ“ƒNƒAƒbƒv‰æ–ÊŒÄ‚Ño‚µ\n" );
+	OS_Printf( "ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ç”»é¢å‘¼ã³å‡ºã—\n" );
 
 	roulette_call = sys_AllocMemory( HEAPID_WORLD, sizeof(ROULETTE_CALL_WORK) );
 	MI_CpuClear8( roulette_call, sizeof(ROULETTE_CALL_WORK) );
@@ -212,9 +212,9 @@ BOOL FSSC_RouletteRankUpCall( FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒLƒƒƒbƒXƒ‹í“¬Œ‹‰ÊŽæ“¾‚µ‚ÄŠJ•ú
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šã‚­ãƒ£ãƒƒã‚¹ãƒ«æˆ¦é—˜çµæžœå–å¾—ã—ã¦é–‹æ”¾
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -232,7 +232,7 @@ BOOL FSSC_RouletteCallGetResult( FSS_TASK * core)
 	br_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 	param = br_scr_wk->p_work;
 
-	//í“¬‚Éo‚µ‚½ƒ|ƒPƒ‚ƒ“‚Åí“¬Œ‹‰Ê‚Ìƒ|ƒCƒ“ƒg‚ðŒvŽZ(ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒ“ƒWƒCƒxƒ“ƒg‚ª‚ ‚é‚Ì‚Å’ˆÓ)
+	//æˆ¦é—˜ã«å‡ºã—ãŸãƒã‚±ãƒ¢ãƒ³ã§æˆ¦é—˜çµæžœã®ãƒã‚¤ãƒ³ãƒˆã‚’è¨ˆç®—(ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¤ãƒ™ãƒ³ãƒˆãŒã‚ã‚‹ã®ã§æ³¨æ„)
 	br_scr_wk->point = RouletteScr_GetBtlWinPoint(	br_scr_wk, 
 													param->poke_party[POKEPARTY_MINE], 
 													param->poke_party[POKEPARTY_MINE_PAIR], 
@@ -241,18 +241,18 @@ BOOL FSSC_RouletteCallGetResult( FSS_TASK * core)
 	br_scr_wk->winlose_flag = BattleParam_IsWinResult( param->win_lose_flag );
 	OS_Printf( "br_scr_wk->winlose_flag = %d\n", br_scr_wk->winlose_flag );
 
-	//ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒ“ƒWƒpƒlƒ‹‚ª‘I‚Î‚ê‚Ä‚¢‚½‚ç“G‘¤‚Ìƒf[ƒ^‚©‚çŽæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒ³ã‚¸ãƒ‘ãƒãƒ«ãŒé¸ã°ã‚Œã¦ã„ãŸã‚‰æ•µå´ã®ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—
 	if( br_scr_wk->decide_ev_no == ROULETTE_EV_EX_POKE_CHANGE ){
 		no1 = POKEPARTY_ENEMY;
 		no2 = POKEPARTY_ENEMY_PAIR;
 	}else{
-		//’Êí‚Ì—¬‚ê
+		//é€šå¸¸ã®æµã‚Œ
 		no1 = POKEPARTY_MINE;
 		no2 = POKEPARTY_MINE_PAIR;
 	}
 
-	//ƒp[ƒeƒBî•ñFí“¬Œ‹‰Ê‚ÌƒAƒCƒeƒ€‚ð”½‰f
-	//ƒZƒbƒg‚·‚éˆÊ’u‚ÍA”ñ’ÊM(0,1,2)A’ÊM(0,1,2,3)
+	//ãƒ‘ãƒ¼ãƒ†ã‚£æƒ…å ±ï¼šæˆ¦é—˜çµæžœã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’åæ˜ 
+	//ã‚»ãƒƒãƒˆã™ã‚‹ä½ç½®ã¯ã€éžé€šä¿¡(0,1,2)ã€é€šä¿¡(0,1,2,3)
 	RouletteScr_BattleAfterItemSet( param->poke_party[no1], 
 									br_scr_wk->p_m_party, 0, 0 );
 
@@ -270,7 +270,7 @@ BOOL FSSC_RouletteCallGetResult( FSS_TASK * core)
 										br_scr_wk->p_m_party, 1, 3);
 	}
 
-	//Ž©•ª‚Ìƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚ðã‚°‚éƒpƒlƒ‹‚ª‘I‚Î‚ê‚Ä‚¢‚½‚ç
+	//è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ã‚’ä¸Šã’ã‚‹ãƒ‘ãƒãƒ«ãŒé¸ã°ã‚Œã¦ã„ãŸã‚‰
 	if( br_scr_wk->decide_ev_no == ROULETTE_EV_MINE_LV_UP ){
 		m_max = Roulette_GetMinePokeNum( br_scr_wk->type, ROULETTE_FLAG_TOTAL );
 
@@ -283,16 +283,16 @@ BOOL FSSC_RouletteCallGetResult( FSS_TASK * core)
 			PokeParaPut( pp, ID_PARA_exp, &exp );
 			PokeParaCalc( pp );
 		}
-		OS_Printf( "Ž©•ªƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚ðŒ³‚É–ß‚µ‚Ü‚µ‚½\n" );
+		OS_Printf( "è‡ªåˆ†ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ã‚’å…ƒã«æˆ»ã—ã¾ã—ãŸ\n" );
 	}
 
-#if 1	//“w—Í’l‚ª”½‰f‚µ‚È‚¢‘Î‰ž(08.06.20)
+#if 1	//åŠªåŠ›å€¤ãŒåæ˜ ã—ãªã„å¯¾å¿œ(08.06.20)
 	poke_max = PokeParty_GetPokeCount( br_scr_wk->p_m_party );
 	for( i=0; i < poke_max ;i++ ){
 
 		pp = PokeParty_GetMemberPointer(br_scr_wk->p_m_party, i );
 
-		//‘Þ”ð‚µ‚Ä‚¨‚¢‚½HP‚È‚Ç‚Åã‘‚«(“w—Í’l‚ð”½‰f‚³‚¹‚È‚¢‚½‚ß)
+		//é€€é¿ã—ã¦ãŠã„ãŸHPãªã©ã§ä¸Šæ›¸ã(åŠªåŠ›å€¤ã‚’åæ˜ ã•ã›ãªã„ãŸã‚)
 		temp_buf = br_scr_wk->temp_hp[i];
 		PokeParaPut( pp, ID_PARA_hpmax, &temp_buf );
 		PokeParaPut( pp, ID_PARA_hp, &temp_buf );
@@ -314,7 +314,7 @@ BOOL FSSC_RouletteCallGetResult( FSS_TASK * core)
 	}
 #endif
 
-	//BATTLE_PARAM‚ÌŠJ•ú
+	//BATTLE_PARAMã®é–‹æ”¾
 	BattleParam_Delete( param );
 
 	return 0;
@@ -322,9 +322,9 @@ BOOL FSSC_RouletteCallGetResult( FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFí“¬ŒÄ‚Ño‚µ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šæˆ¦é—˜å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -337,14 +337,14 @@ BOOL FSSC_RouletteBattleCall( FSS_TASK * core)
 
 	br_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	//ƒoƒgƒ‹ƒf[ƒ^‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	param = BtlRoulette_CreateBattleParam( br_scr_wk, ex_param );
 	br_scr_wk->p_work = param;
 
-	//í“¬Ø‚è‘Ö‚¦
-//	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );		//ƒoƒgƒ‹‹ÈÄ¶
+	//æˆ¦é—˜åˆ‡ã‚Šæ›¿ãˆ
+//	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );		//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
     Frontier_SubProcSet(core->fss->fmain, &TestBattleProcData, param, FALSE, NULL );
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒLƒƒƒbƒXƒ‹í“¬ŒÄ‚Ño‚µ\n" );			//field_encount.c
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚­ãƒ£ãƒƒã‚¹ãƒ«æˆ¦é—˜å‘¼ã³å‡ºã—\n" );			//field_encount.c
 	return 1;
 }
 
@@ -356,7 +356,7 @@ static void RouletteCallWorkSet( ROULETTE_CALL_WORK* roulette_call, ROULETTE_SCR
 	roulette_call->type			= br_scr_wk->type;
 
 	//roulette_call->lap			= br_scr_wk->lap;
-	roulette_call->lap			= RouletteScr_CommGetLap( br_scr_wk );	//‘½‚¢Žü‰ñ”‚ðƒZƒbƒg
+	roulette_call->lap			= RouletteScr_CommGetLap( br_scr_wk );	//å¤šã„å‘¨å›žæ•°ã‚’ã‚»ãƒƒãƒˆ
 
 	roulette_call->p_rand_pos		= &br_scr_wk->rand_pos;
 	roulette_call->p_decide_ev_no	= &br_scr_wk->decide_ev_no;
@@ -370,19 +370,19 @@ static void RouletteCallWorkSet( ROULETTE_CALL_WORK* roulette_call, ROULETTE_SCR
 	roulette_call->p_m_party		= br_scr_wk->p_m_party;
 	roulette_call->p_e_party		= br_scr_wk->p_e_party;
 	roulette_call->p_work			= br_scr_wk;
-	br_scr_wk->weather				= 0;						//ƒNƒŠƒA‚µ‚Ä‚¨‚­
+	br_scr_wk->weather				= 0;						//ã‚¯ãƒªã‚¢ã—ã¦ãŠã
 	roulette_call->p_weather		= &br_scr_wk->weather;
 	roulette_call->random_flag		= br_scr_wk->random_flag;
-	br_scr_wk->random_flag			= 0;						//ƒNƒŠƒA‚µ‚Ä‚¨‚­
-	br_scr_wk->poke_safe_flag		= 0;						//ƒNƒŠƒA‚µ‚Ä‚¨‚­
+	br_scr_wk->random_flag			= 0;						//ã‚¯ãƒªã‚¢ã—ã¦ãŠã
+	br_scr_wk->poke_safe_flag		= 0;						//ã‚¯ãƒªã‚¢ã—ã¦ãŠã
 
-#if 1	//“w—Í’l‚ª”½‰f‚µ‚È‚¢‘Î‰ž(08.06.20)
+#if 1	//åŠªåŠ›å€¤ãŒåæ˜ ã—ãªã„å¯¾å¿œ(08.06.20)
 	poke_max = PokeParty_GetPokeCount( br_scr_wk->p_m_party );
 	for( i=0; i < poke_max ;i++ ){
 
 		pp = PokeParty_GetMemberPointer(br_scr_wk->p_m_party, i );
 
-		//ƒpƒlƒ‹ŒÄ‚Ño‚µ‘O‚Ìó‹µ‚ð‘Þ”ð
+		//ãƒ‘ãƒãƒ«å‘¼ã³å‡ºã—å‰ã®çŠ¶æ³ã‚’é€€é¿
 		br_scr_wk->temp_hp[i] = PokeParaGet( pp, ID_PARA_hpmax, NULL );
 		br_scr_wk->temp_pow[i] = PokeParaGet( pp, ID_PARA_pow, NULL );
 		br_scr_wk->temp_def[i] = PokeParaGet( pp, ID_PARA_def, NULL );
@@ -395,25 +395,25 @@ static void RouletteCallWorkSet( ROULETTE_CALL_WORK* roulette_call, ROULETTE_SCR
 	return;
 }
 
-//ƒLƒƒƒbƒXƒ‹‰æ–Ê‚Å“n‚µ‚½ƒ[ƒN‚Ì‰ð•úˆ—
+//ã‚­ãƒ£ãƒƒã‚¹ãƒ«ç”»é¢ã§æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†
 static void RouletteFreeMemory( void *parent_work )
 {
 	int i;
 	ROULETTE_CALL_WORK* roulette_call = parent_work;
 
-	//Œ‹‰Ê‚ðŽæ“¾
+	//çµæžœã‚’å–å¾—
 	RouletteScr_GetResult( roulette_call->p_work, parent_work );
 
-	//ROULETTE_CALL_WORK‚Ìíœ
+	//ROULETTE_CALL_WORKã®å‰Šé™¤
 	sys_FreeMemoryEz( parent_work );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒoƒgƒ‹‘O‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«å‰ã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -428,9 +428,9 @@ BOOL FSSC_RouletteBtlBeforePokePartySet( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒoƒgƒ‹Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -445,9 +445,9 @@ BOOL FSSC_RouletteBtlAfterPokePartySet( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFROULETTE_SCR_WORK‚ÌƒZƒbƒgAƒQƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šROULETTE_SCR_WORKã®ã‚»ãƒƒãƒˆã€ã‚²ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -478,42 +478,42 @@ BOOL FSSC_RouletteScrWork( FSS_TASK * core )
 
 	switch( code ){
 
-	//ƒ^ƒCƒv(ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`)‚ÌƒZƒbƒg
+	//ã‚¿ã‚¤ãƒ—(ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒžãƒ«ãƒã€wifiãƒžãƒ«ãƒ)ã®ã‚»ãƒƒãƒˆ
 	case FR_ID_SET_TYPE:
 		br_scr_wk->type = param1;
 		break;
 
-	//ret_work‚ÌŽæ“¾
+	//ret_workã®å–å¾—
 	case FR_ID_GET_RET_WORK:
 		*work = br_scr_wk->ret_work[param1];
 		break;
 
-	//˜AŸ”‚ÌŽæ“¾
+	//é€£å‹æ•°ã®å–å¾—
 	case FR_ID_GET_RENSYOU:
 		*work = br_scr_wk->rensyou;
 		break;
 
-	//˜AŸ”‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+	//é€£å‹æ•°ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	case FR_ID_INC_RENSYOU:
 		if( br_scr_wk->rensyou < ROULETTE_RENSYOU_MAX ){
 			br_scr_wk->rensyou++;
 		}
 		break;
 
-	//ƒŠƒZƒbƒg‚µ‚Äƒ^ƒCƒgƒ‹‚É–ß‚é
+	//ãƒªã‚»ãƒƒãƒˆã—ã¦ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹
 	case FR_ID_SYSTEM_RESET:
 		OS_ResetSystem( 0 );
 		break;
 
 	//------------------------------------
-	//	ROULETTEDATA‚ÉƒAƒNƒZƒX
+	//	ROULETTEDATAã«ã‚¢ã‚¯ã‚»ã‚¹
 	//------------------------------------
-	//ƒZ[ƒuƒf[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©•Ô‚·
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹è¿”ã™
 	case FR_ID_IS_SAVE_DATA_ENABLE:
 		*work = ROULETTEDATA_GetSaveFlag( br_scr_wk->roulette_savedata );
 		break;
 
-	//‹x‚ÞŽž‚ÉŒ»Ý‚ÌƒvƒŒƒCó‹µ‚ðƒZ[ƒu‚É‘‚«o‚·
+	//ä¼‘ã‚€æ™‚ã«ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤çŠ¶æ³ã‚’ã‚»ãƒ¼ãƒ–ã«æ›¸ãå‡ºã™
 	case FR_ID_SAVE_REST_PLAY_DATA:
 		RouletteScr_SaveRestPlayData( br_scr_wk, FR_MODE_REST );
 		break;
@@ -521,17 +521,17 @@ BOOL FSSC_RouletteScrWork( FSS_TASK * core )
 	//------------------------------------
 	//	
 	//------------------------------------
-	//–á‚¦‚éBP‚ðŽæ“¾(ƒ‹[ƒŒƒbƒgƒpƒlƒ‹‚ÅBPƒQƒbƒg‚ª‘I‚Î‚ê‚½Œã‚ÉŽg—p)
+	//è²°ãˆã‚‹BPã‚’å–å¾—(ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ‘ãƒãƒ«ã§BPã‚²ãƒƒãƒˆãŒé¸ã°ã‚ŒãŸå¾Œã«ä½¿ç”¨)
 	case FR_ID_GET_PANEL_BP:
 		*work = Roulette_GetPanelBP( br_scr_wk, br_scr_wk->decide_ev_no );
 		break;
 
-	//ƒ‰ƒEƒ“ƒh”‚ðƒCƒ“ƒNƒŠƒƒ“ƒg
+	//ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	case FR_ID_INC_ROUND:
 		*work = RouletteScr_IncRound( br_scr_wk );
 		break;
 
-	//ƒAƒCƒeƒ€ƒiƒ“ƒo[Žæ“¾(ƒ‹[ƒŒƒbƒgƒpƒlƒ‹‚ÅƒAƒCƒeƒ€ƒQƒbƒg‚ª‘I‚Î‚ê‚½Œã‚ÉŽg—p)
+	//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼å–å¾—(ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ‘ãƒãƒ«ã§ã‚¢ã‚¤ãƒ†ãƒ ã‚²ãƒƒãƒˆãŒé¸ã°ã‚ŒãŸå¾Œã«ä½¿ç”¨)
 	case FR_ID_GET_ITEM:
 		if( param1 == 0 ){
 			pp = PokeParty_GetMemberPointer(br_scr_wk->p_m_party, 0 );
@@ -541,52 +541,52 @@ BOOL FSSC_RouletteScrWork( FSS_TASK * core )
 		*work = PokeParaGet( pp, ID_PARA_item, NULL );
 		break;
 
-	//Œˆ’è‚µ‚½ƒCƒxƒ“ƒgƒiƒ“ƒo[‚ðŽæ“¾
+	//æ±ºå®šã—ãŸã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	case FR_ID_GET_DECIDE_EV_NO:
 		*work = br_scr_wk->decide_ev_no;
 		break;
 
-	//•Û‘¶‚µ‚Ä‚¨‚¢‚½ƒAƒCƒeƒ€ƒiƒ“ƒo[‚ðƒZƒbƒg‚·‚é
+	//ä¿å­˜ã—ã¦ãŠã„ãŸã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	case FR_ID_SET_TEMP_ITEM:
-		party = SaveData_GetTemotiPokemon( ex_param->savedata );	//ŽèŽ‚¿ƒp[ƒeƒBŽæ“¾
+		party = SaveData_GetTemotiPokemon( ex_param->savedata );	//æ‰‹æŒã¡ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 		for( i=0; i < ROULETTE_ENTRY_POKE_MAX ;i++ ){
 			pp = PokeParty_GetMemberPointer( party, br_scr_wk->mine_poke_pos[i] );
 			PokeParaPut( pp, ID_PARA_item, &br_scr_wk->itemno[i] );
 		}
 		break;
 
-	//Žü‰ñ”‚ðŽæ“¾
+	//å‘¨å›žæ•°ã‚’å–å¾—
 	case FR_ID_GET_LAP:
 		*work = RouletteScr_CommGetLap( br_scr_wk );
 		break;
 
-	//“GƒgƒŒ[ƒi[‚ÌOBJƒR[ƒh‚ðŽæ“¾
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®OBJã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 	case FR_ID_GET_TR_OBJ_CODE:
 		*work = RouletteScr_GetEnemyObjCode( br_scr_wk, param1 );
 		break;
 
-	//”sí‚µ‚½Žž‚Ìˆ—
+	//æ•—æˆ¦ã—ãŸæ™‚ã®å‡¦ç†
 	case FR_ID_SET_LOSE:
 		RouletteScr_SetLose( br_scr_wk );
 		break;
 
-	//7˜AŸ(ƒNƒŠƒA)‚µ‚½Žž‚Ìˆ—
+	//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸæ™‚ã®å‡¦ç†
 	case FR_ID_SET_CLEAR:
 		RouletteScr_SetClear( br_scr_wk );
 		break;
 
-	//ƒ‰ƒEƒ“ƒh”‚ðŽæ“¾
+	//ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’å–å¾—
 	case FR_ID_GET_ROUND:
 		*work = RouletteScr_GetRound( br_scr_wk );
 		break;
 
-	//ƒŠƒ^ƒCƒ„ƒtƒ‰ƒO‚ðŽæ“¾
+	//ãƒªã‚¿ã‚¤ãƒ¤ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 	case FR_ID_GET_RETIRE_FLAG:
 		OS_Printf( "br_scr_wk->pair_retire_flag = %d\n", br_scr_wk->pair_retire_flag );
 		*work = br_scr_wk->pair_retire_flag;
 		break;
 
-	//ƒAƒCƒRƒ“ƒ`ƒFƒ“ƒW(ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒ“ƒWƒCƒxƒ“ƒg)
+	//ã‚¢ã‚¤ã‚³ãƒ³ãƒã‚§ãƒ³ã‚¸(ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¤ãƒ™ãƒ³ãƒˆ)
 	case FR_ID_ICON_CHANGE:
 		if( br_scr_wk->decide_ev_no == ROULETTE_EV_EX_POKE_CHANGE ){
 			m_max = Roulette_GetMinePokeNum( br_scr_wk->type, ROULETTE_FLAG_TOTAL );
@@ -595,29 +595,29 @@ BOOL FSSC_RouletteScrWork( FSS_TASK * core )
 			{
 				VecFx32 m_vec;
 				VecFx32 e_vec;
-				CLACT_WORK_PTR p_m_clact;			//ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^
-				CLACT_WORK_PTR p_e_clact;			//ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^
+				CLACT_WORK_PTR p_m_clact;			//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+				CLACT_WORK_PTR p_e_clact;			//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 
 				for( i=0; i < m_max ;i++ ){	
-					//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌÀ•WŽæ“¾
+					//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®åº§æ¨™å–å¾—
 					p_m_clact = br_scr_wk->m_pokeicon[i]->act;
 					m_vec = *( CLACT_GetMatrix( (CONST_CLACT_WORK_PTR)p_m_clact ) );
 
 					p_e_clact = br_scr_wk->e_pokeicon[i]->act;
 					e_vec = *( CLACT_GetMatrix( (CONST_CLACT_WORK_PTR)p_e_clact ) );
 
-					//À•W‚ð”½‘Î‚É‚·‚é
+					//åº§æ¨™ã‚’åå¯¾ã«ã™ã‚‹
 					CLACT_SetMatrix( p_m_clact, &e_vec );
 					CLACT_SetMatrix( p_e_clact, &m_vec );
 
-					//ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚é‚©ƒAƒCƒRƒ“‚ÌÀ•WŽæ“¾
+					//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‹ã‚¢ã‚¤ã‚³ãƒ³ã®åº§æ¨™å–å¾—
 					p_m_clact = br_scr_wk->m_itemkeep[i]->act;
 					m_vec = *( CLACT_GetMatrix( (CONST_CLACT_WORK_PTR)p_m_clact ) );
 
 					p_e_clact = br_scr_wk->e_itemkeep[i]->act;
 					e_vec = *( CLACT_GetMatrix( (CONST_CLACT_WORK_PTR)p_e_clact ) );
 
-					//À•W‚ð”½‘Î‚É‚·‚é
+					//åº§æ¨™ã‚’åå¯¾ã«ã™ã‚‹
 					CLACT_SetMatrix( p_m_clact, &e_vec );
 					CLACT_SetMatrix( p_e_clact, &m_vec );
 				}
@@ -626,32 +626,32 @@ BOOL FSSC_RouletteScrWork( FSS_TASK * core )
 		}
 		break;
 
-	//’ÊMÝ’è
+	//é€šä¿¡è¨­å®š
 	case FR_ID_COMM_COMMAND_INITIALIZE:
 		CommCommandFrontierInitialize( br_scr_wk );
 		break;
 
-	//’ÊMƒ^ƒCƒv‚©ƒ`ƒFƒbƒN
+	//é€šä¿¡ã‚¿ã‚¤ãƒ—ã‹ãƒã‚§ãƒƒã‚¯
 	case FR_ID_CHECK_COMM_TYPE:
 		*work = Roulette_CommCheck( br_scr_wk->type );
 		break;
 
-	//ƒ^ƒCƒvŽæ“¾
+	//ã‚¿ã‚¤ãƒ—å–å¾—
 	case FR_ID_GET_TYPE:
 		*work = br_scr_wk->type;
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒXƒZƒbƒg
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆ
 	case FR_ID_RESOURCE_SET_POKE_ICON:
 		FSSC_Sub_PokeIconCommonResourceSet( fmap );
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒXíœ
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
 	case FR_ID_RESOURCE_FREE_POKE_ICON:
 		FSSC_Sub_PokeIconCommonResourceFree( fmap );
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“’Ç‰Á
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ 
 	case FR_ID_ADD_POKE_ICON:
 		RouletteScr_AddPokeIcon( br_scr_wk, fmap, param1 );
 
@@ -669,46 +669,46 @@ BOOL FSSC_RouletteScrWork( FSS_TASK * core )
 		}
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“íœ
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
 	case FR_ID_DEL_POKE_ICON:
 		RouletteScr_DelPokeIcon( br_scr_wk, fmap, param1 );
 		break;
 
-	//ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚é‚©ƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒXƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆ
 	case FR_ID_RESOURCE_SET_ITEMKEEP_ICON:
 		FSSC_Sub_ItemIconLoad( fmap );										//
 		break;
 
-	//ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚é‚©ƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒXíœ
+	//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
 	case FR_ID_RESOURCE_FREE_ITEMKEEP_ICON:
 		FSSC_Sub_ItemIconFree( fmap );
 		break;
 
-	//ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚é‚©ƒAƒCƒRƒ“’Ç‰Á
+	//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‹ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ 
 	case FR_ID_ADD_ITEMKEEP_ICON:
 		RouletteScr_AddItemKeepIcon( br_scr_wk, fmap, param1 );
 		break;
 
-	//ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚é‚©ƒAƒCƒRƒ“íœ
+	//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‹ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
 	case FR_ID_DEL_ITEMKEEP_ICON:
 		RouletteScr_DelItemKeepIcon( br_scr_wk, fmap, param1 );
 		break;
 
-	//ƒ}ƒbƒv‚Éƒpƒlƒ‹ƒZƒbƒg
+	//ãƒžãƒƒãƒ—ã«ãƒ‘ãƒãƒ«ã‚»ãƒƒãƒˆ
 	case FR_ID_SET_PANEL_BG:
 		RouletteScr_BGPanelChange( br_scr_wk, fmap );
 		break;
 
-	//”wŒi‚ð’ÊM—p‚ÉØ‚è‘Ö‚¦
+	//èƒŒæ™¯ã‚’é€šä¿¡ç”¨ã«åˆ‡ã‚Šæ›¿ãˆ
 	case FR_ID_SET_MAIN_BG:
 		if( Roulette_CommCheck(br_scr_wk->type) == TRUE ){
 			RouletteScr_MainBGChange( br_scr_wk, fmap );
 		}
 		break;
 
-	//ƒgƒŒ[ƒi[–¼‚ð‘ã“ü
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã‚’ä»£å…¥
 	case FR_ID_TR_NAME:
-		//Ž©•ª‚ÆƒyƒA‚Ì–¼‘OA“GƒgƒŒ[ƒi[‚ÌŽž‚ª‚ ‚é
+		//è‡ªåˆ†ã¨ãƒšã‚¢ã®åå‰ã€æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æ™‚ãŒã‚ã‚‹
 		color = Roulette_GetEvPanelColor( br_scr_wk->decide_ev_no );
 
 		if( color == ROULETTE_PANEL_COLOR_RED ){
@@ -725,13 +725,13 @@ BOOL FSSC_RouletteScrWork( FSS_TASK * core )
 		}
 		break;
 
-	//ƒGƒ~ƒbƒ^¶¬
+	//ã‚¨ãƒŸãƒƒã‚¿ç”Ÿæˆ
 	case FR_ID_ADD_EMITTER:
-		br_scr_wk->reverce_flag = param2;						//”½“]ƒtƒ‰ƒOŠi”[
+		br_scr_wk->reverce_flag = param2;						//åè»¢ãƒ•ãƒ©ã‚°æ ¼ç´
 		ParticleAddEmitterEx( core, br_scr_wk, param1 );
 		break;
 
-	//í“¬‘O‰ï˜b‚Ì‚½‚ß‚ÉB_TOWER_PARTNER_DATA‚ÌƒZƒbƒg
+	//æˆ¦é—˜å‰ä¼šè©±ã®ãŸã‚ã«B_TOWER_PARTNER_DATAã®ã‚»ãƒƒãƒˆ
 	case FR_ID_SET_B_TOWER_PARTNER_DATA:
 		FSRomBattleTowerTrainerDataMake2( &(br_scr_wk->tr_data[0]), 
 					br_scr_wk->tr_index[br_scr_wk->round], HEAPID_WORLD, ARC_PL_BTD_TR );
@@ -740,26 +740,26 @@ BOOL FSSC_RouletteScrWork( FSS_TASK * core )
 					ARC_PL_BTD_TR );
 		break;
 
-	//(–¡•û)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌƒoƒjƒbƒVƒ…‘€ì
+	//(å‘³æ–¹)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒãƒ‹ãƒƒã‚·ãƒ¥æ“ä½œ
 	case FR_ID_MINE_CHG_POKE_ICON_VANISH:
 		RouletteScr_MineChgPokeIconVanish( br_scr_wk, fmap, param1, param2 );
 		break;
 
-	//(“G)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌƒoƒjƒbƒVƒ…‘€ì
+	//(æ•µ)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒãƒ‹ãƒƒã‚·ãƒ¥æ“ä½œ
 	case FR_ID_ENEMY_CHG_POKE_ICON_VANISH:
 		RouletteScr_EnemyChgPokeIconVanish( br_scr_wk, fmap, param1, param2 );
 		break;
 
-	//Šg’£ƒpƒŒƒbƒg‘€ì
+	//æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆæ“ä½œ
 	case FR_ID_EFF_PAL_CHG:
 #if 0
-		//ˆÈ‰º‚ÌŠÖ”‚ÍAŠg’£ƒpƒŒƒbƒg‚ª‘Î‰ž‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅŽg‚¦‚È‚¢
+		//ä»¥ä¸‹ã®é–¢æ•°ã¯ã€æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆãŒå¯¾å¿œã—ã¦ã„ãªã„ã®ã§ä½¿ãˆãªã„
 						
-		//ƒJƒ‰[’PˆÊ
+		//ã‚«ãƒ©ãƒ¼å˜ä½
 		//SoftFadePfd( fmap->pfd, FADE_MAIN_OBJ, 0, 256, 8, 0x0000 );
 		//SoftFadePfd( fmap->pfd, FADE_MAIN_BG_EX3, 0, 256, 8, 0x0000 );				//
 
-		//ƒpƒŒƒbƒg’PˆÊ
+		//ãƒ‘ãƒ¬ãƒƒãƒˆå˜ä½
 		//ColorConceChangePfd( fmap->pfd, FADE_MAIN_OBJ, 16, 8, 0x0000 );
 		//ColorConceChangePfd( fmap->pfd, FADE_MAIN_BG_EX3, 16, 8, 0x0000 );
 #else
@@ -767,22 +767,22 @@ BOOL FSSC_RouletteScrWork( FSS_TASK * core )
 #endif
 		break;
 
-	//OBJƒpƒŒƒbƒg‘€ì
+	//OBJãƒ‘ãƒ¬ãƒƒãƒˆæ“ä½œ
 	case FR_ID_OBJ_PAL_CHG:
 
-		//OBJ‚ÌƒpƒŒƒbƒg‚Ì‚Ç‚±‚ðŽg‚Á‚Ä‚¢‚é‚©Šm”F
-		//ƒ‰ƒ“ƒv						= 1
-		//‘–¸ü						= 1
-		//ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“	= 1
-		//’ÊMƒAƒCƒRƒ“					= 1
-		//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“(3–{)			= 3
-		//								= 7–{‚ÍŒ³‚Ì‚Ü‚Ü
+		//OBJã®ãƒ‘ãƒ¬ãƒƒãƒˆã®ã©ã“ã‚’ä½¿ã£ã¦ã„ã‚‹ã‹ç¢ºèª
+		//ãƒ©ãƒ³ãƒ—						= 1
+		//èµ°æŸ»ç·š						= 1
+		//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³	= 1
+		//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³					= 1
+		//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³(3æœ¬)			= 3
+		//								= 7æœ¬ã¯å…ƒã®ã¾ã¾
 		
-		//Œ³‚É–ß‚·(Žž‚ÍAOBJƒpƒŒƒbƒg‘S‚Ä‚ð‘ÎÛ‚É‚µ‚Ä‚¢‚é
+		//å…ƒã«æˆ»ã™(æ™‚ã¯ã€OBJãƒ‘ãƒ¬ãƒƒãƒˆå…¨ã¦ã‚’å¯¾è±¡ã«ã—ã¦ã„ã‚‹
 		if( param1 == 0 ){
 			SoftFadePfd( fmap->pfd, FADE_MAIN_OBJ, 0, 16*16, param1, 0x0000 );
 
-		//ˆÃ‚­‚·‚é(Žž‚ÍA‚»‚ÌOBJ‚ÌƒpƒŒƒbƒg1–{‚Ì‚Ý‚ð‘ÎÛ‚É‚µ‚Ä‚¢‚é)
+		//æš—ãã™ã‚‹(æ™‚ã¯ã€ãã®OBJã®ãƒ‘ãƒ¬ãƒƒãƒˆ1æœ¬ã®ã¿ã‚’å¯¾è±¡ã«ã—ã¦ã„ã‚‹)
 		}else{
 			{
 				u32 palno;
@@ -791,33 +791,33 @@ BOOL FSSC_RouletteScrWork( FSS_TASK * core )
 
 				fss_actor = Frontier_ActorWorkSearch(core->fss->fmain, param2);
 				palno = WF2DMAP_OBJDrawWkPaletteNoGet(fss_actor->drawwk);
-				//OS_Printf( "Žg—p PalNo = %d\n", palno );
+				//OS_Printf( "ä½¿ç”¨ PalNo = %d\n", palno );
 
 				SoftFadePfd( fmap->pfd, FADE_MAIN_OBJ, (palno * 16), 16, param1, 0x0000 );
 			}
 		}
 		break;
 
-	//–á‚¦‚éƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ðŽæ“¾
+	//è²°ãˆã‚‹ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’å–å¾—
 	case FR_ID_GET_BP_POINT:
 		*work = RouletteScr_GetAddBtlPoint( br_scr_wk );
 		break;
 
-	//ƒpƒlƒ‹BG‚ð”ñ•\Ž¦‚É‚·‚é
+	//ãƒ‘ãƒãƒ«BGã‚’éžè¡¨ç¤ºã«ã™ã‚‹
 	case FR_ID_PANEL_BG_OFF:
-		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BG”ñ•\Ž¦
+		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );		//BGéžè¡¨ç¤º
 		break;
 
-	//’N‚àƒCƒxƒ“ƒg‚ÌŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½‚©ƒ`ƒFƒbƒN
+	//èª°ã‚‚ã‚¤ãƒ™ãƒ³ãƒˆã®åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸã‹ãƒã‚§ãƒƒã‚¯
 	case FR_ID_GET_POKE_SAFE_FLAG:
 		*work = br_scr_wk->poke_safe_flag;
 		break;
 
-	//ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN(0=‚È‚µA1=‰“oêA2=2‰ñ–Ú)
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯(0=ãªã—ã€1=åˆç™»å ´ã€2=2å›žç›®)
 	case FR_ID_CHECK_BRAIN:
 		*work = 0;
 
-		//ƒVƒ“ƒOƒ‹‚Ì‚Ý
+		//ã‚·ãƒ³ã‚°ãƒ«ã®ã¿
 		if( br_scr_wk->type == ROULETTE_TYPE_SINGLE ){
 
 			if( (br_scr_wk->rensyou+1) == ROULETTE_LEADER_SET_1ST ){
@@ -828,30 +828,30 @@ BOOL FSSC_RouletteScrWork( FSS_TASK * core )
 		}
 		break;
 
-	//“Gƒ|ƒPƒ‚ƒ“‚ðˆê“x‚É¶¬
+	//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ
 	case FR_ID_ENEMY_POKE_CREATE:
 		//B_TOWER_POKEMON enemy_poke[ROULETTE_ENEMY_POKE_MAX];
 
-		//“Gƒ|ƒPƒ‚ƒ“‚ðˆê“x‚É¶¬
+		//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ
 		Frontier_PokemonParamCreateAll(	br_scr_wk->enemy_poke, br_scr_wk->enemy_poke_index, 
 										br_scr_wk->enemy_pow_rnd, br_scr_wk->enemy_personal_rnd, 
 										NULL, 
 										ROULETTE_ENEMY_POKE_MAX, HEAPID_WORLD, ARC_PL_BTD_PM );
 		break;
 
-	//“Gƒ|ƒPƒ‚ƒ“‚ðˆê“x‚É¶¬2
+	//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ2
 	case FR_ID_ENEMY_POKE_CREATE_2:
-		//“Gƒp[ƒeƒB‚ÌƒZƒbƒg
+		//æ•µãƒ‘ãƒ¼ãƒ†ã‚£ã®ã‚»ãƒƒãƒˆ
 		Roulette_EnemyPartySet( br_scr_wk );
 		break;
 
-	//ƒuƒŒ[ƒ““oêƒƒbƒZ[ƒW•\Ž¦‚µ‚½‚©
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã—ãŸã‹
 	case FR_ID_BRAIN_APPEAR_MSG_CHK:
 		*work = br_scr_wk->brain_appear_msg_flag;
 		br_scr_wk->brain_appear_msg_flag = 1;
 		break;
 
-	//ƒŒƒV[ƒuƒJƒEƒ“ƒ^‚ðƒNƒŠƒA(•ÛŒ¯ˆ—)
+	//ãƒ¬ã‚·ãƒ¼ãƒ–ã‚«ã‚¦ãƒ³ã‚¿ã‚’ã‚¯ãƒªã‚¢(ä¿é™ºå‡¦ç†)
 	case FR_ID_RECIEVE_COUNT_CLEAR:
 		br_scr_wk->recieve_count = 0;
 		break;
@@ -863,7 +863,7 @@ BOOL FSSC_RouletteScrWork( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚ð¶¬‚·‚é
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã‚’ç”Ÿæˆã™ã‚‹
  *
  * @param   core		
  */
@@ -874,14 +874,14 @@ static void ParticleAddEmitterEx( FSS_TASK *core, ROULETTE_SCRWORK* br_scr_wk, u
 	FMAP_PTR fmap = FSS_GetFMapAdrs( core->fss );
 	PTC_PTR ptc;
 
-	ptc = FRParticle_PTCPtrGet( fmap->frp, SPAWORK_0 );		//workIDŒÅ’è‚È‚Ì‚Å’ˆÓI
+	ptc = FRParticle_PTCPtrGet( fmap->frp, SPAWORK_0 );		//workIDå›ºå®šãªã®ã§æ³¨æ„ï¼
 	Particle_CreateEmitterCallback( ptc, emit_no, Particle_CallBack02, br_scr_wk );
 	return;
 }
 
-//¡‰ñŽg—p‚·‚é‚Ì‚ÍAX‚¾‚¯‚¾‚ÆŽv‚í‚ê‚é
-//”½“]‚³‚¹‚éŽž‚Ì‚ÝƒIƒtƒZƒbƒg‚ð‘«‚µ‚±‚Þ
-static const VecFx32 vec_tbl[] = {							//EMITƒiƒ“ƒo[‚Æ‘Î‚É‚È‚éƒe[ƒuƒ‹
+//ä»Šå›žä½¿ç”¨ã™ã‚‹ã®ã¯ã€Xã ã‘ã ã¨æ€ã‚ã‚Œã‚‹
+//åè»¢ã•ã›ã‚‹æ™‚ã®ã¿ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¶³ã—ã“ã‚€
+static const VecFx32 vec_tbl[] = {							//EMITãƒŠãƒ³ãƒãƒ¼ã¨å¯¾ã«ãªã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«
 	{ FX32_ONE*-1, 0, 0 },			//0
 	{ FX32_ONE*-1, 0, 0 },
 	{ FX32_ONE*-1, 0, 0 },
@@ -936,26 +936,26 @@ static void Particle_CallBack02( EMIT_PTR emit )
 	//OS_Printf( "vec.y = %d\n", vec.y );
 	//OS_Printf( "vec.z = %d\n", vec.z );
 
-	//ÅŒã‚É¶¬‚µ‚½ƒGƒ~ƒbƒ^‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾
+	//æœ€å¾Œã«ç”Ÿæˆã—ãŸã‚¨ãƒŸãƒƒã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 	//emit = Particle_TempEmitterPtrGet( ptc );
 	//OS_Printf( "emit = %d\n", emit );
 
-	//”½“]ƒtƒ‰ƒOƒ`ƒFƒbƒN
+	//åè»¢ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 	if( br_scr_wk->reverce_flag == 1 ){
-		//ƒGƒ~ƒbƒ^‚ÌŒü‚«‚ðŽæ“¾
+		//ã‚¨ãƒŸãƒƒã‚¿ã®å‘ãã‚’å–å¾—
 		SplSub_GetEmitterAxis( emit, &axis );
 		//OS_Printf( "axis.x = %d\n", axis.x );
 		//OS_Printf( "axis.y = %d\n", axis.y );
 		//OS_Printf( "axis.z = %d\n", axis.z );
 
-		//ƒGƒ~ƒbƒ^‚ÌŒü‚«‚ð”½“]‚³‚¹‚é
+		//ã‚¨ãƒŸãƒƒã‚¿ã®å‘ãã‚’åè»¢ã•ã›ã‚‹
 		axis.x *= -1;
 		//VEC_Fx16Set( &axis, 0, 0, 0 );
 		//VEC_Fx16Set( &axis, 3776, 2112, 0 );
 		//VEC_Fx16Set( &axis, -6000, -2200, 0 );
 		SPL_SetEmitterAxis( emit, &axis );
 
-		//ƒGƒ~ƒbƒ^‚ÌˆÊ’uƒpƒ‰ƒ[ƒ^‚ðƒZƒbƒg‚·‚éBƒIƒtƒZƒbƒg’l‚Íí‚É”½‰f‚³‚ê‚éB
+		//ã‚¨ãƒŸãƒƒã‚¿ã®ä½ç½®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã¯å¸¸ã«åæ˜ ã•ã‚Œã‚‹ã€‚
 		//SPL_SetEmitterPosition( emit, &vec_tbl[0] );
 		SPL_SetEmitterPosition( emit, vec_tbl2 );
 	}
@@ -969,9 +969,9 @@ static void Particle_CallBack02( EMIT_PTR emit )
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[”s–kƒ`ƒFƒbƒN
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ•—åŒ—ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -984,22 +984,22 @@ BOOL FSSC_RouletteLoseCheck( FSS_TASK * core )
 	br_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
 	*work = br_scr_wk->winlose_flag;
-	OS_Printf( "”s–kƒ`ƒFƒbƒN*work TRUEŸ—˜ FALSE”s–k = %d\n", *work );
+	OS_Printf( "æ•—åŒ—ãƒã‚§ãƒƒã‚¯*work TRUEå‹åˆ© FALSEæ•—åŒ— = %d\n", *work );
 	return 0;
 }
 
 
 //==============================================================================================
 //
-//	‘—MAŽóM‚ÌŒÄ‚Ño‚µ
+//	é€ä¿¡ã€å—ä¿¡ã®å‘¼ã³å‡ºã—
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * ‘—M
+ * é€ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1019,9 +1019,9 @@ BOOL FSSC_RouletteSendBuf( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * ŽóM
+ * å—ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -1030,18 +1030,18 @@ BOOL FSSC_RouletteRecvBuf( FSS_TASK * core )
 {
 	u16 wk_id = FSSTGetU16( core );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ðŠi”[
+	//ä»®æƒ³ãƒžã‚·ãƒ³ã®æ±Žç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
 	FSST_SetWait( core, WaitRouletteRecvBuf );
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL WaitRouletteRecvBuf( FSS_TASK * core )
 {
 	ROULETTE_SCRWORK* br_scr_wk;
-	u16 type = FSS_GetEventWorkValue( core, core->reg[0] );		//’ˆÓI
+	u16 type = FSS_GetEventWorkValue( core, core->reg[0] );		//æ³¨æ„ï¼
 
 	br_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
@@ -1056,7 +1056,7 @@ static BOOL WaitRouletteRecvBuf( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg‘Îí‘OƒƒbƒZ[ƒWê—p•\Ž¦
+ *	@brief	ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆå¯¾æˆ¦å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å°‚ç”¨è¡¨ç¤º
  */
 //--------------------------------------------------------------
 BOOL FSSC_RouletteTalkMsgAppear(FSS_TASK* core)
@@ -1064,7 +1064,7 @@ BOOL FSSC_RouletteTalkMsgAppear(FSS_TASK* core)
 	u16	*msg;
 	ROULETTE_SCRWORK*	br_scr_wk;
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
-	u16	tr_idx = FSSTGetU8(core);	//ˆêl–Ú‚©“ñl–Ú‚©H
+	u16	tr_idx = FSSTGetU8(core);	//ä¸€äººç›®ã‹äºŒäººç›®ã‹ï¼Ÿ
 
 	br_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 	if(br_scr_wk == NULL){
@@ -1079,7 +1079,7 @@ BOOL FSSC_RouletteTalkMsgAppear(FSS_TASK* core)
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg‚ÅŒˆ’è‚µ‚½ƒCƒxƒ“ƒgˆ—‚ðs‚¤
+ *	@brief	ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã§æ±ºå®šã—ãŸã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†ã‚’è¡Œã†
  */
 //--------------------------------------------------------------
 BOOL FSSC_RouletteDecideEvNoFunc(FSS_TASK* core)
@@ -1093,16 +1093,16 @@ BOOL FSSC_RouletteDecideEvNoFunc(FSS_TASK* core)
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“‚ÌƒoƒjƒbƒVƒ…‘€ì(FSSC_RouletteScrWork‚Åˆø”‚ª‘«‚è‚È‚¢‚½‚ß)
+ *	@brief	ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒãƒ‹ãƒƒã‚·ãƒ¥æ“ä½œ(FSSC_RouletteScrWorkã§å¼•æ•°ãŒè¶³ã‚Šãªã„ãŸã‚)
  */
 //--------------------------------------------------------------
 BOOL FSSC_RouletteChgItemKeepVanish(FSS_TASK* core)
 {
 	ROULETTE_SCRWORK* br_scr_wk;
 	FMAP_PTR fmap	= FSS_GetFMapAdrs( core->fss );
-	u16 param1		= FSSTGetWorkValue( core );				//0=–¡•ûA1=“G
-	u16 param2		= FSSTGetWorkValue( core );				//‰½”Ô–Ú‚©
-	u16 param3		= FSSTGetWorkValue( core );				//1=•\Ž¦A0=”ñ•\Ž¦
+	u16 param1		= FSSTGetWorkValue( core );				//0=å‘³æ–¹ã€1=æ•µ
+	u16 param2		= FSSTGetWorkValue( core );				//ä½•ç•ªç›®ã‹
+	u16 param3		= FSSTGetWorkValue( core );				//1=è¡¨ç¤ºã€0=éžè¡¨ç¤º
 
 	br_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	boxv_exwin.c
- * @brief	ƒ{ƒbƒNƒX‘€ì‰æ–Ê@•`‰æ‰º¿‚¯i“ÁŽêƒEƒBƒ“ƒhƒEj
+ * @brief	ãƒœãƒƒã‚¯ã‚¹æ“ä½œç”»é¢ã€€æç”»ä¸‹è«‹ã‘ï¼ˆç‰¹æ®Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼‰
  * @author	taya
  * @date	2005.10.04
  */
@@ -35,7 +35,7 @@ enum {
 	TRAYICON_DISP_Y = 88,
 	TRAYICON_DISP_COUNT = 7,
 
-	// ƒgƒŒƒCƒAƒCƒRƒ“•\Ž¦—Ìˆæiƒhƒbƒg’PˆÊBƒEƒBƒ“ƒhƒE‚ÉŽg‚¤j
+	// ãƒˆãƒ¬ã‚¤ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºé ˜åŸŸï¼ˆãƒ‰ãƒƒãƒˆå˜ä½ã€‚ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ä½¿ã†ï¼‰
 	TRAYICON_DISP_START_XPOS = TRAYICON_DISP_X - (TRAYICON_SIZE_X/2),
 	TRAYICON_DISP_END_XPOS = TRAYICON_DISP_X + (TRAYICON_DISP_COUNT-1)*TRAYICON_DISP_XSPC + (TRAYICON_SIZE_X/2),
 	TRAYICON_DISP_START_YPOS = TRAYICON_DISP_Y - (TRAYICON_SIZE_Y/2),
@@ -44,10 +44,10 @@ enum {
 
 
 
-	JUMPWIN_WRITE_XPOS = 0,	// ƒLƒƒƒ‰’PˆÊ•\Ž¦ˆÊ’u
-	JUMPWIN_WRITE_YPOS = 5,	// ƒLƒƒƒ‰’PˆÊ•\Ž¦ˆÊ’u
-	JUMPWIN_WIDTH = 32,		// ƒLƒƒƒ‰’PˆÊƒTƒCƒY
-	JUMPWIN_HEIGHT = 10,	// ƒLƒƒƒ‰’PˆÊƒTƒCƒY
+	JUMPWIN_WRITE_XPOS = 0,	// ã‚­ãƒ£ãƒ©å˜ä½è¡¨ç¤ºä½ç½®
+	JUMPWIN_WRITE_YPOS = 5,	// ã‚­ãƒ£ãƒ©å˜ä½è¡¨ç¤ºä½ç½®
+	JUMPWIN_WIDTH = 32,		// ã‚­ãƒ£ãƒ©å˜ä½ã‚µã‚¤ã‚º
+	JUMPWIN_HEIGHT = 10,	// ã‚­ãƒ£ãƒ©å˜ä½ã‚µã‚¤ã‚º
 
 	JUMPWIN_DISPEFFECT_SPEED = BOX_EFF_SPEED(1),
 
@@ -63,7 +63,7 @@ enum {
 	ITEMICON_DISP_Y = 168 + ITEMWIN_SCROLL_END,
 
 
-	// BitmapWindow Ý’è
+	// BitmapWindow è¨­å®š
 	WIN_TRAYNAME_X = 10,
 	WIN_TRAYNAME_Y = JUMPWIN_WRITE_YPOS + 1,
 	WIN_TRAYNAME_WIDTH = 12,
@@ -81,12 +81,12 @@ enum {
 	WIN_ITEMINFO_WIDTH = 27,
 	WIN_ITEMINFO_HEIGHT = 6,
 
-	// BitmapWindow ƒLƒƒƒ‰ƒIƒtƒZƒbƒg
+	// BitmapWindow ã‚­ãƒ£ãƒ©ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	WIN_TRAYNAME_CHAROFS = 128,
 	WIN_POKECNT_CHAROFS = WIN_TRAYNAME_CHAROFS + WIN_TRAYNAME_CHARSIZE,
 	WIN_ITEMINFO_CHAROFS = WIN_POKECNT_CHAROFS + WIN_POKECNT_CHARSIZE,
 
-	// BitmapWindow ƒJƒ‰[Ý’è
+	// BitmapWindow ã‚«ãƒ©ãƒ¼è¨­å®š
 	WIN_TRAYNAME_LETTER_COLOR = 0x02,
 	WIN_TRAYNAME_SHADOW_COLOR = 0x08,
 	WIN_TRAYNAME_GROUND_COLOR = 0x07,
@@ -105,7 +105,7 @@ enum {
 
 };
 
-/** ƒEƒBƒ“ƒhƒEƒ^ƒCƒv */
+/** ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ— */
 enum {
 	WIN_TRAYNAME = 0,
 	WIN_POKECNT,
@@ -113,7 +113,7 @@ enum {
 	WIN_MAX,
 };
 
-/** ƒEƒBƒ“ƒhƒEƒGƒtƒFƒNƒgƒ^ƒCƒv*/
+/** ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ—*/
 typedef enum {
 	JUMPWIN_EFF_DISP,
 	JUMPWIN_EFF_DELETE,
@@ -148,15 +148,15 @@ static void DeleteItemIconActor( EXWIN_VIEW_WORK* wk );
 
 //------------------------------------------------------------------
 /**
- * ‰Šú‰»ˆ—
+ * åˆæœŸåŒ–å‡¦ç†
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   vwk			•`‰æƒƒCƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   vpara		•`‰æƒpƒ‰ƒ[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   bgl			BGLƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param   actsys		ƒAƒNƒ^[ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   vwk			æç”»ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   vpara		æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   bgl			BGLã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param   actsys		ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚Å¬Œ÷
+ * @retval  BOOL		TRUEã§æˆåŠŸ
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_ExWinInit( EXWIN_VIEW_WORK* wk, BOXAPP_VIEW_WORK* vwk, const BOXAPP_VPARAM* vpara, GF_BGL_INI* bgl, CLACT_SET_PTR actsys, ARCHANDLE* p_boxgra_handle )
@@ -241,7 +241,7 @@ BOOL BoxAppView_ExWinInit( EXWIN_VIEW_WORK* wk, BOXAPP_VIEW_WORK* vwk, const BOX
 /**
  * 
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -276,7 +276,7 @@ void BoxAppView_ExWinSetup( EXWIN_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * I—¹ˆ—
+ * çµ‚äº†å‡¦ç†
  *
  * @param   wk		
  *
@@ -331,7 +331,7 @@ void BoxAppView_ExWinQuit( EXWIN_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‘I‘ðƒEƒBƒ“ƒhƒE•\Ž¦ŠJŽn
+ * ãƒœãƒƒã‚¯ã‚¹é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºé–‹å§‹
  *
  * @param   wk		
  *
@@ -345,11 +345,11 @@ void BoxAppView_ExWin_JumpWinDispStart( EXWIN_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‘I‘ðƒEƒBƒ“ƒhƒE•\Ž¦I—¹‘Ò‚¿
+ * ãƒœãƒƒã‚¯ã‚¹é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºçµ‚äº†å¾…ã¡
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_ExWin_JumpWinDispWait( EXWIN_VIEW_WORK* wk )
@@ -358,9 +358,9 @@ BOOL BoxAppView_ExWin_JumpWinDispWait( EXWIN_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‘I‘ðƒEƒBƒ“ƒhƒE•\Ž¦XV
+ * ãƒœãƒƒã‚¯ã‚¹é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºæ›´æ–°
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -374,9 +374,9 @@ void BoxAppView_ExWin_JumpWinUpdate( EXWIN_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‘I‘ðƒEƒBƒ“ƒhƒEÁ‹ŽŠJŽn
+ * ãƒœãƒƒã‚¯ã‚¹é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¶ˆåŽ»é–‹å§‹
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -386,11 +386,11 @@ void BoxAppView_ExWin_JumpWinDelStart( EXWIN_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‘I‘ðƒEƒBƒ“ƒhƒEÁ‹ŽI—¹‘Ò‚¿
+ * ãƒœãƒƒã‚¯ã‚¹é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¶ˆåŽ»çµ‚äº†å¾…ã¡
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_ExWin_JumpWinDelWait( EXWIN_VIEW_WORK* wk )
@@ -400,13 +400,13 @@ BOOL BoxAppView_ExWin_JumpWinDelWait( EXWIN_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^ì¬E“]‘—EƒvƒƒLƒVì¬
+ * ãƒˆãƒ¬ã‚¤ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ä½œæˆãƒ»è»¢é€ãƒ»ãƒ—ãƒ­ã‚­ã‚·ä½œæˆ
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   trayno		ƒgƒŒƒCƒiƒ“ƒo[
- * @param   charpos		“]‘—æƒLƒƒƒ‰ƒiƒ“ƒo[
- * @param   vramType	“]‘—æVRAM
- * @param   proxy		ƒvƒƒLƒVì¬æ•Ï”ƒAƒhƒŒƒXiNULL‚¾‚Æ“]‘—‚Ì‚Ýs‚¤j
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayno		ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
+ * @param   charpos		è»¢é€å…ˆã‚­ãƒ£ãƒ©ãƒŠãƒ³ãƒãƒ¼
+ * @param   vramType	è»¢é€å…ˆVRAM
+ * @param   proxy		ãƒ—ãƒ­ã‚­ã‚·ä½œæˆå…ˆå¤‰æ•°ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼ˆNULLã ã¨è»¢é€ã®ã¿è¡Œã†ï¼‰
  *
  */
 //------------------------------------------------------------------
@@ -420,7 +420,7 @@ void BoxAppView_ExWin_TransTrayIconCharData( EXWIN_VIEW_WORK* wk, u32 trayno, u3
 	
 	boxData = BoxAppVPara_GetBoxData( wk->vpara );
 
-// •ÇŽ†ƒCƒ[ƒWF‚Å“h‚è‚Â‚Ô‚·
+// å£ç´™ã‚¤ãƒ¡ãƒ¼ã‚¸è‰²ã§å¡—ã‚Šã¤ã¶ã™
 	wall_no = BOXDAT_GetWallPaperNumber( boxData, trayno );
 	if(wall_no >= BOX_TOTAL_WALLPAPER_MAX){
 		wall_no -= BOX_PL_EX_WALLPAPER_MAX;
@@ -429,7 +429,7 @@ void BoxAppView_ExWin_TransTrayIconCharData( EXWIN_VIEW_WORK* wk, u32 trayno, u3
 	GF_BGL_BmpFill256( &(wk->trayIconBmpHeader), TRAYICON_WRITE_OX, TRAYICON_WRITE_OY, 
 							TRAYICON_WRITE_WIDTH, TRAYICON_WRITE_HEIGHT, color );
 
-	// ƒ|ƒPƒ‚ƒ“ƒCƒ[ƒWFƒhƒbƒg‚ð‘Å‚Â
+	// ãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ¡ãƒ¼ã‚¸è‰²ãƒ‰ãƒƒãƒˆã‚’æ‰“ã¤
 	for( y = 0, pos = 0; y < BOX_MAX_RAW; y++ )
 	{
 		for( x = 0; x < BOX_MAX_COLUMN; x++ )
@@ -449,10 +449,10 @@ void BoxAppView_ExWin_TransTrayIconCharData( EXWIN_VIEW_WORK* wk, u32 trayno, u3
 					color = (monsno != MONSNO_MANAFI)? COLOR_WHITE : COLOR_BLUE;
 				}
 
-				// ƒp[ƒ\ƒiƒ‹ƒJƒ‰[‚ðƒpƒŒƒbƒgƒiƒ“ƒo[‚É•ÏŠ·B‰B‚µ•ÇŽ†ƒJƒ‰[‚Æ‹¤—L‚µ‚Ä‚é‚Ì‚Å‚©‚È‚èƒLƒcƒLƒc‚Å‚·
+				// ãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ã‚«ãƒ©ãƒ¼ã‚’ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã«å¤‰æ›ã€‚éš ã—å£ç´™ã‚«ãƒ©ãƒ¼ã¨å…±æœ‰ã—ã¦ã‚‹ã®ã§ã‹ãªã‚Šã‚­ãƒ„ã‚­ãƒ„ã§ã™
 				{
 					static const u8 color_translate[] = {
-					//  Ô    Â    ‰©    —Î    •    ’ƒ    Ž‡    ŠD    ”’    “
+					//  èµ¤    é’    é»„    ç·‘    é»’    èŒ¶    ç´«    ç°    ç™½    æ¡ƒ
 					//	0x0e, 0x0f, 0x05, 0x01, 0x0d, 0x0c, 0x06, 0x0b, 0x0a, 0x09,
 						0x0e, 0x0f, 0x05, 0x04, 0x0d, 0x0c, 0x03, 0x0b, 0x0a, 0x09,
 					};
@@ -499,11 +499,11 @@ void BoxAppView_ExWin_TransTrayIconCharData( EXWIN_VIEW_WORK* wk, u32 trayno, u3
 
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒAƒCƒRƒ“‚ÌƒZƒ‹ƒf[ƒ^ƒAƒhƒŒƒX‚ð•Ô‚·
+ * ãƒˆãƒ¬ã‚¤ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  NNSG2dCellDataBank*		ƒZƒ‹ƒf[ƒ^ƒAƒhƒŒƒX
+ * @retval  NNSG2dCellDataBank*		ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //------------------------------------------------------------------
 NNSG2dCellDataBank* BoxAppView_ExWin_GetTrayIconCellDataAdrs( EXWIN_VIEW_WORK* wk )
@@ -523,11 +523,11 @@ NNSG2dCellDataBank* BoxAppView_ExWin_GetTrayIconCellDataAdrs( EXWIN_VIEW_WORK* w
 
 //------------------------------------------------------------------
 /**
- * •\Ž¦‚·‚éæ“ª‚ÌƒgƒŒƒCƒiƒ“ƒo[
+ * è¡¨ç¤ºã™ã‚‹å…ˆé ­ã®ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  int		ƒgƒŒƒCƒiƒ“ƒo[
+ * @retval  int		ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 static int DispFirstTrayNumber( EXWIN_VIEW_WORK* wk )
@@ -589,9 +589,9 @@ static u32 heavyfunc( void* ptr )
 }
 //------------------------------------------------------------------
 /**
- * •\Ž¦‚·‚éƒgƒŒƒCƒAƒCƒRƒ“‚ðì¬i•\Ž¦‚Í‚µ‚È‚¢j
+ * è¡¨ç¤ºã™ã‚‹ãƒˆãƒ¬ã‚¤ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä½œæˆï¼ˆè¡¨ç¤ºã¯ã—ãªã„ï¼‰
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -619,15 +619,15 @@ static void TrayIconMainViewInit( EXWIN_VIEW_WORK* wk )
 			OBJCHAR_TRAYICON_POS+OBJCHAR_TRAYICON_SIZE*i, NNS_G2D_VRAM_TYPE_2DMAIN, &proxy );
 		header.pImageProxy = &proxy;
 
-		// •\Ž¦‚ðƒIƒt‚é‘O‚ÉŠ„‚èž‚Ý‚ª“ü‚é‚Æˆêu•\Ž¦‚³‚ê‚Ä‚µ‚Ü‚¤‚Ì‚Å
-		// Å‰‚Í‰æ–ÊŠO‚ÌÀ•W‚ðÝ’è‚µ‚Ä‚¨‚­
+		// è¡¨ç¤ºã‚’ã‚ªãƒ•ã‚‹å‰ã«å‰²ã‚Šè¾¼ã¿ãŒå…¥ã‚‹ã¨ä¸€çž¬è¡¨ç¤ºã•ã‚Œã¦ã—ã¾ã†ã®ã§
+		// æœ€åˆã¯ç”»é¢å¤–ã®åº§æ¨™ã‚’è¨­å®šã—ã¦ãŠã
 		wk->trayIconAct[i] = BoxAppView_AddActor( wk->actsys, &header,
 			512, 256,
 			ACTPRI_TRAY_ICON_MIN, NNS_G2D_VRAM_TYPE_2DMAIN );
 
 		GF_ASSERT(wk->trayIconAct[i]!=NULL);
 
-		// •\Ž¦ƒtƒ‰ƒO‚ðƒIƒt‚Á‚½Œã‚ÉÀ•W‚ð‰ü‚ß‚ÄÝ’è
+		// è¡¨ç¤ºãƒ•ãƒ©ã‚°ã‚’ã‚ªãƒ•ã£ãŸå¾Œã«åº§æ¨™ã‚’æ”¹ã‚ã¦è¨­å®š
 		CLACT_SetDrawFlag( wk->trayIconAct[i], FALSE );
 		VEC_Set(&vec, FX32_CONST(TRAYICON_DISP_X+i*TRAYICON_DISP_XSPC), FX32_CONST(TRAYICON_DISP_Y), 0 );
 		CLACT_SetMatrix( wk->trayIconAct[i], &vec );
@@ -645,9 +645,9 @@ static void TrayIconMainViewInit( EXWIN_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ‘SƒgƒŒƒCƒAƒCƒRƒ“‚ðíœ
+ * å…¨ãƒˆãƒ¬ã‚¤ã‚¢ã‚¤ã‚³ãƒ³ã‚’å‰Šé™¤
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -666,9 +666,9 @@ static void TrayIconMainViewDelete( EXWIN_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * Œ»ÝƒZƒ“ƒ^[‚ÌƒgƒŒƒCƒiƒ“ƒo[‚ðŠî€‚ÉƒgƒŒƒCƒAƒCƒRƒ“®—ñE•\Ž¦
+ * ç¾åœ¨ã‚»ãƒ³ã‚¿ãƒ¼ã®ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼ã‚’åŸºæº–ã«ãƒˆãƒ¬ã‚¤ã‚¢ã‚¤ã‚³ãƒ³æ•´åˆ—ãƒ»è¡¨ç¤º
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -696,9 +696,9 @@ static void TrayIconMainViewFormat( EXWIN_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * Œ»ÝƒZƒ“ƒ^[‚ÌƒgƒŒƒC–¼•`‰æ
+ * ç¾åœ¨ã‚»ãƒ³ã‚¿ãƒ¼ã®ãƒˆãƒ¬ã‚¤åæç”»
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -724,9 +724,9 @@ static void TrayNameWrite( EXWIN_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒC–¼ƒEƒBƒ“ƒhƒE•\Ž¦ƒNƒŠƒA
+ * ãƒˆãƒ¬ã‚¤åã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã‚¯ãƒªã‚¢
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -738,9 +738,9 @@ static void TrayNameClear( EXWIN_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * Œ»ÝƒZƒ“ƒ^[‚ÌƒgƒŒƒC‚ðŠî€‚Éƒ|ƒPƒ‚ƒ“”•`‰æ
+ * ç¾åœ¨ã‚»ãƒ³ã‚¿ãƒ¼ã®ãƒˆãƒ¬ã‚¤ã‚’åŸºæº–ã«ãƒã‚±ãƒ¢ãƒ³æ•°æç”»
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -764,9 +764,9 @@ static void PokeCntWrite( EXWIN_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒC–¼ƒEƒBƒ“ƒhƒE•\Ž¦ƒNƒŠƒA
+ * ãƒˆãƒ¬ã‚¤åã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã‚¯ãƒªã‚¢
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -779,13 +779,13 @@ static void PokeCntClear( EXWIN_VIEW_WORK* wk )
 
 
 /*====================================================================================*/
-/*  ˆÈ‰ºAƒEƒBƒ“ƒhƒE‚Ì•\Ž¦EÁ‹ŽƒGƒtƒFƒNƒgˆ—                                        */
+/*  ä»¥ä¸‹ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºãƒ»æ¶ˆåŽ»ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‡¦ç†                                        */
 /*====================================================================================*/
 
 
 //----------------------------------------------
 /**
- *  ƒ{ƒbƒNƒX‘I‘ðƒEƒBƒ“ƒhƒEƒGƒtƒFƒNƒgƒ[ƒN
+ *  ãƒœãƒƒã‚¯ã‚¹é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //----------------------------------------------
 typedef struct {
@@ -797,9 +797,9 @@ typedef struct {
 
 //------------------------------------------------------------------
 /**
- * ‘I‘ðƒEƒBƒ“ƒhƒE•\Ž¦ƒGƒtƒFƒNƒg‚Ìƒ^ƒXƒN“o˜^
+ * é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -818,7 +818,7 @@ static void SetJumpWinEffectTask( EXWIN_VIEW_WORK* wk, JUMPWIN_EFFECT_TYPE type)
 		taskwk->seq = 0;
 		taskwk->workval = 0;
 
-		// ƒpƒŒƒbƒg‚R–{•ª‚Ì“]‘—‚ª”­¶‚·‚é‚Ì‚ÅA”O‚Ì‚½‚ßVIntr‚ðŽg‚í‚È‚¢
+		// ãƒ‘ãƒ¬ãƒƒãƒˆï¼“æœ¬åˆ†ã®è»¢é€ãŒç™ºç”Ÿã™ã‚‹ã®ã§ã€å¿µã®ãŸã‚VIntrã‚’ä½¿ã‚ãªã„
 		wk->effectTask = TCB_Add( functbl[type], taskwk, TASKPRI_VIEW_COMMAND_SUB );
 
 		if( wk->effectTask == NULL )
@@ -829,9 +829,9 @@ static void SetJumpWinEffectTask( EXWIN_VIEW_WORK* wk, JUMPWIN_EFFECT_TYPE type)
 }
 //------------------------------------------------------------------
 /**
- * ‘I‘ðƒEƒBƒ“ƒhƒEƒGƒtƒFƒNƒg‚Ìƒ^ƒXƒNíœiƒ^ƒXƒN–{‘Ì‚©‚çŒÄ‚Î‚ê‚éj
+ * é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¿ã‚¹ã‚¯å‰Šé™¤ï¼ˆã‚¿ã‚¹ã‚¯æœ¬ä½“ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ï¼‰
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -845,11 +845,11 @@ static void DeleteJumpWinEffectTask( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‘I‘ðƒEƒBƒ“ƒhƒE•\Ž¦ƒGƒtƒFƒNƒg‚Ìƒ^ƒXƒNI—¹‘Ò‚¿
+ * ãƒœãƒƒã‚¯ã‚¹é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¿ã‚¹ã‚¯çµ‚äº†å¾…ã¡
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL WaitJumpWinEffectTask( EXWIN_VIEW_WORK* wk )
@@ -859,7 +859,7 @@ static BOOL WaitJumpWinEffectTask( EXWIN_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‘I‘ðƒEƒBƒ“ƒhƒE•\Ž¦ƒGƒtƒFƒNƒg‚Ìƒ^ƒXƒN–{‘Ì
+ * ãƒœãƒƒã‚¯ã‚¹é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¿ã‚¹ã‚¯æœ¬ä½“
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -872,13 +872,13 @@ static void JumpWinDispEffectTask( TCB_PTR tcb, void* wk_adrs )
 	EXWIN_VIEW_WORK* wk = taskwk->parentWork;
 
 	switch( taskwk->seq ){
-	// ƒEƒBƒ“ƒhƒEŽ©‘Ì‚ª‚Ê‚é‚Á‚Æo‚Ä‚­‚é
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è‡ªä½“ãŒã¬ã‚‹ã£ã¨å‡ºã¦ãã‚‹
 	case 0:
 		taskwk->workval += JUMPWIN_DISPEFFECT_SPEED;
 
 		if( (taskwk->workval*2) < JUMPWIN_HEIGHT )
 		{
-			// ƒXƒNƒŠ[ƒ“•`‰æ‚x’†S
+			// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æç”»ï¼¹ä¸­å¿ƒ
 			u32 cy = JUMPWIN_WRITE_YPOS+(JUMPWIN_HEIGHT/2);
 			GF_BGL_ScrWrite( wk->bgl, FRM_MAIN_MESSAGE, wk->jumpwinScrnData->rawData,
 						JUMPWIN_WRITE_XPOS, cy-taskwk->workval, JUMPWIN_WIDTH, taskwk->workval );
@@ -929,7 +929,7 @@ static void JumpWinDispEffectTask( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‘I‘ðƒEƒBƒ“ƒhƒEÁ‹ŽƒGƒtƒFƒNƒg‚Ìƒ^ƒXƒN–{‘Ì
+ * ãƒœãƒƒã‚¯ã‚¹é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¶ˆåŽ»ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¿ã‚¹ã‚¯æœ¬ä½“
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -956,7 +956,7 @@ static void JumpWinDeleteEffectTask( TCB_PTR tcb, void* wk_adrs )
 		taskwk->workval += JUMPWIN_DISPEFFECT_SPEED;
 		if( (taskwk->workval*2) < JUMPWIN_HEIGHT )
 		{
-			// ƒXƒNƒŠ[ƒ“•`‰æ‚x’†S
+			// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æç”»ï¼¹ä¸­å¿ƒ
 			u32 cy = JUMPWIN_WRITE_YPOS+(JUMPWIN_HEIGHT/2);
 			GF_BGL_ScrWrite( wk->bgl, FRM_MAIN_MESSAGE, wk->jumpwinScrnData->rawData,
 						JUMPWIN_WRITE_XPOS, JUMPWIN_WRITE_YPOS+taskwk->workval,
@@ -990,12 +990,12 @@ static void JumpWinDeleteEffectTask( TCB_PTR tcb, void* wk_adrs )
 
 
 /*====================================================================================*/
-/*  ƒAƒCƒeƒ€à–¾ƒEƒBƒ“ƒhƒEˆ—                                                        */
+/*  ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‡¦ç†                                                        */
 /*====================================================================================*/
 
 //----------------------------------------------
 /**
- *  ƒAƒCƒeƒ€à–¾ƒEƒBƒ“ƒhƒE•\Ž¦ƒGƒtƒFƒNƒgƒ[ƒN
+ *  ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //----------------------------------------------
 typedef struct {
@@ -1011,7 +1011,7 @@ typedef struct {
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€à–¾ƒEƒBƒ“ƒhƒE•\Ž¦ŠJŽn
+ * ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºé–‹å§‹
  *
  * @param   wk		
  *
@@ -1065,11 +1065,11 @@ void BoxAppView_ExWin_ItemInfoWinDispStart( EXWIN_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€à–¾ƒEƒBƒ“ƒhƒE•\Ž¦I—¹‘Ò‚¿
+ * ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºçµ‚äº†å¾…ã¡
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_ExWin_ItemInfoWinDispWait( EXWIN_VIEW_WORK* wk )
@@ -1115,7 +1115,7 @@ static void ItemInfoWinDispTask(TCB_PTR tcb, void* wk_ptr)
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€à–¾ƒEƒBƒ“ƒhƒEÁ‹ŽŠJŽn
+ * ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¶ˆåŽ»é–‹å§‹
  *
  * @param   wk		
  *
@@ -1144,11 +1144,11 @@ void BoxAppView_ExWin_ItemInfoWinClearStart( EXWIN_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€à–¾ƒEƒBƒ“ƒhƒEÁ‹ŽI—¹‘Ò‚¿
+ * ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¶ˆåŽ»çµ‚äº†å¾…ã¡
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_ExWin_ItemInfoWinClearWait( EXWIN_VIEW_WORK* wk )
@@ -1194,7 +1194,7 @@ static void ItemInfoWinClearTask(TCB_PTR tcb, void* wk_ptr)
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒAƒCƒRƒ“ƒAƒNƒ^[ƒZƒbƒgƒAƒbƒv
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
  * @param   wk		
  *

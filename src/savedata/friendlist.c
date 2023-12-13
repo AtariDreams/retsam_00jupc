@@ -1,16 +1,16 @@
 //============================================================================================
 /**
  * @file	friendlist.c
- * @brief	©•ªó‘Ôƒf[ƒ^ƒAƒNƒZƒX—pƒ\[ƒX
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨ã‚½ãƒ¼ã‚¹
  * @author	tamada GAME FREAK inc.
  * @date	2005.10.27
  */
 //============================================================================================
 
-// ƒRƒƒ“ƒg‚ğ‚Í‚¸‚·‚Æ—F’BƒOƒ‹[ƒv‚Ì‚h‚c‚ğ•\¦‚·‚é
+// ã‚³ãƒ¡ãƒ³ãƒˆã‚’ã¯ãšã™ã¨å‹é”ã‚°ãƒ«ãƒ¼ãƒ—ã®ï¼©ï¼¤ã‚’è¡¨ç¤ºã™ã‚‹
 //#define FRIENDLIST_DEBUG
 
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
 #include "common.h"
 
@@ -31,13 +31,13 @@
 
 //============================================================================================
 //
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	©•ªó‘Ô•Ûƒ[ƒN‚ÌƒTƒCƒYæ“¾
- * @return	int		ƒTƒCƒYiƒoƒCƒg’PˆÊj
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚ºå–å¾—
+ * @return	int		ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  */
 //----------------------------------------------------------
 int FriendList_GetWorkSize(void)
@@ -47,9 +47,9 @@ int FriendList_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief	©•ªó‘Ô•Ûƒ[ƒN‚ÌŠm•Û
- * @param	heapID		ƒƒ‚ƒŠŠm•Û‚ğ‚¨‚±‚È‚¤ƒq[ƒvw’è
- * @return	FRIEND_LIST	æ“¾‚µ‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿
+ * @param	heapID		ãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚’ãŠã“ãªã†ãƒ’ãƒ¼ãƒ—æŒ‡å®š
+ * @return	FRIEND_LIST	å–å¾—ã—ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 FRIEND_LIST * FriendList_AllocWork(u32 heapID)
@@ -65,9 +65,9 @@ FRIEND_LIST * FriendList_AllocWork(u32 heapID)
 
 //----------------------------------------------------------
 /**
- * @brief	FRIEND_LIST‚ÌƒRƒs[
- * @param	from	ƒRƒs[Œ³FRIEND_LIST‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	to		ƒRƒs[æFRIEND_LIST‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	FRIEND_LISTã®ã‚³ãƒ”ãƒ¼
+ * @param	from	ã‚³ãƒ”ãƒ¼å…ƒFRIEND_LISTã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	to		ã‚³ãƒ”ãƒ¼å…ˆFRIEND_LISTã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void FriendList_Copy(const FRIEND_LIST * from, FRIEND_LIST * to)
@@ -78,9 +78,9 @@ void FriendList_Copy(const FRIEND_LIST * from, FRIEND_LIST * to)
 
 //----------------------------------------------------------
 /**
- * @brief	FRIEND_LISTƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
- * @param	sv				ƒZ[ƒuƒf[ƒ^
- * @return  FRIEND_LIST		FRIEND_LIST‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	FRIEND_LISTãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
+ * @param	sv				ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @return  FRIEND_LIST		FRIEND_LISTã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 FRIEND_LIST *SaveData_GetFriendList(SAVEDATA * sv)
@@ -92,13 +92,13 @@ FRIEND_LIST *SaveData_GetFriendList(SAVEDATA * sv)
 }
 //============================================================================================
 //
-//	FRIEND_LIST‘€ì‚Ì‚½‚ß‚ÌŠÖ”
+//	FRIEND_LISTæ“ä½œã®ãŸã‚ã®é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	—F’BƒŠƒXƒgƒf[ƒ^‚Ì‰Šú‰»
- * @param	my		—F’BƒŠƒXƒg•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	å‹é”ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
+ * @param	my		å‹é”ãƒªã‚¹ãƒˆä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void FriendList_Init( FRIEND_LIST * flist )
@@ -116,9 +116,9 @@ void FriendList_Init( FRIEND_LIST * flist )
 
 //----------------------------------------------------------
 /**
- * @brief	–¼‘OƒZƒbƒg
- * @param	flist		©•ªó‘Ô•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	name	–¼‘O•¶š—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åå‰ã‚»ãƒƒãƒˆ
+ * @param	flist		è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	name	åå‰æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void FriendList_SetName(FRIEND_LIST * flist, int no, const STRCODE * name)
@@ -135,9 +135,9 @@ void FriendList_SetName(FRIEND_LIST * flist, int no, const STRCODE * name)
 
 //----------------------------------------------------------
 /**
- * @brief	–¼‘Oæ“¾
- * @param	my		©•ªó‘Ô•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	STRCODE		–¼‘O•¶š—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åå‰å–å¾—
+ * @param	my		è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	STRCODE		åå‰æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 const STRCODE * FriendList_GetName(const FRIEND_LIST * flist, int no)
@@ -148,9 +148,9 @@ const STRCODE * FriendList_GetName(const FRIEND_LIST * flist, int no)
 
 //----------------------------------------------------------
 /**
- * @brief	©•ª‚Ì‚h‚cƒZƒbƒg
- * @param	my		©•ªó‘Ô•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		‚h‚cw’è	
+ * @brief	è‡ªåˆ†ã®ï¼©ï¼¤ã‚»ãƒƒãƒˆ
+ * @param	my		è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		ï¼©ï¼¤æŒ‡å®š	
  */
 //----------------------------------------------------------
 void FriendList_SetID(FRIEND_LIST * flist, int no, u32 id)
@@ -162,9 +162,9 @@ void FriendList_SetID(FRIEND_LIST * flist, int no, u32 id)
 }
 //----------------------------------------------------------
 /**
- * @brief	©•ª‚Ì‚h‚cæ“¾
- * @param	my		©•ªó‘Ô•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		©•ª‚Ì‚h‚c	
+ * @brief	è‡ªåˆ†ã®ï¼©ï¼¤å–å¾—
+ * @param	my		è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		è‡ªåˆ†ã®ï¼©ï¼¤	
  */
 //----------------------------------------------------------
 u32 FriendList_GetID(const FRIEND_LIST * flist, int no)
@@ -175,11 +175,11 @@ u32 FriendList_GetID(const FRIEND_LIST * flist, int no)
 
 //==============================================================================
 /**
- * $brief   ‚q‚n‚lƒo[ƒWƒ‡ƒ“ƒR[ƒh‚ğ•Ô‚·
+ * $brief   ï¼²ï¼¯ï¼­ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
  *
- * @param   my		©•ªó‘Ô•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   my		è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  u8		0:ƒ_ƒCƒ„ 1:ƒp[ƒ‹
+ * @retval  u8		0:ãƒ€ã‚¤ãƒ¤ 1:ãƒ‘ãƒ¼ãƒ«
  */
 //==============================================================================
 u8  FriendList_GetRomCode( const FRIEND_LIST * flist, int no )
@@ -188,11 +188,11 @@ u8  FriendList_GetRomCode( const FRIEND_LIST * flist, int no )
 }
 //==============================================================================
 /**
- * $brief   ‚q‚n‚lƒo[ƒWƒ‡ƒ“ƒR[ƒh‚ğ•Ô‚·
+ * $brief   ï¼²ï¼¯ï¼­ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
  *
- * @param   my		©•ªó‘Ô•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   my		è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  u8		0:ƒ_ƒCƒ„ 1:ƒp[ƒ‹
+ * @retval  u8		0:ãƒ€ã‚¤ãƒ¤ 1:ãƒ‘ãƒ¼ãƒ«
  */
 //==============================================================================
 void  FriendList_SetRomCode( FRIEND_LIST * flist, int no, u8 rom )
@@ -205,9 +205,9 @@ void  FriendList_SetRomCode( FRIEND_LIST * flist, int no, u8 rom )
 
 //----------------------------------------------------------
 /**
- * @brief	«•ÊƒZƒbƒg
- * @param	my		©•ªó‘Ô•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		«•Ê	
+ * @brief	æ€§åˆ¥ã‚»ãƒƒãƒˆ
+ * @param	my		è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ€§åˆ¥	
  */
 //----------------------------------------------------------
 void FriendList_SetSex(FRIEND_LIST * flist, int no, u32 sex)
@@ -219,9 +219,9 @@ void FriendList_SetSex(FRIEND_LIST * flist, int no, u32 sex)
 }
 //----------------------------------------------------------
 /**
- * @brief	«•Êæ“¾
- * @param	my		©•ªó‘Ô•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		©•ª‚Ì«•Ê
+ * @brief	æ€§åˆ¥å–å¾—
+ * @param	my		è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		è‡ªåˆ†ã®æ€§åˆ¥
  */
 //----------------------------------------------------------
 u32 FriendList_GetSex(const FRIEND_LIST * flist, int no)
@@ -233,7 +233,7 @@ u32 FriendList_GetSex(const FRIEND_LIST * flist, int no)
 
 //==============================================================================
 /**
- * $brief   ƒOƒ‹[ƒvƒŠƒXƒgIDƒZƒbƒg
+ * $brief   ã‚°ãƒ«ãƒ¼ãƒ—ãƒªã‚¹ãƒˆIDã‚»ãƒƒãƒˆ
  */
 //==============================================================================
 void  FriendList_SetGroupListId( FRIEND_LIST * flist , int no, u32 id )
@@ -246,7 +246,7 @@ void  FriendList_SetGroupListId( FRIEND_LIST * flist , int no, u32 id )
 
 //==============================================================================
 /**
- * $brief   ƒOƒ‹[ƒvƒŠƒXƒgIDƒQƒbƒg
+ * $brief   ã‚°ãƒ«ãƒ¼ãƒ—ãƒªã‚¹ãƒˆIDã‚²ãƒƒãƒˆ
  */
 //==============================================================================
 u8  FriendList_GetGroupListId( const FRIEND_LIST * flist , int no )
@@ -256,7 +256,7 @@ u8  FriendList_GetGroupListId( const FRIEND_LIST * flist , int no )
 
 //==============================================================================
 /**
- * $brief   ƒƒ€ƒR[ƒhæ“¾
+ * $brief   ãƒ­ãƒ ã‚³ãƒ¼ãƒ‰å–å¾—
  */
 //==============================================================================
 void  FriendList_SetGroupListRomCode( FRIEND_LIST * flist , int no, u8 rom )
@@ -269,7 +269,7 @@ void  FriendList_SetGroupListRomCode( FRIEND_LIST * flist , int no, u8 rom )
 
 //==============================================================================
 /**
- * $brief   ƒOƒ‹[ƒvƒƒ€ƒR[ƒhƒZƒbƒg
+ * $brief   ã‚°ãƒ«ãƒ¼ãƒ—ãƒ­ãƒ ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
  */
 //==============================================================================
 u8  FriendList_GetGroupListRomCode( const FRIEND_LIST * flist , int no )
@@ -279,7 +279,7 @@ u8  FriendList_GetGroupListRomCode( const FRIEND_LIST * flist , int no )
 
 //==============================================================================
 /**
- * $brief   ƒOƒ‹[ƒvŠCŠOƒR[ƒhƒZƒbƒg
+ * $brief   ã‚°ãƒ«ãƒ¼ãƒ—æµ·å¤–ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
  */
 //==============================================================================
 void  FriendList_SetGroupListRegion( FRIEND_LIST * flist , int no, u8 code )
@@ -292,7 +292,7 @@ void  FriendList_SetGroupListRegion( FRIEND_LIST * flist , int no, u8 code )
 
 //==============================================================================
 /**
- * $brief   ƒOƒ‹[ƒvŠCŠOƒR[ƒhæ“¾
+ * $brief   ã‚°ãƒ«ãƒ¼ãƒ—æµ·å¤–ã‚³ãƒ¼ãƒ‰å–å¾—
  */
 //==============================================================================
 u8  FriendList_GetGroupListRegion( const FRIEND_LIST * flist , int no )
@@ -301,7 +301,7 @@ u8  FriendList_GetGroupListRegion( const FRIEND_LIST * flist , int no )
 }
 //==============================================================================
 /**
- * $brief   ƒOƒ‹[ƒv«•ÊƒZƒbƒg
+ * $brief   ã‚°ãƒ«ãƒ¼ãƒ—æ€§åˆ¥ã‚»ãƒƒãƒˆ
  */
 //==============================================================================
 void  FriendList_SetGroupListSex( FRIEND_LIST * flist , int no, u8 code )
@@ -314,7 +314,7 @@ void  FriendList_SetGroupListSex( FRIEND_LIST * flist , int no, u8 code )
 
 //==============================================================================
 /**
- * $brief   ƒOƒ‹[ƒv«•Êæ“¾
+ * $brief   ã‚°ãƒ«ãƒ¼ãƒ—æ€§åˆ¥å–å¾—
  */
 //==============================================================================
 u8  FriendList_GetGroupListSex( const FRIEND_LIST * flist , int no )
@@ -325,12 +325,12 @@ u8  FriendList_GetGroupListSex( const FRIEND_LIST * flist , int no )
 
 //--------------------------------------------------------------------------
 /**
- * w’è‚Ìƒf[ƒ^‚Í‚µ‚è‚ ‚¢ƒOƒ‹[ƒv‚É“o˜^‚³‚ê‚Ä‚¢‚é‚©
+ * æŒ‡å®šã®ãƒ‡ãƒ¼ã‚¿ã¯ã—ã‚Šã‚ã„ã‚°ãƒ«ãƒ¼ãƒ—ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹
  *
- * @param   id		ƒgƒŒ[ƒi[‚h‚c
- * @param   name	–¼‘Oiƒ|ƒPƒ‚ƒ“•¶š—ñ)
+ * @param   id		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤
+ * @param   name	åå‰ï¼ˆãƒã‚±ãƒ¢ãƒ³æ–‡å­—åˆ—)
  *
- * @retval  int		1:ˆê’v‚µ‚½	0:‚È‚©‚Á‚½i‚à‚µ‚­‚Í‘Å‚¿Ø‚Á‚½j
+ * @retval  int		1:ä¸€è‡´ã—ãŸ	0:ãªã‹ã£ãŸï¼ˆã‚‚ã—ãã¯æ‰“ã¡åˆ‡ã£ãŸï¼‰
  *
  *
  */
@@ -349,10 +349,10 @@ int FriendList_Check( FRIEND_LIST * list, u32 id, STRCODE *name)
 
 //----------------------------------------------------------
 /**
- * @brief	FriendList“¯m‚ª“¯‚¶‚à‚Ì‚©‚Ç‚¤‚©‚ğ’²‚×‚é
- * @param	my		©•ªó‘Ô•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	target	‘Šè‚Ì©•ªó‘Ô•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	ˆê’v‚µ‚½‚çTRUE
+ * @brief	FriendListåŒå£«ãŒåŒã˜ã‚‚ã®ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
+ * @param	my		è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	target	ç›¸æ‰‹ã®è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	ä¸€è‡´ã—ãŸã‚‰TRUE
  */
 //----------------------------------------------------------
 BOOL FriendList_Compare(const FRIEND_LIST * src, const FRIEND_LIST * des)
@@ -370,7 +370,7 @@ BOOL FriendList_Compare(const FRIEND_LIST * src, const FRIEND_LIST * des)
 
 //--------------------------------------------------------------------------
 /**
- * Œ»İÚ‘±’†‚Ìƒƒ“ƒo[‚ğ‚µ‚è‚ ‚¢ƒOƒ‹[ƒv‚É“o˜^‚·‚é
+ * ç¾åœ¨æ¥ç¶šä¸­ã®ãƒ¡ãƒ³ãƒãƒ¼ã‚’ã—ã‚Šã‚ã„ã‚°ãƒ«ãƒ¼ãƒ—ã«ç™»éŒ²ã™ã‚‹
  *
  * @param  none
  *
@@ -385,44 +385,44 @@ void FriendList_Update( FRIEND_LIST *mylist, FRIEND_LIST *friends, int num, int 
 	int search[5];
 	FRIEND_LIST *tmp;
 	
-	// ƒeƒ“ƒ|ƒ‰ƒŠŠm•Û•‰Šú‰»	
+	// ãƒ†ãƒ³ãƒãƒ©ãƒªç¢ºä¿ï¼†åˆæœŸåŒ–	
 	tmp = sys_AllocMemory(heapID, sizeof(FRIEND_LIST)*FRIENDLIST_MAX);
 	FriendList_Init( tmp );
 
-	//¡‰ñ‚Ìƒƒ“ƒo[‚ÍŠù‚É“o˜^‚·‚İ‚©H
+	//ä»Šå›ã®ãƒ¡ãƒ³ãƒãƒ¼ã¯æ—¢ã«ç™»éŒ²ã™ã¿ã‹ï¼Ÿ
 	for(i=0;i<num;i++){
 		search[i] = -1;
-		for(r=0;r<FRIENDLIST_MAX;r++){		//”z—ñsearch‚É©•ª‚Ì‚µ‚è‚ ‚¢ƒOƒ‹[ƒv‚Æ”äŠr‚µ‚½Œ‹‰Ê‚ğŠi”[‚·‚é(-1F–³‚µ,0`:—L‚è)
+		for(r=0;r<FRIENDLIST_MAX;r++){		//é…åˆ—searchã«è‡ªåˆ†ã®ã—ã‚Šã‚ã„ã‚°ãƒ«ãƒ¼ãƒ—ã¨æ¯”è¼ƒã—ãŸçµæœã‚’æ ¼ç´ã™ã‚‹(-1ï¼šç„¡ã—,0ã€œ:æœ‰ã‚Š)
 			if(FriendList_Compare(&mylist[r], &friends[i])){
 				search[i] = r;
 			}
 		}
 	}
 	
-	//¡‰ñ’ÊM‚µ‚Ä‚¢‚éƒƒ“ƒo[‚ğ“o˜^‚·‚é
+	//ä»Šå›é€šä¿¡ã—ã¦ã„ã‚‹ãƒ¡ãƒ³ãƒãƒ¼ã‚’ç™»éŒ²ã™ã‚‹
 	count=0;
 	for(i=0;i<num;i++){
 		tmp[count] = friends[i];
 		if(search[i]>=0){
-			mylist[search[i]].name[0] = EOM_;			//“o˜^Ï‚İ‚Ìê‡‚ÍŒ³‚Ìƒe[ƒuƒ‹‚©‚ç–¼‘O‚ğÁ‚µ‚Ä‚µ‚Ü‚¤
+			mylist[search[i]].name[0] = EOM_;			//ç™»éŒ²æ¸ˆã¿ã®å ´åˆã¯å…ƒã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰åå‰ã‚’æ¶ˆã—ã¦ã—ã¾ã†
 		}
 		count++;
 	}
 	
-	//Šù‘¶ƒƒ“ƒo[‚ğXV‚·‚é
+	//æ—¢å­˜ãƒ¡ãƒ³ãƒãƒ¼ã‚’æ›´æ–°ã™ã‚‹
 	for(i=0;i<FRIENDLIST_MAX;i++){
-		if(mylist[i].name[0]!=EOM_){			//€–Ú–³‚µ‚¶‚á‚È‚¯‚ê‚ÎXV
+		if(mylist[i].name[0]!=EOM_){			//é …ç›®ç„¡ã—ã˜ã‚ƒãªã‘ã‚Œã°æ›´æ–°
 			tmp[count] = mylist[i];
 			count++;
 			if(count>=FRIENDLIST_MAX){
-				break;							//MAX‚ğ’´‚¦‚½‚ç“o˜^I—¹
+				break;							//MAXã‚’è¶…ãˆãŸã‚‰ç™»éŒ²çµ‚äº†
 			}
 		}
 	}
-	memcpy(mylist,tmp,sizeof(FRIEND_LIST)*FRIENDLIST_MAX);		//ƒeƒ“ƒ|ƒ‰ƒŠ‚©‚çŒ³‚ÌêŠ‚ÉXV
+	memcpy(mylist,tmp,sizeof(FRIEND_LIST)*FRIENDLIST_MAX);		//ãƒ†ãƒ³ãƒãƒ©ãƒªã‹ã‚‰å…ƒã®å ´æ‰€ã«æ›´æ–°
 	
 	
-	sys_FreeMemoryEz(tmp);		//ƒeƒ“ƒ|ƒ‰ƒŠ‰ğ•ú
+	sys_FreeMemoryEz(tmp);		//ãƒ†ãƒ³ãƒãƒ©ãƒªè§£æ”¾
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_FRIEND)
 	SVLD_SetCrc(GMDATA_ID_FRIEND);
 #endif //CRC_LOADCHECK
@@ -432,13 +432,13 @@ void FriendList_Update( FRIEND_LIST *mylist, FRIEND_LIST *friends, int num, int 
 
 //==============================================================================
 /**
- * $brief   w’è‚ÌID‚Í’m‚è‡‚¢‚ÌID‚©‘ƒ`ƒFƒbƒN‚·‚é
+ * $brief   æŒ‡å®šã®IDã¯çŸ¥ã‚Šåˆã„ã®IDã‹ç·ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
  * @param   mylist		
  * @param   id		
  *
- * @retval  int		©•ª‚Ì’m‚è‡‚¢‚¾‚Á‚½‚çDIRECT_FRIEND + (‰½”Ô–Ú‚Ì’m‚è‡‚¢‚©<<16)
- *					‚Æ‚à‚¾‚¿‚Ì’m‚è‡‚¢INDIRECT_FRIEND + (‰½”Ô–Ú‚Ì’m‚è‡‚¢‚©<<16)
+ * @retval  int		è‡ªåˆ†ã®çŸ¥ã‚Šåˆã„ã ã£ãŸã‚‰DIRECT_FRIEND + (ä½•ç•ªç›®ã®çŸ¥ã‚Šåˆã„ã‹<<16)
+ *					ã¨ã‚‚ã ã¡ã®çŸ¥ã‚Šåˆã„INDIRECT_FRIEND + (ä½•ç•ªç›®ã®çŸ¥ã‚Šåˆã„ã‹<<16)
  *
  */
 //==============================================================================
@@ -447,13 +447,13 @@ int FriendList_IdFullCheck( FRIEND_LIST *mylist, u32 id )
 	int i,r;
 
 	for(i=0;i<FRIENDLIST_MAX;i++){
-		// ’¼Ú‚Ì’m‚è‡‚¢‚©H
+		// ç›´æ¥ã®çŸ¥ã‚Šåˆã„ã‹ï¼Ÿ
 		if(mylist[i].id==id){
 			return DIRECT_FRIEND;
 		}
 	}
 
-	// ŠÔÚ“I‚È’m‚è‡‚¢‚©H
+	// é–“æ¥çš„ãªçŸ¥ã‚Šåˆã„ã‹ï¼Ÿ
 	for(i=0;i<FRIENDLIST_MAX;i++){
 		for(r=0;r<FRIENDLIST_FRIEND_MAX;r++){
 			if(mylist[i].group_id[r]==id){
@@ -461,20 +461,20 @@ int FriendList_IdFullCheck( FRIEND_LIST *mylist, u32 id )
 			}
 		}
 	}
-	return 0;	// ’m‚è‡‚¢‚¶‚á‚È‚¢
+	return 0;	// çŸ¥ã‚Šåˆã„ã˜ã‚ƒãªã„
 }
 
 
 //============================================================================================
-//	ƒfƒoƒbƒO—p
+//	ãƒ‡ãƒãƒƒã‚°ç”¨
 //============================================================================================
 #ifdef PM_DEBUG
 //----------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒO—pF©•ªó‘ÔƒZƒbƒg
- * @param	my		©•ªó‘Ô•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	name	–¼‘O•¶š—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		IDw’è
+ * @brief	ãƒ‡ãƒãƒƒã‚°ç”¨ï¼šè‡ªåˆ†çŠ¶æ…‹ã‚»ãƒƒãƒˆ
+ * @param	my		è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	name	åå‰æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		IDæŒ‡å®š
  */
 //----------------------------------------------------------
 void Debug_FriendList_Make(FRIEND_LIST * flist, const STRCODE * name, int id )

@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_195.s
- *@brief	戦闘シーケンス
- *			よちむシーケンス
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			繧医■繧繧ｷ繝ｼ繧ｱ繝ｳ繧ｹ
  *@author	HisashiSogabe
  *@data		2006.02.24
  *

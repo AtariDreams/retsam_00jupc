@@ -1,7 +1,7 @@
 #ifndef _R215_DEF_H_
 #define _R215_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R215_BIGMAN		(1)
 #define	SCRID_R215_FIGHTER		(2)
 #define	SCRID_R215_SIGN1		(3)
@@ -10,6 +10,6 @@
 #define	SCRID_R215_JOGGER5		(6)
 #define	SCRID_R215_FLAG_CHANGE		(7)
 #define	SCRID_R215_SIGN3		(8)
-#define	SCRID_R215_DATA_MAX		(8)		//最大数
+#define	SCRID_R215_DATA_MAX		(8)		//譛螟ｧ謨ｰ
 
 #endif //_R215_DEF_H_

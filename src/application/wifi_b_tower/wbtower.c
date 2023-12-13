@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	wbtower.c
- * @bfief	WIFIƒoƒgƒ‹ƒ^ƒ[ˆ—
+ * @bfief	WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å‡¦ç†
  * @author	Akito Mori
  * @date	06.05.15
  */
@@ -57,25 +57,25 @@
 #include "msgdata/msg_ev_win.h"
 #include "msgdata/msg_trname.h"
 
-// SE—p’è‹`
+// SEç”¨å®šç¾©
 #define WORLD_MOVE_SE		(SEQ_SE_DP_SELECT)
 #define RECORD_DECIDE_SE	(SEQ_SE_DP_SELECT)
 #define RECORD_BS_SE		(SEQ_SE_DP_SELECT)
 
 
 #define MYDWC_HEAPSIZE		0x20000
-#include "../wifi_worldtrade/worldtrade.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "../wifi_worldtrade/worldtrade.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 //============================================================================================
-//	’è”’è‹`
-//============================================================================================
-
-
-
-//============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	å®šæ•°å®šç¾©
 //============================================================================================
 
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+
+
+//============================================================================================
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
+//============================================================================================
+
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 static void VBlankFunc( void * work );
 static void VramBankSet(void);
 static void InitWork( WBTOWER_WORK *wk, PROC *proc );
@@ -97,10 +97,10 @@ static NNSFndHeapHandle _wtHeapHandle;
 
 
 //============================================================================================
-//	ŠÖ”ƒe[ƒuƒ‹’è‹`
+//	é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«å®šç¾©
 //============================================================================================
 
-// ¢ŠEŒðŠ·ƒTƒuƒvƒƒZƒX—pŠÖ””z—ñ’è‹`
+// ä¸–ç•Œäº¤æ›ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ç”¨é–¢æ•°é…åˆ—å®šç¾©
 static int (*SubProcessTable[][3])(WBTOWER_WORK *wk, int seq)={
 	{ WBTower_EnterInit,   WBTower_EnterMain,    WBTower_EnterEnd   },
 //	{ WBTower_Upload_Init,  WBTower_Upload_Main,   WBTower_Upload_End  },
@@ -110,7 +110,7 @@ static int (*SubProcessTable[][3])(WBTOWER_WORK *wk, int seq)={
 WBTOWER_WORK *debug_wbtower;
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 #if 0
@@ -158,12 +158,12 @@ static void TestLeaderDataMake( TEST_BT_LEADER *leader )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT WBTowerProc_Init( PROC * proc, int * seq )
@@ -172,8 +172,8 @@ PROC_RESULT WBTowerProc_Init( PROC * proc, int * seq )
 	
 	switch(*seq){
 	case 0:
-		sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-		sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+		sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+		sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 		GF_Disp_GX_VisibleControlInit();
 		GF_Disp_GXS_VisibleControlInit();
@@ -181,7 +181,7 @@ PROC_RESULT WBTowerProc_Init( PROC * proc, int * seq )
 		GXS_SetVisiblePlane( 0 );
 
 
-		// ƒŒƒR[ƒhƒR[ƒi[—pƒq[ƒvì¬
+		// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ç”¨ãƒ’ãƒ¼ãƒ—ä½œæˆ
 		sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WIFI_BATTLETOWER, 0x50000 );
 
 		wk = PROC_AllocWork( proc, sizeof(WBTOWER_WORK), HEAPID_WIFI_BATTLETOWER );
@@ -198,7 +198,7 @@ PROC_RESULT WBTowerProc_Init( PROC * proc, int * seq )
 		}
 		
 		
-		// •¶Žš—ñƒ}ƒl[ƒWƒƒ[¶¬
+		// æ–‡å­—åˆ—ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”Ÿæˆ
 		wk->WordSet    		 = WORDSET_CreateEx( 11, WORDSET_DEFAULT_BUFLEN, HEAPID_WIFI_BATTLETOWER );
 		wk->MsgManager       = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wifi_bt_dat, HEAPID_WIFI_BATTLETOWER );
 		wk->LobbyMsgManager  = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wifi_lobby_dat, HEAPID_WIFI_BATTLETOWER );
@@ -206,8 +206,8 @@ PROC_RESULT WBTowerProc_Init( PROC * proc, int * seq )
 
 		sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-/* ‚f‚s‚r‚ÆWifiƒoƒgƒ‹ƒ^ƒ[Ú‘±‰æ–Ê‚ÌÅ‰‚ÉWIPE_ResetBrightness‚ðŒÄ‚ñ‚Å‚µ‚Ü‚Á‚Ä‚¢‚é‚½‚ß‚É
-   ƒoƒbƒNƒhƒƒbƒv–Ê‚ªŒ©‚¦‚Ä‚µ‚Ü‚¤Ž–‚ª‚ ‚éƒoƒO‚ð‘Îˆ */
+/* ï¼§ï¼´ï¼³ã¨Wifiãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æŽ¥ç¶šç”»é¢ã®æœ€åˆã«WIPE_ResetBrightnessã‚’å‘¼ã‚“ã§ã—ã¾ã£ã¦ã„ã‚‹ãŸã‚ã«
+   ãƒãƒƒã‚¯ãƒ‰ãƒ­ãƒƒãƒ—é¢ãŒè¦‹ãˆã¦ã—ã¾ã†äº‹ãŒã‚ã‚‹ãƒã‚°ã‚’å¯¾å‡¦ */
 #if AFTERMASTER_070215_GTS_WBTOWER_INIT_FIX
 //		WIPE_ResetBrightness( WIPE_DISP_MAIN );
 //		WIPE_ResetBrightness( WIPE_DISP_SUB );
@@ -216,19 +216,19 @@ PROC_RESULT WBTowerProc_Init( PROC * proc, int * seq )
 		WIPE_ResetBrightness( WIPE_DISP_SUB );
 #endif
 
-//	//	InitTPSystem();						// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+//	//	InitTPSystem();						// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 //	//	InitTPNoBuff(2);
 
 
-		// ƒ[ƒN‰Šú‰»
+		// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		InitWork( wk, proc );
 
 		InitCLACT( wk );
 
-		// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(–¼‘O“ü—Í)(BGMˆøŒp‚¬)
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(åå‰å…¥åŠ›)(BGMå¼•ç¶™ãŽ)
 		Snd_DataSetByScene( SND_SCENE_SUB_NAMEIN, 0, 0 );
 
-		// DWCƒ‰ƒCƒuƒ‰ƒŠiWifij‚É“n‚·‚½‚ß‚Ìƒ[ƒN—Ìˆæ‚ðŠm•Û
+		// DWCãƒ©ã‚¤ãƒ–ãƒ©ãƒªï¼ˆWifiï¼‰ã«æ¸¡ã™ãŸã‚ã®ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’ç¢ºä¿
 		wk->heapPtr    = sys_AllocMemory(HEAPID_WIFI_BATTLETOWER, MYDWC_HEAPSIZE + 32);
 		wk->heapHandle = NNS_FndCreateExpHeap( (void *)( ((u32)wk->heapPtr + 31) / 32 * 32 ), MYDWC_HEAPSIZE);
 
@@ -242,7 +242,7 @@ PROC_RESULT WBTowerProc_Init( PROC * proc, int * seq )
 
 		DpwCommonOverlayStart();
 
-		// ƒCƒNƒjƒ…[ƒ‚ƒ““]‘—
+		// ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³è»¢é€
 		CommVRAMDInitialize();
 
 
@@ -258,12 +258,12 @@ PROC_RESULT WBTowerProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 
@@ -272,24 +272,24 @@ PROC_RESULT WBTowerProc_Main( PROC * proc, int * seq )
 	WBTOWER_WORK * wk  = PROC_GetWork( proc );
 	int update;
 
-	// ŽóM‹­“xƒAƒCƒRƒ“”½‰f
+	// å—ä¿¡å¼·åº¦ã‚¢ã‚¤ã‚³ãƒ³åæ˜ 
 	DWC_UpdateConnection();
 
-	// í’“ŠÖ”ŒÄ‚Ño‚µ
+	// å¸¸é§é–¢æ•°å‘¼ã³å‡ºã—
 	Dpw_Bt_Main();
 
-	// WifiŽóM‹­“x”½‰f
+	// Wifiå—ä¿¡å¼·åº¦åæ˜ 
 	DWC_UpdateConnection();
 
 	switch( *seq ){
-	// ƒTƒuˆ—‰Šú‰»
+	// ã‚µãƒ–å‡¦ç†åˆæœŸåŒ–
 	case SEQ_INIT_DPW:
 //		InitDpw(wk->heapPtr, wk->heapHandle, AllocFunc, FreeFunc );
 		if(CommIsVRAMDInitialize()){
 			_wtHeapHandle = wk->heapHandle;
 	
 
-			// wifiƒƒ‚ƒŠŠÇ—ŠÖ”ŒÄ‚Ño‚µ
+			// wifiãƒ¡ãƒ¢ãƒªç®¡ç†é–¢æ•°å‘¼ã³å‡ºã—
 			DWC_SetMemFunc( AllocFunc, FreeFunc );
 
 			*seq = SEQ_INIT;
@@ -299,46 +299,46 @@ PROC_RESULT WBTowerProc_Main( PROC * proc, int * seq )
 		*seq = (*SubProcessTable[wk->sub_process][0])(wk, *seq);
 		break;
 
-	// ƒTƒuˆ—ƒtƒF[ƒhƒCƒ“‘Ò‚¿
+	// ã‚µãƒ–å‡¦ç†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
 	case SEQ_FADEIN:
 		if( WIPE_SYS_EndCheck() ){
 			*seq = SEQ_MAIN;
 		}
 		break;
 
-	// ƒTƒuˆ—ƒƒCƒ“
+	// ã‚µãƒ–å‡¦ç†ãƒ¡ã‚¤ãƒ³
 	case SEQ_MAIN:
 		*seq = (*SubProcessTable[wk->sub_process][1])(wk, *seq);
 
 		break;
 
-	// ƒTƒuˆ—ƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
+	// ã‚µãƒ–å‡¦ç†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
 	case SEQ_FADEOUT:
 		if( WIPE_SYS_EndCheck() ){
-			// ƒTƒuˆ—‰ð•ú(SEQ_INIT‚És‚­‚©ASEQ_OUT‚É‚¢‚­‚©‚Í‚¨‚Ü‚©‚¹j
+			// ã‚µãƒ–å‡¦ç†è§£æ”¾(SEQ_INITã«è¡Œãã‹ã€SEQ_OUTã«ã„ãã‹ã¯ãŠã¾ã‹ã›ï¼‰
 			*seq = (*SubProcessTable[wk->sub_process][2])(wk, *seq);
 		}
 		break;
 
-	// ¢ŠEŒðŠ·I—¹ˆ—
+	// ä¸–ç•Œäº¤æ›çµ‚äº†å‡¦ç†
 	case SEQ_OUT:
 		return PROC_RES_FINISH;
 		break;
 	}
 	if(wk->clactSet!=NULL){
-		CLACT_Draw( wk->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+		CLACT_Draw( wk->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 	}
 	return PROC_RES_CONTINUE;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT WBTowerProc_End( PROC * proc, int * seq )
@@ -351,45 +351,45 @@ PROC_RESULT WBTowerProc_End( PROC * proc, int * seq )
 	DpwCommonOverlayEnd();
 	DwcOverlayEnd();
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ð•ú
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	FreeCLACT( wk );
 
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€I—¹
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
 //	StopTP();							
 
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[Eƒ[ƒhƒZƒbƒgƒ}ƒl[ƒWƒƒ[‰ð•ú
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ»ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼è§£æ”¾
 	
 	MSGMAN_Delete( wk->SystemMsgManager );
 	MSGMAN_Delete( wk->LobbyMsgManager );
 	MSGMAN_Delete( wk->MsgManager );
 	WORDSET_Delete( wk->WordSet );
 
-	// ƒ[ƒN‰ð•ú
+	// ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	FreeWork( wk );
 
-	// ƒCƒNƒjƒ…[ƒ‚ƒ“‰ð•ú
+	// ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³è§£æ”¾
 	CommVRAMDFinalize();
 
 
-	// BG_SYSTEM‰ð•ú
+	// BG_SYSTEMè§£æ”¾
 	sys_FreeMemoryEz( wk->bgl );
 
-	PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
 
 	sys_DeleteHeap( HEAPID_WIFI_BATTLETOWER );
 
-	OS_Printf("ƒoƒgƒ‹ƒ^ƒ[Œ‹‰Ê = %d\n",wk->param->result);
+	OS_Printf("ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼çµæžœ = %d\n",wk->param->result);
 
 	return PROC_RES_FINISH;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -400,10 +400,10 @@ static void VBlankFunc( void * work )
 {
 	WBTOWER_WORK *wk = work;
 	
-	// ƒZƒ‹ƒAƒNƒ^[Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();	
 	
 	ConnectBGPalAnm_VBlank(&wk->cbp);
@@ -414,7 +414,7 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMÝ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -424,20 +424,20 @@ static void VBlankFunc( void * work )
 static void VramBankSet(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 
@@ -448,7 +448,7 @@ static void VramBankSet(void)
 
 //------------------------------------------------------------------
 /**
- * ¢ŠEŒðŠ·ƒ[ƒN‰Šú‰»
+ * ä¸–ç•Œäº¤æ›ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   wk		WBTOWER_WORK*
  *
@@ -457,7 +457,7 @@ static void VramBankSet(void)
 //------------------------------------------------------------------
 static void InitWork( WBTOWER_WORK *wk, PROC *proc )
 {
-	// ŒÄ‚Ño‚µŽž‚Ìƒpƒ‰ƒ[ƒ^‚ðŽæ“¾
+	// å‘¼ã³å‡ºã—æ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
 	wk->param = (WBTOWER_PARAM*)PROC_GetParentWork( proc );
 
 	wk->sub_process 	= WBTOWER_ENTER;
@@ -467,7 +467,7 @@ static void InitWork( WBTOWER_WORK *wk, PROC *proc )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ[ƒN‰ð•ú
+ * $brief   ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
  * @param   wk		
  *
@@ -484,7 +484,7 @@ static void FreeWork( WBTOWER_WORK *wk )
 
 
 
-//** CharManager PlttManager—p **//
+//** CharManager PlttManagerç”¨ **//
 #define WBTOWER_CHAR_CONT_NUM				(20)
 #define WBTOWER_CHAR_VRAMTRANS_MAIN_SIZE		(2048)
 #define WBTOWER_CHAR_VRAMTRANS_SUB_SIZE		(2048)
@@ -492,13 +492,13 @@ static void FreeWork( WBTOWER_WORK *wk )
 
 //-------------------------------------
 //
-//	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[
-//	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 //
 //=====================================
 static void char_pltt_manager_init(void)
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			WBTOWER_CHAR_CONT_NUM,
@@ -508,10 +508,10 @@ static void char_pltt_manager_init(void)
 		};
 		InitCharManager(&cm);
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(WBTOWER_PLTT_CONT_NUM, HEAPID_WIFI_BATTLETOWER);
 
-	// “Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 }
@@ -519,9 +519,9 @@ static void char_pltt_manager_init(void)
 
 //------------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‰æ–Ê—pƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param   wk		ƒŒ[ƒ_[\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¬ãƒ¼ãƒ€ãƒ¼æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -533,76 +533,76 @@ static void InitCellActor(WBTOWER_WORK *wk)
 	
 	p_handle = ArchiveDataHandleOpen( ARC_WORLDTRADE_GRA, HEAPID_WIFI_BATTLETOWER );
 	
-	// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	// OAMãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	// ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
+	// å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 	REND_OAMInit( 
-			0, 126,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 126,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 126,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 126,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			HEAPID_WIFI_BATTLETOWER);
 	
 	
 	
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	wk->clactSet = CLACT_U_SetEasyInit( 10, &wk->renddata, HEAPID_WIFI_BATTLETOWER );
 	
 	CLACT_U_SetSubSurfaceMatrix( &wk->renddata, 0, WBTOWER_SUB_ACTOR_DISTANCE );
 
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->resMan[i] = CLACT_U_ResManagerInit(2, i, HEAPID_WIFI_BATTLETOWER);
 	}
 
 
-	//---------ã‰æ–Ê—p-------------------
-	//chara“Ç‚Ýž‚Ý
+	//---------ä¸Šç”»é¢ç”¨-------------------
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[CLACT_U_CHAR_RES], 
 			p_handle, NARC_worldtrade_btower_obj_lz_ncgr, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_WIFI_BATTLETOWER);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[CLACT_U_PLTT_RES],
 			p_handle, NARC_worldtrade_worldtrade_obj_nclr, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAPID_WIFI_BATTLETOWER);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELL_RES],
 			p_handle, NARC_worldtrade_btower_obj_lz_ncer, 1, 0, CLACT_U_CELL_RES,HEAPID_WIFI_BATTLETOWER);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELLANM_RES],
 			p_handle, NARC_worldtrade_btower_obj_lz_nanr, 1, 0, CLACT_U_CELLANM_RES,HEAPID_WIFI_BATTLETOWER);
 
 
-	//---------‰º‰æ–Ê—p-------------------
+	//---------ä¸‹ç”»é¢ç”¨-------------------
 
 /*
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(wk->resMan[CLACT_U_CHAR_RES], 
 							ARC_WORLDTRADE_GRA, NARC_worldtrade_hero_lz_ncgr, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAPID_WIFI_BATTLETOWER);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(wk->resMan[CLACT_U_PLTT_RES],
 							ARC_WORLDTRADE_GRA, NARC_worldtrade_hero_nclr, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 9, HEAPID_WIFI_BATTLETOWER);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(wk->resMan[CLACT_U_CELL_RES],
 							ARC_WORLDTRADE_GRA, NARC_worldtrade_worldtrade_obj_s_lz_ncer, 1, 1, CLACT_U_CELL_RES,HEAPID_WIFI_BATTLETOWER);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(wk->resMan[CLACT_U_CELLANM_RES],
 							ARC_WORLDTRADE_GRA, NARC_worldtrade_worldtrade_obj_s_lz_nanr, 1, 1, CLACT_U_CELLANM_RES,HEAPID_WIFI_BATTLETOWER);
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 */
-	// Chara“]‘—
+	// Charaè»¢é€
 	CLACT_U_CharManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] );
 //	CLACT_U_CharManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] );
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	CLACT_U_PlttManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] );
 //	CLACT_U_PlttManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] );
 
@@ -627,7 +627,7 @@ static const u16 arrowtable[][2]={
 
 //==============================================================================
 /**
- * $brief   ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬ƒ‹[ƒ`ƒ“
+ * $brief   ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆãƒ«ãƒ¼ãƒãƒ³
  *
  * @param   wk		
  * @param   add		
@@ -654,7 +654,7 @@ void WBTower_MakeCLACT( CLACT_ADD *add, WBTOWER_WORK *wk, CLACT_HEADER *header, 
 
 //------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   wk			WBTOWER_WORK*
  *
@@ -664,7 +664,7 @@ void WBTower_MakeCLACT( CLACT_ADD *add, WBTOWER_WORK *wk, CLACT_HEADER *header, 
 static void SetCellActor(WBTOWER_WORK *wk)
 {
 	int i;
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
 	CLACT_U_MakeHeader(&wk->clActHeader_main, 0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
 	0, 0,
 	wk->resMan[CLACT_U_CHAR_RES],
@@ -672,10 +672,10 @@ static void SetCellActor(WBTOWER_WORK *wk)
 	wk->resMan[CLACT_U_CELL_RES],
 	wk->resMan[CLACT_U_CELLANM_RES],
 	NULL,NULL);
-	//‚Ü‚¾‰½‚à“]‘—‚µ‚Ä‚¢‚È‚¢‚©‚ç
+	//ã¾ã ä½•ã‚‚è»¢é€ã—ã¦ã„ãªã„ã‹ã‚‰
 
 #if 0	
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
 	CLACT_U_MakeHeader(&wk->clActHeader_sub, 1, 1, 1, 1, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
 	0, 0,
 	wk->resMan[CLACT_U_CHAR_RES],
@@ -687,12 +687,12 @@ static void SetCellActor(WBTOWER_WORK *wk)
 
 
 	{
-		//“o˜^î•ñŠi”[
+		//ç™»éŒ²æƒ…å ±æ ¼ç´
 		CLACT_ADD add;
 		WBTower_MakeCLACT( &add, wk, &wk->clActHeader_main, NNS_G2D_VRAM_TYPE_2DMAIN );
 
-		//ƒZƒ‹ƒAƒNƒ^[•\Ž¦ŠJŽn
-		// –îˆó‚Q‚Â
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
+		// çŸ¢å°ï¼’ã¤
 		for(i=0;i<2;i++){
 			add.mat.x = FX32_ONE *   arrowtable[i][0];
 			add.mat.y = FX32_ONE *   arrowtable[i][1];
@@ -703,8 +703,8 @@ static void SetCellActor(WBTOWER_WORK *wk)
 		}
 
 	}	
-	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒƒCƒ“‰æ–ÊOBJ–Ê‚n‚m
-	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒTƒu‰æ–ÊOBJ–Ê‚n‚m
+	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ãƒ¡ã‚¤ãƒ³ç”»é¢OBJé¢ï¼¯ï¼®
+	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//ã‚µãƒ–ç”»é¢OBJé¢ï¼¯ï¼®
 	
 
 	WirelessIconEasy();
@@ -712,24 +712,24 @@ static void SetCellActor(WBTOWER_WORK *wk)
 
 
 
-// ‚Í‚¢E‚¢‚¢‚¦
+// ã¯ã„ãƒ»ã„ã„ãˆ
 #define	BMP_YESNO_PX	( 23 )
 #define	BMP_YESNO_PY	( 13 )
 #define	BMP_YESNO_SX	( 7 )
 #define	BMP_YESNO_SY	( 4 )
 #define	BMP_YESNO_PAL	( 13 )
 
-// ‚Í‚¢E‚¢‚¢‚¦(ƒEƒCƒ“ƒhƒE—pj
+// ã¯ã„ãƒ»ã„ã„ãˆ(ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨ï¼‰
 static const BMPWIN_DAT YesNoBmpWin = {
 	GF_BGL_FRAME0_M, BMP_YESNO_PX, BMP_YESNO_PY,
 	BMP_YESNO_SX, BMP_YESNO_SY, BMP_YESNO_PAL, 
-	0, //Œã‚ÅŽw’è‚·‚é
+	0, //å¾Œã§æŒ‡å®šã™ã‚‹
 };
 
 
 //==============================================================================
 /**
- * $brief   ‚Í‚¢E‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE“o˜^
+ * $brief   ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç™»éŒ²
  *
  * @param   bgl		
  * @param   menuframe		
@@ -771,7 +771,7 @@ void WBTower_SetNextSeq( WBTOWER_WORK *wk, int to_seq, int next_seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒTƒuƒvƒƒZƒXI—¹Žž‚ÌŽŸ‚Ìs‚«æ‚ð“ü—Í‚·‚é
+ * $brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†æ™‚ã®æ¬¡ã®è¡Œãå…ˆã‚’å…¥åŠ›ã™ã‚‹
  *
  * @param   wk		
  * @param   to_seq		
@@ -787,9 +787,9 @@ void WBTower_SetNextProcess( WBTOWER_WORK *wk, int next_process )
 
 //==============================================================================
 /**
- * $brief   CLACT‚ÌÀ•W•ÏX
+ * $brief   CLACTã®åº§æ¨™å¤‰æ›´
  *
- * @param   act		ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @param   act		ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   x		
  * @param   y		
  *
@@ -809,7 +809,7 @@ void WBTower_ActPos( CLACT_WORK_PTR act, int x, int y )
 
 
 /*---------------------------------------------------------------------------*
-  ƒƒ‚ƒŠŠm•ÛŠÖ”
+  ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°
  *---------------------------------------------------------------------------*/
 static void *AllocFunc( DWCAllocType name, u32   size, int align )
 {
@@ -826,7 +826,7 @@ static void *AllocFunc( DWCAllocType name, u32   size, int align )
 }
 
 /*---------------------------------------------------------------------------*
-  ƒƒ‚ƒŠŠJ•úŠÖ”
+  ãƒ¡ãƒ¢ãƒªé–‹æ”¾é–¢æ•°
  *---------------------------------------------------------------------------*/
 static void FreeFunc(DWCAllocType name, void* ptr,  u32 size)
 {
@@ -843,7 +843,7 @@ static void FreeFunc(DWCAllocType name, void* ptr,  u32 size)
 
 //------------------------------------------------------------------
 /**
- * $brief   NitroDpw_Tr‰Šú‰»
+ * $brief   NitroDpw_TråˆæœŸåŒ–
  *
  * @param   heapPtr		
  * @param   headHandle		
@@ -859,10 +859,10 @@ static void InitDpw( void *heapPtr, NNSFndHeapHandle heapHandle, DWCAllocEx allo
 
 	_wtHeapHandle = heapHandle;
 	
-	// ƒCƒNƒjƒ…[ƒ‚ƒ““]‘—
+	// ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³è»¢é€
 //	CommVRAMDInitialize();
 
-	// wifiƒƒ‚ƒŠŠÇ—ŠÖ”ŒÄ‚Ño‚µ
+	// wifiãƒ¡ãƒ¢ãƒªç®¡ç†é–¢æ•°å‘¼ã³å‡ºã—
 	DWC_SetMemFunc( alloc, free );
 
 
@@ -875,7 +875,7 @@ static void InitDpw( void *heapPtr, NNSFndHeapHandle heapHandle, DWCAllocEx allo
 
 //==============================================================================
 /**
- * $brief   WIFIÚ‘±ó‹µŽæ“¾
+ * $brief   WIFIæŽ¥ç¶šçŠ¶æ³å–å¾—
  *
  * @param   none		
  *
@@ -892,7 +892,7 @@ int WBTower_WifiLinkLevel( void )
 
 //==============================================================================
 /**
- * @brief   ƒTƒuƒvƒƒZƒXƒ‚[ƒh‚ÌØ‚è‘Ö‚¦Žw’è
+ * @brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ãƒ¢ãƒ¼ãƒ‰ã®åˆ‡ã‚Šæ›¿ãˆæŒ‡å®š
  *
  * @param   wk			
  * @param   subprccess	
@@ -934,20 +934,20 @@ void WBTower_SubProcessChange( WBTOWER_WORK *wk, int subprccess, int mode )
 static void InitCLACT( WBTOWER_WORK *wk )
 {
 
-	// VRAM ƒoƒ“ƒNÝ’è
+	// VRAM ãƒãƒ³ã‚¯è¨­å®š
 	VramBankSet();
 
-	// OBJƒLƒƒƒ‰AƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// OBJã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	char_pltt_manager_init();
 
-	// CellActorƒVƒXƒeƒ€‰Šú‰»
+	// CellActorã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitCellActor(wk);
 		
-	// CellActro•\Ž¦“o˜^
+	// CellActroè¡¨ç¤ºç™»éŒ²
 	SetCellActor(wk);
 
 
-	// VBlankŠÖ”ƒZƒbƒg
+	// VBlanké–¢æ•°ã‚»ãƒƒãƒˆ
 	sys_VBlankFuncChange( VBlankFunc, wk );	
 }
 
@@ -963,28 +963,28 @@ static void InitCLACT( WBTOWER_WORK *wk )
 static void FreeCLACT( WBTOWER_WORK *wk )
 {
 	int i;
-	// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©è»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_CharManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES]);
 //	CLACT_U_CharManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES]);
 //	CLACT_U_CharManagerDelete(wk->resObjTbl[CHARA_RES][CLACT_U_CHAR_RES]);
 
-	// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_PlttManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES]);
 //	CLACT_U_PlttManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES]);
 //	CLACT_U_PlttManagerDelete(wk->resObjTbl[CHARA_RES][CLACT_U_PLTT_RES]);
 		
-	// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for(i=0;i<CLACT_RESOURCE_NUM;i++){
 		CLACT_U_ResManagerDelete(wk->resMan[i]);
 	}
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(wk->clactSet);
 	wk->clactSet = NULL;
 
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
-	// ƒŠƒ\[ƒX‰ð•ú
+	// ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	DeleteCharManager();
 	DeletePlttManager();
 

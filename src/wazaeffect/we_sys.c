@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_sys.c
- * @brief	‹ZƒGƒtƒFƒNƒg—p‚ÌƒVƒXƒeƒ€
+ * @brief	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã®ã‚·ã‚¹ãƒ†ãƒ 
  * @author	goto
- * @date	2005.06.22(…)
+ * @date	2005.06.22(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  *
  */
@@ -18,15 +18,15 @@
 
 #include "wazatool.h"
 
-#include "we_sys.h"							///< ‹ZƒGƒtƒFƒNƒg—p‚ÌƒVƒXƒeƒ€.h
+#include "we_sys.h"							///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã®ã‚·ã‚¹ãƒ†ãƒ .h
 
-#include "west_sp.h"						///< ‹ZƒGƒtƒFƒNƒg—pƒTƒ|[ƒg.h
+#include "west_sp.h"						///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚µãƒãƒ¼ãƒˆ.h
 
-#include "battle_particle.h"				///< ƒp[ƒeƒBƒNƒ‹—p
-#include "wp_tbl.h"							///< ƒp[ƒeƒBƒNƒ‹—p
+#include "battle_particle.h"				///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç”¨
+#include "wp_tbl.h"							///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç”¨
 
 #include "battle/battle_tcb_pri.h"			///< TCB pri
-#include "battle/battle_id.h"				///< ƒA[ƒJƒCƒuƒf[ƒ^
+#include "battle/battle_id.h"				///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿
 #include "battle/fight_tool.h"				///< 
 
 #include "include/battle/attr_def.h"		///< 
@@ -34,12 +34,12 @@
 #include "include/battle/battle_server.h"	///< 
 #include "include/poketool/poke_tool.h"		///< 
 
-#include "battle/graphic/pl_batt_bg_def.h"		///< ƒA[ƒJƒCƒuƒf[ƒ^
-#include "battle/graphic/pl_batt_obj_def.h"		///< ƒA[ƒJƒCƒuƒf[ƒ^
-#include "system/arc_tool.h"				///< ƒA[ƒJƒCƒu—p
-#include "system/arc_util.h"				///< ƒA[ƒJƒCƒu—p
+#include "battle/graphic/pl_batt_bg_def.h"		///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿
+#include "battle/graphic/pl_batt_obj_def.h"		///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿
+#include "system/arc_tool.h"				///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨
+#include "system/arc_util.h"				///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨
 
-#include "system/brightness.h"				///< ‹P“x•ÏX
+#include "system/brightness.h"				///< è¼åº¦å¤‰æ›´
 #include "system/gra_tool.h"
 
 #include "we_tool.h"
@@ -50,11 +50,11 @@
 #include "battle/bc_common.h"
 
 /*
-///”wŒi‚ÌƒtƒF[ƒhbit(‹ZƒGƒtƒFƒNƒg—p)
+///èƒŒæ™¯ã®ãƒ•ã‚§ãƒ¼ãƒ‰bit(æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨)
 #define ACTIN_HAIKEI_FADE_BIT		(0x0007)
-///‹ZƒGƒtƒFƒNƒgBG—pƒpƒŒƒbƒg‚ÌƒtƒF[ƒhbit
+///æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ•ã‚§ãƒ¼ãƒ‰bit
 #define ACTIN_WAZAEFF_FADE_BIT		(0x0300)
-///”wŒi‚ÌƒtƒF[ƒhbit{‹ZƒGƒtƒFƒNƒgBG—pƒpƒŒƒbƒg(‹ZƒGƒtƒFƒNƒg—p)
+///èƒŒæ™¯ã®ãƒ•ã‚§ãƒ¼ãƒ‰bitï¼‹æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ(æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨)
 #define ACTIN_EFFBG_ALL_FADE_BIT	(ACTIN_HAIKEI_FADE_BIT | ACTIN_WAZAEFF_FADE_BIT)
 */
 
@@ -68,7 +68,7 @@
 #define WES_HAIKEI_FI_WAIT	(WES_HAIKEI_FO_WAIT)
 #define WES_HAIKEI_PAL		(0x00FF)
 
-#define PO_ARC_ID			(ARC_BATT_OBJ)		///< ƒ|ƒPƒ‚ƒ“‰æ‘œ‚ÌƒA[ƒNID
+#define PO_ARC_ID			(ARC_BATT_OBJ)		///< ãƒã‚±ãƒ¢ãƒ³ç”»åƒã®ã‚¢ãƒ¼ã‚¯ID
 #define FREE_TIME			(2)
 
 enum {
@@ -94,65 +94,65 @@ int	g_nDebugCameraType	   = 0;
 
 // ----------------------------------------
 //
-//	¡ í“¬‚Åˆµ‚í‚ê‚é\‘¢‘Ì
+//	â–  æˆ¦é—˜ã§æ‰±ã‚ã‚Œã‚‹æ§‹é€ ä½“
 //		[ BTL_SYS_PTR ]
-//		‚Æ‚è‚ ‚¦‚¸A“K“–‚Èƒƒ“ƒo‚ğ“ü‚ê‚Ä‚ ‚é
+//		ã¨ã‚Šã‚ãˆãšã€é©å½“ãªãƒ¡ãƒ³ãƒã‚’å…¥ã‚Œã¦ã‚ã‚‹
 //
 // ----------------------------------------
 typedef struct _TBTL_SYS {
 	
-	u8	command_code;						///< –½—ßƒR[ƒhƒCƒ“ƒfƒbƒNƒX
-	u8	mode;								///< í“¬EƒRƒ“ƒeƒXƒgEƒRƒ“ƒN[ƒ‹H
-	u16	waza_no;							///< ƒGƒtƒFƒNƒg‚ğo‚·‹Zƒiƒ“ƒo[
+	u8	command_code;						///< å‘½ä»¤ã‚³ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	mode;								///< æˆ¦é—˜ãƒ»ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ»ã‚³ãƒ³ã‚¯ãƒ¼ãƒ«ï¼Ÿ
+	u16	waza_no;							///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™æŠ€ãƒŠãƒ³ãƒãƒ¼
 	
-	s32 waza_eff_damage;					///< ‹Z‚Åó‚¯‚éƒ_ƒ[ƒW(‰ñ•œ‚Ì‚Í[ + ])
-	u16	waza_eff_power;						///< o‚Ä‚¢‚é‹Z‚ÌˆĞ—Í
-	u16	waza_eff_natuki;					///< ‚È‚Â‚«“x
-	u32	waza_eff_weather;					///< “VŒó
-	u16 waza_eff_cnt;						///< ‹ZƒGƒtƒFƒNƒg‚ÌƒJƒEƒ“ƒ^(‹ó‚ğ”ò‚Ô‚Æ‚©)
-	u16	waza_eff_ground_id;					///< ‹ZƒGƒtƒFƒNƒg‚Ì’nŒ`ƒf[ƒ^
+	s32 waza_eff_damage;					///< æŠ€ã§å—ã‘ã‚‹ãƒ€ãƒ¡ãƒ¼ã‚¸(å›å¾©ã®æ™‚ã¯[ + ])
+	u16	waza_eff_power;						///< å‡ºã¦ã„ã‚‹æŠ€ã®å¨åŠ›
+	u16	waza_eff_natuki;					///< ãªã¤ãåº¦
+	u32	waza_eff_weather;					///< å¤©å€™
+	u16 waza_eff_cnt;						///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚«ã‚¦ãƒ³ã‚¿(ç©ºã‚’é£›ã¶ã¨ã‹)
+	u16	waza_eff_ground_id;					///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®åœ°å½¢ãƒ‡ãƒ¼ã‚¿
 	
-	u16	at_client_no;						///< UŒ‚‘¤‚ÌƒNƒ‰ƒCƒAƒ“ƒg”Ô†(©•ª)
-	u16	df_client_no;						///< –hŒä‘¤‚ÌƒNƒ‰ƒCƒAƒ“ƒg”Ô†(‘ÎÛ)
+	u16	at_client_no;						///< æ”»æ’ƒå´ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç•ªå·(è‡ªåˆ†)
+	u16	df_client_no;						///< é˜²å¾¡å´ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç•ªå·(å¯¾è±¡)
 	
-	int	this_ptc_no;						///< “o˜^‚µ‚½“_‚Ìptcno;
+	int	this_ptc_no;						///< ç™»éŒ²ã—ãŸæ™‚ç‚¹ã®ptcno;
 	
-	PTC_PTR		ptc[PARTICLE_GLOBAL_MAX];	///< ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€
-	EMIT_PTR	emit[PARTICLE_EMIT_MAX];	///< ƒGƒ~ƒbƒ^[‚Ì”
+	PTC_PTR		ptc[PARTICLE_GLOBAL_MAX];	///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+	EMIT_PTR	emit[PARTICLE_EMIT_MAX];	///< ã‚¨ãƒŸãƒƒã‚¿ãƒ¼ã®æ•°
 	
-	CATS_SYS_PTR	csp;					///< ƒZƒ‹ƒAƒNƒ^[ŠÇ—
-	EXCHR_PARAM*	excp[CLIENT_MAX];		///< “WŠJ‚³‚ê‚½ƒ|ƒPƒ‚ƒ“ƒf[ƒ^Ši”[\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-	u8				client_type[CLIENT_MAX];///< ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv
-	SOFT_SPRITE*	ss[CLIENT_MAX];			///< ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg
-	u32				fight_type;				///< ƒtƒ@ƒCƒgƒ^ƒCƒv
-	u16				mons_no[CLIENT_MAX];	///< ƒ|ƒPƒ‚ƒ“NO
-	u8				sex[CLIENT_MAX];		///< ƒ|ƒPƒ‚ƒ“«•Ê
-	u8				rare[CLIENT_MAX];		///< ƒŒƒAƒtƒ‰ƒO
-	u8				form_no[CLIENT_MAX];	///< ƒ|ƒPƒ‚ƒ“ƒtƒHƒ‹ƒ€No
-	u32				personal_rnd[CLIENT_MAX];	///<ƒ|ƒPƒ‚ƒ“ŒÂ«—”
-	u32				waza_kouka[CLIENT_MAX];		///< ‹ZŒø‰Êƒtƒ‰ƒO
+	CATS_SYS_PTR	csp;					///< ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç®¡ç†
+	EXCHR_PARAM*	excp[CLIENT_MAX];		///< å±•é–‹ã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ ¼ç´æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+	u8				client_type[CLIENT_MAX];///< ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+	SOFT_SPRITE*	ss[CLIENT_MAX];			///< ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
+	u32				fight_type;				///< ãƒ•ã‚¡ã‚¤ãƒˆã‚¿ã‚¤ãƒ—
+	u16				mons_no[CLIENT_MAX];	///< ãƒã‚±ãƒ¢ãƒ³NO
+	u8				sex[CLIENT_MAX];		///< ãƒã‚±ãƒ¢ãƒ³æ€§åˆ¥
+	u8				rare[CLIENT_MAX];		///< ãƒ¬ã‚¢ãƒ•ãƒ©ã‚°
+	u8				form_no[CLIENT_MAX];	///< ãƒã‚±ãƒ¢ãƒ³ãƒ•ã‚©ãƒ«ãƒ No
+	u32				personal_rnd[CLIENT_MAX];	///<ãƒã‚±ãƒ¢ãƒ³å€‹æ€§ä¹±æ•°
+	u32				waza_kouka[CLIENT_MAX];		///< æŠ€åŠ¹æœãƒ•ãƒ©ã‚°
 	
-	PERAPVOICE*		perap_voice;			///< ƒyƒ‰ƒbƒv
-	u8*				bg_area;				///< ƒoƒgƒ‹‚Ì”wŒi
-	u16*			pal_area;				///< ƒpƒŒƒbƒg
+	PERAPVOICE*		perap_voice;			///< ãƒšãƒ©ãƒƒãƒ—
+	u8*				bg_area;				///< ãƒãƒˆãƒ«ã®èƒŒæ™¯
+	u16*			pal_area;				///< ãƒ‘ãƒ¬ãƒƒãƒˆ
 
-	int				henshin_flag;			///< ‚Ö‚ñ‚µ‚ñƒtƒ‰ƒOi32bit‚à‚¢‚ç‚È‚¢‚¯‚ÇA4ƒoƒCƒg‹«ŠE•â³j
+	int				henshin_flag;			///< ã¸ã‚“ã—ã‚“ãƒ•ãƒ©ã‚°ï¼ˆ32bitã‚‚ã„ã‚‰ãªã„ã‘ã©ã€4ãƒã‚¤ãƒˆå¢ƒç•Œè£œæ­£ï¼‰
 
 } TBTL_SYS;
 
 // ----------------------------------------
 //
-//	¡ ƒ‹[ƒv—p\‘¢‘Ì
-//		Œ»İ‚ÌƒV[ƒPƒ“ƒXˆÊ’uˆÈŠO‚É‚à
-//		ŒJ‚è•Ô‚µ‚½‰ñ”‚ª•K—v‚È‚Ì‚Å\‘¢‘Ì
+//	â–  ãƒ«ãƒ¼ãƒ—ç”¨æ§‹é€ ä½“
+//		ç¾åœ¨ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä½ç½®ä»¥å¤–ã«ã‚‚
+//		ç¹°ã‚Šè¿”ã—ãŸå›æ•°ãŒå¿…è¦ãªã®ã§æ§‹é€ ä½“
 //
 // ----------------------------------------
 typedef struct _TLOOP_SYS {
 	
-	u32* seq_adrs;							///< Œ»İ‚ÌƒV[ƒPƒ“ƒXˆÊ’u
-	u8	 n_cnt;								///< Œ»İ‚ÌƒJƒEƒ“ƒ^
-	u8	 e_cnt;								///< ŒJ‚è•Ô‚µ‰ñ”
-	BOOL active;							///< g—p‚³‚ê‚Ä‚¢‚é‚©
+	u32* seq_adrs;							///< ç¾åœ¨ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä½ç½®
+	u8	 n_cnt;								///< ç¾åœ¨ã®ã‚«ã‚¦ãƒ³ã‚¿
+	u8	 e_cnt;								///< ç¹°ã‚Šè¿”ã—å›æ•°
+	BOOL active;							///< ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ã‹
 	
 } TLOOP_SYS;
 
@@ -169,108 +169,108 @@ typedef struct {
 
 // ----------------------------------------
 //
-//	¡ ‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ŠÇ—\‘¢‘Ì
+//	â–  æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ç®¡ç†æ§‹é€ ä½“
 //		[ WE_SYS_PTR ]
-//		’¼Ú‚Ìƒƒ“ƒoQÆ–h~‚Ì•ûŒü‚Å
-//		TWE_SYS_PTR ‚ª‘¼‚Ìƒ†[ƒU[‚ªˆµ‚¤Œ^
+//		ç›´æ¥ã®ãƒ¡ãƒ³ãƒå‚ç…§é˜²æ­¢ã®æ–¹å‘ã§
+//		TWE_SYS_PTR ãŒä»–ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒæ‰±ã†å‹
 //
 // ----------------------------------------
 typedef struct _TWE_SYS {
 	
-	int	 heap_area;								///< ƒq[ƒvƒGƒŠƒA
+	int	 heap_area;								///< ãƒ’ãƒ¼ãƒ—ã‚¨ãƒªã‚¢
 	int	 eff_arc_id;
 
-	BOOL contest_active;						///< ƒRƒ“ƒeƒXƒg‚Æ‚µ‚Ä“®ì’†‚©H TRUE = “®ì’†
-	BOOL active;								///< ƒVƒXƒeƒ€‚ª“®ì‰Â”\‚©H	TRUE = “®ì’†
-	BOOL waza_eff_active;						///< ƒGƒtƒFƒNƒg‚ª“®ì’†‚©H TRUE = Às’†
+	BOOL contest_active;						///< ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã¨ã—ã¦å‹•ä½œä¸­ã‹ï¼Ÿ TRUE = å‹•ä½œä¸­
+	BOOL active;								///< ã‚·ã‚¹ãƒ†ãƒ ãŒå‹•ä½œå¯èƒ½ã‹ï¼Ÿ	TRUE = å‹•ä½œä¸­
+	BOOL waza_eff_active;						///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒå‹•ä½œä¸­ã‹ï¼Ÿ TRUE = å®Ÿè¡Œä¸­
 
-	void* arc_data_adrs;						///< ƒA[ƒJƒCƒu‚©‚çæ“¾‚³‚ê‚éƒ|ƒCƒ“ƒ^
-	u32*  waza_eff_seq_adrs;					///< Œ»İ‚ÌƒV[ƒPƒ“ƒXˆÊ’u (4byte’PˆÊ‚ÅˆÚ“® = u32)
-	u32*  waza_eff_seq_adrs_j[ WE_JUMP_MAX ];	///< Œ»İ‚ÌƒV[ƒPƒ“ƒXˆÊ’u (ƒWƒƒƒ“ƒv—p)
-	TLOOP_SYS loop[ WE_LOOP_MAX ];				///< Œ»İ‚ÌƒV[ƒPƒ“ƒXˆÊ’u (ƒ‹[ƒv—p\‘¢‘Ì)
+	void* arc_data_adrs;						///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰å–å¾—ã•ã‚Œã‚‹ãƒã‚¤ãƒ³ã‚¿
+	u32*  waza_eff_seq_adrs;					///< ç¾åœ¨ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä½ç½® (4byteå˜ä½ã§ç§»å‹• = u32)
+	u32*  waza_eff_seq_adrs_j[ WE_JUMP_MAX ];	///< ç¾åœ¨ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä½ç½® (ã‚¸ãƒ£ãƒ³ãƒ—ç”¨)
+	TLOOP_SYS loop[ WE_LOOP_MAX ];				///< ç¾åœ¨ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä½ç½® (ãƒ«ãƒ¼ãƒ—ç”¨æ§‹é€ ä½“)
 	PT_DROP_SYS pds[ 2 ];   
 
 	u8	 camera_mode[PARTICLE_GLOBAL_MAX];
 	u8	 camera_flag[PARTICLE_GLOBAL_MAX];
-	s8	waza_se_pan;							///< SE–½—ß‚Åİ’è‚³‚ê‚éPan‚Ì’l	
-	u8	waza_eff_wait;							///< –½—ß‚Åİ’è‚³‚ê‚éƒEƒFƒCƒg‚ğ“ü‚ê‚é
+	s8	waza_se_pan;							///< SEå‘½ä»¤ã§è¨­å®šã•ã‚Œã‚‹Panã®å€¤	
+	u8	waza_eff_wait;							///< å‘½ä»¤ã§è¨­å®šã•ã‚Œã‚‹ã‚¦ã‚§ã‚¤ãƒˆã‚’å…¥ã‚Œã‚‹
 	
-	// ŠÇ—‚È‚Ç‚Ég‚¤
-	u16 waza_eff_num;							///< Œ»İ“o˜^‚³‚ê‚Ä‚¢‚éAOBJ‚âTCB‚Ì‘”
-	u16	waza_se_num;							///< Œ»İ“o˜^‚³‚ê‚Ä‚¢‚éASE‚Ì‘”
+	// ç®¡ç†ãªã©ã«ä½¿ã†
+	u16 waza_eff_num;							///< ç¾åœ¨ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã€OBJã‚„TCBã®ç·æ•°
+	u16	waza_se_num;							///< ç¾åœ¨ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã€SEã®ç·æ•°
 	
-	s32	waza_eff_gp_wk[ WE_GENE_WK_MAX ];		///< ‹ZƒGƒtƒFƒNƒg‚Å—˜—p‚Å‚«‚éƒeƒ“ƒ|ƒ‰ƒŠ
+	s32	waza_eff_gp_wk[ WE_GENE_WK_MAX ];		///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§åˆ©ç”¨ã§ãã‚‹ãƒ†ãƒ³ãƒãƒ©ãƒª
 
-	pWeFunc waza_eff_exe;						///< Œ»İÀs’†‚ÌƒV[ƒPƒ“ƒX
+	pWeFunc waza_eff_exe;						///< ç¾åœ¨å®Ÿè¡Œä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	
-	// í“¬—p‚Ìƒ[ƒN
-	BTL_SYS_PTR btl_sys;						///< í“¬‚©‚ç‚à‚ç‚¤ƒpƒ‰ƒ[ƒ^Ši”[\‘¢‘Ì
+	// æˆ¦é—˜ç”¨ã®ãƒ¯ãƒ¼ã‚¯
+	BTL_SYS_PTR btl_sys;						///< æˆ¦é—˜ã‹ã‚‰ã‚‚ã‚‰ã†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ ¼ç´æ§‹é€ ä½“
 	GF_BGL_INI* bgl;							///< BGL
 	PALETTE_FADE_PTR pfd;						///< PFD
 	
-	CATS_RES_PTR	crp[ WE_CRP_MAX ];			///< ƒŠƒ\[ƒXŠÇ—
-	CATS_ACT_PTR	cap[ WE_CAP_MAX ];			///< OAM‚ÌCAP
-	TCATS_OBJECT_ADD_PARAM_S coap;				///< İ’è•Û‘¶
+	CATS_RES_PTR	crp[ WE_CRP_MAX ];			///< ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†
+	CATS_ACT_PTR	cap[ WE_CAP_MAX ];			///< OAMã®CAP
+	TCATS_OBJECT_ADD_PARAM_S coap;				///< è¨­å®šä¿å­˜
 	
-	// ƒ|ƒPƒ‚ƒ“ƒhƒƒbƒv—p
-	CATS_RES_PTR	poke_crp;					///< ƒ|ƒPƒ‚ƒ“OAMƒhƒƒbƒv‚ÌCRP
-	CATS_ACT_PTR	poke_cap[ WE_POKE_CAP_MAX ];///< ƒ|ƒPƒ‚ƒ“OAMƒhƒƒbƒv‚ÌCAP
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‰ãƒ­ãƒƒãƒ—ç”¨
+	CATS_RES_PTR	poke_crp;					///< ãƒã‚±ãƒ¢ãƒ³OAMãƒ‰ãƒ­ãƒƒãƒ—ã®CRP
+	CATS_ACT_PTR	poke_cap[ WE_POKE_CAP_MAX ];///< ãƒã‚±ãƒ¢ãƒ³OAMãƒ‰ãƒ­ãƒƒãƒ—ã®CAP
 	BOOL			poke_cap_use[ WE_POKE_CAP_MAX ];
-	AMO_SYS_PTR		poke_amos[WE_POKE_CAP_MAX ];///< ƒ|ƒPƒ‚ƒ“OAM’Ç”öSYS
-	AMB_SYS_PTR		poke_ambs;					///< ƒ|ƒPƒ‚ƒ“BG’Ç”öSYS
+	AMO_SYS_PTR		poke_amos[WE_POKE_CAP_MAX ];///< ãƒã‚±ãƒ¢ãƒ³OAMè¿½å°¾SYS
+	AMB_SYS_PTR		poke_ambs;					///< ãƒã‚±ãƒ¢ãƒ³BGè¿½å°¾SYS
 	
-	// ƒ`ƒFƒbƒN—p‚È‚Ç
-	u8	haikei_chg_flag;						///< ”wŒiØ‚è‘Ö‚¦ƒtƒ‰ƒO
-	u8	se_end_timer;							///< SE‚ÌI—¹‘Ò‚¿‚ğ‹­§“I‚ÉŒˆ‚ß‚é‚½‚ß‚ÌƒJƒEƒ“ƒ^
-	u8	free_time;								///< —V‚ÑŠÔ
+	// ãƒã‚§ãƒƒã‚¯ç”¨ãªã©
+	u8	haikei_chg_flag;						///< èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆãƒ•ãƒ©ã‚°
+	u8	se_end_timer;							///< SEã®çµ‚äº†å¾…ã¡ã‚’å¼·åˆ¶çš„ã«æ±ºã‚ã‚‹ãŸã‚ã®ã‚«ã‚¦ãƒ³ã‚¿
+	u8	free_time;								///< éŠã³æ™‚é–“
 	u8	sub1;
 
-	// ”wŒi—p
-	HC_SUB_PTR		hc_sub_ptr;					///< ”wŒiƒTƒuƒVƒXƒeƒ€
-	TWES_HAIKEI_ARC haikei_data;				///< ”wŒiƒf[ƒ^
+	// èƒŒæ™¯ç”¨
+	HC_SUB_PTR		hc_sub_ptr;					///< èƒŒæ™¯ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ 
+	TWES_HAIKEI_ARC haikei_data;				///< èƒŒæ™¯ãƒ‡ãƒ¼ã‚¿
 	
 	int				haikei_fade_bit;
 	u8				bg_pri[ 4 ];
 	
-	ARCHANDLE*		hdl[ WE_HDL_NUM ];			///< ƒnƒ“ƒhƒ‹
+	ARCHANDLE*		hdl[ WE_HDL_NUM ];			///< ãƒãƒ³ãƒ‰ãƒ«
 	
 } TWE_SYS;
 
 
 // -----------------------------------------
 //
-//	¡ ƒTƒEƒ“ƒh—p‚Ì”Ä—p\‘¢‘Ì
+//	â–  ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®æ±ç”¨æ§‹é€ ä½“
 //		[ SE_SYS_PTR ]
 //
 // -----------------------------------------
 typedef struct _TSE_SYS {
 
-	u8	mode;				///< ƒRƒ“ƒgƒ[ƒ‹ƒ‚[ƒh
+	u8	mode;				///< ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
 	
-	u8	seq;				///< ƒV[ƒPƒ“ƒXŠÇ—
-	u8	gene_seq;			///< ”Ä—pƒV[ƒPƒ“ƒX
-	u8	wait;				///< ƒEƒFƒCƒg
-	u8	gene_wait;			///< ”Ä—pƒEƒFƒCƒg
+	u8	seq;				///< ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç®¡ç†
+	u8	gene_seq;			///< æ±ç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	wait;				///< ã‚¦ã‚§ã‚¤ãƒˆ
+	u8	gene_wait;			///< æ±ç”¨ã‚¦ã‚§ã‚¤ãƒˆ
 	
-	int	s_pan;				///< ŠJnˆÊ’u‚Ìƒpƒ“
-	int	e_pan;				///< I—¹ˆÊ’u‚Ìƒpƒ“
-	int	a_pan;				///< ‰ÁZ‚·‚éƒpƒ“‚Ì’l
-	int	n_pan;				///< Œ»İ‚Ìƒpƒ“
+	int	s_pan;				///< é–‹å§‹ä½ç½®ã®ãƒ‘ãƒ³
+	int	e_pan;				///< çµ‚äº†ä½ç½®ã®ãƒ‘ãƒ³
+	int	a_pan;				///< åŠ ç®—ã™ã‚‹ãƒ‘ãƒ³ã®å€¤
+	int	n_pan;				///< ç¾åœ¨ã®ãƒ‘ãƒ³
 	
-	u8	repeat;				///< ŒJ‚è•Ô‚µ‰ñ”
+	u8	repeat;				///< ç¹°ã‚Šè¿”ã—å›æ•°
 
-	u16 se_no;				///< SE‚Ì”Ô†
+	u16 se_no;				///< SEã®ç•ªå·
 	
-	u32	wk[ WE_SE_WK_MAX ];	///< ”Ä—pƒ[ƒN
+	u32	wk[ WE_SE_WK_MAX ];	///< æ±ç”¨ãƒ¯ãƒ¼ã‚¯
 	
-	WE_SYS_PTR we_sys;		///< WE-SYS‚Ìƒ[ƒN
+	WE_SYS_PTR we_sys;		///< WE-SYSã®ãƒ¯ãƒ¼ã‚¯
 	
 } TSE_SYS;
 
 
 // -----------------------------------------
 //
-//	¡”wŒiØ‚è‘Ö‚¦—p‚Ì”Ä—p\‘¢‘Ì
+//	â– èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆç”¨ã®æ±ç”¨æ§‹é€ ä½“
 //		[ HC_SYS_PTR ]
 //
 // -----------------------------------------
@@ -288,19 +288,19 @@ typedef struct _THC_SYS {
 	u8	ev2;
 	u8	ev1_e;
 	u8	ev2_e;
-	u8	fade_type;			///< ”’‚©•‚© ƒfƒtƒHƒ‹ƒg•
+	u8	fade_type;			///< ç™½ã‹é»’ã‹ ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé»’
 	
-	int bg_id;				///< ‘‚«Š·‚¦BG”Ô†
-	int ch_mode;			///< Ø‚è‘Ö‚¦ƒ‚[ƒh
-	int ch_sbit;			///< Ø‚è‘Ö‚¦“ÁêBit
+	int bg_id;				///< æ›¸ãæ›ãˆBGç•ªå·
+	int ch_mode;			///< åˆ‡ã‚Šæ›¿ãˆãƒ¢ãƒ¼ãƒ‰
+	int ch_sbit;			///< åˆ‡ã‚Šæ›¿ãˆç‰¹æ®ŠBit
 	
-	int gp_wk[ WE_GENE_WK_MAX ];	///< GP_Work‚ÌƒRƒs[
+	int gp_wk[ WE_GENE_WK_MAX ];	///< GP_Workã®ã‚³ãƒ”ãƒ¼
 
-	u16	move_flag:1;		///< ˆÚ“®ƒtƒ‰ƒO
-	u16 laster_flag:1;		///< ƒ‰ƒXƒ^[ƒtƒ‰ƒO
+	u16	move_flag:1;		///< ç§»å‹•ãƒ•ãƒ©ã‚°
+	u16 laster_flag:1;		///< ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ•ãƒ©ã‚°
 	u16	dmy_flag:14;
 	
-	WE_SYS_PTR	we_sys;		///< WE_SYS‚Ìƒ[ƒN
+	WE_SYS_PTR	we_sys;		///< WE_SYSã®ãƒ¯ãƒ¼ã‚¯
 	
 } THC_SYS;
 
@@ -345,7 +345,7 @@ static const s16 speed_tbl[] = {
 
 // -----------------------------------------
 //
-//	¡”wŒiØ‚è‘Ö‚¦—p‚Ì“®ì”Ä—p\‘¢‘Ì
+//	â– èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆç”¨ã®å‹•ä½œæ±ç”¨æ§‹é€ ä½“
 //		[ HC_SUB_PTR ]
 //
 // -----------------------------------------
@@ -370,14 +370,14 @@ typedef struct _HC_SUB_SYS {
 
 // -----------------------------------------
 //
-//	¡ƒ|ƒPƒ‚ƒ“’Ç”ö—p‚Ì\‘¢‘Ì
+//	â– ãƒã‚±ãƒ¢ãƒ³è¿½å°¾ç”¨ã®æ§‹é€ ä½“
 //
 // -----------------------------------------
 typedef struct _TAUTO_MOVE_SYS {
 	
 	u8 wait;				///< wait
-	u8 frame;				///< XV
-	SOFT_SPRITE* ssp;		///< ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg
+	u8 frame;				///< æ›´æ–°
+	SOFT_SPRITE* ssp;		///< ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 	TCB_PTR		 am_tcb;	///< TCB_PTR
 	
 } TAUTO_MOVE_SYS;
@@ -401,7 +401,7 @@ typedef struct _TAMB_SYS {
 // ============================================================================
 //
 //
-//	¡ê—pƒfƒoƒbƒOŠÖ”
+//	â– å°‚ç”¨ãƒ‡ãƒãƒƒã‚°é–¢æ•°
 //
 //
 // ============================================================================
@@ -410,7 +410,7 @@ typedef struct _TAMB_SYS {
 // =============================================================================
 //
 //
-//	¡ƒvƒƒgƒ^ƒCƒv
+//	â– ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //
 //
 // =============================================================================
@@ -421,9 +421,9 @@ static void WazaEffectTCB_Delete(u8 mode, WE_SYS_PTR we_sys, TCB_PTR tcb);
 
 //--------------------------------------------------------------
 /**
- * @brief	‹ZƒGƒtƒFƒNƒg‚ÌÀs‘Ò‚¿
+ * @brief	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å®Ÿè¡Œå¾…ã¡
  *
- * @param	we_sys	WE-SYS‚Ì‰Šú‰»
+ * @param	we_sys	WE-SYSã®åˆæœŸåŒ–
  *
  * @retval	none	
  *
@@ -432,19 +432,19 @@ static void WazaEffectTCB_Delete(u8 mode, WE_SYS_PTR we_sys, TCB_PTR tcb);
 //--------------------------------------------------------------
 static void WazaEffectWait(WE_SYS_PTR we_sys)
 {
-	if (we_sys->waza_eff_wait == 0) {				///< wait‚ªİ’è‚³‚ê‚Ä‚¢‚é‚È‚ç‘Ò‚¿
-		we_sys->waza_eff_wait == 0;					///< ”O‚Ì‚½‚ß
-		we_sys->waza_eff_exe = WazaEffectExecuted;	///< ÀsŠÖ”‚É‘JˆÚ‚·‚é
+	if (we_sys->waza_eff_wait == 0) {				///< waitãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ãªã‚‰å¾…ã¡
+		we_sys->waza_eff_wait == 0;					///< å¿µã®ãŸã‚
+		we_sys->waza_eff_exe = WazaEffectExecuted;	///< å®Ÿè¡Œé–¢æ•°ã«é·ç§»ã™ã‚‹
 	}
 	else {
-		we_sys->waza_eff_wait--;					///< waitƒfƒNƒŠƒƒ“ƒg
+		we_sys->waza_eff_wait--;					///< waitãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	}
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	‹ZƒGƒtƒFƒNƒg‚ÌÀs [ ÀÛ‚ÉƒRƒ}ƒ“ƒh‚ğs‚¤êŠ ]
+ * @brief	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å®Ÿè¡Œ [ å®Ÿéš›ã«ã‚³ãƒãƒ³ãƒ‰ã‚’è¡Œã†å ´æ‰€ ]
  *
  * @param	we_sys	
  *
@@ -458,18 +458,18 @@ static void WazaEffectExecuted(WE_SYS_PTR we_sys)
 	pWeFunc func;
 	
 	do {
-		///< ÀsŠÖ”
+		///< å®Ÿè¡Œé–¢æ•°
 		func = WazaEffectCommandGet(*(we_sys->waza_eff_seq_adrs));
 		func(we_sys);
 		
-	} while (we_sys->waza_eff_wait == 0			///< ‹ZƒEƒFƒCƒg = 0
-		 &&  we_sys->waza_eff_active == TRUE);	///< ƒGƒtƒFƒNƒg‚ªƒAƒNƒeƒBƒu
+	} while (we_sys->waza_eff_wait == 0			///< æŠ€ã‚¦ã‚§ã‚¤ãƒˆ = 0
+		 &&  we_sys->waza_eff_active == TRUE);	///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒã‚¢ã‚¯ãƒ†ã‚£ãƒ–
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	WE-SYSê—pTCB‚Ìì¬
+ * @brief	WE-SYSå°‚ç”¨TCBã®ä½œæˆ
  *
  * @param	mode		EFFECT / SOUND
  * @param	we_sys	
@@ -505,7 +505,7 @@ static TCB_PTR WazaEffectTCB_Add(u8 mode, WE_SYS_PTR we_sys, TCB_FUNC func, void
 
 //--------------------------------------------------------------
 /**
- * @brief	WE-SYSê—pTCB‚Ì”jŠü
+ * @brief	WE-SYSå°‚ç”¨TCBã®ç ´æ£„
  *
  * @param	mode	
  * @param	we_sys	
@@ -543,17 +543,17 @@ static void WazaEffectTCB_Delete(u8 mode, WE_SYS_PTR we_sys, TCB_PTR tcb)
 // =============================================================================
 //
 //
-//	¡ŠO•”QÆŠÖ”
+//	â– å¤–éƒ¨å‚ç…§é–¢æ•°
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   WE_SYS ‚Ì‰Šú‰»
+ * @brief   WE_SYS ã®åˆæœŸåŒ–
  *
- * @param 	heap_area	ƒq[ƒvƒGƒŠƒA
+ * @param 	heap_area	ãƒ’ãƒ¼ãƒ—ã‚¨ãƒªã‚¢
  *
- * @retval	WE_SYS_PTR	NULL‚ª–ß‚é‚Í‰Šú‰»¸”s
+ * @retval	WE_SYS_PTR	NULLãŒæˆ»ã‚‹æ™‚ã¯åˆæœŸåŒ–å¤±æ•—
  *
  */
 //--------------------------------------------------------------
@@ -563,7 +563,7 @@ WE_SYS_PTR WES_Create(int heap_area)
 
 	WE_SYS_PTR we_sys = NULL;
 	
-	///< ƒƒCƒ“ƒVƒXƒeƒ€‚Ì‰Šú‰»
+	///< ãƒ¡ã‚¤ãƒ³ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
 	we_sys = sys_AllocMemory(heap_area, sizeof(TWE_SYS));
 	
 	if (we_sys == NULL){
@@ -572,17 +572,17 @@ WE_SYS_PTR WES_Create(int heap_area)
 	}
 	memset(we_sys, 0, sizeof(TWE_SYS));
 	
-	///< HEAPID‚ğƒƒ‚ƒŠŠm•Û‚Æ“¯‚Éİ’è
+	///< HEAPIDã‚’ãƒ¡ãƒ¢ãƒªç¢ºä¿ã¨åŒæ™‚ã«è¨­å®š
 	we_sys->heap_area = heap_area;
 	
-	///< í“¬‚Æ‚µ‚Ä“®ì
+	///< æˆ¦é—˜ã¨ã—ã¦å‹•ä½œ
 	we_sys->contest_active = FALSE;
 
 	
-	///< í“¬ƒVƒXƒeƒ€‚Ì‰Šú‰»
+	///< æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
 	we_sys->btl_sys = sys_AllocMemory(we_sys->heap_area, sizeof(TBTL_SYS));
 	
-	///< ŠeíHANDLEŠJ‚­
+	///< å„ç¨®HANDLEé–‹ã
 	we_sys->hdl[ 0 ] = ArchiveDataHandleOpen( ARC_BATT_BG,		heap_area );
 	we_sys->hdl[ 1 ] = ArchiveDataHandleOpen( ARC_BATT_OBJ,		heap_area );
 	we_sys->hdl[ 2 ] = ArchiveDataHandleOpen( ARC_WER_CHAR,		heap_area );
@@ -596,21 +596,21 @@ WE_SYS_PTR WES_Create(int heap_area)
 	}
 	memset(we_sys->btl_sys, 0, sizeof(TBTL_SYS));	
 	
-	we_sys->active = FALSE;						///< €”õ’†‚È‚Ì‚ÅFALSE
+	we_sys->active = FALSE;						///< æº–å‚™ä¸­ãªã®ã§FALSE
 
-	we_sys->waza_eff_seq_adrs = NULL;			///< ƒVƒXƒeƒ€ƒ[ƒN‚Ì‰Šú‰»‚È‚Ç
+	we_sys->waza_eff_seq_adrs = NULL;			///< ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–ãªã©
 	
-	for (i = 0; i < WE_CRP_MAX; i++){			///< CLACT—pƒ[ƒN‚Ì‰Šú‰»
+	for (i = 0; i < WE_CRP_MAX; i++){			///< CLACTç”¨ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
 		we_sys->crp[i] = NULL;
 	}
 	
-	for (i = 0; i < WE_POKE_CAP_MAX; i++){		///< ƒ|ƒPƒ‚ƒ“©“®’Ç”ö‚Ì‰Šú‰»
+	for (i = 0; i < WE_POKE_CAP_MAX; i++){		///< ãƒã‚±ãƒ¢ãƒ³è‡ªå‹•è¿½å°¾ã®åˆæœŸåŒ–
 		we_sys->poke_amos[i] = NULL;	
 	}
 	we_sys->poke_ambs = NULL;
 	
 
-	we_sys->active = TRUE;						///< €”õŠ®—¹‚È‚Ì‚ÅTRUE
+	we_sys->active = TRUE;						///< æº–å‚™å®Œäº†ãªã®ã§TRUE
 	
 	return we_sys;
 }
@@ -618,10 +618,10 @@ WE_SYS_PTR WES_Create(int heap_area)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒRƒ“ƒeƒXƒg—pƒtƒ‰ƒOƒZƒbƒg
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  *
  * @param	we_sys	
- * @param	flag				TRUE = ƒRƒ“ƒeƒXƒg FALSE = ‚»‚êˆÈŠO
+ * @param	flag				TRUE = ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ FALSE = ãã‚Œä»¥å¤–
  *
  * @retval	none	
  *
@@ -637,11 +637,11 @@ void WES_ContestFlag_Set(WE_SYS_PTR we_sys, BOOL flag)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒRƒ“ƒeƒXƒg—pƒtƒ‰ƒOƒ`ƒFƒbƒN
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
  *
  * @param	we_sys	
  *
- * @retval	BOOL				TRUE = ƒRƒ“ƒeƒXƒg
+ * @retval	BOOL				TRUE = ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
  *
  */
 //--------------------------------------------------------------
@@ -672,17 +672,17 @@ int WeSysHeapAreaGet(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	WE_SYS ‚Ì”jŠü
+ * @brief	WE_SYS ã®ç ´æ£„
  *
- * @param	we_sys	WE_SYS—p‚Ìƒ[ƒN
+ * @param	we_sys	WE_SYSç”¨ã®ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	BOOL	TRUE = ¬Œ÷
+ * @retval	BOOL	TRUE = æˆåŠŸ
  *
  */
 //--------------------------------------------------------------
 BOOL WES_Delete(WE_SYS_PTR we_sys)
 {
-	// ƒVƒXƒeƒ€‚Ì“®ìƒ`ƒFƒbƒN
+	// ã‚·ã‚¹ãƒ†ãƒ ã®å‹•ä½œãƒã‚§ãƒƒã‚¯
 	if (IsWES(we_sys) == FALSE){
 		return FALSE;
 	}
@@ -704,15 +704,15 @@ BOOL WES_Delete(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	‹ZƒGƒtƒFƒNƒg‚ÌƒR[ƒ‹
+ * @brief	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚³ãƒ¼ãƒ«
  *
- * @param	we_sys	WE_SYS—p‚Ìƒ[ƒN
- * @param	btl_sys	í“¬—p‚Ìƒ[ƒNƒGƒŠƒA
- * @param	waza_no	‹Z”Ô†
+ * @param	we_sys	WE_SYSç”¨ã®ãƒ¯ãƒ¼ã‚¯
+ * @param	btl_sys	æˆ¦é—˜ç”¨ã®ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢
+ * @param	waza_no	æŠ€ç•ªå·
  *
- * @retval	BOOL	TURE = ¬Œ÷
+ * @retval	BOOL	TURE = æˆåŠŸ
  *
- *	‹Z”Ô†‚©‚çA‘Î‰‚·‚é‹Z‚Ìæ“ªƒAƒhƒŒƒX‚ğwaza_eff_seq_adrs‚É“ü‚ê‚é
+ *	æŠ€ç•ªå·ã‹ã‚‰ã€å¯¾å¿œã™ã‚‹æŠ€ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’waza_eff_seq_adrsã«å…¥ã‚Œã‚‹
  *	
  *
  */
@@ -745,8 +745,8 @@ BOOL WES_Call_Ex(WE_SYS_PTR we_sys, WAZA_EFFECT_PARAM* btl_sys, u16 waza_no,
 	
 	set_waza_no = waza_no;
 	
-//	OS_Printf("ƒR[ƒ‹No = %d\n", waza_no);
-//	OS_Printf("ƒA[ƒNID = %d\n", wcbep->eff_arc_id);
+//	OS_Printf("ã‚³ãƒ¼ãƒ«No = %d\n", waza_no);
+//	OS_Printf("ã‚¢ãƒ¼ã‚¯ID = %d\n", wcbep->eff_arc_id);
 
 #ifdef PM_DEBUG
 
@@ -754,37 +754,37 @@ BOOL WES_Call_Ex(WE_SYS_PTR we_sys, WAZA_EFFECT_PARAM* btl_sys, u16 waza_no,
 
 #endif
 
-	// ----- ƒGƒtƒFƒNƒg—p‚ÌŠî–{‚ÌƒuƒŒƒ“ƒh -----
+	// ----- ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã®åŸºæœ¬ã®ãƒ–ãƒ¬ãƒ³ãƒ‰ -----
 	DefaultBlendSet();
 	
-	// ----- ƒVƒXƒeƒ€‚Ì“®ìƒ`ƒFƒbƒN -----
+	// ----- ã‚·ã‚¹ãƒ†ãƒ ã®å‹•ä½œãƒã‚§ãƒƒã‚¯ -----
 	if (IsWES(we_sys) == FALSE){
 		return FALSE;
 	}
 
-	// ----- ƒJƒƒ‰ƒ‚[ƒh‚Ì‰Šú‰» -----
+	// ----- ã‚«ãƒ¡ãƒ©ãƒ¢ãƒ¼ãƒ‰ã®åˆæœŸåŒ– -----
 	for (i = 0; i < PARTICLE_GLOBAL_MAX; i++){
 		we_sys->camera_mode[i] = WE_CAMERA_TYPE_ORTHO;
 		we_sys->camera_flag[i] = 0;
 	}
 
 	
-	// ----- WE-SYS‘¤‚Ì‰Šú‰» -----
-	for (i = 0; i < WE_GENE_WK_MAX; i++){		///< ”Ä—pƒ[ƒN‰Šú‰»
+	// ----- WE-SYSå´ã®åˆæœŸåŒ– -----
+	for (i = 0; i < WE_GENE_WK_MAX; i++){		///< æ±ç”¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		we_sys->waza_eff_gp_wk[i] = 0;
 	}
 	
-	for (i = 0; i < WE_LOOP_MAX; i++){			///< ƒ‹[ƒv—pƒ[ƒN‰Šú‰»
+	for (i = 0; i < WE_LOOP_MAX; i++){			///< ãƒ«ãƒ¼ãƒ—ç”¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		we_sys->loop[i].active  = FALSE;
 		we_sys->loop[i].seq_adrs = NULL;
 		we_sys->loop[i].n_cnt	= 0;
 		we_sys->loop[i].e_cnt	= 0;
 	}
 	
-	// ----- í“¬ƒ[ƒN‚Ìó‚¯“n‚µ -----
+	// ----- æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯ã®å—ã‘æ¸¡ã— -----
 	we_sys->btl_sys->command_code		= btl_sys->command_code;
 	we_sys->btl_sys->mode				= btl_sys->mode;
-	we_sys->btl_sys->waza_no			= btl_sys->waza_no;			///< ‹Z”Ô† = waza_no‚Æ“¯‚¶
+	we_sys->btl_sys->waza_no			= btl_sys->waza_no;			///< æŠ€ç•ªå· = waza_noã¨åŒã˜
 
 	we_sys->btl_sys->waza_eff_damage	= btl_sys->waza_eff_damage;	
 	we_sys->btl_sys->waza_eff_power		= btl_sys->waza_eff_power;
@@ -796,7 +796,7 @@ BOOL WES_Call_Ex(WE_SYS_PTR we_sys, WAZA_EFFECT_PARAM* btl_sys, u16 waza_no,
 	we_sys->btl_sys->df_client_no		= btl_sys->df_client_no;
 	we_sys->btl_sys->henshin_flag		= btl_sys->henshin_flag;
 #if 1
-//	OS_Printf(" -----«««ƒT[ƒo[‚©‚ç‚à‚ç‚¤ƒf[ƒ^«««----- \n");
+//	OS_Printf("â–¡-----â†“â†“â†“ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã‚‚ã‚‰ã†ãƒ‡ãƒ¼ã‚¿â†“â†“â†“-----â–¡\n");
 //	OS_Printf("waza_eff_damage	= %3d\n", btl_sys->waza_eff_damage);
 //	OS_Printf("waza_eff_power	= %3d\n", btl_sys->waza_eff_power);
 //	OS_Printf("waza_eff_natuki	= %3d\n", btl_sys->waza_eff_natuki);
@@ -805,7 +805,7 @@ BOOL WES_Call_Ex(WE_SYS_PTR we_sys, WAZA_EFFECT_PARAM* btl_sys, u16 waza_no,
 //	OS_Printf("ground_id		= %3d\n", btl_sys->ground_id);
 //	OS_Printf("at_client_no		= %3d\n", btl_sys->at_client_no);
 //	OS_Printf("df_client_no		= %3d\n", btl_sys->df_client_no);
-//	OS_Printf(" -----ªªªƒT[ƒo[‚©‚ç‚à‚ç‚¤ƒf[ƒ^ªªª----- \n");
+//	OS_Printf("â–¡-----â†‘â†‘â†‘ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã‚‚ã‚‰ã†ãƒ‡ãƒ¼ã‚¿â†‘â†‘â†‘-----â–¡\n");
 //	we_sys->btl_sys->waza_eff_cnt = 0;
 #endif
 	we_sys->btl_sys->csp				= wcbep->csp;
@@ -828,27 +828,27 @@ BOOL WES_Call_Ex(WE_SYS_PTR we_sys, WAZA_EFFECT_PARAM* btl_sys, u16 waza_no,
 	
 	we_sys->haikei_data					= wcbep->haikei_data;
 	we_sys->btl_sys->perap_voice		= wcbep->perap_voice;
-	we_sys->btl_sys->pal_area			= wcbep->pal_area;			///< ƒpƒŒƒbƒg
-	we_sys->btl_sys->bg_area			= wcbep->bg_area;			///< ƒoƒgƒ‹‚Ì”wŒi
+	we_sys->btl_sys->pal_area			= wcbep->pal_area;			///< ãƒ‘ãƒ¬ãƒƒãƒˆ
+	we_sys->btl_sys->bg_area			= wcbep->bg_area;			///< ãƒãƒˆãƒ«ã®èƒŒæ™¯
 
 	
-	// ----- ƒA[ƒJƒCƒu‚©‚ç‚Ìæ“¾ -----
+	// ----- ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰ã®å–å¾— -----
 	if (set_waza_no == WAZANO_HIMITUNOTIKARA){
 		
 		int HimitunoTikara_WazaTbl[] = {
-			WAZANO_DOROKAKE,				///< »—˜(»•l)		‚Ç‚ë‚©‚¯
-			WAZANO_DOROKAKE,				///< »—˜(»•l)		‚Ç‚ë‚©‚¯
-			WAZANO_NIIDORUAAMU,				///< Å¶(…‚½‚Ü‚è)	ƒj[ƒhƒ‹ƒA[ƒ€
-			WAZANO_NIIDORUAAMU,				///< Å¶(…‚½‚Ü‚è)	ƒj[ƒhƒ‹ƒA[ƒ€
-			WAZANO_IWAOTOSI,				///< Šâ”§(“´ŒA)		‚¢‚í‚¨‚Æ‚µ
-			WAZANO_IWAOTOSI,				///< Šâ”§(“´ŒA)		‚¢‚í‚¨‚Æ‚µ
-			WAZANO_YUKINADARE,				///< áŒ´			‚ä‚«‚È‚¾‚ê
-			WAZANO_MIZUNOHADOU,				///< …ã			‚İ‚¸‚Ì‚Í‚Ç‚¤
-			WAZANO_KOORINOTUBUTE,			///< •Xã			‚±‚¨‚è‚Â‚Ô‚Ä
-			WAZANO_NOSIKAKARI,				///< °				‚Ì‚µ‚©‚©‚è
-			WAZANO_MADDOSYOTTO,				///< À’n			ƒ}ƒbƒhƒVƒ‡ƒbƒg
-			WAZANO_KAZEOKOSI,				///< ’İ‹´			‚©‚º‚¨‚±‚µ
-			WAZANO_NOSIKAKARI,				///< ˆÈŠO			‚Ì‚µ‚©‚©‚è
+			WAZANO_DOROKAKE,				///< ç ‚åˆ©(ç ‚æµœ)		ã©ã‚ã‹ã‘
+			WAZANO_DOROKAKE,				///< ç ‚åˆ©(ç ‚æµœ)		ã©ã‚ã‹ã‘
+			WAZANO_NIIDORUAAMU,				///< èŠç”Ÿ(æ°´ãŸã¾ã‚Š)	ãƒ‹ãƒ¼ãƒ‰ãƒ«ã‚¢ãƒ¼ãƒ 
+			WAZANO_NIIDORUAAMU,				///< èŠç”Ÿ(æ°´ãŸã¾ã‚Š)	ãƒ‹ãƒ¼ãƒ‰ãƒ«ã‚¢ãƒ¼ãƒ 
+			WAZANO_IWAOTOSI,				///< å²©è‚Œ(æ´çªŸ)		ã„ã‚ãŠã¨ã—
+			WAZANO_IWAOTOSI,				///< å²©è‚Œ(æ´çªŸ)		ã„ã‚ãŠã¨ã—
+			WAZANO_YUKINADARE,				///< é›ªåŸ			ã‚†ããªã ã‚Œ
+			WAZANO_MIZUNOHADOU,				///< æ°´ä¸Š			ã¿ãšã®ã¯ã©ã†
+			WAZANO_KOORINOTUBUTE,			///< æ°·ä¸Š			ã“ãŠã‚Šã¤ã¶ã¦
+			WAZANO_NOSIKAKARI,				///< åºŠ				ã®ã—ã‹ã‹ã‚Š
+			WAZANO_MADDOSYOTTO,				///< æ²¼åœ°			ãƒãƒƒãƒ‰ã‚·ãƒ§ãƒƒãƒˆ
+			WAZANO_KAZEOKOSI,				///< åŠæ©‹			ã‹ãœãŠã“ã—
+			WAZANO_NOSIKAKARI,				///< ä»¥å¤–			ã®ã—ã‹ã‹ã‚Š
 		};
 		
 		if (we_sys->btl_sys->waza_eff_ground_id >= GROUND_ID_ALL){
@@ -857,7 +857,7 @@ BOOL WES_Call_Ex(WE_SYS_PTR we_sys, WAZA_EFFECT_PARAM* btl_sys, u16 waza_no,
 		else {
 			set_waza_no = HimitunoTikara_WazaTbl[ we_sys->btl_sys->waza_eff_ground_id ];
 		}		
-	//	OS_Printf("[ ‹Z ]:‚Ğ‚İ‚Â‚Ì‚¿‚©‚ç ‚È‚Ì‚Å ‚·‚è‚©‚¦‚Ü‚·‚æB\n’nŒ` = %2d\n‹ZNO = %3d\n",we_sys->btl_sys->waza_eff_ground_id, set_waza_no);
+	//	OS_Printf("[ æŠ€ ]:ã²ã¿ã¤ã®ã¡ã‹ã‚‰ ãªã®ã§ ã™ã‚Šã‹ãˆã¾ã™ã‚ˆã€‚\nåœ°å½¢ = %2d\næŠ€NO = %3d\n",we_sys->btl_sys->waza_eff_ground_id, set_waza_no);
 	}
 	
 	if (set_waza_no == 0
@@ -879,13 +879,13 @@ BOOL WES_Call_Ex(WE_SYS_PTR we_sys, WAZA_EFFECT_PARAM* btl_sys, u16 waza_no,
 	}
 	we_sys->waza_eff_seq_adrs = (u32*)we_sys->arc_data_adrs;
 
-	// ----- BGƒvƒ‰ƒCƒIƒŠƒeƒB‚Ì•Û‘¶
+	// ----- BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã®ä¿å­˜
 	we_sys->bg_pri[ 0 ] = GF_BGL_PriorityGet(we_sys->bgl, GF_BGL_FRAME0_M);
 	we_sys->bg_pri[ 1 ] = GF_BGL_PriorityGet(we_sys->bgl, GF_BGL_FRAME1_M);
 	we_sys->bg_pri[ 2 ] = GF_BGL_PriorityGet(we_sys->bgl, GF_BGL_FRAME2_M);
 	we_sys->bg_pri[ 3 ] = GF_BGL_PriorityGet(we_sys->bgl, GF_BGL_FRAME3_M);
 	
-	// ----- OAM‚ÌCAP‰Šú‰» -----
+	// ----- OAMã®CAPåˆæœŸåŒ– -----
 	for (i = 0; i < WE_CAP_MAX; i++){
 		we_sys->cap[i] = NULL;
 	}
@@ -895,14 +895,14 @@ BOOL WES_Call_Ex(WE_SYS_PTR we_sys, WAZA_EFFECT_PARAM* btl_sys, u16 waza_no,
 		we_sys->poke_cap_use[i] = FALSE;
 	}
 	
-	// ----- ƒTƒuƒVƒXƒeƒ€ -----
+	// ----- ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ  -----
 	we_sys->hc_sub_ptr = NULL;
 	
 
-	// ----- ÀsŠÖ”‚Ì“o˜^ -----
-	we_sys->waza_eff_exe = WazaEffectExecuted;	///< ÀsŠÖ”‚ÌƒAƒhƒŒƒX
+	// ----- å®Ÿè¡Œé–¢æ•°ã®ç™»éŒ² -----
+	we_sys->waza_eff_exe = WazaEffectExecuted;	///< å®Ÿè¡Œé–¢æ•°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-	we_sys->waza_eff_wait = 0;					///< ƒGƒtƒFƒNƒg—pƒEƒFƒCƒg
+	we_sys->waza_eff_wait = 0;					///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚¦ã‚§ã‚¤ãƒˆ
 	
 	if (WES_ContestFlag_Get(we_sys) == TRUE){
 		we_sys->haikei_fade_bit = ACTIN_HAIKEI_FADE_BIT;
@@ -911,24 +911,24 @@ BOOL WES_Call_Ex(WE_SYS_PTR we_sys, WAZA_EFFECT_PARAM* btl_sys, u16 waza_no,
 		we_sys->haikei_fade_bit = WES_HAIKEI_PAL;
 	}
 	
-	we_sys->waza_eff_active = TRUE;				///< ‹ZƒGƒtƒFƒNƒg‚Ì“®ìON
+	we_sys->waza_eff_active = TRUE;				///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å‹•ä½œON
 
 	return TRUE;
 }	
 
 //--------------------------------------------------------------
 /**
- * @brief	‹ZƒGƒtƒFƒNƒg‚ÌÀs
+ * @brief	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å®Ÿè¡Œ
  *
- * @param	we_sys	WE_SYS ‚Ìƒ[ƒN
+ * @param	we_sys	WE_SYS ã®ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	BOOL	TRUE = ³í		FALSE = ˆÙí
+ * @retval	BOOL	TRUE = æ­£å¸¸		FALSE = ç•°å¸¸
  *
  */
 //--------------------------------------------------------------
 BOOL WES_Executed(WE_SYS_PTR we_sys)
 {
-	// ƒVƒXƒeƒ€‚Ì“®ìó‹µƒ`ƒFƒbƒN
+	// ã‚·ã‚¹ãƒ†ãƒ ã®å‹•ä½œçŠ¶æ³ãƒã‚§ãƒƒã‚¯
 	if (IsWES(we_sys) == FALSE){
 		return FALSE;
 	}
@@ -941,11 +941,11 @@ BOOL WES_Executed(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	‹ZƒGƒtƒFƒNƒg‚ÌI—¹ƒ`ƒFƒbƒN
+ * @brief	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
  * @param	we_sys	
  *
- * @retval	BOOL	TRUE = “®ì’†	FALSE = ˆÙí
+ * @retval	BOOL	TRUE = å‹•ä½œä¸­	FALSE = ç•°å¸¸
  *
  */
 //--------------------------------------------------------------
@@ -957,11 +957,11 @@ BOOL IsWES_Executed(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒtƒFƒNƒg‚Ì‰Šú‰»
+ * @brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–
  *
  * @param	we_sys	
  *
- * @retval	BOOL	TRUE = ³í		FALSE = ˆÙí
+ * @retval	BOOL	TRUE = æ­£å¸¸		FALSE = ç•°å¸¸
  *
  */
 //--------------------------------------------------------------
@@ -993,7 +993,7 @@ BOOL WES_Reset(WE_SYS_PTR we_sys)
 		}
 #endif
 
-		GF_ASSERT((g_nWazaEffectHeapState == now_state) && "•sˆê’v");
+		GF_ASSERT((g_nWazaEffectHeapState == now_state) && "ä¸ä¸€è‡´");
 	}
 #endif
 #endif	
@@ -1003,11 +1003,11 @@ BOOL WES_Reset(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	WE_SYS‚ª“®ì’†‚©H
+ * @brief	WE_SYSãŒå‹•ä½œä¸­ã‹ï¼Ÿ
  *
- * @param	we_sys	WE_SYSƒ[ƒN
+ * @param	we_sys	WE_SYSãƒ¯ãƒ¼ã‚¯
  *
- * @retval	BOOL	TRUE = “®ì’† FALSE = –¢“®ìA‚Ü‚½‚Íƒ[ƒN‚ªNULL
+ * @retval	BOOL	TRUE = å‹•ä½œä¸­ FALSE = æœªå‹•ä½œã€ã¾ãŸã¯ãƒ¯ãƒ¼ã‚¯ãŒNULL
  *
  */
 //--------------------------------------------------------------
@@ -1023,7 +1023,7 @@ BOOL IsWES(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	WE-SYS—p ƒGƒtƒFƒNƒgTCBì¬
+ * @brief	WE-SYSç”¨ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBä½œæˆ
  *
  * @param	we_sys	
  * @param	func	
@@ -1055,7 +1055,7 @@ TCB_PTR WEEffect_TCB_AddPriSet(WE_SYS_PTR we_sys, TCB_FUNC func, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	WE-SYS—p ƒTƒEƒ“ƒhTCBì¬
+ * @brief	WE-SYSç”¨ ã‚µã‚¦ãƒ³ãƒ‰TCBä½œæˆ
  *
  * @param	we_sys	
  * @param	func	
@@ -1086,7 +1086,7 @@ TCB_PTR WESound_TCB_AddPriSet(WE_SYS_PTR we_sys, TCB_FUNC func, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	WE-SYS—p ƒGƒtƒFƒNƒg—pTCB”jŠü
+ * @brief	WE-SYSç”¨ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨TCBç ´æ£„
  *
  * @param	we_sys	
  * @param	tcb	
@@ -1103,7 +1103,7 @@ void WEEffect_TCB_Delete(WE_SYS_PTR we_sys, TCB_PTR tcb)
 
 //--------------------------------------------------------------
 /**
- * @brief	WE-SYS—p ƒTƒEƒ“ƒhTCB”jŠü
+ * @brief	WE-SYSç”¨ ã‚µã‚¦ãƒ³ãƒ‰TCBç ´æ£„
  *
  * @param	we_sys	
  * @param	tcb	
@@ -1124,17 +1124,17 @@ void WESound_TCB_Delete(WE_SYS_PTR we_sys, TCB_PTR tcb)
 // =============================================================================
 //
 //
-//	¡í“¬—pƒpƒ‰ƒ[ƒ^[ˆø“n‚µŠÖ”
+//	â– æˆ¦é—˜ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼å¼•æ¸¡ã—é–¢æ•°
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒ^ƒbƒN‘¤ƒNƒ‰ƒCƒAƒ“ƒg”Ô†æ“¾
+ * @brief	ã‚¢ã‚¿ãƒƒã‚¯å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç•ªå·å–å¾—
  *
  * @param	we_sys	
  *
- * @retval	u16			ƒAƒ^ƒbƒN‘¤ƒNƒ‰ƒCƒAƒ“ƒg”Ô†æ“¾
+ * @retval	u16			ã‚¢ã‚¿ãƒƒã‚¯å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç•ªå·å–å¾—
  *
  */
 //--------------------------------------------------------------
@@ -1146,11 +1146,11 @@ u16 WeSysATNoGet(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒBƒtƒFƒ“ƒX‘¤ƒNƒ‰ƒCƒAƒ“ƒg”Ô†æ“¾
+ * @brief	ãƒ‡ã‚£ãƒ•ã‚§ãƒ³ã‚¹å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç•ªå·å–å¾—
  *
  * @param	we_sys	
  *
- * @retval	u16			ƒfƒBƒtƒFƒ“ƒX‘¤ƒNƒ‰ƒCƒAƒ“ƒg”Ô†æ“¾
+ * @retval	u16			ãƒ‡ã‚£ãƒ•ã‚§ãƒ³ã‚¹å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç•ªå·å–å¾—
  *
  */
 //--------------------------------------------------------------
@@ -1162,11 +1162,11 @@ u16 WeSysDFNoGet(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	PTCƒ|ƒCƒ“ƒ^æ“¾ŠÖ”
+ * @brief	PTCãƒã‚¤ãƒ³ã‚¿å–å¾—é–¢æ•°
  *
  * @param	we_sys	
  *
- * @retval	PTC_PTR		PTCƒ|ƒCƒ“ƒ^æ“¾ŠÖ”
+ * @retval	PTC_PTR		PTCãƒã‚¤ãƒ³ã‚¿å–å¾—é–¢æ•°
  *
  */
 //--------------------------------------------------------------
@@ -1182,7 +1182,7 @@ PTC_PTR WeSysPTCPointerNoGet(WE_SYS_PTR we_sys, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒ~ƒbƒ^[‚Ìƒ|ƒCƒ“ƒ^æ“¾
+ * @brief	ã‚¨ãƒŸãƒƒã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
  * @param	we_sys	
  * @param	no	
@@ -1203,7 +1203,7 @@ EMIT_PTR WeSysEMITPointerGet(WE_SYS_PTR we_sys, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	BGL‚Ìƒ|ƒCƒ“ƒ^æ“¾ŠÖ”
+ * @brief	BGLã®ãƒã‚¤ãƒ³ã‚¿å–å¾—é–¢æ•°
  *
  * @param	we_sys	
  *
@@ -1219,7 +1219,7 @@ GF_BGL_INI* WeSysBGLPointerGet(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	”Ä—pƒ[ƒN‚Ì’l‚ğæ“¾
+ * @brief	æ±ç”¨ãƒ¯ãƒ¼ã‚¯ã®å€¤ã‚’å–å¾—
  *
  * @param	we_sys	
  * @param	no	
@@ -1238,7 +1238,7 @@ s32 WeSysGPWorkGet(WE_SYS_PTR we_sys, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	OAM‚ÌCAP‚ğæ“¾
+ * @brief	OAMã®CAPã‚’å–å¾—
  *
  * @param	we_sys	
  * @param	no	
@@ -1259,10 +1259,10 @@ CATS_ACT_PTR WeSysOamCapGet(WE_SYS_PTR we_sys, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ÌCAP‚ğæ“¾‚·‚é
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®CAPã‚’å–å¾—ã™ã‚‹
  *
  * @param	we_sys			
- * @param	no					”Ô†
+ * @param	no					ç•ªå·
  *
  * @retval	CATS_ACT_PTR	
  *
@@ -1280,7 +1280,7 @@ CATS_ACT_PTR WeSysPokeCapGet(WE_SYS_PTR we_sys, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ÌCRP‚ğæ“¾‚·‚é
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®CRPã‚’å–å¾—ã™ã‚‹
  *
  * @param	we_sys	
  *
@@ -1298,7 +1298,7 @@ CATS_RES_PTR WeSysPokeCrpGet(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	CRP‚ğæ“¾‚·‚é 0‚¾‚¯
+ * @brief	CRPã‚’å–å¾—ã™ã‚‹ 0ã ã‘
  *
  * @param	we_sys	
  *
@@ -1314,7 +1314,7 @@ CATS_RES_PTR WeSysCrpGet(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	CSP‚Ìæ“¾
+ * @brief	CSPã®å–å¾—
  *
  * @param	we_sys	
  *
@@ -1331,7 +1331,7 @@ CATS_SYS_PTR WeSysCspGet(WE_SYS_PTR we_sys)
 //
 //
 //
-//	¡ƒTƒEƒ“ƒhƒRƒ“ƒgƒ[ƒ‹ŠÖ˜A	[ _SOUND_CONTROL_ ]
+//	â– ã‚µã‚¦ãƒ³ãƒ‰ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é–¢é€£	[ _SOUND_CONTROL_ ]
 //
 //
 //
@@ -1353,25 +1353,25 @@ static BOOL SeControl_WaitPlay(SE_SYS_PTR ss);
 // -----------------------------------------
 //
 //
-//	¡ƒTƒEƒ“ƒh—p‚ÌTCBƒŠƒXƒg
+//	â– ã‚µã‚¦ãƒ³ãƒ‰ç”¨ã®TCBãƒªã‚¹ãƒˆ
 //
 //
 // -----------------------------------------
 static BOOL (* const SeControlTCB[])(SE_SYS_PTR ss) = {
 
-	SeControl_None,			// “®ì‚È‚µ
-	SeControl_PanFlow,		// ƒpƒ“‚Ì•ÏX
-	SeControl_PanFlowFix,	// PanFlow‚Æ“à•”‚Í“¯‚¶“®‚«
-	SeControl_PanFlowAF,	// PanFlow‚Æ“à•”‚Í“¯‚¶“®‚«
+	SeControl_None,			// å‹•ä½œãªã—
+	SeControl_PanFlow,		// ãƒ‘ãƒ³ã®å¤‰æ›´
+	SeControl_PanFlowFix,	// PanFlowã¨å†…éƒ¨ã¯åŒã˜å‹•ã
+	SeControl_PanFlowAF,	// PanFlowã¨å†…éƒ¨ã¯åŒã˜å‹•ã
 	
-	SeControl_Repeat,		// ƒŠƒs[ƒg
-	SeControl_WaitPlay,		// wait•ª‘Ò‚Á‚Ä‚©‚çÄ¶
+	SeControl_Repeat,		// ãƒªãƒ”ãƒ¼ãƒˆ
+	SeControl_WaitPlay,		// waitåˆ†å¾…ã£ã¦ã‹ã‚‰å†ç”Ÿ
 };
 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒEƒ“ƒhƒRƒ“ƒgƒ[ƒ‹‚Ì‰Šú‰»
+ * @brief	ã‚µã‚¦ãƒ³ãƒ‰ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®åˆæœŸåŒ–
  *
  * @param	we_sys
  *
@@ -1386,7 +1386,7 @@ static SE_SYS_PTR SeControlInit(WE_SYS_PTR we_sys)
 	ss = sys_AllocMemory(we_sys->heap_area, sizeof(TSE_SYS));
 	
 	if (ss == NULL){
-		GF_ASSERT(0 && "SeControl‚Ì‰Šú‰»¸”s");
+		GF_ASSERT(0 && "SeControlã®åˆæœŸåŒ–å¤±æ•—");
 		return NULL;
 	}
 	memset(ss, 0, sizeof(TSE_SYS));
@@ -1399,7 +1399,7 @@ static SE_SYS_PTR SeControlInit(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒEƒ“ƒhƒRƒ“ƒgƒ[ƒ‹TCBì¬
+ * @brief	ã‚µã‚¦ãƒ³ãƒ‰ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«TCBä½œæˆ
  *
  * @param	ss	
  *
@@ -1417,7 +1417,7 @@ static void	SeControlStart(WE_SYS_PTR we_sys, SE_SYS_PTR ss)
 
 //--------------------------------------------------------------
 /**
- * @brief	SEƒRƒ“ƒgƒ[ƒ‹‚Ì•ªŠòTCB
+ * @brief	SEã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã®åˆ†å²TCB
  *
  * @param	tcb	
  * @param	work	
@@ -1445,7 +1445,7 @@ static void SeControl_MainTCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	SEƒRƒ“ƒgƒ[ƒ‹ ƒ_ƒ~[
+ * @brief	SEã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ« ãƒ€ãƒŸãƒ¼
  *
  * @param	ss	
  *
@@ -1461,7 +1461,7 @@ static BOOL	SeControl_None(SE_SYS_PTR ss)
 
 //--------------------------------------------------------------
 /**
- * @brief	SEƒRƒ“ƒgƒ[ƒ‹ PanFlow
+ * @brief	SEã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ« PanFlow
  *
  * @param	ss	
  *
@@ -1500,11 +1500,11 @@ static BOOL	SeControl_PanFlow(SE_SYS_PTR ss)
 	
 	Snd_SePanSetAll(ss->n_pan);
 	
-//	OS_Printf("Œ»İ‚Ìƒpƒ“‚Ìİ’è ¥¥¥ %4d\n", ss->n_pan);
+//	OS_Printf("ç¾åœ¨ã®ãƒ‘ãƒ³ã®è¨­å®š ãƒ»ãƒ»ãƒ» %4d\n", ss->n_pan);
 	
 	if (Snd_SePlayCheck(ss->se_no) == FALSE){
 		if (active == TRUE){
-//			OS_Printf("ƒpƒ“‚ÌˆÚ“®‚ªI‚í‚Á‚Ä‚È‚¢‚ªA‚r‚d‚ª‚È‚èI‚í‚Á‚Ä‚¢‚é‚Ì‚Å‚s‚b‚a‚ğI—¹\n");
+//			OS_Printf("ãƒ‘ãƒ³ã®ç§»å‹•ãŒçµ‚ã‚ã£ã¦ãªã„ãŒã€ï¼³ï¼¥ãŒãªã‚Šçµ‚ã‚ã£ã¦ã„ã‚‹ã®ã§ï¼´ï¼£ï¼¢ã‚’çµ‚äº†\n");
 		}		
 		return FALSE;
 	}
@@ -1515,7 +1515,7 @@ static BOOL	SeControl_PanFlow(SE_SYS_PTR ss)
 
 //--------------------------------------------------------------
 /**
- * @brief	SEƒRƒ“ƒgƒ[ƒ‹ PanFlowFix
+ * @brief	SEã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ« PanFlowFix
  *
  * @param	ss	
  *
@@ -1531,7 +1531,7 @@ static BOOL	SeControl_PanFlowFix(SE_SYS_PTR ss)
 
 //--------------------------------------------------------------
 /**
- * @brief	SEƒRƒ“ƒgƒ[ƒ‹ PanFlowAF
+ * @brief	SEã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ« PanFlowAF
  *
  * @param	ss	
  *
@@ -1547,7 +1547,7 @@ static BOOL	SeControl_PanFlowAF(SE_SYS_PTR ss)
 
 //--------------------------------------------------------------
 /**
- * @brief	SEƒRƒ“ƒgƒ[ƒ‹ Repeat
+ * @brief	SEã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ« Repeat
  *
  * @param	ss	
  *
@@ -1581,7 +1581,7 @@ static BOOL SeControl_Repeat(SE_SYS_PTR ss)
 
 //--------------------------------------------------------------
 /**
- * @brief	wait•ª‘Ò‚Á‚Ä‚©‚çSE‚ğÄ¶‚·‚é
+ * @brief	waitåˆ†å¾…ã£ã¦ã‹ã‚‰SEã‚’å†ç”Ÿã™ã‚‹
  *
  * @param	ss	
  *
@@ -1621,7 +1621,7 @@ static BOOL SeControl_WaitPlay(SE_SYS_PTR ss)
 //
 //
 //
-//	¡ƒRƒ}ƒ“ƒh	[ _COMMAND_ ]
+//	â– ã‚³ãƒãƒ³ãƒ‰	[ _COMMAND_ ]
 //
 //
 //
@@ -1629,7 +1629,7 @@ static BOOL SeControl_WaitPlay(SE_SYS_PTR ss)
 // =============================================================================
 //
 //
-//	¡ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	â– ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //
 // =============================================================================
@@ -1696,7 +1696,7 @@ static void WEST_PTAT_JP(WE_SYS_PTR we_sys);
 static void WEST_VOICE_PLAY(WE_SYS_PTR we_sys);
 static void WEST_VOICE_WAIT_STOP(WE_SYS_PTR we_sys);
 
-/// V‹KƒRƒ}ƒ“ƒh
+/// æ–°è¦ã‚³ãƒãƒ³ãƒ‰
 static void WEST_FUNC_CALL(WE_SYS_PTR we_sys);
 static void WEST_ADD_PARTICLE(WE_SYS_PTR we_sys);
 static void WEST_ADD_PARTICLE_EMIT_SET(WE_SYS_PTR we_sys);
@@ -1709,7 +1709,7 @@ static void WEST_EXIT_PARTICLE(WE_SYS_PTR we_sys);
 static void WEST_EX_DATA(WE_SYS_PTR we_sys);
 static void WEST_OLDACT_FUNC_CALL(WE_SYS_PTR we_sys);
 
-/// CLACT ŠÖ˜AƒRƒ}ƒ“ƒh
+/// CLACT é–¢é€£ã‚³ãƒãƒ³ãƒ‰
 static void WEST_CATS_RES_INIT(WE_SYS_PTR we_sys);
 static void WEST_CATS_CHAR_RES_LOAD(WE_SYS_PTR we_sys);
 static void WEST_CATS_PLTT_RES_LOAD(WE_SYS_PTR we_sys);
@@ -1724,13 +1724,13 @@ static void WEST_PT_DROP(WE_SYS_PTR we_sys);
 static void WEST_PT_DROP_RESET(WE_SYS_PTR we_sys);
 
 
-/// ƒfƒoƒbƒO
+/// ãƒ‡ãƒãƒƒã‚°
 static void WEST_KEY_WAIT(WE_SYS_PTR we_sys);
 
-/// ƒCƒ“ƒ‰ƒCƒ“ŠÖ”
-static inline TAP  AdrsParamGetEx(u32* adrs, u8 s_byte, u8 byte);	///< ƒf[ƒ^æ“¾
-static inline TAP  AdrsParamGet(u32* adrs, u8 byte);					///< ƒf[ƒ^æ“¾
-static inline TAP  SeqAdrsGet(u32* adrs);							///< ƒf[ƒ^æ“¾
+/// ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°
+static inline TAP  AdrsParamGetEx(u32* adrs, u8 s_byte, u8 byte);	///< ãƒ‡ãƒ¼ã‚¿å–å¾—
+static inline TAP  AdrsParamGet(u32* adrs, u8 byte);					///< ãƒ‡ãƒ¼ã‚¿å–å¾—
+static inline TAP  SeqAdrsGet(u32* adrs);							///< ãƒ‡ãƒ¼ã‚¿å–å¾—
 
 
 
@@ -1752,7 +1752,7 @@ static inline TAP  SeqAdrsGet(u32* adrs);							///< ƒf[ƒ^æ“¾
 // =============================================================================
 //
 //
-//	¡ƒe[ƒuƒ‹	[ _COMMAND_TABLE_ ]
+//	â– ãƒ†ãƒ¼ãƒ–ãƒ«	[ _COMMAND_TABLE_ ]
 //
 //
 // =============================================================================
@@ -1803,50 +1803,50 @@ static const pWeFunc WazaEffectCmdList[] = {
 	WEST_PARTY_ATTACK_BGEND,
 	WEST_SE_STOP,
 	
-	// V‹K“o˜^
-	WEST_FUNC_CALL,				///< w’è‚³‚ê‚½ŠÖ”‚ğŒÄ‚Ño‚·
-	WEST_ADD_PARTICLE,			///< ƒp[ƒeƒBƒNƒ‹‚ğ“o˜^‚·‚é
-	WEST_ADD_PARTICLE_EMIT_SET,	///< ƒp[ƒeƒBƒNƒ‹ƒGƒ~ƒbƒ^w’èƒo[ƒWƒ‡ƒ“
-	WEST_ADD_PARTICLE_SEP,		///< ƒp[ƒeƒBƒNƒ‹ƒGƒ~ƒbƒ^w’è •ªŠò
-	WEST_ADD_PARTICLE_PTAT,		///< ƒp[ƒeƒBƒNƒ‹ƒGƒ~ƒbƒ^w’è •ªŠò
-	WEST_WAIT_PARTICLE,			///< ƒp[ƒeƒBƒNƒ‹‚ÌI—¹‘Ò‚¿
-	WEST_LOAD_PARTICLE,			///< ƒp[ƒeƒBƒNƒ‹‚ÌƒŠƒ\[ƒX“Ç‚İ‚İ
-	WEST_LOAD_PARTICLE_EX,		///< ƒp[ƒeƒBƒNƒ‹‚ÌƒŠƒ\[ƒX“Ç‚İ‚İ
-	WEST_EXIT_PARTICLE,			///< ƒp[ƒeƒBƒNƒ‹‚ÌƒŠƒ\[ƒX‰ğ•ú
-	WEST_OLDACT_FUNC_CALL,		///< ‹Œ‹ZƒGƒtƒFƒNƒgŒİŠ·—pƒAƒNƒ^[¶¬ŠÖ”ŒÄ‚Ño‚µ
-	WEST_EX_DATA,				///< ƒf[ƒ^—ñ’è‹`
-	WEST_POKEOAM_RES_INIT,		///< ƒ|ƒPƒ‚ƒ“‚ğOAM‚É—‚Æ‚·‚½‚ß‚ÌƒŠƒ\[ƒXì¬
-	WEST_POKEOAM_RES_LOAD,		///< ƒ|ƒPƒ‚ƒ“‚ğOAM‚É—‚Æ‚·‚½‚ß‚ÌƒŠƒ\[ƒXì¬
-	WEST_POKEOAM_DROP,			///< ƒ|ƒPƒ‚ƒ“‚ğOAM‚É—‚Æ‚·
-	WEST_POKEOAM_RES_FREE,		///< ƒ|ƒPƒ‚ƒ“‚ğOAM‚É—‚Æ‚·‚½‚ß‚Ég—p‚µ‚½ƒŠƒ\[ƒX‰ğ•ú
-	WEST_POKEOAM_DROP_RESET,	///< ƒ|ƒPƒ‚ƒ“‚ÌOAM‰ğ•ú
-	WEST_POKEOAM_AUTO_STOP,		///< ƒ|ƒPƒ‚ƒ“‚ğOAM‚Ì©“®’Ç”ö‚Ì’â~
-	WEST_CAMERA_CHG,			///< ƒJƒƒ‰‚Ìƒ‚[ƒhİ’è
-	WEST_CAMERA_REVERCE,		///< ƒJƒƒ‰”½“]
-	WEST_SIDE_JP,				///< ƒTƒCƒh‚ÌˆÊ’u‚ÅƒWƒƒƒ“ƒv‚·‚é
-	WEST_VOICE_PLAY,			///< –Â‚«º Ä¶
-	WEST_VOICE_WAIT_STOP,		///< –Â‚«º ‘Ò‚¿{’â~
-	WEST_WORK_CLEAR,			///< ƒ[ƒN‰Šú‰»
-	WEST_HENSIN_ON,				///< •Ïg
-	WEST_HENSIN_ON_RC,			///< •Ïg‚à‚Ç‚µ
-	WEST_TENKI_JP,				///< “V‹CƒWƒƒƒ“ƒv
-	WEST_CONTEST_JP,			///< ƒRƒ“ƒeƒXƒgƒWƒƒƒ“ƒv
-	WEST_PTAT_JP,				///< ƒp[ƒeƒBƒAƒ^ƒbƒN
+	// æ–°è¦ç™»éŒ²
+	WEST_FUNC_CALL,				///< æŒ‡å®šã•ã‚ŒãŸé–¢æ•°ã‚’å‘¼ã³å‡ºã™
+	WEST_ADD_PARTICLE,			///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’ç™»éŒ²ã™ã‚‹
+	WEST_ADD_PARTICLE_EMIT_SET,	///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚¨ãƒŸãƒƒã‚¿æŒ‡å®šãƒãƒ¼ã‚¸ãƒ§ãƒ³
+	WEST_ADD_PARTICLE_SEP,		///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚¨ãƒŸãƒƒã‚¿æŒ‡å®š åˆ†å²
+	WEST_ADD_PARTICLE_PTAT,		///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚¨ãƒŸãƒƒã‚¿æŒ‡å®š åˆ†å²
+	WEST_WAIT_PARTICLE,			///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®çµ‚äº†å¾…ã¡
+	WEST_LOAD_PARTICLE,			///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
+	WEST_LOAD_PARTICLE_EX,		///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
+	WEST_EXIT_PARTICLE,			///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
+	WEST_OLDACT_FUNC_CALL,		///< æ—§æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆäº’æ›ç”¨ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆé–¢æ•°å‘¼ã³å‡ºã—
+	WEST_EX_DATA,				///< ãƒ‡ãƒ¼ã‚¿åˆ—å®šç¾©
+	WEST_POKEOAM_RES_INIT,		///< ãƒã‚±ãƒ¢ãƒ³ã‚’OAMã«è½ã¨ã™ãŸã‚ã®ãƒªã‚½ãƒ¼ã‚¹ä½œæˆ
+	WEST_POKEOAM_RES_LOAD,		///< ãƒã‚±ãƒ¢ãƒ³ã‚’OAMã«è½ã¨ã™ãŸã‚ã®ãƒªã‚½ãƒ¼ã‚¹ä½œæˆ
+	WEST_POKEOAM_DROP,			///< ãƒã‚±ãƒ¢ãƒ³ã‚’OAMã«è½ã¨ã™
+	WEST_POKEOAM_RES_FREE,		///< ãƒã‚±ãƒ¢ãƒ³ã‚’OAMã«è½ã¨ã™ãŸã‚ã«ä½¿ç”¨ã—ãŸãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
+	WEST_POKEOAM_DROP_RESET,	///< ãƒã‚±ãƒ¢ãƒ³ã®OAMè§£æ”¾
+	WEST_POKEOAM_AUTO_STOP,		///< ãƒã‚±ãƒ¢ãƒ³ã‚’OAMã®è‡ªå‹•è¿½å°¾ã®åœæ­¢
+	WEST_CAMERA_CHG,			///< ã‚«ãƒ¡ãƒ©ã®ãƒ¢ãƒ¼ãƒ‰è¨­å®š
+	WEST_CAMERA_REVERCE,		///< ã‚«ãƒ¡ãƒ©åè»¢
+	WEST_SIDE_JP,				///< ã‚µã‚¤ãƒ‰ã®ä½ç½®ã§ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹
+	WEST_VOICE_PLAY,			///< é³´ãå£° å†ç”Ÿ
+	WEST_VOICE_WAIT_STOP,		///< é³´ãå£° å¾…ã¡ï¼‹åœæ­¢
+	WEST_WORK_CLEAR,			///< ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
+	WEST_HENSIN_ON,				///< å¤‰èº«
+	WEST_HENSIN_ON_RC,			///< å¤‰èº«ã‚‚ã©ã—
+	WEST_TENKI_JP,				///< å¤©æ°—ã‚¸ãƒ£ãƒ³ãƒ—
+	WEST_CONTEST_JP,			///< ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¸ãƒ£ãƒ³ãƒ—
+	WEST_PTAT_JP,				///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¢ã‚¿ãƒƒã‚¯
 
-	WEST_CATS_RES_INIT,			///< ƒŠƒ\[ƒX‰Šú‰»
-	WEST_CATS_CHAR_RES_LOAD,	///< ƒŠƒ\[ƒX“Ç‚İ‚İ
-	WEST_CATS_PLTT_RES_LOAD,	///< ƒŠƒ\[ƒX“Ç‚İ‚İ
-	WEST_CATS_CELL_RES_LOAD,	///< ƒŠƒ\[ƒX“Ç‚İ‚İ
-	WEST_CATS_CELL_ANM_RES_LOAD,///< ƒŠƒ\[ƒX“Ç‚İ‚İ
-	WEST_CATS_ACT_ADD,			///< OBJ“o˜^
-	WEST_CATS_ACT_ADD_EZ,		///< OBJ“o˜^
-	WEST_CATS_RES_FREE,			///< ƒŠƒ\[ƒX‰ğ•ú
+	WEST_CATS_RES_INIT,			///< ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
+	WEST_CATS_CHAR_RES_LOAD,	///< ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
+	WEST_CATS_PLTT_RES_LOAD,	///< ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
+	WEST_CATS_CELL_RES_LOAD,	///< ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
+	WEST_CATS_CELL_ANM_RES_LOAD,///< ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
+	WEST_CATS_ACT_ADD,			///< OBJç™»éŒ²
+	WEST_CATS_ACT_ADD_EZ,		///< OBJç™»éŒ²
+	WEST_CATS_RES_FREE,			///< ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	WEST_POKE_OAM_ENABLE,
 	WEST_PT_DROP,
 	WEST_PT_DROP_RESET,
 	
-	// ----- ƒfƒoƒbƒO—p‚ÍƒRƒR‚©‚ç’è‹` -----
-	WEST_KEY_WAIT,			///< ƒfƒoƒbƒO
+	// ----- ãƒ‡ãƒãƒƒã‚°ç”¨ã¯ã‚³ã‚³ã‹ã‚‰å®šç¾© -----
+	WEST_KEY_WAIT,			///< ãƒ‡ãƒãƒƒã‚°
 };
 
 #define EFFECT_CMD_MAX	(NELEMS(WazaEffectCmdList))
@@ -1861,13 +1861,13 @@ static const pWeFunc WazaEffectCmdList[] = {
 // =============================================================================
 //
 //
-//	¡ƒCƒ“ƒ‰ƒCƒ“ŠÖ”Eƒ}ƒNƒ	[ _INLINE_MACRO_ ]
+//	â– ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°ãƒ»ãƒã‚¯ãƒ­	[ _INLINE_MACRO_ ]
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	Šî–{ƒuƒŒƒ“ƒhİ’è‚ğs‚È‚¤
+ * @brief	åŸºæœ¬ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šã‚’è¡Œãªã†
  *
  * @param	none	
  *
@@ -1890,13 +1890,13 @@ void DefaultBlendSet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	w’èƒoƒCƒg”ƒf[ƒ^‚ğæ“¾
+ * @brief	æŒ‡å®šãƒã‚¤ãƒˆæ•°ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	adrs	æ“¾‚·‚é‘ÎÛƒAƒhƒŒƒX
- * @param	s_byte	ŠJn‚·‚éƒoƒCƒgˆÊ’u
- * @param	byte	æ“¾‚·‚éƒoƒCƒg”
+ * @param	adrs	å–å¾—ã™ã‚‹å¯¾è±¡ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	s_byte	é–‹å§‹ã™ã‚‹ãƒã‚¤ãƒˆä½ç½®
+ * @param	byte	å–å¾—ã™ã‚‹ãƒã‚¤ãƒˆæ•°
  *
- * @retval	TAP	’l
+ * @retval	TAP	å€¤
  *
  */
 //--------------------------------------------------------------
@@ -1914,12 +1914,12 @@ static inline TAP AdrsParamGetEx(u32* adrs, u8 s_byte, u8 byte)
 	return val;
 	
 #if 0
-	///< u8 w’èƒoƒCƒg‚¾‚¯æ“¾‚·‚é‚½‚ß‚Ì‚à‚Ì
-	///< Œ»İ‚ÍA4byteŒÅ’è‚È‚Ì‚Å“Á‚É•K—v‚È‚µ
+	///< u8 æŒ‡å®šãƒã‚¤ãƒˆã ã‘å–å¾—ã™ã‚‹ãŸã‚ã®ã‚‚ã®
+	///< ç¾åœ¨ã¯ã€4byteå›ºå®šãªã®ã§ç‰¹ã«å¿…è¦ãªã—
 	int i;
 	TAP val;
 	
-	// Œ^‚æ‚èw’èbyte‚ª‘å‚«‚¢ê‡ƒGƒ‰[
+	// å‹ã‚ˆã‚ŠæŒ‡å®šbyteãŒå¤§ãã„å ´åˆã‚¨ãƒ©ãƒ¼
 	if (byte > sizeof(TAP)){
 		OS_Printf("byte size over\n");
 	}
@@ -1937,12 +1937,12 @@ static inline TAP AdrsParamGetEx(u32* adrs, u8 s_byte, u8 byte)
 
 //--------------------------------------------------------------
 /**
- * @brief	w’èƒoƒCƒg”ƒf[ƒ^‚ğæ“¾
+ * @brief	æŒ‡å®šãƒã‚¤ãƒˆæ•°ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	adrs	æ“¾‚·‚é‘ÎÛƒAƒhƒŒƒX
- * @param	byte	æ“¾‚·‚éƒoƒCƒg”
+ * @param	adrs	å–å¾—ã™ã‚‹å¯¾è±¡ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	byte	å–å¾—ã™ã‚‹ãƒã‚¤ãƒˆæ•°
  *
- * @retval	TAP		’l
+ * @retval	TAP		å€¤
  *
  */
 //--------------------------------------------------------------
@@ -1958,11 +1958,11 @@ static inline TAP AdrsParamGet(u32* adrs, u8 byte)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXƒAƒhƒŒƒX‚ğæ“¾
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- * @param	adrs	æ“¾‚·‚é‘ÎÛƒAƒhƒŒƒX
+ * @param	adrs	å–å¾—ã™ã‚‹å¯¾è±¡ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * @retval	TAP		’l
+ * @retval	TAP		å€¤
  *
  */
 //--------------------------------------------------------------
@@ -1974,8 +1974,8 @@ static inline TAP SeqAdrsGet(u32* adrs)
 
 // ----------------------------------------
 //
-//	w’èƒTƒCƒY•ªƒAƒhƒŒƒX‚ği‚ß‚éƒ}ƒNƒ
-//		i‚ß‚éƒAƒhƒŒƒX‚ÌŒ^‚ÉˆË‘¶‚·‚é
+//	æŒ‡å®šã‚µã‚¤ã‚ºåˆ†ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’é€²ã‚ã‚‹ãƒã‚¯ãƒ­
+//		é€²ã‚ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å‹ã«ä¾å­˜ã™ã‚‹
 //
 // -----------------------------------------
 #define ADRS_CMD(n, m)			((n) += (m))
@@ -1983,9 +1983,9 @@ static inline TAP SeqAdrsGet(u32* adrs)
 
 // -----------------------------------------
 //
-//	Œ^ƒTƒCƒY•ªƒAƒhƒŒƒX‚ği‚ß‚éƒ}ƒNƒ
-//		Å¬’PˆÊ‚ÅƒAƒhƒŒƒX‚ªi‚Ş
-//		ADRS_CMD ‚ğ—˜—p‚·‚é‚Ì‚ÅŒ^‚ÉˆË‘¶‚·‚é
+//	å‹ã‚µã‚¤ã‚ºåˆ†ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’é€²ã‚ã‚‹ãƒã‚¯ãƒ­
+//		æœ€å°å˜ä½ã§ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒé€²ã‚€
+//		ADRS_CMD ã‚’åˆ©ç”¨ã™ã‚‹ã®ã§å‹ã«ä¾å­˜ã™ã‚‹
 //
 // -----------------------------------------
 #define ADRS_SHIFT(n)			(ADRS_CMD(n, 1))
@@ -1997,25 +1997,25 @@ static inline TAP SeqAdrsGet(u32* adrs)
 // =============================================================================
 //
 //
-//	¡“à•”QÆ	[ _COMMAND_LIST_ ]
+//	â– å†…éƒ¨å‚ç…§	[ _COMMAND_LIST_ ]
 //
-//	ŒŸõ—pƒRƒ}ƒ“ƒhƒ‰ƒxƒ‹
+//	æ¤œç´¢ç”¨ã‚³ãƒãƒ³ãƒ‰ãƒ©ãƒ™ãƒ«
 //
-//		[ _DEBUG_TOOL_ ]			ƒfƒoƒbƒOEƒRƒ}ƒ“ƒhŒn			
-//		[ _COMMAND_TOOL_ ]			ƒc[ƒ‹ŠÖ˜A
-//		[ _COMMAND_PARTICLE_ ]		ƒp[ƒeƒBƒNƒ‹ŠÖ˜A
-//		[ _COMMAND_JUMP_ ]			ƒWƒƒƒ“ƒvŠÖ˜A
-//		[ _COMMAND_POKEMON_ ]		ƒ|ƒPƒ‚ƒ“ŠÖ˜A
-//		[ _COMMAND_BG_ ]			BG‘€ìŠÖ˜A
-//		[ _COMMAND_SOUND_ ]			ƒTƒEƒ“ƒhŠÖ˜A
-//		[ _COMMAND_REG_ ]			ƒŒƒWƒXƒ^‘€ìŠÖ˜A
-//		[ _COMMAND_CLACT_ ]			ƒAƒNƒ^[‘€ìŠÖ˜A
+//		[ _DEBUG_TOOL_ ]			ãƒ‡ãƒãƒƒã‚°ãƒ»ã‚³ãƒãƒ³ãƒ‰ç³»			
+//		[ _COMMAND_TOOL_ ]			ãƒ„ãƒ¼ãƒ«é–¢é€£
+//		[ _COMMAND_PARTICLE_ ]		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«é–¢é€£
+//		[ _COMMAND_JUMP_ ]			ã‚¸ãƒ£ãƒ³ãƒ—é–¢é€£
+//		[ _COMMAND_POKEMON_ ]		ãƒã‚±ãƒ¢ãƒ³é–¢é€£
+//		[ _COMMAND_BG_ ]			BGæ“ä½œé–¢é€£
+//		[ _COMMAND_SOUND_ ]			ã‚µã‚¦ãƒ³ãƒ‰é–¢é€£
+//		[ _COMMAND_REG_ ]			ãƒ¬ã‚¸ã‚¹ã‚¿æ“ä½œé–¢é€£
+//		[ _COMMAND_CLACT_ ]			ã‚¢ã‚¯ã‚¿ãƒ¼æ“ä½œé–¢é€£
 //
 //
 // =============================================================================
 // =========================================
 //
-//	¡ƒfƒoƒbƒOEƒRƒ}ƒ“ƒhŒn
+//	â– ãƒ‡ãƒãƒƒã‚°ãƒ»ã‚³ãƒãƒ³ãƒ‰ç³»
 //		[ _DEBUG_TOOL_ ]
 //
 // =========================================
@@ -2023,9 +2023,9 @@ static void WEST_KEY_WAIT(WE_SYS_PTR we_sys)
 {
 	we_sys->waza_eff_wait = 1;
 	
-//	OS_Printf("we_sys“à‚ÅKEY_WAIT‚ªÀs‚³‚ê‚Ä‚¢‚Ü‚·B\n[ L ] + [ START ]‚Å”²‚¯‚Ü‚·B\n");
+//	OS_Printf("we_syså†…ã§KEY_WAITãŒå®Ÿè¡Œã•ã‚Œã¦ã„ã¾ã™ã€‚\n[ L ] + [ START ]ã§æŠœã‘ã¾ã™ã€‚\n");
 	
-	if(sys.cont & PAD_BUTTON_L){					///< ƒGƒtƒFƒNƒg0‚Ü‚Å‘Ò‚Â
+	if(sys.cont & PAD_BUTTON_L){					///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ0ã¾ã§å¾…ã¤
 		if(sys.cont & PAD_BUTTON_R){
 			if (sys.trg & PAD_BUTTON_X){
 				ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
@@ -2038,7 +2038,7 @@ static void WEST_KEY_WAIT(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒEƒFƒCƒg‚ğİ’è‚µ‚ÄAWazaEffWait ‚Ö‘JˆÚ
+ * @brief	ã‚¦ã‚§ã‚¤ãƒˆã‚’è¨­å®šã—ã¦ã€WazaEffWait ã¸é·ç§»
  *
  * @param	we_sys	
  *
@@ -2059,7 +2059,7 @@ static void WEST_WAIT(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒtƒFƒNƒg‚ªI—¹‚·‚é‚Ü‚ÅAƒEƒFƒCƒg‚ğİ’è‚·‚é
+ * @brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚äº†ã™ã‚‹ã¾ã§ã€ã‚¦ã‚§ã‚¤ãƒˆã‚’è¨­å®šã™ã‚‹
  *
  * @param	we_sys	
  *
@@ -2069,19 +2069,19 @@ static void WEST_WAIT(WE_SYS_PTR we_sys)
 //--------------------------------------------------------------
 static void WEST_WAIT_FLAG(WE_SYS_PTR we_sys)
 {
-	if (we_sys->waza_eff_num == 0){					///< ƒGƒtƒFƒNƒg0‚Ü‚Å‘Ò‚Â
+	if (we_sys->waza_eff_num == 0){					///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ0ã¾ã§å¾…ã¤
 		ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 		we_sys->waza_eff_wait = 0;	
 	}
-	else {											///< ƒGƒtƒFƒNƒg‚ª‘¶İ‚·‚é‚È‚ç
-		we_sys->waza_eff_wait = 1;					///< í‚É1“ü‚ê‚Ä‚¨‚­‚±‚Æ‚ÅƒXƒLƒbƒv‚Å‚«‚é
+	else {											///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒå­˜åœ¨ã™ã‚‹ãªã‚‰
+		we_sys->waza_eff_wait = 1;					///< å¸¸ã«1å…¥ã‚Œã¦ãŠãã“ã¨ã§ã‚¹ã‚­ãƒƒãƒ—ã§ãã‚‹
 	}
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒN‚É’l‚ğƒZƒbƒg‚·‚é
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã«å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
  * @param	we_sys	
  *
@@ -2111,7 +2111,7 @@ static void WEST_WORK_SET(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒN‰Šú‰»
+ * @brief	ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param	we_sys	
  *
@@ -2197,7 +2197,7 @@ void WeSys_PokeChangeParamMake(WE_SYS_PTR we_sys, WAZA_POKE_CHANGE_PARAM* para, 
 		break;
 		
 	default:
-		OS_Printf("•Ïg•û–@‚ª–¢İ’è\n");
+		OS_Printf("å¤‰èº«æ–¹æ³•ãŒæœªè¨­å®š\n");
 		GF_ASSERT(0);
 		break;
 	}
@@ -2267,7 +2267,7 @@ static void WEST_HENSIN_ON_RC(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‹[ƒvƒ‰ƒxƒ‹
+ * @brief	ãƒ«ãƒ¼ãƒ—ãƒ©ãƒ™ãƒ«
  *
  * @param	we_sys	
  *
@@ -2281,7 +2281,7 @@ static void WEST_LOOP_LABEL(WE_SYS_PTR we_sys)
 
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 	
-	///< ƒ‹[ƒvƒ‰ƒxƒ‹‚ÌˆÊ’u‚ğì¬
+	///< ãƒ«ãƒ¼ãƒ—ãƒ©ãƒ™ãƒ«ã®ä½ç½®ã‚’ä½œæˆ
 	for (i = 0; i < WE_LOOP_MAX; i++){
 		if (we_sys->loop[i].active == TRUE){ continue; }
 		
@@ -2298,7 +2298,7 @@ static void WEST_LOOP_LABEL(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‹[ƒv
+ * @brief	ãƒ«ãƒ¼ãƒ—
  *
  * @param	we_sys	
  *
@@ -2317,10 +2317,10 @@ static void WEST_LOOP(WE_SYS_PTR we_sys)
 
 		we_sys->loop[i].n_cnt++;
 		
-		if (we_sys->loop[i].n_cnt == we_sys->loop[i].e_cnt){	///< w’è‰ñ”ƒ‹[ƒv‚µ‚½
+		if (we_sys->loop[i].n_cnt == we_sys->loop[i].e_cnt){	///< æŒ‡å®šå›æ•°ãƒ«ãƒ¼ãƒ—ã—ãŸ
 			we_sys->loop[i].active = FALSE;
 		}
-		else {													///< ƒ‹[ƒv‰ñ”‚ªc‚Á‚Ä‚¢‚é
+		else {													///< ãƒ«ãƒ¼ãƒ—å›æ•°ãŒæ®‹ã£ã¦ã„ã‚‹
 			we_sys->waza_eff_seq_adrs = we_sys->loop[i].seq_adrs;
 		}
 		return;
@@ -2330,7 +2330,7 @@ static void WEST_LOOP(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒRƒ}ƒ“ƒhI—¹
+ * @brief	ã‚³ãƒãƒ³ãƒ‰çµ‚äº†
  *
  * @param	we_sys	
  *
@@ -2357,12 +2357,12 @@ static void WEST_SEQEND(WE_SYS_PTR we_sys)
 
 	// -------------------------------------
 	//
-	//	ƒGƒtƒFƒNƒg‚È‚Ç‚ÌI—¹ƒ`ƒFƒbƒN
+	//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãªã©ã®çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	//
 	// -------------------------------------
-	if (em_num != 0										///< ƒGƒ~ƒbƒ^[‚Ì”‚ª0‚¶‚á‚È‚¢
-	||	we_sys->waza_eff_num != 0						///< ‰½‚©ƒGƒtƒFƒNƒg‚ªo‚Ä‚¢‚é
-	||	we_sys->waza_se_num  != 0						///< SE‚ªÄ¶‚³‚ê‚Ä‚¢‚é
+	if (em_num != 0										///< ã‚¨ãƒŸãƒƒã‚¿ãƒ¼ã®æ•°ãŒ0ã˜ã‚ƒãªã„
+	||	we_sys->waza_eff_num != 0						///< ä½•ã‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒå‡ºã¦ã„ã‚‹
+	||	we_sys->waza_se_num  != 0						///< SEãŒå†ç”Ÿã•ã‚Œã¦ã„ã‚‹
 	){
 		we_sys->waza_eff_wait = 1;						///< wait = 1
 		we_sys->se_end_timer  = 0;						///< timer = 0
@@ -2371,14 +2371,14 @@ static void WEST_SEQEND(WE_SYS_PTR we_sys)
 
 	// -------------------------------------
 	//
-	//	SE‚ÌÄ¶ƒ`ƒFƒbƒN
+	//	SEã®å†ç”Ÿãƒã‚§ãƒƒã‚¯
 	//
 	// -------------------------------------
-	if (Snd_SePlayCheckAll()){							///< SE‚ªÄ¶‚³‚ê‚Ä‚¢‚½ê‡
+	if (Snd_SePlayCheckAll()){							///< SEãŒå†ç”Ÿã•ã‚Œã¦ã„ãŸå ´åˆ
 		we_sys->se_end_timer++;
 
-		if (we_sys->se_end_timer > WE_SE_END_TIMER){	///< I—¹3•b‚Í‘Ò‚Â
-			// ƒGƒtƒFƒNƒgŠÖ˜ASE‚ğ‚Æ‚ß‚é
+		if (we_sys->se_end_timer > WE_SE_END_TIMER){	///< çµ‚äº†3ç§’ã¯å¾…ã¤
+			// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–¢é€£SEã‚’ã¨ã‚ã‚‹
 			;
 			;
 			we_sys->se_end_timer = 0;
@@ -2394,45 +2394,45 @@ static void WEST_SEQEND(WE_SYS_PTR we_sys)
 	
 	// -------------------------------------
 	//
-	//	ƒVƒXƒeƒ€•”•ªƒNƒŠƒA
+	//	ã‚·ã‚¹ãƒ†ãƒ éƒ¨åˆ†ã‚¯ãƒªã‚¢
 	//
 	// -------------------------------------
-	for (i = 0; i < WE_JUMP_MAX; i++){					///< jumpæƒAƒhƒŒƒX‰Šú‰»
+	for (i = 0; i < WE_JUMP_MAX; i++){					///< jumpå…ˆã‚¢ãƒ‰ãƒ¬ã‚¹åˆæœŸåŒ–
 		we_sys->waza_eff_seq_adrs_j[i] = NULL;
 	}
 	
-	for (i = 0; i < WE_LOOP_MAX; i++){					///< loopæƒAƒhƒŒƒX‰Šú‰»‚È‚Ç
+	for (i = 0; i < WE_LOOP_MAX; i++){					///< loopå…ˆã‚¢ãƒ‰ãƒ¬ã‚¹åˆæœŸåŒ–ãªã©
 		we_sys->loop[i].seq_adrs = NULL;
 		we_sys->loop[i].n_cnt 	 = 0;
 		we_sys->loop[i].e_cnt	 = 0;
 		we_sys->loop[i].active	 = FALSE;
 	}
 	
-	for (i = 0; i < WE_CRP_MAX; i++){					///< CLACT—pƒ[ƒN‚Ì‰Šú‰»
+	for (i = 0; i < WE_CRP_MAX; i++){					///< CLACTç”¨ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
 		if (we_sys->crp[i] != NULL){
 			CATS_ResourceDestructor_S(we_sys->btl_sys->csp, we_sys->crp[i]);
 		}
 		we_sys->crp[i] = NULL;
 	}
 	
-	for (i = 0; i < WEDEF_AUTO_MOVE_MAX; i++){			///< ©“®’Ç”öƒ[ƒN‚Ì‰Šú‰»
+	for (i = 0; i < WEDEF_AUTO_MOVE_MAX; i++){			///< è‡ªå‹•è¿½å°¾ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
 		WeSysAutoMoveStop(we_sys, i);
 	}
 	
 	for (i = 0; i < PARTICLE_GLOBAL_MAX; i++){
-		if (we_sys->btl_sys->ptc[i]){							///< ƒp[ƒeƒBƒNƒ‹‚ÌƒVƒXƒeƒ€I—¹
+		if (we_sys->btl_sys->ptc[i]){							///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
 			Wp_Exit(we_sys->btl_sys->ptc[i]);
 			we_sys->btl_sys->ptc[i] = NULL;
 		}
 	}
 	
-	if (we_sys->hc_sub_ptr != NULL){					///< ƒTƒuƒVƒXƒeƒ€’â~
+	if (we_sys->hc_sub_ptr != NULL){					///< ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ åœæ­¢
 		we_sys->hc_sub_ptr = NULL;
 	}
 	
 	if (WES_ContestFlag_Get(we_sys) == FALSE){
 		BattleDefaultBlendSet();
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒNƒŠƒA
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
 		GF_BGL_ClearCharSet( BT_BGL_FrameGet(we_sys, WES_BF_EFFECT), 0x4000, 0, WeSysHeapAreaGet(we_sys) );
 		GF_BGL_ScrClear( WeSysBGLPointerGet(we_sys) ,BT_BGL_FrameGet(we_sys, WES_BF_EFFECT) );
 		GF_BGL_VisibleSet(BATTLE_FRAME_EFFECT, VISIBLE_ON);
@@ -2453,20 +2453,20 @@ static void WEST_SEQEND(WE_SYS_PTR we_sys)
 	
 //	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 
-	we_sys->waza_eff_active = FALSE;					///< ƒVƒXƒeƒ€‚Ì’â~	
+	we_sys->waza_eff_active = FALSE;					///< ã‚·ã‚¹ãƒ†ãƒ ã®åœæ­¢	
 }
 
 
 
 // =========================================
 //
-//	¡ƒp[ƒeƒBƒNƒ‹Œn
+//	â– ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç³»
 //		[ _COMMAND_PARTICLE_ ]
 //
 // =========================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒeƒBƒNƒ‹‚Ì“o˜^
+ * @brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ç™»éŒ²
  *
  * @param	we_sys	
  *
@@ -2486,10 +2486,10 @@ static void WEST_ADD_PARTICLE(WE_SYS_PTR we_sys)
 	no = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 
-	index = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ƒp[ƒeƒBƒNƒ‹”Ô†
+	index = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç•ªå·
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 
-	cb_no = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ì”Ô†
+	cb_no = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®ç•ªå·
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 	
 	we_sys->btl_sys->this_ptc_no = no;
@@ -2522,10 +2522,10 @@ static void WEST_ADD_PARTICLE_EMIT_SET(WE_SYS_PTR we_sys)
 	emit_no = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 
-	index = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ƒp[ƒeƒBƒNƒ‹”Ô†
+	index = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç•ªå·
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 
-	cb_no = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ì”Ô†
+	cb_no = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®ç•ªå·
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 	
 	we_sys->btl_sys->this_ptc_no = no;
@@ -2614,11 +2614,11 @@ static void WEST_ADD_PARTICLE_SEP(WE_SYS_PTR we_sys)
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 
 	for (i = 0; i < 6; i++){
-		index[ i ] = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ƒp[ƒeƒBƒNƒ‹”Ô†
+		index[ i ] = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç•ªå·
 		ADRS_SHIFT(we_sys->waza_eff_seq_adrs);		
 	}
 
-	cb_no = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ì”Ô†
+	cb_no = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®ç•ªå·
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 	
 	we_sys->btl_sys->this_ptc_no = no;
@@ -2658,11 +2658,11 @@ static void WEST_ADD_PARTICLE_PTAT(WE_SYS_PTR we_sys)
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 
 	for (i = 0; i < 4; i++){
-		index[ i ] = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ƒp[ƒeƒBƒNƒ‹”Ô†
+		index[ i ] = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç•ªå·
 		ADRS_SHIFT(we_sys->waza_eff_seq_adrs);		
 	}
 
-	cb_no = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);				///< ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ì”Ô†
+	cb_no = (u32)SeqAdrsGet(we_sys->waza_eff_seq_adrs);				///< ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®ç•ªå·
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 	
 	we_sys->btl_sys->this_ptc_no = no;
@@ -2690,7 +2690,7 @@ static void WEST_ADD_PARTICLE_PTAT(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒeƒBƒNƒ‹‚ÌI—¹‘Ò‚¿
+ * @brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®çµ‚äº†å¾…ã¡
  *
  * @param	we_sys	
  *
@@ -2709,10 +2709,10 @@ static void WEST_WAIT_PARTICLE(WE_SYS_PTR we_sys)
 		
 		if (we_sys->btl_sys->ptc[i] == NULL){ continue; }
 		
-		em_num += Particle_GetEmitterNum(we_sys->btl_sys->ptc[i]);	///< ƒGƒ~ƒbƒ^”‚Ìæ“¾
+		em_num += Particle_GetEmitterNum(we_sys->btl_sys->ptc[i]);	///< ã‚¨ãƒŸãƒƒã‚¿æ•°ã®å–å¾—
 	}
 	
-	if (em_num == 0){											///< ƒGƒ~ƒbƒ^” = 0‚È‚çI—¹‚µ‚Ä‚é
+	if (em_num == 0){											///< ã‚¨ãƒŸãƒƒã‚¿æ•° = 0ãªã‚‰çµ‚äº†ã—ã¦ã‚‹
 		ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 		we_sys->waza_eff_wait = 0;	
 	}
@@ -2724,7 +2724,7 @@ static void WEST_WAIT_PARTICLE(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒeƒBƒNƒ‹‚ÌƒŠƒ\[ƒX‚Ì“Ç‚İ‚İ
+ * @brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ã®èª­ã¿è¾¼ã¿
  *
  * @param	we_sys	
  *
@@ -2750,7 +2750,7 @@ static void WEST_LOAD_PARTICLE(WE_SYS_PTR we_sys)
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 
 #ifdef PARTICLE_VBLANK_LOAD
-//	OS_Printf(">> ƒp[ƒeƒBƒNƒ‹‚ğVBlank‚Åƒ[ƒh‚µ‚Ü‚·B\n");
+//	OS_Printf(">> ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’VBlankã§ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™ã€‚\n");
 	we_sys->btl_sys->ptc[no] = Wp_Init(we_sys->heap_area, index, FALSE);
 	
 	we_sys->waza_eff_wait = PARTICLE_VBLANK_LOAD_WAIT;	
@@ -2783,7 +2783,7 @@ static void WEST_LOAD_PARTICLE_EX(WE_SYS_PTR we_sys)
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 	
 #ifdef PARTICLE_VBLANK_LOAD
-//	OS_Printf(">> ƒp[ƒeƒBƒNƒ‹‚ğVBlank‚Åƒ[ƒh‚µ‚Ü‚·B\n");
+//	OS_Printf(">> ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’VBlankã§ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™ã€‚\n");
 	we_sys->btl_sys->ptc[no] = Wp_InitEx(we_sys->heap_area, arc_no, index, FALSE);
 	
 	we_sys->waza_eff_wait = PARTICLE_VBLANK_LOAD_WAIT;	
@@ -2795,7 +2795,7 @@ static void WEST_LOAD_PARTICLE_EX(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒeƒBƒNƒ‹‚ÌƒŠƒ\[ƒX‚Ì‰ğ•ú
+ * @brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  *
  * @param	we_sys	
  *
@@ -2819,13 +2819,13 @@ static void WEST_EXIT_PARTICLE(WE_SYS_PTR we_sys)
 
 // =========================================
 //
-//	¡ƒWƒƒƒ“ƒvŒn
+//	â– ã‚¸ãƒ£ãƒ³ãƒ—ç³»
 //		[ _COMMAND_JUMP_ ]
 //
 // =========================================
 //--------------------------------------------------------------
 /**
- * @brief	ŠÖ”ƒWƒƒƒ“ƒv
+ * @brief	é–¢æ•°ã‚¸ãƒ£ãƒ³ãƒ—
  *
  * @param	we_sys	
  *
@@ -2840,7 +2840,7 @@ static void WEST_SEQ_CALL(WE_SYS_PTR we_sys)
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 	
 	for (i = 0; i < WE_JUMP_MAX; i++){
-		// æ“ª‚©‚ç‡‚ÉŠJ‚¢‚Ä‚¢‚éêŠ‚ğ’T‚·
+		// å…ˆé ­ã‹ã‚‰é †ã«é–‹ã„ã¦ã„ã‚‹å ´æ‰€ã‚’æ¢ã™
 		if (we_sys->waza_eff_seq_adrs_j[i] != NULL){ continue; }
 		
 		we_sys->waza_eff_seq_adrs_j[i] = we_sys->waza_eff_seq_adrs + 1;
@@ -2855,7 +2855,7 @@ static void WEST_SEQ_CALL(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ŠÖ”ƒWƒƒƒ“ƒv‚©‚ç‚à‚Ç‚é
+ * @brief	é–¢æ•°ã‚¸ãƒ£ãƒ³ãƒ—ã‹ã‚‰ã‚‚ã©ã‚‹
  *
  * @param	we_sys	
  *
@@ -2884,7 +2884,7 @@ static void WEST_END_CALL(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	w’è‚µ‚½ƒ[ƒN”Ô†‚Æ“¯‚¶’l‚È‚ç‚ÎƒWƒƒƒ“ƒv
+ * @brief	æŒ‡å®šã—ãŸãƒ¯ãƒ¼ã‚¯ç•ªå·ã¨åŒã˜å€¤ãªã‚‰ã°ã‚¸ãƒ£ãƒ³ãƒ—
  *
  * @param	we_sys	
  *
@@ -2916,7 +2916,7 @@ static void WEST_WORKCHK_JP(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒRƒ“ƒeƒXƒg‚Ìê‡‚Íw’èƒAƒhƒŒƒX‚É”ò‚Ô
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®å ´åˆã¯æŒ‡å®šã‚¢ãƒ‰ãƒ¬ã‚¹ã«é£›ã¶
  *
  * @param	we_sys	
  *
@@ -2939,9 +2939,9 @@ static void WEST_CONTEST_CHK_JP(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	w’è‚³‚ê‚½ŠÖ”‚ğŒÄ‚Ño‚·ƒRƒ}ƒ“ƒh
- *			ƒAƒhƒŒƒX‚©‚çQÆ‚·‚éˆø”
- *			ŒÄ‚Ño‚·ŠÖ”‚ÌƒAƒhƒŒƒX
+ * @brief	æŒ‡å®šã•ã‚ŒãŸé–¢æ•°ã‚’å‘¼ã³å‡ºã™ã‚³ãƒãƒ³ãƒ‰
+ *			ã‚¢ãƒ‰ãƒ¬ã‚¹ã‹ã‚‰å‚ç…§ã™ã‚‹å¼•æ•°
+ *			å‘¼ã³å‡ºã™é–¢æ•°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @param	we_sys	
  *
@@ -2980,7 +2980,7 @@ static void WEST_FUNC_CALL(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^[ƒ“”‚É‰‚¶‚ÄAƒV[ƒPƒ“ƒX‚ÌØ‚è‘Ö‚¦‚ğs‚¤
+ * @brief	ã‚¿ãƒ¼ãƒ³æ•°ã«å¿œã˜ã¦ã€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®åˆ‡ã‚Šæ›¿ãˆã‚’è¡Œã†
  *
  * @param	we_sys	
  *
@@ -3004,7 +3004,7 @@ static void WEST_TURN_CHK(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒCƒh‚ÅƒV[ƒPƒ“ƒXØ‚è‘Ö‚¦
+ * @brief	ã‚µã‚¤ãƒ‰ã§ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	we_sys	
  *
@@ -3040,7 +3040,7 @@ static void WEST_SIDE_JP(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	“V‹C‚ÅØ‚è‘Ö‚¦
+ * @brief	å¤©æ°—ã§åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	we_sys	
  *
@@ -3051,7 +3051,7 @@ static void WEST_SIDE_JP(WE_SYS_PTR we_sys)
 static void WEST_TENKI_JP(WE_SYS_PTR we_sys)
 {
 	int tenki;
-	int tenki_tbl[] = {	///< tenki“ü‚ê‚é
+	int tenki_tbl[] = {	///< tenkiå…¥ã‚Œã‚‹
 		FIELD_CONDITION_AME_ALL,
 		FIELD_CONDITION_SUNAARASHI_ALL,
 		FIELD_CONDITION_HARE_ALL,
@@ -3094,7 +3094,7 @@ static void WEST_TENKI_JP(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒRƒ“ƒeƒXƒgê—p
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå°‚ç”¨
  *
  * @param	we_sys	
  *
@@ -3117,7 +3117,7 @@ static void WEST_CONTEST_JP(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒeƒB[ƒAƒ^ƒbƒN
+ * @brief	ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã‚¢ã‚¿ãƒƒã‚¯
  *
  * @param	we_sys	
  *
@@ -3146,7 +3146,7 @@ static void WEST_PTAT_JP(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	w’èƒ^[ƒ“‚Æ“¯‚¶‚È‚ç‚ÎAƒV[ƒPƒ“ƒXØ‚è‘Ö‚¦‚ğs‚¤
+ * @brief	æŒ‡å®šã‚¿ãƒ¼ãƒ³ã¨åŒã˜ãªã‚‰ã°ã€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ‡ã‚Šæ›¿ãˆã‚’è¡Œã†
  *
  * @param	we_sys	
  *
@@ -3174,7 +3174,7 @@ static void WEST_TURN_JP(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	w’èƒAƒhƒŒƒX‚ÉƒWƒƒƒ“ƒv‚·‚é
+ * @brief	æŒ‡å®šã‚¢ãƒ‰ãƒ¬ã‚¹ã«ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹
  *
  * @param	we_sys	
  *
@@ -3193,7 +3193,7 @@ static void WEST_SEQ_JP(WE_SYS_PTR we_sys)
 
 // =========================================
 //
-//	¡ƒ|ƒPƒ‚ƒ“ŠÖ˜A
+//	â– ãƒã‚±ãƒ¢ãƒ³é–¢é€£
 //		[ _COMMAND_POKEMON_ ]
 //
 // =========================================
@@ -3202,7 +3202,7 @@ static int WEST_Tool_DropPokeClientNoGet(WE_SYS_PTR we_sys, int flag);
 
 //--------------------------------------------------------------
 /**
- * @brief	‘€ìƒtƒ‰ƒO‚©‚çAƒNƒ‰ƒCƒAƒ“ƒg”Ô†‚ğæ“¾‚·‚é
+ * @brief	æ“ä½œãƒ•ãƒ©ã‚°ã‹ã‚‰ã€ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç•ªå·ã‚’å–å¾—ã™ã‚‹
  *
  * @param	we_sys	
  * @param	flag	
@@ -3313,7 +3313,7 @@ static int WEST_Tool_DropPokeClientNoGet(WE_SYS_PTR we_sys, int flag)
 
 //--------------------------------------------------------------
 /**
- * @brief	OAM‚ª©“®‚Åƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚ğ’Ç”ö‚·‚éTCB
+ * @brief	OAMãŒè‡ªå‹•ã§ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’è¿½å°¾ã™ã‚‹TCB
  *
  * @param	tcb	
  * @param	work	
@@ -3345,7 +3345,7 @@ static void WEST_Tool_AutoMoveOAM_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	BG‚ª©“®‚Åƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚ğ’Ç”ö‚·‚éTCB
+ * @brief	BGãŒè‡ªå‹•ã§ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’è¿½å°¾ã™ã‚‹TCB
  *
  * @param	tcb	
  * @param	work	
@@ -3378,7 +3378,7 @@ static void WEST_Tool_AutoMoveBG_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	©“®’Ç”ö‚ÌI—¹
+ * @brief	è‡ªå‹•è¿½å°¾ã®çµ‚äº†
  *
  * @param	we_sys	
  * @param	stop_tr	
@@ -3415,19 +3415,19 @@ static void WEST_POKEBG_RESET(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ğBG‚É—‚Æ‚·
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚’BGã«è½ã¨ã™
  *
  * @param	we_sys	
  *
  * @retval	none	
  *
- *	flag =	0 UŒ‚ƒ|ƒPƒ‚ƒ“‚ğBG‚Ö
- *			1 ‘ÎÛƒ|ƒPƒ‚ƒ“‚ğBG‚Ö
- *			2 UŒ‚ƒ|ƒPƒ‚ƒ“‚Ì‘Š•û‚ğBG‚Ö
- *			3 ‘ÎÛƒ|ƒPƒ‚ƒ“‚Ì‘Š•û‚ğBG‚Ö
+ *	flag =	0 æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³ã‚’BGã¸
+ *			1 å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ã‚’BGã¸
+ *			2 æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ–¹ã‚’BGã¸
+ *			3 å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ–¹ã‚’BGã¸
  *
- *	auto_move = 0 ˆÚ“®Œ‹‰Ê‚ğBG‚É”½‰f‚µ‚È‚¢
- *				1 ˆÚ“®Œ‹‰Ê‚ğBG‚É”½‰f‚·‚é
+ *	auto_move = 0 ç§»å‹•çµæœã‚’BGã«åæ˜ ã—ãªã„
+ *				1 ç§»å‹•çµæœã‚’BGã«åæ˜ ã™ã‚‹
  */
 //--------------------------------------------------------------
 static void WEST_POKEBG_DROP(WE_SYS_PTR we_sys)
@@ -3456,10 +3456,10 @@ static void WEST_POKEBG_DROP(WE_SYS_PTR we_sys)
 	form_no   = we_sys->btl_sys->form_no[ client_no ];
 	if (WES_ContestFlag_Get(we_sys) == TRUE
 	&&	ContestPokeFlipCheck(WeSysMonsNoGet(we_sys, client_no), form_no) == TRUE){
-		index_screen = PB_F_512_SCREEN_ID;		///< ”½“]
+		index_screen = PB_F_512_SCREEN_ID;		///< åè»¢
 	}
 	else {
-		index_screen = PB_N_512_SCREEN_ID;		///< ’Êí
+		index_screen = PB_N_512_SCREEN_ID;		///< é€šå¸¸
 	}
 
 	{
@@ -3484,7 +3484,7 @@ static void WEST_POKEBG_DROP(WE_SYS_PTR we_sys)
 					we_sys->bgl,
 					BATTLE_FRAME_EFFECT,0,0,0,we_sys->heap_area);
 	
-	///< ©“®’Ç”öTCBİ’è
+	///< è‡ªå‹•è¿½å°¾TCBè¨­å®š
 	if (auto_move == WEDEF_POKE_AUTO_ON){
 		TCB_PTR tcb;
 		
@@ -3499,7 +3499,7 @@ static void WEST_POKEBG_DROP(WE_SYS_PTR we_sys)
 		we_sys->poke_ambs->ams.am_tcb = tcb;
 	}
 	
-	///< À•W‚ğƒ|ƒPƒ‚ƒ“‚É‚ ‚í‚¹‚é
+	///< åº§æ¨™ã‚’ãƒã‚±ãƒ¢ãƒ³ã«ã‚ã‚ã›ã‚‹
 	{
 		s16 px;
 		s16 py;
@@ -3519,7 +3519,7 @@ static void WEST_POKEBG_DROP(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ÌBG—‚Æ‚µ‚ğƒŠƒZƒbƒg
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®BGè½ã¨ã—ã‚’ãƒªã‚»ãƒƒãƒˆ
  *
  * @param	we_sys	
  *
@@ -3546,7 +3546,7 @@ static void WEST_POKEBG_DROP_RESET(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ÌOAMƒŠƒ\[ƒX‰Šú‰»
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®OAMãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  *
  * @param	we_sys	
  *
@@ -3556,7 +3556,7 @@ static void WEST_POKEBG_DROP_RESET(WE_SYS_PTR we_sys)
 //--------------------------------------------------------------
 static void WEST_POKEOAM_RES_INIT(WE_SYS_PTR we_sys)
 {
-	///< ƒŠƒ\[ƒX‚Ìì¬
+	///< ãƒªã‚½ãƒ¼ã‚¹ã®ä½œæˆ
 	int obj_num = WE_POKE_CAP_MAX;
 	TCATS_RESOURCE_NUM_LIST crnl = {
 						WE_POKE_CAP_MAX,
@@ -3577,7 +3577,7 @@ static void WEST_POKEOAM_RES_INIT(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“OAMƒŠƒ\[ƒXƒ[ƒh
+ * @brief	ãƒã‚±ãƒ¢ãƒ³OAMãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰
  *
  * @param	we_sys	
  *
@@ -3602,7 +3602,7 @@ static void WEST_POKEOAM_RES_LOAD(WE_SYS_PTR we_sys)
 	res_id[4] = 0;
 	res_id[5] = 0;
 
-	///< “]‘—
+	///< è»¢é€
 	CATS_LoadResourceCharArcH(we_sys->btl_sys->csp, we_sys->poke_crp,
 							 we_sys->hdl[ WE_HDL_ARC_BATT_OBJ ], PO_CHAR_ID, 0,
 							 NNS_G2D_VRAM_TYPE_2DMAIN, res_id[0]);
@@ -3622,7 +3622,7 @@ static void WEST_POKEOAM_RES_LOAD(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ÌOAMƒhƒƒbƒv
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®OAMãƒ‰ãƒ­ãƒƒãƒ—
  *
  * @param	we_sys	
  *
@@ -3665,7 +3665,7 @@ static void WEST_POKEOAM_DROP(WE_SYS_PTR we_sys)
 	res_id[4] = 0;
 	res_id[5] = 0;
 	
-	/// ƒNƒ‰ƒCƒAƒ“ƒgNo‚Ìæ“¾
+	/// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆNoã®å–å¾—
 	client_no = WEST_Tool_DropPokeClientNoGet(we_sys, flag);
 	
 	arcID	  = we_sys->btl_sys->excp[client_no]->arcID;
@@ -3673,7 +3673,7 @@ static void WEST_POKEOAM_DROP(WE_SYS_PTR we_sys)
 	oam_temp  = we_sys->btl_sys->excp[client_no]->exchr_buffer;
 	form_no   = we_sys->btl_sys->form_no[ client_no ];
 	{
-		///< OAM“o˜^
+		///< OAMç™»éŒ²
 		TCATS_OBJECT_ADD_PARAM_S coap;
 		SOFT_SPRITE* ssp = WeSysSoftSpritePointerGet(we_sys, client_no);
 		int defence_client;
@@ -3724,7 +3724,7 @@ static void WEST_POKEOAM_DROP(WE_SYS_PTR we_sys)
 	
 	if (WeSysSoftSpritePointerGet(we_sys, client_no) != NULL)
 	{
-		///< ƒ_ƒ~[ƒLƒƒƒ‰‚É³®ƒLƒƒƒ‰‚ğ“]‘—‚µ‚È‚¨‚µ
+		///< ãƒ€ãƒŸãƒ¼ã‚­ãƒ£ãƒ©ã«æ­£å¼ã‚­ãƒ£ãƒ©ã‚’è»¢é€ã—ãªãŠã—
 		NNSG2dImageProxy * image;
 		
 		image = CLACT_ImageProxyGet(cap->act);
@@ -3738,7 +3738,7 @@ static void WEST_POKEOAM_DROP(WE_SYS_PTR we_sys)
 	
 	if (WeSysSoftSpritePointerGet(we_sys, client_no) != NULL)
 	{
-		///< ƒ_ƒ~[ƒpƒŒƒbƒg‚É³®‚ÈƒpƒŒƒbƒg‚ğ“]‘—‚µ‚È‚¨‚µ
+		///< ãƒ€ãƒŸãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã«æ­£å¼ãªãƒ‘ãƒ¬ãƒƒãƒˆã‚’è»¢é€ã—ãªãŠã—
 		NNSG2dImagePaletteProxy* palette;
 		int pal_no;
 		
@@ -3755,7 +3755,7 @@ static void WEST_POKEOAM_DROP(WE_SYS_PTR we_sys)
 	we_sys->poke_cap[ cap_id ] = cap;
 	we_sys->poke_cap_use[ cap_id ] = TRUE;
 	
-	///< ©“®’Ç”öTCBİ’è
+	///< è‡ªå‹•è¿½å°¾TCBè¨­å®š
 	if (auto_move == WEDEF_POKE_AUTO_ON){		
 		TCB_PTR tcb;
 		
@@ -3775,7 +3775,7 @@ static void WEST_POKEOAM_DROP(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“OAMƒhƒƒbƒv—pƒŠƒ\[ƒXíœ
+ * @brief	ãƒã‚±ãƒ¢ãƒ³OAMãƒ‰ãƒ­ãƒƒãƒ—ç”¨ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
  *
  * @param	we_sys	
  *
@@ -3796,7 +3796,7 @@ static void WEST_POKEOAM_RES_FREE(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“OAM‚Ì‰ğ•ú
+ * @brief	ãƒã‚±ãƒ¢ãƒ³OAMã®è§£æ”¾
  *
  * @param	we_sys	
  *
@@ -4001,7 +4001,7 @@ static void WEST_PT_DROP_RESET(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“OAM‚Ì©“®’Ç”ö’â~
+ * @brief	ãƒã‚±ãƒ¢ãƒ³OAMã®è‡ªå‹•è¿½å°¾åœæ­¢
  *
  * @param	we_sys	
  *
@@ -4024,7 +4024,7 @@ static void WEST_POKEOAM_AUTO_STOP(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‚Ìƒ‚[ƒhw’è
+ * @brief	ã‚«ãƒ¡ãƒ©ã®ãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
  *
  * @param	we_sys	
  *
@@ -4051,7 +4051,7 @@ static void WEST_CAMERA_CHG(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰”½“]
+ * @brief	ã‚«ãƒ¡ãƒ©åè»¢
  *
  * @param	we_sys	
  *
@@ -4085,21 +4085,21 @@ static void WEST_POKE_BANISH_OFF(WE_SYS_PTR we_sys)
 
 // =========================================
 //
-//	¡”wŒiŠÖ˜A
+//	â– èƒŒæ™¯é–¢é€£
 //		[ _COMMAND_BG_ ]
 //
 // =========================================
 
 // -----------------------------------------
 //
-//	¡”wŒiØ‚è‘Ö‚¦ƒ‚[ƒh
+//	â– èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆãƒ¢ãƒ¼ãƒ‰
 //
 // -----------------------------------------
 enum ETCB_HAIKEI_MODE {
 	
-	ENUM_HMODE_NONE = 0,					///< ‰½‚à”­¶‚µ‚Ä‚¢‚È‚¢
-	ENUM_HMODE_CHG,							///< ”wŒiØ‚è‘Ö‚¦
-	ENUM_HMODE_HALF,						///< ƒtƒF[ƒh‚Ì’†ŠÔ
+	ENUM_HMODE_NONE = 0,					///< ä½•ã‚‚ç™ºç”Ÿã—ã¦ã„ãªã„
+	ENUM_HMODE_CHG,							///< èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆ
+	ENUM_HMODE_HALF,						///< ãƒ•ã‚§ãƒ¼ãƒ‰ã®ä¸­é–“
 
 };
 
@@ -4112,12 +4112,12 @@ static int	HaikeiChange_BitReset(int* mode, int flag);
 
 static void HaikeiSubSystemFirstCall(HC_SYS_PTR wk);
 
-///< Ø‚è‘Ö‚¦ŠÖ”
+///< åˆ‡ã‚Šæ›¿ãˆé–¢æ•°
 static BOOL HaikeiChange_Blend(TCB_PTR tcb, HC_SYS_PTR wk);
 static BOOL HaikeiChange_Fade(TCB_PTR tcb, HC_SYS_PTR wk);
 static BOOL HaikeiChange_None(TCB_PTR tcb, HC_SYS_PTR wk);
 
-///< •œ‹AŠÖ”
+///< å¾©å¸°é–¢æ•°
 static BOOL HaikeiRecover_Blend(TCB_PTR tcb, HC_SYS_PTR wk);
 static BOOL HaikeiRecover_Fade(TCB_PTR tcb, HC_SYS_PTR wk);
 static BOOL HaikeiRecover_None(TCB_PTR tcb, HC_SYS_PTR wk);
@@ -4132,7 +4132,7 @@ static BOOL (* const HaikeiChange_Table[])(TCB_PTR tcb, HC_SYS_PTR wk) = {
 	HaikeiRecover_None,
 };
 
-///< ƒTƒuŠÖ”
+///< ã‚µãƒ–é–¢æ•°
 static BOOL HaikeiSubSystem_None(HC_SYS_PTR wk);
 static BOOL HaikeiSubSystem_Move(HC_SYS_PTR wk);
 static BOOL HaikeiSubSystem_Stop(HC_SYS_PTR wk);
@@ -4156,7 +4156,7 @@ static BOOL (* const HaikeiChange_SubTable[])(HC_SYS_PTR wk) = {
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiƒpƒ‰ƒ[ƒ^[”½“]ƒ`ƒFƒbƒN
+ * @brief	èƒŒæ™¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼åè»¢ãƒã‚§ãƒƒã‚¯
  *
  * @param	we_sys	
  * @param	gp_index	
@@ -4173,7 +4173,7 @@ static BOOL HaikeiChange_ParamRev(HC_SYS_PTR hcs, WE_SYS_PTR we_sys, int gp_inde
 	at_side = WET_SideCheck(we_sys, we_sys->btl_sys->at_client_no);
 	df_side = WET_SideCheck(we_sys, we_sys->btl_sys->df_client_no);
 
-	if (hcs->gp_wk[ gp_index ] == 2){			///< ê‚É‚æ‚Á‚Ä”½“]
+	if (hcs->gp_wk[ gp_index ] == 2){			///< å ´ã«ã‚ˆã£ã¦åè»¢
 		
 		if (at_side == df_side){
 			
@@ -4196,7 +4196,7 @@ static BOOL HaikeiChange_ParamRev(HC_SYS_PTR hcs, WE_SYS_PTR we_sys, int gp_inde
 		}
 		
 	}
-	else if (hcs->gp_wk[ gp_index ] != 0){			///< ê‚É‚æ‚Á‚Ä”½“]
+	else if (hcs->gp_wk[ gp_index ] != 0){			///< å ´ã«ã‚ˆã£ã¦åè»¢
 		
 		if (df_side == SIDE_MINE){
 			
@@ -4211,7 +4211,7 @@ static BOOL HaikeiChange_ParamRev(HC_SYS_PTR hcs, WE_SYS_PTR we_sys, int gp_inde
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦ƒf[ƒ^İ’è
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
  * @param	we_sys	
  * @param	frm	
@@ -4223,7 +4223,7 @@ static BOOL HaikeiChange_ParamRev(HC_SYS_PTR hcs, WE_SYS_PTR we_sys, int gp_inde
 //--------------------------------------------------------------
 static void HaikeiChange_DataSet(HC_SYS_PTR hcs, WE_SYS_PTR we_sys, int frm, int id)
 {
-//	OS_Printf("w’è”wŒiƒf[ƒ^@= %3d\n",id);
+//	OS_Printf("æŒ‡å®šèƒŒæ™¯ãƒ‡ãƒ¼ã‚¿ã€€= %3d\n",id);
 	
 	ArcUtil_BgCharSet(WE_HAIKEI_ARC,
 					  WeSysHaikeiDataIDGet( id, 0 ),
@@ -4256,9 +4256,9 @@ static void HaikeiChange_DataSet(HC_SYS_PTR hcs, WE_SYS_PTR we_sys, int frm, int
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦Bitƒ`ƒFƒbƒN
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆBitãƒã‚§ãƒƒã‚¯
  *
- * @param	mode	ƒ‚[ƒh
+ * @param	mode	ãƒ¢ãƒ¼ãƒ‰
  * @param	flag	
  *
  * @retval	static int	
@@ -4283,7 +4283,7 @@ static int HaikeiChange_BitCheck(int mode, int flag)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦Bit‚ğ—‚Æ‚·
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆBitã‚’è½ã¨ã™
  *
  * @param	mode	
  * @param	flag	
@@ -4306,13 +4306,13 @@ static int	HaikeiChange_BitReset(int* mode, int flag)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦Œã‚ÌƒTƒuƒVƒXƒeƒ€Às
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆå¾Œã®ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ å®Ÿè¡Œ
  *
  * @param	wk	
  *
  * @retval	none	
  *
- *		 ƒtƒF[ƒhƒAƒEƒgŒã‚ÉŒÄ‚Î‚ê‚éƒTƒuƒR[ƒ‹
+ *		â–¡ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾Œã«å‘¼ã°ã‚Œã‚‹ã‚µãƒ–ã‚³ãƒ¼ãƒ«
  *
  */
 //--------------------------------------------------------------
@@ -4322,7 +4322,7 @@ static void HaikeiSubSystemFirstCall(HC_SYS_PTR wk)
 	int id;
 	int call_id;
 	
-	const u32 first_call_no[] = {		///< ‰‰ñ‹N“®‚·‚éƒ‚[ƒhID
+	const u32 first_call_no[] = {		///< åˆå›èµ·å‹•ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰ID
 		WEDEF_HAIKEI_SBIT_MOVE,
 		WEDEF_HAIKEI_SBIT_STOP,
 		WEDEF_HAIKEI_SBIT_LASTER,
@@ -4349,7 +4349,7 @@ static void HaikeiSubSystemFirstCall(HC_SYS_PTR wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦—p‰Šú‰»Ï‚İƒ|ƒCƒ“ƒ^‚Ìæ“¾
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆç”¨åˆæœŸåŒ–æ¸ˆã¿ãƒã‚¤ãƒ³ã‚¿ã®å–å¾—
  *
  * @param	we_sys	
  *
@@ -4364,7 +4364,7 @@ static HC_SYS_PTR HaikeiControlInit(WE_SYS_PTR we_sys)
 	hcs = sys_AllocMemory(we_sys->heap_area, sizeof(THC_SYS));
 	
 	if (hcs == NULL){
-		GF_ASSERT(0 && "HaikeiControl‚Ì‰Šú‰»¸”s");
+		GF_ASSERT(0 && "HaikeiControlã®åˆæœŸåŒ–å¤±æ•—");
 		return NULL;
 	}
 	memset(hcs, 0, sizeof(THC_SYS));
@@ -4378,7 +4378,7 @@ static HC_SYS_PTR HaikeiControlInit(WE_SYS_PTR we_sys)
 	hcs->ev1_e	 = WES_HAIKEI_E_EV1 - 2;
 	hcs->ev2_e	 = WES_HAIKEI_E_EV2 + 2;
 	
-	///< ”¼“§–¾’â~ƒ‚[ƒh
+	///< åŠé€æ˜åœæ­¢ãƒ¢ãƒ¼ãƒ‰
 	if (WeSysGPWorkGet(we_sys, WEDEF_GP_INDEX_FADE_VALUE) == 1){
 		hcs->ev1	= 0;
 		hcs->ev2	= 31;
@@ -4408,7 +4408,7 @@ static HC_SYS_PTR HaikeiControlInit(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	[ ”wŒiØ‚è‘Ö‚¦ ] ƒ¿ƒuƒŒƒ“ƒh
+ * @brief	[ èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆ ] Î±ãƒ–ãƒ¬ãƒ³ãƒ‰
  *
  * @param	tcb	
  * @param	wk	
@@ -4421,7 +4421,7 @@ static BOOL HaikeiChange_Blend(TCB_PTR tcb, HC_SYS_PTR wk)
 {
 	switch(wk->seq){
 	case 0:
-		///< ƒGƒtƒFƒNƒg–Ê‚É”wŒi‚Æ“¯‚¶BG‚ğ“WŠJ
+		///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã«èƒŒæ™¯ã¨åŒã˜BGã‚’å±•é–‹
 		WeSysBaseBGSet(wk->we_sys, BATTLE_FRAME_EFFECT);
 		{
 			int pri1 = BT_BGPriorityGet(wk->we_sys, WES_BF_BACKGROUND);
@@ -4436,7 +4436,7 @@ static BOOL HaikeiChange_Blend(TCB_PTR tcb, HC_SYS_PTR wk)
 		break;
 
 	case 1:
-		///< ƒ¿’l‚Ì‰Šú‰»
+		///< Î±å€¤ã®åˆæœŸåŒ–
 		{
 
 			GF_BGL_BGControlReset(wk->we_sys->bgl, BATTLE_FRAME_BACKGROUND, BGL_RESET_CHRBASE, GX_BG_CHARBASE_0x0c000);
@@ -4452,7 +4452,7 @@ static BOOL HaikeiChange_Blend(TCB_PTR tcb, HC_SYS_PTR wk)
 		wk->seq++;
 		
 	case 2:
-		///< ƒ¿ƒtƒF[ƒh
+		///< Î±ãƒ•ã‚§ãƒ¼ãƒ‰
 		{
 			int ev_sw = 0;
 			if (wk->ev1 < wk->ev1_e){
@@ -4491,13 +4491,13 @@ static BOOL HaikeiRecover_Blend(TCB_PTR tcb, HC_SYS_PTR wk)
 {
 	switch(wk->seq){
 	case 0:
-		///< ”wŒiBG‚ğƒGƒtƒFƒNƒg–Ê‚É“WŠJ
+		///< èƒŒæ™¯BGã‚’ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã«å±•é–‹
 	//	WeSysBaseBGSet(wk->we_sys, BATTLE_FRAME_EFFECT);
 		GF_BGL_VisibleSet(BATTLE_FRAME_EFFECT, VISIBLE_ON);
 		wk->seq++;
 
 	case 1:
-		///< ƒ¿’l‚Ì‰Šú‰»
+		///< Î±å€¤ã®åˆæœŸåŒ–
 		{
 			int pri1 = BT_BGPriorityGet(wk->we_sys, WES_BF_BACKGROUND);
 			int pri2 = BT_BGPriorityGet(wk->we_sys, WES_BF_EFFECT);
@@ -4512,7 +4512,7 @@ static BOOL HaikeiRecover_Blend(TCB_PTR tcb, HC_SYS_PTR wk)
 		wk->seq++;
 
 	case 2:
-		///< ƒ¿ƒtƒF[ƒh
+		///< Î±ãƒ•ã‚§ãƒ¼ãƒ‰
 		{
 			int ev_sw = 0;
 			if (wk->ev1 < wk->ev1_e){
@@ -4537,12 +4537,12 @@ static BOOL HaikeiRecover_Blend(TCB_PTR tcb, HC_SYS_PTR wk)
 		break;
 	
 	case 3:
-		///< ƒGƒtƒFƒNƒg–Ê‚É”wŒi‚ğc‚µ‚Â‚ÂA”wŒi‚ğ•œ‹A‚³‚¹‚é
+		///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã«èƒŒæ™¯ã‚’æ®‹ã—ã¤ã¤ã€èƒŒæ™¯ã‚’å¾©å¸°ã•ã›ã‚‹
 		if (wk->move_flag == 1){
-			BT_HaikeiSubSystemStop(wk->we_sys);						///< ”wŒiƒTƒuƒVƒXƒeƒ€’â~
+			BT_HaikeiSubSystemStop(wk->we_sys);						///< èƒŒæ™¯ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ åœæ­¢
 		}
 		if (wk->laster_flag == 1){
-			BT_HaikeiSubSystemStop(wk->we_sys);						///< ”wŒiƒTƒuƒVƒXƒeƒ€’â~
+			BT_HaikeiSubSystemStop(wk->we_sys);						///< èƒŒæ™¯ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ åœæ­¢
 		}
 		
 		GF_BGL_ScrollSet(wk->we_sys->bgl, BATTLE_FRAME_BACKGROUND,	GF_BGL_SCROLL_X_SET, 0);
@@ -4578,7 +4578,7 @@ static BOOL HaikeiRecover_Blend(TCB_PTR tcb, HC_SYS_PTR wk)
 		break;
 	
 	case 4:
-		///< ƒGƒtƒFƒNƒg–Ê‚ğƒŠƒZƒbƒg‚·‚é
+		///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 		if (WES_ContestFlag_Get(wk->we_sys) == FALSE){
 			BattleDefaultBlendSet();
 		}
@@ -4599,7 +4599,7 @@ static BOOL HaikeiRecover_Blend(TCB_PTR tcb, HC_SYS_PTR wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	[ ”wŒiØ‚è‘Ö‚¦ ] ƒtƒF[ƒh‚·‚é
+ * @brief	[ èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆ ] ãƒ•ã‚§ãƒ¼ãƒ‰ã™ã‚‹
  *
  * @param	tcb	
  * @param	wk	
@@ -4613,7 +4613,7 @@ static BOOL HaikeiChange_Fade(TCB_PTR tcb, HC_SYS_PTR wk)
 	switch(wk->seq){
 		
 	case 0:
-		///< ƒtƒF[ƒhŠJn
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 		if (wk->fade_type == 0){
 			PaletteFadeReq(wk->we_sys->pfd, PF_BIT_MAIN_BG, wk->we_sys->haikei_fade_bit, WES_HAIKEI_FO_WAIT, 0, 16, 0);
 			ColorConceChangePfd(wk->we_sys->pfd, FADE_MAIN_BG, 0x200, 16, 0);
@@ -4625,7 +4625,7 @@ static BOOL HaikeiChange_Fade(TCB_PTR tcb, HC_SYS_PTR wk)
 		wk->seq++;
 	
 	case 1:
-		///< ƒtƒF[ƒhI—¹ ƒ‚[ƒhØ‘Ö
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº† ãƒ¢ãƒ¼ãƒ‰åˆ‡æ›¿
 		if (PaletteFadeCheck(wk->we_sys->pfd) != 0){ break; }
 		
 		GF_BGL_BGControlReset(wk->we_sys->bgl, BATTLE_FRAME_BACKGROUND, BGL_RESET_COLOR, GX_BG_COLORMODE_16);
@@ -4656,7 +4656,7 @@ static BOOL HaikeiChange_Fade(TCB_PTR tcb, HC_SYS_PTR wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	[ ”wŒi•œ‹A ] ƒtƒF[ƒh
+ * @brief	[ èƒŒæ™¯å¾©å¸° ] ãƒ•ã‚§ãƒ¼ãƒ‰
  *
  * @param	tcb	
  * @param	wk	
@@ -4669,12 +4669,12 @@ static BOOL HaikeiRecover_Fade(TCB_PTR tcb, HC_SYS_PTR wk)
 {
 	switch(wk->seq){
 	case 0:
-		///< ‹N“®
+		///< èµ·å‹•
 		HaikeiSubSystemFirstCall(wk);
 		wk->seq++;
 	
 	case 1:
-		///< ƒtƒF[ƒhŠJn
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 		if (wk->fade_type == 0){
 			PaletteFadeReq(wk->we_sys->pfd, PF_BIT_MAIN_BG, (1 << BATTLE_PAL_EFF_1), WES_HAIKEI_FO_WAIT,  0, 16, 0);
 			ColorConceChangePfd(wk->we_sys->pfd, FADE_MAIN_BG, wk->we_sys->haikei_fade_bit, 16, 0);
@@ -4689,13 +4689,13 @@ static BOOL HaikeiRecover_Fade(TCB_PTR tcb, HC_SYS_PTR wk)
 		if (PaletteFadeCheck(wk->we_sys->pfd) != 0){ break; }
 
 		if (wk->move_flag == 1){
-			BT_HaikeiSubSystemStop(wk->we_sys);						///< ”wŒiƒTƒuƒVƒXƒeƒ€’â~
+			BT_HaikeiSubSystemStop(wk->we_sys);						///< èƒŒæ™¯ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ åœæ­¢
 		}
 		if (wk->laster_flag == 1){
-			BT_HaikeiSubSystemStop(wk->we_sys);						///< ”wŒiƒTƒuƒVƒXƒeƒ€’â~
+			BT_HaikeiSubSystemStop(wk->we_sys);						///< èƒŒæ™¯ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ åœæ­¢
 		}
 		
-		GF_BGL_VisibleSet(BATTLE_FRAME_BACKGROUND, VISIBLE_OFF);	///< ƒJƒ‰[ƒ‚[ƒh‚Ì•ÏX‚Ì‚½‚ßBG‚ğOFF
+		GF_BGL_VisibleSet(BATTLE_FRAME_BACKGROUND, VISIBLE_OFF);	///< ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã®å¤‰æ›´ã®ãŸã‚BGã‚’OFF
 	
 		if (WES_ContestFlag_Get(wk->we_sys) == FALSE){
 			GF_BGL_BGControlReset(wk->we_sys->bgl, BATTLE_FRAME_BACKGROUND, BGL_RESET_COLOR, GX_BG_COLORMODE_256);
@@ -4722,7 +4722,7 @@ static BOOL HaikeiRecover_Fade(TCB_PTR tcb, HC_SYS_PTR wk)
 						wk->we_sys->bgl,
 						BATTLE_FRAME_BACKGROUND, 0, 0, 1, wk->we_sys->heap_area);
 		
-		GF_BGL_VisibleSet(BATTLE_FRAME_BACKGROUND, VISIBLE_ON);		///< ‚·‚×‚Ä“WŠJŒã‚ÉBG‚ğON
+		GF_BGL_VisibleSet(BATTLE_FRAME_BACKGROUND, VISIBLE_ON);		///< ã™ã¹ã¦å±•é–‹å¾Œã«BGã‚’ON
 		wk->seq++;
 
 	case 3:
@@ -4761,7 +4761,7 @@ static BOOL HaikeiRecover_None(TCB_PTR tcb, HC_SYS_PTR wk)
 	HaikeiSubSystemFirstCall(wk);
 	
 	if (wk->move_flag == 1){
-		BT_HaikeiSubSystemStop(wk->we_sys);						///< ”wŒiƒTƒuƒVƒXƒeƒ€’â~
+		BT_HaikeiSubSystemStop(wk->we_sys);						///< èƒŒæ™¯ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ åœæ­¢
 	}
 
 	return FALSE;
@@ -4770,13 +4770,13 @@ static BOOL HaikeiRecover_None(TCB_PTR tcb, HC_SYS_PTR wk)
 // =============================================================================
 //
 //
-//	¡”wŒiØ‚è‘Ö‚¦ƒTƒuƒVƒXƒeƒ€
+//	â– èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ 
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒ[ƒ‹TCB
+ * @brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«TCB
  *
  * @param	tcb	
  * @param	work	
@@ -4810,7 +4810,7 @@ static void HaikeiSubSysmte_Scroll(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒVƒXƒeƒ€’â~
+ * @brief	ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ åœæ­¢
  *
  * @param	we_sys	
  *
@@ -4830,7 +4830,7 @@ void BT_HaikeiSubSystemStop(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒVƒXƒeƒ€ƒtƒŒ[ƒ€Ø‚è‘Ö‚¦
+ * @brief	ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	we_sys	
  *
@@ -4853,7 +4853,7 @@ void BT_HaikeiSubSystemFrameChange(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiƒtƒF[ƒhƒrƒbƒgæ“¾
+ * @brief	èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ“ãƒƒãƒˆå–å¾—
  *
  * @param	we_sys	
  *
@@ -4869,7 +4869,7 @@ int	BT_HaikeiFadeBit(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦ƒTƒuƒVƒXƒeƒ€
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ 
  *
  * @param	wk	
  *
@@ -4885,7 +4885,7 @@ static BOOL HaikeiSubSystem_None(HC_SYS_PTR wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦ƒTƒuƒVƒXƒeƒ€ [ ”wŒiƒXƒNƒ[ƒ‹ ]
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ  [ èƒŒæ™¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ« ]
  *
  * @param	wk	
  *
@@ -4981,7 +4981,7 @@ static BOOL HaikeiSubSystem_LasterScroll_Stop(HC_SYS_PTR wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹
+ * @brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  *
  * @param	tcb	
  * @param	work	
@@ -5025,7 +5025,7 @@ static void HaikeiSubSystem_LasterScroll(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	Šî–{”wŒi‚ğƒGƒtƒFƒNƒg–Ê‚É•`‰æ
+ * @brief	åŸºæœ¬èƒŒæ™¯ã‚’ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã«æç”»
  *
  * @param	wsp	
  * @param	frm	
@@ -5084,7 +5084,7 @@ void WeSysBaseBGReset(WE_SYS_PTR wsp, int frm)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦ƒTƒuƒVƒXƒeƒ€ [ 256¨16ƒ‚[ƒh•ÏŠ· ]
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ  [ 256â†’16ãƒ¢ãƒ¼ãƒ‰å¤‰æ› ]
  *
  * @param	wk	
  *
@@ -5098,12 +5098,12 @@ static BOOL HaikeiSubSystem_Drop(HC_SYS_PTR wk)
 	
 	HaikeiChange_DataSet(wk, wk->we_sys, BATTLE_FRAME_BACKGROUND, wk->bg_id);
 
-	///< ”wŒiƒXƒNƒ[ƒ‹ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡ABG“ü‚ê‘Ö‚¦‚¶‚É”wŒiƒXƒNƒ[ƒ‹–Ê‚ğ“ü‚ê‘Ö‚¦‚é	
+	///< èƒŒæ™¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã€BGå…¥ã‚Œæ›¿ãˆã˜ã«èƒŒæ™¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é¢ã‚’å…¥ã‚Œæ›¿ãˆã‚‹	
 	if (wk->move_flag == 1){
 		BT_HaikeiSubSystemFrameChange(wk->we_sys);
 	}
 	
-	///< ƒ‰ƒXƒ^[ƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚éê‡ABG“ü‚ê‘Ö‚¦‚Éƒ‰ƒXƒ^[ˆ—–Ê‚ğ“ü‚ê‘Ö‚¦‚é
+	///< ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹å ´åˆã€BGå…¥ã‚Œæ›¿ãˆæ™‚ã«ãƒ©ã‚¹ã‚¿ãƒ¼å‡¦ç†é¢ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
 	if (wk->laster_flag == 1){
 		if (wk->we_sys->hc_sub_ptr->hls->dlp != NULL){
 			int now_addr = WazaTool_GetDefLasterTransAddr(wk->we_sys->hc_sub_ptr->hls->dlp);
@@ -5127,7 +5127,7 @@ static BOOL HaikeiSubSystem_Drop(HC_SYS_PTR wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦ƒTƒuƒVƒXƒeƒ€ [ 16¨256ƒ‚[ƒh•ÏŠ· ]
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ  [ 16â†’256ãƒ¢ãƒ¼ãƒ‰å¤‰æ› ]
  *
  * @param	wk	
  *
@@ -5139,7 +5139,7 @@ static BOOL HaikeiSubSystem_Recover(HC_SYS_PTR wk)
 {
 	switch(wk->sub_seq){
 	case 0:
-		///< —Dæ“xØ‚è‘Ö‚¦+•œ‹Aƒf[ƒ^‘‚«‚İ
+		///< å„ªå…ˆåº¦åˆ‡ã‚Šæ›¿ãˆ+å¾©å¸°ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 		{
 			int pri1 = BT_BGPriorityGet(wk->we_sys, WES_BF_BACKGROUND);
 			int pri2 = BT_3DPriorityGet(wk->we_sys);
@@ -5147,12 +5147,12 @@ static BOOL HaikeiSubSystem_Recover(HC_SYS_PTR wk)
 			GF_BGL_PrioritySet(BATTLE_FRAME_EFFECT,		pri1);
 			GF_BGL_PrioritySet(BATTLE_FRAME_BACKGROUND, pri2+1);
 			
-			///< ”wŒiƒXƒNƒ[ƒ‹ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡ABG“ü‚ê‘Ö‚¦‚¶‚É”wŒiƒXƒNƒ[ƒ‹–Ê‚ğ“ü‚ê‘Ö‚¦‚é				
+			///< èƒŒæ™¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã€BGå…¥ã‚Œæ›¿ãˆã˜ã«èƒŒæ™¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é¢ã‚’å…¥ã‚Œæ›¿ãˆã‚‹				
 			if (wk->move_flag == 1){
 				BT_HaikeiSubSystemFrameChange(wk->we_sys);
 			}
 
-			///< ƒ‰ƒXƒ^[ƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚éê‡ABG“ü‚ê‘Ö‚¦‚Éƒ‰ƒXƒ^[ˆ—–Ê‚ğ“ü‚ê‘Ö‚¦‚é
+			///< ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹å ´åˆã€BGå…¥ã‚Œæ›¿ãˆæ™‚ã«ãƒ©ã‚¹ã‚¿ãƒ¼å‡¦ç†é¢ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
 			if (wk->laster_flag == 1){
 				if (wk->we_sys->hc_sub_ptr->hls->dlp != NULL){
 					int now_addr = WazaTool_GetDefLasterTransAddr(wk->we_sys->hc_sub_ptr->hls->dlp);
@@ -5171,7 +5171,7 @@ static BOOL HaikeiSubSystem_Recover(HC_SYS_PTR wk)
 		break;
 	
 	case 1:
-		///< —Dæ“x•ÏX
+		///< å„ªå…ˆåº¦å¤‰æ›´
 		if (wk->move_flag != 1){	
 			GF_BGL_ScrollSet(wk->we_sys->bgl, BATTLE_FRAME_BACKGROUND,	GF_BGL_SCROLL_X_SET, 0);
 			GF_BGL_ScrollSet(wk->we_sys->bgl, BATTLE_FRAME_BACKGROUND,	GF_BGL_SCROLL_Y_SET, 0);
@@ -5186,7 +5186,7 @@ static BOOL HaikeiSubSystem_Recover(HC_SYS_PTR wk)
 		break;
 	
 	case 2:
-		///< —Dæ“xØ‚è‘Ö‚¦+Œ³ƒf[ƒ^‘‚«‚İ
+		///< å„ªå…ˆåº¦åˆ‡ã‚Šæ›¿ãˆ+å…ƒãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 		{
 			int pri1 = BT_BGPriorityGet(wk->we_sys, WES_BF_BACKGROUND);
 			
@@ -5231,7 +5231,7 @@ static BOOL HaikeiSubSystem_Recover(HC_SYS_PTR wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦ƒTƒuƒVƒXƒeƒ€ [ ”wŒi‚Ì’â~ ]
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ  [ èƒŒæ™¯ã®åœæ­¢ ]
  *
  * @param	wk	
  *
@@ -5249,7 +5249,7 @@ static BOOL HaikeiSubSystem_Stop(HC_SYS_PTR wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦ƒTƒuƒVƒXƒeƒ€ [ ƒTƒuƒVƒXƒeƒ€‚Ì’â~ ] 
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ  [ ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ ã®åœæ­¢ ] 
  *
  * @param	wk	
  *
@@ -5266,7 +5266,7 @@ static BOOL HaikeiSubSystem_Exit(HC_SYS_PTR wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦—p‚ÌTCB
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆç”¨ã®TCB
  *
  * @param	tcb	
  * @param	work	
@@ -5293,7 +5293,7 @@ static void HaikeiChange_TCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	we_sys	
  *
@@ -5327,7 +5327,7 @@ static void WEST_HAIKEI_CHG(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiƒpƒ‰ƒ[ƒ^[•ÏX
+ * @brief	èƒŒæ™¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼å¤‰æ›´
  *
  * @param	we_sys	
  *
@@ -5369,7 +5369,7 @@ static void WEST_HAIKEI_PARA_CHG(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒi•œ‹A
+ * @brief	èƒŒæ™¯å¾©å¸°
  *
  * @param	we_sys	
  *
@@ -5403,7 +5403,7 @@ static void WEST_HAIKEI_RECOVER(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦’†ŠÔ‘Ò‚¿
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆä¸­é–“å¾…ã¡
  *
  * @param	we_sys	
  *
@@ -5416,18 +5416,18 @@ static void WEST_HAIKEI_HALF_WAIT(WE_SYS_PTR we_sys)
 	if (we_sys->haikei_chg_flag == ENUM_HMODE_HALF){
 		ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 		we_sys->waza_eff_wait = 0;	
-//		OS_Printf("”wŒiØ‚è‘Ö‚¦‘Ò‚¿I—¹‚Å‚·\n");
+//		OS_Printf("èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆå¾…ã¡çµ‚äº†ã§ã™\n");
 	}
 	else {
 		we_sys->waza_eff_wait = 1;
-//		OS_Printf("”wŒiØ‚è‘Ö‚¦‘Ò‚¿‚Å‚·\n");
+//		OS_Printf("èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆå¾…ã¡ã§ã™\n");
 	}
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiØ‚è‘Ö‚¦‘Ò‚¿
+ * @brief	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆå¾…ã¡
  *
  * @param	we_sys	
  *
@@ -5449,7 +5449,7 @@ static void WEST_HAIKEI_CHG_WAIT(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒi‚ÌuŠÔØ‚è‘Ö‚¦
+ * @brief	èƒŒæ™¯ã®ç¬é–“åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	we_sys	
  *
@@ -5484,7 +5484,7 @@ static void WEST_HAIKEI_SET(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒ“‚²‚Æ‚Ì”wŒiİ’è
+ * @brief	ã‚·ãƒ¼ãƒ³ã”ã¨ã®èƒŒæ™¯è¨­å®š
  *
  * @param	we_sys	
  *
@@ -5501,13 +5501,13 @@ static void WEST_HAIKEI_CHKCHG(WE_SYS_PTR we_sys)
 
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 	
-	bg1 = SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ©•ª
+	bg1 = SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< è‡ªåˆ†
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 	
-	bg2 = SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< “G
+	bg2 = SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< æ•µ
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 	
-	bg3 = SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ƒRƒ“ƒeƒXƒg
+	bg3 = SeqAdrsGet(we_sys->waza_eff_seq_adrs);	///< ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 	ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 
 	if (WES_ContestFlag_Get(we_sys) == TRUE){
@@ -5525,7 +5525,7 @@ static void WEST_HAIKEI_CHKCHG(WE_SYS_PTR we_sys)
 	TCB_Add(HaikeiChange_TCB, wk, TCBPRI_HAIKEI_CHANGE);
 }
 
-/// ‚Æ‚è‚ ‚¦‚¸‚¢‚ç‚È‚¢B
+/// ã¨ã‚Šã‚ãˆãšã„ã‚‰ãªã„ã€‚
 static void WEST_BGPRI_GAPSET(WE_SYS_PTR we_sys)
 {
 }
@@ -5544,13 +5544,13 @@ static void WEST_PARTY_ATTACK_BGEND(WE_SYS_PTR we_sys)
 
 // =========================================
 //
-//	¡ƒTƒEƒ“ƒhŠÖ˜A
+//	â– ã‚µã‚¦ãƒ³ãƒ‰é–¢é€£
 //		[ _COMMAND_SOUND_ ]
 //
 // =========================================
 //--------------------------------------------------------------
 /**
- * @brief	SE‚ğÄ¶
+ * @brief	SEã‚’å†ç”Ÿ
  *
  * @param	we_sys	
  *
@@ -5573,7 +5573,7 @@ static void WEST_SE(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	SE‚Ì’â~
+ * @brief	SEã®åœæ­¢
  *
  * @param	we_sys	
  *
@@ -5596,7 +5596,7 @@ static void WEST_SE_STOP(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒ“‚ğİ’è‚µ‚ÄSE‚ğ–Â‚ç‚·
+ * @brief	ãƒ‘ãƒ³ã‚’è¨­å®šã—ã¦SEã‚’é³´ã‚‰ã™
  *
  * @param	we_sys	
  *
@@ -5626,7 +5626,7 @@ static void WEST_SEPLAY_PAN(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒ“‚Ìİ’è
+ * @brief	ãƒ‘ãƒ³ã®è¨­å®š
  *
  * @param	we_sys	
  *
@@ -5651,7 +5651,7 @@ static void WEST_SEPAN(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ˆê’èŠÔŠu‚Åƒpƒ“‚ğ•ÏX‚·‚é
+ * @brief	ä¸€å®šé–“éš”ã§ãƒ‘ãƒ³ã‚’å¤‰æ›´ã™ã‚‹
  *
  * @param	we_sys	
  *
@@ -5689,9 +5689,9 @@ static void WEST_SEPAN_FLOW(WE_SYS_PTR we_sys)
 	ss->e_pan = WeSysSePanGet(we_sys, ss->e_pan);
 
 	ss->a_pan = WeSysSePanAddGet(ss->s_pan, ss->e_pan, ss->a_pan);
-//	OS_Printf("ŠJnƒpƒ“ = %4d\n", ss->s_pan);
-//	OS_Printf("I—¹ƒpƒ“ = %4d\n", ss->e_pan);
-//	OS_Printf("‰ÁZƒpƒ“ = %4d\n", ss->a_pan);
+//	OS_Printf("é–‹å§‹ãƒ‘ãƒ³ = %4d\n", ss->s_pan);
+//	OS_Printf("çµ‚äº†ãƒ‘ãƒ³ = %4d\n", ss->e_pan);
+//	OS_Printf("åŠ ç®—ãƒ‘ãƒ³ = %4d\n", ss->a_pan);
 	Snd_SePlay(ss->se_no);
 	Snd_SePanSet(ss->se_no, 0xffff, ss->s_pan);
 	
@@ -5701,7 +5701,7 @@ static void WEST_SEPAN_FLOW(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ˆê’èŠÔŠu‚Åƒpƒ“‚ğ•ÏX‚·‚é(“G–¡•û‚ÌˆÊ’uŠÖŒW‚È‚µ)
+ * @brief	ä¸€å®šé–“éš”ã§ãƒ‘ãƒ³ã‚’å¤‰æ›´ã™ã‚‹(æ•µå‘³æ–¹ã®ä½ç½®é–¢ä¿‚ãªã—)
  *
  * @param	we_sys	
  *
@@ -5744,8 +5744,8 @@ static void WEST_SEPAN_FLOWFIX(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒ“‚Ì’l‚ğˆê’èŠÔŠu‚Å•ÏX‚µ‚Ä‚¢‚­
- *			ƒp[ƒeƒB‚Ì‚±‚Æ‚Íl—¶‚µ‚È‚¢
+ * @brief	ãƒ‘ãƒ³ã®å€¤ã‚’ä¸€å®šé–“éš”ã§å¤‰æ›´ã—ã¦ã„ã
+ *			ãƒ‘ãƒ¼ãƒ†ã‚£ã®ã“ã¨ã¯è€ƒæ…®ã—ãªã„
  *
  * @param	we_sys	
  *
@@ -5792,7 +5792,7 @@ static void WEST_SEPAN_FLOW_AF(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	w’è‰ñ”ƒŠƒs[ƒg‚·‚é
+ * @brief	æŒ‡å®šå›æ•°ãƒªãƒ”ãƒ¼ãƒˆã™ã‚‹
  *
  * @param	we_sys	
  *
@@ -5833,7 +5833,7 @@ static void WEST_SE_REPEAT(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	waitŠÔ‘Ò‚Á‚Ä‚©‚çÄ¶‚·‚é
+ * @brief	waitæ™‚é–“å¾…ã£ã¦ã‹ã‚‰å†ç”Ÿã™ã‚‹
  *
  * @param	we_sys	
  *
@@ -5869,7 +5869,7 @@ static void WEST_SE_WAITPLAY(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	SE—p‚ÌTCB‚ğì¬‚·‚é
+ * @brief	SEç”¨ã®TCBã‚’ä½œæˆã™ã‚‹
  *
  * @param	we_sys	
  *
@@ -5884,7 +5884,7 @@ static void WEST_SE_TASK(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	‚È‚èI‚í‚é‚Ü‚Åwait
+ * @brief	ãªã‚Šçµ‚ã‚ã‚‹ã¾ã§wait
  *
  * @param	we_sys	
  *
@@ -5900,11 +5900,11 @@ static void WEST_SEWAIT_FLAG(WE_SYS_PTR we_sys)
 		return;
 	}
 
-	if (Snd_SePlayCheckAll()){							///< SE‚ªÄ¶‚³‚ê‚Ä‚¢‚½ê‡
+	if (Snd_SePlayCheckAll()){							///< SEãŒå†ç”Ÿã•ã‚Œã¦ã„ãŸå ´åˆ
 		we_sys->se_end_timer++;
 
-		if (we_sys->se_end_timer > WE_SE_END_TIMER){	///< I—¹3•b‚Í‘Ò‚Â
-			// ƒGƒtƒFƒNƒgŠÖ˜ASE‚ğ‚Æ‚ß‚é
+		if (we_sys->se_end_timer > WE_SE_END_TIMER){	///< çµ‚äº†3ç§’ã¯å¾…ã¤
+			// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–¢é€£SEã‚’ã¨ã‚ã‚‹
 			;
 			;
 			we_sys->se_end_timer = 0;
@@ -5924,13 +5924,13 @@ static void WEST_SEWAIT_FLAG(WE_SYS_PTR we_sys)
 
 // =========================================
 //
-//	¡ƒŒƒWƒXƒ^‘€ìŒn
+//	â– ãƒ¬ã‚¸ã‚¹ã‚¿æ“ä½œç³»
 //		[ _COMMAND_REG_ ]
 //
 // =========================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒ¿ƒuƒŒƒ“ƒh‚ğs‚È‚¤
+ * @brief	Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚’è¡Œãªã†
  *
  * @param	we_sys	
  *
@@ -5958,7 +5958,7 @@ static void WEST_BLDALPHA_SET(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ¿ƒuƒŒƒ“ƒh‰Šú‰»
+ * @brief	Î±ãƒ–ãƒ¬ãƒ³ãƒ‰åˆæœŸåŒ–
  *
  * @param	we_sys	
  *
@@ -5979,14 +5979,14 @@ static void WEST_BLDCNT_SET(WE_SYS_PTR we_sys)
 // =============================================================================
 //
 //
-//	¡ƒAƒNƒ^[ŠÖ˜A
+//	â– ã‚¢ã‚¯ã‚¿ãƒ¼é–¢é€£
 //		[ _COMMAND_CLACT_ ]
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒXƒVƒXƒeƒ€‚Ì‰Šú‰»
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
  *
  * @param	we_sys	
  *
@@ -6014,7 +6014,7 @@ static void WEST_CATS_RES_INIT(WE_SYS_PTR we_sys)
 	
 	GF_ASSERT(we_sys->crp[res_no] != NULL);
 	
-	///< ‰Šú‰»
+	///< åˆæœŸåŒ–
 	CATS_ClactSetInit(we_sys->btl_sys->csp, we_sys->crp[res_no], obj_num);
 	CLACT_U_SetSubSurfaceMatrix(CATS_EasyRenderGet(we_sys->btl_sys->csp), 0, BATTLE_SUB_ACTOR_DISTANCE);
 	
@@ -6032,7 +6032,7 @@ static void WEST_CATS_RES_INIT(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒ‰ƒŠƒ\[ƒX“Ç‚İ‚İ
+ * @brief	ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
  * @param	we_sys	
  *
@@ -6060,7 +6060,7 @@ static void WEST_CATS_CHAR_RES_LOAD(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒgƒŠƒ\[ƒX“Ç‚İ‚İ
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
  * @param	we_sys	
  *
@@ -6093,7 +6093,7 @@ static void WEST_CATS_PLTT_RES_LOAD(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒŠƒ\[ƒX“Ç‚İ‚İ
+ * @brief	ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
  * @param	we_sys	
  *
@@ -6121,7 +6121,7 @@ static void WEST_CATS_CELL_RES_LOAD(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX“Ç‚İ‚İ
+ * @brief	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
  * @param	we_sys	
  *
@@ -6149,7 +6149,7 @@ static void WEST_CATS_CELL_ANM_RES_LOAD(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒNƒ^[“o˜^
+ * @brief	ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param	we_sys	
  *
@@ -6219,7 +6219,7 @@ static void WEST_CATS_ACT_ADD(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒNƒ^[‚Ì“o˜^‚Ì‚İs‚È‚¤
+ * @brief	ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç™»éŒ²ã®ã¿è¡Œãªã†
  *
  * @param	we_sys	
  *
@@ -6277,7 +6277,7 @@ static void WEST_CATS_ACT_ADD_EZ(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX”jŠü
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
  * @param	we_sys	
  *
@@ -6318,32 +6318,32 @@ static void WEST_POKE_OAM_ENABLE(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒf[ƒ^—ñ’è‹`
+ * @brief	ãƒ‡ãƒ¼ã‚¿åˆ—å®šç¾©
  *
  * @param	we_sys	
  *
  * @retval	none	
  *
- * WeSysExDataGetŠÖ”‚ğg—p‚µ‚Ä’è‹`‚µ‚Ä‚¢‚éƒf[ƒ^‚ğæ“¾‚µ‚Ü‚·B
- * Cƒ\[ƒXWeSysExDataGetŠÖ”‚ğg—p‚µA’læ“¾AƒAƒhƒŒƒXˆÚ“®‚ğ‚·‚é‚Ì‚Åwe_sys.c‚ÌƒVƒXƒeƒ€ã‚©‚ç
- * ‚±‚±‚ğ’Ê‰ß‚·‚é–‚ÍƒGƒ‰[ˆ—‚É‚È‚è‚Ü‚·B
+ * WeSysExDataGeté–¢æ•°ã‚’ä½¿ç”¨ã—ã¦å®šç¾©ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚
+ * Cã‚½ãƒ¼ã‚¹WeSysExDataGeté–¢æ•°ã‚’ä½¿ç”¨ã—ã€å€¤å–å¾—ã€ã‚¢ãƒ‰ãƒ¬ã‚¹ç§»å‹•ã‚’ã™ã‚‹ã®ã§we_sys.cã®ã‚·ã‚¹ãƒ†ãƒ ä¸Šã‹ã‚‰
+ * ã“ã“ã‚’é€šéã™ã‚‹äº‹ã¯ã‚¨ãƒ©ãƒ¼å‡¦ç†ã«ãªã‚Šã¾ã™ã€‚
  *
- * —á)
+ * ä¾‹)
  * 	FUNC_CALL	WEST_SP_TEST_1, 0, 0
  * 	EX_DATA		3, 100, 200, 150
- * ‚Ì‚æ‚¤‚É‚µ‚½ê‡AFUNC_CALL‚ÅŒÄ‚Ño‚³‚ê‚½ŠÖ”‚Ì’†‚ÅWeSysExDataGetŠÖ”‚Å‰º‚ÌEX_DATA•ª‚Ìƒf[ƒ^‚ğ
- * æ“¾‚µƒAƒhƒŒƒX‚ği‚ß‚é•K—v‚ª‚ ‚è‚Ü‚·B‚à‚µæ“¾‚µ‚È‚©‚Á‚½ê‡Awe_sys.c‚©‚çŒÄ‚Î‚ê‚é–‚É‚È‚èA
- * ƒGƒ‰[ˆ—ˆµ‚¢‚Æ‚È‚è‚Ü‚·B
+ * ã®ã‚ˆã†ã«ã—ãŸå ´åˆã€FUNC_CALLã§å‘¼ã³å‡ºã•ã‚ŒãŸé–¢æ•°ã®ä¸­ã§WeSysExDataGeté–¢æ•°ã§ä¸‹ã®EX_DATAåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚’
+ * å–å¾—ã—ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’é€²ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚ã‚‚ã—å–å¾—ã—ãªã‹ã£ãŸå ´åˆã€we_sys.cã‹ã‚‰å‘¼ã°ã‚Œã‚‹äº‹ã«ãªã‚Šã€
+ * ã‚¨ãƒ©ãƒ¼å‡¦ç†æ‰±ã„ã¨ãªã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 static void WEST_EX_DATA(WE_SYS_PTR we_sys)
 {
-	GF_ASSERT((0)&&"EX_DATA‚ªÀs‚³‚ê‚Ü‚µ‚½");
+	GF_ASSERT((0)&&"EX_DATAãŒå®Ÿè¡Œã•ã‚Œã¾ã—ãŸ");
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	–Â‚«ºÄ¶
+ * @brief	é³´ãå£°å†ç”Ÿ
  *
  * @param	we_sys	
  *
@@ -6383,7 +6383,7 @@ static void WEST_VOICE_PLAY(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	–Â‚«º‘Ò‚¿{’â~
+ * @brief	é³´ãå£°å¾…ã¡ï¼‹åœæ­¢
  *
  * @param	we_sys	
  *
@@ -6395,7 +6395,7 @@ static void WEST_VOICE_WAIT_STOP(WE_SYS_PTR we_sys)
 {
 	int frame;
 		
-	if( Snd_PMVoicePlayCheck() == 0 ){	//Ä¶I—¹‚µ‚Ä‚¢‚½‚ç
+	if( Snd_PMVoicePlayCheck() == 0 ){	//å†ç”Ÿçµ‚äº†ã—ã¦ã„ãŸã‚‰
 		ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 		frame = SeqAdrsGet(we_sys->waza_eff_seq_adrs);
 		ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
@@ -6410,9 +6410,9 @@ static void WEST_VOICE_WAIT_STOP(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	w’è‚³‚ê‚½ŠÖ”‚ğŒÄ‚Ño‚·ƒRƒ}ƒ“ƒh
- *			ƒAƒhƒŒƒX‚©‚çQÆ‚·‚éˆø”
- *			ŒÄ‚Ño‚·ŠÖ”‚ÌƒAƒhƒŒƒX
+ * @brief	æŒ‡å®šã•ã‚ŒãŸé–¢æ•°ã‚’å‘¼ã³å‡ºã™ã‚³ãƒãƒ³ãƒ‰
+ *			ã‚¢ãƒ‰ãƒ¬ã‚¹ã‹ã‚‰å‚ç…§ã™ã‚‹å¼•æ•°
+ *			å‘¼ã³å‡ºã™é–¢æ•°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @param	we_sys	
  *
@@ -6451,11 +6451,11 @@ static void WEST_OLDACT_FUNC_CALL(WE_SYS_PTR we_sys)
 		ADRS_SHIFT(we_sys->waza_eff_seq_adrs);
 	}
 
-#if 0	//ƒAƒNƒ^[•ÏX‚Ì‚½‚ßA‚Æ‚è‚ ‚¦‚¸FIX
-	//ƒAƒNƒ^[¶¬
+#if 0	//ã‚¢ã‚¯ã‚¿ãƒ¼å¤‰æ›´ã®ãŸã‚ã€ã¨ã‚Šã‚ãˆãšFIX
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	{
 		TCAT_ADD_DATA cad = {
-			0,								//ƒAƒNƒ^[ƒwƒbƒ_[‚Ì’†‚Ì“o˜^OBJ‚Ì”Ô† 0‚©‚ç
+			0,								//ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ã®ä¸­ã®ç™»éŒ²OBJã®ç•ªå· 0ã‹ã‚‰
 			128,128,						//x, y
 			0, WAZAEFF_ACT_SOFTPRI, 0,		//anm, soft_pri, pal
 			NNS_G2D_VRAM_TYPE_2DMAIN,		//d_area
@@ -6468,7 +6468,7 @@ static void WEST_OLDACT_FUNC_CALL(WE_SYS_PTR we_sys)
 		cad.y = GetWazaEffPos(we_sys, defence_client, PM_Y);
 		cad.pri = soft_pri;
 		
-		//««««İ’è‚·‚é•K—v‚ ‚è««««
+		//â†“â†“â†“â†“è¨­å®šã™ã‚‹å¿…è¦ã‚ã‚Šâ†“â†“â†“â†“
 		//cad.no = 0;
 		//cal.palno = 0;
 		
@@ -6484,17 +6484,17 @@ static void WEST_OLDACT_FUNC_CALL(WE_SYS_PTR we_sys)
 // =============================================================================
 //
 //
-//	¡ŠO•”QÆ
+//	â– å¤–éƒ¨å‚ç…§
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒe[ƒuƒ‹‚©‚çƒRƒ}ƒ“ƒh‚ğæ“¾‚·‚é
+ * @brief	ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’å–å¾—ã™ã‚‹
  *
- * @param	id		ƒRƒ}ƒ“ƒh”Ô†
+ * @param	id		ã‚³ãƒãƒ³ãƒ‰ç•ªå·
  *
- * @retval	pWeFunc	ƒRƒ}ƒ“ƒhŠÖ”
+ * @retval	pWeFunc	ã‚³ãƒãƒ³ãƒ‰é–¢æ•°
  *
  */
 //--------------------------------------------------------------
@@ -6510,7 +6510,7 @@ pWeFunc WazaEffectCommandGet(u32 id)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‚[ƒhƒ`ƒFƒbƒN‚·‚é(í“¬EƒRƒ“ƒeƒXƒgEƒRƒ“ƒN[ƒ‹)
+ * @brief	ãƒ¢ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯ã™ã‚‹(æˆ¦é—˜ãƒ»ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ»ã‚³ãƒ³ã‚¯ãƒ¼ãƒ«)
  *
  * @param	btl_sys	
  *
@@ -6527,7 +6527,7 @@ int WeSysModeGet(BTL_SYS_PTR btl_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒ“‚Ìó‘Ô‚ğæ“¾‚·‚é
+ * @brief	ãƒ‘ãƒ³ã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
  *
  * @param	we_sys	
  * @param	pan	
@@ -6615,7 +6615,7 @@ s8	WeSysSePanGet(WE_SYS_PTR we_sys, s8 pan)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒ“‚Ìó‘Ô‚ğæ“¾‚·‚é@UŒ‚—p
+ * @brief	ãƒ‘ãƒ³ã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹ã€€æ”»æ’ƒç”¨
  *
  * @param	we_sys	
  * @param	pan	
@@ -6662,8 +6662,8 @@ s8 WeSysSePanAttackGet(WE_SYS_PTR we_sys, s8 pan)
 		pan_fix *= -1;
 	}
 		
-//	OS_Printf("‚Ü‚¦‚Ìƒpƒ“‚Ìİ’è ¥¥¥ %4d\n", pan);
-//	OS_Printf("Œ»İ‚Ìƒpƒ“‚Ìİ’è ¥¥¥ %4d\n", pan_fix);
+//	OS_Printf("ã¾ãˆã®ãƒ‘ãƒ³ã®è¨­å®š ãƒ»ãƒ»ãƒ» %4d\n", pan);
+//	OS_Printf("ç¾åœ¨ã®ãƒ‘ãƒ³ã®è¨­å®š ãƒ»ãƒ»ãƒ» %4d\n", pan_fix);
 	
 	return pan_fix;
 }
@@ -6671,7 +6671,7 @@ s8 WeSysSePanAttackGet(WE_SYS_PTR we_sys, s8 pan)
 
 //--------------------------------------------------------------
 /**
- * @brief	ŠJn`I“_‚É‚æ‚èAƒpƒ“‚Ì‰ÁZ’l‚ğŒˆ‚ß‚é
+ * @brief	é–‹å§‹ã€œçµ‚ç‚¹ã«ã‚ˆã‚Šã€ãƒ‘ãƒ³ã®åŠ ç®—å€¤ã‚’æ±ºã‚ã‚‹
  *
  * @param	we_sys	
  * @param	pan	
@@ -6699,13 +6699,13 @@ s8 WeSysSePanAddGet(s8 s_pan, s8 e_pan,  s8 a_pan)
 
 //--------------------------------------------------------------
 /**
- * @brief   EX_DATA‚Å’è‹`‚µ‚Ä‚¢‚éƒf[ƒ^—ñ‚ğæ“¾
+ * @brief   EX_DATAã§å®šç¾©ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿åˆ—ã‚’å–å¾—
  *
  * @param   we_sys		
- * @param   data[]		æ“¾ƒf[ƒ^‘ã“üæ(num‚Åw’è‚µ‚½•ª•K—v)
- * @param   num			æ“¾ƒf[ƒ^”(EX_DATA‚Éw’è‚µ‚½”‚Æˆê’v‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·)
+ * @param   data[]		å–å¾—ãƒ‡ãƒ¼ã‚¿ä»£å…¥å…ˆ(numã§æŒ‡å®šã—ãŸåˆ†å¿…è¦)
+ * @param   num			å–å¾—ãƒ‡ãƒ¼ã‚¿æ•°(EX_DATAã«æŒ‡å®šã—ãŸæ•°ã¨ä¸€è‡´ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™)
  *
- * @retval  TRUE:¬Œ÷AFALSE:¸”s
+ * @retval  TRUE:æˆåŠŸã€FALSE:å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL WeSysExDataGet(WE_SYS_PTR we_sys, int data[], int num)
@@ -6732,7 +6732,7 @@ BOOL WeSysExDataGet(WE_SYS_PTR we_sys, int data[], int num)
 
 //--------------------------------------------------------------
 /**
- * @brief	’¼‘O‚Åİ’è‚³‚ê‚Ä‚¢‚½“o˜^ƒpƒ‰ƒ[ƒ^[‚Ìæ“¾
+ * @brief	ç›´å‰ã§è¨­å®šã•ã‚Œã¦ã„ãŸç™»éŒ²ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®å–å¾—
  *
  * @param	we_sys	
  *
@@ -6748,10 +6748,10 @@ TCATS_OBJECT_ADD_PARAM_S WeSysCoapGet(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒNƒ‰ƒCƒAƒ“ƒg‚Ìƒ^ƒCƒv‚ğæ“¾‚·‚é
+ * @brief	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
  *
  * @param	we_sys
- * @param	no			ƒNƒ‰ƒCƒAƒ“ƒg”Ô†
+ * @param	no			ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç•ªå·
  *
  * @retval	int
  *
@@ -6766,7 +6766,7 @@ int WeSysClientTypeGet(WE_SYS_PTR we_sys, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	«•Ê
+ * @brief	æ€§åˆ¥
  *
  * @param	we_sys	
  * @param	no	
@@ -6783,7 +6783,7 @@ int WeSysSexGet(WE_SYS_PTR we_sys, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‚ƒ“ƒXƒ^[”Ô†
+ * @brief	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç•ªå·
  *
  * @param	we_sys	
  * @param	no	
@@ -6799,7 +6799,7 @@ int	WeSysMonsNoGet(WE_SYS_PTR we_sys, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒHƒ‹ƒ€No
+ * @brief	ãƒ•ã‚©ãƒ«ãƒ No
  *
  * @param	we_sys	
  * @param	no	
@@ -6815,7 +6815,7 @@ int	WeSysFormNoGet(WE_SYS_PTR we_sys, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ŒÂ«—”
+ * @brief	å€‹æ€§ä¹±æ•°
  *
  * @param	we_sys	
  * @param	no	
@@ -6831,10 +6831,10 @@ int	WeSysPersonalRndGet(WE_SYS_PTR we_sys, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚Ìƒ|ƒCƒ“ƒ^æ“¾
+ * @brief	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
  * @param	we_sys	
- * @param	no			ƒNƒ‰ƒCƒAƒ“ƒg”Ô†
+ * @param	no			ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç•ªå·
  *
  * @retval	SOFT_SPRITE*	
  *
@@ -6873,7 +6873,7 @@ PALETTE_FADE_PTR WeSysPFDGet(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒgID‚Ìæ“¾
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆIDã®å–å¾—
  *
  * @param	we_sys	
  * @param	client_no	
@@ -6894,7 +6894,7 @@ int WeSysArcIDGet(WE_SYS_PTR we_sys, int client_no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ÌƒIƒtƒZƒbƒgæ“¾
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
  *
  * @param	we_sys	
  * @param	client_no	
@@ -6911,7 +6911,7 @@ int WeSysPokeOfsGet(WE_SYS_PTR we_sys, int client_no)
 
 //--------------------------------------------------------------
 /**
- * @brief	2‘Î2‚©’²‚×‚é
+ * @brief	2å¯¾2ã‹èª¿ã¹ã‚‹
  *
  * @param	we_sys	
  *
@@ -6939,7 +6939,7 @@ BOOL BT_WazaKoukaCheck(WE_SYS_PTR we_sys, int client_no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‚Ìƒ‚[ƒh‚ğæ“¾
+ * @brief	ã‚«ãƒ¡ãƒ©ã®ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—
  *
  * @param	we_sys	
  *
@@ -6954,7 +6954,7 @@ int	WeSysCameraTypeGet(int no, WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	3D–Ê‚Ìƒvƒ‰ƒCƒIƒŠƒeƒBæ“¾
+ * @brief	3Dé¢ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å–å¾—
  *
  * @param	we_sys	
  *
@@ -6979,7 +6979,7 @@ int BT_3DPriorityGet(WE_SYS_PTR we_sys)
 
 //--------------------------------------------------------------
 /**
- * @brief	BG‚ÌƒtƒŒ[ƒ€‚ğæ“¾‚·‚é
+ * @brief	BGã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹
  *
  * @param	we_sys	
  * @param	type	
@@ -7018,7 +7018,7 @@ int BT_BGL_FrameGet(WE_SYS_PTR we_sys, int type)
 
 //--------------------------------------------------------------
 /**
- * @brief	BGNOæ“¾
+ * @brief	BGNOå–å¾—
  *
  * @param	we_sys	
  * @param	type	
@@ -7057,7 +7057,7 @@ int BT_BGL_BGNoGet(WE_SYS_PTR we_sys, int type)
 
 //--------------------------------------------------------------
 /**
- * @brief	BGƒvƒ‰ƒCƒIƒŠƒeƒBæ“¾
+ * @brief	BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å–å¾—
  *
  * @param	we_sys	
  * @param	type	
@@ -7110,7 +7110,7 @@ int BT_BGPriorityGet(WE_SYS_PTR we_sys, int type)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰ƒ‚[ƒh‚Ìİ’è
+ * @brief	ã‚«ãƒ¡ãƒ©ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
  *
  * @param	we_sys	
  * @param	mode	
@@ -7128,7 +7128,7 @@ void WE_SYS_CameraModeSet(WE_SYS_PTR we_sys, int mode)
 
 //--------------------------------------------------------------
 /**
- * @brief	BG‘‚«Š·‚¦
+ * @brief	BGæ›¸ãæ›ãˆ
  *
  * @param	wsp	
  * @param	frame	
@@ -7144,7 +7144,7 @@ void WeSys_BattleBGDraw(WE_SYS_PTR wsp, int frame)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒg
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆ
  *
  * @param	wsp	
  * @param	frame	
@@ -7161,7 +7161,7 @@ void WeSys_BattlePaletteTrans(WE_SYS_PTR wsp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒŠƒbƒvƒ`ƒFƒbƒN
+ * @brief	ãƒ•ãƒªãƒƒãƒ—ãƒã‚§ãƒƒã‚¯
  *
  * @param	we_sys	
  * @param	flag	
@@ -7192,7 +7192,7 @@ BOOL ContestFlipCheck(WE_SYS_PTR we_sys, int flag)
 
 // -----------------------------------------
 //
-//	¡”wŒi‚Ìƒf[ƒ^ƒe[ƒuƒ‹
+//	â– èƒŒæ™¯ã®ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 //
 // -----------------------------------------
 #if 0
@@ -7267,14 +7267,14 @@ static const int WE_HaikeiData_Table[][ 5 ] = {
 		BG_433_WIREROOM_NSCR_BIN,
 		BG_433_WIREROOM_NSCR_BIN,
 	},
-	{	///< ‚è‚ã‚¤‚¹‚¢‚®‚ñ
+	{	///< ã‚Šã‚…ã†ã›ã„ãã‚“
 		BG_434_SHTINGSTAR_NCGR_BIN,
 		BG_434_SHTINGSTAR_NCLR,
 		BG_434_SHTINGSTAR1_NSCR_BIN,
 		BG_434_SHTINGSTAR2_NSCR_BIN,
 		BG_434_SHTINGSTAR2_NSCR_BIN,
 	},
-	{	///< ƒ{ƒ‹ƒeƒbƒJ[
+	{	///< ãƒœãƒ«ãƒ†ãƒƒã‚«ãƒ¼
 		BG_192_LIGHTNING_NCGR_BIN,
 		BG_192_LIGHTNING_NCLR,
 		BG_192_LIGHTNING_NSCR_BIN,
@@ -7288,91 +7288,91 @@ static const int WE_HaikeiData_Table[][ 5 ] = {
 		BG_344_VOLTAICER_NSCR_BIN,
 		*/
 	},
-	{	///< ƒCƒ“ƒtƒ@ƒCƒg
+	{	///< ã‚¤ãƒ³ãƒ•ã‚¡ã‚¤ãƒˆ
 		BG_370_SPEED_NCGR_BIN,
 		BG_370_SPEED_NCLR,
 		BG_370_SPEED_NSCR_BIN,
 		BG_370_SPEED_NSCR_BIN,
 		BG_370_SPEED_NSCR_BIN,
 	},
-	{	///< ƒn[ƒhƒvƒ‰ƒ“ƒg
+	{	///< ãƒãƒ¼ãƒ‰ãƒ—ãƒ©ãƒ³ãƒˆ
 		BG_338_GREENLEAF_NCGR_BIN,
 		BG_338_GREENLEAF_NCLR,
 		BG_338_GREENLEAF_NSCR_BIN,
 		BG_338_GREENLEAF_NSCR_BIN,
 		BG_338_GREENLEAF_NSCR_BIN,
 	},
-	{	///< ‚Å‚ñ‚¶‚Ù‚¤
+	{	///< ã§ã‚“ã˜ã»ã†
 		BG_192_LIGHTNING_NCGR_BIN,
 		BG_192_LIGHTNING_NCLR,
 		BG_192_LIGHTNING_NSCR_BIN,
 		BG_192_LIGHTNING_NSCR_BIN,
 		BG_192_LIGHTNING_NSCR_BIN,
 	},
-	{	///< ‚°‚«‚è‚ñE‚¹‚¢‚È‚é‚Ù‚Ì‚¤Eƒuƒ‰ƒXƒgƒo[ƒ“
+	{	///< ã’ãã‚Šã‚“ãƒ»ã›ã„ãªã‚‹ã»ã®ã†ãƒ»ãƒ–ãƒ©ã‚¹ãƒˆãƒãƒ¼ãƒ³
 		BG_200_FIRE_NCGR_BIN,
 		BG_200_FIRE_NCLR,
 		BG_200_FIRE_NSCR_BIN,
 		BG_200_FIRE_NSCR_BIN,
 		BG_200_FIRE_NSCR_BIN,
 	},
-	{	///< ‚¾‚¢‚à‚ñ‚¶
+	{	///< ã ã„ã‚‚ã‚“ã˜
 		BG_126_DAIMONJI_NCGR_BIN,
 		BG_126_DAIMONJI_NCLR,
 		BG_126_DAIMONJI1_NSCR_BIN,
 		BG_126_DAIMONJI2_NSCR_BIN,
 		BG_126_DAIMONJI3_NSCR_BIN,
 	},
-	{	///< ƒTƒCƒNƒƒ“
+	{	///< ã‚µã‚¤ã‚¯ãƒ­ãƒ³
 		BG_177_CYCLONE_NCGR_BIN,
 		BG_177_CYCLONE_NCLR,
 		BG_177_CYCLONE_NSCR_BIN,
 		BG_177_CYCLONE3_NSCR_BIN,
 		BG_177_CYCLONE3_NSCR_BIN,
 	},
-	{	///< ‚¶‚Î‚­
+	{	///< ã˜ã°ã
 		BG_120_SMALLBANG_NCGR_BIN,
 		BG_120_SMALLBANG_NCLR,
 		BG_120_SMALLBANG1_NSCR_BIN,
 		BG_120_SMALLBANG2_NSCR_BIN,
 		BG_120_SMALLBANG2_NSCR_BIN,
 	},
-	{	///< ƒƒKƒgƒ“ƒLƒbƒN
+	{	///< ãƒ¡ã‚¬ãƒˆãƒ³ã‚­ãƒƒã‚¯
 		BG_025_FIREWORKS_NCGR_BIN,
 		BG_025_FIREWORKS_NCLR,
 		BG_025_FIREWORKS1_NSCR_BIN,
 		BG_025_FIREWORKS2_NSCR_BIN,
 		BG_025_FIREWORKS2_NSCR_BIN,
 	},
-	{	///< ‚·‚Ä‚İƒ^ƒbƒNƒ‹
+	{	///< ã™ã¦ã¿ã‚¿ãƒƒã‚¯ãƒ«
 		BG_038_BASHISHI_NCGR_BIN,
 		BG_038_BASHISHI_NCLR,
 		BG_038_BASHISHI1_NSCR_BIN,
 		BG_038_BASHISHI2_NSCR_BIN,
 		BG_038_BASHISHI3_NSCR_BIN,
 	},
-	{	///< ‚Í‚©‚¢‚±‚¤‚¹‚ñ
+	{	///< ã¯ã‹ã„ã“ã†ã›ã‚“
 		BG_063_DEPTHSPD_NCGR_BIN,
 		BG_063_DEPTHSPD_NCLR,
 		BG_063_DEPTHSPD_NSCR_BIN,
 		BG_063_DEPTHSPD_NSCR_BIN,
 		BG_063_DEPTHSPD_NSCR_BIN,
 	},
-	{	///< ‚©‚İ‚È‚è
+	{	///< ã‹ã¿ãªã‚Š
 		BG_087_DARKCLOUD_NCGR_BIN,
 		BG_087_DARKCLOUD_NCLR,
 		BG_087_DARKCLOUD_NSCR_BIN,
 		BG_087_DARKCLOUD3_NSCR_BIN,
 		BG_087_DARKCLOUD3_NSCR_BIN,
 	},
-	{	///< ‚İ‚¸‚Ì‚Í‚Ç‚¤
+	{	///< ã¿ãšã®ã¯ã©ã†
 		BG_352_SEABED_NCGR_BIN,
 		BG_352_SEABED_NCLR,
 		BG_352_SEABED_NSCR_BIN,
 		BG_352_SEABED3_NSCR_BIN,
 		BG_352_SEABED3_NSCR_BIN,
 	},
-	{	///< ‚¾‚­‚è‚ã‚¤
+	{	///< ã ãã‚Šã‚…ã†
 		EFFECT_057_NCGR_BIN,
 		EFFECT_330_NCLR,
 		EFFECT_057A_NSCR_BIN,
@@ -7380,175 +7380,175 @@ static const int WE_HaikeiData_Table[][ 5 ] = {
 		EFFECT_057B_NSCR_BIN,	
 	},
 	///< 06.06.07
-	{	///< ƒMƒKƒCƒ“ƒpƒNƒg
+	{	///< ã‚®ã‚¬ã‚¤ãƒ³ãƒ‘ã‚¯ãƒˆ
 		BG_025_FIREWORKS_NCGR_BIN,
 		BG_416_FIREWORKS_Y_NCLR,
 		BG_025_FIREWORKS1_NSCR_BIN,
 		BG_025_FIREWORKS2_NSCR_BIN,
 		BG_025_FIREWORKS2_NSCR_BIN,
 	},
-	{	///< ƒpƒ[ƒEƒBƒbƒv
+	{	///< ãƒ‘ãƒ¯ãƒ¼ã‚¦ã‚£ãƒƒãƒ—
 		BG_038_BASHISHI_NCGR_BIN,
 		BG_438_BASHISHI_G_NCLR,
 		BG_038_BASHISHI1_NSCR_BIN,
 		BG_038_BASHISHI2_NSCR_BIN,
 		BG_038_BASHISHI3_NSCR_BIN,
 	},
-	{	///< ƒEƒbƒhƒnƒ“ƒ}[
+	{	///< ã‚¦ãƒƒãƒ‰ãƒãƒ³ãƒãƒ¼
 		BG_038_BASHISHI_NCGR_BIN,
 		BG_452_BASHISHI_YG_NCLR,
 		BG_038_BASHISHI1_NSCR_BIN,
 		BG_038_BASHISHI2_NSCR_BIN,
 		BG_038_BASHISHI3_NSCR_BIN,
 	},
-	{	///< ƒ\[ƒ‰[ƒr[ƒ€
+	{	///< ã‚½ãƒ¼ãƒ©ãƒ¼ãƒ“ãƒ¼ãƒ 
 		BG_063_DEPTHSPD_NCGR_BIN,
 		BG_076_DEPTHSPD_Y_NCLR,
 		BG_063_DEPTHSPD1_NSCR_BIN,
 		BG_063_DEPTHSPD2_NSCR_BIN,
 		BG_063_DEPTHSPD3_NSCR_BIN,
 	},
-	{	///< ƒSƒbƒhƒo[ƒh
+	{	///< ã‚´ãƒƒãƒ‰ãƒãƒ¼ãƒ‰
 		BG_063_DEPTHSPD_NCGR_BIN,
 		BG_143_DEPTHSPD_LB_NCLR,
 		BG_063_DEPTHSPD1_NSCR_BIN,
 		BG_063_DEPTHSPD2_NSCR_BIN,
 		BG_063_DEPTHSPD3_NSCR_BIN,
 	},
-	{	///< ƒnƒCƒhƒƒJƒmƒ“
+	{	///< ãƒã‚¤ãƒ‰ãƒ­ã‚«ãƒãƒ³
 		BG_063_DEPTHSPD_NCGR_BIN,
 		BG_308_DEPTHSPD_B_NCLR,
 		BG_063_DEPTHSPD1_NSCR_BIN,
 		BG_063_DEPTHSPD2_NSCR_BIN,
 		BG_063_DEPTHSPD3_NSCR_BIN,
 	},
-	{	///< ƒuƒŒƒCƒuƒo[ƒh
+	{	///< ãƒ–ãƒ¬ã‚¤ãƒ–ãƒãƒ¼ãƒ‰
 		BG_063_DEPTHSPD_NCGR_BIN,
 		BG_143_DEPTHSPD_LB_NCLR,
 		BG_063_DEPTHSPD1_NSCR_BIN,
 		BG_063_DEPTHSPD2_NSCR_BIN,
 		BG_063_DEPTHSPD3_NSCR_BIN,
 	},
-	{	///< ‚«‚ ‚¢ƒpƒ“ƒ`EƒI[ƒo[ƒq[ƒgEƒtƒŒƒAƒhƒ‰ƒCƒu
+	{	///< ãã‚ã„ãƒ‘ãƒ³ãƒãƒ»ã‚ªãƒ¼ãƒãƒ¼ãƒ’ãƒ¼ãƒˆãƒ»ãƒ•ãƒ¬ã‚¢ãƒ‰ãƒ©ã‚¤ãƒ–
 		BG_264_SUPERNOVA_NCGR_BIN,
 		BG_264_SUPERNOVA_NCLR,
 		BG_264_SUPERNOVA1_NSCR_BIN,
 		BG_264_SUPERNOVA2_NSCR_BIN,
 		BG_264_SUPERNOVA3_NSCR_BIN,
 	},
-	{	///< ‚ ‚­‚Ş
+	{	///< ã‚ãã‚€
 		BG_171_NIGHTMARE_NCGR_BIN,
 		BG_171_NIGHTMARE_NCLR,
 		BG_171_NIGHTMARE_NSCR_BIN,
 		BG_171_NIGHTMARE_NSCR_BIN,
 		BG_171_NIGHTMARE_NSCR_BIN,
 	},
-	{	///< ‚Ë‚ñ‚è‚«
+	{	///< ã­ã‚“ã‚Šã
 		BG_093_WILLPOWER_NCGR_BIN,
 		BG_093_WILLPOWER_NCLR,
 		BG_093_WILLPOWER1_NSCR_BIN,
 		BG_093_WILLPOWER2_NSCR_BIN,
 		BG_093_WILLPOWER3_NSCR_BIN,
 	},
-	{	///< ‚½‚«‚Ì‚Ú‚è
+	{	///< ãŸãã®ã¼ã‚Š
 		BG_127_WATERFALL_NCGR_BIN,
 		BG_127_WATERFALL_NCLR,
 		BG_127_WATERFALL_NSCR_BIN,
 		BG_127_WATERFALL_NSCR_BIN,
 		BG_127_WATERFALL_NSCR_BIN,
 	},
-	{	///< ƒnƒCƒhƒƒ|ƒ“ƒvEƒ~ƒXƒgƒ{[ƒ‹
+	{	///< ãƒã‚¤ãƒ‰ãƒ­ãƒãƒ³ãƒ—ãƒ»ãƒŸã‚¹ãƒˆãƒœãƒ¼ãƒ«
 		BG_056_JUZU_NCGR_BIN,
 		BG_056_JUZU_NCLR,
 		BG_056_JUZU_NSCR_BIN,
 		BG_056_JUZU_NSCR_BIN,
 		BG_056_JUZU_NSCR_BIN,
 	},
-	{	///< ƒnƒCƒhƒƒ|ƒ“ƒvEƒ~ƒXƒgƒ{[ƒ‹
+	{	///< ãƒã‚¤ãƒ‰ãƒ­ãƒãƒ³ãƒ—ãƒ»ãƒŸã‚¹ãƒˆãƒœãƒ¼ãƒ«
 		BG_056_JUZU_NCGR_BIN,
 		BG_056_JUZU_NCLR,
 		BG_056_JUZU_NSCR_BIN,
 		BG_056_JUZU_NSCR_BIN,
 		BG_056_JUZU_NSCR_BIN,
 	},
-	{	///< ‚Í‚Ç‚¤‚¾‚ñ
+	{	///< ã¯ã©ã†ã ã‚“
 		BG_056_JUZU_NCGR_BIN,
 		BG_396_JUZU_Y_NCLR,
 		BG_056_JUZU_NSCR_BIN,
 		BG_056_JUZU_NSCR_BIN,
 		BG_056_JUZU_NSCR_BIN,
 	},
-	{	///< ‚«‚ ‚¢‚¾‚Ü
+	{	///< ãã‚ã„ã ã¾
 		BG_056_JUZU_NCGR_BIN,
 		BG_411_JUZU_R_NCLR,
 		BG_056_JUZU_NSCR_BIN,
 		BG_056_JUZU_NSCR_BIN,
 		BG_056_JUZU_NSCR_BIN,
 	},
-	{	///< ƒ_ƒXƒgƒVƒ…[ƒg
+	{	///< ãƒ€ã‚¹ãƒˆã‚·ãƒ¥ãƒ¼ãƒˆ
 		BG_056_JUZU_NCGR_BIN,
 		BG_441_JUZU_P_NCLR,
 		BG_056_JUZU_NSCR_BIN,
 		BG_056_JUZU_NSCR_BIN,
 		BG_056_JUZU_NSCR_BIN,
 	},
-	{	///< ƒŠ[ƒtƒXƒg[ƒ€
+	{	///< ãƒªãƒ¼ãƒ•ã‚¹ãƒˆãƒ¼ãƒ 
 		BG_437_LEAFSTORM_NCGR_BIN,
 		BG_437_LEAFSTORM_NCLR,
 		BG_437_LEAFSTORM_NSCR_BIN,
 		BG_437_LEAFSTORM_NSCR_BIN,
 		BG_437_LEAFSTORM_NSCR_BIN,
 	},
-	{	///< ‚ª‚ñ‚¹‚«‚Ù‚¤
+	{	///< ãŒã‚“ã›ãã»ã†
 		BG_439_SPEED_NCGR_BIN,
 		BG_439_SPEED_NCLR,
 		BG_439_SPEED_NSCR_BIN,
 		BG_439_SPEED_NSCR_BIN,
 		BG_439_SPEED_NSCR_BIN,
 	},
-	{	///< ‚à‚ë‚Í‚Ì‚¸‚Â‚«
+	{	///< ã‚‚ã‚ã¯ã®ãšã¤ã
 		BG_457_SMALLBANG_NCGR_BIN,
 		BG_457_SMALLBANG_NCLR,
 		BG_457_SMALLBANG1_NSCR_BIN,
 		BG_457_SMALLBANG2_NSCR_BIN,
 		BG_457_SMALLBANG3_NSCR_BIN,
 	},
-	{	///< ƒo[ƒXƒgƒGƒR[
+	{	///< ãƒãƒ¼ã‚¹ãƒˆã‚¨ã‚³ãƒ¼
 		BG_460_ECHO_NCGR_BIN,
 		BG_460_ECHO_NCLR,
 		BG_460_ECHO1_NSCR_BIN,
 		BG_460_ECHO2_NSCR_BIN,
 		BG_460_ECHO3_NSCR_BIN,
 	},
-	{	///< ‚İ‚©‚Ã‚«‚Ì‚Ü‚¢
+	{	///< ã¿ã‹ã¥ãã®ã¾ã„
 		BG_461_CRESCENT_NCGR_BIN,
 		BG_461_CRESCENT_NCLR,
 		BG_461_CRESCENT_NSCR_BIN,
 		BG_461_CRESCENT_NSCR_BIN,
 		BG_461_CRESCENT_NSCR_BIN,
 	},
-	{	///< ƒ}ƒOƒ}ƒXƒg[ƒ€
+	{	///< ãƒã‚°ãƒã‚¹ãƒˆãƒ¼ãƒ 
 		BG_463_MAGMA_NCGR_BIN,
 		BG_463_MAGMA_NCLR,
 		BG_463_MAGMA_NSCR_BIN,
 		BG_463_MAGMA_NSCR_BIN,
 		BG_463_MAGMA_NSCR_BIN,
 	},
-	{	///< ƒ_[ƒNƒz[ƒ‹
+	{	///< ãƒ€ãƒ¼ã‚¯ãƒ›ãƒ¼ãƒ«
 		BG_464_DOWNER_NCGR_BIN,
 		BG_464_DOWNER_NCLR,
 		BG_464_DOWNER_NSCR_BIN,
 		BG_464_DOWNER_NSCR_BIN,
 		BG_464_DOWNER_NSCR_BIN,
 	},
-	{	///< ƒV[ƒhƒtƒŒƒA
+	{	///< ã‚·ãƒ¼ãƒ‰ãƒ•ãƒ¬ã‚¢
 		BG_465_EMISSION_NCGR_BIN,
 		BG_465_EMISSION_NCLR,
 		BG_465_EMISSION1_NSCR_BIN,
 		BG_465_EMISSION2_NSCR_BIN,
 		BG_465_EMISSION3_NSCR_BIN,
 	},
-	{	///< ƒVƒƒƒh[ƒ_ƒCƒu
+	{	///< ã‚·ãƒ£ãƒ‰ãƒ¼ãƒ€ã‚¤ãƒ–
 		BG_467_SPEED_NCGR_BIN,
 		BG_467_SPEED_NCLR,
 		BG_467_SPEED_NSCR_BIN,
@@ -7969,7 +7969,7 @@ static const int Haikei_BG_Table[][ 5 ] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	”wŒiƒf[ƒ^‚Ìæ“¾
+ * @brief	èƒŒæ™¯ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
  *
  * @param	id	
  * @param	no	
@@ -7995,7 +7995,7 @@ int WeSysHaikeiDataIDGet(int id, int no)
 // =============================================================================
 //
 //
-//	¡
+//	â– 
 //
 //
 // =============================================================================
@@ -8017,10 +8017,10 @@ OAM_DROP_SYS* OAM_Drop_Init(BATTLE_WORK* bw, int heap, int client_no)
 	{		
 		for(i = 0; i < CLIENT_MAX; i++){
 			wk->cap[i]  = NULL;
-			wk->excp[i] = BattleWorkExChrClientParamGet(bw, i);	///< ƒLƒƒƒ‰ƒoƒbƒtƒ@
+			wk->excp[i] = BattleWorkExChrClientParamGet(bw, i);	///< ã‚­ãƒ£ãƒ©ãƒãƒƒãƒ•ã‚¡
 		}
-		BattleClientTypeBufMake(bw, &(wk->client_type[0]));		///< ƒNƒ‰ƒCƒAƒ“ƒgType
-		BattleSoftSpriteBufMake(bw, &(wk->ss[0]));				///< ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg
+		BattleClientTypeBufMake(bw, &(wk->client_type[0]));		///< ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆType
+		BattleSoftSpriteBufMake(bw, &(wk->ss[0]));				///< ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 	}
 	
 	{
@@ -8038,7 +8038,7 @@ OAM_DROP_SYS* OAM_Drop_Init(BATTLE_WORK* bw, int heap, int client_no)
 			
 			OS_Printf( "oam drop client no = %d\n", wk->client_no );
 			
-			///< €”õ
+			///< æº–å‚™
 			res_id[ 0 ] = OAM_DROP_ID + i + WES_OFS_ID(wk->client_no);
 			res_id[ 1 ] = OAM_DROP_ID + i + WES_OFS_ID(wk->client_no);
 			res_id[ 2 ] = OAM_DROP_ID + i + WES_OFS_ID(wk->client_no);
@@ -8082,7 +8082,7 @@ OAM_DROP_SYS* OAM_Drop_Init(BATTLE_WORK* bw, int heap, int client_no)
 			if (i != wk->client_no
 			&&	wk->client_no != OAM_DROP_ALL){ continue; }
 			
-			///< €”õ
+			///< æº–å‚™
 			wk->res_id[ i ] = OAM_DROP_ID + i + WES_OFS_ID(wk->client_no);
 			res_id[ 0 ] = OAM_DROP_ID + i + WES_OFS_ID(wk->client_no);
 			res_id[ 1 ] = OAM_DROP_ID + i + WES_OFS_ID(wk->client_no);
@@ -8095,7 +8095,7 @@ OAM_DROP_SYS* OAM_Drop_Init(BATTLE_WORK* bw, int heap, int client_no)
 			palID	 = wk->excp[ i ]->pal_index;
 			oam_temp = wk->excp[ i ]->exchr_buffer;
 			
-			///< “o˜^
+			///< ç™»éŒ²
 			{
 				int n;
 				TCATS_OBJECT_ADD_PARAM_S coap;
@@ -8150,7 +8150,7 @@ OAM_DROP_SYS* OAM_Drop_Init(BATTLE_WORK* bw, int heap, int client_no)
 				
 				if (ssp != NULL)
 				{
-					///< ƒ_ƒ~[ƒLƒƒƒ‰‚É³®ƒLƒƒƒ‰‚ğ“]‘—‚µ‚È‚¨‚µ
+					///< ãƒ€ãƒŸãƒ¼ã‚­ãƒ£ãƒ©ã«æ­£å¼ã‚­ãƒ£ãƒ©ã‚’è»¢é€ã—ãªãŠã—
 					NNSG2dImageProxy * image;
 					
 					image = CLACT_ImageProxyGet(cap->act);
@@ -8164,7 +8164,7 @@ OAM_DROP_SYS* OAM_Drop_Init(BATTLE_WORK* bw, int heap, int client_no)
 				
 				if (ssp != NULL)
 				{
-					///< ƒ_ƒ~[ƒpƒŒƒbƒg‚É³®‚ÈƒpƒŒƒbƒg‚ğ“]‘—‚µ‚È‚¨‚µ
+					///< ãƒ€ãƒŸãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã«æ­£å¼ãªãƒ‘ãƒ¬ãƒƒãƒˆã‚’è»¢é€ã—ãªãŠã—
 					NNSG2dImagePaletteProxy* palette;
 					int pal_no;
 					
@@ -8228,7 +8228,7 @@ void OAM_Drop_End(OAM_DROP_SYS* ods, int client_no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ods‚ªŠÇ—‚·‚éƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[‚ÌƒAƒNƒ^[‚ğæ“¾
+ * @brief	odsãŒç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å–å¾—
  *
  * @param	ods	
  * @param	client_no	

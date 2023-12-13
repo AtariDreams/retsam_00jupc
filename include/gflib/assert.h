@@ -2,7 +2,7 @@
 /**
  *
  *@file		assert.h
- *@brief	ƒAƒT[ƒg
+ *@brief	ã‚¢ã‚µãƒ¼ãƒˆ
  *@author	taya
  *@data		2005.08.08
  *
@@ -11,13 +11,13 @@
 #ifndef _ASSERT_H_
 #define _ASSERT_H_
 
-// Debug ROM ‚Å‚ ‚Á‚Ä‚àƒAƒT[ƒg‚ğ–³Œø‚É‚µ‚½‚¢‚Í‚±‚Ìƒtƒ‰ƒO‚ğƒIƒ“‚É‚·‚é
+// Debug ROM ã§ã‚ã£ã¦ã‚‚ã‚¢ã‚µãƒ¼ãƒˆã‚’ç„¡åŠ¹ã«ã—ãŸã„æ™‚ã¯ã“ã®ãƒ•ãƒ©ã‚°ã‚’ã‚ªãƒ³ã«ã™ã‚‹
 //#define GF_ASSERT_FORCE_DISABLE
 
 
-#ifndef GF_ASSERT_FORCE_DISABLE	// ƒAƒT[ƒg—LŒø‚Å
+#ifndef GF_ASSERT_FORCE_DISABLE	// ã‚¢ã‚µãƒ¼ãƒˆæœ‰åŠ¹ã§
 
-	#ifdef PM_DEBUG		// ‚©‚Â Debug ROM ‚Å‚ ‚é
+	#ifdef PM_DEBUG		// ã‹ã¤ Debug ROM ã§ã‚ã‚‹
 
 		extern void GF_AssertInit( void );
 		extern void GF_AssertMain( void );
@@ -31,13 +31,13 @@
 		#define GF_ASSERT_RETURN(exp, ret) (exp)? ((void)0) : GF_AssertProc(__FILE__, __LINE__, #exp);
 
 
-		// ƒAƒT[ƒgƒ}ƒNƒ‚ğ—LŒø‚É‚µ‚Ü‚µ‚½‚æ
+		// ã‚¢ã‚µãƒ¼ãƒˆãƒã‚¯ãƒ­ã‚’æœ‰åŠ¹ã«ã—ã¾ã—ãŸã‚ˆ
 		#define GF_ASSERT_ENABLED
 	#endif
 #endif
 
 
-// GF_ASSERT_ENABLED‚ªdefine‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎAƒAƒT[ƒg‹@”\‚ğ–³Œø‚É‚·‚é
+// GF_ASSERT_ENABLEDãŒdefineã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã€ã‚¢ã‚µãƒ¼ãƒˆæ©Ÿèƒ½ã‚’ç„¡åŠ¹ã«ã™ã‚‹
 #ifndef GF_ASSERT_ENABLED
 
 	#define GF_AssertInit()				((void)0);
@@ -55,7 +55,7 @@
 	                }
 	#else
 
-		// ƒAƒT[ƒg‹@”\‚ª–³Œø‚Èê‡‚àğŒ‚Ìƒ`ƒFƒbƒN‚Ís‚¢A’ÊM’†‚È‚ç‹­§“I‚ÉƒGƒ‰[‰æ–Ê‚É”ò‚Î‚·
+		// ã‚¢ã‚µãƒ¼ãƒˆæ©Ÿèƒ½ãŒç„¡åŠ¹ãªå ´åˆã‚‚æ¡ä»¶ã®ãƒã‚§ãƒƒã‚¯ã¯è¡Œã„ã€é€šä¿¡ä¸­ãªã‚‰å¼·åˆ¶çš„ã«ã‚¨ãƒ©ãƒ¼ç”»é¢ã«é£›ã°ã™
 		extern void GF_AssertFailedWarningCall( void );
 		#define GF_ASSERT(exp) (exp)? ((void)0) : GF_AssertFailedWarningCall();
 		#define GF_ASSERT_MSG(exp, ...) (exp)? ((void)0) : GF_AssertFailedWarningCall();

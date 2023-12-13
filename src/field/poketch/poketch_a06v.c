@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_a06v.c
- * @bfief	ƒ|ƒPƒbƒ`iƒAƒvƒŠNo06: ŠÈˆÕƒ|ƒPƒ‚ƒ“ƒŠƒXƒgj@•`‰æ
+ * @bfief	ãƒã‚±ãƒƒãƒï¼ˆã‚¢ãƒ—ãƒªNo06: ç°¡æ˜“ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆï¼‰ã€€æç”»
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -26,9 +26,9 @@
 
 #define POKEICON_CHAR_POS	(ITEMICON_CHAR_POS + ITEMOCIN_CHAR_SIZE)
 
-#define POKEICON_CHAR_SIZE	(16)	// ƒAƒjƒ‚³‚¹‚È‚¢‚Ì‚Å
+#define POKEICON_CHAR_SIZE	(16)	// ã‚¢ãƒ‹ãƒ¡ã•ã›ãªã„ã®ã§
 #define POKEICON_CHAR_BYTESIZE	(POKEICON_CHAR_SIZE*0x20)
-#define POKEICON_CHAR_BUFSIZE	(POKEICON_CHAR_BYTESIZE+0x80)	// ƒwƒbƒ_‚à“Ç‚İ‚İ‚½‚¢
+#define POKEICON_CHAR_BUFSIZE	(POKEICON_CHAR_BYTESIZE+0x80)	// ãƒ˜ãƒƒãƒ€ã‚‚èª­ã¿è¾¼ã¿ãŸã„
 
 
 #define ITEM_POKE_XDIFF		(28)
@@ -41,8 +41,8 @@ enum {
 
 enum {
 	PALPOS_COMMON = 0,
-	PALPOS_SICKNESS_POKE,		// ó‘ÔˆÙí‚Ìƒ|ƒPƒAƒCƒRƒ“
-	PALPOS_NORMAL_POKE,			// •’Ê‚ÌƒAƒCƒRƒ“‚Í‚±‚±‚©‚ç‚S–{g‚¤
+	PALPOS_SICKNESS_POKE,		// çŠ¶æ…‹ç•°å¸¸ã®ãƒã‚±ã‚¢ã‚¤ã‚³ãƒ³
+	PALPOS_NORMAL_POKE,			// æ™®é€šã®ã‚¢ã‚¤ã‚³ãƒ³ã¯ã“ã“ã‹ã‚‰ï¼”æœ¬ä½¿ã†
 };
 
 
@@ -112,7 +112,7 @@ enum {
 	POKE_ICONPOS_XORG = 64,
 	POKE_ICONPOS_YORG = 36,
 
-	// ƒhƒbƒg’PˆÊ
+	// ãƒ‰ãƒƒãƒˆå˜ä½
 	POKE_ICONPOS_1_X =  POKE_ICONPOS_XORG,
 	POKE_ICONPOS_1_Y =  POKE_ICONPOS_YORG,
 	POKE_ICONPOS_2_X =  POKE_ICONPOS_XORG+96,
@@ -128,11 +128,11 @@ enum {
 	POKE_ICONPOS_6_X =  POKE_ICONPOS_XORG+96,
 	POKE_ICONPOS_6_Y =  POKE_ICONPOS_YORG+96,
 
-	// G‚Á‚Ä”½‰‚·‚éƒGƒŠƒAƒTƒCƒYBƒAƒCƒRƒ“ƒTƒCƒY‚ª‚Ü‚¿‚Ü‚¿‚È‚Ì‚ÅA’†S‚É‹ß‚¢ˆÊ’u‚Ì‚İ‚ÉB
+	// è§¦ã£ã¦åå¿œã™ã‚‹ã‚¨ãƒªã‚¢ã‚µã‚¤ã‚ºã€‚ã‚¢ã‚¤ã‚³ãƒ³ã‚µã‚¤ã‚ºãŒã¾ã¡ã¾ã¡ãªã®ã§ã€ä¸­å¿ƒã«è¿‘ã„ä½ç½®ã®ã¿ã«ã€‚
 	POKE_ICON_TOUCHAREA_WIDTH = 16,		
 	POKE_ICON_TOUCHAREA_HEIGHT = 16,
 
-	// ƒLƒƒƒ‰’PˆÊ
+	// ã‚­ãƒ£ãƒ©å˜ä½
 	POKE_GAUGEWIN_1_X =  4,
 	POKE_GAUGEWIN_1_Y =  8,
 	POKE_GAUGEWIN_2_X = 16,
@@ -160,7 +160,7 @@ enum {
 
 
 //==============================================================
-// ƒAƒCƒRƒ“•\¦ˆÊ’uƒe[ƒuƒ‹
+// ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºä½ç½®ãƒ†ãƒ¼ãƒ–ãƒ«
 //==============================================================
 static const struct {
 	u16 x;
@@ -196,9 +196,9 @@ static void CmdUpdate(TCB_PTR tcb, void *wk_ptr);
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNŠm•Û
+ * ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- * @param   wk_ptr		Šm•Û‚µ‚½ƒ[ƒNƒAƒhƒŒƒX‚ğ•Û‘¶‚·‚éƒ|ƒCƒ“ƒ^‚ÌƒAƒhƒŒƒX
+ * @param   wk_ptr		ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -238,9 +238,9 @@ BOOL Poketch_A06_SetViewWork( VIEWWORK** wk_ptr, const VIEWPARAM* vpara, GF_BGL_
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNíœ
+ * ãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param   wk		Šm•Û‚µ‚½ƒ[ƒNƒAƒhƒŒƒX
+ * @param   wk		ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -263,7 +263,7 @@ void Poketch_A06_DeleteViewWork( VIEWWORK* wk )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹
+ * @brief	ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //------------------------------------------------------------------
 static const POKETCH_VIEW_CMD CmdTbl[] = {
@@ -276,10 +276,10 @@ static const POKETCH_VIEW_CMD CmdTbl[] = {
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌƒZƒbƒg
+ * æç”»ã‚³ãƒãƒ³ãƒ‰ã®ã‚»ãƒƒãƒˆ
  *
- * @param   cmd		ƒRƒ}ƒ“ƒh
- * @param   view_wk_adrs	ƒ[ƒN—ÌˆæƒAƒhƒŒƒX
+ * @param   cmd		ã‚³ãƒãƒ³ãƒ‰
+ * @param   view_wk_adrs	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -289,11 +289,11 @@ void Poketch_A06_SetViewCommand(VIEWWORK* wk, u32 cmd)
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌI—¹‘Ò‚¿i’P”­j
+ * æç”»ã‚³ãƒãƒ³ãƒ‰ã®çµ‚äº†å¾…ã¡ï¼ˆå˜ç™ºï¼‰
  *
- * @param   cmd			ƒRƒ}ƒ“ƒh
+ * @param   cmd			ã‚³ãƒãƒ³ãƒ‰
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL Poketch_A06_WaitViewCommand(VIEWWORK* wk, u32 cmd)
@@ -302,9 +302,9 @@ BOOL Poketch_A06_WaitViewCommand(VIEWWORK* wk, u32 cmd)
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌI—¹‘Ò‚¿i‘S•”j
+ * æç”»ã‚³ãƒãƒ³ãƒ‰ã®çµ‚äº†å¾…ã¡ï¼ˆå…¨éƒ¨ï¼‰
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL Poketch_A06_WaitViewCommandAll(VIEWWORK* wk)
@@ -316,9 +316,9 @@ BOOL Poketch_A06_WaitViewCommandAll(VIEWWORK* wk)
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhíœ
+ * ã‚³ãƒãƒ³ãƒ‰å‰Šé™¤
  *
- * @param   cwk		ƒRƒ}ƒ“ƒhƒ[ƒN
+ * @param   cwk		ã‚³ãƒãƒ³ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  */
 //------------------------------------------------------------------
@@ -330,10 +330,10 @@ static void DeleteCommand(POKETCH_CMD_WORK* cwk)
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhF‰æ–Ê\’z
+ * ã‚³ãƒãƒ³ãƒ‰ï¼šç”»é¢æ§‹ç¯‰
  *
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_ptr		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -381,7 +381,7 @@ static void CmdInit(TCB_PTR tcb, void *wk_ptr)
 
 //------------------------------------------------------------------
 /**
- * HPƒQ[ƒW‘S•`‰æ
+ * HPã‚²ãƒ¼ã‚¸å…¨æç”»
  *
  * @param   vwk		
  * @param   vpara		
@@ -422,7 +422,7 @@ static void GaugeWinSetup( VIEWWORK* vwk, const VIEWPARAM* vpara, u32 charpos )
 
 //------------------------------------------------------------------
 /**
- * HPƒQ[ƒWƒEƒBƒ“ƒhƒE‚ÌüˆÍ‚ÉƒtƒŒ[ƒ€ƒXƒNƒŠ[ƒ“•`‰æ
+ * HPã‚²ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å‘¨å›²ã«ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æç”»
  *
  * @param   win		
  * @param   hp_width		
@@ -445,7 +445,7 @@ static void GaugeWinFrameScrnWritre( GF_BGL_BMPWIN* win, VIEWWORK* vwk )
 
 //------------------------------------------------------------------
 /**
- * HPƒQ[ƒWCGX•`‰æ
+ * HPã‚²ãƒ¼ã‚¸CGXæç”»
  *
  * @param   win		
  * @param   hp_width		
@@ -465,12 +465,12 @@ static void GaugeWinCgxWrite( GF_BGL_BMPWIN* win, u32 hp_width )
 }
 //------------------------------------------------------------------
 /**
- * HPƒQ[ƒW•ŒvZ
+ * HPã‚²ãƒ¼ã‚¸å¹…è¨ˆç®—
  *
  * @param   hp		
  * @param   hp_max		
  *
- * @retval  u32		ƒQ[ƒW•iƒhƒbƒgj
+ * @retval  u32		ã‚²ãƒ¼ã‚¸å¹…ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
  */
 //------------------------------------------------------------------
 static u32 CalcGaugeWinWidth( u32 hp, u32 hp_max )
@@ -496,7 +496,7 @@ static u32 CalcGaugeWinWidth( u32 hp, u32 hp_max )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒAƒCƒRƒ“ƒZƒbƒgƒAƒbƒv
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
  * @param   vwk		
  *
@@ -531,7 +531,7 @@ static void ItemIconSetup( VIEWWORK* vwk, const VIEWPARAM* vpara )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒZƒbƒgƒAƒbƒv
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
  * @param   vwk		
  * @param   vpara		
@@ -589,7 +589,7 @@ static void PokeIconSetup( VIEWWORK* vwk, const VIEWPARAM* vpara )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‚ä‚ç‚µƒ^ƒXƒNƒZƒbƒgƒAƒbƒv
+ * ãƒã‚±ãƒ¢ãƒ³ã‚†ã‚‰ã—ã‚¿ã‚¹ã‚¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
  * @param   vwk		
  *
@@ -606,7 +606,7 @@ static void PokeShakeTaskSetup(VIEWWORK* vwk )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‚ä‚ç‚µƒ^ƒXƒN
+ * ãƒã‚±ãƒ¢ãƒ³ã‚†ã‚‰ã—ã‚¿ã‚¹ã‚¯
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -700,11 +700,11 @@ static void PokeShakeTask(TCB_PTR tcb, void* wk_adrs)
 
 //------------------------------------------------------------------
 /**
- * G‚Á‚Ä‚éƒAƒCƒRƒ“‚Ìƒiƒ“ƒo[‚ğ•Ô‚·BG‚Á‚Ä‚È‚¯‚ê‚Îmax‚Æ“¯‚¶’l‚ª•Ô‚é
+ * è§¦ã£ã¦ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™ã€‚è§¦ã£ã¦ãªã‘ã‚Œã°maxã¨åŒã˜å€¤ãŒè¿”ã‚‹
  *
- * @param   x		ƒ^ƒbƒ`ƒpƒlƒ‹X
- * @param   y		ƒ^ƒbƒ`ƒpƒlƒ‹Y
- * @param   max		ƒ`ƒFƒbƒN‚·‚éÅ‘å”
+ * @param   x		ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«X
+ * @param   y		ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«Y
+ * @param   max		ãƒã‚§ãƒƒã‚¯ã™ã‚‹æœ€å¤§æ•°
  *
  * @retval  u32		
  */
@@ -714,7 +714,7 @@ u32 Poketch_A06_CheckTouchIconNum( u32 x, u32 y, u32 max )
 	u32  i, top, bottom, left, right;
 	for(i=0; i<max; i++)
 	{
-		// ƒAƒCƒRƒ“‚ªã‚PƒLƒƒƒ‰ŠJ‚¯‚Ä•`‚©‚ê‚Ä‚¢‚é•ª‚ğ‘«‚µ‚Ä‚¨‚­
+		// ã‚¢ã‚¤ã‚³ãƒ³ãŒä¸Šï¼‘ã‚­ãƒ£ãƒ©é–‹ã‘ã¦æã‹ã‚Œã¦ã„ã‚‹åˆ†ã‚’è¶³ã—ã¦ãŠã
 		top = 8 + PokeIconPos[i].y - POKE_ICON_TOUCHAREA_HEIGHT;
 		bottom = 8 + PokeIconPos[i].y + POKE_ICON_TOUCHAREA_HEIGHT;
 		left = PokeIconPos[i].x - POKE_ICON_TOUCHAREA_WIDTH;
@@ -730,7 +730,7 @@ u32 Poketch_A06_CheckTouchIconNum( u32 x, u32 y, u32 max )
 }
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒRƒ“AƒAƒCƒeƒ€ƒAƒCƒRƒ“AHPƒQ[ƒW‚ğ‘Síœ
+ * ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã€HPã‚²ãƒ¼ã‚¸ã‚’å…¨å‰Šé™¤
  *
  * @param   wk		
  *
@@ -762,10 +762,10 @@ static void DeleteAllPokeGraphics( VIEWWORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhFI—¹ˆ—
+ * ã‚³ãƒãƒ³ãƒ‰ï¼šçµ‚äº†å‡¦ç†
  *
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_ptr		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -779,10 +779,10 @@ static void CmdQuit(TCB_PTR tcb, void *wk_ptr)
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhF‰æ–ÊXV
+ * ã‚³ãƒãƒ³ãƒ‰ï¼šç”»é¢æ›´æ–°
  *
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_ptr		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------

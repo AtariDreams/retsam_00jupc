@@ -1,9 +1,9 @@
 #ifndef _C08R0401_DEF_H_
 #define _C08R0401_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C08R0401_OLDMAN2		(1)
 #define	SCRID_C08R0401_OLDWOMAN2		(2)
-#define	SCRID_C08R0401_DATA_MAX		(2)		//最大数
+#define	SCRID_C08R0401_DATA_MAX		(2)		//譛螟ｧ謨ｰ
 
 #endif //_C08R0401_DEF_H_

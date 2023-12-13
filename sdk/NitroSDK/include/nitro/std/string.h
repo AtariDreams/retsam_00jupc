@@ -18,7 +18,7 @@
   add STD_TSPrintf.
 
   Revision 1.12  2006/06/06 09:09:37  kitase_hirotake
-  STD_CopyLStringZeroFill ŠÖ”‚Ì•Ô‚è’l•ÏX
+  STD_CopyLStringZeroFill é–¢æ•°ã®è¿”ã‚Šå€¤å¤‰æ›´
 
   Revision 1.10  2006/01/18 02:12:29  kitase_hirotake
   do-indent
@@ -30,16 +30,16 @@
   just arrange src list
 
   Revision 1.7  2005/09/26 08:48:53  okubata_ryoma
-  STD_CompareNStringASTD_CompareLString‚Ì’Ç‰Á
+  STD_CompareNStringã€STD_CompareLStringã®è¿½åŠ 
 
   Revision 1.6  2005/09/26 05:06:24  okubata_ryoma
-  C³
+  ä¿®æ­£
 
   Revision 1.5  2005/09/26 04:55:42  okubata_ryoma
-  STD_CompareLStringŠÖ”‚Ì’Ç‰Á
+  STD_CompareLStringé–¢æ•°ã®è¿½åŠ 
 
   Revision 1.4  2005/09/06 01:25:40  yasu
-  STD_GetStringLength ‚Ì•Ô‚è’l‚ÌŒ^‚ğ int ‚Ö
+  STD_GetStringLength ã®è¿”ã‚Šå€¤ã®å‹ã‚’ int ã¸
 
   Revision 1.3  2005/09/05 01:20:47  yada
   add some functions
@@ -183,79 +183,79 @@ extern int STD_CompareLString(const char *str1, const char *str2);
 /*---------------------------------------------------------------------------*
   Name:         STD_TSScanf
 
-  Description:  ÈƒTƒCƒY‚ğ–Ú“I‚Æ‚µ‚½ sscanf.
-                Šî–{“I‚È‘®w’è "%(*?)([lh]{,2})([diouxXpn])" ‚É‘Î‰.
+  Description:  çœã‚µã‚¤ã‚ºã‚’ç›®çš„ã¨ã—ãŸ sscanf.
+                åŸºæœ¬çš„ãªæ›¸å¼æŒ‡å®š "%(*?)([lh]{,2})([diouxXpn])" ã«å¯¾å¿œ.
 
-  Arguments:    src           “ü—Í•¶š—ñ
-                fmt           ‘®§Œä•¶š—ñ
+  Arguments:    src           å…¥åŠ›æ–‡å­—åˆ—
+                fmt           æ›¸å¼åˆ¶å¾¡æ–‡å­—åˆ—
 
-  Returns:      ‘ã“ü‚³‚ê‚½’l‚Ì‘”.
-                –¢‘ã“ü‚Å‚ÌI’[‚ ‚é‚¢‚Í•s³‚ğŒŸo‚·‚ê‚Î -1.
+  Returns:      ä»£å…¥ã•ã‚ŒãŸå€¤ã®ç·æ•°.
+                æœªä»£å…¥ã§ã®çµ‚ç«¯ã‚ã‚‹ã„ã¯ä¸æ­£ã‚’æ¤œå‡ºã™ã‚Œã° -1.
  *---------------------------------------------------------------------------*/
 extern int STD_TSScanf(const char *src, const char *fmt, ...);
 
 /*---------------------------------------------------------------------------*
   Name:         STD_TVSScanf
 
-  Description:  STD_TSScanf ‚Ì va_list ‘Î‰”Å.
-                Šî–{“I‚È‘®w’è "%(*?)([lh]{,2})[diouxX]" ‚É‘Î‰.
+  Description:  STD_TSScanf ã® va_list å¯¾å¿œç‰ˆ.
+                åŸºæœ¬çš„ãªæ›¸å¼æŒ‡å®š "%(*?)([lh]{,2})[diouxX]" ã«å¯¾å¿œ.
 
-  Arguments:    src           “ü—Í•¶š—ñ
-                fmt           ‘®§Œä•¶š—ñ
-                vlist         ƒpƒ‰ƒ[ƒ^
+  Arguments:    src           å…¥åŠ›æ–‡å­—åˆ—
+                fmt           æ›¸å¼åˆ¶å¾¡æ–‡å­—åˆ—
+                vlist         ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-  Returns:      ‘ã“ü‚³‚ê‚½’l‚Ì‘”.
-                –¢‘ã“ü‚Å‚ÌI’[‚ ‚é‚¢‚Í•s³‚ğŒŸo‚·‚ê‚Î -1.
+  Returns:      ä»£å…¥ã•ã‚ŒãŸå€¤ã®ç·æ•°.
+                æœªä»£å…¥ã§ã®çµ‚ç«¯ã‚ã‚‹ã„ã¯ä¸æ­£ã‚’æ¤œå‡ºã™ã‚Œã° -1.
  *---------------------------------------------------------------------------*/
 extern int STD_TVSScanf(const char *src, const char *fmt, va_list vlist);
 
 /*---------------------------------------------------------------------------*
   Name:         STD_TSPrintf
 
-  Description:  ˆø”‚ÌŒ`®ˆÈŠO‚Í STD_TVSNPrintf ‚Æ“¯‚¶.
+  Description:  å¼•æ•°ã®å½¢å¼ä»¥å¤–ã¯ STD_TVSNPrintf ã¨åŒã˜.
 
-  Arguments:    dst           Œ‹‰Ê‚ğŠi”[‚·‚éƒoƒbƒtƒ@
-                fmt           ‘®§Œä•¶š—ñ
+  Arguments:    dst           çµæœã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+                fmt           æ›¸å¼åˆ¶å¾¡æ–‡å­—åˆ—
 
-  Returns:      STD_VSNPrintf ‚Æ“¯‚¶.
+  Returns:      STD_VSNPrintf ã¨åŒã˜.
  *---------------------------------------------------------------------------*/
 extern int STD_TSPrintf(char *dst, const char *fmt, ...);
 
 /*---------------------------------------------------------------------------*
   Name:         STD_TVSPrintf
 
-  Description:  ˆø”‚ÌŒ`®ˆÈŠO‚Í STD_TVSNPrintf ‚Æ“¯‚¶.
+  Description:  å¼•æ•°ã®å½¢å¼ä»¥å¤–ã¯ STD_TVSNPrintf ã¨åŒã˜.
 
-  Arguments:    dst           Œ‹‰Ê‚ğŠi”[‚·‚éƒoƒbƒtƒ@
-                fmt           ‘®§Œä•¶š—ñ
-                vlist         ƒpƒ‰ƒ[ƒ^
+  Arguments:    dst           çµæœã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+                fmt           æ›¸å¼åˆ¶å¾¡æ–‡å­—åˆ—
+                vlist         ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-  Returns:      STD_VSNPrintf ‚Æ“¯‚¶.
+  Returns:      STD_VSNPrintf ã¨åŒã˜.
  *---------------------------------------------------------------------------*/
 extern int STD_TVSPrintf(char *dst, const char *fmt, va_list vlist);
 
 /*---------------------------------------------------------------------------*
   Name:         STD_TSNPrintf
 
-  Description:  ˆø”‚ÌŒ`®ˆÈŠO‚Í STD_TVSNPrintf ‚Æ“¯‚¶.
+  Description:  å¼•æ•°ã®å½¢å¼ä»¥å¤–ã¯ STD_TVSNPrintf ã¨åŒã˜.
 
-  Arguments:    dst           Œ‹‰Ê‚ğŠi”[‚·‚éƒoƒbƒtƒ@
-                len           ƒoƒbƒtƒ@’·
-                fmt           ‘®§Œä•¶š—ñ
+  Arguments:    dst           çµæœã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+                len           ãƒãƒƒãƒ•ã‚¡é•·
+                fmt           æ›¸å¼åˆ¶å¾¡æ–‡å­—åˆ—
  
-  Returns:      STD_VSNPrintf ‚Æ“¯‚¶.
+  Returns:      STD_VSNPrintf ã¨åŒã˜.
  *---------------------------------------------------------------------------*/
 extern int STD_TSNPrintf(char *dst, size_t len, const char *fmt, ...);
 
 /*---------------------------------------------------------------------------*
   Name:         STD_TVSNPrintf
 
-  Description:  ÈƒTƒCƒY‚ğ–Ú“I‚Æ‚µ‚½ sprintf.
-                Šî–{“I‚È‘®w’è‚É‘Î‰.
+  Description:  çœã‚µã‚¤ã‚ºã‚’ç›®çš„ã¨ã—ãŸ sprintf.
+                åŸºæœ¬çš„ãªæ›¸å¼æŒ‡å®šã«å¯¾å¿œ.
                 %([-+# ]?)([0-9]*)(\.?)([0-9]*)([l|ll|h||hh]?)([diouxXpncs%])
 
-  Note:         CodeWarrior ‚Ì MSL sprintf() ‚Ì‹““®‚É‚ ‚í‚¹‚Ä
-                '+' ‚Æ '#' ‚Í–³Œø‚É‚µ‚Ä‚ ‚é.
+  Note:         CodeWarrior ã® MSL sprintf() ã®æŒ™å‹•ã«ã‚ã‚ã›ã¦
+                '+' ã¨ '#' ã¯ç„¡åŠ¹ã«ã—ã¦ã‚ã‚‹.
                 { // exsample
                   char buf[5];
                   sprintf(buf, "%-i\n", 45);  // "45"  (OK)
@@ -267,15 +267,15 @@ extern int STD_TSNPrintf(char *dst, size_t len, const char *fmt, ...);
                   sprintf(buf, "% +i\n", 45); // "+45" (OK)
                 }
 
-  Arguments:    dst           Œ‹‰Ê‚ğŠi”[‚·‚éƒoƒbƒtƒ@
-                len           ƒoƒbƒtƒ@’·
-                fmt           ‘®§Œä•¶š—ñ
-                vlist         ƒpƒ‰ƒ[ƒ^
+  Arguments:    dst           çµæœã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+                len           ãƒãƒƒãƒ•ã‚¡é•·
+                fmt           æ›¸å¼åˆ¶å¾¡æ–‡å­—åˆ—
+                vlist         ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-  Returns:      ‘®•¶š—ñ‚ğ³‚µ‚­o—Í‚µ‚½ê‡‚Ì•¶š”‚ğ•Ô‚·. ('\0'‚ğŠÜ‚Ü‚È‚¢)
-                ƒoƒbƒtƒ@ƒTƒCƒY‚ª[•ª‚È‚ç‘S‚Ä‚Ì•¶š‚ğo—Í‚µ‚ÄI’[‚ğ•t—^‚·‚é.
-                ƒoƒbƒtƒ@ƒTƒCƒY‚ª•s‘«‚È‚çØ‚è‹l‚ß‚Ä dst[len-1] ‚ğI’[‚Æ‚·‚é.
-                len ‚ª 0 ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢.
+  Returns:      æ›¸å¼æ–‡å­—åˆ—ã‚’æ­£ã—ãå‡ºåŠ›ã—ãŸå ´åˆã®æ–‡å­—æ•°ã‚’è¿”ã™. ('\0'ã‚’å«ã¾ãªã„)
+                ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒå……åˆ†ãªã‚‰å…¨ã¦ã®æ–‡å­—ã‚’å‡ºåŠ›ã—ã¦çµ‚ç«¯ã‚’ä»˜ä¸ã™ã‚‹.
+                ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒä¸è¶³ãªã‚‰åˆ‡ã‚Šè©°ã‚ã¦ dst[len-1] ã‚’çµ‚ç«¯ã¨ã™ã‚‹.
+                len ãŒ 0 ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„.
 
  *---------------------------------------------------------------------------*/
 extern int STD_TVSNPrintf(char *dst, size_t len, const char *fmt, va_list vlist);

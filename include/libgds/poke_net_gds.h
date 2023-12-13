@@ -5,29 +5,29 @@
   $NoKeywords: $
  *===========================================================================*/
 /*! @file
-	@brief	Pokemon GDS WiFi ƒ‰ƒCƒuƒ‰ƒŠ
+	@brief	Pokemon GDS WiFi ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 	@date	2007/12/18
 */
 //===========================================================================
 /**
-		@mainpage	Pokemon GDS WiFi ƒ‰ƒCƒuƒ‰ƒŠ
-			<b>EŠT—v</b><br>
-			@–{ƒ‰ƒCƒuƒ‰ƒŠ‚ÍANintendoDSã‚Åƒ|ƒPƒ‚ƒ“‚f‚c‚rŠÖ˜A‚Ì’ÊM‚ðs‚¤ˆ×‚Ì‚à‚Ì‚Å‚·B<br>
-			<b>Eà–¾</b><br>
-			@–{ƒwƒ‹ƒvƒtƒ@ƒCƒ‹‚ÍƒŠƒtƒ@ƒŒƒ“ƒXƒ}ƒjƒ…ƒAƒ‹‚Å‚·B<br>
-			@à–¾‚Í•Ê“r poke_net_inst.pdf ‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢B<br>
-			@<br>
-		@version	0.04	ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“AƒT[ƒo[ƒo[ƒWƒ‡ƒ“‘Î‰ž
-		@version	0.03	Å‘åÅ­’è‹`‚È‚Ç‘Î‰žAƒoƒgƒ‹ƒf[ƒ^ŒŸõ‘Î‰ž
-		@version	0.02	ƒoƒgƒ‹ƒf[ƒ^/ƒ‰ƒ“ƒLƒ“ƒO‹@\’Ç‰Á<br>–¢ŽÀ‘••”‚ ‚è
-		@version	0.01	‰‰ñƒŠƒŠ[ƒX ƒhƒŒƒXƒAƒbƒv/ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg
+		@mainpage	Pokemon GDS WiFi ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
+			<b>ãƒ»æ¦‚è¦</b><br>
+			ã€€æœ¬ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¯ã€NintendoDSä¸Šã§ãƒã‚±ãƒ¢ãƒ³ï¼§ï¼¤ï¼³é–¢é€£ã®é€šä¿¡ã‚’è¡Œã†ç‚ºã®ã‚‚ã®ã§ã™ã€‚<br>
+			<b>ãƒ»èª¬æ˜Ž</b><br>
+			ã€€æœ¬ãƒ˜ãƒ«ãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã¯ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ã§ã™ã€‚<br>
+			ã€€èª¬æ˜Žã¯åˆ¥é€” poke_net_inst.pdf ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚<br>
+			ã€€<br>
+		@version	0.04	ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã€ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³å¯¾å¿œ
+		@version	0.03	æœ€å¤§æœ€å°‘å®šç¾©ãªã©å¯¾å¿œã€ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿æ¤œç´¢å¯¾å¿œ
+		@version	0.02	ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿/ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ©Ÿæ§‹è¿½åŠ <br>æœªå®Ÿè£…éƒ¨ã‚ã‚Š
+		@version	0.01	åˆå›žãƒªãƒªãƒ¼ã‚¹ ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—/ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆ
 
 */
 
 #ifndef ___POKE_NET_GDS___
 #define ___POKE_NET_GDS___
 
-#include "application/battle_recorder/gds_min_max.h"				// Å‘åÅ¬’è‹`
+#include "application/battle_recorder/gds_min_max.h"				// æœ€å¤§æœ€å°å®šç¾©
 #include "poke_net_common.h"
 
 #ifdef __cplusplus
@@ -35,74 +35,74 @@ extern "C" {
 #endif
 
 /*-----------------------------------------------------------------------*
-					Œ^E’è”éŒ¾
+					åž‹ãƒ»å®šæ•°å®£è¨€
  *-----------------------------------------------------------------------*/
 
-//! ƒ|ƒPƒ‚ƒ“ WiFi GDS ƒ‰ƒCƒuƒ‰ƒŠ‚ÌŒ»Ý‚Ìó‘Ô
+//! ãƒã‚±ãƒ¢ãƒ³ WiFi GDS ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ç¾åœ¨ã®çŠ¶æ…‹
 typedef enum {
-	POKE_NET_GDS_STATUS_INACTIVE ,					//!< ”ñ‰Ò“®’†
-	POKE_NET_GDS_STATUS_INITIALIZED ,				//!< ‰Šú‰»Ï
-	POKE_NET_GDS_STATUS_REQUEST ,					//!< ƒŠƒNƒGƒXƒg”­sÏ
-	POKE_NET_GDS_STATUS_NETSETTING ,				//!< ƒlƒbƒgƒ[ƒNÝ’è’†
-	POKE_NET_GDS_STATUS_CONNECTING ,				//!< Ú‘±’†
-	POKE_NET_GDS_STATUS_SENDING ,					//!< ‘—M’†
-	POKE_NET_GDS_STATUS_RECEIVING ,					//!< ŽóM’†
-	POKE_NET_GDS_STATUS_ABORTED ,					//!< ’†’fI—¹
-	POKE_NET_GDS_STATUS_FINISHED ,					//!< ³íI—¹
-	POKE_NET_GDS_STATUS_ERROR ,						//!< ƒGƒ‰[I—¹
+	POKE_NET_GDS_STATUS_INACTIVE ,					//!< éžç¨¼å‹•ä¸­
+	POKE_NET_GDS_STATUS_INITIALIZED ,				//!< åˆæœŸåŒ–æ¸ˆ
+	POKE_NET_GDS_STATUS_REQUEST ,					//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºè¡Œæ¸ˆ
+	POKE_NET_GDS_STATUS_NETSETTING ,				//!< ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯è¨­å®šä¸­
+	POKE_NET_GDS_STATUS_CONNECTING ,				//!< æŽ¥ç¶šä¸­
+	POKE_NET_GDS_STATUS_SENDING ,					//!< é€ä¿¡ä¸­
+	POKE_NET_GDS_STATUS_RECEIVING ,					//!< å—ä¿¡ä¸­
+	POKE_NET_GDS_STATUS_ABORTED ,					//!< ä¸­æ–­çµ‚äº†
+	POKE_NET_GDS_STATUS_FINISHED ,					//!< æ­£å¸¸çµ‚äº†
+	POKE_NET_GDS_STATUS_ERROR ,						//!< ã‚¨ãƒ©ãƒ¼çµ‚äº†
 	POKE_NET_GDS_STATUS_COUNT
 } POKE_NET_GDS_STATUS;
 
-//! ƒ|ƒPƒ‚ƒ“ WiFi GDS ƒ‰ƒCƒuƒ‰ƒŠ‚ªƒGƒ‰[I—¹‚µ‚½Û‚ÌÚ×
+//! ãƒã‚±ãƒ¢ãƒ³ WiFi GDS ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒã‚¨ãƒ©ãƒ¼çµ‚äº†ã—ãŸéš›ã®è©³ç´°
 typedef enum {
-	POKE_NET_GDS_LASTERROR_NONE ,					//!< “Á‚É‚È‚µ
-	POKE_NET_GDS_LASTERROR_NOTINITIALIZED ,			//!< ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
-	POKE_NET_GDS_LASTERROR_ILLEGALREQUEST ,			//!< ƒŠƒNƒGƒXƒg‚ªˆÙí
-	POKE_NET_GDS_LASTERROR_CREATESOCKET ,			//!< ƒ\ƒPƒbƒg¶¬‚ÉŽ¸”s
-	POKE_NET_GDS_LASTERROR_IOCTRLSOCKET ,			//!< ƒ\ƒPƒbƒg‚Ìƒmƒ“ƒuƒƒbƒLƒ“ƒO‰»‚ÉŽ¸”s
-	POKE_NET_GDS_LASTERROR_NETWORKSETTING ,			//!< ƒlƒbƒgƒ[ƒNÝ’èŽ¸”s
-	POKE_NET_GDS_LASTERROR_CREATETHREAD ,			//!< ƒXƒŒƒbƒh¶¬Ž¸”s
-	POKE_NET_GDS_LASTERROR_CONNECT ,				//!< Ú‘±Ž¸”s
-	POKE_NET_GDS_LASTERROR_SENDREQUEST ,			//!< ƒŠƒNƒGƒXƒgƒGƒ‰[
-	POKE_NET_GDS_LASTERROR_RECVRESPONSE ,			//!< ƒŒƒXƒ|ƒ“ƒXƒGƒ‰[
-	POKE_NET_GDS_LASTERROR_CONNECTTIMEOUT ,			//!< Ú‘±ƒ^ƒCƒ€ƒAƒEƒg
-	POKE_NET_GDS_LASTERROR_SENDTIMEOUT ,			//!< ‘—Mƒ^ƒCƒ€ƒAƒEƒg
-	POKE_NET_GDS_LASTERROR_RECVTIMEOUT ,			//!< ŽóMƒ^ƒCƒ€ƒAƒEƒg
-	POKE_NET_GDS_LASTERROR_ABORTED ,				//!< ’†’fI—¹
-	POKE_NET_GDS_LASTERROR_GETSVL ,					//!< SVLŽæ“¾ƒGƒ‰[
+	POKE_NET_GDS_LASTERROR_NONE ,					//!< ç‰¹ã«ãªã—
+	POKE_NET_GDS_LASTERROR_NOTINITIALIZED ,			//!< åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
+	POKE_NET_GDS_LASTERROR_ILLEGALREQUEST ,			//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒç•°å¸¸
+	POKE_NET_GDS_LASTERROR_CREATESOCKET ,			//!< ã‚½ã‚±ãƒƒãƒˆç”Ÿæˆã«å¤±æ•—
+	POKE_NET_GDS_LASTERROR_IOCTRLSOCKET ,			//!< ã‚½ã‚±ãƒƒãƒˆã®ãƒŽãƒ³ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°åŒ–ã«å¤±æ•—
+	POKE_NET_GDS_LASTERROR_NETWORKSETTING ,			//!< ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯è¨­å®šå¤±æ•—
+	POKE_NET_GDS_LASTERROR_CREATETHREAD ,			//!< ã‚¹ãƒ¬ãƒƒãƒ‰ç”Ÿæˆå¤±æ•—
+	POKE_NET_GDS_LASTERROR_CONNECT ,				//!< æŽ¥ç¶šå¤±æ•—
+	POKE_NET_GDS_LASTERROR_SENDREQUEST ,			//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_LASTERROR_RECVRESPONSE ,			//!< ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚¨ãƒ©ãƒ¼
+	POKE_NET_GDS_LASTERROR_CONNECTTIMEOUT ,			//!< æŽ¥ç¶šã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
+	POKE_NET_GDS_LASTERROR_SENDTIMEOUT ,			//!< é€ä¿¡ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
+	POKE_NET_GDS_LASTERROR_RECVTIMEOUT ,			//!< å—ä¿¡ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
+	POKE_NET_GDS_LASTERROR_ABORTED ,				//!< ä¸­æ–­çµ‚äº†
+	POKE_NET_GDS_LASTERROR_GETSVL ,					//!< SVLå–å¾—ã‚¨ãƒ©ãƒ¼
 	POKE_NET_GDS_LASTERROR_COUNT
 } POKE_NET_GDS_LASTERROR;
 
 /*
-// = ŽÐ“à’P‘ÌŒöŠJƒT[ƒo[ =
-#define POKE_NET_GDS_URL		"192.168.1.219"				// ƒT[ƒo[URL
-#define POKE_NET_GDS_PORTNO		23457						// ƒT[ƒo[ƒ|[ƒg”Ô†
+// = ç¤¾å†…å˜ä½“å…¬é–‹ã‚µãƒ¼ãƒãƒ¼ =
+#define POKE_NET_GDS_URL		"192.168.1.219"				// ã‚µãƒ¼ãƒãƒ¼URL
+#define POKE_NET_GDS_PORTNO		23457						// ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ãƒˆç•ªå·
 */
 /*
-// = ŽÐ“à•¡”ƒT[ƒo[FŠÇ— =
-#define POKE_NET_GDS_URL		"192.168.1.105"				// ƒT[ƒo[URL
-#define POKE_NET_GDS_PORTNO		13570						// ƒT[ƒo[ƒ|[ƒg”Ô†
+// = ç¤¾å†…è¤‡æ•°ã‚µãƒ¼ãƒãƒ¼ï¼šç®¡ç† =
+#define POKE_NET_GDS_URL		"192.168.1.105"				// ã‚µãƒ¼ãƒãƒ¼URL
+#define POKE_NET_GDS_PORTNO		13570						// ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ãƒˆç•ªå·
 */
 /*
-// = ŽÐ“à•¡”ƒT[ƒo[:ƒXƒŒ[ƒu =
-#define POKE_NET_GDS_URL		"192.168.1.105"				// ƒT[ƒo[URL
-#define POKE_NET_GDS_PORTNO		13571						// ƒT[ƒo[ƒ|[ƒg”Ô†
+// = ç¤¾å†…è¤‡æ•°ã‚µãƒ¼ãƒãƒ¼:ã‚¹ãƒ¬ãƒ¼ãƒ– =
+#define POKE_NET_GDS_URL		"192.168.1.105"				// ã‚µãƒ¼ãƒãƒ¼URL
+#define POKE_NET_GDS_PORTNO		13571						// ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ãƒˆç•ªå·
 */
 /*
 #define POKE_NET_GDS_URL		"pmsv.denyu-sha.to"
 #define POKE_NET_GDS_PORTNO		12400
 */
 
-#define POKE_NET_GDS_URL		"pkgdsprod.nintendo.co.jp"	// ƒT[ƒo[URL
-#define POKE_NET_GDS_PORTNO		12400						// ƒT[ƒo[ƒ|[ƒg”Ô†
+#define POKE_NET_GDS_URL		"pkgdsprod.nintendo.co.jp"	// ã‚µãƒ¼ãƒãƒ¼URL
+#define POKE_NET_GDS_PORTNO		12400						// ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ãƒˆç•ªå·
 
 
 /*-----------------------------------------------------------------------*
-					ƒOƒ[ƒoƒ‹•Ï”’è‹`
+					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®šç¾©
  *-----------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------*
-					ŠÖ”ŠO•”éŒ¾
+					é–¢æ•°å¤–éƒ¨å®£è¨€
  *-----------------------------------------------------------------------*/
 extern BOOL POKE_NET_GDS_Initialize(POKE_NET_REQUESTCOMMON_AUTH *_auth);
 extern void POKE_NET_GDS_Release();

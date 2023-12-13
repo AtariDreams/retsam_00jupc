@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	balloon_common.h
- * @brief	•—‘DŠ„‚èF‘S‰æ–Ê‹¤’Êƒwƒbƒ_
+ * @brief	é¢¨èˆ¹å‰²ã‚Šï¼šå…¨ç”»é¢å…±é€šãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2007.11.06(‰Î)
+ * @date	2007.11.06(ç«)
  */
 //==============================================================================
 #ifndef __BALLOON_COMMON_H__
@@ -13,86 +13,86 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 
-///•—‘Dƒ~ƒjƒQ[ƒ€‚ÌƒT[ƒo[ƒo[ƒWƒ‡ƒ“
+///é¢¨èˆ¹ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 #define BALLOON_SERVER_VERSION			(100)
 
-///•—‘DŠ„‚è‚ÌƒƒCƒ“ƒ‚[ƒh
+///é¢¨èˆ¹å‰²ã‚Šã®ãƒ¡ã‚¤ãƒ³ãƒ¢ãƒ¼ãƒ‰
 enum{
-	BALLOON_MODE_ENTRY,			///<ƒGƒ“ƒgƒŠ[‰æ–Ê’†
-	BALLOON_MODE_GAME,			///<ƒQ[ƒ€‰æ–Ê’†
-	BALLOON_MODE_RESULT,		///<Œ‹‰Ê”­•\‰æ–Ê’†
+	BALLOON_MODE_ENTRY,			///<ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç”»é¢ä¸­
+	BALLOON_MODE_GAME,			///<ã‚²ãƒ¼ãƒ ç”»é¢ä¸­
+	BALLOON_MODE_RESULT,		///<çµæžœç™ºè¡¨ç”»é¢ä¸­
 };
 
-///•—‘DŠ„‚èƒ~ƒjƒQ[ƒ€‚ÌŽQ‰ÁÅ‘ål”
+///é¢¨èˆ¹å‰²ã‚ŠãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®å‚åŠ æœ€å¤§äººæ•°
 #define BALLOON_PLAYER_MAX			(WFLBY_MINIGAME_MAX)
 
-///Wifi•‰‰×‘Îô‚Ìˆ×A‘—Mƒf[ƒ^‚ð1‰ñ‘—‚é‚²‚Æ‚ÉŽŸ‚Ì‘—M‚Ü‚Å‚ÌƒEƒFƒCƒg‚ð“ü‚ê‚é
+///Wifiè² è·å¯¾ç­–ã®ç‚ºã€é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’1å›žé€ã‚‹ã”ã¨ã«æ¬¡ã®é€ä¿¡ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆã‚’å…¥ã‚Œã‚‹
 #define BALLOON_SIO_SEND_WAIT		(13)
 
 
-///ƒTƒuƒT[ƒtƒF[ƒXY(fx32)
+///ã‚µãƒ–ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹Y(fx32)
 #define BALLOON_SUB_ACTOR_DISTANCE		((192 + 160) << FX32_SHIFT)
-///ƒTƒuƒT[ƒtƒF[ƒXY(int)
+///ã‚µãƒ–ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹Y(int)
 #define BALLOON_SUB_ACTOR_DISTANCE_INTEGER		(BALLOON_SUB_ACTOR_DISTANCE >> FX32_SHIFT)
 
 //--------------------------------------------------------------
-//	ƒƒCƒ“‰æ–Ê‚ÌBGƒtƒŒ[ƒ€Žw’èAƒvƒ‰ƒCƒIƒŠƒeƒB’è‹`
+//	ãƒ¡ã‚¤ãƒ³ç”»é¢ã®BGãƒ•ãƒ¬ãƒ¼ãƒ æŒ‡å®šã€ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å®šç¾©
 //--------------------------------------------------------------
-#define BALLOON_3DBG_PRIORITY			(2)		///<3D–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
-///ƒEƒBƒ“ƒhƒE–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+#define BALLOON_3DBG_PRIORITY			(2)		///<3Dé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOON_BGPRI_WINDOW			(0)
-///ƒGƒtƒFƒNƒg–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOON_BGPRI_EFFECT			(1)
-///”wŒi–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///èƒŒæ™¯é¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOON_BGPRI_BACKGROUND		(2)
 
-///ƒEƒBƒ“ƒhƒEEƒpƒlƒ‹–Ê‚ÌƒtƒŒ[ƒ€
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ»ãƒ‘ãƒãƒ«é¢ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define BALLOON_FRAME_WIN				(GF_BGL_FRAME1_M)
-///ƒGƒtƒFƒNƒg–Ê‚ÌƒtƒŒ[ƒ€
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define BALLOON_FRAME_EFF				(GF_BGL_FRAME2_M)
-///ŠÏ‹q(”wŒi)–Ê‚ÌƒtƒŒ[ƒ€
+///è¦³å®¢(èƒŒæ™¯)é¢ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define BALLOON_FRAME_BACK				(GF_BGL_FRAME3_M)
 
-#define BALLOON_BGNO_WINDOW			(1)					///<BG”Ô†FƒEƒBƒ“ƒhƒE
-#define BALLOON_BGNO_EFFECT			(2)					///<BG”Ô†FƒGƒtƒFƒNƒg
-#define BALLOON_BGNO_BACKGROUND		(3)					///<BG”Ô†F”wŒi
+#define BALLOON_BGNO_WINDOW			(1)					///<BGç•ªå·ï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+#define BALLOON_BGNO_EFFECT			(2)					///<BGç•ªå·ï¼šã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+#define BALLOON_BGNO_BACKGROUND		(3)					///<BGç•ªå·ï¼šèƒŒæ™¯
 
 //--------------------------------------------------------------
-//	ƒTƒu‰æ–Ê‚ÌBGƒtƒŒ[ƒ€Žw’èAƒvƒ‰ƒCƒIƒŠƒeƒB’è‹`
+//	ã‚µãƒ–ç”»é¢ã®BGãƒ•ãƒ¬ãƒ¼ãƒ æŒ‡å®šã€ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å®šç¾©
 //--------------------------------------------------------------
-///ƒTƒu‰æ–ÊFƒEƒBƒ“ƒhƒEBG–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚µãƒ–ç”»é¢ï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦BGé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOON_SUBBG_WIN_PRI			(1)
-///ƒTƒu‰æ–ÊFƒpƒCƒvBG–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚µãƒ–ç”»é¢ï¼šãƒ‘ã‚¤ãƒ—BGé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOON_SUBBG_PIPE_PRI			(3)
-///ƒTƒu‰æ–ÊF”wŒiBG–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚µãƒ–ç”»é¢ï¼šèƒŒæ™¯BGé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOON_SUBBG_BACK_PRI			(3)
-///ƒTƒu‰æ–ÊF•—‘DBG–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚µãƒ–ç”»é¢ï¼šé¢¨èˆ¹BGé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOON_SUBBG_BALLOON_PRI		(0)
 
-///ƒEƒBƒ“ƒhƒE–Ê‚ÌƒtƒŒ[ƒ€
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define BALLOON_SUBFRAME_WIN			(GF_BGL_FRAME0_S)
-///ƒpƒCƒvBG–Ê‚ÌƒtƒŒ[ƒ€
+///ãƒ‘ã‚¤ãƒ—BGé¢ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define BALLOON_SUBFRAME_PIPE			(GF_BGL_FRAME1_S)
-///”wŒi–Ê‚ÌƒtƒŒ[ƒ€
+///èƒŒæ™¯é¢ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define BALLOON_SUBFRAME_BACK			(GF_BGL_FRAME2_S)
-///•—‘DBG‚ÌƒtƒŒ[ƒ€
+///é¢¨èˆ¹BGã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define BALLOON_SUBFRAME_BALLOON		(GF_BGL_FRAME3_S)
 
 //--------------------------------------------------------------
-//	ƒXƒNƒŠ[ƒ“ƒNƒŠƒAƒR[ƒh
+//	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
 //--------------------------------------------------------------
-///ƒpƒCƒv–ÊƒNƒŠƒAƒR[ƒh
+///ãƒ‘ã‚¤ãƒ—é¢ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
 #define PIPE_BG_CLEAR_CODE		(0)
-///ƒEƒBƒ“ƒhƒE–ÊƒNƒŠƒAƒR[ƒh
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
 #define WIN_BG_CLEAR_CODE		(512-1)
 
 //--------------------------------------------------------------
-//	•—‘Dƒ^ƒCƒvID
+//	é¢¨èˆ¹ã‚¿ã‚¤ãƒ—ID
 //--------------------------------------------------------------
-///•—‘DƒŒƒxƒ‹ID
+///é¢¨èˆ¹ãƒ¬ãƒ™ãƒ«ID
 enum{
 	BALLOON_LEVEL_1,
 	BALLOON_LEVEL_2,
@@ -102,61 +102,61 @@ enum{
 };
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///•—‘DŠ„‚èƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì’è‹`
+///é¢¨èˆ¹å‰²ã‚Šã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“å®šç¾©
 typedef struct{
-	MNGM_ENRES_PARAM entry_param;		///<ƒGƒ“ƒgƒŠ[‰æ–ÊŒÄ‚Ño‚µƒpƒ‰ƒ[ƒ^
-	MNGM_RESULT_PARAM result_param;		///<Œ‹‰Ê”­•\‰æ–ÊŒÄ‚Ño‚µƒpƒ‰ƒ[ƒ^
+	MNGM_ENRES_PARAM entry_param;		///<ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç”»é¢å‘¼ã³å‡ºã—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	MNGM_RESULT_PARAM result_param;		///<çµæžœç™ºè¡¨ç”»é¢å‘¼ã³å‡ºã—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-	PROC *sub_proc;						///<ŽÀs’†‚ÌƒTƒuƒvƒƒZƒX
+	PROC *sub_proc;						///<å®Ÿè¡Œä¸­ã®ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹
 
-	u8 player_netid[WFLBY_MINIGAME_MAX];	///<ŽQ‰Á‚µ‚Ä‚¢‚éƒvƒŒƒCƒ„[‚ÌnetID
-	u8 player_max;							///<ŽQ‰Ál”
+	u8 player_netid[WFLBY_MINIGAME_MAX];	///<å‚åŠ ã—ã¦ã„ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®netID
+	u8 player_max;							///<å‚åŠ äººæ•°
 	
-	u8 mode;							///<ƒ‚[ƒh(BALLOON_MODE_???)
-	u16 balloon_break_num;				///<Š„‚Á‚½•—‘D‚Ì”
+	u8 mode;							///<ãƒ¢ãƒ¼ãƒ‰(BALLOON_MODE_???)
+	u16 balloon_break_num;				///<å‰²ã£ãŸé¢¨èˆ¹ã®æ•°
 
-	MNGM_RAREGAME_TYPE raregame_type;	///<ƒŒƒAƒQ[ƒ€‚ÌŽí—Þ
+	MNGM_RAREGAME_TYPE raregame_type;	///<ãƒ¬ã‚¢ã‚²ãƒ¼ãƒ ã®ç¨®é¡ž
 	
-	//ŠO‘¤‚©‚çƒZƒbƒg‚³‚ê‚é—Ìˆæ
-	BOOL replay;						///<Ä“x’§í‚·‚é‚©‚Ç‚¤‚©(Œ‹‰Ê”­•\‰æ–Ê‚©‚çŽó‚¯Žæ‚é)
+	//å¤–å´ã‹ã‚‰ã‚»ãƒƒãƒˆã•ã‚Œã‚‹é ˜åŸŸ
+	BOOL replay;						///<å†åº¦æŒ‘æˆ¦ã™ã‚‹ã‹ã©ã†ã‹(çµæžœç™ºè¡¨ç”»é¢ã‹ã‚‰å—ã‘å–ã‚‹)
 
-	u8 vchat;							///<ƒ{ƒCƒXƒ`ƒƒƒbƒgƒ‚[ƒh
+	u8 vchat;							///<ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆãƒ¢ãƒ¼ãƒ‰
 
-	u8 dis_error;						///< Ø’fƒGƒ‰[ŒŸ’m	080527 tomoya 
-	u8 dis_error_seq;					///< Ø’fƒGƒ‰[ŒŸ’m	080625 tomoya 
+	u8 dis_error;						///< åˆ‡æ–­ã‚¨ãƒ©ãƒ¼æ¤œçŸ¥	080527 tomoya 
+	u8 dis_error_seq;					///< åˆ‡æ–­ã‚¨ãƒ©ãƒ¼æ¤œçŸ¥	080625 tomoya 
 
 #ifdef PM_DEBUG
-	int debug_offline;		///<TRUE:ƒfƒoƒbƒO—p‚ÌƒIƒtƒ‰ƒCƒ“ƒ‚[ƒh
+	int debug_offline;		///<TRUE:ãƒ‡ãƒãƒƒã‚°ç”¨ã®ã‚ªãƒ•ãƒ©ã‚¤ãƒ³ãƒ¢ãƒ¼ãƒ‰
 #endif
 }BALLOON_SYSTEM_WORK;
 
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`Fƒ~ƒjƒQ[ƒ€‰æ–Ê
+//	æ§‹é€ ä½“å®šç¾©ï¼šãƒŸãƒ‹ã‚²ãƒ¼ãƒ ç”»é¢
 //==============================================================================
-///•—‘DƒXƒe[ƒ^ƒX
+///é¢¨èˆ¹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 typedef struct{
-	int occ;			///<—LŒø–³Œøƒtƒ‰ƒO(TRUE:—LŒøB•—‘D‚ª‘¶Ý‚µ‚Ä‚¢‚é)
+	int occ;			///<æœ‰åŠ¹ç„¡åŠ¹ãƒ•ãƒ©ã‚°(TRUE:æœ‰åŠ¹ã€‚é¢¨èˆ¹ãŒå­˜åœ¨ã—ã¦ã„ã‚‹)
 	
-	int level;			///<•—‘DƒŒƒxƒ‹
-	s32 air;			///<Œ»Ý‚Ì‹ó‹C—Ê
-	s32 max_air;		///<Å‘å‘Ï‹v—Í
-	s32 air_stack;		///<‹ó‹C—ÊƒXƒ^ƒbƒNƒGƒŠƒA
-	s32 add_air;		///<ƒXƒ^ƒbƒN‚É’™‚Ü‚Á‚Ä‚¢‚é‹ó‹C‚ð1ƒtƒŒ[ƒ€‚Å“ü‚ê‚é—Ê
-	s32 player_air[WFLBY_MINIGAME_MAX];	///<ƒvƒŒƒCƒ„[–ˆ‚Ì’“ü‚µ‚½‹ó‹C—Ê[player_posŽw’è]
+	int level;			///<é¢¨èˆ¹ãƒ¬ãƒ™ãƒ«
+	s32 air;			///<ç¾åœ¨ã®ç©ºæ°—é‡
+	s32 max_air;		///<æœ€å¤§è€ä¹…åŠ›
+	s32 air_stack;		///<ç©ºæ°—é‡ã‚¹ã‚¿ãƒƒã‚¯ã‚¨ãƒªã‚¢
+	s32 add_air;		///<ã‚¹ã‚¿ãƒƒã‚¯ã«è²¯ã¾ã£ã¦ã„ã‚‹ç©ºæ°—ã‚’1ãƒ•ãƒ¬ãƒ¼ãƒ ã§å…¥ã‚Œã‚‹é‡
+	s32 player_air[WFLBY_MINIGAME_MAX];	///<ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ¯Žã®æ³¨å…¥ã—ãŸç©ºæ°—é‡[player_posæŒ‡å®š]
 	
 	int shake_flag;
 	
-	u8 bg_on_req;		///<TRUE:BG•\Ž¦ƒŠƒNƒGƒXƒg
-	u8 bg_off_req;		///<TRUE:BG”ñ•\Ž¦ƒŠƒNƒGƒXƒg
+	u8 bg_on_req;		///<TRUE:BGè¡¨ç¤ºãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	u8 bg_off_req;		///<TRUE:BGéžè¡¨ç¤ºãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	u8 padding[2];
 }BALLOON_STATUS;
 
 
-///s16‚ÌPOINTŒ^
+///s16ã®POINTåž‹
 typedef struct{
 	s16 x;
 	s16 y;

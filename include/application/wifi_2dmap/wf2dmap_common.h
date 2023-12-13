@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wifi_2dmap_common.h
- *	@brief		wifi_2dmap‹¤’Êƒf[ƒ^
+ *	@brief		wifi_2dmapå…±é€šãƒ‡ãƒ¼ã‚¿
  *	@author		tomoya takahashi
  *	@data		2007.03.14
  *
@@ -23,11 +23,11 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	•ûŒü’è”
+///	æ–¹å‘å®šæ•°
 //=====================================
 typedef enum {
 	WF2DMAP_WAY_UP =	WF2DMAP_WAY_C_UP,
@@ -38,27 +38,27 @@ typedef enum {
 } WF2DMAP_WAY;
 
 //-------------------------------------
-///	ƒRƒ}ƒ“ƒh’è”
+///	ã‚³ãƒãƒ³ãƒ‰å®šæ•°
 //=====================================
 typedef enum {
-	WF2DMAP_CMD_NONE = WF2DMAP_CMD_C_NONE,	// ‚È‚É‚à‚È‚µ
-	WF2DMAP_CMD_TURN = WF2DMAP_CMD_C_TURN,	// ƒ^[ƒ“ƒRƒ}ƒ“ƒh
-	WF2DMAP_CMD_WALK = WF2DMAP_CMD_C_WALK,	// •à‚­ƒRƒ}ƒ“ƒh
-	WF2DMAP_CMD_RUN =  WF2DMAP_CMD_C_RUN, // ‘–‚éƒRƒ}ƒ“ƒh
-	WF2DMAP_CMD_BUSY = WF2DMAP_CMD_C_BUSY,	// –Z‚µ‚¢ó‘Ô
-	WF2DMAP_CMD_WALLWALK = WF2DMAP_CMD_C_WALLWALK,	// •Ç•ûŒü•à‚«ƒRƒ}ƒ“ƒh
-	WF2DMAP_CMD_SLOWWALK = WF2DMAP_CMD_C_SLOWWALK,	// ‚ä‚Á‚­‚è•à‚«ƒRƒ}ƒ“ƒh
-	WF2DMAP_CMD_WALK4	 = WF2DMAP_CMD_C_WALK4,	// ‚ä‚Á‚­‚è•à‚«ƒRƒ}ƒ“ƒh
-	WF2DMAP_CMD_STAYWALK2 = WF2DMAP_CMD_C_STAYWALK2,// ‚»‚Ìê•à‚«ƒRƒ}ƒ“ƒh
-	WF2DMAP_CMD_STAYWALK4 = WF2DMAP_CMD_C_STAYWALK4,// ‚»‚Ìê•à‚«ƒRƒ}ƒ“ƒh
-	WF2DMAP_CMD_STAYWALK8 = WF2DMAP_CMD_C_STAYWALK8,// ‚»‚Ìê•à‚«ƒRƒ}ƒ“ƒh
-	WF2DMAP_CMD_STAYWALK16 = WF2DMAP_CMD_C_STAYWALK16,// ‚ä‚Á‚­‚è‚»‚Ìê•à‚«ƒRƒ}ƒ“ƒh
+	WF2DMAP_CMD_NONE = WF2DMAP_CMD_C_NONE,	// ãªã«ã‚‚ãªã—
+	WF2DMAP_CMD_TURN = WF2DMAP_CMD_C_TURN,	// ã‚¿ãƒ¼ãƒ³ã‚³ãƒãƒ³ãƒ‰
+	WF2DMAP_CMD_WALK = WF2DMAP_CMD_C_WALK,	// æ­©ãã‚³ãƒãƒ³ãƒ‰
+	WF2DMAP_CMD_RUN =  WF2DMAP_CMD_C_RUN, // èµ°ã‚‹ã‚³ãƒãƒ³ãƒ‰
+	WF2DMAP_CMD_BUSY = WF2DMAP_CMD_C_BUSY,	// å¿™ã—ã„çŠ¶æ…‹
+	WF2DMAP_CMD_WALLWALK = WF2DMAP_CMD_C_WALLWALK,	// å£æ–¹å‘æ­©ãã‚³ãƒãƒ³ãƒ‰
+	WF2DMAP_CMD_SLOWWALK = WF2DMAP_CMD_C_SLOWWALK,	// ã‚†ã£ãã‚Šæ­©ãã‚³ãƒãƒ³ãƒ‰
+	WF2DMAP_CMD_WALK4	 = WF2DMAP_CMD_C_WALK4,	// ã‚†ã£ãã‚Šæ­©ãã‚³ãƒãƒ³ãƒ‰
+	WF2DMAP_CMD_STAYWALK2 = WF2DMAP_CMD_C_STAYWALK2,// ãã®å ´æ­©ãã‚³ãƒãƒ³ãƒ‰
+	WF2DMAP_CMD_STAYWALK4 = WF2DMAP_CMD_C_STAYWALK4,// ãã®å ´æ­©ãã‚³ãƒãƒ³ãƒ‰
+	WF2DMAP_CMD_STAYWALK8 = WF2DMAP_CMD_C_STAYWALK8,// ãã®å ´æ­©ãã‚³ãƒãƒ³ãƒ‰
+	WF2DMAP_CMD_STAYWALK16 = WF2DMAP_CMD_C_STAYWALK16,// ã‚†ã£ãã‚Šãã®å ´æ­©ãã‚³ãƒãƒ³ãƒ‰
 	WF2DMAP_CMD_NUM =  WF2DMAP_CMD_C_NUM,
 } WF2DMAP_CMD;
 
 
 //-------------------------------------
-///	“®ìƒtƒŒ[ƒ€”
+///	å‹•ä½œãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 //=====================================
 #define WF2DMAP_FRAME_TURN		(2)
 #define WF2DMAP_FRAME_WALK		(8)
@@ -69,19 +69,19 @@ typedef enum {
 #define WF2DMAP_FRAME_WALK4		(4)
 
 //-------------------------------------
-///	ƒOƒŠƒbƒhŠÖŒW
+///	ã‚°ãƒªãƒƒãƒ‰é–¢ä¿‚
 //=====================================
-#define WF2DMAP_GRID_SIZ		(16)	// ƒOƒŠƒbƒhƒTƒCƒY
-#define WF2DMAP_GRID2POS(x)	((x)*WF2DMAP_GRID_SIZ)	// ƒOƒŠƒbƒh->À•W	
-#define WF2DMAP_POS2GRID(x)	((x)/WF2DMAP_GRID_SIZ)	// À•W->ƒOƒŠƒbƒh	
+#define WF2DMAP_GRID_SIZ		(16)	// ã‚°ãƒªãƒƒãƒ‰ã‚µã‚¤ã‚º
+#define WF2DMAP_GRID2POS(x)	((x)*WF2DMAP_GRID_SIZ)	// ã‚°ãƒªãƒƒãƒ‰->åº§æ¨™	
+#define WF2DMAP_POS2GRID(x)	((x)/WF2DMAP_GRID_SIZ)	// åº§æ¨™->ã‚°ãƒªãƒƒãƒ‰	
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	À•W\‘¢‘Ì
+///	åº§æ¨™æ§‹é€ ä½“
 //=====================================
 typedef struct _WF2DMAP_POS{
 	s16 x;
@@ -89,7 +89,7 @@ typedef struct _WF2DMAP_POS{
 } WF2DMAP_POS;
 
 //-------------------------------------
-///	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh
+///	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒãƒ³ãƒ‰
 //=====================================
 typedef struct {
 	u16 cmd;
@@ -98,7 +98,7 @@ typedef struct {
 } WF2DMAP_REQCMD;
 
 //-------------------------------------
-///	ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh
+///	ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰
 //=====================================
 typedef struct {
 	WF2DMAP_POS	pos;
@@ -110,7 +110,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #undef	GLOBAL

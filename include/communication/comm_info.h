@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_info.h
- * @brief	’ÊM‚Å“¾‚½î•ñ‚ğ’~‚¦‚Ä‚¨‚­ƒNƒ‰ƒX
+ * @brief	é€šä¿¡ã§å¾—ãŸæƒ…å ±ã‚’è“„ãˆã¦ãŠãã‚¯ãƒ©ã‚¹
  * @author	Katsumi Ohno
  * @date    2005.08.22
  */
@@ -14,92 +14,92 @@
 #include "savedata/regulation.h"
 #include "wifi/dwc_rap.h"
 
-/// ‰Šú‰»
+/// åˆæœŸåŒ–
 extern void CommInfoInitialize(SAVEDATA* pSaveData, const REGULATION* pReg);
-/// ŠJ•ú
+/// é–‹æ”¾
 extern void CommInfoFinalize(void);
-/// ƒ[ƒNƒTƒCƒY‚ğ“¾‚é
+/// ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 extern int CommInfoGetWorkSize(void);
-/// ‰Šú‰»‚ª‚·‚ñ‚Å‚¢‚é‚©‚Ç‚¤‚©•Ô‚·
+/// åˆæœŸåŒ–ãŒã™ã‚“ã§ã„ã‚‹ã‹ã©ã†ã‹è¿”ã™
 extern BOOL CommInfoIsInitialize(void);
-/// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ì‘—M
+/// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡
 extern void CommInfoSendPokeData(void);
-/// ƒvƒŒ[ƒ„[ƒf[ƒ^‚ÌƒTƒCƒY‚ğ“¾‚é
+/// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
 extern int CommInfoGetPlayerDataSize(void);
-/// ƒvƒŒ[ƒ„[ƒf[ƒ^‚ÌóM‚ªI—¹‚µ‚½
+/// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡ãŒçµ‚äº†ã—ãŸ
 extern void CommInfoRecvEnd(int netID, int size, void* pData, void* pWork);
-/// ƒvƒŒ[ƒ„[î•ñ‚ğW‚ßI‚í‚Á‚½
+/// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼æƒ…å ±ã‚’é›†ã‚çµ‚ã‚ã£ãŸ
 extern BOOL CommInfoIsInfoCollected(void);
-/// MyStatusƒf[ƒ^‚ğóM‚·‚é
+/// MyStatusãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹
 extern void CommInfoRecvMyStatusData( int netID, int size, void* pData, void* pWork);
-/// MyStatusArrayƒf[ƒ^‚ğóM‚·‚é
+/// MyStatusArrayãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹
 extern void CommInfoRecvMyStatusArrayData( int netID, int size, void* pData, void* pWork);
 
-/// ƒvƒŒ[ƒ„[ƒf[ƒ^‚ğóM‚·‚é
+/// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹
 extern void CommInfoRecvArrayPlayerData( int netID, int size, void* pData, void* pWork);
-/// ƒvƒŒ[ƒ„[ƒf[ƒ^‚ğóM‚·‚é
+/// ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹
 extern void CommInfoRecvPlayerData(int netID, int size, void* pData, void* pWork);
 
 extern BOOL CommInfoSendArray_ServerSide(void);
 extern BOOL CommInfoIsNewInfoData(void);
 
 
-/// –¼‘Oƒf[ƒ^‚ğ“¾‚é
+/// åå‰ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹
 extern BOOL CommInfoGetName(int index, u16* name);
 extern BOOL CommInfoIsBattleNewName(int netID);
-/// ID‚ğ•¶š—ñ‚Å“¾‚é
+/// IDã‚’æ–‡å­—åˆ—ã§å¾—ã‚‹
 extern BOOL CommInfoGetIDString(int index, u16* idStr);
-/// ID‚ÌƒpƒPƒbƒgƒTƒCƒY‚ğ•Ô‚·
+/// IDã®ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚ºã‚’è¿”ã™
 extern int CommInfoGetRecvPokeIDSize();
-///   î•ñ‚ğÁ‚·
+///   æƒ…å ±ã‚’æ¶ˆã™
 extern void CommInfoDeletePlayer(int netID);
-///  V’…ƒf[ƒ^‚©‚Ç‚¤‚©‚ğ“¾‚é
+///  æ–°ç€ãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹ã‚’å¾—ã‚‹
 extern BOOL CommInfoIsNewName(int netID);
-///  —V‚Ô’‡ŠÔ‚Æ‚µ‚Ä”FØ‚·‚é
+///  éŠã¶ä»²é–“ã¨ã—ã¦èªè¨¼ã™ã‚‹
 extern void CommInfoSetEntry(int netID);
-/// V‚µ‚­“o˜^‚³‚ê‚½‚±‚Æ‚ğŠO•”‚É“`‚¦‚½
+/// æ–°ã—ãç™»éŒ²ã•ã‚ŒãŸã“ã¨ã‚’å¤–éƒ¨ã«ä¼ãˆãŸ
 extern void CommInfoSetMessageEnd(int netID);
-/// V‚µ‚¢–¼‘O‚ª“ü‚Á‚Ä‚¢‚é”Ô†‚ğ•Ô‚·
+/// æ–°ã—ã„åå‰ãŒå…¥ã£ã¦ã„ã‚‹ç•ªå·ã‚’è¿”ã™
 extern int CommInfoGetNewNameID(void);
-/// ³®‚ÉƒGƒ“ƒgƒŠ[‚µ‚½l”‚ğ‹A‚·
+/// æ­£å¼ã«ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã—ãŸäººæ•°ã‚’å¸°ã™
 extern int CommInfoGetEntryNum(void);
 
 extern BOOL CommInfoFunc(void);
-// ’n‰º‚É“ü‚Á‚Ä‚«‚½ó‹µƒƒbƒZ[ƒW‚ğ•Ô‚·
+// åœ°ä¸‹ã«å…¥ã£ã¦ããŸçŠ¶æ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿”ã™
 extern BOOL CommInfoGetActionMessage(u16* message);
-// myStatus‚ğ•Ô‚·
+// myStatusã‚’è¿”ã™
 extern MYSTATUS* CommInfoGetMyStatus(int netID);
-// DWCƒtƒŒƒ“ƒhƒf[ƒ^‚ğ•Ô‚·
+// DWCãƒ•ãƒ¬ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
 extern DWCFriendData* CommInfoGetDWCFriendCode(int netID);
 
-//  netID‚©‚çWifiList‚Ì‡”Ô‚ğ•Ô‚·
+//  netIDã‹ã‚‰WifiListã®é †ç•ªã‚’è¿”ã™
 extern int CommInfoSearchWifiListIndex(int netID);
-// ƒOƒ‹[ƒv–¼‚ğ•Ô‚·
+// ã‚°ãƒ«ãƒ¼ãƒ—åã‚’è¿”ã™
 extern STRCODE* CommInfoGetGroupName(int netID);
-/// myNation‚ğ•Ô‚·
+/// myNationã‚’è¿”ã™
 extern int CommInfoGetMyNation(int netID);
-/// myArea‚ğ•Ô‚·
+/// myAreaã‚’è¿”ã™
 extern int CommInfoGetMyArea(int netID);
-/// myPenalty‚ğ•Ô‚·
+/// myPenaltyã‚’è¿”ã™
 extern int CommInfoGetMyPenalty(int netID);
-// ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ğ•Ô‚·
+// ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¿”ã™
 extern const REGULATION* CommInfoGetRegulation(int netID);
-// Ú‘±‚µ‚Ä‚¢‚él‚ÌƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ª“¯‚¶‚©‚Ç‚¤‚©ŒŸ¸‚·‚é
+// æ¥ç¶šã—ã¦ã„ã‚‹äººã®ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãŒåŒã˜ã‹ã©ã†ã‹æ¤œæŸ»ã™ã‚‹
 extern BOOL CommInfoRegulationCheck(void);
 
-// ’ÊM‚½‚¢‚¹‚ñ•‚±‚¤‚©‚ñŒ‹‰Ê‚ğˆê‹L˜^
+// é€šä¿¡ãŸã„ã›ã‚“ï¼†ã“ã†ã‹ã‚“çµæœã‚’ä¸€æ™‚è¨˜éŒ²
 extern void CommInfoWriteResult(SAVEDATA* pSaveData);
 extern void CommInfoSetBattleResult(SAVEDATA* pSaveData, int bWin );
 extern void CommInfoSetTradeResult(SAVEDATA* pSaveData, int num);
 
 
-// ƒGƒ“ƒgƒŠ[’†‚È‚Ì‚©‚Ç‚¤‚©’²‚×‚é
+// ã‚¨ãƒ³ãƒˆãƒªãƒ¼ä¸­ãªã®ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 extern BOOL CommInfoGetEntry(int netID);
 
-//WIFILê—p‚ÌMyStatusƒ|ƒCƒ“ƒ^İ’è
+//WIFIåºƒå ´ç”¨ã®MyStatusãƒã‚¤ãƒ³ã‚¿è¨­å®š
 extern void CommInfoSetWiFiPlaceMyStatus(MYSTATUS* pMyStatus);
 
 
-#define INVALID_NETID (0xff) ///< –³Œø‚ÈNetID
+#define INVALID_NETID (0xff) ///< ç„¡åŠ¹ãªNetID
 
 #endif  // __COMM_INFO_H__

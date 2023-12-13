@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_zukan_textver.h
- *	@brief		}ŠÓŒ¾Œêƒo[ƒWƒ‡ƒ“
+ *	@brief		å›³é‘‘è¨€èªãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *	@author		tomoya takahashi
  *	@data		2006.02.21
  *
@@ -20,48 +20,48 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 enum{
-	ZKN_ZUKANTEXTVER_FADE_MODE_CHPOKELIST,	// ƒ|ƒPƒŠƒXƒg‚Æ‚Ìs‚«—ˆ
-	ZKK_ZUKANTEXTVER_FADE_MODE_NORMAL,		// ’Êí
-	ZKK_ZUKANTEXTVER_FADE_MODE_OTHER,		// ‚»‚Ì‘¼‰æ–Ê‚Ö
+	ZKN_ZUKANTEXTVER_FADE_MODE_CHPOKELIST,	// ãƒã‚±ãƒªã‚¹ãƒˆã¨ã®è¡Œãæ¥
+	ZKK_ZUKANTEXTVER_FADE_MODE_NORMAL,		// é€šå¸¸
+	ZKK_ZUKANTEXTVER_FADE_MODE_OTHER,		// ãã®ä»–ç”»é¢ã¸
 };
 
-// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgÀ•W
+// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆåº§æ¨™
 #define ZKN_ZUKANTEXTVER_POKELIST_MAT_IX	( 172 )
 #define ZKN_ZUKANTEXTVER_POKELIST_MAT_IY	( 32 )
 
-// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNÀ•W
+// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åº§æ¨™
 #define ZKN_ZUKANTEXTVER_POKEGRA_MAT_X	( 48 )
 #define ZKN_ZUKANTEXTVER_POKEGRA_MAT_Y	( 72 )
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL void ZKN_ZukanTextverAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap );
 GLOBAL void ZKN_ZukanTextverAplDelete( ZKN_APL_DATA* p_data );
 
 
-// ƒAƒvƒŠƒf[ƒ^ŠO•”•ÏXŠÖ”
+// ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿å¤–éƒ¨å¤‰æ›´é–¢æ•°
 GLOBAL void ZKN_ZukanTextverPokeGraFadeOutSet( ZKN_APL_DATA* p_data, int x, int y );
 GLOBAL void ZKN_ZukanTextverFadeModeSet( ZKN_APL_DATA* p_data, int fade_mode );
 
-// Ÿ‚Ìƒy[ƒW‚Ö
+// æ¬¡ã®ãƒšãƒ¼ã‚¸ã¸
 GLOBAL BOOL ZKN_ZukanTexverPageAdd( ZKN_APL_DATA* p_data );
 GLOBAL BOOL ZKN_ZukanTexverPageSet( ZKN_APL_DATA* p_data, int page );
 
-// ‘ƒR[ƒhİ’è
+// å›½ã‚³ãƒ¼ãƒ‰è¨­å®š
 GLOBAL void ZKN_ZukanTexverTypeSet( ZKN_APL_DATA* p_data, int lang );
 
 #undef	GLOBAL

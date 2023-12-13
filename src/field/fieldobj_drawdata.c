@@ -2,7 +2,7 @@
 /**
  *
  * @file	fieldobj_drawdata.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ•`‰æƒf[ƒ^
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJæç”»ãƒ‡ãƒ¼ã‚¿
  * @author	kagaya
  * @data	05.07.20
  *
@@ -11,26 +11,26 @@
 
 //==============================================================================
 /*
-	ƒV‹KOBJ‚Ì’Ç‰Á„
-	‚PFfieldobj_code.h‚É•\Ž¦ƒR[ƒh‚ð’Ç‰Á
-	‚QFƒrƒ‹ƒ{[ƒh‚Å‚ ‚ê‚ÎDATA_FieldOBJ_ResmNArcTbl_Tex[]‚Ö•\Ž¦ƒR[ƒh‚É‘Î‰ž‚µ‚½ƒeƒNƒXƒ`ƒƒ‚ðŽw’è
-	‚RFFIELD_OBJ_DRAW_PROC_LISTŒ^‚Ì‰Šú‰»A•`‰æAíœA‘Þ”ð•œ‹AŠÖ”‚ð’Ç‰Á
-	‚SFDATA_FieldOBJDrawProcListRegTbl[]‚Ö‚R‚Åì¬‚µ‚½ŠÖ”‚Ì’è‹`
-	‚TFDATA_FieldOBJ_BlActHeaderPathIDTbl[]‚Ö•\Ž¦ƒR[ƒh‚É‘Î‰ž‚µ‚½î•ñ‚ð’Ç‰Á
-	‚UFDATA_FieldOBJCodeDrawStateTbl[]‚Ö•\Ž¦ƒR[ƒh‚ÌƒXƒe[ƒ^ƒX‚ð’Ç‰Á
+	ï¼œæ–°è¦OBJã®è¿½åŠ ï¼ž
+	ï¼‘ï¼šfieldobj_code.hã«è¡¨ç¤ºã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ 
+	ï¼’ï¼šãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã§ã‚ã‚Œã°DATA_FieldOBJ_ResmNArcTbl_Tex[]ã¸è¡¨ç¤ºã‚³ãƒ¼ãƒ‰ã«å¯¾å¿œã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’æŒ‡å®š
+	ï¼“ï¼šFIELD_OBJ_DRAW_PROC_LISTåž‹ã®åˆæœŸåŒ–ã€æç”»ã€å‰Šé™¤ã€é€€é¿å¾©å¸°é–¢æ•°ã‚’è¿½åŠ 
+	ï¼”ï¼šDATA_FieldOBJDrawProcListRegTbl[]ã¸ï¼“ã§ä½œæˆã—ãŸé–¢æ•°ã®å®šç¾©
+	ï¼•ï¼šDATA_FieldOBJ_BlActHeaderPathIDTbl[]ã¸è¡¨ç¤ºã‚³ãƒ¼ãƒ‰ã«å¯¾å¿œã—ãŸæƒ…å ±ã‚’è¿½åŠ 
+	ï¼–ï¼šDATA_FieldOBJCodeDrawStateTbl[]ã¸è¡¨ç¤ºã‚³ãƒ¼ãƒ‰ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¿½åŠ 
 	
-	ƒV‹Kƒ‚ƒfƒŠƒ“ƒO‚Ì’Ç‰Á„
-	‚PFfieldobj_code.h‚Éƒ‚ƒfƒ‹ID‚ð’Ç‰Á
-	‚QFDATA_FieldOBJ_ResmNArcTbl_Mdl[]‚Öƒ‚ƒfƒ‹ID‚É‘Î‰ž‚µ‚½ƒ‚ƒfƒŠƒ“ƒO‚ðŽw’è
-	‚RFí’“‚·‚é•K—v‚ª‚ ‚éê‡ADATA_FieldOBJ_Regular_Mdl[]‚Ö“o˜^
+	ï¼œæ–°è¦ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ã®è¿½åŠ ï¼ž
+	ï¼‘ï¼šfieldobj_code.hã«ãƒ¢ãƒ‡ãƒ«IDã‚’è¿½åŠ 
+	ï¼’ï¼šDATA_FieldOBJ_ResmNArcTbl_Mdl[]ã¸ãƒ¢ãƒ‡ãƒ«IDã«å¯¾å¿œã—ãŸãƒ¢ãƒ‡ãƒªãƒ³ã‚°ã‚’æŒ‡å®š
+	ï¼“ï¼šå¸¸é§ã™ã‚‹å¿…è¦ãŒã‚ã‚‹å ´åˆã€DATA_FieldOBJ_Regular_Mdl[]ã¸ç™»éŒ²
 	
-	¦ƒtƒHƒO–³Œø‰»ƒ‚ƒfƒ‹‚ðŽw’è‚·‚éê‡
-	DATA_FieldOBJ_BlActFogEnableOFFTbl[]‚Ö“o˜^
+	â€»ãƒ•ã‚©ã‚°ç„¡åŠ¹åŒ–ãƒ¢ãƒ‡ãƒ«ã‚’æŒ‡å®šã™ã‚‹å ´åˆ
+	DATA_FieldOBJ_BlActFogEnableOFFTbl[]ã¸ç™»éŒ²
 	
-	ƒV‹KƒAƒjƒ‚Ì’Ç‰Á„
-	‚PFfieldobj_code.h‚ÉƒAƒjƒID‚ð’Ç‰Á
-	‚QFDATA_FieldOBJ_ResmNArcTbl_Anm[]‚ÖƒAƒjƒID‚É‘Î‰ž‚µ‚½ƒ‚ƒfƒŠƒ“ƒO‚ðŽw’è
-	‚RFí’“‚·‚é•K—v‚ª‚ ‚éê‡ADATA_FieldOBJ_Regular_Anm[]‚Ö“o˜^
+	ï¼œæ–°è¦ã‚¢ãƒ‹ãƒ¡ã®è¿½åŠ ï¼ž
+	ï¼‘ï¼šfieldobj_code.hã«ã‚¢ãƒ‹ãƒ¡IDã‚’è¿½åŠ 
+	ï¼’ï¼šDATA_FieldOBJ_ResmNArcTbl_Anm[]ã¸ã‚¢ãƒ‹ãƒ¡IDã«å¯¾å¿œã—ãŸãƒ¢ãƒ‡ãƒªãƒ³ã‚°ã‚’æŒ‡å®š
+	ï¼“ï¼šå¸¸é§ã™ã‚‹å¿…è¦ãŒã‚ã‚‹å ´åˆã€DATA_FieldOBJ_Regular_Anm[]ã¸ç™»éŒ²
 */
 //==============================================================================
 
@@ -38,14 +38,14 @@
 #include "fieldsys.h"
 #include "fieldobj.h"
 
-#include "../data/mmodel/mmodel.naix"	//ƒA[ƒJƒCƒuID
+#include "../data/mmodel/mmodel.naix"	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
 
 //==============================================================================
 //	extern
 //==============================================================================
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ •`‰æŠÖ”’è‹`
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ æç”»é–¢æ•°å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
 ///	HERO
@@ -144,7 +144,7 @@ static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_HeroBanzai =
 };
 
 //--------------------------------------------------------------
-///	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Žg—p@ˆê”Êl•W€00
+///	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ä½¿ç”¨ã€€ä¸€èˆ¬äººæ¨™æº–00
 //--------------------------------------------------------------
 static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlAct00 =
 {
@@ -156,7 +156,7 @@ static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlAct00 =
 };
 
 //--------------------------------------------------------------
-///	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Žg—p@ˆê”Êl•W€00@ƒAƒjƒ‚È‚µ
+///	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ä½¿ç”¨ã€€ä¸€èˆ¬äººæ¨™æº–00ã€€ã‚¢ãƒ‹ãƒ¡ãªã—
 //--------------------------------------------------------------
 static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlAct00AnmNon =
 {
@@ -168,7 +168,7 @@ static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlAct00AnmNon =
 };
 
 //--------------------------------------------------------------
-///	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Žg—p@ˆê”Êl•W€00@‚Pƒpƒ^[ƒ“ƒAƒjƒ
+///	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ä½¿ç”¨ã€€ä¸€èˆ¬äººæ¨™æº–00ã€€ï¼‘ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlAct00AnmOneP =
 {
@@ -180,7 +180,7 @@ static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlAct00AnmOneP =
 };
 
 //--------------------------------------------------------------
-///	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Žg—p@PCWOMAN
+///	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ä½¿ç”¨ã€€PCWOMAN
 //--------------------------------------------------------------
 static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlActPcwoman =
 {
@@ -192,7 +192,7 @@ static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlActPcwoman =
 };
 
 //--------------------------------------------------------------
-///	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Žg—p@KOIKING
+///	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ä½¿ç”¨ã€€KOIKING
 //--------------------------------------------------------------
 static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlActKoiking =
 {
@@ -204,7 +204,7 @@ static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlActKoiking =
 };
 
 //--------------------------------------------------------------
-///	3Dƒ‚ƒfƒ‹Žg—p@•W€00
+///	3Dãƒ¢ãƒ‡ãƒ«ä½¿ç”¨ã€€æ¨™æº–00
 //--------------------------------------------------------------
 static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Model00 =
 {
@@ -217,7 +217,7 @@ static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Model00 =
 
 #if 0
 //--------------------------------------------------------------
-///	3Dƒ‚ƒfƒ‹Žg—p@•W€00@ŠÅ”Â
+///	3Dãƒ¢ãƒ‡ãƒ«ä½¿ç”¨ã€€æ¨™æº–00ã€€çœ‹æ¿
 //--------------------------------------------------------------
 static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Model00Board =
 {
@@ -230,7 +230,7 @@ static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Model00Board =
 #endif
 
 //--------------------------------------------------------------
-///	–Ø‚ÌŽÀ
+///	æœ¨ã®å®Ÿ
 //--------------------------------------------------------------
 static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Seed =
 {
@@ -242,7 +242,7 @@ static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Seed =
 };
 
 //--------------------------------------------------------------
-///	ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[Žg—p@’¹
+///	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ä½¿ç”¨ã€€é³¥
 //--------------------------------------------------------------
 static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlActBird =
 {
@@ -254,7 +254,7 @@ static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlActBird =
 };
 
 //--------------------------------------------------------------
-///	3Dƒ‚ƒfƒ‹Žg—p@•W€00@á‹Ê
+///	3Dãƒ¢ãƒ‡ãƒ«ä½¿ç”¨ã€€æ¨™æº–00ã€€é›ªçŽ‰
 //--------------------------------------------------------------
 static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Model00SnowBall =
 {
@@ -267,7 +267,7 @@ static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Model00SnowBall =
 
 #if 0
 //--------------------------------------------------------------
-///	3Dƒ‚ƒfƒ‹Žg—p@•W€00@–{
+///	3Dãƒ¢ãƒ‡ãƒ«ä½¿ç”¨ã€€æ¨™æº–00ã€€æœ¬
 //--------------------------------------------------------------
 static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Model00Book =
 {
@@ -279,7 +279,7 @@ static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Model00Book =
 };
 
 //--------------------------------------------------------------
-///	3Dƒ‚ƒfƒ‹Žg—p@•W€00@ƒhƒA‚Q
+///	3Dãƒ¢ãƒ‡ãƒ«ä½¿ç”¨ã€€æ¨™æº–00ã€€ãƒ‰ã‚¢ï¼’
 //--------------------------------------------------------------
 static const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Model00Door2 =
 {
@@ -305,7 +305,7 @@ const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Non =
 
 //--------------------------------------------------------------
 // @author	tomoya katahashi
-///	LEGENDPOKE		“`àƒ|ƒPƒ‚ƒ“@ƒCƒA@ƒGƒA
+///	LEGENDPOKE		ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã€€ã‚¤ã‚¢ã€€ã‚¨ã‚¢
 //--------------------------------------------------------------
 const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Legend =
 {
@@ -318,7 +318,7 @@ const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_Legend =
 
 //--------------------------------------------------------------
 // @author	tomoya katahashi
-///	LEGENDPOKE		“`àƒ|ƒPƒ‚ƒ“@ƒŒƒC@ƒAƒC@ƒnƒC
+///	LEGENDPOKE		ä¼èª¬ãƒã‚±ãƒ¢ãƒ³ã€€ãƒ¬ã‚¤ã€€ã‚¢ã‚¤ã€€ãƒã‚¤
 //--------------------------------------------------------------
 const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_ReiAiHai =
 {
@@ -330,7 +330,7 @@ const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_ReiAiHai =
 };
 
 //--------------------------------------------------------------
-///	ƒrƒ‹ƒ{[ƒh‹@”\ƒIƒt
+///	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰æ©Ÿèƒ½ã‚ªãƒ•
 //--------------------------------------------------------------
 const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BOff =
 {
@@ -342,7 +342,7 @@ const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BOff =
 };
 
 //--------------------------------------------------------------
-///	”j‚ê‚½¢ŠE@ƒAƒOƒmƒ€ê—p
+///	ç ´ã‚ŒãŸä¸–ç•Œã€€ã‚¢ã‚°ãƒŽãƒ å°‚ç”¨
 //--------------------------------------------------------------
 const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlActBldAgunomu =
 {
@@ -354,7 +354,7 @@ const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlActBldAgunomu =
 };
 
 //--------------------------------------------------------------
-///	”j‚ê‚½¢ŠE@Žµ‘wSPPOKEê—p
+///	ç ´ã‚ŒãŸä¸–ç•Œã€€ä¸ƒå±¤SPPOKEå°‚ç”¨
 //--------------------------------------------------------------
 const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlActTw7SpPoke =
 {
@@ -366,10 +366,10 @@ const FIELD_OBJ_DRAW_PROC_LIST DATA_FieldOBJDraw_BlActTw7SpPoke =
 };
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ •`‰æŠÖ”‚Ü‚Æ‚ß
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ æç”»é–¢æ•°ã¾ã¨ã‚
 //==============================================================================
 //--------------------------------------------------------------
-///	•`‰æŠÖ”‚Ü‚Æ‚ß@•À‚Ñ‚ÍOBJƒR[ƒh‚Æˆê’v->•s‡‚É‚µ‚½
+///	æç”»é–¢æ•°ã¾ã¨ã‚ã€€ä¸¦ã³ã¯OBJã‚³ãƒ¼ãƒ‰ã¨ä¸€è‡´->ä¸é †ã«ã—ãŸ
 //--------------------------------------------------------------
 const FIELD_OBJ_DRAW_PROC_LIST_REG DATA_FieldOBJDrawProcListRegTbl[] =
 {
@@ -632,15 +632,15 @@ const FIELD_OBJ_DRAW_PROC_LIST_REG DATA_FieldOBJDrawProcListRegTbl[] =
 	{ GSTPOKEHERO, &DATA_FieldOBJDraw_HeroPoketch },
 	{ GSTPOKEHEROINE, &DATA_FieldOBJDraw_HeroPoketch },
 	
-	{ OBJCODEMAX, NULL },	//I’[
+	{ OBJCODEMAX, NULL },	//çµ‚ç«¯
 };
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒŒƒ“ƒ_OBJ‚Ü‚Æ‚ß
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ãƒ¬ãƒ³ãƒ€OBJã¾ã¨ã‚
 //==============================================================================
 #if 0
 //--------------------------------------------------------------
-///	ƒŒƒ“ƒ_ƒŠƒ“ƒOOBJƒf[ƒ^
+///	ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°OBJãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 const FIELD_OBJ_RESMNARC DATA_FieldOBJ_ResmNArcTbl_RenderOBJ[] =
 {
@@ -652,23 +652,23 @@ const FIELD_OBJ_RESMNARC DATA_FieldOBJ_ResmNArcTbl_RenderOBJ[] =
 	{ BOARD_F, NARC_mmodel_board_f_nsbmd },
 	{ SNOWBALL, NARC_mmodel_gym06_o1_nsbmd },
 	
-	{ OBJCODEMAX, 0 },	//I’[
+	{ OBJCODEMAX, 0 },	//çµ‚ç«¯
 };
 
 #define FIELD_OBJ_RENDER_MAX (NELEMS(DATA_FieldOBJ_ResmNArcTbl_RenderOBJ))
 
 //--------------------------------------------------------------
-///	ƒŒƒ“ƒ_ƒŠƒ“ƒOOBJ‘”
+///	ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°OBJç·æ•°
 //--------------------------------------------------------------
 const int DATA_FIELDOBJ_RenderOBJMax = FIELD_OBJ_RENDER_MAX - 1;
 #endif
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒeƒNƒXƒ`ƒƒ‚Ü‚Æ‚ß
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¾ã¨ã‚
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒeƒNƒXƒ`ƒƒID,ƒA[ƒJƒCƒuID
-///	•À‚Ñ‚Í•s‡
+///	ãƒ†ã‚¯ã‚¹ãƒãƒ£ID,ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+///	ä¸¦ã³ã¯ä¸é †
 //--------------------------------------------------------------
 const FIELD_OBJ_RESMNARC DATA_FieldOBJ_ResmNArcTbl_Tex[] =
 {
@@ -1117,11 +1117,11 @@ const FIELD_OBJ_RESMNARC DATA_FieldOBJ_ResmNArcTbl_Tex[] =
 };
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒ‚ƒfƒ‹‚Ü‚Æ‚ß
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ãƒ¢ãƒ‡ãƒ«ã¾ã¨ã‚
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒ‚ƒfƒ‹ID,ƒpƒXƒe[ƒuƒ‹B
-///	•À‚Ñ‚Í•s‡
+///	ãƒ¢ãƒ‡ãƒ«ID,ãƒ‘ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã€‚
+///	ä¸¦ã³ã¯ä¸é †
 //--------------------------------------------------------------
 const FIELD_OBJ_RESMNARC DATA_FieldOBJ_ResmNArcTbl_Mdl[] =
 {
@@ -1147,11 +1147,11 @@ const FIELD_OBJ_RESMNARC DATA_FieldOBJ_ResmNArcTbl_Mdl[] =
 };
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒAƒjƒ‚Ü‚Æ‚ß
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ã‚¢ãƒ‹ãƒ¡ã¾ã¨ã‚
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒAƒjƒID,ƒpƒXƒe[ƒuƒ‹B
-///	•À‚Ñ‚Í•s‡
+///	ã‚¢ãƒ‹ãƒ¡ID,ãƒ‘ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã€‚
+///	ä¸¦ã³ã¯ä¸é †
 //--------------------------------------------------------------
 const FIELD_OBJ_RESMNARC DATA_FieldOBJ_ResmNArcTbl_Anm[] =
 {
@@ -1182,10 +1182,10 @@ const FIELD_OBJ_RESMNARC DATA_FieldOBJ_ResmNArcTbl_Anm[] =
 };
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
 //==============================================================================
 //--------------------------------------------------------------
-///	Ž©‹@
+///	è‡ªæ©Ÿ
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_Hero[] =
 {
@@ -1194,7 +1194,7 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_Hero[] =
 	{ 32, 47, BLACT_ANIM_LOOP },
 	{ 48, 63, BLACT_ANIM_LOOP },
 	
-	{ 64, 79, BLACT_ANIM_LOOP },	//ƒ_ƒbƒVƒ…
+	{ 64, 79, BLACT_ANIM_LOOP },	//ãƒ€ãƒƒã‚·ãƒ¥
 	{ 80, 95, BLACT_ANIM_LOOP },
 	{ 96, 111, BLACT_ANIM_LOOP },
 	{ 112, 127, BLACT_ANIM_LOOP },
@@ -1203,7 +1203,7 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_Hero[] =
 };
 
 //--------------------------------------------------------------
-///	Ž©‹@Ž©“]ŽÔ
+///	è‡ªæ©Ÿè‡ªè»¢è»Š
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_HeroCycle[] =
 {
@@ -1224,7 +1224,7 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_HeroCycle[] =
 };
 
 //--------------------------------------------------------------
-///	Ž©‹@”gæ‚è
+///	è‡ªæ©Ÿæ³¢ä¹—ã‚Š
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_SwimHero[] =
 {
@@ -1236,7 +1236,7 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_SwimHero[] =
 };
 
 //--------------------------------------------------------------
-///	Ž©‹@”é“`‹Z
+///	è‡ªæ©Ÿç§˜ä¼æŠ€
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_SpHero[] =
 {
@@ -1245,7 +1245,7 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_SpHero[] =
 };
 
 //--------------------------------------------------------------
-///	Ž©‹@…Œ­‚è
+///	è‡ªæ©Ÿæ°´é£ã‚Š
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_WaterHero[] =
 {
@@ -1255,7 +1255,7 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_WaterHero[] =
 };
 
 //--------------------------------------------------------------
-///	‘ºl•’Ê 0
+///	æ‘äººæ™®é€š 0
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_Normal0[] =
 {
@@ -1281,7 +1281,7 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_PcWoman[] =
 };
 
 //--------------------------------------------------------------
-///	–Ø‚ÌŽÀ
+///	æœ¨ã®å®Ÿ
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_Seed0[] =
 {
@@ -1290,7 +1290,7 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_Seed0[] =
 };
 
 //--------------------------------------------------------------
-///	’¹
+///	é³¥
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_Bird[] =
 {
@@ -1301,7 +1301,7 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_Bird[] =
 
 //--------------------------------------------------------------
 //	@autor	tomoya takahashi
-///	“`àƒ|ƒPƒ‚ƒ“	ƒCƒA@ƒGƒA
+///	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³	ã‚¤ã‚¢ã€€ã‚¨ã‚¢
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_Legend[] =
 {
@@ -1311,7 +1311,7 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_Legend[] =
 
 //--------------------------------------------------------------
 //	@autor	tomoya takahashi
-///	“`àƒ|ƒPƒ‚ƒ“	ƒŒƒCƒAƒCƒnƒC
+///	ä¼èª¬ãƒã‚±ãƒ¢ãƒ³	ãƒ¬ã‚¤ã‚¢ã‚¤ãƒã‚¤
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_ReiAiHai[] =
 {
@@ -1320,7 +1320,7 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_ReiAiHai[] =
 };
 
 //--------------------------------------------------------------
-///	’Þ‚èŽ©‹@
+///	é‡£ã‚Šè‡ªæ©Ÿ
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_FishingHero[] =
 {
@@ -1332,7 +1332,7 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_FishingHero[] =
 };
 
 //--------------------------------------------------------------
-///	ƒRƒCƒLƒ“ƒO
+///	ã‚³ã‚¤ã‚­ãƒ³ã‚°
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_Koiking[] =
 {
@@ -1390,7 +1390,7 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_Giratina[] =
 };
 
 //--------------------------------------------------------------
-///	Ž©‹@ƒoƒgƒ‹ƒT[ƒ`ƒƒ
+///	è‡ªæ©Ÿãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_BSHero[] =
 {
@@ -1399,14 +1399,14 @@ static const BLACT_ANIME_TBL DATA_FieldOBJ_BlActAnmTbl_BSHero[] =
 };
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒŠƒ\[ƒXID‚Ü‚Æ‚ß
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ãƒªã‚½ãƒ¼ã‚¹IDã¾ã¨ã‚
 //==============================================================================
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒŒƒMƒ…ƒ‰[¨
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼å‹¢
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒeƒNƒXƒ`ƒƒ@ƒŒƒMƒ…ƒ‰[
+///	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã€€ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼
 //--------------------------------------------------------------
 const int DATA_FieldOBJ_Regular_Tex[] =
 {
@@ -1435,7 +1435,7 @@ const int DATA_FieldOBJ_Regular_Tex[] =
 };
 
 //--------------------------------------------------------------
-///	ƒ‚ƒfƒ‹@ƒŒƒMƒ…ƒ‰[
+///	ãƒ¢ãƒ‡ãƒ«ã€€ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼
 //--------------------------------------------------------------
 const int DATA_FieldOBJ_Regular_Mdl[] =
 {
@@ -1446,7 +1446,7 @@ const int DATA_FieldOBJ_Regular_Mdl[] =
 };
 
 //--------------------------------------------------------------
-///	ƒAƒjƒ@ƒŒƒMƒ…ƒ‰[
+///	ã‚¢ãƒ‹ãƒ¡ã€€ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼
 //--------------------------------------------------------------
 const int DATA_FieldOBJ_Regular_Anm[] =
 {
@@ -1455,11 +1455,11 @@ const int DATA_FieldOBJ_Regular_Anm[] =
 };
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒwƒbƒ_[
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhOBJ@ƒrƒ‹ƒ{[ƒhƒwƒbƒ_[ƒpƒXAIDƒe[ƒuƒ‹
-///	•À‚Ñ‚Ífieldobj_code.h •\Ž¦ƒR[ƒh‚É€‚¸©‚â‚ß‚½B•s‡
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‘ã‚¹ã€IDãƒ†ãƒ¼ãƒ–ãƒ«
+///	ä¸¦ã³ã¯fieldobj_code.h è¡¨ç¤ºã‚³ãƒ¼ãƒ‰ã«æº–ãšâ†ã‚„ã‚ãŸã€‚ä¸é †
 //--------------------------------------------------------------
 const FIELD_OBJ_BLACT_HEADER_ID DATA_FieldOBJ_BlActHeaderPathIDTbl[] =
 {
@@ -1909,21 +1909,21 @@ const FIELD_OBJ_BLACT_HEADER_ID DATA_FieldOBJ_BlActHeaderPathIDTbl[] =
 
 
 //--------------------------------------------------------------
-///	ƒtƒHƒO–³ŒøƒR[ƒh
-//	¦–{—ˆ‚È‚çƒwƒbƒ_[‚É“Z‚ß‚é‚×‚«‚¾‚ªƒwƒbƒ_[ƒf[ƒ^‘S‘Ì‚É—^‚¦‚é‰e‹¿‚ðl‚¦
-//	–³Œø‰»‚·‚éƒR[ƒh‚¾‚¯‚ð‚±‚±‚ÉŽw’èB•À‚Ñ‚Í•s‡B
+///	ãƒ•ã‚©ã‚°ç„¡åŠ¹ã‚³ãƒ¼ãƒ‰
+//	â€»æœ¬æ¥ãªã‚‰ãƒ˜ãƒƒãƒ€ãƒ¼ã«çºã‚ã‚‹ã¹ãã ãŒãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã«ä¸Žãˆã‚‹å½±éŸ¿ã‚’è€ƒãˆ
+//	ç„¡åŠ¹åŒ–ã™ã‚‹ã‚³ãƒ¼ãƒ‰ã ã‘ã‚’ã“ã“ã«æŒ‡å®šã€‚ä¸¦ã³ã¯ä¸é †ã€‚
 //--------------------------------------------------------------
 const int DATA_FieldOBJ_BlActFogEnableOFFTbl[] =
 {
 	BLACT_MDLID_32x32FOGOFF,
-	BLACT_MDLID_MAX,  //I’[Ž¯•Ê
+	BLACT_MDLID_MAX,  //çµ‚ç«¯è­˜åˆ¥
 };
 
 //==============================================================================
-//	OBJƒR[ƒhƒXƒe[ƒ^ƒXƒf[ƒ^
+//	OBJã‚³ãƒ¼ãƒ‰ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //--------------------------------------------------------------
-//	OBJƒR[ƒh•Ê•`‰æƒXƒe[ƒ^ƒX@•À‚Ñ‚Í•s‡
+//	OBJã‚³ãƒ¼ãƒ‰åˆ¥æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã€€ä¸¦ã³ã¯ä¸é †
 //--------------------------------------------------------------
 const OBJCODE_STATE DATA_FieldOBJCodeDrawStateTbl[] =
 {
@@ -2191,10 +2191,10 @@ const OBJCODE_STATE DATA_FieldOBJCodeDrawStateTbl[] =
 };
 
 //==============================================================================
-//	–Ø‚ÌŽÀƒf[ƒ^
+//	æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //--------------------------------------------------------------
-///	Ží—ÞA¬’·•Ê–Ø‚ÌŽÀOBJƒR[ƒh
+///	ç¨®é¡žã€æˆé•·åˆ¥æœ¨ã®å®ŸOBJã‚³ãƒ¼ãƒ‰
 //--------------------------------------------------------------
 const OBJCODE_SEEDDATA DATA_OBJCodeSeedDataTbl[] =
 {
@@ -2265,7 +2265,7 @@ const OBJCODE_SEEDDATA DATA_OBJCodeSeedDataTbl[] =
 };
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒgƒŒƒ“ƒ_•\Ž¦OBJ
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¬ãƒ³ãƒ€è¡¨ç¤ºOBJ
 //==============================================================================
 #define ROBJ_OFFS_X (FLDOBJ_BLACT_X_GROUND_OFFS_FX32)
 #define ROBJ_OFFS_Y (FLDOBJ_BLACT_Y_GROUND_OFFS_FX32)
@@ -2275,7 +2275,7 @@ const OBJCODE_SEEDDATA DATA_OBJCodeSeedDataTbl[] =
 #define BOARD_OFFS_Z (FLDOBJ_BLACT_Z_GROUND_OFFS_FX32-NUM_FX32(6)-NUM_FX32(2))
 
 //--------------------------------------------------------------
-///	•\Ž¦ƒR[ƒh•ÊƒŒƒ“ƒ_•\Ž¦ˆÊ’uƒIƒtƒZƒbƒg
+///	è¡¨ç¤ºã‚³ãƒ¼ãƒ‰åˆ¥ãƒ¬ãƒ³ãƒ€è¡¨ç¤ºä½ç½®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 const CODEOFFS DATA_FieldOBJRenderOBJDrawOffset[] =
 {

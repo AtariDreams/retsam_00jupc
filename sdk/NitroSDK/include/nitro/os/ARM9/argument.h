@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.10  2005/09/16 01:17:19  yasu
-  nitro_win32.h ‚©‚ç‚Ì“Ç‚İ‚İ‚ÌƒTƒ|[ƒg
+  nitro_win32.h ã‹ã‚‰ã®èª­ã¿è¾¼ã¿ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.9  2005/09/09 05:20:42  yada
   small fix
@@ -24,16 +24,16 @@
   add conversion from string to arguments
 
   Revision 1.7  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL ‚Ì”»’è•”•ª‚É SDK_WIN32 ‚Å‚Ì”»’è‚à’Ç‰Á
+  SDK_FROM_TOOL ã®åˆ¤å®šéƒ¨åˆ†ã« SDK_WIN32 ã§ã®åˆ¤å®šã‚‚è¿½åŠ 
 
   Revision 1.6  2005/09/08 11:18:01  yasu
-  SDK_WIN32 ‚©‚ç SDK_FROM_TOOL ‚Ö‚ÌØ‚è‘Ö‚¦
+  SDK_WIN32 ã‹ã‚‰ SDK_FROM_TOOL ã¸ã®åˆ‡ã‚Šæ›¿ãˆ
 
   Revision 1.5  2005/09/08 11:01:13  yasu
-  SDK_WIN32 ‚Ì‘Î‰
+  SDK_WIN32 ã®å¯¾å¿œ
 
   Revision 1.4  2005/08/30 09:00:34  yasu
-  OS_GetOpt ’Ç‰Á
+  OS_GetOpt è¿½åŠ 
 
   Revision 1.3  2005/07/21 12:41:50  yada
   consider for NITRO_FINALROM
@@ -149,12 +149,12 @@ static inline const char *OS_GetArgv(int n)
 
   Description:  getopt() like function to get command line options
   
-  Arguments:    optstring  ƒIƒvƒVƒ‡ƒ“ƒLƒƒƒ‰ƒNƒ^‚Ì—ñ
-                           NULL ‚È‚ç“à•”ƒpƒ‰ƒ[ƒ^‚ªƒŠƒZƒbƒg‚³‚ê‚é
+  Arguments:    optstring  ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®åˆ—
+                           NULL ãªã‚‰å†…éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒãƒªã‚»ãƒƒãƒˆã•ã‚Œã‚‹
 
-  Returns:      ƒIƒvƒVƒ‡ƒ“•¶šƒR[ƒh
-                '?' ‚È‚ç•s–¾‚ÈƒIƒvƒVƒ‡ƒ“•¶šƒR[ƒh
-                -1  ‚È‚çƒIƒvƒVƒ‡ƒ“‚ª‘¶İ‚µ‚È‚¢
+  Returns:      ã‚ªãƒ—ã‚·ãƒ§ãƒ³æ–‡å­—ã‚³ãƒ¼ãƒ‰
+                '?' ãªã‚‰ä¸æ˜ãªã‚ªãƒ—ã‚·ãƒ§ãƒ³æ–‡å­—ã‚³ãƒ¼ãƒ‰
+                -1  ãªã‚‰ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒå­˜åœ¨ã—ãªã„
  *---------------------------------------------------------------------------*/
 #ifndef OS_NO_ARGUMENT
 int     OS_GetOpt(const char *optstring);

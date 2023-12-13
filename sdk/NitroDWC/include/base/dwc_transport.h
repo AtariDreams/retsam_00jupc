@@ -12,65 +12,65 @@
 
   $Log: dwc_transport.h,v $
   Revision 1.18  2006/01/23 04:50:43  arakit
-  “ˆê—pŒê‚É‡‚í‚¹‚ÄƒRƒƒ“ƒg‚ğC³
+  çµ±ä¸€ç”¨èªã«åˆã‚ã›ã¦ã‚³ãƒ¡ãƒ³ãƒˆã‚’ä¿®æ­£
 
   Revision 1.17  2006/01/17 07:22:35  arakit
-  EDWC_SetUserSendCallback(), DWC_SetUserRecvCallback(),
-  @DWC_SetUserRecvTimeoutCallback(), DWC_SetSendDrop(), DWC_SetRecvDrop(),
-  @DWC_SetSendDelay(), DWC_SetRecvDelay(), DWC_Ping(),
-  @DWC_SetUserPingCallback(), DWC_SetSendSplitMax() ‚Ì–ß‚è’l‚ğvoid‚©‚çBOOL‚É
-  @•ÏX‚µA§Œä•Ï”Šm•Û‘O‚Í‰½‚à‚¹‚¸‚ÉFALSE‚ğ•Ô‚·‚æ‚¤‚É‚µ‚½B
+  ãƒ»DWC_SetUserSendCallback(), DWC_SetUserRecvCallback(),
+  ã€€DWC_SetUserRecvTimeoutCallback(), DWC_SetSendDrop(), DWC_SetRecvDrop(),
+  ã€€DWC_SetSendDelay(), DWC_SetRecvDelay(), DWC_Ping(),
+  ã€€DWC_SetUserPingCallback(), DWC_SetSendSplitMax() ã®æˆ»ã‚Šå€¤ã‚’voidã‹ã‚‰BOOLã«
+  ã€€å¤‰æ›´ã—ã€åˆ¶å¾¡å¤‰æ•°ç¢ºä¿å‰ã¯ä½•ã‚‚ã›ãšã«FALSEã‚’è¿”ã™ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.16  2005/09/24 12:56:30  arakit
-  ƒT[ƒoƒNƒ‰ƒCƒAƒ“ƒgŒ^ƒ}ƒbƒ`ƒ“ƒO‚ÉAƒ}ƒbƒ`ƒ“ƒOŠ®—¹‚µ‚½ƒzƒXƒg‚Ì‚İ‚ğ—LŒø‚ÈAID‚Æ‚µ‚Ä
-  ˆµ‚¤‚æ‚¤AAID‚âƒRƒlƒNƒVƒ‡ƒ“”‚Ö‚ÌƒAƒNƒZƒXŠÖ”‚ğC³‚µ‚½B
+  ã‚µãƒ¼ãƒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå‹ãƒãƒƒãƒãƒ³ã‚°æ™‚ã«ã€ãƒãƒƒãƒãƒ³ã‚°å®Œäº†ã—ãŸãƒ›ã‚¹ãƒˆã®ã¿ã‚’æœ‰åŠ¹ãªAIDã¨ã—ã¦
+  æ‰±ã†ã‚ˆã†ã€AIDã‚„ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³æ•°ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°ã‚’ä¿®æ­£ã—ãŸã€‚
 
   Revision 1.15  2005/09/24 08:16:26  nakatat
-  ‘—M‰Â”\”»’èŠÖ”DWC_IsSendableReliable’Ç‰Á¡
+  é€ä¿¡å¯èƒ½åˆ¤å®šé–¢æ•°DWC_IsSendableReliableè¿½åŠ ã€‚
 
   Revision 1.14  2005/09/24 07:17:12  nakatat
-  ‘—M•ªŠ„Å‘åƒTƒCƒYİ’èŠÖ”DWC_SetSendSplitMax’Ç‰ÁB
-  ‘—M‰Â”\”»’èŠÖ”DWCi_SendReliable’Ç‰Á¡
-  ŠÖ˜A•”•ª‚ÌC³¡
+  é€ä¿¡åˆ†å‰²æœ€å¤§ã‚µã‚¤ã‚ºè¨­å®šé–¢æ•°DWC_SetSendSplitMaxè¿½åŠ ã€‚
+  é€ä¿¡å¯èƒ½åˆ¤å®šé–¢æ•°DWCi_SendReliableè¿½åŠ ã€‚
+  é–¢é€£éƒ¨åˆ†ã®ä¿®æ­£ã€‚
 
   Revision 1.13  2005/09/22 10:45:01  arakit
-  ƒRƒlƒNƒVƒ‡ƒ“ƒNƒ[ƒY‚ÉAsTransInfo‚Ìconnection‚ğˆê•”ƒNƒŠƒA‚·‚é‚æ‚¤‚É‚µ‚½B
+  ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚¯ãƒ­ãƒ¼ã‚ºæ™‚ã«ã€sTransInfoã®connectionã‚’ä¸€éƒ¨ã‚¯ãƒªã‚¢ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.12  2005/09/22 08:56:21  nakatat
-  ƒRƒƒ“ƒg’Ç‰Á¡
+  ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ ã€‚
 
   Revision 1.11  2005/09/22 07:50:45  nakatat
-  óMƒ^ƒCƒ€ƒAƒEƒg’Ê’m‹@”\‚ğ’Ç‰ÁB
-  iDWC_SetUserRecvTimeoutCallbackADWC_SetRecvTimeoutTimej
-  DWCstTransportConnectionADWCstTransportInfo‚ÉŠÖ˜Aƒƒ“ƒo‚ğ’Ç‰ÁB
+  å—ä¿¡ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆé€šçŸ¥æ©Ÿèƒ½ã‚’è¿½åŠ ã€‚
+  ï¼ˆDWC_SetUserRecvTimeoutCallbackã€DWC_SetRecvTimeoutTimeï¼‰
+  DWCstTransportConnectionã€DWCstTransportInfoã«é–¢é€£ãƒ¡ãƒ³ãƒã‚’è¿½åŠ ã€‚
 
   Revision 1.10  2005/09/13 11:10:56  arakit
-  EŠù‚ÉƒNƒ[ƒY‚³‚ê‚½aid‚É‘Î‚µ‚Ä‘—M‚µ‚æ‚¤‚Æ‚µ‚½‚çƒf[ƒ^ƒAƒNƒZƒX—áŠO‚Å
-  @~‚Ü‚Á‚Ä‚µ‚Ü‚¤•s‹ï‡‚ğC³‚µ‚½B
-  EAIDƒrƒbƒgƒ}ƒbƒvæ“¾ŠÖ”   u32 DWC_GetAIDBitmap( void )A
-  @AIDw’èReliable‘—MŠÖ”   u32 DWC_SendReliableBitmap( u32 bitmap, const void* buffer, int size )A
-  @AIDw’èUnreliable‘—MŠÖ” u32 DWC_SendUnreliableBitmap( u32 bitmap, const void* buffer, int size )
-  @‚ğ—pˆÓ‚µ‚½B
+  ãƒ»æ—¢ã«ã‚¯ãƒ­ãƒ¼ã‚ºã•ã‚ŒãŸaidã«å¯¾ã—ã¦é€ä¿¡ã—ã‚ˆã†ã¨ã—ãŸã‚‰ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ä¾‹å¤–ã§
+  ã€€æ­¢ã¾ã£ã¦ã—ã¾ã†ä¸å…·åˆã‚’ä¿®æ­£ã—ãŸã€‚
+  ãƒ»AIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å–å¾—é–¢æ•°   u32 DWC_GetAIDBitmap( void )ã€
+  ã€€AIDæŒ‡å®šReliableé€ä¿¡é–¢æ•°   u32 DWC_SendReliableBitmap( u32 bitmap, const void* buffer, int size )ã€
+  ã€€AIDæŒ‡å®šUnreliableé€ä¿¡é–¢æ•° u32 DWC_SendUnreliableBitmap( u32 bitmap, const void* buffer, int size )
+  ã€€ã‚’ç”¨æ„ã—ãŸã€‚
 
   Revision 1.9  2005/09/01 12:15:00  arakit
-  ƒ}ƒbƒ`ƒ“ƒOŠ®—¹‚Ì“¯Šú’²®ˆ—‚ğ’Ç‰Á‚µ‚½B
+  ãƒãƒƒãƒãƒ³ã‚°å®Œäº†æ™‚ã®åŒæœŸèª¿æ•´å‡¦ç†ã‚’è¿½åŠ ã—ãŸã€‚
 
   Revision 1.8  2005/08/30 10:39:45  ito
-  EDWCi_SendReliable‚ğ’Ç‰Á
-  E’x‰„İ’è‚Ì•s‹ï‡‚ğC³
+  ãƒ»DWCi_SendReliableã‚’è¿½åŠ 
+  ãƒ»é…å»¶è¨­å®šã®ä¸å…·åˆã‚’ä¿®æ­£
 
   Revision 1.7  2005/08/26 08:15:23  arakit
-  EASSERT‚Æƒ‚ƒWƒ…[ƒ‹§Œä•Ï”‚Ìƒ`ƒFƒbƒN‚ğ®—‚µ‚½B
-  EŠO•”ŠÖ”DWC_ShutdownFriendsMatch()‚Ìˆø”‚ğ‚Æ‚ç‚È‚¢‚æ‚¤‚É•ÏX‚µ‚½B
-  ‚Ü‚½A“¯ŠÖ”‚©‚çŠeƒ‚ƒWƒ…[ƒ‹‚Ì§Œä•Ï”‚ğNULLƒNƒŠƒA‚·‚é‚æ‚¤‚É‚µ‚½B
-  EƒGƒ‰[ˆ—ŠÖ”‚ğ•ÏX‚µAƒGƒ‰[ƒZƒbƒgAƒGƒ‰[ƒ`ƒFƒbƒN‚ğ•K—v‚È‰ÓŠ‚É“ü‚ê‚½B
+  ãƒ»ASSERTã¨ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åˆ¶å¾¡å¤‰æ•°ã®ãƒã‚§ãƒƒã‚¯ã‚’æ•´ç†ã—ãŸã€‚
+  ãƒ»å¤–éƒ¨é–¢æ•°DWC_ShutdownFriendsMatch()ã®å¼•æ•°ã‚’ã¨ã‚‰ãªã„ã‚ˆã†ã«å¤‰æ›´ã—ãŸã€‚
+  ã¾ãŸã€åŒé–¢æ•°ã‹ã‚‰å„ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®åˆ¶å¾¡å¤‰æ•°ã‚’NULLã‚¯ãƒªã‚¢ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
+  ãƒ»ã‚¨ãƒ©ãƒ¼å‡¦ç†é–¢æ•°ã‚’å¤‰æ›´ã—ã€ã‚¨ãƒ©ãƒ¼ã‚»ãƒƒãƒˆã€ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã‚’å¿…è¦ãªç®‡æ‰€ã«å…¥ã‚ŒãŸã€‚
 
   Revision 1.6  2005/08/20 07:01:20  sasakit
-  ƒwƒbƒ_ƒCƒ“ƒNƒ‹[ƒhƒK[ƒh‚Ì‘®‚ğ“ˆê‚µ‚½B
-  bm/dwc_init.h -> bm/dwc_bm_init.h‚É•ÏX
-  ƒwƒbƒ_‚ÉCopyright‚ğ‚Â‚¯‚½B
-  \‘¢‘Ì‚Ì–¼‘O‹óŠÔ‚ğ‚Å‚«‚é‚¾‚¯ƒ‹[ƒ‹‚É‚¿‚©‚Ã‚¯‚½B
-  util_wifiidtool.h‚Ædwc_backup.h‚ÌŠÖŒW‚ğáŠ±C³B
+  ãƒ˜ãƒƒãƒ€ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚¬ãƒ¼ãƒ‰ã®æ›¸å¼ã‚’çµ±ä¸€ã—ãŸã€‚
+  bm/dwc_init.h -> bm/dwc_bm_init.hã«å¤‰æ›´
+  ãƒ˜ãƒƒãƒ€ã«Copyrightã‚’ã¤ã‘ãŸã€‚
+  æ§‹é€ ä½“ã®åå‰ç©ºé–“ã‚’ã§ãã‚‹ã ã‘ãƒ«ãƒ¼ãƒ«ã«ã¡ã‹ã¥ã‘ãŸã€‚
+  util_wifiidtool.hã¨dwc_backup.hã®é–¢ä¿‚ã‚’è‹¥å¹²ä¿®æ­£ã€‚
 
 
   $NoKeywords: $
@@ -87,55 +87,55 @@ extern "C" {
 //#pragma warn_padding on
 
 
-#define	DWC_MAGIC_STRINGS					"DT"	// Reliable‘—M‚Ìƒwƒbƒ_[‚É•t‚¯‚é•¶š—ñ	   
-#define	DWC_MAGIC_STRINGS_LEN				2		// Reliable‘—M‚Ìƒwƒbƒ_[‚É•t‚¯‚é•¶š—ñ‚Ì’·‚³	   
-#define	DWC_TRANSPORT_SEND_MAX				1465	// ˆê“x‚É‘—M‚Å‚«‚éÅ‘åƒTƒCƒY
-#define	DWC_TRANSPORT_GT2HEADER_SIZE		7		// gt2‚ª•t‚¯‚éƒwƒbƒ_‚ÌƒTƒCƒY
+#define	DWC_MAGIC_STRINGS					"DT"	// Reliableé€ä¿¡ã®ãƒ˜ãƒƒãƒ€ãƒ¼ã«ä»˜ã‘ã‚‹æ–‡å­—åˆ—	   
+#define	DWC_MAGIC_STRINGS_LEN				2		// Reliableé€ä¿¡ã®ãƒ˜ãƒƒãƒ€ãƒ¼ã«ä»˜ã‘ã‚‹æ–‡å­—åˆ—ã®é•·ã•	   
+#define	DWC_TRANSPORT_SEND_MAX				1465	// ä¸€åº¦ã«é€ä¿¡ã§ãã‚‹æœ€å¤§ã‚µã‚¤ã‚º
+#define	DWC_TRANSPORT_GT2HEADER_SIZE		7		// gt2ãŒä»˜ã‘ã‚‹ãƒ˜ãƒƒãƒ€ã®ã‚µã‚¤ã‚º
 
 /** -----------------------------------------------------------------
-  Reliable‘—M§Œä‚Ég—p
+  Reliableé€ä¿¡åˆ¶å¾¡ã«ä½¿ç”¨
   -------------------------------------------------------------------*/
 enum
 {
-	DWC_TRANSPORT_SEND_READY,						// ƒf[ƒ^‘—M‰Â”\B
-	DWC_TRANSPORT_SEND_BUSY,						// ƒf[ƒ^‘—M’†
+	DWC_TRANSPORT_SEND_READY,						// ãƒ‡ãƒ¼ã‚¿é€ä¿¡å¯èƒ½ã€‚
+	DWC_TRANSPORT_SEND_BUSY,						// ãƒ‡ãƒ¼ã‚¿é€ä¿¡ä¸­
 
 	DWC_TRANSPORT_SEND_LAST			
 };
 
 /** -----------------------------------------------------------------
-  óM§Œä‚Ég—p
+  å—ä¿¡åˆ¶å¾¡ã«ä½¿ç”¨
   -------------------------------------------------------------------*/
 enum
 {
-	DWC_TRANSPORT_RECV_NOBUF,						// óMƒoƒbƒtƒ@‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢
-	DWC_TRANSPORT_RECV_HEADER,						// ƒwƒbƒ_[óM‘Ò‚¿
-	DWC_TRANSPORT_RECV_BODY,						// ƒf[ƒ^–{‘Ì‘Ò‚¿
-    DWC_TRANSPORT_RECV_SYSTEM_DATA,					// “à•”g—pƒf[ƒ^‘Ò‚¿
+	DWC_TRANSPORT_RECV_NOBUF,						// å—ä¿¡ãƒãƒƒãƒ•ã‚¡ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„
+	DWC_TRANSPORT_RECV_HEADER,						// ãƒ˜ãƒƒãƒ€ãƒ¼å—ä¿¡å¾…ã¡
+	DWC_TRANSPORT_RECV_BODY,						// ãƒ‡ãƒ¼ã‚¿æœ¬ä½“å¾…ã¡
+    DWC_TRANSPORT_RECV_SYSTEM_DATA,					// å†…éƒ¨ä½¿ç”¨ãƒ‡ãƒ¼ã‚¿å¾…ã¡
 	DWC_TRANSPORT_RECV_ERROR,
 
 	DWC_TRANSPORT_RECV_LAST			
 };
 
 /** -----------------------------------------------------------------
-  ‘—Mƒf[ƒ^‚Ì¯•Êq
+  é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã®è­˜åˆ¥å­
   -------------------------------------------------------------------*/
 enum
 {
 	DWC_SEND_TYPE_INVALID,
-    DWC_SEND_TYPE_USERDATA,							// ƒ†[ƒU[ƒf[ƒ^
+    DWC_SEND_TYPE_USERDATA,							// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
-    // «ƒVƒXƒeƒ€ƒf[ƒ^i“à•”g—pƒf[ƒ^j—p‚Ì¯•Êq‚ğˆÈ‰º‚É•À‚×‚é
-    DWC_SEND_TYPE_MATCH_SYN,						// ƒ}ƒbƒ`ƒƒCƒNI—¹“¯Šú—pSYN
-    DWC_SEND_TYPE_MATCH_SYN_ACK,					// ƒ}ƒbƒ`ƒƒCƒNI—¹“¯Šú—pSYN-ACK
-    DWC_SEND_TYPE_MATCH_ACK,						// ƒ}ƒbƒ`ƒƒCƒNI—¹“¯Šú—pACK
-    // ª‚±‚±‚Ü‚Å
+    // â†“ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ï¼ˆå†…éƒ¨ä½¿ç”¨ãƒ‡ãƒ¼ã‚¿ï¼‰ç”¨ã®è­˜åˆ¥å­ã‚’ä»¥ä¸‹ã«ä¸¦ã¹ã‚‹
+    DWC_SEND_TYPE_MATCH_SYN,						// ãƒãƒƒãƒãƒ¡ã‚¤ã‚¯çµ‚äº†åŒæœŸç”¨SYN
+    DWC_SEND_TYPE_MATCH_SYN_ACK,					// ãƒãƒƒãƒãƒ¡ã‚¤ã‚¯çµ‚äº†åŒæœŸç”¨SYN-ACK
+    DWC_SEND_TYPE_MATCH_ACK,						// ãƒãƒƒãƒãƒ¡ã‚¤ã‚¯çµ‚äº†åŒæœŸç”¨ACK
+    // â†‘ã“ã“ã¾ã§
 
     DWC_SEND_TYPE_MAX
 };
 
 /** -----------------------------------------------------------------
-  \‘¢‘Ì‚Ìtypedef
+  æ§‹é€ ä½“ã®typedef
   -------------------------------------------------------------------*/
 typedef struct DWCstTransportInfo			DWCTransportInfo;
 typedef struct DWCstTransportHeader			DWCTransportHeader;
@@ -143,7 +143,7 @@ typedef struct DWCstTransportConnection		DWCTransportConnection;
 typedef	struct DWCstDelayedMessage			DWCDelayedMessage;
 
 /** -----------------------------------------------------------------
-  ŠÖ”‚Ìtypedef
+  é–¢æ•°ã®typedef
   -------------------------------------------------------------------*/
 typedef void	(*DWCUserSendCallback)( int size, u8 aid );
 typedef void	(*DWCUserRecvCallback)( u8 aid, u8* buffer, int size );
@@ -151,78 +151,78 @@ typedef void	(*DWCUserRecvTimeoutCallback)( u8 aid );
 typedef void	(*DWCUserPingCallback)( int latency, u8 aid );
 
 /** -----------------------------------------------------------------
-  ‘—óM‚ğ§Œä‚·‚éˆ×‚Ég—p‚·‚é\‘¢‘Ì
+  é€å—ä¿¡ã‚’åˆ¶å¾¡ã™ã‚‹ç‚ºã«ä½¿ç”¨ã™ã‚‹æ§‹é€ ä½“
   -------------------------------------------------------------------*/
-// ƒRƒlƒNƒVƒ‡ƒ“–ˆ‚ÉŠÇ—‚·‚éî•ñ
+// ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³æ¯ã«ç®¡ç†ã™ã‚‹æƒ…å ±
 struct DWCstTransportConnection
 {
-	const u8*				sendBuffer;				// ‘—Mƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^	
-	u8*						recvBuffer;				// óMƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int						recvBufferSize;			// óMƒoƒbƒtƒ@‚ÌƒTƒCƒY
+	const u8*				sendBuffer;				// é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿	
+	u8*						recvBuffer;				// å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int						recvBufferSize;			// å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 
-	int						sendingSize;			// ‘—M’†ƒTƒCƒY
-	int						recvingSize;			// óM’†ƒTƒCƒY
-    int						requestSendSize;		// ‘—M—v‹ƒTƒCƒY
-	int						requestRecvSize;		// óM—v‹ƒTƒCƒY
+	int						sendingSize;			// é€ä¿¡ä¸­ã‚µã‚¤ã‚º
+	int						recvingSize;			// å—ä¿¡ä¸­ã‚µã‚¤ã‚º
+    int						requestSendSize;		// é€ä¿¡è¦æ±‚ã‚µã‚¤ã‚º
+	int						requestRecvSize;		// å—ä¿¡è¦æ±‚ã‚µã‚¤ã‚º
 
-    u8						sendState;				// ‘—Mó‘Ô	
-	u8						recvState;				// óMó‘Ô
+    u8						sendState;				// é€ä¿¡çŠ¶æ…‹	
+	u8						recvState;				// å—ä¿¡çŠ¶æ…‹
 
-    u8						lastRecvState;			// ƒwƒbƒ_óM‘O‚ÌÅIóMó‘Ô
+    u8						lastRecvState;			// ãƒ˜ãƒƒãƒ€å—ä¿¡å‰ã®æœ€çµ‚å—ä¿¡çŠ¶æ…‹
     u8						pads[3];
-    u16						lastRecvType;			// ÅIóMƒwƒbƒ_ƒ^ƒCƒv
+    u16						lastRecvType;			// æœ€çµ‚å—ä¿¡ãƒ˜ãƒƒãƒ€ã‚¿ã‚¤ãƒ—
     
 	OSTick					previousRecvTick;
 	u32						recvTimeoutTime;
 
 #ifndef	SDK_FINALROM
 
-    u16						sendDelay;				// ‘—M‚Ì’x‰„
-    u16						recvDelay;				// óM‚Ì’x‰„    
+    u16						sendDelay;				// é€ä¿¡æ™‚ã®é…å»¶
+    u16						recvDelay;				// å—ä¿¡æ™‚ã®é…å»¶    
 
 #endif	// SDK_FINALROM
 };
 
-// ‘—óM‚Ì§Œä
+// é€å—ä¿¡ã®åˆ¶å¾¡
 struct DWCstTransportInfo
 {
-	// ƒRƒlƒNƒVƒ‡ƒ“–ˆ‚ÉŠÇ—‚·‚éî•ñ
+	// ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³æ¯ã«ç®¡ç†ã™ã‚‹æƒ…å ±
     DWCTransportConnection		connections[ DWC_MAX_CONNECTIONS ];
 
-    DWCUserSendCallback			sendCallback;			// ‘—MŠ®—¹ƒR[ƒ‹ƒoƒbƒN
-	DWCUserRecvCallback			recvCallback;			// óMŠ®—¹ƒR[ƒ‹ƒoƒbƒN
-	DWCUserRecvTimeoutCallback	recvTimeoutCallback;	// óMƒ^ƒCƒ€ƒAƒEƒgƒR[ƒ‹ƒoƒbƒN
-	DWCUserPingCallback			pingCallback;			// PingƒR[ƒ‹ƒoƒbƒN
+    DWCUserSendCallback			sendCallback;			// é€ä¿¡å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	DWCUserRecvCallback			recvCallback;			// å—ä¿¡å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	DWCUserRecvTimeoutCallback	recvTimeoutCallback;	// å—ä¿¡ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+	DWCUserPingCallback			pingCallback;			// Pingã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-	u16							sendSplitMax;			// ‘—M•ªŠ„Å‘åƒTƒCƒY
+	u16							sendSplitMax;			// é€ä¿¡åˆ†å‰²æœ€å¤§ã‚µã‚¤ã‚º
     
 #ifndef	SDK_FINALROM
 
-    MATHRandContext16			context;				// —”¶¬
-	u32							seed;					// —”¶¬
+    MATHRandContext16			context;				// ä¹±æ•°ç”Ÿæˆ
+	u32							seed;					// ä¹±æ•°ç”Ÿæˆ
 
-	DArray						delayedSend;			// ‘—M’x‰„‚ğƒGƒ~ƒ…ƒŒ[ƒg‚·‚éˆ×‚Ég—p‚·‚éƒoƒbƒtƒ@
-	DArray						delayedRecv;			// óM’x‰„‚ğƒGƒ~ƒ…ƒŒ[ƒg‚·‚éˆ×‚Ég—p‚·‚éƒoƒbƒtƒ@
+	DArray						delayedSend;			// é€ä¿¡é…å»¶ã‚’ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ãƒˆã™ã‚‹ç‚ºã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+	DArray						delayedRecv;			// å—ä¿¡é…å»¶ã‚’ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ãƒˆã™ã‚‹ç‚ºã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
 
-    u8							sendDrop;				// ‘—MƒpƒPƒbƒgƒƒX—¦
-    u8							recvDrop;				// óMƒpƒPƒbƒgƒƒX—¦
+    u8							sendDrop;				// é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆãƒ­ã‚¹ç‡
+    u8							recvDrop;				// å—ä¿¡ãƒ‘ã‚±ãƒƒãƒˆãƒ­ã‚¹ç‡
 	u8							pads[2];
     
 #endif	// SDK_FINALROM
 };	
 
 /** -----------------------------------------------------------------
-  Reliable‘—M‚Ég‚¤ƒwƒbƒ_
+  Reliableé€ä¿¡ã«ä½¿ã†ãƒ˜ãƒƒãƒ€
   -------------------------------------------------------------------*/
 struct DWCstTransportHeader
 {
-	int						size;					// ‘—MƒTƒCƒY
-    u16						type;					// ‘—Mƒf[ƒ^‚Ìƒ^ƒCƒv
-    char					magicStrings[ DWC_MAGIC_STRINGS_LEN ];	// Reliable‘—M‚Ìƒwƒbƒ_[¯•Ê‚Ìˆ×‚É•t‚¯‚é•¶š—ñ	   
+	int						size;					// é€ä¿¡ã‚µã‚¤ã‚º
+    u16						type;					// é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ã‚¿ã‚¤ãƒ—
+    char					magicStrings[ DWC_MAGIC_STRINGS_LEN ];	// Reliableé€ä¿¡ã®ãƒ˜ãƒƒãƒ€ãƒ¼è­˜åˆ¥ã®ç‚ºã«ä»˜ã‘ã‚‹æ–‡å­—åˆ—	   
 };
 
 /** -----------------------------------------------------------------
-  ’x‰„‚ÌƒGƒ~ƒ…ƒŒ[ƒg‚Ég—p‚·‚é\‘¢‘Ì
+  é…å»¶ã®ã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ãƒˆã«ä½¿ç”¨ã™ã‚‹æ§‹é€ ä½“
   -------------------------------------------------------------------*/
 struct DWCstDelayedMessage
 {
@@ -231,33 +231,33 @@ struct DWCstDelayedMessage
     u8*						message;
     int						size;
     BOOL					reliable;
-    OSTick					startTime;				// ‘—M‚ğ‚µ‚½ŠÔ
-    OSTick					delayTime;	    		// ’x‰„‚³‚¹‚éŠÔ
+    OSTick					startTime;				// é€ä¿¡ã‚’ã—ãŸæ™‚é–“
+    OSTick					delayTime;	    		// é…å»¶ã•ã›ã‚‹æ™‚é–“
 };
 
 /** -----------------------------------------------------------------
-  ŠO•”ŠÖ”		
+  å¤–éƒ¨é–¢æ•°		
   -------------------------------------------------------------------*/
-extern BOOL		DWC_SendReliable				( u8 aid, const void* buffer, int size );		// Relible‘—M
-extern u32		DWC_SendReliableBitmap			( u32 bitmap, const void* buffer, int size );	// Bitmapw’èRelible‘—M
-extern BOOL		DWC_SendUnreliable				( u8 aid, const void* buffer, int size );		// Unreliable‘—M
-extern u32		DWC_SendUnreliableBitmap		( u32 bitmap, const void* buffer, int size );	// Bitmapw’èUnreliable‘—M
-extern BOOL		DWC_Ping						( u8 aid );										// Ping’l‘ª’è
-extern BOOL		DWC_SetRecvBuffer				( u8 aid, void* recvBuffer, int size );			// óMƒoƒbƒtƒ@‚ğİ’è
-extern BOOL		DWC_SetUserSendCallback			( DWCUserSendCallback callback );				// ‘—MƒR[ƒ‹ƒoƒbƒN
-extern BOOL		DWC_SetUserRecvCallback			( DWCUserRecvCallback callback );				// óMƒR[ƒ‹ƒoƒbƒN
-extern BOOL		DWC_SetUserRecvTimeoutCallback	( DWCUserRecvTimeoutCallback callback );		// óMƒ^ƒCƒ€ƒAƒEƒgƒR[ƒ‹ƒoƒbƒN
-extern BOOL		DWC_SetRecvTimeoutTime			( u8 aid, u32 time );							// óMƒ^ƒCƒ€ƒAƒEƒgŠÔi’PˆÊƒ~ƒŠ•bj‚ğİ’è
-extern BOOL		DWC_SetUserPingCallback			( DWCUserPingCallback callback );				// Ping‘ª’èŠ®—¹ƒR[ƒ‹ƒoƒbƒN
-extern BOOL		DWC_SetSendSplitMax				( u16 sendSplitMax );							// ‘—M•ªŠ„Å‘åƒTƒCƒY‚ğİ’è
-extern BOOL		DWC_IsSendableReliable			( u8 aid );										// Reliable‘—M‰Â”\”»’èŠÖ”
+extern BOOL		DWC_SendReliable				( u8 aid, const void* buffer, int size );		// Relibleé€ä¿¡
+extern u32		DWC_SendReliableBitmap			( u32 bitmap, const void* buffer, int size );	// BitmapæŒ‡å®šRelibleé€ä¿¡
+extern BOOL		DWC_SendUnreliable				( u8 aid, const void* buffer, int size );		// Unreliableé€ä¿¡
+extern u32		DWC_SendUnreliableBitmap		( u32 bitmap, const void* buffer, int size );	// BitmapæŒ‡å®šUnreliableé€ä¿¡
+extern BOOL		DWC_Ping						( u8 aid );										// Pingå€¤æ¸¬å®š
+extern BOOL		DWC_SetRecvBuffer				( u8 aid, void* recvBuffer, int size );			// å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’è¨­å®š
+extern BOOL		DWC_SetUserSendCallback			( DWCUserSendCallback callback );				// é€ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+extern BOOL		DWC_SetUserRecvCallback			( DWCUserRecvCallback callback );				// å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+extern BOOL		DWC_SetUserRecvTimeoutCallback	( DWCUserRecvTimeoutCallback callback );		// å—ä¿¡ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+extern BOOL		DWC_SetRecvTimeoutTime			( u8 aid, u32 time );							// å—ä¿¡ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“ï¼ˆå˜ä½ãƒŸãƒªç§’ï¼‰ã‚’è¨­å®š
+extern BOOL		DWC_SetUserPingCallback			( DWCUserPingCallback callback );				// Pingæ¸¬å®šå®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+extern BOOL		DWC_SetSendSplitMax				( u16 sendSplitMax );							// é€ä¿¡åˆ†å‰²æœ€å¤§ã‚µã‚¤ã‚ºã‚’è¨­å®š
+extern BOOL		DWC_IsSendableReliable			( u8 aid );										// Reliableé€ä¿¡å¯èƒ½åˆ¤å®šé–¢æ•°
 
 #ifndef	SDK_FINALROM
 
-extern BOOL		DWC_SetSendDelay				( u16 delay, u8 aid );							// ‘—M‘¤‚É’x‰„‚ğİ’è
-extern BOOL		DWC_SetRecvDelay				( u16 delay, u8 aid );							// óM‘¤‚É’x‰„‚ğİ’è
-extern BOOL		DWC_SetSendDrop					( u8 drop, u8 aid );							// ‘—M‘¤ƒpƒPƒbƒgƒƒX—¦‚ğİ’è
-extern BOOL		DWC_SetRecvDrop					( u8 drop, u8 aid );							// óM‘¤ƒpƒPƒbƒgƒƒX—¦‚ğİ’è
+extern BOOL		DWC_SetSendDelay				( u16 delay, u8 aid );							// é€ä¿¡å´ã«é…å»¶ã‚’è¨­å®š
+extern BOOL		DWC_SetRecvDelay				( u16 delay, u8 aid );							// å—ä¿¡å´ã«é…å»¶ã‚’è¨­å®š
+extern BOOL		DWC_SetSendDrop					( u8 drop, u8 aid );							// é€ä¿¡å´ãƒ‘ã‚±ãƒƒãƒˆãƒ­ã‚¹ç‡ã‚’è¨­å®š
+extern BOOL		DWC_SetRecvDrop					( u8 drop, u8 aid );							// å—ä¿¡å´ãƒ‘ã‚±ãƒƒãƒˆãƒ­ã‚¹ç‡ã‚’è¨­å®š
 
 #else
 

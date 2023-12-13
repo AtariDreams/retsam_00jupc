@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	ec_eff.h
- * @brief	ŠÈ’P‚Èà–¾‚ð‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜Žã‚’æ›¸ã
  * @author	goto
- * @date	2006.01.17(‰Î)
+ * @date	2006.01.17(ç«)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -17,7 +17,7 @@
 
 // -----------------------------------------
 //
-//	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg ŠÇ—\‘¢‘Ì
+//	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ ç®¡ç†æ§‹é€ ä½“
 //
 // -----------------------------------------
 typedef struct _TEC_EFF_SYS * ECE_PTR;
@@ -27,68 +27,68 @@ typedef struct _TEC_EFF_MANAGER * ECEM_PTR;
 
 // -----------------------------------------
 //
-//	ŠO•”Žw’èˆø”—p \‘¢‘Ì( â‘Î‘‚¦‚é‚©‚ç )
+//	å¤–éƒ¨æŒ‡å®šå¼•æ•°ç”¨ æ§‹é€ ä½“( çµ¶å¯¾å¢—ãˆã‚‹ã‹ã‚‰ )
 //
 // -----------------------------------------
-/// ƒ}ƒl[ƒWƒƒ[‰Šú‰»—p
+/// ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–ç”¨
 typedef struct {
 	
 	int dmy;
 	
 } TECM_ADD_PARAM;
 
-/// ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg‰Šú‰»—p
+/// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆåˆæœŸåŒ–ç”¨
 typedef struct {
 
-	int	eff_no;			///< ƒGƒtƒFƒNƒg”Ô† EECE_EFF_NO ŽQÆ
-	int	camera_type;	///< ƒJƒƒ‰‚Ìƒ^ƒCƒv GF_CAMERA	ŽQÆ
+	int	eff_no;			///< ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç•ªå· EECE_EFF_NO å‚ç…§
+	int	camera_type;	///< ã‚«ãƒ¡ãƒ©ã®ã‚¿ã‚¤ãƒ— GF_CAMERA	å‚ç…§
 	
 } TEC_ADD_PARAM;
 
 
 /*
 	camera_type
-	GF_CAMERA_PERSPECTIV	// “§Ž‹ŽË‰e
-	GF_CAMERA_ORTHO			// ³ŽË‰e
+	GF_CAMERA_PERSPECTIV	// é€è¦–å°„å½±
+	GF_CAMERA_ORTHO			// æ­£å°„å½±
 */
 
 
 // -----------------------------------------
 //
-//	ƒGƒtƒFƒNƒg‚Ì”Ô†’è‹`
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç•ªå·å®šç¾©
 //
 // -----------------------------------------
 #define ECE_DEF_SPA_START	(P_EC_001_1_SPA)
 
 enum EECE_EFF_NO {
 	
-	ECE_SPA_GRASS_001			= P_EC_001_1_SPA,			///< ŽÅ¶
+	ECE_SPA_GRASS_001			= P_EC_001_1_SPA,			///< èŠç”Ÿ
 	ECE_SPA_GRASS_002,
-	ECE_SPA_WATER_001			= P_EC_002_1_SPA,			///< …ã
+	ECE_SPA_WATER_001			= P_EC_002_1_SPA,			///< æ°´ä¸Š
 	ECE_SPA_WATER_002,
-	ECE_SPA_GRAVEL_001			= P_EC_003_1_SPA,			///< »—˜
+	ECE_SPA_GRAVEL_001			= P_EC_003_1_SPA,			///< ç ‚åˆ©
 	ECE_SPA_GRAVEL_002,
-	ECE_SPA_FLOOR_001			= P_EC_004_1_SPA,			///< °
+	ECE_SPA_FLOOR_001			= P_EC_004_1_SPA,			///< åºŠ
 	ECE_SPA_FLOOR_002,
-	ECE_SPA_ROCK_SURFACE_001	= P_EC_005_1_SPA,			///< Šâ”§
+	ECE_SPA_ROCK_SURFACE_001	= P_EC_005_1_SPA,			///< å²©è‚Œ
 	ECE_SPA_ROCK_SURFACE_002,
-	ECE_SPA_SNOWFIELD_001		= P_EC_006_1_SPA,			///< áŒ´
+	ECE_SPA_SNOWFIELD_001		= P_EC_006_1_SPA,			///< é›ªåŽŸ
 	ECE_SPA_SNOWFIELD_002,
-	ECE_SPA_CAVE_001			= P_EC_007_1_SPA,			///< “´ŒA
+	ECE_SPA_CAVE_001			= P_EC_007_1_SPA,			///< æ´žçªŸ
 	ECE_SPA_CAVE_002,
-	ECE_SPA_POOL_BALL_001		= P_EC_008_1_SPA,			///< ‚Ý‚¸‚½‚Ü‚è
+	ECE_SPA_POOL_BALL_001		= P_EC_008_1_SPA,			///< ã¿ãšãŸã¾ã‚Š
 	ECE_SPA_POOL_BALL_002,
-	ECE_SPA_ON_THE_ICE_001		= P_EC_009_1_SPA,			///< •Xã
+	ECE_SPA_ON_THE_ICE_001		= P_EC_009_1_SPA,			///< æ°·ä¸Š
 	ECE_SPA_ON_THE_ICE_002,
-	ECE_SPA_SANDS_001			= P_EC_010_1_SPA,			///< »’n
+	ECE_SPA_SANDS_001			= P_EC_010_1_SPA,			///< ç ‚åœ°
 	ECE_SPA_SANDS_002,
-	ECE_SPA_BOG_001				= P_EC_011_1_SPA,			///< À’n
+	ECE_SPA_BOG_001				= P_EC_011_1_SPA,			///< æ²¼åœ°
 	ECE_SPA_BOG_002,	
 };
 
 // -----------------------------------------
 //
-//	ŠO•”ŽQÆŠÖ”
+//	å¤–éƒ¨å‚ç…§é–¢æ•°
 //
 // -----------------------------------------
 /// ECE_MANAGER
@@ -100,26 +100,26 @@ extern void		ECEM_Free(ECEM_PTR ecmp);
 extern void		ECEM_Skip(ECEM_PTR ecmp);
 
 /// ECE
-extern ECE_PTR	ECE_Init(int heap_area, TEC_ADD_PARAM* ecap);	///< ‰Šú‰»
-extern void		ECE_Call(ECE_PTR ecp);							///< ŽÀs
-extern BOOL		ECE_EndCheck(ECE_PTR ecp);						///< I—¹ƒ`ƒFƒbƒN
-extern void		ECE_Free(ECE_PTR ecp);							///< ‰ð•úˆ—
+extern ECE_PTR	ECE_Init(int heap_area, TEC_ADD_PARAM* ecap);	///< åˆæœŸåŒ–
+extern void		ECE_Call(ECE_PTR ecp);							///< å®Ÿè¡Œ
+extern BOOL		ECE_EndCheck(ECE_PTR ecp);						///< çµ‚äº†ãƒã‚§ãƒƒã‚¯
+extern void		ECE_Free(ECE_PTR ecp);							///< è§£æ”¾å‡¦ç†
 
 /*
 
-	/// ƒ}ƒl[ƒWƒƒ—˜—p‚Ì’ˆÓ“_
+	/// ãƒžãƒãƒ¼ã‚¸ãƒ£åˆ©ç”¨ã®æ³¨æ„ç‚¹
 	
-	ECEM_Init		‰Šú‰»
-	«	
-	ECEM_Load		ƒGƒtƒFƒNƒgƒ[ƒh(Žg‚¤‚à‚Ì‚ðŽg‚¤‚¾‚¯ƒ[ƒh)
-	«	
-	ECE_Call		ŽÀs
-	«	
-	ECE_EndCheck	I—¹‘Ò‚¿
-	«	
-	ECEM_Free		ƒ}ƒl[ƒWƒƒ‚àAECE‚à‚·‚×‚Ä”jŠü
+	ECEM_Init		åˆæœŸåŒ–
+	â†“	
+	ECEM_Load		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ­ãƒ¼ãƒ‰(ä½¿ã†ã‚‚ã®ã‚’ä½¿ã†ã ã‘ãƒ­ãƒ¼ãƒ‰)
+	â†“	
+	ECE_Call		å®Ÿè¡Œ
+	â†“	
+	ECE_EndCheck	çµ‚äº†å¾…ã¡
+	â†“	
+	ECEM_Free		ãƒžãƒãƒ¼ã‚¸ãƒ£ã‚‚ã€ECEã‚‚ã™ã¹ã¦ç ´æ£„
 	
-	¦3ŒÂˆÈã‚ð“®‚©‚·ê‡AECEM_ECE_Free‚Å”jŠü‚µ‚Ä‹ó‚«‚ðì‚é
+	â€»3å€‹ä»¥ä¸Šã‚’å‹•ã‹ã™å ´åˆã€ECEM_ECE_Freeã§ç ´æ£„ã—ã¦ç©ºãã‚’ä½œã‚‹
 
 */
 

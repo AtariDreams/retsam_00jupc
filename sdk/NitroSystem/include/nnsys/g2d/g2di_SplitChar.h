@@ -22,22 +22,22 @@ extern "C" {
 #endif
 
 
-// �����؂�o���R�[���o�b�N
+// 文字切り出しコールバック
 typedef u16 (*NNSiG2dSplitCharCallback)(const void** ppChar);
 
 
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dGetChar*
 
-  Description:  NNSiG2dGetCharCallback �^�̕����R�[�h�؂�o���֐��ł��B
-                �o�C�g�X�g���[������ŏ��̕����̕����R�[�h���擾����ƂƂ���
-                �X�g���[���|�C���^�����̕����Ɉړ������܂��B
+  Description:  NNSiG2dGetCharCallback 型の文字コード切り出し関数です。
+                バイトストリームから最初の文字の文字コードを取得するとともに
+                ストリームポインタを次の文字に移動させます。
 
-  Arguments:    ppChar: �o�C�g�z��ւ̃|�C���^���i�[���Ă���o�b�t�@�ւ̃|�C���^�B
-                        �֐�����Ԃ�ƁA���̃|�C���^�̐�̃o�b�t�@�ɂ�
-                        ���̕����̐擪�ւ̃|�C���^���i�[����܂��B
+  Arguments:    ppChar: バイト配列へのポインタを格納しているバッファへのポインタ。
+                        関数から返ると、このポインタの先のバッファには
+                        次の文字の先頭へのポインタが格納されます。
 
-  Returns:      *ppChar �̍ŏ��̕����̕����R�[�h�B
+  Returns:      *ppChar の最初の文字の文字コード。
  *---------------------------------------------------------------------------*/
 u16 NNSi_G2dSplitCharUTF16(const void** ppChar);
 u16 NNSi_G2dSplitCharUTF8(const void** ppChar);

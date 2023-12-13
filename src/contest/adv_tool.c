@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	adv_tool.c
- * @brief	ƒRƒ“ƒeƒXƒg‘S•”–å‹¤’Êƒc[ƒ‹
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¨éƒ¨é–€å…±é€šãƒ„ãƒ¼ãƒ«
  * @author	matsuda
- * @date	2006.02.02(–Ø)
+ * @date	2006.02.02(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -44,16 +44,16 @@ FS_EXTERN_OVERLAY(ol_imageclip);
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///‘•”õƒAƒCƒeƒ€‚É‚æ‚Á‚Ä”­¶‚·‚éBP‚Ö‚Ì”{—¦Œø‰ÊFƒƒCƒ“‚ÌƒRƒ“ƒeƒXƒgƒ^ƒCƒv(100‚¾‚Æ“™”{)
+///è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã«ã‚ˆã£ã¦ç™ºç”Ÿã™ã‚‹BPã¸ã®å€çŽ‡åŠ¹æžœï¼šãƒ¡ã‚¤ãƒ³ã®ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(100ã ã¨ç­‰å€)
 #define BP_ITEM_BAIRITU_MAIN		(110)
-///‘•”õƒAƒCƒeƒ€‚É‚æ‚Á‚Ä”­¶‚·‚éBP‚Ö‚Ì”{—¦Œø‰ÊFƒTƒu‚ÌƒRƒ“ƒeƒXƒgƒ^ƒCƒv(100‚¾‚Æ“™”{)
+///è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã«ã‚ˆã£ã¦ç™ºç”Ÿã™ã‚‹BPã¸ã®å€çŽ‡åŠ¹æžœï¼šã‚µãƒ–ã®ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(100ã ã¨ç­‰å€)
 #define BP_ITEM_BAIRITU_SUB			(105)
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void FlowerMoveTask(TCB_PTR tcb, void *work);
 static void ContestSimpleSetUp(void);
@@ -61,34 +61,34 @@ static void ADV_FlashEffectMain(TCB_PTR tcb, void *work);
 
 
 //==============================================================================
-//	ƒAƒNƒ^[ƒwƒbƒ_
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 //==============================================================================
-///‰Ô•¿–Í—lƒAƒNƒ^[ƒwƒbƒ_
+///èŠ±æŸ„æ¨¡æ§˜ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S FlowerObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 0, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		0,	//ƒLƒƒƒ‰
-		0,	//ƒpƒŒƒbƒg
-		0,	//ƒZƒ‹
-		0,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 0, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		0,	//ã‚­ãƒ£ãƒ©
+		0,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		0,	//ã‚»ãƒ«
+		0,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	3,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	3,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///‰Ô•¿–Í—l‚ÌÀ•W‚ÆƒAƒjƒƒV[ƒPƒ“ƒX”Ô†
+///èŠ±æŸ„æ¨¡æ§˜ã®åº§æ¨™ã¨ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 static const struct{
-	s16 x;				///<À•WX
-	s16 y;				///<À•WY
-	s16 rotation;		///<‰ñ“]‘¬“x
-	u8 anm_seq;			///<‰ŠúƒAƒjƒƒV[ƒPƒ“ƒX
+	s16 x;				///<åº§æ¨™X
+	s16 y;				///<åº§æ¨™Y
+	s16 rotation;		///<å›žè»¢é€Ÿåº¦
+	u8 anm_seq;			///<åˆæœŸã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 }FlowerPos[] = {
 	{2 * 8 - 3, 0x15 * 8 + 4, -0x180, 1},
 	{4 * 8 + 5, 0x15 * 8 - 4, 0x300, 1},
@@ -104,7 +104,7 @@ static const struct{
 /**
  * @brief   
  *
- * ProcData‚ÅŽw’è‚µ‚½ˆÈŠO‚ÌƒI[ƒo[ƒŒƒC‚Ìƒ[ƒh‚ðs‚¤
+ * ProcDataã§æŒ‡å®šã—ãŸä»¥å¤–ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã®ãƒ­ãƒ¼ãƒ‰ã‚’è¡Œã†
  *
  */
 //--------------------------------------------------------------
@@ -113,16 +113,16 @@ static void NitroStaticInit(void)
 	Overlay_Load(FS_OVERLAY_ID(bc_common), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 	Overlay_Load(FS_OVERLAY_ID(bc_common2), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 
-	//ƒCƒ[ƒWƒNƒŠƒbƒvƒI[ƒo[ƒŒƒCŽÀs
+	//ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤å®Ÿè¡Œ
 	Overlay_Load(FS_OVERLAY_ID(ol_imageclip), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg—p3DBG‰Šú‰»ŠÖ”
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨3DBGåˆæœŸåŒ–é–¢æ•°
  * 
- * @param   ƒq[ƒvID
+ * @param   ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 GF_G3DMAN * ADV_Contest_3D_Init(int heap_id)
@@ -136,28 +136,28 @@ GF_G3DMAN * ADV_Contest_3D_Init(int heap_id)
 
 static void ContestSimpleSetUp(void)
 {
-	// ‚R‚cŽg—p–Ê‚ÌÝ’è(•\Ž¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(1);
 
-	// ŠeŽí•`‰æƒ‚[ƒh‚ÌÝ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜Ž)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( FALSE );
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚ÌÝ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0,0,0),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
 
-	// ƒrƒ…[ƒ|[ƒg‚ÌÝ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg—p3DBGI—¹ˆ—
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨3DBGçµ‚äº†å‡¦ç†
  *
  * @param   g3Dman		
  */
@@ -169,24 +169,24 @@ void ADV_Contest_3D_Exit(GF_G3DMAN *g3Dman)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚ÌƒtƒHƒ“ƒgOAM‚ðì¬‚·‚é
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’ä½œæˆã™ã‚‹
  *
- * @param   heap_id			ƒq[ƒvID
- * @param   bgl				BGL‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp				crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   fontoam_sys		ƒtƒHƒ“ƒgƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   ret_fontoam		¶¬‚µ‚½ƒtƒHƒ“ƒgOAM‘ã“üæ
- * @param   ret_cma			¶¬‚µ‚½ƒtƒHƒ“ƒgOAM‚ÌƒLƒƒƒ‰—Ìˆæî•ñ‘ã“üæ
- * @param   str				•¶Žš—ñ
- * @param   font_type		ƒtƒHƒ“ƒgƒ^ƒCƒv(FONT_SYSTEM“™)
- * @param   color			ƒtƒHƒ“ƒgƒJƒ‰[\¬
- * @param   pal_offset		ƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg
- * @param   pal_id			“o˜^ŠJŽnƒpƒŒƒbƒgID
- * @param   x				À•WX
- * @param   y				À•WY
- * @param   pos_center  	FALSE(X¶’[À•W) or TRUE(X’†SÀ•W)
- * @param   bg_pri			BGƒvƒ‰ƒCƒIƒŠƒeƒB
- * @param   soft_pri		ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param   heap_id			ãƒ’ãƒ¼ãƒ—ID
+ * @param   bgl				BGLã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp				crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   fontoam_sys		ãƒ•ã‚©ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   ret_fontoam		ç”Ÿæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆOAMä»£å…¥å…ˆ
+ * @param   ret_cma			ç”Ÿæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆOAMã®ã‚­ãƒ£ãƒ©é ˜åŸŸæƒ…å ±ä»£å…¥å…ˆ
+ * @param   str				æ–‡å­—åˆ—
+ * @param   font_type		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—(FONT_SYSTEMç­‰)
+ * @param   color			ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼æ§‹æˆ
+ * @param   pal_offset		ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   pal_id			ç™»éŒ²é–‹å§‹ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param   x				åº§æ¨™X
+ * @param   y				åº§æ¨™Y
+ * @param   pos_center  	FALSE(Xå·¦ç«¯åº§æ¨™) or TRUE(Xä¸­å¿ƒåº§æ¨™)
+ * @param   bg_pri			BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @param   soft_pri		ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  */
 //--------------------------------------------------------------
 void ADV_FontOamCreate(int heap_id, GF_BGL_INI *bgl, CATS_RES_PTR crp, 
@@ -202,7 +202,7 @@ void ADV_FontOamCreate(int heap_id, GF_BGL_INI *bgl, CATS_RES_PTR crp,
 	int font_len, char_len;
 	int margin = 0;
 	
-	//•¶Žš—ñ‚Ìƒhƒbƒg•‚©‚çAŽg—p‚·‚éƒLƒƒƒ‰”‚ðŽZo‚·‚é
+	//æ–‡å­—åˆ—ã®ãƒ‰ãƒƒãƒˆå¹…ã‹ã‚‰ã€ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©æ•°ã‚’ç®—å‡ºã™ã‚‹
 	{
 		font_len = FontProc_GetPrintStrWidth(font_type, str, margin);
 		char_len = font_len / 8;
@@ -211,7 +211,7 @@ void ADV_FontOamCreate(int heap_id, GF_BGL_INI *bgl, CATS_RES_PTR crp,
 		}
 	}
 
-	//BMPì¬
+	//BMPä½œæˆ
 	{
 		GF_BGL_BmpWinInit(&bmpwin);
 		GF_BGL_BmpWinObjAdd(bgl, &bmpwin, char_len, 16 / 8, 0, 0);
@@ -223,7 +223,7 @@ void ADV_FontOamCreate(int heap_id, GF_BGL_INI *bgl, CATS_RES_PTR crp,
 	vram_size = FONTOAM_NeedCharSize(&bmpwin, NNS_G2D_VRAM_TYPE_2DMAIN,  heap_id);
 	CharVramAreaAlloc(vram_size, CHARM_CONT_AREACONT, NNS_G2D_VRAM_TYPE_2DMAIN, &cma);
 	
-	//À•WˆÊ’uC³
+	//åº§æ¨™ä½ç½®ä¿®æ­£
 	if(pos_center == TRUE){
 		x -= font_len / 2;
 	}
@@ -248,7 +248,7 @@ void ADV_FontOamCreate(int heap_id, GF_BGL_INI *bgl, CATS_RES_PTR crp,
 	}
 	FONTOAM_SetMat(fontoam, x, y);
 	
-	//‰ð•úˆ—
+	//è§£æ”¾å‡¦ç†
 	GF_BGL_BmpWinDel(&bmpwin);
 	
 	fontact->fontoam = fontoam;
@@ -258,8 +258,8 @@ void ADV_FontOamCreate(int heap_id, GF_BGL_INI *bgl, CATS_RES_PTR crp,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒHƒ“ƒgOAM‚ðíœ‚·‚é
- * @param   fontact		ƒtƒHƒ“ƒgƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’å‰Šé™¤ã™ã‚‹
+ * @param   fontact		ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void ADV_FontOamDelete(ADV_FONTACT *fontact)
@@ -270,17 +270,17 @@ void ADV_FontOamDelete(ADV_FONTACT *fontact)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒHƒ“ƒgOAM‚ÌÀ•W‚ðƒZƒbƒg‚·‚é
+ * @brief   ãƒ•ã‚©ãƒ³ãƒˆOAMã®åº§æ¨™ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   fontact			ƒtƒHƒ“ƒgƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   x				À•WX
- * @param   y				À•WY
- * @param   pos_center		FALSE(X¶’[À•W) or TRUE(X’†SÀ•W)
+ * @param   fontact			ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   x				åº§æ¨™X
+ * @param   y				åº§æ¨™Y
+ * @param   pos_center		FALSE(Xå·¦ç«¯åº§æ¨™) or TRUE(Xä¸­å¿ƒåº§æ¨™)
  */
 //--------------------------------------------------------------
 void ADV_FontOamPosSet(ADV_FONTACT *fontact, int x, int y, int pos_center)
 {
-	//À•WˆÊ’uC³
+	//åº§æ¨™ä½ç½®ä¿®æ­£
 	if(pos_center == TRUE){
 		x -= fontact->len / 2;
 	}
@@ -291,14 +291,14 @@ void ADV_FontOamPosSet(ADV_FONTACT *fontact, int x, int y, int pos_center)
 
 //--------------------------------------------------------------
 /**
- * @brief   R”»–¼‚ðSTRBUF‚ÌŒ`‚ÅŽæ“¾‚·‚é
+ * @brief   å¯©åˆ¤åã‚’STRBUFã®å½¢ã§å–å¾—ã™ã‚‹
  *
- * @param   judge_name_id		R”»–¼ID
- * @param   heap_id				ƒq[ƒvID
+ * @param   judge_name_id		å¯©åˆ¤åID
+ * @param   heap_id				ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  R”»–¼‚ª“ü‚Á‚½STRBUF‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  å¯©åˆ¤åãŒå…¥ã£ãŸSTRBUFã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ¦–ß‚è’l‚ÌSTRBUF‚ÍŒÄ‚Ño‚µ‘¤‚Å‰ð•ú‚µ‚Ä‚â‚éŽ–I(STRBUF_Delete)
+ * â€»æˆ»ã‚Šå€¤ã®STRBUFã¯å‘¼ã³å‡ºã—å´ã§è§£æ”¾ã—ã¦ã‚„ã‚‹äº‹ï¼(STRBUF_Delete)
  */
 //--------------------------------------------------------------
 STRBUF * ADV_MSGDAT_GetJudgeName(u32 judge_name_id, u32 heap_id)
@@ -315,9 +315,9 @@ STRBUF * ADV_MSGDAT_GetJudgeName(u32 judge_name_id, u32 heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒNƒŠƒbƒv‚Ì“¾“_ŒvŽZ
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   heap_id		ˆêŽž“I‚ÉŽg—p‚·‚éƒeƒ“ƒ|ƒ‰ƒŠƒq[ƒvID
+ * @brief   ã‚¯ãƒªãƒƒãƒ—ã®å¾—ç‚¹è¨ˆç®—
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   heap_id		ä¸€æ™‚çš„ã«ä½¿ç”¨ã™ã‚‹ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 void ADV_ClipScoreCalc(CONTEST_SYSTEM *consys, int heap_id)
@@ -325,20 +325,20 @@ void ADV_ClipScoreCalc(CONTEST_SYSTEM *consys, int heap_id)
 	u8 *theme_score;
 	int i;
 	
-	OS_TPrintf("Œ»Ý‚Ìƒe[ƒ}%d\n", consys->c_game.theme);
+	OS_TPrintf("ç¾åœ¨ã®ãƒ†ãƒ¼ãƒžï¼%d\n", consys->c_game.theme);
 	
 	theme_score = IMC_ACCE_ScoreDataGet(heap_id, consys->c_game.theme);
 	for(i = 0; i < BREEDER_MAX; i++){
 		consys->c_game.score[i].clip = IMC_ACCE_ScoreGet(consys->c_game.imc_data[i], theme_score);
-		OS_TPrintf("ƒuƒŠ[ƒ_[%d‚ÌƒNƒŠƒbƒvŠl“¾ƒ|ƒCƒ“ƒg%d\n", i, consys->c_game.score[i].clip);
+		OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%dã®ã‚¯ãƒªãƒƒãƒ—ç²å¾—ãƒã‚¤ãƒ³ãƒˆï¼%d\n", i, consys->c_game.score[i].clip);
 	}
 	sys_FreeMemoryEz(theme_score);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   BP‚Ì“¾“_ŒvŽZ
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   BPã®å¾—ç‚¹è¨ˆç®—
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void ADV_BPScoreCalc(CONTEST_SYSTEM *consys)
@@ -423,24 +423,24 @@ void ADV_BPScoreCalc(CONTEST_SYSTEM *consys)
 			}
 			break;
 		default:
-			GF_ASSERT(0 && "•s–¾‚Èƒ^ƒCƒv‚Å‚·");
+			GF_ASSERT(0 && "ä¸æ˜Žãªã‚¿ã‚¤ãƒ—ã§ã™");
 			return;
 		}
 		fur = PokeParaGet(consys->c_game.pp[i], ID_PARA_fur, NULL);
 		
 		bp = main + ((sub_1 + sub_2 + fur) / 2);
-		OS_TPrintf("ƒuƒŠ[ƒ_[%d”Ô‚ÌBP%d\n", i, bp);
+		OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%dç•ªã®BPï¼%d\n", i, bp);
 		
 		bp = bp * bairitu / 100;
 		consys->c_game.score[i].bp = bp;
-		OS_TPrintf("ƒAƒCƒeƒ€”{—¦Œø‰Ê=%dAC³Œã‚ÌBP%d\n", bairitu, bp);
+		OS_TPrintf("ã‚¢ã‚¤ãƒ†ãƒ å€çŽ‡åŠ¹æžœ=%dã€ä¿®æ­£å¾Œã®BPï¼%d\n", bairitu, bp);
 	}
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰Ô•¿–Í—l‚ÌƒŠƒ\[ƒXƒ[ƒh‚·‚é
+ * @brief   èŠ±æŸ„æ¨¡æ§˜ã®ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  *
  * @param   csp		
  * @param   crp		
@@ -471,7 +471,7 @@ void ADV_FlowerResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, PALETTE_FADE_PTR
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰Ô•¿–Í—lƒŠƒ\[ƒX‚ð‰ð•ú‚·‚é
+ * @brief   èŠ±æŸ„æ¨¡æ§˜ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
  * @param   crp		
  */
 //--------------------------------------------------------------
@@ -493,7 +493,7 @@ void ADV_FlowerResourceFree(CATS_RES_PTR crp, int char_id, int pltt_id, int cell
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰Ô•¿–Í—lƒAƒNƒ^[‚ð‘S‚Ä¶¬‚·‚é
+ * @brief   èŠ±æŸ„æ¨¡æ§˜ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å…¨ã¦ç”Ÿæˆã™ã‚‹
  *
  * @param   flower		
  * @param   csp		
@@ -502,8 +502,8 @@ void ADV_FlowerResourceFree(CATS_RES_PTR crp, int char_id, int pltt_id, int cell
  * @param   pltt_id		
  * @param   cell_id		
  * @param   anm_id		
- * @param   pal_offset	ƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg
- * @param   tcb_pri		TCBƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param   pal_offset	ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   tcb_pri		TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  */
 //--------------------------------------------------------------
 void ADV_FlowerActorAddAll(FLOWER_WORK *flower, CATS_SYS_PTR csp, CATS_RES_PTR crp,	
@@ -532,14 +532,14 @@ void ADV_FlowerActorAddAll(FLOWER_WORK *flower, CATS_SYS_PTR csp, CATS_RES_PTR c
 		CATS_ObjectUpdate(flower->cap[i]->act);
 	}
 	
-	//“®ìƒ^ƒXƒN¶¬
+	//å‹•ä½œã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	flower->tcb = TCB_Add(FlowerMoveTask, flower, tcb_pri);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰Ô•¿–Í—lƒAƒNƒ^[‚ð‘S‚Äíœ‚·‚é
- * @param   flower		‰Ô•¿–Í—lƒAƒNƒ^[§Œä\‘¢‘Ì
+ * @brief   èŠ±æŸ„æ¨¡æ§˜ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
+ * @param   flower		èŠ±æŸ„æ¨¡æ§˜ã‚¢ã‚¯ã‚¿ãƒ¼åˆ¶å¾¡æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 void ADV_FlowerActorDelAll(FLOWER_WORK *flower)
@@ -555,9 +555,9 @@ void ADV_FlowerActorDelAll(FLOWER_WORK *flower)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰Ô•¿–Í—l“®ìƒ^ƒXƒN
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		‰Ô•¿–Í—l§Œä\‘¢‘Ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   èŠ±æŸ„æ¨¡æ§˜å‹•ä½œã‚¿ã‚¹ã‚¯
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		èŠ±æŸ„æ¨¡æ§˜åˆ¶å¾¡æ§‹é€ ä½“ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void FlowerMoveTask(TCB_PTR tcb, void *work)
@@ -573,15 +573,15 @@ static void FlowerMoveTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰‚Ìƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒgƒ^ƒXƒN‚ð¶¬‚·‚é
+ * @brief   ã‚«ãƒ¡ãƒ©ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   heap_id		ƒq[ƒvID
- * @param   pfd			PFD‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tbl			ƒtƒ‰ƒbƒVƒ…ƒEƒFƒCƒgƒe[ƒuƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tbl_num		ƒtƒ‰ƒbƒVƒ…ƒEƒFƒCƒgƒe[ƒuƒ‹‚Ì”z—ñ—v‘f”
- * @param   loop		ƒ‹[ƒv‰ñ”(ADV_FLASH_EFF_LOOP_ETERNITY‚ðŽw’è‚·‚é‚Æ–³ŒÀƒ‹[ƒv)
+ * @param   heap_id		ãƒ’ãƒ¼ãƒ—ID
+ * @param   pfd			PFDã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tbl			ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¦ã‚§ã‚¤ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tbl_num		ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¦ã‚§ã‚¤ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®é…åˆ—è¦ç´ æ•°
+ * @param   loop		ãƒ«ãƒ¼ãƒ—å›žæ•°(ADV_FLASH_EFF_LOOP_ETERNITYã‚’æŒ‡å®šã™ã‚‹ã¨ç„¡é™ãƒ«ãƒ¼ãƒ—)
  *
- * @retval  ¶¬‚µ‚½ƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒgƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 ADV_FLASH_EFF_WORK * ADV_FlashEffectTaskSet(int heap_id, PALETTE_FADE_PTR pfd, 
@@ -603,8 +603,8 @@ ADV_FLASH_EFF_WORK * ADV_FlashEffectTaskSet(int heap_id, PALETTE_FADE_PTR pfd,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰‚Ìƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒgƒ^ƒXƒNíœ
- * @param   flash		ƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒgƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚«ãƒ¡ãƒ©ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¹ã‚¯å‰Šé™¤
+ * @param   flash		ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void ADV_FlashEffectTaskDel(ADV_FLASH_EFF_WORK *flash)
@@ -616,9 +616,9 @@ void ADV_FlashEffectTaskDel(ADV_FLASH_EFF_WORK *flash)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰‚Ìƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒg‚ª”­“®’†‚©ƒ`ƒFƒbƒN
+ * @brief   ã‚«ãƒ¡ãƒ©ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒç™ºå‹•ä¸­ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @retval  TRUEFƒGƒtƒFƒNƒg‚Í”­“®‚µ‚Ä‚¢‚È‚¢AFALSE:ƒGƒtƒFƒNƒg”­“®’†
+ * @retval  TRUEï¼šã‚¨ãƒ•ã‚§ã‚¯ãƒˆã¯ç™ºå‹•ã—ã¦ã„ãªã„ã€FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºå‹•ä¸­
  */
 //--------------------------------------------------------------
 BOOL ADV_FlashEffectCheck(void)
@@ -634,10 +634,10 @@ BOOL ADV_FlashEffectCheck(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰‚Ìƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒg“®ìƒ^ƒXƒN
+ * @brief   ã‚«ãƒ¡ãƒ©ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒgƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ADV_FlashEffectMain(TCB_PTR tcb, void *work)

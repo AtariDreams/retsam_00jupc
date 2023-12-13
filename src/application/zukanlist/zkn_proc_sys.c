@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_proc_sys.c
- *	@brief		}ŠÓˆ—•ªŠòƒVƒXƒeƒ€
+ *	@brief		å›³é‘‘å‡¦ç†åˆ†å²ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2006.01.17
  *
@@ -18,74 +18,74 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	}ŠÓƒvƒƒZƒXƒVƒXƒeƒ€‚Ìˆ—‚Ì—¬‚ê
+//	å›³é‘‘ãƒ—ãƒ­ã‚»ã‚¹ã‚·ã‚¹ãƒ†ãƒ ã®å‡¦ç†ã®æµã‚Œ
 //=====================================
 enum{
-	ZKN_PROC_MAINSEQ_DO_INIT,			// ƒf[ƒ^•ÏXˆ—‚Ì‰Šú‰»
-	ZKN_PROC_MAINSEQ_DRAW_INIT,			// •`‰æˆ—‰Šú‰»•ƒtƒF[ƒhƒCƒ“
-	ZKN_PROC_MAINSEQ_MAIN,				// ƒƒCƒ“
-	ZKN_PROC_MAINSEQ_DRAW_DELETE,		// •`‰æˆ—”jŠü•ƒtƒF[ƒhƒAƒEƒg
-	ZKN_PROC_MAINSEQ_DO_DELETE,			// ƒf[ƒ^•ÏXˆ—”jŠü
-	ZKN_PROC_MAINSEQ_ALL_END,			// ‘S‚Ä‚Ìˆ—‚ªI‚í‚è‚Ü‚µ‚½
+	ZKN_PROC_MAINSEQ_DO_INIT,			// ãƒ‡ãƒ¼ã‚¿å¤‰æ›´å‡¦ç†ã®åˆæœŸåŒ–
+	ZKN_PROC_MAINSEQ_DRAW_INIT,			// æç”»å‡¦ç†åˆæœŸåŒ–ï¼†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+	ZKN_PROC_MAINSEQ_MAIN,				// ãƒ¡ã‚¤ãƒ³
+	ZKN_PROC_MAINSEQ_DRAW_DELETE,		// æç”»å‡¦ç†ç ´æ£„ï¼†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+	ZKN_PROC_MAINSEQ_DO_DELETE,			// ãƒ‡ãƒ¼ã‚¿å¤‰æ›´å‡¦ç†ç ´æ£„
+	ZKN_PROC_MAINSEQ_ALL_END,			// å…¨ã¦ã®å‡¦ç†ãŒçµ‚ã‚ã‚Šã¾ã—ãŸ
 };
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXƒVƒXƒeƒ€
+ *		ãƒ—ãƒ­ã‚»ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 typedef struct _ZKN_PROC_SYS{
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^
-	void* p_glb_data;	// ŠÇ—Ò‚©‚çó‚¯æ‚éƒOƒ[ƒoƒ‹ƒf[ƒ^
-	void* p_glb_draw;	// ŠÇ—Ò‚©‚çó‚¯æ‚éƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	void* p_glb_data;	// ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	void* p_glb_draw;	// ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 
-	// ‘S‘Ì‚Ìˆ—‚Ì—¬‚ê
+	// å…¨ä½“ã®å‡¦ç†ã®æµã‚Œ
 	int	main_seq;
 
-	// ƒf[ƒ^“ü—Í•XVˆ—
-	ZKN_PROC_DO_DATA	do_data;						// “à•”ƒ[ƒN
-	ZKN_PROC_DO_FUNC	do_func[ ZKN_PROC_FUNC_NUM ];	// Šeˆ—ŠÖ”
+	// ãƒ‡ãƒ¼ã‚¿å…¥åŠ›ï¼†æ›´æ–°å‡¦ç†
+	ZKN_PROC_DO_DATA	do_data;						// å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
+	ZKN_PROC_DO_FUNC	do_func[ ZKN_PROC_FUNC_NUM ];	// å„å‡¦ç†é–¢æ•°
 
-	// •`‰æˆ—
-	ZKN_PROC_DRAW_DATA	draw_data;						// “à•”ƒ[ƒN
-	ZKN_PROC_DRAW_FUNC	draw_func[ ZKN_PROC_FUNC_NUM ];	// Šeˆ—ŠÖ”
+	// æç”»å‡¦ç†
+	ZKN_PROC_DRAW_DATA	draw_data;						// å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
+	ZKN_PROC_DRAW_FUNC	draw_func[ ZKN_PROC_FUNC_NUM ];	// å„å‡¦ç†é–¢æ•°
 
-	// ‚»‚Ì‘¼
-	int heap;				// g—p‚·‚éƒq[ƒv
+	// ãã®ä»–
+	int heap;				// ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 } ZKN_PROC_SYS;
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void InitProcDoData( ZKN_PROC_DO_DATA* data );
@@ -97,18 +97,18 @@ static int DoFuncProcDraw( ZKN_PROC_DRAW_FUNC func, void* p_glb_draw, ZKN_PROC_D
 //-----------------------------------------------------------------------------
 /**
  *
- *				À‘••”
+ *				å®Ÿè£…éƒ¨
  * 
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒƒ‚ƒŠŠm•Û
+ *	@brief	ãƒ¡ãƒ¢ãƒªç¢ºä¿
  *
- *	@param	heap	ƒq[ƒv
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
- *	@return	Šm•Û‚µ‚Ä‰Šú‰»Ï‚İ‚ÌƒvƒƒZƒXƒVƒXƒeƒ€
+ *	@return	ç¢ºä¿ã—ã¦åˆæœŸåŒ–æ¸ˆã¿ã®ãƒ—ãƒ­ã‚»ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
  *
  *
  */
@@ -130,10 +130,10 @@ ZKN_PROC_SYS_PTR ZKN_PROC_MemoryAlloc( int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰Šú‰»ˆ—
+ *	@brief	åˆæœŸåŒ–å‡¦ç†
  *
- *	@param	proc		ƒvƒƒZƒXƒVƒXƒeƒ€
- *	@param	cp_init		‰Šú‰»ƒf[ƒ^
+ *	@param	proc		ãƒ—ãƒ­ã‚»ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -145,19 +145,19 @@ void ZKN_PROC_Init( ZKN_PROC_SYS_PTR proc, const ZKN_PROC_INIT* cp_init )
 	GF_ASSERT( proc );
 	GF_ASSERT( cp_init );
 
-	// I—¹‚µ‚Ä‚¢‚È‚¢‚Ì‚É‰Šú‰»‚µ‚æ‚¤‚Æ‚µ‚½
+	// çµ‚äº†ã—ã¦ã„ãªã„ã®ã«åˆæœŸåŒ–ã—ã‚ˆã†ã¨ã—ãŸ
 	GF_ASSERT( ZKN_PROC_EndCheck(proc) );
 
-	// ƒvƒƒZƒXƒf[ƒ^‚Ì‘ã“ü
-	proc->p_glb_data = cp_init->p_glb_data;		// ƒOƒ[ƒoƒ‹ƒf[ƒ^
-	proc->p_glb_draw = cp_init->p_glb_draw;		// ƒOƒ[ƒoƒ‹ƒf[ƒ^
-	proc->main_seq	 = ZKN_PROC_FUNC_INIT;		// ƒƒCƒ“ƒV[ƒPƒ“ƒX
-	InitProcDoData( &proc->do_data );			// ƒf[ƒ^•ÏXˆ——pƒ[ƒN
+	// ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ä»£å…¥
+	proc->p_glb_data = cp_init->p_glb_data;		// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	proc->p_glb_draw = cp_init->p_glb_draw;		// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	proc->main_seq	 = ZKN_PROC_FUNC_INIT;		// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	InitProcDoData( &proc->do_data );			// ãƒ‡ãƒ¼ã‚¿å¤‰æ›´å‡¦ç†ç”¨ãƒ¯ãƒ¼ã‚¯
 	proc->do_data.heap = proc->heap;
-	InitProcDrawData( &proc->draw_data );		// •`‰æˆ——pƒ[ƒN
+	InitProcDrawData( &proc->draw_data );		// æç”»å‡¦ç†ç”¨ãƒ¯ãƒ¼ã‚¯
 	proc->draw_data.heap = proc->heap;
 
-	// ŠÖ”ƒ|ƒCƒ“ƒ^‘ã“ü
+	// é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ä»£å…¥
 	proc->do_func[ ZKN_PROC_FUNC_INIT ] = cp_init->cp_do_func[ ZKN_PROC_FUNC_INIT ];
 	proc->do_func[ ZKN_PROC_FUNC_MAIN ] = cp_init->cp_do_func[ ZKN_PROC_FUNC_MAIN ];
 	proc->do_func[ ZKN_PROC_FUNC_DELETE ] = cp_init->cp_do_func[ ZKN_PROC_FUNC_DELETE ];
@@ -169,12 +169,12 @@ void ZKN_PROC_Init( ZKN_PROC_SYS_PTR proc, const ZKN_PROC_INIT* cp_init )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒƒCƒ“ˆ—
+ *	@brief	ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	proc	ƒvƒƒZƒXƒVƒXƒeƒ€
+ *	@param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	ZKN_PROC_TRUE		‘S‚Ä”jŠü‚µ‚Äˆ—‚ªI‚í‚è‚Ü‚µ‚½B
- *	@retval	ZKN_PROC_FALSE		³í
+ *	@retval	ZKN_PROC_TRUE		å…¨ã¦ç ´æ£„ã—ã¦å‡¦ç†ãŒçµ‚ã‚ã‚Šã¾ã—ãŸã€‚
+ *	@retval	ZKN_PROC_FALSE		æ­£å¸¸
  *
  *
  */
@@ -188,7 +188,7 @@ int ZKN_PROC_Main( ZKN_PROC_SYS_PTR proc )
 	switch( proc->main_seq ){
 
 	//-------------------------------------
-	// ƒf[ƒ^•ÏXˆ—‚Ì‰Šú‰»
+	// ãƒ‡ãƒ¼ã‚¿å¤‰æ›´å‡¦ç†ã®åˆæœŸåŒ–
 	//=====================================
 	case ZKN_PROC_MAINSEQ_DO_INIT:			
 		ret = DoFuncProcDo( proc->do_func[ ZKN_PROC_FUNC_INIT ], &proc->do_data, proc->p_glb_data );
@@ -199,19 +199,19 @@ int ZKN_PROC_Main( ZKN_PROC_SYS_PTR proc )
 		break;
 		
 	//-------------------------------------
-	// •`‰æˆ—‰Šú‰»•ƒtƒF[ƒhƒCƒ“
+	// æç”»å‡¦ç†åˆæœŸåŒ–ï¼†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 	//=====================================
 	case ZKN_PROC_MAINSEQ_DRAW_INIT:			
 		break;
 		
 	//-------------------------------------
-	// ƒƒCƒ“
+	// ãƒ¡ã‚¤ãƒ³
 	//=====================================
 	case ZKN_PROC_MAINSEQ_MAIN:				
-		// ƒf[ƒ^•ÏX
+		// ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
 		ret = DoFuncProcDo( proc->do_func[ ZKN_PROC_FUNC_MAIN ], &proc->do_data, proc->p_glb_data );
 
-		// ƒf[ƒ^•ÏX‚ªI‚í‚è‚È‚çI‚í‚è
+		// ãƒ‡ãƒ¼ã‚¿å¤‰æ›´ãŒçµ‚ã‚ã‚Šãªã‚‰çµ‚ã‚ã‚Š
 		if( ret == ZKN_PROC_TRUE ){
 			proc->main_seq++;
 			proc->do_data.seq = 0;
@@ -220,13 +220,13 @@ int ZKN_PROC_Main( ZKN_PROC_SYS_PTR proc )
 		break;
 		
 	//-------------------------------------
-	// •`‰æˆ—”jŠü•ƒtƒF[ƒhƒAƒEƒg
+	// æç”»å‡¦ç†ç ´æ£„ï¼†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	//=====================================
 	case ZKN_PROC_MAINSEQ_DRAW_DELETE:		
 		break;
 		
 	//-------------------------------------
-	// ƒf[ƒ^•ÏXˆ—”jŠü
+	// ãƒ‡ãƒ¼ã‚¿å¤‰æ›´å‡¦ç†ç ´æ£„
 	//=====================================
 	case ZKN_PROC_MAINSEQ_DO_DELETE:			
 		ret = DoFuncProcDo( proc->do_func[ ZKN_PROC_FUNC_DELETE ], &proc->do_data, proc->p_glb_data );
@@ -236,13 +236,13 @@ int ZKN_PROC_Main( ZKN_PROC_SYS_PTR proc )
 		break;
 		
 	//-------------------------------------
-	//	‘Sˆ—•ÏX
+	//	å…¨å‡¦ç†å¤‰æ›´
 	//=====================================
-	case ZKN_PROC_MAINSEQ_ALL_END:			// ‘S‚Ä‚Ìˆ—‚ªI‚í‚è‚Ü‚µ‚½
+	case ZKN_PROC_MAINSEQ_ALL_END:			// å…¨ã¦ã®å‡¦ç†ãŒçµ‚ã‚ã‚Šã¾ã—ãŸ
 		return ZKN_PROC_TRUE;
 
 	default:
-		// ‚±‚±‚É‚­‚é‚Ì‚Í‚¨‚©‚µ‚¢
+		// ã“ã“ã«ãã‚‹ã®ã¯ãŠã‹ã—ã„
 		GF_ASSERT(0);
 		break;
 	}
@@ -252,12 +252,12 @@ int ZKN_PROC_Main( ZKN_PROC_SYS_PTR proc )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æˆ—
+ *	@brief	æç”»å‡¦ç†
  *
- *	@param	proc	ƒvƒƒZƒXƒf[ƒ^
+ *	@param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		‘S‚Ä”jŠü‚µ‚Äˆ—‚ªI‚í‚è‚Ü‚µ‚½B
- *	@retval	ZKN_PROC_FALSE		³í
+ *	@retval	ZKN_PROC_TRUE		å…¨ã¦ç ´æ£„ã—ã¦å‡¦ç†ãŒçµ‚ã‚ã‚Šã¾ã—ãŸã€‚
+ *	@retval	ZKN_PROC_FALSE		æ­£å¸¸
  */
 //-----------------------------------------------------------------------------
 int ZKN_PROC_Draw( ZKN_PROC_SYS_PTR proc )
@@ -269,13 +269,13 @@ int ZKN_PROC_Draw( ZKN_PROC_SYS_PTR proc )
 	switch( proc->main_seq ){
 
 	//-------------------------------------
-	// ƒf[ƒ^•ÏXˆ—‚Ì‰Šú‰»
+	// ãƒ‡ãƒ¼ã‚¿å¤‰æ›´å‡¦ç†ã®åˆæœŸåŒ–
 	//=====================================
 	case ZKN_PROC_MAINSEQ_DO_INIT:			
 		break;
 		
 	//-------------------------------------
-	// •`‰æˆ—‰Šú‰»•ƒtƒF[ƒhƒCƒ“
+	// æç”»å‡¦ç†åˆæœŸåŒ–ï¼†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 	//=====================================
 	case ZKN_PROC_MAINSEQ_DRAW_INIT:			
 		ret = DoFuncProcDraw( proc->draw_func[ ZKN_PROC_FUNC_INIT ], proc->p_glb_draw, &proc->draw_data, proc->p_glb_data, &proc->do_data );
@@ -286,16 +286,16 @@ int ZKN_PROC_Draw( ZKN_PROC_SYS_PTR proc )
 		break;
 		
 	//-------------------------------------
-	// ƒƒCƒ“
+	// ãƒ¡ã‚¤ãƒ³
 	//=====================================
 	case ZKN_PROC_MAINSEQ_MAIN:				
 		
-		// •`‰æ
+		// æç”»
 		DoFuncProcDraw( proc->draw_func[ ZKN_PROC_FUNC_MAIN ], proc->p_glb_draw, &proc->draw_data, proc->p_glb_data, &proc->do_data );
 		break;
 		
 	//-------------------------------------
-	// •`‰æˆ—”jŠü•ƒtƒF[ƒhƒAƒEƒg
+	// æç”»å‡¦ç†ç ´æ£„ï¼†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 	//=====================================
 	case ZKN_PROC_MAINSEQ_DRAW_DELETE:		
 		ret = DoFuncProcDraw( proc->draw_func[ ZKN_PROC_FUNC_DELETE ], proc->p_glb_draw, &proc->draw_data, proc->p_glb_data, &proc->do_data );
@@ -305,19 +305,19 @@ int ZKN_PROC_Draw( ZKN_PROC_SYS_PTR proc )
 		break;
 		
 	//-------------------------------------
-	// ƒf[ƒ^•ÏXˆ—”jŠü
+	// ãƒ‡ãƒ¼ã‚¿å¤‰æ›´å‡¦ç†ç ´æ£„
 	//=====================================
 	case ZKN_PROC_MAINSEQ_DO_DELETE:			
 		break;
 		
 	//-------------------------------------
-	//	‘Sˆ—•ÏX
+	//	å…¨å‡¦ç†å¤‰æ›´
 	//=====================================
-	case ZKN_PROC_MAINSEQ_ALL_END:			// ‘S‚Ä‚Ìˆ—‚ªI‚í‚è‚Ü‚µ‚½
+	case ZKN_PROC_MAINSEQ_ALL_END:			// å…¨ã¦ã®å‡¦ç†ãŒçµ‚ã‚ã‚Šã¾ã—ãŸ
 		return ZKN_PROC_TRUE;
 
 	default:
-		// ‚±‚±‚É‚­‚é‚Ì‚Í‚¨‚©‚µ‚¢
+		// ã“ã“ã«ãã‚‹ã®ã¯ãŠã‹ã—ã„
 		GF_ASSERT(0);
 		break;
 	}
@@ -327,10 +327,10 @@ int ZKN_PROC_Draw( ZKN_PROC_SYS_PTR proc )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ““®ìlock
+ *	@brief	ãƒ¡ã‚¤ãƒ³å‹•ä½œlock
  *
- *	@param	proc	ƒvƒƒbƒNƒƒCƒ“
- *	@param	lock	“®ìlockƒtƒ‰ƒO
+ *	@param	proc	ãƒ—ãƒ­ãƒƒã‚¯ãƒ¡ã‚¤ãƒ³
+ *	@param	lock	å‹•ä½œlockãƒ•ãƒ©ã‚°
  *
  *	@return	none
  */
@@ -344,9 +344,9 @@ void ZKN_PROC_MoveLock( ZKN_PROC_SYS_PTR proc, BOOL lock )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	I—¹ƒŠƒNƒGƒXƒg‚ğo‚·
+ *	@brief	çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
  *
- *	@param	proc	ƒvƒƒZƒXƒVƒXƒeƒ€
+ *	@param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
@@ -363,12 +363,12 @@ void ZKN_PROC_EndReq( ZKN_PROC_SYS_PTR proc )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	I—¹ƒ`ƒFƒbƒN
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	proc	ƒ`ƒFƒbƒN‚·‚éƒvƒƒZƒXƒVƒXƒeƒ€
+ *	@param	proc	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ—ãƒ­ã‚»ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	‘±s’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	ç¶šè¡Œä¸­
  *
  *
  */
@@ -386,14 +386,14 @@ BOOL ZKN_PROC_EndCheck( ZKN_PROC_SYS_PTR proc )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ““®ì‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ¡ã‚¤ãƒ³å‹•ä½œã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	proc	ƒvƒƒZƒXƒVƒXƒeƒ€
+ *	@param	proc	ãƒ—ãƒ­ã‚»ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	TRUE	ƒƒCƒ““®ì’†
- *	@retval	FALSE	‚»‚êˆÈŠO‚Ìˆ—‚ğ‚µ‚Ä‚¢‚Ü‚·
+ *	@retval	TRUE	ãƒ¡ã‚¤ãƒ³å‹•ä½œä¸­
+ *	@retval	FALSE	ãã‚Œä»¥å¤–ã®å‡¦ç†ã‚’ã—ã¦ã„ã¾ã™
  *
- *	ƒƒCƒ““®ì‚Æ‚ÍƒtƒF[ƒhƒCƒ“I—¹Œê‚Ìˆ—‚Å‚·
+ *	ãƒ¡ã‚¤ãƒ³å‹•ä½œã¨ã¯ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³çµ‚äº†èªã®å‡¦ç†ã§ã™
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_PROC_MainMoveCheck( ZKN_PROC_SYS_PTR proc )
@@ -412,15 +412,15 @@ BOOL ZKN_PROC_MainMoveCheck( ZKN_PROC_SYS_PTR proc )
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒf[ƒ^•ÏXˆ——pƒ[ƒN‚ğg—p‘O‚Ìó‘Ô‚É‚·‚é
+ *	@brief	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´å‡¦ç†ç”¨ãƒ¯ãƒ¼ã‚¯ã‚’ä½¿ç”¨å‰ã®çŠ¶æ…‹ã«ã™ã‚‹
  *
- *	@param	data	ƒf[ƒ^
+ *	@param	data	ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -437,9 +437,9 @@ static void InitProcDoData( ZKN_PROC_DO_DATA* data )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æ—pƒ[ƒN‚ğg—p‘O‚Ìó‘Ô‚É‚·‚é
+ *	@brief	æç”»ç”¨ãƒ¯ãƒ¼ã‚¯ã‚’ä½¿ç”¨å‰ã®çŠ¶æ…‹ã«ã™ã‚‹
  *
- *	@param	data	ƒ[ƒN
+ *	@param	data	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -455,14 +455,14 @@ static void InitProcDrawData( ZKN_PROC_DRAW_DATA* data )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒf[ƒ^•ÏXˆ—@ŠÖ”Às
+ *	@brief	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´å‡¦ç†ã€€é–¢æ•°å®Ÿè¡Œ
  *
- *	@param	func			ŠÖ”
- *	@param	p_do_data		ƒf[ƒ^•ÏXˆ—ƒ[ƒN
- *	@param	p_glb_data		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	func			é–¢æ•°
+ *	@param	p_do_data		ãƒ‡ãƒ¼ã‚¿å¤‰æ›´å‡¦ç†ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb_data		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Ö
- *	@retval	ZKN_PROC_FALSE		³í
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸
+ *	@retval	ZKN_PROC_FALSE		æ­£å¸¸
  *
  *
  */
@@ -483,16 +483,16 @@ static int DoFuncProcDo( ZKN_PROC_DO_FUNC func, ZKN_PROC_DO_DATA* p_do_data, voi
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æˆ—ŠÖ”‚ğÀs
+ *	@brief	æç”»å‡¦ç†é–¢æ•°ã‚’å®Ÿè¡Œ
  *
- *	@param	func			ŠÖ”ƒ|ƒCƒ“ƒ^
- *	@param	p_glb_draw		•`‰æ—pƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	p_draw_data		•`‰æˆ—ƒ[ƒN
- *	@param	cp_glb_data		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_do_data		“à•”ƒ[ƒN 
+ *	@param	func			é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+ *	@param	p_glb_draw		æç”»ç”¨ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_draw_data		æç”»å‡¦ç†ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb_data		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_do_data		å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ 
  *
- *	@retval	ZKN_PROC_TRUE		‘S‚Ä”jŠü‚µ‚Äˆ—‚ªI‚í‚è‚Ü‚µ‚½B
- *	@retval	ZKN_PROC_FALSE		³í
+ *	@retval	ZKN_PROC_TRUE		å…¨ã¦ç ´æ£„ã—ã¦å‡¦ç†ãŒçµ‚ã‚ã‚Šã¾ã—ãŸã€‚
+ *	@retval	ZKN_PROC_FALSE		æ­£å¸¸
  *
  *
  */

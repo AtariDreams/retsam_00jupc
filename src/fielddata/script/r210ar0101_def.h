@@ -1,11 +1,11 @@
 #ifndef _R210AR0101_DEF_H_
 #define _R210AR0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R210AR0101_FLAG_CHANGE		(1)
 #define	SCRID_R210AR0101_FARMER		(2)
 #define	SCRID_R210AR0101_WAITRESS		(3)
 #define	SCRID_R210AR0101_OLDMAN2		(4)
-#define	SCRID_R210AR0101_DATA_MAX		(4)		//最大数
+#define	SCRID_R210AR0101_DATA_MAX		(4)		//譛螟ｧ謨ｰ
 
 #endif //_R210AR0101_DEF_H_

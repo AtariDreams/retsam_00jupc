@@ -1,4 +1,4 @@
-/*�j�ꂽ���E �]�[���ʃu���b�N�z�u�擪���W*/
+/*破れた世界 ゾーン別ブロック配置先頭座標*/
 /*{ [ZoneID],[X],[Y],[Z] },*/
 #define DATA_FIELD_TORNWORLD_ZONE_BLOCK_MAX (10)
 static const int DATA_FieldTornWorldZoneBlockPosTable[DATA_FIELD_TORNWORLD_ZONE_BLOCK_MAX][4] =

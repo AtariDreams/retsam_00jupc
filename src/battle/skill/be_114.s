@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_114.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			114�@���̋Z���g�p�������ɐ퓬�ɏo�Ă����|�P�����͂R�^�[����ɐ퓬�s�\�ɂȂ�
- *				 �i�P�x�|�P�������������߂�ƌ��ʂ͉��������j
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			114　この技を使用した時に戦闘に出ていたポケモンは３ターン後に戦闘不能になる
+ *				 （１度ポケモンを引っ込めると効果は解除される）
  *
  *@author	HisashiSogabe
  *@data		2006.01.27

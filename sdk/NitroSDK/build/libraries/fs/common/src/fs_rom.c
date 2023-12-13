@@ -36,10 +36,10 @@
   do-indent.
 
   Revision 1.31  2005/02/18 07:53:19  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.30  2005/02/18 07:26:49  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.29  2004/11/12 07:03:27  yosizaki
   change wireless-downloaded program mounts empty archive.
@@ -146,18 +146,18 @@
 
 #if defined(FS_IMPLEMENT)
 
-/* g—p‚·‚é DMA ƒ`ƒƒƒ“ƒlƒ‹ */
+/* ä½¿ç”¨ã™ã‚‹ DMA ãƒãƒ£ãƒ³ãƒãƒ« */
 static u32 fsi_default_dma_no;
 
-/* ƒJ[ƒh / ƒJ[ƒgƒŠƒbƒW‚ÌƒƒbƒN ID */
+/* ã‚«ãƒ¼ãƒ‰ / ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®ãƒ­ãƒƒã‚¯ ID */
 s32     fsi_card_lock_id;
 
-/* ƒAƒ^ƒbƒ`‚³‚ê‚½ƒI[ƒo[ƒŒƒCƒe[ƒuƒ‹ */
+/* ã‚¢ã‚¿ãƒƒãƒã•ã‚ŒãŸã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ†ãƒ¼ãƒ–ãƒ« */
 CARDRomRegion fsi_ovt9;
 CARDRomRegion fsi_ovt7;
 
 
-/* ROM ƒA[ƒJƒCƒu */
+/* ROM ã‚¢ãƒ¼ã‚«ã‚¤ãƒ– */
 FSArchive fsi_arc_rom;
 
 #endif /* FS_IMPLEMENT */
@@ -168,7 +168,7 @@ FSArchive fsi_arc_rom;
 
 #if defined(FS_IMPLEMENT)
 
-/* ”ñ“¯Šú‚Ìƒy[ƒW’PˆÊ CARD ˆ—‚ªŠ®—¹‚µ‚½‚Æ‚«‚Ìˆ— */
+/* éåŒæœŸã®ãƒšãƒ¼ã‚¸å˜ä½ CARD å‡¦ç†ãŒå®Œäº†ã—ãŸã¨ãã®å‡¦ç† */
 static void FSi_OnRomReadDone(void *p_arc)
 {
     FS_NotifyArchiveAsyncEnd((FSArchive *)p_arc,
@@ -362,11 +362,11 @@ u32 FS_TryLoadTable(void *p_mem, u32 size)
 /*---------------------------------------------------------------------------*
   Name:         FS_CreateFileFromRom
 
-  Description:  w’è‚Ì CARD-ROM —Ìˆæ‚ğƒ}ƒbƒv‚µ‚½ƒtƒ@ƒCƒ‹‚ğˆê“I‚É¶¬.
+  Description:  æŒ‡å®šã® CARD-ROM é ˜åŸŸã‚’ãƒãƒƒãƒ—ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¸€æ™‚çš„ã«ç”Ÿæˆ.
 
-  Arguments:    p_file           ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹‚ğŠi”[‚·‚é FSFile \‘¢‘Ì
-                offset           READ ‚Ì‘ÎÛ‚Æ‚È‚é CARD-ROM —Ìˆææ“ªƒIƒtƒZƒbƒg.
-                size             ‘ÎÛ—Ìˆæ‚Ì offset ‚©‚ç‚ÌƒoƒCƒgƒTƒCƒY
+  Arguments:    p_file           ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’æ ¼ç´ã™ã‚‹ FSFile æ§‹é€ ä½“
+                offset           READ ã®å¯¾è±¡ã¨ãªã‚‹ CARD-ROM é ˜åŸŸå…ˆé ­ã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                size             å¯¾è±¡é ˜åŸŸã® offset ã‹ã‚‰ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

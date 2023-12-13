@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>PRC_GetInputPatternStrokes</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">PRC_GetInputPatternStrokes</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
   <dd><PRE><CODE>#include &lt;nitro/prc.h&gt;
 
@@ -22,30 +22,30 @@ void* PRC_GetInputPatternStrokes(
 </CODE></PRE></dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <table border="1" width="100%">
   <tbody>
     <tr>
       <td width="13%"><em><strong><font face="Courier New">strokes</font></strong></em></td>
-      <td width="87%">�_���ۑ����� <A href="../stroke/PRCStrokes.html">PRCStrokes</A> �\���̂ւ̃|�C���^</td>
+      <td width="87%">点列を保存する <A href="../stroke/PRCStrokes.html">PRCStrokes</A> 構造体へのポインタ</td>
     </tr>
     <tr>
       <td width="13%"><em><strong><font face="Courier New">input</font></strong></em></td>
-      <td width="87%">���̓p�^�[���ւ̃|�C���^</td>
+      <td width="87%">入力パターンへのポインタ</td>
     </tr>
   </tbody>
 </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
+<h2>返り値</h2>
+<p>なし。</p>
 
-<H2>����</H2>
-<P><CODE><A href="PRC_InitInputPattern.html">PRC_InitInputPattern*</A></CODE> �Ő��`���ꂽ���̓p�^�[�����琮�`��̓_��f�[�^�����o���܂��B���ʂ� <CODE>strokes</CODE> ���ł͓��̓p�^�[���\���̂��\������_����ւ̃|�C���^�������܂��̂ŁA<CODE>strokes</CODE> �̓_��f�[�^�����������Ă͂����܂���B</P>
+<H2>説明</H2>
+<P><CODE><A href="PRC_InitInputPattern.html">PRC_InitInputPattern*</A></CODE> で整形された入力パターンから整形後の点列データを取り出します。結果の <CODE>strokes</CODE> 内では入力パターン構造体を構成する点列情報へのポインタが張られますので、<CODE>strokes</CODE> の点列データを書き換えてはいけません。</P>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="PRC_InitInputPattern.html">PRC_InitInputPattern*</A><br>
 </CODE></p>
 
-<H2>����</H2>
-<P>2004/06/23 ����</P>
+<H2>履歴</H2>
+<P>2004/06/23 初版</P>
 </body>
 </html>

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pms_word.c
- * @bfief	�ȈՉ�b�p�P��f�[�^��舵��
+ * @bfief	簡易会話用単語データ取り扱い
  * @author	taya
  * @date	06.01.20
  */
@@ -19,7 +19,7 @@
 #include "pms_word.res"
 
 
-#define    WORDNUM_MASK		(0x0fff)	// ���4bit�̓��[�J���C�Y�p�^����12bit���P��i���o�[
+#define    WORDNUM_MASK		(0x0fff)	// 上位4bitはローカライズ用／下位12bitが単語ナンバー
 
 
 struct _PMSW_MAN {
@@ -100,7 +100,7 @@ void PMSW_MAN_CopyStr( PMSW_MAN* man, PMS_WORD  pms_word, STRBUF* buf )
 
 //------------------------------------------------------------------
 /**
- * �}�l�[�W��������A�P��𕶎��񉻂���
+ * マネージャを介さず、単語を文字列化する
  *
  * @param   pms_word		
  * @param   dst		
@@ -126,7 +126,7 @@ void PMSW_GetStr( PMS_WORD pms_word, STRBUF* dst )
 
 //------------------------------------------------------------------
 /**
- * GMM, �P���ID����A�P��R�[�h�𐶐�
+ * GMM, 単語のIDから、単語コードを生成
  *
  * @param   gmmID		
  * @param   wordID		
@@ -162,7 +162,7 @@ PMS_WORD  PMSW_GetWordNumberByGmmID( u32 gmmID, u32 wordID )
  * @param   fileID		
  * @param   wordID		
  *
- * @retval	TRUE:����擾�B�@FALSE:pms_word���s��
+ * @retval	TRUE:正常取得。　FALSE:pms_wordが不正
  */
 //------------------------------------------------------------------
 BOOL GetWordSorceID( PMS_WORD pms_word, u32* fileID, u32* wordID )
@@ -185,7 +185,7 @@ BOOL GetWordSorceID( PMS_WORD pms_word, u32* fileID, u32* wordID )
 	return FALSE;
 }
 //======================================================================================
-// �Z�[�u�f�[�^�Ǘ�
+// セーブデータ管理
 //======================================================================================
 
 #include "savedata/savedata.h"
@@ -200,7 +200,7 @@ struct _PMSW_SAVEDATA{
 
 //------------------------------------------------------------------
 /**
- * �y�Z�[�u�f�[�^�V�X�e���z�T�C�Y�擾
+ * 【セーブデータシステム】サイズ取得
  *
  * @retval  u32		
  */
@@ -211,9 +211,9 @@ u32 PMSW_GetSaveDataSize(void)
 }
 //------------------------------------------------------------------
 /**
- * �y�Z�[�u�f�[�^�V�X�e���z�̈揉����
+ * 【セーブデータシステム】領域初期化
  *
- * @param   wk_ptr		�̈�|�C���^
+ * @param   wk_ptr		領域ポインタ
  *
  */
 //------------------------------------------------------------------
@@ -237,7 +237,7 @@ void PMSW_InitSaveData( void* wk_ptr )
 	wk->aisatsuBit = 0;
 	wk->nankaiBit = 0;
 
-	// ������̂������͏�����ԂŃZ�b�g���Ă���
+	// 自国語のあいさつは初期状態でセットしておく
 	for(i=0; i<NELEMS(langTbl); i++)
 	{
 		if( PM_LANG == langTbl[i].lang_code )
@@ -254,7 +254,7 @@ void PMSW_InitSaveData( void* wk_ptr )
 
 //------------------------------------------------------------------
 /**
- * �ȈՉ�b�P��Z�[�u�f�[�^�擾
+ * 簡易会話単語セーブデータ取得
  *
  * @param   sv		
  *
@@ -272,12 +272,12 @@ PMSW_SAVEDATA* SaveData_GetPMSW( SAVEDATA* sv )
 
 //------------------------------------------------------------------
 /**
- * ����̓�����Ƃ΂��o���Ă��邩�`�F�b�N
+ * 特定の難解ことばを覚えているかチェック
  *
- * @param   saveData		�ȈՉ�b�P��Z�[�u�f�[�^�|�C���^
- * @param   id				�P��ID�i0�`31�j
+ * @param   saveData		簡易会話単語セーブデータポインタ
+ * @param   id				単語ID（0〜31）
  *
- * @retval  BOOL			TRUE�Ȃ�o���Ă���
+ * @retval  BOOL			TRUEなら覚えている
  */
 //------------------------------------------------------------------
 BOOL PMSW_GetNankaiFlag( const PMSW_SAVEDATA* saveData, u32 id )
@@ -287,12 +287,12 @@ BOOL PMSW_GetNankaiFlag( const PMSW_SAVEDATA* saveData, u32 id )
 
 //------------------------------------------------------------------
 /**
- * ������Ƃ΂������_���łЂƂo��������
+ * 難解ことばをランダムでひとつ覚えさせる
  *
- * @param   saveData		�ȈՉ�b�P��Z�[�u�f�[�^�|�C���^
+ * @param   saveData		簡易会話単語セーブデータポインタ
  *
- * @retval	int				�����S�Ċo���Ă���ꍇ:PMSW_NANKAI_WORD_MAX
- *							�V�K�ɂ��Ƃ΂��o�����ꍇ�F�P��ID�i0 �` PMSW_NANKAI_WORD_MAX-1�j
+ * @retval	int				もう全て覚えている場合:PMSW_NANKAI_WORD_MAX
+ *							新規にことばを覚えた場合：単語ID（0 〜 PMSW_NANKAI_WORD_MAX-1）
  */
 //------------------------------------------------------------------
 u32 PMSW_SetNewNankaiWord( PMSW_SAVEDATA* saveData )
@@ -334,11 +334,11 @@ u32 PMSW_SetNewNankaiWord( PMSW_SAVEDATA* saveData )
 }
 //------------------------------------------------------------------
 /**
- * ������Ƃ΂�S�Ċo���Ă��邩�H
+ * 難解ことばを全て覚えているか？
  *
  * @param   saveData		
  *
- * @retval  BOOL		TRUE�őS���o���Ă�B
+ * @retval  BOOL		TRUEで全部覚えてる。
  */
 //------------------------------------------------------------------
 BOOL PMSW_CheckNankaiWordComplete( PMSW_SAVEDATA* saveData )
@@ -356,7 +356,7 @@ BOOL PMSW_CheckNankaiWordComplete( PMSW_SAVEDATA* saveData )
 
 //------------------------------------------------------------------
 /**
- * ������Ƃ�ID��PMS_WORD�ɕϊ�
+ * 難解ことばIDをPMS_WORDに変換
  *
  * @param   id		
  *
@@ -395,17 +395,17 @@ void PMSW_SetAisatsuFlag( PMSW_SAVEDATA* saveData, PMSW_AISATSU_ID id )
 
 
 //======================================================================================
-// �{�b�N�X�ǎ��p�X���[�h�Ή�����
+// ボックス壁紙パスワード対応処理
 //======================================================================================
 
 
 //------------------------------------------------------------------
 /**
- * ����P��i���o�[����ɁA�������e�i������j�̒P�ꂪ�������邩�`�F�b�N
+ * ある単語ナンバーを基に、同じ内容（文字列）の単語がいくつあるかチェック
  *
- * @param   word	�P��i���o�[
+ * @param   word	単語ナンバー
  *
- * @retval  int		�������e�̒P�ꂪ�������邩
+ * @retval  int		同じ内容の単語がいくつあるか
  */
 //------------------------------------------------------------------
 int PMSW_GetDupWordCount( PMS_WORD word )
@@ -426,13 +426,13 @@ int PMSW_GetDupWordCount( PMS_WORD word )
 }
 //------------------------------------------------------------------
 /**
- * ����P��i���o�[�Ɠ������e�i������j�̒P��i���o�[��Ԃ�
+ * ある単語ナンバーと同じ内容（文字列）の単語ナンバーを返す
  *
- * @param   word		�P��i���o�[
- * @param   idx			0�`
+ * @param   word		単語ナンバー
+ * @param   idx			0〜
  *
- * @retval  PMS_WORD	�������e�̒P��i���o�[������΁A���̃i���o�[
- *						�Ȃ���΁A���������̂܂ܕԂ�
+ * @retval  PMS_WORD	同じ内容の単語ナンバーがあれば、そのナンバー
+ *						なければ、引数をそのまま返す
  */
 //------------------------------------------------------------------
 PMS_WORD PMSW_GetDupWord( PMS_WORD word, int idx )
@@ -466,23 +466,23 @@ PMS_WORD PMSW_GetDupWord( PMS_WORD word, int idx )
 
 //-----------------------------------------------------------------------------
 /**
- *		�������Ƃ΁@�����p�@�d���Ȃ��P��e�[�u��
- *		0x5ACbyte�g�p
+ *		あいことば　生成用　重複なし単語テーブル
+ *		0x5ACbyte使用
  */
 //-----------------------------------------------------------------------------
 #include "system/arc_util.h"
 typedef struct _PMSW_AIKOTOBA_TBL{
-	u32		num;		// �e�[�u���p�f��
-	u32*	p_data;		// �e�[�u���f�[�^
+	u32		num;		// テーブル用素数
+	u32*	p_data;		// テーブルデータ
 }PMSW_AIKOTOBA_TBL;
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�������ƂΗp�P��e�[�u���擾
+ *	@brief	あいことば用単語テーブル取得
  *
- *	@param	heapID	�q�[�vID
+ *	@param	heapID	ヒープID
  *
- *	@return	�e�[�u���f�[�^
+ *	@return	テーブルデータ
  */
 //-----------------------------------------------------------------------------
 PMSW_AIKOTOBA_TBL* PMSW_AIKOTOBATBL_Init( u32 heapID )
@@ -490,11 +490,11 @@ PMSW_AIKOTOBA_TBL* PMSW_AIKOTOBATBL_Init( u32 heapID )
 	PMSW_AIKOTOBA_TBL* p_tbl;
 	u32 size;
 
-	// �������m��
+	// メモリ確保
 	p_tbl = sys_AllocMemory( heapID, sizeof(PMSW_AIKOTOBA_TBL) );
 	memset( p_tbl, 0, sizeof(PMSW_AIKOTOBA_TBL) );
 
-	// �f�[�^�ǂݍ���
+	// データ読み込み
 	p_tbl->p_data	= ArcUtil_LoadEx( ARC_PMS_AIKOTOBA_DATA,
 			0, FALSE, heapID, ALLOC_TOP, &size );
 	p_tbl->num		= size / sizeof(u32);
@@ -504,27 +504,27 @@ PMSW_AIKOTOBA_TBL* PMSW_AIKOTOBATBL_Init( u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�������ƂΗp�P��e�[�u���j��
+ *	@brief	あいことば用単語テーブル破棄
  *
- *	@param	p_tbl	���[�N
+ *	@param	p_tbl	ワーク
  */
 //-----------------------------------------------------------------------------
 void PMSW_AIKOTOBATBL_Delete( PMSW_AIKOTOBA_TBL* p_tbl )
 {
-	// �f�[�^�j��
+	// データ破棄
 	sys_FreeMemoryEz( p_tbl->p_data );
 
-	// ���[�N�j��
+	// ワーク破棄
 	sys_FreeMemoryEz( p_tbl );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�������ƂΗp�P��e�[�u���v�f���擾
+ *	@brief	あいことば用単語テーブル要素数取得
  *
- *	@param	cp_tbl	���[�N
+ *	@param	cp_tbl	ワーク
  *
- *	@return	�e�[�u���v�f��
+ *	@return	テーブル要素数
  */
 //-----------------------------------------------------------------------------
 u32 PMSW_AIKOTOBATBL_GetTblNum( const PMSW_AIKOTOBA_TBL* cp_tbl )
@@ -534,20 +534,20 @@ u32 PMSW_AIKOTOBATBL_GetTblNum( const PMSW_AIKOTOBA_TBL* cp_tbl )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�������ƂΗp�P��e�[�u�����[�h�f�[�^�擾
+ *	@brief	あいことば用単語テーブルワードデータ取得
  *
- *	@param	cp_tbl	���[�N	
- *	@param	idx		�擾�C���f�b�N�X
+ *	@param	cp_tbl	ワーク	
+ *	@param	idx		取得インデックス
  *
- *	@retval	PMS_WORD_NULL	���̃C���f�b�N�X�̃f�[�^�Ȃ�
- *	@retval	���̑�			���[�h�f�[�^
+ *	@retval	PMS_WORD_NULL	そのインデックスのデータなし
+ *	@retval	その他			ワードデータ
  */
 //-----------------------------------------------------------------------------
 PMS_WORD PMSW_AIKOTOBATBL_GetTblData( const PMSW_AIKOTOBA_TBL* cp_tbl, u32 idx )
 {
 	GF_ASSERT( cp_tbl );
 
-	// �����C���f�b�N�X�Ȃ疳���f�[�^��Ԃ�
+	// 無効インデックスなら無効データを返す
 	if( cp_tbl->num <= idx ){
 		return PMS_WORD_NULL;
 	}
@@ -557,13 +557,13 @@ PMS_WORD PMSW_AIKOTOBATBL_GetTblData( const PMSW_AIKOTOBA_TBL* cp_tbl, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�������ƂΗp�P��e�[�u���@���[�h�̃C���f�b�N�X���擾
+ *	@brief	あいことば用単語テーブル　ワードのインデックスを取得
  *
- *	@param	cp_tbl	���[�N	
- *	@param	word	�ȈՉ�b���[�h 
+ *	@param	cp_tbl	ワーク	
+ *	@param	word	簡易会話ワード 
  *
- *	@retval	PMSW_AIKOTOBA_WORD_NONE		���̃��[�h�͂Ȃ�
- *	@retval	���̑�						���[�h�̃C���f�b�N�X�l
+ *	@retval	PMSW_AIKOTOBA_WORD_NONE		そのワードはない
+ *	@retval	その他						ワードのインデックス値
  */
 //-----------------------------------------------------------------------------
 s16 PMSW_AIKOTOBATBL_GetWordIdx( const PMSW_AIKOTOBA_TBL* cp_tbl, PMS_WORD word )

@@ -1,5 +1,5 @@
 ===============================================================================
-Freescale CodeWarrior® Development Studio for NINTENDO DS® 2.0 Service Pack 2
+Freescale CodeWarriorDevelopment Studio for NINTENDO DSãƒ§ 2.0 Service Pack 2
 ===============================================================================
 
 October 23, 2007

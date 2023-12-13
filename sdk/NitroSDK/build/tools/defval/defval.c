@@ -15,13 +15,13 @@
   indent source
 
   Revision 1.5  2007/02/07 01:33:34  yasu
-  ’˜ì”N“xC³
+  è‘—ä½œå¹´åº¦ä¿®æ­£
 
   Revision 1.4  2007/02/01 11:24:22  yasu
-  binmode/textmode ‘Î‰
+  binmode/textmode å¯¾å¿œ
 
   Revision 1.3  2006/09/05 11:17:21  yasu
-  -C ƒIƒvƒVƒ‡ƒ“‚É‚æ‚és“ª# ƒRƒƒ“ƒg‚ÌƒTƒ|[ƒg
+  -C ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã«ã‚ˆã‚‹è¡Œé ­# ã‚³ãƒ¡ãƒ³ãƒˆã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.2  2006/01/18 02:11:20  kitase_hirotake
   do-indent
@@ -41,14 +41,14 @@ static BOOL isComment = FALSE;
 /*---------------------------------------------------------------------------*
   Name:         main
   
-  Description:  defval ƒƒCƒ“ŠÖ”
-                ƒIƒvƒVƒ‡ƒ“ˆ—‚µ‚Ä–{ˆ—ŠÖ”‚ğŒÄ‚Ño‚·
+  Description:  defval ãƒ¡ã‚¤ãƒ³é–¢æ•°
+                ã‚ªãƒ—ã‚·ãƒ§ãƒ³å‡¦ç†ã—ã¦æœ¬å‡¦ç†é–¢æ•°ã‚’å‘¼ã³å‡ºã™
   
-  Arguments:    argc   ˆø”‚Ì”
-                argv   ˆø”
+  Arguments:    argc   å¼•æ•°ã®æ•°
+                argv   å¼•æ•°
   
-  Returns:      0      ³íI—¹
-                0ˆÈŠO  ƒGƒ‰[
+  Returns:      0      æ­£å¸¸çµ‚äº†
+                0ä»¥å¤–  ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 int main(int argc, char *argv[])
 {
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     BOOL    result;
 
     //
-    // ƒIƒvƒVƒ‡ƒ“‰ğÍ
+    // ã‚ªãƒ—ã‚·ãƒ§ãƒ³è§£æ
     //
     while ((n = getopt(argc, argv, "D:M:Cdh")) != -1)
     {
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
             break;
 
         case 'C':
-            isComment = TRUE;          // s“ª # ‚ÌƒRƒƒ“ƒg‚ğ—LŒø‚É‚·‚é
+            isComment = TRUE;          // è¡Œé ­ # ã®ã‚³ãƒ¡ãƒ³ãƒˆã‚’æœ‰åŠ¹ã«ã™ã‚‹
             break;
 
         case 'd':
@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
     }
 
     //
-    // ˆ—ŠJn
+    // å‡¦ç†é–‹å§‹
     //
     fargc = argc - optind;
     fargv = argv + optind;
@@ -119,7 +119,7 @@ static void usage(const char *argv0)
 {
     char   *appname;
 
-    UnpackFileName(argv0, NULL, &appname, NULL);        // ƒRƒ}ƒ“ƒh–¼‚ğæ“¾
+    UnpackFileName(argv0, NULL, &appname, NULL);        // ã‚³ãƒãƒ³ãƒ‰åã‚’å–å¾—
 
     fprintf(stderr,
             "NITRO-SDK Development Tool - %s - filter to support user defines\n"
@@ -134,14 +134,14 @@ static void usage(const char *argv0)
 /*---------------------------------------------------------------------------*
   Name:         main
   
-  Description:  defval ƒƒCƒ“ŠÖ”
-                ƒIƒvƒVƒ‡ƒ“ˆ—‚µ‚Ä–{ˆ—ŠÖ”‚ğŒÄ‚Ño‚·
+  Description:  defval ãƒ¡ã‚¤ãƒ³é–¢æ•°
+                ã‚ªãƒ—ã‚·ãƒ§ãƒ³å‡¦ç†ã—ã¦æœ¬å‡¦ç†é–¢æ•°ã‚’å‘¼ã³å‡ºã™
   
-  Arguments:    file_in  “ü—Íƒtƒ@ƒCƒ‹
-                file_out o—Íƒtƒ@ƒCƒ‹
+  Arguments:    file_in  å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ«
+                file_out å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«
   
-  Returns:      TRUE   ³íI—¹
-                FALSE  ƒGƒ‰[
+  Returns:      TRUE   æ­£å¸¸çµ‚äº†
+                FALSE  ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 static BOOL defval(const char *file_in, const char *file_out)
 {
@@ -165,7 +165,7 @@ static BOOL defval(const char *file_in, const char *file_out)
     {
         DebugPrintf("buffer=[%s] buffer_size=[%d]\n", buffer, buffer_size);
 
-        if (isComment && buffer[0] == '#')      // ƒRƒƒ“ƒgˆ—
+        if (isComment && buffer[0] == '#')      // ã‚³ãƒ¡ãƒ³ãƒˆå‡¦ç†
         {
             continue;
         }

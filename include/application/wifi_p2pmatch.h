@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	wifi_p2pmatch.h
- * @bfief	WIFI P2PÚ‘±‚Ìƒ}ƒbƒ`ƒ“ƒO
+ * @bfief	WIFI P2Pæ¥ç¶šã®ãƒãƒƒãƒãƒ³ã‚°
  * @author	k.ohno
  * @date	06.04.07
  */
@@ -12,31 +12,31 @@
 #include "application/wifi_p2pmatch_def.h"
 
 //============================================================================================
-//	’è‹`
+//	å®šç¾©
 //============================================================================================
 
 //------------------------------------------------------
 /**
- * WIFI‚Æ‚à‚¾‚¿ƒŠƒXƒgPROCƒpƒ‰ƒ[ƒ^
+ * WIFIã¨ã‚‚ã ã¡ãƒªã‚¹ãƒˆPROCãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //------------------------------------------------------
 typedef struct {
 	SAVEDATA*  pSaveData;
-    int seq;                // ‚Ç‚±‚É•ªŠò‚µ‚Ä‚Ù‚µ‚¢‚©‚ª“ü‚Á‚Ä‚¢‚é
-    int targetID;   //‘Îí ŒğŠ·‚·‚él‚ª’N‚È‚Ì‚©‚ª“ü‚Á‚Ä‚¢‚é
+    int seq;                // ã©ã“ã«åˆ†å²ã—ã¦ã»ã—ã„ã‹ãŒå…¥ã£ã¦ã„ã‚‹
+    int targetID;   //å¯¾æˆ¦ äº¤æ›ã™ã‚‹äººãŒèª°ãªã®ã‹ãŒå…¥ã£ã¦ã„ã‚‹
 }WIFIP2PMATCH_PROC_PARAM;
 
-// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT WifiP2PMatchProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT WifiP2PMatchProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT WifiP2PMatchProc_End( PROC * proc, int * seq );
 
-// ƒ|ƒCƒ“ƒ^QÆ‚¾‚¯‚Å‚«‚éƒŒƒR[ƒhƒR[ƒi[ƒ[ƒN\‘¢‘Ì
+// ãƒã‚¤ãƒ³ã‚¿å‚ç…§ã ã‘ã§ãã‚‹ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct _WIFIP2PMATCH_WORK WIFIP2PMATCH_WORK;	
 
-// ŒÄ‚Ño‚·‚½‚ß‚ÌƒCƒxƒ“ƒg
+// å‘¼ã³å‡ºã™ãŸã‚ã®ã‚¤ãƒ™ãƒ³ãƒˆ
 extern void EventCmd_P2PMatchProc(GMEVENT_CONTROL * event);
-// ¢ŠEŒğŠ·‘O‚ÉŒÄ‚Ño‚·‚½‚ß‚ÌƒCƒxƒ“ƒg
+// ä¸–ç•Œäº¤æ›å‰ã«å‘¼ã³å‡ºã™ãŸã‚ã®ã‚¤ãƒ™ãƒ³ãƒˆ
 extern void EventCmd_DPWInitProc(GMEVENT_CONTROL * event);
 //
 extern void EventCmd_DPWInitProc2(GMEVENT_CONTROL * event, u16* ret);
@@ -44,9 +44,9 @@ extern void EventCmd_DPWInitProc2(GMEVENT_CONTROL * event, u16* ret);
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ}ƒbƒ`ƒ“ƒO‚µ‚Ä‚æ‚¢‚©‚Ç‚¤‚©‚Ì”»’è
- * @param   friendIndex”»’è‚·‚é—Fl‚Ìindex
- * @retval  ƒ}ƒbƒ`ƒ“ƒOok‚È‚ç‚ÎTRUE
+ * $brief   ãƒãƒƒãƒãƒ³ã‚°ã—ã¦ã‚ˆã„ã‹ã©ã†ã‹ã®åˆ¤å®š
+ * @param   friendIndexåˆ¤å®šã™ã‚‹å‹äººã®index
+ * @retval  ãƒãƒƒãƒãƒ³ã‚°okãªã‚‰ã°TRUE
  */
 //------------------------------------------------------------------
 extern BOOL WIFIP2PModeCheck( int friendIndex );

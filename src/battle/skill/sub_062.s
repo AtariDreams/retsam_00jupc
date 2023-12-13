@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_062.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			‚«‚ ‚¢‚¾‚ßˆ—
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ãã‚ã„ã ã‚å‡¦ç†
  *@author	HisashiSogabe
  *@data		2005.07.29
  *
@@ -16,7 +16,7 @@
 
 SUB_062:
 	GOSUB		SUB_SEQ_WAZA_OUT_EFF
-	//‚«‚ ‚¢‚¾‚ßƒtƒ‰ƒO‚ð—§‚Ä‚é
+	//ãã‚ã„ã ã‚ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	PSP_VALUE	VAL_BIT,SIDE_TSUIKA,ID_PSP_condition2,CONDITION2_KIAIDAME
 	MESSAGE		KiaidameMineMsg,TAG_NICK,SIDE_TSUIKA
 	SERVER_WAIT

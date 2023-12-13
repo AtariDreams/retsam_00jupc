@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	west_sp.c
- * @brief	�T�|�[�g�֐��p�t�@�C��
+ * @brief	サポート関数用ファイル
  * @author	goto
- * @date	2005.07.14(��)
+ * @date	2005.07.14(木)
  *
- * �����ɐF�X�ȉ�����������Ă��悢
+ * ここに色々な解説等を書いてもよい
  *
  */
 //==============================================================================
@@ -17,8 +17,8 @@
 
 // -----------------------------------------
 //
-//	���T�|�[�g�֐��p�̃w�b�_�[�L�q
-//		�T�|�[�g�֐��͂��̃\�[�X�ɂ͋L�q���Ȃ��ł�������
+//	■サポート関数用のヘッダー記述
+//		サポート関数はこのソースには記述しないでください
 //
 // -----------------------------------------
 
@@ -29,18 +29,18 @@
 
 // -----------------------------------------
 //
-//	���֐��e�[�u��
-//		���̃e�[�u���ɃT�|�[�g�֐���ǉ����Ă��������B
+//	■関数テーブル
+//		このテーブルにサポート関数を追加してください。
 //
 // -----------------------------------------
 static const pWeFunc WeSysSP_FuncTable[] = {
 
-	WestSp_Sample,					///< �T���v��
-	WestSp_SampleEffectTCB,			///< �G�t�F�N�gTCB�T���v��
-	WestSp_SampleSoundTCB,			///< �T�E���hTCB�T���v��
-	WestSp_SampleTCB,				///< �]����TCB�T���v��
+	WestSp_Sample,					///< サンプル
+	WestSp_SampleEffectTCB,			///< エフェクトTCBサンプル
+	WestSp_SampleSoundTCB,			///< サウンドTCBサンプル
+	WestSp_SampleTCB,				///< 従来のTCBサンプル
 	
-	WestSp_EffectTCBPokeRota00,		///< ���Ŏg�p���܂��B�|�P������������]������^�X�N�ł��B
+	WestSp_EffectTCBPokeRota00,		///< つつくで使用します。ポケモンを少し回転させるタスクです。
 	WestSp_WE_070,					///< we_070
 	WestSp_WE_339,					///< we_339
 	WestSp_WE_104,					///< we_104
@@ -69,59 +69,59 @@ static const pWeFunc WeSysSP_FuncTable[] = {
 	WestSp_WE_233,					///< we_233
 	WestSp_WE_207_MAIN,				///< we_207_MAIN
 	WestSp_WE_262,					///< we_262
-	WestSp_WE_HaikeiPalFade,		///< �w�i�p���b�g�t�F�[�h
-	WestSp_WE_SSPPokePalFade,		///< �\�t�g�E�F�A�X�v���C�g�|�P�������p���b�g�t�F�[�h
-	WestSp_WE_CAPPokeScaleUpDown,	///< �|�P�����X�P�[���A�b�v�_�E��
-	WestSp_WE_T01,					///< tool �h�炵
-	WestSp_WE_326DF,				///< 326�@�h�䑤����
+	WestSp_WE_HaikeiPalFade,		///< 背景パレットフェード
+	WestSp_WE_SSPPokePalFade,		///< ソフトウェアスプライトポケモンをパレットフェード
+	WestSp_WE_CAPPokeScaleUpDown,	///< ポケモンスケールアップダウン
+	WestSp_WE_T01,					///< tool 揺らし
+	WestSp_WE_326DF,				///< 326　防御側動作
 	WestSp_WE_CAP_NormalAlphaFade,	///< 
 	WestSp_WE_316,					///< we_316
-	WestSp_WE_SSP_PokeVanish,		///< �\�t�g�E�F�A�X�v���C�g�̃|�P�����̃o�j�b�V����ݒ�
+	WestSp_WE_SSP_PokeVanish,		///< ソフトウェアスプライトのポケモンのバニッシュを設定
 	WestSp_WE_252Back,				///< we_252
-	WestSp_WE_SSPPokeScaleUpDown,	///< ssp�|�P��L�΂��Č��ɖ߂�
+	WestSp_WE_SSPPokeScaleUpDown,	///< sspポケを伸ばして元に戻す
 	WestSp_WE_252SSPPoke,
-	WestSp_WE_T02,					///< tool �X�N���[��
-	WestSp_WE_T22,					///< tool �X�N���[��
-	WestSp_WE_224,					///< ���K�z�[��
-	WestSp_WE_224AT,				///< ���K�z�[��
-	WestSp_WE_224DF,				///< ���K�z�[��
-	WestSp_WE_057,					///< �Ȃ݂̂�
+	WestSp_WE_T02,					///< tool スクロール
+	WestSp_WE_T22,					///< tool スクロール
+	WestSp_WE_224,					///< メガホーン
+	WestSp_WE_224AT,				///< メガホーン
+	WestSp_WE_224DF,				///< メガホーン
+	WestSp_WE_057,					///< なみのり
 	WestSp_WE_T03,					///< tool
 	WestSp_WE_T04,					///< tool
 	WestSp_WE_T05,					///< tool
 	WestSp_WE_T06,					///< tool
 	WestSp_WE_T07,					///< tool
-	WestSp_WE_293,					///< �ق����傭
+	WestSp_WE_293,					///< ほごしょく
 	WestSp_WE_T08,					///< tool
 	WestSp_WE_T10,					///< tool
-	WestSp_WE_102,					///< ���̂܂�
-	WestSp_WE_325,					///< �V���h�[�p���`
-	WestSp_WE_Kaiten,				///< ��]
-	WestSp_WE_DispOut,				///< ��ʊO��
-	WestSp_WE_DispDef,				///< �K��ʒu��
-	WestSp_WE_OAM_PalFade,			///< OAM�̃p���b�g�t�F�[�h
-	WestSp_WE_VisibleSet,			///< �ϕ\���V�X�e��
-	WSP_Emitter_Straight,			///< �G�~�b�^�[�̒����ړ�
-	WSP_Emitter_Parabolic,			///< �G�~�b�^�[�̕������ړ�
-	WSP_RectView,					///< ��`��
-	WestSp_WE_BgShake,				///< BG�h�炵
-	WSP_Mosaic,						///< ���U�C�N
-	WSP_272,						///< �Ȃ肫��
-	WSP_289,						///< �悱�ǂ�
-	WSP_Emitter_Rotation,			///< �G�~�b�^�[�̉�]
-	WSP_Emitter_SimpleUD,			///< �ȒP�ȏ㏸���~
-	WSP_PalColChange,				///< �p���b�g�ύX
+	WestSp_WE_102,					///< ものまね
+	WestSp_WE_325,					///< シャドーパンチ
+	WestSp_WE_Kaiten,				///< 回転
+	WestSp_WE_DispOut,				///< 画面外へ
+	WestSp_WE_DispDef,				///< 規定位置へ
+	WestSp_WE_OAM_PalFade,			///< OAMのパレットフェード
+	WestSp_WE_VisibleSet,			///< 可変表示システム
+	WSP_Emitter_Straight,			///< エミッターの直線移動
+	WSP_Emitter_Parabolic,			///< エミッターの放物線移動
+	WSP_RectView,					///< 矩形可視
+	WestSp_WE_BgShake,				///< BG揺らし
+	WSP_Mosaic,						///< モザイク
+	WSP_272,						///< なりきり
+	WSP_289,						///< よこどり
+	WSP_Emitter_Rotation,			///< エミッターの回転
+	WSP_Emitter_SimpleUD,			///< 簡単な上昇下降
+	WSP_PalColChange,				///< パレット変更
 	WSP_PokeOAM_View,				///< OAMView
-	WestSp_WE_Laster,				///< ���X�^�[
-	WestSp_WE_DispMove,				///< ��ʓ��O�ړ�
-	WSP_AllPokeDrop,				///< �S�|�P����OAM��
-	WSP_166,						///< �X�P�b�`
+	WestSp_WE_Laster,				///< ラスター
+	WestSp_WE_DispMove,				///< 画面内外移動
+	WSP_AllPokeDrop,				///< 全ポケモンOAM化
+	WSP_166,						///< スケッチ
 	
-	// ---- �X�e�[�^�X�G�t�F�N�g
-	StatusEffect_Up,				///< �\�͏㏸
-	StatusEffect_Down,				///< �\�͉��~
-	StatusEffect_Recover,			///< ��
-	StatusEffect_Metal,				///< ���^���n
+	// ---- ステータスエフェクト
+	StatusEffect_Up,				///< 能力上昇
+	StatusEffect_Down,				///< 能力下降
+	StatusEffect_Recover,			///< 回復
+	StatusEffect_Metal,				///< メタル系
 };
 
 #define WEST_SP_FUNC_MAX (NELEMS(WeSysSP_FuncTable))
@@ -129,7 +129,7 @@ static const pWeFunc WeSysSP_FuncTable[] = {
 
 // ----------------------------------------
 //
-//	��OBJ�o�^�p
+//	■OBJ登録用
 //
 // ----------------------------------------
 static const pWeClactFunc WeSysSP_ClactFuncTable[] = {
@@ -144,7 +144,7 @@ static const pWeClactFunc WeSysSP_ClactFuncTable[] = {
 	WestSp_CAT_WE_184,				///< we_184
 	WestSp_CAT_WE_193,				///< we_193
 	WestSp_CAT_WE_199,				///< we_199
-	WestSp_CAT_WE_207_SUB,			///< we_207_SUB	����܁[��
+	WestSp_CAT_WE_207_SUB,			///< we_207_SUB	きれまーく
 	WestSp_CAT_WE_212,				///< we_212
 	WestSp_CAT_WE_259,				///< we_259
 	WestSp_CAT_WE_226,				///< we_226
@@ -156,15 +156,15 @@ static const pWeClactFunc WeSysSP_ClactFuncTable[] = {
 	WestSp_CAT_WE_269,				///< we_269
 	WestSp_CAT_WE_270,				///< we_270
 	WestSp_CAT_WE_274,				///< we_270
-	WestSp_CAT_WE_232,				///< �߂��邭��[
-	WestSp_CAT_WE_275,				///< �˂��͂�
-	WestSp_CAT_WE_338,				///< �n�[�h�v�����g
-	WestSp_Free,					///< �����G���o�ăA�j�����I���
-	WestSp_266,						///< ���̎w
-	WestSp_090,						///< �����
-	WestSp_Item,					///< �A�C�e��
+	WestSp_CAT_WE_232,				///< めたるくろー
+	WestSp_CAT_WE_275,				///< ねをはる
+	WestSp_CAT_WE_338,				///< ハードプラント
+	WestSp_Free,					///< ただ絵が出てアニメが終わる
+	WestSp_266,						///< この指
+	WestSp_090,						///< じわれ
+	WestSp_Item,					///< アイテム
 
-	/**** �X�e�[�^�X�G�t�F�N�g ****/
+	/**** ステータスエフェクト ****/
 	WestSp_CAT_ST_001,
 	WestSp_CAT_ST_003,
 	WestSp_CAT_ST_004,
@@ -177,7 +177,7 @@ static const pWeClactFunc WeSysSP_ClactFuncTable[] = {
 
 // ----------------------------------------
 //
-//	�����A�N�^�[�o�^�p
+//	■旧アクター登録用
 //
 // ----------------------------------------
 static const pWeOldActFunc WeSysSP_OldActFuncTable[] = {
@@ -192,17 +192,17 @@ static const pWeOldActFunc WeSysSP_OldActFuncTable[] = {
 // =============================================================================
 //
 //
-//	���O���Q��
+//	■外部参照
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	�T�|�[�g�֐����擾����
+ * @brief	サポート関数を取得する
  *
- * @param	id			�擾����֐���ID
+ * @param	id			取得する関数のID
  *
- * @retval	pWeFunc		�T�|�[�g�֐��̃|�C���^
+ * @retval	pWeFunc		サポート関数のポインタ
  *
  */
 //--------------------------------------------------------------
@@ -223,11 +223,11 @@ pWeFunc WazaEffectSupportFuncGet(u32 id)
 
 //--------------------------------------------------------------
 /**
- * @brief	�Z���A�N�^�[�p �T�|�[�g�֐��Ăяo��
+ * @brief	セルアクター用 サポート関数呼び出し
  *
- * @param	id				�擾����֐���ID
+ * @param	id				取得する関数のID
  *
- * @retval	pWeClactFunc	�T�|�[�g�֐��̃|�C���^
+ * @retval	pWeClactFunc	サポート関数のポインタ
  *
  */
 //--------------------------------------------------------------
@@ -248,11 +248,11 @@ pWeClactFunc WazaEffectSupportFuncGet_CATS(u32 id)
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�|�[�g�֐����擾����
+ * @brief	サポート関数を取得する
  *
- * @param	id			�擾����֐���ID
+ * @param	id			取得する関数のID
  *
- * @retval	pWeCatFunc	�T�|�[�g�֐��̃|�C���^
+ * @retval	pWeCatFunc	サポート関数のポインタ
  *
  */
 //--------------------------------------------------------------

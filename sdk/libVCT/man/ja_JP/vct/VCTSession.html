@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>VCTSession</title>
 <LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
@@ -11,7 +11,7 @@
 <body>
 
 <h1 align="left">VCTSession</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -30,48 +30,48 @@ typedef struct
 </CODE></PRE>
   </dd>
 </dl>
-<H2>��`</H2>
+<H2>定義</H2>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TD width="30%"><B><I>mode</I></B></TD>
-      <TD width="70%">�Z�b�V�����̃��[�h�i�d�b / �g�����V�[�o�[ / �J���t�@�����X�j</TD>
+      <TD width="70%">セッションのモード（電話 / トランシーバー / カンファレンス）</TD>
     </TR>
     <TR>
       <TD><B><I>aid</I></B></TD>
-      <TD>�ʐM�����aid</TD>
+      <TD>通信相手のaid</TD>
     </TR>
     <TR>
       <TD width="30%"><B><I>talking</I></B></TD>
-      <TD width="70%">�g�����V�[�o�[���[�h�ł̉�b����aid</TD>
+      <TD width="70%">トランシーバーモードでの会話中のaid</TD>
     </TR>
     <TR>
       <TD><B><I>aidBitmap</I></B></TD>
-      <TD>�g�����V�[�o�[�A�J���t�@�����X�ɎQ�����Ă���N���C�A���g��aid�r�b�g�}�b�v</TD>
+      <TD>トランシーバー、カンファレンスに参加しているクライアントのaidビットマップ</TD>
     </TR>
     <TR>
       <TD><B><I>state</I></B></TD>
-      <TD>���̃Z�b�V�����̌��݂̏��</TD>
+      <TD>このセッションの現在の状態</TD>
     </TR>
     <TR>
       <TD><B><I>userData</I></B></TD>
-      <TD>���[�U�[�̃R���e�L�X�g�ۑ��p</TD>
+      <TD>ユーザーのコンテキスト保存用</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-SSP �̃Z�b�V������ۑ�����\���̂ł��B<br>
-�Z�b�V�����͂P�̉�b�ɑ΂��ĂP�K�v�ł��B���̂��߁A�d�b���[�h�A����уg�����V�[�o�[���[�h�̂悤�ɁA��Ɉ�l��������b������ꍇ�͂P�K�v�A�J���t�@�����X���[�h�̂悤�ɕ����l�������ɉ�b������ꍇ�͉�b�̃Z�b�V���������K�v�i�ő�Q���l�� - 1�̃Z�b�V�������K�v�j�ƂȂ�܂��B�Ȃ��A�d�b���[�h���ɂ����āA���荞�ݗv���ȂǂɑΉ�����ꍇ�́A���荞�ݏ����̂��߂ɃZ�b�V�������K�v�Ȃ��߁A�Q�ȏ�̃Z�b�V�������K�v�ɂȂ�܂��B
+SSP のセッションを保存する構造体です。<br>
+セッションは１つの会話に対して１つ必要です。このため、電話モード、およびトランシーバーモードのように、常に一人だけが会話をする場合は１つ必要、カンファレンスモードのように複数人が同時に会話をする場合は会話のセッションだけ必要（最大参加人数 - 1のセッションが必要）となります。なお、電話モード時において、割り込み要求などに対応する場合は、割り込み処理のためにセッションが必要なため、２つ以上のセッションが必要になります。
 </P>
 
-<P><code><a href="VCT_Init.html">VCT_Init</a></code>�֐��ŁA���炩���ߕK�v�ƂȂ�Z�b�V������p�ӂ��Ă����K�v������܂��B
+<P><code><a href="VCT_Init.html">VCT_Init</a></code>関数で、あらかじめ必要となるセッションを用意しておく必要があります。
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P><CODE>
 <A href="VCT_Init.html">VCT_Init</A>, <A href="VCT_CreateSession.html">VCT_CreateSession</A>
 </CODE></P>
-<H2>����</H2>
-<P>2006/01/25 ����</P>
+<H2>履歴</H2>
+<P>2006/01/25 初版</P>
 </body>
 </html>

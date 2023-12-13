@@ -24,7 +24,7 @@ esac
 #-----------------------------------------------------------------------
 # $Log: makepatch-dis,v $
 # Revision 1.6  2004/10/18 14:27:55  yasu
-# ���C�u�����̕ύX��r�����ǉ�����
+# ライブラリの変更比較判定を追加した
 #
 # Revision 1.5  2004/10/15 16:01:21  yasu
 # Support nef
@@ -36,7 +36,7 @@ esac
 # fix for data section
 #
 # Revision 1.2  2004/10/07 09:03:46  seiki_masashi
-# �t�A�Z���u���o�͒��� ARCHIVE HEADER �𖳎�����悤�ɕύX
+# 逆アセンブル出力中の ARCHIVE HEADER を無視するように変更
 #
 # Revision 1.1  2004/10/05 12:43:19  yasu
 # patch maker

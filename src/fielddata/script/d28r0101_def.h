@@ -1,11 +1,11 @@
 #ifndef _D28R0101_DEF_H_
 #define _D28R0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D28R0101_GINGAMA		(1)
 #define	SCRID_D28R0101_GINGAMB		(2)
 #define	SCRID_D28R0101_GINGAMC		(3)
 #define	SCRID_D28R0101_KOIKING		(4)
-#define	SCRID_D28R0101_DATA_MAX		(4)		//最大数
+#define	SCRID_D28R0101_DATA_MAX		(4)		//譛螟ｧ謨ｰ
 
 #endif //_D28R0101_DEF_H_

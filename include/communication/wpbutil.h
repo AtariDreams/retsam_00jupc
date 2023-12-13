@@ -17,22 +17,22 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         WPB_GetNextBssDesc
 
-  Description:  Ÿ‚Ìe‹@î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ“¾‚éB
+  Description:  æ¬¡ã®è¦ªæ©Ÿæƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹ã€‚
 
-  Arguments:    bssDesc - e‹@î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    bssDesc - è¦ªæ©Ÿæƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      const WMBssDesc * - Ÿ‚Ìe‹@î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Returns:      const WMBssDesc * - æ¬¡ã®è¦ªæ©Ÿæƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *---------------------------------------------------------------------------*/
 const WMBssDesc *WPB_GetNextBssDesc(const WMBssDesc *bssDesc);
 
 /*---------------------------------------------------------------------------*
   Name:         WPB_IsValidGGID
 
-  Description:  GGID ‚ª—LŒø‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é
+  Description:  GGID ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
 
-  Arguments:    bssDesc - e‹@î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    bssDesc - è¦ªæ©Ÿæƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      BOOL - GGID ‚ª—LŒø‚È‚ç TRUE
+  Returns:      BOOL - GGID ãŒæœ‰åŠ¹ãªã‚‰ TRUE
  *---------------------------------------------------------------------------*/
 BOOL WPB_IsValidGGID(const WMBssDesc *bssDesc);
 

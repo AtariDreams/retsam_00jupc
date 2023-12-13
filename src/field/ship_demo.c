@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ship_demo.c
- * @brief	‘Dƒfƒ‚
+ * @brief	èˆ¹ãƒ‡ãƒ¢
  * @date	2006.05.23
  * @author	Nozomu Saito
  *
@@ -25,15 +25,15 @@
 
 typedef struct SHIP_DEMO_WORK_tag
 {
-//	SHIPDEMO_DAT *Dat;				//ŠO•”ƒf[ƒ^
-	GF_CAMERA_PTR CameraPtr;//ƒJƒƒ‰
+//	SHIPDEMO_DAT *Dat;				//å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿
+	GF_CAMERA_PTR CameraPtr;//ã‚«ãƒ¡ãƒ©
 	NNSG3dRenderObj			RenderObj;
 	NNSG3dResMdl* Model;
 	NNSG3dResFileHeader* ResFile;
 	void *AnmMem[ANIME_TYPE_NUM];
 	NNSFndAllocator AnimeAllocator;
 	NNSG3dAnmObj* AnmObj[ANIME_TYPE_NUM];
-	VecFx32 Target;	//’‹“_
+	VecFx32 Target;	//æ³¨è¦–ç‚¹
 	u8 Dir;
 	u8 EndFlg;
 }SHIP_DEMO_WORK;
@@ -48,7 +48,7 @@ static void InitDisp( void );
 static void SetVramBank(void);
 static void LoadData(SHIP_DEMO_WORK *wk);
 
-//ƒJƒƒ‰İ’è
+//ã‚«ãƒ¡ãƒ©è¨­å®š
 static const GF_CAMERA_PARAM CameraData = {
 	0x29aec1,
 	{
@@ -59,7 +59,7 @@ static const GF_CAMERA_PARAM CameraData = {
 	0	//dummy
 };
 
-//ƒGƒbƒWƒ}[ƒLƒ“ƒOƒe[ƒuƒ‹
+//ã‚¨ãƒƒã‚¸ãƒãƒ¼ã‚­ãƒ³ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const GXRgb gEdgeColor[8] = {
     GX_RGB(0, 0, 0),
     GX_RGB(4, 4, 4),
@@ -72,7 +72,7 @@ static const GXRgb gEdgeColor[8] = {
 };
 
 
-//ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹
+//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 static ARC_TBL ArcTbl[4] = {
 	{
 		NARC_ship_demo_c_demo_D_nsbmd,
@@ -114,12 +114,12 @@ static ARC_TBL ArcTbl[4] = {
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT ShipDemoProc_Init( PROC * proc, int * seq )
@@ -134,31 +134,31 @@ PROC_RESULT ShipDemoProc_Init( PROC * proc, int * seq )
 	memset( wk, 0, sizeof(SHIP_DEMO_WORK) );
 	dat = PROC_GetParentWork( proc );
 	
-	//is•ûŒü‚ğæ“¾
+	//é€²è¡Œæ–¹å‘ã‚’å–å¾—
 	wk->Dir = dat->Dir;
 	wk->EndFlg = FALSE;
 	
-	wk->CameraPtr = GFC_AllocCamera(HEAPID_SHIPDEMO);	//ƒJƒƒ‰ì¬
+	wk->CameraPtr = GFC_AllocCamera(HEAPID_SHIPDEMO);	//ã‚«ãƒ¡ãƒ©ä½œæˆ
 	InitDisp();
 		
-	//ƒf[ƒ^ƒ[ƒh
+	//ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	LoadData(wk);
 	{
 		VecFx32 target = {0,0,0};
-		//ƒJƒƒ‰ƒZƒbƒg
+		//ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 		GFC_InitCameraTDA( &target,
-			CameraData.Distance,	// ‹——£
+			CameraData.Distance,	// è·é›¢
 			&CameraData.Angle,	//
-			CameraData.PerspWay,	// “ŠË‰e‚ÌŠp“x
+			CameraData.PerspWay,	// æŠ•å°„å½±ã®è§’åº¦
 			CameraData.View,
-			FALSE,				//ƒoƒCƒ“ƒh‚µ‚È‚¢
+			FALSE,				//ãƒã‚¤ãƒ³ãƒ‰ã—ãªã„
 			wk->CameraPtr
 			);
 
 		GFC_AttachCamera(wk->CameraPtr);
 	}
 	for(i=0;i<4;i++){
-		//ƒ‰ƒCƒgƒZƒbƒg
+		//ãƒ©ã‚¤ãƒˆã‚»ãƒƒãƒˆ
 		NNS_G3dGlbLightVector(i,
 							dat->LightDataPtr->lightVec[i].x,
 							dat->LightDataPtr->lightVec[i].y,
@@ -166,7 +166,7 @@ PROC_RESULT ShipDemoProc_Init( PROC * proc, int * seq )
 		NNS_G3dGlbLightColor(i, dat->LightDataPtr->Color[i]);
 	}
 
-	//ƒOƒ[ƒoƒ‹ƒXƒe[ƒg‘‚«Š·‚¦
+	//ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆæ›¸ãæ›ãˆ
 	NNS_G3dGlbMaterialColorDiffAmb(
 				dat->LightDataPtr->Diff,
 				dat->LightDataPtr->Amb,
@@ -177,7 +177,7 @@ PROC_RESULT ShipDemoProc_Init( PROC * proc, int * seq )
 				dat->LightDataPtr->Emi,
 				dat->LightDataPtr->IsShininess);
 	
-	// ƒ|ƒŠƒSƒ“ƒAƒgƒŠƒrƒ…[ƒg
+	// ãƒãƒªã‚´ãƒ³ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	NNS_G3dGlbPolygonAttr(
 				dat->LightDataPtr->LightFlag,
 				dat->LightDataPtr->polyMode,
@@ -192,12 +192,12 @@ PROC_RESULT ShipDemoProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT ShipDemoProc_Main( PROC * proc, int * seq )
@@ -212,20 +212,20 @@ PROC_RESULT ShipDemoProc_Main( PROC * proc, int * seq )
 
 	switch(*seq){
 	case 0:
-		//‰¹ŠJn
+		//éŸ³é–‹å§‹
 		Snd_SePlay( SE_SHIP_RUN );
 		(*seq)++;
 		break;
 	case 1:
 		if (!wk->EndFlg){
-			//icaƒAƒjƒI—¹‚ğŒŸo
+			//icaã‚¢ãƒ‹ãƒ¡çµ‚äº†ã‚’æ¤œå‡º
 			if (wk->AnmObj[ANM_ICA]->frame+FX32_ONE == NNS_G3dAnmObjGetNumFrame(wk->AnmObj[ANM_ICA])){
 				wk->EndFlg = TRUE;
-				//ƒuƒ‰ƒbƒNƒAƒEƒgƒŠƒNƒGƒXƒg
+				//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 				APP_WipeStart( APP_WIPE_OUT, HEAPID_SHIPDEMO );
 			}
 		}else{
-			//ƒƒCƒvƒAƒEƒg‘Ò‚¿
+			//ãƒ¯ã‚¤ãƒ—ã‚¢ã‚¦ãƒˆå¾…ã¡
 			if (WIPE_SYS_EndCheck() ){
 				return PROC_RES_FINISH;
 			}
@@ -234,12 +234,12 @@ PROC_RESULT ShipDemoProc_Main( PROC * proc, int * seq )
 
 	for (i=0;i<ANIME_TYPE_NUM;i++){
 		if (wk->AnmObj[i]->frame+FX32_ONE < NNS_G3dAnmObjGetNumFrame(wk->AnmObj[i])){
-			//ƒAƒjƒƒtƒŒ[ƒ€XV
+			//ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ æ›´æ–°
 			wk->AnmObj[i]->frame += (FX32_ONE);
 		}
 	}
 	
-	//•`‰æ
+	//æç”»
 	GF_G3X_Reset();
 	GFC_CameraLookAt();
 	simple_3DModelDraw(	&wk->RenderObj,
@@ -254,39 +254,39 @@ PROC_RESULT ShipDemoProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT ShipDemoProc_End( PROC * proc, int * seq )
 {
 	u8 i;
 	SHIP_DEMO_WORK * wk = PROC_GetWork( proc );
-	//ƒAƒjƒ‰ğ•ú
+	//ã‚¢ãƒ‹ãƒ¡è§£æ”¾
 	for(i=0;i<ANIME_TYPE_NUM;i++){
 		NNS_G3dFreeAnmObj(	&wk->AnimeAllocator, wk->AnmObj[i]);
 		sys_FreeMemoryEz(wk->AnmMem[i]);
 	}
-	//ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^‰ğ•ú
+	//ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	sys_FreeMemoryEz(wk->ResFile);
-	//ƒJƒƒ‰‰ğ•ú
+	//ã‚«ãƒ¡ãƒ©è§£æ”¾
 	GFC_FreeCamera(wk->CameraPtr);
-	//ƒ[ƒN‰ğ•ú
+	//ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	PROC_FreeWork( proc );
-	//3‚cŠÖ˜AI—¹
+	//3ï¼¤é–¢é€£çµ‚äº†
 	simple_3DBGExit();
-	//ƒq[ƒv‰ğ•ú
+	//ãƒ’ãƒ¼ãƒ—è§£æ”¾
 	sys_DeleteHeap( HEAPID_SHIPDEMO );
 	return PROC_RES_FINISH;
 }
 
 //----------------------------------------------------------------------------
 /**
- * ‰æ–Ê‰Šú‰»
+ * ç”»é¢åˆæœŸåŒ–
  *
  * @return	none
  *
@@ -294,20 +294,20 @@ PROC_RESULT ShipDemoProc_End( PROC * proc, int * seq )
 //-----------------------------------------------------------------------------
 static void InitDisp( void )
 {
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();				// HBlank’â~
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();				// HBlankåœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	GX_SetVisiblePlane( 0 );
 	GXS_SetVisiblePlane( 0 );
 
-	SetVramBank();				// VRAMİ’è
+	SetVramBank();				// VRAMè¨­å®š
 	simple_3DBGInit(HEAPID_SHIPDEMO);
 	G3X_EdgeMarking( TRUE );
-	//ƒGƒbƒWƒ}[ƒLƒ“ƒOƒe[ƒuƒ‹ƒZƒbƒg
+	//ã‚¨ãƒƒã‚¸ãƒãƒ¼ã‚­ãƒ³ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚»ãƒƒãƒˆ
 	G3X_SetEdgeColorTable(gEdgeColor);
-	GF_Disp_DispSelect();	//3‚c–Êİ’èiã‚É‚·‚é‚©A‰º‚É‚·‚é‚©j
+	GF_Disp_DispSelect();	//3ï¼¤é¢è¨­å®šï¼ˆä¸Šã«ã™ã‚‹ã‹ã€ä¸‹ã«ã™ã‚‹ã‹ï¼‰
 	
 
 }
@@ -315,32 +315,32 @@ static void InitDisp( void )
 //===========================================================================
 /**
  * 
- * ‚u‚q‚`‚lƒoƒ“ƒNİ’è
+ * ï¼¶ï¼²ï¼¡ï¼­ãƒãƒ³ã‚¯è¨­å®š
  *
  */
 //===========================================================================
 static void SetVramBank(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_16_F,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_0123_E			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_16_F,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_0123_E			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	‘Dƒfƒ‚ƒf[ƒ^ƒ[ƒh
+ * @brief	èˆ¹ãƒ‡ãƒ¢ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
  *
- * @param	wk		‘Dƒfƒ‚ƒ[ƒN
+ * @param	wk		èˆ¹ãƒ‡ãƒ¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  *
@@ -352,39 +352,39 @@ static void LoadData(SHIP_DEMO_WORK *wk)
 	NNSG3dResTex *texture;
 	void *pAnmRes;
 	ARCHANDLE* handle;
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	handle = ArchiveDataHandleOpen( ARC_SHIP_DEMO, HEAPID_SHIPDEMO );
-	//ƒAƒjƒƒAƒƒP[ƒ^
+	//ã‚¢ãƒ‹ãƒ¡ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
 	sys_InitAllocator(&wk->AnimeAllocator,HEAPID_SHIPDEMO,4);
 	
-	//ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^‚ğƒ[ƒh
+	//ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 	wk->ResFile = ArchiveDataLoadAllocByHandle( handle, ArcTbl[wk->Dir].nsbmd, HEAPID_SHIPDEMO );
 	simple_3DModelSetResFileAlready( &wk->RenderObj, &wk->Model, &wk->ResFile );
-	texture = NNS_G3dGetTex(wk->ResFile);	// ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXæ“¾
+	texture = NNS_G3dGetTex(wk->ResFile);	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 	
-	//ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^‚ÍƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚ğg—p‚·‚é
-	NNS_G3dMdlUseGlbDiff(wk->Model);			// ƒfƒBƒtƒ…[ƒY
-	NNS_G3dMdlUseGlbAmb(wk->Model);				// ƒAƒ“ƒrƒGƒ“ƒg
-	NNS_G3dMdlUseGlbSpec(wk->Model);			// ƒXƒyƒLƒ…ƒ‰[
-	NNS_G3dMdlUseGlbEmi(wk->Model);				// ƒGƒ~ƒbƒVƒ‡ƒ“	
+	//ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã¯ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ä½¿ç”¨ã™ã‚‹
+	NNS_G3dMdlUseGlbDiff(wk->Model);			// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚º
+	NNS_G3dMdlUseGlbAmb(wk->Model);				// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆ
+	NNS_G3dMdlUseGlbSpec(wk->Model);			// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼
+	NNS_G3dMdlUseGlbEmi(wk->Model);				// ã‚¨ãƒŸãƒƒã‚·ãƒ§ãƒ³	
 	
 	for(i=0;i<ANIME_TYPE_NUM;i++){
-		//ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒ[ƒh
+		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ãƒ­ãƒ¼ãƒ‰
 		wk->AnmMem[i] = ArchiveDataLoadAllocByHandle( handle, ArcTbl[wk->Dir].anime[i], HEAPID_SHIPDEMO );
 		pAnmRes = NNS_G3dGetAnmByIdx(wk->AnmMem[i], 0);
-		// •K—v—Ê‚Ìƒƒ‚ƒŠ‚ğƒAƒƒP[ƒg‚·‚éB
-		wk->AnmObj[i] = NNS_G3dAllocAnmObj( &wk->AnimeAllocator, // g—p‚·‚éƒAƒƒP[ƒ^‚ğw’è
-				                             pAnmRes,    // ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒX‚ğw’è
-						                     wk->Model);    // ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ğw’è
+		// å¿…è¦é‡ã®ãƒ¡ãƒ¢ãƒªã‚’ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã™ã‚‹ã€‚
+		wk->AnmObj[i] = NNS_G3dAllocAnmObj( &wk->AnimeAllocator, // ä½¿ç”¨ã™ã‚‹ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‚’æŒ‡å®š
+				                             pAnmRes,    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã‚’æŒ‡å®š
+						                     wk->Model);    // ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’æŒ‡å®š
 	
-		//ƒCƒjƒVƒƒƒ‰ƒCƒY
-		NNS_G3dAnmObjInit(wk->AnmObj[i], // ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-		                  pAnmRes, // ƒAƒjƒƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
-			              wk->Model,  // NNSG3dResMdl‚Ö‚Ìƒ|ƒCƒ“ƒ^
-				          texture );  // NNSG3dResTex‚Ö‚Ìƒ|ƒCƒ“ƒ^
-		//ƒAƒjƒƒoƒCƒ“ƒh
+		//ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚º
+		NNS_G3dAnmObjInit(wk->AnmObj[i], // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+		                  pAnmRes, // ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+			              wk->Model,  // NNSG3dResMdlã¸ã®ãƒã‚¤ãƒ³ã‚¿
+				          texture );  // NNSG3dResTexã¸ã®ãƒã‚¤ãƒ³ã‚¿
+		//ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ãƒ‰
 		NNS_G3dRenderObjAddAnmObj( &wk->RenderObj, wk->AnmObj[i] );
 	}
-	//ƒnƒ“ƒhƒ‹ƒNƒ[ƒY
+	//ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
 	ArchiveDataHandleClose( handle );
 }

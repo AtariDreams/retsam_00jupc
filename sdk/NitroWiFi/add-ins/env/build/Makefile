@@ -13,10 +13,10 @@
 #
 # $Log: Makefile,v $
 # Revision 1.3  2005/08/19 12:28:20  yasu
-# add-ins ‚ÌƒTƒ|[ƒg
+# add-ins ã®ã‚µãƒãƒ¼ãƒˆ
 #
 # Revision 1.2  2005/08/19 08:16:59  yasu
-# commondefs.add-ins.env ‚É‚æ‚è WiFi ‚ÌƒƒCƒ“ƒcƒŠ[‚ÖƒCƒ“ƒXƒg[ƒ‹‚·‚é‚æ‚¤‚ÉC³
+# commondefs.add-ins.env ã«ã‚ˆã‚Š WiFi ã®ãƒ¡ã‚¤ãƒ³ãƒ„ãƒªãƒ¼ã¸ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 #
 # Revision 1.1  2005/08/17 06:31:16  yada
 # initial release

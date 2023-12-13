@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_apl.c
- *	@brief		WiFiƒƒr[ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŠÇ—ƒVƒXƒeƒ€
+ *	@brief		WiFiãƒ­ãƒ“ãƒ¼ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.09.14
  *
@@ -23,7 +23,7 @@
 
 #include "wflby_apl.h"
 
-// “®ì‚³‚¹‚éƒvƒƒbƒN
+// å‹•ä½œã•ã›ã‚‹ãƒ—ãƒ­ãƒƒã‚¯
 #include "wflby_room.h"
 #include "worldtimer.h"
 #include "lobby_news.h"
@@ -31,28 +31,28 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒAƒvƒŠ‚Å“®‚©‚·ƒVƒXƒeƒ€
+///	ã‚¢ãƒ—ãƒªã§å‹•ã‹ã™ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 enum {
 	WFLBY_APL_ROOM,
@@ -75,11 +75,11 @@ enum {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	1ƒAƒvƒŠƒf[ƒ^
+///	1ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	void* p_param;
@@ -88,16 +88,16 @@ typedef struct {
 
 
 //-------------------------------------
-///	WiFiƒƒr[@ƒAƒvƒŠŠÇ—ƒVƒXƒeƒ€
+///	WiFiãƒ­ãƒ“ãƒ¼ã€€ã‚¢ãƒ—ãƒªç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _WFLBY_APL{
-	PROC*			p_proc;					// ƒAƒvƒŠƒvƒƒbƒN
-	WFLBY_APLDATA	apldata[WFLBY_APL_NUM];	// “®ìƒAƒvƒŠ•ª‚Ìƒpƒ‰ƒ[ƒ^
-	u8				aplno;					// Às’†‚ÌƒAƒvƒŠƒiƒ“ƒo[
-	u8				check_skip;				// Ú‘±‰æ–ÊÚ‘±Šm”F‚ğƒXƒLƒbƒv‚·‚é‚©
-	u16				heapID;					// ƒq[ƒvID
+	PROC*			p_proc;					// ã‚¢ãƒ—ãƒªãƒ—ãƒ­ãƒƒã‚¯
+	WFLBY_APLDATA	apldata[WFLBY_APL_NUM];	// å‹•ä½œã‚¢ãƒ—ãƒªåˆ†ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	u8				aplno;					// å®Ÿè¡Œä¸­ã®ã‚¢ãƒ—ãƒªãƒŠãƒ³ãƒãƒ¼
+	u8				check_skip;				// æ¥ç¶šç”»é¢æ¥ç¶šç¢ºèªã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹ã‹
+	u16				heapID;					// ãƒ’ãƒ¼ãƒ—ID
 
-	// ƒf[ƒ^ŠÖ˜A
+	// ãƒ‡ãƒ¼ã‚¿é–¢é€£
 	WFLBY_SYSTEM*		p_system;
 	SAVEDATA*			p_savedata;
 	WFLBY_COUNTER_TIME* p_wflby_counter;
@@ -105,74 +105,74 @@ typedef struct _WFLBY_APL{
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void WFLBY_APL_PROC_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data, const PROC_DATA* cp_pdata );
 
-// ƒAƒvƒŠƒf[ƒ^ŠÖ˜A
+// ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿é–¢é€£
 static void WFLBY_APLDATA_Init( WFLBY_APL* p_sys, u32 idx,  u32 heapID );
 static void WFLBY_APLDATA_Exit( WFLBY_APL* p_sys, u32 idx );
 static void WFLBY_APLDATA_Start( WFLBY_APL* p_sys, u32 idx );
 static WFLBY_APL_RET WFLBY_APLDATA_End( WFLBY_APL* p_sys, u32 idx );
 
 
-// ƒ~ƒjƒQ[ƒ€‹¤’Êƒ[ƒNì¬
+// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šãƒ¯ãƒ¼ã‚¯ä½œæˆ
 static void WFLBY_APL_MINIGAME_AllocWk( WFLBY_MINIGAME_WK* p_wk, u32 heapID );
 static void WFLBY_APL_MINIGAME_FreeWk( WFLBY_MINIGAME_WK* p_wk );
 static void WFLBY_APL_MINIGAME_InitWk( WFLBY_MINIGAME_WK* p_wk, WFLBY_SYSTEM* p_system, u32 heapID );
 
-// ŠeƒAƒvƒŠ‚ÌŠÖ”
-// •”‰®
+// å„ã‚¢ãƒ—ãƒªã®é–¢æ•°
+// éƒ¨å±‹
 static void WFLBY_APLDATA_ROOM_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID );
 static void WFLBY_APLDATA_ROOM_Exit( WFLBY_APLDATA* p_data );
 static void WFLBY_APLDATA_ROOM_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 static WFLBY_APL_RET WFLBY_APLDATA_ROOM_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 
-// Œv
+// æ™‚è¨ˆ
 static void WFLBY_APLDATA_WORLDTIMER_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID );
 static void WFLBY_APLDATA_WORLDTIMER_Exit( WFLBY_APLDATA* p_data );
 static void WFLBY_APLDATA_WORLDTIMER_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 static WFLBY_APL_RET WFLBY_APLDATA_WORLDTIMER_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 
-// ƒgƒsƒbƒN
+// ãƒˆãƒ”ãƒƒã‚¯
 static void WFLBY_APLDATA_TOPIC_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID );
 static void WFLBY_APLDATA_TOPIC_Exit( WFLBY_APLDATA* p_data );
 static void WFLBY_APLDATA_TOPIC_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 static WFLBY_APL_RET WFLBY_APLDATA_TOPIC_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 
-// ƒƒOƒCƒ“
+// ãƒ­ã‚°ã‚¤ãƒ³
 static void WFLBY_APLDATA_LOGIN_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID );
 static void WFLBY_APLDATA_LOGIN_Exit( WFLBY_APLDATA* p_data );
 static void WFLBY_APLDATA_LOGIN_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 static WFLBY_APL_RET WFLBY_APLDATA_LOGIN_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 
-// ‹Ê“Š‚°
+// ç‰æŠ•ã’
 static void WFLBY_APLDATA_BS_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID );
 static void WFLBY_APLDATA_BS_Exit( WFLBY_APLDATA* p_data );
 static void WFLBY_APLDATA_BS_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 static WFLBY_APL_RET WFLBY_APLDATA_BS_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 
-// ‹Êæ‚è
+// ç‰ä¹—ã‚Š
 static void WFLBY_APLDATA_BB_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID );
 static void WFLBY_APLDATA_BB_Exit( WFLBY_APLDATA* p_data );
 static void WFLBY_APLDATA_BB_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 static WFLBY_APL_RET WFLBY_APLDATA_BB_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 
-// •—çŠ„
+// é¢¨åƒå‰²
 static void WFLBY_APLDATA_BL_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID );
 static void WFLBY_APLDATA_BL_Exit( WFLBY_APLDATA* p_data );
 static void WFLBY_APLDATA_BL_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 static WFLBY_APL_RET WFLBY_APLDATA_BL_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 
-// ‘«Õƒ{[ƒh
+// è¶³è·¡ãƒœãƒ¼ãƒ‰
 static void WFLBY_APLDATA_FOOT_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID );
 static void WFLBY_APLDATA_FOOT_Exit( WFLBY_APLDATA* p_data );
 static WFLBY_APL_RET WFLBY_APLDATA_FOOT_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 static void WFLBY_APLDATA_FOOT1_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 static void WFLBY_APLDATA_FOOT2_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 
-// ƒƒOƒAƒEƒg
+// ãƒ­ã‚°ã‚¢ã‚¦ãƒˆ
 static void WFLBY_APLDATA_LOGOUT_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID );
 static void WFLBY_APLDATA_LOGOUT_Exit( WFLBY_APLDATA* p_data );
 static WFLBY_APL_RET WFLBY_APLDATA_LOGOUT_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
@@ -180,7 +180,7 @@ static void WFLBY_APLDATA_LOGOUT_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data 
 static void WFLBY_APLDATA_TIMEOUTLOGOUT_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data );
 static void WFLBY_APLDATA_Logout_StartDef( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data, BOOL timeout );
 
-// ƒAƒ“ƒP[ƒg
+// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 static void WFLBY_APLDATA_ANKETO_InitInput( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID );
 static void WFLBY_APLDATA_ANKETO_InitOutput( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID );
 static void WFLBY_APLDATA_ANKETO_Exit( WFLBY_APLDATA* p_data );
@@ -189,15 +189,15 @@ static WFLBY_APL_RET WFLBY_APLDATA_ANKETO_End( WFLBY_APL* p_sys, WFLBY_APLDATA* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[ƒAƒvƒŠŠÇ—ƒVƒXƒeƒ€ì¬
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼ã‚¢ãƒ—ãƒªç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
  *
- *	@param	check_skip		Ú‘±Šm”F‚ğƒXƒLƒbƒv‚·‚é‚©
- *	@param	p_save			ƒZ[ƒuƒf[ƒ^
- *	@param	p_wflby_counter	WiFi‚Ğ‚ë‚Î“üºŠÔŠi”[æ
- *	@param	p_system		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	heapID			ƒq[ƒvID
+ *	@param	check_skip		æ¥ç¶šç¢ºèªã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹ã‹
+ *	@param	p_save			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_wflby_counter	WiFiã²ã‚ã°å…¥å®¤æ™‚é–“æ ¼ç´å…ˆ
+ *	@param	p_system		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@return	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_APL* WFLBY_APL_Init( BOOL check_skip, SAVEDATA* p_save, WFLBY_COUNTER_TIME* p_wflby_counter, WFLBY_SYSTEM* p_system, u32 heapID )
@@ -207,18 +207,18 @@ WFLBY_APL* WFLBY_APL_Init( BOOL check_skip, SAVEDATA* p_save, WFLBY_COUNTER_TIME
 	p_wk = sys_AllocMemory( heapID, sizeof(WFLBY_APL) );
 	memset( p_wk, 0, sizeof(WFLBY_APL) );
 
-	// ƒf[ƒ^•Û‘¶
+	// ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	p_wk->p_system			= p_system;
 	p_wk->p_savedata		= p_save;
 	p_wk->p_wflby_counter	= p_wflby_counter;
 
-	// Ú‘±Šm”Fƒtƒ‰ƒO
+	// æ¥ç¶šç¢ºèªãƒ•ãƒ©ã‚°
 	p_wk->check_skip	= check_skip;
 
-	// ƒq[ƒvID•Û‘¶
+	// ãƒ’ãƒ¼ãƒ—IDä¿å­˜
 	p_wk->heapID		= heapID;
 
-	// ƒAƒvƒŠƒf[ƒ^‰Šú‰»
+	// ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	{
 		int i;
 		for( i=0; i<WFLBY_APL_NUM; i++ ){
@@ -232,14 +232,14 @@ WFLBY_APL* WFLBY_APL_Init( BOOL check_skip, SAVEDATA* p_save, WFLBY_COUNTER_TIME
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[ƒAƒvƒŠŠÇ—ƒVƒXƒeƒ€”jŠü
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼ã‚¢ãƒ—ãƒªç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_wk	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_APL_Exit( WFLBY_APL* p_wk )
 {
-	// ƒAƒvƒŠƒf[ƒ^”jŠü
+	// ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	{
 		int i;
 		for( i=0; i<WFLBY_APL_NUM; i++ ){
@@ -252,9 +252,9 @@ void WFLBY_APL_Exit( WFLBY_APL* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌŠJn
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®é–‹å§‹
  *
- *	@param	p_wk	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_APL_Start( WFLBY_APL* p_wk )
@@ -264,11 +264,11 @@ void WFLBY_APL_Start( WFLBY_APL* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[ƒAƒvƒŠŠÇ—ƒVƒXƒeƒ€	ƒƒCƒ“
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼ã‚¢ãƒ—ãƒªç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ˆ—ó‘Ô
+ *	@return	å‡¦ç†çŠ¶æ…‹
  */
 //-----------------------------------------------------------------------------
 WFLBY_APL_RET WFLBY_APL_Main( WFLBY_APL* p_wk )
@@ -282,7 +282,7 @@ WFLBY_APL_RET WFLBY_APL_Main( WFLBY_APL* p_wk )
 			PROC_Delete( p_wk->p_proc );
 			p_wk->p_proc = NULL;
 			
-			//  ‚»‚ÌƒAƒvƒŠ‚ÌI—¹ˆ—
+			//  ãã®ã‚¢ãƒ—ãƒªã®çµ‚äº†å‡¦ç†
 			ret = WFLBY_APLDATA_End( p_wk, p_wk->aplno );
 		}
 	}
@@ -291,9 +291,9 @@ WFLBY_APL_RET WFLBY_APL_Main( WFLBY_APL* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[ƒAƒvƒŠŠÇ—ƒVƒXƒeƒ€	VBlankˆ—
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼ã‚¢ãƒ—ãƒªç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	VBlankå‡¦ç†
  *
- *	@param	p_wk	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_APL_VBlank( WFLBY_APL* p_wk )
@@ -303,17 +303,17 @@ void WFLBY_APL_VBlank( WFLBY_APL* p_wk )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒbƒNŠJn‹¤’ÊŠÖ”
+ *	@brief	ãƒ—ãƒ­ãƒƒã‚¯é–‹å§‹å…±é€šé–¢æ•°
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
- *	@param	cp_pdata	ƒvƒƒbƒNƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_pdata	ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APL_PROC_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data, const PROC_DATA* cp_pdata )
@@ -324,11 +324,11 @@ static void WFLBY_APL_PROC_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data, const
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒvƒŠƒ[ƒN‚Ì‰Šú‰»
+ *	@brief	ã‚¢ãƒ—ãƒªãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- *	@param	p_sys	ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_sys	ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_Init( WFLBY_APL* p_sys, u32 idx,  u32 heapID )
@@ -354,10 +354,10 @@ static void WFLBY_APLDATA_Init( WFLBY_APL* p_sys, u32 idx,  u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒvƒŠƒ[ƒN‚Ì”jŠü
+ *	@brief	ã‚¢ãƒ—ãƒªãƒ¯ãƒ¼ã‚¯ã®ç ´æ£„
  *
- *	@param	p_sys	ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_sys	ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_Exit( WFLBY_APL* p_sys, u32 idx )
@@ -383,10 +383,10 @@ static void WFLBY_APLDATA_Exit( WFLBY_APL* p_sys, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒvƒŠŠJn
+ *	@brief	ã‚¢ãƒ—ãƒªé–‹å§‹
  *
- *	@param	p_sys	ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_sys	ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_Start( WFLBY_APL* p_sys, u32 idx )
@@ -409,18 +409,18 @@ static void WFLBY_APLDATA_Start( WFLBY_APL* p_sys, u32 idx )
 	GF_ASSERT( idx < WFLBY_APL_NUM );
 	pFunc[ idx ]( p_sys, &p_sys->apldata[idx] );
 
-	// ŠJnƒAƒvƒŠƒiƒ“ƒo[•Û‘¶
+	// é–‹å§‹ã‚¢ãƒ—ãƒªãƒŠãƒ³ãƒãƒ¼ä¿å­˜
 	p_sys->aplno = idx;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒvƒŠI—¹
+ *	@brief	ã‚¢ãƒ—ãƒªçµ‚äº†
  *
- *	@param	p_sys	ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_sys	ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	ƒAƒvƒŠ–ß‚è’l
+ *	@return	ã‚¢ãƒ—ãƒªæˆ»ã‚Šå€¤
  */
 //-----------------------------------------------------------------------------
 static WFLBY_APL_RET WFLBY_APLDATA_End( WFLBY_APL* p_sys, u32 idx )
@@ -450,10 +450,10 @@ static WFLBY_APL_RET WFLBY_APLDATA_End( WFLBY_APL* p_sys, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€‹¤’Êƒ[ƒN	ƒƒ‚ƒŠŠm•Û
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šãƒ¯ãƒ¼ã‚¯	ãƒ¡ãƒ¢ãƒªç¢ºä¿
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APL_MINIGAME_AllocWk( WFLBY_MINIGAME_WK* p_wk, u32 heapID )
@@ -467,9 +467,9 @@ static void WFLBY_APL_MINIGAME_AllocWk( WFLBY_MINIGAME_WK* p_wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€‹¤’Êƒ[ƒN	ƒƒ‚ƒŠ”jŠü
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šãƒ¯ãƒ¼ã‚¯	ãƒ¡ãƒ¢ãƒªç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APL_MINIGAME_FreeWk( WFLBY_MINIGAME_WK* p_wk )
@@ -484,11 +484,11 @@ static void WFLBY_APL_MINIGAME_FreeWk( WFLBY_MINIGAME_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€‹¤’Êƒ[ƒN‚Ì‰Šú‰»
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_system	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_system	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APL_MINIGAME_InitWk( WFLBY_MINIGAME_WK* p_wk, WFLBY_SYSTEM* p_system, u32 heapID )
@@ -497,7 +497,7 @@ static void WFLBY_APL_MINIGAME_InitWk( WFLBY_MINIGAME_WK* p_wk, WFLBY_SYSTEM* p_
 	const WFLBY_USER_PROFILE* cp_status_profile;
 	int i;
 
-	// ƒ~ƒjƒQ[ƒ€‹¤’Êƒ[ƒN‚ğì¬
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šãƒ¯ãƒ¼ã‚¯ã‚’ä½œæˆ
 	cp_profile		= WFLBY_SYSTEM_GetMyProfileLocal( p_system );
 	p_wk->gadget	= WFLBY_SYSTEM_GetProfileItem( cp_profile );
 	WFLBY_SYSTEM_GetVipFlagWk( p_system, &p_wk->vipflag );
@@ -505,7 +505,7 @@ static void WFLBY_APL_MINIGAME_InitWk( WFLBY_MINIGAME_WK* p_wk, WFLBY_SYSTEM* p_
 	p_wk->p_wflbysystem	= p_system;
 	p_wk->error_end	= FALSE;
 
-	// ‚»‚ê‚¼‚ê‚Ìl‚ÌMYSTATUSƒ[ƒNæ“¾
+	// ãã‚Œãã‚Œã®äººã®MYSTATUSãƒ¯ãƒ¼ã‚¯å–å¾—
 	for( i=0; i<WFLBY_MINIGAME_MAX; i++ ){
 		cp_status_profile = WFLBY_SYSTEM_GetUserProfile( p_system, p_wk->plidx.plidx[i] );
 		if( cp_status_profile != NULL ){
@@ -518,11 +518,11 @@ static void WFLBY_APL_MINIGAME_InitWk( WFLBY_MINIGAME_WK* p_wk, WFLBY_SYSTEM* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®ƒpƒ‰ƒ[ƒ^‰Šú‰»
+ *	@brief	éƒ¨å±‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_ROOM_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID )
@@ -540,9 +540,9 @@ static void WFLBY_APLDATA_ROOM_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®ƒpƒ‰ƒ[ƒ^”jŠü
+ *	@brief	éƒ¨å±‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_data	ƒVƒXƒeƒ€
+ *	@param	p_data	ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_ROOM_Exit( WFLBY_APLDATA* p_data )
@@ -554,20 +554,20 @@ static void WFLBY_APLDATA_ROOM_Exit( WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®ƒvƒƒbƒNŠJn
+ *	@brief	éƒ¨å±‹ãƒ—ãƒ­ãƒƒã‚¯é–‹å§‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_ROOM_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
 	WFLBY_ROOM_PARAM* p_param;
 
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(wifilobby_room);
 
-	// }ŠÓƒvƒƒbƒNƒf[ƒ^
+	// å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA Proc = {	
 		WFLBY_ROOM_Init,
 		WFLBY_ROOM_Main,
@@ -582,12 +582,12 @@ static void WFLBY_APLDATA_ROOM_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®ƒvƒƒbƒNI—¹ˆ—
+ *	@brief	éƒ¨å±‹ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†å‡¦ç†
  *
- *	@param	p_sys	ƒVƒXƒeƒ€
- *	@param	p_data	ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data	ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒAƒvƒŠƒVƒXƒeƒ€‚Ì–ß‚è’l
+ *	@return	ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ ã®æˆ»ã‚Šå€¤
  */
 //-----------------------------------------------------------------------------
 static WFLBY_APL_RET WFLBY_APLDATA_ROOM_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
@@ -596,55 +596,55 @@ static WFLBY_APL_RET WFLBY_APLDATA_ROOM_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_
 	p_param = p_data->p_param;
 	
 	switch( p_param->ret ){
-	// oŒû‚©‚ço‚½‚Ì‚ÅI—¹
+	// å‡ºå£ã‹ã‚‰å‡ºãŸã®ã§çµ‚äº†
 	case WFLBY_ROOM_RET_ROOM_OUT:			
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_LOGOUT );
 		break;
-	// ¢ŠEŒv‚Ö
+	// ä¸–ç•Œæ™‚è¨ˆã¸
 	case WFLBY_ROOM_RET_ROOM_WORLDTIMER:
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_WORLDTIMER );
 		break;
-	// ƒgƒsƒbƒN‚Ö
+	// ãƒˆãƒ”ãƒƒã‚¯ã¸
 	case WFLBY_ROOM_RET_ROOM_TOPIC:	
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_TOPIC );
 		break;
-	// ‘«Õƒ{[ƒh‚Ö
+	// è¶³è·¡ãƒœãƒ¼ãƒ‰ã¸
 	case WFLBY_ROOM_RET_ROOM_FOOT1:	
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_FOOT1 );
 		break;
-	// ‘«Õƒ{[ƒh‚Ö
+	// è¶³è·¡ãƒœãƒ¼ãƒ‰ã¸
 	case WFLBY_ROOM_RET_ROOM_FOOT2:	
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_FOOT2 );
 		break;
-	// ‹Ê“Š‚°
+	// ç‰æŠ•ã’
 	case WFLBY_ROOM_RET_ROOM_BALLSLOW:		
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_BALLSLOW );
 		break;
-	// ‹Êæ‚è
+	// ç‰ä¹—ã‚Š
 	case WFLBY_ROOM_RET_ROOM_BALANCE:		
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_BALANCEBALL );
 		break;
-	// •—‘DŠ„‚è
+	// é¢¨èˆ¹å‰²ã‚Š
 	case WFLBY_ROOM_RET_ROOM_BALLOON:		
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_BALLOON );
 		break;
-	// ƒ^ƒCƒ€ƒAƒEƒgI—¹
+	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆçµ‚äº†
 	case WFLBY_ROOM_RET_ROOM_TIMEOUT:
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_TIMEOUTLOGOUT );
 		break;
 
-	// ƒAƒ“ƒP[ƒg@“ü—Í
+	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã€€å…¥åŠ›
 	case WFLBY_ROOM_RET_ROOM_ANKETO_INPUT:	
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_ANKETO_INPUT );
 		break;
 
-	// ƒAƒ“ƒP[ƒg@o—Í	
+	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã€€å‡ºåŠ›	
 	case WFLBY_ROOM_RET_ROOM_ANKETO_OUTPUT:	
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_ANKETO_OUTPUT );
 		break;
 
 #ifdef PM_DEBUG
-	case WFLBY_ROOM_RET_ROOM_RETURN:			// •”‰®‚É‚à‚¤ˆê“x–ß‚é
+	case WFLBY_ROOM_RET_ROOM_RETURN:			// éƒ¨å±‹ã«ã‚‚ã†ä¸€åº¦æˆ»ã‚‹
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_ROOM);
 		break;
 #endif
@@ -659,11 +659,11 @@ static WFLBY_APL_RET WFLBY_APLDATA_ROOM_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠEŒvƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	ä¸–ç•Œæ™‚è¨ˆã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_WORLDTIMER_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID )
@@ -675,16 +675,16 @@ static void WFLBY_APLDATA_WORLDTIMER_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_da
 
 	p_param = p_data->p_param;
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_param->p_save		= p_sys->p_savedata;
 	p_param->p_system	= p_sys->p_system;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠEŒvƒVƒXƒeƒ€	”jŠü
+ *	@brief	ä¸–ç•Œæ™‚è¨ˆã‚·ã‚¹ãƒ†ãƒ 	ç ´æ£„
  *
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_WORLDTIMER_Exit( WFLBY_APLDATA* p_data )
@@ -694,20 +694,20 @@ static void WFLBY_APLDATA_WORLDTIMER_Exit( WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠEŒvŠJn
+ *	@brief	ä¸–ç•Œæ™‚è¨ˆé–‹å§‹
  *
- *	@param	p_sys	ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	p_data	ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_sys	ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data	ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_WORLDTIMER_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
 	WLDTIMER_PARAM* p_param;
 
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(worldtimer);
 
-	// }ŠÓƒvƒƒbƒNƒf[ƒ^
+	// å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA Proc = {	
 		WLDTIMER_Init,
 		WLDTIMER_Main,
@@ -725,22 +725,22 @@ static void WFLBY_APLDATA_WORLDTIMER_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_d
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠEŒvI—¹
+ *	@brief	ä¸–ç•Œæ™‚è¨ˆçµ‚äº†
  *	
- *	@param	p_sys	ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	p_data	ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_sys	ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data	ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  *
- *	@return	‚Â‚Ë‚ÉNONE
+ *	@return	ã¤ã­ã«NONE
  */
 //-----------------------------------------------------------------------------
 static WFLBY_APL_RET WFLBY_APLDATA_WORLDTIMER_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
-	// •”‰®‚ªI‚í‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+	// éƒ¨å±‹ãŒçµ‚ã‚ã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_Event_GetEnd( p_sys->p_system ) ){
-		// ƒ^ƒCƒ€ƒAƒEƒgI—¹
+		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆçµ‚äº†
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_TIMEOUTLOGOUT );
 	}else{
-		// •”‰®‚É–ß‚é
+		// éƒ¨å±‹ã«æˆ»ã‚‹
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_ROOM );
 	}
 	
@@ -750,11 +750,11 @@ static WFLBY_APL_RET WFLBY_APLDATA_WORLDTIMER_End( WFLBY_APL* p_sys, WFLBY_APLDA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNƒpƒ‰ƒ[ƒ^‰Šú‰»
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_TOPIC_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID )
@@ -766,7 +766,7 @@ static void WFLBY_APLDATA_TOPIC_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  
 	
 	p_param = p_data->p_param;
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_param->p_data			= WFLBY_SYSTEM_GetLobbyData( p_sys->p_system );
 	p_param->cp_nowtime		= WFLBY_SYSTEM_GetWldTime( p_sys->p_system );
 	p_param->p_system		= p_sys->p_system;
@@ -774,9 +774,9 @@ static void WFLBY_APLDATA_TOPIC_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNƒpƒ‰ƒ[ƒ^”jŠü
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_TOPIC_Exit( WFLBY_APLDATA* p_data )
@@ -786,18 +786,18 @@ static void WFLBY_APLDATA_TOPIC_Exit( WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNŠJn
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯é–‹å§‹
  *
- *	@param	p_sys		ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_sys		ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_TOPIC_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(lobbynews);
 
-	// }ŠÓƒvƒƒbƒNƒf[ƒ^
+	// å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA Proc = {	
 		NEWS_DRAW_Init,
 		NEWS_DRAW_Main,
@@ -810,22 +810,22 @@ static void WFLBY_APLDATA_TOPIC_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNƒvƒƒbƒNI—¹
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†
  *
- *	@param	p_sys		ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_sys		ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  *
- *	@return	í‚ÉNONE
+ *	@return	å¸¸ã«NONE
  */
 //-----------------------------------------------------------------------------
 static WFLBY_APL_RET WFLBY_APLDATA_TOPIC_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
-	// •”‰®‚ªI‚í‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+	// éƒ¨å±‹ãŒçµ‚ã‚ã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_Event_GetEnd( p_sys->p_system ) ){
-		// ƒ^ƒCƒ€ƒAƒEƒgI—¹
+		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆçµ‚äº†
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_TIMEOUTLOGOUT );
 	}else{
-		// •”‰®‚É–ß‚é
+		// éƒ¨å±‹ã«æˆ»ã‚‹
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_ROOM );
 	}
 	return WFLBY_APL_RET_NONE;
@@ -834,11 +834,11 @@ static WFLBY_APL_RET WFLBY_APLDATA_TOPIC_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒƒOƒCƒ“ƒvƒƒbƒNŠJn
+ *	@brief		ãƒ­ã‚°ã‚¤ãƒ³ãƒ—ãƒ­ãƒƒã‚¯é–‹å§‹
  *
- *	@param	p_sys		ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_LOGIN_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID )
@@ -850,7 +850,7 @@ static void WFLBY_APLDATA_LOGIN_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  
 	
 	p_param = p_data->p_param;
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_param->p_save				= p_sys->p_savedata;
 	p_param->p_system			= p_sys->p_system;
 	p_param->check_skip			= p_sys->check_skip;
@@ -859,9 +859,9 @@ static void WFLBY_APLDATA_LOGIN_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒOƒCƒ“ƒvƒƒbƒNI—¹
+ *	@brief	ãƒ­ã‚°ã‚¤ãƒ³ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†
  *
- *	@param	p_data	ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_LOGIN_Exit( WFLBY_APLDATA* p_data )
@@ -873,18 +873,18 @@ static void WFLBY_APLDATA_LOGIN_Exit( WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒOƒCƒ“ƒvƒƒbƒN	ŠJn
+ *	@brief	ãƒ­ã‚°ã‚¤ãƒ³ãƒ—ãƒ­ãƒƒã‚¯	é–‹å§‹
  *
- *	@param	p_sys	ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	p_data	ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_sys	ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data	ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_LOGIN_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(wifilobby_connect);
 
-	// }ŠÓƒvƒƒbƒNƒf[ƒ^
+	// å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA Proc = {	
 		WFLBY_CONNECT_Init,
 		WFLBY_CONNECT_Main,
@@ -897,12 +897,12 @@ static void WFLBY_APLDATA_LOGIN_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒOƒCƒ“ˆ—	I—¹
+ *	@brief	ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†	çµ‚äº†
  *
- *	@param	p_sys	ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	p_data	ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_sys	ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data	ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  *
- *	@return	í‚ÉNONE
+ *	@return	å¸¸ã«NONE
  */
 //-----------------------------------------------------------------------------
 static WFLBY_APL_RET WFLBY_APLDATA_LOGIN_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
@@ -913,13 +913,13 @@ static WFLBY_APL_RET WFLBY_APLDATA_LOGIN_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p
 	p_param = p_data->p_param;
 
 
-	// “ü‚ê‚½‚©ƒ`ƒFƒbƒN
+	// å…¥ã‚ŒãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( p_param->enter == FALSE ){
-		// ‚¨‚í‚è
+		// ãŠã‚ã‚Š
 		return WFLBY_APL_RET_END;
 	}
 
-	// •”‰®‚É“ü‚é
+	// éƒ¨å±‹ã«å…¥ã‚‹
 	WFLBY_APLDATA_Start( p_sys, WFLBY_APL_ROOM );
 	return WFLBY_APL_RET_NONE;
 }
@@ -928,11 +928,11 @@ static WFLBY_APL_RET WFLBY_APLDATA_LOGIN_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{[ƒ‹“Š‚°	ƒpƒ‰ƒ[ƒ^‰Šú‰»
+ *	@brief	ãƒœãƒ¼ãƒ«æŠ•ã’	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_BS_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID )
@@ -948,16 +948,16 @@ static void WFLBY_APLDATA_BS_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32
 	p_param->wifi_lobby	= TRUE;
 	p_param->p_save		= p_sys->p_savedata;
 
-	// ƒ~ƒjƒQ[ƒ€‹¤’Êƒ[ƒNƒƒ‚ƒŠŠm•Û
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	WFLBY_APL_MINIGAME_AllocWk( &p_param->lobby_wk, heapID );
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{[ƒ‹“Š‚°ƒpƒ‰ƒ[ƒ^”jŠü
+ *	@brief	ãƒœãƒ¼ãƒ«æŠ•ã’ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_BS_Exit( WFLBY_APLDATA* p_data )
@@ -965,7 +965,7 @@ static void WFLBY_APLDATA_BS_Exit( WFLBY_APLDATA* p_data )
 	BUCKET_PROC_WORK* p_param;
 
 
-	// ƒ~ƒjƒQ[ƒ€‹¤’Êƒ[ƒNƒƒ‚ƒŠ”jŠü
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªç ´æ£„
 	p_param = p_data->p_param;
 	WFLBY_APL_MINIGAME_FreeWk( &p_param->lobby_wk );
 	
@@ -974,17 +974,17 @@ static void WFLBY_APLDATA_BS_Exit( WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{[ƒ‹“Š‚°ƒAƒvƒŠŠJn
+ *	@brief	ãƒœãƒ¼ãƒ«æŠ•ã’ã‚¢ãƒ—ãƒªé–‹å§‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_BS_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
 	FS_EXTERN_OVERLAY(bucket);
 	FS_EXTERN_OVERLAY(minigame_common);
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA Proc = {
 		BucketProc_Init,
 		BucketProc_Main,
@@ -992,7 +992,7 @@ static void WFLBY_APLDATA_BS_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 		FS_OVERLAY_ID(bucket),
 	};
 
-	// ƒ~ƒjƒQ[ƒ€‹¤’ÊƒI[ƒo[ƒŒƒC‚ğ“Ç‚İ‚Ş
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’èª­ã¿è¾¼ã‚€
 	Overlay_Load( FS_OVERLAY_ID(minigame_common), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 
 	{
@@ -1007,22 +1007,22 @@ static void WFLBY_APLDATA_BS_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹Ê“Š‚°	ƒvƒƒbƒNI—¹
+ *	@brief	ç‰æŠ•ã’	ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static WFLBY_APL_RET WFLBY_APLDATA_BS_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
 
-	// ƒ~ƒjƒQ[ƒ€‹¤’ÊƒI[ƒo[ƒŒƒC”jŠü
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ç ´æ£„
 	FS_EXTERN_OVERLAY(minigame_common);
 	Overlay_UnloadID( FS_OVERLAY_ID(minigame_common) );
 
 
-	// ƒKƒWƒFƒbƒg‚ªƒAƒbƒvƒf[ƒg‚³‚ê‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚Ì‚Åƒ`ƒFƒbƒN
-	// ƒGƒ‰[I—¹‚µ‚½‚©‚àİ’è
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãŒã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã•ã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ãƒã‚§ãƒƒã‚¯
+	// ã‚¨ãƒ©ãƒ¼çµ‚äº†ã—ãŸã‹ã‚‚è¨­å®š
 	{
 		BUCKET_PROC_WORK* p_param;
 		p_param = p_data->p_param;
@@ -1030,7 +1030,7 @@ static WFLBY_APL_RET WFLBY_APLDATA_BS_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_da
 		WFLBY_SYSTEM_SetMyItem( p_sys->p_system, p_param->lobby_wk.gadget );
 	}
 	
-	// •”‰®‚É–ß‚é
+	// éƒ¨å±‹ã«æˆ»ã‚‹
 	WFLBY_APLDATA_Start( p_sys, WFLBY_APL_ROOM );
 	
 	return WFLBY_APL_RET_NONE;
@@ -1039,11 +1039,11 @@ static WFLBY_APL_RET WFLBY_APLDATA_BS_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_da
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BALANCEƒ{[ƒ‹ƒpƒ‰ƒ[ƒ^‰Šú‰»
+ *	@brief	BALANCEãƒœãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_BB_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID )
@@ -1059,22 +1059,22 @@ static void WFLBY_APLDATA_BB_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32
 	p_param->wifi_lobby	= TRUE;
 	p_param->p_save		= p_sys->p_savedata;
 
-	// ƒ~ƒjƒQ[ƒ€‹¤’Êƒ[ƒNƒƒ‚ƒŠŠm•Û
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	WFLBY_APL_MINIGAME_AllocWk( &p_param->lobby_wk, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BALANCEƒ{[ƒ‹ƒpƒ‰ƒ[ƒ^”jŠü
+ *	@brief	BALANCEãƒœãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_BB_Exit( WFLBY_APLDATA* p_data )
 {
 	BB_PROC_WORK* p_param;
 
-	// ƒ~ƒjƒQ[ƒ€‹¤’Êƒ[ƒNƒƒ‚ƒŠ”jŠü
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªç ´æ£„
 	p_param = p_data->p_param;
 	WFLBY_APL_MINIGAME_FreeWk( &p_param->lobby_wk );
 
@@ -1083,17 +1083,17 @@ static void WFLBY_APLDATA_BB_Exit( WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BALANCEƒ{[ƒ‹ƒAƒvƒŠŠJn
+ *	@brief	BALANCEãƒœãƒ¼ãƒ«ã‚¢ãƒ—ãƒªé–‹å§‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_BB_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
 	FS_EXTERN_OVERLAY(balance_ball);
 	FS_EXTERN_OVERLAY(minigame_common);
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA Proc = {
 		BalanceBallProc_Init,
 		BalanceBallProc_Main,
@@ -1101,7 +1101,7 @@ static void WFLBY_APLDATA_BB_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 		FS_OVERLAY_ID(balance_ball),
 	};
 
-	// ƒ~ƒjƒQ[ƒ€‹¤’ÊƒI[ƒo[ƒŒƒC‚ğ“Ç‚İ‚Ş
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’èª­ã¿è¾¼ã‚€
 	Overlay_Load( FS_OVERLAY_ID(minigame_common), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 
 	{
@@ -1115,19 +1115,19 @@ static void WFLBY_APLDATA_BB_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BALANCEƒ{[ƒ‹	ƒvƒƒbƒNI—¹
+ *	@brief	BALANCEãƒœãƒ¼ãƒ«	ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static WFLBY_APL_RET WFLBY_APLDATA_BB_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
-	// ƒ~ƒjƒQ[ƒ€‹¤’ÊƒI[ƒo[ƒŒƒC”jŠü
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ç ´æ£„
 	FS_EXTERN_OVERLAY(minigame_common);
 	Overlay_UnloadID( FS_OVERLAY_ID(minigame_common) );
 
-	// ƒKƒWƒFƒbƒg‚ªƒAƒbƒvƒf[ƒg‚³‚ê‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚Ì‚Åƒ`ƒFƒbƒN
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãŒã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã•ã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ãƒã‚§ãƒƒã‚¯
 	{
 		BB_PROC_WORK* p_param;
 		p_param = p_data->p_param;
@@ -1135,7 +1135,7 @@ static WFLBY_APL_RET WFLBY_APLDATA_BB_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_da
 		WFLBY_SYSTEM_SetMyItem( p_sys->p_system, p_param->lobby_wk.gadget );
 	}
 	
-	// •”‰®‚É–ß‚é
+	// éƒ¨å±‹ã«æˆ»ã‚‹
 	WFLBY_APLDATA_Start( p_sys, WFLBY_APL_ROOM );
 	
 	return WFLBY_APL_RET_NONE;
@@ -1144,11 +1144,11 @@ static WFLBY_APL_RET WFLBY_APLDATA_BB_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_da
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•—çŠ„	ƒpƒ‰ƒ[ƒ^‰Šú‰»
+ *	@brief	é¢¨åƒå‰²	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_BL_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID )
@@ -1164,22 +1164,22 @@ static void WFLBY_APLDATA_BL_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32
 	p_param->wifi_lobby	= TRUE;
 	p_param->p_save		= p_sys->p_savedata;
 
-	// ƒ~ƒjƒQ[ƒ€‹¤’Êƒ[ƒNƒƒ‚ƒŠŠm•Û
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	WFLBY_APL_MINIGAME_AllocWk( &p_param->lobby_wk, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•—çŠ„ƒpƒ‰ƒ[ƒ^”jŠü
+ *	@brief	é¢¨åƒå‰²ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_BL_Exit( WFLBY_APLDATA* p_data )
 {
 	BALLOON_PROC_WORK* p_param;
 	
-	// ƒ~ƒjƒQ[ƒ€‹¤’Êƒ[ƒNƒƒ‚ƒŠ”jŠü
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªç ´æ£„
 	p_param = p_data->p_param;
 	WFLBY_APL_MINIGAME_FreeWk( &p_param->lobby_wk );
 	
@@ -1188,17 +1188,17 @@ static void WFLBY_APLDATA_BL_Exit( WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•—çŠ„	ƒAƒvƒŠŠJn
+ *	@brief	é¢¨åƒå‰²	ã‚¢ãƒ—ãƒªé–‹å§‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_BL_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
 	FS_EXTERN_OVERLAY(balloon);
 	FS_EXTERN_OVERLAY(minigame_common);
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA Proc = {
 		BalloonProc_Init,
 		BalloonProc_Main,
@@ -1206,7 +1206,7 @@ static void WFLBY_APLDATA_BL_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 		FS_OVERLAY_ID(balloon),
 	};
 
-	// ƒ~ƒjƒQ[ƒ€‹¤’ÊƒI[ƒo[ƒŒƒC‚ğ“Ç‚İ‚Ş
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’èª­ã¿è¾¼ã‚€
 	Overlay_Load( FS_OVERLAY_ID(minigame_common), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 
 	{
@@ -1221,19 +1221,19 @@ static void WFLBY_APLDATA_BL_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BALANCEƒ{[ƒ‹	ƒvƒƒbƒNI—¹
+ *	@brief	BALANCEãƒœãƒ¼ãƒ«	ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static WFLBY_APL_RET WFLBY_APLDATA_BL_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
-	// ƒ~ƒjƒQ[ƒ€‹¤’ÊƒI[ƒo[ƒŒƒC”jŠü
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ç ´æ£„
 	FS_EXTERN_OVERLAY(minigame_common);
 	Overlay_UnloadID( FS_OVERLAY_ID(minigame_common) );
 
-	// ƒKƒWƒFƒbƒg‚ªƒAƒbƒvƒf[ƒg‚³‚ê‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚Ì‚Åƒ`ƒFƒbƒN
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãŒã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã•ã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ãƒã‚§ãƒƒã‚¯
 	{
 		BALLOON_PROC_WORK* p_param;
 		p_param = p_data->p_param;
@@ -1242,7 +1242,7 @@ static WFLBY_APL_RET WFLBY_APLDATA_BL_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_da
 	}
 	
 	
-	// •”‰®‚É–ß‚é
+	// éƒ¨å±‹ã«æˆ»ã‚‹
 	WFLBY_APLDATA_Start( p_sys, WFLBY_APL_ROOM );
 	
 	return WFLBY_APL_RET_NONE;
@@ -1252,11 +1252,11 @@ static WFLBY_APL_RET WFLBY_APLDATA_BL_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_da
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘«Õƒ{[ƒh@ƒpƒ‰ƒ[ƒ^‰Šú‰»
+ *	@brief	è¶³è·¡ãƒœãƒ¼ãƒ‰ã€€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_FOOT_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID )
@@ -1273,9 +1273,9 @@ static void WFLBY_APLDATA_FOOT_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘«Õƒ{[ƒh	ƒpƒ‰ƒ[ƒ^”jŠü
+ *	@brief	è¶³è·¡ãƒœãƒ¼ãƒ‰	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_FOOT_Exit( WFLBY_APLDATA* p_data )
@@ -1285,20 +1285,20 @@ static void WFLBY_APLDATA_FOOT_Exit( WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘«Õƒ{[ƒhI—¹
+ *	@brief	è¶³è·¡ãƒœãƒ¼ãƒ‰çµ‚äº†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WFLBY_APL_RET WFLBY_APLDATA_FOOT_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
-	// •”‰®‚ªI‚í‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+	// éƒ¨å±‹ãŒçµ‚ã‚ã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_Event_GetEnd( p_sys->p_system ) ){
-		// ƒ^ƒCƒ€ƒAƒEƒgI—¹
+		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆçµ‚äº†
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_TIMEOUTLOGOUT );
 	}else{
-		// •”‰®‚É–ß‚é
+		// éƒ¨å±‹ã«æˆ»ã‚‹
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_ROOM );
 	}
 	
@@ -1307,10 +1307,10 @@ static WFLBY_APL_RET WFLBY_APLDATA_FOOT_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘«Õƒ{[ƒh”’ŠJn
+ *	@brief	è¶³è·¡ãƒœãƒ¼ãƒ‰ç™½é–‹å§‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_FOOT1_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
@@ -1318,7 +1318,7 @@ static void WFLBY_APLDATA_FOOT1_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 	FOOTPRINT_PARAM* p_param;
 
 	FS_EXTERN_OVERLAY(footprint_board);
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA Proc = {
 		FootPrintProc_Init,
 		FootPrintProc_Main,
@@ -1334,10 +1334,10 @@ static void WFLBY_APLDATA_FOOT1_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘«Õƒ{[ƒh•ŠJn
+ *	@brief	è¶³è·¡ãƒœãƒ¼ãƒ‰é»’é–‹å§‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_FOOT2_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
@@ -1345,7 +1345,7 @@ static void WFLBY_APLDATA_FOOT2_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 	FOOTPRINT_PARAM* p_param;
 
 	FS_EXTERN_OVERLAY(footprint_board);
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA Proc = {
 		FootPrintProc_Init,
 		FootPrintProc_Main,
@@ -1362,11 +1362,11 @@ static void WFLBY_APLDATA_FOOT2_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒOƒAƒEƒgˆ—ƒpƒ‰ƒ[ƒ^‰Šú‰»ì¬
+ *	@brief	ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå‡¦ç†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–ä½œæˆ
  *
- *	@param	p_sys		ƒAƒvƒŠƒVƒXƒeƒ€
- *	@param	p_data		ƒAƒvƒŠƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚¢ãƒ—ãƒªã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_LOGOUT_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID )
@@ -1378,16 +1378,16 @@ static void WFLBY_APLDATA_LOGOUT_Init( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data, 
 
 	p_param = p_data->p_param;
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_param->p_save			= p_sys->p_savedata;
 	p_param->p_system		= p_sys->p_system;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒOƒAƒEƒgˆ—ƒpƒ‰ƒ[ƒ^”jŠü
+ *	@brief	ãƒ­ã‚°ã‚¢ã‚¦ãƒˆå‡¦ç†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_LOGOUT_Exit( WFLBY_APLDATA* p_data )
@@ -1397,10 +1397,10 @@ static void WFLBY_APLDATA_LOGOUT_Exit( WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒOƒAƒEƒgƒAƒvƒŠŠJn
+ *	@brief	ãƒ­ã‚°ã‚¢ã‚¦ãƒˆã‚¢ãƒ—ãƒªé–‹å§‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_LOGOUT_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
@@ -1410,10 +1410,10 @@ static void WFLBY_APLDATA_LOGOUT_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒAƒEƒgƒƒOƒAƒEƒgƒAƒvƒŠŠJn
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãƒ­ã‚°ã‚¢ã‚¦ãƒˆã‚¢ãƒ—ãƒªé–‹å§‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_TIMEOUTLOGOUT_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
@@ -1423,19 +1423,19 @@ static void WFLBY_APLDATA_TIMEOUTLOGOUT_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒOƒAƒEƒgŠJn	‹¤’Ê•”•ª
+ *	@brief	ãƒ­ã‚°ã‚¢ã‚¦ãƒˆé–‹å§‹	å…±é€šéƒ¨åˆ†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
- *	@param	timeout		ƒ^ƒCƒ€ƒAƒEƒg
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	timeout		ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_Logout_StartDef( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data, BOOL timeout )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(wifilobby_connect);
 
-	// }ŠÓƒvƒƒbƒNƒf[ƒ^
+	// å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA Proc = {	
 		WFLBY_DISCONNECT_Init,
 		WFLBY_DISCONNECT_Main,
@@ -1454,26 +1454,26 @@ static void WFLBY_APLDATA_Logout_StartDef( WFLBY_APL* p_sys, WFLBY_APLDATA* p_da
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒOƒAƒEƒgƒAƒvƒŠI—¹
+ *	@brief	ãƒ­ã‚°ã‚¢ã‚¦ãƒˆã‚¢ãƒ—ãƒªçµ‚äº†
  *	
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WFLBY_APL_RET WFLBY_APLDATA_LOGOUT_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
-	// I‚í‚é
+	// çµ‚ã‚ã‚‹
 	return WFLBY_APL_RET_END;
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒg	‰Šú‰»
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ	åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_ANKETO_InitInput( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data,  u32 heapID )
@@ -1485,7 +1485,7 @@ static void WFLBY_APLDATA_ANKETO_InitInput( WFLBY_APL* p_sys, WFLBY_APLDATA* p_d
 	
 	p_param = p_data->p_param;
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_param->p_save			= p_sys->p_savedata;
 	p_param->p_system		= p_sys->p_system;
 	p_param->move_type		= ANKETO_MOVE_TYPE_INPUT;
@@ -1499,7 +1499,7 @@ static void WFLBY_APLDATA_ANKETO_InitOutput( WFLBY_APL* p_sys, WFLBY_APLDATA* p_
 	
 	p_param = p_data->p_param;
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_param->p_save			= p_sys->p_savedata;
 	p_param->p_system		= p_sys->p_system;
 	p_param->move_type		= ANKETO_MOVE_TYPE_VIEW;
@@ -1507,9 +1507,9 @@ static void WFLBY_APLDATA_ANKETO_InitOutput( WFLBY_APL* p_sys, WFLBY_APLDATA* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒg	”jŠü
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ	ç ´æ£„
  *
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_ANKETO_Exit( WFLBY_APLDATA* p_data )
@@ -1519,18 +1519,18 @@ static void WFLBY_APLDATA_ANKETO_Exit( WFLBY_APLDATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒg	ŠJn
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ	é–‹å§‹
  *	
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_data		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_APLDATA_ANKETO_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(wifilobby_anketo);
 
-	// }ŠÓƒvƒƒbƒNƒf[ƒ^
+	// å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA Proc = {	
 		ANKETO_Init,
 		ANKETO_Main,
@@ -1543,20 +1543,20 @@ static void WFLBY_APLDATA_ANKETO_Start( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgI—¹
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆçµ‚äº†
  *
- *	@param	p_sys		ƒ[ƒN
- *	@param	p_data		ƒf[ƒ^
+ *	@param	p_sys		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static WFLBY_APL_RET WFLBY_APLDATA_ANKETO_End( WFLBY_APL* p_sys, WFLBY_APLDATA* p_data )
 {
-	// •”‰®‚ªI‚í‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+	// éƒ¨å±‹ãŒçµ‚ã‚ã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_Event_GetEnd( p_sys->p_system ) ){
-		// ƒ^ƒCƒ€ƒAƒEƒgI—¹
+		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆçµ‚äº†
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_TIMEOUTLOGOUT );
 	}else{
-		// •”‰®‚É–ß‚é
+		// éƒ¨å±‹ã«æˆ»ã‚‹
 		WFLBY_APLDATA_Start( p_sys, WFLBY_APL_ROOM );
 	}
 	return WFLBY_APL_RET_NONE;

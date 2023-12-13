@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	visual_order.h
- * @brief	ƒrƒWƒ…ƒAƒ‹•”–åF–½—ß‘—ŽóM‚Ìƒwƒbƒ_
+ * @brief	ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ï¼šå‘½ä»¤é€å—ä¿¡ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2005.12.13(‰Î)
+ * @date	2005.12.13(ç«)
  */
 //==============================================================================
 #ifndef __VISUAL_ORDER_H__
@@ -13,39 +13,39 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
 /**
- *     –½—ßƒR[ƒh
- * 					¦OrderFuncTbl‚Æ•K‚¸•À‚Ñ‚ð“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆI
+ *     å‘½ä»¤ã‚³ãƒ¼ãƒ‰
+ * 					â€»OrderFuncTblã¨å¿…ãšä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼
  */
 //--------------------------------------------------------------
 enum{
-	VORDER_NO_SAMPLE,			///<ƒTƒ“ƒvƒ‹
-	VORDER_NO_VISUAL_EXIT,		///<ƒrƒWƒ…ƒAƒ‹•”–åI—¹
-	VORDER_NO_APPEAR,			///<ƒ|ƒPƒ‚ƒ““oê
-	VORDER_NO_ADVANCE,			///<‘Oi
-	VORDER_NO_AUDIENCE_EVALUATE_BP,	///<ŠÏ‹q•]‰¿(BP)
-	VORDER_NO_AUDIENCE_EVALUATE_CLIP,	///<ŠÏ‹q•]‰¿(Clip)
-	VORDER_NO_AUDIENCE_EVALUATE_ALL,	///<ŠÏ‹q•]‰¿(BP & Clip)
-	VORDER_NO_POKE_OUT,			///<ƒ|ƒPƒ‚ƒ“‘Þê
-	VORDER_NO_DONCHOU_UP,		///<‚Ç‚ñ‚¿‚å‚¤ã‚°‚é
-	VORDER_NO_DONCHOU_DOWN,		///<‚Ç‚ñ‚¿‚å‚¤‰º‚°‚é
-	VORDER_NO_TRAINER_IN,		///<ƒgƒŒ[ƒi[“oê
-	VORDER_NO_TRAINER_OUT,		///<ƒgƒŒ[ƒi[‘Þê
-	VORDER_NO_APPEAR_EFFECT,	///<“oêƒGƒtƒFƒNƒg
-	VORDER_NO_TALK,				///<‰ï˜bƒƒbƒZ[ƒW•\Ž¦
-	VORDER_NO_FADE_INOUT,	///<‘S‘ÌƒtƒF[ƒhƒCƒ“EƒAƒEƒg
-	VORDER_NO_DONCHOU_EFFECT_UP,	///<‚Ç‚ñ‚¿‚å‚¤ƒGƒtƒFƒNƒgã¸
-	VORDER_NO_VISUAL_FINISH,	///<ƒrƒWƒ…ƒAƒ‹•”–åI—¹ƒGƒtƒFƒNƒg
+	VORDER_NO_SAMPLE,			///<ã‚µãƒ³ãƒ—ãƒ«
+	VORDER_NO_VISUAL_EXIT,		///<ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€çµ‚äº†
+	VORDER_NO_APPEAR,			///<ãƒã‚±ãƒ¢ãƒ³ç™»å ´
+	VORDER_NO_ADVANCE,			///<å‰é€²
+	VORDER_NO_AUDIENCE_EVALUATE_BP,	///<è¦³å®¢è©•ä¾¡(BP)
+	VORDER_NO_AUDIENCE_EVALUATE_CLIP,	///<è¦³å®¢è©•ä¾¡(Clip)
+	VORDER_NO_AUDIENCE_EVALUATE_ALL,	///<è¦³å®¢è©•ä¾¡(BP & Clip)
+	VORDER_NO_POKE_OUT,			///<ãƒã‚±ãƒ¢ãƒ³é€€å ´
+	VORDER_NO_DONCHOU_UP,		///<ã©ã‚“ã¡ã‚‡ã†ä¸Šã’ã‚‹
+	VORDER_NO_DONCHOU_DOWN,		///<ã©ã‚“ã¡ã‚‡ã†ä¸‹ã’ã‚‹
+	VORDER_NO_TRAINER_IN,		///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç™»å ´
+	VORDER_NO_TRAINER_OUT,		///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´
+	VORDER_NO_APPEAR_EFFECT,	///<ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	VORDER_NO_TALK,				///<ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	VORDER_NO_FADE_INOUT,	///<å…¨ä½“ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆ
+	VORDER_NO_DONCHOU_EFFECT_UP,	///<ã©ã‚“ã¡ã‚‡ã†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸Šæ˜‡
+	VORDER_NO_VISUAL_FINISH,	///<ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€çµ‚äº†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 };
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒ|ƒPƒ‚ƒ“‘Oiƒ[ƒJƒ‹\‘¢‘Ì
+///ãƒã‚±ãƒ¢ãƒ³å‰é€²ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	CORDER_HEAD req_head;
@@ -58,7 +58,7 @@ typedef struct{
 	s32 y;
 }VOLOCAL_ADVANCE;
 
-///ƒ|ƒPƒ‚ƒ““oêƒ[ƒJƒ‹\‘¢‘Ì
+///ãƒã‚±ãƒ¢ãƒ³ç™»å ´ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	CORDER_HEAD req_head;
@@ -69,7 +69,7 @@ typedef struct{
 	s16 wait;
 }VOLOCAL_POKE_APPEAR;
 
-///ƒ|ƒPƒ‚ƒ“‘Oiƒ[ƒJƒ‹\‘¢‘Ì
+///ãƒã‚±ãƒ¢ãƒ³å‰é€²ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	CORDER_HEAD req_head;
@@ -82,7 +82,7 @@ typedef struct{
 	s32 y;
 }VOLOCAL_POKEOUT;
 
-///‚Ç‚ñ‚¿‚å‚¤‚ðã‚°‚éƒ[ƒJƒ‹\‘¢‘Ì
+///ã©ã‚“ã¡ã‚‡ã†ã‚’ä¸Šã’ã‚‹ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	CORDER_HEAD req_head;
@@ -90,13 +90,13 @@ typedef struct{
 	
 	u8 seq;
 	
-	s8 anm_line;			///<ƒAƒjƒ‘‚«Š·‚¦‚ÌŠî–{ƒ‰ƒCƒ“
-	u8 anm_no;				///<ƒAƒjƒNo
-	s8 anm_wait;			///<ƒAƒjƒƒEƒFƒCƒg
-	s8 anm_dansa_wait;		///<ƒAƒjƒ’i·ƒEƒFƒCƒg
+	s8 anm_line;			///<ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆã®åŸºæœ¬ãƒ©ã‚¤ãƒ³
+	u8 anm_no;				///<ã‚¢ãƒ‹ãƒ¡No
+	s8 anm_wait;			///<ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
+	s8 anm_dansa_wait;		///<ã‚¢ãƒ‹ãƒ¡æ®µå·®ã‚¦ã‚§ã‚¤ãƒˆ
 }VOLOCAL_DONCHOU_UP;
 
-///‚Ç‚ñ‚¿‚å‚¤‚ðã‚°‚éƒ[ƒJƒ‹\‘¢‘Ì
+///ã©ã‚“ã¡ã‚‡ã†ã‚’ä¸Šã’ã‚‹ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	CORDER_HEAD req_head;
@@ -104,13 +104,13 @@ typedef struct{
 	
 	u8 seq;
 
-	s8 anm_line;			///<ƒAƒjƒ‘‚«Š·‚¦‚ÌŠî–{ƒ‰ƒCƒ“
-	u8 anm_no;				///<ƒAƒjƒNo
-	s8 anm_wait;			///<ƒAƒjƒƒEƒFƒCƒg
-	s8 anm_dansa_wait;		///<ƒAƒjƒ’i·ƒEƒFƒCƒg
+	s8 anm_line;			///<ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆã®åŸºæœ¬ãƒ©ã‚¤ãƒ³
+	u8 anm_no;				///<ã‚¢ãƒ‹ãƒ¡No
+	s8 anm_wait;			///<ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
+	s8 anm_dansa_wait;		///<ã‚¢ãƒ‹ãƒ¡æ®µå·®ã‚¦ã‚§ã‚¤ãƒˆ
 }VOLOCAL_DONCHOU_DOWN;
 
-///ŠÏ‹q•]‰¿ƒ[ƒJƒ‹\‘¢‘Ì
+///è¦³å®¢è©•ä¾¡ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	CORDER_HEAD req_head;
@@ -118,17 +118,17 @@ typedef struct{
 	
 	u8 seq;
 	u8 wait;
-	u8 max_count;					///<ŠÏ‹q‚ª•\Ž¦‚·‚éƒn[ƒg‚Ì”AÅ‘å”
-	u8 put_count;					///<¡‚Ü‚Å‚É•\Ž¦‚µ‚½ƒn[ƒg‚Ì”‚ðƒJƒEƒ“ƒg
-	u8 bp_count;					///<BP‚Ìƒn[ƒg•\Ž¦Å‘å”
-	u8 clip_count;					///<CLIP‚Ìƒn[ƒg•\Ž¦Å‘å”
-	s16 old_x;						///<1‚Â‘O‚É•\Ž¦‚µ‚½ƒn[ƒg‚ÌÀ•WX
-	s16 old_y;						///<1‚Â‘O‚É•\Ž¦‚µ‚½ƒn[ƒg‚ÌÀ•WY
-	u8 heart_anm;					///<ƒn[ƒg‚ÌƒAƒjƒƒ^ƒCƒv
-	u8 all_type;					///<TRUE:BP‚ÆƒNƒŠƒbƒv—¼•ûo‚·
+	u8 max_count;					///<è¦³å®¢ãŒè¡¨ç¤ºã™ã‚‹ãƒãƒ¼ãƒˆã®æ•°ã€æœ€å¤§æ•°
+	u8 put_count;					///<ä»Šã¾ã§ã«è¡¨ç¤ºã—ãŸãƒãƒ¼ãƒˆã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
+	u8 bp_count;					///<BPã®ãƒãƒ¼ãƒˆè¡¨ç¤ºæœ€å¤§æ•°
+	u8 clip_count;					///<CLIPã®ãƒãƒ¼ãƒˆè¡¨ç¤ºæœ€å¤§æ•°
+	s16 old_x;						///<1ã¤å‰ã«è¡¨ç¤ºã—ãŸãƒãƒ¼ãƒˆã®åº§æ¨™X
+	s16 old_y;						///<1ã¤å‰ã«è¡¨ç¤ºã—ãŸãƒãƒ¼ãƒˆã®åº§æ¨™Y
+	u8 heart_anm;					///<ãƒãƒ¼ãƒˆã®ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
+	u8 all_type;					///<TRUE:BPã¨ã‚¯ãƒªãƒƒãƒ—ä¸¡æ–¹å‡ºã™
 }VOLOCAL_EVALUATE;
 
-///ƒgƒŒ[ƒi[“oêE‘Þêƒ[ƒJƒ‹\‘¢‘Ì
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç™»å ´ãƒ»é€€å ´ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	CORDER_HEAD req_head;
@@ -141,35 +141,35 @@ typedef struct{
 	s32 y;
 }VOLOCAL_TRAINER_INOUT;
 
-///ƒ{[ƒ‹ƒGƒtƒFƒNƒg(”š”­)
+///ãƒœãƒ¼ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ(çˆ†ç™º)
 typedef struct{
 	TBALL_CUSTOM_PARAM bcp;
 	BES_PTR bes;
 	POKEMON_PARAM *pp;
 	u8 seq;
-	u8 end;				///<1:ƒGƒtƒFƒNƒgI—¹
+	u8 end;				///<1:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†
 }VOLOCAL_SUB_BALL_EFF;
 
-///ƒ{[ƒ‹ˆÚ“®ƒGƒtƒFƒNƒg
+///ãƒœãƒ¼ãƒ«ç§»å‹•ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	BMS_PTR bms;
 	u8 seq;
-	u8 end;				///<1:ƒGƒtƒFƒNƒgI—¹
+	u8 end;				///<1:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†
 	u8 wait;
 }VOLOCAL_SUB_BALL_MOVE;
 
-///ƒ|ƒPƒ‚ƒ“k¬‚©‚ç“oêƒGƒtƒFƒNƒg
+///ãƒã‚±ãƒ¢ãƒ³ç¸®å°ã‹ã‚‰ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	fx32 aff_x;
 	fx32 aff_y;
 	u8 seq;
-	u8 end;				///<1:ƒGƒtƒFƒNƒgI—¹
+	u8 end;				///<1:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†
 	u8 breeder_no;
 }VOLOCAL_SUB_POKE_EFF;
 
-///ƒgƒŒ[ƒi[‘ÞêƒGƒtƒFƒNƒg
+///ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 
@@ -177,12 +177,12 @@ typedef struct{
 	s32 y;
 
 	u8 seq;
-	u8 end;				///<1:ƒGƒtƒFƒNƒgI—¹
+	u8 end;				///<1:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†
 	u8 loop;
 	u8 wait;
 }VOLOCAL_SUB_TRAINER_EFF;
 
-///“oêƒGƒtƒFƒNƒg
+///ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	CORDER_HEAD req_head;
@@ -197,7 +197,7 @@ typedef struct{
 	VOLOCAL_SUB_TRAINER_EFF tr_eff;
 }VOLOCAL_APPEAR_EFF;
 
-///‰ï˜bƒƒbƒZ[ƒW‚Ì•\Ž¦
+///ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	CORDER_HEAD req_head;
@@ -207,13 +207,13 @@ typedef struct{
 	u8 breeder_no;
 	u8 close_wait;
 
-	VTAG_PARAM a_talk_tagpara;		///<ƒm[ƒ}ƒ‹‰ï˜bFƒ^ƒO“WŠJ—pƒpƒ‰ƒ[ƒ^
-	u8 a_talk_id;					///<ƒm[ƒ}ƒ‹‰ï˜bID(A_TALK_VISUAL_???)
-	u8 a_talk_bmpwin_close_wait;	///<ƒƒbƒZ[ƒW‚ð•\Ž¦‚µ‚«‚Á‚Ä‚©‚çƒEƒBƒ“ƒhƒE‚ð•Â‚¶‚é‚Ü‚Å‚Ìwait
-	u8 a_talk_bmpwin_not_close;		///<TRUE:ƒEƒBƒ“ƒhƒE‚ð•Â‚¶‚¸‚ÉI—¹
+	VTAG_PARAM a_talk_tagpara;		///<ãƒŽãƒ¼ãƒžãƒ«ä¼šè©±ï¼šã‚¿ã‚°å±•é–‹ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	u8 a_talk_id;					///<ãƒŽãƒ¼ãƒžãƒ«ä¼šè©±ID(A_TALK_VISUAL_???)
+	u8 a_talk_bmpwin_close_wait;	///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ãã£ã¦ã‹ã‚‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹ã¾ã§ã®wait
+	u8 a_talk_bmpwin_not_close;		///<TRUE:ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ãšã«çµ‚äº†
 }VOLOCAL_TALK_PUT;
 
-///‚Ç‚ñ‚¿‚å‚¤ƒtƒF[ƒhƒAƒEƒgƒ[ƒJƒ‹\‘¢‘Ì
+///ã©ã‚“ã¡ã‚‡ã†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	CORDER_HEAD req_head;
@@ -227,7 +227,7 @@ typedef struct{
 	u16 fade_next_rgb;
 }VOLOCAL_DFO;	//DonchouFadeOut
 
-///‚Ç‚ñ‚¿‚å‚¤ƒGƒtƒFƒNƒgã¸ƒ[ƒJƒ‹\‘¢‘Ì
+///ã©ã‚“ã¡ã‚‡ã†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸Šæ˜‡ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	CORDER_HEAD req_head;
@@ -235,17 +235,17 @@ typedef struct{
 	
 	u8 seq;
 	
-	s8 anm_line;			///<ƒAƒjƒ‘‚«Š·‚¦‚ÌŠî–{ƒ‰ƒCƒ“
-	u8 anm_no;				///<ƒAƒjƒNo
-	s8 anm_wait;			///<ƒAƒjƒƒEƒFƒCƒg
-	s8 anm_dansa_wait;		///<ƒAƒjƒ’i·ƒEƒFƒCƒg
+	s8 anm_line;			///<ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆã®åŸºæœ¬ãƒ©ã‚¤ãƒ³
+	u8 anm_no;				///<ã‚¢ãƒ‹ãƒ¡No
+	s8 anm_wait;			///<ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
+	s8 anm_dansa_wait;		///<ã‚¢ãƒ‹ãƒ¡æ®µå·®ã‚¦ã‚§ã‚¤ãƒˆ
 	
-	u8 lvup_se_req;			///<TRUE:LVUP SEÄ¶ƒŠƒNƒGƒXƒg
+	u8 lvup_se_req;			///<TRUE:LVUP SEå†ç”Ÿãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	
 	s32 lvup_wait;
 }VOLOCAL_DONCHOU_EFFECT_UP;
 
-///ƒrƒWƒ…ƒAƒ‹•”–åI—¹ƒ[ƒJƒ‹\‘¢‘Ì
+///ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€çµ‚äº†ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	VISUAL_PROC_WORK *vpw;
 	CORDER_HEAD req_head;
@@ -256,7 +256,7 @@ typedef struct{
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void VisualOrder_WorkInit(VISUAL_PROC_WORK *vpw);
 

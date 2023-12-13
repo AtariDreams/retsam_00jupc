@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_097.s
- * @brief	‚±‚¤‚»‚­‚¢‚Ç‚¤			97
+ * @brief	ã“ã†ããã„ã©ã†			97
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,13 +19,13 @@
 // =============================================================================
 //
 //
-//	¡‚±‚¤‚»‚­‚¢‚Ç‚¤			97
+//	â– ã“ã†ããã„ã©ã†			97
 //
 //
 // =============================================================================
-#define WE098_SHAKE_W_X	(2)		// ‚Ó‚è•
-#define WE098_SHAKE_NUM	(1)		// ‚Ó‚é‰ñ”
-#define WE098_SHAKE_SYNC (1)	// ƒVƒ“ƒN”
+#define WE098_SHAKE_W_X	(2)		// ãµã‚Šå¹…
+#define WE098_SHAKE_NUM	(1)		// ãµã‚‹å›žæ•°
+#define WE098_SHAKE_SYNC (1)	// ã‚·ãƒ³ã‚¯æ•°
 WEST_KOUSOKUIDOU:
 
 	LOAD_PARTICLE_DROP	0, W_097_SPA
@@ -41,7 +41,7 @@ SIDE_MINE:
 	POKEOAM_RES_LOAD	0,
 	POKEOAM_RES_LOAD	1,
 
-	// •`‰æŠJŽn
+	// æç”»é–‹å§‹
 	POKEOAM_DROP	WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_0, WEDEF_POKE_RES_0,
 	POKEOAM_DROP	WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_1, WEDEF_POKE_RES_1,
 
@@ -56,8 +56,8 @@ SIDE_MINE:
 	
 	HAIKEI_CHG_WAIT
 
-/// -------------- ‰¼ --------------------------------
-	// ƒ|ƒPƒ‚ƒ“OAM€”õ
+/// -------------- ä»® --------------------------------
+	// ãƒã‚±ãƒ¢ãƒ³OAMæº–å‚™
 	//SE_C			SEQ_SE_DP_KAZE
 	
 	WAIT			19
@@ -67,12 +67,12 @@ SIDE_MINE:
 	
 	FUNC_CALL		WEST_SP_WE_098, 0,0,0,0,0,0,0,0,0
 
-	WAIT_FLAG	///<TCB‘Ò‚¿
+	WAIT_FLAG	///<TCBå¾…ã¡
 	POKEOAM_DROP_RESET	WEDEF_POKE_CAP_ID_0
 	POKEOAM_DROP_RESET	WEDEF_POKE_CAP_ID_1
 	POKEOAM_RES_FREE
 	PT_DROP_RESET_EX
-/// -------------- ‰¼ --------------------------------
+/// -------------- ä»® --------------------------------
 
 	WORK_SET		WEDEF_GP_INDEX_SPEED_X,  WEDEF_HAIKEI_HI_SPEED_X
 	WORK_SET		WEDEF_GP_INDEX_SPEED_Y,  WEDEF_HAIKEI_SPEED_Y
@@ -92,7 +92,7 @@ SIDE_ENEMY:
 	POKEOAM_RES_LOAD	0,
 	POKEOAM_RES_LOAD	1,
 
-	// •`‰æŠJŽn
+	// æç”»é–‹å§‹
 	POKEOAM_DROP	WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_0, WEDEF_POKE_RES_0,
 	POKEOAM_DROP	WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_1, WEDEF_POKE_RES_1,
 	PT_DROP_EX		WEDEF_DROP_M2, WEDEF_DROP_M2,
@@ -106,8 +106,8 @@ SIDE_ENEMY:
 	
 	HAIKEI_CHG_WAIT
 
-/// -------------- ‰¼ --------------------------------
-	// ƒ|ƒPƒ‚ƒ“OAM€”õ
+/// -------------- ä»® --------------------------------
+	// ãƒã‚±ãƒ¢ãƒ³OAMæº–å‚™
 	//SE_C			SEQ_SE_DP_KAZE
 	
 	WAIT			19
@@ -117,12 +117,12 @@ SIDE_ENEMY:
 	
 	FUNC_CALL		WEST_SP_WE_098, 0,0,0,0,0,0,0,0,0
 
-	WAIT_FLAG	///<TCB‘Ò‚¿
+	WAIT_FLAG	///<TCBå¾…ã¡
 	POKEOAM_DROP_RESET	WEDEF_POKE_CAP_ID_0
 	POKEOAM_DROP_RESET	WEDEF_POKE_CAP_ID_1
 	POKEOAM_RES_FREE
 	PT_DROP_RESET_EX
-/// -------------- ‰¼ --------------------------------
+/// -------------- ä»® --------------------------------
 
 	WORK_SET		WEDEF_GP_INDEX_SPEED_X,  WEDEF_HAIKEI_HI_SPEED_X
 	WORK_SET		WEDEF_GP_INDEX_SPEED_Y,  WEDEF_HAIKEI_SPEED_Y

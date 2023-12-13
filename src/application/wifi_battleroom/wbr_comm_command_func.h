@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wbr_comm_command_func.h
- *	@brief		wifi ƒoƒgƒ‹ƒ‹[ƒ€@‘—óMƒR[ƒ‹ƒoƒbƒNŠÖ”
+ *	@brief		wifi ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã€€é€å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *	@author		tomoya takahashi
  *	@data		2007.02.15
  *
@@ -22,19 +22,19 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL void WBR_CNM_GameSysStart( int netID, int size, void* pBuff, void* p_work );
@@ -48,10 +48,10 @@ GLOBAL void WBR_CNM_KoOyaDataGetRecv( int netID, int size, void* pBuff, void* p_
 GLOBAL void WBR_CNM_KoTalkDataRecv( int netID, int size, void* pBuff, void* p_work );
 GLOBAL void WBR_CNM_KoTalkReqRecv( int netID, int size, void* pBuff, void* p_work );
 
-// ƒoƒbƒtƒ@æ“¾ƒR[ƒ‹ƒoƒbƒNŠÖ”
+// ãƒãƒƒãƒ•ã‚¡å–å¾—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 GLOBAL u8* WBR_CNM_KoCommRecvBuffGet( int netID, void* p_work, int size );
 
-// ƒf[ƒ^ƒTƒCƒY
+// ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 GLOBAL int WBR_CNM_ZeroSizeGet( void );
 GLOBAL int WBR_CNM_KoCommonSizeGet( void );
 GLOBAL int WBR_CNM_OyaCommonSizeGet( void );

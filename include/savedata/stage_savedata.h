@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	stage_savedata.h
- * @brief	ƒXƒe[ƒWƒZ[ƒuƒf[ƒ^—pƒwƒbƒ_[
+ * @brief	ã‚¹ãƒ†ãƒ¼ã‚¸ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ç”¨ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	2007.06.07
  */
@@ -12,21 +12,21 @@
 
 //============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //============================================================================================
 enum{
 	STAGEDATA_ID_TYPE = 0,
 	STAGEDATA_ID_ROUND,
-	//ƒgƒŒ[ƒi[
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
 	STAGEDATA_ID_TR_INDEX,
-	//Q‰Á‚µ‚Ä‚¢‚éè‚¿ƒ|ƒPƒ‚ƒ“ˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ä½ç½®æƒ…å ±
 	STAGEDATA_ID_MINE_POKE_POS,
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ª”í‚ç‚È‚¢‚æ‚¤‚É•Û‘¶
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«ä¿å­˜
 	STAGEDATA_ID_ENEMY_POKE_INDEX,
 
 	//////////
-	//¬Ñ
+	//æˆç¸¾
 	//////////
 	STAGESCORE_ID_CLEAR_FLAG,
 };
@@ -34,7 +34,7 @@ enum{
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒXƒe[ƒWƒZ[ƒuƒf[ƒ^‚Ö‚Ì•sŠ®‘SŒ^’è‹`
+ * @brief	ã‚¹ãƒ†ãƒ¼ã‚¸ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ä¸å®Œå…¨å‹å®šç¾©
  */
 //---------------------------------------------------------------------------
 typedef struct _STAGEDATA STAGEDATA;
@@ -64,7 +64,7 @@ extern u8 Stage_GetTypeLevel( u8 csr_pos, u8* p_rank );
 extern void Stage_SetTypeLevel( u8 csr_pos, u8* p_rank, u8 num );
 extern void Stage_ClearTypeLevel( u8* p_rank );
 
-//¬Ñ
+//æˆç¸¾
 extern void STAGESCORE_Init( STAGESCORE* pv );
 extern int STAGESCORE_GetWorkSize( void );
 extern void STAGESCORE_ClearTypeLevel( STAGESCORE* wk, u8 type );

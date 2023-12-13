@@ -1,7 +1,7 @@
 #ifndef _T06_DEF_H_
 #define _T06_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T06_BOY2		(1)
 #define	SCRID_T06_GIRL2		(2)
 #define	SCRID_T06_EXPLORE		(3)
@@ -12,6 +12,6 @@
 #define	SCRID_T06_FLAG_CHANGE		(8)
 #define	SCRID_T06_INIT_CHANGE		(9)
 #define	SCRID_T06_RIVAL		(10)
-#define	SCRID_T06_DATA_MAX		(10)		//最大数
+#define	SCRID_T06_DATA_MAX		(10)		//譛螟ｧ謨ｰ
 
 #endif //_T06_DEF_H_

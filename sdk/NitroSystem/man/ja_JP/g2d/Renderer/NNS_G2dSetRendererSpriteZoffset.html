@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_G2dSetRendererSpriteZoffset</title>
@@ -11,7 +11,7 @@
 
 <body>
 <h1 align="left">NNS_G2dSetRendererSpriteZoffset</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -25,43 +25,43 @@ NNS_G2D_INLINE void NNS_G2dSetRendererSpriteZoffset
 
   </CODE></pre>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pRend</font></strong></em></td>
-    <td width="87%">[OUT] �����_������</td>
+    <td width="87%">[OUT] レンダラ実体</td>
     
   </tr>
   <tr>
   <td width="13%"><em><strong><font face="Courier New">spriteZoffset</font></strong></em></td>
-    <td width="87%">[IN] �\�t�g�E�F�A�X�v���C�g��`�悷�閈�ɁA���Z�����Z�l(�[�����͕��l�Ɍ���)</td>
+    <td width="87%">[IN] ソフトウェアスプライトを描画する毎に、加算されるZ値(ゼロ又は負値に限る)</td>
   </tr>
   </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ�<BR>
+<h2>返り値</h2>
+<p>なし<BR>
 </p>
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-�\�t�g�E�F�A�X�v���C�g��`�悷�閈�ɁA���Z����Z�l���w�肵�܂��B<BR>
-spriteZoffset�Ƃ��Ďw��\�Ȓl�̓[���܂��́A���l�Ɍ���܂��B
+ソフトウェアスプライトを描画する毎に、加算するZ値を指定します。<BR>
+spriteZoffsetとして指定可能な値はゼロまたは、負値に限ります。
 <BR>
 <BR>
-NITRO 3D Graphics Engine �ł͓����Z�l�����|���S���̓X�N���[����Y�l�̔�r�ɂ���ď㏑���`�搬�ۂ����肳��܂��B
-���̂��߁A�`�悵�����Ԃɏ㏑�����Ă䂭OBJ�`��Ɠ��l�̕`�挋�ʂ𓾂邽�߂ɂ́A
-�\�t�g�E�F�A�X�v���C�g�ł̓|���S����Z�l�������Â��炵�ĕ`��������Ȃ������Z�l�����|���S���̕`����������K�v������܂��B<BR>
+NITRO 3D Graphics Engine では同一のZ値を持つポリゴンはスクリーン上Y値の比較によって上書き描画成否が決定されます。
+そのため、描画した順番に上書きしてゆくOBJ描画と同様の描画結果を得るためには、
+ソフトウェアスプライトではポリゴンのZ値を少しづつずらして描画をおこない同一のZ値を持つポリゴンの描画を回避する必要があります。<BR>
 <BR>
-(�X�v���C�g�ɉ��Z�����Z�l�́A�`��֐��Ăяo��(NNS_G2dDrawCell(), NNS_G2dDrawMultiCell()�Ȃ�)���I�����邲�ƂɃ��Z�b�g����܂��B
-���̂��� N ��OBJ����Ȃ� �Z����`�悷��ꍇ N * spriteZoffset ��Z�������Ɍ��݂������ƂƂȂ�܂��B�j
+(スプライトに加算されるZ値は、描画関数呼び出し(NNS_G2dDrawCell(), NNS_G2dDrawMultiCell()など)が終了するごとにリセットされます。
+そのため N 個のOBJからなる セルを描画する場合 N * spriteZoffset 分Z軸方向に厚みを持つこととなります。）
 <BR>
 <BR>
 </p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
-�Ȃ�
+なし
 </p>
-<H2>����</H2>
-<P>2004/09/01 ����</P>
+<H2>履歴</H2>
+<P>2004/09/01 初版</P>
 </body>
 </html>

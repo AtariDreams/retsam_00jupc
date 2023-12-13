@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SOCConfig</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">SOCConfig</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
@@ -76,111 +76,111 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<h3><code>SOC_VENDOR_NINTENDO</code>�̎���:</h3>
+<h3><code>SOC_VENDOR_NINTENDO</code>の実装:</h3>
 
-<p>�\�P�b�g�w���V���ȃ������[�u���b�N��v�������Ƃ��A�֐�<code>alloc</code>���Ăт܂��B����<code>name</code>�́A�g���郁�����[�u���b�N�̃^�C�v������<code>SOC_MEM_*</code>��1�ł��B�֐�<code>alloc</code>��<code>size</code>�o�C�g�̃������[�u���b�N�����蓖�āA���蓖�Ă�ꂽ�������[�u���b�N�ւ̃|�C���^��Ԃ��K�v������܂��B�X�^�b�N�w�����蓖�Ă�ꂽ�������[�u���b�N��������邱�Ƃ��ł���ꍇ�A�֐�<code>free</code>���Ăт܂��B�֐�<code>free</code>�͈���<code>ptr</code>�ɂ���ă|�C���g���ꂽ�������[�u���b�N���������K�v������܂��B���̈���<code>name</code>��<code>size</code>���֐�<code>alloc</code>�ɂ����ē��l�ł��B<strong><em>�X���b�h�Ԃ̑��ݔr���ɂ��Ă͊֐�</em><code><em>alloc</em></code><em>��<code>free</code>���Ŏ�������K�v������܂��B </em></strong>
-�֐�<code>alloc</code>��
-�֐�<code>free</code>�́A�R�[���o�b�N�֐����璼�ڌĂяo����邱�Ƃ��Ȃ��̂ŁA<code>OS_LockMutex()</code>�̂悤�ȃX���b�h���x���̓����v���~�e�B�u��
-�g�p���邱�Ƃ��ł��܂��B</p>
+<p>ソケット層が新たなメモリーブロックを要求したとき、関数<code>alloc</code>を呼びます。引数<code>name</code>は、使われるメモリーブロックのタイプを示す<code>SOC_MEM_*</code>の1つです。関数<code>alloc</code>は<code>size</code>バイトのメモリーブロックを割り当て、割り当てられたメモリーブロックへのポインタを返す必要があります。スタック層が割り当てられたメモリーブロックを解放することができる場合、関数<code>free</code>を呼びます。関数<code>free</code>は引数<code>ptr</code>によってポイントされたメモリーブロックを解放する必要があります。他の引数<code>name</code>や<code>size</code>も関数<code>alloc</code>において同様です。<strong><em>スレッド間の相互排他については関数</em><code><em>alloc</em></code><em>と<code>free</code>側で実装する必要があります。 </em></strong>
+関数<code>alloc</code>や
+関数<code>free</code>は、コールバック関数から直接呼び出されることがないので、<code>OS_LockMutex()</code>のようなスレッドレベルの同期プリミティブを
+使用することができます。</p>
 
 <table width="100%" height="77">
       <tr>
-        <th><strong>�����o</strong></th>
-        <th><strong>����</strong></th>
+        <th><strong>メンバ</strong></th>
+        <th><strong>説明</strong></th>
       </tr>
       <tr>
         <td valign="top"><font size="-1"color="#808080"><strong><em><code>vendor</code></em></strong></td>
-        <td><font size="-1"color="#808080">�x���_�[�����w�肵�܂��B���̃����o�͌݊����̂��ߎc����Ă���A���ۂɂ͖�������܂��B</td>
+        <td><font size="-1"color="#808080">ベンダー名を指定します。このメンバは互換性のため残されており、実際には無視されます。</td>
       </tr>
       <tr>
         <td valign="top"><font size="-1"color="#808080"><strong><em><code>version</code></em></strong></td>
-        <td><font size="-1"color="#808080">�o�[�W�������w�肵�܂��B���̃����o�͌݊����̂��ߎc����Ă���A���ۂɂ͖�������܂��B</td>
+        <td><font size="-1"color="#808080">バージョンを指定します。このメンバは互換性のため残されており、実際には無視されます。</td>
       </tr>
       <tr>
         <td valign="top"><strong><em><code>alloc</code></em></strong></td>
-        <td>�v���W�F�N�g���Ŏg�p���郁�������m�ۂ���֐��B</td>
+        <td>プロジェクト内で使用するメモリを確保する関数。</td>
       </tr>
       <tr>
         <td valign="top"><strong><em><code>free</code></em></strong></td>
-        <td>�v���W�F�N�g���Ŏg�p�������������J������֐��B</td>
+        <td>プロジェクト内で使用したメモリを開放する関数。</td>
       </tr>
       <tr>
         <td valign="top"><strong><em><code>flags</code></em></strong></td>
-        <td>�z�X�g�̐ݒ���@���w�肵�܂��B<br>
+        <td>ホストの設定方法を指定します。<br>
         <table width="100%">
           <tr>
             <td valign="top"><code>SOC_FLAG_DHCP</code></td>
-            <td>�z�X�g��DHCP��p���Đݒ肳��܂��B</td>
+            <td>ホストはDHCPを用いて設定されます。</td>
           </tr>
           </table>
-        SOC_FLAG_DHCP��FALSE�Ȃ�A�\���̃����o��addr�Anetmask�Arouter���z�X�g�ݒ�Ɏg���܂��B
+        SOC_FLAG_DHCPがFALSEなら、構造体メンバのaddr、netmask、routerがホスト設定に使われます。
         </td>
       </tr>
         <td valign="top"><strong><em><code>dns1</code></em></strong></td>
-        <td>DNS�T�[�o�[�A�h���X���\���̂̃����o�Ɏw�肵�܂��B<br>
-	���̍\���̂̃����o��<code><a href="SOC_GetHostByAddr.html">SOC_GetHostByAddr()</a></code>��<code><a href="SOC_GetHostByName.html">SOC_GetHostByName()</a></code>�Ŏg���܂��B</td>
+        <td>DNSサーバーアドレスを構造体のメンバに指定します。<br>
+	この構造体のメンバは<code><a href="SOC_GetHostByAddr.html">SOC_GetHostByAddr()</a></code>と<code><a href="SOC_GetHostByName.html">SOC_GetHostByName()</a></code>で使われます。</td>
       </tr>
       <tr>
         <td valign="top"><strong><em><code>dns2</code></em></strong></td>
-        <td>DNS�T�[�o�[�A�h���X���\���̂̃����o�Ɏw�肵�܂��B<br>
-	���̍\���̂̃����o��<code><a href="SOC_GetHostByAddr.html">SOC_GetHostByAddr()</a></code>��<code><a href="SOC_GetHostByName.html">SOC_GetHostByName()</a></code>�Ŏg���܂��B</td>
+        <td>DNSサーバーアドレスを構造体のメンバに指定します。<br>
+	この構造体のメンバは<code><a href="SOC_GetHostByAddr.html">SOC_GetHostByAddr()</a></code>と<code><a href="SOC_GetHostByName.html">SOC_GetHostByName()</a></code>で使われます。</td>
       </tr>
       <tr>
         <td valign="top"><font size="-1"color="#808080"><strong><em><code>timeWaitBuffer</code></em></strong></td>
-        <td><font size="-1"color="#808080">�^�C���E�F�C�g�o�b�t�@�T�C�Y���w�肵�܂��B<br>
-	���̃����o�͌݊����̂��ߎc����Ă���A���ۂɂ͖�������܂��B
+        <td><font size="-1"color="#808080">タイムウェイトバッファサイズを指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。
       </tr>
       <tr>
         <td valign="top"><font size="-1"color="#808080"><strong><em><code>reassemblyBuffer</code></em></strong></td>
-        <td><font size="-1"color="#808080">�t���O�����g �p�P�b�g�̍č\���o�b�t�@�T�C�Y���w�肵�܂��B<br>
-	���̃����o�͌݊����̂��ߎc����Ă���A���ۂɂ͖�������܂��B</td>
+        <td><font size="-1"color="#808080">フラグメント パケットの再構成バッファサイズを指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
       </tr>
       <tr>
         <td valign="top"><strong><em><code>mtu</code></em></strong></td>
-        <td>�f�t�H���g�̃C���^�[�t�F�[�XMTU�T�C�Y���w�肵�܂��B<br>
-	0���w�肳���ƁA�C���^�[�t�F�[�X�̃f�t�H���g��MTU�T�C�Y���ݒ肳��܂��B<br>
-	�܂��A�z�X�g��DHCP�ɂ���Đݒ肷��ꍇ�ɂ́A�z�X�g��DHCP�T�[�o�[�ƒʐM����MTU�T�C�Y�𒲐߂��܂��B<br>
-	���̏ꍇ�A�w�肵���T�C�Y����������MTU�T�C�Y���g�p�����ꍇ������܂��B���ۂ�MTU�T�C�Y��<code><a href="SOC_GetMtu.html">SOC_GetMtu()</a></code> �Œ��ׂ��܂��B</td>
+        <td>デフォルトのインターフェースMTUサイズを指定します。<br>
+	0が指定されると、インターフェースのデフォルトのMTUサイズが設定されます。<br>
+	また、ホストをDHCPによって設定する場合には、ホストはDHCPサーバーと通信してMTUサイズを調節します。<br>
+	この場合、指定したサイズよりも小さなMTUサイズが使用される場合があります。実際のMTUサイズは<code><a href="SOC_GetMtu.html">SOC_GetMtu()</a></code> で調べられます。</td>
       </tr>
       <tr>
         <td valign="top"><strong><em><code>rwin</code></em></strong></td>
-        <td>�f�t�H���gTCP��M�E�B���h�E�T�C�Y���w�肵�܂��B0���w�肳���ƁA2 x MSS (�ő�Z�O�����g��)�ɐݒ肳��܂��B</td>
+        <td>デフォルトTCP受信ウィンドウサイズを指定します。0が指定されると、2 x MSS (最大セグメント長)に設定されます。</td>
       </tr>
       <tr>
         <td valign="top"><font size="-1"color="#808080"><strong><em><code>r2</code></em></strong></td>
-        <td><font size="-1"color="#808080">TCP�ڑ����m��������̃f�t�H���g�̍��v�ē]���^�C���A�E�g���Ԃ��w�肵�܂��B<br>
-	���̃����o�͌݊����̂��ߎc����Ă���A���ۂɂ͖�������܂��B</td>
+        <td><font size="-1"color="#808080">TCP接続が確立した後のデフォルトの合計再転送タイムアウト時間を指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
       </tr>
       <tr>
         <td valign="top"><font size="-1"color="#808080"><strong><em><code>serviceName</code></em></strong></td>
-        <td><font size="-1"color="#808080">PPPoE�Őڑ�����ۂɗ��p����T�[�r�X�����w�肵�܂��B<br>
-	���̃����o�͌݊����̂��ߎc����Ă���A���ۂɂ͖�������܂��B</td>
+        <td><font size="-1"color="#808080">PPPoEで接続する際に利用するサービス名を指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
       </tr>
       <tr>
         <td valign="top"><font size="-1"color="#808080"><strong><em><code>hostName</code></em></strong></td>
-        <td><font size="-1"color="#808080">DHCP�Őڑ�����ۂɗ��p����N���C�A���g�̃z�X�g�����w�肵�܂��B<br>
-	���̃����o�͌݊����̂��ߎc����Ă���A���ۂɂ͖�������܂��B</td>
+        <td><font size="-1"color="#808080">DHCPで接続する際に利用するクライアントのホスト名を指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
       </tr>
       <tr>
         <td valign="top"><font size="-1"color="#808080"><strong><em><code>rdhcp</code></em></strong></td>
-        <td><font size="-1"color="#808080">DHCP�p�P�b�g���M�̃��g���C�񐔂�ݒ肵�܂��B<br>
-	���̃����o�͌݊����̂��ߎc����Ă���A���ۂɂ͖�������܂��B</td>
+        <td><font size="-1"color="#808080">DHCPパケット送信のリトライ回数を設定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
       </tr>
       <tr>
         <td valign="top"><font size="-1"color="#808080"><strong><em><code>udpSendBuff</code></em></strong></td>
-        <td><font size="-1"color="#808080">�f�t�H���g��UDP���M�o�b�t�@�T�C�Y���w�肵�܂��B<br>
-	���̃����o�͌݊����̂��ߎc����Ă���A���ۂɂ͖�������܂��B</td>
+        <td><font size="-1"color="#808080">デフォルトのUDP送信バッファサイズを指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
       </tr>
       <tr>
         <td valign="top"><font size="-1"color="#808080"><strong><em><code>udpRecvBuff</code></em></strong></td>
-        <td><font size="-1"color="#808080">�f�t�H���g��UDP��M�o�b�t�@�T�C�Y���w�肵�܂��B<br>
-	���̃����o�͌݊����̂��ߎc����Ă���A���ۂɂ͖�������܂��B</td>
+        <td><font size="-1"color="#808080">デフォルトのUDP受信バッファサイズを指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
       </tr>
     </table>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 
 <p>
 <code><a href="SOC_GetHostByAddr.html">SOC_GetHostByAddr</a></code>,
@@ -189,8 +189,8 @@
 <code><a href="SOC_Startup.html">SOC_Startup</a></code>,
 <code><a href="SOCInAddr.html">SOCInAddr</a></code>
 </p>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/09/13 ����</P>
+2005/09/13 初版</P>
 </body>
 </html>

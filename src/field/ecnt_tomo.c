@@ -2,7 +2,7 @@
 /**
  *
  *@file		ecnt_tomo.c
- *@brief	é©çÏÉGÉìÉJÉEÉìÉg
+ *@brief	Ëá™‰Ωú„Ç®„É≥„Ç´„Ç¶„É≥„Éà
  *@author	tomoya takahashi
  *@data		2005.07.28
  *
@@ -22,49 +22,49 @@
 #include "ecnt_tomo.h"
 //-----------------------------------------------------------------------------
 /**
- *					íËêîêÈåæ
+ *					ÂÆöÊï∞ÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-//	ÉÇÅ[ÉVÉáÉìÉuÉâÅ[óp
+//	„É¢„Éº„Ç∑„Éß„É≥„Éñ„É©„ÉºÁî®
 //=====================================
-#define MSBL00_ROTA_START	(64)		// âÒì]èâä˙ë¨ìx
-#define	MSBL00_ROTA_ADD		(48)		// âÒì]â¡ë¨ìx
-#define MSBL00_ROTA_COUNT	(40)		// âÒì]ÇµÇƒÇ¢ÇÈéûä‘
-#define MSBL00_MSBLFADE_COUNT	(16)	// ÉÇÅ[ÉVÉáÉìÉuÉâÅ[åWêîÇ…ÇÊÇËîíÇ≠ÇµÇƒÇ¢Ç≠
-#define MSBL00_DIST_START	(FX32_ONE)				// ãﬂÇ√Ç≠èâä˙ë¨ìx
-#define MSBL00_DIST_ADD		(FX32_CONST(0.90f))		// â¡ë¨íl
-#define	MSBL00_CAMERA_IN_TIMING		(20)			// ÉJÉÅÉâÇãﬂÇ√ÇØÇÕÇ∂ÇﬂÇÈÉ^ÉCÉ~ÉìÉO
+#define MSBL00_ROTA_START	(64)		// ÂõûËª¢ÂàùÊúüÈÄüÂ∫¶
+#define	MSBL00_ROTA_ADD		(48)		// ÂõûËª¢Âä†ÈÄüÂ∫¶
+#define MSBL00_ROTA_COUNT	(40)		// ÂõûËª¢„Åó„Å¶„ÅÑ„ÇãÊôÇÈñì
+#define MSBL00_MSBLFADE_COUNT	(16)	// „É¢„Éº„Ç∑„Éß„É≥„Éñ„É©„Éº‰øÇÊï∞„Å´„Çà„ÇäÁôΩ„Åè„Åó„Å¶„ÅÑ„Åè
+#define MSBL00_DIST_START	(FX32_ONE)				// Ëøë„Å•„ÅèÂàùÊúüÈÄüÂ∫¶
+#define MSBL00_DIST_ADD		(FX32_CONST(0.90f))		// Âä†ÈÄüÂÄ§
+#define	MSBL00_CAMERA_IN_TIMING		(20)			// „Ç´„É°„É©„ÇíËøë„Å•„Åë„ÅØ„Åò„ÇÅ„Çã„Çø„Ç§„Éü„É≥„Ç∞
 #define MSBL00_FADEOUT_DIV			( 8 )
 #define MSBL00_FADEOUT_SYNC			( 1 )
 enum{
-	MSBL00_START_EFFECT,	// ÉGÉtÉFÉNÉgÉXÉ^Å[Ég
-	MSBL00_FLASH_INIT,		// ç≈èâÇÃÉsÉJÉsÉJäJén
-	MSBL00_FLASH_WAIT,		// ç≈èâÇÃÉsÉJÉsÉJèIóπë“Çø
-	MSBL00_MOTION_INIT,		// ÉÇÅ[ÉVÉáÉìÉuÉâÅ[èÄîı
-	MSBL00_CAMERA_ROTA,		// ÉJÉÅÉââÒì]
-	MSBL00_FADE_OUT,		// ÉtÉFÅ[ÉhÉAÉEÉg
-	MSBL00_END_WAIT,		// èIóπÇ‹Ç≈ë“Ç¬
-	MSBL00_END_EFFECT		// èIóπ
+	MSBL00_START_EFFECT,	// „Ç®„Éï„Çß„ÇØ„Éà„Çπ„Çø„Éº„Éà
+	MSBL00_FLASH_INIT,		// ÊúÄÂàù„ÅÆ„Éî„Ç´„Éî„Ç´ÈñãÂßã
+	MSBL00_FLASH_WAIT,		// ÊúÄÂàù„ÅÆ„Éî„Ç´„Éî„Ç´ÁµÇ‰∫ÜÂæÖ„Å°
+	MSBL00_MOTION_INIT,		// „É¢„Éº„Ç∑„Éß„É≥„Éñ„É©„ÉºÊ∫ñÂÇô
+	MSBL00_CAMERA_ROTA,		// „Ç´„É°„É©ÂõûËª¢
+	MSBL00_FADE_OUT,		// „Éï„Çß„Éº„Éâ„Ç¢„Ç¶„Éà
+	MSBL00_END_WAIT,		// ÁµÇ‰∫Ü„Åæ„ÅßÂæÖ„Å§
+	MSBL00_END_EFFECT		// ÁµÇ‰∫Ü
 };
 
 //-------------------------------------
-//	ÉÇÅ[ÉVÉáÉìÉuÉâÅ[01óp
+//	„É¢„Éº„Ç∑„Éß„É≥„Éñ„É©„Éº01Áî®
 //=====================================
 enum{
-	MSBL01_START_EFFECT,	// ÉGÉtÉFÉNÉgÉXÉ^Å[Ég
-	MSBL01_FLASH_INIT,		// ç≈èâÇÃÉsÉJÉsÉJäJén
-	MSBL01_FLASH_WAIT,		// ç≈èâÇÃÉsÉJÉsÉJèIóπë“Çø
-	MSBL01_MOTION_INIT,		// ÉÇÅ[ÉVÉáÉìÉuÉâÅ[èÄîı
-	MSBL01_MOTION,			// ÉJÉÅÉâÇìÆÇ©Ç∑
-	MSBL01_FADE_OUT,		// ÉuÉâÉbÉNÉtÉFÅ[ÉhÉAÉEÉg
-	MSBL01_END_WAIT,		// èIóπÇ‹Ç≈ë“Ç¬
-	MSBL01_END_EFFECT		// èIóπ
+	MSBL01_START_EFFECT,	// „Ç®„Éï„Çß„ÇØ„Éà„Çπ„Çø„Éº„Éà
+	MSBL01_FLASH_INIT,		// ÊúÄÂàù„ÅÆ„Éî„Ç´„Éî„Ç´ÈñãÂßã
+	MSBL01_FLASH_WAIT,		// ÊúÄÂàù„ÅÆ„Éî„Ç´„Éî„Ç´ÁµÇ‰∫ÜÂæÖ„Å°
+	MSBL01_MOTION_INIT,		// „É¢„Éº„Ç∑„Éß„É≥„Éñ„É©„ÉºÊ∫ñÂÇô
+	MSBL01_MOTION,			// „Ç´„É°„É©„ÇíÂãï„Åã„Åô
+	MSBL01_FADE_OUT,		// „Éñ„É©„ÉÉ„ÇØ„Éï„Çß„Éº„Éâ„Ç¢„Ç¶„Éà
+	MSBL01_END_WAIT,		// ÁµÇ‰∫Ü„Åæ„ÅßÂæÖ„Å§
+	MSBL01_END_EFFECT		// ÁµÇ‰∫Ü
 };
 
-#define MSBL01_CAMERA_SHIFT_INIT	(FX32_CONST(1.0f))	// ÉJÉÅÉâÉVÉtÉgÇÃç≈èâÇÃãóó£
-#define MSBL01_CAMERA_SHIFT_ADD		(FX32_CONST(24.0f))	//ÉJÉÅÉâÉVÉtÉgÇÃâ¡ë¨íl
+#define MSBL01_CAMERA_SHIFT_INIT	(FX32_CONST(1.0f))	// „Ç´„É°„É©„Ç∑„Éï„Éà„ÅÆÊúÄÂàù„ÅÆË∑ùÈõ¢
+#define MSBL01_CAMERA_SHIFT_ADD		(FX32_CONST(24.0f))	//„Ç´„É°„É©„Ç∑„Éï„Éà„ÅÆÂä†ÈÄüÂÄ§
 #define MSBL01_CAMERA_COUNT_ADD		(8192)
 #define MSBL01_END_COUNT			(40)
 #define MSBL01_FADEOUT_DIV			( 8 )
@@ -72,46 +72,46 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					ç\ë¢ëÃêÈåæ
+ *					ÊßãÈÄ†‰ΩìÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-//	ÉÇÅ[ÉVÉáÉìÉuÉâÅ[ç\ë¢ëÃ
+//	„É¢„Éº„Ç∑„Éß„É≥„Éñ„É©„ÉºÊßãÈÄ†‰Ωì
 //=====================================
 typedef struct{
 	FLD_MOTION_BL_DATA_PTR	motion;
-	GF_CAMERA_PTR	camera;				// ÉJÉÅÉâÉfÅ[É^
-	u16				camera_rota;		// ÉJÉÅÉââÒì]äp
-	u16				camera_rota_add;	// ç°ÇÃâÒì]ë¨ìx
-	fx32			camera_dist;		// ÉJÉÅÉâãóó£
-	fx32			camera_dist_add;	// ÉJÉÅÉâãóó£ÇÃÇøÇ©Ç√Ç´ë¨ìx
-	int				count;				// èëÇ≠èàóùì‡Ç≈ÇÃÉJÉEÉìÉ^
+	GF_CAMERA_PTR	camera;				// „Ç´„É°„É©„Éá„Éº„Çø
+	u16				camera_rota;		// „Ç´„É°„É©ÂõûËª¢Ëßí
+	u16				camera_rota_add;	// ‰ªä„ÅÆÂõûËª¢ÈÄüÂ∫¶
+	fx32			camera_dist;		// „Ç´„É°„É©Ë∑ùÈõ¢
+	fx32			camera_dist_add;	// „Ç´„É°„É©Ë∑ùÈõ¢„ÅÆ„Å°„Åã„Å•„ÅçÈÄüÂ∫¶
+	int				count;				// Êõ∏„ÅèÂá¶ÁêÜÂÜÖ„Åß„ÅÆ„Ç´„Ç¶„É≥„Çø
 
 	/* OBJ */
 } MSBL00_WORK;
 
 //-------------------------------------
 //
-//	ÉÇÅ[ÉVÉáÉìÉuÉâÅ[01ç\ë¢ëÃ
+//	„É¢„Éº„Ç∑„Éß„É≥„Éñ„É©„Éº01ÊßãÈÄ†‰Ωì
 //
 //=====================================
 typedef struct{
 	FLD_MOTION_BL_DATA_PTR	motion;
 
-	GF_CAMERA_PTR	camera;				// ÉJÉÅÉâÉfÅ[É^
-	VecFx32			camera_shift;		// ÉJÉÅÉâÉVÉtÉgãóó£
-	fx32			camera_mv;			// ÉJÉÅÉâà⁄ìÆë¨ìx
-	int				camera_count;		// ÉJÉÅÉâÉGÉtÉFÉNÉgópÉJÉEÉìÉ^
-	int				count;				// äeèàóùì‡Ç≈ÇÃÉJÉEÉìÉ^
+	GF_CAMERA_PTR	camera;				// „Ç´„É°„É©„Éá„Éº„Çø
+	VecFx32			camera_shift;		// „Ç´„É°„É©„Ç∑„Éï„ÉàË∑ùÈõ¢
+	fx32			camera_mv;			// „Ç´„É°„É©ÁßªÂãïÈÄüÂ∫¶
+	int				camera_count;		// „Ç´„É°„É©„Ç®„Éï„Çß„ÇØ„ÉàÁî®„Ç´„Ç¶„É≥„Çø
+	int				count;				// ÂêÑÂá¶ÁêÜÂÜÖ„Åß„ÅÆ„Ç´„Ç¶„É≥„Çø
 	
 	/* OBJ */
 } MSBL01_WORK;
 
 //-----------------------------------------------------------------------------
 /**
- *					ÉvÉçÉgÉ^ÉCÉvêÈåæ
+ *					„Éó„É≠„Éà„Çø„Ç§„ÉóÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
 
@@ -120,20 +120,20 @@ typedef struct{
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ÉÇÅ[ÉVÉáÉìÉuÉâÅ[âÒì]ÉGÉìÉJÉEÉìÉg
+ *@brief	„É¢„Éº„Ç∑„Éß„É≥„Éñ„É©„ÉºÂõûËª¢„Ç®„É≥„Ç´„Ç¶„É≥„Éà
  *
- *@param	tcb		É^ÉXÉNÉ|ÉCÉìÉ^
- *@param	*work	ÉèÅ[ÉNÉ|ÉCÉìÉ^
+ *@param	tcb		„Çø„Çπ„ÇØ„Éù„Ç§„É≥„Çø
+ *@param	*work	„ÉØ„Éº„ÇØ„Éù„Ç§„É≥„Çø
  *
  *@return	none
  *
- * ÉGÉtÉFÉNÉgÇÃó¨ÇÍ
+ * „Ç®„Éï„Çß„ÇØ„Éà„ÅÆÊµÅ„Çå
  *
- * 1:ÉTÉuâÊñ ÉuÉâÉbÉNÉAÉEÉg
- * 2:ÉÅÉCÉìâÊñ Ç…ÉÇÅ[ÉVÉáÉìÉuÉâÅ[Ç™Ç©Ç©ÇÈ
- * 3:ÉJÉÅÉâÇÃè„ï˚å¸ÇâÒì]Ç≥ÇπÇÈ
- * 4:Ç«ÇÒÇ«ÇÒëÅÇ≠Ç»ÇÈ
- * 5:ëÂÇ´Ç»ÉÇÉìÉXÉ^Å[É{Å[ÉãBGÇèoÇ∑ÅBÅiÇPÇTÉtÉåÅ[ÉÄÅj
+ * 1:„Çµ„ÉñÁîªÈù¢„Éñ„É©„ÉÉ„ÇØ„Ç¢„Ç¶„Éà
+ * 2:„É°„Ç§„É≥ÁîªÈù¢„Å´„É¢„Éº„Ç∑„Éß„É≥„Éñ„É©„Éº„Åå„Åã„Åã„Çã
+ * 3:„Ç´„É°„É©„ÅÆ‰∏äÊñπÂêë„ÇíÂõûËª¢„Åï„Åõ„Çã
+ * 4:„Å©„Çì„Å©„ÇìÊó©„Åè„Å™„Çã
+ * 5:Â§ß„Åç„Å™„É¢„É≥„Çπ„Çø„Éº„Éú„Éº„É´BG„ÇíÂá∫„Åô„ÄÇÔºàÔºëÔºï„Éï„É¨„Éº„É†Ôºâ
  * 
  *
  */
@@ -145,7 +145,7 @@ void EncountEffectMotionBl00(TCB_PTR tcb, void *work)
 	int add_num;
 
 	switch(eew->seq){
-	case MSBL00_START_EFFECT:	// èâä˙âªèàóù
+	case MSBL00_START_EFFECT:	// ÂàùÊúüÂåñÂá¶ÁêÜ
 		eew->work = sys_AllocMemory(HEAPID_FIELD, sizeof(MSBL00_WORK));
 		memset( eew->work, 0, sizeof(MSBL00_WORK) );
 		
@@ -156,7 +156,7 @@ void EncountEffectMotionBl00(TCB_PTR tcb, void *work)
 		eew->seq++;
 		break;
 		
-	case MSBL00_FLASH_INIT:		// ç≈èâÇÃÉsÉJÉsÉJï\é¶
+	case MSBL00_FLASH_INIT:		// ÊúÄÂàù„ÅÆ„Éî„Ç´„Éî„Ç´Ë°®Á§∫
 		EncountFlashTask(MASK_MAIN_DISPLAY, 16, -16,  &eew->wait, 2);
 
 		eew->seq++;
@@ -170,13 +170,13 @@ void EncountEffectMotionBl00(TCB_PTR tcb, void *work)
 		}
 		break;
 
-	case MSBL00_MOTION_INIT:	// ÉÇÅ[ÉVÉáÉìÉuÉâÅ[ÇégópÇ∑ÇÈèÄîı
+	case MSBL00_MOTION_INIT:	// „É¢„Éº„Ç∑„Éß„É≥„Éñ„É©„Éº„Çí‰ΩøÁî®„Åô„ÇãÊ∫ñÂÇô
 		task_w->motion = FLDMotionBl_Init(4, 15);
 		
 
-		// ÉJÉÅÉââÒì]ÇÃèÄîı
-		task_w->camera				= GFC_AllocCamera(HEAPID_FIELD);		// ÉJÉÅÉâçÏê¨
-		GFC_CopyCamera(eew->fsw->camera_ptr, task_w->camera);	// ÉJÉÅÉâÉRÉsÅ[
+		// „Ç´„É°„É©ÂõûËª¢„ÅÆÊ∫ñÂÇô
+		task_w->camera				= GFC_AllocCamera(HEAPID_FIELD);		// „Ç´„É°„É©‰ΩúÊàê
+		GFC_CopyCamera(eew->fsw->camera_ptr, task_w->camera);	// „Ç´„É°„É©„Ç≥„Éî„Éº
 		GFC_AttachCamera(task_w->camera);
 		task_w->camera_rota_add		= MSBL00_ROTA_START;
 		task_w->count				= MSBL00_ROTA_COUNT;
@@ -185,19 +185,19 @@ void EncountEffectMotionBl00(TCB_PTR tcb, void *work)
 		eew->seq++;
 		break;
 		
-	case MSBL00_CAMERA_ROTA:	// ÉJÉÅÉââÒì]
+	case MSBL00_CAMERA_ROTA:	// „Ç´„É°„É©ÂõûËª¢
 
-		// âÒì]äpÇ…ë´Ç∑ílÇï‚ê≥Ç∑ÇÈÅiç°ÇÃÉJÉÅÉâÇÃäpìxÇ≈ÇµÇ©Ç§Ç‹Ç≠Ç¢Ç©Ç»Ç¢ÇÃÇ≈íçà”ÅIÅIÅj
-		// ñ≥óùÇ‚ÇËÇ»ï‚ê≥Ç»ÇÃÇ≈ÅAÉJÉÅÉâÇÃäpìxÇ≈ÅAçÏÇËíºÇ∑ïKóvÇ†ÇËÅIÅI
+		// ÂõûËª¢Ëßí„Å´Ë∂≥„ÅôÂÄ§„ÇíË£úÊ≠£„Åô„ÇãÔºà‰ªä„ÅÆ„Ç´„É°„É©„ÅÆËßíÂ∫¶„Åß„Åó„Åã„ÅÜ„Åæ„Åè„ÅÑ„Åã„Å™„ÅÑ„ÅÆ„ÅßÊ≥®ÊÑèÔºÅÔºÅÔºâ
+		// ÁÑ°ÁêÜ„ÇÑ„Çä„Å™Ë£úÊ≠£„Å™„ÅÆ„Åß„ÄÅ„Ç´„É°„É©„ÅÆËßíÂ∫¶„Åß„ÄÅ‰Ωú„ÇäÁõ¥„ÅôÂøÖË¶Å„ÅÇ„ÇäÔºÅÔºÅ
 		add_num = FX_Mul(FX_SinIdx(task_w->camera_rota), (task_w->camera_rota_add*4)<<FX32_SHIFT) >> FX32_SHIFT;
-		if(add_num < 0){		// É}ÉCÉiÉXÇÉvÉâÉXÇ…Ç∑ÇÈ
+		if(add_num < 0){		// „Éû„Ç§„Éä„Çπ„Çí„Éó„É©„Çπ„Å´„Åô„Çã
 			add_num *= -1;
 		}
 
-		// ï‚ê≥ílÅ{ë´ÇµÇ±ÇﬁílÇë´Ç∑
+		// Ë£úÊ≠£ÂÄ§ÔºãË∂≥„Åó„Åì„ÇÄÂÄ§„ÇíË∂≥„Åô
 		task_w->camera_rota += add_num + task_w->camera_rota_add;
 
-		// â¡ë¨Ç≥ÇπÇÈ
+		// Âä†ÈÄü„Åï„Åõ„Çã
 		task_w->camera_rota_add += MSBL00_ROTA_ADD;
 		
 		{
@@ -208,7 +208,7 @@ void EncountEffectMotionBl00(TCB_PTR tcb, void *work)
 			GFC_SetCamUp(&vect, task_w->camera);
 		}
 
-		// ÉJÉÅÉâÇèôÅXÇ…ÇøÇ©Ç∏ÇØÇÈ
+		// „Ç´„É°„É©„ÇíÂæê„ÄÖ„Å´„Å°„Åã„Åö„Åë„Çã
 		if(task_w->count <= MSBL00_CAMERA_IN_TIMING){
 			task_w->camera_dist -= task_w->camera_dist_add;
 			task_w->camera_dist_add += MSBL00_DIST_ADD;
@@ -228,7 +228,7 @@ void EncountEffectMotionBl00(TCB_PTR tcb, void *work)
 
 	
 	
-	case MSBL00_FADE_OUT:		// BGï`âÊ
+	case MSBL00_FADE_OUT:		// BGÊèèÁîª
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, MSBL00_FADEOUT_DIV, MSBL00_FADEOUT_SYNC, HEAPID_FIELD );
 
 		eew->seq++;
@@ -240,13 +240,13 @@ void EncountEffectMotionBl00(TCB_PTR tcb, void *work)
 		if( WIPE_SYS_EndCheck() ){
 			eew->wait = 0;
 
-			// å≥Ç…ñﬂÇ∑
+			// ÂÖÉ„Å´Êàª„Åô
 			FLDMotionBl_Delete(&task_w->motion);
-			GFC_PurgeCamera();				// ÉJÉÅÉâäÑÇËìñÇƒÉtÉäÅ[
+			GFC_PurgeCamera();				// „Ç´„É°„É©Ââ≤„ÇäÂΩì„Å¶„Éï„É™„Éº
 			GFC_AttachCamera(eew->fsw->camera_ptr);
-			GFC_FreeCamera(task_w->camera);	// ÉJÉÅÉâîjä¸
+			GFC_FreeCamera(task_w->camera);	// „Ç´„É°„É©Á†¥Ê£Ñ
 
-			// ÉuÉâÉCÉgÉlÉXâèú
+			// „Éñ„É©„Ç§„Éà„Éç„ÇπËß£Èô§
 			G2_BlendNone();
 			
 			eew->seq++;
@@ -254,13 +254,13 @@ void EncountEffectMotionBl00(TCB_PTR tcb, void *work)
 		break;
 
 	
-	case MSBL00_END_EFFECT:		// å„énññ
+	case MSBL00_END_EFFECT:		// ÂæåÂßãÊú´
 		
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// É^ÉXÉNèIóπÇïÒçê
+			*(eew->end) = TRUE;		// „Çø„Çπ„ÇØÁµÇ‰∫Ü„ÇíÂ†±Âëä
 		}
 		sys_FreeMemory(HEAPID_FIELD, eew->work);
-		PMDS_taskDel(tcb);	//É^ÉXÉNèIóπ
+		PMDS_taskDel(tcb);	//„Çø„Çπ„ÇØÁµÇ‰∫Ü
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
 		break;
 	}	
@@ -271,18 +271,18 @@ void EncountEffectMotionBl00(TCB_PTR tcb, void *work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ÉÇÅ[ÉVÉáÉìÉuÉâÅ[ÉuÉåÉGÉìÉJÉEÉìÉg
+ *@brief	„É¢„Éº„Ç∑„Éß„É≥„Éñ„É©„Éº„Éñ„É¨„Ç®„É≥„Ç´„Ç¶„É≥„Éà
  *
- *@param	tcb		É^ÉXÉNÉ|ÉCÉìÉ^
- *@param	*work	ÉèÅ[ÉNÉ|ÉCÉìÉ^
+ *@param	tcb		„Çø„Çπ„ÇØ„Éù„Ç§„É≥„Çø
+ *@param	*work	„ÉØ„Éº„ÇØ„Éù„Ç§„É≥„Çø
  *
  *@return	none
  *
- * ÉGÉtÉFÉNÉgÇÃó¨ÇÍ
+ * „Ç®„Éï„Çß„ÇØ„Éà„ÅÆÊµÅ„Çå
  *
- * 1:ÉÇÅ[ÉVÉáÉìÉuÉâÅ[Ç™Ç©Ç©ÇÈ
- * 2:ÉJÉÅÉâÇÇ‘ÇÍÇ≥ÇπÇÈ
- * 3:ÉuÉâÉbÉNÉAÉEÉg
+ * 1:„É¢„Éº„Ç∑„Éß„É≥„Éñ„É©„Éº„Åå„Åã„Åã„Çã
+ * 2:„Ç´„É°„É©„Çí„Å∂„Çå„Åï„Åõ„Çã
+ * 3:„Éñ„É©„ÉÉ„ÇØ„Ç¢„Ç¶„Éà
  *
  */
 //-----------------------------------------------------------------------------
@@ -294,7 +294,7 @@ void EncountEffectMotionBl01(TCB_PTR tcb, void *work)
 	VecFx32 set_num;
 
 	switch(eew->seq){
-	case MSBL01_START_EFFECT:	// èâä˙âªèàóù
+	case MSBL01_START_EFFECT:	// ÂàùÊúüÂåñÂá¶ÁêÜ
 		eew->work = sys_AllocMemory(HEAPID_FIELD, sizeof(MSBL01_WORK));
 		memset( eew->work, 0, sizeof(MSBL01_WORK) );
 		
@@ -305,7 +305,7 @@ void EncountEffectMotionBl01(TCB_PTR tcb, void *work)
 		eew->seq++;
 		break;
 
-	case MSBL01_FLASH_INIT:		// ç≈èâÇÃÉsÉJÉsÉJï\é¶
+	case MSBL01_FLASH_INIT:		// ÊúÄÂàù„ÅÆ„Éî„Ç´„Éî„Ç´Ë°®Á§∫
 		EncountFlashTask(MASK_MAIN_DISPLAY, 16, -16,  &eew->wait, 2);
 
 		eew->seq++;
@@ -320,13 +320,13 @@ void EncountEffectMotionBl01(TCB_PTR tcb, void *work)
 		break;
 
 
-	case MSBL01_MOTION_INIT:	// ÉÇÅ[ÉVÉáÉìÉuÉâÅ[ÇégópÇ∑ÇÈèÄîı
+	case MSBL01_MOTION_INIT:	// „É¢„Éº„Ç∑„Éß„É≥„Éñ„É©„Éº„Çí‰ΩøÁî®„Åô„ÇãÊ∫ñÂÇô
 	
 		task_w->motion = FLDMotionBl_Init(2, 14);
 		
-		// ÉJÉÅÉâà⁄ìÆÇÃèÄîı
-		task_w->camera				= GFC_AllocCamera(HEAPID_FIELD);		// ÉJÉÅÉâçÏê¨
-		GFC_CopyCamera(eew->fsw->camera_ptr, task_w->camera);	// ÉJÉÅÉâÉRÉsÅ[
+		// „Ç´„É°„É©ÁßªÂãï„ÅÆÊ∫ñÂÇô
+		task_w->camera				= GFC_AllocCamera(HEAPID_FIELD);		// „Ç´„É°„É©‰ΩúÊàê
+		GFC_CopyCamera(eew->fsw->camera_ptr, task_w->camera);	// „Ç´„É°„É©„Ç≥„Éî„Éº
 		GFC_AttachCamera(task_w->camera);
 		task_w->camera_mv	= MSBL01_CAMERA_SHIFT_INIT;
 		task_w->camera_count= 0;
@@ -335,9 +335,9 @@ void EncountEffectMotionBl01(TCB_PTR tcb, void *work)
 		break;
 		
 		
-	case MSBL01_MOTION:	// ÉJÉÅÉâà⁄ìÆ
+	case MSBL01_MOTION:	// „Ç´„É°„É©ÁßªÂãï
 		
-		// à⁄ìÆÇ≥ÇπÇÈ
+		// ÁßªÂãï„Åï„Åõ„Çã
 		shift_num.x = FX_SinIdx(task_w->camera_count);
 		shift_num.x = FX_Mul(shift_num.x, task_w->camera_mv);
 		shift_num.y = 0;
@@ -347,17 +347,17 @@ void EncountEffectMotionBl01(TCB_PTR tcb, void *work)
 		set_num.y =	shift_num.y - task_w->camera_shift.y;
 		set_num.z =	shift_num.z - task_w->camera_shift.z;
 		
-		// ê›íË
+		// Ë®≠ÂÆö
 		GFC_ShiftCamera(&set_num, task_w->camera);
 
-		// ÉJÉEÉìÉg
+		// „Ç´„Ç¶„É≥„Éà
 		task_w->camera_count += MSBL01_CAMERA_COUNT_ADD;
 		if(task_w->camera_count >= 0x10000){
 			task_w->camera_count = 0;
 			task_w->camera_mv += MSBL01_CAMERA_SHIFT_ADD;
 		}
 		
-		// à⁄ìÆÇ≥ÇπÇΩãóó£Çï€ë∂Åiç≈å„Ç…å≥Ç…ñﬂÇ∑ÇΩÇﬂÅj
+		// ÁßªÂãï„Åï„Åõ„ÅüË∑ùÈõ¢„Çí‰øùÂ≠òÔºàÊúÄÂæå„Å´ÂÖÉ„Å´Êàª„Åô„Åü„ÇÅÔºâ
 		task_w->camera_shift.x = shift_num.x;
 		task_w->camera_shift.y = shift_num.y;
 		task_w->camera_shift.z = shift_num.z;
@@ -371,11 +371,11 @@ void EncountEffectMotionBl01(TCB_PTR tcb, void *work)
 
 	
 	
-	case MSBL01_FADE_OUT:		// ÉtÉFÅ[ÉhÉAÉEÉg
-		//BGñ Çâ°Ç…ÉJÉbÉg
+	case MSBL01_FADE_OUT:		// „Éï„Çß„Éº„Éâ„Ç¢„Ç¶„Éà
+		//BGÈù¢„ÇíÊ®™„Å´„Ç´„ÉÉ„Éà
 		ENC_BG_Cut_Start( eew );
 		
-		//ÉuÉâÉbÉNÉAÉEÉg
+		//„Éñ„É©„ÉÉ„ÇØ„Ç¢„Ç¶„Éà
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, MSBL01_FADEOUT_DIV, MSBL01_FADEOUT_SYNC, HEAPID_FIELD );
 		eew->seq++;
 		break;
@@ -384,13 +384,13 @@ void EncountEffectMotionBl01(TCB_PTR tcb, void *work)
 	
 	case MSBL01_END_WAIT:
 		if((ENC_HBlankEndCheck(eew) == TRUE) && ( WIPE_SYS_EndCheck() == TRUE )){
-			// å≥Ç…ñﬂÇ∑
+			// ÂÖÉ„Å´Êàª„Åô
 			FLDMotionBl_Delete(&task_w->motion);
-			GFC_PurgeCamera();				// ÉJÉÅÉâäÑÇËìñÇƒÉtÉäÅ[
+			GFC_PurgeCamera();				// „Ç´„É°„É©Ââ≤„ÇäÂΩì„Å¶„Éï„É™„Éº
 			GFC_AttachCamera(eew->fsw->camera_ptr);
-			GFC_FreeCamera(task_w->camera);	// ÉJÉÅÉâîjä¸
+			GFC_FreeCamera(task_w->camera);	// „Ç´„É°„É©Á†¥Ê£Ñ
 
-			// ÉuÉâÉCÉgÉlÉXâèú
+			// „Éñ„É©„Ç§„Éà„Éç„ÇπËß£Èô§
 			G2_BlendNone();
 			
 			eew->seq++;
@@ -398,7 +398,7 @@ void EncountEffectMotionBl01(TCB_PTR tcb, void *work)
 		break;
 
 	
-	case MSBL01_END_EFFECT:		// å„énññ
+	case MSBL01_END_EFFECT:		// ÂæåÂßãÊú´
 		
 		G2_SetBG0Offset(0, 0);
 		G2_SetBG1Offset(0, 0);
@@ -406,10 +406,10 @@ void EncountEffectMotionBl01(TCB_PTR tcb, void *work)
 		G2_SetBG3Offset(0, 0);
 		
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// É^ÉXÉNèIóπÇïÒçê
+			*(eew->end) = TRUE;		// „Çø„Çπ„ÇØÁµÇ‰∫Ü„ÇíÂ†±Âëä
 		}
 		sys_FreeMemory(HEAPID_FIELD, eew->work);
-		PMDS_taskDel(tcb);	//É^ÉXÉNèIóπ
+		PMDS_taskDel(tcb);	//„Çø„Çπ„ÇØÁµÇ‰∫Ü
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
 		break;
 	}	

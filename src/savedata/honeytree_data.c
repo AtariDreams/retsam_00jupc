@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	honeytree_data.c
- * @bfief	–¨“h‚èƒGƒ“ƒJƒEƒ“ƒg—pƒZ[ƒuƒf[ƒ^ƒAƒNƒZƒXŠÖ˜A
+ * @bfief	èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹é–¢é€£
  * @author	Nozomu Saito
  *
  *
@@ -15,17 +15,17 @@
 
 typedef struct HONEY_TREE_tag
 {
-	u8 TreeNo;			//‘O‰ñƒGƒ“ƒJƒEƒ“ƒg‚µ‚½–Ø‚Ìƒiƒ“ƒo[
+	u8 TreeNo;			//å‰å›ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸæœ¨ã®ãƒŠãƒ³ãƒãƒ¼
 	HONEY_DATA HoneyData[HONEY_TREE_MAX];
 }HONEY_TREE;
 
 //==============================================================================
 /**
- * ƒZ[ƒuƒf[ƒ^ƒTƒCƒYæ“¾
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
  *
  * @param	none
  *
- * @return	int			ƒTƒCƒY
+ * @return	int			ã‚µã‚¤ã‚º
  */
 //==============================================================================
 int HTSave_GetSaveDataSize(void)
@@ -35,9 +35,9 @@ int HTSave_GetSaveDataSize(void)
 
 //==============================================================================
 /**
- * ƒZ[ƒuƒf[ƒ^‰Šú‰»
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- * @param	outHoneyTree		–¨“h‚èƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	outHoneyTree		èœœå¡—ã‚Šã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -59,11 +59,11 @@ void HTSave_InitSaveData(HT_PTR outHoneyTree)
 
 //==============================================================================
 /**
- * ƒZ[ƒuƒf[ƒ^æ“ªƒ|ƒCƒ“ƒ^æ“¾
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å…ˆé ­ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
- * @param	sv		ƒZ[ƒuƒ|ƒCƒ“ƒ^
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	HT_PTR	–¨“h‚èƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	HT_PTR	èœœå¡—ã‚Šãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 HT_PTR HTSave_GetHoneyTree(SAVEDATA * sv)
@@ -73,12 +73,12 @@ HT_PTR HTSave_GetHoneyTree(SAVEDATA * sv)
 
 //==============================================================================
 /**
- * –¨–Ø‚ÌŠÔæ“¾
+ * èœœæœ¨ã®æ™‚é–“å–å¾—
  *
- * @param	inPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inTreeNo	–Øƒiƒ“ƒo[
+ * @param	inPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	int			ŠÔ
+ * @return	int			æ™‚é–“
  */
 //==============================================================================
 const int HTSave_GetTime(HT_PTR inPtr,  const u8 inTreeNo)
@@ -88,12 +88,12 @@ const int HTSave_GetTime(HT_PTR inPtr,  const u8 inTreeNo)
 
 //==============================================================================
 /**
- * ƒe[ƒuƒ‹“àƒ‚ƒ“ƒXƒ^[”Ô†æ“¾
+ * ãƒ†ãƒ¼ãƒ–ãƒ«å†…ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç•ªå·å–å¾—
  *
- * @param	inPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inTreeNo	–Øƒiƒ“ƒo[
+ * @param	inPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	u8			ƒe[ƒuƒ‹ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ * @return	u8			ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 //==============================================================================
 const u8 HTSave_GetTblMonsNo(HT_PTR inPtr, const u8 inTreeNo)
@@ -103,12 +103,12 @@ const u8 HTSave_GetTblMonsNo(HT_PTR inPtr, const u8 inTreeNo)
 
 //==============================================================================
 /**
- * ƒe[ƒuƒ‹”Ô†æ“¾
+ * ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·å–å¾—
  *
- * @param	inPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inTreeNo	–Øƒiƒ“ƒo[
+ * @param	inPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	u8			ƒe[ƒuƒ‹”Ô†
+ * @return	u8			ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·
  */
 //==============================================================================
 const u8 HTSave_GetTblNo(HT_PTR inPtr, const u8 inTreeNo)
@@ -118,12 +118,12 @@ const u8 HTSave_GetTblNo(HT_PTR inPtr, const u8 inTreeNo)
 
 //==============================================================================
 /**
- * ƒe[ƒuƒ‹ƒŒƒA“x‚Ìæ“¾
+ * ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¬ã‚¢åº¦ã®å–å¾—
  *
- * @param	inPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inTreeNo	–Øƒiƒ“ƒo[
+ * @param	inPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	u8			ƒŒƒA“x
+ * @return	u8			ãƒ¬ã‚¢åº¦
  */
 //==============================================================================
 const u8 HTSave_GetRareLv(HT_PTR inPtr, const u8 inTreeNo)
@@ -133,12 +133,12 @@ const u8 HTSave_GetRareLv(HT_PTR inPtr, const u8 inTreeNo)
 
 //==============================================================================
 /**
- * —h‚ê“x‡‚¢‚ğæ“¾
+ * æºã‚Œåº¦åˆã„ã‚’å–å¾—
  *
- * @param	inPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inTreeNo	–Øƒiƒ“ƒo[
+ * @param	inPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	u8			—h‚ê‹ï‡
+ * @return	u8			æºã‚Œå…·åˆ
  */
 //==============================================================================
 const u8 HTSave_GetSwayLv(HT_PTR inPtr, const u8 inTreeNo)
@@ -148,11 +148,11 @@ const u8 HTSave_GetSwayLv(HT_PTR inPtr, const u8 inTreeNo)
 
 //==============================================================================
 /**
- * ‘O‰ñƒGƒ“ƒJƒEƒ“ƒg‚µ‚½–Ø‚Ìƒiƒ“ƒo[‚ğæ“¾
+ * å‰å›ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸæœ¨ã®ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param	inPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	int			–Øƒiƒ“ƒo[
+ * @return	int			æœ¨ãƒŠãƒ³ãƒãƒ¼
  */
 //==============================================================================
 const int HTSave_GetBeforeTreeNo(HT_PTR inPtr)
@@ -163,11 +163,11 @@ const int HTSave_GetBeforeTreeNo(HT_PTR inPtr)
 
 //==============================================================================
 /**
- * –¨–Ø‚ÌŠÔƒZƒbƒg
+ * èœœæœ¨ã®æ™‚é–“ã‚»ãƒƒãƒˆ
  *
- * @param	inTime	ŠÔ
- * @param	inTreeNo	–Øƒiƒ“ƒo[
- * @param	outPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inTime	æ™‚é–“
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
+ * @param	outPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -179,11 +179,11 @@ void HTSave_SetTime(const u8 inTime, const u8 inTreeNo, HT_PTR outPtr)
 
 //==============================================================================
 /**
- * ƒe[ƒuƒ‹“àƒ‚ƒ“ƒXƒ^[”Ô†ƒZƒbƒg
+ * ãƒ†ãƒ¼ãƒ–ãƒ«å†…ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç•ªå·ã‚»ãƒƒãƒˆ
  *
- * @param	inTblMonsNo	ƒe[ƒuƒ‹ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param	inTreeNo	–Øƒiƒ“ƒo[
- * @param	outPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inTblMonsNo	ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
+ * @param	outPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -195,10 +195,10 @@ void HTSave_SetTblMonsNo(const u8 inTblMonsNo, const u8 inTreeNo, HT_PTR outPtr)
 
 //==============================================================================
 /**
- * ƒe[ƒuƒ‹”Ô†ƒZƒbƒg
- *@param	inTblNo		ƒe[ƒuƒ‹ƒiƒ“ƒo[
- * @param	inTreeNo	–Øƒiƒ“ƒo[
- * @param	outPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·ã‚»ãƒƒãƒˆ
+ *@param	inTblNo		ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
+ * @param	outPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -210,11 +210,11 @@ void HTSave_SetTblNo(const u8 inTblNo, const u8 inTreeNo, HT_PTR outPtr)
 
 //==============================================================================
 /**
- * ƒe[ƒuƒ‹ƒŒƒA“x‚ÌƒZƒbƒg
+ * ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¬ã‚¢åº¦ã®ã‚»ãƒƒãƒˆ
  *
- * @param	inRareLv	ƒŒƒAƒŒƒxƒ‹
- * @param	inTreeNo	–Øƒiƒ“ƒo[
- * @param	outPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inRareLv	ãƒ¬ã‚¢ãƒ¬ãƒ™ãƒ«
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
+ * @param	outPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -226,10 +226,10 @@ void HTSave_SetRareLv(const u8 inRareLv, const u8 inTreeNo, HT_PTR outPtr)
 
 //==============================================================================
 /**
- * —h‚ê“x‡‚¢‚ğæ“¾
+ * æºã‚Œåº¦åˆã„ã‚’å–å¾—
  *
- * @param	inTreeNo	–Øƒiƒ“ƒo[
- * @param	outPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
+ * @param	outPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -241,10 +241,10 @@ void  HTSave_SetSwayLv(const u8 inSwayLv, const u8 inTreeNo, HT_PTR outPtr)
 
 //==============================================================================
 /**
- * ‘O‰ñƒGƒ“ƒJƒEƒ“ƒg‚µ‚½–Ø‚Ìƒiƒ“ƒo[‚ğƒZƒbƒg
+ * å‰å›ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸæœ¨ã®ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	inTreeNo	–Øƒiƒ“ƒo[
- * @param	outPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
+ * @param	outPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -256,10 +256,10 @@ void HTSave_SetBeforeTreeNo(const u8 inTreeNo, HT_PTR outPtr)
 
 //==============================================================================
 /**
- * –¨–Øƒf[ƒ^ƒ|ƒCƒ“ƒ^‚Ìæ“¾
+ * èœœæœ¨ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã®å–å¾—
  *
- * @param	inTreeNo	–Øƒiƒ“ƒo[
- * @param	outPtr		–¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inTreeNo	æœ¨ãƒŠãƒ³ãƒãƒ¼
+ * @param	outPtr		èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -274,10 +274,10 @@ HONEY_DATA *HTSave_GetHoneyDataPtr(const u8 inTreeNo, HT_PTR outPtr)
 
 //==============================================================================
 /**
- * ŠÔXV
+ * æ™‚é–“æ›´æ–°
  *
- * @param	sv				ƒZ[ƒuƒ|ƒCƒ“ƒ^
- * @param	inDiffminute	ŠÔ·•ª
+ * @param	sv				ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
+ * @param	inDiffminute	æ™‚é–“å·®åˆ†
  *
  * @return	none
  */

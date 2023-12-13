@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	wifi_note_local.h
- * @brief	WIFI▌Х▓═┐█│[┐J┐▀▓Х▀`
+ * @brief	WIFIФ┴▀Е╦ЁЦ┐╜Ц┐╪Ц┌╚Ц┐╚Е╝ Г╬╘
  * @author	k.ohno
  * @date    2006.4.5
  */
@@ -27,28 +27,28 @@
 #define WIFIP2PMATCH_MEMBER_MAX  (WIFILIST_FRIEND_MAX)
 #define WIFIP2PMATCH_DISP_MEMBER_MAX  (5)
 
-// ▀@■\┐{┐^┐⌠≈p▓Х▀`
-#define FUNCBUTTON_NUM	( 7 ) 		// ▀@■\┐{┐^┐⌠┌л░■
-#define START_WORDPANEL ( 0 )		// █е▐┴┌л∙╤▌ ⌠Э≈м┐p┐l┐▀┌л■т█├│i┌O││┌п┌Г┌╙┌х│j
+// Ф╘÷Х┐╫Ц┐°Ц┌©Ц┐ЁГ■╗Е╝ Г╬╘
+#define FUNCBUTTON_NUM	( 7 ) 		// Ф╘÷Х┐╫Ц┐°Ц┌©Ц┐ЁЦ│╝Ф∙╟
+#define START_WORDPANEL ( 0 )		// Ф°─Е┬²Ц│╝Ф√┤Е╜≈Е┘╔Е┼⌡Ц┐▒Ц┐█Ц┐╚Ц│╝Г∙╙Е▐╥О╪┬О╪░О╪²Ц│╡Ц┌┴Ц│▄Ц│╙О╪┴
 
-// CLACT┌е▓Х▀`┌╣┌д┌╒┌И┐Z┐▀┌╙▒Е┌╚┌╥┌╛┌д┐T┐u┴Ф√й┌и┴e▀©┌╙┌е┌д┌╣┌э┌╓┌л┌е≈ё┌╣┌д┌щ┌И
+// CLACTЦ│╖Е╝ Г╬╘Ц│≈Ц│╕Ц│└Ц┌▀Ц┌╩Ц┐╚Ц│▄Е╓╖Ц│█Ц│≥Ц│▌Ц│╕Ц┌╣Ц┐√Г■╩И²╒Ц│╚Е╫╠И÷©Ц│▄Ц│╖Ц│╕Ц│≈Ц│╬Ц│├Ц│╝Ц│╖И⌡╒Ц│≈Ц│╕Ц│©Ц┌▀
 #define NAMEIN_SUB_ACTOR_DISTANCE 	(256*FX32_ONE)
 
-// CellActor┌и▐┬≈²┌Ё┌╧┌И┐┼┐\│[┐X┐}┐l│[┐W┐┐┌л▌М≈ч┌л░■│i││┐}┐▀┐`┐Z┐▀│E┐}┐▀┐`┐Z┐▀┐A┐j┐│┌м▌g≈p┌╣┌х┌╒│j
+// CellActorЦ│╚Е┤╕Г░├Ц│∙Ц│⌡Ц┌▀Ц┐╙Ц┌╫Ц┐╪Ц┌╧Ц┐·Ц┐█Ц┐╪Ц┌╦Ц┐ёЦ│╝Г╗╝И║·Ц│╝Ф∙╟О╪┬О╪²Ц┐·Ц┐╚Ц┐│Ц┌╩Ц┐╚Ц┐╩Ц┐·Ц┐╚Ц┐│Ц┌╩Ц┐╚Ц┌╒Ц┐▀Ц┐║Ц│╞Д╫©Г■╗Ц│≈Ц│╙Ц│└О╪┴
 #define CLACT_RESOURCE_NUM		(  4 )
 #define _OAM_NUM			( 5 )
 
 #define FRIENDCODE_MAXLEN     (12)
 
-// ┐}┐b┐`┐⌠┐O┐▀│[┐─┌и┌м┌╒┌д┌╜┌И░l┌л░■│i▌╘∙╙┌Ю⌠Э┌Й┌д│j
+// Ц┐·Ц┐┐Ц┐│Ц┐ЁЦ┌╟Ц┐╚Ц┐╪Ц┐═Ц│╚Ц│╞Ц│└Ц│╕Ц│▐Ц┌▀Д╨╨Ц│╝Ф∙╟О╪┬Х┤╙Е┬├Ц┌┌Е┘╔Ц┌▄Ц│╕О╪┴
 #define MATCHROOM_IN_NPCNUM	(32)
 #define MATCHROOM_IN_OBJNUM	(MATCHROOM_IN_NPCNUM+1)
 
-// ┐│┐b┐Z│[┐W∙\▌╕▄Ц┌лWAIT
+// Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Х║╗Г╓╨Е╬▄Ц│╝WAIT
 #define WIFIP2PMATCH_CORNER_MESSAGE_END_WAIT	( 60 )
 
 
-// ∙╤▌ ┐p┐l┐▀┌л▒J┬з≈p
+// Ф√┤Е╜≈Ц┐▒Ц┐█Ц┐╚Ц│╝И│╥Г╖╩Г■╗
 enum{
   WIFIP2PMATCH_MODE_INIT  = 0,
   WIFIP2PMATCH_NORMALCONNECT_YESNO,
@@ -130,12 +130,12 @@ enum{
 	WIFIP2PMATCH_SYNCHRONIZE_END=201,
 };
 
-// ▐Ц┴╨┴Ф√й▌w▓Х▓Х▀`
+// Д╦┼Д╦▀Г■╩И²╒Ф▄┤Е╝ Е╝ Г╬╘
 #define BOTH_LCD	( 2 )
-#define MAIN_LCD	( GF_BGL_MAIN_DISP )	// ≈v┌м┌O┌ф
-#define SUB_LCD		( GF_BGL_SUB_DISP )		// ┌P┌х┌Я┌е┌╥┌╙│B
+#define MAIN_LCD	( GF_BGL_MAIN_DISP )	// Х╕│Ц│╞О╪░Ц│╗
+#define SUB_LCD		( GF_BGL_SUB_DISP )		// О╪▒Ц│╙Ц┌⌠Ц│╖Ц│≥Ц│▄Ц─┌
 
-// BMPWIN▌w▓Х
+// BMPWINФ▄┤Е╝ 
 enum{
 	BMP_NAME1_S_BG0,
 	BMP_NAME2_S_BG0,
@@ -146,62 +146,62 @@ enum{
 };
 
 
-//---------------WIFISTATUS┐f│[┐^
+//---------------WIFISTATUSЦ┐┤Ц┐╪Ц┌©
 
 typedef enum{
-  WIFI_STATUS_NONE,   // ┴╫┌Ю√Ё┌╒	NONE┌л┌ф┌╚┌м▐o▄╩┌Ю┌╣┌э┌╧┌Я
-  WIFI_STATUS_VCT,      // VCT▓├
-  WIFI_STATUS_SBATTLE50,      // ┐V┐⌠┐O┐▀▒н░М▓├
-  WIFI_STATUS_SBATTLE100,      // ┐V┐⌠┐O┐▀▒н░М▓├
-  WIFI_STATUS_SBATTLE_FREE,      // ┐V┐⌠┐O┐▀▒н░М▓├
-  WIFI_STATUS_DBATTLE50,      // ┐_┐u┐▀▒н░М▓├
-  WIFI_STATUS_DBATTLE100,      // ┐_┐u┐▀▒н░М▓├
-  WIFI_STATUS_DBATTLE_FREE,      // ┐_┐u┐▀▒н░М▓├
-  WIFI_STATUS_TRADE,          // ▄П┼╥▓├
-  WIFI_STATUS_SBATTLE50_WAIT,   // ┐V┐⌠┐O┐▀Lv50▒н░М∙Е▐W▓├
-  WIFI_STATUS_SBATTLE100_WAIT,   // ┐V┐⌠┐O┐▀Lv100▒н░М∙Е▐W▓├
-  WIFI_STATUS_SBATTLE_FREE_WAIT,   // ┐V┐⌠┐O┐▀Lv100▒н░М∙Е▐W▓├
-  WIFI_STATUS_DBATTLE50_WAIT,   // ┐_┐u┐▀Lv50▒н░М∙Е▐W▓├
-  WIFI_STATUS_DBATTLE100_WAIT,   // ┐_┐u┐▀Lv100▒н░М∙Е▐W▓├
-  WIFI_STATUS_DBATTLE_FREE_WAIT,   // ┐_┐u┐▀Lv100▒н░М∙Е▐W▓├
-  WIFI_STATUS_TRADE_WAIT,    // ▄П┼╥∙Е▐W▓├
-  WIFI_STATUS_LOGIN_WAIT,    // ▒р▀@▓├│@┐█┐O┐C┐⌠▓╪▄Ц┌м┌╠┌Й
+  WIFI_STATUS_NONE,   // Д╫∙Ц┌┌Г└║Ц│└	NONEЦ│╝Ц│╗Ц│█Ц│╞Е┤╨Г▐╬Ц┌┌Ц│≈Ц│╬Ц│⌡Ц┌⌠
+  WIFI_STATUS_VCT,      // VCTД╦╜
+  WIFI_STATUS_SBATTLE50,      // Ц┌╥Ц┐ЁЦ┌╟Ц┐╚Е╞╬Ф┬╕Д╦╜
+  WIFI_STATUS_SBATTLE100,      // Ц┌╥Ц┐ЁЦ┌╟Ц┐╚Е╞╬Ф┬╕Д╦╜
+  WIFI_STATUS_SBATTLE_FREE,      // Ц┌╥Ц┐ЁЦ┌╟Ц┐╚Е╞╬Ф┬╕Д╦╜
+  WIFI_STATUS_DBATTLE50,      // Ц┐─Ц┐√Ц┐╚Е╞╬Ф┬╕Д╦╜
+  WIFI_STATUS_DBATTLE100,      // Ц┐─Ц┐√Ц┐╚Е╞╬Ф┬╕Д╦╜
+  WIFI_STATUS_DBATTLE_FREE,      // Ц┐─Ц┐√Ц┐╚Е╞╬Ф┬╕Д╦╜
+  WIFI_STATUS_TRADE,          // Д╨╓Ф▐⌡Д╦╜
+  WIFI_STATUS_SBATTLE50_WAIT,   // Ц┌╥Ц┐ЁЦ┌╟Ц┐╚Lv50Е╞╬Ф┬╕Е▀÷И⌡├Д╦╜
+  WIFI_STATUS_SBATTLE100_WAIT,   // Ц┌╥Ц┐ЁЦ┌╟Ц┐╚Lv100Е╞╬Ф┬╕Е▀÷И⌡├Д╦╜
+  WIFI_STATUS_SBATTLE_FREE_WAIT,   // Ц┌╥Ц┐ЁЦ┌╟Ц┐╚Lv100Е╞╬Ф┬╕Е▀÷И⌡├Д╦╜
+  WIFI_STATUS_DBATTLE50_WAIT,   // Ц┐─Ц┐√Ц┐╚Lv50Е╞╬Ф┬╕Е▀÷И⌡├Д╦╜
+  WIFI_STATUS_DBATTLE100_WAIT,   // Ц┐─Ц┐√Ц┐╚Lv100Е╞╬Ф┬╕Е▀÷И⌡├Д╦╜
+  WIFI_STATUS_DBATTLE_FREE_WAIT,   // Ц┐─Ц┐√Ц┐╚Lv100Е╞╬Ф┬╕Е▀÷И⌡├Д╦╜
+  WIFI_STATUS_TRADE_WAIT,    // Д╨╓Ф▐⌡Е▀÷И⌡├Д╦╜
+  WIFI_STATUS_LOGIN_WAIT,    // Е╬┘Ф╘÷Д╦╜Ц──Ц┐╜Ц┌╟Ц┌╓Ц┐ЁГ⌡╢Е╬▄Ц│╞Ц│⌠Ц┌▄
   
-  WIFI_STATUS_DP_UNK,        // DP┌лUNKNOWN
+  WIFI_STATUS_DP_UNK,        // DPЦ│╝UNKNOWN
   
-  // ┐v┐┴┐`┐i┌е▓г┴а
-  WIFI_STATUS_POFIN,          // ┐|┐t┐B┐⌠≈©≈²▓├
-  WIFI_STATUS_POFIN_WAIT,    // ┐|┐t┐B┐⌠∙Е▐W▓├
-  WIFI_STATUS_FRONTIER,          // ┐t┐█┐⌠┐e┐B┐A▓├
-  WIFI_STATUS_FRONTIER_WAIT,    // ┐t┐█┐⌠┐e┐B┐A∙Е▐W▓├
+  // Ц┐≈Ц┐╘Ц┐│Ц┐┼Ц│╖Х©╫Е┼═
+  WIFI_STATUS_POFIN,          // Ц┐²Ц┐∙Ц┌ёЦ┐ЁФ√≥Г░├Д╦╜
+  WIFI_STATUS_POFIN_WAIT,    // Ц┐²Ц┐∙Ц┌ёЦ┐ЁЕ▀÷И⌡├Д╦╜
+  WIFI_STATUS_FRONTIER,          // Ц┐∙Ц┐╜Ц┐ЁЦ┐├Ц┌ёЦ┌╒Д╦╜
+  WIFI_STATUS_FRONTIER_WAIT,    // Ц┐∙Ц┐╜Ц┐ЁЦ┐├Ц┌ёЦ┌╒Е▀÷И⌡├Д╦╜
 
-  WIFI_STATUS_BUCKET,				// ┐o┐P┐b┐g┐Q│[┐─
-  WIFI_STATUS_BUCKET_WAIT,			// ┐o┐P┐b┐g┐Q│[┐─∙Е▐W▓├
-  WIFI_STATUS_BALANCEBALL,		    // ▀й▐Ф┌Х┐Q│[┐─
-  WIFI_STATUS_BALANCEBALL_WAIT,		// ▀й▐Ф┌Х┐Q│[┐─∙Е▐W▓├
-  WIFI_STATUS_BALLOON,				// ┌н┌И│[┌Я┐Q│[┐─
-  WIFI_STATUS_BALLOON_WAIT,			// ┌н┌И│[┌Я│[┐─∙Е▐W▓├
+  WIFI_STATUS_BUCKET,				// Ц┐░Ц┌╠Ц┐┐Ц┐┬Ц┌╡Ц┐╪Ц┐═
+  WIFI_STATUS_BUCKET_WAIT,			// Ц┐░Ц┌╠Ц┐┐Ц┐┬Ц┌╡Ц┐╪Ц┐═Е▀÷И⌡├Д╦╜
+  WIFI_STATUS_BALANCEBALL,		    // Г▌┴Д╧≈Ц┌┼Ц┌╡Ц┐╪Ц┐═
+  WIFI_STATUS_BALANCEBALL_WAIT,		// Г▌┴Д╧≈Ц┌┼Ц┌╡Ц┐╪Ц┐═Е▀÷И⌡├Д╦╜
+  WIFI_STATUS_BALLOON,				// Ц│╟Ц┌▀Ц┐╪Ц┌⌠Ц┌╡Ц┐╪Ц┐═
+  WIFI_STATUS_BALLOON_WAIT,			// Ц│╟Ц┌▀Ц┐╪Ц┌⌠Ц┐╪Ц┐═Е▀÷И⌡├Д╦╜
 
 #ifdef WFP2P_DEBUG_EXON
-  WIFI_STATUS_BATTLEROOM,     // ┐o┐g┐▀┐▀│[┐─▓├
-  WIFI_STATUS_BATTLEROOM_WAIT,// ┐o┐g┐▀┐▀│[┐─∙Е▐W▓├
-  WIFI_STATUS_MBATTLE_FREE,     // ┐}┐▀┐`┐o┐g┐▀▓├
-  WIFI_STATUS_MBATTLE_FREE_WAIT,// ┐}┐▀┐`┐o┐g┐▀∙Е▐W▓├
+  WIFI_STATUS_BATTLEROOM,     // Ц┐░Ц┐┬Ц┐╚Ц┐╚Ц┐╪Ц┐═Д╦╜
+  WIFI_STATUS_BATTLEROOM_WAIT,// Ц┐░Ц┐┬Ц┐╚Ц┐╚Ц┐╪Ц┐═Е▀÷И⌡├Д╦╜
+  WIFI_STATUS_MBATTLE_FREE,     // Ц┐·Ц┐╚Ц┐│Ц┐░Ц┐┬Ц┐╚Д╦╜
+  WIFI_STATUS_MBATTLE_FREE_WAIT,// Ц┐·Ц┐╚Ц┐│Ц┐░Ц┐┬Ц┐╚Е▀÷И⌡├Д╦╜
 #endif
 
-  WIFI_STATUS_PLAY_OTHER,	// WiFi┐N┐┴┐u┌и┬х┼O┌е≈V┌я▓├
-  WIFI_STATUS_UNKNOWN,   // ░V┌╫┌и█Л┌а┌╫┌Г┌╠┌л■т█├┬х▐Ц┌и┌х┌И
+  WIFI_STATUS_PLAY_OTHER,	// WiFiЦ┌╞Ц┐╘Ц┐√Ц│╚Д╩╔Е╓√Ц│╖И│┼Ц│ЁД╦╜
+  WIFI_STATUS_UNKNOWN,   // Ф√╟Ц│÷Ц│╚Д╫°Ц│ёЦ│÷Ц┌┴Ц│⌠Ц│╝Г∙╙Е▐╥Д╩╔Д╦┼Ц│╚Ц│╙Ц┌▀
 };
 
 typedef enum{
-  _REGULATION_BATTLE_TOWER     // ┐o┐g┐▀┐^┐▐│[▒н░М∙Ш▌╝
+  _REGULATION_BATTLE_TOWER     // Ц┐░Ц┐┬Ц┐╚Ц┌©Ц┐╞Ц┐╪Е╞╬Ф┬╕Ф√╧Е╪▐
 };
 
 
-//┐g│[┐^┐▀189┐o┐C┐g▒≈░M┌е┌╚┌И┌╙┌ф┌Х┌═┌╕┌╦┴╨┬й┐v┐█┐O┐┴┐─┌м■м┬м∙╙┌╬┌╞▒≈┌И
+//Ц┐┬Ц┐╪Ц┌©Ц┐╚189Ц┐░Ц┌╓Ц┐┬И─│Д©║Ц│╖Ц│█Ц┌▀Ц│▄Ц│╗Ц┌┼Ц│┌Ц│┬Ц│ Д╦▀Д╫█Ц┐≈Ц┐╜Ц┌╟Ц┐╘Ц┐═Ц│╞Г╞└Е⌡╡Е┬├Ц│═Ц│▒И─│Ц┌▀
 #define _POKEMON_NUM   (6)
 
-#define _CANCELENABLE_TIMER (60*30)   // ┐L┐┐┐⌠┐Z┐▀┌и┌х┌И┬в┌л┐^┐C┐}│[60min
+#define _CANCELENABLE_TIMER (60*30)   // Ц┌╜Ц┐ёЦ┐ЁЦ┌╩Ц┐╚Ц│╚Ц│╙Ц┌▀Г┌╨Ц│╝Ц┌©Ц┌╓Ц┐·Ц┐╪60min
 
 
 enum{
@@ -211,17 +211,17 @@ enum{
 };
 
 enum{
-	WF_USERDISPTYPE_NRML,	// ▓й▐М
-	WF_USERDISPTYPE_MINI,	// ┐~┐j┐Q│[┐─
-	WF_USERDISPTYPE_BLTW,	// ┐o┐g┐▀┐^┐▐│[
-	WF_USERDISPTYPE_BLFT,	// ┐o┐g┐▀┐t┐█┐⌠┐e┐B┐A
-	WF_USERDISPTYPE_BLKS,	// ┐o┐g┐▀┐L┐┐┐b┐X┐▀
-	WF_USERDISPTYPE_BTST,	// ┐o┐g┐▀┐X┐e│[┐W
-	WF_USERDISPTYPE_BTRT,	// ┐o┐g┐▀┐▀│[┐▄┐b┐g
+	WF_USERDISPTYPE_NRML,	// И─ Е╦╦
+	WF_USERDISPTYPE_MINI,	// Ц┐÷Ц┐▀Ц┌╡Ц┐╪Ц┐═
+	WF_USERDISPTYPE_BLTW,	// Ц┐░Ц┐┬Ц┐╚Ц┌©Ц┐╞Ц┐╪
+	WF_USERDISPTYPE_BLFT,	// Ц┐░Ц┐┬Ц┐╚Ц┐∙Ц┐╜Ц┐ЁЦ┐├Ц┌ёЦ┌╒
+	WF_USERDISPTYPE_BLKS,	// Ц┐░Ц┐┬Ц┐╚Ц┌╜Ц┐ёЦ┐┐Ц┌╧Ц┐╚
+	WF_USERDISPTYPE_BTST,	// Ц┐░Ц┐┬Ц┐╚Ц┌╧Ц┐├Ц┐╪Ц┌╦
+	WF_USERDISPTYPE_BTRT,	// Ц┐░Ц┐┬Ц┐╚Ц┐╚Ц┐╪Ц┐╛Ц┐┐Ц┐┬
 	WF_USERDISPTYPE_NUM,
 };
 
-// ┐├│[┐U∙\▌╕┐{┐^┐⌠░■
+// Ц┐╕Ц┐╪Ц┌╤Х║╗Г╓╨Ц┐°Ц┌©Ц┐ЁФ∙╟
 enum{
 	MCV_USERD_BTTN_LEFT = 0,
 	MCV_USERD_BTTN_BACK,
@@ -245,19 +245,19 @@ typedef struct _WIFI_MACH_STATUS_tag{
   u8 vchat_org;
 } _WIFI_MACH_STATUS;
 
-#define _WIFI_STATUS_MAX_SIZE  (sizeof(_WIFI_MACH_STATUS))		// ┌╠┌╠┌П∙о┌╕┌И┌фDP┌ф┌л▄щ┼╥░╚┌╙┌х┌╜┌х┌И
+#define _WIFI_STATUS_MAX_SIZE  (sizeof(_WIFI_MACH_STATUS))		// Ц│⌠Ц│⌠Ц┌▓Е╓┴Ц│┬Ц┌▀Ц│╗DPЦ│╗Ц│╝Д╨▓Ф▐⌡Ф─╖Ц│▄Ц│╙Ц│▐Ц│╙Ц┌▀
 
 //============================================================================================
-//	█\▒╒▒л▓Х▀`
+//	Ф╖▀И─═Д╫⌠Е╝ Г╬╘
 //============================================================================================
 
 typedef struct {
-  _WIFI_MACH_STATUS myMatchStatus;   // ▌╘∙╙┌л┐}┐b┐`┐⌠┐O▐С▒т┐f│[┐^
-  _WIFI_MACH_STATUS friendMatchStatus[WIFIP2PMATCH_MEMBER_MAX]; // ▒┼▌Х┌л┐}┐b┐`┐⌠┐O▐С▒т┐f│[┐^
+  _WIFI_MACH_STATUS myMatchStatus;   // Х┤╙Е┬├Ц│╝Ц┐·Ц┐┐Ц┐│Ц┐ЁЦ┌╟Г┼╤Ф┘▀Ц┐┤Ц┐╪Ц┌©
+  _WIFI_MACH_STATUS friendMatchStatus[WIFIP2PMATCH_MEMBER_MAX]; // Г⌡╦Ф┴▀Ц│╝Ц┐·Ц┐┐Ц┐│Ц┐ЁЦ┌╟Г┼╤Ф┘▀Ц┐┤Ц┐╪Ц┌©
 } TEST_MATCH_WORK;
 
 //-------------------------------------
-///	Icon┐O┐┴┐t┐B┐b┐N
+///	IconЦ┌╟Ц┐╘Ц┐∙Ц┌ёЦ┐┐Ц┌╞
 //=====================================
 typedef struct {
 	void* p_buff;
@@ -269,14 +269,14 @@ typedef struct {
 
 
 //-------------------------------------
-///	┐f│[┐^┐r┐┘│[┐A│[┐f│[┐^
+///	Ц┐┤Ц┐╪Ц┌©Ц┐⌠Ц┐╔Ц┐╪Ц┌╒Ц┐╪Ц┐┤Ц┐╪Ц┌©
 //=====================================
 typedef struct {
 
-	// ┐▐│[┐h┐Z┐b┐g
-	WORDSET*	p_wordset;			// ┐│┐b┐Z│[┐W⌠W┼J≈p┐▐│[┐N┐}┐l│[┐W┐┐│[
+	// Ц┐╞Ц┐╪Ц┐┴Ц┌╩Ц┐┐Ц┐┬
+	WORDSET*	p_wordset;			// Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Е╠∙И√▀Г■╗Ц┐╞Ц┐╪Ц┌╞Ц┐·Ц┐█Ц┐╪Ц┌╦Ц┐ёЦ┐╪
 	
-	// ┐{┐^┐⌠┐O┐┴┐t┐B┐b┐N
+	// Ц┐°Ц┌©Ц┐ЁЦ┌╟Ц┐╘Ц┐∙Ц┌ёЦ┐┐Ц┌╞
 	void* p_bttnbuff;
 	NNSG2dScreenData* p_bttnscrn;
 
@@ -286,122 +286,122 @@ typedef struct {
 	void* p_useretcbuff;
 	NNSG2dScreenData* p_useretcscrn;
 	
-	BUTTON_MAN* p_bttnman;	// ┐{┐^┐⌠┼г≈²┐V┐X┐e┐─
+	BUTTON_MAN* p_bttnman;	// Ц┐°Ц┌©Ц┐ЁГ╝║Г░├Ц┌╥Ц┌╧Ц┐├Ц┐═
 	u8 bttnfriendNo[ MATCHROOM_IN_NPCNUM ];
-	u8 frame_no;	// █║∙\▌╕┌╣┌д┌╒┌И▐╟┌л┐i┐⌠┐o│[
-	u8 touch_friendNo;	// ░G┌Й┌д┌╒┌И≈F▓B■т█├+1
-	u8 touch_frame;	// ┐t┐▄│[┐─░■
-	u8 user_disp;		// ┐├│[┐U│[┐f│[┐^∙\▌╕ONOFF
-	s8 user_dispno;	// ┐├│[┐U│[DISP⌠Ю≈e
-	u8 button_on;		// ┐{┐^┐⌠∙\▌╕█X░V
-	u8 button_count;	// ┐{┐^┐⌠┐t┐▄│[┐─┐J┐E┐⌠┐^
-	u8 bttn_chg_friendNo;	// ┐{┐^┐⌠┌П█X░V┌╣┌д┌ы┌╣┌╒≈F▓B■т█├
-	BOOL bttn_allchg;	// ┐{┐^┐⌠┌╥┌в┌д┌П█X░V┌╥┌И┌╘ 
+	u8 frame_no;	// Д╩┼Х║╗Г╓╨Ц│≈Ц│╕Ц│└Ц┌▀Е╨┼Ц│╝Ц┐┼Ц┐ЁЦ┐░Ц┐╪
+	u8 touch_friendNo;	// Х╖╕Ц┌▄Ц│╕Ц│└Ц┌▀Е▐▀И│■Г∙╙Е▐╥+1
+	u8 touch_frame;	// Ц┐∙Ц┐╛Ц┐╪Ц┐═Ф∙╟
+	u8 user_disp;		// Ц┐╕Ц┐╪Ц┌╤Ц┐╪Ц┐┤Ц┐╪Ц┌©Х║╗Г╓╨ONOFF
+	s8 user_dispno;	// Ц┐╕Ц┐╪Ц┌╤Ц┐╪DISPЕ├┘Е╝╧
+	u8 button_on;		// Ц┐°Ц┌©Ц┐ЁХ║╗Г╓╨Ф⌡╢Ф√╟
+	u8 button_count;	// Ц┐°Ц┌©Ц┐ЁЦ┐∙Ц┐╛Ц┐╪Ц┐═Ц┌╚Ц┌╕Ц┐ЁЦ┌©
+	u8 bttn_chg_friendNo;	// Ц┐°Ц┌©Ц┐ЁЦ┌▓Ф⌡╢Ф√╟Ц│≈Ц│╕Ц│╩Ц│≈Ц│└Е▐▀И│■Г∙╙Е▐╥
+	BOOL bttn_allchg;	// Ц┐°Ц┌©Ц┐ЁЦ│≥Ц│╧Ц│╕Ц┌▓Ф⌡╢Ф√╟Ц│≥Ц┌▀Ц│▀ 
 
-	// ∙\▌╕┐r┐b┐g┐}┐b┐v√й
+	// Х║╗Г╓╨Ц┐⌠Ц┐┐Ц┐┬Ц┐·Ц┐┐Ц┐≈И²╒
 	GF_BGL_BMPWIN	  nameWin[ WCR_MAPDATA_1BLOCKOBJNUM ];
 	GF_BGL_BMPWIN	  statusWin[ WCR_MAPDATA_1BLOCKOBJNUM ][ WF_VIEW_STATUS_NUM ];
 	GF_BGL_BMPWIN	  userWin;
 
-	// ┐{┐^┐⌠
+	// Ц┐°Ц┌©Ц┐Ё
 	CLACT_U_RES_OBJ_PTR	button_res[ 4 ];
 	CLACT_WORK_PTR button_act[MCV_USERD_BTTN_NUM];
 	CHAR_MANAGER_ALLOCDATA back_fontoam_cg;
-	FONTOAM_OBJ_PTR back_fontoam;	// ┌Ю┌г┌И≈pFONTOAM
-	u32 buttonact_on;			// ┐{┐^┐⌠⌠╝█Л┐┌│[┐h
+	FONTOAM_OBJ_PTR back_fontoam;	// Ц┌┌Ц│╘Ц┌▀Г■╗FONTOAM
+	u32 buttonact_on;			// Ц┐°Ц┌©Ц┐ЁЕ▀∙Д╫°Ц┐╒Ц┐╪Ц┐┴
 	u32 touch_button;
 	u32 touch_button_event;
-	BUTTON_MAN* p_oambttnman;	// ┐{┐^┐⌠┼г≈²┐V┐X┐e┐─
+	BUTTON_MAN* p_oambttnman;	// Ц┐°Ц┌©Ц┐ЁГ╝║Г░├Ц┌╥Ц┌╧Ц┐├Ц┐═
 } WIFIP2PMATCH_VIEW;
 
 
 
 struct _WIFIP2PMATCH_WORK{
-  WIFI_LIST* pList;				// ┐Z│[┐u┐f│[┐^⌠Ю┌л┐├│[┐U│[┌ф┐t┐▄┐⌠┐h┐f│[┐^
-  TEST_MATCH_WORK* pMatch;		// ┐T│[┐o│[┌ф▒≈▌С░M┌╥┌И▌╘∙╙┌ф≈F▓B┌л▐С▒т
-  int friendMatchReadCount;		// ┐r│[┐R┐⌠┌П▌С░M┌╣┌╫≈F▓B░■
-  u8 index2No[WIFIP2PMATCH_MEMBER_MAX];	// ┐t┐▄┐⌠┐h┐i┐⌠┐o│[■z≈Я
-  u8 index2NoBackUp[WIFIP2PMATCH_MEMBER_MAX];	// ┐t┐▄┐⌠┐h┐i┐⌠┐o│[■z≈Я┐o┐b┐N┐A┐b┐v
-  int matchStatusBackup[WIFIP2PMATCH_MEMBER_MAX];// ≈F▓B┐r│[┐R┐⌠┐f│[┐^┌╙∙о┌М┌а┌╫┌╘а╙╞╦≈p
-  int matchVchatBackup[WIFIP2PMATCH_MEMBER_MAX];// ≈F▓B┐r│[┐R┐⌠┐f│[┐^┌╙∙о┌М┌а┌╫┌╘а╙╞╦≈p
+  WIFI_LIST* pList;				// Ц┌╩Ц┐╪Ц┐√Ц┐┤Ц┐╪Ц┌©Е├┘Ц│╝Ц┐╕Ц┐╪Ц┌╤Ц┐╪Ц│╗Ц┐∙Ц┐╛Ц┐ЁЦ┐┴Ц┐┤Ц┐╪Ц┌©
+  TEST_MATCH_WORK* pMatch;		// Ц┌╣Ц┐╪Ц┐░Ц┐╪Ц│╗И─│Е▐≈Д©║Ц│≥Ц┌▀Х┤╙Е┬├Ц│╗Е▐▀И│■Ц│╝Г┼╤Ф┘▀
+  int friendMatchReadCount;		// Ц┐⌠Ц┐╪Ц┌ЁЦ┐ЁЦ┌▓Е▐≈Д©║Ц│≈Ц│÷Е▐▀И│■Ф∙╟
+  u8 index2No[WIFIP2PMATCH_MEMBER_MAX];	// Ц┐∙Ц┐╛Ц┐ЁЦ┐┴Ц┐┼Ц┐ЁЦ┐░Ц┐╪И┘█Е┬≈
+  u8 index2NoBackUp[WIFIP2PMATCH_MEMBER_MAX];	// Ц┐∙Ц┐╛Ц┐ЁЦ┐┴Ц┐┼Ц┐ЁЦ┐░Ц┐╪И┘█Е┬≈Ц┐░Ц┐┐Ц┌╞Ц┌╒Ц┐┐Ц┐≈
+  int matchStatusBackup[WIFIP2PMATCH_MEMBER_MAX];// Е▐▀И│■Ц┐⌠Ц┐╪Ц┌ЁЦ┐ЁЦ┐┤Ц┐╪Ц┌©Ц│▄Е╓┴Ц┌▐Ц│ёЦ│÷Ц│▀Ц┐│Ц┌╖Ц┐┐Ц┌╞Г■╗
+  int matchVchatBackup[WIFIP2PMATCH_MEMBER_MAX];// Е▐▀И│■Ц┐⌠Ц┐╪Ц┌ЁЦ┐ЁЦ┐┤Ц┐╪Ц┌©Ц│▄Е╓┴Ц┌▐Ц│ёЦ│÷Ц│▀Ц┐│Ц┌╖Ц┐┐Ц┌╞Г■╗
 //  NAMEIN_PARAM*		nameinParam;
   
-  // ┐│┐C┐⌠┐┼┐X┐g≈p┐▐│[┐N
+  // Ц┐║Ц┌╓Ц┐ЁЦ┐╙Ц┌╧Ц┐┬Г■╗Ц┐╞Ц┐╪Ц┌╞
   BMPLIST_DATA*   menulist;
-  BMPLIST_WORK* lw;		// BMP┐│┐j┐┘│[┐▐│[┐N
+  BMPLIST_WORK* lw;		// BMPЦ┐║Ц┐▀Ц┐╔Ц┐╪Ц┐╞Ц┐╪Ц┌╞
   
   BMPLIST_DATA*   submenulist;
-  BMPLIST_WORK* sublw;		// BMP┐│┐j┐┘│[┐▐│[┐N
+  BMPLIST_WORK* sublw;		// BMPЦ┐║Ц┐▀Ц┐╔Ц┐╪Ц┐╞Ц┐╪Ц┌╞
   GF_BGL_INI		*bgl;									// GF_BGL_INI
   SAVEDATA*  pSaveData;
-  WORDSET			*WordSet;								// ┐│┐b┐Z│[┐W⌠W┼J≈p┐▐│[┐N┐}┐l│[┐W┐┐│[
-  MSGDATA_MANAGER *MsgManager;							// √╪▒O⌠Э≈м┐│┐b┐Z│[┐W┐f│[┐^┐}┐l│[┐W┐┐│[
+  WORDSET			*WordSet;								// Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Е╠∙И√▀Г■╗Ц┐╞Ц┐╪Ц┌╞Ц┐·Ц┐█Ц┐╪Ц┌╦Ц┐ёЦ┐╪
+  MSGDATA_MANAGER *MsgManager;							// Е░█Е┴█Е┘╔Е┼⌡Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Ц┐┤Ц┐╪Ц┌©Ц┐·Ц┐█Ц┐╪Ц┌╦Ц┐ёЦ┐╪
   MSGDATA_MANAGER *SysMsgManager;  //
- // STRBUF			*TrainerName[WIFIP2PMATCH_MEMBER_MAX];		// √╪▒O
-//  STRBUF			*MsgString;								// ┐│┐b┐Z│[┐W
+ // STRBUF			*TrainerName[WIFIP2PMATCH_MEMBER_MAX];		// Е░█Е┴█
+//  STRBUF			*MsgString;								// Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦
   STRBUF*         pExpStrBuf;
-  STRBUF			*TalkString;							// ┴О≤b┐│┐b┐Z│[┐W≈p
-  STRBUF			*TitleString;							// ┐^┐C┐g┐▀┐│┐b┐Z│[┐W≈p
-//  STRBUF			*MenuString[4];							// ┐│┐j┐┘│[┐│┐b┐Z│[┐W≈p
-  STRBUF*         pTemp;        // ⌠Э≈м⌠o≤^▌·┌л┬Й▌·┐o┐b┐t┐@
+  STRBUF			*TalkString;							// Д╪ Х╘╠Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Г■╗
+  STRBUF			*TitleString;							// Ц┌©Ц┌╓Ц┐┬Ц┐╚Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Г■╗
+//  STRBUF			*MenuString[4];							// Ц┐║Ц┐▀Ц┐╔Ц┐╪Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦Г■╗
+  STRBUF*         pTemp;        // Е┘╔Е┼⌡Г≥╩И▄╡Ф≥┌Ц│╝Д╦─Ф≥┌Ц┐░Ц┐┐Ц┐∙Ц┌║
   
-  int				MsgIndex;								// ▐I≈╧▄÷▐o≈p┐▐│[┐N
+  int				MsgIndex;								// Г╣┌Д╨├Ф╓°Е┤╨Г■╗Ц┐╞Ц┐╪Ц┌╞
   BMPMENU_WORK* pYesNoWork;
-  void* timeWaitWork;			// ┐^┐C┐─┐E┐G┐C┐g┐A┐C┐R┐⌠┐▐│[┐N
-  CLACT_SET_PTR 			clactSet;								// ┐Z┐▀┐A┐N┐^│[┐Z┐b┐g
-  CLACT_U_EASYRENDER_DATA	renddata;								// ┼х┬у┐▄┐⌠┐_│[┐f│[┐^
-  CLACT_U_RES_MANAGER_PTR	resMan[CLACT_RESOURCE_NUM];				// ┐┼┐\│[┐X┐}┐l│[┐W┐┐
-  FONTOAM_SYS_PTR			fontoam;								// ┐t┐H┐⌠┐gOAM┐V┐X┐e┐─
+  void* timeWaitWork;			// Ц┌©Ц┌╓Ц┐═Ц┌╕Ц┌╗Ц┌╓Ц┐┬Ц┌╒Ц┌╓Ц┌ЁЦ┐ЁЦ┐╞Ц┐╪Ц┌╞
+  CLACT_SET_PTR 			clactSet;								// Ц┌╩Ц┐╚Ц┌╒Ц┌╞Ц┌©Ц┐╪Ц┌╩Ц┐┐Ц┐┬
+  CLACT_U_EASYRENDER_DATA	renddata;								// Г╟║Ф≤⌠Ц┐╛Ц┐ЁЦ┐─Ц┐╪Ц┐┤Ц┐╪Ц┌©
+  CLACT_U_RES_MANAGER_PTR	resMan[CLACT_RESOURCE_NUM];				// Ц┐╙Ц┌╫Ц┐╪Ц┌╧Ц┐·Ц┐█Ц┐╪Ц┌╦Ц┐ё
+  FONTOAM_SYS_PTR			fontoam;								// Ц┐∙Ц┌╘Ц┐ЁЦ┐┬OAMЦ┌╥Ц┌╧Ц┐├Ц┐═
 /*
-  CLACT_U_RES_OBJ_PTR 	resObjTbl[BOTH_LCD][CLACT_RESOURCE_NUM];// ┐┼┐\│[┐X┐I┐u┐W┐F┐e│[┐u┐▀
-  CLACT_HEADER			clActHeader_m;							// ┐Z┐▀┐A┐N┐^│[┐w┐b┐_│[
-  CLACT_HEADER			clActHeader_s;							// ┐Z┐▀┐A┐N┐^│[┐w┐b┐_│[
-  CLACT_WORK_PTR			MainActWork[_OAM_NUM];				// ┐Z┐▀┐A┐N┐^│[┐▐│[┐N┐|┐C┐⌠┐^■z≈Я
-	//CLACT_WORK_PTR			SubActWork[_OAM_NUM];				// ┐Z┐▀┐A┐N┐^│[┐▐│[┐N┐|┐C┐⌠┐^■z≈Я
+  CLACT_U_RES_OBJ_PTR 	resObjTbl[BOTH_LCD][CLACT_RESOURCE_NUM];// Ц┐╙Ц┌╫Ц┐╪Ц┌╧Ц┌╙Ц┐√Ц┌╦Ц┌╖Ц┐├Ц┐╪Ц┐√Ц┐╚
+  CLACT_HEADER			clActHeader_m;							// Ц┌╩Ц┐╚Ц┌╒Ц┌╞Ц┌©Ц┐╪Ц┐≤Ц┐┐Ц┐─Ц┐╪
+  CLACT_HEADER			clActHeader_s;							// Ц┌╩Ц┐╚Ц┌╒Ц┌╞Ц┌©Ц┐╪Ц┐≤Ц┐┐Ц┐─Ц┐╪
+  CLACT_WORK_PTR			MainActWork[_OAM_NUM];				// Ц┌╩Ц┐╚Ц┌╒Ц┌╞Ц┌©Ц┐╪Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©И┘█Е┬≈
+	//CLACT_WORK_PTR			SubActWork[_OAM_NUM];				// Ц┌╩Ц┐╚Ц┌╒Ц┌╞Ц┌©Ц┐╪Ц┐╞Ц┐╪Ц┌╞Ц┐²Ц┌╓Ц┐ЁЦ┌©И┘█Е┬≈
 //*/
 
-  GF_BGL_BMPWIN			MsgWin;									// ┴О≤b┐E┐C┐⌠┐h┐E
+  GF_BGL_BMPWIN			MsgWin;									// Д╪ Х╘╠Ц┌╕Ц┌╓Ц┐ЁЦ┐┴Ц┌╕
   //   GF_BGL_BMPWIN           MenuWin[4];
-  GF_BGL_BMPWIN			MyInfoWin;								// ▌╘∙╙┌л▐С▒т∙\▌╕
-  GF_BGL_BMPWIN			MyInfoWinBack;								// ┐^┐C┐g┐▀
-  GF_BGL_BMPWIN			SysMsgWin;								// ┐V┐X┐e┐─┐E┐B┐⌠┐h┐E┌е∙`┴Ф┌╥┌И┌Ю┌л	┌╕┌Г│[┌Б│ADWC┐▀│[┐▀┌л┐│┐b┐Z│[┐W
-  GF_BGL_BMPWIN			ListWin;									// ┐t┐▄┐⌠┐h┐┼┐X┐g
-  GF_BGL_BMPWIN			SubListWin;									// ∙Е▐W┌╥┌И┐^┐C┐v┌х┌г┌П∙`┴Ф┌╥┌И┐┼┐X┐g
-  GF_BGL_BMPWIN			MyWin;									// ≈F▓B┌л▄б░l▐Н∙Я∙\▌╕
+  GF_BGL_BMPWIN			MyInfoWin;								// Х┤╙Е┬├Ц│╝Г┼╤Ф┘▀Х║╗Г╓╨
+  GF_BGL_BMPWIN			MyInfoWinBack;								// Ц┌©Ц┌╓Ц┐┬Ц┐╚
+  GF_BGL_BMPWIN			SysMsgWin;								// Ц┌╥Ц┌╧Ц┐├Ц┐═Ц┌╕Ц┌ёЦ┐ЁЦ┐┴Ц┌╕Ц│╖Ф▐▐Г■╩Ц│≥Ц┌▀Ц┌┌Ц│╝	Ц│┬Ц┌┴Ц┐╪Ц┌└Ц─│DWCЦ┐╚Ц┐╪Ц┐╚Ц│╝Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦
+  GF_BGL_BMPWIN			ListWin;									// Ц┐∙Ц┐╛Ц┐ЁЦ┐┴Ц┐╙Ц┌╧Ц┐┬
+  GF_BGL_BMPWIN			SubListWin;									// Е▀÷И⌡├Ц│≥Ц┌▀Ц┌©Ц┌╓Ц┐≈Ц│╙Ц│╘Ц┌▓Ф▐▐Г■╩Ц│≥Ц┌▀Ц┐╙Ц┌╧Ц┐┬
+  GF_BGL_BMPWIN			MyWin;									// Е▐▀И│■Ц│╝Е─▀Д╨╨Ф┐┘Е═╠Х║╗Г╓╨
 
-   int cancelEnableTimer;   // ┐L┐┐┐⌠┐Z┐▀▀√┴б┌и┌х┌И┬в┌л┐^┐C┐}│[
+   int cancelEnableTimer;   // Ц┌╜Ц┐ёЦ┐ЁЦ┌╩Ц┐╚Х╗╠Е▐╞Ц│╚Ц│╙Ц┌▀Г┌╨Ц│╝Ц┌©Ц┌╓Ц┐·Ц┐╪
   int localTime;
-  int seq;									// ▄╩█щ┌л∙╤▌ ⌠Э≈м▐С▒т│i⌠Э≈мOK/┐A┐j┐│▓├│j┌х┌г
+  int seq;									// Г▐╬Е°╗Ц│╝Ф√┤Е╜≈Е┘╔Е┼⌡Г┼╤Ф┘▀О╪┬Е┘╔Е┼⌡OK/Ц┌╒Ц┐▀Ц┐║Д╦╜О╪┴Ц│╙Ц│╘
   int       endSeq;
   int						nextseq;
   int initSeq;
-  int						mode;									// ▄╩█щ█е▒O√й┌л∙╤▌ ┐p┐l┐▀
-  int						timer;			// ▒р┌©▌·┼т┌Б│A┐t┐┴┐O┌х┌г┌и▌g≈p
-  MYSTATUS                *pMyStatus;		// ▌╘∙╙┌л┐X┐e│[┐^┐X
+  int						mode;									// Г▐╬Е°╗Ф°─Е┴█И²╒Ц│╝Ф√┤Е╜≈Ц┐▒Ц┐█Ц┐╚
+  int						timer;			// Е╬┘Ц│║Ф≥┌И√⌠Ц┌└Ц─│Ц┐∙Ц┐╘Ц┌╟Ц│╙Ц│╘Ц│╚Д╫©Г■╗
+  MYSTATUS                *pMyStatus;		// Х┤╙Е┬├Ц│╝Ц┌╧Ц┐├Ц┐╪Ц┌©Ц┌╧
   u8     mainCur;
   u8     subCur;
-  BOOL bInitMessage;		// ▐┴┴Я░з▒╠┌╘
+  BOOL bInitMessage;		// Е┬²Е⌡·Ф▌╔Г╤ Ц│▀
   PROC*		subProc;
-  int preConnect;			// ░V┌╣┌╜≈┬┌╫≈F▓B(-1=┌х┌╣)
-  u16 battleCur;			// ┐o┐g┐▀┐^┐C┐v▒I▒П┐│┐j┐┘│[┐J│[┐\┐▀
-  u16 singleCur[3];			// ┐o┐g┐▀┌л▐з█в∙■∙╙┌л┐│┐j┐┘│[┐J│[┐\┐▀
-  u16 bSingle;				// SINGLE┐o┐g┐▀│@┐_┐u┐▀┐o┐g┐▀┐X┐C┐b┐`
-  u16 keepStatus;			// ░з▒╠┌╣┌Ф┌╓┌ф┌╣┌╫┌Г▒┼▌Х┌л┐X┐e│[┐^┐X┌╙∙о┌М┌а┌╫┌ф┌╚┌ла╙╞╦≈p
-  u16 keepVChat;			// ░з▒╠┌╣┌Ф┌╓┌ф┌╣┌╫┌Г┐{┐C┐X┐`┐┐┐b┐g▐С▒т┌╙∙о┌М┌а┌╫┌ф┌╚┌ла╙╞╦≈p
-  u16 friendNo;			// █║┌б┌х┌╙┌а┌д┌╒┌И≈F▓B┐i┐⌠┐o│[
+  int preConnect;			// Ф√╟Ц│≈Ц│▐Ф²╔Ц│÷Е▐▀И│■(-1=Ц│╙Ц│≈)
+  u16 battleCur;			// Ц┐░Ц┐┬Ц┐╚Ц┌©Ц┌╓Ц┐≈И│╦Ф┼·Ц┐║Ц┐▀Ц┐╔Ц┐╪Ц┌╚Ц┐╪Ц┌╫Ц┐╚
+  u16 singleCur[3];			// Ц┐░Ц┐┬Ц┐╚Ц│╝Х╘ЁГ╢╟И┐╗Е┬├Ц│╝Ц┐║Ц┐▀Ц┐╔Ц┐╪Ц┌╚Ц┐╪Ц┌╫Ц┐╚
+  u16 bSingle;				// SINGLEЦ┐░Ц┐┬Ц┐╚Ц──Ц┐─Ц┐√Ц┐╚Ц┐░Ц┐┬Ц┐╚Ц┌╧Ц┌╓Ц┐┐Ц┐│
+  u16 keepStatus;			// Ф▌╔Г╤ Ц│≈Ц┌┬Ц│├Ц│╗Ц│≈Ц│÷Ц┌┴Г⌡╦Ф┴▀Ц│╝Ц┌╧Ц┐├Ц┐╪Ц┌©Ц┌╧Ц│▄Е╓┴Ц┌▐Ц│ёЦ│÷Ц│╗Ц│█Ц│╝Ц┐│Ц┌╖Ц┐┐Ц┌╞Г■╗
+  u16 keepVChat;			// Ф▌╔Г╤ Ц│≈Ц┌┬Ц│├Ц│╗Ц│≈Ц│÷Ц┌┴Ц┐°Ц┌╓Ц┌╧Ц┐│Ц┐ёЦ┐┐Ц┐┬Г┼╤Ф┘▀Ц│▄Е╓┴Ц┌▐Ц│ёЦ│÷Ц│╗Ц│█Ц│╝Ц┐│Ц┌╖Ц┐┐Ц┌╞Г■╗
+  u16 friendNo;			// Д╩┼Ц│╓Ц│╙Ц│▄Ц│ёЦ│╕Ц│└Ц┌▀Е▐▀И│■Ц┐┼Ц┐ЁЦ┐░Ц┐╪
   BOOL bRetryBattle;
    int vctEnc;
-	WIFI_MATCHROOM matchroom;	// ┐}┐b┐`┐⌠┐O┐▀│[┐─┐▐│[┐N
+	WIFI_MATCHROOM matchroom;	// Ц┐·Ц┐┐Ц┐│Ц┐ЁЦ┌╟Ц┐╚Ц┐╪Ц┐═Ц┐╞Ц┐╪Ц┌╞
 	MCR_MOVEOBJ*	p_matchMoveObj[ MATCHROOM_IN_OBJNUM ];
-	WIFIP2PMATCH_ICON icon;	// ┐A┐C┐R┐⌠┐O┐┴┐t┐B┐b┐N
-	WIFIP2PMATCH_VIEW view;	// ≈F▓B┐f│[┐^┐r┐┘│[┐A│[
+	WIFIP2PMATCH_ICON icon;	// Ц┌╒Ц┌╓Ц┌ЁЦ┐ЁЦ┌╟Ц┐╘Ц┐∙Ц┌ёЦ┐┐Ц┌╞
+	WIFIP2PMATCH_VIEW view;	// Е▐▀И│■Ц┐┤Ц┐╪Ц┌©Ц┐⌠Ц┐╔Ц┐╪Ц┌╒Ц┐╪
 
-	BOOL friend_request_wait;	// ≈F▓B∙Е▐W▓├┌иTRUE┌и┌х┌И┐t┐┴┐O
+	BOOL friend_request_wait;	// Е▐▀И│■Е▀÷И⌡├Д╦╜Ц│╚TRUEЦ│╚Ц│╙Ц┌▀Ц┐∙Ц┐╘Ц┌╟
 	
-	CONNECT_BG_PALANM cbp;		// Wifi░з▒╠┴Ф√й┌лBG┐p┐▄┐b┐g┐A┐j┐│░╖▄Д█\▒╒▒л
+	CONNECT_BG_PALANM cbp;		// WifiФ▌╔Г╤ Г■╩И²╒Ц│╝BGЦ┐▒Ц┐╛Ц┐┐Ц┐┬Ц┌╒Ц┐▀Ц┐║Е┬╤Е╬║Ф╖▀И─═Д╫⌠
 
-	u16 brightness_reset;	// _retry┌е┐}┐X┐^│[▀P⌠x┌ПVBlank┌е┐┼┐Z┐b┐g┌╥┌И┌╫┌ъ
-	u16 friend_num;			// P2Pmatch┴Ф√й▐┴┼З┴╩┐^┐C┐~┐⌠┐O┌л≈F▓B░■
+	u16 brightness_reset;	// _retryЦ│╖Ц┐·Ц┌╧Ц┌©Ц┐╪Х╪²Е╨╕Ц┌▓VBlankЦ│╖Ц┐╙Ц┌╩Ц┐┐Ц┐┬Ц│≥Ц┌▀Ц│÷Ц┌│
+	u16 friend_num;			// P2PmatchГ■╩И²╒Е┬²Ф°÷Е▄√Ц┌©Ц┌╓Ц┐÷Ц┐ЁЦ┌╟Ц│╝Е▐▀И│■Ф∙╟
 };
 
 

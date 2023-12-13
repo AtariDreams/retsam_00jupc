@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_main.c
- * @brief	ƒtƒƒ“ƒeƒBƒAƒƒCƒ“ˆ—
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¡ã‚¤ãƒ³å‡¦ç†
  * @author	matsuda
- * @date	2007.04.05(–Ø)
+ * @date	2007.04.05(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -37,48 +37,48 @@ FS_EXTERN_OVERLAY(factory);
 FS_EXTERN_OVERLAY(wifi_2dmapsys);
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€‰æ–Ê‚ğ\¬‚·‚é‚½‚ß‚É•K—v‚ÈƒVƒXƒeƒ€ƒf[ƒ^—Ş‚ğ‚Â\‘¢‘Ì
+ * @brief   ã‚²ãƒ¼ãƒ ç”»é¢ã‚’æ§‹æˆã™ã‚‹ãŸã‚ã«å¿…è¦ãªã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿é¡ã‚’æŒã¤æ§‹é€ ä½“
  *
- * ’ÊM‚Å‚à‘S‚Ä‚Ìƒ}ƒVƒ“‚ÅŒÂ•Ê‚Éì¬‚³‚ê‚Ü‚·
- * ŠeƒXƒ^ƒbƒt‚ª–½—ßóMA‚»‚Ìƒ}ƒVƒ“ŒÂX‚Å¶¬‚µ‚½‚±‚Ìƒ[ƒNƒoƒbƒtƒ@‚ğ“n‚·–‚É‚È‚è‚Ü‚·
+ * é€šä¿¡æ™‚ã§ã‚‚å…¨ã¦ã®ãƒã‚·ãƒ³ã§å€‹åˆ¥ã«ä½œæˆã•ã‚Œã¾ã™
+ * å„ã‚¹ã‚¿ãƒƒãƒ•ãŒå‘½ä»¤å—ä¿¡æ™‚ã€ãã®ãƒã‚·ãƒ³å€‹ã€…ã§ç”Ÿæˆã—ãŸã“ã®ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’æ¸¡ã™äº‹ã«ãªã‚Šã¾ã™
  */
 //--------------------------------------------------------------
 typedef struct _FRONTIER_MAIN_WORK{
-	FRONTIER_EX_PARAM *ex_param;		///<ƒtƒƒ“ƒeƒBƒAŒÄ‚Ño‚µ‘¤‚©‚ç“n‚³‚ê‚éƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	FRONTIER_EX_PARAM *ex_param;		///<ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å‘¼ã³å‡ºã—å´ã‹ã‚‰æ¸¡ã•ã‚Œã‚‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	PROC *sub_proc;		///<ƒTƒuƒvƒƒbƒN‚Ìƒ|ƒCƒ“ƒ^
-	void *sub_proc_parent_work;	///<ƒTƒuƒvƒƒbƒNŒÄ‚Ño‚µ‚É“n‚·ãˆÊƒ|ƒCƒ“ƒ^
+	PROC *sub_proc;		///<ã‚µãƒ–ãƒ—ãƒ­ãƒƒã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+	void *sub_proc_parent_work;	///<ã‚µãƒ–ãƒ—ãƒ­ãƒƒã‚¯å‘¼ã³å‡ºã—æ™‚ã«æ¸¡ã™ä¸Šä½ãƒã‚¤ãƒ³ã‚¿
 	FS_SUBPROC_END_FUNC sub_proc_end_func;
-	u8 sub_proc_auto_free;	///<ƒTƒuƒvƒƒbƒNI—¹‚Éƒ[ƒN©“®‰ğ•ú
+	u8 sub_proc_auto_free;	///<ã‚µãƒ–ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†æ™‚ã«ãƒ¯ãƒ¼ã‚¯è‡ªå‹•è§£æ”¾
 	
-	FSS_PTR fss;		///<ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	FMAP_PTR fmap;		///<ƒ}ƒbƒvƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	FSS_PTR fss;		///<ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	FMAP_PTR fmap;		///<ãƒãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	u8 seq;
-	u8 map_status;		///<TRUE:ƒ}ƒbƒvƒVƒXƒeƒ€‚ª‹N“®‚µ‚Ä‚¢‚é
-	u8 map_change;		///<TRUE:ƒ}ƒbƒvØ‚è‘Ö‚¦ƒŠƒNƒGƒXƒg”­¶
-	u16 map_change_event_id;	///<ƒ}ƒbƒvØ‚è‘Ö‚¦Œã‚É‹N“®‚·‚éƒCƒxƒ“ƒgID
+	u8 map_status;		///<TRUE:ãƒãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ãŒèµ·å‹•ã—ã¦ã„ã‚‹
+	u8 map_change;		///<TRUE:ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºç”Ÿ
+	u16 map_change_event_id;	///<ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆå¾Œã«èµ·å‹•ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆID
 	
-	u8 finish_req;		///<TRUE:I—¹ƒŠƒNƒGƒXƒg
+	u8 finish_req;		///<TRUE:çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	
-	//ƒLƒƒƒ‰•œ‹A—p‚ÉƒŠƒ\[ƒX‚âƒAƒNƒ^[‚Ì“o˜^î•ñ‚ğƒoƒbƒNƒAƒbƒv
-	//ƒ}ƒbƒvƒVƒXƒeƒ€‚ª”jŠü‚³‚ê‚Ä‚àî•ñ‚Íc‚é‚æ‚¤‚Éƒoƒbƒtƒ@‚ÍƒƒCƒ“‚ÉA
-	//í’“—Ìˆæ‚ğˆ³”—‚µ‚È‚¢‚æ‚¤‚Éƒ}ƒl[ƒWƒƒŠÖ”‚Ífrontier_map.c‘¤‚É‚½‚¹‚Ä‚¢‚éB
-	FSS_CHAR_RESOURCE_DATA char_res[FIELD_OBJ_RESOURCE_MAX];	///<“o˜^ƒŠƒ\[ƒXŠÇ—
-	//FSS_CHAR_ACTOR_DATA char_actor[FIELD_OBJ_MAX];				///<“o˜^ƒAƒNƒ^[ŠÇ—
-	FSS_ACTOR_WORK fss_actor[FIELD_OBJ_MAX];					///<“o˜^ƒAƒNƒ^[ƒ[ƒN
-	FSS_OBJMOVE_WORK objmove_work[FIELD_OBJ_MAX];				///<OBJ“®ìƒ[ƒN
+	//ã‚­ãƒ£ãƒ©å¾©å¸°ç”¨ã«ãƒªã‚½ãƒ¼ã‚¹ã‚„ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç™»éŒ²æƒ…å ±ã‚’ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
+	//ãƒãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ãŒç ´æ£„ã•ã‚Œã¦ã‚‚æƒ…å ±ã¯æ®‹ã‚‹ã‚ˆã†ã«ãƒãƒƒãƒ•ã‚¡ã¯ãƒ¡ã‚¤ãƒ³ã«ã€
+	//å¸¸é§é ˜åŸŸã‚’åœ§è¿«ã—ãªã„ã‚ˆã†ã«ãƒãƒãƒ¼ã‚¸ãƒ£é–¢æ•°ã¯frontier_map.cå´ã«æŒãŸã›ã¦ã„ã‚‹ã€‚
+	FSS_CHAR_RESOURCE_DATA char_res[FIELD_OBJ_RESOURCE_MAX];	///<ç™»éŒ²ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†
+	//FSS_CHAR_ACTOR_DATA char_actor[FIELD_OBJ_MAX];				///<ç™»éŒ²ã‚¢ã‚¯ã‚¿ãƒ¼ç®¡ç†
+	FSS_ACTOR_WORK fss_actor[FIELD_OBJ_MAX];					///<ç™»éŒ²ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	FSS_OBJMOVE_WORK objmove_work[FIELD_OBJ_MAX];				///<OBJå‹•ä½œãƒ¯ãƒ¼ã‚¯
 	
-	//”z’u•¨ƒAƒNƒ^[‚ÌPush,Pop—p‘Ş”ğƒoƒbƒtƒ@
-	PUSH_ARTICLE_WORK push_article;	///<‘Ş”ğ—p”z’u•¨ƒAƒNƒ^[ƒoƒbƒtƒ@
+	//é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ã®Push,Popç”¨é€€é¿ãƒãƒƒãƒ•ã‚¡
+	PUSH_ARTICLE_WORK push_article;	///<é€€é¿ç”¨é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡
 }FRONTIER_MAIN_WORK;
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 PROC_RESULT FrontierMainProc_Init( PROC * proc, int * seq );
 PROC_RESULT FrontierMainProc_Main( PROC * proc, int * seq );
@@ -93,7 +93,7 @@ static void Frontier_ManageWorkClear(FMAIN_PTR fmw);
 //==============================================================================
 //	PROC
 //==============================================================================
-//ƒvƒƒZƒX’è‹`ƒf[ƒ^
+//ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 const PROC_DATA FrontierMainProcData = {
 	FrontierMainProc_Init,
 	FrontierMainProc_Main,
@@ -110,12 +110,12 @@ const PROC_DATA FrontierMainProcData = {
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT FrontierMainProc_Init( PROC * proc, int * seq )
@@ -130,15 +130,15 @@ PROC_RESULT FrontierMainProc_Init( PROC * proc, int * seq )
 	Frontier_ManageWorkClear(fmw);
 	Frontier_ArticlePushBufferInit(fmw);
 	
-	//ŠO‘¤‚©‚çÅ‰‚ÌƒV[ƒ“ID‚È‚Ç‚ª“ü‚Á‚Ä‚¢‚éƒf[ƒ^‚ğó‚¯æ‚é
+	//å¤–å´ã‹ã‚‰æœ€åˆã®ã‚·ãƒ¼ãƒ³IDãªã©ãŒå…¥ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
 	fmw->ex_param = PROC_GetParentWork(proc);
 	GF_ASSERT(fmw->ex_param != NULL);
 	
-	//¦ƒXƒNƒŠƒvƒgİ’è
+	//â€»ã‚¹ã‚¯ãƒªãƒ—ãƒˆè¨­å®š
 	fmw->fss = FSS_SystemCreate(fmw, HEAPID_WORLD, fmw->ex_param->scene_id);
 	FSS_ScrTaskAdd(fmw->fss, fmw->ex_param->scene_id, 0);
 
-	//ƒ}ƒbƒvİ’è
+	//ãƒãƒƒãƒ—è¨­å®š
 	Frontier_MapCreate(fmw);
 	
 //	WIPE_SYS_Start(WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, 
@@ -149,12 +149,12 @@ PROC_RESULT FrontierMainProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT FrontierMainProc_Main( PROC * proc, int * seq )
@@ -192,15 +192,15 @@ PROC_RESULT FrontierMainProc_Main( PROC * proc, int * seq )
 			break;
 		}
 		
-		//¦ƒXƒNƒŠƒvƒgÀs
+		//â€»ã‚¹ã‚¯ãƒªãƒ—ãƒˆå®Ÿè¡Œ
 		if(FSS_ScriptMain(fmw->fss) == TRUE){
 			if(sys.trg & PAD_BUTTON_B){
 				*seq = SEQ_OUT;
 			}
 			
-			//ƒL[“ü—Íƒ`ƒFƒbƒN
+			//ã‚­ãƒ¼å…¥åŠ›ãƒã‚§ãƒƒã‚¯
 			
-			//“GAI“®ì
+			//æ•µAIå‹•ä½œ
 			
 		}
 		
@@ -245,22 +245,22 @@ PROC_RESULT FrontierMainProc_Main( PROC * proc, int * seq )
 	case SEQ_MAP_CHANGE_LOAD:
 		Frontier_MapCreate(fmw);
 		if(fmw->map_change_event_id == FS_MAPCHANGE_EVENTID_NULL){
-			//’Êí‚Ìƒ}ƒbƒvƒ`ƒFƒ“ƒW(.s‚Í‚»‚Ì‚Ü‚ÜŒp‘±‚µ‚Äg—p)
+			//é€šå¸¸ã®ãƒãƒƒãƒ—ãƒã‚§ãƒ³ã‚¸(.sã¯ãã®ã¾ã¾ç¶™ç¶šã—ã¦ä½¿ç”¨)
 			
 			FSS_MsgManageSceneChange(fmw->fss, fmw->ex_param->scene_id, HEAPID_WORLD);
 		}
-		else{	//ƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹(.s)‚Ü‚é‚²‚ÆØ‚è‘Ö‚¦‚é
+		else{	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«(.s)ã¾ã‚‹ã”ã¨åˆ‡ã‚Šæ›¿ãˆã‚‹
 			FS_PARAM_WORK *pw;
 			
-			//param_work‚ÍŒp‘±‚³‚¹‚éˆ×ƒoƒbƒNƒAƒbƒv
+			//param_workã¯ç¶™ç¶šã•ã›ã‚‹ç‚ºãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
 			pw = FSS_ParamWorkBackup(fmw->fss, HEAPID_WORLD);
-			//Œ»İ“Ç‚İ‚ñ‚Å‚¢‚éƒXƒNƒŠƒvƒg‚ğ”jŠü
+			//ç¾åœ¨èª­ã¿è¾¼ã‚“ã§ã„ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ç ´æ£„
 			FSS_SystemFree(fmw->fss);
 			
-			//V‚µ‚­ƒXƒNƒŠƒvƒg“Ç‚İ‚İ
+			//æ–°ã—ãã‚¹ã‚¯ãƒªãƒ—ãƒˆèª­ã¿è¾¼ã¿
 			fmw->fss = FSS_SystemCreate(fmw, HEAPID_WORLD, fmw->ex_param->scene_id);
 			FSS_ScrTaskAdd(fmw->fss, fmw->ex_param->scene_id, fmw->map_change_event_id);
-			//ã‚ÅƒoƒbƒNƒAƒbƒv‚µ‚½param_work‚ğV‚µ‚¢ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€‚ÉƒZƒbƒg‚·‚é
+			//ä¸Šã§ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã—ãŸparam_workã‚’æ–°ã—ã„ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ã«ã‚»ãƒƒãƒˆã™ã‚‹
 			FSS_ParamWorkRecover(fmw->fss, pw);
 		}
 		fmw->map_change = FALSE;
@@ -273,25 +273,25 @@ PROC_RESULT FrontierMainProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT FrontierMainProc_End( PROC * proc, int * seq )
 {
 	FRONTIER_MAIN_WORK * fmw = PROC_GetWork( proc );
 
-	//¦ƒXƒNƒŠƒvƒg‰ğ•ú
+	//â€»ã‚¹ã‚¯ãƒªãƒ—ãƒˆè§£æ”¾
 	FSS_SystemFree(fmw->fss);
 
-	//ƒ}ƒbƒv‰ğ•ú
+	//ãƒãƒƒãƒ—è§£æ”¾
 	Frontier_MapFree(fmw);
 
-	PROC_FreeWork(proc);				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork(proc);				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	
 	Frontier_OverlayUnload();
 	return PROC_RES_FINISH;
@@ -299,7 +299,7 @@ PROC_RESULT FrontierMainProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ}ƒbƒvƒVƒXƒeƒ€ì¬
+ * @brief   ãƒãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
  *
  * @param   fmain		
  */
@@ -312,7 +312,7 @@ static void Frontier_MapCreate(FMAIN_PTR fmw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ}ƒbƒvƒVƒXƒeƒ€‰ğ•ú
+ * @brief   ãƒãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ è§£æ”¾
  *
  * @param   fmw		
  */
@@ -325,7 +325,7 @@ static void Frontier_MapFree(FMAIN_PTR fmw)
 
 //--------------------------------------------------------------
 /**
- * @brief   Push,Pop—p‚ÌŠÇ——pƒ[ƒN‚ğ‰Šú‰»‚·‚é
+ * @brief   Push,Popç”¨ã®ç®¡ç†ç”¨ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–ã™ã‚‹
  *
  * @param   fmw		
  */
@@ -346,10 +346,10 @@ static void Frontier_ManageWorkClear(FMAIN_PTR fmw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒI[ƒo[ƒŒƒCƒ[ƒh
+ * @brief   ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ­ãƒ¼ãƒ‰
  *
- * Œ‹‹Çí“¬‰æ–Ê‚Ö‚ÌˆÚsA•œ‹A‚ÉƒI[ƒo[ƒŒƒC‚Ìƒ[ƒhAƒAƒ“ƒ[ƒh‚ğ©‘O‚Å‚â‚ç‚È‚¯‚ê‚Î‚¢‚¯‚È‚¢‚Ì‚ÅA
- * PROC_DATA‚Å‚ÌƒI[ƒo[ƒŒƒCID‚Íg—p‚µ‚Ä‚¢‚È‚¢‚ÅA©—Í‚Å‚â‚é•û®‚ğæ‚Á‚Ä‚¢‚Ü‚·
+ * çµå±€æˆ¦é—˜ç”»é¢ã¸ã®ç§»è¡Œã€å¾©å¸°æ™‚ã«ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã®ãƒ­ãƒ¼ãƒ‰ã€ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚’è‡ªå‰ã§ã‚„ã‚‰ãªã‘ã‚Œã°ã„ã‘ãªã„ã®ã§ã€
+ * PROC_DATAã§ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDã¯ä½¿ç”¨ã—ã¦ã„ãªã„ã§ã€è‡ªåŠ›ã§ã‚„ã‚‹æ–¹å¼ã‚’å–ã£ã¦ã„ã¾ã™
  */
 //--------------------------------------------------------------
 static void Frontier_OverlayLoad(void)
@@ -361,7 +361,7 @@ static void Frontier_OverlayLoad(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒI[ƒo[ƒŒƒCƒAƒ“ƒ[ƒh
+ * @brief   ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 static void Frontier_OverlayUnload(void)
@@ -373,11 +373,11 @@ static void Frontier_OverlayUnload(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ExParam‚ğæ“¾‚·‚é
+ * @brief   ExParamã‚’å–å¾—ã™ã‚‹
  *
  * @param   fmain		
  *
- * @retval  ƒ|ƒCƒ“ƒ^
+ * @retval  ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 FRONTIER_EX_PARAM * Frontier_ExParamGet(FMAIN_PTR fmain)
@@ -387,7 +387,7 @@ FRONTIER_EX_PARAM * Frontier_ExParamGet(FMAIN_PTR fmain)
 
 //--------------------------------------------------------------
 /**
- * @brief   FMAPƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+ * @brief   FMAPã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
  * @param   fmain		
  * @retval  
  */
@@ -399,7 +399,7 @@ FMAP_PTR Frontier_FMapAdrsGet(FMAIN_PTR fmain)
 
 //--------------------------------------------------------------
 /**
- * @brief   FSSƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+ * @brief   FSSã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
  * @param   fmain		
  * @retval  
  */
@@ -411,11 +411,11 @@ FSS_PTR Frontier_FSSAdrsGet(FMAIN_PTR fmain)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‘¤‚ª•Û‚µ‚Ä‚¢‚éƒAƒvƒŠ—pƒVƒXƒeƒ€ƒ[ƒN‚ğæ“¾‚·‚é
+ * @brief   ãƒ¡ã‚¤ãƒ³å´ãŒä¿æŒã—ã¦ã„ã‚‹ã‚¢ãƒ—ãƒªç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹
  *
  * @param   fmain		
  *
- * @retval  ƒAƒvƒŠ—pƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ã‚¢ãƒ—ãƒªç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void * Frontier_SysWorkGet(FMAIN_PTR fmain)
@@ -425,10 +425,10 @@ void * Frontier_SysWorkGet(FMAIN_PTR fmain)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒvƒŠ—pƒVƒXƒeƒ€ƒ[ƒN‚ğƒZƒbƒg‚·‚é
+ * @brief   ã‚¢ãƒ—ãƒªç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
  * @param   fmain		
- * @param   syswork		ƒAƒvƒŠ—pƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   syswork		ã‚¢ãƒ—ãƒªç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Frontier_SysWorkSet(FMAIN_PTR fmain, void *syswork)
@@ -438,14 +438,14 @@ void Frontier_SysWorkSet(FMAIN_PTR fmain, void *syswork)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒuPROC“o˜^
+ * @brief   ã‚µãƒ–PROCç™»éŒ²
  *
  * @param   fmain			
- * @param   data			ƒvƒƒZƒX“®ìŠÖ”
- * @param   parent_work		ãˆÊ‚©‚çˆø‚«“n‚·ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   auto_free		TRUE:ƒTƒuPROCI—¹‚ÉAparent_work‚Å“n‚³‚ê‚½ƒ[ƒN‚ğFreeMemory‚·‚é
- * @param   end_func		ƒTƒuPROCI—¹‚ÉŒÄ‚Ño‚·ŠÖ”(NULL‰ÂB parent_work‚ª‚½‚¾‚ÌFreeMemory‚Å
- * 							‰ğ•úo—ˆ‚È‚¢‚È‚Ç‚ÌAŒÂ•Ê‰ğ•úˆ—‚È‚ñ‚©‚Ég‚Á‚Ä‚­‚¾‚³‚¢
+ * @param   data			ãƒ—ãƒ­ã‚»ã‚¹å‹•ä½œé–¢æ•°
+ * @param   parent_work		ä¸Šä½ã‹ã‚‰å¼•ãæ¸¡ã™ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   auto_free		TRUE:ã‚µãƒ–PROCçµ‚äº†æ™‚ã«ã€parent_workã§æ¸¡ã•ã‚ŒãŸãƒ¯ãƒ¼ã‚¯ã‚’FreeMemoryã™ã‚‹
+ * @param   end_func		ã‚µãƒ–PROCçµ‚äº†æ™‚ã«å‘¼ã³å‡ºã™é–¢æ•°(NULLå¯ã€‚ parent_workãŒãŸã ã®FreeMemoryã§
+ * 							è§£æ”¾å‡ºæ¥ãªã„æ™‚ãªã©ã®ã€å€‹åˆ¥è§£æ”¾å‡¦ç†ãªã‚“ã‹ã«ä½¿ã£ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------
 void Frontier_SubProcSet(FMAIN_PTR fmain, const PROC_DATA * proc_data, void * parent_work, int auto_free, FS_SUBPROC_END_FUNC end_func)
@@ -459,7 +459,7 @@ void Frontier_SubProcSet(FMAIN_PTR fmain, const PROC_DATA * proc_data, void * pa
 
 //--------------------------------------------------------------
 /**
- * @brief   I—¹ƒŠƒNƒGƒXƒgİ’è
+ * @brief   çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆè¨­å®š
  *
  * @param   fmain		
  */
@@ -471,14 +471,14 @@ void Frontier_FinishReq(FMAIN_PTR fmain)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ}ƒbƒvØ‚è‘Ö‚¦ƒŠƒNƒGƒXƒgİ’è
+ * @brief   ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆãƒªã‚¯ã‚¨ã‚¹ãƒˆè¨­å®š
  *
  * @param   fmain		
- * @param   scene_id		Ø‚è‘Ö‚¦Œã‚ÌƒV[ƒ“ID
- * @param   event_id		ƒCƒxƒ“ƒgIDw’è(w’è‚µ‚È‚¢ê‡‚ÍFS_MAPCHANGE_EVENTID_NULL)
+ * @param   scene_id		åˆ‡ã‚Šæ›¿ãˆå¾Œã®ã‚·ãƒ¼ãƒ³ID
+ * @param   event_id		ã‚¤ãƒ™ãƒ³ãƒˆIDæŒ‡å®š(æŒ‡å®šã—ãªã„å ´åˆã¯FS_MAPCHANGE_EVENTID_NULL)
  *
- * event_id‚ğFS_MAPCHANGE_EVENTID_NULLˆÈŠO‚É‚µ‚½ê‡‚ÍAƒ}ƒbƒvØ‚è‘Ö‚¦‚Å¡“Ç‚İ‚ñ‚Å‚¢‚éƒXƒNƒŠƒvƒg
- * ‚ğˆê“x”jŠü‚µ‚ÄAscene_id‚Åw’è‚µ‚Ä‚¢‚éSceneData‚ğQÆ‚µ‚ÄƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İ‚È‚¨‚µ‚Ü‚·
+ * event_idã‚’FS_MAPCHANGE_EVENTID_NULLä»¥å¤–ã«ã—ãŸå ´åˆã¯ã€ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆã§ä»Šèª­ã¿è¾¼ã‚“ã§ã„ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+ * ã‚’ä¸€åº¦ç ´æ£„ã—ã¦ã€scene_idã§æŒ‡å®šã—ã¦ã„ã‚‹SceneDataã‚’å‚ç…§ã—ã¦ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ãªãŠã—ã¾ã™
  */
 //--------------------------------------------------------------
 void Frontier_MapChangeReq(FMAIN_PTR fmain, u16 scene_id, u16 event_id)
@@ -490,9 +490,9 @@ void Frontier_MapChangeReq(FMAIN_PTR fmain, u16 scene_id, u16 event_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŠƒ\[ƒXŠÇ—ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+ * @brief   ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
  * @param   fmain		
- * @retval  ƒŠƒ\[ƒXŠÇ—ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 FSS_CHAR_RESOURCE_DATA * Frontier_CharResourceBufferGet(FMAIN_PTR fmain)
@@ -502,9 +502,9 @@ FSS_CHAR_RESOURCE_DATA * Frontier_CharResourceBufferGet(FMAIN_PTR fmain)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒNƒ^[ŠÇ—ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+ * @brief   ã‚¢ã‚¯ã‚¿ãƒ¼ç®¡ç†ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
  * @param   fmain		
- * @retval  ƒAƒNƒ^[ŠÇ—ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ã‚¢ã‚¯ã‚¿ãƒ¼ç®¡ç†ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 FSS_ACTOR_WORK * Frontier_ActorBufferGet(FMAIN_PTR fmain)
@@ -514,12 +514,12 @@ FSS_ACTOR_WORK * Frontier_ActorBufferGet(FMAIN_PTR fmain)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒNƒ^[”Ô†‚ğw’è‚µ‚ÄƒAƒNƒ^[ŠÇ—ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+ * @brief   ã‚¢ã‚¯ã‚¿ãƒ¼ç•ªå·ã‚’æŒ‡å®šã—ã¦ã‚¢ã‚¯ã‚¿ãƒ¼ç®¡ç†ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
  * @param   fmain			
- * @param   actor_no		ƒAƒNƒ^[”Ô†
+ * @param   actor_no		ã‚¢ã‚¯ã‚¿ãƒ¼ç•ªå·
  *
- * @retval  ƒAƒNƒ^[ŠÇ—ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ã‚¢ã‚¯ã‚¿ãƒ¼ç®¡ç†ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -531,9 +531,9 @@ FSS_ACTOR_WORK * Frontier_ActorWorkPtrGet(FMAIN_PTR fmain, int actor_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”z’u•¨ƒAƒNƒ^[‘Ş”ğ—pƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+ * @brief   é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼é€€é¿ç”¨ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
  * @param   fmain		
- * @retval  ”z’u•¨ƒAƒNƒ^[‘Ş”ğ—pƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼é€€é¿ç”¨ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 PUSH_ARTICLE_WORK * Frontier_ArticlePushBufferGet(FMAIN_PTR fmain)
@@ -543,7 +543,7 @@ PUSH_ARTICLE_WORK * Frontier_ArticlePushBufferGet(FMAIN_PTR fmain)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”z’u•¨ƒAƒNƒ^[‘Ş”ğ—pƒoƒbƒtƒ@‚ğ‰Šú‰»‚·‚é
+ * @brief   é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼é€€é¿ç”¨ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–ã™ã‚‹
  * @param   fmain		
  */
 //--------------------------------------------------------------

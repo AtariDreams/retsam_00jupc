@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_232.s
- *@brief	�퓬�V�[�P���X
- *			�������p���`�����肾���O�̃��b�Z�[�W�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			きあいパンチをくりだす前のメッセージシーケンス
  *@author	HisashiSogabe
  *@data		2006.05.03
  *
@@ -21,6 +21,6 @@ SUB_232:
 	MESSAGE			KiaiPunchMineMsg,TAG_NICK,SIDE_WORK
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//���ɋZ�G�t�F�N�g���o��悤�Ƀt���O�𗎂Ƃ��Ă���
+	//次に技エフェクトが出るようにフラグを落としておく
 	VALUE			VAL_NBIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_WAZA_EFFECT
 	SEQ_END

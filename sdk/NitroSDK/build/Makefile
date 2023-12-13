@@ -64,7 +64,7 @@
 # add "components"
 #
 # Revision 1.17  2004/02/12 11:44:38  yada
-# ARM9/ARM7 U‚è•ª‚¯ì‹Æ
+# ARM9/ARM7 æŒ¯ã‚Šåˆ†ã‘ä½œæ¥­
 #
 # Revision 1.16  2004/02/10 03:32:44  yasu
 # bug fix
@@ -85,35 +85,35 @@
 # add libraries_common
 #
 # Revision 1.10  2003/12/22 14:11:01  yasu
-# libraries_sp ‚Ì’Ç‰Á
+# libraries_sp ã®è¿½åŠ 
 #
 # Revision 1.9  2003/12/16 08:05:08  yasu
-# ˆê“I‚É libraries_sp ‚ÌƒŠƒ“ƒN‚ğØ‚é
+# ä¸€æ™‚çš„ã« libraries_sp ã®ãƒªãƒ³ã‚¯ã‚’åˆ‡ã‚‹
 #
 # Revision 1.8  2003/12/16 08:01:16  yasu
-# librariesSP -> libraries_sp ‚Ö•ÏX
+# librariesSP -> libraries_sp ã¸å¤‰æ›´
 #
 # Revision 1.7  2003/12/16 07:41:43  yasu
-# spcode -> libraries_sp ‚Ì•ÏX
+# spcode -> libraries_sp ã®å¤‰æ›´
 #
 # Revision 1.6  2003/12/11 00:09:17  yasu
-# _prototype ‚Ìƒrƒ‹ƒh‚Ì’â~
+# _prototype ã®ãƒ“ãƒ«ãƒ‰ã®åœæ­¢
 #
 # Revision 1.5  2003/11/12 12:30:10  yasu
-# sp -> spcode ‚ÖÄ•ÏX
+# sp -> spcode ã¸å†å¤‰æ›´
 #
 # Revision 1.4  2003/11/12 04:20:00  yasu
-# ƒfƒBƒŒƒNƒgƒŠ–¼•ÏX build/spcode -> build/sp
+# ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåå¤‰æ›´ build/spcode -> build/sp
 #
 # Revision 1.3  2003/11/05 07:08:09  yasu
-# _prototype ‚Ì’Ç‰Á
+# _prototype ã®è¿½åŠ 
 #
 # Revision 1.2  2003/10/30 05:51:52  yasu
-# build: ƒ^[ƒQƒbƒg‚Ìíœ
+# build: ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®å‰Šé™¤
 #
 # Revision 1.1  2003/10/29 13:27:27  yasu
-# make ‚Ì“`”d‚ÌƒtƒŒ[ƒ€ƒ[ƒNŠ®¬
-# all/install/clean/clobber ‚ªg‚¦‚é
+# make ã®ä¼æ’­ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯å®Œæˆ
+# all/install/clean/clobber ãŒä½¿ãˆã‚‹
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

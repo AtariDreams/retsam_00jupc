@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_frontier.c
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
- * @date	2007.09.14(‹à)
+ * @date	2007.09.14(é‡‘)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -39,9 +39,9 @@
 
 /*
 
-	ã‰æ–Ê‚ğƒƒCƒ“
-	‰º‰æ–Ê‚ğƒTƒu	
-	‚É“ü‚ê‘Ö‚¦‚Äg—p‚µ‚Ä‚¢‚Ü‚·B
+	ä¸Šç”»é¢ã‚’ãƒ¡ã‚¤ãƒ³
+	ä¸‹ç”»é¢ã‚’ã‚µãƒ–	
+	ã«å…¥ã‚Œæ›¿ãˆã¦ä½¿ç”¨ã—ã¦ã„ã¾ã™ã€‚
 
 */
 
@@ -66,19 +66,19 @@ typedef struct {
 	
 	int color;
 
-	f32				scale[ FREC_BGOBJ_MAX ];		///< ƒTƒCƒY
-	int				range[ FREC_BGOBJ_MAX ];		///< ‹——£
-	int				rad[ FREC_BGOBJ_MAX ];			///< Šp“x
-	CATS_ACT_PTR	cap_hero[ FREC_BGOBJ_MAX ];		///< l•¨OBJ ã
-	CATS_ACT_PTR	cap_icon[ FREC_BGOBJ_MAX ];		///< l•¨OBJ ã
-	CATS_ACT_PTR	cap_bg[ FREC_BGOBJ_MAX ];		///< ”wŒiOBJ ã
+	f32				scale[ FREC_BGOBJ_MAX ];		///< ã‚µã‚¤ã‚º
+	int				range[ FREC_BGOBJ_MAX ];		///< è·é›¢
+	int				rad[ FREC_BGOBJ_MAX ];			///< è§’åº¦
+	CATS_ACT_PTR	cap_hero[ FREC_BGOBJ_MAX ];		///< äººç‰©OBJ ä¸Š
+	CATS_ACT_PTR	cap_icon[ FREC_BGOBJ_MAX ];		///< äººç‰©OBJ ä¸Š
+	CATS_ACT_PTR	cap_bg[ FREC_BGOBJ_MAX ];		///< èƒŒæ™¯OBJ ä¸Š
 	
-	CATS_ACT_PTR	cap_num[ FREC_BP_MAX + 1 ];		///< ”šOBJ ‰º
+	CATS_ACT_PTR	cap_num[ FREC_BP_MAX + 1 ];		///< æ•°å­—OBJ ä¸‹
 	
 	int b_point;
 	
 	CATS_ACT_PTR	sbtn[ 2 ];
-	OAM_BUTTON		obtn[ 2 ];					///< ‘—‚é@–ß‚é@‘—‚é‚Íí‚ÉƒrƒWƒuƒ‹
+	OAM_BUTTON		obtn[ 2 ];					///< é€ã‚‹ã€€æˆ»ã‚‹ã€€é€ã‚‹ã¯å¸¸ã«ãƒ“ã‚¸ãƒ–ãƒ«
 	
 	int				eva;
 	int				evb;
@@ -167,7 +167,7 @@ static void FontButton_Delete( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	OAMƒŠƒ\[ƒX“Ç‚İ‚İ
+ * @brief	OAMãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
  * @param	wk	
  *
@@ -185,23 +185,23 @@ static void BR_frec_ResLoad( BR_WORK* wk )
 	CATS_RES_PTR	 crp = wk->sys.crp;
 	PALETTE_FADE_PTR pfd = wk->sys.pfd;
 	
-	///< BG  ‰º‰æ–Ê
+	///< BG  ä¸‹ç”»é¢
 	ArcUtil_HDL_BgCharSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_data_NCGR, wk->sys.bgl, GF_BGL_FRAME2_S, 0, 0, 0, HEAPID_BR );
 	ArcUtil_HDL_ScrnSet( hdl, NARC_batt_rec_gra_batt_rec_browse_bg1d_NSCR, bgl, GF_BGL_FRAME2_S, 0, 0, 0, HEAPID_BR );
 	
-	///< OAM ‰º‰æ–Ê
+	///< OAM ä¸‹ç”»é¢
 	CATS_LoadResourcePlttWorkArcH( pfd, FADE_SUB_OBJ,  csp, crp, hdl, BR_ColorPaletteID_Get( wk, GET_PAL_FONT ), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB,  eID_OAM_BP_NUM );
 	CATS_LoadResourceCharArcH( csp, crp, hdl, NARC_batt_rec_gra_batt_rec_browse_bpfont_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, eID_OAM_BP_NUM );
 	CATS_LoadResourceCellArcH( csp, crp, hdl, NARC_batt_rec_gra_batt_rec_bpfont_64k_NCER, FALSE, eID_OAM_BP_NUM );
 	CATS_LoadResourceCellAnmArcH( csp, crp, hdl, NARC_batt_rec_gra_batt_rec_bpfont_64k_NANR, FALSE, eID_OAM_BP_NUM );
 	
-	///< OAM ã‰æ–Ê ”wŒi
+	///< OAM ä¸Šç”»é¢ èƒŒæ™¯
 	CATS_LoadResourcePlttWorkArcH( pfd, FADE_MAIN_OBJ, csp, crp, hdl, BR_ColorPaletteID_Get( wk, GET_PAL_PHOTO ), FALSE, 6, NNS_G2D_VRAM_TYPE_2DMAIN, eID_OAM_BG_PHOTO );
 	CATS_LoadResourceCharArcH( csp, crp, hdl, NARC_batt_rec_gra_batt_rec_browse_photo_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN,  eID_OAM_BG_PHOTO );
 	CATS_LoadResourceCellArcH( csp, crp, hdl, NARC_batt_rec_gra_batt_rec_photo_64k_NCER, FALSE, eID_OAM_BG_PHOTO );
 	CATS_LoadResourceCellAnmArcH( csp, crp, hdl, NARC_batt_rec_gra_batt_rec_photo_64k_NANR, FALSE, eID_OAM_BG_PHOTO );
 	
-	///< OAM ã‰æ–Ê l•¨
+	///< OAM ä¸Šç”»é¢ äººç‰©
 	{
 		int i;			
 		int	ncl[ FREC_BGOBJ_MAX ] = { NARC_wifi2dchar_towerboss_NCLR, NARC_wifi2dchar_brains1_NCLR, NARC_wifi2dchar_brains4_NCLR, NARC_wifi2dchar_brains3_NCLR, NARC_wifi2dchar_brains2_16_NCLR };
@@ -222,12 +222,12 @@ static void BR_frec_ResLoad( BR_WORK* wk )
 		CATS_LoadResourceCellArc( csp, crp, ARC_WIFI2DCHAR, nce, 0, eID_OAM_HUM_ICON );
 		CATS_LoadResourceCellAnmArc( csp, crp, ARC_WIFI2DCHAR, nca, 0, eID_OAM_HUM_ICON );
 		
-		///< 3P—p
+		///< 3Pç”¨
 		CATS_LoadResourceCellArcH( csp, crp, hdl, NARC_batt_rec_gra_bf_brain3p_NCER, FALSE, eID_OAM_HUM_ICON + 1 );
 		CATS_LoadResourceCellAnmArcH( csp, crp, hdl, NARC_batt_rec_gra_bf_brain3p_NANR, FALSE, eID_OAM_HUM_ICON + 1 );
 	}
 	
-	///< OAM ã‰æ–Ê ålŒö
+	///< OAM ä¸Šç”»é¢ ä¸»äººå…¬
 	{
 		int	ncl = NARC_wifi2dchar_pl_boy01_NCLR;
 		int ncg = NARC_wifi2dchar_pl_boy01_NCGR;
@@ -308,7 +308,7 @@ static void BR_PalGray( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	OAM “o˜^
+ * @brief	OAM ç™»éŒ²
  *
  * @param	wk	
  *
@@ -333,7 +333,7 @@ static void BR_frec_ResAdd( BR_WORK* wk )
 	TCATS_OBJECT_ADD_PARAM_S coap;
 	
 	
-	///< l•¨Œn
+	///< äººç‰©ç³»
 	coap.x		= 0;
 	coap.y		= 256;
 	coap.z		= 0;		
@@ -347,7 +347,7 @@ static void BR_frec_ResAdd( BR_WORK* wk )
 	coap.id[4] = CLACT_U_HEADER_DATA_NONE;
 	coap.id[5] = CLACT_U_HEADER_DATA_NONE;
 	
-	///< ålŒö
+	///< ä¸»äººå…¬
 	coap.id[0] = eID_OAM_HERO_ICON;
 	coap.id[1] = eID_OAM_HERO_ICON;
 	coap.id[2] = eID_OAM_HERO_ICON;
@@ -360,7 +360,7 @@ static void BR_frec_ResAdd( BR_WORK* wk )
 		CATS_ObjectScaleSetCap( swk->cap_hero[ i ], swk->scale[ i ], swk->scale[ i ] );
 	}
 	
-	///< 5l
+	///< 5äºº
 
 	for ( i = 0; i < FREC_BGOBJ_MAX; i++ ){
 		coap.id[0] = eID_OAM_HUM_ICON + i;
@@ -407,7 +407,7 @@ static void BR_frec_ResAdd( BR_WORK* wk )
 		OS_Printf( " state = %d\n", rec_state[ i ] );
 		
 		if ( rec_state[ i ] == MEMORY_PRINT_NONE ){
-			CATS_ObjectAnimeSeqSetCap( swk->cap_bg[ i ], 5 );					///< –¢ƒNƒŠƒA
+			CATS_ObjectAnimeSeqSetCap( swk->cap_bg[ i ], 5 );					///< æœªã‚¯ãƒªã‚¢
 			CATS_ObjectPaletteSetCap( swk->cap_bg[ i ], eOMA_PAL_BG_OAM + 5 );
 			CATS_ObjectEnableCap( swk->cap_icon[ i ], FALSE );
 			CATS_ObjectEnableCap( swk->cap_hero[ i ], FALSE );
@@ -462,8 +462,8 @@ static void BR_frec_ResAdd( BR_WORK* wk )
 		BR_CATS_ObjectPosSetCap( swk->cap_num[ i ], FREC_NUM_PX + ( 16*i ), FREC_NUM_PY );
 		CATS_ObjectUpdateCap( swk->cap_num[ i ] );
 	}
-	CATS_ObjectEnableCap( swk->cap_num[ FREC_BP_MAX - 1 ], TRUE );		///< ‚PŒ…–Ú
-	CATS_ObjectEnableCap( swk->cap_num[ FREC_BP_MAX - 0 ], TRUE );		///< BP ‚Í•K‚¸•\¦‚·‚é‚Ì‚Å
+	CATS_ObjectEnableCap( swk->cap_num[ FREC_BP_MAX - 1 ], TRUE );		///< ï¼‘æ¡ç›®
+	CATS_ObjectEnableCap( swk->cap_num[ FREC_BP_MAX - 0 ], TRUE );		///< BP ã¯å¿…ãšè¡¨ç¤ºã™ã‚‹ã®ã§
 	
 	for ( i = 0; i < FREC_BGOBJ_MAX; i++ ){
 		CATS_ObjectAffineSetCap( swk->cap_hero[ i ], CLACT_AFFINE_DOUBLE );
@@ -476,7 +476,7 @@ static void BR_frec_ResAdd( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	íœ
+ * @brief	å‰Šé™¤
  *
  * @param	wk	
  *
@@ -490,7 +490,7 @@ static void BR_frec_ResDel( BR_WORK* wk )
 	
 	FREC_WORK* swk = wk->sub_work;
 	
-	///< l•¨OBJíœ
+	///< äººç‰©OBJå‰Šé™¤
 	for ( i = 0; i < FREC_BGOBJ_MAX; i++ ){		
 		CATS_FreeResourceChar( wk->sys.crp, eID_OAM_HUM_ICON + i );	
 		CATS_FreeResourcePltt( wk->sys.crp, eID_OAM_HUM_ICON + i );
@@ -501,7 +501,7 @@ static void BR_frec_ResDel( BR_WORK* wk )
 	CATS_FreeResourceCell( wk->sys.crp, eID_OAM_HUM_ICON + 1 );
 	CATS_FreeResourceCellAnm( wk->sys.crp, eID_OAM_HUM_ICON + 1 );	
 	
-	///< ålŒöíœ
+	///< ä¸»äººå…¬å‰Šé™¤
 	for ( i = 0; i < FREC_BGOBJ_MAX; i++ ){
 		CATS_ActorPointerDelete_S( swk->cap_hero[ i ] );
 	}
@@ -510,7 +510,7 @@ static void BR_frec_ResDel( BR_WORK* wk )
 	CATS_FreeResourceCell( wk->sys.crp, eID_OAM_HERO_ICON );
 	CATS_FreeResourceCellAnm( wk->sys.crp, eID_OAM_HERO_ICON );
 	
-	///< ”wŒiíœ
+	///< èƒŒæ™¯å‰Šé™¤
 	for ( i = 0; i < FREC_BGOBJ_MAX; i++ ){
 		CATS_ActorPointerDelete_S( swk->cap_bg[ i ] );
 	}
@@ -530,7 +530,7 @@ static void BR_frec_ResDel( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	À•Wİ’è
+ * @brief	åº§æ¨™è¨­å®š
  *
  * @param	wk	
  *
@@ -675,7 +675,7 @@ static void BR_frec_PhotoPosSet( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -725,7 +725,7 @@ static BOOL BR_frec_Init( BR_WORK* wk )
 	switch ( wk->sub_seq ){
 	case 1:
 		if ( BR_PaletteFade( &swk->color, eFADE_MODE_OUT ) ){
-			///< ƒoƒgƒ‹ƒ|ƒCƒ“ƒgƒQƒbƒg
+			///< ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚²ãƒƒãƒˆ
 			BTLTOWER_SCOREWORK* bs = SaveData_GetTowerScoreData( wk->save );
 			swk->b_point = TowerScoreData_SetBattlePoint( bs, 0, BTWR_DATA_get );
 			wk->sub_seq++;
@@ -855,7 +855,7 @@ static BOOL BR_frec_End( BR_WORK* wk )
 		wk->sub_seq++;
 	
 	case 2:
-		///< íœ‚Æ‚©
+		///< å‰Šé™¤ã¨ã‹
 		CATS_SystemActiveSet( wk, TRUE );
 		BR_frec_ResDel( wk );
 		FontButton_Delete( wk );		

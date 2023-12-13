@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FS_SetDefaultDMA</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FS_SetDefaultDMA</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,53 +22,53 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <p>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>dma_no</STRONG></EM></TD>
-      <TD width="87%">�t�@�C���V�X�e��������ROM�A�[�J�C�u���g�p����DMA�`�����l��<BR>
-	  FS_DMA_NOT_USE���w�肵���ꍇ�ADMA�͎g�p����CPU�ɂ��]�����s���܂��B<BR>
-	  <FONT color="#800000">�L����DMA�`�����l�����w�肵���ꍇ�AFS_SetDefaultDMA�֐��Őݒ��ύX����܂ł���DMA�`�����l�����g�p�ł��܂���B</FONT><br>
-	  <font color="#800000">�܂��A�J�[�h�A�N�Z�X�̓]������IO���W�X�^�Ȃ̂�DMA�`�����l��0���w�肷�邱�Ƃ͂ł��܂���B</font>
+      <TD width="87%">ファイルシステム内部のROMアーカイブが使用するDMAチャンネル<BR>
+	  FS_DMA_NOT_USEを指定した場合、DMAは使用せずCPUによる転送を行います。<BR>
+	  <FONT color="#800000">有効なDMAチャンネルを指定した場合、FS_SetDefaultDMA関数で設定を変更するまでこのDMAチャンネルを使用できません。</FONT><br>
+	  <font color="#800000">また、カードアクセスの転送元はIOレジスタなのでDMAチャンネル0を指定することはできません。</font>
 	  </TD>
     </TR>
   </TBODY>
 </TABLE>
 </p>
 
-<h2>�Ԃ�l</h2>
-<p>�ȑO�ɐݒ肳��Ă���DMA�`�����l����Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>以前に設定されていたDMAチャンネルを返します。</p>
 
-<H2>����</H2>
-<P>�t�@�C���V�X�e��������<A href="../archive_rom_spec.html">ROM �A�[�J�C�u</A>���f�[�^�A�N�Z�X�Ɏg�p����DMA�`�����l�����w�肵�܂��B<BR>
-FS_DMA_NOT_USE���w�肵���ꍇ�ADMA�͎g�p����CPU�ɂ��]�����s���܂��B<BR>
+<H2>説明</H2>
+<P>ファイルシステム内部の<A href="../archive_rom_spec.html">ROM アーカイブ</A>がデータアクセスに使用するDMAチャンネルを指定します。<BR>
+FS_DMA_NOT_USEを指定した場合、DMAは使用せずCPUによる転送を行います。<BR>
 <BR>
-<A href="../archive_rom_spec.html">ROM �A�[�J�C�u</A>��DMA�`�����l�������蓖�Ă�ꍇ�̓�������ɂ��ẮA
-<a href="../../card/rom/CARD_ReadRomAsync.html">CARD_ReadRomAsync</a>�֐��̐������Q�Ƃ��������B<BR>
+<A href="../archive_rom_spec.html">ROM アーカイブ</A>にDMAチャンネルを割り当てる場合の内部動作については、
+<a href="../../card/rom/CARD_ReadRomAsync.html">CARD_ReadRomAsync</a>関数の説明も参照ください。<BR>
 </P>
-<H2>����</H2>
+<H2>注意</H2>
 <P>
-<FONT color="#800000">���̊֐��ŗL����DMA�`�����l�����w�肵���ꍇ�A�Ăѐݒ��ύX����܂ł���DMA�`�����l�����g�p�ł��܂���B<BR>
-�܂��A�ݒ�ύX����<A href="../archive_rom_spec.html">ROM �A�[�J�C�u</A>�փA�N�Z�X���ł���ꍇ�ɂ́A���̃t�@�C�����삪��������܂ŕύX�����f����܂���B<br>
-�t�@�C���V�X�e���͂���DMA�`�����l�����g�p���ē�����NITRO ROM �f�o�C�X�ւ̃A�N�Z�X���s���܂��B<BR>
-CARD_ReadRom�֐������CARD_ReadRomAsync�֐��������Q�Ƃ��������B<BR>
+<FONT color="#800000">この関数で有効なDMAチャンネルを指定した場合、再び設定を変更するまでこのDMAチャンネルを使用できません。<BR>
+また、設定変更時に<A href="../archive_rom_spec.html">ROM アーカイブ</A>へアクセス中である場合には、そのファイル操作が完了するまで変更が反映されません。<br>
+ファイルシステムはこのDMAチャンネルを使用して内部でNITRO ROM デバイスへのアクセスを行います。<BR>
+CARD_ReadRom関数およびCARD_ReadRomAsync関数説明も参照ください。<BR>
 </FONT></P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../fs_dma_not_use_const.html">FS_DMA_NOT_USE</A> 
 <A href="../../card/rom/CARD_ReadRom.html">CARD_ReadRom</A> 
 <A href="../../card/rom/CARD_ReadRomAsync.html">CARD_ReadRomAsync</A> 
 <BR></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/09/17 DMA�`�����l���ݒ�ύX�̔��f�Ɋւ��钍�ӂ�ǉ�<br>
-2005/08/28 ��������CARD_ReadRomAsync�֐��ւ̃����N��ǉ�<br>
-2005/04/28 DMA�`�����l��0���w��ł��Ȃ��|��ǋL<br>
-2004/07/23 ROM�A�[�J�C�u��DMA�`�����l���Ɋւ��钍�ӂ�ǉ�<BR>
-2004/05/14 FS_DMA_NOT_USE�ɂ��Ă̋L�q��ǉ�<BR>
-2004/04/08 ����<BR>
+2005/09/17 DMAチャンネル設定変更の反映に関する注意を追加<br>
+2005/08/28 説明文にCARD_ReadRomAsync関数へのリンクを追加<br>
+2005/04/28 DMAチャンネル0が指定できない旨を追記<br>
+2004/07/23 ROMアーカイブとDMAチャンネルに関する注意を追加<BR>
+2004/05/14 FS_DMA_NOT_USEについての記述を追加<BR>
+2004/04/08 初版<BR>
 </P>
 </body>
 </html>

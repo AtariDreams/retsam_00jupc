@@ -23,12 +23,12 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNSiFndArchiveBlockHeader
 
-  Description:  ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìƒf[ƒ^ƒuƒƒbƒNƒwƒbƒ_\‘¢‘ÌB
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ã€‚
  *---------------------------------------------------------------------------*/
 typedef struct
 {
-	u32			blockType;				// ƒuƒƒbƒNƒ^ƒCƒv
-	u32			blockSize;				// ƒuƒƒbƒNƒTƒCƒY
+	u32			blockType;				// ãƒ–ãƒ­ãƒƒã‚¯ã‚¿ã‚¤ãƒ—
+	u32			blockSize;				// ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
 
 } NNSiFndArchiveBlockHeader;
 
@@ -37,8 +37,8 @@ typedef struct
   Name:         NNSiFndArchiveDirBlock
   				NNSiFndArchiveImgBlock
 
-  Description:  ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚ÌƒfƒBƒŒƒNƒgƒŠî•ñƒuƒƒbƒNƒwƒbƒ_\‘¢‘ÌB
-  				ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìƒtƒ@ƒCƒ‹ƒCƒ[ƒWƒuƒƒbƒNƒwƒbƒ_\‘¢‘ÌB
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæƒ…å ±ãƒ–ãƒ­ãƒƒã‚¯ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ã€‚
+  				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ–ãƒ­ãƒƒã‚¯ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ã€‚
  *---------------------------------------------------------------------------*/
 
 typedef	NNSiFndArchiveBlockHeader	NNSiFndArchiveDirBlockHeader;
@@ -48,14 +48,14 @@ typedef	NNSiFndArchiveBlockHeader	NNSiFndArchiveImgBlockHeader;
 /*---------------------------------------------------------------------------*
   Name:         NNSFndArchiveFatBlock
 
-  Description:  ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚ÌFATƒuƒƒbƒNƒwƒbƒ_\‘¢‘ÌB
+  Description:  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®FATãƒ–ãƒ­ãƒƒã‚¯ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ã€‚
  *---------------------------------------------------------------------------*/
 typedef struct
 {
-	u32			blockType;				// ƒuƒƒbƒNƒ^ƒCƒv
-	u32			blockSize;				// ƒuƒƒbƒNƒTƒCƒY
-	u16			numFiles;				// ƒtƒ@ƒCƒ‹‚ÌŒÂ”B
-	u16			reserved;				// —\–ñB
+	u32			blockType;				// ãƒ–ãƒ­ãƒƒã‚¯ã‚¿ã‚¤ãƒ—
+	u32			blockSize;				// ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
+	u16			numFiles;				// ãƒ•ã‚¡ã‚¤ãƒ«ã®å€‹æ•°ã€‚
+	u16			reserved;				// äºˆç´„ã€‚
 
 } NNSiFndArchiveFatBlockHeader;
 

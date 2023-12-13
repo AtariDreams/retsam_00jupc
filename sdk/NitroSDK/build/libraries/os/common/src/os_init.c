@@ -15,7 +15,7 @@
   small fix
 
   Revision 1.51  2006/11/14 01:36:26  okubata_ryoma
-  ARM9��OS_Init�I������vcount��0�ɑ����鏈����ǉ�
+  ARM9のOS_Init終了時にvcountを0に揃える処理を追加
 
   Revision 1.50  2006/01/18 02:11:30  kitase_hirotake
   do-indent
@@ -30,10 +30,10 @@
   Fix comment
 
   Revision 1.46  2005/04/18 12:26:59  terui
-  OSi_CheckOwnerInfo�֐����폜
+  OSi_CheckOwnerInfo関数を削除
 
   Revision 1.45  2005/04/12 10:49:15  terui
-  ������Ή��ׂ̈ɉ���
+  中国語対応の為に改造
 
   Revision 1.44  2005/02/28 05:26:28  yosizaki
   do-indent.
@@ -42,7 +42,7 @@
   let call MI_Init()
 
   Revision 1.42  2005/02/09 09:17:48  terui
-  ARM9�ɂ����鏉��������VRAM�̔r�����������������@�\��ǉ��B
+  ARM9における初期化時にVRAMの排他制御を初期化する機能を追加。
 
   Revision 1.41  2004/10/12 08:01:04  yada
   delete OS_InitPrintServer()
@@ -102,70 +102,70 @@
   add OS_InitThread()
 
   Revision 1.22  2004/03/18 12:59:15  yada
-  ARM7�ł�Exception���������Ă΂Ȃ��悤�ɂ���(�b��)
+  ARM7ではException初期化を呼ばないようにした(暫定)
 
   Revision 1.21  2004/03/09 07:26:18  yada
-  PXI_Init() �Ăяo���ʒu�� OS_InitLock() �̏�Ɉړ�
+  PXI_Init() 呼び出し位置を OS_InitLock() の上に移動
 
   Revision 1.20  2004/03/08 01:55:49  yasu
   add PXI_Init()
 
   Revision 1.19  2004/03/01 11:57:31  yada
-  �p��̊֐�comment�쐬
+  英語の関数comment作成
 
   Revision 1.18  2004/02/25 11:31:18  yada
-  systemClock��Tick �ɔ����ύX
+  systemClock→Tick に伴う変更
 
   Revision 1.17  2004/02/24 11:50:34  yada
-  OS_Init() �� A7������ PAD_InitXYButton() �폜
+  OS_Init() の A7側から PAD_InitXYButton() 削除
 
   Revision 1.16  2004/02/24 04:50:59  yada
-  A9���� OS_InitValarm �����ꂽ�B
+  A9側に OS_InitValarm をいれた。
 
   Revision 1.15  2004/02/20 12:24:21  yada
-  A7��OS_Init() �R�����g�A�E�g�͂���
+  A7のOS_Init() コメントアウトはずし
 
   Revision 1.14  2004/02/20 08:29:18  yasu
   Temporary fix
 
   Revision 1.13  2004/02/19 08:42:11  yada
-  A7���A���[�i�̏������ǉ�
+  A7側アリーナの初期化追加
 
   Revision 1.12  2004/02/18 08:56:56  yada
-  A7 ����� OS_InitArea() ���Ă΂Ȃ��悤�ɂ���
+  A7 からは OS_InitArea() を呼ばないようにした
 
   Revision 1.11  2004/02/18 01:20:04  yada
-  ARM7��systemClock,Alarm,XYButton��init����ꂽ
+  ARM7にsystemClock,Alarm,XYButtonのinitを入れた
 
   Revision 1.10  2004/02/13 02:29:59  yada
-  ARM9��AMR7 �̏ꍇ�킯�l��
+  ARM9とAMR7 の場合わけ考慮
 
   Revision 1.9  2004/02/05 10:51:53  yada
-  OS_InitException() ���ĂԂ悤�ɂ���
+  OS_InitException() を呼ぶようにした
 
   Revision 1.8  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.7  2004/01/30 11:45:06  yada
-  ��UOS_InitException() ���O��
+  一旦OS_InitException() を外す
 
   Revision 1.6  2004/01/30 08:06:14  yada
-  OS_Init() �ŗ�O�\���V�X�e�����������ĂԂ悤�ɂ����B
+  OS_Init() で例外表示システム初期化を呼ぶようにした。
 
   Revision 1.5  2004/01/18 02:25:37  yada
-  �C���f���g���̐��`
+  インデント等の整形
 
   Revision 1.4  2004/01/07 01:43:51  yada
-  OS_InitArena() ���ĂԂ悤�ɕύX
+  OS_InitArena() を呼ぶように変更
 
   Revision 1.3  2003/12/26 05:52:45  yada
-  �^���[������ɂ��ύX
+  型ルール統一による変更
 
   Revision 1.2  2003/12/24 07:54:20  yada
-  wram ���������s���悤�ɂ���
+  wram 初期化を行うようにした
 
   Revision 1.1  2003/12/22 01:35:52  yada
-  OS_Init() �ݒu�ɂ� init.h �쐬
+  OS_Init() 設置につき init.h 作成
 
 
   $NoKeywords: $

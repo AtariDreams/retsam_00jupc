@@ -1,7 +1,7 @@
 //====================================================================
 //								d26r0107
 //
-//	LOCALWORK2	˜b‚µ‚©‚¯•ûŒü‚ð•Û‘¶
+//	LOCALWORK2	è©±ã—ã‹ã‘æ–¹å‘ã‚’ä¿å­˜
 //====================================================================
 
 	.text
@@ -11,11 +11,11 @@
 	.include	"../eventdata/zone_d26r0107evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d26r0107_flag_change
 _EVENT_DATA		ev_d26r0107_obj_change
@@ -39,11 +39,11 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d26r0107_flag_change:
-	/*‹~o‚µ‚Ä‚¢‚½‚ç*/
+	/*æ•‘å‡ºã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	SYS_FLAG_REIAIHAI,ev_d26r0107_flag_change_pos
 	_END
 
-/*‹~o‚µ‚Ä‚¢‚½‚ç*/
+/*æ•‘å‡ºã—ã¦ã„ãŸã‚‰*/
 ev_d26r0107_flag_change_pos:
 	_SXY_POS_CHANGE	D26R0107_GKANBU,9,6
 	_END
@@ -58,35 +58,35 @@ ev_d26r0107_obj_change:
 
 
 /********************************************************************/
-/*	SCWK_TEMP0@˜b‚µ‚©‚¯•ûŒü										*/
+/*	SCWK_TEMP0ã€€è©±ã—ã‹ã‘æ–¹å‘										*/
 /********************************************************************/
 ev_d26r0107_gkanbu:
 	_TALK_OBJ_START
 
-	/*‹~o‚µ‚Ä‚¢‚½‚ç*/
+	/*æ•‘å‡ºã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	SYS_FLAG_REIAIHAI,ev_d26r0107_gkanbu_machine
 
-	/*Ÿ—˜‚µ‚Ä‚¢‚½‚ç*/
+	/*å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_D26R0107_GKANBU_WIN,ev_d26r0107_gkanbu_win
 
 	_TALK_KEYWAIT	msg_d26r0107_gkanbu_01
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	GINGALEADER3_02,0
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_d26r0107_common_battle_lose
 
 	_FLAG_SET		FE_D26R0107_GKANBU_WIN
-	//‰ð•úƒXƒCƒbƒ`‰Ÿ‚·‚Ü‚Å•”‰®‚©‚ço‚ç‚ê‚È‚¢ƒXƒgƒbƒp[”­“®
+	//è§£æ”¾ã‚¹ã‚¤ãƒƒãƒæŠ¼ã™ã¾ã§éƒ¨å±‹ã‹ã‚‰å‡ºã‚‰ã‚Œãªã„ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼ç™ºå‹•
 	_LDVAL			WK_SCENE_D26R0107,1
 
 	_TALK_KEYWAIT	msg_d26r0107_gkanbu_02
 	_TALK_CLOSE
 
-	/*ƒ{ƒ^ƒ“‚Ì‘O‚©‚ç‚Ç‚­*/
+	/*ãƒœã‚¿ãƒ³ã®å‰ã‹ã‚‰ã©ã*/
 	_PLAYER_DIR_GET	SCWK_TEMP0
-	_LDWK			LOCALWORK2,SCWK_TEMP0		/*‘Þ”ð*/
+	_LDWK			LOCALWORK2,SCWK_TEMP0		/*é€€é¿*/
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,DIR_UP,ev_d26r0107_gkanbu_dir_up
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,DIR_LEFT,ev_d26r0107_gkanbu_dir_left
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,DIR_RIGHT,ev_d26r0107_gkanbu_dir_right
@@ -107,12 +107,12 @@ ev_d26r0107_gkanbu_dir_right:
 	_OBJ_ANIME_WAIT
 	_JUMP			common_d26r0107_gkanbu
 
-/*‹¤’Êˆ—*/
+/*å…±é€šå‡¦ç†*/
 common_d26r0107_gkanbu:
 	_TALK_OBJ_END
 	_END
 
-/*3•CŠJ•úŒã*/
+/*3åŒ¹é–‹æ”¾å¾Œ*/
 ev_d26r0107_gkanbu_machine:
 	_TALKMSG		msg_d26r0107_gkanbu_04
 	_LAST_KEYWAIT
@@ -120,7 +120,7 @@ ev_d26r0107_gkanbu_machine:
 	_TALK_OBJ_END
 	_END
 
-/*Ÿ—˜‚µ‚Ä‚¢‚½‚ç*/
+/*å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 ev_d26r0107_gkanbu_win:
 	_TALKMSG		msg_d26r0107_gkanbu_03
 	_LAST_KEYWAIT
@@ -129,7 +129,7 @@ ev_d26r0107_gkanbu_win:
 	_END
 
 //--------------------------------------------------------------------
-//”s–kˆ—
+//æ•—åŒ—å‡¦ç†
 //--------------------------------------------------------------------
 ev_d26r0107_common_battle_lose:
 	_TRAINER_LOSE
@@ -137,7 +137,7 @@ ev_d26r0107_common_battle_lose:
 	_END
 
 //--------------------------------------------------------------------
-//‚©‚ñ‚Ô	ƒ{ƒ^ƒ“‚Ì‘O‚©‚ç‚Ç‚­
+//ã‹ã‚“ã¶	ãƒœã‚¿ãƒ³ã®å‰ã‹ã‚‰ã©ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0107_gkanbu_01
 	_ANIME_DATA	AC_WALK_R_8F,1
@@ -161,7 +161,7 @@ _ANIME_LABEL anm_d26r0107_gkanbu_03
 ev_d26r0107_machine_a:
 	_TALK_START
 	
-	/*‹~o‚µ‚Ä‚¢‚½‚ç*/
+	/*æ•‘å‡ºã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	SYS_FLAG_REIAIHAI,ev_d26r0107_machine_a_win
 
 	_TALKMSG		msg_d26r0107_machine_a_01
@@ -170,7 +170,7 @@ ev_d26r0107_machine_a:
 	_TALK_END
 	_END
 
-/*‹~o‚µ‚Ä‚¢‚½‚ç*/
+/*æ•‘å‡ºã—ã¦ã„ãŸã‚‰*/
 ev_d26r0107_machine_a_win:
 	//_FLAG_SET		FE_D26R0107_MACHINE
 	_TALKMSG		msg_d26r0107_machine_a_02
@@ -186,7 +186,7 @@ ev_d26r0107_machine_a_win:
 ev_d26r0107_machine_b:
 	_TALK_START
 	
-	/*‹~o‚µ‚Ä‚¢‚½‚ç*/
+	/*æ•‘å‡ºã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	SYS_FLAG_REIAIHAI,ev_d26r0107_machine_b_win
 
 	_TALKMSG		msg_d26r0107_machine_b_01
@@ -195,7 +195,7 @@ ev_d26r0107_machine_b:
 	_TALK_END
 	_END
 
-/*‹~o‚µ‚Ä‚¢‚½‚ç*/
+/*æ•‘å‡ºã—ã¦ã„ãŸã‚‰*/
 ev_d26r0107_machine_b_win:
 	//_FLAG_SET		FE_D26R0107_MACHINE
 	_TALKMSG		msg_d26r0107_machine_b_02
@@ -211,7 +211,7 @@ ev_d26r0107_machine_b_win:
 ev_d26r0107_machine_c:
 	_TALK_START
 	
-	/*‹~o‚µ‚Ä‚¢‚½‚ç*/
+	/*æ•‘å‡ºã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	SYS_FLAG_REIAIHAI,ev_d26r0107_machine_c_win
 
 	_TALKMSG		msg_d26r0107_machine_c_01
@@ -220,7 +220,7 @@ ev_d26r0107_machine_c:
 	_TALK_END
 	_END
 
-/*‹~o‚µ‚Ä‚¢‚½‚ç*/
+/*æ•‘å‡ºã—ã¦ã„ãŸã‚‰*/
 ev_d26r0107_machine_c_win:
 	//_FLAG_SET		FE_D26R0107_MACHINE
 	_TALKMSG		msg_d26r0107_machine_c_02
@@ -248,7 +248,7 @@ ev_d26r0107_parts_c:
 ev_d26r0107_button:
 	_TALK_START
 
-	/*‹~o‚µ‚Ä‚¢‚½‚ç*/
+	/*æ•‘å‡ºã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	SYS_FLAG_REIAIHAI,ev_d26r0107_button_02
 
 	_TALKMSG		msg_d26r0107_button_01
@@ -257,9 +257,9 @@ ev_d26r0107_button:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_d26r0107_button
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 yes_d26r0107_button:
-	//‰ð•úƒXƒCƒbƒ`‰Ÿ‚·‚Ü‚Å•”‰®‚©‚ço‚ç‚ê‚È‚¢ƒXƒgƒbƒp[‰ðœ
+	//è§£æ”¾ã‚¹ã‚¤ãƒƒãƒæŠ¼ã™ã¾ã§éƒ¨å±‹ã‹ã‚‰å‡ºã‚‰ã‚Œãªã„ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼è§£é™¤
 	_LDVAL			WK_SCENE_D26R0107,0
 	
 	_SE_PLAY		SEQ_SE_DP_BUTTON3
@@ -276,7 +276,7 @@ yes_d26r0107_button:
 
 	_TIME_WAIT		30,SCWK_ANSWER
 
-	/*ƒ|ƒPƒ‚ƒ“o‚Ä‚­‚é*/
+	/*ãƒã‚±ãƒ¢ãƒ³å‡ºã¦ãã‚‹*/
 	_OBJ_ANIME		D26R0107_POKE1,anm_d26r0107_poke1_01
 	_OBJ_ANIME		D26R0107_POKE2,anm_d26r0107_poke2_01
 	_OBJ_ANIME		D26R0107_POKE3,anm_d26r0107_poke3_01
@@ -289,7 +289,7 @@ yes_d26r0107_button:
 	_OBJ_DEL		D26R0107_POKE3
 	_TIME_WAIT		30,SCWK_ANSWER
 #else
-	/*Ž©‘R‚ÉÁ‚·‰‰o*/
+	/*è‡ªç„¶ã«æ¶ˆã™æ¼”å‡º*/
 	_SXY_POS_CHANGE	D26R0107_POKE1,2,6
 	_SXY_POS_CHANGE	D26R0107_POKE2,14,6
 	_SXY_POS_CHANGE	D26R0107_POKE3,8,12
@@ -301,13 +301,13 @@ yes_d26r0107_button:
 	_OBJ_DEL		D26R0107_POKE3
 #endif
 
-	/*Š²•”‚Ì•û‚ðŒü‚­*/
+	/*å¹¹éƒ¨ã®æ–¹ã‚’å‘ã*/
 	_IFVAL_JUMP		LOCALWORK2,EQ,DIR_UP,ev_d26r0107_gkanbu_dir_up2
 	_IFVAL_JUMP		LOCALWORK2,EQ,DIR_LEFT,ev_d26r0107_gkanbu_dir_left2
 	_IFVAL_JUMP		LOCALWORK2,EQ,DIR_RIGHT,ev_d26r0107_gkanbu_dir_right2
 	_END
 
-/*Ž©‘R‚ÉÁ‚·‰‰o*/
+/*è‡ªç„¶ã«æ¶ˆã™æ¼”å‡º*/
 ev_d26r0107_poke_del_eff:
 	_OBJ_DEL		D26R0107_POKE1
 	_OBJ_DEL		D26R0107_POKE2
@@ -341,10 +341,10 @@ ev_d26r0107_gkanbu_dir_right2:
 	_JUMP			common_d26r0107_gkanbu_02
 	_END
 
-/*‹¤’Êˆ—*/
+/*å…±é€šå‡¦ç†*/
 common_d26r0107_gkanbu_02:
 
-	/*Š²•”*/
+	/*å¹¹éƒ¨*/
 	_TALK_KEYWAIT	msg_d26r0107_gkanbu_04
 	_TALK_CLOSE
 
@@ -356,7 +356,7 @@ common_d26r0107_gkanbu_02:
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ƒeƒ“ƒKƒ“ŽR‚ÌƒXƒgƒbƒp[íœ*/
+	/*ãƒ†ãƒ³ã‚¬ãƒ³å±±ã®ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼å‰Šé™¤*/
 	_FLAG_SET		FV_D05R0102_STOPPER
 	_FLAG_RESET		FV_D05R0102_HAHEN
 
@@ -365,13 +365,13 @@ common_d26r0107_gkanbu_02:
 	_TALK_END
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_d26r0107_button:
 	_TALK_CLOSE
 	_TALK_END
 	_END
 
-/*‹~o‚µ‚Ä‚¢‚½‚ç*/
+/*æ•‘å‡ºã—ã¦ã„ãŸã‚‰*/
 ev_d26r0107_button_02:
 	_TALKMSG		msg_d26r0107_button_03
 	_LAST_KEYWAIT
@@ -380,7 +380,7 @@ ev_d26r0107_button_02:
 	_END
 
 //--------------------------------------------------------------------
-//‚©‚ñ‚Ô	ŽålŒö‚Ì•û‚ð‚Ý‚é
+//ã‹ã‚“ã¶	ä¸»äººå…¬ã®æ–¹ã‚’ã¿ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0107_gkanbu_31
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -393,28 +393,28 @@ _ANIME_LABEL anm_d26r0107_gkanbu_32
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒŒƒCƒAƒCƒnƒC	o‚Ä‚­‚é
+//ãƒ¬ã‚¤ã‚¢ã‚¤ãƒã‚¤	å‡ºã¦ãã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0107_poke1_01
 	_ANIME_DATA	AC_WALK_D_8F,2
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒŒƒCƒAƒCƒnƒC	o‚Ä‚­‚é
+//ãƒ¬ã‚¤ã‚¢ã‚¤ãƒã‚¤	å‡ºã¦ãã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0107_poke2_01
 	_ANIME_DATA	AC_WALK_D_8F,2
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒŒƒCƒAƒCƒnƒC	o‚Ä‚­‚é
+//ãƒ¬ã‚¤ã‚¢ã‚¤ãƒã‚¤	å‡ºã¦ãã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0107_poke3_01
 	_ANIME_DATA	AC_WALK_D_8F,2
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	Š²•”‚Ì•û‚ðŒü‚­
+//ä¸»äººå…¬	å¹¹éƒ¨ã®æ–¹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0107_player_01
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
@@ -427,19 +427,19 @@ _ANIME_LABEL anm_d26r0107_player_02
 
 
 /********************************************************************/
-/*		Š²•”íŒãA‰ð•úƒXƒCƒbƒ`‰Ÿ‚·‚Ü‚Å•”‰®‚©‚ço‚ê‚È‚¢				*/
+/*		å¹¹éƒ¨æˆ¦å¾Œã€è§£æ”¾ã‚¹ã‚¤ãƒƒãƒæŠ¼ã™ã¾ã§éƒ¨å±‹ã‹ã‚‰å‡ºã‚Œãªã„				*/
 /********************************************************************/
 pos_d26r0107_gkanbu:
 	_EVENT_START
 
-	/*ƒTƒ^[ƒ“‰º‚ðŒü‚­*/
+	/*ã‚µã‚¿ãƒ¼ãƒ³ä¸‹ã‚’å‘ã*/
 	_OBJ_ANIME		D26R0107_GKANBU,anm_d26r0107_gkanbu_100
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_d26r0107_gkanbu_05
 	_TALK_CLOSE
 
-	//ŽålŒöˆê•à–ß‚³‚ê‚é
+	//ä¸»äººå…¬ä¸€æ­©æˆ»ã•ã‚Œã‚‹
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d26r0107_player_exit_ng
 	_OBJ_ANIME_WAIT
 
@@ -451,7 +451,7 @@ _ANIME_LABEL anm_d26r0107_player_exit_ng
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒTƒ^[ƒ“	‰º‚ðŒü‚­
+//ã‚µã‚¿ãƒ¼ãƒ³	ä¸‹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0107_gkanbu_100
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
@@ -459,21 +459,21 @@ _ANIME_LABEL anm_d26r0107_gkanbu_100
 
 
 /********************************************************************/
-/*		ƒ†ƒNƒV[													*/
+/*		ãƒ¦ã‚¯ã‚·ãƒ¼													*/
 /********************************************************************/
 ev_d26r0107_machine_a_obj:
 	_EASY_OBJ_MSG	msg_d26r0107_machine_a_01
 	_END
 
 /********************************************************************/
-/*		‚¦‚Þ‚è‚Á‚Æ													*/
+/*		ãˆã‚€ã‚Šã£ã¨													*/
 /********************************************************************/
 ev_d26r0107_machine_b_obj:
 	_EASY_OBJ_MSG	msg_d26r0107_machine_b_01
 	_END
 
 /********************************************************************/
-/*		ƒAƒOƒmƒ€													*/
+/*		ã‚¢ã‚°ãƒŽãƒ 													*/
 /********************************************************************/
 ev_d26r0107_machine_c_obj:
 	_EASY_OBJ_MSG	msg_d26r0107_machine_c_01
@@ -481,21 +481,21 @@ ev_d26r0107_machine_c_obj:
 
 
 /********************************************************************/
-/*							ƒvƒ‹[ƒg								*/
+/*							ãƒ—ãƒ«ãƒ¼ãƒˆ								*/
 /********************************************************************/
 ev_d26r0107_gkanbu2:
 	_TALK_OBJ_START_TURN_NOT
 
-	/*ƒTƒ^[ƒ“‚ÉŸ—˜‚µ‚Ä‚¢‚½‚ç*/
+	/*ã‚µã‚¿ãƒ¼ãƒ³ã«å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_D26R0107_GKANBU_WIN,ev_d26r0107_gkanbu2_02
 
-	/*ƒvƒ‹[ƒg“®‚­*/
+	/*ãƒ—ãƒ«ãƒ¼ãƒˆå‹•ã*/
 	_OBJ_ANIME		D26R0107_GKANBU2,anm_d26r0107_gkanbu2_50
 	_OBJ_ANIME_WAIT
 	_TALK_KEYWAIT	msg_d26r0107_gingaleader2_01
 	_TALK_CLOSE
 
-	/*ƒTƒ^[ƒ““®‚­*/
+	/*ã‚µã‚¿ãƒ¼ãƒ³å‹•ã*/
 	_OBJ_ANIME		D26R0107_GKANBU,anm_d26r0107_gkanbu_50
 	_OBJ_ANIME_WAIT
 
@@ -508,7 +508,7 @@ ev_d26r0107_gkanbu2:
 
 	_TIME_WAIT		20,SCWK_ANSWER
 
-	/*ƒTƒ^[ƒ““®‚­*/
+	/*ã‚µã‚¿ãƒ¼ãƒ³å‹•ã*/
 	_OBJ_ANIME		D26R0107_GKANBU,anm_d26r0107_gkanbu_55
 	_OBJ_ANIME_WAIT
 	_TALK_KEYWAIT	msg_d26r0107_gkanbu_07
@@ -517,7 +517,7 @@ ev_d26r0107_gkanbu2:
 	_TALK_OBJ_END
 	_END
 
-/*ƒTƒ^[ƒ“‚ÉŸ—˜‚µ‚Ä‚¢‚½‚ç*/
+/*ã‚µã‚¿ãƒ¼ãƒ³ã«å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 ev_d26r0107_gkanbu2_02:
 	_TURN_HERO_SITE
 	_TALK_KEYWAIT	msg_d26r0107_gingaleader2_03
@@ -527,21 +527,21 @@ ev_d26r0107_gkanbu2_02:
 	_END
 
 //--------------------------------------------------------------------
-//ƒTƒ^[ƒ“	ƒvƒ‹[ƒg‚Ì•û‚ðŒü‚­
+//ã‚µã‚¿ãƒ¼ãƒ³	ãƒ—ãƒ«ãƒ¼ãƒˆã®æ–¹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0107_gkanbu_50
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒTƒ^[ƒ“	ã‚ðŒü‚­
+//ã‚µã‚¿ãƒ¼ãƒ³	ä¸Šã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0107_gkanbu_55
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒvƒ‹[ƒg	Î‚¤
+//ãƒ—ãƒ«ãƒ¼ãƒˆ	ç¬‘ã†
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0107_gkanbu2_50
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1

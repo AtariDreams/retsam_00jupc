@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.5  2005/03/01 01:57:00  yosizaki
-  copyright の年を修正.
+  copyright 縺ｮ蟷ｴ繧剃ｿｮ豁｣.
 
   Revision 1.4  2005/02/28 05:26:25  yosizaki
   do-indent.
@@ -27,13 +27,13 @@
   change arg-type of MI_ReadByte. (void* -> const void*)
 
   Revision 1.1  2004/03/30 10:59:55  yada
-  バイトアクセス関数をARM7専用から共通に
+  繝舌う繝医い繧ｯ繧ｻ繧ｹ髢｢謨ｰ繧但RM7蟆ら畑縺九ｉ蜈ｱ騾壹↓
 
   Revision 1.3  2004/03/23 01:17:35  yada
-  余計なif～defを削除
+  菴呵ｨ医↑if縲彭ef繧貞炎髯､
 
   Revision 1.2  2004/03/23 00:53:25  yada
-  byteAccess.hのインクルード位置変更
+  byteAccess.h縺ｮ繧､繝ｳ繧ｯ繝ｫ繝ｼ繝我ｽ咲ｽｮ螟画峩
 
   Revision 1.1  2004/03/23 00:50:36  yada
   firstRelease

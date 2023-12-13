@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>WM_StepDataSharing</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">WM_StepDataSharing</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
   <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
 
@@ -24,61 +24,61 @@
 </CODE></PRE></dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <table border="1" width="100%">
   <tbody>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">dsInfo</FONT></STRONG></EM></TD>
-      <TD width="800">�f�[�^�V�F�A�����O���\���̂ւ̃|�C���^���w�肵�܂��B
-      <A href="WM_StartDataSharing.html">WM_StartDataSharing�֐�</A>�ɂĎw�肵���\���̂��w�肵�ĉ������B</TD>
+      <TD width="800">データシェアリング情報構造体へのポインタを指定します。
+      <A href="WM_StartDataSharing.html">WM_StartDataSharing関数</A>にて指定した構造体を指定して下さい。</TD>
     </TR>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">sendData</FONT></STRONG></EM></TD>
-      <TD width="800">���M����f�[�^�ւ̃|�C���^���w�肵�܂��B
-      �f�[�^����<A href="WM_StartDataSharing.html">WM_StartDataSharing�֐�</A>�ɂĎw�肵���V�F�A�f�[�^���Œ�ƂȂ�܂��B</TD>
+      <TD width="800">送信するデータへのポインタを指定します。
+      データ長は<A href="WM_StartDataSharing.html">WM_StartDataSharing関数</A>にて指定したシェアデータ長固定となります。</TD>
     </TR>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">receiveData</FONT></STRONG></EM></TD>
-      <TD width="800">�V�F�A���ꂽ�f�[�^���󂯎��o�b�t�@�ւ̃|�C���^���w�肵�܂��B</TD>
+      <TD width="800">シェアされたデータを受け取るバッファへのポインタを指定します。</TD>
     </TR>
    </tbody>
 </table>
 
-<h2>�Ԃ�l</h2>
-<p><A href="WMErrCode.html">WMErrCode�񋓌^</A>�̏������ʂ�Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
 
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-�f�[�^�V�F�A�����O�̓������ЂƂi�߂܂��B<A href="WM_StartDataSharing.html">WM_StartDataSharing�֐�</A>�ɂăf�[�^�V�F�A�����O���J�n���Ă���ꍇ�Ɏ��s�\�ł��B
-���̊֐��͓����֐��ł��̂ŁA�����ɐ��������ꍇ������WM_ERRCODE_SUCCESS��Ԃ��܂��B<BR>
-�f�[�^�V�F�A�O���[�v���̑��̒[�������̊֐����Ă�ł��Ȃ��Ȃǂ̗��R�œ������x�������ꍇ�ɂ�WM_ERRCODE_NO_DATASET��Ԃ��܂��B<BR>
-�܂��A����M���ɉ񕜕s�\�ȃG���[�����������ꍇ�AWM_ERRCODE_FAILED��Ԃ��Â���悤�ɂȂ�܂��B<BR>
-��M�����f�[�^�\���̂���e�[�����Ƃ̃f�[�^�𒲂ׂ�ۂ�<A href="WM_GetSharedDataAddress.html">WM_GetSharedDataAddress�֐�</A>���g�p���ĉ������B
+データシェアリングの同期をひとつ進めます。<A href="WM_StartDataSharing.html">WM_StartDataSharing関数</A>にてデータシェアリングを開始している場合に実行可能です。
+この関数は同期関数ですので、処理に成功した場合即座にWM_ERRCODE_SUCCESSを返します。<BR>
+データシェアグループ内の他の端末がこの関数を呼んでいないなどの理由で同期が遅延した場合にはWM_ERRCODE_NO_DATASETを返します。<BR>
+また、送受信中に回復不能なエラーが発生した場合、WM_ERRCODE_FAILEDを返しつづけるようになります。<BR>
+受信したデータ構造体から各端末ごとのデータを調べる際は<A href="WM_GetSharedDataAddress.html">WM_GetSharedDataAddress関数</A>を使用して下さい。
 <BR>
-�قȂ�dsInfo��p���邱�Ƃŕ����̃O���[�v�ɑ΂��ĕ��s���ăf�[�^�V�F�A�����O���s�����Ƃ��\�ł����A
-���̏ꍇ�̓O���[�v���Ƃɕ����񂱂̊֐����Ăяo���ĕʁX�ɓ������X�e�b�v������K�v������܂��B
+異なるdsInfoを用いることで複数のグループに対して平行してデータシェアリングを行うことが可能ですが、
+その場合はグループごとに複数回この関数を呼び出して別々に同期をステップさせる必要があります。
 </P>
 
-<P>���肵���f�[�^�V�F�A�����O���s�����߂ɂ́AV�u�����N�����Ă���ł��邾�������^�C�~���O�ł���API���Ăяo���K�v������܂��B</P>
+<P>安定したデータシェアリングを行うためには、Vブランクが来てからできるだけ早いタイミングでこのAPIを呼び出す必要があります。</P>
 
-<P>�Ȃ��A���݂̎����ł͖��t���[���y��2�t���[���Ԋu�Ńf�[�^�V�F�A�����O���s�����ꍇ�ɂ̂݁A�t���[������̎����C�����s���܂��B����API�̌Ăяo����3�t���[���Ԋu�ȏ�̏ꍇ�A�f�[�^���L�͐���ɍs���܂����A�������̎q�@���V�F�A�Ԋu�ȓ��̃t���[��������N�����Ă��Ă����o���邱�Ƃ͂ł��܂���B</P>
+<P>なお、現在の実装では毎フレーム及び2フレーム間隔でデータシェアリングを行った場合にのみ、フレームずれの自動修正が行われます。このAPIの呼び出しが3フレーム間隔以上の場合、データ共有は正常に行えますが、いくつかの子機がシェア間隔以内のフレームずれを起こしていても検出することはできません。</P>
 
-<!--<h2>����</h2>
+<!--<h2>注意</h2>
 <P><font color=red>
-�f�[�^�V�F�A�����O�J�n����A�y�ѐV���Ɏq�@���O���[�v�ɎQ���������ɂ́A�S�Ă� 0 �ł���_�~�[�f�[�^������V�F�A�����ꍇ������܂��B
+データシェアリング開始直後、及び新たに子機がグループに参加した時には、全てが 0 であるダミーデータが数回シェアされる場合があります。
 </font></P>-->
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P><CODE>
 <A href="WM_StartDataSharing.html">WM_StartDataSharing</A>, <A href="WM_EndDataSharing.html">WM_EndDataSharing</A>, <A href="WM_GetSharedDataAddress.html">WM_GetSharedDataAddress</A>
 </CODE></P>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/10/22 �Ԃ�l�̌^��ύX<BR>
-2004/09/25 ���������M<BR>
-2004/09/21 ���������ɔ����A���ӏ������폜<BR>
-2004/08/11 ����<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/09/25 説明を加筆<BR>
+2004/09/21 制限解消に伴い、注意書きを削除<BR>
+2004/08/11 初版<BR>
 </P>
 </body>
 </html>

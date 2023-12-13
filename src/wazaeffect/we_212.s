@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_212.s
- * @brief	‚­‚ë‚¢‚Ü‚È‚´‚µ			212
+ * @brief	ãã‚ã„ã¾ãªã–ã—			212
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡‚­‚ë‚¢‚Ü‚È‚´‚µ			212
+//	â– ãã‚ã„ã¾ãªã–ã—			212
 //
 //
 // =============================================================================
@@ -31,14 +31,14 @@ WEST_KUROIMANAZASI:
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 0, 12, WE_PAL_POISON,
 	WAIT_FLAG
 	
-	///<‰Šú‰»ˆ—@“Ç‚Ýž‚Ýˆ—
+	///<åˆæœŸåŒ–å‡¦ç†ã€€èª­ã¿è¾¼ã¿å‡¦ç†
 	CATS_RES_INIT		KUROIMANAZASI_RES_NO, KUROIMANAZASI_ACT_NUM, KUROIMANAZASI_RES_NUM, KUROIMANAZASI_RES_NUM, KUROIMANAZASI_RES_NUM, KUROIMANAZASI_RES_NUM, 0, 0
 	CATS_CAHR_RES_LOAD	KUROIMANAZASI_RES_NO, EFFECT_212_NCGR_BIN
 	CATS_PLTT_RES_LOAD	KUROIMANAZASI_RES_NO, EFFECT_212_NCLR, 1
 	CATS_CELL_RES_LOAD	KUROIMANAZASI_RES_NO, EFFECT_212_NCER_BIN
 	CATS_CELL_ANM_RES_LOAD	KUROIMANAZASI_RES_NO, EFFECT_212_NANR_BIN
 	
-	///<“®ì
+	///<å‹•ä½œ
 	CATS_ACT_ADD		KUROIMANAZASI_RES_NO, WEST_CSP_WE_212, EFFECT_212_NCGR_BIN, EFFECT_212_NCLR, EFFECT_212_NCER_BIN, EFFECT_212_NANR_BIN, 0, 0, 0,0,
 
 	LOOP_LABEL	8
@@ -52,7 +52,7 @@ WEST_KUROIMANAZASI:
 	
 	WAIT_FLAG
 
-	///<”jŠüˆ—
+	///<ç ´æ£„å‡¦ç†
 	CATS_RES_FREE		KUROIMANAZASI_RES_NO
 
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 12, 0, WE_PAL_POISON,

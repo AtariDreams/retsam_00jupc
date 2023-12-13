@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fssc_factory_sub.h
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhƒTƒuFƒtƒ@ƒNƒgƒŠ[
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ã‚µãƒ–ï¼šãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
  * @author	Satoshi Nohara
  * @date	07.03.29
  */
@@ -14,7 +14,7 @@
 
 //============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //============================================================================================
 extern FACTORY_SCRWORK* FactoryScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u8 level );
@@ -36,7 +36,7 @@ extern u16 FactoryScr_GetEnemyObjCode( FACTORY_SCRWORK* wk, u8 param );
 extern void FactoryScr_SetLose( FACTORY_SCRWORK* wk );
 extern void FactoryScr_SetClear( FACTORY_SCRWORK* wk );
 
-//’ÊM
+//é€šä¿¡
 extern BOOL FactoryScr_CommSetSendBuf( FACTORY_SCRWORK* wk, u16 type, u16 param );
 extern u16 FactoryScr_CommGetLap( FACTORY_SCRWORK* wk );
 

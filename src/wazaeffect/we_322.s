@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_322.s
- * @brief	�R�X���p���[			322
+ * @brief	コスモパワー			322
  * @author	goto
- * @date	2005.07.13(��)
+ * @date	2005.07.13(水)
  *
- * �����ɐF�X�ȉ�����������Ă��悢
+ * ここに色々な解説等を書いてもよい
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	���R�X���p���[			322
+//	■コスモパワー			322
 //
 //
 // =============================================================================
@@ -31,14 +31,14 @@ WEST_KOSUMOPAWAA:
 	
 	PTAT_JP			PTAT	
 	
-	///< �|�P�����Â�
+	///< ポケモン暗く
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6, WE_TOOL_M2, 0, 1, WE_PAL_BLACK, 16, WE322_FADE_WAIT
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6, WE_TOOL_E1, 0, 1, WE_PAL_BLACK, 16, WE322_FADE_WAIT
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6, WE_TOOL_E2, 0, 1, WE_PAL_BLACK, 16, WE322_FADE_WAIT
 	WAIT			10
 	SE_C			SEQ_SE_DP_W322
 	
-	///< �w�i�؂�ւ�
+	///< 背景切り替え
 	WORK_SET		WEDEF_GP_INDEX_FADE_TYPE, 0
 	WORK_SET		WEDEF_GP_INDEX_SPEED_X,  0
 	WORK_SET		WEDEF_GP_INDEX_SPEED_Y,  1
@@ -63,7 +63,7 @@ WEST_KOSUMOPAWAA:
 	
 	WAIT_FLAG
 
-	///< �w�i�؂�ւ��҂�
+	///< 背景切り替え待ち
 	WORK_SET		WEDEF_GP_INDEX_FADE_TYPE, 0
 	WORK_SET		WEDEF_GP_INDEX_SPEED_X,  0
 	WORK_SET		WEDEF_GP_INDEX_SPEED_Y,  1
@@ -79,14 +79,14 @@ PTAT:
 	SEQEND
 
 SIDE_MINE:
-	///< �|�P�����Â�
+	///< ポケモン暗く
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6, WE_TOOL_M2, 0, 1, WE_PAL_BLACK, 16, WE322_FADE_WAIT
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6, WE_TOOL_B, 0, 1, WE_PAL_BLACK, 16, WE322_FADE_WAIT
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6, WE_TOOL_D, 0, 1, WE_PAL_BLACK, 16, WE322_FADE_WAIT
 	WAIT			10
 	SE_C			SEQ_SE_DP_W322
 	
-	///< �w�i�؂�ւ�
+	///< 背景切り替え
 	WORK_SET		WEDEF_GP_INDEX_FADE_TYPE, 0
 	WORK_SET		WEDEF_GP_INDEX_SPEED_X,  0
 	WORK_SET		WEDEF_GP_INDEX_SPEED_Y,  1
@@ -111,7 +111,7 @@ SIDE_MINE:
 	
 	WAIT_FLAG
 
-	///< �w�i�؂�ւ��҂�
+	///< 背景切り替え待ち
 	WORK_SET		WEDEF_GP_INDEX_FADE_TYPE, 0
 	WORK_SET		WEDEF_GP_INDEX_SPEED_X,  0
 	WORK_SET		WEDEF_GP_INDEX_SPEED_Y,  1
@@ -121,14 +121,14 @@ SIDE_MINE:
 	SEQEND
 
 SIDE_ENEMY:
-	///< �|�P�����Â�
+	///< ポケモン暗く
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6, WE_TOOL_M2, 0, 1, WE_PAL_BLACK, 16, WE322_FADE_WAIT
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6, WE_TOOL_A, 0, 1, WE_PAL_BLACK, 16, WE322_FADE_WAIT
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6, WE_TOOL_C, 0, 1, WE_PAL_BLACK, 16, WE322_FADE_WAIT
 	WAIT			10
 	SE_C			SEQ_SE_DP_W322
 	
-	///< �w�i�؂�ւ�
+	///< 背景切り替え
 	WORK_SET		WEDEF_GP_INDEX_FADE_TYPE, 0
 	WORK_SET		WEDEF_GP_INDEX_SPEED_X,  0
 	WORK_SET		WEDEF_GP_INDEX_SPEED_Y,  1
@@ -153,7 +153,7 @@ SIDE_ENEMY:
 	
 	WAIT_FLAG
 
-	///< �w�i�؂�ւ��҂�
+	///< 背景切り替え待ち
 	WORK_SET		WEDEF_GP_INDEX_FADE_TYPE, 0
 	WORK_SET		WEDEF_GP_INDEX_SPEED_X,  0
 	WORK_SET		WEDEF_GP_INDEX_SPEED_Y,  1

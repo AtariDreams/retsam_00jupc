@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_d26r0104evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d26r0104_gingaboss
 _EVENT_DATA		ev_d26r0104_door
@@ -30,7 +30,7 @@ _EVENT_DATA_END
 
 
 /********************************************************************/
-/*							ƒMƒ“ƒK’cƒ{ƒX							*/
+/*							ã‚®ãƒ³ã‚¬å›£ãƒœã‚¹							*/
 /********************************************************************/
 #define POS_D26R0104_GINGA_X1	(8)
 #define POS_D26R0104_GINGA_X2	(9)
@@ -38,14 +38,14 @@ _EVENT_DATA_END
 ev_d26r0104_gingaboss:
 	_EVENT_START
 
-	/*‰º‚ðŒü‚­*/
+	/*ä¸‹ã‚’å‘ã*/
 	_OBJ_ANIME		D26R0104_GINGABOSS,anm_d26r0104_gingaboss_01
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_d26r0104_gingaboss_01
 	_TALK_CLOSE
 
-	/*‹ß‚Ã‚¢‚Ä‚­‚é*/
+	/*è¿‘ã¥ã„ã¦ãã‚‹*/
 	_OBJ_ANIME		D26R0104_GINGABOSS,anm_d26r0104_gingaboss_02
 	_OBJ_ANIME_WAIT
 
@@ -57,7 +57,7 @@ ev_d26r0104_gingaboss:
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,POS_D26R0104_GINGA_X2,ev_d26r0104_gingaboss_x2
 	_END
 
-/*—×Ú‚·‚é*/
+/*éš£æŽ¥ã™ã‚‹*/
 ev_d26r0104_gingaboss_x1:
 	_OBJ_ANIME		D26R0104_GINGABOSS,anm_d26r0104_gingaboss_03
 	_OBJ_ANIME_WAIT
@@ -75,27 +75,27 @@ common_d26r0104_gingaboss_01:
 
 	_TALK_KEYWAIT	msg_d26r0104_gingaboss_03
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_MASUTAABOORU
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_CALL		SCWK_ANSWER,EQ,1,ev_d26r0104_item_event_ok
 
-	/*‚±‚±‚Å‚ÌƒAƒCƒeƒ€“üŽèŽ¸”s‚Í’Êí‚ ‚è‚¦‚È‚¢‚Ì‚Å–³Ž‹‚·‚é*/
+	/*ã“ã“ã§ã®ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹å¤±æ•—ã¯é€šå¸¸ã‚ã‚Šãˆãªã„ã®ã§ç„¡è¦–ã™ã‚‹*/
 
 	_TALK_KEYWAIT	msg_d26r0104_gingaboss_04
 	_TALK_CLOSE
 
-	/*­‚µˆÚ“®‚µ‚ÄŽålŒö‚Ì•û‚ðŒü‚­*/
+	/*å°‘ã—ç§»å‹•ã—ã¦ä¸»äººå…¬ã®æ–¹ã‚’å‘ã*/
 	_OBJ_ANIME		D26R0104_GINGABOSS,anm_d26r0104_gingaboss_10
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_d26r0104_gingaboss_05
 	_TALK_CLOSE
 
-	/*ƒ[ƒvƒpƒlƒ‹‚Å‹Ž‚Á‚Ä‚¢‚­*/
+	/*ãƒ¯ãƒ¼ãƒ—ãƒ‘ãƒãƒ«ã§åŽ»ã£ã¦ã„ã*/
 	_OBJ_ANIME		D26R0104_GINGABOSS,anm_d26r0104_gingaboss_04
 	_OBJ_ANIME_WAIT
 	_OBJ_DEL		D26R0104_GINGABOSS
@@ -106,12 +106,12 @@ common_d26r0104_gingaboss_01:
 	_END
 
 ev_d26r0104_item_event_ok:
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 	_RET
 
 //--------------------------------------------------------------------
-//”s–kˆ—
+//æ•—åŒ—å‡¦ç†
 //--------------------------------------------------------------------
 ev_d26r0104_gingaboss_battle_lose:
 	_TRAINER_LOSE
@@ -119,21 +119,21 @@ ev_d26r0104_gingaboss_battle_lose:
 	_END
 
 //--------------------------------------------------------------------
-//ƒ{ƒX	‰º‚ðŒü‚­
+//ãƒœã‚¹	ä¸‹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d26r0104_gingaboss_01
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ{ƒX	‹ß‚Ã‚¢‚Ä‚­‚é
+//ãƒœã‚¹	è¿‘ã¥ã„ã¦ãã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d26r0104_gingaboss_02
 	_ANIME_DATA	AC_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ{ƒX	—×Ú‚·‚é
+//ãƒœã‚¹	éš£æŽ¥ã™ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d26r0104_gingaboss_03
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -146,7 +146,7 @@ _ANIME_LABEL	anm_d26r0104_gingaboss_13
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ{ƒX	­‚µ—£‚ê‚ÄU‚è•Ô‚é
+//ãƒœã‚¹	å°‘ã—é›¢ã‚Œã¦æŒ¯ã‚Šè¿”ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d26r0104_gingaboss_10
 	_ANIME_DATA	AC_WALK_U_8F,1
@@ -156,7 +156,7 @@ _ANIME_LABEL	anm_d26r0104_gingaboss_10
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ{ƒX	‹Ž‚Á‚Ä‚¢‚­
+//ãƒœã‚¹	åŽ»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d26r0104_gingaboss_04
 	_ANIME_DATA	AC_WALK_R_8F,7
@@ -164,12 +164,12 @@ _ANIME_LABEL	anm_d26r0104_gingaboss_04
 
 
 /********************************************************************/
-/*								”à									*/
+/*								æ‰‰									*/
 /********************************************************************/
 ev_d26r0104_door:
 	_TALK_OBJ_START
 
-	/*uƒMƒ“ƒK‚¾‚ñ‚ÌƒJƒMv‚ð‚à‚Á‚Ä‚¢‚éH*/
+	/*ã€Œã‚®ãƒ³ã‚¬ã ã‚“ã®ã‚«ã‚®ã€ã‚’ã‚‚ã£ã¦ã„ã‚‹ï¼Ÿ*/
 	_ITEM_CHK	ITEM_GINGADANNOKAGI,1,SCWK_ANSWER
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,TRUE,ev_d26r0104_door_02
 	
@@ -179,7 +179,7 @@ ev_d26r0104_door:
 	_TALK_OBJ_END
 	_END
 
-/*uƒMƒ“ƒK‚¾‚ñ‚ÌƒJƒMv‚ð‚à‚Á‚Ä‚¢‚éH*/
+/*ã€Œã‚®ãƒ³ã‚¬ã ã‚“ã®ã‚«ã‚®ã€ã‚’ã‚‚ã£ã¦ã„ã‚‹ï¼Ÿ*/
 ev_d26r0104_door_02:
 	_TALKMSG		msg_d26r0104_door_02
 	_YES_NO_WIN		SCWK_ANSWER
@@ -187,13 +187,13 @@ ev_d26r0104_door_02:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_d26r0104_door
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 yes_d26r0104_door:
 	_PLAYER_NAME	0
 	_TALKMSG		msg_d26r0104_door_03
 	_LAST_KEYWAIT
 
-	//”àŠJ‚­‚Ó‚è
+	//æ‰‰é–‹ããµã‚Š
 	_SE_WAIT		SEQ_SE_DP_SELECT
 	_SE_PLAY		SE_AZITO_DOOR_OPEN
 	_OBJ_ANIME		D26R0104_DOOR_01,anm_d26r0104_door_01
@@ -208,14 +208,14 @@ yes_d26r0104_door:
 	_TALK_OBJ_END
 	_END
 
-/*u‚¢‚¢‚¦vI—¹*/
+/*ã€Œã„ã„ãˆã€çµ‚äº†*/
 no_d26r0104_door:
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
 //--------------------------------------------------------------------
-//”à	ŠJ‚­‚Ó‚è
+//æ‰‰	é–‹ããµã‚Š
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d26r0104_door_01
 	_ANIME_DATA	AC_WALK_L_4F,1
@@ -234,7 +234,7 @@ ev_d26r0104_paper1:
 
 
 /********************************************************************/
-/*							ƒ{ƒX‚ÌPC								*/
+/*							ãƒœã‚¹ã®PC								*/
 /********************************************************************/
 ev_d26r0104_pc1:
 	_TALK_START
@@ -245,11 +245,11 @@ ev_d26r0104_pc1:
 
 ev_d26r0104_pc1_menu:
 	_TALKMSG				msg_d26r0104_pc_02
-	_BMPMENU_INIT			1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST16	msg_ginga_pc_01,0			/*‚¤‚¿‚ã‚¤‚Ì‚Í‚¶‚Ü‚è*/
-	_BMPMENU_MAKE_LIST16	msg_ginga_pc_02,1			/*‚µ‚ñ‚í‚Ìƒ|ƒPƒ‚ƒ“*/
-	_BMPMENU_MAKE_LIST16	msg_ginga_pc_03,2			/*‚ ‚©‚¢‚­‚³‚è*/
-	_BMPMENU_MAKE_LIST16	msg_ginga_pc_04,3			/*‚â‚ß‚é*/
+	_BMPMENU_INIT			1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST16	msg_ginga_pc_01,0			/*ã†ã¡ã‚…ã†ã®ã¯ã˜ã¾ã‚Š*/
+	_BMPMENU_MAKE_LIST16	msg_ginga_pc_02,1			/*ã—ã‚“ã‚ã®ãƒã‚±ãƒ¢ãƒ³*/
+	_BMPMENU_MAKE_LIST16	msg_ginga_pc_03,2			/*ã‚ã‹ã„ãã•ã‚Š*/
+	_BMPMENU_MAKE_LIST16	msg_ginga_pc_04,3			/*ã‚„ã‚ã‚‹*/
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER

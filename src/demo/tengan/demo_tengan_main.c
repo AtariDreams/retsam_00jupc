@@ -80,7 +80,7 @@ BOOL GMEVENT_DemoMain( GMEVENT_CONTROL * event )
 	case 3:
 		if ( FieldEvent_Cmd_WaitMapProcStart( fsys ) == FALSE ) {
 			
-		//	 FieldFadeWipeSet( FLD_DISP_BRIGHT_BLACKIN );	///< ‚±‚Ìƒfƒ‚I—¹Œã‚ÍƒtƒF[ƒh‚ð‚µ‚È‚¢‚½‚ßÁ‚·
+		//	 FieldFadeWipeSet( FLD_DISP_BRIGHT_BLACKIN );	///< ã“ã®ãƒ‡ãƒ¢çµ‚äº†å¾Œã¯ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’ã—ãªã„ãŸã‚æ¶ˆã™
 			 wk->seq++;
 		}
 		break;

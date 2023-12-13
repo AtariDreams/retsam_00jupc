@@ -1,6 +1,6 @@
 /**
  *	@file	nmix_bag.c
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[@–Ø‚ÌÀ‘ÜQÆ
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã€€æœ¨ã®å®Ÿè¢‹å‚ç…§
  *	@author	Miyuki Iwasawa
  *	@date	06.04.07
  */
@@ -18,7 +18,7 @@
 #include "application/nutmixer.h"
 #include "nutmixer_sys.h"
 
-///ƒoƒbƒO‰æ–ÊƒvƒƒZƒXƒRƒ“ƒgƒ[ƒ‹
+///ãƒãƒƒã‚°ç”»é¢ãƒ—ãƒ­ã‚»ã‚¹ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 typedef enum{
  BAGSEQ_BAG_CALL,
  BAGSEQ_BAG_WAIT,
@@ -30,7 +30,7 @@ typedef enum{
 };
 
 //======================================================
-///ƒvƒƒgƒ^ƒCƒvéŒ¾
+///ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 static int bagseq_bagCall(NUTMIXER_WORK* mp);
 static int bagseq_bagWait(NUTMIXER_WORK* mp);
 static int bagseq_tagCall(NUTMIXER_WORK* mp);
@@ -41,9 +41,9 @@ extern PROC_RESULT NMixGameProc_Main(PROC* proc,int *seq);
 extern PROC_RESULT NMixGameProc_End(PROC* proc,int *seq);
 
 //======================================================
-///ƒƒCƒ“ŠÖ”
+///ãƒ¡ã‚¤ãƒ³é–¢æ•°
 /**
- *	@brief	ƒƒCƒ“ƒRƒ}ƒ“ƒh@–Ø‚ÌÀ‘I‘ğƒtƒ[
+ *	@brief	ãƒ¡ã‚¤ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€æœ¨ã®å®Ÿé¸æŠãƒ•ãƒ­ãƒ¼
  */
 int NMixMainSeq_Bag(NUTMIXER_WORK* mp,int* seq)
 {
@@ -60,7 +60,7 @@ int NMixMainSeq_Bag(NUTMIXER_WORK* mp,int* seq)
 	case BAGSEQ_TAG_WAIT:
 		*seq = bagseq_tagWait(mp);
 		break;
-	case BAGSEQ_BAG_COMM_WAIT:	// ’ÊM“¯Šú
+	case BAGSEQ_BAG_COMM_WAIT:	// é€šä¿¡åŒæœŸ
 		CommTimingSyncStart( SYNCHROID_BAG_END );
 		(*seq) = BAGSEQ_BAG_END;
 		break;
@@ -74,14 +74,14 @@ int NMixMainSeq_Bag(NUTMIXER_WORK* mp,int* seq)
 }
 
 /**
- *	@brief	ƒƒCƒ“ƒRƒ}ƒ“ƒh@ƒQ[ƒ€ƒƒCƒ“ƒvƒƒZƒXƒR[ƒ‹
+ *	@brief	ãƒ¡ã‚¤ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹ã‚³ãƒ¼ãƒ«
  */
 int NMixMainSeq_GameCall(NUTMIXER_WORK* mp,int* seq)
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 //	FS_EXTERN_OVERLAY(nuts_tag);
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	const PROC_DATA NMixGameProcData = {
 		NMixGameProc_Init,
 		NMixGameProc_Main,
@@ -94,7 +94,7 @@ int NMixMainSeq_GameCall(NUTMIXER_WORK* mp,int* seq)
 }
 
 /**
- *	@brief	ƒƒCƒ“ƒRƒ}ƒ“ƒh@ƒQ[ƒ€ƒƒCƒ“ƒvƒƒZƒXI—¹‘Ò‚¿
+ *	@brief	ãƒ¡ã‚¤ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
  */
 int NMixMainSeq_GameWait(NUTMIXER_WORK* mp,int *seq)
 {
@@ -105,7 +105,7 @@ int NMixMainSeq_GameWait(NUTMIXER_WORK* mp,int *seq)
 }
 
 /**
- *	@brief	ƒƒCƒ“ƒRƒ}ƒ“ƒh@ƒQ[ƒ€ƒƒCƒ“ƒvƒƒZƒXI—¹ˆ—
+ *	@brief	ãƒ¡ã‚¤ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å‡¦ç†
  */
 int NMixMainSeq_GameEnd(NUTMIXER_WORK* mp,int *seq)
 {
@@ -113,10 +113,10 @@ int NMixMainSeq_GameEnd(NUTMIXER_WORK* mp,int *seq)
 }
 
 //======================================================
-///ƒ[ƒJƒ‹ƒTƒuŠÖ”
+///ãƒ­ãƒ¼ã‚«ãƒ«ã‚µãƒ–é–¢æ•°
 
 /**
- *	@brief	ƒoƒbƒO‰æ–ÊŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒƒã‚°ç”»é¢å‘¼ã³å‡ºã—
  */
 static int bagseq_bagCall(NUTMIXER_WORK* mp)
 {
@@ -147,7 +147,7 @@ static int bagseq_bagCall(NUTMIXER_WORK* mp)
 }
 
 /**
- *	@brief	ƒoƒbƒO‰æ–ÊI—¹‘Ò‚¿
+ *	@brief	ãƒãƒƒã‚°ç”»é¢çµ‚äº†å¾…ã¡
  */
 static int bagseq_bagWait(NUTMIXER_WORK* mp)
 {
@@ -166,16 +166,16 @@ static int bagseq_bagWait(NUTMIXER_WORK* mp)
 	sys_FreeMemoryEz( dat );
 
 	switch( BagSysReturnModeGet( dat ) ){
-	case BAG_RET_TAG:		// ƒ^ƒO‚ğ‚İ‚é
+	case BAG_RET_TAG:		// ã‚¿ã‚°ã‚’ã¿ã‚‹
 		return BAGSEQ_TAG_CALL;
 	
-	case BAG_RET_USE:		// ‚Â‚©‚¤
-	case BAG_RET_ITEMSET:	// ‚à‚½‚¹‚é
-	case BAG_RET_POKEITEMSET:	// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgu‚à‚½‚¹‚év
+	case BAG_RET_USE:		// ã¤ã‹ã†
+	case BAG_RET_ITEMSET:	// ã‚‚ãŸã›ã‚‹
+	case BAG_RET_POKEITEMSET:	// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€Œã‚‚ãŸã›ã‚‹ã€
 		break;
 	case BAG_RET_CANCEL:
 	default:
-		//–{“–‚Í‚±‚±‚É‚Í‚±‚È‚¢‚Ì‚ÅAƒ_ƒ~[‚ğd‚Ş
+		//æœ¬å½“ã¯ã“ã“ã«ã¯ã“ãªã„ã®ã§ã€ãƒ€ãƒŸãƒ¼ã‚’ä»•è¾¼ã‚€
 		mp->itemno = ITEM_KURABONOMI;
 		break;
 	}
@@ -183,14 +183,14 @@ static int bagseq_bagWait(NUTMIXER_WORK* mp)
 }
 
 /**
- *	@breif	ƒ^ƒO‰æ–ÊŒÄ‚Ño‚µ
+ *	@breif	ã‚¿ã‚°ç”»é¢å‘¼ã³å‡ºã—
  */
 static int bagseq_tagCall(NUTMIXER_WORK* mp)
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(nuts_tag);
 
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	const PROC_DATA NutsTagProcData = {
 		NutsTagProc_Init,
 		NutsTagProc_Main,
@@ -206,7 +206,7 @@ static int bagseq_tagCall(NUTMIXER_WORK* mp)
 }
 
 /**
- *	@brief	–Ø‚ÌÀƒ^ƒOI—¹‘Ò‚¿
+ *	@brief	æœ¨ã®å®Ÿã‚¿ã‚°çµ‚äº†å¾…ã¡
  */
 static int bagseq_tagWait(NUTMIXER_WORK* mp)
 {

@@ -15,10 +15,10 @@
   INDENT SOURCE
 
   Revision 1.3  2005/08/11 14:08:00  yasu
-  WEAK SYMBOL ‰»
+  WEAK SYMBOL åŒ–
 
   Revision 1.2  2005/08/10 02:15:33  yasu
-  SOC_GetMtu ‚Ìíœ
+  SOC_GetMtu ã®å‰Šé™¤
 
   Revision 1.1  2005/08/04 08:17:23  yada
   stub added
@@ -30,8 +30,8 @@
 #include <nitroWiFi/soc_stub.h>
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-// gctest ‚ğ’Ê‚·‚½‚ß‚Ì‚à‚Ì
-// À‘•‚ª‚³‚ê‚Ä‚¢‚¯‚ÎÁ‚¦‚Ä‚¢‚­‚Í‚¸
+// gctest ã‚’é€šã™ãŸã‚ã®ã‚‚ã®
+// å®Ÿè£…ãŒã•ã‚Œã¦ã„ã‘ã°æ¶ˆãˆã¦ã„ãã¯ãš
 
 //----------------------------------------------------------------
 SDK_WEAK_SYMBOL int SOC_GetAddrInfo(const char*  nodeName, const char*  servName, const SOCAddrInfo*  hints,

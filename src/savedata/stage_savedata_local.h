@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	stage_savedata_local.h
- * @brief	uƒoƒgƒ‹ƒXƒe[ƒWvƒwƒbƒ_[
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	2007.06.07
  */
@@ -13,37 +13,37 @@
 
 //============================================================================================
 //
-//	ƒvƒŒƒCƒf[ƒ^
+//	ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿
 //
 //============================================================================================
 struct _STAGEDATA{
-	u8	type		:3;										//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
-	u8	save_flag	:1;										//ƒZ[ƒuÏ‚Ý‚©‚Ç‚¤‚©ƒtƒ‰ƒO
+	u8	type		:3;										//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒžãƒ«ãƒã€wifiãƒžãƒ«ãƒ
+	u8	save_flag	:1;										//ã‚»ãƒ¼ãƒ–æ¸ˆã¿ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
 	u8	dmy99		:4;
-	u8	round;												//¡‰½l–ÚH
+	u8	round;												//ä»Šä½•äººç›®ï¼Ÿ
 
-	//ŽQ‰Á‚µ‚Ä‚¢‚éŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®æƒ…å ±
 	u8 mine_poke_pos[STAGE_ENTRY_POKE_MAX];
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
-	u16 tr_index[STAGE_LAP_MULTI_ENEMY_MAX];				//ƒgƒŒ[ƒi[indexƒe[ƒuƒ‹[18*2]
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	u16 tr_index[STAGE_LAP_MULTI_ENEMY_MAX];				//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼indexãƒ†ãƒ¼ãƒ–ãƒ«[18*2]
 
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ª”í‚ç‚È‚¢‚æ‚¤‚É•Û‘¶
-	u16 enemy_poke_index[STAGE_LAP_MULTI_ENEMY_MAX];		//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«ä¿å­˜
+	u16 enemy_poke_index[STAGE_LAP_MULTI_ENEMY_MAX];		//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 };
 
 
 //============================================================================================
 //
-//	¬Ñƒf[ƒ^
+//	æˆç¸¾ãƒ‡ãƒ¼ã‚¿
 //
 //============================================================================================
 struct _STAGESCORE{
-	u8	clear_flag;											//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO(ƒrƒbƒg)
+	u8	clear_flag;											//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°(ãƒ“ãƒƒãƒˆ)
 	u8	dmy;
 	u16 dummy;
 
-	//ƒ^ƒCƒv‚²‚Æ‚ÌƒŒƒxƒ‹(ƒ‰ƒ“ƒN)
+	//ã‚¿ã‚¤ãƒ—ã”ã¨ã®ãƒ¬ãƒ™ãƒ«(ãƒ©ãƒ³ã‚¯)
 	//u8 type_level[STAGE_TYPE_MAX][STAGE_TR_TYPE_MAX/2];	//[4][18/2] 4bit
 };
 

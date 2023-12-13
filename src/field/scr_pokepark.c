@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_pokepark.c
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒ|ƒPƒp[ƒNŠÖ˜A
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒã‚±ãƒ‘ãƒ¼ã‚¯é–¢é€£
  * @author	tamada GAME FREAK inc.
  * @date	2006.06.07
  */
@@ -27,7 +27,7 @@
 //============================================================================================
 //============================================================================================
 //-----------------------------------------------------------------------------
-///	ƒ|ƒPƒp[ƒN—pƒRƒ}ƒ“ƒhFŠJŽnEI—¹§Œä
+///	ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨ã‚³ãƒžãƒ³ãƒ‰ï¼šé–‹å§‹ãƒ»çµ‚äº†åˆ¶å¾¡
 //-----------------------------------------------------------------------------
 BOOL EvCmdPokeParkControl(VM_MACHINE * core)
 {
@@ -35,10 +35,10 @@ BOOL EvCmdPokeParkControl(VM_MACHINE * core)
 	u16 mode = VMGetWorkValue(core);
 	if (mode == POKEPARK_MODE_START) {
 		SysFlag_PokeParkSet(ev);
-		PokeParkSys_Init(core->fsys);	//ƒGƒ“ƒJƒEƒ“ƒgÝ’è‚Æ‚©AŽžŠÔƒJƒEƒ“ƒgŠJŽn‚Æ‚©
+		PokeParkSys_Init(core->fsys);	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆè¨­å®šã¨ã‹ã€æ™‚é–“ã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹ã¨ã‹
 	} else if (mode == POKEPARK_MODE_END) {
 		SysFlag_PokeParkReset(ev);
-		PokeParkSys_Finish(core->fsys); //ŽžŠÔƒJƒEƒ“ƒgƒXƒgƒbƒv‚Æ‚©
+		PokeParkSys_Finish(core->fsys); //æ™‚é–“ã‚«ã‚¦ãƒ³ãƒˆã‚¹ãƒˆãƒƒãƒ—ã¨ã‹
 	} else {
 		GF_ASSERT(0);
 	}
@@ -46,7 +46,7 @@ BOOL EvCmdPokeParkControl(VM_MACHINE * core)
 }
 
 //-----------------------------------------------------------------------------
-///	ƒ|ƒPƒp[ƒN—pƒRƒ}ƒ“ƒhF—a‚¯‚½ƒ|ƒPƒ‚ƒ“‚ð”‚¦‚é
+///	ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨ã‚³ãƒžãƒ³ãƒ‰ï¼šé ã‘ãŸãƒã‚±ãƒ¢ãƒ³ã‚’æ•°ãˆã‚‹
 //-----------------------------------------------------------------------------
 BOOL EvCmdPokeParkDepositCount(VM_MACHINE * core)
 {
@@ -63,7 +63,7 @@ BOOL EvCmdPokeParkDepositCount(VM_MACHINE * core)
 }
 
 //-----------------------------------------------------------------------------
-///	ƒ|ƒPƒp[ƒN—pƒRƒ}ƒ“ƒhF—a‚¯‚½ƒ|ƒPƒ‚ƒ“‚ðƒ{ƒbƒNƒX‚É“]‘—
+///	ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨ã‚³ãƒžãƒ³ãƒ‰ï¼šé ã‘ãŸãƒã‚±ãƒ¢ãƒ³ã‚’ãƒœãƒƒã‚¯ã‚¹ã«è»¢é€
 //-----------------------------------------------------------------------------
 BOOL EvCmdPokeParkTransMons(VM_MACHINE * core)
 {
@@ -75,7 +75,7 @@ BOOL EvCmdPokeParkTransMons(VM_MACHINE * core)
 	BOOL result;
 	int i;
 	for (i = 0; i < POKEPARK_MONS_MAX; i++) {
-		//ˆê‘Ì‚¸‚Âƒ{ƒbƒNƒX‚ÖˆÚ“®
+		//ä¸€ä½“ãšã¤ãƒœãƒƒã‚¯ã‚¹ã¸ç§»å‹•
 		POKEPARKDATA_CopyPokemonParam(ppd, i, pp);
 		TrainerMemoSetPP(pp, my, TRMEMO_POKEPARK_PLACESET, 0, HEAPID_EVENT);
 		result = BOXDAT_PutPokemon(box, PPPPointerGet(pp));
@@ -83,12 +83,12 @@ BOOL EvCmdPokeParkTransMons(VM_MACHINE * core)
 		SaveData_GetPokeRegister( core->fsys->savedata, pp );
 	}
 	sys_FreeMemoryEz(pp);
-	POKEPARKDATA_PreInit(ppd);	//ƒ|ƒPƒp[ƒNƒf[ƒ^‘SÁ‹Ž
+	POKEPARKDATA_PreInit(ppd);	//ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿å…¨æ¶ˆåŽ»
 	return 0;
 }
 
 //-----------------------------------------------------------------------------
-///	ƒ|ƒPƒp[ƒN—pƒRƒ}ƒ“ƒhFƒXƒRƒAŽæ“¾
+///	ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¹ã‚³ã‚¢å–å¾—
 //-----------------------------------------------------------------------------
 BOOL EvCmdPokeParkGetScore(VM_MACHINE * core)
 {

@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_d05r0116evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d05r0116_init_change
 _EVENT_DATA		pos_d05r0116_legend_01
@@ -26,23 +26,23 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d05r0116_flag_change:
-	//ƒGƒ“ƒJƒEƒ“ƒgposoŒ»
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆposå‡ºç¾
 //	_LDVAL		WK_SCENE_D05R0116,1
 
-	//”z•zƒCƒxƒ“ƒg—LŒøH
+	//é…å¸ƒã‚¤ãƒ™ãƒ³ãƒˆæœ‰åŠ¹ï¼Ÿ
 	_IS_HAIHU_EVENT_ENABLE		HAIHUEVENT_ID_D05,LOCALWORK0
-	_IFVAL_JUMP					LOCALWORK0,EQ,0,ev_d05r0116_battle_ng	/*–³Œø*/
+	_IFVAL_JUMP					LOCALWORK0,EQ,0,ev_d05r0116_battle_ng	/*ç„¡åŠ¹*/
 
-	/*ƒNƒŠƒAƒtƒ‰ƒO‚ªON‚©ƒ`ƒFƒbƒN‚·‚é*/
+	/*ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ãŒONã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹*/
 	_IF_FLAGON_JUMP			FE_D05R0116_LEGEND_CLEAR,ev_d05r0116_battle_ng
 
-	/*ƒ|ƒPƒ‚ƒ“‚ð•\Ž¦‚·‚é*/
+	/*ãƒã‚±ãƒ¢ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹*/
 	_FLAG_RESET		FV_D05R0116_LEGEND
 	_END
 
-//ƒ[ƒN‚ª–³ŒøAƒCƒxƒ“ƒgI—¹
+//ãƒ¯ãƒ¼ã‚¯ãŒç„¡åŠ¹ã€ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 ev_d05r0116_battle_ng:
-	_FLAG_SET		FV_D05R0116_LEGEND		/*ƒ|ƒPƒ‚ƒ“‚ðÁ‚µ‚Ä‚¨‚­*/
+	_FLAG_SET		FV_D05R0116_LEGEND		/*ãƒã‚±ãƒ¢ãƒ³ã‚’æ¶ˆã—ã¦ãŠã*/
 	_END
 
 ev_d05r0116_init_change:
@@ -56,34 +56,34 @@ ev_d05r0116_init_change_obj_del:
 	_END
 
 /********************************************************************/
-/*	ƒAƒEƒXƒCƒxƒ“ƒgŠJŽn											*/
+/*	ã‚¢ã‚¦ã‚¹ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹											*/
 /********************************************************************/
 ev_d05r0116_legend_01:
 pos_d05r0116_legend_01:
 	_EVENT_START
 
-	//ƒGƒ“ƒJƒEƒ“ƒgƒV[ƒ“ƒŠƒZƒbƒg(posƒtƒbƒN)
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚·ãƒ¼ãƒ³ãƒªã‚»ãƒƒãƒˆ(posãƒ•ãƒƒã‚¯)
 	_LDVAL			WK_SCENE_D05R0116,0
 
-	/*Iƒ}[ƒN•\Ž¦*/
+	/*ï¼ãƒžãƒ¼ã‚¯è¡¨ç¤º*/
 	_CALL			ev_d05r0116_anm_player_gyoe
 
-	//Ž©‹@ƒI[ƒgˆÚ“®ŠJŽn
+	//è‡ªæ©Ÿã‚ªãƒ¼ãƒˆç§»å‹•é–‹å§‹
 	_CALL			ev_d05r0116_anm_player_move
 	
-	//ƒAƒEƒX–Â‚«º
+	//ã‚¢ã‚¦ã‚¹é³´ãå£°
 	_VOICE_PLAY		MONSNO_AUSU,0		
 	_VOICE_WAIT
 	
-	//Ž©‹@ƒI[ƒgˆÚ“®ŠJŽn2
+	//è‡ªæ©Ÿã‚ªãƒ¼ãƒˆç§»å‹•é–‹å§‹2
 	_CALL			ev_d05r0116_anm_player_move2
 	
-	//ƒAƒEƒXƒGƒ“ƒJƒEƒ“ƒg
+	//ã‚¢ã‚¦ã‚¹ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 	_VOICE_PLAY		MONSNO_AUSU,0		
 	_TALK_KEYWAIT	msg_d05r0116_sppoke6_01
 	_TALK_CLOSE
 
-	//í“¬ŠJŽn
+	//æˆ¦é—˜é–‹å§‹
 	_FLAG_SET		FE_INIT_CHANGE_OBJ_DEL
 	_SP_WILD_BTL_SET	MONSNO_AUSU,80
 	_FLAG_RESET		FE_INIT_CHANGE_OBJ_DEL
@@ -93,13 +93,13 @@ pos_d05r0116_legend_01:
 	_HAIFU_POKE_RETRY_CHECK	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_d05r0116_legend_capture_ng
 
-//ƒAƒEƒX•ß‚Ü‚¦‚½or“|‚µ‚½(ƒRƒƒ“ƒg‚ªˆá‚¤‚¾‚¯‚ÅA•ß‚Ü‚¦‚½‚Ì‚Ý‚¾‚ÆŽv‚í‚ê‚é)
+//ã‚¢ã‚¦ã‚¹æ•ã¾ãˆãŸorå€’ã—ãŸ(ã‚³ãƒ¡ãƒ³ãƒˆãŒé•ã†ã ã‘ã§ã€æ•ã¾ãˆãŸã®ã¿ã ã¨æ€ã‚ã‚Œã‚‹)
 ev_d05r0116_legend_event_clear:
 
-	/*ƒAƒ‹ƒZƒEƒXŽR’jƒZƒbƒg(scr_postman‚È‚Ç‚É‚à“¯—l‚Ìˆ—‚ª‚ ‚é)*/
+	/*ã‚¢ãƒ«ã‚»ã‚¦ã‚¹å±±ç”·ã‚»ãƒƒãƒˆ(scr_postmanãªã©ã«ã‚‚åŒæ§˜ã®å‡¦ç†ãŒã‚ã‚‹)*/
 	_IFVAL_CALL			SYS_WORK_ARUSEUSU,EQ,0,ev_aruseusu_work_chg
 
-	//ƒNƒŠƒAƒtƒ‰ƒOon
+	//ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°on
 	_FLAG_SET			FE_D05R0116_LEGEND_CLEAR
 	_EVENT_END
 	_END
@@ -108,19 +108,19 @@ ev_aruseusu_work_chg:
 	_LDVAL				SYS_WORK_ARUSEUSU,1
 	_RET
 
-//ƒAƒEƒX“¦‚µ‚½
+//ã‚¢ã‚¦ã‚¹é€ƒã—ãŸ
 ev_d05r0116_legend_capture_ng:
 	_TALKMSG			msg_d05r0116_sppoke6_02
 	_LAST_KEYWAIT
 	_TALK_CLOSE
-	//‚à‚¤ˆê‰ñ—ˆ‚½‚ç‚¢‚é
+	//ã‚‚ã†ä¸€å›žæ¥ãŸã‚‰ã„ã‚‹
 	_FLAG_RESET			FV_D05R0116_LEGEND
 	_EVENT_END
 	_END
 
-//‘S–Å
+//å…¨æ»…
 ev_d05r0116_legend_lose:
-	//‚à‚¤ˆê‰ñ—ˆ‚½‚ç‚¢‚é
+	//ã‚‚ã†ä¸€å›žæ¥ãŸã‚‰ã„ã‚‹
 	_FLAG_RESET			FV_D05R0116_LEGEND
 	_NORMAL_LOSE	
 	_EVENT_END
@@ -128,24 +128,24 @@ ev_d05r0116_legend_lose:
 
 
 /********************************************************************/
-/*	Ž©‹@Iƒ}[ƒN•\Ž¦ƒAƒjƒ											*/
+/*	è‡ªæ©Ÿï¼ãƒžãƒ¼ã‚¯è¡¨ç¤ºã‚¢ãƒ‹ãƒ¡											*/
 /********************************************************************/
 ev_d05r0116_anm_player_gyoe:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d05r0116_player_gyoe
 	_OBJ_ANIME_WAIT
 	_RET
 
-/*Ž©‹@Iƒ}[ƒN•\Ž¦*/
+/*è‡ªæ©Ÿï¼ãƒžãƒ¼ã‚¯è¡¨ç¤º*/
 _ANIME_LABEL	anm_d05r0116_player_gyoe
 	_ANIME_DATA	AC_MARK_GYOE,1
 	_ANIME_DATA	AC_WAIT_16F,1
 	_ANIME_DATA	ACMD_END,0
 
 /********************************************************************/
-/*	POSŽ©‹@ˆÚ“®ƒAƒjƒ												*/
+/*	POSè‡ªæ©Ÿç§»å‹•ã‚¢ãƒ‹ãƒ¡												*/
 /********************************************************************/
 ev_d05r0116_anm_player_move:
-	//XÀ•W‚É‚æ‚Á‚ÄƒAƒjƒ•ªŠò
+	//Xåº§æ¨™ã«ã‚ˆã£ã¦ã‚¢ãƒ‹ãƒ¡åˆ†å²
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 
 	_SWITCH			SCWK_TEMP0
@@ -176,7 +176,7 @@ ev_d05r0116_anm_player_move2:
 	_OBJ_ANIME_WAIT
 	_RET
 
-//Ž©‹@ˆÚ“®ƒpƒ^[ƒ“
+//è‡ªæ©Ÿç§»å‹•ãƒ‘ã‚¿ãƒ¼ãƒ³
 _ANIME_LABEL	anm_d05r0116_player_move_l
 	_ANIME_DATA	AC_WALK_U_8F,4
 	_ANIME_DATA	AC_WALK_R_8F,1

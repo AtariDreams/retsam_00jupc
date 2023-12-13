@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_FndCreateExpHeap</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">NNS_FndCreateExpHeap</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -21,31 +21,31 @@
 	                        void*   startAddress,
 	                        u32     size);</CODE></pre>
 	</dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">startAddress</font></strong></em></td>
     
-  <td width="87%">�q�[�v�Ɋ��蓖�Ă郁�����̈�̐擪�A�h���X</td>
+  <td width="87%">ヒープに割り当てるメモリ領域の先頭アドレス</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">size</font></strong></em></td>
     
-  <td width="87%">�q�[�v�Ɋ��蓖�Ă郁�����̈�̃T�C�Y(�o�C�g)</td>
+  <td width="87%">ヒープに割り当てるメモリ領域のサイズ(バイト)</td>
   </tr>
 </table>
-<h2>�Ԃ�l</h2>
-<p>�q�[�v���쐬���邱�Ƃ��o�����ꍇ�A�q�[�v�ւ̃n���h���l��Ԃ��܂��B �q�[�v���쐬���邱�Ƃ��o���Ȃ������ꍇ�ANNS_FND_HEAP_INVALID_HANDLE 
- (NULL�l)��Ԃ��܂��B</p>
-<H2>����</H2>
-<p>�g���q�[�v���쐬���܂��B�q�[�v�̂��߂̗̈�� startAddress �Ŏw�肵���A�h���X���� size �Ŏw�肳�ꂽ�T�C�Y���̃������̈�ɂȂ�܂��B</P>
-<h2>�Q��</h2>
+<h2>返り値</h2>
+<p>ヒープを作成することが出来た場合、ヒープへのハンドル値を返します。 ヒープを作成することが出来なかった場合、NNS_FND_HEAP_INVALID_HANDLE 
+ (NULL値)を返します。</p>
+<H2>説明</H2>
+<p>拡張ヒープを作成します。ヒープのための領域は startAddress で指定したアドレスから size で指定されたサイズ分のメモリ領域になります。</P>
+<h2>参照</h2>
 <p><CODE><A href="NNS_FndCreateExpHeapEx.html">NNS_FndCreateExpHeapEx</A><br>
 </CODE></p>
-<H2>����</H2>
-<P>2004/10/15 �������ւ̎Q�Ƃ��ԈႦ�Ă����̂��C��<br>
- 2004/04/28 �q�[�v���쐬���邱�Ƃ��ł��Ȃ������ꍇ�̒l���ԈႦ�Ă����̂��C��<br>
- 2004/04/01 ����</P>
+<H2>履歴</H2>
+<P>2004/10/15 引数名への参照を間違えていたのを修正<br>
+ 2004/04/28 ヒープを作成することができなかった場合の値を間違えていたのを修正<br>
+ 2004/04/01 初版</P>
 </body>
 </html>

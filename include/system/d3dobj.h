@@ -2,7 +2,7 @@
 /**
  *
  *	@file		d3dobj.h
- *	@brief		�t�B�[���h�RD�I�u�W�F�N�g�ȈՍ쐬
+ *	@brief		フィールド３Dオブジェクト簡易作成
  *	@author		tomoya takahashi
  *	@data		2006.04.25
  *
@@ -23,23 +23,23 @@
 
 //-----------------------------------------------------------------------------
 /**
- *	�y�g�p��̒��Ӂz
- *		�Ensb�`��2�ȏ�̂��̂��������ē���邱�Ƃ��o���܂��B
- *		�@���������̃V�X�e���ł́A
- *		�@���̒��̃C���f�b�N�X0�Ԗڂ̂��̂������K�p���܂��B
+ *	【使用上の注意】
+ *		・nsb〜に2つ以上のものをくっつけて入れることも出来ます。
+ *		　しかしこのシステムでは、
+ *		　その中のインデックス0番目のものをいつも適用します。
  *
- *		�E���k�ɔ�Ή��ł��B
+ *		・圧縮に非対応です。
  */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	��]�����萔
+//	回転方向定数
 //=====================================
 enum{
 	D3DOBJ_ROTA_WAY_X,
@@ -50,58 +50,58 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	�RD�I�u�W�F�N�g
-//	���f���@�e�N�X�`��
-//	��ނɂP�ł悢���̂ł��B
+//	３Dオブジェクト
+//	モデル　テクスチャ
+//	種類に１つでよいものです。
 //=====================================
 typedef struct {
-	void*					pResMdl;		// ���f���ް�
-	NNSG3dResMdlSet*		pModelSet;		// ���f���Z�b�g
-	NNSG3dResMdl*			pModel;			// ���f�����\�[�X
-	NNSG3dResTex*			pMdlTex;		// ���f���ɓ\��t����e�N�X�`��
+	void*					pResMdl;		// モデルデータ
+	NNSG3dResMdlSet*		pModelSet;		// モデルセット
+	NNSG3dResMdl*			pModel;			// モデルリソース
+	NNSG3dResTex*			pMdlTex;		// モデルに貼り付けるテクスチャ
 } D3DOBJ_MDL;
 
 //-------------------------------------
-//	�RD�I�u�W�F�N�g
-//	�A�j��
-//	��ނɂP�ł悢���̂ł��B
+//	３Dオブジェクト
+//	アニメ
+//	種類に１つでよいものです。
 //=====================================
 typedef struct {
-	void*					pResAnm;		// �A�j�����\�[�X
-	void*					pOneResAnm;		// 1�؂��������\�[�X
-	NNSG3dAnmObj*			pAnmObj;			// �A�j���[�V�����I�u�W�F
+	void*					pResAnm;		// アニメリソース
+	void*					pOneResAnm;		// 1つ切り取ったリソース
+	NNSG3dAnmObj*			pAnmObj;			// アニメーションオブジェ
 	fx32 frame;
 	BOOL res_copy;
 } D3DOBJ_ANM;
 
 //-------------------------------------
-//	�RD�`��I�u�W�F�N�g
-//	�o�������I�u�W�F�N�g�̐����K�v�Ȃ��̂ł��B
+//	３D描画オブジェクト
+//	出したいオブジェクトの数分必要なものです。
 //=====================================
 typedef struct {
-	NNSG3dRenderObj			render;		// �����_�[�I�u�W�F�N�g
-	VecFx32 matrix;	// ���W
-	VecFx32 scale;	// �g�k
-	BOOL	draw_flg;	// �`��t���O
-	u16		rota[ D3DOBJ_ROTA_WAY_NUM ];// ��]�pX
+	NNSG3dRenderObj			render;		// レンダーオブジェクト
+	VecFx32 matrix;	// 座標
+	VecFx32 scale;	// 拡縮
+	BOOL	draw_flg;	// 描画フラグ
+	u16		rota[ D3DOBJ_ROTA_WAY_NUM ];// 回転角X
 	u16		dummy;
 } D3DOBJ;
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
-// ���f��
+// モデル
 GLOBAL void D3DOBJ_MdlLoad( D3DOBJ_MDL* p_mdl, u32 arc_idx, u32 data_idx, u32 heap );
 GLOBAL void D3DOBJ_MdlLoadH( D3DOBJ_MDL* p_mdl, ARCHANDLE* p_handle, u32 data_idx, u32 heap );
 GLOBAL void D3DOBJ_MdlDelete( D3DOBJ_MDL* p_mdl );
 
-// �A�j��
+// アニメ
 GLOBAL void D3DOBJ_AnmLoad( D3DOBJ_ANM* p_anm, const D3DOBJ_MDL* cp_mdl, u32 arc_idx, u32 data_idx, u32 heap, NNSFndAllocator* pallocator );
 GLOBAL void D3DOBJ_AnmLoadH( D3DOBJ_ANM* p_anm, const D3DOBJ_MDL* cp_mdl, ARCHANDLE* p_handle, u32 data_idx, u32 heap, NNSFndAllocator* pallocator );
 GLOBAL void D3DOBJ_AnmLoad_Data( D3DOBJ_ANM* p_anm, const D3DOBJ_MDL* cp_mdl, void* p_data, NNSFndAllocator* pallocator );
@@ -112,7 +112,7 @@ GLOBAL void D3DOBJ_AnmSet( D3DOBJ_ANM* p_anm, fx32 num );
 GLOBAL fx32 D3DOBJ_AnmGet( const D3DOBJ_ANM* cp_anm );
 GLOBAL fx32 D3DOBJ_AnmGetFrameNum( const D3DOBJ_ANM* cp_anm );
 
-// �`��I�u�W�F
+// 描画オブジェ
 GLOBAL void D3DOBJ_Init( D3DOBJ* p_draw, D3DOBJ_MDL* cp_mdl );
 GLOBAL void D3DOBJ_AddAnm( D3DOBJ* p_draw, D3DOBJ_ANM* p_anm );
 GLOBAL void D3DOBJ_DelAnm( D3DOBJ* p_draw, D3DOBJ_ANM* p_anm );

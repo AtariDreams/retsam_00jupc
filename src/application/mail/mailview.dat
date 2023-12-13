@@ -1,18 +1,18 @@
 /**
 	@file	mailview.dat
-	@brier	ƒ[ƒ‹•`‰æ@ƒŠƒeƒ‰ƒ‹’è‹`
+	@brier	ãƒ¡ãƒ¼ãƒ«æç”»ã€€ãƒªãƒ†ãƒ©ãƒ«å®šç¾©
 	@author	Miyuki Iwasawa
 	@date	06.02.10
 */
 
 //=======================================
-///ƒAƒ‹ƒtƒ@’lİ’è
+///ã‚¢ãƒ«ãƒ•ã‚¡å€¤è¨­å®š
 //=======================================
 #define ALPHA_SECOND	(28)
 #define ALPHA_FIRST		(4)
 
 //=======================================
-///ƒpƒŒƒbƒgƒAƒjƒŠÖ˜A
+///ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡é–¢é€£
 //=========================================
 #define PALANM_STARTPAL	(34)
 
@@ -27,7 +27,7 @@ enum{
  MAILVIEW_PALMAX,
 };
 
-///ŠÈˆÕ•¶ƒEƒBƒ“ƒhƒE01
+///ç°¡æ˜“æ–‡ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦01
 #define MAIL_BMPCHAR_BASE	(1023)
 #define BMPL_MSG_PX	(3)
 #define BMPL_MSG_SX	(26)
@@ -43,7 +43,7 @@ enum{
 #define BMPL_M03_PY	(BMPL_M02_PY+BMPL_MSG_SY+1)
 #define BMPL_M03_CGX	(BMPL_M02_CGX-BMPL_MSG_SIZ)
 
-//YesNoƒEƒBƒ“ƒhƒE
+//YesNoã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_YN01_PX	(21)
 #define BMPL_YN02_PX	(3)
 #define BMPL_YN_PY		(20)
@@ -54,7 +54,7 @@ enum{
 #define BMPL_YN01_CGX	(BMPL_M03_CGX-BMPL_YN_SX*BMPL_YN_SY)
 #define BMPL_YN02_CGX	(BMPL_YN01_CGX-BMPL_YN_SX*BMPL_YN_SY)
 
-//ƒtƒHƒ“ƒg•ƒEƒBƒ“ƒhƒEƒtƒŒ[ƒ€
+//ãƒ•ã‚©ãƒ³ãƒˆï¼†ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define BMPL_WIN_FRM		(GF_BGL_FRAME0_M)
 
 #define BMPL_TALK_PX	(2)
@@ -65,7 +65,7 @@ enum{
 #define BMPL_TALK_PAL	(TALK_FONT_PAL)
 #define BMPL_TALK_FRM	(BMPL_WIN_FRM)
 
-//YNŠm”FƒEƒBƒ“ƒhƒE
+//YNç¢ºèªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define BMPL_YESNO_PX	(25)
 #define BMPL_YESNO_PY	(13)
 #define BMPL_YESNO_SX	(6)
@@ -78,9 +78,9 @@ enum{
 #define BMPL_TALK_WIN_CGX	(BMPL_MENU_WIN_CGX+MENU_WIN_CGX_SIZ)
 
 //=====================================================
-///ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ŠÖ˜A
+///ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³é–¢é€£
 //=====================================================
-#define MAILVIEW_ICON_PRI	(2)	///<ƒ[ƒ‹Viewƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒvƒ‰ƒCƒIƒŠƒeƒB
-#define ICONVIEW_WIDTH	(40)	///<ƒAƒCƒRƒ“‚ğ•À‚×‚éŠÔŠu
-#define ICONVIEW_PX		(16*8)	///<ƒAƒCƒRƒ“•\¦‚Ì‰E’[À•W
-#define ICONVIEW_PY		(160)	///<ƒAƒCƒRƒ“•\¦‚ÌYÀ•W
+#define MAILVIEW_ICON_PRI	(2)	///<ãƒ¡ãƒ¼ãƒ«Viewãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+#define ICONVIEW_WIDTH	(40)	///<ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä¸¦ã¹ã‚‹é–“éš”
+#define ICONVIEW_PX		(16*8)	///<ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºã®å³ç«¯åº§æ¨™
+#define ICONVIEW_PY		(160)	///<ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºã®Yåº§æ¨™

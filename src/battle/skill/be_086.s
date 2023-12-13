@@ -3,8 +3,8 @@
 /**
  *
  *@file		be_086.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			086�@���肪���O�ɏo�����Z�𐔃^�[���g���Ȃ�����i�ϐg�̕ύX��Y�ꂸ�Ɂj
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			086　相手が直前に出した技を数ターン使えなくする（変身の変更を忘れずに）
  *
  *@author	HisashiSogabe
  *@data		2006.01.19

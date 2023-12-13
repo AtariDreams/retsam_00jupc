@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_029.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			‚±‚¨‚èó‘Ô‚ª—n‚¯‚½ƒV[ƒPƒ“ƒX
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ã“ãŠã‚ŠçŠ¶æ…‹ãŒæº¶ã‘ãŸã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *@author	HisashiSogabe
  *@data		2005.12.05
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_029:
-	//‚±‚¨‚èƒtƒ‰ƒO‚ð—Ž‚Æ‚·
+	//ã“ãŠã‚Šãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 	PSP_VALUE	VAL_NBIT,SIDE_WORK,ID_PSP_condition,CONDITION_KOORI
 	MESSAGE		MeltMineMsg,TAG_NICK,SIDE_WORK
 	SERVER_WAIT

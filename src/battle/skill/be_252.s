@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_252.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			252�@�T�^�[���̊ԁA���ɕ����y�ӂ䂤�z��ԂɂȂ�B�n�ʋZ��������Ȃ��Ȃ�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			252　５ターンの間、宙に浮き【ふゆう】状態になる。地面技が当たらなくなる。
  *
  *@author	HisashiSogabe
  *@data		2005.10.03
@@ -16,9 +16,9 @@
 
 BE_252:
 	IF_PSP			IF_FLAG_NE,SIDE_ATTACK,ID_PSP_wkw_denzihuyuu_count,0,Umakukimaran
-	//�����ӂ䂤�́A���܂����܂��
+	//特性ふゆうは、うまくきまらん
 	TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_ATTACK,TOKUSYU_HUYUU,Umakukimaran
-	//�˂��͂钆�́A���܂����܂��
+	//ねをはる中は、うまくきまらん
 	IF_PSP			IF_FLAG_BIT,SIDE_ATTACK,ID_PSP_waza_kouka,WAZAKOUKA_NEWOHARU,Umakukimaran
 	PSP_VALUE		VAL_BIT,SIDE_ATTACK,ID_PSP_waza_kouka,WAZAKOUKA_DENZIHUYUU
 	PSP_VALUE		VAL_SET,SIDE_ATTACK,ID_PSP_wkw_denzihuyuu_count,DENZIHUYUU_COUNT

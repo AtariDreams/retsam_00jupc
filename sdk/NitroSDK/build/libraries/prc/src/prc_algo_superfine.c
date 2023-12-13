@@ -15,69 +15,69 @@
   small fix
 
   Revision 1.14  2006/07/25 04:37:58  seiki_masashi
-  CP —˜—p•”•ª‚ğŠ„‚è‚İ‹Ö~‚ÉC³
+  CP åˆ©ç”¨éƒ¨åˆ†ã‚’å‰²ã‚Šè¾¼ã¿ç¦æ­¢ã«ä¿®æ­£
 
   Revision 1.13  2006/01/18 02:12:27  kitase_hirotake
   do-indent
 
   Revision 1.12  2005/03/04 12:43:00  seiki_masashi
-  ASSERT ‚ÌğŒ‚ªŒµ‚µ‚·‚¬‚½‚Ì‚ğC³
+  ASSERT ã®æ¡ä»¶ãŒå³ã—ã™ããŸã®ã‚’ä¿®æ­£
 
   Revision 1.11  2005/02/28 05:26:29  yosizaki
   do-indent.
 
   Revision 1.10  2005/02/18 07:10:49  seiki_masashi
-  Copyright •\‹L‚ÌC³
+  Copyright è¡¨è¨˜ã®ä¿®æ­£
 
   Revision 1.9  2005/02/18 07:09:52  seiki_masashi
-  warning ‘Îô
+  warning å¯¾ç­–
 
   Revision 1.8  2004/11/04 07:57:46  seiki_masashi
-  regularize ‚ğ normalize ‚ÉC³
+  regularize ã‚’ normalize ã«ä¿®æ­£
 
   Revision 1.7  2004/08/31 02:04:05  seiki_masashi
-  ƒRƒƒ“ƒg‚ÌC³‚Ì‚İ
+  ã‚³ãƒ¡ãƒ³ãƒˆã®ä¿®æ­£ã®ã¿
 
   Revision 1.6  2004/07/19 06:52:06  seiki_masashi
-  ¯•Êq–¼‚Ì®—
+  è­˜åˆ¥å­åã®æ•´ç†
 
   Revision 1.5  2004/07/09 00:12:36  seiki_masashi
-  ±×‚ÈC³
+  äº›ç´°ãªä¿®æ­£
 
   Revision 1.4  2004/07/05 13:19:25  seiki_masashi
-  ƒ}ƒNƒ–¼‚Ì•ÏX
-  Šp“xƒXƒRƒA‚ÌŠî€‚ÌÄŒŸ“¢
+  ãƒã‚¯ãƒ­åã®å¤‰æ›´
+  è§’åº¦ã‚¹ã‚³ã‚¢ã®åŸºæº–ã®å†æ¤œè¨
 
   Revision 1.3  2004/07/05 05:45:14  seiki_masashi
-  ‹——£‚ğÚ×‚ÉŒvZ‚·‚é‚æ‚¤‚É•ÏX
+  è·é›¢ã‚’è©³ç´°ã«è¨ˆç®—ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.2  2004/07/05 02:41:01  seiki_masashi
-  ratio ‚ÌŒvZ”‚ÌíŒ¸
-  FX_DivAsync ‚Ìg—p
+  ratio ã®è¨ˆç®—æ•°ã®å‰Šæ¸›
+  FX_DivAsync ã®ä½¿ç”¨
 
   Revision 1.1  2004/06/30 08:49:24  seiki_masashi
   algo_simple -> algo_light
   algo_standard -> algo_fine
   algo_accurate -> algo_superfine
-  V‚µ‚¢ algo_standard ‚Ì’Ç‰Á
+  æ–°ã—ã„ algo_standard ã®è¿½åŠ 
 
   Revision 1.5  2004/06/29 02:14:20  seiki_masashi
   #if NITRO_DEBUG -> #ifdef SDK_DEBUG
-  correction ’l‚É‚æ‚é•â³‚ÌÀ‘•
+  correction å€¤ã«ã‚ˆã‚‹è£œæ­£ã®å®Ÿè£…
 
   Revision 1.4  2004/06/28 11:11:36  seiki_masashi
-  Œ©–{ƒpƒ^[ƒ“‚Ìˆê——‚É regularizeSize ‚ğ’Ç‰Á
-  Šeíƒpƒ‰ƒ[ƒ^—Ş‚ğ®—
+  è¦‹æœ¬ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ä¸€è¦§ã« regularizeSize ã‚’è¿½åŠ 
+  å„ç¨®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡ã‚’æ•´ç†
 
   Revision 1.3  2004/06/25 13:32:11  seiki_masashi
-  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€ 'Standard' ‚Ì’Ç‰Á
+  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ  'Standard' ã®è¿½åŠ 
 
   Revision 1.2  2004/06/25 03:02:55  seiki_masashi
-  ŠeŠÖ”‚©‚ç bufferSize ‚Ìw’è‚ğíœ
-  GetRecognitionBufferSize* ‚Ì’Ç‰Á
+  å„é–¢æ•°ã‹ã‚‰ bufferSize ã®æŒ‡å®šã‚’å‰Šé™¤
+  GetRecognitionBufferSize* ã®è¿½åŠ 
 
   Revision 1.1  2004/06/24 08:09:19  seiki_masashi
-  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€ "Superfine" ‚ğ’Ç‰Á
+  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ  "Superfine" ã‚’è¿½åŠ 
 
 
   $NoKeywords: $
@@ -112,15 +112,15 @@ PRCi_CalcStrokeDistance_Superfine(fx32 *score,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognitionBufferSizeEx_Superfine
 
-  Description:  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ª•K—v‚Æ‚·‚éƒ[ƒN—Ìˆæ‚Ì‘å‚«‚³‚ğ
-                ŒvZ‚µ‚Ü‚·.
+  Description:  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒå¿…è¦ã¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®å¤§ãã•ã‚’
+                è¨ˆç®—ã—ã¾ã™.
 
-  Arguments:    maxPointCount   “ü—Í“_”‚ÌãŒÀ(pen up marker ‚ğŠÜ‚Ş)
-                maxStrokeCount  ‰æ”‚ÌãŒÀ
-                protoDB         Œ©–{DB.
-                param           ”F¯ˆ—‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^.
+  Arguments:    maxPointCount   å…¥åŠ›ç‚¹æ•°ã®ä¸Šé™(pen up marker ã‚’å«ã‚€)
+                maxStrokeCount  ç”»æ•°ã®ä¸Šé™
+                protoDB         è¦‹æœ¬DB.
+                param           èªè­˜å‡¦ç†ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿.
 
-  Returns:      ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ª•K—v‚Æ‚·‚éƒƒ‚ƒŠ—Ê.
+  Returns:      èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒå¿…è¦ã¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé‡.
  *---------------------------------------------------------------------------*/
 u32
 PRC_GetRecognitionBufferSizeEx_Superfine(int maxPointCount,
@@ -154,23 +154,23 @@ PRC_GetRecognitionBufferSizeEx_Superfine(int maxPointCount,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetRecognizedEntriesEx_Superfine
 
-  Description:  Œ©–{DB‚Ì“Á’è‚Ì kind ‚ÌƒGƒ“ƒgƒŠ‚Æ“ü—Íƒpƒ^[ƒ“‚ğ”äŠr‚µ‚Ä”F¯‚µ,
-                Œ‹‰Ê‚ÌãˆÊ numRanking ˆÊ‚ğ•Ô‚µ‚Ü‚·.
+  Description:  è¦‹æœ¬DBã®ç‰¹å®šã® kind ã®ã‚¨ãƒ³ãƒˆãƒªã¨å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’æ¯”è¼ƒã—ã¦èªè­˜ã—,
+                çµæœã®ä¸Šä½ numRanking ä½ã‚’è¿”ã—ã¾ã™.
 
-  Arguments:    resultEntries   ”F¯Œ‹‰Ê‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ“ü‚ê‚é”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                ‹‚ß‚éŒÂ”ˆÈ‰º‚µ‚©”F¯‚Å‚«‚È‚©‚Á‚½ê‡A
-                                c‚è‚Í NULL ‚Å–„‚ß‚ç‚ê‚Ü‚·.
-                resultScores    ”F¯Œ‹‰Ê‚ÌƒXƒRƒA‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                numRanking      result* ‚É•Ô‚·ŒÂ”
-                buffer          ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚ªg—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                (—ÌˆæƒTƒCƒY>=PRC_GetRecognitionBufferSize ‚Ì•Ô‚è’l)
-                input           “ü—Íƒpƒ^[ƒ“.
-                protoDB         Œ©–{DB.
-                kindMask        ŠeŒ©–{DBƒGƒ“ƒgƒŠ‚Ì kind ’l‚Æ‚Ì˜_—Ï‚ğ‚Æ‚è,
-                                ”ñƒ[ƒ‚Å‚ ‚ê‚Î—LŒø‚Æ‚İ‚È‚µ‚Ü‚·.
-                param           ”F¯ˆ—‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^.
+  Arguments:    resultEntries   èªè­˜çµæœã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å…¥ã‚Œã‚‹é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                æ±‚ã‚ã‚‹å€‹æ•°ä»¥ä¸‹ã—ã‹èªè­˜ã§ããªã‹ã£ãŸå ´åˆã€
+                                æ®‹ã‚Šã¯ NULL ã§åŸ‹ã‚ã‚‰ã‚Œã¾ã™.
+                resultScores    èªè­˜çµæœã®ã‚¹ã‚³ã‚¢ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                numRanking      result* ã«è¿”ã™å€‹æ•°
+                buffer          èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ãŒä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                (é ˜åŸŸã‚µã‚¤ã‚º>=PRC_GetRecognitionBufferSize ã®è¿”ã‚Šå€¤)
+                input           å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³.
+                protoDB         è¦‹æœ¬DB.
+                kindMask        å„è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã® kind å€¤ã¨ã®è«–ç†ç©ã‚’ã¨ã‚Š,
+                                éã‚¼ãƒ­ã§ã‚ã‚Œã°æœ‰åŠ¹ã¨ã¿ãªã—ã¾ã™.
+                param           èªè­˜å‡¦ç†ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿.
 
-  Returns:      ”äŠr‚³‚ê‚½Œ©–{DBã‚Ìƒpƒ^[ƒ“”.
+  Returns:      æ¯”è¼ƒã•ã‚ŒãŸè¦‹æœ¬DBä¸Šã®ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°.
  *---------------------------------------------------------------------------*/
 int
 PRC_GetRecognizedEntriesEx_Superfine(PRCPrototypeEntry **resultEntries,
@@ -335,7 +335,7 @@ GetMixedPoint(PRCPoint *p, const PRCPoint *p1, int w1, const PRCPoint *p2, int w
 #define PRCi_ABS(x) (((x)>=0)?(x):-(x))
 //#define PRCi_ANGLE_SCORE(input, proto) ((32768-PRCi_ABS((s16)(protoAngles[(proto)]-inputAngles[(input)])))/128)
 //#define PRCi_ANGLE_SCORE(input, proto) ((32768*32768-((s16)(protoAngles[(proto)]-inputAngles[(input)]))*((s16)(protoAngles[(proto)]-inputAngles[(input)])))/(128*32768))
-// ªã‚És‚¯‚Î‚¢‚­‚Ù‚Ç‘‚­‚È‚è‚Ü‚·B¸“x‚Í‚»‚ê‚Ù‚Ç—‚¿‚Ü‚¹‚ñB
+// â†‘ä¸Šã«è¡Œã‘ã°ã„ãã»ã©æ—©ããªã‚Šã¾ã™ã€‚ç²¾åº¦ã¯ãã‚Œã»ã©è½ã¡ã¾ã›ã‚“ã€‚
 #define PRCi_ANGLE_SCORE(input, proto) ((FX_CosIdx((u16)(protoAngles[(proto)]-inputAngles[(input)]))+FX32_ONE)/(FX32_ONE*2/256))
 
 static void
@@ -352,7 +352,7 @@ PRCi_CalcStrokeDistance_Superfine(fx32 *score,
 #define direction_(x,y) (*(direction + (x) * maxPointCount + (y)))
 #define angleScores_(x,y) (*(angleScores + (x) * (maxPointCount+1) + (y)))
 
-    // ƒXƒgƒ[ƒN“¯m‚Ì—Ş—“x‚ğŒvZ with DP matching
+    // ã‚¹ãƒˆãƒ­ãƒ¼ã‚¯åŒå£«ã®é¡ä¼¼åº¦ã‚’è¨ˆç®— with DP matching
     int     iInput, iProto;
     int    *nMatches;                  //[STROKE_PACKED_POINT_MAX][STROKE_PACKED_POINT_MAX];
     int    *sumScore;                  //[STROKE_PACKED_POINT_MAX][STROKE_PACKED_POINT_MAX];
@@ -410,7 +410,7 @@ PRCi_CalcStrokeDistance_Superfine(fx32 *score,
 #endif
     doubleWidth = normalizeSize * 2;
 
-    // buffer ‚ÌŠ„‚è“–‚Ä
+    // buffer ã®å‰²ã‚Šå½“ã¦
     {
         int     addr;
         addr = 0;
@@ -450,7 +450,7 @@ PRCi_CalcStrokeDistance_Superfine(fx32 *score,
     if (protoSize == 0 || inputSize == 0)
         return;
 
-    // ’·‚³‚ª‚ ‚Ü‚è‚É‚àˆá‚¤ü•ª‚Í—Ş—“x0‚Æ‚µ‚Ä‚±‚êˆÈãŒvZ‚µ‚È‚¢
+    // é•·ã•ãŒã‚ã¾ã‚Šã«ã‚‚é•ã†ç·šåˆ†ã¯é¡ä¼¼åº¦0ã¨ã—ã¦ã“ã‚Œä»¥ä¸Šè¨ˆç®—ã—ãªã„
     if (inputStrokeLength > lengthFilterThreshold || protoStrokeLength > lengthFilterThreshold)
     {
         if (inputStrokeLength * lengthFilterRatio < protoStrokeLength
@@ -464,7 +464,7 @@ PRCi_CalcStrokeDistance_Superfine(fx32 *score,
         }
     }
 
-    // Šp“x‚ÉŠÖ‚·‚éƒXƒRƒA‚Ì angleScores[][] ‚Ì–‘OŒvZ
+    // è§’åº¦ã«é–¢ã™ã‚‹ã‚¹ã‚³ã‚¢ã® angleScores[][] ã®äº‹å‰è¨ˆç®—
     if (protoSize == 1 || inputSize == 1)
     {
         for (iInput = 0; iInput < inputSize; iInput++)
@@ -502,7 +502,7 @@ PRCi_CalcStrokeDistance_Superfine(fx32 *score,
         }
     }
 
-    // DP Matching ‚ÅƒXƒgƒ[ƒN“¯m‚Ì‘Î‰“_‚ğ’T‚·
+    // DP Matching ã§ã‚¹ãƒˆãƒ­ãƒ¼ã‚¯åŒå£«ã®å¯¾å¿œç‚¹ã‚’æ¢ã™
     sumScore_(0, 0) =
         (doubleWidth - CityBlockDistance(&inputPoints[0], &protoPoints[0])) * angleScores_(0,
                                                                                            0) * 2;
@@ -605,14 +605,14 @@ PRCi_CalcStrokeDistance_Superfine(fx32 *score,
               nMatches_(inputSize - 1, protoSize - 1));
 #endif
 
-    // —Ş—“xŒvZƒtƒF[ƒY
+    // é¡ä¼¼åº¦è¨ˆç®—ãƒ•ã‚§ãƒ¼ã‚º
     {
         int     iMatch;
         int     localScore;
         int     nMatches;
         fx32    weightedScore, totalWeight;
 
-        // ‚Ü‚¸AŠmÀ‚Éƒ}ƒbƒ`‚µ‚Ä‚¢‚éƒyƒA‚ğ’Šo‚·‚é
+        // ã¾ãšã€ç¢ºå®Ÿã«ãƒãƒƒãƒã—ã¦ã„ã‚‹ãƒšã‚¢ã‚’æŠ½å‡ºã™ã‚‹
         for (iInput = 0; iInput < inputSize; iInput++)
         {
             inputPair[iInput] = -1;
@@ -649,7 +649,7 @@ PRCi_CalcStrokeDistance_Superfine(fx32 *score,
             iInput += dx;
             iProto += dy;
         }
-        // iInput==0 && iProto==0 ‚Ìˆ—
+        // iInput==0 && iProto==0 ã®å‡¦ç†
         localScore = sumScore_(iInput, iProto);
         if (inputMaxScore[iInput] < localScore)
         {
@@ -664,13 +664,13 @@ PRCi_CalcStrokeDistance_Superfine(fx32 *score,
         }
 
 
-        // ‘o•û‚Ì”»’è‚ÅƒyƒA‚Æ‚µ‚Äˆê’v‚µ‚½‚à‚ÌˆÈŠO‚Íæ‚èœ‚­
+        // åŒæ–¹ã®åˆ¤å®šã§ãƒšã‚¢ã¨ã—ã¦ä¸€è‡´ã—ãŸã‚‚ã®ä»¥å¤–ã¯å–ã‚Šé™¤ã
         for (iInput = 0; iInput < inputSize; iInput++)
         {
             int     pair = inputPair[iInput];
             if (pair >= 0)
             {
-                // ‘Šè‚É‚Æ‚Á‚Ä‚ÌÅ—Ç‚ÌƒyƒA‚ª©•ª‚©‚Ç‚¤‚©
+                // ç›¸æ‰‹ã«ã¨ã£ã¦ã®æœ€è‰¯ã®ãƒšã‚¢ãŒè‡ªåˆ†ã‹ã©ã†ã‹
                 if (protoPair[pair] != iInput)
                 {
                     inputPair[iInput] = -1;
@@ -731,7 +731,7 @@ PRCi_CalcStrokeDistance_Superfine(fx32 *score,
             }
             if (inputLocalLength == 0 && protoLocalLength == 0)
             {
-                // Å‰‚¾‚¯ [0, 0] [0, 0] ‚Æ‘Î‰“_‚ªd•¡‚·‚é‚±‚Æ‚ª‚ ‚è‚¤‚é
+                // æœ€åˆã ã‘ [0, 0] [0, 0] ã¨å¯¾å¿œç‚¹ãŒé‡è¤‡ã™ã‚‹ã“ã¨ãŒã‚ã‚Šã†ã‚‹
                 continue;
             }
             iInput = inputMatch[iMatch] + 1;

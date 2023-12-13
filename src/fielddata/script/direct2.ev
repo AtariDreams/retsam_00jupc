@@ -8,10 +8,10 @@
 	//.include	"../../../include/msgdata/msg_direct2.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_direct2_flag_change
-_EVENT_DATA_END						//�I��
+_EVENT_DATA_END						//終了
 
 
 /********************************************************************/
@@ -22,7 +22,7 @@ ev_direct2_flag_change:
 	_END
 
 
-/*LOCALWORK15��POS�Ƃ��Ďg�p��*/
-//	��ev_check.c���Ǝ��Ȃ̂ŁAPOS�C�x���g�͋N�����Ă��Ȃ��I
-//	�@�}�b�g�`�F�b�N�ŃX�N���v�g�N�����Ă���I
+/*LOCALWORK15をPOSとして使用中*/
+//	●ev_check.cが独自なので、POSイベントは起動していない！
+//	　マットチェックでスクリプト起動している！
 

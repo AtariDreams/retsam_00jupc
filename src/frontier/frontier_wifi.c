@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	castle_tool.c
- * @brief	ƒtƒƒ“ƒeƒBƒAWiFió•t
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜
  * @author	nohara
  * @date	2007.07.27
  */
@@ -32,7 +32,7 @@ static BOOL FrWiFiScr_CommSetSendBuf( FRWIFI_SCRWORK* wk, u16 type, u16 param );
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒtƒƒ“ƒeƒBƒAWiFió•t ŒÄ‚Ño‚µ
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜ å‘¼ã³å‡ºã—
  */
 //--------------------------------------------------------------------------------------------
 FRONTIER_EX_PARAM* EvCmdFrontierSystemCall( FIELDSYS_WORK* fsys, void* work )
@@ -40,9 +40,9 @@ FRONTIER_EX_PARAM* EvCmdFrontierSystemCall( FIELDSYS_WORK* fsys, void* work )
 	FRONTIER_EX_PARAM* ex_param = sys_AllocMemoryLo( HEAPID_WORLD, sizeof(FRONTIER_EX_PARAM) );
 	MI_CpuClear8( ex_param, sizeof(FRONTIER_EX_PARAM) );
 	
-	//PROCƒR[ƒ‹
+	//PROCã‚³ãƒ¼ãƒ«
 	
-	//ex_paramì¬
+	//ex_paramä½œæˆ
 	ex_param->syswork	= work;
 	ex_param->config	= SaveData_GetConfig( fsys->savedata );
 	ex_param->savedata	= fsys->savedata;
@@ -52,7 +52,7 @@ FRONTIER_EX_PARAM* EvCmdFrontierSystemCall( FIELDSYS_WORK* fsys, void* work )
 	ex_param->bg_id		= 0;
 	ex_param->ground_id	= 0;
 	ex_param->zone_id	= fsys->location->zone_id;
-	ex_param->scene_id	= FSS_SCENEID_WIFI_COUNTER;			//‚ ‚Æ‚Å•ÏX‚·‚é
+	ex_param->scene_id	= FSS_SCENEID_WIFI_COUNTER;			//ã‚ã¨ã§å¤‰æ›´ã™ã‚‹
 	ex_param->fsys		= fsys;
 
 	GameSystem_StartSubProc( fsys,  &FrontierMainProcData, ex_param );	//PROC
@@ -64,15 +64,15 @@ FRONTIER_EX_PARAM* EvCmdFrontierSystemCall( FIELDSYS_WORK* fsys, void* work )
 #if 0
 //==============================================================================================
 //
-//	‘—MAóM‚ÌŒÄ‚Ño‚µ
+//	é€ä¿¡ã€å—ä¿¡ã®å‘¼ã³å‡ºã—
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * ‘—M
+ * é€ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -92,9 +92,9 @@ BOOL FSSC_WiFiCounterSendBuf( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * óM
+ * å—ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -103,18 +103,18 @@ BOOL FSSC_WiFiCounterRecvBuf( FSS_TASK * core )
 {
 	u16 wk_id = FSSTGetU16( core );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ğŠi”[
+	//ä»®æƒ³ãƒã‚·ãƒ³ã®æ±ç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
 	FSST_SetWait( core, WaitWiFiCounterRecvBuf );
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL WaitWiFiCounterRecvBuf( FSS_TASK * core )
 {
 	FRWIFI_SCRWORK* wifi_scr_wk;
-	u16 type = FSS_GetEventWorkValue( core, core->reg[0] );		//’ˆÓI
+	u16 type = FSS_GetEventWorkValue( core, core->reg[0] );		//æ³¨æ„ï¼
 
 	wifi_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
@@ -129,16 +129,16 @@ static BOOL WaitWiFiCounterRecvBuf( FSS_TASK * core )
 
 //==============================================================================================
 //
-//	’ÊM(CommStart)
+//	é€šä¿¡(CommStart)
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‘—MƒEƒFƒCƒg@
+ * @brief	é€ä¿¡ã‚¦ã‚§ã‚¤ãƒˆã€€
  *
- * @param	wk			CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	type		‘—Mƒ^ƒCƒv
+ * @param	wk			CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type		é€ä¿¡ã‚¿ã‚¤ãƒ—
  *
  * @retval	none
  */

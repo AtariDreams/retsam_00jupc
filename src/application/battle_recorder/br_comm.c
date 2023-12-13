@@ -1,11 +1,11 @@
 //==============================================================================
 /**
- * @file	ƒtƒ@ƒCƒ‹–¼
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @file	ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
- * @date	2008.01.21(Œ)
+ * @date	2008.01.21(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -54,7 +54,7 @@ static inline BOOL gdsrap_init_check( BR_WORK* wk );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»‚µ‚½H
+ * @brief	åˆæœŸåŒ–ã—ãŸï¼Ÿ
  *
  * @param	wk	
  *
@@ -70,7 +70,7 @@ static inline BOOL gdsrap_init_check( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒNæ“¾
+ * @brief	ãƒ¯ãƒ¼ã‚¯å–å¾—
  *
  * @param	wk	
  *
@@ -86,7 +86,7 @@ GDS_RAP_WORK* BR_GDSRAP_WorkGet( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -115,17 +115,17 @@ void BR_GDSRAP_Init( BR_WORK* wk )
 	init_data.response_callback.func_battle_video_favorite_regist = BR_Response_VideoDL;
 
 	init_data.callback_work				= wk;
-	init_data.callback_error_msg_wide	= NULL;//©‘O‚ÅƒGƒ‰[ƒƒbƒZ[ƒW•\¦@BR_Error_CallBack;	//< ƒGƒ‰[—p
+	init_data.callback_error_msg_wide	= NULL;//è‡ªå‰ã§ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã€€BR_Error_CallBack;	//< ã‚¨ãƒ©ãƒ¼ç”¨
 
-	GDSRAP_Init( &wk->sys.gdsrap, &init_data );		//’ÊMƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»	
+	GDSRAP_Init( &wk->sys.gdsrap, &init_data );		//é€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–	
 	
-//	OS_Printf( " ƒoƒgƒ‹ƒŒƒR[ƒ_[’ÊMƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰» \n" );
+//	OS_Printf( " ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼é€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ– \n" );
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	ó‘Ôƒ`ƒFƒbƒN
+ * @brief	çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
  *
  * @param	wk	
  *
@@ -143,7 +143,7 @@ BOOL BR_GDSRAP_MoveStatusAllCheck( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	’ÊMƒƒCƒ“ –ˆƒtƒŒ[ƒ€ŒÄ‚Ô‚â‚Â
+ * @brief	é€šä¿¡ãƒ¡ã‚¤ãƒ³ æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å‘¼ã¶ã‚„ã¤
  *
  * @param	wk	
  *
@@ -157,13 +157,13 @@ void BR_GDSRAP_Main( BR_WORK* wk )
 	
 	GDSRAP_Main( BR_GDSRAP_WorkGet( wk ) );
 	
-//	OS_Printf( " ƒoƒgƒ‹ƒŒƒR[ƒ_[’ÊM \n" );
+//	OS_Printf( " ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼é€šä¿¡ \n" );
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹
+ * @brief	çµ‚äº†
  *
  * @param	wk	
  *
@@ -178,6 +178,6 @@ void BR_GDSRAP_Exit( BR_WORK* wk )
 	GDSRAP_Exit( BR_GDSRAP_WorkGet( wk ) );
 	
 	
-//	OS_Printf( " ƒoƒgƒ‹ƒŒƒR[ƒ_[’ÊMI—¹ \n" );
+//	OS_Printf( " ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼é€šä¿¡çµ‚äº† \n" );
 }
 

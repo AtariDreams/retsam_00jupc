@@ -15,18 +15,18 @@
   INDENT SOURCE
 
   Revision 1.4  2005/09/28 11:44:37  yasu
-  ƒR[ƒh‚ğ®—
-  SOCL_CalmDown() ‚ğ’Ç‰Á
-  CPS ƒ‰ƒCƒuƒ‰ƒŠ‚Ì³®‘Î‰‚ª‚Ü‚¾‚È‚Ì‚Å SOC ‘¤‚Åˆ—‚ğƒJƒo[‚µ‚Ä‚¢‚é
+  ã‚³ãƒ¼ãƒ‰ã‚’æ•´ç†
+  SOCL_CalmDown() ã‚’è¿½åŠ 
+  CPS ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®æ­£å¼å¯¾å¿œãŒã¾ã ãªã®ã§ SOC å´ã§å‡¦ç†ã‚’ã‚«ãƒãƒ¼ã—ã¦ã„ã‚‹
 
   Revision 1.3  2005/09/27 14:18:09  yasu
-  SOC_Close ‚Ì”ñ“¯Šú“®ìƒTƒ|[ƒg
+  SOC_Close ã®éåŒæœŸå‹•ä½œã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.2  2005/09/01 06:42:55  yasu
-  ƒ\ƒPƒbƒg‚ª¶‚«‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ì”»’è‚ğˆêŒ³‰»
+  ã‚½ã‚±ãƒƒãƒˆãŒç”Ÿãã¦ã„ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šã‚’ä¸€å…ƒåŒ–
 
   Revision 1.1  2005/08/18 13:18:49  yasu
-  ƒ\ƒPƒbƒgƒŠƒ“ƒNƒŠƒXƒg‚É‚æ‚é cleanup ˆ—‚Ì’Ç‰Á
+  ã‚½ã‚±ãƒƒãƒˆãƒªãƒ³ã‚¯ãƒªã‚¹ãƒˆã«ã‚ˆã‚‹ cleanup å‡¦ç†ã®è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -42,11 +42,11 @@ static void SOCLi_SocketUnregisterList(SOCLSocket ** next, SOCLSocket* socket);
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_SocketRegister
 
-  Description:  ƒ\ƒPƒbƒg‚ğƒŠƒXƒg‚Ö“o˜^‚·‚é
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‚’ãƒªã‚¹ãƒˆã¸ç™»éŒ²ã™ã‚‹
 
-  Arguments:    socket  ƒ\ƒPƒbƒg
+  Arguments:    socket  ã‚½ã‚±ãƒƒãƒˆ
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void SOCLi_SocketRegister(SOCLSocket* socket)
 {
@@ -62,11 +62,11 @@ static void SOCLi_SocketRegisterList(SOCLSocket ** next, SOCLSocket* socket)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_SocketRegisterTrash
 
-  Description:  ƒ\ƒPƒbƒg‚ğ”pŠüƒŠƒXƒg‚Ö“o˜^‚·‚é
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‚’å»ƒæ£„ãƒªã‚¹ãƒˆã¸ç™»éŒ²ã™ã‚‹
 
-  Arguments:    socket  ƒ\ƒPƒbƒg
+  Arguments:    socket  ã‚½ã‚±ãƒƒãƒˆ
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void SOCLi_SocketRegisterTrash(SOCLSocket* socket)
 {
@@ -76,11 +76,11 @@ void SOCLi_SocketRegisterTrash(SOCLSocket* socket)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_SocketUnregister
 
-  Description:  ƒ\ƒPƒbƒg‚ğƒŠƒXƒg‚©‚çíœ‚·‚é
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‚’ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤ã™ã‚‹
 
-  Arguments:    socket  ƒ\ƒPƒbƒg
+  Arguments:    socket  ã‚½ã‚±ãƒƒãƒˆ
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void SOCLi_SocketUnregister(SOCLSocket* socket)
 {
@@ -117,11 +117,11 @@ static SOCLSocket ** SOCLi_SocketGetNextPtr(SOCLSocket ** next, SOCLSocket* sock
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_SocketUnregisterTrash
 
-  Description:  ƒ\ƒPƒbƒg‚ğ”pŠüƒŠƒXƒg‚©‚çíœ‚·‚é
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‚’å»ƒæ£„ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤ã™ã‚‹
 
-  Arguments:    socket  ƒ\ƒPƒbƒg
+  Arguments:    socket  ã‚½ã‚±ãƒƒãƒˆ
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void SOCLi_SocketUnregisterTrash(SOCLSocket* socket)
 {
@@ -131,11 +131,11 @@ void SOCLi_SocketUnregisterTrash(SOCLSocket* socket)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_SocketIsInvalid
 
-  Description:  ƒ\ƒPƒbƒg‚ªƒ\ƒPƒbƒgƒŠƒXƒg‚É“o˜^‚³‚ê‚Ä‚¢‚é³“–‚È‚à‚Ì‚©‚ÌŠm”F
+  Description:  ã‚½ã‚±ãƒƒãƒˆãŒã‚½ã‚±ãƒƒãƒˆãƒªã‚¹ãƒˆã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹æ­£å½“ãªã‚‚ã®ã‹ã®ç¢ºèª
 
-  Arguments:    socket  ƒ\ƒPƒbƒg
+  Arguments:    socket  ã‚½ã‚±ãƒƒãƒˆ
 
-  Returns:      0 ˆÈŠO “o˜^‚³‚ê‚Ä‚¢‚é  0 “o˜^‚³‚ê‚Ä‚¢‚È‚¢
+  Returns:      0 ä»¥å¤– ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹  0 ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
  *---------------------------------------------------------------------------*/
 int SOCL_SocketIsInvalid(SOCLSocket* socket)
 {
@@ -145,11 +145,11 @@ int SOCL_SocketIsInvalid(SOCLSocket* socket)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_SocketIsInTrash
 
-  Description:  ƒ\ƒPƒbƒg‚ª”pŠüƒ\ƒPƒbƒgƒŠƒXƒg‚É“o˜^‚³‚ê‚Ä‚¢‚é‚©‚ÌŠm”F
+  Description:  ã‚½ã‚±ãƒƒãƒˆãŒå»ƒæ£„ã‚½ã‚±ãƒƒãƒˆãƒªã‚¹ãƒˆã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ã®ç¢ºèª
 
-  Arguments:    socket  ƒ\ƒPƒbƒg
+  Arguments:    socket  ã‚½ã‚±ãƒƒãƒˆ
 
-  Returns:      0 ˆÈŠO “o˜^‚³‚ê‚Ä‚¢‚é  0 “o˜^‚³‚ê‚Ä‚¢‚È‚¢
+  Returns:      0 ä»¥å¤– ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹  0 ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
  *---------------------------------------------------------------------------*/
 int SOCL_SocketIsInTrash(SOCLSocket* socket)
 {

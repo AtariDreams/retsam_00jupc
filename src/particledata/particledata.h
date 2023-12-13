@@ -1,29 +1,29 @@
-//---- 僐儞僶乕僞丗SPAConv.exe  Version 1.13
+//---- 銈炽兂銉愩兗銈匡細SPAConv.exe  Version 1.13
 
 #ifndef __PARTICLEDATA_H__
 #define __PARTICLEDATA_H__
 
-//w_001.h偺spr儕僜乕僗掕媊
+//w_001.h銇畇pr銉偨銉笺偣瀹氱京
 #define W_001_B_BURN_RED		0
 #define W_001_HIT_MARK01		1
-//w_001.spa撪偺儕僜乕僗屄悢
+//w_001.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define W_001_SPAMAX	(2)
 
-//w_249.h偺spr儕僜乕僗掕媊
+//w_249.h銇畇pr銉偨銉笺偣瀹氱京
 #define W_249_IWA_BREAK01		0
-//w_249.spa撪偺儕僜乕僗屄悢
+//w_249.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define W_249_SPAMAX	(1)
 
-//vs_battle.h偺spr儕僜乕僗掕媊
+//vs_battle.h銇畇pr銉偨銉笺偣瀹氱京
 #define VS_BATTLE_T_BUTTLE01		0
 #define VS_BATTLE_T_BUTTLE01A		1
 #define VS_BATTLE_T_BUTTLE01B		2
 #define VS_BATTLE_T_BUTTLE02		3
 #define VS_BATTLE_T_BUTTLE03		4
-//vs_battle.spa撪偺儕僜乕僗屄悢
+//vs_battle.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define VS_BATTLE_SPAMAX	(5)
 
-//con_dance.h偺spr儕僜乕僗掕媊
+//con_dance.h銇畇pr銉偨銉笺偣瀹氱京
 #define CON_DANCE_029_BALL_BURN		0
 #define CON_DANCE_029_HIT_MARK		1
 #define CON_DANCE_030_BALL_BURN		2
@@ -37,10 +37,10 @@
 #define CON_DANCE_038_HIT_MARK3		10
 #define CON_DANCE_038_HIT_MARK4		11
 #define CON_DANCE_038_HIT_MARK5		12
-//con_dance.spa撪偺儕僜乕僗屄悢
+//con_dance.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define CON_DANCE_SPAMAX	(13)
 
-//title_scene1.h偺spr儕僜乕僗掕媊
+//title_scene1.h銇畇pr銉偨銉笺偣瀹氱京
 #define TITLE_SCENE1_OP_DEMOBG2_BUBBLE1		0
 #define TITLE_SCENE1_OP_DEMOBG2_BUBBLE2		1
 #define TITLE_SCENE1_OP_DEMOBG2_BUBBLE3		2
@@ -53,17 +53,17 @@
 #define TITLE_SCENE1_OP_TITLE01		9
 #define TITLE_SCENE1_OP_TITLE02		10
 #define TITLE_SCENE1_OP_TITLE03		11
-//title_scene1.spa撪偺儕僜乕僗屄悢
+//title_scene1.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define TITLE_SCENE1_SPAMAX	(12)
 
-//title_scene2.h偺spr儕僜乕僗掕媊
+//title_scene2.h銇畇pr銉偨銉笺偣瀹氱京
 #define TITLE_SCENE2_OP_DEMOBG0_LOGO1		0
-//title_scene2.spa撪偺儕僜乕僗屄悢
+//title_scene2.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define TITLE_SCENE2_SPAMAX	(1)
 
 
 
-//---- particledata_tbl僥乕僽儖偺define掕媊 ----
+//---- particledata_tbl銉嗐兗銉栥儷銇甦efine瀹氱京 ----
 #define SPA_W_001		(0)
 #define SPA_W_249		(1)
 #define SPA_VS_BATTLE		(2)

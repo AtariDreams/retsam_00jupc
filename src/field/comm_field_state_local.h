@@ -1,33 +1,33 @@
 //==============================================================================
-//	�^�錾
+//	型宣言
 //==============================================================================
-// �R�[���o�b�N�֐��̏���
+// コールバック関数の書式
 typedef void (*PTRStateFunc)(void);
 
 #define _TRAINER_CARD_NUM_MAX (4)
 #define UGSTATE_MOVE (0)
 
 //==============================================================================
-// ���[�N
+// ワーク
 //==============================================================================
 
 typedef struct{
-    TR_CARD_DATA* pTRCard[_TRAINER_CARD_NUM_MAX];  // �g���[�i�[�J�[�h����M����o�b�t�@�̃|�C���^
+    TR_CARD_DATA* pTRCard[_TRAINER_CARD_NUM_MAX];  // トレーナーカードを受信するバッファのポインタ
     u8 bTRCard[_TRAINER_CARD_NUM_MAX];
     COMM_MESSAGE* pCMess;
     FIELDSYS_WORK* pFSys;
-    MATHRandContext32 sRand; ///< �e�q�@�l�S�V�G�[�V�����p�����L�[
+    MATHRandContext32 sRand; ///< 親子機ネゴシエーション用乱数キー
     PTRStateFunc state;
     TCB_PTR pTcb;
     u16 timer;
-    u8 connectIndex;   // �q�@���ڑ�����e�@��index�ԍ�
+    u8 connectIndex;   // 子機が接続する親機のindex番号
     u8 bStalth;
     u8 bStateNoChange;
     u8 bUGOverlay;
-    u8 bReturnBattle; // �o�g������߂��Ă����ꍇ�͂P �����Ă����ꍇ�͂O
-    u8 bBattleMoveRoom; // �J�n�ʒu�ɂ������Ƃ���M
+    u8 bReturnBattle; // バトルから戻ってきた場合は１ 入ってきた場合は０
+    u8 bBattleMoveRoom; // 開始位置についたことを受信
 
-    POKEPARTY*  party;	// �~�b�N�X�o�g���p�p�[�e�B
+    POKEPARTY*  party;	// ミックスバトル用パーティ
 
 #ifdef PM_DEBUG		// Debug ROM
     u16 debugTimer;

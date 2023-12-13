@@ -1,9 +1,9 @@
 /**
  *	@file	nmix_game.h
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[@ƒQ[ƒ€ƒvƒƒZƒXƒwƒbƒ_
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã€€ã‚²ãƒ¼ãƒ ãƒ—ãƒ­ã‚»ã‚¹ãƒ˜ãƒƒãƒ€
  *	@author	Miyuki Iwasawa
  *	@date	06.07.08
- *	@data		2006.05.23		tomoya XV
+ *	@data		2006.05.23		tomoya æ›´æ–°
  */
 
 #ifndef __H_NMIX_GAME_H__
@@ -20,42 +20,42 @@
 #include "system/clact_util.h"
 #include "system/swsprite.h"
 
-// WiFiê—pA‘—óM“¯Šú—pƒoƒbƒtƒ@’è”
+// WiFiå°‚ç”¨ã€é€å—ä¿¡åŒæœŸç”¨ãƒãƒƒãƒ•ã‚¡å®šæ•°
 #define _NUTNUM (5)
 #define _NUTDELAY (2)
 
 //-----------------------------------------------------------------------------
 /**
  *
- *					’è”
+ *					å®šæ•°
  *
  */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// •ûŒüƒGƒtƒFƒNƒgo‚µ‚Ä‚¢‚é’l
+// æ–¹å‘ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‡ºã—ã¦ã„ã‚‹å€¤
 #define NMIX_GAME_WAY_FLAG_RIGHT	( 1 )
 #define NMIX_GAME_WAY_FLAG_LEFT	( 2 )
 
 
 //-------------------------------------
-//	–Ø‚ÌÀƒ~ƒLƒT[ƒ[ƒN
+//	æœ¨ã®å®ŸãƒŸã‚­ã‚µãƒ¼ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// ƒVƒXƒeƒ€ŠÇ—
+	// ã‚·ã‚¹ãƒ†ãƒ ç®¡ç†
 	int	heapID;
-	BOOL seqend_f;		///<ƒQ[ƒ€ƒV[ƒPƒ“ƒXI—¹ƒtƒ‰ƒO
-	int	synchroID;		///<’ÊM“¯ŠúID
-	int	main_seq;		///<ƒQ[ƒ€ƒƒCƒ“ƒV[ƒPƒ“ƒX§Œä
-	int	sub_seq;		///<ƒQ[ƒ€ƒTƒuƒV[ƒPƒ“ƒX§Œä
-	BOOL main_seq_chg_req;///<’ÊMƒR[ƒ‹ƒoƒbƒN‚©‚ç‚ÌƒV[ƒPƒ“ƒX•ÏX‚¨Šè‚¢‚ª‚ ‚Á‚½‚©ƒtƒ‰ƒO
-	u8 main_seq_req;	///<’ÊMƒR[ƒ‹ƒoƒbƒN‚©‚ç‚ÌƒV[ƒPƒ“ƒX•ÏX‚¨Šè‚¢
-	u8 ex_mainseq_chg_req;	///<‹­§ƒV[ƒPƒ“ƒX•ÏX
-	u8 ex_mainseq_req;		///<‹­§ƒV[ƒPƒ“ƒX•ÏX
+	BOOL seqend_f;		///<ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ã‚±ãƒ³ã‚¹çµ‚äº†ãƒ•ãƒ©ã‚°
+	int	synchroID;		///<é€šä¿¡åŒæœŸID
+	int	main_seq;		///<ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ¶å¾¡
+	int	sub_seq;		///<ã‚²ãƒ¼ãƒ ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ¶å¾¡
+	BOOL main_seq_chg_req;///<é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‹ã‚‰ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´ãŠé¡˜ã„ãŒã‚ã£ãŸã‹ãƒ•ãƒ©ã‚°
+	u8 main_seq_req;	///<é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‹ã‚‰ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´ãŠé¡˜ã„
+	u8 ex_mainseq_chg_req;	///<å¼·åˆ¶ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
+	u8 ex_mainseq_req;		///<å¼·åˆ¶ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 	u8 pad;
 
 	int wait;
@@ -74,57 +74,57 @@ typedef struct {
 	NMIXGAME_CLACT_RES_WORK def_clact_res[ NMIX_GAME_DEF_OAM_RES_NUM ];
 	BOOL clact_draw;
 
-	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 	SWSP_SYS_PTR	swsp_sys;
 
 
-	// ‰æ–ÊŠÇ—ƒf[ƒ^
-	u32 houkou_draw_flg;	// •ûŒüØ‚è‘Ö‚¦•\¦’†
-	u32 gyaku_draw_flg;		// ‹t‰ñ“]•\¦’†
-	BOOL kogeru_draw_flg;	// ‚±‚°‚é•\¦’†
-	BOOL kobore_draw_flg;	// ‚±‚Ú‚ê‚é•\¦’†
+	// ç”»é¢ç®¡ç†ãƒ‡ãƒ¼ã‚¿
+	u32 houkou_draw_flg;	// æ–¹å‘åˆ‡ã‚Šæ›¿ãˆè¡¨ç¤ºä¸­
+	u32 gyaku_draw_flg;		// é€†å›è»¢è¡¨ç¤ºä¸­
+	BOOL kogeru_draw_flg;	// ã“ã’ã‚‹è¡¨ç¤ºä¸­
+	BOOL kobore_draw_flg;	// ã“ã¼ã‚Œã‚‹è¡¨ç¤ºä¸­
 
-	// “®‚³ƒ[ƒN
-	NMIX_DATA_KO	ko_data;	// ’ÊMqƒf[ƒ^
+	// å‹•ã•ãƒ¯ãƒ¼ã‚¯
+	NMIX_DATA_KO	ko_data;	// é€šä¿¡å­ãƒ‡ãƒ¼ã‚¿
 	NMIX_DATA_OYA	oya_data;
-	u32 game_next;				// ƒQ[ƒ€‚ğ‘±‚¯‚½‚¢‚©
-	s32 last_rota;				// ‚P‚Â‘O‚Ìe‚©‚ç—ˆ‚½‰ñ“]Šp
-	u32 last_count_down;		// ƒJƒEƒ“ƒgƒ_ƒEƒ“ƒf[ƒ^
+	u32 game_next;				// ã‚²ãƒ¼ãƒ ã‚’ç¶šã‘ãŸã„ã‹
+	s32 last_rota;				// ï¼‘ã¤å‰ã®è¦ªã‹ã‚‰æ¥ãŸå›è»¢è§’
+	u32 last_count_down;		// ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ãƒ‡ãƒ¼ã‚¿
 
-	// •`‰æƒ[ƒN
-	NMIX_DEMO_NUTS_IN nuts_in;	// –Ø‚ÌÀ“Š“ü
-	NMIX_DEMO_SUB_WIN sub_win;	// ƒTƒuƒEƒBƒ“ƒhƒE‘€ì
-	NMIX_DEMO_COUNTDOWN countdown;	// ƒJƒEƒ“ƒgƒ_ƒEƒ“
-	NMIX_DEMO_COUNTDOWN end_mark;	// I—¹MARK
-	NMIX_DEMO_COUNTDOWN pen;		// ƒyƒ“
-	NMIX_DEMO_NABE_GRA nabe_gra;	// “çƒOƒ‰ƒtƒBƒbƒN“®‚³§Œä
-	NMIX_DEMO_OTHER_MARK other_mark;	// ‘¼‚Ìl‚ÌˆÊ’u
-	NMIX_DEMO_MAIN_WIN main_win;		// ƒƒCƒ“‰æ–ÊBGŠÇ—
-	NMIX_DEMO_SOOP_EFFECT soop_effect;	// ƒX[ƒvƒGƒtƒFƒNƒg
-	NMIX_DEMO_YAZIRUSI	yazirusi;	// –îˆóƒIƒuƒWƒFƒNƒg
-	NMIX_DEMO_HOSI_KIRAKIRA hosi_kira;	// ¯ƒLƒ‰ƒLƒ‰
-	NMIX_DEMO_PORUTO_DRAW poruto_draw;	// ƒ|ƒ‹ƒg•`‰æ
-	NMIX_DEMO_YESNO_WND	yes_no;		// YESNOƒEƒBƒ“ƒhƒE
+	// æç”»ãƒ¯ãƒ¼ã‚¯
+	NMIX_DEMO_NUTS_IN nuts_in;	// æœ¨ã®å®ŸæŠ•å…¥
+	NMIX_DEMO_SUB_WIN sub_win;	// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ“ä½œ
+	NMIX_DEMO_COUNTDOWN countdown;	// ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
+	NMIX_DEMO_COUNTDOWN end_mark;	// çµ‚äº†MARK
+	NMIX_DEMO_COUNTDOWN pen;		// ãƒšãƒ³
+	NMIX_DEMO_NABE_GRA nabe_gra;	// é‹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‹•ã•åˆ¶å¾¡
+	NMIX_DEMO_OTHER_MARK other_mark;	// ä»–ã®äººã®ä½ç½®
+	NMIX_DEMO_MAIN_WIN main_win;		// ãƒ¡ã‚¤ãƒ³ç”»é¢BGç®¡ç†
+	NMIX_DEMO_SOOP_EFFECT soop_effect;	// ã‚¹ãƒ¼ãƒ—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	NMIX_DEMO_YAZIRUSI	yazirusi;	// çŸ¢å°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	NMIX_DEMO_HOSI_KIRAKIRA hosi_kira;	// æ˜Ÿã‚­ãƒ©ã‚­ãƒ©
+	NMIX_DEMO_PORUTO_DRAW poruto_draw;	// ãƒãƒ«ãƒˆæç”»
+	NMIX_DEMO_YESNO_WND	yes_no;		// YESNOã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	
 
-	//’ÊMŠÖ˜Aƒf[ƒ^—Ìˆæ
-	int				comm_count;	// ’ÊMƒƒ“ƒo[”
-	NUTMIX_COMMPACK_WORK* comm_work;// ’ÊMƒ[ƒN
-	int				commpack_flg;	// ’ÊMƒpƒbƒNƒtƒ‰ƒO
-									// NUTMIX_COMM_PACK_ONE	( 0 )	// ˆêl—p
-									// NUTMIX_COMM_PACK_COMM	( 1 )	// ’ÊM
+	//é€šä¿¡é–¢é€£ãƒ‡ãƒ¼ã‚¿é ˜åŸŸ
+	int				comm_count;	// é€šä¿¡ãƒ¡ãƒ³ãƒãƒ¼æ•°
+	NUTMIX_COMMPACK_WORK* comm_work;// é€šä¿¡ãƒ¯ãƒ¼ã‚¯
+	int				commpack_flg;	// é€šä¿¡ãƒ‘ãƒƒã‚¯ãƒ•ãƒ©ã‚°
+									// NUTMIX_COMM_PACK_ONE	( 0 )	// ä¸€äººç”¨
+									// NUTMIX_COMM_PACK_COMM	( 1 )	// é€šä¿¡
 
-	// ’ÊMƒf[ƒ^
+	// é€šä¿¡ãƒ‡ãƒ¼ã‚¿
 	NUTMIX_GAME_COMM_PACK game_comm_pack;
 	BOOL game_comm_pack_olddata;
 
-	// ƒƒbƒZ[ƒWƒf[ƒ^
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
 	NMIXER_MSG	msgDat;
 
-	u16 rota;		// ƒX[ƒv‰ñ“]Šp
+	u16 rota;		// ã‚¹ãƒ¼ãƒ—å›è»¢è§’
 	u32 comm_send_timing;
-	u16 comm_switchCh[_NUTNUM];  //e‚ªq‹Ÿ‚ÌGameData‚ğó‚¯æ‚Á‚½‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
-	u16 comm_switch;  //q‚ªe‚ÌGameData‚ğó‚¯æ‚Á‚½‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
+	u16 comm_switchCh[_NUTNUM];  //è¦ªãŒå­ä¾›ã®GameDataã‚’å—ã‘å–ã£ãŸã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+	u16 comm_switch;  //å­ãŒè¦ªã®GameDataã‚’å—ã‘å–ã£ãŸã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
 } NMIX_GAMEWORK;
 
 extern void NMIX_SetMainSeq( NMIX_GAMEWORK* p_work, int seq );

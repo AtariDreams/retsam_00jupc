@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	gds_profile.c
- * @brief	GDSƒvƒƒtƒB[ƒ‹(GDS‚ÌWifiƒf[ƒ^‚É“Y•t‚³‚ê‚é)
+ * @brief	GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«(GDSã®Wifiãƒ‡ãƒ¼ã‚¿ã«æ·»ä»˜ã•ã‚Œã‚‹)
  * @author	matsuda
- * @date	2007.07.23(Œ)
+ * @date	2007.07.23(æœˆ)
  */
 //==============================================================================
 #include "common.h"
@@ -48,11 +48,11 @@
 
 //--------------------------------------------------------------
 /**
- * @brief   GDSƒvƒƒtƒB[ƒ‹ƒ[ƒN‚ğAlloc‚·‚é
+ * @brief   GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯ã‚’Allocã™ã‚‹
  *
- * @param   heap_id		ƒq[ƒvID
+ * @param   heap_id		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  GDSƒvƒƒtƒB[ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 GDS_PROFILE_PTR GDS_Profile_AllocMemory(int heap_id)
@@ -67,9 +67,9 @@ GDS_PROFILE_PTR GDS_Profile_AllocMemory(int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   GDSƒvƒƒtƒB[ƒ‹ƒ[ƒN‚ğ‰ğ•ú
+ * @brief   GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾
  *
- * @param   gpp		GDSƒvƒƒtƒB[ƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   gpp		GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void GDS_Profile_FreeMemory(GDS_PROFILE_PTR gpp)
@@ -79,11 +79,11 @@ void GDS_Profile_FreeMemory(GDS_PROFILE_PTR gpp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ©•ª‚ÌGDSƒvƒƒtƒB[ƒ‹ƒf[ƒ^‚ğì¬‚·‚é
+ * @brief   è‡ªåˆ†ã®GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
  *
- * @param   gpp			ƒf[ƒ^‘ã“üæ
- * @param   sv			ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   monsno		GDSƒvƒƒtƒB[ƒ‹‚É“Y•t‚·‚éƒ|ƒPƒ‚ƒ“”Ô†
+ * @param   gpp			ãƒ‡ãƒ¼ã‚¿ä»£å…¥å…ˆ
+ * @param   sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   monsno		GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã«æ·»ä»˜ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ç•ªå·
  *
  * @retval  
  */
@@ -125,16 +125,16 @@ void GDS_Profile_MyDataSet(GDS_PROFILE_PTR gpp, SAVEDATA *sv)
 	gpp->version_code = PM_VERSION;
 	gpp->language = PM_LANG;
 
-	//CRCì¬
+	//CRCä½œæˆ
 	gpp->crc.crc16ccitt_hash = SaveData_CalcCRC(sv, gpp, sizeof(GDS_PROFILE) - GDS_CRC_SIZE);
 }
 
 //----------------------------------------------------------
 /**
- * @brief	–¼‘Oæ“¾iSTRBUF‚ğ¶¬j
- * @param	gpp		GDSƒvƒƒtƒB[ƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	heapID	STRBUF‚ğ¶¬‚·‚éƒq[ƒv‚ÌID
- * @return	STRBUF	–¼‘O‚ğŠi”[‚µ‚½STRBUF‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åå‰å–å¾—ï¼ˆSTRBUFã‚’ç”Ÿæˆï¼‰
+ * @param	gpp		GDSãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	heapID	STRBUFã‚’ç”Ÿæˆã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ID
+ * @return	STRBUF	åå‰ã‚’æ ¼ç´ã—ãŸSTRBUFã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 STRBUF * GDS_Profile_CreateNameString(const GDS_PROFILE_PTR gpp, int heapID)
@@ -152,7 +152,7 @@ u32 GDS_Profile_GetID(const GDS_PROFILE_PTR gpp)
 u32 GDS_Profile_GetSex(const GDS_PROFILE_PTR gpp)
 {
 	if(gpp->player_sex != PM_MALE && gpp->player_sex != PM_FEMALE){
-		return PM_MALE;	//ƒGƒ‰[ˆ—
+		return PM_MALE;	//ã‚¨ãƒ©ãƒ¼å‡¦ç†
 	}
 	return gpp->player_sex;
 }
@@ -160,7 +160,7 @@ u32 GDS_Profile_GetSex(const GDS_PROFILE_PTR gpp)
 int GDS_Profile_GetMonsNo(const GDS_PROFILE_PTR gpp)
 {
 	if(gpp->monsno >= MONSNO_MAX){
-		return 0;	//ƒGƒ‰[ˆ—
+		return 0;	//ã‚¨ãƒ©ãƒ¼å‡¦ç†
 	}
 	return gpp->monsno;
 }
@@ -176,18 +176,18 @@ int GDS_Profile_GetFormNo(const GDS_PROFILE_PTR gpp)
 int GDS_Profile_GetEggFlag(const GDS_PROFILE_PTR gpp)
 {
 	if(gpp->egg_flag > 1){
-		return 1;	//ƒGƒ‰[ˆ—
+		return 1;	//ã‚¨ãƒ©ãƒ¼å‡¦ç†
 	}
 	return gpp->egg_flag;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘ƒR[ƒh‚ğæ“¾
+ * @brief   å›½ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
  *
  * @param   gpp		
  *
- * @retval  ‘ƒR[ƒh(msg_wifi_place_msg_world.h)
+ * @retval  å›½ã‚³ãƒ¼ãƒ‰(msg_wifi_place_msg_world.h)
  */
 //--------------------------------------------------------------
 int GDS_Profile_GetNation(const GDS_PROFILE_PTR gpp)
@@ -200,11 +200,11 @@ int GDS_Profile_GetNation(const GDS_PROFILE_PTR gpp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’nˆæƒR[ƒh‚ğæ“¾
+ * @brief   åœ°åŸŸã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
  *
  * @param   gpp		
  *
- * @retval  ’nˆæƒR[ƒh(msg_wifi_place_msg_ARG.h, JPN, BRA“™)
+ * @retval  åœ°åŸŸã‚³ãƒ¼ãƒ‰(msg_wifi_place_msg_ARG.h, JPN, BRAç­‰)
  */
 //--------------------------------------------------------------
 int GDS_Profile_GetArea(const GDS_PROFILE_PTR gpp)
@@ -220,15 +220,15 @@ int GDS_Profile_GetArea(const GDS_PROFILE_PTR gpp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ©ŒÈĞ‰îƒƒbƒZ[ƒWæ“¾
+ * @brief   è‡ªå·±ç´¹ä»‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
  *
  * @param   gpp				
- * @param   pms_dest		ŠÈˆÕ‰ï˜b‘ã“üæ
- * @param   heap_id			ƒq[ƒvID(ƒCƒxƒ“ƒg—pƒtƒŠ[ƒ[ƒhA’†‚ÅSTRBUF‚ğ¶¬)
+ * @param   pms_dest		ç°¡æ˜“ä¼šè©±ä»£å…¥å…ˆ
+ * @param   heap_id			ãƒ’ãƒ¼ãƒ—ID(ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ•ãƒªãƒ¼ãƒ¯ãƒ¼ãƒ‰æ™‚ã€ä¸­ã§STRBUFã‚’ç”Ÿæˆ)
  *
- * @retval  NULL‚Ìê‡‚Ípms_dest‚ÉŠÈˆÕ‰ï˜b•¶‚ª“ü‚Á‚Ä‚¢‚é
- * 			”ñNULL‚Ìê‡‚ÍƒCƒxƒ“ƒg—pƒtƒŠ[ƒ[ƒhƒƒbƒZ[ƒWB
- *			“à•”‚ÅSTRBUF‚ğì¬‚µ•Ô‚µ‚Ä‚¢‚é
+ * @retval  NULLã®å ´åˆã¯pms_destã«ç°¡æ˜“ä¼šè©±æ–‡ãŒå…¥ã£ã¦ã„ã‚‹
+ * 			éNULLã®å ´åˆã¯ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ•ãƒªãƒ¼ãƒ¯ãƒ¼ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€‚
+ *			å†…éƒ¨ã§STRBUFã‚’ä½œæˆã—è¿”ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 STRBUF * GDS_Profile_GetSelfIntroduction(const GDS_PROFILE_PTR gpp, PMS_DATA *pms_dest, int heap_id)
@@ -263,7 +263,7 @@ STRBUF * GDS_Profile_GetSelfIntroduction(const GDS_PROFILE_PTR gpp, PMS_DATA *pm
 		return NULL;
 	}
 	else{
-		//¦check Å‘åƒ`ƒFƒbƒN“ü‚ê‚é
+		//â€»check æœ€å¤§ãƒã‚§ãƒƒã‚¯å…¥ã‚Œã‚‹
 		STRBUF * tmpBuf = STRBUF_Create(EVENT_SELF_INTRO, heap_id);
 		STRBUF_SetStringCodeOrderLength(tmpBuf, gpp->event_self_introduction, EVENT_SELF_INTRO);
 		return tmpBuf;
@@ -280,7 +280,7 @@ int GDS_Profile_GetMonthBirthday(const GDS_PROFILE_PTR gpp)
 
 int GDS_Profile_GetTrainerView(const GDS_PROFILE_PTR gpp)
 {
-	if(gpp->trainer_view > GT_RANKING_PROFILE_TRAINER_VIEW_MAX){	//ƒ‰ƒ“ƒLƒ“ƒO‚Ì‚Æˆê‚È‚Ì‚Å
+	if(gpp->trainer_view > GT_RANKING_PROFILE_TRAINER_VIEW_MAX){	//ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã®ã¨ä¸€ç·’ãªã®ã§
 		return 0;
 	}
 	return gpp->trainer_view;

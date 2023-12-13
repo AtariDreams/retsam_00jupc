@@ -13,34 +13,34 @@
 #
 # $Log: Makefile,v $
 # Revision 1.10  2007/03/08 07:13:57  kitase_hirotake
-# 2006->2007 �Ή�
+# 2006->2007 対応
 #
 # Revision 1.9  2006/08/11 03:43:12  yasu
-# �p��`�F�b�N�̏C��
+# 英語チェックの修正
 #
 # Revision 1.8  2006/03/15 09:52:36  kitase_hirotake
 # sdkindent to wifiindent
 #
 # Revision 1.7  2006/01/25 00:10:31  yasu
-# �N���̑O�ɋ󔒂�����ꍇ�ɔ���~�X���Ă����̂��C��
+# 年号の前に空白がある場合に判定ミスしていたのを修正
 #
 # Revision 1.6  2006/01/16 00:40:01  kitase_hirotake
-# �s�K�v�ȃC���f���g���s��Ȃ��悤�ɕύX
+# 不必要なインデントを行わないように変更
 #
 # Revision 1.5  2006/01/11 06:07:22  yasu
-# 2005->2006�Ή�
+# 2005->2006対応
 #
 # Revision 1.4  2005/07/20 03:59:56  yasu
-# ���O�� '_' �̃t�@�C��������Ό������X�L�b�v����悤�ɂ����D
+# 名前が '_' のファイルがあれば検索をスキップするようにした．
 #
 # Revision 1.3  2005/07/07 01:14:43  yasu
-# NitroSDK/Makefile �Ƃ̓��e�̃����N���
+# NitroSDK/Makefile との内容のリンク作業
 #
 # Revision 1.2  2005/06/29 00:49:57  yasu
-# code �̃`�F�b�N��ǉ�
+# code のチェックを追加
 #
 # Revision 1.1  2005/06/27 00:07:07  yasu
-# ���Œǉ�
+# 初版追加
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

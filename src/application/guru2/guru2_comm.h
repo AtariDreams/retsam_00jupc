@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	guru2_comm.h
- * @brief	‚®‚é‚®‚éŒğŠ·@’ÊMˆ—
+ * @brief	ãã‚‹ãã‚‹äº¤æ›ã€€é€šä¿¡å‡¦ç†
  * @author	kagaya
  * @data	05.07.13
  */
@@ -25,7 +25,7 @@
 #define COMM_GURU2_TIMINGSYNC_NO (202)
 
 //--------------------------------------------------------------
-///	’ÊMl”
+///	é€šä¿¡äººæ•°
 //--------------------------------------------------------------
 enum
 {
@@ -37,52 +37,52 @@ enum
 	G2MEMBER_MAX,
 };
 
-#define GURU2_FRIEND_MAX (G2MEMBER_MAX-1)	///<‘ŠèÅ‘å
+#define GURU2_FRIEND_MAX (G2MEMBER_MAX-1)	///<ç›¸æ‰‹æœ€å¤§
 
 //--------------------------------------------------------------
-///	’ÊMƒRƒ}ƒ“ƒh
+///	é€šä¿¡ã‚³ãƒãƒ³ãƒ‰
 //--------------------------------------------------------------
 enum
 {
-	G2COMM_RC_STOP,			///<—“ü‚É‚æ‚è’â~
-	G2COMM_RC_RESTART,		///<—“üI—¹AÄ“xŠJn
-	G2COMM_RC_END_CHILD,	///<q‹@—£’E
-	G2COMM_RC_END,			///<I—¹
-	G2COMM_RC_CHILD_JOIN,	///<q‹@—“üŠJn
-	G2COMM_RC_START,		///<ŠJn
-	G2COMM_RC_DATA,			///<ƒf[ƒ^“]‘—
-	G2COMM_RC_BAN,			///<—£’E‹Ö~E‹–‰Â
+	G2COMM_RC_STOP,			///<ä¹±å…¥ã«ã‚ˆã‚Šåœæ­¢
+	G2COMM_RC_RESTART,		///<ä¹±å…¥çµ‚äº†ã€å†åº¦é–‹å§‹
+	G2COMM_RC_END_CHILD,	///<å­æ©Ÿé›¢è„±
+	G2COMM_RC_END,			///<çµ‚äº†
+	G2COMM_RC_CHILD_JOIN,	///<å­æ©Ÿä¹±å…¥é–‹å§‹
+	G2COMM_RC_START,		///<é–‹å§‹
+	G2COMM_RC_DATA,			///<ãƒ‡ãƒ¼ã‚¿è»¢é€
+	G2COMM_RC_BAN,			///<é›¢è„±ç¦æ­¢ãƒ»è¨±å¯
 	
-	G2COMM_GM_SIGNAL,		///<ƒQ[ƒ€@ƒVƒOƒiƒ‹
-	G2COMM_GM_JOIN,			///<ƒQ[ƒ€@Q‰Á
-	G2COMM_GM_BTN,			///<ƒQ[ƒ€@ƒ{ƒ^ƒ“î•ñ
-	G2COMM_GM_GAMEDATA,		///<ƒQ[ƒ€@î•ñ
-	G2COMM_GM_PLAYNO,		///<ƒQ[ƒ€@ƒvƒŒƒC”Ô†
-	G2COMM_GM_PLAYMAX,		///<ƒQ[ƒ€@ƒvƒŒƒCÅ‘å”
-	G2COMM_GM_TRADE_POS,	///<ƒQ[ƒ€@ŒğŠ·ˆÊ’u
-	G2COMM_GM_GAMERESULT,	///<ƒQ[ƒ€@Œ‹‰Ê
-	G2COMM_GM_EGG_DATA_NG,	///<ƒQ[ƒ€@—‘ƒf[ƒ^ˆÙí
-	G2COMM_GM_EGG_DATA_OK,	///<ƒQ[ƒ€@—‘ƒf[ƒ^³í
+	G2COMM_GM_SIGNAL,		///<ã‚²ãƒ¼ãƒ ã€€ã‚·ã‚°ãƒŠãƒ«
+	G2COMM_GM_JOIN,			///<ã‚²ãƒ¼ãƒ ã€€å‚åŠ 
+	G2COMM_GM_BTN,			///<ã‚²ãƒ¼ãƒ ã€€ãƒœã‚¿ãƒ³æƒ…å ±
+	G2COMM_GM_GAMEDATA,		///<ã‚²ãƒ¼ãƒ ã€€æƒ…å ±
+	G2COMM_GM_PLAYNO,		///<ã‚²ãƒ¼ãƒ ã€€ãƒ—ãƒ¬ã‚¤ç•ªå·
+	G2COMM_GM_PLAYMAX,		///<ã‚²ãƒ¼ãƒ ã€€ãƒ—ãƒ¬ã‚¤æœ€å¤§æ•°
+	G2COMM_GM_TRADE_POS,	///<ã‚²ãƒ¼ãƒ ã€€äº¤æ›ä½ç½®
+	G2COMM_GM_GAMERESULT,	///<ã‚²ãƒ¼ãƒ ã€€çµæœ
+	G2COMM_GM_EGG_DATA_NG,	///<ã‚²ãƒ¼ãƒ ã€€åµãƒ‡ãƒ¼ã‚¿ç•°å¸¸
+	G2COMM_GM_EGG_DATA_OK,	///<ã‚²ãƒ¼ãƒ ã€€åµãƒ‡ãƒ¼ã‚¿æ­£å¸¸
 	
-	G2COMM_MAX,				///<Å‘å
+	G2COMM_MAX,				///<æœ€å¤§
 };
 
 //--------------------------------------------------------------
-///	’ÊMƒ[ƒN
+///	é€šä¿¡ãƒ¯ãƒ¼ã‚¯
 //--------------------------------------------------------------
-#define GURU2_WIDEUSE_SENDWORK_SIZE (24)	///”Ä—p‘—Mƒf[ƒ^Å‘å
+#define GURU2_WIDEUSE_SENDWORK_SIZE (24)	///æ±ç”¨é€ä¿¡ãƒ‡ãƒ¼ã‚¿æœ€å¤§
 
 //--------------------------------------------------------------
-///	ó•t
+///	å—ä»˜
 //--------------------------------------------------------------
 enum
 {
-	CREC_REQ_RIDATU_CHECK,		///<—£’EŠm”F
-	CREC_REQ_RIDATU_EXE,		///<—£’EÀs
+	CREC_REQ_RIDATU_CHECK,		///<é›¢è„±ç¢ºèª
+	CREC_REQ_RIDATU_EXE,		///<é›¢è„±å®Ÿè¡Œ
 };
 
 //--------------------------------------------------------------
-///	ƒ|ƒPƒ‚ƒ“ƒZƒŒƒNƒg@eI—¹ƒtƒ‰ƒO
+///	ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¬ã‚¯ãƒˆã€€è¦ªçµ‚äº†ãƒ•ãƒ©ã‚°
 //--------------------------------------------------------------
 enum
 {
@@ -92,46 +92,46 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒQ[ƒ€ƒVƒOƒiƒ‹
+///	ã‚²ãƒ¼ãƒ ã‚·ã‚°ãƒŠãƒ«
 //--------------------------------------------------------------
-#define G2COMM_GMSBIT_JOIN_CLOSE	(1<<0) ///<ƒQ[ƒ€Q‰Á’÷‚ßØ‚è
-#define G2COMM_GMSBIT_CANCEL		(1<<1) ///<ƒQ[ƒ€ƒLƒƒƒ“ƒZƒ‹
-#define G2COMM_GMSBIT_GAME_START	(1<<2) ///<ƒQ[ƒ€ŠJn
-#define G2COMM_GMSBIT_EGG_ADD_START (1<<3) ///<ƒ^ƒ}ƒS’Ç‰ÁŠJn
+#define G2COMM_GMSBIT_JOIN_CLOSE	(1<<0) ///<ã‚²ãƒ¼ãƒ å‚åŠ ç· ã‚åˆ‡ã‚Š
+#define G2COMM_GMSBIT_CANCEL		(1<<1) ///<ã‚²ãƒ¼ãƒ ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+#define G2COMM_GMSBIT_GAME_START	(1<<2) ///<ã‚²ãƒ¼ãƒ é–‹å§‹
+#define G2COMM_GMSBIT_EGG_ADD_START (1<<3) ///<ã‚¿ãƒã‚´è¿½åŠ é–‹å§‹
 
-#define G2COMM_GAMEBIT_DISC_STOP	(1<<0) ///<ƒQ[ƒ€@M’â~
-#define G2COMM_GAMEBIT_BTN_STOP		(1<<1) ///<ƒQ[ƒ€@ƒ{ƒ^ƒ““ü—Í‹Ö~
+#define G2COMM_GAMEBIT_DISC_STOP	(1<<0) ///<ã‚²ãƒ¼ãƒ ã€€çš¿åœæ­¢
+#define G2COMM_GAMEBIT_BTN_STOP		(1<<1) ///<ã‚²ãƒ¼ãƒ ã€€ãƒœã‚¿ãƒ³å…¥åŠ›ç¦æ­¢
 
 #define GURU2COMM_BAN_NONE		(0)
 #define GURU2COMM_BAN_ON		(1)
 #define GURU2COMM_BAN_MOST_ON	(2)
 
-#define GURU2_COMM_SYNCRO_0 (201)	///<’ÊM“¯Šú 0
+#define GURU2_COMM_SYNCRO_0 (201)	///<é€šä¿¡åŒæœŸ 0
 
-#define GURU2COMM_RC_SEND_DATABUF_SIZE	(3000)		///<‘—Mƒf[ƒ^ƒTƒCƒY
+#define GURU2COMM_RC_SEND_DATABUF_SIZE	(3000)		///<é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 
-// ƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB[‚ğ‘—M‚·‚é‚Æ‚«‚Ìƒf[ƒ^—Ê
+// ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã‚’é€ä¿¡ã™ã‚‹ã¨ãã®ãƒ‡ãƒ¼ã‚¿é‡
 #define POKEPARTY_SEND_ONCE_SIZE (236*6+4*2)	// sizeof(POKEPARTY)
 
 //==============================================================================
 //	typedef
 //==============================================================================
 //--------------------------------------------------------------
-//	QÆ—p
+//	å‚ç…§ç”¨
 //--------------------------------------------------------------
 typedef struct _TAG_GURU2PROC_WORK GURU2PROC_WORK;
 
 //--------------------------------------------------------------
 ///	GURU2COMM_END_CHILD_WORK
-///	‚±‚Ì\‘¢‘Ì‚Ì’†g‚ğ‘Ö‚¦‚½‚çA•K‚¸’ÊMŠÖ”ƒe[ƒuƒ‹‚Å
-///	g—p‚µ‚Ä‚¢‚é‰ÓŠ‚Ì‘—óMƒTƒCƒY‚ğ•ÏX‚·‚é‚±‚Æ
+///	ã“ã®æ§‹é€ ä½“ã®ä¸­èº«ã‚’æ›¿ãˆãŸã‚‰ã€å¿…ãšé€šä¿¡é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã§
+///	ä½¿ç”¨ã—ã¦ã„ã‚‹ç®‡æ‰€ã®é€å—ä¿¡ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹ã“ã¨
 //--------------------------------------------------------------
 typedef struct
 {
-	u8 ridatu_id;			///<—£’EÒ‚ÌID
-	u8 oya_share_num;		///<e‚Ì‚ÂshareNum
-	u8 request;				///<–½—ßƒR[ƒh
-	u8 ridatu_kyoka;		///<TRUE:—£’EOKAFALSE:—£’ENG
+	u8 ridatu_id;			///<é›¢è„±è€…ã®ID
+	u8 oya_share_num;		///<è¦ªã®æŒã¤shareNum
+	u8 request;				///<å‘½ä»¤ã‚³ãƒ¼ãƒ‰
+	u8 ridatu_kyoka;		///<TRUE:é›¢è„±OKã€FALSE:é›¢è„±NG
 }GURU2COMM_END_CHILD_WORK;
 
 //--------------------------------------------------------------
@@ -139,9 +139,9 @@ typedef struct
 //--------------------------------------------------------------
 typedef struct
 {
-	u8  data[GURU2COMM_RC_SEND_DATABUF_SIZE];	//ƒŒƒR[ƒhŒğŠ·ƒf[ƒ^
-	u32 _xor;						//ƒf[ƒ^®‡«Šm”F—pXOR
-	u32 seed;	//e‚©‚ç—ˆ‚½‚±‚Ì”’l‚ğŒ³‚É—”‚ğ”­¶‚³‚¹‚Äƒf[ƒ^‚ğ“ü‚ê‘Ö‚¦‚é
+	u8  data[GURU2COMM_RC_SEND_DATABUF_SIZE];	//ãƒ¬ã‚³ãƒ¼ãƒ‰äº¤æ›ãƒ‡ãƒ¼ã‚¿
+	u32 _xor;						//ãƒ‡ãƒ¼ã‚¿æ•´åˆæ€§ç¢ºèªç”¨XOR
+	u32 seed;	//è¦ªã‹ã‚‰æ¥ãŸã“ã®æ•°å€¤ã‚’å…ƒã«ä¹±æ•°ã‚’ç™ºç”Ÿã•ã›ã¦ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
 }GURU2COMM_RC_SENDDATA;
 
 //--------------------------------------------------------------
@@ -160,9 +160,9 @@ typedef struct
 //--------------------------------------------------------------
 typedef struct
 {
-	u16 disc_angle;					//MŠp“x
-	u16 omake_bit;					//‚¨‚Ü‚¯ƒGƒŠƒAƒqƒbƒgƒrƒbƒg
-	u16 egg_angle[G2MEMBER_MAX];	//—‘Šp“x
+	u16 disc_angle;					//çš¿è§’åº¦
+	u16 omake_bit;					//ãŠã¾ã‘ã‚¨ãƒªã‚¢ãƒ’ãƒƒãƒˆãƒ“ãƒƒãƒˆ
+	u16 egg_angle[G2MEMBER_MAX];	//åµè§’åº¦
 	u16 dmy;
 }GURU2COMM_GAMERESULT;
 
@@ -199,22 +199,22 @@ typedef struct
 typedef struct _TAG_GURU2COMM_WORK
 {
 	GURU2PROC_WORK *g2p;
-	u8 wideuse_sendwork[GURU2_WIDEUSE_SENDWORK_SIZE]; //“]‘——pƒ[ƒN
+	u8 wideuse_sendwork[GURU2_WIDEUSE_SENDWORK_SIZE]; //è»¢é€ç”¨ãƒ¯ãƒ¼ã‚¯
 	
-	int send_stop_flag;		//‘—M’â~
+	int send_stop_flag;		//é€ä¿¡åœæ­¢
 	int recv_count;
 	int record_execute;
-	int banFlag;			//‘€ì‹Ö~ƒtƒ‰ƒO
+	int banFlag;			//æ“ä½œç¦æ­¢ãƒ•ãƒ©ã‚°
 	int	shareNum;
-	u32	ridatu_bit;			//—£’E‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚éq‚Ìbit
+	u32	ridatu_bit;			//é›¢è„±ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹å­ã®bit
 	int send_num;
-	u16	oya_share_num;		//e‚ª‚Á‚Ä‚¢‚éshareNum‚ğ‚à‚ç‚¤
+	u16	oya_share_num;		//è¦ªãŒæŒã£ã¦ã„ã‚‹shareNumã‚’ã‚‚ã‚‰ã†
 	
-	int comm_psel_oya_end_flag;		//ƒ|ƒPƒ‚ƒ“ƒZƒŒƒNƒg’†‚ÌeI—¹ƒtƒ‰ƒO
-	u16 comm_game_signal_bit;		//ƒQ[ƒ€ƒVƒOƒiƒ‹
-	u16 comm_game_join_bit;			//ƒQ[ƒ€Q‰Áƒrƒbƒg
-	u16 comm_game_cancel_bit;		//ƒQ[ƒ€ƒLƒƒƒ“ƒZƒ‹
-	s16 comm_game_egg_recv_bit;		//ƒ^ƒ}ƒSƒf[ƒ^óMƒrƒbƒg
+	int comm_psel_oya_end_flag;		//ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¬ã‚¯ãƒˆä¸­ã®è¦ªçµ‚äº†ãƒ•ãƒ©ã‚°
+	u16 comm_game_signal_bit;		//ã‚²ãƒ¼ãƒ ã‚·ã‚°ãƒŠãƒ«
+	u16 comm_game_join_bit;			//ã‚²ãƒ¼ãƒ å‚åŠ ãƒ“ãƒƒãƒˆ
+	u16 comm_game_cancel_bit;		//ã‚²ãƒ¼ãƒ ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	s16 comm_game_egg_recv_bit;		//ã‚¿ãƒã‚´ãƒ‡ãƒ¼ã‚¿å—ä¿¡ãƒ“ãƒƒãƒˆ
 	u16 comm_game_egg_check_error_bit;
 	u16 comm_game_egg_check_ok_bit;
 	u8 *recv_poke_party_buf;//[G2MEMBER_MAX][POKEPARTY_SEND_ONCE_SIZE]

@@ -1,7 +1,7 @@
 #ifndef _T01R0202_DEF_H_
 #define _T01R0202_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T01R0202_GAME		(1)
 #define	SCRID_T01R0202_PC		(2)
 #define	SCRID_T01R0202_GAMESTART		(3)
@@ -12,6 +12,6 @@
 #define	SCRID_POS_T01R0202_RIVAL_02		(8)
 #define	SCRID_POS_T01R0202_RIVAL_03		(9)
 #define	SCRID_POS_T01R0202_RIVAL_04		(10)
-#define	SCRID_T01R0202_DATA_MAX		(10)		//最大数
+#define	SCRID_T01R0202_DATA_MAX		(10)		//譛螟ｧ謨ｰ
 
 #endif //_T01R0202_DEF_H_

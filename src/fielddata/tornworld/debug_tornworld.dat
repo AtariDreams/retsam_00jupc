@@ -1,5 +1,5 @@
 #ifndef DEBUG_DATA_FIELD_TORNWORLD_ZONE_BLOCK_MAX
-/*”j‚ê‚½¢ŠE ƒfƒoƒbƒOŽQÆ—pƒ][ƒ“ƒuƒƒbƒN”z’uÀ•W*/
+/*ç ´ã‚ŒãŸä¸–ç•Œ ãƒ‡ãƒãƒƒã‚°å‚ç…§ç”¨ã‚¾ãƒ¼ãƒ³ãƒ–ãƒ­ãƒƒã‚¯é…ç½®åº§æ¨™*/
 /*{ [ZoneID],[X],[Y],[Z] },*/
 #define DEBUG_DATA_FIELD_TORNWORLD_ZONE_BLOCK_MAX (10)
 static const int DEBUG_DATA_FieldtornWorldZoneBlockPosTable[DEBUG_DATA_FIELD_TORNWORLD_ZONE_BLOCK_MAX][4] =

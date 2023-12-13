@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	cb_snd_def.h
- * @brief	ŠÈ’P‚Èà–¾‚ð‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜Žã‚’æ›¸ã
  * @author	goto
- * @date	2006.05.08(ŒŽ)
+ * @date	2006.05.08(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -20,22 +20,22 @@
 
 enum {
 	
-	CB_SE_POP		= SEQ_SE_DP_BOX02,				///< ƒV[ƒ‹‚ªo‚µ‚½
-	CB_SE_DROP		= SEQ_SE_DP_BOX01,				///< ƒV[ƒ‹‚ð’u‚¢‚½
+	CB_SE_POP		= SEQ_SE_DP_BOX02,				///< ã‚·ãƒ¼ãƒ«ãŒå‡ºã—ãŸ
+	CB_SE_DROP		= SEQ_SE_DP_BOX01,				///< ã‚·ãƒ¼ãƒ«ã‚’ç½®ã„ãŸ
 	
-	CB_SE_TOUCH		= SEQ_SE_DP_BUTTON9,			///< ƒ^ƒbƒ`
+	CB_SE_TOUCH		= SEQ_SE_DP_BUTTON9,			///< ã‚¿ãƒƒãƒ
 	
-	CB_SE_LIMIT		= SEQ_SE_DP_CUSTOM06,			///< ‚à‚¤’u‚¯‚È‚¢(8–‡’u‚¢‚½)
-	CB_SE_NONE		= SEQ_SE_DP_CUSTOM06,			///< Žc‚è0–‡
+	CB_SE_LIMIT		= SEQ_SE_DP_CUSTOM06,			///< ã‚‚ã†ç½®ã‘ãªã„(8æžšç½®ã„ãŸ)
+	CB_SE_NONE		= SEQ_SE_DP_CUSTOM06,			///< æ®‹ã‚Š0æžš
 	
-	CB_SE_PLAY		= SEQ_SE_DP_DECIDE,				///< Ä¶ƒ{ƒ^ƒ“
-	CB_SE_UP		= SEQ_SE_DP_CUSTOM02,			///< ª
-	CB_SE_DOWN		= SEQ_SE_DP_CUSTOM02,			///< «
-	CB_SE_DEC_S		= SEQ_SE_DP_SELECT,				///< Œˆ’è
-	CB_SE_DEC		= SEQ_SE_DP_PIRORIRO,			///< Œˆ’è
-	CB_SE_CAN		= SEQ_SE_DP_DECIDE,				///< ƒLƒƒƒ“ƒZƒ‹
+	CB_SE_PLAY		= SEQ_SE_DP_DECIDE,				///< å†ç”Ÿãƒœã‚¿ãƒ³
+	CB_SE_UP		= SEQ_SE_DP_CUSTOM02,			///< â†‘
+	CB_SE_DOWN		= SEQ_SE_DP_CUSTOM02,			///< â†“
+	CB_SE_DEC_S		= SEQ_SE_DP_SELECT,				///< æ±ºå®š
+	CB_SE_DEC		= SEQ_SE_DP_PIRORIRO,			///< æ±ºå®š
+	CB_SE_CAN		= SEQ_SE_DP_DECIDE,				///< ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	
-	CB_SE_BOMB		= SEQ_SE_DP_CUSTOM05,			///< ƒ{[ƒ‹ƒ{ƒƒ“
+	CB_SE_BOMB		= SEQ_SE_DP_CUSTOM05,			///< ãƒœãƒ¼ãƒ«ãƒœãƒ¯ãƒ³
 	
 	CB_SE_CURSOR	= SEQ_SE_DP_SELECT,
 	

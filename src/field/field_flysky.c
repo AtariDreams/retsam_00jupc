@@ -2,7 +2,7 @@
 /**
  * 
  * @file	field_flysky.c
- * @brief	ƒtƒB[ƒ‹ƒh@‚»‚ç‚ğ‚Æ‚Ô
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ãã‚‰ã‚’ã¨ã¶
  * @author	kagaya
  * @data	05.07.13
  */
@@ -41,18 +41,18 @@ typedef struct
 #define SORATOBI_WORK_SIZE (sizeof(SORATOBI_WORK))
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒh@”é“`‹Z@‚»‚ç‚ğ‚Æ‚Ô
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ç§˜ä¼æŠ€ã€€ãã‚‰ã‚’ã¨ã¶
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ”é“`‹Z‚»‚ç‚ğ”ò‚ÔƒJƒbƒgƒCƒ“¨ƒ}ƒbƒv‘JˆÚƒCƒxƒ“ƒgŒÄ‚Ño‚µ—p‚Ìƒ[ƒNƒZƒbƒg
- * @param	heap_id		ƒ[ƒN‚ğŠm•Û‚·‚éHEAP ID
+ * ç§˜ä¼æŠ€ãã‚‰ã‚’é£›ã¶ã‚«ãƒƒãƒˆã‚¤ãƒ³â†’ãƒãƒƒãƒ—é·ç§»ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—ç”¨ã®ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
+ * @param	heap_id		ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿ã™ã‚‹HEAP ID
  * @param	fsys		FIELDSYS_WORK *
- * @param	param		•\¦‚·‚éPOKEMON_PARAM *
- * @param	zone_id		‘JˆÚ‚·‚éƒ][ƒ“ID
- * @param	map_gx		‘JˆÚæoŒ»ˆÊ’uƒOƒŠƒbƒhXÀ•W
- * @param	map_gz		‘JˆÚæoŒ»ˆÊ’uƒOƒŠƒbƒhZÀ•W
- * @retval	void*		Šm•Û‚µ‚½ƒ[ƒN*
+ * @param	param		è¡¨ç¤ºã™ã‚‹POKEMON_PARAM *
+ * @param	zone_id		é·ç§»ã™ã‚‹ã‚¾ãƒ¼ãƒ³ID
+ * @param	map_gx		é·ç§»å…ˆå‡ºç¾ä½ç½®ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	map_gz		é·ç§»å…ˆå‡ºç¾ä½ç½®ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @retval	void*		ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯*
  */
 //--------------------------------------------------------------
 void * EventWorkSet_FlySkyMapChange( u32 heap_id,
@@ -70,9 +70,9 @@ void * EventWorkSet_FlySkyMapChange( u32 heap_id,
 
 //--------------------------------------------------------------
 /**
- * ‹ó‚ğ”ò‚ÔƒJƒbƒgƒCƒ“¨ƒ}ƒbƒv‘JˆÚ
+ * ç©ºã‚’é£›ã¶ã‚«ãƒƒãƒˆã‚¤ãƒ³â†’ãƒãƒƒãƒ—é·ç§»
  * @param	event	GMEVENT_CONTROL *
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL GMEVENT_FlySkyMapChange( GMEVENT_CONTROL *event )

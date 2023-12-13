@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	ending_scene3.c
- * @brief	ƒV[ƒ“‚RFƒƒCƒ“
+ * @brief	ã‚·ãƒ¼ãƒ³ï¼“ï¼šãƒ¡ã‚¤ãƒ³
  * @author	matsuda
- * @date	2008.04.10(–Ø)
+ * @date	2008.04.10(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -29,48 +29,48 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///”wŒiƒXƒNƒ[ƒ‹‘¬“xX(fx32)
+///èƒŒæ™¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦X(fx32)
 #define MAP_SCENE3_BG_SPEED			(-0x80)
 
-///EVY‰ÁŽZ’l(‰ºˆÊ8ƒrƒbƒg¬”)
+///EVYåŠ ç®—å€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define MAP_SCENE3_ADD_EVY			(0x0400)
 
-///ƒpƒŒƒbƒgƒAƒjƒØ‚è‘Ö‚¦ƒEƒFƒCƒg
+///ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆã‚¦ã‚§ã‚¤ãƒˆ
 #define ENDING_SCENE3_PALANM_WAIT	0	//((ENDING_COUNTER_SCENE3_END - ENDING_COUNTER_CAP_SCENE2_END) / ENDING_SCENE3_PALANM_NUM)
 
-///ƒXƒ^[‚Ì”¼“§–¾‰ÁŽZ‘¬“x
+///ã‚¹ã‚¿ãƒ¼ã®åŠé€æ˜ŽåŠ ç®—é€Ÿåº¦
 #define STAR_EV_ADD			(3)
-///ƒXƒ^[‚Ì‘¬“xX
+///ã‚¹ã‚¿ãƒ¼ã®é€Ÿåº¦X
 #define STAR_ADD_X			(-0x6000)	//fx32
-///ƒXƒ^[‚Ì‘¬“xY
+///ã‚¹ã‚¿ãƒ¼ã®é€Ÿåº¦Y
 #define STAR_ADD_Y			(0xd000)	//fx32
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒXƒ^[‚Ì“®ìÝ’è\‘¢‘Ì
+///ã‚¹ã‚¿ãƒ¼ã®å‹•ä½œè¨­å®šæ§‹é€ ä½“
 typedef struct{
 	s16 start_x;
 	s16 start_y;
 }STAR_MOVE_DATA;
 
-///ƒWƒoƒRƒCƒ‹ˆÚ“®ƒpƒ‰ƒ[ƒ^
+///ã‚¸ãƒã‚³ã‚¤ãƒ«ç§»å‹•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
-	s16 x;				///<‰ŠúˆÊ’uX
-	s16 y;				///<‰ŠúˆÊ’uY
-	fx32 add_x;			///<ˆÚ“®‘¬“xX
-	fx32 add_y;			///<ˆÚ“®‘¬“xY
+	s16 x;				///<åˆæœŸä½ç½®X
+	s16 y;				///<åˆæœŸä½ç½®Y
+	fx32 add_x;			///<ç§»å‹•é€Ÿåº¦X
+	fx32 add_y;			///<ç§»å‹•é€Ÿåº¦Y
 
-	fx32 add_theta;		///<SINƒJ[ƒuŠp“x‰ÁŽZ’l
-	fx32 furihaba;		///<SINƒJ[ƒu‚Ó‚è•
-	s32 add_rotate;		///<‰ñ“]‰ÁŽZ’l
-	u16 add_rotate_num;	///<‰½ƒtƒŒ[ƒ€‰ñ“]‚ð‰ÁŽZ‚µ‚½‚çˆø‚«•Ô‚·‚©
+	fx32 add_theta;		///<SINã‚«ãƒ¼ãƒ–è§’åº¦åŠ ç®—å€¤
+	fx32 furihaba;		///<SINã‚«ãƒ¼ãƒ–ãµã‚Šå¹…
+	s32 add_rotate;		///<å›žè»¢åŠ ç®—å€¤
+	u16 add_rotate_num;	///<ä½•ãƒ•ãƒ¬ãƒ¼ãƒ å›žè»¢ã‚’åŠ ç®—ã—ãŸã‚‰å¼•ãè¿”ã™ã‹
 }JIBA_MOVE_DATA;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void MapScene3_JibaInit(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3);
 static void MapScene3_JibaUpdate(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3);
@@ -83,23 +83,23 @@ static void MapScene3_StarSet(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3, i
 static void MapScene3_StarMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3);
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 static const JIBA_MOVE_DATA JibaMoveData[] = {
 	{
-		256 + 48, 			///<‰ŠúˆÊ’uX
-		-10, 			///<‰ŠúˆÊ’uY
-		-0xe00, 		///<ˆÚ“®‘¬“xX(fx32)
-		0x600, 		///<ˆÚ“®‘¬“xY(fx32)
-		0x8000,			///<SINƒJ[ƒuŠp“x‰ÁŽZ’l
-		0xc000,			///<SINƒJ[ƒu‚Ó‚è•
-		150,				///<‰ñ“]‰ÁŽZ’l
-		20,				///<‰½ƒtƒŒ[ƒ€‰ñ“]‚ð‰ÁŽZ‚µ‚½‚çˆø‚«•Ô‚·‚©
+		256 + 48, 			///<åˆæœŸä½ç½®X
+		-10, 			///<åˆæœŸä½ç½®Y
+		-0xe00, 		///<ç§»å‹•é€Ÿåº¦X(fx32)
+		0x600, 		///<ç§»å‹•é€Ÿåº¦Y(fx32)
+		0x8000,			///<SINã‚«ãƒ¼ãƒ–è§’åº¦åŠ ç®—å€¤
+		0xc000,			///<SINã‚«ãƒ¼ãƒ–ãµã‚Šå¹…
+		150,				///<å›žè»¢åŠ ç®—å€¤
+		20,				///<ä½•ãƒ•ãƒ¬ãƒ¼ãƒ å›žè»¢ã‚’åŠ ç®—ã—ãŸã‚‰å¼•ãè¿”ã™ã‹
 	},
 };
 
 
-///ƒXƒ^[“®ìƒf[ƒ^
+///ã‚¹ã‚¿ãƒ¼å‹•ä½œãƒ‡ãƒ¼ã‚¿
 static const STAR_MOVE_DATA StarMoveData[] = {
 	{
 		200,
@@ -115,10 +115,10 @@ static const STAR_MOVE_DATA StarMoveData[] = {
 	},
 };
 
-///ŠX“ª‚Ì”z’uŠÔŠu
+///è¡—é ­ã®é…ç½®é–“éš”
 #define LIGHT_ARRANGEMENT_INTERVAL			(8)
 
-///‘O—ñ‚Ìƒ‚ƒfƒ‹”z’uƒf[ƒ^
+///å‰åˆ—ã®ãƒ¢ãƒ‡ãƒ«é…ç½®ãƒ‡ãƒ¼ã‚¿
 ALIGN4 const u16 Scene3MdlSort[] = {
 	ENDING_SCENE3_MDL_TREE_A,
 	ENDING_SCENE3_MDL_TREE_A,
@@ -158,12 +158,12 @@ ALIGN4 const u16 Scene3MdlSort[] = {
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒV[ƒ“‚RFƒƒCƒ“
+ * @brief   ã‚·ãƒ¼ãƒ³ï¼“ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   emw		ƒGƒ“ƒfƒBƒ“ƒOƒƒCƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sw		ƒV[ƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   emw		ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sw		ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹B@FALSE:Œp‘±’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ç¶™ç¶šä¸­
  */
 //--------------------------------------------------------------
 BOOL MapScene3_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw)
@@ -205,7 +205,7 @@ BOOL MapScene3_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw)
 		break;
 	case SEQ_INIT_WAIT:
 		if(IsFinishedBrightnessChg(MASK_DOUBLE_DISPLAY) == TRUE){
-			//ŠX“ª‚Ìƒ‰ƒCƒg‚ÌBG‚Æ‚Ì”¼“§–¾‚ð—LŒø‚É‚·‚éˆ×APLANE2‚ðÝ’è
+			//è¡—é ­ã®ãƒ©ã‚¤ãƒˆã®BGã¨ã®åŠé€æ˜Žã‚’æœ‰åŠ¹ã«ã™ã‚‹ç‚ºã€PLANE2ã‚’è¨­å®š
 			G2_SetBlendAlpha(0, 
 				GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2
 				| GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD | GX_BLEND_PLANEMASK_OBJ, 
@@ -256,7 +256,7 @@ BOOL MapScene3_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒWƒoƒRƒCƒ‹‰ŠúÝ’è
+ * @brief   ã‚¸ãƒã‚³ã‚¤ãƒ«åˆæœŸè¨­å®š
  *
  * @param   emw		
  */
@@ -278,7 +278,7 @@ static void MapScene3_JibaInit(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒWƒoƒRƒCƒ‹XVˆ—
+ * @brief   ã‚¸ãƒã‚³ã‚¤ãƒ«æ›´æ–°å‡¦ç†
  *
  * @param   emw		
  */
@@ -298,7 +298,7 @@ static void MapScene3_JibaUpdate(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒWƒoƒRƒCƒ‹“®ìˆ—
+ * @brief   ã‚¸ãƒã‚³ã‚¤ãƒ«å‹•ä½œå‡¦ç†
  *
  * @param   emw		
  * @param   sw_map3		
@@ -316,20 +316,20 @@ static void MapScene3_JibaMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3, 
 		return;
 	}
 	
-	//SINƒJ[ƒu
+	//SINã‚«ãƒ¼ãƒ–
 	jiba->theta += movedata->add_theta;
 	if(jiba->theta >= (360 << FX32_SHIFT)){
 		jiba->theta -= 360 << FX32_SHIFT;
 	}
 	offset_y = FX_Mul(Sin360FX(jiba->theta), movedata->furihaba);
 
-	//À•WˆÚ“®
+	//åº§æ¨™ç§»å‹•
 	jiba->x += movedata->add_x;
 	jiba->y += movedata->add_y;
 	CATS_ObjectPosSetCapFx32_SubSurface(
 		cap, jiba->x, jiba->y + offset_y, ENDING_SUB_ACTOR_DISTANCE);
 	
-	//ƒAƒtƒBƒ“Ý’è
+	//ã‚¢ãƒ•ã‚£ãƒ³è¨­å®š
 	if(jiba->rotate_dir == 0){
 		CATS_ObjectRotationAddCap(cap, movedata->add_rotate);
 	}
@@ -345,20 +345,20 @@ static void MapScene3_JibaMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3, 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^[‰ŠúÝ’è
+ * @brief   ã‚¹ã‚¿ãƒ¼åˆæœŸè¨­å®š
  *
  * @param   emw		
  */
 //--------------------------------------------------------------
 static void MapScene3_StarInit(ENDING_MAIN_WORK *emw)
 {
-	CATS_ObjectObjModeSetCap(emw->cap[ACT_INDEX_SCENE3_STAR_MAIN], GX_OAM_MODE_XLU);	//”¼“§–¾ON
+	CATS_ObjectObjModeSetCap(emw->cap[ACT_INDEX_SCENE3_STAR_MAIN], GX_OAM_MODE_XLU);	//åŠé€æ˜ŽON
 	CATS_ObjectObjModeSetCap(emw->cap[ACT_INDEX_SCENE3_STAR_SUB], GX_OAM_MODE_XLU);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^[XVˆ—
+ * @brief   ã‚¹ã‚¿ãƒ¼æ›´æ–°å‡¦ç†
  *
  * @param   emw		
  * @param   sw_map3		
@@ -385,7 +385,7 @@ static void MapScene3_StarUpdate(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^[‚Ì“®ìŠJŽnÝ’è
+ * @brief   ã‚¹ã‚¿ãƒ¼ã®å‹•ä½œé–‹å§‹è¨­å®š
  *
  * @param   emw			
  * @param   sw_map3		
@@ -394,7 +394,7 @@ static void MapScene3_StarUpdate(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3
 //--------------------------------------------------------------
 static void MapScene3_StarSet(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3, int tblno)
 {
-	GF_ASSERT(sw_map3->star_move == FALSE);		//‘¼‚ÌƒXƒ^[“®ì’†‚Ío‚¹‚È‚¢(”¼“§–¾‚ª‹ó‚¢‚Ä‚È‚¢)
+	GF_ASSERT(sw_map3->star_move == FALSE);		//ä»–ã®ã‚¹ã‚¿ãƒ¼å‹•ä½œä¸­ã¯å‡ºã›ãªã„(åŠé€æ˜ŽãŒç©ºã„ã¦ãªã„)
 	GF_ASSERT(NELEMS(StarMoveData) > tblno);
 	
 	sw_map3->star_move = TRUE;
@@ -405,8 +405,8 @@ static void MapScene3_StarSet(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3, i
 	
 	CATS_ObjectPosSetCap_SubSurface(emw->cap[ACT_INDEX_SCENE3_STAR_SUB], 
 		StarMoveData[tblno].start_x, StarMoveData[tblno].start_y, ENDING_SUB_ACTOR_DISTANCE);
-	CATS_ObjectEnableCap(emw->cap[ACT_INDEX_SCENE3_STAR_SUB], CATS_ENABLE_TRUE);	//•\Ž¦
-	CATS_ObjectEnableCap(emw->cap[ACT_INDEX_SCENE3_STAR_MAIN], CATS_ENABLE_FALSE);	//”ñ•\Ž¦
+	CATS_ObjectEnableCap(emw->cap[ACT_INDEX_SCENE3_STAR_SUB], CATS_ENABLE_TRUE);	//è¡¨ç¤º
+	CATS_ObjectEnableCap(emw->cap[ACT_INDEX_SCENE3_STAR_MAIN], CATS_ENABLE_FALSE);	//éžè¡¨ç¤º
 	
 	G2S_SetBlendAlpha(0, 
 		GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2
@@ -420,7 +420,7 @@ static void MapScene3_StarSet(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3, i
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^[“®ì
+ * @brief   ã‚¹ã‚¿ãƒ¼å‹•ä½œ
  *
  * @param   emw		
  * @param   sw_map3		
@@ -434,7 +434,7 @@ static void MapScene3_StarMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3)
 		return;
 	}
 	
-	if(sw_map3->star_ud == 0){	//ã‰æ–Ê
+	if(sw_map3->star_ud == 0){	//ä¸Šç”»é¢
 		sw_map3->ev1 += STAR_EV_ADD;
 		sw_map3->ev2 -= STAR_EV_ADD;
 		if(sw_map3->ev1 > 31){
@@ -456,7 +456,7 @@ static void MapScene3_StarMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3)
 			sw_map3->star_ud = 1;
 		}
 	}
-	else{	//‰º‰æ–Ê
+	else{	//ä¸‹ç”»é¢
 		sw_map3->ev2 += STAR_EV_ADD;
 		sw_map3->ev1 -= STAR_EV_ADD;
 		if(sw_map3->ev2 > 31){
@@ -480,10 +480,10 @@ static void MapScene3_StarMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”wŒiBGƒXƒNƒ[ƒ‹
+ * @brief   èƒŒæ™¯BGã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  *
  * @param   emw			
- * @param   sw_map3		ƒ}ƒbƒvƒV[ƒ“0ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sw_map3		ãƒžãƒƒãƒ—ã‚·ãƒ¼ãƒ³0ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void MapScene3_BGScroll(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3)
@@ -495,7 +495,7 @@ static void MapScene3_BGScroll(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP3 *sw_map3)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”wŒiƒpƒŒƒbƒgƒAƒjƒ
+ * @brief   èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
  *
  * @param   emw		
  * @param   sw_map3		

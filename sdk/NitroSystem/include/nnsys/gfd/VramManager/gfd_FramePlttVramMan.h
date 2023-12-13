@@ -32,8 +32,8 @@ typedef struct NNSGfdFrmPlttVramState
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdDumpFrmPlttVramManagerEx
 
-  Description:  NNS_GfdDumpFrmPlttVramManagerEx()関数で利用される、
-                ユーザ定義デバックダンプコールバック関数
+  Description:  NNS_GfdDumpFrmPlttVramManagerEx()髢｢謨ｰ縺ｧ蛻ｩ逕ｨ縺輔ｌ繧九�
+                繝ｦ繝ｼ繧ｶ螳夂ｾｩ繝�繝舌ャ繧ｯ繝繝ｳ繝励さ繝ｼ繝ｫ繝舌ャ繧ｯ髢｢謨ｰ
                                             
  *---------------------------------------------------------------------------*/
 typedef void (*NNSGfdFrmPlttVramDebugDumpCallBack)( u32 loAddr, u32 hiAddr, u32 szFree, u32 szTotal );

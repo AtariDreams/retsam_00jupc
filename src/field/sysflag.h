@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	sysflag.c
- * @bfief	ƒvƒƒOƒ‰ƒ€AƒXƒNƒŠƒvƒg‚©‚çƒAƒNƒZƒX‚³‚ê‚éƒVƒXƒeƒ€ƒtƒ‰ƒO‘€ì
+ * @bfief	ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ã‚¢ã‚¯ã‚»ã‚¹ã•ã‚Œã‚‹ã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°æ“ä½œ
  * @author	Satoshi Nohara
  * @date	05.11.01
  */
@@ -14,37 +14,37 @@
 
 
 //============================================================================================
-//	ƒtƒ‰ƒO’è‹`
+//	ãƒ•ãƒ©ã‚°å®šç¾©
 //
 //	SysFlag_...Set
 //	SysFlag_...Check
-//	ŠÖ”‚ðì‚èA‚»‚±‚©‚çƒAƒNƒZƒX‚·‚é‚æ‚¤‚É‚·‚é
+//	é–¢æ•°ã‚’ä½œã‚Šã€ãã“ã‹ã‚‰ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
 //
 //============================================================================================
 #include "sysflag_def.h"
 
 
 //--------------------------------------------------------------------------------------------
-//	ƒtƒ‰ƒO‘€ì—pƒ‚[ƒh’è‹`
+//	ãƒ•ãƒ©ã‚°æ“ä½œç”¨ãƒ¢ãƒ¼ãƒ‰å®šç¾©
 //--------------------------------------------------------------------------------------------
 typedef enum {
-	SYSFLAG_MODE_RESET = 0,	///<ƒtƒ‰ƒO‘€ìFƒŠƒZƒbƒg
-	SYSFLAG_MODE_SET,		///<ƒtƒ‰ƒO‘€ìFƒZƒbƒg
-	SYSFLAG_MODE_CHECK,		///<ƒtƒ‰ƒO‘€ìFŽæ“¾
+	SYSFLAG_MODE_RESET = 0,	///<ãƒ•ãƒ©ã‚°æ“ä½œï¼šãƒªã‚»ãƒƒãƒˆ
+	SYSFLAG_MODE_SET,		///<ãƒ•ãƒ©ã‚°æ“ä½œï¼šã‚»ãƒƒãƒˆ
+	SYSFLAG_MODE_CHECK,		///<ãƒ•ãƒ©ã‚°æ“ä½œï¼šå–å¾—
 }SYSFLAG_MODE;
 
 
 //============================================================================================
 //
-//	ƒoƒbƒOŠÖ˜A
+//	ãƒãƒƒã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒO“üŽèƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * ãƒãƒƒã‚°å…¥æ‰‹ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -53,12 +53,12 @@ extern void SysFlag_BagSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒO“üŽèƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * ãƒãƒƒã‚°å…¥æ‰‹ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_BagCheck( EVENTWORK* ev );
@@ -66,15 +66,15 @@ extern BOOL SysFlag_BagCheck( EVENTWORK* ev );
 
 //============================================================================================
 //
-//	ƒJƒ“ƒiƒM‚ÌƒMƒ“ƒK’cƒCƒxƒ“ƒgŠÖ˜A
+//	ã‚«ãƒ³ãƒŠã‚®ã®ã‚®ãƒ³ã‚¬å›£ã‚¤ãƒ™ãƒ³ãƒˆé–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒJƒ“ƒiƒM‚ÌƒMƒ“ƒK’cƒCƒxƒ“ƒgƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * ã‚«ãƒ³ãƒŠã‚®ã®ã‚®ãƒ³ã‚¬å›£ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -83,12 +83,12 @@ extern void SysFlag_T05GingaEventSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒJƒ“ƒiƒM‚ÌƒMƒ“ƒK’cƒCƒxƒ“ƒgƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * ã‚«ãƒ³ãƒŠã‚®ã®ã‚®ãƒ³ã‚¬å›£ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_T05GingaEventCheck( EVENTWORK* ev );
@@ -96,15 +96,15 @@ extern BOOL SysFlag_T05GingaEventCheck( EVENTWORK* ev );
 
 //============================================================================================
 //
-//	ƒQ[ƒ€ƒNƒŠƒAŠÖ˜A
+//	ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒQ[ƒ€ƒNƒŠƒAƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -113,12 +113,12 @@ extern void SysFlag_GameClearSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒQ[ƒ€ƒNƒŠƒAƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_GameClearCheck( EVENTWORK* ev );
@@ -126,15 +126,15 @@ extern BOOL SysFlag_GameClearCheck( EVENTWORK* ev );
 
 //============================================================================================
 //
-//	’n‰º‰‰ñƒCƒxƒ“ƒgƒtƒ‰ƒOŠÖ˜A
+//	åœ°ä¸‹åˆå›žã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰º‰‰ñƒCƒxƒ“ƒgƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * åœ°ä¸‹åˆå›žã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -143,9 +143,9 @@ extern void SysFlag_UgFirstSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰º‰‰ñƒCƒxƒ“ƒgƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * åœ°ä¸‹åˆå›žã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -154,12 +154,12 @@ extern void SysFlag_UgFirstReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰º‰‰ñƒCƒxƒ“ƒgƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * åœ°ä¸‹åˆå›žã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_UgFirstCheck( EVENTWORK* ev );
@@ -167,15 +167,15 @@ extern BOOL SysFlag_UgFirstCheck( EVENTWORK* ev );
 
 //============================================================================================
 //
-//	˜A‚ê•à‚«ƒtƒ‰ƒOŠÖ˜A
+//	é€£ã‚Œæ­©ããƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˜A‚ê•à‚«ƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * é€£ã‚Œæ­©ããƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -184,9 +184,9 @@ extern void SysFlag_PairSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˜A‚ê•à‚«ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * é€£ã‚Œæ­©ããƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -195,12 +195,12 @@ extern void SysFlag_PairReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˜A‚ê•à‚«ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * é€£ã‚Œæ­©ããƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_PairCheck( EVENTWORK* ev );
@@ -208,15 +208,15 @@ extern BOOL SysFlag_PairCheck( EVENTWORK* ev );
 
 //============================================================================================
 //
-//	ˆê•à“®‚¢‚½‚©ƒtƒ‰ƒOŠÖ˜A
+//	ä¸€æ­©å‹•ã„ãŸã‹ãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˆê•à“®‚¢‚½‚©ƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * ä¸€æ­©å‹•ã„ãŸã‹ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -225,9 +225,9 @@ extern void SysFlag_OneStepSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˆê•à“®‚¢‚½‚©ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * ä¸€æ­©å‹•ã„ãŸã‹ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -236,12 +236,12 @@ extern void SysFlag_OneStepReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ˆê•à“®‚¢‚½‚©ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * ä¸€æ­©å‹•ã„ãŸã‹ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_OneStepCheck( EVENTWORK* ev );
@@ -249,16 +249,16 @@ extern BOOL SysFlag_OneStepCheck( EVENTWORK* ev );
 
 //============================================================================================
 //
-//	ƒRƒ“ƒeƒXƒg ƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒAƒtƒ‰ƒOŠÖ˜A
+//	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ ãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg ƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒA ƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ ãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢ ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	type	ƒRƒ“ƒeƒXƒgƒ^ƒCƒv
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—
  *
  * @retval	none
  */
@@ -267,10 +267,10 @@ extern void SysFlag_ConMasterSet( EVENTWORK* ev, int type );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg ƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒA ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ ãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢ ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	type	ƒRƒ“ƒeƒXƒgƒ^ƒCƒv
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—
  *
  * @retval	none
  */
@@ -279,13 +279,13 @@ extern void SysFlag_ConMasterReset( EVENTWORK* ev, int type );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg ƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒA ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ ãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢ ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	type	ƒRƒ“ƒeƒXƒgƒ^ƒCƒv
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_ConMasterCheck( EVENTWORK* ev, int type );
@@ -293,16 +293,16 @@ extern BOOL SysFlag_ConMasterCheck( EVENTWORK* ev, int type );
 
 //============================================================================================
 //
-//	ƒoƒgƒ‹ƒT[ƒ`ƒƒ[Fƒtƒ‰ƒOŠÖ˜A
+//	ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ï¼šãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒT[ƒ`ƒƒ[ ƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	lv		ƒŒƒxƒ‹
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	lv		ãƒ¬ãƒ™ãƒ«
  *
  * @retval	none
  */
@@ -311,10 +311,10 @@ extern void SysFlag_BsLvSet( EVENTWORK* ev, int lv );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒT[ƒ`ƒƒ[ ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	lv		ƒŒƒxƒ‹
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	lv		ãƒ¬ãƒ™ãƒ«
  *
  * @retval	none
  */
@@ -323,26 +323,26 @@ extern void SysFlag_BsLvReset( EVENTWORK* ev, int lv );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒT[ƒ`ƒƒ[ ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	lv		ƒŒƒxƒ‹
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	lv		ãƒ¬ãƒ™ãƒ«
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_BsLvCheck( EVENTWORK* ev, int lv );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦ ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN‚ð‚µ‚ÄAØ‚è‘Ö‚¦‚éBGMƒiƒ“ƒo[‚ðŽæ“¾
+ * ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯ã‚’ã—ã¦ã€åˆ‡ã‚Šæ›¿ãˆã‚‹BGMãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone_id ƒ][ƒ“ID
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone_id ã‚¾ãƒ¼ãƒ³ID
  *
- * @retval	"0		= ƒtƒ‰ƒOƒIƒt‚È‚Ì‚Å‰½‚à‚È‚µ"
- * @retval	"0ˆÈŠO	= •ÏX‚·‚éBGMƒiƒ“ƒo["
+ * @retval	"0		= ãƒ•ãƒ©ã‚°ã‚ªãƒ•ãªã®ã§ä½•ã‚‚ãªã—"
+ * @retval	"0ä»¥å¤–	= å¤‰æ›´ã™ã‚‹BGMãƒŠãƒ³ãƒãƒ¼"
  */
 //--------------------------------------------------------------------------------------------
 extern u16 SysFlag_EventBgmGet( EVENTWORK* ev, int zone_id );
@@ -350,15 +350,15 @@ extern u16 SysFlag_EventBgmGet( EVENTWORK* ev, int zone_id );
 
 //============================================================================================
 //
-//	’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒOŠÖ˜A
+//	é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéŽãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéŽãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -367,9 +367,9 @@ extern void SysFlag_CommCounterSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéŽãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -378,12 +378,12 @@ extern void SysFlag_CommCounterReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéŽãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_CommCounterCheck( EVENTWORK* ev );
@@ -391,15 +391,15 @@ extern BOOL SysFlag_CommCounterCheck( EVENTWORK* ev );
 
 //============================================================================================
 //
-//	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXFƒRƒ“ƒeƒXƒg‹Zƒtƒ‰ƒOŠÖ˜A
+//	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXFƒRƒ“ƒeƒXƒg‹Zƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -408,9 +408,9 @@ extern void SysFlag_PSTContestSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXFƒRƒ“ƒeƒXƒg‹Zƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -419,12 +419,12 @@ extern void SysFlag_PSTContestReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXFƒRƒ“ƒeƒXƒg‹Zƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_PSTContestCheck( EVENTWORK* ev );
@@ -432,15 +432,15 @@ extern BOOL SysFlag_PSTContestCheck( EVENTWORK* ev );
 
 //============================================================================================
 //
-//	GTCƒI[ƒvƒ“ƒtƒ‰ƒOŠÖ˜A
+//	GTCã‚ªãƒ¼ãƒ—ãƒ³ãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * GTCƒI[ƒvƒ“ƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * GTCã‚ªãƒ¼ãƒ—ãƒ³ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -449,9 +449,9 @@ extern void SysFlag_GTCOpenSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * GTCƒI[ƒvƒ“ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * GTCã‚ªãƒ¼ãƒ—ãƒ³ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -460,27 +460,27 @@ extern void SysFlag_GTCOpenReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * GTCƒI[ƒvƒ“ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * GTCã‚ªãƒ¼ãƒ—ãƒ³ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_GTCOpenCheck( EVENTWORK* ev );
 
 //============================================================================================
 //
-//	ƒoƒgƒ‹ƒ^ƒ[ƒI[ƒvƒ“ƒtƒ‰ƒOŠÖ˜A
+//	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚ªãƒ¼ãƒ—ãƒ³ãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ^ƒ[ƒI[ƒvƒ“ƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚ªãƒ¼ãƒ—ãƒ³ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -489,9 +489,9 @@ extern void SysFlag_BTowerOpenSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ^ƒ[ƒI[ƒvƒ“ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚ªãƒ¼ãƒ—ãƒ³ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -500,27 +500,27 @@ extern void SysFlag_BTowerOpenReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ^ƒ[ƒI[ƒvƒ“ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚ªãƒ¼ãƒ—ãƒ³ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_BTowerOpenCheck( EVENTWORK* ev );
 
 //============================================================================================
 //
-//	‘D‚ªŽg‚¦‚éƒtƒ‰ƒOŠÖ˜A
+//	èˆ¹ãŒä½¿ãˆã‚‹ãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘D‚ªŽg‚¦‚éƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * èˆ¹ãŒä½¿ãˆã‚‹ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -529,9 +529,9 @@ extern void SysFlag_ShipSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘D‚ªŽg‚¦‚éƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * èˆ¹ãŒä½¿ãˆã‚‹ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -540,12 +540,12 @@ extern void SysFlag_ShipReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘D‚ªŽg‚¦‚éƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * èˆ¹ãŒä½¿ãˆã‚‹ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_ShipCheck( EVENTWORK* ev );
@@ -553,15 +553,15 @@ extern BOOL SysFlag_ShipCheck( EVENTWORK* ev );
 
 //============================================================================================
 //
-//	ƒŒƒCƒAƒCƒnƒC‹~oƒtƒ‰ƒOŠÖ˜A
+//	ãƒ¬ã‚¤ã‚¢ã‚¤ãƒã‚¤æ•‘å‡ºãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒCƒAƒCƒnƒC‹~oƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * ãƒ¬ã‚¤ã‚¢ã‚¤ãƒã‚¤æ•‘å‡ºãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -570,9 +570,9 @@ extern void SysFlag_ReiAiHaiSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒCƒAƒCƒnƒC‹~oƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * ãƒ¬ã‚¤ã‚¢ã‚¤ãƒã‚¤æ•‘å‡ºãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -581,12 +581,12 @@ extern void SysFlag_ReiAiHaiReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒCƒAƒCƒnƒC‹~oƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * ãƒ¬ã‚¤ã‚¢ã‚¤ãƒã‚¤æ•‘å‡ºãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_ReiAiHaiCheck( EVENTWORK* ev );
@@ -594,15 +594,15 @@ extern BOOL SysFlag_ReiAiHaiCheck( EVENTWORK* ev );
 
 //============================================================================================
 //
-//	ƒ~ƒYƒLƒtƒ‰ƒOŠÖ˜A
+//	ãƒŸã‚ºã‚­ãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ~ƒYƒLƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * ãƒŸã‚ºã‚­ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -611,9 +611,9 @@ extern void SysFlag_MizukiSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ~ƒYƒLƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * ãƒŸã‚ºã‚­ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -622,77 +622,77 @@ extern void SysFlag_MizukiReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ~ƒYƒLƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * ãƒŸã‚ºã‚­ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_MizukiCheck( EVENTWORK* ev );
 
 
 //============================================================================================
-//		ƒ|ƒPƒbƒ`ƒtƒbƒNˆ—ŠÖ˜A
+//		ãƒã‚±ãƒƒãƒãƒ•ãƒƒã‚¯å‡¦ç†é–¢é€£
 //============================================================================================
 extern void SysFlag_PoketchHookSet(EVENTWORK * ev);
 extern void SysFlag_PoketchHookReset(EVENTWORK * ev);
 extern BOOL SysFlag_PoketchHookCheck(EVENTWORK * ev);
 
 //============================================================================================
-//		ƒTƒtƒ@ƒŠƒ‚[ƒhŠÖ˜A
+//		ã‚µãƒ•ã‚¡ãƒªãƒ¢ãƒ¼ãƒ‰é–¢é€£
 //============================================================================================
 extern void SysFlag_SafariSet(EVENTWORK * ev);
 extern void SysFlag_SafariReset(EVENTWORK * ev);
 extern BOOL SysFlag_SafariCheck(EVENTWORK * ev);
 
 //============================================================================================
-//		ƒ|ƒPƒp[ƒNƒ‚[ƒhŠÖ˜A
+//		ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒ¢ãƒ¼ãƒ‰é–¢é€£
 //============================================================================================
 extern void SysFlag_PokeParkSet(EVENTWORK * ev);
 extern void SysFlag_PokeParkReset(EVENTWORK * ev);
 extern BOOL SysFlag_PokeParkCheck(EVENTWORK * ev);
 
 //============================================================================================
-//		ƒTƒCƒNƒŠƒ“ƒOƒ[ƒhƒ‚[ƒhŠÖ˜A
+//		ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰é–¢é€£
 //============================================================================================
 extern void SysFlag_CyclingRoadSet(EVENTWORK * ev);
 extern void SysFlag_CyclingRoadReset(EVENTWORK * ev);
 extern BOOL SysFlag_CyclingRoadCheck(EVENTWORK * ev);
 
 //============================================================================================
-//		‚Ð‚Å‚ñ‚í‚´ŠÖ˜A
+//		ã²ã§ã‚“ã‚ã–é–¢é€£
 //============================================================================================
 //--------------------------------------------------------------------------------------------
-//		ƒtƒ‰ƒbƒVƒ…ó‘Ôƒtƒ‰ƒO
+//		ãƒ•ãƒ©ãƒƒã‚·ãƒ¥çŠ¶æ…‹ãƒ•ãƒ©ã‚°
 //--------------------------------------------------------------------------------------------
-///ƒtƒ‰ƒbƒVƒ…ó‘Ôƒtƒ‰ƒOƒZƒbƒg
+///ãƒ•ãƒ©ãƒƒã‚·ãƒ¥çŠ¶æ…‹ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 extern void SysFlag_FlashSet(EVENTWORK* ev);
-///ƒtƒ‰ƒbƒVƒ…ó‘Ôƒtƒ‰ƒOƒŠƒZƒbƒg
+///ãƒ•ãƒ©ãƒƒã‚·ãƒ¥çŠ¶æ…‹ãƒ•ãƒ©ã‚°ãƒªã‚»ãƒƒãƒˆ
 extern void SysFlag_FlashReset(EVENTWORK* ev);
-///ƒtƒ‰ƒbƒVƒ…ó‘Ôƒtƒ‰ƒOƒ`ƒFƒbƒN
+///ãƒ•ãƒ©ãƒƒã‚·ãƒ¥çŠ¶æ…‹ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 extern BOOL SysFlag_FlashCheck(EVENTWORK* ev);
 
 //--------------------------------------------------------------------------------------------
-//		‚«‚è‚Î‚ç‚¢ó‘Ôƒtƒ‰ƒO
+//		ãã‚Šã°ã‚‰ã„çŠ¶æ…‹ãƒ•ãƒ©ã‚°
 //--------------------------------------------------------------------------------------------
-///‚«‚è‚Î‚ç‚¢ó‘Ôƒtƒ‰ƒOƒZƒbƒg
+///ãã‚Šã°ã‚‰ã„çŠ¶æ…‹ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 extern void SysFlag_KiribaraiSet(EVENTWORK* ev);
-///‚«‚è‚Î‚ç‚¢ó‘Ôƒtƒ‰ƒOƒŠƒZƒbƒg
+///ãã‚Šã°ã‚‰ã„çŠ¶æ…‹ãƒ•ãƒ©ã‚°ãƒªã‚»ãƒƒãƒˆ
 extern void SysFlag_KiribaraiReset(EVENTWORK* ev);
-///‚«‚è‚Î‚ç‚¢ó‘Ôƒtƒ‰ƒOƒ`ƒFƒbƒN
+///ãã‚Šã°ã‚‰ã„çŠ¶æ…‹ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 extern BOOL SysFlag_KiribaraiCheck(EVENTWORK* ev);
 
 //--------------------------------------------------------------------------------------------
-//		‚©‚¢‚è‚«ƒtƒ‰ƒO
+//		ã‹ã„ã‚Šããƒ•ãƒ©ã‚°
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_Kairiki( EVENTWORK* ev, SYSFLAG_MODE mode);
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚©‚¢‚è‚«ƒtƒ‰ƒO‚ÌƒZƒbƒg
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‹ã„ã‚Šããƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static inline void SysFlag_KairikiSet( EVENTWORK* ev )
@@ -701,8 +701,8 @@ static inline void SysFlag_KairikiSet( EVENTWORK* ev )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚©‚¢‚è‚«ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‹ã„ã‚Šããƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static inline void SysFlag_KairikiReset( EVENTWORK* ev )
@@ -711,8 +711,8 @@ static inline void SysFlag_KairikiReset( EVENTWORK* ev )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚©‚¢‚è‚«ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‹ã„ã‚Šããƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  * @return	BOOL	ON/OFF
  */
 //--------------------------------------------------------------------------------------------
@@ -723,9 +723,9 @@ static inline BOOL SysFlag_KairikiCheck( EVENTWORK* ev )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒT[ƒ`ƒƒ[‚ÌƒoƒbƒeƒŠ[‚ðŽg—p‚µ‚Ä‚¢‚é‚©ƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ã®ãƒãƒƒãƒ†ãƒªãƒ¼ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -734,9 +734,9 @@ extern void SysFlag_BtlSearcherUseSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒT[ƒ`ƒƒ[‚ÌƒoƒbƒeƒŠ[‚ðŽg—p‚µ‚Ä‚¢‚é‚©ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ã®ãƒãƒƒãƒ†ãƒªãƒ¼ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -745,12 +745,12 @@ extern void SysFlag_BtlSearcherUseReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒT[ƒ`ƒƒ[‚ÌƒoƒbƒeƒŠ[‚ðŽg—p‚µ‚Ä‚¢‚é‚©ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ã®ãƒãƒƒãƒ†ãƒªãƒ¼ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_BtlSearcherUseCheck( EVENTWORK* ev );
@@ -758,15 +758,15 @@ extern BOOL SysFlag_BtlSearcherUseCheck( EVENTWORK* ev );
 
 //============================================================================================
 //
-//	’n‰ºƒtƒ‰ƒOŠÖ˜A
+//	åœ°ä¸‹ãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºF“ž’…ƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * åœ°ä¸‹ï¼šåˆ°ç€ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -775,9 +775,9 @@ extern void SysFlag_UgArriveSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºF“ž’…ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * åœ°ä¸‹ï¼šåˆ°ç€ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -786,21 +786,21 @@ extern void SysFlag_UgArriveReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºF“ž’…ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * åœ°ä¸‹ï¼šåˆ°ç€ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_UgArriveCheck( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºF‰»Îƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * åœ°ä¸‹ï¼šåŒ–çŸ³ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -809,9 +809,9 @@ extern void SysFlag_UgDigSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºF‰»Îƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * åœ°ä¸‹ï¼šåŒ–çŸ³ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -820,21 +820,21 @@ extern void SysFlag_UgDigReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºF‰»Îƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * åœ°ä¸‹ï¼šåŒ–çŸ³ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_UgDigCheck( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºF‹Êƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * åœ°ä¸‹ï¼šçŽ‰ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -843,9 +843,9 @@ extern void SysFlag_UgTamaSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºF‹Êƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * åœ°ä¸‹ï¼šçŽ‰ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -854,21 +854,21 @@ extern void SysFlag_UgTamaReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºF‹Êƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * åœ°ä¸‹ï¼šçŽ‰ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_UgTamaCheck( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºFŠî’nƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * åœ°ä¸‹ï¼šåŸºåœ°ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -877,9 +877,9 @@ extern void SysFlag_UgBaseSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºFŠî’nƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * åœ°ä¸‹ï¼šåŸºåœ°ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -888,21 +888,21 @@ extern void SysFlag_UgBaseReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºFŠî’nƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * åœ°ä¸‹ï¼šåŸºåœ°ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_UgBaseCheck( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºF–Í—l‘Ö‚¦ƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * åœ°ä¸‹ï¼šæ¨¡æ§˜æ›¿ãˆãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -911,9 +911,9 @@ extern void SysFlag_UgGoodsSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºF–Í—l‘Ö‚¦ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * åœ°ä¸‹ï¼šæ¨¡æ§˜æ›¿ãˆãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -922,21 +922,21 @@ extern void SysFlag_UgGoodsReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºF–Í—l‘Ö‚¦ƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * åœ°ä¸‹ï¼šæ¨¡æ§˜æ›¿ãˆãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_UgGoodsCheck( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºFŠøƒtƒ‰ƒO‚ÌƒZƒbƒg
+ * åœ°ä¸‹ï¼šæ——ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -945,9 +945,9 @@ extern void SysFlag_UgHataSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºFŠøƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * åœ°ä¸‹ï¼šæ——ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -956,38 +956,38 @@ extern void SysFlag_UgHataReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰ºFŠøƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
+ * åœ°ä¸‹ï¼šæ——ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_UgHataCheck( EVENTWORK* ev );
 
 
 //============================================================================================
-//		ƒTƒCƒNƒŠƒ“ƒOƒ[ƒhƒQ[ƒg‚ð’Ê‰ß‚µ‚½‚©ƒtƒ‰ƒO
+//		ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ã‚²ãƒ¼ãƒˆã‚’é€šéŽã—ãŸã‹ãƒ•ãƒ©ã‚°
 //
-//		*ƒTƒCƒNƒŠƒ“ƒOƒ[ƒhƒQ[ƒg‚ÅAŽ©“]ŽÔ‚©‚ç~‚è‚ç‚ê‚È‚¢”»’è‚ÅŽg—p‚µ‚Ä‚¢‚é
-//		*ƒ}ƒbƒv‘JˆÚ‚Å—Ž‚¿‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚é‚Ì‚ÅAƒQ[ƒg“à‚Å‚Ì‚Ý—LŒø
+//		*ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ã‚²ãƒ¼ãƒˆã§ã€è‡ªè»¢è»Šã‹ã‚‰é™ã‚Šã‚‰ã‚Œãªã„åˆ¤å®šã§ä½¿ç”¨ã—ã¦ã„ã‚‹
+//		*ãƒžãƒƒãƒ—é·ç§»ã§è½ã¡ã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã‚‹ã®ã§ã€ã‚²ãƒ¼ãƒˆå†…ã§ã®ã¿æœ‰åŠ¹
 //============================================================================================
 extern BOOL SysFlag_BicycleGatePassage( EVENTWORK* ev, SYSFLAG_MODE mode );
 
 
 //============================================================================================
-//		–`Œ¯ƒm[ƒgŠÖ˜A
+//		å†’é™ºãƒŽãƒ¼ãƒˆé–¢é€£
 //============================================================================================
 //--------------------------------------------------------------------------------------------
-//		–`Œ¯ƒm[ƒg“üŽèƒtƒ‰ƒO
+//		å†’é™ºãƒŽãƒ¼ãƒˆå…¥æ‰‹ãƒ•ãƒ©ã‚°
 //--------------------------------------------------------------------------------------------
 extern BOOL SysFlag_FNote( EVENTWORK* ev, SYSFLAG_MODE mode);
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	–`Œ¯ƒm[ƒg“üŽèƒtƒ‰ƒO‚ÌƒZƒbƒg
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	å†’é™ºãƒŽãƒ¼ãƒˆå…¥æ‰‹ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static inline void SysFlag_FNoteSet( EVENTWORK* ev )
@@ -996,8 +996,8 @@ static inline void SysFlag_FNoteSet( EVENTWORK* ev )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	–`Œ¯ƒm[ƒg“üŽèƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	å†’é™ºãƒŽãƒ¼ãƒˆå…¥æ‰‹ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static inline void SysFlag_FNoteReset( EVENTWORK* ev )
@@ -1006,8 +1006,8 @@ static inline void SysFlag_FNoteReset( EVENTWORK* ev )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	–`Œ¯ƒm[ƒg“üŽèƒtƒ‰ƒO‚Ìƒ`ƒFƒbƒN
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	å†’é™ºãƒŽãƒ¼ãƒˆå…¥æ‰‹ãƒ•ãƒ©ã‚°ã®ãƒã‚§ãƒƒã‚¯
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  * @return	BOOL	ON/OFF
  */
 //--------------------------------------------------------------------------------------------
@@ -1018,7 +1018,7 @@ static inline BOOL SysFlag_FNoteCheck( EVENTWORK* ev )
 
 //============================================================================================
 //
-//		“ž’…ƒtƒ‰ƒOŠÖ˜A
+//		åˆ°ç€ãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 //--------------------------------------------------------------------------------------------
@@ -1046,14 +1046,14 @@ static inline BOOL SysFlag_ArriveGet( EVENTWORK * ev, u32 arrive_id)
 
 //============================================================================================
 //
-//		ƒCƒxƒ“ƒgŠÖ˜A
+//		ã‚¤ãƒ™ãƒ³ãƒˆé–¢é€£
 //
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * WiFi‚ÉŒq‚¢‚¾
+ * WiFiã«ç¹‹ã„ã 
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1062,11 +1062,11 @@ extern void SysFlag_WifiUseSet( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ê‘‘@‰Æ‹ïƒtƒ‰ƒOƒZƒbƒg
+ * åˆ¥è˜ã€€å®¶å…·ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  * @param	mode	SYSFLAG_MODE
- * @param	no		‰Æ‹ï”Ô† VILLA_FTURE_MAX–¢–ž
+ * @param	no		å®¶å…·ç•ªå· VILLA_FTURE_MAXæœªæº€
  * @retval	none
  */
 //--------------------------------------------------------------------------------------------
@@ -1075,15 +1075,15 @@ extern BOOL SysFlag_VillaFurniture( EVENTWORK* ev, SYSFLAG_MODE mode, int no );
 
 //============================================================================================
 //
-//	•Ê‘‘ŠÖ˜A
+//	åˆ¥è˜é–¢é€£
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * •Ê‘‘ŠO‚ÌOBJ‚ª’†‚É“ü‚Á‚½‚©ƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * åˆ¥è˜å¤–ã®OBJãŒä¸­ã«å…¥ã£ãŸã‹ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1092,9 +1092,9 @@ extern void SysFlag_T07ObjInReset( EVENTWORK* ev );
 
 //--------------------------------------------------------------------------------------------
 /**
- * POS‚ÅOBJ‚ª•\Ž¦‚³‚ê‚Ä‚¢‚éƒtƒ‰ƒO‚ÌƒŠƒZƒbƒg
+ * POSã§OBJãŒè¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒ•ãƒ©ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param	ev		EVENTWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ev		EVENTWORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -1102,7 +1102,7 @@ extern void SysFlag_T07ObjInReset( EVENTWORK* ev );
 extern void SysFlag_T07R0201PosAppearReset( EVENTWORK* ev );
 
 //============================================================================================
-//	”j‚ê‚½¢ŠEŠÖ˜A
+//	ç ´ã‚ŒãŸä¸–ç•Œé–¢é€£
 //============================================================================================
 extern BOOL SysFlag_TornWorldGirasFlag( EVENTWORK* ev, SYSFLAG_MODE mode, int no );
 extern BOOL SysFlag_TornWorldRockFinish( EVENTWORK* ev, SYSFLAG_MODE mode );
@@ -1111,13 +1111,13 @@ extern void SysFlag_TornWorldRockLiftFlagSet( EVENTWORK* ev );
 
 //============================================================================================
 //
-//		ƒfƒoƒbƒO‹@”\ŠÖ˜A
+//		ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½é–¢é€£
 //
 //============================================================================================
 #ifdef PM_DEBUG
-//ƒVƒXƒeƒ€ƒtƒ‰ƒOŒn‚ðƒQƒbƒg‚·‚é
+//ã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°ç³»ã‚’ã‚²ãƒƒãƒˆã™ã‚‹
 extern u32 DNumInput_SysFlagGet(SAVEDATA* sv,u32 param);
-//ƒVƒXƒeƒ€ƒtƒ‰ƒOŒn‚ðƒZƒbƒg‚·‚é
+//ã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°ç³»ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 extern void DNumInput_SysFlagSet(SAVEDATA* sv,u32 param,u32 value);
 #endif	//PM_DEBUG
 

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_137.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			137�@5�^�[���̊ԁA�u�͂�v��Ԃɂ��āu���v�^�C�v�̋Z�̍U���͂��グ��
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			137　5ターンの間、「はれ」状態にして「炎」タイプの技の攻撃力を上げる
  *
  *@author	HisashiSogabe
  *@data		2006.01.30
@@ -21,7 +21,7 @@ BE_137:
 	VALUE			VAL_BIT,BUF_PARA_FIELD_CONDITION,FIELD_CONDITION_HARE
 	VALUE			VAL_SET,BUF_PARA_WEATHER_COUNT,NIHONBARE_COUNT
 	VALUE			VAL_SET,BUF_PARA_ADD_STATUS_INDIRECT,ADD_COND2_TENKOU|ADD_STATUS_WAZAKOUKA
-	//�������ʂłɂق�΂�̃^�[�����𑝂₷���ʂ́A�^�[�����𑝂₷
+	//装備効果でにほんばれのターン数を増やす効果は、ターン数を増やす
 	SOUBI_CHECK		SOUBI_NO_HAVE,SIDE_ATTACK,SOUBI_HAREUPAMEDOWN,BE_137_END
 	SOUBI_ATK_GET	SIDE_ATTACK,BUF_PARA_CALC_WORK
 	VALUE_WORK		VAL_ADD,BUF_PARA_WEATHER_COUNT,BUF_PARA_CALC_WORK

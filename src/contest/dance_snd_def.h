@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	dance_snd_def.h
- * @brief	ƒRƒ“ƒeƒXƒgFƒ_ƒ“ƒX•”–å@SE’è‹`ƒtƒ@ƒCƒ‹
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ€ãƒ³ã‚¹éƒ¨é–€ã€€SEå®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«
  * @author	matsuda
- * @date	2006.03.01(…)
+ * @date	2006.03.01(æ°´)
  */
 //==============================================================================
 #ifndef __DANCE_SND_DEF_H__
@@ -14,10 +14,10 @@
 
 //--------------------------------------------------------------
 /**
- * ƒfƒoƒbƒO—pSE”ñÄ¶’è‹`
+ * ãƒ‡ãƒãƒƒã‚°ç”¨SEéžå†ç”Ÿå®šç¾©
  *
- * ‚±‚Ì’è‹`‚ª‚ ‚é‚ÆA‰¼“–‚Ä‚µ‚Ä‚¢‚éSE‚ÍÄ¶‚³‚ê‚Ü‚¹‚ñ
- * ¦check
+ * ã“ã®å®šç¾©ãŒã‚ã‚‹ã¨ã€ä»®å½“ã¦ã—ã¦ã„ã‚‹SEã¯å†ç”Ÿã•ã‚Œã¾ã›ã‚“
+ * â€»check
  */
 //--------------------------------------------------------------
 //#define DEBUG_DANCE_SE_PLAY
@@ -25,61 +25,61 @@
 //--------------------------------------------------------------
 //
 //--------------------------------------------------------------
-///ƒJ[ƒ\ƒ‹Œˆ’è
+///ã‚«ãƒ¼ã‚½ãƒ«æ±ºå®š
 #define DSE_DECIDE			(SEQ_SE_DP_DECIDE)
 
-///ƒI[ƒvƒjƒ“ƒOŽž‚Ìƒ‰ƒCƒg‚ª‚Â‚­Žž‚ÌSE
+///ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°æ™‚ã®ãƒ©ã‚¤ãƒˆãŒã¤ãæ™‚ã®SE
 #define DSE_LIGHT_ON		(SEQ_SE_DP_CON_019)	// SE-DP-POKETCH-006
 
 //--------------------------------------------------------------
 //	PLAYER3
 //--------------------------------------------------------------
-///ƒ_ƒ“ƒX•”–å‚ªŠJŽn‚µ‚½Žž‚ÌŠ½º
+///ãƒ€ãƒ³ã‚¹éƒ¨é–€ãŒé–‹å§‹ã—ãŸæ™‚ã®æ­“å£°
 #define DSE_START_SHOUT		(SEQ_SE_DP_CON_007)
-///Finishƒp[ƒeƒBƒNƒ‹‚ªo‚½‚Æ‚«‚ÌŠ½º
+///Finishãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãŒå‡ºãŸã¨ãã®æ­“å£°
 #define DSE_FINISH_DANCE	(SEQ_SE_DP_CON_007)
-///ƒ_ƒ“ƒX•”–å‚ªI—¹‚µ‚½Žž‚ÌŠ½º
+///ãƒ€ãƒ³ã‚¹éƒ¨é–€ãŒçµ‚äº†ã—ãŸæ™‚ã®æ­“å£°
 #define DSE_END_SHOUT		(SEQ_SE_DP_CON_007)
 
 //--------------------------------------------------------------
 //	PLAYER4
 //--------------------------------------------------------------
-//’è‹`—LŒø‚ÅAƒ|ƒPƒ‚ƒ“‚Ì“®‚«‚Å‰¹‚ª–Â‚é
+//å®šç¾©æœ‰åŠ¹ã§ã€ãƒã‚±ãƒ¢ãƒ³ã®å‹•ãã§éŸ³ãŒé³´ã‚‹
 #define DEBUG_DANCE_SE_PLAY_POKE_MOVE
 
-///ƒ|ƒPƒ‚ƒ“ƒ_ƒ“ƒXƒAƒjƒF’Êí
+///ãƒã‚±ãƒ¢ãƒ³ãƒ€ãƒ³ã‚¹ã‚¢ãƒ‹ãƒ¡ï¼šé€šå¸¸
 //#define DSE_STEP_NORMAL	(SEQ_SE_DP_CON_027)	//SE-DP-POKELIST-001
 //#define DSE_STEP_NORMAL		(SEQ_SE_DP_CON_027_2)	//SE-DP-POKELIST-001
 #define DSE_STEP_NORMAL		(SEQ_SE_DP_CON_027_3)	//SE-DP-POKELIST-001
 
-///ƒ|ƒPƒ‚ƒ“ƒ_ƒ“ƒXƒAƒjƒFŒˆ‚ß
+///ãƒã‚±ãƒ¢ãƒ³ãƒ€ãƒ³ã‚¹ã‚¢ãƒ‹ãƒ¡ï¼šæ±ºã‚
 #define DSE_STEP_FINISH		(SEQ_SE_DP_CON_028)	//SE-DP-W030
 
 //--------------------------------------------------------------
 //	PLAYER1
 //--------------------------------------------------------------
-///ƒ_ƒ“ƒXƒ{ƒ^ƒ“FƒWƒƒƒ“ƒv
+///ãƒ€ãƒ³ã‚¹ãƒœã‚¿ãƒ³ï¼šã‚¸ãƒ£ãƒ³ãƒ—
 #define DSE_BUTTON_JUMP		(SEQ_SE_DP_CON_009)
 
-///ƒ_ƒ“ƒXƒ{ƒ^ƒ“F‘Oi
+///ãƒ€ãƒ³ã‚¹ãƒœã‚¿ãƒ³ï¼šå‰é€²
 #define DSE_BUTTON_ADVANCE	(SEQ_SE_DP_CON_010)
 
-///ƒ_ƒ“ƒXƒ{ƒ^ƒ“F¶
+///ãƒ€ãƒ³ã‚¹ãƒœã‚¿ãƒ³ï¼šå·¦
 #define DSE_BUTTON_LEFT		(SEQ_SE_DP_CON_011)
 
-///ƒ_ƒ“ƒXƒ{ƒ^ƒ“F‰E
+///ãƒ€ãƒ³ã‚¹ãƒœã‚¿ãƒ³ï¼šå³
 #define DSE_BUTTON_RIGHT	(SEQ_SE_DP_CON_012)
 
 //--------------------------------------------------------------
 //	PLAYER2
 //--------------------------------------------------------------
-///Excellent1‰ñ–Ú
+///Excellent1å›žç›®
 #define DSE_EXCELLENT_1		(SEQ_SE_DP_CON_021)	//SE-DP-KIRAKIRA3
 
-///Excellent2‰ñ–Ú
+///Excellent2å›žç›®
 #define DSE_EXCELLENT_2		(SEQ_SE_DP_CON_022)	//SE-DP-KIRAKIRA
 
-///Excellent3‰ñ–Ú
+///Excellent3å›žç›®
 #define DSE_EXCELLENT_3		(SEQ_SE_DP_CON_023)	//SE-DP-KIRAKIRA4
 
 ///Good
@@ -89,15 +89,15 @@
 //#define DSE_FAILED		(SEQ_SE_DP_CON_025)	//SE-DP-CARD10
 #define DSE_FAILED			(SEQ_SE_DP_CARD10)	//SE-DP-CARD10
 
-///ˆá‚¤ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‚¢‚½
+///é•ã†ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ã„ãŸ
 #define DSE_FAILED_BUTTON	(SEQ_SE_DP_CON_026)	//SE-DP-UG-003
 
 //--------------------------------------------------------------
 //
 //--------------------------------------------------------------
-///Ž©•ª‚Ìƒ^[ƒ“‚É‚È‚Á‚½
+///è‡ªåˆ†ã®ã‚¿ãƒ¼ãƒ³ã«ãªã£ãŸ
 #define DSE_MY_TURN			(SEQ_SE_DP_CON_031)
-///ƒ[ƒe[ƒVƒ‡ƒ“‚É‡‚í‚¹‚Ä
+///ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã«åˆã‚ã›ã¦
 #define DSE_ROTATION		(SEQ_SE_DP_CON_030)
 
 

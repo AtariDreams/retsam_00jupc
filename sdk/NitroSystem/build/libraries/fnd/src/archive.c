@@ -23,12 +23,12 @@
 /*---------------------------------------------------------------------------*
   Name:         IsValidArchiveImage
 
-  Description:  �w�肳�ꂽ�A�[�J�C�u�w�b�_�̓��e�𒲂ׁA�A�[�J�C�u�o�C�i����
-  				�L���Ȃ��̂ł��邩�𔻒肵�܂��B
+  Description:  指定されたアーカイブヘッダの内容を調べ、アーカイブバイナリが
+  				有効なものであるかを判定します。
 
-  Arguments:    arcBinary:	�A�[�J�C�u�w�b�_�ւ̃|�C���^�B
+  Arguments:    arcBinary:	アーカイブヘッダへのポインタ。
 
-  Returns:      �����L���ȃA�[�J�C�u�w�b�_�ł���΁A�^��Ԃ��܂��B
+  Returns:      もし有効なアーカイブヘッダであれば、真を返します。
  *---------------------------------------------------------------------------*/
 static BOOL
 IsValidArchiveBinary(NNSiFndArchiveHeader* arcBinary)
@@ -45,17 +45,17 @@ IsValidArchiveBinary(NNSiFndArchiveHeader* arcBinary)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndMountArchive
 
-  Description:  �w�肳�ꂽ�A�[�J�C�u�o�C�i�����t�@�C���V�X�e���Ƀ}�E���g����
-  				���B�A�[�J�C�u���}�E���g����ꍇ�ɂ́A�R�����܂ł̎��ʖ����w
-  				�肵�܂��B�t�@�C���V�X�e����ŃA�[�J�C�u����肷��ꍇ�ɂ́A
-  				�p�X���̑O�ɂ��̎��ʖ����L�q���邱�ƂɂȂ�܂��B
+  Description:  指定されたアーカイブバイナリをファイルシステムにマウントしま
+  				す。アーカイブをマウントする場合には、３文字までの識別名を指
+  				定します。ファイルシステム上でアーカイブを特定する場合には、
+  				パス名の前にこの識別名を記述することになります。
 
-  Arguments:    archive:	NNS�A�[�J�C�u�\���̂ւ̃|�C���^�B
-  				arcName:	�A�[�J�C�u���t�@�C���V�X�e����Ŏ��ʂ���ׂ̖��O�B
-  				arcBinary:	��������ɓǂݏo����Ă���A�[�J�C�u�o�C�i���ւ�
-  							�|�C���^�B
+  Arguments:    archive:	NNSアーカイブ構造体へのポインタ。
+  				arcName:	アーカイブをファイルシステム上で識別する為の名前。
+  				arcBinary:	メモリ上に読み出されているアーカイブバイナリへの
+  							ポインタ。
   				
-  Returns:      �����}�E���g�ɐ�������΁A�^��Ԃ��܂��B
+  Returns:      もしマウントに成功すれば、真を返します。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_FndMountArchive(NNSFndArchive* archive, const char* arcName, void* arcBinary)
@@ -116,12 +116,12 @@ NNS_FndMountArchive(NNSFndArchive* archive, const char* arcName, void* arcBinary
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndUnmountArchive
 
-  Description:  �t�@�C���V�X�e���Ƀ}�E���g����Ă���A�[�J�C�u���A���}�E���g
-  				���܂��B
+  Description:  ファイルシステムにマウントされているアーカイブをアンマウント
+  				します。
 
-  Arguments:    archive:	NNS�A�[�J�C�u�\���̂ւ̃|�C���^�B
+  Arguments:    archive:	NNSアーカイブ構造体へのポインタ。
 
-  Returns:      �����A�A���}�E���g�ɐ�������΁A�^��Ԃ��܂��B
+  Returns:      もし、アンマウントに成功すれば、真を返します。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_FndUnmountArchive(NNSFndArchive* archive)
@@ -139,12 +139,12 @@ NNS_FndUnmountArchive(NNSFndArchive* archive)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetArchiveFileByName
 
-  Description:  �t�@�C���V�X�e�����g�p���āA�w�肳�ꂽ�p�X�ɑΉ�����A�[�J�C
-  				�u�t�@�C�����i�[����Ă���q�`�l�A�h���X���擾���܂��B
+  Description:  ファイルシステムを使用して、指定されたパスに対応するアーカイ
+  				ブファイルが格納されているＲＡＭアドレスを取得します。
 
-  Arguments:    path:	�A�[�J�C�u�t�@�C���̃p�X���B
+  Arguments:    path:	アーカイブファイルのパス名。
 
-  Returns:      �A�[�J�C�u�t�@�C�����i�[����Ă���A�h���X�B
+  Returns:      アーカイブファイルが格納されているアドレス。
  *---------------------------------------------------------------------------*/
 void*
 NNS_FndGetArchiveFileByName(const char* path)
@@ -181,15 +181,15 @@ NNS_FndGetArchiveFileByName(const char* path)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetArchiveFileByIndex
 
-  Description:  �C���f�b�N�X�ɂ��w�肳�ꂽ�A�[�J�C�u�t�@�C�����i�[����Ă�
-  				��q�`�l�A�h���X���擾���܂��B
+  Description:  インデックスにより指定されたアーカイブファイルが格納されてい
+  				るＲＡＭアドレスを取得します。
 
-  Arguments:    archive:	NNS�A�[�J�C�u�\���̂ւ̃|�C���^�B
-  				index:		�A�[�J�C�u���̃t�@�C���̃C���f�b�N�X�l�B
+  Arguments:    archive:	NNSアーカイブ構造体へのポインタ。
+  				index:		アーカイブ内のファイルのインデックス値。
 
-  Returns:      �A�[�J�C�u�t�@�C�����i�[����Ă���A�h���X��Ԃ��܂��B�����A
-  				�w�肵���C���f�b�N�X�ɑΉ����閳�������ꍇ�ɂ́ANULL��Ԃ���
-  				���B
+  Returns:      アーカイブファイルが格納されているアドレスを返します。もし、
+  				指定したインデックスに対応する無かった場合には、NULLを返しま
+  				す。
  *---------------------------------------------------------------------------*/
 void*
 NNS_FndGetArchiveFileByIndex(NNSFndArchive* archive, u32 index)
@@ -208,14 +208,14 @@ NNS_FndGetArchiveFileByIndex(NNSFndArchive* archive, u32 index)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndOpenArchiveFileByIndex
 
-  Description:  �C���f�b�N�X�ɂ��w�肳�ꂽ�A�[�J�C�u�t�@�C�����I�[�v������
-  				���B
+  Description:  インデックスにより指定されたアーカイブファイルをオープンしま
+  				す。
 
-  Arguments:	file:		�t�@�C���\���̂ւ̃|�C���^�B
-  			    archive:	NNS�A�[�J�C�u�\���̂ւ̃|�C���^�B
-  				index:		�A�[�J�C�u���̃t�@�C���̃C���f�b�N�X�l�B
+  Arguments:	file:		ファイル構造体へのポインタ。
+  			    archive:	NNSアーカイブ構造体へのポインタ。
+  				index:		アーカイブ内のファイルのインデックス値。
 
-  Returns:      �t�@�C���̃I�[�v���ɐ�������ΐ^��Ԃ��܂��B
+  Returns:      ファイルのオープンに成功すれば真を返します。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_FndOpenArchiveFileByIndex(FSFile* file, NNSFndArchive* archive, u32 index)

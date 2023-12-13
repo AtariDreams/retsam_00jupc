@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	con_tool.c
- * @brief	ƒRƒ“ƒeƒXƒg‘S‘Ì‚Åg—p‚·‚é”Ä—p“I‚Èƒc[ƒ‹
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¨ä½“ã§ä½¿ç”¨ã™ã‚‹æ±ç”¨çš„ãªãƒ„ãƒ¼ãƒ«
  * @author	matsuda
- * @date	2005.11.22(‰Î)
+ * @date	2005.11.22(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -33,30 +33,30 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///BP‚Ìƒn[ƒgƒ|ƒCƒ“ƒgæ“¾‚Ìˆ×‚Ìif•ª”äŠrƒf[ƒ^ŒÂ”
+///BPã®ãƒãƒ¼ãƒˆãƒã‚¤ãƒ³ãƒˆå–å¾—ã®ç‚ºã®ifåˆ†æ¯”è¼ƒãƒ‡ãƒ¼ã‚¿å€‹æ•°
 #define HEART_NUM_BP_IF_MAX		(8)
-///ƒNƒŠƒbƒv‚Ìƒn[ƒgƒ|ƒCƒ“ƒgæ“¾‚Ìˆ×‚Ìif•ª”äŠrƒf[ƒ^ŒÂ”
+///ã‚¯ãƒªãƒƒãƒ—ã®ãƒãƒ¼ãƒˆãƒã‚¤ãƒ³ãƒˆå–å¾—ã®ç‚ºã®ifåˆ†æ¯”è¼ƒãƒ‡ãƒ¼ã‚¿å€‹æ•°
 #define HEART_NUM_CLIP_IF_MAX		(3)
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 #include "ap_waza.dat"
 
-///‹ZŒø‰Êƒf[ƒ^‚Ì”
+///æŠ€åŠ¹æœãƒ‡ãƒ¼ã‚¿ã®æ•°
 #define APPEAL_WAZA_DATA_MAX	(NELEMS(AppealWazaData))
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ©•ª‚ªƒT[ƒo[‚©ƒ`ƒFƒbƒN‚·‚é
+ * @brief   è‡ªåˆ†ãŒã‚µãƒ¼ãƒãƒ¼ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:©•ª‚ªƒT[ƒo[
+ * @retval  TRUE:è‡ªåˆ†ãŒã‚µãƒ¼ãƒãƒ¼
  */
 //--------------------------------------------------------------
 int ConTool_ServerMineCheck(CONTEST_SYSTEM *consys)
@@ -71,12 +71,12 @@ int ConTool_ServerMineCheck(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊMƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é‚©æ“¾
+ * @brief   é€šä¿¡ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã‹å–å¾—
  *
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:’ÊMƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éB
- * @retval  FALSE:’ÊMƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚È‚¢B
+ * @retval  TRUE:é€šä¿¡ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã€‚
+ * @retval  FALSE:é€šä¿¡ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãªã„ã€‚
  */
 //--------------------------------------------------------------
 int ConTool_ContestSioFlagCheck(CONTEST_SYSTEM *consys)
@@ -86,15 +86,15 @@ int ConTool_ContestSioFlagCheck(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg‚ÉQ‰Á‚·‚éCPUƒuƒŠ[ƒ_[‚Ìƒf[ƒ^‚ğƒZƒbƒg
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã«å‚åŠ ã™ã‚‹CPUãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   heap_id		ƒeƒ“ƒ|ƒ‰ƒŠ‚Åg—p‚·‚éƒq[ƒv‚ÌID
- * @param   entry_num	Q‰Á‚³‚¹‚éCPU‚Ì”
- * @param   type		Q‰Á‚·‚éƒRƒ“ƒeƒXƒg‚Ìí—Ş
- * @param   rank		ƒRƒ“ƒeƒXƒg‚Ìƒ‰ƒ“ƒN
- * @param   mode		ƒRƒ“ƒeƒXƒgƒ‚[ƒh(CONMODE_???)
- * @param   hof_flag	“a“°“ü‚èƒtƒ‰ƒO(TRUE:“a“°“ü‚è‚µ‚Ä‚¢‚é)
- * @param   zenkoku_zukan_flag	‘S‘}ŠÓ“üèƒtƒ‰ƒO(TRUE:“üè‚µ‚Ä‚¢‚é)
+ * @param   heap_id		ãƒ†ãƒ³ãƒãƒ©ãƒªã§ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ID
+ * @param   entry_num	å‚åŠ ã•ã›ã‚‹CPUã®æ•°
+ * @param   type		å‚åŠ ã™ã‚‹ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ç¨®é¡
+ * @param   rank		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒ©ãƒ³ã‚¯
+ * @param   mode		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰(CONMODE_???)
+ * @param   hof_flag	æ®¿å ‚å…¥ã‚Šãƒ•ãƒ©ã‚°(TRUE:æ®¿å ‚å…¥ã‚Šã—ã¦ã„ã‚‹)
+ * @param   zenkoku_zukan_flag	å…¨å›½å›³é‘‘å…¥æ‰‹ãƒ•ãƒ©ã‚°(TRUE:å…¥æ‰‹ã—ã¦ã„ã‚‹)
  */
 //--------------------------------------------------------------
 void ConTool_CpuBreederEntry(CONTEST_SYSTEM *consys, int heap_id, int entry_num, int type, int rank, int mode, int hof_flag, int zenkoku_zukan_flag)
@@ -140,7 +140,7 @@ void ConTool_CpuBreederEntry(CONTEST_SYSTEM *consys, int heap_id, int entry_num,
 		
 		if(rank != brd_tbl[i].rank)
 			continue;
-		//“oêo—ˆ‚éƒ^ƒCƒ~ƒ“ƒO‚©ƒ`ƒFƒbƒN
+		//ç™»å ´å‡ºæ¥ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‹ãƒã‚§ãƒƒã‚¯
 		if(hof == TRUE){
 			if(brd_tbl[i].appear == PALACE_BEFORE){
 				continue;
@@ -152,23 +152,23 @@ void ConTool_CpuBreederEntry(CONTEST_SYSTEM *consys, int heap_id, int entry_num,
 			}
 		}
 		
-		//—ûKEƒ`ƒ…[ƒgƒŠƒAƒ‹ƒtƒ‰ƒO‚Å“oêo—ˆ‚éƒ^ƒCƒ~ƒ“ƒO‚©ƒ`ƒFƒbƒN
+		//ç·´ç¿’ãƒ»ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ãƒ•ãƒ©ã‚°ã§ç™»å ´å‡ºæ¥ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‹ãƒã‚§ãƒƒã‚¯
 		if(practice == TRUE){
-			//—ûK
+			//ç·´ç¿’
 			if(brd_tbl[i].part_practice == 0){
 				continue;
 			}
 		}
 		else if(tutorial == TRUE){
-			//ƒ`ƒ…[ƒgƒŠƒAƒ‹
+			//ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«
 			if(brd_tbl[i].part_tutorial == 0){
 				continue;
 			}
 		}
 		else{
-			//’Êí
+			//é€šå¸¸
 			if(brd_tbl[i].part_practice == 1 || brd_tbl[i].part_tutorial == 1){
-				continue;	//—ûK‚©ƒ`ƒ…[ƒgƒŠƒAƒ‹‚ÉQ‰Áo—ˆ‚é‚Ì‚ÍƒXƒ‹[
+				continue;	//ç·´ç¿’ã‹ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ã«å‚åŠ å‡ºæ¥ã‚‹ã®ã¯ã‚¹ãƒ«ãƒ¼
 			}
 		}
 		
@@ -177,16 +177,16 @@ void ConTool_CpuBreederEntry(CONTEST_SYSTEM *consys, int heap_id, int entry_num,
 				|| (type == CONTYPE_CUTE && brd_tbl[i].part_cute)
 				|| (type == CONTYPE_CLEVER && brd_tbl[i].part_clever)
 				|| (type == CONTYPE_STRONG && brd_tbl[i].part_strong)){
-			OS_TPrintf("%d”ÔƒuƒŠ[ƒ_[OK\n", i);
+			OS_TPrintf("%dç•ªãƒ–ãƒªãƒ¼ãƒ€ãƒ¼OK\n", i);
 			putbrd[count++] = i;
 		}
 	}
-	putbrd[count] = 0xff;	//”Ô•º
+	putbrd[count] = 0xff;	//ç•ªå…µ
 	
 	if(tutorial == FALSE){
 		GF_ASSERT(count >= entry_num);
 		
-		//putbrd‚Ì’†‚É1l‚Å‚àHOF_SPECIAL‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+		//putbrdã®ä¸­ã«1äººã§ã‚‚HOF_SPECIALãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		special_count = 0;
 		for(i = 0; i < count; i++){
 			if(brd_tbl[putbrd[i]].appear == HOF_SPECIAL){
@@ -208,7 +208,7 @@ void ConTool_CpuBreederEntry(CONTEST_SYSTEM *consys, int heap_id, int entry_num,
 			}
 		}
 		
-		//’ÊíƒuƒŠ[ƒ_[ƒZƒbƒg
+		//é€šå¸¸ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã‚»ãƒƒãƒˆ
 		for(i = BREEDER_MAX - entry_num; i < BREEDER_MAX; i++){
 			no = contest_rand(consys) % count;
 			if(brd_tbl[putbrd[no]].appear == HOF_SPECIAL){
@@ -221,16 +221,16 @@ void ConTool_CpuBreederEntry(CONTEST_SYSTEM *consys, int heap_id, int entry_num,
 			count--;
 		}
 		
-		//ƒXƒyƒVƒƒƒ‹ƒuƒŠ[ƒ_[‚ª‚¢‚éê‡‚Íƒ‰ƒ“ƒ_ƒ€‚Åˆê‰ÓŠã‘‚«
-		OS_TPrintf("ƒXƒyƒVƒƒƒ‹ƒuƒŠ[ƒ_[l”%d\n", special_count);
+		//ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãŒã„ã‚‹å ´åˆã¯ãƒ©ãƒ³ãƒ€ãƒ ã§ä¸€ç®‡æ‰€ä¸Šæ›¸ã
+		OS_TPrintf("ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼äººæ•°ï¼%d\n", special_count);
 		if(special_count > 0){
 			no = BREEDER_MAX - entry_num;
 			no += contest_rand(consys) % entry_num;
 			consys->c_game.bd[no] = special_brd;
-			OS_TPrintf("ƒXƒyƒVƒƒƒ‹ƒuƒŠ[ƒ_[%d”Ô‚ÉƒZƒbƒg\n", no);
+			OS_TPrintf("ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%dç•ªã«ã‚»ãƒƒãƒˆ\n", no);
 		}
 	}
-	else{	//ƒ`ƒ…[ƒgƒŠƒAƒ‹‚Ìê‡‚Íƒ‰ƒ“ƒ_ƒ€‚È‚µ(æ“ª‚©‚ç‡‚É©•ªA“GAA“GBA“GC‚Æ‚È‚é)
+	else{	//ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ã®å ´åˆã¯ãƒ©ãƒ³ãƒ€ãƒ ãªã—(å…ˆé ­ã‹ã‚‰é †ã«è‡ªåˆ†ã€æ•µAã€æ•µBã€æ•µCã¨ãªã‚‹)
 		GF_ASSERT(count >= BREEDER_MAX);
 		for(i = 0; i < BREEDER_MAX; i++){
 			consys->c_game.bd[i] = brd_tbl[putbrd[i]];
@@ -243,12 +243,12 @@ void ConTool_CpuBreederEntry(CONTEST_SYSTEM *consys, int heap_id, int entry_num,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg‚ÉQ‰Á‚·‚éCPUƒuƒŠ[ƒ_[‚ÌƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^‚ğƒZƒbƒg
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã«å‚åŠ ã™ã‚‹CPUãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   heap_id		ƒeƒ“ƒ|ƒ‰ƒŠ‚Åg—p‚·‚éƒq[ƒv‚ÌID
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   heap_id		ãƒ†ãƒ³ãƒãƒ©ãƒªã§ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ID
  *
- * ConTool_CpuBreederEntry‚ÅCPU‚ÌƒuƒŠ[ƒ_[ƒf[ƒ^‚ğæ“¾‚µ‚Ä‚©‚ç‚±‚ÌŠÖ”‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢
+ * ConTool_CpuBreederEntryã§CPUã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ã¦ã‹ã‚‰ã“ã®é–¢æ•°ã‚’ä½¿ç”¨ã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------
 void ConTool_CpuBreederImcSet(CONTEST_SYSTEM *consys, int heap_id)
@@ -312,7 +312,7 @@ void ConTool_CpuBreederImcSet(CONTEST_SYSTEM *consys, int heap_id)
 			data_no = consys->c_game.bd[breeder].clip_no_showy;
 			break;
 		default:
-			GF_ASSERT(0 && "‘¶İ‚µ‚È‚¢ƒe[ƒ}");
+			GF_ASSERT(0 && "å­˜åœ¨ã—ãªã„ãƒ†ãƒ¼ãƒ");
 			data_no = 0;
 			break;
 		}
@@ -338,9 +338,9 @@ void ConTool_CpuBreederImcSet(CONTEST_SYSTEM *consys, int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   —ûKƒ_ƒ“ƒX—p‚ÌƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^ƒZƒbƒg
+ * @brief   ç·´ç¿’ãƒ€ãƒ³ã‚¹ç”¨ã®ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void ConTool_PracticeDanceImcSet(CONTEST_SYSTEM *consys)
@@ -365,13 +365,13 @@ void ConTool_PracticeDanceImcSet(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[ƒf[ƒ^‚ğŒ³‚ÉPOKEMON_PARAM‚ğì¬‚·‚é
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å…ƒã«POKEMON_PARAMã‚’ä½œæˆã™ã‚‹
  *
- * @param   bd		ƒuƒŠ[ƒ_[ƒf[ƒ^
- * @param   pp		ƒ|ƒPƒpƒ‰‘ã“üæ
- * @param   heap_id	ƒq[ƒvID
+ * @param   bd		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ * @param   pp		ãƒã‚±ãƒ‘ãƒ©ä»£å…¥å…ˆ
+ * @param   heap_id	ãƒ’ãƒ¼ãƒ—ID
  * 
- * @retval  pp		ì¬‚µ‚½POKEMON_PARAM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  pp		ä½œæˆã—ãŸPOKEMON_PARAMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void ConTool_BreederPokeParaCreate(const BREEDER_DATA *bd, POKEMON_PARAM *pp, int heap_id)
@@ -383,13 +383,13 @@ void ConTool_BreederPokeParaCreate(const BREEDER_DATA *bd, POKEMON_PARAM *pp, in
 	//PokeParaSetSexChr(pp, bd->monsno, 10, POW_RND, bd->sex, CHR_GANBARIYA, 0);
 	sex_rnd = PokeParaSexChrRndGet(bd->monsno, bd->sex, CHR_GANBARIYA);
 	PokeParaSet(pp, bd->monsno, 10, POW_RND, RND_SET, sex_rnd, ID_NO_RARE, 0x0f0f0f0f);
-	//è‚¿‹ZƒZƒbƒg
+	//æ‰‹æŒã¡æŠ€ã‚»ãƒƒãƒˆ
 	for(i = 0; i < WAZA_TEMOTI_MAX; i++){
 		waza_no = bd->waza[i];
 		PokeParaPut(pp, ID_PARA_waza1 + i, &waza_no);
 	}
 
-	//ƒjƒbƒNƒl[ƒ€‚Æe–¼
+	//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã¨è¦ªå
 	{
 		STRBUF *nickname_src, *oyaname_src;
 		MSGDATA_MANAGER *man;
@@ -407,7 +407,7 @@ void ConTool_BreederPokeParaCreate(const BREEDER_DATA *bd, POKEMON_PARAM *pp, in
 		MSGMAN_Delete(man);
 	}
 	
-	//ŠeƒRƒ“ƒfƒBƒVƒ‡ƒ“(‚©‚Á‚±‚æ‚³A‰Âˆ¤‚³“™)‚Æ‚¯‚Ã‚â
+	//å„ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³(ã‹ã£ã“ã‚ˆã•ã€å¯æ„›ã•ç­‰)ã¨ã‘ã¥ã‚„
 	{
 		u8 style, beautiful, cute, clever, strong, fur;
 		
@@ -428,22 +428,22 @@ void ConTool_BreederPokeParaCreate(const BREEDER_DATA *bd, POKEMON_PARAM *pp, in
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg—p‚Ìƒ|ƒPƒ‚ƒ“ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg¶¬ŠÖ”
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã®ãƒã‚±ãƒ¢ãƒ³ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”Ÿæˆé–¢æ•°
  *
- * @param   ssm_p		ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   poly_id		ƒ|ƒŠƒSƒ“ID
- * @param   pp			POKEMON_PARAM‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   dir			ƒ|ƒPƒ‚ƒ“‚ÌŒü‚«(PARA_FRONT or PARA_BACK)
- * @param   ep			OAM‚Ö‚Ì“WŠJ—pƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^(g—p‚µ‚È‚¢ê‡‚ÍNULL)
- * @param   heap_id		ƒq[ƒvID(ˆêg—p)
- * @param   x			•\¦À•WX
- * @param   y			•\¦À•WY
- * @param   z			•\¦À•WZ
+ * @param   ssm_p		ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   poly_id		ãƒãƒªã‚´ãƒ³ID
+ * @param   pp			POKEMON_PARAMã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   dir			ãƒã‚±ãƒ¢ãƒ³ã®å‘ã(PARA_FRONT or PARA_BACK)
+ * @param   ep			OAMã¸ã®å±•é–‹ç”¨ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿(ä½¿ç”¨ã—ãªã„å ´åˆã¯NULL)
+ * @param   heap_id		ãƒ’ãƒ¼ãƒ—ID(ä¸€æ™‚ä½¿ç”¨)
+ * @param   x			è¡¨ç¤ºåº§æ¨™X
+ * @param   y			è¡¨ç¤ºåº§æ¨™Y
+ * @param   z			è¡¨ç¤ºåº§æ¨™Z
  *
- * @retval  ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ‘S•”–å‚Åg‚¦‚é‚æ‚¤‚É”Ä—p“I‚É—pˆÓ‚µ‚Ä‚¢‚é‚Â‚à‚è‚Å‚·B
- * ep‚Í‹ZƒGƒtƒFƒNƒg‚ğo‚³‚È‚¢‚Ì‚Å‚ ‚ê‚ÎNULLw’è‚Å‘åä•v‚Å‚·B
+ * å…¨éƒ¨é–€ã§ä½¿ãˆã‚‹ã‚ˆã†ã«æ±ç”¨çš„ã«ç”¨æ„ã—ã¦ã„ã‚‹ã¤ã‚‚ã‚Šã§ã™ã€‚
+ * epã¯æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã•ãªã„ã®ã§ã‚ã‚Œã°NULLæŒ‡å®šã§å¤§ä¸ˆå¤«ã§ã™ã€‚
  */
 //--------------------------------------------------------------
 SOFT_SPRITE * ConTool_BreederPokemonAdd(SOFT_SPRITE_MANAGER *ssm_p, int poly_id, 
@@ -471,12 +471,12 @@ SOFT_SPRITE * ConTool_BreederPokemonAdd(SOFT_SPRITE_MANAGER *ssm_p, int poly_id,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg‚ğR¸‚·‚éR”»‚Ìƒf[ƒ^‚ğƒZƒbƒg
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚’å¯©æŸ»ã™ã‚‹å¯©åˆ¤ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   heap_id		ƒeƒ“ƒ|ƒ‰ƒŠ‚Åg—p‚·‚éƒq[ƒv‚ÌID
- * @param   sp_no		¦‚¢R¸ˆõ‚ÌNo
- * @param   type		ƒRƒ“ƒeƒXƒg‚Ìí—Ş
- * @param   rank		ƒRƒ“ƒeƒXƒg‚Ìƒ‰ƒ“ƒN
+ * @param   heap_id		ãƒ†ãƒ³ãƒãƒ©ãƒªã§ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®ID
+ * @param   sp_no		å‡„ã„å¯©æŸ»å“¡ã®No
+ * @param   type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ç¨®é¡
+ * @param   rank		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒ©ãƒ³ã‚¯
  */
 //--------------------------------------------------------------
 void ConTool_JudgeEntry(CONTEST_SYSTEM *consys, int heap_id, int sp_no, int type, int rank)
@@ -540,13 +540,13 @@ void ConTool_JudgeEntry(CONTEST_SYSTEM *consys, int heap_id, int sp_no, int type
 			}
 		}
 	}
-	putjudge[count] = 0xff;	//”Ô•º
-	sp_putjudge[sp_count] = 0xff;	//”Ô•º
+	putjudge[count] = 0xff;	//ç•ªå…µ
+	sp_putjudge[sp_count] = 0xff;	//ç•ªå…µ
 	
-	//ƒm[ƒ}ƒ‹R”»
+	//ãƒãƒ¼ãƒãƒ«å¯©åˆ¤
 	GF_ASSERT(count >= NORMAL_JUDGE_MAX);
 	for(i = 0; i < NORMAL_JUDGE_MAX; i++){
-	#if 0	//ƒ‰ƒ“ƒ_ƒ€‚Å‚Í‚È‚­A“ª‚©‚ç‡”ÔŒÅ’è‚Åo‚·‚æ‚¤‚É•ÏX 2006.06.07(…)
+	#if 0	//ãƒ©ãƒ³ãƒ€ãƒ ã§ã¯ãªãã€é ­ã‹ã‚‰é †ç•ªå›ºå®šã§å‡ºã™ã‚ˆã†ã«å¤‰æ›´ 2006.06.07(æ°´)
 		no = contest_rand(consys) % count;
 		consys->c_game.jd[i] = judge_tbl[putjudge[no]];
 		for(t = no; putjudge[t] != 0xff; t++)
@@ -557,12 +557,12 @@ void ConTool_JudgeEntry(CONTEST_SYSTEM *consys, int heap_id, int sp_no, int type
 	#endif
 	}
 	
-	//¦‚¢R”»
+	//å‡„ã„å¯©åˆ¤
 	GF_ASSERT(sp_count >= GUEST_JUDGE_MAX);
 	no = contest_rand(consys) % sp_count;
 	consys->c_game.jd[NORMAL_JUDGE_MAX] = judge_tbl[sp_putjudge[no]];
 	
-	//¦‚¢R”»‚ÌˆÊ’u‚ğŒˆ’è‚µAR”»ƒf[ƒ^‚ğ•À‚Ñ‘Ö‚¦‚é
+	//å‡„ã„å¯©åˆ¤ã®ä½ç½®ã‚’æ±ºå®šã—ã€å¯©åˆ¤ãƒ‡ãƒ¼ã‚¿ã‚’ä¸¦ã³æ›¿ãˆã‚‹
 	{
 		JUDGE_DATA swap_jd;
 		
@@ -580,9 +580,9 @@ void ConTool_JudgeEntry(CONTEST_SYSTEM *consys, int heap_id, int sp_no, int type
 
 //--------------------------------------------------------------
 /**
- * @brief   AP’l‚ğæ“¾‚·‚é
- * @param   appeal_no		ƒAƒs[ƒ‹‹Z”Ô†
- * @retval  AP’l(–WŠQ’l‚Ìê‡‚Íƒ}ƒCƒiƒX)
+ * @brief   APå€¤ã‚’å–å¾—ã™ã‚‹
+ * @param   appeal_no		ã‚¢ãƒ”ãƒ¼ãƒ«æŠ€ç•ªå·
+ * @retval  APå€¤(å¦¨å®³å€¤ã®å ´åˆã¯ãƒã‚¤ãƒŠã‚¹)
  */
 //--------------------------------------------------------------
 s8 ConTool_GetAPWaza_App(int appeal_no)
@@ -593,11 +593,11 @@ s8 ConTool_GetAPWaza_App(int appeal_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zà–¾ƒƒbƒZ[ƒW‚ÌID‚ğæ“¾‚·‚é
+ * @brief   æŠ€èª¬æ˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®IDã‚’å–å¾—ã™ã‚‹
  *
- * @param   appeal_no		ƒAƒs[ƒ‹‹Z”Ô†
- * @param   u_id			à–¾ƒƒbƒZ[ƒWã’i‚ÌƒƒbƒZ[ƒWID‘ã“üæ
- * @param   d_id			à–¾ƒƒbƒZ[ƒW‰º’i‚ÌƒƒbƒZ[ƒWID‘ã“üæ
+ * @param   appeal_no		ã‚¢ãƒ”ãƒ¼ãƒ«æŠ€ç•ªå·
+ * @param   u_id			èª¬æ˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä¸Šæ®µã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDä»£å…¥å…ˆ
+ * @param   d_id			èª¬æ˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä¸‹æ®µã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void ConTool_GetAPSetumeiMsgID(int appeal_no, u32 *u_id, u32 *d_id)
@@ -609,11 +609,11 @@ void ConTool_GetAPSetumeiMsgID(int appeal_no, u32 *u_id, u32 *d_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—p‚Ì‹Zà–¾ƒƒbƒZ[ƒW‚ÌID‚ğæ“¾‚·‚é
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ã®æŠ€èª¬æ˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®IDã‚’å–å¾—ã™ã‚‹
  *
- * @param   appeal_no		ƒAƒs[ƒ‹‹Z”Ô†
+ * @param   appeal_no		ã‚¢ãƒ”ãƒ¼ãƒ«æŠ€ç•ªå·
  *
- * @retval  à–¾ƒƒbƒZ[ƒW‚ÌID
+ * @retval  èª¬æ˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ID
  */
 //--------------------------------------------------------------
 u32 ConTool_GetListAPSetumeiMsgID(int appeal_no)
@@ -624,12 +624,12 @@ u32 ConTool_GetListAPSetumeiMsgID(int appeal_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZŒø‰ÊƒƒbƒZ[ƒW‚ÌID‚Æƒ^ƒOƒR[ƒh‚ğæ“¾‚·‚é
+ * @brief   æŠ€åŠ¹æœãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®IDã¨ã‚¿ã‚°ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
  *
- * @param   appeal_no		ƒAƒs[ƒ‹‹Z”Ô†
- * @param   msg_type		æ“¾‚·‚éƒƒbƒZ[ƒWƒ^ƒCƒv(KOUKA_MSGID_???)
- * @param   msg_id			ƒƒbƒZ[ƒWID‘ã“üæ
- * @param   msg_tag			ƒƒbƒZ[ƒWƒ^ƒO‘ã“üæ
+ * @param   appeal_no		ã‚¢ãƒ”ãƒ¼ãƒ«æŠ€ç•ªå·
+ * @param   msg_type		å–å¾—ã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—(KOUKA_MSGID_???)
+ * @param   msg_id			ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDä»£å…¥å…ˆ
+ * @param   msg_tag			ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚°ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void ConTool_GetKoukaMsgID(int appeal_no, int msg_type, u32 *msg_id, u32 *msg_tag)
@@ -662,11 +662,11 @@ void ConTool_GetKoukaMsgID(int appeal_no, int msg_type, u32 *msg_id, u32 *msg_ta
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN‚©‚çA‚»‚Ìƒ‰ƒ“ƒN‚ÌƒƒbƒZ[ƒWID‚ğæ“¾‚·‚é
- * @param   con_rank		ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN(CONRANK_???)
- * @param   mode			ƒRƒ“ƒeƒXƒgƒ‚[ƒh(CONMODE_???)
- * @param   sio_flag		TRUE:’ÊM‘Îí
- * @retval  ƒƒbƒZ[ƒWID
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ã‹ã‚‰ã€ãã®ãƒ©ãƒ³ã‚¯ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã‚’å–å¾—ã™ã‚‹
+ * @param   con_rank		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯(CONRANK_???)
+ * @param   mode			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰(CONMODE_???)
+ * @param   sio_flag		TRUE:é€šä¿¡å¯¾æˆ¦
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  */
 //--------------------------------------------------------------
 u32 ConTool_GetRankMsgID(int con_rank, int mode, int sio_flag)
@@ -704,9 +704,9 @@ u32 ConTool_GetRankMsgID(int con_rank, int mode, int sio_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN‚©‚çA‚»‚Ìƒ‰ƒ“ƒN‚ÌƒƒbƒZ[ƒWID‚ğæ“¾‚·‚é(¦ƒCƒ[ƒWƒNƒŠƒbƒv‰æ–Ê—pI)
- * @param   con_rank		ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN(CONRANK_???)
- * @retval  ƒƒbƒZ[ƒWID
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ã‹ã‚‰ã€ãã®ãƒ©ãƒ³ã‚¯ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã‚’å–å¾—ã™ã‚‹(â€»ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”»é¢ç”¨ï¼)
+ * @param   con_rank		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯(CONRANK_???)
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  */
 //--------------------------------------------------------------
 u32 ConTool_IMCGetRankMsgID(int con_rank)
@@ -736,9 +736,9 @@ u32 ConTool_IMCGetRankMsgID(int con_rank)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒv‚©‚çA‚»‚Ìƒ^ƒCƒv‚ÌƒƒbƒZ[ƒWID‚ğæ“¾‚·‚é(¦ƒCƒ[ƒWƒNƒŠƒbƒv‰æ–Ê—pI)
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‹ã‚‰ã€ãã®ã‚¿ã‚¤ãƒ—ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã‚’å–å¾—ã™ã‚‹(â€»ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”»é¢ç”¨ï¼)
  * @param   con_type			CONTYPE_???
- * @retval  ƒƒbƒZ[ƒWID
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  */
 //--------------------------------------------------------------
 u32 ConTool_IMCGetTypeMsgID(int con_type)
@@ -748,10 +748,10 @@ u32 ConTool_IMCGetTypeMsgID(int con_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒv‚©‚çA‚»‚Ìƒ^ƒCƒv‚ÌƒƒbƒZ[ƒWID‚ğæ“¾‚·‚é
- * @param   con_rank		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
- * @param   con_mode		ƒRƒ“ƒeƒXƒgƒ‚[ƒh(CONMODE_???)
- * @retval  ƒƒbƒZ[ƒWID
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‹ã‚‰ã€ãã®ã‚¿ã‚¤ãƒ—ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã‚’å–å¾—ã™ã‚‹
+ * @param   con_rank		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
+ * @param   con_mode		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰(CONMODE_???)
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  */
 //--------------------------------------------------------------
 u32 ConTool_GetTypeMsgID(int con_type, int con_mode)
@@ -785,15 +785,15 @@ u32 ConTool_GetTypeMsgID(int con_type, int con_mode)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒuƒŠ[ƒ_[”Ô†‚©‚çƒGƒ“ƒgƒŠ[”Ô†‚ğæ“¾‚·‚é
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @retval  ƒGƒ“ƒgƒŠ[”Ô†
+ * @brief   ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·ã‹ã‚‰ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç•ªå·ã‚’å–å¾—ã™ã‚‹
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @retval  ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç•ªå·
  *
- * ƒuƒŠ[ƒ_[”Ô†‚ÆƒGƒ“ƒgƒŠ[”Ô†‚Íˆá‚¢‚Ü‚·B
- * ƒuƒŠ[ƒ_[”Ô†‚Í’ÊMID‚Æ“¯‚¶‚É‚µ‚Ä‚¢‚½•û‚ª“s‡‚ª‚¢‚¢‚Ì‚ÅƒvƒŒƒCƒ„[‘¤‚Í0n‚Ü‚è‚Å‚·B
- * ‚µ‚©‚µƒQ[ƒ€‚ÌƒCƒxƒ“ƒgisã‚Å‚ÍAƒvƒŒƒCƒ„[‚ÌƒGƒ“ƒgƒŠ[‚Íˆê”ÔÅŒã‚È‚Ì‚ÅA3n‚Ü‚è‚Å‚·B
+ * ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·ã¨ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç•ªå·ã¯é•ã„ã¾ã™ã€‚
+ * ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·ã¯é€šä¿¡IDã¨åŒã˜ã«ã—ã¦ã„ãŸæ–¹ãŒéƒ½åˆãŒã„ã„ã®ã§ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å´ã¯0å§‹ã¾ã‚Šã§ã™ã€‚
+ * ã—ã‹ã—ã‚²ãƒ¼ãƒ ã®ã‚¤ãƒ™ãƒ³ãƒˆé€²è¡Œä¸Šã§ã¯ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã¯ä¸€ç•ªæœ€å¾Œãªã®ã§ã€3å§‹ã¾ã‚Šã§ã™ã€‚
  * 
- * (ƒuƒŠ[ƒ_[”Ô† == ’ÊMID) != ƒGƒ“ƒgƒŠ[”Ô†
+ * (ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå· == é€šä¿¡ID) != ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç•ªå·
  */
 //--------------------------------------------------------------
 int ConTool_EntryNoGet(int breeder_no)
@@ -803,15 +803,15 @@ int ConTool_EntryNoGet(int breeder_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ“ƒgƒŠ[”Ô†‚©‚çƒuƒŠ[ƒ_[”Ô†‚ğæ“¾‚·‚é
- * @param   breeder_no		ƒGƒ“ƒgƒŠ[”Ô†
- * @retval  ƒuƒŠ[ƒ_[”Ô†
+ * @brief   ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç•ªå·ã‹ã‚‰ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·ã‚’å–å¾—ã™ã‚‹
+ * @param   breeder_no		ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç•ªå·
+ * @retval  ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  *
- * ƒuƒŠ[ƒ_[”Ô†‚ÆƒGƒ“ƒgƒŠ[”Ô†‚Íˆá‚¢‚Ü‚·B
- * ƒuƒŠ[ƒ_[”Ô†‚Í’ÊMID‚Æ“¯‚¶‚É‚µ‚Ä‚¢‚½•û‚ª“s‡‚ª‚¢‚¢‚Ì‚ÅƒvƒŒƒCƒ„[‘¤‚Í0n‚Ü‚è‚Å‚·B
- * ‚µ‚©‚µƒQ[ƒ€‚ÌƒCƒxƒ“ƒgisã‚Å‚ÍAƒvƒŒƒCƒ„[‚ÌƒGƒ“ƒgƒŠ[‚Íˆê”ÔÅŒã‚È‚Ì‚ÅA3n‚Ü‚è‚Å‚·B
+ * ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·ã¨ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç•ªå·ã¯é•ã„ã¾ã™ã€‚
+ * ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·ã¯é€šä¿¡IDã¨åŒã˜ã«ã—ã¦ã„ãŸæ–¹ãŒéƒ½åˆãŒã„ã„ã®ã§ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å´ã¯0å§‹ã¾ã‚Šã§ã™ã€‚
+ * ã—ã‹ã—ã‚²ãƒ¼ãƒ ã®ã‚¤ãƒ™ãƒ³ãƒˆé€²è¡Œä¸Šã§ã¯ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã¯ä¸€ç•ªæœ€å¾Œãªã®ã§ã€3å§‹ã¾ã‚Šã§ã™ã€‚
  * 
- * (ƒuƒŠ[ƒ_[”Ô† == ’ÊMID) != ƒGƒ“ƒgƒŠ[”Ô†
+ * (ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå· == é€šä¿¡ID) != ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç•ªå·
  */
 //--------------------------------------------------------------
 int ConTool_BreederNoGet(int entry_no)
@@ -821,9 +821,9 @@ int ConTool_BreederNoGet(int entry_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   —ûKƒ‚[ƒh‚©Šm”F
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:—ûKB@FALSE:—ûK‚Å‚Í‚È‚¢
+ * @brief   ç·´ç¿’ãƒ¢ãƒ¼ãƒ‰ã‹ç¢ºèª
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:ç·´ç¿’ã€‚ã€€FALSE:ç·´ç¿’ã§ã¯ãªã„
  */
 //--------------------------------------------------------------
 BOOL ConTool_PracticeModeCheck(CONTEST_SYSTEM *consys)
@@ -839,9 +839,9 @@ BOOL ConTool_PracticeModeCheck(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ`ƒ…[ƒgƒŠƒAƒ‹ƒ‚[ƒh‚©Šm”F
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:ƒ`ƒ…[ƒgƒŠƒAƒ‹B@FALSE:ƒ`ƒ…[ƒgƒŠƒAƒ‹‚Å‚Í‚È‚¢
+ * @brief   ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ãƒ¢ãƒ¼ãƒ‰ã‹ç¢ºèª
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ã€‚ã€€FALSE:ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ã§ã¯ãªã„
  */
 //--------------------------------------------------------------
 BOOL ConTool_TutorialModeCheck(CONTEST_SYSTEM *consys)
@@ -857,12 +857,12 @@ BOOL ConTool_TutorialModeCheck(CONTEST_SYSTEM *consys)
 
 //--------------------------------------------------------------
 /**
- * @brief   BP‚©‚ç•\¦‚·‚éƒn[ƒg‚Ì”‚ğæ“¾‚·‚é
+ * @brief   BPã‹ã‚‰è¡¨ç¤ºã™ã‚‹ãƒãƒ¼ãƒˆã®æ•°ã‚’å–å¾—ã™ã‚‹
  *
- * @param   consys			ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
+ * @param   consys			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  *
- * @retval  ƒn[ƒg‚Ì”
+ * @retval  ãƒãƒ¼ãƒˆã®æ•°
  */
 //--------------------------------------------------------------
 int ConTool_HeartNumGet_BP(CONTEST_SYSTEM *consys, int breeder_no)
@@ -898,12 +898,12 @@ int ConTool_HeartNumGet_BP(CONTEST_SYSTEM *consys, int breeder_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒNƒŠƒbƒvƒ|ƒCƒ“ƒg‚©‚ç•\¦‚·‚éƒn[ƒg‚Ì”‚ğæ“¾‚·‚é
+ * @brief   ã‚¯ãƒªãƒƒãƒ—ãƒã‚¤ãƒ³ãƒˆã‹ã‚‰è¡¨ç¤ºã™ã‚‹ãƒãƒ¼ãƒˆã®æ•°ã‚’å–å¾—ã™ã‚‹
  *
- * @param   consys			ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
+ * @param   consys			ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  *
- * @retval  ƒn[ƒg‚Ì”
+ * @retval  ãƒãƒ¼ãƒˆã®æ•°
  */
 //--------------------------------------------------------------
 int ConTool_HeartNumGet_Clip(CONTEST_SYSTEM *consys, int breeder_no)
@@ -944,9 +944,9 @@ int ConTool_HeartNumGet_Clip(CONTEST_SYSTEM *consys, int breeder_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒƒbƒZ[ƒW‘—‚èİ’è
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ã‚Šè¨­å®š
  *
- * @param   sio_flag		TRUE:’ÊMAFALSE:”ñ’ÊM
+ * @param   sio_flag		TRUE:é€šä¿¡ã€FALSE:éé€šä¿¡
  */
 //--------------------------------------------------------------
 void ConTool_MsgPrintFlagSet(int sio_flag)
@@ -966,7 +966,7 @@ void ConTool_MsgPrintFlagSet(int sio_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgFƒƒbƒZ[ƒW‘—‚èİ’è‚ğƒŠƒZƒbƒg‚·‚é
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆï¼šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ã‚Šè¨­å®šã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
  */
 //--------------------------------------------------------------
 void ConTool_MsgPrintFlagReset(void)
@@ -978,12 +978,12 @@ void ConTool_MsgPrintFlagReset(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   Q‰Á‚µ‚Ä‚¢‚éƒRƒ“ƒeƒXƒg‚Ìƒ‰ƒ“ƒN‚Æƒ^ƒCƒv‚©‚çA—DŸ‚µ‚½‚É–á‚¦‚éƒŠƒ{ƒ“‚ÌID‚ğæ“¾‚·‚é
+ * @brief   å‚åŠ ã—ã¦ã„ã‚‹ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ãƒ©ãƒ³ã‚¯ã¨ã‚¿ã‚¤ãƒ—ã‹ã‚‰ã€å„ªå‹ã—ãŸæ™‚ã«è²°ãˆã‚‹ãƒªãƒœãƒ³ã®IDã‚’å–å¾—ã™ã‚‹
  *
- * @param   rank		ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN
- * @param   type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv
+ * @param   rank		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯
+ * @param   type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—
  *
- * @retval  ƒŠƒ{ƒ“ID(PokeParaGet,Set‚Åg‚¤‚â‚Â)
+ * @retval  ãƒªãƒœãƒ³ID(PokeParaGet,Setã§ä½¿ã†ã‚„ã¤)
  */
 //--------------------------------------------------------------
 u32 ConTool_RibbonIDGet(int rank, int type)
@@ -1016,12 +1016,12 @@ u32 ConTool_RibbonIDGet(int rank, int type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒe[ƒ}‚ğƒ‰ƒ“ƒ_ƒ€‚Åæ“¾‚·‚é
+ * @brief   ãƒ†ãƒ¼ãƒã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§å–å¾—ã™ã‚‹
  *
- * @param   rank		ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN
- * @param   sio_flag	TRUE:’ÊM‘Îí
+ * @param   rank		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯
+ * @param   sio_flag	TRUE:é€šä¿¡å¯¾æˆ¦
  *
- * @retval  ƒe[ƒ}
+ * @retval  ãƒ†ãƒ¼ãƒ
  */
 //--------------------------------------------------------------
 u32 ConTool_ThemeRandomSelect(int rank, int sio_flag)

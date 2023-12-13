@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_270.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			270�@�m���ɂȂ邪�A���ɏo�Ă���|�P�����̗̑͂Ə�Ԉُ�Ƃo�o��S�񕜂�����B�T���|�P���������Ȃ��ꍇ�͎��s�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			270　瀕死になるが、次に出てくるポケモンの体力と状態異常とＰＰを全回復させる。控えポケモンがいない場合は失敗。
  *
  *@author	HisashiSogabe
  *@data		2006.05.19

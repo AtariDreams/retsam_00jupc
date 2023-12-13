@@ -13,8 +13,8 @@
 #
 # $Log: Makefile,v $
 # Revision 1.12  2005/05/26 02:50:01  terui
-# ƒ‰ƒCƒuƒ‰ƒŠ‚ğì¬‚·‚éƒRƒA•”•ª‚ğ Makefile.CORE ‚ÉØ‚èo‚µ
-# SUBDIRS ‚É TS-Prototype/undefine ‚ğ’Ç‰Á
+# ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ä½œæˆã™ã‚‹ã‚³ã‚¢éƒ¨åˆ†ã‚’ Makefile.CORE ã«åˆ‡ã‚Šå‡ºã—
+# SUBDIRS ã« TS-Prototype/undefine ã‚’è¿½åŠ 
 #
 # Revision 1.11  2004/08/27 08:49:12  yasu
 # Create libspi.a for all version of TS
@@ -29,7 +29,7 @@
 # Build ARM & THUMB code always
 #
 # Revision 1.7  2004/05/31 08:51:37  terui
-# ƒŠƒrƒWƒ‡ƒ“1.6‚ÌƒRƒƒ“ƒgC³B
+# ãƒªãƒ“ã‚¸ãƒ§ãƒ³1.6ã®ã‚³ãƒ¡ãƒ³ãƒˆä¿®æ­£ã€‚
 # Add mic.c in SRCS.
 #
 # Revision 1.6  2004/05/31 08:47:40  terui

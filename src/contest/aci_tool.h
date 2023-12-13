@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	aci_tool.h
- * @brief	actin_input.c‚Åg—p‚·‚éƒc[ƒ‹(actin_input.c‚ÌƒVƒXƒeƒ€‚ÉˆË‘¶‚µ‚È‚¢‚à‚ÌŒÀ’è)‚Ìƒwƒbƒ_
+ * @brief	actin_input.cã§ä½¿ç”¨ã™ã‚‹ãƒ„ãƒ¼ãƒ«(actin_input.cã®ã‚·ã‚¹ãƒ†ãƒ ã«ä¾å­˜ã—ãªã„ã‚‚ã®é™å®š)ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2005.12.02(‹à)
+ * @date	2005.12.02(é‡‘)
  */
 //==============================================================================
 #ifndef __ACI_TOOL_H__
@@ -11,7 +11,7 @@
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void ACIT_SubHeartJudgeResourceSet(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE *hdl_obj);
 extern CATS_ACT_PTR ACIT_SubHeartJudgeActorAdd(CATS_SYS_PTR csp, CATS_RES_PTR crp, int judge_no);

@@ -27,10 +27,10 @@
 #include <nnsys/fnd/allocator.h>
 
 //
-// �q�[�v�̊m�ہE����𔺂�API�̏W��
-// ���[�e�B���e�B�I�Ȃ��̂Ȃ̂ŁA���[�U�[�͓��Ɏg�p����������Ȃ�
+// ヒープの確保・解放を伴うAPIの集合
+// ユーティリティ的なものなので、ユーザーは特に使用を強制されない
 //
-// �܂��Amem.h��mem.c�ȊO��G3D�̃\�[�X����C���N���[�h����Ă͂����Ȃ��B
+// また、mem.hはmem.c以外のG3Dのソースからインクルードされてはいけない。
 //
 
 #ifdef __cplusplus

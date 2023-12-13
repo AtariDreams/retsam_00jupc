@@ -1,10 +1,10 @@
 //=============================================================================
 /**
  * @file	comm_command_contest_ol.c
- * @brief	comm_command_contest.c‚©‚çƒRƒ“ƒeƒXƒg—Ìˆæ‚ÉƒI[ƒo[ƒŒƒC‚µ‚Ä‚à–â‘è‚È‚¢‚à‚Ì‚ğ
- *			”²‚«o‚µ‚½ƒtƒ@ƒCƒ‹‚Å‚·B
+ * @brief	comm_command_contest.cã‹ã‚‰ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé ˜åŸŸã«ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã—ã¦ã‚‚å•é¡Œãªã„ã‚‚ã®ã‚’
+ *			æŠœãå‡ºã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã§ã™ã€‚
  * @author	matsuda
- * @date    2007.12.04(‰Î)
+ * @date    2007.12.04(ç«)
  */
 //=============================================================================
 #include "common.h"
@@ -26,11 +26,11 @@
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒm[ƒ}ƒ‹ƒf[ƒ^’ÊMóMˆ—
+ * @brief   ãƒãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  * @param   work		
  */
 //--------------------------------------------------------------
@@ -43,28 +43,28 @@ void CommContestRecvNormal(int id_no,int size,void *pData,void *work)
 		VISUAL_PROC_WORK *vpw;
 		vpw = consys->class_proc;
 		cow = &vpw->cow;
-		OS_TPrintf("ƒrƒWƒ…ƒAƒ‹•”–åƒf[ƒ^óMBid_no=%d, size=%d\n", id_no, size);
+		OS_TPrintf("ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ãƒ‡ãƒ¼ã‚¿å—ä¿¡ã€‚id_no=%d, size=%d\n", id_no, size);
 	}
 	else if(consys->class_flag == CON_CLASS_DANCE){
 		DANCE_PROC_WORK *dpw;
 		dpw = consys->class_proc;
 		cow = &dpw->cow;
-		OS_TPrintf("ƒ_ƒ“ƒX•”–åƒf[ƒ^óMBid_no=%d, size=%d\n", id_no, size);
+		OS_TPrintf("ãƒ€ãƒ³ã‚¹éƒ¨é–€ãƒ‡ãƒ¼ã‚¿å—ä¿¡ã€‚id_no=%d, size=%d\n", id_no, size);
 	}
 	else if(consys->class_flag == CON_CLASS_ACTIN){
 		ACTIN_PROC_WORK *apw;
 		apw = consys->class_proc;
 		cow = &apw->cow;
-		OS_TPrintf("‰‰‹Z—Í•”–åƒf[ƒ^óMBid_no=%d, size=%d\n", id_no, size);
+		OS_TPrintf("æ¼”æŠ€åŠ›éƒ¨é–€ãƒ‡ãƒ¼ã‚¿å—ä¿¡ã€‚id_no=%d, size=%d\n", id_no, size);
 	}
 	else if(consys->class_flag == CON_CLASS_RESULT){
 		CONRES_PROC_WORK *rpw;
 		rpw = consys->class_proc;
 		cow = &rpw->cow;
-		OS_TPrintf("Œ‹‰Ê”­•\ƒf[ƒ^óMBid_no=%d, size=%d\n", id_no, size);
+		OS_TPrintf("çµæœç™ºè¡¨ãƒ‡ãƒ¼ã‚¿å—ä¿¡ã€‚id_no=%d, size=%d\n", id_no, size);
 	}
 	else{
-		GF_ASSERT(0 && "•s–¾‚ÈƒNƒ‰ƒX‚Å‚·");
+		GF_ASSERT(0 && "ä¸æ˜ãªã‚¯ãƒ©ã‚¹ã§ã™");
 		return;
 	}
 
@@ -76,11 +76,11 @@ void CommContestRecvNormal(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ_ƒ“ƒXƒf[ƒ^’ÊMóMˆ—
+ * @brief   ãƒ€ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  * @param   work		
  */
 //--------------------------------------------------------------

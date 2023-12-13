@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imageclip_data.c
- *	@brief		ƒCƒ[ƒWƒNƒŠƒbƒvƒZ[ƒuƒf[ƒ^
+ *	@brief		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *	@author		tomoya takahashi
  *	@data		2006.02.27
  *
@@ -11,7 +11,7 @@
 
 
 #include "common.h"
-#include "include/savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "include/savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 #include "include/savedata/savedata.h"
 #include "include/gflib/system.h"
 #include "include/gflib/assert.h"
@@ -25,138 +25,138 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define IMC_SAVEDATA_DATAINIT_FLAG	( 0x1234 )		// ‰Šú‰»ƒf[ƒ^Ši”[‚Ìƒtƒ‰ƒO
-#define IMC_SAVEDATA_DATASET_FLAG	( 0x2345 )		// ƒZ[ƒuƒf[ƒ^Ši”[‚Ìƒtƒ‰ƒO
+#define IMC_SAVEDATA_DATAINIT_FLAG	( 0x1234 )		// åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿æ ¼ç´æ™‚ã®ãƒ•ãƒ©ã‚°
+#define IMC_SAVEDATA_DATASET_FLAG	( 0x2345 )		// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ ¼ç´æ™‚ã®ãƒ•ãƒ©ã‚°
 
 enum{
 	IMC_ACCE_9_GET_NUM = 9,
 	IMC_ACCE_1_GET_NUM = 1,
 	
-	IMC_ACCE_9_ARRY_IN = 8,		// 9ŒÂ—p”z—ñu32‚É“ü‚éƒf[ƒ^‚Ì”
-	IMC_ACCE_1_ARRY_IN = 32,	// 1ŒÂ—p”z—ñu32‚É“ü‚éƒf[ƒ^‚Ì”
-	IMC_BG_ARRY_IN	   = 4,		// BG—p”z—ñu32‚É“ü‚éƒf[ƒ^‚Ì”
-	IMC_ACCE_9_ARRY_BIT = 4,	// 9ŒÂ—p”z—ñ‚É1ƒf[ƒ^‚Ég‚¤ƒrƒbƒg”
-	IMC_ACCE_1_ARRY_BIT = 1,	// 1ŒÂ—p”z—ñ‚É1ƒf[ƒ^‚Ég‚¤ƒrƒbƒg”
-	IMC_BG_ARRY_BIT		= 8,	// BG—p”z—ñ‚É1ƒf[ƒ^‚Ég‚¤ƒrƒbƒg”
+	IMC_ACCE_9_ARRY_IN = 8,		// 9å€‹ç”¨é…åˆ—u32ã«å…¥ã‚‹ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	IMC_ACCE_1_ARRY_IN = 32,	// 1å€‹ç”¨é…åˆ—u32ã«å…¥ã‚‹ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	IMC_BG_ARRY_IN	   = 4,		// BGç”¨é…åˆ—u32ã«å…¥ã‚‹ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	IMC_ACCE_9_ARRY_BIT = 4,	// 9å€‹ç”¨é…åˆ—ã«1ãƒ‡ãƒ¼ã‚¿ã«ä½¿ã†ãƒ“ãƒƒãƒˆæ•°
+	IMC_ACCE_1_ARRY_BIT = 1,	// 1å€‹ç”¨é…åˆ—ã«1ãƒ‡ãƒ¼ã‚¿ã«ä½¿ã†ãƒ“ãƒƒãƒˆæ•°
+	IMC_BG_ARRY_BIT		= 8,	// BGç”¨é…åˆ—ã«1ãƒ‡ãƒ¼ã‚¿ã«ä½¿ã†ãƒ“ãƒƒãƒˆæ•°
 	
-	IMC_ACCE_9_ARRY_NUM	= 8,	// 9ŒÂ‚à‚Ä‚éƒAƒNƒZƒTƒŠ‚Ìƒtƒ‰ƒO”z—ñ
-	IMC_ACCE_1_ARRY_NUM = 2,	// 1ŒÂ‚à‚Ä‚éƒAƒNƒZƒTƒŠ‚Ìƒtƒ‰ƒO”z—ñ
-	IMC_BG_ARRY_NUM = 6,		// BG‚Ìƒtƒ‰ƒO”z—ñ
+	IMC_ACCE_9_ARRY_NUM	= 8,	// 9å€‹ã‚‚ã¦ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªã®ãƒ•ãƒ©ã‚°é…åˆ—
+	IMC_ACCE_1_ARRY_NUM = 2,	// 1å€‹ã‚‚ã¦ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªã®ãƒ•ãƒ©ã‚°é…åˆ—
+	IMC_BG_ARRY_NUM = 6,		// BGã®ãƒ•ãƒ©ã‚°é…åˆ—
 };
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+//	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct _IMC_SAVEDATA_POKEMON{
-	u32 personal_rnd;				///<ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”
-	u32 idno;						///<IDNo	ƒŒƒAƒ|ƒPƒ‚ƒ“—p
-	u16	monsno;						///<ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
-	u16 nickname[ IMC_SAVEDATA_NICKNAME_STR_NUM ];	///<ƒjƒbƒNƒl[ƒ€
-	u16 oyaname[ IMC_SAVEDATA_OYANAME_STR_NUM ];	///<ƒjƒbƒNƒl[ƒ€
-	s8 poke_pri;					///<ƒ|ƒPƒ‚ƒ“—Dæ‡ˆÊ
-	u8 poke_x;						///<ƒ|ƒPƒ‚ƒ“‚˜À•W
-	u8 poke_y;						///<ƒ|ƒPƒ‚ƒ“‚™À•W
-	u8 form_id;					///<Œ`óƒAƒgƒŠƒrƒ…[ƒg
-	u8 oya_sex;						///<e«•Ê
+	u32 personal_rnd;				///<ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°
+	u32 idno;						///<IDNo	ãƒ¬ã‚¢ãƒã‚±ãƒ¢ãƒ³ç”¨
+	u16	monsno;						///<ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	u16 nickname[ IMC_SAVEDATA_NICKNAME_STR_NUM ];	///<ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
+	u16 oyaname[ IMC_SAVEDATA_OYANAME_STR_NUM ];	///<ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
+	s8 poke_pri;					///<ãƒã‚±ãƒ¢ãƒ³å„ªå…ˆé †ä½
+	u8 poke_x;						///<ãƒã‚±ãƒ¢ãƒ³ï½˜åº§æ¨™
+	u8 poke_y;						///<ãƒã‚±ãƒ¢ãƒ³ï½™åº§æ¨™
+	u8 form_id;					///<å½¢çŠ¶ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+	u8 oya_sex;						///<è¦ªæ€§åˆ¥
 } ;
 
 //-------------------------------------
-//	ƒAƒNƒZƒTƒŠƒf[ƒ^\‘¢‘Ì
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 //=====================================
 typedef struct _IMC_SAVEDATA_ACCESSORIE{
-	u8 accessory_no;	///<ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
-	u8 accessory_x;		///<ƒAƒNƒZƒTƒŠ‚˜À•W
-	u8 accessory_y;		///<ƒAƒNƒZƒTƒŠ‚™À•W
-	s8 accessory_pri;	///<ƒAƒNƒZƒTƒŠ•\¦—Dæ
+	u8 accessory_no;	///<ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
+	u8 accessory_x;		///<ã‚¢ã‚¯ã‚»ã‚µãƒªï½˜åº§æ¨™
+	u8 accessory_y;		///<ã‚¢ã‚¯ã‚»ã‚µãƒªï½™åº§æ¨™
+	s8 accessory_pri;	///<ã‚¢ã‚¯ã‚»ã‚µãƒªè¡¨ç¤ºå„ªå…ˆ
 } ;
 
 
 
 //-------------------------------------
-//	ƒeƒŒƒr‹Ç—pƒZ[ƒuƒf[ƒ^ƒ[ƒN
+//	ãƒ†ãƒ¬ãƒ“å±€ç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _IMC_TELEVISION_SAVEDATA{
-	u32 init_flag;					///<‰Šú‰»ÃŞ°À‚©‚Ìƒtƒ‰ƒO
-	IMC_SAVEDATA_POKEMON	pokemon;///<ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u32 accessory_set_msk;			///<Ši”[ƒAƒNƒZƒTƒŠ[ƒ}ƒXƒN
-	PMS_DATA title;					///<ƒNƒŠƒbƒvƒ^ƒCƒgƒ‹
-	IMC_SAVEDATA_ACCESSORIE acce[ IMC_SAVEDATA_TELEVISION_ACCE_NUM ];	///<ƒAƒNƒZƒTƒŠ
-	u8 bg_id;								///<bgƒiƒ“ƒo[	
-	u8 country;	// ‘ƒR[ƒh
+	u32 init_flag;					///<åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã‹ã®ãƒ•ãƒ©ã‚°
+	IMC_SAVEDATA_POKEMON	pokemon;///<ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u32 accessory_set_msk;			///<æ ¼ç´ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ãƒã‚¹ã‚¯
+	PMS_DATA title;					///<ã‚¯ãƒªãƒƒãƒ—ã‚¿ã‚¤ãƒˆãƒ«
+	IMC_SAVEDATA_ACCESSORIE acce[ IMC_SAVEDATA_TELEVISION_ACCE_NUM ];	///<ã‚¢ã‚¯ã‚»ã‚µãƒª
+	u8 bg_id;								///<bgãƒŠãƒ³ãƒãƒ¼	
+	u8 country;	// å›½ã‚³ãƒ¼ãƒ‰
 } ;
 
 //-------------------------------------
-//	ƒRƒ“ƒeƒXƒg—pƒZ[ƒuƒf[ƒ^ƒ[ƒN
+//	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _IMC_CONTEST_SAVEDATA{
-	u32 init_flag;					///<‰Šú‰»ÃŞ°À‚©‚Ìƒtƒ‰ƒO
-	u32 rank_code;					///<ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNƒR[ƒh
-	IMC_SAVEDATA_POKEMON	pokemon;///<ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u32 accessory_set_msk;			///<Ši”[ƒAƒNƒZƒTƒŠ[ƒ}ƒXƒN
-	IMC_SAVEDATA_ACCESSORIE acce[ IMC_SAVEDATA_CONTEST_ACCE_NUM ];	///<ƒAƒNƒZƒTƒŠ
-	u8 bg_id;						///<bgƒiƒ“ƒo[	
+	u32 init_flag;					///<åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã‹ã®ãƒ•ãƒ©ã‚°
+	u32 rank_code;					///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ã‚³ãƒ¼ãƒ‰
+	IMC_SAVEDATA_POKEMON	pokemon;///<ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u32 accessory_set_msk;			///<æ ¼ç´ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ãƒã‚¹ã‚¯
+	IMC_SAVEDATA_ACCESSORIE acce[ IMC_SAVEDATA_CONTEST_ACCE_NUM ];	///<ã‚¢ã‚¯ã‚»ã‚µãƒª
+	u8 bg_id;						///<bgãƒŠãƒ³ãƒãƒ¼	
 } ;
 
 //-------------------------------------
-//	ƒAƒCƒeƒ€•ÛƒZ[ƒuƒf[ƒ^ƒ[ƒN
+//	ã‚¢ã‚¤ãƒ†ãƒ ä¿æŒã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _IMC_ITEM_SAVEDATA{
-	u32 acce_9[ IMC_ACCE_9_ARRY_NUM ];		// 9ŒÂ‚à‚Ä‚éƒAƒNƒZƒTƒŠ@æ“¾ƒtƒ‰ƒO
-	u32 acce_1[ IMC_ACCE_1_ARRY_NUM ];		// 1ŒÂ‚à‚Ä‚éƒAƒNƒZƒTƒŠ@æ“¾ƒtƒ‰ƒO
-	u32 bg[ IMC_BG_ARRY_NUM ];				// BGæ“¾‡”Ôƒf[ƒ^
+	u32 acce_9[ IMC_ACCE_9_ARRY_NUM ];		// 9å€‹ã‚‚ã¦ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªã€€å–å¾—ãƒ•ãƒ©ã‚°
+	u32 acce_1[ IMC_ACCE_1_ARRY_NUM ];		// 1å€‹ã‚‚ã¦ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªã€€å–å¾—ãƒ•ãƒ©ã‚°
+	u32 bg[ IMC_BG_ARRY_NUM ];				// BGå–å¾—é †ç•ªãƒ‡ãƒ¼ã‚¿
 } ;
 
 
 //-------------------------------------
-//	ƒZ[ƒuƒf[ƒ^
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 //=====================================
 struct _IMC_SAVEDATA{
-	IMC_TELEVISION_SAVEDATA imc_television_savedata[ IMC_SAVEDATA_TELEVISION_SAVENUM ];	///<saveƒf[ƒ^
-	IMC_CONTEST_SAVEDATA	imc_contest_savedata[ IMC_SAVEDATA_CONTEST_SAVENUM ];		///<saveƒf[ƒ^
+	IMC_TELEVISION_SAVEDATA imc_television_savedata[ IMC_SAVEDATA_TELEVISION_SAVENUM ];	///<saveãƒ‡ãƒ¼ã‚¿
+	IMC_CONTEST_SAVEDATA	imc_contest_savedata[ IMC_SAVEDATA_CONTEST_SAVENUM ];		///<saveãƒ‡ãƒ¼ã‚¿
 
-	IMC_ITEM_SAVEDATA	imc_item_savedata;	///<ƒAƒCƒeƒ€ƒZ[ƒuƒf[ƒ^
+	IMC_ITEM_SAVEDATA	imc_item_savedata;	///<ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 };
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN‚ª‰ó‚ê‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ãŒå£Šã‚Œã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	init_flag		‰Šú‰»ƒf[ƒ^ƒtƒ‰ƒO
+ *	@param	init_flag		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ãƒ•ãƒ©ã‚°
  *
- *	@retval	TRUE	³‚µ‚¢	
- *	@retval FALSE	‰ó‚ê‚Ä‚¢‚é
+ *	@retval	TRUE	æ­£ã—ã„	
+ *	@retval FALSE	å£Šã‚Œã¦ã„ã‚‹
  */
 //-----------------------------------------------------------------------------
 static BOOL correct_savedata( u32 init_flag )
@@ -171,12 +171,12 @@ static BOOL correct_savedata( u32 init_flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒŒƒr‹Ç—pƒZ[ƒuƒf[ƒ^‚Ì³“–«ƒ`ƒFƒbƒN
+ *	@brief	ãƒ†ãƒ¬ãƒ“å±€ç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
  *	
- *	@param	wk	ƒZ[ƒuƒf[ƒ^
+ *	@param	wk	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	³‚µ‚¢	
- *	@retval FALSE	‰ó‚ê‚Ä‚¢‚é
+ *	@retval	TRUE	æ­£ã—ã„	
+ *	@retval FALSE	å£Šã‚Œã¦ã„ã‚‹
  */
 //-----------------------------------------------------------------------------
 static inline BOOL correct_television_savedata( const IMC_TELEVISION_SAVEDATA* wk )
@@ -186,12 +186,12 @@ static inline BOOL correct_television_savedata( const IMC_TELEVISION_SAVEDATA* w
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pƒZ[ƒuƒf[ƒ^‚Ì³“–«ƒ`ƒFƒbƒN
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
  *	
- *	@param	wk	ƒZ[ƒuƒf[ƒ^
+ *	@param	wk	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	³‚µ‚¢	
- *	@retval FALSE	‰ó‚ê‚Ä‚¢‚é
+ *	@retval	TRUE	æ­£ã—ã„	
+ *	@retval FALSE	å£Šã‚Œã¦ã„ã‚‹
  */
 //-----------------------------------------------------------------------------
 static inline BOOL correct_contest_savedata( const IMC_CONTEST_SAVEDATA* wk )
@@ -201,9 +201,9 @@ static inline BOOL correct_contest_savedata( const IMC_CONTEST_SAVEDATA* wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒŒƒr‹Ç—pƒZ[ƒuƒf[ƒ^‚Ì‰Šú‰»
+ *	@brief	ãƒ†ãƒ¬ãƒ“å±€ç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
  *	
- *	@param	wk	ƒZ[ƒuƒf[ƒ^
+ *	@param	wk	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -219,9 +219,9 @@ static inline void clean_television_savedata( IMC_TELEVISION_SAVEDATA* wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pƒZ[ƒuƒf[ƒ^‚Ì‰Šú‰»
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
  *	
- *	@param	wk	ƒZ[ƒuƒf[ƒ^
+ *	@param	wk	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -237,12 +237,12 @@ static inline void clean_contest_savedata( IMC_CONTEST_SAVEDATA* wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒ[ƒN‚©‚çƒf[ƒ^‚ğæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ¯ãƒ¼ã‚¯ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *	@param	ip		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
- *	@param	x		‚˜À•Wæ“¾æ
- *	@param	y		‚™À•Wæ“¾æ
- *	@param	pri		•\¦—Dæ‡ˆÊ
+ *	@param	ip		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	x		ï½˜åº§æ¨™å–å¾—å…ˆ
+ *	@param	y		ï½™åº§æ¨™å–å¾—å…ˆ
+ *	@param	pri		è¡¨ç¤ºå„ªå…ˆé †ä½
  *
  *	@return	none
  */
@@ -265,13 +265,13 @@ static void get_poke_mat( IMC_POKE* ip, u8* x, u8* y, s8* pri )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ÌŠi”[
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´
  *
- *	@param	p_pokemon	ƒCƒ[ƒWƒNƒŠƒbƒvƒ|ƒPƒ‚ƒ“ƒZ[ƒuƒ[ƒN
- *	@param	pp			ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	pri			—Dæ‡ˆÊ
+ *	@param	p_pokemon	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯
+ *	@param	pp			ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	pri			å„ªå…ˆé †ä½
  *
  *	@return	none
  */
@@ -295,11 +295,11 @@ static void ImcSaveData_SetPokeData_Local_Core( IMC_SAVEDATA_POKEMON* p_pokemon,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ÌŠi”[
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´
  *
- *	@param	p_pokemon	ƒCƒ[ƒWƒNƒŠƒbƒvƒ|ƒPƒ‚ƒ“ƒZ[ƒuƒ[ƒN
- *	@param	pp			ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
- *	@param	ip			ƒCƒ[ƒWƒNƒŠƒbƒvƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ *	@param	p_pokemon	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯
+ *	@param	pp			ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	ip			ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -314,11 +314,11 @@ static void ImcSaveData_SetPokeData_Local( IMC_SAVEDATA_POKEMON* p_pokemon, POKE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒf[ƒ^İ’è
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_pokemon		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- *	@param	pbuff			ƒgƒŒ[ƒi[–¼ƒoƒbƒtƒ@
- *	@param	sex				«•Ê
+ *	@param	p_pokemon		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	pbuff			ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åãƒãƒƒãƒ•ã‚¡
+ *	@param	sex				æ€§åˆ¥
  */
 //-----------------------------------------------------------------------------
 static void ImcSaveData_SetTrData_Local( IMC_SAVEDATA_POKEMON* p_pokemon, const STRBUF* pbuff, int sex )
@@ -332,9 +332,9 @@ static void ImcSaveData_SetTrData_Local( IMC_SAVEDATA_POKEMON* p_pokemon, const 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚Ìì¬
- *	@param	p_pokemon		ƒCƒ[ƒWƒNƒŠƒbƒvƒ|ƒPƒ‚ƒ“ƒZ[ƒuƒf[ƒ^
- *	@param	pp				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^Ši”[æ
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä½œæˆ
+ *	@param	p_pokemon		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	pp				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static void imcsacedata_GetPokePara_Local( const IMC_SAVEDATA_POKEMON* p_pokemon, POKEMON_PARAM* pp )
@@ -351,13 +351,13 @@ static void imcsacedata_GetPokePara_Local( const IMC_SAVEDATA_POKEMON* p_pokemon
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠƒf[ƒ^Ši”[
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ ¼ç´
  *
- *	@param	p_acce		ƒAƒNƒZƒTƒŠƒ[ƒN
- *	@param	acce_no		ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	pri			—Dæ‡ˆÊ
+ *	@param	p_acce		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¯ãƒ¼ã‚¯
+ *	@param	acce_no		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	pri			å„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 static void imcsavedata_SetAcce_Local( IMC_SAVEDATA_ACCESSORIE* p_acce, u8 acce_no, u8 x, u8 y, u8 pri )
@@ -375,11 +375,11 @@ static void imcsavedata_SetAcce_Local( IMC_SAVEDATA_ACCESSORIE* p_acce, u8 acce_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ•Û”İ’è
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªä¿æŒæ•°è¨­å®š
  *
- *	@param	p_arry		ƒAƒNƒZƒTƒŠ”z—ñ
- *	@param	set_data	İ’è”
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_arry		ã‚¢ã‚¯ã‚»ã‚µãƒªé…åˆ—
+ *	@param	set_data	è¨­å®šæ•°
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  *	@return
  */
@@ -389,16 +389,16 @@ static void imcsavedata_Acce9Set( u32* p_arry, u8 set_data, u8 idx )
 	u8 arry_idx;
 	u8 bit_idx;
 
-	// idx‚ª‘å‚«‚·‚¬
+	// idxãŒå¤§ãã™ã
 	GF_ASSERT( idx < IMC_ACCE_GET_9_NUM );
 	arry_idx = idx / IMC_ACCE_9_ARRY_IN;
 	
 	bit_idx = idx % IMC_ACCE_9_ARRY_IN;
 	bit_idx *= IMC_ACCE_9_ARRY_BIT;
 
-	// —ÌˆæƒNƒŠ[ƒ“
+	// é ˜åŸŸã‚¯ãƒªãƒ¼ãƒ³
 	p_arry[ arry_idx ] &= ~(0xf << bit_idx);
-	// İ’è
+	// è¨­å®š
 	p_arry[ arry_idx ] |= (set_data << bit_idx);
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
 	SVLD_SetCrc(GMDATA_ID_IMAGECLIPDATA);
@@ -407,12 +407,12 @@ static void imcsavedata_Acce9Set( u32* p_arry, u8 set_data, u8 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ•Û”æ“¾
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªä¿æŒæ•°å–å¾—
  *
- *	@param	p_arry		ƒAƒNƒZƒTƒŠ”z—ñ
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX	
+ *	@param	p_arry		ã‚¢ã‚¯ã‚»ã‚µãƒªé…åˆ—
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹	
  *
- *	@return	•Û”
+ *	@return	ä¿æŒæ•°
  */
 //-----------------------------------------------------------------------------
 static u8 imcsavedata_Acce9Get( const u32* p_arry, u8 idx )
@@ -421,7 +421,7 @@ static u8 imcsavedata_Acce9Get( const u32* p_arry, u8 idx )
 	u8 arry_idx;
 	u8 bit_idx;
 	
-	// idx‚ª‘å‚«‚·‚¬
+	// idxãŒå¤§ãã™ã
 	GF_ASSERT( idx < IMC_ACCE_GET_9_NUM );
 
 	arry_idx = idx / IMC_ACCE_9_ARRY_IN;
@@ -430,8 +430,8 @@ static u8 imcsavedata_Acce9Get( const u32* p_arry, u8 idx )
 	now = (p_arry[ arry_idx ] >> bit_idx) & 0xf;
 
 #if AFTERMASTER_070112_IMAGECLIP_ACCE_BUG_FIX
-	// 9‚±ˆÈã‚Í‚¢‚¯‚È‚¢‚Ì‚ÅA9‚±‚É‚·‚é
-	// 2007/01/09@ƒoƒO‹Z‚Å9‚æ‚è‘å‚«‚¢”‚ª“ü‚Á‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚½‚ßC³@
+	// 9ã“ä»¥ä¸Šã¯ã„ã‘ãªã„ã®ã§ã€9ã“ã«ã™ã‚‹
+	// 2007/01/09ã€€ãƒã‚°æŠ€ã§9ã‚ˆã‚Šå¤§ãã„æ•°ãŒå…¥ã£ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ãŸã‚ä¿®æ­£ã€€
 	if( now > IMC_ACCE_9_GET_NUM ){
 		now = IMC_ACCE_9_GET_NUM;
 	}
@@ -442,11 +442,11 @@ static u8 imcsavedata_Acce9Get( const u32* p_arry, u8 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	1bitƒtƒ‰ƒO”z—ñ‚Ìƒtƒ‰ƒOİ’è
+ *	@brief	1bitãƒ•ãƒ©ã‚°é…åˆ—ã®ãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	p_arry		”z—ñƒ|ƒCƒ“ƒ^
- *	@param	set_data	İ’è”@0 or 1
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX 
+ *	@param	p_arry		é…åˆ—ãƒã‚¤ãƒ³ã‚¿
+ *	@param	set_data	è¨­å®šæ•°ã€€0 or 1
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ 
  *
  *	@return	none
  */
@@ -456,16 +456,16 @@ static void imcsavedata_1bitArry_set( u32* p_arry, u8 set_data, u8 idx )
 	u8 arry_idx;
 	u8 bit_idx;
 
-	// ’l‚ª‘å‚«‚·‚¬
+	// å€¤ãŒå¤§ãã™ã
 	GF_ASSERT( set_data < 2 );
 
 	arry_idx = idx / IMC_ACCE_1_ARRY_IN;
 	bit_idx = idx % IMC_ACCE_1_ARRY_IN;
 	bit_idx *= IMC_ACCE_1_ARRY_BIT;
 
-	// —ÌˆæƒNƒŠ[ƒ“
+	// é ˜åŸŸã‚¯ãƒªãƒ¼ãƒ³
 	p_arry[ arry_idx ] &= ~(0x1 << bit_idx);
-	// İ’è
+	// è¨­å®š
 	p_arry[ arry_idx ] |= (set_data << bit_idx);
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
 	SVLD_SetCrc(GMDATA_ID_IMAGECLIPDATA);
@@ -474,12 +474,12 @@ static void imcsavedata_1bitArry_set( u32* p_arry, u8 set_data, u8 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	1ƒrƒbƒgƒtƒ‰ƒO”z—ñ‚Ì’læ“¾ŠÖ”
+ *	@brief	1ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°é…åˆ—ã®å€¤å–å¾—é–¢æ•°
  *
- *	@param	p_arry	1ƒrƒbƒg”z—ñ
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_arry	1ãƒ“ãƒƒãƒˆé…åˆ—
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	’l
+ *	@return	å€¤
  */
 //-----------------------------------------------------------------------------
 static u8 imcsavedata_1bitArry_get( const u32* p_arry, u8 idx )
@@ -496,11 +496,11 @@ static u8 imcsavedata_1bitArry_get( const u32* p_arry, u8 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG”z—ñ‚Ìƒtƒ‰ƒOİ’è
+ *	@brief	BGé…åˆ—ã®ãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	p_arry		”z—ñƒ|ƒCƒ“ƒ^
- *	@param	set_data	İ’è”
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX 
+ *	@param	p_arry		é…åˆ—ãƒã‚¤ãƒ³ã‚¿
+ *	@param	set_data	è¨­å®šæ•°
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ 
  *
  *	@return	none
  */
@@ -510,16 +510,16 @@ static void imcsavedata_BGArry_set( u32* p_arry, u8 set_data, u8 idx )
 	u8 arry_idx;
 	u8 bit_idx;
 
-	// ’l‚ª‘å‚«‚·‚¬
+	// å€¤ãŒå¤§ãã™ã
 	GF_ASSERT( set_data <= IMC_BG_RIGHT_MAX );
 
 	arry_idx = idx / IMC_BG_ARRY_IN;
 	bit_idx = idx % IMC_BG_ARRY_IN;
 	bit_idx *= IMC_BG_ARRY_BIT;
 
-	// —ÌˆæƒNƒŠ[ƒ“
+	// é ˜åŸŸã‚¯ãƒªãƒ¼ãƒ³
 	p_arry[ arry_idx ] &= ~(0xff << bit_idx);
-	// İ’è
+	// è¨­å®š
 	p_arry[ arry_idx ] |= (set_data << bit_idx);
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
 	SVLD_SetCrc(GMDATA_ID_IMAGECLIPDATA);
@@ -528,12 +528,12 @@ static void imcsavedata_BGArry_set( u32* p_arry, u8 set_data, u8 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒtƒ‰ƒO”z—ñ‚Ì’læ“¾ŠÖ”
+ *	@brief	BGãƒ•ãƒ©ã‚°é…åˆ—ã®å€¤å–å¾—é–¢æ•°
  *
- *	@param	p_arry	BG”z—ñ
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_arry	BGé…åˆ—
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	’l
+ *	@return	å€¤
  */
 //-----------------------------------------------------------------------------
 static u8 imcsavedata_BGArry_get( const u32* p_arry, u8 idx )
@@ -550,11 +550,11 @@ static u8 imcsavedata_BGArry_get( const u32* p_arry, u8 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•Û‚µ‚Ä‚¢‚éƒf[ƒ^”‚ğæ“¾
+ *	@brief	ä¿æŒã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿æ•°ã‚’å–å¾—
  *
- *	@param	p_arry		BG”z—ñ
+ *	@param	p_arry		BGé…åˆ—
  *
- *	@return	•Û”
+ *	@return	ä¿æŒæ•°
  */
 //-----------------------------------------------------------------------------
 static u8 imcsavedata_BGArry_FlagOnDataNumGet( const u32* p_arry )
@@ -574,12 +574,12 @@ static u8 imcsavedata_BGArry_FlagOnDataNumGet( const u32* p_arry )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚ÌƒAƒNƒZƒTƒŠ‚Í9ŒÂ•Û‚·‚éƒAƒNƒZƒTƒŠ‚©ƒ`ƒFƒbƒN
+ *	@brief	ãã®ã‚¢ã‚¯ã‚»ã‚µãƒªã¯9å€‹ä¿æŒã™ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	acce_no		ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
+ *	@param	acce_no		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	TRUE	9ŒÂ•Ûo—ˆ‚é
- *	@retval	FALSE	1ŒÂ•Û‚Å‚«‚é
+ *	@retval	TRUE	9å€‹ä¿æŒå‡ºæ¥ã‚‹
+ *	@retval	FALSE	1å€‹ä¿æŒã§ãã‚‹
  */
 //-----------------------------------------------------------------------------
 static BOOL imcsavedata_AcceNo_9Check( u32 acce_no )
@@ -592,11 +592,11 @@ static BOOL imcsavedata_AcceNo_9Check( u32 acce_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠƒiƒ“ƒo[‚ğ1ŒÂ•ÛƒAƒNƒZƒTƒŠ‚©‚ç‚Ì”š‚É•ÏX
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼ã‚’1å€‹ä¿æŒã‚¢ã‚¯ã‚»ã‚µãƒªã‹ã‚‰ã®æ•°å­—ã«å¤‰æ›´
  *
- *	@param	acce_no		ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
+ *	@param	acce_no		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	1ŒÂ•ÛƒAƒNƒZƒTƒŠ‚©‚ç‚Ì”
+ *	@return	1å€‹ä¿æŒã‚¢ã‚¯ã‚»ã‚µãƒªã‹ã‚‰ã®æ•°
  */
 //-----------------------------------------------------------------------------
 static inline u8 imcsavedata_AcceNo_1Get( u32 acce_no )
@@ -608,9 +608,9 @@ static inline u8 imcsavedata_AcceNo_1Get( u32 acce_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒeƒ€ƒZ[ƒu—Ìˆæ‚Ì‰Šú‰»
+ *	@brief	ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–é ˜åŸŸã®åˆæœŸåŒ–
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -620,7 +620,7 @@ static void clean_item_savedata( IMC_ITEM_SAVEDATA* wk )
 	int i;
 	memset( wk, 0, sizeof(IMC_ITEM_SAVEDATA) );
 
-	// BG‚Ì—Ìˆæ‚ÍÅ‰‚ÉÅ‘å”‚ğŠi”[‚µ‚Ä‚¨‚­
+	// BGã®é ˜åŸŸã¯æœ€åˆã«æœ€å¤§æ•°ã‚’æ ¼ç´ã—ã¦ãŠã
 	for( i=0; i<IMC_BG_RIGHT_MAX; i++ ){
 		imcsavedata_BGArry_set( wk->bg, IMC_BG_RIGHT_MAX, i );
 	}
@@ -631,7 +631,7 @@ static void clean_item_savedata( IMC_ITEM_SAVEDATA* wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚©‚ç@ƒ|ƒPƒ‚ƒ“‚ÌÀ•W‚ğæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã€€ãƒã‚±ãƒ¢ãƒ³ã®åº§æ¨™ã‚’å–å¾—
  */
 //-----------------------------------------------------------------------------
 static void ImcSaveData_ImcPokeObjContestMatGet( POKEMON_PARAM* pp, u8* x, u8* y )
@@ -640,18 +640,18 @@ static void ImcSaveData_ImcPokeObjContestMatGet( POKEMON_PARAM* pp, u8* x, u8* y
 
 	*x = IMC_POKE_INIT_X - (IMC_SEENFADE_MOVE_ADD_X*IMC_SEENFADE_MOVE_COUNT);
 
-	// 1‚Ü‚¸ƒNƒŠƒbƒv‚Ì‚´‚Ğ‚å‚¤‚É‚·‚é
+	// 1ã¾ãšã‚¯ãƒªãƒƒãƒ—æ™‚ã®ã–ã²ã‚‡ã†ã«ã™ã‚‹
 	*y = (IMC_RBOX_AREA_Y + IMC_RBOX_AREA_HEIGHT) - ((SOFT_SPRITE_SIZE_Y/2) - height) + IMC_POKE_MAT_CONTEST_Y_OFS;
-	// 2‚»‚ÌŒãAƒZ[ƒu‚Ì‚´‚Ğ‚å‚¤‚É‚·‚é	ƒeƒŒƒr—p‚ÆƒRƒ“ƒeƒXƒg—p‚ÌƒZ[ƒu‚ÌŠî€À•W‚ğ‚ ‚í‚¹‚é‚½‚ß
+	// 2ãã®å¾Œã€ã‚»ãƒ¼ãƒ–æ™‚ã®ã–ã²ã‚‡ã†ã«ã™ã‚‹	ãƒ†ãƒ¬ãƒ“ç”¨ã¨ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã®ã‚»ãƒ¼ãƒ–æ™‚ã®åŸºæº–åº§æ¨™ã‚’ã‚ã‚ã›ã‚‹ãŸã‚
 	*y += (IMC_SEENFADE_MOVE_ADD_Y*IMC_SEENFADE_MOVE_COUNT);
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN‚Ì‰Šú‰»
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- *	@param	iw	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iw	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -674,15 +674,15 @@ void ImcSaveData_Init(IMC_SAVEDATA * iw)
 
 
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //----------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒZ[ƒuƒf[ƒ^ƒ[ƒNƒTƒCƒY‚Ìæ“¾
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã®å–å¾—
  *
  *	@param	none
  *
- *	@return	ƒ[ƒNƒTƒCƒY
+ *	@return	ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int ImcSaveData_GetWorkSize(void)
@@ -692,11 +692,11 @@ int ImcSaveData_GetWorkSize(void)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒv—pƒ[ƒN‚Ì¶¬ˆ—
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”¨ãƒ¯ãƒ¼ã‚¯ã®ç”Ÿæˆå‡¦ç†
  *
- *	@param	heapID		ƒq[ƒvID
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	¶¬‚µ‚½ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ *	@return	ç”Ÿæˆã—ãŸã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 IMC_SAVEDATA * ImcSaveData_AllocWork(u32 heapID)
@@ -709,11 +709,11 @@ IMC_SAVEDATA * ImcSaveData_AllocWork(u32 heapID)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒŒƒr—pƒ[ƒNƒTƒCƒYæ“¾
+ *	@brief	ãƒ†ãƒ¬ãƒ“ç”¨ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºå–å¾—
  *
  *	@param	none
  *
- *	@return	ƒ[ƒNƒTƒCƒY
+ *	@return	ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int ImcSaveData_GetTelevisionWorkSize(void)
@@ -723,11 +723,11 @@ int ImcSaveData_GetTelevisionWorkSize(void)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pƒ[ƒNƒTƒCƒYæ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºå–å¾—
  *
  *	@param	none
  *
- *	@return	ƒ[ƒNƒTƒCƒY
+ *	@return	ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int ImcSaveData_GetContestWorkSize(void)
@@ -738,11 +738,11 @@ int ImcSaveData_GetContestWorkSize(void)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒŒƒr—pƒ[ƒNì¬
+ *	@brief	ãƒ†ãƒ¬ãƒ“ç”¨ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *
- *	@param	heapID	ƒq[ƒv
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ƒ[ƒNƒ|ƒCƒ“ƒ^
+ *	@return	ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 IMC_TELEVISION_SAVEDATA* ImcSaveData_TelevisionAllocWork(u32 heapID)
@@ -756,11 +756,11 @@ IMC_TELEVISION_SAVEDATA* ImcSaveData_TelevisionAllocWork(u32 heapID)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pƒ[ƒNì¬
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *
- *	@param	heapID	ƒq[ƒv
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ƒ[ƒNƒ|ƒCƒ“ƒ^
+ *	@return	ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 IMC_CONTEST_SAVEDATA* ImcSaveData_ContestAllocWork(u32 heapID)
@@ -774,11 +774,11 @@ IMC_CONTEST_SAVEDATA* ImcSaveData_ContestAllocWork(u32 heapID)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒeƒ€—pƒ[ƒNì¬
+ *	@brief	ã‚¢ã‚¤ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *
- *	@param	heapID	ƒq[ƒv
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ƒ[ƒNƒ|ƒCƒ“ƒ^
+ *	@return	ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 IMC_ITEM_SAVEDATA* ImcSaveData_ItemAllocWork(u32 heapID)
@@ -793,22 +793,22 @@ IMC_ITEM_SAVEDATA* ImcSaveData_ItemAllocWork(u32 heapID)
 
 
 //-----------------------------------------------------------------------------
-//	ƒ[ƒNƒf[ƒ^“Ç‚İ‘‚«
+//	ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿èª­ã¿æ›¸ã
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒf[ƒ^‚ÌƒeƒŒƒrƒWƒ‡ƒ“1‚Â‚ğæ“¾‚·‚é
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®ãƒ†ãƒ¬ãƒ“ã‚¸ãƒ§ãƒ³1ã¤ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	iw		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	no		æ“¾ƒCƒ“ƒfƒbƒNƒX
+ *	@param	iw		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	no		å–å¾—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	ƒeƒŒƒrƒWƒ‡ƒ“1‚Â‚Ìƒf[ƒ^
+ *	@return	ãƒ†ãƒ¬ãƒ“ã‚¸ãƒ§ãƒ³1ã¤ã®ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 IMC_TELEVISION_SAVEDATA* ImcSaveData_GetTelevisionSaveData(IMC_SAVEDATA* iw, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_SAVENUM );		///<”z—ñÅ‘å”ƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_SAVENUM );		///<é…åˆ—æœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( &iw->imc_television_savedata[ no ] ) );
 	
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
@@ -819,18 +819,18 @@ IMC_TELEVISION_SAVEDATA* ImcSaveData_GetTelevisionSaveData(IMC_SAVEDATA* iw, int
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pƒZ[ƒuƒf[ƒ^‚Ì1‚Â‚ğæ“¾‚·‚é
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®1ã¤ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	iw		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	no		æ“¾ƒCƒ“ƒfƒbƒNƒX
+ *	@param	iw		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	no		å–å¾—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	ƒRƒ“ƒeƒXƒg—pƒZ[ƒuƒf[ƒ^
+ *	@return	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 IMC_CONTEST_SAVEDATA* ImcSaveData_GetContestSaveData(IMC_SAVEDATA* iw, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_SAVENUM );		///<”z—ñÅ‘å”ƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_SAVENUM );		///<é…åˆ—æœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( &iw->imc_contest_savedata[ no ] ) );
 	
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
@@ -841,11 +841,11 @@ IMC_CONTEST_SAVEDATA* ImcSaveData_GetContestSaveData(IMC_SAVEDATA* iw, int no)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZ[ƒuƒf[ƒ^‚©‚çƒAƒCƒeƒ€•ÛƒZ[ƒuƒ[ƒN‚ğæ“¾
+ *	@brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚¢ã‚¤ãƒ†ãƒ ä¿æŒã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
  *
- *	@param	iw		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iw		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒAƒCƒeƒ€ƒZ[ƒuƒf[ƒ^
+ *	@return	ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 IMC_ITEM_SAVEDATA* ImcSaveData_GetItemSaveData(IMC_SAVEDATA* iw)
@@ -858,50 +858,50 @@ IMC_ITEM_SAVEDATA* ImcSaveData_GetItemSaveData(IMC_SAVEDATA* iw)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚ÌƒeƒŒƒr‹Ç—pƒZ[ƒuƒf[ƒ^—Ìˆæ‚ÉƒZ[ƒu‚µ‚Ä‚¢‚é‚©
+ *	@brief	ãã®ãƒ†ãƒ¬ãƒ“å±€ç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã«ã‚»ãƒ¼ãƒ–ã—ã¦ã„ã‚‹ã‹
  *
- *	@param	iw	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	no	ƒ`ƒFƒbƒN‚·‚éƒCƒ“ƒfƒbƒNƒX
+ *	@param	iw	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	ƒZ[ƒuÏ‚İ
- *	@retval	FALSE	ƒZ[ƒ€–¢Š®—¹
+ *	@retval	TRUE	ã‚»ãƒ¼ãƒ–æ¸ˆã¿
+ *	@retval	FALSE	ã‚»ãƒ¼ãƒ æœªå®Œäº†
  */
 //-----------------------------------------------------------------------------
 BOOL ImcSaveData_CheckTelevisionSaveData(const IMC_SAVEDATA* iw, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_SAVENUM );		///<”z—ñÅ‘å”ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_SAVENUM );		///<é…åˆ—æœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
 
 	return ImcSaveData_CheckTelevisionData( &iw->imc_television_savedata[ no ] );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚ÌƒeƒŒƒr‹Ç—pƒZ[ƒuƒf[ƒ^—Ìˆæ‚ÉƒZ[ƒu‚µ‚Ä‚¢‚é‚©
+ *	@brief	ãã®ãƒ†ãƒ¬ãƒ“å±€ç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã«ã‚»ãƒ¼ãƒ–ã—ã¦ã„ã‚‹ã‹
  *
- *	@param	iw	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	no	ƒ`ƒFƒbƒN‚·‚éƒCƒ“ƒfƒbƒNƒX
+ *	@param	iw	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	ƒZ[ƒuÏ‚İ
- *	@retval	FALSE	ƒZ[ƒ€–¢Š®—¹
+ *	@retval	TRUE	ã‚»ãƒ¼ãƒ–æ¸ˆã¿
+ *	@retval	FALSE	ã‚»ãƒ¼ãƒ æœªå®Œäº†
  */
 //-----------------------------------------------------------------------------
 BOOL ImcSaveData_CheckContestSaveData(const IMC_SAVEDATA* iw, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_SAVENUM );		///<”z—ñÅ‘å”ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_SAVENUM );		///<é…åˆ—æœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
 
 	return ImcSaveData_CheckContestData( &iw->imc_contest_savedata[ no ] );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ’Ç‰Á‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªè¿½åŠ ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_iow		ƒZ[ƒuƒf[ƒ^ƒ[ƒN
- *	@param	acce_no		ƒAƒNƒZƒTƒŠƒ[ƒN
- *	@param	num			ƒAƒNƒZƒTƒŠ”
+ *	@param	p_iow		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	acce_no		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¯ãƒ¼ã‚¯
+ *	@param	num			ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°
  *
- *	@retval	TRUE	’Ç‰Á‰Â”\
- *	@retval	FALSE	’Ç‰Á•s‰Â”\
+ *	@retval	TRUE	è¿½åŠ å¯èƒ½
+ *	@retval	FALSE	è¿½åŠ ä¸å¯èƒ½
  */
 //-----------------------------------------------------------------------------
 BOOL ImcSaveData_CheckAcceAdd( const IMC_ITEM_SAVEDATA* p_iow, u32 acce_no, u32 num )
@@ -909,10 +909,10 @@ BOOL ImcSaveData_CheckAcceAdd( const IMC_ITEM_SAVEDATA* p_iow, u32 acce_no, u32 
 	u32 get;
 	BOOL ret = TRUE;
 
-	// •Û”æ“¾
+	// ä¿æŒæ•°å–å¾—
 	get = ImcSaveData_GetAcceFlag( p_iow, acce_no );
 	
-	// 9ŒÂ‚à‚Ä‚é‚©1ŒÂ‚à‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// 9å€‹ã‚‚ã¦ã‚‹ã‹1å€‹ã‚‚ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( imcsavedata_AcceNo_9Check( acce_no ) ){
 		// 9
 		get += num;
@@ -931,20 +931,20 @@ BOOL ImcSaveData_CheckAcceAdd( const IMC_ITEM_SAVEDATA* p_iow, u32 acce_no, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ•Û‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªä¿æŒã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_iow		ƒZ[ƒuƒf[ƒ^ƒ[ƒN
- *	@param	acce_no		ƒAƒNƒZƒTƒŠƒiƒ“ƒo[ 
+ *	@param	p_iow		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	acce_no		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼ 
  *
- *	@retval	TRUE	•Û
- *	@retval	FALSE	‚à‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ä¿æŒ
+ *	@retval	FALSE	ã‚‚ã£ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL ImcSaveData_CheckAcceGet( const IMC_ITEM_SAVEDATA* p_iow, u32 acce_no )
 {
 	u32 get;
 
-	// •Û”æ“¾
+	// ä¿æŒæ•°å–å¾—
 	get = ImcSaveData_GetAcceFlag( p_iow, acce_no );
 
 	if( get > 0 ){
@@ -955,20 +955,20 @@ BOOL ImcSaveData_CheckAcceGet( const IMC_ITEM_SAVEDATA* p_iow, u32 acce_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG”wŒi‚ğ•Û‚µ‚Ä‚¢‚é‚©‚ğƒ`ƒFƒbƒN
+ *	@brief	BGèƒŒæ™¯ã‚’ä¿æŒã—ã¦ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_iow		ƒZ[ƒuƒf[ƒ^ƒ[ƒN
- *	@param	bg_no		BGƒiƒ“ƒo[
+ *	@param	p_iow		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	bg_no		BGãƒŠãƒ³ãƒãƒ¼
  *	
- *	@retval	TRUE	•Û
- *	@retval	FALSE	‚à‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ä¿æŒ
+ *	@retval	FALSE	ã‚‚ã£ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL ImcSaveData_CheckBgGet( const IMC_ITEM_SAVEDATA* p_iow, u32 bg_no )
 {
 	u32 get;
 
-	// •Û‡”Ôæ“¾
+	// ä¿æŒé †ç•ªå–å¾—
 	get = ImcSaveData_GetBGFlag( p_iow, bg_no );
 
 	if( get != IMC_BG_RIGHT_MAX ){
@@ -980,28 +980,28 @@ BOOL ImcSaveData_CheckBgGet( const IMC_ITEM_SAVEDATA* p_iow, u32 bg_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_iow		ƒAƒCƒeƒ€ƒZ[ƒuƒ[ƒN
- *	@param	acce_no		ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
+ *	@param	cp_iow		ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯
+ *	@param	acce_no		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	•Û”
+ *	@return	ä¿æŒæ•°
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetAcceFlag( const IMC_ITEM_SAVEDATA* cp_iow, u32 acce_no )
 {
 	u32 num;
 	
-	// ƒAƒNƒZƒTƒŠ”
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°
 	GF_ASSERT( acce_no < IMC_ACCE_MAX );
 
-	// 9ŒÂ‚à‚Ä‚é‚©1ŒÂ‚à‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// 9å€‹ã‚‚ã¦ã‚‹ã‹1å€‹ã‚‚ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( imcsavedata_AcceNo_9Check( acce_no ) ){
-		// 9ŒÂ
+		// 9å€‹
 		num = imcsavedata_Acce9Get( cp_iow->acce_9, acce_no );
 	}else{
-		// 1ŒÂ
-		acce_no = imcsavedata_AcceNo_1Get( acce_no );	// ƒAƒNƒZƒTƒŠNo‚ğ1ŒÂ•ÛƒAƒNƒZƒTƒŠ‚©‚ç‚Ì”‚É•ÏX
+		// 1å€‹
+		acce_no = imcsavedata_AcceNo_1Get( acce_no );	// ã‚¢ã‚¯ã‚»ã‚µãƒªNoã‚’1å€‹ä¿æŒã‚¢ã‚¯ã‚»ã‚µãƒªã‹ã‚‰ã®æ•°ã«å¤‰æ›´
 		num = imcsavedata_1bitArry_get( cp_iow->acce_1, acce_no );
 	}
 
@@ -1010,20 +1010,20 @@ u32 ImcSaveData_GetAcceFlag( const IMC_ITEM_SAVEDATA* cp_iow, u32 acce_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG•Ûƒtƒ‰ƒOæ“¾
+ *	@brief	BGä¿æŒãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@param	cp_iow	ƒAƒCƒeƒ€ƒZ[ƒuƒf[ƒ^
- *	@param	bg_no	BGƒiƒ“ƒo[
+ *	@param	cp_iow	ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	bg_no	BGãƒŠãƒ³ãƒãƒ¼
  *	
- *	@return	•Û‚µ‚½‡”Ô
- *	@retval	IMC_BG_RIGHT_MAX‚Ì‚Æ‚«‚Í‚Ü‚¾•Û‚µ‚Ä‚¢‚È‚¢
+ *	@return	ä¿æŒã—ãŸé †ç•ª
+ *	@retval	IMC_BG_RIGHT_MAXã®ã¨ãã¯ã¾ã ä¿æŒã—ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetBGFlag( const IMC_ITEM_SAVEDATA* cp_iow, u32 bg_no )
 {
 	BOOL get;
 	
-	// ”wŒi”
+	// èƒŒæ™¯æ•°
 	GF_ASSERT( bg_no < IMC_BG_RIGHT_MAX );
 	get = imcsavedata_BGArry_get( cp_iow->bg, bg_no );
 
@@ -1033,11 +1033,11 @@ u32 ImcSaveData_GetBGFlag( const IMC_ITEM_SAVEDATA* cp_iow, u32 bg_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ@”wŒi@‘S‚Ä‚ÌƒAƒCƒeƒ€•Û”‚ğ•Ô‚·
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã€€èƒŒæ™¯ã€€å…¨ã¦ã®ã‚¢ã‚¤ãƒ†ãƒ ä¿æŒæ•°ã‚’è¿”ã™
  *
- *	@param	cp_iow	ƒAƒCƒeƒ€ƒZ[ƒuƒf[ƒ^
+ *	@param	cp_iow	ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	•Û”
+ *	@return	ä¿æŒæ•°
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetAcceBGAllNum( const IMC_ITEM_SAVEDATA* cp_iow )
@@ -1051,11 +1051,11 @@ u32 ImcSaveData_GetAcceBGAllNum( const IMC_ITEM_SAVEDATA* cp_iow )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ@‘S‚Ä‚ÌƒAƒCƒeƒ€•Û”‚ğ•Ô‚·
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã€€å…¨ã¦ã®ã‚¢ã‚¤ãƒ†ãƒ ä¿æŒæ•°ã‚’è¿”ã™
  *
- *	@param	cp_iow	ƒAƒCƒeƒ€ƒZ[ƒuƒf[ƒ^
+ *	@param	cp_iow	ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	•Û”
+ *	@return	ä¿æŒæ•°
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetAcceAllNum( const IMC_ITEM_SAVEDATA* cp_iow )
@@ -1072,11 +1072,11 @@ u32 ImcSaveData_GetAcceAllNum( const IMC_ITEM_SAVEDATA* cp_iow )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”wŒi@‘S‚Ä‚ÌƒAƒCƒeƒ€•Û”‚ğ•Ô‚·
+ *	@brief	èƒŒæ™¯ã€€å…¨ã¦ã®ã‚¢ã‚¤ãƒ†ãƒ ä¿æŒæ•°ã‚’è¿”ã™
  *
- *	@param	cp_iow	ƒAƒCƒeƒ€ƒZ[ƒuƒf[ƒ^
+ *	@param	cp_iow	ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	•Û”
+ *	@return	ä¿æŒæ•°
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetBGAllNum( const IMC_ITEM_SAVEDATA* cp_iow )
@@ -1095,33 +1095,33 @@ u32 ImcSaveData_GetBGAllNum( const IMC_ITEM_SAVEDATA* cp_iow )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ•Û”ƒZƒbƒg
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªä¿æŒæ•°ã‚»ãƒƒãƒˆ
  *
- *	@param	p_iow		ƒAƒCƒeƒ€ƒZ[ƒu—Ìˆæ
- *	@param	acce_no		ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
- *	@param	num			İ’è”
+ *	@param	p_iow		ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–é ˜åŸŸ
+ *	@param	acce_no		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
+ *	@param	num			è¨­å®šæ•°
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_SetAcceFlag( IMC_ITEM_SAVEDATA* p_iow, u32 acce_no, u32 num )
 {
-	// ƒAƒNƒZƒTƒŠ”
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°
 	GF_ASSERT( acce_no < IMC_ACCE_MAX );
 
-	// 9ŒÂ‚à‚Ä‚é‚©1ŒÂ‚à‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// 9å€‹ã‚‚ã¦ã‚‹ã‹1å€‹ã‚‚ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( imcsavedata_AcceNo_9Check( acce_no ) ){
-		// 9ŒÂˆÈã‚É‚µ‚È‚¢
+		// 9å€‹ä»¥ä¸Šã«ã—ãªã„
 		if( num > IMC_ACCE_9_GET_NUM ){
 			num = IMC_ACCE_9_GET_NUM;
 		}
 		imcsavedata_Acce9Set( p_iow->acce_9, num, acce_no );
 	}else{
-		// 1ŒÂˆÈã‚É‚µ‚È‚¢
+		// 1å€‹ä»¥ä¸Šã«ã—ãªã„
 		if( num > IMC_ACCE_1_GET_NUM ){
 			num = IMC_ACCE_1_GET_NUM;
 		}
-		acce_no = imcsavedata_AcceNo_1Get( acce_no );	// ƒAƒNƒZƒTƒŠNo‚ğ1ŒÂ•ÛƒAƒNƒZƒTƒŠ‚©‚ç‚Ì”‚É•ÏX
+		acce_no = imcsavedata_AcceNo_1Get( acce_no );	// ã‚¢ã‚¯ã‚»ã‚µãƒªNoã‚’1å€‹ä¿æŒã‚¢ã‚¯ã‚»ã‚µãƒªã‹ã‚‰ã®æ•°ã«å¤‰æ›´
 		imcsavedata_1bitArry_set( p_iow->acce_1, num, acce_no );
 	}
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
@@ -1131,11 +1131,11 @@ void ImcSaveData_SetAcceFlag( IMC_ITEM_SAVEDATA* p_iow, u32 acce_no, u32 num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ•Û”‚Ì‘«‚µZ
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªä¿æŒæ•°ã®è¶³ã—ç®—
  *
- *	@param	p_iow		ƒAƒCƒeƒ€ƒZ[ƒu—Ìˆæ
- *	@param	acce_no		ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
- *	@param	num			‘«‚·’l
+ *	@param	p_iow		ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–é ˜åŸŸ
+ *	@param	acce_no		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
+ *	@param	num			è¶³ã™å€¤
  *
  *	@return
  */
@@ -1144,13 +1144,13 @@ void ImcSaveData_AddAcceFlag( IMC_ITEM_SAVEDATA* p_iow, u32 acce_no, u32 num )
 {
 	u8 now_num;
 	
-	// ƒAƒNƒZƒTƒŠ”
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°
 	GF_ASSERT( acce_no < IMC_ACCE_MAX );
 
-	// 9ŒÂ‚à‚Ä‚é‚©1ŒÂ‚à‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// 9å€‹ã‚‚ã¦ã‚‹ã‹1å€‹ã‚‚ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( imcsavedata_AcceNo_9Check( acce_no ) ){
 		now_num = imcsavedata_Acce9Get( p_iow->acce_9, acce_no );
-		// 9ŒÂˆÈã‚É‚µ‚È‚¢
+		// 9å€‹ä»¥ä¸Šã«ã—ãªã„
 		now_num += num;
 		if( now_num > IMC_ACCE_9_GET_NUM ){
 			now_num = IMC_ACCE_9_GET_NUM;
@@ -1158,12 +1158,12 @@ void ImcSaveData_AddAcceFlag( IMC_ITEM_SAVEDATA* p_iow, u32 acce_no, u32 num )
 		imcsavedata_Acce9Set( p_iow->acce_9, now_num, acce_no );
 	}else{
 		now_num = imcsavedata_1bitArry_get( p_iow->acce_1, acce_no );
-		// 1ŒÂˆÈã‚É‚µ‚È‚¢
+		// 1å€‹ä»¥ä¸Šã«ã—ãªã„
 		now_num += num;
 		if( now_num > IMC_ACCE_1_GET_NUM ){
 			now_num = IMC_ACCE_1_GET_NUM;
 		}
-		acce_no = imcsavedata_AcceNo_1Get( acce_no );	// ƒAƒNƒZƒTƒŠNo‚ğ1ŒÂ•ÛƒAƒNƒZƒTƒŠ‚©‚ç‚Ì”‚É•ÏX
+		acce_no = imcsavedata_AcceNo_1Get( acce_no );	// ã‚¢ã‚¯ã‚»ã‚µãƒªNoã‚’1å€‹ä¿æŒã‚¢ã‚¯ã‚»ã‚µãƒªã‹ã‚‰ã®æ•°ã«å¤‰æ›´
 		imcsavedata_1bitArry_set( p_iow->acce_1, now_num, acce_no );
 	}
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
@@ -1173,11 +1173,11 @@ void ImcSaveData_AddAcceFlag( IMC_ITEM_SAVEDATA* p_iow, u32 acce_no, u32 num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ•Û”‚Ìˆø‚«Z
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªä¿æŒæ•°ã®å¼•ãç®—
  *
- *	@param	p_iow		ƒAƒCƒeƒ€ƒZ[ƒu—Ìˆæ
- *	@param	acce_no		ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
- *	@param	num			ˆø‚­’l
+ *	@param	p_iow		ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–é ˜åŸŸ
+ *	@param	acce_no		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
+ *	@param	num			å¼•ãå€¤
  *
  *	@return
  */
@@ -1186,10 +1186,10 @@ void ImcSaveData_SubAcceFlag( IMC_ITEM_SAVEDATA* p_iow, u32 acce_no, u32 num )
 {
 	u8 now_num;
 	
-	// ƒAƒNƒZƒTƒŠ”
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°
 	GF_ASSERT( acce_no < IMC_ACCE_MAX );
 
-	// 9ŒÂ‚à‚Ä‚é‚©1ŒÂ‚à‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// 9å€‹ã‚‚ã¦ã‚‹ã‹1å€‹ã‚‚ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( imcsavedata_AcceNo_9Check( acce_no ) ){
 		now_num = imcsavedata_Acce9Get( p_iow->acce_9, acce_no );
 		if( now_num > num){
@@ -1200,7 +1200,7 @@ void ImcSaveData_SubAcceFlag( IMC_ITEM_SAVEDATA* p_iow, u32 acce_no, u32 num )
 		imcsavedata_Acce9Set( p_iow->acce_9, now_num, acce_no );
 	}else{
 		now_num = 0;
-		acce_no = imcsavedata_AcceNo_1Get( acce_no );	// ƒAƒNƒZƒTƒŠNo‚ğ1ŒÂ•ÛƒAƒNƒZƒTƒŠ‚©‚ç‚Ì”‚É•ÏX
+		acce_no = imcsavedata_AcceNo_1Get( acce_no );	// ã‚¢ã‚¯ã‚»ã‚µãƒªNoã‚’1å€‹ä¿æŒã‚¢ã‚¯ã‚»ã‚µãƒªã‹ã‚‰ã®æ•°ã«å¤‰æ›´
 		imcsavedata_1bitArry_set( p_iow->acce_1, now_num, acce_no );
 	}
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
@@ -1210,10 +1210,10 @@ void ImcSaveData_SubAcceFlag( IMC_ITEM_SAVEDATA* p_iow, u32 acce_no, u32 num )
 
 //----------------------------------------------------------------------------
 /**	
- *	@brief	BG•Ûƒtƒ‰ƒOİ’è
+ *	@brief	BGä¿æŒãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	p_iow		ƒAƒCƒeƒ€ƒZ[ƒu—Ìˆæƒ[ƒN
- *	@param	bg_no		BGƒiƒ“ƒo[
+ *	@param	p_iow		ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–é ˜åŸŸãƒ¯ãƒ¼ã‚¯
+ *	@param	bg_no		BGãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  */
@@ -1222,16 +1222,16 @@ void ImcSaveData_SetBGFlag( IMC_ITEM_SAVEDATA* p_iow, u32 bg_no )
 {
 	u8 get_no;
 	
-	// ”wŒi”
+	// èƒŒæ™¯æ•°
 	GF_ASSERT( bg_no < IMC_BG_RIGHT_MAX );
 
-	// ‚·‚Å‚É•Û‚µ‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ã™ã§ã«ä¿æŒã—ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( imcsavedata_BGArry_get( p_iow->bg, bg_no ) == IMC_BG_RIGHT_MAX ){
 
-		// İ’è‚·‚é•Û‚µ‚½‡”Ô‚ğæ“¾
+		// è¨­å®šã™ã‚‹ä¿æŒã—ãŸé †ç•ªã‚’å–å¾—
 		get_no = imcsavedata_BGArry_FlagOnDataNumGet( p_iow->bg );
 
-		// İ’è
+		// è¨­å®š
 		imcsavedata_BGArry_set( p_iow->bg, get_no, bg_no );
 	}
 	
@@ -1246,17 +1246,17 @@ void ImcSaveData_SetBGFlag( IMC_ITEM_SAVEDATA* p_iow, u32 bg_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZ[ƒuƒf[ƒ^‚É’l‚ğİ’èÏ‚İ‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«å€¤ã‚’è¨­å®šæ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	iow	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒZ[ƒuÏ‚İ
- *	@retval	FALSE	ƒZ[ƒ€–¢Š®—¹
+ *	@retval	TRUE	ã‚»ãƒ¼ãƒ–æ¸ˆã¿
+ *	@retval	FALSE	ã‚»ãƒ¼ãƒ æœªå®Œäº†
  */
 //-----------------------------------------------------------------------------
 BOOL ImcSaveData_CheckTelevisionData(const IMC_TELEVISION_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 
 	if( iow->init_flag == IMC_SAVEDATA_DATASET_FLAG ){
@@ -1268,16 +1268,16 @@ BOOL ImcSaveData_CheckTelevisionData(const IMC_TELEVISION_SAVEDATA* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZ[ƒuŠ®—¹ƒtƒ‰ƒO‚ğİ’è‚·‚é
+ *	@brief	ã‚»ãƒ¼ãƒ–å®Œäº†ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	iw	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iw	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_SetComplateFlagTelevisionData(IMC_TELEVISION_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	iow->init_flag = IMC_SAVEDATA_DATASET_FLAG;
 	iow->country = CasetteLanguage;
@@ -1288,19 +1288,19 @@ void ImcSaveData_SetComplateFlagTelevisionData(IMC_TELEVISION_SAVEDATA* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZ[ƒuƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+ *	@brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
  *
- *	@param	iw		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iw		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_ClaenTelevisionData(IMC_TELEVISION_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 
-	// ƒ[ƒN‚Ì‰Šú‰»
+	// ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
 	clean_television_savedata( iow );
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
 	SVLD_SetCrc(GMDATA_ID_IMAGECLIPDATA);
@@ -1309,18 +1309,18 @@ void ImcSaveData_ClaenTelevisionData(IMC_TELEVISION_SAVEDATA* iow)
 	
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğ“o˜^‚·‚é
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²ã™ã‚‹
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	pp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
- *	@param	ip		ƒCƒ[ƒWƒNƒŠƒbƒvƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	ip		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_SetTelevisionPokeData(IMC_TELEVISION_SAVEDATA* iow, POKEMON_PARAM* pp, IMC_POKE* ip)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^Ši”[
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	ImcSaveData_SetPokeData_Local( &iow->pokemon, pp, ip );
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
 	SVLD_SetCrc(GMDATA_ID_IMAGECLIPDATA);
@@ -1329,11 +1329,11 @@ void ImcSaveData_SetTelevisionPokeData(IMC_TELEVISION_SAVEDATA* iow, POKEMON_PAR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠƒf[ƒ^İ’è
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN	
- *	@param	ao		ƒAƒNƒZƒTƒŠ[ƒf[ƒ^
- *	@param	no		ƒAƒNƒZƒTƒŠ[ƒiƒ“ƒo[
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯	
+ *	@param	ao		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *	@param	no		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  */
@@ -1343,22 +1343,22 @@ void ImcSaveData_SetTelevisionAcceData(IMC_TELEVISION_SAVEDATA* iow, const IMC_A
 	NNSG2dSVec2 mat = SWSP_GetSpritePos( ao->drawObj );
 	int pri = SWSP_GetSpritePriority( ao->drawObj );
 	
-	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<”z—ñÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( mat.x < 256 );		// u8‚É“ü‚é‚æ‚¤‚É
-	GF_ASSERT( mat.y < 256 );		// u8‚É“ü‚é‚æ‚¤‚É
-	GF_ASSERT( pri > -128 );		// u8‚É“ü‚é‚æ‚¤‚É
-	GF_ASSERT( !(iow->accessory_set_msk & (1 << no)) );	///<‘½d“o˜^ƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<é…åˆ—æœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( mat.x < 256 );		// u8ã«å…¥ã‚‹ã‚ˆã†ã«
+	GF_ASSERT( mat.y < 256 );		// u8ã«å…¥ã‚‹ã‚ˆã†ã«
+	GF_ASSERT( pri > -128 );		// u8ã«å…¥ã‚‹ã‚ˆã†ã«
+	GF_ASSERT( !(iow->accessory_set_msk & (1 << no)) );	///<å¤šé‡ç™»éŒ²ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	
-	//@ƒf[ƒ^İ’è
+	//ã€€ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	imcsavedata_SetAcce_Local( &iow->acce[ no ],
 			ao->accessorie_no,
 			mat.x,
 			mat.y,
 			pri);
 
-	// ƒ}ƒXƒNİ’è
+	// ãƒã‚¹ã‚¯è¨­å®š
 	iow->accessory_set_msk |= 1 << no;
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
 	SVLD_SetCrc(GMDATA_ID_IMAGECLIPDATA);
@@ -1367,9 +1367,9 @@ void ImcSaveData_SetTelevisionAcceData(IMC_TELEVISION_SAVEDATA* iow, const IMC_A
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGID‚Ìİ’è
+ *	@brief	BGIDã®è¨­å®š
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *	@param	bg		BGID
  *
  *	@return	none
@@ -1377,7 +1377,7 @@ void ImcSaveData_SetTelevisionAcceData(IMC_TELEVISION_SAVEDATA* iow, const IMC_A
 //-----------------------------------------------------------------------------
 void ImcSaveData_SetTelevisionBgId(IMC_TELEVISION_SAVEDATA* iow, u8 bg)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 
 	iow->bg_id = bg;
@@ -1388,17 +1388,17 @@ void ImcSaveData_SetTelevisionBgId(IMC_TELEVISION_SAVEDATA* iow, u8 bg)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒNƒŠƒbƒv‚Ìƒ^ƒCƒgƒ‹Ši”[
+ *	@brief	ã‚¯ãƒªãƒƒãƒ—ã®ã‚¿ã‚¤ãƒˆãƒ«æ ¼ç´
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	str		ƒ^ƒCƒgƒ‹–¼’PŒê
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	str		ã‚¿ã‚¤ãƒˆãƒ«åå˜èª
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_SetTelevisionTitle( IMC_TELEVISION_SAVEDATA* iow, const PMS_DATA* str )
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	PMSDAT_Copy( &iow->title, str );
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
@@ -1408,15 +1408,15 @@ void ImcSaveData_SetTelevisionTitle( IMC_TELEVISION_SAVEDATA* iow, const PMS_DAT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒgƒ‹’PŒêİ’è
+ *	@brief	ã‚¿ã‚¤ãƒˆãƒ«å˜èªè¨­å®š
  *
- *	@param	iow		ƒ[ƒN
- *	@param	word	ŠÈˆÕ’PŒêID
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
+ *	@param	word	ç°¡æ˜“å˜èªID
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_SetTelevisionTitlePmsWord( IMC_TELEVISION_SAVEDATA* iow, PMS_WORD word )
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	PMSDAT_Clear( &iow->title );
 	PMSDAT_SetWord( &iow->title, 0, word );
@@ -1427,17 +1427,17 @@ void ImcSaveData_SetTelevisionTitlePmsWord( IMC_TELEVISION_SAVEDATA* iow, PMS_WO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒŒƒr‹ÇƒNƒŠƒbƒvƒf[ƒ^ƒRƒs[ŠÖ”
+ *	@brief	ãƒ†ãƒ¬ãƒ“å±€ã‚¯ãƒªãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼é–¢æ•°
  *
- *	@param	iow			ƒ[ƒN
- *	@param	set_iow		İ’è‚·‚éƒf[ƒ^ƒ[ƒN
+ *	@param	iow			ãƒ¯ãƒ¼ã‚¯
+ *	@param	set_iow		è¨­å®šã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_CopyTelevision( IMC_TELEVISION_SAVEDATA* iow, const IMC_TELEVISION_SAVEDATA* set_iow )
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	memcpy( iow, set_iow, sizeof(IMC_TELEVISION_SAVEDATA) );
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
@@ -1447,16 +1447,16 @@ void ImcSaveData_CopyTelevision( IMC_TELEVISION_SAVEDATA* iow, const IMC_TELEVIS
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒf[ƒ^İ’è
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	iow		ƒ[ƒN
- *	@param	pbuff	ƒgƒŒ[ƒi[–¼ƒf[ƒ^
- *	@param	sex		«•Ê
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
+ *	@param	pbuff	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åãƒ‡ãƒ¼ã‚¿
+ *	@param	sex		æ€§åˆ¥
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_SetTelevisionTrData( IMC_TELEVISION_SAVEDATA* iow, const STRBUF* pbuff, int sex )
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	ImcSaveData_SetTrData_Local( &iow->pokemon, pbuff, sex );
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
@@ -1466,19 +1466,19 @@ void ImcSaveData_SetTelevisionTrData( IMC_TELEVISION_SAVEDATA* iow, const STRBUF
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆø”‚ÌƒCƒ“ƒfƒbƒNƒX‚ÌƒAƒNƒZƒTƒŠ‚ª“o˜^‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	å¼•æ•°ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¯ã‚»ã‚µãƒªãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	iow		‚PƒZ[ƒuƒf[ƒ^
- *	@param	no		ƒAƒNƒZƒTƒŠŠi”[”z—ñƒCƒ“ƒfƒbƒNƒX
+ *	@param	iow		ï¼‘ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	no		ã‚¢ã‚¯ã‚»ã‚µãƒªæ ¼ç´é…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	“o˜^Ï‚İ
- *	@retval	FALSE	–¢“o˜^
+ *	@retval	TRUE	ç™»éŒ²æ¸ˆã¿
+ *	@retval	FALSE	æœªç™»éŒ²
  */
 //-----------------------------------------------------------------------------
 BOOL ImcSaveData_CheckTelevisionAcceDataSet(const IMC_TELEVISION_SAVEDATA* iow, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<”z—ñÅ‘å”ƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<é…åˆ—æœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
@@ -1490,271 +1490,271 @@ BOOL ImcSaveData_CheckTelevisionAcceDataSet(const IMC_TELEVISION_SAVEDATA* iow, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒŒƒr‹Ç—pƒ[ƒN‚©‚çƒ|ƒPƒ‚ƒ“ƒZ[ƒuƒf[ƒ^æ“¾
+ *	@brief	ãƒ†ãƒ¬ãƒ“å±€ç”¨ãƒ¯ãƒ¼ã‚¯ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	iow		ƒ[ƒN
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ|ƒPƒ‚ƒ“ƒZ[ƒuƒf[ƒ^
+ *	@return	ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 const IMC_SAVEDATA_POKEMON* ImcSaveData_GetTelevisionPokemon(const IMC_TELEVISION_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	return &iow->pokemon;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒŒƒr‹Çƒ[ƒN‚©‚çƒAƒNƒZƒTƒŠƒZ[ƒuƒf[ƒ^æ“¾
+ *	@brief	ãƒ†ãƒ¬ãƒ“å±€ãƒ¯ãƒ¼ã‚¯ã‹ã‚‰ã‚¢ã‚¯ã‚»ã‚µãƒªã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	iow		ƒ[ƒN
- *	@param	no		ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
+ *	@param	no		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	ƒAƒNƒZƒTƒŠƒZ[ƒuƒf[ƒ^
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 const IMC_SAVEDATA_ACCESSORIE* ImcSaveData_GetTelevisionAcce(const IMC_TELEVISION_SAVEDATA* iow, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<1ƒf[ƒ^–³‚¢ƒAƒNƒZƒTƒŠÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ƒAƒNƒZƒTƒŠƒf[ƒ^Ši”[Ï‚İƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<1ãƒ‡ãƒ¼ã‚¿ç„¡ã„ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ ¼ç´æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	return &iow->acce[no];
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[æ“¾
+ *	@brief	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@return	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u16 ImcSaveData_GetTelevisionPokeMonsNo(const IMC_TELEVISION_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeMonsNo(&iow->pokemon);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒjƒbƒNƒl[ƒ€æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	pbuff	•¶š—ñŠi”[ƒoƒbƒtƒ@@—v‘f”@IMC_SAVEDATA_STRBUF_NUM•K—v
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	pbuff	æ–‡å­—åˆ—æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã€€è¦ç´ æ•°ã€€IMC_SAVEDATA_STRBUF_NUMå¿…è¦
  *	
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_GetTelevisionPokeNickName(const IMC_TELEVISION_SAVEDATA* iow, STRBUF* pbuff)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	ImcSaveData_GetUtilPokeNickName(&iow->pokemon, pbuff);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚Ìeƒl[ƒ€æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã®è¦ªãƒãƒ¼ãƒ å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	pbuff	•¶š—ñŠi”[ƒoƒbƒtƒ@@—v‘f”@IMC_SAVEDATA_STRBUF_NUM•K—v
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	pbuff	æ–‡å­—åˆ—æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã€€è¦ç´ æ•°ã€€IMC_SAVEDATA_STRBUF_NUMå¿…è¦
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_GetTelevisionPokeOyaName(const IMC_TELEVISION_SAVEDATA* iow, STRBUF* pbuff)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	ImcSaveData_GetUtilPokeOyaName(&iow->pokemon, pbuff);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e«•Êæ“¾
+ *	@brief	è¦ªæ€§åˆ¥å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	e«•Ê
+ *	@return	è¦ªæ€§åˆ¥
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetTelevisionPokeOyaSex(const IMC_TELEVISION_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeOyaSex(&iow->pokemon);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ŒÂ«—”æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å€‹æ€§ä¹±æ•°å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ŒÂ«—”
+ *	@return	å€‹æ€§ä¹±æ•°
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetTelevisionPokeRnd(const IMC_TELEVISION_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeRnd( &iow->pokemon );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“IDƒiƒ“ƒo[æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³IDãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	IDNo
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetTelevisionPokeIDNo(const IMC_TELEVISION_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeIDNo( &iow->pokemon );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“Œ`óƒiƒ“ƒo[‚Ìæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å½¢çŠ¶ãƒŠãƒ³ãƒãƒ¼ã®å–å¾—
  *
  *	@param	iow
  *
- *	@return	Œ`óƒiƒ“ƒo[
+ *	@return	å½¢çŠ¶ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetTelevisionPokeFormID(const IMC_TELEVISION_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeFormID( &iow->pokemon );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN—Dæ‡ˆÊæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å„ªå…ˆé †ä½å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ŒÂ«—”
+ *	@return	å€‹æ€§ä¹±æ•°
  */
 //-----------------------------------------------------------------------------
 s8 ImcSaveData_GetTelevisionPokePri(const IMC_TELEVISION_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	return ImcSaveData_GetUtilPokePri(&iow->pokemon);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN•\¦‚˜À•Wæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤ºï½˜åº§æ¨™å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	XÀ•W
+ *	@return	Xåº§æ¨™
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetTelevisionPokeX(const IMC_TELEVISION_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeX( &iow->pokemon );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚™À•Wæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï½™åº§æ¨™å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‚™À•W
+ *	@return	ï½™åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetTelevisionPokeY(const IMC_TELEVISION_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeY( &iow->pokemon );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒZ[ƒuƒf[ƒ^
- *	@param	pp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *	
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_GetTelevisionPokePara(const IMC_TELEVISION_SAVEDATA* iow, POKEMON_PARAM* pp)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	imcsacedata_GetPokePara_Local( &iow->pokemon, pp );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠƒiƒ“ƒo[æ“¾
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	no		ƒAƒNƒZƒTƒŠƒCƒ“ƒfƒbƒNƒX
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	no		ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *	
- *	@return	ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetTelevisionAcceNo(const IMC_TELEVISION_SAVEDATA* iow, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<1ƒf[ƒ^–³‚¢ƒAƒNƒZƒTƒŠÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ƒAƒNƒZƒTƒŠƒf[ƒ^Ši”[Ï‚İƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<1ãƒ‡ãƒ¼ã‚¿ç„¡ã„ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ ¼ç´æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	return ImcSaveData_GetUtilAcceNo( &iow->acce[no] );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠXÀ•Wæ“¾
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªXåº§æ¨™å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	no		ƒAƒNƒZƒTƒŠƒCƒ“ƒfƒbƒNƒX
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	no		ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *	
- *	@return	ƒAƒNƒZƒTƒŠ•\¦‚˜À•W
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªè¡¨ç¤ºï½˜åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetTelevisionAcceMatX(const IMC_TELEVISION_SAVEDATA* iow, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<1ƒf[ƒ^–³‚¢ƒAƒNƒZƒTƒŠÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ƒAƒNƒZƒTƒŠƒf[ƒ^Ši”[Ï‚İƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<1ãƒ‡ãƒ¼ã‚¿ç„¡ã„ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ ¼ç´æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	return ImcSaveData_GetUtilAcceMatX( &iow->acce[no] );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ‚™À•Wæ“¾
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªï½™åº§æ¨™å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	no		ƒAƒNƒZƒTƒŠƒCƒ“ƒfƒbƒNƒX
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	no		ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	ƒAƒNƒZƒTƒŠ•\¦‚™À•W
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªè¡¨ç¤ºï½™åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetTelevisionAcceMatY(const IMC_TELEVISION_SAVEDATA* iow, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<1ƒf[ƒ^–³‚¢ƒAƒNƒZƒTƒŠÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ƒAƒNƒZƒTƒŠƒf[ƒ^Ši”[Ï‚İƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<1ãƒ‡ãƒ¼ã‚¿ç„¡ã„ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ ¼ç´æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 
 	return ImcSaveData_GetUtilAcceMatY( &iow->acce[no] );
@@ -1762,19 +1762,19 @@ u8 ImcSaveData_GetTelevisionAcceMatY(const IMC_TELEVISION_SAVEDATA* iow, int no)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ•\¦—Dæ‡ˆÊæ“¾
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªè¡¨ç¤ºå„ªå…ˆé †ä½å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	no		ƒAƒNƒZƒTƒŠƒCƒ“ƒfƒbƒNƒX
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	no		ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	ƒAƒNƒZƒTƒŠ•\¦—Dæ‡ˆÊ
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªè¡¨ç¤ºå„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 s8 ImcSaveData_GetTelevisionAccePri(const IMC_TELEVISION_SAVEDATA* iow, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<1ƒf[ƒ^–³‚¢ƒAƒNƒZƒTƒŠÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ƒAƒNƒZƒTƒŠƒf[ƒ^Ši”[Ï‚İƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_TELEVISION_ACCE_NUM );		///<1ãƒ‡ãƒ¼ã‚¿ç„¡ã„ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ ¼ç´æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 
 	return ImcSaveData_GetUtilAccePri( &iow->acce[no] );
@@ -1782,44 +1782,44 @@ s8 ImcSaveData_GetTelevisionAccePri(const IMC_TELEVISION_SAVEDATA* iow, int no)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGID‚ğæ“¾
+ *	@brief	BGIDã‚’å–å¾—
  *	
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	BGID
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetTelevisionBgId(const IMC_TELEVISION_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	return iow->bg_id;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒ^ƒCƒgƒ‹‚ğæ“¾
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚¿ã‚¤ãƒˆãƒ«ã‚’å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	pbuff	Ši”[æƒoƒbƒtƒ@
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	pbuff	æ ¼ç´å…ˆãƒãƒƒãƒ•ã‚¡
  *
  *	@return	none	
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_GetTelevisionTitle( const IMC_TELEVISION_SAVEDATA* iow, PMS_DATA* pbuff )
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 	PMSDAT_Copy(pbuff, &iow->title);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒŒƒrƒ^ƒCƒgƒ‹@ŠÈˆÕ‰ï˜b’PŒê
+ *	@brief	ãƒ†ãƒ¬ãƒ“ã‚¿ã‚¤ãƒˆãƒ«ã€€ç°¡æ˜“ä¼šè©±å˜èª
  *
- *	@param	iow		ƒZ[ƒuƒ[ƒN
+ *	@param	iow		ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	’PŒêID
+ *	@return	å˜èªID
  */
 //-----------------------------------------------------------------------------
 PMS_WORD ImcSaveData_GetTelevisionTitlePmsWord( const IMC_TELEVISION_SAVEDATA* iow )
@@ -1830,7 +1830,7 @@ PMS_WORD ImcSaveData_GetTelevisionTitlePmsWord( const IMC_TELEVISION_SAVEDATA* i
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘ƒR[ƒhæ“¾
+ *	@brief	å›½ã‚³ãƒ¼ãƒ‰å–å¾—
  *
  *	@param	iow 
  *
@@ -1839,7 +1839,7 @@ PMS_WORD ImcSaveData_GetTelevisionTitlePmsWord( const IMC_TELEVISION_SAVEDATA* i
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetCountryCode( const IMC_TELEVISION_SAVEDATA* iow )
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_television_savedata( iow ) );
 
 	return iow->country;
@@ -1847,21 +1847,21 @@ u8 ImcSaveData_GetCountryCode( const IMC_TELEVISION_SAVEDATA* iow )
 	
 
 //-----------------------------------------------------------------------------
-//	IMC_CONTEST_SAVEDATA‘€ìŠÖ”
+//	IMC_CONTEST_SAVEDATAæ“ä½œé–¢æ•°
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‚ÉƒRƒ“ƒeƒXƒgƒZ[ƒuƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã«ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒZ[ƒuÏ‚İ
- *	@retval	FALSE	ƒZ[ƒ€–¢Š®—¹
+ *	@retval	TRUE	ã‚»ãƒ¼ãƒ–æ¸ˆã¿
+ *	@retval	FALSE	ã‚»ãƒ¼ãƒ æœªå®Œäº†
  */
 //-----------------------------------------------------------------------------
 BOOL ImcSaveData_CheckContestData(const IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	if( iow->init_flag == IMC_SAVEDATA_DATASET_FLAG ){
 		return TRUE;
@@ -1871,16 +1871,16 @@ BOOL ImcSaveData_CheckContestData(const IMC_CONTEST_SAVEDATA* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZ[ƒuŠ®—¹ƒtƒ‰ƒO‚ğİ’è
+ *	@brief	ã‚»ãƒ¼ãƒ–å®Œäº†ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_SetComplateFlagContestData(IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	iow->init_flag = IMC_SAVEDATA_DATASET_FLAG;
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
@@ -1890,19 +1890,19 @@ void ImcSaveData_SetComplateFlagContestData(IMC_CONTEST_SAVEDATA* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZ[ƒuƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+ *	@brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_ClaenContestData(IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 
-	// ƒ[ƒN‚Ì‰Šú‰»
+	// ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
 	clean_contest_savedata( iow );
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
 	SVLD_SetCrc(GMDATA_ID_IMAGECLIPDATA);
@@ -1911,20 +1911,20 @@ void ImcSaveData_ClaenContestData(IMC_CONTEST_SAVEDATA* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pƒ[ƒNƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ìİ’è
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	pp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
- *	@param	ip		ƒCƒ[ƒWƒNƒŠƒbƒvƒ|ƒPƒ‚ƒ“ƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	ip		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒã‚±ãƒ¢ãƒ³ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_SetContestPokeData(IMC_CONTEST_SAVEDATA* iow, POKEMON_PARAM* pp, IMC_POKE* ip)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^Ši”[
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	ImcSaveData_SetPokeData_Local( &iow->pokemon, pp, ip );
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
 	SVLD_SetCrc(GMDATA_ID_IMAGECLIPDATA);
@@ -1933,11 +1933,11 @@ void ImcSaveData_SetContestPokeData(IMC_CONTEST_SAVEDATA* iow, POKEMON_PARAM* pp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pƒAƒNƒZƒTƒŠƒf[ƒ^‚Ìİ’è
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	ao		ƒAƒNƒZƒTƒŠƒf[ƒ^
- *	@param	no		Ši”[ƒ[ƒNƒCƒ“ƒfƒbƒNƒX
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	ao		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	no		æ ¼ç´ãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  *	@return	none
  */
@@ -1947,22 +1947,22 @@ void ImcSaveData_SetContestAcceData(IMC_CONTEST_SAVEDATA* iow, const IMC_ACCESSO
 	NNSG2dSVec2 mat = SWSP_GetSpritePos( ao->drawObj );
 	int pri = SWSP_GetSpritePriority( ao->drawObj );
 	
-	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<”z—ñÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( mat.x < 256 );		// u8‚É“ü‚é‚æ‚¤‚É
-	GF_ASSERT( mat.y < 256 );		// u8‚É“ü‚é‚æ‚¤‚É
-	GF_ASSERT( pri > -128 );		// u8‚É“ü‚é‚æ‚¤‚É
-	GF_ASSERT( !(iow->accessory_set_msk & (1 << no)) );	///<‘½d“o˜^ƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<é…åˆ—æœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( mat.x < 256 );		// u8ã«å…¥ã‚‹ã‚ˆã†ã«
+	GF_ASSERT( mat.y < 256 );		// u8ã«å…¥ã‚‹ã‚ˆã†ã«
+	GF_ASSERT( pri > -128 );		// u8ã«å…¥ã‚‹ã‚ˆã†ã«
+	GF_ASSERT( !(iow->accessory_set_msk & (1 << no)) );	///<å¤šé‡ç™»éŒ²ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	
-	//@ƒf[ƒ^İ’è
+	//ã€€ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	imcsavedata_SetAcce_Local( &iow->acce[ no ],
 			ao->accessorie_no,
 			mat.x,
 			mat.y,
 			pri);
 
-	// ƒ}ƒXƒNİ’è
+	// ãƒã‚¹ã‚¯è¨­å®š
 	iow->accessory_set_msk |= 1 << no;
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
 	SVLD_SetCrc(GMDATA_ID_IMAGECLIPDATA);
@@ -1971,9 +1971,9 @@ void ImcSaveData_SetContestAcceData(IMC_CONTEST_SAVEDATA* iow, const IMC_ACCESSO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pBGIDİ’è
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨BGIDè¨­å®š
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *	@param	bg		BGID
  *	
  *	@return	none
@@ -1981,7 +1981,7 @@ void ImcSaveData_SetContestAcceData(IMC_CONTEST_SAVEDATA* iow, const IMC_ACCESSO
 //-----------------------------------------------------------------------------
 void ImcSaveData_SetContestBgId(IMC_CONTEST_SAVEDATA* iow, u8 bg)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 
 	iow->bg_id = bg;
@@ -1992,27 +1992,27 @@ void ImcSaveData_SetContestBgId(IMC_CONTEST_SAVEDATA* iow, u8 bg)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pƒ[ƒN@ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNŠi”[
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ã€€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯æ ¼ç´
  *
- *	@param	iow			ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	rank_code	ƒ‰ƒ“ƒNƒR[ƒh
+ *	@param	iow			ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	rank_code	ãƒ©ãƒ³ã‚¯ã‚³ãƒ¼ãƒ‰
  *	
  *	@return	none
  *	
  *	rank_code
-		///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNFƒm[ƒ}ƒ‹ƒ‰ƒ“ƒN
+		///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ï¼šãƒãƒ¼ãƒãƒ«ãƒ©ãƒ³ã‚¯
 		CONRANK_NORMAL		(0)
-		///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNFƒX[ƒp[ƒ‰ƒ“ƒN
+		///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ï¼šã‚¹ãƒ¼ãƒ‘ãƒ¼ãƒ©ãƒ³ã‚¯
 		CONRANK_SUPER		(1)
-		///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNFƒnƒCƒp[ƒ‰ƒ“ƒN
+		///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ï¼šãƒã‚¤ãƒ‘ãƒ¼ãƒ©ãƒ³ã‚¯
 		CONRANK_HYPER		(2)
-		///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNFƒ}ƒXƒ^[ƒ‰ƒ“ƒN
+		///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ï¼šãƒã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯
 		CONRANK_MASTER		(3)
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_SetContestRank(IMC_CONTEST_SAVEDATA* iow, u32 rank_code)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 
 	iow->rank_code = rank_code;
@@ -2023,17 +2023,17 @@ void ImcSaveData_SetContestRank(IMC_CONTEST_SAVEDATA* iow, u32 rank_code)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒgƒ[ƒN‚Ìƒf[ƒ^‚ğƒRƒs[İ’è
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼è¨­å®š
  *
- *	@param	iow			ƒ[ƒN
- *	@param	set_iow		İ’èƒ[ƒN
+ *	@param	iow			ãƒ¯ãƒ¼ã‚¯
+ *	@param	set_iow		è¨­å®šãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_CopyContest( IMC_CONTEST_SAVEDATA* iow, const IMC_CONTEST_SAVEDATA* set_iow )
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	memcpy( iow, set_iow, sizeof(IMC_CONTEST_SAVEDATA) );
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
@@ -2043,13 +2043,13 @@ void ImcSaveData_CopyContest( IMC_CONTEST_SAVEDATA* iow, const IMC_CONTEST_SAVED
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^İ’è
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	iow		ƒZ[ƒuƒf[ƒ^
- *	@param	pp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
- *	@param	pri		—Dæ‡ˆÊ
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
+ *	@param	iow		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	pri		å„ªå…ˆé †ä½
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
  *
  *	@return	none
  */
@@ -2059,13 +2059,13 @@ void ImcSaveData_SetContestPokeData_Easy( IMC_CONTEST_SAVEDATA* iow, POKEMON_PAR
 	u8 x;
 	u8 y;
 
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 
-	// ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚©‚çƒ|ƒPƒ‚ƒ“ƒTƒCƒYæ“¾
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã‚µã‚¤ã‚ºå–å¾—
 	ImcSaveData_ImcPokeObjContestMatGet( pp, &x, &y );
 
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^Ši”[
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	ImcSaveData_SetPokeData_Local_Core( &iow->pokemon, pp, x, y, pri );
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
 	SVLD_SetCrc(GMDATA_ID_IMAGECLIPDATA);
@@ -2074,42 +2074,42 @@ void ImcSaveData_SetContestPokeData_Easy( IMC_CONTEST_SAVEDATA* iow, POKEMON_PAR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠƒf[ƒ^İ’è
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	iow			ƒZ[ƒuƒ[ƒN
- *	@param	acce_idx	ƒAƒNƒZƒTƒŠ”z—ñƒCƒ“ƒfƒbƒNƒX
- *	@param	acce_no		ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	pri			—Dæ‡ˆÊ
+ *	@param	iow			ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯
+ *	@param	acce_idx	ã‚¢ã‚¯ã‚»ã‚µãƒªé…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	acce_no		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	pri			å„ªå…ˆé †ä½
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_SetContestAcceData_Easy( IMC_CONTEST_SAVEDATA* iow, u32 acce_idx, u8 acce_no, u8 x, u8 y, s8 pri )
 {
-	GF_ASSERT( acce_idx < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<”z—ñÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( acce_no < IMC_ACCE_MAX );		///<ƒAƒNƒZƒTƒŠÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( x < 256 );		// u8‚É“ü‚é‚æ‚¤‚É
-	GF_ASSERT( y < 256 );		// u8‚É“ü‚é‚æ‚¤‚É
-	GF_ASSERT( pri > -128 );		// u8‚É“ü‚é‚æ‚¤‚É
-	GF_ASSERT( !(iow->accessory_set_msk & (1 << acce_idx)) );	///<‘½d“o˜^ƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( acce_idx < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<é…åˆ—æœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( acce_no < IMC_ACCE_MAX );		///<ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( x < 256 );		// u8ã«å…¥ã‚‹ã‚ˆã†ã«
+	GF_ASSERT( y < 256 );		// u8ã«å…¥ã‚‹ã‚ˆã†ã«
+	GF_ASSERT( pri > -128 );		// u8ã«å…¥ã‚‹ã‚ˆã†ã«
+	GF_ASSERT( !(iow->accessory_set_msk & (1 << acce_idx)) );	///<å¤šé‡ç™»éŒ²ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 
-	// ƒAƒNƒZƒTƒŠ‚Ì—Dæ‡ˆÊ‚ğA‹­§“I‚Éƒ|ƒPƒ‚ƒ“‚æ‚è‚à‚‚­‚·‚é
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªã®å„ªå…ˆé †ä½ã‚’ã€å¼·åˆ¶çš„ã«ãƒã‚±ãƒ¢ãƒ³ã‚ˆã‚Šã‚‚é«˜ãã™ã‚‹
 	if( iow->pokemon.poke_pri >= pri ){
 		pri = iow->pokemon.poke_pri + 1;
 	}
 	
-	//@ƒf[ƒ^İ’è
+	//ã€€ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	imcsavedata_SetAcce_Local( &iow->acce[ acce_idx ],
 			acce_no,
 			x,
 			y,
 			pri);
 
-	// ƒ}ƒXƒNİ’è
+	// ãƒã‚¹ã‚¯è¨­å®š
 	iow->accessory_set_msk |= 1 << acce_idx;
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
 	SVLD_SetCrc(GMDATA_ID_IMAGECLIPDATA);
@@ -2118,19 +2118,19 @@ void ImcSaveData_SetContestAcceData_Easy( IMC_CONTEST_SAVEDATA* iow, u32 acce_id
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆø”‚ÌƒCƒ“ƒfƒbƒNƒX‚ÌƒAƒNƒZƒTƒŠ‚ª“o˜^‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	å¼•æ•°ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¯ã‚»ã‚µãƒªãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	iow		‚PƒZ[ƒuƒf[ƒ^
- *	@param	no		ƒAƒNƒZƒTƒŠŠi”[”z—ñƒCƒ“ƒfƒbƒNƒX
+ *	@param	iow		ï¼‘ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	no		ã‚¢ã‚¯ã‚»ã‚µãƒªæ ¼ç´é…åˆ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	“o˜^Ï‚İ
- *	@retval	FALSE	–¢“o˜^
+ *	@retval	TRUE	ç™»éŒ²æ¸ˆã¿
+ *	@retval	FALSE	æœªç™»éŒ²
  */
 //-----------------------------------------------------------------------------
 BOOL ImcSaveData_CheckContestAcceDataSet(const IMC_CONTEST_SAVEDATA* iow, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<”z—ñÅ‘å”ƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<é…åˆ—æœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 
 	if( (iow->accessory_set_msk & (1 << no)) != 0 ){
@@ -2141,16 +2141,16 @@ BOOL ImcSaveData_CheckContestAcceDataSet(const IMC_CONTEST_SAVEDATA* iow, int no
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg@ƒgƒŒ[ƒi[ƒf[ƒ^
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã€€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
  *	
- *	@param	iow		ƒ[ƒN
- *	@param	pbuff	ƒgƒŒ[ƒi[–¼
- *	@param	sex		«•Ê
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
+ *	@param	pbuff	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
+ *	@param	sex		æ€§åˆ¥
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_SetContestTrData( IMC_CONTEST_SAVEDATA* iow, const STRBUF* pbuff, int sex )
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	ImcSaveData_SetTrData_Local( &iow->pokemon, pbuff, sex );
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
@@ -2160,35 +2160,35 @@ void ImcSaveData_SetContestTrData( IMC_CONTEST_SAVEDATA* iow, const STRBUF* pbuf
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pƒ[ƒN‚©‚çƒ|ƒPƒ‚ƒ“ƒZ[ƒuƒf[ƒ^æ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	iow		ƒ[ƒN
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ|ƒPƒ‚ƒ“ƒZ[ƒuƒf[ƒ^
+ *	@return	ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 const IMC_SAVEDATA_POKEMON* ImcSaveData_GetContestPokemon(const IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	return &iow->pokemon;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒgƒ[ƒN‚©‚çƒAƒNƒZƒTƒŠƒZ[ƒuƒf[ƒ^æ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯ã‹ã‚‰ã‚¢ã‚¯ã‚»ã‚µãƒªã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	iow		ƒ[ƒN
- *	@param	no		ƒ[ƒNƒiƒ“ƒo[
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
+ *	@param	no		ãƒ¯ãƒ¼ã‚¯ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	ƒAƒNƒZƒTƒŠƒZ[ƒuƒf[ƒ^
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 const IMC_SAVEDATA_ACCESSORIE* ImcSaveData_GetContestAcce(const IMC_CONTEST_SAVEDATA* iow, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<1ƒf[ƒ^–³‚¢ƒAƒNƒZƒTƒŠÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ƒAƒNƒZƒTƒŠƒf[ƒ^Ši”[Ï‚İƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<1ãƒ‡ãƒ¼ã‚¿ç„¡ã„ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ ¼ç´æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 
 	return &iow->acce[ no ];
@@ -2197,198 +2197,198 @@ const IMC_SAVEDATA_ACCESSORIE* ImcSaveData_GetContestAcce(const IMC_CONTEST_SAVE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ *	@return	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u16 ImcSaveData_GetContestPokeMonsNo(const IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeMonsNo(&iow->pokemon);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒjƒbƒNƒl[ƒ€
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	pbuff	•¶š—ñŠi”[ƒoƒbƒtƒ@@—v‘f”@IMC_SAVEDATA_STRBUF_NUM•K—v
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	pbuff	æ–‡å­—åˆ—æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã€€è¦ç´ æ•°ã€€IMC_SAVEDATA_STRBUF_NUMå¿…è¦
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_GetContestPokeNickName(const IMC_CONTEST_SAVEDATA* iow, STRBUF* pbuff)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	ImcSaveData_GetUtilPokeNickName(&iow->pokemon, pbuff);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pƒ|ƒPƒ‚ƒ“e–¼‘Oæ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ãƒã‚±ãƒ¢ãƒ³è¦ªåå‰å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	pbuff	–¼‘OŠi”[—Ìˆæ
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	pbuff	åå‰æ ¼ç´é ˜åŸŸ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_GetContestPokeOyaName(const IMC_CONTEST_SAVEDATA* iow, STRBUF* pbuff)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	ImcSaveData_GetUtilPokeOyaName(&iow->pokemon, pbuff);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e«•Êæ“¾
+ *	@brief	è¦ªæ€§åˆ¥å–å¾—
  *
- *	@param	iow	ƒ[ƒN
+ *	@param	iow	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	e«•Ê
+ *	@return	è¦ªæ€§åˆ¥
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetContestPokeOyaSex(const IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeOyaSex(&iow->pokemon);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—p@ƒ|ƒPƒ‚ƒ“ŒÅ‘Ì—”‚ğæ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã€€ãƒã‚±ãƒ¢ãƒ³å›ºä½“ä¹±æ•°ã‚’å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ŒÅ‘Ì—”
+ *	@return	å›ºä½“ä¹±æ•°
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetContestPokeRnd(const IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeRnd( &iow->pokemon );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—p@ƒ|ƒPƒ‚ƒ“IDNoæ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã€€ãƒã‚±ãƒ¢ãƒ³IDNoå–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ|ƒPƒ‚ƒ“IDNo
+ *	@return	ãƒã‚±ãƒ¢ãƒ³IDNo
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetContestPokeIDNo(const IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeIDNo( &iow->pokemon );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—p@Œ`óƒiƒ“ƒo[æ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã€€å½¢çŠ¶ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	Œ`óƒiƒ“ƒo[
+ *	@return	å½¢çŠ¶ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetContestPokeFormID(const IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeFormID( &iow->pokemon );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—p@ƒ|ƒPƒ‚ƒ“•\¦—Dæ‡ˆÊ	æ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã€€ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤ºå„ªå…ˆé †ä½	å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	•\¦—Dæ‡ˆÊ
+ *	@return	è¡¨ç¤ºå„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 s8 ImcSaveData_GetContestPokePri(const IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	return ImcSaveData_GetUtilPokePri(&iow->pokemon);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—p@ƒ|ƒPƒ‚ƒ“‚˜À•W	æ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã€€ãƒã‚±ãƒ¢ãƒ³ï½˜åº§æ¨™	å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‚˜À•W
+ *	@return	ï½˜åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetContestPokeX(const IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeX( &iow->pokemon );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—p@ƒ|ƒPƒ‚ƒ“‚™À•W	æ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã€€ãƒã‚±ãƒ¢ãƒ³ï½™åº§æ¨™	å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‚™À•W
+ *	@return	ï½™åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetContestPokeY(const IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	return ImcSaveData_GetUtilPokeY( &iow->pokemon );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚ğì¬‚·‚é
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	pp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^Ši”[æ
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *	
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_GetContestPokePara(const IMC_CONTEST_SAVEDATA* iow, POKEMON_PARAM* pp)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	imcsacedata_GetPokePara_Local( &iow->pokemon, pp );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—p	ƒAƒNƒZƒTƒŠƒiƒ“ƒo[æ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	no		ƒAƒNƒZƒTƒŠƒCƒ“ƒfƒbƒNƒX
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	no		ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetContestAcceNo(const IMC_CONTEST_SAVEDATA* iow, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<1ƒf[ƒ^–³‚¢ƒAƒNƒZƒTƒŠÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ƒAƒNƒZƒTƒŠƒf[ƒ^Ši”[Ï‚İƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<1ãƒ‡ãƒ¼ã‚¿ç„¡ã„ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ ¼ç´æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 
 	return ImcSaveData_GetUtilAcceNo( &iow->acce[no] );
@@ -2396,19 +2396,19 @@ u8 ImcSaveData_GetContestAcceNo(const IMC_CONTEST_SAVEDATA* iow, int no)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—p@ƒAƒNƒZƒTƒŠ‚˜À•Wæ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã€€ã‚¢ã‚¯ã‚»ã‚µãƒªï½˜åº§æ¨™å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	no		ƒAƒNƒZƒTƒŠƒCƒ“ƒfƒbƒNƒX
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	no		ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	‚˜À•W
+ *	@return	ï½˜åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetContestAcceMatX(const IMC_CONTEST_SAVEDATA* iow, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<1ƒf[ƒ^–³‚¢ƒAƒNƒZƒTƒŠÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ƒAƒNƒZƒTƒŠƒf[ƒ^Ši”[Ï‚İƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<1ãƒ‡ãƒ¼ã‚¿ç„¡ã„ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ ¼ç´æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 
 	return ImcSaveData_GetUtilAcceMatX( &iow->acce[no] );
@@ -2416,19 +2416,19 @@ u8 ImcSaveData_GetContestAcceMatX(const IMC_CONTEST_SAVEDATA* iow, int no)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—pƒAƒNƒZƒTƒŠ‚™À•Wæ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã‚¢ã‚¯ã‚»ã‚µãƒªï½™åº§æ¨™å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	no		ƒAƒNƒZƒTƒŠ[ƒCƒ“ƒfƒbƒNƒX
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	no		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	ƒAƒNƒZƒTƒŠ‚™À•W
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªï½™åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetContestAcceMatY(const IMC_CONTEST_SAVEDATA* iow, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<1ƒf[ƒ^–³‚¢ƒAƒNƒZƒTƒŠÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ƒAƒNƒZƒTƒŠƒf[ƒ^Ši”[Ï‚İƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<1ãƒ‡ãƒ¼ã‚¿ç„¡ã„ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ ¼ç´æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 
 	return ImcSaveData_GetUtilAcceMatY( &iow->acce[no] );
@@ -2436,19 +2436,19 @@ u8 ImcSaveData_GetContestAcceMatY(const IMC_CONTEST_SAVEDATA* iow, int no)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—p@ƒAƒNƒZƒTƒŠ•\¦—Dæ‡ˆÊ	æ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã€€ã‚¢ã‚¯ã‚»ã‚µãƒªè¡¨ç¤ºå„ªå…ˆé †ä½	å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	no		ƒAƒNƒZƒTƒŠƒCƒ“ƒfƒbƒNƒX
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	no		ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	•\¦—Dæ‡ˆÊ
+ *	@return	è¡¨ç¤ºå„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 s8 ImcSaveData_GetContestAccePri(const IMC_CONTEST_SAVEDATA* iow, int no)
 {
-	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<1ƒf[ƒ^–³‚¢ƒAƒNƒZƒTƒŠÅ‘å”ƒ`ƒFƒbƒN
-	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ƒAƒNƒZƒTƒŠƒf[ƒ^Ši”[Ï‚İƒ`ƒFƒbƒN
-	//³“–«ƒ`ƒFƒbƒN
+	GF_ASSERT( no < IMC_SAVEDATA_CONTEST_ACCE_NUM );		///<1ãƒ‡ãƒ¼ã‚¿ç„¡ã„ã‚¢ã‚¯ã‚»ã‚µãƒªæœ€å¤§æ•°ãƒã‚§ãƒƒã‚¯
+	GF_ASSERT( iow->accessory_set_msk & (1 << no) );	///<ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿æ ¼ç´æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 
 	return ImcSaveData_GetUtilAccePri( &iow->acce[no] );
@@ -2456,32 +2456,32 @@ s8 ImcSaveData_GetContestAccePri(const IMC_CONTEST_SAVEDATA* iow, int no)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒg—p@BGIDæ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã€€BGIDå–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	BGID
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetContestBgId(const IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	return iow->bg_id;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNƒR[ƒhæ“¾
+ *	@brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ã‚³ãƒ¼ãƒ‰å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ‰ƒ“ƒNƒR[ƒh
+ *	@return	ãƒ©ãƒ³ã‚¯ã‚³ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetContestRank(const IMC_CONTEST_SAVEDATA* iow)
 {
-	//³“–«ƒ`ƒFƒbƒN
+	//æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( correct_contest_savedata( iow ) );
 	return iow->rank_code;
 }
@@ -2489,13 +2489,13 @@ u32 ImcSaveData_GetContestRank(const IMC_CONTEST_SAVEDATA* iow)
 
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^æ“¾
+//	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
 //=====================================
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param* iow		ƒ[ƒN
+ *	@param* iow		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2507,10 +2507,10 @@ u16 ImcSaveData_GetUtilPokeMonsNo(const IMC_SAVEDATA_POKEMON* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒjƒbƒNƒl[ƒ€æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ å–å¾—
  *
- *	@param	iow		ƒ[ƒN
- *	@param	pbuff	•¶š—ñŠi”[ƒoƒbƒtƒ@@—v‘f”@IMC_SAVEDATA_STRBUF_NUM•K—v
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
+ *	@param	pbuff	æ–‡å­—åˆ—æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã€€è¦ç´ æ•°ã€€IMC_SAVEDATA_STRBUF_NUMå¿…è¦
  *
  *	@return	none
  */
@@ -2522,10 +2522,10 @@ void ImcSaveData_GetUtilPokeNickName(const IMC_SAVEDATA_POKEMON* iow, STRBUF* pb
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“e–¼‘Oæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³è¦ªåå‰å–å¾—
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	pbuff	–¼‘OŠi”[—Ìˆæ
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	pbuff	åå‰æ ¼ç´é ˜åŸŸ
  *
  *	@return	none
  */
@@ -2537,11 +2537,11 @@ void ImcSaveData_GetUtilPokeOyaName(const IMC_SAVEDATA_POKEMON* iow, STRBUF* pbu
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ŒÅ‘Ì—”‚ğæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å›ºä½“ä¹±æ•°ã‚’å–å¾—
  *
- *	@param	iow		ƒ[ƒN
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ŒÅ‘Ì—”
+ *	@return	å›ºä½“ä¹±æ•°
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetUtilPokeRnd(const IMC_SAVEDATA_POKEMON* iow)
@@ -2551,11 +2551,11 @@ u32 ImcSaveData_GetUtilPokeRnd(const IMC_SAVEDATA_POKEMON* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“IDNoæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³IDNoå–å¾—
  *
- *	@param	iow		ƒ[ƒN	
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯	
  *
- *	@return	ƒ|ƒPƒ‚ƒ“IDNo
+ *	@return	ãƒã‚±ãƒ¢ãƒ³IDNo
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetUtilPokeIDNo(const IMC_SAVEDATA_POKEMON* iow)
@@ -2565,11 +2565,11 @@ u32 ImcSaveData_GetUtilPokeIDNo(const IMC_SAVEDATA_POKEMON* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ`óƒiƒ“ƒo[æ“¾
+ *	@brief	å½¢çŠ¶ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	iow		ƒ[ƒN
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	Œ`óƒiƒ“ƒo[
+ *	@return	å½¢çŠ¶ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetUtilPokeFormID(const IMC_SAVEDATA_POKEMON* iow)
@@ -2579,11 +2579,11 @@ u32 ImcSaveData_GetUtilPokeFormID(const IMC_SAVEDATA_POKEMON* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e«•Êæ“¾
+ *	@brief	è¦ªæ€§åˆ¥å–å¾—
  *
- *	@param	iow		ƒ[ƒN
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	e«•Ê
+ *	@return	è¦ªæ€§åˆ¥
  */
 //-----------------------------------------------------------------------------
 u32 ImcSaveData_GetUtilPokeOyaSex(const IMC_SAVEDATA_POKEMON* iow)
@@ -2593,11 +2593,11 @@ u32 ImcSaveData_GetUtilPokeOyaSex(const IMC_SAVEDATA_POKEMON* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“•\¦—Dæ‡ˆÊ	æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤ºå„ªå…ˆé †ä½	å–å¾—
  *
- *	@param	iow		ƒ[ƒN
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	•\¦—Dæ‡ˆÊ
+ *	@return	è¡¨ç¤ºå„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 s8 ImcSaveData_GetUtilPokePri(const IMC_SAVEDATA_POKEMON* iow)
@@ -2607,11 +2607,11 @@ s8 ImcSaveData_GetUtilPokePri(const IMC_SAVEDATA_POKEMON* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚˜À•W	æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ï½˜åº§æ¨™	å–å¾—
  *
- *	@param	iow		ƒ[ƒN
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‚˜À•W
+ *	@return	ï½˜åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetUtilPokeX(const IMC_SAVEDATA_POKEMON* iow)
@@ -2621,11 +2621,11 @@ u8 ImcSaveData_GetUtilPokeX(const IMC_SAVEDATA_POKEMON* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚™À•W	æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ï½™åº§æ¨™	å–å¾—
  *
- *	@param	iow		ƒ[ƒN
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‚™À•W
+ *	@return	ï½™åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetUtilPokeY(const IMC_SAVEDATA_POKEMON* iow)
@@ -2635,10 +2635,10 @@ u8 ImcSaveData_GetUtilPokeY(const IMC_SAVEDATA_POKEMON* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚ğì¬‚·‚é
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
  *
- *	@param	iow		ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN
- *	@param	pp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^Ši”[æ
+ *	@param	iow		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+ *	@param	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *	
  *	@return	none
  */
@@ -2650,15 +2650,15 @@ void ImcSaveData_GetUtilPokePara(const IMC_SAVEDATA_POKEMON* iow, POKEMON_PARAM*
 
 
 //-------------------------------------
-//	ƒAƒNƒZƒTƒŠƒf[ƒ^æ“¾
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿å–å¾—
 //=====================================
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠƒiƒ“ƒo[æ“¾
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	iow		ƒ[ƒN
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetUtilAcceNo(const IMC_SAVEDATA_ACCESSORIE* iow)
@@ -2668,11 +2668,11 @@ u8 ImcSaveData_GetUtilAcceNo(const IMC_SAVEDATA_ACCESSORIE* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠXÀ•Wæ“¾
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªXåº§æ¨™å–å¾—
  *
- *	@param	iow		ƒ[ƒN
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
  *	
- *	@return	ƒAƒNƒZƒTƒŠ•\¦‚˜À•W
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªè¡¨ç¤ºï½˜åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetUtilAcceMatX(const IMC_SAVEDATA_ACCESSORIE* iow)
@@ -2682,11 +2682,11 @@ u8 ImcSaveData_GetUtilAcceMatX(const IMC_SAVEDATA_ACCESSORIE* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ‚™À•Wæ“¾
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªï½™åº§æ¨™å–å¾—
  *
- *	@param	iow		ƒ[ƒN
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒAƒNƒZƒTƒŠ•\¦‚™À•W
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªè¡¨ç¤ºï½™åº§æ¨™
  */
 //-----------------------------------------------------------------------------
 u8 ImcSaveData_GetUtilAcceMatY(const IMC_SAVEDATA_ACCESSORIE* iow)
@@ -2696,11 +2696,11 @@ u8 ImcSaveData_GetUtilAcceMatY(const IMC_SAVEDATA_ACCESSORIE* iow)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ•\¦—Dæ‡ˆÊæ“¾
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªè¡¨ç¤ºå„ªå…ˆé †ä½å–å¾—
  *
- *	@param	iow		ƒ[ƒN
+ *	@param	iow		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒAƒNƒZƒTƒŠ•\¦—Dæ‡ˆÊ
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªè¡¨ç¤ºå„ªå…ˆé †ä½
  */
 //-----------------------------------------------------------------------------
 s8 ImcSaveData_GetUtilAccePri(const IMC_SAVEDATA_ACCESSORIE* iow)
@@ -2709,9 +2709,9 @@ s8 ImcSaveData_GetUtilAccePri(const IMC_SAVEDATA_ACCESSORIE* iow)
 }
 
 //-------------------------------------
-//	ƒŒƒR[ƒhˆ—
+//	ãƒ¬ã‚³ãƒ¼ãƒ‰å‡¦ç†
 //=====================================
-// ƒZ[ƒu‚·‚é‚©ƒ`ƒFƒbƒNŠÖ”
+// ã‚»ãƒ¼ãƒ–ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static BOOL imcSaveData_RecordMixSaveCheck( IMC_SAVEDATA* iw, const IMC_TELEVISION_SAVEDATA* cp_src )
 {
 	int i;
@@ -2720,20 +2720,20 @@ static BOOL imcSaveData_RecordMixSaveCheck( IMC_SAVEDATA* iw, const IMC_TELEVISI
 	MATHCRC32Table hash_tbl;
 	BOOL ret_val = TRUE;
 	
-	// ƒZ[ƒuƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒ[ƒN‚©ƒ`ƒFƒbƒN
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‹ãƒã‚§ãƒƒã‚¯
 	if( ImcSaveData_CheckTelevisionData( cp_src ) == TRUE ){
 
 		MATH_CRC32InitTable( &hash_tbl );
 		hash_0 = MATH_CalcCRC32( &hash_tbl, cp_src, sizeof(IMC_TELEVISION_SAVEDATA) );
 
-		// •Û‚µ‚Ä‚¢‚éƒ[ƒN‚Ì’†‚É“¯‚¶ƒf[ƒ^‚ª‚È‚¢‚©ƒ`ƒFƒbƒN
+		// ä¿æŒã—ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ä¸­ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		for( i=0; i<IMC_SAVEDATA_TELEVISION_SAVENUM; i++ ){
 			cp_checkdata = ImcSaveData_GetTelevisionSaveData( iw, i );
 			MATH_CRC32InitTable( &hash_tbl );
 			hash_1 = MATH_CalcCRC32( &hash_tbl, cp_checkdata, sizeof(IMC_TELEVISION_SAVEDATA) );
 
-			// ƒnƒbƒVƒ…’l‚ªˆê’v‚µ‚½‚Æ‚«A
-			// ƒf[ƒ^XV‚µ‚È‚¢
+			// ãƒãƒƒã‚·ãƒ¥å€¤ãŒä¸€è‡´ã—ãŸã¨ãã€
+			// ãƒ‡ãƒ¼ã‚¿æ›´æ–°ã—ãªã„
 			if( hash_1 == hash_0 ){
 				ret_val = FALSE;
 				break;
@@ -2748,45 +2748,45 @@ static BOOL imcSaveData_RecordMixSaveCheck( IMC_SAVEDATA* iw, const IMC_TELEVISI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŒƒR[ƒhˆ—
+ *	@brief	ãƒ¬ã‚³ãƒ¼ãƒ‰å‡¦ç†
  *
- *	@param	datanum		ƒŒƒR[ƒhƒf[ƒ^Å‘å”
- *	@param	myid		©•ª‚ÌID
- *	@param	iw			ƒZ[ƒuƒf[ƒ^
- *	@param	cpp_arry	ƒf[ƒ^”z—ñ
+ *	@param	datanum		ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•°
+ *	@param	myid		è‡ªåˆ†ã®ID
+ *	@param	iw			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	cpp_arry	ãƒ‡ãƒ¼ã‚¿é…åˆ—
  */
 //-----------------------------------------------------------------------------
 void ImcSaveData_RecordMix( u8 datanum, int myid, IMC_SAVEDATA* iw, const void** cpp_arry )
 {
-	int data_num;	// Àƒf[ƒ^”
+	int data_num;	// å®Ÿãƒ‡ãƒ¼ã‚¿æ•°
 	IMC_TELEVISION_SAVEDATA* p_dest;
 	const IMC_TELEVISION_SAVEDATA* cp_src;
 	int i;
 	int count;
 	
-	// Àƒf[ƒ^”ƒ`ƒFƒbƒN
+	// å®Ÿãƒ‡ãƒ¼ã‚¿æ•°ãƒã‚§ãƒƒã‚¯
 	data_num = 0;
 	for( i=0; i<datanum; i++ ){
 
-		// ©•ª‚ÍƒpƒX
+		// è‡ªåˆ†ã¯ãƒ‘ã‚¹
 		if( i==myid ){
 			continue;
 		}
 		
 		if( cpp_arry[ i ] != NULL ){
 			cp_src = cpp_arry[ i ];
-			// ƒf[ƒ^—L–³
+			// ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡
 			if( imcSaveData_RecordMixSaveCheck( iw, cp_src ) == TRUE ){
 				data_num ++;
 			}
 		}
 	}
 
-	// ‰Ÿ‚µo‚µ®‚ÅŠi”[‚µ‚Ä‚¢‚­
-	// Œ³‚ ‚Á‚½ƒf[ƒ^‚ğdata_num‚Ã‚Â‚¸‚ç‚·	
+	// æŠ¼ã—å‡ºã—å¼ã§æ ¼ç´ã—ã¦ã„ã
+	// å…ƒã‚ã£ãŸãƒ‡ãƒ¼ã‚¿ã‚’data_numã¥ã¤ãšã‚‰ã™	
 	for( i=IMC_SAVEDATA_TELEVISION_SAVENUM - 1; i>=IMC_SAVEDATA_TELEVISION_OTHER_S; i-- ){
 		
-		// ˆÚ“®æ‚Ìƒoƒbƒtƒ@‚ª‚ ‚é‚È‚çƒRƒs[
+		// ç§»å‹•å…ˆã®ãƒãƒƒãƒ•ã‚¡ãŒã‚ã‚‹ãªã‚‰ã‚³ãƒ”ãƒ¼
 		if( i+data_num < IMC_SAVEDATA_TELEVISION_SAVENUM ){
 			p_dest = ImcSaveData_GetTelevisionSaveData( iw, i+data_num );
 			cp_src = ImcSaveData_GetTelevisionSaveData( iw, i );
@@ -2794,19 +2794,19 @@ void ImcSaveData_RecordMix( u8 datanum, int myid, IMC_SAVEDATA* iw, const void**
 		}
 	}
 
-	// IMC_SAVEDATA_TELEVISION_OTHER_S‚ÌƒZ[ƒuƒf[ƒ^‚©‚ç
-	// ‡‚Éƒf[ƒ^‚ğİ’è‚µ‚Ä‚¢‚­
-	count = IMC_SAVEDATA_TELEVISION_OTHER_S;	// ƒZ[ƒuæƒoƒbƒtƒ@¶³İÀ
+	// IMC_SAVEDATA_TELEVISION_OTHER_Sã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰
+	// é †ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã—ã¦ã„ã
+	count = IMC_SAVEDATA_TELEVISION_OTHER_S;	// ã‚»ãƒ¼ãƒ–å…ˆãƒãƒƒãƒ•ã‚¡ã‚«ã‚¦ãƒ³ã‚¿
 	for( i=0; i<datanum; i++ ){
 
-		// ©•ª‚ÍƒpƒX
+		// è‡ªåˆ†ã¯ãƒ‘ã‚¹
 		if( i==myid ){
 			continue;
 		}
 		
 		if( cpp_arry[ i ] != NULL ){
 			cp_src = cpp_arry[ i ];
-			// ƒf[ƒ^—L–³
+			// ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡
 			if( imcSaveData_RecordMixSaveCheck( iw, cp_src ) == TRUE ){
 				p_dest = ImcSaveData_GetTelevisionSaveData( iw, count );
 				count ++;
@@ -2823,14 +2823,14 @@ void ImcSaveData_RecordMix( u8 datanum, int myid, IMC_SAVEDATA* iw, const void**
 
 //============================================================================================
 //
-//	ƒZ[ƒuƒf[ƒ^æ“¾‚Ì‚½‚ß‚ÌŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—ã®ãŸã‚ã®é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	©•ªó‘Ôƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
- * @param	sv			ƒZ[ƒuƒf[ƒ^•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	ƒCƒ[ƒWƒNƒŠƒbƒvƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 IMC_SAVEDATA * SaveData_GetImcSaveData(SAVEDATA * sv)
@@ -2850,10 +2850,10 @@ IMC_SAVEDATA * SaveData_GetImcSaveData(SAVEDATA * sv)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒhƒŒƒXƒAƒbƒvƒf[ƒ^‚ğGTƒhƒŒƒXƒAƒbƒvŒ`®‚É•ÏŠ·‚·‚é
+ * @brief   ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’GTãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—å½¢å¼ã«å¤‰æ›ã™ã‚‹
  *
- * @param   dress			Œ³ƒf[ƒ^‚Æ‚È‚éƒhƒŒƒXƒAƒbƒvƒf[ƒ^
- * @param   gt_dress		•ÏŠ·Œã‚Ìƒf[ƒ^ƒZƒbƒgæ
+ * @param   dress			å…ƒãƒ‡ãƒ¼ã‚¿ã¨ãªã‚‹ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
+ * @param   gt_dress		å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆå…ˆ
  */
 //--------------------------------------------------------------
 void ImcTelevision_to_GTDress(const IMC_TELEVISION_SAVEDATA * dress, GT_GDS_DRESS * gt_dress)
@@ -2885,17 +2885,17 @@ void ImcTelevision_to_GTDress(const IMC_TELEVISION_SAVEDATA * dress, GT_GDS_DRES
 	gt_dress->bg_id = dress->bg_id;
 	gt_dress->country = dress->country;
 	
-	//ƒ`ƒFƒbƒNƒTƒ€ì¬
+	//ãƒã‚§ãƒƒã‚¯ã‚µãƒ ä½œæˆ
 //	gt_dress->crc.crc16ccitt_hash = 
 //		SaveData_CalcCRC(sv, gt_dress, sizeof(GT_GDS_DRESS) - GT_GDS_CRC_SIZE);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   GTƒhƒŒƒXƒAƒbƒv‚ğƒhƒŒƒXƒAƒbƒvŒ`®‚É•ÏŠ·‚·‚é
+ * @brief   GTãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚’ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—å½¢å¼ã«å¤‰æ›ã™ã‚‹
  *
- * @param   gt_dress		Œ³ƒf[ƒ^‚Æ‚È‚éGTƒhƒŒƒXƒAƒbƒvƒf[ƒ^
- * @param   dress			•ÏŠ·Œã‚Ìƒf[ƒ^ƒZƒbƒgæ
+ * @param   gt_dress		å…ƒãƒ‡ãƒ¼ã‚¿ã¨ãªã‚‹GTãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
+ * @param   dress			å¤‰æ›å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆå…ˆ
  */
 //--------------------------------------------------------------
 void GTDress_to_ImcTelevision(const GT_GDS_DRESS * gt_dress, IMC_TELEVISION_SAVEDATA * dress)
@@ -2929,7 +2929,7 @@ void GTDress_to_ImcTelevision(const GT_GDS_DRESS * gt_dress, IMC_TELEVISION_SAVE
 	dress->bg_id = gt_dress->bg_id;
 	dress->country = gt_dress->country;
 	
-	//GT_GDS_DRESS‚É‚Í–³‚¢ƒpƒ‰ƒ[ƒ^‚Ì‰Šú’l‚ÌƒZƒbƒg
+	//GT_GDS_DRESSã«ã¯ç„¡ã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åˆæœŸå€¤ã®ã‚»ãƒƒãƒˆ
 	for(i = 0; i < IMC_SAVEDATA_NICKNAME_STR_NUM; i++){
 		dress->pokemon.nickname[i] = EOM_;
 	}
@@ -2938,7 +2938,7 @@ void GTDress_to_ImcTelevision(const GT_GDS_DRESS * gt_dress, IMC_TELEVISION_SAVE
 
 
 //----------------------------------------------------------
-//	ƒfƒoƒbƒO—p
+//	ãƒ‡ãƒãƒƒã‚°ç”¨
 //----------------------------------------------------------
 #ifdef PM_DEBUG
 void Debug_ImcSaveData_Make(IMC_SAVEDATA * iw, int option)
@@ -2948,7 +2948,7 @@ void Debug_ImcSaveData_Make(IMC_SAVEDATA * iw, int option)
 
 	p_item = ImcSaveData_GetItemSaveData( iw );
 	
-	// ƒAƒCƒeƒ€ƒf[ƒ^‚ğ‘S‚Ä’Ç‰Á
+	// ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’å…¨ã¦è¿½åŠ 
 	for( i=0; i<IMC_ACCE_MAX; i++ ){
 
 		if( i < IMC_ACCE_GET_1_START ){
@@ -2973,7 +2973,7 @@ void Debug_ImcSaveData_SetItemData(IMC_ITEM_SAVEDATA* iow)
 {
 	int i;
 
-	// ƒAƒCƒeƒ€ƒf[ƒ^‚ğ‘S‚Ä’Ç‰Á
+	// ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’å…¨ã¦è¿½åŠ 
 	for( i=0; i<IMC_ACCE_MAX; i++ ){
 
 		if( i < IMC_ACCE_GET_1_START ){
@@ -3016,7 +3016,7 @@ static void debug_AcceDataSet( IMC_SAVEDATA_ACCESSORIE* p_acce, u32 rnd )
 	int x, y;
 	int pri;
 
-	// o—ˆ‚é‚¾‚¯ƒ|ƒPƒ‚ƒ“‚ÌÀ•W‚É‚ ‚í‚¹‚é
+	// å‡ºæ¥ã‚‹ã ã‘ãƒã‚±ãƒ¢ãƒ³ã®åº§æ¨™ã«ã‚ã‚ã›ã‚‹
 	acce_no = (rnd * 555) % IMC_ACCE_MAX;
 	x = (IMC_RBOX_END_SX + (IMC_RBOX_AREA_WIDTH/2) - 40) + ((rnd * 9) % 80);
 	y = (IMC_RBOX_END_SY + (IMC_RBOX_AREA_HEIGHT/2) - 40) + ((rnd * 2) % 80);
@@ -3031,20 +3031,20 @@ void Debug_ImcSaveData_MakeTelevisionDummyData(IMC_TELEVISION_SAVEDATA* iow, POK
 {
 	int i;
 	
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	ImcSaveData_ClaenTelevisionData( iow );
 
-	// ƒ|ƒPƒ‚ƒ““o˜^
+	// ãƒã‚±ãƒ¢ãƒ³ç™»éŒ²
 	debug_PokeDataSet( &iow->pokemon, p_pp );
 
-	// ƒAƒNƒZƒTƒŠƒf[ƒ^İ’è
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿è¨­å®š
 	for( i=0; i<acce_num; i++ ){
 		debug_AcceDataSet( &iow->acce[i], iow->pokemon.personal_rnd * (i+1) );
 		iow->accessory_set_msk |= 1 << i;
 	}
 	iow->bg_id = 0;
 
-	// ƒZ[ƒuŠ®—¹
+	// ã‚»ãƒ¼ãƒ–å®Œäº†
 	ImcSaveData_SetComplateFlagTelevisionData( iow );
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
 	SVLD_SetCrc(GMDATA_ID_IMAGECLIPDATA);
@@ -3055,13 +3055,13 @@ void Debug_ImcSaveData_MakeContestDummyData(IMC_CONTEST_SAVEDATA* iow, POKEMON_P
 {
 	int i;
 	
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	ImcSaveData_ClaenContestData( iow );
 
-	// ƒ|ƒPƒ‚ƒ““o˜^
+	// ãƒã‚±ãƒ¢ãƒ³ç™»éŒ²
 	debug_PokeDataSet( &iow->pokemon, p_pp );
 
-	// ƒAƒNƒZƒTƒŠƒf[ƒ^İ’è
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿è¨­å®š
 	for( i=0; i<acce_num; i++ ){
 		debug_AcceDataSet( &iow->acce[i], iow->pokemon.personal_rnd * (i+1) );
 		iow->accessory_set_msk |= 1 << i;
@@ -3070,7 +3070,7 @@ void Debug_ImcSaveData_MakeContestDummyData(IMC_CONTEST_SAVEDATA* iow, POKEMON_P
 	iow->rank_code = rank_code;
 	iow->bg_id = 0;
 
-	// ƒZ[ƒuŠ®—¹
+	// ã‚»ãƒ¼ãƒ–å®Œäº†
 	ImcSaveData_SetComplateFlagContestData( iow );
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_IMAGECLIPDATA)
 	SVLD_SetCrc(GMDATA_ID_IMAGECLIPDATA);

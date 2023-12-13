@@ -33,43 +33,43 @@
   change SDK prefix iris -> nitro
 
   Revision 1.13  2003/12/25 07:29:11  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.12  2003/12/17 08:21:15  yasu
-  OS_InitContext ‚Ìˆø”•ÏX
+  OS_InitContext ã®å¼•æ•°å¤‰æ›´
 
   Revision 1.11  2003/12/16 07:14:34  yada
-  ƒXƒŒƒbƒh”ÍˆÍî•ñ‚ÍƒRƒ“ƒeƒLƒXƒg‚Å‚Í‚È‚­AƒXƒŒƒbƒh\‘¢‘Ì‚ÉˆÚ‚µ‚½
+  ã‚¹ãƒ¬ãƒƒãƒ‰ç¯„å›²æƒ…å ±ã¯ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã§ã¯ãªãã€ã‚¹ãƒ¬ãƒƒãƒ‰æ§‹é€ ä½“ã«ç§»ã—ãŸ
 
   Revision 1.10  2003/12/16 00:16:35  yada
-  thread‚ÉAƒXƒ^ƒbƒN”ÍˆÍî•ñ‚ğŠÜ‚ß‚½B
+  threadã«ã€ã‚¹ã‚¿ãƒƒã‚¯ç¯„å›²æƒ…å ±ã‚’å«ã‚ãŸã€‚
 
   Revision 1.9  2003/12/12 01:27:14  yada
-  include‚Ì–¼Ì•ÏX(os/system.h ‚Æ hw/armArch.h) ‚É‚æ‚éC³
+  includeã®åç§°å¤‰æ›´(os/system.h ã¨ hw/armArch.h) ã«ã‚ˆã‚‹ä¿®æ­£
 
   Revision 1.8  2003/12/08 01:25:05  yasu
-  context ‚É SP_svc ‚ğ’Ç‰Á‚·‚é
+  context ã« SP_svc ã‚’è¿½åŠ ã™ã‚‹
 
   Revision 1.7  2003/12/01 09:52:16  yasu
-  context ‚ÉƒZ[ƒu‚·‚é’l‚ğ PC->PC+4 ‚Ö
+  context ã«ã‚»ãƒ¼ãƒ–ã™ã‚‹å€¤ã‚’ PC->PC+4 ã¸
 
   Revision 1.6  2003/11/30 04:18:22  yasu
-  CPU CPSR İ’èŠÖŒW‚Ì‹Lq‚ğ cpsr.h ‚Ö
+  CPU CPSR è¨­å®šé–¢ä¿‚ã®è¨˜è¿°ã‚’ cpsr.h ã¸
 
   Revision 1.5  2003/11/28 02:53:01  yada
-  OS_MODE_BIT_MASK ‚ğİ’è
+  OS_MODE_BIT_MASK ã‚’è¨­å®š
 
   Revision 1.4  2003/11/27 13:44:33  yasu
-  CPSR ƒŒƒWƒXƒ^‚Ì bit ’è‹`‚Ì’Ç‰Á
+  CPSR ãƒ¬ã‚¸ã‚¹ã‚¿ã® bit å®šç¾©ã®è¿½åŠ 
 
   Revision 1.3  2003/11/25 09:29:03  yasu
-  OS_DumpContext ’Ç‰Á
+  OS_DumpContext è¿½åŠ 
 
   Revision 1.2  2003/11/25 05:01:29  yasu
-  ƒvƒƒgƒ^ƒCƒvéŒ¾’Ç‰Á
+  ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€è¿½åŠ 
 
   Revision 1.1  2003/11/25 04:32:38  yasu
-  ‰”Å’Ç‰Á
+  åˆç‰ˆè¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

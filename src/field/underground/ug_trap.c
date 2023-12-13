@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_trap.c
- * @brief	’n‰º‚Ìã©î•ñ‚ğ•Û‘¶‚·‚éƒNƒ‰ƒX
+ * @brief	åœ°ä¸‹ã®ç½ æƒ…å ±ã‚’ä¿å­˜ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author	Katsumi Ohno
  * @date    2005.09.28
  */
@@ -38,19 +38,19 @@
 #include "ug_trap_balance.h"
 
 //==============================================================================
-// ’è‹`
+// å®šç¾©
 //==============================================================================
 
-#define _TRAP_NUM_NATURE   (TRAP_NUM_SINGLE_MAX*4)   ///< “V‘R•¨‚Ìƒgƒ‰ƒbƒv
-#define _TRAP_ID_NATURE  (COMM_MACHINE_MAX)  // “V‘Rƒgƒ‰ƒbƒv‚Íƒ}ƒVƒ“”Ô†ˆÈ~‚É‚ ‚é
-#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define _TRAP_NUM_NATURE   (TRAP_NUM_SINGLE_MAX*4)   ///< å¤©ç„¶ç‰©ã®ãƒˆãƒ©ãƒƒãƒ—
+#define _TRAP_ID_NATURE  (COMM_MACHINE_MAX)  // å¤©ç„¶ãƒˆãƒ©ãƒƒãƒ—ã¯ãƒã‚·ãƒ³ç•ªå·ä»¥é™ã«ã‚ã‚‹
+#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-#define _TRAP_NUM_SINGLE_MAX (TRAP_NUM_SINGLE_MAX)       ///< ˆêl‚Ìê‡‚Ìƒgƒ‰ƒbƒvÅ‘å”
-#define _TRAP_NUM_MAX (_TRAP_NUM_SINGLE_MAX * COMM_MACHINE_MAX + _TRAP_NUM_NATURE )  ///< ƒgƒ‰ƒbƒvÅ‘å”
-#define _TRAP_TYEP_INVALID (0)    ///< •s³‚Èƒgƒ‰ƒbƒvƒ^ƒCƒv
-#define _TRAP_INDEX_INVALID (-1)    ///< •s³‚Èƒgƒ‰ƒbƒvƒCƒ“ƒfƒbƒNƒX
+#define _TRAP_NUM_SINGLE_MAX (TRAP_NUM_SINGLE_MAX)       ///< ä¸€äººã®å ´åˆã®ãƒˆãƒ©ãƒƒãƒ—æœ€å¤§æ•°
+#define _TRAP_NUM_MAX (_TRAP_NUM_SINGLE_MAX * COMM_MACHINE_MAX + _TRAP_NUM_NATURE )  ///< ãƒˆãƒ©ãƒƒãƒ—æœ€å¤§æ•°
+#define _TRAP_TYEP_INVALID (0)    ///< ä¸æ­£ãªãƒˆãƒ©ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+#define _TRAP_INDEX_INVALID (-1)    ///< ä¸æ­£ãªãƒˆãƒ©ãƒƒãƒ—ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-#define _TRAP_TOPIC_NUM (10)  ///< ‚P‚OŒÂˆÈã‚ÅTV”­¶
+#define _TRAP_TOPIC_NUM (10)  ///< ï¼‘ï¼å€‹ä»¥ä¸Šã§TVç™ºç”Ÿ
 
 enum _result_e {
     _RESULT_NONE,
@@ -69,51 +69,51 @@ enum _trapInfo_e {
     _TRAP_INFO_END
 };
 
-#define _RESULT_CMD_SIZE (2) // ã©ƒf[ƒ^‘—óM‚ÌŒ‹‰Ê‚ğ•Ô‚·‚Ìƒf[ƒ^ƒoƒCƒg”
-#define _INTERVAL_OBJ_MAX  (12)  // ’èŠú“I‚Éã©‚ğ•\¦‚·‚é
-#define _INTERVAL_TRAPDISP  (12)  // ã©•\¦ŠÔ
-#define _TOUCH_OBJ_MAX (8)  //Touch‚µ‚½‚É•\¦‚·‚éã©‚ÌŒÀŠE”
+#define _RESULT_CMD_SIZE (2) // ç½ ãƒ‡ãƒ¼ã‚¿é€å—ä¿¡ã®çµæœã‚’è¿”ã™æ™‚ã®ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒˆæ•°
+#define _INTERVAL_OBJ_MAX  (12)  // å®šæœŸçš„ã«ç½ ã‚’è¡¨ç¤ºã™ã‚‹
+#define _INTERVAL_TRAPDISP  (12)  // ç½ è¡¨ç¤ºæ™‚é–“
+#define _TOUCH_OBJ_MAX (8)  //Touchã—ãŸæ™‚ã«è¡¨ç¤ºã™ã‚‹ç½ ã®é™ç•Œæ•°
 
-#define _TRAP_START_PAUSE_TIME  (30)  // ã©‚É‚©‚©‚Á‚Ä‚·‚®‚É’â~‚·‚éŠÔ
+#define _TRAP_START_PAUSE_TIME  (30)  // ç½ ã«ã‹ã‹ã£ã¦ã™ãã«åœæ­¢ã™ã‚‹æ™‚é–“
 
 #define _RADAR_TRAP_MAX (16)
 
-#define _TRAPTYPE_MAX  (32)    //ƒƒiƒ^ƒCƒv‚ÌMAX
-#define _MODEL_TRANS_PRI (10)  // ƒ‚ƒfƒ‹‚ÌƒeƒNƒXƒ`ƒƒ[‚Ì“]‘—ƒ^ƒXƒNPRI
+#define _TRAPTYPE_MAX  (32)    //ãƒ¯ãƒŠã‚¿ã‚¤ãƒ—ã®MAX
+#define _MODEL_TRANS_PRI (10)  // ãƒ¢ãƒ‡ãƒ«ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã®è»¢é€ã‚¿ã‚¹ã‚¯PRI
 
 //#define _MIC_BLOW_VOL (100)
 #define _MSG_TIME (60)
 
-// CellActor‚Éˆ—‚³‚¹‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Ìí—Ş‚Ì”
+// CellActorã«å‡¦ç†ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã®ç¨®é¡ã®æ•°
 #define CLACT_RESOURCE_NUM		(  4 )
-#define _CLACT_ROCK_OAMNUM             (15)   // ‰æ–Ê‚Éo‚·ROCK‚ÌOAM”
-#define _CLACT_FIRE_OAMNUM             (1)   // ‰æ–Ê‚Éo‚·FIRE‚ÌOAM”
+#define _CLACT_ROCK_OAMNUM             (15)   // ç”»é¢ã«å‡ºã™ROCKã®OAMæ•°
+#define _CLACT_FIRE_OAMNUM             (1)   // ç”»é¢ã«å‡ºã™FIREã®OAMæ•°
 #define _CLACT_TOUCHRADAR_OAMNUM      (25)
-#define _CLACT_OAMNUM             (_CLACT_BLOSSOMS_OAMNUM)   // ‰æ–Ê‚Éo‚·OAM”  MAX
+#define _CLACT_OAMNUM             (_CLACT_BLOSSOMS_OAMNUM)   // ç”»é¢ã«å‡ºã™OAMæ•°  MAX
 #define TOUCH_RES  (1)
 #define MAIN_RES  (0)
 
-#define EOA_HOLE_NO (_TRAPTYPE_MAX)  // ‚ ‚È‚ÌŠG‚Ì”Ô†
+#define EOA_HOLE_NO (_TRAPTYPE_MAX)  // ã‚ãªã®çµµã®ç•ªå·
 
 //#define BOTH_LCD  (2)
 
 
-#define _BLOW_FRAME   (40)   // ‰Ô‚Ñ‚çƒtƒŒ[ƒ€•ªŠ„
-#define _TRAP_DIRTYBLOSSOMS_BRIGHTNESS_FL   (_FIRST_FLASH_LEVEL)   // ‰Ô‚Ñ‚ç‚Ì•‘Å‰‚ÌƒtƒF[ƒhƒŒƒxƒ‹ -16‚Å^‚Á•
-#define _TRAP_DIRTYBLOSSOMS_BRIGHTNESS_LV   (_TRAP_DARK_LEVEL)   // ‰Ô‚Ñ‚ç‚Ì•‘ƒtƒF[ƒhƒŒƒxƒ‹ -16‚Å^‚Á•
+#define _BLOW_FRAME   (40)   // èŠ±ã³ã‚‰ãƒ•ãƒ¬ãƒ¼ãƒ åˆ†å‰²
+#define _TRAP_DIRTYBLOSSOMS_BRIGHTNESS_FL   (_FIRST_FLASH_LEVEL)   // èŠ±ã³ã‚‰ã®èˆæœ€åˆã®ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¬ãƒ™ãƒ« -16ã§çœŸã£é»’
+#define _TRAP_DIRTYBLOSSOMS_BRIGHTNESS_LV   (_TRAP_DARK_LEVEL)   // èŠ±ã³ã‚‰ã®èˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¬ãƒ™ãƒ« -16ã§çœŸã£é»’
 
 typedef void (*PTRStateFunc)(GF_BGL_INI* bgl);
 
 //==============================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //==============================================================================
 
-// ã©‚Ì\‘¢‘Ìƒf[ƒ^
+// ç½ ã®æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿
 typedef struct{
     u16 xpos;
     u16 zpos;
     u8 trapType;
-    u8 order;  // ¶¬‡”Ô
+    u8 order;  // ç”Ÿæˆé †ç•ª
 } TrapInfo;
 
 
@@ -149,20 +149,20 @@ typedef struct{
 } GridFX32;
 
 //-------------------------------------
-//	3Dƒ‚ƒfƒ‹
+//	3Dãƒ¢ãƒ‡ãƒ«
 //=====================================
 typedef struct {
-    void*					pResMdl;		// ƒ‚ƒfƒ‹ÃŞ°À
-    NNSG3dResMdlSet*		pModelSet;		// ƒ‚ƒfƒ‹ƒZƒbƒg
-    NNSG3dResMdl*			pModel;			// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
-    NNSG3dResTex*			pMdlTex;		// ƒ‚ƒfƒ‹‚É“\‚è•t‚¯‚éƒeƒNƒXƒ`ƒƒ
+    void*					pResMdl;		// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿
+    NNSG3dResMdlSet*		pModelSet;		// ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆ
+    NNSG3dResMdl*			pModel;			// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+    NNSG3dResTex*			pMdlTex;		// ãƒ¢ãƒ‡ãƒ«ã«è²¼ã‚Šä»˜ã‘ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£
 } _3DOBJ_MDL;
 
 
 typedef struct{
-    _RESULT_TRAP_RADAR pcRadar[_TRAP_NUM_SINGLE_MAX + _TRAP_NUM_NATURE]; // ƒpƒ\ƒRƒ“ƒŒ[ƒ_[—p
-    u8 pcRadarIndex;  //ƒpƒ\ƒRƒ“ƒŒ[ƒ_[óM—p
-    u16 pcRadarTimer;  //ƒpƒ\ƒRƒ“ƒŒ[ƒ_[•\¦—p
+    _RESULT_TRAP_RADAR pcRadar[_TRAP_NUM_SINGLE_MAX + _TRAP_NUM_NATURE]; // ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”¨
+    u8 pcRadarIndex;  //ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼å—ä¿¡ç”¨
+    u16 pcRadarTimer;  //ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼è¡¨ç¤ºç”¨
 } _EVENT_PCRADAR_WORK;
 
 typedef struct{
@@ -172,57 +172,57 @@ typedef struct{
     int type;
 } _EVENT_TURNDISP_WORK;
 
-// ã©‘S‘Ì
+// ç½ å…¨ä½“
 typedef struct{
     _EVENT_TURNDISP_WORK*  turnWork[COMM_MACHINE_MAX];
     TCB_PTR turnTask[COMM_MACHINE_MAX];
     FIELDSYS_WORK* pFSys;
-    CLACT_SET_PTR 			clactSet;								// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-    CLACT_U_EASYRENDER_DATA	renddata;								// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-    CLACT_U_RES_MANAGER_PTR	resMan[2][CLACT_RESOURCE_NUM];				// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-    CLACT_U_RES_OBJ_PTR 	resObjTbl[2][CLACT_RESOURCE_NUM];// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
-    CLACT_HEADER			clActHeader_m;							// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
-    CLACT_HEADER			clActHeader_s;							// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
-    CLACT_WORK_PTR			clActWork[_CLACT_OAMNUM];				// ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^”z—ñ
+    CLACT_SET_PTR 			clactSet;								// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+    CLACT_U_EASYRENDER_DATA	renddata;								// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+    CLACT_U_RES_MANAGER_PTR	resMan[2][CLACT_RESOURCE_NUM];				// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+    CLACT_U_RES_OBJ_PTR 	resObjTbl[2][CLACT_RESOURCE_NUM];// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
+    CLACT_HEADER			clActHeader_m;							// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+    CLACT_HEADER			clActHeader_s;							// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+    CLACT_WORK_PTR			clActWork[_CLACT_OAMNUM];				// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿é…åˆ—
     CLACT_WORK_PTR			SubLCDIconActWork[4];
-    GMEVENT_CONTROL* pTouchEvent;  // ƒ^ƒbƒ`‚ÉŠÖ‚µ‚Ä‚ÌƒCƒxƒ“ƒgŠÇ—
-//    GMEVENT_CONTROL* pEvent;  // ã©‚Ì’†g‚ğƒCƒxƒ“ƒgŠÇ—
+    GMEVENT_CONTROL* pTouchEvent;  // ã‚¿ãƒƒãƒã«é–¢ã—ã¦ã®ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†
+//    GMEVENT_CONTROL* pEvent;  // ç½ ã®ä¸­èº«ã‚’ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†
     TCB_PTR pRadar;
     TCB_PTR pTchRadar;
     TCB_PTR pPcRadar;
     _EVENT_PCRADAR_WORK* pPcRadarWork;
-    void* pTCBWork;   // ƒCƒxƒ“ƒg‚Å‚Í‘g‚ß‚È‚¢ˆÚ“®Œn‚ÌŠÇ—
-    PTRStateFunc trapProc;   // ã©ÀsŠÖ”iƒNƒ‰ƒCƒAƒ“ƒg‘¤j
-    TrapInfo myTrapData[_TRAP_NUM_SINGLE_MAX];  //©•ª©g‚Ìƒgƒ‰ƒbƒvƒf[ƒ^
+    void* pTCBWork;   // ã‚¤ãƒ™ãƒ³ãƒˆã§ã¯çµ„ã‚ãªã„ç§»å‹•ç³»ã®ç®¡ç†
+    PTRStateFunc trapProc;   // ç½ å®Ÿè¡Œé–¢æ•°ï¼ˆã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ï¼‰
+    TrapInfo myTrapData[_TRAP_NUM_SINGLE_MAX];  //è‡ªåˆ†è‡ªèº«ã®ãƒˆãƒ©ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
     EOA_PTR myTrapPic[_TRAP_NUM_SINGLE_MAX];
     TrapInfo trapData[_TRAP_NUM_MAX];
-    TrapInfo* pTrapTbl[_TRAP_NUM_MAX];  // ŒŸõ‚Ì‚½‚ß‚Ìƒe[ƒuƒ‹
+    TrapInfo* pTrapTbl[_TRAP_NUM_MAX];  // æ¤œç´¢ã®ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«
     _HitTrap hitTrap[COMM_MACHINE_MAX];
     u8 logResque[COMM_MACHINE_MAX];
-    u16 radarTrapIndex[COMM_MACHINE_MAX];   // ƒŒ[ƒ_[—pƒCƒ“ƒfƒbƒNƒX
-    u8 msgTrapEnd[COMM_MACHINE_MAX];    //msg—pã©I‚í‚è
-    u8 msgMsgTrap[COMM_MACHINE_MAX];  //msg—p ƒƒbƒZ[ƒWƒgƒ‰ƒbƒv
-    u8 msgTrapDefuse[COMM_MACHINE_MAX];  //msg—p ã©‰ğœ
+    u16 radarTrapIndex[COMM_MACHINE_MAX];   // ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+    u8 msgTrapEnd[COMM_MACHINE_MAX];    //msgç”¨ç½ çµ‚ã‚ã‚Š
+    u8 msgMsgTrap[COMM_MACHINE_MAX];  //msgç”¨ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒˆãƒ©ãƒƒãƒ—
+    u8 msgTrapDefuse[COMM_MACHINE_MAX];  //msgç”¨ ç½ è§£é™¤
     u16 myTrapDefuseNum;
     u8 myTrapDefuseType;
     u16 oldCell;
-    s8 mic;  // ƒ}ƒCƒN
-    u8 nowTrapType;   // ¡“®ì’†‚Ìƒgƒ‰ƒbƒvƒ^ƒCƒv
-    u8 nowTrapTypeServer[COMM_MACHINE_MAX];   // ¡“®ì’†‚Ìƒgƒ‰ƒbƒvƒ^ƒCƒv
+    s8 mic;  // ãƒã‚¤ã‚¯
+    u8 nowTrapType;   // ä»Šå‹•ä½œä¸­ã®ãƒˆãƒ©ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    u8 nowTrapTypeServer[COMM_MACHINE_MAX];   // ä»Šå‹•ä½œä¸­ã®ãƒˆãƒ©ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
     u8 touchIntervalDownTimer;
-    u8 result;  // ƒf[ƒ^‚ª‘—‚ç‚ê‚½‚É1AƒGƒ‰[‚Å‚Í2‚É‚È‚é
-    u8 bHalt;    // ‹@”\’â~’†
+    u8 result;  // ãƒ‡ãƒ¼ã‚¿ãŒé€ã‚‰ã‚ŒãŸæ™‚ã«1ã€ã‚¨ãƒ©ãƒ¼ã§ã¯2ã«ãªã‚‹
+    u8 bHalt;    // æ©Ÿèƒ½åœæ­¢ä¸­
 } CommTrapWork;
 
 
 typedef struct{
     int seq;
     int index;
-    u16 turntime[_CLACT_OAMNUM];  // ‚ä‚ê‚éŠÔ
+    u16 turntime[_CLACT_OAMNUM];  // ã‚†ã‚Œã‚‹æ™‚é–“
     Grid oamGrid[_CLACT_OAMNUM];
-    u8 blowRing[_BLOW_FRAME];   // 30ƒtƒŒ[ƒ€‚ÅŠO‰~
-    u8 blowPos[_CLACT_OAMNUM];  // —t‚Á‚Ï‚ª’â~‚µ‚Ä‚¢‚é‚É‚»‚ÌˆÊ’u‚ğ‹L‰¯ ƒx[ƒXƒ‰ƒCƒ“‚©‚ç‚±‚ÌˆÊ’u‚É‘§LV“Ë‚Á‚Ş
-    u8 blowBase;   // ƒCƒ“ƒNƒŠƒƒ“ƒg‚³‚ê‚é‚Ì‚İ
+    u8 blowRing[_BLOW_FRAME];   // 30ãƒ•ãƒ¬ãƒ¼ãƒ ã§å¤–å††
+    u8 blowPos[_CLACT_OAMNUM];  // è‘‰ã£ã±ãŒåœæ­¢ã—ã¦ã„ã‚‹æ™‚ã«ãã®ä½ç½®ã‚’è¨˜æ†¶ ãƒ™ãƒ¼ã‚¹ãƒ©ã‚¤ãƒ³ã‹ã‚‰ã“ã®ä½ç½®ã«æ¯LVçªã£è¾¼ã‚€
+    u8 blowBase;   // ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã•ã‚Œã‚‹ã®ã¿
     u8 timer;
     u8 dir;
     u8 bGoodsTrap;
@@ -285,7 +285,7 @@ typedef struct{
     u16 dirIdx[_CLACT_BUBBLE_OAMNUM];
     GridFX32 oamGrid[_CLACT_BUBBLE_OAMNUM];
     BOOL bEnd[_CLACT_BUBBLE_OAMNUM];
-    u16 scaletime[_CLACT_BUBBLE_OAMNUM];  // ‚ä‚ê‚éŠÔ
+    u16 scaletime[_CLACT_BUBBLE_OAMNUM];  // ã‚†ã‚Œã‚‹æ™‚é–“
     u8 timer;
     u8 dir;
     u8 bGoodsTrap;
@@ -321,7 +321,7 @@ typedef struct{
     u8 dir;
     u8 bGoodsTrap;
     int startTime;
-    EOA_PTR eoa;  // ‚ ‚È
+    EOA_PTR eoa;  // ã‚ãª
     int dispDir;
     int timer;
     int msgTimer;
@@ -352,11 +352,11 @@ typedef struct{
 } _EVENT_DIR_WORK;
 
 
-// ƒVƒ“ƒOƒ‹ƒgƒ“
+// ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³
 static CommTrapWork* _pCTW = NULL;
 
 //==============================================================================
-// staticéŒ¾
+// staticå®£è¨€
 //==============================================================================
 
 static void _myTrapAdd(TrapInfo* pTrap);
@@ -722,11 +722,11 @@ static const ServerTrapFunc _serverTrapExit[] = {
 
 
 //==============================================================================
-// ƒ[ƒN
+// ãƒ¯ãƒ¼ã‚¯
 //==============================================================================
 
 //==============================================================================
-// ŠÖ”
+// é–¢æ•°
 //==============================================================================
 
 
@@ -743,7 +743,7 @@ static void _myTrapInit(void)
         _pCTW->myTrapData[i].order = UnderGroundGetTrapGroundItemOrder(pUGData,i);
         if(!_pCTW->bHalt){
             if(_pCTW->myTrapData[i].trapType != UG_TRAPTYPE_NONE){
-                _pCTW->myTrapPic[i] = _trapPictAdd(_pCTW->myTrapData[i].xpos, _pCTW->myTrapData[i].zpos, 1,_pCTW->myTrapData[i].trapType); //ŠG‚ğ•\¦
+                _pCTW->myTrapPic[i] = _trapPictAdd(_pCTW->myTrapData[i].xpos, _pCTW->myTrapData[i].zpos, 1,_pCTW->myTrapData[i].trapType); //çµµã‚’è¡¨ç¤º
             }
         }
     }
@@ -752,9 +752,9 @@ static void _myTrapInit(void)
 
 //==============================================================================
 /**
- * ƒgƒ‰ƒbƒvî•ñ‰Šú‰»
- * @param   ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€‚Ìƒ|ƒCƒ“ƒ^
+ * ãƒˆãƒ©ãƒƒãƒ—æƒ…å ±åˆæœŸåŒ–
+ * @param   ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -764,7 +764,7 @@ void CommTrapInfoInitialize(void* pWork, FIELDSYS_WORK* pFSys)
     int i;
     UNDERGROUNDDATA* pUGData;
 
-    if(_pCTW){  // ¡‚Ì‚Æ‚±‚ë‰½“x‚à‰Šú‰»‚³‚ê‚é‚Ì‚Å
+    if(_pCTW){  // ä»Šã®ã¨ã“ã‚ä½•åº¦ã‚‚åˆæœŸåŒ–ã•ã‚Œã‚‹ã®ã§
         return;
     }
     _pCTW = (CommTrapWork*)pWork;
@@ -786,8 +786,8 @@ void CommTrapInfoInitialize(void* pWork, FIELDSYS_WORK* pFSys)
 
 //==============================================================================
 /**
- * ƒgƒ‰ƒbƒvƒŠƒZƒbƒg ‰æ–Ê‚ªØ‚è‘Ö‚í‚éÛ‚ÉŠG‚Ìî•ñ‚ğ‘S‚ÄÌ‚Ä‚é•K—v‚ª‚ ‚é
- *   ’ÊM©‘Ì‚ÍŠJ•ú‚µ‚È‚¢
+ * ãƒˆãƒ©ãƒƒãƒ—ãƒªã‚»ãƒƒãƒˆ ç”»é¢ãŒåˆ‡ã‚Šæ›¿ã‚ã‚‹éš›ã«çµµã®æƒ…å ±ã‚’å…¨ã¦æ¨ã¦ã‚‹å¿…è¦ãŒã‚ã‚‹
+ *   é€šä¿¡è‡ªä½“ã¯é–‹æ”¾ã—ãªã„
  * @param   none
  * @retval  none
  */
@@ -819,7 +819,7 @@ void CommTrapInfoReset(void)
 
 //==============================================================================
 /**
- * ƒgƒ‰ƒbƒvƒŠƒu[ƒg ŠG‚Ìî•ñ‚ğ•œ‹A‚·‚é
+ * ãƒˆãƒ©ãƒƒãƒ—ãƒªãƒ–ãƒ¼ãƒˆ çµµã®æƒ…å ±ã‚’å¾©å¸°ã™ã‚‹
  * @param   none
  * @retval  none
  */
@@ -838,7 +838,7 @@ void CommTrapInfoReboot(void)
 
 //==============================================================================
 /**
- * ƒgƒ‰ƒbƒvî•ñŠJ•ú
+ * ãƒˆãƒ©ãƒƒãƒ—æƒ…å ±é–‹æ”¾
  * @param   none
  * @retval  none
  */
@@ -873,7 +873,7 @@ void CommTrapInfoFinalize(void)
 
 //==============================================================================
 /**
- * ƒgƒ‰ƒbƒvî•ñÄ“x‰Šú‰»
+ * ãƒˆãƒ©ãƒƒãƒ—æƒ…å ±å†åº¦åˆæœŸåŒ–
  * @param   none
  * @retval  none
  */
@@ -904,7 +904,7 @@ void CommTrapInfoReInit(FIELDSYS_WORK* pFSys)
 
 //==============================================================================
 /**
- * ”²‚¯‚½l‚Ìƒgƒ‰ƒbƒvî•ñ‚ğ‚¯‚·
+ * æŠœã‘ãŸäººã®ãƒˆãƒ©ãƒƒãƒ—æƒ…å ±ã‚’ã‘ã™
  * @param   none
  * @retval  none
  */
@@ -915,7 +915,7 @@ void CommTrapDeletePlayer_Server(int netID)
     TrapInfo* pTrap = &_pCTW->trapData[netID * _TRAP_NUM_SINGLE_MAX];
     int i;
 
-    for(i = 0; i< _TRAP_NUM_SINGLE_MAX; i++){  // ¡“ü‚Á‚Ä‚¢‚é‚à‚Ì‚ğÁ‚·
+    for(i = 0; i< _TRAP_NUM_SINGLE_MAX; i++){  // ä»Šå…¥ã£ã¦ã„ã‚‹ã‚‚ã®ã‚’æ¶ˆã™
         pTrap->trapType = _TRAP_TYEP_INVALID;
         pTrap++;
     }
@@ -931,7 +931,7 @@ void CommTrapDeletePlayer_Server(int netID)
 
 //==============================================================================
 /**
- * ƒ^ƒbƒ`ƒŒ[ƒ_[‚Ì‘fŞ‰Šú‰»
+ * ã‚¿ãƒƒãƒãƒ¬ãƒ¼ãƒ€ãƒ¼ã®ç´ æåˆæœŸåŒ–
  * @param   none
  * @retval  none
  */
@@ -940,8 +940,8 @@ void CommTrapDeletePlayer_Server(int netID)
 static void _touchRadarInitialize(void)
 {
     int i;
-    //ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-    for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+    //ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+    for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
         _pCTW->resMan[TOUCH_RES][i] = CLACT_U_ResManagerInit(1, i, HEAPID_FIELD);
     }
     
@@ -973,7 +973,7 @@ static void _touchRadarInitialize(void)
 
 //==============================================================================
 /**
- * ƒ^ƒbƒ`ƒŒ[ƒ_[‚Ì‘fŞŠJ•ú
+ * ã‚¿ãƒƒãƒãƒ¬ãƒ¼ãƒ€ãƒ¼ã®ç´ æé–‹æ”¾
  * @param   none
  * @retval  none
  */
@@ -984,7 +984,7 @@ static void _touchRadarFinalize()
     int i;
 
 
-    // ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+    // ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
     for(i=0;i < CLACT_RESOURCE_NUM ; i++){
         CLACT_U_ResManagerDelete(_pCTW->resMan[TOUCH_RES][i]);
     }
@@ -994,7 +994,7 @@ static void _touchRadarFinalize()
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒW‚ğ©“®•\¦‚µ‚½ê‡‚ÌI—¹ƒR[ƒ‹ƒoƒbƒN
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è‡ªå‹•è¡¨ç¤ºã—ãŸå ´åˆã®çµ‚äº†æ™‚ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -1006,9 +1006,9 @@ static void _msgEndCallBack(int num)
 
 //==============================================================================
 /**
- * ƒgƒ‰ƒbƒvî•ñŠÇ——pƒf[ƒ^ƒTƒCƒY‚ğ•Ô‚·
+ * ãƒˆãƒ©ãƒƒãƒ—æƒ…å ±ç®¡ç†ç”¨ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1019,9 +1019,9 @@ int CommTrapInfoGetWorkSize(void)
 
 //==============================================================================
 /**
- * ’ÊM—pã©ƒf[ƒ^ƒTƒCƒY‚ğ•Ô‚·
+ * é€šä¿¡ç”¨ç½ ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1032,10 +1032,10 @@ int CommTrapInfoGetTrapDataSize(void)
 
 //==============================================================================
 /**
- * ƒe[ƒuƒ‹ã‚É‚ ‚éã©‚ÌˆÊ’u‚ğ•Ô‚·
- * @param   pGrid  •Ô‚·ˆÊ’u
- * @param   index  ŒŸõ‚·‚éindex
- * @retval  noneƒTƒCƒY
+ * ãƒ†ãƒ¼ãƒ–ãƒ«ä¸Šã«ã‚ã‚‹ç½ ã®ä½ç½®ã‚’è¿”ã™
+ * @param   pGrid  è¿”ã™ä½ç½®
+ * @param   index  æ¤œç´¢ã™ã‚‹index
+ * @retval  noneã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1051,10 +1051,10 @@ static Grid* _getTrapTblPos(Grid* pGrid, int index)
 
 //==============================================================================
 /**
- * ƒe[ƒuƒ‹‚Éã©‚ğ‘}“ü‚·‚é
- * @param   pGrid  •Ô‚·ˆÊ’u
- * @param   index  ŒŸõ‚·‚éindex
- * @retval  noneƒTƒCƒY
+ * ãƒ†ãƒ¼ãƒ–ãƒ«ã«ç½ ã‚’æŒ¿å…¥ã™ã‚‹
+ * @param   pGrid  è¿”ã™ä½ç½®
+ * @param   index  æ¤œç´¢ã™ã‚‹index
+ * @retval  noneã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1075,7 +1075,7 @@ static void _insertTrapTbl(TrapInfo* pTrap)
 
 
     for(i = 0; i < _TRAP_NUM_MAX;i++){
-        if(_pCTW->pTrapTbl[i] == pTrap){ // ‚·‚Å‚É‚ ‚Á‚½
+        if(_pCTW->pTrapTbl[i] == pTrap){ // ã™ã§ã«ã‚ã£ãŸ
             return;
         }
     }
@@ -1085,14 +1085,14 @@ static void _insertTrapTbl(TrapInfo* pTrap)
     /*    memmove(&_pCTW->pTrapTbl[ins+1],
             &_pCTW->pTrapTbl[ins],
             (_TRAP_NUM_MAX - ins - 1) * sizeof(u32)); */
-    //OHNO_PRINT("‚±‚±‚Ìƒe[ƒuƒ‹‚É·‚µ‚İ‚Ü‚· %d  %x\n",ins,(int) pTrap);
+    //OHNO_PRINT("ã“ã“ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã«å·®ã—è¾¼ã¿ã¾ã™ %d  %x\n",ins,(int) pTrap);
     _pCTW->pTrapTbl[ins] = pTrap;
-//    OHNO_PRINT("‚±‚±‚Ìƒe[ƒuƒ‹‚É·‚µ‚İ‚Ü‚· %d  %x\n",ins,(u32) pTrap);
+//    OHNO_PRINT("ã“ã“ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã«å·®ã—è¾¼ã¿ã¾ã™ %d  %x\n",ins,(u32) pTrap);
 
 #ifdef DEBUG_ONLY_FOR_ohno
     for(i = 0;i < _TRAP_NUM_MAX;i++){
         if(_pCTW->pTrapTbl[i]){
-            if(_pCTW->pTrapTbl[i]->trapType != _TRAP_TYEP_INVALID){ // ‚·‚Å‚É‚ ‚Á‚½
+            if(_pCTW->pTrapTbl[i]->trapType != _TRAP_TYEP_INVALID){ // ã™ã§ã«ã‚ã£ãŸ
                 OHNO_SP_PRINT("tbl %d = %d %d \n", i,
                            _pCTW->pTrapTbl[i]->xpos,_pCTW->pTrapTbl[i]->zpos);
             }
@@ -1152,7 +1152,7 @@ static void _delTrapTbls(int netID)
 
 //==============================================================================
 /**
- * ‚ ‚¢‚Ä‚éã©ƒoƒbƒtƒ@‚ğ•Ô‚·
+ * ã‚ã„ã¦ã‚‹ç½ ãƒãƒƒãƒ•ã‚¡ã‚’è¿”ã™
  * @param   netID     ID
  * @retval  TrapInfo*
  */
@@ -1173,7 +1173,7 @@ static TrapInfo* _getFreeTrap( TrapInfo* pTrapTbl )
 
 //==============================================================================
 /**
- * ‚ ‚¢‚Ä‚éã©ƒoƒbƒtƒ@index‚ğ•Ô‚·
+ * ã‚ã„ã¦ã‚‹ç½ ãƒãƒƒãƒ•ã‚¡indexã‚’è¿”ã™
  * @param   netID     ID
  * @retval  TrapInfo*
  */
@@ -1194,8 +1194,8 @@ static int _getFreeTrapIndex( TrapInfo* pTrapTbl )
 
 //==============================================================================
 /**
- * ã©‚ÌÁ‹
- * @param   TrapInfo* pTrap ã©
+ * ç½ ã®æ¶ˆå»
+ * @param   TrapInfo* pTrap ç½ 
  * @retval  none
  */
 //==============================================================================
@@ -1220,14 +1220,14 @@ static void _delTrap(TrapInfo* pTrap)
     _delTrapTbls(id);
 
     //   _resetOrderNo(&_pCTW->trapData[id]);
-    //   OHNO_PRINT("ã©‚ğÁ‚µ‚Ü‚µ‚½ id=%d no=%d\n", id,trapNo);
+    //   OHNO_PRINT("ç½ ã‚’æ¶ˆã—ã¾ã—ãŸ id=%d no=%d\n", id,trapNo);
 }
 
 //==============================================================================
 /**
- * ã©‚ğ’Ç‰Á‚·‚é
+ * ç½ ã‚’è¿½åŠ ã™ã‚‹
  * @param   netID     ID
- * @param   trapIndex ã©”Ô†
+ * @param   trapIndex ç½ ç•ªå·
  * @retval  none
  */
 //==============================================================================
@@ -1237,12 +1237,12 @@ static TrapInfo* _addTrap(int x, int y, TrapInfo* pTrapTbl, int trapType)
     int index = 0;
     TrapInfo* pFreeTrap;
 
-    if(GetHitAttr(_pCTW->pFSys,x,y)){  // ‚ ‚½‚è‚ª‚ ‚éê‡
-        // ”z’u‚Å‚«‚È‚¢
+    if(GetHitAttr(_pCTW->pFSys,x,y)){  // ã‚ãŸã‚ŠãŒã‚ã‚‹å ´åˆ
+        // é…ç½®ã§ããªã„
         return NULL;
     }
     pFreeTrap = _getFreeTrap(pTrapTbl); //netID);
-    if(pFreeTrap == NULL){  // ”‚ª‘½‚¢ê‡
+    if(pFreeTrap == NULL){  // æ•°ãŒå¤šã„å ´åˆ
         pTrapTbl = _getOldOrderData(pTrapTbl);
         _delTrap( pTrapTbl );
         pFreeTrap = _getFreeTrap(pTrapTbl); //netID);
@@ -1251,19 +1251,19 @@ static TrapInfo* _addTrap(int x, int y, TrapInfo* pTrapTbl, int trapType)
     pFreeTrap->zpos = y;
     pFreeTrap->trapType = trapType;
     _insertTrapTbl(pFreeTrap);
-    // ¶¬‡”Ô‚ğ–„‚ß‚Ş
+    // ç”Ÿæˆé †ç•ªã‚’åŸ‹ã‚è¾¼ã‚€
 //    pFreeTrap->order = _getLastOrder(pTrapTbl) + 1;
-  //  _resetOrderNo(pTrapTbl);  // ”Ô†U‚è‚È‚¨‚µ
+  //  _resetOrderNo(pTrapTbl);  // ç•ªå·æŒ¯ã‚ŠãªãŠã—
 
-    //    OHNO_PRINT("ã©İ’u %d %d\n",x,y);
+    //    OHNO_PRINT("ç½ è¨­ç½® %d %d\n",x,y);
     return pFreeTrap;
 }
 
 //==============================================================================
 /**
- * ã©‚ğ’Ç‰Á‚·‚é
- * @param   trapType ã©í—Ş
- * @param   func     ’Ç‰Á‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
+ * ç½ ã‚’è¿½åŠ ã™ã‚‹
+ * @param   trapType ç½ ç¨®é¡
+ * @param   func     è¿½åŠ æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @retval  none
  */
 //==============================================================================
@@ -1275,7 +1275,7 @@ void CommTrapInfoAddTrap(u8 trapType)
 
 //==============================================================================
 /**
- *  –ˆƒtƒŒ[ƒ€s‚¤“à•”ˆ—
+ *  æ¯ãƒ•ãƒ¬ãƒ¼ãƒ è¡Œã†å†…éƒ¨å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -1285,16 +1285,16 @@ void CommTrapInfoProcess(void)
 {
     int i;
 
-    _trapRecvNatureRadarFunc(); // ƒpƒ\ƒRƒ“‚©‚ç–â‚¢‡‚í‚¹‚Ì‚ ‚Á‚½ã©‘—M
+    _trapRecvNatureRadarFunc(); // ãƒ‘ã‚½ã‚³ãƒ³ã‹ã‚‰å•ã„åˆã‚ã›ã®ã‚ã£ãŸç½ é€ä¿¡
 
 }
 
 //==============================================================================
 /**
- * e‹@‘¤‚ÌƒvƒƒOƒ‰ƒ€
-     ˆÊ’uƒf[ƒ^‘—M‚ÌÛ‚ÌƒTƒCƒY‚ğ•Ô‚·
+ * è¦ªæ©Ÿå´ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+     ä½ç½®ãƒ‡ãƒ¼ã‚¿é€ä¿¡ã®éš›ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1304,12 +1304,12 @@ int CommTrapInfoGetTrapPosSize(void)
 }
 
 
-// q‹@‘¤‚ÌƒvƒƒOƒ‰ƒ€
+// å­æ©Ÿå´ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
 //==============================================================================
 /**
- * q‹@‘¤‚ÌƒvƒƒOƒ‰ƒ€  e‹@‚Éã©‚ğ‘—‚é
- * @param   netID   ÅŒã‚ÉÚ‘±‚µ‚Ä‚«‚½q‹@‚ÌID
+ * å­æ©Ÿå´ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ   è¦ªæ©Ÿã«ç½ ã‚’é€ã‚‹
+ * @param   netID   æœ€å¾Œã«æ¥ç¶šã—ã¦ããŸå­æ©Ÿã®ID
  * @retval  none
  */
 //==============================================================================
@@ -1319,7 +1319,7 @@ void CommTrapInfoChildSendStart(void)
     int i;
     u8 num=0;
 
-    /// ‚Ü‚Æ‚ß‚Ä‘—M‚·‚é
+    /// ã¾ã¨ã‚ã¦é€ä¿¡ã™ã‚‹
     CommSetSendQueue(CF_TRAP_ARRAY_DATA,
                      &_pCTW->myTrapData[0] ,
                      sizeof(TrapInfo)*_TRAP_NUM_SINGLE_MAX);
@@ -1328,10 +1328,10 @@ void CommTrapInfoChildSendStart(void)
 
 //==============================================================================
 /**
- * ã©‚ğ’Ç‰Á‚·‚éƒRƒ}ƒ“ƒh‚ğóM   CF_TRAP_DATA
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ƒf[ƒ^–{‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * ç½ ã‚’è¿½åŠ ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã‚’å—ä¿¡   CF_TRAP_DATA
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1352,26 +1352,26 @@ void CommTrapInfoRecvTrapData(int netID, int size, void* pData, void* pWork)
     gx = CommPlayerGetPosSXDirAdd(netID);
     gy = CommPlayerGetPosSZDirAdd(netID);
 
-    //‚±‚±‚É‰½‚à‚È‚¢‚±‚Æ‚ğŒŸ¸
-    OHNO_PRINT("‚±‚±‚É‰½‚à‚È‚¢‚±‚Æ‚ğŒŸ¸\n");
+    //ã“ã“ã«ä½•ã‚‚ãªã„ã“ã¨ã‚’æ¤œæŸ»
+    OHNO_PRINT("ã“ã“ã«ä½•ã‚‚ãªã„ã“ã¨ã‚’æ¤œæŸ»\n");
 
     if( (CommPlayerGetPosSX(netID) == COMM_PLAYER_INVALID_GRID) &&
-        ( CommPlayerGetPosSZ(netID) == COMM_PLAYER_INVALID_GRID)){  // À•W•s’è‚Ìê‡
+        ( CommPlayerGetPosSZ(netID) == COMM_PLAYER_INVALID_GRID)){  // åº§æ¨™ä¸å®šã®å ´åˆ
         trapResult.result = _RESULT_NONE_PLACE;
         CommSendData_ServerSide(CF_TRAP_DATA_RESULT,&trapResult,sizeof(_TrapResult));
         return;
     }
     
     if(COMM_INVALID_ID != CommPlayerIsAlive(gx,gy)){
-        OHNO_PRINT("–Ú‚Ì‘O‚Él‚ª‚¢‚é  %d %d %d\n", CommPlayerIsAlive(gx,gy),gx,gy);
-        // Œ‹‰Ê‚ğ•Ô‚·
+        OHNO_PRINT("ç›®ã®å‰ã«äººãŒã„ã‚‹  %d %d %d\n", CommPlayerIsAlive(gx,gy),gx,gy);
+        // çµæœã‚’è¿”ã™
         trapResult.result = _RESULT_PEOPLE;
         CommSendData_ServerSide(CF_TRAP_DATA_RESULT,&trapResult,sizeof(_TrapResult));
         return;
     }
     if(CommPlayerNPCHitCheck(gx, gy)){
-        OHNO_PRINT("–Ú‚Ì‘O‚Él‚ª‚¢‚é  %d %d %d\n", CommPlayerIsAlive(gx,gy),gx,gy);
-        // Œ‹‰Ê‚ğ•Ô‚·
+        OHNO_PRINT("ç›®ã®å‰ã«äººãŒã„ã‚‹  %d %d %d\n", CommPlayerIsAlive(gx,gy),gx,gy);
+        // çµæœã‚’è¿”ã™
         trapResult.result = _RESULT_PEOPLE;
         CommSendData_ServerSide(CF_TRAP_DATA_RESULT,&trapResult,sizeof(_TrapResult));
         return;
@@ -1381,13 +1381,13 @@ void CommTrapInfoRecvTrapData(int netID, int size, void* pData, void* pWork)
         CommSendData_ServerSide(CF_TRAP_DATA_RESULT,&trapResult,sizeof(_TrapResult));
         return;
     }
-    if(GetHitAttr(_pCTW->pFSys,gx,gy)){  // ‚ ‚½‚è‚ª‚ ‚éê‡
-        // ”z’u‚Å‚«‚È‚¢
+    if(GetHitAttr(_pCTW->pFSys,gx,gy)){  // ã‚ãŸã‚ŠãŒã‚ã‚‹å ´åˆ
+        // é…ç½®ã§ããªã„
         trapResult.result = _RESULT_HIT_ATTR;
         CommSendData_ServerSide(CF_TRAP_DATA_RESULT,&trapResult,sizeof(_TrapResult));
         return;
     }
-#if DEBUG_ONLY_FOR_ohno  // ‚í‚È‚ğd‚Ë‚Ä’u‚¯‚é‚æ‚¤‚É‚·‚é ©•ªƒfƒoƒbƒO
+#if DEBUG_ONLY_FOR_ohno  // ã‚ãªã‚’é‡ã­ã¦ç½®ã‘ã‚‹ã‚ˆã†ã«ã™ã‚‹ è‡ªåˆ†ãƒ‡ãƒãƒƒã‚°
         pFreeTrap = _addTrap(gx, gy,
                              &_pCTW->trapData[netID*_TRAP_NUM_SINGLE_MAX], pBuff[0]);
         if(pFreeTrap){
@@ -1404,15 +1404,15 @@ void CommTrapInfoRecvTrapData(int netID, int size, void* pData, void* pWork)
         }
     }
 #endif
-    // Œ‹‰Ê‚ğ•Ô‚·
+    // çµæœã‚’è¿”ã™
     CommSendData_ServerSide(CF_TRAP_DATA_RESULT,&trapResult,sizeof(_TrapResult));
 }
 
 //==============================================================================
 /**
- * ã©‚ğ’Ç‰Á‚·‚éƒRƒ}ƒ“ƒh‚ÌŒ‹‰ÊƒRƒ}ƒ“ƒh‚ÌƒoƒCƒg”‚ğ•Ô‚·
+ * ç½ ã‚’è¿½åŠ ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®çµæœã‚³ãƒãƒ³ãƒ‰ã®ãƒã‚¤ãƒˆæ•°ã‚’è¿”ã™
  * @param   none
- * @retval  ƒoƒCƒg”
+ * @retval  ãƒã‚¤ãƒˆæ•°
  */
 //==============================================================================
 
@@ -1424,7 +1424,7 @@ int CommTrapInfoGetTrapDataResultSize(void)
 
 //==============================================================================
 /**
- * “V‘R‚Ìã©‚ğ’u‚­
+ * å¤©ç„¶ã®ç½ ã‚’ç½®ã
  * @param   type
  * @retval  none
  */
@@ -1444,9 +1444,9 @@ int UgTrapAddNatureTrap(int gx,int gy,MATHRandContext16* pRand, int index)
         UG_TRAPTYPE_HOLE,
         UG_TRAPTYPE_BIG_HOLE,
         UG_TRAPTYPE_REVERSE,
-        UG_TRAPTYPE_GIDDY,  // ¬—
-        UG_TRAPTYPE_SMOG,  // ‰æ–Ê‚É–¶
-        UG_TRAPTYPE_BIG_SMOG,  // ‰æ–Ê‚É–¶
+        UG_TRAPTYPE_GIDDY,  // æ··ä¹±
+        UG_TRAPTYPE_SMOG,  // ç”»é¢ã«éœ§
+        UG_TRAPTYPE_BIG_SMOG,  // ç”»é¢ã«éœ§
         UG_TRAPTYPE_BUBBLE,
         UG_TRAPTYPE_DIRTY_BLOSSOMS,
         UG_TRAPTYPE_ALART1,
@@ -1475,7 +1475,7 @@ int UgTrapAddNatureTrap(int gx,int gy,MATHRandContext16* pRand, int index)
     pos = netID * _TRAP_NUM_SINGLE_MAX;
     pTrapTbl = &_pCTW->trapData[pos];
 
-    type = MATH_Rand16(pRand, NELEMS(tbl));  //‚Å‚«‚Ä‚éã©‚©‚çƒ‰ƒ“ƒ_ƒ€‘I‘ğ
+    type = MATH_Rand16(pRand, NELEMS(tbl));  //ã§ãã¦ã‚‹ç½ ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ é¸æŠ
     type = tbl[type];
 
 #if defined(DEBUG_ONLY_FOR_ohno) | defined(DEBUG_ONLY_FOR_mituhara)
@@ -1488,7 +1488,7 @@ int UgTrapAddNatureTrap(int gx,int gy,MATHRandContext16* pRand, int index)
             TrapInfo* pTrap = _addTrap(gx, gy, pTrapTbl,type);
             if(pTrap){
                 pTrap->order = index;
-                // backup‚É•Û‘¶
+                // backupã«ä¿å­˜
                 UnderGroundAddNatureTrapGroundItem(pUGData, type, index,
                                                    gx, gy);
                 return type;
@@ -1500,7 +1500,7 @@ int UgTrapAddNatureTrap(int gx,int gy,MATHRandContext16* pRand, int index)
 
 //==============================================================================
 /**
- * “V‘R‚Ìã©‚ğÄ”z’u‚·‚é
+ * å¤©ç„¶ã®ç½ ã‚’å†é…ç½®ã™ã‚‹
  * @param   type
  * @retval  none
  */
@@ -1530,8 +1530,8 @@ void UgTrapNatureReload(void)
 
 //==============================================================================
 /**
- * ©•ª‚Ìã©‚ğƒoƒbƒNƒAƒbƒv‚·‚é
- * @param   pTrap    ã©ƒf[ƒ^
+ * è‡ªåˆ†ã®ç½ ã‚’ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã™ã‚‹
+ * @param   pTrap    ç½ ãƒ‡ãƒ¼ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1550,8 +1550,8 @@ static void _myTrapBackup(void)
 
 //==============================================================================
 /**
- * ©•ª‚Ìã©‚ğ’Ç‰Á‚·‚é+ŠG‚à’Ç‰Á‚·‚é
- * @param   pTrap    ã©ƒf[ƒ^
+ * è‡ªåˆ†ã®ç½ ã‚’è¿½åŠ ã™ã‚‹+çµµã‚‚è¿½åŠ ã™ã‚‹
+ * @param   pTrap    ç½ ãƒ‡ãƒ¼ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1563,7 +1563,7 @@ static void _myTrapAdd(TrapInfo* pTrap)
 
     if(pFreeTrap==NULL){
         pFreeTrap = _getOldOrderData(_pCTW->myTrapData);
-        _myTrapDel(pFreeTrap);  // ŒÃ‚¢‚Ì‚ğÁ‚·
+        _myTrapDel(pFreeTrap);  // å¤ã„ã®ã‚’æ¶ˆã™
         pFreeTrap = _getFreeTrap(_pCTW->myTrapData);
     }
     index = _getFreeTrapIndex(_pCTW->myTrapData);
@@ -1575,8 +1575,8 @@ static void _myTrapAdd(TrapInfo* pTrap)
 
 //==============================================================================
 /**
- * ©•ª‚Ìã©‚ğÁ‚·+ŠG‚àÁ‚·
- * @param   pTrap    ã©ƒf[ƒ^
+ * è‡ªåˆ†ã®ç½ ã‚’æ¶ˆã™+çµµã‚‚æ¶ˆã™
+ * @param   pTrap    ç½ ãƒ‡ãƒ¼ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1586,7 +1586,7 @@ static void _myTrapDel(TrapInfo* pTrap)
     TrapInfo* pFreeTrap;
     int index = -1,i;
 
-    OHNO_PRINT("ã©‚ğÁ‚· %d %d \n", pTrap->xpos, pTrap->zpos);
+    OHNO_PRINT("ç½ ã‚’æ¶ˆã™ %d %d \n", pTrap->xpos, pTrap->zpos);
     
     for(i = 0; i< _TRAP_NUM_SINGLE_MAX; i++){
         pFreeTrap = &_pCTW->myTrapData[i];
@@ -1615,10 +1615,10 @@ static void _myTrapDel(TrapInfo* pTrap)
 
 //==============================================================================
 /**
- * ã©‚ğ’Ç‰Á‚·‚éƒRƒ}ƒ“ƒh‚ÌŒ‹‰Ê‚ğóM CF_TRAP_DATA_RESULT
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ƒf[ƒ^–{‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * ç½ ã‚’è¿½åŠ ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®çµæœã‚’å—ä¿¡ CF_TRAP_DATA_RESULT
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1633,12 +1633,12 @@ void CommTrapInfoRecvTrapDataResult(int netID, int size, void* pData, void* pWor
     if(CommGetCurrentID() == pTrapResult->netID){
         CommPlayerHold();
         if(pTrapResult->result == _RESULT_OK){
-            // ƒT[ƒo[‚Ì“š‚¦‚ğ“¾‚Ä‚©‚ç©•ª‚Ìƒoƒbƒtƒ@‚ÉŠi”[
+            // ã‚µãƒ¼ãƒãƒ¼ã®ç­”ãˆã‚’å¾—ã¦ã‹ã‚‰è‡ªåˆ†ã®ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
             _myTrapAdd(&pTrapResult->trap);
             CommUnderBagDeleteTrap(pTrapResult->trap.trapType);
             CommMsgRegisterUGTrapName(CommUnderGetMsgUnderWorld(),pTrapResult->trap.trapType);
             CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), mes_uw_item_08, TRUE, _msgEndCallBack);
-            Snd_SePlay(UG_SE_SMOKE);  // ã©İ’u
+            Snd_SePlay(UG_SE_SMOKE);  // ç½ è¨­ç½®
         }
         else if(pTrapResult->result == _RESULT_SECRETBASE){
             CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_73, TRUE, _msgEndCallBack);
@@ -1650,7 +1650,7 @@ void CommTrapInfoRecvTrapDataResult(int netID, int size, void* pData, void* pWor
             CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_60, TRUE, _msgEndCallBack);
         }
         else if(pTrapResult->result == _RESULT_NONE_PLACE){
-            _msgEndCallBack(0);  // À•W‚ª‚Ü‚¾–³‚¢ê‡‚È‚É‚à‚µ‚È‚¢
+            _msgEndCallBack(0);  // åº§æ¨™ãŒã¾ã ç„¡ã„å ´åˆãªã«ã‚‚ã—ãªã„
         }
         else{
             CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_59, TRUE, _msgEndCallBack);
@@ -1660,11 +1660,11 @@ void CommTrapInfoRecvTrapDataResult(int netID, int size, void* pData, void* pWor
 
 //==============================================================================
 /**
- *  ã©‚ğÁ‹‚·‚éƒRƒ}ƒ“ƒh‚ğóM                CF_TRAP_DATA_DEL
- * @param   sendDSID        ‘—‚Á‚Ä‚«‚½DS‚ÌID
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ƒf[ƒ^–{‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *  ç½ ã‚’æ¶ˆå»ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã‚’å—ä¿¡                CF_TRAP_DATA_DEL
+ * @param   sendDSID        é€ã£ã¦ããŸDSã®ID
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1685,10 +1685,10 @@ int CommTrapInfoGetTrapDataDelSize(void)
 
 //==============================================================================
 /**
- *  ã©ƒf[ƒ^ARRAY DATA‚ª‚«‚½   CF_TRAP_ARRAY_DATA
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ƒf[ƒ^–{‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *  ç½ ãƒ‡ãƒ¼ã‚¿ARRAY DATAãŒããŸ   CF_TRAP_ARRAY_DATA
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1704,12 +1704,12 @@ void CommTrapInfoRecvArrayData(int netID, int size, void* pData, void* pWork)
     }
 
     GF_ASSERT_RETURN(size == (sizeof(TrapInfo) * _TRAP_NUM_SINGLE_MAX),);
-    // ƒf[ƒ^óM
-    for(i = 0; i< _TRAP_NUM_SINGLE_MAX; i++){  // ¡“ü‚Á‚Ä‚¢‚é‚à‚Ì‚ğÁ‚·
+    // ãƒ‡ãƒ¼ã‚¿å—ä¿¡
+    for(i = 0; i< _TRAP_NUM_SINGLE_MAX; i++){  // ä»Šå…¥ã£ã¦ã„ã‚‹ã‚‚ã®ã‚’æ¶ˆã™
         pTrap->trapType = _TRAP_TYEP_INVALID;
         pTrap++;
     }
-    pTrap = pData;  // V‚µ‚­“o˜^
+    pTrap = pData;  // æ–°ã—ãç™»éŒ²
     for(i = 0; i< _TRAP_NUM_SINGLE_MAX; i++){
         if(pTrap->trapType != _TRAP_TYEP_INVALID){
             _addTrap(pTrap->xpos, pTrap->zpos,
@@ -1720,14 +1720,14 @@ void CommTrapInfoRecvArrayData(int netID, int size, void* pData, void* pWork)
     }
     resultBuff[0] = netID;
     resultBuff[1] = _RESULT_OK;
-    OHNO_PRINT("arrayŠm”F@‹t‘—M\n");
+    OHNO_PRINT("arrayç¢ºèªã€€é€†é€ä¿¡\n");
     CommSendData_ServerSide(CF_TRAP_ARRAY_RESULT,resultBuff,_RESULT_CMD_SIZE);
     CommTrapSendTrapingArray();
 }
 
 //==============================================================================
 /**
- *  q‹@‚ª³‚µ‚­ã©î•ñ‚ğe‚É‘—M‚Å‚«‚½‚©‚ª•Ô‚Á‚Ä‚«‚½ CF_TRAP_ARRAY_RESULT
+ *  å­æ©ŸãŒæ­£ã—ãç½ æƒ…å ±ã‚’è¦ªã«é€ä¿¡ã§ããŸã‹ãŒè¿”ã£ã¦ããŸ CF_TRAP_ARRAY_RESULT
  * @param   none
  * @retval  none
  */
@@ -1747,9 +1747,9 @@ void CommTrapInfoRecvResult(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- *  q‹@‚ª³‚µ‚­ã©î•ñ‚ğe‚É‘—M‚Å‚«‚½‚©‚ª‚ğ•Ô‚·ƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY
+ *  å­æ©ŸãŒæ­£ã—ãç½ æƒ…å ±ã‚’è¦ªã«é€ä¿¡ã§ããŸã‹ãŒã‚’è¿”ã™ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚º
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1760,9 +1760,9 @@ int CommTrapInfoGetResultSize(void)
 
 //==============================================================================
 /**
- *  ³‚µ‚­óM‚Å‚«‚½‚©‚Ç‚¤‚©
+ *  æ­£ã—ãå—ä¿¡ã§ããŸã‹ã©ã†ã‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1773,9 +1773,9 @@ BOOL CommTrapInfoIsParentRecv(void)
 
 //==============================================================================
 /**
- *  Œ‹‰Ê‚ğƒŠƒZƒbƒg‚·‚é
+ *  çµæœã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1786,9 +1786,9 @@ void CommTrapInfoResetParentRecv(void)
 
 //==============================================================================
 /**
- *  ƒ^ƒbƒ`ƒf[ƒ^‚Ì‘—MƒTƒCƒY‚ğ•Ô‚·
+ *  ã‚¿ãƒƒãƒãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1799,11 +1799,11 @@ int CommTrapInfoGetTouchSize(void)
 
 //==============================================================================
 /**
- *  ã©‚ª–Ú‚Ì‘O‚É‚ ‚Á‚½‚ç‰ğœ‚·‚é
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ƒf[ƒ^–{‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @retval  ã©‚ğŒ©‚Â‚¯‚Ä‰ğœ‚µ‚½=TRUE
+ *  ç½ ãŒç›®ã®å‰ã«ã‚ã£ãŸã‚‰è§£é™¤ã™ã‚‹
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  ç½ ã‚’è¦‹ã¤ã‘ã¦è§£é™¤ã—ãŸ=TRUE
  */
 //==============================================================================
 
@@ -1820,21 +1820,21 @@ BOOL CommTrapFrontTrapDefuse(int netID, Grid* pTouch, u8 bTrapFull)
 
     pTrap = _checkTrap(x, z);
     if(pTrap){
-        if(CommPlayerFlagDigCheck(netID)){   // ©•ª‚ÌŠøŒŸ¸
+        if(CommPlayerFlagDigCheck(netID)){   // è‡ªåˆ†ã®æ——æ¤œæŸ»
             return TRUE;
         }
-        hitTrap.victimNetID = netID;                 // ‚¾‚ê‚ª”­Œ©‚µ‚½‚Ì‚©
-        hitTrap.assailantNetID = _getTrapNetID(pTrap);  // ‚¾‚ê‚Ì‚í‚È‚É‚©‚©‚Á‚½‚©
+        hitTrap.victimNetID = netID;                 // ã ã‚ŒãŒç™ºè¦‹ã—ãŸã®ã‹
+        hitTrap.assailantNetID = _getTrapNetID(pTrap);  // ã ã‚Œã®ã‚ãªã«ã‹ã‹ã£ãŸã‹
         MI_CpuCopy8(pTrap, &hitTrap.trap, sizeof(TrapInfo));
-        if(bTrapFull & _NOTGET_TRAP_RESERVE){  // ‚·‚Å‚ÉE‚¦‚È‚¢
+        if(bTrapFull & _NOTGET_TRAP_RESERVE){  // ã™ã§ã«æ‹¾ãˆãªã„
             hitTrap.message = 1;
         }
         else{
             hitTrap.message = 0;
-            _delTrap(pTrap);  //ã©‚ğÁ‚·
+            _delTrap(pTrap);  //ç½ ã‚’æ¶ˆã™
         }
-        if(hitTrap.assailantNetID >= _TRAP_ID_NATURE){ //“V‘R‚Ìã©‚Ìê‡
-            UnderGroundDelNatureTrapGroundItem(pUGData,hitTrap.trap.order);//‚±‚±‚ÅÁ‚¦‚é
+        if(hitTrap.assailantNetID >= _TRAP_ID_NATURE){ //å¤©ç„¶ã®ç½ ã®å ´åˆ
+            UnderGroundDelNatureTrapGroundItem(pUGData,hitTrap.trap.order);//ã“ã“ã§æ¶ˆãˆã‚‹
         }
         
         CommPlayerSetMoveControl_Server(netID,FALSE);
@@ -1851,11 +1851,11 @@ int CommTrapInfoRecvTrapDefuseSize(void)
 
 //==============================================================================
 /**
- *  ã©‰ğœ‚ª‘—‚ç‚ê‚Ä‚«‚½   CF_TRAP_DEFUSE
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ƒf[ƒ^–{‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   pWork    ‰Šú‰»‚É“n‚µ‚½ƒ[ƒNƒ|ƒCƒ“ƒ^
+ *  ç½ è§£é™¤ãŒé€ã‚‰ã‚Œã¦ããŸ   CF_TRAP_DEFUSE
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pWork    åˆæœŸåŒ–æ™‚ã«æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1864,28 +1864,28 @@ void CommTrapInfoRecvTrapDefuse(int netID, int size, void* pData, void* pWork)
 {
     _HitTrap* pHitTrap = (_HitTrap*)pData;
 
-    OHNO_PRINT("ã©‰ğœ--\n");
+    OHNO_PRINT("ç½ è§£é™¤--\n");
     GF_ASSERT_RETURN(pHitTrap->victimNetID < COMM_MACHINE_MAX,);
 
     if(pHitTrap->message == 1){
-        if(CommGetCurrentID() == pHitTrap->victimNetID){  // E‚¦‚È‚¢
+        if(CommGetCurrentID() == pHitTrap->victimNetID){  // æ‹¾ãˆãªã„
             CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_78, TRUE, _msgEndCallBack);
             CommPlayerHold();
         }
         return;
     }
     _pCTW->msgTrapDefuse[pHitTrap->victimNetID] = _RESULT_OK;  //LOG
-    if(CommGetCurrentID() == pHitTrap->assailantNetID){ // dŠ|‚¯‚½l‚Ìã©‚ğÁ‚·
+    if(CommGetCurrentID() == pHitTrap->assailantNetID){ // ä»•æ›ã‘ãŸäººã®ç½ ã‚’æ¶ˆã™
         _myTrapDel(&pHitTrap->trap);
         _myTrapBackup();
     }
-    if(CommGetCurrentID() == pHitTrap->victimNetID){  // E‚Á‚½l‚Í•\¦{ƒoƒbƒO‚¢‚ê
-        if(CommUnderBagAddTrap(pHitTrap->trap.trapType)){   // “ü‚Á‚½
-            if(CommGetCurrentID() != pHitTrap->assailantNetID){ // dŠ|‚¯‚½l‚Í©•ª‚Å‚È‚¢
+    if(CommGetCurrentID() == pHitTrap->victimNetID){  // æ‹¾ã£ãŸäººã¯è¡¨ç¤ºï¼‹ãƒãƒƒã‚°ã„ã‚Œ
+        if(CommUnderBagAddTrap(pHitTrap->trap.trapType)){   // å…¥ã£ãŸ
+            if(CommGetCurrentID() != pHitTrap->assailantNetID){ // ä»•æ›ã‘ãŸäººã¯è‡ªåˆ†ã§ãªã„
                 if(_pCTW->myTrapDefuseNum==0){
                     _pCTW->myTrapDefuseType = pHitTrap->trap.trapType;
                 }
-                if(_pCTW->myTrapDefuseNum != 0xffff){ //u16‚È‚Ì‚Å
+                if(_pCTW->myTrapDefuseNum != 0xffff){ //u16ãªã®ã§
                     _pCTW->myTrapDefuseNum++;
                 }
             }
@@ -1893,13 +1893,13 @@ void CommTrapInfoRecvTrapDefuse(int netID, int size, void* pData, void* pWork)
             CommMsgRegisterMyName(CommUnderGetMsgUnderWorld(),CommInfoGetMyStatus(pHitTrap->victimNetID));
             // ----------------------------------------------------------------------------
             // localize_spec_mark(LANG_ALL) imatake 2006/11/29
-            // Š¥Œ‚È‚µƒƒi–¼‚àg‚¤‚Ì‚ÅA•s’èŠ¥Œ•t‚«ƒƒi–¼‚ğ _UGITEM_INDEX_WORK ‚É‘ã“ü
+            // å† è©ãªã—ãƒ¯ãƒŠåã‚‚ä½¿ã†ã®ã§ã€ä¸å®šå† è©ä»˜ããƒ¯ãƒŠåã‚’ _UGITEM_INDEX_WORK ã«ä»£å…¥
             CommMsgRegisterUGTrapNameIndexIndefinate(CommUnderGetMsgUnderWorld(),_UGITEM_INDEX_WORK,pHitTrap->trap.trapType);
             CommMsgCapitalizeIndex(CommUnderGetMsgUnderWorld(),_UGITEM_INDEX_WORK);
             // ----------------------------------------------------------------------------
             CommMsgRegisterUGTrapName(CommUnderGetMsgUnderWorld(),pHitTrap->trap.trapType);
             CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_19, TRUE, _msgEndCallBack);
-            CommMsgTalkWindowMeWait(CommUnderGetMsgUnderWorld());  //ME‚ÌI—¹‘Ò‚¿ON
+            CommMsgTalkWindowMeWait(CommUnderGetMsgUnderWorld());  //MEã®çµ‚äº†å¾…ã¡ON
         }
         else{
             CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_78, TRUE, _msgEndCallBack);
@@ -1910,8 +1910,8 @@ void CommTrapInfoRecvTrapDefuse(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- *  ã©‚ÌNETID‚ğ‹t‚Ğ‚«‚·‚é
- * @param   ’²‚×‚½‚¢pTrap
+ *  ç½ ã®NETIDã‚’é€†ã²ãã™ã‚‹
+ * @param   èª¿ã¹ãŸã„pTrap
  * @retval  netID
  */
 //==============================================================================
@@ -1925,16 +1925,16 @@ static int _getTrapNetID(TrapInfo* pTrap)
             return i / _TRAP_NUM_SINGLE_MAX;
         }
     }
-    GF_ASSERT(0 && "‚È‚¢ã©‚ğŒŸõ‚µ‚½");
-    return 0;  // ‚±‚±‚É‚«‚Ä‚Í‚¨‚©‚µ‚¢
+    GF_ASSERT(0 && "ãªã„ç½ ã‚’æ¤œç´¢ã—ãŸ");
+    return 0;  // ã“ã“ã«ãã¦ã¯ãŠã‹ã—ã„
 }
 
 //==============================================================================
 /**
- *  ã©‚Éˆø‚Á‚©‚©‚Á‚½‚©‚Ç‚¤‚©‚ğ•Ô‚·
- * @param   ’²‚×‚½‚¢À•W‚ÌXÀ•W
-   @param   ’²‚×‚½‚¢À•W‚ÌZÀ•W
- * @retval  ˆø‚Á‚©‚©‚Á‚½ã©
+ *  ç½ ã«å¼•ã£ã‹ã‹ã£ãŸã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @param   èª¿ã¹ãŸã„åº§æ¨™ã®Xåº§æ¨™
+   @param   èª¿ã¹ãŸã„åº§æ¨™ã®Zåº§æ¨™
+ * @retval  å¼•ã£ã‹ã‹ã£ãŸç½ 
  */
 //==============================================================================
 
@@ -1956,10 +1956,10 @@ static TrapInfo* _checkTrap(int x, int z)
 
 //==============================================================================
 /**
- *  ã©‚Éˆø‚Á‚©‚©‚Á‚½‚©‚Ç‚¤‚©‚ğ•Ô‚·
- * @param   ’²‚×‚½‚¢À•W‚ÌXÀ•W
-   @param   ’²‚×‚½‚¢À•W‚ÌZÀ•W
- * @retval  ˆø‚Á‚©‚©‚éê‡TRUE
+ *  ç½ ã«å¼•ã£ã‹ã‹ã£ãŸã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @param   èª¿ã¹ãŸã„åº§æ¨™ã®Xåº§æ¨™
+   @param   èª¿ã¹ãŸã„åº§æ¨™ã®Zåº§æ¨™
+ * @retval  å¼•ã£ã‹ã‹ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
@@ -1973,7 +1973,7 @@ BOOL CommTrapCheck(int x,int z)
 
 //==============================================================================
 /**
- *  ã©‚Éˆø‚Á‚©‚©‚Á‚½ê‡‚Ì’ÊMƒTƒCƒY‚ğ•Ô‚·
+ *  ç½ ã«å¼•ã£ã‹ã‹ã£ãŸå ´åˆã®é€šä¿¡ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param   none
  * @retval  size
  */
@@ -1986,8 +1986,8 @@ int CommTrapGetStartSize(void)
 
 //==============================================================================
 /**
- *  ã©‚Éˆø‚Á‚©‚©‚Á‚½ê‡’ÊMƒƒbƒZ[ƒW‚ğ‘—M‚·‚é
- * @param   ˆø‚Á‚©‚©‚é‚©‚Ç‚¤‚©’²‚×‚½‚¢ID
+ *  ç½ ã«å¼•ã£ã‹ã‹ã£ãŸå ´åˆé€šä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ä¿¡ã™ã‚‹
+ * @param   å¼•ã£ã‹ã‹ã‚‹ã‹ã©ã†ã‹èª¿ã¹ãŸã„ID
  * @retval  none
  */
 //==============================================================================
@@ -2010,21 +2010,21 @@ static BOOL _checkAndSendMessage(int netID)
         CommPlayerResetCondition(netID);
         _trapServerExit(netID,_pCTW->nowTrapTypeServer[netID]);
     }
-    _trapServerStart(netID, pTrap->trapType);// ã©ˆ—
+    _trapServerStart(netID, pTrap->trapType);// ç½ å‡¦ç†
     hitTrap.bGoodsTrap = FALSE;
-    hitTrap.victimNetID = netID;                 // ‚¾‚ê‚ª‚©‚©‚Á‚½‚©
-    hitTrap.assailantNetID = _getTrapNetID(pTrap);  // ‚¾‚ê‚Ì‚í‚È‚É‚©‚©‚Á‚½‚©
+    hitTrap.victimNetID = netID;                 // ã ã‚ŒãŒã‹ã‹ã£ãŸã‹
+    hitTrap.assailantNetID = _getTrapNetID(pTrap);  // ã ã‚Œã®ã‚ãªã«ã‹ã‹ã£ãŸã‹
     MI_CpuCopy8(pTrap, &hitTrap.trap, sizeof(TrapInfo));
 
-    OHNO_PRINT("--+ã©‚ğÁ‚· %d %d \n", pTrap->trapType, hitTrap.assailantNetID);
+    OHNO_PRINT("--+ç½ ã‚’æ¶ˆã™ %d %d \n", pTrap->trapType, hitTrap.assailantNetID);
 
-    if(hitTrap.assailantNetID >= _TRAP_ID_NATURE){ //“V‘R‚Ìã©‚Ìê‡
-        UnderGroundDelNatureTrapGroundItem(pUGData,hitTrap.trap.order); //‚±‚±‚ÅÁ‚¦‚é
+    if(hitTrap.assailantNetID >= _TRAP_ID_NATURE){ //å¤©ç„¶ã®ç½ ã®å ´åˆ
+        UnderGroundDelNatureTrapGroundItem(pUGData,hitTrap.trap.order); //ã“ã“ã§æ¶ˆãˆã‚‹
     }
 
-    CommSendData_ServerSide(CF_TRAP_START, &hitTrap, sizeof(_HitTrap)); // ‘—M
+    CommSendData_ServerSide(CF_TRAP_START, &hitTrap, sizeof(_HitTrap)); // é€ä¿¡
     _pCTW->nowTrapTypeServer[netID] = pTrap->trapType;
-    // ã©‚ğÁ‹‚·‚é
+    // ç½ ã‚’æ¶ˆå»ã™ã‚‹
     //pTrap->trapType = _TRAP_TYEP_INVALID;
 
     _delTrap(pTrap);
@@ -2036,9 +2036,9 @@ static BOOL _checkAndSendMessage(int netID)
 
 //==============================================================================
 /**
- *  ã©‚Éˆø‚Á‚©‚©‚Á‚½‚Ó‚è‚ğ‚·‚é ‘•’u“Á—L‚ÌŠÖ”
- * @param   netID      ˆø‚Á‚©‚©‚é¶•¨
- * @param   trapType   ã©ƒ^ƒCƒv ‘¶İ‚Í‚µ‚Ä‚¢‚È‚¢
+ *  ç½ ã«å¼•ã£ã‹ã‹ã£ãŸãµã‚Šã‚’ã™ã‚‹ è£…ç½®ç‰¹æœ‰ã®é–¢æ•°
+ * @param   netID      å¼•ã£ã‹ã‹ã‚‹ç”Ÿç‰©
+ * @param   trapType   ç½ ã‚¿ã‚¤ãƒ— å­˜åœ¨ã¯ã—ã¦ã„ãªã„
  * @retval  none
  */
 //==============================================================================
@@ -2050,23 +2050,23 @@ void UgTrapGoodsBind(int netID,int assailantNetID,int trapType,int xpos,int zpos
     if(_pCTW->nowTrapTypeServer[netID] != _TRAP_TYEP_INVALID){
         _trapServerExit(netID,_pCTW->nowTrapTypeServer[netID]);
     }
-    _trapServerStart(netID, trapType);// ã©ˆ—
-    hitTrap.victimNetID = netID;                 // ‚¾‚ê‚ª‚©‚©‚Á‚½‚©
+    _trapServerStart(netID, trapType);// ç½ å‡¦ç†
+    hitTrap.victimNetID = netID;                 // ã ã‚ŒãŒã‹ã‹ã£ãŸã‹
     hitTrap.assailantNetID = assailantNetID;
     hitTrap.bGoodsTrap = TRUE;
     hitTrap.trap.trapType = trapType;
     hitTrap.trap.xpos = xpos;
     hitTrap.trap.zpos = zpos;
-    hitTrap.dir = dir;  // i“ü•ûŒü‚ğ
+    hitTrap.dir = dir;  // é€²å…¥æ–¹å‘ã‚’
 
-    CommSendData_ServerSide(CF_TRAP_START, &hitTrap, sizeof(_HitTrap)); // ‘—M
+    CommSendData_ServerSide(CF_TRAP_START, &hitTrap, sizeof(_HitTrap)); // é€ä¿¡
     _pCTW->nowTrapTypeServer[netID] = trapType;
 }
 
 //==============================================================================
 /**
- *  ã©‚Éˆø‚Á‚©‚©‚Á‚½ê‡‚ÌŠÇ—
- * @param   ˆø‚Á‚©‚©‚é‚©‚Ç‚¤‚©’²‚×‚½‚¢ID
+ *  ç½ ã«å¼•ã£ã‹ã‹ã£ãŸå ´åˆã®ç®¡ç†
+ * @param   å¼•ã£ã‹ã‹ã‚‹ã‹ã©ã†ã‹èª¿ã¹ãŸã„ID
  * @retval  none
  */
 //==============================================================================
@@ -2084,10 +2084,10 @@ BOOL CommTrapCheckAndSendMessage(int netID)
 
 //==============================================================================
 /**
- *  ‘•’u‚Éˆø‚Á‚©‚©‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•Ô‚·
- * @param   netID    ƒlƒbƒgID
- * @param   size     ƒf[ƒ^ƒTƒCƒY
- * @param   *pData   ƒf[ƒ^
+ *  è£…ç½®ã«å¼•ã£ã‹ã‹ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @param   netID    ãƒãƒƒãƒˆID
+ * @param   size     ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   *pData   ãƒ‡ãƒ¼ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -2099,10 +2099,10 @@ BOOL CommTrapIsGoodsTrap(int netID)
 
 //==============================================================================
 /**
- *  ã©‚Éˆø‚Á‚©‚©‚Á‚½‚±‚Æ‚ğóM‚·‚é  CF_TRAP_START
- * @param   netID    ƒlƒbƒgID
- * @param   size     ƒf[ƒ^ƒTƒCƒY
- * @param   *pData   ƒf[ƒ^
+ *  ç½ ã«å¼•ã£ã‹ã‹ã£ãŸã“ã¨ã‚’å—ä¿¡ã™ã‚‹  CF_TRAP_START
+ * @param   netID    ãƒãƒƒãƒˆID
+ * @param   size     ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   *pData   ãƒ‡ãƒ¼ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -2118,12 +2118,12 @@ void CommTrapRecvStart(int netID, int size, void* pData, void* pWork)
         return;
     }
     pRec = SaveData_GetSecretBaseRecord(GameSystem_GetSaveData(_pCTW->pFSys));
-    // ã©ƒGƒtƒFƒNƒg•\¦
+    // ç½ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¡¨ç¤º
     Snd_SePlay( UG_SE_ALARM );
     MI_CpuCopy8(pHitTrap, &_pCTW->hitTrap[pHitTrap->victimNetID],
                 sizeof(_HitTrap));
 
-    switch(pHitTrap->trap.trapType){  // ‘O”¼‚É‚Á‚Ä‚«‚ÄƒƒbƒZ[ƒW‚ğŒ¸‚ç‚·
+    switch(pHitTrap->trap.trapType){  // å‰åŠã«æŒã£ã¦ãã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ¸›ã‚‰ã™
       case UG_TRAPTYPE_ALART1:
         _pCTW->msgMsgTrap[pHitTrap->victimNetID] = UGTrap_msg01;
         break;
@@ -2150,11 +2150,11 @@ void CommTrapRecvStart(int netID, int size, void* pData, void* pWork)
     }
     CommPlayerSetFEExclamationAdd(pHitTrap->victimNetID);
     if(CommGetCurrentID() == pHitTrap->victimNetID){
-        SecretBaseRecordSetTrapTumbleNum(pRec);  // ã©‚É‚©‚©‚Á‚½‚±‚Æ‚ğƒJƒEƒ“ƒg
+        SecretBaseRecordSetTrapTumbleNum(pRec);  // ç½ ã«ã‹ã‹ã£ãŸã“ã¨ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
     }
     if(CommGetCurrentID() == pHitTrap->assailantNetID){
         if(pHitTrap->assailantNetID != pHitTrap->victimNetID){
-            SecretBaseRecordSetTrapConquerNum(pRec);  // ã©‚É‚©‚¯‚½‚±‚Æ‚ğƒJƒEƒ“ƒg
+            SecretBaseRecordSetTrapConquerNum(pRec);  // ç½ ã«ã‹ã‘ãŸã“ã¨ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
         }
         {
             EVENTWORK* pEV = SaveData_GetEventWork( _pCTW->pFSys->savedata );
@@ -2196,9 +2196,9 @@ void CommTrapRecvSecondStartRet(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * Œ»İã©‚Éˆø‚Á‚©‚©‚Á‚Ä‚¢‚él‚ğ‘—M
- * @param   message   ƒƒbƒZ[ƒW
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ * ç¾åœ¨ç½ ã«å¼•ã£ã‹ã‹ã£ã¦ã„ã‚‹äººã‚’é€ä¿¡
+ * @param   message   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
@@ -2219,9 +2219,9 @@ void CommTrapSendTrapingArray(void)
 
 //==============================================================================
 /**
- * Œ»İã©‚Éˆø‚Á‚©‚©‚Á‚Ä‚¢‚élARRAY‚ª—ˆ‚½
- * @param   message   ƒƒbƒZ[ƒW
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ * ç¾åœ¨ç½ ã«å¼•ã£ã‹ã‹ã£ã¦ã„ã‚‹äººARRAYãŒæ¥ãŸ
+ * @param   message   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
@@ -2237,17 +2237,17 @@ void CommTrapRecvTrapingArray(int netID, int size, void* pData, void* pWork)
     
     for(i = 0; i < COMM_MACHINE_MAX;i++){
         if(bit & (0x01 << i)){
-//            UgTrapTurnDispStart(i,UG_TRAPTYPE_BIG_SMOG);  // c”O‚È‚ª‚çTRAPTYPE‚Í‰¼’ÊM—Ê‚ª–³‚¢
-            CommPlayerSetFEExclamationAdd(i); // ‚È‚Ì‚ÅI‚Ì‚İ
+//            UgTrapTurnDispStart(i,UG_TRAPTYPE_BIG_SMOG);  // æ®‹å¿µãªãŒã‚‰TRAPTYPEã¯ä»®é€šä¿¡é‡ãŒç„¡ã„
+            CommPlayerSetFEExclamationAdd(i); // ãªã®ã§ï¼ã®ã¿
         }
     }
 }
 
 //==============================================================================
 /**
- *  ã©‚Éˆø‚Á‚©‚©‚Á‚½ó‹µƒƒbƒZ[ƒW‚ğ•Ô‚·
- * @param   message   ƒƒbƒZ[ƒW
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ *  ç½ ã«å¼•ã£ã‹ã‹ã£ãŸçŠ¶æ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿”ã™
+ * @param   message   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
@@ -2292,9 +2292,9 @@ BOOL CommTrapGetActionMessage(STRBUF* pStrBuf)
 
 //==============================================================================
 /**
- *  ã©İ’uó‹µƒƒbƒZ[ƒW‚ğ•Ô‚·
- * @param   message   ƒƒbƒZ[ƒW
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ *  ç½ è¨­ç½®çŠ¶æ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿”ã™
+ * @param   message   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
@@ -2336,9 +2336,9 @@ BOOL CommTrapSetActionMessage(STRBUF* pStrBuf)
 
 //==============================================================================
 /**
- * ã©ˆ—‚ğŠJn
+ * ç½ å‡¦ç†ã‚’é–‹å§‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2361,17 +2361,17 @@ static void _trapServerExit(int victimNetID, int trapType)
 
 //==============================================================================
 /**
- * ã©ó‘Ô‚Ì‹­§I—¹
+ * ç½ çŠ¶æ…‹ã®å¼·åˆ¶çµ‚äº†
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
 void UgTrapForceExit(int victimNetID, int bMove)
 {
     ClientTrapEndFunc pEndFunc;
-    if(_pCTW->nowTrapType!=UG_TRAPTYPE_NONE){  // ¡‚Ìã©‚Ì‰ğœ
-        OHNO_SP_PRINT("‹­§‰ğœ------%d\n",_pCTW->nowTrapType);
+    if(_pCTW->nowTrapType!=UG_TRAPTYPE_NONE){  // ä»Šã®ç½ ã®è§£é™¤
+        OHNO_SP_PRINT("å¼·åˆ¶è§£é™¤------%d\n",_pCTW->nowTrapType);
 
         pEndFunc = _clientTrapForceExit[_pCTW->nowTrapType];
         if(pEndFunc){
@@ -2394,9 +2394,9 @@ void UgTrapForceExit(int victimNetID, int bMove)
 
 //==============================================================================
 /**
- * ã©ƒGƒtƒFƒNƒg‚ğŠJn
+ * ç½ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’é–‹å§‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2407,20 +2407,20 @@ static void _trapClientStart(int victimNetID, int trapType, BOOL bGoodsTrap, int
 
     UgTrapForceExit(victimNetID, TRUE);
 
-    _pCTW->nowTrapType = trapType;   // ¡“®ì’†‚Ìƒgƒ‰ƒbƒvƒ^ƒCƒv
+    _pCTW->nowTrapType = trapType;   // ä»Šå‹•ä½œä¸­ã®ãƒˆãƒ©ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
     pFunc = _clientTrapFunc[trapType];
     if(pFunc){
-        pFunc( victimNetID, bGoodsTrap, dir );  // ‰Šú‰»
-        //   _pCTW->trapProc = _trapProc[trapType];  // “®ìŠÖ”ƒZƒbƒg
-        //        _pCTW->nowTrapType = trapType;   // ¡“®ì’†‚Ìƒgƒ‰ƒbƒvƒ^ƒCƒv
+        pFunc( victimNetID, bGoodsTrap, dir );  // åˆæœŸåŒ–
+        //   _pCTW->trapProc = _trapProc[trapType];  // å‹•ä½œé–¢æ•°ã‚»ãƒƒãƒˆ
+        //        _pCTW->nowTrapType = trapType;   // ä»Šå‹•ä½œä¸­ã®ãƒˆãƒ©ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
     }
 }
 
 //==============================================================================
 /**
- * ƒOƒbƒYã©‚ÌˆÚ“®–ß‚èw’è
+ * ã‚°ãƒƒã‚ºç½ ã®ç§»å‹•æˆ»ã‚ŠæŒ‡å®š
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2440,9 +2440,9 @@ static void _goodsTrapReverse(int paramDir)
 
 //==============================================================================
 /**
- * ƒOƒbƒYã©‚ÌˆÚ“®–ß‚èw’èŒŸ¸
+ * ã‚°ãƒƒã‚ºç½ ã®ç§»å‹•æˆ»ã‚ŠæŒ‡å®šæ¤œæŸ»
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2469,9 +2469,9 @@ static BOOL _goodsTrapReverseCheck(int paramDir, BOOL bGoodsPos)
 
 //==============================================================================
 /**
- * ‚Í‚ñ‚Ä‚ñ‚Ìã©‚ğŠJn‚·‚é
+ * ã¯ã‚“ã¦ã‚“ã®ç½ ã‚’é–‹å§‹ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2483,9 +2483,9 @@ static void _startServerReverse(int victimNetID)
 
 //==============================================================================
 /**
- * ¬—‚Ìã©‚ğŠJn‚·‚é
+ * æ··ä¹±ã®ç½ ã‚’é–‹å§‹ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2504,9 +2504,9 @@ static void _exitServerGiddy(int victimNetID)
 
 //==============================================================================
 /**
- * –¶‚Ìã©‚ğŠJn‚·‚é
+ * éœ§ã®ç½ ã‚’é–‹å§‹ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2517,9 +2517,9 @@ static void _startServerSmog(int victimNetID)
 
 //==============================================================================
 /**
- * ‰Ô‚Ñ‚ç‚Ì•‘‚ğŠJn‚·‚é
+ * èŠ±ã³ã‚‰ã®èˆã‚’é–‹å§‹ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2532,9 +2532,9 @@ static void _startServerDirtyBlossoms(int victimNetID)
 
 //==============================================================================
 /**
- * ‚«”ò‚Î‚µ‚ğŠJn‚·‚é
+ * å¹ãé£›ã°ã—ã‚’é–‹å§‹ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2586,22 +2586,22 @@ static void _exitServerDir(int victimNetID)
 
 //==============================================================================
 /**
- * ƒhƒŠƒ‹‚ÅŒŠ‚ğŒ@‚é
+ * ãƒ‰ãƒªãƒ«ã§ç©´ã‚’æ˜ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
 static void _startServerDrill(int victimNetID)
 {
-    // ƒT[ƒo[‘¤‚Í‚±‚±‚Å‚Í‰½‚à‚µ‚È‚¢
+    // ã‚µãƒ¼ãƒãƒ¼å´ã¯ã“ã“ã§ã¯ä½•ã‚‚ã—ãªã„
 }
 
 //==============================================================================
 /**
- * ”½“]‚Ìã©‚ğŠJn‚·‚é
+ * åè»¢ã®ç½ ã‚’é–‹å§‹ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2618,9 +2618,9 @@ static void _startClientReverse(int victimNetID, BOOL bGoodsTrap,int dir)
 
 //==============================================================================
 /**
- * ¬—‚Ìã©‚ğŠJn‚·‚é
+ * æ··ä¹±ã®ç½ ã‚’é–‹å§‹ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2637,9 +2637,9 @@ static void _startClientGiddy(int victimNetID, BOOL bGoodsTrap, int dir)
 
 //==============================================================================
 /**
- * –¶‚Ìã©‚ğŠJn‚·‚é
+ * éœ§ã®ç½ ã‚’é–‹å§‹ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2656,9 +2656,9 @@ static void _startClientSmog(int victimNetID, BOOL bGoodsTrap,int dir)
 
 //==============================================================================
 /**
- * ‰Ô‚Ñ‚ç‚Ì•‘‚Ìã©‚ğŠJn‚·‚é
+ * èŠ±ã³ã‚‰ã®èˆã®ç½ ã‚’é–‹å§‹ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2675,9 +2675,9 @@ static void _startClientDirtyBlossoms(int victimNetID, BOOL bGoodsTrap, int dir)
 
 //==============================================================================
 /**
- * ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚«”ò‚Î‚µ‚ğŠJn‚·‚é
+ * ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´å¹ãé£›ã°ã—ã‚’é–‹å§‹ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2733,9 +2733,9 @@ static int _trapStartSet(void)
 
 //==============================================================================
 /**
- * ƒNƒ‰ƒCƒAƒ“ƒg‘¤‚«”ò‚Î‚µÀsŠÖ”
+ * ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´å¹ãé£›ã°ã—å®Ÿè¡Œé–¢æ•°
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2827,9 +2827,9 @@ static void _trapDirStart(FIELDSYS_WORK* pFSys, int victimNetID, int dir, BOOL b
 
 //==============================================================================
 /**
- * dirI—¹
+ * dirçµ‚äº†
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -2863,21 +2863,21 @@ static void _forceEndClientDir(int netID, BOOL bGoods)
 
 //==============================================================================
 /**
- * ƒhƒŠƒ‹‚ÅŒŠ‚ğŒ@‚é
+ * ãƒ‰ãƒªãƒ«ã§ç©´ã‚’æ˜ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
 static void _startClientDrill(int victimNetID, BOOL bGoodsTrap,int dir)
 {
-    // ‚±‚±‚Å‚à‰½‚à‚µ‚È‚¢
+    // ã“ã“ã§ã‚‚ä½•ã‚‚ã—ãªã„
 }
 
 
 //--------------------------------------------------------------
 /**
- * ã©ŠG‚ğo‚·
+ * ç½ çµµã‚’å‡ºã™
  * @param
  * @retval
  */
@@ -2895,25 +2895,25 @@ static EOA_PTR _trapPictAdd(int x, int z, int scale, int type)
 
 //--------------------------------------------------------------
 /**
- * Å‰‚É¶¬‚µ‚½ã©‚ğ“¾‚é
- * @param    netID  ‹@Ší”Ô†
- * @retval   ¶¬”Ô†
+ * æœ€åˆã«ç”Ÿæˆã—ãŸç½ ã‚’å¾—ã‚‹
+ * @param    netID  æ©Ÿå™¨ç•ªå·
+ * @retval   ç”Ÿæˆç•ªå·
  */
 //--------------------------------------------------------------
 static TrapInfo* _getOldOrderData(TrapInfo* pTrapTbl)
 {
-    return pTrapTbl;  // æ“ª‚ªˆê”ÔŒÃ‚¢
+    return pTrapTbl;  // å…ˆé ­ãŒä¸€ç•ªå¤ã„
 }
 
 //--------------------------------------------------------------
 /**
- * ƒXƒ‚ƒbƒO‚Ìã©‚Ì‰Šú‰»
- * @param    GF_BGL_INI bgl”Ô†
+ * ã‚¹ãƒ¢ãƒƒã‚°ã®ç½ ã®åˆæœŸåŒ–
+ * @param    GF_BGL_INI bglç•ªå·
  * @retval   none
  */
 //--------------------------------------------------------------
 
-// ‹¤’Ê
+// å…±é€š
 typedef enum{
     _INIT,
     _CHAR_READ,
@@ -2939,7 +2939,7 @@ static void _trapSmogInitialize(FIELDSYS_WORK* pFSys, BOOL bGoodsTrap, int dir)
     wk = sys_AllocMemoryLo(HEAPID_FIELD, sizeof(_EVENT_SMOG_WORK));
     MI_CpuFill8(wk, 0, sizeof(_EVENT_SMOG_WORK));
     _pCTW->pTCBWork = wk;
-    _smogTouchNone(wk);  // À•WƒŠƒZƒbƒg
+    _smogTouchNone(wk);  // åº§æ¨™ãƒªã‚»ãƒƒãƒˆ
     wk->bgl = pFSys->bgl;
     wk->pFSys = pFSys;
     wk->bGoodsTrap = bGoodsTrap;
@@ -2949,9 +2949,9 @@ static void _trapSmogInitialize(FIELDSYS_WORK* pFSys, BOOL bGoodsTrap, int dir)
 
 //--------------------------------------------------------------
 /**
- * ƒXƒ‚ƒbƒO‚Ìã©  ü‚ğ•`‚­
+ * ã‚¹ãƒ¢ãƒƒã‚°ã®ç½   ç·šã‚’æã
  * @param    none
- * @retval   “®ì’†‚ÍTRUE
+ * @retval   å‹•ä½œä¸­ã¯TRUE
  */
 //--------------------------------------------------------------
 
@@ -2964,8 +2964,8 @@ static void _drawLine(int x0, int y0, int x1, int y1,u8* pScrAddr){
     dx=(x0<x1)?1:-1;
     dy=(y0<y1)?1:-1;
 
-    if(wx >= wy){ /* ŒX‚«‚ª1‚æ‚è¬‚³‚¢H */
-        E = -wx;  /* E‚Ì‰Šú‰» */
+    if(wx >= wy){ /* å‚¾ããŒ1ã‚ˆã‚Šå°ã•ã„ï¼Ÿ */
+        E = -wx;  /* Eã®åˆæœŸåŒ– */
         while(x != x1){
             bDraw += _commTrapSmogDelete(x,y,pScrAddr);
             x += dx;
@@ -2975,8 +2975,8 @@ static void _drawLine(int x0, int y0, int x1, int y1,u8* pScrAddr){
                 y += dy;
             }
         }
-    }else{ /* ŒX‚«‚ª1‚æ‚è‘å‚«‚¢ê‡(or-1‚æ‚è¬‚³‚¢ê‡) */
-        E = -wy;  /* E‚Ì‰Šú‰» */
+    }else{ /* å‚¾ããŒ1ã‚ˆã‚Šå¤§ãã„å ´åˆ(or-1ã‚ˆã‚Šå°ã•ã„å ´åˆ) */
+        E = -wy;  /* Eã®åˆæœŸåŒ– */
         while(y != y1){
             bDraw += _commTrapSmogDelete(x,y,pScrAddr);
             y += dy;
@@ -2996,7 +2996,7 @@ static void _drawLine(int x0, int y0, int x1, int y1,u8* pScrAddr){
 
 //--------------------------------------------------------------
 /**
- * ƒXƒ‚ƒbƒO‚Ìã©‚ğI‚í‚ç‚¹‚é
+ * ã‚¹ãƒ¢ãƒƒã‚°ã®ç½ ã‚’çµ‚ã‚ã‚‰ã›ã‚‹
  * @param    none
  * @retval   none
  */
@@ -3034,9 +3034,9 @@ static void _endClientSmog(int victimNetID,BOOL bGoods)
 
 //--------------------------------------------------------------
 /**
- * ƒXƒ‚ƒbƒO‚Ìã©‚ª“®ì‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
+ * ã‚¹ãƒ¢ãƒƒã‚°ã®ç½ ãŒå‹•ä½œã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
  * @param    none
- * @retval   “®ì’†‚ÍTRUE
+ * @retval   å‹•ä½œä¸­ã¯TRUE
  */
 //--------------------------------------------------------------
 
@@ -3052,14 +3052,14 @@ static BOOL _trapSmogTouch(Grid* pGrid, GF_BGL_INI * bgl,_EVENT_SMOG_WORK* wk)
         _drawLine(pGrid->xpos, pGrid->zpos,
                   wk->oldXpos,wk->oldZpos,
                   pScrAddr);
-        // ‚Æ‚è‚ ‚¦‚¸‘S“]‘—
+        // ã¨ã‚Šã‚ãˆãšå…¨è»¢é€
         GF_BGL_LoadScreenReq(bgl, GF_BGL_FRAME2_M);
 
     }
     wk->oldXpos = pGrid->xpos;
     wk->oldZpos = pGrid->zpos;
 
-    // ‰æ–ÊŒ¸­—¦ŒvZ
+    // ç”»é¢æ¸›å°‘ç‡è¨ˆç®—
     for(i = 0; i< 0x800; i+=2 ){
         if(pScrAddr[i] != 0){
             cnt++;
@@ -3074,8 +3074,8 @@ static BOOL _trapSmogTouch(Grid* pGrid, GF_BGL_INI * bgl,_EVENT_SMOG_WORK* wk)
 
 //--------------------------------------------------------------
 /**
- * ˆê‰ÓŠÁ‚·
- * @param    xpos,zpos  À•W
+ * ä¸€ç®‡æ‰€æ¶ˆã™
+ * @param    xpos,zpos  åº§æ¨™
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -3083,7 +3083,7 @@ static BOOL _trapSmogTouch(Grid* pGrid, GF_BGL_INI * bgl,_EVENT_SMOG_WORK* wk)
 static BOOL _commTrapSmogDelete(int xpos, int zpos, u8* pScrAddr)
 {
     u16 cell = (xpos/8 + zpos/8 * (256/8)) *2;
-    s32 bothDeleteTbl[]={-66,-64,-62,-2,0,2,62,64,66};   // “¯‚ÉÁ‚·CELL    ‚Ìƒe[ƒuƒ‹
+    s32 bothDeleteTbl[]={-66,-64,-62,-2,0,2,62,64,66};   // åŒæ™‚ã«æ¶ˆã™CELL    ã®ãƒ†ãƒ¼ãƒ–ãƒ«
     int i;
     BOOL bDraw = FALSE;
 
@@ -3092,12 +3092,12 @@ static BOOL _commTrapSmogDelete(int xpos, int zpos, u8* pScrAddr)
     }
     for(i = 0; i < sizeof(bothDeleteTbl)/sizeof(s32); i++){
         s32 bothCell = cell + bothDeleteTbl[i];
-        if((cell % 64) == 62){// ‰E’[
+        if((cell % 64) == 62){// å³ç«¯
             if(i % 3 == 2){
                 continue;
             }
         }
-        if(cell % 64 == 0){// ¶’[
+        if(cell % 64 == 0){// å·¦ç«¯
             if(i % 3 == 0){
                 continue;
             }
@@ -3130,9 +3130,9 @@ static BOOL _commTrapSmogDelete(int xpos, int zpos, u8* pScrAddr)
 
 //--------------------------------------------------------------
 /**
- * ƒXƒ‚ƒbƒO‚Ìã©ƒ‰ƒCƒ“‚ğÁ‚·
+ * ã‚¹ãƒ¢ãƒƒã‚°ã®ç½ ãƒ©ã‚¤ãƒ³ã‚’æ¶ˆã™
  * @param    none
- * @retval   “®ì’†‚ÍTRUE
+ * @retval   å‹•ä½œä¸­ã¯TRUE
  */
 //--------------------------------------------------------------
 
@@ -3144,7 +3144,7 @@ static void _smogTouchNone(_EVENT_SMOG_WORK* wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰Œã©  Às•”•ª
+ * @brief   ç…™ç½   å®Ÿè¡Œéƒ¨åˆ†
  * @param   bgl  GF_BGL_INI
  * @retval  none
  */
@@ -3174,7 +3174,7 @@ static void _procSmog(TCB_PTR tcb, void *work)
       case _CELL_READ:
         ChangeBrightnessRequest(1,BRIGHTNESS_NORMAL,_TRAP_DIRTYBLOSSOMS_BRIGHTNESS_FL,
                                 PLANEMASK_BG0,MASK_MAIN_DISPLAY);
-        // ƒXƒNƒŠ[ƒ“‚Í‚Sí—Şì‚Á‚½
+        // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã¯ï¼”ç¨®é¡ä½œã£ãŸ
         if(_pCTW->nowTrapType == UG_TRAPTYPE_BIG_SMOG){
             ArcUtil_ScrnSet(   ARC_UG_TRAP_GRA, NARC_ug_trap_t_full_NSCR, wk->bgl, GF_BGL_FRAME2_M, 0, 32*24*2, 0, HEAPID_FIELD);
         }
@@ -3221,13 +3221,13 @@ static void _procSmog(TCB_PTR tcb, void *work)
                     wk->seq = _GOODS_END_START;
                 }
                 else{
-                    CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+                    CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
                     wk->seq = _ENDCMD;
                 }
             }
         }
         else{
-            _smogTouchNone(wk);  // À•WÁ‚·ˆ—
+            _smogTouchNone(wk);  // åº§æ¨™æ¶ˆã™å‡¦ç†
         }
         if(wk->msgTimer < _MSG_TIME){
             wk->msgTimer++;
@@ -3253,7 +3253,7 @@ static void _procSmog(TCB_PTR tcb, void *work)
       case _GOODS_END_WALK:
         wk->timer++;
         if(wk->timer > 8){
-            CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+            CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
             wk->seq = _ENDCMD;
         }
         break;
@@ -3262,7 +3262,7 @@ static void _procSmog(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * ƒgƒ‰ƒbƒvI—¹ƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY
+ * ãƒˆãƒ©ãƒƒãƒ—çµ‚äº†ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚º
  * @param    none
  * @retval   none
  */
@@ -3271,8 +3271,8 @@ static void _procSmog(TCB_PTR tcb, void *work)
 typedef struct {
     u8 trapType;
     u8 netID;
-    u8 bResult;  //TRUE³í FALSE ‹­§I—¹
-    u8 bGoods;  // ‘•’u‚Ìê‡
+    u8 bResult;  //TRUEæ­£å¸¸ FALSE å¼·åˆ¶çµ‚äº†
+    u8 bGoods;  // è£…ç½®ã®å ´åˆ
 } TrapEndResult_t;
 
 
@@ -3284,11 +3284,11 @@ int CommTrapGetEndResultSize(void)
 
 //--------------------------------------------------------------
 /**
- * ƒgƒ‰ƒbƒvI—¹‚ªq‹@‚©‚ç‘—‚ç‚ê‚Ä‚«‚½  CF_TRAP_END
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ƒf[ƒ^–{‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   pWork    g—p‚µ‚½‚¢ƒ[ƒN
+ * ãƒˆãƒ©ãƒƒãƒ—çµ‚äº†ãŒå­æ©Ÿã‹ã‚‰é€ã‚‰ã‚Œã¦ããŸ  CF_TRAP_END
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pWork    ä½¿ç”¨ã—ãŸã„ãƒ¯ãƒ¼ã‚¯
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -3324,7 +3324,7 @@ void CommTrapRecvEnd(int netID, int size, void* pData, void* pWork)
 // ----------------------------------------------------------------------------
 }
 
-// ‚±‚¿‚ç‚Í‹­§“I‚É‰ğœ  CF_TRAP_END_FORCE
+// ã“ã¡ã‚‰ã¯å¼·åˆ¶çš„ã«è§£é™¤  CF_TRAP_END_FORCE
 void CommTrapRecvForceEnd(int netID, int size, void* pData, void* pWork)
 {
     u8 id = netID;
@@ -3344,11 +3344,11 @@ void CommTrapRecvForceEnd(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * ƒgƒ‰ƒbƒvI—¹‚ªe‹@‚©‚ç‘—‚ç‚ê‚Ä‚«‚½  CF_TRAP_END_RESULT
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ƒf[ƒ^–{‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   pWork    g—p‚µ‚½‚¢ƒ[ƒN
+ * ãƒˆãƒ©ãƒƒãƒ—çµ‚äº†ãŒè¦ªæ©Ÿã‹ã‚‰é€ã‚‰ã‚Œã¦ããŸ  CF_TRAP_END_RESULT
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pWork    ä½¿ç”¨ã—ãŸã„ãƒ¯ãƒ¼ã‚¯
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -3356,7 +3356,7 @@ void CommTrapRecvForceEnd(int netID, int size, void* pData, void* pWork)
 void CommTrapRecvEndResult(int netID, int size, void* pData, void* pWork)
 {
     TrapEndResult_t *pRet = pData;
-    int trapType = pRet->trapType;   // ¡“®ì’†‚Ìƒgƒ‰ƒbƒvƒ^ƒCƒv
+    int trapType = pRet->trapType;   // ä»Šå‹•ä½œä¸­ã®ãƒˆãƒ©ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
     ClientTrapEndFunc pEndFunc;
 
     if(pRet->bResult){
@@ -3374,7 +3374,7 @@ void CommTrapRecvEndResult(int netID, int size, void* pData, void* pWork)
         }
         _pCTW->nowTrapType = UG_TRAPTYPE_NONE;
     }
-    switch(trapType){  // I—¹‚ÌƒƒbƒZ[ƒW
+    switch(trapType){  // çµ‚äº†æ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
       case UG_TRAPTYPE_ALART1:
       case UG_TRAPTYPE_ALART2:
       case UG_TRAPTYPE_ALART3:
@@ -3394,7 +3394,7 @@ void CommTrapRecvEndResult(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * ƒT[ƒo[‘¤‚©‚ç‰‰o‚Ìƒ^ƒCƒ~ƒ“ƒO‚ ‚í‚¹‚Å”ò‚ñ‚Å‚­‚é–½—ß ¡‚ÌŠHOLE‚Ì‚İ
+ * ã‚µãƒ¼ãƒãƒ¼å´ã‹ã‚‰æ¼”å‡ºã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚ã‚ã›ã§é£›ã‚“ã§ãã‚‹å‘½ä»¤ ä»Šã®æ‰€HOLEã®ã¿
  * @param
  * @retval  none
  */
@@ -3403,7 +3403,7 @@ void CommTrapRecvEndResult(int netID, int size, void* pData, void* pWork)
 void CommTrapRecvPriEnd(int netID, int size, void* pData, void* pWork)
 {
     u8* pBuff = pData;
-    int trapType = _pCTW->nowTrapType;   // ¡“®ì’†‚Ìƒgƒ‰ƒbƒvƒ^ƒCƒv
+    int trapType = _pCTW->nowTrapType;   // ä»Šå‹•ä½œä¸­ã®ãƒˆãƒ©ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
 
     if((trapType == UG_TRAPTYPE_HOLE) || (trapType == UG_TRAPTYPE_BIG_HOLE)){
         _priEndClientHole(pBuff[0]);
@@ -3412,9 +3412,9 @@ void CommTrapRecvPriEnd(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * ƒgƒ‰ƒbƒv’†’f
- * @param   netID    ’†’f‚·‚él
- * @param   targetID    ã©‚É‚©‚©‚Á‚Ä‚¢‚él
+ * ãƒˆãƒ©ãƒƒãƒ—ä¸­æ–­
+ * @param   netID    ä¸­æ–­ã™ã‚‹äºº
+ * @param   targetID    ç½ ã«ã‹ã‹ã£ã¦ã„ã‚‹äºº
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -3435,7 +3435,7 @@ void CommTrapSendRelease(int netID, int targetID)
     tr.targetID = targetID;
     tr.netID = netID;
     tr.trapID = _pCTW->nowTrapTypeServer[targetID];
-    OHNO_PRINT("---ã©Á‹  %d %d %d\n",netID,targetID,_pCTW->nowTrapTypeServer[targetID]);
+    OHNO_PRINT("---ç½ æ¶ˆå»  %d %d %d\n",netID,targetID,_pCTW->nowTrapTypeServer[targetID]);
     CommSendFixSizeData_ServerSide(CF_TRAP_RELEASE, &tr);
     _pCTW->nowTrapTypeServer[targetID] = _TRAP_TYEP_INVALID;
     CommPlayerSetMoveControl_Server(netID,FALSE);
@@ -3445,11 +3445,11 @@ void CommTrapSendRelease(int netID, int targetID)
 
 //--------------------------------------------------------------
 /**
- * ƒgƒ‰ƒbƒv‰ğœ‚ªe‹@‚©‚ç‘—‚ç‚ê‚Ä‚«‚½   CF_TRAP_RELEASE
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ƒf[ƒ^–{‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   pWork    g—p‚µ‚½‚¢ƒ[ƒN
+ * ãƒˆãƒ©ãƒƒãƒ—è§£é™¤ãŒè¦ªæ©Ÿã‹ã‚‰é€ã‚‰ã‚Œã¦ããŸ   CF_TRAP_RELEASE
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pWork    ä½¿ç”¨ã—ãŸã„ãƒ¯ãƒ¼ã‚¯
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -3462,7 +3462,7 @@ void CommTrapRecvRelease(int netID, int size, void* pData, void* pWork)
     CommPlayerSetFEOkAdd( pTr->targetID );
 
     if(pTr->netID == CommGetCurrentID()){
-        SecretBaseRecordSetTrapRescueNum(pRec);   // ã©‚©‚©‚è[‚ğ•‚¯‚½‰ñ”
+        SecretBaseRecordSetTrapRescueNum(pRec);   // ç½ ã‹ã‹ã‚Šãƒ¼ã‚’åŠ©ã‘ãŸå›æ•°
         RECORD_Score_Add(SaveData_GetRecord(_pCTW->pFSys->savedata), SCORE_ID_RESCUE);
 
         CommPlayerHold();
@@ -3473,14 +3473,14 @@ void CommTrapRecvRelease(int netID, int size, void* pData, void* pWork)
     }
     UgTrapTurnDispEnd(pTr->targetID);
     if((pTr->targetID == CommGetCurrentID()) && (_pCTW->nowTrapType != UG_TRAPTYPE_NONE)){
-        int trapType = _pCTW->nowTrapType;   // ¡“®ì’†‚Ìƒgƒ‰ƒbƒvƒ^ƒCƒv
+        int trapType = _pCTW->nowTrapType;   // ä»Šå‹•ä½œä¸­ã®ãƒˆãƒ©ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
         ClientTrapEndFunc pFunc = _clientTrapForceExit[trapType];
         if(pFunc){
             pFunc( pTr->targetID,FALSE );
         }
         _pCTW->trapProc = NULL;
         _pCTW->nowTrapType = UG_TRAPTYPE_NONE;
-        OHNO_SP_PRINT("ƒgƒ‰ƒbƒv‰ğœ‚ª‘—‚ç‚ê‚Ü‚·\n");
+        OHNO_SP_PRINT("ãƒˆãƒ©ãƒƒãƒ—è§£é™¤ãŒé€ã‚‰ã‚Œã¾ã™\n");
         CommPlayerHoldBitEnd(_HOLD_TRAP);
         CommMsgTalkWindowEnd(CommUnderGetMsgUnderWorld());
     }
@@ -3495,9 +3495,9 @@ void CommTrapRecvRelease(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY‚ğ•Ô‚·
+ * ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -3508,9 +3508,9 @@ int CommTrapGetReleaseSize(void)
 
 //--------------------------------------------------------------
 /**
- * ©•ª‚Ìƒgƒ‰ƒbƒv‚ÌˆÊ’uXÀ•W‚ğ“¾‚é
+ * è‡ªåˆ†ã®ãƒˆãƒ©ãƒƒãƒ—ã®ä½ç½®Xåº§æ¨™ã‚’å¾—ã‚‹
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -3525,9 +3525,9 @@ int CommTrapGetMyTrapX(int index)
 
 //--------------------------------------------------------------
 /**
- * ©•ª‚Ìƒgƒ‰ƒbƒv‚ÌˆÊ’uZÀ•W‚ğ“¾‚é
+ * è‡ªåˆ†ã®ãƒˆãƒ©ãƒƒãƒ—ã®ä½ç½®Zåº§æ¨™ã‚’å¾—ã‚‹
  * @param    index
- * @retval   ZÀ•W
+ * @retval   Zåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -3540,13 +3540,13 @@ int CommTrapGetMyTrapZ(int index)
     return 0;
 }
 
-#define _DTIME  (2)  // ƒŒ[ƒ_[‚ğ‚ä‚Á‚­‚èŒ©‚¹‚éˆ×‚ÌŠÔŠu
+#define _DTIME  (2)  // ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚’ã‚†ã£ãã‚Šè¦‹ã›ã‚‹ç‚ºã®é–“éš”
 
 //--------------------------------------------------------------
 /**
- * ©•ª‚Ìƒgƒ‰ƒbƒv{©‘R‚ÌTRAP‚ÌˆÊ’uXÀ•W‚ğ“¾‚é
+ * è‡ªåˆ†ã®ãƒˆãƒ©ãƒƒãƒ—ï¼‹è‡ªç„¶ã®TRAPã®ä½ç½®Xåº§æ¨™ã‚’å¾—ã‚‹
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -3562,9 +3562,9 @@ int UgTrapGetNatureTrapX(int index)
 
 //--------------------------------------------------------------
 /**
- * ©•ª‚Ìƒgƒ‰ƒbƒv{©‘R‚ÌTRAP‚ÌˆÊ’uZÀ•W‚ğ“¾‚é
+ * è‡ªåˆ†ã®ãƒˆãƒ©ãƒƒãƒ—ï¼‹è‡ªç„¶ã®TRAPã®ä½ç½®Zåº§æ¨™ã‚’å¾—ã‚‹
  * @param    index
- * @retval   ZÀ•W
+ * @retval   Zåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -3580,7 +3580,7 @@ int UgTrapGetNatureTrapZ(int index)
 
 //--------------------------------------------------------------
 /**
- * ƒpƒ\ƒRƒ“ã©ƒŒ[ƒ_[ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒXƒN
+ * ãƒ‘ã‚½ã‚³ãƒ³ç½ ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¹ã‚¯
  * @param    tcb   tcb
  * @param    work   _EVENT_PCRADAR_WORK
  * @retval   none
@@ -3600,7 +3600,7 @@ static void _GMEVENT_PcRadar(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * ƒpƒ\ƒRƒ“ƒŒ[ƒ_[ƒXƒ^[ƒg
+ * ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ
  * @param    none
  * @retval   none
  */
@@ -3610,7 +3610,7 @@ void UgTrapRecvNatureRadarStart(void)
 {
     _EVENT_PCRADAR_WORK* mdw;
 
-    if(_pCTW->pPcRadarWork){  // “ñd‹N“®‹Ö~
+    if(_pCTW->pPcRadarWork){  // äºŒé‡èµ·å‹•ç¦æ­¢
         return;
     }
     if(_pCTW->pPcRadar){
@@ -3619,7 +3619,7 @@ void UgTrapRecvNatureRadarStart(void)
 
     mdw = sys_AllocMemoryLo(HEAPID_FIELD, sizeof(_EVENT_PCRADAR_WORK));
     MI_CpuFill8(mdw, 0, sizeof(_EVENT_PCRADAR_WORK));
-    CommSendFixData(CF_TRAP_RADAR_REQ);  // ƒT[ƒo[‚ÉÀ•W‚ğˆË—Š
+    CommSendFixData(CF_TRAP_RADAR_REQ);  // ã‚µãƒ¼ãƒãƒ¼ã«åº§æ¨™ã‚’ä¾é ¼
 
     _pCTW->pPcRadarWork = mdw;
     _pCTW->pPcRadar = TCB_Add(_GMEVENT_PcRadar , mdw,TCB_PRIORITY_NORMAL);
@@ -3629,7 +3629,7 @@ void UgTrapRecvNatureRadarStart(void)
 
 //--------------------------------------------------------------
 /**
- * ƒpƒ\ƒRƒ“ƒŒ[ƒ_[ƒGƒ“ƒh
+ * ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚¨ãƒ³ãƒ‰
  * @param    none
  * @retval   none
  */
@@ -3650,9 +3650,9 @@ void UgTrapRecvNatureRadarEnd(void)
 
 //--------------------------------------------------------------
 /**
- * ƒpƒ\ƒRƒ“‚©‚çã©ƒŒ[ƒ_[‚Ì–â‚¢‡‚í‚¹‚ª—ˆ‚½
+ * ãƒ‘ã‚½ã‚³ãƒ³ã‹ã‚‰ç½ ãƒ¬ãƒ¼ãƒ€ãƒ¼ã®å•ã„åˆã‚ã›ãŒæ¥ãŸ
  * @param    index
- * @retval   ZÀ•W
+ * @retval   Zåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -3672,7 +3672,7 @@ void UgTrapRecvNatureRadar(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * ã©ƒŒ[ƒ_[‚ğ‘—M‚·‚é
+ * ç½ ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚’é€ä¿¡ã™ã‚‹
  * @param    none
  * @retval   none
  */
@@ -3702,7 +3702,7 @@ static void _trapRecvNatureRadarFunc(void)
                 }
                 index++;
                 if(index >= _TRAP_NUM_MAX){
-                    _pCTW->radarTrapIndex[i] = 0; // ‘—MI—¹
+                    _pCTW->radarTrapIndex[i] = 0; // é€ä¿¡çµ‚äº†
                     break;
                 }
                 if(index == _pCTW->radarTrapIndex[i] - 1){
@@ -3715,7 +3715,7 @@ static void _trapRecvNatureRadarFunc(void)
 
 //--------------------------------------------------------------
 /**
- * ƒT[ƒo‚©‚çˆêŒÂ‚¸‚Âã©À•W‚ğ‘—‚è•Ô‚µ‚Ä‚à‚ç‚¤
+ * ã‚µãƒ¼ãƒã‹ã‚‰ä¸€å€‹ãšã¤ç½ åº§æ¨™ã‚’é€ã‚Šè¿”ã—ã¦ã‚‚ã‚‰ã†
  * @param    pData   _RESULT_TRAP_RADAR
  * @retval   none
  */
@@ -3741,9 +3741,9 @@ void UgTrapRecvNatureRadarPos(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * ƒT[ƒo‚©‚çˆêŒÂ‚¸‚Âã©À•W‚ğ‘—‚è•Ô‚µ‚Ä‚à‚ç‚¤‚ÌƒTƒCƒY
+ * ã‚µãƒ¼ãƒã‹ã‚‰ä¸€å€‹ãšã¤ç½ åº§æ¨™ã‚’é€ã‚Šè¿”ã—ã¦ã‚‚ã‚‰ã†æ™‚ã®ã‚µã‚¤ã‚º
  * @param    none
- * @retval   _RESULT_TRAP_RADAR‚Ì‚³‚¢‚¸
+ * @retval   _RESULT_TRAP_RADARã®ã•ã„ãš
  */
 //--------------------------------------------------------------
 
@@ -3763,9 +3763,9 @@ enum{
 
 //--------------------------------------------------------------
 /**
- * @brief    ‚±‚ñ‚ç‚ñE‚Í‚ñ‚Ä‚ñ‚ğI‚í‚ç‚¹‚éŠÖ”
- * @param    event  ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰[
- * @retval   I‚í‚Á‚½‚çTRUE
+ * @brief    ã“ã‚“ã‚‰ã‚“ãƒ»ã¯ã‚“ã¦ã‚“ã‚’çµ‚ã‚ã‚‰ã›ã‚‹é–¢æ•°
+ * @param    event  ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
+ * @retval   çµ‚ã‚ã£ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -3796,9 +3796,9 @@ static void _forceEndClientGiddy(int netID,BOOL bGoods)
 
 //--------------------------------------------------------------
 /**
- * @brief    ‚±‚ñ‚ç‚ñE‚Í‚ñ‚Ä‚ñ‚ÌƒCƒxƒ“ƒgŠÖ”
- * @param    event  ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰[
- * @retval   I‚í‚Á‚½‚çTRUE
+ * @brief    ã“ã‚“ã‚‰ã‚“ãƒ»ã¯ã‚“ã¦ã‚“ã®ã‚¤ãƒ™ãƒ³ãƒˆé–¢æ•°
+ * @param    event  ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
+ * @retval   çµ‚ã‚ã£ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -3835,7 +3835,7 @@ static void _GMEVENT_Giddy(TCB_PTR tcb, void *work)
         }
         break;
       case _GIDDY_FUNC:
-        // •à‚¢‚½•à”‚ÍƒT[ƒo[‚ÅŠÇ—
+        // æ­©ã„ãŸæ­©æ•°ã¯ã‚µãƒ¼ãƒãƒ¼ã§ç®¡ç†
         break;
       case _GIDDY_END:
         SetBrightness(BRIGHTNESS_NORMAL,PLANEMASK_BG0,MASK_MAIN_DISPLAY);
@@ -3854,8 +3854,8 @@ static void _GMEVENT_Giddy(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief    ‚±‚ñ‚ç‚ñE‚Í‚ñ‚Ä‚ñ‚Ìã©‰Šú‰»
- * @param    bRev   ”½“]‚È‚çTRUE
+ * @brief    ã“ã‚“ã‚‰ã‚“ãƒ»ã¯ã‚“ã¦ã‚“ã®ç½ åˆæœŸåŒ–
+ * @param    bRev   åè»¢ãªã‚‰TRUE
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -3868,7 +3868,7 @@ static void _trapGiddyInitialize(BOOL bRev)
     mdw = sys_AllocMemoryLo(HEAPID_FIELD, sizeof(_EVENT_GIDDY_WORK));
     MI_CpuClear8(mdw, sizeof(_EVENT_GIDDY_WORK));
     mdw->seq = 0;
-    mdw->bRev = bRev;  // ¬—‚©”½“]‚©‚Ìƒtƒ‰ƒO
+    mdw->bRev = bRev;  // æ··ä¹±ã‹åè»¢ã‹ã®ãƒ•ãƒ©ã‚°
     mdw->startTime = 0;
     _pCTW->pTCBWork = mdw;
     _pCTW->pRadar = TCB_Add(_GMEVENT_Giddy,mdw,TCB_PRIORITY_NORMAL);
@@ -3881,9 +3881,9 @@ static void _trapGiddyInitialize(BOOL bRev)
 
 //--------------------------------------------------------------
 /**
- * @brief    ‚ ‚È‚ğI‚í‚ç‚¹‚éŠÖ”
- * @param    event  ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰[
- * @retval   I‚í‚Á‚½‚çTRUE
+ * @brief    ã‚ãªã‚’çµ‚ã‚ã‚‰ã›ã‚‹é–¢æ•°
+ * @param    event  ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
+ * @retval   çµ‚ã‚ã£ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -3904,9 +3904,9 @@ static void _endClientHole(int netID,BOOL bGoods)
 
 //--------------------------------------------------------------
 /**
- * @brief    ‚ ‚È‚ğ‹­§“I‚ÉI‚í‚ç‚¹‚éŠÖ”  Œ©‰h‚¦–³‹
- * @param    event  ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰[
- * @retval   I‚í‚Á‚½‚çTRUE
+ * @brief    ã‚ãªã‚’å¼·åˆ¶çš„ã«çµ‚ã‚ã‚‰ã›ã‚‹é–¢æ•°  è¦‹æ „ãˆç„¡è¦–
+ * @param    event  ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
+ * @retval   çµ‚ã‚ã£ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -3935,9 +3935,9 @@ static void _endForceClientHole(int netID, BOOL bGoods)
 
 //==============================================================================
 /**
- * ‚ ‚È‚Ìã©‚ğI—¹‚ÌŠJn‚ğ‚·‚é
+ * ã‚ãªã®ç½ ã‚’çµ‚äº†ã®é–‹å§‹ã‚’ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -3955,9 +3955,9 @@ static void _priEndClientHole(int victimNetID)
 
 //--------------------------------------------------------------
 /**
- * @brief    ‚ ‚È‚ÌƒCƒxƒ“ƒgŠÖ”
- * @param    event  ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰[
- * @retval   I‚í‚Á‚½‚çTRUE
+ * @brief    ã‚ãªã®ã‚¤ãƒ™ãƒ³ãƒˆé–¢æ•°
+ * @param    event  ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
+ * @retval   çµ‚ã‚ã£ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -4009,7 +4009,7 @@ static void _GMEVENT_Hole(TCB_PTR tcb, void *work)
             if(!mdw->bBig){
                 mdw->eoa = FE_Hole_Add(_pCTW->pFSys,xpos,zpos,
                                        2, EOA_HOLE_NO);//_pCTW->trapMarkModel[EOA_HOLE_NO].pModel);
-                Player_VecPosYSet( _pCTW->pFSys->player, -2*FX32_ONE);  // ‚ ‚È
+                Player_VecPosYSet( _pCTW->pFSys->player, -2*FX32_ONE);  // ã‚ãª
             }
             else{
                 mdw->eoa = FE_Hole_Add(_pCTW->pFSys,xpos,zpos,
@@ -4019,8 +4019,8 @@ static void _GMEVENT_Hole(TCB_PTR tcb, void *work)
         }
         break;
       case _FUNC:
-        // •à‚¢‚½•à”‚ÍƒT[ƒo[‚ÅŠÇ—
-        { // •ûŒü‚©‚í‚Á‚½
+        // æ­©ã„ãŸæ­©æ•°ã¯ã‚µãƒ¼ãƒãƒ¼ã§ç®¡ç†
+        { // æ–¹å‘ã‹ã‚ã£ãŸ
             int dir = Player_DirGet( _pCTW->pFSys->player );
             if(mdw->dispDir != dir){
                 Snd_SePlay(SE_TRAP_HOLE_DIR);
@@ -4050,7 +4050,7 @@ static void _GMEVENT_Hole(TCB_PTR tcb, void *work)
       case _GOODS_END_WALK:
         mdw->timer++;
         if(_goodsTrapReverseCheck( mdw->dir,FALSE ) || (mdw->timer > 60)){
-            CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+            CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
             mdw->seq = _ENDCMD;
         }
         break;
@@ -4067,7 +4067,7 @@ static void _GMEVENT_Hole(TCB_PTR tcb, void *work)
                     mdw->seq = _GOODS_END_START;
                 }
                 else{
-                    CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+                    CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
                     mdw->seq = _END;
                 }
             }
@@ -4078,8 +4078,8 @@ static void _GMEVENT_Hole(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief    ‚ ‚È‚Ìã©‰Šú‰»
- * @param    bBig   ‚¨‚¨‚ ‚È‚È‚çTRUE
+ * @brief    ã‚ãªã®ç½ åˆæœŸåŒ–
+ * @param    bBig   ãŠãŠã‚ãªãªã‚‰TRUE
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -4092,7 +4092,7 @@ static void _trapHoleInitialize(BOOL bBig,BOOL bGoodsTrap, int dir)
     mdw = sys_AllocMemory(HEAPID_FIELD, sizeof(_EVENT_HOLE_WORK));
     MI_CpuClear8(mdw, sizeof(_EVENT_HOLE_WORK));
     mdw->seq = 0;
-    mdw->bBig = bBig;  // ‘å‚«‚¢ŒŠ‚©‚Ç‚¤‚©
+    mdw->bBig = bBig;  // å¤§ãã„ç©´ã‹ã©ã†ã‹
     mdw->startTime = 0;
     mdw->bGoodsTrap = bGoodsTrap;
     mdw->dispDir = Player_DirGet( _pCTW->pFSys->player );
@@ -4104,9 +4104,9 @@ static void _trapHoleInitialize(BOOL bBig,BOOL bGoodsTrap, int dir)
 
 //==============================================================================
 /**
- * ‚ ‚È‚Ìã©‚ğŠJn‚·‚é
+ * ã‚ãªã®ç½ ã‚’é–‹å§‹ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -4123,9 +4123,9 @@ static void _startClientHole(int victimNetID,BOOL bGoodsTrap, int dir)
 
 //==============================================================================
 /**
- * ‚¨‚¨‚ ‚È‚Ìã©‚ğŠJn‚·‚é
+ * ãŠãŠã‚ãªã®ç½ ã‚’é–‹å§‹ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -4142,9 +4142,9 @@ static void _startClientBigHole(int victimNetID,BOOL bGoodsTrap, int dir)
 
 //==============================================================================
 /**
- * ‚¨‚¨‚ ‚È‚Ìã©‚ğI—¹‚·‚é
+ * ãŠãŠã‚ãªã®ç½ ã‚’çµ‚äº†ã™ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -4173,9 +4173,9 @@ static void _startServerBigHole(int victimNetID)
 
 //--------------------------------------------------------------
 /**
- * ‰Ô‚Ñ‚ç‚ğ’u‚­êŠ‚ğƒe[ƒuƒ‹‚Æ—”‚ÅŒˆ‚ß‚é
+ * èŠ±ã³ã‚‰ã‚’ç½®ãå ´æ‰€ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«ã¨ä¹±æ•°ã§æ±ºã‚ã‚‹
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 /*
@@ -4240,9 +4240,9 @@ static void _dirtyBlossomsAddPetal(_EVENT_DIRTYBLOSSOMS_WORK * mdw)
 
 //--------------------------------------------------------------
 /**
- * ‰Ô‚Ñ‚ç‚Ì•‘ƒCƒxƒ“ƒgÀs
+ * èŠ±ã³ã‚‰ã®èˆã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ
  * @param
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -4259,7 +4259,7 @@ static void _GMEVENT_DirtyBlossoms(TCB_PTR tcb, void *work)
         _initCellActor();
         mdw->seq++;
         break;
-      case _CHAR_READ: 	//chr“Ç‚İ‚İ
+      case _CHAR_READ: 	//chrèª­ã¿è¾¼ã¿
         ChangeBrightnessRequest(1,_TRAP_DIRTYBLOSSOMS_BRIGHTNESS_FL,BRIGHTNESS_NORMAL,
                                 PLANEMASK_BG0,MASK_MAIN_DISPLAY);
         if(_pCTW->nowTrapType == UG_TRAPTYPE_DIRTY_BLOSSOMS){
@@ -4274,7 +4274,7 @@ static void _GMEVENT_DirtyBlossoms(TCB_PTR tcb, void *work)
                                             0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_FIELD);
         mdw->seq++;
         break;
-      case _PAL_READ: 	//pal“Ç‚İ‚İ
+      case _PAL_READ: 	//palèª­ã¿è¾¼ã¿
         if(_pCTW->nowTrapType == UG_TRAPTYPE_DIRTY_BLOSSOMS){
             pic = NARC_ug_trap_blossoms_NCLR;
         }
@@ -4287,7 +4287,7 @@ static void _GMEVENT_DirtyBlossoms(TCB_PTR tcb, void *work)
                                             0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAPID_FIELD);
         mdw->seq++;
         break;
-      case _CELL_READ:	//cell“Ç‚İ‚İ
+      case _CELL_READ:	//cellèª­ã¿è¾¼ã¿
         ChangeBrightnessRequest(1,BRIGHTNESS_NORMAL,_TRAP_DIRTYBLOSSOMS_BRIGHTNESS_FL,
                                 PLANEMASK_BG0,MASK_MAIN_DISPLAY);
         if(_pCTW->nowTrapType == UG_TRAPTYPE_DIRTY_BLOSSOMS){
@@ -4302,7 +4302,7 @@ static void _GMEVENT_DirtyBlossoms(TCB_PTR tcb, void *work)
                                                 0, 0, CLACT_U_CELL_RES,HEAPID_FIELD);
         mdw->seq++;
         break;
-      case _ANIM_READ:	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+      case _ANIM_READ:	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
         if(_pCTW->nowTrapType == UG_TRAPTYPE_DIRTY_BLOSSOMS){
             pic = NARC_ug_trap_blossoms_NANR;
         }
@@ -4316,13 +4316,13 @@ static void _GMEVENT_DirtyBlossoms(TCB_PTR tcb, void *work)
         mdw->seq++;
         break;
       case _SET_CLACT:
-        // ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
-        // Chara“]‘—
+        // ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
+        // Charaè»¢é€
         CLACT_U_CharManagerSetCharModeAdjustAreaCont( _pCTW->resObjTbl[MAIN_RES][CLACT_U_CHAR_RES] );
-        // ƒpƒŒƒbƒg“]‘—  CLACT_U_PlttManagerSetCleanArea
+        // ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€  CLACT_U_PlttManagerSetCleanArea
         CLACT_U_PlttManagerSetCleanArea( _pCTW->resObjTbl[MAIN_RES][CLACT_U_PLTT_RES] );
         _setCellActor(mdw->num);
-        _dirtyBlossomsAddPetal(mdw); // ”z’uŒvZ
+        _dirtyBlossomsAddPetal(mdw); // é…ç½®è¨ˆç®—
         mdw->seq++;
         break;
       case _MESSAGE_LOOP:
@@ -4345,7 +4345,7 @@ static void _GMEVENT_DirtyBlossoms(TCB_PTR tcb, void *work)
                 mdw->seq = _GOODS_END_START;
             }
             else{
-                CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+                CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
                 mdw->seq = _ENDCMD;
             }
         }
@@ -4372,7 +4372,7 @@ static void _GMEVENT_DirtyBlossoms(TCB_PTR tcb, void *work)
       case _GOODS_END_WALK:
         mdw->timer++;
         if(mdw->timer > 8){
-            CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+            CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
             mdw->seq = _ENDCMD;
         }
         break;
@@ -4381,8 +4381,8 @@ static void _GMEVENT_DirtyBlossoms(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief    ‰Ô‚Ñ‚ç‚Ì•‘I—¹ˆ—
- * @param    victimNetID ©•ª
+ * @brief    èŠ±ã³ã‚‰ã®èˆçµ‚äº†å‡¦ç†
+ * @param    victimNetID è‡ªåˆ†
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -4399,8 +4399,8 @@ static void _endClientDirtyBlossoms(int victimNetID,BOOL bGoods)
 */
 //--------------------------------------------------------------
 /**
- * @brief    ‰Ô‚Ñ‚ç‚Ì•‘I—¹ˆ—
- * @param    victimNetID ©•ª
+ * @brief    èŠ±ã³ã‚‰ã®èˆçµ‚äº†å‡¦ç†
+ * @param    victimNetID è‡ªåˆ†
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -4428,9 +4428,9 @@ static void _endClientForceDirtyBlossoms(int victimNetID,BOOL bGoods)
 
 //--------------------------------------------------------------
 /**
- * ‰Ô‚Ñ‚ç‚Ì•‘‰Šú‰»
+ * èŠ±ã³ã‚‰ã®èˆåˆæœŸåŒ–
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -4459,7 +4459,7 @@ static void _dirtyBlossomsInitialize(FIELDSYS_WORK* pFSys, BOOL bGoodsTrap, int 
 
 //------------------------------------------------------------------
 /**
- * ã©—pƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ç½ ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  * @param   none
  * @retval  none
  */
@@ -4468,20 +4468,20 @@ static void _dirtyBlossomsInitialize(FIELDSYS_WORK* pFSys, BOOL bGoodsTrap, int 
 static void _initCellActor(void)
 {
     int i;
-    // ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
     _pCTW->clactSet = CLACT_U_SetEasyInit( _CLACT_OAMNUM, &_pCTW->renddata, HEAPID_FIELD );
 
     CLACT_U_SetSubSurfaceMatrix( &_pCTW->renddata, SUB_SURFACE_X, SUB_SURFACE_Y*2 );
 
-    //ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-    for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+    //ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+    for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
         _pCTW->resMan[MAIN_RES][i] = CLACT_U_ResManagerInit(2, i, HEAPID_FIELD);
     }
 }
 
 //------------------------------------------------------------------
 /**
- * ã©—pƒZƒ‹ƒAƒNƒ^[I—¹ˆ—
+ * ç½ ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼çµ‚äº†å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -4497,27 +4497,27 @@ static void _endCellActor(int oamNum)
             _pCTW->clActWork[i] = NULL;
         }
     }
-    // ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+    // ã‚­ãƒ£ãƒ©è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
     if(_pCTW->resObjTbl[MAIN_RES][CLACT_U_CHAR_RES]){
         if(CheckCharID(CLACT_U_ResManagerGetResObjID(_pCTW->resObjTbl[MAIN_RES][CLACT_U_CHAR_RES]))){
             CLACT_U_CharManagerDelete(_pCTW->resObjTbl[MAIN_RES][CLACT_U_CHAR_RES]);
         }
     }
     _pCTW->resObjTbl[MAIN_RES][CLACT_U_CHAR_RES]=NULL;
-    // ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+    // ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
     if(_pCTW->resObjTbl[MAIN_RES][CLACT_U_PLTT_RES]){
         if(CheckPlttID(CLACT_U_ResManagerGetResObjID(_pCTW->resObjTbl[MAIN_RES][CLACT_U_PLTT_RES]))){
             CLACT_U_PlttManagerDelete(_pCTW->resObjTbl[MAIN_RES][CLACT_U_PLTT_RES]);
         }
     }
     _pCTW->resObjTbl[MAIN_RES][CLACT_U_PLTT_RES]=NULL;
-    // ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+    // ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
     for(i=0;i < CLACT_RESOURCE_NUM ; i++){
         if(_pCTW->resMan[MAIN_RES][i])
             CLACT_U_ResManagerDelete(_pCTW->resMan[MAIN_RES][i]);
         _pCTW->resMan[MAIN_RES][i]=NULL;
     }
-    // ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
     if(_pCTW->clactSet)
         CLACT_DestSet(_pCTW->clactSet);
     _pCTW->clactSet=NULL;
@@ -4525,14 +4525,14 @@ static void _endCellActor(int oamNum)
 
 //------------------------------------------------------------------
 /**
- * ã©ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ç½ ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  * @param   none
  * @retval  none
  */
 //------------------------------------------------------------------
 static void _setCellActor(int num)
 {
-    // ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
 
     CLACT_U_MakeHeader(&_pCTW->clActHeader_s,
                        0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
@@ -4544,7 +4544,7 @@ static void _setCellActor(int num)
                        NULL,NULL);
 
     {
-        //“o˜^î•ñŠi”[
+        //ç™»éŒ²æƒ…å ±æ ¼ç´
         CLACT_ADD add;
         int i;
 
@@ -4552,7 +4552,7 @@ static void _setCellActor(int num)
         add.ClActHeader	= &_pCTW->clActHeader_s;
 
         add.mat.x		= FX32_CONST(32) ;
-        add.mat.y		= FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ª‰ºHASUB‚ªãHj
+        add.mat.y		= FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸‹ï¼Ÿã€SUBãŒä¸Šï¼Ÿï¼‰
         add.mat.z		= 0;
         add.sca.x		= FX32_ONE;
         add.sca.y		= FX32_ONE;
@@ -4562,9 +4562,9 @@ static void _setCellActor(int num)
         add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
         add.heap		= HEAPID_FIELD;
 
-        //ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
+        //ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-        // ã‰æ–Ê—p
+        // ä¸Šç”»é¢ç”¨
         for(i = 0; i < num ; i++){
             add.mat.x = FX32_ONE*300;
             add.mat.y = FX32_ONE*300;
@@ -4575,13 +4575,13 @@ static void _setCellActor(int num)
             CLACT_BGPriorityChg(_pCTW->clActWork[i],1);
         }
     }
-    GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJ–Ê‚n‚m
-    GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJ–Ê‚n‚m
+    GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
+    GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   CELLACTORƒp[ƒcÁ‹
+ * @brief   CELLACTORãƒ‘ãƒ¼ãƒ„æ¶ˆå»
  * @param   index
  * @return  none
  */
@@ -4598,7 +4598,7 @@ static void _delCellActor(int index)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰Ô‚Ñ‚çanimˆÊ’u’²®
+ * @brief   èŠ±ã³ã‚‰animä½ç½®èª¿æ•´
  * @param   none
  * @return  none
  */
@@ -4614,7 +4614,7 @@ static void _dartyBlossomsPos(int index,_EVENT_DIRTYBLOSSOMS_WORK* mdw, int pow)
     int y = mdw->oamGrid[index].zpos;
 
     if(pow == 0){
-        mdw->turntime[index] += 0x400;  // ‚ä‚ê‚éŠÔ‚Æ‚¢‚¤‚©Šp“x‚Æ‚¢‚¤‚©
+        mdw->turntime[index] += 0x400;  // ã‚†ã‚Œã‚‹æ™‚é–“ã¨ã„ã†ã‹è§’åº¦ã¨ã„ã†ã‹
     }
     ansx = FX_Mul(FX_SinIdx(mdw->turntime[index]) , 4 * FX32_ONE + FX32_ONE / 2);
     ansz = FX_Mul(FX_CosIdx(mdw->turntime[index]) , 2 * FX32_ONE + FX32_ONE / 2);
@@ -4629,13 +4629,13 @@ static void _dartyBlossomsPos(int index,_EVENT_DIRTYBLOSSOMS_WORK* mdw, int pow)
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ}ƒCƒNè“®æ“¾‚ÌƒR[ƒ‹ƒoƒbƒN
+ * @brief   ãƒã‚¤ã‚¯æ‰‹å‹•å–å¾—ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
 //------------------------------------------------------------------
 
-static s8 _mic ATTRIBUTE_ALIGN(32);  // ƒAƒ‰ƒCƒƒ“ƒg‚ğØ‚Á‚Ä‚¨‚©‚È‚¢‚Æ‚¢‚¯‚È‚¢‚½‚ß
+static s8 _mic ATTRIBUTE_ALIGN(32);  // ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã‚’åˆ‡ã£ã¦ãŠã‹ãªã„ã¨ã„ã‘ãªã„ãŸã‚
 
 static void _micCallBack( MICResult result, void* arg )
 {
@@ -4646,13 +4646,13 @@ static void _micCallBack( MICResult result, void* arg )
 
 //--------------------------------------------------------------
 /**
- * @brief    ‰Ô‚Ñ‚ç‚Ì•‘ˆ—
+ * @brief    èŠ±ã³ã‚‰ã®èˆå‡¦ç†
  * @param    bgl    GF_BGL_INI
  * @param    mdw    _EVENT_DIRTYBLOSSOMS_WORK
- * @retval   ˆ—Š®—¹=TRUE
+ * @retval   å‡¦ç†å®Œäº†=TRUE
  */
 //--------------------------------------------------------------
-// ƒI[ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€
+// ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define		CLACT_AUTO_ANM_FRAME		(FX32_ONE * 2)
 
 static BOOL _procDirtyBlossoms(GF_BGL_INI * bgl, _EVENT_DIRTYBLOSSOMS_WORK* mdw)
@@ -4661,12 +4661,12 @@ static BOOL _procDirtyBlossoms(GF_BGL_INI * bgl, _EVENT_DIRTYBLOSSOMS_WORK* mdw)
     int pow=0,pos, ans,delCnt,powPos;
     fx32 x,z,alpha;
 
-    // è“®ƒTƒ“ƒvƒŠƒ“ƒO
+    // æ‰‹å‹•ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°
     Snd_MicManualSampling(MIC_SAMPLING_TYPE_SIGNED_8BIT,&_mic,_micCallBack,NULL);
 
-    {  // ‚«‚©‚¯‘§‚Ì—š—ğ ‚ğ‚½‚ß‚é
+    {  // å¹ãã‹ã‘æ¯ã®å±¥æ­´ ã‚’ãŸã‚ã‚‹
         if(_pCTW->nowTrapType == UG_TRAPTYPE_DIRTY_BLOSSOMS){
-            pow = abs(_pCTW->mic) / 33;  // ‹­ã‚ğ‚R‚R‚Å‚í‚è‚Â‚¯‚Ä‚¢‚é
+            pow = abs(_pCTW->mic) / 33;  // å¼·å¼±ã‚’ï¼“ï¼“ã§ã‚ã‚Šã¤ã‘ã¦ã„ã‚‹
             mdw->blowRing[ mdw->blowBase ] = pow;
         }
         else{
@@ -4680,11 +4680,11 @@ static BOOL _procDirtyBlossoms(GF_BGL_INI * bgl, _EVENT_DIRTYBLOSSOMS_WORK* mdw)
             break;
         }
     }
-    if(i == mdw->num){  // Š®—¹
+    if(i == mdw->num){  // å®Œäº†
         return TRUE;
     }
-    for(i = 0; i < mdw->num;i++){// ‚«‚©‚¯‘§‚É‚æ‚éˆÚ“®
-        // ˆÚ“®§ŒÀŒŸ¸
+    for(i = 0; i < mdw->num;i++){// å¹ãã‹ã‘æ¯ã«ã‚ˆã‚‹ç§»å‹•
+        // ç§»å‹•åˆ¶é™æ¤œæŸ»
         if((mdw->oamGrid[i].xpos <= 0) || (mdw->oamGrid[i].xpos >= 256) ||
            (mdw->oamGrid[i].zpos <= 0) || (mdw->oamGrid[i].zpos >= 192)){
             _delCellActor(i);
@@ -4703,7 +4703,7 @@ static BOOL _procDirtyBlossoms(GF_BGL_INI * bgl, _EVENT_DIRTYBLOSSOMS_WORK* mdw)
         alpha = FX_Sqrt(alpha);
 
 
-        if(pow == 0){   // ’â~’†  ˆÊ’uŠ„‚èo‚µ
+        if(pow == 0){   // åœæ­¢ä¸­  ä½ç½®å‰²ã‚Šå‡ºã—
             x = FX_Mul( FX_Div( alpha, (160 * FX32_ONE)), (_BLOW_FRAME-2) * FX32_ONE);
             mdw->blowPos[ i ] = FX_Whole(x);
         }
@@ -4746,13 +4746,13 @@ static BOOL _procDirtyBlossoms(GF_BGL_INI * bgl, _EVENT_DIRTYBLOSSOMS_WORK* mdw)
 
 
 
-    CLACT_Draw( _pCTW->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+    CLACT_Draw( _pCTW->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
     return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * ã©“®ì‹¤’ÊÀsŠÖ”
+ * ç½ å‹•ä½œå…±é€šå®Ÿè¡Œé–¢æ•°
  * @param    bgl  GF_BGL_INI
  * @retval   none
  */
@@ -4783,7 +4783,7 @@ static int _bubbleNum(void)
 
 //--------------------------------------------------------------
 /**
- * –A‚ğ’u‚­êŠ‚ğƒe[ƒuƒ‹‚Æ—”‚ÅŒˆ‚ß‚é
+ * æ³¡ã‚’ç½®ãå ´æ‰€ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«ã¨ä¹±æ•°ã§æ±ºã‚ã‚‹
  * @param    none
  * @retval   none
  */
@@ -4830,9 +4830,9 @@ static void _bubbleAddPetal(_EVENT_BUBBLE_WORK* mdw)
 
 //--------------------------------------------------------------
 /**
- * BUBBLEƒCƒxƒ“ƒgÀs
+ * BUBBLEã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ
  * @param
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -4848,7 +4848,7 @@ static void _GMEVENT_Bubble(TCB_PTR tcb, void *work)
         _initCellActor();
         mdw->seq++;
         break;
-      case _CHAR_READ: 	//chr“Ç‚İ‚İ
+      case _CHAR_READ: 	//chrèª­ã¿è¾¼ã¿
         _pCTW->resObjTbl[MAIN_RES][CLACT_U_CHAR_RES] =
             CLACT_U_ResManagerResAddArcChar(_pCTW->resMan[MAIN_RES][CLACT_U_CHAR_RES],
                                             ARC_UG_TRAP_GRA, NARC_ug_trap_bubble_NCGR,
@@ -4857,14 +4857,14 @@ static void _GMEVENT_Bubble(TCB_PTR tcb, void *work)
                                 PLANEMASK_BG0,MASK_MAIN_DISPLAY);
         mdw->seq++;
         break;
-      case _PAL_READ: 	//pal“Ç‚İ‚İ
+      case _PAL_READ: 	//palèª­ã¿è¾¼ã¿
         _pCTW->resObjTbl[MAIN_RES][CLACT_U_PLTT_RES] =
             CLACT_U_ResManagerResAddArcPltt(_pCTW->resMan[MAIN_RES][CLACT_U_PLTT_RES],
                                             ARC_UG_TRAP_GRA, NARC_ug_trap_bubble_NCLR,
                                             0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAPID_FIELD);
         mdw->seq++;
         break;
-      case _CELL_READ:	//cell“Ç‚İ‚İ
+      case _CELL_READ:	//cellèª­ã¿è¾¼ã¿
         ChangeBrightnessRequest(1,BRIGHTNESS_NORMAL,_TRAP_DIRTYBLOSSOMS_BRIGHTNESS_FL,
                                 PLANEMASK_BG0,MASK_MAIN_DISPLAY);
         _pCTW->resObjTbl[MAIN_RES][CLACT_U_CELL_RES] =
@@ -4873,7 +4873,7 @@ static void _GMEVENT_Bubble(TCB_PTR tcb, void *work)
                                                 0, 0, CLACT_U_CELL_RES,HEAPID_FIELD);
         mdw->seq++;
         break;
-      case _ANIM_READ:	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+      case _ANIM_READ:	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
         _pCTW->resObjTbl[MAIN_RES][CLACT_U_CELLANM_RES] =
             CLACT_U_ResManagerResAddArcKindCell(_pCTW->resMan[MAIN_RES][CLACT_U_CELLANM_RES],
                                                 ARC_UG_TRAP_GRA, NARC_ug_trap_bubble_NANR,
@@ -4881,7 +4881,7 @@ static void _GMEVENT_Bubble(TCB_PTR tcb, void *work)
         mdw->seq++;
         break;
       case _SET_CLACT:
-        _bubbleAddPetal(mdw); // ”z’uŒvZ
+        _bubbleAddPetal(mdw); // é…ç½®è¨ˆç®—
         _setCellActorBubble(mdw);
         mdw->seq++;
         break;
@@ -4907,7 +4907,7 @@ static void _GMEVENT_Bubble(TCB_PTR tcb, void *work)
                 mdw->seq = _GOODS_END_START;
             }
             else{
-                CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+                CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
                 mdw->seq = _ENDCMD;
             }
         }
@@ -4938,7 +4938,7 @@ static void _GMEVENT_Bubble(TCB_PTR tcb, void *work)
       case _GOODS_END_WALK:
         mdw->timer++;
         if(mdw->timer > 8){
-            CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+            CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
             mdw->seq = _ENDCMD;
         }
         break;
@@ -4947,9 +4947,9 @@ static void _GMEVENT_Bubble(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * bubble‰Šú‰»
+ * bubbleåˆæœŸåŒ–
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -4971,19 +4971,19 @@ static void _bubbleInitialize(GF_BGL_INI * bgl,BOOL bGoodsTrap,int dir)
 
 //------------------------------------------------------------------
 /**
- * ã©ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ç½ ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  * @param   none
  * @retval  none
  */
 //------------------------------------------------------------------
 static void _setCellActorBubble(_EVENT_BUBBLE_WORK* mdw)
 {
-    // ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
-    // Chara“]‘—
+    // ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
+    // Charaè»¢é€
     CLACT_U_CharManagerSetCharModeAdjustAreaCont( _pCTW->resObjTbl[MAIN_RES][CLACT_U_CHAR_RES] );
-    // ƒpƒŒƒbƒg“]‘—  CLACT_U_PlttManagerSetCleanArea
+    // ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€  CLACT_U_PlttManagerSetCleanArea
     CLACT_U_PlttManagerSetCleanArea( _pCTW->resObjTbl[MAIN_RES][CLACT_U_PLTT_RES] );
-    // ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
     CLACT_U_MakeHeader(&_pCTW->clActHeader_s,
                        0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
                        0, 0,
@@ -4994,7 +4994,7 @@ static void _setCellActorBubble(_EVENT_BUBBLE_WORK* mdw)
                        NULL,NULL);
 
     {
-        //“o˜^î•ñŠi”[
+        //ç™»éŒ²æƒ…å ±æ ¼ç´
         CLACT_ADD add;
         int i;
 
@@ -5002,7 +5002,7 @@ static void _setCellActorBubble(_EVENT_BUBBLE_WORK* mdw)
         add.ClActHeader	= &_pCTW->clActHeader_s;
 
         add.mat.x		= FX32_CONST(32) ;
-        add.mat.y		= FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ª‰ºHASUB‚ªãHj
+        add.mat.y		= FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸‹ï¼Ÿã€SUBãŒä¸Šï¼Ÿï¼‰
         add.mat.z		= 0;
         add.sca.x		= FX32_ONE;
         add.sca.y		= FX32_ONE;
@@ -5012,9 +5012,9 @@ static void _setCellActorBubble(_EVENT_BUBBLE_WORK* mdw)
         add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
         add.heap		= HEAPID_FIELD;
 
-        //ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
+        //ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-        // ã‰æ–Ê—p
+        // ä¸Šç”»é¢ç”¨
         for(i = 0; i < _bubbleNum() ; i++){
             add.mat.x = FX32_ONE*300;
             add.mat.y = FX32_ONE*300;
@@ -5027,13 +5027,13 @@ static void _setCellActorBubble(_EVENT_BUBBLE_WORK* mdw)
             CLACT_BGPriorityChg(_pCTW->clActWork[i],1);
         }
     }
-    GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJ–Ê‚n‚m
-    GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJ–Ê‚n‚m
+    GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
+    GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒuƒ‹ˆÊ’u’²®
+ * @brief   ãƒãƒ–ãƒ«ä½ç½®èª¿æ•´
  * @param   none
  * @return  none
  */
@@ -5052,7 +5052,7 @@ static void _bubblePos(int i,_EVENT_BUBBLE_WORK* mdw)
         tmpVex.x = mdw->oamGrid[i].xpos;
         tmpVex.y = mdw->oamGrid[i].zpos;
         CLACT_SetMatrix(_pCTW->clActWork[i], &tmpVex);
-        mdw->scaletime[i] += 0x250 + i*100;  // ‚ä‚ê‚éŠÔ
+        mdw->scaletime[i] += 0x250 + i*100;  // ã‚†ã‚Œã‚‹æ™‚é–“
         sin = FX_SinIdx(mdw->scaletime[i]) + FX32_ONE;
         ans = FX_Div(sin , (20*FX32_ONE) );
         tmpVex.x = FX32_ONE - ans;
@@ -5064,10 +5064,10 @@ static void _bubblePos(int i,_EVENT_BUBBLE_WORK* mdw)
 
 //--------------------------------------------------------------
 /**
- * @brief    BUBBLEˆ—
+ * @brief    BUBBLEå‡¦ç†
  * @param    bgl    GF_BGL_INI
  * @param    mdw    _EVENT_BUBBLE_WORK
- * @retval   ˆ—Š®—¹=TRUE
+ * @retval   å‡¦ç†å®Œäº†=TRUE
  */
 //--------------------------------------------------------------
 
@@ -5086,7 +5086,7 @@ static BOOL _procBubble(GF_BGL_INI * bgl, _EVENT_BUBBLE_WORK* mdw)
             delCnt++;
         }
     }
-    if(delCnt == _bubbleNum()){  // Š®—¹
+    if(delCnt == _bubbleNum()){  // å®Œäº†
         return TRUE;
     }
 
@@ -5101,17 +5101,17 @@ static BOOL _procBubble(GF_BGL_INI * bgl, _EVENT_BUBBLE_WORK* mdw)
             ans = FX_Sqrt(ans);
             if((_BUBBLE_HALFSIZE[mdw->size[i]] * FX32_ONE) > ans){
                 Snd_SePlay(UGT_SE_BUBBLE);
-                CLACT_AnmChg( _pCTW->clActWork[i], mdw->size[i]*2+1); // ƒAƒjƒ•ÏX
+                CLACT_AnmChg( _pCTW->clActWork[i], mdw->size[i]*2+1); // ã‚¢ãƒ‹ãƒ¡å¤‰æ›´
                 mdw->bEnd[i]=TRUE;
                 break;
             }
         }
     }
-    for(i = 0; i < _bubbleNum();i++){// ‚Ó‚ ‚Ó‚ ˆÚ“®
+    for(i = 0; i < _bubbleNum();i++){// ãµã‚ãµã‚ç§»å‹•
         if(mdw->bEnd[i]){
             continue;
         }
-        // ˆÚ“®§ŒÀŒŸ¸
+        // ç§»å‹•åˆ¶é™æ¤œæŸ»
         ans = FX_SinIdx(mdw->dirIdx[i]);
         mdw->oamGrid[i].zpos -= ans;
         ans = FX_CosIdx(mdw->dirIdx[i]);
@@ -5132,14 +5132,14 @@ static BOOL _procBubble(GF_BGL_INI * bgl, _EVENT_BUBBLE_WORK* mdw)
     }
 
 
-    CLACT_Draw( _pCTW->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+    CLACT_Draw( _pCTW->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
     return FALSE;
 }
 
 //==============================================================================
 /**
- * bubbleã©‚ğŠJn‚·‚é
- * @param   victimNetID  ã©”íŠQÒ
+ * bubbleç½ ã‚’é–‹å§‹ã™ã‚‹
+ * @param   victimNetID  ç½ è¢«å®³è€…
  * @retval  none
  */
 //==============================================================================
@@ -5157,8 +5157,8 @@ static void _startClientBubble(int victimNetID,BOOL bGoodsTrap, int dir)
 
 //--------------------------------------------------------------
 /**
- * BUBBLEƒT[ƒo[‘¤‚ğŠJn‚·‚é
- * @param   victimNetID   ã©”íŠQÒ
+ * BUBBLEã‚µãƒ¼ãƒãƒ¼å´ã‚’é–‹å§‹ã™ã‚‹
+ * @param   victimNetID   ç½ è¢«å®³è€…
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -5170,8 +5170,8 @@ static void _startServerBubble(int victimNetID)
 
 //--------------------------------------------------------------
 /**
- * @brief    babbleI—¹ˆ—
- * @param    victimNetID ©•ª
+ * @brief    babbleçµ‚äº†å‡¦ç†
+ * @param    victimNetID è‡ªåˆ†
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -5182,15 +5182,15 @@ static void _endClientBubble(int victimNetID,BOOL bGoods)
         _EVENT_BUBBLE_WORK* wk = _pCTW->pTCBWork;
         wk->seq = _END;
         _pCTW->pTCBWork = NULL;
-        OHNO_PRINT("ã©‹­§I—¹\n");
+        OHNO_PRINT("ç½ å¼·åˆ¶çµ‚äº†\n");
     }
 }
 */
 
 //--------------------------------------------------------------
 /**
- * @brief    babble‹­§I—¹ˆ—
- * @param    victimNetID ©•ª
+ * @brief    babbleå¼·åˆ¶çµ‚äº†å‡¦ç†
+ * @param    victimNetID è‡ªåˆ†
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -5220,21 +5220,21 @@ static void _endForceClientBubble(int victimNetID,BOOL bGoods)
 //--------------------------------------rock
 //------------------------------------------------------------------
 /**
- * ã©ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ç½ ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  * @param   none
  * @retval  none
  */
 //------------------------------------------------------------------
 static void _setCellActorRock(_EVENT_ROCK_WORK* mdw)
 {
-    // ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
-    // Chara“]‘—
+    // ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
+    // Charaè»¢é€
     CLACT_U_CharManagerSetCharModeAdjustAreaCont( _pCTW->resObjTbl[MAIN_RES][CLACT_U_CHAR_RES] );
     //    CLACT_U_CharManagerSetAreaCont( _pCTW->resObjTbl[MAIN_RES][CLACT_U_CHAR_RES] );
 
-    // ƒpƒŒƒbƒg“]‘—  CLACT_U_PlttManagerSetCleanArea
+    // ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€  CLACT_U_PlttManagerSetCleanArea
     CLACT_U_PlttManagerSetCleanArea( _pCTW->resObjTbl[MAIN_RES][CLACT_U_PLTT_RES] );
-    // ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
     CLACT_U_MakeHeader(&_pCTW->clActHeader_s,
                        0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
                        0, 0,
@@ -5245,7 +5245,7 @@ static void _setCellActorRock(_EVENT_ROCK_WORK* mdw)
                        NULL,NULL);
 
     {
-        //“o˜^î•ñŠi”[
+        //ç™»éŒ²æƒ…å ±æ ¼ç´
         CLACT_ADD add;
         int i;
 
@@ -5253,7 +5253,7 @@ static void _setCellActorRock(_EVENT_ROCK_WORK* mdw)
         add.ClActHeader	= &_pCTW->clActHeader_s;
 
         add.mat.x		= FX32_CONST(32) ;
-        add.mat.y		= FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ª‰ºHASUB‚ªãHj
+        add.mat.y		= FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸‹ï¼Ÿã€SUBãŒä¸Šï¼Ÿï¼‰
         add.mat.z		= 0;
         add.sca.x		= FX32_ONE;
         add.sca.y		= FX32_ONE;
@@ -5263,9 +5263,9 @@ static void _setCellActorRock(_EVENT_ROCK_WORK* mdw)
         add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
         add.heap		= HEAPID_FIELD;
 
-        //ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
+        //ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-        // ã‰æ–Ê—p
+        // ä¸Šç”»é¢ç”¨
         for(i = 0; i < _CLACT_ROCK_OAMNUM ; i++){
             add.mat.x = FX32_ONE*100;
             add.mat.y = FX32_ONE*100;
@@ -5278,13 +5278,13 @@ static void _setCellActorRock(_EVENT_ROCK_WORK* mdw)
             CLACT_BGPriorityChg(_pCTW->clActWork[i],1);
         }
     }
-    GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJ–Ê‚n‚m
-    GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJ–Ê‚n‚m
+    GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
+    GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 }
 
 //--------------------------------------------------------------
 /**
- * @brief    ƒ_ƒ[ƒWƒAƒjƒÄ¶
+ * @brief    ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚¢ãƒ‹ãƒ¡å†ç”Ÿ
  * @param    mdw    _EVENT_ROCK_WORK
  * @retval   none
  */
@@ -5308,7 +5308,7 @@ static void _damageAnim(_EVENT_ROCK_WORK* mdw, int damage)
         _rockAnimLoad(mdw,12, 140, mdw->yPos - 15, -2, -4);
         _rockAnimLoad(mdw,13, 135, mdw->yPos - 20  ,   -2, -2);
         _rockAnimLoad(mdw,14, 120, mdw->yPos -11,  2, 0);
-        // ‚½‚¾‚¢‚Ü‚P‚T‚±
+        // ãŸã ã„ã¾ï¼‘ï¼•ã“
       case 3:
         _rockAnimLoad(mdw, 7, 128, mdw->yPos - 5, 3, -4);
         _rockAnimLoad(mdw, 8, 132, mdw->yPos - 15, -3, -4);
@@ -5351,10 +5351,10 @@ static void _damageAnimLoop(_EVENT_ROCK_WORK* mdw)
 
 //--------------------------------------------------------------
 /**
- * @brief    ROCKˆ—
+ * @brief    ROCKå‡¦ç†
  * @param    bgl    GF_BGL_INI
  * @param    mdw    _EVENT_ROCK_WORK
- * @retval   ˆ—Š®—¹=TRUE
+ * @retval   å‡¦ç†å®Œäº†=TRUE
  */
 //--------------------------------------------------------------
 
@@ -5450,7 +5450,7 @@ static BOOL _procRock(GF_BGL_INI * bgl, _EVENT_ROCK_WORK* mdw)
         tmpVex.y = mdw->yPos * FX32_ONE;
         CLACT_SetMatrix(_pCTW->clActWork[0], &tmpVex);
         break;
-      case _ROCK_ANIM:  // •ö‰óƒAƒjƒ[ƒVƒ‡ƒ“
+      case _ROCK_ANIM:  // å´©å£Šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
         if(mdw->timer == 0){
             _damageAnim(mdw,mdw->damage/3);
         }
@@ -5516,7 +5516,7 @@ static BOOL _procRock(GF_BGL_INI * bgl, _EVENT_ROCK_WORK* mdw)
         CLACT_SetDrawFlag(_pCTW->clActWork[0], 0);
         return TRUE;
     }
-    CLACT_Draw( _pCTW->clactSet );			// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+    CLACT_Draw( _pCTW->clactSet );			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
     return FALSE;
 }
 
@@ -5565,9 +5565,9 @@ static void _rockRscDelete(_EVENT_ROCK_WORK* mdw)
 
 //--------------------------------------------------------------
 /**
- * ROCKƒCƒxƒ“ƒgÀs
+ * ROCKã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ
  * @param
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -5586,13 +5586,13 @@ static void _GMEVENT_Rock(TCB_PTR tcb, void *work)
             int i;
             _pCTW->clactSet = CLACT_U_SetEasyInit( _CLACT_OAMNUM, &_pCTW->renddata, HEAPID_FIELD );
             CLACT_U_SetSubSurfaceMatrix( &_pCTW->renddata, SUB_SURFACE_X, SUB_SURFACE_Y*2 );
-            for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+            for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
                 _pCTW->resMan[MAIN_RES][i] = CLACT_U_ResManagerInit(_ROCK_PATTERN_NUM+1, i, HEAPID_FIELD);
             }
         }
         mdw->seq++;
         break;
-      case _CHAR_READ: 	//chr“Ç‚İ‚İ
+      case _CHAR_READ: 	//chrèª­ã¿è¾¼ã¿
         ChangeBrightnessRequest(1,_TRAP_DIRTYBLOSSOMS_BRIGHTNESS_FL,BRIGHTNESS_NORMAL,
                                 PLANEMASK_BG0,MASK_MAIN_DISPLAY);
         _pCTW->resObjTbl[MAIN_RES][CLACT_U_CHAR_RES] =
@@ -5602,14 +5602,14 @@ static void _GMEVENT_Rock(TCB_PTR tcb, void *work)
         mdw->rockCharRes[0] = _pCTW->resObjTbl[MAIN_RES][CLACT_U_CHAR_RES];
         mdw->seq++;
         break;
-      case _PAL_READ: 	//pal“Ç‚İ‚İ
+      case _PAL_READ: 	//palèª­ã¿è¾¼ã¿
         _pCTW->resObjTbl[MAIN_RES][CLACT_U_PLTT_RES] =
             CLACT_U_ResManagerResAddArcPltt(_pCTW->resMan[MAIN_RES][CLACT_U_PLTT_RES],
                                             ARC_UG_TRAP_GRA, NARC_ug_trap_ug_ef_rock_NCLR,
                                             0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAPID_FIELD);
         mdw->seq++;
         break;
-      case _CELL_READ:	//cell“Ç‚İ‚İ
+      case _CELL_READ:	//cellèª­ã¿è¾¼ã¿
         ChangeBrightnessRequest(1,BRIGHTNESS_NORMAL,_TRAP_DIRTYBLOSSOMS_BRIGHTNESS_FL,
                                 PLANEMASK_BG0,MASK_MAIN_DISPLAY);
         _pCTW->resObjTbl[MAIN_RES][CLACT_U_CELL_RES] =
@@ -5618,7 +5618,7 @@ static void _GMEVENT_Rock(TCB_PTR tcb, void *work)
                                                 0, 0, CLACT_U_CELL_RES,HEAPID_FIELD);
         mdw->seq++;
         break;
-      case _ANIM_READ:	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+      case _ANIM_READ:	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
         _pCTW->resObjTbl[MAIN_RES][CLACT_U_CELLANM_RES] =
             CLACT_U_ResManagerResAddArcKindCell(_pCTW->resMan[MAIN_RES][CLACT_U_CELLANM_RES],
                                                 ARC_UG_TRAP_GRA, NARC_ug_trap_ug_ef_r1_NANR,
@@ -5651,7 +5651,7 @@ static void _GMEVENT_Rock(TCB_PTR tcb, void *work)
                 mdw->seq = _GOODS_END_START;
             }
             else{
-                CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+                CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
                 mdw->seq = _ENDCMD;
             }
         }
@@ -5678,7 +5678,7 @@ static void _GMEVENT_Rock(TCB_PTR tcb, void *work)
       case _GOODS_END_WALK:
         mdw->timer++;
         if(mdw->timer > 8){
-            CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+            CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
             mdw->seq = _ENDCMD;
         }
         break;
@@ -5687,9 +5687,9 @@ static void _GMEVENT_Rock(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * rock‰Šú‰»
+ * rockåˆæœŸåŒ–
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -5709,8 +5709,8 @@ static void _rockInitialize(GF_BGL_INI * bgl,BOOL bGoodsTrap,int dir)
 
 //==============================================================================
 /**
- * rockã©‚ğŠJn‚·‚é
- * @param   victimNetID  ã©”íŠQÒ
+ * rockç½ ã‚’é–‹å§‹ã™ã‚‹
+ * @param   victimNetID  ç½ è¢«å®³è€…
  * @retval  none
  */
 //==============================================================================
@@ -5728,8 +5728,8 @@ static void _startClientRock(int victimNetID, BOOL bGoodsTrap,int dir)
 
 //--------------------------------------------------------------
 /**
- * rockƒT[ƒo[‘¤‚ğŠJn‚·‚é
- * @param   victimNetID   ã©”íŠQÒ
+ * rockã‚µãƒ¼ãƒãƒ¼å´ã‚’é–‹å§‹ã™ã‚‹
+ * @param   victimNetID   ç½ è¢«å®³è€…
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -5741,8 +5741,8 @@ static void _startServerRock(int victimNetID)
 
 //--------------------------------------------------------------
 /**
- * @brief    rockI—¹ˆ—
- * @param    victimNetID ©•ª
+ * @brief    rockçµ‚äº†å‡¦ç†
+ * @param    victimNetID è‡ªåˆ†
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -5776,21 +5776,21 @@ static void _endClientRock(int victimNetID,BOOL bGoods)
 //--------------------------------------fire
 //------------------------------------------------------------------
 /**
- * ã©ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ç½ ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  * @param   none
  * @retval  none
  */
 //------------------------------------------------------------------
 static void _setCellActorFire(_EVENT_FIRE_WORK* mdw)
 {
-    // ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
-    // Chara“]‘—
+    // ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
+    // Charaè»¢é€
     CLACT_U_CharManagerSetCharModeAdjustAreaCont( _pCTW->resObjTbl[MAIN_RES][CLACT_U_CHAR_RES] );
     //    CLACT_U_CharManagerSetAreaCont( _pCTW->resObjTbl[MAIN_RES][CLACT_U_CHAR_RES] );
 
-    // ƒpƒŒƒbƒg“]‘—  CLACT_U_PlttManagerSetCleanArea
+    // ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€  CLACT_U_PlttManagerSetCleanArea
     CLACT_U_PlttManagerSetCleanArea( _pCTW->resObjTbl[MAIN_RES][CLACT_U_PLTT_RES] );
-    // ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
     CLACT_U_MakeHeader(&_pCTW->clActHeader_s,
                        0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
                        0, 0,
@@ -5801,7 +5801,7 @@ static void _setCellActorFire(_EVENT_FIRE_WORK* mdw)
                        NULL,NULL);
 
     {
-        //“o˜^î•ñŠi”[
+        //ç™»éŒ²æƒ…å ±æ ¼ç´
         CLACT_ADD add;
         int i;
 
@@ -5809,7 +5809,7 @@ static void _setCellActorFire(_EVENT_FIRE_WORK* mdw)
         add.ClActHeader	= &_pCTW->clActHeader_s;
 
         add.mat.x		= FX32_CONST(32) ;
-        add.mat.y		= FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ª‰ºHASUB‚ªãHj
+        add.mat.y		= FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸‹ï¼Ÿã€SUBãŒä¸Šï¼Ÿï¼‰
         add.mat.z		= 0;
         add.sca.x		= FX32_ONE;
         add.sca.y		= FX32_ONE;
@@ -5819,9 +5819,9 @@ static void _setCellActorFire(_EVENT_FIRE_WORK* mdw)
         add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
         add.heap		= HEAPID_FIELD;
 
-        //ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
+        //ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-        // ã‰æ–Ê—p
+        // ä¸Šç”»é¢ç”¨
         for(i = 0; i < _CLACT_FIRE_OAMNUM ; i++){
             add.mat.x = FX32_ONE * 128;
             add.mat.y = FX32_ONE * 84;
@@ -5834,16 +5834,16 @@ static void _setCellActorFire(_EVENT_FIRE_WORK* mdw)
             //            CLACT_ObjModeSet(_pCTW->clActWork[0], GX_OAM_MODE_XLU );
         }
     }
-    GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJ–Ê‚n‚m
-    GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJ–Ê‚n‚m
+    GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
+    GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 }
 
 //--------------------------------------------------------------
 /**
- * @brief    FIREˆ—
+ * @brief    FIREå‡¦ç†
  * @param    bgl    GF_BGL_INI
  * @param    mdw    _EVENT_ROCK_WORK
- * @retval   ˆ—Š®—¹=TRUE
+ * @retval   å‡¦ç†å®Œäº†=TRUE
  */
 //--------------------------------------------------------------
 
@@ -5870,12 +5870,12 @@ static BOOL _procFire(GF_BGL_INI * bgl, _EVENT_FIRE_WORK* mdw)
         }
         mdw->timer = 0;
         mdw->subSeq = _FIRE_PROC;
-        //        break;    // •K—v‚È‚µ
+        //        break;    // å¿…è¦ãªã—
       case _FIRE_PROC:
-        // è“®ƒTƒ“ƒvƒŠƒ“ƒO
+        // æ‰‹å‹•ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°
         Snd_MicManualSampling(MIC_SAMPLING_TYPE_SIGNED_8BIT,&_mic,_micCallBack,NULL);
         mdw->micCount++;
-        mdw->mic[mdw->micCount % _MIC_SAMPLE_NUM] = abs(_pCTW->mic); // ƒ}ƒCƒNƒTƒ“ƒvƒŠƒ“ƒO—š—ğ
+        mdw->mic[mdw->micCount % _MIC_SAMPLE_NUM] = abs(_pCTW->mic); // ãƒã‚¤ã‚¯ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å±¥æ­´
         for(j = 0; j < _MIC_SAMPLE_NUM ; j++){
             total += mdw->mic[j];
         }
@@ -5892,7 +5892,7 @@ static BOOL _procFire(GF_BGL_INI * bgl, _EVENT_FIRE_WORK* mdw)
         }
         if(mdw->scale == 0){
             mdw->subSeq = _FIRE_END;
-            return TRUE;    // I—¹
+            return TRUE;    // çµ‚äº†
         }
 
         if(_pCTW->nowTrapType == UG_TRAPTYPE_BLAZE){
@@ -5935,15 +5935,15 @@ static BOOL _procFire(GF_BGL_INI * bgl, _EVENT_FIRE_WORK* mdw)
       case _FIRE_END:
         break;
     }
-    CLACT_Draw( _pCTW->clactSet );			// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+    CLACT_Draw( _pCTW->clactSet );			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
     return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * FIREƒCƒxƒ“ƒgÀs
+ * FIREã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ
  * @param
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -5961,7 +5961,7 @@ static void _GMEVENT_Fire(TCB_PTR tcb, void *work)
         _initCellActor();
         mdw->seq++;
         break;
-      case _CHAR_READ: 	//chr“Ç‚İ‚İ
+      case _CHAR_READ: 	//chrèª­ã¿è¾¼ã¿
         ChangeBrightnessRequest(1,_TRAP_DIRTYBLOSSOMS_BRIGHTNESS_FL,BRIGHTNESS_NORMAL,
                                 PLANEMASK_BG0,MASK_MAIN_DISPLAY);
         if(_pCTW->nowTrapType == UG_TRAPTYPE_BLAZE){
@@ -5976,14 +5976,14 @@ static void _GMEVENT_Fire(TCB_PTR tcb, void *work)
                                             0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_FIELD);
         mdw->seq++;
         break;
-      case _PAL_READ: 	//pal“Ç‚İ‚İ
+      case _PAL_READ: 	//palèª­ã¿è¾¼ã¿
         _pCTW->resObjTbl[MAIN_RES][CLACT_U_PLTT_RES] =
             CLACT_U_ResManagerResAddArcPltt(_pCTW->resMan[MAIN_RES][CLACT_U_PLTT_RES],
                                             ARC_UG_TRAP_GRA, NARC_ug_trap_ug_ef_fire_NCLR,
                                             0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAPID_FIELD);
         mdw->seq++;
         break;
-      case _CELL_READ:	//cell“Ç‚İ‚İ
+      case _CELL_READ:	//cellèª­ã¿è¾¼ã¿
         ChangeBrightnessRequest(1,BRIGHTNESS_NORMAL,_TRAP_DIRTYBLOSSOMS_BRIGHTNESS_FL,
                                 PLANEMASK_BG0,MASK_MAIN_DISPLAY);
         if(_pCTW->nowTrapType == UG_TRAPTYPE_BLAZE){
@@ -5998,7 +5998,7 @@ static void _GMEVENT_Fire(TCB_PTR tcb, void *work)
                                                 0, 0, CLACT_U_CELL_RES,HEAPID_FIELD);
         mdw->seq++;
         break;
-      case _ANIM_READ:	//anim“Ç‚İ‚İ
+      case _ANIM_READ:	//animèª­ã¿è¾¼ã¿
         if(_pCTW->nowTrapType == UG_TRAPTYPE_BLAZE){
             picNo = NARC_ug_trap_ug_ef_fire1_NANR;
         }
@@ -6035,7 +6035,7 @@ static void _GMEVENT_Fire(TCB_PTR tcb, void *work)
                 mdw->seq = _GOODS_END_START;
             }
             else{
-                CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+                CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
                 mdw->seq = _ENDCMD;
             }
         }
@@ -6062,7 +6062,7 @@ static void _GMEVENT_Fire(TCB_PTR tcb, void *work)
       case _GOODS_END_WALK:
         mdw->timer++;
         if(mdw->timer > 8){
-            CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+            CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
             mdw->seq = _ENDCMD;
         }
         break;
@@ -6072,9 +6072,9 @@ static void _GMEVENT_Fire(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * fire‰Šú‰»
+ * fireåˆæœŸåŒ–
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -6094,8 +6094,8 @@ static void _fireInitialize(GF_BGL_INI * bgl, BOOL bGoodsTrap, int dir)
 
 //==============================================================================
 /**
- * FIREã©‚ğŠJn‚·‚é
- * @param   victimNetID  ã©”íŠQÒ
+ * FIREç½ ã‚’é–‹å§‹ã™ã‚‹
+ * @param   victimNetID  ç½ è¢«å®³è€…
  * @retval  none
  */
 //==============================================================================
@@ -6113,8 +6113,8 @@ static void _startClientFire(int victimNetID,BOOL bGoodsTrap, int dir)
 
 //--------------------------------------------------------------
 /**
- * FIREƒT[ƒo[‘¤‚ğŠJn‚·‚é
- * @param   victimNetID   ã©”íŠQÒ
+ * FIREã‚µãƒ¼ãƒãƒ¼å´ã‚’é–‹å§‹ã™ã‚‹
+ * @param   victimNetID   ç½ è¢«å®³è€…
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -6126,8 +6126,8 @@ static void _startServerFire(int victimNetID)
 
 //--------------------------------------------------------------
 /**
- * @brief    fireI—¹ˆ—
- * @param    victimNetID ©•ª
+ * @brief    fireçµ‚äº†å‡¦ç†
+ * @param    victimNetID è‡ªåˆ†
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -6158,9 +6158,9 @@ static void _endClientFire(int victimNetID, BOOL bGoods)
 
 //--------------------------------------------------------------
 /**
- * MESSAGEƒCƒxƒ“ƒgÀs
+ * MESSAGEã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ
  * @param
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -6209,7 +6209,7 @@ static void _GMEVENT_Message(TCB_PTR tcb, void *work)
             mdw->seq = _GOODS_END_START;
         }
         else{
-            CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+            CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
             mdw->seq = _ENDCMD;
         }
         break;
@@ -6230,7 +6230,7 @@ static void _GMEVENT_Message(TCB_PTR tcb, void *work)
       case _GOODS_END_WALK:
         mdw->timer++;
         if(mdw->timer > 8){
-            CommSendFixData(CF_TRAP_END);    // ƒgƒ‰ƒbƒvI‚í‚è
+            CommSendFixData(CF_TRAP_END);    // ãƒˆãƒ©ãƒƒãƒ—çµ‚ã‚ã‚Š
             mdw->seq = _ENDCMD;
         }
         break;
@@ -6239,9 +6239,9 @@ static void _GMEVENT_Message(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * messageTrap‰Šú‰»
+ * messageTrapåˆæœŸåŒ–
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -6262,8 +6262,8 @@ static void _messageInitialize(GF_BGL_INI * bgl, BOOL bGoodsTrap, int dir)
 
 //==============================================================================
 /**
- * MESSAGEã©‚ğŠJn‚·‚é
- * @param   victimNetID  ã©”íŠQÒ
+ * MESSAGEç½ ã‚’é–‹å§‹ã™ã‚‹
+ * @param   victimNetID  ç½ è¢«å®³è€…
  * @retval  none
  */
 //==============================================================================
@@ -6281,8 +6281,8 @@ static void _startClientMessage(int victimNetID,BOOL bGoodsTrap, int dir)
 
 //--------------------------------------------------------------
 /**
- * MESSAGEƒT[ƒo[‘¤‚ğŠJn‚·‚é
- * @param   victimNetID   ã©”íŠQÒ
+ * MESSAGEã‚µãƒ¼ãƒãƒ¼å´ã‚’é–‹å§‹ã™ã‚‹
+ * @param   victimNetID   ç½ è¢«å®³è€…
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -6294,8 +6294,8 @@ static void _startServerMessage(int victimNetID)
 
 //--------------------------------------------------------------
 /**
- * @brief    messageI—¹ˆ—
- * @param    victimNetID ©•ª
+ * @brief    messageçµ‚äº†å‡¦ç†
+ * @param    victimNetID è‡ªåˆ†
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -6324,10 +6324,10 @@ static void _endClientMessage(int victimNetID,BOOL bGoodsTrap)
 
 //--------------------------------------------------------------
 /**
- * @brief    TouchRadarˆ—
+ * @brief    TouchRadarå‡¦ç†
  * @param    bgl    GF_BGL_INI
  * @param    mdw    _EVENT_BUBBLE_WORK
- * @retval   ˆ—Š®—¹=TRUE
+ * @retval   å‡¦ç†å®Œäº†=TRUE
  */
 //--------------------------------------------------------------
 
@@ -6368,26 +6368,26 @@ static BOOL _procTouchRadar(GF_BGL_INI * bgl, _EVENT_TOUCHRADAR_WORK* mdw)
     if(mdw->timer > 20){
         return TRUE;
     }
-    CLACT_Draw( _pCTW->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+    CLACT_Draw( _pCTW->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
     return FALSE;
 }
 
 
 //------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  * @param   none
  * @retval  none
  */
 //------------------------------------------------------------------
 static void _setCellActorTouchRadar(_EVENT_TOUCHRADAR_WORK* mdw)
 {
-    // ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
-    // Chara“]‘—
+    // ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
+    // Charaè»¢é€
     CLACT_U_CharManagerSetCharModeAdjustAreaCont( _pCTW->resObjTbl[TOUCH_RES][CLACT_U_CHAR_RES] );
-    // ƒpƒŒƒbƒg“]‘—  CLACT_U_PlttManagerSetCleanArea
+    // ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€  CLACT_U_PlttManagerSetCleanArea
     CLACT_U_PlttManagerSetCleanArea( _pCTW->resObjTbl[TOUCH_RES][CLACT_U_PLTT_RES] );
-    // ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
     CLACT_U_MakeHeader(&_pCTW->clActHeader_s,
                        0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
                        0, 0,
@@ -6398,7 +6398,7 @@ static void _setCellActorTouchRadar(_EVENT_TOUCHRADAR_WORK* mdw)
                        NULL,NULL);
 
     {
-        //“o˜^î•ñŠi”[
+        //ç™»éŒ²æƒ…å ±æ ¼ç´
         CLACT_ADD add;
         int i;
 
@@ -6406,7 +6406,7 @@ static void _setCellActorTouchRadar(_EVENT_TOUCHRADAR_WORK* mdw)
         add.ClActHeader	= &_pCTW->clActHeader_s;
 
         add.mat.x		= FX32_CONST(32) ;
-        add.mat.y		= FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ª‰ºHASUB‚ªãHj
+        add.mat.y		= FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸‹ï¼Ÿã€SUBãŒä¸Šï¼Ÿï¼‰
         add.mat.z		= 0;
         add.sca.x		= FX32_ONE;
         add.sca.y		= FX32_ONE;
@@ -6416,9 +6416,9 @@ static void _setCellActorTouchRadar(_EVENT_TOUCHRADAR_WORK* mdw)
         add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
         add.heap		= HEAPID_FIELD;
 
-        //ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
+        //ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-        // ã‰æ–Ê—p
+        // ä¸Šç”»é¢ç”¨
         for(i = 0; i < _CLACT_TOUCHRADAR_OAMNUM ; i++){
             add.mat.x = FX32_ONE*300;
             add.mat.y = FX32_ONE*300;
@@ -6437,15 +6437,15 @@ static void _setCellActorTouchRadar(_EVENT_TOUCHRADAR_WORK* mdw)
             CLACT_AnmFrameSet(_pCTW->clActWork[i],0);
         }
     }
-    GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJ–Ê‚n‚m
-    GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJ–Ê‚n‚m
+    GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
+    GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 }
 
 //--------------------------------------------------------------
 /**
- * TouchRadarƒCƒxƒ“ƒgÀs
+ * TouchRadarã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ
  * @param
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -6467,7 +6467,7 @@ static void _GMEVENT_Touch(TCB_PTR tcb, void *work)
 #endif
         CommPlayerHold();
         Snd_SePlay(UG_SE_RADAR_ECHO);
-        // ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+        // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
         _pCTW->clactSet = CLACT_U_SetEasyInit( _CLACT_OAMNUM, &_pCTW->renddata, HEAPID_FIELD );
         CLACT_U_SetSubSurfaceMatrix( &_pCTW->renddata, SUB_SURFACE_X, SUB_SURFACE_Y*2 );
         mdw->seq = _SET_CLACT;
@@ -6487,9 +6487,9 @@ static void _GMEVENT_Touch(TCB_PTR tcb, void *work)
 #endif
         G2_BlendNone();
         GX_SetMasterBrightness(BRIGHTNESS_NORMAL);
-        // ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+        // ã‚­ãƒ£ãƒ©è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
         CLACT_U_CharManagerDelete(_pCTW->resObjTbl[TOUCH_RES][CLACT_U_CHAR_RES]);
-        // ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+        // ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
         CLACT_U_PlttManagerDelete(_pCTW->resObjTbl[TOUCH_RES][CLACT_U_PLTT_RES]);
         for(i = 0; i < _CLACT_TOUCHRADAR_OAMNUM ; i++){
             if(_pCTW->clActWork[i]!=NULL){
@@ -6497,7 +6497,7 @@ static void _GMEVENT_Touch(TCB_PTR tcb, void *work)
             }
             _pCTW->clActWork[i]=NULL;
         }
-        // ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+        // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
         CLACT_DestSet(_pCTW->clactSet);
         TCB_Delete(tcb);
         sys_FreeMemoryEz(mdw);
@@ -6511,9 +6511,9 @@ static void _GMEVENT_Touch(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * touchi‚í‚È‚Å‚Í‚È‚¢jÀs
+ * touchï¼ˆã‚ãªã§ã¯ãªã„ï¼‰å®Ÿè¡Œ
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -6524,7 +6524,7 @@ void UgTouchRadarStart(FIELDSYS_WORK* pFSys,int xpos,int zpos,int scrxpos,int sc
     _EVENT_TOUCHRADAR_WORK* mdw;
 
     if(_pCTW->pTchRadar){
-        OHNO_PRINT("‚Ì‚±‚Á‚Ä‚¢‚é\n");
+        OHNO_PRINT("ã®ã“ã£ã¦ã„ã‚‹\n");
         return;
     }
 
@@ -6551,9 +6551,9 @@ void UgTouchRadarStart(FIELDSYS_WORK* pFSys,int xpos,int zpos,int scrxpos,int sc
 
 //--------------------------------------------------------------
 /**
- * ã©‚É‚©‚©‚Á‚Ä‚¢‚él‚ª‚®‚é‚®‚é‰ñ‚Á‚Ä‚¢‚é
+ * ç½ ã«ã‹ã‹ã£ã¦ã„ã‚‹äººãŒãã‚‹ãã‚‹å›ã£ã¦ã„ã‚‹
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -6616,9 +6616,9 @@ static void _GMEVENT_Turn(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * ã©‚É‚©‚©‚Á‚Ä‚¢‚él‚ª‚®‚é‚®‚é‰ñ‚Á‚Ä‚¢‚é
+ * ç½ ã«ã‹ã‹ã£ã¦ã„ã‚‹äººãŒãã‚‹ãã‚‹å›ã£ã¦ã„ã‚‹
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 static void UgTrapTurnDispStart(int netID,int type)
@@ -6647,9 +6647,9 @@ static void UgTrapTurnDispStart(int netID,int type)
 
 //--------------------------------------------------------------
 /**
- * ã©‚É‚©‚©‚Á‚Ä‚¢‚él‚ª‚®‚é‚®‚é‰ñ‚Á‚Ä‚¢‚é‚Ì‚ğI‚í‚ç‚¹‚é
+ * ç½ ã«ã‹ã‹ã£ã¦ã„ã‚‹äººãŒãã‚‹ãã‚‹å›ã£ã¦ã„ã‚‹ã®ã‚’çµ‚ã‚ã‚‰ã›ã‚‹
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 void UgTrapTurnDispEnd(int netID)
@@ -6666,9 +6666,9 @@ void UgTrapTurnDispEnd(int netID)
 
 //--------------------------------------------------------------
 /**
- * ‚®‚é‚®‚é‚Ü‚í‚éƒGƒtƒFƒNƒg‚ğ‘Sˆõ•ªÁ‚·
+ * ãã‚‹ãã‚‹ã¾ã‚ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å…¨å“¡åˆ†æ¶ˆã™
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 static void _turnTaskAllDelete(void)
@@ -6688,8 +6688,8 @@ static void _turnTaskAllDelete(void)
 #if PL_080528_UNDERGROUND_0286_FIX
 //--------------------------------------------------------------
 /**
- * ‚í‚È‚É‚©‚©‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•Ô‚·
- * @retval   TRUE‚©‚©‚Á‚Ä‚¢‚é
+ * ã‚ãªã«ã‹ã‹ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @retval   TRUEã‹ã‹ã£ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 BOOL UgTrapIsTrapBindC(void)
@@ -6707,7 +6707,7 @@ static void DEBUG_TrapTBLPrint(char* msg)
     for(i = 0 ; i < _TRAP_NUM_MAX; i++){
         TrapInfo* pTrap = _pCTW->pTrapTbl[i];
         if(pTrap && (pTrap->trapType != _TRAP_TYEP_INVALID)){
-            OHNO_PRINT(" ã© %d %d\n",pTrap->xpos,pTrap->zpos);
+            OHNO_PRINT(" ç½  %d %d\n",pTrap->xpos,pTrap->zpos);
         }
     }
 }

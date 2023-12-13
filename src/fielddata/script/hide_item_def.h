@@ -1,7 +1,7 @@
 #ifndef _HIDE_ITEM_DEF_H_
 #define _HIDE_ITEM_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_HIDE_ITEM_0		(8000)
 #define	SCRID_HIDE_ITEM_1		(8001)
 #define	SCRID_HIDE_ITEM_2		(8002)
@@ -286,6 +286,6 @@
 #define	SCRID_HIDE_ITEM_281		(8281)
 #define	SCRID_HIDE_ITEM_282		(8282)
 #define	SCRID_HIDE_ITEM_283		(8283)
-#define	SCRID_HIDE_ITEM_DATA_MAX		(284)		//最大数
+#define	SCRID_HIDE_ITEM_DATA_MAX		(284)		//譛螟ｧ謨ｰ
 
 #endif //_HIDE_ITEM_DEF_H_

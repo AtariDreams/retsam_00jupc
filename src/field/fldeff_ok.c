@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_ok.c
- * @brief	ˆê–‡ƒ|ƒŠƒSƒ“ ’n‰º—p OKƒ}[ƒN
+ * @brief	ä¸€æšãƒãƒªã‚´ãƒ³ åœ°ä¸‹ç”¨ OKãƒãƒ¼ã‚¯
  * @author	k.ohno
  * @data	05.02.13
  *
@@ -18,21 +18,21 @@
 //	define
 //==============================================================================
 
-#define OK_FLDOBJ_Y_MOVE_START ((FX32_ONE*6))				///<Šø‰‘¬
-#define OK_FLDOBJ_Y_OFFSET ((FX32_ONE*25))				///<ƒtƒB[ƒ‹ƒhOBJ‚©‚ç‚ÌYƒIƒtƒZƒbƒg
-#define OK_FLDOBJ_Z_OFFSET ((FX32_ONE*-10))					///<ƒtƒB[ƒ‹ƒhOBJ‚©‚ç‚ÌZƒIƒtƒZƒbƒg
-#define OK_END_FRAME (60)									///<ŠøI—¹ƒtƒŒ[ƒ€	
+#define OK_FLDOBJ_Y_MOVE_START ((FX32_ONE*6))				///<æ——åˆé€Ÿ
+#define OK_FLDOBJ_Y_OFFSET ((FX32_ONE*25))				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ã®Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define OK_FLDOBJ_Z_OFFSET ((FX32_ONE*-10))					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ã®Zã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define OK_END_FRAME (60)									///<æ——çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ 	
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_OKŒ^
+///	FE_OKå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_OK * FE_OK_PTR;
 
 //--------------------------------------------------------------
-///	FE_OK\‘¢‘Ì
+///	FE_OKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_OK
 {
@@ -41,44 +41,44 @@ typedef struct _TAG_FE_OK
 	FE_SYS *fes;
 	FRO_MDL rmdl;
 	FRO_OBJ robj;
-	FIELD_OBJ_PTR fldobj;						///<Šø‚Ì‘ÎÛFIELD_OBJ_PTR
+	FIELD_OBJ_PTR fldobj;						///<æ——ã®å¯¾è±¡FIELD_OBJ_PTR
 }FE_OK;
 
-#define FE_OK_SIZE (sizeof(FE_OK)) ///<FE_OKƒTƒCƒY
+#define FE_OK_SIZE (sizeof(FE_OK)) ///<FE_OKã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	OK_ADD_H\‘¢‘Ì
+///	OK_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	FE_SYS *fes;
 	FE_OK_PTR ok;						///<FE_OK_PTR
-	FIELD_OBJ_PTR fldobj;						///<Šø‚Ì‘ÎÛFIELD_OBJ_PTR
+	FIELD_OBJ_PTR fldobj;						///<æ——ã®å¯¾è±¡FIELD_OBJ_PTR
 }OK_ADD_H;
 
-#define OK_ADD_H_SIZE (sizeof(OK_ADD_H)) ///<OK_ADD_HƒTƒCƒY
+#define OK_ADD_H_SIZE (sizeof(OK_ADD_H)) ///<OK_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	OK_WORK\‘¢‘Ì
+///	OK_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int seq_no;									///<“®ì”Ô†
-	int frame;									///<ƒtƒŒ[ƒ€
-	int obj_id;									///<Šø‘ÎÛOBJID
-	int zone_id;								///<Šø‘ÎÛƒ][ƒ“ID
-	int vanish_sw;								///<”ñ•\¦SW
-	int end_sw;									///<I—¹SW
-	VecFx32 offset;								///<ƒIƒtƒZƒbƒg
-	VecFx32 move;								///<ˆÚ“®—Ê
+	int seq_no;									///<å‹•ä½œç•ªå·
+	int frame;									///<ãƒ•ãƒ¬ãƒ¼ãƒ 
+	int obj_id;									///<æ——å¯¾è±¡OBJID
+	int zone_id;								///<æ——å¯¾è±¡ã‚¾ãƒ¼ãƒ³ID
+	int vanish_sw;								///<éè¡¨ç¤ºSW
+	int end_sw;									///<çµ‚äº†SW
+	VecFx32 offset;								///<ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	VecFx32 move;								///<ç§»å‹•é‡
     int counter;
-	OK_ADD_H head;							///<’Ç‰Á‚ÌOK_ADD_H
+	OK_ADD_H head;							///<è¿½åŠ æ™‚ã®OK_ADD_H
 }OK_WORK;
 
-#define OK_WORK_SIZE (sizeof(OK_WORK))	///<OK_WORKƒTƒCƒY
+#define OK_WORK_SIZE (sizeof(OK_WORK))	///<OK_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Ok_GraphicInit( FE_OK_PTR sd );
 static void Ok_GraphicDelete( FE_OK_PTR sd );
@@ -86,11 +86,11 @@ static void Ok_GraphicDelete( FE_OK_PTR sd );
 static const EOA_H_NPP DATA_EoaH_Ok;
 
 //==============================================================================
-//	ƒVƒXƒeƒ€
+//	ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * OKƒ}[ƒN‰Šú‰»
+ * OKãƒãƒ¼ã‚¯åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_OK_PTR	FE_OK_PTR
  */
@@ -108,7 +108,7 @@ void * FE_Ok_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * OKƒ}[ƒNíœ
+ * OKãƒãƒ¼ã‚¯å‰Šé™¤
  * @param	sd		FE_OK_PTR
  * @retval	nothing
  */
@@ -121,15 +121,15 @@ void FE_Ok_Delete( void *work )
 }
 
 //==============================================================================
-//	OKƒ}[ƒN	ƒp[ƒc
+//	OKãƒãƒ¼ã‚¯	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 
 //==============================================================================
-//	OKƒ}[ƒN@ƒOƒ‰ƒtƒBƒbƒN
+//	OKãƒãƒ¼ã‚¯ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * OKƒ}[ƒN ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * OKãƒãƒ¼ã‚¯ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	sd	FE_OK_PTR
  * @retval	nothing
  */
@@ -143,7 +143,7 @@ static void Ok_GraphicInit( FE_OK_PTR sd )
 
 //--------------------------------------------------------------
 /**
- * OKƒ}[ƒN ƒOƒ‰ƒtƒBƒbƒNíœ
+ * OKãƒãƒ¼ã‚¯ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	sd	FE_OK_PTR
  * @retval	nothing
  */
@@ -154,11 +154,11 @@ static void Ok_GraphicDelete( FE_OK_PTR sd )
 }
 
 //==============================================================================
-//	OKƒ}[ƒN@EOA
+//	OKãƒãƒ¼ã‚¯ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒgƒ‰ƒbƒv’Ç‰Á
+ * ãƒˆãƒ©ãƒƒãƒ—è¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	EOA_PTR
  */
@@ -186,10 +186,10 @@ EOA_PTR FE_Ok_Add(  FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * EOA OKƒ}[ƒN@‰Šú‰»
+ * EOA OKãƒãƒ¼ã‚¯ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaOk_Init( EOA_PTR eoa, void *wk )
@@ -217,7 +217,7 @@ static int EoaOk_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA OKƒ}[ƒN@íœ
+ * EOA OKãƒãƒ¼ã‚¯ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -229,7 +229,7 @@ static void EoaOk_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA OKƒ}[ƒN@“®ì
+ * EOA OKãƒãƒ¼ã‚¯ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -258,7 +258,7 @@ static void EoaOk_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA OKƒ}[ƒN@•`‰æ
+ * EOA OKãƒãƒ¼ã‚¯ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -280,7 +280,7 @@ static void EoaOk_Draw( EOA_PTR eoa, void *wk )
 		vec.y += OK_FLDOBJ_Y_OFFSET;
         vec.z += - (FX32_ONE*5);
 
-        {    // ƒJƒƒ‰‹ts—ñ‚ğ“ü‚ê‚é
+        {    // ã‚«ãƒ¡ãƒ©é€†è¡Œåˆ—ã‚’å…¥ã‚Œã‚‹
             const MtxFx43* pCamInv = NNS_G3dGlbGetInvCameraMtx();
             MtxFx33 Mat33;
             
@@ -294,7 +294,7 @@ static void EoaOk_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	OKƒ}[ƒNEOA_H
+///	OKãƒãƒ¼ã‚¯EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Ok =
 {

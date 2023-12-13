@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_sharing_system.h
- * @brief	�f�[�^���L���s���ꍇ�̒ʐM�V�X�e��
+ * @brief	データ共有を行う場合の通信システム
  * @author	Katsumi Ohno
  * @date    2005.07.08
  */
@@ -11,28 +11,28 @@
 #define _WM_ICON_H_
 
 
-#include "gflib/tcb.h" //TCB_PTR�̂���
+#include "gflib/tcb.h" //TCB_PTRのため
 
-// �ʐM�A�C�R���p���b�g�f�[�^���]�������ʒu
+// 通信アイコンパレットデータが転送される位置
 #define WM_ICON_PALETTE_NO	( 14 )
 
-// �ʐM�A�C�R���L�����f�[�^��]������VRAM�̈ʒu
-// �ʐM�A�C�R���L�����f�[�^��Ҳ�OBJVRAM�̈�ԍŌ��
-// �P�U�L�����]������܂��B
+// 通信アイコンキャラデータを転送するVRAMの位置
+// 通信アイコンキャラデータはメインOBJVRAMの一番最後に
+// １６キャラ転送されます。
 
-//OBJ16K���[�h�̎�
+//OBJ16Kモードの時
 #define WM_ICON_CHAR_OFFSET16  ( (512-16)*32 )	
-//OBJ32K���[�h�̎�
+//OBJ32Kモードの時
 #define WM_ICON_CHAR_OFFSET32  ( (1024-16)*32 )	
-//OBJ64K���[�h�̎�
+//OBJ64Kモードの時
 #define WM_ICON_CHAR_OFFSET64 ( (2048-16)*32 )	
-//OBJ128K���[�h�̎�
+//OBJ128Kモードの時
 #define WM_ICON_CHAR_OFFSET128 ( (4096-16)*32 )	
-//OBJ80K���[�h�̎�
+//OBJ80Kモードの時
 #define WM_ICON_CHAR_OFFSET80 ( (2560-16)*32 )	
 
 // -----------------------------------------------
-// �Ǘ��p�\���̒�`
+// 管理用構造体定義
 // -----------------------------------------------
 
 typedef struct{

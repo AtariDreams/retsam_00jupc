@@ -1,96 +1,96 @@
 ------------------------------------------------------------------------------
 NITRO-SDK:
-	SDK �ŗp�ӂ���Ă��Ȃ� VRAM �o���N�g�ݍ��킹�̒ǉ����@
+	SDK で用意されていない VRAM バンク組み合わせの追加方法
 
 					2004/03/08
-					�C�V��������� ������O���[�v
+					任天堂株式会社 環境制作グループ
 ------------------------------------------------------------------------------
 
-SDK �ɂăT�|�[�g����Ă��Ȃ��g�ݍ��킹�� VRAM �̃o���N���g�p�����ꍇ�A
-SDK �̃\�[�X�R�[�h�����L�̂悤�ɕύX���Ă��������B
+SDK にてサポートされていない組み合わせで VRAM のバンクを使用される場合、
+SDK のソースコードを下記のように変更してください。
 
-�֘A�t�@�C��
+関連ファイル
 
 build/libraries/gx/src/gx_vramcnt.c
 build/libraries/gx/src/gxstate.c
 include/nitro/gx/gx_vramcnt.h
 
 
-�� BG �o���N�g�ݍ��킹�̒ǉ�
+○ BG バンク組み合わせの追加
 
-1. gx_vramcnt.h �ւ̕ύX
+1. gx_vramcnt.h への変更
 
-- GXVRamBG �� BG �G���g��(GX_VRAM_BG_nnn_xxx) ��ǉ�
+- GXVRamBG へ BG エントリ(GX_VRAM_BG_nnn_xxx) を追加
 
-    ���ʃr�b�g���珇�� ABCDEFG �̗L���t���O�ƂȂ��Ă���̂�
-    �K���ȃt���O��ݒ肵�Ă��������B
+    下位ビットから順に ABCDEFG の有効フラグとなっているので
+    適当なフラグを設定してください。
 
-�@�@ GX_VRAM_BG_(�T�C�Y)_(�o���N) = (�o���N�̗L���t���O)
+　　 GX_VRAM_BG_(サイズ)_(バンク) = (バンクの有効フラグ)
 
-�@�@�Ƃ����`���ɂȂ��Ă��܂��B
+　　という形式になっています。
 
-- GX_VRAM_BG_ASSERT(x) �� BG �G���g���𔻒荀�ڂɒǉ�
+- GX_VRAM_BG_ASSERT(x) で BG エントリを判定項目に追加
 
-    �L���ȃo���N�g�ݍ��킹���ǂ������`�F�b�N���Ă��܂��B
+    有効なバンク組み合わせかどうかをチェックしています。
 
     (x) == GX_VRAM_BG_nnn_xxx || \
 
-    �Ƃ����`���Œǉ����Ă��������B
+    という形式で追加してください。
 
 
-2. gx_vramcnt.c �ւ̕ύX
+2. gx_vramcnt.c への変更
 
-- GX_VRAMCNT_SetBG_() �� BG �G���g����ǉ�
+- GX_VRAMCNT_SetBG_() へ BG エントリを追加
 
-    �g�p����e�o���N�R���g���[�����W�X�^�̋L�q��ǉ����܂��B
-    �g�p����o���N���A������ VRAM �A�h���X�Ƀ}�b�s���O�����悤
-    �ݒ肵�Ă��������B
-
-
-3. gxstat.c�ւ̕ύX
-
-- GX_RegionCheck_BG_() �� BG �G���g����ǉ�
-
-    �g�p����� VRAM �A�h���X���L���ł��邩�̃`�F�b�N���L�q����Ă��܂��B
-    SDK_REGION_ASSERT �̑� 1 �����A�� 2 �����ɂ��ꂼ�� BG_VRAM ��
-    �J�n�A�h���X�A�I���A�h���X��n���Ă��������B
+    使用する各バンクコントロールレジスタの記述を追加します。
+    使用するバンクが連続する VRAM アドレスにマッピングされるよう
+    設定してください。
 
 
-�� OBJ �o���N�g�ݍ��킹�̒ǉ�
+3. gxstat.cへの変更
 
-1. gx_vramcnt.h �ւ̕ύX
+- GX_RegionCheck_BG_() へ BG エントリを追加
 
-- GXVRamOBJ �� OBJ �G���g�� (GX_VRAM_OBJ_nnn_xxx) ��ǉ�
+    使用される VRAM アドレスが有効であるかのチェックが記述されています。
+    SDK_REGION_ASSERT の第 1 引数、第 2 引数にそれぞれ BG_VRAM の
+    開始アドレス、終了アドレスを渡してください。
 
-    ���ʃr�b�g���� ABCDEFG �̗L���t���O�ƂȂ��Ă���̂œK���ȃt���O
-    ��ݒ肵�Ă��������B������ CD �͐ݒ�s�ł��B
 
-�@�@ GX_VRAM_OBJ_(�T�C�Y)_(�o���N) = (�o���N�̗L���t���O)
+○ OBJ バンク組み合わせの追加
 
-�@�@�Ƃ����`���ɂȂ��Ă��܂��B
+1. gx_vramcnt.h への変更
 
-- GX_VRAM_OBJ_ASSERT(x) �� OBJ �G���g���𔻒荀�ڂɒǉ�
+- GXVRamOBJ へ OBJ エントリ (GX_VRAM_OBJ_nnn_xxx) を追加
 
-    �L���ȃo���N�g�ݍ��킹���ǂ������`�F�b�N���Ă��܂��B
+    下位ビットから ABCDEFG の有効フラグとなっているので適当なフラグ
+    を設定してください。ただし CD は設定不可です。
+
+　　 GX_VRAM_OBJ_(サイズ)_(バンク) = (バンクの有効フラグ)
+
+　　という形式になっています。
+
+- GX_VRAM_OBJ_ASSERT(x) で OBJ エントリを判定項目に追加
+
+    有効なバンク組み合わせかどうかをチェックしています。
 
     (x) == GX_VRAM_OBJ_nnn_xxx || \
 
-    �Ƃ����`���Œǉ����Ă��������B
+    という形式で追加してください。
 
 
-2. gx_vramcnt.c �ւ̕ύX
+2. gx_vramcnt.c への変更
 
-- GX_VRAMCNT_SetOBJ_() �� OBJ �G���g����ǉ�
+- GX_VRAMCNT_SetOBJ_() へ OBJ エントリを追加
 
-    �g�p����e�o���N�R���g���[�����W�X�^�̋L�q��ǉ����܂��B
-    �g�p����o���N���A������ VRAM �A�h���X�Ƀ}�b�s���O�����悤
-    �ݒ肵�Ă��������B
+    使用する各バンクコントロールレジスタの記述を追加します。
+    使用するバンクが連続する VRAM アドレスにマッピングされるよう
+    設定してください。
 
 
-3. gxstat.c�ւ̕ύX
+3. gxstat.cへの変更
 
-- GX_RegionCheck_OBJ_() �� OBJ �G���g����ǉ�
+- GX_RegionCheck_OBJ_() へ OBJ エントリを追加
 
-    �g�p����� VRAM �A�h���X���L���ł��邩�̃`�F�b�N���L�q����Ă��܂��B
-    SDK_REGION_ASSERT �̑� 1 �����A�� 2 �����ɂ��ꂼ�� BG_VRAM �̊J�n�A�h���X
-    �I���A�h���X��n���Ă��������B
+    使用される VRAM アドレスが有効であるかのチェックが記述されています。
+    SDK_REGION_ASSERT の第 1 引数、第 2 引数にそれぞれ BG_VRAM の開始アドレス
+    終了アドレスを渡してください。

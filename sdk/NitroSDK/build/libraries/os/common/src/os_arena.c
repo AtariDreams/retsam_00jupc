@@ -12,7 +12,7 @@
 
   $Log: os_arena.c,v $
   Revision 1.44  2006/01/18 05:46:04  okubata_ryoma
-  do-indent�̏C��
+  do-indentの修正
 
   Revision 1.43  2006/01/18 02:11:30  kitase_hirotake
   do-indent
@@ -27,13 +27,13 @@
   ARENALO is considered for DTCM, ITCM, MAINEX autoload
 
   Revision 1.39  2005/05/25 04:03:05  terui
-  MB �q�@�̏ꍇ�ł����C����������8MB�ɐݒ�ł���悤�ɏC��
+  MB 子機の場合でもメインメモリを8MBに設定できるように修正
 
   Revision 1.38  2005/04/14 06:46:13  yasu
-  Multiboot �q�@�̏ꍇ�A�g�p�\�������� 4MB �ɐ�������悤�ɂ���
+  Multiboot 子機の場合、使用可能メモリを 4MB に制限するようにした
 
   Revision 1.37  2005/04/13 13:00:10  terui
-  OS_InitArenaEx�֐����ŁA4M�ݒ莞��ARM7��p���[�W�����̈ʒu��0x027e0000 ���� 0x023e0000�ɕύX����悤�ɏC���B
+  OS_InitArenaEx関数内で、4M設定時にARM7専用リージョンの位置を0x027e0000 から 0x023e0000に変更するように修正。
 
   Revision 1.36  2005/02/28 09:57:43  seiki_masashi
   fix a debug message.
@@ -82,13 +82,13 @@
   add checkcode in allocation memory from arena
 
   Revision 1.21  2004/02/20 12:23:47  yada
-  �������o�O�C��
+  初期化バグ修正
 
   Revision 1.20  2004/02/19 08:41:41  yada
-  ARM7 �� ARM9 �̏������𕪂���
+  ARM7 と ARM9 の初期化を分けた
 
   Revision 1.19  2004/02/16 09:39:46  yada
-  Sys�X�^�b�N�C��
+  Sysスタック修正
 
   Revision 1.18  2004/02/14 08:23:12  yasu
   comment out TCM arena setting code on ARM7 due to pass nightly build
@@ -97,52 +97,52 @@
   fix indent level
 
   Revision 1.16  2004/02/13 10:38:26  yada
-  ARENA���U����X��
+  ARENAを６個から９個に
 
   Revision 1.15  2004/02/13 04:05:36  yada
-  ARM9��AMR7 �̏ꍇ�킯�l��
+  ARM9とAMR7 の場合わけ考慮
 
   Revision 1.14  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.13  2004/01/18 01:25:40  yada
-  �C���f���g���̐��`�̂�
+  インデント等の整形のみ
 
   Revision 1.12  2004/01/16 11:47:20  yada
-  arena���̈ʒu�𓮂��������Ƃɂ��C��
+  arena情報の位置を動かしたことによる修正
 
   Revision 1.11  2004/01/16 08:10:03  yada
-  DTCM�A���[�i�ݒ��ASSERT�C��
+  DTCMアリーナ設定のASSERT修正
 
   Revision 1.10  2004/01/16 07:25:26  yada
-  arena �� initialized �t���O�ʒu�C��
+  arena の initialized フラグ位置修正
 
   Revision 1.9  2004/01/16 04:07:39  yada
-  idle Thread �̃X�^�b�N�� lcf��`������悤�ɕύX
+  idle Thread のスタックを lcf定義から取るように変更
 
   Revision 1.8  2004/01/15 12:13:55  yada
-  SystemWork �ɃA���[�i�\���̂����悤�ɂ���
+  SystemWork にアリーナ構造体を取るようにした
 
   Revision 1.7  2004/01/15 10:07:25  yasu
   Use SDK_MAIN_ARENA_LO from LCF to resolve arena region
 
   Revision 1.6  2004/01/07 02:52:04  yada
-  ���ύX
+  小変更
 
   Revision 1.5  2004/01/07 01:42:40  yada
-  arena�����������̕ύX
+  arena初期化部分の変更
 
   Revision 1.4  2004/01/05 04:28:24  yada
-  �e�A���[�i�̉�����������ꂽ
+  各アリーナの仮初期化を入れた
 
   Revision 1.3  2003/12/26 08:21:13  yada
-  Assert ���̕s��C��
+  Assert 中の不具合修正
 
   Revision 1.2  2003/12/26 08:11:35  yada
-  ID�̌^�� int -> OSArenaId ��
+  IDの型を int -> OSArenaId に
 
   Revision 1.1  2003/12/26 06:42:33  yada
-  ����
+  初版
 
 
   $NoKeywords: $
@@ -318,12 +318,12 @@ void OS_InitArenaEx(void)
     OS_InitArenaHiAndLo(OS_ARENA_MAINEX);
 
     /*
-     * MB �q�@�̏ꍇ�ł��A�f�o�b�O�ړI�Ń��C���������� 8M �Ɋg������
-     * ���C����������̊g���A���[�i���g�p�ł���悤�ɏC���B
-     * MB �q�@�ɂ����āA�I�[�g���[�h�����s�����O�̒i�K��
-     * �d�v�ȏ�񂪊i�[����Ă��� 0x023fe000���ӂ̃������̈悩��{���ɕK�v��
-     * ���𒊏o���� 0x027ffa80 ���ӂɑޔ�����Ƃ����΍􂪓���������
-     * 0x023fe000 ���ӂ�ی삷��K�v���Ȃ��Ȃ��������󂯂Ă̏C���ł��B
+     * MB 子機の場合でも、デバッグ目的でメインメモリを 8M に拡張して
+     * メインメモリ上の拡張アリーナを使用できるように修正。
+     * MB 子機において、オートロードが実行される前の段階で
+     * 重要な情報が格納されている 0x023fe000周辺のメモリ領域から本当に必要な
+     * 情報を抽出しつつ 0x027ffa80 周辺に退避するという対策が入ったため
+     * 0x023fe000 周辺を保護する必要がなくなった事を受けての修正です。
      */
     if (!OSi_MainExArenaEnabled ||
         ((OS_GetConsoleType() & OS_CONSOLE_SIZE_MASK) == OS_CONSOLE_SIZE_4MB))

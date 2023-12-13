@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_057.s
- *@brief	戦闘シーケンス
- *			MESSAGE_WORK表示シーケンス
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			MESSAGE_WORK陦ｨ遉ｺ繧ｷ繝ｼ繧ｱ繝ｳ繧ｹ
  *@author	HisashiSogabe
  *@data		2006.01.18
  *

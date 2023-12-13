@@ -1,25 +1,25 @@
 #=============================================================================================
 #
-#	�B���A�C�e���Ǘ��\�R���o�[�^
+#	隠しアイテム管理表コンバータ
 #
 #	05.11.16 Satoshi Nohara
 #
-#	07.06.04 �v���`�i�p�ɃI�t�Z�b�g��ύX
+#	07.06.04 プラチナ用にオフセットを変更
 #
-#	��_HIDE_ITEM_EVENT�L�q��hide_item.ev�ɏo�͂���
+#	●_HIDE_ITEM_EVENT記述をhide_item.evに出力する
 #
 #=============================================================================================
 BEGIN{
 
 	#=================================================================
 	#
-	#�A�C�e����`�t�@�C���ǂݍ���
+	#アイテム定義ファイル読み込み
 	#
 	#=================================================================
 	ITEMSYM_H = "../../../include/itemtool/itemsym.h"
 
-	#getline = �P�s�ǂݍ���
-	#�P�͖߂�l
+	#getline = １行読み込み
+	#１は戻り値
 	while ( 1 == getline < ITEMSYM_H ) {
 		if ( NF == 7 && $1 =="#define" ) {
 			ItemName[$7] = $2
@@ -30,37 +30,37 @@ BEGIN{
 	file1 = "hide_item.dat"
 
 	print "//====================================================================" > file1
-	print "//						�B���A�C�e���f�[�^" >> file1
+	print "//						隠しアイテムデータ" >> file1
 	print "//" >> file1
 	print "// 05.11.17 Satoshi Nohara" >> file1
 	print "//" >> file1
-	print "// ��hide_item.xls���R���o�[�g���ďo�͂��Ă��܂�" >> file1
+	print "// ●hide_item.xlsをコンバートして出力しています" >> file1
 	print "//" >> file1
 	print "//====================================================================" >> file1
 	print "" >> file1
 
 	print "const HIDE_ITEM_DATA hide_item_data[] = {" >> file1
-	print "\t//�A�C�e���i���o�[ �� ���� ���� �t���O�C���f�b�N�X" >> file1
+	print "\t//アイテムナンバー 個数 反応 特殊 フラグインデックス" >> file1
 }
 
 NR >= 4{
 
-	#���ڐ��`�F�b�N
+	#項目数チェック
 	if( NF < 9 ) next
-	if( $1 == "�}�b�v��" )	next
-	if( $1 ~ "�A�C�e��" )	next
+	if( $1 == "マップ名" )	next
+	if( $1 ~ "アイテム" )	next
 
 	#-----------------------------------------------------------------
 	#
-	#�t���O�}�b�N�X�𒴂��Ă�����G���[(07/06/04 MAX = 284 )
+	#フラグマックスを超えていたらエラー(07/06/04 MAX = 284 )
 	#
 	#-----------------------------------------------------------------
 	if( $9 > 283 ){
-		printf("�t���O�̍ő吔�𒴂��Ă��܂��I\n") >> "/dev/stderr"
-		exit				#�r���ŏI��
+		printf("フラグの最大数を超えています！\n") >> "/dev/stderr"
+		exit				#途中で終了
 	}
 
-	#�ǉ�
+	#追加
 	print "\t{ " ItemName[$5] ",\t" $6 ",\t" $7 ",\t" $8 ",\t" $9 " }," >> file1
 }
 

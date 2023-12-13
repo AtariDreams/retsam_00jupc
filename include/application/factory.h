@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	factory.h
- * @brief	uƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[vƒwƒbƒ_[
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	2007.03.15
  */
@@ -14,14 +14,14 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
 
 
 //==============================================================================================
 //
-//	ƒtƒ@ƒNƒgƒŠ[‰æ–ÊŒÄ‚Ño‚µ@\‘¢‘ÌéŒ¾
+//	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ç”»é¢å‘¼ã³å‡ºã—ã€€æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
 typedef struct{
@@ -32,10 +32,10 @@ typedef struct{
 	u8	mode; 
 	u8	dummy;
 
-	POKEPARTY* p_m_party;							//–¡•û
-	POKEPARTY* p_e_party;							//“G
-	u16 ret_work[FACTORY_RET_WORK_MAX];				//–ß‚è’lŠi”[ƒ[ƒN
-	void* p_work;									//FACTORY_SCRWORK(bf_scr_wk•Û‘¶)
+	POKEPARTY* p_m_party;							//å‘³æ–¹
+	POKEPARTY* p_e_party;							//æ•µ
+	u16 ret_work[FACTORY_RET_WORK_MAX];				//æˆ»ã‚Šå€¤æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+	void* p_work;									//FACTORY_SCRWORK(bf_scr_wkä¿å­˜)
 
 	u32 dummy_work;
 }FACTORY_CALL_WORK;
@@ -43,10 +43,10 @@ typedef struct{
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
-//extern const PROC_DATA FactoryProcData;				//ƒvƒƒZƒX’è‹`ƒf[ƒ^
+//extern const PROC_DATA FactoryProcData;				//ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT FactoryProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT FactoryProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT FactoryProc_End( PROC * proc, int * seq );

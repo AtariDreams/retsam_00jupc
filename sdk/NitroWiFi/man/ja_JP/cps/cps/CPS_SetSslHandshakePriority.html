@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CPS_SetSslHandshakePriority</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">CPS_SetSslHandshakePriority</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
@@ -20,34 +20,34 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 
 <table width="100%">
   <tr>
     <td><code><em><strong>new_prio</strong></em></code></td>
-    <td>�D��x�B</td>
+    <td>優先度。</td>
   </tr>
 </table>
 
-<h2>�Ԃ�l</h2>
-<P>�Ȃ��B</P>
+<h2>返り値</h2>
+<P>なし。</P>
 
-<h2>����</h2>
+<h2>説明</h2>
 
 <p>
-SSL�̃n���h�V�F�C�N�����ŁA�v�Z���Ԃ�����(���Smsec�P��)�����̎��s�D��x��ݒ肵�܂��B�����Ȓl(0����31�ȊO�̒l)��ݒ肷��ƁA
-�n���h�V�F�C�N�������ɗD��x��ύX���܂���B<BR>
-CPS���C�u�����̏������Ƃ͖��֌W�ɁA���ł����s�ł��܂��B<BR>
-�u���b�N���܂���B
+SSLのハンドシェイク処理で、計算時間が長い(数百msec単位)部分の実行優先度を設定します。無効な値(0から31以外の値)を設定すると、
+ハンドシェイク処理時に優先度を変更しません。<BR>
+CPSライブラリの初期化とは無関係に、いつでも実行できます。<BR>
+ブロックしません。
 </p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P>
 <CODE><A href="CPS_GetSslHandshakePriority.html">CPS_GetSslHandshakePriority</A></CODE>
 </P>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/11/09 ����</P>
+2005/11/09 初版</P>
 </body>
 </html>

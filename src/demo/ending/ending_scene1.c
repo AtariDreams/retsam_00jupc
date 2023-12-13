@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	ending_scene1.c
- * @brief	ƒV[ƒ“‚PFƒƒCƒ“
+ * @brief	ã‚·ãƒ¼ãƒ³ï¼‘ï¼šãƒ¡ã‚¤ãƒ³
  * @author	matsuda
- * @date	2008.04.10(–Ø)
+ * @date	2008.04.10(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -29,30 +29,30 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///”wŒiƒXƒNƒ[ƒ‹‘¬“xX(fx32)
+///èƒŒæ™¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦X(fx32)
 #define MAP_SCENE1_BG_SPEED			(-0x40)
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒtƒƒ“ƒe“®ì§Œä\‘¢‘Ì
+///ãƒ•ãƒ¯ãƒ³ãƒ†å‹•ä½œåˆ¶å¾¡æ§‹é€ ä½“
 typedef struct{
-	s32 start_wait;		///<“®ìŠJn‚Ü‚Å‚ÌƒEƒFƒCƒg
-	fx32 start_x;		///<“oêÀ•WX
-	fx32 start_y;		///<“oêÀ•WY
-	fx32 add_x;			///<X‰ÁZ’l
-	fx32 add_y;			///<Y‰ÁZ’l
-	fx32 add_theta;		///<SINƒJ[ƒuŠp“x‰ÁZ’l
-	fx32 furihaba;		///<SINƒJ[ƒu‚Ó‚è•
-	f32 add_scale;		///<ƒXƒP[ƒ‹‰ÁZ’l(float)
-	u16 add_scale_num;	///<‰½ƒtƒŒ[ƒ€ƒXƒP[ƒ‹‚ğ‰ÁZ‚µ‚½‚çˆø‚«•Ô‚·‚©
+	s32 start_wait;		///<å‹•ä½œé–‹å§‹æ™‚ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
+	fx32 start_x;		///<ç™»å ´åº§æ¨™X
+	fx32 start_y;		///<ç™»å ´åº§æ¨™Y
+	fx32 add_x;			///<XåŠ ç®—å€¤
+	fx32 add_y;			///<YåŠ ç®—å€¤
+	fx32 add_theta;		///<SINã‚«ãƒ¼ãƒ–è§’åº¦åŠ ç®—å€¤
+	fx32 furihaba;		///<SINã‚«ãƒ¼ãƒ–ãµã‚Šå¹…
+	f32 add_scale;		///<ã‚¹ã‚±ãƒ¼ãƒ«åŠ ç®—å€¤(float)
+	u16 add_scale_num;	///<ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¹ã‚±ãƒ¼ãƒ«ã‚’åŠ ç®—ã—ãŸã‚‰å¼•ãè¿”ã™ã‹
 	u16 padding;
 }FUWANTE_MOVE_DATA;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void MapScene1_FuwanteInit(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP1 *sw_map1);
 static void MapScene1_FuwanteUpdate(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP1 *sw_map1);
@@ -60,42 +60,42 @@ static void MapScene1_BGScroll(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP1 *sw_map1);
 static void FuwanteMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP1 *sw_map1, CATS_ACT_PTR cap, int no);
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///ƒtƒƒ“ƒe“®ì§Œäƒf[ƒ^
+///ãƒ•ãƒ¯ãƒ³ãƒ†å‹•ä½œåˆ¶å¾¡ãƒ‡ãƒ¼ã‚¿
 static const FUWANTE_MOVE_DATA FuwanteMoveDataTbl[] = {
 	{
-		ENDING_COUNTER_SCENE1_FUWANTE_0,						//“®ìŠJn‚Ü‚Å‚ÌƒEƒFƒCƒg
-		-64 * FX32_ONE, 			//“oêÀ•WX
-		80 * FX32_ONE, 			//“oêÀ•WY
-		0x600,					//‰ÁZ’lX
-		-0x80,					//‰ÁZ’lY
-		0xe00,					//SINƒJ[ƒu‰ÁZ’l(fx32)
-		0x8000,					//SINƒJ[ƒu‚Ó‚è•(fx32)
-		0.0030,					//ƒAƒtƒBƒ“‰ÁZ’l(float)
-		60,						//‰½ƒtƒŒ[ƒ€ƒAƒtƒBƒ“‚ğ‰ÁZ‚µ‚½‚çÜ‚è•Ô‚·‚©
+		ENDING_COUNTER_SCENE1_FUWANTE_0,						//å‹•ä½œé–‹å§‹æ™‚ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
+		-64 * FX32_ONE, 			//ç™»å ´åº§æ¨™X
+		80 * FX32_ONE, 			//ç™»å ´åº§æ¨™Y
+		0x600,					//åŠ ç®—å€¤X
+		-0x80,					//åŠ ç®—å€¤Y
+		0xe00,					//SINã‚«ãƒ¼ãƒ–åŠ ç®—å€¤(fx32)
+		0x8000,					//SINã‚«ãƒ¼ãƒ–ãµã‚Šå¹…(fx32)
+		0.0030,					//ã‚¢ãƒ•ã‚£ãƒ³åŠ ç®—å€¤(float)
+		60,						//ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ãƒ•ã‚£ãƒ³ã‚’åŠ ç®—ã—ãŸã‚‰æŠ˜ã‚Šè¿”ã™ã‹
 	},
 	{
-		ENDING_COUNTER_SCENE1_FUWANTE_1,						//“®ìŠJn‚Ü‚Å‚ÌƒEƒFƒCƒg
-		-64 * FX32_ONE, 			//“oêÀ•WX
-		190 * FX32_ONE, 			//“oêÀ•WY
-		0x780,					//‰ÁZ’lX
-		-0xa0,					//‰ÁZ’lY
-		0x1000,					//SINƒJ[ƒu‰ÁZ’l(fx32)
-		0xc000,					//SINƒJ[ƒu‚Ó‚è•(fx32)
-		-0.0040,					//ƒAƒtƒBƒ“‰ÁZ’l(float)
-		50,						//‰½ƒtƒŒ[ƒ€ƒAƒtƒBƒ“‚ğ‰ÁZ‚µ‚½‚çÜ‚è•Ô‚·‚©
+		ENDING_COUNTER_SCENE1_FUWANTE_1,						//å‹•ä½œé–‹å§‹æ™‚ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
+		-64 * FX32_ONE, 			//ç™»å ´åº§æ¨™X
+		190 * FX32_ONE, 			//ç™»å ´åº§æ¨™Y
+		0x780,					//åŠ ç®—å€¤X
+		-0xa0,					//åŠ ç®—å€¤Y
+		0x1000,					//SINã‚«ãƒ¼ãƒ–åŠ ç®—å€¤(fx32)
+		0xc000,					//SINã‚«ãƒ¼ãƒ–ãµã‚Šå¹…(fx32)
+		-0.0040,					//ã‚¢ãƒ•ã‚£ãƒ³åŠ ç®—å€¤(float)
+		50,						//ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ãƒ•ã‚£ãƒ³ã‚’åŠ ç®—ã—ãŸã‚‰æŠ˜ã‚Šè¿”ã™ã‹
 	},
 	{
-		ENDING_COUNTER_SCENE1_FUWANTE_2,						//“®ìŠJn‚Ü‚Å‚ÌƒEƒFƒCƒg
-		-64 * FX32_ONE, 		//“oêÀ•WX
-		120 * FX32_ONE, 		//“oêÀ•WY
-		0x640,					//‰ÁZ’lX
-		-0x90,					//‰ÁZ’lY
-		0xc00,					//SINƒJ[ƒu‰ÁZ’l(fx32)
-		0x8000,					//SINƒJ[ƒu‚Ó‚è•(fx32)
-		-0.0045,					//ƒAƒtƒBƒ“‰ÁZ’l(float)
-		60,						//‰½ƒtƒŒ[ƒ€ƒAƒtƒBƒ“‚ğ‰ÁZ‚µ‚½‚çÜ‚è•Ô‚·‚©
+		ENDING_COUNTER_SCENE1_FUWANTE_2,						//å‹•ä½œé–‹å§‹æ™‚ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
+		-64 * FX32_ONE, 		//ç™»å ´åº§æ¨™X
+		120 * FX32_ONE, 		//ç™»å ´åº§æ¨™Y
+		0x640,					//åŠ ç®—å€¤X
+		-0x90,					//åŠ ç®—å€¤Y
+		0xc00,					//SINã‚«ãƒ¼ãƒ–åŠ ç®—å€¤(fx32)
+		0x8000,					//SINã‚«ãƒ¼ãƒ–ãµã‚Šå¹…(fx32)
+		-0.0045,					//ã‚¢ãƒ•ã‚£ãƒ³åŠ ç®—å€¤(float)
+		60,						//ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ãƒ•ã‚£ãƒ³ã‚’åŠ ç®—ã—ãŸã‚‰æŠ˜ã‚Šè¿”ã™ã‹
 	},
 };
 
@@ -103,12 +103,12 @@ static const FUWANTE_MOVE_DATA FuwanteMoveDataTbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒV[ƒ“‚PFƒƒCƒ“
+ * @brief   ã‚·ãƒ¼ãƒ³ï¼‘ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   emw		ƒGƒ“ƒfƒBƒ“ƒOƒƒCƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sw		ƒV[ƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   emw		ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sw		ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹B@FALSE:Œp‘±’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ç¶™ç¶šä¸­
  */
 //--------------------------------------------------------------
 BOOL MapScene1_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw)
@@ -156,7 +156,7 @@ BOOL MapScene1_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒe‰Šúİ’è
+ * @brief   ãƒ•ãƒ¯ãƒ³ãƒ†åˆæœŸè¨­å®š
  *
  * @param   emw		
  */
@@ -179,7 +179,7 @@ static void MapScene1_FuwanteInit(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP1 *sw_map
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒeXVˆ—
+ * @brief   ãƒ•ãƒ¯ãƒ³ãƒ†æ›´æ–°å‡¦ç†
  *
  * @param   emw		
  */
@@ -195,12 +195,12 @@ static void MapScene1_FuwanteUpdate(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP1 *sw_m
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒƒ“ƒe“®ìˆ—
+ * @brief   ãƒ•ãƒ¯ãƒ³ãƒ†å‹•ä½œå‡¦ç†
  *
  * @param   emw			
  * @param   sw_map1		
- * @param   cap			‘ÎÛ‚Ìƒtƒƒ“ƒeƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   no			ƒtƒƒ“ƒe”Ô†
+ * @param   cap			å¯¾è±¡ã®ãƒ•ãƒ¯ãƒ³ãƒ†ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no			ãƒ•ãƒ¯ãƒ³ãƒ†ç•ªå·
  */
 //--------------------------------------------------------------
 static void FuwanteMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP1 *sw_map1, CATS_ACT_PTR cap, int no)
@@ -214,20 +214,20 @@ static void FuwanteMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP1 *sw_map1, CATS_AC
 		return;
 	}
 	
-	//SINƒJ[ƒu
+	//SINã‚«ãƒ¼ãƒ–
 	fuwante->theta += movedata->add_theta;
 	if(fuwante->theta >= (360 << FX32_SHIFT)){
 		fuwante->theta -= 360 << FX32_SHIFT;
 	}
 	offset_y = FX_Mul(Sin360FX(fuwante->theta), movedata->furihaba);
 
-	//À•WˆÚ“®
+	//åº§æ¨™ç§»å‹•
 	fuwante->x += movedata->add_x;
 	fuwante->y += movedata->add_y;
 	CATS_ObjectPosSetCapFx32_SubSurface(
 		cap, fuwante->x, fuwante->y + offset_y, ENDING_SUB_ACTOR_DISTANCE);
 	
-	//ƒAƒtƒBƒ“İ’è
+	//ã‚¢ãƒ•ã‚£ãƒ³è¨­å®š
 	if(fuwante->scale_dir == 0){
 		CATS_ObjectScaleAddCap(cap, movedata->add_scale, movedata->add_scale);
 	}
@@ -243,10 +243,10 @@ static void FuwanteMove(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP1 *sw_map1, CATS_AC
 
 //--------------------------------------------------------------
 /**
- * @brief   ”wŒiBGƒXƒNƒ[ƒ‹
+ * @brief   èƒŒæ™¯BGã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  *
  * @param   emw			
- * @param   sw_map1		ƒ}ƒbƒvƒV[ƒ“0ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sw_map1		ãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³0ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void MapScene1_BGScroll(ENDING_MAIN_WORK *emw, SCENE_WORK_MAP1 *sw_map1)

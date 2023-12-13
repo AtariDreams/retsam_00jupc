@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	battle_particle.c
- * @brief	í“¬—p‚Ìƒp[ƒeƒBƒNƒ‹§Œäƒc[ƒ‹
+ * @brief	æˆ¦é—˜ç”¨ã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆ¶å¾¡ãƒ„ãƒ¼ãƒ«
  * @author	matsuda
- * @date	2005.07.15(‹à)
+ * @date	2005.07.15(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -15,15 +15,15 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///í“¬ƒp[ƒeƒBƒNƒ‹‚ÌƒJƒƒ‰ƒjƒAİ’è
+///æˆ¦é—˜ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚«ãƒ¡ãƒ©ãƒ‹ã‚¢è¨­å®š
 #define BP_NEAR			(FX32_ONE)
-///í“¬ƒp[ƒeƒBƒNƒ‹‚ÌƒJƒƒ‰ƒtƒ@[İ’è
+///æˆ¦é—˜ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚«ãƒ¡ãƒ©ãƒ•ã‚¡ãƒ¼è¨­å®š
 #define BP_FAR			(FX32_ONE * 900)
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 typedef struct{
 	PTC_PTR ptc;
@@ -32,7 +32,7 @@ typedef struct{
 }BP_SYS;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static u32 sAllocTex(u32 size, BOOL is4x4comp);
 static u32 sAllocTexPalette(u32 size, BOOL is4pltt);
@@ -41,7 +41,7 @@ static void BattleParticle_TestMain(TCB_PTR tcb, void *work);
 #endif
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 const char * const PathLen[] = {
 	NULL,
@@ -57,11 +57,11 @@ const char * const PathLen[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬—pƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚ğì¬‚·‚é
+ * @brief   æˆ¦é—˜ç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‚’ä½œæˆã™ã‚‹
  *
- * @retval  ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * í“¬‚Ì‰Šú‰»‚ÅParticle_SystemWorkInit‚ªæ‚ÉÀs‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * æˆ¦é—˜ã®åˆæœŸåŒ–ã§Particle_SystemWorkInitãŒå…ˆã«å®Ÿè¡Œã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 PTC_PTR BattleParticle_SystemSet(int heap_id)
@@ -103,9 +103,9 @@ PTC_PTR CB_Particle_SystemSet(int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬—pƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€I—¹ˆ—
+ * @brief   æˆ¦é—˜ç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†å‡¦ç†
  *
- * @param  ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param  ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BattleParticle_Exit(PTC_PTR ptc)
@@ -119,9 +119,9 @@ void BattleParticle_Exit(PTC_PTR ptc)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬—pƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€EƒƒCƒ“ŠÖ”(ŒvZE•`‰æˆ—‚È‚Ç‚ğÀs)
+ * @brief   æˆ¦é—˜ç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ»ãƒ¡ã‚¤ãƒ³é–¢æ•°(è¨ˆç®—ãƒ»æç”»å‡¦ç†ãªã©ã‚’å®Ÿè¡Œ)
  *
- * @param   ptc		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ptc		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BattleParticle_Main(void)
@@ -129,9 +129,9 @@ void BattleParticle_Main(void)
 	int draw_num;
 	const MtxFx43 *camera_ptr;
 	
-	//¦check 3D‚ğg‚¤‚È‚ç–ˆƒtƒŒ[ƒ€•K‚¸ŒÄ‚Ño‚·•K—v‚ª‚ ‚é‚©‚àBSDKƒ}ƒjƒ…ƒAƒ‹QÆ
-	//		  ‚»‚ê‚È‚çí“¬‚ÌƒƒCƒ“ƒ‹[ƒv‚ÌÅ‰‚ÉŒÄ‚ñ‚Å‚à‚ç‚¤•K—v‚ª‚ ‚éB
-	//		  ‚½‚¾ƒ|ƒPƒ‚ƒ“‚Æƒp[ƒeƒBƒNƒ‹‚Æ‚Å•ÊX‚Ì•¨‚ğo‚µ‚Ä‚¢‚é‚Ì‚Å‚±‚±‚Å‚à‚¢‚é‚©‚à‚µ‚ê‚È‚¢B
+	//â€»check 3Dã‚’ä½¿ã†ãªã‚‰æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å¿…ãšå‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚‹ã‹ã‚‚ã€‚SDKãƒãƒ‹ãƒ¥ã‚¢ãƒ«å‚ç…§
+	//		  ãã‚Œãªã‚‰æˆ¦é—˜ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®æœ€åˆã«å‘¼ã‚“ã§ã‚‚ã‚‰ã†å¿…è¦ãŒã‚ã‚‹ã€‚
+	//		  ãŸã ãƒã‚±ãƒ¢ãƒ³ã¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã¨ã§åˆ¥ã€…ã®ç‰©ã‚’å‡ºã—ã¦ã„ã‚‹ã®ã§ã“ã“ã§ã‚‚ã„ã‚‹ã‹ã‚‚ã—ã‚Œãªã„ã€‚
 	//G3X_Reset();
 	GF_G3X_Reset();
 
@@ -140,13 +140,13 @@ void BattleParticle_Main(void)
 		return;
 	}
 	
-	//í“¬‚ªƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg—pƒJƒƒ‰‚É‚È‚Á‚Ä‚¢‚é‚Ì‚ğˆê“I‚É–ß‚·
+	//æˆ¦é—˜ãŒã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ã‚«ãƒ¡ãƒ©ã«ãªã£ã¦ã„ã‚‹ã®ã‚’ä¸€æ™‚çš„ã«æˆ»ã™
 	//G3X_InitMtxStack();
 	
-	draw_num = Particle_DrawAll();	//ƒp[ƒeƒBƒNƒ‹•`‰æ
+	draw_num = Particle_DrawAll();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æç”»
 
 	if(draw_num > 0){
-		//ƒp[ƒeƒBƒNƒ‹‚Ì•`‰æ‚ªI—¹‚µ‚½‚Ì‚ÅAÄ‚Ñƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg—pƒJƒƒ‰‚Éİ’è
+		//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®æç”»ãŒçµ‚äº†ã—ãŸã®ã§ã€å†ã³ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ã‚«ãƒ¡ãƒ©ã«è¨­å®š
 	#if 0
 		G3X_InitMtxStack();
 	#else
@@ -156,17 +156,17 @@ void BattleParticle_Main(void)
 		NNS_G2dSetupSoftwareSpriteCamera();
 	}
 
-	Particle_CalcAll();	//ƒp[ƒeƒBƒNƒ‹ŒvZ
+	Particle_CalcAll();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«è¨ˆç®—
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒNƒXƒ`ƒƒVRAMƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param   is4x4comp	4x4ˆ³kƒeƒNƒXƒ`ƒƒ‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO(TRUE=ˆ³kƒeƒNƒXƒ`ƒƒ)
+ * @param   size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param   is4x4comp	4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°(TRUE=åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£)
  *
- * @retval  “Ç‚İ‚İ‚ğŠJn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @retval  èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------
 static u32 sAllocTex(u32 size, BOOL is4x4comp)
@@ -176,14 +176,14 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 	u32 address;
 	
 	key = NNS_GfdAllocTexVram(size, is4x4comp, 0);
-	Particle_LnkTexKeySet(key);		//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_LnkTexKeySet(key);		//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	
 	address = NNS_GfdGetTexKeyAddr(key);
-//	OS_Printf("ƒeƒNƒXƒ`ƒƒVramƒAƒhƒŒƒX%#x\n", address);
+//	OS_Printf("ãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%#x\n", address);
 	
 	return address;
 	
-#elif 1		//ƒtƒŒ[ƒ€ƒeƒNƒXƒ`ƒƒƒ}ƒl[ƒWƒƒ
+#elif 1		//ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒãƒ¼ã‚¸ãƒ£
 	u32 address;
 	NNSGfdTexKey key;
 	
@@ -192,12 +192,12 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 	
 	address = NNS_GfdGetTexKeyAddr(key);
 #ifdef OSP_PARTICLE_ON
-	OS_Printf("VramƒAƒhƒŒƒX%#x\n", address);
+	OS_Printf("Vramã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%#x\n", address);
 #endif
 	return address;
-#else		//ƒŠƒ“ƒNƒhƒŠƒXƒgƒeƒNƒXƒ`ƒƒƒ}ƒl[ƒWƒƒ
-	¦psys‚ğƒOƒ[ƒoƒ‹•Ï”Œo—R‚Å“n‚·•K—v‚ª‚ ‚éB
-	(ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Íƒ‰ƒCƒuƒ‰ƒŠ‚ÅŒ^‚ªŒˆ‚ß‚ç‚ê‚Ä‚¢‚é‚Ì‚ÅAˆø”‚ğ‚±‚êˆÈã‘‚â‚·–‚ªo—ˆ‚È‚¢)
+#else		//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒãƒ¼ã‚¸ãƒ£
+	â€»psysã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°çµŒç”±ã§æ¸¡ã™å¿…è¦ãŒã‚ã‚‹ã€‚
+	(ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã¯ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§å‹ãŒæ±ºã‚ã‚‰ã‚Œã¦ã„ã‚‹ã®ã§ã€å¼•æ•°ã‚’ã“ã‚Œä»¥ä¸Šå¢—ã‚„ã™äº‹ãŒå‡ºæ¥ãªã„)
 	
 	u32 address;
 	NNSGfdTexKey key;
@@ -206,7 +206,7 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 	SDK_ASSERT(key != NNS_GFD_ALLOC_ERROR_TEXKEY);
 	
 	address = NNS_GfdGetTexKeyAddr(key);
-	OS_Printf("VramƒAƒhƒŒƒX%#x\n", address);
+	OS_Printf("Vramã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%#x\n", address);
 	
 	for(i = 0; i < LNK_TEX_KEY_MAX; i++){
 		if(psys->tex_key == 0){
@@ -219,15 +219,15 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgVRAMƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆVRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param	size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param	is4pltt		4FƒpƒŒƒbƒg‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+ * @param	size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param	is4pltt		4è‰²ãƒ‘ãƒ¬ãƒƒãƒˆã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
  *
- * @retval	“Ç‚İ‚İ‚ğŠJn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @retval	èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * directŒ`®‚ÌƒeƒNƒXƒ`ƒƒ‚Ìê‡ASPL_LoadTexPlttByCallbackFunction‚Í
- * ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚Ño‚µ‚Ü‚¹‚ñB
+ * directå½¢å¼ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã€SPL_LoadTexPlttByCallbackFunctionã¯
+ * ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¾ã›ã‚“ã€‚
  */
 //--------------------------------------------------------------
 static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
@@ -237,10 +237,10 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 	u32 address;
 	
 	key = NNS_GfdAllocPlttVram(size, is4pltt, 0);
-	Particle_PlttLnkTexKeySet(key);	//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_PlttLnkTexKeySet(key);	//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	
 	address = NNS_GfdGetPlttKeyAddr(key);
-//	OS_Printf("ƒpƒŒƒbƒgVramƒAƒhƒŒƒX%#x\n", address);
+//	OS_Printf("ãƒ‘ãƒ¬ãƒƒãƒˆVramã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%#x\n", address);
 	return address;
 	
 #elif 0
@@ -251,11 +251,11 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 	
 	key = NNS_GfdAllocFrmPlttVram(size, is4pltt, NNS_GFD_ALLOC_FROM_LOW);
 	if(key == NNS_GFD_ALLOC_ERROR_PLTTKEY){
-		GF_ASSERT(0 && "ƒp[ƒeƒBƒNƒ‹‚ÅƒpƒŒƒbƒg‚ÌŠm•Û‚ªo—ˆ‚Ü‚¹‚ñI\n");
+		GF_ASSERT(0 && "ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã§ãƒ‘ãƒ¬ãƒƒãƒˆã®ç¢ºä¿ãŒå‡ºæ¥ã¾ã›ã‚“ï¼\n");
 	}
 	address = NNS_GfdGetPlttKeyAddr(key);
 #ifdef OSP_PARTICLE_ON
-	OS_Printf("ƒpƒŒƒbƒgVramƒAƒhƒŒƒX%#x\n", address);
+	OS_Printf("ãƒ‘ãƒ¬ãƒƒãƒˆVramã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%#x\n", address);
 #endif
 	return address;
 #endif
@@ -268,7 +268,7 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 
 //==============================================================================
 //
-//	ƒeƒXƒg—pŠÖ”
+//	ãƒ†ã‚¹ãƒˆç”¨é–¢æ•°
 //
 //==============================================================================
 
@@ -277,19 +277,19 @@ void BattleParticle_TestInit(void)
 {
 	BP_SYS *bp;
 	
-	// ƒ}ƒl[ƒWƒƒ‚ªƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg‚ğw’èƒXƒƒbƒg•ªŠÇ—‚Å‚«‚é‚æ‚¤‚É‚µ‚Ä
-	// ƒfƒtƒHƒ‹ƒgƒ}ƒl[ƒWƒƒ‚É‚·‚éB
+	// ãƒãƒãƒ¼ã‚¸ãƒ£ãŒãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆã‚’æŒ‡å®šã‚¹ãƒ­ãƒƒãƒˆåˆ†ç®¡ç†ã§ãã‚‹ã‚ˆã†ã«ã—ã¦
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã«ã™ã‚‹ã€‚
 	NNS_GfdInitFrmTexVramManager(2, TRUE);
 		
-	// ƒ}ƒl[ƒWƒƒ‚ªƒpƒŒƒbƒg‚ğ32KB•ªŠÇ—‚Å‚«‚é‚æ‚¤‚É‚µ‚Ä
-	// ƒfƒtƒHƒ‹ƒgƒ}ƒl[ƒWƒƒ‚É‚·‚éB
+	// ãƒãƒãƒ¼ã‚¸ãƒ£ãŒãƒ‘ãƒ¬ãƒƒãƒˆã‚’32KBåˆ†ç®¡ç†ã§ãã‚‹ã‚ˆã†ã«ã—ã¦
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã«ã™ã‚‹ã€‚
 	NNS_GfdInitFrmPlttVramManager(0x8000, TRUE);
 
-	//ƒ|ƒPƒ‚ƒ“‚Åg—p‚·‚é•ª‚ğŠm•Û
+	//ãƒã‚±ãƒ¢ãƒ³ã§ä½¿ç”¨ã™ã‚‹åˆ†ã‚’ç¢ºä¿
 	NNS_GfdAllocFrmTexVram(0x1000*4, 0, 0);
 	NNS_GfdAllocFrmPlttVram(0x20 * 4, 0, NNS_GFD_ALLOC_FROM_LOW);
 
-	//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‰Šú‰»
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	Particle_SystemWorkInit();
 
 
@@ -393,7 +393,7 @@ static void BattleParticle_TestMain(TCB_PTR tcb, void *work)
 			}
 		}
 		
-		//ƒGƒ~ƒbƒ^‚ª‘S‚Ä–³‚­‚È‚Á‚½‚çI—¹
+		//ã‚¨ãƒŸãƒƒã‚¿ãŒå…¨ã¦ç„¡ããªã£ãŸã‚‰çµ‚äº†
 		if(Particle_GetEmitterNum(bp->ptc) == 0){
 			bp->seq = 0;
 			BattleParticle_Exit(bp->ptc);

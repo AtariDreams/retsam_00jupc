@@ -2,7 +2,7 @@
 /**
  *
  *	@file		smptm_statuseffect.c
- *	@brief		ƒTƒ“ƒvƒ‹@ƒXƒe[ƒ^ƒX@ƒGƒtƒFƒNƒg
+ *	@brief		ã‚µãƒ³ãƒ—ãƒ«ã€€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *	@author		tomoya takahashi
  *	@data		2005.12.16
  *
@@ -21,56 +21,56 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒXƒe[ƒ^ƒXƒGƒtƒFƒNƒgƒVƒXƒeƒ€
+//	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 //	
 //=====================================
 typedef struct {
-	CATS_SYS_PTR	csp;	///< ƒZƒ‹ƒAƒNƒ^[ŠÇ—
-	CATS_RES_PTR	crp;	///< ƒŠƒ\[ƒXƒf[ƒ^
-	PALETTE_FADE_PTR pfd;	///< ƒpƒŒƒbƒgƒtƒF[ƒhƒ[ƒN
+	CATS_SYS_PTR	csp;	///< ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç®¡ç†
+	CATS_RES_PTR	crp;	///< ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
+	PALETTE_FADE_PTR pfd;	///< ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯
 	
 	int				heap;
-	int				status;			///< ŽÀsƒXƒe[ƒ^ƒXƒGƒtƒFƒNƒg
-	SOFT_SPRITE*	ssp;	//< ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
-	u8				client_type;///< ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv
-	BOOL*			p_end;			///< I—¹ŒŸoƒtƒ‰ƒO
+	int				status;			///< å®Ÿè¡Œã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	SOFT_SPRITE*	ssp;	//< ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
+	u8				client_type;///< ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+	BOOL*			p_end;			///< çµ‚äº†æ¤œå‡ºãƒ•ãƒ©ã‚°
 
-	BOOL			sub_call_flg;	///< ƒTƒuƒR[ƒ‹‚ÌI—¹ƒ`ƒFƒbƒNƒtƒ‰ƒO
+	BOOL			sub_call_flg;	///< ã‚µãƒ–ã‚³ãƒ¼ãƒ«ã®çµ‚äº†ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°
 } SMPTM_SYS;
 typedef void (*pSMPTM_Func)( SMPTM_SYS* p_smptm );
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void SMPTM_SysTcb( TCB_PTR tcb, void* work );
@@ -83,7 +83,7 @@ static void SMPTM_ClactResLoad( SMPTM_SYS* p_smptm, const char** cpp_path, int p
 
 static void SMPTM_None( SMPTM_SYS* p_smptm );
 
-// –°‚è
+// çœ ã‚Š
 static void SMPTM_NemuriMove( SMPTM_SYS* p_smptm );
 static void SMPTM_NemuriGraphicInit( SMPTM_SYS* p_smptm );
 static void SMPTM_NemuriGraphicDelete( SMPTM_SYS* p_smptm );
@@ -91,7 +91,7 @@ static void SMPTM_NemuriTcb( TCB_PTR tcb, void* work );
 static void NemuriObjStart( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOOL_CALCMOVE* p_scale, int client_type );
 static BOOL NemuriObjMove( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOOL_CALCMOVE* p_scale );
 
-// •X
+// æ°·
 static void SMPTM_KooriMove( SMPTM_SYS* p_smptm );
 static void SMPTM_KooriGraphicInit( SMPTM_SYS* p_smptm );
 static void SMPTM_KooriGraphicDelete( SMPTM_SYS* p_smptm );
@@ -99,7 +99,7 @@ static void SMPTM_KooriTcb( TCB_PTR tcb, void* work );
 
 //-------------------------------------
 //	
-//	ŠÖ”ƒe[ƒuƒ‹
+//	é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 //	
 //=====================================
 const static pSMPTM_Func pSMPTM_SubCallFunc[] = {
@@ -132,13 +132,13 @@ const static pSMPTM_Func pSMPTM_GraphicDeleteFunc[] = {
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒe[ƒ^ƒX@ƒGƒtƒFƒNƒg@ŠJŽn
+ *	@brief	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã€€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€é–‹å§‹
  *
- *	@param	status			ƒXƒe[ƒ^ƒX
- *	@param	client_type		ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv
- *	@param	p_end			I—¹ƒ`ƒFƒbƒNƒtƒ‰ƒO
- *	@param	gra				ƒOƒ‰ƒtƒBƒbƒNƒpƒ‰ƒ[ƒ^
- *	@param	heap			Žg—pƒq[ƒv
+ *	@param	status			ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+ *	@param	client_type		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ *	@param	p_end			çµ‚äº†ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°
+ *	@param	gra				ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	heap			ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -160,15 +160,15 @@ void STATUSEFF_SampStart( int status, int client_type, BOOL* p_end, const SMPTM_
 	wk->ssp			= cp_gra->ss;
 	wk->pfd			= cp_gra->pfd;
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‰Šú‰»ŠÖ”ƒR[ƒ‹
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–é–¢æ•°ã‚³ãƒ¼ãƒ«
 	pSMPTM_GraphicInitFunc[ wk->status ]( wk );
 
-	// ƒGƒtƒFƒNƒgŠJŽnƒR[ƒ‹
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹ã‚³ãƒ¼ãƒ«
 	wk->sub_call_flg = TRUE;
 	pSMPTM_SubCallFunc[ wk->status ]( wk );
 	
 
-	// I—¹ŒŸ’mƒ^ƒXƒN“o˜^
+	// çµ‚äº†æ¤œçŸ¥ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	TCB_Add( SMPTM_SysTcb, wk, 64 );
 }
 
@@ -178,7 +178,7 @@ static void SMPTM_SysTcb( TCB_PTR tcb, void* work )
 
 	if( wk->sub_call_flg == FALSE ){
 
-		// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^”jŠü
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		pSMPTM_GraphicDeleteFunc[ wk->status ]( wk );
 
 		*wk->p_end = TRUE;
@@ -190,14 +190,14 @@ static void SMPTM_SysTcb( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- *	@param	p_smptm			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	set_num			ƒAƒNƒ^[Å‘å”
- *	@param	char_num		ƒLƒƒƒ‰ƒNƒ^”
- *	@param	pltt_num		ƒpƒŒƒbƒg”
- *	@param	cell_num		ƒZƒ‹”
- *	@param	cellanm_num		ƒZƒ‹ƒAƒjƒ”
+ *	@param	p_smptm			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	set_num			ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
+ *	@param	char_num		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ•°
+ *	@param	pltt_num		ãƒ‘ãƒ¬ãƒƒãƒˆæ•°
+ *	@param	cell_num		ã‚»ãƒ«æ•°
+ *	@param	cellanm_num		ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡æ•°
  *
  *	@return	none
  */
@@ -206,12 +206,12 @@ static void SMPTM_ClactInit( SMPTM_SYS* p_smptm, int set_num, int char_num, int 
 {
 	TCATS_RESOURCE_NUM_LIST res_man_ini;
 	
-	// ƒVƒXƒeƒ€ƒ[ƒNì¬
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_smptm->crp = CATS_ResourceCreate( p_smptm->csp );
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 	CATS_ClactSetInit( p_smptm->csp, p_smptm->crp, set_num );
 		
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	res_man_ini.resource_num.char_num = char_num;
 	res_man_ini.resource_num.pltt_num = pltt_num;
 	res_man_ini.resource_num.cell_num = cell_num;
@@ -224,12 +224,12 @@ static void SMPTM_ClactInit( SMPTM_SYS* p_smptm, int set_num, int char_num, int 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_smptm			ƒ[ƒN
- *	@param	cpp_path		ƒpƒX‚Ìƒe[ƒuƒ‹	(char pltt cell cellanm)
- *	@param	pltt_num		ƒpƒŒƒbƒg”	“Ç‚Ýž‚Ý‚·‚¤
- *	@param	id				ŠÇ—ID
+ *	@param	p_smptm			ãƒ¯ãƒ¼ã‚¯
+ *	@param	cpp_path		ãƒ‘ã‚¹ã®ãƒ†ãƒ¼ãƒ–ãƒ«	(char pltt cell cellanm)
+ *	@param	pltt_num		ãƒ‘ãƒ¬ãƒƒãƒˆæ•°	èª­ã¿è¾¼ã¿ã™ã†
+ *	@param	id				ç®¡ç†ID
  *
  *	@return	none
  *
@@ -238,7 +238,7 @@ static void SMPTM_ClactInit( SMPTM_SYS* p_smptm, int set_num, int char_num, int 
 //-----------------------------------------------------------------------------
 static void SMPTM_ClactResLoad( SMPTM_SYS* p_smptm, const char** cpp_path, int pltt_num, int id )
 {
-	// ƒLƒƒƒ‰ƒNƒ^“Ç‚Ýž‚Ý
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿èª­ã¿è¾¼ã¿
 	CATS_LoadResourceChar(
 			p_smptm->csp,
 			p_smptm->crp,
@@ -247,7 +247,7 @@ static void SMPTM_ClactResLoad( SMPTM_SYS* p_smptm, const char** cpp_path, int p
 			id
 			);
 
-	// ƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	CATS_LoadResourcePlttWork(
 			p_smptm->pfd,
 			FADE_MAIN_OBJ,
@@ -259,7 +259,7 @@ static void SMPTM_ClactResLoad( SMPTM_SYS* p_smptm, const char** cpp_path, int p
 			id
 			);
 
-	// ƒZƒ‹“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«èª­ã¿è¾¼ã¿
 	CATS_LoadResourceCell(
 			p_smptm->csp,
 			p_smptm->crp,
@@ -267,7 +267,7 @@ static void SMPTM_ClactResLoad( SMPTM_SYS* p_smptm, const char** cpp_path, int p
 			id
 			);
 
-	// ƒZƒ‹ƒAƒjƒ“Ç‚Ýž‚Ý
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡èª­ã¿è¾¼ã¿
 	CATS_LoadResourceCellAnm(
 			p_smptm->csp,
 			p_smptm->crp,
@@ -279,9 +279,9 @@ static void SMPTM_ClactResLoad( SMPTM_SYS* p_smptm, const char** cpp_path, int p
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	p_smptm		ƒGƒtƒFƒNƒgƒ[ƒN
+ *	@param	p_smptm		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -298,9 +298,9 @@ static void SMPTM_ClactDelete( SMPTM_SYS* p_smptm )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰½‚à‚È‚µƒGƒtƒFƒNƒg
+ *	@brief	ä½•ã‚‚ãªã—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- *	@param	p_smptm	ƒXƒe[ƒ^ƒXƒGƒtƒFƒNƒgƒ[ƒN
+ *	@param	p_smptm	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -316,7 +316,7 @@ static void SMPTM_None( SMPTM_SYS* p_smptm )
 //-----------------------------------------------------------------------------
 /**
  *
- *			–°‚èƒGƒtƒFƒNƒg
+ *			çœ ã‚Šã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  * 
  */
 //-----------------------------------------------------------------------------
@@ -361,7 +361,7 @@ typedef struct{
 	int seq;
 	int wait;
 
-	// “®ìƒf[ƒ^
+	// å‹•ä½œãƒ‡ãƒ¼ã‚¿
 	CATS_ACT_PTR		cap[ NEMURI_SET_NUM ];
 	WAZATOOL_CALCMOVE	cap_move[ NEMURI_SET_NUM ];
 	WAZATOOL_CALCMOVE	cap_scale[ NEMURI_SET_NUM ];
@@ -370,9 +370,9 @@ typedef struct{
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚ß‚Þ‚èƒGƒtƒFƒNƒg
+ *	@brief	ã‚ã‚€ã‚Šã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- *	@param	p_smptm	ƒXƒe[ƒ^ƒXƒGƒtƒFƒNƒgƒ[ƒN
+ *	@param	p_smptm	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -392,7 +392,7 @@ static void SMPTM_NemuriMove( SMPTM_SYS* p_smptm )
 
 	wk->p_smptm = p_smptm;
 
-	// –°‚èƒZƒ‹ƒAƒNƒ^[‚Ì“o˜^‚ðs‚¤
+	// çœ ã‚Šã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç™»éŒ²ã‚’è¡Œã†
 	coap.x = SoftSpriteParaGet( p_smptm->ssp, SS_PARA_POS_X );
 	coap.y = SoftSpriteParaGet( p_smptm->ssp, SS_PARA_POS_Y );
 	coap.z = 0;
@@ -405,16 +405,16 @@ static void SMPTM_NemuriMove( SMPTM_SYS* p_smptm )
 		CATS_ObjectEnableCap( wk->cap[i], FALSE );
 	}
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	TCB_Add( SMPTM_NemuriTcb, wk, 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	–°‚èƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ì¬
+ *	@brief	çœ ã‚Šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *	
- *	@param	p_smptm	ƒ[ƒN
+ *	@param	p_smptm	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -431,7 +431,7 @@ static void SMPTM_NemuriGraphicInit( SMPTM_SYS* p_smptm )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	–°‚èƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^”jŠü
+ *	@brief	çœ ã‚Šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
  *	@param	p_smptm 
  *
@@ -448,10 +448,10 @@ static void SMPTM_NemuriGraphicDelete( SMPTM_SYS* p_smptm )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	–°‚èTCB
+ *	@brief	çœ ã‚ŠTCB
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return	none
  *
@@ -499,7 +499,7 @@ static void SMPTM_NemuriTcb( TCB_PTR tcb, void* work )
 		for( i=0; i<NEMURI_SET_NUM; i++ ){
 			CATS_ActorPointerDelete_S(wk->cap[i]);
 		}
-		// I—¹
+		// çµ‚äº†
 		wk->p_smptm->sub_call_flg = FALSE;
 		sys_FreeMemoryEz( wk );
 		TCB_Delete( tcb );
@@ -512,11 +512,11 @@ static void SMPTM_NemuriTcb( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	–°‚èƒGƒtƒFƒNƒgŠJŽn
+ *	@brief	çœ ã‚Šã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	cap			ƒAƒNƒ^[
- *	@param	p_move		ˆÚ“®ƒf[ƒ^Ši”[æ
- *	@param	p_scale		Šgkƒf[ƒ^Ši”[æ
+ *	@param	cap			ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	p_move		ç§»å‹•ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	p_scale		æ‹¡ç¸®ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
  *	@return	none
  *
@@ -528,7 +528,7 @@ static void NemuriObjStart( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOO
 	int vec_x;
 	s16 cap_x, cap_y;
 	
-	// •\Ž¦•”{ŠpƒAƒtƒBƒ“
+	// è¡¨ç¤ºï¼†å€è§’ã‚¢ãƒ•ã‚£ãƒ³
 	CATS_ObjectAffineSetCap( cap, CLACT_AFFINE_DOUBLE );
 	CATS_ObjectEnableCap( cap, TRUE );
 
@@ -549,7 +549,7 @@ static void NemuriObjStart( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOO
 		break;
 	}
 
-	// ’¼üˆÚ“®Ý’è
+	// ç›´ç·šç§»å‹•è¨­å®š
 	WazaTool_InitStraightSyncFx( 
 			p_move,
 			cap_x, cap_x + (NEMURI_MOVE_W * vec_x),
@@ -557,7 +557,7 @@ static void NemuriObjStart( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOO
 			NEMURI_EFF_SYNC
 			);
 
-	// Šgk
+	// æ‹¡ç¸®
 	WazaTool_InitScaleRate(
 			p_scale,
 			NEMURI_SCALE_S,
@@ -570,11 +570,11 @@ static void NemuriObjStart( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOO
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	–°‚èƒIƒuƒWƒFƒNƒg“®ì
+ *	@brief	çœ ã‚Šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œ
  *
- *	@param	cap			ƒAƒNƒ^[
- *	@param	p_move		ˆÚ“®“®ì
- *	@param	p_scale		Šgk
+ *	@param	cap			ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	p_move		ç§»å‹•å‹•ä½œ
+ *	@param	p_scale		æ‹¡ç¸®
  *
  *	@retval	TRUE	
  *
@@ -585,7 +585,7 @@ static BOOL NemuriObjMove( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOOL
 {
 	BOOL check;
 
-	// “®ì”½‰f•”
+	// å‹•ä½œåæ˜ éƒ¨
 	WazaTool_CalcAndReflectStraightFxCap( p_move, cap );
 	check = WazaTool_CalcAndReflectScaleRateCap( p_scale, cap );
 
@@ -593,7 +593,7 @@ static BOOL NemuriObjMove( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOOL
 		return FALSE;
 	}
 
-	// •\Ž¦OFF
+	// è¡¨ç¤ºOFF
 	CATS_ObjectEnableCap( cap, FALSE );
 	return TRUE;
 }
@@ -602,7 +602,7 @@ static BOOL NemuriObjMove( CATS_ACT_PTR cap, WAZATOOL_CALCMOVE* p_move, WAZATOOL
 //-----------------------------------------------------------------------------
 /**
  *
- *				‚±‚¨‚è
+ *				ã“ãŠã‚Š
  * 
  */
 //-----------------------------------------------------------------------------
@@ -642,7 +642,7 @@ typedef struct{
 	int seq;
 	int plt_no;
 
-	// “®ìƒf[ƒ^
+	// å‹•ä½œãƒ‡ãƒ¼ã‚¿
 	CATS_ACT_PTR		cap;
 	WAZATOOL_ALPHA_FADE	cap_alpha;
 } SMPTM_KOORI_SYS;
@@ -650,7 +650,7 @@ typedef struct{
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•XƒGƒtƒFƒNƒgƒ^ƒXƒN“o˜^
+ *	@brief	æ°·ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
  *	@param	p_smptm 
  *
@@ -671,7 +671,7 @@ static void SMPTM_KooriMove( SMPTM_SYS* p_smptm )
 
 	wk->p_smptm = p_smptm;
 
-	// –°‚èƒZƒ‹ƒAƒNƒ^[‚Ì“o˜^‚ðs‚¤
+	// çœ ã‚Šã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç™»éŒ²ã‚’è¡Œã†
 	coap.x = SoftSpriteParaGet( p_smptm->ssp, SS_PARA_POS_X );
 	coap.y = SoftSpriteParaGet( p_smptm->ssp, SS_PARA_POS_Y );
 	coap.z = 0;
@@ -685,16 +685,16 @@ static void SMPTM_KooriMove( SMPTM_SYS* p_smptm )
 
 	wk->plt_no = CATS_ObjectPaletteOffsetGetCap( wk->cap );
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	TCB_Add( SMPTM_KooriTcb, wk, 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•XƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‰Šú‰»
+ *	@brief	æ°·ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_smptm		ƒ[ƒN
+ *	@param	p_smptm		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -711,9 +711,9 @@ static void SMPTM_KooriGraphicInit( SMPTM_SYS* p_smptm )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•XƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^”jŠü
+ *	@brief	æ°·ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_smptm		ƒ[ƒN
+ *	@param	p_smptm		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -728,7 +728,7 @@ static void SMPTM_KooriGraphicDelete( SMPTM_SYS* p_smptm )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•X“®ìƒ^ƒXƒN
+ *	@brief	æ°·å‹•ä½œã‚¿ã‚¹ã‚¯
  *
  *	@param	tcb
  *	@param	work 
@@ -753,7 +753,7 @@ static void SMPTM_KooriTcb( TCB_PTR tcb, void* work )
 				);
 		CATS_ObjectEnableCap( wk->cap, TRUE );
 
-		// ‚±‚±‚ÍŒã‚ÅƒRƒ“ƒeƒXƒg—p‚É‚·‚é•K—v‚ª‚ ‚é
+		// ã“ã“ã¯å¾Œã§ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 		G2_SetBlendAlpha( GX_BLEND_PLANEMASK_NONE,
 				( 1 << BATTLE_BGNO_BACKGROUND ) | GX_BLEND_PLANEMASK_BG0,
 				KOORI_ALPHA_S, KOORI_ALPHA_DEF - KOORI_ALPHA_S);	
@@ -771,7 +771,7 @@ static void SMPTM_KooriTcb( TCB_PTR tcb, void* work )
 		break;
 		
 	case KOORI_SEQ_ANM:
-		// Ž©•ª‚ÅƒpƒŒƒbƒgƒiƒ“ƒo[‚ðÝ’è‚·‚é
+		// è‡ªåˆ†ã§ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’è¨­å®šã™ã‚‹
 		frame = CATS_ObjectAnimeFrameGetCap( wk->cap );
 		frame %= 3;
 		CATS_ObjectPaletteOffsetSetCap( wk->cap, wk->plt_no + frame );
@@ -799,7 +799,7 @@ static void SMPTM_KooriTcb( TCB_PTR tcb, void* work )
 		
 	case KOORI_SEQ_END:
 		CATS_ActorPointerDelete_S(wk->cap);
-		// I—¹
+		// çµ‚äº†
 		wk->p_smptm->sub_call_flg = FALSE;
 		sys_FreeMemoryEz( wk );
 		TCB_Delete( tcb );
@@ -813,16 +813,16 @@ static void SMPTM_KooriTcb( TCB_PTR tcb, void* work )
 //-----------------------------------------------------------------------------
 /**
  *
- *				“Å
+ *				æ¯’
  * 
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“Å“®ìŠJŽnŠÖ”
+ *	@brief	æ¯’å‹•ä½œé–‹å§‹é–¢æ•°
  *
- *	@param	p_smptm		ƒ[ƒN
+ *	@param	p_smptm		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -836,7 +836,7 @@ static void SMPTM_DokuMove( SMPTM_SYS* p_smptm )
 
 
 #if 0
-// ƒfƒoƒbƒO
+// ãƒ‡ãƒãƒƒã‚°
 typedef struct{
 	WE_SYS_PTR we_sys;
 	BOOL end;

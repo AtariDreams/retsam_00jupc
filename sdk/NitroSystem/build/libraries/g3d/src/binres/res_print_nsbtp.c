@@ -86,11 +86,11 @@ NNS_G3dPrintTexPatAnm( const NNSG3dResTexPatAnm* pPatAnm )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dPrintTexPatAnmSet
 
-  Description:  NNSG3dResTexPatAnmSet‚Ì“à—e‚ð ƒfƒoƒbƒNo—Í‚É•\Ž¦‚µ‚Ü‚·B
+  Description:  NNSG3dResTexPatAnmSetã®å†…å®¹ã‚’ ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã«è¡¨ç¤ºã—ã¾ã™ã€‚
                 
-  Arguments:    pAnmSet:     ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒZƒbƒg‚ð‘©‚Ë‚é\‘¢‘Ì
+  Arguments:    pAnmSet:     ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚»ãƒƒãƒˆã‚’æŸã­ã‚‹æ§‹é€ ä½“
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void
@@ -123,11 +123,11 @@ NNS_G3dPrintTexPatAnmSet( const NNSG3dResTexPatAnmSet* pAnmSet )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dPrintNSBTP
 
-  Description:  NSBTP ƒtƒ@ƒCƒ‹ ‚Ì“à—e‚ð ƒfƒoƒbƒNo—Í‚É•\Ž¦‚µ‚Ü‚·B
+  Description:  NSBTP ãƒ•ã‚¡ã‚¤ãƒ« ã®å†…å®¹ã‚’ ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã«è¡¨ç¤ºã—ã¾ã™ã€‚
                 
-  Arguments:    binFile:     NSBTPƒtƒ@ƒCƒ‹ƒf[ƒ^‚Ìæ“ª‚ðŽw‚·ƒ|ƒCƒ“ƒ^
+  Arguments:    binFile:     NSBTPãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‚’æŒ‡ã™ãƒã‚¤ãƒ³ã‚¿
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void
@@ -143,7 +143,7 @@ NNS_G3dPrintNSBTP(const u8* binFile)
     NNS_G3dPrintFileHeader(header);
 
     //
-    // ‚·‚×‚Ä‚ÌƒuƒƒbƒN‚É‚Â‚¢‚Ä...
+    // ã™ã¹ã¦ã®ãƒ–ãƒ­ãƒƒã‚¯ã«ã¤ã„ã¦...
     //
     numBlocks  = header->dataBlocks;
     for ( i = 0; i < numBlocks; ++i )
@@ -154,7 +154,7 @@ NNS_G3dPrintNSBTP(const u8* binFile)
         NNS_G3dPrintDataBlockHeader(blk);
 
         //
-        // ‹ï‘Ì“I‚ÈŽí—Þ‚²‚Æ‚ÉƒTƒ}ƒŠ‚ÌƒfƒoƒbƒNo—Í‚ðŽÀs‚µ‚Ü‚·
+        // å…·ä½“çš„ãªç¨®é¡žã”ã¨ã«ã‚µãƒžãƒªã®ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã‚’å®Ÿè¡Œã—ã¾ã™
         //
         tabPlus_();
         {

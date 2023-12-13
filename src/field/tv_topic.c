@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	tv_topic.c
- * @brief	ƒeƒŒƒrƒgƒsƒbƒN¶¬E•ú‘——p
+ * @brief	ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆãƒ»æ”¾é€ç”¨
  * @author	tamada GAME FREAK inc.
  * @date	2006.05.19
  */
@@ -69,7 +69,7 @@
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
-// ‰pŒê”Å‚Ì‚İƒ|ƒPƒ‚ƒ“‚Ì‘å‚«‚³‚ğƒCƒ“ƒ`Œn‚É•ÏŠ·
+// è‹±èªç‰ˆã®ã¿ãƒã‚±ãƒ¢ãƒ³ã®å¤§ãã•ã‚’ã‚¤ãƒ³ãƒç³»ã«å¤‰æ›
 #include "localize.h"
 // ----------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ static void MakeTopic(FIELDSYS_WORK * fsys, int prog_type, int topic_id, const v
 static void MakeTopic2(SAVEDATA * savedata, int prog_type, int topic_id, const void * data);
 
 //--------------------------------------------------------------------
-///	ƒ_ƒ~[’è‹`
+///	ãƒ€ãƒŸãƒ¼å®šç¾©
 //--------------------------------------------------------------------
 typedef struct {
 	u8 dummy[TOPIC_DATA_SIZE];
@@ -87,15 +87,15 @@ typedef struct {
 
 
 //============================================================================================
-//	ŠÄ‹Œ^(š‚ÍV‹KA¡‚Ííœ)
+//	ç›£è¦–å‹(â˜…ã¯æ–°è¦ã€â– ã¯å‰Šé™¤)
 //============================================================================================
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹‚Å‚ÌƒeƒŒƒrƒgƒsƒbƒN—pî•ñƒ[ƒN’è‹`
+ * @brief	ãƒãƒˆãƒ«ã§ã®ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”¨æƒ…å ±ãƒ¯ãƒ¼ã‚¯å®šç¾©
  *
  *
- * ŠÄ‹Œ^‚PA‚QF•ßŠl
+ * ç›£è¦–å‹ï¼‘ã€ï¼’ï¼šæ•ç²
  */
 //--------------------------------------------------------------------
 struct TVWATCH_BATTLE_WORK{
@@ -111,7 +111,7 @@ struct TVWATCH_BATTLE_WORK{
 };
 
 //--------------------------------------------------------------------
-///	ŠÄ‹Œ^‚RF‚Â‚è
+///	ç›£è¦–å‹ï¼“ï¼šã¤ã‚Š
 //--------------------------------------------------------------------
 typedef struct {
 	u16 monsno;
@@ -123,14 +123,14 @@ typedef struct {
 }WATCH_FISHING_WORK;
 
 //--------------------------------------------------------------------
-///	ŠÄ‹Œ^‚SƒOƒ‹[ƒvæ‚èŠ·‚¦C‚Q‚OƒOƒ‹[ƒvì¬—p’è‹`
+///	ç›£è¦–å‹ï¼”ã‚°ãƒ«ãƒ¼ãƒ—ä¹—ã‚Šæ›ãˆï¼Œï¼’ï¼ã‚°ãƒ«ãƒ¼ãƒ—ä½œæˆç”¨å®šç¾©
 //--------------------------------------------------------------------
 typedef struct {
 	STRCODE groupname[MONS_NAME_SIZE + EOM_SIZE];
 }WATCH_GROUP_WORK;
 
 //--------------------------------------------------------------------
-///	ŠÄ‹Œ^‚UF‰B‚µƒAƒCƒeƒ€”­Œ©—p’è‹`
+///	ç›£è¦–å‹ï¼–ï¼šéš ã—ã‚¢ã‚¤ãƒ†ãƒ ç™ºè¦‹ç”¨å®šç¾©
 //--------------------------------------------------------------------
 typedef struct {
 	u16 item_no;
@@ -138,15 +138,15 @@ typedef struct {
 }WATCH_HIDEITEM_WORK;
 
 //--------------------------------------------------------------------
-///	ŠÄ‹Œ^‚VF”ƒ‚¢•¨ƒ`ƒFƒbƒN—p’è‹`š
+///	ç›£è¦–å‹ï¼—ï¼šè²·ã„ç‰©ãƒã‚§ãƒƒã‚¯ç”¨å®šç¾©â˜…
 //--------------------------------------------------------------------
 typedef struct {
-	u16 item_no;				//ƒAƒCƒeƒ€ƒiƒ“ƒo[
-	u8	item_num;				//ŒÂ”
+	u16 item_no;				//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+	u8	item_num;				//å€‹æ•°
 }WATCH_SHOPPING_WORK;
 
 //--------------------------------------------------------------------
-///	ŠÄ‹Œ^‚WFƒ^ƒ}ƒS›z‰»—p’è‹`
+///	ç›£è¦–å‹ï¼˜ï¼šã‚¿ãƒã‚´å­µåŒ–ç”¨å®šç¾©
 //--------------------------------------------------------------------
 typedef struct {
 	u16 monsno;
@@ -156,7 +156,7 @@ typedef struct {
 	u16 place_name_id;
 }WATCH_HATCHEGG_WORK;
 //--------------------------------------------------------------------
-///	ŠÄ‹‚P‚OF©–¼”»’f
+///	ç›£è¦–ï¼‘ï¼ï¼šå§“ååˆ¤æ–­
 //--------------------------------------------------------------------
 typedef struct {
 	u16 monsno;
@@ -167,7 +167,7 @@ typedef struct {
 }WATCH_MONSNAMECHG_WORK;
 
 //--------------------------------------------------------------------
-///	ŠÄ‹‚P‚RF’n‰ºƒAƒCƒeƒ€
+///	ç›£è¦–ï¼‘ï¼“ï¼šåœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ 
 //--------------------------------------------------------------------
 typedef struct {
 	u16 fossil_type;
@@ -175,7 +175,7 @@ typedef struct {
 }WATCH_DIG_FOSSIL_WORK;
 
 //--------------------------------------------------------------------
-///	ŠÄ‹‚P‚TFƒTƒtƒ@ƒŠ
+///	ç›£è¦–ï¼‘ï¼•ï¼šã‚µãƒ•ã‚¡ãƒª
 //--------------------------------------------------------------------
 typedef struct {
 	u16 monsno;
@@ -186,17 +186,17 @@ typedef struct {
 }WATCH_SAFARI_WORK;
 
 //--------------------------------------------------------------------
-///	ŠÄ‹Œ^‚P‚UFƒIƒX‚¾‚¯IƒƒX‚¾‚¯I—p’è‹`š
+///	ç›£è¦–å‹ï¼‘ï¼–ï¼šã‚ªã‚¹ã ã‘ï¼ãƒ¡ã‚¹ã ã‘ï¼ç”¨å®šç¾©â˜…
 //--------------------------------------------------------------------
 typedef struct {
-	u16	monsno;					//æ“ª‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-	u8	mons_sex;				//ƒIƒX‚©ƒƒX‚©
+	u16	monsno;					//å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+	u8	mons_sex;				//ã‚ªã‚¹ã‹ãƒ¡ã‚¹ã‹
 	u8	mons_region;
 	u8	mons_rom;
 }WATCH_OSUMESU_WORK;
 
 //--------------------------------------------------------------------
-///	ŠÄ‹‚P‚VFŠ¿•û–ò¡
+///	ç›£è¦–ï¼‘ï¼—ï¼šæ¼¢æ–¹è–¬â– 
 //--------------------------------------------------------------------
 typedef struct {
 	u16 monsno;
@@ -207,7 +207,7 @@ typedef struct {
 }WATCH_KANPO_WORK;
 
 //--------------------------------------------------------------------
-///	ŠÄ‹‚P‚WC‚P‚XAƒMƒlƒX‚O‚UF‚«‚Ì‚İ–LìA•sìA–¼l
+///	ç›£è¦–ï¼‘ï¼˜ï¼Œï¼‘ï¼™ã€ã‚®ãƒã‚¹ï¼ï¼–ï¼šãã®ã¿è±Šä½œã€ä¸ä½œã€åäºº
 //--------------------------------------------------------------------
 typedef struct {
 	u16 nuts_item_no;
@@ -216,7 +216,7 @@ typedef struct {
 }COMMON_TAKE_NUTS_WORK;
 
 //--------------------------------------------------------------------
-///	ŠÄ‹‚Q‚PFƒJƒXƒ^ƒ€ƒJƒvƒZƒ‹
+///	ç›£è¦–ï¼’ï¼‘ï¼šã‚«ã‚¹ã‚¿ãƒ ã‚«ãƒ—ã‚»ãƒ«
 //--------------------------------------------------------------------
 typedef struct {
 	u16 monsno;
@@ -228,7 +228,7 @@ typedef struct {
 }WATCH_CUSTOMCAPSULE_WORK;
 
 //--------------------------------------------------------------------
-///	ŠÄ‹‚Q‚QA‚Q‚RFŠø‚ğæ‚Á‚½EŠø‚ğæ‚ç‚ê‚½
+///	ç›£è¦–ï¼’ï¼’ã€ï¼’ï¼“ï¼šæ——ã‚’å–ã£ãŸãƒ»æ——ã‚’å–ã‚‰ã‚ŒãŸ
 //--------------------------------------------------------------------
 typedef struct {
 	int size;
@@ -236,27 +236,27 @@ typedef struct {
 }WATCH_UG_FLAG_WORK;
 
 //--------------------------------------------------------------------
-///	ŠÄ‹‚Q‚TF•Ê‘‘w“üš
+///	ç›£è¦–ï¼’ï¼•ï¼šåˆ¥è˜è³¼å…¥â˜…
 //--------------------------------------------------------------------
 typedef struct {
-	u8 buy;						//•Ê‘‘‚ğw“ü‚µ‚½‚©
-	//u8 broadcast_flag;		//•ú‘—‚µ‚½‚©
+	u8 buy;						//åˆ¥è˜ã‚’è³¼å…¥ã—ãŸã‹
+	//u8 broadcast_flag;		//æ”¾é€ã—ãŸã‹
 }WATCH_VILLA_WORK;
 
 //--------------------------------------------------------------------
-///	ŠÄ‹‚Q‚UF•Ê‘‘‰ü’zš
+///	ç›£è¦–ï¼’ï¼–ï¼šåˆ¥è˜æ”¹ç¯‰â˜…
 //--------------------------------------------------------------------
 typedef struct {
-	u8 furniture;				//w“ü‚µ‚½‰Æ‹ï
+	u8 furniture;				//è³¼å…¥ã—ãŸå®¶å…·
 }WATCH_RECONSTRUCTION_WORK;
 
 
 //============================================================================================
-//	ƒMƒlƒXŒ^(š‚ÍV‹KA¡‚Ííœ)
+//	ã‚®ãƒã‚¹å‹(â˜…ã¯æ–°è¦ã€â– ã¯å‰Šé™¤)
 //============================================================================================
 
 //--------------------------------------------------------------------
-///	ƒMƒlƒXŒ^‚O‚PFƒoƒgƒ‹ƒ^ƒ[˜AŸ”
+///	ã‚®ãƒã‚¹å‹ï¼ï¼‘ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹æ•°
 //--------------------------------------------------------------------
 typedef struct {
 	u16 renshou;
@@ -268,7 +268,7 @@ typedef struct {
 }RECORD_BTOWER_WORK;
 
 //--------------------------------------------------------------------
-///	ƒMƒlƒXŒ^‚O‚RF‘å‚«‚³”ä‚×‹L˜^
+///	ã‚®ãƒã‚¹å‹ï¼ï¼“ï¼šå¤§ãã•æ¯”ã¹è¨˜éŒ²
 //--------------------------------------------------------------------
 typedef struct {
 	u16 monsno;
@@ -279,7 +279,7 @@ typedef struct {
 }RECORD_OOKISA_WORK;
 
 //--------------------------------------------------------------------
-///	ƒMƒlƒXŒ^‚O‚SFƒXƒƒbƒg’Bl
+///	ã‚®ãƒã‚¹å‹ï¼ï¼”ï¼šã‚¹ãƒ­ãƒƒãƒˆé”äºº
 //--------------------------------------------------------------------
 typedef struct {
 	u32 start_coin;
@@ -288,12 +288,12 @@ typedef struct {
 }RECORD_SLOT_WORK;
 
 //--------------------------------------------------------------------
-///	ƒMƒlƒXŒ^‚O‚TFƒŠƒ{ƒ“ƒRƒŒƒNƒ^[š
+///	ã‚®ãƒã‚¹å‹ï¼ï¼•ï¼šãƒªãƒœãƒ³ã‚³ãƒ¬ã‚¯ã‚¿ãƒ¼â˜…
 //--------------------------------------------------------------------
 typedef struct {
 	STRCODE nickname[MONS_NAME_SIZE + EOM_SIZE];
-	u8	ribbon_id;				//ÅŒã‚ÉŠl“¾‚µ‚½ƒŠƒ{ƒ“
-	u8	ribbon_total;			//‘ƒŠƒ{ƒ“”
+	u8	ribbon_id;				//æœ€å¾Œã«ç²å¾—ã—ãŸãƒªãƒœãƒ³
+	u8	ribbon_total;			//ç·ãƒªãƒœãƒ³æ•°
 	u8	nickname_flag;
 	u8	mons_sex;
 	u8	mons_region;
@@ -301,10 +301,10 @@ typedef struct {
 	u16 monsno;
 }RECORD_RIBBON_WORK;
 
-//–Ø‚ÌÀˆç‚Ä‚Ì–¼lHHH¡
+//æœ¨ã®å®Ÿè‚²ã¦ã®åäººï¼Ÿï¼Ÿï¼Ÿâ– 
 
 //--------------------------------------------------------------------
-///	ƒMƒlƒXŒ^‚O‚WFƒƒi‰ğœ–¼l
+///	ã‚®ãƒã‚¹å‹ï¼ï¼˜ï¼šãƒ¯ãƒŠè§£é™¤åäºº
 //--------------------------------------------------------------------
 typedef struct {
 	u16	trap_no;
@@ -312,21 +312,21 @@ typedef struct {
 }RECORD_REMOVE_TRAP_WORK;
 
 //--------------------------------------------------------------------
-///	ƒMƒlƒXŒ^‚O‚XFƒnƒ^ƒgƒŠ–¼l
+///	ã‚®ãƒã‚¹å‹ï¼ï¼™ï¼šãƒã‚¿ãƒˆãƒªåäºº
 //--------------------------------------------------------------------
 typedef struct {
 	u16 flag_count;
 }RECORD_GET_FLAG_WORK;
 
 //--------------------------------------------------------------------
-///	ƒMƒlƒXŒ^‚P‚OFƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼lš
+///	ã‚®ãƒã‚¹å‹ï¼‘ï¼ï¼šãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäººâ˜…
 //--------------------------------------------------------------------
 typedef struct {
 	TOPICTEMP_BP bp;
 }RECORD_BP_WORK;
 
 //--------------------------------------------------------------------
-///	ƒMƒlƒXŒ^‚P‚PFGTS–¼lš
+///	ã‚®ãƒã‚¹å‹ï¼‘ï¼‘ï¼šGTSåäººâ˜…
 //--------------------------------------------------------------------
 typedef struct {
 	TOPICTEMP_GTS gts;
@@ -334,11 +334,11 @@ typedef struct {
 
 
 //============================================================================================
-//	¿–âŒ^(š‚ÍV‹KA¡‚Ííœ)
+//	è³ªå•å‹(â˜…ã¯æ–°è¦ã€â– ã¯å‰Šé™¤)
 //============================================================================================
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚O‚QFƒoƒgƒ‹ƒ^ƒ[
+///	è³ªå•å‹ï¼ï¼’ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 //--------------------------------------------------------------------
 typedef struct {
 	TOPICTEMP_BTOWER btower;
@@ -346,7 +346,7 @@ typedef struct {
 }QANDA_BTOWER_WORK;
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚O‚SFƒ|ƒPƒ‚ƒ“
+///	è³ªå•å‹ï¼ï¼”ï¼šãƒã‚±ãƒ¢ãƒ³
 //--------------------------------------------------------------------
 typedef struct {
 	u16 monsno;
@@ -359,7 +359,7 @@ typedef struct {
 }QANDA_POKEMON_WORK;
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚O‚UFƒ|ƒPƒbƒ`
+///	è³ªå•å‹ï¼ï¼–ï¼šãƒã‚±ãƒƒãƒ
 //--------------------------------------------------------------------
 typedef struct {
 	int poketch_id;
@@ -367,7 +367,7 @@ typedef struct {
 }QANDA_POKETCH_WORK;
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚O‚VFƒRƒ“ƒeƒXƒg
+///	è³ªå•å‹ï¼ï¼—ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 //--------------------------------------------------------------------
 typedef struct {
 	TOPICTEMP_CONTEST contest;
@@ -375,7 +375,7 @@ typedef struct {
 }QANDA_CONTEST_WORK;
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚O‚XFƒNƒŠƒbƒv
+///	è³ªå•å‹ï¼ï¼™ï¼šã‚¯ãƒªãƒƒãƒ—
 //--------------------------------------------------------------------
 typedef struct {
 	u16 monsno;
@@ -383,14 +383,14 @@ typedef struct {
 }QANDA_CLIP_WORK;
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚P‚OFƒ^ƒCƒv
+///	è³ªå•å‹ï¼‘ï¼ï¼šã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------------
 typedef struct {
 	int type;
 }QANDA_POKETYPE_WORK;
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚P‚PFƒ|ƒ‹ƒg
+///	è³ªå•å‹ï¼‘ï¼‘ï¼šãƒãƒ«ãƒˆ
 //--------------------------------------------------------------------
 typedef struct {
 	TOPICTEMP_PORUTO poruto;
@@ -398,7 +398,7 @@ typedef struct {
 }QANDA_PORUTO_WORK;
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚P‚RF˜A‚ê•à‚«
+///	è³ªå•å‹ï¼‘ï¼“ï¼šé€£ã‚Œæ­©ã
 //--------------------------------------------------------------------
 typedef struct {
 	TOPICTEMP_PARK park;
@@ -406,7 +406,7 @@ typedef struct {
 }QANDA_PARK_WORK;
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚P‚SFƒoƒgƒ‹ƒXƒe[ƒWš
+///	è³ªå•å‹ï¼‘ï¼”ï¼šãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸â˜…
 //--------------------------------------------------------------------
 typedef struct {
 	TOPICTEMP_STAGE stage;
@@ -414,35 +414,35 @@ typedef struct {
 }QANDA_STAGE_WORK;
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚P‚TF‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš
+///	è³ªå•å‹ï¼‘ï¼•ï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…
 //--------------------------------------------------------------------
 typedef struct {
 	PMS_WORD word;
 }QANDA_STRANGE_WORK1;
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚P‚UF‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš
+///	è³ªå•å‹ï¼‘ï¼–ï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…
 //--------------------------------------------------------------------
 typedef struct {
 	PMS_WORD word;
 }QANDA_STRANGE_WORK2;
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚P‚VF‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš
+///	è³ªå•å‹ï¼‘ï¼—ï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…
 //--------------------------------------------------------------------
 typedef struct {
 	PMS_WORD word;
 }QANDA_STRANGE_WORK3;
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚P‚WF‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš
+///	è³ªå•å‹ï¼‘ï¼˜ï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…
 //--------------------------------------------------------------------
 typedef struct {
 	PMS_WORD word;
 }QANDA_STRANGE_WORK4;
 
 //--------------------------------------------------------------------
-///	¿–âŒ^‚P‚XFƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µš
+///	è³ªå•å‹ï¼‘ï¼™ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—â˜…
 //--------------------------------------------------------------------
 typedef struct {
 	TOPICTEMP_FRIEND friend;
@@ -452,43 +452,43 @@ typedef struct {
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN•Ûƒf[ƒ^—p‹¤—L‘Ì’è‹`
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ä¿æŒãƒ‡ãƒ¼ã‚¿ç”¨å…±æœ‰ä½“å®šç¾©
  */
 //--------------------------------------------------------------------
 typedef union {
-//ƒ_ƒ~[’è‹`
-	TOPIC_DUMMY_DATA DummyData;								//‚±‚Ìƒf[ƒ^‚ª40byte(TOPIC_DATA_SIZE)
+//ãƒ€ãƒŸãƒ¼å®šç¾©
+	TOPIC_DUMMY_DATA DummyData;								//ã“ã®ãƒ‡ãƒ¼ã‚¿ãŒ40byte(TOPIC_DATA_SIZE)
 
-//ŠÄ‹Œ^—p
+//ç›£è¦–å‹ç”¨
 	TVWATCH_BATTLE_WORK WatchCaptureWork;
 	WATCH_FISHING_WORK WatchFishingWork;
 	WATCH_GROUP_WORK WatchGroupWork;
 	WATCH_HIDEITEM_WORK WatchHideItemWork;
-	WATCH_SHOPPING_WORK WatchShoppingWork;					//š
+	WATCH_SHOPPING_WORK WatchShoppingWork;					//â˜…
 	WATCH_HATCHEGG_WORK WatchHatchEggWork;
 	WATCH_MONSNAMECHG_WORK WatchMonsNameChgWork;
 	WATCH_DIG_FOSSIL_WORK WatchDigFossilWork;
 	WATCH_SAFARI_WORK WatchSafariWork;
-	WATCH_OSUMESU_WORK WatchOsuMesuWork;					//š
-	WATCH_KANPO_WORK WatchKanpoWork;						//¡
+	WATCH_OSUMESU_WORK WatchOsuMesuWork;					//â˜…
+	WATCH_KANPO_WORK WatchKanpoWork;						//â– 
 	COMMON_TAKE_NUTS_WORK TakeNutsWork;
 	WATCH_CUSTOMCAPSULE_WORK WatchCustomCapsuleWork;
 	WATCH_UG_FLAG_WORK WatchUgFlagWork;
-	WATCH_VILLA_WORK WatchVillaWork;						//š
-	WATCH_RECONSTRUCTION_WORK WatchReconstructionWork;		//š
+	WATCH_VILLA_WORK WatchVillaWork;						//â˜…
+	WATCH_RECONSTRUCTION_WORK WatchReconstructionWork;		//â˜…
 
-//ƒMƒlƒXŒ^—p
+//ã‚®ãƒã‚¹å‹ç”¨
 	RECORD_BTOWER_WORK RecordBTowerWork;
 	RECORD_OOKISA_WORK RecordOokisaWork;
 	RECORD_SLOT_WORK RecordSlotWork;
-	RECORD_RIBBON_WORK RecordRibbonWork;					//š
-	//–Ø‚ÌÀ–¼lH											//¡
+	RECORD_RIBBON_WORK RecordRibbonWork;					//â˜…
+	//æœ¨ã®å®Ÿåäººï¼Ÿ											//â– 
 	RECORD_REMOVE_TRAP_WORK RecordRemoveTrapWork;
 	RECORD_GET_FLAG_WORK RecordGetFlagWork;
-	RECORD_BP_WORK RecordBPWork;							//š
-	RECORD_GTS_WORK RecordGTSWork;							//š
+	RECORD_BP_WORK RecordBPWork;							//â˜…
+	RECORD_GTS_WORK RecordGTSWork;							//â˜…
 
-//¿–âŒ^—p
+//è³ªå•å‹ç”¨
 	QANDA_BTOWER_WORK QandABtowerWork;
 	QANDA_POKEMON_WORK QandAPokemonWork;
 	QANDA_POKETCH_WORK QandAPoketchWork;
@@ -497,28 +497,28 @@ typedef union {
 	QANDA_POKETYPE_WORK QandAPokeTypeWork;
 	QANDA_PORUTO_WORK QandAPorutoWork;
 	QANDA_PARK_WORK QandAParkWork;
-	QANDA_STAGE_WORK QandAStageWork;						//š
-	QANDA_STRANGE_WORK1 QandAStrangeWork1;					//š
-	QANDA_STRANGE_WORK2 QandAStrangeWork2;					//š
-	QANDA_STRANGE_WORK3 QandAStrangeWork3;					//š
-	QANDA_STRANGE_WORK4 QandAStrangeWork4;					//š
-	QANDA_FRIEND_WORK QandAFriendWork;						//š
+	QANDA_STAGE_WORK QandAStageWork;						//â˜…
+	QANDA_STRANGE_WORK1 QandAStrangeWork1;					//â˜…
+	QANDA_STRANGE_WORK2 QandAStrangeWork2;					//â˜…
+	QANDA_STRANGE_WORK3 QandAStrangeWork3;					//â˜…
+	QANDA_STRANGE_WORK4 QandAStrangeWork4;					//â˜…
+	QANDA_FRIEND_WORK QandAFriendWork;						//â˜…
 
-//ƒCƒxƒ“ƒg‚Æƒoƒ‰ƒGƒeƒB‚Í•Û‘¶‚·‚éƒf[ƒ^‚ª‚È‚¢‚Ì‚Å‚¢‚ç‚È‚¢I
+//ã‚¤ãƒ™ãƒ³ãƒˆã¨ãƒãƒ©ã‚¨ãƒ†ã‚£ã¯ä¿å­˜ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§ã„ã‚‰ãªã„ï¼
 
 }TOPIC_DATA;
 
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬ŠÖ”‚ÌŒ^’è‹`
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆé–¢æ•°ã®å‹å®šç¾©
  */
 //--------------------------------------------------------------------
 typedef int (* MAKE_TOPIC_FUNC)(FIELDSYS_WORK *, WORDSET *, TVBCD *);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN•ú‘—§ŒÀƒ`ƒFƒbƒNŠÖ”‚ÌŒ^’è‹`
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€åˆ¶é™ãƒã‚§ãƒƒã‚¯é–¢æ•°ã®å‹å®šç¾©
  */
 //--------------------------------------------------------------------
 typedef BOOL (* CHK_LIMIT_FUNC)(FIELDSYS_WORK *, TVBCD *);
@@ -539,10 +539,10 @@ static const TOPIC_FUNC_DATA WatchNewsFuncTable[TVTOPIC_WATCH_MAX - 1];
 static const TOPIC_FUNC_DATA RecordNewsFuncTable[TVTOPIC_RECORD_MAX - 1];
 static const TOPIC_FUNC_DATA QandANewsFuncTable[TVTOPIC_INTERVIEW_TYPE_MAX - 1];
 static const TOPIC_FUNC_DATA EventNewsFuncTable[TVTOPIC_EVENT_TYPE_MAX - 1];
-static const TOPIC_FUNC_DATA VarietyNewsFuncTable[TVTOPIC_VARIETY_TYPE_MAX - 1];	//š
+static const TOPIC_FUNC_DATA VarietyNewsFuncTable[TVTOPIC_VARIETY_TYPE_MAX - 1];	//â˜…
 
 //--------------------------------------------------------------------
-//	ƒoƒ‰ƒGƒeƒB‚ğ‘‚â‚µ‚½š
+//	ãƒãƒ©ã‚¨ãƒ†ã‚£ã‚’å¢—ã‚„ã—ãŸâ˜…
 //--------------------------------------------------------------------
 static const TOPIC_INFO_DATA TopicInfoData[] = {
 	{
@@ -570,7 +570,7 @@ static const TOPIC_INFO_DATA TopicInfoData[] = {
 		EventNewsFuncTable,
 	},
 	{
-		TVTOPICTYPE_VARIETY,				//šƒoƒ‰ƒGƒeƒB
+		TVTOPICTYPE_VARIETY,				//â˜…ãƒãƒ©ã‚¨ãƒ†ã‚£
 		NARC_msg_msg_tv_05_dat,
 		TVTOPIC_VARIETY_TYPE_MAX,
 		VarietyNewsFuncTable,
@@ -580,7 +580,7 @@ static const TOPIC_INFO_DATA TopicInfoData[] = {
 //============================================================================================
 //============================================================================================
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN’è‹`ƒf[ƒ^æ“¾
+///	ãƒˆãƒ”ãƒƒã‚¯å®šç¾©ãƒ‡ãƒ¼ã‚¿å–å¾—
 //--------------------------------------------------------------------
 static const TOPIC_INFO_DATA * GetBCData(TVTOPICTYPE topic_type)
 {
@@ -592,7 +592,7 @@ static const TOPIC_INFO_DATA * GetBCData(TVTOPICTYPE topic_type)
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒNŠÖ”æ“¾
+///	ãƒˆãƒ”ãƒƒã‚¯é–¢æ•°å–å¾—
 //--------------------------------------------------------------------
 static const TOPIC_FUNC_DATA * GetFuncData(const TOPIC_INFO_DATA * tpdata, const TVBCD * bcd)
 {
@@ -604,15 +604,15 @@ static const TOPIC_FUNC_DATA * GetFuncData(const TOPIC_INFO_DATA * tpdata, const
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬ˆ—
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆå‡¦ç†
  *
- * @param	topic_type	•ú‘—‚·‚éƒgƒsƒbƒN‚Ìí—ŞiTVTOPICTYPEj
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	ws			WORDSET‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	bcd			•ú‘—“à—eƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int			•ú‘—‚·‚éMSG‚ÌID
+ * @param	topic_type	æ”¾é€ã™ã‚‹ãƒˆãƒ”ãƒƒã‚¯ã®ç¨®é¡ï¼ˆTVTOPICTYPEï¼‰
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ws			WORDSETã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bcd			æ”¾é€å†…å®¹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int			æ”¾é€ã™ã‚‹MSGã®ID
  *
- * MSG‚ÌID‚ğ•Ô‚·‚Æ‚Æ‚à‚ÉAWORDSET‚É•K—v‚È€–Ú“o˜^‚ğs‚¤
+ * MSGã®IDã‚’è¿”ã™ã¨ã¨ã‚‚ã«ã€WORDSETã«å¿…è¦ãªé …ç›®ç™»éŒ²ã‚’è¡Œã†
  */
 //--------------------------------------------------------------------
 int TVTOPIC_Make(TVTOPICTYPE topic_type, FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd, u16 * arc_id)
@@ -631,12 +631,12 @@ int TVTOPIC_Make(TVTOPICTYPE topic_type, FIELDSYS_WORK * fsys, WORDSET * ws, TVB
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒN
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯
  *
- * @param	topic_type	•ú‘—‚·‚éƒgƒsƒbƒN‚Ìí—ŞiTVTOPICTYPEj
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	bcd			•ú‘—“à—eƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL		•ú‘—‚Å‚«‚é‚©‚Ç‚¤‚©
+ * @param	topic_type	æ”¾é€ã™ã‚‹ãƒˆãƒ”ãƒƒã‚¯ã®ç¨®é¡ï¼ˆTVTOPICTYPEï¼‰
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bcd			æ”¾é€å†…å®¹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL		æ”¾é€ã§ãã‚‹ã‹ã©ã†ã‹
  */
 //--------------------------------------------------------------------
 BOOL TVTOPIC_CheckLimit(TVTOPICTYPE topic_type, FIELDSYS_WORK * fsys, TVBCD * bcd)
@@ -648,12 +648,12 @@ BOOL TVTOPIC_CheckLimit(TVTOPICTYPE topic_type, FIELDSYS_WORK * fsys, TVBCD * bc
 	tpdata = GetBCData(topic_type);
 	funcdata = GetFuncData(tpdata, bcd);
 	if (funcdata->make_func == NULL) {
-		//¶¬ŠÖ”‚ª‚È‚¢ê‡‚ÍA–³ğŒ‚Å•ú‘—‚µ‚È‚¢
+		//ç”Ÿæˆé–¢æ•°ãŒãªã„å ´åˆã¯ã€ç„¡æ¡ä»¶ã§æ”¾é€ã—ãªã„
 		return FALSE;
 	}
 	check_func = funcdata->chk_limit_func;
 	if (check_func == NULL) {
-		//ƒ`ƒFƒbƒNŠÖ”‚ª‚È‚¢ê‡‚Í–³ğŒ‚É•ú‘—‚Å‚«‚é
+		//ãƒã‚§ãƒƒã‚¯é–¢æ•°ãŒãªã„å ´åˆã¯ç„¡æ¡ä»¶ã«æ”¾é€ã§ãã‚‹
 		return TRUE;
 	}
 	return check_func(fsys, bcd);
@@ -665,14 +665,14 @@ BOOL TVTOPIC_CheckLimit(TVTOPICTYPE topic_type, FIELDSYS_WORK * fsys, TVBCD * bc
 //============================================================================================
 //
 //
-//			‹¤’Êƒc[ƒ‹ŠÖ”
+//			å…±é€šãƒ„ãƒ¼ãƒ«é–¢æ•°
 //
 //
 //============================================================================================
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN“o˜^ŒÄ‚Ño‚µ(ˆø”‚ğfsys¨savedata‚É•ÏX)
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç™»éŒ²å‘¼ã³å‡ºã—(å¼•æ•°ã‚’fsysâ†’savedataã«å¤‰æ›´)
  * @param	fsys
  * @param	prog_type
  * @param	topic_id
@@ -683,7 +683,7 @@ static void MakeTopicEx(SAVEDATA * savedata, int prog_type, int topic_id, const 
 {
 	TV_WORK * tvwk = SaveData_GetTvWork(savedata);
 
-	//”Ä—pƒf[ƒ^ƒTƒCƒY‚Í‚S‚OƒoƒCƒgŒÅ’è‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+	//æ±ç”¨ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã¯ï¼”ï¼ãƒã‚¤ãƒˆå›ºå®šã§ãªã‘ã‚Œã°ãªã‚‰ãªã„
 	GF_ASSERT(sizeof(TOPIC_DATA) == TOPIC_DATA_SIZE);
 
 	TVWORK_MakeTopic(tvwk, prog_type, topic_id, (const u8 *)data);
@@ -691,7 +691,7 @@ static void MakeTopicEx(SAVEDATA * savedata, int prog_type, int topic_id, const 
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN“o˜^ŒÄ‚Ño‚µ(ˆø”‚ªfsys)
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç™»éŒ²å‘¼ã³å‡ºã—(å¼•æ•°ãŒfsys)
  * @param	fsys
  * @param	prog_type
  * @param	topic_id
@@ -705,7 +705,7 @@ static void MakeTopic(FIELDSYS_WORK * fsys, int prog_type, int topic_id, const v
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN“o˜^ŒÄ‚Ño‚µ(ˆø”‚ªSAVEDATA)
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç™»éŒ²å‘¼ã³å‡ºã—(å¼•æ•°ãŒSAVEDATA)
  * @param	savedata
  * @param	prog_type
  * @param	topic_id
@@ -717,7 +717,7 @@ static void MakeTopic2(SAVEDATA * savedata, int prog_type, int topic_id, const v
 	//TV_WORK * tvwk = SaveData_GetTvWork(fsys->savedata);
 	TV_WORK * tvwk = SaveData_GetTvWork(savedata);
 
-	//”Ä—pƒf[ƒ^ƒTƒCƒY‚Í‚S‚OƒoƒCƒgŒÅ’è‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+	//æ±ç”¨ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã¯ï¼”ï¼ãƒã‚¤ãƒˆå›ºå®šã§ãªã‘ã‚Œã°ãªã‚‰ãªã„
 	GF_ASSERT(sizeof(TOPIC_DATA) == TOPIC_DATA_SIZE);
 
 	TVWORK_MakeTopic(tvwk, prog_type, topic_id, (const u8 *)data);
@@ -737,7 +737,7 @@ static void WORDSET_RegisterSTRCODE(WORDSET * ws, int buf_id,
 
 //--------------------------------------------------------------------
 /**
- * @brief	•ú‘—ƒf[ƒ^‚Ì»ìÒ–¼‚ğ“o˜^‚·‚é
+ * @brief	æ”¾é€ãƒ‡ãƒ¼ã‚¿ã®è£½ä½œè€…åã‚’ç™»éŒ²ã™ã‚‹
  */
 //--------------------------------------------------------------------
 static void WORDSET_RegisterOwnerName(WORDSET * ws, int buf_id, const TVBCD * bcd)
@@ -800,20 +800,20 @@ static void StoreNickName(int heapID, POKEMON_PARAM * pp, u8 * nickname_flag, ST
 //============================================================================================
 //
 //
-//				ƒgƒsƒbƒN¶¬—pó‹µ•Û
+//				ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆç”¨çŠ¶æ³ä¿æŒ
 //
 //
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒRƒ“ƒeƒXƒgI—¹ó‹µ‚Ì•Û
- * @param	tvwk		ƒeƒŒƒrƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pp			Q‰Á‚µ‚½ƒ|ƒPƒ‚ƒ“‚ÌPOKEMON_PARAM‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	type		ƒRƒ“ƒeƒXƒg‚Ìí—Ş
- * @param	rank		ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN
- * @param	result		ƒRƒ“ƒeƒXƒg‡ˆÊ
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆçµ‚äº†çŠ¶æ³ã®ä¿æŒ
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pp			å‚åŠ ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®POKEMON_PARAMã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã®ç¨®é¡
+ * @param	rank		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯
+ * @param	result		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆé †ä½
  *
- * ƒRƒ“ƒeƒXƒg‚ªI—¹‚µ‚½‚Æ‚«‚É‚æ‚Ñ‚¾‚µ‚Ä‚­‚¾‚³‚¢
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãŒçµ‚äº†ã—ãŸã¨ãã«ã‚ˆã³ã ã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------------
 void TVTOPIC_ContestTemp_Set(TV_WORK * tvwk, POKEMON_PARAM * pp,
@@ -833,11 +833,11 @@ void TVTOPIC_ContestTemp_Set(TV_WORK * tvwk, POKEMON_PARAM * pp,
 
 //--------------------------------------------------------------------
 /**
- * @brief	˜A‚ê•à‚«Œö‰€ó‹µ‚Ì•ÛF˜A‚ê‚Äs‚­ƒ|ƒPƒ‚ƒ“
- * @param	tvwk		ƒeƒŒƒrƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pp			˜A‚ê‚Äs‚­ƒ|ƒPƒ‚ƒ“‚ÌPOKEMON_PARAM
+ * @brief	é€£ã‚Œæ­©ãå…¬åœ’çŠ¶æ³ã®ä¿æŒï¼šé€£ã‚Œã¦è¡Œããƒã‚±ãƒ¢ãƒ³
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pp			é€£ã‚Œã¦è¡Œããƒã‚±ãƒ¢ãƒ³ã®POKEMON_PARAM
  *
- * ˜A‚ê‚Äs‚­ƒ|ƒPƒ‚ƒ“‚ğŒˆ’è‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢
+ * é€£ã‚Œã¦è¡Œããƒã‚±ãƒ¢ãƒ³ã‚’æ±ºå®šã—ãŸã¨ãã«å‘¼ã³å‡ºã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------------
 void TVTOPIC_ParkTemp_Init(TV_WORK * tvwk, POKEMON_PARAM * pp, int heapID)
@@ -857,12 +857,12 @@ void TVTOPIC_ParkTemp_Init(TV_WORK * tvwk, POKEMON_PARAM * pp, int heapID)
 
 //--------------------------------------------------------------------
 /**
- * @brief	˜A‚ê•à‚«Œö‰€ó‹µ‚Ì•ÛFƒAƒNƒZƒTƒŠæ“¾
- * @param	tvwk		ƒeƒŒƒrƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	accessories		E‚Á‚½ƒAƒNƒZƒTƒŠ‚ÌID
+ * @brief	é€£ã‚Œæ­©ãå…¬åœ’çŠ¶æ³ã®ä¿æŒï¼šã‚¢ã‚¯ã‚»ã‚µãƒªå–å¾—
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	accessories		æ‹¾ã£ãŸã‚¢ã‚¯ã‚»ã‚µãƒªã®ID
  *
  *
- * ƒAƒNƒZƒTƒŠ‚ğE‚Á‚½‚Æ‚«‚ÉŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢
+ * ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’æ‹¾ã£ãŸã¨ãã«å‘¼ã³å‡ºã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------------
 void TVTOPIC_ParkTemp_SetAccessories(TV_WORK * tvwk, int accessories)
@@ -878,12 +878,12 @@ void TVTOPIC_ParkTemp_SetAccessories(TV_WORK * tvwk, int accessories)
 
 //--------------------------------------------------------------------
 /**
- * @brief	˜A‚ê•à‚«Œö‰€ó‹µ‚Ì•ÛFƒAƒCƒeƒ€æ“¾
- * @param	tvwk		ƒeƒŒƒrƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	item_no		E‚Á‚½ƒAƒCƒeƒ€
+ * @brief	é€£ã‚Œæ­©ãå…¬åœ’çŠ¶æ³ã®ä¿æŒï¼šã‚¢ã‚¤ãƒ†ãƒ å–å¾—
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item_no		æ‹¾ã£ãŸã‚¢ã‚¤ãƒ†ãƒ 
  *
  *
- * ƒAƒCƒeƒ€‚ğE‚Á‚½‚Æ‚«‚ÉŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ‹¾ã£ãŸã¨ãã«å‘¼ã³å‡ºã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------------
 void TVTOPIC_ParkTemp_SetKinomi(TV_WORK * tvwk, int item_no)
@@ -899,11 +899,11 @@ void TVTOPIC_ParkTemp_SetKinomi(TV_WORK * tvwk, int item_no)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒ‹ƒgƒ~ƒjƒQ[ƒ€ó‹µ‚Ì•Û
- * @param	tvwk		ƒeƒŒƒrƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	taste_type	ƒ|ƒ‹ƒg‚Ìí—Ş
+ * @brief	ãƒãƒ«ãƒˆãƒŸãƒ‹ã‚²ãƒ¼ãƒ çŠ¶æ³ã®ä¿æŒ
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	taste_type	ãƒãƒ«ãƒˆã®ç¨®é¡
  *
- * ƒ|ƒ‹ƒg‚ğì¬‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢
+ * ãƒãƒ«ãƒˆã‚’ä½œæˆã—ãŸã¨ãã«å‘¼ã³å‡ºã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------------
 void TVTOPIC_PorutoTemp_Set(TV_WORK * tvwk, int taste_type)
@@ -919,11 +919,11 @@ void TVTOPIC_PorutoTemp_Set(TV_WORK * tvwk, int taste_type)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒ^ƒ[ó‹µ‚Ì•Û
- * @param	tvwk		ƒeƒŒƒrƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	continue_flag		Ÿ‚¿”²‚«‚ª‚Â‚Ã‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©
+ * @brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼çŠ¶æ³ã®ä¿æŒ
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	continue_flag		å‹ã¡æŠœããŒã¤ã¥ã„ã¦ã„ã‚‹ã‹ã©ã†ã‹
  *
- * ƒoƒgƒ‹ƒ^ƒ[‚Ìó•t‚É–ß‚Á‚½‚Æ‚«‚ÉŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢
+ * ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã®å—ä»˜ã«æˆ»ã£ãŸã¨ãã«å‘¼ã³å‡ºã—ã¦ãã ã•ã„
  */
 //--------------------------------------------------------------------
 void TVTOPIC_BTowerTemp_Set(TV_WORK * tvwk, BOOL continue_flag, u16 win_count)
@@ -966,11 +966,11 @@ void TVTOPIC_SafariTemp_Set(TV_WORK * tvwk, POKEMON_PARAM * pp)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒXƒe[ƒWó‹µ‚Ì•Û
- * @param	tvwk		ƒeƒŒƒrƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸çŠ¶æ³ã®ä¿æŒ
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	pp			POKEMON_PARAM
  *
- * ƒVƒ“ƒOƒ‹‚Ì‚İ‚ÅŒÄ‚Ô‚æ‚¤‚É‚·‚é
+ * ã‚·ãƒ³ã‚°ãƒ«ã®ã¿ã§å‘¼ã¶ã‚ˆã†ã«ã™ã‚‹
  */
 //--------------------------------------------------------------------
 void TVTOPIC_StageTemp_Set(TV_WORK * tvwk, POKEMON_PARAM* pp)
@@ -988,10 +988,10 @@ void TVTOPIC_StageTemp_Set(TV_WORK * tvwk, POKEMON_PARAM* pp)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µó‹µ‚Ì•Û
- * @param	tvwk		ƒeƒŒƒrƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	bf_no		’§í‚µ‚½{İ
- * @param	pair		—V‚ñ‚¾—F’B
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—çŠ¶æ³ã®ä¿æŒ
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bf_no		æŒ‘æˆ¦ã—ãŸæ–½è¨­
+ * @param	pair		éŠã‚“ã å‹é”
  */
 //--------------------------------------------------------------------
 void TVTOPIC_FriendTemp_Set(TV_WORK * tvwk, u8 bf_no, const MYSTATUS* pair)
@@ -1015,8 +1015,8 @@ void TVTOPIC_FriendTemp_Set(TV_WORK * tvwk, u8 bf_no, const MYSTATUS* pair)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼ló‹µ‚Ì•Û
- * @param	tvwk		ƒeƒŒƒrƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäººçŠ¶æ³ã®ä¿æŒ
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 void TVTOPIC_BPTemp_Set(TV_WORK* tvwk, u16 add_bp)
@@ -1035,7 +1035,7 @@ void TVTOPIC_BPTemp_Set(TV_WORK* tvwk, u16 add_bp)
 #endif //CRC_LOADCHECK
 }
 
-//‰Šú‰»
+//åˆæœŸåŒ–
 void TVTOPIC_BPTemp_Init(TV_WORK * tvwk)
 {
 	TOPICTEMP_BP * bp = TVWORK_GetBPTemp(tvwk);
@@ -1048,8 +1048,8 @@ void TVTOPIC_BPTemp_Init(TV_WORK * tvwk)
 
 //--------------------------------------------------------------------
 /**
- * @brief	GTS–¼ló‹µ‚Ì•Û
- * @param	tvwk		ƒeƒŒƒrƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	GTSåäººçŠ¶æ³ã®ä¿æŒ
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 void TVTOPIC_GTSTemp_Set(TV_WORK * tvwk)
@@ -1068,7 +1068,7 @@ void TVTOPIC_GTSTemp_Set(TV_WORK * tvwk)
 #endif //CRC_LOADCHECK
 }
 
-//‰Šú‰»
+//åˆæœŸåŒ–
 void TVTOPIC_GTSTemp_Init(TV_WORK * tvwk)
 {
 	TOPICTEMP_GTS * gts = TVWORK_GetGTSTemp(tvwk);
@@ -1082,13 +1082,13 @@ void TVTOPIC_GTSTemp_Init(TV_WORK * tvwk)
 //============================================================================================
 //
 //
-//				ŠÄ‹Œ^ƒgƒsƒbƒN
+//				ç›£è¦–å‹ãƒˆãƒ”ãƒƒã‚¯
 //
 //
 //============================================================================================
 
 //============================================================================================
-//	‚O‚Q|‚O‚PA‚O‚Q|‚O‚Q	•ßŠl	
+//	ï¼ï¼’âˆ’ï¼ï¼‘ã€ï¼ï¼’âˆ’ï¼ï¼’	æ•ç²	
 //============================================================================================
 //--------------------------------------------------------------------
 /**
@@ -1113,12 +1113,12 @@ void TVWatchBattleWork_Delete(TVWATCH_BATTLE_WORK * tvwbw)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒeƒŒƒrƒgƒsƒbƒN¶¬ˆ—Fƒoƒgƒ‹•ßŠl
- * @param	tvwbw			ƒeƒŒƒrƒgƒsƒbƒN—pî•ñ•Ûƒ[ƒN
- * @param	pp				‘ÎÛ‚Ìƒ|ƒPƒ‚ƒ“
- * @param	win_lose_flag	í“¬Œ‹‰Ê
- * @param	ball_count		g—p‚µ‚½ƒ{[ƒ‹‚Ì”
- * @param	heapID			—˜—p‰Â”\‚Èƒq[ƒvw’è
+ * @brief	ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆå‡¦ç†ï¼šãƒãƒˆãƒ«æ•ç²
+ * @param	tvwbw			ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”¨æƒ…å ±ä¿æŒãƒ¯ãƒ¼ã‚¯
+ * @param	pp				å¯¾è±¡ã®ãƒã‚±ãƒ¢ãƒ³
+ * @param	win_lose_flag	æˆ¦é—˜çµæœ
+ * @param	ball_count		ä½¿ç”¨ã—ãŸãƒœãƒ¼ãƒ«ã®æ•°
+ * @param	heapID			åˆ©ç”¨å¯èƒ½ãªãƒ’ãƒ¼ãƒ—æŒ‡å®š
  */
 //--------------------------------------------------------------------
 void TVBATTLE_StoreResult(TVWATCH_BATTLE_WORK * tvwbw, POKEMON_PARAM * pp,
@@ -1126,7 +1126,7 @@ void TVBATTLE_StoreResult(TVWATCH_BATTLE_WORK * tvwbw, POKEMON_PARAM * pp,
 {
 	MI_CpuClear32(tvwbw, sizeof(TVWATCH_BATTLE_WORK));
 
-	/* ‚Ç‚¤‚â‚ç‚±‚Ì“_‚Å‚Íwin_lose_flag‚ÍƒZƒbƒg‚³‚ê‚Ä‚¢‚È‚¢‚ç‚µ‚¢ */
+	/* ã©ã†ã‚„ã‚‰ã“ã®æ™‚ç‚¹ã§ã¯win_lose_flagã¯ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãªã„ã‚‰ã—ã„ */
 	tvwbw->win_lose_flag = win_lose_flag;
 	tvwbw->ball_count = ball_count;
 	SetMonsParams(pp, &tvwbw->monsno, &tvwbw->mons_sex, &tvwbw->mons_region, &tvwbw->mons_rom);
@@ -1137,9 +1137,9 @@ void TVBATTLE_StoreResult(TVWATCH_BATTLE_WORK * tvwbw, POKEMON_PARAM * pp,
 }
 //--------------------------------------------------------------------
 /**
- * @brief	ƒeƒŒƒrƒgƒsƒbƒN¶¬F•ßŠl
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	tvwbw			ƒeƒŒƒrƒgƒsƒbƒN—pî•ñ•Ûƒ[ƒN
+ * @brief	ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæ•ç²
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	tvwbw			ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”¨æƒ…å ±ä¿æŒãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_Capture(FIELDSYS_WORK * fsys,
@@ -1152,12 +1152,12 @@ void TVTOPIC_Entry_Watch_Capture(FIELDSYS_WORK * fsys,
 	tvwbw->win_lose_flag = win_lose_flag;
 
 	if (tvwbw->ball_count == 0) {
-		//ƒ{[ƒ‹‚ğ“Š‚°‚Ä‚¢‚È‚¢ê‡A‰½‚à‚µ‚È‚¢
+		//ãƒœãƒ¼ãƒ«ã‚’æŠ•ã’ã¦ã„ãªã„å ´åˆã€ä½•ã‚‚ã—ãªã„
 		return;
 	}
 
 	if (tvwbw->ball_count > 999) {
-		//•\¦‚Í3Œ…‚Ü‚Å‚È‚Ì‚Å§ŒÀ‚·‚é
+		//è¡¨ç¤ºã¯3æ¡ã¾ã§ãªã®ã§åˆ¶é™ã™ã‚‹
 		tvwbw->ball_count = 999;
 	}
 	
@@ -1176,15 +1176,15 @@ void TVTOPIC_Entry_Watch_Capture(FIELDSYS_WORK * fsys,
 }
 
 //--------------------------------------------------------------------
-//ƒ|ƒPƒ‚ƒ“•ßŠl¬Œ÷I	ƒ|ƒPƒ‚ƒ“•ßŠlI—¹Œã
+//ãƒã‚±ãƒ¢ãƒ³æ•ç²æˆåŠŸï¼	ãƒã‚±ãƒ¢ãƒ³æ•ç²çµ‚äº†å¾Œ
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_SuccessCapture(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	TVWATCH_BATTLE_WORK * tvwbw = TVBCD_GetTopicData(bcd);
 
 	if (tvwbw->nickname_flag) {
-		//ƒjƒbƒNƒl[ƒ€‚ğ‚Â‚¯‚½ê‡
-		WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+		//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ã¤ã‘ãŸå ´åˆ
+		WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 		WORDSET_RegisterMonsName(ws, 1, tvwbw->monsno,
 				tvwbw->mons_sex, tvwbw->mons_region, tvwbw->mons_rom);
 		WORDSET_RegisterItemName(ws, 2, tvwbw->ball_item_no);
@@ -1194,8 +1194,8 @@ static int TVTOPIC_Make_Watch_SuccessCapture(FIELDSYS_WORK * fsys, WORDSET * ws,
 				tvwbw->mons_sex, tvwbw->mons_region, TRUE);
 		return msg_tv_02_01_01;
 	} else {
-		//ƒjƒbƒNƒl[ƒ€‚ğ‚Â‚¯‚È‚©‚Á‚½ê‡
-		WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+		//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ã¤ã‘ãªã‹ã£ãŸå ´åˆ
+		WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 		WORDSET_RegisterMonsName(ws, 1, tvwbw->monsno,
 				tvwbw->mons_sex, tvwbw->mons_region, tvwbw->mons_rom);
 		WORDSET_RegisterItemName(ws, 2, tvwbw->ball_item_no);
@@ -1206,12 +1206,12 @@ static int TVTOPIC_Make_Watch_SuccessCapture(FIELDSYS_WORK * fsys, WORDSET * ws,
 }
 
 //--------------------------------------------------------------------
-//ƒ|ƒPƒ‚ƒ“•ßŠl¸”s		ƒ{[ƒ‹“Š‚RˆÈã‚Å“|‚·A“¦‚ª‚·
+//ãƒã‚±ãƒ¢ãƒ³æ•ç²å¤±æ•—		ãƒœãƒ¼ãƒ«è©¦æŠ•ï¼“ä»¥ä¸Šã§å€’ã™ã€é€ƒãŒã™
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_FailureCapture(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	TVWATCH_BATTLE_WORK * tvwbw = TVBCD_GetTopicData(bcd);
-	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	WORDSET_RegisterNumber(ws, 1, tvwbw->ball_count, 3,
 			NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
 	if (tvwbw->win_lose_flag == FIGHT_WIN) {
@@ -1221,7 +1221,7 @@ static int TVTOPIC_Make_Watch_FailureCapture(FIELDSYS_WORK * fsys, WORDSET * ws,
 	}
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒ|ƒPƒ‚ƒ“•ßŠl
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šãƒã‚±ãƒ¢ãƒ³æ•ç²
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Watch_Capture(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -1232,17 +1232,17 @@ static BOOL TVTOPIC_Limit_Watch_Capture(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚Q|‚O‚R	‚Â‚è
+//	ï¼ï¼’âˆ’ï¼ï¼“	ã¤ã‚Š
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F¢ŠE‚ğ’Ş‚éI
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	success_flag	¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
- * @param	itemno			g—p‚µ‚½‚Â‚è‚´‚¨‚ÌƒAƒCƒeƒ€ƒiƒ“ƒo[
- * @param	pp				’Ş‚èã‚°‚½ƒ|ƒPƒ‚ƒ“‚ÌPOKEMON_PARAM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šä¸–ç•Œã‚’é‡£ã‚‹ï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	success_flag	æˆåŠŸã—ãŸã‹ã©ã†ã‹
+ * @param	itemno			ä½¿ç”¨ã—ãŸã¤ã‚Šã–ãŠã®ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param	pp				é‡£ã‚Šä¸Šã’ãŸãƒã‚±ãƒ¢ãƒ³ã®POKEMON_PARAMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ’Ş‚èã‚°‚ç‚ê‚È‚©‚Á‚½ê‡Asuccess_flag == FALSE‚ÅPP==NULL‚Å‚æ‚¢
+ * é‡£ã‚Šä¸Šã’ã‚‰ã‚Œãªã‹ã£ãŸå ´åˆã€success_flag == FALSEã§PP==NULLã§ã‚ˆã„
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_Fishing(FIELDSYS_WORK * fsys, BOOL success_flag,
@@ -1260,7 +1260,7 @@ void TVTOPIC_Entry_Watch_Fishing(FIELDSYS_WORK * fsys, BOOL success_flag,
 	MakeTopic(fsys, TVTOPICTYPE_WATCH, TVTOPIC_WATCH_FISHING, wfw);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F¢ŠE‚ğ’Ş‚éI
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šä¸–ç•Œã‚’é‡£ã‚‹ï¼
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_Fishing(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -1268,24 +1268,24 @@ static int TVTOPIC_Make_Watch_Fishing(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 
 	WORDSET_RegisterOwnerName(ws, 0, bcd);
 	if (wfw->success_flag) {
-		//’Ş‚èã‚°‚½ê‡
+		//é‡£ã‚Šä¸Šã’ãŸå ´åˆ
 		WORDSET_RegisterItemName(ws, 1, wfw->itemno);
 		WORDSET_RegisterMonsName(ws, 2, wfw->monsno,
 				wfw->mons_sex, wfw->mons_region, wfw->mons_rom);
 		return msg_tv_02_03_01;
 	} else {
-		//¸”s‚µ‚½ê‡
+		//å¤±æ•—ã—ãŸå ´åˆ
 		return msg_tv_02_03_02;
 	}
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNF¢ŠE‚ğ’Ş‚éI
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šä¸–ç•Œã‚’é‡£ã‚‹ï¼
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Watch_Fishing(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
 	WATCH_FISHING_WORK * wfw = (WATCH_FISHING_WORK * )TVBCD_GetTopicData(bcd);
 	if (wfw->success_flag == FALSE) {
-		//¸”s‚µ‚½ê‡‚Íƒ|ƒPƒ‚ƒ“‚Ìí—Ş‚ÍŠÖŒW‚È‚¢‚Ì‚Å•ú‘—‚·‚é
+		//å¤±æ•—ã—ãŸå ´åˆã¯ãƒã‚±ãƒ¢ãƒ³ã®ç¨®é¡ã¯é–¢ä¿‚ãªã„ã®ã§æ”¾é€ã™ã‚‹
 		return TRUE;
 	}
 	return ZukanWork_GetPokeSeeFlag(SaveData_GetZukanWork(fsys->savedata),wfw->monsno);
@@ -1293,8 +1293,8 @@ static BOOL TVTOPIC_Limit_Watch_Fishing(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚Q|‚O‚S	ƒOƒ‹[ƒv‚ğ“ü‚ê‘Ö‚¦‚é
-//	‚O‚Q|‚Q‚O	VƒOƒ‹[ƒvì¬
+//	ï¼ï¼’âˆ’ï¼ï¼”	ã‚°ãƒ«ãƒ¼ãƒ—ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
+//	ï¼ï¼’âˆ’ï¼’ï¼	æ–°ã‚°ãƒ«ãƒ¼ãƒ—ä½œæˆ
 //============================================================================================
 //--------------------------------------------------------------------
 //--------------------------------------------------------------------
@@ -1315,7 +1315,7 @@ static void TV_Entry_CommonGroupTopic(FIELDSYS_WORK  * fsys, int topic_id)
 }
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FƒOƒ‹[ƒvì¬
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚°ãƒ«ãƒ¼ãƒ—ä½œæˆ
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_MakeGroup(FIELDSYS_WORK * fsys)
@@ -1324,7 +1324,7 @@ void TVTOPIC_Entry_Watch_MakeGroup(FIELDSYS_WORK * fsys)
 }
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FƒOƒ‹[ƒv“ü‚ê‘Ö‚¦
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚°ãƒ«ãƒ¼ãƒ—å…¥ã‚Œæ›¿ãˆ
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_ChangeGroup(FIELDSYS_WORK * fsys)
@@ -1334,7 +1334,7 @@ void TVTOPIC_Entry_Watch_ChangeGroup(FIELDSYS_WORK * fsys)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN•ú‘—FƒOƒ‹[ƒv“ü‚ê‘Ö‚¦
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã‚°ãƒ«ãƒ¼ãƒ—å…¥ã‚Œæ›¿ãˆ
  */
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_ChangeGroup(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
@@ -1347,7 +1347,7 @@ static int TVTOPIC_Make_Watch_ChangeGroup(FIELDSYS_WORK * fsys, WORDSET * ws, TV
 }
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN•ú‘—FƒOƒ‹[ƒvì¬
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã‚°ãƒ«ãƒ¼ãƒ—ä½œæˆ
  */
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_MakeNewGroup(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
@@ -1361,13 +1361,13 @@ static int TVTOPIC_Make_Watch_MakeNewGroup(FIELDSYS_WORK * fsys, WORDSET * ws, T
 
 
 //============================================================================================
-//	‚O‚Q|‚O‚U	‰B‚µ“¹‹ï”­Œ©I		‰B‚µ“¹‹ï‚ğŒ©‚Â‚¯‚½‚Æ‚«
+//	ï¼ï¼’âˆ’ï¼ï¼–	éš ã—é“å…·ç™ºè¦‹ï¼		éš ã—é“å…·ã‚’è¦‹ã¤ã‘ãŸã¨ã
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‰B‚µƒAƒCƒeƒ€”­Œ©I
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	item_no		Œ©‚Â‚¯‚½ƒAƒCƒeƒ€‚Ìƒiƒ“ƒo[
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šéš ã—ã‚¢ã‚¤ãƒ†ãƒ ç™ºè¦‹ï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item_no		è¦‹ã¤ã‘ãŸã‚¢ã‚¤ãƒ†ãƒ ã®ãƒŠãƒ³ãƒãƒ¼
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_HideItem(FIELDSYS_WORK * fsys, u16 item_no)
@@ -1381,7 +1381,7 @@ void TVTOPIC_Entry_Watch_HideItem(FIELDSYS_WORK * fsys, u16 item_no)
 }
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN•ú‘—F‰B‚µƒAƒCƒeƒ€”­Œ©I
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šéš ã—ã‚¢ã‚¤ãƒ†ãƒ ç™ºè¦‹ï¼
  */
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_HideItem(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
@@ -1396,14 +1396,14 @@ static int TVTOPIC_Make_Watch_HideItem(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 
 
 //============================================================================================
-//	‚O‚Q|‚O‚V	”ƒ‚¢•¨ƒ`ƒFƒbƒN		ˆê“x‚É10ŒÂˆÈã‚Ì“¹‹ï‚ğ”ƒ‚Á‚½š
+//	ï¼ï¼’âˆ’ï¼ï¼—	è²·ã„ç‰©ãƒã‚§ãƒƒã‚¯		ä¸€åº¦ã«10å€‹ä»¥ä¸Šã®é“å…·ã‚’è²·ã£ãŸæ™‚â˜…
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F”ƒ‚¢•¨ƒ`ƒFƒbƒNš
- * @param	savedata	SAVEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^(’ˆÓI fsys‚©‚ç•ÏX‚µ‚½š)
- * @param	item_no		ƒAƒCƒeƒ€ƒiƒ“ƒo[
- * @param	item_num	ŒÂ”
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šè²·ã„ç‰©ãƒã‚§ãƒƒã‚¯â˜…
+ * @param	savedata	SAVEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿(æ³¨æ„ï¼ fsysã‹ã‚‰å¤‰æ›´ã—ãŸâ˜…)
+ * @param	item_no		ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param	item_num	å€‹æ•°
  */
 //--------------------------------------------------------------------
 //void TVTOPIC_Entry_Watch_Shopping(FIELDSYS_WORK * fsys, u16 item_no, u8 item_num)
@@ -1427,7 +1427,7 @@ void TVTOPIC_Entry_Watch_Shopping(SAVEDATA * savedata, u16 item_no, u8 item_num)
 }
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN•ú‘—F”ƒ‚¢•¨ƒ`ƒFƒbƒNš
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šè²·ã„ç‰©ãƒã‚§ãƒƒã‚¯â˜…
  */
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_Shopping(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
@@ -1443,13 +1443,13 @@ static int TVTOPIC_Make_Watch_Shopping(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 
 
 //============================================================================================
-//	‚O‚Q|‚O‚W	ƒ^ƒ}ƒS‚ª›z‚Á‚½I
+//	ï¼ï¼’âˆ’ï¼ï¼˜	ã‚¿ãƒã‚´ãŒå­µã£ãŸï¼
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒ^ƒ}ƒS‚ª›z‚Á‚½I
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	›z‚Á‚½ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚¿ãƒã‚´ãŒå­µã£ãŸï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	å­µã£ãŸãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_HatchEgg(FIELDSYS_WORK * fsys, POKEMON_PARAM * pp)
@@ -1463,7 +1463,7 @@ void TVTOPIC_Entry_Watch_HatchEgg(FIELDSYS_WORK * fsys, POKEMON_PARAM * pp)
 	MakeTopic(fsys, TVTOPICTYPE_WATCH, TVTOPIC_WATCH_BORN_EGG, whew);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—Fƒ^ƒ}ƒS‚ª›z‚Á‚½I	ƒ^ƒ}ƒS‚ª›z‰»‚µ‚½‚Æ‚«
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã‚¿ãƒã‚´ãŒå­µã£ãŸï¼	ã‚¿ãƒã‚´ãŒå­µåŒ–ã—ãŸã¨ã
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_HatchEgg(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -1475,7 +1475,7 @@ static int TVTOPIC_Make_Watch_HatchEgg(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 	return msg_tv_02_08_01;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒ^ƒ}ƒS‚ª›z‚Á‚½I	ƒ^ƒ}ƒS‚ª›z‰»‚µ‚½‚Æ‚«
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šã‚¿ãƒã‚´ãŒå­µã£ãŸï¼	ã‚¿ãƒã‚´ãŒå­µåŒ–ã—ãŸã¨ã
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Watch_HatchEgg(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -1485,13 +1485,13 @@ static BOOL TVTOPIC_Limit_Watch_HatchEgg(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚Q|‚P‚O	©–¼”»’f
+//	ï¼ï¼’âˆ’ï¼‘ï¼	å§“ååˆ¤æ–­
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F©–¼”»’f	ƒjƒbƒNƒl[ƒ€‚ğ•ÏX‚µ‚½‚Æ‚«
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pp		–¼‘O‚ğ•Ï‚¦‚½ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šå§“ååˆ¤æ–­	ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’å¤‰æ›´ã—ãŸã¨ã
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pp		åå‰ã‚’å¤‰ãˆãŸãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_ChangeName(FIELDSYS_WORK * fsys, POKEMON_PARAM * pp)
@@ -1505,7 +1505,7 @@ void TVTOPIC_Entry_Watch_ChangeName(FIELDSYS_WORK * fsys, POKEMON_PARAM * pp)
 	MakeTopic(fsys, TVTOPICTYPE_WATCH, TVTOPIC_WATCH_CHANGE_NICKNAME, wmcw);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F©–¼”»’f	ƒjƒbƒNƒl[ƒ€‚ğ•ÏX‚µ‚½‚Æ‚«
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šå§“ååˆ¤æ–­	ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’å¤‰æ›´ã—ãŸã¨ã
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_ChangeName(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -1519,7 +1519,7 @@ static int TVTOPIC_Make_Watch_ChangeName(FIELDSYS_WORK * fsys, WORDSET * ws, TVB
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNF©–¼”»’f	ƒjƒbƒNƒl[ƒ€‚ğ•ÏX‚µ‚½‚Æ‚«
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šå§“ååˆ¤æ–­	ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’å¤‰æ›´ã—ãŸã¨ã
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Watch_ChangeName(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -1530,14 +1530,14 @@ static BOOL TVTOPIC_Limit_Watch_ChangeName(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚Q|‚P‚R@‰»ÎŒ@‚è
+//	ï¼ï¼’âˆ’ï¼‘ï¼“ã€€åŒ–çŸ³æ˜ã‚Š
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‰»ÎŒ@‚è	‰»ÎŒ@‚è‚ğ‚µ‚½‚ ‚Æ
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fossil_type		‰»Î‚ÌƒAƒCƒeƒ€ƒiƒ“ƒo[
- * @param	fossil_num		æ‚ê‚½‰»Î‚Ì”
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šåŒ–çŸ³æ˜ã‚Š	åŒ–çŸ³æ˜ã‚Šã‚’ã—ãŸã‚ã¨
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fossil_type		åŒ–çŸ³ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param	fossil_num		å–ã‚ŒãŸåŒ–çŸ³ã®æ•°
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_DigFossil(FIELDSYS_WORK  *fsys, int fossil_type, int fossil_num)
@@ -1550,7 +1550,7 @@ void TVTOPIC_Entry_Watch_DigFossil(FIELDSYS_WORK  *fsys, int fossil_type, int fo
 	MakeTopic(fsys, TVTOPICTYPE_WATCH, TVTOPIC_WATCH_DIG_FOSSIL, wdfw);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F‰»ÎŒ@‚è	‰»ÎŒ@‚è‚ğ‚µ‚½‚ ‚Æ
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šåŒ–çŸ³æ˜ã‚Š	åŒ–çŸ³æ˜ã‚Šã‚’ã—ãŸã‚ã¨
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_DigFossil(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -1564,12 +1564,12 @@ static int TVTOPIC_Make_Watch_DigFossil(FIELDSYS_WORK * fsys, WORDSET * ws, TVBC
 
 
 //============================================================================================
-//	‚O‚Q|‚P‚T	ƒTƒtƒ@ƒŠƒQ[ƒ€
+//	ï¼ï¼’âˆ’ï¼‘ï¼•	ã‚µãƒ•ã‚¡ãƒªã‚²ãƒ¼ãƒ 
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FƒTƒtƒ@ƒŠƒQ[ƒ€	ƒTƒtƒ@ƒŠƒQ[ƒ€‚ğI—¹‚³‚¹‚½‚Æ‚«
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚µãƒ•ã‚¡ãƒªã‚²ãƒ¼ãƒ 	ã‚µãƒ•ã‚¡ãƒªã‚²ãƒ¼ãƒ ã‚’çµ‚äº†ã•ã›ãŸã¨ã
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_Safari(FIELDSYS_WORK * fsys)
@@ -1579,7 +1579,7 @@ void TVTOPIC_Entry_Watch_Safari(FIELDSYS_WORK * fsys)
 	TV_WORK * tvwk = SaveData_GetTvWork(fsys->savedata);
 	TOPICTEMP_SAFARI * psaf = TVWORK_GetSafariTemp(tvwk);
 	if (psaf->capture_count == 0) {
-		//ˆê•C‚à•ß‚Ü‚¦‚Ä‚¢‚È‚¢ê‡AƒgƒsƒbƒN¶¬‚³‚ê‚È‚¢
+		//ä¸€åŒ¹ã‚‚æ•ã¾ãˆã¦ã„ãªã„å ´åˆã€ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆã•ã‚Œãªã„
 		return;
 	}
 	wsw->monsno = psaf->monsno;
@@ -1591,7 +1591,7 @@ void TVTOPIC_Entry_Watch_Safari(FIELDSYS_WORK * fsys)
 	MakeTopic(fsys, TVTOPICTYPE_WATCH, TVTOPIC_WATCH_SAFARI, wsw);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—FƒTƒtƒ@ƒŠƒQ[ƒ€	ƒTƒtƒ@ƒŠƒQ[ƒ€‚ğI—¹‚³‚¹‚½‚Æ‚«
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã‚µãƒ•ã‚¡ãƒªã‚²ãƒ¼ãƒ 	ã‚µãƒ•ã‚¡ãƒªã‚²ãƒ¼ãƒ ã‚’çµ‚äº†ã•ã›ãŸã¨ã
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_Safari(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -1603,7 +1603,7 @@ static int TVTOPIC_Make_Watch_Safari(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD *
 	return msg_tv_02_15_01;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒTƒtƒ@ƒŠƒQ[ƒ€	ƒTƒtƒ@ƒŠƒQ[ƒ€‚ğI—¹‚³‚¹‚½‚Æ‚«
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šã‚µãƒ•ã‚¡ãƒªã‚²ãƒ¼ãƒ 	ã‚µãƒ•ã‚¡ãƒªã‚²ãƒ¼ãƒ ã‚’çµ‚äº†ã•ã›ãŸã¨ã
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Watch_Safari(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -1614,12 +1614,12 @@ static BOOL TVTOPIC_Limit_Watch_Safari(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚Q|‚P‚U	ƒIƒX‚¾‚¯IƒƒX‚¾‚¯I		ƒpƒ\ƒRƒ“‚©‚ç”²‚¯‚½‚Ìè‚¿‚É‚æ‚èš
+//	ï¼ï¼’âˆ’ï¼‘ï¼–	ã‚ªã‚¹ã ã‘ï¼ãƒ¡ã‚¹ã ã‘ï¼		ãƒ‘ã‚½ã‚³ãƒ³ã‹ã‚‰æŠœã‘ãŸæ™‚ã®æ‰‹æŒã¡ã«ã‚ˆã‚Šâ˜…
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FƒIƒX‚¾‚¯IƒƒX‚¾‚¯Iš
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚ªã‚¹ã ã‘ï¼ãƒ¡ã‚¹ã ã‘ï¼â˜…
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_OsuMesu(FIELDSYS_WORK * fsys)
@@ -1637,11 +1637,11 @@ void TVTOPIC_Entry_Watch_OsuMesu(FIELDSYS_WORK * fsys)
 	party	= SaveData_GetTemotiPokemon( fsys->savedata );
 	max		= PokeParty_GetPokeCount( party );
 
-	//«•Êæ“¾
+	//æ€§åˆ¥å–å¾—
 	for( i=0; i < max; i++ ){
 		pp = PokeParty_GetMemberPointer( party, i );
 
-		//ƒ^ƒ}ƒS‚ÍœŠO
+		//ã‚¿ãƒã‚´ã¯é™¤å¤–
 		if( PokeParaGet(pp,ID_PARA_tamago_flag,NULL) == 0 ){
 
 			sex = PokeParaGet( pp, ID_PARA_sex, NULL );
@@ -1655,22 +1655,22 @@ void TVTOPIC_Entry_Watch_OsuMesu(FIELDSYS_WORK * fsys)
 		}
 	}
 
-	//«•Ê‚È‚µ‚ª‚¢‚È‚¢
+	//æ€§åˆ¥ãªã—ãŒã„ãªã„æ™‚
 	if( neutral == 0 ){
 
-		//ƒIƒX‚µ‚©‚¢‚È‚¢
+		//ã‚ªã‚¹ã—ã‹ã„ãªã„æ™‚
 		if( (male == 1) && (female == 0) ){
 
-			//æ“ª‚Ìƒ|ƒPƒ‚ƒ“
+			//å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³
 			pp = EvPoke_GetPokemonTop(SaveData_GetTemotiPokemon(fsys->savedata));
 			SetMonsParams(pp, &womw->monsno, &womw->mons_sex, &womw->mons_region, &womw->mons_rom);
 
 			MakeTopic(fsys, TVTOPICTYPE_WATCH, TVTOPIC_WATCH_OSU_MESU, womw);
 
-		//ƒƒX‚µ‚©‚¢‚È‚¢
+		//ãƒ¡ã‚¹ã—ã‹ã„ãªã„æ™‚
 		}else if( (male == 0) && (female == 1) ){
 
-			//æ“ª‚Ìƒ|ƒPƒ‚ƒ“
+			//å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³
 			pp = EvPoke_GetPokemonTop(SaveData_GetTemotiPokemon(fsys->savedata));
 			SetMonsParams(pp, &womw->monsno, &womw->mons_sex, &womw->mons_region, &womw->mons_rom);
 
@@ -1683,7 +1683,7 @@ void TVTOPIC_Entry_Watch_OsuMesu(FIELDSYS_WORK * fsys)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN•ú‘—FƒIƒX‚¾‚¯IƒƒX‚¾‚¯Iš
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã‚ªã‚¹ã ã‘ï¼ãƒ¡ã‚¹ã ã‘ï¼â˜…
  */
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_OsuMesu(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
@@ -1694,17 +1694,17 @@ static int TVTOPIC_Make_Watch_OsuMesu(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 	WORDSET_RegisterMonsName(ws, 1, womw->monsno, womw->mons_sex, 
 								womw->mons_region, womw->mons_rom);
 
-	//ƒIƒX‚¾‚¯
+	//ã‚ªã‚¹ã ã‘
 	if( womw->mons_sex == PM_MALE ){
 		return msg_tv_02_16_01;
 	}
 
-	//ƒƒX‚¾‚¯
+	//ãƒ¡ã‚¹ã ã‘
 	return msg_tv_02_16_02;
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒIƒX‚¾‚¯IƒƒX‚¾‚¯I
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šã‚ªã‚¹ã ã‘ï¼ãƒ¡ã‚¹ã ã‘ï¼
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Watch_OsuMesu(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -1714,14 +1714,14 @@ static BOOL TVTOPIC_Limit_Watch_OsuMesu(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚Q|‚P‚V	—Ç–ò‚ÍŒû‚É‹ê‚µI	ƒ|ƒPƒ‚ƒ“‚ÉŠ¿•û–ò‚ğ‚ ‚°‚½‚Æ‚«¡
+//	ï¼ï¼’âˆ’ï¼‘ï¼—	è‰¯è–¬ã¯å£ã«è‹¦ã—ï¼	ãƒã‚±ãƒ¢ãƒ³ã«æ¼¢æ–¹è–¬ã‚’ã‚ã’ãŸã¨ãâ– 
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F—Ç–ò‚ÍŒû‚É‹ê‚µI	ƒ|ƒPƒ‚ƒ“‚ÉŠ¿•û–ò‚ğ‚ ‚°‚½‚Æ‚«
- * @param	tvwk		ƒeƒŒƒrƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pp			–ò‚ğ‚ ‚°‚½ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	itemno		–ò‚ÌƒAƒCƒeƒ€ƒiƒ“ƒo[
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šè‰¯è–¬ã¯å£ã«è‹¦ã—ï¼	ãƒã‚±ãƒ¢ãƒ³ã«æ¼¢æ–¹è–¬ã‚’ã‚ã’ãŸã¨ã
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pp			è–¬ã‚’ã‚ã’ãŸãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	itemno		è–¬ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_UseKanpo(TV_WORK * tvwk, POKEMON_PARAM * pp, u16 itemno)
@@ -1735,11 +1735,11 @@ void TVTOPIC_Entry_Watch_UseKanpo(TV_WORK * tvwk, POKEMON_PARAM * pp, u16 itemno
 
 	TVWORK_MakeTopic(tvwk, TVTOPICTYPE_WATCH, TVTOPIC_WATCH_KANPOU, (const u8 *)wkw);
 #else
-	return;			//ƒvƒ‰ƒ`ƒi‚Å‚Íì¬‚³‚ê‚È‚¢
+	return;			//ãƒ—ãƒ©ãƒãƒŠã§ã¯ä½œæˆã•ã‚Œãªã„
 #endif
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F—Ç–ò‚ÍŒû‚É‹ê‚µI	ƒ|ƒPƒ‚ƒ“‚ÉŠ¿•û–ò‚ğ‚ ‚°‚½‚Æ‚«
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šè‰¯è–¬ã¯å£ã«è‹¦ã—ï¼	ãƒã‚±ãƒ¢ãƒ³ã«æ¼¢æ–¹è–¬ã‚’ã‚ã’ãŸã¨ã
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_UseKanpo(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -1751,7 +1751,7 @@ static int TVTOPIC_Make_Watch_UseKanpo(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 	return msg_tv_02_17_01;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNF—Ç–ò‚ÍŒû‚É‹ê‚µI	ƒ|ƒPƒ‚ƒ“‚ÉŠ¿•û–ò‚ğ‚ ‚°‚½‚Æ‚«
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šè‰¯è–¬ã¯å£ã«è‹¦ã—ï¼	ãƒã‚±ãƒ¢ãƒ³ã«æ¼¢æ–¹è–¬ã‚’ã‚ã’ãŸã¨ã
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Watch_UseKanpo(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -1759,23 +1759,23 @@ static BOOL TVTOPIC_Limit_Watch_UseKanpo(FIELDSYS_WORK * fsys, TVBCD * bcd)
 	WATCH_KANPO_WORK * wkw = (WATCH_KANPO_WORK *)TVBCD_GetTopicData(bcd);
 	return ZukanWork_GetPokeSeeFlag(SaveData_GetZukanWork(fsys->savedata),wkw->monsno);
 #else
-	return FALSE;	//ƒvƒ‰ƒ`ƒi‚Å‚Í•ú‘—‚µ‚È‚¢
+	return FALSE;	//ãƒ—ãƒ©ãƒãƒŠã§ã¯æ”¾é€ã—ãªã„
 #endif
 }
 
 
 //============================================================================================
-//	‚O‚Q|‚P‚W	ŠÄ‹Œ^F‚«‚Ì‚İ–Lì
-//	‚O‚Q|‚P‚X	ŠÄ‹Œ^F‚«‚Ì‚İ•sì
-//	‚O‚R|‚O‚U	ƒMƒlƒXŒ^F‚«‚Ì‚İ–¼l
+//	ï¼ï¼’âˆ’ï¼‘ï¼˜	ç›£è¦–å‹ï¼šãã®ã¿è±Šä½œ
+//	ï¼ï¼’âˆ’ï¼‘ï¼™	ç›£è¦–å‹ï¼šãã®ã¿ä¸ä½œ
+//	ï¼ï¼“âˆ’ï¼ï¼–	ã‚®ãƒã‚¹å‹ï¼šãã®ã¿åäºº
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚«‚Ì‚İ‚ğ‚Æ‚Á‚½‚Æ‚«
- * @param	fsys			ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	nuts_item_no	‚Æ‚Á‚½‚«‚Ì‚İ‚ÌƒAƒCƒeƒ€ƒiƒ“ƒo[
- * @param	hp				‚Æ‚Á‚½‚Æ‚«‚ÌHP‚Ì’l
- * @param	nuts_count		‚Æ‚Á‚½‚«‚Ì‚İ‚Ì”
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãã®ã¿ã‚’ã¨ã£ãŸã¨ã
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	nuts_item_no	ã¨ã£ãŸãã®ã¿ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param	hp				ã¨ã£ãŸã¨ãã®HPã®å€¤
+ * @param	nuts_count		ã¨ã£ãŸãã®ã¿ã®æ•°
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_TakeNuts(FIELDSYS_WORK  *fsys, u16 nuts_item_no, u8 hp, u16 nuts_count)
@@ -1786,19 +1786,19 @@ void TVTOPIC_Entry_TakeNuts(FIELDSYS_WORK  *fsys, u16 nuts_item_no, u8 hp, u16 n
 	tnw->hp = hp;
 	tnw->nuts_count = nuts_count;
 	if (hp == 5) {
-		//HP‚ª–ƒ^ƒ“‚Ì‚Æ‚«AƒMƒlƒXŒ^ƒgƒsƒbƒN¶¬
+		//HPãŒæº€ã‚¿ãƒ³ã®ã¨ãã€ã‚®ãƒã‚¹å‹ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆ
 		//MakeTopic(fsys, TVTOPICTYPE_RECORD, TVTOPIC_RECORD_NUTS_MASTER, tnw);
 	} else if (hp == 4) {
-		//HP‚ª‚S‚Ì‚Æ‚«AŠÄ‹Œ^ƒgƒsƒbƒN¶¬
+		//HPãŒï¼”ã®ã¨ãã€ç›£è¦–å‹ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆ
 		MakeTopic(fsys, TVTOPICTYPE_WATCH, TVTOPIC_WATCH_NUTS_HARVEST, tnw);
 	} else if (hp == 0) {
-		//HP‚ª‚O‚Ì‚Æ‚«AŠÄ‹Œ^ƒgƒsƒbƒN¶¬
+		//HPãŒï¼ã®ã¨ãã€ç›£è¦–å‹ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆ
 		MakeTopic(fsys, TVTOPICTYPE_WATCH, TVTOPIC_WATCH_NUTS_POOR, tnw);
 	}
-	/* ƒgƒsƒbƒN‚ª¶¬‚³‚ê‚È‚¢ê‡‚à‚ ‚é */
+	/* ãƒˆãƒ”ãƒƒã‚¯ãŒç”Ÿæˆã•ã‚Œãªã„å ´åˆã‚‚ã‚ã‚‹ */
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F–LìI–Ø‚ÌÀ‚ğ‚½‚­‚³‚ñûŠn‚µ‚½‚Æ‚«iûŠnA–Ø‚ÌHP‚ª‚WA‚X‚¾‚Á‚½‚Æ‚«j
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šè±Šä½œï¼æœ¨ã®å®Ÿã‚’ãŸãã•ã‚“åç©«ã—ãŸã¨ãï¼ˆåç©«æ™‚ã€æœ¨ã®HPãŒï¼˜ã€ï¼™ã ã£ãŸã¨ãï¼‰
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_NutsHarvest(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -1809,7 +1809,7 @@ static int TVTOPIC_Make_Watch_NutsHarvest(FIELDSYS_WORK * fsys, WORDSET * ws, TV
 	return msg_tv_02_18_01;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F•sìEEE–Ø‚ÌÀ‚ª‚P‚Â‚µ‚©ûŠn‚Å‚«‚È‚©‚Á‚½‚Æ‚«
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šä¸ä½œãƒ»ãƒ»ãƒ»æœ¨ã®å®ŸãŒï¼‘ã¤ã—ã‹åç©«ã§ããªã‹ã£ãŸã¨ã
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_NutsPoor(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -1819,7 +1819,7 @@ static int TVTOPIC_Make_Watch_NutsPoor(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 	return msg_tv_02_19_01;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—FƒMƒlƒXŒ^F–Ø‚ÌÀˆç‚Ä‚Ì–¼l	ûŠnA–Ø‚ÌHP‚ª10‚¾‚Á‚½‚Æ‚«
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã‚®ãƒã‚¹å‹ï¼šæœ¨ã®å®Ÿè‚²ã¦ã®åäºº	åç©«æ™‚ã€æœ¨ã®HPãŒ10ã ã£ãŸã¨ã
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Record_NutsMaster(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -1834,14 +1834,14 @@ static int TVTOPIC_Make_Record_NutsMaster(FIELDSYS_WORK * fsys, WORDSET * ws, TV
 
 
 //============================================================================================
-//	‚O‚Q|‚Q‚P	ƒJƒXƒ^ƒ€ƒJƒvƒZƒ‹
+//	ï¼ï¼’âˆ’ï¼’ï¼‘	ã‚«ã‚¹ã‚¿ãƒ ã‚«ãƒ—ã‚»ãƒ«
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FƒJƒXƒ^ƒ€ƒ{[ƒ‹ì¬I	ƒJƒXƒ^ƒ€ƒJƒvƒZƒ‹‚ğƒ|ƒPƒ‚ƒ“‚ÉƒZƒbƒg‚µ‚½‚Æ‚«
- * @param	tvwk		ƒeƒŒƒrƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pp			ƒZƒbƒg‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	seal_no		ƒV[ƒ‹‚Ìí—Şi‚Ç‚ê‚©ˆê‚ÂA“K“–‚Å‚æ‚¢j
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ä½œæˆï¼	ã‚«ã‚¹ã‚¿ãƒ ã‚«ãƒ—ã‚»ãƒ«ã‚’ãƒã‚±ãƒ¢ãƒ³ã«ã‚»ãƒƒãƒˆã—ãŸã¨ã
+ * @param	tvwk		ãƒ†ãƒ¬ãƒ“ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pp			ã‚»ãƒƒãƒˆã—ãŸãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seal_no		ã‚·ãƒ¼ãƒ«ã®ç¨®é¡ï¼ˆã©ã‚Œã‹ä¸€ã¤ã€é©å½“ã§ã‚ˆã„ï¼‰
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_CustomBall(TV_WORK * tvwk, POKEMON_PARAM * pp, u8 seal_no)
@@ -1855,7 +1855,7 @@ void TVTOPIC_Entry_Watch_CustomBall(TV_WORK * tvwk, POKEMON_PARAM * pp, u8 seal_
 	TVWORK_MakeTopic(tvwk, TVTOPICTYPE_WATCH, TVTOPIC_WATCH_SET_CUSTOMBALL, (const u8 *)wccw);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—FƒJƒXƒ^ƒ€ƒ{[ƒ‹ì¬I	ƒJƒXƒ^ƒ€ƒJƒvƒZƒ‹‚ğƒ|ƒPƒ‚ƒ“‚ÉƒZƒbƒg‚µ‚½‚Æ‚«
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ä½œæˆï¼	ã‚«ã‚¹ã‚¿ãƒ ã‚«ãƒ—ã‚»ãƒ«ã‚’ãƒã‚±ãƒ¢ãƒ³ã«ã‚»ãƒƒãƒˆã—ãŸã¨ã
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_CustomBall(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -1867,7 +1867,7 @@ static int TVTOPIC_Make_Watch_CustomBall(FIELDSYS_WORK * fsys, WORDSET * ws, TVB
 	return msg_tv_02_21_01 + gf_p_rand(3);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNƒJƒXƒ^ƒ€ƒ{[ƒ‹ì¬I	ƒJƒXƒ^ƒ€ƒJƒvƒZƒ‹‚ğƒ|ƒPƒ‚ƒ“‚ÉƒZƒbƒg‚µ‚½‚Æ‚«F
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ä½œæˆï¼	ã‚«ã‚¹ã‚¿ãƒ ã‚«ãƒ—ã‚»ãƒ«ã‚’ãƒã‚±ãƒ¢ãƒ³ã«ã‚»ãƒƒãƒˆã—ãŸã¨ãï¼š
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Watch_CustomBall(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -1877,8 +1877,8 @@ static BOOL TVTOPIC_Limit_Watch_CustomBall(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚Q|‚Q‚Q	Šø‚ğ‚Æ‚Á‚½I
-//	‚O‚Q|‚Q‚R	Šø‚ğæ‚ç‚ê‚½I
+//	ï¼ï¼’âˆ’ï¼’ï¼’	æ——ã‚’ã¨ã£ãŸï¼
+//	ï¼ï¼’âˆ’ï¼’ï¼“	æ——ã‚’å–ã‚‰ã‚ŒãŸï¼
 //============================================================================================
 //--------------------------------------------------------------------
 //--------------------------------------------------------------------
@@ -1901,9 +1901,9 @@ static void Make_Watch_FlagCommon(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bc
 }
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FŠø‚ğæ‚Á‚½I		l‚ÌŠø‚ğ‚¿‹A‚Á‚½I
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	rival		‘Šè‚ÌMYSTATUS‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæ——ã‚’å–ã£ãŸï¼		äººã®æ——ã‚’æŒã¡å¸°ã£ãŸï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	rival		ç›¸æ‰‹ã®MYSTATUSã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_GetFlag(FIELDSYS_WORK * fsys, const MYSTATUS * rival)
@@ -1917,9 +1917,9 @@ void TVTOPIC_Entry_Watch_GetFlag(FIELDSYS_WORK * fsys, const MYSTATUS * rival)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FŠø‚ğæ‚ç‚ê‚½I		©•ª‚ÌŠø‚ğ‚¿‹A‚ç‚ê‚½I
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	rival		‘Šè‚ÌMYSTATUS‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæ——ã‚’å–ã‚‰ã‚ŒãŸï¼		è‡ªåˆ†ã®æ——ã‚’æŒã¡å¸°ã‚‰ã‚ŒãŸï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	rival		ç›¸æ‰‹ã®MYSTATUSã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_LoseFlag(FIELDSYS_WORK * fsys, const MYSTATUS * rival)
@@ -1932,7 +1932,7 @@ void TVTOPIC_Entry_Watch_LoseFlag(FIELDSYS_WORK * fsys, const MYSTATUS * rival)
 }
 
 //--------------------------------------------------------------------
-///ƒgƒsƒbƒN•ú‘—FŠø‚ğæ‚Á‚½I		l‚ÌŠø‚ğ‚¿‹A‚Á‚½I
+///ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šæ——ã‚’å–ã£ãŸï¼		äººã®æ——ã‚’æŒã¡å¸°ã£ãŸï¼
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_GetFlag(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -1941,7 +1941,7 @@ static int TVTOPIC_Make_Watch_GetFlag(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 }
 
 //--------------------------------------------------------------------
-///ƒgƒsƒbƒN•ú‘—FŠø‚ğæ‚ç‚ê‚½I		©•ª‚ÌŠø‚ğ‚¿‹A‚ç‚ê‚½I
+///ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šæ——ã‚’å–ã‚‰ã‚ŒãŸï¼		è‡ªåˆ†ã®æ——ã‚’æŒã¡å¸°ã‚‰ã‚ŒãŸï¼
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_LoseFlag(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -1950,8 +1950,8 @@ static int TVTOPIC_Make_Watch_LoseFlag(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFŠø‚ğæ‚ç‚ê‚½I		©•ª‚ÌŠø‚ğ‚¿‹A‚ç‚ê‚½I
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFŠø‚ğæ‚Á‚½I		l‚ÌŠø‚ğ‚¿‹A‚Á‚½I
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šæ——ã‚’å–ã‚‰ã‚ŒãŸï¼		è‡ªåˆ†ã®æ——ã‚’æŒã¡å¸°ã‚‰ã‚ŒãŸï¼
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šæ——ã‚’å–ã£ãŸï¼		äººã®æ——ã‚’æŒã¡å¸°ã£ãŸï¼
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Watch_Tankou(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -1960,12 +1960,12 @@ static BOOL TVTOPIC_Limit_Watch_Tankou(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚Q|‚Q‚T	•Ê‘‘w“ü		•Ê‘‘‚ğ‘¢‚Á‚½š
+//	ï¼ï¼’âˆ’ï¼’ï¼•	åˆ¥è˜è³¼å…¥		åˆ¥è˜ã‚’é€ ã£ãŸæ™‚â˜…
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F•Ê‘‘w“ü
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šåˆ¥è˜è³¼å…¥
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_Villa(FIELDSYS_WORK * fsys)
@@ -1980,7 +1980,7 @@ void TVTOPIC_Entry_Watch_Villa(FIELDSYS_WORK * fsys)
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN•ú‘—F•Ê‘‘w“ü
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šåˆ¥è˜è³¼å…¥
  */
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_Villa(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
@@ -1990,7 +1990,7 @@ static int TVTOPIC_Make_Watch_Villa(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * 
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀ	•Ê‘‘w“ü
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™	åˆ¥è˜è³¼å…¥
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Watch_Villa(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -2009,13 +2009,13 @@ static BOOL TVTOPIC_Limit_Watch_Villa(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚Q|‚Q‚U	•Ê‘‘‰ü’z		•Ê‘‘‚Å‰½‚©‚ğw“ü‚µ‚½š
+//	ï¼ï¼’âˆ’ï¼’ï¼–	åˆ¥è˜æ”¹ç¯‰		åˆ¥è˜ã§ä½•ã‹ã‚’è³¼å…¥ã—ãŸæ™‚â˜…
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F•Ê‘‘‰ü’z	‰Æ‹ï‚ğw“ü‚µ‚½
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	no		w“ü‚µ‚½‰Æ‹ï
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šåˆ¥è˜æ”¹ç¯‰	å®¶å…·ã‚’è³¼å…¥ã—ãŸæ™‚
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	no		è³¼å…¥ã—ãŸå®¶å…·
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Watch_Reconstruction(FIELDSYS_WORK * fsys, u8 no)
@@ -2023,14 +2023,14 @@ void TVTOPIC_Entry_Watch_Reconstruction(FIELDSYS_WORK * fsys, u8 no)
 	TOPIC_DATA TopicData;
 	WATCH_RECONSTRUCTION_WORK * wrw = &TopicData.WatchReconstructionWork;
 
-	wrw->furniture = no;			//w“ü‚µ‚½‰Æ‹ï
+	wrw->furniture = no;			//è³¼å…¥ã—ãŸå®¶å…·
 
 	MakeTopic(fsys, TVTOPICTYPE_WATCH, TVTOPIC_WATCH_RECONSTRUCTION, wrw);
 }
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN•ú‘—F•Ê‘‘‰ü’z
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šåˆ¥è˜æ”¹ç¯‰
  */
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Watch_Reconstruction(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
@@ -2042,7 +2042,7 @@ static int TVTOPIC_Make_Watch_Reconstruction(FIELDSYS_WORK * fsys, WORDSET * ws,
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀ	•Ê‘‘‰ü’z
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™	åˆ¥è˜æ”¹ç¯‰
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Watch_Reconstruction(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -2063,21 +2063,21 @@ static BOOL TVTOPIC_Limit_Watch_Reconstruction(FIELDSYS_WORK * fsys, TVBCD * bcd
 //============================================================================================
 //
 //
-//			ƒMƒlƒXŒ^ƒgƒsƒbƒN
+//			ã‚®ãƒã‚¹å‹ãƒˆãƒ”ãƒƒã‚¯
 //
 //
 //============================================================================================
 
 //============================================================================================
-//	‚O‚R|‚O‚PFƒoƒgƒ‹ƒ^ƒ[˜AŸ‹L˜^XV	ƒoƒgƒ‹ƒ^ƒ[˜AŸ‹L˜^‚ğXV‚µ‚½‚Æ‚«
+//	ï¼ï¼“âˆ’ï¼ï¼‘ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹è¨˜éŒ²æ›´æ–°	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹è¨˜éŒ²ã‚’æ›´æ–°ã—ãŸã¨ã
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒoƒgƒ‹ƒ^ƒ[˜AŸ(ˆø”‚ğfsys¨savedata‚É•ÏX)
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	renshou		˜AŸ”
- * @param	pp			æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	IsSingleFlag	ƒVƒ“ƒOƒ‹í‚©‚Ç‚¤‚©
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹(å¼•æ•°ã‚’fsysâ†’savedataã«å¤‰æ›´)
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	renshou		é€£å‹æ•°
+ * @param	pp			å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	IsSingleFlag	ã‚·ãƒ³ã‚°ãƒ«æˆ¦ã‹ã©ã†ã‹
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Record_BTowerEx(SAVEDATA * savedata, 
@@ -2093,11 +2093,11 @@ void TVTOPIC_Entry_Record_BTowerEx(SAVEDATA * savedata,
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒoƒgƒ‹ƒ^ƒ[˜AŸ
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	renshou		˜AŸ”
- * @param	pp			æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	IsSingleFlag	ƒVƒ“ƒOƒ‹í‚©‚Ç‚¤‚©
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	renshou		é€£å‹æ•°
+ * @param	pp			å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	IsSingleFlag	ã‚·ãƒ³ã‚°ãƒ«æˆ¦ã‹ã©ã†ã‹
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Record_BTower(FIELDSYS_WORK * fsys, 
@@ -2112,7 +2112,7 @@ void TVTOPIC_Entry_Record_BTower(FIELDSYS_WORK * fsys,
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—Fƒoƒgƒ‹ƒ^ƒ[˜AŸ
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Record_BTower(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -2130,7 +2130,7 @@ static int TVTOPIC_Make_Record_BTower(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 	}
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒoƒgƒ‹ƒ^ƒ[˜AŸ
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Record_BTower(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -2143,14 +2143,14 @@ static BOOL TVTOPIC_Limit_Record_BTower(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚R|‚O‚RF‘å‚«‚³‘ª’è‹L˜^XV	‘å‚«‚³‘ª’è‚Å‹L˜^‚ğXV‚µ‚½‚Æ‚«
+//	ï¼ï¼“âˆ’ï¼ï¼“ï¼šå¤§ãã•æ¸¬å®šè¨˜éŒ²æ›´æ–°	å¤§ãã•æ¸¬å®šã§è¨˜éŒ²ã‚’æ›´æ–°ã—ãŸã¨ã
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‘å‚«‚³‘ª’è‹L˜^XV	‘å‚«‚³‘ª’è‚Å‹L˜^‚ğXV‚µ‚½‚Æ‚«
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	size		‹L˜^
- * @param	pp			XV‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šå¤§ãã•æ¸¬å®šè¨˜éŒ²æ›´æ–°	å¤§ãã•æ¸¬å®šã§è¨˜éŒ²ã‚’æ›´æ–°ã—ãŸã¨ã
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	size		è¨˜éŒ²
+ * @param	pp			æ›´æ–°ã—ãŸãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Record_Ookisa(FIELDSYS_WORK * fsys, u32 size, POKEMON_PARAM * pp)
@@ -2163,7 +2163,7 @@ void TVTOPIC_Entry_Record_Ookisa(FIELDSYS_WORK * fsys, u32 size, POKEMON_PARAM *
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F‘å‚«‚³‘ª’è‹L˜^XV	‘å‚«‚³‘ª’è‚Å‹L˜^‚ğXV‚µ‚½‚Æ‚«
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šå¤§ãã•æ¸¬å®šè¨˜éŒ²æ›´æ–°	å¤§ãã•æ¸¬å®šã§è¨˜éŒ²ã‚’æ›´æ–°ã—ãŸã¨ã
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Record_Ookisa(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -2174,7 +2174,7 @@ static int TVTOPIC_Make_Record_Ookisa(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 			row->mons_sex, row->mons_region, row->mons_rom);
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
-	// ‰pŒê”Å‚Ì‚İƒ|ƒPƒ‚ƒ“‚Ì‘å‚«‚³‚ğƒCƒ“ƒ`Œn‚É•ÏŠ·
+	// è‹±èªç‰ˆã®ã¿ãƒã‚±ãƒ¢ãƒ³ã®å¤§ãã•ã‚’ã‚¤ãƒ³ãƒç³»ã«å¤‰æ›
 #if (PM_LANG == LANG_ENGLISH)
 	{
 		u32 size_inch = PG5_CM_TO_INCH(row->size);
@@ -2194,7 +2194,7 @@ static int TVTOPIC_Make_Record_Ookisa(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 	return msg_tv_03_03_01;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒoƒgƒ‹ƒ^ƒ[˜AŸ
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Record_Ookisa(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -2204,15 +2204,15 @@ static BOOL TVTOPIC_Limit_Record_Ookisa(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚R|‚O‚SFƒXƒƒbƒg’Bl	ƒXƒƒbƒg‚Åˆê’è–‡”ˆÈã‚ğ‰Ò‚¢‚¾‚Æ‚«
+//	ï¼ï¼“âˆ’ï¼ï¼”ï¼šã‚¹ãƒ­ãƒƒãƒˆé”äºº	ã‚¹ãƒ­ãƒƒãƒˆã§ä¸€å®šæšæ•°ä»¥ä¸Šã‚’ç¨¼ã„ã ã¨ã
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FƒXƒƒbƒg’Bl	ƒXƒƒbƒg‚Åˆê’è–‡”ˆÈã‚ğ‰Ò‚¢‚¾‚Æ‚«
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	start_coin		ŠJn‚ÌƒRƒCƒ“–‡”
- * @param	end_coin		I—¹‚ÌƒRƒCƒ“–‡”
- * @param	playtime		ƒvƒŒƒCŠÔi•ª’PˆÊj
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚¹ãƒ­ãƒƒãƒˆé”äºº	ã‚¹ãƒ­ãƒƒãƒˆã§ä¸€å®šæšæ•°ä»¥ä¸Šã‚’ç¨¼ã„ã ã¨ã
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	start_coin		é–‹å§‹æ™‚ã®ã‚³ã‚¤ãƒ³æšæ•°
+ * @param	end_coin		çµ‚äº†æ™‚ã®ã‚³ã‚¤ãƒ³æšæ•°
+ * @param	playtime		ãƒ—ãƒ¬ã‚¤æ™‚é–“ï¼ˆåˆ†å˜ä½ï¼‰
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Record_Slot(FIELDSYS_WORK * fsys, u32 start_coin, u32 end_coin, u32 playtime)
@@ -2226,7 +2226,7 @@ void TVTOPIC_Entry_Record_Slot(FIELDSYS_WORK * fsys, u32 start_coin, u32 end_coi
 	MakeTopic(fsys, TVTOPICTYPE_RECORD, TVTOPIC_RECORD_SLOT, rsw);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—FƒXƒƒbƒg‹L˜^
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã‚¹ãƒ­ãƒƒãƒˆè¨˜éŒ²
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Record_Slot(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -2245,16 +2245,16 @@ static int TVTOPIC_Make_Record_Slot(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * 
 
 
 //============================================================================================
-//	‚O‚R|‚O‚T	ƒŠƒ{ƒ“ƒRƒŒƒNƒ^[š
+//	ï¼ï¼“âˆ’ï¼ï¼•	ãƒªãƒœãƒ³ã‚³ãƒ¬ã‚¯ã‚¿ãƒ¼â˜…
 //============================================================================================
 static u8  get_ribbon_num( POKEMON_PARAM* pp );
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FƒŠƒ{ƒ“ƒRƒŒƒNƒ^[
- * @param	fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	savedata	SAVEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^(š)
- * @param	pp			ƒŠƒ{ƒ“‚ğƒQƒbƒg‚µ‚½ƒ|ƒPƒ‚ƒ“
- * @param	ribbon_id	ƒŠƒ{ƒ“‚ÌID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒªãƒœãƒ³ã‚³ãƒ¬ã‚¯ã‚¿ãƒ¼
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	savedata	SAVEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿(â˜…)
+ * @param	pp			ãƒªãƒœãƒ³ã‚’ã‚²ãƒƒãƒˆã—ãŸãƒã‚±ãƒ¢ãƒ³
+ * @param	ribbon_id	ãƒªãƒœãƒ³ã®ID
  */
 //--------------------------------------------------------------------
 //void TVTOPIC_Entry_Record_Ribbon(FIELDSYS_WORK * fsys, POKEMON_PARAM* pp, u32 ribbon_id)
@@ -2267,7 +2267,7 @@ void TVTOPIC_Entry_Record_Ribbon(SAVEDATA * savedata, POKEMON_PARAM* pp, u32 rib
 	total = get_ribbon_num( pp );
 	OS_Printf( "ribbon total = %d\n", total );
 
-	//15,20,25,30,35,40ŒÂ–Ú‚¾‚Á‚½‚Ì‚İ
+	//15,20,25,30,35,40å€‹ç›®ã ã£ãŸæ™‚ã®ã¿
 	switch( total ){
 	case 15:
 	case 20:
@@ -2276,17 +2276,17 @@ void TVTOPIC_Entry_Record_Ribbon(SAVEDATA * savedata, POKEMON_PARAM* pp, u32 rib
 	case 35:
 	case 40:
 		if( RIBBON_NameGet(ribbon_id) > 0xff ){
-			OS_Printf( "ƒŠƒ{ƒ“‚ªu8‚Å‘«‚è‚Ü‚¹‚ñ\n" );
+			OS_Printf( "ãƒªãƒœãƒ³ãŒu8ã§è¶³ã‚Šã¾ã›ã‚“\n" );
 			GF_ASSERT(0);
-			return;			//ì¬‚µ‚È‚¢
+			return;			//ä½œæˆã—ãªã„
 		}
 
 		SetMonsParams(pp, &rrw->monsno, &rrw->mons_sex, &rrw->mons_region, &rrw->mons_rom);
 		StoreNickName(HEAPID_EVENT, pp, &rrw->nickname_flag, rrw->nickname);
 
-		//ˆø”‚Æ‚µ‚Ä“n‚³‚ê‚é‚Ì‚ÍAID_PARA_ƒŠƒ{ƒ“A‚È‚Ì‚ÅAƒƒbƒZ[ƒWID‚ğæ“¾
+		//å¼•æ•°ã¨ã—ã¦æ¸¡ã•ã‚Œã‚‹ã®ã¯ã€ID_PARA_ãƒªãƒœãƒ³ã€ãªã®ã§ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDã‚’å–å¾—
 		//rrw->ribbon_id	= ribbon_id;
-		rrw->ribbon_id		= RIBBON_NameGet( ribbon_id );	//mes_ribbon_name_079‚È‚Ì‚Åu8‚Åû‚Ü‚é
+		rrw->ribbon_id		= RIBBON_NameGet( ribbon_id );	//mes_ribbon_name_079ãªã®ã§u8ã§åã¾ã‚‹
 		rrw->ribbon_total	= total;
 
 		//MakeTopic(fsys, TVTOPICTYPE_RECORD, TVTOPIC_RECORD_RIBBON, rrw);
@@ -2296,52 +2296,52 @@ void TVTOPIC_Entry_Record_Ribbon(SAVEDATA * savedata, POKEMON_PARAM* pp, u32 rib
 }
 
 static const u16 ribbon_tbl[] = {
-	ID_PARA_ganba_ribbon,						//‚ª‚ñ‚ÎƒŠƒ{ƒ“
-	ID_PARA_sinou_champ_ribbon,					//ƒVƒ“ƒIƒEƒ`ƒƒƒ“ƒvƒŠƒ{ƒ“
+	ID_PARA_ganba_ribbon,						//ãŒã‚“ã°ãƒªãƒœãƒ³
+	ID_PARA_sinou_champ_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒ£ãƒ³ãƒ—ãƒªãƒœãƒ³
 
-	ID_PARA_trial_stylemedal_normal,			//‚©‚Á‚±‚æ‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_stylemedal_super,				//‚©‚Á‚±‚æ‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_stylemedal_hyper,				//‚©‚Á‚±‚æ‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_stylemedal_master,			//‚©‚Á‚±‚æ‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_beautifulmedal_normal,		//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_beautifulmedal_super,			//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_beautifulmedal_hyper,			//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_beautifulmedal_master,		//‚¤‚Â‚­‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_cutemedal_normal,				//‚©‚í‚¢‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_cutemedal_super,				//‚©‚í‚¢‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_cutemedal_hyper,				//‚©‚í‚¢‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_cutemedal_master,				//‚©‚í‚¢‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_clevermedal_normal,			//‚©‚µ‚±‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_clevermedal_super,			//‚©‚µ‚±‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_clevermedal_hyper,			//‚©‚µ‚±‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_clevermedal_master,			//‚©‚µ‚±‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_strongmedal_normal,			//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒm[ƒ}ƒ‹)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_strongmedal_super,			//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒX[ƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_strongmedal_hyper,			//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒnƒCƒp[)ƒgƒ‰ƒCƒAƒ‹
-	ID_PARA_trial_strongmedal_master,			//‚½‚­‚Ü‚µ‚³ŒMÍ(ƒ}ƒXƒ^[)ƒgƒ‰ƒCƒAƒ‹
+	ID_PARA_trial_stylemedal_normal,			//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_stylemedal_super,				//ã‹ã£ã“ã‚ˆã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_stylemedal_hyper,				//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_stylemedal_master,			//ã‹ã£ã“ã‚ˆã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_beautifulmedal_normal,		//ã†ã¤ãã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_beautifulmedal_super,			//ã†ã¤ãã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_beautifulmedal_hyper,			//ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_beautifulmedal_master,		//ã†ã¤ãã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_cutemedal_normal,				//ã‹ã‚ã„ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_cutemedal_super,				//ã‹ã‚ã„ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_cutemedal_hyper,				//ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_cutemedal_master,				//ã‹ã‚ã„ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_clevermedal_normal,			//ã‹ã—ã“ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_clevermedal_super,			//ã‹ã—ã“ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_clevermedal_hyper,			//ã‹ã—ã“ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_clevermedal_master,			//ã‹ã—ã“ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_strongmedal_normal,			//ãŸãã¾ã—ã•å‹²ç« (ãƒãƒ¼ãƒãƒ«)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_strongmedal_super,			//ãŸãã¾ã—ã•å‹²ç« (ã‚¹ãƒ¼ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_strongmedal_hyper,			//ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¤ãƒ‘ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
+	ID_PARA_trial_strongmedal_master,			//ãŸãã¾ã—ã•å‹²ç« (ãƒã‚¹ã‚¿ãƒ¼)ãƒˆãƒ©ã‚¤ã‚¢ãƒ«
 
-	ID_PARA_sinou_battle_tower_ttwin_first,		//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜1‰ñ–Ú
-	ID_PARA_sinou_battle_tower_ttwin_second,	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ^ƒCƒN[ƒ“Ÿ—˜2‰ñ–Ú
-	ID_PARA_sinou_battle_tower_2vs2_win50,		//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[ƒ_ƒuƒ‹50˜AŸ
-	ID_PARA_sinou_battle_tower_aimulti_win50,	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[AIƒ}ƒ‹ƒ`50˜AŸ
-	ID_PARA_sinou_battle_tower_siomulti_win50,	//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[ƒ^ƒ[’ÊMƒ}ƒ‹ƒ`50˜AŸ
-	ID_PARA_sinou_battle_tower_wifi_rank5,		//ƒVƒ“ƒIƒEƒoƒgƒ‹ƒ^ƒ[Wifiƒ‰ƒ“ƒN‚T“ü‚è
+	ID_PARA_sinou_battle_tower_ttwin_first,		//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©1å›ç›®
+	ID_PARA_sinou_battle_tower_ttwin_second,	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³å‹åˆ©2å›ç›®
+	ID_PARA_sinou_battle_tower_2vs2_win50,		//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼ãƒ€ãƒ–ãƒ«50é€£å‹
+	ID_PARA_sinou_battle_tower_aimulti_win50,	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼AIãƒãƒ«ãƒ50é€£å‹
+	ID_PARA_sinou_battle_tower_siomulti_win50,	//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ãƒ¯ãƒ¼é€šä¿¡ãƒãƒ«ãƒ50é€£å‹
+	ID_PARA_sinou_battle_tower_wifi_rank5,		//ã‚·ãƒ³ã‚ªã‚¦ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼Wifiãƒ©ãƒ³ã‚¯ï¼•å…¥ã‚Š
 
-	ID_PARA_sinou_syakki_ribbon,				//ƒVƒ“ƒIƒE‚µ‚á‚Á‚«ƒŠƒ{ƒ“
-	ID_PARA_sinou_dokki_ribbon,					//ƒVƒ“ƒIƒE‚Ç‚Á‚«ƒŠƒ{ƒ“
-	ID_PARA_sinou_syonbo_ribbon,				//ƒVƒ“ƒIƒE‚µ‚å‚ñ‚ÚƒŠƒ{ƒ“
-	ID_PARA_sinou_ukka_ribbon,					//ƒVƒ“ƒIƒE‚¤‚Á‚©ƒŠƒ{ƒ“
-	ID_PARA_sinou_sukki_ribbon,					//ƒVƒ“ƒIƒE‚·‚Á‚«ƒŠƒ{ƒ“
-	ID_PARA_sinou_gussu_ribbon,					//ƒVƒ“ƒIƒE‚®‚Á‚·ƒŠƒ{ƒ“
-	ID_PARA_sinou_nikko_ribbon,					//ƒVƒ“ƒIƒE‚É‚Á‚±ƒŠƒ{ƒ“
-	ID_PARA_sinou_gorgeous_ribbon,				//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒŠƒ{ƒ“
-	ID_PARA_sinou_royal_ribbon,					//ƒVƒ“ƒIƒEƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-	ID_PARA_sinou_gorgeousroyal_ribbon,			//ƒVƒ“ƒIƒEƒS[ƒWƒƒƒXƒƒCƒ„ƒ‹ƒŠƒ{ƒ“
-	ID_PARA_sinou_ashiato_ribbon,				//ƒVƒ“ƒIƒE‚ ‚µ‚ ‚ÆƒŠƒ{ƒ“
+	ID_PARA_sinou_syakki_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚ƒã£ããƒªãƒœãƒ³
+	ID_PARA_sinou_dokki_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ã©ã£ããƒªãƒœãƒ³
+	ID_PARA_sinou_syonbo_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ã—ã‚‡ã‚“ã¼ãƒªãƒœãƒ³
+	ID_PARA_sinou_ukka_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ã†ã£ã‹ãƒªãƒœãƒ³
+	ID_PARA_sinou_sukki_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ã™ã£ããƒªãƒœãƒ³
+	ID_PARA_sinou_gussu_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ãã£ã™ãƒªãƒœãƒ³
+	ID_PARA_sinou_nikko_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ã«ã£ã“ãƒªãƒœãƒ³
+	ID_PARA_sinou_gorgeous_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒªãƒœãƒ³
+	ID_PARA_sinou_royal_ribbon,					//ã‚·ãƒ³ã‚ªã‚¦ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+	ID_PARA_sinou_gorgeousroyal_ribbon,			//ã‚·ãƒ³ã‚ªã‚¦ã‚´ãƒ¼ã‚¸ãƒ£ã‚¹ãƒ­ã‚¤ãƒ¤ãƒ«ãƒªãƒœãƒ³
+	ID_PARA_sinou_ashiato_ribbon,				//ã‚·ãƒ³ã‚ªã‚¦ã‚ã—ã‚ã¨ãƒªãƒœãƒ³
 };
 #define TV_RIBBON_MAX	( NELEMS(ribbon_tbl) )
 
-//ƒŠƒ{ƒ“‘”‚ğƒJƒEƒ“ƒg
+//ãƒªãƒœãƒ³ç·æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 static u8  get_ribbon_num( POKEMON_PARAM* pp )
 {
 	u8 count,i;
@@ -2357,7 +2357,7 @@ static u8  get_ribbon_num( POKEMON_PARAM* pp )
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—FƒŠƒ{ƒ“ƒRƒŒƒNƒ^[
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãƒªãƒœãƒ³ã‚³ãƒ¬ã‚¯ã‚¿ãƒ¼
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Record_Ribbon(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -2366,17 +2366,17 @@ static int TVTOPIC_Make_Record_Ribbon(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 	WORDSET_RegisterOwnerName(ws, 0, bcd);
 
 	if (rrw->nickname_flag) {
-		//ƒjƒbƒNƒl[ƒ€‚ğ‚Â‚¯‚½ê‡
+		//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ã¤ã‘ãŸå ´åˆ
 		WORDSET_RegisterSTRCODE(ws, 1, rrw->nickname,
 				rrw->mons_sex, rrw->mons_region, TRUE);
 	} else {
-		//ƒjƒbƒNƒl[ƒ€‚ğ‚Â‚¯‚È‚©‚Á‚½ê‡
+		//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ã¤ã‘ãªã‹ã£ãŸå ´åˆ
 		WORDSET_RegisterMonsName(ws, 1, rrw->monsno,
 				rrw->mons_sex, rrw->mons_region, rrw->mons_rom);
 	}
 
 	WORDSET_RegisterRibbonName( ws, 2, rrw->ribbon_id );
-	WORDSET_RegisterNumber(ws, 3, rrw->ribbon_total, 3,			//š
+	WORDSET_RegisterNumber(ws, 3, rrw->ribbon_total, 3,			//â˜…
 			NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
 
 	return msg_tv_03_05_01;
@@ -2384,16 +2384,16 @@ static int TVTOPIC_Make_Record_Ribbon(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 
 
 //============================================================================================
-//	‚O‚R|‚O‚W	ƒƒi‰ğœ–¼l	’n‰º‚É“ü‚Á‚½‚Æ‚«A‚½‚­‚³‚ñ‚Ìƒƒi‚ğ‰ğœ‚µ‚½‚çì¬
+//	ï¼ï¼“âˆ’ï¼ï¼˜	ãƒ¯ãƒŠè§£é™¤åäºº	åœ°ä¸‹ã«å…¥ã£ãŸã¨ãã€ãŸãã•ã‚“ã®ãƒ¯ãƒŠã‚’è§£é™¤ã—ãŸã‚‰ä½œæˆ
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒƒi‰ğœ–¼l	’n‰º‚É“ü‚Á‚½‚Æ‚«A‚½‚­‚³‚ñ‚Ìƒƒi‚ğ‰ğœ‚µ‚½‚çì¬
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	trap_no			Å‰‚É‰ğœ‚µ‚½ƒƒi‚Ìƒiƒ“ƒo[
- * @param	remove_count	ƒƒi‚ğ‰ğœ‚µ‚½‰ñ”
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒ¯ãƒŠè§£é™¤åäºº	åœ°ä¸‹ã«å…¥ã£ãŸã¨ãã€ãŸãã•ã‚“ã®ãƒ¯ãƒŠã‚’è§£é™¤ã—ãŸã‚‰ä½œæˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	trap_no			æœ€åˆã«è§£é™¤ã—ãŸãƒ¯ãƒŠã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	remove_count	ãƒ¯ãƒŠã‚’è§£é™¤ã—ãŸå›æ•°
  *
- * ’n‰º‚É“ü‚Á‚Ä‚©‚ço‚é‚Ü‚Å‚ÌŠÔ‚Ì‰ñ”‚Å‚·Bˆê“xo‚½‚çƒŠƒZƒbƒg‚³‚ê‚Ü‚·B
+ * åœ°ä¸‹ã«å…¥ã£ã¦ã‹ã‚‰å‡ºã‚‹ã¾ã§ã®é–“ã®å›æ•°ã§ã™ã€‚ä¸€åº¦å‡ºãŸã‚‰ãƒªã‚»ãƒƒãƒˆã•ã‚Œã¾ã™ã€‚
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Record_RemoveTrap(FIELDSYS_WORK * fsys, u16 trap_no, u16 remove_count)
@@ -2404,13 +2404,13 @@ void TVTOPIC_Entry_Record_RemoveTrap(FIELDSYS_WORK * fsys, u16 trap_no, u16 remo
 
 	rrtw->remove_count = remove_count;
 	if( rrtw->remove_count > 999 ){
-		rrtw->remove_count = 999;			//•ú‘—‚ª3Œ…‚È‚Ì‚Å
+		rrtw->remove_count = 999;			//æ”¾é€ãŒ3æ¡ãªã®ã§
 	}
 
 	MakeTopic(fsys, TVTOPICTYPE_RECORD, TVTOPIC_RECORD_TRAP_REMOVER, rrtw);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—Fƒƒi‰ğœ–¼l	’n‰º‚É“ü‚Á‚½‚Æ‚«A‚½‚­‚³‚ñ‚Ìƒƒi‚ğ‰ğœ‚µ‚½‚çì¬
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãƒ¯ãƒŠè§£é™¤åäºº	åœ°ä¸‹ã«å…¥ã£ãŸã¨ãã€ãŸãã•ã‚“ã®ãƒ¯ãƒŠã‚’è§£é™¤ã—ãŸã‚‰ä½œæˆ
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Record_RemoveTrap(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -2421,7 +2421,7 @@ static int TVTOPIC_Make_Record_RemoveTrap(FIELDSYS_WORK * fsys, WORDSET * ws, TV
 
 	remove_count = rrtw->remove_count;
 	if( remove_count > 999 ){
-		remove_count = 999;			//•ú‘—‚ª3Œ…‚È‚Ì‚Å
+		remove_count = 999;			//æ”¾é€ãŒ3æ¡ãªã®ã§
 	}
 
 	//WORDSET_RegisterNumber(ws, 2, rrtw->remove_count, 3,
@@ -2432,15 +2432,15 @@ static int TVTOPIC_Make_Record_RemoveTrap(FIELDSYS_WORK * fsys, WORDSET * ws, TV
 
 
 //============================================================================================
-//	‚O‚R|‚O‚X	ƒnƒ^ƒgƒŠ–¼l
+//	ï¼ï¼“âˆ’ï¼ï¼™	ãƒã‚¿ãƒˆãƒªåäºº
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒnƒ^ƒgƒŠ–¼l
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag_count		Šø‚ğæ‚Á‚½‰ñ”
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒã‚¿ãƒˆãƒªåäºº
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag_count		æ——ã‚’å–ã£ãŸå›æ•°
  *
- * ’n‰º‚É“ü‚Á‚Ä‚©‚ço‚é‚Ü‚Å‚ÌŠÔ‚Ì‰ñ”‚Å‚·Bˆê“xo‚½‚çƒŠƒZƒbƒg‚³‚ê‚Ü‚·B
+ * åœ°ä¸‹ã«å…¥ã£ã¦ã‹ã‚‰å‡ºã‚‹ã¾ã§ã®é–“ã®å›æ•°ã§ã™ã€‚ä¸€åº¦å‡ºãŸã‚‰ãƒªã‚»ãƒƒãƒˆã•ã‚Œã¾ã™ã€‚
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Record_GetFlag(FIELDSYS_WORK * fsys, u16 flag_count)
@@ -2450,7 +2450,7 @@ void TVTOPIC_Entry_Record_GetFlag(FIELDSYS_WORK * fsys, u16 flag_count)
 
 	rgfw->flag_count = flag_count;
 	if( rgfw->flag_count > 999 ){
-		rgfw->flag_count = 999;			//•ú‘—‚ª3Œ…‚È‚Ì‚Å
+		rgfw->flag_count = 999;			//æ”¾é€ãŒ3æ¡ãªã®ã§
 	}
 
 	if (flag_count > 1) {
@@ -2458,7 +2458,7 @@ void TVTOPIC_Entry_Record_GetFlag(FIELDSYS_WORK * fsys, u16 flag_count)
 	}
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—Fƒnƒ^ƒgƒŠ–¼l
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãƒã‚¿ãƒˆãƒªåäºº
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Record_GetFlag(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -2468,7 +2468,7 @@ static int TVTOPIC_Make_Record_GetFlag(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 	
 	flag_count = rgfw->flag_count;
 	if( flag_count > 999 ){
-		flag_count = 999;			//•ú‘—‚ª3Œ…‚È‚Ì‚Å
+		flag_count = 999;			//æ”¾é€ãŒ3æ¡ãªã®ã§
 	}
 
 	//WORDSET_RegisterNumber(ws, 1, rgfw->flag_count, 3,
@@ -2478,7 +2478,7 @@ static int TVTOPIC_Make_Record_GetFlag(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 	return msg_tv_03_09_01;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒnƒ^ƒgƒŠ–¼l
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šãƒã‚¿ãƒˆãƒªåäºº
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Record_Tankou(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -2487,13 +2487,13 @@ static BOOL TVTOPIC_Limit_Record_Tankou(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚R|‚P‚O	ƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼lš
+//	ï¼ï¼“âˆ’ï¼‘ï¼	ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäººâ˜…
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼l
- * @param	savedata		ƒZ[ƒuƒf[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	add_point		‘«‚·ƒ|ƒCƒ“ƒg
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäºº
+ * @param	savedata		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	add_point		è¶³ã™ãƒã‚¤ãƒ³ãƒˆ
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Record_BP(SAVEDATA* savedata)
@@ -2502,7 +2502,7 @@ void TVTOPIC_Entry_Record_BP(SAVEDATA* savedata)
 	RECORD_BP_WORK * rbw = &TopicData.RecordBPWork;
 	TOPICTEMP_BP * pbw = TVWORK_GetBPTemp(SaveData_GetTvWork(savedata));
 
-	//30ˆÈã‚Åì¬
+	//30ä»¥ä¸Šã§ä½œæˆ
 	if( pbw->bp_num >= 30 ){
 		rbw->bp = *pbw;
 		pbw->exist_flag = FALSE;
@@ -2514,7 +2514,7 @@ void TVTOPIC_Entry_Record_BP(SAVEDATA* savedata)
 
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—Fƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼l
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäºº
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Record_BP(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -2526,7 +2526,7 @@ static int TVTOPIC_Make_Record_BP(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bc
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼l
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäºº
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Record_BP(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -2535,12 +2535,12 @@ static BOOL TVTOPIC_Limit_Record_BP(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚R|‚P‚P	GDS–¼lš
+//	ï¼ï¼“âˆ’ï¼‘ï¼‘	GDSåäººâ˜…
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FGTS–¼l
- * @param	savedata	ƒZ[ƒuƒf[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šGTSåäºº
+ * @param	savedata	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_Record_GTS(SAVEDATA * savedata)
@@ -2549,7 +2549,7 @@ void TVTOPIC_Entry_Record_GTS(SAVEDATA * savedata)
 	RECORD_GTS_WORK * rgw = &TopicData.RecordGTSWork;
 	TOPICTEMP_GTS * pgw = TVWORK_GetGTSTemp(SaveData_GetTvWork(savedata));
 
-	//10‰ñˆÈã‚Å¶¬
+	//10å›ä»¥ä¸Šã§ç”Ÿæˆ
 	if( pgw->trade_num >= 10 ){
 		rgw->gts = *pgw;
 		pgw->exist_flag = FALSE;
@@ -2560,7 +2560,7 @@ void TVTOPIC_Entry_Record_GTS(SAVEDATA * savedata)
 	}
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—FGTS–¼l
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šGTSåäºº
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Record_GTS(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -2572,7 +2572,7 @@ static int TVTOPIC_Make_Record_GTS(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * b
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFGTS–¼l
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šGTSåäºº
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Record_GTS(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -2583,20 +2583,20 @@ static BOOL TVTOPIC_Limit_Record_GTS(FIELDSYS_WORK * fsys, TVBCD * bcd)
 //============================================================================================
 //
 //
-//				¿–âŒ^ƒgƒsƒbƒN
+//				è³ªå•å‹ãƒˆãƒ”ãƒƒã‚¯
 //
 //
 //============================================================================================
 
 //============================================================================================
-//	‚O‚P|‚O‚Q	’§íIƒoƒgƒ‹ƒ^ƒ[	1	ƒoƒgƒ‹ƒ^ƒ[	’§íI—¹Œã
+//	ï¼ï¼‘âˆ’ï¼ï¼’	æŒ‘æˆ¦ï¼ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼	1	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼	æŒ‘æˆ¦çµ‚äº†å¾Œ
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒoƒgƒ‹ƒ^ƒ[ƒCƒ“ƒ^ƒrƒ…[
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	count		˜AŸ‰ñ”
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	count		é€£å‹å›æ•°
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_BTower(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -2614,14 +2614,14 @@ void TVTOPIC_Entry_QandA_BTower(FIELDSYS_WORK * fsys, PMS_WORD word)
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—Fƒoƒgƒ‹ƒ^ƒ[ƒCƒ“ƒ^ƒrƒ…[
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_QandA_BTower(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	QANDA_BTOWER_WORK* qbtw = TVBCD_GetTopicData(bcd);
 	WORDSET_RegisterNumber(ws, 0, qbtw->btower.win_count, 4,
 			NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
-	WORDSET_RegisterOwnerName(ws, 1, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 1, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	WORDSET_RegisterPMSWord(ws, 2, qbtw->word);
 	if (qbtw->btower.continue_flag == TRUE) {
 		return msg_tv_01_02_01;
@@ -2630,7 +2630,7 @@ static int TVTOPIC_Make_QandA_BTower(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD *
 	}
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒoƒgƒ‹ƒ^ƒ[˜AŸ
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_QandA_BTower(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -2639,13 +2639,13 @@ static BOOL TVTOPIC_Limit_QandA_BTower(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚P|‚O‚S	‚ ‚È‚½‚Ìƒ|ƒPƒ‚ƒ“	1	ƒ|ƒPƒ‚ƒ“‘åD‚«ƒNƒ‰ƒu	
+//	ï¼ï¼‘âˆ’ï¼ï¼”	ã‚ãªãŸã®ãƒã‚±ãƒ¢ãƒ³	1	ãƒã‚±ãƒ¢ãƒ³å¤§å¥½ãã‚¯ãƒ©ãƒ–	
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚ ‚È‚½‚Ìƒ|ƒPƒ‚ƒ“ƒCƒ“ƒ^ƒrƒ…[
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚ãªãŸã®ãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_Pokemon(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -2654,7 +2654,7 @@ void TVTOPIC_Entry_QandA_Pokemon(FIELDSYS_WORK * fsys, PMS_WORD word)
 	QANDA_POKEMON_WORK * qpw = &TopicData.QandAPokemonWork;
 	POKEMON_PARAM * pp;
 	
-	//æ“ª‚Ìƒ|ƒPƒ‚ƒ“
+	//å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³
 	pp = EvPoke_GetPokemonTop(SaveData_GetTemotiPokemon(fsys->savedata));
 	SetMonsParams(pp, &qpw->monsno, &qpw->mons_sex, &qpw->mons_region, &qpw->mons_rom);
 	StoreNickName(HEAPID_EVENT, pp, &qpw->nickname_flag, qpw->nickname);
@@ -2663,15 +2663,15 @@ void TVTOPIC_Entry_QandA_Pokemon(FIELDSYS_WORK * fsys, PMS_WORD word)
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F‚ ‚È‚½‚Ìƒ|ƒPƒ‚ƒ“ƒCƒ“ƒ^ƒrƒ…[
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã‚ãªãŸã®ãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_QandA_Pokemon(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	QANDA_POKEMON_WORK * qpw = TVBCD_GetTopicData(bcd);
 
 	if (qpw->nickname_flag) {
-		//ƒjƒbƒNƒl[ƒ€‚ğ‚Â‚¯‚½ê‡
-		WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+		//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ã¤ã‘ãŸå ´åˆ
+		WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 		WORDSET_RegisterMonsName(ws, 1, qpw->monsno,
 				qpw->mons_sex, qpw->mons_region, qpw->mons_rom);
 		WORDSET_RegisterSTRCODE(ws, 2, qpw->nickname,
@@ -2679,8 +2679,8 @@ static int TVTOPIC_Make_QandA_Pokemon(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 		WORDSET_RegisterPMSWord(ws, 3, qpw->word);
 		return msg_tv_01_04_01;
 	} else {
-		//ƒjƒbƒNƒl[ƒ€‚ğ‚Â‚¯‚È‚©‚Á‚½ê‡
-		WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+		//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ã¤ã‘ãªã‹ã£ãŸå ´åˆ
+		WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 		WORDSET_RegisterMonsName(ws, 1, qpw->monsno,
 				qpw->mons_sex, qpw->mons_region, qpw->mons_rom);
 	//	WORDSET_RegisterSTRCODE(ws, 2, qpw->nickname,
@@ -2690,7 +2690,7 @@ static int TVTOPIC_Make_QandA_Pokemon(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 	}
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒoƒgƒ‹ƒ^ƒ[˜AŸ
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_QandA_Pokemon(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -2700,13 +2700,13 @@ static BOOL TVTOPIC_Limit_QandA_Pokemon(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚P|‚O‚U	‚¨‹C‚É“ü‚è‚Ìƒ|ƒPƒbƒ`	2	ƒJƒ“ƒpƒj[	
+//	ï¼ï¼‘âˆ’ï¼ï¼–	ãŠæ°—ã«å…¥ã‚Šã®ãƒã‚±ãƒƒãƒ	2	ã‚«ãƒ³ãƒ‘ãƒ‹ãƒ¼	
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚¨‹C‚É“ü‚è‚Ìƒ|ƒPƒbƒ`
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãŠæ°—ã«å…¥ã‚Šã®ãƒã‚±ãƒƒãƒ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_Poketch(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -2718,12 +2718,12 @@ void TVTOPIC_Entry_QandA_Poketch(FIELDSYS_WORK * fsys, PMS_WORD word)
 	MakeTopic(fsys, TVTOPICTYPE_INTERVIEW, TVTOPIC_INTERVIEW_POKETCH, qptw);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—Fƒ|ƒPƒbƒ`ƒCƒ“ƒ^ƒrƒ…[
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãƒã‚±ãƒƒãƒã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_QandA_Poketch(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	QANDA_POKETCH_WORK * qptw = TVBCD_GetTopicData(bcd);
-	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	WORDSET_RegisterPoketchAppName(ws, 1, qptw->poketch_id);
 	WORDSET_RegisterPMSWord(ws, 2, qptw->word);
 	return msg_tv_01_06_01;
@@ -2731,13 +2731,13 @@ static int TVTOPIC_Make_QandA_Poketch(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 
 
 //============================================================================================
-//	‚O‚P|‚O‚V	’§íIƒRƒ“ƒeƒXƒg		ƒRƒ“ƒeƒXƒg‰ïê	ƒRƒ“ƒeƒXƒgI—¹Œã
+//	ï¼ï¼‘âˆ’ï¼ï¼—	æŒ‘æˆ¦ï¼ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆä¼šå ´	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆçµ‚äº†å¾Œ
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F’§íIƒRƒ“ƒeƒXƒg
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæŒ‘æˆ¦ï¼ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_Contest(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -2765,16 +2765,16 @@ static int TVTOPIC_Make_QandA_Contest(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 	WORDSET_RegisterContestRank(ws, 2, ConTool_IMCGetRankMsgID(qctw->contest.contest_rank));
 	WORDSET_RegisterNumber(ws, 3, qctw->contest.contest_result, 1,
 			NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
-	WORDSET_RegisterOwnerName(ws, 4, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 4, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	WORDSET_RegisterPMSWord(ws, 5, qctw->word);
 	if (qctw->contest.contest_result == 1) {
-		return msg_tv_01_07_02;		//—DŸ—pƒƒbƒZ[ƒW
+		return msg_tv_01_07_02;		//å„ªå‹ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	} else {
 		return msg_tv_01_07_01;
 	}
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒRƒ“ƒeƒXƒg
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_QandA_Contest(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -2784,13 +2784,13 @@ static BOOL TVTOPIC_Limit_QandA_Contest(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚P|‚O‚X	ƒ|ƒPƒ‚ƒ“ƒNƒŠƒbƒvI	2	ƒNƒŠƒbƒv‚ğì‚éêŠ	ƒNƒŠƒbƒv‚ğì‚Á‚½‚ ‚Æ
+//	ï¼ï¼‘âˆ’ï¼ï¼™	ãƒã‚±ãƒ¢ãƒ³ã‚¯ãƒªãƒƒãƒ—ï¼	2	ã‚¯ãƒªãƒƒãƒ—ã‚’ä½œã‚‹å ´æ‰€	ã‚¯ãƒªãƒƒãƒ—ã‚’ä½œã£ãŸã‚ã¨
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒ|ƒPƒ‚ƒ“ƒNƒŠƒbƒvI
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒã‚±ãƒ¢ãƒ³ã‚¯ãƒªãƒƒãƒ—ï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_Clip(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -2810,13 +2810,13 @@ void TVTOPIC_Entry_QandA_Clip(FIELDSYS_WORK * fsys, PMS_WORD word)
 static int TVTOPIC_Make_QandA_Clip(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	QANDA_CLIP_WORK * qclw = TVBCD_GetTopicData(bcd);
-	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	WORDSET_RegisterMonsNameEasy(ws, 1, qclw->monsno);
 	WORDSET_RegisterPMSWord(ws, 2, qclw->word);
 	return msg_tv_01_09_01;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒoƒgƒ‹ƒ^ƒ[˜AŸ
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_QandA_Clip(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -2826,13 +2826,13 @@ static BOOL TVTOPIC_Limit_QandA_Clip(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚P|‚P‚O	«Šif’fI	2		
+//	ï¼ï¼‘âˆ’ï¼‘ï¼	æ€§æ ¼è¨ºæ–­ï¼	2		
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F«Šif’fI
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæ€§æ ¼è¨ºæ–­ï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_Character(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -2847,19 +2847,19 @@ void TVTOPIC_Entry_QandA_Character(FIELDSYS_WORK * fsys, PMS_WORD word)
 static int TVTOPIC_Make_QandA_Character(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	QANDA_POKETYPE_WORK * qptype = TVBCD_GetTopicData(bcd);
-	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	return msg_tv_01_10_01 + qptype->type - 1;
 }
 
 
 //============================================================================================
-//	‚O‚P|‚P‚P		ƒ|ƒ‹ƒg—¿—		ƒ|ƒ‹ƒg‚ğì‚éêŠ	ƒ|ƒ‹ƒg‚ğì‚Á‚½‚ç
+//	ï¼ï¼‘âˆ’ï¼‘ï¼‘		ãƒãƒ«ãƒˆæ–™ç†		ãƒãƒ«ãƒˆã‚’ä½œã‚‹å ´æ‰€	ãƒãƒ«ãƒˆã‚’ä½œã£ãŸã‚‰
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒ|ƒ‹ƒg—¿—
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒãƒ«ãƒˆæ–™ç†
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_Poruto(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -2881,7 +2881,7 @@ static int TVTOPIC_Make_QandA_Poruto(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD *
 {
 	QANDA_PORUTO_WORK * qporuto = TVBCD_GetTopicData(bcd);
 	int taste = qporuto->poruto.taste_type;
-	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	WORDSET_RegisterPorutoName(ws, 1, taste);
 	WORDSET_RegisterPMSWord(ws, 2, qporuto->word);
 	switch (taste) {
@@ -2900,13 +2900,13 @@ static int TVTOPIC_Make_QandA_Poruto(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD *
 
 
 //============================================================================================
-//	‚O‚P|‚P‚R		ƒ|ƒPƒ‚ƒ“˜A‚ê•à‚«
+//	ï¼ï¼‘âˆ’ï¼‘ï¼“		ãƒã‚±ãƒ¢ãƒ³é€£ã‚Œæ­©ã
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒ|ƒPƒ‚ƒ“˜A‚ê•à‚«
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒã‚±ãƒ¢ãƒ³é€£ã‚Œæ­©ã
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_Park(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -2927,7 +2927,7 @@ void TVTOPIC_Entry_QandA_Park(FIELDSYS_WORK * fsys, PMS_WORD word)
 static int TVTOPIC_Make_QandA_Park(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	QANDA_PARK_WORK * qpark = TVBCD_GetTopicData(bcd);
-	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	WORDSET_RegisterMonsName(ws, 1, qpark->park.monsno,
 			qpark->park.mons_sex, qpark->park.mons_region, qpark->park.mons_rom);
 	WORDSET_RegisterSeikaku(ws, 2, qpark->park.poke_character);
@@ -2947,13 +2947,13 @@ static int TVTOPIC_Make_QandA_Park(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * b
 
 
 //============================================================================================
-//	‚O‚P|‚P‚S		ƒoƒgƒ‹ƒXƒe[ƒW
+//	ï¼ï¼‘âˆ’ï¼‘ï¼”		ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒoƒgƒ‹ƒXƒe[ƒW
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word	ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word	ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_Stage(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -2970,12 +2970,12 @@ void TVTOPIC_Entry_QandA_Stage(FIELDSYS_WORK * fsys, PMS_WORD word)
 	MakeTopic(fsys, TVTOPICTYPE_INTERVIEW, TVTOPIC_INTERVIEW_STAGE, qstage);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—Fƒoƒgƒ‹ƒXƒe[ƒW
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_QandA_Stage(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	QANDA_STAGE_WORK * qstage = TVBCD_GetTopicData(bcd);
-	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	WORDSET_RegisterMonsName(ws, 1, qstage->stage.monsno,
 			qstage->stage.mons_sex, qstage->stage.mons_region, qstage->stage.mons_rom);
 
@@ -2992,7 +2992,7 @@ static int TVTOPIC_Make_QandA_Stage(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * 
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒoƒgƒ‹ƒXƒe[ƒW
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_QandA_Stage(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -3001,13 +3001,13 @@ static BOOL TVTOPIC_Limit_QandA_Stage(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	‚O‚P|‚P‚T		‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
+//	ï¼ï¼‘âˆ’ï¼‘ï¼•		ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word	ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word	ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_Strange1(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -3018,25 +3018,25 @@ void TVTOPIC_Entry_QandA_Strange1(FIELDSYS_WORK * fsys, PMS_WORD word)
 	MakeTopic(fsys, TVTOPICTYPE_INTERVIEW, TVTOPIC_INTERVIEW_STRANGE1, qstrange);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_QandA_Strange1(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	QANDA_STRANGE_WORK1 * qstrange = TVBCD_GetTopicData(bcd);
-	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	WORDSET_RegisterPMSWord(ws, 1, qstrange->word);
 	return msg_tv_01_15_01;
 }
 
 
 //============================================================================================
-//	‚O‚P|‚P‚U		‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
+//	ï¼ï¼‘âˆ’ï¼‘ï¼–		ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word	ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word	ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_Strange2(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -3047,25 +3047,25 @@ void TVTOPIC_Entry_QandA_Strange2(FIELDSYS_WORK * fsys, PMS_WORD word)
 	MakeTopic(fsys, TVTOPICTYPE_INTERVIEW, TVTOPIC_INTERVIEW_STRANGE2, qstrange);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_QandA_Strange2(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	QANDA_STRANGE_WORK2 * qstrange = TVBCD_GetTopicData(bcd);
-	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	WORDSET_RegisterPMSWord(ws, 1, qstrange->word);
 	return msg_tv_01_15_02;
 }
 
 
 //============================================================================================
-//	‚O‚P|‚P‚V		‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
+//	ï¼ï¼‘âˆ’ï¼‘ï¼—		ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word	ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word	ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_Strange3(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -3076,25 +3076,25 @@ void TVTOPIC_Entry_QandA_Strange3(FIELDSYS_WORK * fsys, PMS_WORD word)
 	MakeTopic(fsys, TVTOPICTYPE_INTERVIEW, TVTOPIC_INTERVIEW_STRANGE3, qstrange);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_QandA_Strange3(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	QANDA_STRANGE_WORK3 * qstrange = TVBCD_GetTopicData(bcd);
-	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	WORDSET_RegisterPMSWord(ws, 1, qstrange->word);
 	return msg_tv_01_15_03;
 }
 
 
 //============================================================================================
-//	‚O‚P|‚P‚W		‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
+//	ï¼ï¼‘âˆ’ï¼‘ï¼˜		ã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word	ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word	ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_Strange4(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -3105,25 +3105,25 @@ void TVTOPIC_Entry_QandA_Strange4(FIELDSYS_WORK * fsys, PMS_WORD word)
 	MakeTopic(fsys, TVTOPICTYPE_INTERVIEW, TVTOPIC_INTERVIEW_STRANGE4, qstrange);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒg
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_QandA_Strange4(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	QANDA_STRANGE_WORK4 * qstrange = TVBCD_GetTopicData(bcd);
-	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	WORDSET_RegisterPMSWord(ws, 1, qstrange->word);
 	return msg_tv_01_15_04;
 }
 
 
 //============================================================================================
-//	‚O‚P|‚P‚X		ƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µ
+//	ï¼ï¼‘âˆ’ï¼‘ï¼™		ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µ
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word	ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word	ç°¡æ˜“ä¼šè©±å˜èªID
  */
 //--------------------------------------------------------------------
 void TVTOPIC_Entry_QandA_Friend(FIELDSYS_WORK * fsys, PMS_WORD word)
@@ -3140,7 +3140,7 @@ void TVTOPIC_Entry_QandA_Friend(FIELDSYS_WORK * fsys, PMS_WORD word)
 	MakeTopic(fsys, TVTOPICTYPE_INTERVIEW, TVTOPIC_INTERVIEW_FRIEND, qfriend);
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—Fƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µ
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_QandA_Friend(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -3148,7 +3148,7 @@ static int TVTOPIC_Make_QandA_Friend(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD *
 	QANDA_FRIEND_WORK * qfriend = TVBCD_GetTopicData(bcd);
 	STRBUF* strbuf = STRBUF_Create(64, HEAPID_FIELD);
 
-	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ƒgƒŒ[ƒi[–¼
+	WORDSET_RegisterOwnerName(ws, 0, bcd);		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 
 	STRBUF_SetStringCode( strbuf, qfriend->friend.friend_name );
 
@@ -3160,7 +3160,7 @@ static int TVTOPIC_Make_QandA_Friend(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD *
 
 	WORDSET_RegisterPMSWord(ws, 2, qfriend->word);
 
-	//{İ‚É‚æ‚Á‚ÄƒƒbƒZ[ƒW‚ªˆá‚¤
+	//æ–½è¨­ã«ã‚ˆã£ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒé•ã†
 	switch( qfriend->friend.bf_no ){
 	case FRONTIER_NO_TOWER:
 		msgid = msg_tv_01_16_01;
@@ -3188,7 +3188,7 @@ static int TVTOPIC_Make_QandA_Friend(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD *
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µ
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_QandA_Friend(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -3199,13 +3199,13 @@ static BOOL TVTOPIC_Limit_QandA_Friend(FIELDSYS_WORK * fsys, TVBCD * bcd)
 //============================================================================================
 //
 //
-//			ƒCƒxƒ“ƒgŒ^ƒgƒsƒbƒN
+//			ã‚¤ãƒ™ãƒ³ãƒˆå‹ãƒˆãƒ”ãƒƒã‚¯
 //
 //
 //============================================================================================
 
 //============================================================================================
-//‚O‚S|‚O‚P	ƒOƒ‹[ƒvĞ‰î
+//ï¼ï¼”âˆ’ï¼ï¼‘	ã‚°ãƒ«ãƒ¼ãƒ—ç´¹ä»‹
 //============================================================================================
 static const u8 RandomGroupID[] = {
 	RANDOMGROUP_MYUSE,
@@ -3229,7 +3229,7 @@ static int CountRandomGroup(RANDOM_GROUP * rg)
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—FƒOƒ‹[ƒvĞ‰î
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã‚°ãƒ«ãƒ¼ãƒ—ç´¹ä»‹
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Event_Group(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -3266,7 +3266,7 @@ static int TVTOPIC_Make_Event_Group(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * 
 	return msg_tv_04_01_01;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒOƒ‹[ƒvĞ‰î
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šã‚°ãƒ«ãƒ¼ãƒ—ç´¹ä»‹
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Event_Group(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -3280,7 +3280,7 @@ static BOOL TVTOPIC_Limit_Event_Group(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//‚O‚S|‚O‚Q	“V‹C—\•ñ
+//ï¼ï¼”âˆ’ï¼ï¼’	å¤©æ°—äºˆå ±
 //============================================================================================
 static u16 WeatherTable[] = {
 	ZONE_ID_R212B,
@@ -3291,7 +3291,7 @@ static u16 WeatherTable[] = {
 };
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F“V‹C—\•ñ
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šå¤©æ°—äºˆå ±
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Event_Weather(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -3330,10 +3330,10 @@ static int TVTOPIC_Make_Event_Weather(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 	default:
 		GF_ASSERT(0);
 	}
-	return msg_tv_04_02_01;		//‚ ‚è‚¦‚È‚¢‚Í‚¸‚¾‚ªA‚Æ‚è‚ ‚¦‚¸
+	return msg_tv_04_02_01;		//ã‚ã‚Šãˆãªã„ã¯ãšã ãŒã€ã¨ã‚Šã‚ãˆãš
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNF“V‹C—\•ñ
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šå¤©æ°—äºˆå ±
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Event_Weather(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -3342,85 +3342,85 @@ static BOOL TVTOPIC_Limit_Event_Weather(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//‚O‚S|‚O‚R	ƒVƒ“ƒIƒE‚ ‚ÌŠX‚±‚ÌŠX
+//ï¼ï¼”âˆ’ï¼ï¼“	ã‚·ãƒ³ã‚ªã‚¦ã‚ã®è¡—ã“ã®è¡—
 //============================================================================================
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—FƒVƒ“ƒIƒE‚ ‚ÌŠX‚±‚ÌŠXš
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã‚·ãƒ³ã‚ªã‚¦ã‚ã®è¡—ã“ã®è¡—â˜…
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Event_TownGuide(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
 	MYSTATUS* my = SaveData_GetMyStatus( GameSystem_GetSaveData(fsys) );
 	int id = fsys->location->zone_id;
 	
-	//ƒtƒ^ƒo
+	//ãƒ•ã‚¿ãƒ
 	if(id == ZONE_ID_T01 || (id >= ZONE_ID_T01R0101 && id <= ZONE_ID_T01R0401)){
 		WORDSET_RegisterPlayerName(ws, 0, my);
 		WORDSET_RegisterRivalName(ws, 1, fsys->savedata);
 		return msg_tv_04_03_01;
 	}
 
-	//ƒ}ƒTƒS
+	//ãƒã‚µã‚´
 	if(id == ZONE_ID_T02 || (id >= ZONE_ID_T02R0101 && id <= ZONE_ID_T02R0301)){
 		WORDSET_RegisterSupportName(ws, 1, fsys->savedata);
 		return msg_tv_04_03_02;
 	}
 
-	//ƒ\ƒmƒI
+	//ã‚½ãƒã‚ª
 	if(id == ZONE_ID_T03 || (id >= ZONE_ID_T03R0101 && id <= ZONE_ID_T03R0301) || id == ZONE_ID_D13R0102){
 		return msg_tv_04_03_03;
 	}
 
-	//ƒYƒC
+	//ã‚ºã‚¤
 	if(id == ZONE_ID_T04 || (id >= ZONE_ID_T04R0101 && id <= ZONE_ID_T04R0501)){
 		return msg_tv_04_03_04;
 	}
 
-	//ƒJƒ“ƒiƒM
+	//ã‚«ãƒ³ãƒŠã‚®
 	if(id == ZONE_ID_T05 || (id >= ZONE_ID_T05R0101 && id <= ZONE_ID_T05R0501)){
 		return msg_tv_04_03_05;
 	}
 
-	//ƒRƒgƒuƒL
+	//ã‚³ãƒˆãƒ–ã‚­
 	if(id == ZONE_ID_C01 || (id >= ZONE_ID_C01R0101 && id <= ZONE_ID_C01R1001)){
 		return msg_tv_04_03_06;
 	}
 
-	//ƒ~ƒI
+	//ãƒŸã‚ª
 	if(id == ZONE_ID_C02 || (id >= ZONE_ID_C02R0101 && id <= ZONE_ID_C02R0501) || id == ZONE_ID_C02R0601){
 		return msg_tv_04_03_07;
 	}
 
-	//ƒNƒƒKƒl
+	//ã‚¯ãƒ­ã‚¬ãƒ
 	if(id == ZONE_ID_C03 || (id >= ZONE_ID_C03R0101 && id <= ZONE_ID_C03R0701)){
 		return msg_tv_04_03_08;
 	}
 
-	//ƒnƒNƒ^ƒC
+	//ãƒã‚¯ã‚¿ã‚¤
 	if(id == ZONE_ID_C04 || (id >= ZONE_ID_C04R0101 && id <= ZONE_ID_C04R0901)){
 		return msg_tv_04_03_09;
 	}
 
-	//ƒˆƒXƒK
+	//ãƒ¨ã‚¹ã‚¬
 	if(id == ZONE_ID_C05 || (id >= ZONE_ID_C05R0101 && id <= ZONE_ID_C05R1201)){
 		return msg_tv_04_03_10;
 	}
 
-	//ƒmƒ‚ƒZ
+	//ãƒãƒ¢ã‚»
 	if(id == ZONE_ID_C06 || (id >= ZONE_ID_C06R0101 && id <= ZONE_ID_C06R0601)){
 		return msg_tv_04_03_11;
 	}
 
-	//ƒgƒoƒŠ
+	//ãƒˆãƒãƒª
 	if(id == ZONE_ID_C07 || (id >= ZONE_ID_C07R0101 && id <= ZONE_ID_C07R0901) || (id >= ZONE_ID_D26R0101 && id <= ZONE_ID_D26R0106)){
 		return msg_tv_04_03_12;
 	}
 
-	//ƒiƒMƒT
+	//ãƒŠã‚®ã‚µ
 	if(id == ZONE_ID_C08 || (id >= ZONE_ID_C08R0101 && id <= ZONE_ID_C08R0801) || id == ZONE_ID_C08R0802){
 		return msg_tv_04_03_13;
 	}
 
-	//ƒLƒbƒTƒL
+	//ã‚­ãƒƒã‚µã‚­
 	if(id == ZONE_ID_C09 || (id >= ZONE_ID_C09R0101 && id <= ZONE_ID_C09R0201)){
 		return msg_tv_04_03_14;
 	}
@@ -3432,10 +3432,10 @@ static int TVTOPIC_Make_Event_TownGuide(FIELDSYS_WORK * fsys, WORDSET * ws, TVBC
 
 
 //============================================================================================
-//‚O‚S|‚O‚T	‘å—Ê”­¶I
+//ï¼ï¼”âˆ’ï¼ï¼•	å¤§é‡ç™ºç”Ÿï¼
 //============================================================================================
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F‘å—Ê”­¶I
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šå¤§é‡ç™ºç”Ÿï¼
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Event_Outbreak(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -3448,7 +3448,7 @@ static int TVTOPIC_Make_Event_Outbreak(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 	return msg_tv_04_05_01;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNF‘å—Ê”­¶I
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šå¤§é‡ç™ºç”Ÿï¼
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Event_Outbreak(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -3458,11 +3458,11 @@ static BOOL TVTOPIC_Limit_Event_Outbreak(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//‚O‚S|‚O‚V	ƒ|ƒPƒ‚ƒ“‘Š«ƒ`ƒƒƒ“ƒlƒ‹¡
+//ï¼ï¼”âˆ’ï¼ï¼—	ãƒã‚±ãƒ¢ãƒ³ç›¸æ€§ãƒãƒ£ãƒ³ãƒãƒ«â– 
 //============================================================================================
 //============================================================================================
 /**
- *	‹Z‚Æƒ|ƒPƒ‚ƒ“‚Ì‘Š«ƒ`ƒFƒbƒN—p‘Š«ƒe[ƒuƒ‹
+ *	æŠ€ã¨ãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ€§ãƒã‚§ãƒƒã‚¯ç”¨ç›¸æ€§ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
 #define	KOUKANAI	(0)
@@ -3478,8 +3478,8 @@ enum{
 };
 
 static	const	u8	TypeCheckTable[][3]={
-	{NORMAL_TYPE,	IWA_TYPE,		IMAHITOTSU},	// NORMAL ‚Å IWA ‚ÉUŒ‚‚·‚é‚ÆA
-													// ˆĞ—Í‚OD‚T”{
+	{NORMAL_TYPE,	IWA_TYPE,		IMAHITOTSU},	// NORMAL ã§ IWA ã«æ”»æ’ƒã™ã‚‹ã¨ã€
+													// å¨åŠ›ï¼ï¼ï¼•å€
 	{NORMAL_TYPE,	METAL_TYPE,		IMAHITOTSU},
 
 	{FIRE_TYPE,		FIRE_TYPE,		IMAHITOTSU},
@@ -3619,7 +3619,7 @@ static int GetWazaKouka(int attack, int deffence)
 	return HUTSUU;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼š
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Event_Aishou(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -3648,20 +3648,20 @@ static int TVTOPIC_Make_Event_Aishou(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD *
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNF
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼š
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Event_Aishou(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
 #if 0
 	return TRUE;
 #else
-	return FALSE;	//ƒvƒ‰ƒ`ƒi‚Å‚Í•ú‘—‚µ‚È‚¢
+	return FALSE;	//ãƒ—ãƒ©ãƒãƒŠã§ã¯æ”¾é€ã—ãªã„
 #endif
 }
 
 
 //============================================================================================
-//‚O‚S|‚O‚X	‚«‚Ì‚İ‚¶‚å‚¤‚Ù‚¤
+//ï¼ï¼”âˆ’ï¼ï¼™	ãã®ã¿ã˜ã‚‡ã†ã»ã†
 //============================================================================================
 static const u16 KinomiFlagTable[] = {
 	FLAG_ARRIVE_T01,	//( 0)
@@ -3707,7 +3707,7 @@ static int GetNutsID(FIELDSYS_WORK * fsys)
 	return id[gf_p_rand(n)];
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F‚«‚Ì‚İ‚¶‚å‚¤‚Ù‚¤
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãã®ã¿ã˜ã‚‡ã†ã»ã†
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Event_NutsInfo(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -3735,21 +3735,21 @@ static int TVTOPIC_Make_Event_NutsInfo(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNF‚«‚Ì‚İ‚¶‚å‚¤‚Ù‚¤
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šãã®ã¿ã˜ã‚‡ã†ã»ã†
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Event_NutsInfo(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
 	EVENTWORK * ev = SaveData_GetEventWork(fsys->savedata);
-	//ƒVƒiƒŠƒI“I‚É‚à‚Á‚Æ‚à‹ß‚¢êŠ‚È‚Ì‚Å
+	//ã‚·ãƒŠãƒªã‚ªçš„ã«ã‚‚ã£ã¨ã‚‚è¿‘ã„å ´æ‰€ãªã®ã§
 	return SysFlag_ArriveGet(ev, FLAG_ARRIVE_C03);
 }
 
 
 //============================================================================================
-//‚O‚S|‚P‚P	‚Ç‚¤‚®‚ğ‚Á‚Ä‚é–ì¶ƒ|ƒPƒ‚ƒ“¡
+//ï¼ï¼”âˆ’ï¼‘ï¼‘	ã©ã†ãã‚’æŒã£ã¦ã‚‹é‡ç”Ÿãƒã‚±ãƒ¢ãƒ³â– 
 //============================================================================================
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F‚Ç‚¤‚®‚ğ‚Á‚Ä‚é–ì¶ƒ|ƒPƒ‚ƒ“
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã©ã†ãã‚’æŒã£ã¦ã‚‹é‡ç”Ÿãƒã‚±ãƒ¢ãƒ³
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Event_PokemonItem(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -3765,23 +3765,23 @@ static int TVTOPIC_Make_Event_PokemonItem(FIELDSYS_WORK * fsys, WORDSET * ws, TV
 	return msg_tv_04_11_01;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNF‚Ç‚¤‚®‚ğ‚Á‚Ä‚é–ì¶ƒ|ƒPƒ‚ƒ“
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šã©ã†ãã‚’æŒã£ã¦ã‚‹é‡ç”Ÿãƒã‚±ãƒ¢ãƒ³
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Event_PokemonItem(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
 #if 0
 	return TRUE;
 #else
-	return FALSE;	//ƒvƒ‰ƒ`ƒi‚Å‚Í•ú‘—‚µ‚È‚¢
+	return FALSE;	//ãƒ—ãƒ©ãƒãƒŠã§ã¯æ”¾é€ã—ãªã„
 #endif
 }
 
 
 //============================================================================================
-//‚O‚S|‚P‚Q	‚¹‚¢‚©‚­f’fš
+//ï¼ï¼”âˆ’ï¼‘ï¼’	ã›ã„ã‹ãè¨ºæ–­â˜…
 //============================================================================================
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F‚¹‚¢‚©‚­f’f
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šã›ã„ã‹ãè¨ºæ–­
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Event_PokemonCharactor(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -3791,50 +3791,50 @@ static int TVTOPIC_Make_Event_PokemonCharactor(FIELDSYS_WORK * fsys, WORDSET * w
 	POKEMON_PASO_PARAM* ppp;
 	int taste,status;
 
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	taste = 0xff;
 	status= 0xff;
 
-	//“K“–‚È«Ši‚ğ‹‚ß‚é
+	//é©å½“ãªæ€§æ ¼ã‚’æ±‚ã‚ã‚‹
 	rand	= ( gf_rand() % 0xffff );
 	seikaku = PokeSeikakuGetRnd( rand );
 	WORDSET_RegisterSeikaku( ws, 0, seikaku );
 
-	//ã‚ª‚è‚â‚·‚¢ƒXƒe[ƒ^ƒXAD‚«‚È–¡‚ª‘¶İ‚µ‚È‚¢«Ši‚Ì
-	if( (seikaku == POKE_PERSONALITY_GANBARIYA) ||				//‚ª‚ñ‚Î‚è‚â
-		(seikaku == POKE_PERSONALITY_SUNAO) ||					//‚·‚È‚¨
-		(seikaku == POKE_PERSONALITY_MAJIME) ||					//‚Ü‚¶‚ß
-		(seikaku == POKE_PERSONALITY_TEREYA) ||					//‚Ä‚ê‚â
-		(seikaku == POKE_PERSONALITY_KIMAGURE) ){				//‚«‚Ü‚®‚ê
+	//ä¸ŠãŒã‚Šã‚„ã™ã„ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã€å¥½ããªå‘³ãŒå­˜åœ¨ã—ãªã„æ€§æ ¼ã®æ™‚
+	if( (seikaku == POKE_PERSONALITY_GANBARIYA) ||				//ãŒã‚“ã°ã‚Šã‚„
+		(seikaku == POKE_PERSONALITY_SUNAO) ||					//ã™ãªãŠ
+		(seikaku == POKE_PERSONALITY_MAJIME) ||					//ã¾ã˜ã‚
+		(seikaku == POKE_PERSONALITY_TEREYA) ||					//ã¦ã‚Œã‚„
+		(seikaku == POKE_PERSONALITY_KIMAGURE) ){				//ãã¾ãã‚Œ
 
 		return msg_tv_04_12_03;
 	}
 
-	//ƒ‰ƒ“ƒ_ƒ€‚Åã‚ª‚è‚â‚·‚¢ƒXƒe[ƒ^ƒX‚©AD‚«‚È–¡‚©Œˆ‚ß‚é
+	//ãƒ©ãƒ³ãƒ€ãƒ ã§ä¸ŠãŒã‚Šã‚„ã™ã„ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‹ã€å¥½ããªå‘³ã‹æ±ºã‚ã‚‹
 	if( (rand % 2) == 0 ){
 
-		//D‚«‚È–¡‚ğæ“¾
+		//å¥½ããªå‘³ã‚’å–å¾—
 		for( i=0; i < 5; i++ ){
 			if( PokeLikeTasteCheck(rand,i) == 1 ){
-				taste = i;		//D‚«‚È–¡‚ğ•Û‘¶
+				taste = i;		//å¥½ããªå‘³ã‚’ä¿å­˜
 				break;
 			}
 		}
 
-		//u›–¡‚Èƒ|ƒtƒBƒ“‚ªD‚«‚È‚ñ‚¾v
+		//ã€Œâ—‹å‘³ãªãƒãƒ•ã‚£ãƒ³ãŒå¥½ããªã‚“ã ã€
 		WORDSET_RegisterSeedTasteName( ws, 2, taste );
 		return msg_tv_04_12_02;
 	}
 
-	//ã‚ª‚è‚â‚·‚¢ƒXƒe[ƒ^ƒX
+	//ä¸ŠãŒã‚Šã‚„ã™ã„ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 	
 #if 0
-	//poke_tool.h(ˆÈ‰º‚Ì5€–Ú)
-	ID_PER_basic_pow,			//Šî–{UŒ‚—Í
-	ID_PER_basic_def,			//Šî–{–hŒä—Í
-	ID_PER_basic_agi,			//Šî–{‘f‘‚³
-	ID_PER_basic_spepow,		//Šî–{“ÁêUŒ‚—Í
-	ID_PER_basic_spedef,		//Šî–{“Áê–hŒä—Í
+	//poke_tool.h(ä»¥ä¸‹ã®5é …ç›®)
+	ID_PER_basic_pow,			//åŸºæœ¬æ”»æ’ƒåŠ›
+	ID_PER_basic_def,			//åŸºæœ¬é˜²å¾¡åŠ›
+	ID_PER_basic_agi,			//åŸºæœ¬ç´ æ—©ã•
+	ID_PER_basic_spepow,		//åŸºæœ¬ç‰¹æ®Šæ”»æ’ƒåŠ›
+	ID_PER_basic_spedef,		//åŸºæœ¬ç‰¹æ®Šé˜²å¾¡åŠ›
 #endif
 
 	for( i=0; i < 5; i++ ){
@@ -3844,19 +3844,19 @@ static int TVTOPIC_Make_Event_PokemonCharactor(FIELDSYS_WORK * fsys, WORDSET * w
 		}
 	}
 
-	//u›‚É©M‚ª‚ ‚é‚ñ‚¾v
+	//ã€Œâ—‹ã«è‡ªä¿¡ãŒã‚ã‚‹ã‚“ã ã€
 	WORDSET_RegisterPokeStatusName( ws, 1, STATUS_001+status );
 	return msg_tv_04_12_01;
 }
 
 
 //============================================================================================
-//‚O‚S|‚P‚T	ˆÚ“®ƒ|ƒPƒ‚ƒ“–ÚŒ‚î•ñš
+//ï¼ï¼”âˆ’ï¼‘ï¼•	ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ç›®æ’ƒæƒ…å ±â˜…
 //============================================================================================
 #include "move_pokemon_def.h"
 #include "move_pokemon.h"
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—FˆÚ“®ƒ|ƒPƒ‚ƒ“–ÚŒ‚î•ñ
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šç§»å‹•ãƒã‚±ãƒ¢ãƒ³ç›®æ’ƒæƒ…å ±
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Event_MovePokemon(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -3870,27 +3870,27 @@ static int TVTOPIC_Make_Event_MovePokemon(FIELDSYS_WORK * fsys, WORDSET * ws, TV
 	data = EncDataSave_GetSaveDataPtr(fsys->savedata);
 	move_rand = ( gf_rand() % LOCATION_MAX );
 
-	//ƒ][ƒ“ID‚©‚ç’n–¼‚ğæ“¾
+	//ã‚¾ãƒ¼ãƒ³IDã‹ã‚‰åœ°åã‚’å–å¾—
 	PNC_GetPlaceNameFromZoneID( MP_GetMovePokeZone(move_rand), HEAPID_FIELD, strbuf );
 
-	//’PŒêƒZƒbƒg
-	//ƒoƒbƒtƒ@ID
-	//•¶š—ñ
-	//«•ÊƒR[ƒh
-	//’P^•¡iTRUE‚Å’P”j
-	//Œ¾ŒêƒR[ƒh
+	//å˜èªã‚»ãƒƒãƒˆ
+	//ãƒãƒƒãƒ•ã‚¡ID
+	//æ–‡å­—åˆ—
+	//æ€§åˆ¥ã‚³ãƒ¼ãƒ‰
+	//å˜ï¼è¤‡ï¼ˆTRUEã§å˜æ•°ï¼‰
+	//è¨€èªã‚³ãƒ¼ãƒ‰
 	WORDSET_RegisterWord( ws, 0, strbuf, PM_MALE, TRUE, PM_LANG );
 	STRBUF_Delete(strbuf);
 
-	//ˆÚ“®ƒ|ƒPƒ‚ƒ“–¼‚ğƒZƒbƒg
-	for( i=0; i < MOVE_POKE_MAX ;i++ ){						//3•C(+3)
+	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³åã‚’ã‚»ãƒƒãƒˆ
+	for( i=0; i < MOVE_POKE_MAX ;i++ ){						//3åŒ¹(+3)
 		if( EncDataSave_IsMovePokeValid(data,i) ){			//0-2(0-5)
 
-			//w’èˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒ|ƒCƒ“ƒ^‚Ìæ“¾
+			//æŒ‡å®šç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã®å–å¾—
 			mpd = EncDataSave_GetMovePokeDataPtr( data, i );
 
-			monsno = EncDataSave_GetMovePokeDataParam( mpd, MP_PARAM_MONSNO );	//ƒ‚ƒ“ƒXƒ^[No
-			rnd = EncDataSave_GetMovePokeDataParam( mpd, MP_PARAM_PER_RND );	//ŒÂ«—”
+			monsno = EncDataSave_GetMovePokeDataParam( mpd, MP_PARAM_MONSNO );	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼No
+			rnd = EncDataSave_GetMovePokeDataParam( mpd, MP_PARAM_PER_RND );	//å€‹æ€§ä¹±æ•°
 
 			WORDSET_RegisterMonsName(	ws, 1, monsno,
 										PokeSexGetMonsNo(monsno,rnd),
@@ -3903,7 +3903,7 @@ static int TVTOPIC_Make_Event_MovePokemon(FIELDSYS_WORK * fsys, WORDSET * ws, TV
 	return msg_tv_04_15_01;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFˆÚ“®ƒ|ƒPƒ‚ƒ“–ÚŒ‚î•ñ
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šç§»å‹•ãƒã‚±ãƒ¢ãƒ³ç›®æ’ƒæƒ…å ±
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Event_MovePokemon(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -3912,8 +3912,8 @@ static BOOL TVTOPIC_Limit_Event_MovePokemon(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 	data = EncDataSave_GetSaveDataPtr(fsys->savedata);
 
-	//ˆÚ“®ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é‚©‚ğƒ`ƒFƒbƒN
-	for( i=0; i < MOVE_POKE_MAX ;i++ ){						//3•C(+3)
+	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
+	for( i=0; i < MOVE_POKE_MAX ;i++ ){						//3åŒ¹(+3)
 		if( EncDataSave_IsMovePokeValid(data,i) ){			//0-2(0-5)
 			return 1;
 		}
@@ -3924,7 +3924,7 @@ static BOOL TVTOPIC_Limit_Event_MovePokemon(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//‚O‚S|‚P‚V	ƒ|ƒPƒ‚ƒ“ƒtƒ@ƒbƒVƒ‡ƒ“ƒ`ƒFƒbƒN
+//ï¼ï¼”âˆ’ï¼‘ï¼—	ãƒã‚±ãƒ¢ãƒ³ãƒ•ã‚¡ãƒƒã‚·ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
 //============================================================================================
 //--------------------------------------------------------------------
 //--------------------------------------------------------------------
@@ -3939,7 +3939,7 @@ static int CountClipInfo(IMC_SAVEDATA * iw)
 	return n;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—Fƒ|ƒPƒ‚ƒ“ƒtƒ@ƒbƒVƒ‡ƒ“ƒ`ƒFƒbƒN
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãƒã‚±ãƒ¢ãƒ³ãƒ•ã‚¡ãƒƒã‚·ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Event_ClipInfo(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -3981,7 +3981,7 @@ static int TVTOPIC_Make_Event_ClipInfo(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 	return msg_tv_04_17_01;
 }
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒ|ƒPƒ‚ƒ“ƒtƒ@ƒbƒVƒ‡ƒ“ƒ`ƒFƒbƒN
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šãƒã‚±ãƒ¢ãƒ³ãƒ•ã‚¡ãƒƒã‚·ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Event_ClipInfo(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
@@ -3997,15 +3997,15 @@ static BOOL TVTOPIC_Limit_Event_ClipInfo(FIELDSYS_WORK * fsys, TVBCD * bcd)
 //============================================================================================
 //
 //
-//				ƒoƒ‰ƒGƒeƒBŒ^ƒgƒsƒbƒN
+//				ãƒãƒ©ã‚¨ãƒ†ã‚£å‹ãƒˆãƒ”ãƒƒã‚¯
 //
 //
 //============================================================================================
 //============================================================================================
-//	ƒ|ƒPƒ‚ƒ“‘{õ‘à
+//	ãƒã‚±ãƒ¢ãƒ³æœç´¢éšŠ
 //============================================================================================
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—Fƒ|ƒPƒ‚ƒ“‘{õ‘à
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãƒã‚±ãƒ¢ãƒ³æœç´¢éšŠ
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Variety_SearchParty(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -4013,34 +4013,34 @@ static int TVTOPIC_Make_Variety_SearchParty(FIELDSYS_WORK * fsys, WORDSET * ws, 
 
 	rand = 0;
 
-	//ƒQ[ƒ€ƒNƒŠƒA‚µ‚Ä‚¢‚½‚ç
+	//ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã—ã¦ã„ãŸã‚‰
 	if( SysFlag_GameClearCheck(SaveData_GetEventWork(fsys->savedata)) == TRUE ){
 		rand = ( gf_rand() % 8 );		//1,2,3,4,5,6,7,8
 
-	//ƒˆƒXƒK“’…‚µ‚Ä‚¢‚½‚ç
+	//ãƒ¨ã‚¹ã‚¬åˆ°ç€ã—ã¦ã„ãŸã‚‰
 	}else if( SysFlag_ArriveGet(SaveData_GetEventWork(fsys->savedata),FLAG_ARRIVE_C05) == 1 ){
 		rand = ( gf_rand() % 5 );		//1,2,3,4,5
 
-	//ƒnƒNƒ^ƒC“’…‚µ‚Ä‚¢‚½‚ç
+	//ãƒã‚¯ã‚¿ã‚¤åˆ°ç€ã—ã¦ã„ãŸã‚‰
 	}else if( SysFlag_ArriveGet(SaveData_GetEventWork(fsys->savedata),FLAG_ARRIVE_C04) == 1 ){
 		rand = ( gf_rand() % 4 );		//1,2,3,4
 
-	//ƒNƒƒKƒl’Yz“’…‚µ‚Ä‚¢‚½‚ç
+	//ã‚¯ãƒ­ã‚¬ãƒç‚­é‰±åˆ°ç€ã—ã¦ã„ãŸã‚‰
 	}else if( SysFlag_ArriveGet(SaveData_GetEventWork(fsys->savedata),FLAG_ARRIVE_D01R0101) == 1 ){
 		rand = ( gf_rand() % 2 );		//1,2
 	};
 
-	//ƒQ[ƒ€Å‰‚©‚ç
+	//ã‚²ãƒ¼ãƒ æœ€åˆã‹ã‚‰
 	return msg_tv_05_01_01 + rand;		//1
 }
 
 
 //============================================================================================
-//	ƒ}ƒLƒVƒ}ƒ€‡’†Œp
+//	ãƒã‚­ã‚·ãƒãƒ è©¦åˆä¸­ç¶™
 //============================================================================================
 static STRBUF * PokeNameGetAlloc( u16 id, u32 heap );
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—Fƒ}ƒLƒVƒ}ƒ€‡’†Œp
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãƒã‚­ã‚·ãƒãƒ è©¦åˆä¸­ç¶™
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Variety_Leader(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -4048,10 +4048,10 @@ static int TVTOPIC_Make_Variety_Leader(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 	u16 rand,i,monsno;
 	const ZUKAN_WORK* zw = SaveData_GetZukanWork( fsys->savedata );
 
-	rand = ( gf_rand() % (MONSNO_END-1) ) + 1;				//0‚Íƒ_ƒ~[‚È‚Ì‚Å
+	rand = ( gf_rand() % (MONSNO_END-1) ) + 1;				//0ã¯ãƒ€ãƒŸãƒ¼ãªã®ã§
 	for( i=1; i <= MONSNO_END; i++ ){
 		if( ZukanWork_GetPokeSeeFlag(zw,rand) == TRUE ){
-			monsno = rand;									//‘Io‚³‚ê‚½ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+			monsno = rand;									//é¸å‡ºã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
 			break;
 		}
 
@@ -4061,12 +4061,12 @@ static int TVTOPIC_Make_Variety_Leader(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 		}
 	}
 
-	//’PŒêƒZƒbƒg
-	//ƒoƒbƒtƒ@ID
-	//•¶š—ñ
-	//«•ÊƒR[ƒh
-	//’P^•¡iTRUE‚Å’P”j
-	//Œ¾ŒêƒR[ƒh
+	//å˜èªã‚»ãƒƒãƒˆ
+	//ãƒãƒƒãƒ•ã‚¡ID
+	//æ–‡å­—åˆ—
+	//æ€§åˆ¥ã‚³ãƒ¼ãƒ‰
+	//å˜ï¼è¤‡ï¼ˆTRUEã§å˜æ•°ï¼‰
+	//è¨€èªã‚³ãƒ¼ãƒ‰
 	buf	= PokeNameGetAlloc( monsno, HEAPID_FIELD );
 	WORDSET_RegisterWord( ws, 0, buf, PM_MALE, TRUE, PM_LANG );
 	STRBUF_Delete( buf );
@@ -4075,7 +4075,7 @@ static int TVTOPIC_Make_Variety_Leader(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 	if( rand == 0 ){
 		return msg_tv_05_02_01;
 	}else if( rand == 1 ){
-		rand = ( gf_rand() % 34 ) + 25;						//25-58‚Ìƒ‰ƒ“ƒ_ƒ€
+		rand = ( gf_rand() % 34 ) + 25;						//25-58ã®ãƒ©ãƒ³ãƒ€ãƒ 
 		WORDSET_RegisterNumber(ws, 1, rand, 2,
 				NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
 		return msg_tv_05_02_02;
@@ -4097,13 +4097,13 @@ static STRBUF * PokeNameGetAlloc( u16 id, u32 heap )
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFƒ}ƒLƒVƒ}ƒ€‡
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šãƒã‚­ã‚·ãƒãƒ è©¦åˆ
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Variety_Leader(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
 	const ZUKAN_WORK* zw = SaveData_GetZukanWork( fsys->savedata );
 
-	//}ŠÓ‚Á‚Ä‚¢‚é‚©
+	//å›³é‘‘æŒã£ã¦ã„ã‚‹ã‹
 	if( ZukanWork_GetZukanGetFlag(zw) == TRUE ){
 		return TRUE;
 	}else{
@@ -4113,10 +4113,10 @@ static BOOL TVTOPIC_Limit_Variety_Leader(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	˜A‘±ƒeƒŒƒrƒhƒ‰ƒ}‚È‚İ‚Ì‚è‚Ì‚Í‚Ä‚É
+//	é€£ç¶šãƒ†ãƒ¬ãƒ“ãƒ‰ãƒ©ãƒãªã¿ã®ã‚Šã®ã¯ã¦ã«
 //============================================================================================
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F˜A‘±ƒeƒŒƒrƒhƒ‰ƒ}‚È‚İ‚Ì‚è‚Ì‚Í‚Ä‚É
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šé€£ç¶šãƒ†ãƒ¬ãƒ“ãƒ‰ãƒ©ãƒãªã¿ã®ã‚Šã®ã¯ã¦ã«
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Variety_Dorama1(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -4135,10 +4135,10 @@ static int TVTOPIC_Make_Variety_Dorama1(FIELDSYS_WORK * fsys, WORDSET * ws, TVBC
 
 
 //============================================================================================
-//	˜A‘±ƒeƒŒƒrƒhƒ‰ƒ}ƒ|ƒPƒbƒ`ƒfƒJ
+//	é€£ç¶šãƒ†ãƒ¬ãƒ“ãƒ‰ãƒ©ãƒãƒã‚±ãƒƒãƒãƒ‡ã‚«
 //============================================================================================
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F˜A‘±ƒeƒŒƒrƒhƒ‰ƒ}ƒ|ƒPƒbƒ`ƒfƒJ
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šé€£ç¶šãƒ†ãƒ¬ãƒ“ãƒ‰ãƒ©ãƒãƒã‚±ãƒƒãƒãƒ‡ã‚«
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Variety_Dorama2(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -4157,14 +4157,14 @@ static int TVTOPIC_Make_Variety_Dorama2(FIELDSYS_WORK * fsys, WORDSET * ws, TVBC
 
 
 //============================================================================================
-//	‰¹Šy”Ô‘g
+//	éŸ³æ¥½ç•ªçµ„
 //============================================================================================
-#include "application/imageClip/imc_itemid_define.h"	//ƒAƒNƒZƒTƒŠ[ƒiƒ“ƒo[
-#include "battle/wazano_def.h"							//‹Zƒiƒ“ƒo[
+#include "application/imageClip/imc_itemid_define.h"	//ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ãƒŠãƒ³ãƒãƒ¼
+#include "battle/wazano_def.h"							//æŠ€ãƒŠãƒ³ãƒãƒ¼
 #include "scr_tool.h"
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F‰¹Šy”Ô‘g
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šéŸ³æ¥½ç•ªçµ„
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Variety_Dorama3(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -4178,18 +4178,18 @@ static int TVTOPIC_Make_Variety_Dorama3(FIELDSYS_WORK * fsys, WORDSET * ws, TVBC
 	party = SaveData_GetTemotiPokemon( fsys->savedata );
 	pp = PokeParty_GetMemberPointer( party, GetFrontPokemon(fsys->savedata) );
 
-	//è‚¿æ“ª‚Ìƒ|ƒPƒ‚ƒ“–¼
+	//æ‰‹æŒã¡å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³å
 	WORDSET_RegisterMonsName(	ws, 0, 
 								PokeParaGet(pp,ID_PARA_monsno,NULL),
 								PokeParaGet(pp,ID_PARA_sex,NULL),
 								MyStatus_GetRegionCode(my),
 								MyStatus_GetRomCode(my) );
 
-	//ƒAƒNƒZƒTƒŠ[–¼
+	//ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼å
 	WORDSET_RegisterAccessoryName( ws, 1, (gf_rand() % IMC_ACCE_MAX) );
 
-	//ƒ|ƒPƒ‚ƒ“–¼(Œ©‚½‚±‚Æ‚ ‚é)
-	start_pos = ( gf_rand() % (MONSNO_END-2) + 1 );		//1ƒIƒŠƒWƒ“
+	//ãƒã‚±ãƒ¢ãƒ³å(è¦‹ãŸã“ã¨ã‚ã‚‹)
+	start_pos = ( gf_rand() % (MONSNO_END-2) + 1 );		//1ã‚ªãƒªã‚¸ãƒ³
 
 	for( i=1; i <= MONSNO_END; i++ ){
 
@@ -4206,20 +4206,20 @@ static int TVTOPIC_Make_Variety_Dorama3(FIELDSYS_WORK * fsys, WORDSET * ws, TVBC
 		}
 	}
 
-	//‹Z–¼(1ƒIƒŠƒWƒ“)
+	//æŠ€å(1ã‚ªãƒªã‚¸ãƒ³)
 	WORDSET_RegisterWazaName( ws, 3, (gf_rand() % WAZANO_MAX-2) + 1 );
 
 	return msg_tv_05_05_01;
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNF‰¹Šy”Ô‘g
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šéŸ³æ¥½ç•ªçµ„
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Variety_Dorama3(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
 	const ZUKAN_WORK* zw = SaveData_GetZukanWork( fsys->savedata );
 
-	//}ŠÓ‚Á‚Ä‚¢‚é‚©
+	//å›³é‘‘æŒã£ã¦ã„ã‚‹ã‹
 	if( ZukanWork_GetZukanGetFlag(zw) == TRUE ){
 		return TRUE;
 	}else{
@@ -4229,10 +4229,10 @@ static BOOL TVTOPIC_Limit_Variety_Dorama3(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	ƒeƒŒƒr‰f‰æŒ€ê
+//	ãƒ†ãƒ¬ãƒ“æ˜ ç”»åŠ‡å ´
 //============================================================================================
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—FƒeƒŒƒr‰f‰æŒ€ê
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šãƒ†ãƒ¬ãƒ“æ˜ ç”»åŠ‡å ´
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Variety_Dorama4(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -4241,10 +4241,10 @@ static int TVTOPIC_Make_Variety_Dorama4(FIELDSYS_WORK * fsys, WORDSET * ws, TVBC
 
 
 //============================================================================================
-//	GDSĞ‰î
+//	GDSç´¹ä»‹
 //============================================================================================
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—FGDSĞ‰î
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šGDSç´¹ä»‹
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Variety_Dorama5(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -4252,11 +4252,11 @@ static int TVTOPIC_Make_Variety_Dorama5(FIELDSYS_WORK * fsys, WORDSET * ws, TVBC
 }
 
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN§ŒÀƒ`ƒFƒbƒNFGDSĞ‰î
+///	ãƒˆãƒ”ãƒƒã‚¯åˆ¶é™ãƒã‚§ãƒƒã‚¯ï¼šGDSç´¹ä»‹
 //--------------------------------------------------------------------
 static BOOL TVTOPIC_Limit_Variety_Dorama5(FIELDSYS_WORK * fsys, TVBCD * bcd)
 {
-	//ƒNƒƒKƒlƒoƒbƒWƒ`ƒFƒbƒN
+	//ã‚¯ãƒ­ã‚¬ãƒãƒãƒƒã‚¸ãƒã‚§ãƒƒã‚¯
 	if( MyStatus_GetBadgeFlag(SaveData_GetMyStatus(fsys->savedata),BADGE_ID_C03) == TRUE ){
 		return TRUE;
 	}else{
@@ -4266,10 +4266,10 @@ static BOOL TVTOPIC_Limit_Variety_Dorama5(FIELDSYS_WORK * fsys, TVBCD * bcd)
 
 
 //============================================================================================
-//	˜A‘±ƒeƒŒƒrƒhƒ‰ƒ}ƒ|ƒPƒ}ƒW
+//	é€£ç¶šãƒ†ãƒ¬ãƒ“ãƒ‰ãƒ©ãƒãƒã‚±ãƒã‚¸
 //============================================================================================
 //--------------------------------------------------------------------
-///	ƒgƒsƒbƒN•ú‘—F˜A‘±ƒeƒŒƒrƒhƒ‰ƒ}ƒ|ƒPƒ}ƒW
+///	ãƒˆãƒ”ãƒƒã‚¯æ”¾é€ï¼šé€£ç¶šãƒ†ãƒ¬ãƒ“ãƒ‰ãƒ©ãƒãƒã‚±ãƒã‚¸
 //--------------------------------------------------------------------
 static int TVTOPIC_Make_Variety_Dorama6(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD * bcd)
 {
@@ -4301,13 +4301,13 @@ static int TVTOPIC_Make_Variety_Dorama6(FIELDSYS_WORK * fsys, WORDSET * ws, TVBC
 
 //============================================================================================
 //
-//	ŠÄ‹Œ^ •ú‘—ŠÖ”ƒe[ƒuƒ‹š
+//	ç›£è¦–å‹ æ”¾é€é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«â˜…
 //
 //============================================================================================
 
 //--------------------------------------------------------------------
 /**
- * @brief	ŠÄ‹Œ^ƒgƒsƒbƒN•ú‘—ŠÖ”ƒe[ƒuƒ‹
+ * @brief	ç›£è¦–å‹ãƒˆãƒ”ãƒƒã‚¯æ”¾é€é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //--------------------------------------------------------------------
 static const TOPIC_FUNC_DATA WatchNewsFuncTable[] = {
@@ -4327,7 +4327,7 @@ static const TOPIC_FUNC_DATA WatchNewsFuncTable[] = {
 		TVTOPIC_Make_Watch_ChangeGroup,
 		NULL,
 	},
-	{//TVTOPIC_WATCH_SEE_RARE_POKEMON,		///<ƒŒƒAƒ|ƒPƒ‚ƒ“”­Œ©I	3	ƒŒƒAƒ|ƒPƒ‚ƒ“‚Æ‚ÌƒGƒ“ƒJƒEƒ“ƒgŒã
+	{//TVTOPIC_WATCH_SEE_RARE_POKEMON,		///<ãƒ¬ã‚¢ãƒã‚±ãƒ¢ãƒ³ç™ºè¦‹ï¼	3	ãƒ¬ã‚¢ãƒã‚±ãƒ¢ãƒ³ã¨ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå¾Œ
 		NULL,
 		NULL,
 	},
@@ -4335,15 +4335,15 @@ static const TOPIC_FUNC_DATA WatchNewsFuncTable[] = {
 		TVTOPIC_Make_Watch_HideItem,
 		NULL,
 	},
-	{//TVTOPIC_WATCH_SHOPPING,				///<”ƒ‚¢•¨ƒ`ƒFƒbƒN	4	ˆê“x‚É10ŒÂˆÈã‚Ì“¹‹ï‚ğ”ƒ‚Á‚½‚Æ‚«
-		TVTOPIC_Make_Watch_Shopping,		//š
+	{//TVTOPIC_WATCH_SHOPPING,				///<è²·ã„ç‰©ãƒã‚§ãƒƒã‚¯	4	ä¸€åº¦ã«10å€‹ä»¥ä¸Šã®é“å…·ã‚’è²·ã£ãŸã¨ã
+		TVTOPIC_Make_Watch_Shopping,		//â˜…
 		NULL,
 	},
 	{//TVTOPIC_WATCH_BORN_EGG
 		TVTOPIC_Make_Watch_HatchEgg,
 		TVTOPIC_Limit_Watch_HatchEgg,
 	},
-	{//TVTOPIC_WATCH_CHECK_SODATEYA,		///<ˆç‚Ä‰®ƒ`ƒFƒbƒN		ˆç‚Ä‰®‚É—a‚¯‚½‚Æ‚«
+	{//TVTOPIC_WATCH_CHECK_SODATEYA,		///<è‚²ã¦å±‹ãƒã‚§ãƒƒã‚¯		è‚²ã¦å±‹ã«é ã‘ãŸã¨ã
 		NULL,
 		NULL,
 	},
@@ -4351,11 +4351,11 @@ static const TOPIC_FUNC_DATA WatchNewsFuncTable[] = {
 		TVTOPIC_Make_Watch_ChangeName,
 		TVTOPIC_Limit_Watch_ChangeName,
 	},
-	{//TVTOPIC_WATCH_POISON_DEAD,			///<“Å‚Å‚Ğ‚ñ€cc		ƒtƒB[ƒ‹ƒh‚Åƒ|ƒPƒ‚ƒ“‚ª•m€‚É‚È‚Á‚½‚Æ‚«
+	{//TVTOPIC_WATCH_POISON_DEAD,			///<æ¯’ã§ã²ã‚“æ­»â€¦â€¦		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ãƒã‚±ãƒ¢ãƒ³ãŒç€•æ­»ã«ãªã£ãŸã¨ã
 		NULL,
 		NULL,
 	},
-	{//TVTOPIC_WATCH_WIN_LOT,				///<ƒ|ƒPƒ‚ƒ“‚­‚¶“–‘II		ƒ|ƒPƒ‚ƒ“‚­‚¶‚É“–‚½‚Á‚½‚Æ‚«
+	{//TVTOPIC_WATCH_WIN_LOT,				///<ãƒã‚±ãƒ¢ãƒ³ãã˜å½“é¸ï¼		ãƒã‚±ãƒ¢ãƒ³ãã˜ã«å½“ãŸã£ãŸã¨ã
 		NULL,
 		NULL,
 	},
@@ -4363,7 +4363,7 @@ static const TOPIC_FUNC_DATA WatchNewsFuncTable[] = {
 		TVTOPIC_Make_Watch_DigFossil,
 		TVTOPIC_Limit_Watch_Tankou,
 	},
-	{//TVTOPIC_WATCH_DENDOU,				///<“a“°“ü‚èI	‚Í‚¶‚ß‚Ä“a“°“ü‚è‚µ‚½‚Æ‚«
+	{//TVTOPIC_WATCH_DENDOU,				///<æ®¿å ‚å…¥ã‚Šï¼	ã¯ã˜ã‚ã¦æ®¿å ‚å…¥ã‚Šã—ãŸã¨ã
 		NULL,
 		NULL,
 	},
@@ -4371,14 +4371,14 @@ static const TOPIC_FUNC_DATA WatchNewsFuncTable[] = {
 		TVTOPIC_Make_Watch_Safari,
 		TVTOPIC_Limit_Watch_Safari,
 	},
-	{//TVTOPIC_WATCH_OSU_MESU,				///<ƒIƒX‚¾‚¯IƒƒX‚¾‚¯I	ƒpƒ\ƒRƒ“‚©‚ç”²‚¯‚½‚Æ‚«‚Ìè‚¿‚É‚æ‚è
-		TVTOPIC_Make_Watch_OsuMesu,			//š
+	{//TVTOPIC_WATCH_OSU_MESU,				///<ã‚ªã‚¹ã ã‘ï¼ãƒ¡ã‚¹ã ã‘ï¼	ãƒ‘ã‚½ã‚³ãƒ³ã‹ã‚‰æŠœã‘ãŸã¨ãã®æ‰‹æŒã¡ã«ã‚ˆã‚Š
+		TVTOPIC_Make_Watch_OsuMesu,			//â˜…
 		TVTOPIC_Limit_Watch_OsuMesu,
 	},
 	{//TVTOPIC_WATCH_KANPOU
-		//TVTOPIC_Make_Watch_UseKanpo,		//¡
-		NULL,								//¡ƒvƒ‰ƒ`ƒi‚Å‚Í¶¬‚µ‚È‚¢
-		TVTOPIC_Limit_Watch_UseKanpo,		//¡
+		//TVTOPIC_Make_Watch_UseKanpo,		//â– 
+		NULL,								//â– ãƒ—ãƒ©ãƒãƒŠã§ã¯ç”Ÿæˆã—ãªã„
+		TVTOPIC_Limit_Watch_UseKanpo,		//â– 
 	},
 	{//TVTOPIC_WATCH_NUTS_HARVEST
 		TVTOPIC_Make_Watch_NutsHarvest,
@@ -4388,7 +4388,7 @@ static const TOPIC_FUNC_DATA WatchNewsFuncTable[] = {
 		TVTOPIC_Make_Watch_NutsPoor,
 		NULL,
 	},
-	{//TVTOPIC_WATCH_MAKE_NEW_GROUP,		///<VƒOƒ‹[ƒv’a¶I	V‚µ‚­ƒOƒ‹[ƒv‚ğì‚Á‚½‚Æ‚«
+	{//TVTOPIC_WATCH_MAKE_NEW_GROUP,		///<æ–°ã‚°ãƒ«ãƒ¼ãƒ—èª•ç”Ÿï¼	æ–°ã—ãã‚°ãƒ«ãƒ¼ãƒ—ã‚’ä½œã£ãŸã¨ã
 		TVTOPIC_Make_Watch_MakeNewGroup,
 		NULL,
 	},
@@ -4404,15 +4404,15 @@ static const TOPIC_FUNC_DATA WatchNewsFuncTable[] = {
 		TVTOPIC_Make_Watch_LoseFlag,
 		TVTOPIC_Limit_Watch_Tankou,
 	},
-	{//TVTOPIC_WATCH_RIBBON,				///<ƒŠƒ{ƒ“		
+	{//TVTOPIC_WATCH_RIBBON,				///<ãƒªãƒœãƒ³		
 		NULL,
 		NULL,
 	},
-	{//TVTOPIC_WATCH_VILLA,					///<•Ê‘‘w“üš
+	{//TVTOPIC_WATCH_VILLA,					///<åˆ¥è˜è³¼å…¥â˜…
 		TVTOPIC_Make_Watch_Villa,
 		TVTOPIC_Limit_Watch_Villa,
 	},
-	{//TVTOPIC_WATCH_RECONSTRUCTION,		///<•Ê‘‘‰ü’zš
+	{//TVTOPIC_WATCH_RECONSTRUCTION,		///<åˆ¥è˜æ”¹ç¯‰â˜…
 		TVTOPIC_Make_Watch_Reconstruction,
 		TVTOPIC_Limit_Watch_Reconstruction,
 	},
@@ -4421,13 +4421,13 @@ static const TOPIC_FUNC_DATA WatchNewsFuncTable[] = {
 
 //============================================================================================
 //
-//	ƒMƒlƒXŒ^ •ú‘—ŠÖ”ƒe[ƒuƒ‹š
+//	ã‚®ãƒã‚¹å‹ æ”¾é€é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«â˜…
 //
 //============================================================================================
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒMƒlƒXŒ^ƒgƒsƒbƒN•ú‘—ŠÖ”ƒe[ƒuƒ‹
+ * @brief	ã‚®ãƒã‚¹å‹ãƒˆãƒ”ãƒƒã‚¯æ”¾é€é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //--------------------------------------------------------------------
 static const TOPIC_FUNC_DATA RecordNewsFuncTable[TVTOPIC_RECORD_MAX - 1] = {
@@ -4435,7 +4435,7 @@ static const TOPIC_FUNC_DATA RecordNewsFuncTable[TVTOPIC_RECORD_MAX - 1] = {
 		TVTOPIC_Make_Record_BTower,
 		TVTOPIC_Limit_Record_BTower,
 	},
-	{//TVTOPIC_RECORD_BFACTORY,		///<ƒtƒ@ƒNƒgƒŠ[˜AŸ‹L˜^XV	ƒtƒ@ƒNƒgƒŠ[˜AŸ‹L˜^‚ğXV‚µ‚½‚Æ‚«
+	{//TVTOPIC_RECORD_BFACTORY,		///<ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼é€£å‹è¨˜éŒ²æ›´æ–°	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼é€£å‹è¨˜éŒ²ã‚’æ›´æ–°ã—ãŸã¨ã
 		NULL,
 		NULL,
 	},
@@ -4447,16 +4447,16 @@ static const TOPIC_FUNC_DATA RecordNewsFuncTable[TVTOPIC_RECORD_MAX - 1] = {
 		TVTOPIC_Make_Record_Slot,
 		NULL,
 	},
-	{//TVTOPIC_RECORD_RIBBON,			///<ƒŠƒ{ƒ“ƒRƒŒƒNƒ^[	ƒŠƒ{ƒ“‚ğˆê’è–‡”ˆÈãŠl“¾‚Éì¬
-		TVTOPIC_Make_Record_Ribbon,		//š
+	{//TVTOPIC_RECORD_RIBBON,			///<ãƒªãƒœãƒ³ã‚³ãƒ¬ã‚¯ã‚¿ãƒ¼	ãƒªãƒœãƒ³ã‚’ä¸€å®šæšæ•°ä»¥ä¸Šç²å¾—æ™‚ã«ä½œæˆ
+		TVTOPIC_Make_Record_Ribbon,		//â˜…
 		NULL,
 	},
 	{//TVTOPIC_RECORD_NUTS_MASTER
-		//TVTOPIC_Make_Record_NutsMaster,//¡
-		NULL,							//¡ƒvƒ‰ƒ`ƒi‚Å‚Íì¬‚µ‚È‚¢
+		//TVTOPIC_Make_Record_NutsMaster,//â– 
+		NULL,							//â– ãƒ—ãƒ©ãƒãƒŠã§ã¯ä½œæˆã—ãªã„
 		NULL,
 	},
-	{//TVTOPIC_RECORD_POKE_SEARCHER,	///<—h‚ê‘–¼l		—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg‚ğI—¹‚µ‚½‚Æ‚«˜A‘±”‚ª10ˆÈã
+	{//TVTOPIC_RECORD_POKE_SEARCHER,	///<æºã‚Œè‰åäºº		æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚’çµ‚äº†ã—ãŸã¨ãé€£ç¶šæ•°ãŒ10ä»¥ä¸Š
 		NULL,
 		NULL,
 	},
@@ -4469,11 +4469,11 @@ static const TOPIC_FUNC_DATA RecordNewsFuncTable[TVTOPIC_RECORD_MAX - 1] = {
 		TVTOPIC_Limit_Record_Tankou,
 	},
 	{//TVTOPIC_RECORD_BP
-		TVTOPIC_Make_Record_BP,			//š
+		TVTOPIC_Make_Record_BP,			//â˜…
 		TVTOPIC_Limit_Record_BP,
 	},
 	{//TVTOPIC_RECORD_GTS
-		TVTOPIC_Make_Record_GTS,		//š
+		TVTOPIC_Make_Record_GTS,		//â˜…
 		TVTOPIC_Limit_Record_GTS,
 	},
 };
@@ -4481,17 +4481,17 @@ static const TOPIC_FUNC_DATA RecordNewsFuncTable[TVTOPIC_RECORD_MAX - 1] = {
 
 //============================================================================================
 //
-//	¿–âŒ^ •ú‘—ŠÖ”ƒe[ƒuƒ‹š
+//	è³ªå•å‹ æ”¾é€é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«â˜…
 //
 //============================================================================================
 
 //--------------------------------------------------------------------
 /**
- * @brief	¿–âŒ^ƒgƒsƒbƒN•ú‘—ŠÖ”ƒe[ƒuƒ‹
+ * @brief	è³ªå•å‹ãƒˆãƒ”ãƒƒã‚¯æ”¾é€é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //--------------------------------------------------------------------
 static const TOPIC_FUNC_DATA QandANewsFuncTable[TVTOPIC_INTERVIEW_TYPE_MAX - 1] = {
-	{//TVTOPIC_INTERVIEW_GYM_BADGE = 1,///<ƒWƒ€§”eI	1	ƒWƒ€‚Ì‚ ‚éƒVƒeƒB	ƒWƒ€ƒŠ[ƒ_[‚ğ“|‚µ‚½‚ ‚Æ
+	{//TVTOPIC_INTERVIEW_GYM_BADGE = 1,///<ã‚¸ãƒ åˆ¶è¦‡ï¼	1	ã‚¸ãƒ ã®ã‚ã‚‹ã‚·ãƒ†ã‚£	ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ã‚’å€’ã—ãŸã‚ã¨
 		NULL,
 		NULL,
 	},
@@ -4499,7 +4499,7 @@ static const TOPIC_FUNC_DATA QandANewsFuncTable[TVTOPIC_INTERVIEW_TYPE_MAX - 1] 
 		TVTOPIC_Make_QandA_BTower,
 		TVTOPIC_Limit_QandA_BTower,
 	},
-	{//TVTOPIC_INTERVIEW_BFACTORY,		///<’§íIƒtƒ@ƒNƒgƒŠ[	1	ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[	’§íI—¹Œã
+	{//TVTOPIC_INTERVIEW_BFACTORY,		///<æŒ‘æˆ¦ï¼ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼	1	ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼	æŒ‘æˆ¦çµ‚äº†å¾Œ
 		NULL,
 		NULL,
 	},
@@ -4507,7 +4507,7 @@ static const TOPIC_FUNC_DATA QandANewsFuncTable[TVTOPIC_INTERVIEW_TYPE_MAX - 1] 
 		TVTOPIC_Make_QandA_Pokemon,
 		TVTOPIC_Limit_QandA_Pokemon,
 	},
-	{//TVTOPIC_INTERVIEW_ITEM,			///<‚¨‚·‚·‚ß‚Ì‚Ç‚¤‚®I	2	ƒtƒŒƒ“ƒhƒŠƒBƒVƒ‡ƒbƒv	
+	{//TVTOPIC_INTERVIEW_ITEM,			///<ãŠã™ã™ã‚ã®ã©ã†ãï¼	2	ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚£ã‚·ãƒ§ãƒƒãƒ—	
 		NULL,
 		NULL,
 	},
@@ -4519,7 +4519,7 @@ static const TOPIC_FUNC_DATA QandANewsFuncTable[TVTOPIC_INTERVIEW_TYPE_MAX - 1] 
 		TVTOPIC_Make_QandA_Contest,
 		TVTOPIC_Limit_QandA_Contest,
 	},
-	{//TVTOPIC_INTERVIEW_TATOE,		///<ƒ|ƒPƒ‚ƒ“‚É—á‚¦‚½‚çH	2	‘åD‚«ƒNƒ‰ƒu	
+	{//TVTOPIC_INTERVIEW_TATOE,		///<ãƒã‚±ãƒ¢ãƒ³ã«ä¾‹ãˆãŸã‚‰ï¼Ÿ	2	å¤§å¥½ãã‚¯ãƒ©ãƒ–	
 		NULL,
 		NULL,
 	},
@@ -4535,36 +4535,36 @@ static const TOPIC_FUNC_DATA QandANewsFuncTable[TVTOPIC_INTERVIEW_TYPE_MAX - 1] 
 		TVTOPIC_Make_QandA_Poruto,
 		NULL,
 	},
-	{//TVTOPIC_INTERVIEW_KOUKAN,		///<ŒğŠ·‚µ‚½ƒ|ƒPƒ‚ƒ“	1		
+	{//TVTOPIC_INTERVIEW_KOUKAN,		///<äº¤æ›ã—ãŸãƒã‚±ãƒ¢ãƒ³	1		
 		NULL,
 		NULL,
 	},
-	{//TVTOPIC_INTERVIEW_TUREARUKI,	///<˜A‚ê•à‚«‚ğ–‹iI		©‘RŒö‰€ƒQ[ƒg	˜A‚ê•à‚«Œã
+	{//TVTOPIC_INTERVIEW_TUREARUKI,	///<é€£ã‚Œæ­©ãã‚’æº€å–«ï¼		è‡ªç„¶å…¬åœ’ã‚²ãƒ¼ãƒˆ	é€£ã‚Œæ­©ãå¾Œ
 		TVTOPIC_Make_QandA_Park,
 		NULL,
 	},
 	{//TVTOPIC_INTERVIEW_STAGE
-		TVTOPIC_Make_QandA_Stage,		//š
+		TVTOPIC_Make_QandA_Stage,		//â˜…
 		TVTOPIC_Limit_QandA_Stage,
 	},
 	{//TVTOPIC_INTERVIEW_STRANGE1
-		TVTOPIC_Make_QandA_Strange1,	//š
+		TVTOPIC_Make_QandA_Strange1,	//â˜…
 		NULL,
 	},
 	{//TVTOPIC_INTERVIEW_STRANGE2
-		TVTOPIC_Make_QandA_Strange2,	//š
+		TVTOPIC_Make_QandA_Strange2,	//â˜…
 		NULL,
 	},
 	{//TVTOPIC_INTERVIEW_STRANGE3
-		TVTOPIC_Make_QandA_Strange3,	//š
+		TVTOPIC_Make_QandA_Strange3,	//â˜…
 		NULL,
 	},
 	{//TVTOPIC_INTERVIEW_STRANGE4
-		TVTOPIC_Make_QandA_Strange4,	//š
+		TVTOPIC_Make_QandA_Strange4,	//â˜…
 		NULL,
 	},
 	{//TVTOPIC_INTERVIEW_FRIEND
-		TVTOPIC_Make_QandA_Friend,		//š
+		TVTOPIC_Make_QandA_Friend,		//â˜…
 		TVTOPIC_Limit_QandA_Friend,
 	},
 };
@@ -4572,83 +4572,83 @@ static const TOPIC_FUNC_DATA QandANewsFuncTable[TVTOPIC_INTERVIEW_TYPE_MAX - 1] 
 
 //============================================================================================
 //
-//	ƒCƒxƒ“ƒgŒ^ •ú‘—ŠÖ”ƒe[ƒuƒ‹š
+//	ã‚¤ãƒ™ãƒ³ãƒˆå‹ æ”¾é€é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«â˜…
 //
 //============================================================================================
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgŒ^ƒgƒsƒbƒN•ú‘—ŠÖ”ƒe[ƒuƒ‹
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆå‹ãƒˆãƒ”ãƒƒã‚¯æ”¾é€é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //--------------------------------------------------------------------
 static const TOPIC_FUNC_DATA EventNewsFuncTable[TVTOPIC_EVENT_TYPE_MAX - 1] = {
-	{	//TVTOPIC_EVENT_RANDOMGROUP = 1,		///<ƒOƒ‹[ƒvĞ‰î
+	{	//TVTOPIC_EVENT_RANDOMGROUP = 1,		///<ã‚°ãƒ«ãƒ¼ãƒ—ç´¹ä»‹
 		TVTOPIC_Make_Event_Group,
 		TVTOPIC_Limit_Event_Group,
 	},
-	{	//TVTOPIC_EVENT_WEATHER,				///<“V‹C—\•ñ
+	{	//TVTOPIC_EVENT_WEATHER,				///<å¤©æ°—äºˆå ±
 		TVTOPIC_Make_Event_Weather,
 		TVTOPIC_Limit_Event_Weather,
 	},
-	{	//TVTOPIC_EVENT_TOWNGUIDE,			///<ƒVƒ“ƒIƒE‚ ‚ÌŠX‚±‚ÌŠX
-		TVTOPIC_Make_Event_TownGuide,		//š
+	{	//TVTOPIC_EVENT_TOWNGUIDE,			///<ã‚·ãƒ³ã‚ªã‚¦ã‚ã®è¡—ã“ã®è¡—
+		TVTOPIC_Make_Event_TownGuide,		//â˜…
 		NULL,
 	},
-	{	//TVTOPIC_EVENT_BARGAIN,				///<ƒVƒ‡ƒbƒvˆÀ”„‚èî•ñ
+	{	//TVTOPIC_EVENT_BARGAIN,				///<ã‚·ãƒ§ãƒƒãƒ—å®‰å£²ã‚Šæƒ…å ±
 		NULL,
 		NULL,
 	},
-	{	//TVTOPIC_EVENT_POKEMON_OUTBREAK,		///<‘å—Ê”­¶I
+	{	//TVTOPIC_EVENT_POKEMON_OUTBREAK,		///<å¤§é‡ç™ºç”Ÿï¼
 		TVTOPIC_Make_Event_Outbreak,
 		TVTOPIC_Limit_Event_Outbreak,
 	},
-	{	//TVTOPIC_EVENT_POKEMON_ENCOUNT,		///<ƒ|ƒPƒ‚ƒ“o–vî•ñI
+	{	//TVTOPIC_EVENT_POKEMON_ENCOUNT,		///<ãƒã‚±ãƒ¢ãƒ³å‡ºæ²¡æƒ…å ±ï¼
 		NULL,
 		NULL,
 	},
-	{	//TVTOPIC_EVENT_POKEMON_AISHOU,			///<ƒ|ƒPƒ‚ƒ“‘Š«ƒ`ƒƒƒ“ƒlƒ‹
-		//TVTOPIC_Make_Event_Aishou,			//¡
-		NULL,									//¡ƒvƒ‰ƒ`ƒi‚Å‚Í¶¬‚µ‚È‚¢
+	{	//TVTOPIC_EVENT_POKEMON_AISHOU,			///<ãƒã‚±ãƒ¢ãƒ³ç›¸æ€§ãƒãƒ£ãƒ³ãƒãƒ«
+		//TVTOPIC_Make_Event_Aishou,			//â– 
+		NULL,									//â– ãƒ—ãƒ©ãƒãƒŠã§ã¯ç”Ÿæˆã—ãªã„
 		TVTOPIC_Limit_Event_Aishou,
 	},
-	{	//TVTOPIC_EVENT_POSTMAN,				///<”z’Bˆõ‚¾‚æ‚è
+	{	//TVTOPIC_EVENT_POSTMAN,				///<é…é”å“¡ã ã‚ˆã‚Š
 		NULL,
 		NULL,
 	},
-	{	//TVTOPIC_EVENT_NUTS_INFOMATION,		///<‚«‚Ì‚İ‚¶‚å‚¤‚Ù‚¤
+	{	//TVTOPIC_EVENT_NUTS_INFOMATION,		///<ãã®ã¿ã˜ã‚‡ã†ã»ã†
 		TVTOPIC_Make_Event_NutsInfo,
 		TVTOPIC_Limit_Event_NutsInfo,
 	},
-	{	//TVTOPIC_EVENT_WAZAMACHINE,			///<‚í‚´ƒ}ƒVƒ“‚¶‚å‚¤‚Ù‚¤
+	{	//TVTOPIC_EVENT_WAZAMACHINE,			///<ã‚ã–ãƒã‚·ãƒ³ã˜ã‚‡ã†ã»ã†
 		NULL,
 		NULL,
 	},
-	{	//TVTOPIC_EVENT_POKEMON_ITEM,			///<‚Ç‚¤‚®‚ğ‚Á‚Ä‚é–ì¶ƒ|ƒPƒ‚ƒ“
-		//TVTOPIC_Make_Event_PokemonItem,		//¡
-		NULL,									//¡ƒvƒ‰ƒ`ƒi‚Å‚Í¶¬‚µ‚È‚¢
+	{	//TVTOPIC_EVENT_POKEMON_ITEM,			///<ã©ã†ãã‚’æŒã£ã¦ã‚‹é‡ç”Ÿãƒã‚±ãƒ¢ãƒ³
+		//TVTOPIC_Make_Event_PokemonItem,		//â– 
+		NULL,									//â– ãƒ—ãƒ©ãƒãƒŠã§ã¯ç”Ÿæˆã—ãªã„
 		TVTOPIC_Limit_Event_PokemonItem,
 	},
-	{	//TVTOPIC_EVENT_POKEMON_CHARACTOR,	///<‚¹‚¢‚©‚­f’f
-		TVTOPIC_Make_Event_PokemonCharactor,//š
+	{	//TVTOPIC_EVENT_POKEMON_CHARACTOR,	///<ã›ã„ã‹ãè¨ºæ–­
+		TVTOPIC_Make_Event_PokemonCharactor,//â˜…
 		NULL,
 	},
-	{	//TVTOPIC_EVENT_SLOT_INFO,			///<ƒXƒƒbƒg‚Ìo‹Êî•ñ
-		NULL,
-		NULL,
-	},
-	{	//TVTOPIC_EVENT_TV_SHOPPING,			///<‚s‚uƒVƒ‡ƒbƒsƒ“ƒO
+	{	//TVTOPIC_EVENT_SLOT_INFO,			///<ã‚¹ãƒ­ãƒƒãƒˆã®å‡ºç‰æƒ…å ±
 		NULL,
 		NULL,
 	},
-	{	//TVTOPIC_EVENT_TV_MOVE_POKEMON,		///<ˆÚ“®ƒ|ƒPƒ‚ƒ“–ÚŒ‚î•ñI
-		TVTOPIC_Make_Event_MovePokemon,			//š
+	{	//TVTOPIC_EVENT_TV_SHOPPING,			///<ï¼´ï¼¶ã‚·ãƒ§ãƒƒãƒ”ãƒ³ã‚°
+		NULL,
+		NULL,
+	},
+	{	//TVTOPIC_EVENT_TV_MOVE_POKEMON,		///<ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ç›®æ’ƒæƒ…å ±ï¼
+		TVTOPIC_Make_Event_MovePokemon,			//â˜…
 		TVTOPIC_Limit_Event_MovePokemon,
 	},
-	{	//TVTOPIC_EVENT_TV_TAMAGO_INFO,		///<ƒ^ƒ}ƒS”­Œ©•ñ
+	{	//TVTOPIC_EVENT_TV_TAMAGO_INFO,		///<ã‚¿ãƒã‚´ç™ºè¦‹å ±å‘Š
 		NULL,
 		NULL,
 	},
-	{	//TVTOPIC_EVENT_TV_CLIP_INFO,			///<ƒ|ƒPƒ‚ƒ“ƒtƒ@ƒbƒVƒ‡ƒ“ƒ`ƒFƒbƒN
+	{	//TVTOPIC_EVENT_TV_CLIP_INFO,			///<ãƒã‚±ãƒ¢ãƒ³ãƒ•ã‚¡ãƒƒã‚·ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
 		TVTOPIC_Make_Event_ClipInfo,
 		TVTOPIC_Limit_Event_ClipInfo,
 	},
@@ -4657,45 +4657,45 @@ static const TOPIC_FUNC_DATA EventNewsFuncTable[TVTOPIC_EVENT_TYPE_MAX - 1] = {
 
 //============================================================================================
 //
-//	ƒoƒ‰ƒGƒeƒBŒ^ •ú‘—ŠÖ”ƒe[ƒuƒ‹š
+//	ãƒãƒ©ã‚¨ãƒ†ã‚£å‹ æ”¾é€é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«â˜…
 //
 //============================================================================================
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒoƒ‰ƒGƒeƒBŒ^ƒgƒsƒbƒN•ú‘—ŠÖ”ƒe[ƒuƒ‹
+ * @brief	ãƒãƒ©ã‚¨ãƒ†ã‚£å‹ãƒˆãƒ”ãƒƒã‚¯æ”¾é€é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //--------------------------------------------------------------------
 static const TOPIC_FUNC_DATA VarietyNewsFuncTable[TVTOPIC_VARIETY_TYPE_MAX - 1] = {
-	{	//TVTOPIC_VARIETY_SEARCH_PARTY = 1,		///<ƒ|ƒPƒ‚ƒ“‘{õ‘àš
+	{	//TVTOPIC_VARIETY_SEARCH_PARTY = 1,		///<ãƒã‚±ãƒ¢ãƒ³æœç´¢éšŠâ˜…
 		TVTOPIC_Make_Variety_SearchParty,
 		NULL,
 	},
-	{	//TVTOPIC_VARIETY_LEADER,				///<ƒ}ƒLƒVƒ}ƒ€‡’†Œpš
+	{	//TVTOPIC_VARIETY_LEADER,				///<ãƒã‚­ã‚·ãƒãƒ è©¦åˆä¸­ç¶™â˜…
 		TVTOPIC_Make_Variety_Leader,
 		TVTOPIC_Limit_Variety_Leader,
 	},
-	{	//TVTOPIC_EVENT_VARIETY_DORAMA1,		///<˜A‘±ƒhƒ‰ƒ}š
+	{	//TVTOPIC_EVENT_VARIETY_DORAMA1,		///<é€£ç¶šãƒ‰ãƒ©ãƒâ˜…
 		TVTOPIC_Make_Variety_Dorama1,
 		NULL,
 	},
-	{	//TVTOPIC_EVENT_VARIETY_DORAMA2,		///<˜A‘±ƒhƒ‰ƒ}š
+	{	//TVTOPIC_EVENT_VARIETY_DORAMA2,		///<é€£ç¶šãƒ‰ãƒ©ãƒâ˜…
 		TVTOPIC_Make_Variety_Dorama2,
 		NULL,
 	},
-	{	//TVTOPIC_EVENT_VARIETY_DORAMA3,		///<‰¹Šy”Ô‘gš
+	{	//TVTOPIC_EVENT_VARIETY_DORAMA3,		///<éŸ³æ¥½ç•ªçµ„â˜…
 		TVTOPIC_Make_Variety_Dorama3,
 		TVTOPIC_Limit_Variety_Dorama3,
 	},
-	{	//TVTOPIC_EVENT_VARIETY_DORAMA4,		///<˜A‘±ƒhƒ‰ƒ}š
+	{	//TVTOPIC_EVENT_VARIETY_DORAMA4,		///<é€£ç¶šãƒ‰ãƒ©ãƒâ˜…
 		TVTOPIC_Make_Variety_Dorama4,
 		NULL,
 	},
-	{	//TVTOPIC_EVENT_VARIETY_DORAMA5,		///<˜A‘±ƒhƒ‰ƒ}š
+	{	//TVTOPIC_EVENT_VARIETY_DORAMA5,		///<é€£ç¶šãƒ‰ãƒ©ãƒâ˜…
 		TVTOPIC_Make_Variety_Dorama5,
 		TVTOPIC_Limit_Variety_Dorama5,
 	},
-	{	//TVTOPIC_EVENT_VARIETY_DORAMA6,		///<˜A‘±ƒhƒ‰ƒ}š
+	{	//TVTOPIC_EVENT_VARIETY_DORAMA6,		///<é€£ç¶šãƒ‰ãƒ©ãƒâ˜…
 		TVTOPIC_Make_Variety_Dorama6,
 		NULL,
 	},
@@ -4704,13 +4704,13 @@ static const TOPIC_FUNC_DATA VarietyNewsFuncTable[TVTOPIC_VARIETY_TYPE_MAX - 1] 
 
 //============================================================================================
 //
-//	ˆê“úˆê‰ñƒNƒŠƒA
+//	ä¸€æ—¥ä¸€å›ã‚¯ãƒªã‚¢
 //
 //============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼lAGTS–¼l‚Ìƒ[ƒNƒNƒŠƒAš
+ * @brief	ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäººã€GTSåäººã®ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢â˜…
  * @param	savedata
  * @return	none
  */
@@ -4719,7 +4719,7 @@ void TVWORK_OneDayTempClear( SAVEDATA* savedata )
 {
 	TV_WORK * tvwk = SaveData_GetTvWork( savedata );
 
-	//‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚ÅTVƒf[ƒ^ì¬(08.06.02)
+	//ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§TVãƒ‡ãƒ¼ã‚¿ä½œæˆ(08.06.02)
 	TVTOPIC_Entry_Record_BP( savedata );
 	TVTOPIC_Entry_Record_GTS( savedata );
 

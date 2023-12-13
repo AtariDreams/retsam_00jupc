@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_d17r0101evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d17r0101_champ_auto
 _EVENT_DATA		ev_d17r0101_champ
@@ -25,32 +25,32 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d17r0101_flag_change:
-	/*ƒMƒ‰ƒeƒBƒi‚ð•ßŠl‚µ‚Ä‚¢‚½‚ç*/
+	/*ã‚®ãƒ©ãƒ†ã‚£ãƒŠã‚’æ•ç²ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_CALL	FE_D17R0104_LEGEND_CLEAR,ev_d17r0101_flag_change_item
 	_END
 
 ev_d17r0101_flag_change_item:
-	/*d17r0104‚Ì‚²‚Ù‚¤‚ÑƒAƒCƒeƒ€‚ð•œŠˆ‚³‚¹‚é*/
+	/*d17r0104ã®ã”ã»ã†ã³ã‚¢ã‚¤ãƒ†ãƒ ã‚’å¾©æ´»ã•ã›ã‚‹*/
 	_FLAG_RESET	FV_D17R0104_ITEM
 	_RET
 
 
 /********************************************************************/
-/*				ƒVƒƒi(‚â‚Ô‚ê‚½¢ŠE‚©‚ç–ß‚Á‚Ä‚«‚Ä‹­§)				*/
+/*				ã‚·ãƒ­ãƒŠ(ã‚„ã¶ã‚ŒãŸä¸–ç•Œã‹ã‚‰æˆ»ã£ã¦ãã¦å¼·åˆ¶)				*/
 /********************************************************************/
 ev_d17r0101_champ_auto:
 	_EVENT_START
 
 	_GIRATHINA_FORM_UPDATE	0
 
-	//ƒGƒXƒP[ƒvƒƒP[ƒVƒ‡ƒ“‚ð•œ‹A‚³‚¹‚é
+	//ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å¾©å¸°ã•ã›ã‚‹
 	//_SET_ESCAPE_LOCATION	ZONE_ID_D17R0101,32,17
 	_SET_ESCAPE_LOCATION	ZONE_ID_D17,762,714
 
 	_TALK_KEYWAIT	msg_d17r0101_chanpion_01
 	_TALK_CLOSE
 
-	/*¶‰E‚ð‚«‚å‚ë‚«‚å‚ë*/
+	/*å·¦å³ã‚’ãã‚‡ã‚ãã‚‡ã‚*/
 	_OBJ_ANIME		D17R0101_CHAMP,anm_d17r0101_champ_01
 	_OBJ_ANIME_WAIT
 
@@ -60,7 +60,7 @@ ev_d17r0101_champ_auto:
 	_TALK_KEYWAIT	msg_d17r0101_chanpion_02
 	_TALK_CLOSE
 
-	/*ŽålŒö‚ÆŒü‚«‚ ‚¤*/
+	/*ä¸»äººå…¬ã¨å‘ãã‚ã†*/
 	_OBJ_ANIME		D17R0101_CHAMP,anm_d17r0101_champ_02
 	//_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d17r0101_player_01
 	_OBJ_ANIME_WAIT
@@ -73,39 +73,39 @@ ev_d17r0101_champ_auto:
 	_LDVAL			WK_SCENE_D17R0101,2
 	_LDVAL			WK_SCENE_T02R0101,2
 
-	_FLAG_SET		FV_D05R0115_GINGA		/*ƒeƒ“ƒKƒ“ŽR‚ÅƒIƒƒIƒ‚·‚éƒMƒ“ƒK’c‚ðíœ*/
-	_FLAG_RESET		FE_YABURETA_SEKAI		/*‚â‚Ô‚ê‚½¢ŠEó‘Ôƒtƒ‰ƒO‚ðƒNƒŠƒA*/
+	_FLAG_SET		FV_D05R0115_GINGA		/*ãƒ†ãƒ³ã‚¬ãƒ³å±±ã§ã‚ªãƒ­ã‚ªãƒ­ã™ã‚‹ã‚®ãƒ³ã‚¬å›£ã‚’å‰Šé™¤*/
+	_FLAG_RESET		FE_YABURETA_SEKAI		/*ã‚„ã¶ã‚ŒãŸä¸–ç•ŒçŠ¶æ…‹ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢*/
 
-	//ƒXƒgƒbƒp[‚Ì‚µ‚½‚Á‚Ï‚ðÁ‚·
+	//ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼ã®ã—ãŸã£ã±ã‚’æ¶ˆã™
 	_FLAG_SET		FV_D05R0110_GINGAM
-	_FLAG_SET		FV_D05R0112_GINGAW		/*GINGAM‚Íd27r0102ƒCƒxƒ“ƒgŒã‚ÅÁ‚¦‚é*/
+	_FLAG_SET		FV_D05R0112_GINGAW		/*GINGAMã¯d27r0102ã‚¤ãƒ™ãƒ³ãƒˆå¾Œã§æ¶ˆãˆã‚‹*/
 
-	_FLAG_SET		FV_D05R0102_POLICE		/*ƒeƒ“ƒKƒ“ŽR‚Ì‘ÛŒxŽ@‚ðÁ‚·*/
+	_FLAG_SET		FV_D05R0102_POLICE		/*ãƒ†ãƒ³ã‚¬ãƒ³å±±ã®å›½éš›è­¦å¯Ÿã‚’æ¶ˆã™*/
 
-	/*d05r0114‚©‚çˆø‰z‚µ*/
+	/*d05r0114ã‹ã‚‰å¼•è¶Šã—*/
 
-	/*BGMØ‚è‘Ö‚¦ƒtƒ‰ƒOƒIƒ“*/
+	/*BGMåˆ‡ã‚Šæ›¿ãˆãƒ•ãƒ©ã‚°ã‚ªãƒ³*/
 	_FLAG_SET		SYS_FLAG_BGM_D26
 
-	/*ƒAƒWƒg‚ÉƒTƒ^[ƒ“oŒ»*/
+	/*ã‚¢ã‚¸ãƒˆã«ã‚µã‚¿ãƒ¼ãƒ³å‡ºç¾*/
 	_FLAG_RESET		FV_D26R0101_GKANBU
 
-	//‚â‚è‚Ì‚Í‚µ‚çƒCƒxƒ“ƒgƒNƒŠƒAI
+	//ã‚„ã‚Šã®ã¯ã—ã‚‰ã‚¤ãƒ™ãƒ³ãƒˆã‚¯ãƒªã‚¢ï¼
 	_FLAG_SET		FE_D05R0114_CLEAR
-	_FLAG_SET		FV_D05R0112_GINGAW		/*ƒMƒ“ƒK’cÁ‚·*/
+	_FLAG_SET		FV_D05R0112_GINGAW		/*ã‚®ãƒ³ã‚¬å›£æ¶ˆã™*/
 
 	_EVENT_END
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒVƒƒi‚ðŒ©‚é
+//ä¸»äººå…¬	ã‚·ãƒ­ãƒŠã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d17r0101_player_01
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒVƒƒi	ƒLƒ‡ƒƒLƒ‡ƒ
+//ã‚·ãƒ­ãƒŠ	ã‚­ãƒ§ãƒ­ã‚­ãƒ§ãƒ­
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d17r0101_champ_01
 	_ANIME_DATA	AC_STAY_WALK_L_4F,1
@@ -116,7 +116,7 @@ _ANIME_LABEL anm_d17r0101_champ_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒVƒƒi	ŽålŒö‚ðŒ©‚é
+//ã‚·ãƒ­ãƒŠ	ä¸»äººå…¬ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d17r0101_champ_02
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
@@ -124,19 +124,19 @@ _ANIME_LABEL anm_d17r0101_champ_02
 
 
 /********************************************************************/
-/*				ƒVƒƒi(‚â‚Ô‚ê‚½¢ŠE‚©‚ç–ß‚Á‚Ä‚«‚Ä‰ï˜b)				*/
+/*				ã‚·ãƒ­ãƒŠ(ã‚„ã¶ã‚ŒãŸä¸–ç•Œã‹ã‚‰æˆ»ã£ã¦ãã¦ä¼šè©±)				*/
 /********************************************************************/
 ev_d17r0101_champ:
 	_TALK_OBJ_START
 
-	/*ƒiƒiƒJƒ}ƒh‚Æ‰ï˜b‚µ‚Ä‚¢‚½‚ç*/
+	/*ãƒŠãƒŠã‚«ãƒžãƒ‰ã¨ä¼šè©±ã—ã¦ã„ãŸã‚‰*/
 	_IFVAL_JUMP		WK_SCENE_D17R0101,GE,3,ev_d17r0101_champ_02
 
 	_TALK_KEYWAIT	msg_d17r0101_chanpion_04
 	_JUMP			ev_d17r0101_champ_end
 	_END
 
-/*ƒiƒiƒJƒ}ƒh‚Æ‰ï˜b‚µ‚Ä‚¢‚½‚ç*/
+/*ãƒŠãƒŠã‚«ãƒžãƒ‰ã¨ä¼šè©±ã—ã¦ã„ãŸã‚‰*/
 ev_d17r0101_champ_02:
 	_TALK_KEYWAIT	msg_d17r0101_chanpion_05
 	_JUMP			ev_d17r0101_champ_end

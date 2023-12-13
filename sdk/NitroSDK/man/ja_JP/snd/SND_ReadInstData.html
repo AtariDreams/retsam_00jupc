@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SND_ReadInstData</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>SND_ReadInstData</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">BOOL SND_ReadInstData(
@@ -21,7 +21,7 @@
         SNDInstData* <var>inst</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDACMWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -29,19 +29,19 @@
 <tbody>
 <tr>
 <td><em><strong><font face="Courier New">bank</font></strong></em></td>
-<td>�o���N�f�[�^�̃|�C���^�ł��B</td>
+<td>バンクデータのポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><font face="Courier New">prgNo</font></strong></em></td>
-<td>�v���O�����ԍ��ł��B</td>
+<td>プログラム番号です。</td>
 </tr>
 <tr>
 <td><em><strong><font face="Courier New">key</font></strong></em></td>
-<td>�L�[�ԍ��ł��B</td>
+<td>キー番号です。</td>
 </tr>
 <tr>
 <td><em><strong><font face="Courier New">inst</font></strong></em></td>
-<td>�ǂ݂Ƃ����C���X�g�f�[�^���i�[����\���̂̃|�C���^�ł��B</td>
+<td>読みとったインストデータを格納する構造体のポインタです。</td>
 </tr>
 </tbody>
 </table>
@@ -49,31 +49,31 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAGNWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
       <p>
-�ǂ݂Ƃ�ɐ��������TRUE�A���s�����FALSE��Ԃ��܂��B
-TRUE��Ԃ����Ƃ��̂݁A<em><strong><font face="Courier New">inst</font></strong></em>�ɐ���ȏ�񂪊i�[����܂��B
+読みとりに成功するとTRUE、失敗するとFALSEを返します。
+TRUEを返したときのみ、<em><strong><font face="Courier New">inst</font></strong></em>に正常な情報が格納されます。
 </p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAQNWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�o���N<em><strong><font face="Courier New">bank</font></strong></em>����A�C���X�g�f�[�^��<a href="SNDInstData.html">SNDInstData</a>�\���̂ɓǂ݂Ƃ�܂��B
+バンク<em><strong><font face="Courier New">bank</font></strong></em>から、インストデータを<a href="SNDInstData.html">SNDInstData</a>構造体に読みとります。
 </p>
       <p>
-�����ȃv���O�����ԍ�<em><strong><font face="Courier New">prgNo</font></strong></em>���w�肷��ƁA�֐��͎��s���܂��B
+無効なプログラム番号<em><strong><font face="Courier New">prgNo</font></strong></em>を指定すると、関数は失敗します。
 </p>
       <p>
-�w�肵���v���O�����ԍ�<em><strong><font face="Courier New">prgNo</font></strong></em>���A�h�����Z�b�g�܂��̓L�[�X�v���b�g��
-�w���Ă����ꍇ�A�L�[�ԍ�<em><strong><font face="Courier New">key</font></strong></em>�ɑΉ�����C���X�g�f�[�^��ǂ݂Ƃ�܂��B
-�ʏ�̃C���X�g���w���Ă����ꍇ�A�L�[�ԍ�<em><strong><font face="Courier New">key</font></strong></em>�͖�������܂��B
+指定したプログラム番号<em><strong><font face="Courier New">prgNo</font></strong></em>が、ドラムセットまたはキースプリットを
+指していた場合、キー番号<em><strong><font face="Courier New">key</font></strong></em>に対応するインストデータを読みとります。
+通常のインストを指していた場合、キー番号<em><strong><font face="Courier New">key</font></strong></em>は無視されます。
 </p>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="SNDInstData.html">SNDInstData</a></p>
-<h2>����</h2>
-<p>2004/07/20����<br></p>
+<h2>履歴</h2>
+<p>2004/07/20初版<br></p>
 </div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wbr_surver.h
- *	@brief		ƒT[ƒo[ƒVƒXƒeƒ€
+ *	@brief		ã‚µãƒ¼ãƒãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.02.21
  *
@@ -20,11 +20,11 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒV[ƒPƒ“ƒX
+///	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum {
 	WBR_SURVER_SEQ_START_SEND,
@@ -38,27 +38,27 @@ enum {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒT[ƒo[ƒ[ƒN
+///	ã‚µãƒ¼ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WBR_SURVER WBR_SURVER;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL WBR_SURVER* WBR_SurverInit( u32 heap );
 GLOBAL void WBR_SurverExit( WBR_SURVER* p_sys );
 
-// ŠÇ—‚µ‚Ä•K—v‚È‚çƒRƒ}ƒ“ƒh‚ğ‘—M
+// ç®¡ç†ã—ã¦å¿…è¦ãªã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’é€ä¿¡
 GLOBAL void WBR_SurverMain( WBR_SURVER* p_sys );
 
-// ƒf[ƒ^İ’èŠÖ”
+// ãƒ‡ãƒ¼ã‚¿è¨­å®šé–¢æ•°
 GLOBAL void WBR_SurverSeqSet( WBR_SURVER* p_sys, u32 seq );
 GLOBAL u32 WBR_SurverSeqGet( const WBR_SURVER* cp_sys );
 GLOBAL void WBR_SurverKoGameDataSet( WBR_SURVER* p_sys, const WBR_KO_COMM_GAME* cp_ko, u32 id );
@@ -67,7 +67,7 @@ GLOBAL void WBR_SurverKoTalkReqSet( WBR_SURVER* p_sys, const WBR_TALK_REQ* cp_ko
 
 GLOBAL BOOL WBR_SurverKoCommDataRecv( WBR_SURVER* p_sys, u32 id );
 
-// ¡‚Ìó‘Ô‚ğq‚É‹­§“]‘—
+// ä»Šã®çŠ¶æ…‹ã‚’å­ã«å¼·åˆ¶è»¢é€
 GLOBAL void WBR_SurverDataSend( WBR_SURVER* p_sys );
 
 

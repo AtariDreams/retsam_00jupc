@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	haight_check.c
- * @brief	‚‚³æ“¾ŠÖ˜A
+ * @brief	é«˜ã•å–å¾—é–¢é€£
  * @author	Nozomu Saito
  * @date	2005.05.06
  */
@@ -10,8 +10,8 @@
 #include "height.h"
 #define MAX_GET_POL	(10)
 
-#define GRID_ENTRY_ONE_DATA	(2)	//2ƒoƒCƒgƒf[ƒ^‚ª2‚Â‚Å4ƒoƒCƒg
-#define LINE_ONE_DATA	(5)		//2ƒoƒCƒgƒf[ƒ^‚ª5‚Â‚Å10ƒoƒCƒg
+#define GRID_ENTRY_ONE_DATA	(2)	//2ãƒã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ãŒ2ã¤ã§4ãƒã‚¤ãƒˆ
+#define LINE_ONE_DATA	(5)		//2ãƒã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ãŒ5ã¤ã§10ãƒã‚¤ãƒˆ
 #define Z_VAL_OFFSET_L(data_idx)	( data_idx*LINE_ONE_DATA+1 )
 #define Z_VAL_OFFSET_H(data_idx)	( data_idx*LINE_ONE_DATA+2 )
 
@@ -42,12 +42,12 @@ u8 HC_DebugCheckHeight(const fx32 inX, const fx32 inZ, MHI_CONST_PTR inMap3DInfo
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *	lŠp“àŠO”»’è
+ *	å››è§’å†…å¤–åˆ¤å®š
  *	@param	inMoveVal		
- *	@param	inNewVec		–¢—ˆÀ•W
- *	@param	inOldVec		Œ»İÀ•W
+ *	@param	inNewVec		æœªæ¥åº§æ¨™
+ *	@param	inOldVec		ç¾åœ¨åº§æ¨™
  *
- *	@retval	VecFx32			C³ŒãˆÚ“®—ÊiˆÚ“®•ûŒüj
+ *	@retval	VecFx32			ä¿®æ­£å¾Œç§»å‹•é‡ï¼ˆç§»å‹•æ–¹å‘ï¼‰
 */
 //---------------------------------------------------------------------------------------------------------
 static BOOL CheckRectIO( const XZ_VERTEX *inVtx1, const XZ_VERTEX *inVtx2, const XZ_VERTEX * inTarget )
@@ -78,13 +78,13 @@ static BOOL CheckRectIO( const XZ_VERTEX *inVtx1, const XZ_VERTEX *inVtx2, const
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *	Î–Ê‚ğ“o‚é‚Æ‚«‚ÌˆÚ“®•â³B
- *	Î–Ê‚ğ“o‚é‚Æ‚«‚ÍA•½’n‚ğˆÚ“®‚·‚é‚Æ‚«‚æ‚è‚àˆÚ“®—Ê‚ªŒ¸‚é
- *	@param	inMoveVal		ˆÚ“®—Ê
- *	@param	inNewVec		–¢—ˆÀ•W
- *	@param	inOldVec		Œ»İÀ•W
+ *	æ–œé¢ã‚’ç™»ã‚‹ã¨ãã®ç§»å‹•è£œæ­£ã€‚
+ *	æ–œé¢ã‚’ç™»ã‚‹ã¨ãã¯ã€å¹³åœ°ã‚’ç§»å‹•ã™ã‚‹ã¨ãã‚ˆã‚Šã‚‚ç§»å‹•é‡ãŒæ¸›ã‚‹
+ *	@param	inMoveVal		ç§»å‹•é‡
+ *	@param	inNewVec		æœªæ¥åº§æ¨™
+ *	@param	inOldVec		ç¾åœ¨åº§æ¨™
  *
- *	@retval	VecFx32			C³ŒãˆÚ“®—ÊiˆÚ“®•ûŒüj
+ *	@retval	VecFx32			ä¿®æ­£å¾Œç§»å‹•é‡ï¼ˆç§»å‹•æ–¹å‘ï¼‰
 */
 //---------------------------------------------------------------------------------------------------------
 VecFx32 MoveRevise(fx32 inMoveVal,VecFx32 inNewVec,VecFx32 inOldVec)
@@ -101,10 +101,10 @@ VecFx32 MoveRevise(fx32 inMoveVal,VecFx32 inNewVec,VecFx32 inOldVec)
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *	ƒ|ƒŠƒSƒ“ƒCƒ“ƒfƒbƒNƒX‚©‚çƒ|ƒŠƒSƒ“’¸“_ƒf[ƒ^‚ğæ“¾
- *	@param	inMAp3DInfo		ƒ}ƒbƒv‚‚³î•ñ		
- *	@param	inIdx			ƒ|ƒŠƒSƒ“ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	outVertex		’¸“_ƒf[ƒ^Ši”[æƒ|ƒCƒ“ƒ^
+ *	ãƒãƒªã‚´ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰ãƒãƒªã‚´ãƒ³é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+ *	@param	inMAp3DInfo		ãƒãƒƒãƒ—é«˜ã•æƒ…å ±		
+ *	@param	inIdx			ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	outVertex		é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆãƒã‚¤ãƒ³ã‚¿
  *	
  *	@retval	none
 */
@@ -117,10 +117,10 @@ static void GetPolygonVertex(MHI_CONST_PTR inMap3DInfo, u16 inIdx, XZ_VERTEX *ou
 #if 0
 //---------------------------------------------------------------------------------------------------------
 /**
- *	ƒ|ƒŠƒSƒ“ƒCƒ“ƒfƒbƒNƒX‚©‚çƒ|ƒŠƒSƒ“’¸“_ƒf[ƒ^‚ğæ“¾
- *	@param	inMAp3DInfo		ƒ}ƒbƒv‚‚³î•ñ		
- *	@param	inIdx			ƒ|ƒŠƒSƒ“ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	outVertex		’¸“_ƒf[ƒ^Ši”[æƒ|ƒCƒ“ƒ^
+ *	ãƒãƒªã‚´ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰ãƒãƒªã‚´ãƒ³é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+ *	@param	inMAp3DInfo		ãƒãƒƒãƒ—é«˜ã•æƒ…å ±		
+ *	@param	inIdx			ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	outVertex		é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆãƒã‚¤ãƒ³ã‚¿
  *	
  *	@retval	none
 */
@@ -135,10 +135,10 @@ static void GetPolygonVertex_old(MHI_CONST_PTR inMap3DInfo, u16 inIdx, VecFx32 *
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *	ƒ|ƒŠƒSƒ“ƒCƒ“ƒfƒbƒNƒX‚©‚çƒ|ƒŠƒSƒ“‚Ì–@ü‚ğæ“¾
- *	@param	inMAp3DInfo		ƒ}ƒbƒv‚‚³î•ñ		
- *	@param	inIdx			ƒ|ƒŠƒSƒ“ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	outVertex		–@üƒf[ƒ^Ši”[æƒ|ƒCƒ“ƒ^
+ *	ãƒãƒªã‚´ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰ãƒãƒªã‚´ãƒ³ã®æ³•ç·šã‚’å–å¾—
+ *	@param	inMAp3DInfo		ãƒãƒƒãƒ—é«˜ã•æƒ…å ±		
+ *	@param	inIdx			ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	outVertex		æ³•ç·šãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆãƒã‚¤ãƒ³ã‚¿
  *	
  *	@retval	none
 */
@@ -150,10 +150,10 @@ static void GetPolygonNrm(MHI_CONST_PTR inMap3DInfo, u16 inIdx, VecFx32 *outVert
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *	ƒ|ƒŠƒSƒ“ƒCƒ“ƒfƒbƒNƒX‚©‚çD’l‚ğæ“¾
- *	@param	inMAp3DInfo		ƒ}ƒbƒv‚‚³î•ñ		
- *	@param	inIdx			ƒ|ƒŠƒSƒ“ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	outD		Dƒf[ƒ^Ši”[æƒ|ƒCƒ“ƒ^
+ *	ãƒãƒªã‚´ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰Då€¤ã‚’å–å¾—
+ *	@param	inMAp3DInfo		ãƒãƒƒãƒ—é«˜ã•æƒ…å ±		
+ *	@param	inIdx			ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	outD		Dãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆãƒã‚¤ãƒ³ã‚¿
  *	
  *	@retval	none
 */
@@ -164,7 +164,7 @@ static void GetPolygonD(MHI_CONST_PTR inMap3DInfo, u16 inIdx, fx32 *outD)
 }
 
 /**
-ƒ\[ƒg—p”z—ñ‚Ì‰Šú‰»
+ã‚½ãƒ¼ãƒˆç”¨é…åˆ—ã®åˆæœŸåŒ–
 */
 static void InitArray(HEIGHT_ARRAY *outArray)
 {
@@ -177,7 +177,7 @@ static void InitArray(HEIGHT_ARRAY *outArray)
 }
 
 /**
- ‚‚³”z—ñƒf[ƒ^‚Ìƒ\[ƒg(¸‡)
+ é«˜ã•é…åˆ—ãƒ‡ãƒ¼ã‚¿ã®ã‚½ãƒ¼ãƒˆ(æ˜‡é †)
 */
 static void SortArray(int inCount, HEIGHT_ARRAY *ioArray)
 {
@@ -209,13 +209,13 @@ static void SortArray(int inCount, HEIGHT_ARRAY *ioArray)
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *@Zƒ\[ƒg‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ğ2•ª’Tõ
- *	@param	inDataList		ƒf[ƒ^ƒŠƒXƒg		
- *	@param	inDataSize		ƒf[ƒ^ƒTƒCƒY
- *	@param	inZ_Val			Z’l
- *	@param	outIndex		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+ *ã€€Zã‚½ãƒ¼ãƒˆã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’2åˆ†æ¢ç´¢
+ *	@param	inDataList		ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆ		
+ *	@param	inDataSize		ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ *	@param	inZ_Val			Zå€¤
+ *	@param	outIndex		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *	
- *	@retval	BOOL	TRUE:ƒf[ƒ^‚ ‚è@FALSE:ƒf[ƒ^–³‚µ
+ *	@retval	BOOL	TRUE:ãƒ‡ãƒ¼ã‚¿ã‚ã‚Šã€€FALSE:ãƒ‡ãƒ¼ã‚¿ç„¡ã—
 */
 //---------------------------------------------------------------------------------------------------------
 static BOOL	BinSearch(const LINE_DATA *inDataList,const u16 inDataSize,const fx32 inZ_Val,u16 *outIndex)
@@ -224,10 +224,10 @@ static BOOL	BinSearch(const LINE_DATA *inDataList,const u16 inDataSize,const fx3
 	u32 data_idx;
 	fx32 z_val;
 	if (inDataSize == 0){
-		OS_Printf("Zƒ\[ƒgƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñ\n");
-		return FALSE;//ƒf[ƒ^‚È‚µ‚È‚Ì‚ÅA’TõI—¹
+		OS_Printf("Zã‚½ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“\n");
+		return FALSE;//ãƒ‡ãƒ¼ã‚¿ãªã—ãªã®ã§ã€æ¢ç´¢çµ‚äº†
 	}else if (inDataSize == 1){
-		*outIndex = 0;//’TõI—¹
+		*outIndex = 0;//æ¢ç´¢çµ‚äº†
 		return TRUE;
 	}
 
@@ -239,19 +239,19 @@ static BOOL	BinSearch(const LINE_DATA *inDataList,const u16 inDataSize,const fx3
 ///OS_Printf("min_max:%d,%d\n",min,max);
 		z_val = inDataList[data_idx].LineZ;
 ///OS_Printf("%d z_val:%x\n",data_idx,z_val);
-		if (z_val>inZ_Val){	//’TõŒp‘±
+		if (z_val>inZ_Val){	//æ¢ç´¢ç¶™ç¶š
 			if (max-1 > min){
 				max = data_idx;
 				data_idx = (min+max)/2;
-			}else{				//’TõI—¹
+			}else{				//æ¢ç´¢çµ‚äº†
 				*outIndex = data_idx;
 				return TRUE;
 			}
-		}else{					//’TõŒp‘±
+		}else{					//æ¢ç´¢ç¶™ç¶š
 			if (min+1 < max){
 				min = data_idx;
 				data_idx = (min+max)/2;
-			}else{				//’TõI—¹
+			}else{				//æ¢ç´¢çµ‚äº†
 				*outIndex = data_idx+1;
 				return TRUE;
 			}
@@ -263,13 +263,13 @@ static BOOL	BinSearch(const LINE_DATA *inDataList,const u16 inDataSize,const fx3
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *@Zƒ\[ƒg‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ğ2•ª’Tõ
- *	@param	inDataList		ƒf[ƒ^ƒŠƒXƒg		
- *	@param	inDataSize		ƒf[ƒ^ƒTƒCƒY
- *	@param	inZ_Val			Z’l
- *	@param	outIndex		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+ *ã€€Zã‚½ãƒ¼ãƒˆã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’2åˆ†æ¢ç´¢
+ *	@param	inDataList		ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆ		
+ *	@param	inDataSize		ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ *	@param	inZ_Val			Zå€¤
+ *	@param	outIndex		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *	
- *	@retval	BOOL	TRUE:ƒf[ƒ^‚ ‚è@FALSE:ƒf[ƒ^–³‚µ
+ *	@retval	BOOL	TRUE:ãƒ‡ãƒ¼ã‚¿ã‚ã‚Šã€€FALSE:ãƒ‡ãƒ¼ã‚¿ç„¡ã—
 */
 //---------------------------------------------------------------------------------------------------------
 static BOOL	BinSearch_old(const u16 *inDataList,const u16 inDataSize,const fx32 inZ_Val,u16 *outIndex)
@@ -278,10 +278,10 @@ static BOOL	BinSearch_old(const u16 *inDataList,const u16 inDataSize,const fx32 
 	u32 data_idx;
 	fx32 z_val;
 	if (inDataSize == 0){
-		OS_Printf("Zƒ\[ƒgƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñ\n");
-		return FALSE;//ƒf[ƒ^‚È‚µ‚È‚Ì‚ÅA’TõI—¹
+		OS_Printf("Zã‚½ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“\n");
+		return FALSE;//ãƒ‡ãƒ¼ã‚¿ãªã—ãªã®ã§ã€æ¢ç´¢çµ‚äº†
 	}else if (inDataSize == 1){
-		*outIndex = 0;//’TõI—¹
+		*outIndex = 0;//æ¢ç´¢çµ‚äº†
 		return TRUE;
 	}
 
@@ -293,19 +293,19 @@ static BOOL	BinSearch_old(const u16 *inDataList,const u16 inDataSize,const fx32 
 ///OS_Printf("min_max:%d,%d\n",min,max);		
 		z_val = LINE_Z_VAL(inDataList,data_idx);
 ///OS_Printf("%d z_val:%x\n",data_idx,z_val);
-		if (z_val>inZ_Val){	//’TõŒp‘±
+		if (z_val>inZ_Val){	//æ¢ç´¢ç¶™ç¶š
 			if (max-1 > min){
 				max = data_idx;
 				data_idx = (min+max)/2;
-			}else{				//’TõI—¹
+			}else{				//æ¢ç´¢çµ‚äº†
 				*outIndex = data_idx;
 				return TRUE;
 			}
-		}else{					//’TõŒp‘±
+		}else{					//æ¢ç´¢ç¶™ç¶š
 			if (min+1 < max){
 				min = data_idx;
 				data_idx = (min+max)/2;
-			}else{				//’TõI—¹
+			}else{				//æ¢ç´¢çµ‚äº†
 				*outIndex = data_idx+1;
 				return TRUE;
 			}
@@ -313,22 +313,22 @@ static BOOL	BinSearch_old(const u16 *inDataList,const u16 inDataSize,const fx32 
 	}while(1);
 
 	return FALSE;
-	//ƒfƒoƒbƒOF~‡”»’èˆ—
+	//ãƒ‡ãƒãƒƒã‚°ï¼šé™é †åˆ¤å®šå‡¦ç†
 	
 	;
 }
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *	‚‚³æ“¾
+ *	é«˜ã•å–å¾—
  *
- *	@param	inNowY			Œ»İYÀ•W	
- *	@param	inX				‹‚ß‚½‚¢‚‚³‚ÌXÀ•W
- *	@param	inZ				‹‚ß‚½‚¢‚‚³‚ÌZÀ•W
- *	@param	inMap3DInfo		‚‚³î•ñ
- *	@param	outY			‚‚³Ši”[ƒoƒbƒtƒ@
+ *	@param	inNowY			ç¾åœ¨Yåº§æ¨™	
+ *	@param	inX				æ±‚ã‚ãŸã„é«˜ã•ã®Xåº§æ¨™
+ *	@param	inZ				æ±‚ã‚ãŸã„é«˜ã•ã®Zåº§æ¨™
+ *	@param	inMap3DInfo		é«˜ã•æƒ…å ±
+ *	@param	outY			é«˜ã•æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *	
- *	@retval	BOOL			TRUE:‚‚³‚ğæ“¾‚Å‚«‚½	FALSE:‚‚³‚ğæ“¾‚Å‚«‚È‚©‚Á‚½
+ *	@retval	BOOL			TRUE:é«˜ã•ã‚’å–å¾—ã§ããŸ	FALSE:é«˜ã•ã‚’å–å¾—ã§ããªã‹ã£ãŸ
 */
 //---------------------------------------------------------------------------------------------------------
 BOOL GetHeightForBlock(const fx32 inNowY, const fx32 inX, const fx32 inZ, MHI_CONST_PTR inMap3DInfo,fx32 *outY)
@@ -357,7 +357,7 @@ BOOL GetHeightForBlock(const fx32 inNowY, const fx32 inX, const fx32 inZ, MHI_CO
 		return FALSE;
 	}
 	result = FALSE;
-	//ZX•½–Ê‚ÉË‰e
+	//ZXå¹³é¢ã«å°„å½±
 	target.X = inX;
 	target.Z = inZ;
 	pol_count = 0;
@@ -368,7 +368,7 @@ BOOL GetHeightForBlock(const fx32 inNowY, const fx32 inX, const fx32 inZ, MHI_CO
 ///OS_Printf("line_num = %d\n",line_num);
 
 	line_list = inMap3DInfo->LineDataTbl;
-	//ƒ‰ƒCƒ“ƒf[ƒ^‚ğ2•ª’Tõ‚µ‚ÄA©•ª‚ª—§‚Á‚Ä‚¢‚éƒ|ƒŠƒSƒ“‚ª‘¶İ‚·‚éƒ‰ƒCƒ“‚ğŒŸo
+	//ãƒ©ã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’2åˆ†æ¢ç´¢ã—ã¦ã€è‡ªåˆ†ãŒç«‹ã£ã¦ã„ã‚‹ãƒãƒªã‚´ãƒ³ãŒå­˜åœ¨ã™ã‚‹ãƒ©ã‚¤ãƒ³ã‚’æ¤œå‡º
 	if ( BinSearch(line_list,line_num,target.Z,&line_index)==FALSE){
 ///OS_Printf("NOTHING\n");		
 		return FALSE;
@@ -381,24 +381,24 @@ BOOL GetHeightForBlock(const fx32 inNowY, const fx32 inX, const fx32 inZ, MHI_CO
 
 ///OS_Printf("offset_idx:%d\n",offset_idx);
 
-	//‚‚³æ“¾—pƒOƒŠƒbƒh“àƒ‰ƒCƒ“ƒf[ƒ^‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^•ªƒ‹[ƒv‚µ‚ÄA©•ª‚ª—§‚Á‚Ä‚¢‚éƒ|ƒŠƒSƒ“‚ğŒŸo
+	//é«˜ã•å–å¾—ç”¨ã‚°ãƒªãƒƒãƒ‰å†…ãƒ©ã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿åˆ†ãƒ«ãƒ¼ãƒ—ã—ã¦ã€è‡ªåˆ†ãŒç«‹ã£ã¦ã„ã‚‹ãƒãƒªã‚´ãƒ³ã‚’æ¤œå‡º
 	for(i=0;i<polygon_num;i++){
 				pol_index = inMap3DInfo->PolyIDList[offset_idx+i];
 ///OS_Printf("pol_index:%d\n",pol_index);
-		//’¸“_ƒf[ƒ^æ“¾
+		//é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿å–å¾—
 		GetPolygonVertex(inMap3DInfo,pol_index, vertex);
-		//lŠpŒ`‚Ì“àŠO”»’è
+		//å››è§’å½¢ã®å†…å¤–åˆ¤å®š
 		result = CheckRectIO( &vertex[0], &vertex[1], &target);
-		if (result == TRUE){//lŠpŒ`“à
-			//–@üæ“¾
+		if (result == TRUE){//å››è§’å½¢å†…
+			//æ³•ç·šå–å¾—
 			GetPolygonNrm(inMap3DInfo,pol_index, &nrm);
-			//•½–Ê‚Ì•û’ö®‚É•K—v‚Èƒf[ƒ^iŒ´“_‚ğ’Ê‚é•½–Ê‚©‚ç‚ÌƒIƒtƒZƒbƒgj‚ğæ“¾
+			//å¹³é¢ã®æ–¹ç¨‹å¼ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ï¼ˆåŸç‚¹ã‚’é€šã‚‹å¹³é¢ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼‰ã‚’å–å¾—
 			GetPolygonD(inMap3DInfo,pol_index, &d);
-			//•½–Ê‚Ì•û’ö®‚æ‚è‚‚³æ“¾
+			//å¹³é¢ã®æ–¹ç¨‹å¼ã‚ˆã‚Šé«˜ã•å–å¾—
 			y = -(FX_Mul(nrm.x, target.X)+FX_Mul(nrm.z, target.Z)+d);
 			y = FX_Div(y, nrm.y);
 			height_array[pol_count].Height = y;
-			//”z—ñ‚Ìƒ\[ƒgiŒ»s‚Å‚Í‹@”\‚µ‚Ä‚Ü‚¹‚ñB‘Î‰—\’èj<<–¢g—p‚É‚µ‚Ü‚µ‚½B20060801
+			//é…åˆ—ã®ã‚½ãƒ¼ãƒˆï¼ˆç¾è¡Œã§ã¯æ©Ÿèƒ½ã—ã¦ã¾ã›ã‚“ã€‚å¯¾å¿œäºˆå®šï¼‰<<æœªä½¿ç”¨ã«ã—ã¾ã—ãŸã€‚20060801
 			///SortArray(pol_count,height_array);
 			pol_count++;
 ///OS_Printf("%d\n",i);
@@ -411,11 +411,11 @@ BOOL GetHeightForBlock(const fx32 inNowY, const fx32 inX, const fx32 inZ, MHI_CO
 	}//end for
 	
 
-	if (pol_count > 1){//ƒ|ƒŠƒSƒ“ƒf[ƒ^‚ª•¡”æ‚ê‚½‚Æ‚«
+	if (pol_count > 1){//ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¤‡æ•°å–ã‚ŒãŸã¨ã
 ///OS_Printf("!!\n");		
 		pol_index = 0;
 		temp1 = Max(inNowY,height_array[0].Height) - Min(inNowY,height_array[0].Height);
-		//‚·‚×‚Ä‚Ìƒ|ƒŠƒSƒ“ƒf[ƒ^‚Ì‚‚³‚ğ‹‚ßAŒ»İ‚Ì‚‚³‚Éˆê”Ô‹ß‚¢•¨‚ğ‘Io‚·‚é
+		//ã™ã¹ã¦ã®ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ã®é«˜ã•ã‚’æ±‚ã‚ã€ç¾åœ¨ã®é«˜ã•ã«ä¸€ç•ªè¿‘ã„ç‰©ã‚’é¸å‡ºã™ã‚‹
 		for(i=1;i<pol_count;i++){
 			temp2 = Max(inNowY,height_array[i].Height) - Min(inNowY,height_array[i].Height);
 			if (temp1>temp2){
@@ -435,7 +435,7 @@ BOOL GetHeightForBlock(const fx32 inNowY, const fx32 inX, const fx32 inZ, MHI_CO
 #elif DEBUG_ONLY_FOR_nakatsui
 	//OS_Printf()
 #else
-	OS_Printf("‚‚³‚ªæ‚ê‚È‚©‚Á‚½\n");
+	OS_Printf("é«˜ã•ãŒå–ã‚Œãªã‹ã£ãŸ\n");
 #endif
 	
 #if 1	
@@ -449,15 +449,15 @@ BOOL GetHeightForBlock(const fx32 inNowY, const fx32 inX, const fx32 inZ, MHI_CO
 #if 0
 //---------------------------------------------------------------------------------------------------------
 /**
- *	‚‚³æ“¾
+ *	é«˜ã•å–å¾—
  *
- *	@param	inNowY			Œ»İYÀ•W	
- *	@param	inX				‹‚ß‚½‚¢‚‚³‚ÌXÀ•W
- *	@param	inZ				‹‚ß‚½‚¢‚‚³‚ÌZÀ•W
- *	@param	inMap3DInfo		‚‚³î•ñ
- *	@param	outY			‚‚³Ši”[ƒoƒbƒtƒ@
+ *	@param	inNowY			ç¾åœ¨Yåº§æ¨™	
+ *	@param	inX				æ±‚ã‚ãŸã„é«˜ã•ã®Xåº§æ¨™
+ *	@param	inZ				æ±‚ã‚ãŸã„é«˜ã•ã®Zåº§æ¨™
+ *	@param	inMap3DInfo		é«˜ã•æƒ…å ±
+ *	@param	outY			é«˜ã•æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *	
- *	@retval	BOOL			TRUE:‚‚³‚ğæ“¾‚Å‚«‚½	FALSE:‚‚³‚ğæ“¾‚Å‚«‚È‚©‚Á‚½
+ *	@retval	BOOL			TRUE:é«˜ã•ã‚’å–å¾—ã§ããŸ	FALSE:é«˜ã•ã‚’å–å¾—ã§ããªã‹ã£ãŸ
 */
 //---------------------------------------------------------------------------------------------------------
 BOOL GetHeightForBlock_old(const fx32 inNowY, const fx32 inX, const fx32 inZ, MHI_CONST_PTR inMap3DInfo,fx32 *outY)
@@ -485,13 +485,13 @@ BOOL GetHeightForBlock_old(const fx32 inNowY, const fx32 inX, const fx32 inZ, MH
 		return FALSE;
 	}
 	result = FALSE;
-	//ZX•½–Ê‚ÉË‰e
+	//ZXå¹³é¢ã«å°„å½±
 	target.x = inX;
 	target.y = 0;
 	target.z = inZ;
 	pol_count = 0;
 	InitArray(height_array);
-	//‘{õƒe[ƒuƒ‹‚ğŒŸo
+	//æœç´¢ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ¤œå‡º
 	tbl_x = inX - inMap3DInfo->SplitGridData->StartX;
 	if (tbl_x < 0){
 		tbl_x = 0;
@@ -521,7 +521,7 @@ BOOL GetHeightForBlock_old(const fx32 inNowY, const fx32 inX, const fx32 inZ, MH
 ///OS_Printf("line_num = %d\n",line_num);
 #endif
 	line_list = &inMap3DInfo->LineDataTbl[line_data_idx*LINE_ONE_DATA];
-	//‚‚³æ“¾—pƒOƒŠƒbƒhƒf[ƒ^‚É“o˜^‚³‚ê‚Ä‚¢‚éƒ‰ƒCƒ“ƒf[ƒ^‚ğ2•ª’Tõ‚µ‚ÄA©•ª‚ª—§‚Á‚Ä‚¢‚éƒ|ƒŠƒSƒ“‚ª‘¶İ‚·‚éƒ‰ƒCƒ“‚ğŒŸo
+	//é«˜ã•å–å¾—ç”¨ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ©ã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’2åˆ†æ¢ç´¢ã—ã¦ã€è‡ªåˆ†ãŒç«‹ã£ã¦ã„ã‚‹ãƒãƒªã‚´ãƒ³ãŒå­˜åœ¨ã™ã‚‹ãƒ©ã‚¤ãƒ³ã‚’æ¤œå‡º
 	if ( BinSearch(line_list,line_num,target.z,&line_index)==FALSE){
 ///OS_Printf("NOTHING\n");		
 		return FALSE;
@@ -534,29 +534,29 @@ BOOL GetHeightForBlock_old(const fx32 inNowY, const fx32 inX, const fx32 inZ, MH
 
 ///OS_Printf("offset_idx:%d\n",offset_idx);
 
-	//‚‚³æ“¾—pƒOƒŠƒbƒh“àƒ‰ƒCƒ“ƒf[ƒ^‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^•ªƒ‹[ƒv‚µ‚ÄA©•ª‚ª—§‚Á‚Ä‚¢‚éƒ|ƒŠƒSƒ“‚ğŒŸo
+	//é«˜ã•å–å¾—ç”¨ã‚°ãƒªãƒƒãƒ‰å†…ãƒ©ã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿åˆ†ãƒ«ãƒ¼ãƒ—ã—ã¦ã€è‡ªåˆ†ãŒç«‹ã£ã¦ã„ã‚‹ãƒãƒªã‚´ãƒ³ã‚’æ¤œå‡º
 	for(i=0;i<polygon_num;i++){
 				pol_index = inMap3DInfo->PolyIDList[offset_idx+i];
 ///OS_Printf("pol_index:%d\n",pol_index);
-		//’¸“_ƒf[ƒ^æ“¾
+		//é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿å–å¾—
 		GetPolygonVertex(inMap3DInfo,pol_index, vertex);
-		//ZX•½–Ê‚ÉË‰e
+		//ZXå¹³é¢ã«å°„å½±
 		vertex[0].y = 0;
 		vertex[1].y = 0;
 		vertex[2].y = 0;
-		//OŠpŒ`‚Ì“àŠO”»’è
+		//ä¸‰è§’å½¢ã®å†…å¤–åˆ¤å®š
 		///result = BG3D_CheckTriangleIO(&target,vertex[0],vertex[1],vertex[2]);
 		result = BG3D_CheckTriangleIObyZX(target,vertex[0],vertex[1],vertex[2]);
-		if (result == TRUE){//OŠpŒ`“à
-			//–@üæ“¾
+		if (result == TRUE){//ä¸‰è§’å½¢å†…
+			//æ³•ç·šå–å¾—
 			GetPolygonNrm(inMap3DInfo,pol_index, &nrm);
-			//•½–Ê‚Ì•û’ö®‚É•K—v‚Èƒf[ƒ^iŒ´“_‚ğ’Ê‚é•½–Ê‚©‚ç‚ÌƒIƒtƒZƒbƒgj‚ğæ“¾
+			//å¹³é¢ã®æ–¹ç¨‹å¼ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ï¼ˆåŸç‚¹ã‚’é€šã‚‹å¹³é¢ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼‰ã‚’å–å¾—
 			d = inMap3DInfo->PolygonData[pol_index].paramD;
-			//•½–Ê‚Ì•û’ö®‚æ‚è‚‚³æ“¾
+			//å¹³é¢ã®æ–¹ç¨‹å¼ã‚ˆã‚Šé«˜ã•å–å¾—
 			y = -(FX_Mul(nrm.x, target.x)+FX_Mul(nrm.z, target.z)+d);
 			y = FX_Div(y, nrm.y);
 			height_array[pol_count].Height = y;
-			//”z—ñ‚Ìƒ\[ƒgiŒ»s‚Å‚Í‹@”\‚µ‚Ä‚Ü‚¹‚ñB‘Î‰—\’èj<<–¢g—p‚É‚µ‚Ü‚µ‚½B20060801
+			//é…åˆ—ã®ã‚½ãƒ¼ãƒˆï¼ˆç¾è¡Œã§ã¯æ©Ÿèƒ½ã—ã¦ã¾ã›ã‚“ã€‚å¯¾å¿œäºˆå®šï¼‰<<æœªä½¿ç”¨ã«ã—ã¾ã—ãŸã€‚20060801
 			///SortArray(pol_count,height_array);
 			pol_count++;
 ///OS_Printf("%d\n",i);
@@ -569,11 +569,11 @@ BOOL GetHeightForBlock_old(const fx32 inNowY, const fx32 inX, const fx32 inZ, MH
 	}//end for
 	
 
-	if (pol_count > 1){//ƒ|ƒŠƒSƒ“ƒf[ƒ^‚ª•¡”æ‚ê‚½‚Æ‚«
+	if (pol_count > 1){//ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¤‡æ•°å–ã‚ŒãŸã¨ã
 ///OS_Printf("!!\n");		
 		pol_index = 0;
 		temp1 = Max(inNowY,height_array[0].Height) - Min(inNowY,height_array[0].Height);
-		//‚·‚×‚Ä‚Ìƒ|ƒŠƒSƒ“ƒf[ƒ^‚Ì‚‚³‚ğ‹‚ßAŒ»İ‚Ì‚‚³‚Éˆê”Ô‹ß‚¢•¨‚ğ‘Io‚·‚é
+		//ã™ã¹ã¦ã®ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ã®é«˜ã•ã‚’æ±‚ã‚ã€ç¾åœ¨ã®é«˜ã•ã«ä¸€ç•ªè¿‘ã„ç‰©ã‚’é¸å‡ºã™ã‚‹
 		for(i=1;i<pol_count;i++){
 			temp2 = Max(inNowY,height_array[i].Height) - Min(inNowY,height_array[i].Height);
 			if (temp1>temp2){
@@ -587,7 +587,7 @@ BOOL GetHeightForBlock_old(const fx32 inNowY, const fx32 inX, const fx32 inZ, MH
 		*outY = height_array[0].Height;
 		return TRUE;
 	}
-	OS_Printf("‚‚³‚ªæ‚ê‚È‚©‚Á‚½\n");
+	OS_Printf("é«˜ã•ãŒå–ã‚Œãªã‹ã£ãŸ\n");
 #if 1	
 	if (pol_count != 0){
 		*outY = height_array[0].Height;
@@ -607,15 +607,15 @@ BOOL GetHeightForBlock_old(const fx32 inNowY, const fx32 inX, const fx32 inZ, MH
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *	2D•½–Ê‚É‚¨‚¢‚ÄAw’è‚R“_‚Ì‚¤‚¿A‚Q“_‚Æ“¯‚¶‚©‚ğƒ`ƒFƒbƒNi“¯ˆê’¼üã‚É‚ ‚é‚©‚ğƒ`ƒFƒbƒNj
+ *	2Då¹³é¢ã«ãŠã„ã¦ã€æŒ‡å®šï¼“ç‚¹ã®ã†ã¡ã€ï¼’ç‚¹ã¨åŒã˜ã‹ã‚’ãƒã‚§ãƒƒã‚¯ï¼ˆåŒä¸€ç›´ç·šä¸Šã«ã‚ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯ï¼‰
  *
- *	@param	inTarget			w’èÀ•W	
- *	@param	inVal1				À•W1
- *	@param	inVal2				À•W2
- *	@param	inVal3				À•W3
- *	@param	outEqual			Œ‹‰Ê‚ğŠi”[‚·‚éƒoƒbƒtƒ@
+ *	@param	inTarget			æŒ‡å®šåº§æ¨™	
+ *	@param	inVal1				åº§æ¨™1
+ *	@param	inVal2				åº§æ¨™2
+ *	@param	inVal3				åº§æ¨™3
+ *	@param	outEqual			çµæœã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
  *	
- *	@retval	BOOL			TRUE:“¯ˆê’¼üã		FALSE:“¯ˆê’¼üã‚Å‚Í‚È‚¢
+ *	@retval	BOOL			TRUE:åŒä¸€ç›´ç·šä¸Š		FALSE:åŒä¸€ç›´ç·šä¸Šã§ã¯ãªã„
 */
 //---------------------------------------------------------------------------------------------------------
 static const BOOL Check2DLine(	const fx32 *inTarget,
@@ -636,7 +636,7 @@ static const BOOL Check2DLine(	const fx32 *inTarget,
 	}
 	
 	if (count == 2){
-		//“¯ˆê’¼üã
+		//åŒä¸€ç›´ç·šä¸Š
 		if (*inVal1 == *inVal2){
 			*outEqual = EQ_12;
 		}else if(*inVal2 == *inVal3){
@@ -646,7 +646,7 @@ static const BOOL Check2DLine(	const fx32 *inTarget,
 		}
 		return TRUE;
 	}else{
-		//’¼üó‚É‚È‚¢
+		//ç›´ç·šçŠ¶ã«ãªã„
 		*outEqual = EQ_NO;
 		return FALSE;
 	}
@@ -654,15 +654,15 @@ static const BOOL Check2DLine(	const fx32 *inTarget,
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *	w’è“_‚ª•Ô‚Ìã‚É‚ ‚èA‚»‚Ì•Ó‚ğì‚é‚Q“_‚Ì‚‚³‚ª“¯‚¶ê‡A‚»‚Ì‚‚³‚ğ•Ô‚·
+ *	æŒ‡å®šç‚¹ãŒè¿”ã®ä¸Šã«ã‚ã‚Šã€ãã®è¾ºã‚’ä½œã‚‹ï¼’ç‚¹ã®é«˜ã•ãŒåŒã˜å ´åˆã€ãã®é«˜ã•ã‚’è¿”ã™
  *
- *	@param	inTarget			w’èÀ•W	
- *	@param	inVec1				À•W1
- *	@param	inVec2				À•W2
- *	@param	inVec3				À•W3
- *	@param	outHeight			Œ‹‰Ê‚ğŠi”[‚·‚éƒoƒbƒtƒ@
+ *	@param	inTarget			æŒ‡å®šåº§æ¨™	
+ *	@param	inVec1				åº§æ¨™1
+ *	@param	inVec2				åº§æ¨™2
+ *	@param	inVec3				åº§æ¨™3
+ *	@param	outHeight			çµæœã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
  *	
- *	@retval	BOOL			TRUE:“¯ˆê‚‚³		FALSE:“¯ˆê‚‚³‚Å‚Í‚È‚¢
+ *	@retval	BOOL			TRUE:åŒä¸€é«˜ã•		FALSE:åŒä¸€é«˜ã•ã§ã¯ãªã„
 */
 //---------------------------------------------------------------------------------------------------------
 static const BOOL GetEdgeEqualHeightXZFlat(	const VecFx32 *inTarget,
@@ -674,14 +674,14 @@ static const BOOL GetEdgeEqualHeightXZFlat(	const VecFx32 *inTarget,
 	BOOL rc;
 	u8 eq;
 
-	//’¸“_3‚Â‚Ì‚˜‚š‚Æƒ^[ƒQƒbƒg‚Ì‚˜‚š‚ğ”äŠr
+	//é ‚ç‚¹3ã¤ã®ï½˜ï½šã¨ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ï½˜ï½šã‚’æ¯”è¼ƒ
 	rc = Check2DLine(&inTarget->x, &inVec1->x, &inVec2->x, &inVec3->x, &eq);
 	if (!rc){
 		rc = Check2DLine(&inTarget->z, &inVec1->z, &inVec2->z, &inVec3->z, &eq);
 	}
 
 	if (rc){
-		//“¯‚¶‚‚³‚©‚ğƒ`ƒFƒbƒN
+		//åŒã˜é«˜ã•ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 		if (eq == EQ_12){
 			if (inVec1->y == inVec2->y){
 				*outHeight = inVec1->y;
@@ -707,15 +707,15 @@ static const BOOL GetEdgeEqualHeightXZFlat(	const VecFx32 *inTarget,
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *	w’è“_‚ª’¸“_(3“_)‚Æ“¯‚¶À•W‚Ìê‡A‚»‚Ì‚‚³‚ğ•Ô‚·
+ *	æŒ‡å®šç‚¹ãŒé ‚ç‚¹(3ç‚¹)ã¨åŒã˜åº§æ¨™ã®å ´åˆã€ãã®é«˜ã•ã‚’è¿”ã™
  *
- *	@param	inTarget			w’èÀ•W	
- *	@param	inVec1				À•W1
- *	@param	inVec2				À•W2
- *	@param	inVec3				À•W3
- *	@param	outHeight			Œ‹‰Ê‚ğŠi”[‚·‚éƒoƒbƒtƒ@
+ *	@param	inTarget			æŒ‡å®šåº§æ¨™	
+ *	@param	inVec1				åº§æ¨™1
+ *	@param	inVec2				åº§æ¨™2
+ *	@param	inVec3				åº§æ¨™3
+ *	@param	outHeight			çµæœã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
  *	
- *	@retval	BOOL			TRUE:“¯ˆê‚‚³		FALSE:“¯ˆê‚‚³‚Å‚Í‚È‚¢
+ *	@retval	BOOL			TRUE:åŒä¸€é«˜ã•		FALSE:åŒä¸€é«˜ã•ã§ã¯ãªã„
 */
 //---------------------------------------------------------------------------------------------------------
 static const BOOL GetVertexEqualHeight(const VecFx32 *inTarget,
@@ -743,14 +743,14 @@ static const BOOL GetVertexEqualHeight(const VecFx32 *inTarget,
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *	w’è‚³‚ê‚½êŠ‚Ì‚‚³ƒf[ƒ^‚ğ’²‚×‚é
+ *	æŒ‡å®šã•ã‚ŒãŸå ´æ‰€ã®é«˜ã•ãƒ‡ãƒ¼ã‚¿ã‚’èª¿ã¹ã‚‹
  *
- *	@param	inX			XÀ•W
- *	@param	inZ			ZÀ•W
- *	@param	inMap3DInfo	‚‚³î•ñ
- *	@param	inDetail	Ú×î•ñ‚ğ•K—v‚Æ‚·‚é‚©‚Ìƒtƒ‰ƒO
+ *	@param	inX			Xåº§æ¨™
+ *	@param	inZ			Zåº§æ¨™
+ *	@param	inMap3DInfo	é«˜ã•æƒ…å ±
+ *	@param	inDetail	è©³ç´°æƒ…å ±ã‚’å¿…è¦ã¨ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
  *	
- *	@retval	u8			ƒ`ƒFƒbƒNŒ‹‰Ê
+ *	@retval	u8			ãƒã‚§ãƒƒã‚¯çµæœ
 */
 //---------------------------------------------------------------------------------------------------------
 u8 HC_DebugCheckHeight(const fx32 inX, const fx32 inZ, MHI_CONST_PTR inMap3DInfo, const BOOL inDetail)
@@ -778,18 +778,18 @@ u8 HC_DebugCheckHeight(const fx32 inX, const fx32 inZ, MHI_CONST_PTR inMap3DInfo
 	VecFx32 vec[3];
 
 	if (inMap3DInfo->DataValid == FALSE){
-		OS_Printf("‚‚³ƒf[ƒ^\‘¢‘Ì‚È‚¢\n");
+		OS_Printf("é«˜ã•ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ãªã„\n");
 		return 0;
 	}
 
 	result = FALSE;
-	//ZX•½–Ê‚ÉË‰e
+	//ZXå¹³é¢ã«å°„å½±
 	target.x = inX;
 	target.y = 0;
 	target.z = inZ;
 	pol_count = 0;
 	InitArray(height_array);
-	//‘{õƒe[ƒuƒ‹‚ğŒŸo
+	//æœç´¢ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ¤œå‡º
 	tbl_x = inX - inMap3DInfo->SplitGridData->StartX;
 	if (tbl_x < 0){
 		tbl_x = 0;
@@ -815,32 +815,32 @@ u8 HC_DebugCheckHeight(const fx32 inX, const fx32 inZ, MHI_CONST_PTR inMap3DInfo
 	line_data_idx = inMap3DInfo->GridDataTbl[tbl_idx*GRID_ENTRY_ONE_DATA+1];
 
 	line_list = &inMap3DInfo->LineDataTbl[line_data_idx*LINE_ONE_DATA];
-	//‚‚³æ“¾—pƒOƒŠƒbƒhƒf[ƒ^‚É“o˜^‚³‚ê‚Ä‚¢‚éƒ‰ƒCƒ“ƒf[ƒ^‚ğ2•ª’Tõ‚µ‚ÄA©•ª‚ª—§‚Á‚Ä‚¢‚éƒ|ƒŠƒSƒ“‚ª‘¶İ‚·‚éƒ‰ƒCƒ“‚ğŒŸo
+	//é«˜ã•å–å¾—ç”¨ã‚°ãƒªãƒƒãƒ‰ãƒ‡ãƒ¼ã‚¿ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ©ã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’2åˆ†æ¢ç´¢ã—ã¦ã€è‡ªåˆ†ãŒç«‹ã£ã¦ã„ã‚‹ãƒãƒªã‚´ãƒ³ãŒå­˜åœ¨ã™ã‚‹ãƒ©ã‚¤ãƒ³ã‚’æ¤œå‡º
 	if ( BinSearch(line_list,line_num,target.z,&line_index)==FALSE){
 		if (inDetail){
-			OS_Printf("“ñ•ª’Tõ¸”s\n");
+			OS_Printf("äºŒåˆ†æ¢ç´¢å¤±æ•—\n");
 		}
-		return 3;		//‚‚³‚ª‚È‚¢
+		return 3;		//é«˜ã•ãŒãªã„
 	}
 	polygon_num = line_list[line_index*LINE_ONE_DATA];
 	offset_idx = (line_list[(line_index*LINE_ONE_DATA)+4]<<16) | line_list[(line_index*LINE_ONE_DATA)+3];
 ///OS_Printf("target = %x,%x\n",target.x,target.z);	
-	//‚‚³æ“¾—pƒOƒŠƒbƒh“àƒ‰ƒCƒ“ƒf[ƒ^‚É“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^•ªƒ‹[ƒv‚µ‚ÄA©•ª‚ª—§‚Á‚Ä‚¢‚éƒ|ƒŠƒSƒ“‚ğŒŸo
+	//é«˜ã•å–å¾—ç”¨ã‚°ãƒªãƒƒãƒ‰å†…ãƒ©ã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿åˆ†ãƒ«ãƒ¼ãƒ—ã—ã¦ã€è‡ªåˆ†ãŒç«‹ã£ã¦ã„ã‚‹ãƒãƒªã‚´ãƒ³ã‚’æ¤œå‡º
 	for(i=0;i<polygon_num;i++){
 				pol_index = inMap3DInfo->PolyIDList[offset_idx+i];
-		//’¸“_ƒf[ƒ^æ“¾
+		//é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿å–å¾—
 		GetPolygonVertex(inMap3DInfo,pol_index, vertex);
 ///OS_Printf("vert:%x,%x,%x\n",vertex[0].y,vertex[1].y,vertex[2].y);
 		vec[0] = vertex[0];
 		vec[1] = vertex[1];
 		vec[2] = vertex[2];
-		//ZX•½–Ê‚ÉË‰e
+		//ZXå¹³é¢ã«å°„å½±
 		vertex[0].y = 0;
 		vertex[1].y = 0;
 		vertex[2].y = 0;
-		//OŠpŒ`‚Ì“àŠO”»’è
+		//ä¸‰è§’å½¢ã®å†…å¤–åˆ¤å®š
 		result = BG3D_CheckTriangleIObyZX(target,vertex[0],vertex[1],vertex[2]);
-		if (result == TRUE){//OŠpŒ`“à
+		if (result == TRUE){//ä¸‰è§’å½¢å†…
 /**
 			OS_Printf("tri_vert:%x,%x,%x %x,%x,%x %x,%x,%x\n",
 		vertex[0].x,vec_y[0],vertex[0].z,
@@ -848,31 +848,31 @@ u8 HC_DebugCheckHeight(const fx32 inX, const fx32 inZ, MHI_CONST_PTR inMap3DInfo
 		vertex[2].x,vec_y[2],vertex[2].z);
 */
 ///OS_Printf("target:%x,%x\n",target.x,target.z);
-			//’¸“_ƒqƒbƒg‚ğƒ`ƒFƒbƒN
+			//é ‚ç‚¹ãƒ’ãƒƒãƒˆã‚’ãƒã‚§ãƒƒã‚¯
 			if ( GetVertexEqualHeight(&target,&vec[0],&vec[1],&vec[2], &y) ){
 				height_array[pol_count].Height = y;
-				///OS_Printf("’¸“_‚Éƒqƒbƒg\n");
+				///OS_Printf("é ‚ç‚¹ã«ãƒ’ãƒƒãƒˆ\n");
 			}
-			//‚w‚y•½–Ê‚É•½s‚È•Ó‚Éƒqƒbƒg‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+			//ï¼¸ï¼ºå¹³é¢ã«å¹³è¡Œãªè¾ºã«ãƒ’ãƒƒãƒˆã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			else if( GetEdgeEqualHeightXZFlat(&target,&vec[0],&vec[1],&vec[2], &y) ){
 				height_array[pol_count].Height = y;
-				///OS_Printf("•Ó‚Éƒqƒbƒg\n");
+				///OS_Printf("è¾ºã«ãƒ’ãƒƒãƒˆ\n");
 
 			}
-			//’Êíæ“¾
+			//é€šå¸¸å–å¾—
 			else{
-				//–@üæ“¾
+				//æ³•ç·šå–å¾—
 				GetPolygonNrm(inMap3DInfo,pol_index, &nrm);
 ///				OS_Printf("nrm:%x,%x,%x\n",nrm.x,nrm.y,nrm.z);			
-				//•½–Ê‚Ì•û’ö®‚É•K—v‚Èƒf[ƒ^iŒ´“_‚ğ’Ê‚é•½–Ê‚©‚ç‚ÌƒIƒtƒZƒbƒgj‚ğæ“¾
+				//å¹³é¢ã®æ–¹ç¨‹å¼ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ï¼ˆåŸç‚¹ã‚’é€šã‚‹å¹³é¢ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼‰ã‚’å–å¾—
 				d = inMap3DInfo->PolygonData[pol_index].paramD;
-				//•½–Ê‚Ì•û’ö®‚æ‚è‚‚³æ“¾
+				//å¹³é¢ã®æ–¹ç¨‹å¼ã‚ˆã‚Šé«˜ã•å–å¾—
 				y = -(FX_Mul(nrm.x, target.x)+FX_Mul(nrm.z, target.z)+d);
 				y = FX_Div(y, nrm.y);
 				height_array[pol_count].Height = y;
 			}
 			
-			//”z—ñ‚Ìƒ\[ƒgiŒ»s‚Å‚Í‹@”\‚µ‚Ä‚Ü‚¹‚ñB‘Î‰—\’èj<<–¢g—p‚É‚µ‚Ü‚µ‚½B20060801
+			//é…åˆ—ã®ã‚½ãƒ¼ãƒˆï¼ˆç¾è¡Œã§ã¯æ©Ÿèƒ½ã—ã¦ã¾ã›ã‚“ã€‚å¯¾å¿œäºˆå®šï¼‰<<æœªä½¿ç”¨ã«ã—ã¾ã—ãŸã€‚20060801
 			pol_count++;
 			if (pol_count >= MAX_GET_POL){
 				break;
@@ -881,18 +881,18 @@ u8 HC_DebugCheckHeight(const fx32 inX, const fx32 inZ, MHI_CONST_PTR inMap3DInfo
 		}
 	}//end for
 	
-	if (pol_count > 1){//ƒ|ƒŠƒSƒ“ƒf[ƒ^‚ª•¡”æ‚ê‚½‚Æ‚«
+	if (pol_count > 1){//ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒè¤‡æ•°å–ã‚ŒãŸã¨ã
 		pol_index = 0;
 		temp1 = height_array[0].Height;
-		//‚·‚×‚Ä‚Ìƒ|ƒŠƒSƒ“ƒf[ƒ^‚Ì‚‚³‚ğ‹‚ßAŒ»İ‚Ì‚‚³‚Éˆê”Ô‹ß‚¢•¨‚ğ‘Io‚·‚é
+		//ã™ã¹ã¦ã®ãƒãƒªã‚´ãƒ³ãƒ‡ãƒ¼ã‚¿ã®é«˜ã•ã‚’æ±‚ã‚ã€ç¾åœ¨ã®é«˜ã•ã«ä¸€ç•ªè¿‘ã„ç‰©ã‚’é¸å‡ºã™ã‚‹
 		for(i=1;i<pol_count;i++){
 			temp2 = height_array[i].Height;
 			if (temp1!=temp2){
 				if (inDetail){
 					int c;
-///					OS_Printf("À•W:%x,%x  ",inX,inZ);
-///					OS_Printf("‚±‚±‚Ìƒ†ƒjƒbƒg‚Í%d‘w‚Å‚·\n",pol_count);
-					OS_Printf("ŒŸo‚µ‚½‚‚³F");
+///					OS_Printf("åº§æ¨™:%x,%x  ",inX,inZ);
+///					OS_Printf("ã“ã“ã®ãƒ¦ãƒ‹ãƒƒãƒˆã¯%då±¤ã§ã™\n",pol_count);
+					OS_Printf("æ¤œå‡ºã—ãŸé«˜ã•ï¼š");
 					for(c=0;c<pol_count;c++){
 						OS_Printf("%x,", height_array[c].Height);
 					}
@@ -902,14 +902,14 @@ u8 HC_DebugCheckHeight(const fx32 inX, const fx32 inZ, MHI_CONST_PTR inMap3DInfo
 			}
 		}
 		if (inDetail){
-			OS_Printf("“¯‚¶‚‚³%x\n",temp1);
+			OS_Printf("åŒã˜é«˜ã•%x\n",temp1);
 			return 2;
 		}
 	}else if(pol_count == 1){
 		///OS_Printf("PlaneOnly:%x\n",height_array[0].Height);
 		return 0;
 	}
-	//‚‚³‚ª‚È‚¢
+	//é«˜ã•ãŒãªã„
 	return 3;
 #endif
 	return 0;

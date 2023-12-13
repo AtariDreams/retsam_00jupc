@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	wifi_counter_tool.c
- * @brief	WifiƒJƒEƒ“ƒ^[ŠÖ˜Aƒc[ƒ‹—Þ
+ * @brief	Wifiã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é–¢é€£ãƒ„ãƒ¼ãƒ«é¡ž
  * @author	Satoshi Nohara
  * @date	2008.01.18
  */
@@ -23,43 +23,43 @@
 
 //==============================================================================
 //
-//	’è‹`	
+//	å®šç¾©	
 //
 //==============================================================================
 #define WIFI_COUNTER_LAP_CHAR_XSIZE	(2)							//
 #define WIFI_COUNTER_LAP_CHAR_YSIZE	(2)							//
 #define WIFI_COUNTER_LAP_SCRN_SIZE	(WIFI_COUNTER_LAP_CHAR_XSIZE * WIFI_COUNTER_LAP_CHAR_YSIZE)
-#define WIFI_COUNTER_CHAR_START		(12)						//‘‚«Š·‚¦‚éƒf[ƒ^‚ÌXˆÊ’u
-#define WIFI_COUNTER_CHAR_START2	(14)						//‘‚«Š·‚¦‚éƒf[ƒ^‚ÌYˆÊ’u
-#define WIFI_COUNTER_CHAR_START3	(0x10*6)					//‘‚«Š·‚¦‚éƒf[ƒ^‚Ì‚ ‚éƒ‰ƒCƒ“
-#define NUM_WRITE_X					(14)						//‘‚«ž‚ÝX
-#define NUM_WRITE_Y					(2)							//‘‚«ž‚ÝY
+#define WIFI_COUNTER_CHAR_START		(12)						//æ›¸ãæ›ãˆã‚‹ãƒ‡ãƒ¼ã‚¿ã®Xä½ç½®
+#define WIFI_COUNTER_CHAR_START2	(14)						//æ›¸ãæ›ãˆã‚‹ãƒ‡ãƒ¼ã‚¿ã®Yä½ç½®
+#define WIFI_COUNTER_CHAR_START3	(0x10*6)					//æ›¸ãæ›ãˆã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚ã‚‹ãƒ©ã‚¤ãƒ³
+#define NUM_WRITE_X					(14)						//æ›¸ãè¾¼ã¿X
+#define NUM_WRITE_Y					(2)							//æ›¸ãè¾¼ã¿Y
 
 
 //==============================================================================
 //
-//	\‘¢‘Ì
+//	æ§‹é€ ä½“
 //	
 //==============================================================================
-//BGƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ[ƒN
+//BGã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	TCB_PTR tcb;							///<§Œäƒ^ƒXƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	TCB_PTR tcb;							///<åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	GF_BGL_INI* bgl;						///<
 	u16 no;
 	u16 wait;
 }WIFI_COUNTER_MONITOR_BG_WORK;
 
 struct _WIFI_COUNTER_MONITOR_SYS{
-	GF_BGL_INI* bgl;						///<BGL‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	GF_BGL_INI* bgl;						///<BGLã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	WIFI_COUNTER_MONITOR_BG_WORK* work;
 };
 
-#define WIFI_COUNTER_MONITOR_WAIT	(2)		//ƒ‚ƒjƒ^[‚ðƒAƒjƒ‚³‚¹‚éƒEƒFƒCƒg
+#define WIFI_COUNTER_MONITOR_WAIT	(2)		//ãƒ¢ãƒ‹ã‚¿ãƒ¼ã‚’ã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹ã‚¦ã‚§ã‚¤ãƒˆ
 
 
 //==============================================================================
 //
-//	ƒ‚ƒjƒ^[ƒXƒNƒŠ[ƒ“‚ðØ‚è‘Ö‚¦‚ÄƒAƒjƒ‚³‚¹‚é
+//	ãƒ¢ãƒ‹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’åˆ‡ã‚Šæ›¿ãˆã¦ã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹
 //	
 //==============================================================================
 WIFI_COUNTER_MONITOR_SYS* WifiCounterMonitor_Init( GF_BGL_INI* bgl );
@@ -69,12 +69,12 @@ static void WifiCounter_WriteSub( u16* src, u8 flag );
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰Šú‰»
+ * @brief   åˆæœŸåŒ–
  *
- * @param   bgl		BGL‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pfd		PFD‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pfd		PFDã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  "ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^"
+ * @retval  "ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿"
  */
 //--------------------------------------------------------------
 WIFI_COUNTER_MONITOR_SYS* WifiCounterMonitor_Init( GF_BGL_INI* bgl )
@@ -90,11 +90,11 @@ WIFI_COUNTER_MONITOR_SYS* WifiCounterMonitor_Init( GF_BGL_INI* bgl )
 
 //--------------------------------------------------------------
 /**
- * @brief   TCBì¬
+ * @brief   TCBä½œæˆ
  *
- * @param   bgl				BGL‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl				BGLã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BGƒAƒjƒ§Œäƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  BGã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static WIFI_COUNTER_MONITOR_BG_WORK* WifiCounterMonitor_TCBAdd( GF_BGL_INI* bgl )
@@ -112,10 +112,10 @@ static WIFI_COUNTER_MONITOR_BG_WORK* WifiCounterMonitor_TCBAdd( GF_BGL_INI* bgl 
 
 //--------------------------------------------------------------
 /**
- * @brief   TCBƒRƒ“ƒgƒ[ƒ‹
+ * @brief   TCBã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		WIFI_COUNTER_MONITOR_BG_WORK\‘¢‘Ì
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		WIFI_COUNTER_MONITOR_BG_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void WifiCounterMonitor_AnimeControl( TCB_PTR tcb, void* work )
@@ -124,7 +124,7 @@ static void WifiCounterMonitor_AnimeControl( TCB_PTR tcb, void* work )
 	u16 src[WIFI_COUNTER_LAP_SCRN_SIZE];
 	WIFI_COUNTER_MONITOR_BG_WORK* wk = work;
 	
-	//wifiLê‚¾‚ÆA2,3ƒEƒFƒCƒg‚ðŒðŒÝ‚É‚µ‚Ä‚¢‚é‚ç‚µ‚¢‚ªA”÷–­‚Èˆá‚¢‚È‚Ì‚ÅA2ŒÅ’è‚É‚µ‚Ä‚Ü‚·
+	//wifiåºƒå ´ã ã¨ã€2,3ã‚¦ã‚§ã‚¤ãƒˆã‚’äº¤äº’ã«ã—ã¦ã„ã‚‹ã‚‰ã—ã„ãŒã€å¾®å¦™ãªé•ã„ãªã®ã§ã€2å›ºå®šã«ã—ã¦ã¾ã™
 	
 	if( wk->wait < WIFI_COUNTER_MONITOR_WAIT){
 		wk->wait++;
@@ -136,18 +136,18 @@ static void WifiCounterMonitor_AnimeControl( TCB_PTR tcb, void* work )
 	WifiCounter_WriteSub( src, wk->no );
 
 	GF_BGL_ScrWrite(wk->bgl, FRMAP_FRAME_MAP, src, NUM_WRITE_X, NUM_WRITE_Y, 
-					WIFI_COUNTER_LAP_CHAR_XSIZE, WIFI_COUNTER_LAP_CHAR_YSIZE );	//scrn‘‚«ž‚Ý
+					WIFI_COUNTER_LAP_CHAR_XSIZE, WIFI_COUNTER_LAP_CHAR_YSIZE );	//scrnæ›¸ãè¾¼ã¿
 
-	GF_BGL_LoadScreenV_Req( wk->bgl, FRMAP_FRAME_MAP );				//ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	GF_BGL_LoadScreenV_Req( wk->bgl, FRMAP_FRAME_MAP );				//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒbƒtƒ@‚É‘‚«ž‚Ý
+ * @brief	ãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã¿
  *
- * @param	src		‘‚«ž‚Ýƒoƒbƒtƒ@
- * @param	flag	0,1‚ð“n‚µ‚ÄƒAƒjƒ
+ * @param	src		æ›¸ãè¾¼ã¿ãƒãƒƒãƒ•ã‚¡
+ * @param	flag	0,1ã‚’æ¸¡ã—ã¦ã‚¢ãƒ‹ãƒ¡
  *
  * @return	none
  */
@@ -165,7 +165,7 @@ static void WifiCounter_WriteSub( u16* src, u8 flag )
 	for( i=0; i < WIFI_COUNTER_LAP_CHAR_YSIZE ;i++ ){
 		for( j=0; j < WIFI_COUNTER_LAP_CHAR_XSIZE ;j++ ){
 
-			//0x10=CHARƒtƒ@ƒCƒ‹‚ÌYƒIƒtƒZƒbƒg
+			//0x10=CHARãƒ•ã‚¡ã‚¤ãƒ«ã®Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
 			no = (WIFI_COUNTER_CHAR_START3 + i * 0x10) + (start + j);
 			//OS_Printf( "no = %d\n", no );
 			src[ (i * WIFI_COUNTER_LAP_CHAR_XSIZE) + j ] = no;
@@ -178,7 +178,7 @@ static void WifiCounter_WriteSub( u16* src, u8 flag )
 
 //==============================================================================
 //
-//	ƒ‚ƒjƒ^[ƒXƒNƒŠ[ƒ“‚ÌƒAƒjƒI—¹
+//	ãƒ¢ãƒ‹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ã‚¢ãƒ‹ãƒ¡çµ‚äº†
 //	
 //==============================================================================
 void WifiCounterMonitor_End( WIFI_COUNTER_MONITOR_SYS* p_sys );
@@ -186,9 +186,9 @@ static void WifiCounterMonitorBGAnime_End( WIFI_COUNTER_MONITOR_BG_WORK* wk );
 
 //--------------------------------------------------------------
 /**
- * @brief   I—¹
+ * @brief   çµ‚äº†
  *
- * @param   anmsys		ƒXƒe[ƒWƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param   anmsys		ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void WifiCounterMonitor_End( WIFI_COUNTER_MONITOR_SYS* p_sys )
@@ -200,9 +200,9 @@ void WifiCounterMonitor_End( WIFI_COUNTER_MONITOR_SYS* p_sys )
 
 //--------------------------------------------------------------
 /**
- * @brief   WifiƒJƒEƒ“ƒ^[BGƒAƒjƒƒVƒXƒeƒ€I—¹
+ * @brief   Wifiã‚«ã‚¦ãƒ³ã‚¿ãƒ¼BGã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
  *
- * @param   sbw		BGƒAƒjƒ§Œäƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sbw		BGã‚¢ãƒ‹ãƒ¡åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void WifiCounterMonitorBGAnime_End( WIFI_COUNTER_MONITOR_BG_WORK* wk )
@@ -214,9 +214,9 @@ static void WifiCounterMonitorBGAnime_End( WIFI_COUNTER_MONITOR_BG_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   WIFI˜AŸƒŒƒR[ƒhIDŽæ“¾
+ * @brief   WIFIé€£å‹ãƒ¬ã‚³ãƒ¼ãƒ‰IDå–å¾—
  *
- * @param   "ƒŒƒR[ƒhID"
+ * @param   "ãƒ¬ã‚³ãƒ¼ãƒ‰ID"
  */
 //--------------------------------------------------------------
 u16 WifiCounterRensyouRecordIDGet( u8 bf_no )
@@ -255,9 +255,9 @@ u16 WifiCounterRensyouRecordIDGet( u8 bf_no )
 
 //--------------------------------------------------------------
 /**
- * @brief   WIFIƒNƒŠƒAIDŽæ“¾
+ * @brief   WIFIã‚¯ãƒªã‚¢IDå–å¾—
  *
- * @param   "ƒŒƒR[ƒhID"
+ * @param   "ãƒ¬ã‚³ãƒ¼ãƒ‰ID"
  */
 //--------------------------------------------------------------
 u16 WifiCounterClearRecordIDGet( u8 bf_no )

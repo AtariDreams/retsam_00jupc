@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_G2dRndCoreBeginRendering</title>
@@ -11,7 +11,7 @@
 
 <body>
 <h1 align="left">NNS_G2dRndCoreBeginRendering</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,46 +22,46 @@
 
   </CODE></pre>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pRnd</font></strong></em></td>
-    <td width="87%">[IN] �����_���R�A</td>    
+    <td width="87%">[IN] レンダラコア</td>    
   </tr>
   </table>
-<h2>�Ԃ�l</h2>
+<h2>返り値</h2>
 <p>
-�Ȃ��B
+なし。
 </p>
-<H2>����</H2>
+<H2>説明</H2>
 <p>
-�����_���R�A�̕`����J�n���܂��B<BR>
-�e��`��J�n�̂��߂̑O�������s���܂��B<BR>
+レンダラコアの描画を開始します。<BR>
+各種描画開始のための前処理を行います。<BR>
 <pre>
-�{�֐������s����O�ɕK���A�ȉ��̐ݒ���ς܂��Ă����K�v������܂��B
-   �E�摜�v���N�V�̐ݒ�(NNS_G2dSetRndCoreImageProxy()�j
-   �E�`��Ώ̃T�[�t�F�X�̐ݒ�iNNS_G2dSetRndCoreSurface()�j
-2D �O���t�B�b�N�X�G���W�����g�p����`��̏ꍇ�ɂ͂���ɁA
-   �EOAM�o�^�֐��̐ݒ�iNNS_G2dSetRndCoreOamRegisterFunc()�j
+本関数を実行する前に必ず、以下の設定を済ませておく必要があります。
+   ・画像プロクシの設定(NNS_G2dSetRndCoreImageProxy()）
+   ・描画対称サーフェスの設定（NNS_G2dSetRndCoreSurface()）
+2D グラフィックスエンジンを使用する描画の場合にはさらに、
+   ・OAM登録関数の設定（NNS_G2dSetRndCoreOamRegisterFunc()）
 </pre>
 
 <BR>
-�{�֐����Ăяo������́A�摜�v���N�V�A�Ώۃ����_�T�[�t�F�X�̃p�����[�^�̕ύX�͍s���܂���̂Œ��ӂ��Ă��������B<BR>
-�{�֐����Ă񂾌�A�`��I����ɕK�� NNS_G2dRndCoreEndRendering() ���Ăяo���Ă��������B<BR>
+本関数を呼び出した後は、画像プロクシ、対象レンダサーフェスのパラメータの変更は行えませんので注意してください。<BR>
+本関数を呼んだ後、描画終了後に必ず NNS_G2dRndCoreEndRendering() を呼び出してください。<BR>
 <BR>
-Begin-EndRendering�u���b�N���ł�Begin-EndRendering�֐��̌Ăяo��(����q�Ăяo��)
-�͋֎~����Ă���A�Ăяo�����s�����ꍇ�́A�A�T�[�g�Ɏ��s���܂��B<BR>
+Begin-EndRenderingブロック内でのBegin-EndRendering関数の呼び出し(入れ子呼び出し)
+は禁止されており、呼び出しを行った場合は、アサートに失敗します。<BR>
 <BR>
 </P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="NNS_G2dRndCoreEndRendering.html">NNS_G2dRndCoreEndRendering</A><br>
 </CODE>
 
 </p>
 
-<H2>����</H2>
-<P>2004/11/10 ����</P>
+<H2>履歴</H2>
+<P>2004/11/10 初版</P>
 </body>
 </html>

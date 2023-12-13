@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_018.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			018@“Gƒ|ƒPƒ‚ƒ“‚Ìu‚±‚¤‚°‚«v‚ğ‚P’iŠK‰º‚°‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			018ã€€æ•µãƒã‚±ãƒ¢ãƒ³ã®ã€Œã“ã†ã’ãã€ã‚’ï¼‘æ®µéšä¸‹ã’ã‚‹
  *
  *@author	HisashiSogabe
  *@data		2005.10.27

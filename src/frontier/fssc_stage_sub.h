@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fssc_stage_sub.h
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhƒTƒuFƒXƒe[ƒW
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ã‚µãƒ–ï¼šã‚¹ãƒ†ãƒ¼ã‚¸
  * @author	Satoshi Nohara
  * @date	07.06.07
  */
@@ -14,7 +14,7 @@
 
 //============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //============================================================================================
 extern STAGE_SCRWORK* StageScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u8 pos, u8 pos2 );
@@ -28,7 +28,7 @@ extern void StageScr_TradePokeChange( STAGE_SCRWORK* wk );
 extern void StageScr_TradeAfterPartySet( STAGE_SCRWORK* wk );
 extern void StageScr_StageRenshouCopyExtra( STAGE_SCRWORK* wk, u16* ret_wk );
 
-//’ÊM
+//é€šä¿¡
 extern BOOL StageScr_CommSetSendBuf( STAGE_SCRWORK* wk, u16 type, u16 param );
 
 extern void StageScr_SaveRestPlayData( STAGE_SCRWORK* wk, u8 mode );

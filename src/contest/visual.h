@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	visual.h
- * @brief	�r�W���A������̃w�b�_
+ * @brief	ビジュアル部門のヘッダ
  * @author	matsuda
- * @date	2005.12.10(�y)
+ * @date	2005.12.10(土)
  */
 //==============================================================================
 #ifndef __VISUAL_H__
@@ -27,98 +27,98 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///�ϋq�������ɏo����n�[�g�̐�
+///観客が同時に出せるハートの数
 #define VISUAL_AUDIENCE_HEART_MAX		(8)
 
-///�T�u��ʂ̃T�[�t�F�[�X�ʒu
+///サブ画面のサーフェース位置
 #define VISUAL_SUB_ACTOR_DISTANCE		(256 * FX32_ONE)
 
 //--------------------------------------------------------------
-//	�o�b�t�@
+//	バッファ
 //--------------------------------------------------------------
-///������o�b�t�@�̃T�C�Y
-#define VISUAL_MESSAGE_BUF_SIZE	(2*160)		///<�b��łP�U�O������
+///文字列バッファのサイズ
+#define VISUAL_MESSAGE_BUF_SIZE	(2*160)		///<暫定で１６０文字分
 
 //--------------------------------------------------------------
-//	�t���[���ԍ��F���C��
+//	フレーム番号：メイン
 //--------------------------------------------------------------
-///�E�B���h�E�E�p�l���ʂ̃t���[��
+///ウィンドウ・パネル面のフレーム
 #define VISUAL_FRAME_WIN				(GF_BGL_FRAME1_M)
-///�G�t�F�N�g�ʂ̃t���[��
+///エフェクト面のフレーム
 #define VISUAL_FRAME_EFF				(GF_BGL_FRAME2_M)
-///�ϋq(�w�i)�ʂ̃t���[��
+///観客(背景)面のフレーム
 #define VISUAL_FRAME_BACKGROUND			(GF_BGL_FRAME3_M)
 
-///<BG�ԍ��F�E�B���h�E
+///<BG番号：ウィンドウ
 #define VISUAL_BGNO_WIN			(1)
-///<BG�ԍ��F�G�t�F�N�g
+///<BG番号：エフェクト
 #define VISUAL_BGNO_EFF			(2)
-///<BG�ԍ��F�w�i
+///<BG番号：背景
 #define VISUAL_BGNO_AUDIENCE	(3)
 
-///<3D�ʂ�BG�v���C�I���e�B
+///<3D面のBGプライオリティ
 #define VISUAL_3DBG_PRIORITY		(1)
-///�E�B���h�E�ʂ�BG�v���C�I���e�B
+///ウィンドウ面のBGプライオリティ
 #define VISUAL_BGPRI_WIN			(0)
-///�G�t�F�N�g�ʂ�BG�v���C�I���e�B
+///エフェクト面のBGプライオリティ
 #define VISUAL_BGPRI_EFF			(2)
-///�w�i�ʂ�BG�v���C�I���e�B
+///背景面のBGプライオリティ
 #define VISUAL_BGPRI_AUDIENCE		(3)
 
 //--------------------------------------------------------------
-//	�t���[���ԍ��F�T�u
+//	フレーム番号：サブ
 //--------------------------------------------------------------
-///�ϋq�ʂ̃t���[��
+///観客面のフレーム
 #define VISUAL_FRAME_SUB_AUDIENCE				(GF_BGL_FRAME0_S)
 
-///<BG�ԍ��F�ϋq
+///<BG番号：観客
 #define VISUAL_BGNO_SUB_AUDIENCE			(0)
 
-///�ϋq�ʂ�BG�v���C�I���e�B
+///観客面のBGプライオリティ
 #define VISUAL_BGPRI_SUB_AUDIENCE			(3)
 
 
 //--------------------------------------------------------------
-//	BMP�E�B���h�E
+//	BMPウィンドウ
 //--------------------------------------------------------------
 enum{
-	VISUAL_BMPWIN_TALK,		///<��b�E�B���h�E
+	VISUAL_BMPWIN_TALK,		///<会話ウィンドウ
 	
 	VISUAL_BMPWIN_MAX,
 };
 
 
 //--------------------------------------------------------------
-//	��b�E�B���h�E
+//	会話ウィンドウ
 //--------------------------------------------------------------
-///��b�E�B���h�E�̃L�����N�^�]���I�t�Z�b�g(�L�����N�^�P��)
+///会話ウィンドウのキャラクタ転送オフセット(キャラクタ単位)
 #define VISUAL_TALKWIN_CGX_OFFSET	(1)
-///��b�E�B���h�E�w�i�F
+///会話ウィンドウ背景色
 #define VISUAL_TALKWIN_BACK_COLOR	(15)
-///��b�E�B���h�E�̃p���b�g�ԍ�
+///会話ウィンドウのパレット番号
 #define VISUAL_TALKWIN_PALNO		(14)
 
 //--------------------------------------------------------------
-//	�A�N�^�[�v���C�I���e�B
+//	アクタープライオリティ
 //--------------------------------------------------------------
-///�ԕ��͗l��BG�v���C�I���e�B
+///花柄模様のBGプライオリティ
 #define V_FLOWER_BGPRI				(VISUAL_BGPRI_AUDIENCE)
-///�ԕ��͗l�̃\�t�g�v���C�I���e�B
+///花柄模様のソフトプライオリティ
 #define V_FLOWER_SOFTPRI			(200)
-///�ϋq�n�[�g��BG�v���C�I���e�B
+///観客ハートのBGプライオリティ
 #define V_AUDIENCE_HEART_BGPRI		(1)
-///�ϋq�n�[�g�̃\�t�g�v���C�I���e�B
+///観客ハートのソフトプライオリティ
 #define V_AUDIENCE_HEART_SOFTPRI	(10)
 
 
 //--------------------------------------------------------------
-//	���b�Z�[�W�^�O
+//	メッセージタグ
 //--------------------------------------------------------------
-///���b�Z�[�W�^�O
+///メッセージタグ
 enum{
-	VTAG_NONE,		///<�^�O�Ȃ�
+	VTAG_NONE,		///<タグなし
 	
 	VTAG_OYA_NICK,
 	
@@ -127,30 +127,30 @@ enum{
 
 
 //==============================================================================
-//	�\���̒�`
+//	構造体定義
 //==============================================================================
 //--------------------------------------------------------------
-//	���b�Z�[�W
+//	メッセージ
 //--------------------------------------------------------------
-///���Z���僁�b�Z�[�W�f�[�^
+///演技部門メッセージデータ
 typedef struct{
-	u16 msg_id;				///<���b�Z�[�WID
-	u8 msg_tag;				///<�^�O�R�[�h
+	u16 msg_id;				///<メッセージID
+	u8 msg_tag;				///<タグコード
 }VISUAL_MESSAGE_PARAM;
 
-///���b�Z�[�W�^�O�W�J����ꍇ�A�Q�Ƃ����p�����[�^��
+///メッセージタグ展開する場合、参照されるパラメータ類
 typedef struct{
-	u8 mine_brd;		///<MINE���w�肳��Ă������ɎQ�Ƃ���u���[�_�[�̔ԍ�
-	u8 num;				///<NUM���w�肳��Ă������ɕ\�����鐔�l
-	u8 judge_no;		///<JUDGE���w�肳��Ă������ɎQ�Ƃ���R���̔ԍ�
+	u8 mine_brd;		///<MINEが指定されていた時に参照するブリーダーの番号
+	u8 num;				///<NUMが指定されていた時に表示する数値
+	u8 judge_no;		///<JUDGEが指定されていた時に参照する審判の番号
 	
-	u8 dummy;	//4�o�C�g���E�I�t�Z�b�g
+	u8 dummy;	//4バイト境界オフセット
 }VTAG_PARAM;
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///���C���V�[�P���X���Ŏg�p���郍�[�J�����[�N
+///メインシーケンス内で使用するローカルワーク
 typedef struct{
 	u16 seq;
 	u16 select_seq;
@@ -159,18 +159,18 @@ typedef struct{
 
 //--------------------------------------------------------------
 /**
- * @brief   �r�W���A������i�s�p�����[�^(���݋Z���o���Ă���|�P�����̐i�s�p�����[�^)
+ * @brief   ビジュアル部門進行パラメータ(現在技を出しているポケモンの進行パラメータ)
  */
 //--------------------------------------------------------------
 typedef struct{
-	u8 now_breeder;					///<���ݏ�ɏo�Ă���u���[�_�[�̔ԍ�
-	u8 evaluate_heart_num_bp;		///<�ϋq���\������n�[�g�̐�(�u���[�_�[�|�C���g��)
-	u8 evaluate_heart_num_clip;		///<�ϋq���\������n�[�g�̐�(�N���b�v��)
+	u8 now_breeder;					///<現在場に出ているブリーダーの番号
+	u8 evaluate_heart_num_bp;		///<観客が表示するハートの数(ブリーダーポイント分)
+	u8 evaluate_heart_num_clip;		///<観客が表示するハートの数(クリップ分)
 
-	VTAG_PARAM a_talk_tagpara;		///<�m�[�}����b�F�^�O�W�J�p�p�����[�^
-	u8 a_talk_id;					///<�m�[�}����bID(A_TALK_VISUAL_???)
-	u8 a_talk_bmpwin_close_wait;	///<���b�Z�[�W��\���������Ă���E�B���h�E�����܂ł�wait
-	u8 a_talk_bmpwin_not_close;		///<TRUE:�E�B���h�E������ɏI��
+	VTAG_PARAM a_talk_tagpara;		///<ノーマル会話：タグ展開用パラメータ
+	u8 a_talk_id;					///<ノーマル会話ID(A_TALK_VISUAL_???)
+	u8 a_talk_bmpwin_close_wait;	///<メッセージを表示しきってからウィンドウを閉じるまでのwait
+	u8 a_talk_bmpwin_not_close;		///<TRUE:ウィンドウを閉じずに終了
 
 	s8 fade_start_evy;
 	s8 fade_end_evy;
@@ -182,44 +182,44 @@ typedef struct{
 
 //--------------------------------------------------------------
 /**
- * @brief   �r�W���A������Q�[���i�s�p�����[�^
+ * @brief   ビジュアル部門ゲーム進行パラメータ
  *
- * ���̃p�����[�^������ΑS��ʂ��č\�z�o���邾���̏�񂪓����Ă��܂��B
- * �ʐM���̓T�[�o�[����q�@�̓f�[�^���󂯎�鎖�ɂȂ�܂��B
- * ��{�I�Ƀ��j���[��ʂ���̉�ʕ��A�̂悤�Ȏ����Ȃ�����A
- * �X�̎q�@���Œl���Q�Ƃ��鎖�͂Ȃ��͂��ł��B
+ * このパラメータがあれば全画面を再構築出来るだけの情報が入っています。
+ * 通信時はサーバーから子機はデータを受け取る事になります。
+ * 基本的にメニュー画面からの画面復帰のような事がない限り、
+ * 個々の子機側で値を参照する事はないはずです。
  */
 //--------------------------------------------------------------
 typedef struct{
-	u8 breeder_sort[BREEDER_MAX];	///<�Z���o������(�o�鏇�Ƀu���[�_�[�ԍ��������Ă܂�)
-	u8 breeder_end_count;			///<�s�����I�������u���[�_�[�̐����J�E���g
+	u8 breeder_sort[BREEDER_MAX];	///<技を出す順番(出る順にブリーダー番号が入ってます)
+	u8 breeder_end_count;			///<行動が終了したブリーダーの数をカウント
 	
-	s16 bp[BREEDER_MAX];			///<�l�������u���[�_�[�|�C���g
+	s16 bp[BREEDER_MAX];			///<獲得したブリーダーポイント
 }VISUAL_GAME_PARAM;
 
 //--------------------------------------------------------------
 /**
- * @brief   ���ߑ���M�p�p�����[�^
+ * @brief   命令送受信用パラメータ
  * 
- * �T�[�o�[�Ƃ̖��߂̑���M�Ɏg�p���܂�
+ * サーバーとの命令の送受信に使用します
  */
 //--------------------------------------------------------------
 typedef struct{
 	u8 breeder_no;
 	
-	u8 buffer[255];					///<�e���߂Ōʂɓn���f�[�^���ς��ꍇ�A�������g�p
+	u8 buffer[255];					///<各命令で個別に渡すデータが変わる場合、ここを使用
 }VISUAL_ORDER_PARAM;
 
 //--------------------------------------------------------------
 /**
- * @brief   �Q�[����ʂ��\�����邽�߂ɕK�v�ȃV�X�e���f�[�^�ނ����\����
+ * @brief   ゲーム画面を構成するために必要なシステムデータ類を持つ構造体
  *
- * �ʐM���ł��S�Ẵ}�V���Ōʂɍ쐬����܂�
- * �e�X�^�b�t�����ߎ�M���A���̃}�V���X�Ő����������̃��[�N�o�b�t�@��n�����ɂȂ�܂�
+ * 通信時でも全てのマシンで個別に作成されます
+ * 各スタッフが命令受信時、そのマシン個々で生成したこのワークバッファを渡す事になります
  */
 //--------------------------------------------------------------
 typedef struct{
-	CONTEST_GAME_PARAM *c_game;		///<�R���e�X�g�i�s�p�����[�^(��t�Ŋ��ɒʐM�ς݂̃f�[�^�ւ̃|�C���^���������B�Q�Ɨp)
+	CONTEST_GAME_PARAM *c_game;		///<コンテスト進行パラメータ(受付で既に通信済みのデータへのポインタを持つだけ。参照用)
 	
 	SOFT_SPRITE_MANAGER	*soft_sprite;
 	SOFT_SPRITE *ss[BREEDER_MAX];
@@ -228,60 +228,60 @@ typedef struct{
 	CATS_RES_PTR		crp;
 	GF_BGL_INI *bgl;
 	GF_BGL_BMPWIN win[VISUAL_BMPWIN_MAX];
-	MSGDATA_MANAGER *visual_msg;	///<�r�W���A�����僁�b�Z�[�W�p���b�Z�[�W�}�l�[�W���̃|�C���^
+	MSGDATA_MANAGER *visual_msg;	///<ビジュアル部門メッセージ用メッセージマネージャのポインタ
 	WORDSET *wordset;
-	STRBUF *msg_buf;				///<Alloc����������o�b�t�@�ւ̃|�C���^
-	PALETTE_FADE_PTR pfd;			///<�p���b�g�t�F�[�h�V�X�e���ւ̃|�C���^
+	STRBUF *msg_buf;				///<Allocした文字列バッファへのポインタ
+	PALETTE_FADE_PTR pfd;			///<パレットフェードシステムへのポインタ
 
-	EXCHR_PARAM exchr_param[BREEDER_MAX];		///<�Z�G�t�F�N�g�p�L�����W�J�o�b�t�@
+	EXCHR_PARAM exchr_param[BREEDER_MAX];		///<技エフェクト用キャラ展開バッファ
 
-	CATS_ACT_PTR heart_cap[VISUAL_AUDIENCE_HEART_MAX];	///<�ϋq���o���n�[�g�A�N�^�[�̃|�C���^
+	CATS_ACT_PTR heart_cap[VISUAL_AUDIENCE_HEART_MAX];	///<観客が出すハートアクターのポインタ
 	
-	FLOWER_WORK flower;				///<�ԕ��͗l���䃏�[�N
+	FLOWER_WORK flower;				///<花柄模様制御ワーク
 	
-	u8 talk_msg_index;				///<�����`�惋�[�`���̃C���f�b�N�X
+	u8 talk_msg_index;				///<文字描画ルーチンのインデックス
 }VISUAL_SYSTEM_PARAM;
 
 //--------------------------------------------------------------
 /**
- * @brief   �r�W���A������Ǘ����[�N
+ * @brief   ビジュアル部門管理ワーク
  *
- * �r�W���A������S�̂��Ǘ�����匳�̃��[�N�ɂȂ�܂��B
- * �ʐM���ł��S�Ẵ}�V���Ōʂɍ쐬����܂�
+ * ビジュアル部門全体を管理する大元のワークになります。
+ * 通信時でも全てのマシンで個別に作成されます
  */
 //--------------------------------------------------------------
 typedef struct{
-	CONTEST_SYSTEM *consys;			///<�R���e�X�g�V�X�e�����[�N�ւ̃|�C���^
+	CONTEST_SYSTEM *consys;			///<コンテストシステムワークへのポインタ
 	TCB_PTR update_tcb;
 	GF_G3DMAN *g3Dman;
 	
-	VISUAL_SYSTEM_PARAM sys;			///<�r�W���A������V�X�e���f�[�^�p�����[�^
-	VISUAL_GAME_PARAM v_game;			///<�Q�[���i�s�p�����[�^
-	VISUAL_ADVANCE_PARAM advance;		///<�i�s�p�����[�^
-	VISUAL_ORDER_PARAM order[BREEDER_MAX];	///<���߃p�����[�^
+	VISUAL_SYSTEM_PARAM sys;			///<ビジュアル部門システムデータパラメータ
+	VISUAL_GAME_PARAM v_game;			///<ゲーム進行パラメータ
+	VISUAL_ADVANCE_PARAM advance;		///<進行パラメータ
+	VISUAL_ORDER_PARAM order[BREEDER_MAX];	///<命令パラメータ
 	
 	u16 seq;
-	u16 tbl_seq_no;					///<���C���V�[�P���X�e�[�u���̔ԍ�
-	u8 proc_mode;					///<���݂̓����
-	u8 heart_count;					///<��ɏo�Ă���n�[�g�A�N�^�[�̐����J�E���g
+	u16 tbl_seq_no;					///<メインシーケンステーブルの番号
+	u8 proc_mode;					///<現在の動作状況
+	u8 heart_count;					///<場に出ているハートアクターの数をカウント
 	
 #if 0
-	//-- ����M�o�b�t�@ --//
-	u32 request_bit;				///<���߂��o���Ă���r�b�g
-	u8 transmit_buf[TRANSMIT_BUF_SIZE];	///<���M�p�o�b�t�@
-	u8 receive_buf[RECEIVE_BUF_SIZE];	///<��M�p�o�b�t�@
-	u8 transmit_flag;				///<TRUE�F���M�҂��B�@FALSE:�V���ȃf�[�^�Z�b�g�\ 
-	u8 receive_flag;				///<TRUE�F�f�[�^��M����
+	//-- 送受信バッファ --//
+	u32 request_bit;				///<命令を出しているビット
+	u8 transmit_buf[TRANSMIT_BUF_SIZE];	///<送信用バッファ
+	u8 receive_buf[RECEIVE_BUF_SIZE];	///<受信用バッファ
+	u8 transmit_flag;				///<TRUE：送信待ち。　FALSE:新たなデータセット可能 
+	u8 receive_flag;				///<TRUE：データ受信した
 #endif
-	CONTEST_ORDER_WORK cow;			///<����M���[�N
+	CONTEST_ORDER_WORK cow;			///<送受信ワーク
 	
-	VISUAL_LOCAL_WORK local;			///<���[�J�����[�N
-	u8 main_end;					///<TRUE:���C�������I��
+	VISUAL_LOCAL_WORK local;			///<ローカルワーク
+	u8 main_end;					///<TRUE:メイン処理終了
 	
-	//�C���[�W�N���b�v
-	CONTEST_IMC_WORK imcwork[BREEDER_MAX];	///<�C���[�W�N���b�v�֘A���[�N
+	//イメージクリップ
+	CONTEST_IMC_WORK imcwork[BREEDER_MAX];	///<イメージクリップ関連ワーク
 
-	u8 wnd0_x1;						///<�E�B���h�E0��X1���W
+	u8 wnd0_x1;						///<ウィンドウ0のX1座標
 	u8 wnd0_y1;
 	u8 wnd0_x2;
 	u8 wnd0_y2;
@@ -294,14 +294,14 @@ typedef struct{
 
 
 //==============================================================================
-//	�O���֐��錾
+//	外部関数宣言
 //==============================================================================
 extern PROC_RESULT VisualProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT VisualProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT VisualProc_End( PROC * proc, int * seq );
 
 //==============================================================================
-//	�O���f�[�^�錾
+//	外部データ宣言
 //==============================================================================
 extern const PROC_DATA ContestVisualProcData;
 

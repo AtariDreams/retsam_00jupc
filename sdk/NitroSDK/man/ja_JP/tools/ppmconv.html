@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>ppmconv</TITLE>
@@ -38,49 +38,49 @@ TD,TH{
 </HEAD>
 <BODY>
 <H1 align="left">ppmconv*</H1>
-<H2>����</H2>
-<P><CODE>�@ppmconv/ppmconv8/ppmconvbg</CODE> �c�[���́A�t���J���[�� ppm �t�H�[�}�b�g�摜�� C �\�[�X�`���ȂǂɕύX���邽�߃c�[���ł��B</P>
-<H2>�g�p���@</H2>
-<H3>�N���R�}���h</H3>
+<H2>説明</H2>
+<P><CODE>　ppmconv/ppmconv8/ppmconvbg</CODE> ツールは、フルカラーの ppm フォーマット画像を C ソース形式などに変更するためツールです。</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
 <H4>ppmconv</H4>
 <P><CODE>% ppmconv PPM_FILE</CODE></P>
-<P>�@<CODE>PPM_FILE</CODE> �Ŏw�肳�ꂽ�t���J���[�� <CODE>ppm</CODE> �`���̉摜�t�@�C���ɂ�ǂݍ��݁A16bit �J���[�̃r�b�g�}�b�v�ɕϊ����A�v���O�����Œ��ڗp���邱�Ƃ̂ł���
-C ����̃\�[�X�t�@�C����W���o�͂ɏo�͂��܂��B</P>
+<P>　<CODE>PPM_FILE</CODE> で指定されたフルカラーの <CODE>ppm</CODE> 形式の画像ファイルにを読み込み、16bit カラーのビットマップに変換し、プログラムで直接用いることのできる
+C 言語のソースファイルを標準出力に出力します。</P>
 <H4>ppmconv8</H4>
 <P><CODE>% ppmconv8 PPM_FILE LABEL_NAME</CODE></P>
-<P>�@<CODE>PPM_FILE</CODE> �Ŏw�肳�ꂽ�t���J���[�� <CODE>ppm</CODE> �`���̉摜�t�@�C���ɂ�ǂݍ��݁A8 bit INDEX �J���[�̃r�b�g�}�b�v�ɕϊ����A�v���O�����Œ��ڗp���邱�Ƃ̂ł���
-C ����̃\�[�X�t�@�C����W���o�͂ɏo�͂��܂��B�ǂݍ��܂��� <CODE>ppm</CODE> �`���̉摜�t�@�C���͂��炩���ߑ��̃c�[���Ȃǂ� 256 �F�ȉ��Ɍ��F����Ă���K�v������܂��B�p���b�g�ƃs�N�Z���f�[�^��̔z�񖼏̂�
-<CODE>LABEL_NAME</CODE> ��p���Đ�������܂��B</P>
+<P>　<CODE>PPM_FILE</CODE> で指定されたフルカラーの <CODE>ppm</CODE> 形式の画像ファイルにを読み込み、8 bit INDEX カラーのビットマップに変換し、プログラムで直接用いることのできる
+C 言語のソースファイルを標準出力に出力します。読み込ませる <CODE>ppm</CODE> 形式の画像ファイルはあらかじめ他のツールなどで 256 色以下に減色されている必要があります。パレットとピクセルデータ列の配列名称は
+<CODE>LABEL_NAME</CODE> を用いて生成されます。</P>
 <H4>ppmconvbg</H4>
 <P><CODE>% ppmconvbg [-a LABEL_NAME] [-b] [-c 4|-c 8] [-p] [-i] PPM_FILE OUTPUT_FILE</CODE></P>
-<P>�@<CODE>PPM_FILE</CODE> �Ŏw�肳�ꂽ�t���J���[�� <CODE>ppm</CODE> �`���̉摜�t�@�C���ɂ�ǂݍ��݁A�ȉ��̃I�v�V�����Ŏw�肳�ꂽ�����ɉ����� <CODE>OUTPUT_FILE</CODE> �փf�[�^���o�͂��܂��B</P>
+<P>　<CODE>PPM_FILE</CODE> で指定されたフルカラーの <CODE>ppm</CODE> 形式の画像ファイルにを読み込み、以下のオプションで指定された条件に応じて <CODE>OUTPUT_FILE</CODE> へデータを出力します。</P>
 <BLOCKQUOTE>
 <DL>
   <DT><CODE>-a LABEL_NAME</CODE>
-  <DD>C �\�[�X�`���ŏo��<BR>
-  �R���p�C���\�Ȍ`���ŏo�͂���܂��B�p���b�g�ƃs�N�Z���f�[�^��̔z�񖼏̂�
-  <CODE>LABEL_NAME</CODE> ��p���Đ�������܂��B<BR>
+  <DD>C ソース形式で出力<BR>
+  コンパイル可能な形式で出力されます。パレットとピクセルデータ列の配列名称は
+  <CODE>LABEL_NAME</CODE> を用いて生成されます。<BR>
   <DT><CODE>-b</CODE>
-  <DD>�o�C�i���`���ŏo��<BR>
-  �o�̓f�[�^�ɑ΂��A����Ɉ��k�Ȃǂ̏������s�Ȃ������Ƃ��ɕ֗��ł��B�o�̓f�[�^�̓f�t�H���g�Ńo�C�i���`���ɂȂ��Ă��܂��B<BR>
-  <DT><CODE>-c 4 �܂��� -c 8</CODE>
-  <DD>�J���[�p���b�g�� bit ��<BR>
-  16 �F�̂Ƃ��� <CODE>-c 4</CODE> �� 256 �F�̂Ƃ��� <CODE>-c 8</CODE> ���w�肵�܂��B�f�t�H���g�� 256 �F�ł��B<BR>
-  ���͂���� ppm �`���̃t�@�C���͂����Ŏw�肵���F���ȉ��Ɍ��F����Ă���K�v������܂��B<BR>
+  <DD>バイナリ形式で出力<BR>
+  出力データに対し、さらに圧縮などの処理を行ないたいときに便利です。出力データはデフォルトでバイナリ形式になっています。<BR>
+  <DT><CODE>-c 4 または -c 8</CODE>
+  <DD>カラーパレットの bit 数<BR>
+  16 色のときは <CODE>-c 4</CODE> を 256 色のときは <CODE>-c 8</CODE> を指定します。デフォルトは 256 色です。<BR>
+  入力される ppm 形式のファイルはここで指定した色数以下に減色されている必要があります。<BR>
   <DT><CODE>-p</CODE>
-  <DD>�p���b�g�f�[�^�݂̂��o�͂��܂��B<BR>
+  <DD>パレットデータのみを出力します。<BR>
   <DT><CODE>-i</CODE>
-  <DD>�s�N�Z���f�[�^(�J���[�C���f�b�N�X�l)�݂̂��o�͂��܂��B<BR>
+  <DD>ピクセルデータ(カラーインデックス値)のみを出力します。<BR>
 </DL>
 </BLOCKQUOTE>
-<H2>�ꏊ</H2>
+<H2>場所</H2>
 <P><CODE>$NitroSDK/tools/bin/ppmconv.exe</CODE><BR>
 <CODE>$NitroSDK/tools/bin/ppmconv8.exe<BR>
 $NitroSDK/tools/bin/ppmconvbg.exe</CODE></P>
-<H2>�Q��</H2>
+<H2>参照</H2>
 <P><CODE><A href="../demos/gx/gxdemos.html">gx/UnitTours/2D_BmpBg_MainRam</A></CODE><BR>
 <CODE><A href="../demos/gx/gxdemos.html">gx/UnitTours/2D_CharBg_256BMP</A></CODE></P>
-<H2>����</H2>
-<P>2004/08/26 ����</P>
+<H2>履歴</H2>
+<P>2004/08/26 初版</P>
 </BODY>
 </HTML>

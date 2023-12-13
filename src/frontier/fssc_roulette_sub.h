@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fssc_roulette_sub.h
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhƒTƒuFƒ‹[ƒŒƒbƒg
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ã‚µãƒ–ï¼šãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
  * @author	Satoshi Nohara
  * @date	07.09.06
  */
@@ -14,7 +14,7 @@
 
 //============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //============================================================================================
 extern ROULETTE_SCRWORK* RouletteScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 pos1, u16 pos2, u16 pos3, u16* work );
@@ -46,16 +46,16 @@ extern void RouletteScr_AddItemKeepIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u1
 extern void RouletteScr_DelItemKeepIcon( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1 );
 extern void RouletteScr_ChgItemKeepIconVanish( ROULETTE_SCRWORK* wk, FMAP_PTR fmap, u16 param1, u16 param2, u16 param3 );
 
-//–¼‘O{CPƒEƒBƒ“ƒhƒE
+//åå‰ï¼‹CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 extern void FSSC_Sub_CPWinWrite( FSS_PTR fss, ROULETTE_SCRWORK* bc_scr_wk );
 extern void FSSC_Sub_CPWinDel( FSS_PTR fss, ROULETTE_SCRWORK* bc_scr_wk );
 extern void FSSC_Sub_CPWrite( FSS_PTR fss, ROULETTE_SCRWORK* bc_scr_wk );
 
-//’ÊM
+//é€šä¿¡
 extern BOOL RouletteScr_CommSetSendBuf( ROULETTE_SCRWORK* wk, u16 type, u16 param );
 extern u16 RouletteScr_CommGetLap( ROULETTE_SCRWORK* wk );
 
-//ƒpƒlƒ‹ƒCƒxƒ“ƒgˆ—
+//ãƒ‘ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 extern void Roulette_EvSet( ROULETTE_SCRWORK* wk, u8 no );
 
 extern u16	RouletteScr_GetAddBtlPoint( ROULETTE_SCRWORK* wk );

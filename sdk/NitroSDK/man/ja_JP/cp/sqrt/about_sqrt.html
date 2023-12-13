@@ -2,70 +2,70 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<title>���������Z�� (overview)</title>
+<title>平方根演算器 (overview)</title>
 <LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
 
 <body>
 
-<h1 align="left">���������Z�� (overview)</h1>
-<P>DS �ɂ͏��Z����ѕ��������Z�̃A�N�Z�����[�^��������Ă��܂��B�����ł͕��������Z��ɂ��Đ������܂��B</P>
+<h1 align="left">平方根演算器 (overview)</h1>
+<P>DS には除算および平方根演算のアクセラレータが備わっています。ここでは平方根演算器について説明します。</P>
 <HR>
-<P><B>���������Z�̂��߂̃��W�X�^</B></P>
+<P><B>平方根演算のためのレジスタ</B></P>
 
-<P>�f�[�^���W�X�^�Ƃ��āA���Z�p�����[�^�A���Z���ʂ̂��߂Ɉȉ��̃��W�X�^���p�ӂ���Ă��܂��B</P>
+<P>データレジスタとして、演算パラメータ、演算結果のために以下のレジスタが用意されています。</P>
 <BLOCKQUOTE><IMG src="image_reg_SQRT_PARAM.gif" border="0"></BLOCKQUOTE>
 <BLOCKQUOTE><IMG src="image_reg_SQRT_RESULT.gif" border="0"></BLOCKQUOTE>
 <P><BR>
-���������Z��𐧌䂷�邽�߂̈ȉ��̃R���g���[�����W�X�^���p�ӂ���Ă��܂��B</P>
+平方根演算器を制御するための以下のコントロールレジスタが用意されています。</P>
 <BLOCKQUOTE><IMG src="image_reg_SQRTCNT.gif" border="0"></BLOCKQUOTE>
 <HR>
-<P><B>���������Z��̓���</B></P>
-<P>���������Z��́A�f�[�^���W�X�^ SQRT_PARAM �ɕ��������Z�̃p�����[�^���Z�b�g���A�R���g���[�����W�X�^
-SQRTCNT ��K�؂ɐݒ肷��ƌv�Z���ʂ� SQRT_RESULT �Ɋi�[�����A�Ƃ�������Ōv�Z���s�Ȃ��܂��B(���ۂ́ASQRT_PARAM�ASQRTCNT
-�̉��ꂩ�ɒl�������Ƃ����ɉ��Z���n�܂�A���Z�̓r���ł����Ă����W�X�^�ւ̏������݂�����΍ŏ����牉�Z����蒼���܂�)</P>
-<P>���������Z�ɂ�2�̉��Z���[�h������܂��B<UL>
-<LI>���̓p�����[�^�� 32�r�b�g�̃��[�h
-<LI>���̓p�����[�^�� 64�r�b�g�̃��[�h
+<P><B>平方根演算器の動作</B></P>
+<P>平方根演算器は、データレジスタ SQRT_PARAM に平方根演算のパラメータをセットし、コントロールレジスタ
+SQRTCNT を適切に設定すると計算結果が SQRT_RESULT に格納される、という動作で計算を行ないます。(実際は、SQRT_PARAM、SQRTCNT
+の何れかに値を書くとすぐに演算が始まり、演算の途中であってもレジスタへの書き込みがあれば最初から演算をやり直します)</P>
+<P>平方根演算には2つの演算モードがあります。<UL>
+<LI>入力パラメータが 32ビットのモード
+<LI>入力パラメータが 64ビットのモード
 </UL>
-<P>������ SQRTCNT �� MODE�r�b�g�փZ�b�g����l�ŕύX���邱�Ƃ��o���܂��B</P>
+<P>これらは SQRTCNT の MODEビットへセットする値で変更することが出来ます。</P>
 
-<P>���������Z�킪���Z���J�n����ƁASQRTCNT �� BUSY �r�b�g�� 1 �ƂȂ�܂��B�v�Z���ʂ�e���o���܂ł��̂܂�
-1�ŁA���ꂪ 0 �ƂȂ����Ƃ��� SQRT_RESULT �̒l�͉��Z���ʂƂ��Đ����Ȃ��̂ƂȂ�܂��B</P>
+<P>平方根演算器が除算を開始すると、SQRTCNT の BUSY ビットが 1 となります。計算結果を弾き出すまでそのまま
+1で、これが 0 となったときに SQRT_RESULT の値は演算結果として正当なものとなります。</P>
 
 <HR>
-<P><B>�v�Z�T�C�N��</B></P>
-<P>���������Z�킪���Z�̂��߂ɕK�v�ȃT�C�N�����̓��[�h�ɂ�炸���ł��B</P>
+<P><B>計算サイクル</B></P>
+<P>平方根演算器が演算のために必要なサイクル数はモードによらず一定です。</P>
 
 
 <UL>
-  <LI>���̓p�����[�^�� 32�r�b�g�̃��[�h �c 26 CPU�T�C�N���i�V�X�e���N���b�N��13�T�C�N���j
-<LI>���̓p�����[�^�� 64�r�b�g�̃��[�h �c 26 CPU�T�C�N���i�V�X�e���N���b�N��13�T�C�N���j
+  <LI>入力パラメータが 32ビットのモード … 26 CPUサイクル（システムクロックで13サイクル）
+<LI>入力パラメータが 64ビットのモード … 26 CPUサイクル（システムクロックで13サイクル）
 </UL>
-<P>���������Z��̃��W�X�^�Ƀp�����[�^���Z�b�g���Ă���A���ʂ��o��܂ł̎��ԁA�ʂ̍�Ƃ��s�Ȃ����ƂŌ����I�ɕ��������Z���p���邱�Ƃ��o���܂��B</P>
+<P>平方根演算器のレジスタにパラメータをセットしてから、結果が出るまでの時間、別の作業を行なうことで効率的に平方根演算器を用いることが出来ます。</P>
 <HR>
-<P><B>�p�����[�^�̐ݒ�</B></P>
-<P>���������Z�̃p�����[�^���Z�b�g����֐��� <A href="CP_SetSqrtImm.html"><CODE>CP_SetSqrtImm*()</CODE></A> �A<CODE><A href="CP_SetSqrt.html">CP_SetSqrt*()</A></CODE> �ł��B��҂� SQRTCNT ���W�X�^�̉��Z���[�h�ݒ���s�Ȃ��܂��B</P>
+<P><B>パラメータの設定</B></P>
+<P>平方根演算のパラメータをセットする関数は <A href="CP_SetSqrtImm.html"><CODE>CP_SetSqrtImm*()</CODE></A> 、<CODE><A href="CP_SetSqrt.html">CP_SetSqrt*()</A></CODE> です。後者は SQRTCNT レジスタの演算モード設定を行ないます。</P>
 
-<P>�Ⴆ�΁A�������Z���[�h�ŘA�����ĕ��������Z���s�Ȃ��ꍇ�A�ŏ���1��� <CODE><A href="CP_SetSqrt.html">CP_SetSqrt*()</A></CODE> ���g���A����ȍ~�� <CODE><A href="CP_SetSqrtImm.html">CP_SetSqrtImm*()</A></CODE> ���g���A�Ƃ����p�r���l�����܂��B</P>
+<P>例えば、同じ演算モードで連続して平方根演算を行なう場合、最初の1回は <CODE><A href="CP_SetSqrt.html">CP_SetSqrt*()</A></CODE> を使い、それ以降は <CODE><A href="CP_SetSqrtImm.html">CP_SetSqrtImm*()</A></CODE> を使う、という用途が考えられます。</P>
 <HR>
-<P><B>���Z�I���҂�</B></P>
-<P>���Z���I���������𒲂ׂ�ɂ� <CODE><A href="CP_IsSqrtBusy.html">CP_IsSqrtBusy()</A></CODE> ���Ă�ł��������B</P>
-<P>���Z���I������܂ő҂ɂ� <CODE><A href="CP_WaitSqrt.html">CP_WaitSqrt()</A></CODE> ���Ă�ł��������B</P>
+<P><B>演算終了待ち</B></P>
+<P>演算が終了したかを調べるには <CODE><A href="CP_IsSqrtBusy.html">CP_IsSqrtBusy()</A></CODE> を呼んでください。</P>
+<P>演算が終了するまで待つには <CODE><A href="CP_WaitSqrt.html">CP_WaitSqrt()</A></CODE> を呼んでください。</P>
 <HR>
-<P><B>���Z���ʂ̎擾</B></P>
-<P>���������Z�̌��ʂ��擾����ɂ� <CODE><A href="CP_GetSqrtResult.html">CP_GetSqrtResult*()</A></CODE> �A<CODE><A href="CP_GetSqrtResult.html">CP_GetSqrtResultImm*()</A></CODE> ���Ă�ŉ������B�O�҂� SQRTCNT �� BUSY ��ԂłȂ��Ȃ�̂�҂��Ă��猋�ʂ��擾���܂��B��҂͂����Ɏ擾���܂��B</P>
+<P><B>演算結果の取得</B></P>
+<P>平方根演算の結果を取得するには <CODE><A href="CP_GetSqrtResult.html">CP_GetSqrtResult*()</A></CODE> 、<CODE><A href="CP_GetSqrtResult.html">CP_GetSqrtResultImm*()</A></CODE> を呼んで下さい。前者は SQRTCNT が BUSY 状態でなくなるのを待ってから結果を取得します。後者はすぐに取得します。</P>
 
 
 <HR>
-<P><B>����</B></P>
-<P>�X���b�h�V�X�e�����g�p���Ă���ꍇ�A�f�t�H���g�ł͕��������Z�̓X���b�h�Z�[�t�ƂȂ��Ă��܂��B</P>
+<P><B>注意</B></P>
+<P>スレッドシステムを使用している場合、デフォルトでは平方根演算はスレッドセーフとなっています。</P>
 <HR>
-<P><B>��</B></P>
-<P>�ȉ��͕��������Z���p���ĕ��������Z���s�Ȃ��Č��ʂ�\�������ł��B</P>
+<P><B>例</B></P>
+<P>以下は平方根演算器を用いて平方根演算を行なって結果を表示する例です。</P>
 <BLOCKQUOTE>
 <P><CODE>u32 result;<BR>
 <BR>
@@ -84,30 +84,30 @@ OS_Printf( &quot;result=%x\n&quot;, result );<BR>
 
 <HR>
 
-<P><A name="use_in_intr"><B>���荞�ݓ��Ŏg�p����ۂ̒���</B></A></P>
+<P><A name="use_in_intr"><B>割り込み内で使用する際の注意</B></A></P>
 <P>
-���荞�ݓ��ŏ��Z��/���������Z����g�p����ꍇ�ɂ́A<B><FONT color="#ff3300">���荞�݌��̉��Z���ʂ�j�󂵂Ă��܂��\��������܂��B</FONT></B><BR>
-���荞�ݓ��ŏ��Z��/���������Z�킪�g�p�����ꍇ�ɂ�<A href="../CP_SaveContext.html">CP_SaveContext</A>,<A href="../CP_RestoreContext.html">CP_RestoreContext</A>
-���g�p���ď��Z��/���������Z��̏�Ԃ�ޔ��E��������悤�ɂ��Ă��������B<BR>
-<B><FONT color="#ff3300">�X���b�h�؂�ւ����ɂ́A���Z��̓��e���X���b�h�R���e�L�X�g���玩���I�ɕ�������܂��B</FONT></B>
+割り込み内で除算器/平方根演算器を使用する場合には、<B><FONT color="#ff3300">割り込み元の演算結果を破壊してしまう可能性があります。</FONT></B><BR>
+割り込み内で除算器/平方根演算器が使用される場合には<A href="../CP_SaveContext.html">CP_SaveContext</A>,<A href="../CP_RestoreContext.html">CP_RestoreContext</A>
+を使用して除算器/平方根演算器の状態を退避・復元するようにしてください。<BR>
+<B><FONT color="#ff3300">スレッド切り替え時には、除算器の内容もスレッドコンテキストから自動的に復元されます。</FONT></B>
 
 <BLOCKQUOTE style="background-color : #eeeeee;">
 <P><CODE>void intr_func( void ) <BR>
 {<BR>
-�@CPContext context;<BR>
-�@<BR>
-�@CP_SaveContext( &amp;context );<BR>
-�@CP_SetDiv32_32( 1000, 5 );<BR>
-�@CP_WaitDiv();<BR>
-�@result = CP_GetDivResult();<BR>
-�@CP_RestoreContext( &amp;context );<BR>
+　CPContext context;<BR>
+　<BR>
+　CP_SaveContext( &amp;context );<BR>
+　CP_SetDiv32_32( 1000, 5 );<BR>
+　CP_WaitDiv();<BR>
+　result = CP_GetDivResult();<BR>
+　CP_RestoreContext( &amp;context );<BR>
 }</CODE></P>
 </BLOCKQUOTE>
 
 
-<H2>����</H2>
-<P>2006/08/07 �v�Z�T�C�N���̕\�L��CPU�T�C�N�����Z�ɕύX�A���荞�ݓ��ł̎g�p�Ɋւ��钍�ӂ�ǉ�<BR>
-2004/12/27 ����</P>
+<H2>履歴</H2>
+<P>2006/08/07 計算サイクルの表記をCPUサイクル換算に変更、割り込み内での使用に関する注意を追加<BR>
+2004/12/27 初版</P>
 
 <table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
 

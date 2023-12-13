@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	field_skill.c
- * @brief	ƒtƒB[ƒ‹ƒh‹Zˆ—i”é“`‹Z‚È‚Çj
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æŠ€å‡¦ç†ï¼ˆç§˜ä¼æŠ€ãªã©ï¼‰
  * @author	Hiroyuki Nakamura
  * @date	2005.12.01
  */
@@ -49,9 +49,9 @@
 #include "field_gimmick_def.h"
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// g—pŠÖ”ƒf[ƒ^
+// ä½¿ç”¨é–¢æ•°ãƒ‡ãƒ¼ã‚¿
 typedef struct {
 	SKILLUSE_FUNC	use_func;
 	SKILLCHECK_FUNC	check_func;
@@ -59,7 +59,7 @@ typedef struct {
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void SkillCheckWorkMake_TornWorld(
 		FIELDSYS_WORK *fsys, SKILLCHECK_WORK *scwk );
@@ -116,24 +116,24 @@ static BOOL GMEVENT_Iaigiri(GMEVENT_CONTROL * event);
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// g—pŠÖ”ƒe[ƒuƒ‹
+// ä½¿ç”¨é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const SKILLUSE_FUNC_DATA SkillFuncTable[] =
 {
-	{ SkillUse_Iaigiri,		SkillCheck_Iaigiri },		// 00 : ‚¢‚ ‚¢‚¬‚è
-	{ SkillUse_Sorawotobu,	SkillCheck_Sorawotobu },	// 01 : ‚»‚ç‚ğ‚Æ‚Ô
-	{ SkillUse_Naminori,	SkillCheck_Naminori },		// 02 : ‚È‚İ‚Ì‚è
-	{ SkillUse_Kairiki,		SkillCheck_Kairiki },		// 03 : ‚©‚¢‚è‚«
-	{ SkillUse_Kiribarai,	SkillCheck_Kiribarai },		// 04 : ‚«‚è‚Î‚ç‚¢
-	{ SkillUse_Iwakudaki,	SkillCheck_Iwakudaki },		// 05 : ‚¢‚í‚­‚¾‚«
-	{ SkillUse_Takinobori,	SkillCheck_Takinobori },	// 06 : ‚½‚«‚Ì‚Ú‚è
-	{ SkillUse_RockClimb,	SkillCheck_RockClimb },		// 07 : ƒƒbƒNƒNƒ‰ƒCƒ€
-	{ SkillUse_Flash,		SkillCheck_Flash },			// 08 : ƒtƒ‰ƒbƒVƒ…
-	{ SkillUse_Teleport,	SkillCheck_Teleport },		// 09 : ƒeƒŒƒ|[ƒg
-	{ SkillUse_Anawohoru,	SkillCheck_Anawohoru },		// 10 : ‚ ‚È‚ğ‚Ù‚é
-	{ SkillUse_Amaikaori,	SkillCheck_Amaikaori },		// 11 : ‚ ‚Ü‚¢‚©‚¨‚è
-	{ SkillUse_Osyaberi,	SkillCheck_Osyaberi },		// 12 : ‚¨‚µ‚á‚×‚è
+	{ SkillUse_Iaigiri,		SkillCheck_Iaigiri },		// 00 : ã„ã‚ã„ãã‚Š
+	{ SkillUse_Sorawotobu,	SkillCheck_Sorawotobu },	// 01 : ãã‚‰ã‚’ã¨ã¶
+	{ SkillUse_Naminori,	SkillCheck_Naminori },		// 02 : ãªã¿ã®ã‚Š
+	{ SkillUse_Kairiki,		SkillCheck_Kairiki },		// 03 : ã‹ã„ã‚Šã
+	{ SkillUse_Kiribarai,	SkillCheck_Kiribarai },		// 04 : ãã‚Šã°ã‚‰ã„
+	{ SkillUse_Iwakudaki,	SkillCheck_Iwakudaki },		// 05 : ã„ã‚ãã ã
+	{ SkillUse_Takinobori,	SkillCheck_Takinobori },	// 06 : ãŸãã®ã¼ã‚Š
+	{ SkillUse_RockClimb,	SkillCheck_RockClimb },		// 07 : ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ 
+	{ SkillUse_Flash,		SkillCheck_Flash },			// 08 : ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
+	{ SkillUse_Teleport,	SkillCheck_Teleport },		// 09 : ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ
+	{ SkillUse_Anawohoru,	SkillCheck_Anawohoru },		// 10 : ã‚ãªã‚’ã»ã‚‹
+	{ SkillUse_Amaikaori,	SkillCheck_Amaikaori },		// 11 : ã‚ã¾ã„ã‹ãŠã‚Š
+	{ SkillUse_Osyaberi,	SkillCheck_Osyaberi },		// 12 : ãŠã—ã‚ƒã¹ã‚Š
 };
 
 
@@ -148,19 +148,19 @@ static inline BOOL IsEnableSkill(const SKILLCHECK_WORK * scwk, int skill_id)
 	}
 }
 
-// ƒoƒbƒWƒ`ƒFƒbƒN
+// ãƒãƒƒã‚¸ãƒã‚§ãƒƒã‚¯
 static inline BOOL BadgeCheck( const SKILLCHECK_WORK * scwk, int badge )
 {
 	return MyStatus_GetBadgeFlag( SaveData_GetMyStatus(scwk->fsys->savedata), badge );
 }
 
-// ˜A‚ê•à‚«ƒ`ƒFƒbƒN
+// é€£ã‚Œæ­©ããƒã‚§ãƒƒã‚¯
 static inline BOOL CompanionCheck( const SKILLCHECK_WORK * scwk )
 {
 	return SysFlag_PairCheck( SaveData_GetEventWork(scwk->fsys->savedata) );
 }
 
-// ƒTƒtƒ@ƒŠEƒ|ƒPƒp[ƒNƒ`ƒFƒbƒN
+// ã‚µãƒ•ã‚¡ãƒªãƒ»ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒã‚§ãƒƒã‚¯
 static inline BOOL ParkCheck( const SKILLCHECK_WORK * scwk )
 {
 	if( SysFlag_SafariCheck( SaveData_GetEventWork(scwk->fsys->savedata) ) == TRUE ||
@@ -170,7 +170,7 @@ static inline BOOL ParkCheck( const SKILLCHECK_WORK * scwk )
 	return FALSE;
 }
 
-// ƒ|ƒPƒp[ƒNƒ`ƒFƒbƒN
+// ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒã‚§ãƒƒã‚¯
 static inline BOOL PokeParkCheck( const SKILLCHECK_WORK * scwk )
 {
 	if( SysFlag_PokeParkCheck(SaveData_GetEventWork(scwk->fsys->savedata)) == TRUE ){
@@ -179,7 +179,7 @@ static inline BOOL PokeParkCheck( const SKILLCHECK_WORK * scwk )
 	return FALSE;
 }
 
-// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 static inline BOOL MapModeUseChack( const SKILLCHECK_WORK * scwk )
 {
 	if( scwk->fsys->MapMode == MAP_MODE_COLOSSEUM || scwk->fsys->MapMode == MAP_MODE_UNION ){
@@ -191,12 +191,12 @@ static inline BOOL MapModeUseChack( const SKILLCHECK_WORK * scwk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * g—pŠÖ”æ“¾
+ * ä½¿ç”¨é–¢æ•°å–å¾—
  *
- * @param	prm		æ“¾ƒpƒ‰ƒ[ƒ^
- * @param	id		ŠÖ”ID
+ * @param	prm		å–å¾—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	id		é–¢æ•°ID
  *
- * @return	g—pŠÖ”
+ * @return	ä½¿ç”¨é–¢æ•°
  */
 //--------------------------------------------------------------------------------------------
 u32 FieldSkill_FuncGet( u16 prm, u16 id )
@@ -209,10 +209,10 @@ u32 FieldSkill_FuncGet( u16 prm, u16 id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * g—pƒ`ƒFƒbƒNƒ[ƒNì¬
+ * ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	id		ƒ`ƒFƒbƒNƒ[ƒN
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -228,7 +228,7 @@ void FieldSkill_CheckWorkMake( FIELDSYS_WORK * fsys, SKILLCHECK_WORK * scwk )
 	scwk->zone_id = fsys->location->zone_id;
 	scwk->enable_skill = 0;
 	
-	//‚â‚Ô‚ê‚½‚¹‚©‚¢“Áê’nŒ`—p‚Ìˆ—‚Ö add pl 080626 kaga
+	//ã‚„ã¶ã‚ŒãŸã›ã‹ã„ç‰¹æ®Šåœ°å½¢ç”¨ã®å‡¦ç†ã¸ add pl 080626 kaga
 	if( Player_MoveBitCheck_TWorldSp(fsys->player) == TRUE ){
 		SkillCheckWorkMake_TornWorld( fsys, scwk );
 		return;
@@ -251,12 +251,12 @@ void FieldSkill_CheckWorkMake( FIELDSYS_WORK * fsys, SKILLCHECK_WORK * scwk )
 		}
 	}
 
-	// Œ»İ’n‚ÌƒAƒgƒŠƒrƒ…[ƒg
+	// ç¾åœ¨åœ°ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	gx = Player_NowGPosXGet( fsys->player );
 	gz = Player_NowGPosZGet( fsys->player );
 	nattr = GetAttributeLSB(fsys, gx, gz);
 	
-	// ©‹@‘O‚ÌƒAƒgƒŠƒrƒ…[ƒg
+	// è‡ªæ©Ÿå‰ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	Player_DirFrontGridPosGet(fsys->player, &gx, &gz);
 	fattr = GetAttributeLSB(fsys, gx, gz);
 
@@ -310,11 +310,11 @@ void FieldSkill_CheckWorkMake( FIELDSYS_WORK * fsys, SKILLCHECK_WORK * scwk )
 			break;
 		}
 	}
-	// Œ»İ’n‚ÌƒAƒgƒŠƒrƒ…[ƒg
+	// ç¾åœ¨åœ°ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	gx = Player_NowGPosXGet( fsys->player );
 	gz = Player_NowGPosZGet( fsys->player );
 	nattr = GetAttributeLSB(fsys, gx, gz);
-	// ©‹@‘O‚ÌƒAƒgƒŠƒrƒ…[ƒg
+	// è‡ªæ©Ÿå‰ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	Player_DirFrontGridPosGet(fsys->player, &gx, &gz);
 	fattr = GetAttributeLSB(fsys, gx, gz);
 //	if (Player_EventAttrCheck_Naminori(fsys->player,mattr)) {
@@ -340,9 +340,9 @@ void FieldSkill_CheckWorkMake( FIELDSYS_WORK * fsys, SKILLCHECK_WORK * scwk )
 
 //--------------------------------------------------------------
 /**
- * g—pƒ`ƒFƒbƒNƒ[ƒNì¬ ‚â‚Ô‚ê‚½‚¹‚©‚¢“Áê•Ç–Ê—p ”gæ‚èˆÈŠO‚Ìİ’è‚Í–³‚¢
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒ[ƒN
- * @param	id		ƒ`ƒFƒbƒNƒ[ƒN
+ * ä½¿ç”¨ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ä½œæˆ ã‚„ã¶ã‚ŒãŸã›ã‹ã„ç‰¹æ®Šå£é¢ç”¨ æ³¢ä¹—ã‚Šä»¥å¤–ã®è¨­å®šã¯ç„¡ã„
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
  * @return	none
  */
 //--------------------------------------------------------------
@@ -364,7 +364,7 @@ static void SkillCheckWorkMake_TornWorld(
 //============================================================================================
 //============================================================================================
 //--------------------------------------------------------------
-///”é“`‚í‚´ƒXƒNƒŠƒvƒg‹N“®—pƒ[ƒN
+///ç§˜ä¼ã‚ã–ã‚¹ã‚¯ãƒªãƒ—ãƒˆèµ·å‹•ç”¨ãƒ¯ãƒ¼ã‚¯
 //--------------------------------------------------------------
 typedef struct {
 	u32 magic;
@@ -372,11 +372,11 @@ typedef struct {
 	SKILLUSE_WORK suwk;
 }HIDEN_SCR_WORK;
 
-#define	HSW_MAGIC_NUMBER	0x19740205		//‚ ‚Á‚«[‚Ì’a¶“ú
+#define	HSW_MAGIC_NUMBER	0x19740205		//ã‚ã£ããƒ¼ã®èª•ç”Ÿæ—¥
 
 //--------------------------------------------------------------
 /**
- * @brief	”é“`‚í‚´ƒXƒNƒŠƒvƒg‹N“®—pƒ[ƒN¶¬
+ * @brief	ç§˜ä¼ã‚ã–ã‚¹ã‚¯ãƒªãƒ—ãƒˆèµ·å‹•ç”¨ãƒ¯ãƒ¼ã‚¯ç”Ÿæˆ
  */
 //--------------------------------------------------------------
 static HIDEN_SCR_WORK * HSW_Create(const SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk)
@@ -390,7 +390,7 @@ static HIDEN_SCR_WORK * HSW_Create(const SKILLUSE_WORK * suwk, const SKILLCHECK_
 
 //--------------------------------------------------------------
 /**
- * @brief	”é“`‚í‚´ƒXƒNƒŠƒvƒg‹N“®—pƒ[ƒNÁ‹
+ * @brief	ç§˜ä¼ã‚ã–ã‚¹ã‚¯ãƒªãƒ—ãƒˆèµ·å‹•ç”¨ãƒ¯ãƒ¼ã‚¯æ¶ˆå»
  */
 //--------------------------------------------------------------
 static void HSW_Delete(HIDEN_SCR_WORK * hsw)
@@ -401,17 +401,17 @@ static void HSW_Delete(HIDEN_SCR_WORK * hsw)
 
 
 //============================================================================================
-//	00 : ‚¢‚ ‚¢‚¬‚è
+//	00 : ã„ã‚ã„ãã‚Š
 //============================================================================================
-// ‹Zg—pƒ`ƒFƒbƒNŠÖ”
+// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static int SkillCheck_Iaigiri( const SKILLCHECK_WORK * scwk)
 {
-	// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+	// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 	if( MapModeUseChack( scwk ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ƒoƒbƒWƒ`ƒFƒbƒN
+	// ãƒãƒƒã‚¸ãƒã‚§ãƒƒã‚¯
 	if( BadgeCheck( scwk, BADGE_ID_C04 ) == FALSE ){
 		return FIELDSKILL_NO_BADGE;
 	}
@@ -423,7 +423,7 @@ static int SkillCheck_Iaigiri( const SKILLCHECK_WORK * scwk)
 	}
 }
 
-// ‹Zg—pŠÖ”
+// æŠ€ä½¿ç”¨é–¢æ•°
 static void SkillUse_Iaigiri( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk )
 {
 	FLD_MENU * mwk;
@@ -452,32 +452,32 @@ static BOOL GMEVENT_Iaigiri(GMEVENT_CONTROL * event)
 
 
 //============================================================================================
-//	01 : ‚»‚ç‚ğ‚Æ‚Ô
+//	01 : ãã‚‰ã‚’ã¨ã¶
 //============================================================================================
-// ‹Zg—pƒ`ƒFƒbƒNŠÖ”
+// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static int SkillCheck_Sorawotobu( const SKILLCHECK_WORK * scwk )
 {
-	// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+	// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 	if( MapModeUseChack( scwk ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ƒoƒbƒWƒ`ƒFƒbƒN
+	// ãƒãƒƒã‚¸ãƒã‚§ãƒƒã‚¯
 	if( BadgeCheck( scwk, BADGE_ID_C07 ) == FALSE ){
 		return FIELDSKILL_NO_BADGE;
 	}
 
-	//ƒ}ƒbƒv‚²‚Æ‚Ìw’èƒ`ƒFƒbƒN
+	//ãƒãƒƒãƒ—ã”ã¨ã®æŒ‡å®šãƒã‚§ãƒƒã‚¯
 	if( ZoneData_GetEnableFlyFlag( scwk->zone_id ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ˜A‚ê•à‚«
+	// é€£ã‚Œæ­©ã
 	if( CompanionCheck( scwk ) == TRUE ){
 		return FIELDSKILL_COMPANION;
 	}
 
-	// ƒTƒtƒ@ƒŠEƒ|ƒPƒp[ƒN
+	// ã‚µãƒ•ã‚¡ãƒªãƒ»ãƒã‚±ãƒ‘ãƒ¼ã‚¯
 	if( ParkCheck( scwk ) == TRUE ){
 		return FIELDSKILL_USE_FALSE;
 	}
@@ -485,7 +485,7 @@ static int SkillCheck_Sorawotobu( const SKILLCHECK_WORK * scwk )
 	return FIELDSKILL_USE_TRUE;
 }
 
-// ‹Zg—pŠÖ”
+// æŠ€ä½¿ç”¨é–¢æ•°
 static void SkillUse_Sorawotobu( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk )
 {
 	FIELDSYS_WORK * fsys;
@@ -497,7 +497,7 @@ static void SkillUse_Sorawotobu( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * s
 	{
 		u32 * sel_pos;
 
-		// ‘I‘ğ‚µ‚½ƒ|ƒPƒ‚ƒ“ˆÊ’u‚ğ‘Ş”ğ
+		// é¸æŠã—ãŸãƒã‚±ãƒ¢ãƒ³ä½ç½®ã‚’é€€é¿
 		sel_pos     = (u32 *)sys_AllocMemory( HEAPID_WORLD, 4 );
 		*sel_pos    = suwk->poke_pos;
 		mwk->tmp_wk = (void *)sel_pos;
@@ -505,32 +505,32 @@ static void SkillUse_Sorawotobu( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * s
 
 	mwk->app_wk = sys_AllocMemory( HEAPID_WORLD, sizeof(TOWNMAP_PARAM) );
 	FieldTMap_CallDataSet( fsys, mwk->app_wk, TMAP_MJUMP );
-	//‚±‚Ìƒtƒ‰ƒO‚ğON‚É‚·‚é‚ÆA“’…ƒtƒ‰ƒO–³‹‚Å”ò‚×‚é‚ªPM_DEBUG‚Ì’†‚Å‚µ‚©g‚¦‚È‚¢
-//	((TOWNMAP_PARAM *)mwk->app_wk)->debug_f = TRUE;	// ƒfƒoƒbƒOƒ‚[ƒhƒtƒ‰ƒOON
+	//ã“ã®ãƒ•ãƒ©ã‚°ã‚’ONã«ã™ã‚‹ã¨ã€åˆ°ç€ãƒ•ãƒ©ã‚°ç„¡è¦–ã§é£›ã¹ã‚‹ãŒPM_DEBUGã®ä¸­ã§ã—ã‹ä½¿ãˆãªã„
+//	((TOWNMAP_PARAM *)mwk->app_wk)->debug_f = TRUE;	// ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ON
 	FieldTMap_SetProc( fsys, mwk->app_wk );
 	FldMenu_AppWaitFuncSet( mwk, FldMenu_SorawotobuEnd );
 }
 
 
 //============================================================================================
-//	02 : ‚È‚İ‚Ì‚è
+//	02 : ãªã¿ã®ã‚Š
 //============================================================================================
 
-// ‹Zg—pƒ`ƒFƒbƒNŠÖ”
+// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static int SkillCheck_Naminori( const SKILLCHECK_WORK * scwk)
 {
-	// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+	// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 	if( MapModeUseChack( scwk ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ƒoƒbƒWƒ`ƒFƒbƒN
+	// ãƒãƒƒã‚¸ãƒã‚§ãƒƒã‚¯
 	//if( BadgeCheck( scwk, BADGE_ID_C05 ) == FALSE ){
-	if( BadgeCheck( scwk, BADGE_ID_C06 ) == FALSE ){		//ƒvƒ‰ƒ`ƒi‚Å•ÏX
+	if( BadgeCheck( scwk, BADGE_ID_C06 ) == FALSE ){		//ãƒ—ãƒ©ãƒãƒŠã§å¤‰æ›´
 		return FIELDSKILL_NO_BADGE;
 	}
 
-	// ‚È‚İ‚Ì‚è’†
+	// ãªã¿ã®ã‚Šä¸­
 	if( Player_FormGet( scwk->fsys->player ) == HERO_FORM_SWIM ){
 		return FIELDSKILL_PLAYER_SWIM;
 	}
@@ -539,7 +539,7 @@ static int SkillCheck_Naminori( const SKILLCHECK_WORK * scwk)
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ˜A‚ê•à‚«
+	// é€£ã‚Œæ­©ã
 	if( CompanionCheck( scwk ) == TRUE ){
 		return FIELDSKILL_COMPANION;
 	}
@@ -555,7 +555,7 @@ static int SkillCheck_Naminori( const SKILLCHECK_WORK * scwk)
 */
 }
 
-// ‹Zg—pŠÖ”
+// æŠ€ä½¿ç”¨é–¢æ•°
 static void SkillUse_Naminori( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk )
 {
 	FLD_MENU * mwk;
@@ -584,18 +584,18 @@ static BOOL GMEVENT_Naminori(GMEVENT_CONTROL * event)
 
 
 //============================================================================================
-//	03 : ‚©‚¢‚è‚«
+//	03 : ã‹ã„ã‚Šã
 //============================================================================================
 
-// ‹Zg—pƒ`ƒFƒbƒNŠÖ”
+// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static int SkillCheck_Kairiki( const SKILLCHECK_WORK * scwk)
 {
-	// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+	// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 	if( MapModeUseChack( scwk ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ƒoƒbƒWƒ`ƒFƒbƒN
+	// ãƒãƒƒã‚¸ãƒã‚§ãƒƒã‚¯
 	if( BadgeCheck( scwk, BADGE_ID_C02 ) == FALSE ){
 		return FIELDSKILL_NO_BADGE;
 	}
@@ -607,7 +607,7 @@ static int SkillCheck_Kairiki( const SKILLCHECK_WORK * scwk)
 	}
 }
 
-// ‹Zg—pŠÖ”
+// æŠ€ä½¿ç”¨é–¢æ•°
 static void SkillUse_Kairiki( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk )
 {
 	FLD_MENU * mwk;
@@ -636,20 +636,20 @@ static BOOL GMEVENT_Kairiki(GMEVENT_CONTROL * event)
 
 
 //============================================================================================
-//	04 : ‚«‚è‚Î‚ç‚¢
+//	04 : ãã‚Šã°ã‚‰ã„
 //============================================================================================
 
-// ‹Zg—pƒ`ƒFƒbƒNŠÖ”
+// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static int SkillCheck_Kiribarai( const SKILLCHECK_WORK * scwk)
 {
-	// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+	// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 	if( MapModeUseChack( scwk ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ƒoƒbƒWƒ`ƒFƒbƒN
+	// ãƒãƒƒã‚¸ãƒã‚§ãƒƒã‚¯
 	//if( BadgeCheck( scwk, BADGE_ID_C06 ) == FALSE ){
-	if( BadgeCheck( scwk, BADGE_ID_C05 ) == FALSE ){		//ƒvƒ‰ƒ`ƒi‚Å•ÏX
+	if( BadgeCheck( scwk, BADGE_ID_C05 ) == FALSE ){		//ãƒ—ãƒ©ãƒãƒŠã§å¤‰æ›´
 		return FIELDSKILL_NO_BADGE;
 	}
 
@@ -660,7 +660,7 @@ static int SkillCheck_Kiribarai( const SKILLCHECK_WORK * scwk)
 	}
 }
 
-// ‹Zg—pŠÖ”
+// æŠ€ä½¿ç”¨é–¢æ•°
 static void SkillUse_Kiribarai( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk )
 {
 	FLD_MENU * mwk;
@@ -689,23 +689,23 @@ static BOOL GMEVENT_Kiribarai(GMEVENT_CONTROL * event)
 
 
 //============================================================================================
-//	05 : ‚¢‚í‚­‚¾‚«
+//	05 : ã„ã‚ãã ã
 //============================================================================================
 
-// ‹Zg—pƒ`ƒFƒbƒNŠÖ”
+// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static int SkillCheck_Iwakudaki( const SKILLCHECK_WORK * scwk)
 {
-	// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+	// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 	if( MapModeUseChack( scwk ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ƒoƒbƒWƒ`ƒFƒbƒN
+	// ãƒãƒƒã‚¸ãƒã‚§ãƒƒã‚¯
 	if( BadgeCheck( scwk, BADGE_ID_C03 ) == FALSE ){
 		return FIELDSKILL_NO_BADGE;
 	}
 	
-	// ‚È‚İ‚Ì‚èƒ`ƒFƒbƒN	// ‚È‚İ‚Ì‚è’†
+	// ãªã¿ã®ã‚Šãƒã‚§ãƒƒã‚¯	// ãªã¿ã®ã‚Šä¸­
 	if( Player_FormGet( scwk->fsys->player ) == HERO_FORM_SWIM ){
 		return FIELDSKILL_USE_FALSE;
 	}
@@ -717,7 +717,7 @@ static int SkillCheck_Iwakudaki( const SKILLCHECK_WORK * scwk)
 	}
 }
 
-// ‹Zg—pŠÖ”
+// æŠ€ä½¿ç”¨é–¢æ•°
 static void SkillUse_Iwakudaki( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk )
 {
 	FLD_MENU * mwk;
@@ -746,18 +746,18 @@ static BOOL GMEVENT_Iwakudaki(GMEVENT_CONTROL * event)
 
 
 //============================================================================================
-//	06 : ‚½‚«‚Ì‚Ú‚è
+//	06 : ãŸãã®ã¼ã‚Š
 //============================================================================================
 
-// ‹Zg—pƒ`ƒFƒbƒNŠÖ”
+// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static int SkillCheck_Takinobori( const SKILLCHECK_WORK * scwk)
 {
-	// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+	// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 	if( MapModeUseChack( scwk ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ƒoƒbƒWƒ`ƒFƒbƒN
+	// ãƒãƒƒã‚¸ãƒã‚§ãƒƒã‚¯
 	if( BadgeCheck( scwk, BADGE_ID_C08 ) == FALSE ){
 		return FIELDSKILL_NO_BADGE;
 	}
@@ -769,7 +769,7 @@ static int SkillCheck_Takinobori( const SKILLCHECK_WORK * scwk)
 	}
 }
 
-// ‹Zg—pŠÖ”
+// æŠ€ä½¿ç”¨é–¢æ•°
 static void SkillUse_Takinobori( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk )
 {
 	FLD_MENU * mwk;
@@ -798,18 +798,18 @@ static BOOL GMEVENT_Takinobori(GMEVENT_CONTROL * event)
 
 
 //============================================================================================
-//	07 : ƒƒbƒNƒNƒ‰ƒCƒ€
+//	07 : ãƒ­ãƒƒã‚¯ã‚¯ãƒ©ã‚¤ãƒ 
 //============================================================================================
 
-// ‹Zg—pƒ`ƒFƒbƒNŠÖ”
+// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static int SkillCheck_RockClimb( const SKILLCHECK_WORK * scwk)
 {
-	// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+	// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 	if( MapModeUseChack( scwk ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ƒoƒbƒWƒ`ƒFƒbƒN
+	// ãƒãƒƒã‚¸ãƒã‚§ãƒƒã‚¯
 	if( BadgeCheck( scwk, BADGE_ID_C09 ) == FALSE ){
 		return FIELDSKILL_NO_BADGE;
 	}
@@ -818,7 +818,7 @@ static int SkillCheck_RockClimb( const SKILLCHECK_WORK * scwk)
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ˜A‚ê•à‚«
+	// é€£ã‚Œæ­©ã
 	if( CompanionCheck( scwk ) == TRUE ){
 		return FIELDSKILL_COMPANION;
 	}
@@ -834,7 +834,7 @@ static int SkillCheck_RockClimb( const SKILLCHECK_WORK * scwk)
 */
 }
 
-// ‹Zg—pŠÖ”
+// æŠ€ä½¿ç”¨é–¢æ•°
 static void SkillUse_RockClimb( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk )
 {
 	FLD_MENU * mwk;
@@ -863,13 +863,13 @@ static BOOL GMEVENT_RockClimb(GMEVENT_CONTROL * event)
 
 
 //============================================================================================
-//	08 : ƒtƒ‰ƒbƒVƒ…
+//	08 : ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 //============================================================================================
 
-// ‹Zg—pƒ`ƒFƒbƒNŠÖ”
+// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static int SkillCheck_Flash( const SKILLCHECK_WORK * scwk)
 {
-	// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+	// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 	if( MapModeUseChack( scwk ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
@@ -881,7 +881,7 @@ static int SkillCheck_Flash( const SKILLCHECK_WORK * scwk)
 	}
 }
 
-// ‹Zg—pŠÖ”
+// æŠ€ä½¿ç”¨é–¢æ•°
 static void SkillUse_Flash( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk )
 {
 	FLD_MENU * mwk;
@@ -910,27 +910,27 @@ static BOOL GMEVENT_Flash(GMEVENT_CONTROL * event)
 
 
 //============================================================================================
-//	09 : ƒeƒŒƒ|[ƒg
+//	09 : ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ
 //============================================================================================
-// ‹Zg—pƒ`ƒFƒbƒNŠÖ”
+// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static int SkillCheck_Teleport( const SKILLCHECK_WORK * scwk )
 {
-	// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+	// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 	if( MapModeUseChack( scwk ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ƒ}ƒbƒv‚²‚Æ‚Ìw’èƒ`ƒFƒbƒN
+	// ãƒãƒƒãƒ—ã”ã¨ã®æŒ‡å®šãƒã‚§ãƒƒã‚¯
 	if( ZoneData_GetEnableTeleportFlag( scwk->zone_id ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ˜A‚ê•à‚«
+	// é€£ã‚Œæ­©ã
 	if( CompanionCheck( scwk ) == TRUE ){
 		return FIELDSKILL_COMPANION;
 	}
 
-	// ƒTƒtƒ@ƒŠEƒ|ƒPƒp[ƒN
+	// ã‚µãƒ•ã‚¡ãƒªãƒ»ãƒã‚±ãƒ‘ãƒ¼ã‚¯
 	if( ParkCheck( scwk ) == TRUE ){
 		return FIELDSKILL_USE_FALSE;
 	}
@@ -938,7 +938,7 @@ static int SkillCheck_Teleport( const SKILLCHECK_WORK * scwk )
 	return FIELDSKILL_USE_TRUE;
 }
 
-// ‹Zg—pŠÖ”
+// æŠ€ä½¿ç”¨é–¢æ•°
 static void SkillUse_Teleport( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk )
 {
 	FIELDSYS_WORK * fsys;
@@ -959,7 +959,7 @@ static void SkillUse_Teleport( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scw
 	}
 }
 
-// ƒeƒŒƒ|[ƒg—pƒ[ƒN‰Šú‰»¨ƒeƒŒƒ|[ƒgg—pƒCƒxƒ“ƒgƒ}ƒbƒv‘JˆÚ‚Ö
+// ãƒ†ãƒ¬ãƒãƒ¼ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–â†’ãƒ†ãƒ¬ãƒãƒ¼ãƒˆä½¿ç”¨ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒƒãƒ—é·ç§»ã¸
 static BOOL GMEVENT_TeleportMapChangeInit( GMEVENT_CONTROL *event )
 {
 	FIELDSYS_WORK *fsys = FieldEvent_GetFieldSysWork( event );
@@ -973,12 +973,12 @@ static BOOL GMEVENT_TeleportMapChangeInit( GMEVENT_CONTROL *event )
 
 
 //============================================================================================
-//	10 : ‚ ‚È‚ğ‚Ù‚é
+//	10 : ã‚ãªã‚’ã»ã‚‹
 //============================================================================================
-// ‹Zg—pƒ`ƒFƒbƒNŠÖ”
+// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static int SkillCheck_Anawohoru( const SKILLCHECK_WORK * scwk )
 {
-	// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+	// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 	if( MapModeUseChack( scwk ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
@@ -987,7 +987,7 @@ static int SkillCheck_Anawohoru( const SKILLCHECK_WORK * scwk )
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ˜A‚ê•à‚«
+	// é€£ã‚Œæ­©ã
 	if( CompanionCheck( scwk ) == TRUE ){
 		return FIELDSKILL_COMPANION;
 	}
@@ -1005,7 +1005,7 @@ static int SkillCheck_Anawohoru( const SKILLCHECK_WORK * scwk )
 
 }
 
-// ‹Zg—pŠÖ”
+// æŠ€ä½¿ç”¨é–¢æ•°
 static void SkillUse_Anawohoru( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk )
 {
 	FIELDSYS_WORK * fsys;
@@ -1026,7 +1026,7 @@ static void SkillUse_Anawohoru( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * sc
 	}
 }
 
-// ŒŠ‚ğŒ@‚éƒ[ƒN‰Šú‰»¨ŒŠ‚ğŒ@‚ég—pƒCƒxƒ“ƒgƒ}ƒbƒv‘JˆÚ‚Ö
+// ç©´ã‚’æ˜ã‚‹ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–â†’ç©´ã‚’æ˜ã‚‹ä½¿ç”¨ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒƒãƒ—é·ç§»ã¸
 static BOOL GMEVENT_AnawohoruMapChangeInit( GMEVENT_CONTROL *event )
 {
 	FIELDSYS_WORK *fsys = FieldEvent_GetFieldSysWork( event );
@@ -1045,24 +1045,24 @@ static BOOL GMEVENT_AnawohoruMapChangeInit( GMEVENT_CONTROL *event )
 }
 
 //============================================================================================
-//	11 : ‚ ‚Ü‚¢‚©‚¨‚è
+//	11 : ã‚ã¾ã„ã‹ãŠã‚Š
 //============================================================================================
-// ‹Zg—pƒ`ƒFƒbƒNŠÖ”
+// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static int SkillCheck_Amaikaori( const SKILLCHECK_WORK * scwk )
 {
-	// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+	// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 	if( MapModeUseChack( scwk ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
 	}
 
-	// ƒ|ƒPƒp[ƒN
+	// ãƒã‚±ãƒ‘ãƒ¼ã‚¯
 	if( PokeParkCheck( scwk ) == TRUE ){
 		return FIELDSKILL_USE_FALSE;
 	}
 	return  FIELDSKILL_USE_TRUE;
 }
 
-// ‹Zg—pŠÖ”
+// æŠ€ä½¿ç”¨é–¢æ•°
 static void SkillUse_Amaikaori( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk )
 {
 	FIELDSYS_WORK * fsys;
@@ -1086,12 +1086,12 @@ static void SkillUse_Amaikaori( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * sc
 
 
 //============================================================================================
-//	12 : ‚¨‚µ‚á‚×‚è
+//	12 : ãŠã—ã‚ƒã¹ã‚Š
 //============================================================================================
-// ‹Zg—pƒ`ƒFƒbƒNŠÖ”
+// æŠ€ä½¿ç”¨ãƒã‚§ãƒƒã‚¯é–¢æ•°
 static int SkillCheck_Osyaberi( const SKILLCHECK_WORK * scwk )
 {
-	// ƒRƒƒVƒAƒ€Eƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒ`ƒFƒbƒN
+	// ã‚³ãƒ­ã‚·ã‚¢ãƒ ãƒ»ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒã‚§ãƒƒã‚¯
 	#if 0	//dp
 	if( MapModeUseChack( scwk ) == FALSE ){
 		return FIELDSKILL_USE_FALSE;
@@ -1106,7 +1106,7 @@ static int SkillCheck_Osyaberi( const SKILLCHECK_WORK * scwk )
 	return  FIELDSKILL_USE_TRUE;
 }
 
-// ‹Zg—pŠÖ”
+// æŠ€ä½¿ç”¨é–¢æ•°
 static void SkillUse_Osyaberi( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scwk )
 {
 	FIELDSYS_WORK * fsys;
@@ -1124,7 +1124,7 @@ static void SkillUse_Osyaberi( SKILLUSE_WORK * suwk, const SKILLCHECK_WORK * scw
 	mwk->seq      = FLD_MENU_SEQ_BLACK_IN_EVCHG;
 }
 
-// u‚¨‚µ‚á‚×‚èvƒXƒNƒŠƒvƒgŒÄ‚Ño‚µ
+// ã€ŒãŠã—ã‚ƒã¹ã‚Šã€ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‘¼ã³å‡ºã—
 static BOOL GMEVENT_OsyaberiCall( GMEVENT_CONTROL * event )
 {
 	HIDEN_SCR_WORK * hsw = FieldEvent_GetSpecialWork(event);

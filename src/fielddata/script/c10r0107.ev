@@ -1,7 +1,7 @@
 //====================================================================
 //								c10r0107
 //
-//	LOCALWORK1	ƒ‹[ƒ€ƒCƒ“‚ÉŽg—p
+//	LOCALWORK1	ãƒ«ãƒ¼ãƒ ã‚¤ãƒ³ã«ä½¿ç”¨
 //====================================================================
 
 	.text
@@ -11,11 +11,11 @@
 	.include	"../eventdata/zone_c10r0107evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c10r0107_bigfour3
 _EVENT_DATA		ev_c10r0107_room_in
@@ -30,26 +30,26 @@ _EVENT_DATA_END
 
 
 /********************************************************************/
-/*							Žl“V‰¤									*/
+/*							å››å¤©çŽ‹									*/
 /********************************************************************/
 ev_c10r0107_bigfour3:
 	_TALK_OBJ_START
 
-	/*ƒtƒ‰ƒO‚ð—Ž‚Æ‚·ˆ—‚ªŒã‚Å•K—v‚É‚È‚éI*/
+	/*ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™å‡¦ç†ãŒå¾Œã§å¿…è¦ã«ãªã‚‹ï¼*/
 
-	/*Ÿ—˜‚µ‚Ä‚¢‚½‚ç*/
+	/*å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_BIGFOUR3_WIN,ev_c10r0107_bigfour3_02
 
-	_TRAINER_BGM_SET	BIGFOUR3_01					/*Ž‹ü‹ÈƒZƒbƒg*/
+	_TRAINER_BGM_SET	BIGFOUR3_01					/*è¦–ç·šæ›²ã‚»ãƒƒãƒˆ*/
 
-	/*“a“°“ü‚èƒf[ƒ^‚ª‚ ‚é‚©‚Ç‚¤‚©‚ÅƒƒbƒZ[ƒW•ªŠò(í“¬‘O)*/
+	/*æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ã©ã†ã‹ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²(æˆ¦é—˜å‰)*/
 	_IF_FLAGOFF_CALL	SYS_FLAG_GAME_CLEAR,ev_c10r0107_bigfour3_msg1
 	_IF_FLAGON_CALL		SYS_FLAG_GAME_CLEAR,ev_c10r0107_bigfour3_msg2
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 
-	/*u‚©‚´‚ñ‚Ì‚¨‚«‚¢‚µv“üŽè‚µ‚½‚©‚ÅƒgƒŒ[ƒi[ƒf[ƒ^‚ð‚©‚¦‚é*/
+	/*ã€Œã‹ã–ã‚“ã®ãŠãã„ã—ã€å…¥æ‰‹ã—ãŸã‹ã§ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‹ãˆã‚‹*/
 	_IF_FLAGOFF_CALL	FE_KAZANNOOKIISI_GET,ev_c10r0107_bigfour_3_btl1
 	_IF_FLAGON_CALL		FE_KAZANNOOKIISI_GET,ev_c10r0107_bigfour_3_btl2
 
@@ -58,17 +58,17 @@ ev_c10r0107_bigfour3:
 
 	_FLAG_SET		FE_BIGFOUR3_WIN
 
-	/*‰œ‚ÌƒhƒA‚ðÁ‚·*/
+	/*å¥¥ã®ãƒ‰ã‚¢ã‚’æ¶ˆã™*/
 	_SE_PLAY			SEQ_SE_DP_KI_GASYAN
 	_OBJ_DEL		C10R0107_DOOR_02
 
-	/*–`Œ¯ƒm[ƒgƒf[ƒ^ì¬*/
+	/*å†’é™ºãƒŽãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ*/
 
-	/*u‚©‚´‚ñ‚Ì‚¨‚«‚¢‚µv“üŽè‚µ‚½‚©‚ÅƒgƒŒ[ƒi[ƒf[ƒ^‚ð‚©‚¦‚é*/
+	/*ã€Œã‹ã–ã‚“ã®ãŠãã„ã—ã€å…¥æ‰‹ã—ãŸã‹ã§ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‹ãˆã‚‹*/
 	_IF_FLAGOFF_CALL	FE_KAZANNOOKIISI_GET,ev_c10r0107_bigfour_3_note1
 	_IF_FLAGON_CALL		FE_KAZANNOOKIISI_GET,ev_c10r0107_bigfour_3_note2
 
-	/*“a“°“ü‚èƒf[ƒ^‚ª‚ ‚é‚©‚Ç‚¤‚©‚ÅƒƒbƒZ[ƒW•ªŠò(í“¬Œã)*/
+	/*æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ã©ã†ã‹ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²(æˆ¦é—˜å¾Œ)*/
 	_IF_FLAGOFF_CALL	SYS_FLAG_GAME_CLEAR,ev_c10r0107_bigfour3_msg3
 	_IF_FLAGON_CALL		SYS_FLAG_GAME_CLEAR,ev_c10r0107_bigfour3_msg4
 	_LAST_KEYWAIT
@@ -94,16 +94,16 @@ ev_c10r0107_bigfour_3_note2:
 
 
 //--------------------------------------------------------------------
-//”s–kˆ—
+//æ•—åŒ—å‡¦ç†
 //--------------------------------------------------------------------
 ev_c10r0107_common_battle_lose:
 	_TRAINER_LOSE
 	_TALK_OBJ_END
 	_END
 
-/*Ÿ—˜‚µ‚Ä‚¢‚½‚ç*/
+/*å‹åˆ©ã—ã¦ã„ãŸã‚‰*/
 ev_c10r0107_bigfour3_02:
-	/*“a“°“ü‚èƒf[ƒ^‚ª‚ ‚é‚©‚Ç‚¤‚©‚ÅƒƒbƒZ[ƒW•ªŠò(Ä“x˜b‚µ‚©‚¯)*/
+	/*æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ã©ã†ã‹ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²(å†åº¦è©±ã—ã‹ã‘)*/
 	_IF_FLAGOFF_CALL	SYS_FLAG_GAME_CLEAR,ev_c10r0107_bigfour3_msg5
 	_IF_FLAGON_CALL		SYS_FLAG_GAME_CLEAR,ev_c10r0107_bigfour3_msg6
 	_LAST_KEYWAIT
@@ -111,12 +111,12 @@ ev_c10r0107_bigfour3_02:
 	_TALK_OBJ_END
 	_END
 
-/*“a“°“ü‚èƒf[ƒ^‚ª‚ ‚é‚©‚Ç‚¤‚©‚ÅƒƒbƒZ[ƒW•ªŠò(í“¬‘O)*/
+/*æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ã©ã†ã‹ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²(æˆ¦é—˜å‰)*/
 ev_c10r0107_bigfour3_msg1:
 	_TALK_KEYWAIT	msg_c10r0107_bigfour3_01
 	_TALK_CLOSE
 
-	/*ŠÈ’P‚ÈƒAƒjƒ*/
+	/*ç°¡å˜ãªã‚¢ãƒ‹ãƒ¡*/
 	_OBJ_ANIME		C10R0107_BIGFOUR3,anm_c10r0107_bigfour3_10
 	_OBJ_ANIME_WAIT	
 
@@ -127,7 +127,7 @@ ev_c10r0107_bigfour3_msg2:
 	_TALK_KEYWAIT	msg_c10r0107_bigfour3_05
 	_RET
 
-/*“a“°“ü‚èƒf[ƒ^‚ª‚ ‚é‚©‚Ç‚¤‚©‚ÅƒƒbƒZ[ƒW•ªŠò(í“¬Œã)*/
+/*æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ã©ã†ã‹ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²(æˆ¦é—˜å¾Œ)*/
 ev_c10r0107_bigfour3_msg3:
 	_TALKMSG		msg_c10r0107_bigfour3_03
 	_RET
@@ -136,7 +136,7 @@ ev_c10r0107_bigfour3_msg4:
 	_TALK_KEYWAIT	msg_c10r0107_bigfour3_06
 	_RET
 
-/*“a“°“ü‚èƒf[ƒ^‚ª‚ ‚é‚©‚Ç‚¤‚©‚ÅƒƒbƒZ[ƒW•ªŠò(Ä“x˜b‚µ‚©‚¯)*/
+/*æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ã©ã†ã‹ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²(å†åº¦è©±ã—ã‹ã‘)*/
 ev_c10r0107_bigfour3_msg5:
 	_TALKMSG		msg_c10r0107_bigfour3_04
 	_RET
@@ -146,7 +146,7 @@ ev_c10r0107_bigfour3_msg6:
 	_RET
 
 //--------------------------------------------------------------------
-//ƒI[ƒo	ŠÈ’P‚ÈƒAƒjƒ
+//ã‚ªãƒ¼ãƒ	ç°¡å˜ãªã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c10r0107_bigfour3_10
 	_ANIME_DATA	AC_DIR_PAUSE_ON,1
@@ -158,16 +158,16 @@ _ANIME_LABEL anm_c10r0107_bigfour3_10
 
 
 /********************************************************************/
-/*							ƒ‹[ƒ€ƒCƒ“								*/
+/*							ãƒ«ãƒ¼ãƒ ã‚¤ãƒ³								*/
 /********************************************************************/
 ev_c10r0107_room_in:
 	_EVENT_START
 
-	/*‘Oi*/
+	/*å‰é€²*/
 	_OBJ_ANIME			FLDOBJ_ID_PLAYER,anm_c10r0107_roomin_01
 	_OBJ_ANIME_WAIT	
 
-	/*‰œ‚ÌƒhƒA‚ðo‚·*/
+	/*å¥¥ã®ãƒ‰ã‚¢ã‚’å‡ºã™*/
 	_SE_PLAY			SEQ_SE_DP_KI_GASYAN
 	_FLAG_RESET			FV_C10R0107_DOOR_01
 	_OBJ_ADD			C10R0107_DOOR_01
@@ -178,7 +178,7 @@ ev_c10r0107_room_in:
 	_END
 
 //----------------------------------------------------------------------------------------------
-//‘Oi
+//å‰é€²
 //----------------------------------------------------------------------------------------------
 _ANIME_LABEL	anm_c10r0107_roomin_01
 	_ANIME_DATA	AC_WALK_U_8F,2

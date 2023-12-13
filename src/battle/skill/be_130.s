@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_130.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			130�@�Œ�_���[�W�Q�O
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			130　固定ダメージ２０
  *
  *@author	HisashiSogabe
  *@data		2006.02.02
@@ -15,11 +15,11 @@
 	.include	"waza_seq_def.h"
 
 BE_130:
-	//���M�����[�V�����Ń��g���J�b�v�̏ꍇ�́A���܂����܂��ɂ���
+	//レギュレーションでリトルカップの場合は、うまくきまらんにする
 	IF				IF_FLAG_BIT,BUF_PARA_REGULATION_FLAG,REGULATION_FLAG_LITTLE_CUP,Umakukimaran
-	//�^�C�v�␳�v�Z�𖳎�����
+	//タイプ補正計算を無視する
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_TYPE_FLAT
-	//�_���[�W��20��
+	//ダメージを20に
 	VALUE			VAL_SET,BUF_PARA_DAMAGE,-20
 	SEQ_END
 

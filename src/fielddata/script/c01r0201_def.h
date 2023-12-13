@@ -1,7 +1,7 @@
 #ifndef _C01R0201_DEF_H_
 #define _C01R0201_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C01R0201_SUNGLASSES_FIRST		(1)
 #define	SCRID_C01R0201_SUNGLASSES		(2)
 #define	SCRID_C01R0201_SUNGLASSES_AFTER		(3)
@@ -11,6 +11,6 @@
 #define	SCRID_C01R0201_CROWN		(7)
 #define	SCRID_C01R0201_FLAG_CHANGE		(8)
 #define	SCRID_C01R0201_MAN3_01		(9)
-#define	SCRID_C01R0201_DATA_MAX		(9)		//最大数
+#define	SCRID_C01R0201_DATA_MAX		(9)		//譛螟ｧ謨ｰ
 
 #endif //_C01R0201_DEF_H_

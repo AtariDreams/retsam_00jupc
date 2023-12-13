@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	gym.h
- * @brief	ジム関連
+ * @brief	繧ｸ繝髢｢騾｣
  * @date	2006.02.02
  *
  */
@@ -12,18 +12,18 @@
 #include "common.h"
 #include "system/msgdata.h"	
 
-//水ジム
+//豌ｴ繧ｸ繝
 extern void GYM_CheckWaterGymButton(FIELDSYS_WORK *fsys);
 extern void GYM_SetupWaterGym(FIELDSYS_WORK *fsys);
 extern BOOL GYM_HitCheckWaterGym(	FIELDSYS_WORK *fsys,
 							const int inGridX, const int inGridZ,
 							const fx32 inHeight, BOOL *outHit	);
 
-//ゴーストジム
+//繧ｴ繝ｼ繧ｹ繝医ず繝
 extern void GYM_SetupGhostGym(FIELDSYS_WORK *fsys);
 extern void GYM_MoveGhostGymLift(FIELDSYS_WORK *fsys);
 
-//鋼ジム
+//驪ｼ繧ｸ繝
 extern void GYM_SetupSteelGym(FIELDSYS_WORK *fsys);
 extern void GYM_EndSteelGym(FIELDSYS_WORK *fsys);
 extern BOOL GYM_HitCheckSteelGym(	FIELDSYS_WORK *fsys,
@@ -31,7 +31,7 @@ extern BOOL GYM_HitCheckSteelGym(	FIELDSYS_WORK *fsys,
 									const fx32 inHeight, BOOL *outHit	);
 extern BOOL GYM_CheckSteelLift(FIELDSYS_WORK *fsys);
 
-//格闘ジム
+//譬ｼ髣倥ず繝
 #if 0 //DP NULL
 extern void GYM_SetupCombatGym(FIELDSYS_WORK *fsys);
 extern void GYM_EndCombatGym(FIELDSYS_WORK *fsys);
@@ -41,7 +41,7 @@ extern BOOL GYM_HitCheckCombatGym(	FIELDSYS_WORK *fsys,
 									const fx32 inHeight, BOOL *outHit	);
 #endif
 
-//電気ジム
+//髮ｻ豌励ず繝
 extern void GYM_SetupElecGym(FIELDSYS_WORK *fsys);
 extern void GYM_EndElecGym(FIELDSYS_WORK *fsys);
 extern BOOL GYM_HitCheckElecGym(	FIELDSYS_WORK *fsys,
@@ -49,7 +49,7 @@ extern BOOL GYM_HitCheckElecGym(	FIELDSYS_WORK *fsys,
 									const fx32 inHeight, BOOL *outHit	);
 extern void GYM_RotateElecGymGear(FIELDSYS_WORK *fsys, const u8 inRotate);
 
-//PL 草ジム
+//PL 闕峨ず繝
 extern void GYM_SetupPLGrassGym( FIELDSYS_WORK *fsys );
 extern void GYM_EndPLGrassGym( FIELDSYS_WORK *fsys );
 extern BOOL GYM_HitCheckPLGrassGym( FIELDSYS_WORK *fsys,
@@ -60,7 +60,7 @@ extern BOOL GYM_PLGrass_TimeGainEventSet( FIELDSYS_WORK *fsys,
 extern BOOL GYM_PLGrass_ExJumpPosCheck(
 	FIELDSYS_WORK *fsys, int gx, int gz, int dir );
 
-//PL 格闘ジム
+//PL 譬ｼ髣倥ず繝
 extern void GYM_SetupPLFightGym( FIELDSYS_WORK *fsys );
 extern void GYM_EndPLFightGym( FIELDSYS_WORK *fsys );
 extern BOOL GYM_HitCheckPLFightGym( FIELDSYS_WORK *fsys,
@@ -68,7 +68,7 @@ extern BOOL GYM_HitCheckPLFightGym( FIELDSYS_WORK *fsys,
 							const fx32 inHeight, BOOL *outHit	);
 extern BOOL GYM_PLFightGymEventHitCheck( FIELDSYS_WORK *fsys );
 
-//PL ゴーストジム
+//PL 繧ｴ繝ｼ繧ｹ繝医ず繝
 #define GYM_PLGHOST_HINT_MAX (8)
 
 extern void GYM_SetupPLGhostGym( FIELDSYS_WORK *fsys );
@@ -81,7 +81,7 @@ BOOL GYM_PlGhostGymHintMissDoorCheck( FIELDSYS_WORK *fsys, int gx, int gz, int *
 //----
 #ifdef PM_DEBUG
 
-//#define DEBUG_PLGHOSTGYM_CAPTURE //定義でキャプチャー用デバッグ機能有効
+//#define DEBUG_PLGHOSTGYM_CAPTURE //螳夂ｾｩ縺ｧ繧ｭ繝｣繝励メ繝｣繝ｼ逕ｨ繝�繝舌ャ繧ｰ讖溯�ｽ譛牙柑
 
 #ifdef DEBUG_PLGHOSTGYM_CAPTURE 
 extern void DEBUG_PlGhostGym_LightVanish( FIELDSYS_WORK *fsys );

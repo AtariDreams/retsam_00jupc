@@ -1,9 +1,9 @@
-#define KAWAII_KEI			(1)			//‚©‚í‚¢‚¢Œn
-#define KAKKOII_KEI			(2)			//‚©‚Á‚±‚¢‚¢Œn
-#define KOWAI_KEI			(3)			//‚±‚í‚¢Œn
-#define OTOBOKE_KEI			(4)			//‚¨‚Æ‚Ú‚¯Œn
-#define UNOWN_KEI			(5)			//‚¨‚Æ‚Ú‚¯Œn
+#define KAWAII_KEI			(1)			//ã‹ã‚ã„ã„ç³»
+#define KAKKOII_KEI			(2)			//ã‹ã£ã“ã„ã„ç³»
+#define KOWAI_KEI			(3)			//ã“ã‚ã„ç³»
+#define OTOBOKE_KEI			(4)			//ãŠã¨ã¼ã‘ç³»
+#define UNOWN_KEI			(5)			//ãŠã¨ã¼ã‘ç³»
 
-#define ASHIATO_ARI			(1)			//‘«Õ‚ ‚è
-#define ASHIATO_NASHI		(0)			//‘«Õ‚È‚µ
+#define ASHIATO_ARI			(1)			//è¶³è·¡ã‚ã‚Š
+#define ASHIATO_NASHI		(0)			//è¶³è·¡ãªã—
 

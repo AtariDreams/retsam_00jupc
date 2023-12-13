@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_G2dDrawOneOam3DDirectUsingParamCacheFast</title>
@@ -11,7 +11,7 @@
 
 <body>
 <h1 align="left">NNS_G2dDrawOneOam3DDirectUsingParamCacheFast</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -27,66 +27,66 @@
                             
 </CODE></pre>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   
   <tr>
     <td width="13%"><em><strong><font face="Courier New">posX</font></strong></em></td>
-    <td width="87%">[IN] X�ʒu</td>
+    <td width="87%">[IN] X位置</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">posY</font></strong></em></td>
-    <td width="87%">[IN] Y�ʒu</td>
+    <td width="87%">[IN] Y位置</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">posZ</font></strong></em></td>
-    <td width="87%">[IN] Z�ʒu</td>
+    <td width="87%">[IN] Z位置</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pOam</font></strong></em></td>
-    <td width="87%">[IN] OAM�A�g���r���[�g</td>
+    <td width="87%">[IN] OAMアトリビュート</td>
   </tr>
   
   </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B<BR>
+<h2>返り値</h2>
+<p>なし。<BR>
 </p>
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-�p�����[�^(UV�p�����[�^)�̃L���b�V�����g�p����OAM���X�v���C�g�`�悵�܂��B<BR>
-���s�O�ɃL���b�V���p�����[�^�̐ݒ���s���Ă��������B<BR>
-�L���b�V���p�����[�^�̐ݒ��
-NNS_G2dSetOamSoftEmuSpriteParamCache()�֐��ōs���܂��B<BR>
+パラメータ(UVパラメータ)のキャッシュを使用してOAMをスプライト描画します。<BR>
+実行前にキャッシュパラメータの設定を行ってください。<BR>
+キャッシュパラメータの設定は
+NNS_G2dSetOamSoftEmuSpriteParamCache()関数で行います。<BR>
 <BR>
-�֐��Ăяo���̑O��ŁA3D �O���t�B�b�N�X�G���W���̃J�����g�s��
-�͕ۑ�����܂���B<BR>
+関数呼び出しの前後で、3D グラフィックスエンジンのカレント行列
+は保存されません。<BR>
 <BR>
-����̃e�N�X�`�����Q�Ƃ���X�v���C�g���ʂɏ����ۂɁAUV�l�̌v�Z�A�ݒ����x����s�����Ƃɂ���āA
-�����悭�`�揈�����s�����Ƃ��\�ƂȂ�܂��B<BR>
+同一のテクスチャを参照するスプライトを大量に書く際に、UV値の計算、設定を一度きり行うことによって、
+効率よく描画処理を行うことが可能となります。<BR>
 <BR>
-�{�֐��ł́AOAM�̃t���b�v�t���O�����������_�ɂ����ӂ��������B
-(UV�p�����[�^��NNS_G2dSetOamSoftEmuSpriteParamCache()�֐����s����
-���肳��Ă��܂��܂��B)<BR>
-�t���b�v�����X�v���C�g��`�悷��ꍇ�A
-NNS_G2dSetOamSoftEmuSpriteParamCache()�̈����Ƃ��ăt���b�v�ݒ肵��
-OAM�iGXOamAttr�j��n���A�L���b�V���p�����[�^���X�V����K�v������܂��B<BR>
+本関数では、OAMのフリップフラグが無視される点にご注意ください。
+(UVパラメータはNNS_G2dSetOamSoftEmuSpriteParamCache()関数実行時に
+決定されてしまいます。)<BR>
+フリップしたスプライトを描画する場合、
+NNS_G2dSetOamSoftEmuSpriteParamCache()の引数としてフリップ設定した
+OAM（GXOamAttr）を渡し、キャッシュパラメータを更新する必要があります。<BR>
 
 <BR>
 <PRE>
-    NNS_G2dDrawOneOam3DDirectUsingParamCache()�̕`��
-        ���� = UV�p�����[�^�ݒ� x 1 + �`�� x N
-    �ʏ�̕`��
-        ���� = ( UV�p�����[�^�ݒ� + �`�� ) x N</p>
+    NNS_G2dDrawOneOam3DDirectUsingParamCache()の描画
+        処理 = UVパラメータ設定 x 1 + 描画 x N
+    通常の描画
+        処理 = ( UVパラメータ設定 + 描画 ) x N</p>
 </PRE>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <CODE>
 <A href="NNS_G2dSetOamSoftEmuSpriteParamCache.html">NNS_G2dSetOamSoftEmuSpriteParamCache</A><br>
 </CODE>
 </p>
-<H2>����</H2>
-<P>2004/11/10 ����</P>
+<H2>履歴</H2>
+<P>2004/11/10 初版</P>
 </body>
 </html>

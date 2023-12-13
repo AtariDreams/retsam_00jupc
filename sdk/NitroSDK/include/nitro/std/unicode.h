@@ -22,7 +22,7 @@
   change of STD-API interface.
 
   Revision 1.1  2006/07/05 07:42:51  kitase_hirotake
-  std �� sjis <-> unicode �ϊ����C�u�����̒ǉ�
+  std に sjis <-> unicode 変換ライブラリの追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -62,11 +62,11 @@ typedef STDResult(*STDConvertSjisCallback) (char *dst, int *dst_len, const u16 *
 /*---------------------------------------------------------------------------*
   Name:         STD_IsSjisLeadByte
 
-  Description:  �w�肵��������ShiftJIS�̐�s�o�C�g�ł��邩����.
+  Description:  指定した文字がShiftJISの先行バイトであるか判定.
 
-  Arguments:    c                 ���肷�镶��.
+  Arguments:    c                 判定する文字.
 
-  Returns:      ShiftJIS�̐�s�o�C�g�Ȃ�TRUE.
+  Returns:      ShiftJISの先行バイトならTRUE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL STD_IsSjisLeadByte(int c)
 {
@@ -76,11 +76,11 @@ SDK_INLINE BOOL STD_IsSjisLeadByte(int c)
 /*---------------------------------------------------------------------------*
   Name:         STD_IsSjisTrailByte
 
-  Description:  �w�肵��������ShiftJIS�̌㑱�o�C�g�ł��邩����.
+  Description:  指定した文字がShiftJISの後続バイトであるか判定.
 
-  Arguments:    c                 ���肷�镶��.
+  Arguments:    c                 判定する文字.
 
-  Returns:      ShiftJIS�̌㑱�o�C�g�Ȃ�TRUE.
+  Returns:      ShiftJISの後続バイトならTRUE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL STD_IsSjisTrailByte(int c)
 {
@@ -90,11 +90,11 @@ SDK_INLINE BOOL STD_IsSjisTrailByte(int c)
 /*---------------------------------------------------------------------------*
   Name:         STD_IsSjisCharacter
 
-  Description:  �w�肵��������ShiftJIS��1�����ł��邩����.
+  Description:  指定した文字列がShiftJISの1文字であるか判定.
 
-  Arguments:    s                 ���肷�镶����.
+  Arguments:    s                 判定する文字列.
 
-  Returns:      ShiftJIS��1�����Ȃ�TRUE.
+  Returns:      ShiftJISの1文字ならTRUE.
  *---------------------------------------------------------------------------*/
 SDK_INLINE BOOL STD_IsSjisCharacter(const char *s)
 {
@@ -104,24 +104,24 @@ SDK_INLINE BOOL STD_IsSjisCharacter(const char *s)
 /*---------------------------------------------------------------------------*
   Name:         STD_ConvertStringSjisToUnicode
 
-  Description:  ShiftJIS�������Unicode������ɕϊ�.
+  Description:  ShiftJIS文字列をUnicode文字列に変換.
 
-  Arguments:    dst               �ϊ���o�b�t�@.
-                                  NULL ���w�肷��Ɗi�[�����͖��������.
-                dst_len           �ϊ���o�b�t�@�̍ő啶�������i�[���ēn��,
-                                  ���ۂɊi�[���ꂽ���������󂯎��|�C���^.
-                                  NULL ��^�����ꍇ�͖��������.
-                src               �ϊ����o�b�t�@.
-                src_len           �ϊ����ׂ��ő啶�������i�[���ēn��,
-                                  ���ۂɕϊ����ꂽ���������󂯎��|�C���^.
-                                  ���̎w�����������I�[�̈ʒu���D�悳���.
-                                  ���̒l���i�[���ēn���� NULL ��^�����ꍇ��
-                                  �I�[�ʒu�܂ł̕��������w�肵���Ƃ݂Ȃ����.
-                callback          �ϊ��ł��Ȃ����������ꂽ���ɌĂ΂��R�[���o�b�N.
-                                  NULL���w�肵���ꍇ, �ϊ��ł��Ȃ������̈ʒu��
-                                  �ϊ��������I������.
+  Arguments:    dst               変換先バッファ.
+                                  NULL を指定すると格納処理は無視される.
+                dst_len           変換先バッファの最大文字数を格納して渡し,
+                                  実際に格納された文字数を受け取るポインタ.
+                                  NULL を与えた場合は無視される.
+                src               変換元バッファ.
+                src_len           変換すべき最大文字数を格納して渡し,
+                                  実際に変換された文字数を受け取るポインタ.
+                                  この指定よりも文字列終端の位置が優先される.
+                                  負の値を格納して渡すか NULL を与えた場合は
+                                  終端位置までの文字数を指定したとみなされる.
+                callback          変換できない文字が現れた時に呼ばれるコールバック.
+                                  NULLを指定した場合, 変換できない文字の位置で
+                                  変換処理を終了する.
 
-  Returns:      �ϊ������̌���.
+  Returns:      変換処理の結果.
  *---------------------------------------------------------------------------*/
 STDResult STD_ConvertStringSjisToUnicode(u16 *dst, int *dst_len,
                                          const char *src, int *src_len,
@@ -130,13 +130,13 @@ STDResult STD_ConvertStringSjisToUnicode(u16 *dst, int *dst_len,
 /*---------------------------------------------------------------------------*
   Name:         STD_ConvertCharSjisToUnicode.
 
-  Description:  ShiftJIS������Unicode�����ɕϊ�.
+  Description:  ShiftJIS文字をUnicode文字に変換.
 
-  Arguments:    dst               �ϊ���o�b�t�@.
-                src               �ϊ���������.
+  Arguments:    dst               変換先バッファ.
+                src               変換元文字列.
 
-  Returns:      �ϊ�����������.
-                �ϊ��Ɏ��s�����ꍇ�� -1.
+  Returns:      変換した文字数.
+                変換に失敗した場合は -1.
  *---------------------------------------------------------------------------*/
 SDK_INLINE int STD_ConvertCharSjisToUnicode(u16 *dst, const char *src)
 {
@@ -149,24 +149,24 @@ SDK_INLINE int STD_ConvertCharSjisToUnicode(u16 *dst, const char *src)
 /*---------------------------------------------------------------------------*
   Name:         STD_ConvertStringUnicodeToSjis
 
-  Description:  Unicode�������ShiftJIS������ɕϊ�
+  Description:  Unicode文字列をShiftJIS文字列に変換
 
-  Arguments:    dst               �ϊ���o�b�t�@.
-                                  NULL ���w�肷��Ɗi�[�����͖��������.
-                dst_len           �ϊ���o�b�t�@�̍ő啶�������i�[���ēn��,
-                                  ���ۂɊi�[���ꂽ���������󂯎��|�C���^.
-                                  NULL ��^�����ꍇ�͖��������.
-                src               �ϊ����o�b�t�@.
-                src_len           �ϊ����ׂ��ő啶�������i�[���ēn��,
-                                  ���ۂɕϊ����ꂽ���������󂯎��|�C���^.
-                                  ���̎w�����������I�[�̈ʒu���D�悳���.
-                                  ���̒l���i�[���ēn���� NULL ��^�����ꍇ��
-                                  �I�[�ʒu�܂ł̕��������w�肵���Ƃ݂Ȃ����.
-                callback          �ϊ��ł��Ȃ����������ꂽ���ɌĂ΂��R�[���o�b�N.
-                                  NULL���w�肵���ꍇ, �ϊ��ł��Ȃ������̈ʒu��
-                                  �ϊ��������I������.
+  Arguments:    dst               変換先バッファ.
+                                  NULL を指定すると格納処理は無視される.
+                dst_len           変換先バッファの最大文字数を格納して渡し,
+                                  実際に格納された文字数を受け取るポインタ.
+                                  NULL を与えた場合は無視される.
+                src               変換元バッファ.
+                src_len           変換すべき最大文字数を格納して渡し,
+                                  実際に変換された文字数を受け取るポインタ.
+                                  この指定よりも文字列終端の位置が優先される.
+                                  負の値を格納して渡すか NULL を与えた場合は
+                                  終端位置までの文字数を指定したとみなされる.
+                callback          変換できない文字が現れた時に呼ばれるコールバック.
+                                  NULLを指定した場合, 変換できない文字の位置で
+                                  変換処理を終了する.
 
-  Returns:      �ϊ������̌���.
+  Returns:      変換処理の結果.
  *---------------------------------------------------------------------------*/
 STDResult STD_ConvertStringUnicodeToSjis(char *dst, int *dst_len,
                                          const u16 *src, int *src_len,
@@ -175,14 +175,14 @@ STDResult STD_ConvertStringUnicodeToSjis(char *dst, int *dst_len,
 /*---------------------------------------------------------------------------*
   Name:         STD_ConvertCharUnicodeToSjis
 
-  Description:  Unicode�������ShiftJIS������ɕϊ�.
+  Description:  Unicode文字列をShiftJIS文字列に変換.
 
-  Arguments:    dst               �ϊ���o�b�t�@.
-                                  2�o�C�g���m�ۂ���K�v������.
-                src               �ϊ���������.
+  Arguments:    dst               変換先バッファ.
+                                  2バイトを確保する必要がある.
+                src               変換元文字列.
 
-  Returns:      �ϊ������o�C�g��.
-                �ϊ��Ɏ��s�����ꍇ�� -1.
+  Returns:      変換したバイト数.
+                変換に失敗した場合は -1.
  *---------------------------------------------------------------------------*/
 SDK_INLINE int STD_ConvertCharUnicodeToSjis(char *dst, u16 src)
 {

@@ -19,7 +19,7 @@
 # add std_sprintf.c
 #
 # Revision 1.2  2006/07/05 07:44:00  kitase_hirotake
-# std ‚É sjis <-> unicode •ÏŠ·ƒ‰ƒCƒuƒ‰ƒŠ‚Ì’Ç‰Á
+# std ã« sjis <-> unicode å¤‰æ›ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®è¿½åŠ 
 #
 # Revision 1.1  2005/08/19 11:04:28  yada
 # initial release

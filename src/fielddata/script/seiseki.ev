@@ -8,21 +8,21 @@
 	.include	"../../../include/msgdata/msg_bf_seiseki.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //
-/*	SCWK_PARAM0	{İƒiƒ“ƒo[										*/
-/*	SCWK_PARAM1	ƒoƒgƒ‹ƒ^ƒCƒv(ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`A‚â‚ß‚é)		*/
-/*	SCWK_PARAM2	ŒÜ\‰¹‚Ì‚Ç‚ê‚©										*/
-/*	SCWK_PARAM3	‚Ç‚Ìƒ|ƒPƒ‚ƒ“‚©										*/
+/*	SCWK_PARAM0	æ–½è¨­ãƒŠãƒ³ãƒãƒ¼										*/
+/*	SCWK_PARAM1	ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—(ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã€ã‚„ã‚ã‚‹)		*/
+/*	SCWK_PARAM2	äº”åéŸ³ã®ã©ã‚Œã‹										*/
+/*	SCWK_PARAM3	ã©ã®ãƒã‚±ãƒ¢ãƒ³ã‹										*/
 //
-/*	SCWK_TEMP0	lp_bak(ŒÜ\‰¹)										*/
+/*	SCWK_TEMP0	lp_bak(äº”åéŸ³)										*/
 /*	SCWK_TEMP1	cp_bak												*/
-/*	SCWK_TEMP2	lp_bak(ƒ|ƒPƒ‚ƒ“–¼)									*/
+/*	SCWK_TEMP2	lp_bak(ãƒã‚±ãƒ¢ãƒ³å)									*/
 /*	SCWK_TEMP3	cp_bak												*/
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_seiseki_tower
 _EVENT_DATA		ev_seiseki_tower_multi
@@ -34,7 +34,7 @@ _EVENT_DATA_END
 
 
 /********************************************************************/
-/*						ƒtƒƒ“ƒeƒBƒA¬Ñ(ƒ^ƒ[)					*/
+/*						ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æˆç¸¾(ã‚¿ãƒ¯ãƒ¼)					*/
 /********************************************************************/
 ev_seiseki_tower:
 	_TALK_START
@@ -47,16 +47,16 @@ ev_seiseki_tower_menu:
 	_CALL		ev_seiseki_02
 
 	_SWITCH		SCWK_PARAM1
-	_CASE_JUMP	3,ev_seiseki_yameru					/*‚â‚ß‚é*/
+	_CASE_JUMP	3,ev_seiseki_yameru					/*ã‚„ã‚ã‚‹*/
 	_CASE_CANCEL ev_seiseki_yameru
 
-	_CALL		ev_seiseki_disp						/*¬Ñ•\¦*/
+	_CALL		ev_seiseki_disp						/*æˆç¸¾è¡¨ç¤º*/
 	_JUMP		ev_seiseki_tower_menu
 	_END
 
 
 /********************************************************************/
-/*						ƒtƒƒ“ƒeƒBƒA¬Ñ(ƒ^ƒ[ƒ}ƒ‹ƒ`)				*/
+/*						ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æˆç¸¾(ã‚¿ãƒ¯ãƒ¼ãƒãƒ«ãƒ)				*/
 /********************************************************************/
 ev_seiseki_tower_multi:
 	_TALK_START
@@ -69,16 +69,16 @@ ev_seiseki_tower_multi_menu:
 	_CALL		ev_seiseki_02
 
 	_SWITCH		SCWK_PARAM1
-	_CASE_JUMP	3,ev_seiseki_yameru					/*‚â‚ß‚é*/
+	_CASE_JUMP	3,ev_seiseki_yameru					/*ã‚„ã‚ã‚‹*/
 	_CASE_CANCEL ev_seiseki_yameru
 
-	_CALL		ev_seiseki_disp						/*¬Ñ•\¦*/
+	_CALL		ev_seiseki_disp						/*æˆç¸¾è¡¨ç¤º*/
 	_JUMP		ev_seiseki_tower_multi_menu
 	_END
 
 
 /********************************************************************/
-/*						ƒtƒƒ“ƒeƒBƒA¬Ñ(ƒtƒ@ƒNƒgƒŠ[)				*/
+/*						ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æˆç¸¾(ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼)				*/
 /********************************************************************/
 ev_seiseki_factory:
 	_TALK_START
@@ -92,16 +92,16 @@ ev_seiseki_factory_menu:
 	_CALL		ev_seiseki_02
 
 	_SWITCH		SCWK_PARAM1
-	_CASE_JUMP	3,ev_seiseki_yameru					/*‚â‚ß‚é*/
+	_CASE_JUMP	3,ev_seiseki_yameru					/*ã‚„ã‚ã‚‹*/
 	_CASE_CANCEL ev_seiseki_yameru
 
-	_CALL		ev_seiseki_disp						/*¬Ñ•\¦*/
+	_CALL		ev_seiseki_disp						/*æˆç¸¾è¡¨ç¤º*/
 	_JUMP		ev_seiseki_factory_menu
 	_END
 
 
 /********************************************************************/
-/*						ƒtƒƒ“ƒeƒBƒA¬Ñ(ƒXƒe[ƒW)					*/
+/*						ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æˆç¸¾(ã‚¹ãƒ†ãƒ¼ã‚¸)					*/
 /********************************************************************/
 ev_seiseki_stage:
 	_TALK_START
@@ -114,25 +114,25 @@ ev_seiseki_stage_menu:
 	_CALL		ev_seiseki_02
 
 	_SWITCH		SCWK_PARAM1
-	_CASE_JUMP	3,ev_seiseki_yameru					/*‚â‚ß‚é*/
+	_CASE_JUMP	3,ev_seiseki_yameru					/*ã‚„ã‚ã‚‹*/
 	_CASE_CANCEL ev_seiseki_yameru
 
-	/*˜AŸ’†‚©ƒ`ƒFƒbƒN*/
+	/*é€£å‹ä¸­ã‹ãƒã‚§ãƒƒã‚¯*/
 	_BSTAGE_TOOLS	STAGE_TOOL_GET_CLEAR_FLAG,SCWK_PARAM1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_menu_new					/*V‹K’§í*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_menu_new					/*æ–°è¦æŒ‘æˆ¦*/
 
-	/*˜AŸ’†‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[æ“¾*/
+	/*é€£å‹ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼å–å¾—*/
 	_BSTAGE_TOOLS	STAGE_TOOL_GET_CLEAR_MONSNO,SCWK_PARAM1,SCWK_ANSWER
 	_POKEMON_NAME_EXTRA	0,SCWK_ANSWER,0,0
 
-	/*u›››››‚ª’§í’†v*/
+	/*ã€Œâ—‹â—‹â—‹â—‹â—‹ãŒæŒ‘æˆ¦ä¸­ã€*/
 	_TALK_KEYWAIT	msg_bf_seiseki_04_01
 	_JUMP			ev_stage_menu_sub
 	_END
 
-/*V‹K’§í*/
+/*æ–°è¦æŒ‘æˆ¦*/
 ev_stage_menu_new:
-	/*u‚Ç‚Ìƒ|ƒPƒ‚ƒ“‚Ì¬Ñ‚ğ‚İ‚é‚©Hv*/
+	/*ã€Œã©ã®ãƒã‚±ãƒ¢ãƒ³ã®æˆç¸¾ã‚’ã¿ã‚‹ã‹ï¼Ÿã€*/
 	_TALK_KEYWAIT	msg_bf_seiseki_02_01
 	_JUMP			ev_stage_menu_sub
 	_END
@@ -144,7 +144,7 @@ ev_stage_menu_sub:
 	_JUMP		ev_seiseki_stage_menu02
 	_END
 
-/*ƒ|ƒPƒ‚ƒ“ŒÜ\‰¹‘I‘ğ*/
+/*ãƒã‚±ãƒ¢ãƒ³äº”åéŸ³é¸æŠ*/
 ev_seiseki_stage_menu02:
 	_CALL		ev_seiseki_03
 	_IFVAL_JUMP	SCWK_PARAM2,EQ,9,ev_seiseki_stage_menu
@@ -156,23 +156,23 @@ ev_seiseki_stage_menu02:
 	_JUMP		ev_seiseki_stage_menu03
 	_END
 
-/*¬Ñ‚ª‹L˜^‚³‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ÌƒEƒBƒ“ƒhƒE‚ğì¬*/
+/*æˆç¸¾ãŒè¨˜éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆ*/
 ev_seiseki_stage_menu03:
 	_SEISEKI_BMPLIST_START	SCWK_PARAM1,SCWK_PARAM2,SCWK_PARAM3,SCWK_TEMP2,SCWK_TEMP3
 
-	/*ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½*/
+	/*ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ*/
 	_IFVAL_JUMP	SCWK_PARAM3,EQ,EV_WIN_B_CANCEL,ev_seiseki_stage_menu02
 
-	_CALL		ev_seiseki_disp				/*¬Ñ•\¦*/
+	_CALL		ev_seiseki_disp				/*æˆç¸¾è¡¨ç¤º*/
 
-	/*u‚Ç‚Ìƒ|ƒPƒ‚ƒ“‚Ì¬Ñ‚ğ‚İ‚é‚©Hv*/
+	/*ã€Œã©ã®ãƒã‚±ãƒ¢ãƒ³ã®æˆç¸¾ã‚’ã¿ã‚‹ã‹ï¼Ÿã€*/
 	_TALK_KEYWAIT	msg_bf_seiseki_02_01
 	_JUMP		ev_seiseki_stage_menu03
 	_END
 
 
 /********************************************************************/
-/*						ƒtƒƒ“ƒeƒBƒA¬Ñ(ƒLƒƒƒbƒXƒ‹)				*/
+/*						ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æˆç¸¾(ã‚­ãƒ£ãƒƒã‚¹ãƒ«)				*/
 /********************************************************************/
 ev_seiseki_castle:
 	_TALK_START
@@ -185,16 +185,16 @@ ev_seiseki_castle_menu:
 	_CALL		ev_seiseki_02
 
 	_SWITCH		SCWK_PARAM1
-	_CASE_JUMP	3,ev_seiseki_yameru					/*‚â‚ß‚é*/
+	_CASE_JUMP	3,ev_seiseki_yameru					/*ã‚„ã‚ã‚‹*/
 	_CASE_CANCEL ev_seiseki_yameru
 
-	_CALL		ev_seiseki_disp						/*¬Ñ•\¦*/
+	_CALL		ev_seiseki_disp						/*æˆç¸¾è¡¨ç¤º*/
 	_JUMP		ev_seiseki_castle_menu
 	_END
 
 
 /********************************************************************/
-/*						ƒtƒƒ“ƒeƒBƒA¬Ñ(ƒ‹[ƒŒƒbƒg)				*/
+/*						ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æˆç¸¾(ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ)				*/
 /********************************************************************/
 ev_seiseki_roulette:
 	_TALK_START
@@ -207,10 +207,10 @@ ev_seiseki_roulette_menu:
 	_CALL		ev_seiseki_02
 
 	_SWITCH		SCWK_PARAM1
-	_CASE_JUMP	3,ev_seiseki_yameru					/*‚â‚ß‚é*/
+	_CASE_JUMP	3,ev_seiseki_yameru					/*ã‚„ã‚ã‚‹*/
 	_CASE_CANCEL ev_seiseki_yameru
 
-	_CALL		ev_seiseki_disp						/*¬Ñ•\¦*/
+	_CALL		ev_seiseki_disp						/*æˆç¸¾è¡¨ç¤º*/
 	_JUMP		ev_seiseki_roulette_menu
 	_END
 
@@ -225,23 +225,23 @@ ev_seiseki_01:
 
 
 /********************************************************************/
-/*						ƒoƒgƒ‹ƒ^ƒCƒv‘I‘ğ							*/
+/*						ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—é¸æŠ							*/
 /********************************************************************/
 ev_seiseki_02:
-	_BMPMENU_INIT_EX	24,9,0,1,SCWK_PARAM1			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_bf_seiseki_01_02,0			/*ƒVƒ“ƒOƒ‹*/
-	_BMPMENU_MAKE_LIST	msg_bf_seiseki_01_03,1			/*ƒ_ƒuƒ‹*/
-	_BMPMENU_MAKE_LIST	msg_bf_seiseki_01_04,2			/*ƒ}ƒ‹ƒ`*/
-	_BMPMENU_MAKE_LIST	msg_bf_seiseki_01_05,3			/*‚â‚ß‚é*/
+	_BMPMENU_INIT_EX	24,9,0,1,SCWK_PARAM1			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_bf_seiseki_01_02,0			/*ã‚·ãƒ³ã‚°ãƒ«*/
+	_BMPMENU_MAKE_LIST	msg_bf_seiseki_01_03,1			/*ãƒ€ãƒ–ãƒ«*/
+	_BMPMENU_MAKE_LIST	msg_bf_seiseki_01_04,2			/*ãƒãƒ«ãƒ*/
+	_BMPMENU_MAKE_LIST	msg_bf_seiseki_01_05,3			/*ã‚„ã‚ã‚‹*/
 	_BMPMENU_START
 	_RET
 
 
 /********************************************************************/
-/*							ŒÜ\‰¹‘I‘ğ								*/
+/*							äº”åéŸ³é¸æŠ								*/
 /********************************************************************/
 ev_seiseki_03:
-	_BMPLIST_INIT_EX	25,1,0,1,SCWK_PARAM2							/*BƒLƒƒƒ“ƒZƒ‹—LŒø*/
+	_BMPLIST_INIT_EX	25,1,0,1,SCWK_PARAM2							/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹*/
 	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_02,EV_WIN_TALK_MSG_NONE,0
 	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_03,EV_WIN_TALK_MSG_NONE,1
 	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_04,EV_WIN_TALK_MSG_NONE,2
@@ -249,16 +249,16 @@ ev_seiseki_03:
 	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_06,EV_WIN_TALK_MSG_NONE,4
 	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_07,EV_WIN_TALK_MSG_NONE,5
 	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_08,EV_WIN_TALK_MSG_NONE,6
-	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_10,EV_WIN_TALK_MSG_NONE,7		/*ƒ‰*/
-	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_09,EV_WIN_TALK_MSG_NONE,8		/*ƒ„ƒ*/
-	_BMPLIST_MAKE_LIST	msg_bf_seiseki_01_06,EV_WIN_TALK_MSG_NONE,9		/*‚à‚Ç‚é*/
+	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_10,EV_WIN_TALK_MSG_NONE,7		/*ãƒ©*/
+	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_09,EV_WIN_TALK_MSG_NONE,8		/*ãƒ¤ãƒ¯*/
+	_BMPLIST_MAKE_LIST	msg_bf_seiseki_01_06,EV_WIN_TALK_MSG_NONE,9		/*ã‚‚ã©ã‚‹*/
 	//_BMPLIST_START
-	_BMPLIST_START_LP_CP	SCWK_TEMP0,SCWK_TEMP1						/*‚±‚±‚ÅƒJ[ƒ\ƒ‹ˆÊ’u‚ğw’è*/
+	_BMPLIST_START_LP_CP	SCWK_TEMP0,SCWK_TEMP1						/*ã“ã“ã§ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’æŒ‡å®š*/
 	_RET
 
 
 /********************************************************************/
-/*							‚â‚ß‚é									*/
+/*							ã‚„ã‚ã‚‹									*/
 /********************************************************************/
 ev_seiseki_yameru:
 	_TALK_CLOSE
@@ -271,7 +271,7 @@ ev_seiseki_yameru_sub:
 
 
 /********************************************************************/
-/*							¬Ñ‰æ–Ê•\¦							*/
+/*							æˆç¸¾ç”»é¢è¡¨ç¤º							*/
 /********************************************************************/
 ev_seiseki_disp:
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC

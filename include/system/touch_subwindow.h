@@ -2,7 +2,7 @@
 /**
  *
  *	@file		touch_subwindow.h
- *	@brief		ƒTƒu‰æ–Ê@G‚ê‚éƒEƒBƒ“ƒhƒEƒ{ƒ^ƒ“ƒVƒXƒeƒ€
+ *	@brief		ã‚µãƒ–ç”»é¢ã€€è§¦ã‚Œã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒœã‚¿ãƒ³ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2006.03.23
  *
@@ -22,113 +22,113 @@
 
 //-----------------------------------------------------------------------------
 /**
- *	yŽÀ‘•’†‚Ì’ˆÓŽ–€z
+ *	ã€å®Ÿè£…ä¸­ã®æ³¨æ„äº‹é …ã€‘
  *	
- *	VBlankŠúŠÔ’†‚É
+ *	VBlankæœŸé–“ä¸­ã«
  *		gflib/bg_system.h
  *		GLOBAL void GF_BGL_VBlankFunc( GF_BGL_INI * ini );
- *	‚ðŒÄ‚ñ‚Å‚­‚¾‚³‚¢B	ƒXƒNƒŠ[ƒ““]‘—‚ðs‚¢‚Ü‚·B
+ *	ã‚’å‘¼ã‚“ã§ãã ã•ã„ã€‚	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ã‚’è¡Œã„ã¾ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒVƒXƒeƒ€“®ì@–ß‚è’l
+//	ã‚·ã‚¹ãƒ†ãƒ å‹•ä½œã€€æˆ»ã‚Šå€¤
 //=====================================
 enum{
-	TOUCH_SW_RET_NORMAL,	// ‰½‚à‚È‚µ
-	TOUCH_SW_RET_YES,		// ‚Í‚¢
-	TOUCH_SW_RET_NO,		// ‚¢‚¢‚¦
-	TOUCH_SW_RET_YES_TOUCH,	// ‚Í‚¢‰Ÿ‚³‚ê‚½uŠÔ
-	TOUCH_SW_RET_NO_TOUCH,	// ‚¢‚¢‚¦‰Ÿ‚³‚ê‚½uŠÔ
+	TOUCH_SW_RET_NORMAL,	// ä½•ã‚‚ãªã—
+	TOUCH_SW_RET_YES,		// ã¯ã„
+	TOUCH_SW_RET_NO,		// ã„ã„ãˆ
+	TOUCH_SW_RET_YES_TOUCH,	// ã¯ã„æŠ¼ã•ã‚ŒãŸçž¬é–“
+	TOUCH_SW_RET_NO_TOUCH,	// ã„ã„ãˆæŠ¼ã•ã‚ŒãŸçž¬é–“
 	TOUCH_SW_RET_NUM
 };
 
-// ƒpƒŒƒbƒg“]‘—ƒTƒCƒY
-#define TOUCH_SW_USE_PLTT_NUM	(2)			// ƒpƒŒƒbƒg–{”’PˆÊ
-// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒTƒCƒY
-#define TOUCH_SW_USE_CHAR_NUM	(29*4)		// ƒLƒƒƒ‰ƒNƒ^’PˆÊ
-// ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-#define TOUCH_SW_USE_SCRN_X		(6)			// ƒLƒƒƒ‰ƒNƒ^’PˆÊ
-#define TOUCH_SW_USE_SCRN_Y		(4)			// ƒLƒƒƒ‰ƒNƒ^’PˆÊ
+// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã‚µã‚¤ã‚º
+#define TOUCH_SW_USE_PLTT_NUM	(2)			// ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°å˜ä½
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+#define TOUCH_SW_USE_CHAR_NUM	(29*4)		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+#define TOUCH_SW_USE_SCRN_X		(6)			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½
+#define TOUCH_SW_USE_SCRN_Y		(4)			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒVƒXƒeƒ€‰Šú‰»ƒf[ƒ^
+//	ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	GF_BGL_INI* p_bgl;		// BGLƒVƒXƒeƒ€ƒ[ƒN
-	u32 bg_frame;			// BGƒiƒ“ƒo[
-	u32 char_offs;			// ƒLƒƒƒ‰ƒNƒ^“]‘—ƒIƒtƒZƒbƒg (·¬×¸À’PˆÊ 1/32byte)
-	u32 pltt_offs;			// ƒpƒŒƒbƒg“]‘—ƒIƒtƒZƒbƒgiÊßÚ¯Ä1–{•ª’PˆÊ 1/32bytej
-	u8 x;					// xÀ•Wi·¬×¸À’PˆÊj
-	u8 y;					// yÀ•Wi·¬×¸À’PˆÊj
+	GF_BGL_INI* p_bgl;		// BGLã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	u32 bg_frame;			// BGãƒŠãƒ³ãƒãƒ¼
+	u32 char_offs;			// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ (ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ 1/32byte)
+	u32 pltt_offs;			// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆãƒ‘ãƒ¬ãƒƒãƒˆ1æœ¬åˆ†å˜ä½ 1/32byteï¼‰
+	u8 x;					// xåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ï¼‰
+	u8 y;					// yåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ï¼‰
 } TOUCH_SW_PARAM;
 
 
 //-------------------------------------
-//	ƒVƒXƒeƒ€ƒ[ƒN
+//	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _TOUCH_SW_SYS TOUCH_SW_SYS;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒ[ƒNì¬
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *	
- *	@param	heapid	Žg—pƒq[ƒvID 
+ *	@param	heapid	ä½¿ç”¨ãƒ’ãƒ¼ãƒ—ID 
  *	
- *	@return	ƒ[ƒNƒ|ƒCƒ“ƒ^
+ *	@return	ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 GLOBAL TOUCH_SW_SYS* TOUCH_SW_AllocWork( u32 heapid );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒ[ƒN”jŠü
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *	
- *	@param	p_touch_sw	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_touch_sw	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 GLOBAL void TOUCH_SW_FreeWork( TOUCH_SW_SYS* p_touch_sw );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	p_touch_sw	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_param	ƒVƒXƒeƒ€“®ìƒf[ƒ^
+ *	@param	p_touch_sw	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_param	ã‚·ã‚¹ãƒ†ãƒ å‹•ä½œãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 GLOBAL void TOUCH_SW_Init( TOUCH_SW_SYS* p_touch_sw, const TOUCH_SW_PARAM* cp_param );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒƒCƒ““®ì
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
- *	@param	p_touch_sw	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_touch_sw	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TOUCH_SW_RET_NORMAL	// ‰½‚à‚È‚µ
- *	@retval	TOUCH_SW_RET_YES	// ‚Í‚¢
- *	@retval	TOUCH_SW_RET_NO		// ‚¢‚¢‚¦
+ *	@retval	TOUCH_SW_RET_NORMAL	// ä½•ã‚‚ãªã—
+ *	@retval	TOUCH_SW_RET_YES	// ã¯ã„
+ *	@retval	TOUCH_SW_RET_NO		// ã„ã„ãˆ
  *
- *	TOUCH_SW_MainMC‚Ì‚Æ‚«ˆÈ‰º‚Ì’l‚à‹A‚Á‚Ä‚«‚Ü‚·B(MC=Moment Check)
- *	@retval	TOUCH_SW_RET_YES_TOUCH	// ‚Í‚¢‰Ÿ‚µ‚½uŠÔ
- *	@retval	TOUCH_SW_RET_NO_TOUCH	// ‚¢‚¢‚¦‰Ÿ‚µ‚½uŠÔ
+ *	TOUCH_SW_MainMCã®ã¨ãä»¥ä¸‹ã®å€¤ã‚‚å¸°ã£ã¦ãã¾ã™ã€‚(MC=Moment Check)
+ *	@retval	TOUCH_SW_RET_YES_TOUCH	// ã¯ã„æŠ¼ã—ãŸçž¬é–“
+ *	@retval	TOUCH_SW_RET_NO_TOUCH	// ã„ã„ãˆæŠ¼ã—ãŸçž¬é–“
  *	
  */
 //-----------------------------------------------------------------------------
@@ -137,9 +137,9 @@ GLOBAL u32 TOUCH_SW_MainMC( TOUCH_SW_SYS* p_touch_sw );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒXƒeƒ€ƒf[ƒ^ƒŠƒZƒbƒg	(Init‚Ì‘O‚Ìó‘Ô‚É‚·‚é@‚¢‚ç‚È‚¢‚©‚à‚µ‚ê‚È‚¢)
+ *	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ	(Initã®å‰ã®çŠ¶æ…‹ã«ã™ã‚‹ã€€ã„ã‚‰ãªã„ã‹ã‚‚ã—ã‚Œãªã„)
  *
- *	@param	p_touch_sw	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_touch_sw	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */

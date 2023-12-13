@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	frontier_bmp.c
- * @brief	uƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒA¬Ñ‰æ–ÊvBMP
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æˆç¸¾ç”»é¢ã€BMP
  * @author	Satoshi Nohara
  * @date	2007.03.15
  */
@@ -17,52 +17,52 @@
 
 //==============================================================================================
 //
-//	ƒtƒ@ƒNƒgƒŠ[ƒf[ƒ^
+//	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//uƒoƒgƒ‹ƒgƒŒ[ƒh‚Ì@ƒVƒ“ƒOƒ‹@‚¹‚¢‚¹‚«v
+//ã€Œãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒ‰ã®ã€€ã‚·ãƒ³ã‚°ãƒ«ã€€ã›ã„ã›ãã€
 #define BF_WIN_TITLE_PX				(2)
 #define BF_WIN_TITLE_PY				(2)
 #define BF_WIN_TITLE_SX				(30)
 #define BF_WIN_TITLE_SY				(2)
 #define BF_WIN_TITLE_CGX			(1)
 
-//uƒŒƒxƒ‹‚T‚OEEEƒŒƒ“ƒ^ƒ‹^‚±‚¤‚©‚ñv
+//ã€Œãƒ¬ãƒ™ãƒ«ï¼•ï¼ãƒ»ãƒ»ãƒ»ãƒ¬ãƒ³ã‚¿ãƒ«ï¼ã“ã†ã‹ã‚“ã€
 #define BF_WIN_ENTRY1_PX			(2)
 #define BF_WIN_ENTRY1_PY			(7)
 #define BF_WIN_ENTRY1_SX			(28)
 #define BF_WIN_ENTRY1_SY			(2)
 #define BF_WIN_ENTRY1_CGX			(BF_WIN_TITLE_CGX + BF_WIN_TITLE_SX * BF_WIN_TITLE_SY)
 
-//u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+//ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 #define BF_WIN_BEFORE_PX			(2)
 #define BF_WIN_BEFORE_PY			(10)
 #define BF_WIN_BEFORE_SX			(28)
 #define BF_WIN_BEFORE_SY			(2)
 #define BF_WIN_BEFORE_CGX			(BF_WIN_ENTRY1_CGX + BF_WIN_ENTRY1_SX * BF_WIN_ENTRY1_SY)
 
-//u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+//ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 #define BF_WIN_MAX_PX				(2)
 #define BF_WIN_MAX_PY				(12)
 #define BF_WIN_MAX_SX				(28)
 #define BF_WIN_MAX_SY				(2)
 #define BF_WIN_MAX_CGX				(BF_WIN_BEFORE_CGX + BF_WIN_BEFORE_SX * BF_WIN_BEFORE_SY)
 
-//uƒI[ƒvƒ“ƒŒƒxƒ‹v
+//ã€Œã‚ªãƒ¼ãƒ—ãƒ³ãƒ¬ãƒ™ãƒ«ã€
 #define BF_WIN_ENTRY2_PX			(2)
 #define BF_WIN_ENTRY2_PY			(15)
 #define BF_WIN_ENTRY2_SX			(16)
 #define BF_WIN_ENTRY2_SY			(2)
 #define BF_WIN_ENTRY2_CGX			(BF_WIN_MAX_CGX + BF_WIN_MAX_SX * BF_WIN_MAX_SY)
 
-//u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+//ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 #define BF_WIN_BEFORE2_PX			(2)
 #define BF_WIN_BEFORE2_PY			(18)
 #define BF_WIN_BEFORE2_SX			(28)
 #define BF_WIN_BEFORE2_SY			(2)
 #define BF_WIN_BEFORE2_CGX			(BF_WIN_ENTRY2_CGX + BF_WIN_ENTRY2_SX * BF_WIN_ENTRY2_SY)
 
-//u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+//ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 #define BF_WIN_MAX2_PX				(2)
 #define BF_WIN_MAX2_PY				(20)
 #define BF_WIN_MAX2_SX				(28)
@@ -71,31 +71,31 @@
 
 static const BMPWIN_DAT FactoryMonitorBmpData[] =
 {
-	{	// 0:uƒoƒgƒ‹ƒgƒŒ[ƒh‚Ì@ƒVƒ“ƒOƒ‹@‚¹‚¢‚¹‚«v
+	{	// 0:ã€Œãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒ‰ã®ã€€ã‚·ãƒ³ã‚°ãƒ«ã€€ã›ã„ã›ãã€
 		BFM_FRAME_WIN, BF_WIN_TITLE_PX, BF_WIN_TITLE_PY,
 		BF_WIN_TITLE_SX, BF_WIN_TITLE_SY, BFM_FONT_PAL, BF_WIN_TITLE_CGX
 	},	
-	{	// 1:uƒŒƒxƒ‹‚T‚OEEEƒŒƒ“ƒ^ƒ‹^‚±‚¤‚©‚ñv
+	{	// 1:ã€Œãƒ¬ãƒ™ãƒ«ï¼•ï¼ãƒ»ãƒ»ãƒ»ãƒ¬ãƒ³ã‚¿ãƒ«ï¼ã“ã†ã‹ã‚“ã€
 		BFM_FRAME_WIN, BF_WIN_ENTRY1_PX, BF_WIN_ENTRY1_PY,
 		BF_WIN_ENTRY1_SX, BF_WIN_ENTRY1_SY, BFM_FONT_PAL, BF_WIN_ENTRY1_CGX
 	},	
-	{	// 2:u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 2:ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BF_WIN_BEFORE_PX, BF_WIN_BEFORE_PY,
 		BF_WIN_BEFORE_SX, BF_WIN_BEFORE_SY, BFM_FONT_PAL, BF_WIN_BEFORE_CGX
 	},	
-	{	// 3:u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 3:ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BF_WIN_MAX_PX, BF_WIN_MAX_PY,
 		BF_WIN_MAX_SX, BF_WIN_MAX_SY, BFM_FONT_PAL, BF_WIN_MAX_CGX
 	},	
-	{	// 4:uƒI[ƒvƒ“ƒŒƒxƒ‹v
+	{	// 4:ã€Œã‚ªãƒ¼ãƒ—ãƒ³ãƒ¬ãƒ™ãƒ«ã€
 		BFM_FRAME_WIN, BF_WIN_ENTRY2_PX, BF_WIN_ENTRY2_PY,
 		BF_WIN_ENTRY2_SX, BF_WIN_ENTRY2_SY, BFM_FONT_PAL, BF_WIN_ENTRY2_CGX
 	},	
-	{	// 5:u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 5:ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BF_WIN_BEFORE2_PX, BF_WIN_BEFORE2_PY,
 		BF_WIN_BEFORE2_SX, BF_WIN_BEFORE2_SY, BFM_FONT_PAL, BF_WIN_BEFORE2_CGX
 	},
-	{	// 6:u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 6:ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BF_WIN_MAX2_PX, BF_WIN_MAX2_PY,
 		BF_WIN_MAX2_SX, BF_WIN_MAX2_SY, BFM_FONT_PAL, BF_WIN_MAX2_CGX
 	},
@@ -104,31 +104,31 @@ static const BMPWIN_DAT FactoryMonitorBmpData[] =
 
 //==============================================================================================
 //
-//	ƒXƒe[ƒWƒf[ƒ^
+//	ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//uƒoƒgƒ‹ƒgƒŒ[ƒh‚Ì@ƒVƒ“ƒOƒ‹@‚¹‚¢‚¹‚«v
+//ã€Œãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒ‰ã®ã€€ã‚·ãƒ³ã‚°ãƒ«ã€€ã›ã„ã›ãã€
 #define BS_WIN_TITLE_PX				(2)
 #define BS_WIN_TITLE_PY				(2)
 #define BS_WIN_TITLE_SX				(28)
 #define BS_WIN_TITLE_SY				(2)
 #define BS_WIN_TITLE_CGX			(1)
 
-//uƒsƒJƒ`ƒ…ƒE‚Ì@‚«‚ë‚­v
+//ã€Œãƒ”ã‚«ãƒãƒ¥ã‚¦ã®ã€€ãã‚ãã€
 #define BS_WIN_ENTRY1_PX			(2)
 #define BS_WIN_ENTRY1_PY			(7)
 #define BS_WIN_ENTRY1_SX			(28)
 #define BS_WIN_ENTRY1_SY			(2)
 #define BS_WIN_ENTRY1_CGX			(BS_WIN_TITLE_CGX + BS_WIN_TITLE_SX * BS_WIN_TITLE_SY)
 
-//u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+//ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 #define BS_WIN_BEFORE_PX			(2)
 #define BS_WIN_BEFORE_PY			(10)
 #define BS_WIN_BEFORE_SX			(28)
 #define BS_WIN_BEFORE_SY			(2)
 #define BS_WIN_BEFORE_CGX			(BS_WIN_ENTRY1_CGX + BS_WIN_ENTRY1_SX * BS_WIN_ENTRY1_SY)
 
-//u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+//ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 #define BS_WIN_MAX_PX				(2)
 #define BS_WIN_MAX_PY				(13)
 #define BS_WIN_MAX_SX				(28)
@@ -137,19 +137,19 @@ static const BMPWIN_DAT FactoryMonitorBmpData[] =
 
 static const BMPWIN_DAT StageMonitorBmpData[] =
 {
-	{	// 0:uƒoƒgƒ‹ƒgƒŒ[ƒh‚Ì@ƒVƒ“ƒOƒ‹@‚¹‚¢‚¹‚«v
+	{	// 0:ã€Œãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒ‰ã®ã€€ã‚·ãƒ³ã‚°ãƒ«ã€€ã›ã„ã›ãã€
 		BFM_FRAME_WIN, BS_WIN_TITLE_PX, BS_WIN_TITLE_PY,
 		BS_WIN_TITLE_SX, BS_WIN_TITLE_SY, BFM_FONT_PAL, BS_WIN_TITLE_CGX
 	},	
-	{	// 1:uƒŒƒxƒ‹‚T‚OEEEƒŒƒ“ƒ^ƒ‹^‚±‚¤‚©‚ñv
+	{	// 1:ã€Œãƒ¬ãƒ™ãƒ«ï¼•ï¼ãƒ»ãƒ»ãƒ»ãƒ¬ãƒ³ã‚¿ãƒ«ï¼ã“ã†ã‹ã‚“ã€
 		BFM_FRAME_WIN, BS_WIN_ENTRY1_PX, BS_WIN_ENTRY1_PY,
 		BS_WIN_ENTRY1_SX, BS_WIN_ENTRY1_SY, BFM_FONT_PAL, BS_WIN_ENTRY1_CGX
 	},	
-	{	// 2:u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 2:ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BS_WIN_BEFORE_PX, BS_WIN_BEFORE_PY,
 		BS_WIN_BEFORE_SX, BS_WIN_BEFORE_SY, BFM_FONT_PAL, BS_WIN_BEFORE_CGX
 	},	
-	{	// 3:u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 3:ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BS_WIN_MAX_PX, BS_WIN_MAX_PY,
 		BS_WIN_MAX_SX, BS_WIN_MAX_SY, BFM_FONT_PAL, BS_WIN_MAX_CGX
 	},	
@@ -158,31 +158,31 @@ static const BMPWIN_DAT StageMonitorBmpData[] =
 
 //==============================================================================================
 //
-//	ƒLƒƒƒbƒXƒ‹ƒf[ƒ^
+//	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//uƒoƒgƒ‹ƒgƒŒ[ƒh‚Ì@ƒVƒ“ƒOƒ‹@‚¹‚¢‚¹‚«v
+//ã€Œãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒ‰ã®ã€€ã‚·ãƒ³ã‚°ãƒ«ã€€ã›ã„ã›ãã€
 #define BC_WIN_TITLE_PX				(2)
 #define BC_WIN_TITLE_PY				(2)
 #define BC_WIN_TITLE_SX				(28)
 #define BC_WIN_TITLE_SY				(2)
 #define BC_WIN_TITLE_CGX			(1)
 
-//uƒLƒƒƒbƒXƒ‹ƒ|ƒCƒ“ƒgv
+//ã€Œã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒã‚¤ãƒ³ãƒˆã€
 #define BC_WIN_ENTRY1_PX			(18)
 #define BC_WIN_ENTRY1_PY			(7)
 #define BC_WIN_ENTRY1_SX			(12)
 #define BC_WIN_ENTRY1_SY			(2)
 #define BC_WIN_ENTRY1_CGX			(BC_WIN_TITLE_CGX + BC_WIN_TITLE_SX * BC_WIN_TITLE_SY)
 
-//u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+//ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 #define BC_WIN_BEFORE_PX			(2)
 #define BC_WIN_BEFORE_PY			(10)
 #define BC_WIN_BEFORE_SX			(28)
 #define BC_WIN_BEFORE_SY			(2)
 #define BC_WIN_BEFORE_CGX			(BC_WIN_ENTRY1_CGX + BC_WIN_ENTRY1_SX * BC_WIN_ENTRY1_SY)
 
-//u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+//ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 #define BC_WIN_MAX_PX				(2)
 #define BC_WIN_MAX_PY				(13)
 #define BC_WIN_MAX_SX				(28)
@@ -191,19 +191,19 @@ static const BMPWIN_DAT StageMonitorBmpData[] =
 
 static const BMPWIN_DAT CastleMonitorBmpData[] =
 {
-	{	// 0:uƒoƒgƒ‹ƒgƒŒ[ƒh‚Ì@ƒVƒ“ƒOƒ‹@‚¹‚¢‚¹‚«v
+	{	// 0:ã€Œãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒ‰ã®ã€€ã‚·ãƒ³ã‚°ãƒ«ã€€ã›ã„ã›ãã€
 		BFM_FRAME_WIN, BC_WIN_TITLE_PX, BC_WIN_TITLE_PY,
 		BC_WIN_TITLE_SX, BC_WIN_TITLE_SY, BFM_FONT_PAL, BC_WIN_TITLE_CGX
 	},	
-	{	// 1:uƒŒƒxƒ‹‚T‚OEEEƒŒƒ“ƒ^ƒ‹^‚±‚¤‚©‚ñv
+	{	// 1:ã€Œãƒ¬ãƒ™ãƒ«ï¼•ï¼ãƒ»ãƒ»ãƒ»ãƒ¬ãƒ³ã‚¿ãƒ«ï¼ã“ã†ã‹ã‚“ã€
 		BFM_FRAME_WIN, BC_WIN_ENTRY1_PX, BC_WIN_ENTRY1_PY,
 		BC_WIN_ENTRY1_SX, BC_WIN_ENTRY1_SY, BFM_FONT_PAL, BC_WIN_ENTRY1_CGX
 	},	
-	{	// 2:u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 2:ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BC_WIN_BEFORE_PX, BC_WIN_BEFORE_PY,
 		BC_WIN_BEFORE_SX, BC_WIN_BEFORE_SY, BFM_FONT_PAL, BC_WIN_BEFORE_CGX
 	},	
-	{	// 3:u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 3:ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BC_WIN_MAX_PX, BC_WIN_MAX_PY,
 		BC_WIN_MAX_SX, BC_WIN_MAX_SY, BFM_FONT_PAL, BC_WIN_MAX_CGX
 	},	
@@ -212,24 +212,24 @@ static const BMPWIN_DAT CastleMonitorBmpData[] =
 
 //==============================================================================================
 //
-//	ƒ‹[ƒŒƒbƒgƒf[ƒ^
+//	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//uƒoƒgƒ‹ƒgƒŒ[ƒh‚Ì@ƒVƒ“ƒOƒ‹@‚¹‚¢‚¹‚«v
+//ã€Œãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒ‰ã®ã€€ã‚·ãƒ³ã‚°ãƒ«ã€€ã›ã„ã›ãã€
 #define BR_WIN_TITLE_PX				(2)
 #define BR_WIN_TITLE_PY				(2)
 #define BR_WIN_TITLE_SX				(28)
 #define BR_WIN_TITLE_SY				(2)
 #define BR_WIN_TITLE_CGX			(1)
 
-//u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+//ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 #define BR_WIN_BEFORE_PX			(2)
 #define BR_WIN_BEFORE_PY			(8)
 #define BR_WIN_BEFORE_SX			(28)
 #define BR_WIN_BEFORE_SY			(2)
 #define BR_WIN_BEFORE_CGX			(BR_WIN_TITLE_CGX + BR_WIN_TITLE_SX * BR_WIN_TITLE_SY)
 
-//u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+//ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 #define BR_WIN_MAX_PX				(2)
 #define BR_WIN_MAX_PY				(11)
 #define BR_WIN_MAX_SX				(28)
@@ -238,15 +238,15 @@ static const BMPWIN_DAT CastleMonitorBmpData[] =
 
 static const BMPWIN_DAT RouletteMonitorBmpData[] =
 {
-	{	// 0:uƒoƒgƒ‹ƒgƒŒ[ƒh‚Ì@ƒVƒ“ƒOƒ‹@‚¹‚¢‚¹‚«v
+	{	// 0:ã€Œãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒ‰ã®ã€€ã‚·ãƒ³ã‚°ãƒ«ã€€ã›ã„ã›ãã€
 		BFM_FRAME_WIN, BR_WIN_TITLE_PX, BR_WIN_TITLE_PY,
 		BR_WIN_TITLE_SX, BR_WIN_TITLE_SY, BFM_FONT_PAL, BR_WIN_TITLE_CGX
 	},	
-	{	// 1:u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 1:ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BR_WIN_BEFORE_PX, BR_WIN_BEFORE_PY,
 		BR_WIN_BEFORE_SX, BR_WIN_BEFORE_SY, BFM_FONT_PAL, BR_WIN_BEFORE_CGX
 	},	
-	{	// 2:u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 2:ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BR_WIN_MAX_PX, BR_WIN_MAX_PY,
 		BR_WIN_MAX_SX, BR_WIN_MAX_SY, BFM_FONT_PAL, BR_WIN_MAX_CGX
 	},	
@@ -255,66 +255,66 @@ static const BMPWIN_DAT RouletteMonitorBmpData[] =
 
 //==============================================================================================
 //
-//	ƒ^ƒ[ƒf[ƒ^
+//	ã‚¿ãƒ¯ãƒ¼ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//uƒoƒgƒ‹ƒ^ƒ[‚Ì@ƒVƒ“ƒOƒ‹@‚¹‚¢‚¹‚«v
+//ã€Œãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã®ã€€ã‚·ãƒ³ã‚°ãƒ«ã€€ã›ã„ã›ãã€
 #define BT_WIN_TITLE_PX				(2)
 #define BT_WIN_TITLE_PY				(2)
 #define BT_WIN_TITLE_SX				(30)
 #define BT_WIN_TITLE_SY				(2)
 #define BT_WIN_TITLE_CGX			(1)
 
-//uƒgƒŒ[ƒi[‚Æƒ}ƒ‹ƒ`v
+//ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã¨ãƒžãƒ«ãƒã€
 #define BT_WIN_ENTRY1_PX			(2)
 #define BT_WIN_ENTRY1_PY			(7)
 #define BT_WIN_ENTRY1_SX			(28)
 #define BT_WIN_ENTRY1_SY			(2)
 #define BT_WIN_ENTRY1_CGX			(BT_WIN_TITLE_CGX + BT_WIN_TITLE_SX * BT_WIN_TITLE_SY)
 
-//u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v"ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹"
+//ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€"ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«"
 #define BT_WIN_BEFORE0_PX			(2)
 #define BT_WIN_BEFORE0_PY			(7)
 #define BT_WIN_BEFORE0_SX			(28)
 #define BT_WIN_BEFORE0_SY			(2)
 #define BT_WIN_BEFORE0_CGX			(BT_WIN_ENTRY1_CGX + BT_WIN_ENTRY1_SX * BT_WIN_ENTRY1_SY)
 
-//u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v"ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹"
+//ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€"ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«"
 #define BT_WIN_MAX0_PX				(2)
 #define BT_WIN_MAX0_PY				(10)
 #define BT_WIN_MAX0_SX				(28)
 #define BT_WIN_MAX0_SY				(2)
 #define BT_WIN_MAX0_CGX				(BT_WIN_BEFORE0_CGX + BT_WIN_BEFORE0_SX * BT_WIN_BEFORE0_SY)
 
-//u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v"ƒ}ƒ‹ƒ`"
+//ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€"ãƒžãƒ«ãƒ"
 #define BT_WIN_BEFORE_PX			(2)
 #define BT_WIN_BEFORE_PY			(10)
 #define BT_WIN_BEFORE_SX			(28)
 #define BT_WIN_BEFORE_SY			(2)
 #define BT_WIN_BEFORE_CGX			(BT_WIN_ENTRY1_CGX + BT_WIN_ENTRY1_SX * BT_WIN_ENTRY1_SY)
 
-//u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v"ƒ}ƒ‹ƒ`"
+//ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€"ãƒžãƒ«ãƒ"
 #define BT_WIN_MAX_PX				(2)
 #define BT_WIN_MAX_PY				(12)
 #define BT_WIN_MAX_SX				(28)
 #define BT_WIN_MAX_SY				(2)
 #define BT_WIN_MAX_CGX				(BT_WIN_BEFORE_CGX + BT_WIN_BEFORE_SX * BT_WIN_BEFORE_SY)
 
-//u‚Æ‚à‚¾‚¿‚Æƒ}ƒ‹ƒ`v
+//ã€Œã¨ã‚‚ã ã¡ã¨ãƒžãƒ«ãƒã€
 #define BT_WIN_ENTRY2_PX			(2)
 #define BT_WIN_ENTRY2_PY			(15)
 #define BT_WIN_ENTRY2_SX			(16)
 #define BT_WIN_ENTRY2_SY			(2)
 #define BT_WIN_ENTRY2_CGX			(BT_WIN_MAX_CGX + BT_WIN_MAX_SX * BT_WIN_MAX_SY)
 
-//u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+//ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 #define BT_WIN_BEFORE2_PX			(2)
 #define BT_WIN_BEFORE2_PY			(18)
 #define BT_WIN_BEFORE2_SX			(28)
 #define BT_WIN_BEFORE2_SY			(2)
 #define BT_WIN_BEFORE2_CGX			(BT_WIN_ENTRY2_CGX + BT_WIN_ENTRY2_SX * BT_WIN_ENTRY2_SY)
 
-//u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+//ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 #define BT_WIN_MAX2_PX				(2)
 #define BT_WIN_MAX2_PY				(20)
 #define BT_WIN_MAX2_SX				(28)
@@ -323,39 +323,39 @@ static const BMPWIN_DAT RouletteMonitorBmpData[] =
 
 static const BMPWIN_DAT TowerMonitorBmpData[] =
 {
-	{	// 0:uƒoƒgƒ‹ƒ^ƒ[‚Ì@ƒVƒ“ƒOƒ‹@‚¹‚¢‚¹‚«v
+	{	// 0:ã€Œãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã®ã€€ã‚·ãƒ³ã‚°ãƒ«ã€€ã›ã„ã›ãã€
 		BFM_FRAME_WIN, BT_WIN_TITLE_PX, BT_WIN_TITLE_PY,
 		BT_WIN_TITLE_SX, BT_WIN_TITLE_SY, BFM_FONT_PAL, BT_WIN_TITLE_CGX
 	},	
-	{	// 1:uƒgƒŒ[ƒi[‚Æƒ}ƒ‹ƒ`v
+	{	// 1:ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã¨ãƒžãƒ«ãƒã€
 		BFM_FRAME_WIN, BT_WIN_ENTRY1_PX, BT_WIN_ENTRY1_PY,
 		BT_WIN_ENTRY1_SX, BT_WIN_ENTRY1_SY, BFM_FONT_PAL, BT_WIN_ENTRY1_CGX
 	},	
-	{	// 2:u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 2:ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BT_WIN_BEFORE0_PX, BT_WIN_BEFORE0_PY,
 		BT_WIN_BEFORE0_SX, BT_WIN_BEFORE0_SY, BFM_FONT_PAL, BT_WIN_BEFORE0_CGX
 	},	
-	{	// 3:u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 3:ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BT_WIN_MAX0_PX, BT_WIN_MAX0_PY,
 		BT_WIN_MAX0_SX, BT_WIN_MAX0_SY, BFM_FONT_PAL, BT_WIN_MAX0_CGX
 	},	
-	{	// 4:u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 4:ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BT_WIN_BEFORE_PX, BT_WIN_BEFORE_PY,
 		BT_WIN_BEFORE_SX, BT_WIN_BEFORE_SY, BFM_FONT_PAL, BT_WIN_BEFORE_CGX
 	},	
-	{	// 5:u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 5:ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BT_WIN_MAX_PX, BT_WIN_MAX_PY,
 		BT_WIN_MAX_SX, BT_WIN_MAX_SY, BFM_FONT_PAL, BT_WIN_MAX_CGX
 	},	
-	{	// 6:u‚Æ‚à‚¾‚¿‚Æƒ}ƒ‹ƒ`v
+	{	// 6:ã€Œã¨ã‚‚ã ã¡ã¨ãƒžãƒ«ãƒã€
 		BFM_FRAME_WIN, BT_WIN_ENTRY2_PX, BT_WIN_ENTRY2_PY,
 		BT_WIN_ENTRY2_SX, BT_WIN_ENTRY2_SY, BFM_FONT_PAL, BT_WIN_ENTRY2_CGX
 	},	
-	{	// 7:u‚º‚ñ‚©‚¢@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 7:ã€Œãœã‚“ã‹ã„ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BT_WIN_BEFORE2_PX, BT_WIN_BEFORE2_PY,
 		BT_WIN_BEFORE2_SX, BT_WIN_BEFORE2_SY, BFM_FONT_PAL, BT_WIN_BEFORE2_CGX
 	},	
-	{	// 8:u‚³‚¢‚±‚¤@9999‚ê‚ñ‚µ‚å‚¤EEE9999‚©‚¢v
+	{	// 8:ã€Œã•ã„ã“ã†ã€€9999ã‚Œã‚“ã—ã‚‡ã†ãƒ»ãƒ»ãƒ»9999ã‹ã„ã€
 		BFM_FRAME_WIN, BT_WIN_MAX2_PX, BT_WIN_MAX2_PY,
 		BT_WIN_MAX2_SX, BT_WIN_MAX2_SY, BFM_FONT_PAL, BT_WIN_MAX2_CGX
 	},	
@@ -364,26 +364,26 @@ static const BMPWIN_DAT TowerMonitorBmpData[] =
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 void FrontierMonitorAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, u8 bmp_no );
 void FrontierMonitorExitBmpWin( GF_BGL_BMPWIN* win, u8 bmp_no );
 void FrontierMonitorOffBmpWin( GF_BGL_BMPWIN* win, u8 bmp_no );
 
-//ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define BF_MENU_CGX_NUM			(1024-MENU_WIN_CGX_SIZ)
 
-//‰ï˜bƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define	BF_TALKWIN_CGX_SIZE	(TALK_WIN_CGX_SIZ)
 #define	BF_TALKWIN_CGX_NUM	(BF_MENU_CGX_NUM - BF_TALKWIN_CGX_SIZE)
 
 typedef struct{
-	const BMPWIN_DAT* dat;				//BMPƒf[ƒ^
-	u32	max;							//“o˜^Å‘å”
+	const BMPWIN_DAT* dat;				//BMPãƒ‡ãƒ¼ã‚¿
+	u32	max;							//ç™»éŒ²æœ€å¤§æ•°
 }FRONTIER_MONITOR_BMP;
 
-//GetBmpNo‚Æ•À‚Ñ‚ðˆê’v‚³‚¹‚Ä‚¢‚é‚Ì‚Å‚¸‚ç‚³‚È‚¢I
+//GetBmpNoã¨ä¸¦ã³ã‚’ä¸€è‡´ã•ã›ã¦ã„ã‚‹ã®ã§ãšã‚‰ã•ãªã„ï¼
 static const FRONTIER_MONITOR_BMP frontier_monitor_bmp[FRONTIER_MONITOR_BMP_MAX] = {
 	{ FactoryMonitorBmpData,	FACTORY_MONITOR_BMPWIN_MAX	},
 	{ StageMonitorBmpData,		STAGE_MONITOR_BMPWIN_MAX	},
@@ -395,16 +395,16 @@ static const FRONTIER_MONITOR_BMP frontier_monitor_bmp[FRONTIER_MONITOR_BMP_MAX]
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—è¿½åŠ 
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -415,10 +415,10 @@ void FrontierMonitorAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, u8 bmp_no )
 	const BMPWIN_DAT* dat = frontier_monitor_bmp[bmp_no].dat;
 	u32 max = frontier_monitor_bmp[bmp_no].max;
 
-	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—è¿½åŠ 
 	for( i=0; i < max; i++ ){
 		GF_BGL_BmpWinAddEx( bgl, &win[i], &dat[i] );
-		GF_BGL_BmpWinDataFill( &win[i], FBMP_COL_NULL );		//“h‚è‚Â‚Ô‚µ
+		GF_BGL_BmpWinDataFill( &win[i], FBMP_COL_NULL );		//å¡—ã‚Šã¤ã¶ã—
 	}
 
 	return;
@@ -426,9 +426,9 @@ void FrontierMonitorAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, u8 bmp_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü	
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„	
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -448,9 +448,9 @@ void FrontierMonitorExitBmpWin( GF_BGL_BMPWIN* win, u8 bmp_no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒIƒt
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ•
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */

@@ -1,6 +1,6 @@
 /**
  *	@file	poru_oam.h
- *	@brief	ƒ|ƒ‹ƒgOAMƒIƒuƒWƒFƒNƒgƒRƒ“ƒgƒ[ƒ‰[
+ *	@brief	ãƒãƒ«ãƒˆOAMã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼
  *	@author	Miyuki Iwasawa
  *	@date	06.03.29
  */
@@ -18,7 +18,7 @@
 #include "savedata/poruto_def.h"
 
 //=================================================
-///\‘¢‘Ì’è‹`
+///æ§‹é€ ä½“å®šç¾©
 //=================================================
 #define PORUOAM_RESMAX	(4)
 #define PORUOAM_DRAW_MAIN	(NNS_G2D_VRAM_TYPE_2DMAIN)
@@ -33,8 +33,8 @@ typedef enum{
 
 
 typedef enum{
- PORUOAM_VT_MAIN,	//ƒƒCƒ“‰æ–Ê‚É•`‰æ
- PORUOAM_VT_SUB,	//ƒTƒu‰æ–Ê‚É•`‰æ
+ PORUOAM_VT_MAIN,	//ãƒ¡ã‚¤ãƒ³ç”»é¢ã«æç”»
+ PORUOAM_VT_SUB,	//ã‚µãƒ–ç”»é¢ã«æç”»
 }PORUOAM_VRAMTYPE;
 
 typedef struct{
@@ -50,74 +50,74 @@ typedef struct{
 
 typedef struct {
 	int	heapID;
-	int	cgx_transofs;	///<CGX“]‘—ƒIƒtƒZƒbƒg
+	int	cgx_transofs;	///<CGXè»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	u16	res_max;
 	u16	pal_num;
 	u16	act_max;
 	u16	vramType;
 
 	CLACT_SET_PTR	cas;
-	CLACT_U_EASYRENDER_DATA	renddata;	// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_HEADER_TBL_PTR	clh;		// ƒwƒbƒ_[
-	CLACT_U_RES_MANAGER_PTR	resMan[PORUOAM_RESMAX];	///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_TBL * resObjTbl[PORUOAM_RESMAX];///< ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
+	CLACT_U_EASYRENDER_DATA	renddata;	// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_HEADER_TBL_PTR	clh;		// ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_U_RES_MANAGER_PTR	resMan[PORUOAM_RESMAX];	///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_TBL * resObjTbl[PORUOAM_RESMAX];///< ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
 
 	PORUOAM_ACTWORK* work;
 }PORUOAM_MAN;
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒAƒNƒ^[@ƒ}ƒl[ƒWƒƒ‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
  *
- *	@param	heapID	ƒq[ƒvID
- *	@param	actmax	Šm•Û‚·‚éƒZƒ‹ƒAƒNƒ^[—Ìˆæ‚ÌŒÂ”
- *	@param	palmax	ƒ|ƒ‹ƒg—p‚Éè—L‚·‚éOBJƒpƒŒƒbƒg‚Ì–{”
- *	@param	vramType	•`‰æ‰æ–Êw’è(PORUOAM_DRAW_MAIN/SUB/BOTH)
- *  @param	cgx_transofs	ƒLƒƒƒ‰ƒNƒ^“]‘—ƒIƒtƒZƒbƒgƒ‚[ƒhw’è
- *							(PORUOAM_CGXOFSŒ^	PORUOAM_CGXOFS_AUTO:0‚©‚çÏ‚İã‚°Œ^
- *												PORUOAM_CGXOFS_AREA:‹ó‚«—ÌˆæŒŸõŒ^
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
+ *	@param	actmax	ç¢ºä¿ã™ã‚‹ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼é ˜åŸŸã®å€‹æ•°
+ *	@param	palmax	ãƒãƒ«ãƒˆç”¨ã«å æœ‰ã™ã‚‹OBJãƒ‘ãƒ¬ãƒƒãƒˆã®æœ¬æ•°
+ *	@param	vramType	æç”»ç”»é¢æŒ‡å®š(PORUOAM_DRAW_MAIN/SUB/BOTH)
+ *  @param	cgx_transofs	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
+ *							(PORUOAM_CGXOFSå‹	PORUOAM_CGXOFS_AUTO:0ã‹ã‚‰ç©ã¿ä¸Šã’å‹
+ *												PORUOAM_CGXOFS_AREA:ç©ºãé ˜åŸŸæ¤œç´¢å‹
  */
 GLOBAL PORUOAM_MAN* PoruOam_SysInit(int heapID,u16 actmax,u16 palmax,
 		u16 vramType,PORUOAM_CGXOFS cgx_transofs);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒAƒNƒ^[@ƒ}ƒl[ƒWƒƒ‰ğ•ú
+ *	@brief	ãƒãƒ«ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒãƒãƒ¼ã‚¸ãƒ£è§£æ”¾
  */
 GLOBAL void PoruOam_SysRelease(PORUOAM_MAN* wk);
 
 
 /**
- *	@brief	ƒ|ƒ‹ƒgOAM@•`‰æƒƒCƒ“
+ *	@brief	ãƒãƒ«ãƒˆOAMã€€æç”»ãƒ¡ã‚¤ãƒ³
  */
 GLOBAL void PoruOam_DrawMain(PORUOAM_MAN* wk);
 
 
 /**
- *	@brief	ƒ|ƒ‹ƒgOAM’Ç‰Á
+ *	@brief	ãƒãƒ«ãƒˆOAMè¿½åŠ 
  *
- *	@param	flavor	ƒ|ƒ‹ƒg‚Ìí—ŞID
- *	@param	x		XÀ•W
- *	@param	y		YÀ•W
- *	@param	z		ZÀ•W
- *	@param	bg_pri	BGƒvƒ‰ƒCƒIƒŠƒeƒB
- *	@param	spri	ƒ\ƒtƒgƒEƒFƒAƒvƒ‰ƒCƒIƒŠƒeƒB
- *	@param	vram_type	PORUOAM_VRAMTYPEŒ^
- *						PORUOAM_VT_MAIN:ƒƒCƒ“‰æ–Ê
- *						PORUOAM_VT_SUB:ƒTƒu‰æ–Ê
+ *	@param	flavor	ãƒãƒ«ãƒˆã®ç¨®é¡ID
+ *	@param	x		Xåº§æ¨™
+ *	@param	y		Yåº§æ¨™
+ *	@param	z		Zåº§æ¨™
+ *	@param	bg_pri	BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ *	@param	spri	ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ *	@param	vram_type	PORUOAM_VRAMTYPEå‹
+ *						PORUOAM_VT_MAIN:ãƒ¡ã‚¤ãƒ³ç”»é¢
+ *						PORUOAM_VT_SUB:ã‚µãƒ–ç”»é¢
  *
- *	–•K‚¸PoruOam_DelŠÖ”‚Å”jŠü‚·‚é‚±‚Æ
+ *	ï¼Šå¿…ãšPoruOam_Delé–¢æ•°ã§ç ´æ£„ã™ã‚‹ã“ã¨
  */
 GLOBAL PORUTO_OAM* PoruOam_Add(PORUOAM_MAN* wk,PORUTO_FLAVORID flavor,
 		u16 x,u16 y,u16 z,u8 bg_pri,u8 spri,PORUOAM_VRAMTYPE vtype);
 
 /**
- *	@brief	“o˜^Ï‚İOAM‚Ìƒ|ƒ‹ƒg‚Ìí—Ş‚ğ•ÏX‚·‚é
+ *	@brief	ç™»éŒ²æ¸ˆã¿OAMã®ãƒãƒ«ãƒˆã®ç¨®é¡ã‚’å¤‰æ›´ã™ã‚‹
  *	
- *	@param	flavor	ƒ|ƒ‹ƒg‚Ìí—ŞID
+ *	@param	flavor	ãƒãƒ«ãƒˆã®ç¨®é¡ID
  */
 GLOBAL void PoruOam_ChangeFlavor(PORUOAM_MAN*wk,PORUTO_OAM* oam,PORUTO_FLAVORID flavor);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgOAMíœ
+ *	@brief	ãƒãƒ«ãƒˆOAMå‰Šé™¤
  */
 GLOBAL void PoruOam_Del(PORUOAM_MAN* wk,PORUTO_OAM* oam);
 

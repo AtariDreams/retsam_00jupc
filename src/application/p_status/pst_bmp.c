@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pst_bmp.c
- * @brief	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–ÊBMP
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢BMP
  * @author	Hiroyuki Nakamura
  * @date	2005.11.15
  */
@@ -36,53 +36,53 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// •¶š—ñ•\¦ƒ‚[ƒh
+// æ–‡å­—åˆ—è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰
 enum {
-	STR_MODE_LEFT = 0,	// ¶‹l‚ß
-	STR_MODE_RIGHT,		// ‰E‹l‚ß
-	STR_MODE_CENTER,	// ’†‰›
+	STR_MODE_LEFT = 0,	// å·¦è©°ã‚
+	STR_MODE_RIGHT,		// å³è©°ã‚
+	STR_MODE_CENTER,	// ä¸­å¤®
 };
 
 /*
-#define	TMP_MSG_STR_SIZ		( 32 )		// “WŠJ•¶šƒTƒCƒY ( 16x2 )
-#define	TMP_NUM_STR_SIZ		( 16 )		// “WŠJ”šƒTƒCƒY ( 8x2 )
+#define	TMP_MSG_STR_SIZ		( 32 )		// å±•é–‹æ–‡å­—ã‚µã‚¤ã‚º ( 16x2 )
+#define	TMP_NUM_STR_SIZ		( 16 )		// å±•é–‹æ•°å­—ã‚µã‚¤ã‚º ( 8x2 )
 */
 
-#define	PSTCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
-#define	PSTCOL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F”’
-#define	PSTCOL_N_BLUE	( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÂ
-#define	PSTCOL_N_RED	( GF_PRINTCOLOR_MAKE( 5, 6, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÔ
-#define	PSTCOL_W_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
+#define	PSTCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
+#define	PSTCOL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šç™½
+#define	PSTCOL_N_BLUE	( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé’
+#define	PSTCOL_N_RED	( GF_PRINTCOLOR_MAKE( 5, 6, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šèµ¤
+#define	PSTCOL_W_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
 
 
-#define	P5_WAZA_PX	( 1 )			// ‹Z•\¦XÀ•W
-#define	P5_WAZA_PY	( 2 )			// ‹Z•\¦YÀ•W
-#define	P5_PP_PX	( 16 )			// uPPv•\¦XÀ•W
-#define	P5_PP_PY	( 16 )			// uPPv•\¦YÀ•W
-#define	P5_PPNUM_PX	( 40+20 )		// PP’l•\¦YÀ•W
-#define	P5_PPNUM_PY	( 16 )			// PP’l•\¦XÀ•W
+#define	P5_WAZA_PX	( 1 )			// æŠ€è¡¨ç¤ºXåº§æ¨™
+#define	P5_WAZA_PY	( 2 )			// æŠ€è¡¨ç¤ºYåº§æ¨™
+#define	P5_PP_PX	( 16 )			// ã€ŒPPã€è¡¨ç¤ºXåº§æ¨™
+#define	P5_PP_PY	( 16 )			// ã€ŒPPã€è¡¨ç¤ºYåº§æ¨™
+#define	P5_PPNUM_PX	( 40+20 )		// PPå€¤è¡¨ç¤ºYåº§æ¨™
+#define	P5_PPNUM_PY	( 16 )			// PPå€¤è¡¨ç¤ºXåº§æ¨™
 
 
-#define	FILL_TITLE_PX	( 0 )		// ƒy[ƒWƒ^ƒCƒgƒ‹ƒNƒŠƒAXÀ•W
-#define	FILL_TITLE_PY	( 0 )		// ƒy[ƒWƒ^ƒCƒgƒ‹ƒNƒŠƒAYÀ•W
-#define	FILL_TITLE_SX	( 32 )		// ƒy[ƒWƒ^ƒCƒgƒ‹ƒNƒŠƒAXƒTƒCƒY
-#define	FILL_TITLE_SY	( 2 )		// ƒy[ƒWƒ^ƒCƒgƒ‹ƒNƒŠƒAYƒTƒCƒY
+#define	FILL_TITLE_PX	( 0 )		// ãƒšãƒ¼ã‚¸ã‚¿ã‚¤ãƒˆãƒ«ã‚¯ãƒªã‚¢Xåº§æ¨™
+#define	FILL_TITLE_PY	( 0 )		// ãƒšãƒ¼ã‚¸ã‚¿ã‚¤ãƒˆãƒ«ã‚¯ãƒªã‚¢Yåº§æ¨™
+#define	FILL_TITLE_SX	( 32 )		// ãƒšãƒ¼ã‚¸ã‚¿ã‚¤ãƒˆãƒ«ã‚¯ãƒªã‚¢Xã‚µã‚¤ã‚º
+#define	FILL_TITLE_SY	( 2 )		// ãƒšãƒ¼ã‚¸ã‚¿ã‚¤ãƒˆãƒ«ã‚¯ãƒªã‚¢Yã‚µã‚¤ã‚º
 
-#define	FILL_PARAM_PX	( 14 )		// ƒy[ƒWƒpƒ‰ƒ[ƒ^ƒNƒŠƒAXÀ•W
-#define	FILL_PARAM_PY	( 2 )		// ƒy[ƒWƒpƒ‰ƒ[ƒ^ƒNƒŠƒAYÀ•W
-#define	FILL_PARAM_SX	( 18 )		// ƒy[ƒWƒpƒ‰ƒ[ƒ^ƒNƒŠƒAXƒTƒCƒY
-#define	FILL_PARAM_SY	( 22 )		// ƒy[ƒWƒpƒ‰ƒ[ƒ^ƒNƒŠƒAYƒTƒCƒY
+#define	FILL_PARAM_PX	( 14 )		// ãƒšãƒ¼ã‚¸ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢Xåº§æ¨™
+#define	FILL_PARAM_PY	( 2 )		// ãƒšãƒ¼ã‚¸ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢Yåº§æ¨™
+#define	FILL_PARAM_SX	( 18 )		// ãƒšãƒ¼ã‚¸ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢Xã‚µã‚¤ã‚º
+#define	FILL_PARAM_SY	( 22 )		// ãƒšãƒ¼ã‚¸ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢Yã‚µã‚¤ã‚º
 
-#define	CND_TASTE_PY	( 16 )		// –¡•\¦XÀ•W
+#define	CND_TASTE_PY	( 16 )		// å‘³è¡¨ç¤ºXåº§æ¨™
 
-#define	P2_MEMO_PX		( 0 )	// ƒgƒŒ[ƒi[ƒƒ‚•\¦XÀ•W
-#define	P2_MEMO_PY		( 0 )	// ƒgƒŒ[ƒi[ƒƒ‚•\¦YÀ•W
+#define	P2_MEMO_PX		( 0 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢è¡¨ç¤ºXåº§æ¨™
+#define	P2_MEMO_PY		( 0 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢è¡¨ç¤ºYåº§æ¨™
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void StrPut( PST_WORK * wk, GF_BGL_BMPWIN * win, u32 col, u32 mode );
 static void DefStr( PST_WORK * wk, u32 widx, u32 midx, u32 col, u32 mode );
@@ -100,188 +100,188 @@ static void PST_Page8BmpPut( PST_WORK * wk );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// Šî–{•¶š—ñ‚ÌBMPƒf[ƒ^
+// åŸºæœ¬æ–‡å­—åˆ—ã®BMPãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT DefaultBmpData[] =
 {
-	{	// uƒ|ƒPƒ‚ƒ“‚¶‚å‚¤‚Ù‚¤v
+	{	// ã€Œãƒã‚±ãƒ¢ãƒ³ã˜ã‚‡ã†ã»ã†ã€
 		GF_BGL_FRAME1_M, WIN_P1_TITLE_PX, WIN_P1_TITLE_PY,
 		WIN_P1_TITLE_SX, WIN_P1_TITLE_SY, WIN_P1_TITLE_PAL, WIN_P1_TITLE_CGX
 	},
-	{	// uƒgƒŒ[ƒi[ƒƒ‚v
+	{	// ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã€
 		GF_BGL_FRAME1_M, WIN_P2_TITLE_PX, WIN_P2_TITLE_PY,
 		WIN_P2_TITLE_SX, WIN_P2_TITLE_SY, WIN_P2_TITLE_PAL, WIN_P2_TITLE_CGX
 	},
-	{	// uƒ|ƒPƒ‚ƒ“‚Ì‚¤‚è‚å‚­v
+	{	// ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã†ã‚Šã‚‡ãã€
 		GF_BGL_FRAME1_M, WIN_P3_TITLE_PX, WIN_P3_TITLE_PY,
 		WIN_P3_TITLE_SX, WIN_P3_TITLE_SY, WIN_P3_TITLE_PAL, WIN_P3_TITLE_CGX
 	},
-	{	// uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
+	{	// ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
 		GF_BGL_FRAME1_M, WIN_P4_TITLE_PX, WIN_P4_TITLE_PY,
 		WIN_P4_TITLE_SX, WIN_P4_TITLE_SY, WIN_P4_TITLE_PAL, WIN_P4_TITLE_CGX
 	},
-	{	// u‚½‚½‚©‚¤‚í‚´v
+	{	// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
 		GF_BGL_FRAME1_M, WIN_P5_TITLE_PX, WIN_P5_TITLE_PY,
 		WIN_P5_TITLE_SX, WIN_P5_TITLE_SY, WIN_P5_TITLE_PAL, WIN_P5_TITLE_CGX
 	},
-	{	// uƒRƒ“ƒeƒXƒg‚í‚´v
+	{	// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
 		GF_BGL_FRAME1_M, WIN_P6_TITLE_PX, WIN_P6_TITLE_PY,
 		WIN_P6_TITLE_SX, WIN_P6_TITLE_SY, WIN_P6_TITLE_PAL, WIN_P6_TITLE_CGX
 	},
-	{	// u‚à‚¿‚à‚Ìv
+	{	// ã€Œã‚‚ã¡ã‚‚ã®ã€
 		GF_BGL_FRAME1_M, WIN_MOTIMONO_PX, WIN_MOTIMONO_PY,
 		WIN_MOTIMONO_SX, WIN_MOTIMONO_SY, WIN_MOTIMONO_PAL, WIN_MOTIMONO_CGX
 	},
-	{	// u‚¸‚©‚ñNo.v
+	{	// ã€Œãšã‹ã‚“No.ã€
 		GF_BGL_FRAME1_M, WIN_P1_ZUKANNO_PX, WIN_P1_ZUKANNO_PY,
 		WIN_P1_ZUKANNO_SX, WIN_P1_ZUKANNO_SY, WIN_P1_ZUKANNO_PAL, WIN_P1_ZUKANNO_CGX
 	},
-	{	// u‚È‚Ü‚¦v
+	{	// ã€Œãªã¾ãˆã€
 		GF_BGL_FRAME1_M, WIN_P1_NAME_PX, WIN_P1_NAME_PY,
 		WIN_P1_NAME_SX, WIN_P1_NAME_SY, WIN_P1_NAME_PAL, WIN_P1_NAME_CGX
 	},
-	{	// uƒ^ƒCƒvv
+	{	// ã€Œã‚¿ã‚¤ãƒ—ã€
 		GF_BGL_FRAME1_M, WIN_P1_TYPE_PX, WIN_P1_TYPE_PY,
 		WIN_P1_TYPE_SX, WIN_P1_TYPE_SY, WIN_P1_TYPE_PAL, WIN_P1_TYPE_CGX
 	},
-	{	// u‚¨‚âv
+	{	// ã€ŒãŠã‚„ã€
 		GF_BGL_FRAME1_M, WIN_P1_OYA_PX, WIN_P1_OYA_PY,
 		WIN_P1_OYA_SX, WIN_P1_OYA_SY, WIN_P1_OYA_PAL, WIN_P1_OYA_CGX
 	},
-	{	// uIDNo.v
+	{	// ã€ŒIDNo.ã€
 		GF_BGL_FRAME1_M, WIN_P1_IDNO_PX, WIN_P1_IDNO_PY,
 		WIN_P1_IDNO_SX, WIN_P1_IDNO_SY, WIN_P1_IDNO_PAL, WIN_P1_IDNO_CGX
 	},
-	{	// u‚°‚ñ‚´‚¢‚Ì@‚¯‚¢‚¯‚ñ‚¿v
+	{	// ã€Œã’ã‚“ã–ã„ã®ã€€ã‘ã„ã‘ã‚“ã¡ã€
 		GF_BGL_FRAME1_M, WIN_P1_NOWEXP_PX, WIN_P1_NOWEXP_PY,
 		WIN_P1_NOWEXP_SX, WIN_P1_NOWEXP_SY, WIN_P1_NOWEXP_PAL, WIN_P1_NOWEXP_CGX
 	},
-	{	// u‚Â‚¬‚ÌƒŒƒxƒ‹‚Ü‚Åv
+	{	// ã€Œã¤ãã®ãƒ¬ãƒ™ãƒ«ã¾ã§ã€
 		GF_BGL_FRAME1_M, WIN_P1_NEXTLV_PX, WIN_P1_NEXTLV_PY,
 		WIN_P1_NEXTLV_SX, WIN_P1_NEXTLV_SY, WIN_P1_NEXTLV_PAL, WIN_P1_NEXTLV_CGX
 	},
-	{	// u‚ ‚Æv
+	{	// ã€Œã‚ã¨ã€
 		GF_BGL_FRAME1_M, WIN_P1_ATO_PX, WIN_P1_ATO_PY,
 		WIN_P1_ATO_SX, WIN_P1_ATO_SY, WIN_P1_ATO_PAL, WIN_P1_ATO_CGX
 	},
-	{	// uHPv
+	{	// ã€ŒHPã€
 		GF_BGL_FRAME1_M, WIN_P3_HP_PX, WIN_P3_HP_PY,
 		WIN_P3_HP_SX, WIN_P3_HP_SY, WIN_P3_HP_PAL, WIN_P3_HP_CGX
 	},
-	{	// u‚±‚¤‚°‚«v
+	{	// ã€Œã“ã†ã’ãã€
 		GF_BGL_FRAME1_M, WIN_P3_POW_PX, WIN_P3_POW_PY,
 		WIN_P3_POW_SX, WIN_P3_POW_SY, WIN_P3_POW_PAL, WIN_P3_POW_CGX
 	},
-	{	// u‚Ú‚¤‚¬‚åv
+	{	// ã€Œã¼ã†ãã‚‡ã€
 		GF_BGL_FRAME1_M, WIN_P3_DEF_PX, WIN_P3_DEF_PY,
 		WIN_P3_DEF_SX, WIN_P3_DEF_SY, WIN_P3_DEF_PAL, WIN_P3_DEF_CGX
 	},
-	{	// u‚Æ‚­‚±‚¤v
+	{	// ã€Œã¨ãã“ã†ã€
 		GF_BGL_FRAME1_M, WIN_P3_SPP_PX, WIN_P3_SPP_PY,
 		WIN_P3_SPP_SX, WIN_P3_SPP_SY, WIN_P3_SPP_PAL, WIN_P3_SPP_CGX
 	},
-	{	// u‚Æ‚­‚Ú‚¤v
+	{	// ã€Œã¨ãã¼ã†ã€
 		GF_BGL_FRAME1_M, WIN_P3_SPD_PX, WIN_P3_SPD_PY,
 		WIN_P3_SPD_SX, WIN_P3_SPD_SY, WIN_P3_SPD_PAL, WIN_P3_SPD_CGX
 	},
-	{	// u‚·‚Î‚â‚³v
+	{	// ã€Œã™ã°ã‚„ã•ã€
 		GF_BGL_FRAME1_M, WIN_P3_AGI_PX, WIN_P3_AGI_PY,
 		WIN_P3_AGI_SX, WIN_P3_AGI_SY, WIN_P3_AGI_PAL, WIN_P3_AGI_CGX
 	},
-	{	// u‚Æ‚­‚¹‚¢v
+	{	// ã€Œã¨ãã›ã„ã€
 		GF_BGL_FRAME1_M, WIN_P3_SPA_PX, WIN_P3_SPA_PY,
 		WIN_P3_SPA_SX, WIN_P3_SPA_SY, WIN_P3_SPA_PAL, WIN_P3_SPA_CGX
 	},
-	{	// u‚¯‚Ã‚âv
+	{	// ã€Œã‘ã¥ã‚„ã€
 		GF_BGL_FRAME1_M, WIN_P4_KEDUYA_PX, WIN_P4_KEDUYA_PY,
 		WIN_P4_KEDUYA_SX, WIN_P4_KEDUYA_SY, WIN_P4_KEDUYA_PAL, WIN_P4_KEDUYA_CGX
 	},
-	{	// u‚¹‚¢‚©‚­v
+	{	// ã€Œã›ã„ã‹ãã€
 		GF_BGL_FRAME1_M, WIN_P4_SEIKAKU_PX, WIN_P4_SEIKAKU_PY,
 		WIN_P4_SEIKAKU_SX, WIN_P4_SEIKAKU_SY, WIN_P4_SEIKAKU_PAL, WIN_P4_SEIKAKU_CGX
 	},
-	{	// u‚à‚Ç‚év
+	{	// ã€Œã‚‚ã©ã‚‹ã€
 		GF_BGL_FRAME1_M, WIN_P5_MODORU_PX, WIN_P5_MODORU_PY,
 		WIN_P5_MODORU_SX, WIN_P5_MODORU_SY, WIN_P5_MODORU_PAL, WIN_P5_MODORU_CGX
 	},
-	{	// u‚Ô‚ñ‚é‚¢v
+	{	// ã€Œã¶ã‚“ã‚‹ã„ã€
 		GF_BGL_FRAME1_M, WIN_P5_BUNRUI_PX, WIN_P5_BUNRUI_PY,
 		WIN_P5_BUNRUI_SX, WIN_P5_BUNRUI_SY, WIN_P5_BUNRUI_PAL, WIN_P5_BUNRUI_CGX
 	},
-	{	// u‚¢‚è‚å‚­
+	{	// ã€Œã„ã‚Šã‚‡ã
 		GF_BGL_FRAME1_M, WIN_P5_IRYOKU_PX, WIN_P5_IRYOKU_PY,
 		WIN_P5_IRYOKU_SX, WIN_P5_IRYOKU_SY, WIN_P5_IRYOKU_PAL, WIN_P5_IRYOKU_CGX
 	},
-	{	// u‚ß‚¢‚¿‚ã‚¤v
+	{	// ã€Œã‚ã„ã¡ã‚…ã†ã€
 		GF_BGL_FRAME1_M, WIN_P5_HIT_PX, WIN_P5_HIT_PY,
 		WIN_P5_HIT_SX, WIN_P5_HIT_SY, WIN_P5_HIT_PAL, WIN_P5_HIT_CGX
 	},
-	{	// u‚à‚Ç‚è‚Ü‚·v
+	{	// ã€Œã‚‚ã©ã‚Šã¾ã™ã€
 		GF_BGL_FRAME1_M, WIN_P8_MODORIMASU_PX, WIN_P8_MODORIMASU_PY,
 		WIN_P8_MODORIMASU_SX, WIN_P8_MODORIMASU_SY, WIN_P8_MODORIMASU_PAL, WIN_P8_MODORIMASU_CGX
 	},
-	{	// uƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgv
+	{	// ã€Œã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã€
 		GF_BGL_FRAME1_M, WIN_P6_AP_POINT_PX, WIN_P6_AP_POINT_PY,
 		WIN_P6_AP_POINT_SX, WIN_P6_AP_POINT_SY, WIN_P6_AP_POINT_PAL, WIN_P6_AP_POINT_CGX
 	},
-	{	// u‚à‚Á‚Ä‚¢‚é‚©‚¸v
+	{	// ã€Œã‚‚ã£ã¦ã„ã‚‹ã‹ãšã€
 		GF_BGL_FRAME1_M, WIN_P7_MOTTEIRU_PX, WIN_P7_MOTTEIRU_PY,
 		WIN_P7_MOTTEIRU_SX, WIN_P7_MOTTEIRU_SY, WIN_P7_MOTTEIRU_PAL, WIN_P7_MOTTEIRU_CGX
 	},
-	{	// u‚«‚Ë‚ñƒŠƒ{ƒ“v
+	{	// ã€Œãã­ã‚“ãƒªãƒœãƒ³ã€
 		GF_BGL_FRAME1_M, WIN_P7_TITLE_PX, WIN_P7_TITLE_PY,
 		WIN_P7_TITLE_SX, WIN_P7_TITLE_SY, WIN_P7_TITLE_PAL, WIN_P7_TITLE_CGX
 	},
-	{	// ƒAƒCƒeƒ€–¼
+	{	// ã‚¢ã‚¤ãƒ†ãƒ å
 		GF_BGL_FRAME1_M, WIN_ITEMNAME_PX, WIN_ITEMNAME_PY,
 		WIN_ITEMNAME_SX, WIN_ITEMNAME_SY, WIN_ITEMNAME_PAL, WIN_ITEMNAME_CGX
 	},
-	{	// ƒŒƒxƒ‹
+	{	// ãƒ¬ãƒ™ãƒ«
 		GF_BGL_FRAME1_M, WIN_LV_PX, WIN_LV_PY,
 		WIN_LV_SX, WIN_LV_SY, WIN_LV_PAL, WIN_LV_CGX
 	},
-	{	// ƒjƒbƒNƒl[ƒ€
+	{	// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
 		GF_BGL_FRAME1_M, WIN_NICKNAME_PX, WIN_NICKNAME_PY,
 		WIN_NICKNAME_SX, WIN_NICKNAME_SY, WIN_NICKNAME_PAL, WIN_NICKNAME_CGX
 	},
-	{	// ƒKƒCƒhƒƒbƒZ[ƒW
+	{	// ã‚¬ã‚¤ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		GF_BGL_FRAME1_M, WIN_GUIDE_PX, WIN_GUIDE_PY,
 		WIN_GUIDE_SX, WIN_GUIDE_SY, WIN_GUIDE_PAL, WIN_GUIDE_CGX
 	}
 };
 
 /*
-	{	// u‚­‚í‚µ‚­v
+	{	// ã€Œãã‚ã—ãã€
 		GF_BGL_FRAME1_M, WIN_P5_KUWASIKU_PX, WIN_P5_KUWASIKU_PY,
 		WIN_P5_KUWASIKU_SX, WIN_P5_KUWASIKU_SY, WIN_P5_KUWASIKU_PAL, WIN_P5_KUWASIKU_CGX
 	},
-	{	// u‚¢‚ê‚©‚¦v
+	{	// ã€Œã„ã‚Œã‹ãˆã€
 		GF_BGL_FRAME1_M, WIN_P5_IREKAE_PX, WIN_P5_IREKAE_PY,
 		WIN_P5_IREKAE_SX, WIN_P5_IREKAE_SY, WIN_P5_IREKAE_PAL, WIN_P5_IREKAE_CGX
 	},
-	{	// u‚¯‚Á‚Ä‚¢v
+	{	// ã€Œã‘ã£ã¦ã„ã€
 		GF_BGL_FRAME1_M, WIN_P5_KETTEI_PX, WIN_P5_KETTEI_PY,
 		WIN_P5_KETTEI_SX, WIN_P5_KETTEI_SY, WIN_P5_KETTEI_PAL, WIN_P5_KETTEI_CGX
 	},
-	{	// u‚à‚Ç‚év
+	{	// ã€Œã‚‚ã©ã‚‹ã€
 		GF_BGL_FRAME1_M, WIN_P8_MODORU_PX, WIN_P8_MODORU_PY,
 		WIN_P8_MODORU_SX, WIN_P8_MODORU_SY, WIN_P8_MODORU_PAL, WIN_P8_MODORU_CGX
 	},
 */
 
-// ƒy[ƒW‚Piƒ|ƒPƒ‚ƒ“î•ñj
+// ãƒšãƒ¼ã‚¸ï¼‘ï¼ˆãƒã‚±ãƒ¢ãƒ³æƒ…å ±ï¼‰
 static const BMPWIN_DAT Page1BmpData[] =
 {
-	{	// }ŠÓNo.
+	{	// å›³é‘‘No.
 		GF_BGL_FRAME1_M, A_WIN_P1_LIBNUM_PX, A_WIN_P1_LIBNUM_PY,
 		A_WIN_P1_LIBNUM_SX, A_WIN_P1_LIBNUM_SY, A_WIN_P1_LIBNUM_PAL, A_WIN_P1_LIBNUM_CGX
 	},
-	{	// –¼‘O
+	{	// åå‰
 		GF_BGL_FRAME1_M, A_WIN_P1_NAME_PX, A_WIN_P1_NAME_PY,
 		A_WIN_P1_NAME_SX, A_WIN_P1_NAME_SY, A_WIN_P1_NAME_PAL, A_WIN_P1_NAME_CGX
 	},
-	{	// e–¼
+	{	// è¦ªå
 		GF_BGL_FRAME1_M, A_WIN_P1_OYANAME_PX, A_WIN_P1_OYANAME_PY,
 		A_WIN_P1_OYANAME_SX, A_WIN_P1_OYANAME_SY, A_WIN_P1_OYANAME_PAL, A_WIN_P1_OYANAME_CGX
 	},
@@ -289,132 +289,132 @@ static const BMPWIN_DAT Page1BmpData[] =
 		GF_BGL_FRAME1_M, A_WIN_P1_IDNO_PX, A_WIN_P1_IDNO_PY,
 		A_WIN_P1_IDNO_SX, A_WIN_P1_IDNO_SY, A_WIN_P1_IDNO_PAL, A_WIN_P1_IDNO_CGX
 	},
-	{	// Œ»İ‚ÌŒoŒ±’l
+	{	// ç¾åœ¨ã®çµŒé¨“å€¤
 		GF_BGL_FRAME1_M, A_WIN_P1_NOWEXP_PX, A_WIN_P1_NOWEXP_PY,
 		A_WIN_P1_NOWEXP_SX, A_WIN_P1_NOWEXP_SY, A_WIN_P1_NOWEXP_PAL, A_WIN_P1_NOWEXP_CGX
 	},
-	{	// Ÿ‚ÌƒŒƒxƒ‹‚Ü‚Å@
+	{	// æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã¾ã§@
 		GF_BGL_FRAME1_M, A_WIN_P1_NEXTEXP_PX, A_WIN_P1_NEXTEXP_PY,
 		A_WIN_P1_NEXTEXP_SX, A_WIN_P1_NEXTEXP_SY, A_WIN_P1_NEXTEXP_PAL, A_WIN_P1_NEXTEXP_CGX
 	}
 };
 
-// ƒy[ƒW‚QiƒgƒŒ[ƒi[ƒƒ‚j
+// ãƒšãƒ¼ã‚¸ï¼’ï¼ˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ï¼‰
 static const BMPWIN_DAT Page2BmpData[] =
 {
-	{	// ƒgƒŒ[ƒi[ƒƒ‚
+	{	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢
 		GF_BGL_FRAME1_M, A_WIN_P2_TMEMO_PX, A_WIN_P2_TMEMO_PY,
 		A_WIN_P2_TMEMO_SX, A_WIN_P2_TMEMO_SY, A_WIN_P2_TMEMO_PAL, A_WIN_P2_TMEMO_CGX
 	}
 };
 
-// ƒy[ƒW‚Riƒ|ƒPƒ‚ƒ“”\—Íj
+// ãƒšãƒ¼ã‚¸ï¼“ï¼ˆãƒã‚±ãƒ¢ãƒ³èƒ½åŠ›ï¼‰
 static const BMPWIN_DAT Page3BmpData[] =
 {
 	{	// HP/MHP
 		GF_BGL_FRAME1_M, A_WIN_P3_HP_PX, A_WIN_P3_HP_PY,
 		A_WIN_P3_HP_SX, A_WIN_P3_HP_SY, A_WIN_P3_HP_PAL, A_WIN_P3_HP_CGX
 	},
-	{	// UŒ‚
+	{	// æ”»æ’ƒ
 		GF_BGL_FRAME1_M, A_WIN_P3_POW_PX, A_WIN_P3_POW_PY,
 		A_WIN_P3_POW_SX, A_WIN_P3_POW_SY, A_WIN_P3_POW_PAL, A_WIN_P3_POW_CGX
 	},
-	{	// –hŒä
+	{	// é˜²å¾¡
 		GF_BGL_FRAME1_M, A_WIN_P3_DEF_PX, A_WIN_P3_DEF_PY,
 		A_WIN_P3_DEF_SX, A_WIN_P3_DEF_SY, A_WIN_P3_DEF_PAL, A_WIN_P3_DEF_CGX
 	},
-	{	// “ÁU
+	{	// ç‰¹æ”»
 		GF_BGL_FRAME1_M, A_WIN_P3_SPP_PX, A_WIN_P3_SPP_PY,
 		A_WIN_P3_SPP_SX, A_WIN_P3_SPP_SY, A_WIN_P3_SPP_PAL, A_WIN_P3_SPP_CGX
 	},
-	{	// “Á–h
+	{	// ç‰¹é˜²
 		GF_BGL_FRAME1_M, A_WIN_P3_SPD_PX, A_WIN_P3_SPD_PY,
 		A_WIN_P3_SPD_SX, A_WIN_P3_SPD_SY, A_WIN_P3_SPD_PAL, A_WIN_P3_SPD_CGX
 	},
-	{	// ‘f‘‚³
+	{	// ç´ æ—©ã•
 		GF_BGL_FRAME1_M, A_WIN_P3_AGI_PX, A_WIN_P3_AGI_PY,
 		A_WIN_P3_AGI_SX, A_WIN_P3_AGI_SY, A_WIN_P3_AGI_PAL, A_WIN_P3_AGI_CGX
 	},
-	{	// “Á«–¼
+	{	// ç‰¹æ€§å
 		GF_BGL_FRAME1_M, A_WIN_P3_SPANAME_PX, A_WIN_P3_SPANAME_PY,
 		A_WIN_P3_SPANAME_SX, A_WIN_P3_SPANAME_SY, A_WIN_P3_SPANAME_PAL, A_WIN_P3_SPANAME_CGX
 	},
-	{	// “Á«à–¾
+	{	// ç‰¹æ€§èª¬æ˜
 		GF_BGL_FRAME1_M, A_WIN_P3_SPAINFO_PX, A_WIN_P3_SPAINFO_PY,
 		A_WIN_P3_SPAINFO_SX, A_WIN_P3_SPAINFO_SY, A_WIN_P3_SPAINFO_PAL, A_WIN_P3_SPAINFO_CGX
 	}
 };
 
-// ƒy[ƒW‚Ti‹Zj
+// ãƒšãƒ¼ã‚¸ï¼•ï¼ˆæŠ€ï¼‰
 static const BMPWIN_DAT Page5BmpData[] =
 {
-	{	// ‹Z–¼‚P
+	{	// æŠ€åï¼‘
 		GF_BGL_FRAME1_M, A_WIN_P5_WAZA1_PX, A_WIN_P5_WAZA1_PY,
 		A_WIN_P5_WAZA1_SX, A_WIN_P5_WAZA1_SY, A_WIN_P5_WAZA1_PAL, A_WIN_P5_WAZA1_CGX
 	},
-	{	// ‹Z–¼‚Q
+	{	// æŠ€åï¼’
 		GF_BGL_FRAME1_M, A_WIN_P5_WAZA2_PX, A_WIN_P5_WAZA2_PY,
 		A_WIN_P5_WAZA2_SX, A_WIN_P5_WAZA2_SY, A_WIN_P5_WAZA2_PAL, A_WIN_P5_WAZA2_CGX
 	},
-	{	// ‹Z–¼‚R
+	{	// æŠ€åï¼“
 		GF_BGL_FRAME1_M, A_WIN_P5_WAZA3_PX, A_WIN_P5_WAZA3_PY,
 		A_WIN_P5_WAZA3_SX, A_WIN_P5_WAZA3_SY, A_WIN_P5_WAZA3_PAL, A_WIN_P5_WAZA3_CGX
 	},
-	{	// ‹Z–¼‚S
+	{	// æŠ€åï¼”
 		GF_BGL_FRAME1_M, A_WIN_P5_WAZA4_PX, A_WIN_P5_WAZA4_PY,
 		A_WIN_P5_WAZA4_SX, A_WIN_P5_WAZA4_SY, A_WIN_P5_WAZA4_PAL, A_WIN_P5_WAZA4_CGX
 	},
-	{	// ‹Z–¼‚T
+	{	// æŠ€åï¼•
 		GF_BGL_FRAME1_M, A_WIN_P5_WAZA5_PX, A_WIN_P5_WAZA5_PY,
 		A_WIN_P5_WAZA5_SX, A_WIN_P5_WAZA5_SY, A_WIN_P5_WAZA5_PAL, A_WIN_P5_WAZA5_CGX
 	},
-	{	// ˆĞ—Í
+	{	// å¨åŠ›
 		GF_BGL_FRAME1_M, A_WIN_P5_ATC_PX, A_WIN_P5_ATC_PY,
 		A_WIN_P5_ATC_SX, A_WIN_P5_ATC_SY, A_WIN_P5_ATC_PAL, A_WIN_P5_ATC_CGX
 	},
-	{	// –½’†
+	{	// å‘½ä¸­
 		GF_BGL_FRAME1_M, A_WIN_P5_HIT_PX, A_WIN_P5_HIT_PY,
 		A_WIN_P5_HIT_SX, A_WIN_P5_HIT_SY, A_WIN_P5_HIT_PAL, A_WIN_P5_HIT_CGX
 	},
-	{	// ‹Zà–¾
+	{	// æŠ€èª¬æ˜
 		GF_BGL_FRAME1_M, A_WIN_P5_INFO_PX, A_WIN_P5_INFO_PY,
 		A_WIN_P5_INFO_SX, A_WIN_P5_INFO_SY, A_WIN_P5_INFO_PAL, A_WIN_P5_INFO_CGX
 	}
 };
 
-// ƒy[ƒW‚UiƒRƒ“ƒeƒXƒg‹Zj
+// ãƒšãƒ¼ã‚¸ï¼–ï¼ˆã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ï¼‰
 static const BMPWIN_DAT Page6BmpData[] =
 {
-	{	// ‹Z–¼‚P
+	{	// æŠ€åï¼‘
 		GF_BGL_FRAME1_M, A_WIN_P5_WAZA1_PX, A_WIN_P5_WAZA1_PY,
 		A_WIN_P5_WAZA1_SX, A_WIN_P5_WAZA1_SY, A_WIN_P5_WAZA1_PAL, A_WIN_P5_WAZA1_CGX
 	},
-	{	// ‹Z–¼‚Q
+	{	// æŠ€åï¼’
 		GF_BGL_FRAME1_M, A_WIN_P5_WAZA2_PX, A_WIN_P5_WAZA2_PY,
 		A_WIN_P5_WAZA2_SX, A_WIN_P5_WAZA2_SY, A_WIN_P5_WAZA2_PAL, A_WIN_P5_WAZA2_CGX
 	},
-	{	// ‹Z–¼‚R
+	{	// æŠ€åï¼“
 		GF_BGL_FRAME1_M, A_WIN_P5_WAZA3_PX, A_WIN_P5_WAZA3_PY,
 		A_WIN_P5_WAZA3_SX, A_WIN_P5_WAZA3_SY, A_WIN_P5_WAZA3_PAL, A_WIN_P5_WAZA3_CGX
 	},
-	{	// ‹Z–¼‚S
+	{	// æŠ€åï¼”
 		GF_BGL_FRAME1_M, A_WIN_P5_WAZA4_PX, A_WIN_P5_WAZA4_PY,
 		A_WIN_P5_WAZA4_SX, A_WIN_P5_WAZA4_SY, A_WIN_P5_WAZA4_PAL, A_WIN_P5_WAZA4_CGX
 	},
-	{	// ‹Z–¼‚T
+	{	// æŠ€åï¼•
 		GF_BGL_FRAME1_M, A_WIN_P5_WAZA5_PX, A_WIN_P5_WAZA5_PY,
 		A_WIN_P5_WAZA5_SX, A_WIN_P5_WAZA5_SY, A_WIN_P5_WAZA5_PAL, A_WIN_P5_WAZA5_CGX
 	},
-	{	// ‹Zà–¾
+	{	// æŠ€èª¬æ˜
 		GF_BGL_FRAME1_M, A_WIN_P6_INFO_PX, A_WIN_P6_INFO_PY,
 		A_WIN_P6_INFO_SX, A_WIN_P6_INFO_SY, A_WIN_P6_INFO_PAL, A_WIN_P6_INFO_CGX
 	}
 };
 
-// ƒy[ƒW‚Vi‹L”OƒŠƒ{ƒ“j
+// ãƒšãƒ¼ã‚¸ï¼—ï¼ˆè¨˜å¿µãƒªãƒœãƒ³ï¼‰
 static const BMPWIN_DAT Page7BmpData[] =
 {
-	{	// ???‚±
+	{	// ???ã“
 		GF_BGL_FRAME1_M, A_WIN_P7_NUM_PX, A_WIN_P7_NUM_PY,
 		A_WIN_P7_NUM_SX, A_WIN_P7_NUM_SY, A_WIN_P7_NUM_PAL, A_WIN_P7_NUM_CGX
 	},
@@ -422,11 +422,11 @@ static const BMPWIN_DAT Page7BmpData[] =
 		GF_BGL_FRAME1_M, A_WIN_P7_MAX_PX, A_WIN_P7_MAX_PY,
 		A_WIN_P7_MAX_SX, A_WIN_P7_MAX_SY, A_WIN_P7_MAX_PAL, A_WIN_P7_MAX_CGX
 	},
-	{	// ƒŠƒ{ƒ“–¼
+	{	// ãƒªãƒœãƒ³å
 		GF_BGL_FRAME1_M, A_WIN_P7_NAME_PX, A_WIN_P7_NAME_PY,
 		A_WIN_P7_NAME_SX, A_WIN_P7_NAME_SY, A_WIN_P7_NAME_PAL, A_WIN_P7_NAME_CGX
 	},
-	{	// ƒŠƒ{ƒ“à–¾
+	{	// ãƒªãƒœãƒ³èª¬æ˜
 		GF_BGL_FRAME1_M, A_WIN_P7_INFO_PX, A_WIN_P7_INFO_PY,
 		A_WIN_P7_INFO_SX, A_WIN_P7_INFO_SY, A_WIN_P7_INFO_PAL, A_WIN_P7_INFO_CGX
 	}
@@ -434,23 +434,23 @@ static const BMPWIN_DAT Page7BmpData[] =
 
 
 
-// ƒ|ƒ‹ƒgŠÖ˜A‚ÌƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒy[ƒW
+// ãƒãƒ«ãƒˆé–¢é€£ã®ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ãƒšãƒ¼ã‚¸
 static const BMPWIN_DAT PorutoCndBmpData[] =
 {
-	{	// u‚¯‚Á‚Ä‚¢v
+	{	// ã€Œã‘ã£ã¦ã„ã€
 		GF_BGL_FRAME1_M, A_WIN_COND_KETTEI_PX, A_WIN_COND_KETTEI_PY,
 		A_WIN_COND_KETTEI_SX, A_WIN_COND_KETTEI_SY, A_WIN_COND_KETTEI_PAL, A_WIN_COND_KETTEI_CGX
 	},
-	{	// u‚·‚«‚È‚½‚×‚à‚Ìv
+	{	// ã€Œã™ããªãŸã¹ã‚‚ã®ã€
 		GF_BGL_FRAME1_M, A_WIN_COND_LIKE_PX, A_WIN_COND_LIKE_PY,
 		A_WIN_COND_LIKE_SX, A_WIN_COND_LIKE_SY, A_WIN_COND_LIKE_PAL, A_WIN_COND_LIKE_CGX
 	},
-	{	// ƒƒbƒZ[ƒW
+	{	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		GF_BGL_FRAME1_M, A_WIN_COND_MSG_PX, A_WIN_COND_MSG_PY,
 		A_WIN_COND_MSG_SX, A_WIN_COND_MSG_SY, A_WIN_COND_MSG_PAL, A_WIN_COND_MSG_CGX
 	}
 /*
-	{	// u‚à‚Ç‚év
+	{	// ã€Œã‚‚ã©ã‚‹ã€
 		GF_BGL_FRAME1_M, A_WIN_COND_MODORU_PX, A_WIN_COND_MODORU_PY,
 		A_WIN_COND_MODORU_SX, A_WIN_COND_MODORU_SY, A_WIN_COND_MODORU_PAL, A_WIN_COND_MODORU_CGX
 	},
@@ -470,9 +470,9 @@ static const BMPWIN_DAT PorutoCndBmpData[] =
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘Sƒy[ƒW‹¤’Ê‚ÌBMP’Ç‰Á
+ * å…¨ãƒšãƒ¼ã‚¸å…±é€šã®BMPè¿½åŠ 
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -494,35 +494,35 @@ void PokeStatus_DefaultBmpAdd( PST_WORK * wk )
 	OS_Printf( "PST_ADD_WIN : %d\n", ADD_WIN_PAGE_CGX );
 
 	OS_Printf(
-		"PST BMP -ƒgƒŒ[ƒi[ƒƒ‚ : %d\n",
+		"PST BMP -ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ : %d\n",
 		A_WIN_P2_TMEMO_CGX+A_WIN_P2_TMEMO_SX*A_WIN_P2_TMEMO_SY );
 	OS_Printf(
-		"PST BMP -‹Z : %d\n",
+		"PST BMP -æŠ€ : %d\n",
 		A_WIN_P6_INFO_CGX+A_WIN_P6_INFO_SX*A_WIN_P6_INFO_SY );
 */
 /*
 	OS_Printf(
-		"PST BMP -ƒfƒtƒHƒ‹ƒg : %d\n", WIN_NICKNAME_CGX+WIN_NICKNAME_SX*WIN_NICKNAME_SY );
+		"PST BMP -ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ : %d\n", WIN_NICKNAME_CGX+WIN_NICKNAME_SX*WIN_NICKNAME_SY );
 	OS_Printf(
-		"PST BMP -ƒ|ƒPƒ‚ƒ“î•ñ : %d\n",
+		"PST BMP -ãƒã‚±ãƒ¢ãƒ³æƒ…å ± : %d\n",
 		A_WIN_P1_NEXTEXP_CGX+A_WIN_P1_NEXTEXP_SX*A_WIN_P1_NEXTEXP_SY );
 	OS_Printf(
-		"PST BMP -ƒgƒŒ[ƒi[ƒƒ‚ : %d\n",
+		"PST BMP -ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ : %d\n",
 		A_WIN_P2_TMEMO_CGX+A_WIN_P2_TMEMO_SX*A_WIN_P2_TMEMO_SY );
 	OS_Printf(
-		"PST BMP -ƒ|ƒPƒ‚ƒ“”\—Í : %d\n",
+		"PST BMP -ãƒã‚±ãƒ¢ãƒ³èƒ½åŠ› : %d\n",
 		A_WIN_P3_SPAINFO_CGX+A_WIN_P3_SPAINFO_SX*A_WIN_P3_SPAINFO_SY );
 	OS_Printf(
-		"PST BMP -‹Z : %d\n",
+		"PST BMP -æŠ€ : %d\n",
 		A_WIN_P5_WAZA5_CGX+A_WIN_P5_WAZA5_SX*A_WIN_P5_WAZA5_SY );
 */
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚²‚Æ‚ÌBMP’Ç‰Á
+ * ãƒšãƒ¼ã‚¸ã”ã¨ã®BMPè¿½åŠ 
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -579,9 +579,9 @@ void PokeStatus_PageBmpAdd( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚²‚Æ‚ÌBMPíœ
+ * ãƒšãƒ¼ã‚¸ã”ã¨ã®BMPå‰Šé™¤
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -613,9 +613,9 @@ void PokeStatus_PageBmpFree( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘SBMPíœ
+ * å…¨BMPå‰Šé™¤
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -632,14 +632,14 @@ void PokeStatus_BmpFreeAll( PST_WORK * wk )
 
 
 //============================================================================================
-//	ƒjƒbƒNƒl[ƒ€•«•Ê
+//	ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼†æ€§åˆ¥
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒjƒbƒNƒl[ƒ€E«•Ê•\¦
+ * ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ãƒ»æ€§åˆ¥è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -653,11 +653,11 @@ void PokeStatus_NickNamePut( PST_WORK * wk )
 
 	GF_BGL_BmpWinDataFill( win, 0 );
 
-	// ƒjƒbƒNƒl[ƒ€
+	// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, wk->pp.nickname, 0, 0, MSG_NO_PUT, PSTCOL_N_WHITE, NULL );
 
-	// «•Ê
+	// æ€§åˆ¥
 	if( wk->pp.sex_put == 0 ){
 		if( wk->pp.sex == PARA_MALE ){
 			MSGMAN_GetString( wk->msg_man, mes_status_01_02, wk->msg_buf );
@@ -673,14 +673,14 @@ void PokeStatus_NickNamePut( PST_WORK * wk )
 
 
 //============================================================================================
-//	ƒŒƒxƒ‹
+//	ãƒ¬ãƒ™ãƒ«
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹•\¦
+ * ãƒ¬ãƒ™ãƒ«è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -712,14 +712,14 @@ void PokeStatus_LvPut( PST_WORK * wk )
 }
 
 //============================================================================================
-//	ƒAƒCƒeƒ€
+//	ã‚¢ã‚¤ãƒ†ãƒ 
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€•\¦
+ * ã‚¢ã‚¤ãƒ†ãƒ è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -746,10 +746,10 @@ void PokeStatus_ItemPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒKƒCƒhƒƒbƒZ[ƒW•\¦
+ * ã‚¬ã‚¤ãƒ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	midx	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	midx	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  */
@@ -764,12 +764,12 @@ void PokeStatus_GuideStrPut( PST_WORK * wk, u32 midx )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ©•ª‚Ìƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN
+ * è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = ©•ª‚Ìƒ|ƒPƒ‚ƒ“"
- * @retval	"FALSE = ‘¼l‚Ìƒ|ƒPƒ‚ƒ“"
+ * @retval	"TRUE = è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³"
+ * @retval	"FALSE = ä»–äººã®ãƒã‚±ãƒ¢ãƒ³"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL PST_PokeOyaCheck( PST_WORK * wk )
@@ -786,12 +786,12 @@ static BOOL PST_PokeOyaCheck( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •¶š—ñ•\¦
+ * æ–‡å­—åˆ—è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	win		BMPƒEƒBƒ“ƒhƒE
- * @param	col		ƒJƒ‰[
- * @param	mode	•\¦ƒ‚[ƒh
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	win		BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	col		ã‚«ãƒ©ãƒ¼
+ * @param	mode	è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰
  *
  * @return	none
  */
@@ -803,15 +803,15 @@ static void StrPut( PST_WORK * wk, GF_BGL_BMPWIN * win, u32 col, u32 mode )
 	u8	px;
 
 	switch( mode ){
-	case STR_MODE_LEFT:		// ¶‹l‚ß
+	case STR_MODE_LEFT:		// å·¦è©°ã‚
 		px = 0;
 		break;
-	case STR_MODE_RIGHT:	// ‰E‹l‚ß
+	case STR_MODE_RIGHT:	// å³è©°ã‚
 		siz = FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->msg_buf, 0 );
 		wsx = GF_BGL_BmpWinGet_SizeX( win ) * 8;
 		px  = wsx - siz;
 		break;
-	case STR_MODE_CENTER:	// ’†‰›
+	case STR_MODE_CENTER:	// ä¸­å¤®
 		siz = FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->msg_buf, 0 );
 		wsx = GF_BGL_BmpWinGet_SizeX( win ) * 8;
 		px  = (wsx-siz)/2;
@@ -822,13 +822,13 @@ static void StrPut( PST_WORK * wk, GF_BGL_BMPWIN * win, u32 col, u32 mode )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŒÅ’è•¶š—ñ•`‰æ
+ * å›ºå®šæ–‡å­—åˆ—æç”»
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	widx	ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	midx	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
- * @param	col		ƒJƒ‰[
- * @param	mode	•\¦ƒ‚[ƒh
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	widx	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	midx	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	col		ã‚«ãƒ©ãƒ¼
+ * @param	mode	è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰
  *
  * @return	none
  */
@@ -845,13 +845,13 @@ static void DefStr( PST_WORK * wk, u32 widx, u32 midx, u32 col, u32 mode )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”š•\¦
+ * æ•°å­—è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	msg_id	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
- * @param	num		’l
- * @param	keta	Œ…
- * @param	mode	•\¦ƒ‚[ƒh
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	num		å€¤
+ * @param	keta	æ¡
+ * @param	mode	è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰
  *
  * @return	none
  */
@@ -868,18 +868,18 @@ static void NumPrmSet( PST_WORK * wk, u32 msg_id, u32 num, u8 keta, u8 type )
 
 //--------------------------------------------------------------------------------------------
 /**
- * "??/??"•\¦
+ * "??/??"è¡¨ç¤º
  *
- * @param	wk			ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	widx		ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	sra_id		"/"‚ÌƒƒbƒZ[ƒWID
- * @param	now_id		Œ»İ’l‚ÌƒƒbƒZ[ƒWID
- * @param	max_id		Å‘å’l‚ÌƒƒbƒZ[ƒWID
- * @param	now_prm		Œ»İ’l
- * @param	max_prm		Å‘å’l
- * @param	keta		•\¦Œ…”
- * @param	px			•\¦XÀ•Wi’†Sj
- * @param	py			•\¦YÀ•W
+ * @param	wk			ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	widx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	sra_id		"/"ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	now_id		ç¾åœ¨å€¤ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	max_id		æœ€å¤§å€¤ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	now_prm		ç¾åœ¨å€¤
+ * @param	max_prm		æœ€å¤§å€¤
+ * @param	keta		è¡¨ç¤ºæ¡æ•°
+ * @param	px			è¡¨ç¤ºXåº§æ¨™ï¼ˆä¸­å¿ƒï¼‰
+ * @param	py			è¡¨ç¤ºYåº§æ¨™
  *
  * @return	none
  */
@@ -917,73 +917,73 @@ static void NumSraMaxStrPut(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘SŒÅ’è•¶š—ñ•`‰æ
+ * å…¨å›ºå®šæ–‡å­—åˆ—æç”»
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void PST_DefaultStrPut( PST_WORK * wk )
 {
-	// uƒ|ƒPƒ‚ƒ“‚¶‚å‚¤‚Ù‚¤v
+	// ã€Œãƒã‚±ãƒ¢ãƒ³ã˜ã‚‡ã†ã»ã†ã€
 	DefStr( wk, WIN_P1_TITLE, mes_status_02_01, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// uƒgƒŒ[ƒi[ƒƒ‚v
+	// ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã€
 	DefStr( wk, WIN_P2_TITLE, mes_status_03_01, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// uƒ|ƒPƒ‚ƒ“‚Ì‚¤‚è‚å‚­v
+	// ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã†ã‚Šã‚‡ãã€
 	DefStr( wk, WIN_P3_TITLE, mes_status_04_01, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
+	// ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
 	DefStr( wk, WIN_P4_TITLE, mes_status_05_01, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// u‚½‚½‚©‚¤‚í‚´v
+	// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
 	DefStr( wk, WIN_P5_TITLE, mes_status_06_01, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// uƒRƒ“ƒeƒXƒg‚í‚´v
+	// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
 	DefStr( wk, WIN_P6_TITLE, mes_status_07_01, PSTCOL_N_WHITE, STR_MODE_LEFT );
 
-	// u‚à‚¿‚à‚Ìv
+	// ã€Œã‚‚ã¡ã‚‚ã®ã€
 	DefStr( wk, WIN_MOTIMONO, mes_status_01_05, PSTCOL_N_WHITE, STR_MODE_LEFT );
 
-	// u‚¸‚©‚ñNo.v
+	// ã€Œãšã‹ã‚“No.ã€
 	DefStr( wk, WIN_P1_ZUKANNO, mes_status_02_02, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// u‚È‚Ü‚¦v
+	// ã€Œãªã¾ãˆã€
 	DefStr( wk, WIN_P1_NAME, mes_status_02_04, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// uƒ^ƒCƒvv
+	// ã€Œã‚¿ã‚¤ãƒ—ã€
 	DefStr( wk, WIN_P1_TYPE, mes_status_02_06, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// u‚¨‚âv
+	// ã€ŒãŠã‚„ã€
 	DefStr( wk, WIN_P1_OYA, mes_status_02_07, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// uIDNo.v
+	// ã€ŒIDNo.ã€
 	DefStr( wk, WIN_P1_IDNO, mes_status_02_09, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// u‚°‚ñ‚´‚¢‚Ì@‚¯‚¢‚¯‚ñ‚¿v
+	// ã€Œã’ã‚“ã–ã„ã®ã€€ã‘ã„ã‘ã‚“ã¡ã€
 	DefStr( wk, WIN_P1_NOWEXP, mes_status_02_11, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// u‚Â‚¬‚ÌƒŒƒxƒ‹‚Ü‚Åv
+	// ã€Œã¤ãã®ãƒ¬ãƒ™ãƒ«ã¾ã§ã€
 	DefStr( wk, WIN_P1_NEXTLV, mes_status_02_13, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// u‚ ‚Æv
+	// ã€Œã‚ã¨ã€
     // ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/05
-	// u‚ ‚Æv‚ÍŠCŠO”Å‚Å‚Í•s—v
+	// ã€Œã‚ã¨ã€ã¯æµ·å¤–ç‰ˆã§ã¯ä¸è¦
 	// ----------------------------------------------------------------------------
     //DefStr( wk, WIN_P1_ATO, mes_status_02_14, PSTCOL_N_BLACK, STR_MODE_LEFT ); //MatchComment: change induced by localize spec mark
 
-	// uHPv
+	// ã€ŒHPã€
 	DefStr( wk, WIN_P3_HP, mes_status_04_02, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// u‚±‚¤‚°‚«v
+	// ã€Œã“ã†ã’ãã€
 	DefStr( wk, WIN_P3_POW, mes_status_04_03, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// u‚Ú‚¤‚¬‚åv
+	// ã€Œã¼ã†ãã‚‡ã€
 	DefStr( wk, WIN_P3_DEF, mes_status_04_04, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// u‚Æ‚­‚±‚¤v
+	// ã€Œã¨ãã“ã†ã€
 	DefStr( wk, WIN_P3_SPP, mes_status_04_05, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// u‚Æ‚­‚Ú‚¤v
+	// ã€Œã¨ãã¼ã†ã€
 	DefStr( wk, WIN_P3_SPD, mes_status_04_06, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// u‚·‚Î‚â‚³v
+	// ã€Œã™ã°ã‚„ã•ã€
 	DefStr( wk, WIN_P3_AGI, mes_status_04_07, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// u‚Æ‚­‚¹‚¢v
+	// ã€Œã¨ãã›ã„ã€
 	DefStr( wk, WIN_P3_SPA, mes_status_04_08, PSTCOL_N_WHITE, STR_MODE_LEFT );
 
-	// u‚¯‚Ã‚âv
+	// ã€Œã‘ã¥ã‚„ã€
 	DefStr( wk, WIN_P4_KEDUYA, mes_status_05_02, PSTCOL_N_WHITE, STR_MODE_LEFT );
 
-//	WIN_P4_SEIKAKU,		// u‚¹‚¢‚©‚­v
+//	WIN_P4_SEIKAKU,		// ã€Œã›ã„ã‹ãã€
 
-	// u‚à‚Ç‚év
+	// ã€Œã‚‚ã©ã‚‹ã€
 //	DefStr( wk, WIN_P5_MODORU, mes_status_06_19, PSTCOL_N_WHITE, STR_MODE_LEFT );
 	{
 		MSGMAN_GetString( wk->msg_man, mes_status_06_19, wk->msg_buf );
@@ -992,31 +992,31 @@ static void PST_DefaultStrPut( PST_WORK * wk )
 			wk->msg_buf, 0, P5_WAZA_PY, MSG_NO_PUT, PSTCOL_N_WHITE, NULL );
 	}
 
-	// ‚Ô‚ñ‚é‚¢
+	// ã¶ã‚“ã‚‹ã„
 	DefStr( wk, WIN_P5_BUNRUI, mes_status_06_22, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// ‚¢‚è‚å‚­
+	// ã„ã‚Šã‚‡ã
 	DefStr( wk, WIN_P5_IRYOKU, mes_status_06_20, PSTCOL_N_WHITE, STR_MODE_LEFT );
-	// ‚ß‚¢‚¿‚ã‚¤
+	// ã‚ã„ã¡ã‚…ã†
 	DefStr( wk, WIN_P5_HIT, mes_status_06_21, PSTCOL_N_WHITE, STR_MODE_LEFT );
 
-	// u‚à‚Ç‚è‚Ü‚·v
+	// ã€Œã‚‚ã©ã‚Šã¾ã™ã€
 	DefStr( wk, WIN_P8_MODORIMASU, mes_status_08_02, PSTCOL_N_WHITE, STR_MODE_CENTER );
 
-	// uƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgv
+	// ã€Œã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã€
 	DefStr( wk, WIN_P6_AP_POINT, mes_status_07_04, PSTCOL_N_BLACK, STR_MODE_CENTER );
 
-	// u‚à‚Á‚Ä‚¢‚é‚©‚¸v
+	// ã€Œã‚‚ã£ã¦ã„ã‚‹ã‹ãšã€
 	DefStr( wk, WIN_P7_MOTTEIRU, mes_status_10_04, PSTCOL_N_BLACK, STR_MODE_LEFT );
-	// u‚«‚Ë‚ñƒŠƒ{ƒ“v
+	// ã€Œãã­ã‚“ãƒªãƒœãƒ³ã€
 	DefStr( wk, WIN_P7_TITLE, mes_status_10_01, PSTCOL_N_WHITE, STR_MODE_LEFT );
 }
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒW‚²‚Æ‚ÌBMP•\¦
+ * ãƒšãƒ¼ã‚¸ã”ã¨ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1060,24 +1060,24 @@ void PokeStatus_PageBmpPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“î•ñƒy[ƒW‚ÌBMP•\¦
+ * ãƒã‚±ãƒ¢ãƒ³æƒ…å ±ãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void PST_Page1BmpPut( PST_WORK * wk )
 {
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_TITLE] );		// uƒ|ƒPƒ‚ƒ“‚¶‚å‚¤‚Ù‚¤v
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_ZUKANNO] );	// u‚¸‚©‚ñNo.v
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_NAME] );		// u‚È‚Ü‚¦v
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_TYPE] );		// uƒ^ƒCƒvv
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_OYA] );		// u‚¨‚âv
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_IDNO] );		// uIDNo.v
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_NOWEXP] );		// u‚°‚ñ‚´‚¢‚Ì@‚¯‚¢‚¯‚ñ‚¿v
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_NEXTLV] );		// u‚Â‚¬‚ÌƒŒƒxƒ‹‚Ü‚Åv
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_ATO] );		// u‚ ‚Æv
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_TITLE] );		// ã€Œãƒã‚±ãƒ¢ãƒ³ã˜ã‚‡ã†ã»ã†ã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_ZUKANNO] );	// ã€Œãšã‹ã‚“No.ã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_NAME] );		// ã€Œãªã¾ãˆã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_TYPE] );		// ã€Œã‚¿ã‚¤ãƒ—ã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_OYA] );		// ã€ŒãŠã‚„ã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_IDNO] );		// ã€ŒIDNo.ã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_NOWEXP] );		// ã€Œã’ã‚“ã–ã„ã®ã€€ã‘ã„ã‘ã‚“ã¡ã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_NEXTLV] );		// ã€Œã¤ãã®ãƒ¬ãƒ™ãƒ«ã¾ã§ã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P1_ATO] );		// ã€Œã‚ã¨ã€
 
 	GF_BGL_BmpWinDataFill( &wk->add_win[ADD_WIN_P1_LIBNUM], 0 );
 	GF_BGL_BmpWinDataFill( &wk->add_win[ADD_WIN_P1_NAME], 0 );
@@ -1086,7 +1086,7 @@ static void PST_Page1BmpPut( PST_WORK * wk )
 	GF_BGL_BmpWinDataFill( &wk->add_win[ADD_WIN_P1_NOWEXP], 0 );
 	GF_BGL_BmpWinDataFill( &wk->add_win[ADD_WIN_P1_NEXTEXP], 0 );
 
-	{	// }ŠÓNo.
+	{	// å›³é‘‘No.
 		u32	num = PMNumber_GetPokeNumber( wk->dat->zukan_mode, wk->pp.mons );
 
 		if( num != 0 ){
@@ -1099,21 +1099,21 @@ static void PST_Page1BmpPut( PST_WORK * wk )
 	if( wk->pp.rare == 0 ){
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/05
-		// ‚¸‚©‚ñ”Ô†‚ğ’†‰›Šñ‚¹
+		// ãšã‹ã‚“ç•ªå·ã‚’ä¸­å¤®å¯„ã›
 		StrPut( wk, &wk->add_win[ADD_WIN_P1_LIBNUM], PSTCOL_N_BLACK, STR_MODE_CENTER );
 		// ----------------------------------------------------------------------------
 	}else{
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/05
-		// ‚¸‚©‚ñ”Ô†‚ğ’†‰›Šñ‚¹
+		// ãšã‹ã‚“ç•ªå·ã‚’ä¸­å¤®å¯„ã›
 		StrPut( wk, &wk->add_win[ADD_WIN_P1_LIBNUM], PSTCOL_N_RED, STR_MODE_CENTER );
 		// ----------------------------------------------------------------------------
 	}
 
-	// –¼‘O
+	// åå‰
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/05
-	// ƒ|ƒPƒ‚ƒ“–¼‚ğ’†‰›Šñ‚¹
+	// ãƒã‚±ãƒ¢ãƒ³åã‚’ä¸­å¤®å¯„ã›
 	{
 		u32 width = FontProc_GetPrintStrWidth(FONT_SYSTEM, wk->pp.monsname, 0);
 		u32 xofs = (wk->add_win[ADD_WIN_P1_NAME].sizx * 8 - width) / 2;
@@ -1123,10 +1123,10 @@ static void PST_Page1BmpPut( PST_WORK * wk )
 	}
 	// ----------------------------------------------------------------------------
 
-	// e–¼
+	// è¦ªå
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/05
-	// e–¼‚ğ’†‰›Šñ‚¹
+	// è¦ªåã‚’ä¸­å¤®å¯„ã›
 	{
 		u32 width = FontProc_GetPrintStrWidth(FONT_SYSTEM, wk->pp.oya, 0);
 		u32 xofs = (wk->add_win[ADD_WIN_P1_OYANAME].sizx * 8 - width) / 2;
@@ -1146,30 +1146,30 @@ static void PST_Page1BmpPut( PST_WORK * wk )
 	NumPrmSet( wk, mes_status_02_10, ( wk->pp.id & 0xffff ), 5, NUM_MODE_ZERO );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/05
-	// ID No. ‚à’†‰›Šñ‚¹
+	// ID No. ã‚‚ä¸­å¤®å¯„ã›
 	StrPut( wk, &wk->add_win[ADD_WIN_P1_IDNO], PSTCOL_N_BLACK, STR_MODE_CENTER );
 	// ----------------------------------------------------------------------------
 
-	// Œ»İ‚ÌŒoŒ±’l
+	// ç¾åœ¨ã®çµŒé¨“å€¤
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/05
-	// ‚°‚ñ‚´‚¢‚Ì‚¯‚¢‚¯‚ñ‚¿‚ğÅ‘å•‚É‡‚í‚¹‚Ä’†‰›Šñ‚¹
+	// ã’ã‚“ã–ã„ã®ã‘ã„ã‘ã‚“ã¡ã‚’æœ€å¤§å¹…ã«åˆã‚ã›ã¦ä¸­å¤®å¯„ã›
 	NumPrmSet( wk, mes_status_02_12, wk->pp.now_exp, 7, NUM_MODE_SPACE );
 	StrPut( wk, &wk->add_win[ADD_WIN_P1_NOWEXP], PSTCOL_N_BLACK, STR_MODE_CENTER );
 	// ----------------------------------------------------------------------------
 
-	// Ÿ‚ÌƒŒƒxƒ‹‚Ü‚Å@
+	// æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã¾ã§@
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/05
-	// ‚Â‚¬‚ÌƒŒƒxƒ‹‚Ü‚Å‚ÌŒoŒ±’l‚ğÅ‘å•‚É‡‚í‚¹‚Ä’†‰›Šñ‚¹
-/* ƒ‹ƒrƒTƒtƒ@‚Ìˆç‚Ä‰®‚ÅLv100ˆÈã‚ÌŒoŒ±’l‚É‚È‚é‚½‚ßAƒ}ƒCƒiƒX•\¦‚É‚È‚Á‚Ä‚µ‚Ü‚¤•s‹ï‡‘Îˆ */
-#if T1653_060815_FIX	// ‘ÎˆŒã
+	// ã¤ãã®ãƒ¬ãƒ™ãƒ«ã¾ã§ã®çµŒé¨“å€¤ã‚’æœ€å¤§å¹…ã«åˆã‚ã›ã¦ä¸­å¤®å¯„ã›
+/* ãƒ«ãƒ“ã‚µãƒ•ã‚¡ã®è‚²ã¦å±‹ã§Lv100ä»¥ä¸Šã®çµŒé¨“å€¤ã«ãªã‚‹ãŸã‚ã€ãƒã‚¤ãƒŠã‚¹è¡¨ç¤ºã«ãªã£ã¦ã—ã¾ã†ä¸å…·åˆå¯¾å‡¦ */
+#if T1653_060815_FIX	// å¯¾å‡¦å¾Œ
 	if( wk->pp.lv < 100 ){
 		NumPrmSet( wk, mes_status_02_15, wk->pp.next_lv_exp-wk->pp.now_exp, 7, NUM_MODE_SPACE );
 	}else{
 		NumPrmSet( wk, mes_status_02_15, 0, 7, NUM_MODE_SPACE );
 	}
-#else					// ‘Îˆ‘O
+#else					// å¯¾å‡¦å‰
 	NumPrmSet( wk, mes_status_02_15, wk->pp.next_lv_exp-wk->pp.now_exp, 7, NUM_MODE_SPACE );
 #endif	// T1653_060815_FIX
 	StrPut( wk, &wk->add_win[ADD_WIN_P1_NEXTEXP], PSTCOL_N_BLACK, STR_MODE_CENTER );
@@ -1183,7 +1183,7 @@ static void PST_Page1BmpPut( PST_WORK * wk )
 	GF_BGL_BmpWinOnVReq( &wk->add_win[ADD_WIN_P1_NEXTEXP] );
 }
 
-// ƒgƒŒ[ƒi[ƒƒ‚•`‰æƒ}ƒNƒ
+// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢æç”»ãƒã‚¯ãƒ­
 #define	TRMEMO_MSGWRITE( msgdata ){												\
 	if( msgdata.msg != NULL	){													\
 		GF_STR_PrintColor(	win, FONT_SYSTEM, msgdata.msg,						\
@@ -1194,11 +1194,11 @@ static void PST_Page1BmpPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒƒ‚•\¦
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  * @param	pp		POKEMON_PARAM
- * @param	mine	eƒtƒ‰ƒO
+ * @param	mine	è¦ªãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -1218,9 +1218,9 @@ static void PST_Page2MemoPut( GF_BGL_BMPWIN* win, POKEMON_PARAM* pp, BOOL mine )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒƒ‚ƒy[ƒW‚ÌBMP•\¦
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1229,18 +1229,18 @@ static void PST_Page2BmpPut( PST_WORK * wk )
 {
 	STRBUF * str;
 
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P2_TITLE] );		// uƒgƒŒ[ƒi[ƒƒ‚v
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P2_TITLE] );		// ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã€
 
 	GF_BGL_BmpWinDataFill( &wk->add_win[ADD_WIN_P2_TMEMO], 0 );
 
 	{
-		void* pp = PokeStatusPokeParamGet( wk );	//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒ|ƒCƒ“ƒ^æ“¾
+		void* pp = PokeStatusPokeParamGet( wk );	//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		BOOL	orner_flag = PST_PokeOyaCheck( wk );
 
-		//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ìí—Ş”»•Ê
+		//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ç¨®é¡åˆ¤åˆ¥
 		if( wk->dat->ppt == PST_PP_TYPE_POKEPASO ){
 			{
-				//ƒpƒ\ƒRƒ“‚Ìê‡Aè‚¿—pƒf[ƒ^‚ÉƒRƒ“ƒo[ƒg‚µ‚Ä‚©‚ç
+				//ãƒ‘ã‚½ã‚³ãƒ³ã®å ´åˆã€æ‰‹æŒã¡ç”¨ãƒ‡ãƒ¼ã‚¿ã«ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ã¦ã‹ã‚‰
 				POKEMON_PARAM* pp_tmp = PokemonParam_AllocWork( HEAPID_POKESTATUS );
 
 				PokeReplace( pp, pp_tmp );
@@ -1249,7 +1249,7 @@ static void PST_Page2BmpPut( PST_WORK * wk )
 				sys_FreeMemoryEz( pp_tmp );
 			}
 		} else {
-			//‚»‚Ì‘¼’Êí
+			//ãã®ä»–é€šå¸¸
 			PST_Page2MemoPut( &wk->add_win[ADD_WIN_P2_TMEMO], pp, orner_flag );
 		}
 	}
@@ -1259,9 +1259,9 @@ static void PST_Page2BmpPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“”\—Íƒy[ƒW‚ÌBMP•\¦
+ * ãƒã‚±ãƒ¢ãƒ³èƒ½åŠ›ãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1270,14 +1270,14 @@ static void PST_Page3BmpPut( PST_WORK * wk )
 {
 	u32	siz;
 
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_TITLE] );		// uƒ|ƒPƒ‚ƒ“‚Ì‚¤‚è‚å‚­v
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_HP] );			// uHPv
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_POW] );		// u‚±‚¤‚°‚«v
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_DEF] );		// u‚Ú‚¤‚¬‚åv
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_SPP] );		// u‚Æ‚­‚±‚¤v
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_SPD] );		// u‚Æ‚­‚Ú‚¤v
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_AGI] );		// u‚·‚Î‚â‚³v
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_SPA] );		// u‚Æ‚­‚¹‚¢v
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_TITLE] );		// ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã†ã‚Šã‚‡ãã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_HP] );			// ã€ŒHPã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_POW] );		// ã€Œã“ã†ã’ãã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_DEF] );		// ã€Œã¼ã†ãã‚‡ã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_SPP] );		// ã€Œã¨ãã“ã†ã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_SPD] );		// ã€Œã¨ãã¼ã†ã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_AGI] );		// ã€Œã™ã°ã‚„ã•ã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P3_SPA] );		// ã€Œã¨ãã›ã„ã€
 
 	GF_BGL_BmpWinDataFill( &wk->add_win[ADD_WIN_P3_HP], 0 );
 	GF_BGL_BmpWinDataFill( &wk->add_win[ADD_WIN_P3_POW], 0 );
@@ -1295,23 +1295,23 @@ static void PST_Page3BmpPut( PST_WORK * wk )
 		mes_status_04_11, mes_status_04_10,
 		wk->pp.hp, wk->pp.mhp, 3, siz/2, 0 );
 
-	// UŒ‚
+	// æ”»æ’ƒ
 	NumPrmSet( wk, mes_status_04_12, wk->pp.atc, 3, NUM_MODE_LEFT );
 	StrPut( wk, &wk->add_win[ADD_WIN_P3_POW], PSTCOL_N_BLACK, STR_MODE_RIGHT );
 
-	// –hŒä
+	// é˜²å¾¡
 	NumPrmSet( wk, mes_status_04_13, wk->pp.def, 3, NUM_MODE_LEFT );
 	StrPut( wk, &wk->add_win[ADD_WIN_P3_DEF], PSTCOL_N_BLACK, STR_MODE_RIGHT );
 
-	// “ÁU
+	// ç‰¹æ”»
 	NumPrmSet( wk, mes_status_04_14, wk->pp.spa, 3, NUM_MODE_LEFT );
 	StrPut( wk, &wk->add_win[ADD_WIN_P3_SPP], PSTCOL_N_BLACK, STR_MODE_RIGHT );
 
-	// “Á–h
+	// ç‰¹é˜²
 	NumPrmSet( wk, mes_status_04_15, wk->pp.spd, 3, NUM_MODE_LEFT );
 	StrPut( wk, &wk->add_win[ADD_WIN_P3_SPD], PSTCOL_N_BLACK, STR_MODE_RIGHT );
 
-	// ‘f‘‚³
+	// ç´ æ—©ã•
 	NumPrmSet( wk, mes_status_04_16, wk->pp.agi, 3, NUM_MODE_LEFT );
 	StrPut( wk, &wk->add_win[ADD_WIN_P3_AGI], PSTCOL_N_BLACK, STR_MODE_RIGHT );
 
@@ -1319,14 +1319,14 @@ static void PST_Page3BmpPut( PST_WORK * wk )
 		MSGDATA_MANAGER * man;
 		STRBUF * str;
 		
-		// “Á«–¼
+		// ç‰¹æ€§å
 		WORDSET_RegisterTokuseiName( wk->wset, 0, wk->pp.tokusei );
 		str = MSGMAN_AllocString( wk->msg_man, mes_status_04_17 );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
 		StrPut( wk, &wk->add_win[ADD_WIN_P3_SPANAME], PSTCOL_N_BLACK, STR_MODE_LEFT );
 
-		// “Á«à–¾
+		// ç‰¹æ€§èª¬æ˜
 		man = MSGMAN_Create(
 				MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_tokuseiinfo_dat, HEAPID_POKESTATUS );
 		MSGMAN_GetString( man, wk->pp.tokusei, wk->msg_buf );
@@ -1346,17 +1346,17 @@ static void PST_Page3BmpPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒy[ƒW‚ÌBMP•\¦
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void PST_Page4BmpPut( PST_WORK * wk )
 {
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P4_TITLE] );			// uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P4_KEDUYA] );			// u‚¯‚Ã‚âv
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P4_TITLE] );			// ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P4_KEDUYA] );			// ã€Œã‘ã¥ã‚„ã€
 
 	if( wk->dat->mode != PST_MODE_PORUTO && wk->dat->mode != PST_MODE_CONDITION ){
 		return;
@@ -1393,21 +1393,21 @@ static void PST_Page4BmpPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * í‚¤‹Zƒy[ƒW‚ÌBMP•\¦
+ * æˆ¦ã†æŠ€ãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void PST_Page5BmpPut( PST_WORK * wk )
 {
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P5_TITLE] );			// u‚½‚½‚©‚¤‚í‚´v
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P5_TITLE] );			// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
 
 	if( wk->dat->mode == PST_MODE_WAZAADD ){
-		PokeStatus_GuideStrPut( wk, mes_status_06_29 );		// u‚¯‚Á‚Ä‚¢v
+		PokeStatus_GuideStrPut( wk, mes_status_06_29 );		// ã€Œã‘ã£ã¦ã„ã€
 	}else{
-		PokeStatus_GuideStrPut( wk, mes_status_06_02 );		// u‚­‚í‚µ‚­v
+		PokeStatus_GuideStrPut( wk, mes_status_06_02 );		// ã€Œãã‚ã—ãã€
 	}
 	PokeStatus_A_ButtonMarkPut( wk, &wk->def_win[WIN_GUIDE] );
 
@@ -1429,21 +1429,21 @@ static void PST_Page5BmpPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Zƒy[ƒW‚ÌBMP•\¦
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void PST_Page6BmpPut( PST_WORK * wk )
 {
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P6_TITLE] );			// uƒRƒ“ƒeƒXƒg‚í‚´v
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P6_TITLE] );			// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
 
 	if( wk->dat->mode == PST_MODE_WAZAADD ){
-		PokeStatus_GuideStrPut( wk, mes_status_07_03 );			// u‚¯‚Á‚Ä‚¢v
+		PokeStatus_GuideStrPut( wk, mes_status_07_03 );			// ã€Œã‘ã£ã¦ã„ã€
 	}else{
-		PokeStatus_GuideStrPut( wk, mes_status_07_02 );			// u‚­‚í‚µ‚­v
+		PokeStatus_GuideStrPut( wk, mes_status_07_02 );			// ã€Œãã‚ã—ãã€
 	}
 	PokeStatus_A_ButtonMarkPut( wk, &wk->def_win[WIN_GUIDE] );
 
@@ -1465,17 +1465,17 @@ static void PST_Page6BmpPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹L”OƒŠƒ{ƒ“ƒy[ƒW‚ÌBMP•\¦
+ * è¨˜å¿µãƒªãƒœãƒ³ãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void PST_Page7BmpPut( PST_WORK * wk )
 {
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P7_TITLE] );			// u‚«‚Ë‚ñƒŠƒ{ƒ“v
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P7_MOTTEIRU] );		// u‚à‚Á‚Ä‚¢‚é‚©‚¸v
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P7_TITLE] );			// ã€Œãã­ã‚“ãƒªãƒœãƒ³ã€
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P7_MOTTEIRU] );		// ã€Œã‚‚ã£ã¦ã„ã‚‹ã‹ãšã€
 
 	GF_BGL_BmpWinDataFill( &wk->add_win[ADD_WIN_P7_NUM], 0 );
 	NumPrmSet( wk, mes_status_10_05, wk->ribbon_max, 3, NUM_MODE_LEFT );
@@ -1483,24 +1483,24 @@ static void PST_Page7BmpPut( PST_WORK * wk )
 	GF_BGL_BmpWinOnVReq( &wk->add_win[ADD_WIN_P7_NUM] );
 
 	if( wk->ribbon_max != 0 ){
-		PokeStatus_GuideStrPut( wk, mes_status_10_02 );				// u‚­‚í‚µ‚­v
+		PokeStatus_GuideStrPut( wk, mes_status_10_02 );				// ã€Œãã‚ã—ãã€
 		PokeStatus_A_ButtonMarkPut( wk, &wk->def_win[WIN_GUIDE] );
 	}
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * –ß‚éƒy[ƒW‚ÌBMP•\¦
+ * æˆ»ã‚‹ãƒšãƒ¼ã‚¸ã®BMPè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void PST_Page8BmpPut( PST_WORK * wk )
 {
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P8_MODORIMASU] );		// u‚à‚Ç‚è‚Ü‚·v
-	PokeStatus_GuideStrPut( wk, mes_status_08_01 );				// u‚à‚Ç‚év
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P8_MODORIMASU] );		// ã€Œã‚‚ã©ã‚Šã¾ã™ã€
+	PokeStatus_GuideStrPut( wk, mes_status_08_01 );				// ã€Œã‚‚ã©ã‚‹ã€
 	PokeStatus_A_ButtonMarkPut( wk, &wk->def_win[WIN_GUIDE] );
 
 	if( wk->dat->mode != PST_MODE_PORUTO && wk->dat->mode != PST_MODE_CONDITION ){
@@ -1522,9 +1522,9 @@ static void PST_Page8BmpPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“”•\¦
+ * ãƒªãƒœãƒ³æ•°è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1537,7 +1537,7 @@ void PokeStatus_RibbonPosNumPut( PST_WORK * wk )
 
 	GF_BGL_BmpWinDataFill( &wk->add_win[ADD_WIN_P7_MAXNUM], 0 );
 
-	// Å‘å”
+	// æœ€å¤§æ•°
 	str = MSGMAN_AllocString( wk->msg_man, mes_status_10_08 );
 	WORDSET_RegisterNumber(
 		wk->wset, 0, wk->ribbon_max, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
@@ -1549,7 +1549,7 @@ void PokeStatus_RibbonPosNumPut( PST_WORK * wk )
 		&wk->add_win[ADD_WIN_P7_MAXNUM], FONT_SYSTEM,
 		wk->msg_buf, px, 0, MSG_NO_PUT, PSTCOL_N_BLACK, NULL );
 
-	// ƒXƒ‰ƒbƒVƒ…
+	// ã‚¹ãƒ©ãƒƒã‚·ãƒ¥
 	str = MSGMAN_AllocString( wk->msg_man, mes_status_10_07 );
 	siz = FontProc_GetPrintStrWidth( FONT_SYSTEM, str, 0 );
 	px -= siz;
@@ -1558,7 +1558,7 @@ void PokeStatus_RibbonPosNumPut( PST_WORK * wk )
 		str, px, 0, MSG_NO_PUT, PSTCOL_N_BLACK, NULL );
 	STRBUF_Delete( str );
 
-	// ƒJ[ƒ\ƒ‹ˆÊ’u
+	// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 	str = MSGMAN_AllocString( wk->msg_man, mes_status_10_06 );
 	WORDSET_RegisterNumber(
 		wk->wset, 0, wk->ribbon_pos+wk->ribbon_scr*4+1,
@@ -1576,9 +1576,9 @@ void PokeStatus_RibbonPosNumPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ{ƒ“î•ñ
+ * ãƒªãƒœãƒ³æƒ…å ±
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1602,10 +1602,10 @@ void PokeStatus_RibbonInfoPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z•\¦
+ * æŠ€è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	pos		•\¦ˆÊ’u
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1630,7 +1630,7 @@ static void WazaPut( PST_WORK * wk, u32 pos )
 		mpp  = npp;
 	}
 
-	// ‹Z–¼
+	// æŠ€å
 	MSGMAN_GetString( wk->wman, waza, wk->msg_buf );
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, wk->msg_buf,
@@ -1657,10 +1657,10 @@ static void WazaPut( PST_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zî•ñ•\¦
+ * æŠ€æƒ…å ±è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	waza	‹Z”Ô†
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ç•ªå·
  *
  * @return	none
  */
@@ -1671,49 +1671,49 @@ void PokeStatus_WazaInfoPut( PST_WORK * wk, u32 waza )
 	u32	siz;
 	u32	prm;
 
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P5_BUNRUI] );	// ‚Ô‚ñ‚é‚¢
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P5_IRYOKU] );	// ‚¢‚è‚å‚­
-	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P5_HIT] );	// ‚ß‚¢‚¿‚ã‚¤
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P5_BUNRUI] );	// ã¶ã‚“ã‚‹ã„
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P5_IRYOKU] );	// ã„ã‚Šã‚‡ã
+	GF_BGL_BmpWinOnVReq( &wk->def_win[WIN_P5_HIT] );	// ã‚ã„ã¡ã‚…ã†
 
 	GF_BGL_BmpWinDataFill( &wk->add_win[ADD_WIN_P5_ATC], 0 );
 	GF_BGL_BmpWinDataFill( &wk->add_win[ADD_WIN_P5_HIT], 0 );
 	GF_BGL_BmpWinDataFill( &wk->add_win[ADD_WIN_P5_INFO], 0 );
 
-	// ˆĞ—Í
+	// å¨åŠ›
 	prm = WT_WazaDataParaGet( waza, ID_WTD_damage );
 	if( prm <= 1 ){
 		MSGMAN_GetString( wk->msg_man, mes_status_06_28, wk->msg_buf );
 	}else{
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-		// ‚¢‚è‚å‚­‚Ì’l‚ğ‰E‘µ‚¦‚µ‚½ã‚Å’†‰›Šñ‚¹‚É
+		// ã„ã‚Šã‚‡ãã®å€¤ã‚’å³æƒãˆã—ãŸä¸Šã§ä¸­å¤®å¯„ã›ã«
 		NumPrmSet( wk, mes_status_06_23, prm, 3, NUM_MODE_SPACE );
 		// ----------------------------------------------------------------------------
 	}
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ‚¢‚è‚å‚­‚Ì’l‚ğ‰E‘µ‚¦‚µ‚½ã‚Å’†‰›Šñ‚¹‚É
+	// ã„ã‚Šã‚‡ãã®å€¤ã‚’å³æƒãˆã—ãŸä¸Šã§ä¸­å¤®å¯„ã›ã«
 	StrPut( wk, &wk->add_win[ADD_WIN_P5_ATC], PSTCOL_N_BLACK, STR_MODE_CENTER );
 	// ----------------------------------------------------------------------------
 
-	// –½’†
+	// å‘½ä¸­
 	prm = WT_WazaDataParaGet(waza,ID_WTD_hitprobability);
 	if( prm == 0 ){
 		MSGMAN_GetString( wk->msg_man, mes_status_06_28, wk->msg_buf );
 	}else{
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-		// ‚ß‚¢‚¿‚ã‚¤‚Ì’l‚ğ‰E‘µ‚¦‚µ‚½ã‚Å’†‰›Šñ‚¹‚É
+		// ã‚ã„ã¡ã‚…ã†ã®å€¤ã‚’å³æƒãˆã—ãŸä¸Šã§ä¸­å¤®å¯„ã›ã«
 		NumPrmSet( wk, mes_status_06_24, prm, 3, NUM_MODE_SPACE );
 		// ----------------------------------------------------------------------------
 	}
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ‚ß‚¢‚¿‚ã‚¤‚Ì’l‚ğ‰E‘µ‚¦‚µ‚½ã‚Å’†‰›Šñ‚¹‚É
+	// ã‚ã„ã¡ã‚…ã†ã®å€¤ã‚’å³æƒãˆã—ãŸä¸Šã§ä¸­å¤®å¯„ã›ã«
 	StrPut( wk, &wk->add_win[ADD_WIN_P5_HIT], PSTCOL_N_BLACK, STR_MODE_CENTER );
 	// ----------------------------------------------------------------------------
 
-	// à–¾
+	// èª¬æ˜
 	man = MSGMAN_Create(
 			MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_wazainfo_dat, HEAPID_POKESTATUS );
 	MSGMAN_GetString( man, waza, wk->msg_buf );
@@ -1727,9 +1727,9 @@ void PokeStatus_WazaInfoPut( PST_WORK * wk, u32 waza )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zî•ñ”ñ•\¦
+ * æŠ€æƒ…å ±éè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1746,9 +1746,9 @@ void PokeStatus_WazaInfoOff( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‚Ì‚T‚Â–Ú‚Ì€–Ú•\¦
+ * æŠ€ã®ï¼•ã¤ç›®ã®é …ç›®è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1766,9 +1766,9 @@ void PokeStatus_SkillCancelPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‚Ì‚T‚Â–Ú‚Ì€–Ú”ñ•\¦
+ * æŠ€ã®ï¼•ã¤ç›®ã®é …ç›®éè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1782,9 +1782,9 @@ void PokeStatus_SkillCancelDel( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ü‚ê‘Ö‚¦‚½‹Z‚ğÄ•\¦
+ * å…¥ã‚Œæ›¿ãˆãŸæŠ€ã‚’å†è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1803,9 +1803,9 @@ void PokeStatus_SkillChgRewrite( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹ZŠo‚¦ƒGƒ‰[ƒƒbƒZ[ƒW•\¦
+ * æŠ€è¦šãˆã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1833,10 +1833,10 @@ void PokeStatus_WazaOboeErrorMsgPut( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Zî•ñ•\¦
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€æƒ…å ±è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	waza	‹Z”Ô†
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ç•ªå·
  *
  * @return	none
  */
@@ -1868,9 +1868,9 @@ void PokeStatus_ContestWazaInfoPut( PST_WORK * wk, u32 waza )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Zî•ñ”ñ•\¦
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€æƒ…å ±éè¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1884,10 +1884,10 @@ void PokeStatus_ContestWazaInfoOff( PST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒAƒbƒvƒƒbƒZ[ƒW•\¦
+ * ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚¢ãƒƒãƒ—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒXƒe[ƒ^ƒX‰æ–Êƒ[ƒN
- * @param	num		ƒAƒbƒv‚µ‚½ƒRƒ“ƒfƒBƒVƒ‡ƒ“
+ * @param	wk		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ã‚¢ãƒƒãƒ—ã—ãŸã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³
  *
  * @return	none
  */
@@ -1898,25 +1898,25 @@ void PokeStatus_CondUpMsgPut( PST_WORK * wk, u8 num )
 	u32	midx;
 
 	switch( num ){
-	case 0:		// ‚©‚Á‚±‚æ‚³
+	case 0:		// ã‹ã£ã“ã‚ˆã•
 		midx = mes_status_09_09_01;
 		break;
-	case 1:		// ‚¤‚Â‚­‚µ‚³
+	case 1:		// ã†ã¤ãã—ã•
 		midx = mes_status_09_09_03;
 		break;
-	case 2:		// ‚©‚í‚¢‚³
+	case 2:		// ã‹ã‚ã„ã•
 		midx = mes_status_09_09_04;
 		break;
-	case 3:		// ‚©‚µ‚±‚³
+	case 3:		// ã‹ã—ã“ã•
 		midx = mes_status_09_09_05;
 		break;
-	case 4:		// ‚½‚­‚Ü‚µ‚³
+	case 4:		// ãŸãã¾ã—ã•
 		midx = mes_status_09_09_02;
 		break;
-	case PST_MSG_PRMNONE:	// •Ï‰»‚È‚µ
+	case PST_MSG_PRMNONE:	// å¤‰åŒ–ãªã—
 		midx = mes_status_09_09_06;
 		break;
-	default:	// H‚×‚ç‚ê‚È‚¢
+	default:	// é£Ÿã¹ã‚‰ã‚Œãªã„
 		midx = mes_status_09_09_07;
 	}
 

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>G3X_GetVectorMtx</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">G3X_GetVectorMtx</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -20,22 +20,22 @@
 
 int G3X_GetVectorMtx(MtxFx33 * m)<BR></CODE></PRE>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="187"><em><strong><font face="Courier New">m</font></strong></em></TD>
-      <TD width="434">���ʂ���������s��ւ̃|�C���^</TD>
+      <TD width="434">結果が代入される行列へのポインタ</TD>
     </TR>
   </TBODY>
 </TABLE>
-<h2>�Ԃ�l</h2>
-<p>�f�[�^�擾���I�����Ă���(0)���W�I���g���G���W�����r�W�[�ł��邩(not 0)���̏��</p>
-<H2>����</H2>
-<P>�Ԃ�l��0�̏ꍇ�A*<B><I>m</I></B>�ɃJ�����g�����x�N�g���s�񂪑������Ă��܂��A<BR>
-�Ԃ�l��0�łȂ��ꍇ�A�W�I���g���G���W�����r�W�[��ԂŃf�[�^���擾�ł��Ă��܂���B</P>
-<h2>�Q��</h2>
-<H2>����</H2>
+<h2>返り値</h2>
+<p>データ取得が終了している(0)かジオメトリエンジンがビジーであるか(not 0)かの状態</p>
+<H2>説明</H2>
+<P>返り値が0の場合、*<B><I>m</I></B>にカレント方向ベクトル行列が代入されています、<BR>
+返り値が0でない場合、ジオメトリエンジンがビジー状態でデータを取得できていません。</P>
+<h2>参照</h2>
+<H2>履歴</H2>
 <P>Ver. 2004/01/19</P>
 </body>
 </html>

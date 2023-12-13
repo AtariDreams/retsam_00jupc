@@ -24,16 +24,16 @@
   add conversion from string to arguments
 
   Revision 1.7  2005/09/06 10:16:42  yasu
-  '-' ƒ‚[ƒh‚Ì•Ô‚è’l‚ÌC³
+  '-' ãƒ¢ãƒ¼ãƒ‰æ™‚ã®è¿”ã‚Šå€¤ã®ä¿®æ­£
 
   Revision 1.6  2005/09/06 09:10:37  yasu
-  '-' ƒ‚[ƒh‚Æ '+' ƒ‚[ƒh‚ÌÀ‘•
+  '-' ãƒ¢ãƒ¼ãƒ‰ã¨ '+' ãƒ¢ãƒ¼ãƒ‰ã®å®Ÿè£…
 
   Revision 1.5  2005/08/30 10:35:28  yasu
-  ƒIƒvƒVƒ‡ƒ“‚Å‚È‚¢’Êí‚Ìˆø”‚àƒIƒvƒVƒ‡ƒ“‚Æ“§‰ß“I‚Éˆµ‚¦‚é‚æ‚¤‚É‚µ‚½
+  ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã§ãªã„é€šå¸¸ã®å¼•æ•°ã‚‚ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¨é€éçš„ã«æ‰±ãˆã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.4  2005/08/30 09:00:14  yasu
-  OS_GetOpt ’Ç‰Á
+  OS_GetOpt è¿½åŠ 
 
   Revision 1.3  2005/07/21 12:41:50  yada
   consider for NITRO_FINALROM
@@ -135,12 +135,12 @@ const char *OS_GetArgv(int n)
 
   Description:  getopt() like function to get command line options
   
-  Arguments:    optstring  ƒIƒvƒVƒ‡ƒ“ƒLƒƒƒ‰ƒNƒ^‚Ì—ñ
-                           NULL ‚È‚ç“à•”ƒpƒ‰ƒ[ƒ^‚ªƒŠƒZƒbƒg‚³‚ê‚é
+  Arguments:    optstring  ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®åˆ—
+                           NULL ãªã‚‰å†…éƒ¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒãƒªã‚»ãƒƒãƒˆã•ã‚Œã‚‹
 
-  Returns:      ƒIƒvƒVƒ‡ƒ“•¶šƒR[ƒh
-                '?' ‚È‚ç•s–¾‚ÈƒIƒvƒVƒ‡ƒ“•¶šƒR[ƒh
-                -1  ‚È‚çƒIƒvƒVƒ‡ƒ“‚ª‘¶İ‚µ‚È‚¢
+  Returns:      ã‚ªãƒ—ã‚·ãƒ§ãƒ³æ–‡å­—ã‚³ãƒ¼ãƒ‰
+                '?' ãªã‚‰ä¸æ˜ãªã‚ªãƒ—ã‚·ãƒ§ãƒ³æ–‡å­—ã‚³ãƒ¼ãƒ‰
+                -1  ãªã‚‰ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒå­˜åœ¨ã—ãªã„
  *---------------------------------------------------------------------------*/
 #ifndef OS_NO_ARGUMENT
 int OS_GetOpt(const char *optstring)
@@ -154,7 +154,7 @@ int OS_GetOpt(const char *optstring)
     OSi_OptArg = NULL;
     OSi_OptOpt = 0;
 
-    // optstring ‚ª NULL ‚È‚çƒŠƒZƒbƒg
+    // optstring ãŒ NULL ãªã‚‰ãƒªã‚»ãƒƒãƒˆ
     if (optstring == NULL)
     {
         OSi_OptInd = 1;
@@ -162,7 +162,7 @@ int OS_GetOpt(const char *optstring)
         return 0;
     }
 
-    // ƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ˆø”æ“¾
+    // ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³å¼•æ•°å–å¾—
     arg = OS_GetArgv(OSi_OptInd);
 
     if (arg == NULL)
@@ -172,40 +172,40 @@ int OS_GetOpt(const char *optstring)
 
     if (optstring[0] == '-')           // Minus Mode
     {
-        OSi_OptInd++;                  // ˆø”Á”ï
+        OSi_OptInd++;                  // å¼•æ•°æ¶ˆè²»
 
-        // '-' ‚©‚çn‚Ü‚ç‚È‚¢ê‡‚Í’Êíˆø”
+        // '-' ã‹ã‚‰å§‹ã¾ã‚‰ãªã„å ´åˆã¯é€šå¸¸å¼•æ•°
         if (end_of_option || arg[0] != '-')
         {
-            OSi_OptArg = arg;          // ’Êíˆø”‚à OptArg ‚ÉƒZƒbƒg‚³‚ê‚éD
+            OSi_OptArg = arg;          // é€šå¸¸å¼•æ•°ã‚‚ OptArg ã«ã‚»ãƒƒãƒˆã•ã‚Œã‚‹ï¼
             return 1;
         }
 
-        // ƒIƒvƒVƒ‡ƒ“‰ğÍ
+        // ã‚ªãƒ—ã‚·ãƒ§ãƒ³è§£æ
         optchar = arg[1];
 
-        if (optchar == '-')            // '--' ‚ÅƒIƒvƒVƒ‡ƒ“I—¹
+        if (optchar == '-')            // '--' ã§ã‚ªãƒ—ã‚·ãƒ§ãƒ³çµ‚äº†
         {
-            end_of_option = TRUE;      // Ÿ‚©‚ç‚Í’Êíˆø”
+            end_of_option = TRUE;      // æ¬¡ã‹ã‚‰ã¯é€šå¸¸å¼•æ•°
             return OS_GetOpt(optstring);
         }
     }
     else                               // normal mode
     {
-        // '-' ‚©‚çn‚Ü‚ç‚È‚¢ê‡‚Í’Êíˆø”
+        // '-' ã‹ã‚‰å§‹ã¾ã‚‰ãªã„å ´åˆã¯é€šå¸¸å¼•æ•°
         if (end_of_option || arg[0] != '-')
         {
-            return -1;                 // OptArg ‚Í NULL ‚Ì‚Ü‚Ü
+            return -1;                 // OptArg ã¯ NULL ã®ã¾ã¾
         }
 
-        OSi_OptInd++;                  // ˆø”Á”ï
+        OSi_OptInd++;                  // å¼•æ•°æ¶ˆè²»
 
-        // ƒIƒvƒVƒ‡ƒ“‰ğÍ
+        // ã‚ªãƒ—ã‚·ãƒ§ãƒ³è§£æ
         optchar = arg[1];
 
-        if (optchar == '-')            // '--' ‚ÅƒIƒvƒVƒ‡ƒ“I—¹
+        if (optchar == '-')            // '--' ã§ã‚ªãƒ—ã‚·ãƒ§ãƒ³çµ‚äº†
         {
-            end_of_option = TRUE;      // Ÿ‚©‚ç‚Í’Êíˆø”
+            end_of_option = TRUE;      // æ¬¡ã‹ã‚‰ã¯é€šå¸¸å¼•æ•°
             return -1;
         }
 
@@ -215,28 +215,28 @@ int OS_GetOpt(const char *optstring)
 
     if (opt == NULL)
     {
-        OSi_OptOpt = optchar;          // ’m‚ç‚È‚¢ƒIƒvƒVƒ‡ƒ“
+        OSi_OptOpt = optchar;          // çŸ¥ã‚‰ãªã„ã‚ªãƒ—ã‚·ãƒ§ãƒ³
         return '?';
     }
 
-    if (opt[1] == ':')                 // OptArg ‚ÌŒŸõw’èH
+    if (opt[1] == ':')                 // OptArg ã®æ¤œç´¢æŒ‡å®šï¼Ÿ
     {
         optarg = OS_GetArgv(OSi_OptInd);
 
         if (optarg == NULL || optarg[0] == '-')
         {
-            if (opt[2] != ':')         // '::' ‚Å‚È‚¢H
+            if (opt[2] != ':')         // '::' ã§ãªã„ï¼Ÿ
             {
-                OSi_OptOpt = optchar;  // OptArg ‚ª–³‚¢
+                OSi_OptOpt = optchar;  // OptArg ãŒç„¡ã„
                 return '?';
             }
-            // OptArg ‚ª–³‚¢
+            // OptArg ãŒç„¡ã„
             // OSi_OptArg = NULL
         }
         else
         {
             OSi_OptArg = optarg;
-            OSi_OptInd++;              // ˆø”Á”ï
+            OSi_OptInd++;              // å¼•æ•°æ¶ˆè²»
         }
     }
     return optchar;

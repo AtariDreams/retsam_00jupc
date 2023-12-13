@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	trcard_snd.c
- * @brief	ƒgƒŒ[ƒi[ƒP[ƒX@ƒoƒbƒ`“S‹Õ‘€ì
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚±ãƒ¼ã‚¹ã€€ãƒãƒƒãƒé‰„ç´æ“ä½œ
  * @author	Satoshi Nohara
  * @date	2005.12.06
  */
@@ -12,22 +12,22 @@
 #include "trcard_snd.h"
 
 /*
-	//ƒƒ‚
+	//ãƒ¡ãƒ¢
 
-	Eƒoƒbƒ`ˆÈŠO‚ÌSE‚ª–Â‚é‚ÉAƒoƒbƒ`‚Ì‰¹‚ğ‘S‚Ä~‚ß‚éˆ—‚ª•K—v
+	ãƒ»ãƒãƒƒãƒä»¥å¤–ã®SEãŒé³´ã‚‹æ™‚ã«ã€ãƒãƒƒãƒã®éŸ³ã‚’å…¨ã¦æ­¢ã‚ã‚‹å‡¦ç†ãŒå¿…è¦
 
-	E‹Ïˆê‚É‚¸‚ê‚é‚Ì‚ÅAƒoƒbƒ`‚²‚Æ‚É‘½­‚Ì‚¸‚ê•‚ğ‚Â‚¯‚½•û‚ª‚æ‚è‚¸‚ê‚Ä•·‚±‚¦‚é
+	ãƒ»å‡ä¸€ã«ãšã‚Œã‚‹ã®ã§ã€ãƒãƒƒãƒã”ã¨ã«å¤šå°‘ã®ãšã‚Œå¹…ã‚’ã¤ã‘ãŸæ–¹ãŒã‚ˆã‚Šãšã‚Œã¦èã“ãˆã‚‹
 */
 
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
 #define SND_BADGE_NO_USE			(0xff)
 
-//Šî–{‰¹’ö
+//åŸºæœ¬éŸ³ç¨‹
 enum{
 	P_C = 0,					//C
 	P_D = (64*2),				//D
@@ -38,24 +38,24 @@ enum{
 	P_B = (64*11),				//B
 	PCC = (64*12),				//C
 
-	//P_DIFF_MAX = (64+32),		//Å‘å‰¹’ö‚¸‚ê
-	P_DIFF_MAX = (64+32+512),	//Å‘å‰¹’ö‚¸‚ê(06.04.12)
-	P_DIFF = (P_DIFF_MAX/TR_CARD_BADGE_LV_MAX),	//‰¹’ö‚¸‚ê(ƒŒƒxƒ‹”‚ÅŠ„‚Á‚½’l)
+	//P_DIFF_MAX = (64+32),		//æœ€å¤§éŸ³ç¨‹ãšã‚Œ
+	P_DIFF_MAX = (64+32+512),	//æœ€å¤§éŸ³ç¨‹ãšã‚Œ(06.04.12)
+	P_DIFF = (P_DIFF_MAX/TR_CARD_BADGE_LV_MAX),	//éŸ³ç¨‹ãšã‚Œ(ãƒ¬ãƒ™ãƒ«æ•°ã§å‰²ã£ãŸå€¤)
 };
 
 
 //==============================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//‰¹’öƒe[ƒuƒ‹
-static const u16 basic_pitch_tbl[8] = { P_C, P_D, P_E, P_F, P_G, P_A, P_B, PCC };	//‰¹’ö‚¸‚ê‚È‚µ
+//éŸ³ç¨‹ãƒ†ãƒ¼ãƒ–ãƒ«
+static const u16 basic_pitch_tbl[8] = { P_C, P_D, P_E, P_F, P_G, P_A, P_B, PCC };	//éŸ³ç¨‹ãšã‚Œãªã—
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 static void Snd_DebugBadge( SND_BADGE_WORK* wk );
@@ -76,9 +76,9 @@ static void Snd_BadgeWorkPitch( int num, const int no, const u8 lv );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒP[ƒX@ƒoƒbƒWƒ[ƒN‰Šú‰»
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚±ãƒ¼ã‚¹ã€€ãƒãƒƒã‚¸ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- * @param	wk		SND_BADGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_BADGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -98,9 +98,9 @@ static void Snd_DebugBadge( SND_BADGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒP[ƒX@ƒoƒbƒWƒ[ƒN‰Šú‰»
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚±ãƒ¼ã‚¹ã€€ãƒãƒƒã‚¸ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- * @param	wk		SND_BADGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_BADGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -111,7 +111,7 @@ void Snd_BadgeWorkInit( SND_BADGE_WORK* wk )
 
 	for( i=0; i < SND_BADGE_PLAYER_MAX ;i++ ){
 		wk->player[i][0] = i;						//"0,1,2,3"
-		wk->player[i][1] = SND_BADGE_NO_USE;		//ƒNƒŠƒA
+		wk->player[i][1] = SND_BADGE_NO_USE;		//ã‚¯ãƒªã‚¢
 	}
 
 	return;
@@ -119,11 +119,11 @@ void Snd_BadgeWorkInit( SND_BADGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒP[ƒX@ƒoƒbƒW“S‹Õ‚ğ–Â‚ç‚·
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚±ãƒ¼ã‚¹ã€€ãƒãƒƒã‚¸é‰„ç´ã‚’é³´ã‚‰ã™
  *
- * @param	wk		SND_BADGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	no		ƒoƒbƒWƒiƒ“ƒo[(0‚©‚ç7)
- * @param	lv		ƒoƒbƒWƒŒƒxƒ‹(0`4)
+ * @param	wk		SND_BADGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	no		ãƒãƒƒã‚¸ãƒŠãƒ³ãƒãƒ¼(0ã‹ã‚‰7)
+ * @param	lv		ãƒãƒƒã‚¸ãƒ¬ãƒ™ãƒ«(0ã€œ4)
  *
  * @retval	none
  */
@@ -132,35 +132,35 @@ void Snd_BadgeWorkPlay( SND_BADGE_WORK* wk, const int no, const u8 lv )
 {
 	int i;
 
-	//g—p’†‚ÅA‚·‚Å‚ÉÄ¶I—¹‚µ‚Ä‚¢‚é‚à‚Ì‚ÍƒNƒŠƒA‚·‚éI
+	//ä½¿ç”¨ä¸­ã§ã€ã™ã§ã«å†ç”Ÿçµ‚äº†ã—ã¦ã„ã‚‹ã‚‚ã®ã¯ã‚¯ãƒªã‚¢ã™ã‚‹ï¼
 	Snd_BadgeWorkPlay_Sub1( wk );
 
 	//debug
 	//Snd_DebugBadge( wk );
 
-	//“n‚³‚ê‚½ƒoƒbƒ`‚ªg—p’†‚Ì‚ÍA“¯‚¶ƒvƒŒƒCƒ„[‚ÅÄ¶‚·‚éI
+	//æ¸¡ã•ã‚ŒãŸãƒãƒƒãƒãŒä½¿ç”¨ä¸­ã®æ™‚ã¯ã€åŒã˜ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã§å†ç”Ÿã™ã‚‹ï¼
 	if( Snd_BadgeWorkPlay_Sub2(wk,no,lv) == TRUE ){
 
-		//OS_Printf( "Sub2 Ä¶!" );
+		//OS_Printf( "Sub2 å†ç”Ÿ!" );
 		//debug
 		//Snd_DebugBadge( wk );
 		return;
 	}
 
-	//“n‚³‚ê‚½ƒoƒbƒ`‚ğV‹K‚É–Â‚ç‚·
+	//æ¸¡ã•ã‚ŒãŸãƒãƒƒãƒã‚’æ–°è¦ã«é³´ã‚‰ã™æ™‚
 	if( Snd_BadgeWorkPlay_Sub3(wk,no,lv) == TRUE ){
 
-		//OS_Printf( "Sub3 Ä¶!" );
+		//OS_Printf( "Sub3 å†ç”Ÿ!" );
 
 		//debug
 		//Snd_DebugBadge( wk );
 		return;
 	}
 
-	//ƒvƒŒƒCƒ„[‚ª‘S‚Ä–„‚Ü‚Á‚Ä‚¢‚é‚ÍAˆê”ÔŒÃ‚¢ƒf[ƒ^‚ğÁ‚µ‚ÄAã‘‚«‚·‚é
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒå…¨ã¦åŸ‹ã¾ã£ã¦ã„ã‚‹æ™‚ã¯ã€ä¸€ç•ªå¤ã„ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã—ã¦ã€ä¸Šæ›¸ãã™ã‚‹
 	if( Snd_BadgeWorkPlay_Sub4(wk,no,lv) == TRUE ){
 
-		//OS_Printf( "Sub4 Ä¶!" );
+		//OS_Printf( "Sub4 å†ç”Ÿ!" );
 
 		//debug
 		//Snd_DebugBadge( wk );
@@ -172,9 +172,9 @@ void Snd_BadgeWorkPlay( SND_BADGE_WORK* wk, const int no, const u8 lv )
 
 //--------------------------------------------------------------
 /**
- * @brief	g—p’†‚ÅA‚·‚Å‚ÉÄ¶I—¹‚µ‚Ä‚¢‚é‚à‚Ì‚ÍƒNƒŠƒA‚·‚éI
+ * @brief	ä½¿ç”¨ä¸­ã§ã€ã™ã§ã«å†ç”Ÿçµ‚äº†ã—ã¦ã„ã‚‹ã‚‚ã®ã¯ã‚¯ãƒªã‚¢ã™ã‚‹ï¼
  *
- * @param	wk		SND_BADGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_BADGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -183,32 +183,32 @@ static void Snd_BadgeWorkPlay_Sub1( SND_BADGE_WORK* wk )
 {
 	int i;
 
-	//ƒvƒŒƒCƒ„[”‚¾‚¯ƒ`ƒFƒbƒN
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°ã ã‘ãƒã‚§ãƒƒã‚¯
 	for( i=0; i < SND_BADGE_PLAYER_MAX ;i++ ){
 
-		//g—p’†‚É‚È‚Á‚Ä‚¢‚Ä
+		//ä½¿ç”¨ä¸­ã«ãªã£ã¦ã„ã¦
 		if( wk->player[i][1] != SND_BADGE_NO_USE ){
 		
-			//Ä¶I—¹‚µ‚Ä‚¢‚½‚ç
+			//å†ç”Ÿçµ‚äº†ã—ã¦ã„ãŸã‚‰
 			if( Snd_PlayerCountPlayingSeq( (PLAYER_SE_1 + wk->player[i][0]) ) == 0 ){
-				wk->player[i][1] = SND_BADGE_NO_USE;		//ƒNƒŠƒA
-				//OS_Printf( "Sub1 ƒNƒŠƒA!" );
+				wk->player[i][1] = SND_BADGE_NO_USE;		//ã‚¯ãƒªã‚¢
+				//OS_Printf( "Sub1 ã‚¯ãƒªã‚¢!" );
 			}
 		}
 	}
 
-	//ƒ\[ƒg2(ƒf[ƒ^‚ğ‹l‚ß‚é)
+	//ã‚½ãƒ¼ãƒˆ2(ãƒ‡ãƒ¼ã‚¿ã‚’è©°ã‚ã‚‹)
 	Snd_BadgeWorkSort2( wk );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	“n‚³‚ê‚½ƒoƒbƒ`‚ªg—p’†‚Ì‚ÍA“¯‚¶ƒvƒŒƒCƒ„[‚ÅÄ¶‚·‚éI
+ * @brief	æ¸¡ã•ã‚ŒãŸãƒãƒƒãƒãŒä½¿ç”¨ä¸­ã®æ™‚ã¯ã€åŒã˜ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã§å†ç”Ÿã™ã‚‹ï¼
  *
- * @param	wk		SND_BADGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	no		ƒoƒbƒWƒiƒ“ƒo[(0‚©‚ç7)
- * @param	lv		ƒoƒbƒWƒŒƒxƒ‹(0`4)
+ * @param	wk		SND_BADGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	no		ãƒãƒƒã‚¸ãƒŠãƒ³ãƒãƒ¼(0ã‹ã‚‰7)
+ * @param	lv		ãƒãƒƒã‚¸ãƒ¬ãƒ™ãƒ«(0ã€œ4)
  *
  * @retval	none
  */
@@ -219,14 +219,14 @@ static BOOL Snd_BadgeWorkPlay_Sub2( SND_BADGE_WORK* wk, const int no, const u8 l
 
 	for( i=0; i < SND_BADGE_PLAYER_MAX ;i++ ){
 
-		//“n‚³‚ê‚½ƒoƒbƒ`‚ªg—p’†‚Ì
+		//æ¸¡ã•ã‚ŒãŸãƒãƒƒãƒãŒä½¿ç”¨ä¸­ã®æ™‚
 		if( wk->player[i][1] == no ){
 
-			//“¯‚¶ƒnƒ“ƒhƒ‹AƒvƒŒƒCƒ„[‚Å–Â‚ç‚·
+			//åŒã˜ãƒãƒ³ãƒ‰ãƒ«ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã§é³´ã‚‰ã™
 			Snd_BadgeWorkPitch( wk->player[i][0], no, lv );
 
-			//Snd_BadgeWorkSort( wk, i );	//ƒ\[ƒg
-			Snd_BadgeWorkSort3( wk, i, wk->player[i][0], no );	//ƒ\[ƒg
+			//Snd_BadgeWorkSort( wk, i );	//ã‚½ãƒ¼ãƒˆ
+			Snd_BadgeWorkSort3( wk, i, wk->player[i][0], no );	//ã‚½ãƒ¼ãƒˆ
 
 			return TRUE;
 		}
@@ -237,11 +237,11 @@ static BOOL Snd_BadgeWorkPlay_Sub2( SND_BADGE_WORK* wk, const int no, const u8 l
 
 //--------------------------------------------------------------
 /**
- * @brief	“n‚³‚ê‚½ƒoƒbƒ`‚ğV‹K‚É–Â‚ç‚·
+ * @brief	æ¸¡ã•ã‚ŒãŸãƒãƒƒãƒã‚’æ–°è¦ã«é³´ã‚‰ã™æ™‚
  *
- * @param	wk		SND_BADGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	no		ƒoƒbƒWƒiƒ“ƒo[(0‚©‚ç7)
- * @param	lv		ƒoƒbƒWƒŒƒxƒ‹(0`4)
+ * @param	wk		SND_BADGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	no		ãƒãƒƒã‚¸ãƒŠãƒ³ãƒãƒ¼(0ã‹ã‚‰7)
+ * @param	lv		ãƒãƒƒã‚¸ãƒ¬ãƒ™ãƒ«(0ã€œ4)
  *
  * @retval	none
  */
@@ -252,12 +252,12 @@ static BOOL Snd_BadgeWorkPlay_Sub3( SND_BADGE_WORK* wk, const int no, const u8 l
 
 	for( i=0; i < SND_BADGE_PLAYER_MAX ;i++ ){
 
-		//g—p‚µ‚Ä‚¢‚È‚¢ƒvƒŒƒCƒ„[‚ğ’T‚·
+		//ä½¿ç”¨ã—ã¦ã„ãªã„ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’æ¢ã™
 		if( wk->player[i][1] == SND_BADGE_NO_USE ){
 
 			Snd_BadgeWorkPitch( wk->player[i][0], no, lv );
 
-			Snd_BadgeWorkSort3( wk, i, wk->player[i][0], no );	//ƒ\[ƒg
+			Snd_BadgeWorkSort3( wk, i, wk->player[i][0], no );	//ã‚½ãƒ¼ãƒˆ
 			return TRUE;
 		}
 	}
@@ -267,11 +267,11 @@ static BOOL Snd_BadgeWorkPlay_Sub3( SND_BADGE_WORK* wk, const int no, const u8 l
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒ„[‚ª‘S‚Ä–„‚Ü‚Á‚Ä‚¢‚é‚ÍAˆê”ÔŒÃ‚¢ƒf[ƒ^‚ğÁ‚µ‚ÄAã‘‚«‚·‚é
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒå…¨ã¦åŸ‹ã¾ã£ã¦ã„ã‚‹æ™‚ã¯ã€ä¸€ç•ªå¤ã„ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã—ã¦ã€ä¸Šæ›¸ãã™ã‚‹
  *
- * @param	wk		SND_BADGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	no		ƒoƒbƒWƒiƒ“ƒo[(0‚©‚ç7)
- * @param	lv		ƒoƒbƒWƒŒƒxƒ‹(0`4)
+ * @param	wk		SND_BADGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	no		ãƒãƒƒã‚¸ãƒŠãƒ³ãƒãƒ¼(0ã‹ã‚‰7)
+ * @param	lv		ãƒãƒƒã‚¸ãƒ¬ãƒ™ãƒ«(0ã€œ4)
  *
  * @retval	none
  */
@@ -284,19 +284,19 @@ static BOOL Snd_BadgeWorkPlay_Sub4( SND_BADGE_WORK* wk, const int no, const u8 l
 
 	Snd_BadgeWorkPitch( wk->player[num][0], no, lv );
 
-	Snd_BadgeWorkSort3( wk, num, wk->player[num][0], no );	//ƒ\[ƒg
+	Snd_BadgeWorkSort3( wk, num, wk->player[num][0], no );	//ã‚½ãƒ¼ãƒˆ
 
 	return TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ\[ƒg(“n‚³‚ê‚½’l‚ğæ“ª‚É‚·‚é)
+ * @brief	ã‚½ãƒ¼ãƒˆ(æ¸¡ã•ã‚ŒãŸå€¤ã‚’å…ˆé ­ã«ã™ã‚‹)
  *
- * @param	wk		SND_BADGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	num		SND_BADGE_WORK.player[]‚Ìƒiƒ“ƒo[
- * @param	player	g—p‚µ‚Ä‚¢‚éƒvƒŒƒCƒ„[(player[?][0])
- * @param	no		g—p‚µ‚Ä‚¢‚éƒoƒbƒWNO(player[?][1])
+ * @param	wk		SND_BADGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	num		SND_BADGE_WORK.player[]ã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	player	ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼(player[?][0])
+ * @param	no		ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒãƒƒã‚¸NO(player[?][1])
  *
  * @retval	none
  */
@@ -310,7 +310,7 @@ static void Snd_BadgeWorkSort3( SND_BADGE_WORK* wk, int num, int player, int no 
 		wk->player[i][1] = wk->player[i-1][1];
 	}
 
-	//æ“ª‚ÉƒZƒbƒg
+	//å…ˆé ­ã«ã‚»ãƒƒãƒˆ
 	wk->player[0][0] = player;
 	wk->player[0][1] = no;
 	return;
@@ -318,9 +318,9 @@ static void Snd_BadgeWorkSort3( SND_BADGE_WORK* wk, int num, int player, int no 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ\[ƒg2(ƒf[ƒ^‚ğ‹l‚ß‚é)
+ * @brief	ã‚½ãƒ¼ãƒˆ2(ãƒ‡ãƒ¼ã‚¿ã‚’è©°ã‚ã‚‹)
  *
- * @param	wk		SND_BADGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SND_BADGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -342,11 +342,11 @@ static void Snd_BadgeWorkSort2( SND_BADGE_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒbƒ`‚É‚æ‚è‰¹’ö‚ğ‘€ì‚·‚éEƒŒƒxƒ‹‚É‚æ‚è‰¹’ö‚Ì”÷’²®‚ğ‚·‚é
+ * @brief	ãƒãƒƒãƒã«ã‚ˆã‚ŠéŸ³ç¨‹ã‚’æ“ä½œã™ã‚‹ãƒ»ãƒ¬ãƒ™ãƒ«ã«ã‚ˆã‚ŠéŸ³ç¨‹ã®å¾®èª¿æ•´ã‚’ã™ã‚‹
  *
- * @param	wk		SND_BADGE_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	no		ƒoƒbƒWƒiƒ“ƒo[(0‚©‚ç7)
- * @param	lv		ƒoƒbƒWƒŒƒxƒ‹(0`4)
+ * @param	wk		SND_BADGE_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	no		ãƒãƒƒã‚¸ãƒŠãƒ³ãƒãƒ¼(0ã‹ã‚‰7)
+ * @param	lv		ãƒãƒƒã‚¸ãƒ¬ãƒ™ãƒ«(0ã€œ4)
  *
  * @retval	none
  */
@@ -355,8 +355,8 @@ static void Snd_BadgeWorkPitch( int num, const int no, const u8 lv )
 {
 	int diff = P_DIFF * (TR_CARD_BADGE_LV_MAX-lv);
 	Snd_ArcPlayerStartSeqEx( (SND_HANDLE_SE_1+num), (PLAYER_SE_1+num), SEQ_SE_DP_BADGE_C );
-	//Snd_PlayerSetTrackPitch( (SND_HANDLE_SE_1+num), 0xffff, (basic_pitch_tbl[no]+diff) );	//ã‚¸‚ê
-	Snd_PlayerSetTrackPitch( (SND_HANDLE_SE_1+num), 0xffff, (basic_pitch_tbl[no]-diff) );	//‰º‚¸‚ê
+	//Snd_PlayerSetTrackPitch( (SND_HANDLE_SE_1+num), 0xffff, (basic_pitch_tbl[no]+diff) );	//ä¸Šãšã‚Œ
+	Snd_PlayerSetTrackPitch( (SND_HANDLE_SE_1+num), 0xffff, (basic_pitch_tbl[no]-diff) );	//ä¸‹ãšã‚Œ
 	return;
 }
 

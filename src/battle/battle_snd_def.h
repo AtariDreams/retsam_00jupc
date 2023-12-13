@@ -1,95 +1,95 @@
 //==============================================================================
 /**
  * @file	battle_snd_def.h
- * @brief	í“¬‚ÌŒø‰Ê‰¹Ý’èƒtƒ@ƒCƒ‹
+ * @brief	æˆ¦é—˜ã®åŠ¹æžœéŸ³è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«
  * @author	matsuda
- * @date	2006.03.28(‰Î)
+ * @date	2006.03.28(ç«)
  */
 //==============================================================================
 #ifndef __BATTLE_SND_DEF_H__
 #define __BATTLE_SND_DEF_H__
 
-///í“¬“ü—Í‰æ–ÊƒJ[ƒ\ƒ‹ˆÚ“®‰¹
+///æˆ¦é—˜å…¥åŠ›ç”»é¢ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•éŸ³
 #define BCURSOR_MOVE_SE			(SEQ_SE_DP_SELECT)
-///æ“ª“ü—Í‰æ–ÊFƒRƒ}ƒ“ƒh‘I‘ðƒEƒBƒ“ƒhƒEƒXƒ‰ƒCƒhƒCƒ“
+///å…ˆé ­å…¥åŠ›ç”»é¢ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³
 #define BCOMMAND_SLIDEIN		(SEQ_SE_DP_SLIDEIN)
 
-///< ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
+///< ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 #define BECEFF_GRASS_01			(SEQ_SE_DP_PASA2)
 #define BECEFF_GRASS_02			(SEQ_SE_DP_PASA3)
 
-///<‹Z‚ÌˆÐ—ÍSE
+///<æŠ€ã®å¨åŠ›SE
 #define	BSE_HIT_NORMAL			(SEQ_SE_DP_KOUKA_M)
 #define	BSE_HIT_BATSUGUN		(SEQ_SE_DP_KOUKA_H)
 #define	BSE_HIT_IMAHITOTSU		(SEQ_SE_DP_KOUKA_L)
 
-///<ƒ^ƒbƒ`ƒpƒlƒ‹ƒvƒbƒVƒ…‰¹
+///<ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ—ãƒƒã‚·ãƒ¥éŸ³
 #define	BSE_TP_DECIDE			(SEQ_SE_DP_DECIDE)
 
-///<ŒoŒ±’lŽæ“¾‰¹
+///<çµŒé¨“å€¤å–å¾—éŸ³
 #define	BSE_EXP_GET				(SEQ_SE_DP_EXP)
 
-///<ŒoŒ±’lMAX‰¹
+///<çµŒé¨“å€¤MAXéŸ³
 #define	BSE_EXP_MAX				(SEQ_SE_DP_EXPMAX)
 
-///<ƒ|ƒPƒ‚ƒ“‹Câ
+///<ãƒã‚±ãƒ¢ãƒ³æ°—çµ¶
 //#define	BSE_POKE_DEAD		(SEQ_SE_DP_POKE_DEAD)
 //#define	BSE_POKE_DEAD		(SEQ_SE_DP_POKE_DEAD2)
 #define	BSE_POKE_DEAD		(SEQ_SE_DP_POKE_DEAD3)
 
-///<ƒ{[ƒ‹ŠJ‚­
+///<ãƒœãƒ¼ãƒ«é–‹ã
 #define	BSE_BALL_OPEN			(SEQ_SE_DP_BOWA2)
 
-///<ƒ{[ƒ‹“Š‚°‚é
+///<ãƒœãƒ¼ãƒ«æŠ•ã’ã‚‹
 #define	BSE_BALL_THROW			(SEQ_SE_DP_NAGERU)
 
-///<ƒ{[ƒ‹HIT
+///<ãƒœãƒ¼ãƒ«HIT
 //#define	BSE_BALL_HIT		(SEQ_SE_DP_KON)
 //#define	BSE_BALL_HIT		(SEQ_SE_DP_BOWA2)
 #define	BSE_BALL_HIT			(SEQ_SE_DP_KON)
 #define	BSE_BALL_HIT_OPEN		(SEQ_SE_DP_BOWA4)		//KON + BOWA2 + SUIKOMU
 
-///<ƒ|ƒPƒ‚ƒ“ƒ{[ƒ‹‚É‹z‚¢ž‚Ý
+///<ãƒã‚±ãƒ¢ãƒ³ãƒœãƒ¼ãƒ«ã«å¸ã„è¾¼ã¿
 #define	BSE_BALL_INHALE			(SEQ_SE_DP_SUIKOMU)
 
-///<ƒ|ƒPƒ‚ƒ“ƒ{[ƒ‹‚É‹z‚¢ž‚Ý
+///<ãƒã‚±ãƒ¢ãƒ³ãƒœãƒ¼ãƒ«ã«å¸ã„è¾¼ã¿
 #define	BSE_POKEMON_GET			(SEQ_SE_DP_GETTING)
 
-///<ƒ|ƒPƒ‚ƒ“ƒ{[ƒ‹‚ä‚ê
+///<ãƒã‚±ãƒ¢ãƒ³ãƒœãƒ¼ãƒ«ã‚†ã‚Œ
 #define	BSE_BALL_SHAKE			(SEQ_SE_DP_BOWA)
 
-///<HP­
+///<HPå°‘
 #define	BSE_PINCH				(SEQ_SE_DP_HINSI)
 
-///<‚É‚°‚é
+///<ã«ã’ã‚‹
 #define	BSE_ESCAPE				(SEQ_SE_DP_NIGERU2)
 
-///<‰ñ•œ
+///<å›žå¾©
 #define	BSE_KAIHUKU				(SEQ_SE_DP_KAIFUKU)
 
-///<‘—‚è‰¹
+///<é€ã‚ŠéŸ³
 #define	BSE_OKURI				(SEQ_SE_DP_SELECT)
 
-///<ƒTƒtƒ@ƒŠI—¹‰¹
+///<ã‚µãƒ•ã‚¡ãƒªçµ‚äº†éŸ³
 #define	BSE_SAFARI_END			(SEQ_SE_DP_PINPON)
 
-///<ƒTƒtƒ@ƒŠƒ][ƒ“‚Åƒ{[ƒ‹ˆÈŠO‚ð“Š‚°‚é
+///<ã‚µãƒ•ã‚¡ãƒªã‚¾ãƒ¼ãƒ³ã§ãƒœãƒ¼ãƒ«ä»¥å¤–ã‚’æŠ•ã’ã‚‹
 #define	BSE_SAFARI_THROW		(SEQ_SE_DP_NAGERU)
 
-///<ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒWƒGƒtƒFƒNƒg‚Ìƒ‚ƒUƒCƒNƒIƒ“
+///<ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ¢ã‚¶ã‚¤ã‚¯ã‚ªãƒ³
 #define	BSE_MOSAIC_ON			(SEQ_SE_DP_W100)
 
-///<ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒWƒGƒtƒFƒNƒg‚Ìƒ‚ƒUƒCƒNƒIƒt
+///<ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ¢ã‚¶ã‚¤ã‚¯ã‚ªãƒ•
 #define	BSE_MOSAIC_OFF			(SEQ_SE_DP_W107)
 
 //--------------------------------------------------------------
-//	ŽèŽ‚¿ƒQ[ƒW
+//	æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸
 //--------------------------------------------------------------
-///ŽèŽ‚¿ƒQ[ƒWFŽèŽ‚¿ƒQ[ƒWIN
+///æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ï¼šæ‰‹æŒã¡ã‚²ãƒ¼ã‚¸IN
 #define BSE_TB_START			(SEQ_SE_DP_TB_START)
-///ŽèŽ‚¿ƒQ[ƒWF’†g‚ª“ü‚Á‚Ä‚¢‚éƒ{[ƒ‹
+///æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ï¼šä¸­èº«ãŒå…¥ã£ã¦ã„ã‚‹ãƒœãƒ¼ãƒ«
 #define BSE_TB_KON				(SEQ_SE_DP_TB_KON)
-///ŽèŽ‚¿ƒQ[ƒWF’†g‚ª‹ó‚Ìƒ{[ƒ‹
+///æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ï¼šä¸­èº«ãŒç©ºã®ãƒœãƒ¼ãƒ«
 #define BSE_TB_KARA				(SEQ_SE_DP_TB_KARA)
 
 

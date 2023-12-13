@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_001.s
- * @brief	‚Í‚½‚­
+ * @brief	ã¯ãŸã
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡‚Í‚½‚­
+//	â– ã¯ãŸã
 //
 //
 // =============================================================================
@@ -37,7 +37,7 @@ WAIT_FLAG
 
 	SEPLAY_PAN		SEQ_SE_DP_W053, WAZA_SE_PAN_DF
 		
-	///< —­‚ß
+	///< æºœã‚
 	ADD_PARTICLE 	0,W_414_414_FIRE_BURN1, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_EP_OFS, OPERATOR_AXIS_NONE, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 	EX_DATA			4, OPERATOR_EX_REVERCE_OFF, PT_LCD_PTP_CHG(OFS_X1), PT_LCD_PTP_CHG(OFS_Y1), 0

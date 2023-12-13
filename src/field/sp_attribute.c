@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	sp_attribute.c
- * @brief	“Áêƒ}ƒgƒŠƒbƒNƒXŠÖ˜A
+ * @brief	ç‰¹æ®Šãƒãƒˆãƒªãƒƒã‚¯ã‚¹é–¢é€£
  * @author	Nozomu Saito
  * @date	2006.02.17
  */
@@ -25,10 +25,10 @@ static const u8 AddSpArcList(const u16 inArcIndex, u16 *outList, u8 *ioListPos);
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ÁêƒAƒgƒŠƒrƒ…[ƒgƒZƒbƒgƒAƒbƒv
+ * ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inNum			ƒf[ƒ^”
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inNum			ãƒ‡ãƒ¼ã‚¿æ•°
  *
  * @return	none
  */
@@ -37,10 +37,10 @@ void SPATTR_SetUpGroundAttr(FIELDSYS_WORK *fsys, const u8 inNum)
 {
 	int i;
 	void *mem;	
-	//ƒƒ‚ƒŠƒAƒƒP[ƒVƒ‡ƒ“
+	//ãƒ¡ãƒ¢ãƒªã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³
 	if (fsys->SpMatData == NULL){
 		fsys->SpMatData = sys_AllocMemory( HEAPID_WORLD, sizeof(SP_MATRIX_DATA) );
-		//“Áêƒ}ƒgƒŠƒNƒXì¬
+		//ç‰¹æ®Šãƒãƒˆãƒªã‚¯ã‚¹ä½œæˆ
 		MakeSpMatrix(fsys->World, fsys->SpMatData, inNum);
 		
 	}
@@ -48,9 +48,9 @@ void SPATTR_SetUpGroundAttr(FIELDSYS_WORK *fsys, const u8 inNum)
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ÁêƒAƒgƒŠƒrƒ…[ƒg‰ğ•ú
+ * ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆè§£æ”¾
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -65,12 +65,12 @@ void SPATTR_FreeGroundAttr(FIELDSYS_WORK *fsys)
 
 //--------------------------------------------------------------------------------------------
 /**
- * “ÁêƒAƒgƒŠƒrƒ…[ƒgƒuƒƒbƒN‚ğæ“¾
+ * ç‰¹æ®Šã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—
  *
- * @param	inBlockindex	ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX 
- * @param	inSpMatrixData	“Áêƒ}ƒgƒŠƒNƒXƒf[ƒ^
+ * @param	inBlockindex	ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ 
+ * @param	inSpMatrixData	ç‰¹æ®Šãƒãƒˆãƒªã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
- * @return	block_attr	ƒuƒƒbƒNƒAƒgƒŠƒrƒ…[ƒgæ“ªƒ|ƒCƒ“ƒ^
+ * @return	block_attr	ãƒ–ãƒ­ãƒƒã‚¯ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 u16 const * SPATTR_GetSpBlockAttribute(const u32 inBlockindex, SMD_CONST_PTR inSpMatrixData)
@@ -84,11 +84,11 @@ u16 const * SPATTR_GetSpBlockAttribute(const u32 inBlockindex, SMD_CONST_PTR inS
 
 //--------------------------------------------------------------------------------------------
 /**
- * “Áêƒ}ƒgƒŠƒNƒX‚ğì¬
+ * ç‰¹æ®Šãƒãƒˆãƒªã‚¯ã‚¹ã‚’ä½œæˆ
  *
- * @param	inWorld			ƒ[ƒ‹ƒhƒ|ƒCƒ“ƒ^
- * @param	outSpMatrixData	“Áêƒ}ƒgƒŠƒNƒXƒf[ƒ^
- * @param	inNum			ƒf[ƒ^”
+ * @param	inWorld			ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+ * @param	outSpMatrixData	ç‰¹æ®Šãƒãƒˆãƒªã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	inNum			ãƒ‡ãƒ¼ã‚¿æ•°
  *
  * @return	none
  */
@@ -107,11 +107,11 @@ static void MakeSpMatrix(WORLD_MAP_PTR inWorld, SMD_PTR outSpMatrixData, const u
 
 	list_pos = 0;
 
-	//Œ»İƒ}ƒbƒvƒ}ƒgƒŠƒNƒX‚ğæ“¾
+	//ç¾åœ¨ãƒãƒƒãƒ—ãƒãƒˆãƒªã‚¯ã‚¹ã‚’å–å¾—
 	w = GetWorldMapMatrixW(inWorld);
 	h = GetWorldMapMatrixH(inWorld);
 
-	//ƒAƒgƒŠƒrƒ…[ƒgæ“¾—p‚Éƒ}ƒgƒŠƒNƒX‚ğì¬
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—ç”¨ã«ãƒãƒˆãƒªã‚¯ã‚¹ã‚’ä½œæˆ
 	for(j=0;j<h;j++){
 		for(i=0;i<w;i++){
 			idx = j*w+i;
@@ -119,47 +119,47 @@ static void MakeSpMatrix(WORLD_MAP_PTR inWorld, SMD_PTR outSpMatrixData, const u
 #ifdef DEBUG_ONLY_FOR_saitou			
 			OS_Printf("local_print %d:arc_idx:%d\n",idx,arc_idx);
 #endif			
-			//“Áêƒ}ƒgƒŠƒbƒNƒX‚ÌƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ğƒŠƒXƒg‚É’Ç‰Á
+			//ç‰¹æ®Šãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ 
 			list_idx = AddSpArcList(arc_idx, list, &list_pos);
 			outSpMatrixData->Matrix[idx] = list_idx;
 		}
 	}
-	//ƒAƒgƒŠƒrƒ…[ƒg‚ğ‚Ü‚Æ‚ß‚Äƒ[ƒh‚·‚é
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚Ìæ“¾
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’ã¾ã¨ã‚ã¦ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	arc_handle = ArchiveDataHandleOpen( ARC_FIELD_MAP_DATA, HEAPID_WORLD );
 
 	for(i=0;i<inNum;i++){
 		arc_idx = list[i];
 		mem = &(outSpMatrixData->GroundAttr[BLOCK_ATTR_SIZE*i]);
-		//ƒAƒgƒŠƒrƒ…[ƒg‚ÍƒA[ƒJƒCƒuƒf[ƒ^‚Ìæ“ª‚©‚çŒÅ’èƒoƒCƒgƒTƒCƒY‚È‚Ì‚ÅAƒIƒtƒZƒbƒgAƒTƒCƒYæ“¾‚ÍÈ‚­
+		//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‹ã‚‰å›ºå®šãƒã‚¤ãƒˆã‚µã‚¤ã‚ºãªã®ã§ã€ã‚ªãƒ•ã‚»ãƒƒãƒˆã€ã‚µã‚¤ã‚ºå–å¾—ã¯çœã
 		ArchiveDataLoadOfsByHandle( arc_handle, arc_idx, 0x10, 0x800,  mem);
 	}
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚Ì‰ğ•ú
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã®è§£æ”¾
 	ArchiveDataHandleClose( arc_handle );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒXƒg‚É“o˜^
+ * ãƒªã‚¹ãƒˆã«ç™»éŒ²
  *
- * @param	inArcIndex	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
- * @param	outList		ƒŠƒXƒg
- * @param	ioListPos	ƒŠƒXƒgˆÊ’u
+ * @param	inArcIndex	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	outList		ãƒªã‚¹ãƒˆ
+ * @param	ioListPos	ãƒªã‚¹ãƒˆä½ç½®
  *
- * @return	u8			“o˜^‚µ‚Ä‚ ‚éi‚µ‚½jƒŠƒXƒgƒCƒ“ƒfƒbƒNƒX
+ * @return	u8			ç™»éŒ²ã—ã¦ã‚ã‚‹ï¼ˆã—ãŸï¼‰ãƒªã‚¹ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static const u8 AddSpArcList(const u16 inArcIndex, u16 *outList, u8 *ioListPos)
 {
 	u8 i;
-	//w’è‚µ‚½ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ªƒŠƒXƒg‚É“o˜^‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î’Ç‰Á
+	//æŒ‡å®šã—ãŸã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒãƒªã‚¹ãƒˆã«ç™»éŒ²ã•ã‚Œã¦ã„ãªã‘ã‚Œã°è¿½åŠ 
 	for(i=0;i<(*ioListPos);i++){
 		if (outList[i] == inArcIndex){
-			return i;	//‚·‚Å‚É“o˜^Ï‚İ
+			return i;	//ã™ã§ã«ç™»éŒ²æ¸ˆã¿
 		}
 	}
-	//V‹K“o˜^
-	GF_ASSERT( i<SP_ATTR_DATA_NUM_MAX && "ƒf[ƒ^”‚ªƒI[ƒo[‚µ‚Ä‚Ü‚·" );
+	//æ–°è¦ç™»éŒ²
+	GF_ASSERT( i<SP_ATTR_DATA_NUM_MAX && "ãƒ‡ãƒ¼ã‚¿æ•°ãŒã‚ªãƒ¼ãƒãƒ¼ã—ã¦ã¾ã™" );
 	outList[i] = inArcIndex;
 	(*ioListPos)++;
 	return i;

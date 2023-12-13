@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.11  2005/03/04 14:07:53  seiki_masashi
-  PRC_ResampleStrokes_* ‚рђ¬ЊчЃEЋё”s‚р•Ф‚·‚ж‚¤‚Й•ПЌX
+  PRC_ResampleStrokes_* г‚’ж€ђеЉџгѓ»е¤±ж•—г‚’иї”гЃ™г‚€гЃ†гЃ«е¤‰ж›ґ
 
   Revision 1.10  2005/02/28 05:26:29  yosizaki
   do-indent.
@@ -24,32 +24,32 @@
   fix a comment.
 
   Revision 1.8  2004/07/19 06:52:06  seiki_masashi
-  ЋЇ•КЋq–ј‚Мђ®—ќ
+  и­е€Ґе­ђеђЌгЃ®ж•ґзђ†
 
   Revision 1.7  2004/07/09 00:12:59  seiki_masashi
   PRCi_Resample* -> PRC_Resample*
 
   Revision 1.6  2004/06/29 07:23:30  seiki_masashi
-  PRC_RESAMPLE_METHOD_ANGLE ‚МЏCђі
+  PRC_RESAMPLE_METHOD_ANGLE гЃ®дї®ж­Ј
 
   Revision 1.5  2004/06/28 11:11:36  seiki_masashi
-  Њ©–{ѓpѓ^Ѓ[ѓ“‚М€к——‚Й regularizeSize ‚р’З‰Б
-  ЉeЋнѓpѓ‰ѓЃЃ[ѓ^—Ю‚рђ®—ќ
+  и¦‹жњ¬гѓ‘г‚їгѓјгѓігЃ®дёЂи¦§гЃ« regularizeSize г‚’иїЅеЉ 
+  еђ„зЁ®гѓ‘гѓ©гѓЎгѓјг‚їйЎћг‚’ж•ґзђ†
 
   Revision 1.4  2004/06/25 13:32:11  seiki_masashi
-  ”FЋЇѓAѓ‹ѓSѓЉѓYѓЂ 'Standard' ‚М’З‰Б
+  иЄЌи­г‚ўгѓ«г‚ґгѓЄг‚єгѓ  'Standard' гЃ®иїЅеЉ 
 
   Revision 1.3  2004/06/24 08:08:33  seiki_masashi
   fix typo
 
   Revision 1.2  2004/06/24 07:03:39  seiki_masashi
-  ѓwѓbѓ_ѓtѓ@ѓCѓ‹‚р•ЄЉ„ЃEђ®—ќ‚µ‚Ь‚µ‚Ѕ
+  гѓгѓѓгѓЂгѓ•г‚Ўг‚¤гѓ«г‚’е€†е‰Ігѓ»ж•ґзђ†гЃ—гЃѕгЃ—гЃџ
 
   Revision 1.1  2004/06/23 11:59:30  seiki_masashi
   add 'PRC*' to SDK
 
   Revision 1.1  2004/06/22 11:19:00  seiki_masashi
-  “®Ќм‰В”\ѓoЃ[ѓWѓ‡ѓ“(simple‚М‚Э)
+  е‹•дЅњеЏЇиѓЅгѓђгѓјг‚ёгѓ§гѓі(simpleгЃ®гЃї)
 
 
   $NoKeywords: $
@@ -81,41 +81,41 @@ PRCi_TerminateStrokes(u16 *selectedPoints,
     inputPoints = strokes->points;
     if (selectedPointNum < 2)
     {
-        // ’·‚і‚Є 0 ‚в 1 ‚М“_—с‚Н–іЋ‹
+        // й•·гЃ•гЃЊ 0 г‚„ 1 гЃ®з‚№е€—гЃЇз„Ўи¦–
         *pSelectedPointNum = 0;
         return FALSE;
     }
     if (!PRC_IsPenUpMarker(&inputPoints[selectedPoints[selectedPointNum - 1]]))
     {
-        // Pen Up Marker ‚ЕЏI‚н‚Б‚Д‚ў‚И‚ў
+        // Pen Up Marker гЃ§зµ‚г‚ЏгЃЈгЃ¦гЃ„гЃЄгЃ„
         if (!PRC_IsPenUpMarker(&inputPoints[selectedPoints[selectedPointNum - 2]]))
         {
-            // 2‚В‘O‚а Pen Up Marker ‚Е‚Н‚И‚ў
+            // 2гЃ¤е‰Ќг‚‚ Pen Up Marker гЃ§гЃЇгЃЄгЃ„
             if (selectedPointNum < maxPointCount)
             {
-                // Њг‚л‚Й—]—T‚Є‚ ‚к‚О Pen Up Marker ‚р•t‚Ї‚й
+                // еѕЊг‚ЌгЃ«дЅ™иЈ•гЃЊгЃ‚г‚ЊгЃ° Pen Up Marker г‚’д»гЃ‘г‚‹
                 selectedPoints[selectedPointNum] = (u16)-1;
                 selectedPointNum++;
             }
             else
             {
-                // Њг‚л‚Й‹у‚«‚Є‚И‚ўЏкЌ‡
+                // еѕЊг‚ЌгЃ«з©єгЃЌгЃЊгЃЄгЃ„е ґеђ€
                 if (selectedPointNum >= 3
                     && !PRC_IsPenUpMarker(&inputPoints[selectedPoints[selectedPointNum - 3]]))
                 {
-                    // 3‚В‘O‚а Pen Up Marker ‚Е‚И‚ў‚И‚з‚ОЃAЌЕЊг‚р Pen Up ‚ЕЏгЏ‘‚«
+                    // 3гЃ¤е‰Ќг‚‚ Pen Up Marker гЃ§гЃЄгЃ„гЃЄг‚‰гЃ°гЂЃжњЂеѕЊг‚’ Pen Up гЃ§дёЉж›ёгЃЌ
                     selectedPoints[selectedPointNum - 1] = (u16)-1;
                 }
                 else
                 {
-                    // ‚і‚а‚И‚­‚ОЃA2‚ВЌн‚й
+                    // гЃ•г‚‚гЃЄгЃЏгЃ°гЂЃ2гЃ¤е‰Љг‚‹
                     selectedPointNum -= 2;
                 }
             }
         }
         else
         {
-            // 2‚В‘O‚Є Pen  Up Marker ‚И‚з‰Ѕ‚аЌl‚¦‚ё1‚ВђШ‚и‹l‚Я‚й
+            // 2гЃ¤е‰ЌгЃЊ Pen  Up Marker гЃЄг‚‰дЅ•г‚‚иЂѓгЃ€гЃљ1гЃ¤е€‡г‚Љи©°г‚Ѓг‚‹
             selectedPointNum--;
         }
     }
@@ -128,16 +128,16 @@ PRCi_TerminateStrokes(u16 *selectedPoints,
 /*---------------------------------------------------------------------------*
   Name:         PRC_ResampleStrokes_None
 
-  Description:  ѓЉѓTѓ“ѓvѓЉѓ“ѓO‚µ‚Ь‚№‚с.
+  Description:  гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ—гЃѕгЃ›г‚“.
 
-  Arguments:    selectedPoints, pSelectedPointNum Њ‹‰К‚Є•Ф‚йѓ|ѓCѓ“ѓ^
-                maxPointCount       “ь—Н“_ђ”‚МЏгЊА(pen up marker ‚рЉЬ‚Ю)
-                maxStrokeCount      ‰жђ”‚МЏгЊА
-                strokes             ђ®Њ`‘O‚Мђ¶“ь—НЌА•W’l.
-                threshold           ѓЉѓTѓ“ѓvѓ‹‚Ми‡’l
-                buffer              Ќм‹Ж—М€ж(sizeof(int)*maxPointCount •K—v)
+  Arguments:    selectedPoints, pSelectedPointNum зµђжћњгЃЊиї”г‚‹гѓќг‚¤гѓіг‚ї
+                maxPointCount       е…ҐеЉ›з‚№ж•°гЃ®дёЉй™ђ(pen up marker г‚’еђ«г‚Ђ)
+                maxStrokeCount      з”»ж•°гЃ®дёЉй™ђ
+                strokes             ж•ґеЅўе‰ЌгЃ®з”џе…ҐеЉ›еє§жЁ™еЂ¤.
+                threshold           гѓЄг‚µгѓігѓ—гѓ«гЃ®й–ѕеЂ¤
+                buffer              дЅњжҐ­й еџџ(sizeof(int)*maxPointCount еї…и¦Ѓ)
 
-  Returns:      ѓЉѓTѓ“ѓvѓЉѓ“ѓO‚Йђ¬Њч‚µ‚Ѕ‚зђ^.
+  Returns:      гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ«ж€ђеЉџгЃ—гЃџг‚‰зњџ.
  *---------------------------------------------------------------------------*/
 BOOL
 PRC_ResampleStrokes_None(u16 *selectedPoints,
@@ -145,7 +145,7 @@ PRC_ResampleStrokes_None(u16 *selectedPoints,
                          int maxPointCount,
                          int maxStrokeCount, const PRCStrokes *strokes, int threshold, void *buffer)
 {
-    // ѓЉѓTѓ“ѓvѓ‹‚№‚ё‚Йђ¶‚М“_—с‚рЋg‚¤
+    // гѓЄг‚µгѓігѓ—гѓ«гЃ›гЃљгЃ«з”џгЃ®з‚№е€—г‚’дЅїгЃ†
     u16     iPoint;
     int     size = strokes->size;
 
@@ -159,12 +159,12 @@ PRC_ResampleStrokes_None(u16 *selectedPoints,
     }
     if (size < 2)
     {
-        // ’·‚і‚Є 0 ‚в 1 ‚М“_—с‚Н–іЋ‹
+        // й•·гЃ•гЃЊ 0 г‚„ 1 гЃ®з‚№е€—гЃЇз„Ўи¦–
         *pSelectedPointNum = 0;
     }
     else
     {
-        // ‰Ѕ‚аЌl‚¦‚ё‚Й“_‚р‘I‘р
+        // дЅ•г‚‚иЂѓгЃ€гЃљгЃ«з‚№г‚’йЃёжЉћ
         for (iPoint = 0; iPoint < size; iPoint++)
         {
             selectedPoints[iPoint] = iPoint;
@@ -173,7 +173,7 @@ PRC_ResampleStrokes_None(u16 *selectedPoints,
 
         if (!PRC_IsPenUpMarker(&strokes->points[size - 1]))
         {
-            // Pen Up Marker ‚ЕЏI’[‚і‚к‚Д‚ў‚И‚ў
+            // Pen Up Marker гЃ§зµ‚з«ЇгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„
             (void)PRCi_TerminateStrokes(selectedPoints, pSelectedPointNum, maxPointCount, strokes);
         }
     }
@@ -186,16 +186,16 @@ PRC_ResampleStrokes_None(u16 *selectedPoints,
 /*---------------------------------------------------------------------------*
   Name:         PRC_ResampleStrokes_Distance
 
-  Description:  ѓVѓeѓBѓuѓЌѓbѓN‹——Ј‚рЉоЏЂ‚ЙѓЉѓTѓ“ѓvѓЉѓ“ѓO‚µ‚Ь‚·.
+  Description:  г‚·гѓ†г‚Јгѓ–гѓ­гѓѓг‚Їи·ќй›ўг‚’еџєжє–гЃ«гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ—гЃѕгЃ™.
 
-  Arguments:    selectedPoints, pSelectedPointNum Њ‹‰К‚Є•Ф‚йѓ|ѓCѓ“ѓ^
-                maxPointCount       “ь—Н“_ђ”‚МЏгЊА(pen up marker ‚рЉЬ‚Ю)
-                maxStrokeCount      ‰жђ”‚МЏгЊА
-                strokes             ђ®Њ`‘O‚Мђ¶“ь—НЌА•W’l.
-                threshold           ѓЉѓTѓ“ѓvѓ‹‚Ми‡’l
-                buffer              Ќм‹Ж—М€ж(sizeof(int)*maxPointCount •K—v)
+  Arguments:    selectedPoints, pSelectedPointNum зµђжћњгЃЊиї”г‚‹гѓќг‚¤гѓіг‚ї
+                maxPointCount       е…ҐеЉ›з‚№ж•°гЃ®дёЉй™ђ(pen up marker г‚’еђ«г‚Ђ)
+                maxStrokeCount      з”»ж•°гЃ®дёЉй™ђ
+                strokes             ж•ґеЅўе‰ЌгЃ®з”џе…ҐеЉ›еє§жЁ™еЂ¤.
+                threshold           гѓЄг‚µгѓігѓ—гѓ«гЃ®й–ѕеЂ¤
+                buffer              дЅњжҐ­й еџџ(sizeof(int)*maxPointCount еї…и¦Ѓ)
 
-  Returns:      ѓЉѓTѓ“ѓvѓЉѓ“ѓO‚Йђ¬Њч‚µ‚Ѕ‚зђ^.
+  Returns:      гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ«ж€ђеЉџгЃ—гЃџг‚‰зњџ.
  *---------------------------------------------------------------------------*/
 BOOL
 PRC_ResampleStrokes_Distance(u16 *selectedPoints,
@@ -231,7 +231,7 @@ PRC_ResampleStrokes_Distance(u16 *selectedPoints,
         {
             if (newFlag)
             {
-                // Ћn“_‚Н•K‚ё‘I‘р
+                // е§‹з‚№гЃЇеї…гЃљйЃёжЉћ
                 selectedPoints[selectedPointNum] = (u16)iPoint;
                 selectedPointNum++;
                 length = 0;
@@ -253,14 +253,14 @@ PRC_ResampleStrokes_Distance(u16 *selectedPoints,
         {
             if (newFlag)
             {
-                // A‘±‚·‚й Pen Up Marker ‚Н–іЋ‹
+                // йЂЈз¶љгЃ™г‚‹ Pen Up Marker гЃЇз„Ўи¦–
                 continue;
             }
             else
             {
-                if (selectedPoints[selectedPointNum - 1] != iPoint - 1) // ‚±‚±‚Й‚­‚й‚Ж‚«‚НЏн‚Й selectedPointNum>0
+                if (selectedPoints[selectedPointNum - 1] != iPoint - 1) // гЃ“гЃ“гЃ«гЃЏг‚‹гЃЁгЃЌгЃЇеёёгЃ« selectedPointNum>0
                 {
-                    // ЏI“_‚а•K‚ё‘I‘р
+                    // зµ‚з‚№г‚‚еї…гЃљйЃёжЉћ
                     selectedPoints[selectedPointNum] = (u16)(iPoint - 1);
                     selectedPointNum++;
                     if (selectedPointNum >= maxPointCount)
@@ -275,8 +275,8 @@ PRC_ResampleStrokes_Distance(u16 *selectedPoints,
                 strokeCount++;
                 if (strokeCount >= maxStrokeCount)
                 {
-                    // ‰жђ”ђ§ЊА’ґ‰Я
-                    iPoint++;          // ѓ‹Ѓ[ѓvЊг‚МЏ€—ќ‚М‚Ѕ‚Я // Њ»Ћћ“_‚Е‚Н newFlag == TRUE ‚И‚М‚Е€У–Ў‚И‚µ
+                    // з”»ж•°е€¶й™ђи¶…йЃЋ
+                    iPoint++;          // гѓ«гѓјгѓ—еѕЊгЃ®е‡¦зђ†гЃ®гЃџг‚Ѓ // зЏѕж™‚з‚№гЃ§гЃЇ newFlag == TRUE гЃЄгЃ®гЃ§ж„Џе‘ігЃЄгЃ—
                     break;
                 }
             }
@@ -287,13 +287,13 @@ PRC_ResampleStrokes_Distance(u16 *selectedPoints,
 
     if (!newFlag)
     {
-        // Pen Up Marker ‚ЕЏI’[‚і‚к‚Д‚ў‚И‚ў
+        // Pen Up Marker гЃ§зµ‚з«ЇгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„
 
-        // ‚Ь‚ёЃAЏI“_‚Є‘I‘р‚і‚к‚Д‚ў‚й‚©‚рЉm”F
+        // гЃѕгЃљгЂЃзµ‚з‚№гЃЊйЃёжЉћгЃ•г‚ЊгЃ¦гЃ„г‚‹гЃ‹г‚’зўєиЄЌ
         if (selectedPointNum > 0 && selectedPoints[selectedPointNum - 1] != iPoint - 1
             && selectedPointNum < maxPointCount)
         {
-            // ЏI“_‚а•K‚ё‘I‘р
+            // зµ‚з‚№г‚‚еї…гЃљйЃёжЉћ
             selectedPoints[*pSelectedPointNum] = (u16)(iPoint - 1);
             (*pSelectedPointNum)++;
         }
@@ -307,16 +307,16 @@ PRC_ResampleStrokes_Distance(u16 *selectedPoints,
 /*---------------------------------------------------------------------------*
   Name:         PRC_ResampleStrokes_Angle
 
-  Description:  Љp“x‚М‚ё‚к‚рЉоЏЂ‚ЙѓЉѓTѓ“ѓvѓЉѓ“ѓO‚µ‚Ь‚·.
+  Description:  и§’еє¦гЃ®гЃљг‚Њг‚’еџєжє–гЃ«гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ—гЃѕгЃ™.
 
-  Arguments:    selectedPoints, pSelectedPointNum Њ‹‰К‚Є•Ф‚йѓ|ѓCѓ“ѓ^
-                maxPointCount       “ь—Н“_ђ”‚МЏгЊА(pen up marker ‚рЉЬ‚Ю)
-                maxStrokeCount      ‰жђ”‚МЏгЊА
-                strokes             ђ®Њ`‘O‚Мђ¶“ь—НЌА•W’l.
-                threshold           ѓЉѓTѓ“ѓvѓ‹‚Ми‡’l
-                buffer              Ќм‹Ж—М€ж(sizeof(int)*maxPointCount •K—v)
+  Arguments:    selectedPoints, pSelectedPointNum зµђжћњгЃЊиї”г‚‹гѓќг‚¤гѓіг‚ї
+                maxPointCount       е…ҐеЉ›з‚№ж•°гЃ®дёЉй™ђ(pen up marker г‚’еђ«г‚Ђ)
+                maxStrokeCount      з”»ж•°гЃ®дёЉй™ђ
+                strokes             ж•ґеЅўе‰ЌгЃ®з”џе…ҐеЉ›еє§жЁ™еЂ¤.
+                threshold           гѓЄг‚µгѓігѓ—гѓ«гЃ®й–ѕеЂ¤
+                buffer              дЅњжҐ­й еџџ(sizeof(int)*maxPointCount еї…и¦Ѓ)
 
-  Returns:      ѓЉѓTѓ“ѓvѓЉѓ“ѓO‚Йђ¬Њч‚µ‚Ѕ‚зђ^.
+  Returns:      гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ«ж€ђеЉџгЃ—гЃџг‚‰зњџ.
  *---------------------------------------------------------------------------*/
 BOOL
 PRC_ResampleStrokes_Angle(u16 *selectedPoints,
@@ -325,7 +325,7 @@ PRC_ResampleStrokes_Angle(u16 *selectedPoints,
                           int maxStrokeCount,
                           const PRCStrokes *strokes, int threshold, void *buffer)
 {
-#define PRC_RESAMPLE_ANGLE_LENGTH_THRESHOLD 6   // 6 city-block length ‚­‚з‚ў—Ј‚к‚И‚ў‚Ж—LЊш‚ИЉp“x‚ЄЋж‚к‚И‚ў
+#define PRC_RESAMPLE_ANGLE_LENGTH_THRESHOLD 6   // 6 city-block length гЃЏг‚‰гЃ„й›ўг‚ЊгЃЄгЃ„гЃЁжњ‰еЉ№гЃЄи§’еє¦гЃЊеЏ–г‚ЊгЃЄгЃ„
     int     selectedPointNum;
     int     strokeCount;
     int     iPoint;
@@ -354,7 +354,7 @@ PRC_ResampleStrokes_Angle(u16 *selectedPoints,
         {
             if (newFlag)
             {
-                // Ћn“_‚Н•K‚ё‘I‘р
+                // е§‹з‚№гЃЇеї…гЃљйЃёжЉћ
                 selectedPoints[selectedPointNum] = (u16)iPoint;
                 selectedPointNum++;
                 prevPoint = *point;
@@ -375,11 +375,11 @@ PRC_ResampleStrokes_Angle(u16 *selectedPoints,
                 {
                     if (firstFlag)
                     {
-                        // 2“_–Ъ‚р‘I‚Ф‚Ж‚±‚л‚Ь‚Е‚НЃAЋџ‚М“_‚Ц‚МЉp“x‚рЊ©‚й
-                        // ‚»‚¤‚µ‚И‚ў‚ЖЃAЌЕЏ‰‚МЏ‘‚«Џo‚µ‚М•ыЊь‚ЄЋё‚н‚к‚й
+                        // 2з‚№з›®г‚’йЃёгЃ¶гЃЁгЃ“г‚ЌгЃѕгЃ§гЃЇгЂЃж¬ЎгЃ®з‚№гЃёгЃ®и§’еє¦г‚’и¦‹г‚‹
+                        // гЃќгЃ†гЃ—гЃЄгЃ„гЃЁгЂЃжњЂе€ќгЃ®ж›ёгЃЌе‡єгЃ—гЃ®ж–№еђ‘гЃЊе¤±г‚Џг‚Њг‚‹
                         if (iPoint + 1 < size && !PRC_IsPenUpMarker(point + 1))
-                            // point+1 ‚Є Pen Up Marker ‚М‚Ж‚«‚Н‚З‚ї‚з‚Й‚µ‚лЏI“_‚Ж‚µ‚Д‘I‘р‚і‚к‚й‚М‚Е
-                            // Њг‚л‚МЏрЊЏ‚Н‚И‚­‚Д‚а‚ў‚ў‚М‚Е‚·‚ЄЃcЃc
+                            // point+1 гЃЊ Pen Up Marker гЃ®гЃЁгЃЌгЃЇгЃ©гЃЎг‚‰гЃ«гЃ—г‚Ќзµ‚з‚№гЃЁгЃ—гЃ¦йЃёжЉћгЃ•г‚Њг‚‹гЃ®гЃ§
+                            // еѕЊг‚ЌгЃ®жќЎд»¶гЃЇгЃЄгЃЏгЃ¦г‚‚гЃ„гЃ„гЃ®гЃ§гЃ™гЃЊвЂ¦вЂ¦
                         {
                             u16     currAngle, nextAngle;
                             nextAngle =
@@ -418,14 +418,14 @@ PRC_ResampleStrokes_Angle(u16 *selectedPoints,
         {
             if (newFlag)
             {
-                // A‘±‚·‚й Pen Up Marker ‚Н–іЋ‹
+                // йЂЈз¶љгЃ™г‚‹ Pen Up Marker гЃЇз„Ўи¦–
                 continue;
             }
             else
             {
-                if (selectedPoints[selectedPointNum - 1] != iPoint - 1) // ‚±‚±‚Й‚­‚й‚Ж‚«‚НЏн‚Й selectedPointNum>0
+                if (selectedPoints[selectedPointNum - 1] != iPoint - 1) // гЃ“гЃ“гЃ«гЃЏг‚‹гЃЁгЃЌгЃЇеёёгЃ« selectedPointNum>0
                 {
-                    // ЏI“_‚а•K‚ё‘I‘р
+                    // зµ‚з‚№г‚‚еї…гЃљйЃёжЉћ
                     selectedPoints[selectedPointNum] = (u16)(iPoint - 1);
                     selectedPointNum++;
                     if (selectedPointNum >= maxPointCount)
@@ -440,8 +440,8 @@ PRC_ResampleStrokes_Angle(u16 *selectedPoints,
                 strokeCount++;
                 if (strokeCount >= maxStrokeCount)
                 {
-                    // ‰жђ”ђ§ЊА’ґ‰Я
-                    iPoint++;          // ѓ‹Ѓ[ѓvЊг‚МЏ€—ќ‚М‚Ѕ‚Я // Њ»Ћћ“_‚Е‚Н newFlag == TRUE ‚И‚М‚Е€У–Ў‚И‚µ
+                    // з”»ж•°е€¶й™ђи¶…йЃЋ
+                    iPoint++;          // гѓ«гѓјгѓ—еѕЊгЃ®е‡¦зђ†гЃ®гЃџг‚Ѓ // зЏѕж™‚з‚№гЃ§гЃЇ newFlag == TRUE гЃЄгЃ®гЃ§ж„Џе‘ігЃЄгЃ—
                     break;
                 }
             }
@@ -452,13 +452,13 @@ PRC_ResampleStrokes_Angle(u16 *selectedPoints,
 
     if (!newFlag)
     {
-        // Pen Up Marker ‚ЕЏI’[‚і‚к‚Д‚ў‚И‚ў
+        // Pen Up Marker гЃ§зµ‚з«ЇгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„
 
-        // ‚Ь‚ёЃAЏI“_‚Є‘I‘р‚і‚к‚Д‚ў‚й‚©‚рЉm”F
+        // гЃѕгЃљгЂЃзµ‚з‚№гЃЊйЃёжЉћгЃ•г‚ЊгЃ¦гЃ„г‚‹гЃ‹г‚’зўєиЄЌ
         if (selectedPointNum > 0 && selectedPoints[selectedPointNum - 1] != iPoint - 1
             && selectedPointNum < maxPointCount)
         {
-            // ЏI“_‚а•K‚ё‘I‘р
+            // зµ‚з‚№г‚‚еї…гЃљйЃёжЉћ
             selectedPoints[*pSelectedPointNum] = (u16)(iPoint - 1);
             (*pSelectedPointNum)++;
         }
@@ -472,16 +472,16 @@ PRC_ResampleStrokes_Angle(u16 *selectedPoints,
 /*---------------------------------------------------------------------------*
   Name:         PRC_ResampleStrokes_Recursive
 
-  Description:  ЌД‹A“IЋи–@‚ЕѓЉѓTѓ“ѓvѓЉѓ“ѓO‚µ‚Ь‚·.
+  Description:  е†Ќеё°зљ„ж‰‹жі•гЃ§гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ—гЃѕгЃ™.
 
-  Arguments:    selectedPoints, pSelectedPointNum Њ‹‰К‚Є•Ф‚йѓ|ѓCѓ“ѓ^
-                maxPointCount       “ь—Н“_ђ”‚МЏгЊА(pen up marker ‚рЉЬ‚Ю)
-                maxStrokeCount      ‰жђ”‚МЏгЊА
-                strokes             ђ®Њ`‘O‚Мђ¶“ь—НЌА•W’l.
-                threshold           ѓЉѓTѓ“ѓvѓ‹‚Ми‡’l
-                buffer              Ќм‹Ж—М€ж(sizeof(int)*maxPointCount •K—v)
+  Arguments:    selectedPoints, pSelectedPointNum зµђжћњгЃЊиї”г‚‹гѓќг‚¤гѓіг‚ї
+                maxPointCount       е…ҐеЉ›з‚№ж•°гЃ®дёЉй™ђ(pen up marker г‚’еђ«г‚Ђ)
+                maxStrokeCount      з”»ж•°гЃ®дёЉй™ђ
+                strokes             ж•ґеЅўе‰ЌгЃ®з”џе…ҐеЉ›еє§жЁ™еЂ¤.
+                threshold           гѓЄг‚µгѓігѓ—гѓ«гЃ®й–ѕеЂ¤
+                buffer              дЅњжҐ­й еџџ(sizeof(int)*maxPointCount еї…и¦Ѓ)
 
-  Returns:      ѓЉѓTѓ“ѓvѓЉѓ“ѓO‚Йђ¬Њч‚µ‚Ѕ‚зђ^.
+  Returns:      гѓЄг‚µгѓігѓ—гѓЄгѓіг‚°гЃ«ж€ђеЉџгЃ—гЃџг‚‰зњџ.
  *---------------------------------------------------------------------------*/
 BOOL
 PRC_ResampleStrokes_Recursive(u16 *selectedPoints,
@@ -518,13 +518,13 @@ PRC_ResampleStrokes_Recursive(u16 *selectedPoints,
     {
         if (selectedPointNum + 3 > maxPointCount || strokeCount > maxStrokeCount)
         {
-            // Ћџ‚М stroke ‚рЉi”[‚·‚йѓXѓyЃ[ѓX‚Є‚И‚ў
-            // stroke ‚р1‚ВЉi”[‚·‚й‚Й‚НЃAЋn“_ЃEЏI“_ЃEPenUpMarker ‚М
-            // 3‚В‚М‹у‚«‚ЄЌЕ’б‚Е‚а•K—v
+            // ж¬ЎгЃ® stroke г‚’ж јзґЌгЃ™г‚‹г‚№гѓљгѓјг‚№гЃЊгЃЄгЃ„
+            // stroke г‚’1гЃ¤ж јзґЌгЃ™г‚‹гЃ«гЃЇгЂЃе§‹з‚№гѓ»зµ‚з‚№гѓ»PenUpMarker гЃ®
+            // 3гЃ¤гЃ®з©єгЃЌгЃЊжњЂдЅЋгЃ§г‚‚еї…и¦Ѓ
             break;
         }
 
-        // PenUpMarker ‚р“З‚Э”т‚О‚·
+        // PenUpMarker г‚’иЄ­гЃїйЈ›гЃ°гЃ™
         while (endIndex < size && PRC_IsPenUpMarker(&inputPoints[endIndex]))
         {
             endIndex++;
@@ -533,11 +533,11 @@ PRC_ResampleStrokes_Recursive(u16 *selectedPoints,
         beginIndex = endIndex;
         if (beginIndex >= size)
         {
-            // ЏI—№
+            // зµ‚дє†
             break;
         }
 
-        // Ћџ‚М PenUpMarker ‚р’T‚·
+        // ж¬ЎгЃ® PenUpMarker г‚’жЋўгЃ™
         while (endIndex < size && !PRC_IsPenUpMarker(&inputPoints[endIndex]))
         {
             endIndex++;
@@ -545,12 +545,12 @@ PRC_ResampleStrokes_Recursive(u16 *selectedPoints,
         if (endIndex < size)
         {
             selectedPoints[selectedPointNum] = endIndex;
-            selectedPointNum++;        // •K—v‚И PenUpMarker ‚Н‘I‘р
+            selectedPointNum++;        // еї…и¦ЃгЃЄ PenUpMarker гЃЇйЃёжЉћ
         }
         else
         {
             selectedPoints[selectedPointNum] = (u16)-1;
-            selectedPointNum++;        // -1 ‚Н“Б•К‚ЙЏI’[‚М PenUpMarker ‚рЋ¦‚·
+            selectedPointNum++;        // -1 гЃЇз‰№е€ҐгЃ«зµ‚з«ЇгЃ® PenUpMarker г‚’з¤єгЃ™
         }
 
         SDK_ASSERT(endIndex > 0);
@@ -559,18 +559,18 @@ PRC_ResampleStrokes_Recursive(u16 *selectedPoints,
         selectedPoints[selectedPointNum] = (u16)(endIndex - 1);
         selectedPointNum++;
 
-        strokeCount++;                 // strokeCount ‚Н maxStrokeCount ‚Е‚Мђ§ЊА‚М‚Ѕ‚Я‚ѕ‚Ї‚Йђ”‚¦‚Д‚ў‚й
+        strokeCount++;                 // strokeCount гЃЇ maxStrokeCount гЃ§гЃ®е€¶й™ђгЃ®гЃџг‚ЃгЃ гЃ‘гЃ«ж•°гЃ€гЃ¦гЃ„г‚‹
 
         if (selectedPointNum >= maxPointCount)
         {
-            // ’ё“_ђ”‚ЄЊАЉE
+            // й ‚з‚№ж•°гЃЊй™ђз•Њ
             break;
         }
 
         if (endIndex - beginIndex <= 2)
             continue;
 
-        // stack ‚р—p‚ў‚ДЌД‹A“I‚Й“Б’Ґ“_‚р’ЉЏo
+        // stack г‚’з”ЁгЃ„гЃ¦е†Ќеё°зљ„гЃ«з‰№еѕґз‚№г‚’жЉЅе‡є
         stackP1[0] = beginIndex;
         stackP2[0] = (u16)(endIndex - 1);
         stackSize = 1;
@@ -597,13 +597,13 @@ PRC_ResampleStrokes_Recursive(u16 *selectedPoints,
             if (p2 - p1 <= 1)
                 continue;
 
-            x1 = inputPoints[p1].x;    // Ћn“_
+            x1 = inputPoints[p1].x;    // е§‹з‚№
             y1 = inputPoints[p1].y;
-            x2 = inputPoints[p2].x;    // ЏI“_
+            x2 = inputPoints[p2].x;    // зµ‚з‚№
             y2 = inputPoints[p2].y;
-            xDir = x2 - x1;            // •ыЊьѓxѓNѓgѓ‹
+            xDir = x2 - x1;            // ж–№еђ‘гѓ™г‚Їгѓ€гѓ«
             yDir = y2 - y1;
-            offs = -(x1 * y2 - x2 * y1);        // ЊvЋZ—КЌнЊё‚М‚Ѕ‚Я‚Й‚­‚­‚и‚ѕ‚µ‚ЅЌЂ
+            offs = -(x1 * y2 - x2 * y1);        // иЁ€з®—й‡Џе‰Љжё›гЃ®гЃџг‚ЃгЃ«гЃЏгЃЏг‚ЉгЃ гЃ—гЃџй …
 
             maxDist = -1;
             maxP = (u16)-1;
@@ -621,8 +621,8 @@ PRC_ResampleStrokes_Recursive(u16 *selectedPoints,
                 lastX = x;
                 lastY = y;
 
-                // ’јђь‚Ж“_‚М‹——Ј‚МЊvЋZ
-                // ЋАЌЫ‚Н–{—€‚М‹——Ј‚ЙЋn“_‚ЖЏI“_‚М‹——Ј‚ЄЉ|‚Ї‚з‚к‚Ѕ’l‚Е‚ ‚й
+                // з›ґз·љгЃЁз‚№гЃ®и·ќй›ўгЃ®иЁ€з®—
+                // е®џйљ›гЃЇжњ¬жќҐгЃ®и·ќй›ўгЃ«е§‹з‚№гЃЁзµ‚з‚№гЃ®и·ќй›ўгЃЊжЋ›гЃ‘г‚‰г‚ЊгЃџеЂ¤гЃ§гЃ‚г‚‹
                 dist = x * yDir - y * xDir + offs;
                 if (dist < 0)
                 {
@@ -636,14 +636,14 @@ PRC_ResampleStrokes_Recursive(u16 *selectedPoints,
                 }
             }
 
-            // Ћn“_ЌА•W‚ЖЏI“_ЌА•W‚ЄЉ®‘S‚Й€к’v‚·‚йѓPЃ[ѓX‚Е‚Н•K‚ё maxDist == 0 ‚Е‚ ‚й‚М‚Е
-            // dist ‚МЊvЋZ‚Н (x, y) ‚ЖЋn“_ЌА•W‚Мѓ†Ѓ[ѓNѓЉѓbѓh‹——Ј‚р•К‚Й‚Ж‚й‚±‚Ж‚Є–]‚Ь‚µ‚ў‚Є
-            // ѓЊѓAѓPЃ[ѓX—p‚МЏ€—ќ‚р“ь‚к‚Ѕ‚­‚И‚ў‚Ѕ‚ЯЃAmaxDist==0, maxP==p1+1 ‚Е p1+1 ‚Є
-            // Џн‚ЙЌМ—p‚і‚к‚й‚±‚Ж‚Й‚µ‚Д‚Э‚й(‚»‚МЌЫ‚Н xDir*xDir+yDir*yDir == 0 ‚Е‚ ‚й‚±‚Ж‚Й’Ќ€У)
+            // е§‹з‚№еє§жЁ™гЃЁзµ‚з‚№еє§жЁ™гЃЊе®Ње…ЁгЃ«дёЂи‡ґгЃ™г‚‹г‚±гѓјг‚№гЃ§гЃЇеї…гЃљ maxDist == 0 гЃ§гЃ‚г‚‹гЃ®гЃ§
+            // dist гЃ®иЁ€з®—гЃЇ (x, y) гЃЁе§‹з‚№еє§жЁ™гЃ®гѓ¦гѓјг‚ЇгѓЄгѓѓгѓ‰и·ќй›ўг‚’е€ҐгЃ«гЃЁг‚‹гЃ“гЃЁгЃЊжњ›гЃѕгЃ—гЃ„гЃЊ
+            // гѓ¬г‚ўг‚±гѓјг‚№з”ЁгЃ®е‡¦зђ†г‚’е…Ґг‚ЊгЃџгЃЏгЃЄгЃ„гЃџг‚ЃгЂЃmaxDist==0, maxP==p1+1 гЃ§ p1+1 гЃЊ
+            // еёёгЃ«жЋЎз”ЁгЃ•г‚Њг‚‹гЃ“гЃЁгЃ«гЃ—гЃ¦гЃїг‚‹(гЃќгЃ®йљ›гЃЇ xDir*xDir+yDir*yDir == 0 гЃ§гЃ‚г‚‹гЃ“гЃЁгЃ«жіЁж„Џ)
             if (maxDist * maxDist >= (xDir * xDir + yDir * yDir) * squaredThreshold)
             {
-                // и‡’l€ИЏг—Ј‚к‚Ѕ“_‚Н“Б’Ґ“_‚Ж‚µ‚ДЌМ—p
-                // maxDist ‚Н–{—€‚М‹——Ј‚ЙЋn“_‚ЖЏI“_‚М‹——Ј‚ЄЉ|‚Ї‚з‚к‚Ѕ’l‚Е‚ ‚Б‚Ѕ‚±‚Ж‚Й’Ќ€У
+                // й–ѕеЂ¤д»ҐдёЉй›ўг‚ЊгЃџз‚№гЃЇз‰№еѕґз‚№гЃЁгЃ—гЃ¦жЋЎз”Ё
+                // maxDist гЃЇжњ¬жќҐгЃ®и·ќй›ўгЃ«е§‹з‚№гЃЁзµ‚з‚№гЃ®и·ќй›ўгЃЊжЋ›гЃ‘г‚‰г‚ЊгЃџеЂ¤гЃ§гЃ‚гЃЈгЃџгЃ“гЃЁгЃ«жіЁж„Џ
                 selectedPoints[selectedPointNum] = maxP;
                 selectedPointNum++;
                 stackP1[stackTail] = maxP;
@@ -665,7 +665,7 @@ PRC_ResampleStrokes_Recursive(u16 *selectedPoints,
                 SDK_ASSERT(stackSize <= maxPointCount);
                 if (selectedPointNum >= maxPointCount)
                 {
-                    // ’ё“_ђ”‚ЄЊАЉE
+                    // й ‚з‚№ж•°гЃЊй™ђз•Њ
                     break;
                 }
             }
@@ -675,8 +675,8 @@ PRC_ResampleStrokes_Recursive(u16 *selectedPoints,
     *pSelectedPointNum = selectedPointNum;
 
 //{OSTick start, end; start = OS_GetTick();
-    // •Ф‚·‘O‚ЙЏёЏ‡‚Йѓ\Ѓ[ѓg‚·‚й
-    // ToDo: quick sort ‚Е‚З‚М’ц“xЌ‚‘¬‰»‚і‚к‚й‚©Њџ“ў‚·‚й
+    // иї”гЃ™е‰ЌгЃ«ж‡й †гЃ«г‚Ѕгѓјгѓ€гЃ™г‚‹
+    // ToDo: quick sort гЃ§гЃ©гЃ®зЁ‹еє¦й«йЂџеЊ–гЃ•г‚Њг‚‹гЃ‹ж¤њиЁЋгЃ™г‚‹
     {
         int     i, j;
         for (i = 0; i < selectedPointNum - 1; i++)
@@ -693,7 +693,7 @@ PRC_ResampleStrokes_Recursive(u16 *selectedPoints,
             }
         }
     }
-//end = OS_GetTick(); OS_Printf("// sort in resample: %lldѓКs selectedPointNum=%d\n", OS_TicksToMicroSeconds(end-start), selectedPointNum); }
+//end = OS_GetTick(); OS_Printf("// sort in resample: %lldОјs selectedPointNum=%d\n", OS_TicksToMicroSeconds(end-start), selectedPointNum); }
     return (*pSelectedPointNum > 0);
 }
 

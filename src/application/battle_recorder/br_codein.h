@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_codein.h
- * @brief	•¶š“ü—ÍƒCƒ“ƒ^[ƒtƒF[ƒX privateƒwƒbƒ_
+ * @brief	æ–‡å­—å…¥åŠ›ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ privateãƒ˜ãƒƒãƒ€
  * @author	goto
- * @date	2007.07.11(…)
+ * @date	2007.07.11(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -21,23 +21,23 @@
 #include "savedata/config.h"
 #include "gflib/button_man.h"
 
-#define CODE_BLOCK_MAX		( 3 )		///< “ü—ÍƒuƒƒbƒNÅ‘å”
+#define CODE_BLOCK_MAX		( 3 )		///< å…¥åŠ›ãƒ–ãƒ­ãƒƒã‚¯æœ€å¤§æ•°
 
 // -----------------------------------------
 //
-//	ŒÄ‚Ño‚µ‘¤‚ÅŠÇ—‚·‚éƒ[ƒN
+//	å‘¼ã³å‡ºã—å´ã§ç®¡ç†ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
 	
-//	int			heap_id;					///< g—p‚·‚éHEAPID
-	int			word_len;					///< “ü—Í•¶š”	
-	int			block[ CODE_BLOCK_MAX + 1 ];///< “ü—ÍƒuƒƒbƒN@xx-xxxx-xxx ‚Æ‚©
+//	int			heap_id;					///< ä½¿ç”¨ã™ã‚‹HEAPID
+	int			word_len;					///< å…¥åŠ›æ–‡å­—æ•°	
+	int			block[ CODE_BLOCK_MAX + 1 ];///< å…¥åŠ›ãƒ–ãƒ­ãƒƒã‚¯ã€€xx-xxxx-xxx ã¨ã‹
 	
-	int			end_state;					///< I—¹‚Ìó‘Ô
-	STRBUF*		strbuf;						///< ‹ó—“‚È‚çƒoƒbƒtƒ@‚»‚¤‚Å‚È‚¯‚ê‚ÎƒfƒtƒHƒ‹ƒg’l
+	int			end_state;					///< çµ‚äº†æ™‚ã®çŠ¶æ…‹
+	STRBUF*		strbuf;						///< ç©ºæ¬„ãªã‚‰ãƒãƒƒãƒ•ã‚¡ãã†ã§ãªã‘ã‚Œã°ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤
 	
-	CONFIG*		cfg;						///< window_typeæ“¾—p
+	CONFIG*		cfg;						///< window_typeå–å¾—ç”¨
 	
 } BR_CODEIN_PARAM;
 
@@ -49,7 +49,7 @@ extern void				BRCodeInput_ParamDelete( BR_CODEIN_PARAM* codein_param );
 
 //--------------------------------------------------------------
 /**
- * @brief	xxxx-xxxx-xxxx ‚ÌƒuƒƒbƒN’è‹`‚ğì‚é
+ * @brief	xxxx-xxxx-xxxx ã®ãƒ–ãƒ­ãƒƒã‚¯å®šç¾©ã‚’ä½œã‚‹
  *
  * @param	block[]	
  *
@@ -74,7 +74,7 @@ static inline void CodeIn_BlockDataMake_4_4_4( int block[] )
 
 //--------------------------------------------------------------
 /**
- * @brief	xx-xxxxx-xxxxx ‚ÌƒuƒƒbƒN’è‹`‚ğì‚é
+ * @brief	xx-xxxxx-xxxxx ã®ãƒ–ãƒ­ãƒƒã‚¯å®šç¾©ã‚’ä½œã‚‹
  *
  * @param	block[]	
  *
@@ -90,15 +90,15 @@ static inline void CodeIn_BlockDataMake_2_5_5( int block[] )
 }
 
 
-#define HEAP_SIZE_BR_CODEIN	( 0x40000 )				///< HEAPƒTƒCƒY
-#define CODE_OAM_MAX		( 12 )					///< •¶šƒR[ƒh”
-#define BAR_OAM_MAX			( CODE_BLOCK_MAX - 1 )	///< ƒuƒƒbƒN
+#define HEAP_SIZE_BR_CODEIN	( 0x40000 )				///< HEAPã‚µã‚¤ã‚º
+#define CODE_OAM_MAX		( 12 )					///< æ–‡å­—ã‚³ãƒ¼ãƒ‰æ•°
+#define BAR_OAM_MAX			( CODE_BLOCK_MAX - 1 )	///< ãƒ–ãƒ­ãƒƒã‚¯
 #define CUR_OAM_MAX			( 3 )
 #define BTN_OAM_MAX			( 2 )
 
 #define POS_CODE_Y			( 24 )
 
-///< ƒƒCƒ“ƒV[ƒPƒ“ƒX
+///< ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
 	
 	eSEQ_INIT		= 0,
@@ -109,7 +109,7 @@ enum {
 };
 
 
-///< OAM“o˜^—p‚h‚c
+///< OAMç™»éŒ²ç”¨ï¼©ï¼¤
 enum {
 	
 	eID_CODE_OAM	= 1000,
@@ -119,7 +119,7 @@ enum {
 		
 };
 
-///< “–‚½‚è”»’èƒ‰ƒxƒ‹
+///< å½“ãŸã‚Šåˆ¤å®šãƒ©ãƒ™ãƒ«
 enum {
 	
 	eHRT_CODE_0 = 0,
@@ -152,7 +152,7 @@ enum {
 	eBR_CODEIN_HIT_MAX,
 };
 
-///< ƒAƒjƒƒR[ƒh
+///< ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰
 enum {
 	
 	eANM_CODE_LN	= 0,	///< Large Nothing
@@ -167,14 +167,14 @@ enum {
 	eANM_CUR_TOUCH,
 };
 
-///< ƒ‚[ƒh
+///< ãƒ¢ãƒ¼ãƒ‰
 enum {
 	
 	eMPS_SET		= 0,
 	eMPS_MOVE_SET,	
 };
 
-///< Šeˆ——p
+///< å„å‡¦ç†ç”¨
 enum {
 	
 	eSTATE_INPUT	= 0,
@@ -193,10 +193,10 @@ enum {
 	ePAL_BACK,
 };
 
-///< ƒTƒCƒY‚Æ‚©
-#define L_SIZE			( 32 )	///< ‚Å‚©‚¢ƒvƒŒ[ƒg‚ÌŠG‚ÌƒTƒCƒY
-#define S_SIZE			( 8 )	///< ‚¿‚¢‚³‚¢ƒvƒŒ[ƒg‚ÌŠG‚ÌƒTƒCƒY
-#define M_SIZE			( ( L_SIZE + S_SIZE ) / 2 )		///< 2‚Â‚ª—×‚è‡‚¤• XXXX-xxx‚Æ‚©xxxx-XXX
+///< ã‚µã‚¤ã‚ºã¨ã‹
+#define L_SIZE			( 32 )	///< ã§ã‹ã„ãƒ—ãƒ¬ãƒ¼ãƒˆã®çµµã®ã‚µã‚¤ã‚º
+#define S_SIZE			( 8 )	///< ã¡ã„ã•ã„ãƒ—ãƒ¬ãƒ¼ãƒˆã®çµµã®ã‚µã‚¤ã‚º
+#define M_SIZE			( ( L_SIZE + S_SIZE ) / 2 )		///< 2ã¤ãŒéš£ã‚Šåˆã†å¹… XXXX-xxxã¨ã‹xxxx-XXX
 #define MOVE_WAIT		( 2 )
 	
 #define POS_4_4_4_p1	( 72 +  4 - 20 )
@@ -214,7 +214,7 @@ enum {
 
 // -----------------------------------------
 //
-//	ˆÚ“®ŠÇ——p
+//	ç§»å‹•ç®¡ç†ç”¨
 //
 // -----------------------------------------
 typedef struct {
@@ -230,55 +230,55 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	ƒR[ƒhŠÇ—OAM
+//	ã‚³ãƒ¼ãƒ‰ç®¡ç†OAM
 //
 // -----------------------------------------
 typedef struct {
 	
-	int				state;		///< code‚È‚ç”šE‚»‚êˆÈŠO‚È‚ç©•ª‚ÌˆÊ’u
-	int				group;		///< ƒOƒ‹[ƒv
+	int				state;		///< codeãªã‚‰æ•°å­—ãƒ»ãã‚Œä»¥å¤–ãªã‚‰è‡ªåˆ†ã®ä½ç½®
+	int				group;		///< ã‚°ãƒ«ãƒ¼ãƒ—
 	BOOL			size;		///< TRUE = laege
 	
 	CATS_ACT_PTR	cap;		///< OAM	
-	RECT_HIT_TBL*	hit;		///< “–‚½‚è”»’è(ƒAƒhƒŒƒX‚¾‚¯‚à‚ç‚Á‚Ä‰Â•Ï‚³‚¹‚é)
-	CODE_MOVE_WORK	move_wk;	///< ˆÚ“®§Œä
+	RECT_HIT_TBL*	hit;		///< å½“ãŸã‚Šåˆ¤å®š(ã‚¢ãƒ‰ãƒ¬ã‚¹ã ã‘ã‚‚ã‚‰ã£ã¦å¯å¤‰ã•ã›ã‚‹)
+	CODE_MOVE_WORK	move_wk;	///< ç§»å‹•åˆ¶å¾¡
 	
 } CODE_OAM;
 
 
 // -----------------------------------------
 //
-//	Šeˆ——pƒ[ƒN
+//	å„å‡¦ç†ç”¨ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
 	
-	int		param;				///< ‚Ç‚ñ‚Èˆ—‚ğ‚·‚é‚©	
-	int		target;				///< ‘ÎÛ‚Í‰½‚©
-	int		work;				///< “K“–‚Ég‚¤ƒ[ƒN
+	int		param;				///< ã©ã‚“ãªå‡¦ç†ã‚’ã™ã‚‹ã‹	
+	int		target;				///< å¯¾è±¡ã¯ä½•ã‹
+	int		work;				///< é©å½“ã«ä½¿ã†ãƒ¯ãƒ¼ã‚¯
 	
 } BR_CODEIN_STATE;
 
 
 // -----------------------------------------
 //
-//	ƒVƒXƒeƒ€Œnƒ[ƒN
+//	ã‚·ã‚¹ãƒ†ãƒ ç³»ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
 	
-	ARCHANDLE*			p_handle;			///< ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+	ARCHANDLE*			p_handle;			///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
 	
-	CATS_SYS_PTR		csp;				///< OAMƒVƒXƒeƒ€
-	CATS_RES_PTR		crp;				///< ƒŠƒ\[ƒXˆêŠ‡ŠÇ—
+	CATS_SYS_PTR		csp;				///< OAMã‚·ã‚¹ãƒ†ãƒ 
+	CATS_RES_PTR		crp;				///< ãƒªã‚½ãƒ¼ã‚¹ä¸€æ‹¬ç®¡ç†
 
 	GF_BGL_INI*			bgl;				///< BGL
-	PALETTE_FADE_PTR	pfd;				///< ƒpƒŒƒbƒgƒtƒF[ƒh
+	PALETTE_FADE_PTR	pfd;				///< ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 	
-	BUTTON_MAN*			btn;				///< ƒ{ƒ^ƒ“	
-	RECT_HIT_TBL		rht[ eBR_CODEIN_HIT_MAX ];	///< “–‚½‚è”»’è(manager‚É“o˜^‚·‚é)
+	BUTTON_MAN*			btn;				///< ãƒœã‚¿ãƒ³	
+	RECT_HIT_TBL		rht[ eBR_CODEIN_HIT_MAX ];	///< å½“ãŸã‚Šåˆ¤å®š(managerã«ç™»éŒ²ã™ã‚‹)
 	
-	BOOL				touch;				///< ƒ‚[ƒh
+	BOOL				touch;				///< ãƒ¢ãƒ¼ãƒ‰
 
 //	FONTOAM_SYS_PTR			fontoam_sys;
 //	FONTOAM_OBJ_PTR			font_obj[ BTN_OAM_MAX ];
@@ -290,7 +290,7 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	ƒƒCƒ“ƒ[ƒN
+//	ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
@@ -308,19 +308,19 @@ typedef struct {
 	int				gene_seq;
 	int				gene_cnt;
 	
-	int				code_max;		///< ƒR[ƒh“ü—Í”
+	int				code_max;		///< ã‚³ãƒ¼ãƒ‰å…¥åŠ›æ•°
 
-	int				focus_now;		///< “ü—Í‘ÎÛ
-	int				focus_old;		///< “ü—Í‘ÎÛ
-	int				ls;				///< Šg‘åƒuƒƒbƒNŠJnˆÊ’u
-	int				le;				///< Šg‘åƒuƒƒbƒNI—¹ˆÊ’u
-	int				ss;				///< k¬ƒuƒƒbƒNŠJnˆÊ’u
-	int				se;				///< k¬ƒuƒƒbƒNŠJnˆÊ’u
+	int				focus_now;		///< å…¥åŠ›å¯¾è±¡
+	int				focus_old;		///< å…¥åŠ›å¯¾è±¡
+	int				ls;				///< æ‹¡å¤§ãƒ–ãƒ­ãƒƒã‚¯é–‹å§‹ä½ç½®
+	int				le;				///< æ‹¡å¤§ãƒ–ãƒ­ãƒƒã‚¯çµ‚äº†ä½ç½®
+	int				ss;				///< ç¸®å°ãƒ–ãƒ­ãƒƒã‚¯é–‹å§‹ä½ç½®
+	int				se;				///< ç¸®å°ãƒ–ãƒ­ãƒƒã‚¯é–‹å§‹ä½ç½®
 	
-	BR_CODEIN_SYS		sys;			///< ƒVƒXƒeƒ€
-	BR_CODEIN_STATE	state;			///< ó‘Ô
+	BR_CODEIN_SYS		sys;			///< ã‚·ã‚¹ãƒ†ãƒ 
+	BR_CODEIN_STATE	state;			///< çŠ¶æ…‹
 
-	BR_CODEIN_PARAM	param;			///< ŠO‘¤‚©‚ç‚à‚ç‚¤ƒpƒ‰ƒ[ƒ^
+	BR_CODEIN_PARAM	param;			///< å¤–å´ã‹ã‚‰ã‚‚ã‚‰ã†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	
 	BOOL			push_ok;
 	u64				data_number;

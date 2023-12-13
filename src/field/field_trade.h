@@ -2,7 +2,7 @@
 /**
  *
  *	@file		field_trade.h
- *	@brief		ƒQ[ƒ€“àŒğŠ·
+ *	@brief		ã‚²ãƒ¼ãƒ å†…äº¤æ›
  *	@author		tomoya takahashi
  *	@data		2006.05.15
  *
@@ -11,7 +11,7 @@
 #ifndef __FIELD_TRADE_H__
 #define __FIELD_TRADE_H__
 
-//ƒAƒZƒ“ƒuƒ‰‚Åinclude‚³‚ê‚Ä‚¢‚éê‡‚ÍA‰º‚ÌéŒ¾‚ğ–³‹‚Å‚«‚é‚æ‚¤‚Éifndef‚ÅˆÍ‚ñ‚Å‚ ‚é
+//ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã§includeã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã€ä¸‹ã®å®£è¨€ã‚’ç„¡è¦–ã§ãã‚‹ã‚ˆã†ã«ifndefã§å›²ã‚“ã§ã‚ã‚‹
 #ifndef	__ASM_NO_DEF_
 #include "include/demo/demo_trade.h"
 #endif // __ASM_NO_DEF_
@@ -25,11 +25,11 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ŒğŠ·ƒf[ƒ^ƒiƒ“ƒo[
+//	äº¤æ›ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
 //=====================================
 #define	FLD_TRADE_KEESHI	(0)
 #define	FLD_TRADE_PERAPPU	(1)
@@ -37,36 +37,36 @@
 #define	FLD_TRADE_KOIKING	(3)
 #define	FLD_TRADE_NUM		(4)
 
-//ƒAƒZƒ“ƒuƒ‰‚Åinclude‚³‚ê‚Ä‚¢‚éê‡‚ÍA‰º‚ÌéŒ¾‚ğ–³‹‚Å‚«‚é‚æ‚¤‚Éifndef‚ÅˆÍ‚ñ‚Å‚ ‚é
+//ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã§includeã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã€ä¸‹ã®å®£è¨€ã‚’ç„¡è¦–ã§ãã‚‹ã‚ˆã†ã«ifndefã§å›²ã‚“ã§ã‚ã‚‹
 #ifndef	__ASM_NO_DEF_
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 typedef struct _FLD_TRADE_WORK FLD_TRADE_WORK;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
  *
- *		à–¾
- *			FLD_TRADE_WORK*  ‚ğƒAƒƒbƒN‚µ‚Ä‚«‚½‚ç‚à‚¤
- *			‰º‚ÌŠÖ”‚Åƒf[ƒ^‚ğæ“¾‚Å‚«‚Ü‚·B
+ *		èª¬æ˜
+ *			FLD_TRADE_WORK*  ã‚’ã‚¢ãƒ­ãƒƒã‚¯ã—ã¦ããŸã‚‰ã‚‚ã†
+ *			ä¸‹ã®é–¢æ•°ã§ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã§ãã¾ã™ã€‚
  *	GLOBAL u32 FLD_TradeMonsno( const FLD_TRADE_WORK* cp_work );
  * 	GLOBAL u32 FLD_TradeChangeMonsno( const FLD_TRADE_WORK* cp_work );
  *	GLOBAL u32 FLD_TradeOyaSex( const FLD_TRADE_WORK* cp_work );
  *
- *			ŒğŠ·‚·‚éƒ|ƒPƒ‚ƒ“‚ªŒˆ‚Ü‚Á‚½‚ç
- *			EventCmd_FldTrade‚ğƒR[ƒ‹‚µ‚Ä‚­‚¾‚³‚¢B(field_trade_cmd.h)
+ *			äº¤æ›ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒæ±ºã¾ã£ãŸã‚‰
+ *			EventCmd_FldTradeã‚’ã‚³ãƒ¼ãƒ«ã—ã¦ãã ã•ã„ã€‚(field_trade_cmd.h)
  *			
- *			ŒğŠ·‚ªI—¹‚µ‚½‚ç
- *			FLD_TRADE_WORK*‚ğ”jŠü‚µ‚Ä‚­‚¾‚³‚¢
+ *			äº¤æ›ãŒçµ‚äº†ã—ãŸã‚‰
+ *			FLD_TRADE_WORK*ã‚’ç ´æ£„ã—ã¦ãã ã•ã„
  *
  */
 //-----------------------------------------------------------------------------
@@ -74,15 +74,15 @@ typedef struct _FLD_TRADE_WORK FLD_TRADE_WORK;
 GLOBAL FLD_TRADE_WORK* FLD_TradeAlloc( u32 heapID, u32 trade_no );
 GLOBAL void FLD_TradeDelete( FLD_TRADE_WORK* p_work ); 
 
-// ŒğŠ·ƒf[ƒ^æ“¾ŠÖŒW
-GLOBAL u32 FLD_TradeMonsno( const FLD_TRADE_WORK* cp_work );	// ŒğŠ·‚³‚ê‚éƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-GLOBAL u32 FLD_TradeChangeMonsno( const FLD_TRADE_WORK* cp_work );	// ŒğŠ·‚É•K—v‚Èƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-GLOBAL u32 FLD_TradeOyaSex( const FLD_TRADE_WORK* cp_work );	// e‚Ì«•Ê
+// äº¤æ›ãƒ‡ãƒ¼ã‚¿å–å¾—é–¢ä¿‚
+GLOBAL u32 FLD_TradeMonsno( const FLD_TRADE_WORK* cp_work );	// äº¤æ›ã•ã‚Œã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+GLOBAL u32 FLD_TradeChangeMonsno( const FLD_TRADE_WORK* cp_work );	// äº¤æ›ã«å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+GLOBAL u32 FLD_TradeOyaSex( const FLD_TRADE_WORK* cp_work );	// è¦ªã®æ€§åˆ¥
 
 
-// ŒğŠ·‚ÌÀs
+// äº¤æ›ã®å®Ÿè¡Œ
 GLOBAL void FLD_Trade( FIELDSYS_WORK * p_fsys, FLD_TRADE_WORK* p_work, int party_pos );
-// ƒfƒ‚ƒf[ƒ^ì¬
+// ãƒ‡ãƒ¢ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 GLOBAL void FLD_TradeDemoDataMake( FIELDSYS_WORK * p_fsys, FLD_TRADE_WORK* p_work, int party_pos, DEMO_TRADE_PARAM* p_demo, POKEMON_PARAM* sendPoke, POKEMON_PARAM* recvPoke );
 
 #endif	__ASM_NO_DEF_

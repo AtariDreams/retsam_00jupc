@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_union_view_def.h
- * @brief	ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Å‚Ìã‰æ–Ê•`‰æˆ—
+ * @brief	ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§ã®ä¸Šç”»é¢æç”»å‡¦ç†
  *          
  * @author	Akito Mori
  * @date    2005.12.20
@@ -11,17 +11,17 @@
 #ifndef __COMM_UNION_VIEW_DEF_H__
 #define __COMM_UNION_VIEW_DEF_H__
 
-// ƒ†ƒjƒIƒ“‚n‚a‚i‚Ì”
+// ãƒ¦ãƒ‹ã‚ªãƒ³ï¼¯ï¼¢ï¼ªã®æ•°
 #define UNION_BEACON_OBJ_MAX	( 50 )
 
-// ƒGƒtƒFƒNƒg‚ðŽålŒö‚n‚a‚i‚É‚©‚¯‚éŽž‚Ì”Ô†
+// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ä¸»äººå…¬ï¼¯ï¼¢ï¼ªã«ã‹ã‘ã‚‹æ™‚ã®ç•ªå·
 #define UNION_EFFECT_HERO_NO	( 50 )	
 
-// ƒ†ƒjƒIƒ“ƒ`ƒƒƒbƒg‚ÌÅ‘å”
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒãƒ£ãƒƒãƒˆã®æœ€å¤§æ•°
 #define UNION_CHAT_MAX		( 30 )
 
 // =======================================================================
-// ’è”éŒ¾
+// å®šæ•°å®£è¨€
 // =======================================================================
 enum{
 	OBJ_NO_APPEAR=0,
@@ -45,26 +45,26 @@ enum{
 
 
 // =======================================================================
-// ‚n‚a‚iŠÇ——p\‘¢‘ÌéŒ¾
+// ï¼¯ï¼¢ï¼ªç®¡ç†ç”¨æ§‹é€ ä½“å®£è¨€
 // =======================================================================
 typedef struct{
-	u8      request;		// oŒ»ƒŠƒNƒGƒXƒg
-	u8		appear;			// oŒ»ƒtƒ‰ƒO
-	u8		friend;			// ‚µ‚è‚ ‚¢ƒOƒ‹[ƒv‚É“o˜^‚³‚ê‚Ä‚¢‚é‚©H
-	u8 		effect;			// ƒGƒtƒFƒNƒgŠJŽnƒtƒ‰ƒO
-	u8		effect_onflag;	// ƒGƒtƒFƒNƒg•\Ž¦’†‚ÌŽí—Þ
-	u8      arrow;			// Œü‚¢‚Ä‚¢‚é•ûŒü
-	u16		wait;			// ƒGƒtƒFƒNƒg¶‘¶ŽžŠÔ
-	u8		view;			// Œ©‚½–Ú”Ô†
-	u8      appearmode;     // OBJs“®ƒ‚[ƒhi0:“®‚©‚È‚¢	1:•à‚«‰ñ‚é)
-	u32		trainerId;		// ƒgƒŒ[ƒi[‚h‚c
-	EOA_PTR effect_ptr;		// Ô‚¢˜gƒGƒtƒFƒNƒgŠÇ—ƒ|ƒCƒ“ƒ^
-	EOA_PTR shadow_ptr;		// ‚Æ‚à‚¾‚¿ƒOƒ‹[ƒvƒ}[ƒNi‘«Œ³‚ÌÔ‚¢ŠÛEÂ‚¢ŠÛjŠÇ—ƒ|ƒCƒ“ƒ^
+	u8      request;		// å‡ºç¾ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	u8		appear;			// å‡ºç¾ãƒ•ãƒ©ã‚°
+	u8		friend;			// ã—ã‚Šã‚ã„ã‚°ãƒ«ãƒ¼ãƒ—ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ï¼Ÿ
+	u8 		effect;			// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹ãƒ•ãƒ©ã‚°
+	u8		effect_onflag;	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¡¨ç¤ºä¸­ã®ç¨®é¡ž
+	u8      arrow;			// å‘ã„ã¦ã„ã‚‹æ–¹å‘
+	u16		wait;			// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”Ÿå­˜æ™‚é–“
+	u8		view;			// è¦‹ãŸç›®ç•ªå·
+	u8      appearmode;     // OBJè¡Œå‹•ãƒ¢ãƒ¼ãƒ‰ï¼ˆ0:å‹•ã‹ãªã„	1:æ­©ãå›žã‚‹)
+	u32		trainerId;		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤
+	EOA_PTR effect_ptr;		// èµ¤ã„æž ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç®¡ç†ãƒã‚¤ãƒ³ã‚¿
+	EOA_PTR shadow_ptr;		// ã¨ã‚‚ã ã¡ã‚°ãƒ«ãƒ¼ãƒ—ãƒžãƒ¼ã‚¯ï¼ˆè¶³å…ƒã®èµ¤ã„ä¸¸ãƒ»é’ã„ä¸¸ï¼‰ç®¡ç†ãƒã‚¤ãƒ³ã‚¿
 }OBJ_VIEW_WORK;
 
 
 // =======================================================================
-// ƒ†ƒjƒIƒ“ƒ`ƒƒƒbƒgƒ[ƒN\‘¢‘ÌéŒ¾
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒãƒ£ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“å®£è¨€
 // =======================================================================
 typedef struct{
 	STRBUF		*name;
@@ -76,20 +76,20 @@ typedef struct{
 }UNION_CHAT;
 
 struct UNION_CHAT_RINGBUF{
-	UNION_CHAT mes[UNION_CHAT_MAX];		// ƒƒbƒZ[ƒW‚ªŠi”[‚³‚ê‚éiƒŠƒ“ƒOƒoƒbƒtƒ@j
-	int 		  num;					// “o˜^‚³‚ê‚Ä‚¢‚éƒƒbƒZ[ƒW‚Ì”
-	int			  start;				// ƒŠƒ“ƒOƒoƒbƒtƒ@‚ÌƒXƒ^[ƒgƒ|ƒCƒ“ƒg
+	UNION_CHAT mes[UNION_CHAT_MAX];		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæ ¼ç´ã•ã‚Œã‚‹ï¼ˆãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ï¼‰
+	int 		  num;					// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®æ•°
+	int			  start;				// ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®ã‚¹ã‚¿ãƒ¼ãƒˆãƒã‚¤ãƒ³ãƒˆ
 };
 
 
 // =======================================================================
-// ƒ†ƒjƒIƒ“ƒrƒ…[\‘¢‘ÌéŒ¾
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ“ãƒ¥ãƒ¼æ§‹é€ ä½“å®£è¨€
 // =======================================================================
 struct COMM_UNIONROOM_VIEW{
 	COMM_UNIONROOM_WORK *cuw;
 	TCB_PTR				viewTask;
 	PLAYER_STATE_PTR    jiki;
-	OBJ_VIEW_WORK 		objwork[UNION_BEACON_OBJ_MAX+1];	// FIELDOBJ50l{ŽålŒö
+	OBJ_VIEW_WORK 		objwork[UNION_BEACON_OBJ_MAX+1];	// FIELDOBJ50äººï¼‹ä¸»äººå…¬
 	FIELDSYS_WORK		*fsys;
 	FRIEND_LIST	  		*friendlist;
 	UNION_CHAT_RINGBUF  *unionBoardChat;

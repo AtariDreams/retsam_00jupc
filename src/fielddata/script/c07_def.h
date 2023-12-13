@@ -1,7 +1,7 @@
 #ifndef _C07_DEF_H_
 #define _C07_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C07_FLAG_CHANGE		(1)
 #define	SCRID_C07_MAN2A		(2)
 #define	SCRID_C07_MAN2B		(3)
@@ -34,6 +34,6 @@
 #define	SCRID_C07_POLICE		(30)
 #define	SCRID_C07_OUTSIDER		(31)
 #define	SCRID_C07_GIRL		(32)
-#define	SCRID_C07_DATA_MAX		(32)		//最大数
+#define	SCRID_C07_DATA_MAX		(32)		//譛螟ｧ謨ｰ
 
 #endif //_C07_DEF_H_

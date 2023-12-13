@@ -2,7 +2,7 @@
 /**
  *
  *@file		fld_motion_bl.c
- *@brief	ƒtƒB[ƒ‹ƒhƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[
+ *@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼
  *@author	tomoya takahashi
  *@data		2005.07.28
  *
@@ -17,42 +17,42 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒtƒB[ƒ‹ƒhƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[
-//	\‘¢‘Ì
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼
+//	æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct _FLD_MOTION_BL_DATA{
-	MOTION_BL_PTR	motion_bl;			// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒIƒuƒWƒFƒf[ƒ^
-//	void*			vram_data;			// Vram“à•Û‘¶—p	ƒƒ‚ƒŠ‚ğH‚¤‚Ì‚Å”p~
+	MOTION_BL_PTR	motion_bl;			// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
+//	void*			vram_data;			// Vramå†…ä¿å­˜ç”¨	ãƒ¡ãƒ¢ãƒªã‚’é£Ÿã†ã®ã§å»ƒæ­¢
 } FLD_MOTION_BL_DATA;
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒtƒB[ƒ‹ƒh—p‚Éƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[‚ğ‰Šú‰»
+ *@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨ã«ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ã‚’åˆæœŸåŒ–
  *
- *@param	eva		ƒuƒŒƒ“ƒhŒW”A
- *@param	evb		ƒuƒŒƒ“ƒhŒW”B
+ *@param	eva		ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°A
+ *@param	evb		ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°B
  *
- *@return	FLD_MOTION_BL_PTR	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒ|ƒCƒ“ƒ^
+ *@return	FLD_MOTION_BL_PTR	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -61,23 +61,23 @@ FLD_MOTION_BL_DATA_PTR FLDMotionBl_Init(int eva, int evb)
 {
 	FLD_MOTION_BL_DATA_PTR ret;
 
-	// BG–Ê‚Ì•`‰æ‚ğ”p~
+	// BGé¢ã®æç”»ã‚’å»ƒæ­¢
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG1,VISIBLE_OFF);
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG2,VISIBLE_OFF);
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG3,VISIBLE_OFF);
 	GX_ResetBankForBG();
 	
-	// ƒtƒB[ƒ‹ƒhƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ì¬
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ä½œæˆ
 	ret = sys_AllocMemory(HEAPID_FIELD, sizeof(FLD_MOTION_BL_DATA));
 	SDK_ASSERT(ret);
 	MI_CpuClear32(ret, sizeof(FLD_MOTION_BL_DATA));
 /*	
-	// Vram‚Ìó‘Ô‚ğ•Û‘¶
+	// Vramã®çŠ¶æ…‹ã‚’ä¿å­˜
 	ret->vram_data = sys_AllocMemory(HEAPID_FIELD, HW_VRAM_C_SIZE);
 	SDK_ASSERT(ret->vram_data);
 	MI_CpuCopy32((void*)HW_LCDC_VRAM_C, ret->vram_data, HW_VRAM_C_SIZE);
 //*/
-	// ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[İ’è
+	// ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼è¨­å®š
 	{
 		MOTION_BL_DATA mb = {
 			GX_DISPMODE_VRAM_C,
@@ -106,9 +106,9 @@ FLD_MOTION_BL_DATA_PTR FLDMotionBl_Init(int eva, int evb)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[”jŠü
+ *@brief	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ç ´æ£„
  *
- *@param	data	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[ƒf[ƒ^
+ *@param	data	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿
  *
  *@return
  *
@@ -117,20 +117,20 @@ FLD_MOTION_BL_DATA_PTR FLDMotionBl_Init(int eva, int evb)
 //-----------------------------------------------------------------------------
 void FLDMotionBl_Delete(FLD_MOTION_BL_DATA_PTR* data)
 {
-	// Œ³‚É–ß‚·
+	// å…ƒã«æˆ»ã™
 	MOTION_BL_Delete(&(*data)->motion_bl, GX_DISPMODE_GRAPHICS, GX_BGMODE_0,GX_BG0_AS_3D);
 /*
-	// •œ‹A‚³‚¹‚é
+	// å¾©å¸°ã•ã›ã‚‹
 	MI_CpuCopy32((*data)->vram_data, (void*)HW_LCDC_VRAM_C, HW_VRAM_C_SIZE);
 //*/
 	GX_SetBankForBG(GX_VRAM_BG_128_C);
 	
-	// BG–Ê•`‰æ
+	// BGé¢æç”»
 	GF_Disp_GX_VisibleControl(
 			GX_PLANEMASK_BG1|GX_PLANEMASK_BG2|GX_PLANEMASK_BG3,
 			VISIBLE_ON);
 
-	// ƒf[ƒ^”jŠü
+	// ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 //	sys_FreeMemory(HEAPID_FIELD, (*data)->vram_data);
 	sys_FreeMemory(HEAPID_FIELD, *data);
 	
@@ -139,11 +139,11 @@ void FLDMotionBl_Delete(FLD_MOTION_BL_DATA_PTR* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‚[ƒVƒ‡ƒ“ƒuƒ‰[İ’è‚Ì•ÏX
+ *@brief	ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³ãƒ–ãƒ©ãƒ¼è¨­å®šã®å¤‰æ›´
  *
- *@param	data	ƒf[ƒ^
- *@param	eva		ƒuƒŒƒ“ƒhŒW”A
- *@param	evb		ƒuƒŒƒ“ƒhŒW”B
+ *@param	data	ãƒ‡ãƒ¼ã‚¿
+ *@param	eva		ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°A
+ *@param	evb		ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°B
  *
  *@return
  *

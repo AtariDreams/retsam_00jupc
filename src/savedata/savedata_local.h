@@ -13,8 +13,8 @@
 #include "savedata/savedata.h"
 
 #ifdef	PM_DEBUG
-//���̒�`��L���ɂ���ƃt���b�V���̃G���[�`�F�b�N�������ɂȂ�
-//�f�o�b�O���ԗp�Ȃ̂Ő��i�łł͔ɉh�����Ȃ����ƁI
+//この定義を有効にするとフラッシュのエラーチェックが無効になる
+//デバッグ期間用なので製品版では繁栄させないこと！
 //#define	DISABLE_FLASH_CHECK
 #endif
 
@@ -31,27 +31,27 @@ typedef void (*FUNC_INIT_WORK)(void *);
 
 //---------------------------------------------------------------------------
 /**
- * @brief	�Z�[�u�f�[�^���e�f�[�^�p�̍\���̒�`
+ * @brief	セーブデータ内容データ用の構造体定義
  */
 //---------------------------------------------------------------------------
 typedef struct {
-	GMDATA_ID gmdataID;				///<�Z�[�u�f�[�^����ID
+	GMDATA_ID gmdataID;				///<セーブデータ識別ID
 	SVBLK_ID	blockID;
-	FUNC_GET_SIZE get_size;			///<�Z�[�u�f�[�^�T�C�Y�擾�֐�
-	FUNC_INIT_WORK	init_work;		///<�Z�[�u�f�[�^�������֐�
+	FUNC_GET_SIZE get_size;			///<セーブデータサイズ取得関数
+	FUNC_INIT_WORK	init_work;		///<セーブデータ初期化関数
 }SAVEDATA_TABLE;
 
 
 //---------------------------------------------------------------------------
 /**
- * @brief	����Z�[�u�f�[�^��`�f�[�^�̍\���̒�`
+ * @brief	特殊セーブデータ定義データの構造体定義
  */
 //---------------------------------------------------------------------------
 typedef struct {
-	EXDATA_ID id;					///<����Z�[�u�f�[�^����ID
-	u32 sector;						///<�J�n�Z�N�^
-	FUNC_GET_SIZE get_size;			///<�f�[�^�T�C�Y�擾�֐�
-	FUNC_INIT_WORK init_work;		///<�Z�[�u�f�[�^�������֐�
+	EXDATA_ID id;					///<特殊セーブデータ識別ID
+	u32 sector;						///<開始セクタ
+	FUNC_GET_SIZE get_size;			///<データサイズ取得関数
+	FUNC_INIT_WORK init_work;		///<セーブデータ初期化関数
 }EXSAVEDATA_TABLE;
 
 //=============================================================================

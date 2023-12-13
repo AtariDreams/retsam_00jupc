@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	guru2_local.h
- * @brief	‚®‚é‚®‚éŒğŠ·@ƒ[ƒJƒ‹—pƒwƒbƒ_[ƒtƒ@ƒCƒ‹
+ * @brief	ãã‚‹ãã‚‹äº¤æ›ã€€ãƒ­ãƒ¼ã‚«ãƒ«ç”¨ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«
  * @author	kagaya
  * @data	05.07.13
  */
@@ -25,12 +25,12 @@
 #ifdef PM_DEBUG
 
 #ifdef DEBUG_ONLY_FOR_kagaya
-//#define GURU2_DEBUG_ON					//’è‹`‚ÅƒfƒoƒbƒO‹@”\ON
+//#define GURU2_DEBUG_ON					//å®šç¾©ã§ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ON
 #endif
 
 #ifdef GURU2_DEBUG_ON
-//#define DEBUG_GAME_SEC (10)			//’è‹`‚ÅƒQ[ƒ€ŠÔ•ÏX
-//#define DEBUG_DISP_CHECK				//’è‹`‚ÅƒJƒƒ‰AM‚Ì‰æ–Êƒ`ƒFƒbƒN
+//#define DEBUG_GAME_SEC (10)			//å®šç¾©ã§ã‚²ãƒ¼ãƒ æ™‚é–“å¤‰æ›´
+//#define DEBUG_DISP_CHECK				//å®šç¾©ã§ã‚«ãƒ¡ãƒ©ã€çš¿ã®ç”»é¢ãƒã‚§ãƒƒã‚¯
 #endif
 
 #endif
@@ -41,13 +41,13 @@
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-#define NUM_FX32(a)	(FX32_ONE*(a))			///<®”->FX32Œ^‚É
-#define FX32_NUM(a)	((a)/FX32_ONE)			///<FX32->®”‚É
+#define NUM_FX32(a)	(FX32_ONE*(a))			///<æ•´æ•°->FX32å‹ã«
+#define FX32_NUM(a)	((a)/FX32_ONE)			///<FX32->æ•´æ•°ã«
 
 //--------------------------------------------------------------
-//	ƒq[ƒv
+//	ãƒ’ãƒ¼ãƒ—
 //--------------------------------------------------------------
-#define GURU2_HEAPSIZE	(0x80000)			//<ƒq[ƒvƒTƒCƒY
+#define GURU2_HEAPSIZE	(0x80000)			//<ãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
 ///	GURU2RET
@@ -60,7 +60,7 @@ typedef enum
 }GURU2RET;
 
 //--------------------------------------------------------------
-///	‚®‚é‚®‚éŒğŠ·ƒ‚[ƒh
+///	ãã‚‹ãã‚‹äº¤æ›ãƒ¢ãƒ¼ãƒ‰
 //--------------------------------------------------------------
 enum
 {
@@ -71,36 +71,36 @@ enum
 };
 
 //--------------------------------------------------------------
-///	‚®‚é‚®‚é’ÊMÚ‘±ó‘Ô
+///	ãã‚‹ãã‚‹é€šä¿¡æ¥ç¶šçŠ¶æ…‹
 //--------------------------------------------------------------
 enum
 {
-	GURU2CONNECT_ON = 0,		//Ú‘±ó‘Ô
-	GURU2CONNECT_CUT_EXE,		//Ø’f’†
-	GURU2CONNECT_CUT,			//Ø’fŠ®—¹
-	GURU2CONNECT_TIMING,		//“¯Šú’†
-	GURU2CONNECT_MAX,			//Å‘å
+	GURU2CONNECT_ON = 0,		//æ¥ç¶šçŠ¶æ…‹
+	GURU2CONNECT_CUT_EXE,		//åˆ‡æ–­ä¸­
+	GURU2CONNECT_CUT,			//åˆ‡æ–­å®Œäº†
+	GURU2CONNECT_TIMING,		//åŒæœŸä¸­
+	GURU2CONNECT_MAX,			//æœ€å¤§
 };
 
 //--------------------------------------------------------------
-///	‚®‚é‚®‚é’ÊMƒV[ƒPƒ“ƒX
+///	ãã‚‹ãã‚‹é€šä¿¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //--------------------------------------------------------------
 enum
 {
-	GURU2CONNECTPROC_NON = 0,	//“Á‚É–³‚µ
-	GURU2CONNECTPROC_TIMING,	//“¯Šúˆ—
-	GURU2CONNECTPROC_CUT,		//Ø’f
-	GURU2CONNECTPROC_MAX,		//Å‘å
+	GURU2CONNECTPROC_NON = 0,	//ç‰¹ã«ç„¡ã—
+	GURU2CONNECTPROC_TIMING,	//åŒæœŸå‡¦ç†
+	GURU2CONNECTPROC_CUT,		//åˆ‡æ–­
+	GURU2CONNECTPROC_MAX,		//æœ€å¤§
 };
 
 //==============================================================================
 //	typedef
 //==============================================================================
-///ƒQ[ƒ€ƒvƒƒZƒXƒ[ƒN
+///ã‚²ãƒ¼ãƒ ãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯
 typedef struct _TAG_GURU2PROC_WORK GURU2PROC_WORK;
-///ƒQ[ƒ€ƒƒCƒ“—pƒ[ƒN
+///ã‚²ãƒ¼ãƒ ãƒ¡ã‚¤ãƒ³ç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct _TAG_GURU2MAIN_WORK GURU2MAIN_WORK;
-///ó•t—pƒ[ƒN
+///å—ä»˜ç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct _TAG_GURU2RC_WORK GURU2RC_WORK;
 
 //--------------------------------------------------------------
@@ -110,8 +110,8 @@ struct _TAG_GURU2PROC_WORK
 {
 	int guru2_mode;
 	int trade_no;
-	int receipt_num;		//ó•tl”
-	u32 receipt_bit;		//ó•tƒrƒbƒg
+	int receipt_num;		//å—ä»˜äººæ•°
+	u32 receipt_bit;		//å—ä»˜ãƒ“ãƒƒãƒˆ
 	BOOL receipt_ret;
 	
 	GURU2_PARAM param;

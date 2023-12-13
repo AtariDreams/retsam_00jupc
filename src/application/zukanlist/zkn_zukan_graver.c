@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_zukan_graver.c
- *	@brief		}ŠÓƒOƒ‰ƒtƒBƒbƒNƒo[ƒWƒ‡ƒ“
+ *	@brief		å›³é‘‘ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *	@author		tomoya takahashi
  *	@data		2006.02.21
  *
@@ -33,81 +33,81 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define ZKN_ZUKANGRAVER_EVENT_NUM ( 0 )	// ƒCƒxƒ“ƒg”
+#define ZKN_ZUKANGRAVER_EVENT_NUM ( 0 )	// ã‚¤ãƒ™ãƒ³ãƒˆæ•°
 #define ZKN_ZUKANGRAVER_OAM_BG_PRI	( 3 )
 #define ZKN_ZUKANGRAVER_OAM_SOFT_PRI	( 32 )
 
-// BGƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh–Ê
+// BGãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰é¢
 #define ZKN_ZUKANGRAVER_BRIGHTNESS_MSK	( GX_BLEND_PLANEMASK_BG0|GX_BLEND_PLANEMASK_BG1|GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_BD )
 
 
 
 enum{
-	// •`‰æƒ^ƒCƒvƒtƒ‰ƒO
-	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_NORMAL = 0,	// ’Êí•`‰æƒ^ƒCƒv
-	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MANONLY,		// ƒIƒX‚Ì‚İ•`‰æƒ^ƒCƒv
-	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_GIRLONLY,		// ƒƒX‚Ì‚İ•`‰æƒ^ƒCƒv
-	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_UNKNOWNONLY,	// •s–¾‚Ì‚İ•`‰æƒ^ƒCƒv
-	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SIIUSI,		// ƒV[ƒEƒV•`‰æƒ^ƒCƒv
-	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SIIDORUGO,	// ƒV[ƒhƒ‹ƒS•`‰æƒ^ƒCƒv
-	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MINOMUTTI,	// ƒ~ƒmƒ€ƒbƒ`•`‰æƒ^ƒCƒv
-	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MINOMESU,		// ƒ~ƒmƒƒX•`‰æƒ^ƒCƒv
-	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_UNKNOWN_POKE,	// ƒAƒ“ƒm[ƒ“•`‰æƒ^ƒCƒv
-	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_DEOKISISU_POKE,// ƒfƒIƒLƒVƒX•`‰æƒ^ƒCƒv
-	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SYEIMI_POKE,// ƒVƒFƒCƒ~•`‰æƒ^ƒCƒv
-	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_GIRATYINA_POKE,// ƒMƒ‰ƒeƒBƒi•`‰æƒ^ƒCƒv
-	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_ROTOM_POKE,// ƒƒgƒ€•`‰æƒ^ƒCƒv
+	// æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°
+	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_NORMAL = 0,	// é€šå¸¸æç”»ã‚¿ã‚¤ãƒ—
+	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MANONLY,		// ã‚ªã‚¹ã®ã¿æç”»ã‚¿ã‚¤ãƒ—
+	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_GIRLONLY,		// ãƒ¡ã‚¹ã®ã¿æç”»ã‚¿ã‚¤ãƒ—
+	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_UNKNOWNONLY,	// ä¸æ˜ã®ã¿æç”»ã‚¿ã‚¤ãƒ—
+	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SIIUSI,		// ã‚·ãƒ¼ã‚¦ã‚·æç”»ã‚¿ã‚¤ãƒ—
+	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SIIDORUGO,	// ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´æç”»ã‚¿ã‚¤ãƒ—
+	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MINOMUTTI,	// ãƒŸãƒãƒ ãƒƒãƒæç”»ã‚¿ã‚¤ãƒ—
+	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MINOMESU,		// ãƒŸãƒãƒ¡ã‚¹æç”»ã‚¿ã‚¤ãƒ—
+	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_UNKNOWN_POKE,	// ã‚¢ãƒ³ãƒãƒ¼ãƒ³æç”»ã‚¿ã‚¤ãƒ—
+	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_DEOKISISU_POKE,// ãƒ‡ã‚ªã‚­ã‚·ã‚¹æç”»ã‚¿ã‚¤ãƒ—
+	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SYEIMI_POKE,// ã‚·ã‚§ã‚¤ãƒŸæç”»ã‚¿ã‚¤ãƒ—
+	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_GIRATYINA_POKE,// ã‚®ãƒ©ãƒ†ã‚£ãƒŠæç”»ã‚¿ã‚¤ãƒ—
+	ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_ROTOM_POKE,// ãƒ­ãƒˆãƒ æç”»ã‚¿ã‚¤ãƒ—
 
-	// ’Êí•`‰æƒ^ƒCƒv
-	ZKN_ZUKANGRAVER_DRAW_TYPE_MAN = 0,	// ’j
-	ZKN_ZUKANGRAVER_DRAW_TYPE_GIRL,		// —
+	// é€šå¸¸æç”»ã‚¿ã‚¤ãƒ—
+	ZKN_ZUKANGRAVER_DRAW_TYPE_MAN = 0,	// ç”·
+	ZKN_ZUKANGRAVER_DRAW_TYPE_GIRL,		// å¥³
 	ZKN_ZUKANGRAVER_DRAW_TYPE_NORM_NUM,
 
-	// ƒIƒXƒƒX‚Ì‚İ•`‰æƒ^ƒCƒv
+	// ã‚ªã‚¹ãƒ¡ã‚¹ã®ã¿æç”»ã‚¿ã‚¤ãƒ—
 	ZKN_ZUKANGRAVER_DRAW_TYPE_ONLY = 0,
 	ZKN_ZUKANGRAVER_DRAW_TYPE_ONLY_NUM,
 
-	// ƒ~ƒmƒ€ƒbƒ` ƒ~ƒmƒƒX•`‰æƒ^ƒCƒv
+	// ãƒŸãƒãƒ ãƒƒãƒ ãƒŸãƒãƒ¡ã‚¹æç”»ã‚¿ã‚¤ãƒ—
 	ZKN_ZUKANGRAVER_DRAW_TYPE_MINOMUTTI_NUM = ZUKAN_WORK_MINOMUSHI_FORM_NUM,
 	ZKN_ZUKANGRAVER_DRAW_TYPE_MINOMESU_NUM = ZUKAN_WORK_MINOMUSHI_FORM_NUM,
 
-	// ƒEƒ~ƒEƒV•`‰æƒ^ƒCƒv
+	// ã‚¦ãƒŸã‚¦ã‚·æç”»ã‚¿ã‚¤ãƒ—
 	ZKN_ZUKANGRAVER_DRAW_TYPE_SIIUSI_NUM = ZUKAN_WORK_UMIUSHI_FORM_NUM,
 	ZKN_ZUKANGRAVER_DRAW_TYPE_SIIDORUGO_NUM = ZUKAN_WORK_UMIUSHI_FORM_NUM,
 
-	// ƒAƒ“ƒm[ƒ“•`‰æƒ^ƒCƒv
+	// ã‚¢ãƒ³ãƒãƒ¼ãƒ³æç”»ã‚¿ã‚¤ãƒ—
 	ZKN_ZUKANGRAVER_DRAW_TYPE_UNKNOWN_POKE_NUM = 28,
 };
 
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN”
+//	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ•°
 //=====================================
 enum{
-	ZKN_ZUKANGRAVER_GRA_FRONT,			// ¡‚Ì•\‚ÌŠG
-	ZKN_ZUKANGRAVER_GRA_BACK,			// ¡‚ÌŒã‚ë‚ÌŠG
-	ZKN_ZUKANGRAVER_GRA_FRONT_NEXT,		// Ÿ‚Ì•\‚ÌŠG
-	ZKN_ZUKANGRAVER_GRA_BACK_NEXT,		// Ÿ‚ÌŒã‚ë‚ÌŠG
+	ZKN_ZUKANGRAVER_GRA_FRONT,			// ä»Šã®è¡¨ã®çµµ
+	ZKN_ZUKANGRAVER_GRA_BACK,			// ä»Šã®å¾Œã‚ã®çµµ
+	ZKN_ZUKANGRAVER_GRA_FRONT_NEXT,		// æ¬¡ã®è¡¨ã®çµµ
+	ZKN_ZUKANGRAVER_GRA_BACK_NEXT,		// æ¬¡ã®å¾Œã‚ã®çµµ
 	ZKN_ZUKANGRAVER_GRA_NUM,
 };
 #define ZKN_ZUKANGRAVER_GRA_DRAW_Y			( 88 )
@@ -125,16 +125,16 @@ enum{
 #define ZKN_GRAPHIC_BUTTON_FONT_OFS_X		( -12 )
 #define ZKN_GRAPHIC_BUTTON_FONT_OFS_Y		( 40 )
 
-// ƒ|ƒPƒ‚ƒ““®ì‹——£
+// ãƒã‚±ãƒ¢ãƒ³å‹•ä½œè·é›¢
 #define ZKN_GRAPHIC_MOVE_X	( -256 )
 #define ZKN_GRAPHIC_MOVE_Y	( 0 )
 #define ZKN_GRAPHIC_MOVE_SYNC	( 16 )
 
-// ƒAƒCƒRƒ“•`‰æ‚Ü‚Å‚Ìƒ^ƒCƒ€
+// ã‚¢ã‚¤ã‚³ãƒ³æç”»ã¾ã§ã®ã‚¿ã‚¤ãƒ 
 #define ZKN_GRAPHIC_MOVE_ICON_OFF_SYNC	( ZKN_GRAPHIC_MOVE_SYNC + 8 )
 
 //-------------------------------------
-//	•`‰æ‰Šú‰»ƒV[ƒPƒ“ƒX
+//	æç”»åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum
 {
@@ -145,7 +145,7 @@ enum
 };
 
 //-------------------------------------
-//	}ŠÓ”jŠüƒV[ƒPƒ“ƒX
+//	å›³é‘‘ç ´æ£„ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_ZUKANGRAVER_SEQDELETE_FADEOUT_INIT,
@@ -157,7 +157,7 @@ enum{
 
 
 //-------------------------------------
-//	OAMƒAƒjƒƒV[ƒPƒ“ƒX
+//	OAMã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_ZUKANGRAVER_CELL_ANM_SEQ_BACK,
@@ -165,12 +165,12 @@ enum{
 	ZKN_ZUKANGRAVER_CELL_ANM_SEQ_BACK_2,
 };
 
-// ƒAƒCƒRƒ“À•W
+// ã‚¢ã‚¤ã‚³ãƒ³åº§æ¨™
 #define ZKN_ZUKANGRAVER_ICON_X	( 248 )
 #define ZKN_ZUKANGRAVER_ICON_Y	( 96 )
 
 
-// ƒ|ƒPƒOƒ‰ƒ_ƒuƒ‹ƒoƒbƒtƒ@ŒğŒİ•\¦
+// ãƒã‚±ã‚°ãƒ©ãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡äº¤äº’è¡¨ç¤º
 enum{
 	ZKN_ZUKANGRAVER_GRA_NOW_DRAW_01,
 	ZKN_ZUKANGRAVER_GRA_NOW_DRAW_23,
@@ -179,66 +179,66 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	}ŠÓ‰æ–Ê@ƒOƒ[ƒoƒ‹•Ï”
+//	å›³é‘‘ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	int*				p_event_key;		// ƒCƒxƒ“ƒgƒL[
-	ZKN_GLB_DATA*		p_glb;				// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	int*				p_event_key;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
+	ZKN_GLB_DATA*		p_glb;				// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 
-	// }ŠÓƒRƒ‚ƒ“ƒAƒvƒŠƒf[ƒ^
+	// å›³é‘‘ã‚³ãƒ¢ãƒ³ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 	const ZKN_APL_DATA* cp_zukan_common_apl;
 
-	int					draw_type_flag;		// •`‰æƒ^ƒCƒvƒtƒ‰ƒO
-	int					draw_type_max;		// •`‰æƒ^ƒCƒv”
-	int					draw_type;			// •`‰æƒ^ƒCƒv
+	int					draw_type_flag;		// æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°
+	int					draw_type_max;		// æç”»ã‚¿ã‚¤ãƒ—æ•°
+	int					draw_type;			// æç”»ã‚¿ã‚¤ãƒ—
 } ZKN_ZUKANGRAVER_GLB;
 
 //-------------------------------------
-//	}ŠÓ‰æ–Ê@•`‰æƒOƒ[ƒoƒ‹•Ï”
+//	å›³é‘‘ç”»é¢ã€€æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	ZKN_GLB_DRAWDATA*	p_drawglb;			// •`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
-	BOOL pokegra_move_flag;	// “®ìƒtƒ‰ƒO
-	BOOL pokegra_move_end;	// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN“®ìI—¹
+	ZKN_GLB_DRAWDATA*	p_drawglb;			// æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	BOOL pokegra_move_flag;	// å‹•ä½œãƒ•ãƒ©ã‚°
+	BOOL pokegra_move_end;	// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‹•ä½œçµ‚äº†
 } ZKN_ZUKANGRAVER_DRAWGLB;
 
 //-------------------------------------
-//	}ŠÓ‰æ–Ê@•`‰æƒ[ƒN
+//	å›³é‘‘ç”»é¢ã€€æç”»ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// ƒ|ƒPƒOƒ‰•`‰æ—p
+	// ãƒã‚±ã‚°ãƒ©æç”»ç”¨
 	CLACT_WORK_PTR	pokegra_back[ ZKN_ZUKANGRAVER_GRA_NUM ];
 	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];
 	ZKN_FONTOAM_DATA*	p_pokegra_font[ ZKN_GRAPHIC_BUTTONFONT_NUM ];
 	ZKN_UTIL_MOVE_WORK pokegra_move[ ZKN_ZUKANGRAVER_GRA_NUM ];
-	int pokegra_y[ ZKN_ZUKANGRAVER_GRA_NUM ];	// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNY
-	int now_draw_buff;		// Œ»İ•\¦’†‚Ìƒoƒbƒtƒ@IDX	0:(0‚Æ1) 1:(2‚Æ3)
+	int pokegra_y[ ZKN_ZUKANGRAVER_GRA_NUM ];	// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯Y
+	int now_draw_buff;		// ç¾åœ¨è¡¨ç¤ºä¸­ã®ãƒãƒƒãƒ•ã‚¡IDX	0:(0ã¨1) 1:(2ã¨3)
 
-	// Ÿ‚Ìƒ|ƒPƒOƒ‰‚Ö..‚ÌƒAƒCƒRƒ“
+	// æ¬¡ã®ãƒã‚±ã‚°ãƒ©ã¸..ã®ã‚¢ã‚¤ã‚³ãƒ³
 	CLACT_WORK_PTR next_icon;
 
-	// ƒAƒCƒRƒ“•\¦ƒ^ƒCƒ€¶³İÀ‚Æƒtƒ‰ƒO
+	// ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºã‚¿ã‚¤ãƒ ã‚«ã‚¦ãƒ³ã‚¿ã¨ãƒ•ãƒ©ã‚°
 	int icon_draw_s_time;
 	BOOL icon_draw_flag;
 
 	// drawtype
-	int		draw_type_flag;		// •`‰æƒ^ƒCƒvƒtƒ‰ƒO
-	int		draw_type;			// •`‰æƒ^ƒCƒv
+	int		draw_type_flag;		// æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°
+	int		draw_type;			// æç”»ã‚¿ã‚¤ãƒ—
 } ZKN_ZUKANGRAVER_DRAW;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static ZKN_ZUKANGRAVER_GLB* MakeZukanGraverGlb( int heap, ZKN_SYS_PTR zkn_sys );
@@ -255,7 +255,7 @@ static int ZknGraverAddDrawTypeGet( int draw_type_flag, int now, int num, int ma
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static int ZknZukanGraverProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
@@ -266,7 +266,7 @@ static int ZknZukanGraverProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 static int ZknZukanGraverProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 
 
-// ƒtƒF[ƒhƒCƒ“ƒAƒEƒg
+// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆ
 static void ZknZukanGraverDefaultFadeReq( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, BOOL fadein_out );
 static BOOL ZknZukanGraverDefaultFadeEndCheck( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb , BOOL fadein_out );
 
@@ -282,27 +282,27 @@ static void ZknZukanGraverPokeGraFadeInit( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUK
 static BOOL ZknZukanGraverPokeGraFadeMain( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, int idx );
 
 
-// •`‰æƒ^ƒCƒvŠÖŒW
+// æç”»ã‚¿ã‚¤ãƒ—é–¢ä¿‚
 static int ZknZukanGraverPokeDrawTypeFlagGet( int monsno, const ZKN_ZUKANGRAVER_GLB* cp_glb );
 static int ZknZukanGraverPokeDrawTypeNumGet( int monsno, const ZKN_ZUKANGRAVER_GLB* cp_glb );
 static int ZknZukanGraverPokeDrawTypeFlagNormal( int monsno, const ZKN_ZUKANGRAVER_GLB* cp_glb );
 
 
 
-// BGİ’è
+// BGè¨­å®š
 static void ZknZukanGraverLoadResource( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int heap );
 static void ZknZukanGraverReleaseResource( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb );
 static void ZknZukanGraverSetUpBackGround( ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, int heap );
 
 
-// ‘«ÕˆÈŠO‚ÌƒAƒNƒ^[
+// è¶³è·¡ä»¥å¤–ã®ã‚¢ã‚¯ã‚¿ãƒ¼
 static void ZknZukanGraverClactResLoad( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, int heap );
 static void ZknZukanGraverClactResDelete( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb );
 static void ZknZukanGraverClactAdd( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int heap );
 static void ZknZukanGraverClactDelete( ZKN_ZUKANGRAVER_DRAW* p_draw );
 static int ZknZukanGraverClactTypeNoChg( int type );
 
-// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN
+// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 static void ZknZukanGraverPokeGraDrawInit( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb );
 static void ZknZukanGraverPokeGraDrawOn( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb );
 static void ZknZukanGraverPoke_GraSet( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int monsno, int draw_type_flag, int draw_type, int idx );
@@ -321,7 +321,7 @@ static void ZknZukanGraverPokeGraMatGet( int idx, int* x, int* y );
 static void ZknZukanGraverPokeGraDrawOff( ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb );
 static inline int ZknZukanGraverGetBuffIdx_PokeGraIdx( int buff_idx, int idx );
 
-// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒeƒLƒXƒg
+// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ†ã‚­ã‚¹ãƒˆ
 static void ZknZukanGraverFontInitGraphicType_Pack( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int heap, int draw_type_flag, int draw_type );
 static void ZknZukanGraverFontSetUpGraphicType_Pack( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int heap, int draw_type_flag, int draw_type );
 static void ZknZukanGraverFontSetUpGraphicType( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int heap, int draw_type_flag, int draw_type, int parent_idx, int fontoam_idx );
@@ -344,18 +344,18 @@ static int ZknZukanGraverFontGet(ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_Z
 static void ZknZukanGraverFontOamDelete( ZKN_ZUKANGRAVER_DRAW* p_draw );
 
 
-// ƒAƒCƒRƒ“
+// ã‚¢ã‚¤ã‚³ãƒ³
 static void ZknZukanGraverIconDrawAnm_S( ZKN_ZUKANGRAVER_DRAW* p_draw );
 static void ZknZukanGraverIconDrawAnm_Main( ZKN_ZUKANGRAVER_DRAW* p_draw );
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ@ƒAƒvƒŠì¬
+ *	@brief	å›³é‘‘ã€€ã‚¢ãƒ—ãƒªä½œæˆ
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		g—pƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -389,9 +389,9 @@ void ZKN_ZukanGraverAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg	ƒTƒu‰æ–Ê@ƒƒjƒ…[ƒAƒvƒŠ”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ	ã‚µãƒ–ç”»é¢ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ãƒ—ãƒªç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -407,13 +407,13 @@ void ZKN_ZukanGraverAplDelete( ZKN_APL_DATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ^ƒCƒv‘«‚µZ
+ *	@brief	æç”»ã‚¿ã‚¤ãƒ—è¶³ã—ç®—
  *
- *	@param	p_data			ƒAƒvƒŠƒf[ƒ^
- *	@param	num				‘«‚·’l
+ *	@param	p_data			ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	num				è¶³ã™å€¤
  *
- *	@retval	TRUE	’l•ÏX‚µ‚½
- *	@retval	FALSE	•ÏX‚Å‚«‚È‚©‚Á‚½
+ *	@retval	TRUE	å€¤å¤‰æ›´ã—ãŸ
+ *	@retval	FALSE	å¤‰æ›´ã§ããªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_ZukanGraverDrawTypeAdd( ZKN_APL_DATA* p_data, int num )
@@ -422,17 +422,17 @@ BOOL ZKN_ZukanGraverDrawTypeAdd( ZKN_APL_DATA* p_data, int num )
 	ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb = p_data->p_glb_draw;
 	int last_num;
 
-	// ƒŠƒXƒg“®ì’†‚Í•ÏX‚Å‚«‚È‚¢
+	// ãƒªã‚¹ãƒˆå‹•ä½œä¸­ã¯å¤‰æ›´ã§ããªã„
 	if( p_drawglb->pokegra_move_flag == TRUE ){
 		return FALSE;
 	}
 	
 	last_num = p_glb->draw_type;
 
-	// ŒvZŒ‹‰Ê•`‰æƒ^ƒCƒv‚ğæ“¾
+	// è¨ˆç®—çµæœæç”»ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
 	p_glb->draw_type = ZknGraverAddDrawTypeGet( p_glb->draw_type_flag, p_glb->draw_type, num, p_glb->draw_type_max );
 
-	// •ÏX‚³‚ê‚½‚©ƒ`ƒFƒbƒN
+	// å¤‰æ›´ã•ã‚ŒãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( last_num != p_glb->draw_type ){
 		return TRUE;
 	}
@@ -443,18 +443,18 @@ BOOL ZKN_ZukanGraverDrawTypeAdd( ZKN_APL_DATA* p_data, int num )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	å›³é‘‘ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -468,13 +468,13 @@ static ZKN_ZUKANGRAVER_GLB* MakeZukanGraverGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_ZUKANGRAVER_GLB) );
 
-	// main‰æ–Ê‚©‚ç‚ÌƒCƒxƒ“ƒgƒL[
+	// mainç”»é¢ã‹ã‚‰ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
 	p_glb->p_event_key = ZKN_SYS_GetEventKeyPtrMain( zkn_sys ); 
 
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_glb = ZKN_SYS_GetGlbData( zkn_sys );
 
-	// }ŠÓƒRƒ‚ƒ“ƒAƒvƒŠƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// å›³é‘‘ã‚³ãƒ¢ãƒ³ã‚¢ãƒ—ãƒªã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_apl = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_ZUKAN_COMMON );
 	p_glb->cp_zukan_common_apl = p_apl;
 	
@@ -484,12 +484,12 @@ static ZKN_ZUKANGRAVER_GLB* MakeZukanGraverGlb( int heap, ZKN_SYS_PTR zkn_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓ	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	å›³é‘‘	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static ZKN_ZUKANGRAVER_DRAWGLB* MakeZukanGraverDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
@@ -501,7 +501,7 @@ static ZKN_ZUKANGRAVER_DRAWGLB* MakeZukanGraverDrawGlb( int heap, ZKN_SYS_PTR zk
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_ZUKANGRAVER_DRAWGLB) );
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_drawglb = ZKN_SYS_GetGlbDrawData( zkn_sys );
 	
 	return p_glb;
@@ -511,12 +511,12 @@ static ZKN_ZUKANGRAVER_DRAWGLB* MakeZukanGraverDrawGlb( int heap, ZKN_SYS_PTR zk
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ@ƒCƒxƒ“ƒgì¬
+ *	@brief	å›³é‘‘ã€€ã‚¤ãƒ™ãƒ³ãƒˆä½œæˆ
  *
- *	@param	heap		g—p‚·‚éƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -526,7 +526,7 @@ static ZKN_EVENT_DATA* MakeZukanGraverEvent( int heap, ZKN_SYS_PTR zkn_sys )
 	ZKN_EVENT_DATA* p_event_tbl;
 	int event_num = ZukanGraverEventDataNumGet();
 
-	// ƒCƒxƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_event_tbl = sys_AllocMemory( heap, sizeof(ZKN_EVENT_DATA) * event_num );
 	GF_ASSERT( p_event_tbl );
 	memset( p_event_tbl, 0, sizeof(ZKN_EVENT_DATA) * event_num );
@@ -540,9 +540,9 @@ static ZKN_EVENT_DATA* MakeZukanGraverEvent( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	å›³é‘‘ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -558,9 +558,9 @@ static void DeleteZukanGraverGlb( ZKN_ZUKANGRAVER_GLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ@•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	å›³é‘‘ã€€æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -577,9 +577,9 @@ static void DeleteZukanGraverDrawGlb( ZKN_ZUKANGRAVER_DRAWGLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓ@ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	å›³é‘‘ã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -599,11 +599,11 @@ static void DeleteZukanGraverEvent( ZKN_EVENT_DATA* p_event )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓƒAƒvƒŠ@ƒCƒxƒ“ƒg”æ“¾
+ *	@brief	å›³é‘‘ã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *	
  *	@param	none	
  *
- *	@return	}ŠÓƒAƒvƒŠ@ƒCƒxƒ“ƒg”
+ *	@return	å›³é‘‘ã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°
  *
  *
  */
@@ -615,7 +615,7 @@ static int ZukanGraverEventDataNumGet( void )
 
 
 
-// ‘«‚µZƒRƒA•”•ª
+// è¶³ã—ç®—ã‚³ã‚¢éƒ¨åˆ†
 static inline int ZknGraverDrawTypeAddCore( int now, int max, int add )
 {
 	int ret;
@@ -639,14 +639,14 @@ static inline int ZknGraverDrawTypeAddCore( int now, int max, int add )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ^ƒCƒvƒtƒ‰ƒO•Ê@Ÿ‚Ì•`‰æƒ^ƒCƒvæ“¾ŠÖ”
+ *	@brief	æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°åˆ¥ã€€æ¬¡ã®æç”»ã‚¿ã‚¤ãƒ—å–å¾—é–¢æ•°
  *
- *	@param	draw_type_flag	•`‰æƒ^ƒCƒvƒtƒ‰ƒO
- *	@param	now				¡‚Ì•`‰æƒ^ƒCƒv
- *	@param	num				‘«‚·’l
- *	@param	max				Å‘å”
+ *	@param	draw_type_flag	æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°
+ *	@param	now				ä»Šã®æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	num				è¶³ã™å€¤
+ *	@param	max				æœ€å¤§æ•°
  *
- *	@return	ˆÚ“®æ•`‰æƒ^ƒCƒv
+ *	@return	ç§»å‹•å…ˆæç”»ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static int ZknGraverAddDrawTypeGet( int draw_type_flag, int now, int num, int max )
@@ -661,19 +661,19 @@ static int ZknGraverAddDrawTypeGet( int draw_type_flag, int now, int num, int ma
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -684,10 +684,10 @@ static int ZknZukanGraverProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glb
 	int monsno;
 
 	
-	// ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[æ“¾
+	// ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼å–å¾—
 	monsno = ZKN_GLBDATA_PokeMonsNoGet( p_glb->p_glb );
 	
-	// ƒ|ƒPƒ‚ƒ“‚©‚çƒOƒ‰ƒtƒBƒbƒNØ‚è‘Ö‚¦ƒ^ƒCƒv‚ğİ’è
+	// ãƒã‚±ãƒ¢ãƒ³ã‹ã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆ‡ã‚Šæ›¿ãˆã‚¿ã‚¤ãƒ—ã‚’è¨­å®š
 	p_glb->draw_type_flag = ZknZukanGraverPokeDrawTypeFlagGet( monsno, p_glb );
 	p_glb->draw_type_max = ZknZukanGraverPokeDrawTypeNumGet( monsno, p_glb );
 	p_glb->draw_type = 0;
@@ -698,14 +698,14 @@ static int ZknZukanGraverProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glb
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -715,7 +715,7 @@ static int ZknZukanGraverProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glb
 	ZKN_ZUKANGRAVER_GLB* p_glb = p_glbdata;
 	
 	
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
 		return ZKN_PROC_TRUE;
 	}
@@ -730,14 +730,14 @@ static int ZknZukanGraverProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glb
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -749,17 +749,17 @@ static int ZknZukanGraverProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_g
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -778,7 +778,7 @@ static int ZknZukanGraverProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 		p_drawwork = p_drawdata->p_work;
 		p_drawwork->draw_type_flag = cp_glb->draw_type_flag;
 
-		// •`‰æƒOƒ[ƒoƒ‹•Ï”‰Šú‰»
+		// æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°åˆæœŸåŒ–
 		p_drawglb->pokegra_move_flag = FALSE;
 		p_drawglb->pokegra_move_end = FALSE;
 		
@@ -814,17 +814,17 @@ static int ZknZukanGraverProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -837,21 +837,21 @@ static int ZknZukanGraverProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 
 	switch( p_drawdata->seq ){
 	case 0:	
-		// ƒtƒ‰ƒO‚ªØ‚è‘Ö‚í‚Á‚½‚ç•`‰æ•ÏX
+		// ãƒ•ãƒ©ã‚°ãŒåˆ‡ã‚Šæ›¿ã‚ã£ãŸã‚‰æç”»å¤‰æ›´
 		if( cp_glb->draw_type != p_drawwork->draw_type ){
 
-			// XV
+			// æ›´æ–°
 			p_drawwork->draw_type = cp_glb->draw_type;
-			p_drawwork->now_draw_buff = (p_drawwork->now_draw_buff + 1) % ZKN_ZUKANGRAVER_GRA_NOW_NUM;		// •\¦ƒoƒbƒtƒ@ƒCƒ“ƒfƒbƒNƒX•ÏX
+			p_drawwork->now_draw_buff = (p_drawwork->now_draw_buff + 1) % ZKN_ZUKANGRAVER_GRA_NOW_NUM;		// è¡¨ç¤ºãƒãƒƒãƒ•ã‚¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å¤‰æ›´
 
-			// ƒOƒ‰ƒtƒBƒbƒN“®ìˆ—‰Šú‰»
+			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‹•ä½œå‡¦ç†åˆæœŸåŒ–
 			ZknZukanGraverPokeGraFadeInit_Pack( p_drawwork, p_drawglb );
 			ZknZukanGraverIconDrawAnm_S( p_drawwork );
 
-			// Îß¹¸Ş×“®ì’†
+			// ãƒã‚±ã‚°ãƒ©å‹•ä½œä¸­
 			p_drawglb->pokegra_move_flag = TRUE;
 
-			// ƒ{ƒ^ƒ“‚Éƒ^ƒbƒ`
+			// ãƒœã‚¿ãƒ³ã«ã‚¿ãƒƒãƒ
 			Snd_SePlay( ZKN_SND_SLIDE );
 			p_drawdata->seq ++;
 		}
@@ -865,29 +865,29 @@ static int ZknZukanGraverProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 		break;
 
 	case 2:
-		// ‚PƒVƒ“ƒN‘O‚Å@“®ì‚ªI‚í‚Á‚½‚çƒOƒ‰ƒtƒBƒbƒN•ÏX
+		// ï¼‘ã‚·ãƒ³ã‚¯å‰ã§ã€€å‹•ä½œãŒçµ‚ã‚ã£ãŸã‚‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å¤‰æ›´
 		if( (p_drawglb->pokegra_move_end == TRUE) ){
-			// ƒtƒHƒ“ƒgØ‚è‘Ö‚¦
+			// ãƒ•ã‚©ãƒ³ãƒˆåˆ‡ã‚Šæ›¿ãˆ
 			ZknZukanGraverFontSetUpGraphicType_Pack( p_drawwork, p_drawglb, cp_glb, p_drawdata->heap, cp_glb->draw_type_flag, cp_glb->draw_type );
-			// •\¦Ø‘Ö
+			// è¡¨ç¤ºåˆ‡æ›¿
 			ZknZukanGraverPokeGraDrawOn( p_drawwork, p_drawglb, cp_glb );
 			p_drawglb->pokegra_move_end = FALSE;
 
-			// Îß¹¸Ş×“®ìŠ®—¹
+			// ãƒã‚±ã‚°ãƒ©å‹•ä½œå®Œäº†
 			p_drawglb->pokegra_move_flag = FALSE;
 
-			// Å‰‚É–ß‚é
+			// æœ€åˆã«æˆ»ã‚‹
 			p_drawdata->seq = 0;
 		}
 		break;
 
 	default:
-		// ‚¨‚©‚µ‚¢
+		// ãŠã‹ã—ã„
 		GF_ASSERT( 0 );
 		break;
 	}
 
-	// ƒAƒCƒRƒ“•`‰æONOFFˆ—
+	// ã‚¢ã‚¤ã‚³ãƒ³æç”»ONOFFå‡¦ç†
 	ZknZukanGraverIconDrawAnm_Main( p_drawwork );
 
 	return ZKN_PROC_FALSE;
@@ -895,17 +895,17 @@ static int ZknZukanGraverProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* 
 
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -959,12 +959,12 @@ static int ZknZukanGraverProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -972,50 +972,50 @@ static int ZknZukanGraverProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA
 static void ZknZukanGraverLoadResource(  ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int heap  )
 {
 
-	// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN•\¦ON
+	// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤ºON
 	ZknZukanGraverPokeGraDrawInit( p_draw, p_drawglb, cp_glb );
 
-	// ƒAƒNƒ^[ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	ZknZukanGraverClactResLoad( p_draw, p_drawglb, heap );
 
-	// ”wŒiİ’è
+	// èƒŒæ™¯è¨­å®š
 	ZknZukanGraverSetUpBackGround( p_drawglb, heap );
 
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	ZknZukanGraverClactAdd( p_draw, p_drawglb, cp_glb, heap );
 
-	// FONTOAMİ’è
+	// FONTOAMè¨­å®š
 	ZknZukanGraverFontInitGraphicType_Pack( p_draw, p_drawglb, cp_glb, heap,cp_glb->draw_type_flag, cp_glb->draw_type );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒX‚Ì”jŠü
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return
  */
 //-----------------------------------------------------------------------------
 static void ZknZukanGraverReleaseResource(  ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb )
 {
-	// FONTOAM”jŠü
+	// FONTOAMç ´æ£„
 	ZknZukanGraverFontOamDelete( p_draw );
 	
-	// ƒAƒNƒ^[”jŠü
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	ZknZukanGraverClactDelete( p_draw );	
 
-	// ƒAƒNƒ^[ƒŠƒ\[ƒX”jŠü
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	ZknZukanGraverClactResDelete( p_draw, p_drawglb );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”wŒiİ’è
+ *	@brief	èƒŒæ™¯è¨­å®š
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1025,31 +1025,31 @@ static void ZknZukanGraverSetUpBackGround( ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, i
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	ZKN_GLBDATA_BgCharSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_main_lzh_NCGR, p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M, 0, 0, TRUE, heap );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_bg_main1_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_M );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æON‰Šú‰»
+ *	@brief	æç”»ONåˆæœŸåŒ–
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒf[ƒ^ƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1060,14 +1060,14 @@ static void ZknZukanGraverPokeGraDrawInit( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUK
 	int i;
 	int next_type;
 
-	// ¡‚Ìƒ|ƒPƒ‚ƒ“
+	// ä»Šã®ãƒã‚±ãƒ¢ãƒ³
 	ZknZukanGraverPoke_GraSet( p_draw, p_drawglb, cp_glb, monsno, cp_glb->draw_type_flag, cp_glb->draw_type, ZKN_ZUKANGRAVER_GRA_FRONT );
 
-	// Ÿ‚Ìƒ|ƒPƒ‚ƒ“İ’è
+	// æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³è¨­å®š
 	next_type = ZknGraverAddDrawTypeGet( cp_glb->draw_type_flag, cp_glb->draw_type, 1, cp_glb->draw_type_max );
 	ZknZukanGraverPoke_GraSet( p_draw, p_drawglb, cp_glb, monsno, cp_glb->draw_type_flag, next_type, ZKN_ZUKANGRAVER_GRA_FRONT_NEXT );
 
-	// •\¦
+	// è¡¨ç¤º
 	for( i=0; i<ZKN_ZUKANGRAVER_GRA_NUM; i++ ){
 		ZKN_GlbPokemonGraphicDrawFlagSet_Idx( p_drawglb->p_drawglb, TRUE, i );
 	}
@@ -1075,10 +1075,10 @@ static void ZknZukanGraverPokeGraDrawInit( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUK
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN•\¦ON
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤ºON
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1089,21 +1089,21 @@ static void ZknZukanGraverPokeGraDrawOn( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKAN
 	int i;
 	int next_type;
 
-	// Ÿ‚Ìƒ|ƒPƒ‚ƒ“İ’è
+	// æ¬¡ã®ãƒã‚±ãƒ¢ãƒ³è¨­å®š
 	next_type = ZknGraverAddDrawTypeGet( cp_glb->draw_type_flag, cp_glb->draw_type, 1, cp_glb->draw_type_max );
 	ZknZukanGraverPoke_GraSet( p_draw, p_drawglb, cp_glb, monsno, cp_glb->draw_type_flag, next_type, ZKN_ZUKANGRAVER_GRA_FRONT_NEXT );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\¦ƒOƒ‰ƒtƒBƒbƒNİ’è
+ *	@brief	è¡¨ç¤ºã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	monsno			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	draw_type_flag	•`‰æƒ^ƒCƒvƒtƒ‰ƒO
- *	@param	draw_type		•`‰æƒ^ƒCƒv
- *	@param	idx				ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	monsno			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	draw_type_flag	æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	idx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  *	@return	none
  */
@@ -1113,30 +1113,30 @@ static void ZknZukanGraverPoke_GraSet( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGR
 	GF_ASSERT( idx <= 2 );
 	
 	switch( draw_type_flag ){
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_NORMAL:	// ’Êí•`‰æƒ^ƒCƒv
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MANONLY:		// ƒIƒX‚Ì‚İ•`‰æƒ^ƒCƒv
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_GIRLONLY:		// ƒƒX‚Ì‚İ•`‰æƒ^ƒCƒv
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_UNKNOWNONLY:	// •s–¾‚Ì‚İ•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_NORMAL:	// é€šå¸¸æç”»ã‚¿ã‚¤ãƒ—
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MANONLY:		// ã‚ªã‚¹ã®ã¿æç”»ã‚¿ã‚¤ãƒ—
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_GIRLONLY:		// ãƒ¡ã‚¹ã®ã¿æç”»ã‚¿ã‚¤ãƒ—
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_UNKNOWNONLY:	// ä¸æ˜ã®ã¿æç”»ã‚¿ã‚¤ãƒ—
 		ZknZukanGraverPokeGraDrawOnTypeNormal( p_draw, p_drawglb, cp_glb, monsno, draw_type, idx );
 		break;
 		
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MINOMUTTI:		// ƒ~ƒmƒbƒ`•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MINOMUTTI:		// ãƒŸãƒãƒƒãƒæç”»ã‚¿ã‚¤ãƒ—
 		ZknZukanGraverPokeGraDrawOnTypeMinomutti( p_draw, p_drawglb, cp_glb, monsno, draw_type, idx );
 		break;
 		
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MINOMESU:	// ƒ~ƒmƒƒX•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MINOMESU:	// ãƒŸãƒãƒ¡ã‚¹æç”»ã‚¿ã‚¤ãƒ—
 		ZknZukanGraverPokeGraDrawOnTypeMinomesu( p_draw, p_drawglb, cp_glb, monsno, draw_type, idx );
 		break;
 		
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SIIUSI:		// ƒV[ƒEƒV•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SIIUSI:		// ã‚·ãƒ¼ã‚¦ã‚·æç”»ã‚¿ã‚¤ãƒ—
 		ZknZukanGraverPokeGraDrawOnTypeSiiusi( p_draw, p_drawglb, cp_glb, monsno, draw_type, idx );
 		break;
 
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SIIDORUGO:		// ƒV[ƒhƒ‹ƒS•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SIIDORUGO:		// ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´æç”»ã‚¿ã‚¤ãƒ—
 		ZknZukanGraverPokeGraDrawOnTypeSiidorugo( p_draw, p_drawglb, cp_glb, monsno, draw_type, idx );
 		break;
 
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_UNKNOWN_POKE:		// ƒAƒ“ƒm[ƒ“•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_UNKNOWN_POKE:		// ã‚¢ãƒ³ãƒãƒ¼ãƒ³æç”»ã‚¿ã‚¤ãƒ—
 		ZknZukanGraverPokeGraDrawOnTypeAnnoon( p_draw, p_drawglb, cp_glb, monsno, draw_type, idx );
 		break;
 
@@ -1144,15 +1144,15 @@ static void ZknZukanGraverPoke_GraSet( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGR
 		ZknZukanGraverPokeGraDrawOnTypeDeokisisu( p_draw, p_drawglb, cp_glb, monsno, draw_type, idx );
 		break;
 
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SYEIMI_POKE:// ƒVƒFƒCƒ~•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SYEIMI_POKE:// ã‚·ã‚§ã‚¤ãƒŸæç”»ã‚¿ã‚¤ãƒ—
 		ZknZukanGraverPokeGraDrawOnTypeSheimi( p_draw, p_drawglb, cp_glb, monsno, draw_type, idx );
 		break;
 		
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_GIRATYINA_POKE:// ƒMƒ‰ƒeƒBƒi•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_GIRATYINA_POKE:// ã‚®ãƒ©ãƒ†ã‚£ãƒŠæç”»ã‚¿ã‚¤ãƒ—
 		ZknZukanGraverPokeGraDrawOnTypeGiratyina( p_draw, p_drawglb, cp_glb, monsno, draw_type, idx );
 		break;
 		
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_ROTOM_POKE:// ƒƒgƒ€•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_ROTOM_POKE:// ãƒ­ãƒˆãƒ æç”»ã‚¿ã‚¤ãƒ—
 		ZknZukanGraverPokeGraDrawOnTypeRotom( p_draw, p_drawglb, cp_glb, monsno, draw_type, idx );
 		break;
 
@@ -1165,9 +1165,9 @@ static void ZknZukanGraverPoke_GraSet( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN•\¦OFF
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤ºOFF
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1184,11 +1184,11 @@ static void ZknZukanGraverPokeGraDrawOff( ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[‚ÌƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1198,38 +1198,38 @@ static void ZknZukanGraverClactResLoad( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANG
 	ZKN_GLB_DRAWDATA* p_draw_glb = p_drawglb->p_drawglb;
 	ARCHANDLE* p_handle = ZKN_GLBDATA_ArcHandlGet( p_drawglb->p_drawglb );
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_sugata_oam_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_sugata_oam_lzh_NCGR + ZKN_GRAPHIC_RES_ID,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_PLTT_RES ], p_handle,
 			NARC_zukan_zkn_sugata_oam_NCLR, FALSE, 
 			NARC_zukan_zkn_sugata_oam_NCLR + ZKN_GRAPHIC_RES_ID, 
 			NNS_G2D_VRAM_TYPE_2DMAIN, 
 			ZKN_GRAPHIC_PLTT_LOAD, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( p_draw->res_obj[ CLACT_U_PLTT_RES ] );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_sugata_oam_lzh_NCER, TRUE,
 			NARC_zukan_zkn_sugata_oam_lzh_NCER + ZKN_GRAPHIC_RES_ID,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_sugata_oam_lzh_NANR, TRUE,
@@ -1239,10 +1239,10 @@ static void ZknZukanGraverClactResLoad( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANG
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *	
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1255,7 +1255,7 @@ static void ZknZukanGraverClactResDelete( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKA
 	CLACT_U_CharManagerDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 	CLACT_U_PlttManagerDelete( p_draw->res_obj[ CLACT_U_PLTT_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj[ CLACT_U_CHAR_RES ] );
@@ -1273,12 +1273,12 @@ static void ZknZukanGraverClactResDelete( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[“o˜^
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1291,7 +1291,7 @@ static void ZknZukanGraverClactAdd( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVE
 	int x, y;
 	int i;
 
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_sugata_oam_lzh_NCGR + ZKN_GRAPHIC_RES_ID,
 			NARC_zukan_zkn_sugata_oam_NCLR + ZKN_GRAPHIC_RES_ID, 
@@ -1304,7 +1304,7 @@ static void ZknZukanGraverClactAdd( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVE
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ],
 			NULL, NULL );
 
-	// “o˜^‹¤’Ê•”•ª‚ğİ’è
+	// ç™»éŒ²å…±é€šéƒ¨åˆ†ã‚’è¨­å®š
 	add.ClActSet	= p_draw_glb->clact_set;
 	add.ClActHeader = &clact_head;
 	add.pri			= ZKN_ZUKANGRAVER_OAM_SOFT_PRI;
@@ -1313,10 +1313,10 @@ static void ZknZukanGraverClactAdd( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVE
 	add.mat.x = 0;
 	add.mat.y = 0;
 	
-	// ”wŒi
+	// èƒŒæ™¯
 	for( i=0; i<ZKN_ZUKANGRAVER_GRA_NUM; i++ ){
 
-		// À•W
+		// åº§æ¨™
 		ZknZukanGraverPokeGraMatGet( i, &x, &y );
 		add.mat.x = x << FX32_SHIFT;
 		add.mat.y = (y + ZKN_ZUKANGRAVER_GRA_OAM_DRAW_Y_OFS) << FX32_SHIFT;
@@ -1330,7 +1330,7 @@ static void ZknZukanGraverClactAdd( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVE
 		}
 	}
 
-	// ƒAƒCƒRƒ“
+	// ã‚¢ã‚¤ã‚³ãƒ³
 	add.mat.x = ZKN_ZUKANGRAVER_ICON_X << FX32_SHIFT;
 	add.mat.y = ZKN_ZUKANGRAVER_ICON_Y << FX32_SHIFT;
 	add.pri	  = 0;
@@ -1338,7 +1338,7 @@ static void ZknZukanGraverClactAdd( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVE
 	CLACT_AnmChg( p_draw->next_icon, ZKN_ZUKANGRAVER_CELL_ANM_SEQ_ICON );
 	CLACT_SetAnmFlag( p_draw->next_icon, TRUE );
 	CLACT_BGPriorityChg( p_draw->next_icon, 0 );
-	// •`‰æONOFFİ’è
+	// æç”»ONOFFè¨­å®š
 	if( cp_glb->draw_type_max <= 1 ){
 		CLACT_SetDrawFlag( p_draw->next_icon, FALSE );
 	}
@@ -1346,9 +1346,9 @@ static void ZknZukanGraverClactAdd( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[‚ğ”jŠü
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1366,58 +1366,58 @@ static void ZknZukanGraverClactDelete( ZKN_ZUKANGRAVER_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒfƒtƒHƒ‹ƒgƒtƒF[ƒhˆ—
+ *	@brief	å›³é‘‘ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“ƒAƒEƒg
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknZukanGraverDefaultFadeReq( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, BOOL fadein_out )
 {
-	// ”¼“§–¾OAMİ’è
+	// åŠé€æ˜OAMè¨­å®š
 	ZknZukanGraverOamFadeInit( p_draw );
 
-	// ƒuƒ‰ƒCƒgƒlƒX‚ğg‚Á‚Ä—Ç‚¢‚©Áª¯¸
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ã£ã¦è‰¯ã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->cp_zukan_common_apl ) ){
 		
 		if( fadein_out ){
-			// ƒtƒF[ƒhƒCƒ“
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_FADE_SYNC_COMMON,
 					BRIGHTNESS_BLACK, BRIGHTNESS_NORMAL, 0, 16, ZKN_ZUKANGRAVER_BRIGHTNESS_MSK, PLANEMASK_BG3, ZKN_UTIL_FADE_MAIN );
 		}else{
-			// ƒtƒF[ƒhƒAƒEƒg
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_FADE_SYNC_COMMON,
 					 BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, 16, 0, ZKN_ZUKANGRAVER_BRIGHTNESS_MSK, PLANEMASK_BG3, ZKN_UTIL_FADE_MAIN );
 
 		}
 	}
 
-	// ƒ|ƒPƒOƒ‰ƒpƒŒƒbƒgƒtƒF[ƒhİ’è
+	// ãƒã‚±ã‚°ãƒ©ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰è¨­å®š
 	ZknZukanGraverSpritePokeGraPalFade( p_drawglb );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒfƒtƒHƒ‹ƒgƒtƒF[ƒhˆ—@I—¹ƒ`ƒFƒbƒN
+ *	@brief	å›³é‘‘ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ã€€çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“ TRUE ƒAƒEƒg FALSE
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ TRUE ã‚¢ã‚¦ãƒˆ FALSE
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknZukanGraverDefaultFadeEndCheck( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, BOOL fadein_out )
 {
 	BOOL check;
 	
-	// ƒtƒF[ƒhƒ[ƒN‚ğ}ŠÓƒf[ƒ^‚ª“®‚©‚µ‚Ä‚æ‚¢‚©ƒ`ƒFƒbƒN
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯ã‚’å›³é‘‘ãƒ‡ãƒ¼ã‚¿ãŒå‹•ã‹ã—ã¦ã‚ˆã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonBrightnessOnFlagGet( cp_glb->cp_zukan_common_apl ) ){
 		check = ZKN_GLB_ChangeFadeMain( &p_drawglb->p_drawglb->fade );
 	}else{
@@ -1427,16 +1427,16 @@ static BOOL ZknZukanGraverDefaultFadeEndCheck( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN
 
 	if( check == TRUE ){
 
-		// ƒtƒF[ƒhƒCƒ“‚Ì‚Æ‚«‚Í”¼“§–¾”jŠü
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®ã¨ãã¯åŠé€æ˜ç ´æ£„
 		if( fadein_out == TRUE ){
-			// OAM”¼“§–¾İ’è”jŠü
+			// OAMåŠé€æ˜è¨­å®šç ´æ£„
 			ZknZukanGraverOamFadeDelete( p_draw );
 		}else{
-			// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN•\¦OFF
+			// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¡¨ç¤ºOFF
 			ZknZukanGraverPokeGraDrawOff( p_drawglb );
 		}
 	}else{
-		// ƒ|ƒPƒOƒ‰ƒpƒŒƒbƒgƒtƒF[ƒhİ’è
+		// ãƒã‚±ã‚°ãƒ©ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰è¨­å®š
 		ZknZukanGraverSpritePokeGraPalFade( p_drawglb );
 	}
 
@@ -1446,9 +1446,9 @@ static BOOL ZknZukanGraverDefaultFadeEndCheck( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM‚ÌƒtƒF[ƒhˆ—‰Šú‰»
+ *	@brief	OAMã®ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†åˆæœŸåŒ–
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1463,7 +1463,7 @@ static void ZknZukanGraverOamFadeInit( ZKN_ZUKANGRAVER_DRAW* p_draw )
 
 	CLACT_ObjModeSet( p_draw->next_icon, GX_OAM_MODE_XLU );
 
-	// ƒtƒHƒ“ƒgOAM
+	// ãƒ•ã‚©ãƒ³ãƒˆOAM
 	for( i=0; i<ZKN_GRAPHIC_BUTTONFONT_NUM; i++ ){
 		FONTOAM_ObjModeSet( p_draw->p_pokegra_font[ i ]->p_fontoam, GX_OAM_MODE_XLU );
 	}
@@ -1471,9 +1471,9 @@ static void ZknZukanGraverOamFadeInit( ZKN_ZUKANGRAVER_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM‚ÌƒtƒF[ƒhˆ—ƒŠƒZƒbƒg
+ *	@brief	OAMã®ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ãƒªã‚»ãƒƒãƒˆ
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1487,7 +1487,7 @@ static void ZknZukanGraverOamFadeDelete( ZKN_ZUKANGRAVER_DRAW* p_draw )
 	}
 	CLACT_ObjModeSet( p_draw->next_icon, GX_OAM_MODE_NORMAL );
 
-	// ƒtƒHƒ“ƒgOAM
+	// ãƒ•ã‚©ãƒ³ãƒˆOAM
 	for( i=0; i<ZKN_GRAPHIC_BUTTONFONT_NUM; i++ ){
 		FONTOAM_ObjModeSet( p_draw->p_pokegra_font[ i ]->p_fontoam, GX_OAM_MODE_NORMAL );
 	}
@@ -1495,9 +1495,9 @@ static void ZknZukanGraverOamFadeDelete( ZKN_ZUKANGRAVER_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒpƒŒƒbƒgƒtƒF[ƒh’lİ’è
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰å€¤è¨­å®š
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -1507,7 +1507,7 @@ static void ZknZukanGraverSpritePokeGraPalFade( ZKN_ZUKANGRAVER_DRAWGLB* p_drawg
 	int i;
 
 	for( i=0; i<ZKN_ZUKANGRAVER_GRA_NUM; i++ ){
-		// ƒuƒ‰ƒCƒgƒlƒX’lİ’è
+		// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å€¤è¨­å®š
 		ZKN_GLB_SpritePokeGraPalFade_Idx( p_drawglb->p_drawglb, &p_drawglb->p_drawglb->fade, i );
 	}
 }
@@ -1515,10 +1515,10 @@ static void ZknZukanGraverSpritePokeGraPalFade( ZKN_ZUKANGRAVER_DRAWGLB* p_drawg
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN“®ì‰Šú‰»@ƒpƒbƒN
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‹•ä½œåˆæœŸåŒ–ã€€ãƒ‘ãƒƒã‚¯
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1534,13 +1534,13 @@ static void ZknZukanGraverPokeGraFadeInit_Pack( ZKN_ZUKANGRAVER_DRAW* p_draw, ZK
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN“®ìƒƒCƒ“@ƒpƒbƒN
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‹•ä½œãƒ¡ã‚¤ãƒ³ã€€ãƒ‘ãƒƒã‚¯
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	I‚í‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	çµ‚ã‚ã£ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknZukanGraverPokeGraFadeMain_Pack( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb )
@@ -1548,7 +1548,7 @@ static BOOL ZknZukanGraverPokeGraFadeMain_Pack( ZKN_ZUKANGRAVER_DRAW* p_draw, ZK
 	int i;
 	BOOL check;
 
-	// ‰Šú‰»‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚Í‰½‚à‚µ‚È‚¢
+	// åˆæœŸåŒ–ã—ã¦ã„ãªã„ã¨ãã¯ä½•ã‚‚ã—ãªã„
 	if( p_drawglb->pokegra_move_flag == FALSE ){
 		return TRUE;
 	}
@@ -1557,23 +1557,23 @@ static BOOL ZknZukanGraverPokeGraFadeMain_Pack( ZKN_ZUKANGRAVER_DRAW* p_draw, ZK
 		check = ZknZukanGraverPokeGraFadeMain( p_draw, p_drawglb, i );
 	}
 
-	// FONT_OAM‚ğ•ÏX
+	// FONT_OAMã‚’å¤‰æ›´
 	for( i=0; i<ZKN_GRAPHIC_BUTTONFONT_NUM; i++ ){
 		FONTOAM_ReflectParentMat( p_draw->p_pokegra_font[ i ]->p_fontoam );
 	}
 
-	return check;	// ‘S•”“¯‚¶ƒVƒ“ƒN”‚Å“®‚­‚Ì‚Å‚±‚ê‚Å‚æ‚¢
+	return check;	// å…¨éƒ¨åŒã˜ã‚·ãƒ³ã‚¯æ•°ã§å‹•ãã®ã§ã“ã‚Œã§ã‚ˆã„
 }
 
 //----------------------------------------------------------------------------
 /**
- * [ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊƒtƒF[ƒh]
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒtƒF[ƒh‰Šú‰»
+ * [ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ãƒ•ã‚§ãƒ¼ãƒ‰]
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	move_x		‚˜ŠJnÀ•W‚Ü‚Å‚Ì‹——£
- *	@param	move_y		‚™ŠJnÀ•W‚Ü‚Å‚Ì‹——£
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	move_x		ï½˜é–‹å§‹åº§æ¨™ã¾ã§ã®è·é›¢
+ *	@param	move_y		ï½™é–‹å§‹åº§æ¨™ã¾ã§ã®è·é›¢
  *
  *	@return	none
  */
@@ -1586,29 +1586,29 @@ static void ZknZukanGraverPokeGraFadeInit( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUK
 	int def_y;
 	int poke_arry_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, idx );
 
-	// ƒfƒtƒHƒ‹ƒgÀ•W‚Ìæ“¾
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåº§æ¨™ã®å–å¾—
 	ZknZukanGraverPokeGraMatGet( idx, &def_x, &def_y );
 	
-	// ¡‚ÌÀ•Wæ“¾
+	// ä»Šã®åº§æ¨™å–å¾—
 	ZKN_GlbPokemonGraphicGetMatrix_Idx( p_drawglb->p_drawglb, &x, &y, poke_arry_idx );
 
-	// À•W‚ğİ’è
+	// åº§æ¨™ã‚’è¨­å®š
 	ZKN_UTIL_MoveReq( &p_draw->pokegra_move[idx], def_x + move_x, def_x, def_y + move_y, def_y, ZKN_GRAPHIC_MOVE_SYNC );
 
-	// ƒXƒvƒ‰ƒCƒg‚Ìƒ|ƒPƒ‚ƒ“‚Í‚‚³‚ª•ÏX‚³‚ê‚Ä‚¢‚é‰Â”\«‚ª‚ ‚é‚Ì‚Å•Û‘¶
+	// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ãƒã‚±ãƒ¢ãƒ³ã¯é«˜ã•ãŒå¤‰æ›´ã•ã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ä¿å­˜
 	p_draw->pokegra_y[idx] = y - def_y;
 }
 
 //----------------------------------------------------------------------------
 /**
- * [ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊƒtƒF[ƒh]
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒtƒF[ƒh
+ * [ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ãƒ•ã‚§ãƒ¼ãƒ‰]
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚§ãƒ¼ãƒ‰
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknZukanGraverPokeGraFadeMain( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, int idx )
@@ -1619,10 +1619,10 @@ static BOOL ZknZukanGraverPokeGraFadeMain( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUK
 	
 	check = ZKN_UTIL_MoveMain( &p_draw->pokegra_move[ idx ] );
 
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	ZKN_GlbPokemonGraphicSetMatrix_Idx( p_drawglb->p_drawglb, p_draw->pokegra_move[ idx ].x, p_draw->pokegra_move[ idx ].y + p_draw->pokegra_y[idx], poke_arry_idx );
 
-	// OAMÀ•Wİ’è
+	// OAMåº§æ¨™è¨­å®š
 	mat.x = p_draw->pokegra_move[ idx ].x << FX32_SHIFT;
 	mat.y = (p_draw->pokegra_move[ idx ].y + ZKN_ZUKANGRAVER_GRA_OAM_DRAW_Y_OFS) << FX32_SHIFT;
 	CLACT_SetMatrix( p_draw->pokegra_back[ poke_arry_idx ], &mat );
@@ -1632,12 +1632,12 @@ static BOOL ZknZukanGraverPokeGraFadeMain( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUK
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“•`‰æƒ^ƒCƒvƒtƒ‰ƒOİ’è
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	monsno	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	monsno	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	•`‰æƒ^ƒCƒvƒtƒ‰ƒO
+ *	@return	æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 static int ZknZukanGraverPokeDrawTypeFlagGet( int monsno, const ZKN_ZUKANGRAVER_GLB* cp_glb )
@@ -1674,19 +1674,19 @@ static int ZknZukanGraverPokeDrawTypeFlagGet( int monsno, const ZKN_ZUKANGRAVER_
 		break;
 	}
 
-	// ‚»‚Ì‘¼‚Íƒm[ƒ}ƒ‹‚Å’²‚×‚é
+	// ãã®ä»–ã¯ãƒãƒ¼ãƒãƒ«ã§èª¿ã¹ã‚‹
 	return ZknZukanGraverPokeDrawTypeFlagNormal( monsno, cp_glb );
 	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ^ƒCƒv‚Ì”‚ğæ“¾
+ *	@brief	æç”»ã‚¿ã‚¤ãƒ—ã®æ•°ã‚’å–å¾—
  *
- *	@param	monsno	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹
+ *	@param	monsno	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
- *	@return	•`‰æƒ^ƒCƒv”
+ *	@return	æç”»ã‚¿ã‚¤ãƒ—æ•°
  */
 //-----------------------------------------------------------------------------
 static int ZknZukanGraverPokeDrawTypeNumGet( int monsno, const ZKN_ZUKANGRAVER_GLB* cp_glb )
@@ -1707,18 +1707,18 @@ static int ZknZukanGraverPokeDrawTypeNumGet( int monsno, const ZKN_ZUKANGRAVER_G
 		break;
 	}
 
-	// ‚»‚Ì‘¼‚Íƒm[ƒ}ƒ‹‚Å’²‚×‚é
+	// ãã®ä»–ã¯ãƒãƒ¼ãƒãƒ«ã§èª¿ã¹ã‚‹
 	return ZKN_GLBDATA_SaveData_SexNumGet( cp_glb->p_glb, monsno );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’Êíƒ|ƒPƒ‚ƒ“‚Ì•`‰æƒ^ƒCƒvƒtƒ‰ƒO‚ğæ“¾
+ *	@brief	é€šå¸¸ãƒã‚±ãƒ¢ãƒ³ã®æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- *	@param	monsno		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
+ *	@param	monsno		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
- *	@return	•`‰æƒ^ƒCƒvƒtƒ‰ƒO
+ *	@return	æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 static int ZknZukanGraverPokeDrawTypeFlagNormal( int monsno, const ZKN_ZUKANGRAVER_GLB* cp_glb )
@@ -1737,7 +1737,7 @@ static int ZknZukanGraverPokeDrawTypeFlagNormal( int monsno, const ZKN_ZUKANGRAV
 		return ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_UNKNOWNONLY;
 	}
 
-	// ”‚ğ‹‚ß1ŒÂ‚µ‚©‚È‚¢‚Æ‚«‚à`ONLYƒ^ƒCƒv‚É‚·‚é
+	// æ•°ã‚’æ±‚ã‚1å€‹ã—ã‹ãªã„ã¨ãã‚‚ã€œONLYã‚¿ã‚¤ãƒ—ã«ã™ã‚‹
 	type_num = ZKN_GLBDATA_SaveData_SexNumGet( cp_glb->p_glb, monsno );
 	if( type_num == 1 ){
 		sex = ZKN_GLBDATA_SaveData_SexGet( cp_glb->p_glb, monsno, ZUKAN_WORK_SEX_FIRST );
@@ -1758,13 +1758,13 @@ static int ZknZukanGraverPokeDrawTypeFlagNormal( int monsno, const ZKN_ZUKANGRAV
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“•`‰æ	•`‰æƒ^ƒCƒv@•’Ê
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³æç”»	æç”»ã‚¿ã‚¤ãƒ—ã€€æ™®é€š
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	draw_type		•`‰æƒ^ƒCƒv
- *	@param	s_idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	s_idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  *	@return	none
  */
@@ -1775,7 +1775,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeNormal( ZKN_ZUKANGRAVER_DRAW* p_draw,
 	int x, y;
 	int buff_idx;
 
-	// •\ 
+	// è¡¨ 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	sex = ZKN_UTIL_PokemonGraphicSet_FS_Idx(
@@ -1786,7 +1786,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeNormal( ZKN_ZUKANGRAVER_DRAW* p_draw,
 			draw_type, buff_idx );
 	GF_ASSERT( sex != ZUKAN_WORK_GET_SEX_ERR );
 
-	// — 
+	// è£
 	ZknZukanGraverPokeGraMatGet( s_idx+1, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx + 1 );
 	sex = ZKN_UTIL_PokemonGraphicSet_FS_Idx(
@@ -1800,14 +1800,14 @@ static void ZknZukanGraverPokeGraDrawOnTypeNormal( ZKN_ZUKANGRAVER_DRAW* p_draw,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“•`‰æ	•`‰æƒ^ƒCƒv@ƒ~ƒmƒ€ƒbƒ`
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³æç”»	æç”»ã‚¿ã‚¤ãƒ—ã€€ãƒŸãƒãƒ ãƒƒãƒ
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	draw_type		•`‰æÀ²Ìß
- *	@param	s_idx			ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	s_idx			ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  *	@return	none
  */
@@ -1818,7 +1818,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeMinomutti( ZKN_ZUKANGRAVER_DRAW* p_dr
 	int area_type;
 	int buff_idx;
 	
-	// •\ 
+	// è¡¨ 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	area_type = ZKN_UTIL_PokemonGraphicSet_Minomutti_Idx(
@@ -1829,7 +1829,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeMinomutti( ZKN_ZUKANGRAVER_DRAW* p_dr
 			draw_type, buff_idx );
 	GF_ASSERT( area_type != ZUKAN_WORK_GET_SEX_ERR );
 
-	// — 
+	// è£
 	ZknZukanGraverPokeGraMatGet( s_idx+1, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx + 1 );
 	area_type = ZKN_UTIL_PokemonGraphicSet_Minomutti_Idx(
@@ -1843,14 +1843,14 @@ static void ZknZukanGraverPokeGraDrawOnTypeMinomutti( ZKN_ZUKANGRAVER_DRAW* p_dr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“•`‰æ	•`‰æƒ^ƒCƒv@ƒ~ƒmƒƒX
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³æç”»	æç”»ã‚¿ã‚¤ãƒ—ã€€ãƒŸãƒãƒ¡ã‚¹
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	draw_type		•`‰æÀ²Ìß
- *	@param	s_idx			ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	s_idx			ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  *	@return	none
  */
@@ -1861,7 +1861,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeMinomesu( ZKN_ZUKANGRAVER_DRAW* p_dra
 	int area_type;
 	int buff_idx;
 	
-	// •\ 
+	// è¡¨ 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	area_type = ZKN_UTIL_PokemonGraphicSet_Minomesu_Idx(
@@ -1872,7 +1872,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeMinomesu( ZKN_ZUKANGRAVER_DRAW* p_dra
 			draw_type, buff_idx );
 	GF_ASSERT( area_type != ZUKAN_WORK_GET_SEX_ERR );
 
-	// — 
+	// è£
 	ZknZukanGraverPokeGraMatGet( s_idx+1, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx + 1 );
 	area_type = ZKN_UTIL_PokemonGraphicSet_Minomesu_Idx(
@@ -1886,14 +1886,14 @@ static void ZknZukanGraverPokeGraDrawOnTypeMinomesu( ZKN_ZUKANGRAVER_DRAW* p_dra
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“•`‰æ	•`‰æƒ^ƒCƒv@ƒV[ƒEƒV
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³æç”»	æç”»ã‚¿ã‚¤ãƒ—ã€€ã‚·ãƒ¼ã‚¦ã‚·
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	draw_type		•`‰æÀ²Ìß
- *	@param	s_idx			ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	s_idx			ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  *	@return	none
  */
@@ -1904,7 +1904,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeSiiusi( ZKN_ZUKANGRAVER_DRAW* p_draw,
 	int area_type;
 	int buff_idx;
 	
-	// •\ 
+	// è¡¨ 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	area_type = ZKN_UTIL_PokemonGraphicSet_Siiusi_Idx(
@@ -1915,7 +1915,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeSiiusi( ZKN_ZUKANGRAVER_DRAW* p_draw,
 			draw_type, buff_idx );
 	GF_ASSERT( area_type != ZUKAN_WORK_GET_SEX_ERR );
 
-	// — 
+	// è£
 	ZknZukanGraverPokeGraMatGet( s_idx+1, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx + 1 );
 	area_type = ZKN_UTIL_PokemonGraphicSet_Siiusi_Idx(
@@ -1929,14 +1929,14 @@ static void ZknZukanGraverPokeGraDrawOnTypeSiiusi( ZKN_ZUKANGRAVER_DRAW* p_draw,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“•`‰æ	•`‰æƒ^ƒCƒv@ƒV[ƒV[ƒhƒ‹ƒS
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³æç”»	æç”»ã‚¿ã‚¤ãƒ—ã€€ã‚·ãƒ¼ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	draw_type		•`‰æÀ²Ìß
- *	@param	s_idx			ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	s_idx			ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  *	@return	none
  */
@@ -1947,7 +1947,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeSiidorugo( ZKN_ZUKANGRAVER_DRAW* p_dr
 	int area_type;
 	int buff_idx;
 	
-	// •\ 
+	// è¡¨ 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	area_type = ZKN_UTIL_PokemonGraphicSet_Siidorugo_Idx(
@@ -1958,7 +1958,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeSiidorugo( ZKN_ZUKANGRAVER_DRAW* p_dr
 			draw_type, buff_idx );
 	GF_ASSERT( area_type != ZUKAN_WORK_GET_SEX_ERR );
 
-	// — 
+	// è£
 	ZknZukanGraverPokeGraMatGet( s_idx+1, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx + 1 );
 	area_type = ZKN_UTIL_PokemonGraphicSet_Siidorugo_Idx(
@@ -1973,11 +1973,11 @@ static void ZknZukanGraverPokeGraDrawOnTypeSiidorugo( ZKN_ZUKANGRAVER_DRAW* p_dr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“•`‰æ	•`‰æƒ^ƒCƒv@ƒAƒ“ƒm[ƒ“
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³æç”»	æç”»ã‚¿ã‚¤ãƒ—ã€€ã‚¢ãƒ³ãƒãƒ¼ãƒ³
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  */
@@ -1988,7 +1988,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeAnnoon( ZKN_ZUKANGRAVER_DRAW* p_draw,
 	int form;
 	int buff_idx;
 	
-	// •\ 
+	// è¡¨ 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	form = ZKN_UTIL_PokemonGraphicSet_Anoon_Idx(	
@@ -1999,7 +1999,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeAnnoon( ZKN_ZUKANGRAVER_DRAW* p_draw,
 			draw_type, buff_idx );
 	GF_ASSERT( form != ZUKAN_WORK_GET_SEX_ERR );
 
-	// — 
+	// è£
 	ZknZukanGraverPokeGraMatGet( s_idx+1, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx + 1 );
 	form = ZKN_UTIL_PokemonGraphicSet_Anoon_Idx(
@@ -2013,14 +2013,14 @@ static void ZknZukanGraverPokeGraDrawOnTypeAnnoon( ZKN_ZUKANGRAVER_DRAW* p_draw,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒIƒLƒVƒX@•`‰æ
+ *	@brief	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã€€æç”»
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	draw_type	•`‰æƒ^ƒCƒv
- *	@param	s_idx		ƒOƒ‰ƒtƒBƒbƒNƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	draw_type	æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	s_idx		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  *	@return	none
  */
@@ -2031,7 +2031,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeDeokisisu( ZKN_ZUKANGRAVER_DRAW* p_dr
 	int form;
 	int buff_idx;
 	
-	// •\ 
+	// è¡¨ 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	form = ZKN_UTIL_PokemonGraphicSet_Deokisisu_Idx(	
@@ -2042,7 +2042,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeDeokisisu( ZKN_ZUKANGRAVER_DRAW* p_dr
 			draw_type, buff_idx );
 	GF_ASSERT( form != POKEZUKAN_DEOKISISU_INIT );
 
-	// — 
+	// è£
 	ZknZukanGraverPokeGraMatGet( s_idx+1, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx + 1 );
 	form = ZKN_UTIL_PokemonGraphicSet_Deokisisu_Idx(
@@ -2056,7 +2056,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeDeokisisu( ZKN_ZUKANGRAVER_DRAW* p_dr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒFƒCƒ~‚ÌƒOƒ‰ƒtƒBƒbƒNİ’è
+ *	@brief	ã‚·ã‚§ã‚¤ãƒŸã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void ZknZukanGraverPokeGraDrawOnTypeSheimi( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int monsno, int draw_type, int s_idx )
@@ -2065,7 +2065,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeSheimi( ZKN_ZUKANGRAVER_DRAW* p_draw,
 	int form;
 	int buff_idx;
 	
-	// •\ 
+	// è¡¨ 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	form = ZKN_UTIL_PokemonGraphicSet_Sheimi_Idx(	
@@ -2076,7 +2076,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeSheimi( ZKN_ZUKANGRAVER_DRAW* p_draw,
 			draw_type, buff_idx );
 	GF_ASSERT( form != ZUKAN_WORK_GET_SEX_ERR );
 
-	// — 
+	// è£
 	ZknZukanGraverPokeGraMatGet( s_idx+1, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx + 1 );
 	form = ZKN_UTIL_PokemonGraphicSet_Sheimi_Idx(
@@ -2090,7 +2090,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeSheimi( ZKN_ZUKANGRAVER_DRAW* p_draw,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒMƒ‰ƒeƒBƒi
+ *	@brief	ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
  */
 //-----------------------------------------------------------------------------
 static void ZknZukanGraverPokeGraDrawOnTypeGiratyina( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int monsno, int draw_type, int s_idx )
@@ -2099,7 +2099,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeGiratyina( ZKN_ZUKANGRAVER_DRAW* p_dr
 	int form;
 	int buff_idx;
 	
-	// •\ 
+	// è¡¨ 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	form = ZKN_UTIL_PokemonGraphicSet_Giratyina_Idx(	
@@ -2110,7 +2110,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeGiratyina( ZKN_ZUKANGRAVER_DRAW* p_dr
 			draw_type, buff_idx );
 	GF_ASSERT( form != ZUKAN_WORK_GET_SEX_ERR );
 
-	// — 
+	// è£
 	ZknZukanGraverPokeGraMatGet( s_idx+1, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx + 1 );
 	form = ZKN_UTIL_PokemonGraphicSet_Giratyina_Idx(
@@ -2128,7 +2128,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeRotom( ZKN_ZUKANGRAVER_DRAW* p_draw, 
 	int form;
 	int buff_idx;
 	
-	// •\ 
+	// è¡¨ 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	form = ZKN_UTIL_PokemonGraphicSet_Rotom_Idx(	
@@ -2139,7 +2139,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeRotom( ZKN_ZUKANGRAVER_DRAW* p_draw, 
 			draw_type, buff_idx );
 	GF_ASSERT( form != ZUKAN_WORK_GET_SEX_ERR );
 
-	// — 
+	// è£
 	ZknZukanGraverPokeGraMatGet( s_idx+1, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx + 1 );
 	form = ZKN_UTIL_PokemonGraphicSet_Rotom_Idx(
@@ -2155,13 +2155,13 @@ static void ZknZukanGraverPokeGraDrawOnTypeRotom( ZKN_ZUKANGRAVER_DRAW* p_draw, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚Ó‚§‚ñ‚ÆOAM‚Ì‰Šú‰»ƒpƒbƒNŠÖ”
+ *	@brief	ãµã‰ã‚“ã¨OAMã®åˆæœŸåŒ–ãƒ‘ãƒƒã‚¯é–¢æ•°
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹	
- *	@param	heap			ƒq[ƒv
- *	@param	draw_type_flag	•`‰æƒ^ƒCƒvƒtƒ‰ƒO
- *	@param	draw_type		•`‰æƒ^ƒCƒv
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«	
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	draw_type_flag	æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ—
  *
  *	@return	none
  */
@@ -2172,11 +2172,11 @@ static void ZknZukanGraverFontInitGraphicType_Pack( ZKN_ZUKANGRAVER_DRAW* p_draw
 	int pearent_idx;
 	
 	
-	// ¡•\¦’†‚Ì‚à‚Ì‚ÌƒeƒLƒXƒg
+	// ä»Šè¡¨ç¤ºä¸­ã®ã‚‚ã®ã®ãƒ†ã‚­ã‚¹ãƒˆ
 	pearent_idx		= ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, ZKN_ZUKANGRAVER_GRA_FRONT );
 	ZknZukanGraverFontSetUpGraphicType( p_draw, p_drawglb, cp_glb, heap,  draw_type_flag, draw_type, pearent_idx, 0 );
 
-	// Ÿ•\¦‚·‚é‚à‚Ì‚ÌƒeƒLƒXƒg
+	// æ¬¡è¡¨ç¤ºã™ã‚‹ã‚‚ã®ã®ãƒ†ã‚­ã‚¹ãƒˆ
 	next_draw_type	= ZknGraverAddDrawTypeGet( draw_type_flag, draw_type, 1, cp_glb->draw_type_max );	
 	pearent_idx		= ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, ZKN_ZUKANGRAVER_GRA_FRONT_NEXT );
 	ZknZukanGraverFontSetUpGraphicType( p_draw, p_drawglb, cp_glb, heap,  draw_type_flag, next_draw_type, pearent_idx, 1 );
@@ -2184,13 +2184,13 @@ static void ZknZukanGraverFontInitGraphicType_Pack( ZKN_ZUKANGRAVER_DRAW* p_draw
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚Ó‚§‚ñ‚ÆOAM‚Ìİ’èƒpƒbƒNŠÖ”
+ *	@brief	ãµã‰ã‚“ã¨OAMã®è¨­å®šãƒ‘ãƒƒã‚¯é–¢æ•°
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹	
- *	@param	heap			ƒq[ƒv
- *	@param	draw_type_flag	•`‰æƒ^ƒCƒvƒtƒ‰ƒO
- *	@param	draw_type		•`‰æƒ^ƒCƒv
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«	
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	draw_type_flag	æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ—
  *
  *	@return	none
  */
@@ -2201,12 +2201,12 @@ static void ZknZukanGraverFontSetUpGraphicType_Pack( ZKN_ZUKANGRAVER_DRAW* p_dra
 	int pearent_idx;
 	int fontoam_idx;
 	
-	// Ÿ•\¦‚·‚é‚à‚Ì‚ÌƒeƒLƒXƒg
+	// æ¬¡è¡¨ç¤ºã™ã‚‹ã‚‚ã®ã®ãƒ†ã‚­ã‚¹ãƒˆ
 	next_draw_type	= ZknGraverAddDrawTypeGet( draw_type_flag, draw_type, 1, cp_glb->draw_type_max );	
 	pearent_idx		= ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, ZKN_ZUKANGRAVER_GRA_FRONT_NEXT );
 	fontoam_idx	= (p_draw->now_draw_buff + 1) % ZKN_ZUKANGRAVER_GRA_NOW_NUM;
 
-	// ”jŠü‚µ‚Ä‚©‚çì‚é
+	// ç ´æ£„ã—ã¦ã‹ã‚‰ä½œã‚‹
 	ZKN_FONTOAM_Delete( p_draw->p_pokegra_font[ fontoam_idx ] );
 	ZknZukanGraverFontSetUpGraphicType( p_draw, p_drawglb, cp_glb, heap,  draw_type_flag, next_draw_type, pearent_idx, fontoam_idx );
 }
@@ -2214,36 +2214,36 @@ static void ZknZukanGraverFontSetUpGraphicType_Pack( ZKN_ZUKANGRAVER_DRAW* p_dra
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ^ƒCƒv•¶š—ñ‚Ì•`‰æ
+ *	@brief	æç”»ã‚¿ã‚¤ãƒ—æ–‡å­—åˆ—ã®æç”»
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap			ƒq[ƒv
- *	@param	draw_type_flag	•`‰æƒ^ƒCƒvƒtƒ‰ƒO
- *	@param	draw_type		•`‰æƒ^ƒCƒv
- *	@param  pearent_idx		eƒAƒNƒ^[IDX
- *	@param	fontoam_idx		ƒtƒHƒ“ƒgOAMIDX
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	draw_type_flag	æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ—
+ *	@param  pearent_idx		è¦ªã‚¢ã‚¯ã‚¿ãƒ¼IDX
+ *	@param	fontoam_idx		ãƒ•ã‚©ãƒ³ãƒˆOAMIDX
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknZukanGraverFontSetUpGraphicType( ZKN_ZUKANGRAVER_DRAW* p_draw, ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int heap, int draw_type_flag, int draw_type, int parent_idx, int fontoam_idx )
 {
-	GF_BGL_BMPWIN* win;	// •¶š—ñ‘‚«‚İæ
+	GF_BGL_BMPWIN* win;	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿å…ˆ
 	ZKN_FONTOAM_INIT fontoam_init;
 	ZKN_GLB_DRAWDATA* p_glb_draw = p_drawglb->p_drawglb;
-	int pltt_ofs;	// ƒpƒŒƒbƒgƒAƒhƒŒƒX
+	int pltt_ofs;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
 	int comment;
 
-	// æ‚ÉCLACT‚ğ“o˜^‚µ‚Ä‚ ‚é•K—v‚ª‚ ‚é
+	// å…ˆã«CLACTã‚’ç™»éŒ²ã—ã¦ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 	GF_ASSERT( p_draw->pokegra_back[ parent_idx ] );
 
 
-	// BMMƒf[ƒ^IDXæ“¾
+	// BMMãƒ‡ãƒ¼ã‚¿IDXå–å¾—
 	comment = ZknZukanGraverFontGet( p_drawglb, cp_glb, draw_type_flag, draw_type );
 
-	// ‰Šú‰»ƒf[ƒ^‚Ì‹¤’Ê•”•ª‚ğì¬
-	// ‹¤’Êƒf[ƒ^‘ã“ü
+	// åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã®å…±é€šéƒ¨åˆ†ã‚’ä½œæˆ
+	// å…±é€šãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	fontoam_init.zkn_fontoam = p_glb_draw->fontoam_sys;
 	fontoam_init.pltt		 = CLACT_U_PlttManagerGetProxy( p_draw->res_obj[ CLACT_U_PLTT_RES ], NULL );
 	fontoam_init.x			 = ZKN_GRAPHIC_BUTTON_FONT_OFS_X;
@@ -2253,10 +2253,10 @@ static void ZknZukanGraverFontSetUpGraphicType( ZKN_ZUKANGRAVER_DRAW* p_draw, ZK
 	fontoam_init.draw_area	 = NNS_G2D_VRAM_TYPE_2DMAIN;
 	fontoam_init.heap		 = heap;
 
-	// ƒpƒŒƒbƒg“]‘—æƒAƒhƒŒƒXæ“¾
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	pltt_ofs = GetPlttProxyOffset( fontoam_init.pltt, NNS_G2D_VRAM_TYPE_2DMAIN );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	win = ZKN_FONTOAM_GetBmp( p_glb_draw->fontoam_sys, 
 			ZKN_GRAPHIC_BUTTONFONT_BMP_SIZE_CX,
 			ZKN_GRAPHIC_BUTTONFONT_BMP_SIZE_CY );
@@ -2269,18 +2269,18 @@ static void ZknZukanGraverFontSetUpGraphicType( ZKN_ZUKANGRAVER_DRAW* p_draw, ZK
 	p_draw->p_pokegra_font[ fontoam_idx ] = ZKN_FONTOAM_Make( &fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_pokegra_font[ fontoam_idx ]->p_fontoam, pltt_ofs );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( win );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ^ƒCƒv•¶š—ñ‚Ì•`‰æ	•`‰æƒ^ƒCƒv@•’Ê
+ *	@brief	æç”»ã‚¿ã‚¤ãƒ—æ–‡å­—åˆ—ã®æç”»	æç”»ã‚¿ã‚¤ãƒ—ã€€æ™®é€š
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap			ƒq[ƒv
- *	@param	draw_type		•`‰æƒ^ƒCƒv 
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ— 
  *
  *	@return	none
  */
@@ -2291,7 +2291,7 @@ static int ZknZukanGraverFontSetUpGraphicTypeNormal( ZKN_ZUKANGRAVER_DRAWGLB* p_
 	int sex;
 	int monsno = ZKN_GLBDATA_PokeMonsNoGet( cp_glb->p_glb );
 
-	// «•Êæ“¾
+	// æ€§åˆ¥å–å¾—
 	sex = ZKN_GLBDATA_SaveData_SexGet( cp_glb->p_glb, monsno, draw_type );
 	GF_ASSERT( sex != ZUKAN_WORK_GET_SEX_ERR );
 	
@@ -2305,7 +2305,7 @@ static int ZknZukanGraverFontSetUpGraphicTypeNormal( ZKN_ZUKANGRAVER_DRAWGLB* p_
 		break;
 		
 	default:
-		GF_ASSERT(0);		// ‚¨‚©‚µ‚¢
+		GF_ASSERT(0);		// ãŠã‹ã—ã„
 		break;
 	}
 	
@@ -2314,10 +2314,10 @@ static int ZknZukanGraverFontSetUpGraphicTypeNormal( ZKN_ZUKANGRAVER_DRAWGLB* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ^ƒCƒv•¶š—ñ‚Ì•`‰æ	•`‰æƒ^ƒCƒv@’j‚Ì‚İ
+ *	@brief	æç”»ã‚¿ã‚¤ãƒ—æ–‡å­—åˆ—ã®æç”»	æç”»ã‚¿ã‚¤ãƒ—ã€€ç”·ã®ã¿
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	draw_type		•`‰æƒ^ƒCƒv 
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ— 
  *
  *	@return	none
  */
@@ -2333,10 +2333,10 @@ static int ZknZukanGraverFontSetUpGraphicTypeManOnly( ZKN_ZUKANGRAVER_DRAWGLB* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ^ƒCƒv•¶š—ñ‚Ì•`‰æ	•`‰æƒ^ƒCƒv@—‚Ì‚İ
+ *	@brief	æç”»ã‚¿ã‚¤ãƒ—æ–‡å­—åˆ—ã®æç”»	æç”»ã‚¿ã‚¤ãƒ—ã€€å¥³ã®ã¿
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	draw_type		•`‰æƒ^ƒCƒv 
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ— 
  *
  *	@return	none
  */
@@ -2351,10 +2351,10 @@ static int ZknZukanGraverFontSetUpGraphicTypeGirlOnly( ZKN_ZUKANGRAVER_DRAWGLB* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ^ƒCƒv•¶š—ñ‚Ì•`‰æ	•`‰æƒ^ƒCƒv@•s–¾‚Ì‚İ
+ *	@brief	æç”»ã‚¿ã‚¤ãƒ—æ–‡å­—åˆ—ã®æç”»	æç”»ã‚¿ã‚¤ãƒ—ã€€ä¸æ˜ã®ã¿
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	draw_type		•`‰æƒ^ƒCƒv 
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ— 
  *
  *	@return	none
  */
@@ -2368,10 +2368,10 @@ static int ZknZukanGraverFontSetUpGraphicTypeUnknownOnly( ZKN_ZUKANGRAVER_DRAWGL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ^ƒCƒv•¶š—ñ‚Ì•`‰æ	•`‰æƒ^ƒCƒv@ƒ~ƒmƒ€ƒV
+ *	@brief	æç”»ã‚¿ã‚¤ãƒ—æ–‡å­—åˆ—ã®æç”»	æç”»ã‚¿ã‚¤ãƒ—ã€€ãƒŸãƒãƒ ã‚·
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	draw_type		•`‰æƒ^ƒCƒv 
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ— 
  *
  *	@return	none
  */
@@ -2417,10 +2417,10 @@ static int ZknZukanGraverFontSetUpGraphicTypeSiidorugo( ZKN_ZUKANGRAVER_DRAWGLB*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ^ƒCƒv•¶š—ñ‚Ì•`‰æ	•`‰æƒ^ƒCƒv@ƒAƒ“ƒm[ƒ“
+ *	@brief	æç”»ã‚¿ã‚¤ãƒ—æ–‡å­—åˆ—ã®æç”»	æç”»ã‚¿ã‚¤ãƒ—ã€€ã‚¢ãƒ³ãƒãƒ¼ãƒ³
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	draw_type		•`‰æƒ^ƒCƒv 
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ— 
  *
  *	@return	none
  */
@@ -2434,13 +2434,13 @@ static int ZknZukanGraverFontSetUpGraphicTypeAnnoon( ZKN_ZUKANGRAVER_DRAWGLB* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒIƒLƒVƒXƒRƒƒ“ƒg‚ğæ“¾
+ *	@brief	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã‚³ãƒ¡ãƒ³ãƒˆã‚’å–å¾—
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	draw_type		•`‰æƒ^ƒCƒv 
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ— 
  *
- *	@return	ƒRƒƒ“ƒgƒf[ƒ^
+ *	@return	ã‚³ãƒ¡ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static int ZknZukanGraverFontSetUpGraphicTypeDeokisisu( ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int draw_type )
@@ -2454,13 +2454,13 @@ static int ZknZukanGraverFontSetUpGraphicTypeDeokisisu( ZKN_ZUKANGRAVER_DRAWGLB*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒFƒCƒ~‚ÌƒRƒƒ“ƒgƒf[ƒ^
+ *	@brief	ã‚·ã‚§ã‚¤ãƒŸã®ã‚³ãƒ¡ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	draw_type		•`‰æƒ^ƒCƒv 
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ— 
  *
- *	@return	ƒRƒƒ“ƒgƒf[ƒ^
+ *	@return	ã‚³ãƒ¡ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static int ZknZukanGraverFontSetUpGraphicTypeSheimi( ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int draw_type )
@@ -2473,13 +2473,13 @@ static int ZknZukanGraverFontSetUpGraphicTypeSheimi( ZKN_ZUKANGRAVER_DRAWGLB* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒMƒ‰ƒeƒBƒi‚ÌƒRƒƒ“ƒgƒf[ƒ^
+ *	@brief	ã‚®ãƒ©ãƒ†ã‚£ãƒŠã®ã‚³ãƒ¡ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	draw_type		•`‰æƒ^ƒCƒv 
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ— 
  *
- *	@return	ƒRƒƒ“ƒgƒf[ƒ^
+ *	@return	ã‚³ãƒ¡ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static int ZknZukanGraverFontSetUpGraphicTypeGiratyina( ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int draw_type )
@@ -2492,13 +2492,13 @@ static int ZknZukanGraverFontSetUpGraphicTypeGiratyina( ZKN_ZUKANGRAVER_DRAWGLB*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒgƒ€‚ÌƒRƒƒ“ƒgƒf[ƒ^
+ *	@brief	ãƒ­ãƒˆãƒ ã®ã‚³ãƒ¡ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	draw_type		•`‰æƒ^ƒCƒv 
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ— 
  *
- *	@return	ƒRƒƒ“ƒgƒf[ƒ^
+ *	@return	ã‚³ãƒ¡ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static int ZknZukanGraverFontSetUpGraphicTypeRotom( ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_ZUKANGRAVER_GLB* cp_glb, int draw_type )
@@ -2512,10 +2512,10 @@ static int ZknZukanGraverFontSetUpGraphicTypeRotom( ZKN_ZUKANGRAVER_DRAWGLB* p_d
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒbƒtƒ@ƒCƒ“ƒfƒbƒNƒX‚Æ‚»‚Ì’†‚ÌƒCƒ“ƒfƒbƒNƒX‚©‚ç
- *			ÀÛ‚Ìƒ|ƒPƒ‚ƒ“•`‰æƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
+ *	@brief	ãƒãƒƒãƒ•ã‚¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ãã®ä¸­ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰
+ *			å®Ÿéš›ã®ãƒã‚±ãƒ¢ãƒ³æç”»ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	buff_idx		ƒoƒbƒtƒ@IDX
+ *	@param	buff_idx		ãƒãƒƒãƒ•ã‚¡IDX
  *	@param	idx				IDX
  *
  *	@return	none
@@ -2524,11 +2524,11 @@ static int ZknZukanGraverFontSetUpGraphicTypeRotom( ZKN_ZUKANGRAVER_DRAWGLB* p_d
 static inline int ZknZukanGraverGetBuffIdx_PokeGraIdx( int buff_idx, int idx )
 {
 	if( buff_idx == ZKN_ZUKANGRAVER_GRA_NOW_DRAW_01 ){
-		// ¡•\¦ 01 Ÿ23
+		// ä»Šè¡¨ç¤º 01 æ¬¡23
 		return idx;	
 	}
 	
-	// ¡•\¦23 Ÿ01
+	// ä»Šè¡¨ç¤º23 æ¬¡01
 	idx -= ZKN_ZUKANGRAVER_GRA_FRONT_NEXT;	
 	if( idx < 0 ){
 		idx += ZKN_ZUKANGRAVER_GRA_NUM;
@@ -2539,9 +2539,9 @@ static inline int ZknZukanGraverGetBuffIdx_PokeGraIdx( int buff_idx, int idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNÀ•Wæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åº§æ¨™å–å¾—
  *
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  * 
  *	@return	none
  */
@@ -2552,18 +2552,18 @@ static void ZknZukanGraverPokeGraMatGet( int idx, int* x, int* y )
 	int set_y = 0;
 	
 	switch( idx ){
-	case ZKN_ZUKANGRAVER_GRA_BACK:			// ¡‚ÌŒã‚ë‚ÌŠG
+	case ZKN_ZUKANGRAVER_GRA_BACK:			// ä»Šã®å¾Œã‚ã®çµµ
 		set_x = ZKN_ZUKANGRAVER_GRA_DRAW_BACK_X_OFS;
 		
-	case ZKN_ZUKANGRAVER_GRA_FRONT:			// ¡‚Ì•\‚ÌŠG
+	case ZKN_ZUKANGRAVER_GRA_FRONT:			// ä»Šã®è¡¨ã®çµµ
 		set_x += ZKN_ZUKANGRAVER_GRA_DRAW_FRONT_X;
 		set_y = ZKN_ZUKANGRAVER_GRA_DRAW_Y;
 		break;
 		
-	case ZKN_ZUKANGRAVER_GRA_BACK_NEXT:		// Ÿ‚ÌŒã‚ë‚ÌŠG
+	case ZKN_ZUKANGRAVER_GRA_BACK_NEXT:		// æ¬¡ã®å¾Œã‚ã®çµµ
 		set_x = ZKN_ZUKANGRAVER_GRA_DRAW_BACK_X_OFS;
 		
-	case ZKN_ZUKANGRAVER_GRA_FRONT_NEXT:		// Ÿ‚Ì•\‚ÌŠG
+	case ZKN_ZUKANGRAVER_GRA_FRONT_NEXT:		// æ¬¡ã®è¡¨ã®çµµ
 		set_x += ZKN_ZUKANGRAVER_GRA_DRAW_FRONT_NEXT_X;
 		set_y = ZKN_ZUKANGRAVER_GRA_DRAW_Y;
 		break;
@@ -2579,11 +2579,11 @@ static void ZknZukanGraverPokeGraMatGet( int idx, int* x, int* y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	GMM‚±‚ß‚ñ‚ÆIDXæ“¾
+ *	@brief	GMMã“ã‚ã‚“ã¨IDXå–å¾—
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	draw_type_flag	•`‰æƒ^ƒCƒvƒtƒ‰ƒO
- *	@param	draw_type		•`‰æƒ^ƒCƒv
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	draw_type_flag	æç”»ã‚¿ã‚¤ãƒ—ãƒ•ãƒ©ã‚°
+ *	@param	draw_type		æç”»ã‚¿ã‚¤ãƒ—
  *
  *	@return	GMMIDX
  */
@@ -2593,39 +2593,39 @@ static int ZknZukanGraverFontGet(ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_Z
 	int comment;
 
 	switch( draw_type_flag ){
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_NORMAL:	// ’Êí•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_NORMAL:	// é€šå¸¸æç”»ã‚¿ã‚¤ãƒ—
 		comment = ZknZukanGraverFontSetUpGraphicTypeNormal( p_drawglb, cp_glb, draw_type );
 		break;
 		
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MANONLY:		// ƒIƒX‚Ì‚İ•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MANONLY:		// ã‚ªã‚¹ã®ã¿æç”»ã‚¿ã‚¤ãƒ—
 		comment = ZknZukanGraverFontSetUpGraphicTypeManOnly( p_drawglb, cp_glb, draw_type );
 		break;
 		
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_GIRLONLY:		// ƒƒX‚Ì‚İ•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_GIRLONLY:		// ãƒ¡ã‚¹ã®ã¿æç”»ã‚¿ã‚¤ãƒ—
 		comment = ZknZukanGraverFontSetUpGraphicTypeGirlOnly( p_drawglb, cp_glb, draw_type );
 		break;
 		
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_UNKNOWNONLY:	// •s–¾‚Ì‚İ•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_UNKNOWNONLY:	// ä¸æ˜ã®ã¿æç”»ã‚¿ã‚¤ãƒ—
 		comment = ZknZukanGraverFontSetUpGraphicTypeUnknownOnly( p_drawglb, cp_glb, draw_type );
 		break;
 		
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MINOMUTTI:	// ƒ~ƒmƒ€‚Áƒ`•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MINOMUTTI:	// ãƒŸãƒãƒ ã£ãƒæç”»ã‚¿ã‚¤ãƒ—
 		comment = ZknZukanGraverFontSetUpGraphicTypeMinomutti( p_drawglb, cp_glb, draw_type );
 		break;
 
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MINOMESU:	// ƒ~ƒmƒƒX•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_MINOMESU:	// ãƒŸãƒãƒ¡ã‚¹æç”»ã‚¿ã‚¤ãƒ—
 		comment = ZknZukanGraverFontSetUpGraphicTypeMinomesu( p_drawglb, cp_glb, draw_type );
 		break;
 		
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SIIUSI:		// ƒV[ƒEƒV•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SIIUSI:		// ã‚·ãƒ¼ã‚¦ã‚·æç”»ã‚¿ã‚¤ãƒ—
 		comment = ZknZukanGraverFontSetUpGraphicTypeSiiusi( p_drawglb, cp_glb, draw_type );
 		break;
 
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SIIDORUGO:	// ƒV[ƒhƒ‹ƒS•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SIIDORUGO:	// ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´æç”»ã‚¿ã‚¤ãƒ—
 		comment = ZknZukanGraverFontSetUpGraphicTypeSiidorugo( p_drawglb, cp_glb, draw_type );
 		break;
 
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_UNKNOWN_POKE:		// ƒAƒ“ƒm[ƒ“•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_UNKNOWN_POKE:		// ã‚¢ãƒ³ãƒãƒ¼ãƒ³æç”»ã‚¿ã‚¤ãƒ—
 		comment = ZknZukanGraverFontSetUpGraphicTypeAnnoon( p_drawglb, cp_glb, draw_type );
 		break;
 
@@ -2633,15 +2633,15 @@ static int ZknZukanGraverFontGet(ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_Z
 		comment = ZknZukanGraverFontSetUpGraphicTypeDeokisisu( p_drawglb, cp_glb, draw_type );
 		break;
 
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SYEIMI_POKE:// ƒVƒFƒCƒ~•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_SYEIMI_POKE:// ã‚·ã‚§ã‚¤ãƒŸæç”»ã‚¿ã‚¤ãƒ—
 		comment = ZknZukanGraverFontSetUpGraphicTypeSheimi( p_drawglb, cp_glb, draw_type );
 		break;
 		
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_GIRATYINA_POKE:// ƒMƒ‰ƒeƒBƒi•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_GIRATYINA_POKE:// ã‚®ãƒ©ãƒ†ã‚£ãƒŠæç”»ã‚¿ã‚¤ãƒ—
 		comment = ZknZukanGraverFontSetUpGraphicTypeGiratyina( p_drawglb, cp_glb, draw_type );
 		break;
 		
-	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_ROTOM_POKE:// ƒƒgƒ€•`‰æƒ^ƒCƒv
+	case ZKN_ZUKANGRAVER_DRAW_TYPE_FLG_ROTOM_POKE:// ãƒ­ãƒˆãƒ æç”»ã‚¿ã‚¤ãƒ—
 		comment = ZknZukanGraverFontSetUpGraphicTypeRotom( p_drawglb, cp_glb, draw_type );
 		break;
 
@@ -2654,9 +2654,9 @@ static int ZknZukanGraverFontGet(ZKN_ZUKANGRAVER_DRAWGLB* p_drawglb, const ZKN_Z
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAM‚Ì”jŠü
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMã®ç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -2672,9 +2672,9 @@ static void ZknZukanGraverFontOamDelete( ZKN_ZUKANGRAVER_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒo[ƒWƒ‡ƒ“ƒAƒCƒRƒ“•`‰æƒAƒjƒ@ƒXƒ^[ƒg
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³æç”»ã‚¢ãƒ‹ãƒ¡ã€€ã‚¹ã‚¿ãƒ¼ãƒˆ
  *
- *	@param	p_draw	•`‰æƒ[ƒN 
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯ 
  *
  *	@return	none
  */
@@ -2689,7 +2689,7 @@ static void ZknZukanGraverIconDrawAnm_S( ZKN_ZUKANGRAVER_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒo[ƒVƒ‡ƒ“ƒAƒCƒRƒ“•`‰æONƒAƒjƒ@ƒƒCƒ“
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³æç”»ONã‚¢ãƒ‹ãƒ¡ã€€ãƒ¡ã‚¤ãƒ³
  *
  *	@param	p_draw 
  *

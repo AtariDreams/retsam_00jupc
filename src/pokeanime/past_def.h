@@ -1,41 +1,41 @@
 #ifndef __PAST_DEF_H__
 #define __PAST_DEF_H__
 
-//•K‚¸softsprite.h‚Ìenum‚É‡‚í‚¹‚é
-#define PARA_POS_X	(0)				// XÀ•W
-#define PARA_POS_Y	(1)				// YÀ•W
-#define PARA_ROT_CX	(10)			// ‰ñ“]XƒIƒtƒZƒbƒg
-#define PARA_AFF_X	(12)			// X•ûŒüŠg‘åk¬—¦
-#define PARA_AFF_Y	(13)			// Y•ûŒüŠg‘åk¬—¦
-#define PARA_ALPHA	(19)			//ƒAƒ‹ƒtƒ@
+//å¿…ãšsoftsprite.hã®enumã«åˆã‚ã›ã‚‹
+#define PARA_POS_X	(0)				// Xåº§æ¨™
+#define PARA_POS_Y	(1)				// Yåº§æ¨™
+#define PARA_ROT_CX	(10)			// å›žè»¢Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define PARA_AFF_X	(12)			// Xæ–¹å‘æ‹¡å¤§ç¸®å°çŽ‡
+#define PARA_AFF_Y	(13)			// Yæ–¹å‘æ‹¡å¤§ç¸®å°çŽ‡
+#define PARA_ALPHA	(19)			//ã‚¢ãƒ«ãƒ•ã‚¡
 /**
-	SS_PARA_POS_Y,			// YÀ•W
-	SS_PARA_POS_Z,			// ZÀ•W
-	SS_PARA_POS_OX,			// XÀ•WƒIƒtƒZƒbƒg
-	SS_PARA_POS_OY,			// YÀ•WƒIƒtƒZƒbƒg
-	SS_PARA_POS_OZ,			// ZÀ•WƒIƒtƒZƒbƒg
-	SS_PARA_VANISH,			// ƒoƒjƒbƒVƒ…ƒtƒ‰ƒOi0:•\Ž¦@1:”ñ•\Ž¦j
-	SS_PARA_ROT_X,			// X•ûŒü‰ñ“]Šp“x
-	SS_PARA_ROT_Y,			// Y•ûŒü‰ñ“]Šp“x
-	SS_PARA_ROT_Z,			// Z•ûŒü‰ñ“]Šp“x
-	SS_PARA_ROT_CX,			// ‰ñ“]’†SXÀ•WƒIƒtƒZƒbƒg
-	SS_PARA_ROT_CY,			// ‰ñ“]’†SYÀ•WƒIƒtƒZƒbƒg
-	SS_PARA_AFF_X,			// X•ûŒüŠg‘åk¬—¦
-	SS_PARA_AFF_Y,			// Y•ûŒüŠg‘åk¬—¦
-	SS_PARA_VISIBLE,		// ƒrƒWƒuƒ‹ƒ‚[ƒhƒtƒ‰ƒOi0:OFF@1:ONj
-	SS_PARA_OFS_POS_X,		// ƒeƒNƒXƒ`ƒƒ‰ÂŽ‹”ÍˆÍ¶ãXÀ•W
-	SS_PARA_OFS_POS_Y,		// ƒeƒNƒXƒ`ƒƒ‰ÂŽ‹”ÍˆÍ¶ãYÀ•W
-	SS_PARA_OFS_SIZE_X,		// ƒeƒNƒXƒ`ƒƒ‰ÂŽ‹”ÍˆÍXƒTƒCƒY
-	SS_PARA_OFS_SIZE_Y,		// ƒeƒNƒXƒ`ƒƒ‰ÂŽ‹”ÍˆÍYƒTƒCƒY
-	SS_PARA_ALPHA,			// Alpha’l
-	SS_PARA_PAL_FADE,		// ƒpƒŒƒbƒgƒtƒF[ƒhƒtƒ‰ƒO
-	SS_PARA_PAL_RGB,		// ƒpƒŒƒbƒgƒtƒF[ƒh RGB’l
-	SS_PARA_PAL_START_EVY,	// ƒpƒŒƒbƒgƒtƒF[ƒh START_EVY’l
-	SS_PARA_PAL_END_EVY,	// ƒpƒŒƒbƒgƒtƒF[ƒh END_EVY’l
-	SS_PARA_PAL_WAIT,		// ƒpƒŒƒbƒgƒtƒF[ƒh WAIT’l
-	SS_PARA_H_FLIP,			// ¶‰E”½“]ƒtƒ‰ƒO
-	SS_PARA_V_FLIP,			// ã‰º”½“]ƒtƒ‰ƒO
-	SS_PARA_DRAW_STOP,		// ‹­§•`‰æƒXƒgƒbƒv
+	SS_PARA_POS_Y,			// Yåº§æ¨™
+	SS_PARA_POS_Z,			// Zåº§æ¨™
+	SS_PARA_POS_OX,			// Xåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	SS_PARA_POS_OY,			// Yåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	SS_PARA_POS_OZ,			// Zåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	SS_PARA_VANISH,			// ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°ï¼ˆ0:è¡¨ç¤ºã€€1:éžè¡¨ç¤ºï¼‰
+	SS_PARA_ROT_X,			// Xæ–¹å‘å›žè»¢è§’åº¦
+	SS_PARA_ROT_Y,			// Yæ–¹å‘å›žè»¢è§’åº¦
+	SS_PARA_ROT_Z,			// Zæ–¹å‘å›žè»¢è§’åº¦
+	SS_PARA_ROT_CX,			// å›žè»¢ä¸­å¿ƒXåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	SS_PARA_ROT_CY,			// å›žè»¢ä¸­å¿ƒYåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	SS_PARA_AFF_X,			// Xæ–¹å‘æ‹¡å¤§ç¸®å°çŽ‡
+	SS_PARA_AFF_Y,			// Yæ–¹å‘æ‹¡å¤§ç¸®å°çŽ‡
+	SS_PARA_VISIBLE,		// ãƒ“ã‚¸ãƒ–ãƒ«ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ï¼ˆ0:OFFã€€1:ONï¼‰
+	SS_PARA_OFS_POS_X,		// ãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²å·¦ä¸ŠXåº§æ¨™
+	SS_PARA_OFS_POS_Y,		// ãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²å·¦ä¸ŠYåº§æ¨™
+	SS_PARA_OFS_SIZE_X,		// ãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²Xã‚µã‚¤ã‚º
+	SS_PARA_OFS_SIZE_Y,		// ãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²Yã‚µã‚¤ã‚º
+	SS_PARA_ALPHA,			// Alphaå€¤
+	SS_PARA_PAL_FADE,		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
+	SS_PARA_PAL_RGB,		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ RGBå€¤
+	SS_PARA_PAL_START_EVY,	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ START_EVYå€¤
+	SS_PARA_PAL_END_EVY,	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ END_EVYå€¤
+	SS_PARA_PAL_WAIT,		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ WAITå€¤
+	SS_PARA_H_FLIP,			// å·¦å³åè»¢ãƒ•ãƒ©ã‚°
+	SS_PARA_V_FLIP,			// ä¸Šä¸‹åè»¢ãƒ•ãƒ©ã‚°
+	SS_PARA_DRAW_STOP,		// å¼·åˆ¶æç”»ã‚¹ãƒˆãƒƒãƒ—
 
 	SS_PARA_END
 */

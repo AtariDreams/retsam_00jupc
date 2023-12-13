@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_094.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			094@Ÿ‚Ìƒ^[ƒ“‚ÌUŒ‚‚ğ•K‚¸–½’†‚³‚¹‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			094ã€€æ¬¡ã®ã‚¿ãƒ¼ãƒ³ã®æ”»æ’ƒã‚’å¿…ãšå‘½ä¸­ã•ã›ã‚‹
  *
  *@author	HisashiSogabe
  *@data		2006.01.23

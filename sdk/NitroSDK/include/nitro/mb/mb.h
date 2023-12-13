@@ -28,10 +28,10 @@
   add MB_SetPowerSaveMode().
 
   Revision 1.8  2005/03/14 07:09:33  sato_masaki
-  MB_GetGameEntryBitmap()�֐���ǉ��B
+  MB_GetGameEntryBitmap()関数を追加。
 
   Revision 1.7  2005/03/01 01:57:00  yosizaki
-  copyright �̔N���C��.
+  copyright の年を修正.
 
   Revision 1.6  2005/02/28 05:26:24  yosizaki
   do-indent.
@@ -40,20 +40,20 @@
   rename MB_StartParentEx/MB_EndEx..
 
   Revision 1.4  2004/11/22 12:58:17  takano_makoto
-  �R�����g�ǉ�
+  コメント追加
 
   Revision 1.3  2004/11/18 07:34:05  takano_makoto
-  MB_SetParentCommSize, MB_SetParentCommParam�Ŏq�@���M�T�C�Y�̐ݒ������p�~
+  MB_SetParentCommSize, MB_SetParentCommParamで子機送信サイズの設定引数を廃止
 
   Revision 1.2  2004/11/11 11:54:44  yosizaki
   add MB_SEGMENT_BUFFER_MIN.
   increase MB_SYSTEM_BUF_SIZE for task-system. (+0x1000)
 
   Revision 1.1  2004/11/10 13:12:47  takano_makoto
-  �t�@�C���̈ʒu���ړ�
+  ファイルの位置を移動
 
   Revision 1.54  2004/10/26 08:10:34  takano_makoto
-  MB_DisconnectChild��ǉ�
+  MB_DisconnectChildを追加
 
   Revision 1.53  2004/10/18 11:46:12  yosizaki
   add MB_StartParentEx, MB_EndEx.
@@ -62,22 +62,22 @@
   export some MB_COMM_P_* range consts.
 
   Revision 1.51  2004/10/04 13:40:25  terui
-  �Q�[���O���[�vID��u32�^�ɓ���B
+  ゲームグループIDをu32型に統一。
 
   Revision 1.50  2004/10/01 07:39:11  sato_masaki
-  MB_COMM_PSTATE_WAIT_TO_SEND �X�e�[�g��ǉ��B
+  MB_COMM_PSTATE_WAIT_TO_SEND ステートを追加。
 
   Revision 1.49  2004/09/22 12:17:56  sato_masaki
   add function MB_SetParentCommParam()
 
   Revision 1.48  2004/09/21 01:39:31  sato_masaki
-  WM�ɋN������G���[���AMB_ERRCODE_WM_FAILURE�ɓ���BMB_ERRCODE_MP_SENT_FAILURE��p�~�B
+  WMに起因するエラーを、MB_ERRCODE_WM_FAILUREに統一。MB_ERRCODE_MP_SENT_FAILUREを廃止。
 
   Revision 1.47  2004/09/20 13:16:07  sato_masaki
-  - MB_MAX_FILE��16�ɕύX
-  - MB_ERROR��`���폜
-  - MBErrorStatus�\���̂�level�����o���폜(�G���[���x���̔p�~)
-  - �G���[�̒�`��MBError�񋓎q����AMBErrCode�񋓎q�Ɉڍs�B
+  - MB_MAX_FILEを16に変更
+  - MB_ERROR定義を削除
+  - MBErrorStatus構造体のlevelメンバを削除(エラーレベルの廃止)
+  - エラーの定義をMBError列挙子から、MBErrCode列挙子に移行。
 
   Revision 1.46  2004/09/17 05:08:10  sato_masaki
   small fix
@@ -86,141 +86,141 @@
   add function MB_ReadMultiBootParentBssDesc()
 
   Revision 1.44  2004/09/16 12:46:56  sato_masaki
-  MBi_***�Œ�`���Ă����֐����AMB_***�ɕύX�B
+  MBi_***で定義していた関数を、MB_***に変更。
 
   Revision 1.43  2004/09/15 06:27:34  sato_masaki
   add function MBi_SetParentCommSize, MBi_GetTgid
 
   Revision 1.42  2004/09/15 05:08:20  miya
-  �G���[�R�[�h�ǉ�
+  エラーコード追加
 
   Revision 1.41  2004/09/14 14:23:19  yosiokat
-  �Emb_gameinfo.c���ł����g��Ȃ��萔��`��mb_gameinfo.c�Ɉړ��B
+  ・mb_gameinfo.c内でしか使わない定数定義をmb_gameinfo.cに移動。
 
   Revision 1.40  2004/09/14 13:20:13  sato_masaki
-  ���N�G�X�g�f�[�^��f�Љ����đ���悤�ɕύX�B
+  リクエストデータを断片化して送るように変更。
 
   Revision 1.39  2004/09/14 06:06:24  sato_masaki
-  MB_CommBootRequest**, MB_CommStartSending**���C�����C�����B
+  MB_CommBootRequest**, MB_CommStartSending**をインライン化。
 
   Revision 1.38  2004/09/13 13:03:32  yosiokat
-  �EMB_GAME_NAME_LENGTH��"48"�ɕύX�B
-  �EMB_GAME_INTRO_LENGTH��"96"�ɕύX�B
+  ・MB_GAME_NAME_LENGTHを"48"に変更。
+  ・MB_GAME_INTRO_LENGTHを"96"に変更。
 
   Revision 1.37  2004/09/13 08:18:54  sato_masaki
   - add MB_COMM_PSTATE_ERROR to MBCommPState
   - add MBiErrorStatus, MBiError
 
   Revision 1.36  2004/09/13 03:01:14  sato_masaki
-  MBi_Init()��ǉ��B(���d�l�Ƃ̌݊��̂���)
-  MB_GetParentSystemBufSize �� MBi_GetParentSystemBufSize �ɕύX�B
+  MBi_Init()を追加。(旧仕様との互換のため)
+  MB_GetParentSystemBufSize を MBi_GetParentSystemBufSize に変更。
 
   Revision 1.35  2004/09/11 11:23:57  sato_masaki
-  - MB_SYSTEM_BUF_SIZE �l�ύX
-  - MBCommResponseRequestType�^�Ƀ����o�ǉ��B
-  - MB_GetParentSystemBufSize()�ǉ��B
+  - MB_SYSTEM_BUF_SIZE 値変更
+  - MBCommResponseRequestType型にメンバ追加。
+  - MB_GetParentSystemBufSize()追加。
 
   Revision 1.34  2004/09/10 07:40:51  yosizaki
   add MBCommRequestData.
 
   Revision 1.33  2004/09/10 06:30:29  sato_masaki
-  comment�ǉ��B
+  comment追加。
 
   Revision 1.32  2004/09/10 02:42:10  sato_masaki
-  MBUserInfo�\���̂�playerNo�Ɋւ���ԍ���`��ύX�B
-  (��:�e15�A�q0-14 �� �V:�e0�A�q1-15)
+  MBUserInfo構造体のplayerNoに関する番号定義を変更。
+  (旧:親15、子0-14 → 新:親0、子1-15)
 
   Revision 1.31  2004/09/08 04:39:54  sato_masaki
-  comment�C���B
+  comment修正。
 
   Revision 1.30  2004/09/08 04:39:13  sato_masaki
-  MB_CommBootRequestAll()�֐���ǉ��B�ύX�O��MB_CommBootRequest()�ƌ݊��̋@�\�����֐��ł��B
+  MB_CommBootRequestAll()関数を追加。変更前のMB_CommBootRequest()と互換の機能を持つ関数です。
 
   Revision 1.29  2004/09/07 11:56:05  sato_masaki
-  - MB_CommBootRequest()��AID�w��̊֐��ɕύX�B
-  - MB_COMM_PSTATE_CANCEL��MB_COMM_PSTATE_END�ɖ��̕ύX�B
-    MB���C�u�����̏I���R�[���o�b�N�́AMB_COMM_PSTATE_END�݂̂Ƃ���B
+  - MB_CommBootRequest()をAID指定の関数に変更。
+  - MB_COMM_PSTATE_CANCELをMB_COMM_PSTATE_ENDに名称変更。
+    MBライブラリの終了コールバックは、MB_COMM_PSTATE_ENDのみとする。
 
   Revision 1.28  2004/09/07 04:41:14  sato_masaki
-  MBCommPState�񋓎q��MB_COMM_PSTATE_WM_EVENT��ǉ��B
+  MBCommPState列挙子にMB_COMM_PSTATE_WM_EVENTを追加。
 
   Revision 1.27  2004/09/06 12:26:43  sato_masaki
-  comment�C��
+  comment修正
 
   Revision 1.26  2004/09/06 12:02:33  sato_masaki
-  MB_Init()�֐��̈����ɁAtgid��ǉ��B
+  MB_Init()関数の引数に、tgidを追加。
 
   Revision 1.25  2004/09/04 09:51:35  sato_masaki
-  �L�q�C���B�q�@API����ь^�Ɋւ����`���c���Ă������߁A�폜����B
+  記述修正。子機APIおよび型に関する定義が残っていたため、削除する。
 
   Revision 1.24  2004/09/04 06:46:49  sato_masaki
-  ������ߎ��̃R�[���o�b�N�X�e�[�g(MB_COMM_*STATE_MEMBER_FULL)��݂���B
+  定員超過時のコールバックステート(MB_COMM_*STATE_MEMBER_FULL)を設ける。
 
   Revision 1.23  2004/09/03 07:11:15  sato_masaki
-  �q�@����pAPI�L�q���폜�B
+  子機制御用API記述を削除。
 
   Revision 1.22  2004/09/02 11:55:58  sato_masaki
-  MB_CommStartSending()�Ɏq�@AID�������Ƃ��Ēǉ��B
-  �G���g���[���Ă����q�@�Ɉꊇ���đ��M����ꍇ�́AMB_CommStartSendingAll()
-  ���g�p����悤�ɕύX�B
+  MB_CommStartSending()に子機AIDを引数として追加。
+  エントリーしてきた子機に一括して送信する場合は、MB_CommStartSendingAll()
+  を使用するように変更。
 
   Revision 1.21  2004/09/02 09:59:44  sato_masaki
-  MB_DeleteFile()��MB_UnregisterFile()�ɖ��O�ύX�B
+  MB_DeleteFile()をMB_UnregisterFile()に名前変更。
 
   Revision 1.20  2004/09/02 09:45:56  sato_masaki
-  �t�@�C���o�^�폜�̊֐��AMB_DeleteFile()��ǉ��B
+  ファイル登録削除の関数、MB_DeleteFile()を追加。
 
   Revision 1.19  2004/08/27 04:04:43  sato_masaki
-  MBCommCState��MB_COMM_CSTATE_AUTHENTICATION_FAILED�ǉ��B
+  MBCommCStateにMB_COMM_CSTATE_AUTHENTICATION_FAILED追加。
 
   Revision 1.18  2004/08/26 09:59:54  sato_masaki
-  MB_COMM_PSTATE_REQUESTED��ǉ��B
-  MB_CommResponseRequest�֐���ǉ��B
+  MB_COMM_PSTATE_REQUESTEDを追加。
+  MB_CommResponseRequest関数を追加。
 
   Revision 1.17  2004/08/25 03:15:18  sato_masaki
-  MB_CommStartSending�֐���ǉ��B
+  MB_CommStartSending関数を追加。
 
   Revision 1.16  2004/08/19 14:54:44  yosiokat
-  MB_BEACON_FIXED_DATA_SIZE���\���̂̕ύX�ɍ��킹�ďC���B
+  MB_BEACON_FIXED_DATA_SIZEを構造体の変更に合わせて修正。
 
   Revision 1.15  2004/08/19 07:42:26  sato_masaki
-  MB_ROM_HEADER_ADDRESS�̒�`��HW_ROM_HEADER_BUF�ɕύX
+  MB_ROM_HEADER_ADDRESSの定義をHW_ROM_HEADER_BUFに変更
 
   Revision 1.14  2004/08/19 02:42:14  yosizaki
   change type of MBUserInfo.
 
   Revision 1.13  2004/08/16 13:08:02  sato_masaki
-  RomHeader�i�[�A�h���X�AMB_ROM_HEADER_ADDRESS��ǉ�
+  RomHeader格納アドレス、MB_ROM_HEADER_ADDRESSを追加
 
   Revision 1.12  2004/08/14 12:19:56  sato_masaki
-  MBParentBssDesc����AgameInfoLength�����o���폜
+  MBParentBssDescから、gameInfoLengthメンバを削除
 
   Revision 1.11  2004/08/13 13:16:10  sato_masaki
-  MB_COMM_PSTATE_DISCONNECTED��ǉ�
+  MB_COMM_PSTATE_DISCONNECTEDを追加
 
   Revision 1.10  2004/08/12 12:05:18  sato_masaki
-  MBCommCState�̕��я��ύX
+  MBCommCStateの並び順変更
 
   Revision 1.9  2004/08/12 09:56:28  yosiokat
-  MBGameRegistry�̃A�C�R���f�[�^�w����t�@�C���p�X�ւ̃|�C���^�ɕύX�B
+  MBGameRegistryのアイコンデータ指定をファイルパスへのポインタに変更。
 
   Revision 1.8  2004/08/12 09:14:11  yosiokat
-  �EMB_SCAN_LOCK_SEC�̒ǉ��B
-  �EMBCommCState��MB_COMM_CSTATE_CONNECT_FAILED��MB_COMM_CSTATE_DISCONNECTED_BY_PARENT��ǉ��B
-  �E�����g�p�֐�MB_DeleteRecvGameInfo�̒ǉ��B
+  ・MB_SCAN_LOCK_SECの追加。
+  ・MBCommCStateにMB_COMM_CSTATE_CONNECT_FAILEDとMB_COMM_CSTATE_DISCONNECTED_BY_PARENTを追加。
+  ・内部使用関数MB_DeleteRecvGameInfoの追加。
 
   Revision 1.7  2004/08/12 09:11:11  yosiokat
-  �EMB_BSSDESC_SIZE��`��sizeof(MBParentBssDesc)�ɕύX�B
-  �EMB_BSSDESC_ADDRESS�̒�`��0x023fe800�ɕύX�B
+  ・MB_BSSDESC_SIZE定義をsizeof(MBParentBssDesc)に変更。
+  ・MB_BSSDESC_ADDRESSの定義を0x023fe800に変更。
 
   Revision 1.6  2004/08/10 12:07:55  sato_masaki
-  �e�@�A�q�@�X�e�[�g��`�̕ύX�A����сAMB_CommBootRequest, MB_CommIsBootable�֐��̒ǉ��B
+  親機、子機ステート定義の変更、および、MB_CommBootRequest, MB_CommIsBootable関数の追加。
 
   Revision 1.5  2004/08/09 14:56:09  yosizaki
   format all the symbol for API
 
   Revision 1.4  2004/08/09 07:08:49  sato_masaki
-  ��` MB_BSSDESC_ADDRESS �̒l��ύX
+  定義 MB_BSSDESC_ADDRESS の値を変更
 
   Revision 1.3  2004/08/08 23:42:14  yosizaki
   change some names.
@@ -250,60 +250,60 @@ extern "C" {
 
 /* ---------------------------------------------------------------------
 
-        �萔
+        定数
 
    ---------------------------------------------------------------------*/
 
 #define MB_MAX_CHILD                    WM_NUM_MAX_CHILD
 
-/* �t�@�C�����̕����� */
+/* ファイル名の文字数 */
 #define MB_FILENAME_SIZE_MAX            (10)
 
-/* �e�@�̃t�@�C���ő吔 */
+/* 親機のファイル最大数 */
 #define MB_MAX_FILE                     (16)
 
-/* �}���`�u�[�g���[�N�̃T�C�Y */
+/* マルチブートワークのサイズ */
 #define MB_SYSTEM_BUF_SIZE              (0xC000)
 
-/* �e�@�̒ʐM�T�C�Y�̐ݒ�\�͈� */
+/* 親機の通信サイズの設定可能範囲 */
 #define MB_COMM_PARENT_SEND_MIN         256
 #define MB_COMM_PARENT_SEND_MAX         510
 
 #define MB_COMM_PARENT_RECV_MIN         8
 #define MB_COMM_PARENT_RECV_MAX         16
 
-/* MB_ReadSegment() �ɕK�v�ȃo�b�t�@�T�C�Y�̍ŏ��l */
+/* MB_ReadSegment() に必要なバッファサイズの最小値 */
 #define MB_SEGMENT_BUFFER_MIN           0x10000
 
-/* MB API ���ʌ^ */
-#define MB_SUCCESS                      MB_ERRCODE_SUCCESS      // ���݊�
+/* MB API 結果型 */
+#define MB_SUCCESS                      MB_ERRCODE_SUCCESS      // 旧互換
 
-/* MB_Init() �ɑ΂��� TGID �������Őݒ肷��悤�w�肷���`�l */
+/* MB_Init() に対して TGID を自動で設定するよう指定する定義値 */
 #define	MB_TGID_AUTO	0x10000
 
 /*
- * �}���`�u�[�g�p�e�@�Q�[�����
+ * マルチブート用親機ゲーム情報
  */
 
-#define MB_ICON_COLOR_NUM               16      // �A�C�R���F��
-#define MB_ICON_PALETTE_SIZE            (MB_ICON_COLOR_NUM * 2) // �A�C�R���f�[�^�T�C�Y (16bit�J���[�~�F��)
-#define MB_ICON_DATA_SIZE               512     // �A�C�R���f�[�^�T�C�Y (32�~32dot 16�F)
-#define MB_GAME_NAME_LENGTH             48      // �Q�[���l�[����       (2byte�P��)         ���ő�ō��L�������ł��A����185�h�b�g�ȓ��Ɏ��܂�͈͂Ŏw��B
-#define MB_GAME_INTRO_LENGTH            96      // �Q�[��������         (2byte�P��)         ���ő�ō��L�������ł��A����199�h�b�g�~2�Ɏ��܂�͈͂Ŏw��B
-#define MB_USER_NAME_LENGTH             10      // ���[�U�[�l�[����     (2byte�P��)
-#define MB_MEMBER_MAX_NUM               15      // �ʐM�����o�[�ő吔
-#define MB_FILE_NO_MAX_NUM              64      // MbGameInfo.fileNo�̓r�[�R���ɏ悹�鎞��6bit�ɂȂ�̂ŁA�ő��64��
-#define MB_GAME_INFO_RECV_LIST_NUM      16      // �q�@���ł̃Q�[������M���X�g��
+#define MB_ICON_COLOR_NUM               16      // アイコン色数
+#define MB_ICON_PALETTE_SIZE            (MB_ICON_COLOR_NUM * 2) // アイコンデータサイズ (16bitカラー×色数)
+#define MB_ICON_DATA_SIZE               512     // アイコンデータサイズ (32×32dot 16色)
+#define MB_GAME_NAME_LENGTH             48      // ゲームネーム長       (2byte単位)         ※最大で左記文字数でかつ、横幅185ドット以内に収まる範囲で指定。
+#define MB_GAME_INTRO_LENGTH            96      // ゲーム説明長         (2byte単位)         ※最大で左記文字数でかつ、横幅199ドット×2に収まる範囲で指定。
+#define MB_USER_NAME_LENGTH             10      // ユーザーネーム長     (2byte単位)
+#define MB_MEMBER_MAX_NUM               15      // 通信メンバー最大数
+#define MB_FILE_NO_MAX_NUM              64      // MbGameInfo.fileNoはビーコンに乗せる時に6bitになるので、最大は64個
+#define MB_GAME_INFO_RECV_LIST_NUM      16      // 子機側でのゲーム情報受信リスト個数
 
-/* �u�[�g�^�C�v */
-#define MB_TYPE_ILLEGAL                 0       /* �s���ȏ�� */
-#define MB_TYPE_NORMAL                  1       /* ROM ����N�� */
-#define MB_TYPE_MULTIBOOT               2       /* �}���`�u�[�g�q�@ */
+/* ブートタイプ */
+#define MB_TYPE_ILLEGAL                 0       /* 不正な状態 */
+#define MB_TYPE_NORMAL                  1       /* ROM から起動 */
+#define MB_TYPE_MULTIBOOT               2       /* マルチブート子機 */
 
 #define MB_BSSDESC_SIZE                 (sizeof(MBParentBssDesc))
 #define MB_DOWNLOAD_PARAMETER_SIZE      HW_DOWNLOAD_PARAMETER_SIZE
 
-/* �e�@�_�E�����[�h�̏�� */
+/* 親機ダウンロードの状態 */
 typedef enum
 {
     MB_COMM_PSTATE_NONE,
@@ -322,25 +322,25 @@ typedef enum
     MB_COMM_PSTATE_ERROR,
     MB_COMM_PSTATE_WAIT_TO_SEND,
 
-    /*  �����g�p�̗񋓒l�ł��B
-       ���̒l�̏�Ԃɂ͑J�ڂ��܂���B */
+    /*  内部使用の列挙値です。
+       この値の状態には遷移しません。 */
     MB_COMM_PSTATE_WM_EVENT = 0x80000000
 }
 MBCommPState;
 
 
-/* �q�@����̐ڑ����N�G�X�g�ɑ΂��鉞�� */
+/* 子機からの接続リクエストに対する応答 */
 typedef enum
 {
-    MB_COMM_RESPONSE_REQUEST_KICK,     /* �q�@����̃G���g���[�v�������ۂ���D */
-    MB_COMM_RESPONSE_REQUEST_ACCEPT,   /* �q�@����̃G���g���[�v�����󂯓����D */
-    MB_COMM_RESPONSE_REQUEST_DOWNLOAD, /* �q�@�փ_�E�����[�h�J�n��ʒm����D */
-    MB_COMM_RESPONSE_REQUEST_BOOT      /* �q�@�փu�[�g�J�n��ʒm����D */
+    MB_COMM_RESPONSE_REQUEST_KICK,     /* 子機からのエントリー要求を拒否する． */
+    MB_COMM_RESPONSE_REQUEST_ACCEPT,   /* 子機からのエントリー要求を受け入れる． */
+    MB_COMM_RESPONSE_REQUEST_DOWNLOAD, /* 子機へダウンロード開始を通知する． */
+    MB_COMM_RESPONSE_REQUEST_BOOT      /* 子機へブート開始を通知する． */
 }
 MBCommResponseRequestType;
 
 
-/*  �e�@�C�x���g�ʒm�R�[���o�b�N�^ */
+/*  親機イベント通知コールバック型 */
 typedef void (*MBCommPStateCallback) (u16 child_aid, u32 status, void *arg);
 
 
@@ -352,23 +352,23 @@ MBErrorStatus;
 
 typedef enum
 {
-    /* �����������l */
+    /* 成功を示す値 */
     MB_ERRCODE_SUCCESS = 0,
 
-    MB_ERRCODE_INVALID_PARAM,          /* �����G���[ */
-    MB_ERRCODE_INVALID_STATE,          /* �Ăяo����Ԃ̏����s���� */
+    MB_ERRCODE_INVALID_PARAM,          /* 引数エラー */
+    MB_ERRCODE_INVALID_STATE,          /* 呼び出し状態の条件不整合 */
 
-    /* �ȉ��̃G���[�͎q�@��p�D */
-    MB_ERRCODE_INVALID_DLFILEINFO,     /* �_�E�����[�h��񂪕s�� */
-    MB_ERRCODE_INVALID_BLOCK_NO,       /* ��M�����u���b�N�ԍ����s�� */
-    MB_ERRCODE_INVALID_BLOCK_NUM,      /* ��M�t�@�C���̃u���b�N�����s�� */
-    MB_ERRCODE_INVALID_FILE,           /* �v�����Ă��Ȃ��t�@�C���̃u���b�N����M���� */
-    MB_ERRCODE_INVALID_RECV_ADDR,      /* ��M�A�h���X���s�� */
+    /* 以下のエラーは子機専用． */
+    MB_ERRCODE_INVALID_DLFILEINFO,     /* ダウンロード情報が不正 */
+    MB_ERRCODE_INVALID_BLOCK_NO,       /* 受信したブロック番号が不正 */
+    MB_ERRCODE_INVALID_BLOCK_NUM,      /* 受信ファイルのブロック数が不正 */
+    MB_ERRCODE_INVALID_FILE,           /* 要求していないファイルのブロックを受信した */
+    MB_ERRCODE_INVALID_RECV_ADDR,      /* 受信アドレスが不正 */
 
-    /* �ȉ��̃G���[��WM�̃G���[�ɋN���D */
-    MB_ERRCODE_WM_FAILURE,             /* WM �̃R�[���o�b�N�ɂ�����G���[ */
+    /* 以下のエラーはWMのエラーに起因． */
+    MB_ERRCODE_WM_FAILURE,             /* WM のコールバックにおけるエラー */
 
-    /** �ȍ~�͒ʐM�p���s�Ȃ��� (WM �̍ď��������K�v) **/
+    /** 以降は通信継続不可なもの (WM の再初期化が必要) **/
     MB_ERRCODE_FATAL,
 
     MB_ERRCODE_MAX
@@ -377,70 +377,70 @@ MBErrCode;
 
 /* ---------------------------------------------------------------------
 
-        �\����
+        構造体
 
    ---------------------------------------------------------------------*/
 
 /*
- * �}���`�u�[�g�Q�[���o�^���\����.
+ * マルチブートゲーム登録情報構造体.
  */
 typedef struct
 {
-    /* �v���O�����o�C�i���̃t�@�C���p�X */
+    /* プログラムバイナリのファイルパス */
     const char *romFilePathp;
-    /* �Q�[�����̕�������w���|�C���^ */
+    /* ゲーム名の文字列を指すポインタ */
     u16    *gameNamep;
-    /* �Q�[�����e�̐�������������w���|�C���^ */
+    /* ゲーム内容の説明文文字列を指すポインタ */
     u16    *gameIntroductionp;
-    /* �A�C�R���L�����f�[�^�̃t�@�C���p�X */
+    /* アイコンキャラデータのファイルパス */
     const char *iconCharPathp;
-    /* �A�C�R���p���b�g�f�[�^�̃t�@�C���p�X */
+    /* アイコンパレットデータのファイルパス */
     const char *iconPalettePathp;
-    /* �Q�[���O���[�vID */
+    /* ゲームグループID */
     u32     ggid;
-    /* �ő�v���C�l�� */
+    /* 最大プレイ人数 */
     u8      maxPlayerNum;
     u8      pad[3];
-    /* ���[�U��`�̊g���p�����[�^ (32BYTE) */
+    /* ユーザ定義の拡張パラメータ (32BYTE) */
     u8      userParam[MB_DOWNLOAD_PARAMETER_SIZE];
 }
 MBGameRegistry;
 
 
 /*
- * �A�C�R���f�[�^�\����.
- * �A�C�R���� 16�F�p���b�g + 32dot * 32dot.
+ * アイコンデータ構造体.
+ * アイコンは 16色パレット + 32dot * 32dot.
  */
 typedef struct
 {
-    /* �p���b�g�f�[�^ (32 BYTE) */
+    /* パレットデータ (32 BYTE) */
     u16     palette[MB_ICON_COLOR_NUM];
     u16     data[MB_ICON_DATA_SIZE / 2];
-    /* �L�����N�^�f�[�^ (512 BUYTE) */
+    /* キャラクタデータ (512 BUYTE) */
 }
 MBIconInfo;                            /* 544byte */
 
 
 /*
- * ���[�U�[���\����.
+ * ユーザー情報構造体.
  */
 typedef struct
 {
-    /* �D���ȐF�f�[�^ (�F�Z�b�g�ԍ�) */
+    /* 好きな色データ (色セット番号) */
     u8      favoriteColor:4;
-    /* �v���C���[�ԍ��i�e�@��No.0�A�q�@��No.1-15�j */
+    /* プレイヤー番号（親機はNo.0、子機はNo.1-15） */
     u8      playerNo:4;
-    /* �j�b�N�l�[���� */
+    /* ニックネーム長 */
     u8      nameLength;
-    /* �j�b�N�l�[�� */
+    /* ニックネーム */
     u16     name[MB_USER_NAME_LENGTH];
 }
 MBUserInfo;                            /* 22byte */
 
 
 /*
- * �}���`�u�[�g�e�@���.
- * (WMbssDesc����gameInfo[128]������������)
+ * マルチブート親機情報.
+ * (WMbssDescからgameInfo[128]を除いたもの)
  */
 typedef struct
 {
@@ -465,7 +465,7 @@ typedef struct
 MBParentBssDesc;
 
 
-/* �}���`�u�[�g�q�@�ɂƂ��Ă̐e�@����ێ�����\���� */
+/* マルチブート子機にとっての親機情報を保持する構造体 */
 typedef struct
 {
     u16     boot_type;
@@ -474,53 +474,53 @@ typedef struct
 MBParam;
 
 
-/* �q�@����̃G���g���[���N�G�X�g���Ɏ�M����f�[�^�^ */
+/* 子機からのエントリーリクエスト時に受信するデータ型 */
 typedef struct
 {
     u32     ggid;                      //  4B
     MBUserInfo userinfo;               // 22B
     u16     version;                   //  2B
     u8      fileid;                    //  1B
-    u8      pad[3];                    // �v 29B
+    u8      pad[3];                    // 計 29B
 }
 MBCommRequestData;
 
 
 /* ---------------------------------------------------------------------
 
-        �}���`�u�[�g���C�u����(MB)API - �e�@�p
+        マルチブートライブラリ(MB)API - 親機用
 
    ---------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
   Name:         MB_Init
 
-  Description:  MB ���C�u����������
+  Description:  MB ライブラリ初期化
 
-  Arguments:    work   - MB�̓�����ԊǗ��̂��߂Ɋ��蓖�Ă郁�����ւ̃|�C���^
-                         ���̃T�C�Y�� MB_SYSTEM_BUF_SIZE �o�C�g�ȏ�ł���K�v
-                         ������܂��B�܂��A���I�m�ۂ��s���ꍇ�A
-                         MB_GetParentSystemBufSize�֐��ɂāA�T�C�Y���擾���邱�Ƃ�
-                         �ł��܂��B
-                         ���蓖�Ă���������MB_End�֐����ĂԂ܂œ����Ŏg�p����
-                         �܂��B
+  Arguments:    work   - MBの内部状態管理のために割り当てるメモリへのポインタ
+                         このサイズは MB_SYSTEM_BUF_SIZE バイト以上である必要
+                         があります。また、動的確保を行う場合、
+                         MB_GetParentSystemBufSize関数にて、サイズを取得することも
+                         できます。
+                         割り当てたメモリはMB_End関数を呼ぶまで内部で使用され
+                         ます。
 
-                user   - ���[�U�f�[�^���i�[���ꂽ�\���̂̃|�C���^
-                         ���̃|�C���^���w�����e��MB_Init�֐��̒��ł̂ݎQ�Ƃ���
-                         �܂��B
+                user   - ユーザデータが格納された構造体のポインタ
+                         このポインタが指す内容はMB_Init関数の中でのみ参照され
+                         ます。
 
-                ggid   - GGID���w�肵�܂��B
+                ggid   - GGIDを指定します。
 
-                tgid   - TGID�̒l (�l��WM�̃K�C�h���C���ɑ��������ߕ��Ő�������
-                         ���̂��g�p���Ă��������B)
-                         MB_TGID_AUTO ���w�肷��ƁA�����Ŏ����I�ɓK�؂Ȓl��
-                         �ݒ肳��܂��B
+                tgid   - TGIDの値 (値はWMのガイドラインに則った決め方で生成した
+                         ものを使用してください。)
+                         MB_TGID_AUTO を指定すると、内部で自動的に適切な値が
+                         設定されます。
 
-                dma    - MB�̓��������̂��߂Ɋ��蓖�Ă�DMA�`�����l��
-                         ����DMA�`�����l����MB_End�֐����ĂԂ܂œ����Ŏg�p����
-                         �܂��B 
+                dma    - MBの内部処理のために割り当てるDMAチャンネル
+                         このDMAチャンネルはMB_End関数を呼ぶまで内部で使用され
+                         ます。 
   
-  Returns:      ����������������������� MB_SUCCESS ��Ԃ��܂��B
+  Returns:      初期化が正しく完了すれば MB_SUCCESS を返します。
  *---------------------------------------------------------------------------*/
 
 int     MB_Init(void *work, const MBUserInfo *user, u32 ggid, u32 tgid, u32 dma);
@@ -529,11 +529,11 @@ int     MB_Init(void *work, const MBUserInfo *user, u32 ggid, u32 tgid, u32 dma)
 /*---------------------------------------------------------------------------*
   Name:         MB_GetParentSystemBufSize
 
-  Description:  MB�Ŏg�p���郏�[�N�������̃T�C�Y���擾
+  Description:  MBで使用するワークメモリのサイズを取得
 
   Arguments:    None.
   
-  Returns:      MB�Ŏg�p���郏�[�N�������̃T�C�Y
+  Returns:      MBで使用するワークメモリのサイズ
  *---------------------------------------------------------------------------*/
 int     MB_GetParentSystemBufSize(void);
 
@@ -541,14 +541,14 @@ int     MB_GetParentSystemBufSize(void);
 /*---------------------------------------------------------------------------*
   Name:         MB_SetParentCommSize
 
-  Description:  MB �ʐM�Ɏg�p����e�@�̒ʐM�f�[�^�T�C�Y���Z�b�g�B
-                MB_Init �����s���A MB_StartParent ���R�[������O�̃^�C�~���O��
-                �g�p���Ă��������B�ʐM�J�n��́A�o�b�t�@�T�C�Y�̕ύX�͂ł��܂���B
+  Description:  MB 通信に使用する親機の通信データサイズをセット。
+                MB_Init を実行し、 MB_StartParent をコールする前のタイミングで
+                使用してください。通信開始後は、バッファサイズの変更はできません。
 
-  Arguments:    sendSize - �e�@����e�q�@�ɑ���A���M�f�[�^�T�C�Y
+  Arguments:    sendSize - 親機から各子機に送る、送信データサイズ
   
-  Returns:      ����M�f�[�^�T�C�Y�̕ύX�����������TRUE�A�����łȂ��ꍇ��
-                FALSE��Ԃ��܂��D
+  Returns:      送受信データサイズの変更が成功すればTRUE、そうでない場合は
+                FALSEを返します．
  *---------------------------------------------------------------------------*/
 
 BOOL    MB_SetParentCommSize(u16 sendSize);
@@ -556,15 +556,15 @@ BOOL    MB_SetParentCommSize(u16 sendSize);
 /*---------------------------------------------------------------------------*
   Name:         MB_SetParentCommParam
 
-  Description:  MB �ʐM�Ɏg�p����e�@�̒ʐM�f�[�^�T�C�Y�A�ő�q�@�ڑ������Z�b�g�B
-                MB_Init �����s���A MB_StartParent ���R�[������O�̃^�C�~���O��
-                �g�p���Ă��������B�ʐM�J�n��́A�o�b�t�@�T�C�Y�̕ύX�͂ł��܂���B
+  Description:  MB 通信に使用する親機の通信データサイズ、最大子機接続数をセット。
+                MB_Init を実行し、 MB_StartParent をコールする前のタイミングで
+                使用してください。通信開始後は、バッファサイズの変更はできません。
 
-  Arguments:    sendSize    - �e�@����e�q�@�ɑ���A���M�f�[�^�T�C�Y
-                maxChildren - �ő�q�@�ڑ���
+  Arguments:    sendSize    - 親機から各子機に送る、送信データサイズ
+                maxChildren - 最大子機接続数
   
-  Returns:      ����M�f�[�^�T�C�Y�̕ύX�����������TRUE�A�����łȂ��ꍇ��
-                FALSE��Ԃ��܂��D
+  Returns:      送受信データサイズの変更が成功すればTRUE、そうでない場合は
+                FALSEを返します．
  *---------------------------------------------------------------------------*/
 
 BOOL    MB_SetParentCommParam(u16 sendSize, u16 maxChildren);
@@ -572,11 +572,11 @@ BOOL    MB_SetParentCommParam(u16 sendSize, u16 maxChildren);
 /*---------------------------------------------------------------------------*
   Name:         MB_GetTgid
 
-  Description:  MB ���C�u�����ɂ����āAWM�Ŏg�p���Ă���TGID���擾
+  Description:  MB ライブラリにおいて、WMで使用しているTGIDを取得
 
   Arguments:    None.
   
-  Returns:      WM�Ŏg�p���Ă���TGID��Ԃ��܂��D
+  Returns:      WMで使用しているTGIDを返します．
  *---------------------------------------------------------------------------*/
 
 u16     MB_GetTgid(void);
@@ -585,7 +585,7 @@ u16     MB_GetTgid(void);
 /*---------------------------------------------------------------------------*
   Name:         MB_End
 
-  Description:  MB���C�u�������I��
+  Description:  MBライブラリを終了
 
   Arguments:    None.
   
@@ -598,8 +598,8 @@ void    MB_End(void);
 /*---------------------------------------------------------------------------*
   Name:         MB_EndToIdle
 
-  Description:  MB���C�u�������I��.
-                ������WM���C�u������ IDLE �X�e�[�g�Ɉێ�����܂�.
+  Description:  MBライブラリを終了.
+                ただしWMライブラリは IDLE ステートに維持されます.
 
   Arguments:    None.
   
@@ -611,11 +611,11 @@ void    MB_EndToIdle(void);
 /*---------------------------------------------------------------------------*
   Name:         MB_DisconnectChild
 
-  Description:  �q�@�̐ؒf
+  Description:  子機の切断
 
-  Arguments:    aid - �ؒf����q�@��aid 
+  Arguments:    aid - 切断する子機のaid 
   
-  Returns:      �J�n��������������������� MB_SUCCESS ��Ԃ��܂��B
+  Returns:      開始処理が正しく完了すれば MB_SUCCESS を返します。
  *---------------------------------------------------------------------------*/
 
 void    MB_DisconnectChild(u16 aid);
@@ -624,11 +624,11 @@ void    MB_DisconnectChild(u16 aid);
 /*---------------------------------------------------------------------------*
   Name:         MB_StartParent
 
-  Description:  �e�@�p�����[�^�ݒ� & �X�^�[�g
+  Description:  親機パラメータ設定 & スタート
 
-  Arguments:    channel - �e�@�Ƃ��ĒʐM���s���`�����l�� 
+  Arguments:    channel - 親機として通信を行うチャンネル 
   
-  Returns:      �J�n��������������������� MB_SUCCESS ��Ԃ��܂��B
+  Returns:      開始処理が正しく完了すれば MB_SUCCESS を返します。
  *---------------------------------------------------------------------------*/
 
 int     MB_StartParent(int channel);
@@ -637,12 +637,12 @@ int     MB_StartParent(int channel);
 /*---------------------------------------------------------------------------*
   Name:         MB_StartParentFromIdle
 
-  Description:  �e�@�p�����[�^�ݒ� & �X�^�[�g.
-                ������WM���C�u������ IDLE �X�e�[�g�ł��邱�Ƃ��K�v�ł�.
+  Description:  親機パラメータ設定 & スタート.
+                ただしWMライブラリが IDLE ステートであることが必要です.
 
-  Arguments:    channel - �e�@�Ƃ��ĒʐM���s���`�����l�� 
+  Arguments:    channel - 親機として通信を行うチャンネル 
   
-  Returns:      �J�n��������������������� MB_SUCCESS ��Ԃ��܂��B
+  Returns:      開始処理が正しく完了すれば MB_SUCCESS を返します。
  *---------------------------------------------------------------------------*/
 
 int     MB_StartParentFromIdle(int channel);
@@ -650,11 +650,11 @@ int     MB_StartParentFromIdle(int channel);
 /*---------------------------------------------------------------------------*
   Name:         MB_CommGetChildrenNumber
 
-  Description:  ���݃G���g���[���Ă���q�̑������擾
+  Description:  現在エントリーしている子の総数を取得
 
   Arguments:    None.
 
-  Returns:      ���ݐe�@���F�����Ă���q�@�̑�����Ԃ��܂��B
+  Returns:      現在親機が認識している子機の総数を返します。
  *---------------------------------------------------------------------------*/
 
 u8      MB_CommGetChildrenNumber(void);
@@ -663,11 +663,11 @@ u8      MB_CommGetChildrenNumber(void);
 /*---------------------------------------------------------------------------*
   Name:         MB_CommGetChildUser
 
-  Description:  �w�� aid �̎q�̏����擾
+  Description:  指定 aid の子の情報を取得
 
-  Arguments:    child_aid - ��Ԃ��擾����q�@���w�� aid 
+  Arguments:    child_aid - 状態を取得する子機を指す aid 
   
-  Returns:      �J�n��������������������� MB_SUCCESS ��Ԃ��܂��B
+  Returns:      開始処理が正しく完了すれば MB_SUCCESS を返します。
  *---------------------------------------------------------------------------*/
 
 const MBUserInfo *MB_CommGetChildUser(u16 child_aid);
@@ -676,11 +676,11 @@ const MBUserInfo *MB_CommGetChildUser(u16 child_aid);
 /*---------------------------------------------------------------------------*
   Name:         MB_CommGetParentState
 
-  Description:  �w�� aid �̎q�@�ɑ΂���e�@��Ԃ��擾
+  Description:  指定 aid の子機に対する親機状態を取得
 
-  Arguments:    child_aid - ��Ԃ��擾����q�@���w�� aid 
+  Arguments:    child_aid - 状態を取得する子機を指す aid 
   
-  Returns:      MBCommPState�Ŏ�����邢���ꂩ�̏�Ԃ�Ԃ��܂��B
+  Returns:      MBCommPStateで示されるいずれかの状態を返します。
  *---------------------------------------------------------------------------*/
 
 int     MB_CommGetParentState(u16 child);
@@ -689,9 +689,9 @@ int     MB_CommGetParentState(u16 child);
 /*---------------------------------------------------------------------------*
   Name:         MB_CommSetParentStateCallback
 
-  Description:  �e�@��Ԓʒm�R�[���o�b�N��ݒ�
+  Description:  親機状態通知コールバックを設定
 
-  Arguments:    callback - �e�@��Ԃ�ʒm������R�[���o�b�N�֐��ւ̃|�C���^
+  Arguments:    callback - 親機状態を通知させるコールバック関数へのポインタ
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -702,11 +702,11 @@ void    MB_CommSetParentStateCallback(MBCommPStateCallback callback);
 /*---------------------------------------------------------------------------*
   Name:         MB_GetSegmentLength
 
-  Description:  �w�肳�ꂽ�o�C�i���t�@�C���ɕK�v�ȃZ�O�����g�o�b�t�@�����擾
+  Description:  指定されたバイナリファイルに必要なセグメントバッファ長を取得
 
-  Arguments:    file - �o�C�i���t�@�C�����w�� FSFile �\����
+  Arguments:    file - バイナリファイルを指す FSFile 構造体
   
-  Returns:      ����ɃT�C�Y���擾�ł���ΐ��̒l��, �����łȂ���� 0
+  Returns:      正常にサイズを取得できれば正の値を, そうでなければ 0
  *---------------------------------------------------------------------------*/
 
 u32     MB_GetSegmentLength(FSFile *file);
@@ -715,13 +715,13 @@ u32     MB_GetSegmentLength(FSFile *file);
 /*---------------------------------------------------------------------------*
   Name:         MB_ReadSegment
 
-  Description:  �w�肳�ꂽ�o�C�i���t�@�C������K�v�ȃZ�O�����g�f�[�^��ǂݏo��.
+  Description:  指定されたバイナリファイルから必要なセグメントデータを読み出し.
 
-  Arguments:    file - �o�C�i���t�@�C�����w�� FSFile �\����
-                buf  - �Z�O�����g�f�[�^��ǂݏo���o�b�t�@
-                len  - buf �̃T�C�Y
+  Arguments:    file - バイナリファイルを指す FSFile 構造体
+                buf  - セグメントデータを読み出すバッファ
+                len  - buf のサイズ
   
-  Returns:      ����ɃZ�O�����g�f�[�^��ǂݏo����� TRUE, �����łȂ���� FALSE
+  Returns:      正常にセグメントデータを読み出せれば TRUE, そうでなければ FALSE
  *---------------------------------------------------------------------------*/
 
 BOOL    MB_ReadSegment(FSFile *file, void *buf, u32 len);
@@ -730,15 +730,15 @@ BOOL    MB_ReadSegment(FSFile *file, void *buf, u32 len);
 /*---------------------------------------------------------------------------*
   Name:         MB_RegisterFile
 
-  Description:  �w�肵���t�@�C�����_�E�����[�h���X�g�֓o�^
+  Description:  指定したファイルをダウンロードリストへ登録
 
-  Arguments:    game_reg - �o�^����v���O�����̏�񂪊i�[���ꂽ
-                           MBGameRegistry�\���̂ւ̃|�C���^ 
-                buf      - ���o�����Z�O�����g��񂪊i�[���ꂽ�������ւ̃|�C���^
-                           ���̃Z�O�����g����MB_ReadSegment�֐��Ŏ擾���܂��B
+  Arguments:    game_reg - 登録するプログラムの情報が格納された
+                           MBGameRegistry構造体へのポインタ 
+                buf      - 抽出したセグメント情報が格納されたメモリへのポインタ
+                           このセグメント情報はMB_ReadSegment関数で取得します。
   
-  Returns:      �t�@�C���𐳂����o�^�ł����ꍇ��TRUE�A
-                �����łȂ��ꍇ��FALSE��Ԃ��܂��B
+  Returns:      ファイルを正しく登録できた場合はTRUE、
+                そうでない場合はFALSEを返します。
  *---------------------------------------------------------------------------*/
 
 BOOL    MB_RegisterFile(const MBGameRegistry *game_reg, const void *buf);
@@ -747,13 +747,13 @@ BOOL    MB_RegisterFile(const MBGameRegistry *game_reg, const void *buf);
 /*---------------------------------------------------------------------------*
   Name:         MB_UnregisterFile
 
-  Description:  �w�肵���t�@�C�����_�E�����[�h���X�g����폜
+  Description:  指定したファイルをダウンロードリストから削除
 
-  Arguments:    game_reg - �폜����v���O�����̏�񂪊i�[���ꂽ
-                           MBGameRegistry�\���̂ւ̃|�C���^ 
+  Arguments:    game_reg - 削除するプログラムの情報が格納された
+                           MBGameRegistry構造体へのポインタ 
 
-  Returns:      �t�@�C���𐳂����폜�ł����ꍇ��TRUE�A
-                �����łȂ��ꍇ��FALSE��Ԃ��܂��B
+  Returns:      ファイルを正しく削除できた場合はTRUE、
+                そうでない場合はFALSEを返します。
  *---------------------------------------------------------------------------*/
 
 void   *MB_UnregisterFile(const MBGameRegistry *game_reg);
@@ -762,15 +762,15 @@ void   *MB_UnregisterFile(const MBGameRegistry *game_reg);
 /*---------------------------------------------------------------------------*
   Name:         MB_CommResponseRequest
 
-  Description:  �q�@����̐ڑ����N�G�X�g�ɑ΂��鉞�����w��
+  Description:  子機からの接続リクエストに対する応答を指定
 
-  Arguments:    child_aid - �����𑗐M����q�@���w�� aid
-                ack       - �q�@�ւ̉������ʂ��w�肷��
-                            MBCommResponseRequestType�^�̗񋓒l
+  Arguments:    child_aid - 応答を送信する子機を指す aid
+                ack       - 子機への応答結果を指定する
+                            MBCommResponseRequestType型の列挙値
 
-  Returns:      �w�肵���q�@���ڑ������҂���Ԃł���
-                �w�肵��������ނ������Ȃ��̂ł����TRUE���A
-                �����łȂ��ꍇ��FALSE��Ԃ��܂��B
+  Returns:      指定した子機が接続応答待ち状態であり
+                指定した応答種類が正当なものであればTRUEを、
+                そうでない場合はFALSEを返します。
  *---------------------------------------------------------------------------*/
 
 BOOL    MB_CommResponseRequest(u16 child_aid, MBCommResponseRequestType ack);
@@ -779,12 +779,12 @@ BOOL    MB_CommResponseRequest(u16 child_aid, MBCommResponseRequestType ack);
 /*---------------------------------------------------------------------------*
   Name:         MB_CommStartSending
 
-  Description:  �G���g���[�ς݂̎w�� aid �̎q�@�ցA�u�[�g�C���[�W���M���J�n����
+  Description:  エントリー済みの指定 aid の子機へ、ブートイメージ送信を開始する
 
-  Arguments:    child_aid - �u�[�g�C���[�W���M���J�n����q�@���w�� aid
+  Arguments:    child_aid - ブートイメージ送信を開始する子機を指す aid
 
-  Returns:      �w��q�@���G���g���[���Ă����TRUE���A
-                �����łȂ��Ȃ�FALSE��Ԃ��܂��B
+  Returns:      指定子機がエントリーしていればTRUEを、
+                そうでないならFALSEを返します。
  *---------------------------------------------------------------------------*/
 
 static inline BOOL MB_CommStartSending(u16 child_aid)
@@ -796,12 +796,12 @@ static inline BOOL MB_CommStartSending(u16 child_aid)
 /*---------------------------------------------------------------------------*
   Name:         MB_CommStartSendingAll
 
-  Description:  �G���g���[���Ă����q�@�ցA�u�[�g�C���[�W���M���J�n����
+  Description:  エントリーしてきた子機へ、ブートイメージ送信を開始する
 
   Arguments:    None.
 
-  Returns:      �G���g���[���Ă���q�@�����݂��Ă����TRUE���A
-                �����łȂ��Ȃ�FALSE��Ԃ��܂��B
+  Returns:      エントリーしている子機が存在していればTRUEを、
+                そうでないならFALSEを返します。
  *---------------------------------------------------------------------------*/
 
 static inline BOOL MB_CommStartSendingAll(void)
@@ -826,9 +826,9 @@ static inline BOOL MB_CommStartSendingAll(void)
 /*---------------------------------------------------------------------------*
   Name:         MB_CommIsBootable
 
-  Description:  �u�[�g�\���𔻒�
+  Description:  ブート可能かを判定
 
-  Arguments:    child_aid - �Ώێq�@��AID
+  Arguments:    child_aid - 対象子機のAID
 
   Returns:      yes - TRUE  no - FALSE
  *---------------------------------------------------------------------------*/
@@ -839,9 +839,9 @@ BOOL    MB_CommIsBootable(u16 child_aid);
 /*---------------------------------------------------------------------------*
   Name:         MB_CommBootRequest
 
-  Description:  �_�E�����[�h�ς݂̎w�肵���q�@�ɑ΂��ău�[�g�v���𑗐M����
+  Description:  ダウンロード済みの指定した子機に対してブート要求を送信する
 
-  Arguments:    child_aid - �Ώێq�@��AID
+  Arguments:    child_aid - 対象子機のAID
 
   Returns:      success - TRUE  failed - FALSE
  *---------------------------------------------------------------------------*/
@@ -855,7 +855,7 @@ static inline BOOL MB_CommBootRequest(u16 child_aid)
 /*---------------------------------------------------------------------------*
   Name:         MB_CommBootRequestAll
 
-  Description:  �_�E�����[�h�ςݎq�@�ɑ΂��ău�[�g�v���𑗐M����
+  Description:  ダウンロード済み子機に対してブート要求を送信する
 
   Arguments:    None.
 
@@ -884,16 +884,16 @@ static inline BOOL MB_CommBootRequestAll(void)
 /*---------------------------------------------------------------------------*
   Name:         MB_GetGameEntryBitmap
 
-  Description:  �z�M����GameRegistry�ɑ΂��ăG���g���[���Ă���
-                AID�r�b�g�}�b�v���擾����B
+  Description:  配信中のGameRegistryに対してエントリーしている
+                AIDビットマップを取得する。
 
-  Arguments:    game_req      - �ΏۂƂȂ�GameRegistry�ւ̃|�C���^
+  Arguments:    game_req      - 対象となるGameRegistryへのポインタ
 
-  Returns:      �w�肵��GameRegistry�ɃG���g���[���Ă���AID�r�b�g�}�b�v
-                (�e�@AID:0�A�q�@AID:1-15)
-                �Q�[�����z�M���ł͂Ȃ��ꍇ�A�Ԃ�l��0�ƂȂ�B
-                �i�Q�[�����z�M���̏ꍇ�A�K���e�@AID:0���G���g���[�����o�[��
-                  �܂܂�Ă���B�j
+  Returns:      指定したGameRegistryにエントリーしているAIDビットマップ
+                (親機AID:0、子機AID:1-15)
+                ゲームが配信中ではない場合、返り値は0となる。
+                （ゲームが配信中の場合、必ず親機AID:0がエントリーメンバーに
+                  含まれている。）
  *---------------------------------------------------------------------------*/
 
 u16     MB_GetGameEntryBitmap(const MBGameRegistry *game_reg);
@@ -901,14 +901,14 @@ u16     MB_GetGameEntryBitmap(const MBGameRegistry *game_reg);
 
 /* ---------------------------------------------------------------------
 
-        �}���`�u�[�g���C�u����(MB)API - �u�[�g��q�@�p
+        マルチブートライブラリ(MB)API - ブート後子機用
 
    ---------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
   Name:         MB_GetMultiBootParam
 
-  Description:  �}���`�u�[�g�q�@�ɂƂ��Ă̐e�@��񂪕ێ����ꂽ�|�C���^���擾
+  Description:  マルチブート子機にとっての親機情報が保持されたポインタを取得
 
   Arguments:    None.
 
@@ -924,12 +924,12 @@ static inline const MBParam *MB_GetMultiBootParam(void)
 /*---------------------------------------------------------------------------*
   Name:         MB_IsMultiBootChild
 
-  Description:  �}���`�u�[�g�q�@���ǂ�������
-                TRUE �ł���� MB_GetMultiBootParentBssDesc() ���L��
+  Description:  マルチブート子機かどうか判定
+                TRUE であれば MB_GetMultiBootParentBssDesc() が有効
 
   Arguments:    None.
 
-  Returns:      �}���`�u�[�g�q�@�ł���� TRUE
+  Returns:      マルチブート子機であれば TRUE
  *---------------------------------------------------------------------------*/
 
 static inline BOOL MB_IsMultiBootChild(void)
@@ -941,11 +941,11 @@ static inline BOOL MB_IsMultiBootChild(void)
 /*---------------------------------------------------------------------------*
   Name:         MB_GetMultiBootParentBssDesc
 
-  Description:  �}���`�u�[�g�q�@�ł���΁A�e�@���ւ̃|�C���^��Ԃ�
+  Description:  マルチブート子機であれば、親機情報へのポインタを返す
 
   Arguments:    None.
 
-  Returns:      �}���`�u�[�g�q�@�ł���ΗL���ȃ|�C���^�A�����łȂ���� NULL
+  Returns:      マルチブート子機であれば有効なポインタ、そうでなければ NULL
  *---------------------------------------------------------------------------*/
 
 static inline const MBParentBssDesc *MB_GetMultiBootParentBssDesc(void)
@@ -956,12 +956,12 @@ static inline const MBParentBssDesc *MB_GetMultiBootParentBssDesc(void)
 /*---------------------------------------------------------------------------*
   Name:         MB_GetMultiBootDownloadParameter
 
-  Description:  �}���`�u�[�g�q�@�ł���΁A�_�E�����[�h���Ɏw�肳�ꂽ
-                ���[�U��`�̊g���p�����[�^��Ԃ�
+  Description:  マルチブート子機であれば、ダウンロード時に指定された
+                ユーザ定義の拡張パラメータを返す
 
   Arguments:    None.
 
-  Returns:      �}���`�u�[�g�q�@�ł���ΗL���ȃ|�C���^�A�����łȂ���� NULL
+  Returns:      マルチブート子機であれば有効なポインタ、そうでなければ NULL
  *---------------------------------------------------------------------------*/
 
 static inline const u8 *MB_GetMultiBootDownloadParameter(void)
@@ -972,9 +972,9 @@ static inline const u8 *MB_GetMultiBootDownloadParameter(void)
 /*---------------------------------------------------------------------------*
   Name:         MB_ReadMultiBootParentBssDesc
 
-  Description:  �}���`�u�[�g�e�@��������p�����������ƂɁA
-                WM_StartConnect �֐��ɗp���邽�߂́AWMBssDesc �\���̂̏���
-                �Z�b�g����
+  Description:  マルチブート親機から引き継いだ情報をもとに、
+                WM_StartConnect 関数に用いるための、WMBssDesc 構造体の情報を
+                セットする
 
   Arguments:    p_desc            pointer to destination WMBssDesc
                                     (must be aligned 32-bytes)
@@ -996,13 +996,13 @@ void    MB_ReadMultiBootParentBssDesc(WMBssDesc *p_desc,
 /*---------------------------------------------------------------------------*
   Name:         MB_SetLifeTime
 
-  Description:  MB �̃��C�����X�쓮�ɑ΂��ă��C�t�^�C���𖾎��I�Ɏw�肵�܂�.
-                �f�t�H���g�ł� ( 0xFFFF, 40, 0xFFFF, 40 ) �ɂȂ��Ă��܂�.
+  Description:  MB のワイヤレス駆動に対してライフタイムを明示的に指定します.
+                デフォルトでは ( 0xFFFF, 40, 0xFFFF, 40 ) になっています.
 
-  Arguments:    tableNumber     ���C�t�^�C����ݒ肷��CAM�e�[�u���ԍ�
-                camLifeTime     CAM�e�[�u���̃��C�t�^�C��
-                frameLifeTime   �t���[���P�ʂł̃��C�t�^�C��
-                mpLifeTime      MP�ʐM�̃��C�t�^�C��
+  Arguments:    tableNumber     ライフタイムを設定するCAMテーブル番号
+                camLifeTime     CAMテーブルのライフタイム
+                frameLifeTime   フレーム単位でのライフタイム
+                mpLifeTime      MP通信のライフタイム
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1011,14 +1011,14 @@ void    MB_SetLifeTime(u16 tableNumber, u16 camLifeTime, u16 frameLifeTime, u16 
 /*---------------------------------------------------------------------------*
   Name:         MB_SetPowerSaveMode
 
-  Description:  �ȓd�̓��[�h��ݒ肵�܂�.
-                �ȓd�̓��[�h��, �f�t�H���g�ŗL���ƂȂ��Ă��܂�.
-                ���̊֐��͓d�͏�����l�����Ȃ��Ă悢��ʂň���ɋ쓮����
-                ���߂̃I�v�V�����ł���, �d���ɂȂ���Ă��邱�Ƃ�ۏ�
-                ���ꂽ������łȂ�����, �ʏ�̃Q�[���A�v���P�[�V������
-                ������g�p���ׂ��ł͂���܂���.
+  Description:  省電力モードを設定します.
+                省電力モードは, デフォルトで有効となっています.
+                この関数は電力消費を考慮しなくてよい場面で安定に駆動する
+                ためのオプションであり, 電源につながれていることを保証
+                された動作環境でない限り, 通常のゲームアプリケーションが
+                これを使用すべきではありません.
 
-  Arguments:    enable           �L���ɂ���Ȃ�� TRUE, �����ɂ���Ȃ�� FALSE.
+  Arguments:    enable           有効にするならば TRUE, 無効にするならば FALSE.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

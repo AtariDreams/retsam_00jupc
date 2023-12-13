@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	worldtrade_partner.c
- * @bfief	¢ŠEŒðŠ·‘ŠŽèƒ|ƒPƒ‚ƒ“‰{——‰æ–Ê
+ * @bfief	ä¸–ç•Œäº¤æ›ç›¸æ‰‹ãƒã‚±ãƒ¢ãƒ³é–²è¦§ç”»é¢
  * @author	Akito Mori
  * @date	06.04.16
  */
@@ -35,14 +35,14 @@
 #include "msgdata/msg_wifi_gtc.h"
 
 
-#include "worldtrade.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "worldtrade.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 static void BgInit( GF_BGL_INI * ini );
 static void BgExit( GF_BGL_INI * ini );
 static void BgGraphicSet( WORLDTRADE_WORK *wk );
@@ -68,7 +68,7 @@ static void PokeTabLabelPrint(MSGDATA_MANAGER *MsgManager, GF_BGL_BMPWIN win[] )
 static void SubSeq_MessagePrint( WORLDTRADE_WORK *wk, int msgno, int wait, int flag, u16 dat );
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/16
-// î•ñƒEƒBƒ“ƒhƒE‚ð®—“‡
+// æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ•´ç†çµ±åˆ
 static void PokeInfoPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *gtcmsg, MSGDATA_MANAGER *monsname, Dpw_Tr_PokemonSearchData *dtp);
 static void TrainerInfoPrint( GF_BGL_BMPWIN *win, STRBUF *strbuf1, STRBUF *strbuf2 );
 // ----------------------------------------------------------------------------
@@ -97,12 +97,12 @@ static int (*Functable[])( WORLDTRADE_WORK *wk ) = {
 #define INFO_TEXT_WORD_NUM	(10*2)
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–Ê‰Šú‰»
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢åˆæœŸåŒ–
  *
  * @param   wk		
  * @param   seq		
@@ -114,22 +114,22 @@ int WorldTrade_Partner_Init(WORLDTRADE_WORK *wk, int seq)
 {
 	POKEMON_PARAM *pp;
 	
-	// ƒ[ƒN‰Šú‰»
+	// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	InitWork( wk );
 	
-	// BGÝ’è
+	// BGè¨­å®š
 	BgInit( wk->bgl );
 
-	// BGƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	BgGraphicSet( wk );
 
-	// BMPWINŠm•Û
+	// BMPWINç¢ºä¿
 	BmpWinInit( wk );
 
 	SetCellActor(wk);
 
 
-	// ‘ŠŽè‚Ìƒ|ƒPƒ‚ƒ“‚Ìî•ñ
+	// ç›¸æ‰‹ã®ãƒã‚±ãƒ¢ãƒ³ã®æƒ…å ±
 	WorldTrade_PokeInfoPrint( wk->MsgManager, 
 							  wk->MonsNameManager, 
 							  wk->WordSet, 
@@ -137,23 +137,23 @@ int WorldTrade_Partner_Init(WORLDTRADE_WORK *wk, int seq)
 							  PPPPointerGet((POKEMON_PARAM*)wk->DownloadPokemonData[wk->TouchTrainerPos].postData.data),
 							  &wk->DownloadPokemonData[wk->TouchTrainerPos].postSimple );
 
-	// Ž‚¿Žåî•ñ‚Ì•\Ž¦
+	// æŒã¡ä¸»æƒ…å ±ã®è¡¨ç¤º
 	pp = (POKEMON_PARAM*)wk->DownloadPokemonData[wk->TouchTrainerPos].postData.data;
     // MatchComment: 11 -> 10 (fixes out of bounds array UB)
 	WorldTrade_PokeInfoPrint2( wk->MsgManager, &wk->InfoWin[5], wk->DownloadPokemonData[wk->TouchTrainerPos].name, pp, &wk->InfoWin[10] );
 
-	// ƒ|ƒPƒ‚ƒ“‰æ‘œ“]‘—
+	// ãƒã‚±ãƒ¢ãƒ³ç”»åƒè»¢é€
 	WorldTrade_TransPokeGraphic( (POKEMON_PARAM*)wk->DownloadPokemonData[wk->TouchTrainerPos].postData.data );
 
 	PokeTabLabelPrint( wk->MsgManager, &wk->InfoWin[7] );
 
-	// u‚Ù‚µ‚¢ƒ|ƒPƒ‚ƒ“v‚©u‚·‚ñ‚Å‚¢‚é‚Î‚µ‚åv‚Ì•`‰æ
+	// ã€Œã»ã—ã„ãƒã‚±ãƒ¢ãƒ³ã€ã‹ã€Œã™ã‚“ã§ã„ã‚‹ã°ã—ã‚‡ã€ã®æç”»
 	ChangePage( wk );
 
 	
 
-	// ‚Q‰ñ–ÚˆÈ~
-	// ƒƒCƒvƒtƒF[ƒhŠJŽni—¼‰æ–Êj
+	// ï¼’å›žç›®ä»¥é™
+	// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹ï¼ˆä¸¡ç”»é¢ï¼‰
 	WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, WORLDTRADE_WIPE_SPPED, 1, HEAPID_WORLDTRADE );
 #ifdef GTS_FADE_OSP
 	OS_Printf( "******************** worldtrade_partner.c [148] M ********************\n" );
@@ -164,7 +164,7 @@ int WorldTrade_Partner_Init(WORLDTRADE_WORK *wk, int seq)
 }
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–ÊƒƒCƒ“
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢ãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  * @param   seq		
@@ -184,7 +184,7 @@ int WorldTrade_Partner_Main(WORLDTRADE_WORK *wk, int seq)
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–ÊI—¹
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢çµ‚äº†
  *
  * @param   wk		
  * @param   seq		
@@ -210,9 +210,9 @@ int WorldTrade_Partner_End(WORLDTRADE_WORK *wk, int seq)
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGÝ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -220,7 +220,7 @@ int WorldTrade_Partner_End(WORLDTRADE_WORK *wk, int seq)
 static void BgInit( GF_BGL_INI * ini )
 {
 
-	// ƒƒCƒ“‰æ–ÊƒeƒLƒXƒg–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ†ã‚­ã‚¹ãƒˆé¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -231,7 +231,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME0_M );
 	}
 
-	// ƒƒCƒ“‰æ–Êƒƒjƒ…[–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -241,7 +241,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_BGControlSet( ini, GF_BGL_FRAME1_M, &TextBgCntDat, GF_BGL_MODE_TEXT );
 	}
 
-	// ƒƒCƒ“‰æ–Ê”wŒi–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯é¢
 //	{	
 //		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 //			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -253,7 +253,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 
 
-	// ƒTƒu‰æ–Ê•¶Žš”Å0
+	// ã‚µãƒ–ç”»é¢æ–‡å­—ç‰ˆ0
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -266,7 +266,7 @@ static void BgInit( GF_BGL_INI * ini )
 	}
 
 
-	// ƒTƒu‰æ–Ê”wŒiBG1( ‚±‚Ì–Ê‚Í256F )
+	// ã‚µãƒ–ç”»é¢èƒŒæ™¯BG1( ã“ã®é¢ã¯256è‰² )
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
@@ -285,9 +285,9 @@ static void BgInit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ð•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -305,9 +305,9 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -317,11 +317,11 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 	GF_BGL_INI *bgl = wk->bgl;
 
 	
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, WORLDTRADE_TALKFONT_PAL*0x20, HEAPID_WORLDTRADE );
  //	TalkFontPaletteLoad( PALTYPE_SUB_BG,  WORLDTRADE_TALKFONT_PAL*0x20, HEAPID_WORLDTRADE );
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	TalkWinGraphicSet(	bgl, GF_BGL_FRAME0_M, WORLDTRADE_MESFRAME_CHR, 
 						WORLDTRADE_MESFRAME_PAL,  CONFIG_GetWindowType(wk->param->config), HEAPID_WORLDTRADE );
 
@@ -330,19 +330,19 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 
 
 
-	// ƒƒCƒ“‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_BgCharSet( ARC_WORLDTRADE_GRA, NARC_worldtrade_poke_view_lz_ncgr, bgl, GF_BGL_FRAME1_M, 0, 16*5*0x20, 1, HEAPID_WORLDTRADE);
 
-	// ã‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+	// ä¸Šç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_PalSet(    ARC_WORLDTRADE_GRA, NARC_worldtrade_poke_view_nclr, PALTYPE_MAIN_BG, 0, 16*3*2,  HEAPID_WORLDTRADE);
 
-	// ƒXƒNƒŠ[ƒ“‚Í_Init‚Ì‰º‚Ì•û‚Ås‚¤
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã¯_Initã®ä¸‹ã®æ–¹ã§è¡Œã†
 }
 
 
 //------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   wk			WORLDTRADE_WORK*
  *
@@ -351,11 +351,11 @@ static void BgGraphicSet( WORLDTRADE_WORK * wk )
 //------------------------------------------------------------------
 static void SetCellActor(WORLDTRADE_WORK *wk)
 {
-	//“o˜^î•ñŠi”[
+	//ç™»éŒ²æƒ…å ±æ ¼ç´
 	CLACT_ADD add;
 	WorldTrade_MakeCLACT( &add,  wk, &wk->clActHeader_main, NNS_G2D_VRAM_TYPE_2DMAIN );
 
-	// ‘ŠŽè‚Ìƒ|ƒPƒ‚ƒ“•\Ž¦
+	// ç›¸æ‰‹ã®ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤º
 	add.mat.x = FX32_ONE *   208;
 	add.mat.y = FX32_ONE *    58;
 	wk->PokemonActWork = CLACT_Add(&add);
@@ -367,7 +367,7 @@ static void SetCellActor(WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   •\Ž¦ƒZƒ‹ƒAƒNƒ^[‚Ì‰ð•ú
+ * $brief   è¡¨ç¤ºã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®è§£æ”¾
  *
  * @param   wk		
  *
@@ -396,22 +396,22 @@ static void DelCellActor( WORLDTRADE_WORK *wk )
 #define INFO_TEXT_OFFSET	  ( SELECT_MENU_OFFSET + SELECT_MENU_SX*SELECT_MENU_SY )
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/16
-// î•ñƒEƒBƒ“ƒhƒE‚ð®—“‡
+// æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ•´ç†çµ±åˆ
 // localize_spec_mark(LANG_ALL) imatake 2007/11/29
-// ‚à‚¿‚à‚Ì‚ªÅ‘å•¶Žš”‚Ì‚Æ‚«‚ÉŠØ‘Œê‚Å‚Í‚Ýo‚µ‚ª‹N‚±‚é‚Ì‚É‘Îˆ
+// ã‚‚ã¡ã‚‚ã®ãŒæœ€å¤§æ–‡å­—æ•°ã®ã¨ãã«éŸ“å›½èªžã§ã¯ã¿å‡ºã—ãŒèµ·ã“ã‚‹ã®ã«å¯¾å‡¦
 // MatchComment: just redump the matching data from plat US
 // two new entries at the bottom
 static const info_bmpwin_table[][4]={
-	{  1,  2, 10,  2, },	// ƒ|ƒPƒ‚ƒ“‚ÌƒjƒbƒNƒl[ƒ€
-	{ 12,  2,  8,  2, },	// ƒ|ƒPƒ‚ƒ“‚ÌŽí‘°–¼
-	{ 14,  4,  7,  2, },	// ƒŒƒxƒ‹œœ
-	{  1,  7,  6,  2, },	// u‚à‚¿‚à‚Ìv
-	{  7,  7, 11,  2, },	// ŠŽƒAƒCƒeƒ€–¼
-	{  2, 10,  9,  2, },	// u‚à‚¿‚Ê‚µv
-	{ 12, 10,  8,  2, },	// ƒgƒŒ[ƒi[–¼
-	{  3, 13,  9,  2, },	// u‚Ù‚µ‚¢ƒ|ƒPƒ‚ƒ“v
-	{ 16, 13, 13,  2, },	// u‚·‚ñ‚Å‚¢‚é‚Î‚µ‚åv//154
-	{  2, 15, 28,  5, },	// î•ñ
+	{  1,  2, 10,  2, },	// ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
+	{ 12,  2,  8,  2, },	// ãƒã‚±ãƒ¢ãƒ³ã®ç¨®æ—å
+	{ 14,  4,  7,  2, },	// ãƒ¬ãƒ™ãƒ«â—â—
+	{  1,  7,  6,  2, },	// ã€Œã‚‚ã¡ã‚‚ã®ã€
+	{  7,  7, 11,  2, },	// æ‰€æŒã‚¢ã‚¤ãƒ†ãƒ å
+	{  2, 10,  9,  2, },	// ã€Œã‚‚ã¡ã¬ã—ã€
+	{ 12, 10,  8,  2, },	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
+	{  3, 13,  9,  2, },	// ã€Œã»ã—ã„ãƒã‚±ãƒ¢ãƒ³ã€
+	{ 16, 13, 13,  2, },	// ã€Œã™ã‚“ã§ã„ã‚‹ã°ã—ã‚‡ã€//154
+	{  2, 15, 28,  5, },	// æƒ…å ±
 	{  1,  5,  5,  2, },
 	{  7,  5,  7,  2, },
 };
@@ -419,11 +419,11 @@ static const info_bmpwin_table[][4]={
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/17
-// î•ñƒEƒBƒ“ƒhƒE‚ÌŠg‘å‚É‚æ‚èA‚Ü‚½“Í‚¢‚Ä‚µ‚Ü‚Á‚½‚Ì‚Å‚³‚ç‚É‰œ‚Ö
+// æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ‹¡å¤§ã«ã‚ˆã‚Šã€ã¾ãŸå±Šã„ã¦ã—ã¾ã£ãŸã®ã§ã•ã‚‰ã«å¥¥ã¸
 
-// ‚Í‚¢E‚¢‚¢‚¦‚ÌBMPWIN—Ìˆæ‚ÍÅŒã‚É‚à‚Á‚Ä‚«‚½‚¢‚Ì‚¾‚ªA
-// î•ñƒEƒCƒ“ƒhƒE‚Ì‘”‚ª‚æ‚ß‚È‚¢‚Ì‚ÅA204ƒLƒƒƒ‰‚¸‚ç‚µ‚Ä‚¨‚­
-// i“Í‚¢‚Ä‚µ‚Ü‚Á‚½‚Ì‚Å204ƒLƒƒƒ‰‚É•Ï‚¦‚½ by Mori (06.05.09)
+// ã¯ã„ãƒ»ã„ã„ãˆã®BMPWINé ˜åŸŸã¯æœ€å¾Œã«ã‚‚ã£ã¦ããŸã„ã®ã ãŒã€
+// æƒ…å ±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ç·æ•°ãŒã‚ˆã‚ãªã„ã®ã§ã€204ã‚­ãƒ£ãƒ©ãšã‚‰ã—ã¦ãŠã
+// ï¼ˆå±Šã„ã¦ã—ã¾ã£ãŸã®ã§204ã‚­ãƒ£ãƒ©ã«å¤‰ãˆãŸ by Mori (06.05.09)
 // MatchComment: add 36
 #define YESNO_OFFSET 		   ( SELECT_MENU_OFFSET + SELECT_MENU_SX*SELECT_MENU_SY+262+64+36)
 
@@ -431,7 +431,7 @@ static const info_bmpwin_table[][4]={
 
 //------------------------------------------------------------------
 /**
- * BMPWINˆ—i•¶Žšƒpƒlƒ‹‚ÉƒtƒHƒ“ƒg•`‰æj
+ * BMPWINå‡¦ç†ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«ã«ãƒ•ã‚©ãƒ³ãƒˆæç”»ï¼‰
  *
  * @param   wk		
  *
@@ -440,7 +440,7 @@ static const info_bmpwin_table[][4]={
 //------------------------------------------------------------------
 static void BmpWinInit( WORLDTRADE_WORK *wk )
 {
-	// ---------- ƒƒCƒ“‰æ–Ê ------------------
+	// ---------- ãƒ¡ã‚¤ãƒ³ç”»é¢ ------------------
 
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MsgWin, GF_BGL_FRAME0_M,
 		LINE_TEXT_X, LINE_TEXT_Y, LINE_TEXT_SX, LINE_TEXT_SY, 
@@ -448,19 +448,19 @@ static void BmpWinInit( WORLDTRADE_WORK *wk )
 
 	GF_BGL_BmpWinDataFill( &wk->MsgWin, 0x0000 );
 
-	// BMPMENU—p‚Ì—Ìˆæ‚ª‚±‚±‚É‚ ‚é
+	// BMPMENUç”¨ã®é ˜åŸŸãŒã“ã“ã«ã‚ã‚‹
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MenuWin[0], GF_BGL_FRAME0_M,
 		SELECT_MENU_X, SELECT_MENU_Y, SELECT_MENU_SX, SELECT_MENU_SY, 
 		WORLDTRADE_TALKFONT_PAL,  SELECT_MENU_OFFSET );	
 
-	// BG0–ÊBMPWINî•ñƒEƒCƒ“ƒhƒEŠm•Û
+	// BG0é¢BMPWINæƒ…å ±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	{
 		int i, offset;
 
 		offset = INFO_TEXT_OFFSET;
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/16
-		// î•ñƒEƒBƒ“ƒhƒE‚ð®—“‡
+		// æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ•´ç†çµ±åˆ
 		for(i=0;i<NELEMS(info_bmpwin_table);i++){
 			GF_BGL_BmpWinAdd(wk->bgl, &wk->InfoWin[i], GF_BGL_FRAME0_M,
 					info_bmpwin_table[i][0], 
@@ -479,7 +479,7 @@ static void BmpWinInit( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Šm•Û‚µ‚½BMPWIN‚ð‰ð•ú
+ * $brief   ç¢ºä¿ã—ãŸBMPWINã‚’è§£æ”¾
  *
  * @param   wk
  *
@@ -495,7 +495,7 @@ static void BmpWinDelete( WORLDTRADE_WORK *wk )
 		int i;
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/16
-		// î•ñƒEƒBƒ“ƒhƒE‚ð®—“‡
+		// æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ•´ç†çµ±åˆ
 		for(i=0;i<NELEMS(info_bmpwin_table);i++){
 			GF_BGL_BmpWinDel( &wk->InfoWin[i] );
 		}
@@ -507,7 +507,7 @@ static void BmpWinDelete( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * ¢ŠEŒðŠ·ƒ[ƒN‰Šú‰»
+ * ä¸–ç•Œäº¤æ›ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   wk		WORLDTRADE_WORK*
  *
@@ -520,20 +520,20 @@ static void InitWork( WORLDTRADE_WORK *wk )
 	MSGDATA_MANAGER *man;
 	Dpw_Tr_Data     *dtp = &wk->DownloadPokemonData[wk->TouchTrainerPos];
 
-	// •¶Žš—ñƒoƒbƒtƒ@ì¬
+	// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	wk->TalkString  = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_WORLDTRADE );
 
 	WORDSET_ClearAllBuffer( wk->WordSet );
-	// ‘”Ô†‚ª‘¶Ý‚µ‚Ä‚¢‚éê‡‚Í•¶Žš—ñ‚ðƒZƒbƒg
+	// å›½ç•ªå·ãŒå­˜åœ¨ã—ã¦ã„ã‚‹å ´åˆã¯æ–‡å­—åˆ—ã‚’ã‚»ãƒƒãƒˆ
 	if(dtp->countryCode!=0){
 		WORDSET_RegisterCountryName( wk->WordSet, 8, dtp->countryCode );
 	}
-	// ’nˆæ”Ô†‚ª‘¶Ý‚µ‚Ä‚¢‚éê‡‚Í•¶Žš—ñ‚ðƒZƒbƒg
+	// åœ°åŸŸç•ªå·ãŒå­˜åœ¨ã—ã¦ã„ã‚‹å ´åˆã¯æ–‡å­—åˆ—ã‚’ã‚»ãƒƒãƒˆ
 	if(dtp->localCode!=0){
 		WORDSET_RegisterLocalPlaceName( wk->WordSet, 9, dtp->countryCode, dtp->localCode );
 	}
 
-	// ‘E’nˆæ•¶Žš—ñŽæ“¾
+	// å›½ãƒ»åœ°åŸŸæ–‡å­—åˆ—å–å¾—
 	wk->InfoString[0] = MSGDAT_UTIL_AllocExpandString( wk->WordSet, wk->MsgManager, msg_gtc_04_013, HEAPID_WORLDTRADE );
 	wk->InfoString[1] = MSGDAT_UTIL_AllocExpandString( wk->WordSet, wk->MsgManager, msg_gtc_04_014, HEAPID_WORLDTRADE );
 }
@@ -541,7 +541,7 @@ static void InitWork( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ[ƒN‰ð•ú
+ * $brief   ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
  * @param   wk		
  *
@@ -573,7 +573,7 @@ static void FreeWork( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒTƒuƒvƒƒZƒXƒV[ƒPƒ“ƒXƒXƒ^[ƒgˆ—
+ * $brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¹ã‚¿ãƒ¼ãƒˆå‡¦ç†
  *
  * @param   wk		
  *
@@ -595,7 +595,7 @@ static int SubSeq_Start( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒTƒuƒvƒƒZƒXƒV[ƒPƒ“ƒXƒƒCƒ“
+ * $brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  *
@@ -626,7 +626,7 @@ static int SubSeq_Main( WORLDTRADE_WORK *wk)
 		}
 	}
 	else{
-		// ƒ^ƒbƒ`ƒpƒlƒ‹ƒ`ƒFƒbƒN
+		// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒã‚§ãƒƒã‚¯
 		int result = WorldTrade_SubLcdObjHitCheck( wk->SearchResult );
 		if(1){//wk->SubLcdTouchOK){
 			if(result != wk->TouchTrainerPos && result>=0){
@@ -643,7 +643,7 @@ static int SubSeq_Main( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒTƒuƒvƒƒZƒXƒV[ƒPƒ“ƒXI—¹ˆ—
+ * $brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹çµ‚äº†å‡¦ç†
  *
  * @param   wk		
  *
@@ -652,7 +652,7 @@ static int SubSeq_Main( WORLDTRADE_WORK *wk)
 //------------------------------------------------------------------
 static int SubSeq_End( WORLDTRADE_WORK *wk)
 {
-	// ‚Í‚¢E‚¢‚¢‚¦•\Ž¦‚Å‰æ–Ê‚ª•ö‚ê‚Ä‚¢‚é‚Ì‚Åu‚Ù‚µ‚¢ƒ|ƒPvuZ‚ñ‚Å‚éêŠvî•ñ‚ðÄ•`‰æ
+	// ã¯ã„ãƒ»ã„ã„ãˆè¡¨ç¤ºã§ç”»é¢ãŒå´©ã‚Œã¦ã„ã‚‹ã®ã§ã€Œã»ã—ã„ãƒã‚±ã€ã€Œä½ã‚“ã§ã‚‹å ´æ‰€ã€æƒ…å ±ã‚’å†æç”»
 //	PokeTabLabelPrint( wk->MsgManager, &wk->InfoWin[7] );
 //	ChangePage( wk );
 
@@ -667,7 +667,7 @@ static int SubSeq_End( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚Í‚¢E‚¢‚¢‚¦
+ * $brief   ã¯ã„ãƒ»ã„ã„ãˆ
  *
  * @param   wk		
  *
@@ -686,7 +686,7 @@ static int SubSeq_YesNo( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚Í‚¢E‚¢‚¢‚¦‘I‘ð
+ * $brief   ã¯ã„ãƒ»ã„ã„ãˆé¸æŠž
  *
  * @param   wk		
  *
@@ -699,13 +699,13 @@ static int SubSeq_YesNoSelect( WORLDTRADE_WORK *wk)
 
 	if(ret!=BMPMENU_NULL){
 		if(ret==BMPMENU_CANCEL){
-			// ‚à‚¤‚¢‚Á‚©‚¢ŒŸõ
+			// ã‚‚ã†ã„ã£ã‹ã„æ¤œç´¢
 			wk->subprocess_seq  = SUBSEQ_END;
 			WorldTrade_SubProcessChange( wk, WORLDTRADE_SEARCH, 0 );
 			PokeTabLabelPrint( wk->MsgManager, &wk->InfoWin[7] );
 			ChangePage( wk );
 		}else{
-			// Ž©•ª‚ªo‚·ƒ|ƒPƒ‚ƒ“‚Ì‘I‘ð‚Ö
+			// è‡ªåˆ†ãŒå‡ºã™ãƒã‚±ãƒ¢ãƒ³ã®é¸æŠžã¸
 			wk->subprocess_seq  = SUBSEQ_END;
 			WorldTrade_SubProcessChange( wk, WORLDTRADE_MYBOX, MODE_EXCHANGE_SELECT );
 			PokeTabLabelPrint( wk->MsgManager, &wk->InfoWin[7] );
@@ -719,7 +719,7 @@ static int SubSeq_YesNoSelect( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ¶‰E‚Åî•ñƒy[ƒW‚ðØ‚è‘Ö‚¦‚é
+ * $brief   å·¦å³ã§æƒ…å ±ãƒšãƒ¼ã‚¸ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
  *
  * @param   wk		
  *
@@ -729,7 +729,7 @@ static int SubSeq_YesNoSelect( WORLDTRADE_WORK *wk)
 static void ChangePage( WORLDTRADE_WORK *wk )
 {
 	if(wk->PartnerPageInfo==0){
-		// ‚Ù‚µ‚¢ƒ|ƒPƒ‚ƒ“‚Ìî•ñ
+		// ã»ã—ã„ãƒã‚±ãƒ¢ãƒ³ã®æƒ…å ±
 		ArcUtil_ScrnSet(   
 			ARC_WORLDTRADE_GRA, 
 			NARC_worldtrade_searchpoke0_lz_nscr, 
@@ -738,7 +738,7 @@ static void ChangePage( WORLDTRADE_WORK *wk )
 		PokeInfoPrint( &wk->InfoWin[9], wk->MsgManager, wk->MonsNameManager, 
 						&wk->DownloadPokemonData[wk->TouchTrainerPos].wantSimple);
 	}else{
-		// ‚·‚ñ‚Å‚¢‚é‚Î‚µ‚å
+		// ã™ã‚“ã§ã„ã‚‹ã°ã—ã‚‡
 		ArcUtil_ScrnSet(   
 			ARC_WORLDTRADE_GRA, 
 			NARC_worldtrade_searchpoke1_lz_nscr, 
@@ -747,7 +747,7 @@ static void ChangePage( WORLDTRADE_WORK *wk )
 		TrainerInfoPrint( &wk->InfoWin[9], wk->InfoString[0], wk->InfoString[1] );
 	}
 	
-	// BMPWIN‚Ì“à—e•ÏX‚à‚±‚±‚Ås‚¤
+	// BMPWINã®å†…å®¹å¤‰æ›´ã‚‚ã“ã“ã§è¡Œã†
 
 }	
 
@@ -755,7 +755,7 @@ static void ChangePage( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   î•ñƒy[ƒW‚ðØ‚è‘Ö‚¦‚é
+ * $brief   æƒ…å ±ãƒšãƒ¼ã‚¸ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
  *
  * @param   wk		
  *
@@ -773,7 +773,7 @@ static int SubSeq_PageChange( WORLDTRADE_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bI—¹‚ð‘Ò‚Á‚ÄŽŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
+ * $brief   ä¼šè©±çµ‚äº†ã‚’å¾…ã£ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
  *
  * @param   wk		
  *
@@ -791,7 +791,7 @@ static int SubSeq_MessageWait( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\Ž¦
+ * $brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -800,7 +800,7 @@ static int SubSeq_MessageWait( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static void SubSeq_MessagePrint( WORLDTRADE_WORK *wk, int msgno, int wait, int flag, u16 dat )
 {
-	// •¶Žš—ñŽæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	STRBUF *tempbuf;
 	
 //	tempbuf = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_WORLDTRADE );
@@ -808,11 +808,11 @@ static void SubSeq_MessagePrint( WORLDTRADE_WORK *wk, int msgno, int wait, int f
 //	WORDSET_ExpandStr( wk->WordSet, wk->TalkString, tempbuf );
 //	STRBUF_Delete(tempbuf);
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æž æç”»
 	GF_BGL_BmpWinDataFill( &wk->MsgWin,  0x0f0f );
 	BmpTalkWinWrite( &wk->MsgWin, WINDOW_TRANS_ON, WORLDTRADE_MESFRAME_CHR, WORLDTRADE_MESFRAME_PAL );
 
-	// •¶Žš—ñ•`‰æŠJŽn
+	// æ–‡å­—åˆ—æç”»é–‹å§‹
 	wk->MsgIndex = GF_STR_PrintSimple( &wk->MsgWin, FONT_TALK, wk->TalkString, 0, 0, wait, NULL);
 
 
@@ -821,7 +821,7 @@ static void SubSeq_MessagePrint( WORLDTRADE_WORK *wk, int msgno, int wait, int f
 
 //------------------------------------------------------------------
 /**
- * @brief   u‚Ù‚µ‚¢‚Û‚¯‚à‚ñvEu‚·‚ñ‚Å‚¢‚éêŠv•`‰æ
+ * @brief   ã€Œã»ã—ã„ã½ã‘ã‚‚ã‚“ã€ãƒ»ã€Œã™ã‚“ã§ã„ã‚‹å ´æ‰€ã€æç”»
  *
  * @param   win[]		
  *
@@ -845,11 +845,11 @@ static void PokeTabLabelPrint( MSGDATA_MANAGER *MsgManager, GF_BGL_BMPWIN win[] 
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/16
-// î•ñƒEƒBƒ“ƒhƒE‚ð®—“‡
+// æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ•´ç†çµ±åˆ
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚Ù‚µ‚¢ƒ|ƒPƒ‚ƒ“‚Ì•`‰æ
+ * @brief   ã»ã—ã„ãƒã‚±ãƒ¢ãƒ³ã®æç”»
  *
  * @param   *win		
  * @param   gtcmsg		
@@ -863,13 +863,13 @@ static void PokeInfoPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *gtcmsg, MSGDATA_
 {
 	GF_BGL_BmpWinDataFill( win, 0x0000 );
 
-	//u‚Ù‚µ‚¢ƒ|ƒPƒ‚ƒ“v•`‰æ
+	//ã€Œã»ã—ã„ãƒã‚±ãƒ¢ãƒ³ã€æç”»
 	WorldTrade_PokeNamePrint( win, monsname, dtsd->characterNo, 0, 3, GF_PRINTCOLOR_MAKE(15,2,0) );
 
-	// «•Ê
+	// æ€§åˆ¥
 	WorldTrade_SexPrint( win, gtcmsg, dtsd->gender, 0, 3, 70, GF_PRINTCOLOR_MAKE(15,2,0) );
 
-	// ƒŒƒxƒ‹Žw’è
+	// ãƒ¬ãƒ™ãƒ«æŒ‡å®š
 	WorldTrade_WantLevelPrintEx( win + 1, gtcmsg, 
 		WorldTrade_LevelTermGet(dtsd->level_min, dtsd->level_max, LEVEL_PRINT_TBL_DEPOSIT),
 		0, 19, GF_PRINTCOLOR_MAKE(15,2,0), LEVEL_PRINT_TBL_DEPOSIT, 8 ); // wtf is this +1?
@@ -877,7 +877,7 @@ static void PokeInfoPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *gtcmsg, MSGDATA_
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[‚Ì‘E’nˆæ‚ð•`‰æ
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®å›½ãƒ»åœ°åŸŸã‚’æç”»
  *
  * @param   *win		
  * @param   strbuf1		

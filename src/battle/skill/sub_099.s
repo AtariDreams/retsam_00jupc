@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_099.s
- *@brief	�퓬�V�[�P���X
- *			�ǂ��т����܂��т����X�e���X���b�N�_���[�W�`�F�b�N
+ *@brief	戦闘シーケンス
+ *			どくびし＆まきびし＆ステルスロックダメージチェック
  *@author	HisashiSogabe
  *@data		2006.01.27
  *
@@ -15,24 +15,24 @@
 	.include	"waza_seq_def.h"
 
 SUB_099:
-	//�����}�W�b�N�K�[�h�́A���ׂẴ_���[�W�Ȃ�
+	//特性マジックガードは、すべてのダメージなし
 	TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_RESHUFFLE,TOKUSYU_MAZIKKUGAADO,SUB_099_END
-	//���イ��傭���́A�Ђ����^�C�v�`�F�b�N�͖���
+	//じゅうりょく中は、ひこうタイプチェックは無視
 	IF				IF_FLAG_BIT,BUF_PARA_FIELD_CONDITION,FIELD_CONDITION_JUURYOKU,SUB_099_START
 #if B1373_060816_FIX
-	//�������ʑf�����_�E���́A�Ђ����^�C�v�`�F�b�N�͖���
+	//装備効果素早さダウンは、ひこうタイプチェックは無視
 	SOUBI_CHECK		SOUBI_HAVE,SIDE_RESHUFFLE,SOUBI_SUBAYASADOWN,SUB_099_START
 #endif //B1373_060816_FIX
-	//�����ӂ䂤�́A�܂��т��A�ǂ��т��̃_���[�W�Ȃ�
+	//特性ふゆうは、まきびし、どくびしのダメージなし
 	TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_RESHUFFLE,TOKUSYU_HUYUU,SUB_099_NEXT2
-	//�Ђ����^�C�v�́A�܂��т��A�ǂ��т��̃_���[�W�Ȃ�
+	//ひこうタイプは、まきびし、どくびしのダメージなし
 	IF_PSP			IF_FLAG_EQ,SIDE_RESHUFFLE,ID_PSP_type1,HIKOU_TYPE,SUB_099_NEXT2
 	IF_PSP			IF_FLAG_EQ,SIDE_RESHUFFLE,ID_PSP_type2,HIKOU_TYPE,SUB_099_NEXT2
-	//�ł񂶂ӂ䂤���́A�܂��т��A�ǂ��т��̃_���[�W�Ȃ�
+	//でんじふゆう中は、まきびし、どくびしのダメージなし
 	IF_PSP			IF_FLAG_BIT,SIDE_RESHUFFLE,ID_PSP_waza_kouka,WAZAKOUKA_DENZIHUYUU,SUB_099_NEXT2
 
 SUB_099_START:
-	//�ǂ��т��`�F�b�N
+	//どくびしチェック
 	DOKUBISI_CHECK	SIDE_RESHUFFLE,SUB_099_NEXT
 	IF				IF_FLAG_EQ,BUF_PARA_CALC_WORK,2,Dokudoku
 	IF				IF_FLAG_EQ,BUF_PARA_CALC_WORK,1,Doku
@@ -48,22 +48,22 @@ Doku:
 Dokudoku:
 	GOSUB			SUB_SEQ_DOKUDOKU
 SUB_099_NEXT:
-	//�܂��т��`�F�b�N
+	//まきびしチェック
 	MAKIBISI_CHECK	SIDE_RESHUFFLE,SUB_099_NEXT2
-	//HP����Ώۂ�ReshuffleClient��
+	//HP操作対象をReshuffleClientに
 	VALUE_WORK		VAL_SET,BUF_PARA_CLIENT_WORK,BUF_PARA_RESHUFFLE_CLIENT
-	//�_���[�W�G�t�F�N�g�œ_�ł��Ȃ��t���O�𗧂Ă�
+	//ダメージエフェクトで点滅しないフラグを立てる
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_BLINK
 	GOSUB			SUB_SEQ_HP_CALC
 	MESSAGE			MakibishiDamageMineMsg,TAG_NICK,SIDE_RESHUFFLE
 	SERVER_WAIT
 	WAIT			MSG_WAIT
 SUB_099_NEXT2:
-	//�X�e���X���b�N�`�F�b�N
+	//ステルスロックチェック
 	STEALTHROCK_CHECK	SIDE_RESHUFFLE,SUB_099_END
-	//HP����Ώۂ�ReshuffleClient��
+	//HP操作対象をReshuffleClientに
 	VALUE_WORK		VAL_SET,BUF_PARA_CLIENT_WORK,BUF_PARA_RESHUFFLE_CLIENT
-	//�_���[�W�G�t�F�N�g�œ_�ł��Ȃ��t���O�𗧂Ă�
+	//ダメージエフェクトで点滅しないフラグを立てる
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_BLINK
 	GOSUB			SUB_SEQ_HP_CALC
 	MESSAGE			StealthrockDamageMineMsg,TAG_NICK,SIDE_RESHUFFLE

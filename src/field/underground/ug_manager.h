@@ -1,10 +1,10 @@
 //=============================================================================
 /**
  * @file	ug_manager.h
- * @brief	�n���̃T�[�r�X�𓝊�����N���X
-             �P�U�~�P�U�������݂��Ȃ��̂ŁA���̕������m�ۂ��Ă���܂�
+ * @brief	地下のサービスを統括するクラス
+             １６×１６しか存在しないので、その分だけ確保してあります
  * @author	Katsumi Ohno
- * @date    2005.09.28  -> 2006.02.07 comm_under���疼�O�ύX
+ * @date    2005.09.28  -> 2006.02.07 comm_underから名前変更
  */
 //=============================================================================
 
@@ -21,21 +21,21 @@
 #define COMM_UG_INVALID_GRID     (0xffff)
 #define TCB_PRIORITY_NORMAL (100)
 
-// ���[�_�ɕԂ����
+// レーダに返す状態
 typedef enum{
-  RADAR_TYPE_NONE,    // �\���Ȃ�
-  RADAR_TYPE_MY,       // �����̈ʒu
-  RADAR_TYPE_TARGET,    // ����̈ʒu
-  RADAR_TYPE_SECLETBASE, // �閧��n
-  RADAR_TYPE_FLAG_NORMAL,  // �m�[�}���t���b�O
-  RADAR_TYPE_FLAG_BLONZE,  // �u�����Y�t���b�O
-  RADAR_TYPE_FLAG_SILVER,  // �V���o�[�t���b�O
-  RADAR_TYPE_FLAG_GOLD,   // �S�[���h�t���b�O
-  RADAR_TYPE_FLAG_PLATINA,  // �v���`�i�t���b�O
-  RADAR_TYPE_BALL,        // ����
-  RADAR_TYPE_TRAP,       // ��ȁi�l�̒u�������́j
-  RADAR_TYPE_TRAP_NATURAL,  // �V�R�̃��i
-  RADAR_TYPE_FOSSIL        // ����
+  RADAR_TYPE_NONE,    // 表示なし
+  RADAR_TYPE_MY,       // 自分の位置
+  RADAR_TYPE_TARGET,    // 相手の位置
+  RADAR_TYPE_SECLETBASE, // 秘密基地
+  RADAR_TYPE_FLAG_NORMAL,  // ノーマルフラッグ
+  RADAR_TYPE_FLAG_BLONZE,  // ブロンズフラッグ
+  RADAR_TYPE_FLAG_SILVER,  // シルバーフラッグ
+  RADAR_TYPE_FLAG_GOLD,   // ゴールドフラッグ
+  RADAR_TYPE_FLAG_PLATINA,  // プラチナフラッグ
+  RADAR_TYPE_BALL,        // たま
+  RADAR_TYPE_TRAP,       // わな（人の置いたもの）
+  RADAR_TYPE_TRAP_NATURAL,  // 天然のワナ
+  RADAR_TYPE_FOSSIL        // 化石
 } RADAR_DISP_TYPE_ENUM;
 
 
@@ -44,7 +44,7 @@ typedef struct{
     u16 zpos;
 } Grid;
 
-// �R�[���o�b�N�֐��̏���
+// コールバック関数の書式
 typedef Grid* (*PTRCommSearchFunc)(Grid* pGrid, int index);
 
 extern COMM_MESSAGE* CommUnderGetMsgUnderWorld(void);
@@ -69,7 +69,7 @@ extern void UgMgrTalkCheck(u8 bTalkCheck);
 extern void CommUnderRecvCheckAbutton(int netID, int size, void* pData, void* pWork);
 extern BOOL CommUnderGetActionMessage(STRBUF* pStrBuf);
 extern void CommUnderOptionFinalize(void);
-///�閧��n�͈͓��ɂ��邩�ǂ���
+///秘密基地範囲内にいるかどうか
 extern BOOL UgSecretBaseIsSecretBasePlace(int x, int z);
 
 #include "../comm_command_field.h"
@@ -86,15 +86,15 @@ extern BOOL UgSecretBaseIsSecretBasePlace(int x, int z);
 #include "ug_record.h"
 #include "ug_snd_def.h"
 
-// ������Z�b�g�A�b�v����閧��n�O�b�Y�f�[�^��Ԃ�
+// 今からセットアップする秘密基地グッズデータを返す
 extern SECRETBASEDATA* UgManUgSetupSecretBaseData(SAVEDATA * sv);
-//   ������Z�b�g�A�b�v����閧��n��X�u���b�N��Ԃ�
+//   今からセットアップする秘密基地のXブロックを返す
 extern int UgManUgSetupSecretBaseBlockX(void);
-//   ������Z�b�g�A�b�v����閧��n��Z�u���b�N��Ԃ�
+//   今からセットアップする秘密基地のZブロックを返す
 extern int UgManUgSetupSecretBaseBlockZ(void);
-// �p�P�b�g�T�C�Y
+// パケットサイズ
 extern int CommUnderRecvCheckAbuttonSize(void);
-// A�{�^�������x��������Ȃ��悤��
+// Aボタンを何度も押されないように
 extern void UgMgrKeyCountDown(void);
 
 extern void UgManagerRecvTouchResult1(int netID, int size, void* pData, void* pWork);
@@ -146,8 +146,8 @@ extern void CommUgRecvChildStateNormal(int netID, int size, void* pData, void* p
 extern int CommUgGetChildStateNormalNum(void);
 
 
-#define _NOTGET_TRAP_RESERVE (0x10)  // 㩂��E���Ȃ��\�肪����
-#define _GET_STONE_RESERVE (0x20)  // �΂��E���\�肪����
+#define _NOTGET_TRAP_RESERVE (0x10)  // 罠を拾えない予定がある
+#define _GET_STONE_RESERVE (0x20)  // 石を拾う予定がある
 
 #endif //__UG_MANAGER_H__
 

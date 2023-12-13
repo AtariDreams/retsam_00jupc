@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_200.s
- * @brief	‚°‚«‚è‚ñ			200
+ * @brief	ã’ãã‚Šã‚“			200
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,14 +19,14 @@
 // =============================================================================
 //
 //
-//	¡‚°‚«‚è‚ñ			200
+//	â– ã’ãã‚Šã‚“			200
 //
 //
 // =============================================================================
 WEST_GEKIRIN:
 	LOAD_PARTICLE_DROP	0,W_200_SPA
 		
-	///< ƒ|ƒPƒ‚ƒ“€”õ
+	///< ãƒã‚±ãƒ¢ãƒ³æº–å‚™
 	POKEOAM_RES_INIT
 	POKEOAM_RES_LOAD	0,
 	POKEOAM_RES_LOAD	1,
@@ -44,7 +44,7 @@ WEST_GEKIRIN:
 	
 	SE_REPEAT_L		SEQ_SE_DP_W082,4,2
 
-	///< ƒp[ƒeƒBƒNƒ‹“Ç‚Ýž‚Ý
+	///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«èª­ã¿è¾¼ã¿
 
 	ADD_PARTICLE 	0,W_200_200_GEKIRIN_FIRE,	EMTFUNC_ATTACK_POS
 	ADD_PARTICLE 	0,W_200_200_GEKIRIN_KAITEN, EMTFUNC_ATTACK_POS
@@ -53,7 +53,7 @@ WEST_GEKIRIN:
 
 	FUNC_CALL		WEST_SP_WT_SHAKE, 5, 3, 0, 0, 13,  WE_TOOL_E1 | WE_TOOL_SSP,
 
-	//LOOP 3@‚ð‚í‚¯‚½
+	//LOOP 3ã€€ã‚’ã‚ã‘ãŸ
 	LOOP_LABEL		2
 		FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 0, 0, 10, WE_PAL_RED
 		WAIT			10
@@ -61,12 +61,12 @@ WEST_GEKIRIN:
 		WAIT			10
 	LOOP
 	
-	//LOOP 3@‚ð‚í‚¯‚½
+	//LOOP 3ã€€ã‚’ã‚ã‘ãŸ
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 0, 0, 10, WE_PAL_RED
 	WAIT			10
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 0, 10, 0, WE_PAL_RED
-	//SE_FLOW_LR	SEQ_SE_DP_W464		//’Ç‰Á(‚±‚Ì‚ ‚ÆA‚·‚È‚ ‚ç‚µŽg‚¤‚Æ‰¹‚ª–Â‚ç‚È‚¢H)
-	SE_FLOW_LR		SEQ_SE_DP_W053B		//’Ç‰Á
+	//SE_FLOW_LR	SEQ_SE_DP_W464		//è¿½åŠ (ã“ã®ã‚ã¨ã€ã™ãªã‚ã‚‰ã—ä½¿ã†ã¨éŸ³ãŒé³´ã‚‰ãªã„ï¼Ÿ)
+	SE_FLOW_LR		SEQ_SE_DP_W053B		//è¿½åŠ 
 	WAIT			10
 
 	WAIT_PARTICLE

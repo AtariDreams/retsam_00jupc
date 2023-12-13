@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	opening_kira_obj.c
- * @brief	ƒI[ƒvƒjƒ“ƒOƒfƒ‚‚n‚a‚i
+ * @brief	ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ãƒ‡ãƒ¢ï¼¯ï¼¢ï¼ª
  * @author	Nozomu Saito
  * @date    2006.06.03
  */
@@ -18,7 +18,7 @@
 #define RESOURCE_NUM	(4)
 #define OPD_KIRA_ACT_MAX	(10)
 #define GENERATER_MAX	(3)
-#define PALETTE_NUM	(1)		//ƒpƒŒƒbƒg‚P–{
+#define PALETTE_NUM	(1)		//ãƒ‘ãƒ¬ãƒƒãƒˆï¼‘æœ¬
 
 enum {
 	ACT_ID_KIRA,
@@ -52,10 +52,10 @@ enum {
 
 typedef struct OPD_KIRA_DATA_tag
 {
-	u8 Valid;		//ƒf[ƒ^—LŒøƒtƒ‰ƒO
-	u8 MoveCounter; //“®ìƒJƒEƒ“ƒ^
+	u8 Valid;		//ãƒ‡ãƒ¼ã‚¿æœ‰åŠ¹ãƒ•ãƒ©ã‚°
+	u8 MoveCounter; //å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
 	CLACT_WORK_PTR ActWorkPtr;
-	TCB_PTR	Tcb;		//§Œäƒ^ƒXƒNƒ|ƒCƒ“ƒ^
+	TCB_PTR	Tcb;		//åˆ¶å¾¡ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
 }OPD_KIRA_DATA;
 
 typedef struct OPD_KIRA_DATA_LIST_tag
@@ -79,22 +79,22 @@ typedef struct OPD_KIRA_GENERATER_tag
 {
 	KIRA_GENERATE_PARAM GeneParam;
 	TCB_PTR GeneTcb;
-	OPD_KIRA_DATA *KiraDataListPtr;	//ƒ}ƒl[ƒWƒƒ‚Ì‚ÂƒLƒ‰ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+	OPD_KIRA_DATA *KiraDataListPtr;	//ãƒãƒãƒ¼ã‚¸ãƒ£ã®æŒã¤ã‚­ãƒ©ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
 }OPD_KIRA_GENERATER;
 
 typedef struct OP_DEMO_OBJ_WORK_KIRA_tag
 {
-	CLACT_SET_PTR 			ClactSet;								// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	RendData;								// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_U_RES_MANAGER_PTR	ResMan[RESOURCE_NUM];				// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_PTR 	ResObjTbl[RESOURCE_NUM];		// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
+	CLACT_SET_PTR 			ClactSet;								// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	RendData;								// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_MANAGER_PTR	ResMan[RESOURCE_NUM];				// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_PTR 	ResObjTbl[RESOURCE_NUM];		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
 	OPD_KIRA_DATA KiraData[OPD_KIRA_ACT_MAX];
 }OPD_KIRA_OBJ_WORK;
 
 typedef struct OPD_KIRA_GENERATE_MNG_tag
 {
-	OPD_KIRA_OBJ_WORK KiraObjWork;					//ƒLƒ‰ƒRƒ“ƒgƒ[ƒ‹ƒ[ƒN
-	OPD_KIRA_GENERATER Generater[GENERATER_MAX];	//ƒWƒFƒlƒŒ[ƒ^[”
+	OPD_KIRA_OBJ_WORK KiraObjWork;					//ã‚­ãƒ©ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
+	OPD_KIRA_GENERATER Generater[GENERATER_MAX];	//ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼æ•°
 }OPD_KIRA_GENERATE_MNG;
 
 //=========================================================================================
@@ -113,24 +113,24 @@ static void TCB_KiraFunc( TCB_PTR tcb, void* work );
 static void Scene2_GenerateKira( OPD_KIRA_DATLST_PTR pKiraDataListPtr, const u8 inNum, int kira_vanish);
 static void TCB_Scene2KiraFunc( TCB_PTR tcb, void* work );
 
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[“o˜^”ƒe[ƒuƒ‹
+//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç™»éŒ²æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 ResEntryNumTbl[RESOURCE_NUM] = {
-	ACT_ID_MAX,			//ƒLƒƒƒ‰ƒŠƒ\[ƒX
-	ACT_ID_MAX,			//ƒpƒŒƒbƒgƒŠƒ\[ƒX
-	ACT_ID_MAX,			//ƒZƒ‹ƒŠƒ\[ƒX
-	ACT_ID_MAX,			//ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX
+	ACT_ID_MAX,			//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
+	ACT_ID_MAX,			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
+	ACT_ID_MAX,			//ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	ACT_ID_MAX,			//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
 };
 
 //-------------------------------------
 //
-//	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[
-//	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 //
 //=====================================
 static void OpdKira_InitCharPlttManager()
 {
 	const int heapid = HEAPID_OP_DEMO;
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			OPD_KIRA_CHAR_CONT_NUM,
@@ -140,10 +140,10 @@ static void OpdKira_InitCharPlttManager()
 		};
 		InitCharManager(&cm);
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(OPD_KIRA_PLTT_CONT_NUM, heapid);
 
-	// “Ç‚İ‚İŠJnˆÊ’u‚ğ‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 
@@ -151,11 +151,11 @@ static void OpdKira_InitCharPlttManager()
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
  *
- * @param	wk				ƒI[ƒvƒjƒ“ƒO‚n‚a‚iƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	outAdd			ƒAƒNƒ^[ƒwƒbƒ_Ši”[êŠ
- * @param	outClActHeader	ƒAƒNƒ^[ƒwƒbƒ_[ƒ|ƒCƒ“ƒ^
+ * @param	wk				ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ï¼¯ï¼¢ï¼ªãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	outAdd			ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€æ ¼ç´å ´æ‰€
+ * @param	outClActHeader	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -163,7 +163,7 @@ static void OpdKira_InitCharPlttManager()
 static void MakeClActHeader( OPD_KIRA_OBJ_WORK *wk,
 								CLACT_ADD *outAdd, CLACT_HEADER *outClActHeader  )
 {
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬	
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ	
 	CLACT_U_MakeHeader(	outClActHeader,
 						ACT_ID_KIRA, ACT_ID_KIRA, ACT_ID_KIRA, ACT_ID_KIRA,
 						CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
@@ -179,7 +179,7 @@ static void MakeClActHeader( OPD_KIRA_OBJ_WORK *wk,
 		outAdd->ClActHeader	= outClActHeader;
 
 		outAdd->mat.x		= 0;//FX32_CONST(32) ;
-		outAdd->mat.y		= 0;//FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚é
+		outAdd->mat.y		= 0;//FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹
 		outAdd->mat.z		= 0;
 		outAdd->sca.x		= FX32_ONE;
 		outAdd->sca.y		= FX32_ONE;
@@ -193,11 +193,11 @@ static void MakeClActHeader( OPD_KIRA_OBJ_WORK *wk,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒWƒFƒlƒŒ[ƒ^[ƒ}ƒl[ƒWƒƒƒf[ƒ^ì¬ŠÖ”
+ * ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢æ•°
  *
  * @param	void
  *
- * @return	int		ƒTƒCƒY
+ * @return	int		ã‚µã‚¤ã‚º
  */
 //--------------------------------------------------------------------------------------------
 OPD_K_G_MNG_PTR OPDKira_AllocGeneMng( void )
@@ -213,11 +213,11 @@ OPD_K_G_MNG_PTR OPDKira_AllocGeneMng( void )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒ‰ƒf[ƒ^ƒŠƒXƒgƒAƒƒP[ƒVƒ‡ƒ“
+ * ã‚­ãƒ©ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³
  *
- * @param	inNum		Šm•Û”
+ * @param	inNum		ç¢ºä¿æ•°
  *
- * @return	OPD_KIRA_DATLST_PTR	ƒŠƒXƒgƒ|ƒCƒ“ƒ^
+ * @return	OPD_KIRA_DATLST_PTR	ãƒªã‚¹ãƒˆãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 OPD_KIRA_DATLST_PTR OPDKira_CreateList(const int inNum)
@@ -235,11 +235,11 @@ OPD_KIRA_DATLST_PTR OPDKira_CreateList(const int inNum)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒ‰ƒf[ƒ^ƒŠƒXƒg‰ğ•ú
+ * ã‚­ãƒ©ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆè§£æ”¾
  *
  * @param	
  *
- * @return	OPD_KIRA_DATLST_PTR	ƒŠƒXƒgƒ|ƒCƒ“ƒ^
+ * @return	OPD_KIRA_DATLST_PTR	ãƒªã‚¹ãƒˆãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 void OPDKira_FreeList(OPD_KIRA_DATLST_PTR pKiraDataListPtr)
@@ -256,12 +256,12 @@ void OPDKira_FreeList(OPD_KIRA_DATLST_PTR pKiraDataListPtr)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒ‰ƒf[ƒ^ƒŠƒXƒg‚Ìw’èƒCƒ“ƒfƒbƒNƒX‚ÌƒAƒNƒ^[ƒ[ƒN‚ğ•Ô‚·
+ * ã‚­ãƒ©ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã®æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’è¿”ã™
  *
- * @param	pKiraDataListPtr	ƒf[ƒ^ƒŠƒXƒgƒ|ƒCƒ“ƒ^
- * @param	inIndex				w’èƒCƒ“ƒfƒbƒNƒX
+ * @param	pKiraDataListPtr	ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆãƒã‚¤ãƒ³ã‚¿
+ * @param	inIndex				æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @return	CLACT_WORK_PTR		ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @return	CLACT_WORK_PTR		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 CLACT_WORK_PTR *OPDKira_GetActWorkPtrFromList( OPD_KIRA_DATLST_PTR pKiraDataListPtr,
@@ -274,9 +274,9 @@ CLACT_WORK_PTR *OPDKira_GetActWorkPtrFromList( OPD_KIRA_DATLST_PTR pKiraDataList
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒWƒFƒlƒŒ[ƒ^[‰ğ•ú
+ * ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼è§£æ”¾
  *
- * @param	ptr		ƒLƒ‰ƒWƒFƒlƒŒ[ƒ^[ƒ}ƒl[ƒWƒƒ
+ * @param	ptr		ã‚­ãƒ©ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ£
  *
  * @return	none
  */
@@ -285,10 +285,10 @@ void OPDKira_FreeGeneMng(OPD_K_G_MNG_PTR ptr)
 {
 	u8 i;
 	
-	//ƒAƒNƒ^[I—¹
+	//ã‚¢ã‚¯ã‚¿ãƒ¼çµ‚äº†
 	EndCellActor(&ptr->KiraObjWork);
 	
-	//‰Ò“®’†‚Ì‚s‚b‚a‚ğíœ
+	//ç¨¼å‹•ä¸­ã®ï¼´ï¼£ï¼¢ã‚’å‰Šé™¤
 	for(i=0;i<GENERATER_MAX;i++){
 		if (ptr->Generater[i].GeneTcb != NULL){
 			TCB_Delete(ptr->Generater[i].GeneTcb);
@@ -304,9 +304,9 @@ void OPDKira_FreeGeneMng(OPD_K_G_MNG_PTR ptr)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk	OBJƒ[ƒN
+ * @param	wk	OBJãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -316,63 +316,63 @@ static void InitCellActor( OPD_KIRA_OBJ_WORK *wk )
 	int i;
 	const int heapid = HEAPID_OP_DEMO;
 
-	//ƒ}ƒbƒsƒ“ƒOƒ‚[ƒhİ’è
+	//ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 	GX_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
 	GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);	
 	
 	OpdKira_InitCharPlttManager();
-	// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	// OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
+	// å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	REND_OAMInit( 
-			0, 128,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 128,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 128,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 128,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			heapid);
 	
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	wk->ClactSet = CLACT_U_SetEasyInit( OPD_KIRA_ACT_MAX, &wk->RendData, heapid );
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for(i=0;i<RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for(i=0;i<RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->ResMan[i] = CLACT_U_ResManagerInit(ResEntryNumTbl[i], i, heapid);
 	}
 
-	//--chara“Ç‚İ‚İ
+	//--charaèª­ã¿è¾¼ã¿
 										
 	wk->ResObjTbl[CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 										wk->ResMan[CLACT_U_CHAR_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_demoBG0_obj_NCGR,
 										FALSE, ACT_ID_KIRA, NNS_G2D_VRAM_TYPE_MAX, heapid);
 	
-	//--pal“Ç‚İ‚İ
+	//--palèª­ã¿è¾¼ã¿
 
 	wk->ResObjTbl[CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 										wk->ResMan[CLACT_U_PLTT_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_demoBG_obj_NCLR,
 										FALSE, ACT_ID_KIRA, NNS_G2D_VRAM_TYPE_MAX, PALETTE_NUM, heapid);
 		
-	//--cell“Ç‚İ‚İ
+	//--cellèª­ã¿è¾¼ã¿
 										
 	wk->ResObjTbl[CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELL_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_demoBG0_obj_NCER,
 										FALSE, ACT_ID_KIRA, CLACT_U_CELL_RES, heapid);
 	
-	//--“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//--åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 										
 	wk->ResObjTbl[CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELLANM_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_demoBG0_obj_NANR,
 										FALSE, ACT_ID_KIRA, CLACT_U_CELLANM_RES, heapid);
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 	
-	// Chara“]‘—
+	// Charaè»¢é€
 	CLACT_U_CharManagerSet( wk->ResObjTbl[CLACT_U_CHAR_RES] );
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	CLACT_U_PlttManagerSet( wk->ResObjTbl[CLACT_U_PLTT_RES] );
 
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );		// MAIN DISP OBJ ON
@@ -381,9 +381,9 @@ static void InitCellActor( OPD_KIRA_OBJ_WORK *wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‚ğI—¹
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’çµ‚äº†
  *
- * @param	wk	OBJƒ[ƒN
+ * @param	wk	OBJãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -391,19 +391,19 @@ static void InitCellActor( OPD_KIRA_OBJ_WORK *wk )
 static void EndCellActor( OPD_KIRA_OBJ_WORK *wk )
 {
 	u8 i;
-	// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_CharManagerDelete(wk->ResObjTbl[CLACT_U_CHAR_RES]);
-	// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_PlttManagerDelete(wk->ResObjTbl[CLACT_U_PLTT_RES]);
 	
-	// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for(i=0;i<RESOURCE_NUM;i++){
 		CLACT_U_ResManagerDelete(wk->ResMan[i]);
 	}
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(wk->ClactSet);
 
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
 	DeleteCharManager();
@@ -412,9 +412,9 @@ static void EndCellActor( OPD_KIRA_OBJ_WORK *wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‚ğƒZƒbƒg
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk	OBJƒ[ƒN
+ * @param	wk	OBJãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -432,15 +432,15 @@ static void SetActor( OPD_KIRA_OBJ_WORK *wk )
 		wk->KiraData[i].ActWorkPtr = CLACT_Add(&add);
 		
 		CLACT_SetAnmFlag(wk->KiraData[i].ActWorkPtr, 0);
-		CLACT_SetDrawFlag(wk->KiraData[i].ActWorkPtr, 0);	//”ñ•\¦
+		CLACT_SetDrawFlag(wk->KiraData[i].ActWorkPtr, 0);	//éè¡¨ç¤º
 	}	
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[•`‰æ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æç”»
  *
- * @param	wk	OBJƒ[ƒN	
+ * @param	wk	OBJãƒ¯ãƒ¼ã‚¯	
  *
  * @return	none
  */
@@ -452,10 +452,10 @@ static void DrawActor( OPD_KIRA_OBJ_WORK *wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒWƒFƒlƒŒ[ƒ^[ƒƒCƒ“
+ * ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼ãƒ¡ã‚¤ãƒ³
  *
- * @param	ptr			ƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
- * @param	inCounter	ƒtƒŒ[ƒ€ƒJƒEƒ“ƒ^
+ * @param	ptr			ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
+ * @param	inCounter	ãƒ•ãƒ¬ãƒ¼ãƒ ã‚«ã‚¦ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -463,10 +463,10 @@ static void DrawActor( OPD_KIRA_OBJ_WORK *wk )
 void KiraGenerateMain(OPD_K_G_MNG_PTR ptr, const int inCounter)
 {
 	if (inCounter == FM_KIRA_SATRT1){
-		//ƒWƒFƒlƒŒ[ƒ^[¶¬
+		//ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼ç”Ÿæˆ
 		CreateKiraGenerater(&ptr->Generater[0], ptr, 3, 3, 3, GENE_TYPE_FIRST);
 	}else if (inCounter == FM_KIRA_SATRT2){
-		//ƒWƒFƒlƒŒ[ƒ^[¶¬
+		//ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼ç”Ÿæˆ
 		CreateKiraGenerater(&ptr->Generater[1], ptr, 3, 3, 3, GENE_TYPE_SEC);
 	}
 
@@ -475,14 +475,14 @@ void KiraGenerateMain(OPD_K_G_MNG_PTR ptr, const int inCounter)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒWƒFƒlƒŒ[ƒ^[¶¬
+ * ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼ç”Ÿæˆ
  *
- * @param	pGenerater	ƒWƒFƒlƒŒ[ƒ^[
- * @param	ptr			ƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
- * @param	inNum		¶¬”
- * @param	inMargin	¶¬ŠÔŠu
- * @param	inLoop		ƒ‹[ƒv”
- * @param	inType		¶¬ƒ^ƒCƒv
+ * @param	pGenerater	ã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼
+ * @param	ptr			ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
+ * @param	inNum		ç”Ÿæˆæ•°
+ * @param	inMargin	ç”Ÿæˆé–“éš”
+ * @param	inLoop		ãƒ«ãƒ¼ãƒ—æ•°
+ * @param	inType		ç”Ÿæˆã‚¿ã‚¤ãƒ—
  *
  * @return	none
  */
@@ -504,11 +504,11 @@ static void CreateKiraGenerater(OPD_KIRA_GENERATER *pGenerater, OPD_K_G_MNG_PTR 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒ‰ƒGƒtƒFƒNƒg¶¬
+ * ã‚­ãƒ©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”Ÿæˆ
  *
- * @param	pKiraDataListPtr	ƒf[ƒ^ƒŠƒXƒg
- * @param	inNum				¶¬”
- * @param	intype				¶¬ƒ^ƒCƒv
+ * @param	pKiraDataListPtr	ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆ
+ * @param	inNum				ç”Ÿæˆæ•°
+ * @param	intype				ç”Ÿæˆã‚¿ã‚¤ãƒ—
  *
  * @return	none
  */
@@ -526,10 +526,10 @@ static void GenerateKira( OPD_KIRA_DATA *pKiraDataListPtr, const u8 inNum, const
 	}
 	
 	for(i=0;i<inNum;i++){
-		//–¢g—pƒf[ƒ^ŒŸõ
+		//æœªä½¿ç”¨ãƒ‡ãƒ¼ã‚¿æ¤œç´¢
 		kira_data = GetInvalidKiraData(pKiraDataListPtr, OPD_KIRA_ACT_MAX);
 		
-		//À•WŒˆ’è
+		//åº§æ¨™æ±ºå®š
 		{
 			VecFx32 vec;
 			vec =  *CLACT_GetMatrix( kira_data->ActWorkPtr );
@@ -537,22 +537,22 @@ static void GenerateKira( OPD_KIRA_DATA *pKiraDataListPtr, const u8 inNum, const
 			vec.y = FX32_ONE * ( base_y+(gf_rand()%OPD_KIRA_H) );
 			CLACT_SetMatrix( kira_data->ActWorkPtr, &vec );
 		}
-		//ƒoƒjƒbƒVƒ…ƒIƒt
+		//ãƒãƒ‹ãƒƒã‚·ãƒ¥ã‚ªãƒ•
 		CLACT_SetAnmFlag(kira_data->ActWorkPtr, 1);
 		CLACT_SetDrawFlag(kira_data->ActWorkPtr, 1);
-		//ƒ}ƒl[ƒWƒƒ‚Ì‚Â‹ó‚«ƒ^ƒXƒN‚ğæ“¾
+		//ãƒãƒãƒ¼ã‚¸ãƒ£ã®æŒã¤ç©ºãã‚¿ã‚¹ã‚¯ã‚’å–å¾—
 		kira_data->Tcb = TCB_Add(TCB_KiraFunc, kira_data, 20);
 	}
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹ó‚¢‚Ä‚¢‚éƒLƒ‰ƒf[ƒ^‚ğ•Ô‚·
+ * ç©ºã„ã¦ã„ã‚‹ã‚­ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
  *
- * @param	pKiraDataList	ƒf[ƒ^ƒŠƒXƒg
- * @param	inMax			ƒŠƒXƒg€–ÚÅ‘å”
+ * @param	pKiraDataList	ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆ
+ * @param	inMax			ãƒªã‚¹ãƒˆé …ç›®æœ€å¤§æ•°
  *
- * @return	OPD_KIRA_DATA *	ƒLƒ‰ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	OPD_KIRA_DATA *	ã‚­ãƒ©ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static OPD_KIRA_DATA *GetInvalidKiraData(OPD_KIRA_DATA *pKiraDataList, const int inMax)
@@ -573,10 +573,10 @@ static OPD_KIRA_DATA *GetInvalidKiraData(OPD_KIRA_DATA *pKiraDataList, const int
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒ‰ƒGƒtƒFƒNƒgƒWƒFƒlƒŒ[ƒ^[ƒ^ƒXƒN
+ * ã‚­ãƒ©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¸ã‚§ãƒãƒ¬ãƒ¼ã‚¿ãƒ¼ã‚¿ã‚¹ã‚¯
  *
- * @param	tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -585,12 +585,12 @@ static void TCB_GenerateFunc( TCB_PTR tcb, void* work )
 {
 	OPD_KIRA_GENERATER * generater = work;
 	KIRA_GENERATE_PARAM* param = &generater->GeneParam;
-	//¶¬ƒ^ƒCƒ~ƒ“ƒO‚ª—ˆ‚½‚çA¶¬ŠJn
+	//ç”Ÿæˆã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæ¥ãŸã‚‰ã€ç”Ÿæˆé–‹å§‹
 	if(param->Count++ >= param->Margin){
 		GenerateKira(generater->KiraDataListPtr, param->Num, param->Type);
 		param->Count = 0;
 		if (++param->Loop >= param->LoopMax){
-			//ƒ^ƒXƒNI—¹
+			//ã‚¿ã‚¹ã‚¯çµ‚äº†
 			TCB_Delete(tcb);
 			generater->GeneTcb = NULL;
 		}
@@ -599,10 +599,10 @@ static void TCB_GenerateFunc( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒ‰ƒGƒtƒFƒNƒg“®ìƒ^ƒXƒN
+ * ã‚­ãƒ©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œã‚¿ã‚¹ã‚¯
  *
- * @param	tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- * @param	work	ƒ[ƒN	
+ * @param	tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	ãƒ¯ãƒ¼ã‚¯	
  *
  * @return	none
  */
@@ -610,7 +610,7 @@ static void TCB_GenerateFunc( TCB_PTR tcb, void* work )
 static void TCB_KiraFunc( TCB_PTR tcb, void* work )
 {
 	OPD_KIRA_DATA *kira_data = work;
-	//“™‘¬‚Å‰º‚ÉˆÚ“®‚µ‚ÄAÁ‚¦‚é
+	//ç­‰é€Ÿã§ä¸‹ã«ç§»å‹•ã—ã¦ã€æ¶ˆãˆã‚‹
 	{
 		VecFx32 vec;
 		vec =  *CLACT_GetMatrix( kira_data->ActWorkPtr );
@@ -624,7 +624,7 @@ static void TCB_KiraFunc( TCB_PTR tcb, void* work )
 		TCB_Delete(tcb);
 		kira_data->Tcb = NULL;
 		kira_data->Valid = 0;
-		//ƒAƒNƒ^[ƒoƒjƒbƒVƒ…
+		//ã‚¢ã‚¯ã‚¿ãƒ¼ãƒãƒ‹ãƒƒã‚·ãƒ¥
 		CLACT_SetAnmFlag(kira_data->ActWorkPtr, 0);
 		CLACT_SetDrawFlag(kira_data->ActWorkPtr, 0);
 	}
@@ -632,10 +632,10 @@ static void TCB_KiraFunc( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒTƒu‰æ–Êí’“ƒLƒ‰ƒGƒtƒFƒNƒgƒƒCƒ“
+ * ã‚µãƒ–ç”»é¢å¸¸é§ã‚­ãƒ©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¡ã‚¤ãƒ³
  *
- * @param	pKiraDataListPtr	ƒf[ƒ^ƒŠƒXƒgƒ|ƒCƒ“ƒ^	
- * @param   kira_vanish			TRUE:‹­§”ñ•\¦
+ * @param	pKiraDataListPtr	ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆãƒã‚¤ãƒ³ã‚¿	
+ * @param   kira_vanish			TRUE:å¼·åˆ¶éè¡¨ç¤º
  *
  * @return	none
  */
@@ -648,11 +648,11 @@ void Scene2_KiraGenerateMain(OPD_KIRA_DATLST_PTR pKiraDataListPtr, int kira_vani
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒTƒu‰æ–Êí’“ƒLƒ‰ƒGƒtƒFƒNƒg¶¬
+ * ã‚µãƒ–ç”»é¢å¸¸é§ã‚­ãƒ©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”Ÿæˆ
  *
- * @param	pKiraDataListPtr	ƒf[ƒ^ƒŠƒXƒgƒ|ƒCƒ“ƒ^	
- * @param	inNum	¶¬”
- * @param   kira_vanish			TRUE:‹­§”ñ•\¦
+ * @param	pKiraDataListPtr	ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆãƒã‚¤ãƒ³ã‚¿	
+ * @param	inNum	ç”Ÿæˆæ•°
+ * @param   kira_vanish			TRUE:å¼·åˆ¶éè¡¨ç¤º
  *
  * @return	none
  */
@@ -666,10 +666,10 @@ static void Scene2_GenerateKira( OPD_KIRA_DATLST_PTR pKiraDataListPtr, const u8 
 	list_top = pKiraDataListPtr->Data;
 
 	for(i=0;i<inNum;i++){
-		//–¢g—pƒf[ƒ^ŒŸõ
+		//æœªä½¿ç”¨ãƒ‡ãƒ¼ã‚¿æ¤œç´¢
 		kira_data = GetInvalidKiraData(list_top, pKiraDataListPtr->Num);
 		
-		//À•WŒˆ’è
+		//åº§æ¨™æ±ºå®š
 		{
 			VecFx32 vec;
 			vec =  *CLACT_GetMatrix( kira_data->ActWorkPtr );
@@ -680,23 +680,23 @@ static void Scene2_GenerateKira( OPD_KIRA_DATLST_PTR pKiraDataListPtr, const u8 
 		
 		CLACT_SetAnmFlag(kira_data->ActWorkPtr, 1);
 		if(kira_vanish == FALSE){
-			//ƒoƒjƒbƒVƒ…ƒIƒt
+			//ãƒãƒ‹ãƒƒã‚·ãƒ¥ã‚ªãƒ•
 			CLACT_SetDrawFlag(kira_data->ActWorkPtr, 1);
 		}
 		else{
 			CLACT_SetDrawFlag(kira_data->ActWorkPtr, 0);
 		}
-		//ƒ}ƒl[ƒWƒƒ‚Ì‚Â‹ó‚«ƒ^ƒXƒN‚ğæ“¾
+		//ãƒãƒãƒ¼ã‚¸ãƒ£ã®æŒã¤ç©ºãã‚¿ã‚¹ã‚¯ã‚’å–å¾—
 		kira_data->Tcb = TCB_Add(TCB_Scene2KiraFunc, kira_data, 20);
 	}
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒ‰ƒGƒtƒFƒNƒg“®ìƒ^ƒXƒN
+ * ã‚­ãƒ©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œã‚¿ã‚¹ã‚¯
  *
- * @param	tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- * @param	work	ƒ[ƒN	
+ * @param	tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	ãƒ¯ãƒ¼ã‚¯	
  *
  * @return	none
  */
@@ -711,7 +711,7 @@ static void TCB_Scene2KiraFunc( TCB_PTR tcb, void* work )
 		TCB_Delete(tcb);
 		kira_data->Tcb = NULL;
 		kira_data->Valid = 0;
-		//ƒAƒNƒ^[ƒoƒjƒbƒVƒ…
+		//ã‚¢ã‚¯ã‚¿ãƒ¼ãƒãƒ‹ãƒƒã‚·ãƒ¥
 		CLACT_SetAnmFlag(kira_data->ActWorkPtr, 0);
 		CLACT_SetDrawFlag(kira_data->ActWorkPtr, 0);
 	}

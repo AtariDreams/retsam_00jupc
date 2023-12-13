@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	wifilist_local.h
- * @brief	Wifi‚Æ‚à‚¾‚¿ƒR[ƒhƒŠƒXƒg’è‹`iu‚µ‚è‚ ‚¢ƒOƒ‹[ƒvv‚Í•ÊAwifiã‚Å‚Ìî•ñ‚Ì‚İj
+ * @brief	Wifiã¨ã‚‚ã ã¡ã‚³ãƒ¼ãƒ‰ãƒªã‚¹ãƒˆå®šç¾©ï¼ˆã€Œã—ã‚Šã‚ã„ã‚°ãƒ«ãƒ¼ãƒ—ã€ã¯åˆ¥ã€wifiä¸Šã§ã®æƒ…å ±ã®ã¿ï¼‰
  * @author	mori GAME FREAK inc.
  * @date	2006.03.02
  */
@@ -21,12 +21,12 @@ typedef struct{
 
 	u16     trade_num;								// 44
 
-    u16     year;    //ÅŒã‚É‘Îí‚µ‚½”NŒ“ú ‚Ü‚¾‚Ìê‡‚Í‚O‚O‚O  //46
+    u16     year;    //æœ€å¾Œã«å¯¾æˆ¦ã—ãŸå¹´æœˆæ—¥ ã¾ã ã®å ´åˆã¯ï¼ï¼ï¼  //46
     u8     month;	                             //47								
     u8     day;
     u8     sex;
     u8     unionGra;
-	u16		pofin_num;							// 52	0`9999‚È‚Ì‚Åu16‚ÅOK
+	u16		pofin_num;							// 52	0ã€œ9999ãªã®ã§u16ã§OK
 	u16		minigame_ballslow;					// 56
 	u16		minigame_balanceball;				// 58
 	u16		minigame_balloon;					// 60

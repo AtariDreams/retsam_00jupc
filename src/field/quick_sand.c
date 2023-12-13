@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	quick_sand.c
- * @brief	—¬»ŠÄ‹AƒAƒjƒŒÄ‚Ño‚µŠÖ˜Aƒtƒ@ƒCƒ‹
+ * @brief	æµç ‚ç›£è¦–ã€ã‚¢ãƒ‹ãƒ¡å‘¼ã³å‡ºã—é–¢é€£ãƒ•ã‚¡ã‚¤ãƒ«
  * @author	Nozomu Saito
  * @date	2006.03.16
  */
@@ -20,18 +20,18 @@ typedef struct QUICK_SAND_POS_INFO_tag
 
 //==============================================================================
 /**
- * —¬»ƒ^ƒXƒNƒNƒŠƒGƒCƒgŠÖ”@ƒ[ƒN‰Šú‰»
+ * æµç ‚ã‚¿ã‚¹ã‚¯ã‚¯ãƒªã‚¨ã‚¤ãƒˆé–¢æ•°ã€€ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  * 
- * @param	*fwk		ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒtƒ@ƒ“ƒNƒVƒ‡ƒ“ƒ|ƒCƒ“ƒ^
- * @param	*fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	*work		ƒ[ƒN
+ * @param	*fwk		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ãƒã‚¤ãƒ³ã‚¿
+ * @param	*fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	*work		ãƒ¯ãƒ¼ã‚¯
  *
  * @retval  none
  */
 //==============================================================================
 static void QuickSand_Create(FLDMAPFUNC_WORK * fwk, FIELDSYS_WORK * fsys, void * work)
 {
-	//©‹@À•WŠÄ‹—pƒ[ƒN‚ğ‰Šú‰»
+	//è‡ªæ©Ÿåº§æ¨™ç›£è¦–ç”¨ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
 	QUICK_SAND_POS_INFO *info = (QUICK_SAND_POS_INFO*)work;
 	info->GridX = 0;
 	info->GridZ = 0;
@@ -39,11 +39,11 @@ static void QuickSand_Create(FLDMAPFUNC_WORK * fwk, FIELDSYS_WORK * fsys, void *
 
 //==============================================================================
 /**
- * —¬»ƒ^ƒXƒNƒfƒŠ[ƒgŠÖ”@‰½‚à‚µ‚Ü‚¹‚ñ
+ * æµç ‚ã‚¿ã‚¹ã‚¯ãƒ‡ãƒªãƒ¼ãƒˆé–¢æ•°ã€€ä½•ã‚‚ã—ã¾ã›ã‚“
  * 
- * @param	*fwk		ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒtƒ@ƒ“ƒNƒVƒ‡ƒ“ƒ|ƒCƒ“ƒ^
- * @param	*fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	*work		ƒ[ƒN
+ * @param	*fwk		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ãƒã‚¤ãƒ³ã‚¿
+ * @param	*fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	*work		ãƒ¯ãƒ¼ã‚¯
  *
  * @retval  none
  */
@@ -55,11 +55,11 @@ static void QuickSand_Delete(FLDMAPFUNC_WORK * fwk, FIELDSYS_WORK * fsys, void *
 
 //==============================================================================
 /**
- * —¬»ƒ^ƒXƒNƒAƒbƒvƒf[ƒgŠÖ”@—¬»ƒ`ƒFƒbƒN‚ğs‚¢‚Ü‚·
+ * æµç ‚ã‚¿ã‚¹ã‚¯ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆé–¢æ•°ã€€æµç ‚ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã„ã¾ã™
  * 
- * @param	*fwk		ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒtƒ@ƒ“ƒNƒVƒ‡ƒ“ƒ|ƒCƒ“ƒ^
- * @param	*fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	*work		ƒ[ƒN
+ * @param	*fwk		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ãƒã‚¤ãƒ³ã‚¿
+ * @param	*fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	*work		ãƒ¯ãƒ¼ã‚¯
  *
  * @retval  none
  */
@@ -71,11 +71,11 @@ static void QuickSand_Update(FLDMAPFUNC_WORK * fwk, FIELDSYS_WORK * fsys, void *
 	u8 anime_no;
 	QUICK_SAND_POS_INFO *info = (QUICK_SAND_POS_INFO*)work;
 	
-	//©‹@‚ÌˆÊ’uæ“¾
+	//è‡ªæ©Ÿã®ä½ç½®å–å¾—
 	x = Player_NowGPosXGet(fsys->player);
 	z = Player_NowGPosZGet(fsys->player);
 
-	//À•W”äŠr
+	//åº§æ¨™æ¯”è¼ƒ
 	if ((info->GridX == x)&&(info->GridZ == z)){
 		return;
 	}
@@ -83,13 +83,13 @@ static void QuickSand_Update(FLDMAPFUNC_WORK * fwk, FIELDSYS_WORK * fsys, void *
 	info->GridX = x;
 	info->GridZ = z;
 	
-	//ƒAƒgƒŠƒrƒ…[ƒgæ“¾
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
 	attr = GetAttributeLSB(fsys, x, z);
 	
 	if (MATR_IsShiftingSandLower(attr)){
-		anime_no = 0;	//—¬»‰º
+		anime_no = 0;	//æµç ‚ä¸‹
 	}else if (MATR_IsShiftingSandUpper(attr)){
-		anime_no = 1;	//—¬»ã
+		anime_no = 1;	//æµç ‚ä¸Š
 	}else{
 		return;
 	}
@@ -107,9 +107,9 @@ static const FLDMAPFUNC_DATA QuickSandData = {
 
 //==============================================================================
 /**
- * —¬»ƒ^ƒXƒNì¬ŠÖ”
+ * æµç ‚ã‚¿ã‚¹ã‚¯ä½œæˆé–¢æ•°
  * 
- * @param	*fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	*fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none
  */

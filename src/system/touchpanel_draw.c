@@ -2,7 +2,7 @@
 /**
  *
  *@file		touchpanel_draw.c
- *@brief	ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚Ì•`‰æ
+ *@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã®æç”»
  *@author	tomoya takahashi
  *@data		2005.03.29
  *
@@ -15,58 +15,58 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-// ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ•`‰æ—p
-static void drawPoint(GF_BGL_INI* bgl, u16 x, u16 y, TP_BRUSH_DATA brush_data );					// “_‚Ì•`‰æ
-static void drawLine(GF_BGL_INI* bgl, u16 x1, u16 y1, u16 x2, u16 y2, TP_BRUSH_DATA brush_data );	// ƒ‰ƒCƒ“‚ğˆø‚­
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±æç”»ç”¨
+static void drawPoint(GF_BGL_INI* bgl, u16 x, u16 y, TP_BRUSH_DATA brush_data );					// ç‚¹ã®æç”»
+static void drawLine(GF_BGL_INI* bgl, u16 x1, u16 y1, u16 x2, u16 y2, TP_BRUSH_DATA brush_data );	// ãƒ©ã‚¤ãƒ³ã‚’å¼•ã
 static void drawLineInOut(GF_BGL_INI* bgl, u16 x1, u16 y1, u16 x2, u16 y2,
 		TP_BRUSH_DATA in_brush_data, TP_BRUSH_DATA out_brush_data,
-		TP_PICTURE_DATA* pData );	// ƒ‰ƒCƒ“ã‚Ì“àŠO”»’è‚ğs‚¢ƒ‰ƒCƒ“‚ğˆø‚­
-static u32 getOffset( u16 x, u16 y, u16* p_shift, u32 char_width );				// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒIƒtƒZƒbƒg‚ğ‹‚ß‚é	
+		TP_PICTURE_DATA* pData );	// ãƒ©ã‚¤ãƒ³ä¸Šã®å†…å¤–åˆ¤å®šã‚’è¡Œã„ãƒ©ã‚¤ãƒ³ã‚’å¼•ã
+static u32 getOffset( u16 x, u16 y, u16* p_shift, u32 char_width );				// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’æ±‚ã‚ã‚‹	
 
-// ƒfƒoƒbƒN—pƒxƒNƒgƒ‹ƒf[ƒ^•`‰æ
+// ãƒ‡ãƒãƒƒã‚¯ç”¨ãƒ™ã‚¯ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿æç”»
 static void drawVect(GF_BGL_INI* bgl, Vec2DS32* p_point1, Vec2DS32* p_point2 );
 
 //----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
-static GF_BGL_BMPWIN*	TouchPanelDrawDataIdx;	// ƒoƒ“ƒvƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
-static TPData	TouchPanelOld;			// ˆê‚Â‘O‚Ì•`‰æî•ñ
-static u8		TouchPanelDrawInit=0;	// •`‰æƒVƒXƒeƒ€‰Šú‰»‚µ‚½‚©‚Ìƒtƒ‰ƒO
+static GF_BGL_BMPWIN*	TouchPanelDrawDataIdx;	// ãƒãƒ³ãƒ—ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+static TPData	TouchPanelOld;			// ä¸€ã¤å‰ã®æç”»æƒ…å ±
+static u8		TouchPanelDrawInit=0;	// æç”»ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–ã—ãŸã‹ã®ãƒ•ãƒ©ã‚°
 
 
 //
-/// ƒ^ƒbƒ`ƒyƒ“î•ñ‚Ì•`‰æ—pŠÖ”
+/// ã‚¿ãƒƒãƒãƒšãƒ³æƒ…å ±ã®æç”»ç”¨é–¢æ•°
 //
 //----------------------------------------------------------------------------
 /**
  *
- * @brief	ƒ^ƒbƒ`ƒyƒ“‚Ì•`‰æî•ñ‚Æƒrƒbƒgƒ}ƒbƒv‚Ìì¬
+ * @brief	ã‚¿ãƒƒãƒãƒšãƒ³ã®æç”»æƒ…å ±ã¨ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®ä½œæˆ
  *
- * @param	gf_bgl_frameFbg_system‚Ì•`‰æBG‚Ìƒiƒ“ƒo[
- * @param	width F•`‰æ•
- * @param	heightF•`‰æ‚‚³
- * @param	x	  F•`‰æŠJn“_‰¡
- * @param	y	  F•`‰æŠJn“_‚½‚Ä
- * @param	p_plttFg—p‚·‚éƒpƒŒƒbƒgƒf[ƒ^
- * @param	heap	g—p‚·‚éƒq[ƒv
+ * @param	gf_bgl_frameï¼šbg_systemã®æç”»BGã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	width ï¼šæç”»å¹…
+ * @param	heightï¼šæç”»é«˜ã•
+ * @param	x	  ï¼šæç”»é–‹å§‹ç‚¹æ¨ª
+ * @param	y	  ï¼šæç”»é–‹å§‹ç‚¹ãŸã¦
+ * @param	p_plttï¼šä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+ * @param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  * @return	none
  */
@@ -74,14 +74,14 @@ static u8		TouchPanelDrawInit=0;	// •`‰æƒVƒXƒeƒ€‰Šú‰»‚µ‚½‚©‚Ìƒtƒ‰ƒO
 void DrawTPInit(GF_BGL_INI* bgl, int gf_bgl_frame, u32 width, u32 height, u32 x, u32 y, const u16* p_pltt, int heap)
 {
 	//
-	// ƒ^ƒbƒ`ƒyƒ“•`‰æ—p‚Ìƒrƒbƒgƒ}ƒbƒv‚ğì¬‚µ‚ÄƒpƒŒƒbƒg‚ğƒ[ƒh‚·‚é
+	// ã‚¿ãƒƒãƒãƒšãƒ³æç”»ç”¨ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ä½œæˆã—ã¦ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
 	//
-	// Control‚ğì¬
-	GF_BGL_BGCNT_HEADER		bg =		// BG‚Ìİ’è
+	// Controlã‚’ä½œæˆ
+	GF_BGL_BGCNT_HEADER		bg =		// BGã®è¨­å®š
 	{
 		0,0,
-//		GF_BGL_SCRSIZ_256_256,			// •`‰æ”ÍˆÍ•ª(32*32•ª)
-		0x800,			// •`‰æ”ÍˆÍ•ª(32*32•ª)
+//		GF_BGL_SCRSIZ_256_256,			// æç”»ç¯„å›²åˆ†(32*32åˆ†)
+		0x800,			// æç”»ç¯„å›²åˆ†(32*32åˆ†)
 		0,
 		GX_BG_SCRSIZE_TEXT_256x256,
 		GX_BG_COLORMODE_16,
@@ -95,11 +95,11 @@ void DrawTPInit(GF_BGL_INI* bgl, int gf_bgl_frame, u32 width, u32 height, u32 x,
 	};
 
 	
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	TouchPanelDrawInit = 1;
 	
 	//
-	// ƒRƒ“ƒ[ƒ‹ƒZƒbƒg‚ğƒZƒbƒg•ƒLƒƒƒ‰ƒNƒ^‚ğì¬
+	// ã‚³ãƒ³ãƒ­ãƒ¼ãƒ«ã‚»ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆï¼†ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚’ä½œæˆ
 	//
 	GF_BGL_BGControlSet(bgl, gf_bgl_frame, &bg, GF_BGL_MODE_TEXT );
 	
@@ -108,33 +108,33 @@ void DrawTPInit(GF_BGL_INI* bgl, int gf_bgl_frame, u32 width, u32 height, u32 x,
 			gf_bgl_frame, x, y,
 			width, height, 0, TP_WIN_CGX - (width * height) );
 	
-	// ƒpƒŒƒbƒgƒ[ƒh
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ­ãƒ¼ãƒ‰
 	DrawTPChgPltt( gf_bgl_frame, p_pltt );
 
-	// Šeíƒf[ƒ^ƒZƒbƒg
+	// å„ç¨®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	TouchPanelOld.touch = 0;
 
 
 	
-	// ‰æ–Ê‚ğƒNƒŠƒA
+	// ç”»é¢ã‚’ã‚¯ãƒªã‚¢
 	DrawTPClean(bgl, 0 );
-	GF_BGL_BmpWinOn(TouchPanelDrawDataIdx );					// •`‰æ
+	GF_BGL_BmpWinOn(TouchPanelDrawDataIdx );					// æç”»
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- * @brief	ƒpƒŒƒbƒg‚ğ•Ï‚¦‚é
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰ãˆã‚‹
  * 
- * @param	gf_bgl_frameFbg_system‚Ì•`‰æBG‚Ìƒiƒ“ƒo[
- * @param	p_plttFg—p‚·‚éƒpƒŒƒbƒgƒf[ƒ^
+ * @param	gf_bgl_frameï¼šbg_systemã®æç”»BGã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	p_plttï¼šä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
  //----------------------------------------------------------------------------
 void DrawTPChgPltt( int gf_bgl_frame, const u16* p_pltt )
 {
-	// ƒpƒŒƒbƒgƒ[ƒh
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ­ãƒ¼ãƒ‰
 	if( gf_bgl_frame < GF_BGL_FRAME0_S ){
 		GX_LoadBGPltt( (const void *)p_pltt, 0, sizeof(u16)*16 );
 	}
@@ -146,32 +146,32 @@ void DrawTPChgPltt( int gf_bgl_frame, const u16* p_pltt )
 //----------------------------------------------------------------------------
 /**
  *
- * @brief	ƒ^ƒbƒ`ƒpƒlƒ‹•`‰æƒVƒXƒeƒ€‚Ì”jŠü
+ * @brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æç”»ã‚·ã‚¹ãƒ†ãƒ ã®ç ´æ£„
  * 
- * @param	plttFƒpƒŒƒbƒgƒiƒ“ƒo[
+ * @param	plttï¼šãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
  //----------------------------------------------------------------------------
 void DrawTPDelete(GF_BGL_INI* bgl, u16 pltt )
 {
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	SDK_ASSERTMSG( TouchPanelDrawInit != 0,
-			"warning:TouchPanelDrawSystem‰Šú‰»‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ\n" );
+			"warning:TouchPanelDrawSystemåˆæœŸåŒ–ã•ã‚Œã¦ã„ã¾ã›ã‚“\n" );
 
 	DrawTPClean(bgl, pltt );
 	DrawTPPaste(bgl);
 	GF_BGL_BmpWinDel( TouchPanelDrawDataIdx );
 	sys_FreeMemoryEz(TouchPanelDrawDataIdx);
 	
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	TouchPanelDrawInit = 0;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ÀÛ‚É‰æ–Ê‚É•`‰æ
+ *@brief	å®Ÿéš›ã«ç”»é¢ã«æç”»
  *
  *@param	none
  * 
@@ -181,12 +181,12 @@ void DrawTPDelete(GF_BGL_INI* bgl, u16 pltt )
 //-----------------------------------------------------------------------------
 void DrawTPPaste( GF_BGL_INI* bgl )
 {
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	SDK_ASSERTMSG( TouchPanelDrawInit != 0,
-			"warning:TouchPanelDrawSystem‰Šú‰»‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ\n" );
+			"warning:TouchPanelDrawSystemåˆæœŸåŒ–ã•ã‚Œã¦ã„ã¾ã›ã‚“\n" );
 	
 	//
-	// ÀÛ‚É‰æ–Ê‚É•`‰æ‚·‚é
+	// å®Ÿéš›ã«ç”»é¢ã«æç”»ã™ã‚‹
 	//
 	GF_BGL_BmpWinCgxOn(TouchPanelDrawDataIdx );
 }
@@ -194,12 +194,12 @@ void DrawTPPaste( GF_BGL_INI* bgl )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ğ•`‰æ
+ *@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã‚’æç”»
  *
- *@param	pBuffFƒ^ƒbƒ`ƒpƒlƒ‹î•ñƒoƒbƒtƒ@
- *@param	sizeFƒoƒbƒtƒ@ƒTƒCƒY
- *@param	brush_dataFg—p‚·‚éƒuƒ‰ƒVƒf[ƒ^
- *@param	check_numFƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ª‚±‚êˆÈã—£‚ê‚Ä‚¢‚½‚çV‚µ‚­ü‚ğ•`‚­’l
+ *@param	pBuffï¼šã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ãƒãƒƒãƒ•ã‚¡
+ *@param	sizeï¼šãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ *@param	brush_dataï¼šä½¿ç”¨ã™ã‚‹ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
+ *@param	check_numï¼šã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ãŒã“ã‚Œä»¥ä¸Šé›¢ã‚Œã¦ã„ãŸã‚‰æ–°ã—ãç·šã‚’æãå€¤
  * 
  *@return	none
  *
@@ -207,25 +207,25 @@ void DrawTPPaste( GF_BGL_INI* bgl )
 //-----------------------------------------------------------------------------
 void DrawTP(GF_BGL_INI* bgl, TPData* pBuff, u32 size, TP_BRUSH_DATA brush_data, u16 check_num )
 {
-	int i;			// ƒ‹[ƒv—p
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 	for( i = 0; i < size; i++ )
 	{
-		DrawTPLine(bgl, pBuff[ i ], brush_data, check_num );		// ü‚ğ‘‚­
+		DrawTPLine(bgl, pBuff[ i ], brush_data, check_num );		// ç·šã‚’æ›¸ã
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“àŠO”»’è‚ğ‚µ‚Äƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ğ•`‰æ
+ *@brief	å†…å¤–åˆ¤å®šã‚’ã—ã¦ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã‚’æç”»
  *
- *@param	pBuffFƒ^ƒbƒ`ƒpƒlƒ‹î•ñƒoƒbƒtƒ@
- *@param	sizeFƒoƒbƒtƒ@ƒTƒCƒY
- *@param	in_brush_dataF—Ìˆæ“à‚Ì‚Æ‚«g—p‚·‚éƒuƒ‰ƒVƒf[ƒ^
- *@param	out_brush_dataF—ÌˆæŠO‚Ì‚Æ‚«g—p‚·‚éƒuƒ‰ƒVƒf[ƒ^
- *@param	check_numFƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ª‚±‚êˆÈã—£‚ê‚Ä‚¢‚½‚çV‚µ‚­ü‚ğ•`‚­’l
- *@param	pDataFŠG‚Ìƒf[ƒ^
+ *@param	pBuffï¼šã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ãƒãƒƒãƒ•ã‚¡
+ *@param	sizeï¼šãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ *@param	in_brush_dataï¼šé ˜åŸŸå†…ã®ã¨ãä½¿ç”¨ã™ã‚‹ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
+ *@param	out_brush_dataï¼šé ˜åŸŸå¤–ã®ã¨ãä½¿ç”¨ã™ã‚‹ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
+ *@param	check_numï¼šã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ãŒã“ã‚Œä»¥ä¸Šé›¢ã‚Œã¦ã„ãŸã‚‰æ–°ã—ãç·šã‚’æãå€¤
+ *@param	pDataï¼šçµµã®ãƒ‡ãƒ¼ã‚¿
  * 
  *@return	none
  *
@@ -234,40 +234,40 @@ void DrawTP(GF_BGL_INI* bgl, TPData* pBuff, u32 size, TP_BRUSH_DATA brush_data, 
 void DrawTPInOut(GF_BGL_INI* bgl, TPData* pBuff, u32 size, TP_BRUSH_DATA in_brush_data, TP_BRUSH_DATA out_brush_data,
 						 u16 check_num, TP_PICTURE_DATA* pData )
 {
-	int i;			// ƒ‹[ƒv—p
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	
 	for( i = 0; i < size; i++ )
 	{
-		DrawTPLineInOut(bgl, pBuff[ i ], in_brush_data, out_brush_data, check_num, pData );		// ü‚ğ‘‚­
+		DrawTPLineInOut(bgl, pBuff[ i ], in_brush_data, out_brush_data, check_num, pData );		// ç·šã‚’æ›¸ã
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ğ•`‰æ
- *@brief	sync‚Ì’l•ª•`‰æ‚µ‚Äs‚«‚Ü‚·
+ *@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã‚’æç”»
+ *@brief	syncã®å€¤åˆ†æç”»ã—ã¦è¡Œãã¾ã™
  *
- *@param	pBuffFƒ^ƒbƒ`ƒpƒlƒ‹î•ñƒoƒbƒtƒ@
- *@param	sizeFƒoƒbƒtƒ@ƒTƒCƒY
- *@param	brush_dataFg—p‚·‚éƒuƒ‰ƒVƒf[ƒ^
- *@param	check_numFƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ª‚±‚êˆÈã—£‚ê‚Ä‚¢‚½‚çV‚µ‚­ü‚ğ•`‚­’l
- *@param	syncFƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO‚Ì‚PƒtƒŒ[ƒ€‚ÉƒTƒ“ƒvƒŠƒ“ƒO‚·‚é’l
- *@param	p_countFg—p‚·‚éƒJƒEƒ“ƒ^(ƒOƒ[ƒoƒ‹)
+ *@param	pBuffï¼šã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ãƒãƒƒãƒ•ã‚¡
+ *@param	sizeï¼šãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+ *@param	brush_dataï¼šä½¿ç”¨ã™ã‚‹ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
+ *@param	check_numï¼šã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ãŒã“ã‚Œä»¥ä¸Šé›¢ã‚Œã¦ã„ãŸã‚‰æ–°ã—ãç·šã‚’æãå€¤
+ *@param	syncï¼šã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã®ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã«ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã™ã‚‹å€¤
+ *@param	p_countï¼šä½¿ç”¨ã™ã‚‹ã‚«ã‚¦ãƒ³ã‚¿(ã‚°ãƒ­ãƒ¼ãƒãƒ«)
  * 
- *@retval	‚OF‘±s@
- *@retval	‚PFI—¹
+ *@retval	ï¼ï¼šç¶šè¡Œã€€
+ *@retval	ï¼‘ï¼šçµ‚äº†
  *
  */
 //-----------------------------------------------------------------------------
 u32 DrawTPSync(GF_BGL_INI* bgl, TPData* pBuff, u32 size, TP_BRUSH_DATA brush_data, u16 check_num, u16 sync, u32* p_count )
 {
-	int i;			// ƒ‹[ƒv—p
-	int num;		// I‚í‚è‚Ì”
-	u32 ret = 0;	// –ß‚è’l
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	int num;		// çµ‚ã‚ã‚Šã®æ•°
+	u32 ret = 0;	// æˆ»ã‚Šå€¤
 
-	// ƒ‹[ƒv‚ÌI‚í‚è‚Ì”‚ğƒZƒbƒg
+	// ãƒ«ãƒ¼ãƒ—ã®çµ‚ã‚ã‚Šã®æ•°ã‚’ã‚»ãƒƒãƒˆ
 	num = *p_count + sync;
 	if( num > size ){
 		num = size;
@@ -275,7 +275,7 @@ u32 DrawTPSync(GF_BGL_INI* bgl, TPData* pBuff, u32 size, TP_BRUSH_DATA brush_dat
 	}
 	
 	for( i = *p_count; i < num; i++ ){
-		DrawTPLine(bgl, pBuff[ i ], brush_data, check_num );		// ü‚ğ‘‚­
+		DrawTPLine(bgl, pBuff[ i ], brush_data, check_num );		// ç·šã‚’æ›¸ã
 	}
 
 	*p_count = i;
@@ -286,10 +286,10 @@ u32 DrawTPSync(GF_BGL_INI* bgl, TPData* pBuff, u32 size, TP_BRUSH_DATA brush_dat
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ğ•`‰æi“_‚ğ•`‰æj
+ *@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã‚’æç”»ï¼ˆç‚¹ã‚’æç”»ï¼‰
  *
- *@param	BuffFƒ^ƒbƒ`ƒpƒlƒ‹î•ñƒoƒbƒtƒ@
- *@param	brush_dataFg—p‚·‚éƒuƒ‰ƒVƒf[ƒ^
+ *@param	Buffï¼šã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ãƒãƒƒãƒ•ã‚¡
+ *@param	brush_dataï¼šä½¿ç”¨ã™ã‚‹ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -297,27 +297,27 @@ u32 DrawTPSync(GF_BGL_INI* bgl, TPData* pBuff, u32 size, TP_BRUSH_DATA brush_dat
 //-----------------------------------------------------------------------------
 void DrawTPPoint(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA brush_data )
 {	
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	SDK_ASSERTMSG( TouchPanelDrawInit != 0,
-			"warning:TouchPanelDrawSystem‰Šú‰»‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ\n" );
+			"warning:TouchPanelDrawSystemåˆæœŸåŒ–ã•ã‚Œã¦ã„ã¾ã›ã‚“\n" );
 	
 	//
-	// init‚Åæ“¾‚µ‚½ƒoƒ“ƒvƒf[ƒ^‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚É“_‚ğ‘‚­
+	// initã§å–å¾—ã—ãŸãƒãƒ³ãƒ—ãƒ‡ãƒ¼ã‚¿ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã«ç‚¹ã‚’æ›¸ã
 	//
 	if( (Buff.touch == TP_TOUCH_ON) &&
 		(Buff.validity == TP_VALIDITY_VALID) ){
-		drawPoint(bgl, Buff.x, Buff.y, brush_data );		// “_‚ğ‘‚­
+		drawPoint(bgl, Buff.x, Buff.y, brush_data );		// ç‚¹ã‚’æ›¸ã
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ğ•`‰æiü‚É‚·‚éj
+ *@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã‚’æç”»ï¼ˆç·šã«ã™ã‚‹ï¼‰
  *
- *@param	BuffFƒ^ƒbƒ`ƒpƒlƒ‹î•ñƒoƒbƒtƒ@
- *@param	brush_dataFg—p‚·‚éƒuƒ‰ƒVƒf[ƒ^
- *@param	check_numFV‚µ‚­‘‚«n‚ß‚é‚Æ‚«‚Ì‚P‚Â‘O‚Æ‚ÌÅ‘å·
+ *@param	Buffï¼šã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ãƒãƒƒãƒ•ã‚¡
+ *@param	brush_dataï¼šä½¿ç”¨ã™ã‚‹ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
+ *@param	check_numï¼šæ–°ã—ãæ›¸ãå§‹ã‚ã‚‹ã¨ãã®ï¼‘ã¤å‰ã¨ã®æœ€å¤§å·®
  *
  *@return	none
  *
@@ -325,15 +325,15 @@ void DrawTPPoint(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA brush_data )
 //-----------------------------------------------------------------------------
 void DrawTPLine(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA brush_data, u16 check_num )
 {	
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	SDK_ASSERTMSG( TouchPanelDrawInit != 0,
-			"warning:TouchPanelDrawSystem‰Šú‰»‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ\n" );
+			"warning:TouchPanelDrawSystemåˆæœŸåŒ–ã•ã‚Œã¦ã„ã¾ã›ã‚“\n" );
 	
-	// ˆê‚Â‘O‚ªƒ^ƒbƒ`‚µ‚½‚¢‚È‚¯‚ê‚ÎV‚µ‚­‘‚«n‚ß‚é
+	// ä¸€ã¤å‰ãŒã‚¿ãƒƒãƒã—ãŸã„ãªã‘ã‚Œã°æ–°ã—ãæ›¸ãå§‹ã‚ã‚‹
 	if( TouchPanelOld.touch == TP_TOUCH_OFF ){
 		TouchPanelOld = Buff;
 	}else{
-		// ‚ ‚Ü‚è‚É‚à‚P‚Â‘O‚Ì’l‚Æ‚Ì·‚ª‚ ‚é‚Æ‚«‚ÍV‚µ‚­‘‚«n‚ß‚é
+		// ã‚ã¾ã‚Šã«ã‚‚ï¼‘ã¤å‰ã®å€¤ã¨ã®å·®ãŒã‚ã‚‹ã¨ãã¯æ–°ã—ãæ›¸ãå§‹ã‚ã‚‹
 		if( (((TouchPanelOld.x - Buff.x) > check_num) ||
 			((TouchPanelOld.y - Buff.y) > check_num)) ||
 			(((TouchPanelOld.x - Buff.x) < -check_num) ||
@@ -343,15 +343,15 @@ void DrawTPLine(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA brush_data, u16 chec
 		}
 	}
 	
-	// ƒ^ƒbƒ`‚µ‚Ä‚¢‚½‚ç•`‰æ
+	// ã‚¿ãƒƒãƒã—ã¦ã„ãŸã‚‰æç”»
 	if( (Buff.touch == TP_TOUCH_ON) &&
 		(Buff.validity == TP_VALIDITY_VALID) ){
 		//
-		// init‚Åæ“¾‚µ‚½ƒoƒ“ƒvƒf[ƒ^‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚É“_‚ğ‘‚­
+		// initã§å–å¾—ã—ãŸãƒãƒ³ãƒ—ãƒ‡ãƒ¼ã‚¿ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã«ç‚¹ã‚’æ›¸ã
 		//
-		drawLine(bgl, TouchPanelOld.x, TouchPanelOld.y, Buff.x, Buff.y, brush_data );		// “_‚ğ‘‚­
+		drawLine(bgl, TouchPanelOld.x, TouchPanelOld.y, Buff.x, Buff.y, brush_data );		// ç‚¹ã‚’æ›¸ã
 
-		// ƒf[ƒ^‚ğƒZƒbƒg
+		// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 		TouchPanelOld = Buff;
 	}
 }
@@ -359,13 +359,13 @@ void DrawTPLine(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA brush_data, u16 chec
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ğ•`‰æiü‚É‚·‚éj“àŠO”»’è‚ğs‚Á‚Ä•`‰æ
+ *@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã‚’æç”»ï¼ˆç·šã«ã™ã‚‹ï¼‰å†…å¤–åˆ¤å®šã‚’è¡Œã£ã¦æç”»
  *
- *@param	BuffFƒ^ƒbƒ`ƒpƒlƒ‹î•ñƒoƒbƒtƒ@
- *@param	in_brush_dataF—Ìˆæ“à‚Ì‚Æ‚«g—p‚·‚éƒuƒ‰ƒVƒf[ƒ^
- *@param	out_brush_dataF—ÌˆæŠO‚Ì‚Æ‚«g—p‚·‚éƒuƒ‰ƒVƒf[ƒ^
- *@param	check_numFƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ª‚±‚êˆÈã—£‚ê‚Ä‚¢‚½‚çV‚µ‚­ü‚ğ•`‚­’l
- *@param	pDataFŠG‚Ìƒf[ƒ^
+ *@param	Buffï¼šã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ãƒãƒƒãƒ•ã‚¡
+ *@param	in_brush_dataï¼šé ˜åŸŸå†…ã®ã¨ãä½¿ç”¨ã™ã‚‹ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
+ *@param	out_brush_dataï¼šé ˜åŸŸå¤–ã®ã¨ãä½¿ç”¨ã™ã‚‹ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
+ *@param	check_numï¼šã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ãŒã“ã‚Œä»¥ä¸Šé›¢ã‚Œã¦ã„ãŸã‚‰æ–°ã—ãç·šã‚’æãå€¤
+ *@param	pDataï¼šçµµã®ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -374,15 +374,15 @@ void DrawTPLine(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA brush_data, u16 chec
 void DrawTPLineInOut(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA in_brush_data, TP_BRUSH_DATA out_brush_data,
 					  u16 check_num, TP_PICTURE_DATA* pData )
 {	
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	SDK_ASSERTMSG( TouchPanelDrawInit != 0,
-			"warning:TouchPanelDrawSystem‰Šú‰»‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ\n" );
+			"warning:TouchPanelDrawSystemåˆæœŸåŒ–ã•ã‚Œã¦ã„ã¾ã›ã‚“\n" );
 	
-	// ˆê‚Â‘O‚ªƒ^ƒbƒ`‚µ‚½‚¢‚È‚¯‚ê‚ÎV‚µ‚­‘‚«n‚ß‚é
+	// ä¸€ã¤å‰ãŒã‚¿ãƒƒãƒã—ãŸã„ãªã‘ã‚Œã°æ–°ã—ãæ›¸ãå§‹ã‚ã‚‹
 	if( TouchPanelOld.touch == TP_TOUCH_OFF ){
 		TouchPanelOld = Buff;
 	}else{
-		// ‚ ‚Ü‚è‚É‚à‚P‚Â‘O‚Ì’l‚Æ‚Ì·‚ª‚ ‚é‚Æ‚«‚ÍV‚µ‚­‘‚«n‚ß‚é
+		// ã‚ã¾ã‚Šã«ã‚‚ï¼‘ã¤å‰ã®å€¤ã¨ã®å·®ãŒã‚ã‚‹ã¨ãã¯æ–°ã—ãæ›¸ãå§‹ã‚ã‚‹
 		if( (((TouchPanelOld.x - Buff.x) > check_num) ||
 			((TouchPanelOld.y - Buff.y) > check_num)) ||
 			(((TouchPanelOld.x - Buff.x) < -check_num) ||
@@ -392,15 +392,15 @@ void DrawTPLineInOut(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA in_brush_data, 
 		}
 	}
 	
-	// ƒ^ƒbƒ`‚µ‚Ä‚¢‚½‚ç•`‰æ
+	// ã‚¿ãƒƒãƒã—ã¦ã„ãŸã‚‰æç”»
 	if( (Buff.touch == TP_TOUCH_ON) &&
 		(Buff.validity == TP_VALIDITY_VALID) ){
 		//
-		// init‚Åæ“¾‚µ‚½ƒoƒ“ƒvƒf[ƒ^‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚É“_‚ğ‘‚­
+		// initã§å–å¾—ã—ãŸãƒãƒ³ãƒ—ãƒ‡ãƒ¼ã‚¿ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã«ç‚¹ã‚’æ›¸ã
 		//
-		drawLineInOut(bgl, TouchPanelOld.x, TouchPanelOld.y, Buff.x, Buff.y, in_brush_data, out_brush_data, pData );		// “_‚ğ‘‚­
+		drawLineInOut(bgl, TouchPanelOld.x, TouchPanelOld.y, Buff.x, Buff.y, in_brush_data, out_brush_data, pData );		// ç‚¹ã‚’æ›¸ã
 
-		// ƒf[ƒ^‚ğƒZƒbƒg
+		// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 		TouchPanelOld = Buff;
 	}
 }
@@ -408,9 +408,9 @@ void DrawTPLineInOut(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA in_brush_data, 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒoƒ“ƒv‚ğƒNƒŠ[ƒ“‚·‚é
+ *@brief	ãƒãƒ³ãƒ—ã‚’ã‚¯ãƒªãƒ¼ãƒ³ã™ã‚‹
  *
- *@param	pltt_numF“h‚è‚Â‚Ô‚·ƒpƒŒƒbƒgƒiƒ“ƒo[
+ *@param	pltt_numï¼šå¡—ã‚Šã¤ã¶ã™ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
  *
  *@return	none
  *
@@ -418,20 +418,20 @@ void DrawTPLineInOut(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA in_brush_data, 
 //-----------------------------------------------------------------------------
 void DrawTPClean(GF_BGL_INI* bgl, u16 pltt_num )
 {
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	SDK_ASSERTMSG( TouchPanelDrawInit != 0,
-			"warning:TouchPanelDrawSystem‰Šú‰»‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ\n" );
+			"warning:TouchPanelDrawSystemåˆæœŸåŒ–ã•ã‚Œã¦ã„ã¾ã›ã‚“\n" );
 
 	//
-	// ƒpƒŒƒbƒgƒiƒ“ƒo[‚ÌF‚ÅƒNƒŠ[ƒ“‚·‚é
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã®è‰²ã§ã‚¯ãƒªãƒ¼ãƒ³ã™ã‚‹
 	//
-	GF_BGL_BmpWinDataFill(TouchPanelDrawDataIdx, pltt_num );			// “h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill(TouchPanelDrawDataIdx, pltt_num );			// å¡—ã‚Šã¤ã¶ã—
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	•Û‘¶‚µ‚Ä‚¢‚é‚P‚Â‘O‚ÌÀ•W‚ğ‰Šú‰»‚·‚é
+ *@brief	ä¿å­˜ã—ã¦ã„ã‚‹ï¼‘ã¤å‰ã®åº§æ¨™ã‚’åˆæœŸåŒ–ã™ã‚‹
  *
  *@param	none
  *
@@ -441,19 +441,19 @@ void DrawTPClean(GF_BGL_INI* bgl, u16 pltt_num )
 //-----------------------------------------------------------------------------
 void DrawTPOldMatDest( void )
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	TouchPanelOld.touch = TP_TOUCH_OFF;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒuƒ‰ƒVƒf[ƒ^‚ğì¬‚·‚é
+ *@brief	ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
  *
- *@param	p_brushFƒuƒ‰ƒVƒf[ƒ^
- *@param	plttFƒpƒŒƒbƒgƒiƒ“ƒo[
- *@param	size_xF‰¡ƒTƒCƒY
- *@param	size_yF‚½‚ÄƒTƒCƒY
+ *@param	p_brushï¼šãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
+ *@param	plttï¼šãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+ *@param	size_xï¼šæ¨ªã‚µã‚¤ã‚º
+ *@param	size_yï¼šãŸã¦ã‚µã‚¤ã‚º
  *
  *@return	none
  *
@@ -462,17 +462,17 @@ void DrawTPOldMatDest( void )
 void MakeTPBrush( TP_BRUSH_DATA* p_brush, u16 pltt, u16 size_x, u16 size_y, int heap )
 {
 	int i, j;
-	int make_size;		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ÌƒTƒCƒY
-	u16 shift;			// ƒVƒtƒg‚·‚é’l
-	u32 offset;			// ƒIƒtƒZƒbƒg’l
+	int make_size;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+	u16 shift;			// ã‚·ãƒ•ãƒˆã™ã‚‹å€¤
+	u32 offset;			// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 
 	
 	//
-	// ƒuƒ‰ƒVƒf[ƒ^‚ğì¬‚·‚é
-	// ƒLƒƒƒ‰ƒNƒ^‚Íâ‘Î‚É‚W‚Ì”{”‚É‚·‚é
-	// ‰½‚à‚¤‚ ‚ª‚«‚µ‚½‚­‚È‚¢‚Æ‚«‚Í‚O‚ğ“ü‚ê‚é
+	// ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¯çµ¶å¯¾ã«ï¼˜ã®å€æ•°ã«ã™ã‚‹
+	// ä½•ã‚‚ã†ã‚ãŒãã—ãŸããªã„ã¨ãã¯ï¼ã‚’å…¥ã‚Œã‚‹
 	//
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒTƒCƒY‚ğ‹‚ß‚é
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã‚‹
 	p_brush->SizeX = size_x;
 	p_brush->SizeY = size_y;
 	if( (p_brush->SizeX % 8) != 0 ){
@@ -485,19 +485,19 @@ void MakeTPBrush( TP_BRUSH_DATA* p_brush, u16 pltt, u16 size_x, u16 size_y, int 
 	
 	p_brush->pCharData = (u16*)sys_AllocMemory( heap, sizeof(u16) * ((p_brush->SizeX / 4) * p_brush->SizeY) );
 
-	// 0‚Å‰Šú‰»
+	// 0ã§åˆæœŸåŒ–
 	for( i = 0; i < (p_brush->SizeX / 4) * p_brush->SizeY; i++ ){
 		p_brush->pCharData[ i ] = 0;
 	}
 
 
-	// ƒLƒƒƒ‰ƒNƒ^“à‚ğƒpƒŒƒbƒg‚ÌF‚Å“h‚è‚Â‚Ô‚·
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å†…ã‚’ãƒ‘ãƒ¬ãƒƒãƒˆã®è‰²ã§å¡—ã‚Šã¤ã¶ã™
 	for( i = 0; i < size_y; i++ ){
 		for( j = 0; j < size_x; j++ ){
-			// À•WˆÊ’u‚ÌƒIƒtƒZƒbƒg‚ğ‹‚ß‚é
+			// åº§æ¨™ä½ç½®ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’æ±‚ã‚ã‚‹
 			offset = getOffset( j, i, &shift, p_brush->SizeX / 8 );
 
-			// ƒIƒtƒZƒbƒg‚ÌˆÊ’u‚ÉŠi”[
+			// ã‚ªãƒ•ã‚»ãƒƒãƒˆã®ä½ç½®ã«æ ¼ç´
 			*(p_brush->pCharData + offset) |= pltt << shift;
 		}
 	}
@@ -506,14 +506,14 @@ void MakeTPBrush( TP_BRUSH_DATA* p_brush, u16 pltt, u16 size_x, u16 size_y, int 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ŠG‚Ìƒuƒ‰ƒVƒf[ƒ^‚ğì¬‚·‚é
- *@brief	ƒTƒCƒY‚Í•K‚¸ƒLƒƒƒ‰ƒNƒ^’PˆÊi‚Wj‚Å‚¨Šè‚¢‚µ‚Ü‚·
+ *@brief	çµµã®ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
+ *@brief	ã‚µã‚¤ã‚ºã¯å¿…ãšã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ï¼ˆï¼˜ï¼‰ã§ãŠé¡˜ã„ã—ã¾ã™
  *
- *@param	p_brushFƒuƒ‰ƒVƒf[ƒ^
- *@param	p_charFŠG‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
- *@param	size_xF‰¡ƒTƒCƒY
- *@param	size_yF‚½‚ÄƒTƒCƒY
- *@param	heap	g—p‚·‚éƒq[ƒv
+ *@param	p_brushï¼šãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
+ *@param	p_charï¼šçµµã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+ *@param	size_xï¼šæ¨ªã‚µã‚¤ã‚º
+ *@param	size_yï¼šãŸã¦ã‚µã‚¤ã‚º
+ *@param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
@@ -522,24 +522,24 @@ void MakeTPBrush( TP_BRUSH_DATA* p_brush, u16 pltt, u16 size_x, u16 size_y, int 
 void MakeTPGraphicBrush( TP_BRUSH_DATA* p_brush, const u16* p_char, u16 size_x, u16 size_y, int heap )
 {
 	int i, j;
-	int make_size;		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ÌƒTƒCƒY
-	u16 shift;			// ƒVƒtƒg‚·‚é’l
-	u32 offset;			// ƒIƒtƒZƒbƒg’l
+	int make_size;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+	u16 shift;			// ã‚·ãƒ•ãƒˆã™ã‚‹å€¤
+	u32 offset;			// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 
 	
 	//
-	// ƒuƒ‰ƒVƒf[ƒ^‚ğì¬‚·‚é
-	// ƒLƒƒƒ‰ƒNƒ^‚Íâ‘Î‚É‚W‚Ì”{”‚É‚·‚é
-	// ‰½‚à‚¤‚ ‚ª‚«‚µ‚½‚­‚È‚¢‚Æ‚«‚Í‚O‚ğ“ü‚ê‚é
+	// ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã¯çµ¶å¯¾ã«ï¼˜ã®å€æ•°ã«ã™ã‚‹
+	// ä½•ã‚‚ã†ã‚ãŒãã—ãŸããªã„ã¨ãã¯ï¼ã‚’å…¥ã‚Œã‚‹
 	//
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒTƒCƒY‚ğ‹‚ß‚é
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã‚‹
 	p_brush->SizeX = size_x;
 	p_brush->SizeY = size_y;
 
 	
 	p_brush->pCharData = (u16*)sys_AllocMemory( heap, sizeof(u16) * ((p_brush->SizeX / 4) * p_brush->SizeY) );
 
-	// ƒRƒs[
+	// ã‚³ãƒ”ãƒ¼
 	MI_CpuCopy16( p_char, p_brush->pCharData, sizeof(u16) * ((p_brush->SizeX / 4) * p_brush->SizeY) );
 
 }
@@ -547,9 +547,9 @@ void MakeTPGraphicBrush( TP_BRUSH_DATA* p_brush, const u16* p_char, u16 size_x, 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒuƒ‰ƒVƒf[ƒ^‚ğ”jŠü‚·‚é
+ *@brief	ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹
  *
- *@param	p_brushFƒuƒ‰ƒVƒf[ƒ^
+ *@param	p_brushï¼šãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -558,7 +558,7 @@ void MakeTPGraphicBrush( TP_BRUSH_DATA* p_brush, const u16* p_char, u16 size_x, 
 void DestTPBrush( TP_BRUSH_DATA* p_brush )
 {
 	//
-	// ƒuƒ‰ƒVƒf[ƒ^”jŠü
+	// ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	//
 	sys_FreeMemoryEz( p_brush->pCharData );
 	p_brush->pCharData = NULL;
@@ -567,13 +567,13 @@ void DestTPBrush( TP_BRUSH_DATA* p_brush )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ü‚ğ•`‰æ‚·‚é
+ *@brief	ç·šã‚’æç”»ã™ã‚‹
  *
- *@param	x1F•`‰æŠJn‚˜À•W
- *@param	y1F•`‰æŠJn‚™À•W
- *@param	x2F•`‰æI—¹‚˜À•W
- *@param	y2F•`‰æI—¹‚™À•W
- *@param	brush_dataFƒuƒ‰ƒVƒf[ƒ^
+ *@param	x1ï¼šæç”»é–‹å§‹ï½˜åº§æ¨™
+ *@param	y1ï¼šæç”»é–‹å§‹ï½™åº§æ¨™
+ *@param	x2ï¼šæç”»çµ‚äº†ï½˜åº§æ¨™
+ *@param	y2ï¼šæç”»çµ‚äº†ï½™åº§æ¨™
+ *@param	brush_dataï¼šãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -581,39 +581,39 @@ void DestTPBrush( TP_BRUSH_DATA* p_brush )
 //-----------------------------------------------------------------------------
 static void drawLine(GF_BGL_INI* bgl, u16 x1, u16 y1, u16 x2, u16 y2, TP_BRUSH_DATA brush_data )
 {
-	u16 width, height;			// ƒ‰ƒCƒ“‚Ì•‚Æ‚‚³
-	int i;						// ƒ‹[ƒv—p
-	u16 min;					// À•W‚ÌÅ’á‚Ì’li‚P‚Ã‚Â‘‚¦‚é‚Ù‚¤j
-	u16 max;					// À•W‚ÌÅ‘å‚Ì’li‚P‚Ã‚Â‘‚¦‚é‚Ù‚¤j
-	u16 base;					// ƒx[ƒX‚Ì’limin‚ÌÀ•W‚Ì‚Ì’lj
-	u16 px, py;					// ƒsƒNƒZƒ‹ˆÊ’u
-	s32 vec_heigt;				// ü•ª‚ÌŒX‚«
+	u16 width, height;			// ãƒ©ã‚¤ãƒ³ã®å¹…ã¨é«˜ã•
+	int i;						// ãƒ«ãƒ¼ãƒ—ç”¨
+	u16 min;					// åº§æ¨™ã®æœ€ä½ã®å€¤ï¼ˆï¼‘ã¥ã¤å¢—ãˆã‚‹ã»ã†ï¼‰
+	u16 max;					// åº§æ¨™ã®æœ€å¤§ã®å€¤ï¼ˆï¼‘ã¥ã¤å¢—ãˆã‚‹ã»ã†ï¼‰
+	u16 base;					// ãƒ™ãƒ¼ã‚¹ã®å€¤ï¼ˆminã®åº§æ¨™ã®æ™‚ã®å€¤ï¼‰
+	u16 px, py;					// ãƒ”ã‚¯ã‚»ãƒ«ä½ç½®
+	s32 vec_heigt;				// ç·šåˆ†ã®å‚¾ã
 	
 	
-	// ‚‚³‚Æ•‚ğæ“¾
-	width = (u16) ((x1 >= x2) ? (x1 - x2) : (x2 - x1));  // •‚ğæ“¾
-    height = (u16) ((y1 >= y2) ? (y1 - y2) : (y2 - y1)); // ‚‚³‚ğæ“¾
+	// é«˜ã•ã¨å¹…ã‚’å–å¾—
+	width = (u16) ((x1 >= x2) ? (x1 - x2) : (x2 - x1));  // å¹…ã‚’å–å¾—
+    height = (u16) ((y1 >= y2) ? (y1 - y2) : (y2 - y1)); // é«˜ã•ã‚’å–å¾—
 
 	
-	// ‘å‚«‚¢‚Ù‚¤‚ğ‚Pƒhƒbƒg‚Ã‚Â‘‚¦‚éÀ•W‚É‚·‚é
+	// å¤§ãã„ã»ã†ã‚’ï¼‘ãƒ‰ãƒƒãƒˆã¥ã¤å¢—ãˆã‚‹åº§æ¨™ã«ã™ã‚‹
 	if( width > height ){
 		if( x1 >= x2 ){
 			min = x2;
 			max = x1;
 			base = y2;
 	
-			// ŒX‚«‚ğ‹‚ß‚é
+			// å‚¾ãã‚’æ±‚ã‚ã‚‹
 			vec_heigt = ((y2 - y1) * 10000) / (x2 - x1);
 		}else{
 			min = x1;
 			max = x2;
 			base = y1;
 
-			// ŒX‚«‚ğ‹‚ß‚é
+			// å‚¾ãã‚’æ±‚ã‚ã‚‹
 			vec_heigt = ((y1 - y2) * 10000) / (x1 - x2);
 		} 
 
-		// ü‚É‰ˆ‚Á‚Ä“_‚ğ•`‰æ
+		// ç·šã«æ²¿ã£ã¦ç‚¹ã‚’æç”»
 		for( i = min; i < max; i++ ){
 			px = i;
 			py = (u16) (base + ((vec_heigt * (i - min)) / 10000));
@@ -625,18 +625,18 @@ static void drawLine(GF_BGL_INI* bgl, u16 x1, u16 y1, u16 x2, u16 y2, TP_BRUSH_D
 			max = y1;
 			base = x2;
 	
-			// ŒX‚«‚ğ‹‚ß‚é
+			// å‚¾ãã‚’æ±‚ã‚ã‚‹
 			vec_heigt = ((x2 - x1) * 10000) / (y2 - y1);
 		}else{
 			min = y1;
 			max = y2;
 			base = x1;
 
-			// ŒX‚«‚ğ‹‚ß‚é
+			// å‚¾ãã‚’æ±‚ã‚ã‚‹
 			vec_heigt = ((x1 - x2) * 10000) / (y1 - y2);
 		} 
 
-		// ü‚É‰ˆ‚Á‚Ä“_‚ğ•`‰æ
+		// ç·šã«æ²¿ã£ã¦ç‚¹ã‚’æç”»
 		for( i = min; i < max; i++ ){
 			px = (u16) (base + ((vec_heigt * (i - min)) / 10000));
 			py = i;
@@ -648,17 +648,17 @@ static void drawLine(GF_BGL_INI* bgl, u16 x1, u16 y1, u16 x2, u16 y2, TP_BRUSH_D
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“àŠO”»’è‚µ‚È‚ª‚çü‚ğ•`‰æ‚·‚é
+ *@brief	å†…å¤–åˆ¤å®šã—ãªãŒã‚‰ç·šã‚’æç”»ã™ã‚‹
  *
- *@param	u16 x1F•`‰æŠJn‚˜À•W
- *@param	u16 y1F•`‰æŠJn‚™À•W
- *@param	u16 x2F•`‰æI—¹‚˜À•W
- *@param	u16 y2F•`‰æI—¹‚™À•W
- *@param	TP_BRUSH_DATA in_brush_dataF—Ìˆæ“àƒuƒ‰ƒVƒf[ƒ^
- *@param	TP_BRUSH_DATA out_brush_dataF—ÌˆæŠOƒuƒ‰ƒVƒf[ƒ^
- *@param	TP_PICTURE_DATA* pDataFŠG‚Ìƒf[ƒ^
+ *@param	u16 x1ï¼šæç”»é–‹å§‹ï½˜åº§æ¨™
+ *@param	u16 y1ï¼šæç”»é–‹å§‹ï½™åº§æ¨™
+ *@param	u16 x2ï¼šæç”»çµ‚äº†ï½˜åº§æ¨™
+ *@param	u16 y2ï¼šæç”»çµ‚äº†ï½™åº§æ¨™
+ *@param	TP_BRUSH_DATA in_brush_dataï¼šé ˜åŸŸå†…ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
+ *@param	TP_BRUSH_DATA out_brush_dataï¼šé ˜åŸŸå¤–ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
+ *@param	TP_PICTURE_DATA* pDataï¼šçµµã®ãƒ‡ãƒ¼ã‚¿
  *
- *@return	‚È‚µ
+ *@return	ãªã—
  *
  */
 //-----------------------------------------------------------------------------
@@ -666,44 +666,44 @@ static void drawLineInOut(GF_BGL_INI* bgl, u16 x1, u16 y1, u16 x2, u16 y2,
 		TP_BRUSH_DATA in_brush_data, TP_BRUSH_DATA out_brush_data,
 		TP_PICTURE_DATA* pData )
 {
-	u16 width, height;			// ƒ‰ƒCƒ“‚Ì•‚Æ‚‚³
-	int i;						// ƒ‹[ƒv—p
-	u16 min;					// À•W‚ÌÅ’á‚Ì’li‚P‚Ã‚Â‘‚¦‚é‚Ù‚¤j
-	u16 max;					// À•W‚ÌÅ‘å‚Ì’li‚P‚Ã‚Â‘‚¦‚é‚Ù‚¤j
-	u16 base;					// ƒx[ƒX‚Ì’limin‚ÌÀ•W‚Ì‚Ì’lj
-	u16 px, py;					// ƒsƒNƒZƒ‹ˆÊ’u
-	s32 vec_heigt;				// ü•ª‚ÌŒX‚«
+	u16 width, height;			// ãƒ©ã‚¤ãƒ³ã®å¹…ã¨é«˜ã•
+	int i;						// ãƒ«ãƒ¼ãƒ—ç”¨
+	u16 min;					// åº§æ¨™ã®æœ€ä½ã®å€¤ï¼ˆï¼‘ã¥ã¤å¢—ãˆã‚‹ã»ã†ï¼‰
+	u16 max;					// åº§æ¨™ã®æœ€å¤§ã®å€¤ï¼ˆï¼‘ã¥ã¤å¢—ãˆã‚‹ã»ã†ï¼‰
+	u16 base;					// ãƒ™ãƒ¼ã‚¹ã®å€¤ï¼ˆminã®åº§æ¨™ã®æ™‚ã®å€¤ï¼‰
+	u16 px, py;					// ãƒ”ã‚¯ã‚»ãƒ«ä½ç½®
+	s32 vec_heigt;				// ç·šåˆ†ã®å‚¾ã
 	
 	
-	// ‚‚³‚Æ•‚ğæ“¾
-	width = (u16) ((x1 >= x2) ? (x1 - x2) : (x2 - x1));  // •‚ğæ“¾
-    height = (u16) ((y1 >= y2) ? (y1 - y2) : (y2 - y1)); // ‚‚³‚ğæ“¾
+	// é«˜ã•ã¨å¹…ã‚’å–å¾—
+	width = (u16) ((x1 >= x2) ? (x1 - x2) : (x2 - x1));  // å¹…ã‚’å–å¾—
+    height = (u16) ((y1 >= y2) ? (y1 - y2) : (y2 - y1)); // é«˜ã•ã‚’å–å¾—
 
 	
-	// ‘å‚«‚¢‚Ù‚¤‚ğ‚Pƒhƒbƒg‚Ã‚Â‘‚¦‚éÀ•W‚É‚·‚é
+	// å¤§ãã„ã»ã†ã‚’ï¼‘ãƒ‰ãƒƒãƒˆã¥ã¤å¢—ãˆã‚‹åº§æ¨™ã«ã™ã‚‹
 	if( width > height ){
 		if( x1 >= x2 ){
 			min = x2;
 			max = x1;
 			base = y2;
 	
-			// ŒX‚«‚ğ‹‚ß‚é
+			// å‚¾ãã‚’æ±‚ã‚ã‚‹
 			vec_heigt = ((y2 - y1) * 10000) / (x2 - x1);
 		}else{
 			min = x1;
 			max = x2;
 			base = y1;
 
-			// ŒX‚«‚ğ‹‚ß‚é
+			// å‚¾ãã‚’æ±‚ã‚ã‚‹
 			vec_heigt = ((y1 - y2) * 10000) / (x1 - x2);
 		} 
 
-		// ü‚É‰ˆ‚Á‚Ä“_‚ğ•`‰æ
+		// ç·šã«æ²¿ã£ã¦ç‚¹ã‚’æç”»
 		for( i = min; i < max; i++ ){
 			px = i;
 			py = (u16) (base + ((vec_heigt * (i - min)) / 10000));
 
-			// “àŠO”»’è
+			// å†…å¤–åˆ¤å®š
 			if( CheckTPPictureInOut( pData, px, py ) == 1 ){
 				drawPoint(bgl, px, py, in_brush_data );
 			}else{	
@@ -716,23 +716,23 @@ static void drawLineInOut(GF_BGL_INI* bgl, u16 x1, u16 y1, u16 x2, u16 y2,
 			max = y1;
 			base = x2;
 	
-			// ŒX‚«‚ğ‹‚ß‚é
+			// å‚¾ãã‚’æ±‚ã‚ã‚‹
 			vec_heigt = ((x2 - x1) * 10000) / (y2 - y1);
 		}else{
 			min = y1;
 			max = y2;
 			base = x1;
 
-			// ŒX‚«‚ğ‹‚ß‚é
+			// å‚¾ãã‚’æ±‚ã‚ã‚‹
 			vec_heigt = ((x1 - x2) * 10000) / (y1 - y2);
 		} 
 
-		// ü‚É‰ˆ‚Á‚Ä“_‚ğ•`‰æ
+		// ç·šã«æ²¿ã£ã¦ç‚¹ã‚’æç”»
 		for( i = min; i < max; i++ ){
 			px = (u16) (base + ((vec_heigt * (i - min)) / 10000));
 			py = i;
 			
-			// “àŠO”»’è
+			// å†…å¤–åˆ¤å®š
 			if( CheckTPPictureInOut( pData, px, py ) == 1 ){
 				drawPoint(bgl, px, py, in_brush_data );
 			}else{	
@@ -745,11 +745,11 @@ static void drawLineInOut(GF_BGL_INI* bgl, u16 x1, u16 y1, u16 x2, u16 y2,
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“_‚ğ•`‰æ‚·‚é
+ *@brief	ç‚¹ã‚’æç”»ã™ã‚‹
  *
- *@param	u16 xF•`‰æ‚˜À•W
- *@param	u16 yF•`‰æ‚™À•W
- *@param	TP_BRUSH_DATA brush_dataFƒuƒ‰ƒVƒf[ƒ^
+ *@param	u16 xï¼šæç”»ï½˜åº§æ¨™
+ *@param	u16 yï¼šæç”»ï½™åº§æ¨™
+ *@param	TP_BRUSH_DATA brush_dataï¼šãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿
  *
  *@return
  *
@@ -757,15 +757,15 @@ static void drawLineInOut(GF_BGL_INI* bgl, u16 x1, u16 y1, u16 x2, u16 y2,
 //-----------------------------------------------------------------------------
 static void drawPoint(GF_BGL_INI* bgl, u16 x, u16 y, TP_BRUSH_DATA brush_data )
 {
-	s32		draw_start_x = 0;		// ‰æ–ÊŠO‚ÉŠG‚ª”ò‚Ño‚·‚Æ‚«‚É‚Ç‚±‚©‚ç•`‰æ‚ğ‚·‚é‚©
-	s32		draw_start_y = 0;		// ‰æ–ÊŠO‚ÉŠG‚ª”ò‚Ño‚·‚Æ‚«‚É‚Ç‚±‚©‚ç•`‰æ‚ğ‚·‚é‚©
-	int		i;						// ƒ‹[ƒv—p
-	u32		offset;					// ƒIƒtƒZƒbƒg
-	u16		shift;					// ƒVƒtƒg
+	s32		draw_start_x = 0;		// ç”»é¢å¤–ã«çµµãŒé£›ã³å‡ºã™ã¨ãã«ã©ã“ã‹ã‚‰æç”»ã‚’ã™ã‚‹ã‹
+	s32		draw_start_y = 0;		// ç”»é¢å¤–ã«çµµãŒé£›ã³å‡ºã™ã¨ãã«ã©ã“ã‹ã‚‰æç”»ã‚’ã™ã‚‹ã‹
+	int		i;						// ãƒ«ãƒ¼ãƒ—ç”¨
+	u32		offset;					// ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u16		shift;					// ã‚·ãƒ•ãƒˆ
 
 	
-	// ƒI[ƒo[‚·‚é’l‚ğŒvZ
-	// 0ˆÈ‰ºƒ`ƒFƒbƒN
+	// ã‚ªãƒ¼ãƒãƒ¼ã™ã‚‹å€¤ã‚’è¨ˆç®—
+	// 0ä»¥ä¸‹ãƒã‚§ãƒƒã‚¯
 	if( x - (brush_data.SizeX / 2) < 0 ){
 		draw_start_x = -(x - (brush_data.SizeX / 2));
 
@@ -776,8 +776,8 @@ static void drawPoint(GF_BGL_INI* bgl, u16 x, u16 y, TP_BRUSH_DATA brush_data )
 
 	
 
-	// •`‰æ
-	// ‰¡‚É‚¸‚ê‚Ä‚¢‚é‚Æ‚«‚Í‚P’i‚¸‚Â‘‚«‚Ş
+	// æç”»
+	// æ¨ªã«ãšã‚Œã¦ã„ã‚‹ã¨ãã¯ï¼‘æ®µãšã¤æ›¸ãè¾¼ã‚€
 	if( draw_start_x == 0 ){
 		GF_BGL_BmpWinPrint( 
 				TouchPanelDrawDataIdx,
@@ -791,9 +791,9 @@ static void drawPoint(GF_BGL_INI* bgl, u16 x, u16 y, TP_BRUSH_DATA brush_data )
 				brush_data.SizeX - draw_start_x,
 				brush_data.SizeY - draw_start_y );
 	}else{
-		// ‚P’i‚¸‚Â•`‰æ
+		// ï¼‘æ®µãšã¤æç”»
 		for( i = draw_start_y; i < brush_data.SizeY; i++ ){
-			// ‚‚³‚ÌƒIƒtƒZƒbƒg‚ğ‹‚ß‚é
+			// é«˜ã•ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’æ±‚ã‚ã‚‹
 			offset = getOffset( 0, i, &shift, brush_data.SizeX / 8 );
 			
 			GF_BGL_BmpWinPrint( 
@@ -814,42 +814,42 @@ static void drawPoint(GF_BGL_INI* bgl, u16 x, u16 y, TP_BRUSH_DATA brush_data )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒIƒtƒZƒbƒg‚ğ‹‚ß‚é
+ *@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’æ±‚ã‚ã‚‹
  *
- *@param	u16 x,yFÀ•W’l
- *@param	u16* p_shiftFƒVƒtƒg‚·‚é’lŠi”[—p
- *@param	u32 char_widthF‚W–‚W‚Ì”
+ *@param	u16 x,yï¼šåº§æ¨™å€¤
+ *@param	u16* p_shiftï¼šã‚·ãƒ•ãƒˆã™ã‚‹å€¤æ ¼ç´ç”¨
+ *@param	u32 char_widthï¼šï¼˜ï¼Šï¼˜ã®æ•°
  *
- *@return	u32	Œ^FƒIƒtƒZƒbƒg’l(u16*Œ^—p)
+ *@return	u32	å‹ï¼šã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤(u16*å‹ç”¨)
  *
  */
 //-----------------------------------------------------------------------------
 static u32 getOffset( u16 x, u16 y, u16* p_shift, u32 char_width )
 {
-	u32	offset;			// ƒIƒtƒZƒbƒg’l
-	u16 char_off_y;		// ‚PƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“à‚ÌƒIƒtƒZƒbƒg
-	u16 char_off_x;		// ‚PƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“à‚ÌƒIƒtƒZƒbƒg
+	u32	offset;			// ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
+	u16 char_off_y;		// ï¼‘ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å†…ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u16 char_off_x;		// ï¼‘ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å†…ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 	
 	//
-	// À•W’l‚©‚çu16Œ^(‚QƒoƒCƒg)—p‚ÌƒIƒtƒZƒbƒg‚ğ‹‚ß‚é
+	// åº§æ¨™å€¤ã‹ã‚‰u16å‹(ï¼’ãƒã‚¤ãƒˆ)ç”¨ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’æ±‚ã‚ã‚‹
 	//
-	// ƒLƒƒƒ‰ƒNƒ^’PˆÊ‚Ì”z—ñ‚Ì‘å‚«‚³‚ğ‹‚ß‚é	
-	// ‚»‚ÌˆÊ’u‚ÌƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg‚ğ‹‚ß‚é
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ã®é…åˆ—ã®å¤§ãã•ã‚’æ±‚ã‚ã‚‹	
+	// ãã®ä½ç½®ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’æ±‚ã‚ã‚‹
 	offset = ((y / 8) * char_width) + (x / 8);
 
-	// ‚W‚ğ•\Œ»‚·‚é‚Ì‚É•K—v‚ÈU16‚Ì”‚ğ‚©‚¯‚é
+	// ï¼˜ã‚’è¡¨ç¾ã™ã‚‹ã®ã«å¿…è¦ãªU16ã®æ•°ã‚’ã‹ã‘ã‚‹
 	offset *= 16;
 
-	// ƒLƒƒƒ‰ƒNƒ^“à‚ÌƒIƒtƒZƒbƒg‚ğ‹‚ß‚é
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å†…ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’æ±‚ã‚ã‚‹
 	char_off_y = y % 8;
 	char_off_x = x % 8;
-	char_off_y *= 2;				// 2ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì‰¡‚Í‚W@‚W‚ğŠi”[‚·‚é‚É‚Íu16‚ª2‚Â•K—v
-	char_off_y += char_off_x / 4;	// 4u16‚É‚Í‚SƒsƒNƒZƒ‹•ª‚ÌF‚ª“ü‚é‚©‚ç‚SˆÈã‚Ì‚Æ‚«‚Í‚P‚Â‚¸‚ç‚µ‚½ˆÊ’u‚ğƒIƒtƒZƒbƒg‚É‚·‚é
-	char_off_x %= 4;				// ¡char_off_y‚Å‚SˆÈã‚Ì‚Æ‚«‚ÌƒIƒtƒZƒbƒg‚ğ‚¸‚ç‚µ‚½‚Ì‚Å‚S‚Ì‚ ‚Ü‚è‚Ì’l‚É‚·‚é(ƒVƒtƒg‚·‚é’l)
-	char_off_x *= 4;				// ‚±‚ê‚ÅƒVƒtƒg‚·‚é’l
+	char_off_y *= 2;				// 2ï¼ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®æ¨ªã¯ï¼˜ã€€ï¼˜ã‚’æ ¼ç´ã™ã‚‹ã«ã¯u16ãŒ2ã¤å¿…è¦
+	char_off_y += char_off_x / 4;	// 4ï¼u16ã«ã¯ï¼”ãƒ”ã‚¯ã‚»ãƒ«åˆ†ã®è‰²ãŒå…¥ã‚‹ã‹ã‚‰ï¼”ä»¥ä¸Šã®ã¨ãã¯ï¼‘ã¤ãšã‚‰ã—ãŸä½ç½®ã‚’ã‚ªãƒ•ã‚»ãƒƒãƒˆã«ã™ã‚‹
+	char_off_x %= 4;				// ä»Šchar_off_yã§ï¼”ä»¥ä¸Šã®ã¨ãã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ãšã‚‰ã—ãŸã®ã§ï¼”ã®ã‚ã¾ã‚Šã®å€¤ã«ã™ã‚‹(ã‚·ãƒ•ãƒˆã™ã‚‹å€¤)
+	char_off_x *= 4;				// ã“ã‚Œã§ã‚·ãƒ•ãƒˆã™ã‚‹å€¤
 
-	// ƒVƒtƒg‚·‚é’lŠi”[
+	// ã‚·ãƒ•ãƒˆã™ã‚‹å€¤æ ¼ç´
 	*p_shift = char_off_x;	
 
 	return offset + char_off_y;
@@ -859,13 +859,13 @@ static u32 getOffset( u16 x, u16 y, u16* p_shift, u32 char_width )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒxƒNƒgƒ‹ƒf[ƒ^‚ğ•`‰æ‚·‚é
- *				(ƒfƒoƒbƒN—p@@“àŠO”»’è—pƒf[ƒ^‚ğ•`‰æ‚·‚é‚½‚ß‚Éì¬‚µ‚Ü‚µ‚½)
+ *@brief	ãƒ™ã‚¯ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’æç”»ã™ã‚‹
+ *				(ãƒ‡ãƒãƒƒã‚¯ç”¨ã€€ã€€å†…å¤–åˆ¤å®šç”¨ãƒ‡ãƒ¼ã‚¿ã‚’æç”»ã™ã‚‹ãŸã‚ã«ä½œæˆã—ã¾ã—ãŸ)
  *
- *@param	Vec2DS32* p_point1F’¸“_‚ÆƒxƒNƒgƒ‹ƒf[ƒ^
- *@param	Vec2DS32* p_point2F’¸“_‚ÆƒxƒNƒgƒ‹ƒf[ƒ^
+ *@param	Vec2DS32* p_point1ï¼šé ‚ç‚¹ã¨ãƒ™ã‚¯ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿
+ *@param	Vec2DS32* p_point2ï¼šé ‚ç‚¹ã¨ãƒ™ã‚¯ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *@return	‚È‚µ
+ *@return	ãªã—
  *
  */
 //-----------------------------------------------------------------------------
@@ -876,7 +876,7 @@ static void drawVect(GF_BGL_INI* bgl, Vec2DS32* p_point1, Vec2DS32* p_point2 )
 	MakeTPBrush( &brush, 3, 4, 4 );
 	
 	//
-	// ƒxƒNƒgƒ‹ƒf[ƒ^‚ğ•`‰æ‚·‚é
+	// ãƒ™ã‚¯ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’æç”»ã™ã‚‹
 	//
 	drawLine( bgl, p_point1->x, p_point1->y, p_point2->x, p_point2->y, brush );
 

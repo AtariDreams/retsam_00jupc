@@ -35,8 +35,8 @@ static NNSGfdFrmPlttVramManager       s_managerState_ = { 0, 0, 0 };
 
 
 //------------------------------------------------------------------------------
-// ƒtƒH[ƒ}ƒbƒg‚²‚Æ‚Ì®—ñ‚·‚×‚«‹«ŠEƒTƒCƒY‚ğæ“¾‚µ‚Ü‚·
-// ãˆÊ•ûŒü‚Ö‚ÌƒAƒ‰ƒCƒ“ƒƒ“ƒgƒIƒtƒZƒbƒg—Ê
+// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã”ã¨ã®æ•´åˆ—ã™ã¹ãå¢ƒç•Œã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¾ã™
+// ä¸Šä½æ–¹å‘ã¸ã®ã‚¢ãƒ©ã‚¤ãƒ³ãƒ¡ãƒ³ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆé‡
 static NNS_GFD_INLINE u32 GetUpperSideAlignmentSize_( u32 addr, BOOL b4Pltt )
 {
     if( b4Pltt ) 
@@ -47,7 +47,7 @@ static NNS_GFD_INLINE u32 GetUpperSideAlignmentSize_( u32 addr, BOOL b4Pltt )
     }
 }
 
-// ‰ºˆÊ•ûŒü‚Ö‚ÌƒAƒ‰ƒCƒ“ƒƒ“ƒgƒIƒtƒZƒbƒg—Ê
+// ä¸‹ä½æ–¹å‘ã¸ã®ã‚¢ãƒ©ã‚¤ãƒ³ãƒ¡ãƒ³ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆé‡
 static NNS_GFD_INLINE u32 GetLowerSideAlignmentSize_( u32 addr, BOOL b4Pltt )
 {
     if( b4Pltt ) 
@@ -59,7 +59,7 @@ static NNS_GFD_INLINE u32 GetLowerSideAlignmentSize_( u32 addr, BOOL b4Pltt )
 }
 
 //------------------------------------------------------------------------------
-// ƒ}ƒl[ƒWƒƒ‚ª³í‚Èó‘Ô‚©’²¸‚µ‚Ü‚·
+// ãƒãƒãƒ¼ã‚¸ãƒ£ãŒæ­£å¸¸ãªçŠ¶æ…‹ã‹èª¿æŸ»ã—ã¾ã™
 static BOOL IsVramManagerValid_( )
 {
     if( ( s_managerState_.loAddr <= s_managerState_.hiAddr ) && 
@@ -71,9 +71,9 @@ static BOOL IsVramManagerValid_( )
     }
 }
 
-// ƒTƒCƒYæ“¾
+// ã‚µã‚¤ã‚ºå–å¾—
 //------------------------------------------------------------------------------
-// c‚è—e—Ê‚ğæ“¾‚µ‚Ü‚·
+// æ®‹ã‚Šå®¹é‡ã‚’å–å¾—ã—ã¾ã™
 static NNS_GFD_INLINE u32 GetCapacity_()
 {
     NNS_GFD_ASSERT( IsVramManagerValid_( ) );
@@ -83,12 +83,12 @@ static NNS_GFD_INLINE u32 GetCapacity_()
 
 
 
-// æ“¾
+// å–å¾—
 //------------------------------------------------------------------------------
 static NNS_GFD_INLINE BOOL AllocFromLo_( u32 szByte, BOOL b4Pltt, u32* pResAddr )
 {
     const u32 addr          = s_managerState_.loAddr;
-    const u32 alignment     = GetUpperSideAlignmentSize_( addr, b4Pltt );// ƒtƒH[ƒ}ƒbƒg‚É“K‚µ‚½®—ñ‚ğs‚¤
+    const u32 alignment     = GetUpperSideAlignmentSize_( addr, b4Pltt );// ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«é©ã—ãŸæ•´åˆ—ã‚’è¡Œã†
     const u32 increase      = szByte + alignment;
     
     
@@ -99,13 +99,13 @@ static NNS_GFD_INLINE BOOL AllocFromLo_( u32 szByte, BOOL b4Pltt, u32* pResAddr 
     {   
         const u32 tail          = s_managerState_.loAddr + increase;
         //
-        // 4FƒpƒŒƒbƒg‚ÍQÆ•s‰Â”\‚È—Ìˆæ‚ª‘¶İ‚µ‚Ü‚·B
+        // 4è‰²ãƒ‘ãƒ¬ãƒƒãƒˆã¯å‚ç…§ä¸å¯èƒ½ãªé ˜åŸŸãŒå­˜åœ¨ã—ã¾ã™ã€‚
         // 
         if( b4Pltt )
         {
             if( tail > NNS_GFD_4PLTT_MAX_ADDR )
             {
-                // ƒGƒ‰[
+                // ã‚¨ãƒ©ãƒ¼
                 return FALSE;
             }
         }
@@ -146,7 +146,7 @@ static NNS_GFD_INLINE BOOL AllocFromHi_( u32 szByte, BOOL b4Pltt, u32* pResAddr 
             {
                 if( tail > NNS_GFD_4PLTT_MAX_ADDR )
                 {
-                    // ƒGƒ‰[
+                    // ã‚¨ãƒ©ãƒ¼
                     return FALSE;
                 }
             }
@@ -162,7 +162,7 @@ static NNS_GFD_INLINE BOOL AllocFromHi_( u32 szByte, BOOL b4Pltt, u32* pResAddr 
 }
 
 //------------------------------------------------------------------------------
-// NNSGfdFrmPlttVramDebugDumpCallBack ‚Ì•W€À‘•
+// NNSGfdFrmPlttVramDebugDumpCallBack ã®æ¨™æº–å®Ÿè£…
 static void FrmPlttVramDebugDumpCallBack_( u32 loAddr, u32 hiAddr, u32 szFree, u32 szTotal )
 {
 #ifdef SDK_FINALROM
@@ -186,13 +186,13 @@ static void FrmPlttVramDebugDumpCallBack_( u32 loAddr, u32 hiAddr, u32 szFree, u
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdDumpFrmPlttVramManager
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚Ì“à—e‚ğƒfƒoƒbƒNo—Í‚µ‚Ü‚·B
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã®å†…å®¹ã‚’ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã—ã¾ã™ã€‚
                 
                  
-  Arguments:   ‚È‚µ
+  Arguments:   ãªã—
 
                             
-  Returns:     ‚È‚µ
+  Returns:     ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdDumpFrmPlttVramManager()
@@ -203,13 +203,13 @@ void NNS_GfdDumpFrmPlttVramManager()
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdDumpFrmPlttVramManagerEx
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚Ì“à—e‚ğƒfƒoƒbƒNo—Í‚µ‚Ü‚·B
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã®å†…å®¹ã‚’ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã—ã¾ã™ã€‚
                 
                  
-  Arguments:   pFunc            ƒfƒoƒbƒNƒ_ƒ“ƒvƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Arguments:   pFunc            ãƒ‡ãƒãƒƒã‚¯ãƒ€ãƒ³ãƒ—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
                             
-  Returns:     ‚È‚µ
+  Returns:     ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdDumpFrmPlttVramManagerEx( NNSGfdFrmPlttVramDebugDumpCallBack pFunc )
@@ -226,14 +226,14 @@ void NNS_GfdDumpFrmPlttVramManagerEx( NNSGfdFrmPlttVramDebugDumpCallBack pFunc )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdInitFrmPlttVramManager
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚Ì‰Šú‰»
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã®åˆæœŸåŒ–
                 
                  
-  Arguments:   szByte       ƒtƒŒ[ƒ€ƒpƒŒƒbƒgVRAMƒ}ƒl[ƒWƒƒ‚ªŠÇ—‚·‚éƒpƒŒƒbƒgRAM‚ÌƒoƒCƒg”B 
-               useAsDefault ƒtƒŒ[ƒ€ƒpƒŒƒbƒgVRAMƒ}ƒl[ƒWƒƒ‚ğƒfƒtƒHƒ‹ƒg‚Æ‚µ‚Äg—p‚·‚é‚©‚Ç‚¤‚©B 
+  Arguments:   szByte       ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‘ãƒ¬ãƒƒãƒˆVRAMãƒãƒãƒ¼ã‚¸ãƒ£ãŒç®¡ç†ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆRAMã®ãƒã‚¤ãƒˆæ•°ã€‚ 
+               useAsDefault ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‘ãƒ¬ãƒƒãƒˆVRAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã€‚ 
 
                             
-  Returns:     ‚È‚µ
+  Returns:     ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdInitFrmPlttVramManager( u32 szByte, BOOL useAsDefault )
@@ -256,14 +256,14 @@ void NNS_GfdInitFrmPlttVramManager( u32 szByte, BOOL useAsDefault )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdAllocFrmPlttVram
 
-  Description:  ƒƒ‚ƒŠ‚ÌŠm•Û
+  Description:  ãƒ¡ãƒ¢ãƒªã®ç¢ºä¿
                 
                  
-  Arguments:   szByte           :  ƒTƒCƒY
-               bPltt4           :  4FƒeƒNƒXƒ`ƒƒ‚©H
-               allocFrom        :  —Ìˆææ“ªi‰ºˆÊj‚©‚çŠm•Û‚·‚é‚©H
+  Arguments:   szByte           :  ã‚µã‚¤ã‚º
+               bPltt4           :  4è‰²ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ï¼Ÿ
+               allocFrom        :  é ˜åŸŸå…ˆé ­ï¼ˆä¸‹ä½ï¼‰ã‹ã‚‰ç¢ºä¿ã™ã‚‹ã‹ï¼Ÿ
                             
-  Returns:     ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒL[
+  Returns:     ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
   
  *---------------------------------------------------------------------------*/
 NNSGfdPlttKey NNS_GfdAllocFrmPlttVram
@@ -280,11 +280,11 @@ NNSGfdPlttKey NNS_GfdAllocFrmPlttVram
     
     {
         //
-        // ƒpƒŒƒbƒgƒL[‚Å•\Œ»‚Å‚«‚È‚¢¬‚³‚ÈƒTƒCƒY‚ÌŠm•Û‚Ìê‡AƒTƒCƒY‚ğØ‚èã‚°‚ÄŠm•Û‚µ‚Ü‚·B
+        // ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ã§è¡¨ç¾ã§ããªã„å°ã•ãªã‚µã‚¤ã‚ºã®ç¢ºä¿ã®å ´åˆã€ã‚µã‚¤ã‚ºã‚’åˆ‡ã‚Šä¸Šã’ã¦ç¢ºä¿ã—ã¾ã™ã€‚
         //
         szByte = NNSi_GfdGetPlttKeyRoundupSize( szByte );
         //
-        // ƒpƒŒƒbƒgƒL[‚ª•\Œ»‚Å‚«‚È‚¢‚Ù‚Ç‘å‚«‚ÈƒTƒCƒY‚ÌŠm•Û‚Ìê‡AƒGƒ‰[ƒL[‚ğ•Ô‚µ‚Ü‚·B
+        // ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ãŒè¡¨ç¾ã§ããªã„ã»ã©å¤§ããªã‚µã‚¤ã‚ºã®ç¢ºä¿ã®å ´åˆã€ã‚¨ãƒ©ãƒ¼ã‚­ãƒ¼ã‚’è¿”ã—ã¾ã™ã€‚
         //
         if( szByte >= NNS_GFD_PLTTSIZE_MAX )
         {
@@ -306,13 +306,13 @@ NNSGfdPlttKey NNS_GfdAllocFrmPlttVram
     if( result )
     {   
         //
-        // TexPlttKey¶¬
+        // TexPlttKeyç”Ÿæˆ
         //
         return NNS_GfdMakePlttKey( addr, szByte );
     }
         
 NG_CASE:
-    // ƒGƒ‰[
+    // ã‚¨ãƒ©ãƒ¼
     NNS_GFD_WARNING("failure in Vram Allocation. : NNS_GfdPlttFrmTexAlloc()");
     return NNS_GFD_ALLOC_ERROR_PLTTKEY;
     
@@ -321,21 +321,21 @@ NG_CASE:
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdFreeFrmPlttVram
 
-  Description:  ƒƒ‚ƒŠ‚ÌŠJ•ú
-                ÀÛ‚É‚Í‰½‚à‚µ‚Ü‚¹‚ñB
+  Description:  ãƒ¡ãƒ¢ãƒªã®é–‹æ”¾
+                å®Ÿéš›ã«ã¯ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
                  
-  Arguments:   plttKey          :   ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒL[
+  Arguments:   plttKey          :   ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
                             
-  Returns:     ¬”Ûi0 ‚È‚ç‚Î ¬Œ÷)
+  Returns:     æˆå¦ï¼ˆ0 ãªã‚‰ã° æˆåŠŸ)
   
  *---------------------------------------------------------------------------*/
 int NNS_GfdFreeFrmPlttVram( NNSGfdPlttKey plttKey )
 {
 #pragma unused(plttKey)
-    // ‚Ç‚Ì—Ìˆæ‚©‚çAŠm•Û‚³‚ê‚½ƒƒ‚ƒŠ‚©H
+    // ã©ã®é ˜åŸŸã‹ã‚‰ã€ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªã‹ï¼Ÿ
     
-    // Lo Head( 4x4 )‚Ìê‡ 
-    //        => inndexTable‚à“¯ŠJ•ú‚·‚é
+    // Lo Head( 4x4 )ã®å ´åˆ 
+    //        => inndexTableã‚‚åŒæ™‚é–‹æ”¾ã™ã‚‹
     
     // Lo Tail( Nrm )
     // Hi Tail( Nrm )
@@ -345,12 +345,12 @@ int NNS_GfdFreeFrmPlttVram( NNSGfdPlttKey plttKey )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdGetPlttFrmManagerState
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚ÌŒ»İ‚Ìó‘Ô‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã®ç¾åœ¨ã®çŠ¶æ…‹ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
                  
-  Arguments:   pState          :   ƒ}ƒl[ƒWƒƒó‘Ôî•ñ
+  Arguments:   pState          :   ãƒãƒãƒ¼ã‚¸ãƒ£çŠ¶æ…‹æƒ…å ±
                             
-  Returns:     ‚È‚µ
+  Returns:     ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdGetFrmPlttVramState( NNSGfdFrmPlttVramState* pState )
@@ -366,11 +366,11 @@ void NNS_GfdGetFrmPlttVramState( NNSGfdFrmPlttVramState* pState )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdSetFrmPlttVramState
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚Ìó‘Ô‚É w’è‚µ‚½ ó‘Ôî•ñ ‚ğİ’è‚µ‚Ü‚·B
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã®çŠ¶æ…‹ã« æŒ‡å®šã—ãŸ çŠ¶æ…‹æƒ…å ± ã‚’è¨­å®šã—ã¾ã™ã€‚
                  
-  Arguments:   pState          :   ƒ}ƒl[ƒWƒƒó‘Ôî•ñ
+  Arguments:   pState          :   ãƒãƒãƒ¼ã‚¸ãƒ£çŠ¶æ…‹æƒ…å ±
                             
-  Returns:     ‚È‚µ
+  Returns:     ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdSetFrmPlttVramState( const NNSGfdFrmPlttVramState* pState )
@@ -384,11 +384,11 @@ void NNS_GfdSetFrmPlttVramState( const NNSGfdFrmPlttVramState* pState )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdResetPlttFrmManagerState
 
-  Description:  ƒ}ƒl[ƒWƒƒ‚ÌŒ»İ‚Ìó‘Ô‚ğƒŠƒZƒbƒg‚µ‚Ü‚·B
+  Description:  ãƒãƒãƒ¼ã‚¸ãƒ£ã®ç¾åœ¨ã®çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
                  
-  Arguments:   ‚È‚µ
+  Arguments:   ãªã—
                             
-  Returns:     ‚È‚µ
+  Returns:     ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdResetFrmPlttVramState()

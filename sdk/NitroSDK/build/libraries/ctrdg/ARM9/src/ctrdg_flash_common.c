@@ -15,13 +15,13 @@
   indent source
 
   Revision 1.3  2006/04/10 11:23:01  okubata_ryoma
-  1M‚Ìƒ|[ƒŠƒ“ƒOŠÖ”‚ÌC³
+  1Mã®ãƒãƒ¼ãƒªãƒ³ã‚°é–¢æ•°ã®ä¿®æ­£
 
   Revision 1.2  2006/04/07 03:27:28  okubata_ryoma
   small fix
 
   Revision 1.1  2006/04/05 10:48:30  okubata_ryoma
-  AGBƒoƒbƒNƒAƒbƒvƒ‰ƒCƒuƒ‰ƒŠ‚ÌSDKû˜^‚Ì‚½‚ß‚Ì•ÏX
+  AGBãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®SDKåéŒ²ã®ãŸã‚ã®å¤‰æ›´
 
 
   $NoKeywords: $
@@ -35,7 +35,7 @@ u32     CTRDGi_VerifyAgbFlashCore(CTRDGTaskInfo * arg);
 u32     CTRDGi_WriteAndVerifyAgbFlashSectorCore(CTRDGTaskInfo * arg);
 u32     CTRDGi_WriteAndVerifyAgbFlashSectorCore(CTRDGTaskInfo * arg);
 
-u8      CTRDGi_ReadSrFunc(u8 *adr);    //PollingŠÖ”512k,1M‚©‚çŒÂ•Ê‚ÉQÆ‚³‚ê‚é
+u8      CTRDGi_ReadSrFunc(u8 *adr);    //Pollingé–¢æ•°512k,1Mã‹ã‚‰å€‹åˆ¥ã«å‚ç…§ã•ã‚Œã‚‹
 
 // global variables-----------------------------
 
@@ -53,11 +53,11 @@ const u16 (*ctrdgi_fl_maxtime);
 
 OSTick  start_tick, timeout_tick;
 
-/*”r‘¼§Œä*/
+/*æ’ä»–åˆ¶å¾¡*/
 u16     ctrdgi_flash_lock_id;
 BOOL    ctrdgi_backup_irq;
 
-vu16    ctrdgi_timeoutFlag;            //PollingŠÖ”512k,1M‚©‚çŒÂ•Ê‚ÉQÆ‚³‚ê‚é
+vu16    ctrdgi_timeoutFlag;            //Pollingé–¢æ•°512k,1Mã‹ã‚‰å€‹åˆ¥ã«å‚ç…§ã•ã‚Œã‚‹
 
 
 /*******************************************************
@@ -141,7 +141,7 @@ void CheckFlashTimer(void)
 
 // flash access functions-------------------------------
 
-//¦Šeƒ‹[ƒ`ƒ“‚É‘Î‰‚·‚éŠÖ”ƒ|ƒCƒ“ƒ^‚ğg—p‚·‚éB
+//â€»å„ãƒ«ãƒ¼ãƒãƒ³ã«å¯¾å¿œã™ã‚‹é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã‚’ä½¿ç”¨ã™ã‚‹ã€‚
 
 // Data Polling ----------------------------------------
 u8 CTRDGi_ReadSrFunc(u8 *adr)
@@ -255,7 +255,7 @@ u16 CTRDGi_PollingSR1MCOMMON(u16 phase, u8 *adr, u16 lastData)
 
 
 /*------------------------------------------------------------------*/
-/*          ƒf[ƒ^“Ç‚İo‚µ                                          */
+/*          ãƒ‡ãƒ¼ã‚¿èª­ã¿å‡ºã—                                          */
 /*------------------------------------------------------------------*/
 u32 CTRDGi_ReadAgbFlashCore(CTRDGTaskInfo * arg)
 {
@@ -267,13 +267,13 @@ u32 CTRDGi_ReadAgbFlashCore(CTRDGTaskInfo * arg)
     u8     *dst = p.dst;
     u32     size = p.size;
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_LockCartridge(ctrdgi_flash_lock_id);
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(MI_CTRDG_RAMCYCLE_18);
 
-    // 1MbitFlash‚È‚çAƒoƒ“ƒN‚ÌƒZƒbƒg
+    // 1MbitFlashãªã‚‰ã€ãƒãƒ³ã‚¯ã®ã‚»ãƒƒãƒˆ
     if (AgbFlash->romSize == 0x00020000)
     {
         CTRDGi_SetFlashBankMx((u16)(sec_num >> 4));
@@ -285,9 +285,9 @@ u32 CTRDGi_ReadAgbFlashCore(CTRDGTaskInfo * arg)
     while (size--)
         *dst++ = *src++;
 
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
 
     return 0;
@@ -304,7 +304,7 @@ static u32 CTRDGi_VerifyFlashSectorCore(u8 *src, u8 *tgt, u32 size)
 }
 
 /*------------------------------------------------------------------*/
-/*          ƒoƒCƒg’PˆÊƒf[ƒ^ƒxƒŠƒtƒ@ƒC                              */
+/*          ãƒã‚¤ãƒˆå˜ä½ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒªãƒ•ã‚¡ã‚¤                              */
 /*------------------------------------------------------------------*/
 u32 CTRDGi_VerifyAgbFlashCore(CTRDGTaskInfo * arg)
 {
@@ -316,13 +316,13 @@ u32 CTRDGi_VerifyAgbFlashCore(CTRDGTaskInfo * arg)
     u8     *src = p.data;
     u32     size = p.size;
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_LockCartridge(ctrdgi_flash_lock_id);
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(MI_CTRDG_RAMCYCLE_18);
 
-    // 1MbitFlash‚È‚çAƒoƒ“ƒN‚ÌƒZƒbƒg
+    // 1MbitFlashãªã‚‰ã€ãƒãƒ³ã‚¯ã®ã‚»ãƒƒãƒˆ
     if (AgbFlash->romSize == 0x00020000)
     {
         CTRDGi_SetFlashBankMx((u16)(sec_num >> 4));
@@ -332,16 +332,16 @@ u32 CTRDGi_VerifyAgbFlashCore(CTRDGTaskInfo * arg)
     tgt = (u8 *)(CTRDG_AGB_FLASH_ADR + (sec_num << AgbFlash->sector.shift));
     result = CTRDGi_VerifyFlashSectorCore(src, tgt, size);
 
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
     return result;
 }
 
 
 /*------------------------------------------------------------------*/
-/*          ƒZƒNƒ^’PˆÊƒf[ƒ^‘‚«‚İ•ƒoƒCƒg’PˆÊƒxƒŠƒtƒ@ƒC          */
+/*          ã‚»ã‚¯ã‚¿å˜ä½ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿ï¼†ãƒã‚¤ãƒˆå˜ä½ãƒ™ãƒªãƒ•ã‚¡ã‚¤          */
 /*------------------------------------------------------------------*/
 u32 CTRDGi_WriteAndVerifyAgbFlashSectorCore(CTRDGTaskInfo * arg)
 {

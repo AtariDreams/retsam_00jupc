@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	mysign.c
- * @bfief	ƒ}ƒCƒTƒCƒ“ì¬ˆ—
+ * @bfief	ãƒã‚¤ã‚µã‚¤ãƒ³ä½œæˆå‡¦ç†
  * @author	Akito Mori
  * @date	05.10.05
  */
@@ -45,7 +45,7 @@
 //#include "msgdata/msg.naix"
 #include "msgdata/msg_ev_win.h"
 
-// SE—p’è‹`
+// SEç”¨å®šç¾©
 #define OEKAKI_MOVE_SE		(SEQ_SE_DP_SELECT)
 #define OEKAKI_DECIDE_SE	(SEQ_SE_DP_SELECT)
 #define OEKAKI_BS_SE		(SEQ_SE_DP_SELECT)
@@ -53,9 +53,9 @@
 
 #define BUTTON_NUM			( 1 )
 
-#include "mysign.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "mysign.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 enum {
 	SEQ_IN = 0,
@@ -66,10 +66,10 @@ enum {
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 static void VBlankFunc( void * work );
 static void VramBankSet(void);
 static void BgInit( GF_BGL_INI * ini );
@@ -143,17 +143,17 @@ static int (*FuncTable[])(MYSIGN_WORK *wk, int seq)={
 
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT MySignProc_Init( PROC * proc, int * seq )
@@ -166,8 +166,8 @@ PROC_RESULT MySignProc_Init( PROC * proc, int * seq )
 		WIPE_SetBrightness( WIPE_DISP_MAIN,WIPE_FADE_BLACK );
 		WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_BLACK );
 		
-		sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-		sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+		sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+		sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 		GF_Disp_GX_VisibleControlInit();
 		GF_Disp_GXS_VisibleControlInit();
@@ -180,74 +180,74 @@ PROC_RESULT MySignProc_Init( PROC * proc, int * seq )
 		memset( wk, 0, sizeof(MYSIGN_WORK) );
 		wk->bgl = GF_BGL_BglIniAlloc( HEAPID_OEKAKI );
 
-		// ƒq[ƒvƒnƒ“ƒhƒ‹ì¬
+		// ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«ä½œæˆ
 		p_handle = ArchiveDataHandleOpen( ARC_MYSIGN_GRA, HEAPID_OEKAKI );
 		
-		// •¶š—ñƒ}ƒl[ƒWƒƒ[¶¬
+		// æ–‡å­—åˆ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”Ÿæˆ
 		wk->WordSet    = WORDSET_Create( HEAPID_OEKAKI );
 		wk->MsgManager = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_oekaki_dat, HEAPID_OEKAKI );
 
 		sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-		// VRAM ƒoƒ“ƒNİ’è
+		// VRAM ãƒãƒ³ã‚¯è¨­å®š
 		VramBankSet();
 		
-		// BGLƒŒƒWƒXƒ^İ’è
+		// BGLãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®š
 		BgInit( wk->bgl );					
 
 ///		WIPE_ResetBrightness( WIPE_DISP_MAIN );	<<20060715 del
 ///		WIPE_ResetBrightness( WIPE_DISP_SUB );	<<20060715 del
 		
-		// ‹P“x•ÏXƒZƒbƒg
+		// è¼åº¦å¤‰æ›´ã‚»ãƒƒãƒˆ
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, 16, 1, HEAPID_OEKAKI );
 		
 
-		// ƒpƒ‰ƒ[ƒ^æ“¾
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 		{
 			SAVEDATA *sv = (SAVEDATA*)PROC_GetParentWork(proc);
-			// ƒTƒCƒ“‘‚«o‚µƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^æ“¾
+			// ã‚µã‚¤ãƒ³æ›¸ãå‡ºã—ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿å–å¾—
 			wk->SignBuf = (u8*)TRCSave_GetSighnDataPtr(TRCSave_GetSaveDataPtr(sv));
 
-			// ƒŒƒR[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^æ“¾
+			// ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿å–å¾—
 			wk->record  = (RECORD *)SaveData_GetRecord((SAVEDATA*)PROC_GetParentWork(proc));
 			wk->config  = (CONFIG *)SaveData_GetConfig((SAVEDATA*)PROC_GetParentWork(proc));
 		}
 
-		//BGƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+		//BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 		BgGraphicSet( wk, p_handle );
 
-		InitTPSystem();						// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+		InitTPSystem();						// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 		InitTPNoBuff(1);
   
-		// VBlankŠÖ”ƒZƒbƒg
+		// VBlanké–¢æ•°ã‚»ãƒƒãƒˆ
 		sys_VBlankFuncChange( VBlankFunc, wk->bgl );	
   
-		// ƒ{ƒ^ƒ“—pƒtƒHƒ“ƒg‚ğ“Ç‚İ‚İ
+		// ãƒœã‚¿ãƒ³ç”¨ãƒ•ã‚©ãƒ³ãƒˆã‚’èª­ã¿è¾¼ã¿
 		FontProc_LoadFont( FONT_BUTTON, HEAPID_OEKAKI );
 
 
-		// ƒ[ƒN‰Šú‰»
+		// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		InitWork( wk );
 
-		// OBJƒLƒƒƒ‰AƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+		// OBJã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 		char_pltt_manager_init();
 
-		// CellActorƒVƒXƒeƒ€‰Šú‰»
+		// CellActorã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 		InitCellActor(wk, p_handle);
 		
-		// CellActro•\¦“o˜^
+		// CellActroè¡¨ç¤ºç™»éŒ²
 		SetCellActor(wk);
 
-		// BMPWIN“o˜^E•`‰æ
+		// BMPWINç™»éŒ²ãƒ»æç”»
 		BmpWinInit(wk,proc);
 
-		// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒTƒCƒ““ü—Í)(BGMˆøŒp‚¬)
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ã‚µã‚¤ãƒ³å…¥åŠ›)(BGMå¼•ç¶™ã)
 		Snd_DataSetByScene( SND_SCENE_SUB_TRCARD, 0, 0 );
 	
-		// ‰æ–Êo—Í‚ğã‰º“ü‚ê‘Ö‚¦‚é
+		// ç”»é¢å‡ºåŠ›ã‚’ä¸Šä¸‹å…¥ã‚Œæ›¿ãˆã‚‹
 		GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
-		// ƒq[ƒvƒnƒ“ƒhƒ‹”jŠü
+		// ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«ç ´æ£„
 		ArchiveDataHandleClose( p_handle );
 
 		(*seq)++;
@@ -266,12 +266,12 @@ PROC_RESULT MySignProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 
@@ -282,15 +282,15 @@ PROC_RESULT MySignProc_Main( PROC * proc, int * seq )
 	switch( *seq ){
 	case SEQ_IN:
 		if( WIPE_SYS_EndCheck() ){
-			// ƒƒCƒvˆ—‘Ò‚¿
+			// ãƒ¯ã‚¤ãƒ—å‡¦ç†å¾…ã¡
 			*seq = SEQ_MAIN;
 		}
 		break;
 
 	case SEQ_MAIN:
-		// ƒJ[ƒ\ƒ‹ˆÚ“®
+		// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 
-		// ƒV[ƒPƒ“ƒX–ˆ‚Ì“®ì
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ¯ã®å‹•ä½œ
 		if(FuncTable[wk->seq]!=NULL){
 			*seq = (*FuncTable[wk->seq])( wk, *seq );
 		}
@@ -305,25 +305,25 @@ PROC_RESULT MySignProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	}
-	CLACT_Draw( wk->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+	CLACT_Draw( wk->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 
 	return PROC_RES_CONTINUE;
 }
 
 #define DEFAULT_NAME_MAX		18
 
-// ƒ_ƒCƒ„Eƒp[ƒ‹‚Å•Ï‚í‚é‚ñ‚¾‚ë‚¤
+// ãƒ€ã‚¤ãƒ¤ãƒ»ãƒ‘ãƒ¼ãƒ«ã§å¤‰ã‚ã‚‹ã‚“ã ã‚ã†
 #define MALE_NAME_START			0
 #define FEMALE_NAME_START		18
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT MySignProc_End( PROC * proc, int * seq )
@@ -331,62 +331,62 @@ PROC_RESULT MySignProc_End( PROC * proc, int * seq )
 	MYSIGN_WORK  *wk    = PROC_GetWork( proc );
 	int i;
 
-	// ƒTƒCƒ“‚ğƒZ[ƒuƒf[ƒ^‚É‘‚«o‚µ
+	// ã‚µã‚¤ãƒ³ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«æ›¸ãå‡ºã—
 	Output_SignData( wk->SignBuf, wk->OekakiBoard.chrbuf );
 
-	// VblankŠúŠÔ’†‚ÌBG“]‘—I—¹
+	// VblankæœŸé–“ä¸­ã®BGè»¢é€çµ‚äº†
 	sys_VBlankFuncChange( NULL, NULL);
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ğ•ú
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 
-	// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_CharManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES]);
 	CLACT_U_CharManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES]);
 
-	// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_PlttManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES]);
 	CLACT_U_PlttManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES]);
 		
-	// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for(i=0;i<CLACT_RESOURCE_NUM;i++){
 		CLACT_U_ResManagerDelete(wk->resMan[i]);
 	}
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(wk->clactSet);
 
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
-	// ƒŠƒ\[ƒX‰ğ•ú
+	// ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	DeleteCharManager();
 	DeletePlttManager();
 
-	// BMPƒEƒBƒ“ƒhƒEŠJ•ú
+	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
 	BmpWinDelete( wk );
 
-	// ƒ{ƒ^ƒ“—pƒtƒHƒ“ƒg‰ğ•ú
+	// ãƒœã‚¿ãƒ³ç”¨ãƒ•ã‚©ãƒ³ãƒˆè§£æ”¾
 	FontProc_UnloadFont( FONT_BUTTON );
 
-	// BGLíœ
+	// BGLå‰Šé™¤
 	BgExit( wk->bgl );
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€I—¹
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
 	StopTP();							
 
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[Eƒ[ƒhƒZƒbƒgƒ}ƒl[ƒWƒƒ[‰ğ•ú
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ»ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼è§£æ”¾
 	MSGMAN_Delete( wk->MsgManager );
 	WORDSET_Delete( wk->WordSet );
 
-	// ƒ[ƒN‰ğ•ú
+	// ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	FreeWork( wk );
 
-	PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	// “ü‚ê‘Ö‚í‚Á‚Ä‚¢‚½ã‰º‰æ–Êo—Í‚ğŒ³‚É–ß‚·
+	// å…¥ã‚Œæ›¿ã‚ã£ã¦ã„ãŸä¸Šä¸‹ç”»é¢å‡ºåŠ›ã‚’å…ƒã«æˆ»ã™
 	GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
 
 	sys_DeleteHeap( HEAPID_OEKAKI );
 
@@ -395,7 +395,7 @@ PROC_RESULT MySignProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -404,11 +404,11 @@ PROC_RESULT MySignProc_End( PROC * proc, int * seq )
 //--------------------------------------------------------------------------------------------
 static void VBlankFunc( void * work )
 {
-	// ƒZƒ‹ƒAƒNƒ^[
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();	
 	
 	GF_BGL_VBlankFunc( (GF_BGL_INI*)work );
@@ -419,7 +419,7 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMİ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -429,29 +429,29 @@ static void VBlankFunc( void * work )
 static void VramBankSet(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGİ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -466,7 +466,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	// ƒƒCƒ“‰æ–Ê•¶š”Å0
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢æ–‡å­—ç‰ˆ0
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -479,7 +479,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 	}
 
-	// ƒƒCƒ“‰æ–Êƒ‰ƒNƒKƒL–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ©ã‚¯ã‚¬ã‚­é¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -490,7 +490,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME1_M );
 	}
 
-	// ƒƒCƒ“‰æ–Ê”wŒi
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -502,7 +502,7 @@ static void BgInit( GF_BGL_INI * ini )
 	}
 
 #if 0
-	// ”wŒi (CHAR)
+	// èƒŒæ™¯ (CHAR)
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -513,7 +513,7 @@ static void BgInit( GF_BGL_INI * ini )
 	}
 #endif
 
-	// ƒTƒu‰æ–ÊƒeƒLƒXƒg–Ê
+	// ã‚µãƒ–ç”»é¢ãƒ†ã‚­ã‚¹ãƒˆé¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -524,7 +524,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME0_S );
 	}
 
-	// ƒTƒu‰æ–Ê”wŒi–Ê
+	// ã‚µãƒ–ç”»é¢èƒŒæ™¯é¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -546,7 +546,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 //------------------------------------------------------------------
 /**
- * ‚¨ŠG‚©‚«ƒ[ƒN‰Šú‰»
+ * ãŠçµµã‹ããƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   wk		MYSIGN_WORK*
  *
@@ -563,24 +563,24 @@ static void InitWork( MYSIGN_WORK *wk )
 		wk->OldTouch[i].size = 0;
 
 	}
-	// u‚â‚ß‚év•¶š—ñƒoƒbƒtƒ@ì¬
+	// ã€Œã‚„ã‚ã‚‹ã€æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	wk->EndString   = STRBUF_Create( END_MESSAGE_BUF_NUM,   HEAPID_OEKAKI );
 	wk->TitleString = STRBUF_Create( TITLE_MESSAGE_BUF_NUM, HEAPID_OEKAKI );
 	wk->TalkString  = STRBUF_Create( TALK_MESSAGE_BUF_NUM,  HEAPID_OEKAKI );
 
-	// ƒuƒ‰ƒV‰Šú‰»
+	// ãƒ–ãƒ©ã‚·åˆæœŸåŒ–
 	wk->brush_color  = 0;
 	
 
 	wk->seq = MYSIGN_MODE;
 	
-	// u‚â‚ß‚évæ“¾
+	// ã€Œã‚„ã‚ã‚‹ã€å–å¾—
 	MSGMAN_GetString( wk->MsgManager, msg_oekaki_13, wk->EndString );
 
-	// ƒgƒŒ[ƒi[ƒTƒCƒ“‚ğ‘‚±‚¤
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚µã‚¤ãƒ³ã‚’æ›¸ã“ã†
 	MSGMAN_GetString( wk->MsgManager, msg_oekaki_10, wk->TitleString );
 
-	// ‰º‰æ–ÊƒEƒCƒ“ƒhƒEƒVƒXƒeƒ€‰Šú‰»
+	// ä¸‹ç”»é¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	wk->TouchSubWindowSys = TOUCH_SW_AllocWork( HEAPID_OEKAKI );
 
 	MI_CpuClearFast( &wk->scruchInfo, sizeof(SCRUCH_INFO));
@@ -588,7 +588,7 @@ static void InitWork( MYSIGN_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ[ƒN‰ğ•ú
+ * $brief   ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
  * @param   wk		
  *
@@ -613,9 +613,9 @@ static void FreeWork( MYSIGN_WORK *wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ğ•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -636,9 +636,9 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -647,33 +647,33 @@ static void BgGraphicSet( MYSIGN_WORK * wk, ARCHANDLE* p_handle )
 {
 	GF_BGL_INI *bgl = wk->bgl;
 
-	// ã‰º‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+	// ä¸Šä¸‹ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_HDL_PalSet(    p_handle, NARC_mysign_mysign_m_nclr, PALTYPE_MAIN_BG, 0, 16*2*3,  HEAPID_OEKAKI);
 	ArcUtil_HDL_PalSet(    p_handle, NARC_mysign_mysign_s_nclr, PALTYPE_SUB_BG,  0, 16*2*2,  HEAPID_OEKAKI);
 	
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, 13*0x20, HEAPID_OEKAKI );
 	TalkFontPaletteLoad( PALTYPE_SUB_BG,  13*0x20, HEAPID_OEKAKI );
 
 
-	// ‚OƒLƒƒƒ‰–Ú‚ğƒNƒŠƒA‚·‚é
+	// ï¼ã‚­ãƒ£ãƒ©ç›®ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 	GF_BGL_ClearCharSet( GF_BGL_FRAME1_M, 32, 0, HEAPID_OEKAKI );
 
-	// ƒƒCƒ“‰æ–ÊBG2ƒLƒƒƒ‰“]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG2ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_mysign_mainbg_lz_ncgr, bgl, GF_BGL_FRAME2_M, 0, 32*8*0x20, 1, HEAPID_OEKAKI);
 
-	// ƒƒCƒ“‰æ–ÊBG2ƒXƒNƒŠ[ƒ““]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG2ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_mysign_mainbg_lz_nscr, bgl, GF_BGL_FRAME2_M, 0, 32*24*2, 1, HEAPID_OEKAKI);
 
 
 
-	// ƒTƒu‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+	// ã‚µãƒ–ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_mysign_subbg_lz_ncgr, bgl, GF_BGL_FRAME1_S, 0, 32*8*0x20, 1, HEAPID_OEKAKI);
 
-	// ƒTƒu‰æ–ÊBG1ƒXƒNƒŠ[ƒ““]‘—
+	// ã‚µãƒ–ç”»é¢BG1ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_mysign_subbg_lz_nscr, bgl, GF_BGL_FRAME1_S, 0, 32*24*2, 1, HEAPID_OEKAKI);
 
-	// ƒTƒu‰æ–Ê‰ï˜bƒEƒCƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// ã‚µãƒ–ç”»é¢ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	TalkWinGraphicSet(
 				bgl, GF_BGL_FRAME0_M, 1, FLD_MESFRAME_PAL,  CONFIG_GetWindowType(wk->config), HEAPID_OEKAKI );
 
@@ -683,7 +683,7 @@ static void BgGraphicSet( MYSIGN_WORK * wk, ARCHANDLE* p_handle )
 }
 
 
-//** CharManager PlttManager—p **//
+//** CharManager PlttManagerç”¨ **//
 #define OEKAKI_CHAR_CONT_NUM				(20)
 #define OEKAKI_CHAR_VRAMTRANS_MAIN_SIZE		(2048)
 #define OEKAKI_CHAR_VRAMTRANS_SUB_SIZE		(2048)
@@ -691,13 +691,13 @@ static void BgGraphicSet( MYSIGN_WORK * wk, ARCHANDLE* p_handle )
 
 //-------------------------------------
 //
-//	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[
-//	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 //
 //=====================================
 static void char_pltt_manager_init(void)
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			OEKAKI_CHAR_CONT_NUM,
@@ -707,10 +707,10 @@ static void char_pltt_manager_init(void)
 		};
 		InitCharManager(&cm);
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(OEKAKI_PLTT_CONT_NUM, HEAPID_OEKAKI);
 
-	// “Ç‚İ‚İŠJnˆÊ’u‚ğ‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 }
@@ -718,9 +718,9 @@ static void char_pltt_manager_init(void)
 
 //------------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‰æ–Ê—pƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param   wk		ƒŒ[ƒ_[\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¬ãƒ¼ãƒ€ãƒ¼æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -730,79 +730,79 @@ static void InitCellActor(MYSIGN_WORK *wk, ARCHANDLE* p_handle)
 	int i;
 	
 	
-	// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	// OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	// ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ğ‚İ‚ñ‚È‚Å‹¤—L‚·‚é
+	// å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ã“ã“ã§ä½œæˆã—ãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 	REND_OAMInit( 
-			0, 126,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 126,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 126,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 126,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			HEAPID_OEKAKI);
 	
 	
 	
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	wk->clactSet = CLACT_U_SetEasyInit( 50, &wk->renddata, HEAPID_OEKAKI );
 	
 	CLACT_U_SetSubSurfaceMatrix( &wk->renddata, 0, NAMEIN_SUB_ACTOR_DISTANCE );
 
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->resMan[i] = CLACT_U_ResManagerInit(2, i, HEAPID_OEKAKI);
 	}
 
 
-	//---------ã‰æ–Ê—p-------------------
+	//---------ä¸Šç”»é¢ç”¨-------------------
 
-	//chara“Ç‚İ‚İ
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[CLACT_U_CHAR_RES], 
 							p_handle, NARC_mysign_obj_lz_ncgr, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_OEKAKI);
 
-	//pal“Ç‚İ‚İ
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[CLACT_U_PLTT_RES],
 							p_handle, NARC_mysign_mysign_m_obj_nclr, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAPID_OEKAKI);
 
-	//cell“Ç‚İ‚İ
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELL_RES],
 							p_handle, NARC_mysign_obj_lz_ncer, 1, 0, CLACT_U_CELL_RES,HEAPID_OEKAKI);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELLANM_RES],
 							p_handle, NARC_mysign_obj_lz_nanr, 1, 0, CLACT_U_CELLANM_RES,HEAPID_OEKAKI);
 
 
-	//---------‰º‰æ–Ê—p-------------------
+	//---------ä¸‹ç”»é¢ç”¨-------------------
 
 
 
-	//chara“Ç‚İ‚İ
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[CLACT_U_CHAR_RES], 
 							p_handle, NARC_mysign_obj_lz_ncgr, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAPID_OEKAKI);
 
-	//pal“Ç‚İ‚İ
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[CLACT_U_PLTT_RES],
 							p_handle, NARC_mysign_mysign_m_obj_nclr, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, HEAPID_OEKAKI);
 
-	//cell“Ç‚İ‚İ
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELL_RES],
 							p_handle, NARC_mysign_obj_lz_ncer, 1, 1, CLACT_U_CELL_RES,HEAPID_OEKAKI);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELLANM_RES],
 							p_handle, NARC_mysign_obj_lz_nanr, 1, 1, CLACT_U_CELLANM_RES,HEAPID_OEKAKI);
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 
-	// Chara“]‘—
+	// Charaè»¢é€
 	CLACT_U_CharManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] );
 	CLACT_U_CharManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] );
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	CLACT_U_PlttManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] );
 	CLACT_U_PlttManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] );
 
@@ -820,7 +820,7 @@ static const u16 pal_button_oam_table[BUTTON_NUM][3]={
 
 //------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   wk			MYSIGN_WORK*
  *
@@ -830,7 +830,7 @@ static const u16 pal_button_oam_table[BUTTON_NUM][3]={
 static void SetCellActor(MYSIGN_WORK *wk)
 {
 	int i;
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
 	CLACT_U_MakeHeader(&wk->clActHeader_m, 0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
 	0, 0,
 	wk->resMan[CLACT_U_CHAR_RES],
@@ -848,7 +848,7 @@ static void SetCellActor(MYSIGN_WORK *wk)
 	NULL,NULL);
 
 	{
-		//“o˜^î•ñŠi”[
+		//ç™»éŒ²æƒ…å ±æ ¼ç´
 		CLACT_ADD add;
 
 		add.ClActSet	= wk->clactSet;
@@ -863,9 +863,9 @@ static void SetCellActor(MYSIGN_WORK *wk)
 		add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 		add.heap		= HEAPID_OEKAKI;
 
-		//ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-		// ƒƒCƒ“‰æ–Ê—p(–îˆó‚Ì“o˜^j
+		// ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨(çŸ¢å°ã®ç™»éŒ²ï¼‰
 #if 0
 		for(i=0;i<5;i++){
 			add.ClActHeader	= &wk->clActHeader_s;
@@ -881,7 +881,7 @@ static void SetCellActor(MYSIGN_WORK *wk)
 #endif
 		
 
-		// ƒƒCƒ“‰æ–ÊƒpƒŒƒbƒgEu‚â‚ß‚évƒ{ƒ^ƒ“‚Ì“o˜^
+		// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã€Œã‚„ã‚ã‚‹ã€ãƒœã‚¿ãƒ³ã®ç™»éŒ²
 		for(i=0;i<BUTTON_NUM;i++){
 			add.ClActHeader	= &wk->clActHeader_s;
 			add.mat.x = FX32_ONE * (  pal_button_oam_table[i][0]);
@@ -898,36 +898,36 @@ static void SetCellActor(MYSIGN_WORK *wk)
 		}
 
 #if 0
-		// ƒTƒu‰æ–Ê—p(–îˆó‚Ì“o˜^j
+		// ã‚µãƒ–ç”»é¢ç”¨(çŸ¢å°ã®ç™»éŒ²ï¼‰
 		for(i=0;i<5;i++){
 			add.mat.x = FX32_ONE *   TRAINER_NAME_POS_X;
 			add.mat.y = FX32_ONE * ( TRAINER_NAME_POS_Y + TRAINER_NAME_POS_SPAN*i ) + NAMEIN_SUB_ACTOR_DISTANCE;
 			wk->SubActWork[i] = CLACT_Add(&add);
 			CLACT_SetAnmFlag(wk->SubActWork[i],1);
 			CLACT_AnmChg( wk->SubActWork[i], i );
-			CLACT_DrawPriorityChg(wk->SubActWork[i], 1);	// ‚»‚ê‚¼‚ê‚ÌƒAƒNƒ^[‚Ìƒvƒ‰ƒCƒIƒŠƒeƒBİ’è
+			CLACT_DrawPriorityChg(wk->SubActWork[i], 1);	// ãã‚Œãã‚Œã®ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£è¨­å®š
 			CLACT_SetDrawFlag( wk->SubActWork[i], 0 );
 			
 		}
 #endif		
 	}	
-	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒƒCƒ“‰æ–ÊOBJ–Ê‚n‚m
-	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒTƒu‰æ–ÊOBJ–Ê‚n‚m
+	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ãƒ¡ã‚¤ãƒ³ç”»é¢OBJé¢ï¼¯ï¼®
+	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//ã‚µãƒ–ç”»é¢OBJé¢ï¼¯ï¼®
 	
 }
 
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚n‚`‚l—p‚ÉBmpWin‚Ìƒƒ‚ƒŠ‚É‚Ì‚İ•¶š—ñ‚ğ•`‰æ‚·‚é
+ * @brief   ï¼¯ï¼¡ï¼­ç”¨ã«BmpWinã®ãƒ¡ãƒ¢ãƒªã«ã®ã¿æ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹
  *
  * @param   win			BMPWIN
  * @param   msg			STRBUF
- * @param   y			BMP“à‚Ì•`‰æŠJn‚xÀ•W
- * @param   fnt_index	ƒtƒHƒ“ƒIw’è
- * @param   col			ƒJƒ‰[w’è
+ * @param   y			BMPå†…ã®æç”»é–‹å§‹ï¼¹åº§æ¨™
+ * @param   fnt_index	ãƒ•ã‚©ãƒ³ã‚ªæŒ‡å®š
+ * @param   col			ã‚«ãƒ©ãƒ¼æŒ‡å®š
  *
- * @retval  void *		•`‰æ‚µ‚Äƒƒ‚ƒŠ‚Ìƒgƒbƒv
+ * @retval  void *		æç”»ã—ã¦ãƒ¡ãƒ¢ãƒªã®ãƒˆãƒƒãƒ—
  */
 //------------------------------------------------------------------
 static void *PrintCGXOnly(GF_BGL_BMPWIN * win, STRBUF *msg, int y, u8 fnt_index,const   GF_PRINTCOLOR col)
@@ -943,12 +943,12 @@ static void *PrintCGXOnly(GF_BGL_BMPWIN * win, STRBUF *msg, int y, u8 fnt_index,
 }
 
 
-// ‚¨‚¦‚©‚«ƒ{[ƒhBMPi‰º‰æ–Êj
+// ãŠãˆã‹ããƒœãƒ¼ãƒ‰BMPï¼ˆä¸‹ç”»é¢ï¼‰
 #define OEKAKI_BOARD_POSX	 ( 4 )
 #define OEKAKI_BOARD_POSY	 ( 9 )
 
 
-// –¼‘O•\¦BMPiã‰æ–Êj
+// åå‰è¡¨ç¤ºBMPï¼ˆä¸Šç”»é¢ï¼‰
 #define OEKAKI_NAME_BMP_W	 ( 10 )
 #define OEKAKI_NAME_BMP_H	 (  2 )
 #define OEKAKI_NAME_BMP_SIZE (OEKAKI_NAME_BMP_W * OEKAKI_NAME_BMP_H)
@@ -956,19 +956,19 @@ static void *PrintCGXOnly(GF_BGL_BMPWIN * win, STRBUF *msg, int y, u8 fnt_index,
 #define END_BMP_OFFSET		 (1+OEKAKI_BOARD_W*OEKAKI_BOARD_H)
 #define TITLE_BMP_OFFSET     (END_BMP_OFFSET + OEKAKI_END_BMP_W*OEKAKI_END_BMP_H)
 
-// u‚â‚ß‚év•¶š—ñBMPi‰º‰æ–Êj
+// ã€Œã‚„ã‚ã‚‹ã€æ–‡å­—åˆ—BMPï¼ˆä¸‹ç”»é¢ï¼‰
 #define OEKAKI_END_BMP_X	( 26 )
 #define OEKAKI_END_BMP_Y	( 21 )
 #define OEKAKI_END_BMP_W	( 8  )
 #define OEKAKI_END_BMP_H	( 2  )
 
-// uƒgƒŒ[ƒi[ƒTƒCƒ“‚ğ‚©‚±‚¤Iv
+// ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚µã‚¤ãƒ³ã‚’ã‹ã“ã†ï¼ã€
 #define TITLE_BMP_X			(  2 )
 #define TITLE_BMP_Y			(  2 )
 #define TITLE_BMP_W			( 28 )
 #define TITLE_BMP_H			(  2 )
 
-// ‰ï˜bƒEƒCƒ“ƒhƒE•\¦ˆÊ’u’è‹`
+// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä½ç½®å®šç¾©
 #define OEKAKI_TALK_X		(  2 )
 #define OEKAKI_TALK_Y		(  1 )
 
@@ -976,7 +976,7 @@ static void *PrintCGXOnly(GF_BGL_BMPWIN * win, STRBUF *msg, int y, u8 fnt_index,
 #define OBJ_VRAM_WORD_TRANS_SIZE	( 0x20*4*2 )
 //------------------------------------------------------------------
 /**
- * BMPWINˆ—i•¶šƒpƒlƒ‹‚ÉƒtƒHƒ“ƒg•`‰æj
+ * BMPWINå‡¦ç†ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«ã«ãƒ•ã‚©ãƒ³ãƒˆæç”»ï¼‰
  *
  * @param   wk		
  *
@@ -985,19 +985,19 @@ static void *PrintCGXOnly(GF_BGL_BMPWIN * win, STRBUF *msg, int y, u8 fnt_index,
 //------------------------------------------------------------------
 static void BmpWinInit( MYSIGN_WORK *wk, PROC* proc )
 {
-	// ---------- ƒƒCƒ“‰æ–Ê ------------------
+	// ---------- ãƒ¡ã‚¤ãƒ³ç”»é¢ ------------------
 
-	// BG0–ÊBMPi‰ï˜bƒEƒCƒ“ƒhƒEjƒEƒCƒ“ƒhƒEŠm•Û
+	// BG0é¢BMPï¼ˆä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MsgWin, GF_BGL_FRAME0_M,
 		OEKAKI_TALK_X, OEKAKI_TALK_Y, FLD_MSG_WIN_SX, FLD_MSG_WIN_SY, 13,  1 + TALK_WIN_CGX_SIZ + MENU_WIN_CGX_SIZ );
 	GF_BGL_BmpWinDataFill( &wk->MsgWin, 0x0f0f );
 
-	// BG1–Ê—pBMPi‚¨ŠG‚©‚«‰æ‘œjƒEƒCƒ“ƒhƒEŠm•Û
+	// BG1é¢ç”¨BMPï¼ˆãŠçµµã‹ãç”»åƒï¼‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->OekakiBoard, GF_BGL_FRAME1_M,
 		OEKAKI_BOARD_POSX, OEKAKI_BOARD_POSY, OEKAKI_BOARD_W, OEKAKI_BOARD_H, 1,  1 );
 	GF_BGL_BmpWinDataFill( &wk->OekakiBoard, 0x0202 );
 
-	// BG1–ÊBMPi‚â‚ß‚éjƒEƒCƒ“ƒhƒEŠm•ÛE•`‰æ
+	// BG1é¢BMPï¼ˆã‚„ã‚ã‚‹ï¼‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿ãƒ»æç”»
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->EndWin, GF_BGL_FRAME1_M,
 	OEKAKI_END_BMP_X, OEKAKI_END_BMP_Y, OEKAKI_END_BMP_W, OEKAKI_END_BMP_H, 2,  1+OEKAKI_BOARD_W*OEKAKI_BOARD_H );
 
@@ -1009,7 +1009,7 @@ static void BmpWinInit( MYSIGN_WORK *wk, PROC* proc )
 		int  i;
 		objcharaadr = PrintCGXOnly(&wk->EndWin, wk->EndString, 1, FONT_BUTTON, GF_PRINTCOLOR_MAKE(0xe,7,2));
 
-		// BMPˆ—‚Å•`‰æ‚µ‚½ƒoƒbƒtƒ@‚ğOBJ‚É“]‘—‚µ‚Ä”½‰f‚³‚¹‚é
+		// BMPå‡¦ç†ã§æç”»ã—ãŸãƒãƒƒãƒ•ã‚¡ã‚’OBJã«è»¢é€ã—ã¦åæ˜ ã•ã›ã‚‹
 		DC_FlushRange(objcharaadr,0x20*8*2);	
 		for(i=0;i<2;i++){						
 			FONTOAM_BmpCutOamSize( &wk->EndWin, 4, 2, 4*i, 0,  (char*)wk->TransWork);
@@ -1019,7 +1019,7 @@ static void BmpWinInit( MYSIGN_WORK *wk, PROC* proc )
 	}
 
 
-	// BG1–ÊBMPiƒgƒŒ[ƒi[ƒTƒCƒ“‚ğ‘‚±‚¤IjƒEƒCƒ“ƒhƒEŠm•ÛE•`‰æ
+	// BG1é¢BMPï¼ˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚µã‚¤ãƒ³ã‚’æ›¸ã“ã†ï¼ï¼‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿ãƒ»æç”»
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->TitleWin, GF_BGL_FRAME1_M,
 	TITLE_BMP_X, TITLE_BMP_Y, TITLE_BMP_W, TITLE_BMP_H, 13,  TITLE_BMP_OFFSET );
 
@@ -1031,7 +1031,7 @@ static void BmpWinInit( MYSIGN_WORK *wk, PROC* proc )
 		GF_STR_PrintColor( &wk->TitleWin, FONT_TALK, wk->TitleString, x, 0, MSG_ALLPUT, GF_PRINTCOLOR_MAKE(0x1,0x2,0x0),NULL);
 	}
 
-	// ----------- ƒTƒu‰æ–Ê–¼‘O•\¦BMPŠm•Û ------------------
+	// ----------- ã‚µãƒ–ç”»é¢åå‰è¡¨ç¤ºBMPç¢ºä¿ ------------------
 	{
 		int i;
 		for(i=0;i<OEKAKI_MEMBER_MAX;i++){
@@ -1040,13 +1040,13 @@ static void BmpWinInit( MYSIGN_WORK *wk, PROC* proc )
 			GF_BGL_BmpWinDataFill( &wk->TrainerNameWin[i], 0 );
 		}
 
-		//Å‰‚ÉŒ©‚¦‚Ä‚¢‚é–Ê‚È‚Ì‚Å•¶šƒpƒlƒ‹•`‰æ‚Æ“]‘—‚às‚¤
+		//æœ€åˆã«è¦‹ãˆã¦ã„ã‚‹é¢ãªã®ã§æ–‡å­—ãƒ‘ãƒãƒ«æç”»ã¨è»¢é€ã‚‚è¡Œã†
 		NameCheckPrint( wk->TrainerNameWin, 0, GF_PRINTCOLOR_MAKE(0xe,0xd,0xf), wk );
 	}
 
 }	
 
-// ‚Í‚¢E‚¢‚¢‚¦BMPi‰º‰æ–Êj
+// ã¯ã„ãƒ»ã„ã„ãˆBMPï¼ˆä¸‹ç”»é¢ï¼‰
 #define YESNO_WIN_FRAME_CHAR	( 1 + TALK_WIN_CGX_SIZ )
 #define YESNO_CHARA_OFFSET	(1 + TALK_WIN_CGX_SIZ + MENU_WIN_CGX_SIZ + FLD_MSG_WIN_SX*FLD_MSG_WIN_SY)
 #define YESNO_WINDOW_X		( 22   )
@@ -1072,7 +1072,7 @@ static const BMPWIN_DAT TouchYesNoBmpDat[2]={
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰º‰æ–Êiƒ^ƒbƒ`—pj‚Í‚¢E‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE•\¦
+ * $brief   ä¸‹ç”»é¢ï¼ˆã‚¿ãƒƒãƒç”¨ï¼‰ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   ini		
  * @param   yeswin		
@@ -1088,46 +1088,46 @@ static void BmpTouchYesnoWin_Init( GF_BGL_INI *ini, GF_BGL_BMPWIN  **yeswin, GF_
 	STRBUF *yes,*no;
 	int yespos, nopos;
 
-	// ‚Í‚¢E‚¢‚¢‚¦•¶š—ñæ“¾
+	// ã¯ã„ãƒ»ã„ã„ãˆæ–‡å­—åˆ—å–å¾—
 	man = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_ev_win_dat, heap );
 	yes = MSGMAN_AllocString( man, msg_ev_win_046 );
 	no  = MSGMAN_AllocString( man, msg_ev_win_047 );
 	MSGMAN_Delete( man );
 
-	// BMPWINŠm•Û(Alloc)
+	// BMPWINç¢ºä¿(Alloc)
 	*yeswin = GF_BGL_BmpWinAllocGet( heap, 1 );
 	*nowin  = GF_BGL_BmpWinAllocGet( heap, 1 );
 	
 	GF_BGL_BmpWinAddEx( ini, *yeswin, &TouchYesNoBmpDat[0] );
 	GF_BGL_BmpWinAddEx( ini, *nowin, &TouchYesNoBmpDat[1] );
 
-	// Window˜g•`‰æ
+	// Windowæ æç”»
 	BmpMenuWinWrite( *yeswin, WINDOW_TRANS_OFF, YESNO_WIN_FRAME_CHAR, FLD_MENUFRAME_PAL );
 	BmpMenuWinWrite( *nowin, WINDOW_TRANS_OFF, YESNO_WIN_FRAME_CHAR, FLD_MENUFRAME_PAL );
 
-	// BMPƒLƒƒƒ‰“h‚è‚Â‚Ô‚µ
+	// BMPã‚­ãƒ£ãƒ©å¡—ã‚Šã¤ã¶ã—
 	GF_BGL_BmpWinDataFill( *yeswin, 0x0f0f );
 	GF_BGL_BmpWinDataFill( *nowin,  0x0f0f );
 
-	// ‚Í‚¢E‚¢‚¢‚¦ƒZƒ“ƒ^ƒŠƒ“ƒOˆÊ’uæ“¾
+	// ã¯ã„ãƒ»ã„ã„ãˆã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ä½ç½®å–å¾—
 	yespos = FontProc_GetPrintStrWidth( FONT_TALK, yes, 0 );
     nopos  = FontProc_GetPrintStrWidth( FONT_TALK,  no, 0 );
 	yespos = (YESNO_CHARA_W*8/2) - yespos/2;
 	nopos =  (YESNO_CHARA_W*8/2) - nopos/2;
 	
-	// ‚Í‚¢E‚¢‚¢‚¦•`‰æ
+	// ã¯ã„ãƒ»ã„ã„ãˆæç”»
 	
 	GF_STR_PrintSimple( *yeswin, FONT_TALK,  yes,  yespos, 2*8-12/2, MSG_ALLPUT, NULL);
 	GF_STR_PrintSimple( *nowin,  FONT_TALK,   no,  nopos,  2*8-12/2, MSG_ALLPUT, NULL);
 
-	// ‚Í‚¢E‚¢‚¢‚¦•¶š—ñ‰ğ•ú
+	// ã¯ã„ãƒ»ã„ã„ãˆæ–‡å­—åˆ—è§£æ”¾
 	STRBUF_Delete(yes);
 	STRBUF_Delete(no);
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰º‰æ–Êiƒ^ƒbƒ`—pj‚Í‚¢E‚¢‚¢‚¦ƒEƒCƒ“ƒhƒEíœ
+ * $brief   ä¸‹ç”»é¢ï¼ˆã‚¿ãƒƒãƒç”¨ï¼‰ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  *
  * @param   yeswin		
  * @param   nowin		
@@ -1137,22 +1137,22 @@ static void BmpTouchYesnoWin_Init( GF_BGL_INI *ini, GF_BGL_BMPWIN  **yeswin, GF_
 //------------------------------------------------------------------
 static void BmpTouchYesnoWin_End( GF_BGL_BMPWIN  *yeswin, GF_BGL_BMPWIN  *nowin )
 {
-	// BMPWIN•\¦OFF
+	// BMPWINè¡¨ç¤ºOFF
 	GF_BGL_BmpWinOff( yeswin );
 	GF_BGL_BmpWinOff( nowin  );
 
-	// Window˜gÁ‹
+	// Windowæ æ¶ˆå»
 	BmpMenuWinClear( yeswin, WINDOW_TRANS_ON );
 	BmpMenuWinClear( nowin,  WINDOW_TRANS_ON );
 
-	// BMPWIN‰ğ•ú
+	// BMPWINè§£æ”¾
 	GF_BGL_BmpWinFree( yeswin,1 );
 	GF_BGL_BmpWinFree( nowin,1 );
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   Šm•Û‚µ‚½BMPWIN‚ğ‰ğ•ú
+ * $brief   ç¢ºä¿ã—ãŸBMPWINã‚’è§£æ”¾
  *
  * @param   wk		
  *
@@ -1178,7 +1178,7 @@ static void BmpWinDelete( MYSIGN_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹ˆÚ“®ˆ—
+ * ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•å‡¦ç†
  *
  * @param   wk		MYSIGN_WORK*
  *
@@ -1191,9 +1191,9 @@ static void ControlCursor(MYSIGN_WORK *wk)
 	int arrow = 0;
 
 
-	// ˆÚ“®‚ª”­¶‚µ‚½‚ç•ÏX
+	// ç§»å‹•ãŒç™ºç”Ÿã—ãŸã‚‰å¤‰æ›´
 	if(move){
-		CursorAppearUpDate(wk,arrow);		// ˆÚ“®‚ÌŒ‹‰ÊƒJ[ƒ\ƒ‹‚ÌŒ`ó‚ª‚Ç‚Ì‚æ‚¤‚É•Ï‚í‚é‚©‚ğŒˆ’è‚·‚é
+		CursorAppearUpDate(wk,arrow);		// ç§»å‹•ã®çµæœã‚«ãƒ¼ã‚½ãƒ«ã®å½¢çŠ¶ãŒã©ã®ã‚ˆã†ã«å¤‰ã‚ã‚‹ã‹ã‚’æ±ºå®šã™ã‚‹
 	}
 
 }
@@ -1201,12 +1201,12 @@ static void ControlCursor(MYSIGN_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * ˆÚ“®‚ÌŒ‹‰ÊƒJ[ƒ\ƒ‹‚ÌŒ`ó‚ª‚Ç‚Ì‚æ‚¤‚É•Ï‚í‚é‚©‚ğŒˆ’è‚·‚é
- * •¶š‚Ìã‚Å‚ ‚ê‚ÎA³•ûŒ`‚ÌƒJ[ƒ\ƒ‹Aƒ{ƒ^ƒ“‚Ìã‚Å‚ ‚ê‚Î’·•ûŒ`‚ÌƒJ[ƒ\ƒ‹
- * •¶š‚ÌXV‚ªs‚í‚ê‚é‚±‚Æ‚ÅAƒTƒu‰æ–Ê‚Ì’†‚ÌƒtƒHƒ“ƒg‚ÌXV‚às‚í‚ê‚é
+ * ç§»å‹•ã®çµæœã‚«ãƒ¼ã‚½ãƒ«ã®å½¢çŠ¶ãŒã©ã®ã‚ˆã†ã«å¤‰ã‚ã‚‹ã‹ã‚’æ±ºå®šã™ã‚‹
+ * æ–‡å­—ã®ä¸Šã§ã‚ã‚Œã°ã€æ­£æ–¹å½¢ã®ã‚«ãƒ¼ã‚½ãƒ«ã€ãƒœã‚¿ãƒ³ã®ä¸Šã§ã‚ã‚Œã°é•·æ–¹å½¢ã®ã‚«ãƒ¼ã‚½ãƒ«
+ * æ–‡å­—ã®æ›´æ–°ãŒè¡Œã‚ã‚Œã‚‹ã“ã¨ã§ã€ã‚µãƒ–ç”»é¢ã®ä¸­ã®ãƒ•ã‚©ãƒ³ãƒˆã®æ›´æ–°ã‚‚è¡Œã‚ã‚Œã‚‹
  *
  * @param   wk			MYSIGN_WORK*
- * @param   arrow		ˆÚ“®•ûŒü
+ * @param   arrow		ç§»å‹•æ–¹å‘
  *
  * @retval  none		
  */
@@ -1227,9 +1227,9 @@ static void CursorAppearUpDate(MYSIGN_WORK *wk, int arrow)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ•ÏX‚·‚é
+ * $brief   ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
  *
- * @param   act		ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @param   act		ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   x		
  * @param   y		
  *
@@ -1262,7 +1262,7 @@ static void SetCursor_Pos( CLACT_WORK_PTR act, int x, int y )
 
 static const RECT_HIT_TBL sub_button_hittbl[]={
 {PAL_BUTTON_Y,PAL_BUTTON_Y+PAL_BUTTON_H-1,END_BUTTON_X,END_BUTTON_X+END_BUTTON_RECT},
-{RECT_HIT_END,0,0,0},		// I—¹ƒf[ƒ^
+{RECT_HIT_END,0,0,0},		// çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 {PAL_BUTTON_Y,PAL_BUTTON_Y+PAL_BUTTON_H-1,PAL_BUTTON0_X,PAL_BUTTON0_X+PAL_BUTTON_RECT},
 {PAL_BUTTON_Y,PAL_BUTTON_Y+PAL_BUTTON_H-1,PAL_BUTTON1_X,PAL_BUTTON1_X+PAL_BUTTON_RECT},
 };
@@ -1274,24 +1274,24 @@ static const RECT_HIT_TBL sub_button_hittbl[]={
 
 static const RECT_HIT_TBL sub_canvas_touchtbl[]={
 	{DRAW_AREA_Y,DRAW_AREA_Y+DRAW_AREA_H,DRAW_AREA_X,DRAW_AREA_X+DRAW_AREA_W},
-{RECT_HIT_END,0,0,0},		// I—¹ƒf[ƒ^
+{RECT_HIT_END,0,0,0},		// çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 };
 
 
-// ‰º‰æ–Ê—p‚Í‚¢E‚¢‚¢‚¦ˆ—‚Ìƒ^ƒbƒ`”»’èƒe[ƒuƒ‹
+// ä¸‹ç”»é¢ç”¨ã¯ã„ãƒ»ã„ã„ãˆå‡¦ç†ã®ã‚¿ãƒƒãƒåˆ¤å®šãƒ†ãƒ¼ãƒ–ãƒ«
 static const RECT_HIT_TBL end_button_touchtbl[]={
 	{ YESNO_WINDOW_Y1*8, (YESNO_WINDOW_Y1+YESNO_CHARA_H)*8, YESNO_WINDOW_X*8, (YESNO_WINDOW_X+YESNO_CHARA_W)*8,},
 	{ YESNO_WINDOW_Y2*8, YESNO_WINDOW_Y2*8+YESNO_CHARA_H*8, YESNO_WINDOW_X*8, (YESNO_WINDOW_X+YESNO_CHARA_W)*8,},
-	{RECT_HIT_END,0,0,0},		// I—¹ƒf[ƒ^
+	{RECT_HIT_END,0,0,0},		// çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 };
 
 
 
 //------------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹‚Å‰Ÿ‚µ‚½ƒ{ƒ^ƒ“‚ª‚Ö‚±‚Ş
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã§æŠ¼ã—ãŸãƒœã‚¿ãƒ³ãŒã¸ã“ã‚€
  *
- * @param   wk		MYSIGN_WORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		MYSIGN_WORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -1300,13 +1300,13 @@ static void NormalTouchFunc(MYSIGN_WORK *wk)
 {
 	int button=-1,touch;
 
-	// “ü—Íˆ—
+	// å…¥åŠ›å‡¦ç†
 
-	// ƒuƒ‰ƒVØ‚è‘Ö‚¦
+	// ãƒ–ãƒ©ã‚·åˆ‡ã‚Šæ›¿ãˆ
 	button=GF_TP_RectHitTrg( sub_button_hittbl );
 	if( button != RECT_HIT_NONE ){
 		if(button==0){
-			// u‚â‚ß‚év‚ğ‰Ÿ‚µ‚½‚çƒEƒCƒ“ƒhƒE•`‰æŠJn
+			// ã€Œã‚„ã‚ã‚‹ã€ã‚’æŠ¼ã—ãŸã‚‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æç”»é–‹å§‹
 			if(wk->seq==MYSIGN_MODE){
 				EndMessagePrint( wk, msg_oekaki_11 );
 				wk->seq = MYSIGN_MODE_END_SELECT;
@@ -1314,23 +1314,23 @@ static void NormalTouchFunc(MYSIGN_WORK *wk)
 				Snd_SePlay( SEQ_SE_DP_DECIDE );
 			}
 		}else{
-			// I—¹ƒ{ƒ^ƒ“‚¶‚á‚È‚¢ê‡‚ÍAF•ÏX
+			// çµ‚äº†ãƒœã‚¿ãƒ³ã˜ã‚ƒãªã„å ´åˆã¯ã€è‰²å¤‰æ›´
 			wk->brush_color = button;
 			PalButtonAppearChange( wk->ButtonActWork, button);
 		}
 	}
 
-	// ƒJ[ƒ\ƒ‹ˆÊ’u•ÏX
+	// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å¤‰æ›´
 	touch = GF_TP_RectHitCont( sub_canvas_touchtbl );
 
 //	CLACT_SetDrawFlag( wk->MainActWork[0], 0 );
 	if(touch!=RECT_HIT_NONE){
-		// ©•ª‚ÌƒJ[ƒ\ƒ‹‚Íƒ^ƒbƒ`ƒpƒlƒ‹‚ÌÀ•W‚ğ”½‰f‚³‚¹‚é
+		// è‡ªåˆ†ã®ã‚«ãƒ¼ã‚½ãƒ«ã¯ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®åº§æ¨™ã‚’åæ˜ ã•ã›ã‚‹
 //		SetCursor_Pos( wk->MainActWork[0], sys.tp_x, sys.tp_y );
 		BrushCanvas(wk);
 	}
 
-	// ƒTƒ“ƒvƒŠƒ“ƒOî•ñ‚ğæ“¾‚µ‚ÄŠi”[
+	// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°æƒ…å ±ã‚’å–å¾—ã—ã¦æ ¼ç´
 	{
 		TP_ONE_DATA	tpData;
 		int i;
@@ -1345,7 +1345,7 @@ static void NormalTouchFunc(MYSIGN_WORK *wk)
 	}
 
 
-	// Œ©‚½–Ú‚Ìˆ—
+	// è¦‹ãŸç›®ã®å‡¦ç†
 //	button=GF_TP_RectHitCont( sub_button_hittbl );
 
 
@@ -1354,9 +1354,9 @@ static void NormalTouchFunc(MYSIGN_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒpƒŒƒbƒg‚Æ‚â‚ß‚éƒ{ƒ^ƒ“‚ÌƒZƒ‹ƒAƒNƒ^[§Œä
+ * $brief   ãƒ‘ãƒ¬ãƒƒãƒˆã¨ã‚„ã‚ã‚‹ãƒœã‚¿ãƒ³ã®ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆ¶å¾¡
  *
- * @param   act		ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @param   act		ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   button		
  *
  * @retval  none		
@@ -1367,7 +1367,7 @@ static void PalButtonAppearChange( CLACT_WORK_PTR *act, int no )
 	int i;
 	
 	for(i=0;i<BUTTON_NUM;i++){
-		// ‰Ÿ‚³‚ê‚½ƒ{ƒ^ƒ“‚Í‚Ö‚±‚ŞB‚Ù‚©‚Ìƒ{ƒ^ƒ“‚Í–ß‚é
+		// æŠ¼ã•ã‚ŒãŸãƒœã‚¿ãƒ³ã¯ã¸ã“ã‚€ã€‚ã»ã‹ã®ãƒœã‚¿ãƒ³ã¯æˆ»ã‚‹
 		if(i==no){
 			CLACT_AnmChg( act[i], pal_button_oam_table[i][2]+1 );
 		}else{
@@ -1378,9 +1378,9 @@ static void PalButtonAppearChange( CLACT_WORK_PTR *act, int no )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚â‚ß‚éƒ{ƒ^ƒ“‚ÌƒIƒ“EƒIƒt
+ * $brief   ã‚„ã‚ã‚‹ãƒœã‚¿ãƒ³ã®ã‚ªãƒ³ãƒ»ã‚ªãƒ•
  *
- * @param   act		ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @param   act		ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   flag		
  *
  * @retval  none		
@@ -1397,7 +1397,7 @@ static void EndButtonAppearChange( CLACT_WORK_PTR *act, BOOL flag )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚¨‚¦‚©‚«I—¹‚Ì‚Í‚¢E‚¢‚¢‚¦ƒEƒCƒ“ƒhƒEƒ^ƒbƒ`ˆ—
+ * $brief   ãŠãˆã‹ãçµ‚äº†ã®ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¿ãƒƒãƒå‡¦ç†
  *
  * @param   wk		
  *
@@ -1409,10 +1409,10 @@ static int  EndTouchFunc( GF_BGL_BMPWIN *TalkWin, GF_BGL_BMPWIN *Yes, GF_BGL_BMP
 	int button;
 	int result = 0;
 	
-	// ‚Í‚¢E‚¢‚¢‚¦ƒeƒXƒg
+	// ã¯ã„ãƒ»ã„ã„ãˆãƒ†ã‚¹ãƒˆ
 	button=GF_TP_RectHitTrg( end_button_touchtbl );
 	if( button != RECT_HIT_NONE ){
-			// ƒEƒCƒ“ƒhƒEƒNƒŠƒA
+			// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢
 		BmpTalkWinClear( TalkWin, WINDOW_TRANS_ON );
 		BmpTouchYesnoWin_End( Yes, No   );
 		if(button==0){
@@ -1426,7 +1426,7 @@ static int  EndTouchFunc( GF_BGL_BMPWIN *TalkWin, GF_BGL_BMPWIN *Yes, GF_BGL_BMP
 }
 //------------------------------------------------------------------
 /**
- * $brief   ‚¨ŠG‚©‚«ƒ{[ƒh’Êíˆ—
+ * $brief   ãŠçµµã‹ããƒœãƒ¼ãƒ‰é€šå¸¸å‡¦ç†
  *
  * @param   wk		
  * @param   seq		
@@ -1436,7 +1436,7 @@ static int  EndTouchFunc( GF_BGL_BMPWIN *TalkWin, GF_BGL_BMPWIN *Yes, GF_BGL_BMP
 //------------------------------------------------------------------
 static int Oekaki_MainNormal( MYSIGN_WORK *wk, int seq )
 {
-	NormalTouchFunc(wk);			//  ƒ^ƒbƒ`ƒpƒlƒ‹ˆ—
+	NormalTouchFunc(wk);			//  ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å‡¦ç†
 
 	NameCheckPrint( wk->TrainerNameWin, 0, GF_PRINTCOLOR_MAKE(0xe,0xc,0xf),wk);
 
@@ -1451,7 +1451,7 @@ static int Oekaki_MainNormal( MYSIGN_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   I—¹‘I‘ğˆ—‚Ì‹¤’Êˆ—ŠÖ”(Œã‚ë‚Å•`‰æ“™j
+ * $brief   çµ‚äº†é¸æŠå‡¦ç†ã®å…±é€šå‡¦ç†é–¢æ•°(å¾Œã‚ã§æç”»ç­‰ï¼‰
  *
  * @param   wk		
  *
@@ -1468,7 +1468,7 @@ static void EndSequenceCommonFunc( MYSIGN_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   YESNOƒEƒCƒ“ƒhƒEƒVƒXƒeƒ€ƒXƒ^[ƒg
+ * $brief   YESNOã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆ
  *
  * @param   bgl		
  * @param   touch_sub_window_sys		
@@ -1480,7 +1480,7 @@ static void TouchYesNoStart( GF_BGL_INI *bgl, TOUCH_SW_SYS* touch_sub_window_sys
 {
 	TOUCH_SW_PARAM param;
 
-	// YES NO ƒEƒBƒ“ƒhƒEƒ{ƒ^ƒ“‚Ì•\¦
+	// YES NO ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒœã‚¿ãƒ³ã®è¡¨ç¤º
 	param.p_bgl		= bgl;
 	param.bg_frame	= GF_BGL_FRAME0_M;
 	param.char_offs	= YESNO_CHARA_OFFSET+YESNO_CHARA_W*YESNO_CHARA_H;
@@ -1495,7 +1495,7 @@ static void TouchYesNoStart( GF_BGL_INI *bgl, TOUCH_SW_SYS* touch_sub_window_sys
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚¨ŠG‚©‚«ƒ{[ƒhu‚â‚ß‚év‚ğ‘I‘ğ‚µ‚½
+ * $brief   ãŠçµµã‹ããƒœãƒ¼ãƒ‰ã€Œã‚„ã‚ã‚‹ã€ã‚’é¸æŠã—ãŸæ™‚
  *
  * @param   wk		
  * @param   seq		
@@ -1508,18 +1508,18 @@ static int Oekaki_EndSelectPutString( MYSIGN_WORK *wk, int seq )
 	if( EndMessageWait( wk->MsgIndex ) ){
 		TOUCH_SW_PARAM param;
 
-		// YES NO ƒEƒBƒ“ƒhƒEƒ{ƒ^ƒ“‚Ì•\¦
+		// YES NO ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒœã‚¿ãƒ³ã®è¡¨ç¤º
 		TouchYesNoStart( wk->bgl, wk->TouchSubWindowSys );
 	
 		wk->seq = MYSIGN_MODE_END_SELECT_WAIT;
 	}
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   u‚â‚ß‚Ü‚·‚©Hv‚Í‚¢E‚¢‚¢‚¦‘I‘ğ‘Ò‚¿
+ * $brief   ã€Œã‚„ã‚ã¾ã™ã‹ï¼Ÿã€ã¯ã„ãƒ»ã„ã„ãˆé¸æŠå¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -1531,9 +1531,9 @@ static int Oekaki_EndSelectWait( MYSIGN_WORK *wk, int seq )
 {
 	int result;
 	result = TOUCH_SW_Main( wk->TouchSubWindowSys );
-	switch(result){				//‚â‚ß‚Ü‚·‚©H
-	case TOUCH_SW_RET_YES:						//‚Í‚¢
-		// ƒXƒRƒA‰ÁZ
+	switch(result){				//ã‚„ã‚ã¾ã™ã‹ï¼Ÿ
+	case TOUCH_SW_RET_YES:						//ã¯ã„
+		// ã‚¹ã‚³ã‚¢åŠ ç®—
 		RECORD_Score_Add( wk->record, SCORE_ID_WRITE_SIGN );
 		RECORD_Inc( wk->record, RECID_MYSIGN_WRITE );
 		
@@ -1542,7 +1542,7 @@ static int Oekaki_EndSelectWait( MYSIGN_WORK *wk, int seq )
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, 16, 1, HEAPID_OEKAKI );
 		return SEQ_OUT;
 		break;
-	case TOUCH_SW_RET_NO:						//‚¢‚¢‚¦
+	case TOUCH_SW_RET_NO:						//ã„ã„ãˆ
 		wk->seq = MYSIGN_MODE_REWRITE;
 		EndButtonAppearChange( wk->ButtonActWork, FALSE );
 		BmpTalkWinClear( &wk->MsgWin, WINDOW_TRANS_OFF );
@@ -1550,10 +1550,10 @@ static int Oekaki_EndSelectWait( MYSIGN_WORK *wk, int seq )
 		break;
 	}
 
-	// Œë‘—M‚ğ–h‚®
+	// èª¤é€ä¿¡ã‚’é˜²ã
 	wk->MyTouchResult.size = 0;
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 
 	return seq;
 }
@@ -1574,8 +1574,8 @@ static int Oekaki_EndSelectWait( MYSIGN_WORK *wk, int seq )
 static int Oekaki_ReWriteSelect( MYSIGN_WORK *wk, int seq )
 {
 	int result = TOUCH_SW_Main( wk->TouchSubWindowSys );
-	switch(result){				//‚©‚«‚È‚¨‚µ‚Ü‚·‚©H
-	case TOUCH_SW_RET_YES:						//‚Í‚¢
+	switch(result){				//ã‹ããªãŠã—ã¾ã™ã‹ï¼Ÿ
+	case TOUCH_SW_RET_YES:						//ã¯ã„
 		
 		wk->seq = MYSIGN_MODE;
 		BmpTalkWinClear( &wk->MsgWin, WINDOW_TRANS_OFF );
@@ -1585,7 +1585,7 @@ static int Oekaki_ReWriteSelect( MYSIGN_WORK *wk, int seq )
 		GF_BGL_BmpWinOn( &wk->OekakiBoard );
 
 		break;
-	case TOUCH_SW_RET_NO:						//‚¢‚¢‚¦
+	case TOUCH_SW_RET_NO:						//ã„ã„ãˆ
 		wk->seq = MYSIGN_MODE;
 		BmpTalkWinClear( &wk->MsgWin, WINDOW_TRANS_OFF );
 		TOUCH_SW_Reset( wk->TouchSubWindowSys );
@@ -1598,7 +1598,7 @@ static int Oekaki_ReWriteSelect( MYSIGN_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   u‚â‚ß‚È‚¢v‚É‚µ‚½Aƒ{[ƒh‚ÌƒNƒŠƒA‚ğ“ü‚ê‚é‚©H
+ * $brief   ã€Œã‚„ã‚ãªã„ã€ã«ã—ãŸæ™‚ã€ãƒœãƒ¼ãƒ‰ã®ã‚¯ãƒªã‚¢ã‚’å…¥ã‚Œã‚‹ã‹ï¼Ÿ
  *
  * @param   wk		
  * @param   seq		
@@ -1608,17 +1608,17 @@ static int Oekaki_ReWriteSelect( MYSIGN_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Oekaki_ReWrite( MYSIGN_WORK *wk, int seq )
 {
-	EndMessagePrint( wk, msg_oekaki_12 );		// ‚©‚«‚È‚¨‚µ‚Ü‚·‚©H
+	EndMessagePrint( wk, msg_oekaki_12 );		// ã‹ããªãŠã—ã¾ã™ã‹ï¼Ÿ
 	wk->seq = MYSIGN_MODE_REWRITE_WAIT;
 
-	EndSequenceCommonFunc( wk );				//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );				//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   e‹@‚ªI‚í‚è‚ÆŒ¾‚Á‚½‚Ì‚ÅI‚í‚é
+ * $brief   è¦ªæ©ŸãŒçµ‚ã‚ã‚Šã¨è¨€ã£ãŸã®ã§çµ‚ã‚ã‚‹
  *
  * @param   wk		
  * @param   seq		
@@ -1634,7 +1634,7 @@ static int Oekaki_ReWriteWait( MYSIGN_WORK *wk, int seq )
 //		return SEQ_OUT;
 	}
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ğ‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 
 }
@@ -1660,14 +1660,14 @@ static int Oekaki_ReWriteWait( MYSIGN_WORK *wk, int seq )
 //---------------------------------------------------------------------------------
 //11520
 //---------------------------------------------------------
-// ƒuƒ‰ƒVƒpƒ^[ƒ“
+// ãƒ–ãƒ©ã‚·ãƒ‘ã‚¿ãƒ¼ãƒ³
 //---------------------------------------------------------
 
-// ‚Ç‚¤‚µ‚Ä‚àƒpƒŒƒbƒgƒf[ƒ^‚ğ3bit‚Ék‚ß‚Ä‚µ‚Ü‚¢‚½‚¢‚Ì‚ÅA“§–¾F‚ğ8‚É‚µ‚Ä
-// Fw’è©‘Ì‚Í0-7‚É“–‚Ä‚Ä‚¢‚éB0‚Í“§–¾F‚¾‚ªBD–Ê‚ğ•‚É‚µ‚Ä•‚­Œ©‚¦‚é‚æ‚¤‚É‚µ‚Ä‚¢‚é
+// ã©ã†ã—ã¦ã‚‚ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’3bitã«ç¸®ã‚ã¦ã—ã¾ã„ãŸã„ã®ã§ã€é€æ˜è‰²ã‚’8ã«ã—ã¦
+// è‰²æŒ‡å®šè‡ªä½“ã¯0-7ã«å½“ã¦ã¦ã„ã‚‹ã€‚0ã¯é€æ˜è‰²ã ãŒBDé¢ã‚’é»’ã«ã—ã¦é»’ãè¦‹ãˆã‚‹ã‚ˆã†ã«ã—ã¦ã„ã‚‹
 
-// BMPƒf[ƒ^‚ÍÅ’á‰¡8dot•ª•K—v‚È‚Ì‚ÅA4x4‚Ìƒhƒbƒgƒf[ƒ^‚ğì‚è‚½‚¢‚Í
-// ‚QƒoƒCƒg‚²‚Æ‚ÉQÆ‚³‚ê‚È‚¢ƒf[ƒ^‚ª‚à‚¤‚QƒoƒCƒg•K—v
+// BMPãƒ‡ãƒ¼ã‚¿ã¯æœ€ä½æ¨ª8dotåˆ†å¿…è¦ãªã®ã§ã€4x4ã®ãƒ‰ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ä½œã‚ŠãŸã„æ™‚ã¯
+// ï¼’ãƒã‚¤ãƒˆã”ã¨ã«å‚ç…§ã•ã‚Œãªã„ãƒ‡ãƒ¼ã‚¿ãŒã‚‚ã†ï¼’ãƒã‚¤ãƒˆå¿…è¦
 static const u8 oekaki_brush[2][8][16]={
 	{/*  0  */              /*  1  */               /*  2  */              /*  3  */
 //	{0x00,0x00, 0x00,0x00,  0x11,0x01,  0x00,0x00,  0x11,0x01, 0x00,0x00,  0x11,0x01,0x00,0x00,},
@@ -1709,7 +1709,7 @@ static const u8 oekaki_brush[2][8][16]={
 
 //==============================================================================
 /**
- * @brief   •`‰æŠJnˆÊ’u‚ªƒ}ƒCƒiƒX•ûŒü‚É‚ ‚Á‚Ä‚à•`‰æ‚Å‚«‚éBmpWinPrintƒ‰ƒbƒp[
+ * @brief   æç”»é–‹å§‹ä½ç½®ãŒãƒã‚¤ãƒŠã‚¹æ–¹å‘ã«ã‚ã£ã¦ã‚‚æç”»ã§ãã‚‹BmpWinPrintãƒ©ãƒƒãƒ‘ãƒ¼
  * @retval  none		
  */
 //==============================================================================
@@ -1748,7 +1748,7 @@ static void _BmpWinPrint_Rap(
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ‰ƒCƒ“•`‰æ
+ * $brief   ãƒ©ã‚¤ãƒ³æç”»
  *
  * @param   win		
  * @param   brush		
@@ -1774,7 +1774,7 @@ static void DrawPoint_to_Line(
 	int x2 = px;
 	int y2 = py;
 
-	// ‰‰ñ‚ÍŒ´“_•Û‘¶‚Ì‚İ
+	// åˆå›ã¯åŸç‚¹ä¿å­˜ã®ã¿
 	if(count==0 && flag == 0){
 		*sx = px;		*sy = py;
 		return;
@@ -1837,11 +1837,11 @@ static void Stock_OldTouch( TOUCH_INFO *all, OLD_TOUCH_INFO *stock )
 static int debug_count;
 //------------------------------------------------------------------
 /**
- * $brief  ’ÊM‚ÅóM‚µ‚½ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŒ‹‰Êƒf[ƒ^‚ğ‰º‚É•`‰æ‚·‚é
+ * $brief  é€šä¿¡ã§å—ä¿¡ã—ãŸã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµæœãƒ‡ãƒ¼ã‚¿ã‚’ä¸‹ã«æç”»ã™ã‚‹
  *
  * @param   win		
  * @param   all		
- * @param   draw	ƒƒ‚ƒŠã‚Ås‚Á‚½CGX•ÏX‚ğ“]‘—‚·‚é‚©H(0:‚µ‚È‚¢	1:‚·‚éj
+ * @param   draw	ãƒ¡ãƒ¢ãƒªä¸Šã§è¡Œã£ãŸCGXå¤‰æ›´ã‚’è»¢é€ã™ã‚‹ã‹ï¼Ÿ(0:ã—ãªã„	1:ã™ã‚‹ï¼‰
  *
  * @retval  none		
  */
@@ -1863,7 +1863,7 @@ static void DrawBrushLine( GF_BGL_BMPWIN *win, TOUCH_INFO *all, OLD_TOUCH_INFO *
 				py = all[i].y[r] - OEKAKI_BOARD_POSY*8;
 				
 
-				// BG1–Ê—pBMPi‚¨ŠG‚©‚«‰æ‘œjƒEƒCƒ“ƒhƒEŠm•Û
+				// BG1é¢ç”¨BMPï¼ˆãŠçµµã‹ãç”»åƒï¼‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 				DrawPoint_to_Line(win, oekaki_brush[0][all[i].brush], px, py, &sx, &sy, r, old[i].size);
 //				DrawPoint_to_Line(win, oekaki_brush[0][all[i].brush], -1, -1, &sx, &sy, r, old[i].size);
 				flag = 1;
@@ -1877,17 +1877,17 @@ static void DrawBrushLine( GF_BGL_BMPWIN *win, TOUCH_INFO *all, OLD_TOUCH_INFO *
 		GF_BGL_BmpWinOn( win );
 	}
 	
-	// ¡‰ñ‚ÌÅIÀ•W‚ÌƒoƒbƒNƒAƒbƒv‚ğæ‚é   
+	// ä»Šå›ã®æœ€çµ‚åº§æ¨™ã®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚’å–ã‚‹   
     Stock_OldTouch(all, old);
 	for(i=0;i<OEKAKI_MEMBER_MAX;i++){
-		all[i].size = 0;		// ˆê“x•`‰æ‚µ‚½‚çÀ•Wî•ñ‚ÍÌ‚Ä‚é
+		all[i].size = 0;		// ä¸€åº¦æç”»ã—ãŸã‚‰åº§æ¨™æƒ…å ±ã¯æ¨ã¦ã‚‹
 	}
 	
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ’ÊMƒf[ƒ^‚©‚çƒJ[ƒ\ƒ‹ˆÊ’u‚ğˆÚ“®‚³‚¹‚é
+ * $brief   é€šä¿¡ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ç§»å‹•ã•ã›ã‚‹
  *
  * @param   wk		
  *
@@ -1897,11 +1897,11 @@ static void DrawBrushLine( GF_BGL_BMPWIN *win, TOUCH_INFO *all, OLD_TOUCH_INFO *
 static void MoveCommCursor( MYSIGN_WORK *wk )
 {
 	int i;
-	// •`‰æ—pƒyƒ“æî•ñƒ[ƒN‚É‚à’¼Ú”½‰f‚³‚¹‚é
+	// æç”»ç”¨ãƒšãƒ³å…ˆæƒ…å ±ãƒ¯ãƒ¼ã‚¯ã«ã‚‚ç›´æ¥åæ˜ ã•ã›ã‚‹
 	TOUCH_INFO *all = wk->AllTouchResult;
 
 
-	// À•Wƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é‚ÍƒJ[ƒ\ƒ‹À•W‚ğ”½‰f‚³‚¹‚é
+	// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹æ™‚ã¯ã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™ã‚’åæ˜ ã•ã›ã‚‹
 
 //	SetCursor_Pos( wk->MainActWork[i], all[0].x[all[0].size-1],  all[0].y[all[0].size-1]);
 
@@ -1910,7 +1910,7 @@ static void MoveCommCursor( MYSIGN_WORK *wk )
 }
 //------------------------------------------------------------------
 /**
- * $brief   ƒfƒoƒbƒO—p‚É©•ª‚Åæ“¾‚µ‚½î•ñ‚ğóMƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é
+ * $brief   ãƒ‡ãƒãƒƒã‚°ç”¨ã«è‡ªåˆ†ã§å–å¾—ã—ãŸæƒ…å ±ã‚’å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
  *
  * @param   wk		
  *
@@ -1925,9 +1925,9 @@ static void DebugTouchDataTrans( MYSIGN_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹‚ÌƒpƒŒƒbƒg•ÏXi“_–Åj
+ * ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´ï¼ˆç‚¹æ»…ï¼‰
  *
- * @param   CursorCol	sin‚É“n‚·ƒpƒ‰ƒ[ƒ^i360‚Ü‚Åj
+ * @param   CursorCol	sinã«æ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆ360ã¾ã§ï¼‰
  *
  * @retval  none		
  */
@@ -1954,7 +1954,7 @@ static void CursorColTrans(u16 *CursorCol)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒIƒ“ƒ‰ƒCƒ“ó‹µ‚ğŠm”F‚µ‚Äã‰æ–Ê‚É–¼‘O‚ğ•\¦‚·‚é
+ * $brief   ã‚ªãƒ³ãƒ©ã‚¤ãƒ³çŠ¶æ³ã‚’ç¢ºèªã—ã¦ä¸Šç”»é¢ã«åå‰ã‚’è¡¨ç¤ºã™ã‚‹
  *
  * @param   win		
  * @param   frame		
@@ -1970,12 +1970,12 @@ static void NameCheckPrint( GF_BGL_BMPWIN *win, int frame, GF_PRINTCOLOR color, 
 
 	return ;
 
-	// ‚»‚ê‚¼‚ê‚Ì•¶šƒpƒlƒ‹‚Ì”wŒiF‚ÅƒNƒŠƒA
+	// ãã‚Œãã‚Œã®æ–‡å­—ãƒ‘ãƒãƒ«ã®èƒŒæ™¯è‰²ã§ã‚¯ãƒªã‚¢
 	for(i=0;i<5;i++){
 		GF_BGL_BmpWinFill( &win[i], 0, 0, 0, OEKAKI_NAME_BMP_W*8, OEKAKI_NAME_BMP_H*8 );
 	}
 
-	// •`‰æ
+	// æç”»
 	for(i=0;i<OEKAKI_MEMBER_MAX;i++){
 		GF_STR_PrintColor(	&win[i], FONT_TALK, wk->TrainerName[i], 0, 0, MSG_NO_PUT, 
 										GF_PRINTCOLOR_MAKE(FBMP_COL_RED,FBMP_COL_RED_SDW,15),NULL);
@@ -2014,7 +2014,7 @@ static const u8 plate_chara_no[][5]={
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚Ì‘—óM‚ğs‚¤
+ * $brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã®é€å—ä¿¡ã‚’è¡Œã†
  *
  * @param   wk		
  *
@@ -2032,7 +2032,7 @@ static void LineDataSendRecv( MYSIGN_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\¦
+ * $brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -2041,7 +2041,7 @@ static void LineDataSendRecv( MYSIGN_WORK *wk )
 //------------------------------------------------------------------
 static void EndMessagePrint( MYSIGN_WORK *wk, int msgno )
 {
-	// •¶š—ñæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	STRBUF *tempbuf;
 	
 	tempbuf = STRBUF_Create(TALK_MESSAGE_BUF_NUM,HEAPID_OEKAKI);
@@ -2049,11 +2049,11 @@ static void EndMessagePrint( MYSIGN_WORK *wk, int msgno )
 	WORDSET_ExpandStr( wk->WordSet, wk->TalkString, tempbuf );
 	STRBUF_Delete(tempbuf);
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ æç”»
 	GF_BGL_BmpWinDataFill( &wk->MsgWin,  0x0f0f );
 	BmpTalkWinWrite( &wk->MsgWin, WINDOW_TRANS_ON, 1, FLD_MESFRAME_PAL );
 
-	// •¶š—ñ•`‰æŠJn
+	// æ–‡å­—åˆ—æç”»é–‹å§‹
 	wk->MsgIndex = GF_STR_PrintSimple( &wk->MsgWin, FONT_TALK, wk->TalkString, 0, 0, 
 										CONFIG_GetMsgPrintSpeed(wk->config), NULL);
 
@@ -2062,7 +2062,7 @@ static void EndMessagePrint( MYSIGN_WORK *wk, int msgno )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜b•\¦ƒEƒCƒ“ƒhƒEI—¹‘Ò‚¿
+ * $brief   ä¼šè©±è¡¨ç¤ºã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦çµ‚äº†å¾…ã¡
  *
  * @param   msg_index		
  *
@@ -2097,7 +2097,7 @@ static void EndMessageWindowOff( MYSIGN_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒTƒCƒ“ƒf[ƒ^‚ğ‘‚«‚Şi16Fƒf[ƒ^‚ğ1bit‚Ék‚ß‚Ä‘‚«‚İ)
+ * $brief   ã‚µã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€ï¼ˆ16è‰²ãƒ‡ãƒ¼ã‚¿ã‚’1bitã«ç¸®ã‚ã¦æ›¸ãè¾¼ã¿)
  *
  * @param   des		
  * @param   src		
@@ -2115,21 +2115,21 @@ static void Output_SignData( u8 *des, u8 *src )
 	for(i=0;i<OEKAKI_GRAPHI_SIZE;i++){
 		int w;
 
-		// ‰ºˆÊƒf[ƒ^‚ğ1bit‚É
+		// ä¸‹ä½ãƒ‡ãƒ¼ã‚¿ã‚’1bitã«
 		w = src[i]&0x0f;
 		if(w==1){
 			*des |= (1<<s);
 		}
 		s++;
 
-		// ãˆÊƒf[ƒ^‚ğ1bit‚É
+		// ä¸Šä½ãƒ‡ãƒ¼ã‚¿ã‚’1bitã«
 		w = src[i]>>4;
 		if(w==1){
 			*des |= (1<<s);
 		}
 		s++;
 
-		// 8bit‚É‚È‚Á‚½‚ç‘‚«o‚µ
+		// 8bitã«ãªã£ãŸã‚‰æ›¸ãå‡ºã—
 		if(s==8){
 			count++;
 			des++;
@@ -2138,7 +2138,7 @@ static void Output_SignData( u8 *des, u8 *src )
 		}
 		
 		if( count>= OEKAKI_GRAPHI_SIZE ){
-			GF_ASSERT(0 && "ˆ³kƒf[ƒ^‚ª—Ìˆæ‚ğ’´‚¦‚½");
+			GF_ASSERT(0 && "åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ãŒé ˜åŸŸã‚’è¶…ãˆãŸ");
 		}
 
 	}
@@ -2150,9 +2150,9 @@ static void Output_SignData( u8 *des, u8 *src )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒW–‚«
+ * ãƒãƒƒã‚¸ç£¨ã
  *
- * @param	wk		‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2162,11 +2162,11 @@ static void BrushCanvas( MYSIGN_WORK *wk)
 	BOOL scruch;
 	int sub;
 	scruch = FALSE;
-	//•ÛÀ•W‚Æƒ^ƒbƒ`À•W‚Ì·•ª‚ğæ‚é
-	if( (sys.tp_x!=0xffff)&&(sys.tp_y!=0xffff) && (wk->BeforeX!=0xffff)&&(wk->BeforeY!=0xffff) ){	//’l—LŒø‚©H
+	//ä¿æŒåº§æ¨™ã¨ã‚¿ãƒƒãƒåº§æ¨™ã®å·®åˆ†ã‚’å–ã‚‹
+	if( (sys.tp_x!=0xffff)&&(sys.tp_y!=0xffff) && (wk->BeforeX!=0xffff)&&(wk->BeforeY!=0xffff) ){	//å€¤æœ‰åŠ¹ã‹ï¼Ÿ
 
-		//·•ª‚ª‹K’è’lˆÈã‚Ìê‡‚Í–‚¢‚½‚±‚Æ‚É‚·‚é
-		if ( wk->BeforeX > sys.tp_x ){		//‘O‰ñ‚Ì‚Ù‚¤‚ª’l‚ª‘å‚«‚¢‚©H
+		//å·®åˆ†ãŒè¦å®šå€¤ä»¥ä¸Šã®å ´åˆã¯ç£¨ã„ãŸã“ã¨ã«ã™ã‚‹
+		if ( wk->BeforeX > sys.tp_x ){		//å‰å›ã®ã»ã†ãŒå€¤ãŒå¤§ãã„ã‹ï¼Ÿ
 			sub = wk->BeforeX - sys.tp_x;
 			wk->scruchInfo.DirX = -1;
 		}else{
@@ -2174,7 +2174,7 @@ static void BrushCanvas( MYSIGN_WORK *wk)
 			wk->scruchInfo.DirX = 1;
 		}
 		if ( (sub>=MIN_SCRUCH)&&(sub<=MAX_SCRUCH) ){
-			if ( wk->BeforeY > sys.tp_y ){	//‘O‰ñ‚Ì‚Ù‚¤‚ª’l‚ª‘å‚«‚¢‚©H
+			if ( wk->BeforeY > sys.tp_y ){	//å‰å›ã®ã»ã†ãŒå€¤ãŒå¤§ãã„ã‹ï¼Ÿ
 				sub = wk->BeforeY - sys.tp_y;
 				wk->scruchInfo.DirY = -1;
 			}else{
@@ -2182,14 +2182,14 @@ static void BrushCanvas( MYSIGN_WORK *wk)
 				wk->scruchInfo.DirY = 1;
 			}
 			if (sub<=MAX_SCRUCH){
-				scruch = TRUE;			//‚±‚·‚Á‚½
+				scruch = TRUE;			//ã“ã™ã£ãŸ
 				PlayScruchSe( &wk->scruchInfo );
 //				Snd_SePlay( SEQ_SE_DP_KYU01 );
 			}else{
 //				ClearScruchSndNow(&wk->ScruchSnd);
 			}
 		}else if (sub<=MAX_SCRUCH){
-			if ( wk->BeforeY > sys.tp_y ){		//‘O‰ñ‚Ì‚Ù‚¤‚ª’l‚ª‘å‚«‚¢‚©H
+			if ( wk->BeforeY > sys.tp_y ){		//å‰å›ã®ã»ã†ãŒå€¤ãŒå¤§ãã„ã‹ï¼Ÿ
 				sub = wk->BeforeY - sys.tp_y;
 				wk->scruchInfo.DirY = -1;
 			}else{
@@ -2197,7 +2197,7 @@ static void BrushCanvas( MYSIGN_WORK *wk)
 				wk->scruchInfo.DirY = 1;
 			}
 			if ((sub>=MIN_SCRUCH)&&(sub<=MAX_SCRUCH)){
-				scruch = TRUE;		//‚±‚·‚Á‚½
+				scruch = TRUE;		//ã“ã™ã£ãŸ
 				PlayScruchSe( &wk->scruchInfo );
 //				Snd_SePlay( SEQ_SE_DP_KYU01 );
 			}else{
@@ -2206,7 +2206,7 @@ static void BrushCanvas( MYSIGN_WORK *wk)
 		}
 
 	}
-		//•ÛÀ•WXV
+		//ä¿æŒåº§æ¨™æ›´æ–°
 	wk->BeforeX = sys.tp_x;
 	wk->BeforeY = sys.tp_y;
 }
@@ -2214,7 +2214,7 @@ static void BrushCanvas( MYSIGN_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   •ûŒü‚ğ•Ï‚¦‚½‚Ì‚Å‚ ‚ê‚ÎAŒø‰Ê‰¹‚ğuƒLƒ…ƒbv‚Æ–Â‚ç‚·
+ * @brief   æ–¹å‘ã‚’å¤‰ãˆãŸã®ã§ã‚ã‚Œã°ã€åŠ¹æœéŸ³ã‚’ã€Œã‚­ãƒ¥ãƒƒã€ã¨é³´ã‚‰ã™
  *
  * @param   scruchInfo		
  *
@@ -2223,17 +2223,17 @@ static void BrushCanvas( MYSIGN_WORK *wk)
 //------------------------------------------------------------------
 static void PlayScruchSe( SCRUCH_INFO *scruchInfo )
 {
-	//‰‰ñ”»’è
+	//åˆå›åˆ¤å®š
 	if ((scruchInfo->OldDirX == 0)&&(scruchInfo->OldDirY == 0)){
-		OS_Printf("‰‰ñ\n");//‰‰ñ‰¹
+		OS_Printf("åˆå›\n");//åˆå›éŸ³
 		if(!Snd_SePlayCheck( SEQ_SE_DP_KYU01 )){
 			Snd_SePlay( SEQ_SE_DP_KYU01 );
 		}
 	}
-	//‘O‰ñ‚Ì•ûŒü‚Æ¡‰ñ‚Ì•ûŒü‚ğ”äŠr
+	//å‰å›ã®æ–¹å‘ã¨ä»Šå›ã®æ–¹å‘ã‚’æ¯”è¼ƒ
 	if ((scruchInfo->OldDirX*scruchInfo->DirX<0) ||
 			(scruchInfo->OldDirY*scruchInfo->DirY<0)){
-//		OS_Printf("Ø‚è‘Ö‚¦\n");//•ûŒü‚ª•Ï‚í‚Á‚½‚Ì‚Å‰¹‚ğØ‚è‘Ö‚¦‚é
+//		OS_Printf("åˆ‡ã‚Šæ›¿ãˆ\n");//æ–¹å‘ãŒå¤‰ã‚ã£ãŸã®ã§éŸ³ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 		if(!Snd_SePlayCheck( SEQ_SE_DP_KYU01 )){
 			Snd_SePlay( SEQ_SE_DP_KYU01 );
 		}

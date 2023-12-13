@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	opening_demo_obj.c
- * @brief	ƒI[ƒvƒjƒ“ƒOƒfƒ‚‚n‚a‚i
+ * @brief	ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ãƒ‡ãƒ¢ï¼¯ï¼¢ï¼ª
  * @author	Nozomu Saito
  * @date    2006.06.03
  */
@@ -16,7 +16,7 @@
 
 
 #define RESOURCE_NUM	(4)
-#define PERSON_ACT_MAX	(3 + 1 + 1 + 2 + 4)	//ƒvƒ‰ƒ`ƒi‚ÅƒTƒu‰æ–ÊålŒö’j+”m{ƒ{[ƒ‹(2ŒÂ)+—¬¯4ŒÂ‚ğ’Ç‰Á
+#define PERSON_ACT_MAX	(3 + 1 + 1 + 2 + 4)	//ãƒ—ãƒ©ãƒãƒŠã§ã‚µãƒ–ç”»é¢ä¸»äººå…¬ç”·+åšå£«ï¼‹ãƒœãƒ¼ãƒ«(2å€‹)+æµæ˜Ÿ4å€‹ã‚’è¿½åŠ 
 #define BIRD_ACT_MAX	(6)
 #define KIRA_ACT_MAX	(16)
 
@@ -26,13 +26,13 @@
 #define OPD_PLTT_CONT_NUM				(ACT_ID_MAX)
 
 
-#define PALETTE_NUM	(1)		//ƒpƒŒƒbƒg‚P–{
+#define PALETTE_NUM	(1)		//ãƒ‘ãƒ¬ãƒƒãƒˆï¼‘æœ¬
 
 #define OP_DEMO_ACT_MAX	( PERSON_ACT_MAX+BIRD_ACT_MAX+KIRA_ACT_MAX )
 #define CLACT_WORK_MAX	( PERSON_ACT_MAX+BIRD_ACT_MAX )
-SDK_COMPILER_ASSERT(CLACT_WORK_MAX == ACT_WORK_MAX);	//+=ƒvƒ‰ƒ`ƒi’Ç‰Á•ª
+SDK_COMPILER_ASSERT(CLACT_WORK_MAX == ACT_WORK_MAX);	//+=ãƒ—ãƒ©ãƒãƒŠè¿½åŠ åˆ†
 
-///Vƒuƒ‰ƒ“ƒN“]‘—ƒAƒjƒ‚ğg—p‚·‚éƒAƒNƒ^[ƒwƒbƒ_‚ÌƒCƒ“ƒfƒbƒNƒX
+///Vãƒ–ãƒ©ãƒ³ã‚¯è»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum{
 	VBLANK_TRANS_ANM_HERO,
 	VBLANK_TRANS_ANM_HEROINE,
@@ -41,35 +41,35 @@ enum{
 	VBLANK_TRANS_ANM_MAX,
 };
 
-#define OPDEMO_VRAM_TRANSFER_TASK_NUM		(VBLANK_TRANS_ANM_MAX * 2)	//ˆê‰2”{‚Â
+#define OPDEMO_VRAM_TRANSFER_TASK_NUM		(VBLANK_TRANS_ANM_MAX * 2)	//ä¸€å¿œ2å€æŒã¤
 
-#define HERO_POS_X		(128-48)	//’jålŒö‚Ì‚wˆÊ’uiƒhƒbƒgj
-#define HEROINE_POS_X	(128+48)	//—ålŒö‚Ì‚wˆÊ’uiƒhƒbƒgj
-#define HERO_POS_Y		(14*8)		//’jålŒö‚Ì‚xˆÊ’uiƒhƒbƒgj
-#define HEROINE_POS_Y	(14*8)		//—ålŒö‚Ì‚xˆÊ’uiƒhƒbƒgj
-#define RIVAL_POS_X		(-64)	//ƒ‰ƒCƒoƒ‹‚Ì‚wˆÊ’uiƒhƒbƒgj
-#define RIVAL_POS_Y		(14*8)		//ƒ‰ƒCƒoƒ‹‚Ì‚xˆÊ’uiƒhƒbƒgj
-#define RIVAL_POS_END_X	(FX32_ONE*(HEROINE_POS_X))	//ƒXƒ‰ƒCƒhƒCƒ“I—¹‚Ìƒ‰ƒCƒoƒ‹ˆÊ’uiƒhƒbƒgj
-#define HAKASE_POS_X	(256+64)	//”m‚Ì‚wˆÊ’uiƒhƒbƒgj
-#define HAKASE_POS_Y	(14*8)		//”m‚Ì‚xˆÊ’uiƒhƒbƒgj
-#define HAKASE_POS_END_X	(FX32_ONE*(HERO_POS_X))	//ƒXƒ‰ƒCƒhƒCƒ“I—¹‚Ì”mˆÊ’uiƒhƒbƒgj
-#define BALL_POS_X		(128)		//ƒ{[ƒ‹‚Ì‚wˆÊ’uiƒhƒbƒgj
-#define BALL_POS_Y		(12*8)		//ƒ{[ƒ‹‚Ì‚xˆÊ’uiƒhƒbƒgj
-#define STREAM_POS_X	(128)		//—¬¯‚Ì‚wˆÊ’uiƒhƒbƒgj
-#define STREAM_POS_Y	(0xd*8)		//—¬¯‚Ì‚xˆÊ’uiƒhƒbƒgj
-#define BIRD_1_POS_X	(256+8)		//’¹1‚Ì‚wˆÊ’uiƒhƒbƒgj
-#define BIRD_1_POS_Y	(16*8)		//’¹1‚Ì‚xˆÊ’uiƒhƒbƒgj
-#define BIRD_2_POS_X	(256+32)	//’¹2‚Ì‚wˆÊ’uiƒhƒbƒgj
-#define BIRD_2_POS_Y	(14*8)		//’¹2‚Ì‚xˆÊ’uiƒhƒbƒgj
-#define BIRD_3_POS_X	(256+32)	//’¹3‚Ì‚wˆÊ’uiƒhƒbƒgj
-#define BIRD_3_POS_Y	(18*8)		//’¹3‚Ì‚xˆÊ’uiƒhƒbƒgj
+#define HERO_POS_X		(128-48)	//ç”·ä¸»äººå…¬ã®ï¼¸ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define HEROINE_POS_X	(128+48)	//å¥³ä¸»äººå…¬ã®ï¼¸ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define HERO_POS_Y		(14*8)		//ç”·ä¸»äººå…¬ã®ï¼¹ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define HEROINE_POS_Y	(14*8)		//å¥³ä¸»äººå…¬ã®ï¼¹ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define RIVAL_POS_X		(-64)	//ãƒ©ã‚¤ãƒãƒ«ã®ï¼¸ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define RIVAL_POS_Y		(14*8)		//ãƒ©ã‚¤ãƒãƒ«ã®ï¼¹ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define RIVAL_POS_END_X	(FX32_ONE*(HEROINE_POS_X))	//ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³çµ‚äº†æ™‚ã®ãƒ©ã‚¤ãƒãƒ«ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define HAKASE_POS_X	(256+64)	//åšå£«ã®ï¼¸ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define HAKASE_POS_Y	(14*8)		//åšå£«ã®ï¼¹ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define HAKASE_POS_END_X	(FX32_ONE*(HERO_POS_X))	//ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³çµ‚äº†æ™‚ã®åšå£«ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define BALL_POS_X		(128)		//ãƒœãƒ¼ãƒ«ã®ï¼¸ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define BALL_POS_Y		(12*8)		//ãƒœãƒ¼ãƒ«ã®ï¼¹ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define STREAM_POS_X	(128)		//æµæ˜Ÿã®ï¼¸ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define STREAM_POS_Y	(0xd*8)		//æµæ˜Ÿã®ï¼¹ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define BIRD_1_POS_X	(256+8)		//é³¥1ã®ï¼¸ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define BIRD_1_POS_Y	(16*8)		//é³¥1ã®ï¼¹ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define BIRD_2_POS_X	(256+32)	//é³¥2ã®ï¼¸ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define BIRD_2_POS_Y	(14*8)		//é³¥2ã®ï¼¹ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define BIRD_3_POS_X	(256+32)	//é³¥3ã®ï¼¸ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define BIRD_3_POS_Y	(18*8)		//é³¥3ã®ï¼¹ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
 
-#define BIRD_4_POS_X	(256+32)		//’¹4‚Ì‚wˆÊ’uiƒhƒbƒgj
-#define BIRD_4_POS_Y	(20*8)		//’¹4‚Ì‚xˆÊ’uiƒhƒbƒgj
-#define BIRD_5_POS_X	(256+32)	//’¹5‚Ì‚wˆÊ’uiƒhƒbƒgj
-#define BIRD_5_POS_Y	(18*8)		//’¹5‚Ì‚xˆÊ’uiƒhƒbƒgj
-#define BIRD_6_POS_X	(256+32)	//’¹6‚Ì‚wˆÊ’uiƒhƒbƒgj
-#define BIRD_6_POS_Y	(22*8)		//’¹6‚Ì‚xˆÊ’uiƒhƒbƒgj
+#define BIRD_4_POS_X	(256+32)		//é³¥4ã®ï¼¸ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define BIRD_4_POS_Y	(20*8)		//é³¥4ã®ï¼¹ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define BIRD_5_POS_X	(256+32)	//é³¥5ã®ï¼¸ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define BIRD_5_POS_Y	(18*8)		//é³¥5ã®ï¼¹ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define BIRD_6_POS_X	(256+32)	//é³¥6ã®ï¼¸ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
+#define BIRD_6_POS_Y	(22*8)		//é³¥6ã®ï¼¹ä½ç½®ï¼ˆãƒ‰ãƒƒãƒˆï¼‰
 
 #define HERO_SLIDE_SPEED	(0x0200)	//fx32
 #define HEROINE_SLIDE_SPEED	(HERO_SLIDE_SPEED)
@@ -97,37 +97,37 @@ typedef enum {
 
 typedef struct OP_DEMO_OBJ_WORK_tag
 {
-	CLACT_SET_PTR 			ClactSet;								// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	RendData;								// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_U_RES_MANAGER_PTR	ResMan[RESOURCE_NUM];				// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_PTR 	ResObjTbl[ACT_ID_MAX][RESOURCE_NUM];		// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
-	CLACT_WORK_PTR			ClActWork[CLACT_WORK_MAX];				// ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^”z—ñ
-	CLACT_HEADER			vblank_trans_anm_header[VBLANK_TRANS_ANM_MAX];	//Vƒuƒ‰ƒ“ƒN“]‘—ƒAƒjƒ‚ğg—p‚·‚éƒAƒNƒ^[‚Ìƒwƒbƒ_
-	NNSG2dCellTransferState *cell_transfer_state;	//Vƒuƒ‰ƒ“ƒN“]‘—ƒAƒjƒƒoƒbƒtƒ@
+	CLACT_SET_PTR 			ClactSet;								// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	RendData;								// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_MANAGER_PTR	ResMan[RESOURCE_NUM];				// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_PTR 	ResObjTbl[ACT_ID_MAX][RESOURCE_NUM];		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
+	CLACT_WORK_PTR			ClActWork[CLACT_WORK_MAX];				// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿é…åˆ—
+	CLACT_HEADER			vblank_trans_anm_header[VBLANK_TRANS_ANM_MAX];	//Vãƒ–ãƒ©ãƒ³ã‚¯è»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒ˜ãƒƒãƒ€
+	NNSG2dCellTransferState *cell_transfer_state;	//Vãƒ–ãƒ©ãƒ³ã‚¯è»¢é€ã‚¢ãƒ‹ãƒ¡ãƒãƒƒãƒ•ã‚¡
 }OP_DEMO_OBJ_WORK;
 
 
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[“o˜^”ƒe[ƒuƒ‹
+//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç™»éŒ²æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 ResEntryNumTbl[RESOURCE_NUM] = {
-	ACT_ID_MAX,			//ƒLƒƒƒ‰ƒŠƒ\[ƒX
-	ACT_ID_MAX,			//ƒpƒŒƒbƒgƒŠƒ\[ƒX
-	ACT_ID_MAX,			//ƒZƒ‹ƒŠƒ\[ƒX
-	ACT_ID_MAX,			//ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX
+	ACT_ID_MAX,			//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
+	ACT_ID_MAX,			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
+	ACT_ID_MAX,			//ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	ACT_ID_MAX,			//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
 };
 
-//ƒAƒNƒ^[‚h‚c‚ÆƒAƒNƒ^[ƒ[ƒN‚Ì‘Î‰•\ 
+//ã‚¢ã‚¯ã‚¿ãƒ¼ï¼©ï¼¤ã¨ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã®å¯¾å¿œè¡¨ 
 static int ActIDTbl[CLACT_WORK_MAX] = {
-	ACT_ID_HERO,			//ålŒö’j
-	ACT_ID_HERO_SUB,		//ålŒö’j(ƒTƒu‰æ–Ê)
-	ACT_ID_HEROINE,			//ålŒö—
-	ACT_ID_RIVAL,			//ƒ‰ƒCƒoƒ‹
-	ACT_ID_BIRD,			//’¹
-	ACT_ID_BIRD,			//’¹
-	ACT_ID_BIRD,			//’¹
-	ACT_ID_KIRA,			//ƒLƒ‰ƒLƒ‰
-	ACT_ID_HAKASE,			//”m
-	ACT_ID_BALL_MAIN,		//ƒ{[ƒ‹(ƒƒCƒ“‰æ–Ê)
-	ACT_ID_BALL_SUB,		//ƒ{[ƒ‹(ƒTƒu‰æ–Ê)
+	ACT_ID_HERO,			//ä¸»äººå…¬ç”·
+	ACT_ID_HERO_SUB,		//ä¸»äººå…¬ç”·(ã‚µãƒ–ç”»é¢)
+	ACT_ID_HEROINE,			//ä¸»äººå…¬å¥³
+	ACT_ID_RIVAL,			//ãƒ©ã‚¤ãƒãƒ«
+	ACT_ID_BIRD,			//é³¥
+	ACT_ID_BIRD,			//é³¥
+	ACT_ID_BIRD,			//é³¥
+	ACT_ID_KIRA,			//ã‚­ãƒ©ã‚­ãƒ©
+	ACT_ID_HAKASE,			//åšå£«
+	ACT_ID_BALL_MAIN,		//ãƒœãƒ¼ãƒ«(ãƒ¡ã‚¤ãƒ³ç”»é¢)
+	ACT_ID_BALL_SUB,		//ãƒœãƒ¼ãƒ«(ã‚µãƒ–ç”»é¢)
 };
 
 static u16 BlackPalette[16] = {
@@ -148,14 +148,14 @@ static fx32 BirdXSpeed3[2] = {
 
 //-------------------------------------
 //
-//	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[
-//	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 //
 //=====================================
 static void OpdInitCharPlttManager()
 {
 	const int heapid = HEAPID_OP_DEMO;
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			OPD_CHAR_CONT_NUM,
@@ -165,25 +165,25 @@ static void OpdInitCharPlttManager()
 		};
 		InitCharManager(&cm);
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(OPD_PLTT_CONT_NUM, heapid);
 
-	// “Ç‚İ‚İŠJnˆÊ’u‚ğ‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 
-	//Vƒuƒ‰ƒ“ƒN“]‘—ƒAƒjƒ—p
+	//Vãƒ–ãƒ©ãƒ³ã‚¯è»¢é€ã‚¢ãƒ‹ãƒ¡ç”¨
 	initVramTransferManagerHeap(OPDEMO_VRAM_TRANSFER_TASK_NUM, heapid);
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
  *
- * @param	inActID		“o˜^‚h‚c
- * @param	wk			ƒI[ƒvƒjƒ“ƒO‚n‚a‚iƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	outAdd		ƒAƒNƒ^[ƒwƒbƒ_Ši”[êŠ
- * @param   vram_trans	TRUE:VRAM“]‘—ƒAƒjƒ
+ * @param	inActID		ç™»éŒ²ï¼©ï¼¤
+ * @param	wk			ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ï¼¯ï¼¢ï¼ªãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	outAdd		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€æ ¼ç´å ´æ‰€
+ * @param   vram_trans	TRUE:VRAMè»¢é€ã‚¢ãƒ‹ãƒ¡
  * @param   draw_area	NNS_G2D_VRAM_TYPE_2DMAIN or NNS_G2D_VRAM_TYPE_2DSUB
  * 
  *
@@ -195,7 +195,7 @@ static void MakeClActHeader(const int inActID, OPD_OBJ_PTR wk,
 							CLACT_ADD *outAdd, CLACT_HEADER *outClActHeader,
 							int vram_trans, int draw_area)
 {
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬	
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ	
 	CLACT_U_MakeHeader(	outClActHeader,
 						inActID, inActID, inActID, inActID,
 						CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
@@ -211,7 +211,7 @@ static void MakeClActHeader(const int inActID, OPD_OBJ_PTR wk,
 		outAdd->ClActHeader	= outClActHeader;
 
 		outAdd->mat.x		= 0;//FX32_CONST(32) ;
-		outAdd->mat.y		= 0;//FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚é
+		outAdd->mat.y		= 0;//FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹
 		outAdd->mat.z		= 0;
 		outAdd->sca.x		= FX32_ONE;
 		outAdd->sca.y		= FX32_ONE;
@@ -225,11 +225,11 @@ static void MakeClActHeader(const int inActID, OPD_OBJ_PTR wk,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒI[ƒvƒjƒ“ƒO‚n‚a‚iƒf[ƒ^\‘¢‘ÌƒTƒCƒYæ“¾ŠÖ”
+ * ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ï¼¯ï¼¢ï¼ªãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã‚µã‚¤ã‚ºå–å¾—é–¢æ•°
  *
  * @param	void
  *
- * @return	int		ƒTƒCƒY
+ * @return	int		ã‚µã‚¤ã‚º
  */
 //--------------------------------------------------------------------------------------------
 const int OPD_Obj_GetWorkSize( void )
@@ -239,9 +239,9 @@ const int OPD_Obj_GetWorkSize( void )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk	OBJƒ[ƒN
+ * @param	wk	OBJãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -251,75 +251,75 @@ void OPD_Obj_InitCellActor( OPD_OBJ_PTR wk )
 	int i;
 	const int heapid = HEAPID_OP_DEMO;
 
-	//ƒ}ƒbƒsƒ“ƒOƒ‚[ƒhİ’è
+	//ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 	GX_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
 	GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
 	
 	OpdInitCharPlttManager();
-	// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	// OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
+	// å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	REND_OAMInit( 
-			0, 128,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 128,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 128,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 128,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			heapid);
 	
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	wk->ClactSet = CLACT_U_SetEasyInit( OP_DEMO_ACT_MAX, &wk->RendData, heapid );
 	
 	wk->cell_transfer_state = InitCellTransfer(VBLANK_TRANS_ANM_MAX, heapid);
 
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for(i=0;i<RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for(i=0;i<RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->ResMan[i] = CLACT_U_ResManagerInit(ResEntryNumTbl[i], i, heapid);
 	}
 
-	//--chara“Ç‚İ‚İ
+	//--charaèª­ã¿è¾¼ã¿
 										
-	//ålŒö@’j
+	//ä¸»äººå…¬ã€€ç”·
 	wk->ResObjTbl[ACT_ID_HERO][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 										wk->ResMan[CLACT_U_CHAR_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_hero_NCGR,
 										FALSE, ACT_ID_HERO, NNS_G2D_VRAM_TYPE_2DMAIN, heapid);
-	//ålŒö@’j(ƒTƒu‰æ–Ê)
+	//ä¸»äººå…¬ã€€ç”·(ã‚µãƒ–ç”»é¢)
 	wk->ResObjTbl[ACT_ID_HERO_SUB][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 										wk->ResMan[CLACT_U_CHAR_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_hero_NCGR,
 										FALSE, ACT_ID_HERO_SUB, NNS_G2D_VRAM_TYPE_2DSUB, heapid);
-	//ålŒö@—
+	//ä¸»äººå…¬ã€€å¥³
 	wk->ResObjTbl[ACT_ID_HEROINE][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 										wk->ResMan[CLACT_U_CHAR_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_heroine_NCGR,
 										FALSE, ACT_ID_HEROINE, NNS_G2D_VRAM_TYPE_2DMAIN, heapid);
-	//ƒ‰ƒCƒoƒ‹
+	//ãƒ©ã‚¤ãƒãƒ«
 	wk->ResObjTbl[ACT_ID_RIVAL][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 										wk->ResMan[CLACT_U_CHAR_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_hansam_NCGR,
 										FALSE, ACT_ID_RIVAL, NNS_G2D_VRAM_TYPE_2DMAIN, heapid);
 
-	//’¹
+	//é³¥
 	wk->ResObjTbl[ACT_ID_BIRD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 										wk->ResMan[CLACT_U_CHAR_RES],
 										ARC_OP_DEMO, NARC_op_demo_title_bird_NCGR,
 										FALSE, ACT_ID_BIRD, NNS_G2D_VRAM_TYPE_2DMAIN, heapid);
 
-	//ƒLƒ‰ƒLƒ‰
+	//ã‚­ãƒ©ã‚­ãƒ©
 	wk->ResObjTbl[ACT_ID_KIRA][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 										wk->ResMan[CLACT_U_CHAR_RES],
 										ARC_OP_DEMO, NARC_op_demo_logo_kira_NCGR,
 										FALSE, ACT_ID_KIRA, NNS_G2D_VRAM_TYPE_2DSUB, heapid);	
 
-	//”m
+	//åšå£«
 	wk->ResObjTbl[ACT_ID_HAKASE][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 										wk->ResMan[CLACT_U_CHAR_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_pluto_NCGR,
 										FALSE, ACT_ID_HAKASE, NNS_G2D_VRAM_TYPE_2DMAIN, heapid);
 
-	//ƒ{[ƒ‹
+	//ãƒœãƒ¼ãƒ«
 	wk->ResObjTbl[ACT_ID_BALL_MAIN][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 										wk->ResMan[CLACT_U_CHAR_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_mball_NCGR,
@@ -329,7 +329,7 @@ void OPD_Obj_InitCellActor( OPD_OBJ_PTR wk )
 										ARC_OP_DEMO, NARC_op_demo_op_mball_NCGR,
 										FALSE, ACT_ID_BALL_SUB, NNS_G2D_VRAM_TYPE_2DSUB, heapid);
 
-	//—¬¯
+	//æµæ˜Ÿ
 	wk->ResObjTbl[ACT_ID_STREAM_MAIN][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 									wk->ResMan[CLACT_U_CHAR_RES],
 									ARC_OP_DEMO, NARC_op_demo_op_pokebg_NCGR,
@@ -339,48 +339,48 @@ void OPD_Obj_InitCellActor( OPD_OBJ_PTR wk )
 									ARC_OP_DEMO, NARC_op_demo_op_pokebg_NCGR,
 									FALSE, ACT_ID_STREAM_SUB, NNS_G2D_VRAM_TYPE_2DSUB, heapid);
 
-	//--pal“Ç‚İ‚İ
+	//--palèª­ã¿è¾¼ã¿
 
-	//ålŒö@’j
+	//ä¸»äººå…¬ã€€ç”·
 	wk->ResObjTbl[ACT_ID_HERO][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 										wk->ResMan[CLACT_U_PLTT_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_hero_NCLR,
 										FALSE, ACT_ID_HERO, NNS_G2D_VRAM_TYPE_2DMAIN, PALETTE_NUM, heapid);
-	//ålŒö@’j(ƒTƒu‰æ–Ê)
+	//ä¸»äººå…¬ã€€ç”·(ã‚µãƒ–ç”»é¢)
 	wk->ResObjTbl[ACT_ID_HERO_SUB][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 										wk->ResMan[CLACT_U_PLTT_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_hero_NCLR,
 										FALSE, ACT_ID_HERO_SUB, NNS_G2D_VRAM_TYPE_2DSUB, PALETTE_NUM, heapid);
-	//ålŒö@—
+	//ä¸»äººå…¬ã€€å¥³
 	wk->ResObjTbl[ACT_ID_HEROINE][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 										wk->ResMan[CLACT_U_PLTT_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_heroine_NCLR,
 										FALSE, ACT_ID_HEROINE, NNS_G2D_VRAM_TYPE_2DMAIN, PALETTE_NUM, heapid);
-	//ƒ‰ƒCƒoƒ‹
+	//ãƒ©ã‚¤ãƒãƒ«
 	wk->ResObjTbl[ACT_ID_RIVAL][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 										wk->ResMan[CLACT_U_PLTT_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_hansam_NCLR,
 										FALSE, ACT_ID_RIVAL, NNS_G2D_VRAM_TYPE_2DMAIN, PALETTE_NUM, heapid);
 
-	//’¹
+	//é³¥
 	wk->ResObjTbl[ACT_ID_BIRD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 										wk->ResMan[CLACT_U_PLTT_RES],
 										ARC_OP_DEMO, NARC_op_demo_title_bird_NCLR,
 										FALSE, ACT_ID_BIRD, NNS_G2D_VRAM_TYPE_2DMAIN, PALETTE_NUM, heapid);
 
-	//ƒLƒ‰ƒLƒ‰
+	//ã‚­ãƒ©ã‚­ãƒ©
 	wk->ResObjTbl[ACT_ID_KIRA][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 										wk->ResMan[CLACT_U_PLTT_RES],
 										ARC_OP_DEMO, NARC_op_demo_logo_kira_NCLR,
 										FALSE, ACT_ID_KIRA, NNS_G2D_VRAM_TYPE_2DSUB, PALETTE_NUM, heapid);
 
-	//”m
+	//åšå£«
 	wk->ResObjTbl[ACT_ID_HAKASE][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 										wk->ResMan[CLACT_U_PLTT_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_pluto_NCLR,
 										FALSE, ACT_ID_HAKASE, NNS_G2D_VRAM_TYPE_2DMAIN, PALETTE_NUM, heapid);
 
-	//ƒ{[ƒ‹
+	//ãƒœãƒ¼ãƒ«
 	wk->ResObjTbl[ACT_ID_BALL_MAIN][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 										wk->ResMan[CLACT_U_PLTT_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_mball_NCLR,
@@ -390,7 +390,7 @@ void OPD_Obj_InitCellActor( OPD_OBJ_PTR wk )
 										ARC_OP_DEMO, NARC_op_demo_op_mball_NCLR,
 										FALSE, ACT_ID_BALL_SUB, NNS_G2D_VRAM_TYPE_2DSUB, PALETTE_NUM, heapid);
 
-	//—¬¯
+	//æµæ˜Ÿ
 	wk->ResObjTbl[ACT_ID_STREAM_MAIN][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 										wk->ResMan[CLACT_U_PLTT_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_pokebg_NCLR,
@@ -400,42 +400,42 @@ void OPD_Obj_InitCellActor( OPD_OBJ_PTR wk )
 										ARC_OP_DEMO, NARC_op_demo_op_pokebg_NCLR,
 										FALSE, ACT_ID_STREAM_SUB, NNS_G2D_VRAM_TYPE_2DSUB, 3, heapid);
 
-	//--cell“Ç‚İ‚İ
+	//--cellèª­ã¿è¾¼ã¿
 										
-	//ålŒö@’j
+	//ä¸»äººå…¬ã€€ç”·
 	wk->ResObjTbl[ACT_ID_HERO][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELL_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_hero_NCER,
 										FALSE, ACT_ID_HERO, CLACT_U_CELL_RES, heapid);
-	//ålŒö@’j(ƒTƒu‰æ–Ê)
+	//ä¸»äººå…¬ã€€ç”·(ã‚µãƒ–ç”»é¢)
 	wk->ResObjTbl[ACT_ID_HERO_SUB][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELL_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_hero_NCER,
 										FALSE, ACT_ID_HERO_SUB, CLACT_U_CELL_RES, heapid);
-	//ålŒö@—
+	//ä¸»äººå…¬ã€€å¥³
 	wk->ResObjTbl[ACT_ID_HEROINE][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELL_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_heroine_NCER,
 										FALSE, ACT_ID_HEROINE, CLACT_U_CELL_RES, heapid);
-	//ƒ‰ƒCƒoƒ‹
+	//ãƒ©ã‚¤ãƒãƒ«
 	wk->ResObjTbl[ACT_ID_RIVAL][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELL_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_hansam_NCER,
 										FALSE, ACT_ID_RIVAL, CLACT_U_CELL_RES, heapid);
 
-	//’¹
+	//é³¥
 	wk->ResObjTbl[ACT_ID_BIRD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELL_RES],
 										ARC_OP_DEMO, NARC_op_demo_title_bird_NCER,
 										FALSE, ACT_ID_BIRD, CLACT_U_CELL_RES, heapid);
 
-	//”m
+	//åšå£«
 	wk->ResObjTbl[ACT_ID_HAKASE][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELL_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_pluto_NCER,
 										FALSE, ACT_ID_HAKASE, CLACT_U_CELL_RES, heapid);
 
-	//ƒ{[ƒ‹
+	//ãƒœãƒ¼ãƒ«
 	wk->ResObjTbl[ACT_ID_BALL_MAIN][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELL_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_mball_NCER,
@@ -445,7 +445,7 @@ void OPD_Obj_InitCellActor( OPD_OBJ_PTR wk )
 										ARC_OP_DEMO, NARC_op_demo_op_mball_NCER,
 										FALSE, ACT_ID_BALL_SUB, CLACT_U_CELL_RES, heapid);
 
-	//—¬¯
+	//æµæ˜Ÿ
 	wk->ResObjTbl[ACT_ID_STREAM_MAIN][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELL_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_pokebg_NCER,
@@ -455,53 +455,53 @@ void OPD_Obj_InitCellActor( OPD_OBJ_PTR wk )
 										ARC_OP_DEMO, NARC_op_demo_op_pokebg_NCER,
 										FALSE, ACT_ID_STREAM_SUB, CLACT_U_CELL_RES, heapid);
 
-	//ƒLƒ‰ƒLƒ‰
+	//ã‚­ãƒ©ã‚­ãƒ©
 	wk->ResObjTbl[ACT_ID_KIRA][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELL_RES],
 										ARC_OP_DEMO, NARC_op_demo_logo_kira_NCER,
 										FALSE, ACT_ID_KIRA, CLACT_U_CELL_RES, heapid);
-	//--“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+	//--åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 										
-	//ålŒö@’j
+	//ä¸»äººå…¬ã€€ç”·
 	wk->ResObjTbl[ACT_ID_HERO][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELLANM_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_hero_NANR,
 										FALSE, ACT_ID_HERO, CLACT_U_CELLANM_RES, heapid);
-	//ålŒö@’j(ƒTƒu‰æ–Ê)
+	//ä¸»äººå…¬ã€€ç”·(ã‚µãƒ–ç”»é¢)
 	wk->ResObjTbl[ACT_ID_HERO_SUB][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELLANM_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_hero_NANR,
 										FALSE, ACT_ID_HERO_SUB, CLACT_U_CELLANM_RES, heapid);
-	//ålŒö@—
+	//ä¸»äººå…¬ã€€å¥³
 	wk->ResObjTbl[ACT_ID_HEROINE][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELLANM_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_heroine_NANR,
 										FALSE, ACT_ID_HEROINE, CLACT_U_CELLANM_RES, heapid);
-	//ƒ‰ƒCƒoƒ‹
+	//ãƒ©ã‚¤ãƒãƒ«
 	wk->ResObjTbl[ACT_ID_RIVAL][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELLANM_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_hansam_NANR,
 										FALSE, ACT_ID_RIVAL, CLACT_U_CELLANM_RES, heapid);
 
-	//’¹
+	//é³¥
 	wk->ResObjTbl[ACT_ID_BIRD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELLANM_RES],
 										ARC_OP_DEMO, NARC_op_demo_title_bird_NANR,
 										FALSE, ACT_ID_BIRD, CLACT_U_CELLANM_RES, heapid);
 
-	//ƒLƒ‰ƒLƒ‰
+	//ã‚­ãƒ©ã‚­ãƒ©
 	wk->ResObjTbl[ACT_ID_KIRA][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELLANM_RES],
 										ARC_OP_DEMO, NARC_op_demo_logo_kira_NANR,
 										FALSE, ACT_ID_KIRA, CLACT_U_CELLANM_RES, heapid);
 
-	//”m
+	//åšå£«
 	wk->ResObjTbl[ACT_ID_HAKASE][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELLANM_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_pluto_NANR,
 										FALSE, ACT_ID_HAKASE, CLACT_U_CELLANM_RES, heapid);
 
-	//ƒ{[ƒ‹
+	//ãƒœãƒ¼ãƒ«
 	wk->ResObjTbl[ACT_ID_BALL_MAIN][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELLANM_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_mball_NANR,
@@ -511,7 +511,7 @@ void OPD_Obj_InitCellActor( OPD_OBJ_PTR wk )
 										ARC_OP_DEMO, NARC_op_demo_op_mball_NANR,
 										FALSE, ACT_ID_BALL_SUB, CLACT_U_CELLANM_RES, heapid);
 
-	//—¬¯
+	//æµæ˜Ÿ
 	wk->ResObjTbl[ACT_ID_STREAM_MAIN][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 										wk->ResMan[CLACT_U_CELLANM_RES],
 										ARC_OP_DEMO, NARC_op_demo_op_pokebg_NANR,
@@ -521,12 +521,12 @@ void OPD_Obj_InitCellActor( OPD_OBJ_PTR wk )
 										ARC_OP_DEMO, NARC_op_demo_op_pokebg_NANR,
 										FALSE, ACT_ID_STREAM_SUB, CLACT_U_CELLANM_RES, heapid);
 	
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 
 	for (i=0;i<ACT_ID_MAX;i++){
-		// Chara“]‘—
+		// Charaè»¢é€
 		CLACT_U_CharManagerSetAreaCont( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );
-		// ƒpƒŒƒbƒg“]‘—
+		// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		CLACT_U_PlttManagerSetCleanArea( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );
 	}
 
@@ -535,9 +535,9 @@ void OPD_Obj_InitCellActor( OPD_OBJ_PTR wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‚ğI—¹
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’çµ‚äº†
  *
- * @param	wk	OBJƒ[ƒN
+ * @param	wk	OBJãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -545,23 +545,23 @@ void OPD_Obj_InitCellActor( OPD_OBJ_PTR wk )
 void OPD_Obj_EndCellActor( OPD_OBJ_PTR wk )
 {
 	u8 i;
-	// ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ğ•ú
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 
 	for (i=0;i<ACT_ID_MAX;i++){
-		// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		// ã‚­ãƒ£ãƒ©è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		CLACT_U_CharManagerDelete(wk->ResObjTbl[i][CLACT_U_CHAR_RES]);
-		// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		CLACT_U_PlttManagerDelete(wk->ResObjTbl[i][CLACT_U_PLTT_RES]);
 	}
 	
-	// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for(i=0;i<RESOURCE_NUM;i++){
 		CLACT_U_ResManagerDelete(wk->ResMan[i]);
 	}
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(wk->ClactSet);
 
-	//Vƒuƒ‰ƒ“ƒN“]‘—ƒAƒjƒ—p‚Ìƒwƒbƒ_íœ
+	//Vãƒ–ãƒ©ãƒ³ã‚¯è»¢é€ã‚¢ãƒ‹ãƒ¡ç”¨ã®ãƒ˜ãƒƒãƒ€å‰Šé™¤
 	for(i = 0; i < VBLANK_TRANS_ANM_MAX; i++){
 		CLACT_U_DeleteInHeaderVramTransferArea(&wk->vblank_trans_anm_header[i]);
 	}
@@ -570,7 +570,7 @@ void OPD_Obj_EndCellActor( OPD_OBJ_PTR wk )
 		wk->cell_transfer_state = NULL;
 	}
 	
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
 	DeleteCharManager();
@@ -581,9 +581,9 @@ void OPD_Obj_EndCellActor( OPD_OBJ_PTR wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‚ğƒZƒbƒg
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk	OBJƒ[ƒN
+ * @param	wk	OBJãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -622,19 +622,19 @@ void OPD_Obj_SetActor( OPD_OBJ_PTR wk )
 	};
 
 	{
-		//ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
-		// ‰º‰æ–Ê(ƒƒCƒ“‰æ–Ê)
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
+		// ä¸‹ç”»é¢(ãƒ¡ã‚¤ãƒ³ç”»é¢)
 		
-		//ålŒö@’j
+		//ä¸»äººå…¬ã€€ç”·
 		MakeClActHeader( ACT_ID_HERO, wk, 0, &add, 
 			&wk->vblank_trans_anm_header[VBLANK_TRANS_ANM_HERO], TRUE, NNS_G2D_VRAM_TYPE_2DMAIN );
 		add.mat.x = FX32_ONE * HERO_POS_X;
 		add.mat.y = FX32_ONE * HERO_POS_Y;
 		wk->ClActWork[ACT_WORK_HERO] = CLACT_Add(&add);
 		CLACT_SetAnmFlag(wk->ClActWork[ACT_WORK_HERO],0);
-		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_HERO], 0);	//”ñ•\¦
+		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_HERO], 0);	//éè¡¨ç¤º
 
-		//ålŒö@’j(ƒTƒu‰æ–Ê)
+		//ä¸»äººå…¬ã€€ç”·(ã‚µãƒ–ç”»é¢)
 		MakeClActHeader( ACT_ID_HERO_SUB, wk, 0, &add, 
 			&wk->vblank_trans_anm_header[VBLANK_TRANS_ANM_HERO_SUB], 
 			TRUE, NNS_G2D_VRAM_TYPE_2DSUB );
@@ -642,9 +642,9 @@ void OPD_Obj_SetActor( OPD_OBJ_PTR wk )
 		add.mat.y = FX32_ONE * HERO_POS_Y + SUB_SURFACE_Y;
 		wk->ClActWork[ACT_WORK_HERO_SUB] = CLACT_Add(&add);
 		CLACT_SetAnmFlag(wk->ClActWork[ACT_WORK_HERO_SUB],0);
-		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_HERO_SUB], 0);	//”ñ•\¦
+		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_HERO_SUB], 0);	//éè¡¨ç¤º
 		
-		//ålŒö@—
+		//ä¸»äººå…¬ã€€å¥³
 		MakeClActHeader( ACT_ID_HEROINE, wk, 0, &add, 
 			&wk->vblank_trans_anm_header[VBLANK_TRANS_ANM_HEROINE], 
 			TRUE, NNS_G2D_VRAM_TYPE_2DMAIN );
@@ -652,21 +652,21 @@ void OPD_Obj_SetActor( OPD_OBJ_PTR wk )
 		add.mat.y = FX32_ONE * HEROINE_POS_Y;
 		wk->ClActWork[ACT_WORK_HEROINE] = CLACT_Add(&add);
 		CLACT_SetAnmFlag(wk->ClActWork[ACT_WORK_HEROINE],0);
-		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_HEROINE], 0);	//”ñ•\¦
+		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_HEROINE], 0);	//éè¡¨ç¤º
 
-		//ålŒöƒAƒjƒ
+		//ä¸»äººå…¬ã‚¢ãƒ‹ãƒ¡
 	//	OPD_Obj_ChangeHeroHeroineAnime(wk, 0);
 		
-		//ƒ‰ƒCƒoƒ‹
+		//ãƒ©ã‚¤ãƒãƒ«
 		MakeClActHeader( ACT_ID_RIVAL, wk, 0, &add, &cl_act_header, 
 			FALSE, NNS_G2D_VRAM_TYPE_2DMAIN );
 		add.mat.x = FX32_ONE * RIVAL_POS_X;
 		add.mat.y = FX32_ONE * RIVAL_POS_Y;
 		wk->ClActWork[ACT_WORK_RIVAL] = CLACT_Add(&add);
 		CLACT_SetAnmFlag(wk->ClActWork[ACT_WORK_RIVAL],1);
-		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_RIVAL], 0);	//”ñ•\¦
+		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_RIVAL], 0);	//éè¡¨ç¤º
 
-		//”m
+		//åšå£«
 		MakeClActHeader( ACT_ID_HAKASE, wk, 0, &add, &cl_act_header, 
 			FALSE, NNS_G2D_VRAM_TYPE_2DMAIN );
 		add.mat.x = FX32_ONE * HAKASE_POS_X;
@@ -674,53 +674,53 @@ void OPD_Obj_SetActor( OPD_OBJ_PTR wk )
 		wk->ClActWork[ACT_WORK_HAKASE] = CLACT_Add(&add);
 	//	CLACT_SetFlip( wk->ClActWork[ACT_WORK_HAKASE], CLACT_FLIP_H );
 		CLACT_SetAnmFlag(wk->ClActWork[ACT_WORK_HAKASE],1);
-		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_HAKASE], 0);	//”ñ•\¦
+		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_HAKASE], 0);	//éè¡¨ç¤º
 
-		//ƒ{[ƒ‹(ƒƒCƒ“‰æ–Ê)
+		//ãƒœãƒ¼ãƒ«(ãƒ¡ã‚¤ãƒ³ç”»é¢)
 		MakeClActHeader( ACT_ID_BALL_MAIN, wk, 1, &add, &cl_act_header, 
 			FALSE, NNS_G2D_VRAM_TYPE_2DMAIN );
 		add.mat.x = FX32_ONE * BALL_POS_X;
 		add.mat.y = FX32_ONE * BALL_POS_Y;
 		wk->ClActWork[ACT_WORK_BALL_MAIN] = CLACT_Add(&add);
 		CLACT_SetAnmFlag(wk->ClActWork[ACT_WORK_BALL_MAIN],1);
-		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_BALL_MAIN], 0);	//”ñ•\¦
+		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_BALL_MAIN], 0);	//éè¡¨ç¤º
 		CLACT_SetAffineParam(wk->ClActWork[ACT_WORK_BALL_MAIN], CLACT_AFFINE_NORMAL);	//Affine ON
-		//ƒ{[ƒ‹(ƒTƒu‰æ–Ê)
+		//ãƒœãƒ¼ãƒ«(ã‚µãƒ–ç”»é¢)
 		MakeClActHeader( ACT_ID_BALL_SUB, wk, 1, &add, &cl_act_header, 
 			FALSE, NNS_G2D_VRAM_TYPE_2DSUB );
 		add.mat.x = FX32_ONE * BALL_POS_X;
 		add.mat.y = FX32_ONE * BALL_POS_Y + SUB_SURFACE_Y;
 		wk->ClActWork[ACT_WORK_BALL_SUB] = CLACT_Add(&add);
 		CLACT_SetAnmFlag(wk->ClActWork[ACT_WORK_BALL_SUB],1);
-		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_BALL_SUB], 0);	//”ñ•\¦
+		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_BALL_SUB], 0);	//éè¡¨ç¤º
 		CLACT_SetAffineParam(wk->ClActWork[ACT_WORK_BALL_SUB], CLACT_AFFINE_NORMAL);	//Affine ON
 
-		//—¬¯(ƒƒCƒ“‰æ–Ê)
+		//æµæ˜Ÿ(ãƒ¡ã‚¤ãƒ³ç”»é¢)
 		MakeClActHeader( ACT_ID_STREAM_MAIN, wk, 3, &add, &cl_act_header, 
 			FALSE, NNS_G2D_VRAM_TYPE_2DMAIN );
 		add.mat.x = FX32_ONE * STREAM_POS_X;
 		add.mat.y = FX32_ONE * STREAM_POS_Y;
 		wk->ClActWork[ACT_WORK_STREAM_MAIN_0] = CLACT_Add(&add);
 		CLACT_SetAnmFlag(wk->ClActWork[ACT_WORK_STREAM_MAIN_0],1);
-		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_STREAM_MAIN_0], 0);	//”ñ•\¦
-		//2ŒÂ–Ú
+		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_STREAM_MAIN_0], 0);	//éè¡¨ç¤º
+		//2å€‹ç›®
 		wk->ClActWork[ACT_WORK_STREAM_MAIN_1] = CLACT_Add(&add);
 		CLACT_SetAnmFlag(wk->ClActWork[ACT_WORK_STREAM_MAIN_1],1);
-		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_STREAM_MAIN_1], 0);	//”ñ•\¦
-		//—¬¯(ƒTƒu‰æ–Ê)
+		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_STREAM_MAIN_1], 0);	//éè¡¨ç¤º
+		//æµæ˜Ÿ(ã‚µãƒ–ç”»é¢)
 		MakeClActHeader( ACT_ID_STREAM_SUB, wk, 3, &add, &cl_act_header, 
 			FALSE, NNS_G2D_VRAM_TYPE_2DSUB );
 		add.mat.x = FX32_ONE * STREAM_POS_X;
 		add.mat.y = FX32_ONE * STREAM_POS_Y + SUB_SURFACE_Y;
 		wk->ClActWork[ACT_WORK_STREAM_SUB_0] = CLACT_Add(&add);
 		CLACT_SetAnmFlag(wk->ClActWork[ACT_WORK_STREAM_SUB_0],1);
-		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_STREAM_SUB_0], 0);	//”ñ•\¦
-		//2ŒÂ–Ú
+		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_STREAM_SUB_0], 0);	//éè¡¨ç¤º
+		//2å€‹ç›®
 		wk->ClActWork[ACT_WORK_STREAM_SUB_1] = CLACT_Add(&add);
 		CLACT_SetAnmFlag(wk->ClActWork[ACT_WORK_STREAM_SUB_1],1);
-		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_STREAM_SUB_1], 0);	//”ñ•\¦
+		CLACT_SetDrawFlag(wk->ClActWork[ACT_WORK_STREAM_SUB_1], 0);	//éè¡¨ç¤º
 
-		//’¹
+		//é³¥
 		for(i=0;i<BIRD_ACT_MAX;i++){
 			MakeClActHeader( ACT_ID_BIRD, wk, 0, &add, &cl_act_header, 
 				FALSE, NNS_G2D_VRAM_TYPE_2DMAIN );
@@ -728,16 +728,16 @@ void OPD_Obj_SetActor( OPD_OBJ_PTR wk )
 			add.mat.y = FX32_ONE * bird_pos_y[i];
 			wk->ClActWork[ bird_act[i] ] = CLACT_Add(&add);
 			CLACT_SetAnmFlag(wk->ClActWork[ bird_act[i] ],1);
-			CLACT_SetDrawFlag(wk->ClActWork[ bird_act[i] ], 0);	//”ñ•\¦
+			CLACT_SetDrawFlag(wk->ClActWork[ bird_act[i] ], 0);	//éè¡¨ç¤º
 		}
 	}	
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‚ğƒZƒbƒg(ƒLƒ‰ƒLƒ‰)
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ã‚»ãƒƒãƒˆ(ã‚­ãƒ©ã‚­ãƒ©)
  *
- * @param	wk		OBJƒ[ƒN
+ * @param	wk		OBJãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -751,10 +751,10 @@ void OPD_Obj_SetKiraActor( OPD_OBJ_PTR wk, OPD_KIRA_DATLST_PTR pKiraDataListPtr 
 	CLACT_WORK_PTR *act_work;
 
 	{
-		//ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
-		// ã‰æ–Ê(ƒTƒu‰æ–Ê)
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
+		// ä¸Šç”»é¢(ã‚µãƒ–ç”»é¢)
 		
-		//ƒLƒ‰ƒLƒ‰
+		//ã‚­ãƒ©ã‚­ãƒ©
 		MakeClActHeader( ACT_ID_KIRA, wk, 0, &add, &cl_act_header, FALSE, NNS_G2D_VRAM_TYPE_2DSUB);
 
 		for (i=0;i<KIRA_ACT_MAX;i++){
@@ -764,16 +764,16 @@ void OPD_Obj_SetKiraActor( OPD_OBJ_PTR wk, OPD_KIRA_DATLST_PTR pKiraDataListPtr 
 			act_work = OPDKira_GetActWorkPtrFromList( pKiraDataListPtr, i );
 			(*act_work) = CLACT_Add(&add);
 			CLACT_SetAnmFlag(*act_work,0);
-			CLACT_SetDrawFlag(*act_work, 0);	//”ñ•\¦
+			CLACT_SetDrawFlag(*act_work, 0);	//éè¡¨ç¤º
 		}
 	}	
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒ‰ƒLƒ‰ƒZƒ‹ƒAƒNƒ^[‚ğ”ñ•\¦‚É‚·‚é
+ * ã‚­ãƒ©ã‚­ãƒ©ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’éè¡¨ç¤ºã«ã™ã‚‹
  *
- * @param	wk		OBJƒ[ƒN
+ * @param	wk		OBJãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -785,15 +785,15 @@ void OPD_Obj_KiraActorDrawOff( OPD_OBJ_PTR wk, OPD_KIRA_DATLST_PTR pKiraDataList
 
 	for (i=0;i<KIRA_ACT_MAX;i++){
 		act_work = OPDKira_GetActWorkPtrFromList( pKiraDataListPtr, i );
-		CLACT_SetDrawFlag(*act_work, 0);	//”ñ•\¦
+		CLACT_SetDrawFlag(*act_work, 0);	//éè¡¨ç¤º
 	}
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[•`‰æ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æç”»
  *
- * @param	wk	OBJƒ[ƒN	
+ * @param	wk	OBJãƒ¯ãƒ¼ã‚¯	
  *
  * @return	none
  */
@@ -808,11 +808,11 @@ void OPD_Obj_DrawActor( OPD_OBJ_PTR wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJ‚Ì•\¦E”ñ•\¦
+ * OBJã®è¡¨ç¤ºãƒ»éè¡¨ç¤º
  *
- * @param	wk				OBJƒ[ƒN
- * @param	inActWorkNo		ƒAƒNƒ^[ƒ[ƒNƒiƒ“ƒo[
- * @param	inFlg			•\¦ƒtƒ‰ƒO
+ * @param	wk				OBJãƒ¯ãƒ¼ã‚¯
+ * @param	inActWorkNo		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒŠãƒ³ãƒãƒ¼
+ * @param	inFlg			è¡¨ç¤ºãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -824,11 +824,11 @@ void OPD_Obj_DispOnOff( OPD_OBJ_PTR wk, const u8 inActWorkNo, const u8 inFlg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJ‚ÌˆÊ’u•ÏX
+ * OBJã®ä½ç½®å¤‰æ›´
  *
- * @param	wk				OBJƒ[ƒN
- * @param	inActWorkNo		ƒAƒNƒ^[ƒ[ƒNƒiƒ“ƒo[
- * @param	inFlg			•\¦ƒtƒ‰ƒO
+ * @param	wk				OBJãƒ¯ãƒ¼ã‚¯
+ * @param	inActWorkNo		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒŠãƒ³ãƒãƒ¼
+ * @param	inFlg			è¡¨ç¤ºãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -845,9 +845,9 @@ void OPD_Obj_ChangePos( OPD_OBJ_PTR wk, const u8 inActWorkNo, const int inX, con
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒqƒƒCƒ“OBJ‚ÌˆÊ’u•ÏX
+ * ãƒ’ãƒ­ã‚¤ãƒ³OBJã®ä½ç½®å¤‰æ›´
  *
- * @param	wk				OBJƒ[ƒN
+ * @param	wk				OBJãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -859,10 +859,10 @@ void OPD_Obj_ChangeHeroinePos( OPD_OBJ_PTR wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒq[ƒ[EƒqƒƒCƒ“OBJ‚ÌƒAƒjƒ•ÏX
+ * ãƒ’ãƒ¼ãƒ­ãƒ¼ãƒ»ãƒ’ãƒ­ã‚¤ãƒ³OBJã®ã‚¢ãƒ‹ãƒ¡å¤‰æ›´
  *
- * @param	wk				OBJƒ[ƒN
- * @param	inNo			ƒAƒjƒƒiƒ“ƒo[
+ * @param	wk				OBJãƒ¯ãƒ¼ã‚¯
+ * @param	inNo			ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -876,10 +876,10 @@ void OPD_Obj_ChangeHeroHeroineAnime( OPD_OBJ_PTR wk, const u8 inNo )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒq[ƒ[EƒqƒƒCƒ“OBJ‚ÌƒAƒjƒŠJnE’â~
+ * ãƒ’ãƒ¼ãƒ­ãƒ¼ãƒ»ãƒ’ãƒ­ã‚¤ãƒ³OBJã®ã‚¢ãƒ‹ãƒ¡é–‹å§‹ãƒ»åœæ­¢
  *
- * @param	wk				OBJƒ[ƒN
- * @param	inNo			ƒAƒjƒƒiƒ“ƒo[
+ * @param	wk				OBJãƒ¯ãƒ¼ã‚¯
+ * @param	inNo			ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -893,9 +893,9 @@ void OPD_Obj_OnOffHeroHeroineAnime( OPD_OBJ_PTR wk, const u8 inAnime )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒq[ƒ[‚ÆƒqƒƒCƒ“‚ğƒXƒ‰ƒCƒhˆÚ“®‚³‚¹‚é
+ * @brief   ãƒ’ãƒ¼ãƒ­ãƒ¼ã¨ãƒ’ãƒ­ã‚¤ãƒ³ã‚’ã‚¹ãƒ©ã‚¤ãƒ‰ç§»å‹•ã•ã›ã‚‹
  *
- * @param   wk		OBJƒ[ƒN
+ * @param   wk		OBJãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 void OPD_Obj_HeroHeroineMove(OPD_OBJ_PTR wk)
@@ -913,11 +913,11 @@ void OPD_Obj_HeroHeroineMove(OPD_OBJ_PTR wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ‰ƒCƒoƒ‹ƒXƒ‰ƒCƒhƒCƒ“
+ * ãƒ©ã‚¤ãƒãƒ«ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³
  *
- * @param	wk	OBJƒ[ƒN	
+ * @param	wk	OBJãƒ¯ãƒ¼ã‚¯	
  *
- * @return	BOOL	TRUE‚ÅƒXƒ‰ƒCƒhI—¹
+ * @return	BOOL	TRUEã§ã‚¹ãƒ©ã‚¤ãƒ‰çµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 BOOL OPD_Obj_SlideInRival(OPD_OBJ_PTR wk, int inCounter)
@@ -961,11 +961,11 @@ BOOL OPD_Obj_SlideInRival(OPD_OBJ_PTR wk, int inCounter)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”mƒXƒ‰ƒCƒhƒCƒ“
+ * åšå£«ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³
  *
- * @param	wk	OBJƒ[ƒN	
+ * @param	wk	OBJãƒ¯ãƒ¼ã‚¯	
  *
- * @return	BOOL	TRUE‚ÅƒXƒ‰ƒCƒhI—¹
+ * @return	BOOL	TRUEã§ã‚¹ãƒ©ã‚¤ãƒ‰çµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 BOOL OPD_Obj_SlideInHakase(OPD_OBJ_PTR wk, int inCounter)
@@ -1009,9 +1009,9 @@ BOOL OPD_Obj_SlideInHakase(OPD_OBJ_PTR wk, int inCounter)
 
 //--------------------------------------------------------------------------------------------
 /**
- * —¬¯OBJƒXƒNƒ[ƒ‹
+ * æµæ˜ŸOBJã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  *
- * @param	wk	OBJƒ[ƒN	
+ * @param	wk	OBJãƒ¯ãƒ¼ã‚¯	
  */
 //--------------------------------------------------------------------------------------------
 void OPD_Obj_StreamScroll(OPD_OBJ_PTR wk, fx32 speed)
@@ -1054,10 +1054,10 @@ void OPD_Obj_StreamScroll(OPD_OBJ_PTR wk, fx32 speed)
 
 //--------------------------------------------------------------
 /**
- * @brief   —¬¯OBJ‚ğƒƒCƒ“‰æ–Ê‚ÆƒTƒu‰æ–Ê‚ÌØ‚è‘Ö‚¦‚É‚æ‚éÄİ’èˆ—‚ğs‚¤
+ * @brief   æµæ˜ŸOBJã‚’ãƒ¡ã‚¤ãƒ³ç”»é¢ã¨ã‚µãƒ–ç”»é¢ã®åˆ‡ã‚Šæ›¿ãˆã«ã‚ˆã‚‹å†è¨­å®šå‡¦ç†ã‚’è¡Œã†
  *
  * @param   wk		
- * @param   final_in	TRUE:ÅŒã‚Ìƒ|ƒPƒ‚ƒ“IN‚Ì
+ * @param   final_in	TRUE:æœ€å¾Œã®ãƒã‚±ãƒ¢ãƒ³INã®æ™‚
  */
 //--------------------------------------------------------------
 void OPD_Obj_StreamDispReset(OPD_OBJ_PTR wk, int final_in)
@@ -1099,7 +1099,7 @@ void OPD_Obj_StreamDispReset(OPD_OBJ_PTR wk, int final_in)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‰ñ“]
+ * @brief   ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«å›è»¢
  *
  * @param   wk		
  *
@@ -1120,7 +1120,7 @@ void OPD_Obj_BallRotate(OPD_OBJ_PTR wk, int inCounter)
 		add_rotate = 0;
 	}
 	else{
-//		add_rotate *= 0xc0;	//ŠÔ‚ªŒo‚Â‚²‚Æ‚É‰ñ“]‚ğ‘‚­‚µ‚Ä‚¢‚­
+//		add_rotate *= 0xc0;	//æ™‚é–“ãŒçµŒã¤ã”ã¨ã«å›è»¢ã‚’æ—©ãã—ã¦ã„ã
 	}
 	
 	rotate = CLACT_GetRotation(wk->ClActWork[ACT_WORK_BALL_MAIN]);
@@ -1130,7 +1130,7 @@ void OPD_Obj_BallRotate(OPD_OBJ_PTR wk, int inCounter)
 	CLACT_SetRotation(wk->ClActWork[ACT_WORK_BALL_SUB], rotate - BALL_ROTATE_SPEED - add_rotate);
 	
 	if(inCounter >= FM_BALL_HAND_RELEASE){
-	#if 1	//ƒ{[ƒ‹‚ğƒXƒNƒ[ƒ‹‚³‚¹‚È‚¢‚æ‚¤‚É‚µ‚½
+	#if 1	//ãƒœãƒ¼ãƒ«ã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ãªã„ã‚ˆã†ã«ã—ãŸ
 		p_vec = CLACT_GetMatrix( wk->ClActWork[ACT_WORK_BALL_MAIN] );
 		vec = *p_vec;
 		vec.x += 0x1000;
@@ -1146,11 +1146,11 @@ void OPD_Obj_BallRotate(OPD_OBJ_PTR wk, int inCounter)
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJ‚ÌF•ÏXi•ƒ==„Œ³‚ÌFj
+ * OBJã®è‰²å¤‰æ›´ï¼ˆé»’ï¼œ==ï¼å…ƒã®è‰²ï¼‰
  *
- * @param	wk				OBJƒ[ƒN
- * @param	inActWorkNo		ƒAƒNƒ^[ƒ[ƒNƒiƒ“ƒo[
- * @param	inColChgMode	F•ÏXƒ‚[ƒh
+ * @param	wk				OBJãƒ¯ãƒ¼ã‚¯
+ * @param	inActWorkNo		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒŠãƒ³ãƒãƒ¼
+ * @param	inColChgMode	è‰²å¤‰æ›´ãƒ¢ãƒ¼ãƒ‰
  *
  * @return	none
  */
@@ -1170,10 +1170,10 @@ void OPD_Obj_ChangeCollor(OPD_OBJ_PTR wk, const int inActWorkNo, const u8 inColC
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’¹ƒXƒ‰ƒCƒhƒCƒ“
+ * é³¥ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³
  *
- * @param	wk				OBJƒ[ƒN
- * @param	inCounter		ƒtƒŒ[ƒ€ƒJƒEƒ“ƒ^
+ * @param	wk				OBJãƒ¯ãƒ¼ã‚¯
+ * @param	inCounter		ãƒ•ãƒ¬ãƒ¼ãƒ ã‚«ã‚¦ãƒ³ã‚¿
  *
  * @return	none
  */

@@ -1,6 +1,6 @@
 //============================================================================================
 /**
- *	ƒfƒoƒbƒOƒƒjƒ…[u‘]‰ä•”v‚Ìˆ—
+ *	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€Œæ›½æˆ‘éƒ¨ã€ã®å‡¦ç†
  */
 //============================================================================================
 #include "common.h"
@@ -22,7 +22,7 @@
 #include "../fielddata/script/connect_def.h"
 
 //============================================================================================
-//	ƒƒCƒ“
+//	ãƒ¡ã‚¤ãƒ³
 //============================================================================================
 #define	TCB_WK_SIZE		( 4*16 )
 
@@ -72,24 +72,24 @@ static const BMPLIST_DATA d_menu_list[] =
 };
 
 static const BMPLIST_HEADER d_menu_list_h = {
-	d_menu_list,			// •\Ž¦•¶Žšƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	NULL,					// ˆê—ñ•\Ž¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	d_menu_list,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	NULL,
-	NELEMS(d_menu_list),	// ƒŠƒXƒg€–Ú”
-	11,						// •\Ž¦Å‘å€–Ú”
-	0,						// ƒ‰ƒxƒ‹•\Ž¦‚wÀ•W
-	12,						// €–Ú•\Ž¦‚wÀ•W
-	0,						// ƒJ[ƒ\ƒ‹•\Ž¦‚wÀ•W
-	0,						// •\Ž¦‚xÀ•W
-	FBMP_COL_WHITE,			//•¶ŽšF
-	FBMP_COL_BLACK,			//”wŒiF
-	FBMP_COL_BLK_SDW,		//•¶Žš‰eF
-	0,						// •¶ŽšŠÔŠu‚w
-	16,						// •¶ŽšŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,			// •¶ŽšŽw’è(–{—ˆ‚Í u8 ‚¾‚¯‚ÇA‚»‚ñ‚È‚Éì‚ç‚È‚¢‚ÆŽv‚¤‚Ì‚Å)
-	0						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\Ž¦ƒtƒ‰ƒO(0:ON,1:OFF)
+	NELEMS(d_menu_list),	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+	11,						// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	12,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_WHITE,			//æ–‡å­—è‰²
+	FBMP_COL_BLACK,			//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,		//æ–‡å­—å½±è‰²
+	0,						// æ–‡å­—é–“éš”ï¼¸
+	16,						// æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,			// æ–‡å­—æŒ‡å®š(æœ¬æ¥ã¯ u8 ã ã‘ã©ã€ãã‚“ãªã«ä½œã‚‰ãªã„ã¨æ€ã†ã®ã§)
+	0						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
 };
 
 

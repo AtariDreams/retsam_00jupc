@@ -50,20 +50,20 @@ extern "C" {
 #define NNS_G2D_BINFILE_EXT_PALETTEDATA            "NCLR"
 
 //
-// ƒo[ƒWƒ‡ƒ“î•ñ
-// Ver         •ÏX“_
+// ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±
+// Ver         å¤‰æ›´ç‚¹
 // -------------------------------------
-// 1.0         ‰”Å
-// 1.1         NNSG2dCharacterPosInfoBlock ‚Ì’Ç‰Á
+// 1.0         åˆç‰ˆ
+// 1.1         NNSG2dCharacterPosInfoBlock ã®è¿½åŠ 
 //
 #define NNS_G2D_NCGR_MAJOR_VER             (u8)1
 #define NNS_G2D_NCGR_MINOR_VER             (u8)1
 
 //
-// ƒo[ƒWƒ‡ƒ“î•ñ
-// Ver         •ÏX“_
+// ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±
+// Ver         å¤‰æ›´ç‚¹
 // -------------------------------------
-// 1.0         ‰”Å
+// 1.0         åˆç‰ˆ
 //
 #define NNS_G2D_NCLR_MAJOR_VER             (u8)1
 #define NNS_G2D_NCLR_MINOR_VER             (u8)0
@@ -84,11 +84,11 @@ typedef enum NNSG2dCharacterPixelFmt
     
 }NNSG2dCharacterPixelFmt;
 
-// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ìƒf[ƒ^®—ñ•û®
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ãƒ‡ãƒ¼ã‚¿æ•´åˆ—æ–¹å¼
 typedef enum NNSG2dCharacterFmt
 {
-    NNS_G2D_CHARACTER_FMT_CHAR,  // 8*8 ƒeƒNƒZƒ‹‚²‚Æ‚É®—ñ‚µ‚Ä‚¢‚é
-    NNS_G2D_CHARACTER_FMT_BMP,   // ˆê”Ê“I‚Èƒrƒbƒgƒ}ƒbƒv•û®
+    NNS_G2D_CHARACTER_FMT_CHAR,  // 8*8 ãƒ†ã‚¯ã‚»ãƒ«ã”ã¨ã«æ•´åˆ—ã—ã¦ã„ã‚‹
+    NNS_G2D_CHARACTER_FMT_BMP,   // ä¸€èˆ¬çš„ãªãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æ–¹å¼
     NNS_G2D_CHARACTER_FMT_MAX
 
 }NNSG2dCharacterFmt;
@@ -165,7 +165,7 @@ typedef struct NNSG2dCharacterData
     
     GXOBJVRamModeChar               mapingType;  // GXOBJVRamModeChar
     u32                             characterFmt;// 31 ..... 10 ...........9 8 ................ 0
-                                                 //     —\–ñ   VramTransfer   NNSG2dCharacterFmt
+                                                 //     äºˆç´„   VramTransfer   NNSG2dCharacterFmt
     u32                             szByte;
     void*                           pRawData;  // offset addr of the content.
     
@@ -204,7 +204,7 @@ typedef struct NNSG2dCharacterPosInfoBlock
 
 
 //------------------------------------------------------------------------------
-// ƒRƒ“ƒo[ƒ^‚ªg—p‚·‚éŠÖ”‚Å‚·
+// ã‚³ãƒ³ãƒãƒ¼ã‚¿ãŒä½¿ç”¨ã™ã‚‹é–¢æ•°ã§ã™
 NNS_G2D_INLINE u32 NNSi_G2dPackCharacterFmtData
 ( 
     NNSG2dCharacterFmt          charFmt,
@@ -216,7 +216,7 @@ NNS_G2D_INLINE u32 NNSi_G2dPackCharacterFmtData
 }
 
 //------------------------------------------------------------------------------
-// ƒLƒƒƒ‰ƒNƒ^‚Ì®—ñ•û®‚ğæ“¾‚µ‚Ü‚·
+// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®æ•´åˆ—æ–¹å¼ã‚’å–å¾—ã—ã¾ã™
 NNS_G2D_INLINE NNSG2dCharacterFmt NNSi_G2dGetCharacterFmtType( u32 characterFmt )
 {
     return (NNSG2dCharacterFmt)

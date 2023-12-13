@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_088.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			‚¢‚â‚µ‚Ì‚·‚¸ƒV[ƒPƒ“ƒX
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ã„ã‚„ã—ã®ã™ãšã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *@author	HisashiSogabe
  *@data		2006.01.25
  *
@@ -25,7 +25,7 @@ SUB_088_NEXT:
 	SERVER_WAIT
 	WAIT		MSG_WAIT
 	IF			IF_FLAG_EQ,BUF_PARA_WAZA_NO_NOW,WAZANO_AROMASERAPII,SUB_088_END
-	//‚Ú‚¤‚¨‚ñ‚Å–h‚¢‚¾ŒnƒƒbƒZ[ƒW
+	//ã¼ã†ãŠã‚“ã§é˜²ã„ã ç³»ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	IF			IF_FLAG_NBIT,BUF_PARA_CALC_WORK,BOUON_SIDE_1,BouonSide2
 	MESSAGE		BouonMineMsg,TAG_NICK_TOKU_WAZA,SIDE_ATTACK,SIDE_ATTACK,SIDE_WORK
 	SERVER_WAIT

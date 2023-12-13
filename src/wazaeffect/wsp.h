@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	wsp.h
- * @brief	‹ZƒTƒ|[ƒgŠÖ”ŒS
+ * @brief	æŠ€ã‚µãƒãƒ¼ãƒˆé–¢æ•°éƒ¡
  * @author	goto
- * @date	2005.12.16(‹à)
+ * @date	2005.12.16(é‡‘)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -17,7 +17,7 @@
 
 // -----------------------------------------
 //
-//	‹ZƒGƒtƒFƒNƒg
+//	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //
 // -----------------------------------------
 extern void WestSp_WE_070(WE_SYS_PTR we_sys);
@@ -52,7 +52,7 @@ extern void WestSp_WE_326DF(WE_SYS_PTR we_sys);
 extern void WestSp_WE_316(WE_SYS_PTR we_sys);
 extern void WestSp_WE_252Back(WE_SYS_PTR we_sys);
 extern void WestSp_WE_252SSPPoke(WE_SYS_PTR we_sys);
-extern void WestSp_WE_224(WE_SYS_PTR we_sys);	// ƒƒKƒz[ƒ“
+extern void WestSp_WE_224(WE_SYS_PTR we_sys);	// ãƒ¡ã‚¬ãƒ›ãƒ¼ãƒ³
 extern void WestSp_WE_224AT(WE_SYS_PTR we_sys);
 extern void WestSp_WE_224DF(WE_SYS_PTR we_sys);
 extern void WestSp_WE_057(WE_SYS_PTR we_sys);
@@ -79,42 +79,42 @@ extern void WestSp_WE_425(WE_SYS_PTR we_sys);
 
 //-------------------------------------
 //	
-//	ƒm[ƒ}ƒ‹
-//		”Ä—pƒTƒ|[ƒgŠÖ”
+//	ãƒãƒ¼ãƒãƒ«
+//		æ±ç”¨ã‚µãƒãƒ¼ãƒˆé–¢æ•°
 //	
 //=====================================
-extern void WestSp_EffectTCBPokeRota00(WE_SYS_PTR we_sys);	// ƒ|ƒPƒ‚ƒ“‰ñ“]
+extern void WestSp_EffectTCBPokeRota00(WE_SYS_PTR we_sys);	// ãƒã‚±ãƒ¢ãƒ³å›è»¢
 extern void WestSp_WE_HaikeiPalFade(WE_SYS_PTR we_sys);
 extern void WestSp_WE_SSPPokePalFade(WE_SYS_PTR we_sys);
 extern void WestSp_WE_CAPPokeScaleUpDown(WE_SYS_PTR we_sys);
 extern void WestSp_WE_CAP_NormalAlphaFade(WE_SYS_PTR we_sys);
 extern void WestSp_WE_SSP_PokeVanish(WE_SYS_PTR we_sys);
 
-extern void WestSp_WE_T01(WE_SYS_PTR we_sys);				///< —h‚ç‚µƒXƒeƒ€
-extern void WestSp_WE_T02(WE_SYS_PTR we_sys);				///< ”wŒi“®‚©‚µƒXƒeƒ€
+extern void WestSp_WE_T01(WE_SYS_PTR we_sys);				///< æºã‚‰ã—ã‚¹ãƒ†ãƒ 
+extern void WestSp_WE_T02(WE_SYS_PTR we_sys);				///< èƒŒæ™¯å‹•ã‹ã—ã‚¹ãƒ†ãƒ 
 extern void WestSp_WE_T22(WE_SYS_PTR we_sys);
-extern void WestSp_WE_SSPPokeScaleUpDown(WE_SYS_PTR we_sys);	/// SSPƒ|ƒP‚ğL‚Î‚µ‚ÄŒ³‚É–ß‚·
+extern void WestSp_WE_SSPPokeScaleUpDown(WE_SYS_PTR we_sys);	/// SSPãƒã‚±ã‚’ä¼¸ã°ã—ã¦å…ƒã«æˆ»ã™
 
-extern void WestSp_WE_T03(WE_SYS_PTR we_sys);				///< ƒ|ƒPƒ‚ƒ“ƒuƒŠƒ“ƒN
-extern void WestSp_WE_T04(WE_SYS_PTR we_sys);				///< ”wŒãUŒ‚
-extern void WestSp_WE_T05(WE_SYS_PTR we_sys);				///< Œ³‚ÌˆÊ’u‚É–ß‚é
-extern void WestSp_WE_T06(WE_SYS_PTR we_sys);				///< Œ³‚ÌˆÊ’u‚É–ß‚é
-extern void WestSp_WE_T07(WE_SYS_PTR we_sys);				///< Œ³‚ÌˆÊ’u‚É–ß‚é
-extern void WestSp_WE_T08(WE_SYS_PTR we_sys);				///< ƒI[ƒ‰
-extern void WestSp_WE_T10(WE_SYS_PTR we_sys);				///< ƒI[ƒ‰
+extern void WestSp_WE_T03(WE_SYS_PTR we_sys);				///< ãƒã‚±ãƒ¢ãƒ³ãƒ–ãƒªãƒ³ã‚¯
+extern void WestSp_WE_T04(WE_SYS_PTR we_sys);				///< èƒŒå¾Œæ”»æ’ƒ
+extern void WestSp_WE_T05(WE_SYS_PTR we_sys);				///< å…ƒã®ä½ç½®ã«æˆ»ã‚‹
+extern void WestSp_WE_T06(WE_SYS_PTR we_sys);				///< å…ƒã®ä½ç½®ã«æˆ»ã‚‹
+extern void WestSp_WE_T07(WE_SYS_PTR we_sys);				///< å…ƒã®ä½ç½®ã«æˆ»ã‚‹
+extern void WestSp_WE_T08(WE_SYS_PTR we_sys);				///< ã‚ªãƒ¼ãƒ©
+extern void WestSp_WE_T10(WE_SYS_PTR we_sys);				///< ã‚ªãƒ¼ãƒ©
 
-extern void WSP_Emitter_Straight(WE_SYS_PTR we_sys);		///< ’¼üˆÚ“®
-extern void WSP_Emitter_Parabolic(WE_SYS_PTR we_sys);		///< •ú•¨üˆÚ“®
-extern void WSP_Emitter_Rotation(WE_SYS_PTR we_sys);		///< ‰ñ“]ˆÚ“®
-extern void WSP_Emitter_SimpleUD(WE_SYS_PTR we_sys);		///< ’Pƒ‚Èã¸‰º~
+extern void WSP_Emitter_Straight(WE_SYS_PTR we_sys);		///< ç›´ç·šç§»å‹•
+extern void WSP_Emitter_Parabolic(WE_SYS_PTR we_sys);		///< æ”¾ç‰©ç·šç§»å‹•
+extern void WSP_Emitter_Rotation(WE_SYS_PTR we_sys);		///< å›è»¢ç§»å‹•
+extern void WSP_Emitter_SimpleUD(WE_SYS_PTR we_sys);		///< å˜ç´”ãªä¸Šæ˜‡ä¸‹é™
 
-extern void WSP_RectView(WE_SYS_PTR we_sys);				///< ‹éŒ`”ÍˆÍ‰Â‹
-extern void WSP_PokeOAM_View(WE_SYS_PTR we_sys);			///< OAM•\¦
-extern void WSP_AllPokeDrop(WE_SYS_PTR we_sys);				///< ê‚Ìƒ|ƒPƒ‚ƒ“OAM•\¦
+extern void WSP_RectView(WE_SYS_PTR we_sys);				///< çŸ©å½¢ç¯„å›²å¯è¦–
+extern void WSP_PokeOAM_View(WE_SYS_PTR we_sys);			///< OAMè¡¨ç¤º
+extern void WSP_AllPokeDrop(WE_SYS_PTR we_sys);				///< å ´ã®ãƒã‚±ãƒ¢ãƒ³OAMè¡¨ç¤º
 
 // -----------------------------------------
 //
-//	OAM—˜—p
+//	OAMåˆ©ç”¨
 //
 // -----------------------------------------
 extern void WestSp_CAT_WE_081(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap);
@@ -135,7 +135,7 @@ extern void WestSp_CAT_WE_286(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR 
 extern void WestSp_CAT_WE_288(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap);
 extern void WestSp_CAT_WE_320(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap);
 extern void WestSp_CAT_WE_333(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap);
-extern void WestSp_CAT_WE_252_DrawCap(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap); // Defense‚ÌˆÊ’u‚ÉƒI[ƒgƒAƒjƒOAM‚ğo‚·
+extern void WestSp_CAT_WE_252_DrawCap(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap); // Defenseã®ä½ç½®ã«ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡OAMã‚’å‡ºã™
 extern void WestSp_CAT_WE_269(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap);
 extern void WestSp_CAT_WE_270(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap);
 extern void WestSp_CAT_WE_274(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap);
@@ -149,7 +149,7 @@ extern void WestSp_Item(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, C
 
 // ----------------------------------------
 //
-//	ƒXƒe[ƒ^ƒXƒGƒtƒFƒNƒg
+//	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //
 // ----------------------------------------
 extern void WestSp_CAT_ST_001(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap);
@@ -163,11 +163,11 @@ extern void StatusEffect_Metal(WE_SYS_PTR we_sys);
 
 //-------------------------------------
 //	
-//	OAM—˜—p
-//		”Ä—pƒTƒ|[ƒgŠÖ”
+//	OAMåˆ©ç”¨
+//		æ±ç”¨ã‚µãƒãƒ¼ãƒˆé–¢æ•°
 //	
 //=====================================
-extern void WestSp_CAT_WE_207_SUB(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap);	// ‚¢‚¿‚á‚à‚ñ@‚¢‚Î‚é@‚È‚Ç‚Åo‚é‚Ş‚©‚Â‚«ƒ}[ƒN
+extern void WestSp_CAT_WE_207_SUB(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CATS_ACT_PTR cap);	// ã„ã¡ã‚ƒã‚‚ã‚“ã€€ã„ã°ã‚‹ã€€ãªã©ã§å‡ºã‚‹ã‚€ã‹ã¤ããƒãƒ¼ã‚¯
 
 
 ///

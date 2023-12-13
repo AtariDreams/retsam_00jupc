@@ -10,45 +10,45 @@
 
 //------------------------------------------------------------------
 /**
- * ƒ^ƒOƒR[ƒhŠJŽn‰ÓŠ‚Ìƒ|ƒCƒ“ƒ^‚ðŽó‚¯Žæ‚èAƒ^ƒOŽí—ÞƒR[ƒh‚ð•Ô‚·
+ * ã‚¿ã‚°ã‚³ãƒ¼ãƒ‰é–‹å§‹ç®‡æ‰€ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å—ã‘å–ã‚Šã€ã‚¿ã‚°ç¨®é¡žã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
  *
- * @param   str		•¶Žš—ñƒ|ƒCƒ“ƒ^
+ * @param   str		æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  u32		ƒ^ƒOŽí—ÞƒR[ƒh
+ * @retval  u32		ã‚¿ã‚°ç¨®é¡žã‚³ãƒ¼ãƒ‰
  */
 //------------------------------------------------------------------
 extern u32  STRCODE_GetTagType( const STRCODE* str );
 
 //------------------------------------------------------------------
 /**
- * ƒ^ƒOƒR[ƒhŠJŽn‰ÓŠ‚Ìƒ|ƒCƒ“ƒ^‚ðŽó‚¯Žæ‚èAƒ^ƒO“à—e‚ª’PŒêƒZƒbƒgƒ^ƒO‚©’²‚×‚é
+ * ã‚¿ã‚°ã‚³ãƒ¼ãƒ‰é–‹å§‹ç®‡æ‰€ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å—ã‘å–ã‚Šã€ã‚¿ã‚°å†…å®¹ãŒå˜èªžã‚»ãƒƒãƒˆã‚¿ã‚°ã‹èª¿ã¹ã‚‹
  *
- * @param   str			•¶Žš—ñƒ|ƒCƒ“ƒ^
+ * @param   str			æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚È‚ç’PŒêƒZƒbƒgƒ^ƒO
+ * @retval  BOOL		TRUEãªã‚‰å˜èªžã‚»ãƒƒãƒˆã‚¿ã‚°
  */
 //------------------------------------------------------------------
 extern BOOL STRCODE_CheckWordSetTagType( const STRCODE* str );
 
 //------------------------------------------------------------------
 /**
- * ƒ^ƒOƒR[ƒh‰ÓŠ‚Ìƒ|ƒCƒ“ƒ^‚ðŽó‚¯Žæ‚èAƒpƒ‰ƒ[ƒ^’l‚ð“Ç‚ÝŽæ‚Á‚Ä•Ô‚·
+ * ã‚¿ã‚°ã‚³ãƒ¼ãƒ‰ç®‡æ‰€ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å—ã‘å–ã‚Šã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å€¤ã‚’èª­ã¿å–ã£ã¦è¿”ã™
  *
- * @param   str			•¶Žš—ñƒ|ƒCƒ“ƒ^
- * @param   param_no	ƒpƒ‰ƒ[ƒ^ƒiƒ“ƒo[i0 orgj
+ * @param   str			æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @param   param_no	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ï¼ˆ0 orgï¼‰
  *
- * @retval  u32		ƒpƒ‰ƒ[ƒ^’l
+ * @retval  u32		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å€¤
  */
 //------------------------------------------------------------------
 extern u32  STRCODE_GetTagParam( const STRCODE* str, u32 param_no );
 
 //------------------------------------------------------------------
 /**
- * ƒ^ƒOƒR[ƒhŠJŽn‰ÓŠ‚Ìƒ|ƒCƒ“ƒ^‚ðŽó‚¯Žæ‚èAƒpƒ‰ƒ[ƒ^•”‚ðƒXƒLƒbƒv‚µ‚Ä•Ô‚·
+ * ã‚¿ã‚°ã‚³ãƒ¼ãƒ‰é–‹å§‹ç®‡æ‰€ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å—ã‘å–ã‚Šã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿éƒ¨ã‚’ã‚¹ã‚­ãƒƒãƒ—ã—ã¦è¿”ã™
  *
- * @param   str			•¶Žš—ñƒ|ƒCƒ“ƒ^
+ * @param   str			æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  STRCODE*	ƒpƒ‰ƒ[ƒ^•”ƒXƒLƒbƒvŒã‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  STRCODE*	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿éƒ¨ã‚¹ã‚­ãƒƒãƒ—å¾Œã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 extern STRCODE*  STRCODE_SkipTag( const STRCODE* str );
@@ -56,47 +56,47 @@ extern STRCODE*  STRCODE_SkipTag( const STRCODE* str );
 #if 0
 //---------------------------------------------------------------------------------------------
 /*
- *	•¶ŽšƒR[ƒh•ÏŠ·@ƒ|ƒPƒ‚ƒ“‚`‚f‚a->ƒ|ƒPƒ‚ƒ“‚c‚r
- *	¦’Êí•¶ŽšAI—¹A‰üsAƒgƒŠƒK[‘Ò‚¿Aƒoƒbƒtƒ@ƒƒbƒZ[ƒW‚É‘Î‰ž
+ *	æ–‡å­—ã‚³ãƒ¼ãƒ‰å¤‰æ›ã€€ãƒã‚±ãƒ¢ãƒ³ï¼¡ï¼§ï¼¢->ãƒã‚±ãƒ¢ãƒ³ï¼¤ï¼³
+ *	â€»é€šå¸¸æ–‡å­—ã€çµ‚äº†ã€æ”¹è¡Œã€ãƒˆãƒªã‚¬ãƒ¼å¾…ã¡ã€ãƒãƒƒãƒ•ã‚¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«å¯¾å¿œ
  *
- * @param	c_id		‘”Ô†(0:“ú–{,1:....)
- * @param	agb_str		“ü—Í‚·‚é‚`‚f‚a•¶Žš—ñ‚Ìƒ|ƒCƒ“ƒ^
- * @param	ds_str		o—Í‚·‚é‚c‚r•¶Žš—ñ‚Ìƒ|ƒCƒ“ƒ^
+ * @param	c_id		å›½ç•ªå·(0:æ—¥æœ¬,1:....)
+ * @param	agb_str		å…¥åŠ›ã™ã‚‹ï¼¡ï¼§ï¼¢æ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ds_str		å‡ºåŠ›ã™ã‚‹ï¼¤ï¼³æ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ret		0:–â‘è‚È‚µ,1:‰ðŽß•s‰Â”\‚ÈƒR[ƒh‚ª‚ ‚Á‚½i•ÏŠ·Ž¸”sj
+ * @retval	ret		0:å•é¡Œãªã—,1:è§£é‡ˆä¸å¯èƒ½ãªã‚³ãƒ¼ãƒ‰ãŒã‚ã£ãŸï¼ˆå¤‰æ›å¤±æ•—ï¼‰
  */
 //---------------------------------------------------------------------------------------------
 extern u8	GBAcode2DSuni(u8 c_id, u8 *agb_str, STRCODE *ds_str);
 
 //---------------------------------------------------------------------------------------------
 /*
- *	•¶ŽšƒR[ƒh•ÏŠ·@ƒ|ƒPƒ‚ƒ“‚c‚r->ƒ|ƒPƒ‚ƒ“‚`‚f‚a
- *	¦’Êí•¶ŽšAI—¹A‰üsAƒgƒŠƒK[‘Ò‚¿Aƒoƒbƒtƒ@ƒƒbƒZ[ƒW‚É‘Î‰ž
+ *	æ–‡å­—ã‚³ãƒ¼ãƒ‰å¤‰æ›ã€€ãƒã‚±ãƒ¢ãƒ³ï¼¤ï¼³->ãƒã‚±ãƒ¢ãƒ³ï¼¡ï¼§ï¼¢
+ *	â€»é€šå¸¸æ–‡å­—ã€çµ‚äº†ã€æ”¹è¡Œã€ãƒˆãƒªã‚¬ãƒ¼å¾…ã¡ã€ãƒãƒƒãƒ•ã‚¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«å¯¾å¿œ
  *
- * @param	c_id		‘”Ô†(0:“ú–{,1:....)
- * @param	ds_str		“ü—Í‚·‚é‚c‚r•¶Žš—ñ‚Ìƒ|ƒCƒ“ƒ^
- * @param	agb_str		o—Í‚·‚é‚`‚f‚a•¶Žš—ñ‚Ìƒ|ƒCƒ“ƒ^
+ * @param	c_id		å›½ç•ªå·(0:æ—¥æœ¬,1:....)
+ * @param	ds_str		å…¥åŠ›ã™ã‚‹ï¼¤ï¼³æ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	agb_str		å‡ºåŠ›ã™ã‚‹ï¼¡ï¼§ï¼¢æ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ret		0:–â‘è‚È‚µ,1:‰ðŽß•s‰Â”\‚ÈƒR[ƒh‚ª‚ ‚Á‚½i•ÏŠ·Ž¸”sj
+ * @retval	ret		0:å•é¡Œãªã—,1:è§£é‡ˆä¸å¯èƒ½ãªã‚³ãƒ¼ãƒ‰ãŒã‚ã£ãŸï¼ˆå¤‰æ›å¤±æ•—ï¼‰
  */
 //---------------------------------------------------------------------------------------------
 extern u8	DSuni2GBAcode(u8 c_id, STRCODE *ds_str, u8 *agb_str);
 #endif
 #ifdef PM_DEBUG
-#if 0	// í’“—Ìˆæ‚ð‚ ‚¯‚é‚½‚ßfld_debug.c‚ÉˆÚ“®‚³‚¹‚Ü‚·
+#if 0	// å¸¸é§é ˜åŸŸã‚’ã‚ã‘ã‚‹ãŸã‚fld_debug.cã«ç§»å‹•ã•ã›ã¾ã™
 //---------------------------------------------------------------------------------------------
 /*
- *	•¶ŽšƒR[ƒh•ÏŠ·@ASCII->ƒ|ƒPƒ‚ƒ“‚c‚o
- *	¦’Êí•¶ŽšAI—¹A‰üs‘Î‰ž
- *	@ƒgƒŠƒK[‘Ò‚¿Aƒoƒbƒtƒ@ƒƒbƒZ[ƒWA‚»‚Ì‘¼ƒ|ƒPƒ‚ƒ““ÁŽêƒR[ƒh”ñ‘Î‰ž
+ *	æ–‡å­—ã‚³ãƒ¼ãƒ‰å¤‰æ›ã€€ASCII->ãƒã‚±ãƒ¢ãƒ³ï¼¤ï¼°
+ *	â€»é€šå¸¸æ–‡å­—ã€çµ‚äº†ã€æ”¹è¡Œå¯¾å¿œ
+ *	ã€€ãƒˆãƒªã‚¬ãƒ¼å¾…ã¡ã€ãƒãƒƒãƒ•ã‚¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€ãã®ä»–ãƒã‚±ãƒ¢ãƒ³ç‰¹æ®Šã‚³ãƒ¼ãƒ‰éžå¯¾å¿œ
  *
- *	ƒfƒoƒbƒOê—p‚Å‚·I
+ *	ãƒ‡ãƒãƒƒã‚°å°‚ç”¨ã§ã™ï¼
  * 
- * @param	c_id		‘”Ô†(0:“ú–{,1:....)@”ñ‘Î‰ž
- * @param	agb_str		“ü—Í‚·‚éASCII•¶Žš—ñ‚Ìƒ|ƒCƒ“ƒ^
- * @param	ds_str		o—Í‚·‚éDS•¶Žš—ñ‚Ìƒ|ƒCƒ“ƒ^
+ * @param	c_id		å›½ç•ªå·(0:æ—¥æœ¬,1:....)ã€€éžå¯¾å¿œ
+ * @param	agb_str		å…¥åŠ›ã™ã‚‹ASCIIæ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ds_str		å‡ºåŠ›ã™ã‚‹DSæ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ret		0:–â‘è‚È‚µ,1:‰ðŽß•s‰Â”\‚ÈƒR[ƒh‚ª‚ ‚Á‚½i•ÏŠ·Ž¸”sj
+ * @retval	ret		0:å•é¡Œãªã—,1:è§£é‡ˆä¸å¯èƒ½ãªã‚³ãƒ¼ãƒ‰ãŒã‚ã£ãŸï¼ˆå¤‰æ›å¤±æ•—ï¼‰
  */
 //---------------------------------------------------------------------------------------------
 extern u8	ASCIIcode2DSuni(u8 c_id, u8 *ascii_str, u16 *ds_str);
@@ -105,77 +105,77 @@ extern u8	ASCIIcode2DSuni(u8 c_id, u8 *ascii_str, u16 *ds_str);
 
 //---------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------
-/* •¶Žš—ñ•\Ž¦§ŒäƒR[ƒh‚Ì’è‹` */
+/* æ–‡å­—åˆ—è¡¨ç¤ºåˆ¶å¾¡ã‚³ãƒ¼ãƒ‰ã®å®šç¾© */
 #include "strcode.h"
 
 
-#define CR_				0xe000		/* ‰üsƒR[ƒh */
+#define CR_				0xe000		/* æ”¹è¡Œã‚³ãƒ¼ãƒ‰ */
 
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/07
-// ˆ³k‚³‚ê‚½•¶Žš—ñ‚ÌŠJŽnˆÊ’u‚ðŽ¦‚·ƒR[ƒh
+// åœ§ç¸®ã•ã‚ŒãŸæ–‡å­—åˆ—ã®é–‹å§‹ä½ç½®ã‚’ç¤ºã™ã‚³ãƒ¼ãƒ‰
 #define COMPRESSED_MARK		(0xF100)
 // ----------------------------------------------------------------------------
 
 
 
 //=============================================================================================
-//	‰¼ƒR[ƒh
+//	ä»®ã‚³ãƒ¼ãƒ‰
 //=============================================================================================
 //=============================================================================================
 //=============================================================================================
 
-/* •¶Žš—ñ•\Ž¦§ŒäƒR[ƒh‚Ì’è‹` */
-#define S_MSG_			0xf0f7		/* Žw’èƒoƒbƒtƒ@‚ÌƒƒbƒZ[ƒW“WŠJ(”CˆÓ)*/
-#define	EXICON_			0xf0f8		/* Šg’£ƒAƒCƒRƒ“(ƒL[ƒAƒCƒRƒ“) */
+/* æ–‡å­—åˆ—è¡¨ç¤ºåˆ¶å¾¡ã‚³ãƒ¼ãƒ‰ã®å®šç¾© */
+#define S_MSG_			0xf0f7		/* æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹(ä»»æ„)*/
+#define	EXICON_			0xf0f8		/* æ‹¡å¼µã‚¢ã‚¤ã‚³ãƒ³(ã‚­ãƒ¼ã‚¢ã‚¤ã‚³ãƒ³) */
 
-#define I_MSG_			0xf0fd		/* Žw’èƒoƒbƒtƒ@‚ÌƒƒbƒZ[ƒW“WŠJ(ID)	*/
-#define CTRL_			0xf0fc		/* ƒtƒHƒ“ƒg§ŒäƒRƒ}ƒ“ƒh */
+#define I_MSG_			0xf0fd		/* æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹(ID)	*/
+#define CTRL_			0xf0fc		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚³ãƒžãƒ³ãƒ‰ */
 
-#define	NORMAL_WAIT_	0x25bc		/* "¥"		ƒgƒŠƒK[‘Ò‚¿¨MSGƒGƒŠƒAƒNƒŠƒA	*/
-#define	SCROLL_WAIT_	0x25bd		/* "¤"		ƒgƒŠƒK[‘Ò‚¿¨ˆêsƒXƒNƒ[ƒ‹ */
-#define	SIMPLE_WAIT_	0x25a0		/* "¡"		ƒgƒŠƒK[‘Ò‚¿‚Ì‚Ý */
+#define	NORMAL_WAIT_	0x25bc		/* "â–¼"		ãƒˆãƒªã‚¬ãƒ¼å¾…ã¡â†’MSGã‚¨ãƒªã‚¢ã‚¯ãƒªã‚¢	*/
+#define	SCROLL_WAIT_	0x25bd		/* "â–½"		ãƒˆãƒªã‚¬ãƒ¼å¾…ã¡â†’ä¸€è¡Œã‚¹ã‚¯ãƒ­ãƒ¼ãƒ« */
+#define	SIMPLE_WAIT_	0x25a0		/* "â– "		ãƒˆãƒªã‚¬ãƒ¼å¾…ã¡ã®ã¿ */
 
-#define	C_FCOL_		0xf001		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:•¶ŽšF•ÏX */
-#define	C_BCOL_		0xf002		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:”wŒiF•ÏX */
-#define C_SCOL_		0xf003		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:‰eF•ÏX */
-#define C_ACOL_		0xf004		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:‘SFŽw’è•ÏX(ƒpƒ‰ƒ[ƒ^‚ÍFBS‚Ì‡) */
-#define C_PAL_		0xf005		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:ƒpƒŒƒbƒg•ÏX */
-#define C_FCHG_		0xf006		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:ƒtƒHƒ“ƒg•ÏX */
-#define C_FNML_		0xf007		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:ƒtƒHƒ“ƒg•œ‹A */
-#define	C_WAIT_		0xf008		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:ƒEƒFƒCƒgƒZƒbƒg */
-#define C_TRGWAIT_	0xf009		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:ƒL[ƒEƒFƒCƒg */
-#define C_SEWAIT_	0xf00a		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:SE‚Ì–Â‚èI‚í‚è‚Ü‚Å‘Ò‚Â */
-#define C_MUSPLAY_	0xf00b		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:BGM‚ð‚È‚ç‚· */
-#define C_EXFONT_	0xf00c		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:Šg’£ƒtƒHƒ“ƒgŽw’è */
-#define C_XCHG_		0xf00d		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:•\Ž¦XˆÊ’uˆÚ“® */
-#define C_YCHG_		0xf00e		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:•\Ž¦YˆÊ’uˆÚ“® */
-#define C_CLR_		0xf00f		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:MSGƒGƒŠƒAƒNƒŠƒA */
-#define C_SEPLAY_	0xf010		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:SE‚ð‚È‚ç‚· */
+#define	C_FCOL_		0xf001		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:æ–‡å­—è‰²å¤‰æ›´ */
+#define	C_BCOL_		0xf002		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:èƒŒæ™¯è‰²å¤‰æ›´ */
+#define C_SCOL_		0xf003		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:å½±è‰²å¤‰æ›´ */
+#define C_ACOL_		0xf004		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:å…¨è‰²æŒ‡å®šå¤‰æ›´(ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯FBSã®é †) */
+#define C_PAL_		0xf005		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´ */
+#define C_FCHG_		0xf006		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:ãƒ•ã‚©ãƒ³ãƒˆå¤‰æ›´ */
+#define C_FNML_		0xf007		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:ãƒ•ã‚©ãƒ³ãƒˆå¾©å¸° */
+#define	C_WAIT_		0xf008		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:ã‚¦ã‚§ã‚¤ãƒˆã‚»ãƒƒãƒˆ */
+#define C_TRGWAIT_	0xf009		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:ã‚­ãƒ¼ã‚¦ã‚§ã‚¤ãƒˆ */
+#define C_SEWAIT_	0xf00a		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:SEã®é³´ã‚Šçµ‚ã‚ã‚Šã¾ã§å¾…ã¤ */
+#define C_MUSPLAY_	0xf00b		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:BGMã‚’ãªã‚‰ã™ */
+#define C_EXFONT_	0xf00c		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:æ‹¡å¼µãƒ•ã‚©ãƒ³ãƒˆæŒ‡å®š */
+#define C_XCHG_		0xf00d		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:è¡¨ç¤ºXä½ç½®ç§»å‹• */
+#define C_YCHG_		0xf00e		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:è¡¨ç¤ºYä½ç½®ç§»å‹• */
+#define C_CLR_		0xf00f		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:MSGã‚¨ãƒªã‚¢ã‚¯ãƒªã‚¢ */
+#define C_SEPLAY_	0xf010		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:SEã‚’ãªã‚‰ã™ */
 
-//ƒTƒuƒR[ƒh0x11`0x16	‚ÍŠCŠO”ÅƒTƒuƒR[ƒh
-#define C_STRUT_	0xf011		/* ˆø”‚P */
-#define C_OFSX_		0xf012		/* ˆø”‚P */
-#define C_BLANK_	0xf013		/* ˆø”‚P */
-#define C_WIDTH_	0xf014		/* ˆø”‚P */
-#define C_LANG_JP	0xf015		/* ˆø”‚È‚µ */
-#define C_LANG_DEF	0xf016		/* ˆø”‚È‚µ */
+//ã‚µãƒ–ã‚³ãƒ¼ãƒ‰0x11ã€œ0x16	ã¯æµ·å¤–ç‰ˆã‚µãƒ–ã‚³ãƒ¼ãƒ‰
+#define C_STRUT_	0xf011		/* å¼•æ•°ï¼‘ */
+#define C_OFSX_		0xf012		/* å¼•æ•°ï¼‘ */
+#define C_BLANK_	0xf013		/* å¼•æ•°ï¼‘ */
+#define C_WIDTH_	0xf014		/* å¼•æ•°ï¼‘ */
+#define C_LANG_JP	0xf015		/* å¼•æ•°ãªã— */
+#define C_LANG_DEF	0xf016		/* å¼•æ•°ãªã— */
 
-#define C_MUSPAUSE_	0xf017		/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:BGM‚ðPAUSE */
-#define C_MUSCONTINUE_	0xf018	/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:BGM‚ðCONTINUE */
+#define C_MUSPAUSE_	0xf017		/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:BGMã‚’PAUSE */
+#define C_MUSCONTINUE_	0xf018	/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:BGMã‚’CONTINUE */
 
-#define	C_FSIZCHG_		0xf019	/* ƒtƒHƒ“ƒgƒTƒCƒY•ÏXiƒhƒbƒg§Œäj */
-#define	C_FSIZCHG2_		0xf01a	/* ƒtƒHƒ“ƒgƒTƒCƒY•ÏXiƒhƒbƒg§Œäi‚Q”{jj */
-#define	C_FSIZCHGEND_	0xf01b	/* ƒtƒHƒ“ƒgƒTƒCƒY•ÏXI—¹iƒhƒbƒg§Œäj */
+#define	C_FSIZCHG_		0xf019	/* ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚ºå¤‰æ›´ï¼ˆãƒ‰ãƒƒãƒˆåˆ¶å¾¡ï¼‰ */
+#define	C_FSIZCHG2_		0xf01a	/* ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚ºå¤‰æ›´ï¼ˆãƒ‰ãƒƒãƒˆåˆ¶å¾¡ï¼ˆï¼’å€ï¼‰ï¼‰ */
+#define	C_FSIZCHGEND_	0xf01b	/* ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚ºå¤‰æ›´çµ‚äº†ï¼ˆãƒ‰ãƒƒãƒˆåˆ¶å¾¡ï¼‰ */
 
-#define C_DCOL_			0xf01c	/* ƒtƒHƒ“ƒg§ŒäƒTƒuƒRƒ}ƒ“ƒh:ˆêŠ‡Žw’è•ÏX(FS) */
+#define C_DCOL_			0xf01c	/* ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚µãƒ–ã‚³ãƒžãƒ³ãƒ‰:ä¸€æ‹¬æŒ‡å®šå¤‰æ›´(FS) */
 
 
 //=============================================================================================
-//	’è”
+//	å®šæ•°
 //=============================================================================================
-// C_FSIZCHG_‚Å§Œä‚·‚éƒhƒbƒgˆÊ’u
+// C_FSIZCHG_ã§åˆ¶å¾¡ã™ã‚‹ãƒ‰ãƒƒãƒˆä½ç½®
 #define	FSIZ_1PLUS_		( 0x0080 )	// 0000_0000_1000_0000
 #define	FSIZ_2PLUS_		( 0x0440 )	// 0000_0010_0010_0000
 #define	FSIZ_3PLUS_		( 0x0490 )	// 0000_0100_1001_0000
@@ -193,7 +193,7 @@ extern u8	ASCIIcode2DSuni(u8 c_id, u8 *ascii_str, u16 *ds_str);
 #define	FSIZ_15PLUS_	( 0xfffe )	// 1111_1111_1111_1110
 #define	FSIZ_16PLUS_	( 0xffff )	// 1111_1111_1111_1111
 
-// ’Êí‚ÌƒtƒHƒ“ƒgƒJƒ‰[
+// é€šå¸¸ã®ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
 #define	FBMP_COL_NULL		(0)
 #define	FBMP_COL_BLACK		(1)
 #define	FBMP_COL_BLK_SDW	(2)
@@ -212,43 +212,43 @@ extern u8	ASCIIcode2DSuni(u8 c_id, u8 *ascii_str, u16 *ds_str);
 //#define	FBMP_COL_YELLOW		(11)
 //#define	FBMP_COL_YLW_SDW	(12)
 
-// C_DCOL_‚Å§Œä‚·‚éF ( (•¶ŽšF<<4) + (‰eF) )
-#define	DCOL_BLACK_		( ( FBMP_COL_BLACK << 4 ) + FBMP_COL_BLK_SDW )	// •
-//#define	DCOL_WHITE_		( ( FBMP_COL_WHITE << 4 ) + FBMP_COL_WHT_SDW )	// ”’
-#define	DCOL_BLUE_		( ( FBMP_COL_BLUE << 4 ) + FBMP_COL_BLU_SDW )	// Â
-#define	DCOL_RED_		( ( FBMP_COL_RED << 4 ) + FBMP_COL_RED_SDW )	// Ô
-#define	DCOL_PINK_		( ( FBMP_COL_PINK << 4 ) + FBMP_COL_PNK_SDW )	// ƒsƒ“ƒN
-//#define	DCOL_YELLOW_	( ( FBMP_COL_YELLOW << 4 ) + FBMP_COL_YLW_SDW )	// ‰©
-#define	DCOL_GREEN_		( ( FBMP_COL_GREEN << 4 ) + FBMP_COL_GRN_SDW )	// —Î
+// C_DCOL_ã§åˆ¶å¾¡ã™ã‚‹è‰² ( (æ–‡å­—è‰²<<4) + (å½±è‰²) )
+#define	DCOL_BLACK_		( ( FBMP_COL_BLACK << 4 ) + FBMP_COL_BLK_SDW )	// é»’
+//#define	DCOL_WHITE_		( ( FBMP_COL_WHITE << 4 ) + FBMP_COL_WHT_SDW )	// ç™½
+#define	DCOL_BLUE_		( ( FBMP_COL_BLUE << 4 ) + FBMP_COL_BLU_SDW )	// é’
+#define	DCOL_RED_		( ( FBMP_COL_RED << 4 ) + FBMP_COL_RED_SDW )	// èµ¤
+#define	DCOL_PINK_		( ( FBMP_COL_PINK << 4 ) + FBMP_COL_PNK_SDW )	// ãƒ”ãƒ³ã‚¯
+//#define	DCOL_YELLOW_	( ( FBMP_COL_YELLOW << 4 ) + FBMP_COL_YLW_SDW )	// é»„
+#define	DCOL_GREEN_		( ( FBMP_COL_GREEN << 4 ) + FBMP_COL_GRN_SDW )	// ç·‘
 
 
 
 //============================================================================================
-//	”C“V“°ƒc[ƒ‹@ƒeƒXƒgƒR[ƒh
+//	ä»»å¤©å ‚ãƒ„ãƒ¼ãƒ«ã€€ãƒ†ã‚¹ãƒˆã‚³ãƒ¼ãƒ‰
 //============================================================================================
-#define	_CTRL_TAG		0xfffe			// ƒ^ƒOƒR[ƒh
+#define	_CTRL_TAG		0xfffe			// ã‚¿ã‚°ã‚³ãƒ¼ãƒ‰
 
-#define	NC_FONT_COL_	0xff00			// ƒtƒHƒ“ƒg§ŒäƒR[ƒh
-#define	NC_FONT_SIZE_	0xff01			// ƒtƒHƒ“ƒg§ŒäƒR[ƒh
-#define	NC_MOVE_		0xfe06			// “®ì§ŒäƒR[ƒh
+#define	NC_FONT_COL_	0xff00			// ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚³ãƒ¼ãƒ‰
+#define	NC_FONT_SIZE_	0xff01			// ãƒ•ã‚©ãƒ³ãƒˆåˆ¶å¾¡ã‚³ãƒ¼ãƒ‰
+#define	NC_MOVE_		0xfe06			// å‹•ä½œåˆ¶å¾¡ã‚³ãƒ¼ãƒ‰
 
-#define	NC_FCOL_BLACK_	0x0000		// •¶ŽšFF•
-#define	NC_FCOL_RED_	0x0001		// •¶ŽšFFÔ
+#define	NC_FCOL_BLACK_	0x0000		// æ–‡å­—è‰²ï¼šé»’
+#define	NC_FCOL_RED_	0x0001		// æ–‡å­—è‰²ï¼šèµ¤
 
-#define	NC_FAFF_100_	0x0064		// ƒTƒCƒYF100“
-#define	NC_FAFF_200_	0x00c8		// ƒTƒCƒYF200“
+#define	NC_FAFF_100_	0x0064		// ã‚µã‚¤ã‚ºï¼š100ï¼…
+#define	NC_FAFF_200_	0x00c8		// ã‚µã‚¤ã‚ºï¼š200ï¼…
 
-#define	NC_MV_CLEAR_	0xfe01			// ƒL[‘Ò‚¿ƒNƒŠƒA
-#define	NC_MV_SCROLL_	0xfe00			// ƒL[‘Ò‚¿ƒXƒNƒ[ƒ‹
+#define	NC_MV_CLEAR_	0xfe01			// ã‚­ãƒ¼å¾…ã¡ã‚¯ãƒªã‚¢
+#define	NC_MV_SCROLL_	0xfe00			// ã‚­ãƒ¼å¾…ã¡ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 
 #define NC_WORDSET_MASK		0xff00
 #define NC_WORDSET			0x0100
-#define NC_WORDSET_PL		0x0300		// ƒvƒ‰ƒ`ƒi—pƒ^ƒO
+#define NC_WORDSET_PL		0x0300		// ãƒ—ãƒ©ãƒãƒŠç”¨ã‚¿ã‚°
 #define NC_WORDSET_UNK_0x600 0x600
 #define NC_WORDSET_UNK_0x500 0x500
 
-#define NC_NOTE_ICON			(0x0200)	// ’–ÚƒAƒCƒRƒ“
-#define NC_FORCE_WAIT			(0x0201)	// ŽŸ‚Ì•¶Žš‚ð•\Ž¦‚·‚é‘O‚Ì‹­§ƒEƒFƒCƒgƒtƒŒ[ƒ€
+#define NC_NOTE_ICON			(0x0200)	// æ³¨ç›®ã‚¢ã‚¤ã‚³ãƒ³
+#define NC_FORCE_WAIT			(0x0201)	// æ¬¡ã®æ–‡å­—ã‚’è¡¨ç¤ºã™ã‚‹å‰ã®å¼·åˆ¶ã‚¦ã‚§ã‚¤ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
 #define NC_CALLBACK_ARG			(0x0202)
 #define NC_WRITEPOS_CHANGE_X	(0x0203)
 #define NC_WRITEPOS_CHANGE_Y	(0x0204)
@@ -256,11 +256,11 @@ extern u8	ASCIIcode2DSuni(u8 c_id, u8 *ascii_str, u16 *ds_str);
 #define NC_ACTIVE_ICON_	0xff02
 
 /*
-001a ff08 0000 0001 F•ÏXFÔ
-001a ff08 0000 0000 F•ÏXF•
-001a ff08 0001 00c8 ƒTƒCƒYF200“
-001a fe06 fe01 		ƒL[‘Ò‚¿ƒNƒŠƒA
-001a fe06 fe00		ƒL[‘Ò‚¿ƒXƒNƒ[ƒ‹
+001a ff08 0000 0001 è‰²å¤‰æ›´ï¼šèµ¤
+001a ff08 0000 0000 è‰²å¤‰æ›´ï¼šé»’
+001a ff08 0001 00c8 ã‚µã‚¤ã‚ºï¼š200ï¼…
+001a fe06 fe01 		ã‚­ãƒ¼å¾…ã¡ã‚¯ãƒªã‚¢
+001a fe06 fe00		ã‚­ãƒ¼å¾…ã¡ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 */
 
 

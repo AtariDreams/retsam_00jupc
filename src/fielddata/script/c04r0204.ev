@@ -8,11 +8,11 @@
 	.include	"../eventdata/zone_c04r0204evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c04r0204_init_change
 _EVENT_DATA		ev_c04r0204_gkanbu1
@@ -20,14 +20,14 @@ _EVENT_DATA		ev_c04r0204_pippi
 _EVENT_DATA		ev_c04r0204_gonbe
 _EVENT_DATA		ev_c04r0204_middlem
 _EVENT_DATA		ev_c04r0204_pc
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
 /*							FLAG_CHANGE								*/
 /********************************************************************/
 ev_c04r0204_init_change:
-	//Š²•”‚É‚©‚Á‚Ä‚¢‚È‚©‚Á‚½‚çƒtƒHƒO‚ð£’æ‚·‚é
+	//å¹¹éƒ¨ã«ã‹ã£ã¦ã„ãªã‹ã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’ç€¬å‘ˆã™ã‚‹
 	//_IF_FLAGOFF_JUMP	FE_C04R0204_WIN,ev_c04r0204_init_change_fogset
 
 	_GINGA_FOG_SET
@@ -38,19 +38,19 @@ ev_c04r0204_init_change_fogset:
 	_END
 
 /********************************************************************/
-/*							ƒMƒ“ƒK’c								*/
+/*							ã‚®ãƒ³ã‚¬å›£								*/
 /********************************************************************/
 ev_c04r0204_gkanbu1:
 	_TALK_OBJ_START
 
-	/*‚¨‚¶‚³‚ñ‚à’–Ú*/
+	/*ãŠã˜ã•ã‚“ã‚‚æ³¨ç›®*/
 	_OBJ_ANIME		C04R0204_MIDDLEM,anm_c04r0204_middlem_40
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_c04r0204_gkanbu1_01
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	GINGALEADER2_01,0
 	_TRAINER_LOSE_CHECK	SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_c04r0204_gkanbu1_battle_lose
@@ -61,10 +61,10 @@ ev_c04r0204_gkanbu1:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//ƒMƒ“ƒK’cíœ
+	//ã‚®ãƒ³ã‚¬å›£å‰Šé™¤
 	_OBJ_DEL		C04R0204_GKANBU
 
-	//FOG‰ðœ
+	//FOGè§£é™¤
 	//_GINGA_FOG_RESET
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -79,7 +79,7 @@ ev_c04r0204_gkanbu1:
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,DIR_RIGHT,ev_c04r0204_gingam_dir_right
 	_END
 
-/*Š’è‚ÌˆÊ’u‚Ö*/
+/*æ‰€å®šã®ä½ç½®ã¸*/
 ev_c04r0204_gingam_dir_up:
 	_OBJ_ANIME		C04R0204_MIDDLEM,anm_c04r0204_middlem_30
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c04r0204_player_30
@@ -110,7 +110,7 @@ ev_c04r0204_gingam_dir_right:
 	_JUMP			common_c04r0204_gingam_dir
 	_END
 
-/*‹¤’Êˆ—*/
+/*å…±é€šå‡¦ç†*/
 common_c04r0204_gingam_dir:
 	_TALK_KEYWAIT	msg_c04r0204_middlem_02
 	_TALK_CLOSE
@@ -119,18 +119,18 @@ common_c04r0204_gingam_dir:
 	_WIPE_FADE_END_CHECK
 
 	_FLAG_SET		FV_C04_GINGA
-	_FLAG_SET		FV_C04R0201_POLICE		/*‘ÛŒxŽ@*/
-	_FLAG_SET		FV_C04R0201_POLICE_GINGA/*ƒMƒ“ƒK’c‚É•Ï‘•‚µ‚Ä‚¢‚é‘ÛŒxŽ@*/
+	_FLAG_SET		FV_C04R0201_POLICE		/*å›½éš›è­¦å¯Ÿ*/
+	_FLAG_SET		FV_C04R0201_POLICE_GINGA/*ã‚®ãƒ³ã‚¬å›£ã«å¤‰è£…ã—ã¦ã„ã‚‹å›½éš›è­¦å¯Ÿ*/
 	_FLAG_SET		FE_C04R0204_WIN
-	_FLAG_RESET		FV_C04R0101_MIDDLEM		//Ž©“]ŽÔ‚Ìl
-	//_FLAG_RESET	FV_C04R0101_POKE		//Ž©“]ŽÔ‚Ìƒ|ƒPƒ‚ƒ“
-	_FLAG_RESET		FV_C04R0101_PIPPI		//Ž©“]ŽÔ‚Ìƒ|ƒPƒ‚ƒ“
+	_FLAG_RESET		FV_C04R0101_MIDDLEM		//è‡ªè»¢è»Šã®äºº
+	//_FLAG_RESET	FV_C04R0101_POKE		//è‡ªè»¢è»Šã®ãƒã‚±ãƒ¢ãƒ³
+	_FLAG_RESET		FV_C04R0101_PIPPI		//è‡ªè»¢è»Šã®ãƒã‚±ãƒ¢ãƒ³
 	_FLAG_RESET		FV_C04PC0101_GONBE		//
 	_OBJ_DEL		C04R0204_MIDDLEM
 	_OBJ_DEL		C04R0204_PIPPI
 	_OBJ_DEL		C04R0204_GONBE
 
-	_LDVAL			WK_SCENE_C04,3			/*ƒ`ƒƒƒ“ƒsƒIƒ“‚Ìƒ^ƒ}ƒSƒCƒxƒ“ƒgŠJŽn*/
+	_LDVAL			WK_SCENE_C04,3			/*ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ã®ã‚¿ãƒžã‚´ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹*/
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
@@ -140,21 +140,21 @@ common_c04r0204_gingam_dir:
 	_TALK_OBJ_END
 	_END
 
-//”s–kˆ—
+//æ•—åŒ—å‡¦ç†
 ev_c04r0204_gkanbu1_battle_lose:
 	_TRAINER_LOSE
 	_TALK_OBJ_END
 	_END
 
 //--------------------------------------------------------------------
-//‚¨‚¶‚³‚ñ	Š²•”‚ðŒ©‚é
+//ãŠã˜ã•ã‚“	å¹¹éƒ¨ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c04r0204_middlem_40
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚¨‚¶‚³‚ñ	‚¿‚©‚æ‚é
+//ãŠã˜ã•ã‚“	ã¡ã‹ã‚ˆã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c04r0204_middlem_30
 	_ANIME_DATA	AC_WALK_U_8F,1
@@ -177,7 +177,7 @@ _ANIME_LABEL anm_c04r0204_middlem_33
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	Œü‚«‚ð‡‚í‚¹‚é
+//ä¸»äººå…¬	å‘ãã‚’åˆã‚ã›ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_c04r0204_player_30
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -196,7 +196,7 @@ _ANIME_LABEL anm_c04r0204_player_33
 
 
 /********************************************************************/
-/*							ƒ|ƒPƒ‚ƒ“								*/
+/*							ãƒã‚±ãƒ¢ãƒ³								*/
 /********************************************************************/
 ev_c04r0204_pippi:
 	_EASY_VOICE_MSG	msg_c04r0204_pippi_01,MONSNO_PIPPI,0
@@ -204,7 +204,7 @@ ev_c04r0204_pippi:
 
 
 /********************************************************************/
-/*							ƒ|ƒPƒ‚ƒ“								*/
+/*							ãƒã‚±ãƒ¢ãƒ³								*/
 /********************************************************************/
 ev_c04r0204_gonbe:
 	_EASY_VOICE_MSG	msg_c04r0204_gonbe_01,MONSNO_MIMITTO,0
@@ -212,12 +212,12 @@ ev_c04r0204_gonbe:
 
 
 /********************************************************************/
-/*							‚¨‚¶‚³‚ñ								*/
+/*							ãŠã˜ã•ã‚“								*/
 /********************************************************************/
 ev_c04r0204_middlem:
 	_TALK_OBJ_START
 
-	//Š²•”‚ÉŸ—˜‚µ‚Ä‚¢‚½‚ç
+	//å¹¹éƒ¨ã«å‹åˆ©ã—ã¦ã„ãŸã‚‰
 	_IF_FLAGON_JUMP	FE_C04R0204_WIN,ev_c04r0204_middlem_02
 
 	_TALKMSG		msg_c04r0204_middlem_01
@@ -226,7 +226,7 @@ ev_c04r0204_middlem:
 	_TALK_OBJ_END
 	_END
 
-//Š²•”‚ÉŸ—˜‚µ‚Ä‚¢‚½‚ç
+//å¹¹éƒ¨ã«å‹åˆ©ã—ã¦ã„ãŸã‚‰
 ev_c04r0204_middlem_02:
 	_TALKMSG		msg_c04r0204_middlem_02
 	_LAST_KEYWAIT

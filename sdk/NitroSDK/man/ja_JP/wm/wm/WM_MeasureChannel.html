@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>WM_MeasureChannel</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">WM_MeasureChannel</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
   <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
 
@@ -26,53 +26,53 @@
 </CODE></PRE></dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <table border="1" width="100%">
   <tbody>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
-      <TD width="800">�񓯊������������������ɌĂяo�����R�[���o�b�N�֐����w�肵�܂��B<br>���̃R�[���o�b�N�͊��荞�݃n���h��������Ăяo����܂��B</TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
     </TR>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">ccaMode</FONT></STRONG></EM></TD>
-      <TD width="800">���蓮�샂�[�h���ȉ��� 0 �` 3 �̒l����w�肵�ĉ������B
-      <UL><LI>0 �F �L�����A�Z���X���[�h�B�j���e���h�[DS�̃��C�����X�ʐM�ɉe�����鋭�x�̓d�g�ɂ��Ă̂ݑ��肵�܂��B
-          <LI>1 �F ED臒l�w�胂�[�h�B<EM><STRONG>edThreshold</STRONG></EM>�Ɏw�肵���d�g���x�ȏ�̓d�g�ɂ��đ��肵�܂��B
-          <LI>2 �F �L�����A�Z���X��ED臒l�̘_���ςɊY�����鋭�x�̓d�g�ɂ��đ��肵�܂��B
-          <LI>3 �F �L�����A�Z���X��ED臒l�̘_���a�ɊY�����鋭�x�̓d�g�ɂ��đ��肵�܂��B
+      <TD width="800">測定動作モードを以下の 0 〜 3 の値から指定して下さい。
+      <UL><LI>0 ： キャリアセンスモード。ニンテンドーDSのワイヤレス通信に影響する強度の電波についてのみ測定します。
+          <LI>1 ： ED閾値指定モード。<EM><STRONG>edThreshold</STRONG></EM>に指定した電波強度以上の電波について測定します。
+          <LI>2 ： キャリアセンスとED閾値の論理積に該当する強度の電波について測定します。
+          <LI>3 ： キャリアセンスとED閾値の論理和に該当する強度の電波について測定します。
       </UL></TD>
     </TR>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">edThreshold</FONT></STRONG></EM></TD>
-      <TD width="800">�L�����A�Z���X���[�h�łȂ��ꍇ�ɁA���肷��d�g���x�̉������w�肵�܂��B
-      0 �` 61 ( -60dBm �` -80dBm ) �̒l���w�肵�Ă��������B</TD>
+      <TD width="800">キャリアセンスモードでない場合に、測定する電波強度の下限を指定します。
+      0 〜 61 ( -60dBm 〜 -80dBm ) の値を指定してください。</TD>
     </TR>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">channel</FONT></STRONG></EM></TD>
-      <TD width="800">��������`�����l�����w�肵�܂��B 1 �` 14 �̒l���w�肵�ĉ������B</TD>
+      <TD width="800">調査するチャンネルを指定します。 1 〜 14 の値を指定して下さい。</TD>
     </TR>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">measureTime</FONT></STRONG></EM></TD>
-      <TD width="800">����������Ԃ� 1 ms�P�ʂŎw�肵�܂��B1 �ȏ�̒l���w�肵�ĉ������B</TD>
+      <TD width="800">調査する期間を 1 ms単位で指定します。1 以上の値を指定して下さい。</TD>
     </TR>
    </tbody>
 </table>
 
-<h2>�Ԃ�l</h2>
-<p><A href="WMErrCode.html">WMErrCode�񋓌^</A>�̏������ʂ�Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
 
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-�w��`�����l���̓d�g�g�p���𑪒肵�܂��BWM�X�e�[�g��<A href="wm_state_diagram.html">IDLE�X�e�[�g</A>�̏ꍇ�Ɏ��s�\�ł��B
-API�̖߂�l��WM_ERRCODE_OPERATING�ł������ꍇ�A�d�g�g�p���̑��肪����������ɃR�[���o�b�N���������܂��B
+指定チャンネルの電波使用率を測定します。WMステートが<A href="wm_state_diagram.html">IDLEステート</A>の場合に実行可能です。
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、電波使用率の測定が完了した後にコールバックが発生します。
 </P>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/06/08 �R�[���o�b�N�����荞�݃n���h������Ăяo�����|��⑫<br>
-2005/03/02 �����ǋL<BR>
-2004/10/22 �Ԃ�l�̌^��ύX<BR>
-2004/08/11 ����<BR>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/03/02 説明追記<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/08/11 初版<BR>
 </P>
 </body>
 </html>

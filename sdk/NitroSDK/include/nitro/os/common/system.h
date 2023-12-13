@@ -39,11 +39,11 @@
   fix header comment
 
   Revision 1.21  2004/04/06 01:38:13  yada
-  OS_Halt() ‚Ì‹““®•ÏX
+  OS_Halt() ã®æŒ™å‹•å¤‰æ›´
 
   Revision 1.20  2004/03/04 09:48:20  yada
-  OSDisableInterrupt() ‚ğ IRQ ‹Ö~‚É‚µ‚½B
-  IRQ/FIQ ‹Ö~‚É‚Í•ÊŠÖ”‚ğ—pˆÓ‚µ‚½B
+  OSDisableInterrupt() ã‚’ IRQ ç¦æ­¢ã«ã—ãŸã€‚
+  IRQ/FIQ ç¦æ­¢ã«ã¯åˆ¥é–¢æ•°ã‚’ç”¨æ„ã—ãŸã€‚
 
   Revision 1.19  2004/02/27 01:55:00  yasu
   add OS_SpinWait, move OS_Halt into os_system.c
@@ -61,16 +61,16 @@
   new location of include files ARM9/ARM7
 
   Revision 1.14  2004/02/10 12:11:23  yada
-  OS_GetDTCMAddress, OS_GetITCMAddress ‚ğ tcm.h‚ÉˆÚs
+  OS_GetDTCMAddress, OS_GetITCMAddress ã‚’ tcm.hã«ç§»è¡Œ
 
   Revision 1.13  2004/02/10 11:35:06  yada
   only arrange tab & space
 
   Revision 1.12  2004/02/10 11:19:21  yada
-  Interrupt ŠÖŒW‚Ìinline ‚ğ‚â‚ß‚é
+  Interrupt é–¢ä¿‚ã®inline ã‚’ã‚„ã‚ã‚‹
 
   Revision 1.11  2004/02/09 11:38:18  yada
-  OS_GetDTCMAddress, OS_GetITCMAddress ì¬
+  OS_GetDTCMAddress, OS_GetITCMAddress ä½œæˆ
 
   Revision 1.10  2004/02/09 11:17:22  yasu
   include code32.h
@@ -79,49 +79,49 @@
   change SDK prefix iris -> nitro
 
   Revision 1.8  2004/01/18 04:47:31  yada
-  ƒCƒ“ƒfƒ“ƒg“™‚Ì®Œ`
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆç­‰ã®æ•´å½¢
 
   Revision 1.7  2004/01/17 02:28:38  nishida_kenji
   convert 'inline' to 'static inline' in header files
 
   Revision 1.6  2004/01/14 08:41:19  yada
-  OSIntrMode_Irq ‚É”º‚¤•ÏX
+  OSIntrMode_Irq ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.5  2004/01/14 01:41:35  yada
-  CPSR‚Ìinterrupt ‘€ì‚ğ IRQ‚Ì‚İ‚©‚ç IRQ‚ÆFIQ ‚É•ÏX
+  CPSRã®interrupt æ“ä½œã‚’ IRQã®ã¿ã‹ã‚‰ IRQã¨FIQ ã«å¤‰æ›´
 
   Revision 1.4  2003/12/25 07:30:07  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.3  2003/12/22 13:41:45  yasu
-  include ƒK[ƒh‚ÌC³
+  include ã‚¬ãƒ¼ãƒ‰ã®ä¿®æ­£
 
   Revision 1.2  2003/12/12 05:06:39  yada
-  ƒvƒƒZƒbƒTƒ‚[ƒh‚Ì’è‹`•ÏX‚É”º‚¤C³
+  ãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ¢ãƒ¼ãƒ‰ã®å®šç¾©å¤‰æ›´ã«ä¼´ã†ä¿®æ­£
 
   Revision 1.1  2003/12/12 01:25:31  yada
-  os/cpsr.h ¨ os/system.h ‚Æ–¼Ì•ÏX
+  os/cpsr.h â†’ os/system.h ã¨åç§°å¤‰æ›´
 
   Revision 1.7  2003/12/08 12:08:02  yada
-  SDK_ASM‚ª’è‹`‚³‚ê‚Ä‚¢‚é‚Æ‚«‚Í defineˆÈŠOŠÜ‚Ü‚ê‚È‚¢‚æ‚¤‚É‚µ‚½
+  SDK_ASMãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹ã¨ãã¯ defineä»¥å¤–å«ã¾ã‚Œãªã„ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.6  2003/12/08 01:25:05  yasu
-  context ‚É SP_svc ‚ğ’Ç‰Á‚·‚é
+  context ã« SP_svc ã‚’è¿½åŠ ã™ã‚‹
 
   Revision 1.5  2003/12/01 09:51:56  yasu
-  warning ‘Îô‚Ì‚½‚ß DEBUG ‚Ì‚İ•Ï”‚Ì‰Šú‰»‚ğs‚È‚¤
+  warning å¯¾ç­–ã®ãŸã‚ DEBUG æ™‚ã®ã¿å¤‰æ•°ã®åˆæœŸåŒ–ã‚’è¡Œãªã†
 
   Revision 1.4  2003/12/01 04:15:53  yasu
-  OS_RestoreInterrupts ‚ÌÀ‘•Œë‚èC³
+  OS_RestoreInterrupts ã®å®Ÿè£…èª¤ã‚Šä¿®æ­£
 
   Revision 1.3  2003/11/30 10:24:09  yasu
-  ‘O‰ñ‚ÌC³‚Å“ü‚ê‚Ä‚µ‚Ü‚Á‚½ƒoƒO‚ÌC³
+  å‰å›ã®ä¿®æ­£ã§å…¥ã‚Œã¦ã—ã¾ã£ãŸãƒã‚°ã®ä¿®æ­£
 
   Revision 1.2  2003/11/30 10:13:40  yasu
-  asm •\Œ»–@‚Ì•ÏX
+  asm è¡¨ç¾æ³•ã®å¤‰æ›´
 
   Revision 1.1  2003/11/30 04:17:43  yasu
-  V‹Kì¬ CPU CPSR İ’èŠÖŒW‚ÌŠÖ”
+  æ–°è¦ä½œæˆ CPU CPSR è¨­å®šé–¢ä¿‚ã®é–¢æ•°
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

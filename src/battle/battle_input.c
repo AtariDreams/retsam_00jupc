@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	battle_input.c
- * @brief	í“¬“ü—Í‰æ–Êˆ—
+ * @brief	æˆ¦é—˜å…¥åŠ›ç”»é¢å‡¦ç†
  * @author	matsuda
- * @date	2005.10.12(…)
+ * @date	2005.10.12(æ°´)
  */
 //==============================================================================
 #include "common.h"
@@ -48,57 +48,57 @@
 #include "debug/d_fight.h"
 #endif PM_DEBUG
 
-#define HAIKEI_CHG	1	//1:•ÏXŒã
+#define HAIKEI_CHG	1	//1:å¤‰æ›´å¾Œ
 #define PP_CHANGE	1
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 
-//ƒfƒoƒbƒO—p’è‹`F‚PS_MSG‚ðŽg—p‚µ‚½³Ž®‚ÈŒ`B‚OS_MSG‘Î‰žExpand‚ª—pˆÓ‚³‚ê‚é‚Ü‚Å‚ÌŽb’èˆ—
+//ãƒ‡ãƒãƒƒã‚°ç”¨å®šç¾©ï¼šï¼‘ï¼S_MSGã‚’ä½¿ç”¨ã—ãŸæ­£å¼ãªå½¢ã€‚ï¼ï¼S_MSGå¯¾å¿œExpandãŒç”¨æ„ã•ã‚Œã‚‹ã¾ã§ã®æš«å®šå‡¦ç†
 #define S_MSG_DEBUG		(0)
 
 //--------------------------------------------------------------
-//	ƒQ[ƒ€ƒpƒ‰ƒ[ƒ^
+//	ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //--------------------------------------------------------------
-///”wŒiƒtƒF[ƒh‚ÌEVY’l
+///èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰ã®EVYå€¤
 #define BACKFADE_EVY		(6)
-///”wŒiƒtƒF[ƒh‚ÌƒtƒF[ƒhŒã‚ÌƒJƒ‰[
+///èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰ã®ãƒ•ã‚§ãƒ¼ãƒ‰å¾Œã®ã‚«ãƒ©ãƒ¼
 #define BACKFADE_COLOR		(0x0000)
-///”wŒiƒtƒF[ƒh‚ÌƒtƒF[ƒhƒrƒbƒg
+///èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰ã®ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ“ãƒƒãƒˆ
 #define BACKFADE_FADEBIT	(0x0001)
-///”wŒiƒtƒF[ƒh‚ÌƒtƒF[ƒhƒEƒFƒCƒg
+///èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¦ã‚§ã‚¤ãƒˆ
 #define BACKFADE_FADE_WAIT	(-2)
 
 //--------------------------------------------------------------
-//	‚â‚é‹CƒAƒjƒ
+//	ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
-///‚â‚é‹CƒAƒjƒ‚ÌƒAƒjƒ’iŠK(ƒp[ƒZƒ“ƒe[ƒW)
+///ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡ã®ã‚¢ãƒ‹ãƒ¡æ®µéšŽ(ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸)
 enum{
-	MOTIVATION_ANM_HIGH = 94,		//16•ª‚Ì1 ¬”ØŽÌ‚Ä
-	MOTIVATION_ANM_MIDDLE = 87,		//8•ª‚Ì1 ¬”ØŽÌ‚Ä
-	MOTIVATION_ANM_LOW = 75,		//4•ª‚Ì1 ¬”ØŽÌ‚Ä
+	MOTIVATION_ANM_HIGH = 94,		//16åˆ†ã®1 å°æ•°åˆ‡æ¨ã¦
+	MOTIVATION_ANM_MIDDLE = 87,		//8åˆ†ã®1 å°æ•°åˆ‡æ¨ã¦
+	MOTIVATION_ANM_LOW = 75,		//4åˆ†ã®1 å°æ•°åˆ‡æ¨ã¦
 };
 
-///‚â‚é‹CƒAƒjƒƒ^ƒCƒv
+///ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
 enum{
 	MOTIVATION_ANM_TYPE_HIGH,
 	MOTIVATION_ANM_TYPE_MIDDLE,
 	MOTIVATION_ANM_TYPE_LOW,
 };
 
-///‚â‚é‹CƒAƒjƒFƒAƒjƒ‰ñ“]‰ÁŽZ’l
+///ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡ï¼šã‚¢ãƒ‹ãƒ¡å›žè»¢åŠ ç®—å€¤
 #define MOTIVATION_ADD_ROTATION		(0x0800)
-///‚â‚é‹CƒAƒjƒFƒAƒjƒˆÚ“®—ÊX(‰ºˆÊ8ƒrƒbƒg¬”)
+///ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡ï¼šã‚¢ãƒ‹ãƒ¡ç§»å‹•é‡X(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define MOTIVATION_ADD_X			(0x0180)
-///‚â‚é‹CƒAƒjƒFƒAƒjƒƒtƒŒ[ƒ€”(‚±‚ÌƒtƒŒ[ƒ€•ªŒo‰ß‚µ‚½‚çƒAƒjƒÜ‚è•Ô‚µ)
+///ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡ï¼šã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ æ•°(ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ åˆ†çµŒéŽã—ãŸã‚‰ã‚¢ãƒ‹ãƒ¡æŠ˜ã‚Šè¿”ã—)
 #define MOTIVATION_ANM_FRAME		(2)
-///‚â‚é‹CƒAƒjƒFƒAƒjƒŒJ‚è•Ô‚µ‰ñ”
+///ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡ï¼šã‚¢ãƒ‹ãƒ¡ç¹°ã‚Šè¿”ã—å›žæ•°
 #define MOTIVATION_ANM_LOOP			(1)
-///‚â‚é‹CƒAƒjƒFƒEƒFƒCƒg‚É‰ÁŽZ‚·‚éƒ‰ƒ“ƒ_ƒ€•
+///ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡ï¼šã‚¦ã‚§ã‚¤ãƒˆã«åŠ ç®—ã™ã‚‹ãƒ©ãƒ³ãƒ€ãƒ å¹…
 #define MOTIVATION_ANM_WAIT_RANDOM	(8)
 
-///‚â‚é‹CƒAƒjƒƒEƒFƒCƒg
+///ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 enum{
 	MOTIVATION_WAIT_HIGH = 10,
 	MOTIVATION_WAIT_MIDDLE = 60,
@@ -106,7 +106,7 @@ enum{
 };
 
 //--------------------------------------------------------------
-//	ƒ[ƒJƒ‹TCBƒvƒ‰ƒCƒIƒŠƒeƒB
+//	ãƒ­ãƒ¼ã‚«ãƒ«TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 #define VWAIT_TCBPRI_FRAMEVISIBLE		(10)
 #define VWAIT_TCBPRI_BACKSCRN_VISIBLE	(10)
@@ -116,73 +116,73 @@ enum{
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///BGŽw’è‚È‚µ
+///BGæŒ‡å®šãªã—
 #define NONE_ID			(0xffff)
 
-///ƒpƒlƒ‹ƒtƒŒ[ƒ€–Ê
+///ãƒ‘ãƒãƒ«ãƒ•ãƒ¬ãƒ¼ãƒ é¢
 #define BI_FRAME_PANEL	(GF_BGL_FRAME0_S)
-///ƒpƒlƒ‹BGNO–Ê
+///ãƒ‘ãƒãƒ«BGNOé¢
 #define BI_BGNO_PANEL	(0)
-///•˜gƒtƒŒ[ƒ€–Ê
+///é»’æž ãƒ•ãƒ¬ãƒ¼ãƒ é¢
 #define BI_FRAME_BF		(GF_BGL_FRAME1_S)
-///•˜gBGNO–Ê
+///é»’æž BGNOé¢
 #define BI_BGNO_BF		(1)
-///”wŒiƒtƒŒ[ƒ€–Ê
+///èƒŒæ™¯ãƒ•ãƒ¬ãƒ¼ãƒ é¢
 #define BI_FRAME_BACK	(GF_BGL_FRAME2_S)
-///”wŒiBGNO–Ê
+///èƒŒæ™¯BGNOé¢
 #define BI_BGNO_BACK	(2)
-///ƒGƒtƒFƒNƒgƒtƒŒ[ƒ€–Ê(•˜gƒXƒ‰ƒCƒh—p)
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ é¢(é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨)
 #define BI_FRAME_EFF	(GF_BGL_FRAME3_S)
-///ƒGƒtƒFƒNƒgBGNO–Ê(•˜gƒXƒ‰ƒCƒh—p)
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGNOé¢(é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨)
 #define BI_BGNO_EFF		(3)
 
-///”¼“§–¾‘æ1‘ÎÛ–Ê
+///åŠé€æ˜Žç¬¬1å¯¾è±¡é¢
 #define BLD_PLANE_1		(GX_BLEND_PLANEMASK_BG1)
-///”¼“§–¾‘æ2‘ÎÛ–Ê
+///åŠé€æ˜Žç¬¬2å¯¾è±¡é¢
 #define BLD_PLANE_2		(GX_BLEND_BGALL)
-///‘æ1‘ÎÛ–Ê‚É‘Î‚·‚éƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒOŒW”
+///ç¬¬1å¯¾è±¡é¢ã«å¯¾ã™ã‚‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ä¿‚æ•°
 #define BLD_ALPHA_1		8//(0x1b)	//(9)
-///‘æ2‘ÎÛ–Ê‚É‘Î‚·‚éƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒOŒW”
+///ç¬¬2å¯¾è±¡é¢ã«å¯¾ã™ã‚‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ä¿‚æ•°
 #define BLD_ALPHA_2		12//(4)	//(8)
 
-///BGŽg—p–Ê”
+///BGä½¿ç”¨é¢æ•°
 #define BI_BG_NUM		(4)
 
-///•W€ƒpƒŒƒbƒgƒf[ƒ^Žg—p–{”
+///æ¨™æº–ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ä½¿ç”¨æœ¬æ•°
 #define BASE_PLTT_NUM	(7)
 
-///makedata_no‰Šú’l(–¢Žg—pó‘Ô)
+///makedata_noåˆæœŸå€¤(æœªä½¿ç”¨çŠ¶æ…‹)
 #define MAKEDATA_NO_INIT	(-1)
 
-///ƒvƒŒƒCƒ„[‚Ì•ÇŽ†ƒTƒCƒY(ƒoƒCƒg’PˆÊ)
+///ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å£ç´™ã‚µã‚¤ã‚º(ãƒã‚¤ãƒˆå˜ä½)
 #define BG_PLAYER_WALL_SIZE		(32 * 12 * 0x20)
-///í“¬“ü—Í‰æ–Ê‚ÅŽg—po—ˆ‚éBG‚ÌCGRƒTƒCƒY
+///æˆ¦é—˜å…¥åŠ›ç”»é¢ã§ä½¿ç”¨å‡ºæ¥ã‚‹BGã®CGRã‚µã‚¤ã‚º
 #define BI_BG_CGR_SIZE			(0x6000 - BG_PLAYER_WALL_SIZE)
-///ƒvƒŒƒCƒ„[‚Ì•ÇŽ†“]‘—ƒIƒtƒZƒbƒgˆÊ’u(ƒLƒƒƒ‰’PˆÊ)
+///ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å£ç´™è»¢é€ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®(ã‚­ãƒ£ãƒ©å˜ä½)
 #define BG_PLAYER_WALL_OFFSET	(BI_BG_CGR_SIZE / 0x20)
 
-///BGƒXƒNƒŠ[ƒ“‚ÌƒNƒŠƒAƒR[ƒh
+///BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
 #define BG_CLEAR_CODE			(0x6000 / 0x20 - 1)
 
-///ƒtƒHƒ“ƒgOAMƒf[ƒ^‚ÌBMPƒLƒƒƒ‰ƒNƒ^ƒTƒCƒYX(Å‘å•¶Žš”‚Ì‹Z–¼Šî€)
+///ãƒ•ã‚©ãƒ³ãƒˆOAMãƒ‡ãƒ¼ã‚¿ã®BMPã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚ºX(æœ€å¤§æ–‡å­—æ•°ã®æŠ€ååŸºæº–)
 #define FONTOAMDATA_BMP_X_SIZE		(7 * 14 / 8)
 
-///‘I‘ðo—ˆ‚È‚¢ƒpƒlƒ‹‚ÌŠG‚ÌƒpƒŒƒbƒg”Ô†
+///é¸æŠžå‡ºæ¥ãªã„ãƒ‘ãƒãƒ«ã®çµµã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 #define BI_NOT_SELECT_PANEL_PALNO		(0xe)	//(6)
 
-///ƒtƒƒ“ƒeƒBƒA”wŒi‚ÌŽž‚ÌƒAƒjƒƒpƒŒƒbƒg’Ç‰ÁˆÊ’u
+///ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢èƒŒæ™¯ã®æ™‚ã®ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ¬ãƒƒãƒˆè¿½åŠ ä½ç½®
 #define FRONTIER_PALANM_POS				(7)
 
-///ƒ^ƒbƒ`‚µ‚½Žž‚Ì”wŒiƒpƒŒƒbƒg•ÏXƒJƒ‰[ŠJŽnˆÊ’u
+///ã‚¿ãƒƒãƒã—ãŸæ™‚ã®èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define BACKGROUND_CHANGE_PAL_START		(8)	//(0xb)
 
-///ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“Žw’è‚È‚µ
+///ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³æŒ‡å®šãªã—
 #define NOT_POKE_ICON			(0xff)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@”Ô†
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ç•ªå·
 enum{
 	SCRNBUF_BACKGROUND,
 	SCRNBUF_COMMAND,
@@ -194,13 +194,13 @@ enum{
 	
 	SCRNBUF_MAX,
 };
-///ƒvƒ‰ƒ`ƒi‚Å’Ç‰ÁF‚±‚êˆÈãƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ðí’“‚ÅŽ‚½‚È‚¢‚æ‚¤‚É‚·‚éˆ×YESNO‚Æ‹¤’Ê‚É‚·‚é
-///˜^‰æÄ¶‰æ–Ê‚Å‚Í‚±‚ÌƒXƒNƒŠ[ƒ“ˆÈŠOo‚È‚¢‚Ì‚ÅB
-#define SCRNBUF_PLAYBACK_STOP	(SCRNBUF_YESNO)	//uƒXƒgƒbƒvvƒ{ƒ^ƒ“
-#define SCRNBUF_PLAYBACK_SYSWIN	(SCRNBUF_POKESELE)	//ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE
+///ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ ï¼šã“ã‚Œä»¥ä¸Šã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’å¸¸é§ã§æŒãŸãªã„ã‚ˆã†ã«ã™ã‚‹ç‚ºYESNOã¨å…±é€šã«ã™ã‚‹
+///éŒ²ç”»å†ç”Ÿç”»é¢ã§ã¯ã“ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä»¥å¤–å‡ºãªã„ã®ã§ã€‚
+#define SCRNBUF_PLAYBACK_STOP	(SCRNBUF_YESNO)	//ã€Œã‚¹ãƒˆãƒƒãƒ—ã€ãƒœã‚¿ãƒ³
+#define SCRNBUF_PLAYBACK_SYSWIN	(SCRNBUF_POKESELE)	//ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
-///ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚É‘Î‰ž‚µ‚½ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ÌID
-///	¦SCRNBUF‚Æ•À‚Ñ‚ð“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆII
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã«å¯¾å¿œã—ãŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ID
+///	â€»SCRNBUFã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼ï¼
 ALIGN4 static const u16 ScrnArcDataNo[] = {
 	BATTLE_WBG0B_NSCR_BIN,		//SCRNBUF_BACKGROUND,
 	BATTLE_WBG1A_NSCR_BIN,		//SCRNBUF_COMMAND
@@ -212,42 +212,42 @@ ALIGN4 static const u16 ScrnArcDataNo[] = {
 };
 
 //--------------------------------------------------------------
-//	ƒXƒNƒŠ[ƒ“‘‚«Š·‚¦ƒIƒtƒZƒbƒg
+//	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
-///u‚½‚½‚©‚¤vƒRƒ}ƒ“ƒh‚ÌƒLƒƒƒ‰ƒl[ƒ€‚É‘«‚µ‚±‚ÞƒIƒtƒZƒbƒg
+///ã€ŒãŸãŸã‹ã†ã€ã‚³ãƒžãƒ³ãƒ‰ã®ã‚­ãƒ£ãƒ©ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define SCRN_ADD_A_FIGHT	(4)
-///uƒoƒbƒOvƒRƒ}ƒ“ƒh‚ÌƒLƒƒƒ‰ƒl[ƒ€‚É‘«‚µ‚±‚ÞƒIƒtƒZƒbƒg
+///ã€Œãƒãƒƒã‚°ã€ã‚³ãƒžãƒ³ãƒ‰ã®ã‚­ãƒ£ãƒ©ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define SCRN_ADD_A_ITEM		(7)
-///uƒ|ƒPƒ‚ƒ“vƒRƒ}ƒ“ƒh‚ÌƒLƒƒƒ‰ƒl[ƒ€‚É‘«‚µ‚±‚ÞƒIƒtƒZƒbƒg
+///ã€Œãƒã‚±ãƒ¢ãƒ³ã€ã‚³ãƒžãƒ³ãƒ‰ã®ã‚­ãƒ£ãƒ©ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define SCRN_ADD_A_POKEMON	(7)
-///u‚É‚°‚évƒRƒ}ƒ“ƒh‚ÌƒLƒƒƒ‰ƒl[ƒ€‚É‘«‚µ‚±‚ÞƒIƒtƒZƒbƒg
+///ã€Œã«ã’ã‚‹ã€ã‚³ãƒžãƒ³ãƒ‰ã®ã‚­ãƒ£ãƒ©ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define SCRN_ADD_A_ESCAPE	(6)
 
-///u‹Z‚P`‚SvƒRƒ}ƒ“ƒh‚ÌƒLƒƒƒ‰ƒl[ƒ€‚É‘«‚µ‚±‚ÞƒIƒtƒZƒbƒg
+///ã€ŒæŠ€ï¼‘ã€œï¼”ã€ã‚³ãƒžãƒ³ãƒ‰ã®ã‚­ãƒ£ãƒ©ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define SCRN_ADD_B_WAZA		(7)
-///‹Z‘I‘ð‰æ–Ê‚Ìu‚à‚Ç‚évƒRƒ}ƒ“ƒh‚ÌƒLƒƒƒ‰ƒl[ƒ€‚É‘«‚µ‚±‚ÞƒIƒtƒZƒbƒg
+///æŠ€é¸æŠžç”»é¢ã®ã€Œã‚‚ã©ã‚‹ã€ã‚³ãƒžãƒ³ãƒ‰ã®ã‚­ãƒ£ãƒ©ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define SCRN_ADD_B_MODORU	(6)
 
-///‚½‚½‚©‚¢‚ð‚â‚ß‚Ü‚·‚©Hu‚Í‚¢vƒRƒ}ƒ“ƒh‚ÌƒLƒƒƒ‰ƒl[ƒ€‚É‘«‚µ‚±‚ÞƒIƒtƒZƒbƒg
+///ãŸãŸã‹ã„ã‚’ã‚„ã‚ã¾ã™ã‹ï¼Ÿã€Œã¯ã„ã€ã‚³ãƒžãƒ³ãƒ‰ã®ã‚­ãƒ£ãƒ©ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define SCRN_ADD_ESCAPE_YES	(3)
-///‚½‚½‚©‚¢‚ð‚â‚ß‚Ü‚·‚©Hu‚Í‚¢vƒRƒ}ƒ“ƒh‚ÌƒLƒƒƒ‰ƒl[ƒ€‚É‘«‚µ‚±‚ÞƒIƒtƒZƒbƒg
+///ãŸãŸã‹ã„ã‚’ã‚„ã‚ã¾ã™ã‹ï¼Ÿã€Œã¯ã„ã€ã‚³ãƒžãƒ³ãƒ‰ã®ã‚­ãƒ£ãƒ©ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define SCRN_ADD_ESCAPE_NO	(3)
 
 //--------------------------------------------------------------
-//	ƒXƒNƒŠ[ƒ“ƒXƒNƒ[ƒ‹’l
+//	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤
 //--------------------------------------------------------------
-///TYPE_A‚ÌBG•\Ž¦Žž‚Éƒ^ƒbƒ`ƒpƒlƒ‹‚ª‰Ÿ‚³‚ê‚½Žž‚ÉY•ûŒü‚ÉƒXƒNƒ[ƒ‹‚³‚¹‚é’l(ƒGƒtƒFƒNƒg–Ê)
+///TYPE_Aã®BGè¡¨ç¤ºæ™‚ã«ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãŒæŠ¼ã•ã‚ŒãŸæ™‚ã«Yæ–¹å‘ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹å€¤(ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢)
 #define SCRN_SCROLL_A_EFF_Y		(-2)
 ///
 #define SCRN_SCROLL_BACK_A_EFF_Y	(1)
 
-///˜gƒ^ƒCƒv
+///æž ã‚¿ã‚¤ãƒ—
 enum{
 	WAKU_TYPE_A,
 	WAKU_TYPE_B,
 	WAKU_TYPE_C,
 	
-	WAKU_TYPE_NONE,		///<•˜g‚È‚µ
+	WAKU_TYPE_NONE,		///<é»’æž ãªã—
 };
 
 #define WAKU_SP_INIT		(0.09f)
@@ -255,45 +255,45 @@ enum{
 #define WAKU_EFF_FRAME		(6)
 
 //--------------------------------------------------------------
-//	˜AŒ‹ƒXƒNƒŠ[ƒ“
+//	é€£çµã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 //--------------------------------------------------------------
-///ƒpƒlƒ‹˜AŒ‹BG‚ÌƒXƒNƒŠ[ƒ“ƒR[ƒh
+///ãƒ‘ãƒãƒ«é€£çµBGã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚³ãƒ¼ãƒ‰
 #define JOINT_SCRN_CODE		(0x02a4)
 
 //--------------------------------------------------------------
-//	ƒ^ƒbƒ`ƒtƒF[ƒh
+//	ã‚¿ãƒƒãƒãƒ•ã‚§ãƒ¼ãƒ‰
 //--------------------------------------------------------------
-///ƒ^ƒbƒ`‚µ‚½Žž‚Ìƒ{ƒ^ƒ“ƒtƒF[ƒhEVY
+///ã‚¿ãƒƒãƒã—ãŸæ™‚ã®ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰EVY
 #define TOUCH_FADE_EVY		(10 << 8)
-///ƒ^ƒbƒ`‚µ‚½Žž‚Ìƒ{ƒ^ƒ“ƒtƒF[ƒhEVY‰ÁŽZ’l
+///ã‚¿ãƒƒãƒã—ãŸæ™‚ã®ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰EVYåŠ ç®—å€¤
 #define TOUCH_FADE_ADD_EVY	(TOUCH_FADE_EVY / 2)
 
 //--------------------------------------------------------------
-//	ƒtƒHƒ“ƒgOBJ
+//	ãƒ•ã‚©ãƒ³ãƒˆOBJ
 //--------------------------------------------------------------
-///ƒtƒHƒ“ƒgOBJ‚Ì•¶ŽšŠÔŠuX
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®æ–‡å­—é–“éš”X
 #define PANEL_MSG_MARGIN		(0)
-///ƒtƒHƒ“ƒgOBJ‚ÌÅ‘åŽg—pOAM”
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®æœ€å¤§ä½¿ç”¨OAMæ•°
 #define PANEL_MSG_MAXOAM		(8)
-///ƒtƒHƒ“ƒgOBJ‚ÌƒAƒNƒ^[ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define PANEL_MSG_SOFTPRI		(100)
-///ƒtƒHƒ“ƒgOBJ‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define PANEL_MSG_BGPRI			(0)
 
 enum{
-	FONTOAM_LEFT,		///<X¶’[À•W
-	FONTOAM_CENTER,		///<X’†SÀ•W
+	FONTOAM_LEFT,		///<Xå·¦ç«¯åº§æ¨™
+	FONTOAM_CENTER,		///<Xä¸­å¿ƒåº§æ¨™
 };
 
-///ƒtƒHƒ“ƒgOBJƒAƒNƒ^[ƒ[ƒN‚ÅŽg—p‚·‚é“Y‚¦Žš‚ÌˆÊ’u
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã§ä½¿ç”¨ã™ã‚‹æ·»ãˆå­—ã®ä½ç½®
 enum{
-	//‰æ–ÊA
-	FA_NO_FIGHT = 0,		///<‚½‚½‚©‚¤
+	//ç”»é¢A
+	FA_NO_FIGHT = 0,		///<ãŸãŸã‹ã†
 	FA_NO_ITEM,
 	FA_NO_POKEMON,
 	FA_NO_ESCAPE,
 	
-	//‰æ–ÊB
+	//ç”»é¢B
 	FA_NO_WAZA_1 = 0,
 	FA_NO_WAZA_2,
 	FA_NO_WAZA_3,
@@ -308,18 +308,18 @@ enum{
 	FA_NO_PP_3,
 	FA_NO_PP_4,
 	
-	//‰æ–ÊC
+	//ç”»é¢C
 	FA_NO_NAME_A = 0,
 	FA_NO_NAME_B,
 	FA_NO_NAME_C,
 	FA_NO_NAME_D,
 	FA_NO_NAME_MODORU,
 	
-	//‰æ–ÊD
+	//ç”»é¢D
 	FA_NO_ESCAPE_YES = 0,
 	FA_NO_ESCAPE_NO,
 	
-	//ƒ|ƒPƒ‚ƒ“‘I‘ð
+	//ãƒã‚±ãƒ¢ãƒ³é¸æŠž
 	FA_NO_POKE_A = 0,
 	FA_NO_POKE_B,
 	FA_NO_POKE_C,
@@ -328,17 +328,17 @@ enum{
 	
 	//BINPUT_TYPE_PLAYBACK_STOP
 	FA_NO_PLAYBACK_STOP = 0,
-	FA_NO_PLAYBACK_SYSTEM_MSG_0,	//1s–Ú
-	FA_NO_PLAYBACK_SYSTEM_MSG_1,	//2s–Ú
+	FA_NO_PLAYBACK_SYSTEM_MSG_0,	//1è¡Œç›®
+	FA_NO_PLAYBACK_SYSTEM_MSG_1,	//2è¡Œç›®
 	
 	
-	FA_NO_MAX = FA_NO_PP_4 + 1,			///<ƒtƒHƒ“ƒgOBJ‚ðˆê“x‚Éo‚¹‚éÅ‘å”
+	FA_NO_MAX = FA_NO_PP_4 + 1,			///<ãƒ•ã‚©ãƒ³ãƒˆOBJã‚’ä¸€åº¦ã«å‡ºã›ã‚‹æœ€å¤§æ•°
 };
 
-///ƒtƒHƒ“ƒgOBJ‚Ì•\Ž¦À•W
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®è¡¨ç¤ºåº§æ¨™
 enum{
-	//-- ‰æ–ÊA --//
-	FA_POS_FIGHT_X = 0x10 * 8,		//X‚Í’†SÀ•W
+	//-- ç”»é¢A --//
+	FA_POS_FIGHT_X = 0x10 * 8,		//Xã¯ä¸­å¿ƒåº§æ¨™
 	FA_POS_FIGHT_Y = 0xa * 8 + 4,
 	FA_POS_ITEM_X = 5 * 8,
 	FA_POS_ITEM_Y = 0x15 * 8 + 2,
@@ -347,8 +347,8 @@ enum{
 	FA_POS_ESCAPE_X = 0x10 * 8,
 	FA_POS_ESCAPE_Y = FA_POS_ITEM_Y + 8,
 	
-	//-- ‰æ–ÊB --//
-	FA_POS_WAZA_1_X = 8 * 8,	//X‚Í’†SÀ•W
+	//-- ç”»é¢B --//
+	FA_POS_WAZA_1_X = 8 * 8,	//Xã¯ä¸­å¿ƒåº§æ¨™
 	FA_POS_WAZA_1_Y = 6 * 8-2,
 	FA_POS_WAZA_2_X = 0x18 * 8,
 	FA_POS_WAZA_2_Y = FA_POS_WAZA_1_Y,
@@ -359,18 +359,18 @@ enum{
 	FA_POS_WAZA_MODORU_X = 0x10 * 8,
 	FA_POS_WAZA_MODORU_Y = FA_POS_ESCAPE_Y,
 
-	//-- ‰æ–ÊD --//
-	FA_POS_ESCAPE_YES_X = 0x10 * 8,			//X‚Í’†SÀ•W
+	//-- ç”»é¢D --//
+	FA_POS_ESCAPE_YES_X = 0x10 * 8,			//Xã¯ä¸­å¿ƒåº§æ¨™
 	FA_POS_ESCAPE_YES_Y = 0x8 * 8 + 4,
 	FA_POS_ESCAPE_NO_X = FA_POS_ESCAPE_YES_X,
 	FA_POS_ESCAPE_NO_Y = 0x11 * 8 + 4,
 
-	//-- ‰æ–ÊBINPUT_TYPE_PLAYBACK_STOP --//
-	FA_POS_STOP_X = 0x10 * 8,			//X‚Í’†SÀ•W
+	//-- ç”»é¢BINPUT_TYPE_PLAYBACK_STOP --//
+	FA_POS_STOP_X = 0x10 * 8,			//Xã¯ä¸­å¿ƒåº§æ¨™
 	FA_POS_STOP_Y = FA_POS_ESCAPE_Y,
 };
 
-//‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚Ì•\Ž¦À•W
+//æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºåº§æ¨™
 ALIGN4 static const u16 WazaIconPos[][2] = {	//0:X, 1:Y
 	{4*8, 			FA_POS_WAZA_1_Y + 16},
 	{0x14*8,			FA_POS_WAZA_2_Y + 16},
@@ -378,14 +378,14 @@ ALIGN4 static const u16 WazaIconPos[][2] = {	//0:X, 1:Y
 	{0x14*8, 			FA_POS_WAZA_4_Y + 16},
 };
 
-//uPPv‚Ì•\Ž¦À•W
+//ã€ŒPPã€ã®è¡¨ç¤ºåº§æ¨™
 ALIGN4 static const u16 PPMsgPos[][2] = {	//0:X, 1:Y
 	{4*8 + 28-1, 		FA_POS_WAZA_1_Y + 16},
 	{0x14*8 + 28-1,	FA_POS_WAZA_2_Y + 16},
 	{4*8 + 28-1, 		FA_POS_WAZA_3_Y + 16},
 	{0x14*8 + 28-1,	FA_POS_WAZA_4_Y + 16},
 };
-//Œ»ÝPP(”’l)‚Ì•\Ž¦À•W
+//ç¾åœ¨PP(æ•°å€¤)ã®è¡¨ç¤ºåº§æ¨™
 ALIGN4 static const u16 NowPPPos[][2] = {	//0:X, 1:Y
 	{4*8 + 44, 		FA_POS_WAZA_1_Y + 16},
 	{0x14*8 + 44,		FA_POS_WAZA_2_Y + 16},
@@ -393,7 +393,7 @@ ALIGN4 static const u16 NowPPPos[][2] = {	//0:X, 1:Y
 	{0x14*8 + 44,		FA_POS_WAZA_4_Y + 16},
 };
 
-//‹Z•ª—Þ‚Ì•\Ž¦À•W(XF¶’[À•W)
+//æŠ€åˆ†é¡žã®è¡¨ç¤ºåº§æ¨™(Xï¼šå·¦ç«¯åº§æ¨™)
 ALIGN4 static const u16 WazaClassPos[][2] = {	//0:X, 1:Y
 	{11*8, 8*8 - 16,},
 	{0x1b*8, 8*8 - 16,},
@@ -401,16 +401,16 @@ ALIGN4 static const u16 WazaClassPos[][2] = {	//0:X, 1:Y
 	{0x1b*8, 0x11*8 - 16,},
 };
 
-//ƒ|ƒPƒ‚ƒ“‘I‘ð(‹ZŒø‰Ê”ÍˆÍ)‚Ì•\Ž¦À•W
+//ãƒã‚±ãƒ¢ãƒ³é¸æŠž(æŠ€åŠ¹æžœç¯„å›²)ã®è¡¨ç¤ºåº§æ¨™
 ALIGN4 static const u16 PokeSelePos[][2] = {	//0:X, 1:Y
 	{7*8 + 4, 0xe*8 + 4},			//A
 	{0x18*8 + 4, 4*8},				//B
 	{0x18*8 + 4, 0xe*8 + 4},		//C
 	{7*8 + 4, 4*8},					//D
-	{0x10*8, FA_POS_WAZA_MODORU_Y},	//‚à‚Ç‚é
+	{0x10*8, FA_POS_WAZA_MODORU_Y},	//ã‚‚ã©ã‚‹
 };
 
-//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì•\Ž¦À•W
+//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºåº§æ¨™
 ALIGN4 static const u16 PokeIconPos[][2] = {	//0:X, 1:Y
 	{7*8 + 4, 0xe*8 + 4},			//A
 	{0x18*8 + 4, 7*8},				//B
@@ -419,9 +419,9 @@ ALIGN4 static const u16 PokeIconPos[][2] = {	//0:X, 1:Y
 };
 
 //--------------------------------------------------------------
-//	ƒpƒŒƒbƒgŠÖ˜A’è‹`
+//	ãƒ‘ãƒ¬ãƒƒãƒˆé–¢é€£å®šç¾©
 //--------------------------------------------------------------
-///ƒtƒHƒ“ƒgOBJ‚ÌƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 enum{
 	PALOFS_FIGHT = 2,
 	PALOFS_ITEM = 2,
@@ -448,111 +448,111 @@ enum{
 #define MSGCOLOR_ESCAPE			(GF_PRINTCOLOR_MAKE(10, 11, 12))
 
 #define MSGCOLOR_WAZA			(GF_PRINTCOLOR_MAKE(7, 8, 9))
-#define MSGCOLOR_PP_BLACK		(GF_PRINTCOLOR_MAKE(1, 2, 0))	//FONT_SYSTEM‚È‚Ì‚Å”wŒi”²‚«FŽw’è
-#define MSGCOLOR_PP_YELLOW		(GF_PRINTCOLOR_MAKE(3, 4, 0))	//FONT_SYSTEM‚È‚Ì‚Å”wŒi”²‚«FŽw’è
-#define MSGCOLOR_PP_ORANGE		(GF_PRINTCOLOR_MAKE(5, 6, 0))	//FONT_SYSTEM‚È‚Ì‚Å”wŒi”²‚«FŽw’è
-#define MSGCOLOR_PP_RED			(GF_PRINTCOLOR_MAKE(7, 8, 0))	//FONT_SYSTEM‚È‚Ì‚Å”wŒi”²‚«FŽw’è
+#define MSGCOLOR_PP_BLACK		(GF_PRINTCOLOR_MAKE(1, 2, 0))	//FONT_SYSTEMãªã®ã§èƒŒæ™¯æŠœãè‰²æŒ‡å®š
+#define MSGCOLOR_PP_YELLOW		(GF_PRINTCOLOR_MAKE(3, 4, 0))	//FONT_SYSTEMãªã®ã§èƒŒæ™¯æŠœãè‰²æŒ‡å®š
+#define MSGCOLOR_PP_ORANGE		(GF_PRINTCOLOR_MAKE(5, 6, 0))	//FONT_SYSTEMãªã®ã§èƒŒæ™¯æŠœãè‰²æŒ‡å®š
+#define MSGCOLOR_PP_RED			(GF_PRINTCOLOR_MAKE(7, 8, 0))	//FONT_SYSTEMãªã®ã§èƒŒæ™¯æŠœãè‰²æŒ‡å®š
 #define MSGCOLOR_WAZA_MODORU	(GF_PRINTCOLOR_MAKE(10, 11, 12))
 
-#define MSGCOLOR_SYSMSG			(GF_PRINTCOLOR_MAKE(9, 8, 0))//FONT_SYSTEM‚È‚Ì‚Å”wŒi”²‚«FŽw’è
+#define MSGCOLOR_SYSMSG			(GF_PRINTCOLOR_MAKE(9, 8, 0))//FONT_SYSTEMãªã®ã§èƒŒæ™¯æŠœãè‰²æŒ‡å®š
 #define MSGCOLOR_ESCAPE_YES		(GF_PRINTCOLOR_MAKE(1, 2, 3))
 #define MSGCOLOR_ESCAPE_NO		(GF_PRINTCOLOR_MAKE(10, 11, 12))
 
-#define MSGCOLOR_CLASS			(GF_PRINTCOLOR_MAKE(7, 8, 0))//FONT_SYSTEM‚È‚Ì‚Å”wŒi”²‚«FŽw’è
+#define MSGCOLOR_CLASS			(GF_PRINTCOLOR_MAKE(7, 8, 0))//FONT_SYSTEMãªã®ã§èƒŒæ™¯æŠœãè‰²æŒ‡å®š
 
 #define MSGCOLOR_POKESELE_ENEMY	(GF_PRINTCOLOR_MAKE(1, 2, 3))
 #define MSGCOLOR_POKESELE_MINE	(GF_PRINTCOLOR_MAKE(4, 5, 6))
 #define MSGCOLOR_POKESELE_MODORU	(MSGCOLOR_WAZA_MODORU)
 
 //--------------------------------------------------------------
-//	ƒGƒtƒFƒNƒgTCB
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCB
 //--------------------------------------------------------------
-///ƒpƒlƒ‹‚ðƒ^ƒbƒ`‚µ‚½Žž‚Ìƒ^ƒbƒ`ƒAƒjƒƒEƒFƒCƒg
+///ãƒ‘ãƒãƒ«ã‚’ã‚¿ãƒƒãƒã—ãŸæ™‚ã®ã‚¿ãƒƒãƒã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
 #define SCRN_TOUCH_ANM_WAIT		0//(1)
-///ƒpƒlƒ‹‚ðƒ^ƒbƒ`‚µ‚½ŒãAƒGƒtƒFƒNƒg‚Å‘Ò‚ÂƒtƒŒ[ƒ€”
+///ãƒ‘ãƒãƒ«ã‚’ã‚¿ãƒƒãƒã—ãŸå¾Œã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§å¾…ã¤ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define SCRN_TOUCH_WAIT			0//(1)	//(2)
 
 
 //--------------------------------------------------------------
-//	ŽèŽ‚¿ƒ{[ƒ‹
+//	æ‰‹æŒã¡ãƒœãƒ¼ãƒ«
 //--------------------------------------------------------------
-///ŽèŽ‚¿ƒ{[ƒ‹(Ž©‹@‘¤)‚ÌƒAƒNƒ^[ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+///æ‰‹æŒã¡ãƒœãƒ¼ãƒ«(è‡ªæ©Ÿå´)ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define SOFTPRI_STOCK_MINE		(10)
-///ŽèŽ‚¿ƒ{[ƒ‹(“G‘¤‚Ì)‚ÌƒAƒNƒ^[ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+///æ‰‹æŒã¡ãƒœãƒ¼ãƒ«(æ•µå´ã®)ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define SOFTPRI_STOCK_ENEMY		(11)
 
-///ŽèŽ‚¿ƒ{[ƒ‹(Ž©‹@‘¤)‚Ì¶’[‚ÌŽèŽ‚¿ƒ{[ƒ‹XÀ•W
+///æ‰‹æŒã¡ãƒœãƒ¼ãƒ«(è‡ªæ©Ÿå´)ã®å·¦ç«¯ã®æ‰‹æŒã¡ãƒœãƒ¼ãƒ«Xåº§æ¨™
 #define STOCK_MINE_BASE_POS_X		(12)
-///ŽèŽ‚¿ƒ{[ƒ‹(Ž©‹@‘¤)‚Ì¶’[‚ÌŽèŽ‚¿ƒ{[ƒ‹YÀ•W
+///æ‰‹æŒã¡ãƒœãƒ¼ãƒ«(è‡ªæ©Ÿå´)ã®å·¦ç«¯ã®æ‰‹æŒã¡ãƒœãƒ¼ãƒ«Yåº§æ¨™
 #define STOCK_MINE_BASE_POS_Y		(13)
-///ŽèŽ‚¿ƒ{[ƒ‹(Ž©‹@‘¤)‚Ì˜A‘±‚Åƒ{[ƒ‹‚ð”z’u‚·‚éŽž‚ÌŠÔŠuX•
+///æ‰‹æŒã¡ãƒœãƒ¼ãƒ«(è‡ªæ©Ÿå´)ã®é€£ç¶šã§ãƒœãƒ¼ãƒ«ã‚’é…ç½®ã™ã‚‹æ™‚ã®é–“éš”Xå¹…
 #define STOCK_MINE_BASE_SPACE_X		(19)
 
-///ŽèŽ‚¿ƒ{[ƒ‹(“G‘¤)‚Ì¶’[‚ÌŽèŽ‚¿ƒ{[ƒ‹XÀ•W
+///æ‰‹æŒã¡ãƒœãƒ¼ãƒ«(æ•µå´)ã®å·¦ç«¯ã®æ‰‹æŒã¡ãƒœãƒ¼ãƒ«Xåº§æ¨™
 #define STOCK_ENEMY_BASE_POS_X		(246)
-///ŽèŽ‚¿ƒ{[ƒ‹(“G‘¤)‚Ì¶’[‚ÌŽèŽ‚¿ƒ{[ƒ‹YÀ•W
+///æ‰‹æŒã¡ãƒœãƒ¼ãƒ«(æ•µå´)ã®å·¦ç«¯ã®æ‰‹æŒã¡ãƒœãƒ¼ãƒ«Yåº§æ¨™
 #define STOCK_ENEMY_BASE_POS_Y		(9)
-///ŽèŽ‚¿ƒ{[ƒ‹(“G‘¤)‚Ì˜A‘±‚Åƒ{[ƒ‹‚ð”z’u‚·‚éŽž‚ÌŠÔŠuX•
+///æ‰‹æŒã¡ãƒœãƒ¼ãƒ«(æ•µå´)ã®é€£ç¶šã§ãƒœãƒ¼ãƒ«ã‚’é…ç½®ã™ã‚‹æ™‚ã®é–“éš”Xå¹…
 #define STOCK_ENEMY_BASE_SPACE_X	(-12)
 
-///í“¬ƒJ[ƒ\ƒ‹‚ÌƒAƒNƒ^[ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+///æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define SOFTPRI_CURSOR				(5)
-///í“¬ƒJ[ƒ\ƒ‹‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BGPRI_CURSOR				(0)
 
 //--------------------------------------------------------------
-//	‹Zƒ^ƒCƒv
+//	æŠ€ã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
-///‹Zƒ^ƒCƒv‚ÌƒpƒŒƒbƒgŠJŽnˆÊ’u
+///æŠ€ã‚¿ã‚¤ãƒ—ã®ãƒ‘ãƒ¬ãƒƒãƒˆé–‹å§‹ä½ç½®
 #define WAZATYPE_START_PALPOS	(8)
 
 //--------------------------------------------------------------
-//	ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊFƒXƒ‰ƒCƒhƒCƒ“ƒGƒtƒFƒNƒg
+//	ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢ï¼šã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //--------------------------------------------------------------
-///ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊINƒGƒtƒFƒNƒgFƒEƒBƒ“ƒhƒE0‚Ì‰ŠúÀ•WX
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢INã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0ã®åˆæœŸåº§æ¨™X
 #define COMMANDIN_WND_START_X0		(0)
-///ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊINƒGƒtƒFƒNƒgFƒEƒBƒ“ƒhƒE0‚Ì‰ŠúÀ•WX
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢INã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0ã®åˆæœŸåº§æ¨™X
 #define COMMANDIN_WND_END_X0		(255)
-///ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊINƒGƒtƒFƒNƒgFƒEƒBƒ“ƒhƒE1‚Ì‰ŠúÀ•WX
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢INã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦1ã®åˆæœŸåº§æ¨™X
 #define COMMANDIN_WND_START_X1		(0)
-///ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊINƒGƒtƒFƒNƒgFƒEƒBƒ“ƒhƒE1‚Ì‰ŠúÀ•WX
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢INã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦1ã®åˆæœŸåº§æ¨™X
 #define COMMANDIN_WND_END_X1		(255)
-///ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊINƒGƒtƒFƒNƒgFƒEƒBƒ“ƒhƒE0‚Ì‰ŠúÀ•WY
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢INã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0ã®åˆæœŸåº§æ¨™Y
 #define COMMANDIN_WND_START_Y0		(0)
-///ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊINƒGƒtƒFƒNƒgFƒEƒBƒ“ƒhƒE0‚Ì‰ŠúÀ•WY
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢INã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0ã®åˆæœŸåº§æ¨™Y
 #define COMMANDIN_WND_END_Y0		(18 * 8)
-///ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊINƒGƒtƒFƒNƒgFƒEƒBƒ“ƒhƒE1‚Ì‰ŠúÀ•WY
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢INã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦1ã®åˆæœŸåº§æ¨™Y
 #define COMMANDIN_WND_START_Y1		(COMMANDIN_WND_END_Y0)
-///ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊINƒGƒtƒFƒNƒgFƒEƒBƒ“ƒhƒE1‚Ì‰ŠúÀ•WY
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢INã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦1ã®åˆæœŸåº§æ¨™Y
 #define COMMANDIN_WND_END_Y1		(192)
 
 #define COMMANDIN_SCR_X0_START		(255 * 100)
 #define COMMANDIN_SCR_Y1_START		(40 * 100)
-///ƒRƒ}ƒ“ƒhƒCƒ“ƒXƒ‰ƒCƒhƒGƒtƒFƒNƒg‚É‚©‚¯‚éƒtƒŒ[ƒ€”
+///ã‚³ãƒžãƒ³ãƒ‰ã‚¤ãƒ³ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«ã‹ã‘ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define COMMANDIN_EFF_FRAME			(4)	//(8)
 #define COMMANDIN_SCR_X0_ADD		(COMMANDIN_SCR_X0_START / COMMANDIN_EFF_FRAME)
 #define COMMANDIN_SCR_Y1_ADD		(COMMANDIN_SCR_Y1_START / COMMANDIN_EFF_FRAME)
 
 //--------------------------------------------------------------
-//	•ßŠlƒfƒ‚
+//	æ•ç²ãƒ‡ãƒ¢
 //--------------------------------------------------------------
-///•ßŠlƒfƒ‚—pŽwƒJ[ƒ\ƒ‹Fƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+///æ•ç²ãƒ‡ãƒ¢ç”¨æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ï¼šã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define FINGER_SOFTPRI		(10)
-///•ßŠlƒfƒ‚—pŽwƒJ[ƒ\ƒ‹FBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///æ•ç²ãƒ‡ãƒ¢ç”¨æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ï¼šBGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define FINGER_BGPRI		(0)
-///•ßŠlƒfƒ‚—pŽwƒJ[ƒ\ƒ‹Fƒ^ƒbƒ`‚·‚é‚Ü‚Å‚ÌƒEƒFƒCƒg
+///æ•ç²ãƒ‡ãƒ¢ç”¨æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ï¼šã‚¿ãƒƒãƒã™ã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define FINGER_TOUCH_WAIT	(60)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊFƒXƒNƒ[ƒ‹ƒCƒ“ƒGƒtƒFƒNƒgƒ[ƒN
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢ï¼šã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	BI_PARAM_PTR bip;	///<BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	TCB_PTR vtask_tcb;	///<Vƒuƒ‰ƒ“ƒN“®ìƒ^ƒXƒN‚Ìƒ|ƒCƒ“ƒ^
+	BI_PARAM_PTR bip;	///<BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	TCB_PTR vtask_tcb;	///<Vãƒ–ãƒ©ãƒ³ã‚¯å‹•ä½œã‚¿ã‚¹ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	s16 x0_l;		///<100‚ÌœŽZ‚ª®”
+	s16 x0_l;		///<100ã®é™¤ç®—ãŒæ•´æ•°
 	s16 y1_d;
 	s16 set_x0_l;
 	s16 set_y1_d;
@@ -567,7 +567,7 @@ typedef struct{
 	s16 y;
 }POINT_S16;
 
-///ƒXƒNƒŠ[ƒ“‘‚«Š·‚¦Žž‚Ì”ÍˆÍŽw’è\‘¢‘Ì
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆæ™‚ã®ç¯„å›²æŒ‡å®šæ§‹é€ ä½“
 typedef struct{
 	u8 top;
 	u8 bottom;
@@ -575,41 +575,41 @@ typedef struct{
 	u8 right;
 }REWRITE_SCRN_RECT;
 
-///CGR“]‘—ƒAƒjƒŽÀsŽž‚Ì”ÍˆÍƒf[ƒ^
+///CGRè»¢é€ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œæ™‚ã®ç¯„å›²ãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	u16 dest_x;			///<“]‘—æXŠJŽnˆÊ’u(ƒLƒƒƒ‰’PˆÊ)
-	u16 dest_y;			///<“]‘—æYŠJŽnˆÊ’u(ƒLƒƒƒ‰’PˆÊ)
-	u16 src_x;			///<“]‘—Œ³XŠJŽnˆÊ’u(ƒLƒƒƒ‰’PˆÊ)
-	u16 src_y;			///<“]‘—Œ³YŠJŽnˆÊ’u(ƒLƒƒƒ‰’PˆÊ)
-	u16 size_x;			///<X“]‘—ƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)
-	u16 size_y;			///<Y“]‘—ƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)
+	u16 dest_x;			///<è»¢é€å…ˆXé–‹å§‹ä½ç½®(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 dest_y;			///<è»¢é€å…ˆYé–‹å§‹ä½ç½®(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 src_x;			///<è»¢é€å…ƒXé–‹å§‹ä½ç½®(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 src_y;			///<è»¢é€å…ƒYé–‹å§‹ä½ç½®(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 size_x;			///<Xè»¢é€ã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 size_y;			///<Yè»¢é€ã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)
 }CGR_TRANS_RECTDATA;
 
-///CGR“]‘—ƒAƒjƒŽÀsŽž‚Ìƒpƒ‰ƒ[ƒ^
+///CGRè»¢é€ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œæ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
-	TCB_PTR v_tcb;		///<Vƒuƒ‰ƒ“ƒN“]‘—‚ðŽÀs‚·‚éTCB‚Ìƒ|ƒCƒ“ƒ^
-	u8 *dest_vram;		///<VRAM“]‘—æƒAƒhƒŒƒX
-	void *arc_data;		///<ƒA[ƒJƒCƒu‚µ‚½ƒLƒƒƒ‰ƒtƒ@ƒCƒ‹‚Ìƒ|ƒCƒ“ƒ^
-	u8 *raw_data;		///<ƒA[ƒJƒCƒu‚µ‚½ƒLƒƒƒ‰ƒtƒ@ƒCƒ‹‚ÌƒLƒƒƒ‰ƒf[ƒ^æ“ªƒAƒhƒŒƒX
-	CGR_TRANS_RECTDATA rd;	///<CGR“]‘—ƒAƒjƒŽÀsŽž‚Ì”ÍˆÍƒf[ƒ^
-	u16 x_len;			///<ƒLƒƒƒ‰ƒtƒ@ƒCƒ‹‚ÌX•(ƒoƒCƒg’PˆÊ)
+	TCB_PTR v_tcb;		///<Vãƒ–ãƒ©ãƒ³ã‚¯è»¢é€ã‚’å®Ÿè¡Œã™ã‚‹TCBã®ãƒã‚¤ãƒ³ã‚¿
+	u8 *dest_vram;		///<VRAMè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
+	void *arc_data;		///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã—ãŸã‚­ãƒ£ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 *raw_data;		///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã—ãŸã‚­ãƒ£ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+	CGR_TRANS_RECTDATA rd;	///<CGRè»¢é€ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œæ™‚ã®ç¯„å›²ãƒ‡ãƒ¼ã‚¿
+	u16 x_len;			///<ã‚­ãƒ£ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ã®Xå¹…(ãƒã‚¤ãƒˆå˜ä½)
 }CGR_TRANS_PARAM;
 
-///ƒ{ƒ^ƒ“‚ÌƒAƒjƒƒpƒ^[ƒ“”
+///ãƒœã‚¿ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°
 #define BUTTON_ANM_NUM			(2)
 
-///ƒGƒtƒFƒNƒgTCB—p‚Ìƒ[ƒN
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBç”¨ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	s16 seq;
 	s16 wait;
 	union{
-		struct{		//”Ä—p
-			u8 fa_no;						///<‘ÎÛƒtƒHƒ“ƒgOBJƒAƒNƒ^[ƒ[ƒN‚Ì“Y‚¦Žš
+		struct{		//æ±Žç”¨
+			u8 fa_no;						///<å¯¾è±¡ãƒ•ã‚©ãƒ³ãƒˆOBJã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã®æ·»ãˆå­—
 		}para;
-		struct{		//‹Z‘I‘ð—p
+		struct{		//æŠ€é¸æŠžç”¨
 			int tp_ret;
 		}waza;
-		struct{		//CGR“]‘——p(”Ä—p)
+		struct{		//CGRè»¢é€ç”¨(æ±Žç”¨)
 //			CGR_TRANS_PARAM *ctp;
 //			const CGR_TRANS_RECTDATA *ctp_rd_ptr[BUTTON_ANM_NUM];
 //			u32 transcgr_id[BUTTON_ANM_NUM];
@@ -617,8 +617,8 @@ typedef struct{
 			const REWRITE_SCRN_RECT *scrn_range;
 			int tp_ret;
 			u8 scrnbuf_no;
-			u8 fa_no;						///<‘ÎÛƒtƒHƒ“ƒgOBJƒAƒNƒ^[ƒ[ƒN‚Ì“Y‚¦Žš
-			u8 pokeicon_no;					///<‘ÎÛƒ|ƒPƒAƒCƒRƒ“ƒAƒNƒ^[ƒ[ƒN‚Ì“Y‚¦Žš
+			u8 fa_no;						///<å¯¾è±¡ãƒ•ã‚©ãƒ³ãƒˆOBJã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã®æ·»ãˆå­—
+			u8 pokeicon_no;					///<å¯¾è±¡ãƒã‚±ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã®æ·»ãˆå­—
 			u8 waku_type;
 			u8 obj_del;
 			POINT_S16 waku_pos;
@@ -634,51 +634,51 @@ typedef struct{
 	};
 }BI_EFFECT_WORK;
 
-///ƒJƒ‰[ƒGƒtƒFƒNƒgTCB—p‚Ìƒ[ƒN
+///ã‚«ãƒ©ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBç”¨ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	int tp_ret;
-	s16 evy;		///<EVY’l(‰ºˆÊ8ƒrƒbƒg¬”)
-	s16 evy_add;	///<EVY‰ÁŒ¸ŽZ’l(‰ºˆÊ8ƒrƒbƒg¬”)
+	s16 evy;		///<EVYå€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s16 evy_add;	///<EVYåŠ æ¸›ç®—å€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 	u8 seq;
-	u8 pal_pos;	///<ƒtƒF[ƒh‘ÎÛ‚ÌƒpƒŒƒbƒg”Ô†
+	u8 pal_pos;	///<ãƒ•ã‚§ãƒ¼ãƒ‰å¯¾è±¡ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 }BI_COLOR_EFF_WORK;
 
-///ƒGƒtƒFƒNƒgBG‘‚«Š·‚¦ƒpƒ‰ƒ[ƒ^
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGæ›¸ãæ›ãˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
-	const REWRITE_SCRN_RECT *rsr;	///<ƒXƒNƒŠ[ƒ“‘‚«Š·‚¦”ÍˆÍƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u8 rsr_num;						///<rsrƒf[ƒ^ŒÂ”
-	s8 add_charname;				///<ƒLƒƒƒ‰ƒNƒ^ƒl[ƒ€‚É‘«‚µ‚±‚ÞƒIƒtƒZƒbƒg’l
+	const REWRITE_SCRN_RECT *rsr;	///<ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆç¯„å›²ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 rsr_num;						///<rsrãƒ‡ãƒ¼ã‚¿å€‹æ•°
+	s8 add_charname;				///<ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 }EFFBG_WRITE_PARAM;
 
-///ƒtƒHƒ“ƒgƒAƒNƒ^[ƒ[ƒN
+///ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	FONTOAM_OBJ_PTR fontoam;
 	CHAR_MANAGER_ALLOCDATA cma;
 	u16 font_len;
 }FONT_ACTOR;
 
-///‚â‚é‹CƒAƒjƒ—pƒ[ƒN
+///ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡ç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	s16 x_offset;			///<XÀ•WƒIƒtƒZƒbƒg(‰ºˆÊ8ƒrƒbƒg¬”)
-	u8 motivation;			///<Œ»Ý‚Ìƒ‚ƒ`ƒx[ƒVƒ‡ƒ“(0`100)
+	s16 x_offset;			///<Xåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	u8 motivation;			///<ç¾åœ¨ã®ãƒ¢ãƒãƒ™ãƒ¼ã‚·ãƒ§ãƒ³(0ã€œ100)
 	u8 seq;
 	u8 anm_type;
 	u8 wait;
-	u8 count;				///<ˆÚ“®ƒtƒŒ[ƒ€‚ðƒJƒEƒ“ƒg
-	u8 count_max;			///<ˆÚ“®ƒtƒŒ[ƒ€Å‘å”(‚±‚Ì•ªˆÚ“®‚µ‚½‚çÜ‚è•Ô‚µ)
-	u8 loop;				///<ƒAƒjƒŒJ‚è•Ô‚µ‰ñ”
+	u8 count;				///<ç§»å‹•ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
+	u8 count_max;			///<ç§»å‹•ãƒ•ãƒ¬ãƒ¼ãƒ æœ€å¤§æ•°(ã“ã®åˆ†ç§»å‹•ã—ãŸã‚‰æŠ˜ã‚Šè¿”ã—)
+	u8 loop;				///<ã‚¢ãƒ‹ãƒ¡ç¹°ã‚Šè¿”ã—å›žæ•°
 }MOTIVATION_WORK;
 
-///ƒJ[ƒ\ƒ‹ˆÚ“®—pƒ[ƒN
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	u8 cursor_on;			///<TRUEFƒJ[ƒ\ƒ‹•\Ž¦ó‘Ô
-	s8 y_menu;				///<ŠK‘wƒƒjƒ…[‚ÌˆÊ’u(Y)
-	s8 x_menu;				///<…•½ƒƒjƒ…[‚ÌˆÊ’u(X)
+	u8 cursor_on;			///<TRUEï¼šã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºçŠ¶æ…‹
+	s8 y_menu;				///<éšŽå±¤ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½ç½®(Y)
+	s8 x_menu;				///<æ°´å¹³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½ç½®(X)
 	
 	u8 dummy;
 }CURSOR_MOVE;
 
-///ƒV[ƒ“ƒ[ƒN
+///ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯
 typedef union{
 	BINPUT_SCENE_COMMAND bsc;
 	BINPUT_SCENE_WAZA bsw;
@@ -686,100 +686,100 @@ typedef union{
 	BINPUT_SCENE_YESNO bsy;
 }SCENE_WORK;
 
-///ƒtƒHƒ“ƒgOAMì¬ŽžAŠO‘¤‚ÅBMPŽw’è‚·‚éê‡‚ÉŽg—p
+///ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆæ™‚ã€å¤–å´ã§BMPæŒ‡å®šã™ã‚‹å ´åˆã«ä½¿ç”¨
 typedef struct{
 	GF_BGL_BMPWIN bmpwin;
 	u16 char_len;
 	u16 font_len;
 }FONT_EX_BMPWIN;
 
-///•`‰æˆ—‚‘¬‰»‚Ìˆ×A‚ ‚ç‚©‚¶‚ßƒf[ƒ^‚ðì¬‚µ‚Ä‚¨‚­ˆ×‚Ìƒ[ƒN
+///æç”»å‡¦ç†é«˜é€ŸåŒ–ã®ç‚ºã€ã‚ã‚‰ã‹ã˜ã‚ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦ãŠãç‚ºã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	BINPUT_WAZA_PARAM wazapara;				///<ƒf[ƒ^”äŠr—p‚ÉŒ»Ý‚Ìƒpƒ‰ƒ[ƒ^•Û‘¶
+	BINPUT_WAZA_PARAM wazapara;				///<ãƒ‡ãƒ¼ã‚¿æ¯”è¼ƒç”¨ã«ç¾åœ¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¿å­˜
 	
-	//‹Zƒ^ƒCƒvƒAƒCƒRƒ“FƒLƒƒƒ‰ƒf[ƒ^“WŠJƒƒ‚ƒŠ
-	u16 *typeicon_cgx[WAZA_TEMOTI_MAX];		///<‹Zƒ^ƒCƒvƒAƒCƒRƒ“FƒLƒƒƒ‰ƒf[ƒ^“WŠJƒƒ‚ƒŠ
+	//æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼šã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿å±•é–‹ãƒ¡ãƒ¢ãƒª
+	u16 *typeicon_cgx[WAZA_TEMOTI_MAX];		///<æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼šã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿å±•é–‹ãƒ¡ãƒ¢ãƒª
 	
-	//ƒtƒHƒ“ƒgOAM‚ÉŠÖ˜A•t‚¯‚éBMPWIN
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã«é–¢é€£ä»˜ã‘ã‚‹BMPWIN
 	FONT_EX_BMPWIN exbmp_waza[WAZA_TEMOTI_MAX];
 	FONT_EX_BMPWIN exbmp_pp[WAZA_TEMOTI_MAX];
 	FONT_EX_BMPWIN exbmp_ppmax[WAZA_TEMOTI_MAX];
 }MEMORY_DECORD_WORK;
 
-///í“¬“ü—Í‰æ–Ê§Œäƒ[ƒN
+///æˆ¦é—˜å…¥åŠ›ç”»é¢åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 typedef struct _BI_PARAM{
 	BATTLE_WORK *bw;
 	BATTLE_CURSOR_DISP *cursor_disp;
-	TCB_PTR ball_tcb;		///<ƒ{[ƒ‹‚â‚é‹CƒAƒjƒTCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	TCB_PTR effect_tcb;	///<ƒGƒtƒFƒNƒg“®ìTCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	TCB_PTR color_eff_tcb;	///<ƒJƒ‰[ƒGƒtƒFƒNƒg“®ìTCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	EFFBG_WRITE_PARAM ewp;	///<ƒGƒtƒFƒNƒgBG‘‚«Š·‚¦ƒpƒ‰ƒ[ƒ^
+	TCB_PTR ball_tcb;		///<ãƒœãƒ¼ãƒ«ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	TCB_PTR effect_tcb;	///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œTCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	TCB_PTR color_eff_tcb;	///<ã‚«ãƒ©ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œTCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	EFFBG_WRITE_PARAM ewp;	///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGæ›¸ãæ›ãˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	
-	//ƒV[ƒ“ƒ[ƒN
-	SCENE_WORK scene;	///<ƒV[ƒ“–ˆ‚ÉˆÙ‚È‚é•K—v‚Èƒf[ƒ^—Þ
+	//ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯
+	SCENE_WORK scene;	///<ã‚·ãƒ¼ãƒ³æ¯Žã«ç•°ãªã‚‹å¿…è¦ãªãƒ‡ãƒ¼ã‚¿é¡ž
 	
-	//ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@
-	u16 *scrn_buf[SCRNBUF_MAX];	///<ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@
-	//ƒpƒŒƒbƒgƒoƒbƒtƒ@
-	u16 *pal_buf;				///<ƒpƒŒƒbƒgƒoƒbƒtƒ@
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡
+	u16 *scrn_buf[SCRNBUF_MAX];	///<ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡
+	u16 *pal_buf;				///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡
 	
-	u16 *background_pal_normal;	///<’ÊíŽž‚Ì”wŒi—pƒpƒŒƒbƒg
-	u16 *background_pal_touch;	///<ƒ^ƒbƒ`‚µ‚Ä‚¢‚éŽž‚Ì”wŒi—pƒpƒŒƒbƒg
-	TCB_PTR background_tcb;		///<”wŒiƒpƒŒƒbƒgØ‚è‘Ö‚¦ŠÄŽ‹ƒ^ƒXƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	u16 *background_pal_normal;	///<é€šå¸¸æ™‚ã®èƒŒæ™¯ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
+	u16 *background_pal_touch;	///<ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹æ™‚ã®èƒŒæ™¯ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
+	TCB_PTR background_tcb;		///<èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆç›£è¦–ã‚¿ã‚¹ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	MEMORY_DECORD_WORK memory_decord[CLIENT_MAX];	///<‚‘¬‰»‚Ìˆ×A‚ ‚ç‚©‚¶‚ßƒf[ƒ^‚ðì¬‚µ‚Ä‚¨‚­
+	MEMORY_DECORD_WORK memory_decord[CLIENT_MAX];	///<é«˜é€ŸåŒ–ã®ç‚ºã€ã‚ã‚‰ã‹ã˜ã‚ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦ãŠã
 	
-	//ƒtƒHƒ“ƒgOAM
-	FONTOAM_SYS_PTR fontoam_sys;	///<ƒtƒHƒ“ƒgƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	FONT_ACTOR font_actor[FA_NO_MAX];	///<ƒtƒHƒ“ƒgƒAƒNƒ^[ƒ[ƒN
+	//ãƒ•ã‚©ãƒ³ãƒˆOAM
+	FONTOAM_SYS_PTR fontoam_sys;	///<ãƒ•ã‚©ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	FONT_ACTOR font_actor[FA_NO_MAX];	///<ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
 	FONTOAM_OAM_DATA_PTR font_oamdata;
 	
-	//ŽèŽ‚¿ƒ{[ƒ‹
-	CATS_ACT_PTR stock_mine_cap[POKEMON_TEMOTI_MAX];	///<Ž©‹@‘¤ŽèŽ‚¿ƒ{[ƒ‹ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
-	CATS_ACT_PTR stock_enemy_cap[POKEMON_TEMOTI_MAX];	///<“G‘¤ŽèŽ‚¿ƒ{[ƒ‹ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
+	//æ‰‹æŒã¡ãƒœãƒ¼ãƒ«
+	CATS_ACT_PTR stock_mine_cap[POKEMON_TEMOTI_MAX];	///<è‡ªæ©Ÿå´æ‰‹æŒã¡ãƒœãƒ¼ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	CATS_ACT_PTR stock_enemy_cap[POKEMON_TEMOTI_MAX];	///<æ•µå´æ‰‹æŒã¡ãƒœãƒ¼ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
 	
-	//‹Zƒ^ƒCƒvƒAƒCƒRƒ“
-	CATS_ACT_PTR icon_cap[WAZA_TEMOTI_MAX];		///<‹Zƒ^ƒCƒvƒAƒCƒRƒ“ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
-	//‹Z•ª—ÞƒAƒCƒRƒ“
-	CATS_ACT_PTR kindicon_cap[WAZA_TEMOTI_MAX];		///<‹Z•ª—ÞƒAƒCƒRƒ“ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
-	//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
-	CATS_ACT_PTR pokeicon_cap[CLIENT_MAX];		///<ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
-	TCB_PTR      pokeicon_tcb[CLIENT_MAX];		///<ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒNƒ^[ƒAƒjƒXVƒ^ƒXƒN
+	//æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³
+	CATS_ACT_PTR icon_cap[WAZA_TEMOTI_MAX];		///<æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	//æŠ€åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³
+	CATS_ACT_PTR kindicon_cap[WAZA_TEMOTI_MAX];		///<æŠ€åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
+	CATS_ACT_PTR pokeicon_cap[CLIENT_MAX];		///<ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	TCB_PTR      pokeicon_tcb[CLIENT_MAX];		///<ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡æ›´æ–°ã‚¿ã‚¹ã‚¯
 	
-	//‚â‚é‹CƒAƒjƒ
-	MOTIVATION_WORK motivation_work[POKEMON_TEMOTI_MAX];	///<‚â‚é‹CƒAƒjƒ—pƒ[ƒN
+	//ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡
+	MOTIVATION_WORK motivation_work[POKEMON_TEMOTI_MAX];	///<ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡ç”¨ãƒ¯ãƒ¼ã‚¯
 	
-	//”wŒiƒtƒF[ƒh
-	TCB_PTR backfade_tcb;			///<”wŒiƒtƒF[ƒh“®ìƒ^ƒXƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u8 backfade_seq;				///<”wŒiƒtƒF[ƒh“®ìƒ^ƒXƒN‚ÌƒV[ƒPƒ“ƒX”Ô†
-	u8 backfade_flag;				///<”wŒiƒtƒF[ƒh‚ÌŒ»ó‚ÌƒtƒF[ƒhó‘Ô
+	//èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰
+	TCB_PTR backfade_tcb;			///<èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰å‹•ä½œã‚¿ã‚¹ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 backfade_seq;				///<èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰å‹•ä½œã‚¿ã‚¹ã‚¯ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	u8 backfade_flag;				///<èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰ã®ç¾çŠ¶ã®ãƒ•ã‚§ãƒ¼ãƒ‰çŠ¶æ…‹
 	
-	u8 client_type;		///<ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv
-	s8 makedata_no;		///<Œ»ÝŽg—p‚µ‚Ä‚¢‚éBgMakeData‚Ì”Ô†
-	u8 pokesele_type;	///<ƒ|ƒPƒ‚ƒ“‘I‘ð‚ÌŽž‚Ì”ÍˆÍƒ^ƒCƒv
-	u8 sex;				///<”wŒi‚ðo‚·Žž‚Ì«•Ê
-	u8 touch_invalid;	///<TRUE:ƒ^ƒbƒ`ˆ—–³Œø
-	u8 command_modoru_type;		///<TRUE:ƒRƒ}ƒ“ƒh‘I‘ð‰æ–Ê‚Ìu‚É‚°‚év‚ªu‚à‚Ç‚év‚É‚È‚Á‚Ä‚¢‚é
+	u8 client_type;		///<ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+	s8 makedata_no;		///<ç¾åœ¨ä½¿ç”¨ã—ã¦ã„ã‚‹BgMakeDataã®ç•ªå·
+	u8 pokesele_type;	///<ãƒã‚±ãƒ¢ãƒ³é¸æŠžã®æ™‚ã®ç¯„å›²ã‚¿ã‚¤ãƒ—
+	u8 sex;				///<èƒŒæ™¯ã‚’å‡ºã™æ™‚ã®æ€§åˆ¥
+	u8 touch_invalid;	///<TRUE:ã‚¿ãƒƒãƒå‡¦ç†ç„¡åŠ¹
+	u8 command_modoru_type;		///<TRUE:ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢ã®ã€Œã«ã’ã‚‹ã€ãŒã€Œã‚‚ã©ã‚‹ã€ã«ãªã£ã¦ã„ã‚‹
 	
-	//í’“ƒtƒF[ƒh
-	u8 def_fade_dir;		///<0:{•ûŒü‚Ö‚ÌƒtƒF[ƒhA1:|•ûŒü‚Ö‚ÌƒtƒF[ƒh
-	s16 def_fade_evy;		///<í’“ƒtƒF[ƒh‚ÌEVY’l(‰ºˆÊ8ƒrƒbƒg¬”)
-	u8 waku_fade_dir;		///<˜g—pA0:{•ûŒü‚Ö‚ÌƒtƒF[ƒhA1:|•ûŒü‚Ö‚ÌƒtƒF[ƒh
-	s16 waku_fade_evy;		///<˜g—pAí’“ƒtƒF[ƒh‚ÌEVY’l(‰ºˆÊ8ƒrƒbƒg¬”)
-	TCB_PTR def_fade_tcb;	///<í’“ƒtƒF[ƒhŽÀsƒ^ƒXƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	//å¸¸é§ãƒ•ã‚§ãƒ¼ãƒ‰
+	u8 def_fade_dir;		///<0:ï¼‹æ–¹å‘ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã€1:âˆ’æ–¹å‘ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰
+	s16 def_fade_evy;		///<å¸¸é§ãƒ•ã‚§ãƒ¼ãƒ‰ã®EVYå€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	u8 waku_fade_dir;		///<æž ç”¨ã€0:ï¼‹æ–¹å‘ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã€1:âˆ’æ–¹å‘ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰
+	s16 waku_fade_evy;		///<æž ç”¨ã€å¸¸é§ãƒ•ã‚§ãƒ¼ãƒ‰ã®EVYå€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	TCB_PTR def_fade_tcb;	///<å¸¸é§ãƒ•ã‚§ãƒ¼ãƒ‰å®Ÿè¡Œã‚¿ã‚¹ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	BI_EFFECT_WORK effect_work;	///<ƒGƒtƒFƒNƒgTCB—pƒ[ƒN
-	BI_COLOR_EFF_WORK color_work;	///<ƒJƒ‰[ƒGƒtƒFƒNƒgTCB—pƒ[ƒN
+	BI_EFFECT_WORK effect_work;	///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBç”¨ãƒ¯ãƒ¼ã‚¯
+	BI_COLOR_EFF_WORK color_work;	///<ã‚«ãƒ©ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBç”¨ãƒ¯ãƒ¼ã‚¯
 
-	s32 wall_x;					///<”wŒiƒXƒNƒ[ƒ‹À•WX(‰ºˆÊ8ƒrƒbƒg¬”)
-	s32 wall_sp_x;				///<”wŒiƒXƒNƒ[ƒ‹‘¬“xX(‰ºˆÊ8ƒrƒbƒg¬”)
-	s32 wall_end_x;				///<”wŒiƒXƒNƒ[ƒ‹À•WX(‰ºˆÊ8ƒrƒbƒg¬”)
+	s32 wall_x;					///<èƒŒæ™¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™X(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s32 wall_sp_x;				///<èƒŒæ™¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦X(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s32 wall_end_x;				///<èƒŒæ™¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™X(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 	
-	BCURSOR_PTR cursor;			///<ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	CURSOR_MOVE cursor_move;	///<ƒJ[ƒ\ƒ‹ˆÚ“®—pƒ[ƒN
-	u8 decend_key;				///<TRUE:Œˆ’èƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Ì‚ªƒJ[ƒ\ƒ‹
-	u8 cancel_escape;			///<ƒRƒ}ƒ“ƒh‘I‘ð‚Åu‚É‚°‚évu‚à‚Ç‚év‚Ì‚Ç‚¿‚ç‚ðo‚·‚©
-	//•ßŠlƒfƒ‚—pƒ[ƒN
+	BCURSOR_PTR cursor;			///<ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	CURSOR_MOVE cursor_move;	///<ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ç”¨ãƒ¯ãƒ¼ã‚¯
+	u8 decend_key;				///<TRUE:æ±ºå®šãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã®ãŒã‚«ãƒ¼ã‚½ãƒ«
+	u8 cancel_escape;			///<ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã§ã€Œã«ã’ã‚‹ã€ã€Œã‚‚ã©ã‚‹ã€ã®ã©ã¡ã‚‰ã‚’å‡ºã™ã‹
+	//æ•ç²ãƒ‡ãƒ¢ç”¨ãƒ¯ãƒ¼ã‚¯
 	struct{
 		FINGER_PTR finger;
 		u8 main_seq;
@@ -789,10 +789,10 @@ typedef struct _BI_PARAM{
 	
 }BI_PARAM;
 
-///BGì¬ƒf[ƒ^\‘¢‘Ì
+///BGä½œæˆãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct{
-	u16 cgr_id;			///<Žg—pCGR‚ÌƒA[ƒJƒCƒuID
-	u16 pal_id;			///<Žg—pƒpƒŒƒbƒg‚ÌƒA[ƒJƒCƒuID
+	u16 cgr_id;			///<ä½¿ç”¨CGRã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+	u16 pal_id;			///<ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
 	union{
 		struct{
 			u16 scr0_id;
@@ -800,35 +800,35 @@ typedef struct{
 			u16 scr2_id;
 			u16 scr3_id;
 		};
-		u16 scr_id[BI_BG_NUM];		///<Žg—pƒXƒNƒŠ[ƒ“‚ÌƒA[ƒJƒCƒuID
+		u16 scr_id[BI_BG_NUM];		///<ä½¿ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
 	};
 	union{
 		struct{
-			u16 pri0;		///<BG0–Ê‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
-			u16 pri1;		///<BG1–Ê‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+			u16 pri0;		///<BG0é¢ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+			u16 pri1;		///<BG1é¢ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 			u16 pri2;
 			u16 pri3;
 		};
-		u16 pri[BI_BG_NUM];		///<BG‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+		u16 pri[BI_BG_NUM];		///<BGã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 	};
 	
-	//ƒ^ƒbƒ`ƒpƒlƒ‹
-	const RECT_HIT_TBL *tpd;	///<Žg—p‚·‚éƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	const int *tpd_ret;			///<ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŒ‹‰Ê
-	const u8 *tpd_pal;			///<ƒ^ƒbƒ`‚µ‚½•”•ª‚Ìƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«
+	const RECT_HIT_TBL *tpd;	///<ä½¿ç”¨ã™ã‚‹ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	const int *tpd_ret;			///<ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµæžœ
+	const u8 *tpd_pal;			///<ã‚¿ãƒƒãƒã—ãŸéƒ¨åˆ†ã®ãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	//ƒJ[ƒ\ƒ‹ˆÚ“®
-	int (*cursor_move_func)(BI_PARAM_PTR, int);	///<ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	void (*cursor_save_func)(BI_PARAM_PTR, int);	///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+	int (*cursor_move_func)(BI_PARAM_PTR, int);	///<ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	void (*cursor_save_func)(BI_PARAM_PTR, int);	///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	
-	//ŠÖ”ƒ|ƒCƒ“ƒ^
-	void (*callback_bg)(BI_PARAM_PTR, int, int);	///<BGCreateŽž‚ÉŒÄ‚Ño‚·ŠÖ”
-	int (*callback_tp)(BI_PARAM_PTR, int, int);			///<ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Ño‚·ŠÖ”
+	//é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+	void (*callback_bg)(BI_PARAM_PTR, int, int);	///<BGCreateæ™‚ã«å‘¼ã³å‡ºã™é–¢æ•°
+	int (*callback_tp)(BI_PARAM_PTR, int, int);			///<ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã³å‡ºã™é–¢æ•°
 }BG_MAKE_DATA;
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void * BINPUT_WorkInit(void);
 static void BGCallback_CommandIn(BI_PARAM_PTR bip, int select_bg, int force_put);
@@ -947,16 +947,16 @@ static int CaptureDemoSeq_Waza(BI_PARAM_PTR bip);
 static int CaptureDemoSeq_CommandBag(BI_PARAM_PTR bip);
 
 //--------------------------------------------------------------
-//	ƒCƒ“ƒ‰ƒCƒ“ŠÖ”‚Ìƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³é–¢æ•°ã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //--------------------------------------------------------------
 inline void SubInline_EffBgWriteParamSet(EFFBG_WRITE_PARAM *ewp, const REWRITE_SCRN_RECT *rsr, 
 	u8 rsr_num, s8 add_charname);
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///í“¬“ü—Í‰æ–Ê—p‚ÌBGƒtƒŒ[ƒ€\¬
+///æˆ¦é—˜å…¥åŠ›ç”»é¢ç”¨ã®BGãƒ•ãƒ¬ãƒ¼ãƒ æ§‹æˆ
 static const GF_BGL_BGCNT_HEADER BiBgCntDat[] = {
 	{//GF_BGL_FRAME0_S
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -981,141 +981,141 @@ static const GF_BGL_BGCNT_HEADER BiBgCntDat[] = {
 };
 
 //============================================================================================
-//	ƒ^ƒbƒ`ƒpƒlƒ‹—ÌˆæÝ’è
+//	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 //============================================================================================
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒRƒ}ƒ“ƒh‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹—ÌˆæÝ’è
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 static const RECT_HIT_TBL BattleMenuTouchData[] = {
 	//UP DOWN LEFT RIGHT
-	{3*8, 0x12*8, 0*8, 255},			//‚½‚½‚©‚¤
-	{0x12*8, 0x18*8, 0*8, 0xa*8},		//ƒoƒbƒO
-	{0x12*8, 0x18*8, 0x16*8, 255},	//ƒ|ƒPƒ‚ƒ“
-	{0x13*8, 0x18*8, 0xb*8, 0x15*8},	//‚É‚°‚é
+	{3*8, 0x12*8, 0*8, 255},			//ãŸãŸã‹ã†
+	{0x12*8, 0x18*8, 0*8, 0xa*8},		//ãƒãƒƒã‚°
+	{0x12*8, 0x18*8, 0x16*8, 255},	//ãƒã‚±ãƒ¢ãƒ³
+	{0x13*8, 0x18*8, 0xb*8, 0x15*8},	//ã«ã’ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
-///ƒRƒ}ƒ“ƒh‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ^ƒbƒ`Œ‹‰Ê•ÔŽ–
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚¿ãƒƒãƒçµæžœè¿”äº‹
 static const int BattleMenuTouchRet[NELEMS(BattleMenuTouchData) - 1] = {
-	SELECT_FIGHT_COMMAND,		//‚½‚½‚©‚¤
-	SELECT_ITEM_COMMAND,		//ƒoƒbƒO
-	SELECT_POKEMON_COMMAND,		//ƒ|ƒPƒ‚ƒ“
-	SELECT_ESCAPE_COMMAND,		//‚É‚°‚é
+	SELECT_FIGHT_COMMAND,		//ãŸãŸã‹ã†
+	SELECT_ITEM_COMMAND,		//ãƒãƒƒã‚°
+	SELECT_POKEMON_COMMAND,		//ãƒã‚±ãƒ¢ãƒ³
+	SELECT_ESCAPE_COMMAND,		//ã«ã’ã‚‹
 };
-///ƒRƒ}ƒ“ƒh‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 ALIGN4 static const u8 BattleMenuPaletteNo[NELEMS(BattleMenuTouchData) - 1] = {
-	1,		//‚½‚½‚©‚¤
-	2,		//ƒoƒbƒO
-	3,		//ƒ|ƒPƒ‚ƒ“
-	4,		//‚É‚°‚é
+	1,		//ãŸãŸã‹ã†
+	2,		//ãƒãƒƒã‚°
+	3,		//ãƒã‚±ãƒ¢ãƒ³
+	4,		//ã«ã’ã‚‹
 };
 
-///ƒJ[ƒ\ƒ‹ˆÚ“®FƒRƒ}ƒ“ƒh‘I‘ð‚Ì…•½ƒƒjƒ…[‚ÌÅ‘å”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã®æ°´å¹³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æœ€å¤§æ•°
 #define CURSOR_COMMAND_SELECT_X_MENU_NUM		(3)
-///ƒJ[ƒ\ƒ‹ˆÚ“®FƒRƒ}ƒ“ƒh‘I‘ð‚Ìƒƒjƒ…[‚ÌŠK‘w‚Ì”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®éšŽå±¤ã®æ•°
 #define CURSOR_COMMAND_SELECT_Y_MENU_NUM		(2)// + 1)
-///ƒRƒ}ƒ“ƒh‘I‘ð‚Ìƒ^ƒbƒ`ƒpƒlƒ‹INDEX(BattleMenuTouchRet‚Ì‡”Ô)
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«INDEX(BattleMenuTouchRetã®é †ç•ª)
 enum{
 	COMMSELE_INDEX_FIGHT,
 	COMMSELE_INDEX_ITEM,
 	COMMSELE_INDEX_POKEMON,
 	COMMSELE_INDEX_ESCAPE,
 };
-///ƒJ[ƒ\ƒ‹ˆÚ“®FƒRƒ}ƒ“ƒh‘I‘ð‚ÌˆÚ“®”ÍˆÍƒf[ƒ^(TouchData‚Ìindex”Ô†)
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã®ç§»å‹•ç¯„å›²ãƒ‡ãƒ¼ã‚¿(TouchDataã®indexç•ªå·)
 ALIGN4 static const u8 CursorMoveDataCommandSelect[CURSOR_COMMAND_SELECT_Y_MENU_NUM][CURSOR_COMMAND_SELECT_X_MENU_NUM] = {
-	{COMMSELE_INDEX_FIGHT, COMMSELE_INDEX_FIGHT, COMMSELE_INDEX_FIGHT},		//‚½‚½‚©‚¤
-	{COMMSELE_INDEX_ITEM, COMMSELE_INDEX_ESCAPE, COMMSELE_INDEX_POKEMON},//ƒoƒbƒOA‚É‚°‚éAƒ|ƒPƒ‚ƒ“
-	//ƒoƒbƒOorƒ|ƒPƒ‚ƒ“‚Ì‰ÓŠ‚Å‰º‚ð‰Ÿ‚µ‚½‚çu‚É‚°‚év‚ÉˆÚ“®‚·‚é‚æ‚¤‚É3’i–Ú‚ðì‚é
-//	{COMMSELE_INDEX_ESCAPE, COMMSELE_INDEX_ESCAPE, COMMSELE_INDEX_ESCAPE},//‚É‚°‚éA‚É‚°‚éA‚É‚°‚é
+	{COMMSELE_INDEX_FIGHT, COMMSELE_INDEX_FIGHT, COMMSELE_INDEX_FIGHT},		//ãŸãŸã‹ã†
+	{COMMSELE_INDEX_ITEM, COMMSELE_INDEX_ESCAPE, COMMSELE_INDEX_POKEMON},//ãƒãƒƒã‚°ã€ã«ã’ã‚‹ã€ãƒã‚±ãƒ¢ãƒ³
+	//ãƒãƒƒã‚°orãƒã‚±ãƒ¢ãƒ³ã®ç®‡æ‰€ã§ä¸‹ã‚’æŠ¼ã—ãŸã‚‰ã€Œã«ã’ã‚‹ã€ã«ç§»å‹•ã™ã‚‹ã‚ˆã†ã«3æ®µç›®ã‚’ä½œã‚‹
+//	{COMMSELE_INDEX_ESCAPE, COMMSELE_INDEX_ESCAPE, COMMSELE_INDEX_ESCAPE},//ã«ã’ã‚‹ã€ã«ã’ã‚‹ã€ã«ã’ã‚‹
 };
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///u‚½‚½‚©‚¤v‚Ì‚Ý‚ÌƒRƒ}ƒ“ƒh‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹—ÌˆæÝ’è
+///ã€ŒãŸãŸã‹ã†ã€ã®ã¿ã®ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 static const RECT_HIT_TBL FightOnlyBattleMenuTouchData[] = {
 	//UP DOWN LEFT RIGHT
-	{3*8, 0x12*8, 0*8, 255},			//‚½‚½‚©‚¤
+	{3*8, 0x12*8, 0*8, 255},			//ãŸãŸã‹ã†
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
-///ƒJ[ƒ\ƒ‹ˆÚ“®Fu‚½‚½‚©‚¤v‚Ì‚Ý‚ÌƒRƒ}ƒ“ƒh‘I‘ð‚Ì…•½ƒƒjƒ…[‚ÌÅ‘å”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã€ŒãŸãŸã‹ã†ã€ã®ã¿ã®ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã®æ°´å¹³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æœ€å¤§æ•°
 #define CURSOR_COMMAND_FIGHTONLY_X_MENU_NUM		(1)
-///ƒJ[ƒ\ƒ‹ˆÚ“®Fu‚½‚½‚©‚¤v‚Ì‚Ý‚ÌƒRƒ}ƒ“ƒh‘I‘ð‚Ìƒƒjƒ…[‚ÌŠK‘w‚Ì”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã€ŒãŸãŸã‹ã†ã€ã®ã¿ã®ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®éšŽå±¤ã®æ•°
 #define CURSOR_COMMAND_FIGHTONLY_Y_MENU_NUM		(1)
 
 //--------------------------------------------------------------
-//	ƒ|ƒPƒp[ƒN
+//	ãƒã‚±ãƒ‘ãƒ¼ã‚¯
 //--------------------------------------------------------------
-///uƒ{[ƒ‹v‚Æu“¦‚°‚év‚Ì‚Ý‚ÌƒRƒ}ƒ“ƒh‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹—ÌˆæÝ’è
+///ã€Œãƒœãƒ¼ãƒ«ã€ã¨ã€Œé€ƒã’ã‚‹ã€ã®ã¿ã®ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 static const RECT_HIT_TBL ParkCommandMenuTouchData[] = {
 	//UP DOWN LEFT RIGHT
-	{5*8, 0x10*8, 3*8, 0x1d*8},			//‚½‚½‚©‚¤
-	{0x13*8, 0x18*8, 0xb*8, 0x15*8},	//‚É‚°‚é
+	{5*8, 0x10*8, 3*8, 0x1d*8},			//ãŸãŸã‹ã†
+	{0x13*8, 0x18*8, 0xb*8, 0x15*8},	//ã«ã’ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
 
-///ƒ|ƒPƒp[ƒN—pƒRƒ}ƒ“ƒh‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ^ƒbƒ`Œ‹‰Ê•ÔŽ–
+///ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚¿ãƒƒãƒçµæžœè¿”äº‹
 static const int ParkMenuTouchRet[NELEMS(BattleMenuTouchData) - 1] = {
-	SELECT_FIGHT_COMMAND,		//‚½‚½‚©‚¤
-	SELECT_ESCAPE_COMMAND,		//‚É‚°‚é
+	SELECT_FIGHT_COMMAND,		//ãŸãŸã‹ã†
+	SELECT_ESCAPE_COMMAND,		//ã«ã’ã‚‹
 };
-///ƒ|ƒPƒp[ƒN—pƒRƒ}ƒ“ƒh‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+///ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 ALIGN4 static const u8 ParkMenuPaletteNo[NELEMS(BattleMenuTouchData) - 1] = {
-	1,		//‚½‚½‚©‚¤
-	4,		//‚É‚°‚é
+	1,		//ãŸãŸã‹ã†
+	4,		//ã«ã’ã‚‹
 };
 
-///ƒJ[ƒ\ƒ‹ˆÚ“®FƒRƒ}ƒ“ƒh‘I‘ð‚Ì…•½ƒƒjƒ…[‚ÌÅ‘å”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã®æ°´å¹³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æœ€å¤§æ•°
 #define CURSOR_PARK_COMMAND_SELECT_X_MENU_NUM		(1)
-///ƒJ[ƒ\ƒ‹ˆÚ“®FƒRƒ}ƒ“ƒh‘I‘ð‚Ìƒƒjƒ…[‚ÌŠK‘w‚Ì”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®éšŽå±¤ã®æ•°
 #define CURSOR_PARK_COMMAND_SELECT_Y_MENU_NUM		(2)
-///ƒRƒ}ƒ“ƒh‘I‘ð‚Ìƒ^ƒbƒ`ƒpƒlƒ‹INDEX(ParkMenuTouchRet‚Ì‡”Ô)
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«INDEX(ParkMenuTouchRetã®é †ç•ª)
 enum{
 	PARKSELE_INDEX_FIGHT,
 	PARKSELE_INDEX_ESCAPE,
 };
-///ƒJ[ƒ\ƒ‹ˆÚ“®FƒRƒ}ƒ“ƒh‘I‘ð‚ÌˆÚ“®”ÍˆÍƒf[ƒ^(TouchData‚Ìindex”Ô†)
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã®ç§»å‹•ç¯„å›²ãƒ‡ãƒ¼ã‚¿(TouchDataã®indexç•ªå·)
 ALIGN4 static const u8 CursorMoveDataParkCommandSelect[CURSOR_PARK_COMMAND_SELECT_Y_MENU_NUM][CURSOR_PARK_COMMAND_SELECT_X_MENU_NUM] = {
-	{PARKSELE_INDEX_FIGHT},		//‚½‚½‚©‚¤
-	{PARKSELE_INDEX_ESCAPE},	//‚É‚°‚é
+	{PARKSELE_INDEX_FIGHT},		//ãŸãŸã‹ã†
+	{PARKSELE_INDEX_ESCAPE},	//ã«ã’ã‚‹
 };
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///‹Z‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹—ÌˆæÝ’è
+///æŠ€é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 static const RECT_HIT_TBL SkillMenuTouchData[] = {
 	//UP DOWN LEFT RIGHT
-	{0x13*8, 0x18*8, 1*8, 0x1f*8},		//ƒLƒƒƒ“ƒZƒ‹
-	{3*8, 10*8, 0*8, 0x10*8},		//‹Z1
-	{3*8, 10*8, 0x10*8, 255},	//‹Z2
-	{0xb*8, 0x12*8, 0*8, 0x10*8},	//‹Z3
-	{0xb*8, 0x12*8, 0x10*8, 255},	//‹Z4
+	{0x13*8, 0x18*8, 1*8, 0x1f*8},		//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	{3*8, 10*8, 0*8, 0x10*8},		//æŠ€1
+	{3*8, 10*8, 0x10*8, 255},	//æŠ€2
+	{0xb*8, 0x12*8, 0*8, 0x10*8},	//æŠ€3
+	{0xb*8, 0x12*8, 0x10*8, 255},	//æŠ€4
 	{ RECT_HIT_END, 0, 0, 0 }
 };
-///‹Z‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ^ƒbƒ`Œ‹‰Ê•ÔŽ–
+///æŠ€é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚¿ãƒƒãƒçµæžœè¿”äº‹
 static const int SkillMenuTouchRet[NELEMS(SkillMenuTouchData) - 1] = {
-	SELECT_CANCEL,				//ƒLƒƒƒ“ƒZƒ‹
+	SELECT_CANCEL,				//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	SELECT_SKILL_1,
 	SELECT_SKILL_2,
 	SELECT_SKILL_3,
 	SELECT_SKILL_4,
 };
-///‹Z‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+///æŠ€é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 ALIGN4 static const u8 SkillMenuPaletteNo[NELEMS(SkillMenuTouchData) - 1] = {
-	4,		//SELECT_CANCEL,				//ƒLƒƒƒ“ƒZƒ‹
+	4,		//SELECT_CANCEL,				//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	8,		//SELECT_SKILL_1,
 	9,		//SELECT_SKILL_2,
 	0xa,	//SELECT_SKILL_3,
 	0xb,	//SELECT_SKILL_4,
 };
 
-///ƒJ[ƒ\ƒ‹ˆÚ“®F‹Z‘I‘ð‚Ì…•½ƒƒjƒ…[‚ÌÅ‘å”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šæŠ€é¸æŠžã®æ°´å¹³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æœ€å¤§æ•°
 #define CURSOR_WAZA_SELECT_X_MENU_NUM		(2)
-///ƒJ[ƒ\ƒ‹ˆÚ“®F‹Z‘I‘ð‚Ìƒƒjƒ…[‚ÌŠK‘w‚Ì”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šæŠ€é¸æŠžã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®éšŽå±¤ã®æ•°
 #define CURSOR_WAZA_SELECT_Y_MENU_NUM		(3)
-///‹Z‘I‘ð‚Ìƒ^ƒbƒ`ƒpƒlƒ‹INDEX(SkillMenuTouchRet‚Ì‡”Ô)
+///æŠ€é¸æŠžã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«INDEX(SkillMenuTouchRetã®é †ç•ª)
 enum{
 	WAZASELE_INDEX_CANCEL,
 	WAZASELE_INDEX_SKILL_1,
@@ -1123,79 +1123,79 @@ enum{
 	WAZASELE_INDEX_SKILL_3,
 	WAZASELE_INDEX_SKILL_4,
 };
-///ƒJ[ƒ\ƒ‹ˆÚ“®F‹Z‘I‘ð‚ÌˆÚ“®”ÍˆÍƒf[ƒ^
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šæŠ€é¸æŠžã®ç§»å‹•ç¯„å›²ãƒ‡ãƒ¼ã‚¿
 ALIGN4 static const u8 CursorMoveDataWazaSelect[CURSOR_WAZA_SELECT_Y_MENU_NUM][CURSOR_WAZA_SELECT_X_MENU_NUM] = {
-	{WAZASELE_INDEX_SKILL_1, WAZASELE_INDEX_SKILL_2},		//‹Z‚PA‹Z‚Q
-	{WAZASELE_INDEX_SKILL_3, WAZASELE_INDEX_SKILL_4},		//‹Z‚RA‹Z‚S
-	{WAZASELE_INDEX_CANCEL, WAZASELE_INDEX_CANCEL},		//ƒLƒƒƒ“ƒZƒ‹AƒLƒƒƒ“ƒZƒ‹
+	{WAZASELE_INDEX_SKILL_1, WAZASELE_INDEX_SKILL_2},		//æŠ€ï¼‘ã€æŠ€ï¼’
+	{WAZASELE_INDEX_SKILL_3, WAZASELE_INDEX_SKILL_4},		//æŠ€ï¼“ã€æŠ€ï¼”
+	{WAZASELE_INDEX_CANCEL, WAZASELE_INDEX_CANCEL},		//ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 };
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///u‚½‚½‚©‚¢‚ð‚â‚ß‚Ü‚·‚©Hv‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹—ÌˆæÝ’è
+///ã€ŒãŸãŸã‹ã„ã‚’ã‚„ã‚ã¾ã™ã‹ï¼Ÿã€é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 static const RECT_HIT_TBL EscapeMenuTouchData[] = {
 	//UP DOWN LEFT RIGHT
-	{5*8, 0xc*8, 1*8, 0x1f*8},		//‚Í‚¢
-	{0xe*8, 0x15*8, 1*8, 0x1f*8},		//‚¢‚¢‚¦
+	{5*8, 0xc*8, 1*8, 0x1f*8},		//ã¯ã„
+	{0xe*8, 0x15*8, 1*8, 0x1f*8},		//ã„ã„ãˆ
 	{ RECT_HIT_END, 0, 0, 0 }
 };
-///u‚½‚½‚©‚¢‚ð‚â‚ß‚Ü‚·‚©Hv‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ^ƒbƒ`Œ‹‰Ê•ÔŽ–
+///ã€ŒãŸãŸã‹ã„ã‚’ã‚„ã‚ã¾ã™ã‹ï¼Ÿã€é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚¿ãƒƒãƒçµæžœè¿”äº‹
 static const int EscapeMenuTouchRet[NELEMS(EscapeMenuTouchData) - 1] = {
-	TRUE,			//‚Í‚¢
-	SELECT_CANCEL,			//‚¢‚¢‚¦
+	TRUE,			//ã¯ã„
+	SELECT_CANCEL,			//ã„ã„ãˆ
 };
-///u‚½‚½‚©‚¢‚ð‚â‚ß‚Ü‚·‚©Hv‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+///ã€ŒãŸãŸã‹ã„ã‚’ã‚„ã‚ã¾ã™ã‹ï¼Ÿã€é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 ALIGN4 static const u8 EscapeMenuPaletteNo[NELEMS(EscapeMenuTouchData) - 1] = {
-	1,		//TRUE,			//‚Í‚¢
-	4,		//SELECT_CANCEL,			//‚¢‚¢‚¦
+	1,		//TRUE,			//ã¯ã„
+	4,		//SELECT_CANCEL,			//ã„ã„ãˆ
 };
-///ƒJ[ƒ\ƒ‹ˆÚ“®Fu‚Í‚¢/‚¢‚¢‚¦v‚Ì…•½ƒƒjƒ…[‚ÌÅ‘å”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã€Œã¯ã„/ã„ã„ãˆã€ã®æ°´å¹³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æœ€å¤§æ•°
 #define CURSOR_YESNO_SELECT_X_MENU_NUM		(1)
-///ƒJ[ƒ\ƒ‹ˆÚ“®Fu‚Í‚¢/‚¢‚¢‚¦v‚Ìƒƒjƒ…[‚ÌŠK‘w‚Ì”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã€Œã¯ã„/ã„ã„ãˆã€ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®éšŽå±¤ã®æ•°
 #define CURSOR_YESNO_SELECT_Y_MENU_NUM		(2)
-///‹Z‘I‘ð‚Ìƒ^ƒbƒ`ƒpƒlƒ‹INDEX(SkillMenuTouchRet‚Ì‡”Ô)
+///æŠ€é¸æŠžã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«INDEX(SkillMenuTouchRetã®é †ç•ª)
 enum{
 	YESNO_INDEX_TRUE,
 	YESNO_INDEX_CANCEL,
 };
-///ƒJ[ƒ\ƒ‹ˆÚ“®Fu‚Í‚¢/‚¢‚¢‚¦v‚ÌˆÚ“®”ÍˆÍƒf[ƒ^
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã€Œã¯ã„/ã„ã„ãˆã€ã®ç§»å‹•ç¯„å›²ãƒ‡ãƒ¼ã‚¿
 ALIGN4 static const u8 CursorMoveDataYesNoSelect[CURSOR_YESNO_SELECT_Y_MENU_NUM][CURSOR_YESNO_SELECT_X_MENU_NUM] = {
 	{YESNO_INDEX_TRUE},
 	{YESNO_INDEX_CANCEL},
 };
 
 //--------------------------------------------------------------
-//	ƒ|ƒPƒ‚ƒ“‘I‘ð(‹ZŒø‰Ê)
+//	ãƒã‚±ãƒ¢ãƒ³é¸æŠž(æŠ€åŠ¹æžœ)
 //--------------------------------------------------------------
-///ƒ|ƒPƒ‚ƒ“‘I‘ð(‹ZŒø‰Ê)ƒ^ƒbƒ`ƒpƒlƒ‹—ÌˆæÝ’è
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠž(æŠ€åŠ¹æžœ)ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 static const RECT_HIT_TBL PokeSeleMenuTouchData[] = {
 	//UP DOWN LEFT RIGHT
-	{0xb*8, 0x12*8, 0*8, 0xf*8},			//ƒ^[ƒQƒbƒgA
-	{1*8, 0xa*8, 0x11*8, 255},		//ƒ^[ƒQƒbƒgB
-	{0xb*8, 0x12*8, 0x11*8, 255},		//ƒ^[ƒQƒbƒgC
-	{1*8, 0xa*8, 0*8, 0xf*8},			//ƒ^[ƒQƒbƒgD
-	{0x13*8, 0x18*8, 1*8, 0x1f*8},		//ƒLƒƒƒ“ƒZƒ‹
+	{0xb*8, 0x12*8, 0*8, 0xf*8},			//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆA
+	{1*8, 0xa*8, 0x11*8, 255},		//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆB
+	{0xb*8, 0x12*8, 0x11*8, 255},		//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆC
+	{1*8, 0xa*8, 0*8, 0xf*8},			//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆD
+	{0x13*8, 0x18*8, 1*8, 0x1f*8},		//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	{ RECT_HIT_END, 0, 0, 0 }
 };
-///ƒ|ƒPƒ‚ƒ“‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ^ƒbƒ`Œ‹‰Ê•ÔŽ–
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚¿ãƒƒãƒçµæžœè¿”äº‹
 static const int PokeSeleMenuTouchRet[NELEMS(PokeSeleMenuTouchData) - 1] = {
-	SELECT_TARGET_A,		//ƒ^[ƒQƒbƒgA
-	SELECT_TARGET_B,		//ƒ^[ƒQƒbƒgB
-	SELECT_TARGET_C,		//ƒ^[ƒQƒbƒgC
-	SELECT_TARGET_D,		//ƒ^[ƒQƒbƒgD
-	SELECT_CANCEL,			//‚à‚Ç‚é
+	SELECT_TARGET_A,		//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆA
+	SELECT_TARGET_B,		//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆB
+	SELECT_TARGET_C,		//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆC
+	SELECT_TARGET_D,		//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆD
+	SELECT_CANCEL,			//ã‚‚ã©ã‚‹
 };
-///ƒ|ƒPƒ‚ƒ“‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 ALIGN4 static const u8 PokeSeleMenuPaletteNo[NELEMS(PokeSeleMenuTouchData) - 1] = {
-	6,		//SELECT_TARGET_A,		//ƒ^[ƒQƒbƒgA
-	0xc,	//SELECT_TARGET_B,		//ƒ^[ƒQƒbƒgB
-	0xd,	//SELECT_TARGET_C,		//ƒ^[ƒQƒbƒgC
-	5,		//SELECT_TARGET_D,		//ƒ^[ƒQƒbƒgD
-	4,		//SELECT_CANCEL,			//‚à‚Ç‚é
+	6,		//SELECT_TARGET_A,		//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆA
+	0xc,	//SELECT_TARGET_B,		//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆB
+	0xd,	//SELECT_TARGET_C,		//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆC
+	5,		//SELECT_TARGET_D,		//ã‚¿ãƒ¼ã‚²ãƒƒãƒˆD
+	4,		//SELECT_CANCEL,			//ã‚‚ã©ã‚‹
 };
 
-///ƒ|ƒPƒ‚ƒ“‘I‘ð‚Ìƒ^ƒbƒ`ƒpƒlƒ‹INDEX(PokeSeleMenuTouchRet‚Ì‡”Ô)
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠžã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«INDEX(PokeSeleMenuTouchRetã®é †ç•ª)
 enum{
 	POKESELE_INDEX_TARGET_A,
 	POKESELE_INDEX_TARGET_B,
@@ -1204,11 +1204,11 @@ enum{
 	POKESELE_INDEX_TARGET_CANCEL,
 };
 
-///ƒJ[ƒ\ƒ‹ˆÚ“®Fƒ|ƒPƒ‚ƒ“‘I‘ð(’P”‘I‘ð‚Ìê‡)‚Ì…•½ƒƒjƒ…[‚ÌÅ‘å”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠž(å˜æ•°é¸æŠžã®å ´åˆ)ã®æ°´å¹³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æœ€å¤§æ•°
 #define CURSOR_POKE_SELECT_X_MENU_NUM		(2)
-///ƒJ[ƒ\ƒ‹ˆÚ“®Fƒ|ƒPƒ‚ƒ“‘I‘ð(’P”‘I‘ð‚Ìê‡)‚Ìƒƒjƒ…[‚ÌŠK‘w‚Ì”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠž(å˜æ•°é¸æŠžã®å ´åˆ)ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®éšŽå±¤ã®æ•°
 #define CURSOR_POKE_SELECT_Y_MENU_NUM		(3)
-///ƒJ[ƒ\ƒ‹ˆÚ“®Fƒ|ƒPƒ‚ƒ“‘I‘ð(’P”‘I‘ð‚Ìê‡)‚ÌˆÚ“®”ÍˆÍƒf[ƒ^
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠž(å˜æ•°é¸æŠžã®å ´åˆ)ã®ç§»å‹•ç¯„å›²ãƒ‡ãƒ¼ã‚¿
 ALIGN4 static const u8 CursorMoveDataPokeSelect[CURSOR_POKE_SELECT_Y_MENU_NUM][CURSOR_POKE_SELECT_X_MENU_NUM] = {
 	{POKESELE_INDEX_TARGET_D, POKESELE_INDEX_TARGET_B},
 	{POKESELE_INDEX_TARGET_A, POKESELE_INDEX_TARGET_C},
@@ -1216,491 +1216,491 @@ ALIGN4 static const u8 CursorMoveDataPokeSelect[CURSOR_POKE_SELECT_Y_MENU_NUM][C
 };
 
 //--------------------------------------------------------------
-//	˜^‰æÄ¶‚Ì’âŽ~ƒ{ƒ^ƒ“‰æ–Ê
+//	éŒ²ç”»å†ç”Ÿã®åœæ­¢ãƒœã‚¿ãƒ³ç”»é¢
 //--------------------------------------------------------------
-///u‚³‚¢‚¹‚¢@‚Ä‚¢‚µv‚Ì‚Ý‚ÌƒRƒ}ƒ“ƒh‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹—ÌˆæÝ’è
+///ã€Œã•ã„ã›ã„ã€€ã¦ã„ã—ã€ã®ã¿ã®ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 static const RECT_HIT_TBL PlayBackStopOnlyMenuTouchData[] = {
 	//UP DOWN LEFT RIGHT
-	{0x13*8, 0x18*8, 0x0*8, 0x20*8 - 1},			//‚Ä‚¢‚µ
+	{0x13*8, 0x18*8, 0x0*8, 0x20*8 - 1},			//ã¦ã„ã—
 	{ RECT_HIT_END, 0, 0, 0 }
 };
-///u‚³‚¢‚¹‚¢@‚Ä‚¢‚µvƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ^ƒbƒ`Œ‹‰Ê•ÔŽ–
+///ã€Œã•ã„ã›ã„ã€€ã¦ã„ã—ã€ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚¿ãƒƒãƒçµæžœè¿”äº‹
 static const int PlayBackStopOnlyMenuTouchRet[NELEMS(PlayBackStopOnlyMenuTouchData) - 1] = {
-	TRUE,		//‚³‚¢‚¹‚¢@‚Ä‚¢‚µ
+	TRUE,		//ã•ã„ã›ã„ã€€ã¦ã„ã—
 };
-///u‚³‚¢‚¹‚¢@‚Ä‚¢‚µvƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+///ã€Œã•ã„ã›ã„ã€€ã¦ã„ã—ã€ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 ALIGN4 static const u8 PlayBackStopMenuPaletteNo[NELEMS(PlayBackStopOnlyMenuTouchData) - 1] = {
-	4,		//‚³‚¢‚¹‚¢@‚Ä‚¢‚µ
+	4,		//ã•ã„ã›ã„ã€€ã¦ã„ã—
 };
-///ƒJ[ƒ\ƒ‹ˆÚ“®Fu‚³‚¢‚¹‚¢@‚Ä‚¢‚µv‚Ì‚Ý‚ÌƒRƒ}ƒ“ƒh‘I‘ð‚Ì…•½ƒƒjƒ…[‚ÌÅ‘å”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã€Œã•ã„ã›ã„ã€€ã¦ã„ã—ã€ã®ã¿ã®ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã®æ°´å¹³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æœ€å¤§æ•°
 #define CURSOR_COMMAND_PLAYBACKSTOP_X_MENU_NUM		(1)
-///ƒJ[ƒ\ƒ‹ˆÚ“®Fu‚³‚¢‚¹‚¢@‚Ä‚¢‚µv‚Ì‚Ý‚ÌƒRƒ}ƒ“ƒh‘I‘ð‚Ìƒƒjƒ…[‚ÌŠK‘w‚Ì”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã€Œã•ã„ã›ã„ã€€ã¦ã„ã—ã€ã®ã¿ã®ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®éšŽå±¤ã®æ•°
 #define CURSOR_COMMAND_PLAYBACKSTOP_Y_MENU_NUM		(1)
 
 //==============================================================================
 //	
 //==============================================================================
-///BGì¬ƒf[ƒ^(¦‚±‚±‚Ì•À‚Ñ‚ð’Ç‰ÁA•ÏX‚µ‚½‚çBINPUT_TYPE_???‚Ì’è‹`‚à•ÏX‚·‚é‚±‚ÆII)
+///BGä½œæˆãƒ‡ãƒ¼ã‚¿(â€»ã“ã“ã®ä¸¦ã³ã‚’è¿½åŠ ã€å¤‰æ›´ã—ãŸã‚‰BINPUT_TYPE_???ã®å®šç¾©ã‚‚å¤‰æ›´ã™ã‚‹ã“ã¨ï¼ï¼)
 static const BG_MAKE_DATA BgMakeData[] = {
 	{//BINPUT_TYPE_WALL
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			NONE_ID,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			NONE_ID,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		NULL,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		NULL,				//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		NULL,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		NULL,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,				//ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		NULL,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,				//ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_COMMAND_IN
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_COMMAND,		//ƒpƒlƒ‹
-			SCRNBUF_COMMAND_WAZA,		//‹Z‘I‘ðƒpƒlƒ‹‚Ì‰e
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_COMMAND,		//ãƒ‘ãƒãƒ«
+			SCRNBUF_COMMAND_WAZA,		//æŠ€é¸æŠžãƒ‘ãƒãƒ«ã®å½±
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 3, 3, 0},
-		BattleMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		BattleMenuTouchRet,					//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		BattleMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_CommandSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		CursorSave_CommandSelect,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_CommandIn,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_A,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		BattleMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		BattleMenuTouchRet,					//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		BattleMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_CommandSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		CursorSave_CommandSelect,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_CommandIn,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_A,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
-	{//BINPUT_COMMAND_IN_2		2‘Ì–Ú
+	{//BINPUT_COMMAND_IN_2		2ä½“ç›®
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_COMMAND,		//ƒpƒlƒ‹
-			SCRNBUF_COMMAND_WAZA,		//‹Z‘I‘ðƒpƒlƒ‹‚Ì‰e
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_COMMAND,		//ãƒ‘ãƒãƒ«
+			SCRNBUF_COMMAND_WAZA,		//æŠ€é¸æŠžãƒ‘ãƒãƒ«ã®å½±
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 3, 3, 0},
-		BattleMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		BattleMenuTouchRet,					//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		BattleMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_CommandSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		CursorSave_CommandSelect,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_CommandIn,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_A,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		BattleMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		BattleMenuTouchRet,					//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		BattleMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_CommandSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		CursorSave_CommandSelect,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_CommandIn,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_A,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_TYPE_A
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_COMMAND,		//ƒpƒlƒ‹
-			SCRNBUF_COMMAND_WAZA,		//‹Z‘I‘ðƒpƒlƒ‹‚Ì‰e
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_COMMAND,		//ãƒ‘ãƒãƒ«
+			SCRNBUF_COMMAND_WAZA,		//æŠ€é¸æŠžãƒ‘ãƒãƒ«ã®å½±
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 3, 3, 0},
-		BattleMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		BattleMenuTouchRet,					//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		BattleMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_CommandSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		CursorSave_CommandSelect,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_CommandSelect,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_A,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		BattleMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		BattleMenuTouchRet,					//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		BattleMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_CommandSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		CursorSave_CommandSelect,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_CommandSelect,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_A,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
-	{//BINPUT_TYPE_A_2		2‘Ì–Ú
+	{//BINPUT_TYPE_A_2		2ä½“ç›®
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_COMMAND,		//ƒpƒlƒ‹
-			SCRNBUF_COMMAND_WAZA,		//‹Z‘I‘ðƒpƒlƒ‹‚Ì‰e
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_COMMAND,		//ãƒ‘ãƒãƒ«
+			SCRNBUF_COMMAND_WAZA,		//æŠ€é¸æŠžãƒ‘ãƒãƒ«ã®å½±
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 3, 3, 0},
-		BattleMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		BattleMenuTouchRet,					//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		BattleMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_CommandSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		CursorSave_CommandSelect,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_CommandSelect,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_A,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		BattleMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		BattleMenuTouchRet,					//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		BattleMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_CommandSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		CursorSave_CommandSelect,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_CommandSelect,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_A,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_COMMAND_IN_FIGHTONLY
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_COMMAND,		//ƒpƒlƒ‹
-			SCRNBUF_COMMAND_WAZA,		//‹Z‘I‘ðƒpƒlƒ‹‚Ì‰e
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_COMMAND,		//ãƒ‘ãƒãƒ«
+			SCRNBUF_COMMAND_WAZA,		//æŠ€é¸æŠžãƒ‘ãƒãƒ«ã®å½±
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 3, 3, 0},
-		FightOnlyBattleMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		BattleMenuTouchRet,					//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		BattleMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_CommandSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		CursorSave_CommandSelect,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_CommandInFightOnly,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_A,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		FightOnlyBattleMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		BattleMenuTouchRet,					//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		BattleMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_CommandSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		CursorSave_CommandSelect,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_CommandInFightOnly,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_A,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_TYPE_FIGHTONLY
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_COMMAND,		//ƒpƒlƒ‹
-			SCRNBUF_COMMAND_WAZA,		//‹Z‘I‘ðƒpƒlƒ‹‚Ì‰e
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_COMMAND,		//ãƒ‘ãƒãƒ«
+			SCRNBUF_COMMAND_WAZA,		//æŠ€é¸æŠžãƒ‘ãƒãƒ«ã®å½±
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 3, 3, 0},
-		FightOnlyBattleMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		BattleMenuTouchRet,					//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		BattleMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_CommandSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		CursorSave_CommandSelect,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_FightOnly,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_A,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		FightOnlyBattleMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		BattleMenuTouchRet,					//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		BattleMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_CommandSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		CursorSave_CommandSelect,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_FightOnly,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_A,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_COMMAND_IN_SAFARI
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_COMMAND,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_COMMAND,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		BattleMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		BattleMenuTouchRet,					//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		BattleMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_CommandSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		CursorSave_CommandSelect,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_CommandIn,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_A,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		BattleMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		BattleMenuTouchRet,					//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		BattleMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_CommandSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		CursorSave_CommandSelect,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_CommandIn,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_A,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_TYPE_A_SAFARI
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_COMMAND,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_COMMAND,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		BattleMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		BattleMenuTouchRet,					//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		BattleMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_CommandSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		CursorSave_CommandSelect,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_CommandSelect,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_A,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		BattleMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		BattleMenuTouchRet,					//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		BattleMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_CommandSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		CursorSave_CommandSelect,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_CommandSelect,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_A,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_COMMAND_IN_PARK
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_COMMAND,		//ƒpƒlƒ‹
-			NONE_ID,		//‹Z‘I‘ðƒpƒlƒ‹‚Ì‰e
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_COMMAND,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//æŠ€é¸æŠžãƒ‘ãƒãƒ«ã®å½±
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 3, 3, 0},
-		ParkCommandMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		ParkMenuTouchRet,					//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		ParkMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_ParkCommandSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_ParkCommandIn,			//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_A,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		ParkCommandMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		ParkMenuTouchRet,					//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		ParkMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_ParkCommandSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_ParkCommandIn,			//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_A,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_TYPE_PARK
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_COMMAND,		//ƒpƒlƒ‹
-			NONE_ID,		//‹Z‘I‘ðƒpƒlƒ‹‚Ì‰e
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_COMMAND,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//æŠ€é¸æŠžãƒ‘ãƒãƒ«ã®å½±
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 3, 3, 0},
-		ParkCommandMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		ParkMenuTouchRet,					//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		ParkMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_ParkCommandSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_ParkCommand,			//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_A,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		ParkCommandMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		ParkMenuTouchRet,					//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		ParkMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_ParkCommandSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_ParkCommand,			//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_A,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_TYPE_WAZA
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_WAZA,		//ƒpƒlƒ‹
-			NONE_ID,					//•˜g
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_WAZA,		//ãƒ‘ãƒãƒ«
+			NONE_ID,					//é»’æž 
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		SkillMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		SkillMenuTouchRet,				//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		SkillMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_WazaSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		CursorSave_WazaSelect,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_Waza,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_Waza,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		SkillMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		SkillMenuTouchRet,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		SkillMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_WazaSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		CursorSave_WazaSelect,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_Waza,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_Waza,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_TYPE_POKE
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_POKESELE,		//ƒpƒlƒ‹
-			SCRNBUF_POKESELE_WAKU,		//•˜g
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_POKESELE,		//ãƒ‘ãƒãƒ«
+			SCRNBUF_POKESELE_WAKU,		//é»’æž 
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		PokeSeleMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		PokeSeleMenuTouchRet,				//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		PokeSeleMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_PokeSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		CursorSave_PokeSelect,				//ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_PokeSelect,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_PokeSele,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		PokeSeleMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		PokeSeleMenuTouchRet,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		PokeSeleMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_PokeSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		CursorSave_PokeSelect,				//ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_PokeSelect,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_PokeSele,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_TYPE_YESNO
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_YESNO,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_YESNO,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		EscapeMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		EscapeMenuTouchRet,				//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		EscapeMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_YesNo,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,				//ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_YesNo,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_D,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		EscapeMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		EscapeMenuTouchRet,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		EscapeMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_YesNo,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,				//ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_YesNo,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_D,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_TYPE_WASURERU
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_YESNO,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_YESNO,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		EscapeMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		EscapeMenuTouchRet,				//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		EscapeMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_YesNo,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,				//ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_Wasureru,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_D,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		EscapeMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		EscapeMenuTouchRet,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		EscapeMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_YesNo,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,				//ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_Wasureru,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_D,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_TYPE_AKIRAMERU
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_YESNO,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_YESNO,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		EscapeMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		EscapeMenuTouchRet,				//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		EscapeMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_YesNo,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,				//ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_Akirameru,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_D,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		EscapeMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		EscapeMenuTouchRet,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		EscapeMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_YesNo,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,				//ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_Akirameru,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_D,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_TYPE_NEXT_POKEMON
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_YESNO,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_YESNO,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		EscapeMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		EscapeMenuTouchRet,				//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		EscapeMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_YesNo,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,				//ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_NextPokemon,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_D,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		EscapeMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		EscapeMenuTouchRet,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		EscapeMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_YesNo,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,				//ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_NextPokemon,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_D,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_TYPE_CHANGE_POKEMON
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_YESNO,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_YESNO,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		EscapeMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		EscapeMenuTouchRet,				//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		EscapeMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		CursorMove_YesNo,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,				//ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_ChangePokemon,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_D,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		EscapeMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		EscapeMenuTouchRet,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		EscapeMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_YesNo,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,				//ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_ChangePokemon,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_D,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//BINPUT_TYPE_PLAYBACK_STOP
 		BATTLE_W_NCGR_BIN,
 		BATTLE_W_NCLR,
 		{
-			SCRNBUF_PLAYBACK_STOP,		//ƒpƒlƒ‹
-			SCRNBUF_PLAYBACK_SYSWIN,		//•˜g
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_PLAYBACK_STOP,		//ãƒ‘ãƒãƒ«
+			SCRNBUF_PLAYBACK_SYSWIN,		//é»’æž 
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 3, 3, 0},
-		PlayBackStopOnlyMenuTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		PlayBackStopOnlyMenuTouchRet,					//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		PlayBackStopMenuPaletteNo,				//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒg”Ô†
-		NULL,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_PlayBackStop,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_PlayBackStop,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		PlayBackStopOnlyMenuTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		PlayBackStopOnlyMenuTouchRet,					//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		PlayBackStopMenuPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		NULL,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_PlayBackStop,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_PlayBackStop,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 };
 
 
 //==============================================================================
 //
-//	ƒAƒNƒ^[ƒwƒbƒ_
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 //
 //==============================================================================
-///ŽèŽ‚¿ƒ{[ƒ‹FŽ©‹@‘¤ƒAƒNƒ^[ƒwƒbƒ_
+///æ‰‹æŒã¡ãƒœãƒ¼ãƒ«ï¼šè‡ªæ©Ÿå´ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S StockObjParam_Mine = {
 	STOCK_MINE_BASE_POS_X, STOCK_MINE_BASE_POS_Y, 0,		//x, y, z
-	0, SOFTPRI_STOCK_MINE, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_STOCK_MINE,	//ƒLƒƒƒ‰
-		PLTTID_INPUT_COMMON,	//ƒpƒŒƒbƒg
-		CELLID_STOCK_MINE,	//ƒZƒ‹
-		CELLANMID_STOCK_MINE,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_STOCK_MINE, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_STOCK_MINE,	//ã‚­ãƒ£ãƒ©
+		PLTTID_INPUT_COMMON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_STOCK_MINE,	//ã‚»ãƒ«
+		CELLANMID_STOCK_MINE,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	1,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	1,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ŽèŽ‚¿ƒ{[ƒ‹F“G‘¤ƒAƒNƒ^[ƒwƒbƒ_
+///æ‰‹æŒã¡ãƒœãƒ¼ãƒ«ï¼šæ•µå´ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S StockObjParam_Enemy = {
 	STOCK_ENEMY_BASE_POS_X, STOCK_ENEMY_BASE_POS_Y, 0,		//x, y, z
-	0, SOFTPRI_STOCK_ENEMY, 1,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_STOCK_ENEMY,	//ƒLƒƒƒ‰
-		PLTTID_INPUT_COMMON,	//ƒpƒŒƒbƒg
-		CELLID_STOCK_ENEMY,	//ƒZƒ‹
-		CELLANMID_STOCK_ENEMY,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_STOCK_ENEMY, 1,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_STOCK_ENEMY,	//ã‚­ãƒ£ãƒ©
+		PLTTID_INPUT_COMMON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_STOCK_ENEMY,	//ã‚»ãƒ«
+		CELLANMID_STOCK_ENEMY,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	1,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	1,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///‹Zƒ^ƒCƒvƒAƒCƒRƒ“FƒAƒNƒ^[ƒwƒbƒ_
+///æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼šã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S WazaTypeIconObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 100, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_WAZATYPE_ICON_1,	//ƒLƒƒƒ‰
-		PLTTID_WAZATYPE_ICON,	//ƒpƒŒƒbƒg
-		CELLID_WAZATYPE_ICON,	//ƒZƒ‹
-		CELLANMID_WAZATYPE_ICON,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 100, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_WAZATYPE_ICON_1,	//ã‚­ãƒ£ãƒ©
+		PLTTID_WAZATYPE_ICON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_WAZATYPE_ICON,	//ã‚»ãƒ«
+		CELLANMID_WAZATYPE_ICON,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	1,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	1,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///‹Z•ª—ÞƒAƒCƒRƒ“FƒAƒNƒ^[ƒwƒbƒ_
+///æŠ€åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³ï¼šã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S WazaKindIconObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 100, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_WAZAKIND_ICON_1,	//ƒLƒƒƒ‰
-		PLTTID_WAZAKIND_ICON,	//ƒpƒŒƒbƒg
-		CELLID_WAZAKIND_ICON,	//ƒZƒ‹
-		CELLANMID_WAZAKIND_ICON,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 100, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_WAZAKIND_ICON_1,	//ã‚­ãƒ£ãƒ©
+		PLTTID_WAZAKIND_ICON,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_WAZAKIND_ICON,	//ã‚»ãƒ«
+		CELLANMID_WAZAKIND_ICON,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	1,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	1,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///•˜gƒAƒNƒ^[ƒwƒbƒ_
+///é»’æž ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S BlackWakuObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 150, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		0,	//ƒLƒƒƒ‰
-		0,	//ƒpƒŒƒbƒg
-		0,	//ƒZƒ‹
-		0,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 150, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		0,	//ã‚­ãƒ£ãƒ©
+		0,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		0,	//ã‚»ãƒ«
+		0,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	1,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	1,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“FƒAƒNƒ^[ƒwƒbƒ_
+///ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ï¼šã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S PokeIconObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 100, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_POKEICON_B,				//ƒLƒƒƒ‰
-		PLTTID_POKEICON,				//ƒpƒŒƒbƒg
-		CELLID_POKEICON,				//ƒZƒ‹
-		CELLANMID_POKEICON,				//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 100, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_POKEICON_B,				//ã‚­ãƒ£ãƒ©
+		PLTTID_POKEICON,				//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_POKEICON,				//ã‚»ãƒ«
+		CELLANMID_POKEICON,				//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	1,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	1,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 
 //==============================================================================
 //
-//	‹Zƒ^ƒCƒv
+//	æŠ€ã‚¿ã‚¤ãƒ—
 //
 //==============================================================================
-///‹Z‚Ì‹Zƒ^ƒCƒvƒLƒƒƒ‰“]‘—ˆÊ’u(ƒLƒƒƒ‰ƒNƒ^’PˆÊ)
+///æŠ€ã®æŠ€ã‚¿ã‚¤ãƒ—ã‚­ãƒ£ãƒ©è»¢é€ä½ç½®(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½)
 ALIGN4 static const u16 WazaTypeCgrPos[] = {0, 6, 12, 18};
 
 
@@ -1709,50 +1709,50 @@ ALIGN4 static const u16 WazaTypeCgrPos[] = {0, 6, 12, 18};
 //	
 //
 //==============================================================================
-///ƒ{ƒ^ƒ“‚Ì‰Ÿ‚µ‚½Žž‚ÌƒAƒjƒƒpƒ^[ƒ“”
+///ãƒœã‚¿ãƒ³ã®æŠ¼ã—ãŸæ™‚ã®ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°
 #define BUTTON_ANM_MAX		(3)
 
 //--------------------------------------------------------------
-//	‰Ÿ‚¹‚È‚¢ƒpƒlƒ‹
+//	æŠ¼ã›ãªã„ãƒ‘ãƒãƒ«
 //--------------------------------------------------------------
-///ƒXƒNƒŠ[ƒ“”Ô†F‰Ÿ‚¹‚È‚¢ƒpƒlƒ‹@ƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ¼ã›ãªã„ãƒ‘ãƒãƒ«ã€€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_NOT_TOUCH_0		(0x260)
-///‰Ÿ‚¹‚È‚¢ƒpƒlƒ‹‚ÌƒXƒNƒŠ[ƒ“ƒIƒtƒZƒbƒg‚ð‹‚ß‚éŽž‚Ì•â³’l
-///¦‰Ÿ‚¹‚È‚¢ƒpƒlƒ‹‚Í‰Ÿ‚¹‚éƒpƒlƒ‹‚æ‚è‚à1’i­‚È‚¢ˆÊ’u‚©‚ç‚µ‚©ƒf[ƒ^‚ª‚È‚¢‚Ì‚Å
+///æŠ¼ã›ãªã„ãƒ‘ãƒãƒ«ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’æ±‚ã‚ã‚‹æ™‚ã®è£œæ­£å€¤
+///â€»æŠ¼ã›ãªã„ãƒ‘ãƒãƒ«ã¯æŠ¼ã›ã‚‹ãƒ‘ãƒãƒ«ã‚ˆã‚Šã‚‚1æ®µå°‘ãªã„ä½ç½®ã‹ã‚‰ã—ã‹ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§
 #define SCRN_NO_NOT_TOUCH_HOSEI	(32)
 
 //--------------------------------------------------------------
-//	ƒRƒ}ƒ“ƒh‘I‘ð
+//	ã‚³ãƒžãƒ³ãƒ‰é¸æŠž
 //--------------------------------------------------------------
-///ƒXƒNƒŠ[ƒ“”Ô†FƒRƒ}ƒ“ƒh‘I‘ðu‚½‚½‚©‚¤vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã€ŒãŸãŸã‹ã†ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_COMMAND_FIGHT_0		(0x20)
-///ƒXƒNƒŠ[ƒ“”Ô†FƒRƒ}ƒ“ƒh‘I‘ðu‚½‚½‚©‚¤vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã€ŒãŸãŸã‹ã†ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_COMMAND_FIGHT_1		(0xe0)
-///ƒXƒNƒŠ[ƒ“”Ô†FƒRƒ}ƒ“ƒh‘I‘ðu‚½‚½‚©‚¤vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã€ŒãŸãŸã‹ã†ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_COMMAND_FIGHT_2		(0x1a0)
 
-///ƒXƒNƒŠ[ƒ“”Ô†FƒRƒ}ƒ“ƒh‘I‘ðuƒoƒbƒOvƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã€Œãƒãƒƒã‚°ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_COMMAND_ITEM_0		(0x5)
-///ƒXƒNƒŠ[ƒ“”Ô†FƒRƒ}ƒ“ƒh‘I‘ðuƒoƒbƒOvƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã€Œãƒãƒƒã‚°ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_COMMAND_ITEM_1		(0xc5)
-///ƒXƒNƒŠ[ƒ“”Ô†FƒRƒ}ƒ“ƒh‘I‘ðuƒoƒbƒOvƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã€Œãƒãƒƒã‚°ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_COMMAND_ITEM_2		(0x185)
 
-///ƒXƒNƒŠ[ƒ“”Ô†FƒRƒ}ƒ“ƒh‘I‘ðuƒ|ƒPƒ‚ƒ“vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã€Œãƒã‚±ãƒ¢ãƒ³ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_COMMAND_POKEMON_0	(0x8)
-///ƒXƒNƒŠ[ƒ“”Ô†FƒRƒ}ƒ“ƒh‘I‘ðuƒ|ƒPƒ‚ƒ“vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã€Œãƒã‚±ãƒ¢ãƒ³ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_COMMAND_POKEMON_1	(0xc8)
-///ƒXƒNƒŠ[ƒ“”Ô†FƒRƒ}ƒ“ƒh‘I‘ðuƒ|ƒPƒ‚ƒ“vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã€Œãƒã‚±ãƒ¢ãƒ³ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_COMMAND_POKEMON_2	(0x188)
 
-///ƒXƒNƒŠ[ƒ“”Ô†FƒRƒ}ƒ“ƒh‘I‘ðu‚É‚°‚évƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã€Œã«ã’ã‚‹ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_COMMAND_ESCAPE_0	(0x1d)
-///ƒXƒNƒŠ[ƒ“”Ô†FƒRƒ}ƒ“ƒh‘I‘ðu‚É‚°‚évƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã€Œã«ã’ã‚‹ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_COMMAND_ESCAPE_1	(0xdd)
-///ƒXƒNƒŠ[ƒ“”Ô†FƒRƒ}ƒ“ƒh‘I‘ðu‚É‚°‚évƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžã€Œã«ã’ã‚‹ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_COMMAND_ESCAPE_2	(0x19d)
 
-///ƒRƒ}ƒ“ƒh‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚Ìƒ{ƒ^ƒ“ƒAƒjƒ—pƒXƒNƒŠ[ƒ“ƒIƒtƒZƒbƒg’l
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 ALIGN4 static const s16 CommandButtonScrnOffset[][BUTTON_ANM_MAX] = {
 	{//SELECT_FIGHT_COMMAND
 		SCRN_NO_COMMAND_FIGHT_0 - SCRN_NO_COMMAND_FIGHT_0,
@@ -1776,7 +1776,7 @@ ALIGN4 static const s16 CommandButtonScrnOffset[][BUTTON_ANM_MAX] = {
 	},
 };
 
-///ƒRƒ}ƒ“ƒh‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚ÌƒXƒNƒŠ[ƒ“ƒAƒjƒ‘‚«Š·‚¦”ÍˆÍ
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆç¯„å›²
 ALIGN4 static const REWRITE_SCRN_RECT CommandButtonScrnRect[] = {
 	{4, 0xf, 2, 0x1d},
 	{0x11, 0x17, 0, 0x9},
@@ -1785,44 +1785,44 @@ ALIGN4 static const REWRITE_SCRN_RECT CommandButtonScrnRect[] = {
 };
 
 //--------------------------------------------------------------
-//	‹Z‘I‘ð
+//	æŠ€é¸æŠž
 //--------------------------------------------------------------
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z0vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€0ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_0_0		(0x11)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z0vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€0ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_0_1		(0xd1)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z0vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€0ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_0_2		(0x191)
 
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z1vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€1ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_1_0		(0x14)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z1vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€1ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_1_1		(0xd4)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z1vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€1ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_1_2		(0x194)
 
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z2vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€2ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_2_0		(0x17)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z2vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€2ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_2_1		(0xd7)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z2vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€2ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_2_2		(0x197)
 
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z3vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€3ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_3_0		(0x1a)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z3vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€3ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_3_1		(0xda)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z3vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€3ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_3_2		(0x19a)
 
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðuƒLƒƒƒ“ƒZƒ‹vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€Œã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_CANCEL_0		(0x1d)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðuƒLƒƒƒ“ƒZƒ‹vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€Œã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_CANCEL_1		(0xdd)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðuƒLƒƒƒ“ƒZƒ‹vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€Œã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_CANCEL_2		(0x19d)
 
-///‹Z‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚Ìƒ{ƒ^ƒ“ƒAƒjƒ—pƒXƒNƒŠ[ƒ“ƒIƒtƒZƒbƒg’l
+///æŠ€é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 ALIGN4 static const s16 WazaButtonScrnOffset[][BUTTON_ANM_MAX] = {
 	{//SELECT_SKILL_1
 		SCRN_NO_WAZA_SKILL_0_0 - SCRN_NO_WAZA_SKILL_0_0,
@@ -1851,7 +1851,7 @@ ALIGN4 static const s16 WazaButtonScrnOffset[][BUTTON_ANM_MAX] = {
 	},
 };
 
-///‹Z‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚ÌƒXƒNƒŠ[ƒ“ƒAƒjƒ‘‚«Š·‚¦”ÍˆÍ
+///æŠ€é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆç¯„å›²
 ALIGN4 static const REWRITE_SCRN_RECT WazaButtonScrnRect[] = {
 	{2, 9, 0, 0xf},
 	{2, 9, 0x10, 0x1f},
@@ -1860,7 +1860,7 @@ ALIGN4 static const REWRITE_SCRN_RECT WazaButtonScrnRect[] = {
 	{0x12, 0x17, 1, 0x1e},
 };
 
-///‹Z‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚¹‚È‚¢ƒ{ƒ^ƒ“‚É‚·‚éŽž‚ÌƒXƒNƒŠ[ƒ“ƒIƒtƒZƒbƒg’l
+///æŠ€é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã›ãªã„ãƒœã‚¿ãƒ³ã«ã™ã‚‹æ™‚ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 ALIGN4 static const s16 WazaButtonNotTouchScrnOffset[] = {
 	SCRN_NO_NOT_TOUCH_0 - SCRN_NO_WAZA_SKILL_0_0 - SCRN_NO_NOT_TOUCH_HOSEI,	//SELECT_SKILL_1
 	SCRN_NO_NOT_TOUCH_0 - SCRN_NO_WAZA_SKILL_1_0 - SCRN_NO_NOT_TOUCH_HOSEI,	//SELECT_SKILL_1
@@ -1868,7 +1868,7 @@ ALIGN4 static const s16 WazaButtonNotTouchScrnOffset[] = {
 	SCRN_NO_NOT_TOUCH_0 - SCRN_NO_WAZA_SKILL_3_0 - SCRN_NO_NOT_TOUCH_HOSEI,	//SELECT_SKILL_1
 };
 
-///‹Z‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚¹‚È‚¢ƒ{ƒ^ƒ“‚É‚·‚éŽž‚ÌƒXƒNƒŠ[ƒ“ƒAƒjƒ‘‚«Š·‚¦”ÍˆÍ
+///æŠ€é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã›ãªã„ãƒœã‚¿ãƒ³ã«ã™ã‚‹æ™‚ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆç¯„å›²
 ALIGN4 static const REWRITE_SCRN_RECT WazaButtonNotTouchScrnRect[] = {
 	{3, 9, 0, 0xf},
 	{3, 9, 0x10, 0x1f},
@@ -1877,44 +1877,44 @@ ALIGN4 static const REWRITE_SCRN_RECT WazaButtonNotTouchScrnRect[] = {
 };
 
 //--------------------------------------------------------------
-//	ƒ|ƒPƒ‚ƒ“‘I‘ð
+//	ãƒã‚±ãƒ¢ãƒ³é¸æŠž
 //--------------------------------------------------------------
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuCLIENT_TYPE_AvƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€ŒCLIENT_TYPE_Aã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_A_0		(0x8)
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuCLIENT_TYPE_AvƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€ŒCLIENT_TYPE_Aã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_A_1		(0xc8)
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuCLIENT_TYPE_AvƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€ŒCLIENT_TYPE_Aã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_A_2		(0x188)
 
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuCLIENT_TYPE_BvƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€ŒCLIENT_TYPE_Bã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_B_0		(0xb)
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuCLIENT_TYPE_BvƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€ŒCLIENT_TYPE_Bã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_B_1		(0xcb)
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuCLIENT_TYPE_BvƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€ŒCLIENT_TYPE_Bã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_B_2		(0x18b)
 
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuCLIENT_TYPE_CvƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€ŒCLIENT_TYPE_Cã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_C_0		(0xe)
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuCLIENT_TYPE_CvƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€ŒCLIENT_TYPE_Cã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_C_1		(0xce)
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuCLIENT_TYPE_CvƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€ŒCLIENT_TYPE_Cã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_C_2		(0x18e)
 
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuCLIENT_TYPE_DvƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€ŒCLIENT_TYPE_Dã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_D_0		(0x5)
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuCLIENT_TYPE_DvƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€ŒCLIENT_TYPE_Dã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_D_1		(0xc5)
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuCLIENT_TYPE_DvƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€ŒCLIENT_TYPE_Dã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_D_2		(0x185)
 
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuƒLƒƒƒ“ƒZƒ‹vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€Œã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_CANCEL_0		(0x1d)
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuƒLƒƒƒ“ƒZƒ‹vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€Œã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_CANCEL_1		(0xdd)
-///ƒXƒNƒŠ[ƒ“”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ðuƒLƒƒƒ“ƒZƒ‹vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠžã€Œã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_POKEMON_CANCEL_2		(0x19d)
 
-///ƒ|ƒPƒ‚ƒ“‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚Ìƒ{ƒ^ƒ“ƒAƒjƒ—pƒXƒNƒŠ[ƒ“ƒIƒtƒZƒbƒg’l
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 ALIGN4 static const s16 PokemonButtonScrnOffset[][BUTTON_ANM_MAX] = {
 	{//A
 		SCRN_NO_POKEMON_A_0 - SCRN_NO_POKEMON_A_0,
@@ -1943,7 +1943,7 @@ ALIGN4 static const s16 PokemonButtonScrnOffset[][BUTTON_ANM_MAX] = {
 	},
 };
 
-///ƒ|ƒPƒ‚ƒ“‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚ÌƒXƒNƒŠ[ƒ“ƒAƒjƒ‘‚«Š·‚¦”ÍˆÍ
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆç¯„å›²
 ALIGN4 static const REWRITE_SCRN_RECT PokemonButtonScrnRect[] = {
 	{0xa, 0x11, 0, 0xe},
 	{0, 9, 0x11, 0x1f},
@@ -1952,7 +1952,7 @@ ALIGN4 static const REWRITE_SCRN_RECT PokemonButtonScrnRect[] = {
 	{0x12, 0x17, 1, 0x1e},
 };
 
-///ƒ|ƒPƒ‚ƒ“‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚¹‚È‚¢ƒpƒlƒ‹‚É‚·‚éŽž‚ÌƒXƒNƒŠ[ƒ“ƒIƒtƒZƒbƒg’l
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã›ãªã„ãƒ‘ãƒãƒ«ã«ã™ã‚‹æ™‚ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 ALIGN4 static const s16 PokemonButtonNotTouchScrnOffset[] = {
 	SCRN_NO_NOT_TOUCH_0 - SCRN_NO_POKEMON_A_0 - SCRN_NO_NOT_TOUCH_HOSEI,		//A
 	SCRN_NO_NOT_TOUCH_0 - SCRN_NO_POKEMON_B_0 - SCRN_NO_NOT_TOUCH_HOSEI,		//B
@@ -1960,7 +1960,7 @@ ALIGN4 static const s16 PokemonButtonNotTouchScrnOffset[] = {
 	SCRN_NO_NOT_TOUCH_0 - SCRN_NO_POKEMON_D_0 - SCRN_NO_NOT_TOUCH_HOSEI,		//D
 };
 
-///ƒ|ƒPƒ‚ƒ“‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚¹‚È‚¢ƒpƒlƒ‹‚É‚·‚éŽž‚ÌƒXƒNƒŠ[ƒ“ƒAƒjƒ‘‚«Š·‚¦”ÍˆÍ
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã›ãªã„ãƒ‘ãƒãƒ«ã«ã™ã‚‹æ™‚ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆç¯„å›²
 ALIGN4 static const REWRITE_SCRN_RECT PokemonButtonNotTouchScrnRect[] = {
 	{0xb, 0x11, 0, 0xe},
 	{1, 9, 0x11, 0x1f},
@@ -1969,71 +1969,71 @@ ALIGN4 static const REWRITE_SCRN_RECT PokemonButtonNotTouchScrnRect[] = {
 };
 
 //--------------------------------------------------------------
-//	u‚Í‚¢E‚¢‚¢‚¦v‘I‘ð
+//	ã€Œã¯ã„ãƒ»ã„ã„ãˆã€é¸æŠž
 //--------------------------------------------------------------
-///ƒXƒNƒŠ[ƒ“”Ô†F‚Í‚¢E‚¢‚¢‚¦‘I‘ðu‚¢‚¢‚¦vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã¯ã„ãƒ»ã„ã„ãˆé¸æŠžã€Œã„ã„ãˆã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_NO_0		(0x246)
-///ƒXƒNƒŠ[ƒ“”Ô†F‚Í‚¢E‚¢‚¢‚¦‘I‘ðu‚¢‚¢‚¦vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã¯ã„ãƒ»ã„ã„ãˆé¸æŠžã€Œã„ã„ãˆã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_NO_1		(0x24b)
-///ƒXƒNƒŠ[ƒ“”Ô†F‚Í‚¢E‚¢‚¢‚¦‘I‘ðu‚¢‚¢‚¦vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã¯ã„ãƒ»ã„ã„ãˆé¸æŠžã€Œã„ã„ãˆã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_NO_2		(0x250)
 
-///ƒXƒNƒŠ[ƒ“”Ô†F‚Í‚¢E‚¢‚¢‚¦‘I‘ðu‚Í‚¢vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã¯ã„ãƒ»ã„ã„ãˆé¸æŠžã€Œã¯ã„ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_YES_0		(0x20)
-///ƒXƒNƒŠ[ƒ“”Ô†F‚Í‚¢E‚¢‚¢‚¦‘I‘ðu‚Í‚¢vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã¯ã„ãƒ»ã„ã„ãˆé¸æŠžã€Œã¯ã„ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_YES_1		(0xe0)
-///ƒXƒNƒŠ[ƒ“”Ô†F‚Í‚¢E‚¢‚¢‚¦‘I‘ðu‚Í‚¢vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šã¯ã„ãƒ»ã„ã„ãˆé¸æŠžã€Œã¯ã„ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_YES_2		(0x1a0)
 
-///‚Í‚¢E‚¢‚¢‚¦‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚Ìƒ{ƒ^ƒ“ƒAƒjƒ—pƒXƒNƒŠ[ƒ“ƒIƒtƒZƒbƒg’l
+///ã¯ã„ãƒ»ã„ã„ãˆé¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 ALIGN4 static const s16 YesNoButtonScrnOffset[][BUTTON_ANM_MAX] = {
-	{//‚¢‚¢‚¦
+	{//ã„ã„ãˆ
 		SCRN_NO_NO_0 - SCRN_NO_NO_0,
 		SCRN_NO_NO_1 - SCRN_NO_NO_0,
 		SCRN_NO_NO_2 - SCRN_NO_NO_0,
 	},
-	{//‚Í‚¢
+	{//ã¯ã„
 		SCRN_NO_YES_0 - SCRN_NO_YES_0,
 		SCRN_NO_YES_1 - SCRN_NO_YES_0,
 		SCRN_NO_YES_2 - SCRN_NO_YES_0,
 	},
 };
 
-///‚Í‚¢E‚¢‚¢‚¦‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚ÌƒXƒNƒŠ[ƒ“ƒAƒjƒ‘‚«Š·‚¦”ÍˆÍ
+///ã¯ã„ãƒ»ã„ã„ãˆé¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆç¯„å›²
 ALIGN4 static const REWRITE_SCRN_RECT YesNoButtonScrnRect[] = {
-	{0xd, 0x14, 0, 0x1f},		//‚¢‚¢‚¦
-	{4, 0xb, 0, 0x1f},			//‚Í‚¢
+	{0xd, 0x14, 0, 0x1f},		//ã„ã„ãˆ
+	{4, 0xb, 0, 0x1f},			//ã¯ã„
 };
 
 //--------------------------------------------------------------
-//	u‚³‚¢‚¹‚¢@‚Ä‚¢‚µvƒ{ƒ^ƒ“
+//	ã€Œã•ã„ã›ã„ã€€ã¦ã„ã—ã€ãƒœã‚¿ãƒ³
 //--------------------------------------------------------------
-///ƒXƒNƒŠ[ƒ“”Ô†FÄ¶’âŽ~uƒXƒgƒbƒvvƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå†ç”Ÿåœæ­¢ã€Œã‚¹ãƒˆãƒƒãƒ—ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_STOP_0		(0x1d)
-///ƒXƒNƒŠ[ƒ“”Ô†FÄ¶’âŽ~uƒXƒgƒbƒvvƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå†ç”Ÿåœæ­¢ã€Œã‚¹ãƒˆãƒƒãƒ—ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_STOP_1		(0xdd)
-///ƒXƒNƒŠ[ƒ“”Ô†FÄ¶’âŽ~uƒXƒgƒbƒvvƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå†ç”Ÿåœæ­¢ã€Œã‚¹ãƒˆãƒƒãƒ—ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_STOP_2		(0x19d)
 
-///‚Í‚¢E‚¢‚¢‚¦‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚Ìƒ{ƒ^ƒ“ƒAƒjƒ—pƒXƒNƒŠ[ƒ“ƒIƒtƒZƒbƒg’l
+///ã¯ã„ãƒ»ã„ã„ãˆé¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 ALIGN4 static const s16 StopButtonScrnOffset[BUTTON_ANM_MAX] = {
 	SCRN_NO_STOP_0 - SCRN_NO_STOP_0,
 	SCRN_NO_STOP_1 - SCRN_NO_STOP_0,
 	SCRN_NO_STOP_2 - SCRN_NO_STOP_0,
 };
 
-///‚Í‚¢E‚¢‚¢‚¦‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚ÌƒXƒNƒŠ[ƒ“ƒAƒjƒ‘‚«Š·‚¦”ÍˆÍ
+///ã¯ã„ãƒ»ã„ã„ãˆé¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆç¯„å›²
 ALIGN4 static const REWRITE_SCRN_RECT StopButtonScrnRect[] = {
-	{0x12, 0x17, 0, 0x1f},		//‚¢‚¢‚¦
+	{0x12, 0x17, 0, 0x1f},		//ã„ã„ãˆ
 };
 
 
 //==============================================================================
 //
-//	˜gƒ|ƒWƒVƒ‡ƒ“
+//	æž ãƒã‚¸ã‚·ãƒ§ãƒ³
 //
 //==============================================================================
-///ƒRƒ}ƒ“ƒh‘I‘ð‰æ–Ê‚Å‚Ì˜g‚Ì“oêÀ•W
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢ã§ã®æž ã®ç™»å ´åº§æ¨™
 static const POINT_S16 CommandWakuPos[] = {
 	{0x10 * 8, 9 * 8 + 4},		//SELECT_FIGHT_COMMAND
 	{0x5 * 8, 0x14 * 8 + 4},		//SELECT_ITEM_COMMAND
@@ -2041,7 +2041,7 @@ static const POINT_S16 CommandWakuPos[] = {
 	{0x10 * 8, 0x15 * 8},		//SELECT_ESCAPE_COMMAND
 };
 
-///‹Z‘I‘ð‰æ–Ê‚Å‚Ì˜g‚Ì“oêÀ•W
+///æŠ€é¸æŠžç”»é¢ã§ã®æž ã®ç™»å ´åº§æ¨™
 static const POINT_S16 WazaWakuPos[] = {
 	{0x10 * 8, 9 * 8 + 4},		//SELECT_SKILL_1
 	{0x5 * 8, 0x14 * 8},		//SELECT_SKILL_2
@@ -2049,7 +2049,7 @@ static const POINT_S16 WazaWakuPos[] = {
 	{0x10 * 8, 0x15 * 8},		//SELECT_SKILL_4
 };
 
-///ƒ|ƒPƒ‚ƒ“‘I‘ð‰æ–Ê‚Å‚Ì˜g‚Ì“oêÀ•W
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠžç”»é¢ã§ã®æž ã®ç™»å ´åº§æ¨™
 static const POINT_S16 PokemonWakuPos[] = {
 	{0x10 * 8, 9 * 8 + 4},		//A
 	{0x5 * 8, 0x14 * 8},		//B
@@ -2060,12 +2060,12 @@ static const POINT_S16 PokemonWakuPos[] = {
 
 //==============================================================================
 //
-//	‚»‚Ì‘¼‚Ìƒf[ƒ^
+//	ãã®ä»–ã®ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================
-///•\Ž¦BG–ˆ‚Ì‘I‘ðo—ˆ‚éƒ|ƒPƒ‚ƒ“@TRUEF‘I‘ðo—ˆ‚é@FALSEFo—ˆ‚È‚¢
+///è¡¨ç¤ºBGæ¯Žã®é¸æŠžå‡ºæ¥ã‚‹ãƒã‚±ãƒ¢ãƒ³ã€€TRUEï¼šé¸æŠžå‡ºæ¥ã‚‹ã€€FALSEï¼šå‡ºæ¥ãªã„
 ALIGN4 static const PokeSelectHitRange[][CLIENT_MAX] = {
-	//CLIENT_TYPE_A, B, C, D‚Ì‡
+	//CLIENT_TYPE_A, B, C, Dã®é †
 	{TRUE,	TRUE,	TRUE,	TRUE},		//POKESELE_A_B_C_D
 	{FALSE,	TRUE,	FALSE,	TRUE},		//POKESELE_BD
 	{FALSE,	TRUE,	TRUE,	TRUE},		//POKESELE_BCD
@@ -2080,7 +2080,7 @@ ALIGN4 static const PokeSelectHitRange[][CLIENT_MAX] = {
 	{FALSE,	TRUE,	FALSE,	TRUE},		//POKESELE_B_D
 };
 
-///˜gƒ^ƒCƒv–ˆ‚ÌƒLƒƒƒ‰ID‚È‚Ç‚Ìƒe[ƒuƒ‹
+///æž ã‚¿ã‚¤ãƒ—æ¯Žã®ã‚­ãƒ£ãƒ©IDãªã©ã®ãƒ†ãƒ¼ãƒ–ãƒ«
 ALIGN4 static const u32 WakuTypeID[][3] = {	//char, cell, anm
 	{
 		BATTLE_W_WAKU1_NCGR_BIN,
@@ -2100,14 +2100,14 @@ ALIGN4 static const u32 WakuTypeID[][3] = {	//char, cell, anm
 };
 
 //--------------------------------------------------------------
-//	’nŒ`ID–ˆ‚É”wŒiƒpƒŒƒbƒg‚ð•ÏX‚·‚é
+//	åœ°å½¢IDæ¯Žã«èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹
 //--------------------------------------------------------------
-///’nŒ`ID–ˆ‚É”wŒiƒpƒŒƒbƒg‚ð•Ï‚¦‚È‚¢ê‡‚ÌŽw’è
+///åœ°å½¢IDæ¯Žã«èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰ãˆãªã„å ´åˆã®æŒ‡å®š
 #define BACK_GROUND_PALETTE_NONE		(0xffff)
 
 static const struct{
-	u16 base_nclr_index;		///<Šî–{ƒpƒŒƒbƒg
-	u16 ani_nclr_index;			///<ƒAƒjƒ[ƒVƒ‡ƒ“—pƒpƒŒƒbƒg
+	u16 base_nclr_index;		///<åŸºæœ¬ãƒ‘ãƒ¬ãƒƒãƒˆ
+	u16 ani_nclr_index;			///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
 }BackGroundPaletteID[] = {
 	{//BG_ID_BASIC
 		BATTLE_W_00_NCLR,
@@ -2212,9 +2212,9 @@ static const struct{
 
 //--------------------------------------------------------------
 /**
- * @brief   BIƒVƒXƒeƒ€ƒ[ƒN‚ÌŠm•Û‚Æ‰Šú‰»
+ * @brief   BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿ã¨åˆæœŸåŒ–
  *
- * @retval  Šm•Û‚µ‚½BIƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç¢ºä¿ã—ãŸBIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void * BINPUT_WorkInit(void)
@@ -2231,8 +2231,8 @@ static void * BINPUT_WorkInit(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   BG\¬‚ð•W€ƒtƒŒ[ƒ€\¬‚ÅÝ’è‚·‚é
- * @param   bgl		BGLƒf[ƒ^
+ * @brief   BGæ§‹æˆã‚’æ¨™æº–ãƒ•ãƒ¬ãƒ¼ãƒ æ§‹æˆã§è¨­å®šã™ã‚‹
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void BINPUT_DefaultFrameSet(GF_BGL_INI *bgl)
@@ -2250,8 +2250,8 @@ void BINPUT_DefaultFrameSet(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief   BGƒtƒŒ[ƒ€I—¹ˆ—
- * @param   bgl		BGLƒf[ƒ^
+ * @brief   BGãƒ•ãƒ¬ãƒ¼ãƒ çµ‚äº†å‡¦ç†
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void BINPUT_FrameExit(GF_BGL_INI *bgl)
@@ -2266,11 +2266,11 @@ void BINPUT_FrameExit(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬“ü—Í‰æ–Ê‚ÌƒVƒXƒeƒ€‚ð‰Šú‰»
- * @param   bgl		BGLƒf[ƒ^
- * @param   sex		«•Ê(’j—•Ê•ÇŽ†‚Ì‘I‘ð‚É•K—v)
- * @param   cursor_disp	ƒJ[ƒ\ƒ‹‚Ì‰Šú•\Ž¦ó‘Ô
- * @retval  Alloc‚µ‚½í“¬“ü—Í‰æ–Ê‚ÌƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æˆ¦é—˜å…¥åŠ›ç”»é¢ã®ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿
+ * @param   sex		æ€§åˆ¥(ç”·å¥³åˆ¥å£ç´™ã®é¸æŠžã«å¿…è¦)
+ * @param   cursor_disp	ã‚«ãƒ¼ã‚½ãƒ«ã®åˆæœŸè¡¨ç¤ºçŠ¶æ…‹
+ * @retval  Allocã—ãŸæˆ¦é—˜å…¥åŠ›ç”»é¢ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void * BINPUT_SystemInit(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BATTLE_WORK *bw, int sex, BATTLE_CURSOR_DISP *cursor_disp)
@@ -2279,7 +2279,7 @@ void * BINPUT_SystemInit(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BATTLE_WORK *bw,
 	PALETTE_FADE_PTR pfd;
 	int bg_id;
 
-	//ƒ[ƒNŠm•Û
+	//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 	bip = BINPUT_WorkInit();
 	bip->bw = bw;
 	bip->sex = sex;
@@ -2292,7 +2292,7 @@ void * BINPUT_SystemInit(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BATTLE_WORK *bw,
 	}
 	else{
 	#ifdef OSP_BINPUT_ON
-		OS_TPrintf("ƒJ[ƒ\ƒ‹‚È‚µ\n");
+		OS_TPrintf("ã‚«ãƒ¼ã‚½ãƒ«ãªã—\n");
 	#endif
 	}
 
@@ -2303,16 +2303,16 @@ void * BINPUT_SystemInit(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BATTLE_WORK *bw,
 		GF_ASSERT(0);
 	}
 	
-	//ƒtƒŒ[ƒ€\¬Ý’è	‚±‚±‚Å‚â‚é‚©‚Í”÷–­H
+	//ãƒ•ãƒ¬ãƒ¼ãƒ æ§‹æˆè¨­å®š	ã“ã“ã§ã‚„ã‚‹ã‹ã¯å¾®å¦™ï¼Ÿ
 //	BINPUT_DefaultFrameSet(bgl);
 
-	//ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€ì¬
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	bip->fontoam_sys = FONTOAM_SysInit(FA_NO_MAX, HEAPID_BATTLE);
 
-	//í’“ƒtƒF[ƒhƒ^ƒXƒN¶¬
+	//å¸¸é§ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	bip->def_fade_tcb = TCB_Add(DefaultFadeAnimeTask, bip, TCBPRI_BINPUT_DEF_COLOR_EFFECT);
 	
-	//ƒXƒNƒŠ[ƒ“‘S“Ç‚Ýž‚Ý
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å…¨èª­ã¿è¾¼ã¿
 	{
 		NNSG2dScreenData *scrnData;
 		void *arc_data;
@@ -2320,10 +2320,10 @@ void * BINPUT_SystemInit(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BATTLE_WORK *bw,
 		int scrn_data_id;
 		
 		for(i = 0; i < SCRNBUF_MAX; i++){
-			//ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@Šm•Û
+			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ç¢ºä¿
 			bip->scrn_buf[i] = sys_AllocMemory(HEAPID_BATTLE, 0x800);
 
-			//ƒXƒNƒŠ[ƒ““Ç‚Ýž‚Ý
+			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³èª­ã¿è¾¼ã¿
 			if((BattleWorkFightTypeGet(bw) & FIGHT_TYPE_TOWER) 
 					&& ScrnArcDataNo[i] == BATTLE_WBG0B_NSCR_BIN){
 				scrn_data_id = BATTLE_WBG0B_BF_NSCR_BIN;
@@ -2338,7 +2338,7 @@ void * BINPUT_SystemInit(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BATTLE_WORK *bw,
 		}
 	}
 
-	//ƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	//ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	{
 		u16 *def_wk;
 		int bg_data_id;
@@ -2355,7 +2355,7 @@ void * BINPUT_SystemInit(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BATTLE_WORK *bw,
 		MI_CpuCopy16(def_wk, bip->pal_buf, 0x200);
 	}
 	
-	//MEMORY_DECORD_WORK‰Šú‰»
+	//MEMORY_DECORD_WORKåˆæœŸåŒ–
 	{
 		int i, client;
 		for(client = 0; client < CLIENT_MAX; client++){
@@ -2363,7 +2363,7 @@ void * BINPUT_SystemInit(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BATTLE_WORK *bw,
 		}
 	}
 	
-	//‹Zƒ^ƒCƒvƒAƒCƒRƒ“—p“WŠJƒƒ‚ƒŠŠm•Û
+	//æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ç”¨å±•é–‹ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	{
 		int i, client;
 		for(client = 0; client < CLIENT_MAX; client++){
@@ -2374,7 +2374,7 @@ void * BINPUT_SystemInit(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BATTLE_WORK *bw,
 		}
 	}
 	
-	//”wŒiƒpƒŒƒbƒg
+	//èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆ
 	{
 		NNSG2dPaletteData *pal_data;
 		void *arc_data;
@@ -2414,8 +2414,8 @@ void * BINPUT_SystemInit(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BATTLE_WORK *bw,
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬“ü—Í‰æ–Ê‚ÌƒVƒXƒeƒ€‚ð‰ð•ú‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æˆ¦é—˜å…¥åŠ›ç”»é¢ã®ã‚·ã‚¹ãƒ†ãƒ ã‚’è§£æ”¾ã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BINPUT_SystemFree(BI_PARAM_PTR bip)
@@ -2454,9 +2454,9 @@ void BINPUT_SystemFree(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   í’“ƒLƒƒƒ‰‚Ì“WŠJ‚È‚Ç‚ðs‚¤
+ * @brief   å¸¸é§ã‚­ãƒ£ãƒ©ã®å±•é–‹ãªã©ã‚’è¡Œã†
  *
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BINPUT_DefaultDataSet(BI_PARAM_PTR bip)
@@ -2472,7 +2472,7 @@ void BINPUT_DefaultDataSet(BI_PARAM_PTR bip)
 	bgl = BattleWorkGF_BGL_INIGet(bip->bw);
 	pfd = BattleWorkPfdGet(bip->bw);
 
-	//ƒLƒƒƒ‰ƒf[ƒ^VRAM“]‘—
+	//ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿VRAMè»¢é€
 	{
 		int cgr_data_id;
 		
@@ -2486,7 +2486,7 @@ void BINPUT_DefaultDataSet(BI_PARAM_PTR bip)
 			0, 0x6000, 1, HEAPID_BATTLE);
 	}
 
-	//‹Zƒ^ƒCƒvƒAƒCƒRƒ“
+	//æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³
 	WazaTypeIcon_CellAnmResourceLoad(csp, crp, CELLID_WAZATYPE_ICON, CELLANMID_WAZATYPE_ICON);
 	WazaTypeIcon_PlttWorkResourceLoad(BattleWorkPfdGet(bip->bw), FADE_SUB_OBJ, csp, crp, 
 		NNS_G2D_VRAM_TYPE_2DSUB, PLTTID_WAZATYPE_ICON);
@@ -2495,7 +2495,7 @@ void BINPUT_DefaultDataSet(BI_PARAM_PTR bip)
 			NORMAL_TYPE, CHARID_WAZATYPE_ICON_1 + i);
 	}
 
-	//•ßŠlƒfƒ‚—pŽwƒJ[ƒ\ƒ‹
+	//æ•ç²ãƒ‡ãƒ¢ç”¨æŒ‡ã‚«ãƒ¼ã‚½ãƒ«
 	if(BattleWorkFightTypeGet(bip->bw) & FIGHT_TYPE_GET_DEMO){
 		FINGER_ResourceLoad(csp, crp, HEAPID_BATTLE, pfd, CHARID_FINGER_CURSOR, PLTTID_FINGER_CURSOR,
 			CELLID_FINGER_CURSOR, CELLANMID_FINGER_CURSOR);
@@ -2508,8 +2508,8 @@ void BINPUT_DefaultDataSet(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   í’“ƒLƒƒƒ‰‚Ì”jŠü
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å¸¸é§ã‚­ãƒ£ãƒ©ã®ç ´æ£„
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BINPUT_DefaultDataFree(BI_PARAM_PTR bip)
@@ -2521,14 +2521,14 @@ void BINPUT_DefaultDataFree(BI_PARAM_PTR bip)
 	csp = BattleWorkCATS_SYS_PTRGet(bip->bw);
 	crp = BattleWorkCATS_RES_PTRGet(bip->bw);
 	
-	//-- ‹Zƒ^ƒCƒvƒAƒCƒRƒ“ --//
+	//-- æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ --//
 	for(i = 0; i < WAZA_TEMOTI_MAX; i++){
 		WazaTypeIcon_CharResourceFree(crp, CHARID_WAZATYPE_ICON_1 + i);
 	}
 	WazaTypeIcon_PlttResourceFree(crp, PLTTID_WAZATYPE_ICON);
 	WazaTypeIcon_CellAnmResourceFree(crp, CELLID_WAZATYPE_ICON, CELLANMID_WAZATYPE_ICON);
 
-	//•ßŠlƒfƒ‚—pŽwƒJ[ƒ\ƒ‹
+	//æ•ç²ãƒ‡ãƒ¢ç”¨æŒ‡ã‚«ãƒ¼ã‚½ãƒ«
 	if(BattleWorkFightTypeGet(bip->bw) & FIGHT_TYPE_GET_DEMO){
 		FINGER_ActorDelete(bip->demo.finger);
 		FINGER_ResourceFree(crp, 
@@ -2539,12 +2539,12 @@ void BINPUT_DefaultDataFree(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’èƒ^ƒCƒv‚ÌBG‰æ–Ê‚ðŒ`¬‚·‚é
+ * @brief   æŒ‡å®šã‚¿ã‚¤ãƒ—ã®BGç”»é¢ã‚’å½¢æˆã™ã‚‹
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
- * @param   work			ƒV[ƒ“–ˆ‚ÉˆÙ‚È‚é•K—v‚Èƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
+ * @param   work			ã‚·ãƒ¼ãƒ³æ¯Žã«ç•°ãªã‚‹å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BINPUT_CreateBG(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BI_PARAM_PTR bip, int select_bg, int force_put, void *scene_work)
@@ -2572,12 +2572,12 @@ void BINPUT_CreateBG(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BI_PARAM_PTR bip, in
 	}
 	bmd = &BgMakeData[select_bg];
 
-	//”wŒiˆÈŠO‚Í‘S‚Ä”ñ•\Ž¦
+	//èƒŒæ™¯ä»¥å¤–ã¯å…¨ã¦éžè¡¨ç¤º
 //	Sub_BackScrnOnlyVisible();
 	
 	//CGR
 #if 1
-	if(0){	//ƒLƒƒƒ‰ƒf[ƒ^‚Í‘‚«Š·‚í‚éŽ–‚ª‚È‚¢‚Ì‚Å‰½‚à‚µ‚È‚¢
+	if(0){	//ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã¯æ›¸ãæ›ã‚ã‚‹äº‹ãŒãªã„ã®ã§ä½•ã‚‚ã—ãªã„
 #else
 	if(bmd->cgr_id != NONE_ID && (force_put == TRUE || bmd->cgr_id != old_bmd->cgr_id)){
 #endif
@@ -2617,19 +2617,19 @@ void BINPUT_CreateBG(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BI_PARAM_PTR bip, in
 		}
 	}
 	
-	//OBJƒpƒŒƒbƒg“]‘—
-	//¦check Å‰‚Ì1‰ñ‚¾‚¯‚Ì“o˜^‚¾‚µA‚Æ‚è‚ ‚¦‚¸‚±‚±‚Å 2006.05.09(‰Î)
+	//OBJãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
+	//â€»check æœ€åˆã®1å›žã ã‘ã®ç™»éŒ²ã ã—ã€ã¨ã‚Šã‚ãˆãšã“ã“ã§ 2006.05.09(ç«)
 	CATS_LoadResourcePlttWorkArcH(BattleWorkPfdGet(bip->bw), FADE_SUB_OBJ, csp, crp, 
 		hdl_obj, BATTLE_WOBJ_NCLR, 0, 
 		BASE_PLTT_NUM, NNS_G2D_VRAM_TYPE_2DSUB, PLTTID_INPUT_COMMON);
 
 	bip->makedata_no = select_bg;
 
-	//ƒuƒŒƒ“ƒhÝ’è
+	//ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®š
 	G2S_SetBlendAlpha(BLD_PLANE_1, BLD_PLANE_2, BLD_ALPHA_1, BLD_ALPHA_2);
 
 	Sub_SceneOBJDelete(bip);
-	//ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ
+	//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—
 	if(bmd->callback_bg != NULL){
 		bmd->callback_bg(bip, select_bg, force_put);
 	}
@@ -2639,11 +2639,11 @@ void BINPUT_CreateBG(ARCHANDLE* hdl_bg, ARCHANDLE* hdl_obj, BI_PARAM_PTR bip, in
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽèŽ‚¿ƒ{[ƒ‹‚ÅŽg—p‚·‚éƒŠƒ\[ƒX‚Ìƒ[ƒh‚ÆƒAƒNƒ^[‚Ì¶¬
+ * @brief   æ‰‹æŒã¡ãƒœãƒ¼ãƒ«ã§ä½¿ç”¨ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã®ãƒ­ãƒ¼ãƒ‰ã¨ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç”Ÿæˆ
  *
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ‚±‚ÌŠÖ”‚ÅƒAƒNƒ^[¶¬ŒãAƒAƒNƒ^[‚Í•\Ž¦OFF‚Ìó‘Ô‚É‚È‚Á‚Ä‚¢‚Ü‚·B
+ * ã“ã®é–¢æ•°ã§ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆå¾Œã€ã‚¢ã‚¯ã‚¿ãƒ¼ã¯è¡¨ç¤ºOFFã®çŠ¶æ…‹ã«ãªã£ã¦ã„ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void BINPUT_StockBallActorResourceLoad(ARCHANDLE* hdl, BI_PARAM_PTR bip)
@@ -2657,12 +2657,12 @@ void BINPUT_StockBallActorResourceLoad(ARCHANDLE* hdl, BI_PARAM_PTR bip)
 	csp = BattleWorkCATS_SYS_PTRGet(bip->bw);
 	crp = BattleWorkCATS_RES_PTRGet(bip->bw);
 
-	//-- ƒŠƒ\[ƒX“Ç‚Ýž‚Ý --//
-	//ƒpƒŒƒbƒg@ƒtƒHƒ“ƒgOBJ‚Æ‹¤’Ê(“ü—Í‰æ–Ê‚Í1‚Â‚Ìƒtƒ@ƒCƒ‹‚É‘S•”“ü‚Á‚Ä‚é)‚Ì‚Å‚±‚±‚Å‚Í‚µ‚È‚­‚Ä‚¢‚¢‚©
+	//-- ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ --//
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã€€ãƒ•ã‚©ãƒ³ãƒˆOBJã¨å…±é€š(å…¥åŠ›ç”»é¢ã¯1ã¤ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«å…¨éƒ¨å…¥ã£ã¦ã‚‹)ã®ã§ã“ã“ã§ã¯ã—ãªãã¦ã„ã„ã‹
 //	CATS_LoadResourcePlttArc(csp, crp, ARC_BATT_OBJ, BATTLE_WOBJ_NCLR, 0, 
 //		1, NNS_G2D_VRAM_TYPE_2DSUB, PLTTID_INPUT_FONTOBJ_COMMON);
 
-	//Ž©‹@‘¤
+	//è‡ªæ©Ÿå´
 	CATS_LoadResourceCharArcH(csp, crp, hdl, BATTLE_STOCK_M_NCGR_BIN, 1, 
 		NNS_G2D_VRAM_TYPE_2DSUB, CHARID_STOCK_MINE);
 	CATS_LoadResourceCellArcH(csp, crp, hdl, BATTLE_STOCK_M_NCER_BIN, 1, 
@@ -2670,7 +2670,7 @@ void BINPUT_StockBallActorResourceLoad(ARCHANDLE* hdl, BI_PARAM_PTR bip)
 	CATS_LoadResourceCellAnmArcH(csp, crp, hdl, 
 		BATTLE_STOCK_M_NANR_BIN, 1, CELLANMID_STOCK_MINE);
 
-	//“G‘¤
+	//æ•µå´
 	CATS_LoadResourceCharArcH(csp, crp, hdl, BATTLE_STOCK_E_NCGR_BIN, 1, 
 		NNS_G2D_VRAM_TYPE_2DSUB, CHARID_STOCK_ENEMY);
 	CATS_LoadResourceCellArcH(csp, crp, hdl, BATTLE_STOCK_E_NCER_BIN, 1, 
@@ -2679,7 +2679,7 @@ void BINPUT_StockBallActorResourceLoad(ARCHANDLE* hdl, BI_PARAM_PTR bip)
 		BATTLE_STOCK_E_NANR_BIN, 1, CELLANMID_STOCK_ENEMY);
 	
 
-	//-- ƒAƒNƒ^[¶¬ --//
+	//-- ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ --//
 	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
 		bip->stock_mine_cap[i] = CATS_ObjectAdd_S(csp, crp, &StockObjParam_Mine);
 		CATS_ObjectPosSet_SubSurface(bip->stock_mine_cap[i]->act, 
@@ -2699,7 +2699,7 @@ void BINPUT_StockBallActorResourceLoad(ARCHANDLE* hdl, BI_PARAM_PTR bip)
 	bip->ball_tcb = TCB_Add(StockBallMain, bip, TCBPRI_BINPUT_EFFECT);
 	
 	
-	//-- ‚Â‚¢‚Å‚É‚±‚±‚Åí“¬ƒJ[ƒ\ƒ‹‚à¶¬ --//
+	//-- ã¤ã„ã§ã«ã“ã“ã§æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã‚‚ç”Ÿæˆ --//
 	{
 		PALETTE_FADE_PTR pfd;
 		pfd = BattleWorkPfdGet(bip->bw);
@@ -2713,8 +2713,8 @@ void BINPUT_StockBallActorResourceLoad(ARCHANDLE* hdl, BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽèŽ‚¿ƒ{[ƒ‹‚ÌƒŠƒ\[ƒX‚ÆƒAƒNƒ^[‚ð‰ð•ú
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ‰‹æŒã¡ãƒœãƒ¼ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ã¨ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’è§£æ”¾
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BINPUT_StockBallActorResourceFree(BI_PARAM_PTR bip)
@@ -2728,7 +2728,7 @@ static void BINPUT_StockBallActorResourceFree(BI_PARAM_PTR bip)
 	csp = BattleWorkCATS_SYS_PTRGet(bip->bw);
 	crp = BattleWorkCATS_RES_PTRGet(bip->bw);
 	
-	//-- ƒŠƒ\[ƒX‰ð•ú --//
+	//-- ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾ --//
 	CATS_FreeResourceChar(crp, CHARID_STOCK_MINE);
 	CATS_FreeResourceCell(crp, CELLID_STOCK_MINE);
 	CATS_FreeResourceCellAnm(crp, CELLANMID_STOCK_MINE);
@@ -2737,10 +2737,10 @@ static void BINPUT_StockBallActorResourceFree(BI_PARAM_PTR bip)
 	CATS_FreeResourceCell(crp, CELLID_STOCK_ENEMY);
 	CATS_FreeResourceCellAnm(crp, CELLANMID_STOCK_ENEMY);
 
-	//‹¤’ÊƒpƒŒƒbƒg‚àˆê‰ž‚±‚±‚Åíœ
+	//å…±é€šãƒ‘ãƒ¬ãƒƒãƒˆã‚‚ä¸€å¿œã“ã“ã§å‰Šé™¤
 	CATS_FreeResourcePltt(crp, PLTTID_INPUT_COMMON);
 	
-	//-- ƒAƒNƒ^[íœ --//
+	//-- ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤ --//
 	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
 		CATS_ActorPointerDelete_S(bip->stock_mine_cap[i]);
 		bip->stock_mine_cap[i] = NULL;
@@ -2751,7 +2751,7 @@ static void BINPUT_StockBallActorResourceFree(BI_PARAM_PTR bip)
 	TCB_Delete(bip->ball_tcb);
 	bip->ball_tcb = NULL;
 
-	//-- í“¬ƒJ[ƒ\ƒ‹ --//
+	//-- æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ« --//
 	BCURSOR_ResourceFree(crp, CHARID_BATTLE_CURSOR, PLTTID_BATTLE_CURSOR,
 		CELLID_BATTLE_CURSOR, CELLANMID_BATTLE_CURSOR);
 	BCURSOR_ActorDelete(bip->cursor);
@@ -2759,9 +2759,9 @@ static void BINPUT_StockBallActorResourceFree(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽèŽ‚¿‚â‚é‹CƒAƒjƒFƒƒCƒ“ƒ^ƒXƒN
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ‰‹æŒã¡ã‚„ã‚‹æ°—ã‚¢ãƒ‹ãƒ¡ï¼šãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void StockBallMain(TCB_PTR tcb, void *work)
@@ -2770,15 +2770,15 @@ static void StockBallMain(TCB_PTR tcb, void *work)
 	int i;
 	MOTIVATION_WORK *mw;
 	enum{
-		SEQ_INIT,		//‰Šú‰»
-		SEQ_WAIT,		//ƒEƒFƒCƒg
-		SEQ_FIRST,		//s‚«
-		SEQ_BACK,		//–ß‚è
-		SEQ_RET,		//Œ³‚ÌˆÊ’u‚Ö
+		SEQ_INIT,		//åˆæœŸåŒ–
+		SEQ_WAIT,		//ã‚¦ã‚§ã‚¤ãƒˆ
+		SEQ_FIRST,		//è¡Œã
+		SEQ_BACK,		//æˆ»ã‚Š
+		SEQ_RET,		//å…ƒã®ä½ç½®ã¸
 	};
 	
-#if 0	//SEQ_INIT‚ÌƒAƒNƒ^[•\Ž¦A”ñ•\Ž¦‚Å”»’è‚·‚é‚æ‚¤‚É•ÏX 2006.07.13(–Ø)
-		//‚Å‚È‚¢‚Æ“r’†“®ì‚Ì‚Ü‚ÜŽŸ‰æ–Ê‚ÅÄŠJ‚µ‚Ä‚µ‚Ü‚¤
+#if 0	//SEQ_INITã®ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºã€éžè¡¨ç¤ºã§åˆ¤å®šã™ã‚‹ã‚ˆã†ã«å¤‰æ›´ 2006.07.13(æœ¨)
+		//ã§ãªã„ã¨é€”ä¸­å‹•ä½œã®ã¾ã¾æ¬¡ç”»é¢ã§å†é–‹ã—ã¦ã—ã¾ã†
 	switch(bip->makedata_no){
 	case BINPUT_COMMAND_IN:
 	case BINPUT_COMMAND_IN_2:
@@ -2887,9 +2887,9 @@ static void StockBallMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚Ìƒ‚ƒ`ƒx[ƒVƒ‡ƒ“ƒpƒ‰ƒ[ƒ^‚ðƒZƒbƒg‚·‚é
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   motivation		ŽèŽ‚¿•ª‚Ìƒ‚ƒ`ƒx[ƒVƒ‡ƒ“‚ª“ü‚Á‚½”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¢ãƒãƒ™ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   motivation		æ‰‹æŒã¡åˆ†ã®ãƒ¢ãƒãƒ™ãƒ¼ã‚·ãƒ§ãƒ³ãŒå…¥ã£ãŸé…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BINPUT_TemotiMotivationParamSet(BI_PARAM_PTR bip, const u8 *motivation)
@@ -2903,11 +2903,11 @@ void BINPUT_TemotiMotivationParamSet(BI_PARAM_PTR bip, const u8 *motivation)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽèŽ‚¿ƒ{[ƒ‹‚ÌƒAƒjƒ‚ðÅV‚Ìî•ñ‚ð‚à‚ç‚Á‚ÄXV‚·‚é
+ * @brief   æ‰‹æŒã¡ãƒœãƒ¼ãƒ«ã®ã‚¢ãƒ‹ãƒ¡ã‚’æœ€æ–°ã®æƒ…å ±ã‚’ã‚‚ã‚‰ã£ã¦æ›´æ–°ã™ã‚‹
  *
- * @param   bip					BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   stock_mine[]		Ž©‹@‘¤‚ÌŽèŽ‚¿ƒ{[ƒ‹î•ñ
- * @param   stock_enemy[]		“G‘¤‚ÌŽèŽ‚¿ƒ{[ƒ‹î•ñ
+ * @param   bip					BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   stock_mine[]		è‡ªæ©Ÿå´ã®æ‰‹æŒã¡ãƒœãƒ¼ãƒ«æƒ…å ±
+ * @param   stock_enemy[]		æ•µå´ã®æ‰‹æŒã¡ãƒœãƒ¼ãƒ«æƒ…å ±
  */
 //--------------------------------------------------------------
 void BINPUT_StockBallAnimeUpdate(BI_PARAM_PTR bip, u8 stock_mine[], u8 stock_enemy[])
@@ -2915,11 +2915,11 @@ void BINPUT_StockBallAnimeUpdate(BI_PARAM_PTR bip, u8 stock_mine[], u8 stock_ene
 	int i, anm_seq;
 
 	for(i = 0; i < POKEMON_TEMOTI_MAX; i++){
-		//Ž©‹@
+		//è‡ªæ©Ÿ
 		anm_seq = Sub_StockBallAnmSeqGet(stock_mine[i]);
 		CLACT_AnmChg(bip->stock_mine_cap[i]->act, anm_seq);
 		CATS_ObjectUpdate(bip->stock_mine_cap[i]->act);
-		//“G
+		//æ•µ
 		anm_seq = Sub_StockBallAnmSeqGet(stock_enemy[i]);
 		CLACT_AnmChg(bip->stock_enemy_cap[i]->act, anm_seq);
 		CATS_ObjectUpdate(bip->stock_enemy_cap[i]->act);
@@ -2928,8 +2928,8 @@ void BINPUT_StockBallAnimeUpdate(BI_PARAM_PTR bip, u8 stock_mine[], u8 stock_ene
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽèŽ‚¿ƒ{[ƒ‹‚ð•\Ž¦‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ‰‹æŒã¡ãƒœãƒ¼ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BINPUT_StockBallON(BI_PARAM_PTR bip)
@@ -2951,8 +2951,8 @@ void BINPUT_StockBallON(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽèŽ‚¿ƒ{[ƒ‹‚Ì•\Ž¦‚ðÁ‚·
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ‰‹æŒã¡ãƒœãƒ¼ãƒ«ã®è¡¨ç¤ºã‚’æ¶ˆã™
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BINPUT_StockBallOFF(BI_PARAM_PTR bip)
@@ -2969,9 +2969,9 @@ void BINPUT_StockBallOFF(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒpƒlƒ‹ó‘Ô‚ð’²‚×‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  Œ‹‰Ê(“–‚½‚è‚È‚µ‚Ìê‡‚ÍRECT_HIT_NONE)
+ * @brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çŠ¶æ…‹ã‚’èª¿ã¹ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  çµæžœ(å½“ãŸã‚Šãªã—ã®å ´åˆã¯RECT_HIT_NONE)
  */
 //--------------------------------------------------------------
 int BINPUT_TouchCheck(BI_PARAM_PTR bip)
@@ -2990,11 +2990,11 @@ int BINPUT_TouchCheck(BI_PARAM_PTR bip)
 	GF_ASSERT(bmd->tpd_ret != NULL);
 
 	
-	//•ßŠlƒfƒ‚ƒ`ƒFƒbƒN
+	//æ•ç²ãƒ‡ãƒ¢ãƒã‚§ãƒƒã‚¯
 	if(BattleWorkFightTypeGet(bip->bw) & FIGHT_TYPE_GET_DEMO){
 		hit = CaptureDemo_Main(bip);
 	}
-	else{	//’Êíˆ—
+	else{	//é€šå¸¸å‡¦ç†
 		hit = GF_TP_RectHitTrg(bmd->tpd);
 		if(hit == RECT_HIT_NONE){
 			hit = CursorCheck(bip);
@@ -3015,7 +3015,7 @@ int BINPUT_TouchCheck(BI_PARAM_PTR bip)
 	{
 		int	debug_tp_ret;
 
-		//ƒfƒoƒbƒO‹@”\‚ÅƒRƒ}ƒ“ƒh§Œä
+		//ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ã§ã‚³ãƒžãƒ³ãƒ‰åˆ¶å¾¡
 		if(BattleWorkBattleStatusFlagGet(bip->bw)&BATTLE_STATUS_FLAG_COM_SELECT){
 			debug_tp_ret=DebugFightCommandBufferGet();
 			if(debug_tp_ret){
@@ -3025,7 +3025,7 @@ int BINPUT_TouchCheck(BI_PARAM_PTR bip)
 	}
 #endif PM_DEBUG
 	
-	//ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ
+	//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—
 	if(bmd->callback_tp != NULL){
 		tp_ret = bmd->callback_tp(bip, tp_ret, panel_pal);
 		if(tp_ret != RECT_HIT_NONE){
@@ -3048,9 +3048,9 @@ int BINPUT_TouchCheck(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒtƒFƒNƒgTCB‚ªI—¹‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:I—¹‚µ‚Ä‚¢‚éB@FALSE:I—¹‚µ‚Ä‚¢‚È‚¢
+ * @brief   ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:çµ‚äº†ã—ã¦ã„ã‚‹ã€‚ã€€FALSE:çµ‚äº†ã—ã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 BOOL BINPUT_EffectEndCheck(BI_PARAM_PTR bip)
@@ -3064,10 +3064,10 @@ BOOL BINPUT_EffectEndCheck(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ZŒø‰Ê”ÍˆÍ‚©‚ç•\Ž¦‚·‚éBGƒ^ƒCƒv‚ðŽæ“¾‚·‚é
- * @param   range		‹ZŒø‰Ê”ÍˆÍ
- * @param   client_type	ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv
- * @retval  BGƒ^ƒCƒv(POKESELE_???)
+ * @brief   æŠ€åŠ¹æžœç¯„å›²ã‹ã‚‰è¡¨ç¤ºã™ã‚‹BGã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
+ * @param   range		æŠ€åŠ¹æžœç¯„å›²
+ * @param   client_type	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @retval  BGã‚¿ã‚¤ãƒ—(POKESELE_???)
  */
 //--------------------------------------------------------------
 int BINPUT_RangeBgTypeGet(int range, int client_type)
@@ -3095,17 +3095,17 @@ int BINPUT_RangeBgTypeGet(int range, int client_type)
 	case RANGE_SAKIDORI:
 		return POKESELE_B_D;
 	default:
-		GF_ASSERT(0);// && "‘¶Ý‚µ‚È‚¢ƒŒƒ“ƒWƒ^ƒCƒv‚Å‚·");
+		GF_ASSERT(0);// && "å­˜åœ¨ã—ãªã„ãƒ¬ãƒ³ã‚¸ã‚¿ã‚¤ãƒ—ã§ã™");
 		return POKESELE_A_B_C_D;
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   •ÇŽ†‚ÌƒXƒNƒ[ƒ‹À•WX‚ðÝ’è‚·‚é
+ * @brief   å£ç´™ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™Xã‚’è¨­å®šã™ã‚‹
  *
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   x		À•WX(®”)
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   x		åº§æ¨™X(æ•´æ•°)
  */
 //--------------------------------------------------------------
 void BINPUT_PlayerBG_SetX(BI_PARAM_PTR bip, int x)
@@ -3121,8 +3121,8 @@ void BINPUT_PlayerBG_SetX(BI_PARAM_PTR bip, int x)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»Ý‚Ì•ÇŽ†‚ÌˆÊ’u‚É‚æ‚Á‚ÄƒEƒBƒ“ƒhƒE‚Ìƒ}ƒXƒNˆ—‚ð‚©‚¯‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç¾åœ¨ã®å£ç´™ã®ä½ç½®ã«ã‚ˆã£ã¦ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒžã‚¹ã‚¯å‡¦ç†ã‚’ã‹ã‘ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BINPUT_PlayerBG_MaskWindow(BI_PARAM_PTR bip)
@@ -3145,16 +3145,16 @@ void BINPUT_PlayerBG_MaskWindow(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   •ÇŽ†‚ðƒXƒNƒ[ƒ‹‚³‚¹‚é
- * @param   bip			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sp_x		ƒXƒNƒ[ƒ‹‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
- * @param   end_x		ƒXƒNƒ[ƒ‹’âŽ~À•WX(®”)
+ * @brief   å£ç´™ã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹
+ * @param   bip			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sp_x		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+ * @param   end_x		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åœæ­¢åº§æ¨™X(æ•´æ•°)
  */
 //--------------------------------------------------------------
 void BINPUT_PlayerBG_ScrollX(BI_PARAM_PTR bip, int sp_x, int end_x)
 {
 	if(bip->wall_x == end_x * 0x100){
-		return;		//Šù‚É’âŽ~À•W‚É“ž’B‚µ‚Ä‚¢‚é
+		return;		//æ—¢ã«åœæ­¢åº§æ¨™ã«åˆ°é”ã—ã¦ã„ã‚‹
 	}
 	
 	bip->wall_sp_x = sp_x;
@@ -3164,10 +3164,10 @@ void BINPUT_PlayerBG_ScrollX(BI_PARAM_PTR bip, int sp_x, int end_x)
 
 //--------------------------------------------------------------
 /**
- * @brief   •ÇŽ†ƒXƒNƒ[ƒ‹ƒ^ƒXƒN
+ * @brief   å£ç´™ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void PlayerBGScrollX(TCB_PTR tcb, void *work)
@@ -3188,7 +3188,7 @@ static void PlayerBGScrollX(TCB_PTR tcb, void *work)
 	BINPUT_PlayerBG_MaskWindow(bip);
 	
 	if(end == TRUE){
-		GF_BGL_ScrClearCode(bgl, BI_FRAME_EFF, BG_CLEAR_CODE);	//ƒGƒtƒFƒNƒg–ÊƒNƒŠƒA
+		GF_BGL_ScrClearCode(bgl, BI_FRAME_EFF, BG_CLEAR_CODE);	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã‚¯ãƒªã‚¢
 		GF_BGL_VisibleSet(BI_FRAME_EFF, VISIBLE_OFF);
 		GF_BGL_PrioritySet(BI_FRAME_EFF, 0);
 		GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -3199,11 +3199,11 @@ static void PlayerBGScrollX(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒtƒFƒNƒg–Ê‚É‘Î‚µ‚Ä•ÇŽ†‚ÌŠG‚ðÝ’è‚·‚é
+ * @brief   ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã«å¯¾ã—ã¦å£ç´™ã®çµµã‚’è¨­å®šã™ã‚‹
  *
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ”wŒi‚ÌŽålŒöƒOƒ‰ƒtƒBƒbƒNƒXƒNƒ[ƒ‹Žž‚ÌAƒ}ƒXƒN‚³‚ê‚½•”•ª‚Ì”wŒi–Í—l•`‰æ—p‚Å‚·B
+ * èƒŒæ™¯ã®ä¸»äººå…¬ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ™‚ã®ã€ãƒžã‚¹ã‚¯ã•ã‚ŒãŸéƒ¨åˆ†ã®èƒŒæ™¯æ¨¡æ§˜æç”»ç”¨ã§ã™ã€‚
  */
 //--------------------------------------------------------------
 void BINPUT_EffBGWallSet(BI_PARAM_PTR bip)
@@ -3222,14 +3222,14 @@ void BINPUT_EffBGWallSet(BI_PARAM_PTR bip)
 
 //==============================================================================
 //
-//	BGì¬Žž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+//	BGä½œæˆæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ‰ƒCƒhƒGƒtƒFƒNƒgƒZƒbƒg
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   client_type		ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv
+ * @brief   ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚»ãƒƒãƒˆ
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   client_type		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
  */
 //--------------------------------------------------------------
 static void BG_SlideSetInit(BI_PARAM_PTR bip, int client_type)
@@ -3237,15 +3237,15 @@ static void BG_SlideSetInit(BI_PARAM_PTR bip, int client_type)
 	BOOL ret;
 	COMMAND_IN_EFF_WORK *ciew;
 
-	//ƒ^ƒbƒ`ƒpƒlƒ‹–³Œø
+	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ç„¡åŠ¹
 	bip->touch_invalid = TRUE;
 	
-	//ƒEƒBƒ“ƒhƒEƒ}ƒXƒNÝ’è
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒžã‚¹ã‚¯è¨­å®š
 	G2S_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2
 		| GX_WND_PLANEMASK_BG3, TRUE);
 	
-	G2S_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3, TRUE);	//ã‘¤
-	G2S_SetWnd1InsidePlane(GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3, TRUE);	//‰º‘¤
+	G2S_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3, TRUE);	//ä¸Šå´
+	G2S_SetWnd1InsidePlane(GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3, TRUE);	//ä¸‹å´
 	
 	G2S_SetWnd0Position(COMMANDIN_WND_START_X0, COMMANDIN_WND_START_Y0, 
 		COMMANDIN_WND_END_X0, COMMANDIN_WND_END_Y0);
@@ -3266,20 +3266,20 @@ static void BG_SlideSetInit(BI_PARAM_PTR bip, int client_type)
 	Snd_SePlay(SEQ_SE_DP_SLIDEIN);
 	TCB_Add(CommandInEffTask, ciew, TCBPRI_BINPUT_COMMAND_IN_EFFECT);
 
-	//Hƒuƒ‰ƒ“ƒNŠÖ”Ý’è
+	//Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°è¨­å®š
 	ret = sys_HBlankIntrSet(HBlank_CommandInEff, ciew);
-	GF_ASSERT(ret == TRUE);	//Hƒuƒ‰ƒ“ƒNŠÖ”ƒZƒbƒgŽ¸”s
-	//Vƒuƒ‰ƒ“ƒNƒ^ƒXƒN¶¬
+	GF_ASSERT(ret == TRUE);	//Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ã‚»ãƒƒãƒˆå¤±æ•—
+	//Vãƒ–ãƒ©ãƒ³ã‚¯ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	ciew->vtask_tcb = VIntrTCB_Add(VBlankTCB_CommandInEff, ciew, 10);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_COMMAND_IN‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_COMMAND_INã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_CommandIn(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3288,19 +3288,19 @@ static void BGCallback_CommandIn(BI_PARAM_PTR bip, int select_bg, int force_put)
 	
 	client_type = bip->scene.bsc.client_type;
 	
-	//‰æ–Ê\’z
+	//ç”»é¢æ§‹ç¯‰
 	BGCallback_CommandSelect(bip, select_bg, force_put);
-	//ƒXƒ‰ƒCƒhƒGƒtƒFƒNƒgƒZƒbƒg
+	//ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚»ãƒƒãƒˆ
 	BG_SlideSetInit(bip, client_type);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_A‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_Aã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_CommandSelect(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3362,19 +3362,19 @@ static void BGCallback_CommandSelect(BI_PARAM_PTR bip, int select_bg, int force_
 	STRBUF_Delete(pokemon_src);
 	STRBUF_Delete(escape_src);
 
-	//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 	if((BattleWorkFightTypeGet(bip->bw) & (FIGHT_TYPE_SAFARI|FIGHT_TYPE_POKE_PARK)) == 0){
 		POKEMON_PARAM *pp;
 		CATS_ACT_PTR cap;
 		int x, y;
 		
-		//ƒŠƒ\[ƒXƒ[ƒh•ƒAƒNƒ^[¶¬
+		//ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰ï¼†ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 		pp = BattleWorkPokemonParamGet(bip->bw, bsc->client_no, bsc->sel_mons_no);
 		Sub_PokeIconResourceLoad(bip);
 		cap = Sub_PokeIconCharActorSet(bip, pp, client_type, 
 			bsc->icon_hp, bsc->icon_hpmax, bsc->icon_status);
 
-		//À•WÝ’è
+		//åº§æ¨™è¨­å®š
 		FONTOAM_GetMat(bip->font_actor[FA_NO_FIGHT].fontoam, &x, &y);
 		if(client_type == CLIENT_TYPE_C){
 			x += bip->font_actor[FA_NO_FIGHT].font_len + POKEICON_SIZE_X/2;
@@ -3389,11 +3389,11 @@ static void BGCallback_CommandSelect(BI_PARAM_PTR bip, int select_bg, int force_
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_COMMAND_IN_FIGHTONLY‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_COMMAND_IN_FIGHTONLYã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_CommandInFightOnly(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3402,20 +3402,20 @@ static void BGCallback_CommandInFightOnly(BI_PARAM_PTR bip, int select_bg, int f
 	
 	client_type = bip->scene.bsc.client_type;
 	
-	//‰æ–Ê\’z
+	//ç”»é¢æ§‹ç¯‰
 	BGCallback_FightOnly(bip, select_bg, force_put);
 	
-	//ƒXƒ‰ƒCƒhƒGƒtƒFƒNƒgƒZƒbƒg
+	//ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚»ãƒƒãƒˆ
 	BG_SlideSetInit(bip, client_type);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_FIGHTONLY‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_FIGHTONLYã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_FightOnly(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3424,10 +3424,10 @@ static void BGCallback_FightOnly(BI_PARAM_PTR bip, int select_bg, int force_put)
 	
 	client_type = bip->scene.bsc.client_type;
 	
-	//‰æ–Ê\’z
+	//ç”»é¢æ§‹ç¯‰
 	BGCallback_CommandSelect(bip, select_bg, force_put);
 	
-	//•s•K—v‚ÈƒXƒNƒŠ[ƒ“‚ðƒNƒŠƒA(ƒoƒbƒOAƒ|ƒPƒ‚ƒ“A‚É‚°‚é)
+	//ä¸å¿…è¦ãªã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ã‚¯ãƒªã‚¢(ãƒãƒƒã‚°ã€ãƒã‚±ãƒ¢ãƒ³ã€ã«ã’ã‚‹)
 	{
 		GF_BGL_INI *bgl;
 		
@@ -3437,7 +3437,7 @@ static void BGCallback_FightOnly(BI_PARAM_PTR bip, int select_bg, int force_put)
 		GF_BGL_LoadScreenV_Req(bgl, BI_FRAME_BF);
 	}
 	
-	//•s•K—v‚ÈƒtƒHƒ“ƒgOAM‚ðƒoƒjƒbƒVƒ…
+	//ä¸å¿…è¦ãªãƒ•ã‚©ãƒ³ãƒˆOAMã‚’ãƒãƒ‹ãƒƒã‚·ãƒ¥
 	FONTOAM_SetDrawFlag(bip->font_actor[FA_NO_ITEM].fontoam, FALSE);
 	FONTOAM_SetDrawFlag(bip->font_actor[FA_NO_POKEMON].fontoam, FALSE);
 	FONTOAM_SetDrawFlag(bip->font_actor[FA_NO_ESCAPE].fontoam, FALSE);
@@ -3445,11 +3445,11 @@ static void BGCallback_FightOnly(BI_PARAM_PTR bip, int select_bg, int force_put)
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_COMMAND_IN_FIGHTONLY‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_COMMAND_IN_FIGHTONLYã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_ParkCommandIn(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3458,20 +3458,20 @@ static void BGCallback_ParkCommandIn(BI_PARAM_PTR bip, int select_bg, int force_
 	
 	client_type = bip->scene.bsc.client_type;
 	
-	//‰æ–Ê\’z
+	//ç”»é¢æ§‹ç¯‰
 	BGCallback_ParkCommand(bip, select_bg, force_put);
 	
-	//ƒXƒ‰ƒCƒhƒGƒtƒFƒNƒgƒZƒbƒg
+	//ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚»ãƒƒãƒˆ
 	BG_SlideSetInit(bip, client_type);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_FIGHTONLY‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_FIGHTONLYã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_ParkCommand(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3480,10 +3480,10 @@ static void BGCallback_ParkCommand(BI_PARAM_PTR bip, int select_bg, int force_pu
 	
 	client_type = bip->scene.bsc.client_type;
 	
-	//‰æ–Ê\’z
+	//ç”»é¢æ§‹ç¯‰
 	BGCallback_CommandSelect(bip, select_bg, force_put);
 	
-	//•s•K—v‚ÈƒXƒNƒŠ[ƒ“‚ðƒNƒŠƒA(ƒoƒbƒOAƒ|ƒPƒ‚ƒ“)
+	//ä¸å¿…è¦ãªã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ã‚¯ãƒªã‚¢(ãƒãƒƒã‚°ã€ãƒã‚±ãƒ¢ãƒ³)
 	{
 		GF_BGL_INI *bgl;
 		
@@ -3495,18 +3495,18 @@ static void BGCallback_ParkCommand(BI_PARAM_PTR bip, int select_bg, int force_pu
 		GF_BGL_LoadScreenV_Req(bgl, BI_FRAME_BF);
 	}
 	
-	//•s•K—v‚ÈƒtƒHƒ“ƒgOAM‚ðƒoƒjƒbƒVƒ…
+	//ä¸å¿…è¦ãªãƒ•ã‚©ãƒ³ãƒˆOAMã‚’ãƒãƒ‹ãƒƒã‚·ãƒ¥
 	FONTOAM_SetDrawFlag(bip->font_actor[FA_NO_ITEM].fontoam, FALSE);
 	FONTOAM_SetDrawFlag(bip->font_actor[FA_NO_POKEMON].fontoam, FALSE);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_WAZA‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_WAZAã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_Waza(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3525,12 +3525,12 @@ static void BGCallback_Waza(BI_PARAM_PTR bip, int select_bg, int force_put)
 	
 	mdw = MemoryDecordWorkGet(bip, bsw->client_type);
 	
-	//‹Zƒ^ƒCƒvƒAƒCƒRƒ“
+	//æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³
 	Sub_WazaTypeIconCreateAll(bip);
-	//‹Z•ª—ÞƒAƒCƒRƒ“
+	//æŠ€åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³
 //	Sub_WazaKindIconCreateAll(bip);
 
-	//‹Z–¼
+	//æŠ€å
 	{
 		Sub_FontOamCreate(bip, &bip->font_actor[FA_NO_WAZA_1], NULL, FONT_BUTTON, 
 			MSGCOLOR_WAZA, PALOFS_WAZA,
@@ -3567,7 +3567,7 @@ static void BGCallback_Waza(BI_PARAM_PTR bip, int select_bg, int force_put)
 		}
 	}
 
-	//‚à‚Ç‚é
+	//ã‚‚ã©ã‚‹
 	{
 		STRBUF *modoru_src;
 		
@@ -3579,7 +3579,7 @@ static void BGCallback_Waza(BI_PARAM_PTR bip, int select_bg, int force_put)
 		STRBUF_Delete(modoru_src);
 	}
 
-	//-- ‹Zƒ^ƒCƒv–ˆ‚ÌCGR‚ð“]‘— --//
+	//-- æŠ€ã‚¿ã‚¤ãƒ—æ¯Žã®CGRã‚’è»¢é€ --//
 	{
 		int waza_type;
 		
@@ -3595,7 +3595,7 @@ static void BGCallback_Waza(BI_PARAM_PTR bip, int select_bg, int force_put)
 		}
 	}
 
-	//-- ŽèŽ‚¿‹Z‚ª‚È‚¢Žž‚ÍƒtƒHƒ“ƒgOBJ”ñ•\Ž¦ --//
+	//-- æ‰‹æŒã¡æŠ€ãŒãªã„æ™‚ã¯ãƒ•ã‚©ãƒ³ãƒˆOBJéžè¡¨ç¤º --//
 	{
 		GF_BGL_INI *bgl;
 		
@@ -3625,11 +3625,11 @@ static void BGCallback_Waza(BI_PARAM_PTR bip, int select_bg, int force_put)
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_D‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_Dã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_YesNo(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3657,11 +3657,11 @@ static void BGCallback_YesNo(BI_PARAM_PTR bip, int select_bg, int force_put)
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_WASURERU‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_WASURERUã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_Wasureru(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3689,11 +3689,11 @@ static void BGCallback_Wasureru(BI_PARAM_PTR bip, int select_bg, int force_put)
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_AKIRAMERU‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_AKIRAMERUã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_Akirameru(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3735,11 +3735,11 @@ static void BGCallback_Akirameru(BI_PARAM_PTR bip, int select_bg, int force_put)
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_PLAYBACK_STOP‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_PLAYBACK_STOPã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_PlayBackStop(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3747,32 +3747,32 @@ static void BGCallback_PlayBackStop(BI_PARAM_PTR bip, int select_bg, int force_p
 	MSGDATA_MANAGER *msg_man;
 	STRBUF *stop_src;
 
-	//ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE‚ªŒ©‚¦‚È‚­‚È‚é‚Ì‚Å”¼“§–¾Ø‚é
+	//ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒè¦‹ãˆãªããªã‚‹ã®ã§åŠé€æ˜Žåˆ‡ã‚‹
 	G2S_SetBlendAlpha(BLD_PLANE_1, BLD_PLANE_2, 31, 0);
 	
 	msg_man = BattleWorkFightMsgGet(bip->bw);
 	
 	stop_src = MSGMAN_AllocString(msg_man, PlayBack_Msg1);
 
-	//ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ð’âŽ~ƒ{ƒ^ƒ“—pƒXƒNƒŠ[ƒ“‚Åã‘‚«(•Ê‚ÌƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚Æ‹¤—p‚µ‚Ä‚¢‚é‚Ì‚Å)
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’åœæ­¢ãƒœã‚¿ãƒ³ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã§ä¸Šæ›¸ã(åˆ¥ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã¨å…±ç”¨ã—ã¦ã„ã‚‹ã®ã§)
 	{
 		GF_BGL_INI *bgl;
 		NNSG2dScreenData *scrnData;
 		void *arc_data;
 		
-		//ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚É“Ç‚Ýž‚Ý
+		//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã«èª­ã¿è¾¼ã¿
 		arc_data = ArcUtil_ScrnDataGet(ARC_BATT_BG, BATTLE_WBG1STOP_NSCR_BIN, 1, 
 			&scrnData, HEAPID_BATTLE);
 		MI_CpuCopy32(scrnData->rawData, bip->scrn_buf[SCRNBUF_PLAYBACK_STOP], 0x800);
 		sys_FreeMemoryEz(arc_data);
 
-		//BGLƒZƒbƒg
+		//BGLã‚»ãƒƒãƒˆ
 		bgl = BattleWorkGF_BGL_INIGet(bip->bw);
 		GF_BGL_ScreenBufSet(bgl, BI_FRAME_PANEL, bip->scrn_buf[SCRNBUF_PLAYBACK_STOP], 0x800);
 		GF_BGL_LoadScreenV_Req(bgl, BI_FRAME_PANEL);
 	}
 	
-	//ƒVƒXƒeƒ€ƒƒbƒZ[ƒW•`‰æ—p‚ÌƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ðƒNƒŠƒA‚µ‚Ä‚¨‚­(‘¼ƒXƒNƒŠ[ƒ“‚Æ‹¤—p‚µ‚Ä‚¢‚é‚Ì‚Å)
+	//ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»ç”¨ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢ã—ã¦ãŠã(ä»–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã¨å…±ç”¨ã—ã¦ã„ã‚‹ã®ã§)
 	{
 		GF_BGL_INI *bgl = BattleWorkGF_BGL_INIGet(bip->bw);
 		MI_CpuClear32(bip->scrn_buf[SCRNBUF_PLAYBACK_SYSWIN], 0x800);
@@ -3805,11 +3805,11 @@ static void BGCallback_PlayBackStop(BI_PARAM_PTR bip, int select_bg, int force_p
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_NEXT_POKEMON‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_NEXT_POKEMONã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_NextPokemon(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3851,11 +3851,11 @@ static void BGCallback_NextPokemon(BI_PARAM_PTR bip, int select_bg, int force_pu
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_CHANGE_POKEMON‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_CHANGE_POKEMONã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_ChangePokemon(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3897,11 +3897,11 @@ static void BGCallback_ChangePokemon(BI_PARAM_PTR bip, int select_bg, int force_
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“‘I‘ð‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   ãƒã‚±ãƒ¢ãƒ³é¸æŠžã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(BINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(BINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_PokeSelect(BI_PARAM_PTR bip, int select_bg, int force_put)
@@ -3934,7 +3934,7 @@ static void BGCallback_PokeSelect(BI_PARAM_PTR bip, int select_bg, int force_put
 	BattleClientTypeBufMake(bip->bw, client_type_buf);
 	BattleClientNoBufMake(bip->bw, client_no_buf);
 
-	//ƒ|ƒPƒ‚ƒ“–¼
+	//ãƒã‚±ãƒ¢ãƒ³å
 	monsname_p = STRBUF_Create(BUFLEN_BI_POKESELENAME, HEAPID_BATTLE);
 	for(i = 0; i < CLIENT_MAX; i++){
 		client_no = client_no_buf[CLIENT_TYPE_A + i];
@@ -3973,7 +3973,7 @@ static void BGCallback_PokeSelect(BI_PARAM_PTR bip, int select_bg, int force_put
 			
 			STRBUF_Delete(monsname_src);
 			
-			{//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+			{//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 				switch(i){
 				case 1:
 					Sub_PokeIconCharActorSet(bip, pp, CLIENT_TYPE_B, bsp->dspp[client_no].hp, 
@@ -3986,16 +3986,16 @@ static void BGCallback_PokeSelect(BI_PARAM_PTR bip, int select_bg, int force_put
 				}
 			}
 		}
-		else{		//‘I‘ðo—ˆ‚È‚¢ƒ|ƒPƒ‚ƒ“
-		#if 0 //2006.05.10(…)
+		else{		//é¸æŠžå‡ºæ¥ãªã„ãƒã‚±ãƒ¢ãƒ³
+		#if 0 //2006.05.10(æ°´)
 			if(hit_range[i] == TRUE){
-				//’Êí‘I‘ðo—ˆ‚é‚ñ‚¾‚¯‚ÇAŽ€–S‚È‚Ç‚Å‘I‘ðo—ˆ‚È‚¢ƒ|ƒPƒ‚ƒ“‚ÉŒÀ‚è•Çƒpƒlƒ‹“]‘—
+				//é€šå¸¸é¸æŠžå‡ºæ¥ã‚‹ã‚“ã ã‘ã©ã€æ­»äº¡ãªã©ã§é¸æŠžå‡ºæ¥ãªã„ãƒã‚±ãƒ¢ãƒ³ã«é™ã‚Šå£ãƒ‘ãƒãƒ«è»¢é€
 				Sub_PokemonNotPanelTrans(bip, i);
 			}
 		#else
 			if(hit_range[i] == FALSE){
-				//Œ³X‘I‘ðo—ˆ‚È‚¢ƒpƒlƒ‹‚Ì‚ÝA•Çƒpƒlƒ‹‚ð“]‘—‚·‚é
-				//Ž€–S‚È‚Ç‚Å‘I‘ðo—ˆ‚È‚¢‚Ì‚ÍƒWƒ‡ƒCƒ“ƒgOBJ‚Ì“s‡ãŒ³‚Ì‚Ü‚ÜŽc‚·
+				//å…ƒã€…é¸æŠžå‡ºæ¥ãªã„ãƒ‘ãƒãƒ«ã®ã¿ã€å£ãƒ‘ãƒãƒ«ã‚’è»¢é€ã™ã‚‹
+				//æ­»äº¡ãªã©ã§é¸æŠžå‡ºæ¥ãªã„ã®ã¯ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆOBJã®éƒ½åˆä¸Šå…ƒã®ã¾ã¾æ®‹ã™
 				Sub_PokemonNotPanelTrans(bip, i);
 			}
 		#endif
@@ -4003,7 +4003,7 @@ static void BGCallback_PokeSelect(BI_PARAM_PTR bip, int select_bg, int force_put
 	}
 	STRBUF_Delete(monsname_p);
 	
-	//‚à‚Ç‚é
+	//ã‚‚ã©ã‚‹
 	{
 		STRBUF *modoru_src;
 		
@@ -4018,18 +4018,18 @@ static void BGCallback_PokeSelect(BI_PARAM_PTR bip, int select_bg, int force_put
 
 //==============================================================================
 //
-//	ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+//	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_A‚Åƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_Aã§ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tp_ret		ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê(bmd->tpd_ret‚Ì’l‚©RECT_HIT_NONE)
- * @param   panel_pal	‰Ÿ‚µ‚½ƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+ * @param   bip			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tp_ret		ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ(bmd->tpd_retã®å€¤ã‹RECT_HIT_NONE)
+ * @param   panel_pal	æŠ¼ã—ãŸãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  * 
- * @retval  tp_ret‚ð•Ô‚·(ˆ—‚Ì’†‚Å•ÏX‚·‚é•K—v‚ª‚È‚¢‚È‚çAˆø”‚Å“n‚³‚ê‚½’l‚ð‚»‚Ì‚Ü‚Ü•Ô‚·)
+ * @retval  tp_retã‚’è¿”ã™(å‡¦ç†ã®ä¸­ã§å¤‰æ›´ã™ã‚‹å¿…è¦ãŒãªã„ãªã‚‰ã€å¼•æ•°ã§æ¸¡ã•ã‚ŒãŸå€¤ã‚’ãã®ã¾ã¾è¿”ã™)
  */
 //--------------------------------------------------------------
 static int TPCallback_A(BI_PARAM_PTR bip, int tp_ret, int panel_pal)
@@ -4087,13 +4087,13 @@ static int TPCallback_A(BI_PARAM_PTR bip, int tp_ret, int panel_pal)
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_WAZA‚Åƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_WAZAã§ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tp_ret		ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê(bmd->tpd_ret‚Ì’l‚©RECT_HIT_NONE)
- * @param   panel_pal	‰Ÿ‚µ‚½ƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+ * @param   bip			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tp_ret		ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ(bmd->tpd_retã®å€¤ã‹RECT_HIT_NONE)
+ * @param   panel_pal	æŠ¼ã—ãŸãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  * 
- * @retval  tp_ret‚ð•Ô‚·(ˆ—‚Ì’†‚Å•ÏX‚·‚é•K—v‚ª‚È‚¢‚È‚çAˆø”‚Å“n‚³‚ê‚½’l‚ð‚»‚Ì‚Ü‚Ü•Ô‚·)
+ * @retval  tp_retã‚’è¿”ã™(å‡¦ç†ã®ä¸­ã§å¤‰æ›´ã™ã‚‹å¿…è¦ãŒãªã„ãªã‚‰ã€å¼•æ•°ã§æ¸¡ã•ã‚ŒãŸå€¤ã‚’ãã®ã¾ã¾è¿”ã™)
  */
 //--------------------------------------------------------------
 static int TPCallback_Waza(BI_PARAM_PTR bip, int tp_ret, int panel_pal)
@@ -4112,7 +4112,7 @@ static int TPCallback_Waza(BI_PARAM_PTR bip, int tp_ret, int panel_pal)
 	bsw = &bip->scene.bsw;
 	if(tp_ret >= SELECT_SKILL_1 && tp_ret <= SELECT_SKILL_4){
 		if(bsw->wazano[tp_ret - SELECT_SKILL_1] == 0){
-			return RECT_HIT_NONE;	//‰Ÿ‚³‚ê‚½êŠ‚ÌŽèŽ‚¿‹Z‚ª‚È‚¢
+			return RECT_HIT_NONE;	//æŠ¼ã•ã‚ŒãŸå ´æ‰€ã®æ‰‹æŒã¡æŠ€ãŒãªã„
 		}
 	}
 	
@@ -4141,20 +4141,20 @@ static int TPCallback_Waza(BI_PARAM_PTR bip, int tp_ret, int panel_pal)
 	bip->effect_work.paracgr.scrn_range = scrn_range;
 	bip->effect_work.paracgr.scrnbuf_no = SCRNBUF_WAZA;
 	bip->effect_work.paracgr.tp_ret = tp_ret;
-	bip->effect_work.paracgr.obj_del = TRUE;	//WazaButtonDown‚Å‚ÍŽg—p‚µ‚È‚¢‚¯‚Çˆê‰ž
+	bip->effect_work.paracgr.obj_del = TRUE;	//WazaButtonDownã§ã¯ä½¿ç”¨ã—ãªã„ã‘ã©ä¸€å¿œ
 //	bip->effect_work.paracgr.fa_no = fa_no;
 	return tp_ret;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_D‚Åƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_Dã§ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tp_ret		ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê(bmd->tpd_ret‚Ì’l‚©RECT_HIT_NONE)
- * @param   panel_pal	‰Ÿ‚µ‚½ƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+ * @param   bip			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tp_ret		ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ(bmd->tpd_retã®å€¤ã‹RECT_HIT_NONE)
+ * @param   panel_pal	æŠ¼ã—ãŸãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  * 
- * @retval  tp_ret‚ð•Ô‚·(ˆ—‚Ì’†‚Å•ÏX‚·‚é•K—v‚ª‚È‚¢‚È‚çAˆø”‚Å“n‚³‚ê‚½’l‚ð‚»‚Ì‚Ü‚Ü•Ô‚·)
+ * @retval  tp_retã‚’è¿”ã™(å‡¦ç†ã®ä¸­ã§å¤‰æ›´ã™ã‚‹å¿…è¦ãŒãªã„ãªã‚‰ã€å¼•æ•°ã§æ¸¡ã•ã‚ŒãŸå€¤ã‚’ãã®ã¾ã¾è¿”ã™)
  */
 //--------------------------------------------------------------
 static int TPCallback_D(BI_PARAM_PTR bip, int tp_ret, int panel_pal)
@@ -4194,13 +4194,13 @@ static int TPCallback_D(BI_PARAM_PTR bip, int tp_ret, int panel_pal)
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_D‚Åƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_Dã§ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tp_ret		ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê(bmd->tpd_ret‚Ì’l‚©RECT_HIT_NONE)
- * @param   panel_pal	‰Ÿ‚µ‚½ƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+ * @param   bip			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tp_ret		ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ(bmd->tpd_retã®å€¤ã‹RECT_HIT_NONE)
+ * @param   panel_pal	æŠ¼ã—ãŸãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  * 
- * @retval  tp_ret‚ð•Ô‚·(ˆ—‚Ì’†‚Å•ÏX‚·‚é•K—v‚ª‚È‚¢‚È‚çAˆø”‚Å“n‚³‚ê‚½’l‚ð‚»‚Ì‚Ü‚Ü•Ô‚·)
+ * @retval  tp_retã‚’è¿”ã™(å‡¦ç†ã®ä¸­ã§å¤‰æ›´ã™ã‚‹å¿…è¦ãŒãªã„ãªã‚‰ã€å¼•æ•°ã§æ¸¡ã•ã‚ŒãŸå€¤ã‚’ãã®ã¾ã¾è¿”ã™)
  */
 //--------------------------------------------------------------
 static int TPCallback_PokeSele(BI_PARAM_PTR bip, int tp_ret, int panel_pal)
@@ -4252,7 +4252,7 @@ static int TPCallback_PokeSele(BI_PARAM_PTR bip, int tp_ret, int panel_pal)
 		return tp_ret;
 	}
 
-	//˜gƒXƒNƒŠ[ƒ“ƒNƒŠƒA
+	//æž ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢
 	{
 		GF_BGL_INI *bgl;
 		bgl = BattleWorkGF_BGL_INIGet(bip->bw);
@@ -4270,13 +4270,13 @@ static int TPCallback_PokeSele(BI_PARAM_PTR bip, int tp_ret, int panel_pal)
 
 //--------------------------------------------------------------
 /**
- * @brief   BINPUT_TYPE_PLAYBACK_STOP‚Åƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   BINPUT_TYPE_PLAYBACK_STOPã§ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   bip			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tp_ret		ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê(bmd->tpd_ret‚Ì’l‚©RECT_HIT_NONE)
- * @param   panel_pal	‰Ÿ‚µ‚½ƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+ * @param   bip			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tp_ret		ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ(bmd->tpd_retã®å€¤ã‹RECT_HIT_NONE)
+ * @param   panel_pal	æŠ¼ã—ãŸãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  * 
- * @retval  tp_ret‚ð•Ô‚·(ˆ—‚Ì’†‚Å•ÏX‚·‚é•K—v‚ª‚È‚¢‚È‚çAˆø”‚Å“n‚³‚ê‚½’l‚ð‚»‚Ì‚Ü‚Ü•Ô‚·)
+ * @retval  tp_retã‚’è¿”ã™(å‡¦ç†ã®ä¸­ã§å¤‰æ›´ã™ã‚‹å¿…è¦ãŒãªã„ãªã‚‰ã€å¼•æ•°ã§æ¸¡ã•ã‚ŒãŸå€¤ã‚’ãã®ã¾ã¾è¿”ã™)
  */
 //--------------------------------------------------------------
 static int TPCallback_PlayBackStop(BI_PARAM_PTR bip, int tp_ret, int panel_pal)
@@ -4306,15 +4306,15 @@ static int TPCallback_PlayBackStop(BI_PARAM_PTR bip, int tp_ret, int panel_pal)
 
 //==============================================================================
 //
-//	ƒTƒuŠÖ”
+//	ã‚µãƒ–é–¢æ•°
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒX‚ðƒ[ƒh‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
- * ƒLƒƒƒ‰‚ÌƒŠƒ\[ƒX‚ÍƒAƒNƒ^[¶¬‚Æˆê‚É‚â‚é‚Ì‚ÅA‚±‚±‚Å‚Í“o˜^‚µ‚Ü‚¹‚ñ
+ * ã‚­ãƒ£ãƒ©ã®ãƒªã‚½ãƒ¼ã‚¹ã¯ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆã¨ä¸€ç·’ã«ã‚„ã‚‹ã®ã§ã€ã“ã“ã§ã¯ç™»éŒ²ã—ã¾ã›ã‚“
  */
 //--------------------------------------------------------------
 static void Sub_PokeIconResourceLoad(BI_PARAM_PTR bip)
@@ -4328,22 +4328,22 @@ static void Sub_PokeIconResourceLoad(BI_PARAM_PTR bip)
 	crp = BattleWorkCATS_RES_PTRGet(bip->bw);
 	pfd = BattleWorkPfdGet(bip->bw);
 
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	CATS_LoadResourcePlttWorkArc(pfd, FADE_SUB_OBJ, csp, crp,
 		ARC_POKEICON, PokeIconPalArcIndexGet(), 0, POKEICON_PAL_MAX, 
 		NNS_G2D_VRAM_TYPE_2DSUB, PLTTID_POKEICON);
-	//ƒZƒ‹
+	//ã‚»ãƒ«
 	CATS_LoadResourceCellArc(csp, crp, ARC_POKEICON, 
 		PokeIconAnmCellArcIndexGet(), 0, CELLID_POKEICON);
-	//ƒZƒ‹ƒAƒjƒ
+	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	CATS_LoadResourceCellAnmArc(
 		csp, crp, ARC_POKEICON, PokeIconAnmCellAnmArcIndexGet(), 0, CELLANMID_POKEICON);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒX‚ð‘S‚Ä‰ð•ú‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’å…¨ã¦è§£æ”¾ã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_PokeIconResourceFree(BI_PARAM_PTR bip)
@@ -4362,8 +4362,8 @@ static void Sub_PokeIconResourceFree(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒNƒ^[‚ð‘S‚Äíœ‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_PokeIconActorAllDel(BI_PARAM_PTR bip)
@@ -4384,13 +4384,13 @@ static void Sub_PokeIconActorAllDel(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒNƒ^[‚ð¶¬‚·‚é
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pp				‘ÎÛ‚Ìƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pp				å¯¾è±¡ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  * @param   client_type		CIENT_TYPE_???
  *
- * @retval  ¶¬‚µ‚½ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static CATS_ACT_PTR Sub_PokeIconCharActorSet(BI_PARAM_PTR bip, POKEMON_PARAM *pp, int client_type,
@@ -4404,7 +4404,7 @@ static CATS_ACT_PTR Sub_PokeIconCharActorSet(BI_PARAM_PTR bip, POKEMON_PARAM *pp
 	int tbl_no;
 	
 	if(client_type >= CLIENT_TYPE_A){
-		tbl_no = client_type - CLIENT_TYPE_A;	//0origin‚ÉC³
+		tbl_no = client_type - CLIENT_TYPE_A;	//0originã«ä¿®æ­£
 	}
 	else{
 		tbl_no = client_type;	//AA or BB
@@ -4413,7 +4413,7 @@ static CATS_ACT_PTR Sub_PokeIconCharActorSet(BI_PARAM_PTR bip, POKEMON_PARAM *pp
 	GF_ASSERT(bip->pokeicon_cap[tbl_no] == NULL);
 	GF_ASSERT(bip->pokeicon_tcb[tbl_no] == NULL);
 	
-	switch(client_type){	//í“¬“ü—Í‰æ–Ê‚Å‚Í“G‚Ì‚Ý•\Ž¦
+	switch(client_type){	//æˆ¦é—˜å…¥åŠ›ç”»é¢ã§ã¯æ•µã®ã¿è¡¨ç¤º
 	case CLIENT_TYPE_AA:
 	case CLIENT_TYPE_A:
 	case CLIENT_TYPE_C:
@@ -4426,30 +4426,30 @@ static CATS_ACT_PTR Sub_PokeIconCharActorSet(BI_PARAM_PTR bip, POKEMON_PARAM *pp
 		char_id = CHARID_POKEICON_D;
 		break;
 	default:
-		GF_ASSERT(0);// && "Ý’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+		GF_ASSERT(0);// && "è¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“");
 		return NULL;
 	}
 
 	csp = BattleWorkCATS_SYS_PTRGet(bip->bw);
 	crp = BattleWorkCATS_RES_PTRGet(bip->bw);
 	
-	//ƒLƒƒƒ‰ƒŠƒ\[ƒX
+	//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
 	CATS_LoadResourceCharArc(csp, crp, ARC_POKEICON, PokeIconCgxArcIndexGetByPP(pp),
 		0, NNS_G2D_VRAM_TYPE_2DSUB, char_id);
 	
-	//ƒAƒNƒ^[
+	//ã‚¢ã‚¯ã‚¿ãƒ¼
 	obj_param = PokeIconObjParam;
 	obj_param.id[CLACT_U_CHAR_RES] = char_id;
 	obj_param.x = PokeIconPos[tbl_no][0];
 	obj_param.y = PokeIconPos[tbl_no][1];
 	cap = CATS_ObjectAdd_S(csp, crp, &obj_param);
 	CATS_ObjectPosSetCap_SubSurface(cap, obj_param.x, obj_param.y, BATTLE_SUB_ACTOR_DISTANCE);
-	//ƒpƒŒƒbƒgØ‚è‘Ö‚¦
+	//ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
 //	monsno = PokeParaGet(pp, ID_PARA_monsno, NULL);
 //	egg = PokeParaGet(pp, ID_PARA_tamago_flag, NULL);
 	CLACT_PaletteOffsetChgAddTransPlttNo(cap->act, PokeIconPalNumGetByPP(pp));
 	
-	{//ƒAƒCƒRƒ“ƒAƒjƒÝ’è
+	{//ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡è¨­å®š
 		int anmno = 0;
 		
 		if(hp == 0 || status == COMSEL_STATUS_DEAD){
@@ -4463,18 +4463,18 @@ static CATS_ACT_PTR Sub_PokeIconCharActorSet(BI_PARAM_PTR bip, POKEMON_PARAM *pp
 			case HP_DOTTO_MAX:
 				anmno = POKEICON_ANM_HPMAX;
 				break;
-			case HP_DOTTO_GREEN:	// —Î
+			case HP_DOTTO_GREEN:	// ç·‘
 				anmno = POKEICON_ANM_HPGREEN;
 				break;
-			case HP_DOTTO_YELLOW:	// ‰©
+			case HP_DOTTO_YELLOW:	// é»„
 				anmno = POKEICON_ANM_HPYERROW;
 				break;
-			case HP_DOTTO_RED:		// Ô
+			case HP_DOTTO_RED:		// èµ¤
 				anmno = POKEICON_ANM_HPRED;
 				break;
 			}
 			CATS_ObjectAnimeSeqSetCap(cap, anmno);
-			//CATS_ObjectAutoAnimeSetCap(cap, CATS_ANM_AUTO_ON);	//ƒI[ƒgƒAƒjƒ
+			//CATS_ObjectAutoAnimeSetCap(cap, CATS_ANM_AUTO_ON);	//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡
 		}
 	#ifdef OSP_BINPUT_ON
 		OS_TPrintf("anmno = %d, hp = %d, max = %d, status = %d\n", anmno, hp, maxhp, status);
@@ -4489,10 +4489,10 @@ static CATS_ACT_PTR Sub_PokeIconCharActorSet(BI_PARAM_PTR bip, POKEMON_PARAM *pp
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒjƒXVˆ—
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡æ›´æ–°å‡¦ç†
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void PokeIconAnimeUpdate(TCB_PTR tcb, void *work)
@@ -4503,9 +4503,9 @@ static void PokeIconAnimeUpdate(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“‚ÌƒXƒe[ƒ^ƒX‚©‚çŽèŽ‚¿ƒ{[ƒ‹‚ÌƒAƒjƒƒV[ƒPƒ“ƒX”Ô†‚ðŽæ“¾‚·‚é
- * @param   status		ƒ|ƒPƒ‚ƒ“‚ÌƒXƒe[ƒ^ƒX(COMSEL_STATUS_???)
- * @retval  ŽèŽ‚¿ƒ{[ƒ‹‚ÌƒAƒjƒƒV[ƒPƒ“ƒX”Ô†
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‹ã‚‰æ‰‹æŒã¡ãƒœãƒ¼ãƒ«ã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·ã‚’å–å¾—ã™ã‚‹
+ * @param   status		ãƒã‚±ãƒ¢ãƒ³ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹(COMSEL_STATUS_???)
+ * @retval  æ‰‹æŒã¡ãƒœãƒ¼ãƒ«ã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
  */
 //--------------------------------------------------------------
 static int Sub_StockBallAnmSeqGet(u8 status)
@@ -4532,13 +4532,13 @@ static int Sub_StockBallAnmSeqGet(u8 status)
 
 //--------------------------------------------------------------
 /**
- * @brief   ewp‚ÉSub_ScrnTouchChangeŠÖ”—p‚Ìƒpƒ‰ƒ[ƒ^‚ðƒZƒbƒg‚·‚é
+ * @brief   ewpã«Sub_ScrnTouchChangeé–¢æ•°ç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   ewp				ƒGƒtƒFƒNƒgBG‘‚«Š·‚¦ƒpƒ‰ƒ[ƒ^‘ã“üæ
- * @param   rsr				‘‚«Š·‚¦”ÍˆÍ
- * @param   rsr_num			rsrƒf[ƒ^ŒÂ”
- * @param   add_charname	ƒLƒƒƒ‰ƒNƒ^[ƒl[ƒ€‚É‘«‚µ‚±‚Þ’l(ƒ}ƒCƒiƒX‚à—L‚è)
- * @param   fa_no			‘ÎÛƒtƒHƒ“ƒgOBJƒAƒNƒ^[ƒ[ƒN‚Ì“Y‚¦Žš
+ * @param   ewp				ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGæ›¸ãæ›ãˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»£å…¥å…ˆ
+ * @param   rsr				æ›¸ãæ›ãˆç¯„å›²
+ * @param   rsr_num			rsrãƒ‡ãƒ¼ã‚¿å€‹æ•°
+ * @param   add_charname	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€å€¤(ãƒžã‚¤ãƒŠã‚¹ã‚‚æœ‰ã‚Š)
+ * @param   fa_no			å¯¾è±¡ãƒ•ã‚©ãƒ³ãƒˆOBJã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã®æ·»ãˆå­—
  */
 //--------------------------------------------------------------
 inline void SubInline_EffBgWriteParamSet(EFFBG_WRITE_PARAM *ewp, const REWRITE_SCRN_RECT *rsr, 
@@ -4551,12 +4551,12 @@ inline void SubInline_EffBgWriteParamSet(EFFBG_WRITE_PARAM *ewp, const REWRITE_S
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚É“®ì‚³‚¹‚éBGƒXƒNƒŠ[ƒ“‘‚«Š·‚¦‚ð‚Ð‚Æ‚Ü‚Æ‚ß‚É‚µ‚½‚à‚Ì
+ * @brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‹•ä½œã•ã›ã‚‹BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆã‚’ã²ã¨ã¾ã¨ã‚ã«ã—ãŸã‚‚ã®
  *
- * @param   bgl					BGLƒf[ƒ^
- * @param   rsr[]				‘‚«Š·‚¦”ÍˆÍ
- * @param   rsr_num				rsrƒf[ƒ^ŒÂ”
- * @param   add_charname		ƒLƒƒƒ‰ƒNƒ^[ƒl[ƒ€‚É‘«‚µ‚±‚Þ’l(ƒ}ƒCƒiƒX‚à—L‚è)
+ * @param   bgl					BGLãƒ‡ãƒ¼ã‚¿
+ * @param   rsr[]				æ›¸ãæ›ãˆç¯„å›²
+ * @param   rsr_num				rsrãƒ‡ãƒ¼ã‚¿å€‹æ•°
+ * @param   add_charname		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€å€¤(ãƒžã‚¤ãƒŠã‚¹ã‚‚æœ‰ã‚Š)
  */
 //--------------------------------------------------------------
 static void Sub_ScrnTouchChange(GF_BGL_INI *bgl, const REWRITE_SCRN_RECT rsr[], int rsr_num, 
@@ -4565,7 +4565,7 @@ static void Sub_ScrnTouchChange(GF_BGL_INI *bgl, const REWRITE_SCRN_RECT rsr[], 
 	u16 *eff_scrn;
 	u32 eff_size;
 	
-	//ƒGƒtƒFƒNƒg–Ê‚ÌƒXƒNƒŠ[ƒ“‚ðƒNƒŠƒA
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ã‚¯ãƒªã‚¢
 	eff_scrn = GF_BGL_ScreenAdrsGet(bgl, BI_FRAME_EFF);
 	eff_size = GF_BGL_ScreenSizGet(bgl, BI_FRAME_EFF);
 	MI_CpuClear16(eff_scrn, eff_size);
@@ -4584,12 +4584,12 @@ static void Sub_ScrnTouchChange(GF_BGL_INI *bgl, const REWRITE_SCRN_RECT rsr[], 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚É“®ì‚³‚¹‚éBGƒXƒNƒŠ[ƒ“‘‚«Š·‚¦‚ð‚Ð‚Æ‚Ü‚Æ‚ß‚É‚µ‚½‚à‚Ì
+ * @brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‹•ä½œã•ã›ã‚‹BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆã‚’ã²ã¨ã¾ã¨ã‚ã«ã—ãŸã‚‚ã®
  *
- * @param   bgl					BGLƒf[ƒ^
- * @param   rsr[]				‘‚«Š·‚¦”ÍˆÍ
- * @param   rsr_num				rsrƒf[ƒ^ŒÂ”
- * @param   add_charname		ƒLƒƒƒ‰ƒNƒ^[ƒl[ƒ€‚É‘«‚µ‚±‚Þ’l(ƒ}ƒCƒiƒX‚à—L‚è)
+ * @param   bgl					BGLãƒ‡ãƒ¼ã‚¿
+ * @param   rsr[]				æ›¸ãæ›ãˆç¯„å›²
+ * @param   rsr_num				rsrãƒ‡ãƒ¼ã‚¿å€‹æ•°
+ * @param   add_charname		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€å€¤(ãƒžã‚¤ãƒŠã‚¹ã‚‚æœ‰ã‚Š)
  */
 //--------------------------------------------------------------
 static void Sub_ScrnTouchChangeReverse(GF_BGL_INI *bgl, const REWRITE_SCRN_RECT rsr[], 
@@ -4610,12 +4610,12 @@ static void Sub_ScrnTouchChangeReverse(GF_BGL_INI *bgl, const REWRITE_SCRN_RECT 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ð“Ç‚ÝŽæ‚èAƒLƒƒƒ‰ƒNƒ^[ƒl[ƒ€‚ÉŽw’è’l•ª‘«‚µ‚±‚Þ
+ * @brief   ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’èª­ã¿å–ã‚Šã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒãƒ¼ãƒ ã«æŒ‡å®šå€¤åˆ†è¶³ã—ã“ã‚€
  *
- * @param   rsr[]				‘‚«Š·‚¦”ÍˆÍ
- * @param   rsr_num				rsrƒf[ƒ^ŒÂ”
- * @param   screen_buf			ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   add_charname		ƒLƒƒƒ‰ƒNƒ^[ƒl[ƒ€‚É‘«‚µ‚±‚Þ’l(ƒ}ƒCƒiƒX‚à—L‚è)
+ * @param   rsr[]				æ›¸ãæ›ãˆç¯„å›²
+ * @param   rsr_num				rsrãƒ‡ãƒ¼ã‚¿å€‹æ•°
+ * @param   screen_buf			ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   add_charname		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€å€¤(ãƒžã‚¤ãƒŠã‚¹ã‚‚æœ‰ã‚Š)
  */
 //--------------------------------------------------------------
 static void Sub_ScrnAddOffset(const REWRITE_SCRN_RECT rsr[], int rsr_num, GF_BGL_INI *bgl,
@@ -4641,13 +4641,13 @@ static void Sub_ScrnAddOffset(const REWRITE_SCRN_RECT rsr[], int rsr_num, GF_BGL
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’è”ÍˆÍ‚ÌƒXƒNƒŠ[ƒ“‚ð•Ê‚ÌƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é
+ * @brief   æŒ‡å®šç¯„å›²ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’åˆ¥ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
  *
- * @param   rsr[]			ƒRƒs[”ÍˆÍ
- * @param   rsr_num			rsrƒf[ƒ^ŒÂ”
- * @param   bgl				BGLƒf[ƒ^
- * @param   src_frame		ƒRƒs[Œ³ƒXƒNƒŠ[ƒ“‚ÌƒtƒŒ[ƒ€No
- * @param   dest_frame		ƒRƒs[æƒXƒNƒŠ[ƒ“‚ÌƒtƒŒ[ƒ€No
+ * @param   rsr[]			ã‚³ãƒ”ãƒ¼ç¯„å›²
+ * @param   rsr_num			rsrãƒ‡ãƒ¼ã‚¿å€‹æ•°
+ * @param   bgl				BGLãƒ‡ãƒ¼ã‚¿
+ * @param   src_frame		ã‚³ãƒ”ãƒ¼å…ƒã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ãƒ•ãƒ¬ãƒ¼ãƒ No
+ * @param   dest_frame		ã‚³ãƒ”ãƒ¼å…ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ãƒ•ãƒ¬ãƒ¼ãƒ No
  */
 //--------------------------------------------------------------
 static void Sub_ScrnCopy(const REWRITE_SCRN_RECT rsr[], int rsr_num, GF_BGL_INI *bgl, 
@@ -4671,13 +4671,13 @@ static void Sub_ScrnCopy(const REWRITE_SCRN_RECT rsr[], int rsr_num, GF_BGL_INI 
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’è”ÍˆÍ‚ÌƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ðŽw’èƒR[ƒh‚ÅƒNƒŠƒA‚·‚é
+ * @brief   æŒ‡å®šç¯„å›²ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã‚³ãƒ¼ãƒ‰ã§ã‚¯ãƒªã‚¢ã™ã‚‹
  *
- * @param   rsr[]			ƒNƒŠƒA”ÍˆÍ
- * @param   rsr_num			rsrƒf[ƒ^ŒÂ”
- * @param   bgl				BGLƒf[ƒ^
- * @param   frame_no		ƒtƒŒ[ƒ€”Ô†
- * @param   clear_code		ƒNƒŠƒA[ƒR[ƒh
+ * @param   rsr[]			ã‚¯ãƒªã‚¢ç¯„å›²
+ * @param   rsr_num			rsrãƒ‡ãƒ¼ã‚¿å€‹æ•°
+ * @param   bgl				BGLãƒ‡ãƒ¼ã‚¿
+ * @param   frame_no		ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param   clear_code		ã‚¯ãƒªã‚¢ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 static void Sub_ScrnErase(const REWRITE_SCRN_RECT rsr[], int rsr_num, GF_BGL_INI *bgl, 
@@ -4699,13 +4699,13 @@ static void Sub_ScrnErase(const REWRITE_SCRN_RECT rsr[], int rsr_num, GF_BGL_INI
 
 //--------------------------------------------------------------
 /**
- * @brief   CGR“]‘—ƒAƒjƒ‚ðs‚¤‚½‚ß‚Ìƒpƒ‰ƒ[ƒ^‚ðƒZƒbƒg‚µ‚Ü‚·
+ * @brief   CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’è¡Œã†ãŸã‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™
  *
- * @param   frame_no		ƒtƒŒ[ƒ€NO
- * @param   cgr_id			“]‘—ƒOƒ‰ƒtƒBƒbƒN‚ÌCGRID(0xffffffff‚Ìê‡‚ÍƒNƒŠƒA‚µ‚Ü‚·)
- * @param   rd				“]‘—”ÍˆÍƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^(cgr_id‚ª0xffffffff‚Ìê‡‚Ísrc‚Ì’l‚Í“K“–‚ÅOK)
+ * @param   frame_no		ãƒ•ãƒ¬ãƒ¼ãƒ NO
+ * @param   cgr_id			è»¢é€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®CGRID(0xffffffffã®å ´åˆã¯ã‚¯ãƒªã‚¢ã—ã¾ã™)
+ * @param   rd				è»¢é€ç¯„å›²ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿(cgr_idãŒ0xffffffffã®å ´åˆã¯srcã®å€¤ã¯é©å½“ã§OK)
  *
- * @retval  CGR“]‘—ƒAƒjƒƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static CGR_TRANS_PARAM * Sub_CgrTransParamSet(int frame_no, u32 cgr_id, 
@@ -4739,18 +4739,18 @@ static CGR_TRANS_PARAM * Sub_CgrTransParamSet(int frame_no, u32 cgr_id,
 
 //--------------------------------------------------------------
 /**
- * @brief   CGR“]‘—ƒAƒjƒ‚ðs‚¤ƒ^ƒXƒN‚ð¶¬‚µ‚Ü‚·
+ * @brief   CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’è¡Œã†ã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã—ã¾ã™
  *
- * @param   frame_no		ƒtƒŒ[ƒ€NO
- * @param   cgr_id			“]‘—ƒOƒ‰ƒtƒBƒbƒN‚ÌCGRID(0xffffffff‚Ìê‡‚ÍƒNƒŠƒA‚µ‚Ü‚·)
- * @param   rd				“]‘—”ÍˆÍƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^(cgr_id‚ª0xffffffff‚Ìê‡‚Ísrc‚Ì’l‚Í“K“–‚ÅOK)
- * @param   loaded_char		ŠÖ”ŠO‚Åæ‚ÉƒLƒƒƒ‰‚ðƒA[ƒJƒCƒu‚µ‚Ä‚¢‚éê‡‚ÍA‚±‚±‚Å“n‚·
- *                          NULL‚Ìê‡‚Í’†‚ÅƒLƒƒƒ‰ƒA[ƒJƒCƒu‚ðs‚¢‚Ü‚·B
+ * @param   frame_no		ãƒ•ãƒ¬ãƒ¼ãƒ NO
+ * @param   cgr_id			è»¢é€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®CGRID(0xffffffffã®å ´åˆã¯ã‚¯ãƒªã‚¢ã—ã¾ã™)
+ * @param   rd				è»¢é€ç¯„å›²ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿(cgr_idãŒ0xffffffffã®å ´åˆã¯srcã®å€¤ã¯é©å½“ã§OK)
+ * @param   loaded_char		é–¢æ•°å¤–ã§å…ˆã«ã‚­ãƒ£ãƒ©ã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã—ã¦ã„ã‚‹å ´åˆã¯ã€ã“ã“ã§æ¸¡ã™
+ *                          NULLã®å ´åˆã¯ä¸­ã§ã‚­ãƒ£ãƒ©ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’è¡Œã„ã¾ã™ã€‚
  *
- * @retval  CGR“]‘—ƒAƒjƒƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ‚±‚ÌŠÖ”Žg—pŒãA•K‚¸Sub_CgrTransEndCheckŠÖ”‚ðŽg—p‚µAI—¹Šm”F‚ðs‚Á‚Ä‚­‚¾‚³‚¢B
- * Sub_CgrTransEndCheckŠÖ”“à‚Åƒ[ƒN‚Ì‰ð•úˆ—‚È‚Ç‚ðs‚Á‚Ä‚¢‚Ü‚·B
+ * ã“ã®é–¢æ•°ä½¿ç”¨å¾Œã€å¿…ãšSub_CgrTransEndChecké–¢æ•°ã‚’ä½¿ç”¨ã—ã€çµ‚äº†ç¢ºèªã‚’è¡Œã£ã¦ãã ã•ã„ã€‚
+ * Sub_CgrTransEndChecké–¢æ•°å†…ã§ãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†ãªã©ã‚’è¡Œã£ã¦ã„ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 static CGR_TRANS_PARAM * Sub_CgrTransTaskSet(int frame_no, u32 cgr_id, 
@@ -4765,11 +4765,11 @@ static CGR_TRANS_PARAM * Sub_CgrTransTaskSet(int frame_no, u32 cgr_id,
 
 //--------------------------------------------------------------
 /**
- * @brief   CGR“]‘—ƒAƒjƒƒ^ƒXƒN‚ªI—¹‚µ‚Ä‚¢‚é‚©Šm”F
- * @param   ctp		CGR“]‘—ƒAƒjƒƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:I—¹B@FALSE:‘±s’†
+ * @brief   CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¹ã‚¯ãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹ç¢ºèª
+ * @param   ctp		CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ç¶šè¡Œä¸­
  *
- * TRUE‚ð•Ô‚·ŽžA“¯Žž‚ÉCGR“]‘—ƒAƒjƒƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ì‰ð•úˆ—‚às‚¢‚Ü‚·B
+ * TRUEã‚’è¿”ã™æ™‚ã€åŒæ™‚ã«CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†ã‚‚è¡Œã„ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 static BOOL Sub_CgrTransEndCheck(CGR_TRANS_PARAM *ctp)
@@ -4786,8 +4786,8 @@ static BOOL Sub_CgrTransEndCheck(CGR_TRANS_PARAM *ctp)
 
 //--------------------------------------------------------------
 /**
- * @brief   CGR“]‘—ƒAƒjƒ‚ðs‚¢‚Ü‚·
- * @param   ctp		CGR“]‘—ƒAƒjƒƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’è¡Œã„ã¾ã™
+ * @param   ctp		CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_CgrParamTrans(CGR_TRANS_PARAM *ctp)
@@ -4815,19 +4815,19 @@ static void Sub_CgrParamTrans(CGR_TRANS_PARAM *ctp)
 
 //--------------------------------------------------------------
 /**
- * @brief   •¶Žš—ñ‚Ì’·‚³‚ðŽæ“¾‚·‚é
+ * @brief   æ–‡å­—åˆ—ã®é•·ã•ã‚’å–å¾—ã™ã‚‹
  *
- * @param   str				•¶Žš—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   font_type		ƒtƒHƒ“ƒgƒ^ƒCƒv
- * @param   ret_dot_len		ƒhƒbƒg•‘ã“üæ
- * @param   ret_char_len	ƒLƒƒƒ‰•‘ã“üæ
+ * @param   str				æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   font_type		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   ret_dot_len		ãƒ‰ãƒƒãƒˆå¹…ä»£å…¥å…ˆ
+ * @param   ret_char_len	ã‚­ãƒ£ãƒ©å¹…ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 static void FontLenGet(const STRBUF *str, FONT_TYPE font_type, int *ret_dot_len, int *ret_char_len)
 {
 	int dot_len, char_len;
 	
-	//•¶Žš—ñ‚Ìƒhƒbƒg•‚©‚çAŽg—p‚·‚éƒLƒƒƒ‰”‚ðŽZo‚·‚é
+	//æ–‡å­—åˆ—ã®ãƒ‰ãƒƒãƒˆå¹…ã‹ã‚‰ã€ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©æ•°ã‚’ç®—å‡ºã™ã‚‹
 	dot_len = FontProc_GetPrintStrWidth(font_type, str, PANEL_MSG_MARGIN);
 	char_len = dot_len / 8;
 	if(FX_ModS32(dot_len, 8) != 0){
@@ -4840,20 +4840,20 @@ static void FontLenGet(const STRBUF *str, FONT_TYPE font_type, int *ret_dot_len,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒHƒ“ƒgOAM‚ðì¬‚·‚é
+ * @brief   ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’ä½œæˆã™ã‚‹
  *
- * @param   bip			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   font_actor	¶¬‚µ‚½ƒtƒHƒ“ƒgOAMŠÖ˜A‚Ìƒ[ƒN‘ã“üæ
- * @param   str			•¶Žš—ñ(ex_bmpwin‚ðŽg—p‚·‚éê‡‚ÍNULL‚ÅOK)
- * @param   font_type	ƒtƒHƒ“ƒgƒ^ƒCƒv(FONT_SYSTEM“™)
- * @param   color		ƒtƒHƒ“ƒgƒJƒ‰[\¬
- * @param   pal_offset	ƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg
- * @param   pal_id		“o˜^ŠJŽnƒpƒŒƒbƒgID
- * @param   x			À•WX
- * @param   y			À•WY
- * @param   pos_center  FONTOAM_LEFT(X¶’[À•W) or FONTOAM_CENTER(X’†SÀ•W)
- * @param   ex_bmpwin	ŒÄ‚Ño‚µ‘¤‚ÅƒtƒHƒ“ƒgOAM‚ÉŠÖ˜A•t‚¯‚éBMPWIN‚ðŽ‚Á‚Ä‚¢‚éê‡‚Í‚±‚±‚Å“n‚·B
- *          			NULL‚Ìê‡‚Í’†‚Åì¬‚³‚ê‚Ü‚·B(ex_bmpwin‚ðŽg—p‚·‚éê‡‚Ístr‚ÍNULL‚ÅOK)
+ * @param   bip			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   font_actor	ç”Ÿæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆOAMé–¢é€£ã®ãƒ¯ãƒ¼ã‚¯ä»£å…¥å…ˆ
+ * @param   str			æ–‡å­—åˆ—(ex_bmpwinã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯NULLã§OK)
+ * @param   font_type	ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—(FONT_SYSTEMç­‰)
+ * @param   color		ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼æ§‹æˆ
+ * @param   pal_offset	ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   pal_id		ç™»éŒ²é–‹å§‹ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param   x			åº§æ¨™X
+ * @param   y			åº§æ¨™Y
+ * @param   pos_center  FONTOAM_LEFT(Xå·¦ç«¯åº§æ¨™) or FONTOAM_CENTER(Xä¸­å¿ƒåº§æ¨™)
+ * @param   ex_bmpwin	å‘¼ã³å‡ºã—å´ã§ãƒ•ã‚©ãƒ³ãƒˆOAMã«é–¢é€£ä»˜ã‘ã‚‹BMPWINã‚’æŒã£ã¦ã„ã‚‹å ´åˆã¯ã“ã“ã§æ¸¡ã™ã€‚
+ *          			NULLã®å ´åˆã¯ä¸­ã§ä½œæˆã•ã‚Œã¾ã™ã€‚(ex_bmpwinã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯strã¯NULLã§OK)
  */
 //--------------------------------------------------------------
 static void Sub_FontOamCreate(BI_PARAM_PTR bip, FONT_ACTOR *font_actor, const STRBUF *str, 
@@ -4874,7 +4874,7 @@ static void Sub_FontOamCreate(BI_PARAM_PTR bip, FONT_ACTOR *font_actor, const ST
 	crp = BattleWorkCATS_RES_PTRGet(bip->bw);
 	bgl = BattleWorkGF_BGL_INIGet(bip->bw);
 	
-	//•¶Žš—ñ‚Ìƒhƒbƒg•‚©‚çAŽg—p‚·‚éƒLƒƒƒ‰”‚ðŽZo‚·‚é
+	//æ–‡å­—åˆ—ã®ãƒ‰ãƒƒãƒˆå¹…ã‹ã‚‰ã€ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©æ•°ã‚’ç®—å‡ºã™ã‚‹
 	if(ex_bmpwin == NULL){
 		FontLenGet(str, font_type, &font_len, &char_len);
 	}
@@ -4883,7 +4883,7 @@ static void Sub_FontOamCreate(BI_PARAM_PTR bip, FONT_ACTOR *font_actor, const ST
 		char_len = ex_bmpwin->char_len;
 	}
 
-	//BMPì¬
+	//BMPä½œæˆ
 	if(ex_bmpwin == NULL){
 		GF_BGL_BmpWinInit(&bmpwin);
 		GF_BGL_BmpWinObjAdd(bgl, &bmpwin, char_len, 16 / 8, 0, 0);
@@ -4898,7 +4898,7 @@ static void Sub_FontOamCreate(BI_PARAM_PTR bip, FONT_ACTOR *font_actor, const ST
 	vram_size = FONTOAM_NeedCharSize(&bmpwin, NNS_G2D_VRAM_TYPE_2DSUB,  HEAPID_BATTLE);
 	CharVramAreaAlloc(vram_size, CHARM_CONT_AREACONT, NNS_G2D_VRAM_TYPE_2DSUB, &cma);
 	
-	//À•WˆÊ’uC³
+	//åº§æ¨™ä½ç½®ä¿®æ­£
 	if(pos_center == FONTOAM_CENTER){
 		x -= font_len / 2;
 	}
@@ -4922,7 +4922,7 @@ static void Sub_FontOamCreate(BI_PARAM_PTR bip, FONT_ACTOR *font_actor, const ST
 	FONTOAM_SetPaletteOffsetAddTransPlttNo(fontoam, pal_offset);
 	FONTOAM_SetMat(fontoam, x, y);
 	
-	//‰ð•úˆ—
+	//è§£æ”¾å‡¦ç†
 	if(ex_bmpwin == NULL){
 		GF_BGL_BmpWinDel(&bmpwin);
 	}
@@ -4934,8 +4934,8 @@ static void Sub_FontOamCreate(BI_PARAM_PTR bip, FONT_ACTOR *font_actor, const ST
 
 //--------------------------------------------------------------
 /**
- * @brief   ¶¬‚³‚ê‚Ä‚¢‚éƒtƒHƒ“ƒgOAM‚ð‘S‚Äíœ‚ð‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’å…¨ã¦å‰Šé™¤ã‚’ã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_FontOamDeleteAll(BI_PARAM_PTR bip)
@@ -4953,8 +4953,8 @@ static void Sub_FontOamDeleteAll(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒlƒ‹˜AŒ‹ƒXƒNƒŠ[ƒ“‚ð‘‚«ž‚Þ
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‘ãƒãƒ«é€£çµã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’æ›¸ãè¾¼ã‚€
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_JointScreenWrite(BI_PARAM_PTR bip)
@@ -4969,14 +4969,14 @@ static void Sub_JointScreenWrite(BI_PARAM_PTR bip)
 	
 	Sub_PokeSelectHitRange(bip, hit_range, FALSE);
 	
-	//-- CLIENT_TYPE_A‚ÆB‚Ì2‚Â‚Ì˜AŒ‹‰ÓŠ‚³‚¦’²‚×‚ê‚Î4‚Â‚Ìƒpƒlƒ‹‚Ì˜AŒ‹‘S‚Ä‚ªƒ`ƒFƒbƒNo—ˆ‚é --//
+	//-- CLIENT_TYPE_Aã¨Bã®2ã¤ã®é€£çµç®‡æ‰€ã•ãˆèª¿ã¹ã‚Œã°4ã¤ã®ãƒ‘ãƒãƒ«ã®é€£çµå…¨ã¦ãŒãƒã‚§ãƒƒã‚¯å‡ºæ¥ã‚‹ --//
 	
 	//CLIENT_TYPE_A
 	if(hit_range[0] == TRUE){
 		Sub_PokeSelectPanelConnectRange(bip, SELECT_TARGET_A, connect_range, FALSE);
 		
 		if(connect_range[SELECT_TARGET_C - SELECT_TARGET_A] == TRUE){
-			//A-C‚ªŒq‚ª‚Á‚Ä‚¢‚é
+			//A-CãŒç¹‹ãŒã£ã¦ã„ã‚‹
 			for(y = 12; y <= 16; y++){
 				write_scrn = &scrn[y * 32];
 				for(x = 0xf; x <= 0x10; x++){
@@ -4985,7 +4985,7 @@ static void Sub_JointScreenWrite(BI_PARAM_PTR bip)
 			}
 		}
 		if(connect_range[SELECT_TARGET_D - SELECT_TARGET_A] == TRUE){
-			//A-D‚ªŒq‚ª‚Á‚Ä‚¢‚é
+			//A-DãŒç¹‹ãŒã£ã¦ã„ã‚‹
 			for(y = 10; y <= 10; y++){
 				write_scrn = &scrn[y * 32];
 				for(x = 2; x <= 12; x++){
@@ -5000,7 +5000,7 @@ static void Sub_JointScreenWrite(BI_PARAM_PTR bip)
 		Sub_PokeSelectPanelConnectRange(bip, SELECT_TARGET_B, connect_range, FALSE);
 
 		if(connect_range[SELECT_TARGET_C - SELECT_TARGET_A] == TRUE){
-			//B-C‚ªŒq‚ª‚Á‚Ä‚¢‚é
+			//B-CãŒç¹‹ãŒã£ã¦ã„ã‚‹
 			for(y = 10; y <= 10; y++){
 				write_scrn = &scrn[y * 32];
 				for(x = 0x13; x <= 0x1d; x++){
@@ -5009,7 +5009,7 @@ static void Sub_JointScreenWrite(BI_PARAM_PTR bip)
 			}
 		}
 		if(connect_range[SELECT_TARGET_D - SELECT_TARGET_A] == TRUE){
-			//B-D‚ªŒq‚ª‚Á‚Ä‚¢‚é
+			//B-DãŒç¹‹ãŒã£ã¦ã„ã‚‹
 			for(y = 3; y <= 7; y++){
 				write_scrn = &scrn[y * 32];
 				for(x = 0xf; x <= 0x10; x++){
@@ -5023,12 +5023,12 @@ static void Sub_JointScreenWrite(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’èƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv‚ÌMEMORY_DECORD_WORK‚ðŽæ“¾‚·‚é
+ * @brief   æŒ‡å®šã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã®MEMORY_DECORD_WORKã‚’å–å¾—ã™ã‚‹
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   client_type		ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   client_type		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
  *
- * @retval  MEMORY_DECORD_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  MEMORY_DECORD_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static MEMORY_DECORD_WORK *MemoryDecordWorkGet(BI_PARAM_PTR bip, int client_type)
@@ -5041,8 +5041,8 @@ static MEMORY_DECORD_WORK *MemoryDecordWorkGet(BI_PARAM_PTR bip, int client_type
 
 //--------------------------------------------------------------
 /**
- * @brief   MEMORY_DECORD_WORK‚ð‰ð•ú‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   MEMORY_DECORD_WORKã‚’è§£æ”¾ã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void MemoryDecordWorkFree(BI_PARAM_PTR bip)
@@ -5067,11 +5067,11 @@ static void MemoryDecordWorkFree(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒpƒ‰ƒ[ƒ^‚Ìƒf[ƒ^‚ðƒƒ‚ƒŠ‚É“WŠJ‚·‚é
+ * @brief   æŠ€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¡ãƒ¢ãƒªã«å±•é–‹ã™ã‚‹
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   client_type		ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv
- * @param   wazapara		‹Zƒpƒ‰ƒ[ƒ^
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   client_type		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   wazapara		æŠ€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void BINPUT_WazaParaMemoryDecord(BI_PARAM_PTR bip, int client_type, 
@@ -5105,7 +5105,7 @@ void BINPUT_WazaParaMemoryDecord(BI_PARAM_PTR bip, int client_type,
 
 	for(i = 0; i < WAZA_TEMOTI_MAX; i++){
 		if(wazapara->wazano[i] != mdw->wazapara.wazano[i] && wazapara->wazano[i] != 0){
-			//‹Zƒ^ƒCƒvƒAƒCƒRƒ“
+			//æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³
 			waza_type = WT_WazaDataParaGet(wazapara->wazano[i], ID_WTD_wazatype);
 			arc_data = ArcUtil_CharDataGet(WazaTypeIcon_ArcIDGet(), 
 				WazaTypeIcon_CgrIDGet(waza_type), WAZATYPEICON_COMP_CHAR, 
@@ -5116,7 +5116,7 @@ void BINPUT_WazaParaMemoryDecord(BI_PARAM_PTR bip, int client_type,
 		
 		if(mdw->exbmp_waza[i].bmpwin.chrbuf == NULL 
 				|| (wazapara->wazano[i] != mdw->wazapara.wazano[i] && wazapara->wazano[i] != 0)){
-			//BMPWINF‹Z–¼
+			//BMPWINï¼šæŠ€å
 			wazaname_p = MSGDAT_UTIL_GetWazaName(wazapara->wazano[i], HEAPID_BATTLE);
 			FontExBmpwin_FontSet(bip, wazaname_p, FONT_BUTTON, &mdw->exbmp_waza[i], MSGCOLOR_WAZA);
 			STRBUF_Delete(wazaname_p);
@@ -5137,13 +5137,13 @@ void BINPUT_WazaParaMemoryDecord(BI_PARAM_PTR bip, int client_type,
 			if(mdw->exbmp_pp[i].bmpwin.chrbuf == NULL
 					|| wazapara->wazano[i] != mdw->wazapara.wazano[i]
 					|| wazapara->pp[i] != mdw->wazapara.pp[i]){
-				//BMPWINFPP
+				//BMPWINï¼šPP
 				FontExBmpwin_FontSet(bip, pp_p, FONT_SYSTEM, &mdw->exbmp_pp[i], color);
 			}
 			if(mdw->exbmp_ppmax[i].bmpwin.chrbuf == NULL
 					|| wazapara->wazano[i] != mdw->wazapara.wazano[i]
 					|| wazapara->pp[i] != mdw->wazapara.pp[i]){
-				//BMPWINFPPMAX
+				//BMPWINï¼šPPMAX
 				FontExBmpwin_FontSet(bip, ppmsg_src, FONT_SYSTEM, &mdw->exbmp_ppmax[i], color);
 			}
 		}
@@ -5158,13 +5158,13 @@ void BINPUT_WazaParaMemoryDecord(BI_PARAM_PTR bip, int client_type,
 
 //--------------------------------------------------------------
 /**
- * @brief   FONT_EX_BMPWIN‚É‘Î‚µ‚ÄƒtƒHƒ“ƒgƒf[ƒ^‚ðì¬‚µAƒZƒbƒg‚·‚é
+ * @brief   FONT_EX_BMPWINã«å¯¾ã—ã¦ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã€ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   str				•¶Žš—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   font_type		ƒtƒHƒ“ƒgƒ^ƒCƒv
- * @param   ex_bmpwin		ƒf[ƒ^‘ã“üæ
- * @param   color			•¶ŽšƒJƒ‰[
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   str				æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   font_type		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   ex_bmpwin		ãƒ‡ãƒ¼ã‚¿ä»£å…¥å…ˆ
+ * @param   color			æ–‡å­—ã‚«ãƒ©ãƒ¼
  */
 //--------------------------------------------------------------
 static void FontExBmpwin_FontSet(BI_PARAM_PTR bip, const STRBUF *str, FONT_TYPE font_type, 	
@@ -5187,8 +5187,8 @@ static void FontExBmpwin_FontSet(BI_PARAM_PTR bip, const STRBUF *str, FONT_TYPE 
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ð‘S‚Ä¶¬‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦ç”Ÿæˆã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_WazaTypeIconCreateAll(BI_PARAM_PTR bip)
@@ -5222,7 +5222,7 @@ static void Sub_WazaTypeIconCreateAll(BI_PARAM_PTR bip)
 			CATS_ObjectPosSetCap_SubSurface(bip->icon_cap[i], obj_param.x, obj_param.y, 
 				BATTLE_SUB_ACTOR_DISTANCE);
 
-			{//ƒLƒƒƒ‰“]‘—
+			{//ã‚­ãƒ£ãƒ©è»¢é€
 				void *obj_vram;
 				NNSG2dImageProxy * image;
 				
@@ -5238,8 +5238,8 @@ static void Sub_WazaTypeIconCreateAll(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ð‘S‚Äíœ‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_WazaTypeIconDeleteAll(BI_PARAM_PTR bip)
@@ -5261,8 +5261,8 @@ static void Sub_WazaTypeIconDeleteAll(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z•ª—ÞƒAƒCƒRƒ“‚ð‘S‚Ä¶¬‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æŠ€åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦ç”Ÿæˆã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_WazaKindIconCreateAll(BI_PARAM_PTR bip)
@@ -5300,8 +5300,8 @@ static void Sub_WazaKindIconCreateAll(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z•ª—ÞƒAƒCƒRƒ“‚ð‘S‚Äíœ‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æŠ€åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_WazaKindIconDeleteAll(BI_PARAM_PTR bip)
@@ -5320,7 +5320,7 @@ static void Sub_WazaKindIconDeleteAll(BI_PARAM_PTR bip)
 			bip->kindicon_cap[i] = NULL;
 		}
 	}
-#if 0	//‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒX‚ªí’“‚É‚È‚Á‚½‚Ì‚ÅA“¯‚¶ID‚ðŽg—p‚µ‚Ä‚¢‚é‚±‚ê‚ð‰ð•ú‚µ‚È‚¢
+#if 0	//æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹ãŒå¸¸é§ã«ãªã£ãŸã®ã§ã€åŒã˜IDã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã“ã‚Œã‚’è§£æ”¾ã—ãªã„
 	WazaKindIcon_PlttResourceFree(crp, PLTTID_WAZAKIND_ICON);
 	WazaKindIcon_CellAnmResourceFree(crp, CELLID_WAZAKIND_ICON, CELLANMID_WAZAKIND_ICON);
 #endif
@@ -5328,11 +5328,11 @@ static void Sub_WazaKindIconDeleteAll(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒv–ˆ‚ÉCGRƒf[ƒ^‚ð‘‚«Š·‚¦‚é
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—æ¯Žã«CGRãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãæ›ãˆã‚‹
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   waza_type		‹Zƒ^ƒCƒv(ŽèŽ‚¿–³‚µ‚Ìê‡‚Í-1)
- * @param   waza_pos		ŽèŽ‚¿‚Ì‹Z‚ÌˆÊ’u(0`3)
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   waza_type		æŠ€ã‚¿ã‚¤ãƒ—(æ‰‹æŒã¡ç„¡ã—ã®å ´åˆã¯-1)
+ * @param   waza_pos		æ‰‹æŒã¡ã®æŠ€ã®ä½ç½®(0ã€œ3)
  */
 //--------------------------------------------------------------
 static void Sub_WazaTypeCGRTrans(BI_PARAM_PTR bip, int waza_type, int waza_pos)
@@ -5344,7 +5344,7 @@ static void Sub_WazaTypeCGRTrans(BI_PARAM_PTR bip, int waza_type, int waza_pos)
 	bgl = BattleWorkGF_BGL_INIGet(bip->bw);
 	screen_type = GF_BGL_ScreenTypeGet(bgl, BI_FRAME_PANEL);
 	
-	if(waza_type == -1){	//ŽèŽ‚¿‚ ‚è‚Ìê‡‚ÍƒfƒtƒHƒ‹ƒg‚ÅOK
+	if(waza_type == -1){	//æ‰‹æŒã¡ã‚ã‚Šã®å ´åˆã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§OK
 		WazaPanel_EasyCharLoad(bgl, waza_type, HEAPID_BATTLE, BI_FRAME_PANEL, 
 			WazaTypeCgrPos[waza_pos], screen_type);
 	}
@@ -5355,10 +5355,10 @@ static void Sub_WazaTypeCGRTrans(BI_PARAM_PTR bip, int waza_type, int waza_pos)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽèŽ‚¿–³‚µ‚Ì‹Zƒ^ƒCƒv–ˆ‚ÌCGRƒf[ƒ^‚ð‚Ü‚Æ‚ß‚ÄƒZƒbƒg
+ * @brief   æ‰‹æŒã¡ç„¡ã—ã®æŠ€ã‚¿ã‚¤ãƒ—æ¯Žã®CGRãƒ‡ãƒ¼ã‚¿ã‚’ã¾ã¨ã‚ã¦ã‚»ãƒƒãƒˆ
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   waza_pos		ŽèŽ‚¿–³‚µ‚Ì‹Z‚ÌŠJŽnˆÊ’u(0`3)
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   waza_pos		æ‰‹æŒã¡ç„¡ã—ã®æŠ€ã®é–‹å§‹ä½ç½®(0ã€œ3)
  */
 //--------------------------------------------------------------
 static void Sub_WazaTypeNotTemotiChainCGRTrans(BI_PARAM_PTR bip, int waza_pos)
@@ -5396,17 +5396,17 @@ static void Sub_WazaTypeNotTemotiChainCGRTrans(BI_PARAM_PTR bip, int waza_pos)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘I‘ðo—ˆ‚È‚¢ƒ|ƒPƒ‚ƒ“‚Ìƒpƒlƒ‹‚ðƒZƒbƒg‚·‚é
+ * @brief   é¸æŠžå‡ºæ¥ãªã„ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   poke_pos		ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u(CLIENT_TYPE_???)
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   poke_pos		ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®(CLIENT_TYPE_???)
  */
 //--------------------------------------------------------------
 static void Sub_PokemonNotPanelTrans(BI_PARAM_PTR bip, int poke_pos)
 {
 	PALETTE_FADE_PTR pfd;
 	int i;
-	const u8 PokePalNo[] = {6, 0xc, 0xd, 5};	//CLIENT_TYPE‡
+	const u8 PokePalNo[] = {6, 0xc, 0xd, 5};	//CLIENT_TYPEé †
 	GF_BGL_INI *bgl;
 	
 	bgl = BattleWorkGF_BGL_INIGet(bip->bw);
@@ -5419,7 +5419,7 @@ static void Sub_PokemonNotPanelTrans(BI_PARAM_PTR bip, int poke_pos)
 
 	GF_BGL_LoadScreenV_Req(bgl, BI_FRAME_PANEL);
 	
-	//˜g‚Ìíœ
+	//æž ã®å‰Šé™¤
 	GF_BGL_ScrFill(bgl, BI_FRAME_BF, BG_CLEAR_CODE, 
 		PokemonButtonNotTouchScrnRect[poke_pos].left,
 		PokemonButtonNotTouchScrnRect[poke_pos].top,
@@ -5433,7 +5433,7 @@ static void Sub_PokemonNotPanelTrans(BI_PARAM_PTR bip, int poke_pos)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”wŒiˆÈŠO‚ÌƒtƒŒ[ƒ€‚ð‘S‚Ä”ñ•\Ž¦‚É‚·‚é
+ * @brief   èƒŒæ™¯ä»¥å¤–ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å…¨ã¦éžè¡¨ç¤ºã«ã™ã‚‹
  */
 //--------------------------------------------------------------
 static void Sub_BackScrnOnlyVisible(void)
@@ -5452,10 +5452,10 @@ static void Sub_BackScrnOnlyVisible(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒlƒ‹ƒ^ƒbƒ`ƒGƒtƒFƒNƒgI—¹ŒãA”wŒi‚Ì‚Ý‚É‚·‚é‚½‚ß‚Ìˆ—‚ðFX‚·‚é(ƒtƒHƒ“ƒgOBJ‚Ìíœ‚Æ‚©)
- * @param   none		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   obj			TRUEFOBJíœ
- * @param   bg			TRUEFBGíœ
+ * @brief   ãƒ‘ãƒãƒ«ã‚¿ãƒƒãƒã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾Œã€èƒŒæ™¯ã®ã¿ã«ã™ã‚‹ãŸã‚ã®å‡¦ç†ã‚’è‰²ã€…ã™ã‚‹(ãƒ•ã‚©ãƒ³ãƒˆOBJã®å‰Šé™¤ã¨ã‹)
+ * @param   none		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   obj			TRUEï¼šOBJå‰Šé™¤
+ * @param   bg			TRUEï¼šBGå‰Šé™¤
  */
 //--------------------------------------------------------------
 static void Sub_TouchEndDelete(BI_PARAM_PTR bip, int obj, int bg)
@@ -5470,8 +5470,8 @@ static void Sub_TouchEndDelete(BI_PARAM_PTR bip, int obj, int bg)
 
 //--------------------------------------------------------------
 /**
- * @brief   BGƒ^ƒCƒv‚ªØ‚è‘Ö‚í‚é–ˆ‚Éíœ‚·‚é•K—v‚Ì‚ ‚éOBJ‚ÌDeleteˆ—
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   BGã‚¿ã‚¤ãƒ—ãŒåˆ‡ã‚Šæ›¿ã‚ã‚‹æ¯Žã«å‰Šé™¤ã™ã‚‹å¿…è¦ã®ã‚ã‚‹OBJã®Deleteå‡¦ç†
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_SceneOBJDelete(BI_PARAM_PTR bip)
@@ -5487,13 +5487,13 @@ static void Sub_SceneOBJDelete(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»Ý•\Ž¦’†‚Ìƒ|ƒPƒ‚ƒ“‘I‘ðBG‚ÅA‚Ç‚Ìƒ|ƒPƒ‚ƒ“‚ª‘I‘ð‰Â”\‚È‚Ì‚©‚ðŽæ“¾‚·‚é
+ * @brief   ç¾åœ¨è¡¨ç¤ºä¸­ã®ãƒã‚±ãƒ¢ãƒ³é¸æŠžBGã§ã€ã©ã®ãƒã‚±ãƒ¢ãƒ³ãŒé¸æŠžå¯èƒ½ãªã®ã‹ã‚’å–å¾—ã™ã‚‹
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   hit_range		Œ‹‰Ê‘ã“üæ(CLIENT_MAX•ª‚Ì”z—ñ—v‘f‚ðŽ‚Âƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^)
- * @param   check_exist		TRUE=ƒT[ƒo[‚©‚ç“n‚³‚ê‚Ä‚¢‚éexistƒtƒ‰ƒO‚à‰Á–¡‚·‚éB
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   hit_range		çµæžœä»£å…¥å…ˆ(CLIENT_MAXåˆ†ã®é…åˆ—è¦ç´ ã‚’æŒã¤ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿)
+ * @param   check_exist		TRUE=ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰æ¸¡ã•ã‚Œã¦ã„ã‚‹existãƒ•ãƒ©ã‚°ã‚‚åŠ å‘³ã™ã‚‹ã€‚
  *
- * hit_range‚É“ü‚é’l‚ÍTRUE‚È‚ç‚Î‘I‘ð‰Â”\AFALSE‚Í‘I‘ð•s‰Â‚Å‚·B
+ * hit_rangeã«å…¥ã‚‹å€¤ã¯TRUEãªã‚‰ã°é¸æŠžå¯èƒ½ã€FALSEã¯é¸æŠžä¸å¯ã§ã™ã€‚
  */
 //--------------------------------------------------------------
 static void Sub_PokeSelectHitRange(BI_PARAM_PTR bip, u8 *hit_range, int check_exist)
@@ -5518,14 +5518,14 @@ static void Sub_PokeSelectHitRange(BI_PARAM_PTR bip, u8 *hit_range, int check_ex
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚Æƒpƒlƒ‹‚ªŒq‚ª‚Á‚Ä‚¢‚é‚à‚Ì‚ðŽæ“¾‚·‚é
+ * @brief   é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ã¨ãƒ‘ãƒãƒ«ãŒç¹‹ãŒã£ã¦ã„ã‚‹ã‚‚ã®ã‚’å–å¾—ã™ã‚‹
  *
- * @param   bip					BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   target				‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“(SELECT_TARGET_A“™)
- * @param   connect_range		Œ‹‰Ê‘ã“üæ(CLIENT_MAX•ª‚Ì”z—ñ—v‘f‚ðŽ‚Âƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^)
- * @param   check_exist		TRUE=ƒT[ƒo[‚©‚ç“n‚³‚ê‚Ä‚¢‚éexistƒtƒ‰ƒO‚à‰Á–¡‚·‚éB
+ * @param   bip					BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   target				é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³(SELECT_TARGET_Aç­‰)
+ * @param   connect_range		çµæžœä»£å…¥å…ˆ(CLIENT_MAXåˆ†ã®é…åˆ—è¦ç´ ã‚’æŒã¤ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿)
+ * @param   check_exist		TRUE=ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰æ¸¡ã•ã‚Œã¦ã„ã‚‹existãƒ•ãƒ©ã‚°ã‚‚åŠ å‘³ã™ã‚‹ã€‚
  *
- * connect_range‚É“ü‚é’l‚ÍTRUE‚È‚ç‚ÎÚ‘±AFALSE‚ÍÚ‘±‚µ‚Ä‚¢‚Ü‚¹‚ñB
+ * connect_rangeã«å…¥ã‚‹å€¤ã¯TRUEãªã‚‰ã°æŽ¥ç¶šã€FALSEã¯æŽ¥ç¶šã—ã¦ã„ã¾ã›ã‚“ã€‚
  */
 //--------------------------------------------------------------
 static void Sub_PokeSelectPanelConnectRange(BI_PARAM_PTR bip, int target, u8 *connect_range, 
@@ -5560,15 +5560,15 @@ static void Sub_PokeSelectPanelConnectRange(BI_PARAM_PTR bip, int target, u8 *co
 
 //==============================================================================
 //
-//	ƒGƒtƒFƒNƒgTCB
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCB
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒtƒFƒNƒgTCB‚ð¶¬‚·‚é
+ * @brief   ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   func		TCB‚ÉƒZƒbƒg‚·‚éŠÖ”ƒ|ƒCƒ“ƒ^
- * @param   bip			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   func		TCBã«ã‚»ãƒƒãƒˆã™ã‚‹é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+ * @param   bip			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void EffectTCB_Add(TCB_FUNC func, BI_PARAM_PTR bip)
@@ -5581,8 +5581,8 @@ static void EffectTCB_Add(TCB_FUNC func, BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒtƒFƒNƒgTCB‚ðíœ‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBã‚’å‰Šé™¤ã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void EffectTCB_Delete(BI_PARAM_PTR bip)
@@ -5596,10 +5596,10 @@ static void EffectTCB_Delete(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒ‰[ƒGƒtƒFƒNƒgTCB‚ð¶¬‚·‚é
+ * @brief   ã‚«ãƒ©ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   func		TCB‚ÉƒZƒbƒg‚·‚éŠÖ”ƒ|ƒCƒ“ƒ^
- * @param   bip			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   func		TCBã«ã‚»ãƒƒãƒˆã™ã‚‹é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+ * @param   bip			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ColorEffTCB_Add(TCB_FUNC func, BI_PARAM_PTR bip)
@@ -5612,8 +5612,8 @@ static void ColorEffTCB_Add(TCB_FUNC func, BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒ‰[ƒGƒtƒFƒNƒgTCB‚ðíœ‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚«ãƒ©ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBã‚’å‰Šé™¤ã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ColorEffTCB_Delete(BI_PARAM_PTR bip)
@@ -5627,14 +5627,14 @@ static void ColorEffTCB_Delete(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“‘I‘ð—p‚ÌƒJƒ‰[ƒtƒF[ƒhƒ^ƒXƒN‚ð¶¬
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒã‚±ãƒ¢ãƒ³é¸æŠžç”¨ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆ
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   tp_ret	
  */
 //--------------------------------------------------------------
 static void ColorEffTCB_PokeSeleFadeSet(BI_PARAM_PTR bip, int tp_ret)
 {
-	return;		//Œõ‚ç‚¹‚È‚¢‚æ‚¤‚É‚µ‚½ 2006.05.26(‹à)
+	return;		//å…‰ã‚‰ã›ãªã„ã‚ˆã†ã«ã—ãŸ 2006.05.26(é‡‘)
 	
 	ColorEffTCB_Add(ColorEff_PokeSeleFade, bip);
 	bip->color_work.tp_ret = tp_ret;
@@ -5642,14 +5642,14 @@ static void ColorEffTCB_PokeSeleFadeSet(BI_PARAM_PTR bip, int tp_ret)
 
 //--------------------------------------------------------------
 /**
- * @brief   “Á’è‚ÌˆÊ’u‚ÌƒJƒ‰[‚¾‚¯‚ðƒtƒF[ƒh‚³‚¹‚éƒ^ƒXƒN‚ð¶¬‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pal_pos	ƒtƒF[ƒh‚³‚¹‚éƒpƒŒƒbƒg”Ô†
+ * @brief   ç‰¹å®šã®ä½ç½®ã®ã‚«ãƒ©ãƒ¼ã ã‘ã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹ã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pal_pos	ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static void ColorEffTCB_PointFadeSet(BI_PARAM_PTR bip, int pal_pos)
 {
-	return;		//Œõ‚ç‚¹‚È‚¢‚æ‚¤‚É‚µ‚½ 2006.05.26(‹à)
+	return;		//å…‰ã‚‰ã›ãªã„ã‚ˆã†ã«ã—ãŸ 2006.05.26(é‡‘)
 	
 	if(pal_pos == 0xff){
 		return;
@@ -5661,10 +5661,10 @@ static void ColorEffTCB_PointFadeSet(BI_PARAM_PTR bip, int pal_pos)
 
 //--------------------------------------------------------------
 /**
- * @brief   “Á’è‚ÌˆÊ’u‚ÌƒJƒ‰[‚¾‚¯‚ðƒtƒF[ƒh‚³‚¹‚é
+ * @brief   ç‰¹å®šã®ä½ç½®ã®ã‚«ãƒ©ãƒ¼ã ã‘ã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ColorEff_PointFade(TCB_PTR tcb, void *work)
@@ -5683,7 +5683,7 @@ static void ColorEff_PointFade(TCB_PTR tcb, void *work)
 	case 0:
 		cw->evy = TOUCH_FADE_EVY;
 		cw->evy_add = -TOUCH_FADE_ADD_EVY;
-		//Å‰‚ÌŒvŽZ•ª‚ð‘«‚µ‚±‚ñ‚Å‚¨‚­
+		//æœ€åˆã®è¨ˆç®—åˆ†ã‚’è¶³ã—ã“ã‚“ã§ãŠã
 		cw->evy -= cw->evy_add;
 		
 		cw->seq++;
@@ -5700,15 +5700,15 @@ static void ColorEff_PointFade(TCB_PTR tcb, void *work)
 		}
 		
 	#if 0
-		//‘S‘Ì‚ðˆÃ‚­
+		//å…¨ä½“ã‚’æš—ã
 		SoftFadePfd(pfd, FADE_SUB_BG, cw->pal_pos * 16, 16, cw->evy >> 8, 0x0000);
-		//˜g‚¾‚¯”’‚­
+		//æž ã ã‘ç™½ã
 		SoftFadePfd(pfd, FADE_SUB_BG, cw->pal_pos * 16 + 3, 1, cw->evy >> 8, 0x7fff);
 	#else
 		SoftFadePfd(pfd, FADE_SUB_BG, cw->pal_pos * 16, 16, (cw->evy >> 8) / 2, 0x7fff);
-		//‘S‘Ì‚ðˆÃ‚­
+		//å…¨ä½“ã‚’æš—ã
 		SoftFadePfd(pfd, FADE_SUB_BG, cw->pal_pos * 16 + 1, 1, cw->evy >> 8, 0x7b1a);
-		//˜g‚¾‚¯”’‚­
+		//æž ã ã‘ç™½ã
 		SoftFadePfd(pfd, FADE_SUB_BG, cw->pal_pos * 16 + 0xa, 1, cw->evy >> 8, 0x4634);
 	#endif
 		if(end == TRUE){
@@ -5721,10 +5721,10 @@ static void ColorEff_PointFade(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“‘I‘ð—p‚ÌƒJƒ‰[ƒtƒF[ƒhƒ^ƒXƒN
+ * @brief   ãƒã‚±ãƒ¢ãƒ³é¸æŠžç”¨ã®ã‚«ãƒ©ãƒ¼ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ColorEff_PokeSeleFade(TCB_PTR tcb, void *work)
@@ -5744,7 +5744,7 @@ static void ColorEff_PokeSeleFade(TCB_PTR tcb, void *work)
 	case 0:
 		cw->evy = TOUCH_FADE_EVY;
 		cw->evy_add = -TOUCH_FADE_ADD_EVY;
-		//Å‰‚ÌŒvŽZ•ª‚ð‘«‚µ‚±‚ñ‚Å‚¨‚­
+		//æœ€åˆã®è¨ˆç®—åˆ†ã‚’è¶³ã—ã“ã‚“ã§ãŠã
 		cw->evy -= cw->evy_add;
 		
 		cw->seq++;
@@ -5764,19 +5764,19 @@ static void ColorEff_PokeSeleFade(TCB_PTR tcb, void *work)
 		for(i = 0; i < CLIENT_MAX; i++){
 			if(connect_range[i] == TRUE){
 			#if 0
-				//‘S‘Ì‚ðˆÃ‚­
+				//å…¨ä½“ã‚’æš—ã
 				SoftFadePfd(pfd, FADE_SUB_BG, PokeSeleMenuPaletteNo[i] * 16, 
 					16, cw->evy >> 8, 0x0000);
-				//˜g‚¾‚¯”’‚­
+				//æž ã ã‘ç™½ã
 				SoftFadePfd(pfd, FADE_SUB_BG, PokeSeleMenuPaletteNo[i] * 16 + 3, 1, 
 					cw->evy >> 8, 0x7fff);
 			#else
 				SoftFadePfd(pfd, FADE_SUB_BG, PokeSeleMenuPaletteNo[i] * 16, 
 					16, (cw->evy >> 8) / 2, 0x7fff);
-				//‘S‘Ì‚ðˆÃ‚­
+				//å…¨ä½“ã‚’æš—ã
 				SoftFadePfd(pfd, FADE_SUB_BG, PokeSeleMenuPaletteNo[i] * 16 + 1, 
 					1, cw->evy >> 8, 0x7b1a);
-				//˜g‚¾‚¯”’‚­
+				//æž ã ã‘ç™½ã
 				SoftFadePfd(pfd, FADE_SUB_BG, PokeSeleMenuPaletteNo[i] * 16 + 0xa, 1, 
 					cw->evy >> 8, 0x4634);
 			#endif
@@ -5793,13 +5793,13 @@ static void ColorEff_PokeSeleFade(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠ[ƒ“‘‚«Š·‚¦
+ * @brief   ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆ
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   scrn_offset		‰ÁŽZ‚·‚éƒXƒNƒŠ[ƒ“’l
- * @param   range			ƒXƒNƒŠ[ƒ“‘‚«Š·‚¦”ÍˆÍ
- * @param   scrnbuf_no		Œ³ƒf[ƒ^‚Æ‚È‚éƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚Ì”Ô†
- * @param   anm_no			ƒAƒjƒ”Ô†
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   scrn_offset		åŠ ç®—ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å€¤
+ * @param   range			ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆç¯„å›²
+ * @param   scrnbuf_no		å…ƒãƒ‡ãƒ¼ã‚¿ã¨ãªã‚‹ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã®ç•ªå·
+ * @param   anm_no			ã‚¢ãƒ‹ãƒ¡ç•ªå·
  */
 //--------------------------------------------------------------
 static void Sub_ScrnOffsetRewrite(BI_PARAM_PTR bip, const s16 *scrn_offset, 
@@ -5829,11 +5829,11 @@ static void Sub_ScrnOffsetRewrite(BI_PARAM_PTR bip, const s16 *scrn_offset,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒlƒ‹•”•ª‚ðƒLƒƒƒ‰“]‘—ƒAƒjƒ‚ðŽÀs‚µ‚Ä‘‚«Š·‚¦‚Ü‚·B
- *          1‚Â‚Ìƒpƒlƒ‹‚É‘Î‚µ‚Ä1‚Â‚ÌƒtƒHƒ“ƒgOBJ‚ªƒZƒbƒg‚É‚È‚Á‚Ä‚¢‚é‚à‚Ì—p‚Ì”Ä—pƒ^ƒXƒN‚Å‚·
+ * @brief   ãƒ‘ãƒãƒ«éƒ¨åˆ†ã‚’ã‚­ãƒ£ãƒ©è»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’å®Ÿè¡Œã—ã¦æ›¸ãæ›ãˆã¾ã™ã€‚
+ *          1ã¤ã®ãƒ‘ãƒãƒ«ã«å¯¾ã—ã¦1ã¤ã®ãƒ•ã‚©ãƒ³ãƒˆOBJãŒã‚»ãƒƒãƒˆã«ãªã£ã¦ã„ã‚‹ã‚‚ã®ç”¨ã®æ±Žç”¨ã‚¿ã‚¹ã‚¯ã§ã™
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Effect_ButtonDown(TCB_PTR tcb, void *work)
@@ -5901,11 +5901,11 @@ static void Effect_ButtonDown(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒlƒ‹•”•ª‚ðƒLƒƒƒ‰“]‘—ƒAƒjƒ‚ðŽÀs‚µ‚Ä‘‚«Š·‚¦‚Ü‚·B
- *          ‹Z‘I‘ðŽžê—p‚Å‚·B
+ * @brief   ãƒ‘ãƒãƒ«éƒ¨åˆ†ã‚’ã‚­ãƒ£ãƒ©è»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’å®Ÿè¡Œã—ã¦æ›¸ãæ›ãˆã¾ã™ã€‚
+ *          æŠ€é¸æŠžæ™‚å°‚ç”¨ã§ã™ã€‚
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Effect_WazaButtonDown(TCB_PTR tcb, void *work)
@@ -6039,11 +6039,11 @@ static void Effect_WazaButtonDown(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒlƒ‹•”•ª‚ðƒLƒƒƒ‰“]‘—ƒAƒjƒ‚ðŽÀs‚µ‚Ä‘‚«Š·‚¦‚Ü‚·B
- *          ƒ|ƒPƒ‚ƒ“‘I‘ðŽž(‹ZŒø‰Ê”ÍˆÍ)ê—p‚Å‚·B
+ * @brief   ãƒ‘ãƒãƒ«éƒ¨åˆ†ã‚’ã‚­ãƒ£ãƒ©è»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’å®Ÿè¡Œã—ã¦æ›¸ãæ›ãˆã¾ã™ã€‚
+ *          ãƒã‚±ãƒ¢ãƒ³é¸æŠžæ™‚(æŠ€åŠ¹æžœç¯„å›²)å°‚ç”¨ã§ã™ã€‚
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Effect_PokeSeleButtonDown(TCB_PTR tcb, void *work)
@@ -6125,11 +6125,11 @@ static void Effect_PokeSeleButtonDown(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ewp‚É“ü‚Á‚Ä‚¢‚éƒf[ƒ^‚ðŒ³‚ÉƒXƒNƒŠ[ƒ“‘‚«Š·‚¦ƒGƒtƒFƒNƒg‚ðŽÀs‚·‚é
- *          1‚Â‚Ìƒpƒlƒ‹‚É‘Î‚µ‚Ä1‚Â‚ÌƒtƒHƒ“ƒgOBJ‚ªƒZƒbƒg‚É‚È‚Á‚Ä‚¢‚é‚à‚Ì—p‚Ì”Ä—pƒ^ƒXƒN‚Å‚·
+ * @brief   ewpã«å…¥ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’å…ƒã«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å®Ÿè¡Œã™ã‚‹
+ *          1ã¤ã®ãƒ‘ãƒãƒ«ã«å¯¾ã—ã¦1ã¤ã®ãƒ•ã‚©ãƒ³ãƒˆOBJãŒã‚»ãƒƒãƒˆã«ãªã£ã¦ã„ã‚‹ã‚‚ã®ç”¨ã®æ±Žç”¨ã‚¿ã‚¹ã‚¯ã§ã™
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Effect_ScrnTouch(TCB_PTR tcb, void *work)
@@ -6177,10 +6177,10 @@ static void Effect_ScrnTouch(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‘I‘ð—p‚ÌƒXƒNƒŠ[ƒ“‘‚«Š·‚¦ƒGƒtƒFƒNƒg‚ðŽÀs‚·‚é
+ * @brief   æŠ€é¸æŠžç”¨ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å®Ÿè¡Œã™ã‚‹
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Effect_WazaScrnTouch(TCB_PTR tcb, void *work)
@@ -6308,12 +6308,12 @@ static void Effect_WazaScrnTouch(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   PP‚Ì•\Ž¦F‚ðŽæ“¾‚·‚é
+ * @brief   PPã®è¡¨ç¤ºè‰²ã‚’å–å¾—ã™ã‚‹
  *
- * @param   pp			Œ»Ý‚ÌPP
- * @param   pp_max		Å‘åPP
+ * @param   pp			ç¾åœ¨ã®PP
+ * @param   pp_max		æœ€å¤§PP
  *
- * @retval  ƒJƒ‰[
+ * @retval  ã‚«ãƒ©ãƒ¼
  */
 //--------------------------------------------------------------
 static GF_PRINTCOLOR PP_FontColorGet(int pp, int pp_max)
@@ -6352,12 +6352,12 @@ static GF_PRINTCOLOR PP_FontColorGet(int pp, int pp_max)
 
 //==============================================================================
 //
-//	ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊƒXƒNƒ[ƒ‹ƒCƒ“ƒGƒtƒFƒNƒg
+//	ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊFƒXƒNƒ[ƒ‹ƒCƒ“ƒGƒtƒFƒNƒgŽÀsƒ^ƒXƒN
+ * @brief   ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢ï¼šã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œã‚¿ã‚¹ã‚¯
  *
  * @param   tcb		
  * @param   work		
@@ -6416,7 +6416,7 @@ static void CommandInEffTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊƒXƒNƒ[ƒ‹ƒCƒ“ƒGƒtƒFƒNƒgFVƒuƒ‰ƒ“ƒN“]‘—ƒ^ƒXƒN
+ * @brief   ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šVãƒ–ãƒ©ãƒ³ã‚¯è»¢é€ã‚¿ã‚¹ã‚¯
  *
  * @param   tcb		
  * @param   work		
@@ -6471,7 +6471,7 @@ static void VBlankTCB_CommandInEff(TCB_PTR tcb, void *work)
 	}
 	else{
 		if(set_x == 0){
-			set_x = 1;	//RIGHT‚ð0Žn‚Ü‚è‚É‚µ‚ÄA‰E’[‚©‚çˆÍ‚Á‚Ä‚¢‚éˆ×‚ÌƒPƒA
+			set_x = 1;	//RIGHTã‚’0å§‹ã¾ã‚Šã«ã—ã¦ã€å³ç«¯ã‹ã‚‰å›²ã£ã¦ã„ã‚‹ç‚ºã®ã‚±ã‚¢
 		}
 		G2S_SetWnd0Position(set_x, COMMANDIN_WND_START_Y0, 
 			0/*COMMANDIN_WND_END_X0*/, COMMANDIN_WND_END_Y0);
@@ -6484,7 +6484,7 @@ static void VBlankTCB_CommandInEff(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ}ƒ“ƒh‘I‘ð‰æ–ÊƒXƒNƒ[ƒ‹ƒCƒ“ƒGƒtƒFƒNƒgFHƒuƒ‰ƒ“ƒNŠ„‚èž‚ÝŠÖ”
+ * @brief   ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šHãƒ–ãƒ©ãƒ³ã‚¯å‰²ã‚Šè¾¼ã¿é–¢æ•°
  *
  * @param   work		
  */
@@ -6530,15 +6530,15 @@ static void HBlank_CommandInEff(void *work)
 
 //==============================================================================
 //
-//	Vƒuƒ‰ƒ“ƒNˆ—
+//	Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ŠeƒtƒŒ[ƒ€‚ÌVisibleÝ’è‚ðs‚¤
+ * @brief   å„ãƒ•ãƒ¬ãƒ¼ãƒ ã®Visibleè¨­å®šã‚’è¡Œã†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VWait_FrameVisibleUpdate(TCB_PTR tcb, void *work)
@@ -6549,7 +6549,7 @@ static void VWait_FrameVisibleUpdate(TCB_PTR tcb, void *work)
 
 	bmd = &BgMakeData[bip->makedata_no];
 	
-	//ŠeBG–Ê‚Ì•\Ž¦E”ñ•\Ž¦Ý’è
+	//å„BGé¢ã®è¡¨ç¤ºãƒ»éžè¡¨ç¤ºè¨­å®š
 	for(i = 0; i < BI_BG_NUM; i++){
 		if(bmd->scr_id[i] == NONE_ID){
 			GF_BGL_VisibleSet(GF_BGL_FRAME0_S + i, VISIBLE_OFF);
@@ -6559,7 +6559,7 @@ static void VWait_FrameVisibleUpdate(TCB_PTR tcb, void *work)
 		}
 	}
 
-	//ŠeBG–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒBXV
+	//å„BGé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£æ›´æ–°
 	for(i = 0; i < BI_BG_NUM; i++){
 		GF_BGL_PrioritySet(GF_BGL_FRAME0_S + i, bmd->pri[i]);
 	}
@@ -6569,10 +6569,10 @@ static void VWait_FrameVisibleUpdate(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”wŒiˆÈŠO‚ÌƒtƒŒ[ƒ€‘S‚Ä‚ð”ñ•\Ž¦‚É‚·‚é
+ * @brief   èƒŒæ™¯ä»¥å¤–ã®ãƒ•ãƒ¬ãƒ¼ãƒ å…¨ã¦ã‚’éžè¡¨ç¤ºã«ã™ã‚‹
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  
  *
@@ -6589,10 +6589,10 @@ static void VWait_BackScrnOnlyVisible(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   Vƒuƒ‰ƒ“ƒN’†‚ÉCGR“]‘—ƒAƒjƒ‚ðŽÀs‚µ‚Ü‚·
+ * @brief   Vãƒ–ãƒ©ãƒ³ã‚¯ä¸­ã«CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’å®Ÿè¡Œã—ã¾ã™
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		CGR“]‘—ƒAƒjƒƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VWait_CgrParamTrans(TCB_PTR tcb, void *work)
@@ -6610,25 +6610,25 @@ static void VWait_CgrParamTrans(TCB_PTR tcb, void *work)
 
 //==============================================================================
 //
-//	”wŒiƒtƒF[ƒh
+//	èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   í“¬“ü—Í‰æ–ÊA”wŒiƒtƒF[ƒhƒŠƒNƒGƒXƒg
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æˆ¦é—˜å…¥åŠ›ç”»é¢ã€èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   fade_dir		BINPUT_BACKFADE_???
  */
 //--------------------------------------------------------------
 void BINPUT_BackFadeReq(BI_PARAM_PTR bip, int fade_dir)
 {
-#if 0	//ƒtƒF[ƒh‚È‚­‚È‚Á‚½ 2006.05.19(‹à)
+#if 0	//ãƒ•ã‚§ãƒ¼ãƒ‰ãªããªã£ãŸ 2006.05.19(é‡‘)
 	if(bip->backfade_flag == fade_dir){
-		return;		//Šù‚ÉƒŠƒNƒGƒXƒg‚µ‚½ó‘Ô‚É‚È‚Á‚Ä‚¢‚é
+		return;		//æ—¢ã«ãƒªã‚¯ã‚¨ã‚¹ãƒˆã—ãŸçŠ¶æ…‹ã«ãªã£ã¦ã„ã‚‹
 	}
 
 	if(bip->backfade_tcb != NULL){
-		GF_ASSERT(0 && "”wŒiƒtƒF[ƒh‚ÌƒŠƒNƒGƒXƒg‚ªŠù‚É“®ì’†‚Å‚·I\n");
+		GF_ASSERT(0 && "èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæ—¢ã«å‹•ä½œä¸­ã§ã™ï¼\n");
 		return;
 	}
 	
@@ -6640,9 +6640,9 @@ void BINPUT_BackFadeReq(BI_PARAM_PTR bip, int fade_dir)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”wŒiƒtƒF[ƒhŽÀsƒ^ƒXƒN
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰å®Ÿè¡Œã‚¿ã‚¹ã‚¯
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BackFadeTask(TCB_PTR tcb, void *work)
@@ -6674,9 +6674,9 @@ static void BackFadeTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”wŒiƒtƒF[ƒh‚ªŽÀs‚³‚ê‚Ä‚¢‚é‚©Šm”F
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:I—¹‚µ‚Ä‚¢‚éB@FALSE:“®‚¢‚Ä‚¢‚é
+ * @brief   èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰ãŒå®Ÿè¡Œã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèª
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:çµ‚äº†ã—ã¦ã„ã‚‹ã€‚ã€€FALSE:å‹•ã„ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 BOOL BINPUT_BackFadeExeCheck(BI_PARAM_PTR bip)
@@ -6687,24 +6687,24 @@ BOOL BINPUT_BackFadeExeCheck(BI_PARAM_PTR bip)
 	return FALSE;
 }
 
-///í’“ƒtƒF[ƒh‚ÌEVYÅ‘å’l
+///å¸¸é§ãƒ•ã‚§ãƒ¼ãƒ‰ã®EVYæœ€å¤§å€¤
 #define DEF_FADE_EVY_MAX			(10)
-///í’“ƒtƒF[ƒh‚ÌEVY‰ÁŽZ’l
+///å¸¸é§ãƒ•ã‚§ãƒ¼ãƒ‰ã®EVYåŠ ç®—å€¤
 #define DEF_FADE_EVY_ADD			(0x0080)
-///í’“ƒtƒF[ƒh‚ÌƒJƒ‰[ƒR[ƒh
+///å¸¸é§ãƒ•ã‚§ãƒ¼ãƒ‰ã®ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 #define DEF_FADE_COLOR				(0x7b1a)
 
-///í’“ƒtƒF[ƒhF˜g‚ÌEVYÅ‘å’l
+///å¸¸é§ãƒ•ã‚§ãƒ¼ãƒ‰ï¼šæž ã®EVYæœ€å¤§å€¤
 #define DEF_FADE_WAKU_EVY_MAX		(16)
-///í’“ƒtƒF[ƒhF˜g‚ÌEVY‰ÁŽZ’l
+///å¸¸é§ãƒ•ã‚§ãƒ¼ãƒ‰ï¼šæž ã®EVYåŠ ç®—å€¤
 #define DEF_FADE_WAKU_EVY_ADD		(0x0200)
-///í’“ƒtƒF[ƒhF˜g‚ÌƒJƒ‰[ƒR[ƒh
+///å¸¸é§ãƒ•ã‚§ãƒ¼ãƒ‰ï¼šæž ã®ã‚«ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 #define DEF_FADE_WAKU_COLOR			(0x7e37)	//(0x7fff)
 //--------------------------------------------------------------
 /**
- * @brief   í’“ƒtƒF[ƒhŽÀsƒ^ƒXƒN
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å¸¸é§ãƒ•ã‚§ãƒ¼ãƒ‰å®Ÿè¡Œã‚¿ã‚¹ã‚¯
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DefaultFadeAnimeTask(TCB_PTR tcb, void *work)
@@ -6718,14 +6718,14 @@ static void DefaultFadeAnimeTask(TCB_PTR tcb, void *work)
 	pfd = BattleWorkPfdGet(bip->bw);
 	
 	if(PaletteFadeCheck(pfd) != 0){
-		return;		//‘S‘ÌƒtƒF[ƒh’†‚ÍŽÀs‚µ‚È‚¢
+		return;		//å…¨ä½“ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­ã¯å®Ÿè¡Œã—ãªã„
 	}
 
-#if 0		//‰æ–Ê‘S‘ÌƒtƒF[ƒh’âŽ~ 2006.05.12(‹à)
+#if 0		//ç”»é¢å…¨ä½“ãƒ•ã‚§ãƒ¼ãƒ‰åœæ­¢ 2006.05.12(é‡‘)
 	color = DEF_FADE_COLOR;
 	evy = bip->def_fade_evy >> 8;
 	
-	//ƒpƒŒƒbƒg”½‰f
+	//ãƒ‘ãƒ¬ãƒƒãƒˆåæ˜ 
 	for(i = 1; i < 7; i++){
 		SoftFadePfd(pfd, FADE_SUB_BG, 16 * i + 0xa, 1, evy, color);
 	}
@@ -6733,7 +6733,7 @@ static void DefaultFadeAnimeTask(TCB_PTR tcb, void *work)
 		SoftFadePfd(pfd, FADE_SUB_BG, 16 * i + 0xa, 1, evy, color);
 	}
 	
-	//EVYXV
+	//EVYæ›´æ–°
 	if(bip->def_fade_dir == 0){
 		bip->def_fade_evy += DEF_FADE_EVY_ADD;
 	}
@@ -6750,10 +6750,10 @@ static void DefaultFadeAnimeTask(TCB_PTR tcb, void *work)
 	}
 #endif
 	
-	//-- ƒ|ƒPƒ‚ƒ“‘I‘ð‰æ–Ê‚Ì‚Ý‚Ìí’“ƒtƒF[ƒh --//
+	//-- ãƒã‚±ãƒ¢ãƒ³é¸æŠžç”»é¢ã®ã¿ã®å¸¸é§ãƒ•ã‚§ãƒ¼ãƒ‰ --//
 	{
 		SoftFadePfd(pfd, FADE_SUB_BG, 16 * 0 + 1, 1, bip->waku_fade_evy >> 8, DEF_FADE_WAKU_COLOR);
-		//EVYXV
+		//EVYæ›´æ–°
 		if(bip->waku_fade_dir == 0){
 			bip->waku_fade_evy += DEF_FADE_WAKU_EVY_ADD;
 		}
@@ -6773,10 +6773,10 @@ static void DefaultFadeAnimeTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚éŽž‚Í”wŒi‚ÌƒpƒŒƒbƒg‚ðê—p‚ÌƒpƒŒƒbƒg‚É•ÏX‚·‚é
+ * @brief   ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã‚‹æ™‚ã¯èƒŒæ™¯ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å°‚ç”¨ã®ãƒ‘ãƒ¬ãƒƒãƒˆã«å¤‰æ›´ã™ã‚‹
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BackGroundTouchPaletteCheck(TCB_PTR tcb, void *work)
@@ -6834,14 +6834,14 @@ static void BackGroundTouchPaletteCheck(TCB_PTR tcb, void *work)
 
 //==============================================================================
 //
-//	ƒL[“ü—Í
+//	ã‚­ãƒ¼å…¥åŠ›
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒL[“ü—Í”»’èˆ—
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  Œ‹‰Ê(“–‚½‚è‚È‚µ‚Ìê‡‚ÍRECT_HIT_NONE)
+ * @brief   ã‚­ãƒ¼å…¥åŠ›åˆ¤å®šå‡¦ç†
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  çµæžœ(å½“ãŸã‚Šãªã—ã®å ´åˆã¯RECT_HIT_NONE)
  */
 //--------------------------------------------------------------
 static int CursorCheck(BI_PARAM_PTR bip)
@@ -6861,7 +6861,7 @@ static int CursorCheck(BI_PARAM_PTR bip)
 				(sys.trg & (PAD_BUTTON_A|PAD_BUTTON_B|PAD_BUTTON_X|PAD_BUTTON_Y
 				|PAD_KEY_RIGHT|PAD_KEY_LEFT|PAD_KEY_UP|PAD_KEY_DOWN))){
 			if(bip->decend_key == FALSE){
-				Snd_SePlay(BCURSOR_MOVE_SE);	//ƒL[‚ð‰Ÿ‚µ‚ÄƒJ[ƒ\ƒ‹‚ð•\Ž¦‚µ‚½Žž‰¹‚ð–Â‚ç‚·
+				Snd_SePlay(BCURSOR_MOVE_SE);	//ã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã‚«ãƒ¼ã‚½ãƒ«ã‚’è¡¨ç¤ºã—ãŸæ™‚éŸ³ã‚’é³´ã‚‰ã™
 			}
 			move->cursor_on = TRUE;
 			bip->decend_key = FALSE;
@@ -6875,12 +6875,12 @@ static int CursorCheck(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÚ“®FƒRƒ}ƒ“ƒh‘I‘ð
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠž
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   init_flag		TRUE:‰Šú‰»ˆ—
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   init_flag		TRUE:åˆæœŸåŒ–å‡¦ç†
  *
- * @retval  Œ‹‰Ê(“–‚½‚è‚È‚µ‚Ìê‡‚ÍRECT_HIT_NONE)
+ * @retval  çµæžœ(å½“ãŸã‚Šãªã—ã®å ´åˆã¯RECT_HIT_NONE)
  */
 //--------------------------------------------------------------
 static int CursorMove_CommandSelect(BI_PARAM_PTR bip, int init_flag)
@@ -6917,14 +6917,14 @@ static int CursorMove_CommandSelect(BI_PARAM_PTR bip, int init_flag)
 	default:
 		index = CursorMoveDataCommandSelect[move->y_menu][move->x_menu];
 		if(index == COMMSELE_INDEX_ESCAPE && (sys.trg & PAD_KEY_UP)){
-			;	//u‚É‚°‚év‚ÉƒJ[ƒ\ƒ‹‚ª‚ ‚Á‚Ä‚¢‚éŽž‚ÌhãƒL[h‚Í–³Œø
+			;	//ã€Œã«ã’ã‚‹ã€ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã£ã¦ã„ã‚‹æ™‚ã®â€ä¸Šã‚­ãƒ¼â€ã¯ç„¡åŠ¹
 		}
 		else{
 			key = CursorMove_KeyCheckMove(move, 
 				CURSOR_COMMAND_SELECT_X_MENU_NUM, CURSOR_COMMAND_SELECT_Y_MENU_NUM,
 				CursorMoveDataCommandSelect[0]);
 			if(key == 0 && index == COMMSELE_INDEX_FIGHT){
-				//u‚½‚½‚©‚¤v‚ÉƒJ[ƒ\ƒ‹‚ª‚ ‚Á‚Ä‚¢‚éê‡A¶‰EƒL[‚ð‰Ÿ‚µ‚½‚çƒ|ƒPƒ‚ƒ“AƒoƒbƒO‚Ös‚­
+				//ã€ŒãŸãŸã‹ã†ã€ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã£ã¦ã„ã‚‹å ´åˆã€å·¦å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã‚‰ãƒã‚±ãƒ¢ãƒ³ã€ãƒãƒƒã‚°ã¸è¡Œã
 				if(sys.trg & PAD_KEY_LEFT){
 					move->x_menu = 0;
 					move->y_menu = 1;
@@ -6939,10 +6939,10 @@ static int CursorMove_CommandSelect(BI_PARAM_PTR bip, int init_flag)
 				}
 			}
 		}
-	#if 0	//3’i–Úu‚É‚°‚év‚Ìˆ—‚Í‚È‚­‚È‚Á‚½ 2006.06.29(–Ø)
+	#if 0	//3æ®µç›®ã€Œã«ã’ã‚‹ã€ã®å‡¦ç†ã¯ãªããªã£ãŸ 2006.06.29(æœ¨)
 		if(move->y_menu == 2){
-			//3’i–Ú‚Ìu‚É‚°‚év‚ÉƒJ[ƒ\ƒ‹‚ªˆÚ“®‚µ‚½ê‡‚Í2’i–Ú‚Ì³‹K‚ÌêŠ‚Ì
-			//u‚É‚°‚év‚ÉƒJ[ƒ\ƒ‹‚ðˆÚ“®‚³‚¹‚é
+			//3æ®µç›®ã®ã€Œã«ã’ã‚‹ã€ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒç§»å‹•ã—ãŸå ´åˆã¯2æ®µç›®ã®æ­£è¦ã®å ´æ‰€ã®
+			//ã€Œã«ã’ã‚‹ã€ã«ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã•ã›ã‚‹
 			move->y_menu = 1;
 			move->x_menu = 1;
 		}
@@ -6979,9 +6979,9 @@ static int CursorMove_CommandSelect(BI_PARAM_PTR bip, int init_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÊ’u•Û‘¶FƒRƒ}ƒ“ƒh‘I‘ð
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   index			‘I‘ð‚µ‚½€–Ú
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ä¿å­˜ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠž
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   index			é¸æŠžã—ãŸé …ç›®
  */
 //--------------------------------------------------------------
 static void CursorSave_CommandSelect(BI_PARAM_PTR bip, int index)
@@ -7006,12 +7006,12 @@ static void CursorSave_CommandSelect(BI_PARAM_PTR bip, int index)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÚ“®Fƒ|ƒPƒp[ƒN—pƒRƒ}ƒ“ƒh‘I‘ð
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨ã‚³ãƒžãƒ³ãƒ‰é¸æŠž
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   init_flag		TRUE:‰Šú‰»ˆ—
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   init_flag		TRUE:åˆæœŸåŒ–å‡¦ç†
  *
- * @retval  Œ‹‰Ê(“–‚½‚è‚È‚µ‚Ìê‡‚ÍRECT_HIT_NONE)
+ * @retval  çµæžœ(å½“ãŸã‚Šãªã—ã®å ´åˆã¯RECT_HIT_NONE)
  */
 //--------------------------------------------------------------
 static int CursorMove_ParkCommandSelect(BI_PARAM_PTR bip, int init_flag)
@@ -7061,12 +7061,12 @@ static int CursorMove_ParkCommandSelect(BI_PARAM_PTR bip, int init_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÚ“®F‹Z‘I‘ð
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šæŠ€é¸æŠž
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   init_flag		TRUE:‰Šú‰»ˆ—
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   init_flag		TRUE:åˆæœŸåŒ–å‡¦ç†
  *
- * @retval  Œ‹‰Ê(“–‚½‚è‚È‚µ‚Ìê‡‚ÍRECT_HIT_NONE)
+ * @retval  çµæžœ(å½“ãŸã‚Šãªã—ã®å ´åˆã¯RECT_HIT_NONE)
  */
 //--------------------------------------------------------------
 static int CursorMove_WazaSelect(BI_PARAM_PTR bip, int init_flag)
@@ -7105,10 +7105,10 @@ static int CursorMove_WazaSelect(BI_PARAM_PTR bip, int init_flag)
 
 	MI_CpuCopy8(CursorMoveDataWazaSelect, move_data, 
 		CURSOR_WAZA_SELECT_Y_MENU_NUM * CURSOR_WAZA_SELECT_X_MENU_NUM);
-#if 0	//ŽèŽ‚¿‹Z‚ª‚È‚¢êŠ‚àƒJ[ƒ\ƒ‹‚ªˆÚ“®o—ˆ‚é‚æ‚¤‚É•ÏX 2006.05.27(“y)
+#if 0	//æ‰‹æŒã¡æŠ€ãŒãªã„å ´æ‰€ã‚‚ã‚«ãƒ¼ã‚½ãƒ«ãŒç§»å‹•å‡ºæ¥ã‚‹ã‚ˆã†ã«å¤‰æ›´ 2006.05.27(åœŸ)
 	for(i = 0; i < WAZA_TEMOTI_MAX; i++){
 		if(bsw->wazano[i] == 0){
-			((u8*)move_data)[i] = 0xff;	//ŽèŽ‚¿‹Z‚ª‚È‚¢Š‚Í”ÍˆÍ‚©‚ç‚Í‚¸‚·
+			((u8*)move_data)[i] = 0xff;	//æ‰‹æŒã¡æŠ€ãŒãªã„æ‰€ã¯ç¯„å›²ã‹ã‚‰ã¯ãšã™
 		}
 	}
 #endif
@@ -7143,9 +7143,9 @@ static int CursorMove_WazaSelect(BI_PARAM_PTR bip, int init_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÊ’u•Û‘¶F‹Z‘I‘ð
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   index			‘I‘ð‚µ‚½€–Ú
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ä¿å­˜ï¼šæŠ€é¸æŠž
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   index			é¸æŠžã—ãŸé …ç›®
  */
 //--------------------------------------------------------------
 static void CursorSave_WazaSelect(BI_PARAM_PTR bip, int index)
@@ -7172,12 +7172,12 @@ static void CursorSave_WazaSelect(BI_PARAM_PTR bip, int index)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÚ“®Fƒ|ƒPƒ‚ƒ“‘I‘ð
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠž
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   init_flag		TRUE:‰Šú‰»ˆ—
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   init_flag		TRUE:åˆæœŸåŒ–å‡¦ç†
  *
- * @retval  Œ‹‰Ê(“–‚½‚è‚È‚µ‚Ìê‡‚ÍRECT_HIT_NONE)
+ * @retval  çµæžœ(å½“ãŸã‚Šãªã—ã®å ´åˆã¯RECT_HIT_NONE)
  */
 //--------------------------------------------------------------
 static int CursorMove_PokeSelect(BI_PARAM_PTR bip, int init_flag)
@@ -7211,19 +7211,19 @@ static int CursorMove_PokeSelect(BI_PARAM_PTR bip, int init_flag)
 		for(x = 0; x < 2; x++){
 		#if 0
 			//if(hit_range[move_data[y][x]] == FALSE){
-		#else	//Ž€‚ñ‚Å‚¢‚éŠ‚Å‚àƒJ[ƒ\ƒ‹ˆÚ“®o—ˆ‚é‚æ‚¤‚É‚µ‚È‚¢‚ÆA—á‚¦‚ÎA
-				//CLIENT_TYPE_B,C,D‚É’P”‘I‘ðo—ˆ‚éê‡AB‚ªŽ€–S‚µ‚Ä‚¢‚é‚Æ
-				//‰ŠúƒJ[ƒ\ƒ‹ˆÊ’u‚ªD‚Ìê‡AC‚ÉƒJ[ƒ\ƒ‹‚ð‡‚í‚¹‚éŽ–‚ªo—ˆ‚È‚­‚È‚é
+		#else	//æ­»ã‚“ã§ã„ã‚‹æ‰€ã§ã‚‚ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•å‡ºæ¥ã‚‹ã‚ˆã†ã«ã—ãªã„ã¨ã€ä¾‹ãˆã°ã€
+				//CLIENT_TYPE_B,C,Dã«å˜æ•°é¸æŠžå‡ºæ¥ã‚‹å ´åˆã€BãŒæ­»äº¡ã—ã¦ã„ã‚‹ã¨
+				//åˆæœŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãŒDã®å ´åˆã€Cã«ã‚«ãƒ¼ã‚½ãƒ«ã‚’åˆã‚ã›ã‚‹äº‹ãŒå‡ºæ¥ãªããªã‚‹
 			if(connect_range[move_data[y][x]] == FALSE){
 		#endif
-				//MoveData‚Å‘I‘ðo—ˆ‚È‚¢êŠ‚Í0xff‚Å–„‚ß‚é
+				//MoveDataã§é¸æŠžå‡ºæ¥ãªã„å ´æ‰€ã¯0xffã§åŸ‹ã‚ã‚‹
 				move_data[y][x] = 0xff;
 			}
 		}
 	}
 	
 	switch(bip->pokesele_type){
-	//’P”‘I‘ð
+	//å˜æ•°é¸æŠž
 	default:
 	case POKESELE_A_B_C_D:
 	case POKESELE_A:
@@ -7236,7 +7236,7 @@ static int CursorMove_PokeSelect(BI_PARAM_PTR bip, int init_flag)
 		y_menu_num = CURSOR_POKE_SELECT_Y_MENU_NUM;
 		break;
 	
-	//•¡”‘I‘ð
+	//è¤‡æ•°é¸æŠž
 	case POKESELE_BD:
 	case POKESELE_BCD:
 	case POKESELE_ABCD:
@@ -7245,7 +7245,7 @@ static int CursorMove_PokeSelect(BI_PARAM_PTR bip, int init_flag)
 		plural = TRUE;
 		x_menu_num = 1;
 		y_menu_num = 2;
-		//ã’iÀ•W
+		//ä¸Šæ®µåº§æ¨™
 		if(connect_range[CLIENT_TYPE_D - CLIENT_TYPE_A] == TRUE 
 				&& connect_range[CLIENT_TYPE_B - CLIENT_TYPE_A] == TRUE){
 			first_left = bmd->tpd[POKESELE_INDEX_TARGET_D].rect.left+8;
@@ -7273,7 +7273,7 @@ static int CursorMove_PokeSelect(BI_PARAM_PTR bip, int init_flag)
 			first_top = -1;
 			first_bottom = -1;
 		}
-		//‰º’iÀ•W
+		//ä¸‹æ®µåº§æ¨™
 		if(connect_range[CLIENT_TYPE_A - CLIENT_TYPE_A] == TRUE 
 				&& connect_range[CLIENT_TYPE_C - CLIENT_TYPE_A] == TRUE){
 			second_left = bmd->tpd[POKESELE_INDEX_TARGET_A].rect.left+8;
@@ -7301,12 +7301,12 @@ static int CursorMove_PokeSelect(BI_PARAM_PTR bip, int init_flag)
 			second_top = -1;
 			second_bottom = -1;
 		}
-		//‹éŒ`À•W‚ÆEXÀ•W‚ð‹‚ß‚é
+		//çŸ©å½¢åº§æ¨™ã¨EXåº§æ¨™ã‚’æ±‚ã‚ã‚‹
 		ex_x = -1;
 		ex_y = -1;
 		l_bottom = -1;
 		r_bottom = -1;
-		//¶
+		//å·¦
 		if(first_left == second_left){
 			left = first_left;
 		}
@@ -7321,7 +7321,7 @@ static int CursorMove_PokeSelect(BI_PARAM_PTR bip, int init_flag)
 			ex_x = second_left;
 			ex_anm = BCURSOR_ANMTYPE_LD;
 		}
-		//‰E
+		//å³
 		if(first_right == second_right){
 			right = first_right;
 		}
@@ -7336,7 +7336,7 @@ static int CursorMove_PokeSelect(BI_PARAM_PTR bip, int init_flag)
 			ex_x = second_right;
 			ex_anm = BCURSOR_ANMTYPE_RD;
 		}
-		//ã
+		//ä¸Š
 		if(first_top != -1 && second_top == -1){
 			top = first_top;
 		}
@@ -7347,7 +7347,7 @@ static int CursorMove_PokeSelect(BI_PARAM_PTR bip, int init_flag)
 			top = first_top;
 			ex_y = first_bottom;
 		}
-		//‰º
+		//ä¸‹
 		if(first_bottom != -1 && second_bottom == -1){
 			bottom = first_bottom;
 		}
@@ -7369,8 +7369,8 @@ static int CursorMove_PokeSelect(BI_PARAM_PTR bip, int init_flag)
 	
 	if(init_flag == TRUE){
 		if(plural == FALSE){
-			//ƒJ[ƒ\ƒ‹‰ŠúˆÊ’uŒˆ’è(¦check ÅI“I‚É‚ÍŽd—l‘‚É‚ ‚é’Ê‚èA‹Z–ˆ‚ÌƒfƒtƒHƒ‹ƒg‘I‘ðˆÊ’u‚ð
-			//ƒT[ƒo[‚©‚ç‚à‚ç‚¤‚æ‚¤‚É‚µ‚È‚¢‚Æ‘Ê–Ú)
+			//ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸä½ç½®æ±ºå®š(â€»check æœ€çµ‚çš„ã«ã¯ä»•æ§˜æ›¸ã«ã‚ã‚‹é€šã‚Šã€æŠ€æ¯Žã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé¸æŠžä½ç½®ã‚’
+			//ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã‚‚ã‚‰ã†ã‚ˆã†ã«ã—ãªã„ã¨é§„ç›®)
 			if(cursor_save->poke_save_type == bip->pokesele_type){//bip->makedata_no){
 				move->x_menu = cursor_save->poke_x;
 				move->y_menu = cursor_save->poke_y;
@@ -7411,9 +7411,9 @@ static int CursorMove_PokeSelect(BI_PARAM_PTR bip, int init_flag)
 				move->y_menu = 0;
 			}
 		#else
-			//•¡”‘I‘ð‚ÌŽž‚Í1‰ÓŠ‚Ì‘ÎÛ‘I‘ð‚Æu‚à‚Ç‚év‚¾‚¯‚È‚Ì‚ÅAƒJ[ƒ\ƒ‹‹L‰¯‚ªˆÓ–¡‚È‚¢‚Ì‚Å
-			//0ŒÅ’è‚É‚·‚éB‚Þ‚µ‚ëƒJ[ƒ\ƒ‹‹L‰¯‚ª’P”‘I‘ð—p‚É‚È‚Á‚Ä‚¢‚é‚Ì‚Å¡‚Ì‚Ü‚Ü‹L‰¯ˆÊ’u
-			//‚ðÌ—p‚·‚é‚Æ•s‹ï‡‚ªo‚é 2006.07.07(‹à)
+			//è¤‡æ•°é¸æŠžã®æ™‚ã¯1ç®‡æ‰€ã®å¯¾è±¡é¸æŠžã¨ã€Œã‚‚ã©ã‚‹ã€ã ã‘ãªã®ã§ã€ã‚«ãƒ¼ã‚½ãƒ«è¨˜æ†¶ãŒæ„å‘³ãªã„ã®ã§
+			//0å›ºå®šã«ã™ã‚‹ã€‚ã‚€ã—ã‚ã‚«ãƒ¼ã‚½ãƒ«è¨˜æ†¶ãŒå˜æ•°é¸æŠžç”¨ã«ãªã£ã¦ã„ã‚‹ã®ã§ä»Šã®ã¾ã¾è¨˜æ†¶ä½ç½®
+			//ã‚’æŽ¡ç”¨ã™ã‚‹ã¨ä¸å…·åˆãŒå‡ºã‚‹ 2006.07.07(é‡‘)
 			move->x_menu = 0;
 			move->y_menu = 0;
 		#endif
@@ -7498,25 +7498,25 @@ static int CursorMove_PokeSelect(BI_PARAM_PTR bip, int init_flag)
 		break;
 	case PAD_BUTTON_DECIDE:
 		if(plural == TRUE){
-			//•¡”‘I‘ð‚Ìê‡
+			//è¤‡æ•°é¸æŠžã®å ´åˆ
 			if(move->y_menu > 0){
 				return POKESELE_INDEX_TARGET_CANCEL;
 			}
 			else{
 				for(i = 0; i < CLIENT_MAX; i++){
 					if(hit_range[i] == TRUE){
-						//•¡”‘I‘ð‚È‚Ì‚ÅA—LŒø‚È‚â‚Â‚È‚ç•Ô‚·‚Ì‚Í‚Ç‚ê‚Å‚à‚¢‚¢
+						//è¤‡æ•°é¸æŠžãªã®ã§ã€æœ‰åŠ¹ãªã‚„ã¤ãªã‚‰è¿”ã™ã®ã¯ã©ã‚Œã§ã‚‚ã„ã„
 						return POKESELE_INDEX_TARGET_A + i;
 					}
 				}
 			}
 		}
 		else{
-			//’P”‘I‘ð
+			//å˜æ•°é¸æŠž
 			index = CursorMoveDataPokeSelect[move->y_menu][move->x_menu];
 			if(index == POKESELE_INDEX_TARGET_CANCEL
 					|| hit_range[index - POKESELE_INDEX_TARGET_A] == TRUE){
-				return index;	//Ž€–SŠm”F‚µ‚Ä‘åä•v‚È‚ç‚»‚Ì‚Ü‚Ü•Ô‚·
+				return index;	//æ­»äº¡ç¢ºèªã—ã¦å¤§ä¸ˆå¤«ãªã‚‰ãã®ã¾ã¾è¿”ã™
 			}
 		}
 		break;
@@ -7529,9 +7529,9 @@ static int CursorMove_PokeSelect(BI_PARAM_PTR bip, int init_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÊ’u•Û‘¶Fƒ|ƒPƒ‚ƒ“‘I‘ð
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   index			‘I‘ð‚µ‚½€–Ú
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ä¿å­˜ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠž
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   index			é¸æŠžã—ãŸé …ç›®
  */
 //--------------------------------------------------------------
 static void CursorSave_PokeSelect(BI_PARAM_PTR bip, int index)
@@ -7562,12 +7562,12 @@ static void CursorSave_PokeSelect(BI_PARAM_PTR bip, int index)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÚ“®F2‘ð
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼š2æŠž
  *
- * @param   bip				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   init_flag		TRUE:‰Šú‰»ˆ—
+ * @param   bip				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   init_flag		TRUE:åˆæœŸåŒ–å‡¦ç†
  *
- * @retval  Œ‹‰Ê(“–‚½‚è‚È‚µ‚Ìê‡‚ÍRECT_HIT_NONE)
+ * @retval  çµæžœ(å½“ãŸã‚Šãªã—ã®å ´åˆã¯RECT_HIT_NONE)
  */
 //--------------------------------------------------------------
 static int CursorMove_YesNo(BI_PARAM_PTR bip, int init_flag)
@@ -7615,15 +7615,15 @@ static int CursorMove_YesNo(BI_PARAM_PTR bip, int init_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒL[“ü—Í‚É‚æ‚éƒJ[ƒ\ƒ‹ˆÚ“®ˆ—
+ * @brief   ã‚­ãƒ¼å…¥åŠ›ã«ã‚ˆã‚‹ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•å‡¦ç†
  *
- * @param   move			ƒJ[ƒ\ƒ‹ˆÚ“®—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   x_menu_num		…•½•ûŒü‚Ìƒƒjƒ…[”
- * @param   y_menu_num		‚’¼•ûŒü‚Ìƒƒjƒ…[”
- * @param   move_data		ˆÚ“®ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^(ˆÚ“®æ‚ª“¯‚¶êŠ‚È‚çˆÚ“®‚µ‚È‚¢”»’è‚É•K—v)
- *                          ‚»‚Ì”»’è‚ª•K—v‚Å‚È‚¢‚È‚çNULL‚ÅOK
+ * @param   move			ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   x_menu_num		æ°´å¹³æ–¹å‘ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ•°
+ * @param   y_menu_num		åž‚ç›´æ–¹å‘ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ•°
+ * @param   move_data		ç§»å‹•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿(ç§»å‹•å…ˆãŒåŒã˜å ´æ‰€ãªã‚‰ç§»å‹•ã—ãªã„åˆ¤å®šã«å¿…è¦)
+ *                          ãã®åˆ¤å®šãŒå¿…è¦ã§ãªã„ãªã‚‰NULLã§OK
  *
- * @retval  ‰Ÿ‚³‚ê‚½ƒL[
+ * @retval  æŠ¼ã•ã‚ŒãŸã‚­ãƒ¼
  */
 //--------------------------------------------------------------
 static u32 CursorMove_KeyCheckMove(CURSOR_MOVE *move, int x_menu_num, int y_menu_num, 
@@ -7721,9 +7721,9 @@ static u32 CursorMove_KeyCheckMove(CURSOR_MOVE *move, int x_menu_num, int y_menu
 		old_index = move_data[x_menu_num * old_y_menu + old_x_menu];
 		new_index = move_data[x_menu_num * move->y_menu + move->x_menu];
 		
-		//ƒJ[ƒ\ƒ‹ˆÚ“®ŒãˆÊ’uŠm”F
+		//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•å¾Œä½ç½®ç¢ºèª
 		if(old_index == new_index){
-			//ˆÚ“®Œã‚Ìindex‚ª•Ï‚í‚ç‚È‚¢‚Ì‚Å‚ ‚ê‚ÎƒJ[ƒ\ƒ‹À•W‚ÌˆÚ“®‚Í‚µ‚È‚¢
+			//ç§»å‹•å¾Œã®indexãŒå¤‰ã‚ã‚‰ãªã„ã®ã§ã‚ã‚Œã°ã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™ã®ç§»å‹•ã¯ã—ãªã„
 			move->x_menu = old_x_menu;
 			move->y_menu = old_y_menu;
 		}
@@ -7743,9 +7743,9 @@ static u32 CursorMove_KeyCheckMove(CURSOR_MOVE *move, int x_menu_num, int y_menu
 
 //--------------------------------------------------------------
 /**
- * @brief   Œˆ’èƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Ì‚ªƒL[‚¾‚Á‚½‚©Aƒ^ƒbƒ`‚¾‚Á‚½‚©‚ðŽæ“¾
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:ƒL[‚ÅŒˆ’è‚µ‚Ä‚½B@FALSE:ƒ^ƒbƒ`ƒpƒlƒ‹‚ÅŒˆ’è‚µ‚Ä‚½
+ * @brief   æ±ºå®šãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã®ãŒã‚­ãƒ¼ã ã£ãŸã‹ã€ã‚¿ãƒƒãƒã ã£ãŸã‹ã‚’å–å¾—
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:ã‚­ãƒ¼ã§æ±ºå®šã—ã¦ãŸã€‚ã€€FALSE:ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã§æ±ºå®šã—ã¦ãŸ
  */
 //--------------------------------------------------------------
 int BINPUT_CursorDecendGet(BI_PARAM_PTR bip)
@@ -7755,9 +7755,9 @@ int BINPUT_CursorDecendGet(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œˆ’èƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Ì‚ªƒL[‚¾‚Á‚½‚©Aƒ^ƒbƒ`‚¾‚Á‚½‚©‚ðƒZƒbƒg
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   TRUE:ƒL[‚ÅŒˆ’èB@FALSE:ƒ^ƒbƒ`ƒpƒlƒ‹‚ÅŒˆ’è
+ * @brief   æ±ºå®šãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã®ãŒã‚­ãƒ¼ã ã£ãŸã‹ã€ã‚¿ãƒƒãƒã ã£ãŸã‹ã‚’ã‚»ãƒƒãƒˆ
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   TRUE:ã‚­ãƒ¼ã§æ±ºå®šã€‚ã€€FALSE:ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã§æ±ºå®š
  */
 //--------------------------------------------------------------
 void BINPUT_CursorDecendSet(BI_PARAM_PTR bip, int decend_key)
@@ -7768,10 +7768,10 @@ void BINPUT_CursorDecendSet(BI_PARAM_PTR bip, int decend_key)
 
 //==============================================================================
 //
-//	•ßŠlƒfƒ‚
+//	æ•ç²ãƒ‡ãƒ¢
 //
 //==============================================================================
-///•ßŠlƒfƒ‚ƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+///æ•ç²ãƒ‡ãƒ¢ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 static int (* const CaptureDemoSeqTbl[])(BI_PARAM_PTR bip) = {
 	CaptureDemoSeq_CommandFight,
 	CaptureDemoSeq_Waza,
@@ -7780,9 +7780,9 @@ static int (* const CaptureDemoSeqTbl[])(BI_PARAM_PTR bip) = {
 
 //--------------------------------------------------------------
 /**
- * @brief   •ßŠlƒfƒ‚ŒÄ‚Ño‚µƒƒCƒ“ˆ—
+ * @brief   æ•ç²ãƒ‡ãƒ¢å‘¼ã³å‡ºã—ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static int CaptureDemo_Main(BI_PARAM_PTR bip)
@@ -7817,9 +7817,9 @@ static int CaptureDemo_Main(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   •ßŠlƒfƒ‚ƒV[ƒPƒ“ƒXFƒRƒ}ƒ“ƒh‘I‘ð„‚½‚½‚©‚¤
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  ‰Ÿ‚µ‚½ƒ{ƒ^ƒ“
+ * @brief   æ•ç²ãƒ‡ãƒ¢ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžï¼žãŸãŸã‹ã†
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  æŠ¼ã—ãŸãƒœã‚¿ãƒ³
  */
 //--------------------------------------------------------------
 static int CaptureDemoSeq_CommandFight(BI_PARAM_PTR bip)
@@ -7844,9 +7844,9 @@ static int CaptureDemoSeq_CommandFight(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   •ßŠlƒfƒ‚ƒV[ƒPƒ“ƒXF‹Z‚P
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  ‰Ÿ‚µ‚½ƒ{ƒ^ƒ“
+ * @brief   æ•ç²ãƒ‡ãƒ¢ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€ï¼‘
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  æŠ¼ã—ãŸãƒœã‚¿ãƒ³
  */
 //--------------------------------------------------------------
 static int CaptureDemoSeq_Waza(BI_PARAM_PTR bip)
@@ -7871,9 +7871,9 @@ static int CaptureDemoSeq_Waza(BI_PARAM_PTR bip)
 
 //--------------------------------------------------------------
 /**
- * @brief   •ßŠlƒfƒ‚ƒV[ƒPƒ“ƒXFƒRƒ}ƒ“ƒh‘I‘ð„ƒoƒbƒO
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  ‰Ÿ‚µ‚½ƒ{ƒ^ƒ“
+ * @brief   æ•ç²ãƒ‡ãƒ¢ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠžï¼žãƒãƒƒã‚°
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  æŠ¼ã—ãŸãƒœã‚¿ãƒ³
  */
 //--------------------------------------------------------------
 static int CaptureDemoSeq_CommandBag(BI_PARAM_PTR bip)
@@ -7907,35 +7907,35 @@ static int CaptureDemoSeq_CommandBag(BI_PARAM_PTR bip)
 
 //==============================================================================
 //
-//	˜^‰æÄ¶’âŽ~‰æ–Ê‚Ì“Á•Êˆ—
+//	éŒ²ç”»å†ç”Ÿåœæ­¢ç”»é¢ã®ç‰¹åˆ¥å‡¦ç†
 //
 //==============================================================================
 
-///ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE:ƒLƒƒƒ‰ƒNƒ^“WŠJˆÊ’u
-///(‹ó‚¢‚Ä‚¢‚éƒLƒƒƒ‰—Ìˆæ‚Í–³‚¢ˆ×A˜^‰æÄ¶’âŽ~‰æ–Ê‚Å‚Í•\Ž¦‚³‚ê‚È‚¢ƒ{ƒ^ƒ“‚Ìã‚É•`‚¢‚Ä‚¢‚­)
+///ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦:ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å±•é–‹ä½ç½®
+///(ç©ºã„ã¦ã„ã‚‹ã‚­ãƒ£ãƒ©é ˜åŸŸã¯ç„¡ã„ç‚ºã€éŒ²ç”»å†ç”Ÿåœæ­¢ç”»é¢ã§ã¯è¡¨ç¤ºã•ã‚Œãªã„ãƒœã‚¿ãƒ³ã®ä¸Šã«æã„ã¦ã„ã)
 #define SYSWINDOW_CGX_NO		(0x20)
-///ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE:ƒpƒŒƒbƒg“WŠJˆÊ’u
-///(‹ó‚¢‚Ä‚¢‚éƒpƒŒƒbƒg—Ìˆæ‚Í–³‚¢ˆ×A˜^‰æÄ¶’âŽ~‰æ–Ê‚Å‚Í•\Ž¦‚³‚ê‚È‚¢ƒ{ƒ^ƒ“‚ÌƒpƒŒƒbƒg‚ð’×‚·)
+///ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦:ãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹ä½ç½®
+///(ç©ºã„ã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆé ˜åŸŸã¯ç„¡ã„ç‚ºã€éŒ²ç”»å†ç”Ÿåœæ­¢ç”»é¢ã§ã¯è¡¨ç¤ºã•ã‚Œãªã„ãƒœã‚¿ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’æ½°ã™)
 #define SYSWINDOW_PAL_NO		(1)
 
-///ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE‚ð•`‰æ‚·‚éBGƒtƒŒ[ƒ€
+///ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»ã™ã‚‹BGãƒ•ãƒ¬ãƒ¼ãƒ 
 #define SYSWINDOW_FRAME			(BI_FRAME_BF)
 
-///ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE‚Ì‹éŒ`ƒTƒCƒY
+///ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®çŸ©å½¢ã‚µã‚¤ã‚º
 enum{
-	SYSWINDOW_PX = 1,	///<ƒEƒBƒ“ƒhƒE¶’[XˆÊ’u
-	SYSWINDOW_PY = 6,	///<ƒEƒBƒ“ƒhƒEã’[YˆÊ’u
-	SYSWINDOW_SX = 30,	///<ƒEƒBƒ“ƒhƒEX•
-	SYSWINDOW_SY = 6,	///<ƒEƒBƒ“ƒhƒEY•
+	SYSWINDOW_PX = 1,	///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å·¦ç«¯Xä½ç½®
+	SYSWINDOW_PY = 6,	///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä¸Šç«¯Yä½ç½®
+	SYSWINDOW_SX = 30,	///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Xå¹…
+	SYSWINDOW_SY = 6,	///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Yå¹…
 };
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜^‰æÄ¶’âŽ~‰æ–Ê‚ÉƒVƒXƒeƒ€ƒƒbƒZ[ƒW‚ð•\Ž¦‚³‚¹‚é
+ * @brief   éŒ²ç”»å†ç”Ÿåœæ­¢ç”»é¢ã«ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã•ã›ã‚‹
  *
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	˜^‰æÄ¶’âŽ~‰æ–Êê—p‚Å‚·
+ *	éŒ²ç”»å†ç”Ÿåœæ­¢ç”»é¢å°‚ç”¨ã§ã™
  */
 //--------------------------------------------------------------
 void BINPUT_SystemMessagePrint(BI_PARAM_PTR bip, int sysmsg_type)
@@ -7945,15 +7945,15 @@ void BINPUT_SystemMessagePrint(BI_PARAM_PTR bip, int sysmsg_type)
 	
 	GF_ASSERT(bip->makedata_no == BINPUT_TYPE_PLAYBACK_STOP);
 	
-	//ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE@ƒLƒƒƒ‰•ƒpƒŒƒbƒg
+	//ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã€€ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆ
 	MenuWinGraphicSet(bgl, SYSWINDOW_FRAME, SYSWINDOW_CGX_NO, SYSWINDOW_PAL_NO,
 		MENU_TYPE_SYSTEM, HEAPID_BATTLE);
 	PaletteWorkSet_VramCopy(pfd, FADE_SUB_BG, SYSWINDOW_PAL_NO * 16, 0x20);
 	
-	//BMP‚ðŽg‚¦‚é‚æ‚¤‚ÈƒLƒƒƒ‰—Ìˆæ‚ª–³‚¢ˆ×AƒXƒNƒŠ[ƒ“‚ÉƒEƒBƒ“ƒhƒE‚¾‚¯•`‚«A
-	//ƒtƒHƒ“ƒg‚ÍOAM‚Åì¬‚·‚éB
+	//BMPã‚’ä½¿ãˆã‚‹ã‚ˆã†ãªã‚­ãƒ£ãƒ©é ˜åŸŸãŒç„¡ã„ç‚ºã€ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã ã‘æãã€
+	//ãƒ•ã‚©ãƒ³ãƒˆã¯OAMã§ä½œæˆã™ã‚‹ã€‚
 	
-	//ƒXƒNƒŠ[ƒ“•`‰æ(BMP‚ªŽg‚¦‚È‚¢ˆ×AƒXƒNƒŠ[ƒ“Ž©—Í•`‰æ)
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æç”»(BMPãŒä½¿ãˆãªã„ç‚ºã€ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è‡ªåŠ›æç”»)
 	{
 		int cgx = SYSWINDOW_CGX_NO, pal = SYSWINDOW_PAL_NO;
 		int px, py, sx, sy;
@@ -7963,29 +7963,29 @@ void BINPUT_SystemMessagePrint(BI_PARAM_PTR bip, int sysmsg_type)
 		sx = SYSWINDOW_SX;
 		sy = SYSWINDOW_SY;
 		
-		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx,   px,  py, 1,  1, pal );	//¶ã
-		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+1, px+1,    py, sx-2, 1, pal );	//ã^‚ñ’†
-		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+2, px+sx-1, py, 1,  1, pal );	//‰Eã
+		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx,   px,  py, 1,  1, pal );	//å·¦ä¸Š
+		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+1, px+1,    py, sx-2, 1, pal );	//ä¸ŠçœŸã‚“ä¸­
+		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+2, px+sx-1, py, 1,  1, pal );	//å³ä¸Š
 
-		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+3, px,  py+1, 1, sy-2, pal );	//¶’[
-		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+5, px+sx-1, py+1, 1, sy-2, pal );	//‰E’[
+		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+3, px,  py+1, 1, sy-2, pal );	//å·¦ç«¯
+		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+5, px+sx-1, py+1, 1, sy-2, pal );	//å³ç«¯
 
-		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+6, px,  py+sy-1, 1,  1, pal );	//¶‰º
-		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+7, px+1,    py+sy-1, sx-2, 1, pal );	//‰º^‚ñ’†
-		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+8, px+sx-1, py+sy-1, 1,  1, pal );	//‰E‰º
+		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+6, px,  py+sy-1, 1,  1, pal );	//å·¦ä¸‹
+		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+7, px+1,    py+sy-1, sx-2, 1, pal );	//ä¸‹çœŸã‚“ä¸­
+		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+8, px+sx-1, py+sy-1, 1,  1, pal );	//å³ä¸‹
 
-		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+4, px+1, py+1, sx-2, sy-2,pal);//ƒEƒBƒ“ƒhƒE“à‹ó”’
+		GF_BGL_ScrFill( bgl, SYSWINDOW_FRAME, cgx+4, px+1, py+1, sx-2, sy-2,pal);//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ç©ºç™½
 
 		GF_BGL_LoadScreenV_Req(bgl, SYSWINDOW_FRAME);
 	}
 	
-	//•¶Žš—ñ•`‰æ(BG—Ìˆæ‚ª–³‚¢ˆ×ƒtƒHƒ“ƒgOAM)
+	//æ–‡å­—åˆ—æç”»(BGé ˜åŸŸãŒç„¡ã„ç‚ºãƒ•ã‚©ãƒ³ãƒˆOAM)
 	{
 		STRBUF *msg_src;
 		MSGDATA_MANAGER *msg_man = BattleWorkFightMsgGet(bip->bw);
 		int i;
-		const u16 msg_id[][2] = {	//BI_BI_SYSMSG_???‚Æ•À‚Ñ‚ð“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆI
-			{PlayBack_Msg2, PlayBack_Msg3},		//1s–ÚA2s–Ú
+		const u16 msg_id[][2] = {	//BI_BI_SYSMSG_???ã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼
+			{PlayBack_Msg2, PlayBack_Msg3},		//1è¡Œç›®ã€2è¡Œç›®
 			{PlayBack_Msg4, PlayBack_Msg5},
 			{PlayBack_Msg6, PlayBack_Msg7},
 		};
@@ -7993,7 +7993,7 @@ void BINPUT_SystemMessagePrint(BI_PARAM_PTR bip, int sysmsg_type)
 		for(i = 0; i < 2; i++){
 			if(bip->font_actor[FA_NO_PLAYBACK_SYSTEM_MSG_0 + i].fontoam != NULL){
 				GF_ASSERT(0);
-				return;	//Šù‚É•Ê‚ÌƒVƒXƒeƒ€ƒƒbƒZ[ƒW‚ªo‚Ä‚¢‚éê‡‚Í‰½‚à‚µ‚È‚¢
+				return;	//æ—¢ã«åˆ¥ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå‡ºã¦ã„ã‚‹å ´åˆã¯ä½•ã‚‚ã—ãªã„
 			}
 
 			msg_src = MSGMAN_AllocString(msg_man, msg_id[sysmsg_type][i]);
@@ -8011,8 +8011,8 @@ void BINPUT_SystemMessagePrint(BI_PARAM_PTR bip, int sysmsg_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   cancel_escapeƒtƒ‰ƒO‚ðŽæ“¾‚·‚é
- * @param   bip		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   cancel_escapeãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
+ * @param   bip		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   cancel_escape	
  */
 //--------------------------------------------------------------

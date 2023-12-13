@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scrcmd.c
- * @bfief	ѓXѓNѓЉѓvѓgѓRѓ}ѓ“ѓh—pЉЦђ”
+ * @bfief	г‚№г‚ЇгѓЄгѓ—гѓ€г‚ігѓћгѓігѓ‰з”Ёй–ўж•°
  * @author	Satoshi Nohara
  * @date	05.08.04
  *
@@ -50,7 +50,7 @@
 #include "application/wifi_p2pmatch.h"
 #include "application/namein.h"
 #include "poketool/pokeparty.h"
-#include "battle/battle_common.h"	//Ѓ«ѓCѓ“ѓNѓ‹Ѓ[ѓh‚Й•K—v
+#include "battle/battle_common.h"	//в†“г‚¤гѓіг‚Їгѓ«гѓјгѓ‰гЃ«еї…и¦Ѓ
 #include "poketool/tr_tool.h"		//TT_TrainerMessageGet
 #include "poketool/poke_tool.h"		//PokeParaWazaDelPos
 #include "poketool/poke_memo.h"
@@ -103,18 +103,18 @@
 #include "include/application/imageClip/imc_sys.h"	//ImageClipProcData
 #include "include/application/imageClip/imc_preview.h"	//ImageClipProcData
 #include "include/poketool/monsno.h"
-#include "savedata/coin.h"				//ѓRѓCѓ“‚р€µ‚¤ЉЦђ”—p
-#include "savedata/fnote_mem.h"			//–`ЊЇѓmЃ[ѓg
+#include "savedata/coin.h"				//г‚іг‚¤гѓіг‚’ж‰±гЃ†й–ўж•°з”Ё
+#include "savedata/fnote_mem.h"			//е†’й™єгѓЋгѓјгѓ€
 #include "include/demo/ev_poke_select.h"
 #include "include/application/cb_sys.h"	///< custom ball
 #include "include/system/pm_rtc.h"
-#include "ookisa.h"						//‘е‚«‚і”д‚Ч
+#include "ookisa.h"						//е¤§гЃЌгЃ•жЇ”гЃ№
 #include "application/townmap.h"
 #include "field/fld_nmixer.h"
 #include "field/b_tower_fld.h"
 #include "savedata/record.h"
 #include "field/scr_btower.h"
-#include "safari_scope.h"		//ѓTѓtѓ@ѓЉ–]‰“‹ѕ
+#include "safari_scope.h"		//г‚µгѓ•г‚ЎгѓЄжњ›йЃ йЏЎ
 #include "btl_searcher.h"
 #include "field_cutin.h"
 #include "scr_hideneff.h"
@@ -138,7 +138,7 @@
 #include "hill_back_poke.h"
 #include "../application/p_status/ribbon.h"
 #include "savedata/tv_work.h"
-#include "tv_topic.h"		//ѓeѓЊѓrѓgѓsѓbѓNђ¶ђ¬—p
+#include "tv_topic.h"		//гѓ†гѓ¬гѓ“гѓ€гѓ”гѓѓг‚Їз”џж€ђз”Ё
 #include "field/tvtopic_extern.h"
 #include "field/msgboy.h"
 #include "field/profileboy.h"
@@ -169,12 +169,12 @@
 
 //============================================================================================
 //
-//	externђйЊѕ
+//	externе®ЈиЁЂ
 //
 //============================================================================================
 #include "scr_group.h"		//EvCmdRandomGroup
 #include "scr_tv.h"			//EvCmdBroadcastTV
-#include "scr_kinomi.h"		//EvCmdSeedЃ`
+#include "scr_kinomi.h"		//EvCmdSeedгЂњ
 #include "scr_shop.h"
 #include "scr_contest.h"
 #include "scr_name.h"
@@ -182,11 +182,11 @@
 #include "scr_sound.h"
 #include "scr_trainer.h"
 #include "scr_postman.h"	//EvCmdMysteryPostMan
-#include "scr_pokepark.h"	//EvCmdPokeParkControl‘ј
-#include "scr_coin.h"		//EvCmdCoinЃ`
-#include "scr_gold.h"		//EvCmdGoldЃ`
-#include "scr_sodateya.h"	//EvCmdGetSodateЃ`
-#include "scr_n_park.h"		//EvCmdNaturalЃ`
+#include "scr_pokepark.h"	//EvCmdPokeParkControlд»–
+#include "scr_coin.h"		//EvCmdCoinгЂњ
+#include "scr_gold.h"		//EvCmdGoldгЂњ
+#include "scr_sodateya.h"	//EvCmdGetSodateгЂњ
+#include "scr_n_park.h"		//EvCmdNaturalгЂњ
 #include "scr_poke.h"
 #include "scr_kaseki.h"
 #include "scr_exchange.h"
@@ -206,22 +206,22 @@
 
 //============================================================================================
 //
-//	’и‹`
+//	е®љзѕ©
 //
 //============================================================================================
 typedef u16 (* pMultiFunc)();
 
-//ѓЊѓWѓXѓ^”дЉr‚МЊ‹‰К’и‹`
+//гѓ¬г‚ёг‚№г‚їжЇ”ијѓгЃ®зµђжћње®љзѕ©
 enum {
-	MINUS_RESULT = 0,	//”дЉrЊ‹‰К‚Єѓ}ѓCѓiѓX
-	EQUAL_RESULT,		//”дЉrЊ‹‰К‚ЄѓCѓRЃ[ѓ‹
-	PLUS_RESULT			//”дЉrЊ‹‰К‚Єѓvѓ‰ѓX
+	MINUS_RESULT = 0,	//жЇ”ијѓзµђжћњгЃЊгѓћг‚¤гѓЉг‚№
+	EQUAL_RESULT,		//жЇ”ијѓзµђжћњгЃЊг‚¤г‚ігѓјгѓ«
+	PLUS_RESULT			//жЇ”ијѓзµђжћњгЃЊгѓ—гѓ©г‚№
 };
 
 
 //============================================================================================
 //
-//	ѓvѓЌѓgѓ^ѓCѓvђйЊѕ
+//	гѓ—гѓ­гѓ€г‚їг‚¤гѓ—е®ЈиЁЂ
 //
 //============================================================================================
 static BOOL EvCmdNop( VM_MACHINE * core );				//
@@ -513,7 +513,7 @@ static BOOL EvCmdInitVilla( VM_MACHINE * core );
 static BOOL EvCmdInitTornWorld( VM_MACHINE * core );
 static BOOL EvCmdPlayerPosAllGet( VM_MACHINE * core );
 
-//ђV‹K’З‰Б2006.02Ѓ`
+//ж–°и¦ЏиїЅеЉ 2006.02гЂњ
 static BOOL EvCmdBagSetProc( VM_MACHINE * core );
 static BOOL EvCmdBagGetResult( VM_MACHINE * core);
 
@@ -551,10 +551,10 @@ static BOOL EvCmdTamagoDemo( VM_MACHINE * core );
 static BOOL EvCmdObjVisible( VM_MACHINE * core );
 static BOOL EvCmdObjInvisible( VM_MACHINE * core );
 
-///ѓЃЃ[ѓ‹ѓ{ѓbѓNѓX—p by iwasawa
+///гѓЎгѓјгѓ«гѓњгѓѓг‚Їг‚№з”Ё by iwasawa
 static BOOL EvCmdMailBox( VM_MACHINE * core );
 static BOOL EvCmdGetMailBoxDataNum( VM_MACHINE * core );
-///ѓMѓlѓXѓ‰ѓ“ѓLѓ“ѓO
+///г‚®гѓЌг‚№гѓ©гѓіг‚­гѓіг‚°
 static BOOL EvCmdRankingView( VM_MACHINE * core );
 
 static BOOL EvCmdGetTimeZone( VM_MACHINE * core );
@@ -612,12 +612,12 @@ static BOOL EvCmdCallSafariScope( VM_MACHINE * core );
 
 static BOOL EvCmdMsgAutoGet(VM_MACHINE * core);
 
-static BOOL	EvCmdClimaxDemoCall(VM_MACHINE * core);			//ѓNѓ‰ѓCѓ}ѓbѓNѓXѓfѓ‚
-static BOOL	EvCmdClimax3DDemoCall(VM_MACHINE * core);		//ѓNѓ‰ѓCѓ}ѓbѓNѓXѓfѓ‚
+static BOOL	EvCmdClimaxDemoCall(VM_MACHINE * core);			//г‚Їгѓ©г‚¤гѓћгѓѓг‚Їг‚№гѓ‡гѓў
+static BOOL	EvCmdClimax3DDemoCall(VM_MACHINE * core);		//г‚Їгѓ©г‚¤гѓћгѓѓг‚Їг‚№гѓ‡гѓў
 
-static BOOL EvCmdInitSafariTrain(VM_MACHINE * core);		//ѓTѓtѓ@ѓЉ“dЋФЏ‰Љъ‰»
-static BOOL EvCmdMoveSafariTrain(VM_MACHINE * core);		//ѓTѓtѓ@ѓЉ“dЋФ€Ъ“®
-static BOOL EvCmdCheckSafariTrain(VM_MACHINE * core);		//ѓTѓtѓ@ѓЉ“dЋФѓ`ѓFѓbѓN
+static BOOL EvCmdInitSafariTrain(VM_MACHINE * core);		//г‚µгѓ•г‚ЎгѓЄй›»и»Ље€ќжњџеЊ–
+static BOOL EvCmdMoveSafariTrain(VM_MACHINE * core);		//г‚µгѓ•г‚ЎгѓЄй›»и»Љз§»е‹•
+static BOOL EvCmdCheckSafariTrain(VM_MACHINE * core);		//г‚µгѓ•г‚ЎгѓЄй›»и»ЉгѓЃг‚§гѓѓг‚Ї
 
 static BOOL EvCmdPlayerHeightValid(VM_MACHINE * core);
 
@@ -759,14 +759,14 @@ static BOOL EvCmdFieldScopeModeSet( VM_MACHINE * core );
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/02/14
-// ѓЃѓjѓ…Ѓ[Ѓ^ѓЉѓXѓg‚МЋw’и€К’u‚рѓEѓBѓ“ѓhѓE‚М‰E’[‚в‰є’[‚Й‚·‚й‚Ѕ‚Я‚МЉЦђ”
+// гѓЎгѓ‹гѓҐгѓјпјЏгѓЄг‚№гѓ€гЃ®жЊ‡е®љдЅЌзЅ®г‚’г‚¦г‚Јгѓігѓ‰г‚¦гЃ®еЏіз«Їг‚„дё‹з«ЇгЃ«гЃ™г‚‹гЃџг‚ЃгЃ®й–ўж•°
 static BOOL EvCmdBmpMenuListAlignRight( VM_MACHINE *core );
 static BOOL EvCmdBmpMenuListAlignBottom( VM_MACHINE *core );
 // ----------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/02/09
-// ‘МЊ±”Е‚М‚Э‚ЕЋg‚н‚к‚йѓXѓNѓЉѓvѓg–Ѕ—Я‚р’З‰Б
+// дЅ“йЁ“з‰€гЃ®гЃїгЃ§дЅїг‚Џг‚Њг‚‹г‚№г‚ЇгѓЄгѓ—гѓ€е‘Ѕд»¤г‚’иїЅеЉ 
 #ifdef PG5_TRIAL
 static BOOL EvCmdShinka(VM_MACHINE * core);
 static BOOL EvCmdSoftReset(VM_MACHINE * core);
@@ -825,10 +825,10 @@ static BOOL EvCmdD35HaihuReziCheck( VM_MACHINE * core );
 
 //============================================================================================
 //
-//	ѓOѓЌЃ[ѓoѓ‹•Пђ”
+//	г‚°гѓ­гѓјгѓђгѓ«е¤‰ж•°
 //
 //============================================================================================
-//ЏрЊЏ•ЄЉт—pѓeЃ[ѓuѓ‹
+//жќЎд»¶е€†еІђз”Ёгѓ†гѓјгѓ–гѓ«
 static const u8 ConditionTable[6][3] =
 {
 //	  MINUS  EQUAL  PLUS
@@ -912,13 +912,13 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdTalkWinClose,		//
 	EvCmdTalkWinCloseNoClear,//
 
-	EvCmdBoardMake,			//ЉЕ”ВЌмђ¬Ѓiѓ^ѓEѓ“ѓ}ѓbѓvЃA•WЋЇЃA•\ЋDЃj
-	EvCmdInfoBoardMake,		//ЉЕ”ВЌмђ¬ЃiЊfЋ¦”ВЃj
-	EvCmdBoardReq,			//ЉЕ”Вђ§ЊдѓЉѓNѓGѓXѓg
+	EvCmdBoardMake,			//зњ‹жќїдЅњж€ђпј€г‚їг‚¦гѓігѓћгѓѓгѓ—гЂЃжЁ™и­гЂЃиЎЁжњ­пј‰
+	EvCmdInfoBoardMake,		//зњ‹жќїдЅњж€ђпј€жЋІз¤єжќїпј‰
+	EvCmdBoardReq,			//зњ‹жќїе€¶еѕЎгѓЄг‚Їг‚Ёг‚№гѓ€
 	EvCmdBoardWait,
-	EvCmdBoardMsg,			//ЉЕ”ВѓЃѓbѓZЃ[ѓW•\Ћ¦
+	EvCmdBoardMsg,			//зњ‹жќїгѓЎгѓѓг‚»гѓјг‚ёиЎЁз¤є
 	EvCmdBoardEndWait,
-	EvCmdMenuReq,			//ѓЃѓjѓ…Ѓ[ѓЉѓNѓGѓXѓg
+	EvCmdMenuReq,			//гѓЎгѓ‹гѓҐгѓјгѓЄг‚Їг‚Ёг‚№гѓ€
 	EvCmdBgScroll,			//60
 
 	EvCmdYesNoWin,			//
@@ -979,19 +979,19 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdMoveCodeChange,	//
 	EvCmdPairObjIdSet,	//
 
-	EvCmdAddGold,			//‚Ё‹аЉЦA‚·‚Ч‚Д
+	EvCmdAddGold,			//гЃЉй‡‘й–ўйЂЈгЃ™гЃ№гЃ¦
 	EvCmdSubGold,
 	EvCmdCompGold,
 	EvCmdGoldWinWrite,
 	EvCmdGoldWinDel,
-	EvCmdGoldWrite,			//‚Ё‹аЉЦA‚±‚±‚Ь‚Е
+	EvCmdGoldWrite,			//гЃЉй‡‘й–ўйЂЈгЃ“гЃ“гЃѕгЃ§
 
-	EvCmdCoinWinWrite,		//ѓRѓCѓ“ЉЦA‚·‚Ч‚Д
+	EvCmdCoinWinWrite,		//г‚іг‚¤гѓій–ўйЂЈгЃ™гЃ№гЃ¦
 	EvCmdCoinWinDel,
 	EvCmdCoinWrite,
 	EvCmdCheckCoin,
 	EvCmdAddCoin,
-	EvCmdSubCoin,			//ѓRѓCѓ“ЉЦA‚±‚±‚Ь‚Е
+	EvCmdSubCoin,			//г‚іг‚¤гѓій–ўйЂЈгЃ“гЃ“гЃѕгЃ§
 
 	EvCmdAddItem,			
 	EvCmdSubItem,
@@ -1000,47 +1000,47 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdWazaMachineItemNoCheck,
 
 	EvCmdGetPocketNo,
-	EvCmdAddPCBoxItem,		//Ѓ¦Ћg—p‚№‚ё
-	EvCmdCheckPCBoxItem,	//Ѓ¦Ћg—p‚№‚ёЃBѓAѓCѓeѓЂЉЦA‚±‚±‚Ь‚Е
+	EvCmdAddPCBoxItem,		//вЂ»дЅїз”ЁгЃ›гЃљ
+	EvCmdCheckPCBoxItem,	//вЂ»дЅїз”ЁгЃ›гЃљгЂ‚г‚ўг‚¤гѓ†гѓ й–ўйЂЈгЃ“гЃ“гЃѕгЃ§
 
-	EvCmdAddGoods,			//ѓOѓbѓYЉЦA‚·‚Ч‚Д
+	EvCmdAddGoods,			//г‚°гѓѓг‚єй–ўйЂЈгЃ™гЃ№гЃ¦
 	EvCmdSubGoods,
 	EvCmdAddGoodsChk,
-	EvCmdCheckGoods,		//ѓOѓbѓYЉЦA‚±‚±‚Ь‚Е
+	EvCmdCheckGoods,		//г‚°гѓѓг‚єй–ўйЂЈгЃ“гЃ“гЃѕгЃ§
 
-	EvCmdAddTrap,			//г©ЉЦA‚·‚Ч‚Д
+	EvCmdAddTrap,			//зЅ й–ўйЂЈгЃ™гЃ№гЃ¦
 	EvCmdSubTrap,
 	EvCmdAddTrapChk,
-	EvCmdCheckTrap,			//г©ЉЦA‚±‚±‚Ь‚Е
+	EvCmdCheckTrap,			//зЅ й–ўйЂЈгЃ“гЃ“гЃѕгЃ§
 
-	EvCmdAddTreasure,			//‚Ё•уЉЦA‚·‚Ч‚Д
+	EvCmdAddTreasure,			//гЃЉе®ќй–ўйЂЈгЃ™гЃ№гЃ¦
 	EvCmdSubTreasure,
 	EvCmdAddTreasureChk,
-	EvCmdCheckTreasure,			//‚Ё•уг©ЉЦA‚±‚±‚Ь‚Е
+	EvCmdCheckTreasure,			//гЃЉе®ќзЅ й–ўйЂЈгЃ“гЃ“гЃѕгЃ§
 
-	EvCmdAddTama,			//ѓ^ѓ}ЉЦA‚·‚Ч‚Д
+	EvCmdAddTama,			//г‚їгѓћй–ўйЂЈгЃ™гЃ№гЃ¦
 	EvCmdSubTama,
 	EvCmdAddTamaChk,
-	EvCmdCheckTama,			//ѓ^ѓ}ЉЦA‚±‚±‚Ь‚Е
+	EvCmdCheckTama,			//г‚їгѓћй–ўйЂЈгЃ“гЃ“гЃѕгЃ§
 
 	EvCmdCBItemNumGet,
 	EvCmdCBItemNumAdd,
 	EvCmdUnknownFormGet,
 
-	EvCmdAddPokemon,		//ѓ|ѓPѓ‚ѓ“ЉЦA‚·‚Ч‚Д
+	EvCmdAddPokemon,		//гѓќг‚±гѓўгѓій–ўйЂЈгЃ™гЃ№гЃ¦
 	EvCmdAddTamago,
 	EvCmdChgPokeWaza,
 	EvCmdChkPokeWaza,
-	EvCmdChkPokeWazaGroup,		//ѓ|ѓPѓ‚ѓ“ЉЦA‚±‚±‚Ь‚Е
+	EvCmdChkPokeWazaGroup,		//гѓќг‚±гѓўгѓій–ўйЂЈгЃ“гЃ“гЃѕгЃ§
 
 	EvCmdRevengeTrainerSearch,
 
-	EvCmdSetWeather,		//“VЊуЉЦA‚·‚Ч‚Д			–ў‘О‰ћ
+	EvCmdSetWeather,		//е¤©еЂ™й–ўйЂЈгЃ™гЃ№гЃ¦			жњЄеЇѕеїњ
 	EvCmdInitWeather,
-	EvCmdUpdateWeather,		//“VЊуЉЦA‚±‚±‚Ь‚Е
+	EvCmdUpdateWeather,		//е¤©еЂ™й–ўйЂЈгЃ“гЃ“гЃѕгЃ§
 
-	EvCmdGetMapPosition,	//Њ»ЌЭ‚Мѓ}ѓbѓv€К’u‚рЋж“ѕ	–ў‘О‰ћ
-	EvCmdGetTemotiPokeNum,	//•К–Ѕ—Я‚Є‚ ‚й‚М‚Е‚ў‚з‚И‚ў
+	EvCmdGetMapPosition,	//зЏѕењЁгЃ®гѓћгѓѓгѓ—дЅЌзЅ®г‚’еЏ–еѕ—	жњЄеЇѕеїњ
+	EvCmdGetTemotiPokeNum,	//е€Ґе‘Ѕд»¤гЃЊгЃ‚г‚‹гЃ®гЃ§гЃ„г‚‰гЃЄгЃ„
 
 	EvCmdSetMapProc,
 
@@ -1280,25 +1280,25 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdGetSodateyaName,
 	EvCmdGetSodateyaZiisan,
 	
-	EvCmdInitWaterGym,			//ђ…ѓWѓЂЏ‰Љъ‰»
-	EvCmdPushWaterGymButton,	//ђ…ѓWѓЂѓ{ѓ^ѓ“ѓvѓbѓVѓ…
-	EvCmdInitGhostGym,			//ѓSЃ[ѓXѓgѓWѓЂЏ‰Љъ‰»
-	EvCmdMoveGhostGymLift,		//ѓSЃ[ѓXѓgѓWѓЂѓЉѓtѓgѓЂЃ[ѓu
-	EvCmdInitSteelGym,			//Ќ|ѓWѓЂЏ‰Љъ‰»
-	EvCmdInitCombatGym,			//Љi“¬ѓWѓЂЏ‰Љъ‰»
-	EvCmdInitElecGym,			//“d‹CѓWѓЂ
-	EvCmdRotElecGymGear,		//“d‹CѓWѓЂѓMѓ~ѓbѓNѓMѓA
+	EvCmdInitWaterGym,			//ж°ґг‚ёгѓ е€ќжњџеЊ–
+	EvCmdPushWaterGymButton,	//ж°ґг‚ёгѓ гѓњг‚їгѓігѓ—гѓѓг‚·гѓҐ
+	EvCmdInitGhostGym,			//г‚ґгѓјг‚№гѓ€г‚ёгѓ е€ќжњџеЊ–
+	EvCmdMoveGhostGymLift,		//г‚ґгѓјг‚№гѓ€г‚ёгѓ гѓЄгѓ•гѓ€гѓ гѓјгѓ–
+	EvCmdInitSteelGym,			//й‹јг‚ёгѓ е€ќжњџеЊ–
+	EvCmdInitCombatGym,			//ж јй—г‚ёгѓ е€ќжњџеЊ–
+	EvCmdInitElecGym,			//й›»ж°—г‚ёгѓ 
+	EvCmdRotElecGymGear,		//й›»ж°—г‚ёгѓ г‚®гѓџгѓѓг‚Їг‚®г‚ў
 	
-	EvCmdGetPokeCount,			//ЋиЋќ‚їѓ|ѓPѓ‚ѓ“ђ”Ћж“ѕ
+	EvCmdGetPokeCount,			//ж‰‹жЊЃгЃЎгѓќг‚±гѓўгѓіж•°еЏ–еѕ—
 
-	EvCmdBagSetProc,			//ѓoѓbѓO‰ж–КЊД‚СЏo‚µ
-	EvCmdBagGetResult,			//ѓoѓbѓO‰ж–КЊ‹‰КЋж‚иЏo‚µ
+	EvCmdBagSetProc,			//гѓђгѓѓг‚°з”»йќўе‘јгЃіе‡єгЃ—
+	EvCmdBagGetResult,			//гѓђгѓѓг‚°з”»йќўзµђжћњеЏ–г‚Ље‡єгЃ—
 
-	EvCmdPocketCheck,			//ѓ|ѓPѓbѓg‚М’†‚Й‚З‚¤‚®‚Є‚ ‚й‚©ѓ`ѓFѓbѓN
-	EvCmdNutsName,				//‚«‚М‚Эѓ^ѓO‚М–ј‘O
-	EvCmdSeikakuName,			//ђ«Љi‚М–ј‘O
+	EvCmdPocketCheck,			//гѓќг‚±гѓѓгѓ€гЃ®дё­гЃ«гЃ©гЃ†гЃђгЃЊгЃ‚г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
+	EvCmdNutsName,				//гЃЌгЃ®гЃїг‚їг‚°гЃ®еђЌе‰Ќ
+	EvCmdSeikakuName,			//жЂ§ж јгЃ®еђЌе‰Ќ
 
-	EvCmdSeedGetStatus,			//–Ш‚МЋАЃFЏу‘ФЋж“ѕ
+	EvCmdSeedGetStatus,			//жњЁгЃ®е®џпјљзЉ¶ж…‹еЏ–еѕ—
 	EvCmdSeedGetType,
 	EvCmdSeedGetCompost,
 	EvCmdSeedGetGroundStatus,
@@ -1336,51 +1336,51 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdTemotiMonsNo,
 	EvCmdMonsOwnChk,
 
-	EvCmdGetPokeCount2,			//ЋиЋќ‚їѓ|ѓPѓ‚ѓ“ђ”Ћж“ѕ
-	EvCmdGetPokeCount3,			//ЋиЋќ‚їѓ|ѓPѓ‚ѓ“ђ”Ћж“ѕ
-	EvCmdGetPokeCount4,			//ЋиЋќ‚їѓ|ѓPѓ‚ѓ“ђ”Ћж“ѕ
-	EvCmdGetTamagoCount,		//ЋиЋќ‚їѓ^ѓ}ѓSђ”Ћж“ѕ
+	EvCmdGetPokeCount2,			//ж‰‹жЊЃгЃЎгѓќг‚±гѓўгѓіж•°еЏ–еѕ—
+	EvCmdGetPokeCount3,			//ж‰‹жЊЃгЃЎгѓќг‚±гѓўгѓіж•°еЏ–еѕ—
+	EvCmdGetPokeCount4,			//ж‰‹жЊЃгЃЎгѓќг‚±гѓўгѓіж•°еЏ–еѕ—
+	EvCmdGetTamagoCount,		//ж‰‹жЊЃгЃЎг‚їгѓћг‚ґж•°еЏ–еѕ—
 
-	EvCmdUgShopMenuInit,		//’n‰є‚М‚Ё“XЃ@ѓЃѓjѓ…Ѓ[‚рЉJ‚­
-	EvCmdUgShopTalkStart,		//’n‰є‚М‚Ё“XЃ@‰пbЉJЋn
-	EvCmdUgShopTalkEnd,			//’n‰є‚М‚Ё“XЃ@‰пbЏI—№
-	EvCmdUgShopTalkRegisterItemName,	//’n‰є‚М‚Ё“XЃ@ѓAѓCѓeѓЂ‚М–ј‘O‚р‚Ё“X‚М‰пb‚Й“o^
-	EvCmdUgShopTalkRegisterTrapName,	//’n‰є‚М‚Ё“XЃ@г©‚М–ј‘O‚р‚Ё“X‚М‰пb‚Й“o^
+	EvCmdUgShopMenuInit,		//ењ°дё‹гЃ®гЃЉеє—гЂЂгѓЎгѓ‹гѓҐгѓјг‚’й–‹гЃЏ
+	EvCmdUgShopTalkStart,		//ењ°дё‹гЃ®гЃЉеє—гЂЂдјљи©±й–‹е§‹
+	EvCmdUgShopTalkEnd,			//ењ°дё‹гЃ®гЃЉеє—гЂЂдјљи©±зµ‚дє†
+	EvCmdUgShopTalkRegisterItemName,	//ењ°дё‹гЃ®гЃЉеє—гЂЂг‚ўг‚¤гѓ†гѓ гЃ®еђЌе‰Ќг‚’гЃЉеє—гЃ®дјљи©±гЃ«з™»йЊІ
+	EvCmdUgShopTalkRegisterTrapName,	//ењ°дё‹гЃ®гЃЉеє—гЂЂзЅ гЃ®еђЌе‰Ќг‚’гЃЉеє—гЃ®дјљи©±гЃ«з™»йЊІ
 
-	EvCmdSubMyGold,				//€з‚Д‚вЉЦA€кЋ®
+	EvCmdSubMyGold,				//и‚ІгЃ¦г‚„й–ўйЂЈдёЂејЏ
 	EvCmdHikitoriPoke,
-	EvCmdHikitoriList,			//060625 Ћg—p‚µ‚Ь‚№‚с
-	EvCmdMsgSodateyaAishou,		//060625 Ћg—p‚µ‚Ь‚№‚с
-	EvCmdMsgExpandBuf,			//060625 Ћg—p‚µ‚Ь‚№‚с
+	EvCmdHikitoriList,			//060625 дЅїз”ЁгЃ—гЃѕгЃ›г‚“
+	EvCmdMsgSodateyaAishou,		//060625 дЅїз”ЁгЃ—гЃѕгЃ›г‚“
+	EvCmdMsgExpandBuf,			//060625 дЅїз”ЁгЃ—гЃѕгЃ›г‚“
 	EvCmdDelSodateyaEgg,
 	EvCmdGetSodateyaEgg,
 	EvCmdHikitoriRyoukin,
 	EvCmdCompMyGold,
 	EvCmdTamagoDemo,
-	EvCmdSodateyaPokeList,		//060625 Ћg—p‚µ‚Ь‚№‚с
+	EvCmdSodateyaPokeList,		//060625 дЅїз”ЁгЃ—гЃѕгЃ›г‚“
 	EvCmdSodatePokeLevelStr,
 	EvCmdMsgAzukeSet,
 	EvCmdSetSodateyaPoke,
 
-	EvCmdObjVisible,			//OBJ•\Ћ¦ЃA•s•\Ћ¦
+	EvCmdObjVisible,			//OBJиЎЁз¤єгЂЃдёЌиЎЁз¤є
 	EvCmdObjInvisible,
 
-	EvCmdMailBox,				///<ѓЃЃ[ѓ‹ѓ{ѓbѓNѓXЊД‚СЏo‚µ
-	EvCmdGetMailBoxDataNum,		///<ѓЃЃ[ѓ‹ѓ{ѓbѓNѓX“а‚МѓfЃ[ѓ^ђ”‚рЋж“ѕ
-	EvCmdRankingView,			///<ѓMѓlѓXѓzЃ[ѓ‹ѓ‰ѓ“ѓLѓ“ѓOView
+	EvCmdMailBox,				///<гѓЎгѓјгѓ«гѓњгѓѓг‚Їг‚№е‘јгЃіе‡єгЃ—
+	EvCmdGetMailBoxDataNum,		///<гѓЎгѓјгѓ«гѓњгѓѓг‚Їг‚№е†…гЃ®гѓ‡гѓјг‚їж•°г‚’еЏ–еѕ—
+	EvCmdRankingView,			///<г‚®гѓЌг‚№гѓ›гѓјгѓ«гѓ©гѓіг‚­гѓіг‚°View
 
 	EvCmdGetTimeZone,
-	EvCmdGetRand,				//ѓ‰ѓ“ѓ_ѓЂЋж“ѕ
-	EvCmdGetRandNext,			//ѓ‰ѓ“ѓ_ѓЂЋж“ѕ
-	EvCmdGetNatsuki,			//‚И‚В‚«“xЋж“ѕ
-	EvCmdAddNatsuki,			//‚И‚В‚«“x‘ќ‚в‚·
-	EvCmdSubNatsuki,			//‚И‚В‚«“xЊё‚з‚·
-	EvCmdHikitoriListNameSet,		//€ш‚«Ћж‚иѓ|ѓPѓ‚ѓ“–ј‚рѓZѓbѓg
+	EvCmdGetRand,				//гѓ©гѓігѓЂгѓ еЏ–еѕ—
+	EvCmdGetRandNext,			//гѓ©гѓігѓЂгѓ еЏ–еѕ—
+	EvCmdGetNatsuki,			//гЃЄгЃ¤гЃЌеє¦еЏ–еѕ—
+	EvCmdAddNatsuki,			//гЃЄгЃ¤гЃЌеє¦еў—г‚„гЃ™
+	EvCmdSubNatsuki,			//гЃЄгЃ¤гЃЌеє¦жё›г‚‰гЃ™
+	EvCmdHikitoriListNameSet,		//еј•гЃЌеЏ–г‚Љгѓќг‚±гѓўгѓіеђЌг‚’г‚»гѓѓгѓ€
 
 	EvCmdPlayerDirGet,
 
-	EvCmdGetSodateyaAishou,		//‚»‚ѕ‚Д‚вЃF2‘М‚М‘Љђ«ѓQѓbѓg
-	EvCmdGetSodateyaTamagoCheck,	//‚»‚ѕ‚Д‚вЃF‚Ѕ‚Ь‚І‚Є‚¤‚Ь‚к‚Д‚ў‚й‚©
+	EvCmdGetSodateyaAishou,		//гЃќгЃ гЃ¦г‚„пјљ2дЅ“гЃ®з›ёжЂ§г‚Ігѓѓгѓ€
+	EvCmdGetSodateyaTamagoCheck,	//гЃќгЃ гЃ¦г‚„пјљгЃџгЃѕгЃ”гЃЊгЃ†гЃѕг‚ЊгЃ¦гЃ„г‚‹гЃ‹
 
 	EvCmdTemotiPokeChk,
 	EvCmdOokisaRecordChk,
@@ -1441,36 +1441,36 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdPaperplaneSet,
 	EvCmdPokeMailDel,
 	EvCmdKasekiCount,
-	EvCmdItemListSetProc,			//Ѓ¦Ћg—p‚µ‚Д‚ў‚Ь‚№‚сЃB
-	EvCmdItemListGetResult,			//Ѓ¦Ћg—p‚µ‚Д‚ў‚Ь‚№‚сЃB
+	EvCmdItemListSetProc,			//вЂ»дЅїз”ЁгЃ—гЃ¦гЃ„гЃѕгЃ›г‚“гЂ‚
+	EvCmdItemListGetResult,			//вЂ»дЅїз”ЁгЃ—гЃ¦гЃ„гЃѕгЃ›г‚“гЂ‚
 	EvCmdItemNoToMonsNo,
 	EvCmdKasekiItemNo,
 
 	EvCmdPokeLevelChk,
 
-	EvCmdApprovePoisonDead,			//‚З‚­‹Cђвѓ`ѓFѓbѓN
+	EvCmdApprovePoisonDead,			//гЃ©гЃЏж°—зµ¶гѓЃг‚§гѓѓг‚Ї
 
-	EvCmdFinishMapProc,				//ѓtѓBЃ[ѓ‹ѓhѓ}ѓbѓvѓvѓЌѓZѓXЏI—№
+	EvCmdFinishMapProc,				//гѓ•г‚Јгѓјгѓ«гѓ‰гѓћгѓѓгѓ—гѓ—гѓ­г‚»г‚№зµ‚дє†
 
-	EvCmdDebugWatch,				//ѓfѓoѓbѓO—pѓЏЃ[ѓN“а—e•\Ћ¦ЃiѓfѓoѓbѓK‚МѓRѓ}ѓ“ѓhѓ‰ѓCѓ“‚ЦЃj
+	EvCmdDebugWatch,				//гѓ‡гѓђгѓѓг‚°з”ЁгѓЇгѓјг‚Їе†…е®№иЎЁз¤єпј€гѓ‡гѓђгѓѓг‚¬гЃ®г‚ігѓћгѓігѓ‰гѓ©г‚¤гѓігЃёпј‰
 
-	EvCmdTalkMsgAllPutOtherArc,		//TALKMSG_ALLPUTѓAЃ[ѓJѓCѓuЋw’и‚ ‚и
-	EvCmdTalkMsgOtherArc,			//TALKMSG_ALLPUTѓAЃ[ѓJѓCѓuЋw’и‚ ‚и
-	EvCmdTalkMsgAllPutPMS,			//ЉИ€Х‰пbѓpѓ‰ѓЃЃ[ѓ^
-	EvCmdTalkMsgPMS,				//ЉИ€Х‰пbѓpѓ‰ѓЃЃ[ѓ^
-	EvCmdTalkMsgTowerApper,			//ѓoѓgѓ‹ѓ^ѓЏЃ[‘Ођн‘OѓЃѓbѓZЃ[ѓW
-	EvCmdTalkMsgNgPokeName,			//ѓ^ѓЏЃ[NGѓ|ѓPѓ‚ѓ“–ј“WЉJ
+	EvCmdTalkMsgAllPutOtherArc,		//TALKMSG_ALLPUTг‚ўгѓјг‚«г‚¤гѓ–жЊ‡е®љгЃ‚г‚Љ
+	EvCmdTalkMsgOtherArc,			//TALKMSG_ALLPUTг‚ўгѓјг‚«г‚¤гѓ–жЊ‡е®љгЃ‚г‚Љ
+	EvCmdTalkMsgAllPutPMS,			//з°Ўж“дјљи©±гѓ‘гѓ©гѓЎгѓјг‚ї
+	EvCmdTalkMsgPMS,				//з°Ўж“дјљи©±гѓ‘гѓ©гѓЎгѓјг‚ї
+	EvCmdTalkMsgTowerApper,			//гѓђгѓ€гѓ«г‚їгѓЇгѓјеЇѕж€¦е‰ЌгѓЎгѓѓг‚»гѓјг‚ё
+	EvCmdTalkMsgNgPokeName,			//г‚їгѓЇгѓјNGгѓќг‚±гѓўгѓіеђЌе±•й–‹
 
 	EvCmdGetBeforeZoneID,
 	EvCmdGetNowZoneID,
 
-	EvCmdSafariControl,				//Safariђ§ЊдѓRѓ}ѓ“ѓh
+	EvCmdSafariControl,				//Safariе€¶еѕЎг‚ігѓћгѓігѓ‰
 
 	EvCmdColosseumMapChangeIn,
 	EvCmdColosseumMapChangeOut,
 
 	EvCmdWifiEarthSetProc,
-	EvCmdCallSafariScope,			//ѓTѓtѓ@ѓЉ–]‰“‹ѕѓRЃ[ѓ‹	
+	EvCmdCallSafariScope,			//г‚µгѓ•г‚ЎгѓЄжњ›йЃ йЏЎг‚ігѓјгѓ«	
 
 	EvCmdCommGetCurrentID,
 
@@ -1479,15 +1479,15 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdBtlSearcherEventCall,
 	EvCmdBtlSearcherDirMvSet,
 
-	EvCmdMsgAutoGet,				//ЉИ’PѓЃѓbѓZЃ[ѓW•\Ћ¦
+	EvCmdMsgAutoGet,				//з°ЎеЌгѓЎгѓѓг‚»гѓјг‚ёиЎЁз¤є
 
-	EvCmdClimaxDemoCall,			//ѓNѓ‰ѓCѓ}ѓbѓNѓXѓfѓ‚
+	EvCmdClimaxDemoCall,			//г‚Їгѓ©г‚¤гѓћгѓѓг‚Їг‚№гѓ‡гѓў
 
-	EvCmdInitSafariTrain,			//ѓTѓtѓ@ѓЉ“dЋФЏ‰Љъ‰»
-	EvCmdMoveSafariTrain,			//ѓTѓtѓ@ѓЉ“dЋФ€Ъ“®
-	EvCmdCheckSafariTrain,			//ѓTѓtѓ@ѓЉ“dЋФѓ`ѓFѓbѓN
+	EvCmdInitSafariTrain,			//г‚µгѓ•г‚ЎгѓЄй›»и»Ље€ќжњџеЊ–
+	EvCmdMoveSafariTrain,			//г‚µгѓ•г‚ЎгѓЄй›»и»Љз§»е‹•
+	EvCmdCheckSafariTrain,			//г‚µгѓ•г‚ЎгѓЄй›»и»ЉгѓЃг‚§гѓѓг‚Ї
 
-	EvCmdPlayerHeightValid,			//Ћ©‹@Ќ‚‚іЋж“ѕ—L–і
+	EvCmdPlayerHeightValid,			//и‡Єж©џй«гЃ•еЏ–еѕ—жњ‰з„Ў
 
 	EvCmdGetPokeSeikaku,
 	EvCmdChkPokeSeikakuAll,
@@ -1503,7 +1503,7 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdStartGenerate,
 	EvCmdAddMovePoke,
 
-	EvCmdRandomGroup,				//ѓ‰ѓ“ѓ_ѓЂѓOѓ‹Ѓ[ѓvЉЦA
+	EvCmdRandomGroup,				//гѓ©гѓігѓЂгѓ г‚°гѓ«гѓјгѓ—й–ўйЂЈ
 
 	EvCmdOshieWazaCount,
 	EvCmdRemaindWazaCount,
@@ -1545,16 +1545,16 @@ const VM_CMD ScriptCmdTbl[] = {
 
 	EvCmdCallShipDemo,
 
-	EvCmdMysteryPostMan,			//‚У‚µ‚¬‚И‘Ў‚и•Ё”z’B€х
+	EvCmdMysteryPostMan,			//гЃµгЃ—гЃЋгЃЄиґ€г‚Љз‰©й…ЌйЃ”е“Ў
 
 	EvCmdDebugPrintWork,
 	EvCmdDebugPrintFlag,
 	EvCmdDebugPrintWorkStationed,
 	EvCmdDebugPrintFlagStationed,
 
-	EvCmdPMSInputSingleProc,		//ЉИ€Х‰пb“ь—НЃi’PЊк€к‚ВЃj
-	EvCmdPMSInputDoubleProc,		//ЉИ€Х‰пb“ь—НЃi’PЊк“с‚ВЃj
-	EvCmdPMSBuf,					//ЉИ€Х‰пb‚М’PЊкѓЃѓbѓZЃ[ѓW‚рѓoѓbѓtѓ@‚Ц
+	EvCmdPMSInputSingleProc,		//з°Ўж“дјљи©±е…ҐеЉ›пј€еЌиЄћдёЂгЃ¤пј‰
+	EvCmdPMSInputDoubleProc,		//з°Ўж“дјљи©±е…ҐеЉ›пј€еЌиЄћдєЊгЃ¤пј‰
+	EvCmdPMSBuf,					//з°Ўж“дјљи©±гЃ®еЌиЄћгѓЎгѓѓг‚»гѓјг‚ёг‚’гѓђгѓѓгѓ•г‚ЎгЃё
 
 	EvCmdPMVersionGet,
 
@@ -1595,10 +1595,10 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdAddScore,
 	EvCmdAcceName,
 
-	EvCmdPartyMonsNoCheck,			// ѓpЃ[ѓeѓB‚Й€шђ”‚P‚Мѓ|ѓPѓ‚ѓ“‚Є‚ў‚й‚©ѓ`ѓFѓbѓN
-	EvCmdPartyDeokisisuFormChange,	// ѓpЃ[ѓeѓB“а‚МѓfѓIѓLѓVѓX‚МѓtѓHѓ‹ѓЂ‚р•ПЌX
+	EvCmdPartyMonsNoCheck,			// гѓ‘гѓјгѓ†г‚ЈгЃ«еј•ж•°пј‘гЃ®гѓќг‚±гѓўгѓігЃЊгЃ„г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
+	EvCmdPartyDeokisisuFormChange,	// гѓ‘гѓјгѓ†г‚Је†…гЃ®гѓ‡г‚Єг‚­г‚·г‚№гЃ®гѓ•г‚©гѓ«гѓ г‚’е¤‰ж›ґ
 
-	EvCmdCheckMituhaniiComp,		// ѓ~ѓcѓnѓjЃ[ѓIѓXѓЃѓX‚»‚л‚Б‚Ѕ‚©
+	EvCmdCheckMituhaniiComp,		// гѓџгѓ„гѓЏгѓ‹гѓјг‚Єг‚№гѓЎг‚№гЃќг‚ЌгЃЈгЃџгЃ‹
 
 	EvCmdPoketchHookSet,
 	EvCmdPoketchHookReset,
@@ -1612,18 +1612,18 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmd_D20R0106Legend_IsUnseal,
 
 	EvCmdDressingImcAcceCheck,
-	EvCmdTalkMsgUnknownFont,		//ѓAѓ“ѓmЃ[ѓ“ѓtѓHѓ“ѓg‚ЕѓЃѓbѓZЃ[ѓWЏo—Н
-	EvCmdAgbCartridgeVerGet,	// ‚і‚і‚Б‚Д‚ў‚йAGBѓJЃ[ѓgѓЉѓbѓWVerЋж“ѕ
+	EvCmdTalkMsgUnknownFont,		//г‚ўгѓігѓЋгѓјгѓігѓ•г‚©гѓігѓ€гЃ§гѓЎгѓѓг‚»гѓјг‚ёе‡єеЉ›
+	EvCmdAgbCartridgeVerGet,	// гЃ•гЃ•гЃЈгЃ¦гЃ„г‚‹AGBг‚«гѓјгѓ€гѓЄгѓѓг‚ёVerеЏ–еѕ—
 
 	EvCmdUnderGroundTalkCountClear,
 
-	EvCmdHideMapStateChange,	//‰B‚µѓ}ѓbѓvѓ`ѓFѓ“ѓW
-	EvCmdNameInStone,			//ђО”и–ј‘O“ь—НЊД‚СЏo‚µ
-	EvCmdMonumantName,		//ђО”и–јѓ^ѓO“WЉJ
+	EvCmdHideMapStateChange,	//йљ гЃ—гѓћгѓѓгѓ—гѓЃг‚§гѓіг‚ё
+	EvCmdNameInStone,			//зџізў‘еђЌе‰Ќе…ҐеЉ›е‘јгЃіе‡єгЃ—
+	EvCmdMonumantName,		//зџізў‘еђЌг‚їг‚°е±•й–‹
 
-	EvCmdImcBgNameSet,		// ѓCѓЃЃ[ѓWѓNѓЉѓbѓv”wЊi–ј‚рѓoѓbѓtѓ@‚ЙђЭ’и
+	EvCmdImcBgNameSet,		// г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—иѓЊж™ЇеђЌг‚’гѓђгѓѓгѓ•г‚ЎгЃ«иЁ­е®љ
 	EvCmdCompCoin,
-	EvCmdSlotRentyanChk,	//ѓXѓЌѓbѓgѓЊѓ“ѓ`ѓѓѓ“ѓ`ѓFѓbѓN
+	EvCmdSlotRentyanChk,	//г‚№гѓ­гѓѓгѓ€гѓ¬гѓігѓЃгѓЈгѓігѓЃг‚§гѓѓг‚Ї
 	EvCmdAddCoinChk,
 	EvCmdLevelJijiiNo,
 	EvCmdPokeLevelGet,
@@ -1637,12 +1637,12 @@ const VM_CMD ScriptCmdTbl[] = {
 	
 	EvCmdRegularCheck,
 	EvCmdNankaiWordCompleteCheck,
-	EvCmdNumberNameEx,		//ђ”Ћљѓ^ѓO“WЉJѓfѓBѓXѓvѓЊѓCѓ‚Ѓ[ѓhЋw’и”Е
+	EvCmdNumberNameEx,		//ж•°е­—г‚їг‚°е±•й–‹гѓ‡г‚Јг‚№гѓ—гѓ¬г‚¤гѓўгѓјгѓ‰жЊ‡е®љз‰€
 	EvCmdTemotiPokeContestStatusGet,
 	EvCmdBirthDayCheck,
 	EvCmdSndInitialVolSet,
 	EvCmdAnoonSeeNum,
-	EvCmdD17SystemMapSelect,	//–Я‚з‚ё‚М“ґЊAѓ}ѓbѓv’Љ‘I
+	EvCmdD17SystemMapSelect,	//ж€»г‚‰гЃљгЃ®жґћзЄџгѓћгѓѓгѓ—жЉЅйЃё
 	EvCmdUnderGroundToolGiveCount,
 	EvCmdUnderGroundKasekiDigCount,
 	EvCmdUnderGroundTrapHitCount,
@@ -1658,7 +1658,7 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdSodateyaPokeListGetResult,
 	EvCmdGetRandomHit,
 	EvCmdUnderGroundTalkCount2,
-	//ѓoѓgѓ‹ѓ|ѓCѓ“ѓgЉЦA‚±‚±‚©‚з
+	//гѓђгѓ€гѓ«гѓќг‚¤гѓігѓ€й–ўйЂЈгЃ“гЃ“гЃ‹г‚‰
 	EvCmdBtlPointWinWrite,
 	EvCmdBtlPointWinDel,
 	EvCmdBtlPointWrite,
@@ -1668,7 +1668,7 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdCompBtlPoint,
 	EvCmdGetBtlPointGift,
 //	EvCmdBmpMenuMakeListEx,
-	//ѓoѓgѓ‹ѓ|ѓCѓ“ѓgЉЦA‚±‚±‚Ь‚Е
+	//гѓђгѓ€гѓ«гѓќг‚¤гѓігѓ€й–ўйЂЈгЃ“гЃ“гЃѕгЃ§
 	
 	EvCmdUnionViewGetTrainerTypeNo,
 
@@ -1765,9 +1765,9 @@ const VM_CMD ScriptCmdTbl[] = {
 
 	EvCmdTemotiPokeChkGetPos,
 
-	EvCmdSeisekiBmpListStart,			//ѓoѓgѓ‹ѓXѓeЃ[ѓW‚Мѓ|ѓPѓ‚ѓ“ѓЉѓXѓg
+	EvCmdSeisekiBmpListStart,			//гѓђгѓ€гѓ«г‚№гѓ†гѓјг‚ёгЃ®гѓќг‚±гѓўгѓігѓЄг‚№гѓ€
 
-	//‚У‚к‚ ‚ўЊц‰Ђ
+	//гЃµг‚ЊгЃ‚гЃ„е…¬ењ’
 	EvCmdParkManItemIndexGet,
 	EvCmdParkManItemKindGet,
 	EvCmdParkManItemNoGet,
@@ -1776,7 +1776,7 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdScratchFree,
 	EvCmdScratchItemGet,
 
-	//‹Z‹і‚¦
+	//жЉЂж•™гЃ€
 	EvCmdWazaOshieDataCount,
 	EvCmdWazaOshieBmpListStart,
 	EvCmdWazaOshiePokeStatusSetProc,
@@ -1787,17 +1787,17 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdWazaOshieBoardWrite,
 	EvCmdWazaOshieBoardDel,
 
-	//ѓgѓbѓvѓuѓЉЃ[ѓ_Ѓ[
+	//гѓ€гѓѓгѓ—гѓ–гѓЄгѓјгѓЂгѓј
 	EvCmdTopBreederPowRndGet,
 	EvCmdStatusName,
 	
-	//•К‘‘
+	//е€ҐиЌ
 	EvCmdInitVilla,
 
-	//ѓЌѓgѓЂ
+	//гѓ­гѓ€гѓ 
 	EvCmdPokeFormChange,
 	
-	//”j‚к‚ЅђўЉE
+	//з ґг‚ЊгЃџдё–з•Њ
 	EvCmdInitTornWorld,
 	
 	EvCmdTrainerName,
@@ -1808,7 +1808,7 @@ const VM_CMD ScriptCmdTbl[] = {
 
 	EvCmdGdsSetProc,
 
-	EvCmdWiFiLobbySetProc,	// WiFiЌLЏкЉJЋn
+	EvCmdWiFiLobbySetProc,	// WiFiеєѓе ґй–‹е§‹
 
 	EvCmdSndDemo01DataLoad,
 	EvCmdSndFieldDataLoad,
@@ -1912,49 +1912,49 @@ const VM_CMD ScriptCmdTbl[] = {
     ov05_21F7754,
     // ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
-	// ѓЃѓjѓ…Ѓ[Ѓ^ѓЉѓXѓg‚МЋw’и€К’u‚рѓEѓBѓ“ѓhѓE‚М‰E’[‚в‰є’[‚Й‚·‚й‚Ѕ‚Я‚М–Ѕ—Я‚р’З‰Б
+	// гѓЎгѓ‹гѓҐгѓјпјЏгѓЄг‚№гѓ€гЃ®жЊ‡е®љдЅЌзЅ®г‚’г‚¦г‚Јгѓігѓ‰г‚¦гЃ®еЏіз«Їг‚„дё‹з«ЇгЃ«гЃ™г‚‹гЃџг‚ЃгЃ®е‘Ѕд»¤г‚’иїЅеЉ 
 	EvCmdBmpMenuListAlignRight,
 	EvCmdBmpMenuListAlignBottom,
 	// ----------------------------------------------------------------------------
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/10/13
-	// ЉҐЋЊ•t‚«ЃE•Ўђ”Њ`‚МѓAѓCѓeѓЂ–ј‚р€ш‚Б’Ј‚Б‚Д‚­‚йѓXѓNѓЉѓvѓg–Ѕ—Я‚р’З‰Б
+	// е† и©ћд»гЃЌгѓ»и¤‡ж•°еЅўгЃ®г‚ўг‚¤гѓ†гѓ еђЌг‚’еј•гЃЈејµгЃЈгЃ¦гЃЏг‚‹г‚№г‚ЇгѓЄгѓ—гѓ€е‘Ѕд»¤г‚’иїЅеЉ 
 	EvCmdItemNameIndefinate,
 	EvCmdItemNamePlural,
 	// ----------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/28
-	// •s’иЉҐЋЊ•t‚«‚М’n‰єѓOѓbѓY–ј‚р€ш‚Б’Ј‚Б‚Д‚­‚йѓXѓNѓЉѓvѓg–Ѕ—Я‚р’З‰Б
+	// дёЌе®ље† и©ћд»гЃЌгЃ®ењ°дё‹г‚°гѓѓг‚єеђЌг‚’еј•гЃЈејµгЃЈгЃ¦гЃЏг‚‹г‚№г‚ЇгѓЄгѓ—гѓ€е‘Ѕд»¤г‚’иїЅеЉ 
 	EvCmdGoodsNameIndefinate,
 	// ----------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/29
-	// •s’иЉҐЋЊ•t‚«‚М’n‰єѓЏѓiЃEѓ^ѓ}–ј‚р€ш‚Б’Ј‚Б‚Д‚­‚йѓXѓNѓЉѓvѓg–Ѕ—Я‚р’З‰Б
+	// дёЌе®ље† и©ћд»гЃЌгЃ®ењ°дё‹гѓЇгѓЉгѓ»г‚їгѓћеђЌг‚’еј•гЃЈејµгЃЈгЃ¦гЃЏг‚‹г‚№г‚ЇгѓЄгѓ—гѓ€е‘Ѕд»¤г‚’иїЅеЉ 
 	EvCmdTrapNameIndefinate,
 	EvCmdTamaNameIndefinate,
 	// ----------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/11
-	// •s’иЉҐЋЊ•t‚«‚Мѓ|ѓPѓ‚ѓ“–јЃEѓAѓNѓZѓTѓЉЃ[–ј‚р€ш‚Б’Ј‚Б‚Д‚­‚йѓXѓNѓЉѓvѓg–Ѕ—Я‚р’З‰Б
+	// дёЌе®ље† и©ћд»гЃЌгЃ®гѓќг‚±гѓўгѓіеђЌгѓ»г‚ўг‚Їг‚»г‚µгѓЄгѓјеђЌг‚’еј•гЃЈејµгЃЈгЃ¦гЃЏг‚‹г‚№г‚ЇгѓЄгѓ—гѓ€е‘Ѕд»¤г‚’иїЅеЉ 
 	EvCmdPokemonNameExtraIndefinate,
 	EvCmdSupportPokemonNameIndefinate,
 	EvCmdAcceNameIndefinate,
 	// ----------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/11
-	// •s’иЉҐЋЊ•t‚«‚МѓgѓЊЃ[ѓiЃ[ѓ^ѓCѓv–ј‚р€ш‚Б’Ј‚Б‚Д‚­‚йѓXѓNѓЉѓvѓg–Ѕ—Я‚р’З‰Б
+	// дёЌе®ље† и©ћд»гЃЌгЃ®гѓ€гѓ¬гѓјгѓЉгѓјг‚їг‚¤гѓ—еђЌг‚’еј•гЃЈејµгЃЈгЃ¦гЃЏг‚‹г‚№г‚ЇгѓЄгѓ—гѓ€е‘Ѕд»¤г‚’иїЅеЉ 
 	EvCmdTrTypeNameIndefinate,
 	// ----------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/26
-	// •Ўђ”Њ`‚МѓVЃ[ѓ‹–ј‚р€ш‚Б’Ј‚Б‚Д‚­‚йѓXѓNѓЉѓvѓg–Ѕ—Я‚р’З‰Б
+	// и¤‡ж•°еЅўгЃ®г‚·гѓјгѓ«еђЌг‚’еј•гЃЈејµгЃЈгЃ¦гЃЏг‚‹г‚№г‚ЇгѓЄгѓ—гѓ€е‘Ѕд»¤г‚’иїЅеЉ 
 	EvCmdSealNamePlural,
 	// ----------------------------------------------------------------------------
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/24
-	// •Пђ”‚Й‘г“ь‚і‚к‚Ѕ•¶Ћљ—с‚рѓLѓѓѓsѓ^ѓ‰ѓCѓY‚·‚йѓXѓNѓЉѓvѓg–Ѕ—Я‚р’З‰Б
+	// е¤‰ж•°гЃ«д»Је…ҐгЃ•г‚ЊгЃџж–‡е­—е€—г‚’г‚­гѓЈгѓ”г‚їгѓ©г‚¤г‚єгЃ™г‚‹г‚№г‚ЇгѓЄгѓ—гѓ€е‘Ѕд»¤г‚’иїЅеЉ 
 	EvCmdCapitalizeName,
 	// ----------------------------------------------------------------------------
 
@@ -1963,21 +1963,21 @@ const VM_CMD ScriptCmdTbl[] = {
 
 
 //--------------------------------------------------------------------------------------------
-///	ѓXѓNѓЉѓvѓgѓRѓ}ѓ“ѓh‚МЌЕ‘еђ”
+///	г‚№г‚ЇгѓЄгѓ—гѓ€г‚ігѓћгѓігѓ‰гЃ®жњЂе¤§ж•°
 //--------------------------------------------------------------------------------------------
 const u32 ScriptCmdMax = NELEMS(ScriptCmdTbl);
 
 //============================================================================================
 //
-//	Љо–{ѓVѓXѓeѓЂ–Ѕ—Я
+//	еџєжњ¬г‚·г‚№гѓ†гѓ е‘Ѕд»¤
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚m‚n‚o–Ѕ—ЯЃi‚И‚Й‚а‚µ‚И‚ўЃj
+ * пј®пјЇпј°е‘Ѕд»¤пј€гЃЄгЃ«г‚‚гЃ—гЃЄгЃ„пј‰
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -1989,9 +1989,9 @@ static BOOL EvCmdNop( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰Ѕ‚а‚µ‚И‚ўЃiѓfѓoѓbѓK‚Е€ш‚БЉ|‚Ї‚й‚Ѕ‚Я‚М–Ѕ—ЯЃj
+ * дЅ•г‚‚гЃ—гЃЄгЃ„пј€гѓ‡гѓђгѓѓг‚¬гЃ§еј•гЃЈжЋ›гЃ‘г‚‹гЃџг‚ЃгЃ®е‘Ѕд»¤пј‰
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2003,9 +2003,9 @@ static BOOL EvCmdDummy( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓXѓNѓЉѓvѓg‚МЏI—№
+ * г‚№г‚ЇгѓЄгѓ—гѓ€гЃ®зµ‚дє†
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2018,9 +2018,9 @@ static BOOL EvCmdEnd( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓEѓFѓCѓgЏ€—ќ
+ * г‚¦г‚§г‚¤гѓ€е‡¦зђ†
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -2034,18 +2034,18 @@ static BOOL EvCmdTimeWait( VM_MACHINE * core )
 
 	*ret_wk = num;
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	VM_SetWait( core, EvWaitTime );
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitTime(VM_MACHINE * core)
 {
 	FIELDSYS_WORK* fsys = core->fsys;
-	u16* ret_wk = GetEventWorkAdrs( fsys, core->reg[0] );	//’Ќ€УЃI
+	u16* ret_wk = GetEventWorkAdrs( fsys, core->reg[0] );	//жіЁж„ЏпјЃ
 
 	(*ret_wk)--;
 	if( *ret_wk == 0 ){ 
@@ -2065,15 +2065,15 @@ static BOOL EvCmdDebugWatch(VM_MACHINE * core)
 
 //============================================================================================
 //
-//	ѓfЃ[ѓ^ѓЌЃ[ѓhЃEѓXѓgѓAЉЦA
+//	гѓ‡гѓјг‚їгѓ­гѓјгѓ‰гѓ»г‚№гѓ€г‚ўй–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚Й1byte‚М’l‚рЉi”[
+ * д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«1byteгЃ®еЂ¤г‚’ж јзґЌ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2088,9 +2088,9 @@ static BOOL EvCmdLoadRegValue( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚Й4byte‚М’l‚рЉi”[
+ * д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«4byteгЃ®еЂ¤г‚’ж јзґЌ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2108,9 +2108,9 @@ static BOOL EvCmdLoadRegWData( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓAѓhѓЊѓX‚рЉi”[
+ * д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«г‚ўгѓ‰гѓ¬г‚№г‚’ж јзґЌ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2129,9 +2129,9 @@ static BOOL EvCmdLoadRegAdrs( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓAѓhѓЊѓX‚М’†ђg‚Й’l‚р‘г“ь
+ * г‚ўгѓ‰гѓ¬г‚№гЃ®дё­иє«гЃ«еЂ¤г‚’д»Је…Ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2150,9 +2150,9 @@ static BOOL EvCmdLoadAdrsValue( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓAѓhѓЊѓX‚М’†ђg‚Й‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚М’l‚р‘г“ь
+ * г‚ўгѓ‰гѓ¬г‚№гЃ®дё­иє«гЃ«д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ®еЂ¤г‚’д»Је…Ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2171,9 +2171,9 @@ static BOOL EvCmdLoadAdrsReg( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚М’l‚р”Д—pѓЊѓWѓXѓ^‚ЙѓRѓsЃ[
+ * д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ®еЂ¤г‚’ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«г‚ігѓ”гѓј
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2191,9 +2191,9 @@ static BOOL EvCmdLoadRegReg( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓAѓhѓЊѓX‚М’†ђg‚ЙѓAѓhѓЊѓX‚М’†ђg‚р‘г“ь
+ * г‚ўгѓ‰гѓ¬г‚№гЃ®дё­иє«гЃ«г‚ўгѓ‰гѓ¬г‚№гЃ®дё­иє«г‚’д»Је…Ґ
  *  
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2213,16 +2213,16 @@ static BOOL EvCmdLoadAdrsAdrs( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	”дЉr–Ѕ—Я
+//	жЇ”ијѓе‘Ѕд»¤
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Q‚В‚М’l‚р”дЉr
+ * пј’гЃ¤гЃ®еЂ¤г‚’жЇ”ијѓ
  *
- * @param	r1		’l‚P
- * @param	r2		’l‚Q
+ * @param	r1		еЂ¤пј‘
+ * @param	r2		еЂ¤пј’
  *
  * @retval	"r1 < r2 : MISUS_RESULT"
  * @retval	"r1 = r2 : EQUAL_RESULT"
@@ -2241,9 +2241,9 @@ static BOOL EvCmdCmpMain( u16 r1, u16 r2 )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚р”дЉr
+ * д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їг‚’жЇ”ијѓ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2261,9 +2261,9 @@ static BOOL EvCmdCmpRegReg( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚Ж’l‚р”дЉr
+ * д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃЁеЂ¤г‚’жЇ”ијѓ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2281,9 +2281,9 @@ static BOOL EvCmdCmpRegValue( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЖѓAѓhѓЊѓX‚М’†ђg‚р”дЉr
+ * д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃЁг‚ўгѓ‰гѓ¬г‚№гЃ®дё­иє«г‚’жЇ”ијѓ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2301,9 +2301,9 @@ static BOOL EvCmdCmpRegAdrs( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓAѓhѓЊѓX‚М’†ђg‚Ж‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚р”дЉr
+ * г‚ўгѓ‰гѓ¬г‚№гЃ®дё­иє«гЃЁд»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їг‚’жЇ”ијѓ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2321,9 +2321,9 @@ static BOOL EvCmdCmpAdrsReg( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓAѓhѓЊѓX‚М’†ђg‚Ж’l‚р”дЉr
+ * г‚ўгѓ‰гѓ¬г‚№гЃ®дё­иє«гЃЁеЂ¤г‚’жЇ”ијѓ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2341,9 +2341,9 @@ static BOOL EvCmdCmpAdrsValue(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓAѓhѓЊѓX‚М’†ђg‚ЖѓAѓhѓЊѓX‚М’†ђg‚р”дЉr
+ * г‚ўгѓ‰гѓ¬г‚№гЃ®дё­иє«гЃЁг‚ўгѓ‰гѓ¬г‚№гЃ®дё­иє«г‚’жЇ”ијѓ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2361,9 +2361,9 @@ static BOOL EvCmdCmpAdrsAdrs(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЏЃ[ѓN‚Ж’l‚р”дЉr
+ * гѓЇгѓјг‚ЇгЃЁеЂ¤г‚’жЇ”ијѓ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2383,9 +2383,9 @@ static BOOL EvCmdCmpWkValue( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЏЃ[ѓN‚ЖѓЏЃ[ѓN‚р”дЉr
+ * гѓЇгѓјг‚ЇгЃЁгѓЇгѓјг‚Їг‚’жЇ”ијѓ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2404,15 +2404,15 @@ static BOOL EvCmdCmpWkWk( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	‰ј‘zѓ}ѓVѓ“ЉЦA
+//	д»®жѓігѓћг‚·гѓій–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ј‘zѓ}ѓVѓ“’З‰Б(ђШ‚и‘Ц‚¦‚Н‚№‚ёЃA•А—с‚Е“®Ќм‚µ‚Ь‚·ЃI)
+ * д»®жѓігѓћг‚·гѓіиїЅеЉ (е€‡г‚Љж›їгЃ€гЃЇгЃ›гЃљгЂЃдё¦е€—гЃ§е‹•дЅњгЃ—гЃѕгЃ™пјЃ)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -2426,12 +2426,12 @@ static BOOL EvCmdVMMachineAdd( VM_MACHINE * core )
 
 	id = VMGetU16(core);
 
-	//‰ј‘zѓ}ѓVѓ“’З‰Б
+	//д»®жѓігѓћг‚·гѓіиїЅеЉ 
 	//*vm = VMMachineAdd(fsys, id, &ScriptCmdTbl[0], &ScriptCmdTbl[EVCMD_MAX]);
 	*vm = VMMachineAdd(fsys, id);
 	(*vm_machine_count)++;
 
-	//ѓCѓxѓ“ѓg‚ЖђШ‚и—Ј‚µ‚ЅTCB“®Ќм‚Й‚·‚й‚©‚аЃH
+	//г‚¤гѓ™гѓігѓ€гЃЁе€‡г‚Љй›ўгЃ—гЃџTCBе‹•дЅњгЃ«гЃ™г‚‹гЃ‹г‚‚пјџ
 	//*vm = VMMachineAddTCB( fsys, id, &ScriptCmdTbl[0], &ScriptCmdTbl[EVCMD_MAX] );
 
 	return 1;
@@ -2439,9 +2439,9 @@ static BOOL EvCmdVMMachineAdd( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЌЃ[ѓJѓ‹ѓXѓNѓЉѓvѓg‚рѓEѓFѓCѓgЏу‘Ф‚Й‚µ‚ДЃA‹¤’КѓXѓNѓЉѓvѓg‚р“®Ќм‚і‚№‚Ь‚·
+ * гѓ­гѓјг‚«гѓ«г‚№г‚ЇгѓЄгѓ—гѓ€г‚’г‚¦г‚§г‚¤гѓ€зЉ¶ж…‹гЃ«гЃ—гЃ¦гЂЃе…±йЂљг‚№г‚ЇгѓЄгѓ—гѓ€г‚’е‹•дЅњгЃ•гЃ›гЃѕгЃ™
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -2456,12 +2456,12 @@ static BOOL EvCmdChangeCommonScr( VM_MACHINE * core )
 
 	scr_id = VMGetU16(core);
 
-	//‹¤’КѓXѓNѓЉѓvѓg€ИЉO‚Й‚ађШ‚и‘Ц‚¦‰В”\‚Й‚И‚Б‚Д‚ў‚йЃI
+	//е…±йЂљг‚№г‚ЇгѓЄгѓ—гѓ€д»Ґе¤–гЃ«г‚‚е€‡г‚Љж›їгЃ€еЏЇиѓЅгЃ«гЃЄгЃЈгЃ¦гЃ„г‚‹пјЃ
 
-	//‹¤’КѓXѓNѓЉѓvѓgђШ‚и‘Ц‚¦ѓtѓ‰ѓOON
+	//е…±йЂљг‚№г‚ЇгѓЄгѓ—гѓ€е€‡г‚Љж›їгЃ€гѓ•гѓ©г‚°ON
 	*common_scr_flag = 1;
 
-	//‰ј‘zѓ}ѓVѓ“’З‰Б
+	//д»®жѓігѓћг‚·гѓіиїЅеЉ 
 	//*vm = VMMachineAdd(fsys, scr_id, &ScriptCmdTbl[0], &ScriptCmdTbl[EVCMD_MAX]);
 	*vm = VMMachineAdd(fsys, scr_id);
 	(*vm_machine_count)++;
@@ -2470,7 +2470,7 @@ static BOOL EvCmdChangeCommonScr( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvChangeCommonScrWait(VM_MACHINE * core)
 {
 	FIELDSYS_WORK* fsys = core->fsys;
@@ -2485,9 +2485,9 @@ static BOOL EvChangeCommonScrWait(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹¤’КѓXѓNѓЉѓvѓg‚рЏI—№‚µ‚ДЃAѓЌЃ[ѓJѓ‹ѓXѓNѓЉѓvѓg‚рЌДЉJ‚і‚№‚Ь‚·
+ * е…±йЂљг‚№г‚ЇгѓЄгѓ—гѓ€г‚’зµ‚дє†гЃ—гЃ¦гЂЃгѓ­гѓјг‚«гѓ«г‚№г‚ЇгѓЄгѓ—гѓ€г‚’е†Ќй–‹гЃ•гЃ›гЃѕгЃ™
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2497,31 +2497,31 @@ static BOOL EvCmdChangeLocalScr( VM_MACHINE * core )
 	FIELDSYS_WORK* fsys = core->fsys;
 	u8* common_scr_flag = GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_COMMON_SCR_FLAG );
 
-	//‹¤’КѓXѓNѓЉѓvѓgђШ‚и‘Ц‚¦ѓtѓ‰ѓOOFF
+	//е…±йЂљг‚№г‚ЇгѓЄгѓ—гѓ€е€‡г‚Љж›їгЃ€гѓ•гѓ©г‚°OFF
 	*common_scr_flag = 0;
 
 	//VM_End( core );
-	return 0;	//’Ќ€УЃIЃ@‚±‚МЊг‚Й"END"‚ЙЌs‚­‚ж‚¤‚Й‚·‚й
+	return 0;	//жіЁж„ЏпјЃгЂЂгЃ“гЃ®еѕЊгЃ«"END"гЃ«иЎЊгЃЏг‚€гЃ†гЃ«гЃ™г‚‹
 }
 
 
 //============================================================================================
 //
-//	•ЄЉт–Ѕ—Я
+//	е€†еІђе‘Ѕд»¤
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓXѓNѓЉѓvѓgѓWѓѓѓ“ѓv
+ * г‚№г‚ЇгѓЄгѓ—гѓ€г‚ёгѓЈгѓігѓ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
  * @li	EVCMD_JUMP
  *
- *	•\‹LЃF	EVCMD_JUMP	JumpOffset(s16)
+ *	иЎЁиЁпјљ	EVCMD_JUMP	JumpOffset(s16)
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdGlobalJump( VM_MACHINE * core )
@@ -2534,9 +2534,9 @@ static BOOL EvCmdGlobalJump( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * b‚µЉ|‚Ї‘ОЏЫOBJID”дЉrѓWѓѓѓ“ѓv
+ * и©±гЃ—жЋ›гЃ‘еЇѕи±ЎOBJIDжЇ”ијѓг‚ёгѓЈгѓігѓ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return
  */
@@ -2548,16 +2548,16 @@ static BOOL EvCmdObjIDJump( VM_MACHINE * core )
 	FIELD_OBJ_PTR* fldobj;
 	FIELDSYS_WORK* fsys = core->fsys;
 
-	//b‚µЉ|‚Ї‘ОЏЫOBJ
+	//и©±гЃ—жЋ›гЃ‘еЇѕи±ЎOBJ
 	fldobj = GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_TARGET_OBJ );
 
-	//”дЉr‚·‚й’l
+	//жЇ”ијѓгЃ™г‚‹еЂ¤
 	id = VMGetU8(core);
 	
-	//”т‚Сђж
+	//йЈ›гЃіе…€
 	pos = (s32)VMGetU32(core);
 
-	//b‚µЉ|‚Ї‘ОЏЫOBJ‚ЖЃA”дЉr‚·‚й’l‚Є“Ї‚¶‚©
+	//и©±гЃ—жЋ›гЃ‘еЇѕи±ЎOBJгЃЁгЂЃжЇ”ијѓгЃ™г‚‹еЂ¤гЃЊеђЊгЃгЃ‹
 	if( FieldOBJ_OBJIDGet(*fldobj) == id ){
 		VMJump( core, (VM_CODE *)(core->PC+pos) );	//JUMP
 	}
@@ -2567,9 +2567,9 @@ static BOOL EvCmdObjIDJump( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * b‚µЉ|‚Ї‘ОЏЫBG”дЉrѓWѓѓѓ“ѓv
+ * и©±гЃ—жЋ›гЃ‘еЇѕи±ЎBGжЇ”ијѓг‚ёгѓЈгѓігѓ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return
  */
@@ -2581,16 +2581,16 @@ static BOOL EvCmdBgIDJump( VM_MACHINE * core )
 	//u32 *targetbg;
 	u32 targetbg;
 
-	//b‚µЉ|‚Ї‘ОЏЫBG
+	//и©±гЃ—жЋ›гЃ‘еЇѕи±ЎBG
 	targetbg = Event_GetTargetBg( core->event_work );
 
-	//”дЉr‚·‚й’l
+	//жЇ”ијѓгЃ™г‚‹еЂ¤
 	id = VMGetU8(core);
 	
-	//”т‚Сђж
+	//йЈ›гЃіе…€
 	pos = (s32)VMGetU32(core);
 
-	//b‚µЉ|‚Ї‘ОЏЫBG‚ЖЃA”дЉr‚·‚й’l‚Є“Ї‚¶‚©
+	//и©±гЃ—жЋ›гЃ‘еЇѕи±ЎBGгЃЁгЂЃжЇ”ијѓгЃ™г‚‹еЂ¤гЃЊеђЊгЃгЃ‹
 	//if( *targetbg == id ){
 	if( targetbg == id ){
 		VMJump( core, (VM_CODE *)(core->PC+pos) );	//JUMP
@@ -2601,10 +2601,10 @@ static BOOL EvCmdBgIDJump( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓCѓxѓ“ѓg‹N“®Ћћ‚МЋеђlЊц‚МЊь‚«”дЉrѓWѓѓѓ“ѓv
- * (Њ»ЌЭ‚МЊь‚«‚Е‚Н‚И‚ў‚М‚Е’Ќ€УЃI)
+ * г‚¤гѓ™гѓігѓ€иµ·е‹•ж™‚гЃ®дё»дєєе…¬гЃ®еђ‘гЃЌжЇ”ијѓг‚ёгѓЈгѓігѓ—
+ * (зЏѕењЁгЃ®еђ‘гЃЌгЃ§гЃЇгЃЄгЃ„гЃ®гЃ§жіЁж„ЏпјЃ)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return
  */
@@ -2618,10 +2618,10 @@ static BOOL EvCmdPlayerDirJump( VM_MACHINE * core )
 
 	player_dir = GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_PLAYER_DIR );
 
-	//”дЉr‚·‚й’l
+	//жЇ”ијѓгЃ™г‚‹еЂ¤
 	dir = VMGetU8(core);
 	
-	//”т‚Сђж
+	//йЈ›гЃіе…€
 	pos = (s32)VMGetU32(core);
 
 	if( *player_dir == dir ){
@@ -2633,15 +2633,15 @@ static BOOL EvCmdPlayerDirJump( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓXѓNѓЉѓvѓgѓRЃ[ѓ‹
+ * г‚№г‚ЇгѓЄгѓ—гѓ€г‚ігѓјгѓ«
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
  * @li	EVCMD_CALL
  *
- *	•\‹LЃF	EVCMD_CALL	CallOffset(s16)
+ *	иЎЁиЁпјљ	EVCMD_CALL	CallOffset(s16)
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdGlobalCall( VM_MACHINE * core )
@@ -2653,9 +2653,9 @@ static BOOL EvCmdGlobalCall( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓXѓNѓЉѓvѓgѓЉѓ^Ѓ[ѓ“
+ * г‚№г‚ЇгѓЄгѓ—гѓ€гѓЄг‚їгѓјгѓі
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2668,9 +2668,9 @@ static BOOL EvCmdRet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓXѓNѓЉѓvѓgЏрЊЏѓWѓѓѓ“ѓv
+ * г‚№г‚ЇгѓЄгѓ—гѓ€жќЎд»¶г‚ёгѓЈгѓігѓ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2691,9 +2691,9 @@ static BOOL EvCmdIfJump( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓXѓNѓЉѓvѓgЏрЊЏѓRЃ[ѓ‹
+ * г‚№г‚ЇгѓЄгѓ—гѓ€жќЎд»¶г‚ігѓјгѓ«
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2715,15 +2715,15 @@ static BOOL EvCmdIfCall( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓCѓxѓ“ѓgѓtѓ‰ѓOЉЦA
+//	г‚¤гѓ™гѓігѓ€гѓ•гѓ©г‚°й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓtѓ‰ѓO‚МѓZѓbѓg
+ * гѓ•гѓ©г‚°гЃ®г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2738,9 +2738,9 @@ static BOOL EvCmdFlagSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓtѓ‰ѓO‚МѓЉѓZѓbѓg
+ * гѓ•гѓ©г‚°гЃ®гѓЄг‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2755,9 +2755,9 @@ static BOOL EvCmdFlagReset( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓtѓ‰ѓO‚Мѓ`ѓFѓbѓN
+ * гѓ•гѓ©г‚°гЃ®гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2772,9 +2772,9 @@ static BOOL EvCmdFlagCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЏЃ[ѓN‚М’l‚рѓtѓ‰ѓOѓiѓ“ѓoЃ[‚Ж‚µ‚Дѓtѓ‰ѓOѓ`ѓFѓbѓN
+ * гѓЇгѓјг‚ЇгЃ®еЂ¤г‚’гѓ•гѓ©г‚°гѓЉгѓігѓђгѓјгЃЁгЃ—гЃ¦гѓ•гѓ©г‚°гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2791,9 +2791,9 @@ static BOOL EvCmdFlagCheckWk( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЏЃ[ѓN‚М’l‚рѓtѓ‰ѓOѓiѓ“ѓoЃ[‚Ж‚µ‚Дѓtѓ‰ѓOѓZѓbѓg
+ * гѓЇгѓјг‚ЇгЃ®еЂ¤г‚’гѓ•гѓ©г‚°гѓЉгѓігѓђгѓјгЃЁгЃ—гЃ¦гѓ•гѓ©г‚°г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2809,15 +2809,15 @@ static BOOL EvCmdFlagSetWk( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓgѓЊЃ[ѓiЃ[ѓtѓ‰ѓOЉЦA
+//	гѓ€гѓ¬гѓјгѓЉгѓјгѓ•гѓ©г‚°й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓgѓЊЃ[ѓiЃ[ѓtѓ‰ѓO‚МѓZѓbѓg(ѓgѓЊЃ[ѓiЃ[ID‚р“n‚·)
+ * гѓ€гѓ¬гѓјгѓЉгѓјгѓ•гѓ©г‚°гЃ®г‚»гѓѓгѓ€(гѓ€гѓ¬гѓјгѓЉгѓјIDг‚’жёЎгЃ™)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2825,16 +2825,16 @@ static BOOL EvCmdFlagSetWk( VM_MACHINE * core )
 static BOOL EvCmdTrainerFlagSet( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys = core->fsys;
-	u16 flag = VMGetWorkValue(core);	//ѓgѓЊЃ[ѓiЃ[ID‚р“n‚·ЃIЃ@ѓЏЃ[ѓNѓiѓ“ѓoЃ[‚р“n‚·‚М‚Нѓ_ѓЃЃI
+	u16 flag = VMGetWorkValue(core);	//гѓ€гѓ¬гѓјгѓЉгѓјIDг‚’жёЎгЃ™пјЃгЂЂгѓЇгѓјг‚ЇгѓЉгѓігѓђгѓјг‚’жёЎгЃ™гЃ®гЃЇгѓЂгѓЎпјЃ
 	SetEventFlagTrainer( fsys, flag );
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓgѓЊЃ[ѓiЃ[ѓtѓ‰ѓO‚МѓЉѓZѓbѓg(ѓgѓЊЃ[ѓiЃ[ID‚р“n‚·)
+ * гѓ€гѓ¬гѓјгѓЉгѓјгѓ•гѓ©г‚°гЃ®гѓЄг‚»гѓѓгѓ€(гѓ€гѓ¬гѓјгѓЉгѓјIDг‚’жёЎгЃ™)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2842,16 +2842,16 @@ static BOOL EvCmdTrainerFlagSet( VM_MACHINE * core )
 static BOOL EvCmdTrainerFlagReset( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys = core->fsys;
-	u16 flag = VMGetWorkValue(core);	//ѓgѓЊЃ[ѓiЃ[ID‚р“n‚·ЃIЃ@ѓЏЃ[ѓNѓiѓ“ѓoЃ[‚р“n‚·‚М‚Нѓ_ѓЃЃI
+	u16 flag = VMGetWorkValue(core);	//гѓ€гѓ¬гѓјгѓЉгѓјIDг‚’жёЎгЃ™пјЃгЂЂгѓЇгѓјг‚ЇгѓЉгѓігѓђгѓјг‚’жёЎгЃ™гЃ®гЃЇгѓЂгѓЎпјЃ
 	ResetEventFlagTrainer( fsys, flag );
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓgѓЊЃ[ѓiЃ[ѓtѓ‰ѓO‚Мѓ`ѓFѓbѓN(ѓgѓЊЃ[ѓiЃ[ID‚р“n‚·)
+ * гѓ€гѓ¬гѓјгѓЉгѓјгѓ•гѓ©г‚°гЃ®гѓЃг‚§гѓѓг‚Ї(гѓ€гѓ¬гѓјгѓЉгѓјIDг‚’жёЎгЃ™)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2859,7 +2859,7 @@ static BOOL EvCmdTrainerFlagReset( VM_MACHINE * core )
 static BOOL EvCmdTrainerFlagCheck( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys = core->fsys;
-	u16 flag = VMGetWorkValue(core);	//ѓgѓЊЃ[ѓiЃ[ID‚р“n‚·ЃIЃ@ѓЏЃ[ѓNѓiѓ“ѓoЃ[‚р“n‚·‚М‚Нѓ_ѓЃЃI
+	u16 flag = VMGetWorkValue(core);	//гѓ€гѓ¬гѓјгѓЉгѓјIDг‚’жёЎгЃ™пјЃгЂЂгѓЇгѓјг‚ЇгѓЉгѓігѓђгѓјг‚’жёЎгЃ™гЃ®гЃЇгѓЂгѓЎпјЃ
 	core->cmp_flag = CheckEventFlagTrainer( fsys, flag );
 	return 0;
 }
@@ -2867,15 +2867,15 @@ static BOOL EvCmdTrainerFlagCheck( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓЏЃ[ѓN‘ЂЌмЉЦA
+//	гѓЇгѓјг‚Їж“ЌдЅњй–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЏЃ[ѓN‚Й’l‚р‘«‚·
+ * гѓЇгѓјг‚ЇгЃ«еЂ¤г‚’и¶ігЃ™
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2891,9 +2891,9 @@ static BOOL EvCmdWkAdd( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЏЃ[ѓN‚©‚з’l‚р€ш‚­
+ * гѓЇгѓјг‚ЇгЃ‹г‚‰еЂ¤г‚’еј•гЃЏ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2908,9 +2908,9 @@ static BOOL EvCmdWkSub( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЏЃ[ѓN‚Й’l‚рЉi”[
+ * гѓЇгѓјг‚ЇгЃ«еЂ¤г‚’ж јзґЌ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2926,9 +2926,9 @@ static BOOL EvCmdLoadWkValue( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЏЃ[ѓN‚ЙѓЏЃ[ѓN‚М’l‚рЉi”[
+ * гѓЇгѓјг‚ЇгЃ«гѓЇгѓјг‚ЇгЃ®еЂ¤г‚’ж јзґЌ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2946,9 +2946,9 @@ static BOOL EvCmdLoadWkWk( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЏЃ[ѓN‚Й’l‚©ѓЏЃ[ѓN‚М’l‚рЉi”[
+ * гѓЇгѓјг‚ЇгЃ«еЂ¤гЃ‹гѓЇгѓјг‚ЇгЃ®еЂ¤г‚’ж јзґЌ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2965,15 +2965,15 @@ static BOOL EvCmdLoadWkWkValue( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓЃѓbѓZЃ[ѓWЃEѓEѓBѓ“ѓhѓEЉЦA
+//	гѓЎгѓѓг‚»гѓјг‚ёгѓ»г‚¦г‚Јгѓігѓ‰г‚¦й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * “o^‚і‚к‚Ѕ’PЊк‚рЋg‚Б‚Д•¶Ћљ—с“WЉJЃ@ѓЃѓbѓZЃ[ѓW•\Ћ¦(MSG_ALLPUT”Е)
+ * з™»йЊІгЃ•г‚ЊгЃџеЌиЄћг‚’дЅїгЃЈгЃ¦ж–‡е­—е€—е±•й–‹гЂЂгѓЎгѓѓг‚»гѓјг‚ёиЎЁз¤є(MSG_ALLPUTз‰€)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -2986,10 +2986,10 @@ static BOOL EvCmdTalkMsgAllPut( VM_MACHINE * core )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * “o^‚і‚к‚Ѕ’PЊк‚рЋg‚Б‚Д•¶Ћљ—с“WЉJЃ@ѓЃѓbѓZЃ[ѓW•\Ћ¦(MSG_ALLPUT”Е)
- * MSGѓAЃ[ѓJѓCѓu‚аЋw’и‚·‚йѓoЃ[ѓWѓ‡ѓ“
+ * з™»йЊІгЃ•г‚ЊгЃџеЌиЄћг‚’дЅїгЃЈгЃ¦ж–‡е­—е€—е±•й–‹гЂЂгѓЎгѓѓг‚»гѓјг‚ёиЎЁз¤є(MSG_ALLPUTз‰€)
+ * MSGг‚ўгѓјг‚«г‚¤гѓ–г‚‚жЊ‡е®љгЃ™г‚‹гѓђгѓјг‚ёгѓ§гѓі
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
@@ -3008,10 +3008,10 @@ static BOOL EvCmdTalkMsgAllPutOtherArc( VM_MACHINE * core)
 }
 //--------------------------------------------------------------------------------------------
 /**
- * “o^‚і‚к‚Ѕ’PЊк‚рЋg‚Б‚Д•¶Ћљ—с“WЉJЃ@ѓЃѓbѓZЃ[ѓW•\Ћ¦
- * MSGѓAЃ[ѓJѓCѓu‚аЋw’и‚·‚йѓoЃ[ѓWѓ‡ѓ“
+ * з™»йЊІгЃ•г‚ЊгЃџеЌиЄћг‚’дЅїгЃЈгЃ¦ж–‡е­—е€—е±•й–‹гЂЂгѓЎгѓѓг‚»гѓјг‚ёиЎЁз¤є
+ * MSGг‚ўгѓјг‚«г‚¤гѓ–г‚‚жЊ‡е®љгЃ™г‚‹гѓђгѓјг‚ёгѓ§гѓі
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  * @return	"1"
  */
 //--------------------------------------------------------------------------------------------
@@ -3030,7 +3030,7 @@ static BOOL EvCmdTalkMsgOtherArc( VM_MACHINE * core)
 }
 
 /**
- *	@brief	ЉИ€Х‰пbѓpѓ‰ѓЃЃ[ѓ^‚©‚зѓЃѓbѓZЃ[ѓWѓfЃ[ѓ^‚рђ¶ђ¬Ѓ••\Ћ¦(ALL_PUT)
+ *	@brief	з°Ўж“дјљи©±гѓ‘гѓ©гѓЎгѓјг‚їгЃ‹г‚‰гѓЎгѓѓг‚»гѓјг‚ёгѓ‡гѓјг‚їг‚’з”џж€ђпј†иЎЁз¤є(ALL_PUT)
  */
 static BOOL EvCmdTalkMsgAllPutPMS(VM_MACHINE* core)
 {
@@ -3044,7 +3044,7 @@ static BOOL EvCmdTalkMsgAllPutPMS(VM_MACHINE* core)
 }
 
 /**
- *	@brief	ЉИ€Х‰пbѓpѓ‰ѓЃЃ[ѓ^‚©‚зѓЃѓbѓZЃ[ѓWѓfЃ[ѓ^‚рђ¶ђ¬Ѓ••\Ћ¦
+ *	@brief	з°Ўж“дјљи©±гѓ‘гѓ©гѓЎгѓјг‚їгЃ‹г‚‰гѓЎгѓѓг‚»гѓјг‚ёгѓ‡гѓјг‚їг‚’з”џж€ђпј†иЎЁз¤є
  */
 static BOOL EvCmdTalkMsgPMS(VM_MACHINE* core)
 {
@@ -3058,14 +3058,14 @@ static BOOL EvCmdTalkMsgPMS(VM_MACHINE* core)
 	return 1;
 }
 /**
- *	@brief	ѓoѓgѓ‹ѓ^ѓЏЃ[‘Ођн‘OѓЃѓbѓZЃ[ѓWђк—p•\Ћ¦
+ *	@brief	гѓђгѓ€гѓ«г‚їгѓЇгѓјеЇѕж€¦е‰ЌгѓЎгѓѓг‚»гѓјг‚ёе°‚з”ЁиЎЁз¤є
  */
 static BOOL	EvCmdTalkMsgTowerApper(VM_MACHINE* core)
 {
 	u16	*msg;
 	BTOWER_SCRWORK* wk;
 	MSGDATA_MANAGER * man;
-	u16	tr_idx = VMGetU8(core);	//€кђl–Ъ‚©“сђl–Ъ‚©ЃH
+	u16	tr_idx = VMGetU8(core);	//дёЂдєєз›®гЃ‹дєЊдєєз›®гЃ‹пјџ
 
 	wk = core->fsys->btower_wk;
 	if(wk == NULL){
@@ -3079,7 +3079,7 @@ static BOOL	EvCmdTalkMsgTowerApper(VM_MACHINE* core)
 				NARC_msg_tower_trainer_dat, HEAPID_EVENT );
 		ScrTalkMsg(core, man,msg[1], 1, NULL);
 		MSGMAN_Delete(man);
-	}else{	//ЉИ€Х‰пb
+	}else{	//з°Ўж“дјљи©±
 		TalkMsgPMSParam(core,msg[0],msg[1],msg[2],msg[3],1);
 	}
 	VM_SetWait( core, TalkMsgWait );
@@ -3088,12 +3088,12 @@ static BOOL	EvCmdTalkMsgTowerApper(VM_MACHINE* core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ^ѓЏЃ[‚ЙЋQ‰Б‚Е‚«‚И‚ўѓ|ѓPѓ‚ѓ“‚ЕЊ©‚Ѕ‚±‚Ж‚М‚ ‚йѓ|ѓPѓ‚ѓ“–ј‚рѓ^ѓO“WЉJ‚µ‚ДѓЃѓbѓZЃ[ѓW•\Ћ¦
- * (Њ©‚Ѕ‚±‚Ж‚Є‚ ‚йѓ|ѓPѓ‚ѓ“–ј‚ѕ‚Ї“WЉJЃAЊ©‚Ѕ‚±‚Ж‚Є‚И‚ў‚а‚М‚НNULL•¶Ћљ—с“WЉJ)
+ * г‚їгѓЇгѓјгЃ«еЏ‚еЉ гЃ§гЃЌгЃЄгЃ„гѓќг‚±гѓўгѓігЃ§и¦‹гЃџгЃ“гЃЁгЃ®гЃ‚г‚‹гѓќг‚±гѓўгѓіеђЌг‚’г‚їг‚°е±•й–‹гЃ—гЃ¦гѓЎгѓѓг‚»гѓјг‚ёиЎЁз¤є
+ * (и¦‹гЃџгЃ“гЃЁгЃЊгЃ‚г‚‹гѓќг‚±гѓўгѓіеђЌгЃ гЃ‘е±•й–‹гЂЃи¦‹гЃџгЃ“гЃЁгЃЊгЃЄгЃ„г‚‚гЃ®гЃЇNULLж–‡е­—е€—е±•й–‹)
  *
- * “WЉJђ”‚ЄѓXѓNѓЉѓvѓgђк—p‚МWORDSET“o^ђ”‚ж‚и‘Ѕ‚ў‚М‚ЕЃAЋ©‘O‚Е—p€У
+ * е±•й–‹ж•°гЃЊг‚№г‚ЇгѓЄгѓ—гѓ€е°‚з”ЁгЃ®WORDSETз™»йЊІж•°г‚€г‚Ље¤љгЃ„гЃ®гЃ§гЂЃи‡Єе‰ЌгЃ§з”Ёж„Џ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -3108,7 +3108,7 @@ static BOOL EvCmdTalkMsgNgPokeName(VM_MACHINE * core )
 	u8	num;
 	WORDSET*	wset;
 	
-	//ѓ^ѓO“WЉJ
+	//г‚їг‚°е±•й–‹
 	num = 0;
 	wset = BtlTower_SetNgPokeName(fsys->savedata,pokenum,sex,flag,&num);
 	TalkMsgExtraWordSet(core,wset,msg_id+num,1);
@@ -3121,7 +3121,7 @@ static BOOL EvCmdTalkMsgNgPokeName(VM_MACHINE * core )
 
 //------------------------------------------------------------------
 /**
- * ѓAѓ“ѓmЃ[ѓ“ѓtѓHѓ“ѓg‚ЕѓЃѓbѓZЃ[ѓWЏo—Н
+ * г‚ўгѓігѓЋгѓјгѓігѓ•г‚©гѓігѓ€гЃ§гѓЎгѓѓг‚»гѓјг‚ёе‡єеЉ›
  *
  * @param   core		
  *
@@ -3144,11 +3144,11 @@ static BOOL EvCmdTalkMsgUnknownFont( VM_MACHINE* core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “o^‚і‚к‚Ѕ’PЊк‚рЋg‚Б‚Д•¶Ћљ—с“WЉJЃ@ѓЃѓbѓZЃ[ѓW•\Ћ¦
+ * з™»йЊІгЃ•г‚ЊгЃџеЌиЄћг‚’дЅїгЃЈгЃ¦ж–‡е­—е€—е±•й–‹гЂЂгѓЎгѓѓг‚»гѓјг‚ёиЎЁз¤є
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	Џн‚Й1
+ * @return	еёёгЃ«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdTalkMsg( VM_MACHINE * core )
@@ -3168,11 +3168,11 @@ static BOOL TalkMsgWait(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * “o^‚і‚к‚Ѕ’PЊк‚рЋg‚Б‚Д•¶Ћљ—с“WЉJЃ@ѓЃѓbѓZЃ[ѓW•\Ћ¦(“БЋкЃFѓЃѓbѓZЃ[ѓWID‚рѓЏЃ[ѓNЋw’и‰В”\)
+ * з™»йЊІгЃ•г‚ЊгЃџеЌиЄћг‚’дЅїгЃЈгЃ¦ж–‡е­—е€—е±•й–‹гЂЂгѓЎгѓѓг‚»гѓјг‚ёиЎЁз¤є(з‰№ж®ЉпјљгѓЎгѓѓг‚»гѓјг‚ёIDг‚’гѓЇгѓјг‚ЇжЊ‡е®љеЏЇиѓЅ)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	Џн‚Й1
+ * @return	еёёгЃ«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdTalkMsgSp( VM_MACHINE * core )
@@ -3186,11 +3186,11 @@ static BOOL EvCmdTalkMsgSp( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “o^‚і‚к‚Ѕ’PЊк‚рЋg‚Б‚Д•¶Ћљ—с“WЉJЃ@ѓIЃ[ѓgѓЃѓbѓZЃ[ѓW•\Ћ¦(“БЋкЃFѓЃѓbѓZЃ[ѓWID‚рѓЏЃ[ѓNЋw’и‰В”\)
+ * з™»йЊІгЃ•г‚ЊгЃџеЌиЄћг‚’дЅїгЃЈгЃ¦ж–‡е­—е€—е±•й–‹гЂЂг‚Єгѓјгѓ€гѓЎгѓѓг‚»гѓјг‚ёиЎЁз¤є(з‰№ж®ЉпјљгѓЎгѓѓг‚»гѓјг‚ёIDг‚’гѓЇгѓјг‚ЇжЊ‡е®љеЏЇиѓЅ)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	Џн‚Й1
+ * @return	еёёгЃ«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdTalkMsgSpAuto( VM_MACHINE * core )
@@ -3211,11 +3211,11 @@ static BOOL EvCmdTalkMsgSpAuto( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “o^‚і‚к‚Ѕ’PЊк‚рЋg‚Б‚Д•¶Ћљ—с“WЉJЃ@ѓЃѓbѓZЃ[ѓW•\Ћ¦(ѓLЃ[ѓXѓLѓbѓv•s‰В)
+ * з™»йЊІгЃ•г‚ЊгЃџеЌиЄћг‚’дЅїгЃЈгЃ¦ж–‡е­—е€—е±•й–‹гЂЂгѓЎгѓѓг‚»гѓјг‚ёиЎЁз¤є(г‚­гѓјг‚№г‚­гѓѓгѓ—дёЌеЏЇ)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	Џн‚Й1
+ * @return	еёёгЃ«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdTalkMsgNoSkip( VM_MACHINE * core )
@@ -3228,8 +3228,8 @@ static BOOL EvCmdTalkMsgNoSkip( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓЃѓbѓZЃ[ѓW•\Ћ¦ЃFSCRID‚рMSGID‚Ж‚Э‚И‚µ‚Д•\Ћ¦
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @brief	гѓЎгѓѓг‚»гѓјг‚ёиЎЁз¤єпјљSCRIDг‚’MSGIDгЃЁгЃїгЃЄгЃ—гЃ¦иЎЁз¤є
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdMsgAutoGet( VM_MACHINE * core)
@@ -3243,12 +3243,12 @@ static BOOL EvCmdMsgAutoGet( VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓRѓ“ѓeѓXѓg—pЃF“o^‚і‚к‚Ѕ’PЊк‚рЋg‚Б‚Д•¶Ћљ—с“WЉJЃ@ѓЃѓbѓZЃ[ѓW•\Ћ¦
- * Ѓ¦’КђMЃA”с’КђM‚ЕѓЃѓbѓZЃ[ѓW‘—‚и‚МђЭ’и‚Є•П‚н‚и‚Ь‚·ЃB
+ * г‚ігѓігѓ†г‚№гѓ€з”Ёпјљз™»йЊІгЃ•г‚ЊгЃџеЌиЄћг‚’дЅїгЃЈгЃ¦ж–‡е­—е€—е±•й–‹гЂЂгѓЎгѓѓг‚»гѓјг‚ёиЎЁз¤є
+ * вЂ»йЂљдїЎгЂЃйќћйЂљдїЎгЃ§гѓЎгѓѓг‚»гѓјг‚ёйЂЃг‚ЉгЃ®иЁ­е®љгЃЊе¤‰г‚Џг‚ЉгЃѕгЃ™гЂ‚
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	Џн‚Й1
+ * @return	еёёгЃ«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdTalkConSioMsg( VM_MACHINE * core )
@@ -3271,11 +3271,11 @@ static BOOL EvCmdTalkConSioMsg( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓLЃ[ѓEѓFѓCѓg
+ * г‚­гѓјг‚¦г‚§г‚¤гѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	Џн‚Й1
+ * @return	еёёгЃ«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdABKeyWait( VM_MACHINE * core )
@@ -3284,7 +3284,7 @@ static BOOL EvCmdABKeyWait( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitABKey(VM_MACHINE * core)
 {
 	if( sys.trg & ( PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL ) ){
@@ -3295,11 +3295,11 @@ static BOOL EvWaitABKey(VM_MACHINE * core)
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ѓLЃ[ѓEѓFѓCѓg or ЋћЉФ‘Т‚ї
+ * г‚­гѓјг‚¦г‚§г‚¤гѓ€ or ж™‚й–“еѕ…гЃЎ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	Џн‚Й1
+ * @return	еёёгЃ«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdABKeyTimeWait( VM_MACHINE * core )
@@ -3309,7 +3309,7 @@ static BOOL EvCmdABKeyTimeWait( VM_MACHINE * core )
 	return 1;
 }
 
-//ѓLЃ[orЋћЉФ‘Т‚ї
+//г‚­гѓјorж™‚й–“еѕ…гЃЎ
 static BOOL EvWaitABKeyTime(VM_MACHINE * core)
 {
 	//if (sys.trg & (PAD_BUTTON_A | PAD_BUTTON_B)) {
@@ -3325,11 +3325,11 @@ static BOOL EvWaitABKeyTime(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓCѓxѓ“ѓg‚МЌЕЊг‚МѓLЃ[ѓEѓFѓCѓg
+ * г‚¤гѓ™гѓігѓ€гЃ®жњЂеѕЊгЃ®г‚­гѓјг‚¦г‚§г‚¤гѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	Џн‚Й1
+ * @return	еёёгЃ«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdLastKeyWait( VM_MACHINE * core )
@@ -3338,17 +3338,17 @@ static BOOL EvCmdLastKeyWait( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitLastKey(VM_MACHINE * core)
 {
-	//’КЏнЏI—№
+	//йЂљеёёзµ‚дє†
 	//if( sys.trg & ( PAD_BUTTON_A | PAD_BUTTON_B ) ){
 	if( sys.trg & ( PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL ) ){
 		return 1;
 	}
 
 #if 1
-	//Џ\ЋљѓLЃ[ЃAѓXѓ^Ѓ[ѓgѓ{ѓ^ѓ“‚МѓЉѓNѓGѓXѓgЏ€—ќ‚р‚·‚й
+	//еЌЃе­—г‚­гѓјгЂЃг‚№г‚їгѓјгѓ€гѓњг‚їгѓігЃ®гѓЄг‚Їг‚Ёг‚№гѓ€е‡¦зђ†г‚’гЃ™г‚‹
 	if( sys.trg & PAD_KEY_UP ){
 		Player_DirSet( core->fsys->player, DIR_UP );
 	}else if( sys.trg & PAD_KEY_DOWN ){
@@ -3371,11 +3371,11 @@ static BOOL EvWaitLastKey(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓCѓxѓ“ѓg‚МЌЕЊг‚МѓLЃ[ѓEѓFѓCѓg(‚»‚МЊг‚ЙѓAѓjѓЃ‚Є‘±‚­Ћћ‚ЙЋg—p)
+ * г‚¤гѓ™гѓігѓ€гЃ®жњЂеѕЊгЃ®г‚­гѓјг‚¦г‚§г‚¤гѓ€(гЃќгЃ®еѕЊгЃ«г‚ўгѓ‹гѓЎгЃЊз¶љгЃЏж™‚гЃ«дЅїз”Ё)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	Џн‚Й1
+ * @return	еёёгЃ«1
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdNextAnmLastKeyWait( VM_MACHINE * core )
@@ -3384,7 +3384,7 @@ static BOOL EvCmdNextAnmLastKeyWait( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitNextAnmLastKey(VM_MACHINE * core)
 {
 	//if( sys.trg & ( PAD_BUTTON_A | PAD_BUTTON_B ) ){
@@ -3392,7 +3392,7 @@ static BOOL EvWaitNextAnmLastKey(VM_MACHINE * core)
 		return 1;
 	}
 
-	//Џ\ЋљѓLЃ[‚Е‚аѓЃѓbѓZЃ[ѓW‘—‚и
+	//еЌЃе­—г‚­гѓјгЃ§г‚‚гѓЎгѓѓг‚»гѓјг‚ёйЂЃг‚Љ
 	if( sys.trg & ( PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT ) ){
 		return 1;
 	}
@@ -3402,9 +3402,9 @@ static BOOL EvWaitNextAnmLastKey(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰пbѓEѓBѓ“ѓhѓE‚рЉJ‚­
+ * дјљи©±г‚¦г‚Јгѓігѓ‰г‚¦г‚’й–‹гЃЏ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -3423,9 +3423,9 @@ static BOOL EvCmdTalkWinOpen( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰пbѓEѓBѓ“ѓhѓE‚р•В‚¶‚й
+ * дјљи©±г‚¦г‚Јгѓігѓ‰г‚¦г‚’й–‰гЃг‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -3444,9 +3444,9 @@ static BOOL EvCmdTalkWinClose( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰пbѓEѓBѓ“ѓhѓE‚р•В‚¶‚й(ѓNѓЉѓA‚И‚µ)
+ * дјљи©±г‚¦г‚Јгѓігѓ‰г‚¦г‚’й–‰гЃг‚‹(г‚ЇгѓЄг‚ўгЃЄгЃ—)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -3465,15 +3465,15 @@ static BOOL EvCmdTalkWinCloseNoClear( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGѓXѓNѓЌЃ[ѓ‹
+ * BGг‚№г‚Їгѓ­гѓјгѓ«
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  *
  * REG	0-3
  * TMP	0,1
- * ‚рЋg—p‚µ‚Д‚ў‚й‚М‚Е’Ќ€УЃI
+ * г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЃ®гЃ§жіЁж„ЏпјЃ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdBgScroll( VM_MACHINE * core )
@@ -3486,13 +3486,13 @@ static BOOL EvCmdBgScroll( VM_MACHINE * core )
 	u16* tmp1			= GetEvScriptWorkMemberAdrs( fsys,ID_EVSCR_WK_TEMP1 );
 	u16* reg3			= GetEvScriptWorkMemberAdrs( fsys,ID_EVSCR_WK_REG3 );
 
-	*reg0 = VMGetU8(core);	//XѓXѓNѓЌЃ[ѓ‹’l
-	*tmp0 = VMGetU8(core);	//XѓJѓEѓ“ѓ^
-	*reg1 = VMGetU8(core);	//XѓXѓNѓЌЃ[ѓ‹•ыЊь
+	*reg0 = VMGetU8(core);	//Xг‚№г‚Їгѓ­гѓјгѓ«еЂ¤
+	*tmp0 = VMGetU8(core);	//Xг‚«г‚¦гѓіг‚ї
+	*reg1 = VMGetU8(core);	//Xг‚№г‚Їгѓ­гѓјгѓ«ж–№еђ‘
 
-	*reg2 = VMGetU8(core);	//YѓXѓNѓЌЃ[ѓ‹’l
-	*tmp1 = VMGetU8(core);	//YѓJѓEѓ“ѓ^
-	*reg3 = VMGetU8(core);	//YѓXѓNѓЌЃ[ѓ‹•ыЊь
+	*reg2 = VMGetU8(core);	//Yг‚№г‚Їгѓ­гѓјгѓ«еЂ¤
+	*tmp1 = VMGetU8(core);	//Yг‚«г‚¦гѓіг‚ї
+	*reg3 = VMGetU8(core);	//Yг‚№г‚Їгѓ­гѓјгѓ«ж–№еђ‘
 
 	VM_SetWait( core, EvBgScrollWait );
 
@@ -3501,16 +3501,16 @@ static BOOL EvCmdBgScroll( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGѓXѓNѓЌЃ[ѓ‹ЏI—№‘Т‚ї
+ * BGг‚№г‚Їгѓ­гѓјгѓ«зµ‚дє†еѕ…гЃЎ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @retval	"0 = “®Ќм’†"
- * @retval	"1 = ЏI—№"
+ * @retval	"0 = е‹•дЅњдё­"
+ * @retval	"1 = зµ‚дє†"
  *
  * REG	0-3
  * TMP	0,1
- * ‚рЋg—p‚µ‚Д‚ў‚й‚М‚Е’Ќ€УЃI
+ * г‚’дЅїз”ЁгЃ—гЃ¦гЃ„г‚‹гЃ®гЃ§жіЁж„ЏпјЃ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvBgScrollWait( VM_MACHINE * core )
@@ -3525,7 +3525,7 @@ static BOOL EvBgScrollWait( VM_MACHINE * core )
 	u16* count_y	= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WK_TEMP1 );
 
 	if( *count_x == 0 && *count_y == 0 ){
-		return 1;	//ЏI—№
+		return 1;	//зµ‚дє†
 	}
 
 	if( *scroll_x != 0 ){
@@ -3557,9 +3557,9 @@ static BOOL EvBgScrollWait( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЉЕ”ВЌмђ¬Ѓiѓ^ѓEѓ“ѓ}ѓbѓvЃA•WЋЇЃA•\ЋDЃj
+ * зњ‹жќїдЅњж€ђпј€г‚їг‚¦гѓігѓћгѓѓгѓ—гЂЃжЁ™и­гЂЃиЎЁжњ­пј‰
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	1
  */
@@ -3584,8 +3584,8 @@ static BOOL EvCmdBoardMake( VM_MACHINE * core )
 	map  = VMGetU16( core );
 	wk_id = VMGetU16( core );
 	if (map == 0) {
-		//ЉG•ї‚МЋw’и‚Є‚O‚МЏкЌ‡ЃAOBJ‚Мѓpѓ‰ѓЃЃ[ѓ^‚©‚зЉG•їЋw’и‚рЋж“ѕ‚·‚й
-		//b‚µЉ|‚Ї‘ОЏЫOBJ
+		//зµµжџ„гЃ®жЊ‡е®љгЃЊпјђгЃ®е ґеђ€гЂЃOBJгЃ®гѓ‘гѓ©гѓЎгѓјг‚їгЃ‹г‚‰зµµжџ„жЊ‡е®љг‚’еЏ–еѕ—гЃ™г‚‹
+		//и©±гЃ—жЋ›гЃ‘еЇѕи±ЎOBJ
 		FIELD_OBJ_PTR *fldobj = GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_TARGET_OBJ );
 		map = FieldOBJ_ParamGet(*fldobj, FLDOBJ_PARAM_0);
 		OS_Printf("OBJID:%d PARAM0:%d X:%d Z:%d\n", FieldOBJ_OBJIDGet(*fldobj),
@@ -3607,9 +3607,9 @@ static BOOL EvCmdBoardMake( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЉЕ”ВЌмђ¬ЃiЊfЋ¦”В—pЃj
+ * зњ‹жќїдЅњж€ђпј€жЋІз¤єжќїз”Ёпј‰
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	1
  */
@@ -3632,9 +3632,9 @@ static BOOL EvCmdInfoBoardMake( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЉЕ”Вђ§ЊдѓЉѓNѓGѓXѓg
+ * зњ‹жќїе€¶еѕЎгѓЄг‚Їг‚Ёг‚№гѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	1
  */
@@ -3654,12 +3654,12 @@ static BOOL EvCmdBoardReq( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЉЕ”ВѓЉѓNѓGѓXѓgЏI—№‘Т‚їѓZѓbѓg
+ * зњ‹жќїгѓЄг‚Їг‚Ёг‚№гѓ€зµ‚дє†еѕ…гЃЎг‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @retval	"0 = ЏI—№‚µ‚Д‚ў‚й"
- * @retval	"1 = Џ€—ќ’†"
+ * @retval	"0 = зµ‚дє†гЃ—гЃ¦гЃ„г‚‹"
+ * @retval	"1 = е‡¦зђ†дё­"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdBoardWait( VM_MACHINE * core )
@@ -3675,12 +3675,12 @@ static BOOL EvCmdBoardWait( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЉЕ”ВѓЉѓNѓGѓXѓgЏI—№‘Т‚ї
+ * зњ‹жќїгѓЄг‚Їг‚Ёг‚№гѓ€зµ‚дє†еѕ…гЃЎ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @retval	"0 = “®Ќм’†"
- * @retval	"1 = ЏI—№"
+ * @retval	"0 = е‹•дЅњдё­"
+ * @retval	"1 = зµ‚дє†"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL BoardReqWait( VM_MACHINE * core )
@@ -3695,9 +3695,9 @@ static BOOL BoardReqWait( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЉЕ”ВѓЃѓbѓZЃ[ѓW•\Ћ¦
+ * зњ‹жќїгѓЎгѓѓг‚»гѓјг‚ёиЎЁз¤є
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @retrn	1
  */
@@ -3712,18 +3712,18 @@ static BOOL EvCmdBoardMsg( VM_MACHINE * core )
 	u8	msg_id				= VMGetU8(core);
 	u16 wk_id				= VMGetU16( core );
 
-	//GF_BGL_BmpWinDataFill( BoardWinGet( fsys->board ), FBMP_COL_WHITE );	//ѓЃѓbѓZЃ[ѓWѓNѓЉѓA
+	//GF_BGL_BmpWinDataFill( BoardWinGet( fsys->board ), FBMP_COL_WHITE );	//гѓЎгѓѓг‚»гѓјг‚ёг‚ЇгѓЄг‚ў
 
 	MSGMAN_GetString( core->msgman, msg_id, *ptmp );
 
-	//“o^‚і‚к‚Ѕ’PЊк‚рЋg‚Б‚Д•¶Ћљ—с“WЉJ‚·‚й
+	//з™»йЊІгЃ•г‚ЊгЃџеЌиЄћг‚’дЅїгЃЈгЃ¦ж–‡е­—е€—е±•й–‹гЃ™г‚‹
 	WORDSET_ExpandStr( *wordset, *pbuf, *ptmp );
 
-	//ЉЕ”ВTCB•Ы‘¶
+	//зњ‹жќїTCBдїќе­
 	*msg_index = FieldTalkMsgStart( BoardWinGet(fsys->board),
 									*pbuf, SaveData_GetConfig(core->fsys->savedata), 1 );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	VM_SetWait( core, BoardMsgWait );
@@ -3733,40 +3733,40 @@ static BOOL EvCmdBoardMsg( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЃѓbѓZЃ[ѓWЏI—№‘Т‚ї
+ * гѓЎгѓѓг‚»гѓјг‚ёзµ‚дє†еѕ…гЃЎ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @retval	"0 = “®Ќм’†"
- * @retval	"1 = ЏI—№"
+ * @retval	"0 = е‹•дЅњдё­"
+ * @retval	"1 = зµ‚дє†"
  *
- * @li	ANSWK = 0 : ѓLѓѓѓ“ѓZѓ‹
- * @li	ANSWK = 1 : ѓЃѓjѓ…Ѓ[‚Ц
- * @li	ANSWK = 2 : ’КЏнЏI—№
+ * @li	ANSWK = 0 : г‚­гѓЈгѓіг‚»гѓ«
+ * @li	ANSWK = 1 : гѓЎгѓ‹гѓҐгѓјгЃё
+ * @li	ANSWK = 2 : йЂљеёёзµ‚дє†
  */
 //--------------------------------------------------------------------------------------------
 static BOOL BoardMsgWait( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys = core->fsys;
 	u8* msg_index		= GetEvScriptWorkMemberAdrs( fsys,ID_EVSCR_MSGINDEX );
-	u16* ret_wk			= GetEventWorkAdrs( fsys, core->reg[0] );	//’Ќ€УЃI
+	u16* ret_wk			= GetEventWorkAdrs( fsys, core->reg[0] );	//жіЁж„ЏпјЃ
 	u8	type			= BoardTypeGet( fsys->board );
 	int	dir = 0xffff;
 
-	// ’КЏнЏI—№
+	// йЂљеёёзµ‚дє†
 	if( FldTalkMsgEndCheck( *msg_index ) == 1 ){
 		*ret_wk = 2;
 		return 1;
 	}
 /*
-	// ѓLѓѓѓ“ѓZѓ‹
+	// г‚­гѓЈгѓіг‚»гѓ«
 	if( sys.trg & ( PAD_KEY_UP|PAD_KEY_DOWN|PAD_KEY_LEFT|PAD_KEY_RIGHT ) ){
 		GF_STR_PrintForceStop( *msg_index );
 		*ret_wk = 0;
 		return 1;
 	}
 */
-	// Џ\ЋљѓLЃ[‚МѓЉѓNѓGѓXѓgЏ€—ќ
+	// еЌЃе­—г‚­гѓјгЃ®гѓЄг‚Їг‚Ёг‚№гѓ€е‡¦зђ†
 	if( sys.trg & PAD_KEY_UP ){
 		dir = DIR_UP;
 	}else if( sys.trg & PAD_KEY_DOWN ){
@@ -3783,7 +3783,7 @@ static BOOL BoardMsgWait( VM_MACHINE * core )
 		return 1;
 	}
 
-	// ѓЃѓjѓ…Ѓ[ѓЉѓNѓGѓXѓg
+	// гѓЎгѓ‹гѓҐгѓјгѓЄг‚Їг‚Ёг‚№гѓ€
 	if( sys.trg & PAD_BUTTON_X ){
 		GF_STR_PrintForceStop( *msg_index );
 		*ret_wk = 1;
@@ -3796,9 +3796,9 @@ static BOOL BoardMsgWait( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЉЕ”ВЏI—№‘Т‚їѓZѓbѓg
+ * зњ‹жќїзµ‚дє†еѕ…гЃЎг‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @retrn	1
  */
@@ -3807,7 +3807,7 @@ static BOOL EvCmdBoardEndWait( VM_MACHINE * core )
 {
 	u16 wk_id	= VMGetU16( core );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	VM_SetWait( core, BoardEndWait );
@@ -3816,25 +3816,25 @@ static BOOL EvCmdBoardEndWait( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЉЕ”ВЏI—№‘Т‚ї
+ * зњ‹жќїзµ‚дє†еѕ…гЃЎ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @retval	"0 = “®Ќм’†"
- * @retval	"1 = ЏI—№"
+ * @retval	"0 = е‹•дЅњдё­"
+ * @retval	"1 = зµ‚дє†"
  *
- * @li	ANSWK = 0 : ’КЏнЏI—№
- * @li	ANSWK = 1 : ѓЃѓjѓ…Ѓ[‚Ц
+ * @li	ANSWK = 0 : йЂљеёёзµ‚дє†
+ * @li	ANSWK = 1 : гѓЎгѓ‹гѓҐгѓјгЃё
  */
 //--------------------------------------------------------------------------------------------
 static BOOL BoardEndWait( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys = core->fsys;
-	u16* ret_wk			= GetEventWorkAdrs( fsys, core->reg[0] );	//’Ќ€УЃI
+	u16* ret_wk			= GetEventWorkAdrs( fsys, core->reg[0] );	//жіЁж„ЏпјЃ
 	int	dir = 0xffff;
 
 /*
-	// ’КЏнЏI—№
+	// йЂљеёёзµ‚дє†
 //if( sys.trg & (PAD_KEY_UP|PAD_KEY_DOWN|PAD_KEY_LEFT|PAD_KEY_RIGHT|PAD_BUTTON_A|PAD_BUTTON_B) ){
 	if( sys.trg & (PAD_KEY_UP|PAD_KEY_DOWN|PAD_KEY_LEFT|PAD_KEY_RIGHT|PAD_BUTTON_DECIDE|PAD_BUTTON_CANCEL) ){
 		*ret_wk = 0;
@@ -3846,7 +3846,7 @@ static BOOL BoardEndWait( VM_MACHINE * core )
 		return 1;
 	}
 
-	// Џ\ЋљѓLЃ[‚МѓЉѓNѓGѓXѓgЏ€—ќ
+	// еЌЃе­—г‚­гѓјгЃ®гѓЄг‚Їг‚Ёг‚№гѓ€е‡¦зђ†
 	if( sys.trg & PAD_KEY_UP ){
 		dir = DIR_UP;
 	}else if( sys.trg & PAD_KEY_DOWN ){
@@ -3862,7 +3862,7 @@ static BOOL BoardEndWait( VM_MACHINE * core )
 		return 1;
 	}
 
-	// ѓЃѓjѓ…Ѓ[ѓЉѓNѓGѓXѓg
+	// гѓЎгѓ‹гѓҐгѓјгѓЄг‚Їг‚Ёг‚№гѓ€
 	if( sys.trg & PAD_BUTTON_X ){
 		*ret_wk = 1;
 		return 1;
@@ -3873,9 +3873,9 @@ static BOOL BoardEndWait( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЃѓjѓ…Ѓ[ѓЉѓNѓGѓXѓg
+ * гѓЎгѓ‹гѓҐгѓјгѓЄг‚Їг‚Ёг‚№гѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	0
  */
@@ -3889,9 +3889,9 @@ static BOOL EvCmdMenuReq( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ѓu‚Н‚ўЃE‚ў‚ў‚¦ЃvЏ€—ќ
+ * гЂЊгЃЇгЃ„гѓ»гЃ„гЃ„гЃ€гЂЌе‡¦зђ†
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	1
  */
@@ -3908,7 +3908,7 @@ static BOOL EvCmdYesNoWin( VM_MACHINE * core )
 	*mw = BmpYesNoSelectInit(
 			fsys->bgl, &YesNoBmpDat, MENU_WIN_CGX_NUM, MENU_WIN_PAL, HEAPID_FIELD );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	VM_SetWait( core, EvYesNoSelect );
@@ -3921,7 +3921,7 @@ static BOOL EvYesNoSelect(VM_MACHINE * core)
 	u32	ret;
 	FIELDSYS_WORK* fsys = core->fsys;
 	BMPMENU_WORK** mw	= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_MENUWORK );
-	u16* ret_wk			= GetEventWorkAdrs( fsys, core->reg[0] );	//’Ќ€УЃI
+	u16* ret_wk			= GetEventWorkAdrs( fsys, core->reg[0] );	//жіЁж„ЏпјЃ
 	
 	ret  = BmpYesNoSelectMain( *mw, HEAPID_FIELD );
 
@@ -3937,8 +3937,8 @@ static BOOL EvYesNoSelect(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‘Т‹@ѓAѓCѓRѓ“•\Ћ¦
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @brief	еѕ…ж©џг‚ўг‚¤г‚ігѓіиЎЁз¤є
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  * @return	0
  */
 //--------------------------------------------------------------------------------------------
@@ -3953,8 +3953,8 @@ static BOOL EvCmdTimeWaitIconAdd(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‘Т‹@ѓAѓCѓRѓ“ЏБ‹Ћ
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @brief	еѕ…ж©џг‚ўг‚¤г‚ігѓіж¶€еЋ»
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  * @return	0
  */
 //--------------------------------------------------------------------------------------------
@@ -3969,16 +3969,16 @@ static BOOL EvCmdTimeWaitIconDel(VM_MACHINE * core)
 
 //============================================================================================
 //
-//	BMPѓЃѓjѓ…Ѓ[ЉЦA
+//	BMPгѓЎгѓ‹гѓҐгѓјй–ўйЂЈ
 //
-//	"BMPѓЉѓXѓg"ЉЦђ”‚Ж“Ї‚¶ЉЦђ”‚рЋg‚Б‚Д‚ў‚й‚М‚Е’Ќ€УЃI
-//	ЃEѓЉѓXѓgЏI—№‘Т‚їЉЦђ”
+//	"BMPгѓЄг‚№гѓ€"й–ўж•°гЃЁеђЊгЃй–ўж•°г‚’дЅїгЃЈгЃ¦гЃ„г‚‹гЃ®гЃ§жіЁж„ЏпјЃ
+//	гѓ»гѓЄг‚№гѓ€зµ‚дє†еѕ…гЃЎй–ўж•°
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPѓЃѓjѓ…Ѓ[	Џ‰Љъ‰»
+ * @brief	BMPгѓЎгѓ‹гѓҐгѓј	е€ќжњџеЊ–
  *
  * @param	none
  *
@@ -3996,13 +3996,13 @@ static BOOL EvCmdBmpMenuInit( VM_MACHINE * core )
 	u8 cancel			= VMGetU8(core);
 	u16 wk_id			= VMGetU16( core );
 	
-	//Џ‰Љъ‰»
+	//е€ќжњџеЊ–
 	*ev_win	= CmdEvBmpMenu_Init(fsys, x, y, cursor, cancel, 
 								GetEventWorkAdrs(fsys,wk_id), *wordset, 
 								GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_MSGWINDAT),
 								NULL );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	return 1;
@@ -4010,7 +4010,7 @@ static BOOL EvCmdBmpMenuInit( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPѓЃѓjѓ…Ѓ[	Џ‰Љъ‰»(“З‚ЭЌћ‚с‚Е‚ў‚йgmmѓtѓ@ѓCѓ‹‚рЋg—p‚·‚й)
+ * @brief	BMPгѓЎгѓ‹гѓҐгѓј	е€ќжњџеЊ–(иЄ­гЃїиѕјг‚“гЃ§гЃ„г‚‹gmmгѓ•г‚Ўг‚¤гѓ«г‚’дЅїз”ЁгЃ™г‚‹)
  *
  * @param	none
  *
@@ -4028,13 +4028,13 @@ static BOOL EvCmdBmpMenuInitEx( VM_MACHINE * core )
 	u8 cancel			= VMGetU8(core);
 	u16 wk_id			= VMGetU16( core );
 	
-	//Џ‰Љъ‰»
+	//е€ќжњџеЊ–
 	*ev_win	= CmdEvBmpMenu_Init(fsys, x, y, cursor, cancel, 
 								GetEventWorkAdrs(fsys,wk_id), *wordset, 
 								GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_MSGWINDAT), 
 								core->msgman );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	return 1;
@@ -4042,7 +4042,7 @@ static BOOL EvCmdBmpMenuInitEx( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPѓЃѓjѓ…Ѓ[	ѓЉѓXѓgЌмђ¬
+ * @brief	BMPгѓЎгѓ‹гѓҐгѓј	гѓЄг‚№гѓ€дЅњж€ђ
  *
  * @param	none
  *
@@ -4053,7 +4053,7 @@ static BOOL EvCmdBmpMenuMakeList( VM_MACHINE * core )
 {
 	u8 msg_id, param;
 	FIELDSYS_WORK* fsys	= core->fsys;
-	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKЋж“ѕ
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKеЏ–еѕ—
 
 	msg_id	= VMGetU8(core);
 	param	= VMGetU8(core);
@@ -4064,7 +4064,7 @@ static BOOL EvCmdBmpMenuMakeList( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPѓЃѓjѓ…Ѓ[	ѓЉѓXѓgЌмђ¬(u16ѓoЃ[ѓWѓ‡ѓ“)
+ * @brief	BMPгѓЎгѓ‹гѓҐгѓј	гѓЄг‚№гѓ€дЅњж€ђ(u16гѓђгѓјг‚ёгѓ§гѓі)
  *
  * @param	none
  *
@@ -4075,7 +4075,7 @@ static BOOL EvCmdBmpMenuMakeList16( VM_MACHINE * core )
 {
 	u16 msg_id,param;
 	FIELDSYS_WORK* fsys	= core->fsys;
-	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKЋж“ѕ
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKеЏ–еѕ—
 
 	msg_id	= VMGetWorkValue(core);
 	param	= VMGetWorkValue(core);
@@ -4086,7 +4086,7 @@ static BOOL EvCmdBmpMenuMakeList16( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPѓЃѓjѓ…Ѓ[	ЉJЋn
+ * @brief	BMPгѓЎгѓ‹гѓҐгѓј	й–‹е§‹
  *
  * @param	none
  *
@@ -4096,7 +4096,7 @@ static BOOL EvCmdBmpMenuMakeList16( VM_MACHINE * core )
 static BOOL EvCmdBmpMenuStart( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys	= core->fsys;
-	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKЋж“ѕ
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKеЏ–еѕ—
 
 	CmdEvBmpMenu_Start( *ev_win );
 	
@@ -4104,23 +4104,23 @@ static BOOL EvCmdBmpMenuStart( VM_MACHINE * core )
 	return 1;
 }
 
-//ѓEѓFѓCѓgЉЦђ”
+//г‚¦г‚§г‚¤гѓ€й–ўж•°
 static BOOL EvSelWinWait(VM_MACHINE * core)
 {
 	FIELDSYS_WORK* fsys = core->fsys;
-	u16* ret_wk = GetEventWorkAdrs( fsys, core->reg[0] );	//’Ќ€УЃI
+	u16* ret_wk = GetEventWorkAdrs( fsys, core->reg[0] );	//жіЁж„ЏпјЃ
 
 	if( *ret_wk == EV_WIN_NOTHING ){
-		return FALSE;	//Њp‘±
+		return FALSE;	//з¶™з¶љ
 	}
 
-	return TRUE;		//ЏI—№
+	return TRUE;		//зµ‚дє†
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPѓЃѓjѓ…Ѓ[	ЉJЋn
+ * @brief	BMPгѓЎгѓ‹гѓҐгѓј	й–‹е§‹
  *
  * @param	none
  *
@@ -4130,7 +4130,7 @@ static BOOL EvSelWinWait(VM_MACHINE * core)
 static BOOL EvCmdUnionBmpMenuStart( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys	= core->fsys;
-	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKЋж“ѕ
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKеЏ–еѕ—
 
 	CmdEvBmpMenu_Start( *ev_win );
 	
@@ -4138,40 +4138,40 @@ static BOOL EvCmdUnionBmpMenuStart( VM_MACHINE * core )
 	return 1;
 }
 
-//ѓEѓFѓCѓgЉЦђ”
+//г‚¦г‚§г‚¤гѓ€й–ўж•°
 static BOOL EvSelUnionWinWait(VM_MACHINE * core)
 {
 	FIELDSYS_WORK* fsys = core->fsys;
-	u16* ret_wk = GetEventWorkAdrs( fsys, core->reg[0] );	//’Ќ€УЃI
-	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKЋж“ѕ
+	u16* ret_wk = GetEventWorkAdrs( fsys, core->reg[0] );	//жіЁж„ЏпјЃ
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKеЏ–еѕ—
 
 
 	if( *ret_wk == EV_WIN_NOTHING ){
-		// BMPMenuList’†‚Е‚аѓLѓѓѓ“ѓZѓ‹‚Є—€‚Ѕ‚з‹­ђ§ЏI—№‚·‚й
+		// BMPMenuListдё­гЃ§г‚‚г‚­гѓЈгѓіг‚»гѓ«гЃЊжќҐгЃџг‚‰еј·е€¶зµ‚дє†гЃ™г‚‹
 		if(Union_CancelRecv( fsys->union_work )){
 			*ret_wk = UNION_PARENT_SELECT_CANCEL;
 			EvBmpMenu_Del(*ev_win);
 			return TRUE;
 		}
-		return FALSE;	//Њp‘±
+		return FALSE;	//з¶™з¶љ
 	}
 
-	return TRUE;		//ЏI—№
+	return TRUE;		//зµ‚дє†
 }
 
 
 //============================================================================================
 //
-//	BMPѓЉѓXѓgЉЦA
+//	BMPгѓЄг‚№гѓ€й–ўйЂЈ
 //
-//	"BMPѓЃѓjѓ…Ѓ["ЉЦђ”‚Ж“Ї‚¶ЉЦђ”‚рЋg‚Б‚Д‚ў‚й‚М‚Е’Ќ€УЃI
-//	ЃEѓЉѓXѓgЏI—№‘Т‚їЉЦђ”
+//	"BMPгѓЎгѓ‹гѓҐгѓј"й–ўж•°гЃЁеђЊгЃй–ўж•°г‚’дЅїгЃЈгЃ¦гЃ„г‚‹гЃ®гЃ§жіЁж„ЏпјЃ
+//	гѓ»гѓЄг‚№гѓ€зµ‚дє†еѕ…гЃЎй–ўж•°
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPѓЉѓXѓg	Џ‰Љъ‰»
+ * @brief	BMPгѓЄг‚№гѓ€	е€ќжњџеЊ–
  *
  * @param	none
  *
@@ -4189,13 +4189,13 @@ static BOOL EvCmdBmpListInit( VM_MACHINE * core )
 	u8 cancel			= VMGetU8(core);
 	u16 wk_id			= VMGetU16( core );
 
-	//Џ‰Љъ‰»
+	//е€ќжњџеЊ–
 	*ev_win	= CmdEvBmpList_Init( fsys, x, y, cursor, cancel, 
 									GetEventWorkAdrs(fsys,wk_id), *wordset, 
 									GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_MSGWINDAT),
 									NULL );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	return 1;
@@ -4203,7 +4203,7 @@ static BOOL EvCmdBmpListInit( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPѓЉѓXѓg	Џ‰Љъ‰»(“З‚ЭЌћ‚с‚Е‚ў‚йgmmѓtѓ@ѓCѓ‹‚рЋg—p‚·‚й)
+ * @brief	BMPгѓЄг‚№гѓ€	е€ќжњџеЊ–(иЄ­гЃїиѕјг‚“гЃ§гЃ„г‚‹gmmгѓ•г‚Ўг‚¤гѓ«г‚’дЅїз”ЁгЃ™г‚‹)
  *
  * @param	none
  *
@@ -4221,13 +4221,13 @@ static BOOL EvCmdBmpListInitEx( VM_MACHINE * core )
 	u8 cancel			= VMGetU8(core);
 	u16 wk_id			= VMGetU16( core );
 
-	//Џ‰Љъ‰»
+	//е€ќжњџеЊ–
 	*ev_win	= CmdEvBmpList_Init( fsys, x, y, cursor, cancel, 
 									GetEventWorkAdrs(fsys,wk_id), *wordset, 
 									GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_MSGWINDAT),
 									core->msgman );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	return 1;
@@ -4235,7 +4235,7 @@ static BOOL EvCmdBmpListInitEx( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPѓЉѓXѓg	ѓЉѓXѓgЌмђ¬
+ * @brief	BMPгѓЄг‚№гѓ€	гѓЄг‚№гѓ€дЅњж€ђ
  *
  * @param	none
  *
@@ -4255,7 +4255,7 @@ static BOOL EvCmdBmpListMakeList( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPѓЉѓXѓg	ЉJЋn
+ * @brief	BMPгѓЄг‚№гѓ€	й–‹е§‹
  *
  * @param	none
  *
@@ -4265,7 +4265,7 @@ static BOOL EvCmdBmpListMakeList( VM_MACHINE * core )
 static BOOL EvCmdBmpListStart( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys	= core->fsys;
-	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKЋж“ѕ
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKеЏ–еѕ—
 
 	CmdEvBmpList_Start( *ev_win );
 	
@@ -4275,7 +4275,7 @@ static BOOL EvCmdBmpListStart( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPѓЉѓXѓg	ЉJЋn(‰Ў•ќЋw’и)
+ * @brief	BMPгѓЄг‚№гѓ€	й–‹е§‹(жЁЄе№…жЊ‡е®љ)
  *
  * @param	none
  *
@@ -4285,7 +4285,7 @@ static BOOL EvCmdBmpListStart( VM_MACHINE * core )
 static BOOL EvCmdBmpListStartWidth( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys	= core->fsys;
-	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKЋж“ѕ
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKеЏ–еѕ—
 	u16 width			= VMGetWorkValue(core);
 
 	CmdEvBmpList_StartWidth( *ev_win, width );
@@ -4296,7 +4296,7 @@ static BOOL EvCmdBmpListStartWidth( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPѓЉѓXѓg	ЉJЋn(lp,cpЋw’и)
+ * @brief	BMPгѓЄг‚№гѓ€	й–‹е§‹(lp,cpжЊ‡е®љ)
  *
  * @param	none
  *
@@ -4306,7 +4306,7 @@ static BOOL EvCmdBmpListStartWidth( VM_MACHINE * core )
 static BOOL EvCmdBmpListStartLpCp( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys	= core->fsys;
-	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKЋж“ѕ
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKеЏ–еѕ—
 	u16* wk				= VMGetWork(core);
 	u16* wk2			= VMGetWork(core);
 
@@ -4319,16 +4319,16 @@ static BOOL EvCmdBmpListStartLpCp( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	BMPѓЃѓjѓ…Ѓ[Џc‰ЎЉЦA
+//	BMPгѓЎгѓ‹гѓҐгѓјзё¦жЁЄй–ўйЂЈ
 //
-//	"BMPѓЉѓXѓg"ЉЦђ”‚Ж“Ї‚¶ЉЦђ”‚рЋg‚Б‚Д‚ў‚й‚М‚Е’Ќ€УЃI
-//	ЃEѓЉѓXѓgЏI—№‘Т‚їЉЦђ”
+//	"BMPгѓЄг‚№гѓ€"й–ўж•°гЃЁеђЊгЃй–ўж•°г‚’дЅїгЃЈгЃ¦гЃ„г‚‹гЃ®гЃ§жіЁж„ЏпјЃ
+//	гѓ»гѓЄг‚№гѓ€зµ‚дє†еѕ…гЃЎй–ўж•°
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	BMPѓЃѓjѓ…Ѓ[Џc‰Ў	ЉJЋn
+ * @brief	BMPгѓЎгѓ‹гѓҐгѓјзё¦жЁЄ	й–‹е§‹
  *
  * @param	none
  *
@@ -4338,7 +4338,7 @@ static BOOL EvCmdBmpListStartLpCp( VM_MACHINE * core )
 static BOOL EvCmdBmpMenuHVStart( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys	= core->fsys;
-	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKЋж“ѕ
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKеЏ–еѕ—
 	u8 x_max			= VMGetU8(core);
 
 	CmdEvBmpMenuHV_Start( *ev_win, x_max );
@@ -4349,12 +4349,12 @@ static BOOL EvCmdBmpMenuHVStart( VM_MACHINE * core )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/02/14
-// ѓЃѓjѓ…Ѓ[Ѓ^ѓЉѓXѓg‚МЋw’и€К’u‚рѓEѓBѓ“ѓhѓE‚М‰E’[‚в‰є’[‚Й‚·‚й‚Ѕ‚Я‚МЉЦђ”
+// гѓЎгѓ‹гѓҐгѓјпјЏгѓЄг‚№гѓ€гЃ®жЊ‡е®љдЅЌзЅ®г‚’г‚¦г‚Јгѓігѓ‰г‚¦гЃ®еЏіз«Їг‚„дё‹з«ЇгЃ«гЃ™г‚‹гЃџг‚ЃгЃ®й–ўж•°
 
 static BOOL EvCmdBmpMenuListAlignRight( VM_MACHINE *core )
 {
 	FIELDSYS_WORK* fsys	= core->fsys;
-	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKЋж“ѕ
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKеЏ–еѕ—
 	u8 alignFlag 		= VMGetU8(core);
 
 	CmdEvBmpMenuList_AlignRight( *ev_win, (BOOL)alignFlag );
@@ -4364,7 +4364,7 @@ static BOOL EvCmdBmpMenuListAlignRight( VM_MACHINE *core )
 static BOOL EvCmdBmpMenuListAlignBottom( VM_MACHINE *core )
 {
 	FIELDSYS_WORK* fsys	= core->fsys;
-	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKЋж“ѕ
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORKеЏ–еѕ—
 	u8 alignFlag 		= VMGetU8(core);
 
 	CmdEvBmpMenuList_AlignBottom( *ev_win, (BOOL)alignFlag );
@@ -4375,26 +4375,26 @@ static BOOL EvCmdBmpMenuListAlignBottom( VM_MACHINE *core )
 
 //============================================================================================
 //
-//	OBJѓAѓjѓЃЃ[ѓVѓ‡ѓ“ЉЦA
+//	OBJг‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓій–ўйЂЈ
 //
 //============================================================================================
 static BOOL EvObjAnimeWait(VM_MACHINE * core);
 static void EvAnmSetTCB( FIELDSYS_WORK* fsys, TCB_PTR anm_tcb, FIELD_OBJ_ACMD_LIST * list );
 static void EvAnmMainTCB( TCB_PTR tcb, void* wk );
 
-//ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ЏI—№ЉДЋ‹ѓЏЃ[ѓN
+//г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓізµ‚дє†з›Ји¦–гѓЇгѓјг‚Ї
 typedef struct{
 	TCB_PTR	tcb;					//TCB
-	TCB_PTR	anm_tcb;				//ѓAѓjѓЃЃ[ѓVѓ‡ѓ“TCB
+	TCB_PTR	anm_tcb;				//г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіTCB
 	FIELD_OBJ_ACMD_LIST * list;
 	FIELDSYS_WORK* fsys;			//
 }EV_ANM_WORK;
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓAѓjѓЃЃ[ѓVѓ‡ѓ“
+ * г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓі
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -4405,28 +4405,28 @@ static BOOL EvCmdObjAnime( VM_MACHINE * core )
 	TCB_PTR anm_tcb;
 	u8* num;
 	FIELD_OBJ_PTR* dummy;
-	FIELD_OBJ_PTR fldobj;		//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^
+	FIELD_OBJ_PTR fldobj;		//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚ї
 	u16 obj_id	= VMGetWorkValue(core);
 	u32 pos		= (s32)VMGetU32(core);
 
 	fldobj = FieldObjPtrGetByObjId( core->fsys, obj_id );
 
-	//ѓGѓ‰Ѓ[ѓ`ѓFѓbѓN
+	//г‚Ёгѓ©гѓјгѓЃг‚§гѓѓг‚Ї
 	if( fldobj == NULL ){
 		OS_Printf( "obj_id = %d\n", obj_id );
-		GF_ASSERT( (0) && "‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕЋё”sЃI" );
-		return 0;				//08.06.12 ѓvѓ‰ѓ`ѓi‚Е’З‰Б
+		GF_ASSERT( (0) && "еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—е¤±ж•—пјЃ" );
+		return 0;				//08.06.12 гѓ—гѓ©гѓЃгѓЉгЃ§иїЅеЉ 
 	}
 
-	//ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓRѓ}ѓ“ѓhѓЉѓXѓgѓZѓbѓg
+	//г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚ігѓћгѓігѓ‰гѓЄг‚№гѓ€г‚»гѓѓгѓ€
 	p = (VM_CODE*)(core->PC+pos);
 	anm_tcb = FieldOBJ_AcmdListSet( fldobj, (FIELD_OBJ_ACMD_LIST*)p );
 
-	//ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚р‘«‚·
+	//г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°г‚’и¶ігЃ™
 	num = GetEvScriptWorkMemberAdrs( core->fsys,ID_EVSCR_ANMCOUNT );
 	(*num)++;
 
-	//TCBѓZѓbѓg
+	//TCBг‚»гѓѓгѓ€
 	EvAnmSetTCB( core->fsys, anm_tcb, NULL );
 
 	return 0;
@@ -4439,7 +4439,7 @@ static BOOL EvCmdObjAnimePos(VM_MACHINE * core)
 	TCB_PTR anm_tcb;
 	u8* num;
 	FIELD_OBJ_PTR* dummy;
-	FIELD_OBJ_PTR fldobj;		//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^
+	FIELD_OBJ_PTR fldobj;		//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚ї
 	u16 obj_id	= VMGetWorkValue(core);
 	u16 tx = VMGetWorkValue(core);
 	u16 tz = VMGetWorkValue(core);
@@ -4449,9 +4449,9 @@ static BOOL EvCmdObjAnimePos(VM_MACHINE * core)
 
 	fldobj = FieldObjPtrGetByObjId( core->fsys, obj_id );
 
-	//ѓGѓ‰Ѓ[ѓ`ѓFѓbѓN
+	//г‚Ёгѓ©гѓјгѓЃг‚§гѓѓг‚Ї
 	if( fldobj == NULL ){
-		GF_ASSERT( (0) && "‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕЋё”sЃI" );
+		GF_ASSERT( (0) && "еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—е¤±ж•—пјЃ" );
 	}
 	list = sys_AllocMemory(HEAPID_FIELD, sizeof(FIELD_OBJ_ACMD_LIST) * 64);
 
@@ -4479,14 +4479,14 @@ static BOOL EvCmdObjAnimePos(VM_MACHINE * core)
 	list[count].code = ACMD_END;
 	list[count].num = 0;
 
-	//ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓRѓ}ѓ“ѓhѓЉѓXѓgѓZѓbѓg
+	//г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚ігѓћгѓігѓ‰гѓЄг‚№гѓ€г‚»гѓѓгѓ€
 	anm_tcb = FieldOBJ_AcmdListSet( fldobj, list );
 
-	//ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‚Мђ”‚р‘«‚·
+	//г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓігЃ®ж•°г‚’и¶ігЃ™
 	num = GetEvScriptWorkMemberAdrs( core->fsys,ID_EVSCR_ANMCOUNT );
 	(*num)++;
 
-	//TCBѓZѓbѓg
+	//TCBг‚»гѓѓгѓ€
 	EvAnmSetTCB( core->fsys, anm_tcb, list );
 
 	return 0;
@@ -4494,9 +4494,9 @@ static BOOL EvCmdObjAnimePos(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * FIELD_OBJ_PTR‚рЋж“ѕ
+ * FIELD_OBJ_PTRг‚’еЏ–еѕ—
  *
- * @param	fsys	FIELDSYS_WORKЊ^‚Мѓ|ѓCѓ“ѓ^
+ * @param	fsys	FIELDSYS_WORKећ‹гЃ®гѓќг‚¤гѓіг‚ї
  * @param	obj_id	OBJID
  *
  * @return	"FIELD_OBJ_PTR"
@@ -4505,18 +4505,18 @@ static BOOL EvCmdObjAnimePos(VM_MACHINE * core)
 static FIELD_OBJ_PTR FieldObjPtrGetByObjId( FIELDSYS_WORK* fsys, int obj_id )
 {
 	FIELD_OBJ_PTR* dummy;
-	FIELD_OBJ_PTR fldobj;		//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^
+	FIELD_OBJ_PTR fldobj;		//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚ї
 
-	//A‚к•а‚«OBJ”»•КID‚Є“n‚і‚к‚ЅЋћ
+	//йЂЈг‚Њж­©гЃЌOBJе€¤е€ҐIDгЃЊжёЎгЃ•г‚ЊгЃџж™‚
 	if( obj_id == SCR_OBJID_MV_PAIR ){
 		fldobj = FieldOBJSys_MoveCodeSearch( fsys->fldobjsys, MV_PAIR );
 
-	//“§–ѕѓ_ѓ~Ѓ[OBJ”»•КID‚Є“n‚і‚к‚ЅЋћ
+	//йЂЏжЋгѓЂгѓџгѓјOBJе€¤е€ҐIDгЃЊжёЎгЃ•г‚ЊгЃџж™‚
 	}else if( obj_id == SCR_OBJID_DUMMY ){
 		dummy = GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_DUMMY_OBJ );
 		fldobj = *dummy;
 
-	//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕ
+	//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—
 	}else{
 		fldobj	= FieldOBJSys_OBJIDSearch( fsys->fldobjsys, obj_id );
 	}
@@ -4526,9 +4526,9 @@ static FIELD_OBJ_PTR FieldObjPtrGetByObjId( FIELDSYS_WORK* fsys, int obj_id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ЏI—№‘Т‚ї
+ * г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓізµ‚дє†еѕ…гЃЎ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -4539,7 +4539,7 @@ static BOOL EvCmdObjAnimeWait( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvObjAnimeWait(VM_MACHINE * core)
 {
 	FIELDSYS_WORK* fsys = core->fsys;
@@ -4547,7 +4547,7 @@ static BOOL EvObjAnimeWait(VM_MACHINE * core)
 
 	//OS_Printf( "*anm_count = %d\n", *anm_count );
 
-	//ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ђ”‚рѓ`ѓFѓbѓN
+	//г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіж•°г‚’гѓЃг‚§гѓѓг‚Ї
 	if( *anm_count == 0 ){
 		return 1;
 	}
@@ -4557,10 +4557,10 @@ static BOOL EvObjAnimeWait(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓAѓjѓЃЏI—№ЉДЋ‹TCB ѓZѓbѓg
+ * @brief	г‚ўгѓ‹гѓЎзµ‚дє†з›Ји¦–TCB г‚»гѓѓгѓ€
  *
- * @param	fsys	FIELDSYS_WORKЊ^‚Мѓ|ѓCѓ“ѓ^
- * @param	anm_tcb	TCB_PTRЊ^
+ * @param	fsys	FIELDSYS_WORKећ‹гЃ®гѓќг‚¤гѓіг‚ї
+ * @param	anm_tcb	TCB_PTRећ‹
  *
  * @return	none
  */
@@ -4571,7 +4571,7 @@ static void EvAnmSetTCB( FIELDSYS_WORK* fsys, TCB_PTR anm_tcb, FIELD_OBJ_ACMD_LI
 	wk = sys_AllocMemory(HEAPID_FIELD, sizeof(EV_ANM_WORK));
 
 	if( wk == NULL ){
-		GF_ASSERT( (0) && "scrcmd.c ѓЃѓ‚ѓЉЉm•ЫЋё”sЃI" );
+		GF_ASSERT( (0) && "scrcmd.c гѓЎгѓўгѓЄзўєдїќе¤±ж•—пјЃ" );
 		return;
 	}
 
@@ -4584,10 +4584,10 @@ static void EvAnmSetTCB( FIELDSYS_WORK* fsys, TCB_PTR anm_tcb, FIELD_OBJ_ACMD_LI
 
 //--------------------------------------------------------------
 /**
- * @brief	ѓAѓjѓЃЏI—№ЉДЋ‹TCB ѓЃѓCѓ“
+ * @brief	г‚ўгѓ‹гѓЎзµ‚дє†з›Ји¦–TCB гѓЎг‚¤гѓі
  *
  * @param	tcb		TCB_PTR
- * @param	wk		ѓЏЃ[ѓN‚МѓAѓhѓЊѓX
+ * @param	wk		гѓЇгѓјг‚ЇгЃ®г‚ўгѓ‰гѓ¬г‚№
  *
  * @retval	none
  */
@@ -4600,7 +4600,7 @@ static void EvAnmMainTCB( TCB_PTR tcb, void* wk )
 	swk = (EV_ANM_WORK *)wk;
 	num = GetEvScriptWorkMemberAdrs( swk->fsys, ID_EVSCR_ANMCOUNT );
 
-	if( FieldOBJ_AcmdListEndCheck( swk->anm_tcb ) == TRUE ){	//ЏI—№ѓ`ѓFѓbѓN
+	if( FieldOBJ_AcmdListEndCheck( swk->anm_tcb ) == TRUE ){	//зµ‚дє†гѓЃг‚§гѓѓг‚Ї
 
 		FieldOBJ_AcmdListEnd( swk->anm_tcb );
 
@@ -4610,9 +4610,9 @@ static void EvAnmMainTCB( TCB_PTR tcb, void* wk )
 		}
 		sys_FreeMemoryEz( wk );
 
-		//ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ђ”‚МЉЗ—ќ
+		//г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіж•°гЃ®з®Ўзђ†
 		if( *num == 0 ){
-			GF_ASSERT( (0) && "ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ђ”‚МЉЗ—ќ‚Є•sђі‚Е‚·ЃI" );
+			GF_ASSERT( (0) && "г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіж•°гЃ®з®Ўзђ†гЃЊдёЌж­ЈгЃ§гЃ™пјЃ" );
 			return;
 		}
 
@@ -4624,9 +4624,9 @@ static void EvAnmMainTCB( TCB_PTR tcb, void* wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘SOBJ“®Ќм’вЋ~
+ * е…ЁOBJе‹•дЅњеЃњж­ў
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	0
  */
@@ -4642,27 +4642,27 @@ static BOOL EvCmdObjPauseAll( VM_MACHINE * core )
 		FieldOBJSys_MovePauseAll( fldobjsys );
 
 #if 1	//08.06.18
-		//b‚µ‚©‚Ї‚М‘ОЏЫ‚Є‚ў‚И‚ўBG‚вPOS‚МЋћ
-		//A‚к•а‚«OBJ‚М€Ъ“®“®Ќм’†‚©‚Мѓ`ѓFѓbѓN‚р‚µ‚Д‚ў‚И‚ў
+		//и©±гЃ—гЃ‹гЃ‘гЃ®еЇѕи±ЎгЃЊгЃ„гЃЄгЃ„BGг‚„POSгЃ®ж™‚
+		//йЂЈг‚Њж­©гЃЌOBJгЃ®з§»е‹•е‹•дЅњдё­гЃ‹гЃ®гѓЃг‚§гѓѓг‚Їг‚’гЃ—гЃ¦гЃ„гЃЄгЃ„
 		//
-		//‚У‚к‚ ‚ўЌLЏк‚И‚З‚ЕЃAA‚к•а‚«OBJ‚Й‘О‚µ‚ДЃA
-		//ѓXѓNѓЉѓvѓg‚ЕѓAѓjѓЃ‚р”­Ќs‚·‚й‚ЖЃA
-		//ѓAѓjѓЃ‚ЄЌs‚н‚к‚ёЏI—№‘Т‚ї‚Й‚ў‚©‚И‚ў‚Еѓ‹Ѓ[ѓv‚µ‚Д‚µ‚Ь‚¤
+		//гЃµг‚ЊгЃ‚гЃ„еєѓе ґгЃЄгЃ©гЃ§гЂЃйЂЈг‚Њж­©гЃЌOBJгЃ«еЇѕгЃ—гЃ¦гЂЃ
+		//г‚№г‚ЇгѓЄгѓ—гѓ€гЃ§г‚ўгѓ‹гѓЎг‚’з™єиЎЊгЃ™г‚‹гЃЁгЂЃ
+		//г‚ўгѓ‹гѓЎгЃЊиЎЊг‚Џг‚ЊгЃљзµ‚дє†еѕ…гЃЎгЃ«гЃ„гЃ‹гЃЄгЃ„гЃ§гѓ«гѓјгѓ—гЃ—гЃ¦гЃ—гЃѕгЃ†
 
 		{
 			FIELD_OBJ_PTR player_pair = FieldOBJSys_MoveCodeSearch( fsys->fldobjsys, MV_PAIR );
 
-			//ѓyѓA‚Є‘¶ЌЭ‚µ‚Д‚ў‚й
+			//гѓљг‚ўгЃЊе­ењЁгЃ—гЃ¦гЃ„г‚‹
 			if (player_pair) {
 
-				//A‚к•а‚«ѓtѓ‰ѓO‚Є—§‚Б‚Д‚ў‚ДЃA€Ъ“®“®Ќм’†‚И‚з
+				//йЂЈг‚Њж­©гЃЌгѓ•гѓ©г‚°гЃЊз«‹гЃЈгЃ¦гЃ„гЃ¦гЂЃз§»е‹•е‹•дЅњдё­гЃЄг‚‰
 				if( SysFlag_PairCheck(SaveData_GetEventWork(fsys->savedata)) == 1
 						&& FieldOBJ_StatusBitCheck_Move(player_pair) != 0) {
 
-					//ѓyѓA‚М“®Ќмѓ|Ѓ[ѓY‰рЏњ
+					//гѓљг‚ўгЃ®е‹•дЅњгѓќгѓјг‚єи§Јй™¤
 					FieldOBJ_MovePauseClear( player_pair );
 
-					//€Ъ“®“®Ќм‚МЏI—№‘Т‚ї‚рѓZѓbѓg
+					//з§»е‹•е‹•дЅњгЃ®зµ‚дє†еѕ…гЃЎг‚’г‚»гѓѓгѓ€
 					VM_SetWait( core, EvWaitPairObj );
 					return 1;
 				}
@@ -4714,7 +4714,7 @@ static inline void ResetStepWatchBit(int mask)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ“®ЌмЏI—№‘Т‚ї
+ * @brief	OBJе‹•дЅњзµ‚дє†еѕ…гЃЎ
  */
 //--------------------------------------------------------------
 static BOOL EvWaitTalkObj( VM_MACHINE * core )
@@ -4723,18 +4723,18 @@ static BOOL EvWaitTalkObj( VM_MACHINE * core )
 	FIELD_OBJ_PTR *fldobj = GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_TARGET_OBJ );
 	FIELD_OBJ_PTR player = Player_FieldOBJGet(fsys->player);
 
-	//Ћ©‹@“®Ќм’вЋ~ѓ`ѓFѓbѓN
+	//и‡Єж©џе‹•дЅњеЃњж­ўгѓЃг‚§гѓѓг‚Ї
 	if (CheckStepWatchBit(PLAYER_BIT) && FieldOBJ_AcmdEndCheck(player) == TRUE) {
 		FieldOBJ_MovePause( player );
 		ResetStepWatchBit(PLAYER_BIT);
 	}
-	//b‚µ‚©‚Ї‘ОЏЫ“®Ќм’вЋ~ѓ`ѓFѓbѓN
+	//и©±гЃ—гЃ‹гЃ‘еЇѕи±Ўе‹•дЅњеЃњж­ўгѓЃг‚§гѓѓг‚Ї
 	if (CheckStepWatchBit(OTHER_BIT) && FieldOBJ_StatusBitCheck_Move(*fldobj) == 0) {
 		FieldOBJ_MovePause( *fldobj );
 		ResetStepWatchBit(OTHER_BIT);
 	}
 
-	//Ћ©‹@‚МA‚к•а‚«“®Ќм’вЋ~ѓ`ѓFѓbѓN
+	//и‡Єж©џгЃ®йЂЈг‚Њж­©гЃЌе‹•дЅњеЃњж­ўгѓЃг‚§гѓѓг‚Ї
 	if (CheckStepWatchBit(PLAYER_PAIR_BIT)) {
 		FIELD_OBJ_PTR player_pair = FieldOBJSys_MoveCodeSearch( fsys->fldobjsys, MV_PAIR );
 		if (FieldOBJ_StatusBitCheck_Move(player_pair) == 0) {
@@ -4743,7 +4743,7 @@ static BOOL EvWaitTalkObj( VM_MACHINE * core )
 		}
 	}
 
-	//b‚µ‚©‚Ї‘ОЏЫ‚МA‚к•а‚«“®Ќм’вЋ~ѓ`ѓFѓbѓN
+	//и©±гЃ—гЃ‹гЃ‘еЇѕи±ЎгЃ®йЂЈг‚Њж­©гЃЌе‹•дЅњеЃњж­ўгѓЃг‚§гѓѓг‚Ї
 	if (CheckStepWatchBit(OTHER_PAIR_BIT)) {
 		FIELD_OBJ_PTR other_pair = FieldOBJ_MovePairSearch(*fldobj);
 		if (FieldOBJ_StatusBitCheck_Move(other_pair) == 0) {
@@ -4760,7 +4760,7 @@ static BOOL EvWaitTalkObj( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ѓyѓAOBJ“®ЌмЏI—№‘Т‚ї
+ * @brief	гѓљг‚ўOBJе‹•дЅњзµ‚дє†еѕ…гЃЎ
  */
 //--------------------------------------------------------------
 static BOOL EvWaitPairObj( VM_MACHINE * core )
@@ -4768,10 +4768,10 @@ static BOOL EvWaitPairObj( VM_MACHINE * core )
 	FIELDSYS_WORK * fsys = core->fsys;
 	FIELD_OBJ_PTR player_pair = FieldOBJSys_MoveCodeSearch( fsys->fldobjsys, MV_PAIR );
 
-	//Ћ©‹@‚МA‚к•а‚«“®Ќм’вЋ~ѓ`ѓFѓbѓN
+	//и‡Єж©џгЃ®йЂЈг‚Њж­©гЃЌе‹•дЅњеЃњж­ўгѓЃг‚§гѓѓг‚Ї
 	if (FieldOBJ_StatusBitCheck_Move(player_pair) == 0) {
 		FieldOBJ_MovePause(player_pair);
-		return 1;							//€Ъ“®“®Ќм‚ЄЏI—№‚µ‚Ѕ
+		return 1;							//з§»е‹•е‹•дЅњгЃЊзµ‚дє†гЃ—гЃџ
 	}
 
 	return 0;
@@ -4828,9 +4828,9 @@ static BOOL EvCmdTalkObjPauseAll( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘SOBJ“®ЌмЌДЉJ
+ * е…ЁOBJе‹•дЅње†Ќй–‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -4849,22 +4849,22 @@ static BOOL EvCmdObjPauseClearAll( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJ“®Ќм’вЋ~(ЊВЃX)
+ * OBJе‹•дЅњеЃњж­ў(еЂ‹гЂ…)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	0
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdObjPause( VM_MACHINE * core )
 {
-	FIELD_OBJ_PTR fldobj;		//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^
+	FIELD_OBJ_PTR fldobj;		//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚ї
 	FIELDSYS_WORK* fsys = core->fsys;
 	
-	//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕ
+	//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—
 	fldobj = FieldOBJSys_OBJIDSearch( fsys->fldobjsys, VMGetU16(core) );
 
-	//“®Ќмѓ|Ѓ[ѓY ON
+	//е‹•дЅњгѓќгѓјг‚є ON
 	FieldOBJ_MovePause( fldobj );
 	
 	return 0;
@@ -4872,19 +4872,19 @@ static BOOL EvCmdObjPause( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJ“®ЌмЌДЉJ(ЊВЃX)
+ * OBJе‹•дЅње†Ќй–‹(еЂ‹гЂ…)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	0
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdObjPauseClear( VM_MACHINE * core )
 {
-	FIELD_OBJ_PTR fldobj;		//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^
+	FIELD_OBJ_PTR fldobj;		//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚ї
 	FIELDSYS_WORK* fsys = core->fsys;
 	
-	//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕ
+	//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—
 	fldobj = FieldOBJSys_OBJIDSearch( fsys->fldobjsys, VMGetU16(core) );
 	FieldOBJ_MovePauseClear( fldobj );
 	
@@ -4893,9 +4893,9 @@ static BOOL EvCmdObjPauseClear( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJЏo‚·
+ * OBJе‡єгЃ™
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -4910,7 +4910,7 @@ static BOOL EvCmdObjAdd( VM_MACHINE * core )
 								fsys->location->zone_id, EventData_GetNpcData(fsys) );
 
 	if( ret == NULL ){
-		GF_ASSERT( (0) && "Ћw’и‚µ‚ЅID‚ЙЉY“–‚·‚йѓfЃ[ѓ^‚Є‚ ‚и‚Ь‚№‚с‚Е‚µ‚ЅЃI" );
+		GF_ASSERT( (0) && "жЊ‡е®љгЃ—гЃџIDгЃ«и©ІеЅ“гЃ™г‚‹гѓ‡гѓјг‚їгЃЊгЃ‚г‚ЉгЃѕгЃ›г‚“гЃ§гЃ—гЃџпјЃ" );
 	}
 
 	return 0;
@@ -4918,23 +4918,23 @@ static BOOL EvCmdObjAdd( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJЏБ‚·
+ * OBJж¶€гЃ™
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdObjDel( VM_MACHINE * core )
 {
-	FIELD_OBJ_PTR fldobj;		//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^
+	FIELD_OBJ_PTR fldobj;		//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚ї
 	FIELDSYS_WORK* fsys = core->fsys;
 	
-	//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕ
+	//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—
 	fldobj	= FieldOBJSys_OBJIDSearch( fsys->fldobjsys, VMGetWorkValue(core) );
 
 	if( fldobj == NULL ){
-		GF_ASSERT( (0) && "‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕЋё”sЃI" );
+		GF_ASSERT( (0) && "еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—е¤±ж•—пјЃ" );
 	}else{
 		FieldOBJ_DeleteEvent( fldobj );
 	}
@@ -4944,9 +4944,9 @@ static BOOL EvCmdObjDel( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “§–ѕѓ_ѓ~Ѓ[OBJ‚р’З‰Б(ѓJѓЃѓ‰ђЭ’и‚ађШ‚и‘Ц‚¦)
+ * йЂЏжЋгѓЂгѓџгѓјOBJг‚’иїЅеЉ (г‚«гѓЎгѓ©иЁ­е®љг‚‚е€‡г‚Љж›їгЃ€)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -4955,24 +4955,24 @@ static BOOL EvCmdVanishDummyObjAdd( VM_MACHINE * core )
 {
 	u16 x	= VMGetWorkValue( core );
 	u16 z	= VMGetWorkValue( core );
-	FIELD_OBJ_PTR* fldobj = GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_DUMMY_OBJ);//ѓ_ѓ~Ѓ[OBJ
+	FIELD_OBJ_PTR* fldobj = GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_DUMMY_OBJ);//гѓЂгѓџгѓјOBJ
 
-	//ѓ_ѓ~Ѓ[OBJ—pЊЕ’и
+	//гѓЂгѓџгѓјOBJз”Ёе›єе®љ
 	*fldobj = FieldOBJ_AddHMake( core->fsys->fldobjsys, x, z, DIR_UP, NONDRAW, 
 								MV_DMY, core->fsys->location->zone_id );
 
-	FieldOBJ_VecPosNowHeightGetSet( *fldobj );			//Ќ‚‚і‘¦”Ѕ‰f
-	FieldOBJ_StatusBitSet_Vanish( *fldobj, TRUE );		//”с•\Ћ¦
-	FieldOBJ_StatusBitSet_FellowHit( *fldobj, FALSE );	//ѓqѓbѓg‚И‚µ
-	//FieldOBJ_NotZoneDeleteSet( *fldobj, TRUE );		//ѓ]Ѓ[ѓ“ђШ‚и‘Ц‚¦Ћћ‚МЌнЏњ‹ЦЋ~
+	FieldOBJ_VecPosNowHeightGetSet( *fldobj );			//й«гЃ•еЌіеЏЌж 
+	FieldOBJ_StatusBitSet_Vanish( *fldobj, TRUE );		//йќћиЎЁз¤є
+	FieldOBJ_StatusBitSet_FellowHit( *fldobj, FALSE );	//гѓ’гѓѓгѓ€гЃЄгЃ—
+	//FieldOBJ_NotZoneDeleteSet( *fldobj, TRUE );		//г‚ѕгѓјгѓіе€‡г‚Љж›їгЃ€ж™‚гЃ®е‰Љй™¤з¦Ѓж­ў
 
 #if 1
-	//ѓJѓЃѓ‰ђЭ’иђШ‚и‘Ц‚¦(“§–ѕѓ_ѓ~Ѓ[‚Ц)
+	//г‚«гѓЎгѓ©иЁ­е®ље€‡г‚Љж›їгЃ€(йЂЏжЋгѓЂгѓџгѓјгЃё)
 	{
 		const VecFx32* inTarget;
 
 		inTarget = FieldOBJ_VecPosPtrGet( *fldobj );
-		DivMapBindTarget( inTarget, core->fsys->map_cont_dat );	//’nЊ`ѓoѓCѓ“ѓh
+		DivMapBindTarget( inTarget, core->fsys->map_cont_dat );	//ењ°еЅўгѓђг‚¤гѓігѓ‰
 		GFC_BindCameraTarget( inTarget, core->fsys->camera_ptr );
 	}
 #endif
@@ -4982,27 +4982,27 @@ static BOOL EvCmdVanishDummyObjAdd( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “§–ѕѓ_ѓ~Ѓ[OBJ‚рЌнЏњ(ѓJѓЃѓ‰ђЭ’и‚ађШ‚и‘Ц‚¦)
+ * йЂЏжЋгѓЂгѓџгѓјOBJг‚’е‰Љй™¤(г‚«гѓЎгѓ©иЁ­е®љг‚‚е€‡г‚Љж›їгЃ€)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdVanishDummyObjDel( VM_MACHINE * core )
 {
-	FIELD_OBJ_PTR* fldobj = GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_DUMMY_OBJ);	//ѓ_ѓ~Ѓ[OBJ
+	FIELD_OBJ_PTR* fldobj = GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_DUMMY_OBJ);	//гѓЂгѓџгѓјOBJ
 	FieldOBJ_Delete( *fldobj );
 
 #if 1
-	//ѓJѓЃѓ‰ђЭ’иђШ‚и‘Ц‚¦(ЋеђlЊц‚Ц)
+	//г‚«гѓЎгѓ©иЁ­е®ље€‡г‚Љж›їгЃ€(дё»дєєе…¬гЃё)
 	{
 		FIELD_OBJ_PTR fldobj_player;
 		const VecFx32* inTarget;
 
 		fldobj_player = FieldOBJSys_OBJIDSearch( core->fsys->fldobjsys, FLDOBJ_ID_PLAYER );
 		inTarget = FieldOBJ_VecPosPtrGet( fldobj_player );
-		DivMapBindTarget( inTarget, core->fsys->map_cont_dat );	//’nЊ`ѓoѓCѓ“ѓh
+		DivMapBindTarget( inTarget, core->fsys->map_cont_dat );	//ењ°еЅўгѓђг‚¤гѓігѓ‰
 		GFC_BindCameraTarget( inTarget, core->fsys->camera_ptr );
 	}
 #endif
@@ -5012,9 +5012,9 @@ static BOOL EvCmdVanishDummyObjDel( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “§–ѕѓ_ѓ~Ѓ[OBJ‚р’З‰Б
+ * йЂЏжЋгѓЂгѓџгѓјOBJг‚’иїЅеЉ 
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5023,41 +5023,41 @@ static BOOL EvCmdVanishDummyObjAdd2( VM_MACHINE * core )
 {
 	u16 x	= VMGetWorkValue( core );
 	u16 z	= VMGetWorkValue( core );
-	FIELD_OBJ_PTR* fldobj = GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_DUMMY_OBJ);//ѓ_ѓ~Ѓ[OBJ
+	FIELD_OBJ_PTR* fldobj = GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_DUMMY_OBJ);//гѓЂгѓџгѓјOBJ
 
-	//ѓ_ѓ~Ѓ[OBJ—pЊЕ’и
+	//гѓЂгѓџгѓјOBJз”Ёе›єе®љ
 	*fldobj = FieldOBJ_AddHMake( core->fsys->fldobjsys, x, z, DIR_UP, NONDRAW, 
 								MV_DMY, core->fsys->location->zone_id );
 
-	FieldOBJ_VecPosNowHeightGetSet( *fldobj );			//Ќ‚‚і‘¦”Ѕ‰f
-	FieldOBJ_StatusBitSet_Vanish( *fldobj, TRUE );		//”с•\Ћ¦
-	FieldOBJ_StatusBitSet_FellowHit( *fldobj, FALSE );	//ѓqѓbѓg‚И‚µ
-	//FieldOBJ_NotZoneDeleteSet( *fldobj, TRUE );		//ѓ]Ѓ[ѓ“ђШ‚и‘Ц‚¦Ћћ‚МЌнЏњ‹ЦЋ~
+	FieldOBJ_VecPosNowHeightGetSet( *fldobj );			//й«гЃ•еЌіеЏЌж 
+	FieldOBJ_StatusBitSet_Vanish( *fldobj, TRUE );		//йќћиЎЁз¤є
+	FieldOBJ_StatusBitSet_FellowHit( *fldobj, FALSE );	//гѓ’гѓѓгѓ€гЃЄгЃ—
+	//FieldOBJ_NotZoneDeleteSet( *fldobj, TRUE );		//г‚ѕгѓјгѓіе€‡г‚Љж›їгЃ€ж™‚гЃ®е‰Љй™¤з¦Ѓж­ў
 
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * “§–ѕѓ_ѓ~Ѓ[OBJ‚рЌнЏњ
+ * йЂЏжЋгѓЂгѓџгѓјOBJг‚’е‰Љй™¤
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdVanishDummyObjDel2( VM_MACHINE * core )
 {
-	FIELD_OBJ_PTR* fldobj = GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_DUMMY_OBJ);	//ѓ_ѓ~Ѓ[OBJ
+	FIELD_OBJ_PTR* fldobj = GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_DUMMY_OBJ);	//гѓЂгѓџгѓјOBJ
 	FieldOBJ_Delete( *fldobj );
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * b‚µ‚©‚Ї‚ЅOBJЋ©‹@•ыЊь‚Ц‚МђU‚иЊь‚«
+ * и©±гЃ—гЃ‹гЃ‘гЃџOBJи‡Єж©џж–№еђ‘гЃёгЃ®жЊЇг‚Љеђ‘гЃЌ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5093,9 +5093,9 @@ static BOOL EvCmdObjTurn( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЋеђlЊц‚М€К’uЏо•сЋж“ѕ
+ * дё»дєєе…¬гЃ®дЅЌзЅ®жѓ…е ±еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5120,9 +5120,9 @@ static BOOL EvCmdPlayerPosGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJ‚М€К’uЏо•сЋж“ѕ
+ * OBJгЃ®дЅЌзЅ®жѓ…е ±еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5148,9 +5148,9 @@ static BOOL EvCmdObjPosGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓvѓЊѓCѓ„Ѓ[‚М•ыЊьЋж“ѕ
+ * гѓ—гѓ¬г‚¤гѓ¤гѓјгЃ®ж–№еђ‘еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5167,10 +5167,10 @@ static BOOL EvCmdPlayerDirGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЋеђlЊц‚М€К’u‚Й”C€У‚МѓIѓtѓZѓbѓg’l‚рЋw’и‚·‚й
- * ѓJѓЃѓ‰€К’u‚р“ЇЋћ‚Й‚ё‚з‚·‚М‚Е’Ќ€УЃI
+ * дё»дєєе…¬гЃ®дЅЌзЅ®гЃ«д»»ж„ЏгЃ®г‚Єгѓ•г‚»гѓѓгѓ€еЂ¤г‚’жЊ‡е®љгЃ™г‚‹
+ * г‚«гѓЎгѓ©дЅЌзЅ®г‚’еђЊж™‚гЃ«гЃљг‚‰гЃ™гЃ®гЃ§жіЁж„ЏпјЃ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5196,9 +5196,9 @@ static BOOL EvCmdPlayerPosOffsetSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ]Ѓ[ѓ“ђШ‚и‘Ц‚¦Ћћ‚МЌнЏњ‹ЦЋ~(TRUE=‹ЦЋ~ЃAFALSE=‹ЦЋ~‚µ‚И‚ў)
+ * г‚ѕгѓјгѓіе€‡г‚Љж›їгЃ€ж™‚гЃ®е‰Љй™¤з¦Ѓж­ў(TRUE=з¦Ѓж­ўгЂЃFALSE=з¦Ѓж­ўгЃ—гЃЄгЃ„)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5217,9 +5217,9 @@ static BOOL EvCmdNotZoneDelSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “®ЌмѓRЃ[ѓh•ПЌX
+ * е‹•дЅњг‚ігѓјгѓ‰е¤‰ж›ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5238,9 +5238,9 @@ static BOOL EvCmdMoveCodeChange( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “®ЌмѓRЃ[ѓhЋж“ѕ
+ * е‹•дЅњг‚ігѓјгѓ‰еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5262,9 +5262,9 @@ static BOOL EvCmdMoveCodeGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * A‚к•а‚«OBJ‚МID‚рѓZѓbѓg
+ * йЂЈг‚Њж­©гЃЌOBJгЃ®IDг‚’г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5282,9 +5282,9 @@ static BOOL EvCmdPairObjIdSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓVЃ[ѓ‹‚МЋн—Юђ”‚рЋж“ѕ
+ * г‚·гѓјгѓ«гЃ®зЁ®йЎћж•°г‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5302,9 +5302,9 @@ static BOOL EvCmdCBSealKindNumGet(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓVЃ[ѓ‹‚Мђ”Ћж“ѕ
+ * г‚·гѓјгѓ«гЃ®ж•°еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5328,9 +5328,9 @@ static BOOL EvCmdCBItemNumGet(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓVЃ[ѓ‹‚р’З‰Б
+ * г‚·гѓјгѓ«г‚’иїЅеЉ 
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0
  */
@@ -5346,9 +5346,9 @@ static BOOL EvCmdCBItemNumAdd(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓAѓ“ѓmЃ[ѓ“ѓtѓHѓ‹ѓЂѓiѓ“ѓoЃ[‚рЋж“ѕ
+ * г‚ўгѓігѓЋгѓјгѓігѓ•г‚©гѓ«гѓ гѓЉгѓігѓђгѓјг‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5359,7 +5359,7 @@ static BOOL EvCmdUnknownFormGet(VM_MACHINE * core)
 	u16 pos		= VMGetWorkValue( core );
 	u16* ret_wk	= VMGetWork( core );
 
-	//ѓ|ѓPѓ‚ѓ“‚Ц‚Мѓ|ѓCѓ“ѓ^Ћж“ѕ
+	//гѓќг‚±гѓўгѓігЃёгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(core->fsys->savedata), pos );
 
 	//0-25:A-Z 26:! 27:?(poke_tool.h)
@@ -5372,18 +5372,18 @@ static BOOL EvCmdUnknownFormGet(VM_MACHINE * core)
 
 //============================================================================================
 //
-//	ѓ|ѓPѓ‚ѓ“ЉЦA
+//	гѓќг‚±гѓўгѓій–ўйЂЈ
 //
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓ|ѓPѓ‚ѓ“‘I‘р‰ж–КЊД‚СЏo‚µЃi‘I‘р‚М‚ЭЃj
+ * @brief	гѓќг‚±гѓўгѓійЃёжЉћз”»йќўе‘јгЃіе‡єгЃ—пј€йЃёжЉћгЃ®гЃїпј‰
  *
- * @param	core	‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core	д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  *
- * @li EvCmdPokeListGetResult‚ЕЃA‘I‘р‚µ‚Ѕ€К’u‚рЋж“ѕ‚µ‚ДЃAѓЏЃ[ѓNЉJ•ъ‚Є•K—v
+ * @li EvCmdPokeListGetResultгЃ§гЂЃйЃёжЉћгЃ—гЃџдЅЌзЅ®г‚’еЏ–еѕ—гЃ—гЃ¦гЂЃгѓЇгѓјг‚Їй–‹ж”ѕгЃЊеї…и¦Ѓ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdPokeListSetProc(VM_MACHINE * core)
@@ -5398,13 +5398,13 @@ static BOOL EvCmdPokeListSetProc(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓ|ѓPѓ‚ѓ“‘I‘р‰ж–КЊД‚СЏo‚µЃiѓQЃ[ѓЂ“аЊрЉ·—pЃj
+ * @brief	гѓќг‚±гѓўгѓійЃёжЉћз”»йќўе‘јгЃіе‡єгЃ—пј€г‚Ігѓјгѓ е†…дє¤жЏ›з”Ёпј‰
  *
- * @param	core	‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core	д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  *
- * @li EvCmdPokeListGetResult‚ЕЃA‘I‘р‚µ‚Ѕ€К’u‚рЋж“ѕ‚µ‚ДЃAѓЏЃ[ѓNЉJ•ъ‚Є•K—v
+ * @li EvCmdPokeListGetResultгЃ§гЂЃйЃёжЉћгЃ—гЃџдЅЌзЅ®г‚’еЏ–еѕ—гЃ—гЃ¦гЂЃгѓЇгѓјг‚Їй–‹ж”ѕгЃЊеї…и¦Ѓ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdNpcTradePokeListSetProc(VM_MACHINE * core)
@@ -5419,12 +5419,12 @@ static BOOL EvCmdNpcTradePokeListSetProc(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓ†ѓjѓIѓ“ ѓ|ѓPѓ‚ѓ“‘I‘р‰ж–КЊД‚СЏo‚µ
+ * @brief	гѓ¦гѓ‹г‚Єгѓі гѓќг‚±гѓўгѓійЃёжЉћз”»йќўе‘јгЃіе‡єгЃ—
  *
- * @param	core	‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @param	core	д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  *
- * @li EvCmdPokeListGetResult‚ЕЃA‘I‘р‚µ‚Ѕ€К’u‚рЋж“ѕ‚µ‚ДЃAѓЏЃ[ѓNЉJ•ъ‚Є•K—v
+ * @li EvCmdPokeListGetResultгЃ§гЂЃйЃёжЉћгЃ—гЃџдЅЌзЅ®г‚’еЏ–еѕ—гЃ—гЃ¦гЂЃгѓЇгѓјг‚Їй–‹ж”ѕгЃЊеї…и¦Ѓ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnionPokeListSetProc(VM_MACHINE * core)
@@ -5439,9 +5439,9 @@ static BOOL EvCmdUnionPokeListSetProc(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓ|ѓPѓ‚ѓ“‘I‘р‰ж–КЊД‚СЏo‚µ
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @brief	гѓќг‚±гѓўгѓійЃёжЉћз”»йќўе‘јгЃіе‡єгЃ—
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdPokeListGetResult(VM_MACHINE * core)
@@ -5467,9 +5467,9 @@ static BOOL EvCmdPokeListGetResult(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓoѓgѓ‹ѓXѓeЃ[ѓWѓ|ѓPѓ‚ѓ“‘I‘р‰ж–КЊД‚СЏo‚µ
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @brief	гѓђгѓ€гѓ«г‚№гѓ†гѓјг‚ёгѓќг‚±гѓўгѓійЃёжЉћз”»йќўе‘јгЃіе‡єгЃ—
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdBattleStagePokeListGetResult(VM_MACHINE * core)
@@ -5497,16 +5497,16 @@ static BOOL EvCmdBattleStagePokeListGetResult(VM_MACHINE * core)
 
 	}else if( sel == PL_SEL_POS_ENTER ){
 
-		OS_Printf( "ѓoѓgѓ‹ѓXѓeЃ[ѓWЃ@ѓ|ѓPѓ‚ѓ“‘I‘рЊ‹‰К\n" );
+		OS_Printf( "гѓђгѓ€гѓ«г‚№гѓ†гѓјг‚ёгЂЂгѓќг‚±гѓўгѓійЃёжЉћзµђжћњ\n" );
 		//OS_Printf( "pld = %d\n", pld );
 
-		//Њ»ЌЭ‘I‚О‚к‚Д‚ў‚йѓ|ѓPѓ‚ѓ“‚р•Ы‘¶
+		//зЏѕењЁйЃёгЃ°г‚ЊгЃ¦гЃ„г‚‹гѓќг‚±гѓўгѓіг‚’дїќе­
 		//OS_Printf( "pld->in_num[0] = %d\n", pld->in_num[0] );
 		num = pld->in_num[0];
 		//OS_Printf( "num = %d\n", num );
 		*ret_wk = num;
 		//OS_Printf( "*ret_wk = %d\n", *ret_wk );
-		*ret_wk -= 1;											//0-5‚Й•ПЌX
+		*ret_wk -= 1;											//0-5гЃ«е¤‰ж›ґ
 		OS_Printf( "*ret_wk = %d\n", *ret_wk );
 
 		//OS_Printf( "pld->in_num[1] = %d\n", pld->in_num[1] );
@@ -5518,7 +5518,7 @@ static BOOL EvCmdBattleStagePokeListGetResult(VM_MACHINE * core)
 		//OS_Printf( "*ret2_wk = %d\n", *ret2_wk );
 
 		if( *ret2_wk > 0 ){
-			*ret2_wk -= 1;										//0-5‚Й•ПЌX
+			*ret2_wk -= 1;										//0-5гЃ«е¤‰ж›ґ
 		}
 		OS_Printf( "*ret2_wk = %d\n", *ret2_wk );
 	}
@@ -5531,9 +5531,9 @@ static BOOL EvCmdBattleStagePokeListGetResult(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓoѓgѓ‹ѓLѓѓѓbѓXѓ‹ѓ|ѓPѓ‚ѓ“‘I‘р‰ж–КЊД‚СЏo‚µ
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @brief	гѓђгѓ€гѓ«г‚­гѓЈгѓѓг‚№гѓ«гѓќг‚±гѓўгѓійЃёжЉћз”»йќўе‘јгЃіе‡єгЃ—
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdBattleCastlePokeListGetResult(VM_MACHINE * core)
@@ -5563,20 +5563,20 @@ static BOOL EvCmdBattleCastlePokeListGetResult(VM_MACHINE * core)
 
 	}else if( sel == PL_SEL_POS_ENTER ){
 
-		OS_Printf( "ѓoѓgѓ‹ѓLѓѓѓbѓXѓ‹Ѓ@ѓ|ѓPѓ‚ѓ“‘I‘рЊ‹‰К\n" );
+		OS_Printf( "гѓђгѓ€гѓ«г‚­гѓЈгѓѓг‚№гѓ«гЂЂгѓќг‚±гѓўгѓійЃёжЉћзµђжћњ\n" );
 
-		//Њ»ЌЭ‘I‚О‚к‚Д‚ў‚йѓ|ѓPѓ‚ѓ“‚р•Ы‘¶
+		//зЏѕењЁйЃёгЃ°г‚ЊгЃ¦гЃ„г‚‹гѓќг‚±гѓўгѓіг‚’дїќе­
 		*ret_wk = pld->in_num[0];
-		*ret_wk -= 1;											//0-5‚Й•ПЌX
+		*ret_wk -= 1;											//0-5гЃ«е¤‰ж›ґ
 		OS_Printf( "*ret_wk = %d\n", *ret_wk );
 
 		*ret2_wk = pld->in_num[1];
-		*ret2_wk -= 1;											//0-5‚Й•ПЌX
+		*ret2_wk -= 1;											//0-5гЃ«е¤‰ж›ґ
 		OS_Printf( "*ret2_wk = %d\n", *ret2_wk );
 
 		*ret3_wk = pld->in_num[2];
 		if( *ret3_wk > 0 ){
-			*ret3_wk -= 1;										//0-5‚Й•ПЌX
+			*ret3_wk -= 1;										//0-5гЃ«е¤‰ж›ґ
 		}
 		OS_Printf( "*ret3_wk = %d\n", *ret3_wk );
 	}
@@ -5589,9 +5589,9 @@ static BOOL EvCmdBattleCastlePokeListGetResult(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓoѓgѓ‹ѓ‹Ѓ[ѓЊѓbѓgѓ|ѓPѓ‚ѓ“‘I‘р‰ж–КЊД‚СЏo‚µ
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @brief	гѓђгѓ€гѓ«гѓ«гѓјгѓ¬гѓѓгѓ€гѓќг‚±гѓўгѓійЃёжЉћз”»йќўе‘јгЃіе‡єгЃ—
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdBattleRoulettePokeListGetResult(VM_MACHINE * core)
@@ -5621,20 +5621,20 @@ static BOOL EvCmdBattleRoulettePokeListGetResult(VM_MACHINE * core)
 
 	}else if( sel == PL_SEL_POS_ENTER ){
 
-		OS_Printf( "ѓoѓgѓ‹ѓ‹Ѓ[ѓЊѓbѓgЃ@ѓ|ѓPѓ‚ѓ“‘I‘рЊ‹‰К\n" );
+		OS_Printf( "гѓђгѓ€гѓ«гѓ«гѓјгѓ¬гѓѓгѓ€гЂЂгѓќг‚±гѓўгѓійЃёжЉћзµђжћњ\n" );
 
-		//Њ»ЌЭ‘I‚О‚к‚Д‚ў‚йѓ|ѓPѓ‚ѓ“‚р•Ы‘¶
+		//зЏѕењЁйЃёгЃ°г‚ЊгЃ¦гЃ„г‚‹гѓќг‚±гѓўгѓіг‚’дїќе­
 		*ret_wk = pld->in_num[0];
-		*ret_wk -= 1;											//0-5‚Й•ПЌX
+		*ret_wk -= 1;											//0-5гЃ«е¤‰ж›ґ
 		OS_Printf( "*ret_wk = %d\n", *ret_wk );
 
 		*ret2_wk = pld->in_num[1];
-		*ret2_wk -= 1;											//0-5‚Й•ПЌX
+		*ret2_wk -= 1;											//0-5гЃ«е¤‰ж›ґ
 		OS_Printf( "*ret2_wk = %d\n", *ret2_wk );
 
 		*ret3_wk = pld->in_num[2];
 		if( *ret3_wk > 0 ){
-			*ret3_wk -= 1;										//0-5‚Й•ПЌX
+			*ret3_wk -= 1;										//0-5гЃ«е¤‰ж›ґ
 		}
 		OS_Printf( "*ret3_wk = %d\n", *ret3_wk );
 	}
@@ -5647,13 +5647,13 @@ static BOOL EvCmdBattleRoulettePokeListGetResult(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓRѓ“ѓeѓXѓg ѓ|ѓPѓ‚ѓ“‘I‘р‰ж–КЊД‚СЏo‚µ
+ * @brief	г‚ігѓігѓ†г‚№гѓ€ гѓќг‚±гѓўгѓійЃёжЉћз”»йќўе‘јгЃіе‡єгЃ—
  *
- * @param	core	‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core	д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  *
- * @li EvCmdConPokeListGetResult‚ЕЃA‘I‘р‚µ‚Ѕ€К’uЃAѓ‚Ѓ[ѓh‚рЋж“ѕ‚µ‚ДЃAѓЏЃ[ѓNЉJ•ъ‚Є•K—v
+ * @li EvCmdConPokeListGetResultгЃ§гЂЃйЃёжЉћгЃ—гЃџдЅЌзЅ®гЂЃгѓўгѓјгѓ‰г‚’еЏ–еѕ—гЃ—гЃ¦гЂЃгѓЇгѓјг‚Їй–‹ж”ѕгЃЊеї…и¦Ѓ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdConPokeListSetProc(VM_MACHINE * core)
@@ -5672,9 +5672,9 @@ static BOOL EvCmdConPokeListSetProc(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓRѓ“ѓeѓXѓg ѓ|ѓPѓ‚ѓ“‘I‘р‰ж–КЊД‚СЏo‚µЊ‹‰КЋж“ѕ‚ЖѓЏЃ[ѓN‰р•ъ
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @brief	г‚ігѓігѓ†г‚№гѓ€ гѓќг‚±гѓўгѓійЃёжЉћз”»йќўе‘јгЃіе‡єгЃ—зµђжћњеЏ–еѕ—гЃЁгѓЇгѓјг‚Їи§Јж”ѕ
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdConPokeListGetResult(VM_MACHINE * core)
@@ -5695,10 +5695,10 @@ static BOOL EvCmdConPokeListGetResult(VM_MACHINE * core)
 
 	*ret_mode = FieldPokeListEvent_GetMode(*buf);
 	if (*ret_mode == PL_RET_STATUS) {
-		*ret_mode = 1;	//‚В‚ж‚і‚р‚Э‚й
+		*ret_mode = 1;	//гЃ¤г‚€гЃ•г‚’гЃїг‚‹
 	}
 	else{
-		*ret_mode = 0;	//’КЏн
+		*ret_mode = 0;	//йЂљеёё
 	}
 
 	sys_FreeMemoryEz(*buf);
@@ -5709,13 +5709,13 @@ static BOOL EvCmdConPokeListGetResult(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓRѓ“ѓeѓXѓg ѓ|ѓPѓ‚ѓ“ѓXѓeЃ[ѓ^ѓX‰ж–КЊД‚СЏo‚µ
+ * @brief	г‚ігѓігѓ†г‚№гѓ€ гѓќг‚±гѓўгѓіг‚№гѓ†гѓјг‚їг‚№з”»йќўе‘јгЃіе‡єгЃ—
  *
- * @param	core	‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core	д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  *
- * @li EvCmdPokeStatusGetResult‚ЕЃA‘I‘р‚µ‚Ѕ€К’u‚рЋж“ѕ‚µ‚ДЃAѓЏЃ[ѓNЉJ•ъ‚Є•K—v
+ * @li EvCmdPokeStatusGetResultгЃ§гЂЃйЃёжЉћгЃ—гЃџдЅЌзЅ®г‚’еЏ–еѕ—гЃ—гЃ¦гЂЃгѓЇгѓјг‚Їй–‹ж”ѕгЃЊеї…и¦Ѓ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdConPokeStatusSetProc(VM_MACHINE * core)
@@ -5731,9 +5731,9 @@ static BOOL EvCmdConPokeStatusSetProc(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓ|ѓPѓ‚ѓ“ѓXѓeЃ[ѓ^ѓX‰ж–КЊД‚СЏo‚µЊг‚МЊ‹‰КЋж“ѕ‚ЖѓЏЃ[ѓN‰р•ъ
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @brief	гѓќг‚±гѓўгѓіг‚№гѓ†гѓјг‚їг‚№з”»йќўе‘јгЃіе‡єгЃ—еѕЊгЃ®зµђжћњеЏ–еѕ—гЃЁгѓЇгѓјг‚Їи§Јж”ѕ
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdPokeStatusGetResult(VM_MACHINE * core)
@@ -5759,13 +5759,13 @@ static BOOL EvCmdPokeStatusGetResult(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓ|ѓPѓ‚ѓ“ѓXѓeЃ[ѓ^ѓX‰ж–КЊД‚СЏo‚µ
+ * @brief	гѓќг‚±гѓўгѓіг‚№гѓ†гѓјг‚їг‚№з”»йќўе‘јгЃіе‡єгЃ—
  *
- * @param	core	‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core	д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  *
- * @li EvCmdPokeStatusGetResult‚ЕЃA‘I‘р‚µ‚Ѕ€К’u‚рЋж“ѕ‚µ‚ДЃAѓЏЃ[ѓNЉJ•ъ‚Є•K—v
+ * @li EvCmdPokeStatusGetResultгЃ§гЂЃйЃёжЉћгЃ—гЃџдЅЌзЅ®г‚’еЏ–еѕ—гЃ—гЃ¦гЂЃгѓЇгѓјг‚Їй–‹ж”ѕгЃЊеї…и¦Ѓ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdWazaOshiePokeStatusSetProc(VM_MACHINE * core)
@@ -5782,9 +5782,9 @@ static BOOL EvCmdWazaOshiePokeStatusSetProc(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓ|ѓPѓ‚ѓ“ѓXѓeЃ[ѓ^ѓX‰ж–КЊД‚СЏo‚µЊг‚МЊ‹‰КЋж“ѕ‚ЖѓЏЃ[ѓN‰р•ъ
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @brief	гѓќг‚±гѓўгѓіг‚№гѓ†гѓјг‚їг‚№з”»йќўе‘јгЃіе‡єгЃ—еѕЊгЃ®зµђжћњеЏ–еѕ—гЃЁгѓЇгѓјг‚Їи§Јж”ѕ
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdWazaOshiePokeStatusGetResult(VM_MACHINE * core)
@@ -5799,7 +5799,7 @@ static BOOL EvCmdWazaOshiePokeStatusGetResult(VM_MACHINE * core)
 	GF_ASSERT(*buf != 0);
 
 	psd = *buf;
-	*ret_wk = psd->ret_sel;				//‘I‘р‚і‚к‚Ѕ‹Z€К’u
+	*ret_wk = psd->ret_sel;				//йЃёжЉћгЃ•г‚ЊгЃџжЉЂдЅЌзЅ®
 	OS_Printf( "*ret_wk = %d\n", *ret_wk );
 
 	sys_FreeMemoryEz(*buf);
@@ -5811,15 +5811,15 @@ static BOOL EvCmdWazaOshiePokeStatusGetResult(VM_MACHINE * core)
 
 //============================================================================================
 //
-//	ѓ|ѓPѓTЃ[ѓ`ѓѓЃ[ЉЦA
+//	гѓќг‚±г‚µгѓјгѓЃгѓЈгѓјй–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * “n‚і‚к‚ЅѓgѓЊЃ[ѓiЃ[‚ЄЌДђн‰В”\‚©ѓ`ѓFѓbѓN
+ * жёЎгЃ•г‚ЊгЃџгѓ€гѓ¬гѓјгѓЉгѓјгЃЊе†Ќж€¦еЏЇиѓЅгЃ‹гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5832,12 +5832,12 @@ static BOOL EvCmdRevengeTrainerSearch(VM_MACHINE * core)
 	u16* ret_wk				= VMGetWork( core );
 
 #if 0
-	//Њ»Џу‚НЃA‹@”\‚і‚№‚И‚ўЃI
+	//зЏѕзЉ¶гЃЇгЂЃж©џиѓЅгЃ•гЃ›гЃЄгЃ„пјЃ
 	*ret_wk = 0;
 	return 0;
 #endif
 
-	//ЌДђн“®ЌмѓRЃ[ѓh‚Єѓ`ѓFѓbѓN
+	//е†Ќж€¦е‹•дЅњг‚ігѓјгѓ‰гЃЊгѓЃг‚§гѓѓг‚Ї
 	*ret_wk = BS_TrainerIDCheck( core->fsys, *fldobj, tr_id );
 	return 0;
 }
@@ -5845,15 +5845,15 @@ static BOOL EvCmdRevengeTrainerSearch(VM_MACHINE * core)
 
 //============================================================================================
 //
-//	“VЊуЉЦA
+//	е¤©еЂ™й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * “VЊуѓRЃ[ѓh‚МѓZѓbѓg
+ * е¤©еЂ™г‚ігѓјгѓ‰гЃ®г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5868,9 +5868,9 @@ static BOOL EvCmdGetWeather( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “VЊуѓRЃ[ѓh‚МѓZѓbѓg
+ * е¤©еЂ™г‚ігѓјгѓ‰гЃ®г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5883,9 +5883,9 @@ static BOOL EvCmdSetWeather( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “VЊуѓRЃ[ѓh‚МЏ‰Љъ‰»
+ * е¤©еЂ™г‚ігѓјгѓ‰гЃ®е€ќжњџеЊ–
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5901,9 +5901,9 @@ static BOOL EvCmdInitWeather( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “VЊуѓRЃ[ѓh‚М”Ѕ‰f
+ * е¤©еЂ™г‚ігѓјгѓ‰гЃ®еЏЌж 
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5916,15 +5916,15 @@ static BOOL EvCmdUpdateWeather( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓcЃ[ѓ‹ЉЦA
+//	гѓ„гѓјгѓ«й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * Њ»ЌЭ‚Мѓ}ѓbѓv€К’u‚рЋж“ѕ
+ * зЏѕењЁгЃ®гѓћгѓѓгѓ—дЅЌзЅ®г‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -5945,18 +5945,18 @@ static BOOL EvCmdGetMapPosition( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓvѓЌѓOѓ‰ѓЂЊД‚СЏo‚µЉЦA
+//	гѓ—гѓ­г‚°гѓ©гѓ е‘јгЃіе‡єгЃ—й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓTѓuѓvѓЌѓZѓXЏI—№‘Т‚їЃ{ѓЏЃ[ѓN‰р•ъ Ѓ¦ЉO•”‚©‚з‚МЋQЏЖ‰В”\‚Й‚·‚й‚Ѕ‚Яstatic‚©‚з•ПЌX
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
- * @return	"Њp‘±=0ЃAЏI—№=1"
+ * @brief	г‚µгѓ–гѓ—гѓ­г‚»г‚№зµ‚дє†еѕ…гЃЎпј‹гѓЇгѓјг‚Їи§Јж”ѕ вЂ»е¤–йѓЁгЃ‹г‚‰гЃ®еЏ‚з…§еЏЇиѓЅгЃ«гЃ™г‚‹гЃџг‚ЃstaticгЃ‹г‚‰е¤‰ж›ґ
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
+ * @return	"з¶™з¶љ=0гЂЃзµ‚дє†=1"
  *
- * EvCmdWaitSubProcEnd‚Ж‚М€б‚ў‚НЃAѓTѓuѓvѓЌѓZѓX‚ЄЏI—№‚µ‚Ѕ‚Ж‚«‚Й
- * ID_EVSCR_SUBPROC_WORK‚ЙЉm•Ы‚µ‚ЅѓЏЃ[ѓN‚М‰р•ъЏ€—ќ‚Є‚ ‚й‚±‚Ж
+ * EvCmdWaitSubProcEndгЃЁгЃ®йЃ•гЃ„гЃЇгЂЃг‚µгѓ–гѓ—гѓ­г‚»г‚№гЃЊзµ‚дє†гЃ—гЃџгЃЁгЃЌгЃ«
+ * ID_EVSCR_SUBPROC_WORKгЃ«зўєдїќгЃ—гЃџгѓЇгѓјг‚ЇгЃ®и§Јж”ѕе‡¦зђ†гЃЊгЃ‚г‚‹гЃ“гЃЁ
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvWaitSubProcAndFree(VM_MACHINE * core)
@@ -5965,7 +5965,7 @@ BOOL EvWaitSubProcAndFree(VM_MACHINE * core)
 	FIELDSYS_WORK * fsys = core->fsys;
 	buf = GetEvScriptWorkMemberAdrs(core->fsys, ID_EVSCR_SUBPROC_WORK);
 	
-	if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ѓTѓuѓvѓЌѓZѓXЏI—№‘Т‚ї
+	if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//г‚µгѓ–гѓ—гѓ­г‚»г‚№зµ‚дє†еѕ…гЃЎ
 		return 0;
 	}
 	sys_FreeMemoryEz(*buf);
@@ -5976,12 +5976,12 @@ BOOL EvWaitSubProcAndFree(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓTѓuѓvѓЌѓZѓXЏI—№‘Т‚їЃ{ѓЏЃ[ѓN‰р•ъЃiѓ{ѓbѓNѓX—pЃj
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
- * @return	"Њp‘±=0ЃAЏI—№=1"
+ * @brief	г‚µгѓ–гѓ—гѓ­г‚»г‚№зµ‚дє†еѕ…гЃЎпј‹гѓЇгѓјг‚Їи§Јж”ѕпј€гѓњгѓѓг‚Їг‚№з”Ёпј‰
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
+ * @return	"з¶™з¶љ=0гЂЃзµ‚дє†=1"
  *
- * EvCmdWaitSubProcEnd‚Ж‚М€б‚ў‚НЃAѓTѓuѓvѓЌѓZѓX‚ЄЏI—№‚µ‚Ѕ‚Ж‚«‚Й
- * ID_EVSCR_SUBPROC_WORK‚ЙЉm•Ы‚µ‚ЅѓЏЃ[ѓN‚М‰р•ъЏ€—ќ‚Є‚ ‚й‚±‚Ж
+ * EvCmdWaitSubProcEndгЃЁгЃ®йЃ•гЃ„гЃЇгЂЃг‚µгѓ–гѓ—гѓ­г‚»г‚№гЃЊзµ‚дє†гЃ—гЃџгЃЁгЃЌгЃ«
+ * ID_EVSCR_SUBPROC_WORKгЃ«зўєдїќгЃ—гЃџгѓЇгѓјг‚ЇгЃ®и§Јж”ѕе‡¦зђ†гЃЊгЃ‚г‚‹гЃ“гЃЁ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvWaitBoxProcAndFree(VM_MACHINE * core)
@@ -5994,7 +5994,7 @@ static BOOL EvWaitBoxProcAndFree(VM_MACHINE * core)
 	buf  = GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_SUBPROC_WORK );
 	box  = *buf;
 
-	if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ѓTѓuѓvѓЌѓZѓXЏI—№‘Т‚ї
+	if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//г‚µгѓ–гѓ—гѓ­г‚»г‚№зµ‚дє†еѕ…гЃЎ
 		return 0;
 	}
 
@@ -6012,12 +6012,12 @@ static BOOL EvWaitBoxProcAndFree(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓTѓuѓvѓЌѓZѓXЏI—№‘Т‚їЃ{ѓЏЃ[ѓN‰р•ъ ‚®‚й‚®‚йЊрЉ·—p
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
- * @return	"Њp‘±=0ЃAЏI—№=1"
+ * @brief	г‚µгѓ–гѓ—гѓ­г‚»г‚№зµ‚дє†еѕ…гЃЎпј‹гѓЇгѓјг‚Їи§Јж”ѕ гЃђг‚‹гЃђг‚‹дє¤жЏ›з”Ё
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
+ * @return	"з¶™з¶љ=0гЂЃзµ‚дє†=1"
  *
- * EvCmdWaitSubProcEnd‚Ж‚М€б‚ў‚НЃAѓTѓuѓvѓЌѓZѓX‚ЄЏI—№‚µ‚Ѕ‚Ж‚«‚Й
- * ID_EVSCR_SUBPROC_WORK‚ЙЉm•Ы‚µ‚ЅѓЏЃ[ѓN‚М‰р•ъЏ€—ќ‚Є‚ ‚й‚±‚Ж
+ * EvCmdWaitSubProcEndгЃЁгЃ®йЃ•гЃ„гЃЇгЂЃг‚µгѓ–гѓ—гѓ­г‚»г‚№гЃЊзµ‚дє†гЃ—гЃџгЃЁгЃЌгЃ«
+ * ID_EVSCR_SUBPROC_WORKгЃ«зўєдїќгЃ—гЃџгѓЇгѓјг‚ЇгЃ®и§Јж”ѕе‡¦зђ†гЃЊгЃ‚г‚‹гЃ“гЃЁ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvWaitSubProcAndFree_Guru2(VM_MACHINE * core)
@@ -6026,7 +6026,7 @@ static BOOL EvWaitSubProcAndFree_Guru2(VM_MACHINE * core)
 	FIELDSYS_WORK * fsys = core->fsys;
 	buf = GetEvScriptWorkMemberAdrs(core->fsys, ID_EVSCR_SUBPROC_WORK);
 	
-	if( EventCmd_Guru2Proc(*buf) == FALSE ){		//ѓTѓuѓvѓЌѓZѓXЏI—№‘Т‚ї
+	if( EventCmd_Guru2Proc(*buf) == FALSE ){		//г‚µгѓ–гѓ—гѓ­г‚»г‚№зµ‚дє†еѕ…гЃЎ
 		return 0;
 	}
 	
@@ -6036,18 +6036,18 @@ static BOOL EvWaitSubProcAndFree_Guru2(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓTѓuѓvѓЌѓZѓXЏI—№‘Т‚ї Ѓ¦ЉO•”‚©‚з‚МЋQЏЖ‰В”\‚Й‚·‚й‚Ѕ‚Яstatic‚©‚з•ПЌX
+ * г‚µгѓ–гѓ—гѓ­г‚»г‚№зµ‚дє†еѕ…гЃЎ вЂ»е¤–йѓЁгЃ‹г‚‰гЃ®еЏ‚з…§еЏЇиѓЅгЃ«гЃ™г‚‹гЃџг‚ЃstaticгЃ‹г‚‰е¤‰ж›ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	"Њp‘±=0ЃAЏI—№=1"
+ * @return	"з¶™з¶љ=0гЂЃзµ‚дє†=1"
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdWaitSubProcEnd( VM_MACHINE * core )
 {
 	FIELDSYS_WORK * fsys = core->fsys;
 
-	if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ѓTѓuѓvѓЌѓZѓXЏI—№‘Т‚ї
+	if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//г‚µгѓ–гѓ—гѓ­г‚»г‚№зµ‚дє†еѕ…гЃЎ
 		return 0;
 	}
 
@@ -6056,9 +6056,9 @@ BOOL EvCmdWaitSubProcEnd( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓtѓBЃ[ѓ‹ѓhѓvѓЌѓZѓX•њ‹A
+ * гѓ•г‚Јгѓјгѓ«гѓ‰гѓ—гѓ­г‚»г‚№еѕ©её°
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6070,7 +6070,7 @@ static BOOL EvCmdSetMapProc(VM_MACHINE * core)
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ѓtѓBЃ[ѓ‹ѓhѓ}ѓbѓvѓvѓЌѓZѓXЏI—№‘Т‚ї
+ * гѓ•г‚Јгѓјгѓ«гѓ‰гѓћгѓѓгѓ—гѓ—гѓ­г‚»г‚№зµ‚дє†еѕ…гЃЎ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdFinishMapProc(VM_MACHINE * core)
@@ -6083,21 +6083,21 @@ static BOOL EvCmdFinishMapProc(VM_MACHINE * core)
 //--------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓCѓЃЃ[ѓWѓNѓЉѓbѓvЃ@ѓZЃ[ѓuѓfЃ[ѓ^—L–іѓ`ѓFѓbѓN
+ *	@brief	г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—гЂЂг‚»гѓјгѓ–гѓ‡гѓјг‚їжњ‰з„ЎгѓЃг‚§гѓѓг‚Ї
  *
- *	@param	fsys		‚†‚“‚™‚“
- *	@param	con_tv		ѓRѓ“ѓeѓXѓgЃ@ѓeѓЊѓrѓtѓ‰ѓO	IMC_PREV_TV IMC_PREV_CON
- *	@param	data_idx	ѓZЃ[ѓuѓfЃ[ѓ^Ѓ@ѓCѓ“ѓfѓbѓNѓX
+ *	@param	fsys		пЅ†пЅ“пЅ™пЅ“
+ *	@param	con_tv		г‚ігѓігѓ†г‚№гѓ€гЂЂгѓ†гѓ¬гѓ“гѓ•гѓ©г‚°	IMC_PREV_TV IMC_PREV_CON
+ *	@param	data_idx	г‚»гѓјгѓ–гѓ‡гѓјг‚їгЂЂг‚¤гѓігѓ‡гѓѓг‚Їг‚№
  *
- *	@retval	TRUE	ѓfЃ[ѓ^‚ ‚й
- *	@retval	FALSE	ѓfЃ[ѓ^‚И‚µ
+ *	@retval	TRUE	гѓ‡гѓјг‚їгЃ‚г‚‹
+ *	@retval	FALSE	гѓ‡гѓјг‚їгЃЄгЃ—
  */
 //-----------------------------------------------------------------------------
 static BOOL ImageClip_SaveDataCheck( FIELDSYS_WORK * fsys, int con_tv, int data_idx )
 {
 	IMC_SAVEDATA* iw = SaveData_GetImcSaveData( fsys->savedata );
 
-	// ѓZЃ[ѓuЌП‚Эѓ`ѓFѓbѓN
+	// г‚»гѓјгѓ–жё€гЃїгѓЃг‚§гѓѓг‚Ї
 	if( con_tv == IMC_PREV_TV ){
 		if( ImcSaveData_CheckTelevisionSaveData( iw, data_idx ) == FALSE ){
 			return FALSE;
@@ -6113,14 +6113,14 @@ static BOOL ImageClip_SaveDataCheck( FIELDSYS_WORK * fsys, int con_tv, int data_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ViewerѓfЃ[ѓ^Ќмђ¬
+ *	@brief	Viewerгѓ‡гѓјг‚їдЅњж€ђ
  *
- *	@param	heap		ѓqЃ[ѓv
- *	@param	fsys		‚†‚“‚™‚“
- *	@param	con_tv		ѓRѓ“ѓeѓXѓgЃ@ѓeѓЊѓrѓtѓ‰ѓO	IMC_PREV_TV IMC_PREV_CON
- *	@param	data_idx	ѓZЃ[ѓuѓfЃ[ѓ^Ѓ@ѓCѓ“ѓfѓbѓNѓX
+ *	@param	heap		гѓ’гѓјгѓ—
+ *	@param	fsys		пЅ†пЅ“пЅ™пЅ“
+ *	@param	con_tv		г‚ігѓігѓ†г‚№гѓ€гЂЂгѓ†гѓ¬гѓ“гѓ•гѓ©г‚°	IMC_PREV_TV IMC_PREV_CON
+ *	@param	data_idx	г‚»гѓјгѓ–гѓ‡гѓјг‚їгЂЂг‚¤гѓігѓ‡гѓѓг‚Їг‚№
  *	
- *	@return	ѓЏЃ[ѓN
+ *	@return	гѓЇгѓјг‚Ї
  */
 //-----------------------------------------------------------------------------
 static IMC_PROC_PREV_WORK* ImageClipViewer_DataMake( int heap, FIELDSYS_WORK * fsys, int con_tv, int data_idx )
@@ -6130,16 +6130,16 @@ static IMC_PROC_PREV_WORK* ImageClipViewer_DataMake( int heap, FIELDSYS_WORK * f
 	IMC_CONTEST_SAVEDATA* p_con;
 	IMC_SAVEDATA* iw = SaveData_GetImcSaveData( fsys->savedata );
 
-	// ѓZЃ[ѓuѓfЃ[ѓ^—L–іѓ`ѓFѓbѓN
+	// г‚»гѓјгѓ–гѓ‡гѓјг‚їжњ‰з„ЎгѓЃг‚§гѓѓг‚Ї
 	if( ImageClip_SaveDataCheck( fsys, con_tv, data_idx ) == FALSE ){
 		return  NULL;
 	}
 
-	// ѓЏЃ[ѓNЋж“ѕ
+	// гѓЇгѓјг‚ЇеЏ–еѕ—
 	p_work = sys_AllocMemory( heap, sizeof(IMC_PROC_PREV_WORK) );
 	memset( p_work, 0, sizeof(IMC_PROC_PREV_WORK) );
 	
-	// ѓZЃ[ѓuѓfЃ[ѓ^Ћж“ѕ
+	// г‚»гѓјгѓ–гѓ‡гѓјг‚їеЏ–еѕ—
 	p_work->p_imc_data = iw;
 	p_work->prev_type = con_tv;
 	p_work->data_idx = data_idx;
@@ -6158,9 +6158,9 @@ static void ImcClip_DataDelete( IMC_PROC_WORK* imc_w )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Ж‚а‚ѕ‚їѓRЃ[ѓh“o^ѓCѓxѓ“ѓg
+ * гЃЁг‚‚гЃ гЃЎг‚ігѓјгѓ‰з™»йЊІг‚¤гѓ™гѓігѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6173,9 +6173,9 @@ static BOOL EvCmdWiFiAutoReg( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * P2P‘Ођнѓ}ѓbѓ`ѓ“ѓOѓ{Ѓ[ѓhЊД‚СЏo‚µ
+ * P2PеЇѕж€¦гѓћгѓѓгѓЃгѓіг‚°гѓњгѓјгѓ‰е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6188,9 +6188,9 @@ static BOOL EvCmdWiFiP2PMatchEventCall( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * P2P‘Ођнѓ}ѓbѓ`ѓ“ѓOѓ{Ѓ[ѓh‚М–Я‚и’l‚рЋж“ѕЃAЉm•Ы‚µ‚ЅѓЃѓ‚ѓЉЌнЏњ
+ * P2PеЇѕж€¦гѓћгѓѓгѓЃгѓіг‚°гѓњгѓјгѓ‰гЃ®ж€»г‚ЉеЂ¤г‚’еЏ–еѕ—гЂЃзўєдїќгЃ—гЃџгѓЎгѓўгѓЄе‰Љй™¤
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -6211,9 +6211,9 @@ static BOOL EvCmdWiFiP2PMatchSetDel( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ћ©•Є‚МNET_ID‚р•Ф‚·
+ * и‡Єе€†гЃ®NET_IDг‚’иї”гЃ™
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6228,13 +6228,13 @@ static BOOL EvCmdCommGetCurrentID( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓ‚ѓ“ѓEѓBѓ“ѓhѓE•\Ћ¦
+ * гѓќг‚±гѓўгѓіг‚¦г‚Јгѓігѓ‰г‚¦иЎЁз¤є
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * @li ID_EVSCR_PWORKЋg—pЃI
+ * @li ID_EVSCR_PWORKдЅїз”ЁпјЃ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdPokeWindowPut( VM_MACHINE * core )
@@ -6249,20 +6249,20 @@ static BOOL EvCmdPokeWindowPut( VM_MACHINE * core )
 	*pwork = PokeWindowPut( core->fsys->bgl, FLD_MBGFRM_FONT, 10, 5, 
 							MENU_WIN_PAL, MENU_WIN_CGX_NUM, monsno, sex, HEAPID_FIELD );
 
-	//ђ}ЉУЊ©‚Ѕѓtѓ‰ѓO‚рѓZѓbѓg
+	//е›ій‘‘и¦‹гЃџгѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€
 	Scr_ZukanSeeSet( core->fsys, monsno );
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓ‚ѓ“ѓEѓBѓ“ѓhѓE•\Ћ¦(POKEMON_PARAM)
+ * гѓќг‚±гѓўгѓіг‚¦г‚Јгѓігѓ‰г‚¦иЎЁз¤є(POKEMON_PARAM)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * @li ID_EVSCR_PWORKЋg—pЃI
+ * @li ID_EVSCR_PWORKдЅїз”ЁпјЃ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdPokeWindowPutPP( VM_MACHINE * core )
@@ -6271,7 +6271,7 @@ static BOOL EvCmdPokeWindowPutPP( VM_MACHINE * core )
 	void** pwork	= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_PWORK );
 	u16 pos			= VMGetWorkValue(core);
 
-	//ѓ|ѓPѓ‚ѓ“‚Ц‚Мѓ|ѓCѓ“ѓ^Ћж“ѕ
+	//гѓќг‚±гѓўгѓігЃёгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(core->fsys->savedata), pos);
 
 	MenuWinGraphicSet(
@@ -6280,16 +6280,16 @@ static BOOL EvCmdPokeWindowPutPP( VM_MACHINE * core )
 	*pwork = PokeWindowPutPP( core->fsys->bgl, FLD_MBGFRM_FONT, 10, 5, 
 							MENU_WIN_PAL, MENU_WIN_CGX_NUM, poke, HEAPID_FIELD );
 
-	//ђ}ЉУЊ©‚Ѕѓtѓ‰ѓO‚рѓZѓbѓg
+	//е›ій‘‘и¦‹гЃџгѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€
 	Scr_ZukanSeeSet( core->fsys, PokeParaGet(poke,ID_PARA_monsno,NULL) );
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓ‚ѓ“ѓEѓBѓ“ѓhѓEЌнЏњ
+ * гѓќг‚±гѓўгѓіг‚¦г‚Јгѓігѓ‰г‚¦е‰Љй™¤
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6307,9 +6307,9 @@ static BOOL EvCmdPokeWindowDel( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓ‚ѓ“ѓEѓBѓ“ѓhѓEѓAѓjѓЃ
+ * гѓќг‚±гѓўгѓіг‚¦г‚Јгѓігѓ‰г‚¦г‚ўгѓ‹гѓЎ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6327,9 +6327,9 @@ static BOOL EvCmdPokeWindowAnm( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓ‚ѓ“ѓEѓBѓ“ѓhѓEѓAѓjѓЃѓEѓFѓCѓg
+ * гѓќг‚±гѓўгѓіг‚¦г‚Јгѓігѓ‰г‚¦г‚ўгѓ‹гѓЎг‚¦г‚§г‚¤гѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6339,19 +6339,19 @@ static BOOL EvCmdPokeWindowAnmWait( VM_MACHINE * core )
 	FIELDSYS_WORK* fsys = core->fsys;
 	u16 wk_id			= VMGetU16( core );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	VM_SetWait( core, EvWaitPokeWindowAnmWait );
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitPokeWindowAnmWait(VM_MACHINE * core)
 {
 	u8* end_flag;
 	void** pwork= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_PWORK );
-	u16* ret_wk = GetEventWorkAdrs( core->fsys, core->reg[0] );	//’Ќ€УЃI
+	u16* ret_wk = GetEventWorkAdrs( core->fsys, core->reg[0] );	//жіЁж„ЏпјЃ
 
 	end_flag	= *pwork;
 
@@ -6364,9 +6364,9 @@ static BOOL EvWaitPokeWindowAnmWait(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓoѓgѓ‹ѓTЃ[ѓ`ѓѓЃ[ЊД‚СЏo‚µ
+ * гѓђгѓ€гѓ«г‚µгѓјгѓЃгѓЈгѓје‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6382,16 +6382,16 @@ static BOOL EvCmdBtlSearcherEventCall( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓoѓgѓ‹ѓTЃ[ѓ`ѓѓЃ[ЃFђн“¬Њг‚Й•\Ћ¦•ыЊьЊЕ’и‚М“®ЌмѓRЃ[ѓh‚рѓZѓbѓg
+ * гѓђгѓ€гѓ«г‚µгѓјгѓЃгѓЈгѓјпјљж€¦й—еѕЊгЃ«иЎЁз¤єж–№еђ‘е›єе®љгЃ®е‹•дЅњг‚ігѓјгѓ‰г‚’г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdBtlSearcherDirMvSet( VM_MACHINE * core )
 {
-	FIELD_OBJ_PTR* fldobj = GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_TARGET_OBJ);//bЉ|‘ОЏЫOBJ
+	FIELD_OBJ_PTR* fldobj = GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_TARGET_OBJ);//и©±жЋ›еЇѕи±ЎOBJ
 
 	if( *fldobj != NULL ){
 		if( GYM_GimmickCodeCheck(core->fsys, FLD_GIMMICK_GHOST_GYM) == FALSE
@@ -6405,9 +6405,9 @@ static BOOL EvCmdBtlSearcherDirMvSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЃѓbѓZЃ[ѓW“o^Џ­”N
+ * гѓЎгѓѓг‚»гѓјг‚ёз™»йЊІе°‘е№ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6420,9 +6420,9 @@ static BOOL EvCmdMsgBoyEvent( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓvѓЌѓtѓBЃ[ѓ‹“o^Џ­”N
+ * гѓ—гѓ­гѓ•г‚Јгѓјгѓ«з™»йЊІе°‘е№ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6436,9 +6436,9 @@ static BOOL EvCmdProfileBoyEvent( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓCѓЃЃ[ѓWѓNѓЉѓbѓvЊД‚СЏo‚µ
+ * г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6449,16 +6449,16 @@ static BOOL EvCmdImageClipSetProc( VM_MACHINE * core )
 	u16* p_result = VMGetWork( core );
 	u16	reference = VMGetWorkValue(core);
 
-	// ѓCѓxѓ“ѓgѓRЃ[ѓ‹
+	// г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«
 	EventCmd_ImcClipTvStart( core->fsys->event, p_result, core->fsys->savedata, pos, reference );
 	return 1;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓeѓЊѓrѓhѓЊѓXѓAѓbѓvѓrѓ…Ѓ[ѓAЃ[
+ *	@brief	гѓ†гѓ¬гѓ“гѓ‰гѓ¬г‚№г‚ўгѓѓгѓ—гѓ“гѓҐгѓјг‚ўгѓј
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return "1"
  */
@@ -6469,25 +6469,25 @@ static BOOL EvCmdImageClipPreviewTvProc( VM_MACHINE * core )
 	int data_idx = VMGetU16(core);
 	u16* p_work = VMGetWork( core ); 
 
-	//ѓCѓЃЃ[ѓWѓNѓЉѓbѓvѓfЃ[ѓ^Ќмђ¬
+	//г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—гѓ‡гѓјг‚їдЅњж€ђ
 	*buf = ImageClipViewer_DataMake( HEAPID_WORLD, core->fsys, IMC_PREV_TV, data_idx );
 
 	if( *buf == NULL ){
 		*p_work = 1;
-		// ѓfЃ[ѓ^‚Є‚Ь‚ѕђЭ’и‚і‚к‚Д‚ў‚И‚ў
+		// гѓ‡гѓјг‚їгЃЊгЃѕгЃ иЁ­е®љгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„
 		return 1;
 	}
 	*p_work = 0;
-	FieldImageClipViewer_SetProc( core->fsys, *buf );			//ѓCѓЃЃ[ѓWѓNѓЉѓbѓvѓvѓЌѓbѓNѓZѓbѓg
+	FieldImageClipViewer_SetProc( core->fsys, *buf );			//г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—гѓ—гѓ­гѓѓг‚Їг‚»гѓѓгѓ€
 	VM_SetWait( core, EvWaitSubProcAndFree );
 	return 1;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓRѓ“ѓeѓXѓgѓhѓЊѓXѓAѓbѓvѓrѓ…Ѓ[ѓAЃ[
+ *	@brief	г‚ігѓігѓ†г‚№гѓ€гѓ‰гѓ¬г‚№г‚ўгѓѓгѓ—гѓ“гѓҐгѓјг‚ўгѓј
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return "1"
  */
@@ -6498,25 +6498,25 @@ static BOOL EvCmdImageClipPreviewConProc( VM_MACHINE * core )
 	int data_idx = VMGetU16(core);
 	u16* p_work = VMGetWork( core ); 
 
-	//ѓCѓЃЃ[ѓWѓNѓЉѓbѓvѓfЃ[ѓ^Ќмђ¬
+	//г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—гѓ‡гѓјг‚їдЅњж€ђ
 	*buf = ImageClipViewer_DataMake( HEAPID_WORLD, core->fsys, IMC_PREV_CON, data_idx );
 
 	if( *buf == NULL ){
 		*p_work = 1;
-		// ѓfЃ[ѓ^‚Є‚Ь‚ѕђЭ’и‚і‚к‚Д‚ў‚И‚ў
+		// гѓ‡гѓјг‚їгЃЊгЃѕгЃ иЁ­е®љгЃ•г‚ЊгЃ¦гЃ„гЃЄгЃ„
 		return 1;
 	}
 	*p_work = 0;
-	FieldImageClipViewer_SetProc( core->fsys, *buf );			//ѓCѓЃЃ[ѓWѓNѓЉѓbѓvѓvѓЌѓbѓNѓZѓbѓg
+	FieldImageClipViewer_SetProc( core->fsys, *buf );			//г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—гѓ—гѓ­гѓѓг‚Їг‚»гѓѓгѓ€
 	VM_SetWait( core, EvWaitSubProcAndFree );
 	return 1;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓeѓЊѓrѓhѓЊѓXѓAѓbѓv	ѓZЃ[ѓuѓfЃ[ѓ^—L–іѓ`ѓFѓbѓN
+ *	@brief	гѓ†гѓ¬гѓ“гѓ‰гѓ¬г‚№г‚ўгѓѓгѓ—	г‚»гѓјгѓ–гѓ‡гѓјг‚їжњ‰з„ЎгѓЃг‚§гѓѓг‚Ї
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return "1"
  */
@@ -6530,18 +6530,18 @@ static BOOL EvCmdImageClipTvSaveDataCheck( VM_MACHINE * core )
 	result = ImageClip_SaveDataCheck( core->fsys, IMC_PREV_TV, data_idx );
 
 	if( result == TRUE ){
-		*p_work = 1;	// ‚ ‚Б‚ЅЃI
+		*p_work = 1;	// гЃ‚гЃЈгЃџпјЃ
 		return 1;
 	}
-	*p_work = 0;	// ‚И‚µЃI
+	*p_work = 0;	// гЃЄгЃ—пјЃ
 	return 1;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓRѓ“ѓeѓXѓgѓhѓЊѓXѓAѓbѓv	ѓZЃ[ѓuѓfЃ[ѓ^—L–іѓ`ѓFѓbѓN
+ *	@brief	г‚ігѓігѓ†г‚№гѓ€гѓ‰гѓ¬г‚№г‚ўгѓѓгѓ—	г‚»гѓјгѓ–гѓ‡гѓјг‚їжњ‰з„ЎгѓЃг‚§гѓѓг‚Ї
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return "1"
  */
@@ -6555,18 +6555,18 @@ static BOOL EvCmdImageClipConSaveDataCheck( VM_MACHINE * core )
 	result = ImageClip_SaveDataCheck( core->fsys, IMC_PREV_CON, data_idx );
 
 	if( result == TRUE ){
-		*p_work = 1;	// ‚ ‚Б‚ЅЃI
+		*p_work = 1;	// гЃ‚гЃЈгЃџпјЃ
 		return 1;
 	}
-	*p_work = 0;	// ‚И‚µЃI
+	*p_work = 0;	// гЃЄгЃ—пјЃ
 	return 1;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓeѓЊѓr‹ЗЃ@ѓ^ѓCѓgѓ‹Ѓ@“ь—НЏ€—ќ
+ *	@brief	гѓ†гѓ¬гѓ“е±ЂгЂЂг‚їг‚¤гѓ€гѓ«гЂЂе…ҐеЉ›е‡¦зђ†
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return "1"
  */
@@ -6584,9 +6584,9 @@ static BOOL EvCmdImageClipTvSaveTitle( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‹…‹VЊД‚СЏo‚µ
+ * ењ°зђѓе„Ђе‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6600,9 +6600,9 @@ static BOOL EvCmdWifiEarthSetProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ђ}Џ‘ЉЩTVЊД‚СЏo‚µ
+ * е›іж›ёй¤ЁTVе‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6616,7 +6616,7 @@ static BOOL EvCmdLibraryTVSetProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ѓ{Ѓ[ѓ‹ѓJѓXѓ^ѓ}ѓCѓY—pѓfЃ[ѓ^Ќмђ¬
+ * @brief	гѓњгѓјгѓ«г‚«г‚№г‚їгѓћг‚¤г‚єз”Ёгѓ‡гѓјг‚їдЅњж€ђ
  *
  * @param	heap	
  * @param	fsys	
@@ -6635,10 +6635,10 @@ static CB_PROC_WORK* CustomBall_CreateData( int heap, FIELDSYS_WORK * fsys )
 	bc = sys_AllocMemory(heap, size);
 	memset(bc, 0, size);
 
-	///< ѓZЃ[ѓuѓfЃ[ѓ^Ћж“ѕ
+	///< г‚»гѓјгѓ–гѓ‡гѓјг‚їеЏ–еѕ—
 	bc->save_data = CB_SaveData_AllDataGet(fsys->savedata);
 	
-	///< ЋиЋќ‚їѓ|ѓPѓ‚ѓ“Ћж“ѕ
+	///< ж‰‹жЊЃгЃЎгѓќг‚±гѓўгѓіеЏ–еѕ—
 	{
 		int i;
 		int poke_cnt;
@@ -6658,9 +6658,9 @@ static CB_PROC_WORK* CustomBall_CreateData( int heap, FIELDSYS_WORK * fsys )
 
 //--------------------------------------------------------------------------------------------
 /**
- * 	ѓ{Ѓ[ѓ‹ѓJѓXѓ^ѓ}ѓCѓYЊД‚СЏo‚µ
+ * 	гѓњгѓјгѓ«г‚«г‚№г‚їгѓћг‚¤г‚єе‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6674,9 +6674,9 @@ static BOOL EvCmdCustomBallEventCall( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ^ѓEѓ“ѓ}ѓbѓvBGѓ‚Ѓ[ѓhЊД‚СЏo‚µ
+ * г‚їг‚¦гѓігѓћгѓѓгѓ—BGгѓўгѓјгѓ‰е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6696,9 +6696,9 @@ static BOOL EvCmdTMapBGSetProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Ь‚є‚Ь‚є—ї—ќЊД‚СЏo‚µ(ѓЌЃ[ѓJѓ‹)
+ * гЃѕгЃњгЃѕгЃњж–™зђ†е‘јгЃіе‡єгЃ—(гѓ­гѓјг‚«гѓ«)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6718,9 +6718,9 @@ static BOOL EvCmdNutMixerProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Ь‚є‚Ь‚є—ї—ќ‚рѓvѓЊѓC‚Е‚«‚йЏу‘Ф‚Е‚ ‚й‚©ѓ`ѓFѓbѓN‚·‚й
+ * гЃѕгЃњгЃѕгЃњж–™зђ†г‚’гѓ—гѓ¬г‚¤гЃ§гЃЌг‚‹зЉ¶ж…‹гЃ§гЃ‚г‚‹гЃ‹гѓЃг‚§гѓѓг‚ЇгЃ™г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -6729,27 +6729,27 @@ static BOOL EvCmdNutMixerPlayStateCheck(VM_MACHINE* core)
 {
 	u16 *ret_wk = GetEventWorkAdrs( core->fsys,VMGetU16(core));
 
-	//–Ш‚МЋА‚рЋќ‚Б‚Д‚ў‚й‚©ѓ`ѓFѓbѓN
+	//жњЁгЃ®е®џг‚’жЊЃгЃЈгЃ¦гЃ„г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
 	if(!MyItem_CheckItemPocket(SaveData_GetMyItem(core->fsys->savedata),BAG_POKE_NUTS)){
 		*ret_wk = 1;
 		return 0;
 	}
-	//ѓ|ѓ‹ѓgѓPЃ[ѓX‚Є‚ў‚Б‚П‚ў‚Е‚И‚ў‚©ѓ`ѓFѓbѓN
+	//гѓќгѓ«гѓ€г‚±гѓјг‚№гЃЊгЃ„гЃЈгЃ±гЃ„гЃ§гЃЄгЃ„гЃ‹гѓЃг‚§гѓѓг‚Ї
 	if(PORUTO_GetDataNum(SaveData_GetPorutoBlock(core->fsys->savedata)) >= PORUTO_STOCK_MAX){
 		*ret_wk = 2;
 		return 0;
 	}
 
-	//ѓvѓЊѓC‚Е‚«‚й
+	//гѓ—гѓ¬г‚¤гЃ§гЃЌг‚‹
 	*ret_wk = 0;
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ^ѓЏЃ[ѓAѓvѓЉЊД‚СЏo‚µ
+ * г‚їгѓЇгѓјг‚ўгѓ—гѓЄе‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6778,9 +6778,9 @@ static BOOL EvCmdBTowerAppSetProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ{ѓbѓNѓXЊД‚СЏo‚µ
+ * гѓњгѓѓг‚Їг‚№е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6794,16 +6794,16 @@ static BOOL EvCmdBoxSetProc( VM_MACHINE * core )
 	param->mode				= VMGetU8(core);
 	*buf = param;
 
-	FieldBox_SetProc( core->fsys, *buf );					//ѓ{ѓbѓNѓXѓvѓЌѓbѓNѓZѓbѓg
+	FieldBox_SetProc( core->fsys, *buf );					//гѓњгѓѓг‚Їг‚№гѓ—гѓ­гѓѓг‚Їг‚»гѓѓгѓ€
 	VM_SetWait( core, EvWaitBoxProcAndFree );
 	return 1;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Ё‚¦‚©‚«ЊД‚СЏo‚µ
+ * гЃЉгЃ€гЃ‹гЃЌе‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6819,9 +6819,9 @@ static BOOL EvCmdOekakiBoardSetProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓgѓЊЃ[ѓiЃ[ѓJЃ[ѓhЊД‚СЏo‚µ	(‘јђl‚МѓJЃ[ѓhЋQЏЖ—p)
+ * гѓ€гѓ¬гѓјгѓЉгѓјг‚«гѓјгѓ‰е‘јгЃіе‡єгЃ—	(д»–дєєгЃ®г‚«гѓјгѓ‰еЏ‚з…§з”Ё)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6848,9 +6848,9 @@ static BOOL EvCmdCallTrCard( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚±‚¤‚©‚сЊД‚СЏo‚µ
+ * гЃ“гЃ†гЃ‹г‚“е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6872,9 +6872,9 @@ static BOOL EvCmdTradeListSetProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЊѓRЃ[ѓhѓRЃ[ѓiЃ[ЊД‚СЏo‚µ
+ * гѓ¬г‚ігѓјгѓ‰г‚ігѓјгѓЉгѓје‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6890,9 +6890,9 @@ static BOOL EvCmdRecordCornerSetProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “a“°“ь‚иЊД‚СЏo‚µ
+ * ж®їе ‚е…Ґг‚Ље‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6905,9 +6905,9 @@ static BOOL EvCmdDendouSetProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓpѓ\ѓRѓ““a“°“ь‚иЊД‚СЏo‚µ
+ * гѓ‘г‚Ѕг‚ігѓіж®їе ‚е…Ґг‚Ље‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6917,7 +6917,7 @@ static BOOL EvCmdPcDendouSetProc( VM_MACHINE * core )
 	void** buf				= GetEvScriptWorkMemberAdrs(core->fsys, ID_EVSCR_SUBPROC_WORK);
 	*buf = Field_DendouPC_Call(core->fsys);
 #ifdef	PM_DEBUG
-	//•s—v‚И‚Н‚ё‚ѕ‚ЄЃAѓGѓ‰Ѓ[‘ОЏ€
+	//дёЌи¦ЃгЃЄгЃЇгЃљгЃ гЃЊгЂЃг‚Ёгѓ©гѓјеЇѕе‡¦
 	if (*buf == NULL) {
 		return 0;
 	}
@@ -6928,9 +6928,9 @@ static BOOL EvCmdPcDendouSetProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “a“°“ь‚иѓfЃ[ѓ^ѓ`ѓFѓbѓN
+ * ж®їе ‚е…Ґг‚Љгѓ‡гѓјг‚їгѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -6957,9 +6957,9 @@ static BOOL EvCmdPcDendouDataCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ђўЉEЊрЉ·‰ж–КЊД‚СЏo‚µ
+ * дё–з•Њдє¤жЏ›з”»йќўе‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -6970,11 +6970,11 @@ static BOOL EvCmdWorldTradeSetProc( VM_MACHINE * core )
 	u16* ret_wk = VMGetWork(core);
 
 	if( mydwc_checkMyGSID(core->fsys->savedata) ){
-		*ret_wk = 1;	//ђ¬Њч
+		*ret_wk = 1;	//ж€ђеЉџ
 		Field_WorldTrade_SetProc( core->fsys, no );
 		VM_SetWait( core, EvCmdWaitSubProcEnd );
 	}else{
-		*ret_wk = 0;	//Ћё”s
+		*ret_wk = 0;	//е¤±ж•—
 	}
 
 	return 1;
@@ -6982,9 +6982,9 @@ static BOOL EvCmdWorldTradeSetProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * WIFIђЪ‘±‚µЏ‰‰сIDЋж“ѕ
+ * WIFIжЋҐз¶љгЃ—е€ќе›ћIDеЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7000,9 +7000,9 @@ static BOOL EvCmdDPWInitProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЌЕЏ‰‚Мѓ|ѓPѓ‚ѓ“‘I‘р‰ж–КЊД‚СЏo‚µ
+ * жњЂе€ќгЃ®гѓќг‚±гѓўгѓійЃёжЉћз”»йќўе‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7012,7 +7012,7 @@ static BOOL EvCmdFirstPokeSelectProc( VM_MACHINE * core )
 	EV_POKESELECT_PEARENT_DATA* pokesel;
 	void** pwork = GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_PWORK );
 
-	//ѓyѓAѓЊѓ“ѓgѓfЃ[ѓ^Ќмђ¬
+	//гѓљг‚ўгѓ¬гѓігѓ€гѓ‡гѓјг‚їдЅњж€ђ
 	*pwork = sys_AllocMemory( HEAPID_WORLD, sizeof(EV_POKESELECT_PEARENT_DATA) );
 	pokesel = *pwork;
 	pokesel->cp_config = SaveData_GetConfig( core->fsys->savedata );
@@ -7025,9 +7025,9 @@ static BOOL EvCmdFirstPokeSelectProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЌЕЏ‰‚Мѓ|ѓPѓ‚ѓ“‘I‘р‰ж–К‚Е‘I‘р‚µ‚Ѕѓ|ѓPѓ‚ѓ“ѓiѓ“ѓoЃ[‚рЋж“ѕ‚µ‚ДЃAЉm•Ы‚µ‚ЅѓЃѓ‚ѓЉЌнЏњ
+ * жњЂе€ќгЃ®гѓќг‚±гѓўгѓійЃёжЉћз”»йќўгЃ§йЃёжЉћгЃ—гЃџгѓќг‚±гѓўгѓігѓЉгѓігѓђгѓјг‚’еЏ–еѕ—гЃ—гЃ¦гЂЃзўєдїќгЃ—гЃџгѓЎгѓўгѓЄе‰Љй™¤
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -7046,9 +7046,9 @@ static BOOL EvCmdFirstPokeSelectSetAndDel( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓoѓbѓO‰ж–К‚М‚ж‚С‚ѕ‚µ
+ * @brief	гѓђгѓѓг‚°з”»йќўгЃ®г‚€гЃігЃ гЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  * @return	"1"
  */
 //--------------------------------------------------------------------------------------------
@@ -7070,8 +7070,8 @@ static BOOL EvCmdBagSetProc( VM_MACHINE * core )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓoѓbѓO‰ж–К‚Е‚МЊ‹‰КЋж“ѕ
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @brief	гѓђгѓѓг‚°з”»йќўгЃ§гЃ®зµђжћњеЏ–еѕ—
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
@@ -7090,9 +7090,9 @@ static BOOL EvCmdBagGetResult( VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * –ј‘O“ь—НЊД‚СЏo‚µ
+ * еђЌе‰Ќе…ҐеЉ›е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7107,24 +7107,24 @@ static BOOL EvCmdNameIn( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓ‚ѓ“–ј‘O“ь—НЊД‚СЏo‚µ
+ * гѓќг‚±гѓўгѓіеђЌе‰Ќе…ҐеЉ›е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdNameInPoke( VM_MACHINE * core )
 {
-	STRCODE msg_buf[MONS_NAME_SIZE*2];		//ѓTѓCѓYЉm”FЃI
+	STRCODE msg_buf[MONS_NAME_SIZE*2];		//г‚µг‚¤г‚єзўєиЄЌпјЃ
 	POKEMON_PARAM * poke;
 	FIELDSYS_WORK* fsys = core->fsys;
 	u16 pos				= VMGetWorkValue(core);
 
-	//ѓ|ѓPѓ‚ѓ“‚Ц‚Мѓ|ѓCѓ“ѓ^Ћж“ѕ
+	//гѓќг‚±гѓўгѓігЃёгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), pos);
 
-	//ѓjѓbѓNѓlЃ[ѓЂЋж“ѕ
+	//гѓ‹гѓѓг‚ЇгѓЌгѓјгѓ еЏ–еѕ—
 	PokeParaGet(poke, ID_PARA_nickname, msg_buf);
 
 	EventCmd_NameIn(core->event_work, NAMEIN_POKEMON,PokeParaGet(poke,ID_PARA_monsno,NULL), 
@@ -7134,9 +7134,9 @@ static BOOL EvCmdNameInPoke( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ђО”и–ј‘O“ь—НЊД‚СЏo‚µ
+ * зџізў‘еђЌе‰Ќе…ҐеЉ›е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7150,9 +7150,9 @@ static BOOL EvCmdNameInStone( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚®‚й‚®‚йЊрЉ·ЊД‚СЏo‚µ
+ * гЃђг‚‹гЃђг‚‹дє¤жЏ›е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7167,9 +7167,9 @@ static BOOL EvCmdGuru2SetProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	RomCode Ћж“ѕ
+ * @brief	RomCode еЏ–еѕ—
  *
- * @param	core	‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core	д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @retval	static BOOL	
  *
@@ -7182,7 +7182,7 @@ static BOOL EvCmdUnionGetRomCode( VM_MACHINE * core )
 	
 	code = Union_GetRomCode();
 	
-	///< ‘ЉЋи‚МRomCode‚ЄDP‚И‚з 0
+	///< з›ёж‰‹гЃ®RomCodeгЃЊDPгЃЄг‚‰ 0
 	if ( code == PokemonDP_GetRomCode() ){
 		 
 		*ret_wk = 0;
@@ -7199,12 +7199,12 @@ static BOOL EvCmdUnionGetRomCode( VM_MACHINE * core )
 //============================================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ЉИ€Х‰пb“ь—НЊД‚СЏo‚µЃi1’PЊкЃj
+ * @brief	з°Ўж“дјљи©±е…ҐеЉ›е‘јгЃіе‡єгЃ—пј€1еЌиЄћпј‰
  */
 //--------------------------------------------------------------
 static BOOL EvCmdPMSInputSingleProc(VM_MACHINE * core)
 {
-	u16 dmy = VMGetWorkValue(core);		//ђа–ѕ•¶•ЄЉт‚М‚Ѕ‚Я‚Мѓ_ѓ~Ѓ[
+	u16 dmy = VMGetWorkValue(core);		//иЄ¬жЋж–‡е€†еІђгЃ®гЃџг‚ЃгЃ®гѓЂгѓџгѓј
 	u16 * ret_wk = VMGetWork(core);
 	u16 * ans_wk = VMGetWork(core);
 	*ans_wk = PMS_WORD_NULL;
@@ -7214,12 +7214,12 @@ static BOOL EvCmdPMSInputSingleProc(VM_MACHINE * core)
 
 //--------------------------------------------------------------
 /**
- * @brief	ЉИ€Х‰пb“ь—НЊД‚СЏo‚µЃi2’PЊкЃj
+ * @brief	з°Ўж“дјљи©±е…ҐеЉ›е‘јгЃіе‡єгЃ—пј€2еЌиЄћпј‰
  */
 //--------------------------------------------------------------
 static BOOL EvCmdPMSInputDoubleProc(VM_MACHINE * core)
 {
-	u16 dmy = VMGetWorkValue(core);		//ђа–ѕ•¶•ЄЉт‚М‚Ѕ‚Я‚Мѓ_ѓ~Ѓ[
+	u16 dmy = VMGetWorkValue(core);		//иЄ¬жЋж–‡е€†еІђгЃ®гЃџг‚ЃгЃ®гѓЂгѓџгѓј
 	u16 * ret_wk = VMGetWork(core);
 	u16 * ans_wk1 = VMGetWork(core);
 	u16 * ans_wk2 = VMGetWork(core);
@@ -7231,7 +7231,7 @@ static BOOL EvCmdPMSInputDoubleProc(VM_MACHINE * core)
 
 //--------------------------------------------------------------
 /**
- * @brief	ЉИ€Х‰пb‚М’PЊк‚рѓoѓbѓtѓ@‚Ц
+ * @brief	з°Ўж“дјљи©±гЃ®еЌиЄћг‚’гѓђгѓѓгѓ•г‚ЎгЃё
  */
 //--------------------------------------------------------------
 static BOOL EvCmdPMSBuf(VM_MACHINE * core)
@@ -7247,31 +7247,31 @@ static BOOL EvCmdPMSBuf(VM_MACHINE * core)
 
 //============================================================================================
 //
-//	ѓЏѓCѓvѓtѓFЃ[ѓhЉЦA
+//	гѓЇг‚¤гѓ—гѓ•г‚§гѓјгѓ‰й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЏѓCѓvѓtѓFЃ[ѓhѓXѓ^Ѓ[ѓg
+ * гѓЇг‚¤гѓ—гѓ•г‚§гѓјгѓ‰г‚№г‚їгѓјгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * ’Ќ€УЃIЃ@ѓtѓFЃ[ѓh‚Й‚©‚©‚йLCDЃABG–К‚МђЭ’и‚НЊЕ’и‚Й‚µ‚Д‚ў‚й
+ * жіЁж„ЏпјЃгЂЂгѓ•г‚§гѓјгѓ‰гЃ«гЃ‹гЃ‹г‚‹LCDгЂЃBGйќўгЃ®иЁ­е®љгЃЇе›єе®љгЃ«гЃ—гЃ¦гЃ„г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdWipeFadeStart( VM_MACHINE * core )
 {
-	u16 div				= VMGetU16(core);		//ЉeѓЏѓCѓvЏ€—ќ‚М•ЄЉ„ђ”
-	u16 sync			= VMGetU16(core);		//ЉeѓЏѓCѓv‚МЏ€—ќ‚р•ЄЉ„‚µ‚Ѕ‚P•Р‚МѓVѓ“ѓNђ”
-	u16 type			= VMGetU16(core);		//ѓ^ѓCѓv
-	u16 color			= VMGetU16(core);		//ѓJѓ‰Ѓ[
+	u16 div				= VMGetU16(core);		//еђ„гѓЇг‚¤гѓ—е‡¦зђ†гЃ®е€†е‰Іж•°
+	u16 sync			= VMGetU16(core);		//еђ„гѓЇг‚¤гѓ—гЃ®е‡¦зђ†г‚’е€†е‰ІгЃ—гЃџпј‘з‰‡гЃ®г‚·гѓіг‚Їж•°
+	u16 type			= VMGetU16(core);		//г‚їг‚¤гѓ—
+	u16 color			= VMGetU16(core);		//г‚«гѓ©гѓј
 
 	WIPE_SYS_Start( WIPE_PATTERN_WMS, type, type, color, div, sync, HEAPID_FIELD );
 
-	//ѓEѓBѓ“ѓhѓEѓ}ѓXѓNЏу‘Ф‚р‰рЏњ
+	//г‚¦г‚Јгѓігѓ‰г‚¦гѓћг‚№г‚ЇзЉ¶ж…‹г‚’и§Јй™¤
 	WIPE_ResetWndMask( WIPE_DISP_MAIN );
 	WIPE_ResetWndMask( WIPE_DISP_SUB );
 
@@ -7280,13 +7280,13 @@ static BOOL EvCmdWipeFadeStart( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЏѓCѓvѓtѓFЃ[ѓhЏI—№ѓ`ѓFѓbѓN
+ * гѓЇг‚¤гѓ—гѓ•г‚§гѓјгѓ‰зµ‚дє†гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  *
- * ’Ќ€УЃIЃ@ѓ`ѓFѓbѓN‚·‚йLCD‚МђЭ’и‚НЊЕ’и‚Й‚µ‚Д‚ў‚й
+ * жіЁж„ЏпјЃгЂЂгѓЃг‚§гѓѓг‚ЇгЃ™г‚‹LCDгЃ®иЁ­е®љгЃЇе›єе®љгЃ«гЃ—гЃ¦гЃ„г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdWipeFadeCheck( VM_MACHINE * core )
@@ -7295,7 +7295,7 @@ static BOOL EvCmdWipeFadeCheck( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitWipeFadeCheck(VM_MACHINE * core)
 {
 	if( WIPE_SYS_EndCheck() == TRUE ){
@@ -7308,15 +7308,15 @@ static BOOL EvWaitWipeFadeCheck(VM_MACHINE * core)
 
 //============================================================================================
 //
-//	ѓ}ѓbѓv‘J€ЪЉЦA
+//	гѓћгѓѓгѓ—йЃ·з§»й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ}ѓbѓv‘J€Ъ
+ * гѓћгѓѓгѓ—йЃ·з§»
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7329,12 +7329,12 @@ static BOOL EvCmdMapChange( VM_MACHINE * core )
 	FIELDSYS_WORK * fsys = core->fsys;
 
 	//zone_id = VMGetU16(core);
-	zone_id = VMGetWorkValue(core);			//08.04.28 •ПЌX
+	zone_id = VMGetWorkValue(core);			//08.04.28 е¤‰ж›ґ
 	door_id = VMGetU16(core);
 	x		= VMGetWorkValue(core);
 	z		= VMGetWorkValue(core);
 	//dir		= VMGetU16(core);
-	dir		= VMGetWorkValue(core);			//08.05.08 •ПЌX
+	dir		= VMGetWorkValue(core);			//08.05.08 е¤‰ж›ґ
 	door_id = DOOR_ID_JUMP_CODE;
 
 	EventCmd_MapChangeFull(core->event_work, zone_id, door_id, x, z, dir );
@@ -7343,9 +7343,9 @@ static BOOL EvCmdMapChange( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ}ѓbѓv‘J€Ъ(ѓRѓЌѓVѓAѓЂ)ѓCѓ“
+ * гѓћгѓѓгѓ—йЃ·з§»(г‚ігѓ­г‚·г‚ўгѓ )г‚¤гѓі
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7371,9 +7371,9 @@ static BOOL EvCmdColosseumMapChangeIn( VM_MACHINE * core )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ}ѓbѓv‘J€Ъ(ѓRѓЌѓVѓAѓЂ)ѓAѓEѓg
+ * гѓћгѓѓгѓ—йЃ·з§»(г‚ігѓ­г‚·г‚ўгѓ )г‚ўг‚¦гѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7386,7 +7386,7 @@ static BOOL EvCmdColosseumMapChangeOut( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘O‚Мѓ]Ѓ[ѓ“ID‚рЋж“ѕ‚·‚й
+ * е‰ЌгЃ®г‚ѕгѓјгѓіIDг‚’еЏ–еѕ—гЃ™г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdGetBeforeZoneID( VM_MACHINE * core)
@@ -7402,7 +7402,7 @@ static BOOL EvCmdGetBeforeZoneID( VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * Њ»ЌЭ‚Мѓ]Ѓ[ѓ“ID‚рЋж“ѕ‚·‚й
+ * зЏѕењЁгЃ®г‚ѕгѓјгѓіIDг‚’еЏ–еѕ—гЃ™г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdGetNowZoneID( VM_MACHINE * core)
@@ -7414,15 +7414,15 @@ static BOOL EvCmdGetNowZoneID( VM_MACHINE * core)
 
 //============================================================================================
 //
-//	”й“`‹ZЉЦA
+//	з§дјќжЉЂй–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * •З‚М‚Ъ‚и
+ * еЈЃгЃ®гЃјг‚Љ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7436,9 +7436,9 @@ static BOOL EvCmdKabeNobori( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚И‚Э‚М‚и
+ * гЃЄгЃїгЃ®г‚Љ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7446,16 +7446,16 @@ static BOOL EvCmdKabeNobori( VM_MACHINE * core )
 #if 0	//dp
 static BOOL EvCmdNaminori( VM_MACHINE * core )
 {
-	//‚И‚Э‚М‚иЋg—p‚Е—h‚к‘ђЏу‘ФѓNѓЉѓA
+	//гЃЄгЃїгЃ®г‚ЉдЅїз”ЁгЃ§жЏєг‚ЊиЌ‰зЉ¶ж…‹г‚ЇгѓЄг‚ў
 	SwayGrass_InitSwayGrass(core->fsys->SwayGrass);
 	EventCmd_NaminoriCall( core->event_work, 
 								Player_DirGet(core->fsys->player), VMGetWorkValue(core) );
 	return 1;
 }
-#else	//”j‚к‚ЅђўЉE‚рЌl—¶
+#else	//з ґг‚ЊгЃџдё–з•Њг‚’иЂѓж…®
 static BOOL EvCmdNaminori( VM_MACHINE * core )
 {
-	//‚И‚Э‚М‚иЋg—p‚Е—h‚к‘ђЏу‘ФѓNѓЉѓA
+	//гЃЄгЃїгЃ®г‚ЉдЅїз”ЁгЃ§жЏєг‚ЊиЌ‰зЉ¶ж…‹г‚ЇгѓЄг‚ў
 	SwayGrass_InitSwayGrass(core->fsys->SwayGrass);
 	
 	{
@@ -7476,9 +7476,9 @@ static BOOL EvCmdNaminori( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Ѕ‚«‚М‚Ъ‚и
+ * гЃџгЃЌгЃ®гЃјг‚Љ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7492,9 +7492,9 @@ static BOOL EvCmdTakinobori( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚»‚з‚р‚Ж‚Ф
+ * гЃќг‚‰г‚’гЃЁгЃ¶
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7513,7 +7513,7 @@ static BOOL EvCmdSorawotobu( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	”й“`‚н‚ґЃFѓtѓ‰ѓbѓVѓ…
+ * @brief	з§дјќг‚ЏгЃ–пјљгѓ•гѓ©гѓѓг‚·гѓҐ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdHidenFlash(VM_MACHINE * core)
@@ -7526,7 +7526,7 @@ static BOOL EvCmdHidenFlash(VM_MACHINE * core)
 }
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	”й“`‚н‚ґЃF‚«‚и‚О‚з‚ў
+ * @brief	з§дјќг‚ЏгЃ–пјљгЃЌг‚ЉгЃ°г‚‰гЃ„
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdHidenKiribarai(VM_MACHINE * core)
@@ -7540,13 +7540,13 @@ static BOOL EvCmdHidenKiribarai(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓJѓbѓgѓCѓ“
+ * г‚«гѓѓгѓ€г‚¤гѓі
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  *
- * @li ID_EVSCR_PWORKЋg—pЃI
+ * @li ID_EVSCR_PWORKдЅїз”ЁпјЃ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdCutIn( VM_MACHINE * core )
@@ -7555,7 +7555,7 @@ static BOOL EvCmdCutIn( VM_MACHINE * core )
 	void** pwork	= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_PWORK );
 	u16 pos			= VMGetWorkValue(core);
 
-	//ѓ|ѓPѓ‚ѓ“‚Ц‚Мѓ|ѓCѓ“ѓ^Ћж“ѕ
+	//гѓќг‚±гѓўгѓігЃёгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(core->fsys->savedata), pos );
 
 	*pwork = FieldCutIn_Init(
@@ -7566,7 +7566,7 @@ static BOOL EvCmdCutIn( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitCutIn(VM_MACHINE * core)
 {
 	void** pwork	= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_PWORK );
@@ -7581,9 +7581,9 @@ static BOOL EvWaitCutIn(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓRѓ“ѓeѓXѓg’…‘Ц‚¦
+ * г‚ігѓігѓ†г‚№гѓ€зќЂж›їгЃ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7596,9 +7596,9 @@ static BOOL EvCmdConHeroChange( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ћ©“]ЋФ‚ЙЏж‚Б‚Д‚ў‚й‚©ѓ`ѓFѓbѓN
+ * и‡Єи»ўи»ЉгЃ«д№—гЃЈгЃ¦гЃ„г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -7618,9 +7618,9 @@ static BOOL EvCmdBicycleCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ћ©“]ЋФЃA•аЌsЊ`‘Ф‚Й•ПЌX
+ * и‡Єи»ўи»ЉгЂЃж­©иЎЊеЅўж…‹гЃ«е¤‰ж›ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -7630,16 +7630,16 @@ static BOOL EvCmdBicycleReq( VM_MACHINE * core )
 	u8 flag	= VMGetU8( core );
 
 	if( flag == 1 ){
-		//ђж‚ЙBGMЏ€—ќ‚рЊД‚с‚Е‚©‚зЃAЊ`Џу‚рЋ©“]ЋФ‚Й‚·‚йЃI(060803)
-		Snd_FieldBgmSetSpecial( core->fsys, SEQ_BICYCLE );				//ѓZѓbѓg
+		//е…€гЃ«BGMе‡¦зђ†г‚’е‘јг‚“гЃ§гЃ‹г‚‰гЂЃеЅўзЉ¶г‚’и‡Єи»ўи»ЉгЃ«гЃ™г‚‹пјЃ(060803)
+		Snd_FieldBgmSetSpecial( core->fsys, SEQ_BICYCLE );				//г‚»гѓѓгѓ€
 		Snd_FadeOutNextPlayCall( core->fsys, SEQ_BICYCLE, BGM_FADE_FIELD_MODE );
-		Player_RequestSet( core->fsys->player, HERO_REQBIT_CYCLE );		//Ћ©“]ЋФ
+		Player_RequestSet( core->fsys->player, HERO_REQBIT_CYCLE );		//и‡Єи»ўи»Љ
 		Player_Request( core->fsys->player );
 	}else{
-		//ђж‚ЙЊ`Џу‚р–Я‚µ‚Д‚©‚зЃABGMЏ€—ќ‚рЊД‚ФЃI(060803)
-		Player_RequestSet( core->fsys->player, HERO_REQBIT_NORMAL );	//•аЌs
+		//е…€гЃ«еЅўзЉ¶г‚’ж€»гЃ—гЃ¦гЃ‹г‚‰гЂЃBGMе‡¦зђ†г‚’е‘јгЃ¶пјЃ(060803)
+		Player_RequestSet( core->fsys->player, HERO_REQBIT_NORMAL );	//ж­©иЎЊ
 		Player_Request( core->fsys->player );
-		Snd_FieldBgmSetSpecial( core->fsys, 0 );						//ѓNѓЉѓA
+		Snd_FieldBgmSetSpecial( core->fsys, 0 );						//г‚ЇгѓЄг‚ў
 		Snd_FadeOutNextPlayCall(core->fsys, 
 								Snd_FieldBgmNoGet(core->fsys,core->fsys->location->zone_id), 
 								BGM_FADE_FIELD_MODE );
@@ -7650,31 +7650,31 @@ static BOOL EvCmdBicycleReq( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓTѓCѓNѓЉѓ“ѓOѓЌЃ[ѓhђк—pЃ@ѓvѓ‰ѓ`ѓi‚ЕЏ€—ќ‚р•ПЌX
+ * г‚µг‚¤г‚ЇгѓЄгѓіг‚°гѓ­гѓјгѓ‰е°‚з”ЁгЂЂгѓ—гѓ©гѓЃгѓЉгЃ§е‡¦зђ†г‚’е¤‰ж›ґ
  *
- * SEQ_PL_BICYCLE‚Мѓ}ѓbѓv—LЊшѓtѓ‰ѓO‚р—§‚Д‚й
+ * SEQ_PL_BICYCLEгЃ®гѓћгѓѓгѓ—жњ‰еЉ№гѓ•гѓ©г‚°г‚’з«‹гЃ¦г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdBicycleReqNonBgm( VM_MACHINE * core )
 {
-	//ѓTѓCѓNѓЉѓ“ѓOѓЌЃ[ѓhђк—pѓZѓbѓgЏ€—ќ(‚±‚МѓRѓ}ѓ“ѓh‚Н‘ј‚Е‚НЋg—p‚µ‚Д‚Н‚ў‚Ї‚Ь‚№‚сЃI)
+	//г‚µг‚¤г‚ЇгѓЄгѓіг‚°гѓ­гѓјгѓ‰е°‚з”Ёг‚»гѓѓгѓ€е‡¦зђ†(гЃ“гЃ®г‚ігѓћгѓігѓ‰гЃЇд»–гЃ§гЃЇдЅїз”ЁгЃ—гЃ¦гЃЇгЃ„гЃ‘гЃѕгЃ›г‚“пјЃ)
 	
-	Snd_FieldBgmSetSpecial( core->fsys, SEQ_PL_BICYCLE );			//PLѓZѓbѓg
+	Snd_FieldBgmSetSpecial( core->fsys, SEQ_PL_BICYCLE );			//PLг‚»гѓѓгѓ€
 	//Snd_FadeOutNextPlayCall( core->fsys, SEQ_BICYCLE, BGM_FADE_FIELD_MODE );
-	//Player_RequestSet( core->fsys->player, HERO_REQBIT_CYCLE );		//Ћ©“]ЋФ
+	//Player_RequestSet( core->fsys->player, HERO_REQBIT_CYCLE );		//и‡Єи»ўи»Љ
 	//Player_Request( core->fsys->player );
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓTѓCѓNѓЉѓ“ѓOѓЌЃ[ѓhѓZѓbѓg
+ * г‚µг‚¤г‚ЇгѓЄгѓіг‚°гѓ­гѓјгѓ‰г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -7687,9 +7687,9 @@ static BOOL EvCmdCyclingRoadSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ћ©‹@‚МЊ`‘Ф‚рЋж“ѕ
+ * и‡Єж©џгЃ®еЅўж…‹г‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -7704,9 +7704,9 @@ static BOOL EvCmdPlayerFormGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ћ©‹@‚ЦѓЉѓNѓGѓXѓg
+ * и‡Єж©џгЃёгѓЄг‚Їг‚Ёг‚№гѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7719,9 +7719,9 @@ static BOOL EvCmdPlayerReqBitOn( VM_MACHINE * core )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * Ћ©‹@ѓЉѓNѓGѓXѓgЋАЌs
+ * и‡Єж©џгѓЄг‚Їг‚Ёг‚№гѓ€е®џиЎЊ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -7734,9 +7734,9 @@ static BOOL EvCmdPlayerReqStart( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘е—К”­ђ¶ѓ]Ѓ[ѓ“‚рЋж“ѕ
+ * е¤§й‡Џз™єз”џг‚ѕгѓјгѓіг‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -7753,9 +7753,9 @@ static BOOL EvCmdGenerateInfoGet(VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЌЕЏ‰‚Мѓ|ѓPѓ‚ѓ“ѓiѓ“ѓoЃ[Ћж“ѕ
+ * жњЂе€ќгЃ®гѓќг‚±гѓўгѓігѓЉгѓігѓђгѓјеЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -7771,15 +7771,15 @@ static BOOL EvCmdFirstPokeNoGet(VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ђн“¬ЉЦA(ЋАЊ±’†)
+//	ж€¦й—й–ўйЂЈ(е®џйЁ“дё­)
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓgѓЊЃ[ѓiЃ[‰пbЊД‚СЏo‚µ
+ * гѓ€гѓ¬гѓјгѓЉгѓјдјљи©±е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7796,7 +7796,7 @@ static BOOL EvCmdTrainerMessageSet( VM_MACHINE * core )
 
 	TT_TrainerMessageGet( tr_id, kind_id, *pbuf, HEAPID_WORLD );
 
-	//ѓЃѓbѓZЃ[ѓWѓNѓЉѓA
+	//гѓЎгѓѓг‚»гѓјг‚ёг‚ЇгѓЄг‚ў
 	GF_BGL_BmpWinDataFill( GetEvScriptWorkMemberAdrs(fsys, ID_EVSCR_MSGWINDAT), (FBMP_COL_WHITE) );
 
 	*msg_index = FieldTalkMsgStart( GetEvScriptWorkMemberAdrs(fsys,ID_EVSCR_MSGWINDAT),
@@ -7809,15 +7809,15 @@ static BOOL EvCmdTrainerMessageSet( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	’КђMЉЦA
+//	йЂљдїЎй–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ђe‹@‚р‘I‘р‚·‚йѓEѓBѓ“ѓhѓE‚рЉJ‚­
+ * и¦Єж©џг‚’йЃёжЉћгЃ™г‚‹г‚¦г‚Јгѓігѓ‰г‚¦г‚’й–‹гЃЏ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7832,34 +7832,34 @@ static BOOL EvCmdConnectSelParentWin( VM_MACHINE * core )
 
 	CommSelectParentWindowOpen( fsys, mode, type, type2 );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	VM_SetWait( core, EvWaitConnectSelParentWin );
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitConnectSelParentWin( VM_MACHINE * core )
 {
 	u32 ret;
 	FIELDSYS_WORK* fsys = core->fsys;
-	u16* ret_wk			= GetEventWorkAdrs( fsys, core->reg[0] );	//’Ќ€УЃI
+	u16* ret_wk			= GetEventWorkAdrs( fsys, core->reg[0] );	//жіЁж„ЏпјЃ
 
 	ret = CommSelectParentWindowCheck();
 	if( ret == COMM_RETVAL_NULL ){
-		return 0;					//‘I‘р’†
+		return 0;					//йЃёжЉћдё­
 	}
 
-	*ret_wk = ret;					//–Я‚и’lЉi”[
+	*ret_wk = ret;					//ж€»г‚ЉеЂ¤ж јзґЌ
 	return 1;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ћq‹@‚р‘I‘р‚·‚йѓEѓBѓ“ѓhѓE‚рЉJ‚­
+ * е­ђж©џг‚’йЃёжЉћгЃ™г‚‹г‚¦г‚Јгѓігѓ‰г‚¦г‚’й–‹гЃЏ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7874,34 +7874,34 @@ static BOOL EvCmdConnectSelChildWin( VM_MACHINE * core )
 
 	CommChildWindowOpen( fsys, mode, type, type2 );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	VM_SetWait( core, EvWaitConnectSelChildWin );
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitConnectSelChildWin( VM_MACHINE * core )
 {
 	u32 ret;
 	FIELDSYS_WORK* fsys = core->fsys;
-	u16* ret_wk			= GetEventWorkAdrs( fsys, core->reg[0] );	//’Ќ€УЃI
+	u16* ret_wk			= GetEventWorkAdrs( fsys, core->reg[0] );	//жіЁж„ЏпјЃ
 
 	ret = CommChildWindowCheck();
 	if( ret == COMM_RETVAL_NULL ){
-		return 0;					//‘I‘р’†
+		return 0;					//йЃёжЉћдё­
 	}
 
-	*ret_wk = ret;					//–Я‚и’lЉi”[
+	*ret_wk = ret;					//ж€»г‚ЉеЂ¤ж јзґЌ
 	return 1;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓfѓoѓbѓNђe‹@‚р‘I‘р‚·‚йѓEѓBѓ“ѓhѓE‚рЉJ‚­
+ * гѓ‡гѓђгѓѓг‚Їи¦Єж©џг‚’йЃёжЉћгЃ™г‚‹г‚¦г‚Јгѓігѓ‰г‚¦г‚’й–‹гЃЏ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7914,7 +7914,7 @@ static BOOL EvCmdConnectDebugParentWin( VM_MACHINE * core )
 #ifdef PM_DEBUG
 	CommDirectParent_Debug( fsys );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	VM_SetWait( core, EvWaitConnectSelParentWin );
@@ -7924,9 +7924,9 @@ static BOOL EvCmdConnectDebugParentWin( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓfѓoѓbѓNЋq‹@‚р‘I‘р‚·‚йѓEѓBѓ“ѓhѓE‚рЉJ‚­
+ * гѓ‡гѓђгѓѓг‚Їе­ђж©џг‚’йЃёжЉћгЃ™г‚‹г‚¦г‚Јгѓігѓ‰г‚¦г‚’й–‹гЃЏ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7939,7 +7939,7 @@ static BOOL EvCmdConnectDebugChildWin( VM_MACHINE * core )
 #ifdef PM_DEBUG
 	CommDirectChild_Debug( fsys );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	VM_SetWait( core, EvWaitConnectSelChildWin );
@@ -7949,9 +7949,9 @@ static BOOL EvCmdConnectDebugChildWin( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓfѓoѓbѓN—pЃ@’КђMђн“¬ЊД‚СЏo‚µ
+ * гѓ‡гѓђгѓѓг‚Їз”ЁгЂЂйЂљдїЎж€¦й—е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7973,9 +7973,9 @@ static BOOL EvCmdDebugSioEncount( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓfѓoѓbѓN—pЃ@’КђMѓRѓ“ѓeѓXѓgЊД‚СЏo‚µ
+ * гѓ‡гѓђгѓѓг‚Їз”ЁгЂЂйЂљдїЎг‚ігѓігѓ†г‚№гѓ€е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -7984,7 +7984,7 @@ static BOOL EvCmdDebugSioContest( VM_MACHINE * core )
 {
 //	FIELDSYS_WORK* fsys = core->fsys;
 	
-	//‚а‚¤Ћg‚Б‚Д‚ў‚И‚ў‚М‚ЕЌнЏњЃ@2007.12.19(ђ…) matsuda
+	//г‚‚гЃ†дЅїгЃЈгЃ¦гЃ„гЃЄгЃ„гЃ®гЃ§е‰Љй™¤гЂЂ2007.12.19(ж°ґ) matsuda
 //	EventCmd_ContestSioProc(core->event_work);
 	return 1;
 }
@@ -7992,15 +7992,15 @@ static BOOL EvCmdDebugSioContest( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	“БЋкђЪ‘±ЉЦA
+//	з‰№ж®ЉжЋҐз¶љй–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * “БЋкђЪ‘±Џо•с‚МѓZѓbѓg
+ * з‰№ж®ЉжЋҐз¶љжѓ…е ±гЃ®г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8022,15 +8022,15 @@ static BOOL EvCmdSpLocationSet( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓGѓЊѓxЃ[ѓ^ЉЦA
+//	г‚Ёгѓ¬гѓ™гѓјг‚їй–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * “БЋкђЪ‘±ђж‚©‚зЃAЊ»ЌЭ‚МѓtѓЌѓAѓiѓ“ѓoЃ[‚рЋж“ѕ
+ * з‰№ж®ЉжЋҐз¶ље…€гЃ‹г‚‰гЂЃзЏѕењЁгЃ®гѓ•гѓ­г‚ўгѓЉгѓігѓђгѓјг‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8042,16 +8042,16 @@ static BOOL EvCmdElevatorNowFloorGet( VM_MACHINE * core )
 
 	location = Situation_GetSpecialLocation( SaveData_GetSituation(core->fsys->savedata) );
 
-	//“БЋкђЪ‘±ђж‚©‚зЃAЊ»ЌЭ‚МѓtѓЌѓAѓiѓ“ѓoЃ[‚рЋж“ѕ
+	//з‰№ж®ЉжЋҐз¶ље…€гЃ‹г‚‰гЂЃзЏѕењЁгЃ®гѓ•гѓ­г‚ўгѓЉгѓігѓђгѓјг‚’еЏ–еѕ—
 	*wk = ElevatorNowFloorGet( location->zone_id );
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * Њ»ЌЭ‚МѓtѓЌѓAѓiѓ“ѓoЃ[‚р•\Ћ¦
+ * зЏѕењЁгЃ®гѓ•гѓ­г‚ўгѓЉгѓігѓђгѓјг‚’иЎЁз¤є
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8063,7 +8063,7 @@ static BOOL EvCmdElevatorFloorWrite( VM_MACHINE * core )
 	u8 x				= VMGetU8(core);
 	u8 y				= VMGetU8(core);
 	u16* wk				= VMGetWork(core);
-	u16 floor			= VMGetWorkValue(core);			//ѓvѓ‰ѓ`ѓi’З‰Б
+	u16 floor			= VMGetWorkValue(core);			//гѓ—гѓ©гѓЃгѓЉиїЅеЉ 
 
 	ElevatorFloorWrite( fsys, x, y, wk, *wordset, floor );
 	return 0;
@@ -8072,15 +8072,15 @@ static BOOL EvCmdElevatorFloorWrite( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ђ}ЉУ•]‰їЉЦA
+//	е›ій‘‘и©•дѕЎй–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓVѓ“ѓIѓEђ}ЉУЃ@Њ©‚В‚Ї‚Ѕђ”‚рЋж“ѕ
+ * г‚·гѓіг‚Єг‚¦е›ій‘‘гЂЂи¦‹гЃ¤гЃ‘гЃџж•°г‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8096,9 +8096,9 @@ static BOOL EvCmdGetShinouZukanSeeNum( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓVѓ“ѓIѓEђ}ЉУЃ@•Я‚Ь‚¦‚Ѕђ”‚рЋж“ѕ
+ * г‚·гѓіг‚Єг‚¦е›ій‘‘гЂЂжЌ•гЃѕгЃ€гЃџж•°г‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8114,9 +8114,9 @@ static BOOL EvCmdGetShinouZukanGetNum( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘SЌ‘ђ}ЉУЃ@Њ©‚В‚Ї‚Ѕђ”‚рЋж“ѕ
+ * е…Ёе›Ѕе›ій‘‘гЂЂи¦‹гЃ¤гЃ‘гЃџж•°г‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8132,9 +8132,9 @@ static BOOL EvCmdGetZenkokuZukanSeeNum( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘SЌ‘ђ}ЉУЃ@•Я‚Ь‚¦‚Ѕђ”‚рЋж“ѕ
+ * е…Ёе›Ѕе›ій‘‘гЂЂжЌ•гЃѕгЃ€гЃџж•°г‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8150,9 +8150,9 @@ static BOOL EvCmdGetZenkokuZukanGetNum( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘SЌ‘ђ}ЉУ‚©ѓ`ѓFѓbѓN
+ * е…Ёе›Ѕе›ій‘‘гЃ‹гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8167,9 +8167,9 @@ static BOOL EvCmdChkZenkokuZukan( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •]‰їѓЃѓbѓZЃ[ѓWIDЋж“ѕ
+ * и©•дѕЎгѓЎгѓѓг‚»гѓјг‚ёIDеЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8197,15 +8197,15 @@ static BOOL EvCmdGetZukanHyoukaMsgID( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	–мђ¶ђн“¬ЉЦA
+//	й‡Ћз”џж€¦й—й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓ‚ѓ“ѓiѓ“ѓoЃ[‚ЖѓЊѓxѓ‹‚рЋw’и‚µ‚Д–мђ¶ђн“¬ЊД‚СЏo‚µ
+ * гѓќг‚±гѓўгѓігѓЉгѓігѓђгѓјгЃЁгѓ¬гѓ™гѓ«г‚’жЊ‡е®љгЃ—гЃ¦й‡Ћз”џж€¦й—е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -8216,7 +8216,7 @@ static BOOL EvCmdWildBattleSet( VM_MACHINE * core )
 	u16 monsno		= VMGetWorkValue(core);
 	u8 level		= (u8)VMGetWorkValue(core);
 
-	//ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚И‚М‚ЕЃAѓXѓNѓЉѓvѓg‚Й•њ‹A‚µ‚Ь‚·ЃB
+	//г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«гЃЄгЃ®гЃ§гЂЃг‚№г‚ЇгѓЄгѓ—гѓ€гЃ«еѕ©её°гЃ—гЃѕгЃ™гЂ‚
 	EventCmd_WildBattle( core->event_work, monsno, level, win_flag,FALSE );
 
 	return 1;
@@ -8224,10 +8224,10 @@ static BOOL EvCmdWildBattleSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓ‚ѓ“ѓiѓ“ѓoЃ[‚ЖѓЊѓxѓ‹‚рЋw’и‚µ‚Д“БЋкѓ|ѓPѓ‚ѓ“ѓCѓxѓ“ѓg–мђ¶ђн“¬ЊД‚СЏo‚µ
- * Ѓ¦ѓmЃ[ѓ}ѓ‹‚Ж‚НѓGѓ“ѓJѓEѓ“ѓgѓЃѓbѓZЃ[ѓW‚Є€б‚ў‚Ь‚·
+ * гѓќг‚±гѓўгѓігѓЉгѓігѓђгѓјгЃЁгѓ¬гѓ™гѓ«г‚’жЊ‡е®љгЃ—гЃ¦з‰№ж®Љгѓќг‚±гѓўгѓіг‚¤гѓ™гѓігѓ€й‡Ћз”џж€¦й—е‘јгЃіе‡єгЃ—
+ * вЂ»гѓЋгѓјгѓћгѓ«гЃЁгЃЇг‚Ёгѓіг‚«г‚¦гѓігѓ€гѓЎгѓѓг‚»гѓјг‚ёгЃЊйЃ•гЃ„гЃѕгЃ™
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -8238,7 +8238,7 @@ static BOOL EvCmdSpWildBattleSet( VM_MACHINE * core )
 	u16 monsno		= VMGetWorkValue(core);
 	u8 level		= (u8)VMGetWorkValue(core);
 
-	//ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚И‚М‚ЕЃAѓXѓNѓЉѓvѓg‚Й•њ‹A‚µ‚Ь‚·ЃB
+	//г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«гЃЄгЃ®гЃ§гЂЃг‚№г‚ЇгѓЄгѓ—гѓ€гЃ«еѕ©её°гЃ—гЃѕгЃ™гЂ‚
 	EventCmd_WildBattle( core->event_work, monsno, level, win_flag,TRUE );
 
 	return 1;
@@ -8246,11 +8246,11 @@ static BOOL EvCmdSpWildBattleSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓ‚ѓ“ѓiѓ“ѓoЃ[‚ЖѓЊѓxѓ‹‚рЋw’и‚µ‚Д“БЋкѓ|ѓPѓ‚ѓ“ѓCѓxѓ“ѓg–мђ¶ђн“¬ЊД‚СЏo‚µ
- * Ѓ¦ѓmЃ[ѓ}ѓ‹‚Ж‚НѓGѓ“ѓJѓEѓ“ѓgѓЃѓbѓZЃ[ѓW‚Є€б‚ў‚Ь‚·
- * Ѓ¦ѓMѓ‰ѓeѓBѓiђк—p
+ * гѓќг‚±гѓўгѓігѓЉгѓігѓђгѓјгЃЁгѓ¬гѓ™гѓ«г‚’жЊ‡е®љгЃ—гЃ¦з‰№ж®Љгѓќг‚±гѓўгѓіг‚¤гѓ™гѓігѓ€й‡Ћз”џж€¦й—е‘јгЃіе‡єгЃ—
+ * вЂ»гѓЋгѓјгѓћгѓ«гЃЁгЃЇг‚Ёгѓіг‚«г‚¦гѓігѓ€гѓЎгѓѓг‚»гѓјг‚ёгЃЊйЃ•гЃ„гЃѕгЃ™
+ * вЂ»г‚®гѓ©гѓ†г‚ЈгѓЉе°‚з”Ё
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -8261,7 +8261,7 @@ static BOOL EvCmdGirathinaSpWildBattle( VM_MACHINE * core )
 	u16 monsno		= VMGetWorkValue(core);
 	u8 level		= (u8)VMGetWorkValue(core);
 
-	//ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚И‚М‚ЕЃAѓXѓNѓЉѓvѓg‚Й•њ‹A‚µ‚Ь‚·ЃB
+	//г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«гЃЄгЃ®гЃ§гЂЃг‚№г‚ЇгѓЄгѓ—гѓ€гЃ«еѕ©её°гЃ—гЃѕгЃ™гЂ‚
 	EventCmd_GirathinaWildBattle(
 		core->event_work, monsno, level, win_flag,TRUE );
 
@@ -8270,14 +8270,14 @@ static BOOL EvCmdGirathinaSpWildBattle( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓ‚ѓ“ѓiѓ“ѓoЃ[‚ЖѓЊѓxѓ‹‚рЋw’и‚µ‚Д“БЋкѓ|ѓPѓ‚ѓ“ѓCѓxѓ“ѓg–мђ¶ђн“¬ЊД‚СЏo‚µ
- * Ѓ¦ѓmЃ[ѓ}ѓ‹‚Ж‚НѓGѓ“ѓJѓEѓ“ѓgѓЃѓbѓZЃ[ѓW‚Є€б‚ў‚Ь‚·
+ * гѓќг‚±гѓўгѓігѓЉгѓігѓђгѓјгЃЁгѓ¬гѓ™гѓ«г‚’жЊ‡е®љгЃ—гЃ¦з‰№ж®Љгѓќг‚±гѓўгѓіг‚¤гѓ™гѓігѓ€й‡Ћз”џж€¦й—е‘јгЃіе‡єгЃ—
+ * вЂ»гѓЋгѓјгѓћгѓ«гЃЁгЃЇг‚Ёгѓіг‚«г‚¦гѓігѓ€гѓЎгѓѓг‚»гѓјг‚ёгЃЊйЃ•гЃ„гЃѕгЃ™
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  *
- * ЃљID_PARA_event_get_flag‚рѓZѓbѓg‚µ‚Ь‚·(ѓVѓFѓCѓ~—p‚ЙЋg—p‚µ‚Д‚ў‚Ь‚· 08.04.05)
+ * в…ID_PARA_event_get_flagг‚’г‚»гѓѓгѓ€гЃ—гЃѕгЃ™(г‚·г‚§г‚¤гѓџз”ЁгЃ«дЅїз”ЁгЃ—гЃ¦гЃ„гЃѕгЃ™ 08.04.05)
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdEventGetWildBattleSet( VM_MACHINE * core )
@@ -8286,7 +8286,7 @@ static BOOL EvCmdEventGetWildBattleSet( VM_MACHINE * core )
 	u16 monsno		= VMGetWorkValue(core);
 	u8 level		= (u8)VMGetWorkValue(core);
 
-	//ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚И‚М‚ЕЃAѓXѓNѓЉѓvѓg‚Й•њ‹A‚µ‚Ь‚·ЃB
+	//г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«гЃЄгЃ®гЃ§гЂЃг‚№г‚ЇгѓЄгѓ—гѓ€гЃ«еѕ©её°гЃ—гЃѕгЃ™гЂ‚
 	EventCmd_WildBattleEventGet( core->event_work, monsno, level, win_flag,TRUE );
 
 	return 1;
@@ -8294,9 +8294,9 @@ static BOOL EvCmdEventGetWildBattleSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЌЕЏ‰‚МѓCѓxѓ“ѓgђн“¬ЊД‚СЏo‚µ
+ * жњЂе€ќгЃ®г‚¤гѓ™гѓігѓ€ж€¦й—е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -8313,9 +8313,9 @@ static BOOL EvCmdFirstBattleSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •ЯЉlѓfѓ‚‚МѓCѓxѓ“ѓgђн“¬ЊД‚СЏo‚µ
+ * жЌ•зЌІгѓ‡гѓўгЃ®г‚¤гѓ™гѓігѓ€ж€¦й—е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -8329,15 +8329,15 @@ static BOOL EvCmdCaptureBattleSet( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓnѓjЃ[ѓcѓЉЃ[ЉЦA
+//	гѓЏгѓ‹гѓјгѓ„гѓЄгѓјй–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓnѓjЃ[ѓcѓЉЃ[
+ * гѓЏгѓ‹гѓјгѓ„гѓЄгѓј
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8351,9 +8351,9 @@ static BOOL EvCmdHoneyTree( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓnѓjЃ[ѓcѓЉЃ[ѓXѓeЃ[ѓgЋж“ѕ
+ * гѓЏгѓ‹гѓјгѓ„гѓЄгѓјг‚№гѓ†гѓјгѓ€еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8363,16 +8363,16 @@ static BOOL EvCmdGetHoneyTreeState( VM_MACHINE * core )
 	FIELDSYS_WORK* fsys = core->fsys;
 	u16* ret_wk			= VMGetWork( core );
 
-	//Њ»ЌЭ‚МЋ©‹@‚Мѓ]Ѓ[ѓ“ID‚рЋж“ѕ‚µЃA‚»‚к‚Й‘О‰ћ‚·‚й–Ё–Ш‚р“Б’и‚·‚й
+	//зЏѕењЁгЃ®и‡Єж©џгЃ®г‚ѕгѓјгѓіIDг‚’еЏ–еѕ—гЃ—гЂЃгЃќг‚ЊгЃ«еЇѕеїњгЃ™г‚‹ињњжњЁг‚’з‰№е®љгЃ™г‚‹
 	*ret_wk = HTE_GetNowLocHoneyTreeState(fsys);
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * –Ё“h‚иђн“¬ЊД‚СЏo‚µ
+ * ињњеЎ—г‚Љж€¦й—е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -8382,7 +8382,7 @@ static BOOL EvCmdHoneyTreeBattleSet( VM_MACHINE * core )
 	FIELDSYS_WORK * fsys = core->fsys;
 	BOOL * win_flag			= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WIN_FLAG );
 
-	//ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚И‚М‚ЕЃAѓXѓNѓЉѓvѓg‚Й•њ‹A‚µ‚Ь‚·ЃB
+	//г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«гЃЄгЃ®гЃ§гЂЃг‚№г‚ЇгѓЄгѓ—гѓ€гЃ«еѕ©её°гЃ—гЃѕгЃ™гЂ‚
 	EventCmd_HoneyTreeBattle( core->event_work ,win_flag );
 
 	return 1;
@@ -8390,9 +8390,9 @@ static BOOL EvCmdHoneyTreeBattleSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –Ё“h‚иђн“¬ЏI—№ЊгЏ€—ќ
+ * ињњеЎ—г‚Љж€¦й—зµ‚дє†еѕЊе‡¦зђ†
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8401,8 +8401,8 @@ static BOOL EvCmdHoneyAfterTreeBattleSet( VM_MACHINE * core )
 {
 	FIELDSYS_WORK * fsys = core->fsys;
 
-	//ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚И‚М‚ЕЃAѓXѓNѓЉѓvѓg‚Й•њ‹A‚µ‚Ь‚·ЃB
-	OS_Printf("ђн“¬Њг‚ЙЊД‚СЏo‚µ\n");
+	//г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«гЃЄгЃ®гЃ§гЂЃг‚№г‚ЇгѓЄгѓ—гѓ€гЃ«еѕ©её°гЃ—гЃѕгЃ™гЂ‚
+	OS_Printf("ж€¦й—еѕЊгЃ«е‘јгЃіе‡єгЃ—\n");
 	HTE_SetHoneyTreeInfoAfterBtl(fsys);
 
 	return 0;
@@ -8410,9 +8410,9 @@ static BOOL EvCmdHoneyAfterTreeBattleSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓTѓCѓ“ЊД‚СЏo‚µ
+ * г‚µг‚¤гѓіе‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -8427,15 +8427,15 @@ static BOOL EvCmdTSignSetProc( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓЊѓ|Ѓ[ѓgѓZЃ[ѓuЉЦA
+//	гѓ¬гѓќгѓјгѓ€г‚»гѓјгѓ–й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЊѓ|Ѓ[ѓgѓfЃ[ѓ^ѓ`ѓFѓbѓN
+ * гѓ¬гѓќгѓјгѓ€гѓ‡гѓјг‚їгѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8446,16 +8446,16 @@ static BOOL EvCmdReportSaveCheck( VM_MACHINE * core )
 	u16* ret_wk			= VMGetWork( core );
 
 	if (SaveData_IsOverwritingOtherData(savedata)) {
-		//Ѓu‚і‚ў‚µ‚е‚©‚зЃv‚ЕЉщ‚ЙѓZЃ[ѓuѓfЃ[ѓ^‚Є‘¶ЌЭ‚·‚йЏкЌ‡ЃЃЏ‘‚«Ќћ‚Э‹ЦЋ~
+		//гЂЊгЃ•гЃ„гЃ—г‚‡гЃ‹г‚‰гЂЌгЃ§ж—ўгЃ«г‚»гѓјгѓ–гѓ‡гѓјг‚їгЃЊе­ењЁгЃ™г‚‹е ґеђ€пјќж›ёгЃЌиѕјгЃїз¦Ѓж­ў
 		*ret_wk = 0;
 	} else if (SaveData_GetExistFlag(savedata) == FALSE) {
-		//ѓZЃ[ѓuѓfЃ[ѓ^‚Є‘¶ЌЭ‚µ‚И‚ўЃЃЏ‰‰сѓZЃ[ѓuЃi‘S‘МѓZЃ[ѓuЃj
+		//г‚»гѓјгѓ–гѓ‡гѓјг‚їгЃЊе­ењЁгЃ—гЃЄгЃ„пјќе€ќе›ћг‚»гѓјгѓ–пј€е…ЁдЅ“г‚»гѓјгѓ–пј‰
 		*ret_wk = 1;
 	} else if (SaveData_GetTotalSaveFlag(savedata)) {
-		//ѓZЃ[ѓuѓfЃ[ѓ^‚Є‘¶ЌЭ‚µ‚ДЃA‘S‘МѓZЃ[ѓu‚МЏкЌ‡
+		//г‚»гѓјгѓ–гѓ‡гѓјг‚їгЃЊе­ењЁгЃ—гЃ¦гЂЃе…ЁдЅ“г‚»гѓјгѓ–гЃ®е ґеђ€
 		*ret_wk = 2;
 	} else {
-		//ѓZЃ[ѓuѓfЃ[ѓ^‚Є‘¶ЌЭ‚µ‚ДЃA•”•ЄѓZЃ[ѓu‚МЏкЌ‡
+		//г‚»гѓјгѓ–гѓ‡гѓјг‚їгЃЊе­ењЁгЃ—гЃ¦гЂЃйѓЁе€†г‚»гѓјгѓ–гЃ®е ґеђ€
 		*ret_wk = 3;
 	}
 
@@ -8464,9 +8464,9 @@ static BOOL EvCmdReportSaveCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЊѓ|Ѓ[ѓgЏ‘‚«Ќћ‚Э
+ * гѓ¬гѓќгѓјгѓ€ж›ёгЃЌиѕјгЃї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8481,9 +8481,9 @@ static BOOL EvCmdReportSave( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЉO•”ѓZЃ[ѓu‚МЏ‰Љъ‰»
+ * е¤–йѓЁг‚»гѓјгѓ–гЃ®е€ќжњџеЊ–
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8496,9 +8496,9 @@ static BOOL EvCmdExtraSaveInit( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЉO•”ѓZЃ[ѓu‚ЄЏ‰Љъ‰»ЌП‚Э‚©ѓ`ѓFѓbѓN
+ * е¤–йѓЁг‚»гѓјгѓ–гЃЊе€ќжњџеЊ–жё€гЃїгЃ‹гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8513,15 +8513,15 @@ static BOOL EvCmdExtraSaveInitCheck( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓ|ѓPѓbѓ`ЉЦA
+//	гѓќг‚±гѓѓгѓЃй–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓbѓ`ѓQѓbѓg
+ * гѓќг‚±гѓѓгѓЃг‚Ігѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -8534,9 +8534,9 @@ static BOOL EvCmdGetPoketch( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓbѓ`“ьЋиЌП‚Эѓtѓ‰ѓOЋж“ѕ
+ * гѓќг‚±гѓѓгѓЃе…Ґж‰‹жё€гЃїгѓ•гѓ©г‚°еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8551,9 +8551,9 @@ static BOOL EvCmdGetPoketchFlag( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓbѓ`ѓ\ѓtѓg’З‰Б
+ * гѓќг‚±гѓѓгѓЃг‚Ѕгѓ•гѓ€иїЅеЉ 
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8570,9 +8570,9 @@ static BOOL EvCmdPoketchAppAdd( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓbѓ`ѓ\ѓtѓg’З‰БЌП‚Э‚©ѓ`ѓFѓbѓN
+ * гѓќг‚±гѓѓгѓЃг‚Ѕгѓ•гѓ€иїЅеЉ жё€гЃїгЃ‹гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8589,15 +8589,15 @@ static BOOL EvCmdPoketchAppCheck( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	’КђMЉЦA
+//	йЂљдїЎй–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ^ѓCѓ~ѓ“ѓOѓRѓ}ѓ“ѓh‚р”­Ќs‚·‚й
+ * г‚їг‚¤гѓџгѓіг‚°г‚ігѓћгѓігѓ‰г‚’з™єиЎЊгЃ™г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8606,19 +8606,19 @@ static BOOL EvCmdCommTimingSyncStart( VM_MACHINE * core )
 {
 	u16 no = VMGetWorkValue( core );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = no;
 
 	CommTimingSyncStart( no );
 
 	VM_SetWait( core, EvWaitCommIsTimingSync );
 
-	OS_Printf("“ЇЉъ‘Т‚їЃ@”ФЌ†ЃЃ%d\n",no);
+	OS_Printf("еђЊжњџеѕ…гЃЎгЂЂз•ЄеЏ·пјќ%d\n",no);
 
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitCommIsTimingSync(VM_MACHINE * core)
 {
 	int result;
@@ -8632,9 +8632,9 @@ static BOOL EvWaitCommIsTimingSync(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЉѓZѓbѓgѓRѓ}ѓ“ѓh‚р”­Ќs‚·‚й
+ * гѓЄг‚»гѓѓгѓ€г‚ігѓћгѓігѓ‰г‚’з™єиЎЊгЃ™г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8648,15 +8648,15 @@ static BOOL EvCmdCommTempDataReset( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓ†ѓjѓIѓ“ЉЦA
+//	гѓ¦гѓ‹г‚Єгѓій–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ†ѓjѓIѓ“ѓ‹Ѓ[ѓЂ ’КђM‚Мђe‹@‘¤‚ЕѓJЃ[ѓh‚рЊ©‚й‘O‚М‰пb”ФЌ†‚рЋж“ѕ
+ * гѓ¦гѓ‹г‚Єгѓігѓ«гѓјгѓ  йЂљдїЎгЃ®и¦Єж©џеЃґгЃ§г‚«гѓјгѓ‰г‚’и¦‹г‚‹е‰ЌгЃ®дјљи©±з•ЄеЏ·г‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8673,9 +8673,9 @@ static BOOL EvCmdUnionParentCardTalkNo( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ†ѓjѓIѓ“ѓ‹Ѓ[ѓЂ Ќ¶Џг‚Мђl‚Мb‚·ѓЃѓbѓZЃ[ѓWIDЋж“ѕ
+ * гѓ¦гѓ‹г‚Єгѓігѓ«гѓјгѓ  е·¦дёЉгЃ®дєєгЃ®и©±гЃ™гѓЎгѓѓг‚»гѓјг‚ёIDеЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8694,19 +8694,19 @@ static BOOL EvCmdUnionGetInfoTalkNo( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ†ѓjѓIѓ“ѓ‹Ѓ[ѓЂ ѓrЃ[ѓRѓ“Џ‘‚«Љ·‚¦
+ * гѓ¦гѓ‹г‚Єгѓігѓ«гѓјгѓ  гѓ“гѓјг‚ігѓіж›ёгЃЌжЏ›гЃ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnionBeaconChange( VM_MACHINE * core )
 {
-	// ѓrЃ[ѓRѓ“Џ‘‚«Љ·‚¦‚МЌЫ‚ЙЋq‹@‚аЋ©•Є‚МђЪ‘±ѓ‚Ѓ[ѓh‚р•ПЌX‚·‚й‚ж‚¤‚Й‚·‚й
+	// гѓ“гѓјг‚ігѓіж›ёгЃЌжЏ›гЃ€гЃ®йљ›гЃ«е­ђж©џг‚‚и‡Єе€†гЃ®жЋҐз¶љгѓўгѓјгѓ‰г‚’е¤‰ж›ґгЃ™г‚‹г‚€гЃ†гЃ«гЃ™г‚‹
 	u16 mode = VMGetU16(core);
 
-	// ’КђMѓ‚Ѓ[ѓh‚рѓ†ѓjѓIѓ“ѓAѓvѓЉѓPЃ[ѓVѓ‡ѓ“ѓ‚Ѓ[ѓh‚Й•ПЌX
+	// йЂљдїЎгѓўгѓјгѓ‰г‚’гѓ¦гѓ‹г‚Єгѓіг‚ўгѓ—гѓЄг‚±гѓјг‚·гѓ§гѓігѓўгѓјгѓ‰гЃ«е¤‰ж›ґ
 	if( mode==UNION_PARENT_MODE_CARDNOW   
 	 || mode==UNION_PARENT_MODE_TRADENOW 
 	 || mode==UNION_PARENT_MODE_RECORDNOW
@@ -8716,11 +8716,11 @@ static BOOL EvCmdUnionBeaconChange( VM_MACHINE * core )
 	{
 		CommStateUnionAppStart();
 	}else if( mode==UNION_PARENT_MODE_PARTY ){
-		// ѓAѓvѓЉѓPЃ[ѓVѓ‡ѓ“ѓ‚Ѓ[ѓh‚©‚з–Я‚·
+		// г‚ўгѓ—гѓЄг‚±гѓјг‚·гѓ§гѓігѓўгѓјгѓ‰гЃ‹г‚‰ж€»гЃ™
 		CommStateUnionAppEnd();
 	}
 	
-	// ђe‹@‚МЏкЌ‡‚НѓrЃ[ѓRѓ“Џ‘‚«Љ·‚¦
+	// и¦Єж©џгЃ®е ґеђ€гЃЇгѓ“гѓјг‚ігѓіж›ёгЃЌжЏ›гЃ€
 	if(CommGetCurrentID()==0){
 		Union_BeaconChange( mode );
 	}
@@ -8729,16 +8729,16 @@ static BOOL EvCmdUnionBeaconChange( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ†ѓjѓIѓ“ѓ‹Ѓ[ѓЂ“а‚ЕЋg—p‚·‚й‰пb—p‚ЙѓgѓЊЃ[ѓiЃ[–ј‚рѓZѓbѓg‚·‚й
+ * гѓ¦гѓ‹г‚Єгѓігѓ«гѓјгѓ е†…гЃ§дЅїз”ЁгЃ™г‚‹дјљи©±з”ЁгЃ«гѓ€гѓ¬гѓјгѓЉгѓјеђЌг‚’г‚»гѓѓгѓ€гЃ™г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnionTrainerNameRegist( VM_MACHINE * core )
 {
-	FIELD_OBJ_PTR* fldobj	= GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_TARGET_OBJ);//‘ОЏЫOBJ
+	FIELD_OBJ_PTR* fldobj	= GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_TARGET_OBJ);//еЇѕи±ЎOBJ
 	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_WORDSET );
 	u16 type				= VMGetU16( core );
 	MYSTATUS* my			= SaveData_GetMyStatus( GameSystem_GetSaveData(core->fsys) );
@@ -8757,25 +8757,25 @@ static BOOL EvCmdUnionTrainerNameRegist( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓtѓBЃ[ѓ‹ѓh—p‚МѓRѓ}ѓ“ѓh‘МЊn‚ЙЏ‰Љъ‰»
+ * гѓ•г‚Јгѓјгѓ«гѓ‰з”ЁгЃ®г‚ігѓћгѓігѓ‰дЅ“зі»гЃ«е€ќжњџеЊ–
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnionReturnSetUp( VM_MACHINE * core )
 {
-	// ‚±‚±‚ЙѓcѓEѓVѓ“ѓ‚Ѓ[ѓh‚рЃuѓ†ѓjѓIѓ“b‚µ‚©‚ЇЃv‚Й–Я‚·ѓRЃ[ѓh‚р“ь‚к‚й
+	// гЃ“гЃ“гЃ«гѓ„г‚¦г‚·гѓігѓўгѓјгѓ‰г‚’гЂЊгѓ¦гѓ‹г‚Єгѓіи©±гЃ—гЃ‹гЃ‘гЂЌгЃ«ж€»гЃ™г‚ігѓјгѓ‰г‚’е…Ґг‚Њг‚‹
 	CommCommandFieldInitialize( core->fsys );
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓrЃ[ѓRѓ“ЋыЏW‚рЌДЉJ‚·‚й
+ * гѓ“гѓјг‚ігѓіеЏЋй›†г‚’е†Ќй–‹гЃ™г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8794,7 +8794,7 @@ static BOOL EvCmdUnionConnectCutRestart( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitCommConnectCountZero(VM_MACHINE * core)
 {
 	return (CommGetConnectNum()<2);
@@ -8802,16 +8802,16 @@ static BOOL EvWaitCommConnectCountZero(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * b‚µ‚©‚Ї‚Е’КђMђЪ‘±‚Е‚«‚И‚ўЋћ‚ЙЏo‚·‰пb‚МѓCѓ“ѓfѓbѓNѓX‚рЋж“ѕ
+ * и©±гЃ—гЃ‹гЃ‘гЃ§йЂљдїЎжЋҐз¶љгЃ§гЃЌгЃЄгЃ„ж™‚гЃ«е‡єгЃ™дјљи©±гЃ®г‚¤гѓігѓ‡гѓѓг‚Їг‚№г‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnionGetTalkNumber( VM_MACHINE * core )
 {
-	FIELD_OBJ_PTR* fldobj = GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_TARGET_OBJ);//bЉ|‘ОЏЫOBJ
+	FIELD_OBJ_PTR* fldobj = GetEvScriptWorkMemberAdrs(core->fsys,ID_EVSCR_TARGET_OBJ);//и©±жЋ›еЇѕи±ЎOBJ
 	u16 type			  = VMGetU16( core );
 	u16* ret_wk			  = VMGetWork( core );
 	WORDSET** wordset	  = GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_WORDSET );
@@ -8823,7 +8823,7 @@ static BOOL EvCmdUnionGetTalkNumber( VM_MACHINE * core )
 
 //------------------------------------------------------------------
 /**
- * @brief   ѓoѓgѓ‹ЉJЋn‚М‘I‘р‚Н‚З‚¤‚И‚Б‚Ѕ‚М‚©‚рЋж“ѕ‚·‚й
+ * @brief   гѓђгѓ€гѓ«й–‹е§‹гЃ®йЃёжЉћгЃЇгЃ©гЃ†гЃЄгЃЈгЃџгЃ®гЃ‹г‚’еЏ–еѕ—гЃ™г‚‹
  *
  * @param   core		
  *
@@ -8837,10 +8837,10 @@ static BOOL EvCmdUnionBattleStartCheck( VM_MACHINE * core )
 	u16* ret_wk			  = VMGetWork( core );
 	
 	
-	// ѓ|ѓPѓ‚ѓ“‘I‘рЊ‹‰КЋж“ѕ
+	// гѓќг‚±гѓўгѓійЃёжЉћзµђжћњеЏ–еѕ—
 	*ret_wk = Union_GetBattleStartCheckResult( core->fsys->union_work );
 
-	// ђн“¬‚µ‚И‚ў‚с‚ѕ‚Б‚Ѕ‚зѓ|ѓPѓ‚ѓ“ѓЉѓXѓg‚М‘I‘рЊ‹‰КѓfЃ[ѓ^‚Н”jЉь‚·‚й
+	// ж€¦й—гЃ—гЃЄгЃ„г‚“гЃ гЃЈгЃџг‚‰гѓќг‚±гѓўгѓігѓЄг‚№гѓ€гЃ®йЃёжЉћзµђжћњгѓ‡гѓјг‚їгЃЇз ґжЈ„гЃ™г‚‹
 	if(*ret_wk!=UNION_BATTLE_OK){
 		buf = GetEvScriptWorkMemberAdrs(core->fsys, ID_EVSCR_SUBPROC_WORK);
 		pld = *buf;
@@ -8853,9 +8853,9 @@ static BOOL EvCmdUnionBattleStartCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * b‚µ‚©‚ЇOBJ‚МID‚рѓZѓbѓg
+ * и©±гЃ—гЃ‹гЃ‘OBJгЃ®IDг‚’г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8863,7 +8863,7 @@ static BOOL EvCmdUnionBattleStartCheck( VM_MACHINE * core )
 static BOOL EvCmdUnionIdSet( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys		= core->fsys;
-	FIELD_OBJ_PTR* fldobj	= GetEvScriptWorkMemberAdrs(fsys,ID_EVSCR_TARGET_OBJ);//b‚µЉ|‚Ї‘ОЏЫOBJ
+	FIELD_OBJ_PTR* fldobj	= GetEvScriptWorkMemberAdrs(fsys,ID_EVSCR_TARGET_OBJ);//и©±гЃ—жЋ›гЃ‘еЇѕи±ЎOBJ
 	u16* ret_wk				= VMGetWork( core );
 
 	*ret_wk = Union_ConnectIdSet( fsys->union_work, FieldOBJ_OBJIDGet(*fldobj) );
@@ -8872,9 +8872,9 @@ static BOOL EvCmdUnionIdSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ†ѓjѓIѓ“‚Н‚И‚µ‚©‚ЇђЪ‘±ѓXѓ^Ѓ[ѓgЃiѓXѓNѓЉѓvѓg‚©‚з‚Нb‚µ‚©‚ЇOBJ‚МID‚р“n‚·Ѓj
+ * гѓ¦гѓ‹г‚ЄгѓігЃЇгЃЄгЃ—гЃ‹гЃ‘жЋҐз¶љг‚№г‚їгѓјгѓ€пј€г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гЃЇи©±гЃ—гЃ‹гЃ‘OBJгЃ®IDг‚’жёЎгЃ™пј‰
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8882,7 +8882,7 @@ static BOOL EvCmdUnionIdSet( VM_MACHINE * core )
 static BOOL EvCmdUnionConnectStart( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys		= core->fsys;
-	FIELD_OBJ_PTR* fldobj	= GetEvScriptWorkMemberAdrs(fsys,ID_EVSCR_TARGET_OBJ);//b‚µЉ|‚Ї‘ОЏЫOBJ
+	FIELD_OBJ_PTR* fldobj	= GetEvScriptWorkMemberAdrs(fsys,ID_EVSCR_TARGET_OBJ);//и©±гЃ—жЋ›гЃ‘еЇѕи±ЎOBJ
 	u16  type				= VMGetWorkValue( core );
 	u16* ret_wk				= VMGetWork( core );
 
@@ -8894,9 +8894,9 @@ static BOOL EvCmdUnionConnectStart( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * b‚µ‚©‚Ї‚ЕђЪ‘±‚µ‚Д‚Э‚ЅЊ‹‰К‚р•Ф‚·
+ * и©±гЃ—гЃ‹гЃ‘гЃ§жЋҐз¶љгЃ—гЃ¦гЃїгЃџзµђжћњг‚’иї”гЃ™
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -8905,23 +8905,23 @@ static BOOL EvCmdUnionResultGet( VM_MACHINE * core )
 {
 	u16 wk_id = VMGetU16( core );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	VM_SetWait( core, EvWaitUnionResultGet );
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitUnionResultGet(VM_MACHINE * core)
 {
 	FIELDSYS_WORK* fsys	= core->fsys;
 	u32 ret				= Union_ConnectResultGet( fsys->union_work );
-	u16* ret_wk			= GetEventWorkAdrs( fsys, core->reg[0] );	//’Ќ€УЃI
+	u16* ret_wk			= GetEventWorkAdrs( fsys, core->reg[0] );	//жіЁж„ЏпјЃ
 
-//	OS_TPrintf("ђЪ‘±‘Т‚ї ret=%d\n",ret);
+//	OS_TPrintf("жЋҐз¶љеѕ…гЃЎ ret=%d\n",ret);
 
-	//“r’†‚ѕ‚Б‚Ѕ‚з
+	//йЂ”дё­гЃ гЃЈгЃџг‚‰
 	if( ret == 0 ){
 		return 0;
 	}
@@ -8932,9 +8932,9 @@ static BOOL EvWaitUnionResultGet(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ†ѓjѓIѓ“ѓ‹Ѓ[ѓЂ‚МOBJ‚р‰B‚·
+ * гѓ¦гѓ‹г‚Єгѓігѓ«гѓјгѓ гЃ®OBJг‚’йљ гЃ™
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -8952,48 +8952,48 @@ static BOOL EvCmdUnionObjAllVanish( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ†ѓjѓIѓ“ѓ‹Ѓ[ѓЂ‚Еb‚µЉ|‚ЇЃu‚з‚к‚И‚ўЃvЏу‘Ф‚Й‚·‚й
+ * гѓ¦гѓ‹г‚Єгѓігѓ«гѓјгѓ гЃ§и©±гЃ—жЋ›гЃ‘гЂЊг‚‰г‚ЊгЃЄгЃ„гЂЌзЉ¶ж…‹гЃ«гЃ™г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnionConnectTalkDenied( VM_MACHINE * core )
 {
-	// ЌЎ–Z‚µ‚ў‚ЙѓrЃ[ѓRѓ“Џ‘‚«Љ·‚¦
+	// д»Љеї™гЃ—гЃ„гЃ«гѓ“гѓјг‚ігѓіж›ёгЃЌжЏ›гЃ€
 	Union_BeaconChange( UNION_PARENT_MODE_BUSY );	
 	CommStateUnionPause();
-	OS_Printf("ѓrЃ[ѓRѓ“Џ‘‚«Љ·‚¦Ѓ@Ѓ•Ѓ@€к’UђЪ‘±‹‘”Ы\n");
+	OS_Printf("гѓ“гѓјг‚ігѓіж›ёгЃЌжЏ›гЃ€гЂЂпј†гЂЂдёЂж—¦жЋҐз¶љж‹’еђ¦\n");
 
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ†ѓjѓIѓ“ѓ‹Ѓ[ѓЂ‚Еb‚µЉ|‚ЇЃu‚з‚к‚йЃvЏу‘Ф‚Й‚а‚З‚·
+ * гѓ¦гѓ‹г‚Єгѓігѓ«гѓјгѓ гЃ§и©±гЃ—жЋ›гЃ‘гЂЊг‚‰г‚Њг‚‹гЂЌзЉ¶ж…‹гЃ«г‚‚гЃ©гЃ™
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnionConnectTalkOk( VM_MACHINE * core )
 {
-	// b‚µЉ|‚Ї‚n‚j‚Й‚·‚й
+	// и©±гЃ—жЋ›гЃ‘пјЇпј«гЃ«гЃ™г‚‹
 
 	CommStateUnionAppEnd();
 	CommStateUnionBconCollectionRestart();
     Union_BeaconChange( UNION_PARENT_MODE_FREE );
-	OS_Printf("ѓrЃ[ѓRѓ“Џ‘‚«Љ·‚¦Ѓ@Ѓ•Ѓ@ђЪ‘±‹–‰В\n");
+	OS_Printf("гѓ“гѓјг‚ігѓіж›ёгЃЌжЏ›гЃ€гЂЂпј†гЂЂжЋҐз¶љиЁ±еЏЇ\n");
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘р‚µ‚Ѕ’l‚рѓ†ѓjѓIѓ“ѓЏЃ[ѓN‚Й“n‚·
+ * йЃёжЉћгЃ—гЃџеЂ¤г‚’гѓ¦гѓ‹г‚ЄгѓігѓЇгѓјг‚ЇгЃ«жёЎгЃ™
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9009,9 +9009,9 @@ static BOOL EvCmdUnionScriptResultSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ђe‹@‚МѓXѓ^Ѓ[ѓg‚р‘Т‚В
+ * и¦Єж©џгЃ®г‚№г‚їгѓјгѓ€г‚’еѕ…гЃ¤
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -9020,23 +9020,23 @@ static BOOL EvCmdUnionParentStartCommandSet( VM_MACHINE * core )
 {
 	u16 wk_id = VMGetU16( core );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	VM_SetWait( core, EvWaitUnion_ParentStartCommandSet );
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitUnion_ParentStartCommandSet(VM_MACHINE * core)
 {
-	u16* ret_wk	= GetEventWorkAdrs( core->fsys, core->reg[0] );	//’Ќ€УЃI
+	u16* ret_wk	= GetEventWorkAdrs( core->fsys, core->reg[0] );	//жіЁж„ЏпјЃ
 	u32 ret		= Union_ParentStartCommandSet(core->fsys->union_work);
 
 	if( ret >= 1 ){
 		*ret_wk = ret;
 
-		// ѓ†ѓjѓIѓ“ѓ‹Ѓ[ѓЂ“а‚Е‘—ЋуђM‚µ‚Ѕ“а—e‚рѓNѓЉѓAЃi–Я‚Б‚Д‚«‚ЅЋћ‚МЊл“®Ќм–hЋ~—pЃj
+		// гѓ¦гѓ‹г‚Єгѓігѓ«гѓјгѓ е†…гЃ§йЂЃеЏ—дїЎгЃ—гЃџе†…е®№г‚’г‚ЇгѓЄг‚ўпј€ж€»гЃЈгЃ¦гЃЌгЃџж™‚гЃ®иЄ¤е‹•дЅњйІж­ўз”Ёпј‰
 		Union_CommWorkClear(core->fsys->union_work);
 
 		return 1;
@@ -9048,9 +9048,9 @@ static BOOL EvWaitUnion_ParentStartCommandSet(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ћq‹@‚М‘I‘р‚р‘Т‚В
+ * е­ђж©џгЃ®йЃёжЉћг‚’еѕ…гЃ¤
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -9059,28 +9059,28 @@ static BOOL EvCmdUnionChildSelectCommandSet( VM_MACHINE * core )
 {
 	u16 wk_id = VMGetU16( core );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 	
 	VM_SetWait( core, EvWaitUnion_ChildSelectCommandSet );
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitUnion_ChildSelectCommandSet(VM_MACHINE * core)
 {
-	u16* ret_wk	= GetEventWorkAdrs( core->fsys, core->reg[0] );	//’Ќ€УЃI
+	u16* ret_wk	= GetEventWorkAdrs( core->fsys, core->reg[0] );	//жіЁж„ЏпјЃ
 	u32 ret		= Union_ChildSelectCommandSet(core->fsys->union_work);
 
-	// b‚µ‚©‚Ї‚з‚к‚Ѕ‘¤‚аѓLѓѓѓ“ѓZѓ‹‚Є‚Е‚«‚й
+	// и©±гЃ—гЃ‹гЃ‘г‚‰г‚ЊгЃџеЃґг‚‚г‚­гѓЈгѓіг‚»гѓ«гЃЊгЃ§гЃЌг‚‹
 	if(sys.trg & PAD_BUTTON_CANCEL){
-		// ‚Ѕ‚ѕ‚µЃAЋq‹@‚©‚з‚МѓCѓxѓ“ѓg‘I‘р‚Є“ћ’…‚µ‚Д‚ў‚И‚Ї‚к‚О‚ѕ‚Є
+		// гЃџгЃ гЃ—гЂЃе­ђж©џгЃ‹г‚‰гЃ®г‚¤гѓ™гѓігѓ€йЃёжЉћгЃЊе€°зќЂгЃ—гЃ¦гЃ„гЃЄгЃ‘г‚ЊгЃ°гЃ гЃЊ
 		ret = Union_ParentSendCancel( core->fsys->union_work, UNION_PARENT_SELECT_CANCEL );
-		OS_Printf("Bѓ{ѓ^ѓ“‚Є‚Ё‚і‚к‚Ѕ‚Є...");
+		OS_Printf("Bгѓњг‚їгѓігЃЊгЃЉгЃ•г‚ЊгЃџгЃЊ...");
 		if(ret){
-			OS_Printf("’К‚Б‚Ѕ\n");
+			OS_Printf("йЂљгЃЈгЃџ\n");
 		}else{
-			OS_Printf("Ћq‹@‚М‘I‘р‚Є‚«‚Д‚ў‚Ѕ‚М‚Еѓ_ѓЃ‚ѕ‚Б‚Ѕ\n");
+			OS_Printf("е­ђж©џгЃ®йЃёжЉћгЃЊгЃЌгЃ¦гЃ„гЃџгЃ®гЃ§гѓЂгѓЎгЃ гЃЈгЃџ\n");
 		}
 	}
 
@@ -9093,7 +9093,7 @@ static BOOL EvWaitUnion_ChildSelectCommandSet(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓ†ѓjѓIѓ“ѓ‹Ѓ[ѓЂ‚Й“ь‚й
+ * @brief	гѓ¦гѓ‹г‚Єгѓігѓ«гѓјгѓ гЃ«е…Ґг‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnionMapChange( VM_MACHINE * core )
@@ -9104,9 +9104,9 @@ static BOOL EvCmdUnionMapChange( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * 4‚В‚М‘I‘рЋ€‚МѓgѓЊЃ[ѓiЃ[‚М–ј‘O‚рwordset‚ЙЉi”[‚·‚й
+ * 4гЃ¤гЃ®йЃёжЉћи‚ўгЃ®гѓ€гѓ¬гѓјгѓЉгѓјгЃ®еђЌе‰Ќг‚’wordsetгЃ«ж јзґЌгЃ™г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9122,9 +9122,9 @@ static BOOL EvCmdUnionViewSetUpTrainerTypeSelect( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘р‚µ‚Ѕ0-3‚Мђ”Ћљ‚рѓgѓЊЃ[ѓiЃ[‚МЊ©‚Ѕ–ЪѓgѓЊЃ[ѓiЃ[•¶Ћљ—сID‚Й•ПЉ·
+ * йЃёжЉћгЃ—гЃџ0-3гЃ®ж•°е­—г‚’гѓ€гѓ¬гѓјгѓЉгѓјгЃ®и¦‹гЃџз›®гѓ€гѓ¬гѓјгѓЉгѓјж–‡е­—е€—IDгЃ«е¤‰жЏ›
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9137,11 +9137,11 @@ static BOOL EvCmdUnionViewGetTrainerType( VM_MACHINE * core )
 
 	//OS_Printf( "ans = %d\n", ans );
 
-	//ID‚Ж‘I‘рЋ€‚©‚зЊ©‚Ѕ–Ъ”ФЌ†‚рЋж“ѕ
+	//IDгЃЁйЃёжЉћи‚ўгЃ‹г‚‰и¦‹гЃџз›®з•ЄеЏ·г‚’еЏ–еѕ—
 	*ret_wk = UnionView_GetTrainerType( MyStatus_GetID(my), MyStatus_GetMySex(my), ans );
 	//OS_Printf( "ret_wk = %d\n", *ret_wk );
 
-	//Њ©‚Ѕ–Ъ”ФЌ†‚©‚зЃAѓgѓЊЃ[ѓiЃ[‚М•¶Ћљ—сID‚рЋж“ѕ
+	//и¦‹гЃџз›®з•ЄеЏ·гЃ‹г‚‰гЂЃгѓ€гѓ¬гѓјгѓЉгѓјгЃ®ж–‡е­—е€—IDг‚’еЏ–еѕ—
 	*ret_wk = UnionView_GetTrainerInfo( MyStatus_GetMySex(my), *ret_wk, UNIONVIEW_MSGTYPE );
 	//OS_Printf( "ret_wk = %d\n", *ret_wk );
 	return 0;
@@ -9149,9 +9149,9 @@ static BOOL EvCmdUnionViewGetTrainerType( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘I‘р‚µ‚Ѕ0-3‚Мђ”Ћљ‚рѓgѓЊЃ[ѓiЃ[‚МЊ©‚Ѕ–Ъ”ФЌ†‚Й•ПЉ·‚·‚йЉЦђ”
+ * йЃёжЉћгЃ—гЃџ0-3гЃ®ж•°е­—г‚’гѓ€гѓ¬гѓјгѓЉгѓјгЃ®и¦‹гЃџз›®з•ЄеЏ·гЃ«е¤‰жЏ›гЃ™г‚‹й–ўж•°
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9164,7 +9164,7 @@ static BOOL EvCmdUnionViewGetTrainerTypeNo( VM_MACHINE * core )
 
 	//OS_Printf( "ans = %d\n", ans );
 
-	//ID‚Ж‘I‘рЋ€‚©‚зЊ©‚Ѕ–Ъ”ФЌ†‚рЋж“ѕ
+	//IDгЃЁйЃёжЉћи‚ўгЃ‹г‚‰и¦‹гЃџз›®з•ЄеЏ·г‚’еЏ–еѕ—
 	*ret_wk = UnionView_GetTrainerType( MyStatus_GetID(my), MyStatus_GetMySex(my), ans );
 	//OS_Printf( "ret_wk = %d\n", *ret_wk );
 
@@ -9173,9 +9173,9 @@ static BOOL EvCmdUnionViewGetTrainerTypeNo( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ћ©•Є‚ЄѓgѓЊЃ[ѓiЃ[‚Ж‚µ‚ДЊ©‚з‚к‚йЋћ‚М”ФЌ†‚рѓZѓbѓg(ѓ†ѓjѓIѓ“ѓ‹Ѓ[ѓЂ—p)
+ * и‡Єе€†гЃЊгѓ€гѓ¬гѓјгѓЉгѓјгЃЁгЃ—гЃ¦и¦‹г‚‰г‚Њг‚‹ж™‚гЃ®з•ЄеЏ·г‚’г‚»гѓѓгѓ€(гѓ¦гѓ‹г‚Єгѓігѓ«гѓјгѓ з”Ё)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9192,21 +9192,21 @@ static BOOL EvCmdUnionViewMyStatusSet( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓQЃ[ѓЂѓIЃ[ѓoЃ[ЉЦA
+//	г‚Ігѓјгѓ г‚Єгѓјгѓђгѓјй–ўйЂЈ
 //
 //============================================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ѓQЃ[ѓЂѓIЃ[ѓoЃ[ЊД‚СЏo‚µ
+ * г‚Ігѓјгѓ г‚Єгѓјгѓђгѓје‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdGameOverCall( VM_MACHINE * core )
 {
-	//ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚И‚М‚ЕЃAѓXѓNѓЉѓvѓg‚Й•њ‹A‚µ‚Ь‚·ЃB
+	//г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«гЃЄгЃ®гЃ§гЂЃг‚№г‚ЇгѓЄгѓ—гѓ€гЃ«еѕ©её°гЃ—гЃѕгЃ™гЂ‚
 	EventCmd_NormalLose( core->event_work );
 	return 1;
 }
@@ -9214,15 +9214,15 @@ static BOOL EvCmdGameOverCall( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓЏЃ[ѓvЉЦA
+//	гѓЇгѓјгѓ—й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЏЃ[ѓvIDѓZѓbѓg
+ * гѓЇгѓјгѓ—IDг‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9237,9 +9237,9 @@ static BOOL EvCmdSetWarpId( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ћ©•Є‚Мђ«•КЋж“ѕ
+ * и‡Єе€†гЃ®жЂ§е€ҐеЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9255,9 +9255,9 @@ static BOOL EvCmdGetMySex( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓZѓ“‰с•њЏ€—ќ
+ * гѓќг‚±г‚»гѓіе›ћеѕ©е‡¦зђ†
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9271,9 +9271,9 @@ static BOOL EvCmdPcKaifuku( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’n‰є‚МNPC‚рѓ‰ѓ“ѓ_ѓЂ‚Й”z’u‚·‚й 
+ * ењ°дё‹гЃ®NPCг‚’гѓ©гѓігѓЂгѓ гЃ«й…ЌзЅ®гЃ™г‚‹ 
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9286,9 +9286,9 @@ static BOOL EvCmdUgManShopNpcRandomPlace( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’КђMѓ_ѓCѓЊѓNѓgѓRЃ[ѓiЃ[‚МЏI—№Џ€—ќ‚рЉJЋn‚·‚й
+ * йЂљдїЎгѓЂг‚¤гѓ¬г‚Їгѓ€г‚ігѓјгѓЉгѓјгЃ®зµ‚дє†е‡¦зђ†г‚’й–‹е§‹гЃ™г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -9300,7 +9300,7 @@ static BOOL EvCmdCommDirectEnd( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitCommDirectEnd(VM_MACHINE * core)
 {
 	if( CommStateIsInitialize() != TRUE ){
@@ -9313,9 +9313,9 @@ static BOOL EvWaitCommDirectEnd(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЏI—№Џ€—ќЋи‘±‚«Ѓ@ѓ^ѓCѓ~ѓ“ѓO“ЇЉъ”Е
+ * зµ‚дє†е‡¦зђ†ж‰‹з¶љгЃЌгЂЂг‚їг‚¤гѓџгѓіг‚°еђЊжњџз‰€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -9329,9 +9329,9 @@ static BOOL EvCmdCommDirectEndTiming( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ_ѓCѓЊѓNѓgѓRЃ[ѓiЃ[ѓ‹Ѓ[ѓЂ‚Й“ь‚Б‚ЅЋћ‚МЏ€—ќ
+ * гѓЂг‚¤гѓ¬г‚Їгѓ€г‚ігѓјгѓЉгѓјгѓ«гѓјгѓ гЃ«е…ҐгЃЈгЃџж™‚гЃ®е‡¦зђ†
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9344,9 +9344,9 @@ static BOOL EvCmdCommDirectEnterBtlRoom( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ’КђM‚µ‚ЅЏг‚ЕѓvѓЊѓCѓ„Ѓ[‚М•ыЊь‚р•ПЌX
+ * йЂљдїЎгЃ—гЃџдёЉгЃ§гѓ—гѓ¬г‚¤гѓ¤гѓјгЃ®ж–№еђ‘г‚’е¤‰ж›ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9360,8 +9360,8 @@ static BOOL EvCmdCommPlayerSetDir( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	Ћw’иѓ|ѓPѓbѓg‚Й‚И‚Й‚©‚Н‚ў‚Б‚Д‚ў‚й‚©‚рѓ`ѓFѓbѓN
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @brief	жЊ‡е®љгѓќг‚±гѓѓгѓ€гЃ«гЃЄгЃ«гЃ‹гЃЇгЃ„гЃЈгЃ¦гЃ„г‚‹гЃ‹г‚’гѓЃг‚§гѓѓг‚Ї
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
@@ -9381,9 +9381,9 @@ static BOOL EvCmdPocketCheck(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * SXYѓfЃ[ѓ^‚МЌА•WЏо•с‚р•ПЌX
+ * SXYгѓ‡гѓјг‚їгЃ®еє§жЁ™жѓ…е ±г‚’е¤‰ж›ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9400,9 +9400,9 @@ static BOOL EvCmdSxyPosChange( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJѓfЃ[ѓ^‚МЌА•WЏо•с‚р•ПЌX
+ * OBJгѓ‡гѓјг‚їгЃ®еє§жЁ™жѓ…е ±г‚’е¤‰ж›ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9416,21 +9416,21 @@ static BOOL EvCmdObjPosChange( VM_MACHINE * core )
 	u16 z		= VMGetWorkValue(core);
 	u16 dir		= VMGetWorkValue(core);
 
-	//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕ
+	//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—
 	fldobj	= FieldOBJSys_OBJIDSearch( core->fsys->fldobjsys, obj_id );
 
 	FieldOBJ_GPosDirInit( fldobj, x, y, z, dir );
 
-	//Ќ‚‚і‘¦”Ѕ‰f
+	//й«гЃ•еЌіеЏЌж 
 	FieldOBJ_VecPosNowHeightGetSet( fldobj );
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * SXYѓfЃ[ѓ^‚М“®ЌмѓRЃ[ѓh‚р•ПЌX
+ * SXYгѓ‡гѓјг‚їгЃ®е‹•дЅњг‚ігѓјгѓ‰г‚’е¤‰ж›ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9446,9 +9446,9 @@ static BOOL EvCmdSxyMoveCodeChange( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * SXYѓfЃ[ѓ^‚М•ыЊь‚р•ПЌX
+ * SXYгѓ‡гѓјг‚їгЃ®ж–№еђ‘г‚’е¤‰ж›ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9464,9 +9464,9 @@ static BOOL EvCmdSxyDirChange( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * SXYѓfЃ[ѓ^‚МђЪ‘±ѓfЃ[ѓ^‚МЌА•W‚р•ПЌX
+ * SXYгѓ‡гѓјг‚їгЃ®жЋҐз¶љгѓ‡гѓјг‚їгЃ®еє§жЁ™г‚’е¤‰ж›ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9486,9 +9486,9 @@ static BOOL EvCmdSxyExitPosChange( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * SXYѓfЃ[ѓ^‚МBGѓfЃ[ѓ^‚МЌА•W‚р•ПЌX
+ * SXYгѓ‡гѓјг‚їгЃ®BGгѓ‡гѓјг‚їгЃ®еє§жЁ™г‚’е¤‰ж›ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9509,9 +9509,9 @@ static BOOL EvCmdSxyBgPosChange( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJ‚М•ыЊь‚р•ПЌX
+ * OBJгЃ®ж–№еђ‘г‚’е¤‰ж›ґ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9522,10 +9522,10 @@ static BOOL EvCmdObjDirChange( VM_MACHINE * core )
 	u16 obj_id	= VMGetWorkValue(core);
 	u16 dir		= VMGetWorkValue(core);
 	
-	//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕ
+	//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—
 	fldobj	= FieldOBJSys_OBJIDSearch( core->fsys->fldobjsys, obj_id );
 	if( fldobj == NULL ){
-		GF_ASSERT( (0) && "‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕЋё”sЃI" );
+		GF_ASSERT( (0) && "еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—е¤±ж•—пјЃ" );
 	}
 
 	//FieldOBJ_DirDispCheckSet( fldobj, dir );
@@ -9535,9 +9535,9 @@ static BOOL EvCmdObjDirChange( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓXѓNѓЉѓvѓgЊ‹‰К‚р‘г“ь‚·‚йѓЏЃ[ѓN‚Й’l‚рѓZѓbѓg
+ * г‚№г‚ЇгѓЄгѓ—гѓ€зµђжћњг‚’д»Је…ҐгЃ™г‚‹гѓЇгѓјг‚ЇгЃ«еЂ¤г‚’г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9559,15 +9559,15 @@ static BOOL EvCmdReturnScriptWkSet( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓhѓAѓAѓjѓЃЉЦA
+//	гѓ‰г‚ўг‚ўгѓ‹гѓЎй–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓhѓAѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓgѓAѓbѓv
+ * гѓ‰г‚ўг‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€г‚ўгѓѓгѓ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9581,24 +9581,24 @@ static BOOL EvCmdSetUpDoorAnime( VM_MACHINE * core )
 	
 	FIELDSYS_WORK* fsys;
 	
-	//ѓuѓЌѓbѓNЌА•W‚рЋж“ѕ
+	//гѓ–гѓ­гѓѓг‚Їеє§жЁ™г‚’еЏ–еѕ—
 	block_x = VMGetU16(core);
 	block_z = VMGetU16(core);
-	//ѓЌЃ[ѓJѓ‹ѓOѓЉѓbѓhЌА•W‚рЋж“ѕ
+	//гѓ­гѓјг‚«гѓ«г‚°гѓЄгѓѓгѓ‰еє§жЁ™г‚’еЏ–еѕ—
 	local_x = VMGetWorkValue(core);
 	local_z = VMGetWorkValue(core);
-	//ѓGѓ“ѓgѓЉЃ[IDЋж“ѕ
+	//г‚Ёгѓігѓ€гѓЄгѓјIDеЏ–еѕ—
 	entry = VMGetU8(core);
 
 	OS_Printf("info:%d,%d,%d,%d,%d\n",block_x,block_z,local_x,local_z,entry);
 	
 	fsys = core->fsys;
 
-	//ѓЏЃ[ѓ‹ѓhЌА•W‚рЊvЋZ
+	//гѓЇгѓјгѓ«гѓ‰еє§жЁ™г‚’иЁ€з®—
 	grid_x = block_x*32+local_x;
 	grid_z = block_z*32+local_z;
 	
-	//Ћw’иЌА•W‚Мѓ‚ѓfѓ‹‚МѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓgѓAѓbѓv
+	//жЊ‡е®љеє§жЁ™гЃ®гѓўгѓ‡гѓ«гЃ®г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	FLD_SCR_ANM_DOOR_Setup(fsys, grid_x, grid_z, entry);
 	
 	return 0;
@@ -9606,9 +9606,9 @@ static BOOL EvCmdSetUpDoorAnime( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓEѓFѓCѓg
+ * г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚¦г‚§г‚¤гѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -9617,7 +9617,7 @@ static BOOL EvCmdWait3DAnime( VM_MACHINE * core )
 {
 	u8 entry;
 	FIELDSYS_WORK* fsys;
-	//ѓGѓ“ѓgѓЉЃ[IDЋж“ѕ
+	//г‚Ёгѓігѓ€гѓЄгѓјIDеЏ–еѕ—
 	entry = VMGetU8(core);
 	fsys = core->fsys;
 	
@@ -9627,9 +9627,9 @@ static BOOL EvCmdWait3DAnime( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓAѓjѓЃЃ[ѓVѓ‡ѓ“‰р•ъ
+ * г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіи§Јж”ѕ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9638,7 +9638,7 @@ static BOOL EvCmdFree3DAnime( VM_MACHINE * core )
 {
 	u8 entry;
 	FIELDSYS_WORK* fsys;
-	//ѓGѓ“ѓgѓЉЃ[IDЋж“ѕ
+	//г‚Ёгѓігѓ€гѓЄгѓјIDеЏ–еѕ—
 	entry = VMGetU8(core);
 	fsys = core->fsys;
 	FLD_SCR_ANM_DOOR_FreeDoor(fsys, entry);
@@ -9647,9 +9647,9 @@ static BOOL EvCmdFree3DAnime( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓhѓAѓIЃ[ѓvѓ“ѓAѓjѓЃ
+ * гѓ‰г‚ўг‚Єгѓјгѓ—гѓіг‚ўгѓ‹гѓЎ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9658,7 +9658,7 @@ static BOOL EvCmdOpenDoor( VM_MACHINE * core )
 {
 	u8 entry;
 	FIELDSYS_WORK* fsys;
-	//ѓGѓ“ѓgѓЉЃ[IDЋж“ѕ
+	//г‚Ёгѓігѓ€гѓЄгѓјIDеЏ–еѕ—
 	entry = VMGetU8(core);
 	fsys = core->fsys;
 	FLD_SCR_ANM_DOOR_StartOpenDoorAnm( fsys, entry );
@@ -9667,9 +9667,9 @@ static BOOL EvCmdOpenDoor( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓhѓAѓNѓЌЃ[ѓYѓAѓjѓЃ
+ * гѓ‰г‚ўг‚Їгѓ­гѓјг‚єг‚ўгѓ‹гѓЎ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9678,7 +9678,7 @@ static BOOL EvCmdCloseDoor( VM_MACHINE * core )
 {
 	u8 entry;
 	FIELDSYS_WORK* fsys;
-	//ѓGѓ“ѓgѓЉЃ[IDЋж“ѕ
+	//г‚Ёгѓігѓ€гѓЄгѓјIDеЏ–еѕ—
 	entry = VMGetU8(core);
 	fsys = core->fsys;
 	FLD_SCR_ANM_DOOR_StartCloseDoorAnm( fsys, entry );
@@ -9687,15 +9687,15 @@ static BOOL EvCmdCloseDoor( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓWѓЂЉЦA
+//	г‚ёгѓ й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ђ…ѓWѓЂЏ‰ЉъЏу‘ФѓZѓbѓg
+ * ж°ґг‚ёгѓ е€ќжњџзЉ¶ж…‹г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9709,10 +9709,10 @@ static BOOL EvCmdInitWaterGym( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ђ…ѓWѓЂѓ{ѓ^ѓ“
- * @brief   ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚р‚©‚Ї‚й‚М‚ЕЃAreturn 0‚ЕѓXѓNѓЉѓvѓg–{‘М‚ЄЏI—№‚µ‚Д‚µ‚Ь‚н‚И‚ў‚ж‚¤‚ЙЃA1‚р•Ф‚·
+ * ж°ґг‚ёгѓ гѓњг‚їгѓі
+ * @brief   г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«г‚’гЃ‹гЃ‘г‚‹гЃ®гЃ§гЂЃreturn 0гЃ§г‚№г‚ЇгѓЄгѓ—гѓ€жњ¬дЅ“гЃЊзµ‚дє†гЃ—гЃ¦гЃ—гЃѕг‚ЏгЃЄгЃ„г‚€гЃ†гЃ«гЂЃ1г‚’иї”гЃ™
  * 
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  * 
  * @return	"1"
  */
@@ -9726,9 +9726,9 @@ static BOOL EvCmdPushWaterGymButton( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓSЃ[ѓXѓgѓWѓЂЏ‰ЉъЏу‘ФѓZѓbѓg
+ * г‚ґгѓјг‚№гѓ€г‚ёгѓ е€ќжњџзЉ¶ж…‹г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9746,10 +9746,10 @@ static BOOL EvCmdInitGhostGym( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓSЃ[ѓXѓgѓWѓЂѓЉѓtѓg
- * @brief   ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚р‚©‚Ї‚й‚М‚ЕЃAreturn 0‚ЕѓXѓNѓЉѓvѓg–{‘М‚ЄЏI—№‚µ‚Д‚µ‚Ь‚н‚И‚ў‚ж‚¤‚ЙЃA1‚р•Ф‚·
+ * г‚ґгѓјг‚№гѓ€г‚ёгѓ гѓЄгѓ•гѓ€
+ * @brief   г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«г‚’гЃ‹гЃ‘г‚‹гЃ®гЃ§гЂЃreturn 0гЃ§г‚№г‚ЇгѓЄгѓ—гѓ€жњ¬дЅ“гЃЊзµ‚дє†гЃ—гЃ¦гЃ—гЃѕг‚ЏгЃЄгЃ„г‚€гЃ†гЃ«гЂЃ1г‚’иї”гЃ™
  * 
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -9763,9 +9763,9 @@ static BOOL EvCmdMoveGhostGymLift( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ќ|ѓWѓЂЏ‰ЉъЏу‘ФѓZѓbѓg
+ * й‹јг‚ёгѓ е€ќжњџзЉ¶ж…‹г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9779,9 +9779,9 @@ static BOOL EvCmdInitSteelGym( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Љi“¬ѓWѓЂЏ‰ЉъЏу‘ФѓZѓbѓg
+ * ж јй—г‚ёгѓ е€ќжњџзЉ¶ж…‹г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9799,9 +9799,9 @@ static BOOL EvCmdInitCombatGym( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “d‹CѓWѓЂЏ‰ЉъЏу‘ФѓZѓbѓg
+ * й›»ж°—г‚ёгѓ е€ќжњџзЉ¶ж…‹г‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9816,10 +9816,10 @@ static BOOL EvCmdInitElecGym( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * “d‹CѓWѓЂѓMѓA
- * @brief   ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚р‚©‚Ї‚й‚М‚ЕЃAreturn 0‚ЕѓXѓNѓЉѓvѓg–{‘М‚ЄЏI—№‚µ‚Д‚µ‚Ь‚н‚И‚ў‚ж‚¤‚ЙЃA1‚р•Ф‚·
+ * й›»ж°—г‚ёгѓ г‚®г‚ў
+ * @brief   г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«г‚’гЃ‹гЃ‘г‚‹гЃ®гЃ§гЂЃreturn 0гЃ§г‚№г‚ЇгѓЄгѓ—гѓ€жњ¬дЅ“гЃЊзµ‚дє†гЃ—гЃ¦гЃ—гЃѕг‚ЏгЃЄгЃ„г‚€гЃ†гЃ«гЂЃ1г‚’иї”гЃ™
  * 
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -9834,9 +9834,9 @@ static BOOL EvCmdRotElecGymGear( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * PL ‘ђѓWѓЂЏ‰Љъ‰»
+ * PL иЌ‰г‚ёгѓ е€ќжњџеЊ–
  * 
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  * 
  * @return	"1"
  */
@@ -9850,9 +9850,9 @@ static BOOL EvCmdInitPLGrassGym( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •К‘‘Ѓ@Џ‰Љъ‰»
+ * е€ҐиЌгЂЂе€ќжњџеЊ–
  * 
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  * 
  * @return	"1"
  */
@@ -9866,9 +9866,9 @@ static BOOL EvCmdInitVilla( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚в‚Ф‚к‚Ѕ‚№‚©‚ўЃ@Џ‰Љъ‰»
+ * г‚„гЃ¶г‚ЊгЃџгЃ›гЃ‹гЃ„гЂЂе€ќжњџеЊ–
  * 
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  * 
  * @return	"1"
  */
@@ -9882,9 +9882,9 @@ static BOOL EvCmdInitTornWorld( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЋеђlЊц‚М€К’uЏо•сЋж“ѕЃ@‘S‚Д
+ * дё»дєєе…¬гЃ®дЅЌзЅ®жѓ…е ±еЏ–еѕ—гЂЂе…ЁгЃ¦
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -9910,7 +9910,7 @@ static BOOL EvCmdPlayerPosAllGet( VM_MACHINE * core )
 
 //============================================================================================
 /**
- * @brief	ѓ^ѓ}ѓS‚¤‚Ь‚к‚йѓfѓ‚
+ * @brief	г‚їгѓћг‚ґгЃ†гЃѕг‚Њг‚‹гѓ‡гѓў
  */
 //============================================================================================
 static BOOL EvCmdTamagoDemo( VM_MACHINE * core )
@@ -9922,15 +9922,15 @@ static BOOL EvCmdTamagoDemo( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	’n‰є‚Ё“XЉЦA
+//	ењ°дё‹гЃЉеє—й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief   ’n‰є‚М‚Ё“X‚МѓЃѓjѓ…Ѓ[‚рЉJ‚­
+ * @brief   ењ°дё‹гЃ®гЃЉеє—гЃ®гѓЎгѓ‹гѓҐгѓјг‚’й–‹гЃЏ
  * 
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -9942,7 +9942,7 @@ static BOOL EvCmdUgShopMenuInit( VM_MACHINE * core )
 	u16 type				= VMGetWorkValue( core );
 	u16 wk_id				= VMGetU16( core );
 
-	//‰ј‘zѓ}ѓVѓ“‚М”Д—pѓЊѓWѓXѓ^‚ЙѓЏЃ[ѓN‚МID‚рЉi”[
+	//д»®жѓігѓћг‚·гѓігЃ®ж±Ћз”Ёгѓ¬г‚ёг‚№г‚їгЃ«гѓЇгѓјг‚ЇгЃ®IDг‚’ж јзґЌ
 	core->reg[0] = wk_id;
 
 	*pwork = UgShopMenuInit2( type, core->fsys, FieldOBJ_OBJIDGet(*fldobj) );
@@ -9951,31 +9951,31 @@ static BOOL EvCmdUgShopMenuInit( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitUgShopMenuInit(VM_MACHINE * core)
 {
 	void** pwork= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_PWORK );
-	u16* ret_wk = GetEventWorkAdrs( core->fsys, core->reg[0] );	//’Ќ€УЃI
+	u16* ret_wk = GetEventWorkAdrs( core->fsys, core->reg[0] );	//жіЁж„ЏпјЃ
 
 	*ret_wk = UgShopMenuFuncAndCheck( (*pwork) );
 
-	if( (*ret_wk) == UG_SHOP_NONE ){	//‘I‘р’†
+	if( (*ret_wk) == UG_SHOP_NONE ){	//йЃёжЉћдё­
 		return 0;
 	}
 
 	OS_Printf( "UgShopMenuInit ret = %d\n", (*ret_wk) );
-	//case UG_SHOP_BAG_FULL:			//ѓoѓbѓO‚Є‚ў‚Б‚П‚ў
-	//case UG_SHOP_MISS_SELECT:			//‘I‘р‚µ‚Ѕѓ^ѓ}‚Є€Щ‚И‚й
-	//case UG_SHOP_CANCEL:				//ѓLѓѓѓ“ѓZѓ‹
-	//‚»‚М‘ј							//‚н‚И”ФЌ†‚©ЃAѓOѓbѓY”ФЌ†
+	//case UG_SHOP_BAG_FULL:			//гѓђгѓѓг‚°гЃЊгЃ„гЃЈгЃ±гЃ„
+	//case UG_SHOP_MISS_SELECT:			//йЃёжЉћгЃ—гЃџг‚їгѓћгЃЊз•°гЃЄг‚‹
+	//case UG_SHOP_CANCEL:				//г‚­гѓЈгѓіг‚»гѓ«
+	//гЃќгЃ®д»–							//г‚ЏгЃЄз•ЄеЏ·гЃ‹гЂЃг‚°гѓѓг‚єз•ЄеЏ·
 	return 1;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief   ‚Ё“X‚М‰пbЉJЋn
+ * @brief   гЃЉеє—гЃ®дјљи©±й–‹е§‹
  * 
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -9990,7 +9990,7 @@ static BOOL EvCmdUgShopTalkStart( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = ЏI—№
+//return 1 = зµ‚дє†
 static BOOL EvWaitUgShopTalkStart(VM_MACHINE * core)
 {
 	u8* msg_index = GetEvScriptWorkMemberAdrs( core->fsys,ID_EVSCR_MSGINDEX );
@@ -9999,9 +9999,9 @@ static BOOL EvWaitUgShopTalkStart(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief   ‚Ё“X‚М‰пbЏI—№
+ * @brief   гЃЉеє—гЃ®дјљи©±зµ‚дє†
  * 
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10014,9 +10014,9 @@ static BOOL EvCmdUgShopTalkEnd( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief   ѓAѓCѓeѓЂ‚М–ј‘O‚р‚Ё“X‚М‰пb‚Й“o^
+ * @brief   г‚ўг‚¤гѓ†гѓ гЃ®еђЌе‰Ќг‚’гЃЉеє—гЃ®дјљи©±гЃ«з™»йЊІ
  * 
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10032,9 +10032,9 @@ static BOOL EvCmdUgShopTalkRegisterItemName( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief   г©‚М–ј‘O‚р‚Ё“X‚М‰пb‚Й“o^
+ * @brief   зЅ гЃ®еђЌе‰Ќг‚’гЃЉеє—гЃ®дјљи©±гЃ«з™»йЊІ
  * 
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10051,15 +10051,15 @@ static BOOL EvCmdUgShopTalkRegisterTrapName( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	ѓMѓlѓXЉЦA
+//	г‚®гѓЌг‚№й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief   ѓMѓlѓXѓEѓBѓ“ѓhѓEЊД‚СЏo‚µ
+ * @brief   г‚®гѓЌг‚№г‚¦г‚Јгѓігѓ‰г‚¦е‘јгЃіе‡єгЃ—
  * 
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -10070,16 +10070,16 @@ static BOOL EvCmdGuinnessWin( VM_MACHINE * core )
 }
 
 //-------------------------------------------------------------------------
-//	‚n‚a‚i‚МЊ©‚¦‚йЃEЊ©‚¦‚И‚ўѓXѓCѓbѓ`ђШ‚и‘Ц‚¦
+//	пјЇпјўпјЄгЃ®и¦‹гЃ€г‚‹гѓ»и¦‹гЃ€гЃЄгЃ„г‚№г‚¤гѓѓгѓЃе€‡г‚Љж›їгЃ€
 //-------------------------------------------------------------------------
 static BOOL EvCmdObjVisible( VM_MACHINE * core )
 {
-	FIELD_OBJ_PTR fldobj;		//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^
+	FIELD_OBJ_PTR fldobj;		//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚ї
 	FIELDSYS_WORK * fsys = core->fsys;
 
 	fldobj	= FieldOBJSys_OBJIDSearch( fsys->fldobjsys, VMGetWorkValue(core) );
 	if( fldobj == NULL ){
-		GF_ASSERT( (0) && "‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕЋё”sЃI" );
+		GF_ASSERT( (0) && "еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—е¤±ж•—пјЃ" );
 	}
 	FieldOBJ_StatusBitSet_Vanish(fldobj, FALSE);
 	return 0;
@@ -10087,23 +10087,23 @@ static BOOL EvCmdObjVisible( VM_MACHINE * core )
 
 static BOOL EvCmdObjInvisible( VM_MACHINE * core )
 {
-	FIELD_OBJ_PTR fldobj;		//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^
+	FIELD_OBJ_PTR fldobj;		//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚ї
 	FIELDSYS_WORK * fsys = core->fsys;
 
 	fldobj	= FieldOBJSys_OBJIDSearch( fsys->fldobjsys, VMGetWorkValue(core) );
 	if( fldobj == NULL ){
-		GF_ASSERT( (0) && "‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕЋё”sЃI" );
+		GF_ASSERT( (0) && "еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—е¤±ж•—пјЃ" );
 	}
 	FieldOBJ_StatusBitSet_Vanish(fldobj, TRUE);
 	return 0;
 }
 
-//ѓЃЃ[ѓ‹ѓ{ѓbѓNѓX
+//гѓЎгѓјгѓ«гѓњгѓѓг‚Їг‚№
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЃЃ[ѓ‹ѓ{ѓbѓNѓXЊД‚СЏo‚µ
+ * гѓЎгѓјгѓ«гѓњгѓѓг‚Їг‚№е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -10118,9 +10118,9 @@ static BOOL EvCmdMailBox( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЃЃ[ѓ‹ѓ{ѓbѓNѓX“а‚МѓfЃ[ѓ^ђ”‚рЋж“ѕ
+ * гѓЎгѓјгѓ«гѓњгѓѓг‚Їг‚№е†…гЃ®гѓ‡гѓјг‚їж•°г‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10135,12 +10135,12 @@ static BOOL EvCmdGetMailBoxDataNum( VM_MACHINE * core )
 	return 0;
 }
 
-//ѓMѓlѓXѓzЃ[ѓ‹ѓ‰ѓ“ѓLѓ“ѓO
+//г‚®гѓЌг‚№гѓ›гѓјгѓ«гѓ©гѓіг‚­гѓіг‚°
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ‰ѓ“ѓLѓ“ѓO‰ж–КЊД‚СЏo‚µ
+ * гѓ©гѓіг‚­гѓіг‚°з”»йќўе‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -10155,9 +10155,9 @@ static BOOL EvCmdRankingView( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЋћЉФ‘С‚МЋж“ѕ
+ * ж™‚й–“еёЇгЃ®еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10171,9 +10171,9 @@ static BOOL EvCmdGetTimeZone( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * —ђђ”‚МЋж“ѕ		Ѓ¦gf_srand‚рЉO‚µ‚Ь‚µ‚Ѕ‚М‚ЕNext‚Ж’†ђg‚Н“Ї‚¶‚Е‚·ЃB
+ * д№±ж•°гЃ®еЏ–еѕ—		вЂ»gf_srandг‚’е¤–гЃ—гЃѕгЃ—гЃџгЃ®гЃ§NextгЃЁдё­иє«гЃЇеђЊгЃгЃ§гЃ™гЂ‚
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -10192,9 +10192,9 @@ static BOOL EvCmdGetRand( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * —ђђ”‚МЋж“ѕ GET_RAND‚Мѓ^ѓl‚р—¬—p‚µ‚Ѕ‚Ь‚ЬЊД‚С‚Ѕ‚ў‚Ж‚«
+ * д№±ж•°гЃ®еЏ–еѕ— GET_RANDгЃ®г‚їгѓЌг‚’жµЃз”ЁгЃ—гЃџгЃѕгЃѕе‘јгЃігЃџгЃ„гЃЁгЃЌ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -10213,9 +10213,9 @@ static BOOL EvCmdGetRandNext( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *Ѓ@‚Ё‚Ё‚«‚і‚­‚з‚ЧЃF‹L^‚ЖЋиЋќ‚їѓ|ѓPѓ‚ѓ“‚М”дЉr
+ *гЂЂгЃЉгЃЉгЃЌгЃ•гЃЏг‚‰гЃ№пјљиЁйЊІгЃЁж‰‹жЊЃгЃЎгѓќг‚±гѓўгѓігЃ®жЇ”ијѓ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10227,7 +10227,7 @@ static BOOL EvCmdOokisaRecordChk( VM_MACHINE * core )
 	u16* ret_wk	= VMGetWork( core );
 	u16		num = VMGetWorkValue(core);
 
-	//ѓ`ѓFѓbѓN
+	//гѓЃг‚§гѓѓг‚Ї
 	*ret_wk = OokisaRecordChk(fsys,num);
 
 	return 0;
@@ -10235,9 +10235,9 @@ static BOOL EvCmdOokisaRecordChk( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *Ѓ@‚Ё‚Ё‚«‚і‚­‚з‚ЧЃFЋиЋќ‚ї‚Мѓ|ѓPѓ‚ѓ“‚Е‹L^ЌXђV
+ *гЂЂгЃЉгЃЉгЃЌгЃ•гЃЏг‚‰гЃ№пјљж‰‹жЊЃгЃЎгЃ®гѓќг‚±гѓўгѓігЃ§иЁйЊІж›ґж–°
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10249,7 +10249,7 @@ static BOOL EvCmdOokisaRecordSet( VM_MACHINE * core )
 
 	u16		num = VMGetWorkValue(core);
 
-	//ѓZѓbѓg
+	//г‚»гѓѓгѓ€
 	OokisaRecordSet(fsys,num);
 
 	return 0;
@@ -10257,9 +10257,9 @@ static BOOL EvCmdOokisaRecordSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *Ѓ@‚Ё‚Ё‚«‚і‚­‚з‚ЧЃFЋиЋќ‚ї‚Мѓ|ѓPѓ‚ѓ“‚М‘е‚«‚і‚рђ”’l‚Й‚µ‚Д•¶Ћљѓoѓbѓtѓ@‚ЦѓZѓbѓg
+ *гЂЂгЃЉгЃЉгЃЌгЃ•гЃЏг‚‰гЃ№пјљж‰‹жЊЃгЃЎгЃ®гѓќг‚±гѓўгѓігЃ®е¤§гЃЌгЃ•г‚’ж•°еЂ¤гЃ«гЃ—гЃ¦ж–‡е­—гѓђгѓѓгѓ•г‚ЎгЃёг‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10277,9 +10277,9 @@ static BOOL EvCmdOokisaTemotiSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *Ѓ@‚Ё‚Ё‚«‚і‚­‚з‚ЧЃF‹L^ѓ|ѓPѓ‚ѓ“‚М‘е‚«‚і‚рђ”’l‚Й‚µ‚Д•¶Ћљѓoѓbѓtѓ@‚ЦѓZѓbѓg
+ *гЂЂгЃЉгЃЉгЃЌгЃ•гЃЏг‚‰гЃ№пјљиЁйЊІгѓќг‚±гѓўгѓігЃ®е¤§гЃЌгЃ•г‚’ж•°еЂ¤гЃ«гЃ—гЃ¦ж–‡е­—гѓђгѓѓгѓ•г‚ЎгЃёг‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10297,9 +10297,9 @@ static BOOL EvCmdOokisaKirokuSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *Ѓ@‚Ё‚Ё‚«‚і‚­‚з‚ЧЃFЏ‰Љъ‰»ЃBѓЊѓRЃ[ѓhѓNѓЉѓA
+ *гЂЂгЃЉгЃЉгЃЌгЃ•гЃЏг‚‰гЃ№пјље€ќжњџеЊ–гЂ‚гѓ¬г‚ігѓјгѓ‰г‚ЇгѓЄг‚ў
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10314,26 +10314,26 @@ static BOOL EvCmdOokisaKurabeInit( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	–`ЊЇѓmЃ[ѓgЉЦA
+//	е†’й™єгѓЋгѓјгѓ€й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- *Ѓ@–`ЊЇѓmЃ[ѓgЉJЋnѓfЃ[ѓ^ѓZѓbѓg
+ *гЂЂе†’й™єгѓЋгѓјгѓ€й–‹е§‹гѓ‡гѓјг‚їг‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * @li	–`ЊЇѓmЃ[ѓg“ьЋиЋћ‚ЙЊД‚с‚Е‰є‚і‚ўЃB
+ * @li	е†’й™єгѓЋгѓјгѓ€е…Ґж‰‹ж™‚гЃ«е‘јг‚“гЃ§дё‹гЃ•гЃ„гЂ‚
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdFNoteStartSet( VM_MACHINE * core )
 {
 	FIELDSYS_WORK* fsys = core->fsys;
 
-	SysFlag_FNoteSet( SaveData_GetEventWork(fsys->savedata) );		//–`ЊЇѓmЃ[ѓg“ьЋиѓtѓ‰ѓOѓZѓbѓg
+	SysFlag_FNoteSet( SaveData_GetEventWork(fsys->savedata) );		//е†’й™єгѓЋгѓјгѓ€е…Ґж‰‹гѓ•гѓ©г‚°г‚»гѓѓгѓ€
 	fsys->fnote = FNOTE_SavePageGet( SaveData_GetFNote(fsys->savedata), TRUE );
 	FNoteStartDataSet( fsys );
 	return 0;
@@ -10341,9 +10341,9 @@ static BOOL EvCmdFNoteStartSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *Ѓ@–`ЊЇѓmЃ[ѓgѓfЃ[ѓ^Ќмђ¬
+ *гЂЂе†’й™єгѓЋгѓјгѓ€гѓ‡гѓјг‚їдЅњж€ђ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -10360,68 +10360,68 @@ static BOOL EvCmdFNoteDataMake( VM_MACHINE * core )
 
 	switch( id ){
 #if 0
-	// * ѓfЃ[ѓ^Ќмђ¬ [ Ќs“®ЃFЋ©‘о ]
+	// * гѓ‡гѓјг‚їдЅњж€ђ [ иЎЊе‹•пјљи‡Єе®… ]
 	case FNOTE_ID_MYHOUSE:
-		type = FNOTE_TYPE_ACTION;		//Ќs“®
+		type = FNOTE_TYPE_ACTION;		//иЎЊе‹•
 		*pwork = FNOTE_ActionHouseDataMake( HEAPID_FIELD );
 		break;
 
-	// * ѓfЃ[ѓ^Ќмђ¬ [ Ќs“®ЃFЊ¤‹†ЏЉ ]
+	// * гѓ‡гѓјг‚їдЅњж€ђ [ иЎЊе‹•пјљз ”з©¶ж‰Ђ ]
 	case FNOTE_ID_LABO:
-		type = FNOTE_TYPE_ACTION;		//Ќs“®
+		type = FNOTE_TYPE_ACTION;		//иЎЊе‹•
 		*pwork = FNOTE_ActionLaboDataMake( HEAPID_FIELD );
 		break;
 #endif
 
 #if 0
-	//ѓvѓЌѓOѓ‰ѓЂ‘¤‚ЕѓZѓbѓg‚µ‚Д‚а‚з‚¤Њ`‚Й•ПЌXЃI
+	//гѓ—гѓ­г‚°гѓ©гѓ еЃґгЃ§г‚»гѓѓгѓ€гЃ—гЃ¦г‚‚г‚‰гЃ†еЅўгЃ«е¤‰ж›ґпјЃ
 
-	// * ѓfЃ[ѓ^Ќмђ¬ [ Ќs“®ЃFѓWѓЂЃiѓЉЃ[ѓ_Ѓ[‚р“|‚·‘OЃj ]
-	// * @param	map		ѓ}ѓbѓvID
+	// * гѓ‡гѓјг‚їдЅњж€ђ [ иЎЊе‹•пјљг‚ёгѓ пј€гѓЄгѓјгѓЂгѓјг‚’еЂ’гЃ™е‰Ќпј‰ ]
+	// * @param	map		гѓћгѓѓгѓ—ID
 	case FNOTE_ID_GYMBEFORE:
-		type = FNOTE_TYPE_ACTION;		//Ќs“®
+		type = FNOTE_TYPE_ACTION;		//иЎЊе‹•
 		*pwork = FNOTE_ActionGymBeforeDataMake( wk1, HEAPID_FIELD );
 		break;
 
-	// * ѓfЃ[ѓ^Ќмђ¬ [ Ќs“®ЃFѓWѓЂЃiѓЉЃ[ѓ_Ѓ[‚р“|‚µ‚ЅЊгЃj ]
-	// * @param	map		ѓ}ѓbѓvID
-	// * @param	trainer	ѓgѓЊЃ[ѓiЃ[ID
+	// * гѓ‡гѓјг‚їдЅњж€ђ [ иЎЊе‹•пјљг‚ёгѓ пј€гѓЄгѓјгѓЂгѓјг‚’еЂ’гЃ—гЃџеѕЊпј‰ ]
+	// * @param	map		гѓћгѓѓгѓ—ID
+	// * @param	trainer	гѓ€гѓ¬гѓјгѓЉгѓјID
 	case FNOTE_ID_GYMAFTER:
-		type = FNOTE_TYPE_ACTION;		//Ќs“®
+		type = FNOTE_TYPE_ACTION;		//иЎЊе‹•
 		*pwork = FNOTE_ActionGymAfterDataMake( wk1, wk2, HEAPID_FIELD );
 		break;
 
-	// * ѓfЃ[ѓ^Ќмђ¬ [ Ќs“®ЃFЋl“V‰¤ ]
-	// * @param	trainer	ѓgѓЊЃ[ѓiЃ[ID
+	// * гѓ‡гѓјг‚їдЅњж€ђ [ иЎЊе‹•пјље››е¤©зЋ‹ ]
+	// * @param	trainer	гѓ€гѓ¬гѓјгѓЉгѓјID
 	case FNOTE_ID_SITENNOU:
-		type = FNOTE_TYPE_ACTION;		//Ќs“®
+		type = FNOTE_TYPE_ACTION;		//иЎЊе‹•
 		*pwork = FNOTE_ActionSitenouDataMake( wk1, HEAPID_FIELD );
 		break;
 
-	// * ѓfЃ[ѓ^Ќмђ¬ [ Ќs“®ЃFѓ`ѓѓѓ“ѓsѓIѓ“ ]
-	// * @param	trainer	ѓgѓЊЃ[ѓiЃ[ID
+	// * гѓ‡гѓјг‚їдЅњж€ђ [ иЎЊе‹•пјљгѓЃгѓЈгѓігѓ”г‚Єгѓі ]
+	// * @param	trainer	гѓ€гѓ¬гѓјгѓЉгѓјID
 	case FNOTE_ID_CHAMPION:
-		type = FNOTE_TYPE_ACTION;		//Ќs“®
+		type = FNOTE_TYPE_ACTION;		//иЎЊе‹•
 		*pwork = FNOTE_ActionChampionDataMake( wk1, HEAPID_FIELD );
 		break;
 #endif
 
-	// * ѓfЃ[ѓ^Ќмђ¬ [ Ќs“®ЃFѓQЃ[ѓЂѓRЃ[ѓiЃ[ ]
+	// * гѓ‡гѓјг‚їдЅњж€ђ [ иЎЊе‹•пјљг‚Ігѓјгѓ г‚ігѓјгѓЉгѓј ]
 	case FNOTE_ID_GAMECORNER:
-		type = FNOTE_TYPE_ACTION;		//Ќs“®
+		type = FNOTE_TYPE_ACTION;		//иЎЊе‹•
 		*pwork = FNOTE_ActionGameCornerDataMake( HEAPID_FIELD );
 		break;
 
-	// * ѓfЃ[ѓ^Ќмђ¬ [ Ќs“®ЃFѓTѓtѓ@ѓЉѓ]Ѓ[ѓ“ ]
+	// * гѓ‡гѓјг‚їдЅњж€ђ [ иЎЊе‹•пјљг‚µгѓ•г‚ЎгѓЄг‚ѕгѓјгѓі ]
 	case FNOTE_ID_SAFARIZONE:
-		type = FNOTE_TYPE_ACTION;		//Ќs“®
+		type = FNOTE_TYPE_ACTION;		//иЎЊе‹•
 		*pwork = FNOTE_ActionSafariDataMake( HEAPID_FIELD );
 		break;
 
-	// * ѓfЃ[ѓ^Ќмђ¬ [ Ќs“®ЃFѓAѓCѓeѓЂЋж“ѕ ]
-	// * @param	item	ѓAѓCѓeѓЂID
+	// * гѓ‡гѓјг‚їдЅњж€ђ [ иЎЊе‹•пјљг‚ўг‚¤гѓ†гѓ еЏ–еѕ— ]
+	// * @param	item	г‚ўг‚¤гѓ†гѓ ID
 	case FNOTE_ID_ITEMGET:
-		type = FNOTE_TYPE_ACTION;		//Ќs“®
+		type = FNOTE_TYPE_ACTION;		//иЎЊе‹•
 		*pwork = FNOTE_ActionItemDataMake( wk1, HEAPID_FIELD );
 		break;
 
@@ -10432,7 +10432,7 @@ static BOOL EvCmdFNoteDataMake( VM_MACHINE * core )
 	case FNOTE_ID_IWAKUDAKI:
 	case FNOTE_ID_TAKINOBORI:
 	case FNOTE_ID_ROCKCLIMB:
-		type = FNOTE_TYPE_ACTION;		//Ќs“®
+		type = FNOTE_TYPE_ACTION;		//иЎЊе‹•
 		*pwork = FNOTE_ActionSkillDataMake( id-FNOTE_ID_IAIGIRI, wk1, HEAPID_FIELD );
 		break;
 
@@ -10441,7 +10441,7 @@ static BOOL EvCmdFNoteDataMake( VM_MACHINE * core )
 	case FNOTE_ID_PL_STAGE:
 	case FNOTE_ID_PL_CASTLE:
 	case FNOTE_ID_PL_ROULETTE:
-		type = FNOTE_TYPE_ACTION;		//Ќs“®
+		type = FNOTE_TYPE_ACTION;		//иЎЊе‹•
 		*pwork = FNOTE_ActionFrontierDataMake( HEAPID_FIELD, id );
 		break;
 
@@ -10449,37 +10449,37 @@ static BOOL EvCmdFNoteDataMake( VM_MACHINE * core )
 		return 1;
 	};
 
-	FNOTE_DataSave( core->fsys->fnote, *pwork, type );	//ѓfЃ[ѓ^ѓZЃ[ѓu
+	FNOTE_DataSave( core->fsys->fnote, *pwork, type );	//гѓ‡гѓјг‚їг‚»гѓјгѓ–
 	return 1;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- *Ѓ@–`ЊЇѓmЃ[ѓgѓfЃ[ѓ^ѓZЃ[ѓu
+ *гЂЂе†’й™єгѓЋгѓјгѓ€гѓ‡гѓјг‚їг‚»гѓјгѓ–
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdFNoteDataSave( VM_MACHINE * core )
 {
-	//–ўЋg—p
+	//жњЄдЅїз”Ё
 	return 0;
 }
 
 
 //============================================================================================
 //
-//	ѓCѓЃЃ[ѓWѓNѓЉѓbѓvѓAѓCѓeѓЂЉЦA
+//	г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—г‚ўг‚¤гѓ†гѓ й–ўйЂЈ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓCѓЃЃ[ѓWѓNѓЉѓbѓvЃFѓAѓNѓZѓTѓЉЃ[ЃFѓAѓCѓeѓЂ‚р‰Б‚¦‚й
+ * г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—пјљг‚ўг‚Їг‚»г‚µгѓЄгѓјпјљг‚ўг‚¤гѓ†гѓ г‚’еЉ гЃ€г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10492,7 +10492,7 @@ static BOOL EvCmdImcAcceAddItem(VM_MACHINE * core)
 	u16 num		= VMGetWorkValue(core);
 
 	imc	= SaveData_GetImcSaveData( core->fsys->savedata );
-	imc_item = ImcSaveData_GetItemSaveData( imc );	//ѓAѓCѓeѓЂѓZЃ[ѓuѓfЃ[ѓ^Ћж“ѕ
+	imc_item = ImcSaveData_GetItemSaveData( imc );	//г‚ўг‚¤гѓ†гѓ г‚»гѓјгѓ–гѓ‡гѓјг‚їеЏ–еѕ—
 
 	ImcSaveData_AddAcceFlag( imc_item, acce_no, num );
 	return 0;
@@ -10500,9 +10500,9 @@ static BOOL EvCmdImcAcceAddItem(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓCѓЃЃ[ѓWѓNѓЉѓbѓvЃFѓAѓNѓZѓTѓЉЃ[ЃFѓAѓCѓeѓЂ‚р‰Б‚¦‚з‚к‚й‚©ѓ`ѓFѓbѓN
+ * г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—пјљг‚ўг‚Їг‚»г‚µгѓЄгѓјпјљг‚ўг‚¤гѓ†гѓ г‚’еЉ гЃ€г‚‰г‚Њг‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10516,7 +10516,7 @@ static BOOL EvCmdImcAcceAddItemChk(VM_MACHINE * core)
 	u16* ret_wk	= VMGetWork( core );
 
 	imc	= SaveData_GetImcSaveData( core->fsys->savedata );
-	imc_item = ImcSaveData_GetItemSaveData( imc );	//ѓAѓCѓeѓЂѓZЃ[ѓuѓfЃ[ѓ^Ћж“ѕ
+	imc_item = ImcSaveData_GetItemSaveData( imc );	//г‚ўг‚¤гѓ†гѓ г‚»гѓјгѓ–гѓ‡гѓјг‚їеЏ–еѕ—
 
 	*ret_wk = ImcSaveData_CheckAcceAdd( imc_item, acce_no, num );
 	return 0;
@@ -10524,9 +10524,9 @@ static BOOL EvCmdImcAcceAddItemChk(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓCѓЃЃ[ѓWѓNѓЉѓbѓvЃFѓAѓNѓZѓTѓЉЃ[ЃFѓoѓbѓO‚МѓAѓCѓeѓЂѓ`ѓFѓbѓN
+ * г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—пјљг‚ўг‚Їг‚»г‚µгѓЄгѓјпјљгѓђгѓѓг‚°гЃ®г‚ўг‚¤гѓ†гѓ гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10540,7 +10540,7 @@ static BOOL EvCmdImcAcceCheckItem(VM_MACHINE * core)
 	u16* ret_wk	= VMGetWork( core );
 
 	imc	= SaveData_GetImcSaveData( core->fsys->savedata );
-	imc_item = ImcSaveData_GetItemSaveData( imc );	//ѓAѓCѓeѓЂѓZЃ[ѓuѓfЃ[ѓ^Ћж“ѕ
+	imc_item = ImcSaveData_GetItemSaveData( imc );	//г‚ўг‚¤гѓ†гѓ г‚»гѓјгѓ–гѓ‡гѓјг‚їеЏ–еѕ—
 
 	if( num <= ImcSaveData_GetAcceFlag(imc_item, acce_no) ){
 		*ret_wk = 1;
@@ -10553,9 +10553,9 @@ static BOOL EvCmdImcAcceCheckItem(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓCѓЃЃ[ѓWѓNѓЉѓbѓvЃF”wЊiЃFѓAѓCѓeѓЂ‚р‰Б‚¦‚й
+ * г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—пјљиѓЊж™Їпјљг‚ўг‚¤гѓ†гѓ г‚’еЉ гЃ€г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10567,7 +10567,7 @@ static BOOL EvCmdImcBgAddItem(VM_MACHINE * core)
 	u16 bg_no	= VMGetWorkValue(core);
 
 	imc	= SaveData_GetImcSaveData( core->fsys->savedata );
-	imc_item = ImcSaveData_GetItemSaveData( imc );	//ѓAѓCѓeѓЂѓZЃ[ѓuѓfЃ[ѓ^Ћж“ѕ
+	imc_item = ImcSaveData_GetItemSaveData( imc );	//г‚ўг‚¤гѓ†гѓ г‚»гѓјгѓ–гѓ‡гѓјг‚їеЏ–еѕ—
 
 	ImcSaveData_SetBGFlag( imc_item, bg_no );
 	return 0;
@@ -10575,9 +10575,9 @@ static BOOL EvCmdImcBgAddItem(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓCѓЃЃ[ѓWѓNѓЉѓbѓvЃF”wЊiЃFѓoѓbѓO‚МѓAѓCѓeѓЂѓ`ѓFѓbѓN
+ * г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—пјљиѓЊж™Їпјљгѓђгѓѓг‚°гЃ®г‚ўг‚¤гѓ†гѓ гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10590,7 +10590,7 @@ static BOOL EvCmdImcBgCheckItem(VM_MACHINE * core)
 	u16* ret_wk	= VMGetWork( core );
 
 	imc	= SaveData_GetImcSaveData( core->fsys->savedata );
-	imc_item = ImcSaveData_GetItemSaveData( imc );	//ѓAѓCѓeѓЂѓZЃ[ѓuѓfЃ[ѓ^Ћж“ѕ
+	imc_item = ImcSaveData_GetItemSaveData( imc );	//г‚ўг‚¤гѓ†гѓ г‚»гѓјгѓ–гѓ‡гѓјг‚їеЏ–еѕ—
 
 	*ret_wk = ImcSaveData_CheckBgGet( imc_item, bg_no );
 	return 0;
@@ -10598,9 +10598,9 @@ static BOOL EvCmdImcBgCheckItem(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * •\ЏІЏуѓCѓxѓ“ѓgЃFѓVѓ“ѓIѓEђ}ЉУѓ`ѓFѓbѓN
+ * иЎЁеЅ°зЉ¶г‚¤гѓ™гѓігѓ€пјљг‚·гѓіг‚Єг‚¦е›ій‘‘гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10619,9 +10619,9 @@ static BOOL EvCmdZukanChkShinou(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * •\ЏІЏуѓCѓxѓ“ѓgЃF‘SЌ‘ђ}ЉУѓ`ѓFѓbѓN
+ * иЎЁеЅ°зЉ¶г‚¤гѓ™гѓігѓ€пјље…Ёе›Ѕе›ій‘‘гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10640,9 +10640,9 @@ static BOOL EvCmdZukanChkNational(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * •\ЏІЏуѓCѓxѓ“ѓgЃFѓVѓ“ѓIѓEђ}ЉУ•\ЏІЊД‚СЏo‚µ
+ * иЎЁеЅ°зЉ¶г‚¤гѓ™гѓігѓ€пјљг‚·гѓіг‚Єг‚¦е›ій‘‘иЎЁеЅ°е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10656,9 +10656,9 @@ static BOOL EvCmdZukanRecongnizeShinou(VM_MACHINE * core)
 }
 //--------------------------------------------------------------------------------------------
 /**
- * •\ЏІЏуѓCѓxѓ“ѓgЃF‘SЌ‘ђ}ЉУ•\ЏІЊД‚СЏo‚µ
+ * иЎЁеЅ°зЉ¶г‚¤гѓ™гѓігѓ€пјље…Ёе›Ѕе›ій‘‘иЎЁеЅ°е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10674,9 +10674,9 @@ static BOOL EvCmdZukanRecongnizeNational(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓEѓ‰ѓ„ѓ}ѓGѓ“ѓJѓEѓ“ѓgЃFѓGѓ“ѓJѓEѓ“ѓg‚·‚йѓ|ѓPѓ‚ѓ“ѓZѓbѓg
+ * г‚¦гѓ©гѓ¤гѓћг‚Ёгѓіг‚«г‚¦гѓігѓ€пјљг‚Ёгѓіг‚«г‚¦гѓігѓ€гЃ™г‚‹гѓќг‚±гѓўгѓіг‚»гѓѓгѓ€
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10689,9 +10689,9 @@ static BOOL EvCmdUrayamaEncountSet(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓEѓ‰ѓ„ѓ}ѓGѓ“ѓJѓEѓ“ѓgЃFЊ»ЌЭѓGѓ“ѓJѓEѓ“ѓg‚·‚йѓ|ѓPѓ‚ѓ“‚рЋж“ѕ
+ * г‚¦гѓ©гѓ¤гѓћг‚Ёгѓіг‚«г‚¦гѓігѓ€пјљзЏѕењЁг‚Ёгѓіг‚«г‚¦гѓігѓ€гЃ™г‚‹гѓќг‚±гѓўгѓіг‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10705,9 +10705,9 @@ static BOOL EvCmdUrayamaEncountNoChk(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	Ћ†”тЌs‹@‚М—Ћ‚Ж‚·ЏкЏЉ‚рЊ€‚Я‚й
+ *	зґ™йЈ›иЎЊж©џгЃ®иђЅгЃЁгЃ™е ґж‰Ђг‚’ж±єг‚Ѓг‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -10717,7 +10717,7 @@ static BOOL EvCmdPaperplaneSet(VM_MACHINE * core)
 	u16* ret_wk	= VMGetWork( core );
 
 
-//060709Ћd—l‚Є–і‚­‚И‚Б‚Ѕ€Ч•s—p‚Й
+//060709д»•ж§гЃЊз„ЎгЃЏгЃЄгЃЈгЃџз‚єдёЌз”ЁгЃ«
 
 	return 0;
 }
@@ -10725,7 +10725,7 @@ static BOOL EvCmdPaperplaneSet(VM_MACHINE * core)
 //--------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ѓЊѓRЃ[ѓhѓfЃ[ѓ^‚МѓCѓ“ѓNѓЉѓЃѓ“ѓg
+ *	@brief	гѓ¬г‚ігѓјгѓ‰гѓ‡гѓјг‚їгЃ®г‚¤гѓіг‚ЇгѓЄгѓЎгѓігѓ€
  */
 static BOOL EvCmdRecordInc(VM_MACHINE* core)
 {
@@ -10736,15 +10736,15 @@ static BOOL EvCmdRecordInc(VM_MACHINE* core)
 }
 
 /**
- *	@brief	ѓЊѓRЃ[ѓhѓfЃ[ѓ^‚рЋж“ѕ‚·‚й
+ *	@brief	гѓ¬г‚ігѓјгѓ‰гѓ‡гѓјг‚їг‚’еЏ–еѕ—гЃ™г‚‹
  */
 static BOOL EvCmdRecordGet(VM_MACHINE* core)
 {
 	u32	val;
 	u16	*h_wk,*l_wk;
 	u16	recid = VMGetU16(core);
-	u16	hwk_id = VMGetU16(core);	//Џг€К
-	u16	lwk_id = VMGetU16(core);	//‰є€К
+	u16	hwk_id = VMGetU16(core);	//дёЉдЅЌ
+	u16	lwk_id = VMGetU16(core);	//дё‹дЅЌ
 
 	h_wk = GetEventWorkAdrs(core->fsys,hwk_id);
 	l_wk = GetEventWorkAdrs(core->fsys,lwk_id);
@@ -10757,14 +10757,14 @@ static BOOL EvCmdRecordGet(VM_MACHINE* core)
 }
 
 /**
- *	@brief	ѓЊѓRЃ[ѓhѓfЃ[ѓ^‚рѓZѓbѓg‚·‚й
+ *	@brief	гѓ¬г‚ігѓјгѓ‰гѓ‡гѓјг‚їг‚’г‚»гѓѓгѓ€гЃ™г‚‹
  */
 static BOOL EvCmdRecordSet(VM_MACHINE* core)
 {
 	u32	val;
 	u16	recid = VMGetU16(core);
-	u16	val1 = VMGetU16(core);	//Џг€К
-	u16	val2 = VMGetU16(core);	//‰є€К
+	u16	val1 = VMGetU16(core);	//дёЉдЅЌ
+	u16	val2 = VMGetU16(core);	//дё‹дЅЌ
 	u8	mode = VMGetU8(core);	//0:Add,1:Set,2:SetIfLarge
 
 	val = (u32)(val1)<<16;
@@ -10785,7 +10785,7 @@ static BOOL EvCmdRecordSet(VM_MACHINE* core)
 }
 
 /**
- *	@brief	ѓЊѓRЃ[ѓhѓfЃ[ѓ^‚р’З‰Б‚·‚й ѓЏЃ[ѓNЋw’и‚ ‚и
+ *	@brief	гѓ¬г‚ігѓјгѓ‰гѓ‡гѓјг‚їг‚’иїЅеЉ гЃ™г‚‹ гѓЇгѓјг‚ЇжЊ‡е®љгЃ‚г‚Љ
  */
 static BOOL EvCmdRecordAdd(VM_MACHINE* core)
 {
@@ -10797,7 +10797,7 @@ static BOOL EvCmdRecordAdd(VM_MACHINE* core)
 }
 
 /**
- *	@brief	ѓЊѓRЃ[ѓhѓfЃ[ѓ^‚р’З‰Б‚·‚й ѓЏЃ[ѓNЋw’и‚И‚µ u32
+ *	@brief	гѓ¬г‚ігѓјгѓ‰гѓ‡гѓјг‚їг‚’иїЅеЉ гЃ™г‚‹ гѓЇгѓјг‚ЇжЊ‡е®љгЃЄгЃ— u32
  */
 static BOOL EvCmdRecordAddU32(VM_MACHINE* core)
 {
@@ -10810,7 +10810,7 @@ static BOOL EvCmdRecordAddU32(VM_MACHINE* core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		ѓXѓNѓЉѓvѓgѓRѓ}ѓ“ѓhЃFѓTѓtѓ@ѓЉђ§Њд
+ * @brief		г‚№г‚ЇгѓЄгѓ—гѓ€г‚ігѓћгѓігѓ‰пјљг‚µгѓ•г‚ЎгѓЄе€¶еѕЎ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdSafariControl(VM_MACHINE * core)
@@ -10825,17 +10825,17 @@ static BOOL EvCmdSafariControl(VM_MACHINE * core)
 	ball = Situation_GetSafariBallCount(st);
 	step = Situation_GetSafariStepCount(st);
 	switch (flag) {
-	case 0:		//ЉJЋn
+	case 0:		//й–‹е§‹
 		SysFlag_SafariSet(ev);
 		TVTOPIC_SafariTemp_Init(tvwk);
 		*ball = 30;
 		*step = 0;
 		break;
 
-	case 1:		//ЏI—№
+	case 1:		//зµ‚дє†
 		SysFlag_SafariReset(ev);
 		TVTOPIC_Entry_Watch_Safari(core->fsys);
-		{	// –`ЊЇѓmЃ[ѓgѓfЃ[ѓ^Ќмђ¬
+		{	// е†’й™єгѓЋгѓјгѓ€гѓ‡гѓјг‚їдЅњж€ђ
 			void * mem = FNOTE_ActionSafariDataMake( HEAPID_FIELD );
 			FNOTE_DataSave( core->fsys->fnote, mem, FNOTE_TYPE_ACTION );
 		}
@@ -10849,10 +10849,10 @@ static BOOL EvCmdSafariControl(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓTѓtѓ@ѓЉ–]‰“‹ѕ
- * @brief   ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚р‚©‚Ї‚й‚М‚ЕЃAreturn 0‚ЕѓXѓNѓЉѓvѓg–{‘М‚ЄЏI—№‚µ‚Д‚µ‚Ь‚н‚И‚ў‚ж‚¤‚ЙЃA1‚р•Ф‚·
+ * г‚µгѓ•г‚ЎгѓЄжњ›йЃ йЏЎ
+ * @brief   г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«г‚’гЃ‹гЃ‘г‚‹гЃ®гЃ§гЂЃreturn 0гЃ§г‚№г‚ЇгѓЄгѓ—гѓ€жњ¬дЅ“гЃЊзµ‚дє†гЃ—гЃ¦гЃ—гЃѕг‚ЏгЃЄгЃ„г‚€гЃ†гЃ«гЂЃ1г‚’иї”гЃ™
  * 
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -10865,7 +10865,7 @@ static BOOL EvCmdCallSafariScope(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓNѓ‰ѓCѓ}ѓbѓNѓXѓfѓ‚ЊД‚СЏo‚µ
+ * г‚Їгѓ©г‚¤гѓћгѓѓг‚Їг‚№гѓ‡гѓўе‘јгЃіе‡єгЃ—
  */
 //--------------------------------------------------------------------------------------------
 static BOOL	EvCmdClimaxDemoCall(VM_MACHINE * core)
@@ -10888,7 +10888,7 @@ static BOOL	EvCmdClimax3DDemoCall(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓTѓtѓ@ѓЉ“dЋФЏ‰Љъ‰»
+ * г‚µгѓ•г‚ЎгѓЄй›»и»Ље€ќжњџеЊ–
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdInitSafariTrain(VM_MACHINE * core)
@@ -10899,8 +10899,8 @@ static BOOL EvCmdInitSafariTrain(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓTѓtѓ@ѓЉ“dЋФ€Ъ“®
- * @brief   ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚р‚©‚Ї‚й‚М‚ЕЃAreturn 0‚ЕѓXѓNѓЉѓvѓg–{‘М‚ЄЏI—№‚µ‚Д‚µ‚Ь‚н‚И‚ў‚ж‚¤‚ЙЃA1‚р•Ф‚·
+ * г‚µгѓ•г‚ЎгѓЄй›»и»Љз§»е‹•
+ * @brief   г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«г‚’гЃ‹гЃ‘г‚‹гЃ®гЃ§гЂЃreturn 0гЃ§г‚№г‚ЇгѓЄгѓ—гѓ€жњ¬дЅ“гЃЊзµ‚дє†гЃ—гЃ¦гЃ—гЃѕг‚ЏгЃЄгЃ„г‚€гЃ†гЃ«гЂЃ1г‚’иї”гЃ™
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdMoveSafariTrain(VM_MACHINE * core)
@@ -10908,7 +10908,7 @@ static BOOL EvCmdMoveSafariTrain(VM_MACHINE * core)
 	u16 *pos = VMGetWork( core );
 	u16 type = VMGetU16(core);
 
-	Snd_DataSetByScene( SND_SCENE_SUB_TRAIN, 0, 0 );// ѓTѓEѓ“ѓhѓfЃ[ѓ^ѓЌЃ[ѓh(ѓ‚ѓЌѓbѓRЌ†)(BGM€шЊp‚¬)
+	Snd_DataSetByScene( SND_SCENE_SUB_TRAIN, 0, 0 );// г‚µг‚¦гѓігѓ‰гѓ‡гѓјг‚їгѓ­гѓјгѓ‰(гѓўгѓ­гѓѓг‚іеЏ·)(BGMеј•з¶™гЃЋ)
 
 	SafariTrain_Move(core->fsys, *pos, type);
 	return 1;
@@ -10916,7 +10916,7 @@ static BOOL EvCmdMoveSafariTrain(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓTѓtѓ@ѓЉ“dЋФѓ`ѓFѓbѓNЃi“dЋФ‚Є’вЋФ‚µ‚Д‚ў‚й‚©Ѓj
+ * г‚µгѓ•г‚ЎгѓЄй›»и»ЉгѓЃг‚§гѓѓг‚Їпј€й›»и»ЉгЃЊеЃњи»ЉгЃ—гЃ¦гЃ„г‚‹гЃ‹пј‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdCheckSafariTrain(VM_MACHINE * core)
@@ -10929,7 +10929,7 @@ static BOOL EvCmdCheckSafariTrain(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ћ©‹@Ќ‚‚іЋж“ѕ—L–і
+ * и‡Єж©џй«гЃ•еЏ–еѕ—жњ‰з„Ў
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdPlayerHeightValid(VM_MACHINE * core)
@@ -10942,7 +10942,7 @@ static BOOL EvCmdPlayerHeightValid(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	’n‰є‚Е‰пb‚µ‚Ѕђlђ”‚М—ЭЊv(ѓ~ѓJѓQђк—pЃj
+ *	ењ°дё‹гЃ§дјљи©±гЃ—гЃџдєєж•°гЃ®зґЇиЁ€(гѓџг‚«г‚Іе°‚з”Ёпј‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnderGroundTalkCount(VM_MACHINE * core)
@@ -10957,7 +10957,7 @@ static BOOL EvCmdUnderGroundTalkCount(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	ђV•·ЋРЃF‚В‚к‚Д‚­‚йѓ|ѓPѓ‚ѓ“”ФЌ†Ћж“ѕ
+ *	ж–°иЃћз¤ѕпјљгЃ¤г‚ЊгЃ¦гЃЏг‚‹гѓќг‚±гѓўгѓіз•ЄеЏ·еЏ–еѕ—
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdGetNewsPokeNo(VM_MACHINE * core)
@@ -10966,19 +10966,19 @@ static BOOL EvCmdGetNewsPokeNo(VM_MACHINE * core)
 	u16* ret_wk	= VMGetWork( core );
 	u16 get_count,num_count,i,j;
 
-	//•Я‚Ь‚¦‚Ѕђ”‚рЋж“ѕ
+	//жЌ•гЃѕгЃ€гЃџж•°г‚’еЏ–еѕ—
 //	get_count = ZukanWork_GetShinouPokeGetCount(zw);
-	//Њ©‚В‚Ї‚Ѕђ”‚рЋж“ѕЃ@Ѓ¦060726•ПЌXЃBЏј‹{‚і‚с‚ж‚и—v–]
+	//и¦‹гЃ¤гЃ‘гЃџж•°г‚’еЏ–еѕ—гЂЂвЂ»060726е¤‰ж›ґгЂ‚жќѕе®®гЃ•г‚“г‚€г‚Љи¦Ѓжњ›
 	get_count = ZukanWork_GetShinouPokeSeeCount(zw);
 
-	//•Я‚Ь‚¦‚Ѕђ”“а‚Мѓ‰ѓ“ѓ_ѓЂ‚ЕЃA–Ъ“I‚Мѓ|ѓPѓ‚ѓ“(ђ}ЉУ‚М‰Ѕ”Ф–Ъ‚ЙЌЪ‚Б‚Д‚ў‚й‚©)‚рЊ€’и
+	//жЌ•гЃѕгЃ€гЃџж•°е†…гЃ®гѓ©гѓігѓЂгѓ гЃ§гЂЃз›®зљ„гЃ®гѓќг‚±гѓўгѓі(е›ій‘‘гЃ®дЅ•з•Єз›®гЃ«иј‰гЃЈгЃ¦гЃ„г‚‹гЃ‹)г‚’ж±єе®љ
 	num_count = gf_rand() % get_count;
 
-	*ret_wk = MONSNO_PIKATYUU;	//Ѓ¦ѓfѓoѓbѓO“™‚Е•Я‚Ь‚¦‚Ѕђ”‚Є‚O‚М‚Ж‚«—p‚ЙЃA”O‚М‚Ѕ‚Я•K‚ёЏ‰Љъ‰»
+	*ret_wk = MONSNO_PIKATYUU;	//вЂ»гѓ‡гѓђгѓѓг‚°з­‰гЃ§жЌ•гЃѕгЃ€гЃџж•°гЃЊпјђгЃ®гЃЁгЃЌз”ЁгЃ«гЂЃеїµгЃ®гЃџг‚Ѓеї…гЃље€ќжњџеЊ–
 	for( i=1,j=0; i<=MONSNO_END; i++ ){
-		//ѓQѓbѓg‚µ‚Д‚ў‚ДЃA јЭµіЅЮ¶Э‚Й‚ў‚й‚©ѓ`ѓFѓbѓN
+		//г‚Ігѓѓгѓ€гЃ—гЃ¦гЃ„гЃ¦гЂЃ г‚·гѓіг‚Єг‚¦г‚єг‚«гѓігЃ«гЃ„г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
 //		if(( ZukanWork_GetPokeGetFlag( zw, i ) == TRUE )&&( PokeZenkokuNo2ShinouNo( i ) != 0 )){
-		//Њ©‚В‚Ї‚Д‚ўЃA јЭµіЅЮ¶Э‚Й‚ў‚й‚©ѓ`ѓFѓbѓN
+		//и¦‹гЃ¤гЃ‘гЃ¦гЃ„гЂЃ г‚·гѓіг‚Єг‚¦г‚єг‚«гѓігЃ«гЃ„г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
 		if(( ZukanWork_GetPokeSeeFlag( zw, i ) == TRUE )&&( PokeZenkokuNo2ShinouNo( i ) != 0 )){
 			if(j==num_count){
 				*ret_wk = i;
@@ -10993,7 +10993,7 @@ static BOOL EvCmdGetNewsPokeNo(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	ђV•·ЋРЃF’ч‚ЯђШ‚и‚Ь‚Е‚МЋc‚и•ЄѓZѓbѓg
+ *	ж–°иЃћз¤ѕпјљз· г‚Ѓе€‡г‚ЉгЃѕгЃ§гЃ®ж®‹г‚Ље€†г‚»гѓѓгѓ€
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdNewsCountSet(VM_MACHINE * core)
@@ -11005,9 +11005,9 @@ static BOOL EvCmdNewsCountSet(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	ђV•·ЋРЃF’ч‚ЯђШ‚и‚Ь‚Е‚МЋc‚и•Єѓ`ѓFѓbѓN
- *	1Ѓ`	ЃF’ч‚ЯђШ‚и‘O
- *	0	ЃF’ч‚ЯђШ‚и‚р‰Я‚¬‚Ѕ
+ *	ж–°иЃћз¤ѕпјљз· г‚Ѓе€‡г‚ЉгЃѕгЃ§гЃ®ж®‹г‚Ље€†гѓЃг‚§гѓѓг‚Ї
+ *	1гЂњ	пјљз· г‚Ѓе€‡г‚Ље‰Ќ
+ *	0	пјљз· г‚Ѓе€‡г‚Љг‚’йЃЋгЃЋгЃџ
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdNewsCountChk(VM_MACHINE * core)
@@ -11020,7 +11020,7 @@ static BOOL EvCmdNewsCountChk(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	‘е—К”­ђ¶ЉJЋn
+ *	е¤§й‡Џз™єз”џй–‹е§‹
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdStartGenerate(VM_MACHINE * core)
@@ -11032,7 +11032,7 @@ static BOOL EvCmdStartGenerate(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	€Ъ“®ѓ|ѓPѓ‚ѓ““o^
+ *	з§»е‹•гѓќг‚±гѓўгѓіз™»йЊІ
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdAddMovePoke(VM_MACHINE * core)
@@ -11044,21 +11044,21 @@ static BOOL EvCmdAddMovePoke(VM_MACHINE * core)
 
 //============================================================================================
 //
-//	ѓQЃ[ѓЂ“аЊрЉ·
+//	г‚Ігѓјгѓ е†…дє¤жЏ›
 //
-//	ID_EVSCR_PWORKЋg—pЃI
+//	ID_EVSCR_PWORKдЅїз”ЁпјЃ
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЊрЉ·ѓfЃ[ѓ^Ќмђ¬
+ * дє¤жЏ›гѓ‡гѓјг‚їдЅњж€ђ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * @li ID_EVSCR_PWORKЋg—pЃI
+ * @li ID_EVSCR_PWORKдЅїз”ЁпјЃ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdFldTradeAlloc(VM_MACHINE * core)
@@ -11072,13 +11072,13 @@ static BOOL EvCmdFldTradeAlloc(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚­‚к‚йѓ|ѓPѓ‚ѓ“ѓiѓ“ѓoЃ[Ћж“ѕ
+ * гЃЏг‚Њг‚‹гѓќг‚±гѓўгѓігѓЉгѓігѓђгѓјеЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * @li ID_EVSCR_PWORKЋg—pЃI
+ * @li ID_EVSCR_PWORKдЅїз”ЁпјЃ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdFldTradeMonsno(VM_MACHINE * core)
@@ -11092,13 +11092,13 @@ static BOOL EvCmdFldTradeMonsno(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚н‚Ѕ‚·ѓ|ѓPѓ‚ѓ“ѓiѓ“ѓoЃ[Ћж“ѕ
+ * г‚ЏгЃџгЃ™гѓќг‚±гѓўгѓігѓЉгѓігѓђгѓјеЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * @li ID_EVSCR_PWORKЋg—pЃI
+ * @li ID_EVSCR_PWORKдЅїз”ЁпјЃ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdFldTradeChgMonsno(VM_MACHINE * core)
@@ -11112,13 +11112,13 @@ static BOOL EvCmdFldTradeChgMonsno(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЊрЉ·ѓCѓxѓ“ѓgЉJЋn
+ * дє¤жЏ›г‚¤гѓ™гѓігѓ€й–‹е§‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  *
- * @li ID_EVSCR_PWORKЋg—pЃI
+ * @li ID_EVSCR_PWORKдЅїз”ЁпјЃ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdFldTradeEvent(VM_MACHINE * core)
@@ -11132,13 +11132,13 @@ static BOOL EvCmdFldTradeEvent(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЊрЉ·ѓfЃ[ѓ^ЌнЏњ
+ * дє¤жЏ›гѓ‡гѓјг‚їе‰Љй™¤
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * @li ID_EVSCR_PWORKЋg—pЃI
+ * @li ID_EVSCR_PWORKдЅїз”ЁпјЃ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdFldTradeDel(VM_MACHINE * core)
@@ -11151,9 +11151,9 @@ static BOOL EvCmdFldTradeDel(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ђ}ЉУЉOЌ‘ЊкѓoЃ[ѓWѓ‡ѓ“Ѓ@Masterѓtѓ‰ѓO
+ * е›ій‘‘е¤–е›ЅиЄћгѓђгѓјг‚ёгѓ§гѓігЂЂMasterгѓ•гѓ©г‚°
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -11166,9 +11166,9 @@ static BOOL EvCmdZukanTextVerUp(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ђ}ЉУђ«•К•\Ћ¦ѓoЃ[ѓWѓ‡ѓ“ѓAѓbѓv
+ * е›ій‘‘жЂ§е€ҐиЎЁз¤єгѓђгѓјг‚ёгѓ§гѓіг‚ўгѓѓгѓ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -11183,9 +11183,9 @@ static BOOL EvCmdZukanSexVerUp(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘SЌ‘ђ}ЉУѓtѓ‰ѓO‘ЂЌм(FLAG_MODE_SET,FLAG_MODE_RESET,FLAG_MODE_GET)
+ * е…Ёе›Ѕе›ій‘‘гѓ•гѓ©г‚°ж“ЌдЅњ(FLAG_MODE_SET,FLAG_MODE_RESET,FLAG_MODE_GET)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -11203,7 +11203,7 @@ static BOOL EvCmdZenkokuZukanFlag(VM_MACHINE * core)
 	}else if( mode == FLAG_MODE_GET ){
 		*ret_wk = ZukanWork_GetZenkokuZukanFlag( SaveData_GetZukanWork(core->fsys->savedata) );
 	}else{
-		GF_ASSERT( (0) && "‘SЌ‘ђ}ЉУѓtѓ‰ѓO‘ЂЌм‚М€шђ”‚Є•sђі‚Е‚·ЃI" );
+		GF_ASSERT( (0) && "е…Ёе›Ѕе›ій‘‘гѓ•гѓ©г‚°ж“ЌдЅњгЃ®еј•ж•°гЃЊдёЌж­ЈгЃ§гЃ™пјЃ" );
 	}
 
 	return 0;
@@ -11211,7 +11211,7 @@ static BOOL EvCmdZenkokuZukanFlag(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	“w—Н’l‚рЋж“ѕ
+ *	еЉЄеЉ›еЂ¤г‚’еЏ–еѕ—
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdChkPrmExp(VM_MACHINE * core)
@@ -11236,7 +11236,7 @@ static BOOL EvCmdChkPrmExp(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	—j“ъѓ`ѓFѓbѓN
+ *	ж›њж—ҐгѓЃг‚§гѓѓг‚Ї
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdChkWeek(VM_MACHINE * core)
@@ -11262,7 +11262,7 @@ static BOOL EvCmdCollectNews(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- * ѓЊѓMѓ…ѓЊЃ[ѓVѓ‡ѓ“ѓ‹Ѓ[ѓ‹ѓuѓbѓN
+ * гѓ¬г‚®гѓҐгѓ¬гѓјг‚·гѓ§гѓігѓ«гѓјгѓ«гѓ–гѓѓг‚Ї
  *
  * @return	"1"
  */
@@ -11276,8 +11276,8 @@ static BOOL EvCmdRegulationListCall(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	ѓ|ѓPѓ‚ѓ“‚М‘«ђХ‚М—L–і‚ЖѓOѓ‹Ѓ[ѓv‚р’І‚Ч‚й
- * *ret_wk = ‘«ђХ‚М—L–і(–і‚µ0,‚ ‚и1)ЃA *ret2_wk = ѓOѓ‹Ѓ[ѓvЃi‚PЃ|‚TЃj
+ *	гѓќг‚±гѓўгѓігЃ®и¶іи·ЎгЃ®жњ‰з„ЎгЃЁг‚°гѓ«гѓјгѓ—г‚’иЄїгЃ№г‚‹
+ * *ret_wk = и¶іи·ЎгЃ®жњ‰з„Ў(з„ЎгЃ—0,гЃ‚г‚Љ1)гЂЃ *ret2_wk = г‚°гѓ«гѓјгѓ—пј€пј‘в€’пј•пј‰
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdAshiatoChk(VM_MACHINE * core)
@@ -11295,15 +11295,15 @@ static BOOL EvCmdAshiatoChk(VM_MACHINE * core)
 	*ret_wk = ashiato_ato_chk( mons_no, form_no);
 	*ret2_wk = ashiato_group_chk( mons_no);
 
-	//OS_Printf("‘«ђХ•Є—Ю[%d]\n",*ret2_wk);
-	//OS_Printf("‘«ђХ—L–і[%d]\n",*ret_wk);
+	//OS_Printf("и¶іи·Ўе€†йЎћ[%d]\n",*ret2_wk);
+	//OS_Printf("и¶іи·Ўжњ‰з„Ў[%d]\n",*ret_wk);
 	return 0;
 }
 
 //-----------------------------------------------------------------------------
 /**
- *	ѓ|ѓPѓ‚ѓ“‚М‰с•њѓ}ѓVЃ[ѓ“ѓAѓjѓЃ
- * @brief   ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚р‚©‚Ї‚й‚М‚ЕЃAreturn 0‚ЕѓXѓNѓЉѓvѓg–{‘М‚ЄЏI—№‚µ‚Д‚µ‚Ь‚н‚И‚ў‚ж‚¤‚ЙЃA1‚р•Ф‚·
+ *	гѓќг‚±гѓўгѓігЃ®е›ћеѕ©гѓћг‚·гѓјгѓіг‚ўгѓ‹гѓЎ
+ * @brief   г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«г‚’гЃ‹гЃ‘г‚‹гЃ®гЃ§гЂЃreturn 0гЃ§г‚№г‚ЇгѓЄгѓ—гѓ€жњ¬дЅ“гЃЊзµ‚дє†гЃ—гЃ¦гЃ—гЃѕг‚ЏгЃЄгЃ„г‚€гЃ†гЃ«гЂЃ1г‚’иї”гЃ™
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdPcRecoverAnm(VM_MACHINE * core)
@@ -11317,8 +11317,8 @@ static BOOL EvCmdPcRecoverAnm(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	ѓGѓЊѓxЃ[ѓ^Ѓ[ѓAѓjѓЃ
- * @brief   ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚р‚©‚Ї‚й‚М‚ЕЃAreturn 0‚ЕѓXѓNѓЉѓvѓg–{‘М‚ЄЏI—№‚µ‚Д‚µ‚Ь‚н‚И‚ў‚ж‚¤‚ЙЃA1‚р•Ф‚·
+ *	г‚Ёгѓ¬гѓ™гѓјг‚їгѓјг‚ўгѓ‹гѓЎ
+ * @brief   г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«г‚’гЃ‹гЃ‘г‚‹гЃ®гЃ§гЂЃreturn 0гЃ§г‚№г‚ЇгѓЄгѓ—гѓ€жњ¬дЅ“гЃЊзµ‚дє†гЃ—гЃ¦гЃ—гЃѕг‚ЏгЃЄгЃ„г‚€гЃ†гЃ«гЂЃ1г‚’иї”гЃ™
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdElevatorAnm(VM_MACHINE * core)
@@ -11333,8 +11333,8 @@ static BOOL EvCmdElevatorAnm(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	‘Dѓfѓ‚(ѓ}ѓbѓvѓWѓѓѓ“ѓv‚µ‚Ь‚·)
- * @brief   ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚р‚©‚Ї‚й‚М‚ЕЃAreturn 0‚ЕѓXѓNѓЉѓvѓg–{‘М‚ЄЏI—№‚µ‚Д‚µ‚Ь‚н‚И‚ў‚ж‚¤‚ЙЃA1‚р•Ф‚·
+ *	и€№гѓ‡гѓў(гѓћгѓѓгѓ—г‚ёгѓЈгѓігѓ—гЃ—гЃѕгЃ™)
+ * @brief   г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«г‚’гЃ‹гЃ‘г‚‹гЃ®гЃ§гЂЃreturn 0гЃ§г‚№г‚ЇгѓЄгѓ—гѓ€жњ¬дЅ“гЃЊзµ‚дє†гЃ—гЃ¦гЃ—гЃѕг‚ЏгЃЄгЃ„г‚€гЃ†гЃ«гЂЃ1г‚’иї”гЃ™
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdCallShipDemo(VM_MACHINE * core)
@@ -11352,7 +11352,7 @@ static BOOL EvCmdCallShipDemo(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	ѓoЃ[ѓWѓ‡ѓ“Ћж“ѕ
+ *	гѓђгѓјг‚ёгѓ§гѓіеЏ–еѕ—
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdPMVersionGet(VM_MACHINE * core)
@@ -11365,8 +11365,8 @@ static BOOL EvCmdPMVersionGet(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	‚ ‚ў‚±‚Ж‚О‚ЙЉY“–‚·‚й•ЗЋ†‚р—LЊш‚Й
- *	OUT *ret_wk  : 0xff:€к’v‚µ‚И‚ў 0:Љщ‚Й‚ ‚й 1Ѓ`8:—LЊш‚Й‚И‚Б‚Ѕ•ЗЋ†”ФЌ†
+ *	гЃ‚гЃ„гЃ“гЃЁгЃ°гЃ«и©ІеЅ“гЃ™г‚‹еЈЃзґ™г‚’жњ‰еЉ№гЃ«
+ *	OUT *ret_wk  : 0xff:дёЂи‡ґгЃ—гЃЄгЃ„ 0:ж—ўгЃ«гЃ‚г‚‹ 1гЂњ8:жњ‰еЉ№гЃ«гЃЄгЃЈгЃџеЈЃзґ™з•ЄеЏ·
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdAikotobaKabegamiSet(VM_MACHINE * core)
@@ -11384,12 +11384,12 @@ static BOOL EvCmdAikotobaKabegamiSet(VM_MACHINE * core)
 	kabe_no = BOXPWD_HitCheck(my,aik1,aik2,aik3,aik4, HEAPID_FIELD);
 
 	if((kabe_no == BOXPWD_RESULT_ERROR)||(kabe_no > 7)){
-		*ret_wk = 0xff;			//‚ ‚ў‚±‚Ж‚О‚Є€к’v‚µ‚И‚ў
+		*ret_wk = 0xff;			//гЃ‚гЃ„гЃ“гЃЁгЃ°гЃЊдёЂи‡ґгЃ—гЃЄгЃ„
 		return 0;
 	}
 
 	if(BOXDAT_GetDaisukiKabegamiFlag( boxDat, kabe_no)){
-		*ret_wk = 0;		//Љщ‚Й“o^ЌП‚Э
+		*ret_wk = 0;		//ж—ўгЃ«з™»йЊІжё€гЃї
 	}else{
 		BOXDAT_SetDaisukiKabegamiFlag( boxDat, kabe_no );
 		*ret_wk = kabe_no+1;
@@ -11400,7 +11400,7 @@ static BOOL EvCmdAikotobaKabegamiSet(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	’n‰є‚ЕЋж“ѕ‚µ‚Ѕѓnѓ^‚М‘Ќђ”Ћж“ѕ
+ *	ењ°дё‹гЃ§еЏ–еѕ—гЃ—гЃџгѓЏг‚їгЃ®з·Џж•°еЏ–еѕ—
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdGetUgHataNum(VM_MACHINE * core)
@@ -11418,9 +11418,9 @@ static BOOL EvCmdGetUgHataNum(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓpѓ\ѓRѓ“ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓgѓAѓbѓv
+ * гѓ‘г‚Ѕг‚ігѓіг‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€г‚ўгѓѓгѓ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -11430,10 +11430,10 @@ static BOOL EvCmdSetUpPasoAnime( VM_MACHINE * core )
 	FIELDSYS_WORK* fsys;
 	u8 entry;
 	fsys = core->fsys;
-	//ѓGѓ“ѓgѓЉЃ[IDЋж“ѕ
+	//г‚Ёгѓігѓ€гѓЄгѓјIDеЏ–еѕ—
 	entry = VMGetU8(core);
 
-	//ѓpѓ\ѓRѓ“ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓZѓbѓgѓAѓbѓv
+	//гѓ‘г‚Ѕг‚ігѓіг‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚»гѓѓгѓ€г‚ўгѓѓгѓ—
 	FLD_SCR_ANM_PASO_Setup(fsys, entry);
 	
 	return 0;
@@ -11441,7 +11441,7 @@ static BOOL EvCmdSetUpPasoAnime( VM_MACHINE * core )
 
 //-----------------------------------------------------------------------------
 /**
- *	ѓpѓ\ѓRѓ“‚В‚Ї‚й
+ *	гѓ‘г‚Ѕг‚ігѓігЃ¤гЃ‘г‚‹
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdStartPasoOnAnime(VM_MACHINE * core)
@@ -11449,7 +11449,7 @@ static BOOL EvCmdStartPasoOnAnime(VM_MACHINE * core)
 	FIELDSYS_WORK* fsys;
 	u8 entry;
 	fsys = core->fsys;
-	//ѓGѓ“ѓgѓЉЃ[IDЋж“ѕ
+	//г‚Ёгѓігѓ€гѓЄгѓјIDеЏ–еѕ—
 	entry = VMGetU8(core);
 	FLD_SCR_ANM_PASO_PasoOnAnm(	fsys, entry );
 	return 0;
@@ -11457,7 +11457,7 @@ static BOOL EvCmdStartPasoOnAnime(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	ѓpѓ\ѓRѓ“ЏБ‚·
+ *	гѓ‘г‚Ѕг‚ігѓіж¶€гЃ™
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdStartPasoOffAnime(VM_MACHINE * core)
@@ -11465,7 +11465,7 @@ static BOOL EvCmdStartPasoOffAnime(VM_MACHINE * core)
 	FIELDSYS_WORK* fsys;
 	u8 entry;
 	fsys = core->fsys;
-	//ѓGѓ“ѓgѓЉЃ[IDЋж“ѕ
+	//г‚Ёгѓігѓ€гѓЄгѓјIDеЏ–еѕ—
 	entry = VMGetU8(core);
 	FLD_SCR_ANM_PASO_PasoOffAnm( fsys, entry );
 	return 0;
@@ -11478,9 +11478,9 @@ static BOOL EvCmdStartPasoOffAnime(VM_MACHINE * core)
 //
 //--------------------------------------------------------------------------------------------
 /**
- * ђ}ЉУЊ©‚Ѕѓtѓ‰ѓO‚рѓZѓbѓg
+ * е›ій‘‘и¦‹гЃџгѓ•гѓ©г‚°г‚’г‚»гѓѓгѓ€
  *
- * @param	monsno	ѓ|ѓPѓ‚ѓ“ѓiѓ“ѓoЃ[
+ * @param	monsno	гѓќг‚±гѓўгѓігѓЉгѓігѓђгѓј
  *
  * @return	"0"
  */
@@ -11499,7 +11499,7 @@ static void Scr_ZukanSeeSet( FIELDSYS_WORK* fsys, u16 monsno )
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ђ}ЉУ‚рЊ©‚ЅЏу‘Ф‚Й‚·‚й
+ * @brief	е›ій‘‘г‚’и¦‹гЃџзЉ¶ж…‹гЃ«гЃ™г‚‹
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdZukanSeeSet(VM_MACHINE * core)
@@ -11514,7 +11514,7 @@ static BOOL EvCmdZukanSeeSet(VM_MACHINE * core)
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ѓ|ѓPѓ‚ѓ“ѓ{ѓbѓNѓX‚М‹у‚«‚рђ”‚¦‚й
+ * @brief	гѓќг‚±гѓўгѓігѓњгѓѓг‚Їг‚№гЃ®з©єгЃЌг‚’ж•°гЃ€г‚‹
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdPokeBoxCountEmptySpace(VM_MACHINE * core)
@@ -11528,13 +11528,13 @@ static BOOL EvCmdPokeBoxCountEmptySpace(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЊѓ|Ѓ[ѓg•`‰жЏ€—ќ’З‰Б(Ћ©‹@Њ`‘Ф‚Є“k•а€ИЉO‚Е‚ ‚к‚О‰Ѕ‚а‚µ‚И‚ў)
+ * гѓ¬гѓќгѓјгѓ€жЏЏз”»е‡¦зђ†иїЅеЉ (и‡Єж©џеЅўж…‹гЃЊеѕ’ж­©д»Ґе¤–гЃ§гЃ‚г‚ЊгЃ°дЅ•г‚‚гЃ—гЃЄгЃ„)
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  *
- * @li ID_EVSCR_PWORKЋg—pЃI
+ * @li ID_EVSCR_PWORKдЅїз”ЁпјЃ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdReportDrawProcSet( VM_MACHINE * core )
@@ -11548,13 +11548,13 @@ static BOOL EvCmdReportDrawProcSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЊѓ|Ѓ[ѓg•`‰жЏ€—ќЌнЏњ
+ * гѓ¬гѓќгѓјгѓ€жЏЏз”»е‡¦зђ†е‰Љй™¤
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  *
- * @li ID_EVSCR_PWORKЋg—pЃI
+ * @li ID_EVSCR_PWORKдЅїз”ЁпјЃ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdReportDrawProcDel( VM_MACHINE * core )
@@ -11566,8 +11566,8 @@ static BOOL EvCmdReportDrawProcDel( VM_MACHINE * core )
 
 //-----------------------------------------------------------------------------
 /**
- *	“a“°ѓ}ѓVЃ[ѓ“Џгѓ{Ѓ[ѓ‹ѓAѓjѓЃ
- * @brief   ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚р‚©‚Ї‚й‚М‚ЕЃAreturn 0‚ЕѓXѓNѓЉѓvѓg–{‘М‚ЄЏI—№‚µ‚Д‚µ‚Ь‚н‚И‚ў‚ж‚¤‚ЙЃA1‚р•Ф‚·
+ *	ж®їе ‚гѓћг‚·гѓјгѓідёЉгѓњгѓјгѓ«г‚ўгѓ‹гѓЎ
+ * @brief   г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«г‚’гЃ‹гЃ‘г‚‹гЃ®гЃ§гЂЃreturn 0гЃ§г‚№г‚ЇгѓЄгѓ—гѓ€жњ¬дЅ“гЃЊзµ‚дє†гЃ—гЃ¦гЃ—гЃѕг‚ЏгЃЄгЃ„г‚€гЃ†гЃ«гЂЃ1г‚’иї”гЃ™
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdDendouBallAnm(VM_MACHINE * core)
@@ -11580,7 +11580,7 @@ static BOOL EvCmdDendouBallAnm(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	ѓtѓBЃ[ѓ‹ѓhѓЉѓtѓgЏ‰Љъ‰»
+ *	гѓ•г‚Јгѓјгѓ«гѓ‰гѓЄгѓ•гѓ€е€ќжњџеЊ–
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdInitFldLift(VM_MACHINE * core)
@@ -11591,8 +11591,8 @@ static BOOL EvCmdInitFldLift(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	ѓtѓBЃ[ѓ‹ѓhѓЉѓtѓg€Ъ“®
- * @brief   ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚р‚©‚Ї‚й‚М‚ЕЃAreturn 0‚ЕѓXѓNѓЉѓvѓg–{‘М‚ЄЏI—№‚µ‚Д‚µ‚Ь‚н‚И‚ў‚ж‚¤‚ЙЃA1‚р•Ф‚·
+ *	гѓ•г‚Јгѓјгѓ«гѓ‰гѓЄгѓ•гѓ€з§»е‹•
+ * @brief   г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«г‚’гЃ‹гЃ‘г‚‹гЃ®гЃ§гЂЃreturn 0гЃ§г‚№г‚ЇгѓЄгѓ—гѓ€жњ¬дЅ“гЃЊзµ‚дє†гЃ—гЃ¦гЃ—гЃѕг‚ЏгЃЄгЃ„г‚€гЃ†гЃ«гЂЃ1г‚’иї”гЃ™
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdMoveFldLift(VM_MACHINE * core)
@@ -11603,7 +11603,7 @@ static BOOL EvCmdMoveFldLift(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	ѓtѓBЃ[ѓ‹ѓhѓЉѓtѓg—LЊшђ«ѓ`ѓFѓbѓN
+ *	гѓ•г‚Јгѓјгѓ«гѓ‰гѓЄгѓ•гѓ€жњ‰еЉ№жЂ§гѓЃг‚§гѓѓг‚Ї
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdCheckFldLift(VM_MACHINE * core)
@@ -11619,7 +11619,7 @@ static BOOL EvCmdCheckFldLift(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	ѓЊѓCЃEѓAѓCЃEѓnѓCЃ@ѓVѓЉѓ“ѓ_Ѓ[ѓAѓjѓЃѓZѓbѓgѓAѓbѓv
+ *	гѓ¬г‚¤гѓ»г‚ўг‚¤гѓ»гѓЏг‚¤гЂЂг‚·гѓЄгѓігѓЂгѓјг‚ўгѓ‹гѓЎг‚»гѓѓгѓ€г‚ўгѓѓгѓ—
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdSetupRAHCyl(VM_MACHINE * core)
@@ -11630,8 +11630,8 @@ static BOOL EvCmdSetupRAHCyl(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	ѓЊѓCЃEѓAѓCЃEѓnѓCЃ@ѓVѓЉѓ“ѓ_Ѓ[ѓAѓjѓЃѓXѓ^Ѓ[ѓg
- * @brief   ѓCѓxѓ“ѓgѓRЃ[ѓ‹‚р‚©‚Ї‚й‚М‚ЕЃAreturn 0‚ЕѓXѓNѓЉѓvѓg–{‘М‚ЄЏI—№‚µ‚Д‚µ‚Ь‚н‚И‚ў‚ж‚¤‚ЙЃA1‚р•Ф‚·
+ *	гѓ¬г‚¤гѓ»г‚ўг‚¤гѓ»гѓЏг‚¤гЂЂг‚·гѓЄгѓігѓЂгѓјг‚ўгѓ‹гѓЎг‚№г‚їгѓјгѓ€
+ * @brief   г‚¤гѓ™гѓігѓ€г‚ігѓјгѓ«г‚’гЃ‹гЃ‘г‚‹гЃ®гЃ§гЂЃreturn 0гЃ§г‚№г‚ЇгѓЄгѓ—гѓ€жњ¬дЅ“гЃЊзµ‚дє†гЃ—гЃ¦гЃ—гЃѕг‚ЏгЃЄгЃ„г‚€гЃ†гЃ«гЂЃ1г‚’иї”гЃ™
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdStartRAHCyl(VM_MACHINE * core)
@@ -11642,7 +11642,7 @@ static BOOL EvCmdStartRAHCyl(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	ѓXѓRѓA‚М‰БЋZ
+ *	г‚№г‚іг‚ўгЃ®еЉ з®—
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdAddScore(VM_MACHINE * core)
@@ -11655,7 +11655,7 @@ static BOOL EvCmdAddScore(VM_MACHINE * core)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ћw’и‚Мѓ|ѓPѓ‚ѓ“‚ЄѓpЃ[ѓeѓB“а‚Й‚ў‚й‚©ѓ`ѓFѓbѓN
+ *	@brief	жЊ‡е®љгЃ®гѓќг‚±гѓўгѓігЃЊгѓ‘гѓјгѓ†г‚Је†…гЃ«гЃ„г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdPartyMonsNoCheck(VM_MACHINE * core)
@@ -11669,7 +11669,7 @@ static BOOL EvCmdPartyMonsNoCheck(VM_MACHINE * core)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓpЃ[ѓeѓB“а‚МѓfѓIѓLѓVѓX‚МѓtѓHѓ‹ѓЂ‚р•ПЌX
+ *	@brief	гѓ‘гѓјгѓ†г‚Је†…гЃ®гѓ‡г‚Єг‚­г‚·г‚№гЃ®гѓ•г‚©гѓ«гѓ г‚’е¤‰ж›ґ
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdPartyDeokisisuFormChange(VM_MACHINE * core)
@@ -11683,18 +11683,18 @@ static BOOL EvCmdPartyDeokisisuFormChange(VM_MACHINE * core)
 	ZUKAN_WORK* zw = SaveData_GetZukanWork( core->fsys->savedata );
 	
 	for( i=0; i<poke_count; i++ ){
-		// ѓ|ѓPѓ‚ѓ“ѓpЃ[ѓeѓBЃ@‚И‚ў‚МѓfѓIѓLѓVѓXѓ`ѓFѓbѓN
+		// гѓќг‚±гѓўгѓігѓ‘гѓјгѓ†г‚ЈгЂЂгЃЄгЃ„гЃ®гѓ‡г‚Єг‚­г‚·г‚№гѓЃг‚§гѓѓг‚Ї
 		p_pp = PokeParty_GetMemberPointer( p_party, i );
 		monsno = PokeParaGet( p_pp, ID_PARA_monsno, NULL );
 
 		if( monsno == MONSNO_DEOKISISU ){
 
-			// ѓtѓHѓ‹ѓЂђЭ’и‚µЃA
-			// ѓpѓ‰ѓЃЃ[ѓ^‚МЌДЊvЋZ	ЌUЊ‚—Н‚Ж‚©
+			// гѓ•г‚©гѓ«гѓ иЁ­е®љгЃ—гЂЃ
+			// гѓ‘гѓ©гѓЎгѓјг‚їгЃ®е†ЌиЁ€з®—	ж”»ж’ѓеЉ›гЃЁгЃ‹
 			PokeParaPut( p_pp, ID_PARA_form_no, &form );
 			PokeParaCalc( p_pp );
 
-			// ђ}ЉУ‚Й“o^
+			// е›ій‘‘гЃ«з™»йЊІ
 			ZukanWork_SetPokeGet( zw, p_pp );
 		}
 	}
@@ -11704,7 +11704,7 @@ static BOOL EvCmdPartyDeokisisuFormChange(VM_MACHINE * core)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓ~ѓcѓnѓjЃ[‚МѓIѓXѓЃѓX‚Єѓ|ѓPѓpЃ[ѓeѓB‚Й‚»‚л‚Б‚Д‚ў‚й‚©ѓ`ѓFѓbѓN
+ *	@brief	гѓџгѓ„гѓЏгѓ‹гѓјгЃ®г‚Єг‚№гѓЎг‚№гЃЊгѓќг‚±гѓ‘гѓјгѓ†г‚ЈгЃ«гЃќг‚ЌгЃЈгЃ¦гЃ„г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
  *
  *	@param	core
  */
@@ -11717,18 +11717,18 @@ static BOOL EvCmdCheckMituhaniiComp( VM_MACHINE * core )
 	POKEPARTY* p_party	= SaveData_GetTemotiPokemon( core->fsys->savedata );
 	int poke_count		= PokeParty_GetPokeCount( p_party );
 	
-	//Џ‰Љъ‰»
+	//е€ќжњџеЊ–
 	male_flag	= 0;
 	female_flag = 0;
 
 	for( i=0; i<poke_count; i++ ){
-		// ѓ|ѓPѓ‚ѓ“ѓpЃ[ѓeѓBЃ@“а‚Мѓ~ѓcѓnѓjЃ[ѓ`ѓFѓbѓN
+		// гѓќг‚±гѓўгѓігѓ‘гѓјгѓ†г‚ЈгЂЂе†…гЃ®гѓџгѓ„гѓЏгѓ‹гѓјгѓЃг‚§гѓѓг‚Ї
 		p_pp	= PokeParty_GetMemberPointer( p_party, i );
 		monsno	= PokeParaGet( p_pp, ID_PARA_monsno, NULL );
 		sex		= PokeParaGet( p_pp, ID_PARA_sex, NULL );
 		tamago	= PokeParaGet( p_pp, ID_PARA_tamago_flag, NULL );
 
-		//ѓ~ѓcѓnѓjЃ[‚ЕЃAѓ^ѓ}ѓS‚¶‚б‚И‚©‚Б‚Ѕ‚з
+		//гѓџгѓ„гѓЏгѓ‹гѓјгЃ§гЂЃг‚їгѓћг‚ґгЃг‚ѓгЃЄгЃ‹гЃЈгЃџг‚‰
 		if( (monsno == MONSNO_HEKISAGON) && (tamago == 0) ){
 
 			if( sex == PM_MALE ){
@@ -11742,11 +11742,11 @@ static BOOL EvCmdCheckMituhaniiComp( VM_MACHINE * core )
 	}
 
 	if( (male_flag == 1) && (female_flag == 1) ){
-		*ret_wk = 2;												//—ј•ы
+		*ret_wk = 2;												//дёЎж–№
 	}else if( (male_flag == 0) && (female_flag == 0) ){
-		*ret_wk = 0;												//‚И‚µ
+		*ret_wk = 0;												//гЃЄгЃ—
 	}else{
-		*ret_wk = 1;												//•Р•ы
+		*ret_wk = 1;												//з‰‡ж–№
 	}
 
 	return 1;
@@ -11754,13 +11754,13 @@ static BOOL EvCmdCheckMituhaniiComp( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓbѓ`‚рѓtѓbѓN‚·‚й
+ * гѓќг‚±гѓѓгѓЃг‚’гѓ•гѓѓг‚ЇгЃ™г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * FLAG_CHANGE_LABEL‚МЋћ‚И‚ЗЃAѓtѓBЃ[ѓ‹ѓhѓ}ѓbѓv‚Є‚И‚ўЏу‘Ф‚ЕЋg—p‚µ‚И‚ў‚Ж•s‹пЌ‡‚ЄЏo‚Ь‚·ЃB
+ * FLAG_CHANGE_LABELгЃ®ж™‚гЃЄгЃ©гЂЃгѓ•г‚Јгѓјгѓ«гѓ‰гѓћгѓѓгѓ—гЃЊгЃЄгЃ„зЉ¶ж…‹гЃ§дЅїз”ЁгЃ—гЃЄгЃ„гЃЁдёЌе…·еђ€гЃЊе‡єгЃѕгЃ™гЂ‚
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdPoketchHookSet( VM_MACHINE * core )
@@ -11773,13 +11773,13 @@ static BOOL EvCmdPoketchHookSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓPѓbѓ`‚МѓtѓbѓN‚р‰рЏњ‚·‚й
+ * гѓќг‚±гѓѓгѓЃгЃ®гѓ•гѓѓг‚Їг‚’и§Јй™¤гЃ™г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * FLAG_CHANGE_LABEL‚МЋћ‚И‚ЗЃAѓtѓBЃ[ѓ‹ѓhѓ}ѓbѓv‚Є‚И‚ўЏу‘Ф‚ЕЋg—p‚µ‚И‚ў‚Ж•s‹пЌ‡‚ЄЏo‚Ь‚·ЃB
+ * FLAG_CHANGE_LABELгЃ®ж™‚гЃЄгЃ©гЂЃгѓ•г‚Јгѓјгѓ«гѓ‰гѓћгѓѓгѓ—гЃЊгЃЄгЃ„зЉ¶ж…‹гЃ§дЅїз”ЁгЃ—гЃЄгЃ„гЃЁдёЌе…·еђ€гЃЊе‡єгЃѕгЃ™гЂ‚
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdPoketchHookReset( VM_MACHINE * core )
@@ -11792,7 +11792,7 @@ static BOOL EvCmdPoketchHookReset( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	ѓXѓЌѓbѓgѓ}ѓVЃ[ѓ“
+ *	г‚№гѓ­гѓѓгѓ€гѓћг‚·гѓјгѓі
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdSlotMachine( VM_MACHINE * core )
@@ -11804,7 +11804,7 @@ static BOOL EvCmdSlotMachine( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Њ»ЌЭ‚МЋћЌЏЃiЋћЉФ:0-23)
+ * зЏѕењЁгЃ®ж™‚е€»пј€ж™‚й–“:0-23)
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdGetNowHour( VM_MACHINE * core )
@@ -11817,18 +11817,18 @@ static BOOL EvCmdGetNowHour( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ѓtѓBЃ[ѓ‹ѓhѓIѓuѓWѓF‚р—h‚з‚·ѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓRѓ}ѓ“ѓh
+ *	@brief	гѓ•г‚Јгѓјгѓ«гѓ‰г‚Єгѓ–г‚ёг‚§г‚’жЏєг‚‰гЃ™г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚ігѓћгѓігѓ‰
  *
- *	@param	objid	ѓtѓBЃ[ѓ‹ѓhOBJ‚МID
- *	@param	count	u16:—h‚з‚·‰сђ”
- *	@param	spd		u16:—h‚з‚·ѓXѓsЃ[ѓh
- *	@param	ofsx	u16:—h‚з‚·•ќX
- *	@param	ofsz	u16:—h‚з‚·•ќZ
+ *	@param	objid	гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®ID
+ *	@param	count	u16:жЏєг‚‰гЃ™е›ћж•°
+ *	@param	spd		u16:жЏєг‚‰гЃ™г‚№гѓ”гѓјгѓ‰
+ *	@param	ofsx	u16:жЏєг‚‰гЃ™е№…X
+ *	@param	ofsz	u16:жЏєг‚‰гЃ™е№…Z
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdObjShakeAnm( VM_MACHINE * core )
 {
-	FIELD_OBJ_PTR fldobj;		//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^
+	FIELD_OBJ_PTR fldobj;		//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚ї
 	u16	objid = VMGetWorkValue(core);
 	u16	count = VMGetWorkValue(core);
 	u16	spd = VMGetWorkValue(core);
@@ -11837,7 +11837,7 @@ static BOOL EvCmdObjShakeAnm( VM_MACHINE * core )
 	
 	fldobj	= FieldOBJSys_OBJIDSearch( core->fsys->fldobjsys,objid);
 	if( fldobj == NULL ){
-		GF_ASSERT( (0) && "‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕЋё”sЃI" );
+		GF_ASSERT( (0) && "еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—е¤±ж•—пјЃ" );
 	}
 
 	EventCmd_ObjShakeAnm(core->event_work,fldobj,count,spd,ofsx,ofsz);
@@ -11846,30 +11846,30 @@ static BOOL EvCmdObjShakeAnm( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ѓtѓBЃ[ѓ‹ѓhѓIѓuѓWѓF‚рblink‚і‚№‚йѓAѓjѓЃЃ[ѓVѓ‡ѓ“ѓRѓ}ѓ“ѓh
+ *	@brief	гѓ•г‚Јгѓјгѓ«гѓ‰г‚Єгѓ–г‚ёг‚§г‚’blinkгЃ•гЃ›г‚‹г‚ўгѓ‹гѓЎгѓјг‚·гѓ§гѓіг‚ігѓћгѓігѓ‰
  *
- *	@param	objid	ѓtѓBЃ[ѓ‹ѓhOBJ‚МID
- *	@param	count	u16:on/off‰сђ”
- *	@param	time	u16:on/off‚МѓCѓ“ѓ^Ѓ[ѓoѓ‹
+ *	@param	objid	гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®ID
+ *	@param	count	u16:on/offе›ћж•°
+ *	@param	time	u16:on/offгЃ®г‚¤гѓіг‚їгѓјгѓђгѓ«
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdObjBlinkAnm( VM_MACHINE * core )
 {
-	FIELD_OBJ_PTR fldobj;		//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^
+	FIELD_OBJ_PTR fldobj;		//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚ї
 	u16	objid = VMGetWorkValue(core);
 	u16	count = VMGetWorkValue(core);
 	u16	time = VMGetWorkValue(core);
 	
 	fldobj	= FieldOBJSys_OBJIDSearch( core->fsys->fldobjsys,objid);
 	if( fldobj == NULL ){
-		GF_ASSERT( (0) && "‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕЋё”sЃI" );
+		GF_ASSERT( (0) && "еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—е¤±ж•—пјЃ" );
 	}
 
 	EventCmd_ObjBlinkAnm(core->event_work,fldobj,count,time);
 	return 1;
 }
 /**
- *	@brief	ѓЊѓWѓLѓ“ѓOѓCѓxѓ“ѓgЃ@ЏрЊЏѓ`ѓFѓbѓN
+ *	@brief	гѓ¬г‚ёг‚­гѓіг‚°г‚¤гѓ™гѓігѓ€гЂЂжќЎд»¶гѓЃг‚§гѓѓг‚Ї
  */
 static BOOL EvCmd_D20R0106Legend_IsUnseal( VM_MACHINE * core )
 {
@@ -11881,25 +11881,25 @@ static BOOL EvCmd_D20R0106Legend_IsUnseal( VM_MACHINE * core )
 
 //==============================================================================
 //
-//	‚Ёџ­—Ћ‚ЁЋo‚і‚с
+//	гЃЉжґ’иђЅгЃЉе§‰гЃ•г‚“
 //
 //==============================================================================
-///‚Ёџ­—Ћ‚ЁЋo‚і‚сѓCѓxѓ“ѓgЃFЋж“ѕЏo—€‚йѓAѓNѓZѓTѓЉ‚МЉJЋn”ФЌ†
+///гЃЉжґ’иђЅгЃЉе§‰гЃ•г‚“г‚¤гѓ™гѓігѓ€пјљеЏ–еѕ—е‡єжќҐг‚‹г‚ўг‚Їг‚»г‚µгѓЄгЃ®й–‹е§‹з•ЄеЏ·
 #define DRESSING_ACCE_START_NO		(IMC_ACCE_DROP00)
-///‚Ёџ­—Ћ‚ЁЋo‚і‚сѓCѓxѓ“ѓgЃFЋж“ѕЏo—€‚йѓAѓNѓZѓTѓЉ‚МЌЕЏI”ФЌ†
+///гЃЉжґ’иђЅгЃЉе§‰гЃ•г‚“г‚¤гѓ™гѓігѓ€пјљеЏ–еѕ—е‡єжќҐг‚‹г‚ўг‚Їг‚»г‚µгѓЄгЃ®жњЂзµ‚з•ЄеЏ·
 #define DRESSING_ACCE_END_NO		(IMC_ACCE_KIRAKIRA_POWDER00)
-///‚Ёџ­—Ћ‚ЁЋo‚і‚сѓCѓxѓ“ѓgЃFЋж“ѕЏo—€‚йѓAѓNѓZѓTѓЉ‚МЋн—Юђ”		(END_NO‚М‚аЉЬ‚Я‚й‚М‚ЕЃ{‚P)
+///гЃЉжґ’иђЅгЃЉе§‰гЃ•г‚“г‚¤гѓ™гѓігѓ€пјљеЏ–еѕ—е‡єжќҐг‚‹г‚ўг‚Їг‚»г‚µгѓЄгЃ®зЁ®йЎћж•°		(END_NOгЃ®г‚‚еђ«г‚Ѓг‚‹гЃ®гЃ§пј‹пј‘)
 #define DRESSING_ACCE_NUM			(DRESSING_ACCE_END_NO - DRESSING_ACCE_START_NO + 1)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Ёџ­—Ћ‚ЁЋo‚і‚сЃFѓ‰ѓ“ѓ_ѓЂ‚ЕЋж“ѕЏo—€‚йѓCѓЃЃ[ѓWѓNѓЉѓbѓv‚МѓAѓNѓZѓTѓЉЃ[”ФЌ†Ћж“ѕ
+ * гЃЉжґ’иђЅгЃЉе§‰гЃ•г‚“пјљгѓ©гѓігѓЂгѓ гЃ§еЏ–еѕ—е‡єжќҐг‚‹г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—гЃ®г‚ўг‚Їг‚»г‚µгѓЄгѓјз•ЄеЏ·еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * ret_wk = Ћж“ѕ‚µ‚ЅѓAѓNѓZѓTѓЉЃ[‚М”ФЌ†ЃAЃ@0xffffЃЃЋж“ѕЏo—€‚И‚©‚Б‚Ѕ
+ * ret_wk = еЏ–еѕ—гЃ—гЃџг‚ўг‚Їг‚»г‚µгѓЄгѓјгЃ®з•ЄеЏ·гЂЃгЂЂ0xffffпјќеЏ–еѕ—е‡єжќҐгЃЄгЃ‹гЃЈгЃџ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdDressingImcAcceCheck(VM_MACHINE * core)
@@ -11911,7 +11911,7 @@ static BOOL EvCmdDressingImcAcceCheck(VM_MACHINE * core)
 	u16* ret_wk	= VMGetWork( core );
 	
 	imc	= SaveData_GetImcSaveData( core->fsys->savedata );
-	imc_item = ImcSaveData_GetItemSaveData( imc );	//ѓAѓCѓeѓЂѓZЃ[ѓuѓfЃ[ѓ^Ћж“ѕ
+	imc_item = ImcSaveData_GetItemSaveData( imc );	//г‚ўг‚¤гѓ†гѓ г‚»гѓјгѓ–гѓ‡гѓјг‚їеЏ–еѕ—
 	
 	set_count = 0;
 	for(i = 0; i < DRESSING_ACCE_NUM; i++){
@@ -11920,7 +11920,7 @@ static BOOL EvCmdDressingImcAcceCheck(VM_MACHINE * core)
 			set_count++;
 		}
 	}
-	if(set_count == 0){		//‘S‚Д‚МѓAѓNѓZѓTѓЉЃ[‚ЄЉщ‚ЙЋж“ѕЌП‚Э
+	if(set_count == 0){		//е…ЁгЃ¦гЃ®г‚ўг‚Їг‚»г‚µгѓЄгѓјгЃЊж—ўгЃ«еЏ–еѕ—жё€гЃї
 		*ret_wk = 0xffff;
 		return 0;
 	}
@@ -11946,7 +11946,7 @@ static BOOL EvCmdDressingImcAcceCheck(VM_MACHINE * core)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚і‚і‚Б‚Д‚ў‚йAGBѓJЃ[ѓgѓЉѓbѓWЋж“ѕ
+ *	@brief	гЃ•гЃ•гЃЈгЃ¦гЃ„г‚‹AGBг‚«гѓјгѓ€гѓЄгѓѓг‚ёеЏ–еѕ—
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdAgbCartridgeVerGet( VM_MACHINE * core )
@@ -11958,7 +11958,7 @@ static BOOL EvCmdAgbCartridgeVerGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	’n‰є‚Е‰пb‚µ‚Ѕђlђ”‚М—ЭЊv‚рѓNѓЉѓA(ѓ~ѓJѓQ—pЃj
+ *	ењ°дё‹гЃ§дјљи©±гЃ—гЃџдєєж•°гЃ®зґЇиЁ€г‚’г‚ЇгѓЄг‚ў(гѓџг‚«г‚Із”Ёпј‰
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnderGroundTalkCountClear(VM_MACHINE * core)
@@ -11971,7 +11971,7 @@ static BOOL EvCmdUnderGroundTalkCountClear(VM_MACHINE * core)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰B‚µѓ}ѓbѓvѓtѓ‰ѓOon/off
+ *	@brief	йљ гЃ—гѓћгѓѓгѓ—гѓ•гѓ©г‚°on/off
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdHideMapStateChange( VM_MACHINE * core )
@@ -11991,7 +11991,7 @@ static BOOL EvCmdHideMapStateChange( VM_MACHINE * core )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓCѓЃЃ[ѓWѓNѓЉѓbѓvЃu”wЊi–јЃv‚р•¶Ћљѓoѓbѓtѓ@‚ЙђЭ’и
+ *	@brief	г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—гЂЊиѓЊж™ЇеђЌгЂЌг‚’ж–‡е­—гѓђгѓѓгѓ•г‚ЎгЃ«иЁ­е®љ
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdImcBgNameSet( VM_MACHINE * core )
@@ -12008,10 +12008,10 @@ static BOOL EvCmdImcBgNameSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓXѓЌѓbѓg‚ЕѓЊѓ“ѓ`ѓѓѓ“‚µ‚Д‚ў‚й‚©
- * TRUE=10‰с€ИЏг FALSE=10‚ж‚и‰є
+ * г‚№гѓ­гѓѓгѓ€гЃ§гѓ¬гѓігѓЃгѓЈгѓігЃ—гЃ¦гЃ„г‚‹гЃ‹
+ * TRUE=10е›ћд»ҐдёЉ FALSE=10г‚€г‚Љдё‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -12025,7 +12025,7 @@ static BOOL EvCmdSlotRentyanChk( VM_MACHINE * core )
 
 	rs = SysWork_RensyouCountGet(ev);
 
-	if(rs >= 10){		//‚P‚OѓЊѓ“ѓ`ѓѓѓ“€ИЏгЃH
+	if(rs >= 10){		//пј‘пјђгѓ¬гѓігѓЃгѓЈгѓід»ҐдёЉпјџ
 		*ret_wk = TRUE;
 	}else{
 		*ret_wk = FALSE;
@@ -12036,9 +12036,9 @@ static BOOL EvCmdSlotRentyanChk( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЊѓxѓ‹‚ЕѓAѓCѓeѓЂЋж“ѕѓIѓ„ѓW‚Мђ”ЋљЋж“ѕ
+ * гѓ¬гѓ™гѓ«гЃ§г‚ўг‚¤гѓ†гѓ еЏ–еѕ—г‚Єгѓ¤г‚ёгЃ®ж•°е­—еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -12053,9 +12053,9 @@ static BOOL EvCmdLevelJijiiNo(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓCѓЃЃ[ѓWѓNѓЉѓbѓvЃFѓAѓNѓZѓTѓЉЃ[ЃFѓAѓCѓeѓЂ‚рЊё‚з‚·
+ * г‚¤гѓЎгѓјг‚ёг‚ЇгѓЄгѓѓгѓ—пјљг‚ўг‚Їг‚»г‚µгѓЄгѓјпјљг‚ўг‚¤гѓ†гѓ г‚’жё›г‚‰гЃ™
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -12068,7 +12068,7 @@ static BOOL EvCmdImcAcceSubItem(VM_MACHINE * core)
 	u16 num		= VMGetWorkValue(core);
 
 	imc	= SaveData_GetImcSaveData( core->fsys->savedata );
-	imc_item = ImcSaveData_GetItemSaveData( imc );	//ѓAѓCѓeѓЂѓZЃ[ѓuѓfЃ[ѓ^Ћж“ѕ
+	imc_item = ImcSaveData_GetItemSaveData( imc );	//г‚ўг‚¤гѓ†гѓ г‚»гѓјгѓ–гѓ‡гѓјг‚їеЏ–еѕ—
 
 	ImcSaveData_SubAcceFlag( imc_item, acce_no, num );
 	return 0;
@@ -12077,7 +12077,7 @@ static BOOL EvCmdImcAcceSubItem(VM_MACHINE * core)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓiѓMѓTѓVѓeѓBЃ@ѓVѓ‹ѓx‚М“”‘дЃ@‘oЉб‹ѕѓJѓЃѓ‰ђЭ’и
+ *	@brief	гѓЉг‚®г‚µг‚·гѓ†г‚ЈгЂЂг‚·гѓ«гѓ™гЃ®зЃЇеЏ°гЂЂеЏЊзњјйЏЎг‚«гѓЎгѓ©иЁ­е®љ
  */
 //-----------------------------------------------------------------------------
 static BOOL	EvCmdc08r0801ScopeCameraSet( VM_MACHINE * core )
@@ -12089,7 +12089,7 @@ static BOOL	EvCmdc08r0801ScopeCameraSet( VM_MACHINE * core )
 	VecFx32 matrix;
 	CAMERA_ANGLE angle;
 
-	// ѓJѓЃѓ‰ѓpѓ‰ѓЃЃ[ѓ^ђЭ’и
+	// г‚«гѓЎгѓ©гѓ‘гѓ©гѓЎгѓјг‚їиЁ­е®љ
 	GFC_SetCameraPerspWay( 0x8c1, p_fsys->camera_ptr );	
 	GFC_SetCameraDistance( 0xf81b8, p_fsys->camera_ptr );
 	matrix.x = 0x350523d;
@@ -12108,9 +12108,9 @@ static BOOL	EvCmdc08r0801ScopeCameraSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓЊѓxѓ‹ѓWѓWѓCЏ‰Љъ‰»
+ * гѓ¬гѓ™гѓ«г‚ёг‚ёг‚¤е€ќжњџеЊ–
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -12126,15 +12126,15 @@ static BOOL EvCmdLevelJijiiInit(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * “п‰р‚±‚Ж‚О‚рѓ‰ѓ“ѓ_ѓЂ‚Е‚Р‚Ж‚ВЉo‚¦‚і‚№‚й
+ * й›Ји§ЈгЃ“гЃЁгЃ°г‚’гѓ©гѓігѓЂгѓ гЃ§гЃІгЃЁгЃ¤и¦љгЃ€гЃ•гЃ›г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * ‚а‚¤‘S‚ДЉo‚¦‚Д‚ў‚йЏкЌ‡:0xffff
- * ђV‹K‚Й‚±‚Ж‚О‚рЉo‚¦‚ЅЏкЌ‡ЃF’PЊкIDЃi0 Ѓ` PMSW_NANKAI_WORD_MAX-1Ѓj
- * ђV‹K‚Й‚±‚Ж‚О‚рЉo‚¦‚ЅЏкЌ‡‚Н‚і‚з‚ЙЃAbuf_id‚ЕЋw’и‚µ‚Ѕ‰УЏЉ‚Й•¶Ћљ—с‚рWORDSET‚µ‚Ь‚·ЃB
+ * г‚‚гЃ†е…ЁгЃ¦и¦љгЃ€гЃ¦гЃ„г‚‹е ґеђ€:0xffff
+ * ж–°и¦ЏгЃ«гЃ“гЃЁгЃ°г‚’и¦љгЃ€гЃџе ґеђ€пјљеЌиЄћIDпј€0 гЂњ PMSW_NANKAI_WORD_MAX-1пј‰
+ * ж–°и¦ЏгЃ«гЃ“гЃЁгЃ°г‚’и¦љгЃ€гЃџе ґеђ€гЃЇгЃ•г‚‰гЃ«гЂЃbuf_idгЃ§жЊ‡е®љгЃ—гЃџз®‡ж‰ЂгЃ«ж–‡е­—е€—г‚’WORDSETгЃ—гЃѕгЃ™гЂ‚
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdNewNankaiWordSet(VM_MACHINE * core)
@@ -12156,7 +12156,7 @@ static BOOL EvCmdNewNankaiWordSet(VM_MACHINE * core)
 		*ret_wk = nankai_id;
 	}
 
-	//“п‰рЊѕ—tID‚©‚зWORDSET‚рЌs‚¤
+	//й›Ји§ЈиЁЂи‘‰IDгЃ‹г‚‰WORDSETг‚’иЎЊгЃ†
 	{
 		PMS_WORD pmsword;
 		
@@ -12169,13 +12169,13 @@ static BOOL EvCmdNewNankaiWordSet(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * “п‰р‚±‚Ж‚О‚р‘S‚ДЉo‚¦‚Д‚ў‚й‚©ѓ`ѓFѓbѓN
+ * й›Ји§ЈгЃ“гЃЁгЃ°г‚’е…ЁгЃ¦и¦љгЃ€гЃ¦гЃ„г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * ‚а‚¤‘S‚ДЉo‚¦‚Д‚ў‚йЏкЌ‡:TRUE, Љo‚¦‚Д‚ў‚И‚ў‚М‚Є‚ ‚йЃFFALSE
+ * г‚‚гЃ†е…ЁгЃ¦и¦љгЃ€гЃ¦гЃ„г‚‹е ґеђ€:TRUE, и¦љгЃ€гЃ¦гЃ„гЃЄгЃ„гЃ®гЃЊгЃ‚г‚‹пјљFALSE
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdNankaiWordCompleteCheck(VM_MACHINE * core)
@@ -12196,9 +12196,9 @@ static BOOL EvCmdNankaiWordCompleteCheck(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЏнAѓ`ѓFѓbѓN
+ * еёёйЂЈгѓЃг‚§гѓѓг‚Ї
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -12245,9 +12245,9 @@ static BOOL EvCmdBirthDayCheck(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓAѓ“ѓmЃ[ѓ“Њ`Џу‚МЊ©‚Ѕђ”‚рЋж“ѕ
+ * г‚ўгѓігѓЋгѓјгѓіеЅўзЉ¶гЃ®и¦‹гЃџж•°г‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -12264,15 +12264,15 @@ static BOOL EvCmdAnoonSeeNum( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	–Я‚з‚ё‚М“ґЊAЃ@ѓ}ѓbѓv’Љ‘I
+ * @brief	ж€»г‚‰гЃљгЃ®жґћзЄџгЂЂгѓћгѓѓгѓ—жЉЅйЃё
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdD17SystemMapSelect(VM_MACHINE * core)
 {
 	u8	pos,i;
 	u16	id,x,z;
-	u16	point = VMGetWorkValue(core);	//Њ»ЌЭ‚Мѓ|ѓCѓ“ѓg
-	u16	total = VMGetWorkValue(core);	//‰„‚Ч’К‰Я•”‰®ђ”
+	u16	point = VMGetWorkValue(core);	//зЏѕењЁгЃ®гѓќг‚¤гѓігѓ€
+	u16	total = VMGetWorkValue(core);	//е»¶гЃ№йЂљйЃЋйѓЁе±‹ж•°
 	FIELDSYS_WORK * fsys = core->fsys;
 	
 	static const u16 zone_id[] = {
@@ -12284,27 +12284,27 @@ static BOOL EvCmdD17SystemMapSelect(VM_MACHINE * core)
 	};
 
 	id = 0;
-	//ѓvѓЊѓCѓ„Ѓ[Њ»ЌЭЌА•WЋж“ѕ
+	//гѓ—гѓ¬г‚¤гѓ¤гѓјзЏѕењЁеє§жЁ™еЏ–еѕ—
 	x = fsys->location->grid_x;	//Player_NowGPosXGet( fsys->player );
 	z = fsys->location->grid_z;	//Player_NowGPosZGet( fsys->player );
 
 #ifdef PM_DEBUG
-	//ѓfѓoѓbѓO‹@”\‚Ж‚µ‚ДLA‰џ‚µ‚Б‚П‚И‚µ‚ѕ‚Ж•K‚ё“–‚Ѕ‚и
-	//ѓfѓoѓbѓO‹@”\‚Ж‚µ‚ДLB‰џ‚µ‚Б‚П‚И‚µ‚ѕ‚Ж•K‚ёѓnѓYѓЊ‚Й‚И‚й
-	//ѓSЃ[ѓ‹ЃH
+	//гѓ‡гѓђгѓѓг‚°ж©џиѓЅгЃЁгЃ—гЃ¦LAжЉјгЃ—гЃЈгЃ±гЃЄгЃ—гЃ гЃЁеї…гЃљеЅ“гЃџг‚Љ
+	//гѓ‡гѓђгѓѓг‚°ж©џиѓЅгЃЁгЃ—гЃ¦LBжЉјгЃ—гЃЈгЃ±гЃЄгЃ—гЃ гЃЁеї…гЃљгѓЏг‚єгѓ¬гЃ«гЃЄг‚‹
+	//г‚ґгѓјгѓ«пјџ
 	if(point >= 3){
 		id = ZONE_ID_D17R0104;
-	}else if(total >= 30){	//ѓЉѓ~ѓbѓgЃH
+	}else if(total >= 30){	//гѓЄгѓџгѓѓгѓ€пјџ
 		id = ZONE_ID_D17R0102;
-	}else if(gf_rand()%100 < 25){	//“–‚Ѕ‚иЃH
+	}else if(gf_rand()%100 < 25){	//еЅ“гЃџг‚Љпјџ
 		if((sys.cont & PAD_BUTTON_L) && (sys.cont & PAD_BUTTON_B)){
 			id = gf_rand()%6;
 			id = zone_id[id+(point*6)];
 		}else{
-			id = ZONE_ID_D17R0103;	//“–‚Ѕ‚и
+			id = ZONE_ID_D17R0103;	//еЅ“гЃџг‚Љ
 		}
 	}else{
-		//ЉO‚к‚Ѕ‚М‚Е‚З‚М•”‰®‚ЦЌs‚­‚©’Љ‘I
+		//е¤–г‚ЊгЃџгЃ®гЃ§гЃ©гЃ®йѓЁе±‹гЃёиЎЊгЃЏгЃ‹жЉЅйЃё
 		if((sys.cont & PAD_BUTTON_L) && (sys.cont & PAD_BUTTON_A)){
 			id = ZONE_ID_D17R0103;
 		}else{
@@ -12313,15 +12313,15 @@ static BOOL EvCmdD17SystemMapSelect(VM_MACHINE * core)
 		}
 	}
 #else
-	//ѓSЃ[ѓ‹ЃH
+	//г‚ґгѓјгѓ«пјџ
 	if(point >= 3){
 		id = ZONE_ID_D17R0104;
-	}else if(total >= 30){	//ѓЉѓ~ѓbѓgЃH
+	}else if(total >= 30){	//гѓЄгѓџгѓѓгѓ€пјџ
 		id = ZONE_ID_D17R0102;
-	}else if(gf_rand()%100 < 25){	//“–‚Ѕ‚иЃH
-		id = ZONE_ID_D17R0103;	//“–‚Ѕ‚и
+	}else if(gf_rand()%100 < 25){	//еЅ“гЃџг‚Љпјџ
+		id = ZONE_ID_D17R0103;	//еЅ“гЃџг‚Љ
 	}else{
-		//ЉO‚к‚Ѕ‚М‚Е‚З‚М•”‰®‚ЦЌs‚­‚©’Љ‘I
+		//е¤–г‚ЊгЃџгЃ®гЃ§гЃ©гЃ®йѓЁе±‹гЃёиЎЊгЃЏгЃ‹жЉЅйЃё
 		static const u16 zone_id[] = {
 		 ZONE_ID_D17R0105,ZONE_ID_D17R0106,ZONE_ID_D17R0107,ZONE_ID_D17R0108,
 		 ZONE_ID_D17R0109,ZONE_ID_D17R0110,ZONE_ID_D17R0111,ZONE_ID_D17R0112,
@@ -12335,7 +12335,7 @@ static BOOL EvCmdD17SystemMapSelect(VM_MACHINE * core)
 	}
 #endif
 
-	if(x == 11){	//Џг‰є
+	if(x == 11){	//дёЉдё‹
 		if(z == 1){
 			pos = 0;
 		}else if(z == 20){
@@ -12362,7 +12362,7 @@ static BOOL EvCmdD17SystemMapSelect(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	’n‰є‚Е“№‹п‚р‚ ‚°‚Ѕђlђ”‚М—ЭЊv
+ *	ењ°дё‹гЃ§йЃ“е…·г‚’гЃ‚гЃ’гЃџдєєж•°гЃ®зґЇиЁ€
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnderGroundToolGiveCount(VM_MACHINE * core)
@@ -12376,7 +12376,7 @@ static BOOL EvCmdUnderGroundToolGiveCount(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	’n‰є‚Е‚©‚№‚«‚рЊ@‚Б‚Ѕ‰сђ”‚М—ЭЊv
+ *	ењ°дё‹гЃ§гЃ‹гЃ›гЃЌг‚’жЋгЃЈгЃџе›ћж•°гЃ®зґЇиЁ€
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnderGroundKasekiDigCount(VM_MACHINE * core)
@@ -12390,7 +12390,7 @@ static BOOL EvCmdUnderGroundKasekiDigCount(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	’n‰є‚Еѓgѓ‰ѓbѓv‚Й‚©‚Ї‚Ѕ‰сђ”‚М—ЭЊv
+ *	ењ°дё‹гЃ§гѓ€гѓ©гѓѓгѓ—гЃ«гЃ‹гЃ‘гЃџе›ћж•°гЃ®зґЇиЁ€
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnderGroundTrapHitCount(VM_MACHINE * core)
@@ -12404,13 +12404,13 @@ static BOOL EvCmdUnderGroundTrapHitCount(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓtѓBѓ“’З‰Б
+ * гѓќгѓ•г‚ЈгѓіиїЅеЉ 
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * ret_wk = –ЎID(’З‰БЏo—€‚И‚©‚Б‚ЅЏкЌ‡‚Н0xffff)
+ * ret_wk = е‘іID(иїЅеЉ е‡єжќҐгЃЄгЃ‹гЃЈгЃџе ґеђ€гЃЇ0xffff)
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdPofinAdd( VM_MACHINE * core )
@@ -12430,11 +12430,11 @@ static BOOL EvCmdPofinAdd( VM_MACHINE * core )
 	}
 	taste = VMGetWorkValue( core );
 	
-	//ѓ|ѓtѓBѓ“ѓfЃ[ѓ^Ќмђ¬
+	//гѓќгѓ•г‚Јгѓігѓ‡гѓјг‚їдЅњж€ђ
 	porutodata = PorutoData_AllocWork(HEAPID_FIELD);
 	flaver_id = PorutoData_CalcParam(porutodata, prm, taste, FALSE);
 	
-	//ѓ|ѓtѓBѓ“ѓfЃ[ѓ^’З‰Б
+	//гѓќгѓ•г‚Јгѓігѓ‡гѓјг‚їиїЅеЉ 
 	poruto_block = SaveData_GetPorutoBlock(core->fsys->savedata);
 	add_index = PORUTO_AddData(poruto_block, porutodata);
 	
@@ -12452,13 +12452,13 @@ static BOOL EvCmdPofinAdd( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓtѓBѓ“‚р’З‰БЏo—€‚й‚©Љm”F
+ * гѓќгѓ•г‚Јгѓіг‚’иїЅеЉ е‡єжќҐг‚‹гЃ‹зўєиЄЌ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * ret_wk = TRUEЃF’З‰Б‚Е‚«‚йЃAЃ@FALSE:’З‰БЏo—€‚И‚ў
+ * ret_wk = TRUEпјљиїЅеЉ гЃ§гЃЌг‚‹гЂЃгЂЂFALSE:иїЅеЉ е‡єжќҐгЃЄгЃ„
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdPofinAddCheck( VM_MACHINE * core )
@@ -12481,13 +12481,13 @@ static BOOL EvCmdPofinAddCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ|ѓtѓBѓ“ѓPЃ[ѓX‚М‹у‚«ђ”‚рЋж“ѕ
+ * гѓќгѓ•г‚Јгѓіг‚±гѓјг‚№гЃ®з©єгЃЌж•°г‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  *
- * ret_wk = "‹у‚«ђ”"
+ * ret_wk = "з©єгЃЌж•°"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdPofinAkiCountGet( VM_MACHINE * core )
@@ -12499,13 +12499,13 @@ static BOOL EvCmdPofinAkiCountGet( VM_MACHINE * core )
 	
 	poruto_block = SaveData_GetPorutoBlock(core->fsys->savedata);
 	*ret_wk = PORUTO_GetNullDataCount( poruto_block );
-	OS_Printf( "ѓPЃ[ѓX‚М‹у‚« *ret_wk = %d\n", *ret_wk );
+	OS_Printf( "г‚±гѓјг‚№гЃ®з©єгЃЌ *ret_wk = %d\n", *ret_wk );
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	”z•zѓCѓxѓ“ѓgѓ}ѓWѓbѓNѓiѓ“ѓoЃ[ѓ`ѓFѓbѓN
+ *	@brief	й…Ќеёѓг‚¤гѓ™гѓігѓ€гѓћг‚ёгѓѓг‚ЇгѓЉгѓігѓђгѓјгѓЃг‚§гѓѓг‚Ї
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdIsHaihuEventEnable(VM_MACHINE *core)
@@ -12523,9 +12523,9 @@ static BOOL EvCmdIsHaihuEventEnable(VM_MACHINE *core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * “a“°“ь‚и‰сђ”‚рЋж“ѕ
+ * ж®їе ‚е…Ґг‚Ље›ћж•°г‚’еЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -12538,20 +12538,20 @@ static BOOL EvCmdDendouNumGet( VM_MACHINE * core )
 
 	data = SaveData_Extra_LoadDendouData( core->fsys->savedata, HEAPID_EVENT, &result);
 
-	if( result == LOAD_RESULT_NULL ){								///<ѓfЃ[ѓ^‚И‚µ
-		OS_Printf( "‚Е‚с‚З‚¤ѓfЃ[ѓ^ LOAD_RESULT_NULL\n" );
+	if( result == LOAD_RESULT_NULL ){								///<гѓ‡гѓјг‚їгЃЄгЃ—
+		OS_Printf( "гЃ§г‚“гЃ©гЃ†гѓ‡гѓјг‚ї LOAD_RESULT_NULL\n" );
 		*ret_wk = 0;
 		sys_FreeMemoryEz( (void*)data );
 		return 1;
 
-	}else if( result == LOAD_RESULT_OK ){							///<ѓfЃ[ѓ^ђіЏн“З‚ЭЌћ‚Э
-		OS_Printf( "‚Е‚с‚З‚¤ѓfЃ[ѓ^ LOAD_RESULT_OK\n" );
+	}else if( result == LOAD_RESULT_OK ){							///<гѓ‡гѓјг‚їж­ЈеёёиЄ­гЃїиѕјгЃї
+		OS_Printf( "гЃ§г‚“гЃ©гЃ†гѓ‡гѓјг‚ї LOAD_RESULT_OK\n" );
 		*ret_wk = DendouData_GetRecordNumber( data, 0 );
 		sys_FreeMemoryEz( (void*)data );
 		return 1;
 
-	}else if( result == LOAD_RESULT_NG ){							///<ѓfЃ[ѓ^€ЩЏн
-		OS_Printf( "‚Е‚с‚З‚¤ѓfЃ[ѓ^ LOAD_RESULT_NG\n" );
+	}else if( result == LOAD_RESULT_NG ){							///<гѓ‡гѓјг‚їз•°еёё
+		OS_Printf( "гЃ§г‚“гЃ©гЃ†гѓ‡гѓјг‚ї LOAD_RESULT_NG\n" );
 		*ret_wk = 0;
 		sys_FreeMemoryEz( (void*)data );
 		return 1;
@@ -12563,13 +12563,13 @@ static BOOL EvCmdDendouNumGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚»‚ѕ‚Д‚вѓ|ѓPѓ‚ѓ“‘I‘р‰ж–КЊД‚СЏo‚µ
+ * @brief	гЃќгЃ гЃ¦г‚„гѓќг‚±гѓўгѓійЃёжЉћз”»йќўе‘јгЃіе‡єгЃ—
  *
- * @param	core	‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core	д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  *
- * @li EvCmdPokeListGetResult‚ЕЃA‘I‘р‚µ‚Ѕ€К’u‚рЋж“ѕ‚µ‚ДЃAѓЏЃ[ѓNЉJ•ъ‚Є•K—v
+ * @li EvCmdPokeListGetResultгЃ§гЂЃйЃёжЉћгЃ—гЃџдЅЌзЅ®г‚’еЏ–еѕ—гЃ—гЃ¦гЂЃгѓЇгѓјг‚Їй–‹ж”ѕгЃЊеї…и¦Ѓ
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdSodateyaPokeListSetProc(VM_MACHINE * core)
@@ -12586,9 +12586,9 @@ static BOOL EvCmdSodateyaPokeListSetProc(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚»‚ѕ‚Д‚вѓ|ѓPѓ‚ѓ“‘I‘р‰ж–КЊД‚СЏo‚µ
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
- * @return	1		ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @brief	гЃќгЃ гЃ¦г‚„гѓќг‚±гѓўгѓійЃёжЉћз”»йќўе‘јгЃіе‡єгЃ—
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
+ * @return	1		г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdSodateyaPokeListGetResult(VM_MACHINE * core)
@@ -12609,10 +12609,10 @@ static BOOL EvCmdSodateyaPokeListGetResult(VM_MACHINE * core)
 
 	*ret_mode = FieldPokeListEvent_GetMode(*buf);
 	if (*ret_mode == PL_RET_STATUS) {
-		*ret_mode = 1;	//‚В‚ж‚і‚р‚Э‚й
+		*ret_mode = 1;	//гЃ¤г‚€гЃ•г‚’гЃїг‚‹
 	}
 	else{
-		*ret_mode = 0;	//’КЏн
+		*ret_mode = 0;	//йЂљеёё
 	}
 
 	sys_FreeMemoryEz(*buf);
@@ -12625,7 +12625,7 @@ static BOOL EvCmdSodateyaPokeListGetResult(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	Ћw’и‚µ‚ЅЉm—§‚ЕѓЏЃ[ѓN‚ЙTRUE,FALSE‚р•Ф‚·
+ *	жЊ‡е®љгЃ—гЃџзўєз«‹гЃ§гѓЇгѓјг‚ЇгЃ«TRUE,FALSEг‚’иї”гЃ™
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdGetRandomHit( VM_MACHINE * core )
@@ -12648,13 +12648,13 @@ static BOOL EvCmdGetRandomHit( VM_MACHINE * core )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓqѓfѓ“ѓGѓtѓFѓNѓgЃ@ѓGѓtѓFѓNѓgЉJЋn
+ *	@brief	гѓ’гѓ‡гѓіг‚Ёгѓ•г‚§г‚Їгѓ€гЂЂг‚Ёгѓ•г‚§г‚Їгѓ€й–‹е§‹
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdHidenEffStart(VM_MACHINE * core)
 {
 	u16	effect_type = VMGetWorkValue(core);
-	u16	*ret_wk  = VMGetWork(core);	// ЏI—№Њџ’mѓЏЃ[ѓN
+	u16	*ret_wk  = VMGetWork(core);	// зµ‚дє†ж¤њзџҐгѓЇгѓјг‚Ї
 	FIELDSYS_WORK * fsys = core->fsys;
 
 	switch( effect_type ){
@@ -12677,7 +12677,7 @@ static BOOL EvCmdHidenEffStart(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- *	’n‰є‚Е‰пb‚µ‚Ѕђlђ”‚М—ЭЊv
+ *	ењ°дё‹гЃ§дјљи©±гЃ—гЃџдєєж•°гЃ®зґЇиЁ€
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUnderGroundTalkCount2(VM_MACHINE * core)
@@ -12691,7 +12691,7 @@ static BOOL EvCmdUnderGroundTalkCount2(VM_MACHINE * core)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’nђk”­ђ¶
+ *	@brief	ењ°йњ‡з™єз”џ
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdZishin( VM_MACHINE * core )
@@ -12713,9 +12713,9 @@ static BOOL EvCmdZishin( VM_MACHINE * core )
 /**
  * @brief	
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	0			ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @return	0			г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdCheckMyGSID(VM_MACHINE * core)
@@ -12730,9 +12730,9 @@ static BOOL EvCmdCheckMyGSID(VM_MACHINE * core)
 /**
  * @brief	
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @return	0			ѓXѓNѓЉѓvѓg‚©‚зѓЃѓCѓ“ђ§Њд‚Й–Я‚й
+ * @return	0			г‚№г‚ЇгѓЄгѓ—гѓ€гЃ‹г‚‰гѓЎг‚¤гѓіе€¶еѕЎгЃ«ж€»г‚‹
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdGetFriendDataNum(VM_MACHINE * core)
@@ -12745,7 +12745,7 @@ static BOOL EvCmdGetFriendDataNum(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚±‚с‚І‚¤‚ѕ‚ЬЃE‚µ‚з‚Ѕ‚Ь‚Мѓ`ѓFѓbѓN
+ * @brief	гЃ“г‚“гЃ”гЃ†гЃ гЃѕгѓ»гЃ—г‚‰гЃџгЃѕгЃ®гѓЃг‚§гѓѓг‚Ї
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdUgBallCheck(VM_MACHINE * core)
@@ -12761,7 +12761,7 @@ static BOOL EvCmdUgBallCheck(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓAѓEѓX‚МѓvѓЊЃ[ѓg‚Мѓ`ѓFѓbѓN
+ * @brief	г‚ўг‚¦г‚№гЃ®гѓ—гѓ¬гѓјгѓ€гЃ®гѓЃг‚§гѓѓг‚Ї
  */
 //--------------------------------------------------------------------------------------------
 static BOOL EvCmdAusuItemCheck(VM_MACHINE * core)
@@ -12771,7 +12771,7 @@ static BOOL EvCmdAusuItemCheck(VM_MACHINE * core)
 
 	*ret_wk = 0;
 
-	//Ѓu‚Р‚М‚Ѕ‚ЬѓvѓЊЃ[ѓgЃvЃ`Ѓu‚±‚¤‚Д‚ВѓvѓЊЃ[ѓgЃv
+	//гЂЊгЃІгЃ®гЃџгЃѕгѓ—гѓ¬гѓјгѓ€гЂЌгЂњгЂЊгЃ“гЃ†гЃ¦гЃ¤гѓ—гѓ¬гѓјгѓ€гЂЌ
 	if( (itemno >= ITEM_HINOTAMAPUREETO) && (itemno <= ITEM_KOUTETUPUREETO) ){
 		*ret_wk = 1;
 	}
@@ -12785,8 +12785,8 @@ static BOOL EvCmdAusuItemCheck(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	‚ ‚ў‚±‚Ж‚О‚ЄЃh‚Ё‚­‚и‚а‚Мѓtѓ‰ѓOЃh‚ЙЉY“–‚·‚й‚©ѓ`ѓFѓbѓN
- *	OUT *ret_wk  : 1:—LЊш 0:–іЊш
+ *	гЃ‚гЃ„гЃ“гЃЁгЃ°гЃЊвЂќгЃЉгЃЏг‚Љг‚‚гЃ®гѓ•гѓ©г‚°вЂќгЃ«и©ІеЅ“гЃ™г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
+ *	OUT *ret_wk  : 1:жњ‰еЉ№ 0:з„ЎеЉ№
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdAikotobaOkurimonoChk(VM_MACHINE * core)
@@ -12827,7 +12827,7 @@ static BOOL EvCmdAikotobaOkurimonoChk(VM_MACHINE * core)
 
 //-----------------------------------------------------------------------------
 /**
- *	WIFI‚У‚µ‚¬‚И‚Ё‚­‚и‚а‚МѓIЃ[ѓvѓ“ѓtѓ‰ѓOѓZѓbѓg
+ *	WIFIгЃµгЃ—гЃЋгЃЄгЃЉгЃЏг‚Љг‚‚гЃ®г‚Єгѓјгѓ—гѓігѓ•гѓ©г‚°г‚»гѓѓгѓ€
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdWifiHusiginaokurimonoOpenFlagSet(VM_MACHINE * core)
@@ -12842,9 +12842,9 @@ static BOOL EvCmdWifiHusiginaokurimonoOpenFlagSet(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓ†ѓjѓIѓ“ѓ‹Ѓ[ѓЂ
+ * гѓ¦гѓ‹г‚Єгѓігѓ«гѓјгѓ 
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -12862,9 +12862,9 @@ static BOOL EvCmdUnionGetCardTalkNo( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * 	WirelessIconEasyЊД‚СЏo‚µ
+ * 	WirelessIconEasyе‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -12877,9 +12877,9 @@ static BOOL EvCmdWirelessIconEasy( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * 	WirelessIconEasyEndЊД‚СЏo‚µ
+ * 	WirelessIconEasyEndе‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -12892,9 +12892,9 @@ static BOOL EvCmdWirelessIconEasyEnd( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ЋеђlЊц‚М€К’u‚рђі‚µ‚­‹L^‚·‚й‚Ѕ‚Я‚ЙѓtѓBЃ[ѓ‹ѓhЏо•с‚рSAVEDATA‚Й”Ѕ‰f‚і‚№‚й
+ * дё»дєєе…¬гЃ®дЅЌзЅ®г‚’ж­ЈгЃ—гЃЏиЁйЊІгЃ™г‚‹гЃџг‚ЃгЃ«гѓ•г‚Јгѓјгѓ«гѓ‰жѓ…е ±г‚’SAVEDATAгЃ«еЏЌж гЃ•гЃ›г‚‹
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -12907,7 +12907,7 @@ static BOOL EvCmdSaveFieldObj( VM_MACHINE * core )
 
 //-----------------------------------------------------------------------------
 /**
- *	@brief	ѓGѓXѓPЃ[ѓvѓЌѓPЃ[ѓVѓ‡ѓ“‚р’јђЪЏ‘‚«Љ·‚¦‚й
+ *	@brief	г‚Ёг‚№г‚±гѓјгѓ—гѓ­г‚±гѓјг‚·гѓ§гѓіг‚’з›ґжЋҐж›ёгЃЌжЏ›гЃ€г‚‹
  */
 //-----------------------------------------------------------------------------
 static BOOL EvCmdSetEscapeLocation(VM_MACHINE* core)
@@ -12928,9 +12928,9 @@ static BOOL EvCmdSetEscapeLocation(VM_MACHINE* core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJ“ЇЋm‚М“–‚Ѕ‚и”»’иѓtѓ‰ѓO‚рђЭ’и
+ * OBJеђЊеЈ«гЃ®еЅ“гЃџг‚Ље€¤е®љгѓ•гѓ©г‚°г‚’иЁ­е®љ
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -12941,11 +12941,11 @@ static BOOL EvCmdFieldObjBitSetFellowHit( VM_MACHINE * core )
 	u16	obj_id	= VMGetWorkValue(core);
 	u16	flag	= VMGetU8(core);
 	
-	//‘ОЏЫ‚МѓtѓBЃ[ѓ‹ѓhOBJ‚Мѓ|ѓCѓ“ѓ^Ћж“ѕ
+	//еЇѕи±ЎгЃ®гѓ•г‚Јгѓјгѓ«гѓ‰OBJгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—
 	fldobj = FieldOBJSys_OBJIDSearch( core->fsys->fldobjsys, obj_id );
 
 	if( fldobj == NULL ){
-		GF_ASSERT( (0) && "Ћw’и‚µ‚ЅID‚ЙЉY“–‚·‚йѓfЃ[ѓ^‚Є‚ ‚и‚Ь‚№‚с‚Е‚µ‚ЅЃI" );
+		GF_ASSERT( (0) && "жЊ‡е®љгЃ—гЃџIDгЃ«и©ІеЅ“гЃ™г‚‹гѓ‡гѓјг‚їгЃЊгЃ‚г‚ЉгЃѕгЃ›г‚“гЃ§гЃ—гЃџпјЃ" );
 	}
 
 	FieldOBJ_StatusBitSet_FellowHit( fldobj, flag );
@@ -12954,9 +12954,9 @@ static BOOL EvCmdFieldObjBitSetFellowHit( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓgѓЊЃ[ѓiЃ[ѓJЃ[ѓhѓ‰ѓ“ѓNЋж“ѕ
+ * гѓ€гѓ¬гѓјгѓЉгѓјг‚«гѓјгѓ‰гѓ©гѓіг‚ЇеЏ–еѕ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"0"
  */
@@ -13001,7 +13001,7 @@ static BOOL EvCmdReportInfoWinClose( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		ѓXѓNѓЉѓvѓgѓRѓ}ѓ“ѓhЃF–]‰“‹ѕѓ‚Ѓ[ѓhѓZѓbѓg
+ * @brief		г‚№г‚ЇгѓЄгѓ—гѓ€г‚ігѓћгѓігѓ‰пјљжњ›йЃ йЏЎгѓўгѓјгѓ‰г‚»гѓѓгѓ€
  * @param		core
  */
 //--------------------------------------------------------------------------------------------
@@ -13013,7 +13013,7 @@ static BOOL EvCmdFieldScopeModeSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		ѓXѓNѓЉѓvѓgѓRѓ}ѓ“ѓhЃFѓtѓЌѓ“ѓeѓBѓAѓVѓXѓeѓЂѓRЃ[ѓ‹
+ * @brief		г‚№г‚ЇгѓЄгѓ—гѓ€г‚ігѓћгѓігѓ‰пјљгѓ•гѓ­гѓігѓ†г‚Јг‚ўг‚·г‚№гѓ†гѓ г‚ігѓјгѓ«
  * @param		core
  */
 //--------------------------------------------------------------------------------------------
@@ -13031,15 +13031,15 @@ static BOOL EvCmdFrontierSystemCall( VM_MACHINE * core )
 	
 	*buf = ex_param;
 
-	//PROCѓRЃ[ѓ‹
-	//ex_paramЌмђ¬
+	//PROCг‚ігѓјгѓ«
+	//ex_paramдЅњж€ђ
 	
-	//ѓoѓgѓ‹ѓ^ѓЏЃ[
-	if( (scene == FSS_SCENEID_TOWER_SINGLE_WAY) ||			//ѓVѓ“ѓOѓ‹’КH
-		(scene == FSS_SCENEID_TOWER_MULTI_WAY) ){			//ѓ}ѓ‹ѓ`’КH
+	//гѓђгѓ€гѓ«г‚їгѓЇгѓј
+	if( (scene == FSS_SCENEID_TOWER_SINGLE_WAY) ||			//г‚·гѓіг‚°гѓ«йЂљи·Ї
+		(scene == FSS_SCENEID_TOWER_MULTI_WAY) ){			//гѓћгѓ«гѓЃйЂљи·Ї
 		ex_param->syswork	= core->fsys->btower_wk;
 
-	//ѓtѓ@ѓNѓgѓЉЃ[ЃA‚»‚к€ИЉO
+	//гѓ•г‚Ўг‚Їгѓ€гѓЄгѓјгЂЃгЃќг‚Њд»Ґе¤–
 	}else{
 		ex_param->syswork	= NULL;
 	}
@@ -13060,7 +13060,7 @@ static BOOL EvCmdFrontierSystemCall( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		ѓXѓNѓЉѓvѓgѓRѓ}ѓ“ѓhЃFPL‘ђѓWѓЂЋћЊvђiЌsѓCѓxѓ“ѓg
+ * @brief		г‚№г‚ЇгѓЄгѓ—гѓ€г‚ігѓћгѓігѓ‰пјљPLиЌ‰г‚ёгѓ ж™‚иЁ€йЂІиЎЊг‚¤гѓ™гѓігѓ€
  * @param		core
  * @return		"1"
  */
@@ -13074,7 +13074,7 @@ static BOOL EvCmdPLGrassGymTimeGain( VM_MACHINE * core )
 	return 1;
 }
 
-// ‹в‰Н’c‚ЙFOG‚рђЭ’и‚·‚йѓ^ѓXѓN
+// йЉЂжІіе›ЈгЃ«FOGг‚’иЁ­е®љгЃ™г‚‹г‚їг‚№г‚Ї
 static void GingaFogSetTcb( TCB_PTR tcb, void* p_work )
 {
 	FIELDSYS_WORK *fsys = p_work;
@@ -13087,7 +13087,7 @@ static void GingaFogSetTcb( TCB_PTR tcb, void* p_work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		ѓXѓNѓЉѓvѓgѓRѓ}ѓ“ѓhЃF‹в‰Н’c‚МFOG‚рђЭ’и‚·‚й
+ * @brief		г‚№г‚ЇгѓЄгѓ—гѓ€г‚ігѓћгѓігѓ‰пјљйЉЂжІіе›ЈгЃ®FOGг‚’иЁ­е®љгЃ™г‚‹
  * @param		core
  * @return		"1"
  */
@@ -13101,7 +13101,7 @@ static BOOL EvCmdGingaFogSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		ѓXѓNѓЉѓvѓgѓRѓ}ѓ“ѓhЃF‹в‰Н’c‚МFOG‚рЏБ‚·
+ * @brief		г‚№г‚ЇгѓЄгѓ—гѓ€г‚ігѓћгѓігѓ‰пјљйЉЂжІіе›ЈгЃ®FOGг‚’ж¶€гЃ™
  * @param		core
  * @return		"1"
  */
@@ -13116,7 +13116,7 @@ static BOOL EvCmdGingaFogReset( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		ѓXѓNѓЉѓvѓgѓRѓ}ѓ“ѓhЃFѓoѓgѓ‹ѓ|ѓCѓ“ѓgѓVѓ‡ѓbѓv
+ * @brief		г‚№г‚ЇгѓЄгѓ—гѓ€г‚ігѓћгѓігѓ‰пјљгѓђгѓ€гѓ«гѓќг‚¤гѓігѓ€г‚·гѓ§гѓѓгѓ—
  * @param		core
  * @return		"1"
  */
@@ -13187,7 +13187,7 @@ static BOOL EvCmdBtlPointShop( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		ѓXѓNѓЉѓvѓgѓRѓ}ѓ“ѓhЃFѓtѓЌѓ“ѓeѓBѓAѓ‚ѓjѓ^Ѓ[
+ * @brief		г‚№г‚ЇгѓЄгѓ—гѓ€г‚ігѓћгѓігѓ‰пјљгѓ•гѓ­гѓігѓ†г‚Јг‚ўгѓўгѓ‹г‚їгѓј
  * @param		core
  * @return		"1"
  */
@@ -13208,7 +13208,7 @@ BOOL EvCmdFrontierMonitor( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		ѓXѓNѓЉѓvѓgѓRѓ}ѓ“ѓhЃFѓXѓNѓ‰ѓbѓ`
+ * @brief		г‚№г‚ЇгѓЄгѓ—гѓ€г‚ігѓћгѓігѓ‰пјљг‚№г‚Їгѓ©гѓѓгѓЃ
  * @param		core
  * @return		"1"
  */
@@ -13227,8 +13227,8 @@ BOOL EvCmdScratch( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓXѓNѓ‰ѓbѓ`ѓЏЃ[ѓN‚рЌнЏњ
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @brief	г‚№г‚Їгѓ©гѓѓгѓЃгѓЇгѓјг‚Їг‚’е‰Љй™¤
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  * @return	"1"
  */
 //--------------------------------------------------------------------------------------------
@@ -13246,8 +13246,8 @@ BOOL EvCmdScratchFree(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ѓXѓNѓ‰ѓbѓ`ѓЏЃ[ѓN‚©‚з“n‚і‚к‚Ѕ‰с‚М–Ш‚МЋА‚Жђ”‚рЋж“ѕ
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @brief	г‚№г‚Їгѓ©гѓѓгѓЃгѓЇгѓјг‚ЇгЃ‹г‚‰жёЎгЃ•г‚ЊгЃџе›ћгЃ®жњЁгЃ®е®џгЃЁж•°г‚’еЏ–еѕ—
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  * @return	"1"
  */
 //--------------------------------------------------------------------------------------------
@@ -13273,7 +13273,7 @@ BOOL EvCmdScratchItemGet(VM_MACHINE * core)
 
 //============================================================================================
 //
-//	ЌДђн“¬Ћ{ђЭ
+//	е†Ќж€¦й—ж–ЅиЁ­
 //
 //============================================================================================
 static const u16 t06r0101_leader_char_tbl[] = {
@@ -13299,7 +13299,7 @@ static const u16 t06r0101_seven_char_tbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ѓLѓѓѓ‰ѓRЃ[ѓhЋж“ѕ
+ * @brief	г‚­гѓЈгѓ©г‚ігѓјгѓ‰еЏ–еѕ—
  *
  * @param	none
  *
@@ -13314,29 +13314,29 @@ BOOL EvCmdGetCharCodeT06R0101( VM_MACHINE * core )
 	u16* set_wk3 = VMGetWork( core );
 	u16* set_wk4 = VMGetWork( core );
 
-	//ѓNѓЉѓA
+	//г‚ЇгѓЄг‚ў
 	*set_wk1 = 0xfff;
 	*set_wk2 = 0xfff;
 	*set_wk3 = 0xfff;
 	*set_wk4 = 0xfff;
 
 	r1 = ( gf_rand() % T06R0101_LEADER_MAX );
-	*set_wk1 = t06r0101_leader_char_tbl[r1];		/*1ђl–Ъ‚Н•K‚ё‚ў‚й*/
+	*set_wk1 = t06r0101_leader_char_tbl[r1];		/*1дєєз›®гЃЇеї…гЃљгЃ„г‚‹*/
 
 	r2 = GetLeaderCharT06R0101( r1, 0xfff, 0xfff, 0xfff );
 	if( r2 != T06R0101_LEADER_MAX ){
-		*set_wk2 = t06r0101_leader_char_tbl[r2];	/*2ђl–Ъ*/
+		*set_wk2 = t06r0101_leader_char_tbl[r2];	/*2дєєз›®*/
 	}
 
 	r3 = GetLeaderCharT06R0101( r1, r2, 0xfff, 0xfff );
 	if( r3 != T06R0101_LEADER_MAX ){
-		*set_wk3 = t06r0101_leader_char_tbl[r3];	/*3ђl–Ъ*/
+		*set_wk3 = t06r0101_leader_char_tbl[r3];	/*3дєєз›®*/
 	}
 
-	//5ђlЏO‚НѓЏЃ[ѓN‚Й’l‚НѓZѓbѓg‚·‚й‚ЄЃAѓXѓNѓЉѓvѓg‚ЕѓCѓxѓ“ѓgѓ`ѓFѓbѓN‚µ‚Д•\Ћ¦‚і‚к‚И‚ў‚±‚Ж‚Є‚ ‚й*/
+	//5дєєиЎ†гЃЇгѓЇгѓјг‚ЇгЃ«еЂ¤гЃЇг‚»гѓѓгѓ€гЃ™г‚‹гЃЊгЂЃг‚№г‚ЇгѓЄгѓ—гѓ€гЃ§г‚¤гѓ™гѓігѓ€гѓЃг‚§гѓѓг‚ЇгЃ—гЃ¦иЎЁз¤єгЃ•г‚ЊгЃЄгЃ„гЃ“гЃЁгЃЊгЃ‚г‚‹*/
 	r4 = GetSevenCharT06R0101( 0xfff, 0xfff, 0xfff, 0xfff );
 	if( r4 != T06R0101_SEVEN_MAX ){
-		*set_wk4 = t06r0101_seven_char_tbl[r4];		/*4ђl–Ъ*/
+		*set_wk4 = t06r0101_seven_char_tbl[r4];		/*4дєєз›®*/
 	}
 
 	OS_Printf( "*set_wk1 = %d\n", *set_wk1 );
@@ -13354,7 +13354,7 @@ static u8 GetLeaderCharT06R0101( u16 c1, u16 c2, u16 c3, u16 c4 )
 	count = 0;
 
 	while( 1 ){
-		r = ( gf_rand() % (T06R0101_LEADER_MAX+1) );	//8‚ѕ‚Б‚Ѕ‚зЃA‚ў‚И‚ў‚±‚Ж‚Й‚·‚й
+		r = ( gf_rand() % (T06R0101_LEADER_MAX+1) );	//8гЃ гЃЈгЃџг‚‰гЂЃгЃ„гЃЄгЃ„гЃ“гЃЁгЃ«гЃ™г‚‹
 		if( r == T06R0101_LEADER_MAX ){
 			break;
 		}
@@ -13365,7 +13365,7 @@ static u8 GetLeaderCharT06R0101( u16 c1, u16 c2, u16 c3, u16 c4 )
 			break;
 		}
 
-		//”н‚Б‚Д‚ў‚И‚ў‚©ѓ`ѓFѓbѓN
+		//иў«гЃЈгЃ¦гЃ„гЃЄгЃ„гЃ‹гѓЃг‚§гѓѓг‚Ї
 		if( (r != c1) && (r != c2) && (r != c3) && (r != c4) ){
 			break;
 		}
@@ -13382,7 +13382,7 @@ static u8 GetSevenCharT06R0101( u16 c1, u16 c2, u16 c3, u16 c4 )
 	count = 0;
 
 	while( 1 ){
-		r = ( gf_rand() % (T06R0101_SEVEN_MAX+1) );	//5‚ѕ‚Б‚Ѕ‚зЃA‚ў‚И‚ў‚±‚Ж‚Й‚·‚й
+		r = ( gf_rand() % (T06R0101_SEVEN_MAX+1) );	//5гЃ гЃЈгЃџг‚‰гЂЃгЃ„гЃЄгЃ„гЃ“гЃЁгЃ«гЃ™г‚‹
 		if( r == T06R0101_SEVEN_MAX ){
 			break;
 		}
@@ -13393,7 +13393,7 @@ static u8 GetSevenCharT06R0101( u16 c1, u16 c2, u16 c3, u16 c4 )
 			break;
 		}
 
-		//”н‚Б‚Д‚ў‚И‚ў‚©ѓ`ѓFѓbѓN
+		//иў«гЃЈгЃ¦гЃ„гЃЄгЃ„гЃ‹гѓЃг‚§гѓѓг‚Ї
 		if( (r != c1) && (r != c2) && (r != c3) && (r != c4) ){
 		//if( (t06r0101_seven_char_tbl[r] == t06r0101_seven_char_tbl[c1]) && 
 			break;
@@ -13405,9 +13405,9 @@ static u8 GetSevenCharT06R0101( u16 c1, u16 c2, u16 c3, u16 c4 )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ѓoѓgѓ‹ѓЊѓRЃ[ѓ_Ѓ[(GDSѓ‚Ѓ[ѓh)ЊД‚СЏo‚µ
+ * гѓђгѓ€гѓ«гѓ¬г‚ігѓјгѓЂгѓј(GDSгѓўгѓјгѓ‰)е‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -13419,11 +13419,11 @@ static BOOL EvCmdGdsSetProc( VM_MACHINE * core )
 	u16* ret_wk = VMGetWork(core);
 
 	if( mydwc_checkMyGSID(core->fsys->savedata) ){
-		*ret_wk = 1;	//ђ¬Њч
+		*ret_wk = 1;	//ж€ђеЉџ
 		Field_Gds_SetProc( core->fsys, no, gds_mode );
 		VM_SetWait( core, EvCmdWaitSubProcEnd );
 	}else{
-		*ret_wk = 0;	//Ћё”s
+		*ret_wk = 0;	//е¤±ж•—
 	}
 
 	return 1;
@@ -13431,9 +13431,9 @@ static BOOL EvCmdGdsSetProc( VM_MACHINE * core )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiЌLЏк‚рЉJЋn‚·‚й
+ *	@brief	WiFiеєѓе ґг‚’й–‹е§‹гЃ™г‚‹
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return	"1"
  */
@@ -13443,7 +13443,7 @@ static BOOL EvCmdWiFiLobbySetProc( VM_MACHINE * core )
 	u16 wk_id			= VMGetU16( core );
 	u16* p_flag_wk		= GetEventWorkAdrs( core->fsys, wk_id );
 
-	// ѓtѓЊѓ“ѓhѓRЃ[ѓh‚рЋќ‚Б‚Д‚й‚Ж‚«‚М‚ЭЌLЏк‚Й‚ў‚Ї‚й
+	// гѓ•гѓ¬гѓігѓ‰г‚ігѓјгѓ‰г‚’жЊЃгЃЈгЃ¦г‚‹гЃЁгЃЌгЃ®гЃїеєѓе ґгЃ«гЃ„гЃ‘г‚‹
 	if( mydwc_checkMyGSID(core->fsys->savedata) ){
 		EventCmd_WiFiLobbyProc( core->event_work, *p_flag_wk );
 	}
@@ -13452,7 +13452,7 @@ static BOOL EvCmdWiFiLobbySetProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ѓeѓ“ѓKѓ“ѓUѓ“ѓfѓ‚
+ * @brief	гѓ†гѓіг‚¬гѓіг‚¶гѓігѓ‡гѓў
  *
  * @param	core	
  *
@@ -13467,7 +13467,7 @@ static BOOL EvCmdTenganDemoEventCall( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ABѓLЃ[‚Мsys.contѓ`ѓFѓbѓN
+ * @brief	ABг‚­гѓјгЃ®sys.contгѓЃг‚§гѓѓг‚Ї
  *
  * @param	core	
  *
@@ -13492,7 +13492,7 @@ static BOOL EvCmdContABKey( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ѓtѓHѓ‹ѓЂѓ`ѓFѓ“ѓW‚µ‚ЅѓЌѓgѓЂ‚Є‚ў‚й‚©ѓ`ѓFѓbѓN(‘S‚Дѓ`ѓFѓbѓN)
+ * @brief	гѓ•г‚©гѓ«гѓ гѓЃг‚§гѓіг‚ёгЃ—гЃџгѓ­гѓ€гѓ гЃЊгЃ„г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї(е…ЁгЃ¦гѓЃг‚§гѓѓг‚Ї)
  *
  * @param	none
  *
@@ -13501,7 +13501,7 @@ static BOOL EvCmdContABKey( VM_MACHINE * core )
 //--------------------------------------------------------------
 #include "battle/battle_server.h"
 #if 0
-// ѓЌѓgѓЂ‚МѓtѓHѓ‹ѓЂ’и‹`(BITЋw’и)
+// гѓ­гѓ€гѓ гЃ®гѓ•г‚©гѓ«гѓ е®љзѕ©(BITжЊ‡е®љ)
 #define FORMNO_ROTOMU_BIT_NORMAL		(1 << FORMNO_ROTOMU_NORMAL)
 #define FORMNO_ROTOMU_BIT_HOT			(1 << FORMNO_ROTOMU_HOT)
 #define FORMNO_ROTOMU_BIT_WASH			(1 << FORMNO_ROTOMU_WASH)
@@ -13560,12 +13560,12 @@ static BOOL EvCmdRotomuFormCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------
 /**
- * @brief   Ћ©•Є‚МЋиЋќ‚їЃAѓ{ѓbѓNѓXЃA€з‚Д‰®ЃA‚©‚зѓtѓHѓ‹ѓЂѓ`ѓFѓ“ѓW‚µ‚ЅѓЌѓgѓЂ‚Є‚ў‚й‚©Ћж“ѕ
+ * @brief   и‡Єе€†гЃ®ж‰‹жЊЃгЃЎгЂЃгѓњгѓѓг‚Їг‚№гЂЃи‚ІгЃ¦е±‹гЂЃгЃ‹г‚‰гѓ•г‚©гѓ«гѓ гѓЃг‚§гѓіг‚ёгЃ—гЃџгѓ­гѓ€гѓ гЃЊгЃ„г‚‹гЃ‹еЏ–еѕ—
  *
- * @param   sv		ѓZЃ[ѓuѓfЃ[ѓ^‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param   sv		г‚»гѓјгѓ–гѓ‡гѓјг‚їгЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
- * @retval  FORMNO_ROTOMU_BIT_??? ‚Є OR‚М‘Ќa‚Е•Ф‚Б‚Д‚«‚Ь‚·
- * 			Ѓ¦ѓmЃ[ѓ}ѓ‹ѓtѓHѓ‹ѓЂ‚Е‚аѓrѓbѓg‚Є—§‚В‚±‚Ж‚Й’Ќ€У
+ * @retval  FORMNO_ROTOMU_BIT_??? гЃЊ ORгЃ®з·Џе’ЊгЃ§иї”гЃЈгЃ¦гЃЌгЃѕгЃ™
+ * 			вЂ»гѓЋгѓјгѓћгѓ«гѓ•г‚©гѓ«гѓ гЃ§г‚‚гѓ“гѓѓгѓ€гЃЊз«‹гЃ¤гЃ“гЃЁгЃ«жіЁж„Џ
  */
 //--------------------------------------------------------------
 static u32 MyRotomuFormCheck(SAVEDATA *sv)
@@ -13577,7 +13577,7 @@ static u32 MyRotomuFormCheck(SAVEDATA *sv)
 	
 	form_bit = 0;
 	
-	//ЋиЋќ‚їѓ`ѓFѓbѓN
+	//ж‰‹жЊЃгЃЎгѓЃг‚§гѓѓг‚Ї
 	{
 		POKEPARTY *party;
 		int temoti_max;
@@ -13593,7 +13593,7 @@ static u32 MyRotomuFormCheck(SAVEDATA *sv)
 		}
 	}
 	
-	//€з‚Д‰®ѓ`ѓFѓbѓN
+	//и‚ІгЃ¦е±‹гѓЃг‚§гѓѓг‚Ї
 	{
 		SODATEYA_WORK *sodateya;
 		SODATEYA_POKE *s_poke;
@@ -13609,7 +13609,7 @@ static u32 MyRotomuFormCheck(SAVEDATA *sv)
 		}
 	}
 	
-	//ѓ{ѓbѓNѓXѓ`ѓFѓbѓN
+	//гѓњгѓѓг‚Їг‚№гѓЃг‚§гѓѓг‚Ї
 	{
 		BOX_DATA *boxdata;
 		u32 tray;
@@ -13631,9 +13631,9 @@ static u32 MyRotomuFormCheck(SAVEDATA *sv)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓXѓRѓA‰БЋZ
+ *	@brief	г‚№г‚іг‚ўеЉ з®—
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return	"0"
  */
@@ -13646,13 +13646,13 @@ static BOOL EvCmdScoreAdd( VM_MACHINE * core )
 }
 
 //==============================================================================
-//	”j‚к‚ЅђўЉEЉЦA
+//	з ґг‚ЊгЃџдё–з•Њй–ўйЂЈ
 //==============================================================================
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓtѓBЃ[ѓ‹ѓhOBJ’З‰Б
+ *	@brief	гѓ•г‚Јгѓјгѓ«гѓ‰OBJиїЅеЉ 
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return	"0"
  */
@@ -13667,9 +13667,9 @@ static BOOL EvCmdTwObjAdd( VM_MACHINE * core )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓtѓBЃ[ѓ‹ѓhOBJЌнЏњ
+ *	@brief	гѓ•г‚Јгѓјгѓ«гѓ‰OBJе‰Љй™¤
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return	"0"
  */
@@ -13684,9 +13684,9 @@ static BOOL EvCmdTwObjDel( VM_MACHINE * core )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓJѓЃѓ‰‚рѓfѓtѓHѓ‹ѓg‚Й–Я‚·
+ *	@brief	г‚«гѓЎгѓ©г‚’гѓ‡гѓ•г‚©гѓ«гѓ€гЃ«ж€»гЃ™
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return	"0"
  */
@@ -13700,9 +13700,9 @@ static BOOL EvCmdTwCameraDefaultSet( VM_MACHINE * core )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	(ѓtѓЌѓ“ѓeѓBѓA‚М)ѓqЃ[ѓvѓ`ѓFѓbѓN
+ *	@brief	(гѓ•гѓ­гѓігѓ†г‚Јг‚ўгЃ®)гѓ’гѓјгѓ—гѓЃг‚§гѓѓг‚Ї
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return	"0"
  */
@@ -13716,40 +13716,40 @@ static BOOL EvCmdHeapCheck( VM_MACHINE * core )
 	u16 flag			= VMGetWorkValue(core);
 	u32 free_world_heap,free_field_heap,free_event_heap;
 
-	//Њ»ЌЭ‚МѓqЃ[ѓv‚М‹у‚«—М€жѓTѓCѓY‚р•Ф‚·
+	//зЏѕењЁгЃ®гѓ’гѓјгѓ—гЃ®з©єгЃЌй еџџг‚µг‚¤г‚єг‚’иї”гЃ™
 	free_world_heap = sys_GetHeapFreeSize( HEAPID_WORLD );
 	free_field_heap = sys_GetHeapFreeSize( HEAPID_FIELD );
 	free_event_heap = sys_GetHeapFreeSize( HEAPID_EVENT );
-	OS_Printf( "Њ»ЌЭ‚МѓqЃ[ѓv‚М‹у‚« world_heap = %d\n", free_world_heap );
-	OS_Printf( "Њ»ЌЭ‚МѓqЃ[ѓv‚М‹у‚« field_heap = %d\n", free_field_heap );
-	OS_Printf( "Њ»ЌЭ‚МѓqЃ[ѓv‚М‹у‚« event_heap = %d\n", free_event_heap );
+	OS_Printf( "зЏѕењЁгЃ®гѓ’гѓјгѓ—гЃ®з©єгЃЌ world_heap = %d\n", free_world_heap );
+	OS_Printf( "зЏѕењЁгЃ®гѓ’гѓјгѓ—гЃ®з©єгЃЌ field_heap = %d\n", free_field_heap );
+	OS_Printf( "зЏѕењЁгЃ®гѓ’гѓјгѓ—гЃ®з©єгЃЌ event_heap = %d\n", free_event_heap );
 
-	//ѓZѓbѓg
+	//г‚»гѓѓгѓ€
 	if( flag == 0 ){
-		//ѓfѓoѓbѓN•Пђ”‚Й•Ы‘¶
+		//гѓ‡гѓђгѓѓг‚Їе¤‰ж•°гЃ«дїќе­
 		debug_world_heap = free_world_heap;
 		debug_field_heap = free_field_heap;
 		debug_event_heap = free_event_heap;
 
-	//ѓ`ѓFѓbѓN
+	//гѓЃг‚§гѓѓг‚Ї
 	}else{
 		if( free_world_heap != debug_world_heap ){
-			OS_Printf( "ѓtѓЌѓ“ѓeѓBѓAЊД‚СЏo‚µ‘O debug_world_heap = %d\n", debug_world_heap );
-			GF_ASSERT( (0) && "ѓЃѓ‚ѓЉ‚МЉJ•ъ–Y‚к‚Є‚ ‚й‚©‚а‚µ‚к‚Ь‚№‚с" );
+			OS_Printf( "гѓ•гѓ­гѓігѓ†г‚Јг‚ўе‘јгЃіе‡єгЃ—е‰Ќ debug_world_heap = %d\n", debug_world_heap );
+			GF_ASSERT( (0) && "гѓЎгѓўгѓЄгЃ®й–‹ж”ѕеїг‚ЊгЃЊгЃ‚г‚‹гЃ‹г‚‚гЃ—г‚ЊгЃѕгЃ›г‚“" );
 		}
 
 #if 0
 		if( free_field_heap != debug_field_heap ){
-			OS_Printf( "ѓtѓЌѓ“ѓeѓBѓAЊД‚СЏo‚µ‘O debug_field_heap = %d\n", debug_field_heap );
-			GF_ASSERT( (0) && "ѓЃѓ‚ѓЉ‚МЉJ•ъ–Y‚к‚Є‚ ‚й‚©‚а‚µ‚к‚Ь‚№‚с" );
+			OS_Printf( "гѓ•гѓ­гѓігѓ†г‚Јг‚ўе‘јгЃіе‡єгЃ—е‰Ќ debug_field_heap = %d\n", debug_field_heap );
+			GF_ASSERT( (0) && "гѓЎгѓўгѓЄгЃ®й–‹ж”ѕеїг‚ЊгЃЊгЃ‚г‚‹гЃ‹г‚‚гЃ—г‚ЊгЃѕгЃ›г‚“" );
 		}
 
-		//ѓXѓeЃ[ѓW‚ЕЃA‰ћ‰‡OBJ‚рINIT_CHANGE‚Е’З‰Б‚·‚й‚М‚ЕЃA‚±‚±‚Е€ш‚Б‚©‚©‚й‚М‚ЕЉO‚µ‚Ѕ(08.05.19)
+		//г‚№гѓ†гѓјг‚ёгЃ§гЂЃеїњжЏґOBJг‚’INIT_CHANGEгЃ§иїЅеЉ гЃ™г‚‹гЃ®гЃ§гЂЃгЃ“гЃ“гЃ§еј•гЃЈгЃ‹гЃ‹г‚‹гЃ®гЃ§е¤–гЃ—гЃџ(08.05.19)
 #endif
 
 		if( free_event_heap != debug_event_heap ){
-			OS_Printf( "ѓtѓЌѓ“ѓeѓBѓAЊД‚СЏo‚µ‘O debug_event_heap = %d\n", debug_event_heap );
-			GF_ASSERT( (0) && "ѓЃѓ‚ѓЉ‚МЉJ•ъ–Y‚к‚Є‚ ‚й‚©‚а‚µ‚к‚Ь‚№‚с" );
+			OS_Printf( "гѓ•гѓ­гѓігѓ†г‚Јг‚ўе‘јгЃіе‡єгЃ—е‰Ќ debug_event_heap = %d\n", debug_event_heap );
+			GF_ASSERT( (0) && "гѓЎгѓўгѓЄгЃ®й–‹ж”ѕеїг‚ЊгЃЊгЃ‚г‚‹гЃ‹г‚‚гЃ—г‚ЊгЃѕгЃ›г‚“" );
 		}
 	}
 
@@ -13758,9 +13758,9 @@ static BOOL EvCmdHeapCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”j‚к‚ЅђўЉE“Л“ьѓfѓ‚ЊД‚СЏo‚µ
+ * з ґг‚ЊгЃџдё–з•ЊзЄЃе…Ґгѓ‡гѓўе‘јгЃіе‡єгЃ—
  *
- * @param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ * @param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  * @return	"1"
  */
@@ -13774,9 +13774,9 @@ static BOOL EvCmdHakaiWarpSetProc( VM_MACHINE * core )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓMѓ‰ѓeѓBѓi‰eѓGѓtѓFѓNѓgѓZѓbѓg
+ *	@brief	г‚®гѓ©гѓ†г‚ЈгѓЉеЅ±г‚Ёгѓ•г‚§г‚Їгѓ€г‚»гѓѓгѓ€
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return	"0"
  */
@@ -13791,9 +13791,9 @@ static BOOL EvCmdTwGirasSet( VM_MACHINE * core )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ѓMѓ‰ѓeѓBѓi‰eѓGѓtѓFѓNѓgЌнЏњ
+ *	@brief	г‚®гѓ©гѓ†г‚ЈгѓЉеЅ±г‚Ёгѓ•г‚§г‚Їгѓ€е‰Љй™¤
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return	"0"
  */
@@ -13807,9 +13807,9 @@ static BOOL EvCmdTwGirasDelete( VM_MACHINE * core )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFi‚Р‚л‚ОѓJѓEѓ“ѓ^Ѓ[‚Е‚М“ьЏк‰В”\‚ИЋћЉФѓ`ѓFѓbѓNЏ€—ќ
+ *	@brief	WiFiгЃІг‚ЌгЃ°г‚«г‚¦гѓіг‚їгѓјгЃ§гЃ®е…Ґе ґеЏЇиѓЅгЃЄж™‚й–“гѓЃг‚§гѓѓг‚Їе‡¦зђ†
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return "0"
  */
@@ -13823,7 +13823,7 @@ static BOOL EvCmdWflbyCounterTime( VM_MACHINE * core )
 
 #ifdef _WIFI_DEBUG_TUUSHIN
 	{
-		*ret_wk = 1;	// WiFi‚Р‚л‚О“ьЋє‹–‰В
+		*ret_wk = 1;	// WiFiгЃІг‚ЌгЃ°е…Ґе®¤иЁ±еЏЇ
 		return 0;
 	}
 #endif
@@ -13831,9 +13831,9 @@ static BOOL EvCmdWflbyCounterTime( VM_MACHINE * core )
 	now_time = GF_RTC_GetDateTimeBySecond();
 	diff = now_time - fsys->wflby_counter.time;
 	if( diff >= WFLBY_COUNTER_INTERVAL ){
-		*ret_wk = 1;	// WiFi‚Р‚л‚О“ьЋє‹–‰В
+		*ret_wk = 1;	// WiFiгЃІг‚ЌгЃ°е…Ґе®¤иЁ±еЏЇ
 	}else{
-		*ret_wk = 0;	// WiFi‚Р‚л‚О“ьЋє‹‘”Ы
+		*ret_wk = 0;	// WiFiгЃІг‚ЌгЃ°е…Ґе®¤ж‹’еђ¦
 	}
 
 	return 0;
@@ -13841,9 +13841,9 @@ static BOOL EvCmdWflbyCounterTime( VM_MACHINE * core )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚в‚Ф‚к‚ЅђўЉE‚Е‚МѓMѓ‰ѓeѓBѓiѓtѓHѓ‹ѓЂ‹­ђ§ѓZѓbѓg
+ *	@brief	г‚„гЃ¶г‚ЊгЃџдё–з•ЊгЃ§гЃ®г‚®гѓ©гѓ†г‚ЈгѓЉгѓ•г‚©гѓ«гѓ еј·е€¶г‚»гѓѓгѓ€
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return "0"
  */
@@ -13856,7 +13856,7 @@ static BOOL EvCmdGirathinaFormUpdate( VM_MACHINE * core )
 
 	party	= SaveData_GetTemotiPokemon( core->fsys->savedata );
 	PokePartyGirathinaFormUpdate( party, flag );
-	{//ђ}ЉУ“o^(ѓMѓ‰ѓeѓBѓi‚ЄѓtѓHѓ‹ѓЂ•П‚н‚Б‚ЅЋћ—p)
+	{//е›ій‘‘з™»йЊІ(г‚®гѓ©гѓ†г‚ЈгѓЉгЃЊгѓ•г‚©гѓ«гѓ е¤‰г‚ЏгЃЈгЃџж™‚з”Ё)
 	#if PL_G0198_080711_FIX
 		int i, poke_max;
 		POKEMON_PARAM *pp;
@@ -13884,9 +13884,9 @@ static BOOL EvCmdGirathinaFormUpdate( VM_MACHINE * core )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ЋиЋќ‚ї‚Й”z•zѓЊѓWѓMѓKѓX‚Є‚ў‚й‚©ѓ`ѓFѓbѓN
+ *	@brief	ж‰‹жЊЃгЃЎгЃ«й…Ќеёѓгѓ¬г‚ёг‚®г‚¬г‚№гЃЊгЃ„г‚‹гЃ‹гѓЃг‚§гѓѓг‚Ї
  *
- *	@param	core		‰ј‘zѓ}ѓVѓ“ђ§ЊдЌ\‘ў‘М‚Ц‚Мѓ|ѓCѓ“ѓ^
+ *	@param	core		д»®жѓігѓћг‚·гѓіе€¶еѕЎж§‹йЂ дЅ“гЃёгЃ®гѓќг‚¤гѓіг‚ї
  *
  *	@return "0"
  */
@@ -13901,20 +13901,20 @@ static BOOL EvCmdD35HaihuReziCheck( VM_MACHINE * core )
 	*ret_wk = 0;
 	max		= PokeParty_GetPokeCount( SaveData_GetTemotiPokemon(core->fsys->savedata) );
 
-	//ѓ|ѓPѓ‚ѓ“‚Ц‚Мѓ|ѓCѓ“ѓ^Ћж“ѕ
+	//гѓќг‚±гѓўгѓігЃёгЃ®гѓќг‚¤гѓіг‚їеЏ–еѕ—
 	for( i=0; i < max ;i++ ){
 		poke = PokeParty_GetMemberPointer(SaveData_GetTemotiPokemon(core->fsys->savedata),i);
 
-		//ѓ^ѓ}ѓS‚НЏњЉO
+		//г‚їгѓћг‚ґгЃЇй™¤е¤–
 		if( PokeParaGet(poke,ID_PARA_tamago_flag,NULL) == 0 ){
 
-			//ѓ|ѓPѓ‚ѓ“ѓiѓ“ѓoЃ[Ћж“ѕ
+			//гѓќг‚±гѓўгѓігѓЉгѓігѓђгѓјеЏ–еѕ—
 			monsno = PokeParaGet( poke, ID_PARA_monsno, NULL );
 
-			//ѓЊѓWѓLѓ“ѓO‚©ѓ`ѓFѓbѓN
+			//гѓ¬г‚ёг‚­гѓіг‚°гЃ‹гѓЃг‚§гѓѓг‚Ї
 			if( monsno == MONSNO_REZIKINGU ){
 
-				//ѓCѓxѓ“ѓg‚Е”z•z‚і‚к‚Ѕ‚±‚Ж‚рЋ¦‚·ѓtѓ‰ѓO
+				//г‚¤гѓ™гѓігѓ€гЃ§й…ЌеёѓгЃ•г‚ЊгЃџгЃ“гЃЁг‚’з¤єгЃ™гѓ•гѓ©г‚°
 				flag = PokeParaGet( poke, ID_PARA_event_get_flag, NULL );
 
 				if( flag == 1 ){

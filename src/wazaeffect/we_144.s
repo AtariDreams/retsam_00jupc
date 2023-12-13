@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_144.s
- * @brief	�ւ񂵂�			144
+ * @brief	へんしん			144
  * @author	goto
- * @date	2005.07.13(��)
+ * @date	2005.07.13(水)
  *
- * �����ɐF�X�ȉ�����������Ă��悢
+ * ここに色々な解説等を書いてもよい
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	���ւ񂵂�			144
+//	■へんしん			144
 //
 //
 // =============================================================================
@@ -27,7 +27,7 @@ WEST_HENSIN:
 	
 	POKEOAM_RES_INIT
 	POKEOAM_RES_LOAD	0
-	///< ����
+	///< 実態
 	FUNC_CALL			WEST_SP_WE_SSP_POKE_VANISH, 2, WE_TOOL_M1, 1
 	POKEOAM_DROP		WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_0, WEDEF_POKE_RES_0,
 	PT_DROP_EX			WEDEF_DROP_M2, WEDEF_DROP_M2,
@@ -40,10 +40,10 @@ WEST_HENSIN:
 //	POKEOAM_RES_FREE
 	POKEOAM_DROP_RESET	WEDEF_POKE_CAP_ID_0
 	
-	///< �|�P��������ւ�
+	///< ポケモンすり替え
 	HENSIN_ON			WE_HENSIN_DF
 	
-	///< �ϐg�|�P
+	///< 変身ポケ
 //	POKEOAM_RES_INIT
 	POKEOAM_RES_LOAD	1
 	POKEOAM_DROP		WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_1, WEDEF_POKE_RES_1,

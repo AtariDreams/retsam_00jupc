@@ -15,7 +15,7 @@
   indent source
 
   Revision 1.29  2006/03/27 05:35:35  kitase_hirotake
-  OS_CheckHeap�֐���OS_CURRENT_HEAP_HANDLE���ʂ�悤�C��
+  OS_CheckHeap関数でOS_CURRENT_HEAP_HANDLEが通るよう修正
 
   Revision 1.28  2006/01/18 02:11:30  kitase_hirotake
   do-indent
@@ -27,10 +27,10 @@
   do-indent.
 
   Revision 1.25  2005/02/18 08:51:35  yasu
-  ����N�x�ύX
+  著作年度変更
 
   Revision 1.24  2005/02/18 06:19:32  yasu
-  OS_DisableInterrupts �Ԓl�̌^�C��
+  OS_DisableInterrupts 返値の型修正
 
   Revision 1.23  2004/11/08 00:49:29  yada
   fix assert
@@ -71,37 +71,37 @@
   add '#pragma unused()' for FINALROM
 
   Revision 1.11  2004/03/08 11:51:48  yada
-  InitAlloc ���Ă��Ȃ��q�[�v����alloc���悤�Ƃ����Ƃ��̃`�F�b�N��ǉ�
+  InitAlloc していないヒープからallocしようとしたときのチェックを追加
 
   Revision 1.10  2004/02/13 10:38:26  yada
-  ARENA���U����X��
+  ARENAを６個から９個に
 
   Revision 1.9  2004/02/12 11:08:30  yada
-  ARM9/ARM7 �U�蕪�����
+  ARM9/ARM7 振り分け作業
 
   Revision 1.8  2004/02/05 07:09:02  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.7  2004/01/18 01:24:32  yada
-  HeapInfo �̏����l���C��
+  HeapInfo の初期値個数修正
 
   Revision 1.6  2004/01/07 08:20:53  yada
-  OS_DestroyHeap() �����ۂɁAfree/alloc ���X�g�|�C���^���N���A����悤�ɂ���
+  OS_DestroyHeap() した際に、free/alloc リストポインタをクリアするようにした
 
   Revision 1.5  2004/01/07 02:51:44  yada
-  OS_VisitAllocated �ŁA�֐��Ăяo�����̃T�C�Y���w�b�_���������l�ɕύX
+  OS_VisitAllocated で、関数呼び出し時のサイズをヘッダを除いた値に変更
 
   Revision 1.4  2004/01/07 00:26:10  yada
-  �C��
+  修正
 
   Revision 1.3  2004/01/07 00:21:13  yada
-  alloc��free�ŁAheap handle �����̎��J�����g�w��Ƃ���
+  allocとfreeで、heap handle が負の時カレント指定とした
 
   Revision 1.2  2004/01/05 08:23:15  yada
-  �A���[�i���ƂɃq�[�v�������悤�ɕύX����
+  アリーナごとにヒープ情報を持つように変更した
 
   Revision 1.1  2004/01/05 04:29:38  yada
-  ����
+  初版
 
 
   $NoKeywords: $

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_zukan_graver.h
- *	@brief		}ŠÓƒOƒ‰ƒtƒBƒbƒNƒo[ƒWƒ‡ƒ“
+ *	@brief		å›³é‘‘ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *	@author		tomoya takahashi
  *	@data		2006.02.21
  *
@@ -20,19 +20,19 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL void ZKN_ZukanGraverAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap );
 GLOBAL void ZKN_ZukanGraverAplDelete( ZKN_APL_DATA* p_data );
 
 
-// •`‰æƒ^ƒCƒv‚ğ•ÏX‚·‚é
+// æç”»ã‚¿ã‚¤ãƒ—ã‚’å¤‰æ›´ã™ã‚‹
 GLOBAL BOOL ZKN_ZukanGraverDrawTypeAdd( ZKN_APL_DATA* p_data, int num );
 
 #undef	GLOBAL

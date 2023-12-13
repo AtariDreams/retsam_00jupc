@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ‹ZƒGƒtƒFƒNƒg
+# Project:  æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -17,7 +17,7 @@ include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
 
-#Make‚Å¶¬‚³‚ê‚é*.bin‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.binã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(PT_DIR)shinka_demo_particle.narc
 
 PT_DIR = ./particle/
@@ -27,14 +27,14 @@ PT_DIR = ./particle/
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 
 #-------------------------------
-#	Às‡
-#		ƒŠƒ\[ƒXƒRƒs[
-#		ƒŠƒ\[ƒXƒA[ƒJƒCƒu
-#		‹ZƒGƒtƒFƒNƒgƒA[ƒJƒCƒu
+#	å®Ÿè¡Œé †
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚³ãƒ”ãƒ¼
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+#		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 #-------------------------------
 do-build: $(PT_DIR)shinka_demo_particle.narc
 
-#----------- ƒA[ƒJƒCƒu‚·‚é -----------
+#----------- ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã™ã‚‹ -----------
 $(PT_DIR)shinka_demo_particle.narc: $(PT_DIR)*.spa
 	nnsarc -c -l -n -i $(PT_DIR)shinka_demo_particle.narc -S particle\shinka_demo_particle.lst
 

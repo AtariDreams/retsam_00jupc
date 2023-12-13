@@ -1,11 +1,11 @@
 //============================================================================================
 /**
  * @file	field_battle.c
- * @brief	ƒtƒB[ƒ‹ƒhí“¬ƒpƒ‰ƒ[ƒ^‚È‚Ç
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãªã©
  * @date	2005.12.18
  * @author	tamada	
  *
- * ”Ä—p“I‚Æv‚í‚ê‚é‚Ì‚ÅA‚¢‚¸‚ê‚Íbattle/battle_param.c‚ÉˆÚs‚µ‚½‚¢B
+ * æ±ç”¨çš„ã¨æ€ã‚ã‚Œã‚‹ã®ã§ã€ã„ãšã‚Œã¯battle/battle_param.cã«ç§»è¡Œã—ãŸã„ã€‚
  */
 //============================================================================================
 
@@ -58,10 +58,10 @@ void	BattleParam_EnemyTrainerDataMake(BATTLE_PARAM *bp);
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^‚Ì¶¬ˆ—
- * @param	heapID			g—p‚·‚éƒq[ƒv‚Ìw’è
- * @param	fight_type		í“¬ƒ^ƒCƒv‚Ìw’èibattle/battle_param.hQÆj
- * @return	BATTLE_PARAM	¶¬‚µ‚½í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ç”Ÿæˆå‡¦ç†
+ * @param	heapID			ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @param	fight_type		æˆ¦é—˜ã‚¿ã‚¤ãƒ—ã®æŒ‡å®šï¼ˆbattle/battle_param.hå‚ç…§ï¼‰
+ * @return	BATTLE_PARAM	ç”Ÿæˆã—ãŸæˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 BATTLE_PARAM * BattleParam_Create(int heapID, u32 fight_type)
@@ -79,13 +79,13 @@ BATTLE_PARAM * BattleParam_Create(int heapID, u32 fight_type)
 		bp->trainer_id[i] = 0;
 		MI_CpuClear32(&bp->trainer_data[i], sizeof(TRAINER_DATA));
 	}
-	bp->bg_id = BG_ID_BASIC;		//Šî–{”wŒiw’è
-	bp->ground_id = GROUND_ID_ALL;	//Šî–{’n–Êw’è
-	bp->place_id = 0;					//‰Šú‰»Au‚È‚Ü‚¦‚Ì‚È‚¢‚Î‚µ‚åv
-	bp->time_zone = TIMEZONE_MORNING;	//‰Šú‰»AÀÛ‚Í‚±‚ÌŒã‚Åó‹µ‚É‰‚¶‚Äİ’è
-	bp->shinka_place_mode = SHINKA_NONE;	//‰Šú‰»AÀÛ‚ÍêŠî•ñ‚©‚çİ’è
-	bp->contest_see_flag = TRUE;			//‰Šú‰»AÀÛ‚ÍƒRƒ“ƒeƒXƒgQ‰ÁŒã‚ÉTRUE‚Æİ’è‚³‚ê‚é
-	bp->mizuki_flag = TRUE;				//‰Šú‰»AÀÛ‚Íƒ~ƒYƒL‚É‚ ‚Á‚½Œã‚ÉTRUE‚Æİ’è‚³‚ê‚é
+	bp->bg_id = BG_ID_BASIC;		//åŸºæœ¬èƒŒæ™¯æŒ‡å®š
+	bp->ground_id = GROUND_ID_ALL;	//åŸºæœ¬åœ°é¢æŒ‡å®š
+	bp->place_id = 0;					//åˆæœŸåŒ–ã€ã€Œãªã¾ãˆã®ãªã„ã°ã—ã‚‡ã€
+	bp->time_zone = TIMEZONE_MORNING;	//åˆæœŸåŒ–ã€å®Ÿéš›ã¯ã“ã®å¾Œã§çŠ¶æ³ã«å¿œã˜ã¦è¨­å®š
+	bp->shinka_place_mode = SHINKA_NONE;	//åˆæœŸåŒ–ã€å®Ÿéš›ã¯å ´æ‰€æƒ…å ±ã‹ã‚‰è¨­å®š
+	bp->contest_see_flag = TRUE;			//åˆæœŸåŒ–ã€å®Ÿéš›ã¯ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ å¾Œã«TRUEã¨è¨­å®šã•ã‚Œã‚‹
+	bp->mizuki_flag = TRUE;				//åˆæœŸåŒ–ã€å®Ÿéš›ã¯ãƒŸã‚ºã‚­ã«ã‚ã£ãŸå¾Œã«TRUEã¨è¨­å®šã•ã‚Œã‚‹
 	bp->weather = WEATHER_SYS_SUNNY;
 	for (i = 0; i < CLIENT_MAX; i++) {
 		bp->poke_party[i] = PokeParty_AllocPartyWork(heapID);
@@ -117,7 +117,7 @@ BATTLE_PARAM * BattleParam_Create(int heapID, u32 fight_type)
 
 	bp->regulation_flag = 0;
 
-	//˜^‰æƒf[ƒ^¶¬‚Ì‚½‚ßAƒ‰ƒ“ƒ_ƒ€‚Ìí‚ğŒÅ’è‚µ‚Ä‚¨‚­
+	//éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆã®ãŸã‚ã€ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã‚’å›ºå®šã—ã¦ãŠã
 	{
 		RTCDate date;
 		RTCTime time;
@@ -128,7 +128,7 @@ BATTLE_PARAM * BattleParam_Create(int heapID, u32 fight_type)
 			+ sys.vsync_counter;
 	}
 
-	// ’ÊM‚Ìİ’è
+	// é€šä¿¡æ™‚ã®è¨­å®š
 	if( CommIsInitialize() == TRUE ){
 		for( i=0; i<CommGetConnectNum(); i++ ){
 			bp->comm_stand_no[i] = CommGetStandNo( i );
@@ -142,10 +142,10 @@ BATTLE_PARAM * BattleParam_Create(int heapID, u32 fight_type)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^‚Ì¶¬ˆ—(ƒTƒtƒ@ƒŠ—p)
- * @param	heapID			g—p‚·‚éƒq[ƒv‚Ìw’è
- * @param	ball_num		ƒTƒtƒ@ƒŠƒ{[ƒ‹‚Ì”
- * @return	BATTLE_PARAM	¶¬‚µ‚½í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ç”Ÿæˆå‡¦ç†(ã‚µãƒ•ã‚¡ãƒªç”¨)
+ * @param	heapID			ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @param	ball_num		ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã®æ•°
+ * @return	BATTLE_PARAM	ç”Ÿæˆã—ãŸæˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 BATTLE_PARAM * BattleParam_CreateForSafari(int heapID, int ball_num)
@@ -153,17 +153,17 @@ BATTLE_PARAM * BattleParam_CreateForSafari(int heapID, int ball_num)
 	BATTLE_PARAM * bp;
 	bp = BattleParam_Create(heapID, FIGHT_TYPE_SAFARI);
 
-	bp->safari_ball = ball_num;		//ƒTƒtƒ@ƒŠƒ{[ƒ‹
+	bp->safari_ball = ball_num;		//ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«
 
 	return bp;
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^‚Ì¶¬ˆ—(ƒTƒtƒ@ƒŠ—p)
- * @param	heapID			g—p‚·‚éƒq[ƒv‚Ìw’è
- * @param	ball_num		ƒTƒtƒ@ƒŠƒ{[ƒ‹‚Ì”
- * @return	BATTLE_PARAM	¶¬‚µ‚½í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ç”Ÿæˆå‡¦ç†(ã‚µãƒ•ã‚¡ãƒªç”¨)
+ * @param	heapID			ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @param	ball_num		ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã®æ•°
+ * @return	BATTLE_PARAM	ç”Ÿæˆã—ãŸæˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 BATTLE_PARAM * BattleParam_CreateForPokePark(int heapID, int ball_num)
@@ -171,18 +171,18 @@ BATTLE_PARAM * BattleParam_CreateForPokePark(int heapID, int ball_num)
 	BATTLE_PARAM * bp;
 	bp = BattleParam_Create(heapID, FIGHT_TYPE_POKE_PARK);
 
-	bp->safari_ball = ball_num;		//ƒTƒtƒ@ƒŠƒ{[ƒ‹
+	bp->safari_ball = ball_num;		//ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«
 
 	return bp;
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^‚Ì¶¬ˆ—(•ßŠlƒfƒ‚—p)
- * @param	heapID			g—p‚·‚éƒq[ƒv‚Ìw’è
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ç”Ÿæˆå‡¦ç†(æ•ç²ãƒ‡ãƒ¢ç”¨)
+ * @param	heapID			ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã®æŒ‡å®š
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BATTLE_PARAM	¶¬‚µ‚½í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	BATTLE_PARAM	ç”Ÿæˆã—ãŸæˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 BATTLE_PARAM * BattleParam_CreateForGetDemo(int heapID, const FIELDSYS_WORK * fsys)
@@ -196,7 +196,7 @@ BATTLE_PARAM * BattleParam_CreateForGetDemo(int heapID, const FIELDSYS_WORK * fs
 
 	bp = BattleParam_Create(heapID, FIGHT_TYPE_GET_DEMO);
 
-	//ƒTƒ|[ƒg‚Ì–¼‘O‚ğƒZƒbƒg
+	//ã‚µãƒãƒ¼ãƒˆã®åå‰ã‚’ã‚»ãƒƒãƒˆ
 	man=MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_supportname_dat,heapID);
 	msg=STRBUF_Create(BUFLEN_PERSON_NAME,heapID);
 	MSGMAN_GetString(man,MyStatus_GetMySex(my)^1,msg);
@@ -204,17 +204,17 @@ BATTLE_PARAM * BattleParam_CreateForGetDemo(int heapID, const FIELDSYS_WORK * fs
 	STRBUF_Delete(msg);
 	MSGMAN_Delete(man);
 
-	//©•ª‚Æ‚Í”½‘Î‚Ì«•Ê‚ğƒZƒbƒg
+	//è‡ªåˆ†ã¨ã¯åå¯¾ã®æ€§åˆ¥ã‚’ã‚»ãƒƒãƒˆ
 	MyStatus_SetMySex(bp->my_status[CLIENT_NO_MINE],MyStatus_GetMySex(my)^1);
 
     BattleParam_SetBgGroundID(bp, fsys);
 	CONFIG_Copy(cfg, bp->config);
 	bp->time_zone = EVTIME_GetTimeZone(fsys);
 
-	//Š“¹‹ï‚Éƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‚ğƒZƒbƒg
+	//æ‰€æŒé“å…·ã«ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	MyItem_AddItem(bp->my_item, ITEM_MONSUTAABOORU, 20, heapID );
 
-	//è‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğ¶¬
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆ
 	pp=PokemonParam_AllocWork(heapID);
 	PokeParaSet(pp,SysWork_SupportPokeNoGet(SaveData_GetEventWork(fsys->savedata)),5,POW_RND,RND_NO_SET,0,ID_NO_RARE,0);
 	PokeParty_Add(bp->poke_party[POKEPARTY_MINE],pp);
@@ -224,24 +224,24 @@ BATTLE_PARAM * BattleParam_CreateForGetDemo(int heapID, const FIELDSYS_WORK * fs
 
 	sys_FreeMemoryEz(pp);
 
-	//ƒ{ƒbƒNƒXƒf[ƒ^‚Í‘å‚«‚·‚¬‚é‚Ì‚ÅƒRƒs[‚µ‚È‚¢
+	//ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã¯å¤§ãã™ãã‚‹ã®ã§ã‚³ãƒ”ãƒ¼ã—ãªã„
 	bp->box = SaveData_GetBoxData(fsys->savedata);
 
-	//ƒoƒbƒOƒJ[ƒ\ƒ‹ƒZƒbƒg
+	//ãƒãƒƒã‚°ã‚«ãƒ¼ã‚½ãƒ«ã‚»ãƒƒãƒˆ
 	bp->bag_cursor = fsys->bag_cursor;
-	//í“¬ƒJ[ƒ\ƒ‹ƒZƒbƒg
+	//æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã‚»ãƒƒãƒˆ
 	bp->battle_cursor = NULL;
 
-	//ƒJƒEƒ“ƒgƒAƒbƒvƒŒƒR[ƒh
+	//ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ãƒ¬ã‚³ãƒ¼ãƒ‰
 	bp->record = SaveData_GetRecord(fsys->savedata);
 
-	//–`Œ¯ƒm[ƒg
+	//å†’é™ºãƒãƒ¼ãƒˆ
 	bp->fnote_data = fsys->fnote;
 
-	//ƒ][ƒ“ID
+	//ã‚¾ãƒ¼ãƒ³ID
 	bp->zone_id = fsys->location->zone_id;
 
-	//ƒgƒŒ[ƒi[ƒf[ƒ^¶¬i©•ª‘¤j
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆè‡ªåˆ†å´ï¼‰
 	BattleParam_TrainerDataMake(bp);
 
 	return bp;
@@ -249,8 +249,8 @@ BATTLE_PARAM * BattleParam_CreateForGetDemo(int heapID, const FIELDSYS_WORK * fs
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^‚Ìíœˆ—
- * @param	bp		¶¬‚µ‚½í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†
+ * @param	bp		ç”Ÿæˆã—ãŸæˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void BattleParam_Delete(BATTLE_PARAM * bp)
@@ -279,10 +279,10 @@ void BattleParam_Delete(BATTLE_PARAM * bp)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^ƒZƒbƒgFƒ|ƒPƒ‚ƒ“‚ğ‰Á‚¦‚é
- * @param	bp			¶¬‚µ‚½í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pp			POKEMON_PARAM‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	client_no	ƒNƒ‰ƒCƒAƒ“ƒgw’èi©•ªA‘Šè‚È‚Çj
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šãƒã‚±ãƒ¢ãƒ³ã‚’åŠ ãˆã‚‹
+ * @param	bp			ç”Ÿæˆã—ãŸæˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pp			POKEMON_PARAMã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	client_no	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆæŒ‡å®šï¼ˆè‡ªåˆ†ã€ç›¸æ‰‹ãªã©ï¼‰
  */
 //-----------------------------------------------------------------------------
 void BattleParam_AddPokemon(BATTLE_PARAM * bp, POKEMON_PARAM * pp, int client_no)
@@ -295,10 +295,10 @@ void BattleParam_AddPokemon(BATTLE_PARAM * bp, POKEMON_PARAM * pp, int client_no
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^ƒZƒbƒgFPOKEPARTY‚ÌƒZƒbƒg
- * @param	bp			¶¬‚µ‚½í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	my			MYSTATUS‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	client_no	ƒNƒ‰ƒCƒAƒ“ƒgw’èi©•ªA‘Šè‚È‚Çj
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šPOKEPARTYã®ã‚»ãƒƒãƒˆ
+ * @param	bp			ç”Ÿæˆã—ãŸæˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	my			MYSTATUSã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	client_no	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆæŒ‡å®šï¼ˆè‡ªåˆ†ã€ç›¸æ‰‹ãªã©ï¼‰
  */
 //-----------------------------------------------------------------------------
 void BattleParam_SetPokeParty(BATTLE_PARAM * bp, const POKEPARTY * party, int client_no)
@@ -309,10 +309,10 @@ void BattleParam_SetPokeParty(BATTLE_PARAM * bp, const POKEPARTY * party, int cl
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^ƒZƒbƒgFMYSTATUS‚ÌƒZƒbƒg
- * @param	bp			¶¬‚µ‚½í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	my			MYSTATUS‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	client_no	ƒNƒ‰ƒCƒAƒ“ƒgw’èi©•ªA‘Šè‚È‚Çj
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šMYSTATUSã®ã‚»ãƒƒãƒˆ
+ * @param	bp			ç”Ÿæˆã—ãŸæˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	my			MYSTATUSã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	client_no	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆæŒ‡å®šï¼ˆè‡ªåˆ†ã€ç›¸æ‰‹ãªã©ï¼‰
  */
 //-----------------------------------------------------------------------------
 void BattleParam_SetMyStatus(BATTLE_PARAM * bp, const MYSTATUS * my, int client_no)
@@ -323,10 +323,10 @@ void BattleParam_SetMyStatus(BATTLE_PARAM * bp, const MYSTATUS * my, int client_
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^ƒZƒbƒgFPERAPVOICE‚ÌƒZƒbƒg
- * @param	bp			¶¬‚µ‚½í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pv			PERAPVOICE‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	client_no	ƒNƒ‰ƒCƒAƒ“ƒgw’èi©•ªA‘Šè‚È‚Çj
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šPERAPVOICEã®ã‚»ãƒƒãƒˆ
+ * @param	bp			ç”Ÿæˆã—ãŸæˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pv			PERAPVOICEã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	client_no	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆæŒ‡å®šï¼ˆè‡ªåˆ†ã€ç›¸æ‰‹ãªã©ï¼‰
  */
 //-----------------------------------------------------------------------------
 void BattleParam_SetPokeVoice(BATTLE_PARAM * bp, const PERAPVOICE * pv, int client_no)
@@ -337,7 +337,7 @@ void BattleParam_SetPokeVoice(BATTLE_PARAM * bp, const PERAPVOICE * pv, int clie
 //============================================================================================
 //============================================================================================
 /**
- *	@brief	í“¬ƒpƒ‰ƒ[ƒ^‚ÌûWƒRƒA(ƒtƒB[ƒ‹ƒh)
+ *	@brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åé›†ã‚³ã‚¢(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰)
  */
 #if 0
 void BattleParam_SetParamByGameDataCore(BATTLE_PARAM* bp,const FIELDSYS_WORK* fsys)
@@ -357,7 +357,7 @@ void BattleParam_SetParamByGameDataCore(BATTLE_PARAM* bp,const FIELDSYS_WORK* fs
 	ZukanWork_Copy(zw, bp->zw);
 	CONFIG_Copy(cfg, bp->config);
 	BattleParam_SetPokeVoice(bp, pv, POKEPARTY_MINE);
-	//ƒ{ƒbƒNƒXƒf[ƒ^‚Í‘å‚«‚·‚¬‚é‚Ì‚ÅƒRƒs[‚µ‚È‚¢
+	//ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã¯å¤§ãã™ãã‚‹ã®ã§ã‚³ãƒ”ãƒ¼ã—ãªã„
 	bp->box = SaveData_GetBoxData(fsys->savedata);
 
 	bp->place_id = ZoneData_GetPlaceNameID(fsys->location->zone_id);
@@ -382,7 +382,7 @@ void BattleParam_SetParamByGameDataCore(BATTLE_PARAM* bp,const FIELDSYS_WORK* fs
 	bp->zone_id = fsys->location->zone_id;
 }
 #else
-//ƒtƒƒ“ƒeƒBƒA—p‚Éˆø”‚ğ’Ç‰Á’†
+//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ç”¨ã«å¼•æ•°ã‚’è¿½åŠ ä¸­
 void BattleParam_SetParamByGameDataCore(BATTLE_PARAM* bp, const FIELDSYS_WORK* fsys, SAVEDATA* savedata, int zone_id, FNOTE_DATA* fnote, BAG_CURSOR* bag_cursor, BATTLE_CURSOR_DISP* battle_cursor )
 {
 	MYSTATUS * my = SaveData_GetMyStatus(savedata);
@@ -394,11 +394,11 @@ void BattleParam_SetParamByGameDataCore(BATTLE_PARAM* bp, const FIELDSYS_WORK* f
 	SITUATION * sit = SaveData_GetSituation(savedata);
 
 	if( fsys != NULL ){
-		//ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
 		BattleParam_SetBgGroundID(bp, fsys);
 		bp->time_zone = EVTIME_GetTimeZone(fsys);
 	}else{
-		//ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€
+		//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ 
 		bp->bg_id = ZoneData_GetBattleBGID(zone_id);
 		bp->ground_id = GROUND_ID_FLOOR;
 		{
@@ -413,7 +413,7 @@ void BattleParam_SetParamByGameDataCore(BATTLE_PARAM* bp, const FIELDSYS_WORK* f
 	ZukanWork_Copy(zw, bp->zw);
 	CONFIG_Copy(cfg, bp->config);
 	BattleParam_SetPokeVoice(bp, pv, POKEPARTY_MINE);
-	//ƒ{ƒbƒNƒXƒf[ƒ^‚Í‘å‚«‚·‚¬‚é‚Ì‚ÅƒRƒs[‚µ‚È‚¢
+	//ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã¯å¤§ãã™ãã‚‹ã®ã§ã‚³ãƒ”ãƒ¼ã—ãªã„
 	bp->box = SaveData_GetBoxData(savedata);
 
 	bp->place_id = ZoneData_GetPlaceNameID(zone_id);
@@ -443,9 +443,9 @@ void BattleParam_SetParamByGameDataCore(BATTLE_PARAM* bp, const FIELDSYS_WORK* f
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^‚ÌƒZƒbƒgiƒtƒB[ƒ‹ƒhj
- * @param	bp		í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆï¼ˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼‰
+ * @param	bp		æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void BattleParam_SetParamByGameData(BATTLE_PARAM * bp, const FIELDSYS_WORK * fsys)
@@ -455,15 +455,15 @@ void BattleParam_SetParamByGameData(BATTLE_PARAM * bp, const FIELDSYS_WORK * fsy
 						fsys->location->zone_id,fsys->fnote,fsys->bag_cursor,fsys->battle_cursor);
 
 
-	//ƒgƒŒ[ƒi[ƒf[ƒ^¶¬i©•ª‘¤j
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆè‡ªåˆ†å´ï¼‰
 	BattleParam_TrainerDataMake(bp);
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^‚ÌƒZƒbƒgiWIFIj
- * @param	bp		í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆï¼ˆWIFIï¼‰
+ * @param	bp		æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void BattleParam_SetParamByWiFiGameData(BATTLE_PARAM * bp, const FIELDSYS_WORK * fsys, int lvLimit)
@@ -478,18 +478,18 @@ void BattleParam_SetParamByWiFiGameData(BATTLE_PARAM * bp, const FIELDSYS_WORK *
 	CONFIG * cfg = SaveData_GetConfig(fsys->savedata);
 	POKEMON_PARAM *pp;
 
-	bp->bg_id = BG_ID_ROOM_A;		//Šî–{”wŒiw’è 
+	bp->bg_id = BG_ID_ROOM_A;		//åŸºæœ¬èƒŒæ™¯æŒ‡å®š 
 	bp->ground_id = GROUND_ID_FLOOR;
 	BattleParam_SetMyStatus(bp, my, POKEPARTY_MINE);
 
-    //ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒZƒbƒg
+    //ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	pp = PokemonParam_AllocWork(HEAPID_WORLD);
-	//‘I‚ñ‚¾è‚¿ƒ|ƒPƒ‚ƒ“‚ğƒZƒbƒg
+	//é¸ã‚“ã æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 
     PokeParty_Init(bp->poke_party[POKEPARTY_MINE],PokeParty_GetPokeCount(temoti));
 	for(i = 0;i < PokeParty_GetPokeCount(temoti);i++){
 		PokeCopyPPtoPP(PokeParty_GetMemberPointer(temoti, i),pp);
-		//ƒŒƒxƒ‹’²®
+		//ãƒ¬ãƒ™ãƒ«èª¿æ•´
 		if((PokeParaGet(pp,ID_PARA_level,NULL) != lvLimit) && (lvLimit != 0)){
 			param = PokeLevelExpGet(PokeParaGet(pp,ID_PARA_monsno,NULL), lvLimit);
 
@@ -503,7 +503,7 @@ void BattleParam_SetParamByWiFiGameData(BATTLE_PARAM * bp, const FIELDSYS_WORK *
 	ZukanWork_Copy(zw, bp->zw);
 	CONFIG_Copy(cfg, bp->config);
 	BattleParam_SetPokeVoice(bp, pv, POKEPARTY_MINE);
-	//‚¸‚©‚ñƒf[ƒ^‚Í‘å‚«‚·‚¬‚é‚Ì‚ÅƒRƒs[‚µ‚È‚¢
+	//ãšã‹ã‚“ãƒ‡ãƒ¼ã‚¿ã¯å¤§ãã™ãã‚‹ã®ã§ã‚³ãƒ”ãƒ¼ã—ãªã„
 	bp->box = SaveData_GetBoxData(fsys->savedata);
 	bp->time_zone = EVTIME_GetTimeZone(fsys);
 	bp->bag_cursor = fsys->bag_cursor;
@@ -516,14 +516,14 @@ void BattleParam_SetParamByWiFiGameData(BATTLE_PARAM * bp, const FIELDSYS_WORK *
 	bp->zone_id = fsys->location->zone_id;
 	bp->savedata = fsys->savedata;
 
-	//ƒgƒŒ[ƒi[ƒf[ƒ^¶¬i©•ª‘¤j
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆè‡ªåˆ†å´ï¼‰
 	BattleParam_TrainerDataMake(bp);
 }
 
 
 //------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^‚ÌƒZƒbƒgiIFIj
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆï¼ˆIFIï¼‰
  *
  * @param   bp		
  * @param   fsys		
@@ -542,10 +542,10 @@ void BattleParam_SetCommBattle(BATTLE_PARAM* bp, const FIELDSYS_WORK* fsys, cons
     const REGULATION* pReg = fsys->regulation;
     int type, i, j;
 	POKEMON_PARAM *pp;
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 
-	bp->bg_id = BG_ID_ROOM_A;			//Šî–{”wŒiw’è
-	bp->ground_id = GROUND_ID_FLOOR;	//Šî–{’n–Êw’è
+	bp->bg_id = BG_ID_ROOM_A;			//åŸºæœ¬èƒŒæ™¯æŒ‡å®š
+	bp->ground_id = GROUND_ID_FLOOR;	//åŸºæœ¬åœ°é¢æŒ‡å®š
 
 	BattleParam_SetMyStatus(bp, my, POKEPARTY_MINE);
 
@@ -559,7 +559,7 @@ void BattleParam_SetCommBattle(BATTLE_PARAM* bp, const FIELDSYS_WORK* fsys, cons
 	    num = 0;
 	    for(j = 0;j < POKEMON_TEMOTI_MAX;j++){
 	        if(setlist[j] != 0){
-	            num++;  // ”‚ğŠm”F
+	            num++;  // æ•°ã‚’ç¢ºèª
 	        }
 	    }
 	    if(num == 0){
@@ -570,7 +570,7 @@ void BattleParam_SetCommBattle(BATTLE_PARAM* bp, const FIELDSYS_WORK* fsys, cons
 	        PokeParty_Init(bp->poke_party[POKEPARTY_MINE], num);
 	        for(j = 0;j < num; j++){
 	            PokeCopyPPtoPP( PokeParty_GetMemberPointer(party, setlist[j]-1), pp );
-	            OS_TPrintf("è‚¿ %d\n",setlist[j] );
+	            OS_TPrintf("æ‰‹æŒã¡ %d\n",setlist[j] );
 	            BattleParam_AddPokemon(bp,pp,POKEPARTY_MINE);
 	        }
 	        sys_FreeMemoryEz(pp);
@@ -585,7 +585,7 @@ void BattleParam_SetCommBattle(BATTLE_PARAM* bp, const FIELDSYS_WORK* fsys, cons
     ZukanWork_Copy(zw, bp->zw);
 	CONFIG_Copy(cfg, bp->config);
 	BattleParam_SetPokeVoice(bp, pv, POKEPARTY_MINE);
-	//ƒ{ƒbƒNƒXƒf[ƒ^‚Í‘å‚«‚·‚¬‚é‚Ì‚ÅƒRƒs[‚µ‚È‚¢
+	//ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã¯å¤§ãã™ãã‚‹ã®ã§ã‚³ãƒ”ãƒ¼ã—ãªã„
 	bp->box = SaveData_GetBoxData(fsys->savedata);
 	bp->time_zone = EVTIME_GetTimeZone(fsys);
 	bp->bag_cursor = fsys->bag_cursor;
@@ -605,16 +605,16 @@ void BattleParam_SetCommBattle(BATTLE_PARAM* bp, const FIELDSYS_WORK* fsys, cons
         bp->trainer_data[CLIENT_NO_MINE2]=bp->trainer_data[CLIENT_NO_MINE];
     }
     else{
-        //ƒgƒŒ[ƒi[ƒf[ƒ^¶¬i©•ª‘¤j
+        //ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆè‡ªåˆ†å´ï¼‰
         BattleParam_TrainerDataMake(bp);
     }
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^‚ÌƒZƒbƒg è‚¿ƒ|ƒPƒ‚ƒ“”z—ñ“n‚µ
- * @param	bp		í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³é…åˆ—æ¸¡ã—
+ * @param	bp		æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void BattleParam_SetTemotiListParamGameData(BATTLE_PARAM* bp, const FIELDSYS_WORK* fsys, const u8* temotiList)
@@ -624,9 +624,9 @@ void BattleParam_SetTemotiListParamGameData(BATTLE_PARAM* bp, const FIELDSYS_WOR
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^‚ğƒQ[ƒ€ƒf[ƒ^‚É”½‰f
- * @param	bp		í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
+ * @param	bp		æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void BattleParam_UpdateGameData(const BATTLE_PARAM * bp, FIELDSYS_WORK * fsys)
@@ -641,18 +641,18 @@ void BattleParam_UpdateGameData(const BATTLE_PARAM * bp, FIELDSYS_WORK * fsys)
 	PokeParty_Copy(bp->poke_party[POKEPARTY_MINE], temoti);
 	MyItem_Copy(bp->my_item, item);
 	ZukanWork_Copy(bp->zw, zw);
-	//ƒTƒtƒ@ƒŠƒ{[ƒ‹ƒJƒEƒ“ƒg”½‰f
+	//ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ãƒˆåæ˜ 
 	*ball_count = bp->safari_ball;
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬ƒpƒ‰ƒ[ƒ^‚ğƒQ[ƒ€ƒf[ƒ^‚É”½‰fi‰¼‘z‘Îí—pj
- * @param	bp		í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã«åæ˜ ï¼ˆä»®æƒ³å¯¾æˆ¦ç”¨ï¼‰
+ * @param	bp		æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒoƒgƒ‹ƒ^ƒ[A’ÊM‘Îí‚È‚Çƒ|ƒPƒ‚ƒ“‚ÌŒoŒ±’l‚â‚¨‹à‚Ì‘Œ¸‚ğ”º‚í‚È‚¢ê‡‚Ì
- * ƒAƒbƒvƒf[ƒgˆ—
+ * ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€é€šä¿¡å¯¾æˆ¦ãªã©ãƒã‚±ãƒ¢ãƒ³ã®çµŒé¨“å€¤ã‚„ãŠé‡‘ã®å¢—æ¸›ã‚’ä¼´ã‚ãªã„å ´åˆã®
+ * ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆå‡¦ç†
  */
 //-----------------------------------------------------------------------------
 void BattleParam_UpdateGameDataOfVirtualBattle(const BATTLE_PARAM * bp, FIELDSYS_WORK * fsys)
@@ -666,16 +666,16 @@ void BattleParam_UpdateGameDataOfVirtualBattle(const BATTLE_PARAM * bp, FIELDSYS
 //	PokeParty_Copy(bp->poke_party[POKEPARTY_MINE], temoti);
 //	MyItem_Copy(bp->my_item, item);
 	ZukanWork_Copy(bp->zw, zw);
-	//ª‚¸‚©‚ñ‚¾‚¯ƒAƒbƒvƒf[ƒg
+	//â†‘ãšã‹ã‚“ã ã‘ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 }
 
 //============================================================================================
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬’nŒ`‚ÌIDæ“¾
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	bg_id	í“¬”wŒi‚ÌID
+ * @brief	æˆ¦é—˜åœ°å½¢ã®IDå–å¾—
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bg_id	æˆ¦é—˜èƒŒæ™¯ã®ID
  */
 //-----------------------------------------------------------------------------
 static int GetGroundID(const FIELDSYS_WORK * fsys, int bg_id)
@@ -722,23 +722,23 @@ static int GetGroundID(const FIELDSYS_WORK * fsys, int bg_id)
 	}
 
 	if (MATR_IsWater(matr)) {
-		//ã‹LğŒ‚É“–‚Ä‚Í‚Ü‚ç‚¸A…‚Å‚ ‚ê‚Î…’nŒ`‚Æ‚µ‚Ä•Ô‚·
+		//ä¸Šè¨˜æ¡ä»¶ã«å½“ã¦ã¯ã¾ã‚‰ãšã€æ°´ã§ã‚ã‚Œã°æ°´åœ°å½¢ã¨ã—ã¦è¿”ã™
 		return GROUND_ID_WATER;
 	}
 	if (bg_id < NELEMS(BasicGroundTable)) {
-		//‚Ç‚ÌƒAƒgƒŠƒrƒ…[ƒg‚É‚à“–‚Ä‚Í‚Ü‚ç‚È‚¢ê‡‚Í”wŒi‚²‚Æ‚ÌƒfƒtƒHƒ‹ƒg’nŒ`‚ğ•Ô‚·
+		//ã©ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã«ã‚‚å½“ã¦ã¯ã¾ã‚‰ãªã„å ´åˆã¯èƒŒæ™¯ã”ã¨ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåœ°å½¢ã‚’è¿”ã™
 		return BasicGroundTable[bg_id];
 	}
 	GF_ASSERT(0);
-	//‚ ‚è‚¦‚È‚¢‚Í‚¸‚¾‚ªAŒë“®ì‚ğ”ğ‚¯‚é‚½‚ß‚É’l‚ğ•Ô‚µ‚Ä‚¨‚­
+	//ã‚ã‚Šãˆãªã„ã¯ãšã ãŒã€èª¤å‹•ä½œã‚’é¿ã‘ã‚‹ãŸã‚ã«å€¤ã‚’è¿”ã—ã¦ãŠã
 	return GROUND_ID_ALL;
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬”wŒi•’nŒ`‚ÌƒZƒbƒg
- * @param	bp		í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fsys	ƒQ[ƒ€§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æˆ¦é—˜èƒŒæ™¯ï¼†åœ°å½¢ã®ã‚»ãƒƒãƒˆ
+ * @param	bp		æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fsys	ã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void BattleParam_SetBgGroundID(BATTLE_PARAM * bp, const FIELDSYS_WORK * fsys)
@@ -746,7 +746,7 @@ static void BattleParam_SetBgGroundID(BATTLE_PARAM * bp, const FIELDSYS_WORK * f
 	PLAYER_SAVE_DATA * jikisave = Situation_GetPlayerSaveData(SaveData_GetSituation(fsys->savedata));
 	bp->bg_id = ZoneData_GetBattleBGID(fsys->location->zone_id);
 	if (jikisave->form == HERO_FORM_SWIM) {
-		//©‹@‚ª‚È‚İ‚Ì‚èŒ`‘Ô‚Ì‚Æ‚«Aí“¬”wŒi‚ÍBG_ID_SEAŒÅ’è
+		//è‡ªæ©ŸãŒãªã¿ã®ã‚Šå½¢æ…‹ã®ã¨ãã€æˆ¦é—˜èƒŒæ™¯ã¯BG_ID_SEAå›ºå®š
 		bp->bg_id = BG_ID_SEA;
 	}
 	bp->ground_id = GetGroundID(fsys, bp->bg_id);
@@ -754,10 +754,10 @@ static void BattleParam_SetBgGroundID(BATTLE_PARAM * bp, const FIELDSYS_WORK * f
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚Â‚è‚Ìê‡‚Ìƒpƒ‰ƒ[ƒ^•t‰Á
- * @param	bp		í“¬ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã¤ã‚Šã®å ´åˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»˜åŠ 
+ * @param	bp		æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ’nŒ`ƒZƒbƒg‚ğs‚Á‚Ä‚¢‚é
+ * åœ°å½¢ã‚»ãƒƒãƒˆã‚’è¡Œã£ã¦ã„ã‚‹
  */
 //-----------------------------------------------------------------------------
 void BattleParam_SetFisingParam(BATTLE_PARAM * bp)
@@ -767,10 +767,10 @@ void BattleParam_SetFisingParam(BATTLE_PARAM * bp)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	í“¬Œ‹‰Ê‚ğ’Pƒ‚ÈŸ”s‚É•ÏŠ·
+ * @brief	æˆ¦é—˜çµæœã‚’å˜ç´”ãªå‹æ•—ã«å¤‰æ›
  * @param	result		BATTLE_PARAM::win_lose_flag
- * @retval	TRUE		Ÿ—˜
- * @retval	FALSE		”s–k
+ * @retval	TRUE		å‹åˆ©
+ * @retval	FALSE		æ•—åŒ—
  */
 //-----------------------------------------------------------------------------
 BOOL BattleParam_IsWinResult(u32 result)
@@ -778,52 +778,52 @@ BOOL BattleParam_IsWinResult(u32 result)
 	switch (result) {
 	case FIGHT_LOSE:
 	case FIGHT_DRAW:
-		return FALSE; //•‰‚¯‚½‚Æ‚«‚Ìˆ—
+		return FALSE; //è² ã‘ãŸã¨ãã®å‡¦ç†
 	default:
-		return TRUE;	 //Ÿ‚Á‚½‚Æ‚«‚Ìˆ—
+		return TRUE;	 //å‹ã£ãŸã¨ãã®å‡¦ç†
 	}
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‰B‚µƒ|ƒPƒ‚ƒ“‚Æ‚Ìí“¬Œ‹‰Ê‚ğ•Ô‚·
+ * @brief	éš ã—ãƒã‚±ãƒ¢ãƒ³ã¨ã®æˆ¦é—˜çµæœã‚’è¿”ã™
  * @param	result		BATTLE_PARAM::win_lose_flag
- * @retval	FALSE		•ßŠl¬Œ÷orŸ‚Á‚¿‚á‚Á‚½(Äí•s‰Â)
- * @retval	TRUE		“¦‚°‚½or“¦‚°‚ç‚ê‚½(Äí‰Â”\)
+ * @retval	FALSE		æ•ç²æˆåŠŸorå‹ã£ã¡ã‚ƒã£ãŸ(å†æˆ¦ä¸å¯)
+ * @retval	TRUE		é€ƒã’ãŸoré€ƒã’ã‚‰ã‚ŒãŸ(å†æˆ¦å¯èƒ½)
  */
 //-----------------------------------------------------------------------------
 BOOL BattleParam_IsSeacretPokeRetry(u32 result)
 {
 	switch (result) {
-	case FIGHT_WIN:			//“|‚µ‚¿‚á‚Á‚½
-	case FIGHT_POKE_GET:	//•ß‚Ü‚¦‚½
-		return FALSE;	//Äí•s‰Â
+	case FIGHT_WIN:			//å€’ã—ã¡ã‚ƒã£ãŸ
+	case FIGHT_POKE_GET:	//æ•ã¾ãˆãŸ
+		return FALSE;	//å†æˆ¦ä¸å¯
 	default:
-		return TRUE;	//Äí‰Â
+		return TRUE;	//å†æˆ¦å¯
 	}
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	”z•zƒ|ƒPƒ‚ƒ“‚Æ‚Ìí“¬Œ‹‰Ê‚ğ•Ô‚·
+ * @brief	é…å¸ƒãƒã‚±ãƒ¢ãƒ³ã¨ã®æˆ¦é—˜çµæœã‚’è¿”ã™
  * @param	result		BATTLE_PARAM::win_lose_flag
- * @retval	FALSE		•ßŠl¬Œ÷(Äí•s‰Â)
- * @retval	TRUE		“|‚µ‚½or“¦‚°‚½or“¦‚°‚ç‚ê‚½(Äí‰Â”\)
+ * @retval	FALSE		æ•ç²æˆåŠŸ(å†æˆ¦ä¸å¯)
+ * @retval	TRUE		å€’ã—ãŸoré€ƒã’ãŸoré€ƒã’ã‚‰ã‚ŒãŸ(å†æˆ¦å¯èƒ½)
  */
 //-----------------------------------------------------------------------------
 BOOL BattleParam_IsHaifuPokeRetry(u32 result)
 {
 	switch (result) {
-	case FIGHT_POKE_GET:	//•ß‚Ü‚¦‚½
-		return FALSE;	//Äí•s‰Â
+	case FIGHT_POKE_GET:	//æ•ã¾ãˆãŸ
+		return FALSE;	//å†æˆ¦ä¸å¯
 	default:
-		return TRUE;	//Äí‰Â
+		return TRUE;	//å†æˆ¦å¯
 	}
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒf[ƒ^¶¬i©•ª‘¤j
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆè‡ªåˆ†å´ï¼‰
  * @param	bp			BATTLE_PARAM
  */
 //-----------------------------------------------------------------------------
@@ -837,15 +837,15 @@ void	BattleParam_TrainerDataMake(BATTLE_PARAM *bp)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒf[ƒ^¶¬i“G‘¤j
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆæ•µå´ï¼‰
  * @param	bp			BATTLE_PARAM
  *
- * ƒfƒoƒbƒN—p‚Å‚·
+ * ãƒ‡ãƒãƒƒã‚¯ç”¨ã§ã™
  */
 //-----------------------------------------------------------------------------
 void	BattleParam_EnemyTrainerDataMake(BATTLE_PARAM *bp)
 {
-	//‰¼“ü‚ê
+	//ä»®å…¥ã‚Œ
 	bp->trainer_data[CLIENT_NO_ENEMY].tr_type=MyStatus_GetMySex(bp->my_status[CLIENT_NO_MINE]);
 	PM_strcpy(&bp->trainer_data[CLIENT_NO_ENEMY].name[0],MyStatus_GetMyName(bp->my_status[CLIENT_NO_MINE]));
 

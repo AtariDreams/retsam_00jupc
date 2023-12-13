@@ -1,6 +1,6 @@
 /**
  *	@file	poruto_local.h
- *	@brief	ポルトセーブデータブロック 構造体定義
+ *	@brief	繝昴Ν繝医そ繝ｼ繝悶ョ繝ｼ繧ｿ繝悶Ο繝�繧ｯ 讒矩菴灘ｮ夂ｾｩ
  *	@author	Miyuki Iwasawa
  *	@date	06.3.10
  */
@@ -10,7 +10,7 @@
 
 #include "savedata/poruto.h"
 
-///ポルトセーブデータブロック定義
+///繝昴Ν繝医そ繝ｼ繝悶ョ繝ｼ繧ｿ繝悶Ο繝�繧ｯ螳夂ｾｩ
 typedef struct _PORUTO_BLOCK{
  PORUTO_DATA	poruto[PORUTO_STOCK_MAX];
 }_PORUTO_BLOCK;

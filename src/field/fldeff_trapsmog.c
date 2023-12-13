@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_trapsmog.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@‰Œ
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ç…™
  * @author	k.ohno
  * @data	06.05.05
  *
@@ -31,12 +31,12 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_TRAPSMOG_PTR’è‹`
+///	FE_TRAPSMOG_PTRå®šç¾©
 //--------------------------------------------------------------
 typedef struct _TAG_FE_TRAPSMOG * FE_TRAPSMOG_PTR;
 
 //--------------------------------------------------------------
-///	FE_TRAPSMOG\‘¢‘Ì
+///	FE_TRAPSMOGæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_TRAPSMOG
 {
@@ -45,10 +45,10 @@ typedef struct _TAG_FE_TRAPSMOG
 	FRO_ANM m_ranm;
 }FE_TRAPSMOG;
 
-#define FE_TRAPSMOG_SIZE (sizeof(FE_TRAPSMOG)) ///<FE_TRAPSMOGƒTƒCƒY
+#define FE_TRAPSMOG_SIZE (sizeof(FE_TRAPSMOG)) ///<FE_TRAPSMOGã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	TRAPSMOG_ADD_H\‘¢‘Ì
+///	TRAPSMOG_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -56,22 +56,22 @@ typedef struct
 	FE_TRAPSMOG_PTR trapsmog;		///<FE_TRAPSMOG_PTR
 }TRAPSMOG_ADD_H;
 
-#define TRAPSMOG_ADD_H_SIZE (sizeof(TRAPSMOG_ADD_H)) ///<TRAPSMOG_ADD_HƒTƒCƒY
+#define TRAPSMOG_ADD_H_SIZE (sizeof(TRAPSMOG_ADD_H)) ///<TRAPSMOG_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	TRAPSMOG_WORK\‘¢‘Ì
+///	TRAPSMOG_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	FRO_ANM ranm;
 	FRO_OBJ robj;
-	TRAPSMOG_ADD_H head;						///<’Ç‰Á‚ÌTRAPSMOG_ADD_H
+	TRAPSMOG_ADD_H head;						///<è¿½åŠ æ™‚ã®TRAPSMOG_ADD_H
 }TRAPSMOG_WORK;
 
-#define TRAPSMOG_WORK_SIZE (sizeof(TRAPSMOG_WORK))	///<TRAPSMOG_WORKƒTƒCƒY
+#define TRAPSMOG_WORK_SIZE (sizeof(TRAPSMOG_WORK))	///<TRAPSMOG_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Trapsmog_GraphicInit( FE_TRAPSMOG_PTR trapsmog );
 static void Trapsmog_GraphicDelete( FE_TRAPSMOG_PTR trapsmog );
@@ -79,11 +79,11 @@ static void Trapsmog_GraphicDelete( FE_TRAPSMOG_PTR trapsmog );
 static const EOA_H_NPP DATA_EoaH_Trapsmog;
 
 //==============================================================================
-//	‰Œ@ƒVƒXƒeƒ€
+//	ç…™ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰Œ‰Šú‰»
+ * ç…™åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_TRAPSMOG_PTR	FE_TRAPSMOG_PTR
  */
@@ -101,7 +101,7 @@ void * FE_Trapsmog_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ‰Œíœ
+ * ç…™å‰Šé™¤
  * @param	trapsmog		FE_TRAPSMOG_PTR
  * @retval	nothing
  */
@@ -114,15 +114,15 @@ void FE_Trapsmog_Delete( void *work )
 }
 
 //==============================================================================
-//	‰Œ	ƒp[ƒc
+//	ç…™	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 
 //==============================================================================
-//	‰Œ@ƒOƒ‰ƒtƒBƒbƒN
+//	ç…™ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰Œ ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ç…™ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	trapsmog	FE_TRAPSMOG_PTR
  * @retval	nothing
  */
@@ -131,14 +131,14 @@ static void Trapsmog_GraphicInit( FE_TRAPSMOG_PTR trapsmog )
 {
 	FE_FROMdl_ResSetArcLoadTexTrans(
 		trapsmog->fes, &trapsmog->m_rmdl, 0, NARC_fldeff_ug_ef_smoke_nsbmd, ALLOC_FR );
-	//ƒƒCƒ“ƒŠƒ\[ƒX‚Ì‚İƒ[ƒh
+	//ãƒ¡ã‚¤ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã®ã¿ãƒ­ãƒ¼ãƒ‰
 	FE_FROAnm_AnmResSetArcLoad(
 		trapsmog->fes, &trapsmog->m_ranm, 0, NARC_fldeff_ug_ef_smoke_nsbtp, ALLOC_FR );
 }
 
 //--------------------------------------------------------------
 /**
- * ‰Œ ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ç…™ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	trapsmog	FE_TRAPSMOG_PTR
  * @retval	nothing
  */
@@ -150,14 +150,14 @@ static void Trapsmog_GraphicDelete( FE_TRAPSMOG_PTR trapsmog )
 }
 
 //==============================================================================
-//	‰ŒEOA
+//	ç…™EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰Œ’Ç‰Á
- * @param	fsys	ƒtƒB[ƒ‹ƒh‚É“\‚è•t‚¯ ©“®I—¹EFFECT
- * @param	gx		•\¦‚·‚éƒOƒŠƒbƒhXÀ•W
- * @param	gz		•\¦‚·‚éƒOƒŠƒbƒhZÀ•W
+ * ç…™è¿½åŠ 
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«è²¼ã‚Šä»˜ã‘ è‡ªå‹•çµ‚äº†EFFECT
+ * @param	gx		è¡¨ç¤ºã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	gz		è¡¨ç¤ºã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
  * @retval	none
  */
 //--------------------------------------------------------------
@@ -181,10 +181,10 @@ void FE_FldOBJTrapsmogSet(  FIELDSYS_WORK *fsys, int gx, int gy, int gz )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰Œ@‰Šú‰»
+ * EOA ç…™ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaTrapsmog_Init( EOA_PTR eoa, void *wk )
@@ -202,7 +202,7 @@ static int EoaTrapsmog_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰Œ@íœ
+ * EOA ç…™ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -216,7 +216,7 @@ static void EoaTrapsmog_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰Œ@“®ì
+ * EOA ç…™ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -236,7 +236,7 @@ static void EoaTrapsmog_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰Œ@•`‰æ
+ * EOA ç…™ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -249,7 +249,7 @@ static void EoaTrapsmog_Draw( EOA_PTR eoa, void *wk )
     {
 		VecFx32 vec,scale = { FX32_ONE, FX32_ONE, FX32_ONE };
 		MtxFx33 rot	  = { FX32_ONE, 0,0,0, FX32_ONE, 0,0,0,FX32_ONE};
-        // ƒJƒƒ‰‹ts—ñ‚ğ“ü‚ê‚é
+        // ã‚«ãƒ¡ãƒ©é€†è¡Œåˆ—ã‚’å…¥ã‚Œã‚‹
         const MtxFx43* pCamInv = NNS_G3dGlbGetInvCameraMtx();
         MtxFx33 Mat33;
 		
@@ -266,7 +266,7 @@ static void EoaTrapsmog_Draw( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	‰ŒEOA_H
+///	ç…™EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Trapsmog =
 {

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FS_FindArchive</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FS_FindArchive</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -23,29 +23,29 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>name</STRONG></EM></TD>
-      <TD width="87%">�������閼�O���i�[����������ւ̃|�C���^</TD>
+      <TD width="87%">検索する名前を格納した文字列へのポインタ</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>name_len</STRONG></EM></TD>
-      <TD width="87%">name�̕�����</TD>
+      <TD width="87%">nameの文字列長</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�w��̖��O�œo�^���ꂽ�A�[�J�C�u�����łɂ���ꍇ�͂��̃|�C���^���A�����łȂ��Ȃ� NULL ��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>指定の名前で登録されたアーカイブがすでにある場合はそのポインタを、そうでないなら NULL を返します。</p>
 
-<H2>����</H2>
-<P>�w�肳�ꂽ���O�̃A�[�J�C�u���t�@�C���V�X�e���ɓo�^����Ă��邩�������܂��B<BR>
-�������݂���΁A���̃A�[�J�C�u�̃|�C���^��Ԃ��܂��B<BR>
-�����ŕԂ����|�C���^�́A�o�^�݂̂���Ă��ă��[�h����Ă��Ȃ��A�[�J�C�u���܂݂܂��B<BR>
+<H2>説明</H2>
+<P>指定された名前のアーカイブがファイルシステムに登録されているか検索します。<BR>
+もし存在すれば、そのアーカイブのポインタを返します。<BR>
+ここで返されるポインタは、登録のみされていてロードされていないアーカイブも含みます。<BR>
 <BR>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../fs_archive_type.html">FSArchive</A>
 <A href="../fs_archive_name_len_max_const.html">FS_ARCHIVE_NAME_LEN_MAX</A>
@@ -53,7 +53,7 @@
 <A href="FS_RegisterArchiveName.html">FS_RegisterArchiveName</A> 
 <A href="FS_LoadArchive.html">FS_LoadArchive</A> 
 <BR></P>
-<H2>����</H2>
-<P>2004/07/12 ����</P>
+<H2>履歴</H2>
+<P>2004/07/12 初版</P>
 </body>
 </html>

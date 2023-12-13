@@ -22,15 +22,15 @@
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndInitList
 
-  Description:  ���X�g�\���̂����������܂��B
+  Description:  リスト構造体を初期化します。
 
-  Arguments:    list:   ���X�g�\���̂ւ̃|�C���^�B
-                offset: ���X�g�Ɍq�������\���̂̒��ɑ��݂���ANNSFndLink�^��
-                        �����o�ϐ��̍\���̓��ł̃I�t�Z�b�g���w�肵�܂��B
-                        stddef.h�Œ�`����Ă���offsetof�}�N�����g�p����ƁA
-                        �֗��ł��B
+  Arguments:    list:   リスト構造体へのポインタ。
+                offset: リストに繋げたい構造体の中に存在する、NNSFndLink型の
+                        メンバ変数の構造体内でのオフセットを指定します。
+                        stddef.hで定義されているoffsetofマクロを使用すると、
+                        便利です。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_FndInitList(NNSFndList* list, u16 offset)
@@ -46,12 +46,12 @@ NNS_FndInitList(NNSFndList* list, u16 offset)
 /*---------------------------------------------------------------------------*
   Name:         SetFirstObject                                      [static]
 
-  Description:  �ŏ��̃I�u�W�F�N�g�����X�g�ɉ����܂��B
+  Description:  最初のオブジェクトをリストに加えます。
 
-  Arguments:    list:   ���X�g�\���̂ւ̃|�C���^�B
-                object: ���X�g�Ɍq�������I�u�W�F�N�g�ւ̃|�C���^�B
+  Arguments:    list:   リスト構造体へのポインタ。
+                object: リストに繋げたいオブジェクトへのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 static void
 SetFirstObject(NNSFndList* list, void* object)
@@ -73,12 +73,12 @@ SetFirstObject(NNSFndList* list, void* object)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndAppendListObject
 
-  Description:  �I�u�W�F�N�g�����X�g�̍Ō�ɒǉ����܂��B
+  Description:  オブジェクトをリストの最後に追加します。
 
-  Arguments:    list:   ���X�g�\���̂ւ̃|�C���^�B
-                object: ���X�g�Ɍq�������I�u�W�F�N�g�ւ̃|�C���^�B
+  Arguments:    list:   リスト構造体へのポインタ。
+                object: リストに繋げたいオブジェクトへのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_FndAppendListObject(NNSFndList* list, void* object)
@@ -88,7 +88,7 @@ NNS_FndAppendListObject(NNSFndList* list, void* object)
 
     if (list->headObject == NULL)
     {
-        // ���X�g����̎��B
+        // リストが空の時。
         SetFirstObject(list, object);
     }
     else
@@ -107,12 +107,12 @@ NNS_FndAppendListObject(NNSFndList* list, void* object)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndPrependListObject
 
-  Description:  �I�u�W�F�N�g�����X�g�̐擪�ɑ}�����܂��B
+  Description:  オブジェクトをリストの先頭に挿入します。
 
-  Arguments:    list:   ���X�g�\���̂ւ̃|�C���^�B
-                object: ���X�g�Ɍq�������I�u�W�F�N�g�ւ̃|�C���^�B
+  Arguments:    list:   リスト構造体へのポインタ。
+                object: リストに繋げたいオブジェクトへのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_FndPrependListObject(NNSFndList* list, void* object)
@@ -122,7 +122,7 @@ NNS_FndPrependListObject(NNSFndList* list, void* object)
 
     if (list->headObject == NULL)
     {
-        // ���X�g����̎��B
+        // リストが空の時。
         SetFirstObject(list, object);
     }
     else
@@ -141,16 +141,16 @@ NNS_FndPrependListObject(NNSFndList* list, void* object)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndInsertListObject
 
-  Description:  �I�u�W�F�N�g���w�肳�ꂽ�ʒu�ɑ}�����܂��B�I�u�W�F�N�g�́A
-                target�Ŏw�肳�ꂽ�I�u�W�F�N�g�̑O�ɑ}������܂��B�}���悪�w
-                �肳��Ă��Ȃ��ꍇ�itarget��NULL�̏ꍇ�j�A�I�u�W�F�N�g�̓��X
-                �g�̍Ō�ɒǉ�����܂��B
+  Description:  オブジェクトを指定された位置に挿入します。オブジェクトは、
+                targetで指定されたオブジェクトの前に挿入されます。挿入先が指
+                定されていない場合（targetがNULLの場合）、オブジェクトはリス
+                トの最後に追加されます。
 
-  Arguments:    list:   ���X�g�\���̂ւ̃|�C���^�B
-                target: �}���������ʒu�ɂ���I�u�W�F�N�g�ւ̃|�C���^�B
-                object: ���X�g�Ɍq�������I�u�W�F�N�g�ւ̃|�C���^�B
+  Arguments:    list:   リスト構造体へのポインタ。
+                target: 挿入したい位置にあるオブジェクトへのポインタ。
+                object: リストに繋げたいオブジェクトへのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_FndInsertListObject(NNSFndList* list, void* target, void* object)
@@ -160,12 +160,12 @@ NNS_FndInsertListObject(NNSFndList* list, void* target, void* object)
 
     if (target == NULL)
     {
-        // target���w�肳��Ă��Ȃ��ꍇ�́ANNS_FndAppendListObject()�Ɠ����B
+        // targetが指定されていない場合は、NNS_FndAppendListObject()と同じ。
         NNS_FndAppendListObject(list, object);
     }
     else if (target == list->headObject)
     {
-        // target�����X�g�̐擪�ł���ꍇ��NNS_FndPrependListObject()�Ɠ����B
+        // targetがリストの先頭である場合はNNS_FndPrependListObject()と同じ。
         NNS_FndPrependListObject(list, object);
     }
     else
@@ -185,12 +185,12 @@ NNS_FndInsertListObject(NNSFndList* list, void* target, void* object)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndRemoveListObject
 
-  Description:  �I�u�W�F�N�g�����X�g����폜���܂��B
+  Description:  オブジェクトをリストから削除します。
 
-  Arguments:    list:   ���X�g�\���̂ւ̃|�C���^�B
-                object: ���X�g����폜�������I�u�W�F�N�g�ւ̃|�C���^�B
+  Arguments:    list:   リスト構造体へのポインタ。
+                object: リストから削除したいオブジェクトへのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void
 NNS_FndRemoveListObject(NNSFndList* list, void* object)
@@ -226,15 +226,15 @@ NNS_FndRemoveListObject(NNSFndList* list, void* object)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetNextListObject
 
-  Description:  object�Ŏw�肳�ꂽ�I�u�W�F�N�g�̎��Ɍq����Ă���I�u�W�F�N�g
-                ��Ԃ��܂��Bobject��NULL���w�肳��Ă����ꍇ�ɂ́A���X�g�̐�
-                ���Ɍq����Ă���I�u�W�F�N�g��Ԃ��܂��B
+  Description:  objectで指定されたオブジェクトの次に繋がれているオブジェクト
+                を返します。objectにNULLが指定されていた場合には、リストの先
+                頭に繋がれているオブジェクトを返します。
 
-  Arguments:    list:   ���X�g�\���̂ւ̃|�C���^�B
-                object: ���X�g���̃I�u�W�F�N�g�ւ̃|�C���^�B
+  Arguments:    list:   リスト構造体へのポインタ。
+                object: リスト中のオブジェクトへのポインタ。
 
-  Returns:      �w�肳�ꂽ�I�u�W�F�N�g�̎��̃I�u�W�F�N�g�ւ̃|�C���^��Ԃ���
-                ���B�����A���̃I�u�W�F�N�g��������΁ANULL��Ԃ��܂��B
+  Returns:      指定されたオブジェクトの次のオブジェクトへのポインタを返しま
+                す。もし、次のオブジェクトが無ければ、NULLを返します。
  *---------------------------------------------------------------------------*/
 void*
 NNS_FndGetNextListObject(NNSFndList* list, void* object)
@@ -251,15 +251,15 @@ NNS_FndGetNextListObject(NNSFndList* list, void* object)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetPrevListObject
 
-  Description:  object�Ŏw�肳�ꂽ�I�u�W�F�N�g�̑O�Ɍq����Ă���I�u�W�F�N�g
-                ��Ԃ��܂��Bobject��NULL���w�肳��Ă����ꍇ�ɂ́A���X�g�̌�
-                ���Ɍq����Ă���I�u�W�F�N�g��Ԃ��܂��B
+  Description:  objectで指定されたオブジェクトの前に繋がれているオブジェクト
+                を返します。objectにNULLが指定されていた場合には、リストの後
+                尾に繋がれているオブジェクトを返します。
 
-  Arguments:    list:   ���X�g�\���̂ւ̃|�C���^�B
-                object: ���X�g���̃I�u�W�F�N�g�ւ̃|�C���^�B
+  Arguments:    list:   リスト構造体へのポインタ。
+                object: リスト中のオブジェクトへのポインタ。
 
-  Returns:      �w�肳�ꂽ�I�u�W�F�N�g�̑O�̃I�u�W�F�N�g�ւ̃|�C���^��Ԃ���
-                ���B�����A�O�̃I�u�W�F�N�g��������΁ANULL��Ԃ��܂��B
+  Returns:      指定されたオブジェクトの前のオブジェクトへのポインタを返しま
+                す。もし、前のオブジェクトが無ければ、NULLを返します。
  *---------------------------------------------------------------------------*/
 void*
 NNS_FndGetPrevListObject(NNSFndList* list, void* object)
@@ -276,14 +276,14 @@ NNS_FndGetPrevListObject(NNSFndList* list, void* object)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetNthListObject
 
-  Description:  ���X�g�̂m�ԖڂɌq����Ă���I�u�W�F�N�g�ւ̃|�C���^��Ԃ���
-                ���B�擪���珇�ԂɃ��X�g�����ǂ�ׁA���X�g�̌㕔�Ɍq����Ă�
-                �I�u�W�F�N�g���A���Ԃ�������܂��B
+  Description:  リストのＮ番目に繋がれているオブジェクトへのポインタを返しま
+                す。先頭から順番にリストをたどる為、リストの後部に繋がれてい
+                オブジェクト程、時間がかかります。
 
-  Arguments:    index:  �I�u�W�F�N�g�̃C���f�b�N�X�B
+  Arguments:    index:  オブジェクトのインデックス。
 
-  Returns:      �I�u�W�F�N�g�ւ̃|�C���^��Ԃ��܂��B�����A�w�肳�ꂽ�C���f�b
-                �N�X�̃I�u�W�F�N�g�����������ꍇ�ɂ́ANULL���Ԃ�܂��B
+  Returns:      オブジェクトへのポインタを返します。もし、指定されたインデッ
+                クスのオブジェクトが無かった場合には、NULLが返ります。
  *---------------------------------------------------------------------------*/
 void*
 NNS_FndGetNthListObject(NNSFndList* list, u16 index)
@@ -307,13 +307,13 @@ NNS_FndGetNthListObject(NNSFndList* list, u16 index)
 /*---------------------------------------------------------------------------*
   Name:         NNS_UTCountListNode
 
-  Description:  ���X�g�Ɍq����Ă���I�u�W�F�N�g�̐����J�E���g���܂��B�擪��
-                �珇�ԂɃ��X�g���J�E���g����ׁA���X�g�������Ǝ��Ԃ��������
-                ���B
+  Description:  リストに繋がれているオブジェクトの数をカウントします。先頭か
+                ら順番にリストをカウントする為、リストが長いと時間がかかりま
+                す。
 
-  Arguments:    list:   ���X�g�\���̂ւ̃|�C���^�B
+  Arguments:    list:   リスト構造体へのポインタ。
  
-  Returns:      ���X�g�Ɍq����Ă���I�u�W�F�N�g�̐��B
+  Returns:      リストに繋がれているオブジェクトの数。
  *---------------------------------------------------------------------------*/
 #if 0
 int

@@ -29,17 +29,17 @@ extern "C" {
 #define NNS_G2D_BINFILE_EXT_ENTITY          "NENR"
 
 //
-// ƒo[ƒWƒ‡ƒ“î•ñ
-// Ver         •ÏX“_
+// ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±
+// Ver         å¤‰æ›´ç‚¹
 // -------------------------------------
-// 1.0         ‰”Å
+// 1.0         åˆç‰ˆ
 //
 #define NNS_G2D_NENR_MAJOR_VER              1
 #define NNS_G2D_NENR_MINOR_VER              0
 
 
 //------------------------------------------------------------------------------
-// Entity ‚Ì í—Ş
+// Entity ã® ç¨®é¡
 typedef enum NNSG2dEntityType
 {
     NNS_G2D_ENTITYTYPE_INVALID      = 0,
@@ -50,40 +50,40 @@ typedef enum NNSG2dEntityType
 }NNSG2dEntityType;
 
 //------------------------------------------------------------------------------
-// Entity ‚ª‚ÂƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^”z—ñ
+// Entity ãŒæŒã¤ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿é…åˆ—
 typedef struct NNSG2dEntityAnimData
 {
     u16         numAnimSequence;
     u16         pad16;
-    u16*        pAnimSequenceIdxArray;      // NNSG2dAnimSequence”Ô†”z—ñ
+    u16*        pAnimSequenceIdxArray;      // NNSG2dAnimSequenceç•ªå·é…åˆ—
     
 }NNSG2dEntityAnimData;
 
 //------------------------------------------------------------------------------
-// Entity İ’èî•ñ
+// Entity è¨­å®šæƒ…å ±
 typedef struct NNSG2dEntityData
 {
     
-    NNSG2dEntityAnimData          animData;      // Entity ‚ª‚ÂƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^”z—ñ
-    NNSG2dEntityType              type;          // •`‰æÀ‘Ì‚Ìí—Ş
+    NNSG2dEntityAnimData          animData;      // Entity ãŒæŒã¤ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿é…åˆ—
+    NNSG2dEntityType              type;          // æç”»å®Ÿä½“ã®ç¨®é¡
     
-    // const NNSG2dAnimBankData*     pAnimDataBank; // ŠÖ˜A‚·‚éAnimBank (ƒ‰ƒ“ƒ^ƒCƒ€‚É‚ÄUnpack‚Éİ’è‚³‚ê‚Ü‚·)
+    // const NNSG2dAnimBankData*     pAnimDataBank; // é–¢é€£ã™ã‚‹AnimBank (ãƒ©ãƒ³ã‚¿ã‚¤ãƒ ã«ã¦Unpackæ™‚ã«è¨­å®šã•ã‚Œã¾ã™)
     // 
-    // ‚±‚Ìî•ñ‚ÍÀ‘Ì‘¤‚Å•Û‚·‚é‚±‚Æ‚Æ‚·‚é
+    // ã“ã®æƒ…å ±ã¯å®Ÿä½“å´ã§ä¿æŒã™ã‚‹ã“ã¨ã¨ã™ã‚‹
     // 
-    // ‚±‚Ì•ÏX‚ÍANNSG2dEntityData ‚É ‚Æ‚Á‚Ä‚Í Å—Ç‚Ì‘I‘ğ‚Å‚Í‚È‚¢B
-    // i NNSG2dEntityData ‚Ì”‚Í­‚È‚­A‚»‚ê‚ğ‹¤—L‚·‚éÀ‘Ì‚Ì”‚Í‘½‚¢ j
-    // NNSG2dMultiCellDataBank ‚Æ‚Ì“ˆêŠ´‚ğo‚·‚½‚ß‚Ì•ÏX‚Å‚ ‚éB
-    // ‚±‚±‚ÅA”­¶‚·‚éƒRƒXƒg‚É‘Î‚µ‚Ä‚Í‚ ‚Ü‚èƒi[ƒoƒX‚É‚Í‚È‚ç‚È‚¢‚Æ‚¢‚¤ƒXƒ^ƒ“ƒXB
+    // ã“ã®å¤‰æ›´ã¯ã€NNSG2dEntityData ã« ã¨ã£ã¦ã¯ æœ€è‰¯ã®é¸æŠã§ã¯ãªã„ã€‚
+    // ï¼ˆ NNSG2dEntityData ã®æ•°ã¯å°‘ãªãã€ãã‚Œã‚’å…±æœ‰ã™ã‚‹å®Ÿä½“ã®æ•°ã¯å¤šã„ ï¼‰
+    // NNSG2dMultiCellDataBank ã¨ã®çµ±ä¸€æ„Ÿã‚’å‡ºã™ãŸã‚ã®å¤‰æ›´ã§ã‚ã‚‹ã€‚
+    // ã“ã“ã§ã€ç™ºç”Ÿã™ã‚‹ã‚³ã‚¹ãƒˆã«å¯¾ã—ã¦ã¯ã‚ã¾ã‚ŠãƒŠãƒ¼ãƒã‚¹ã«ã¯ãªã‚‰ãªã„ã¨ã„ã†ã‚¹ã‚¿ãƒ³ã‚¹ã€‚
     // 
-    // NNSG2dMultiCellDataBank éŒ¾ ‚Ì ƒRƒƒ“ƒg ‚ğ QÆ‚³‚ê‚½‚¢B
+    // NNSG2dMultiCellDataBank å®£è¨€ ã® ã‚³ãƒ¡ãƒ³ãƒˆ ã‚’ å‚ç…§ã•ã‚ŒãŸã„ã€‚
     // 
     
 }NNSG2dEntityData;
 
 
 //------------------------------------------------------------------------------
-// Entity İ’èî•ñƒoƒ“ƒN
+// Entity è¨­å®šæƒ…å ±ãƒãƒ³ã‚¯
 typedef struct NNSG2dEntityDataBank
 {
     u16                     numEntityDatas;

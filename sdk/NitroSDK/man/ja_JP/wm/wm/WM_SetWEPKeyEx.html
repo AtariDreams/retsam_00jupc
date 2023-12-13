@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>WM_SetWEPKeyEx</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">WM_SetWEPKeyEx</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
   <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
 
@@ -25,68 +25,68 @@
 </CODE></PRE></dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <table border="1" width="100%">
   <tbody>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
-      <TD width="800">�񓯊������������������ɌĂяo�����R�[���o�b�N�֐����w�肵�܂��B<br>���̃R�[���o�b�N�͊��荞�݃n���h��������Ăяo����܂��B</TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
     </TR>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">wepmode</FONT></STRONG></EM></TD>
-      <TD width="800">�Í��ʐM�@�\�̓��샂�[�h���w�肵�܂��B�ȉ��� 0 �` 3 �̃��[�h����w�肵�ĉ������B<BR>
-      <UL><LI>0 �F �Í��@�\�Ȃ�<BR>
-          <LI>1 �F RC4(  40 �r�b�g )�Í����[�h<BR>
-          <LI>2 �F RC4( 104 �r�b�g )�Í����[�h<BR>
-          <LI>3 �F RC4( 128 �r�b�g )�Í����[�h
+      <TD width="800">暗号通信機能の動作モードを指定します。以下の 0 〜 3 のモードから指定して下さい。<BR>
+      <UL><LI>0 ： 暗号機能なし<BR>
+          <LI>1 ： RC4(  40 ビット )暗号モード<BR>
+          <LI>2 ： RC4( 104 ビット )暗号モード<BR>
+          <LI>3 ： RC4( 128 ビット )暗号モード
       </UL></TD>
     </TR>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">wepkeyid</FONT></STRONG></EM></TD>
-      <TD width="800">4��WEP�L�[�̓��ǂ̃L�[��p���邩�� 0 �` 3 �̒l�Ŏw�肵�ĉ������B</TD>
+      <TD width="800">4つのWEPキーの内どのキーを用いるかを 0 〜 3 の値で指定して下さい。</TD>
     </TR>
     <TR>
       <TD width="200"><EM><STRONG><FONT face="Courier New">wepkey</FONT></STRONG></EM></TD>
-      <TD width="800">�Í��L�[�f�[�^( 80�o�C�g )�ւ̃|�C���^���w�肵�܂��B<BR>
-      �L�[�f�[�^��4�̃f�[�^�ō\������A���ꂼ��20�o�C�g�ł��B�e20�o�C�g�̂����A
-      <UL><LI>40 �r�b�g���[�h�ł�  5 �o�C�g<BR>
-          <LI>104 �r�b�g���[�h�ł� 13 �o�C�g<BR>
-          <LI>128 �r�b�g���[�h�ł� 16 �o�C�g
+      <TD width="800">暗号キーデータ( 80バイト )へのポインタを指定します。<BR>
+      キーデータは4つのデータで構成され、それぞれ20バイトです。各20バイトのうち、
+      <UL><LI>40 ビットモードでは  5 バイト<BR>
+          <LI>104 ビットモードでは 13 バイト<BR>
+          <LI>128 ビットモードでは 16 バイト
       </UL>
-      �̃f�[�^���g�p����܂��B<BR>
-      �܂��A���̃f�[�^�̎��̂͋����I�ɃL���b�V���X�g�A�����_�ɒ��ӂ��ĉ������B</TD>
+      のデータが使用されます。<BR>
+      また、このデータの実体は強制的にキャッシュストアされる点に注意して下さい。</TD>
     </TR>
   </tbody>
 </table>
 
-<h2>�Ԃ�l</h2>
-<p><A href="WMErrCode.html">WMErrCode�񋓌^</A>�̏������ʂ�Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
 
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-�Í��@�\�A�Í��L�[��ݒ肵�܂��B<A href="WM_SetWEPKey.html">WM_SetWEPKey</A>���ڍׂɐݒ���s�����Ƃ��ł��܂��B
-WM��<A href="wm_state_diagram.html">IDLE�X�e�[�g</A>�̏ꍇ�Ɏ��s�\�ł��B
-�֐��̖߂�l��WM_ERRCODE_OPERATING�ł������ꍇ�A�Í��@�\�ݒ菈��������������ɃR�[���o�b�N���������܂��B<BR>
+暗号機能、暗号キーを設定します。<A href="WM_SetWEPKey.html">WM_SetWEPKey</A>より詳細に設定を行うことができます。
+WMが<A href="wm_state_diagram.html">IDLEステート</A>の場合に実行可能です。
+関数の戻り値がWM_ERRCODE_OPERATINGであった場合、暗号機能設定処理が完了した後にコールバックが発生します。<BR>
 <BR>
-WEP�L�[�ɂ��Í����́A�ڑ����̔F�؏����A�y�уC���t���X�g���N�`�����[�h�ł̃f�[�^����M�ɓK�p����܂��B
-<EM><STRONG><FONT face="Courier New">wepmode</FONT></STRONG></EM>�͒ʐM����Ɠ����ݒ�ɂ��Ă����K�v������܂��B
-<EM><STRONG><FONT face="Courier New">wepkeyid</FONT></STRONG></EM>�̓f�[�^�𑗐M����ۂ̈Í����f�[�^��̑I���ɗp�����܂��B
-�t�Ƀf�[�^��M���̕������ɂ͑��M�����w�肵��ID��WEP�L�[���p�����܂��B
-���ʌ��F�؂ɂ����Ă͎q�@���Í������A�e�@�����������邱�ƂŃL�[�̈�v���m�F����邽�߁A�e�@�ł�ID�̎w��͎����Ӗ��������܂���B
-�܂��A�C���t���X�g���N�`�����[�h�ł̎�M�f�[�^�������ɂ́A�A�N�Z�X�|�C���g���w�肷��ID��WEP�L�[����v����K�v������܂��B<BR>
-���֐��ɂ����WEP�Í��ݒ肪�s��ꂽ�e�@�Ɏq�@�Ƃ��Đڑ�����ۂɂ́A���֐��ɂ��WEP�ݒ���s�������
-<A href="WM_StartConnectEx.html">WM_StartConnectEx�֐�</A>��<EM><STRONG><FONT face="Courier New">authMode</FONT></STRONG></EM>�ɋ��ʌ��F��( WM_AUTHMODE_SHARED_KEY )�ł��邱�Ƃ��w�肷��K�v������_�ɒ��ӂ��ĉ������B
+WEPキーによる暗号化は、接続時の認証処理、及びインフラストラクチャモードでのデータ送受信に適用されます。
+<EM><STRONG><FONT face="Courier New">wepmode</FONT></STRONG></EM>は通信相手と同じ設定にしておく必要があります。
+<EM><STRONG><FONT face="Courier New">wepkeyid</FONT></STRONG></EM>はデータを送信する際の暗号化データ列の選択に用いられます。
+逆にデータ受信時の復号化には送信側が指定したIDのWEPキーが用いられます。
+共通鍵認証においては子機が暗号化し、親機が復号化することでキーの一致が確認されるため、親機でのIDの指定は実質意味を持ちません。
+また、インフラストラクチャモードでの受信データ復号化には、アクセスポイントが指定するIDのWEPキーが一致する必要があります。<BR>
+当関数によってWEP暗号設定が行われた親機に子機として接続する際には、当関数によりWEP設定を行った上で
+<A href="WM_StartConnectEx.html">WM_StartConnectEx関数</A>の<EM><STRONG><FONT face="Courier New">authMode</FONT></STRONG></EM>に共通鍵認証( WM_AUTHMODE_SHARED_KEY )であることを指定する必要がある点に注意して下さい。
 </P>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="WM_SetWEPKey.html">WM_SetWEPKey</A>, <A href="WM_StartConnectEx.html">WM_StartConnectEx</A></CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/06/08 �R�[���o�b�N�����荞�݃n���h������Ăяo�����|��⑫<br>
-2005/03/07 �����ǋL<BR>
-2005/03/02 wepmode�����ɂ��Ďw��\�͈͂�ǋL<BR>
-2005/02/14 ����<BR>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/03/07 説明追記<BR>
+2005/03/02 wepmode引数について指定可能範囲を追記<BR>
+2005/02/14 初版<BR>
 </P>
 </body>
 </html>

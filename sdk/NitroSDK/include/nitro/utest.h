@@ -15,19 +15,19 @@
   do-indent
 
   Revision 1.5  2005/07/11 02:42:52  yasu
-  ���ӕ����̏C��
+  注意文書の修正
 
   Revision 1.4  2005/07/08 11:37:29  yasu
-  ���ӌx���̒ǉ�
+  注意警告の追加
 
   Revision 1.3  2005/07/05 09:36:06  yasu
-  os �� include �t�@�C���𕪕�
+  os の include ファイルを分別
 
   Revision 1.2  2005/07/05 09:30:49  yasu
-  ��r�^�C��
+  比較型修正
 
   Revision 1.1  2005/06/24 02:20:03  yasu
-  ���j�b�g�e�X�g�̒ǉ�
+  ユニットテストの追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -38,15 +38,15 @@ extern "C" {
 #endif
 
 //---------------------------------------------------------------------------
-// �P�@�\�e�X�g�p���C�u����
+// 単機能テスト用ライブラリ
 //
-//  [����]
-//     ���̃��C�u�����͓����e�X�g�p�A���t�@�łŁA���ݎd�l�̌������ł��D
-//     ���̂��߁A�C���^�[�t�F�C�X���ύX�ɂȂ�����A�{�@�\���̂��폜
-//     �����\��������܂��D�܂��A�S�Ă̊��œ��삷�邩�ǂ����\����
-//     �m�F����Ă��܂���D
+//  [注意]
+//     このライブラリは内部テスト用アルファ版で、現在仕様の検討中です．
+//     このため、インターフェイスが変更になったり、本機能自体が削除
+//     される可能性があります．また、全ての環境で動作するかどうか十分に
+//     確認されていません．
 //
-//     �֘A�t�@�C��
+//     関連ファイル
 //              $NitroSDK/tools/bin/make_utest_main__
 //              $NitroSDK/build/tools/nitload-gcc
 //---------------------------------------------------------------------------
@@ -56,7 +56,7 @@ extern "C" {
 #include <nitro/os/common/context.h>
 
 //---------------------------------------------------------------------------
-// �e�X�g���W���[���̍\����
+// テストモジュールの構造体
 //
 typedef void (*UTiCallback) (void);
 
@@ -71,7 +71,7 @@ typedef struct UTiModule_
 UTiModule;
 
 //---------------------------------------------------------------------------
-// �e�X�g���ʂ̒l
+// テスト結果の値
 //
 typedef enum UTiResult_
 {
@@ -135,7 +135,7 @@ void    UTi_AssertNotAsserted(const char *, int, const char *, int);
 int     UTi_MemCmp(const void *ptr1, const void *ptr2, int len);
 
 //---------------------------------------------------------------------------
-// LONG JUMP �p�̃R���e�L�X�g/ASSERT ���� LONG JUMP
+// LONG JUMP 用のコンテキスト/ASSERT 時の LONG JUMP
 //
 #ifdef	SDK_DEBUG
 extern OSContext UTi_AssertContext;

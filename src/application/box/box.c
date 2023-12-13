@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	box.c
- * @brief	ƒ{ƒbƒNƒX‘€ì‰æ–Ê@ƒƒCƒ“
+ * @brief	ãƒœãƒƒã‚¯ã‚¹æ“ä½œç”»é¢ã€€ãƒ¡ã‚¤ãƒ³
  * @author	taya
  * @date	2005.09.05
  */
@@ -44,7 +44,7 @@
 
 
 //==============================================================
-// ’è”
+// å®šæ•°
 //==============================================================
 enum {
 	HEAPSIZE_SYS = 0x4000,
@@ -63,15 +63,15 @@ enum {
 };
 
 enum {
-	AREASELECT_RESULT_NONE,		///< ”ÍˆÍ‘I‘ğ’†ƒJ[ƒ\ƒ‹“®ìF‚È‚É‚à‚È‚µ
-	AREASELECT_RESULT_UPDATE,	///< ”ÍˆÍ‘I‘ğ’†ƒJ[ƒ\ƒ‹“®ìFˆÊ’uXV
-	AREASELECT_RESULT_OVER,		///< ”ÍˆÍ‘I‘ğ’†ƒJ[ƒ\ƒ‹“®ìFˆÚ“®‚Å‚«‚È‚¢•ûŒü‚Ö‚ÌƒL[‘€ì
-	AREASELECT_RESULT_SCROLL_LEFT,		///< ”ÍˆÍ‘I‘ğ’†ƒJ[ƒ\ƒ‹“®ìFƒgƒŒƒC¶ƒXƒNƒ[ƒ‹
-	AREASELECT_RESULT_SCROLL_RIGHT,		///< ”ÍˆÍ‘I‘ğ’†ƒJ[ƒ\ƒ‹“®ìFƒgƒŒƒC‰EƒXƒNƒ[ƒ‹
+	AREASELECT_RESULT_NONE,		///< ç¯„å›²é¸æŠä¸­ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œï¼šãªã«ã‚‚ãªã—
+	AREASELECT_RESULT_UPDATE,	///< ç¯„å›²é¸æŠä¸­ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œï¼šä½ç½®æ›´æ–°
+	AREASELECT_RESULT_OVER,		///< ç¯„å›²é¸æŠä¸­ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œï¼šç§»å‹•ã§ããªã„æ–¹å‘ã¸ã®ã‚­ãƒ¼æ“ä½œ
+	AREASELECT_RESULT_SCROLL_LEFT,		///< ç¯„å›²é¸æŠä¸­ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œï¼šãƒˆãƒ¬ã‚¤å·¦ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
+	AREASELECT_RESULT_SCROLL_RIGHT,		///< ç¯„å›²é¸æŠä¸­ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œï¼šãƒˆãƒ¬ã‚¤å³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 };
 
 
-/// ƒTƒu‰æ–Ê‘€ì‚ğ”²‚¯‚éƒL[
+/// ã‚µãƒ–ç”»é¢æ“ä½œã‚’æŠœã‘ã‚‹ã‚­ãƒ¼
 #define SUBLCD_CTRL_ESCAPE_KEYMASK	(PAD_PLUS_KEY_MASK|PAD_BUTTON_A|PAD_BUTTON_B)
 
 static const TP_HIT_TBL ButtonHitTbl[] = {
@@ -100,7 +100,7 @@ static const TP_HIT_TBL IconHitTbl[] = {
 
 //-----------------------------------------------
 /**
- *	“¦‚ª‚·‚Éƒ`ƒFƒbƒN‚·‚éƒƒUƒiƒ“ƒo[
+ *	é€ƒãŒã™æ™‚ã«ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¯ã‚¶ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------
 static const u16 NigasuCheckWazaTable[] = {
@@ -115,20 +115,20 @@ static const u16 NigasuCheckWazaTable[] = {
 // Sub Work
 //==============================================================
 typedef struct {
-	u32  seq;			///< ƒV[ƒPƒ“ƒXƒiƒ“ƒo[
-	u8   continue_flag;	///< ƒEƒBƒ“ƒhƒE‚ÍŠJ‚¢‚½ó‘Ô‚ÅƒL[ˆ—‚©‚ç‘±‚¯‚éƒtƒ‰ƒO
-	s8   trayNumber;	///< ‰Šú•\¦w’è•‘I‘ğŒ‹‰ÊŠi”[
-	u16  msgID;			///< ‘I‘ğ‚É•\¦‚·‚éƒƒbƒZ[ƒWID
+	u32  seq;			///< ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
+	u8   continue_flag;	///< ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã¯é–‹ã„ãŸçŠ¶æ…‹ã§ã‚­ãƒ¼å‡¦ç†ã‹ã‚‰ç¶šã‘ã‚‹ãƒ•ãƒ©ã‚°
+	s8   trayNumber;	///< åˆæœŸè¡¨ç¤ºæŒ‡å®šï¼†é¸æŠçµæœæ ¼ç´
+	u16  msgID;			///< é¸æŠæ™‚ã«è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 }SELECT_TRAY_WORK;
 
 //------------------------------------------------
 /*
- * 	“¦‚ª‚·‚Ì‹Zƒ`ƒFƒbƒN—pƒ[ƒN
+ * 	é€ƒãŒã™æ™‚ã®æŠ€ãƒã‚§ãƒƒã‚¯ç”¨ãƒ¯ãƒ¼ã‚¯
  */
 //------------------------------------------------
 typedef struct {
-	u8   done;		///< ƒ`ƒFƒbƒNŠ®—¹‚µ‚½
-	u8   ok;		///< “¦‚ª‚·‚±‚Æ‚ªo—ˆ‚é
+	u8   done;		///< ãƒã‚§ãƒƒã‚¯å®Œäº†ã—ãŸ
+	u8   ok;		///< é€ƒãŒã™ã“ã¨ãŒå‡ºæ¥ã‚‹
 
 	u8   tray;
 	u8   pos;
@@ -319,7 +319,7 @@ static u32 GetPointPokeParam( BOXAPP_VPARAM* vpara, int paramID, void* buf );
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒXƒAƒvƒŠPROCFInit
+ * ãƒœãƒƒã‚¯ã‚¹ã‚¢ãƒ—ãƒªPROCï¼šInit
  *
  * @param   proc			
  * @param   seq				
@@ -351,7 +351,7 @@ PROC_RESULT BoxProc_Init( PROC * proc, int * seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒXƒAƒvƒŠPROCFMain
+ * ãƒœãƒƒã‚¯ã‚¹ã‚¢ãƒ—ãƒªPROCï¼šMain
  *
  * @param   proc			
  * @param   seq				
@@ -392,7 +392,7 @@ PROC_RESULT BoxProc_Main( PROC* proc, int* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒXƒAƒvƒŠPROCFEnd
+ * ãƒœãƒƒã‚¯ã‚¹ã‚¢ãƒ—ãƒªPROCï¼šEnd
  *
  * @param   proc			
  * @param   seq				
@@ -422,7 +422,7 @@ PROC_RESULT BoxProc_End( PROC* proc, int* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒX•ÏX
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
  *
  * @param   wk		
  * @param   nextSeqFunc
@@ -436,10 +436,10 @@ static void MainSeqChange( BOXAPP_WORK* wk, seqFunc nextSeqFunc )
 }
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒX‚Ö“®ìØ‚è‘Ö‚¦
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸å‹•ä½œåˆ‡ã‚Šæ›¿ãˆ
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   subSeqFunc	ƒTƒuƒV[ƒPƒ“ƒXŠÖ”ƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   subSeqFunc	ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -450,9 +450,9 @@ static void SubSeqSet( BOXAPP_WORK* wk, SubSeqFunc subseq )
 }
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒX“®ìI—¹
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å‹•ä½œçµ‚äº†
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -463,7 +463,7 @@ static void SubSeqEnd( BOXAPP_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * Œ»İ‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚©‚ç‘Î‰‚µ‚½ƒƒCƒ“ƒV[ƒPƒ“ƒXŠÖ”ƒAƒhƒŒƒX‚ğ•Ô‚·
+ * ç¾åœ¨ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‹ã‚‰å¯¾å¿œã—ãŸãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–¢æ•°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  *
  * @param   wk		
  *
@@ -493,7 +493,7 @@ static seqFunc GetNextMainSeqAdrsByCursorArea( BOXAPP_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒXƒf[ƒ^XVƒtƒ‰ƒO‚ğƒIƒ“‚É‚·‚é
+ * ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿æ›´æ–°ãƒ•ãƒ©ã‚°ã‚’ã‚ªãƒ³ã«ã™ã‚‹
  *
  * @param   wk		
  *
@@ -508,7 +508,7 @@ static void SetBoxModifiedFlag( BOXAPP_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXF‰æ–Ê\’z
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šç”»é¢æ§‹ç¯‰
  *
  * @param   wk		
  */
@@ -540,7 +540,7 @@ static void SubSeq_StartBox( BOXAPP_WORK* wk,  u32* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXF‰æ–Ê•œ‹A
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šç”»é¢å¾©å¸°
  *
  * @param   wk		
  *
@@ -574,7 +574,7 @@ static void SubSeq_RestartBox( BOXAPP_WORK* wk,  u32* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXF‰æ–ÊƒCƒ“
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šç”»é¢ã‚¤ãƒ³
  *
  * @param   wk		
  *
@@ -598,7 +598,7 @@ static PROC_RESULT BoxMainSeq_Open( BOXAPP_WORK* wk )
 	return PROC_RES_CONTINUE;
 }
 
-// ƒ{ƒ^ƒ“‰Ÿ‰º‚Å•\¦ƒ|ƒPƒ‚ƒ“‚ğŒÅ’è‚³‚ê‚½‚Ìƒpƒ‰ƒ[ƒ^‘€ìˆ—
+// ãƒœã‚¿ãƒ³æŠ¼ä¸‹ã§è¡¨ç¤ºãƒã‚±ãƒ¢ãƒ³ã‚’å›ºå®šã•ã‚ŒãŸæ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ“ä½œå‡¦ç†
 static inline void update_compare_param_by_button( BOXAPP_WORK* wk )
 {
 	VParaSet_SwitchCompareSide( &wk->vpara );
@@ -609,7 +609,7 @@ static inline void update_compare_param_by_button( BOXAPP_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒX‹¤’Ê‚Ìƒ{ƒ^ƒ“‰Ÿ‰ºƒ`ƒFƒbƒNˆ—
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å…±é€šã®ãƒœã‚¿ãƒ³æŠ¼ä¸‹ãƒã‚§ãƒƒã‚¯å‡¦ç†
  *
  * @param   wk		
  *
@@ -686,7 +686,7 @@ static inline int MainSeq_ButtonCheckProc( BOXAPP_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒgƒŒƒC
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒˆãƒ¬ã‚¤
  *
  * @param   wk		
  *
@@ -766,13 +766,13 @@ static PROC_RESULT BoxMainSeq_Tray( BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * Œ»İƒXƒe[ƒ^ƒX•\¦‚³‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ğA‚Ä‚à‚¿ƒgƒŒƒC‚©‚ç
- * ŠO‚É˜A‚êo‚·‚±‚Æ‚ªo—ˆ‚é‚©ƒ`ƒFƒbƒN
+ * ç¾åœ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ã€ã¦ã‚‚ã¡ãƒˆãƒ¬ã‚¤ã‹ã‚‰
+ * å¤–ã«é€£ã‚Œå‡ºã™ã“ã¨ãŒå‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   msgID		˜A‚êo‚¹‚È‚¢ƒ|ƒPƒ‚ƒ“‚Ìê‡AŒxƒƒbƒZ[ƒW‚ÌID
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   msgID		é€£ã‚Œå‡ºã›ãªã„ãƒã‚±ãƒ¢ãƒ³ã®å ´åˆã€è­¦å‘Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ID
  *
- * @retval  BOOL		TRUE‚Å˜A‚êo‚¹‚È‚¢
+ * @retval  BOOL		TRUEã§é€£ã‚Œå‡ºã›ãªã„
  */
 //------------------------------------------------------------------
 static BOOL CheckStatusPokeUnleavable( BOXAPP_WORK* wk, int* msgID )
@@ -793,9 +793,9 @@ static BOOL CheckStatusPokeUnleavable( BOXAPP_WORK* wk, int* msgID )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXF‚Ä‚à‚¿ƒgƒŒƒC
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã¦ã‚‚ã¡ãƒˆãƒ¬ã‚¤
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  PROC_RESULT		
  */
@@ -816,13 +816,13 @@ static PROC_RESULT BoxMainSeq_Party( BOXAPP_WORK* wk )
 	case SEQ_KEYWAIT:
 		if( sys.trg & PAD_BUTTON_A )
 		{
-			// •Â‚¶‚éƒ{ƒ^ƒ“‚Ìˆ—
+			// é–‰ã˜ã‚‹ãƒœã‚¿ãƒ³ã®å‡¦ç†
 			if( BoxAppVPara_GetCursorPartyPos( &wk->vpara ) == CURSOR_PARTYTRAY_CLOSEBUTTON_POS )
 			{
 				wk->seq = SEQ_TRAYCLOSE;
 				break;
 			}
-			// ‚»‚êˆÈŠO‚ÌêŠ
+			// ãã‚Œä»¥å¤–ã®å ´æ‰€
 			if( BoxAppVPara_GetCursorStatusEnableFlag( &wk->vpara ) )
 			{
 				if( BoxAppVPara_GetBoxMode( &wk->vpara ) != BOX_MODE_ITEM )
@@ -837,7 +837,7 @@ static PROC_RESULT BoxMainSeq_Party( BOXAPP_WORK* wk )
 			}
 			break;
 		}
-	// è‚¿ƒgƒŒƒC‚ğ•Â‚¶‚æ‚¤‚Æ‚µ‚½
+	// æ‰‹æŒã¡ãƒˆãƒ¬ã‚¤ã‚’é–‰ã˜ã‚ˆã†ã¨ã—ãŸ
 		if( (sys.trg & PAD_BUTTON_B)
 		||	((sys.trg & PAD_KEY_RIGHT) && (BoxAppVPara_GetCursorPartyPos(&wk->vpara) & 1))
 		||	((sys.trg & PAD_KEY_RIGHT) && (BoxAppVPara_GetCursorPartyPos(&wk->vpara) == CURSOR_PARTYTRAY_CLOSEBUTTON_POS))
@@ -862,7 +862,7 @@ static PROC_RESULT BoxMainSeq_Party( BOXAPP_WORK* wk )
 		}
 		break;
 
-	// ƒJ[ƒ\ƒ‹ˆÚ“®‘Ò‚¿
+	// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•å¾…ã¡
 	case SEQ_CURSORMOVE_WAIT:
 		if( BoxAppView_WaitCommand( wk->vwk, CMD_CURSOR_MOVE ) )
 		{
@@ -872,7 +872,7 @@ static PROC_RESULT BoxMainSeq_Party( BOXAPP_WORK* wk )
 
 
 	case SEQ_TRAYCLOSE:
-		// ‚ ‚¸‚¯‚éƒ‚[ƒh‚È‚çƒ{ƒbƒNƒX‚ğ”²‚¯‚æ‚¤‚Æ‚·‚é‚Ì‚Æ“¯‚¶ˆ—
+		// ã‚ãšã‘ã‚‹ãƒ¢ãƒ¼ãƒ‰ãªã‚‰ãƒœãƒƒã‚¯ã‚¹ã‚’æŠœã‘ã‚ˆã†ã¨ã™ã‚‹ã®ã¨åŒã˜å‡¦ç†
 		if( BoxAppVPara_GetBoxMode( &wk->vpara ) == BOX_MODE_AZUKERU )
 		{
 			SubSeqSet( wk, SubSeq_B_Exit );
@@ -882,7 +882,7 @@ static PROC_RESULT BoxMainSeq_Party( BOXAPP_WORK* wk )
 		{
 			int msgID;
 
-			// è‚¿‚©‚çŠO‚¹‚È‚¢ƒ|ƒPƒ‚ƒ“‚ğ’Í‚ñ‚Å‚¢‚éê‡‚ÍŒx
+			// æ‰‹æŒã¡ã‹ã‚‰å¤–ã›ãªã„ãƒã‚±ãƒ¢ãƒ³ã‚’æ´ã‚“ã§ã„ã‚‹å ´åˆã¯è­¦å‘Š
 			if(	(BoxAppVPara_GetCursorCatchPokeFlag(&wk->vpara) != CURSOR_CATCH_NONE)
 			&&	(CheckStatusPokeUnleavable( wk, &msgID ))
 			){
@@ -899,7 +899,7 @@ static PROC_RESULT BoxMainSeq_Party( BOXAPP_WORK* wk )
 		}
 		break;
 
-	// ƒgƒŒƒC•Â‚¶‘Ò‚¿
+	// ãƒˆãƒ¬ã‚¤é–‰ã˜å¾…ã¡
 	case SEQ_TRAYCLOSE_WAIT:
 		if( BoxAppView_WaitCommand( wk->vwk, CMD_PARTYTRAY_CLOSE ) )
 		{
@@ -945,9 +945,9 @@ static PROC_RESULT BoxMainSeq_Party( BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒgƒŒƒCƒ^ƒu
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒˆãƒ¬ã‚¤ã‚¿ãƒ–
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  PROC_RESULT		
  */
@@ -1003,9 +1003,9 @@ static PROC_RESULT BoxMainSeq_TrayTab( BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFw‚Æ‚¶‚éxƒ{ƒ^ƒ“ã
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã€ã¨ã˜ã‚‹ã€ãƒœã‚¿ãƒ³ä¸Š
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  PROC_RESULT		
  */
@@ -1067,9 +1067,9 @@ static PROC_RESULT BoxMainSeq_ExitButton( BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFw‚Ä‚à‚¿ƒ|ƒPƒ‚ƒ“xƒ{ƒ^ƒ“ã
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã€ã¦ã‚‚ã¡ãƒã‚±ãƒ¢ãƒ³ã€ãƒœã‚¿ãƒ³ä¸Š
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  PROC_RESULT		
  */
@@ -1179,9 +1179,9 @@ static PROC_RESULT BoxMainSeq_PartyButton( BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–Ê—pƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1189,25 +1189,25 @@ static void SetPokemonStatusScheneParam( BOXAPP_WORK* wk )
 {
 	/*
 		typedef struct {
-			void * ppd;		// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-			u8	ppt;		// ƒpƒ‰ƒ[ƒ^ƒ^ƒCƒv
-			u8	mode;		// ƒ‚[ƒh
-			u8	max;		// Å‘å”
-			u8	pos;		// ‰½”Ô–Ú‚Ìƒf[ƒ^‚©
+			void * ppd;		// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+			u8	ppt;		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
+			u8	mode;		// ãƒ¢ãƒ¼ãƒ‰
+			u8	max;		// æœ€å¤§æ•°
+			u8	pos;		// ä½•ç•ªç›®ã®ãƒ‡ãƒ¼ã‚¿ã‹
 			u8	ret_sel;
 			u8	ret_mode;
 			u8	dmy[3];
 		}PSTATUS_DATA;
 	*/
 	static const u8	page_tbl[] = {
-			PST_PAGE_INFO,			// uƒ|ƒPƒ‚ƒ“‚¶‚å‚¤‚Ù‚¤v
-			PST_PAGE_MEMO,			// uƒgƒŒ[ƒi[ƒƒ‚v
-			PST_PAGE_PARAM,			// uƒ|ƒPƒ‚ƒ“‚Ì‚¤‚è‚å‚­v
-			PST_PAGE_CONDITION,		// uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
-			PST_PAGE_B_SKILL,		// u‚½‚½‚©‚¤‚í‚´v
-			PST_PAGE_C_SKILL,		// uƒRƒ“ƒeƒXƒg‚í‚´v
-			PST_PAGE_RIBBON,		// u‚«‚Ë‚ñƒŠƒ{ƒ“v
-			PST_PAGE_RET,			// u‚à‚Ç‚év
+			PST_PAGE_INFO,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã˜ã‚‡ã†ã»ã†ã€
+			PST_PAGE_MEMO,			// ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã€
+			PST_PAGE_PARAM,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã†ã‚Šã‚‡ãã€
+			PST_PAGE_CONDITION,		// ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
+			PST_PAGE_B_SKILL,		// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+			PST_PAGE_C_SKILL,		// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
+			PST_PAGE_RIBBON,		// ã€Œãã­ã‚“ãƒªãƒœãƒ³ã€
+			PST_PAGE_RET,			// ã€Œã‚‚ã©ã‚‹ã€
 			PST_PAGE_MAX
 	};
 
@@ -1252,7 +1252,7 @@ static void SetPokemonStatusScheneParam( BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXFƒ{ƒbƒNƒX‚ğ•Â‚¶‚é‰‰o
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒœãƒƒã‚¯ã‚¹ã‚’é–‰ã˜ã‚‹æ¼”å‡º
  *
  * @param   wk		
  *
@@ -1276,14 +1276,14 @@ static PROC_RESULT BoxMainSeq_Close( BOXAPP_WORK* wk )
 }
 
 //======================================================================================================
-// ƒTƒuƒV[ƒPƒ“ƒXŒQ
+// ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç¾¤
 //======================================================================================================
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFuƒ{ƒbƒNƒX‚ğ‚Æ‚¶‚évƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã€Œãƒœãƒƒã‚¯ã‚¹ã‚’ã¨ã˜ã‚‹ã€ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void  SubSeq_ExitButton( BOXAPP_WORK* wk, u32* seq )
@@ -1326,7 +1326,7 @@ static void  SubSeq_ExitButton( BOXAPP_WORK* wk, u32* seq )
 		if( BoxAppView_WaitCommand( wk->vwk, CMD_BUTTON_PUSH_ACTION ) )
 		{
 			Snd_SePlay( SOUND_DISP_MENU );
-			// ƒ{ƒbƒNƒX‚ğI—¹‚µ‚Ü‚·‚©H ƒƒbƒZ[ƒW•\¦
+			// ãƒœãƒƒã‚¯ã‚¹ã‚’çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 			VParaSet_MessageID( &wk->vpara, msg_boxmes_01_12 );
 			BoxMenu_SetYesNoMenu( &(wk->vpara), 1 );
 			BoxAppView_SetCommand( wk->vwk, CMD_MENU_DISP );
@@ -1379,9 +1379,9 @@ static void  SubSeq_ExitButton( BOXAPP_WORK* wk, u32* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXF‚aƒ{ƒ^ƒ“‚Å”²‚¯‚æ‚¤‚Æ‚µ‚½
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šï¼¢ãƒœã‚¿ãƒ³ã§æŠœã‘ã‚ˆã†ã¨ã—ãŸ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1469,9 +1469,9 @@ static void SubSeq_B_Exit( BOXAPP_WORK* wk, u32* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ“ƒƒjƒ…[
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1619,9 +1619,9 @@ static void SubSeq_Menu_Pokemon( BOXAPP_WORK* wk, u32* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒAƒCƒeƒ€ƒƒjƒ…[
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚¢ã‚¤ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1712,10 +1712,10 @@ static void SubSeq_Menu_Item( BOXAPP_WORK* wk, u32* seq )
 
 	case SEQ_DECIDE_MENU:
 		switch( wk->work ){
-		case BOXMENU_ITEM_SET:		///< ƒAƒCƒeƒ€u‚à‚½‚¹‚év
+		case BOXMENU_ITEM_SET:		///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œã‚‚ãŸã›ã‚‹ã€
 			if( BoxAppVPara_GetCatchItemNumber( &wk->vpara ) == ITEM_HAKKINDAMA
 					&& PokePasoParaGet(wk->vpara.statusPoke.poke_data, ID_PARA_monsno, NULL) != MONSNO_KIMAIRAN ){
-				//ƒMƒ‰ƒeƒBƒiˆÈŠO‚ÍƒnƒbƒLƒ“ƒ_ƒ}‚Í‚Ä‚È‚¢
+				//ã‚®ãƒ©ãƒ†ã‚£ãƒŠä»¥å¤–ã¯ãƒãƒƒã‚­ãƒ³ãƒ€ãƒã¯æŒã¦ãªã„
 				WORDSET_RegisterItemName( wk->wordset, 0, ITEM_HAKKINDAMA );
 				VParaSet_MessageID( &wk->vpara, msg_boxmes_02_11 );
 				BoxAppView_SetCommand( wk->vwk, CMD_MSG_DISP );
@@ -1735,7 +1735,7 @@ static void SubSeq_Menu_Item( BOXAPP_WORK* wk, u32* seq )
 			}
 			break;
 
-		case BOXMENU_ITEM_WITHDRAW:	///< ƒAƒCƒeƒ€u‚ ‚¸‚©‚év
+		case BOXMENU_ITEM_WITHDRAW:	///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œã‚ãšã‹ã‚‹ã€
 			if( ItemMailCheck( BoxAppVPara_GetStatusPokeItemNumber(&wk->vpara) ) )
 			{
 				Snd_SePlay( SOUND_WARNING );
@@ -1754,11 +1754,11 @@ static void SubSeq_Menu_Item( BOXAPP_WORK* wk, u32* seq )
 			}
 			break;
 
-		case BOXMENU_ITEM_INFO:		///< ƒAƒCƒeƒ€u‚¹‚Â‚ß‚¢v
+		case BOXMENU_ITEM_INFO:		///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œã›ã¤ã‚ã„ã€
 			SubSeqSet( wk, SubSeq_ItemInfo );
 			break;
 
-		case BOXMENU_ITEM_SWAP:		///< ƒAƒCƒeƒ€u‚Æ‚è‚©‚¦‚év
+		case BOXMENU_ITEM_SWAP:		///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œã¨ã‚Šã‹ãˆã‚‹ã€
 			if( ItemMailCheck( BoxAppVPara_GetStatusPokeItemNumber(&wk->vpara) ) )
 			{
 				Snd_SePlay( SOUND_WARNING );
@@ -1768,7 +1768,7 @@ static void SubSeq_Menu_Item( BOXAPP_WORK* wk, u32* seq )
 			}
 			else if( wk->vpara.catch_item == ITEM_HAKKINDAMA
 					&& PokePasoParaGet(wk->vpara.statusPoke.poke_data, ID_PARA_monsno, NULL) != MONSNO_KIMAIRAN ){
-				//ƒMƒ‰ƒeƒBƒiˆÈŠO‚ÍƒnƒbƒLƒ“ƒ_ƒ}‚Í‚Ä‚È‚¢
+				//ã‚®ãƒ©ãƒ†ã‚£ãƒŠä»¥å¤–ã¯ãƒãƒƒã‚­ãƒ³ãƒ€ãƒã¯æŒã¦ãªã„
 				WORDSET_RegisterItemName( wk->wordset, 0, ITEM_HAKKINDAMA );
 				VParaSet_MessageID( &wk->vpara, msg_boxmes_02_11 );
 				BoxAppView_SetCommand( wk->vwk, CMD_MSG_DISP );
@@ -1784,7 +1784,7 @@ static void SubSeq_Menu_Item( BOXAPP_WORK* wk, u32* seq )
 			}
 			break;
 
-		case BOXMENU_ITEM_TO_BAG:	///< ƒAƒCƒeƒ€uƒoƒbƒO‚Öv
+		case BOXMENU_ITEM_TO_BAG:	///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œãƒãƒƒã‚°ã¸ã€
 			SubSeqSet( wk, SubSeq_ItemMode_Restore );
 			break;
 		}
@@ -1824,9 +1824,9 @@ static void SubSeq_Menu_Item( BOXAPP_WORK* wk, u32* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒgƒŒƒCƒƒjƒ…[
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒˆãƒ¬ã‚¤ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1922,9 +1922,9 @@ static void SubSeq_Menu_Tray( BOXAPP_WORK* wk, u32* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒ{ƒbƒNƒXØ‚è‘Ö‚¦
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒœãƒƒã‚¯ã‚¹åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1947,7 +1947,7 @@ static void SubSeq_Menu_Jump( BOXAPP_WORK* wk, u32* seq )
 		{
 			break;
 		}
-		// ¡‚¢‚éƒ{ƒbƒNƒX‚ğ‘I‚ñ‚¾‚çƒLƒƒƒ“ƒZƒ‹‚Æ“¯‚¶ˆµ‚¢
+		// ä»Šã„ã‚‹ãƒœãƒƒã‚¯ã‚¹ã‚’é¸ã‚“ã ã‚‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã¨åŒã˜æ‰±ã„
 		if( (wk->selectTrayWork.trayNumber == SELECT_TRAY_CANCEL)
 		||	(wk->selectTrayWork.trayNumber == BoxAppVPara_GetTrayBoxNumber( &wk->vpara ))
 		){
@@ -1974,9 +1974,9 @@ static void SubSeq_Menu_Jump( BOXAPP_WORK* wk, u32* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXF•Ç†ƒƒjƒ…[
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šå£ç´™ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -2029,7 +2029,7 @@ static void SubSeq_Menu_WallPaper( BOXAPP_WORK* wk, u32* seq )
 		case BOXMENU_WP_CATEGORY4:
 		case BOXMENU_WP_CATEGORY_EX1:
 		case BOXMENU_WP_CATEGORY_EX2:
-			// ‘I‘ğ‚³‚ê‚½ƒJƒeƒSƒŠ‚ğŠo‚¦‚Ä‚¨‚­
+			// é¸æŠã•ã‚ŒãŸã‚«ãƒ†ã‚´ãƒªã‚’è¦šãˆã¦ãŠã
 			wk->work = BoxMenu_GetSelectMenuID( &wk->vpara );
 			VParaSet_MessageID( &wk->vpara, msg_boxmes_01_11 );
 			BoxMenu_SetWallPaperTypeMenu( &wk->vpara, wk->work );
@@ -2095,9 +2095,9 @@ static void SubSeq_Menu_WallPaper( BOXAPP_WORK* wk, u32* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒ}[ƒLƒ“ƒOƒƒjƒ…[
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒãƒ¼ã‚­ãƒ³ã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -2165,9 +2165,9 @@ static void SubSeq_Menu_Marking( BOXAPP_WORK* wk, u32* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒAƒCƒRƒ“‚Ì”ÍˆÍ‘I‘ğˆ—
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚¢ã‚¤ã‚³ãƒ³ã®ç¯„å›²é¸æŠå‡¦ç†
  *
- * @param   wk				ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -2325,11 +2325,11 @@ static void SubSeq_AreaSelect( BOXAPP_WORK* wk, u32* seq )
 
 //------------------------------------------------------------------
 /**
- * ”ÍˆÍ‘I‘ğ’†‚Ìƒ|ƒPƒ‚ƒ“‚ğŒ»İˆÊ’u‚É’u‚¯‚é‚©ƒ`ƒFƒbƒN
+ * ç¯„å›²é¸æŠä¸­ã®ãƒã‚±ãƒ¢ãƒ³ã‚’ç¾åœ¨ä½ç½®ã«ç½®ã‘ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param   vpara		
  *
- * @retval  BOOL		TRUE‚Å’u‚¯‚é
+ * @retval  BOOL		TRUEã§ç½®ã‘ã‚‹
  */
 //------------------------------------------------------------------
 static BOOL Check_AreaSelectPokePut( const BOXAPP_VPARAM* vpara )
@@ -2359,9 +2359,9 @@ static BOOL Check_AreaSelectPokePut( const BOXAPP_VPARAM* vpara )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXF‚Â‚©‚Ş“®ìÀs
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã¤ã‹ã‚€å‹•ä½œå®Ÿè¡Œ
  *
- * @param   wk				ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -2385,7 +2385,7 @@ static void SubSeq_OP_Tukamu( BOXAPP_WORK* wk, u32* seq )
 				BoxAppView_SetCommand( wk->vwk, CMD_POKE_CATCH );
 				(*seq) = SEQ_CMD_WAIT_CLOSEUP;
 			}
-			// c‚è‚P•C‚Å‚Í‚Â‚©‚ß‚È‚¢
+			// æ®‹ã‚Šï¼‘åŒ¹ã§ã¯ã¤ã‹ã‚ãªã„
 			else
 			{
 				Snd_SePlay( SOUND_WARNING );
@@ -2432,7 +2432,7 @@ static void SubSeq_OP_Tukamu( BOXAPP_WORK* wk, u32* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXF‚¨‚­“®ìÀs
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãŠãå‹•ä½œå®Ÿè¡Œ
  *
  * @param   wk		
  * @param   seq		
@@ -2462,8 +2462,8 @@ static void SubSeq_OP_Oku( BOXAPP_WORK* wk, u32* seq )
 
 			if( cpos != (pcnt-1))
 			{
-				// è‚¿ƒgƒŒƒC‚ÅƒAƒCƒRƒ“‚ğ³‹K‚ÌˆÊ’u‚É‚¨‚©‚È‚©‚Á‚½ê‡A
-				// CMD_POKE_PUT Š®—¹Œã‚É³‹KˆÊ’u‚Ü‚Å‰^‚Ô•ƒXƒe[ƒ^ƒXXV‚·‚é•K—v‚ª‚ ‚é
+				// æ‰‹æŒã¡ãƒˆãƒ¬ã‚¤ã§ã‚¢ã‚¤ã‚³ãƒ³ã‚’æ­£è¦ã®ä½ç½®ã«ãŠã‹ãªã‹ã£ãŸå ´åˆã€
+				// CMD_POKE_PUT å®Œäº†å¾Œã«æ­£è¦ä½ç½®ã¾ã§é‹ã¶ï¼†ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 				(*seq) = SEQ_WAIT_PARTYICON_MOVE;
 				CursorPointPokeUpdate( wk );
 				break;
@@ -2497,27 +2497,27 @@ static void SubSeq_OP_Oku( BOXAPP_WORK* wk, u32* seq )
 
 //------------------------------------------------------------------
 /**
- * ‚¢‚ê‚©‚¦‚Ä‚Í‚¢‚¯‚È‚¢ƒP[ƒX‚ğƒ`ƒFƒbƒN
+ * ã„ã‚Œã‹ãˆã¦ã¯ã„ã‘ãªã„ã‚±ãƒ¼ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   msgID	“ü‚ê‘Ö‚¦‚ç‚ê‚È‚¢A‚»‚ÌƒGƒ‰[ƒƒbƒZ[ƒWID
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   msgID	å…¥ã‚Œæ›¿ãˆã‚‰ã‚Œãªã„æ™‚ã€ãã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  *
- * @retval  BOOL	TRUE‚È‚ç‚¢‚ê‚©‚¦‚Ä‚Í‚¢‚¯‚È‚¢
+ * @retval  BOOL	TRUEãªã‚‰ã„ã‚Œã‹ãˆã¦ã¯ã„ã‘ãªã„
  */
 //------------------------------------------------------------------
 static BOOL CheckSwapNGCase( BOXAPP_WORK* wk, u32* msgID)
 {
-	// è‚¿‚Åí‚¦‚éÅŒã‚Ì‚P‘Ì‚ğw‚µ‚Ä‚¢‚éê‡...
+	// æ‰‹æŒã¡ã§æˆ¦ãˆã‚‹æœ€å¾Œã®ï¼‘ä½“ã‚’æŒ‡ã—ã¦ã„ã‚‹å ´åˆ...
 	if( CheckPointLastPartyPoke(wk) )
 	{
-		// ƒ^ƒ}ƒS‚Æ“ü‚ê‘Ö‚¦‚é‚Ì‚ÍNG
+		// ã‚¿ãƒã‚´ã¨å…¥ã‚Œæ›¿ãˆã‚‹ã®ã¯NG
 		if( GetStatusPokeParam(&wk->vpara, ID_PARA_tamago_exist, NULL) )
 		{
 			*msgID = msg_boxmes_01_07;
 			return TRUE;
 		}
 
-		// •m€‚Ìƒ|ƒPƒ‚ƒ“‚Æ“ü‚ê‘Ö‚¦‚é‚Ì‚ÍNG
+		// ç€•æ­»ã®ãƒã‚±ãƒ¢ãƒ³ã¨å…¥ã‚Œæ›¿ãˆã‚‹ã®ã¯NG
 		if( BoxAppVPara_GetCursorCatchPokeFromPartyFlag( &wk->vpara ) )
 		{
 			if( GetStatusPokeParam(&wk->vpara, ID_PARA_hp, NULL) == 0 )
@@ -2532,7 +2532,7 @@ static BOOL CheckSwapNGCase( BOXAPP_WORK* wk, u32* msgID)
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXF‚¢‚ê‚©‚¦‚é“®ìÀs
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã„ã‚Œã‹ãˆã‚‹å‹•ä½œå®Ÿè¡Œ
  *
  * @param   wk		
  * @param   seq		
@@ -2595,9 +2595,9 @@ static void SubSeq_OP_Irekaeru( BOXAPP_WORK* wk, u32* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXF‚Â‚ê‚Ä‚¢‚­“®ìÀs
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã¤ã‚Œã¦ã„ãå‹•ä½œå®Ÿè¡Œ
  *
- * @param   wk				ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -2710,9 +2710,9 @@ static void SubSeq_OP_Tureteiku( BOXAPP_WORK* wk, u32* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXF‚ ‚¸‚¯‚é“®ìÀs
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚ãšã‘ã‚‹å‹•ä½œå®Ÿè¡Œ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -2730,7 +2730,7 @@ static void SubSeq_OP_Azukeru( BOXAPP_WORK* wk, u32* seq )
 
 	switch( (*seq) ){
 	case SEQ_INIT:
-	// è‚¿ÅŒã‚Ì‚P‘Ì‚Í—a‚¯‚ç‚ê‚È‚¢
+	// æ‰‹æŒã¡æœ€å¾Œã®ï¼‘ä½“ã¯é ã‘ã‚‰ã‚Œãªã„
 		if(	(BoxAppVPara_GetCursorCatchPokeFlag( &wk->vpara ) == CURSOR_CATCH_NONE )
 		&&	(CheckPointLastPartyPoke( wk ) == TRUE)
 		){
@@ -2740,7 +2740,7 @@ static void SubSeq_OP_Azukeru( BOXAPP_WORK* wk, u32* seq )
 			BoxAppView_SetCommand( wk->vwk, CMD_MSG_DISP );
 			(*seq) = SEQ_MSG_LASTPOKE_KEYWAIT;
 		}
-	// ƒ[ƒ‹‚ğ‚Á‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚È‚Ç‚à—a‚¯‚ç‚ê‚È‚¢
+	// ãƒ¡ãƒ¼ãƒ«ã‚’æŒã£ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚‚é ã‘ã‚‰ã‚Œãªã„
 		else
 		{
 			int msgID;
@@ -2778,7 +2778,7 @@ static void SubSeq_OP_Azukeru( BOXAPP_WORK* wk, u32* seq )
 
 		wk->vpara.azukeruTrayNumber = wk->selectTrayWork.trayNumber;
 
-		// ‚Â‚©‚ñ‚Å‚éƒ|ƒPƒ‚ƒ“‚ğ—a‚¯‚é
+		// ã¤ã‹ã‚“ã§ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’é ã‘ã‚‹
 		if( BoxAppVPara_GetCursorCatchPokeFlag( &wk->vpara ) == CURSOR_CATCH_SINGLE )
 		{
 			if( VParaSet_CatchPokeAzuke( wk, wk->selectTrayWork.trayNumber ) )
@@ -2790,7 +2790,7 @@ static void SubSeq_OP_Azukeru( BOXAPP_WORK* wk, u32* seq )
 				break;
 			}
 		}
-		// w‚µ‚Ä‚éƒ|ƒPƒ‚ƒ“‚ğ—a‚¯‚é
+		// æŒ‡ã—ã¦ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’é ã‘ã‚‹
 		else
 		{
 			if( VParaSet_PointPokeAzuke( wk, wk->selectTrayWork.trayNumber ) )
@@ -2802,7 +2802,7 @@ static void SubSeq_OP_Azukeru( BOXAPP_WORK* wk, u32* seq )
 				break;
 			}
 		}
-	// ƒ{ƒbƒNƒX‚ª‚¢‚Á‚Ï‚¢‚Å—a‚¯‚ç‚ê‚È‚©‚Á‚½‚çƒRƒR‚É‚­‚é
+	// ãƒœãƒƒã‚¯ã‚¹ãŒã„ã£ã±ã„ã§é ã‘ã‚‰ã‚Œãªã‹ã£ãŸã‚‰ã‚³ã‚³ã«ãã‚‹
 		Snd_SePlay( SOUND_WARNING );
 		VParaSet_MessageID( &wk->vpara, msg_boxmes_01_14 );
 		BoxAppView_SetCommand( wk->vwk, CMD_MSG_DISP );
@@ -2862,11 +2862,11 @@ static void SubSeq_OP_Azukeru( BOXAPP_WORK* wk, u32* seq )
 
 //------------------------------------------------------------------
 /**
- * Œ»İw‚µ‚Ä‚¢‚éè‚¿ƒ|ƒPƒ‚ƒ“‚ªAí‚¦‚éÅŒã‚Ì‚P‘Ì‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+ * ç¾åœ¨æŒ‡ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãŒã€æˆ¦ãˆã‚‹æœ€å¾Œã®ï¼‘ä½“ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚¾‚ÆÅŒã‚Ì‚P‘Ì
+ * @retval  BOOL	TRUEã ã¨æœ€å¾Œã®ï¼‘ä½“
  */
 //------------------------------------------------------------------
 static BOOL CheckPointLastPartyPoke( BOXAPP_WORK* wk )
@@ -2908,24 +2908,24 @@ static BOOL CheckPointLastPartyPoke( BOXAPP_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‚ğu‚É‚ª‚·v‚±‚Æ‚ªo—ˆ‚éó‘Ô‚©ƒ`ƒFƒbƒN
+ * ãƒã‚±ãƒ¢ãƒ³ã‚’ã€Œã«ãŒã™ã€ã“ã¨ãŒå‡ºæ¥ã‚‹çŠ¶æ…‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   wk			[in] ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   msgID		[out] ‚É‚ª‚·‚±‚Æ‚ªo—ˆ‚È‚¢AŒxƒƒbƒZ[ƒW‚ÌID‚ğ“ü‚ê‚é
+ * @param   wk			[in] ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   msgID		[out] ã«ãŒã™ã“ã¨ãŒå‡ºæ¥ãªã„æ™‚ã€è­¦å‘Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®IDã‚’å…¥ã‚Œã‚‹
  *
- * @retval  BOOL		TRUE‚¾‚Æu‚É‚ª‚·v‚±‚Æ‚ªo—ˆ‚éBFALSE‚¾‚Æo—ˆ‚È‚¢B
+ * @retval  BOOL		TRUEã ã¨ã€Œã«ãŒã™ã€ã“ã¨ãŒå‡ºæ¥ã‚‹ã€‚FALSEã ã¨å‡ºæ¥ãªã„ã€‚
  */
 //------------------------------------------------------------------
 static BOOL CheckReleasable( BOXAPP_WORK* wk, int* msgID )
 {
-	// ƒ^ƒ}ƒS‚Í“¦‚ª‚¹‚È‚¢
+	// ã‚¿ãƒã‚´ã¯é€ƒãŒã›ãªã„
 	if( GetStatusPokeParam( &wk->vpara, ID_PARA_tamago_exist, NULL ) )
 	{
 		*msgID = msg_boxmes_01_33;
 		return FALSE;
 	}
 
-	// ƒ[ƒ‹‚ğ‚Á‚Ä‚¢‚½‚ç“¦‚ª‚¹‚È‚¢
+	// ãƒ¡ãƒ¼ãƒ«ã‚’æŒã£ã¦ã„ãŸã‚‰é€ƒãŒã›ãªã„
 	{
 		u16 item = BoxAppVPara_GetStatusPokeItemNumber(&wk->vpara);
 		if( ItemMailCheck(BoxAppVPara_GetStatusPokeItemNumber(&wk->vpara)) )
@@ -2935,7 +2935,7 @@ static BOOL CheckReleasable( BOXAPP_WORK* wk, int* msgID )
 		}
 	}
 
-	// ƒ{[ƒ‹ƒJƒvƒZƒ‹‚É“ü‚Á‚Ä‚¢‚½‚ç“¦‚ª‚¹‚È‚¢
+	// ãƒœãƒ¼ãƒ«ã‚«ãƒ—ã‚»ãƒ«ã«å…¥ã£ã¦ã„ãŸã‚‰é€ƒãŒã›ãªã„
 	if( GetStatusPokeParam( &wk->vpara, ID_PARA_cb_id, NULL ) != 0 )
 	{
 		*msgID = msg_boxmes_01_31;
@@ -2943,10 +2943,10 @@ static BOOL CheckReleasable( BOXAPP_WORK* wk, int* msgID )
 	}
 
 
-	// ƒ|ƒPƒ‚ƒ“‚ğ‚Â‚©‚ñ‚Å‚¢‚È‚¢
+	// ãƒã‚±ãƒ¢ãƒ³ã‚’ã¤ã‹ã‚“ã§ã„ãªã„æ™‚
 	if(BoxAppVPara_GetCursorCatchPokeFlag( &wk->vpara ) == CURSOR_CATCH_NONE)
 	{
-		// è‚¿ÅŒã‚Ì‚P‘Ì‚Í“¦‚ª‚¹‚È‚¢
+		// æ‰‹æŒã¡æœ€å¾Œã®ï¼‘ä½“ã¯é€ƒãŒã›ãªã„
 		if(BoxAppVPara_GetCursorArea( &wk->vpara ) == CURSOR_AREA_PARTY)
 		{
 			if( CheckPointLastPartyPoke(wk) )
@@ -2963,9 +2963,9 @@ static BOOL CheckReleasable( BOXAPP_WORK* wk, int* msgID )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXF‚É‚ª‚·“®ìÀs
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã«ãŒã™å‹•ä½œå®Ÿè¡Œ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -3038,23 +3038,23 @@ static void SubSeq_OP_Nigasu( BOXAPP_WORK* wk, u32* seq )
 	case SEQ_NIGASU:
 		if( BoxAppView_WaitCommand( wk->vwk, CMD_MSG_CLEAR ) )
 		{
-			// ’PŒêƒoƒbƒtƒ@‚Éƒ|ƒPƒ‚ƒ“–¼‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+			// å˜èªãƒãƒƒãƒ•ã‚¡ã«ãƒã‚±ãƒ¢ãƒ³åã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
 			WORDSET_RegisterPokeNickName( wk->wordset, 0, BoxAppVPara_GetStatusPokePara( &wk->vpara ) );
 
-			// ƒƒUƒ`ƒFƒbƒNŠJn
+			// ãƒ¯ã‚¶ãƒã‚§ãƒƒã‚¯é–‹å§‹
 			StartReleaseWazaCheck( wk );
 
-			// ‚Â‚©‚ñ‚Å‚éƒ|ƒPƒ‚ƒ“‚Ìê‡
+			// ã¤ã‹ã‚“ã§ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å ´åˆ
 			if( BoxAppVPara_GetCursorCatchPokeFlag( &wk->vpara ) == CURSOR_CATCH_SINGLE )
 			{
 				BoxAppView_SetCommand( wk->vwk, CMD_NIGASU_CATCHPOKE );
 				/*
-					ƒpƒ‰ƒ[ƒ^XVŒã‚Í’Í‚ñ‚Å‚éƒtƒ‰ƒO‚Å¯•Ê‚Å‚«‚È‚­‚È‚é‚Ì‚Å
-					‚Ç‚±‚Ìƒ|ƒPƒ‚ƒ“‚ğ“¦‚ª‚µ‚½‚©ƒ[ƒN‚É•Û‘¶‚µ‚Ä‚¨‚­
+					ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°å¾Œã¯æ´ã‚“ã§ã‚‹ãƒ•ãƒ©ã‚°ã§è­˜åˆ¥ã§ããªããªã‚‹ã®ã§
+					ã©ã“ã®ãƒã‚±ãƒ¢ãƒ³ã‚’é€ƒãŒã—ãŸã‹ãƒ¯ãƒ¼ã‚¯ã«ä¿å­˜ã—ã¦ãŠã
 				*/
 				wk->work = CATCHPOKE;
 			}
-			// w‚µ‚Ä‚éƒ|ƒPƒ‚ƒ“‚Ìê‡
+			// æŒ‡ã—ã¦ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®å ´åˆ
 			else
 			{
 				if( BoxAppVPara_GetCursorArea( &wk->vpara ) == CURSOR_AREA_TRAY )
@@ -3073,8 +3073,8 @@ static void SubSeq_OP_Nigasu( BOXAPP_WORK* wk, u32* seq )
 		break;
 
 	case SEQ_WAIT_EFFECT:
-		// ƒƒUƒ`ƒFƒbƒN‚ªI‚í‚ç‚È‚¢‚Æ“¦‚ª‚·ƒGƒtƒFƒNƒg‚àI‚í‚ç‚È‚¢‚Ì‚Å
-		// ƒGƒtƒFƒNƒg‚¾‚¯‘Ò‚Ä‚Î—Ç‚¢
+		// ãƒ¯ã‚¶ãƒã‚§ãƒƒã‚¯ãŒçµ‚ã‚ã‚‰ãªã„ã¨é€ƒãŒã™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚‚çµ‚ã‚ã‚‰ãªã„ã®ã§
+		// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã ã‘å¾…ã¦ã°è‰¯ã„
 		if( BoxAppView_WaitCommandAll( wk->vwk ) )
 		{
 			if( BoxApp_ReleaseWazaCheckOK( wk ) )
@@ -3176,12 +3176,12 @@ static void SubSeq_OP_Nigasu( BOXAPP_WORK* wk, u32* seq )
 }
 
 //=====================================================================================
-// “¦‚ª‚¹‚é‚©‚Ç‚¤‚©ƒƒUƒ`ƒFƒbƒNi’²‚×‚é—Ê‚ª‘½‚¢‚Ì‚Åƒ^ƒXƒN‚ğ‰ñ‚µ‚Ä­‚µ‚Ã‚Â’²‚×‚éj
+// é€ƒãŒã›ã‚‹ã‹ã©ã†ã‹ãƒ¯ã‚¶ãƒã‚§ãƒƒã‚¯ï¼ˆèª¿ã¹ã‚‹é‡ãŒå¤šã„ã®ã§ã‚¿ã‚¹ã‚¯ã‚’å›ã—ã¦å°‘ã—ã¥ã¤èª¿ã¹ã‚‹ï¼‰
 //=====================================================================================
 
 //------------------------------------------------------------------
 /**
- * ƒƒUƒ`ƒFƒbƒNŠJn
+ * ãƒ¯ã‚¶ãƒã‚§ãƒƒã‚¯é–‹å§‹
  *
  * @param   mainWk		
  *
@@ -3202,7 +3202,7 @@ static void StartReleaseWazaCheck( BOXAPP_WORK* mainWk )
 			cnt++;
 		}
 	}
-	// “¦‚ª‚»‚¤‚Æ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ª‘ÎÛƒƒU‚ğ‚Á‚Ä‚¢‚È‚¢‚Ì‚Å‚ ‚ê‚Îƒ`ƒFƒbƒN‚·‚é•K—v‚È‚µ
+	// é€ƒãŒãã†ã¨ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒå¯¾è±¡ãƒ¯ã‚¶ã‚’æŒã£ã¦ã„ãªã„ã®ã§ã‚ã‚Œã°ãƒã‚§ãƒƒã‚¯ã™ã‚‹å¿…è¦ãªã—
 	if( cnt == 0 )
 	{
 		wk->done = TRUE;
@@ -3229,7 +3229,7 @@ static void StartReleaseWazaCheck( BOXAPP_WORK* mainWk )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒUƒ`ƒFƒbƒNƒ^ƒXƒN–{‘Ì
+ * ãƒ¯ã‚¶ãƒã‚§ãƒƒã‚¯ã‚¿ã‚¹ã‚¯æœ¬ä½“
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -3239,14 +3239,14 @@ static void StartReleaseWazaCheck( BOXAPP_WORK* mainWk )
 static void ReleaseWazaCheckTask( TCB_PTR tcb, void* wk_adrs )
 {
 	enum {
-		TRAY_CHECKPOKE_UNIT = 15,	///< ‚PƒtƒŒ[ƒ€‚É‚±‚ê‚¾‚¯‚Ìƒ|ƒPƒ‚ƒ“‚ğ’²‚×‚é
+		TRAY_CHECKPOKE_UNIT = 15,	///< ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã«ã“ã‚Œã ã‘ã®ãƒã‚±ãƒ¢ãƒ³ã‚’èª¿ã¹ã‚‹
 	};
 
 	RELEASE_WAZACHECK_WORK* wk = wk_adrs;
 	POKEMON_PASO_PARAM* ppp;
 	int i, w;
 
-	// ƒ{ƒbƒNƒX‘S’²‚×
+	// ãƒœãƒƒã‚¯ã‚¹å…¨èª¿ã¹
 	if( wk->tray < BOX_MAX_TRAY )
 	{
 		int max = wk->pos + TRAY_CHECKPOKE_UNIT;
@@ -3281,7 +3281,7 @@ static void ReleaseWazaCheckTask( TCB_PTR tcb, void* wk_adrs )
 			wk->pos = max;
 		}
 	}
-	// è‚¿•‚Â‚©‚İƒ|ƒP’²‚×
+	// æ‰‹æŒã¡ï¼†ã¤ã‹ã¿ãƒã‚±èª¿ã¹
 	else
 	{
 		int max = PokeParty_GetPokeCount( wk->partyData );
@@ -3307,7 +3307,7 @@ static void ReleaseWazaCheckTask( TCB_PTR tcb, void* wk_adrs )
 			}
 		}
 
-		// ‘ÎÛƒƒU‚ğŠo‚¦‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ª‚P‘ÌA‚©‚Âƒ^[ƒQƒbƒg‚ª‚»‚ÌƒƒU‚ğŠo‚¦‚Ä‚¢‚é‚È‚ç“¦‚ª‚¹‚È‚¢
+		// å¯¾è±¡ãƒ¯ã‚¶ã‚’è¦šãˆã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒï¼‘ä½“ã€ã‹ã¤ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒãã®ãƒ¯ã‚¶ã‚’è¦šãˆã¦ã„ã‚‹ãªã‚‰é€ƒãŒã›ãªã„
 		wk->ok = TRUE;
 		for(w=0; w<NIGASU_CHECKWAZA_MAX; w++)
 		{
@@ -3324,7 +3324,7 @@ static void ReleaseWazaCheckTask( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‚ªw’èƒƒU‚ğŠo‚¦‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * ãƒã‚±ãƒ¢ãƒ³ãŒæŒ‡å®šãƒ¯ã‚¶ã‚’è¦šãˆã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param   ppp		
  * @param   waza		
@@ -3359,11 +3359,11 @@ static BOOL PokeHaveWaza( POKEMON_PASO_PARAM* ppp, u16 waza )
 
 //------------------------------------------------------------------
 /**
- * ƒƒUƒ`ƒFƒbƒN‚ªI‚í‚Á‚½‚©”»’è
+ * ãƒ¯ã‚¶ãƒã‚§ãƒƒã‚¯ãŒçµ‚ã‚ã£ãŸã‹åˆ¤å®š
  *
  * @param   mainWk		
  *
- * @retval  BOOL		TRUE‚È‚çI‚í‚Á‚½
+ * @retval  BOOL		TRUEãªã‚‰çµ‚ã‚ã£ãŸ
  */
 //------------------------------------------------------------------
 BOOL BoxApp_ReleaseWazaCheckDone( const BOXAPP_WORK* mainWk )
@@ -3374,11 +3374,11 @@ BOOL BoxApp_ReleaseWazaCheckDone( const BOXAPP_WORK* mainWk )
 
 //------------------------------------------------------------------
 /**
- * ƒƒUƒ`ƒFƒbƒN‚ÌŒ‹‰ÊA“¦‚ª‚µ‚Ä‚à—Ç‚¢ƒ|ƒPƒ‚ƒ“‚©”»’è
+ * ãƒ¯ã‚¶ãƒã‚§ãƒƒã‚¯ã®çµæœã€é€ƒãŒã—ã¦ã‚‚è‰¯ã„ãƒã‚±ãƒ¢ãƒ³ã‹åˆ¤å®š
  *
  * @param   mainWk		
  *
- * @retval  BOOL		TRUE‚È‚ç“¦‚ª‚µ‚Ä‚à—Ç‚¢
+ * @retval  BOOL		TRUEãªã‚‰é€ƒãŒã—ã¦ã‚‚è‰¯ã„
  */
 //------------------------------------------------------------------
 BOOL BoxApp_ReleaseWazaCheckOK( const BOXAPP_WORK* mainWk )
@@ -3399,9 +3399,9 @@ BOOL BoxApp_ReleaseWazaCheckOK( const BOXAPP_WORK* mainWk )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒ{ƒbƒNƒX‚Ì–¼‘O“ü—Í‰æ–Ê‚ÖˆÚs`•œ‹A
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒœãƒƒã‚¯ã‚¹ã®åå‰å…¥åŠ›ç”»é¢ã¸ç§»è¡Œã€œå¾©å¸°
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -3430,7 +3430,7 @@ static void SubSeq_Connect_InputTrayName( BOXAPP_WORK* wk, u32* seq )
 
 			PROC_Delete( wk->subProc );
 
-			// ƒ{ƒbƒNƒXƒf[ƒ^XV¨•`‰æƒpƒ‰ƒ[ƒ^XV¨‰æ–Ê\’z‚Ì‡‚É
+			// ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿æ›´æ–°â†’æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°â†’ç”»é¢æ§‹ç¯‰ã®é †ã«
 			sys_CreateHeap( HEAPID_BASE_APP, HEAPID_BOX_VIEW, HEAPSIZE_VIEW );
 			BOXDAT_SetBoxName( wk->boxData, current, wk->nameinParam->strbuf );
 			SetTrayStatus( wk->boxData, &wk->vpara.tray );
@@ -3443,9 +3443,9 @@ static void SubSeq_Connect_InputTrayName( BOXAPP_WORK* wk, u32* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–Ê‚ÖˆÚs`•œ‹A
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã¸ç§»è¡Œã€œå¾©å¸°
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void SubSeq_Connect_PokemonStatus( BOXAPP_WORK* wk, u32* seq )
@@ -3472,7 +3472,7 @@ static void SubSeq_Connect_PokemonStatus( BOXAPP_WORK* wk, u32* seq )
 
 			PROC_Delete( wk->subProc );
 
-			// ƒ{ƒbƒNƒXƒf[ƒ^XV¨•`‰æƒpƒ‰ƒ[ƒ^XV¨‰æ–Ê\’z‚Ì‡‚É
+			// ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿æ›´æ–°â†’æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°â†’ç”»é¢æ§‹ç¯‰ã®é †ã«
 			sys_CreateHeap( HEAPID_BASE_APP, HEAPID_BOX_VIEW, HEAPSIZE_VIEW );
 
 			if( BoxAppVPara_GetCursorCatchPokeFlag(&wk->vpara) == CURSOR_CATCH_NONE )
@@ -3489,8 +3489,8 @@ static void SubSeq_Connect_PokemonStatus( BOXAPP_WORK* wk, u32* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–Ê‚©‚ç‚Ì•œ‹AA’¼‘O‚Ü‚ÅŒ©‚Ä‚¢‚½ƒ|ƒPƒ‚ƒ“‚É
- * ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ‡‚í‚¹‚é
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã‹ã‚‰ã®å¾©å¸°æ™‚ã€ç›´å‰ã¾ã§è¦‹ã¦ã„ãŸãƒã‚±ãƒ¢ãƒ³ã«
+ * ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’åˆã‚ã›ã‚‹
  *
  * @param   vpara		
  * @param   wk		
@@ -3524,10 +3524,10 @@ static void UpdateCursorPosByStatusScene( BOXAPP_VPARAM* vpara, BOXAPP_WORK* wk 
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒoƒbƒO‰æ–Ê‚ÖˆÚs`•œ‹A
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒãƒƒã‚°ç”»é¢ã¸ç§»è¡Œã€œå¾©å¸°
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   seq		ƒV[ƒPƒ“ƒX
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -3574,7 +3574,7 @@ static void SubSeq_Connect_Bag( BOXAPP_WORK* wk, u32 *seq )
 			Overlay_UnloadID( FS_OVERLAY_ID(fld_bag) );
 
 			if(select_itemno == ITEM_HAKKINDAMA && PokePasoParaGet( wk->vpara.statusPoke.poke_data, ID_PARA_monsno, NULL ) != MONSNO_KIMAIRAN){
-				//ƒMƒ‰ƒeƒBƒiˆÈŠO‚ÍƒnƒbƒLƒ“ƒ_ƒ}‚Í‚Ä‚È‚¢
+				//ã‚®ãƒ©ãƒ†ã‚£ãƒŠä»¥å¤–ã¯ãƒãƒƒã‚­ãƒ³ãƒ€ãƒã¯æŒã¦ãªã„
 				;
 			}
 			else if( select_itemno != ITEM_DUMMY_ID )
@@ -3584,7 +3584,7 @@ static void SubSeq_Connect_Bag( BOXAPP_WORK* wk, u32 *seq )
 				SetBoxModifiedFlag( wk );
 			}
 
-			// ƒ{ƒbƒNƒXƒf[ƒ^XV¨•`‰æƒpƒ‰ƒ[ƒ^XV¨‰æ–Ê\’z‚Ì‡‚É
+			// ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿æ›´æ–°â†’æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°â†’ç”»é¢æ§‹ç¯‰ã®é †ã«
 			sys_CreateHeap( HEAPID_BASE_APP, HEAPID_BOX_VIEW, HEAPSIZE_VIEW );
 			BoxAppView_Init( &(wk->vwk), &wk->vpara, wk );
 			BoxAppView_SetCommand( wk->vwk, CMD_INIT );
@@ -3642,10 +3642,10 @@ static void SubSeq_Connect_Bag( BOXAPP_WORK* wk, u32 *seq )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒeƒ€‚ğƒoƒbƒO‚É–ß‚·i‚¹‚¢‚èƒ‚[ƒhj
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ãƒãƒƒã‚°ã«æˆ»ã™ï¼ˆã›ã„ã‚Šãƒ¢ãƒ¼ãƒ‰ï¼‰
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   seq		ƒV[ƒPƒ“ƒX
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -3754,10 +3754,10 @@ static void SubSeq_Restore_Item( BOXAPP_WORK* wk, u32* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒeƒ€‚ğƒoƒbƒO‚É–ß‚·i‚Ç‚¤‚®‚¹‚¢‚èƒ‚[ƒhj
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ãƒãƒƒã‚°ã«æˆ»ã™ï¼ˆã©ã†ãã›ã„ã‚Šãƒ¢ãƒ¼ãƒ‰ï¼‰
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   seq		ƒV[ƒPƒ“ƒX
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -3883,10 +3883,10 @@ static void SubSeq_ItemMode_Restore( BOXAPP_WORK* wk, u32* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒAƒCƒeƒ€‚Ìà–¾•\¦
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚¢ã‚¤ãƒ†ãƒ ã®èª¬æ˜è¡¨ç¤º
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   seq		ƒV[ƒPƒ“ƒX
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -3927,16 +3927,16 @@ static void SubSeq_ItemInfo( BOXAPP_WORK* wk, u32* seq )
 }
 
 //======================================================================================================
-// ƒgƒŒƒC‘I‘ğƒRƒ“ƒgƒ[ƒ‹ŠÖ˜A
+// ãƒˆãƒ¬ã‚¤é¸æŠã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é–¢é€£
 //======================================================================================================
 
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒC‘I‘ğƒRƒ“ƒgƒ[ƒ‹‰Šú‰»
+ * ãƒˆãƒ¬ã‚¤é¸æŠã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«åˆæœŸåŒ–
  *
- * @param   wk					ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   init_tray_num		‰Šú•\¦ƒgƒŒƒCƒiƒ“ƒo[
- * @param   msg_id				‘I‘ğ‚É•\¦‚·‚éƒƒbƒZ[ƒWID
+ * @param   wk					ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   init_tray_num		åˆæœŸè¡¨ç¤ºãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
+ * @param   msg_id				é¸æŠæ™‚ã«è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  *
  */
 //------------------------------------------------------------------
@@ -3956,14 +3956,14 @@ static void SelectTrayCtrl_Continue( BOXAPP_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒC‘I‘ğˆ—ƒƒCƒ“
+ * ãƒˆãƒ¬ã‚¤é¸æŠå‡¦ç†ãƒ¡ã‚¤ãƒ³
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   seq		ŠÖ”“àƒV[ƒPƒ“ƒXƒiƒ“ƒo‚Æ‚µ‚Ä—˜—p‚Å‚«‚é•Ï”‚ÌƒAƒhƒŒƒX
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq		é–¢æ•°å†…ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒã¨ã—ã¦åˆ©ç”¨ã§ãã‚‹å¤‰æ•°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * ŠJnAwk->selectBox ‚É“ü‚Á‚½ƒiƒ“ƒo[‚ğ‰Šú•\¦ƒ{ƒbƒNƒX‚Æ‚·‚éB
- * I—¹A‘I‘ğ‚³‚ê‚½ƒ{ƒbƒNƒXƒiƒ“ƒo[‚ğ“¯‚¶‚­ wk->selectBox ‚É“ü‚ê‚éB
- * ‚aƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½‚ÍA’è” SELECT_TRAY_CANCEL ‚ª“ü‚éB
+ * é–‹å§‹æ™‚ã€wk->selectBox ã«å…¥ã£ãŸãƒŠãƒ³ãƒãƒ¼ã‚’åˆæœŸè¡¨ç¤ºãƒœãƒƒã‚¯ã‚¹ã¨ã™ã‚‹ã€‚
+ * çµ‚äº†æ™‚ã€é¸æŠã•ã‚ŒãŸãƒœãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼ã‚’åŒã˜ã wk->selectBox ã«å…¥ã‚Œã‚‹ã€‚
+ * ï¼¢ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸæ™‚ã¯ã€å®šæ•° SELECT_TRAY_CANCEL ãŒå…¥ã‚‹ã€‚
  */
 //------------------------------------------------------------------
 static BOOL SelectTrayCtrl_Main( BOXAPP_WORK* wk )
@@ -3987,7 +3987,7 @@ static BOOL SelectTrayCtrl_Main( BOXAPP_WORK* wk )
 			break;
 		}
 
-		// ‚ ‚è“¾‚È‚¢ƒnƒY‚¾‚ªˆê‰
+		// ã‚ã‚Šå¾—ãªã„ãƒã‚ºã ãŒä¸€å¿œ
 		if( subwk->trayNumber == SELECT_TRAY_CANCEL ){
 			subwk->trayNumber = 0;
 		}
@@ -4060,7 +4060,7 @@ static BOOL SelectTrayCtrl_Main( BOXAPP_WORK* wk )
 }
 
 //======================================================================================================
-// ƒTƒu‰æ–Ê‘€ìŠÖ˜A
+// ã‚µãƒ–ç”»é¢æ“ä½œé–¢é€£
 //======================================================================================================
 
 static int calc_reelmove_vector( int* next, int now, u32 max )
@@ -4085,7 +4085,7 @@ static int calc_reelmove_vector( int* next, int now, u32 max )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒŒƒ“ƒgƒgƒŒƒCØ‚è‘Ö‚¦
+ * ã‚«ãƒ¬ãƒ³ãƒˆãƒˆãƒ¬ã‚¤åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param   wk		
  * @param   seq		
@@ -4129,7 +4129,7 @@ static void SubSeq_ChangeTray( BOXAPP_WORK* wk, u32* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuLCD‚Å‚ÌƒgƒŒƒC‘I‘ğƒ‚[ƒh
+ * ã‚µãƒ–LCDã§ã®ãƒˆãƒ¬ã‚¤é¸æŠãƒ¢ãƒ¼ãƒ‰
  *
  * @param   wk		
  * @param   seq		
@@ -4328,7 +4328,7 @@ static void SubSeq_TrayMode( BOXAPP_WORK* wk,  u32* seq )
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuLCD‚Å‚Ìi‚è‚İƒ‚[ƒh
+ * ã‚µãƒ–LCDã§ã®çµã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰
  *
  * @param   wk		
  * @param   seq		
@@ -4471,11 +4471,11 @@ static void SubSeq_LimitMode( BOXAPP_WORK* wk,  u32* seq )
 
 //------------------------------------------------------------------
 /**
- * i‚è‚İƒ‚[ƒh‚ÌƒAƒCƒRƒ“‚ªƒ^ƒbƒ`‚³‚ê‚½‚©ƒ`ƒFƒbƒN
+ * çµã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã®ã‚¢ã‚¤ã‚³ãƒ³ãŒã‚¿ãƒƒãƒã•ã‚ŒãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚Åƒ^ƒbƒ`‚³‚ê‚½
+ * @retval  BOOL		TRUEã§ã‚¿ãƒƒãƒã•ã‚ŒãŸ
  */
 //------------------------------------------------------------------
 static BOOL CheckLimitModeIconTouch( BOXAPP_WORK* wk )
@@ -4518,9 +4518,9 @@ static void IconBmnCallBack( u32 btnID, u32 event, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN\’zFƒƒCƒ“
+ * ãƒ¯ãƒ¼ã‚¯æ§‹ç¯‰ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -4572,9 +4572,9 @@ static void InitWork( BOXAPP_WORK* wk, BOX_PROC_PARAM* proc_param )
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN”jŠü
+ * ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -4606,7 +4606,7 @@ static void DeleteWork( BOXAPP_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN‰Šú‰»FƒVƒXƒeƒ€ƒf[ƒ^
+ * ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ï¼šã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  * @param   system		
  *
@@ -4614,13 +4614,13 @@ static void DeleteWork( BOXAPP_WORK* wk )
 //------------------------------------------------------------------
 static void InitWork_system( BOXAPP_SYSTEM* system, int mode )
 {
-	system->boxMode = mode;				// ƒ{ƒbƒNƒX“®ìƒ‚[ƒhi‚ ‚¸‚¯‚éE‚Â‚ê‚Ä‚¢‚­E‚¹‚¢‚èE‚Ç‚¤‚®j
-	system->expertModeFlag = FALSE;		// Šµ‚ê‚Ä‚élƒ‚[ƒhƒtƒ‰ƒO
-	system->limitModeBitFlag = 0;		// i‚è‚İƒ‚[ƒhƒrƒbƒgƒtƒ‰ƒO
+	system->boxMode = mode;				// ãƒœãƒƒã‚¯ã‚¹å‹•ä½œãƒ¢ãƒ¼ãƒ‰ï¼ˆã‚ãšã‘ã‚‹ãƒ»ã¤ã‚Œã¦ã„ããƒ»ã›ã„ã‚Šãƒ»ã©ã†ãï¼‰
+	system->expertModeFlag = FALSE;		// æ…£ã‚Œã¦ã‚‹äººãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
+	system->limitModeBitFlag = 0;		// çµã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN‰Šú‰»FƒJ[ƒ\ƒ‹ƒf[ƒ^
+ * ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ï¼šã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  * @param   system		
  * @param   cursor		
@@ -4654,7 +4654,7 @@ static void InitWork_cursor( BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN‰Šú‰»FˆÚ“®’†ƒ|ƒPƒf[ƒ^
+ * ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ï¼šç§»å‹•ä¸­ãƒã‚±ãƒ‡ãƒ¼ã‚¿
  *
  * @param   catchPoke		
  */
@@ -4667,7 +4667,7 @@ static void InitWork_catchpoke( BOXAPP_CATCH_POKE* catchPoke )
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNíœFˆÚ“®’†ƒ|ƒPƒf[ƒ^
+ * ãƒ¯ãƒ¼ã‚¯å‰Šé™¤ï¼šç§»å‹•ä¸­ãƒã‚±ãƒ‡ãƒ¼ã‚¿
  *
  * @param   catchPoke		
  *
@@ -4681,7 +4681,7 @@ static void DeleteWork_catchpoke( BOXAPP_CATCH_POKE* catchPoke )
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN‰Šú‰»FƒgƒŒƒCƒf[ƒ^
+ * ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ï¼šãƒˆãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿
  *
  * @param   box		
  * @param   tray		
@@ -4695,7 +4695,7 @@ static void InitWork_tray( BOX_DATA* box, BOXAPP_TRAY* tray )
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNíœFƒgƒŒƒCƒf[ƒ^
+ * ãƒ¯ãƒ¼ã‚¯å‰Šé™¤ï¼šãƒˆãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿
  *
  * @param   tray		
  *
@@ -4710,7 +4710,7 @@ static void DeleteWork_tray( BOXAPP_TRAY* tray )
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN‰Šú‰»FƒXƒe[ƒ^ƒX•\¦ƒ|ƒPƒ‚ƒ“—pƒ[ƒN
+ * ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ï¼šã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºãƒã‚±ãƒ¢ãƒ³ç”¨ãƒ¯ãƒ¼ã‚¯
  *
  * @param   statusPoke		
  *
@@ -4726,7 +4726,7 @@ static void InitWork_statusPoke( BOXAPP_STATUS_POKE* statusPoke )
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNíœFƒXƒe[ƒ^ƒX•\¦ƒ|ƒPƒ‚ƒ“—pƒ[ƒN
+ * ãƒ¯ãƒ¼ã‚¯å‰Šé™¤ï¼šã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºãƒã‚±ãƒ¢ãƒ³ç”¨ãƒ¯ãƒ¼ã‚¯
  *
  * @param   statusPoke		
  *
@@ -4744,7 +4744,7 @@ static void DeleteWork_statusPoke( BOXAPP_STATUS_POKE* statusPoke )
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN‰Šú‰»F‚Â‚æ‚³‚­‚ç‚×—pƒ[ƒN
+ * ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ï¼šã¤ã‚ˆã•ãã‚‰ã¹ç”¨ãƒ¯ãƒ¼ã‚¯
  *
  * @param   compare		
  *
@@ -4767,7 +4767,7 @@ static void InitWork_Compare( BOXAPP_COMPARE* compare )
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNíœF‚Â‚æ‚³‚­‚ç‚×—pƒ[ƒN
+ * ãƒ¯ãƒ¼ã‚¯å‰Šé™¤ï¼šã¤ã‚ˆã•ãã‚‰ã¹ç”¨ãƒ¯ãƒ¼ã‚¯
  *
  * @param   compare		
  *
@@ -4792,7 +4792,7 @@ static void DeleteWork_Compare( BOXAPP_COMPARE* compare )
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN‰Šú‰»FƒTƒuLCDó‘Ô
+ * ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ï¼šã‚µãƒ–LCDçŠ¶æ…‹
  *
  * @param   sub		
  *
@@ -4807,7 +4807,7 @@ static void InitWork_SubLCD( BOXAPP_SUBLCD* sub )
 }
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCŠÖ˜A•`‰æƒpƒ‰ƒ[ƒ^‚ğXV
+ * ãƒˆãƒ¬ã‚¤é–¢é€£æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›´æ–°
  *
  * @param   box		
  * @param   tray		
@@ -4821,7 +4821,7 @@ static void SetTrayStatus( const BOX_DATA* box, BOXAPP_TRAY* tray )
 }
 //------------------------------------------------------------------
 /**
- * ƒJƒŒƒ“ƒg‚Ì•Ç†ƒiƒ“ƒo[XV
+ * ã‚«ãƒ¬ãƒ³ãƒˆã®å£ç´™ãƒŠãƒ³ãƒãƒ¼æ›´æ–°
  *
  * @param   vpara		
  * @param   box			
@@ -4838,11 +4838,11 @@ static void TrayCurrentWallPaperUpdate( BOXAPP_VPARAM* vpara, BOX_DATA* box )
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹ˆÚ“®ƒ`ƒFƒbƒN
+ * ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒã‚§ãƒƒã‚¯
  *
  * @param   wk		
  *
- * @retval  BOOL		TRUE‚ÅˆÚ“®‚ ‚è
+ * @retval  BOOL		TRUEã§ç§»å‹•ã‚ã‚Š
  */
 //------------------------------------------------------------------
 static BOOL CheckCursorMoveKeyInput( u32 keyflag, BOXAPP_WORK* wk )
@@ -4886,13 +4886,13 @@ static BOOL CheckCursorMoveKeyInput( u32 keyflag, BOXAPP_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹ˆÚ“®ƒf[ƒ^ˆ—
+ * ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ‡ãƒ¼ã‚¿å‡¦ç†
  *
  * @param   vpara		
- * @param   x		‚wˆÚ“®—Ê
- * @param   y		‚xˆÚ“®—Ê
+ * @param   x		ï¼¸ç§»å‹•é‡
+ * @param   y		ï¼¹ç§»å‹•é‡
  *
- * @retval  BOOL		TRUE‚ÅˆÚ“®‚ ‚è
+ * @retval  BOOL		TRUEã§ç§»å‹•ã‚ã‚Š
  */
 //------------------------------------------------------------------
 static BOOL CursorPosMove( BOXAPP_VPARAM* vpara, int x, int y )
@@ -5056,7 +5056,7 @@ static BOOL CursorPosMove( BOXAPP_VPARAM* vpara, int x, int y )
 }
 //------------------------------------------------------------------
 /**
- * ”ÍˆÍ‘I‘ğ‚ÌƒJ[ƒ\ƒ‹ˆÚ“®ƒ`ƒFƒbƒN
+ * ç¯„å›²é¸æŠæ™‚ã®ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒã‚§ãƒƒã‚¯
  *
  * @param   wk		
  *
@@ -5115,11 +5115,11 @@ static int CheckCursorMoveKeyInput_AreaSelect( u32 keyflag, BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ”ÍˆÍ‘I‘ğ’†‚ÌƒJ[ƒ\ƒ‹ˆÚ“®ƒf[ƒ^ˆ—
+ * ç¯„å›²é¸æŠä¸­ã®ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ãƒ‡ãƒ¼ã‚¿å‡¦ç†
  *
  * @param   vpara		
- * @param   x		‚wˆÚ“®—Ê
- * @param   y		‚xˆÚ“®—Ê
+ * @param   x		ï¼¸ç§»å‹•é‡
+ * @param   y		ï¼¹ç§»å‹•é‡
  *
  * @retval  int		
  */
@@ -5208,9 +5208,9 @@ static int CursorPosMove_AreaSelect( BOXAPP_VPARAM* vpara, int x, int y )
 
 //------------------------------------------------------------------
 /**
- * è‚¿ƒ|ƒPƒ‚ƒ“ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚ÌˆÚ“®æƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+ * æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸæ™‚ã®ç§»å‹•å…ˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -5220,18 +5220,18 @@ static void CursorPosSetForPartyBoxButtonOpen( BOXAPP_WORK* wk )
 	BOXAPP_CURSOR* cursor = &vpara->cursor;
 	u32 cnt;
 
-	// ƒ|ƒPƒ‚ƒ“‚ğ‚Â‚©‚ñ‚Å‚¢‚é‚È‚ç‹ó‚«ƒXƒy[ƒX‚Ö
+	// ãƒã‚±ãƒ¢ãƒ³ã‚’ã¤ã‹ã‚“ã§ã„ã‚‹ãªã‚‰ç©ºãã‚¹ãƒšãƒ¼ã‚¹ã¸
 	if( BoxAppVPara_GetCursorCatchPokeFlag( vpara ) == CURSOR_CATCH_SINGLE )
 	{
 		cursor->partytray_pos = PokeParty_GetPokeCount( wk->partyData );
 
-		// ‹ó‚«‚ª–³‚¯‚ê‚ÎÅŒã”ö
+		// ç©ºããŒç„¡ã‘ã‚Œã°æœ€å¾Œå°¾
 		if( cursor->partytray_pos >= TEMOTI_POKEMAX )
 		{
 			cursor->partytray_pos = TEMOTI_POKEMAX - 1;
 		}
 	}
-	// ‚Â‚©‚ñ‚Å‚¢‚È‚¢‚È‚çæ“ª‚Ö
+	// ã¤ã‹ã‚“ã§ã„ãªã„ãªã‚‰å…ˆé ­ã¸
 	else
 	{
 		cursor->partytray_pos = 0;
@@ -5244,9 +5244,9 @@ static void CursorPosSetForPartyBoxButtonOpen( BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * è‚¿ƒ|ƒPƒ‚ƒ“ƒgƒŒƒC‚©‚ç”²‚¯‚é‚ÌˆÚ“®æƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+ * æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒˆãƒ¬ã‚¤ã‹ã‚‰æŠœã‘ã‚‹æ™‚ã®ç§»å‹•å…ˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -5263,7 +5263,7 @@ static void CursorPosSetForPartyBoxButtonClose( BOXAPP_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹Œ»İˆÊ’u‚ÅƒXƒe[ƒ^ƒXXV
+ * ã‚«ãƒ¼ã‚½ãƒ«ç¾åœ¨ä½ç½®ã§ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°
  *
  * @param   vpara		
  *
@@ -5320,16 +5320,16 @@ static BOOL CursorPointPokeUpdate( BOXAPP_WORK* wk )
 	return FALSE;
 }
 /*============================================================================================*/
-/*  ƒ^ƒbƒ`ƒpƒlƒ‹ƒ`ƒFƒbƒNˆ—                                                                  */
+/*  ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒã‚§ãƒƒã‚¯å‡¦ç†                                                                  */
 /*============================================================================================*/
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚©ƒ`ƒFƒbƒN
+ * ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  u32		‰Ÿ‚³‚ê‚½ƒ{ƒ^ƒ“‚ÌIDi‰Ÿ‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î BUTTONID_NONE j
+ * @retval  u32		æŠ¼ã•ã‚ŒãŸãƒœã‚¿ãƒ³ã®IDï¼ˆæŠ¼ã•ã‚Œã¦ã„ãªã‘ã‚Œã° BUTTONID_NONE ï¼‰
  */
 //------------------------------------------------------------------
 static BOOL CheckButtonPush( BOXAPP_WORK* wk )
@@ -5343,11 +5343,11 @@ static BOOL CheckButtonPush( BOXAPP_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚©‚ç‚ÌƒR[ƒ‹ƒoƒbƒN
+ * ãƒœã‚¿ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã‹ã‚‰ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- * @param   btnID		ƒ{ƒ^ƒ“ID
- * @param   event		ƒ{ƒ^ƒ“ƒCƒxƒ“ƒg
- * @param   wk_adrs		ƒ[ƒNƒAƒhƒŒƒX
+ * @param   btnID		ãƒœã‚¿ãƒ³ID
+ * @param   event		ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
+ * @param   wk_adrs		ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -5380,7 +5380,7 @@ static void BmnCallBack( u32 btnID, u32 event, void* wk_adrs )
 }
 
 /*====================================================================================*/
-/*  •`‰æƒpƒ‰ƒ[ƒ^ƒZƒbƒgˆ—                                                          */
+/*  æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆå‡¦ç†                                                          */
 /*====================================================================================*/
 static void VParaSet_MessageID( BOXAPP_VPARAM* vpara, u32 msgID )
 {
@@ -5389,7 +5389,7 @@ static void VParaSet_MessageID( BOXAPP_VPARAM* vpara, u32 msgID )
 
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒC“àƒJ[ƒ\ƒ‹ˆÊ’u‚ğƒZƒbƒg
+ * ãƒˆãƒ¬ã‚¤å†…ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
  *
  * @param   vpara		
  * @param   x		
@@ -5407,8 +5407,8 @@ static void VParaSet_CursorTrayPos( BOXAPP_VPARAM* vpara, u32 x, u32 y )
 }
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹‚Ì‰º‚É‚ ‚éƒ|ƒPƒ‚ƒ“’P‘Ì‚ğA’Í‚İ’†ƒ|ƒPƒf[ƒ^‚É‚·‚éB
- * ‚Â‚©‚ñ‚¾ƒ|ƒPƒ‚ƒ“ƒf[ƒ^•”‚ÍƒNƒŠƒA‚·‚éB
+ * ã‚«ãƒ¼ã‚½ãƒ«ã®ä¸‹ã«ã‚ã‚‹ãƒã‚±ãƒ¢ãƒ³å˜ä½“ã‚’ã€æ´ã¿ä¸­ãƒã‚±ãƒ‡ãƒ¼ã‚¿ã«ã™ã‚‹ã€‚
+ * ã¤ã‹ã‚“ã ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿éƒ¨ã¯ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
  *
  * @param   vpara		
  */
@@ -5426,7 +5426,7 @@ static void VParaSet_PokeCatch( BOXAPP_WORK* wk, BOXAPP_VPARAM* vpara )
 	}
 	else
 	{
-		// catchPoke->ppp ‚Í30‘Ì•ª‚Æ‚Á‚Ä‚ ‚é‚Ì‚Å‘«‚è‚éƒnƒYc
+		// catchPoke->ppp ã¯30ä½“åˆ†ã¨ã£ã¦ã‚ã‚‹ã®ã§è¶³ã‚Šã‚‹ãƒã‚ºâ€¦
 		MI_CpuCopy32( cursor->point_poke, catchPoke->ppp, PokemonParamSizeGet() );
 		PokeParty_Delete( wk->partyData, cursor->partytray_pos );
 		catchPoke->fromPartyFlag = TRUE;
@@ -5442,8 +5442,8 @@ static void VParaSet_PokeCatch( BOXAPP_WORK* wk, BOXAPP_VPARAM* vpara )
 }
 //------------------------------------------------------------------
 /**
- * ”ÍˆÍ‘I‘ğ’†ƒ|ƒPƒ‚ƒ“‚ğA’Í‚İ’†ƒ|ƒPƒf[ƒ^‚É‚·‚éB
- * ‚Â‚©‚ñ‚¾ƒ|ƒPƒ‚ƒ“ƒf[ƒ^•”‚ÍƒNƒŠƒA‚·‚éB
+ * ç¯„å›²é¸æŠä¸­ãƒã‚±ãƒ¢ãƒ³ã‚’ã€æ´ã¿ä¸­ãƒã‚±ãƒ‡ãƒ¼ã‚¿ã«ã™ã‚‹ã€‚
+ * ã¤ã‹ã‚“ã ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿éƒ¨ã¯ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
  *
  * @param   wk		
  * @param   vpara		
@@ -5498,7 +5498,7 @@ static void VParaSet_AreaSelectPokeCatch( BOXAPP_WORK* wk, BOXAPP_VPARAM* vpara 
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“”ÍˆÍ‘I‘ğƒpƒ‰ƒ[ƒ^‰ŠúƒZƒbƒg
+ * ã‚¢ã‚¤ã‚³ãƒ³ç¯„å›²é¸æŠãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸã‚»ãƒƒãƒˆ
  *
  * @param   wk			
  * @param   vpara		
@@ -5516,7 +5516,7 @@ static void VParaSet_StartAreaSelect( BOXAPP_WORK* wk, BOXAPP_VPARAM* vpara )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“”ÍˆÍ‘I‘ğƒpƒ‰ƒ[ƒ^XV
+ * ã‚¢ã‚¤ã‚³ãƒ³ç¯„å›²é¸æŠãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°
  *
  * @param   wk		
  * @param   vpara		
@@ -5534,7 +5534,7 @@ static void VParaSet_UpdateAreaSelect( BOXAPP_WORK* wk, BOXAPP_VPARAM* vpara )
 
 //------------------------------------------------------------------
 /**
- * ‚Â‚©‚ñ‚Å‚¢‚éƒ|ƒPƒ‚ƒ“’P‘Ì‚ğAƒJ[ƒ\ƒ‹ˆÊ’u‚É’u‚­B
+ * ã¤ã‹ã‚“ã§ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³å˜ä½“ã‚’ã€ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã«ç½®ãã€‚
  *
  * @param   vpara		
  *
@@ -5585,7 +5585,7 @@ static void VParaSet_PokePut( BOXAPP_WORK* wk, BOXAPP_VPARAM* vpara )
 }
 //------------------------------------------------------------------
 /**
- * ”ÍˆÍ‘I‘ğ‚Å‚Â‚©‚ñ‚Å‚¢‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğAƒJ[ƒ\ƒ‹ˆÊ’u‚É’u‚­B
+ * ç¯„å›²é¸æŠã§ã¤ã‹ã‚“ã§ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã€ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã«ç½®ãã€‚
  *
  * @param   vpara		
  *
@@ -5625,7 +5625,7 @@ static void VParaSet_AreaSelectPokePut( BOXAPP_WORK* wk, BOXAPP_VPARAM* vpara )
 }
 //------------------------------------------------------------------
 /**
- * ‚Â‚©‚ñ‚Å‚¢‚éƒ|ƒPƒ‚ƒ“‚ÆƒJ[ƒ\ƒ‹ˆÊ’u‚Ìƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^‚ğ“ü‚ê‘Ö‚¦‚é
+ * ã¤ã‹ã‚“ã§ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã¨ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã®ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
  *
  * @param   vpara		
  *
@@ -5669,11 +5669,11 @@ static void VParaSet_PokeChange( BOXAPP_WORK* wk, BOXAPP_VPARAM* vpara)
 }
 //------------------------------------------------------------------
 /**
- * ‚Â‚©‚ñ‚Å‚¢‚éƒ|ƒPƒ‚ƒ“‚ğƒ{ƒbƒNƒX‚É—a‚¯‚é
+ * ã¤ã‹ã‚“ã§ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ãƒœãƒƒã‚¯ã‚¹ã«é ã‘ã‚‹
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚Å¬Œ÷
+ * @retval  BOOL	TRUEã§æˆåŠŸ
  */
 //------------------------------------------------------------------
 static BOOL VParaSet_CatchPokeAzuke( BOXAPP_WORK* wk, u32 trayNum )
@@ -5696,11 +5696,11 @@ static BOOL VParaSet_CatchPokeAzuke( BOXAPP_WORK* wk, u32 trayNum )
 }
 //------------------------------------------------------------------
 /**
- * w‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ğƒ{ƒbƒNƒX‚É—a‚¯‚é
+ * æŒ‡ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ãƒœãƒƒã‚¯ã‚¹ã«é ã‘ã‚‹
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚Å¬Œ÷
+ * @retval  BOOL	TRUEã§æˆåŠŸ
  */
 //------------------------------------------------------------------
 static BOOL VParaSet_PointPokeAzuke( BOXAPP_WORK* wk, u32 trayNum )
@@ -5721,9 +5721,9 @@ static BOOL VParaSet_PointPokeAzuke( BOXAPP_WORK* wk, u32 trayNum )
 }
 //------------------------------------------------------------------
 /**
- * ‚Â‚©‚ñ‚Å‚¢‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğíœi“¦‚ª‚·j
+ * ã¤ã‹ã‚“ã§ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ï¼ˆé€ƒãŒã™ï¼‰
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void VParaSet_CatchPokeNigasu( BOXAPP_WORK* wk )
@@ -5743,9 +5743,9 @@ static void VParaSet_CatchPokeNigasu( BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * w‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğíœi“¦‚ª‚·j
+ * æŒ‡ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ï¼ˆé€ƒãŒã™ï¼‰
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void VParaSet_PointPokeNigasu( BOXAPP_WORK* wk )
@@ -5765,7 +5765,7 @@ static void VParaSet_PointPokeNigasu( BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX•\¦—pƒ|ƒPƒ‚ƒ“‚Ìó‘ÔXV
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºç”¨ãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹æ›´æ–°
  *
  * @param   vpara		
  * @param   ppp			
@@ -5784,7 +5784,7 @@ static void VParaSet_StatusPoke( BOXAPP_VPARAM* vpara, POKEMON_PASO_PARAM* ppp, 
 }
 
 //-----------------------------------------------------------
-// ƒXƒe[ƒ^ƒX•\¦—pƒ|ƒPƒ‚ƒ“‚Ìó‘ÔXVi’Êí—pj
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºç”¨ãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹æ›´æ–°ï¼ˆé€šå¸¸ç”¨ï¼‰
 //-----------------------------------------------------------
 static void VParaSet_StatusPoke_Normal( BOXAPP_VPARAM* vpara, POKEMON_PASO_PARAM* ppp, BOXAPP_WORK* wk )
 {
@@ -5812,7 +5812,7 @@ static void VParaSet_StatusPoke_Normal( BOXAPP_VPARAM* vpara, POKEMON_PASO_PARAM
 	}
 	else
 	{
-		// ƒjƒhƒ‰ƒ“‰EŠ‚ÅƒjƒbƒNƒl[ƒ€‚ª‚Â‚¢‚Ä‚¢‚È‚¢‚Í«•Ê•\¦‚³‚¹‚È‚¢‚½‚ß
+		// ãƒ‹ãƒ‰ãƒ©ãƒ³â™‚ãƒ»â™€ã§ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ãŒã¤ã„ã¦ã„ãªã„æ™‚ã¯æ€§åˆ¥è¡¨ç¤ºã•ã›ãªã„ãŸã‚
 		stpoke->sex = MONS_UNKNOWN;
 	}
 
@@ -5849,7 +5849,7 @@ static void VParaSet_StatusPoke_Normal( BOXAPP_VPARAM* vpara, POKEMON_PASO_PARAM
 	PokePasoParaFastModeOff( ppp, fastmodeFlag );
 }
 //-----------------------------------------------------------
-// ƒXƒe[ƒ^ƒX•\¦—pƒ|ƒPƒ‚ƒ“‚Ìó‘ÔXVi‚Â‚æ‚³‚­‚ç‚×—pj
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºç”¨ãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹æ›´æ–°ï¼ˆã¤ã‚ˆã•ãã‚‰ã¹ç”¨ï¼‰
 //-----------------------------------------------------------
 static void VParaSet_StatusPoke_Compare( BOXAPP_VPARAM* vpara, POKEMON_PASO_PARAM* ppp, BOXAPP_WORK* wk )
 {
@@ -5897,7 +5897,7 @@ static void VParaSet_StatusPoke_Compare( BOXAPP_VPARAM* vpara, POKEMON_PASO_PARA
 
 //------------------------------------------------------------------
 /**
- * ‹­‚³”ä‚×ƒ‚[ƒhFXV‚·‚éƒTƒCƒh‚Ì•ÏX
+ * å¼·ã•æ¯”ã¹ãƒ¢ãƒ¼ãƒ‰ï¼šæ›´æ–°ã™ã‚‹ã‚µã‚¤ãƒ‰ã®å¤‰æ›´
  *
  * @param   vpara		
  *
@@ -5910,7 +5910,7 @@ static void VParaSet_SwitchCompareSide( BOXAPP_VPARAM* vpara )
 
 //------------------------------------------------------------------
 /**
- * ‹­‚³”ä‚×ƒ‚[ƒhFƒy[ƒWØ‚è‘Ö‚¦
+ * å¼·ã•æ¯”ã¹ãƒ¢ãƒ¼ãƒ‰ï¼šãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param   vpara		
  *
@@ -5925,7 +5925,7 @@ static void VParaSet_ChangeComparePage( BOXAPP_VPARAM* vpara )
 }
 //------------------------------------------------------------------
 /**
- * ‹­‚³”ä‚×ƒ‚[ƒhFƒ{ƒ^ƒ“‰Ÿ‰ºó‘ÔƒZƒbƒg
+ * å¼·ã•æ¯”ã¹ãƒ¢ãƒ¼ãƒ‰ï¼šãƒœã‚¿ãƒ³æŠ¼ä¸‹çŠ¶æ…‹ã‚»ãƒƒãƒˆ
  *
  * @param   vpara		
  * @param   on		
@@ -5938,7 +5938,7 @@ static void VParaSet_SetComparePageButtonState( BOXAPP_VPARAM* vpara, BOOL on )
 }
 //------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX•\¦—pƒ|ƒPƒ‚ƒ“‚ÌÃŞ°À±ÄŞÚ½‚Ì‚İƒZƒbƒg‚µ’¼‚·
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºç”¨ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ã¿ã‚»ãƒƒãƒˆã—ç›´ã™
  *
  * @param   vpara		
  * @param   ppp		
@@ -5951,8 +5951,8 @@ static void VParaSet_StatusPokeData( BOXAPP_VPARAM* vpara, POKEMON_PASO_PARAM* p
 }
 //------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX•\¦—pƒ|ƒPƒ‚ƒ“‚Ìƒ}[ƒLƒ“ƒOó‘Ô‚Ì‚İƒZƒbƒg‚µ‚È‚¨‚·
- * ¦ƒ}[ƒLƒ“ƒOó‘Ô‚Íƒƒjƒ…[—pƒ[ƒN‚ğQÆ
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºç”¨ãƒã‚±ãƒ¢ãƒ³ã®ãƒãƒ¼ã‚­ãƒ³ã‚°çŠ¶æ…‹ã®ã¿ã‚»ãƒƒãƒˆã—ãªãŠã™
+ * â€»ãƒãƒ¼ã‚­ãƒ³ã‚°çŠ¶æ…‹ã¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ãƒ¯ãƒ¼ã‚¯ã‚’å‚ç…§
  *
  * @param   vpara		
  *
@@ -5967,13 +5967,13 @@ static void VParaSet_StatusPokeMark( BOXAPP_VPARAM* vpara )
 	mark= vpara->menu.mark;
 	stpoke->mark = mark;
 
-	// mark‚Íu8‚É“ü‚ê‚é
+	// markã¯u8ã«å…¥ã‚Œã‚‹
 	PokePasoParaPut( stpoke->poke_data, ID_PARA_mark, &(mark) );
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(JP_VER10) imatake 2006/12/01
-	// ƒ}[ƒLƒ“ƒO‚¾‚¯•ÏX‚µ‚½‚Æ‚«‚É‚½‚­‚³‚ñƒZ[ƒu‚³‚ê‚È‚¢•s‹ï‡‚ÌC³
-	//----- 2006/10/24 ‰ü’ù”Å‚Ì‚½‚ß‚ÌC³ ----------------
+	// ãƒãƒ¼ã‚­ãƒ³ã‚°ã ã‘å¤‰æ›´ã—ãŸã¨ãã«ãŸãã•ã‚“ã‚»ãƒ¼ãƒ–ã•ã‚Œãªã„ä¸å…·åˆã®ä¿®æ­£
+	//----- 2006/10/24 æ”¹è¨‚ç‰ˆã®ãŸã‚ã®ä¿®æ­£ ----------------
 	if( (BoxAppVPara_GetCursorArea( vpara ) == CURSOR_AREA_TRAY)
 	&&	(BoxAppVPara_GetCursorCatchPokeFlag(vpara) == CURSOR_CATCH_NONE)
 	){
@@ -5986,7 +5986,7 @@ static void VParaSet_StatusPokeMark( BOXAPP_VPARAM* vpara )
 }
 //------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX•\¦—pƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒeƒ€ƒiƒ“ƒo[‚ğƒZƒbƒg
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºç”¨ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
  * @param   vpara		
  * @param   itemno		
@@ -6009,7 +6009,7 @@ static void VParaSet_StatusPokeItemNumber( BOXAPP_VPARAM* vpara, u16 itemno, BOX
 		MSGMAN_GetString( wk->msgman_box, msg_boxmes_01_21, stpoke->itemname );
 	}
 
-	// ƒAƒCƒeƒ€ƒZƒbƒg
+	// ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒƒãƒˆ
 	if( (BoxAppVPara_GetCursorArea( vpara ) == CURSOR_AREA_TRAY)
 	&&	(BoxAppVPara_GetCursorCatchPokeFlag(vpara) == CURSOR_CATCH_NONE)
 	){
@@ -6020,7 +6020,7 @@ static void VParaSet_StatusPokeItemNumber( BOXAPP_VPARAM* vpara, u16 itemno, BOX
 
 	{
 		int monsno = PokePasoParaGet( stpoke->poke_data, ID_PARA_monsno, NULL );
-		// ƒAƒEƒX‚¾‚Á‚½‚çƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW
+		// ã‚¢ã‚¦ã‚¹ã ã£ãŸã‚‰ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸
 		if( monsno == MONSNO_AUSU )
 		{
 			PokePasoParaAusuFormChange( stpoke->poke_data );
@@ -6038,7 +6038,7 @@ static void VParaSet_StatusPokeItemNumber( BOXAPP_VPARAM* vpara, u16 itemno, BOX
 }
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒiƒ“ƒo[‚PƒRi‚ß‚é
+ * ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼ï¼‘ã‚³é€²ã‚ã‚‹
  *
  * @param   tray		
  *
@@ -6055,7 +6055,7 @@ static void VParaSet_CurrentTrayInc( BOXAPP_VPARAM* vpara )
 }
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒiƒ“ƒo[‚PƒR–ß‚·
+ * ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼ï¼‘ã‚³æˆ»ã™
  *
  * @param   tray		
  *
@@ -6077,7 +6077,7 @@ static void VParaSet_CurrentTrayDec( BOXAPP_VPARAM* vpara )
 }
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒiƒ“ƒo[’¼ÚƒZƒbƒg
+ * ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼ç›´æ¥ã‚»ãƒƒãƒˆ
  *
  * @param   box		
  * @param   tray		
@@ -6092,7 +6092,7 @@ static void VParaSet_CurrentTrayNumberSet( BOXAPP_VPARAM* vpara, u32 number )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‘I‘ğƒEƒBƒ“ƒhƒE—pƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+ * ãƒœãƒƒã‚¯ã‚¹é¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
  * @param   vpara		
  *
@@ -6107,7 +6107,7 @@ static void VParaSet_JumpWin( BOXAPP_VPARAM* vpara, u32 center_trayno )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€u‚ ‚¸‚©‚év
+ * ã‚¢ã‚¤ãƒ†ãƒ ã€Œã‚ãšã‹ã‚‹ã€
  *
  * @param   vpara		
  *
@@ -6125,7 +6125,7 @@ static void VParaSet_WithDrawItem( BOXAPP_VPARAM* vpara, BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ‚Â‚©‚ñ‚Å‚¢‚½ƒAƒCƒeƒ€‚ğƒNƒŠƒA
+ * ã¤ã‹ã‚“ã§ã„ãŸã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚¯ãƒªã‚¢
  *
  * @param   vpara		
  *
@@ -6137,7 +6137,7 @@ static void VParaSet_ClearCatchItem( BOXAPP_VPARAM* vpara )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€u‚à‚½‚¹‚év
+ * ã‚¢ã‚¤ãƒ†ãƒ ã€Œã‚‚ãŸã›ã‚‹ã€
  *
  * @param   vpara		
  *
@@ -6155,7 +6155,7 @@ static void VParaSet_SetItem( BOXAPP_VPARAM* vpara, BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€u‚Æ‚è‚©‚¦‚év
+ * ã‚¢ã‚¤ãƒ†ãƒ ã€Œã¨ã‚Šã‹ãˆã‚‹ã€
  *
  * @param   vpara		
  *
@@ -6223,7 +6223,7 @@ static void VParaSet_ExpertModeChange( BOXAPP_VPARAM* vpara )
 }
 
 /*====================================================================================*/
-/*  •`‰æƒpƒ‰ƒ[ƒ^æ“¾ˆ—                                                            */
+/*  æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—å‡¦ç†                                                            */
 /*====================================================================================*/
 MSGDATA_MANAGER* BoxApp_GetMsgManager( const BOXAPP_WORK* wk )
 {
@@ -6231,9 +6231,9 @@ MSGDATA_MANAGER* BoxApp_GetMsgManager( const BOXAPP_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWì¬—pWORDSET‚ğ“n‚·
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä½œæˆç”¨WORDSETã‚’æ¸¡ã™
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  const WORDSET*		
  */
@@ -6250,7 +6250,7 @@ int BoxApp_GetTalkWinType( const BOXAPP_WORK* wk )
 
 
 /*====================================================================================*/
-/*  •`‰æƒpƒ‰ƒ[ƒ^æ“¾ˆ—                                                            */
+/*  æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—å‡¦ç†                                                            */
 /*====================================================================================*/
 u32 BoxAppVPara_GetBoxMode( const BOXAPP_VPARAM* vpara )
 {
@@ -6320,12 +6320,12 @@ u32 BoxAppVPara_GetTrayBoxNumber(const BOXAPP_VPARAM* vpara )
 {
 	return vpara->tray.number;
 }
-/** ƒXƒe[ƒ^ƒX•\¦—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^–{‘Ì */
+/** ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ */
 const BOXAPP_STATUS_POKE* BoxAppVpara_GetStatusPokeData( const BOXAPP_VPARAM* vpara )
 {
 	return &(vpara->statusPoke);
 }
-/* ƒXƒe[ƒ^ƒX•\¦ƒ|ƒPƒ‚ƒ“‚Ì‚ÂƒAƒCƒeƒ€ƒiƒ“ƒo[‚ğ•Ô‚· */
+/* ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºãƒã‚±ãƒ¢ãƒ³ã®æŒã¤ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™ */
 u32 BoxAppVPara_GetStatusPokeItemNumber( const BOXAPP_VPARAM* vpara )
 {
 	if( BoxAppVPara_GetCursorStatusEnableFlag(vpara) )
@@ -6334,12 +6334,12 @@ u32 BoxAppVPara_GetStatusPokeItemNumber( const BOXAPP_VPARAM* vpara )
 	}
 	return ITEM_DUMMY_ID;
 }
-/** ƒJƒŒƒ“ƒgƒ{ƒbƒNƒXƒgƒŒƒCƒf[ƒ^–{‘Ì */
+/** ã‚«ãƒ¬ãƒ³ãƒˆãƒœãƒƒã‚¯ã‚¹ãƒˆãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿æœ¬ä½“ */
 const BOXAPP_TRAY* BoxAppVpara_GetTrayData( const BOXAPP_VPARAM* vpara )
 {
 	return &(vpara->tray);
 }
-/** ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^ */
+/** ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ */
 const BOX_DATA* BoxAppVPara_GetBoxData( const BOXAPP_VPARAM* vpara )
 {
 	return vpara->boxData;
@@ -6357,7 +6357,7 @@ u32 BoxAppVPara_GetStatusPokeMarkBit( const BOXAPP_VPARAM* vpara )
 {
 	return vpara->statusPoke.mark;
 }
-/** ƒ{ƒbƒNƒX‘I‘ğƒEƒBƒ“ƒhƒE‚Ì’†SƒgƒŒƒCƒiƒ“ƒo[ */
+/** ãƒœãƒƒã‚¯ã‚¹é¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸­å¿ƒãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼ */
 u32 BoxAppVPara_GetJumpWinCenterTrayNumber( const BOXAPP_VPARAM* vpara )
 {
 	return vpara->jumpWin.center_trayno;
@@ -6376,7 +6376,7 @@ u32 BoxAppVPara_GetSubLCDLimitPos( const BOXAPP_VPARAM* vpara )
 	return vpara->subLCD.limit_pos;
 }
 
-/* i‚è‚İƒ‚[ƒh‚Ìƒrƒbƒgƒtƒ‰ƒO */
+/* çµã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã®ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚° */
 u32 BoxAppVPara_GetLimitModeBitFlag( const BOXAPP_VPARAM* vpara )
 {
 	if( BoxAppVPara_GetBoxMode(vpara) != BOX_MODE_ITEM )
@@ -6385,7 +6385,7 @@ u32 BoxAppVPara_GetLimitModeBitFlag( const BOXAPP_VPARAM* vpara )
 	}
 	else
 	{
-		// ‚Ç‚¤‚®®—ƒ‚[ƒh‚Íí‚ÉƒAƒCƒeƒ€Šƒ|ƒP‚Ì‚İ—LŒø•\¦‚³‚¹‚é
+		// ã©ã†ãæ•´ç†ãƒ¢ãƒ¼ãƒ‰ã¯å¸¸ã«ã‚¢ã‚¤ãƒ†ãƒ æ‰€æŒãƒã‚±ã®ã¿æœ‰åŠ¹è¡¨ç¤ºã•ã›ã‚‹
 		return LIMITMODE_BIT_ITEM;
 	}
 }
@@ -6394,7 +6394,7 @@ BOOL BoxAppVPara_GetExpertModeFlag( const  BOXAPP_VPARAM* vpara )
 {
 	return vpara->system.expertModeFlag;
 }
-/*  ”ÍˆÍ‘I‘ğ‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾ */
+/*  ç¯„å›²é¸æŠã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾— */
 void BoxAppVPara_GetAreaSelectParam( const BOXAPP_VPARAM* vpara, u32* left, u32* right, u32* top, u32* bottom )
 {
 	const BOXAPP_CATCH_POKE* catchPoke;
@@ -6423,7 +6423,7 @@ void BoxAppVPara_GetAreaSelectParam( const BOXAPP_VPARAM* vpara, u32* left, u32*
 		*bottom = catchPoke->areaStartY;
 	}
 }
-/* ”ÍˆÍ‘I‘ğ“®ì’†A”ÍˆÍ‚ª‚PƒZƒ‹•ª‚É‚È‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN */
+/* ç¯„å›²é¸æŠå‹•ä½œä¸­ã€ç¯„å›²ãŒï¼‘ã‚»ãƒ«åˆ†ã«ãªã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ */
 BOOL BoxAppVPara_CheckAreaSelectSinglePoke( const BOXAPP_VPARAM* vpara )
 {
 	const BOXAPP_CATCH_POKE* catchPoke;
@@ -6437,7 +6437,7 @@ BOOL BoxAppVPara_CheckAreaSelectSinglePoke( const BOXAPP_VPARAM* vpara )
 	}
 	return FALSE;
 }
-/* ”ÍˆÍ‘I‘ğ“®ì’†‚Ì”ÍˆÍƒgƒbƒvˆÊ’u‚ğ•Ô‚· */
+/* ç¯„å›²é¸æŠå‹•ä½œä¸­ã®ç¯„å›²ãƒˆãƒƒãƒ—ä½ç½®ã‚’è¿”ã™ */
 u32 BoxAppVPara_GetAreaSelectCursorTopPos( const BOXAPP_VPARAM* vpara )
 {
 	const BOXAPP_CATCH_POKE* catchPoke;
@@ -6459,8 +6459,8 @@ u32 BoxAppVPara_GetAreaSelectCursorTopPos( const BOXAPP_VPARAM* vpara )
 
 	return (top*BOX_MAX_COLUMN + left);
 }
-/* ”ÍˆÍ‘I‘ğƒ|ƒPƒ‚ƒ“‚Ì“Á’è‚Ì‚P‘Ì‚ªA’Í‚ñ‚¾‚Éƒ{ƒbƒNƒX‚Ì‰½”Ô–Ú‚É‹‚½‚©‚ğ”ÍˆÍ’†æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚©‚ç‚ÌƒIƒtƒZƒbƒg‚Å•Ô‚· */
-/* ‚â‚â‚±‚µ‚¢ */
+/* ç¯„å›²é¸æŠãƒã‚±ãƒ¢ãƒ³ã®ç‰¹å®šã®ï¼‘ä½“ãŒã€æ´ã‚“ã æ™‚ã«ãƒœãƒƒã‚¯ã‚¹ã®ä½•ç•ªç›®ã«å±…ãŸã‹ã‚’ç¯„å›²ä¸­å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã§è¿”ã™ */
+/* ã‚„ã‚„ã“ã—ã„ */
 u32 BoxAppVPara_GetAreaSelectIconOfsPos( const BOXAPP_VPARAM* vpara, u32 idx )
 {
 	const BOXAPP_CATCH_POKE* catchPoke = &vpara->catchPoke;
@@ -6519,7 +6519,7 @@ BOOL BoxAppVPara_GetStatusPokeTamagoFlag( const BOXAPP_VPARAM* vpara )
 
 //------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX•\¦‚³‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Å‚ÌPokeParaGet
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã§ã®PokeParaGet
  *
  * @param   vpara		
  * @param   paramID		
@@ -6552,7 +6552,7 @@ static u32 GetStatusPokeParam( BOXAPP_VPARAM* vpara, int paramID, void* buf )
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹‚ªw‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Å‚ÌPokeParaGet
+ * ã‚«ãƒ¼ã‚½ãƒ«ãŒæŒ‡ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã§ã®PokeParaGet
  *
  * @param   vpara		
  * @param   paramID		

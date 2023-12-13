@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndPlayerReadGlobalVariable</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,13 +11,13 @@
 <div></div>
 </div>
 <h1>NNS_SndPlayerReadGlobalVariable</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndPlayerReadGlobalVariable( int <var>varNo</var>, s16* <var>var</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA0LWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -25,32 +25,32 @@
 <tbody>
 <tr>
 <td><em><strong><code>varNo</code></strong></em></td>
-<td>�ϐ��ԍ��ł��B�l�͈̔͂́A0�`15�ł��B</td>
+<td>変数番号です。値の範囲は、0〜15です。</td>
 </tr>
 <tr>
 <td><em><strong><code>var</code></strong></em></td>
-<td>�ϐ��̒l���i�[�����ւ̃|�C���^�ł��B</td>
+<td>変数の値を格納する先へのポインタです。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDAQMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�ǂ݂Ƃ�ɐ����������ǂ�����Ԃ��܂��B</p>
+      <p>読みとりに成功したかどうかを返します。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAXMWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�V�[�P���X�O���[�o���ϐ���ǂ݂Ƃ�܂��B
-�ǂ݂Ƃ�ɐ�������ƁA<em><strong><code>var</code></strong></em>�Ŏw�肵���A�h���X�ցA�ϐ��̒l���������܂�܂��B
+シーケンスグローバル変数を読みとります。
+読みとりに成功すると、<em><strong><code>var</code></strong></em>で指定したアドレスへ、変数の値が書き込まれます。
 </p>
     </div>
-<h2>�Q��</h2>
-<p>�Ȃ��B</p>
-<h2>����</h2>
-<p>2004/06/01 ����<br></p>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
 </div>
 </body>
 </html>

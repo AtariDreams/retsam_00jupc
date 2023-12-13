@@ -12,7 +12,7 @@
 
   $Log: wm_sync.c,v $
   Revision 1.22  2007/05/24 23:49:52  kitase_hirotake
-  Copyright C³
+  Copyright ä¿®æ­£
 
   Revision 1.21  2007/05/23 09:22:21  kitase_hirotake
   fix WM_IsExistAllowedChannel
@@ -24,55 +24,55 @@
   do-indent
 
   Revision 1.17  2005/12/01 13:58:43  seiki_masashi
-  ‘—óMƒTƒCƒYŠÖ˜A‚Ìˆ—‚Ì®—
+  é€å—ä¿¡ã‚µã‚¤ã‚ºé–¢é€£ã®å‡¦ç†ã®æ•´ç†
 
   Revision 1.16  2005/11/29 07:51:41  seiki_masashi
   fix typo
 
   Revision 1.15  2005/11/01 08:55:09  seiki_masashi
-  WMPortRecvCallback.connectedAidBitmap ‚Ì’Ç‰Á
+  WMPortRecvCallback.connectedAidBitmap ã®è¿½åŠ 
 
   Revision 1.14  2005/10/28 11:15:59  seiki_masashi
-  WM_STATECODE_PORT_INIT ‚ÌÀ‘•
+  WM_STATECODE_PORT_INIT ã®å®Ÿè£…
 
   Revision 1.13  2005/04/11 08:51:04  yosizaki
   add WM_GetNextTgid().
 
   Revision 1.12  2005/03/17 05:05:19  ooe
-  WM_GetOtherElements‚ğ’Ç‰ÁB
+  WM_GetOtherElementsã‚’è¿½åŠ ã€‚
 
   Revision 1.11  2005/02/28 05:26:35  yosizaki
   do-indent.
 
   Revision 1.10  2005/02/18 13:27:33  seiki_masashi
-  Copyright •\‹L‚ÌC³
+  Copyright è¡¨è¨˜ã®ä¿®æ­£
 
   Revision 1.9  2005/02/18 07:52:31  seiki_masashi
-  warning ‘Îô
+  warning å¯¾ç­–
 
   Revision 1.8  2004/12/22 02:29:53  terui
-  WM_IsExistAllowedChannel‚ğ’Ç‰ÁB
+  WM_IsExistAllowedChannelã‚’è¿½åŠ ã€‚
 
   Revision 1.7  2004/10/22 04:37:28  terui
-  WMErrCode‚Æ‚µ‚ÄintŒ^‚ğ•Ô‚µ‚Ä‚¢‚½ŠÖ”‚É‚Â‚¢‚ÄAWMErrCode—ñ‹“Œ^‚ğ•Ô‚·‚æ‚¤‚É•ÏXB
+  WMErrCodeã¨ã—ã¦intå‹ã‚’è¿”ã—ã¦ã„ãŸé–¢æ•°ã«ã¤ã„ã¦ã€WMErrCodeåˆ—æŒ™å‹ã‚’è¿”ã™ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.6  2004/10/18 04:17:46  terui
-  ƒr[ƒRƒ“ŠÔŠuAƒXƒLƒƒƒ“ŠÔŠu‚ğ‚Î‚ç‚Â‚©‚¹‚éd—l‚ğ’Ç‰ÁB
+  ãƒ“ãƒ¼ã‚³ãƒ³é–“éš”ã€ã‚¹ã‚­ãƒ£ãƒ³é–“éš”ã‚’ã°ã‚‰ã¤ã‹ã›ã‚‹ä»•æ§˜ã‚’è¿½åŠ ã€‚
 
   Revision 1.5  2004/10/15 14:12:07  terui
-  WM_GetAllowedChannelŠÖ”‚ª–¢‰Šú‰»‚É•Ô‚·ŒÅ’è’l‚ğ•ÏXB
+  WM_GetAllowedChannelé–¢æ•°ãŒæœªåˆæœŸåŒ–æ™‚ã«è¿”ã™å›ºå®šå€¤ã‚’å¤‰æ›´ã€‚
 
   Revision 1.4  2004/10/01 05:38:10  seiki_masashi
-  q‹@‚ª‚¢‚È‚¢‚Æ‚«‚ÍÅ’á“d”g‹­“x‚ğ•Ô‚·‚æ‚¤‚É•ÏX
+  å­æ©ŸãŒã„ãªã„ã¨ãã¯æœ€ä½é›»æ³¢å¼·åº¦ã‚’è¿”ã™ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.3  2004/10/01 04:04:14  terui
-  –³üg—p‹–‰Âƒ`ƒƒƒ“ƒlƒ‹‚ğ‹N“®‚Éæ‚ÉŒvZ‚µ‚Ä‚¨‚­‹@”\’Ç‰Á‚É”º‚¤C³B
+  ç„¡ç·šä½¿ç”¨è¨±å¯ãƒãƒ£ãƒ³ãƒãƒ«ã‚’èµ·å‹•æ™‚ã«å…ˆã«è¨ˆç®—ã—ã¦ãŠãæ©Ÿèƒ½è¿½åŠ ã«ä¼´ã†ä¿®æ­£ã€‚
 
   Revision 1.2  2004/09/16 02:57:32  seiki_masashi
-  WM_GetMPReceiveBufferSize ‚Ì•s‹ï‡‚ğC³
+  WM_GetMPReceiveBufferSize ã®ä¸å…·åˆã‚’ä¿®æ­£
 
   Revision 1.1  2004/09/10 11:03:30  terui
-  wm.c‚Ì•ªŠ„‚É”º‚¢AV‹KuploadB
+  wm.cã®åˆ†å‰²ã«ä¼´ã„ã€æ–°è¦uploadã€‚
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -84,33 +84,33 @@
 /*---------------------------------------------------------------------------*
   Name:         WM_SetIndCallback
 
-  Description:  WM7‚©‚ç‚Ìó‹µ’Ê’m‚É‘Î‚µ‚ÄŒÄ‚Ñ‚¾‚³‚ê‚éŠÖ”‚ğİ’è‚·‚éB
+  Description:  WM7ã‹ã‚‰ã®çŠ¶æ³é€šçŸ¥ã«å¯¾ã—ã¦å‘¼ã³ã ã•ã‚Œã‚‹é–¢æ•°ã‚’è¨­å®šã™ã‚‹ã€‚
 
-  Arguments:    callback    -   –³üƒtƒ@[ƒ€ƒEƒFƒA‚©‚ç‚Ìó‹µ’Ê’m‚ÉŒÄ‚Ño‚³‚ê‚é
-                                ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğw’èB
+  Arguments:    callback    -   ç„¡ç·šãƒ•ã‚¡ãƒ¼ãƒ ã‚¦ã‚§ã‚¢ã‹ã‚‰ã®çŠ¶æ³é€šçŸ¥æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹
+                                ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetIndCallback(WMCallbackFunc callback)
 {
     WMErrCode result;
     OSIntrMode e;
 
-    // Š„‚İ‹Ö~
+    // å‰²è¾¼ã¿ç¦æ­¢
     e = OS_DisableInterrupts();
 
-    // ‰Šú‰»Ï‚İŠm”F
+    // åˆæœŸåŒ–æ¸ˆã¿ç¢ºèª
     result = WMi_CheckInitialized();
     if (result != WM_ERRCODE_SUCCESS)
     {
-        // Š„‚İ‹Ö~–ß‚µ
+        // å‰²è¾¼ã¿ç¦æ­¢æˆ»ã—
         (void)OS_RestoreInterrupts(e);
         return result;
     }
 
-    // Indication—pƒR[ƒ‹ƒoƒbƒN‚ğİ’è
+    // Indicationç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®š
     WMi_GetSystemWork()->indCallback = callback;
-    // Š„‚İ‹Ö~–ß‚µ
+    // å‰²è¾¼ã¿ç¦æ­¢æˆ»ã—
     (void)OS_RestoreInterrupts(e);
 
     return WM_ERRCODE_SUCCESS;
@@ -119,14 +119,14 @@ WMErrCode WM_SetIndCallback(WMCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         WM_SetPortCallback
 
-  Description:  WM7‚©‚ç‚Ì’ÊMƒtƒŒ[ƒ€óM’Ê’m‚É‘Î‚µ‚ÄŒÄ‚Ñ‚¾‚³‚ê‚éŠÖ”‚ğİ’è‚·‚éB
+  Description:  WM7ã‹ã‚‰ã®é€šä¿¡ãƒ•ãƒ¬ãƒ¼ãƒ å—ä¿¡é€šçŸ¥ã«å¯¾ã—ã¦å‘¼ã³ã ã•ã‚Œã‚‹é–¢æ•°ã‚’è¨­å®šã™ã‚‹ã€‚
 
-  Arguments:    port        -   ƒ|[ƒg”Ô†B
-                callback    -   óM’Ê’m‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
-                arg         -   ƒR[ƒ‹ƒoƒbƒNŠÖ”‚É WMPortRecvCallback.arg ‚Æ‚µ‚Ä
-                                “n‚³‚ê‚éˆø”B
+  Arguments:    port        -   ãƒãƒ¼ãƒˆç•ªå·ã€‚
+                callback    -   å—ä¿¡é€šçŸ¥æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
+                arg         -   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã« WMPortRecvCallback.arg ã¨ã—ã¦
+                                æ¸¡ã•ã‚Œã‚‹å¼•æ•°ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_SetPortCallback(u16 port, WMCallbackFunc callback, void *arg)
 {
@@ -134,7 +134,7 @@ WMErrCode WM_SetPortCallback(u16 port, WMCallbackFunc callback, void *arg)
     OSIntrMode e;
     WMPortRecvCallback cb_Port;
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
 #ifdef SDK_DEBUG
     if (port >= WM_NUM_OF_PORT)
     {
@@ -159,18 +159,18 @@ WMErrCode WM_SetPortCallback(u16 port, WMCallbackFunc callback, void *arg)
         OS_GetMacAddress(cb_Port.macAddress);
     }
 
-    // Š„‚İ‹Ö~
+    // å‰²è¾¼ã¿ç¦æ­¢
     e = OS_DisableInterrupts();
-    // ‰Šú‰»Ï‚İŠm”F
+    // åˆæœŸåŒ–æ¸ˆã¿ç¢ºèª
     result = WMi_CheckInitialized();
     if (result != WM_ERRCODE_SUCCESS)
     {
-        // Š„‚İ‹Ö~–ß‚µ
+        // å‰²è¾¼ã¿ç¦æ­¢æˆ»ã—
         (void)OS_RestoreInterrupts(e);
         return result;
     }
 
-    // ƒf[ƒ^óM—pƒR[ƒ‹ƒoƒbƒN‚ğƒZƒbƒg
+    // ãƒ‡ãƒ¼ã‚¿å—ä¿¡ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
     {
         WMArm9Buf *p = WMi_GetSystemWork();
 
@@ -185,7 +185,7 @@ WMErrCode WM_SetPortCallback(u16 port, WMCallbackFunc callback, void *arg)
         (*callback) ((void *)&cb_Port);
     }
 
-    // Š„‚İ‹Ö~–ß‚µ
+    // å‰²è¾¼ã¿ç¦æ­¢æˆ»ã—
     (void)OS_RestoreInterrupts(e);
 
     return WM_ERRCODE_SUCCESS;
@@ -194,29 +194,29 @@ WMErrCode WM_SetPortCallback(u16 port, WMCallbackFunc callback, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         WM_ReadStatus
 
-  Description:  –³üƒ‰ƒCƒuƒ‰ƒŠó‘Ô‚ğ¦‚·\‘¢‘Ì‚ğæ“¾‚·‚éB
+  Description:  ç„¡ç·šãƒ©ã‚¤ãƒ–ãƒ©ãƒªçŠ¶æ…‹ã‚’ç¤ºã™æ§‹é€ ä½“ã‚’å–å¾—ã™ã‚‹ã€‚
 
-  Arguments:    statusBuf   -   ó‘Ô‚ğæ“¾‚·‚é•Ï”‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    statusBuf   -   çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹å¤‰æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_ReadStatus(WMStatus *statusBuf)
 {
     WMErrCode result;
     WMArm9Buf *p = WMi_GetSystemWork();
 
-    // ‰Šú‰»Ï‚İŠm”F
+    // åˆæœŸåŒ–æ¸ˆã¿ç¢ºèª
     result = WMi_CheckInitialized();
     WM_CHECK_RESULT(result);
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     if (statusBuf == NULL)
     {
         WM_WARNING("Parameter \"statusBuf\" must not be NULL.\n");
         return WM_ERRCODE_INVALID_PARAM;
     }
 
-    // WMStatus\‘¢‘Ì‚ğCPUƒRƒs[
+    // WMStatusæ§‹é€ ä½“ã‚’CPUã‚³ãƒ”ãƒ¼
     DC_InvalidateRange(p->status, sizeof(WMStatus));
     MI_CpuCopyFast(p->status, statusBuf, sizeof(WMStatus));
 
@@ -226,12 +226,12 @@ WMErrCode WM_ReadStatus(WMStatus *statusBuf)
 /*---------------------------------------------------------------------------*
   Name:         WM_GetMPSendBufferSize
 
-  Description:  MP ’ÊM‚Ì‘—Mƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğŒvZ‚·‚éB
-                StartParent, StartConnect ‚ªI‚í‚Á‚Ä‚¢‚é•K—v‚ª‚ ‚éB
+  Description:  MP é€šä¿¡ã®é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã™ã‚‹ã€‚
+                StartParent, StartConnect ãŒçµ‚ã‚ã£ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
 
   Arguments:    None.
 
-  Returns:      int     -   WM_StartMP ‚É“n‚·•K—v‚ª‚ ‚é‘—Mƒoƒbƒtƒ@‚ÌƒTƒCƒYB
+  Returns:      int     -   WM_StartMP ã«æ¸¡ã™å¿…è¦ãŒã‚ã‚‹é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
  *---------------------------------------------------------------------------*/
 int WM_GetMPSendBufferSize(void)
 {
@@ -239,22 +239,22 @@ int WM_GetMPSendBufferSize(void)
     int     maxSendSize;
     WMArm9Buf *p = WMi_GetSystemWork();
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     result = WMi_CheckStateEx(2, WM_STATE_PARENT, WM_STATE_CHILD);
     if (result != WM_ERRCODE_SUCCESS)
     {
         return 0;
     }
 
-    // MPó‘Ô‚ğŠm”F
-    DC_InvalidateRange(&(p->status->mp_flag), 4);       // ARM7ƒXƒe[ƒ^ƒX—Ìˆæ‚ÌƒLƒƒƒbƒVƒ…‚ğ–³Œø‰»
+    // MPçŠ¶æ…‹ã‚’ç¢ºèª
+    DC_InvalidateRange(&(p->status->mp_flag), 4);       // ARM7ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é ˜åŸŸã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ç„¡åŠ¹åŒ–
     if (p->status->mp_flag == TRUE)
     {
         WM_WARNING("Already started MP protocol. So can't execute request.\n");
         return 0;
     }
 
-    // ŒvZ‚É•K—v‚Èî•ñ‚ğWMStatus\‘¢‘Ì‚©‚çQÆ
+    // è¨ˆç®—ã«å¿…è¦ãªæƒ…å ±ã‚’WMStatusæ§‹é€ ä½“ã‹ã‚‰å‚ç…§
     DC_InvalidateRange(&(p->status->mp_maxSendSize), 4);
     maxSendSize = p->status->mp_maxSendSize;
 
@@ -264,12 +264,12 @@ int WM_GetMPSendBufferSize(void)
 /*---------------------------------------------------------------------------*
   Name:         WM_GetMPReceiveBufferSize
 
-  Description:  MP ’ÊM‚ÌóMƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğŒvZ‚·‚éB
-                StartParent, StartConnect ‚ªI‚í‚Á‚Ä‚¢‚é•K—v‚ª‚ ‚éB
+  Description:  MP é€šä¿¡ã®å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã™ã‚‹ã€‚
+                StartParent, StartConnect ãŒçµ‚ã‚ã£ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
 
   Arguments:    None.
 
-  Returns:      int     -   WM_StartMP ‚É“n‚·•K—v‚ª‚ ‚éóMƒoƒbƒtƒ@‚ÌƒTƒCƒYB
+  Returns:      int     -   WM_StartMP ã«æ¸¡ã™å¿…è¦ãŒã‚ã‚‹å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã€‚
  *---------------------------------------------------------------------------*/
 int WM_GetMPReceiveBufferSize(void)
 {
@@ -279,14 +279,14 @@ int WM_GetMPReceiveBufferSize(void)
     int     maxEntry;
     WMArm9Buf *p = WMi_GetSystemWork();
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     result = WMi_CheckStateEx(2, WM_STATE_PARENT, WM_STATE_CHILD);
     if (result != WM_ERRCODE_SUCCESS)
     {
         return 0;
     }
 
-    // MPó‘Ô‚ğŠm”F
+    // MPçŠ¶æ…‹ã‚’ç¢ºèª
     DC_InvalidateRange(&(p->status->mp_flag), 4);
     if (p->status->mp_flag == TRUE)
     {
@@ -294,7 +294,7 @@ int WM_GetMPReceiveBufferSize(void)
         return 0;
     }
 
-    // ŒvZ‚É•K—v‚Èî•ñ‚ğWMStatus\‘¢‘Ì‚©‚çQÆ
+    // è¨ˆç®—ã«å¿…è¦ãªæƒ…å ±ã‚’WMStatusæ§‹é€ ä½“ã‹ã‚‰å‚ç…§
     DC_InvalidateRange(&(p->status->aid), 2);
     isParent = (p->status->aid == 0) ? TRUE : FALSE;
     DC_InvalidateRange(&(p->status->mp_maxRecvSize), 2);
@@ -316,55 +316,55 @@ int WM_GetMPReceiveBufferSize(void)
 /*---------------------------------------------------------------------------*
   Name:         WM_ReadMPData
 
-  Description:  óM‚µ‚½ƒf[ƒ^‘S‘Ì‚©‚çw’èq‹@‚Ìƒf[ƒ^‚¾‚¯‚ğ’Šo‚·‚éB
+  Description:  å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿å…¨ä½“ã‹ã‚‰æŒ‡å®šå­æ©Ÿã®ãƒ‡ãƒ¼ã‚¿ã ã‘ã‚’æŠ½å‡ºã™ã‚‹ã€‚
 
-  Arguments:    header      -   óMƒf[ƒ^‘S‘Ì‚ğ¦‚·ƒ|ƒCƒ“ƒ^B
-                aid         -   ƒf[ƒ^‚ğ’Šo‚·‚éq‹@‚ÌAIDB
+  Arguments:    header      -   å—ä¿¡ãƒ‡ãƒ¼ã‚¿å…¨ä½“ã‚’ç¤ºã™ãƒã‚¤ãƒ³ã‚¿ã€‚
+                aid         -   ãƒ‡ãƒ¼ã‚¿ã‚’æŠ½å‡ºã™ã‚‹å­æ©Ÿã®AIDã€‚
 
-  Returns:      WMMpRecvData* - ŠY“–q‹@‚©‚ç‚ÌóMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·B
-                                ’Šo‚É¸”s‚µ‚½ê‡ANULL‚ğ•Ô‚·B
+  Returns:      WMMpRecvData* - è©²å½“å­æ©Ÿã‹ã‚‰ã®å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™ã€‚
+                                æŠ½å‡ºã«å¤±æ•—ã—ãŸå ´åˆã€NULLã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 WMMpRecvData *WM_ReadMPData(const WMMpRecvHeader *header, u16 aid)
 {
     int     i;
     WMErrCode result;
-    WMMpRecvData *recvdata_p[WM_NUM_MAX_CHILD]; // Šeq‹@ƒf[ƒ^‚ÌŠJnˆÊ’uƒ|ƒCƒ“ƒ^”z—ñ(15‘ä•ª)
+    WMMpRecvData *recvdata_p[WM_NUM_MAX_CHILD]; // å„å­æ©Ÿãƒ‡ãƒ¼ã‚¿ã®é–‹å§‹ä½ç½®ãƒã‚¤ãƒ³ã‚¿é…åˆ—(15å°åˆ†)
     WMArm9Buf *p = WMi_GetSystemWork();
 
-    // ‰Šú‰»Ï‚İ‚ğŠm”F
+    // åˆæœŸåŒ–æ¸ˆã¿ã‚’ç¢ºèª
     result = WMi_CheckInitialized();
     if (result != WM_ERRCODE_SUCCESS)
     {
         return NULL;
     }
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     if ((aid < 1) || (aid > WM_NUM_MAX_CHILD))
     {
         WM_WARNING("Parameter \"aid\" must be between 1 and %d.\n", WM_NUM_MAX_CHILD);
         return NULL;
     }
 
-    // ‚»‚Ìaid‚Ìq‹@‚Í‘¶İ‚·‚é‚©H
+    // ãã®aidã®å­æ©Ÿã¯å­˜åœ¨ã™ã‚‹ã‹ï¼Ÿ
     DC_InvalidateRange(&(p->status->child_bitmap), 2);
     if (0 == (p->status->child_bitmap & (0x0001 << aid)))
     {
         return NULL;
     }
 
-    // óMƒf[ƒ^‚ª‘¶İ‚·‚é‚©H
+    // å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ã‹ï¼Ÿ
     if (header->count == 0)
     {
         return NULL;
     }
 
-    // Šeq‹@ƒf[ƒ^‚ÌŠJnˆÊ’u‚ğŒvZ
+    // å„å­æ©Ÿãƒ‡ãƒ¼ã‚¿ã®é–‹å§‹ä½ç½®ã‚’è¨ˆç®—
     recvdata_p[0] = (WMMpRecvData *)(header->data);
 
     i = 0;
     do
     {
-        // w’è‚³‚ê‚½AID‚Ìq‹@ƒf[ƒ^‚È‚ç‚»‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+        // æŒ‡å®šã•ã‚ŒãŸAIDã®å­æ©Ÿãƒ‡ãƒ¼ã‚¿ãªã‚‰ãã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
         if (recvdata_p[i]->aid == aid)
             return recvdata_p[i];
 
@@ -379,24 +379,24 @@ WMMpRecvData *WM_ReadMPData(const WMMpRecvHeader *header, u16 aid)
 /*---------------------------------------------------------------------------*
   Name:         WM_GetAllowedChannel
 
-  Description:  ’ÊM‚Ég—p‚ğ‹–‰Â‚³‚ê‚½ƒ`ƒƒƒ“ƒlƒ‹‚ğæ“¾‚·‚éB
+  Description:  é€šä¿¡æ™‚ã«ä½¿ç”¨ã‚’è¨±å¯ã•ã‚ŒãŸãƒãƒ£ãƒ³ãƒãƒ«ã‚’å–å¾—ã™ã‚‹ã€‚
 
   Arguments:    None.
 
-  Returns:      u16 -   g—p‹–‰Âƒ`ƒƒƒ“ƒlƒ‹‚ÌƒrƒbƒgƒtƒB[ƒ‹ƒh‚ğ•Ô‚·BÅ‰ºˆÊƒrƒbƒg‚ª
-                        1ƒ`ƒƒƒ“ƒlƒ‹AÅãˆÊƒrƒbƒg‚ª16ƒ`ƒƒƒ“ƒlƒ‹‚ğ¦‚·Bƒrƒbƒg‚ª1‚Ì
-                        ƒ`ƒƒƒ“ƒlƒ‹‚ªg—p‹–‰ÂAƒrƒbƒg‚ª0‚Ìƒ`ƒƒƒ“ƒlƒ‹‚Íg—p‹Ö~B
-                        ’Êí‚Í 1`13 ƒ`ƒƒƒ“ƒlƒ‹‚Ì“à‚¢‚­‚Â‚©‚Ìƒrƒbƒg‚ª1‚É‚È‚Á‚½’l‚ª
-                        •Ô‚³‚ê‚éB0x0000‚ª•Ô‚³‚ê‚½ê‡‚Íg—p‚ğ‹–‰Â‚³‚ê‚½ƒ`ƒƒƒ“ƒlƒ‹‚ª
-                        ‘¶İ‚µ‚È‚¢‚½‚ßA–³ü‹@”\‚»‚Ì‚à‚Ì‚ğg—p‹Ö~‚Å‚ ‚éB
-                        ‚Ü‚½A–¢‰Šú‰»‚È‚ÇŠÖ”‚É¸”s‚µ‚½ê‡‚Í0x8000‚ª•Ô‚³‚ê‚éB
+  Returns:      u16 -   ä½¿ç”¨è¨±å¯ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’è¿”ã™ã€‚æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãŒ
+                        1ãƒãƒ£ãƒ³ãƒãƒ«ã€æœ€ä¸Šä½ãƒ“ãƒƒãƒˆãŒ16ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ç¤ºã™ã€‚ãƒ“ãƒƒãƒˆãŒ1ã®
+                        ãƒãƒ£ãƒ³ãƒãƒ«ãŒä½¿ç”¨è¨±å¯ã€ãƒ“ãƒƒãƒˆãŒ0ã®ãƒãƒ£ãƒ³ãƒãƒ«ã¯ä½¿ç”¨ç¦æ­¢ã€‚
+                        é€šå¸¸ã¯ 1ã€œ13 ãƒãƒ£ãƒ³ãƒãƒ«ã®å†…ã„ãã¤ã‹ã®ãƒ“ãƒƒãƒˆãŒ1ã«ãªã£ãŸå€¤ãŒ
+                        è¿”ã•ã‚Œã‚‹ã€‚0x0000ãŒè¿”ã•ã‚ŒãŸå ´åˆã¯ä½¿ç”¨ã‚’è¨±å¯ã•ã‚ŒãŸãƒãƒ£ãƒ³ãƒãƒ«ãŒ
+                        å­˜åœ¨ã—ãªã„ãŸã‚ã€ç„¡ç·šæ©Ÿèƒ½ãã®ã‚‚ã®ã‚’ä½¿ç”¨ç¦æ­¢ã§ã‚ã‚‹ã€‚
+                        ã¾ãŸã€æœªåˆæœŸåŒ–æ™‚ãªã©é–¢æ•°ã«å¤±æ•—ã—ãŸå ´åˆã¯0x8000ãŒè¿”ã•ã‚Œã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 u16 WM_GetAllowedChannel(void)
 {
 #ifdef WM_PRECALC_ALLOWEDCHANNEL
     WMErrCode result;
 
-    // ‰Šú‰»Ï‚İ‚ğŠm”F
+    // åˆæœŸåŒ–æ¸ˆã¿ã‚’ç¢ºèª
     result = WMi_CheckInitialized();
     if (result != WM_ERRCODE_SUCCESS)
     {
@@ -409,7 +409,7 @@ u16 WM_GetAllowedChannel(void)
     WMErrCode result;
     WMArm9Buf *p = WMi_GetSystemWork();
 
-    // –³üƒn[ƒh‹N“®Ï‚İ‚ğŠm”F
+    // ç„¡ç·šãƒãƒ¼ãƒ‰èµ·å‹•æ¸ˆã¿ã‚’ç¢ºèª
     result = WMi_CheckIdle();
     if (result != WM_ERRCODE_SUCCESS)
     {
@@ -425,13 +425,13 @@ u16 WM_GetAllowedChannel(void)
 /*---------------------------------------------------------------------------*
   Name:         WM_IsExistAllowedChannel
 
-  Description:  ’ÊM‚Ég—p‚ğ‹–‰Â‚³‚ê‚½ƒ`ƒƒƒ“ƒlƒ‹‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©Šm”F‚·‚éB
-                WMƒ‰ƒCƒuƒ‰ƒŠ‚ğ–¢‰Šú‰»‚Å‚ ‚Á‚Ä‚à³í‚É”»’è‰Â”\B
+  Description:  é€šä¿¡æ™‚ã«ä½¿ç”¨ã‚’è¨±å¯ã•ã‚ŒãŸãƒãƒ£ãƒ³ãƒãƒ«ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ç¢ºèªã™ã‚‹ã€‚
+                WMãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’æœªåˆæœŸåŒ–ã§ã‚ã£ã¦ã‚‚æ­£å¸¸ã«åˆ¤å®šå¯èƒ½ã€‚
 
   Arguments:    None.
 
-  Returns:      BOOL    -   g—p‹–‰Â‚³‚ê‚½ƒ`ƒƒƒ“ƒlƒ‹‚ª‘¶İ‚·‚éê‡‚ÉTRUE‚ğA
-                            ‘¶İ‚µ‚È‚¢ê‡‚ÍFALSE‚ğ•Ô‚·B
+  Returns:      BOOL    -   ä½¿ç”¨è¨±å¯ã•ã‚ŒãŸãƒãƒ£ãƒ³ãƒãƒ«ãŒå­˜åœ¨ã™ã‚‹å ´åˆã«TRUEã‚’ã€
+                            å­˜åœ¨ã—ãªã„å ´åˆã¯FALSEã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 BOOL WM_IsExistAllowedChannel(void)
 {
@@ -450,54 +450,54 @@ BOOL WM_IsExistAllowedChannel(void)
 /*---------------------------------------------------------------------------*
   Name:         WM_GetLinkLevel
 
-  Description:  ’ÊM‚ÌƒŠƒ“ƒN‹­“x‚ğæ“¾‚·‚éB“¯ŠúŠÖ”B
+  Description:  é€šä¿¡æ™‚ã®ãƒªãƒ³ã‚¯å¼·åº¦ã‚’å–å¾—ã™ã‚‹ã€‚åŒæœŸé–¢æ•°ã€‚
 
   Arguments:    None.
 
-  Returns:      WMLinkLevel -   4’iŠK‚É•]‰¿‚µ‚½ƒŠƒ“ƒN‹­“x‚ğ•Ô‚·B
+  Returns:      WMLinkLevel -   4æ®µéšã«è©•ä¾¡ã—ãŸãƒªãƒ³ã‚¯å¼·åº¦ã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 WMLinkLevel WM_GetLinkLevel(void)
 {
     WMErrCode result;
     WMArm9Buf *p = WMi_GetSystemWork();
 
-    // ‰Šú‰»Ï‚İ‚ğŠm”F
+    // åˆæœŸåŒ–æ¸ˆã¿ã‚’ç¢ºèª
     result = WMi_CheckInitialized();
     if (result != WM_ERRCODE_SUCCESS)
     {
-        return WM_LINK_LEVEL_0;        // Å’á“d”g‹­“x
+        return WM_LINK_LEVEL_0;        // æœ€ä½é›»æ³¢å¼·åº¦
     }
 
     DC_InvalidateRange(&(p->status->state), 2);
     switch (p->status->state)
     {
     case WM_STATE_MP_PARENT:
-        // e‹@‚Ìê‡
+        // è¦ªæ©Ÿã®å ´åˆ
         DC_InvalidateRange(&(p->status->child_bitmap), 2);
         if (p->status->child_bitmap == 0)
         {
-            // q‹@‚ª‚¢‚È‚¢ê‡
-            return WM_LINK_LEVEL_0;    // Å’á“d”g‹­“x
+            // å­æ©ŸãŒã„ãªã„å ´åˆ
+            return WM_LINK_LEVEL_0;    // æœ€ä½é›»æ³¢å¼·åº¦
         }
     case WM_STATE_MP_CHILD:
     case WM_STATE_DCF_CHILD:
-        // q‹@‚Ìê‡
+        // å­æ©Ÿã®å ´åˆ
         DC_InvalidateRange(&(p->status->linkLevel), 2);
         return (WMLinkLevel)(p->status->linkLevel);
     }
 
-    // –¢Ú‘±‚Ìê‡
-    return WM_LINK_LEVEL_0;            // Å’á“d”g‹­“x
+    // æœªæ¥ç¶šã®å ´åˆ
+    return WM_LINK_LEVEL_0;            // æœ€ä½é›»æ³¢å¼·åº¦
 }
 
 /*---------------------------------------------------------------------------*
   Name:         WM_GetDispersionBeaconPeriod
 
-  Description:  e‹@‚Æ‚µ‚ÄŠˆ“®‚·‚éÛ‚Éİ’è‚·‚×‚«ƒr[ƒRƒ“ŠÔŠu’l‚ğæ“¾‚·‚éB
+  Description:  è¦ªæ©Ÿã¨ã—ã¦æ´»å‹•ã™ã‚‹éš›ã«è¨­å®šã™ã¹ããƒ“ãƒ¼ã‚³ãƒ³é–“éš”å€¤ã‚’å–å¾—ã™ã‚‹ã€‚
 
   Arguments:    None.
 
-  Returns:      u16 -   İ’è‚·‚×‚«ƒr[ƒRƒ“ŠÔŠu’l(ms)B
+  Returns:      u16 -   è¨­å®šã™ã¹ããƒ“ãƒ¼ã‚³ãƒ³é–“éš”å€¤(ms)ã€‚
  *---------------------------------------------------------------------------*/
 u16 WM_GetDispersionBeaconPeriod(void)
 {
@@ -518,11 +518,11 @@ u16 WM_GetDispersionBeaconPeriod(void)
 /*---------------------------------------------------------------------------*
   Name:         WM_GetDispersionScanPeriod
 
-  Description:  q‹@‚Æ‚µ‚Äe‹@‚ğ’Tõ‚·‚éÛ‚Éİ’è‚·‚×‚«’TõŒÀ“xŠÔ‚ğæ“¾‚·‚éB
+  Description:  å­æ©Ÿã¨ã—ã¦è¦ªæ©Ÿã‚’æ¢ç´¢ã™ã‚‹éš›ã«è¨­å®šã™ã¹ãæ¢ç´¢é™åº¦æ™‚é–“ã‚’å–å¾—ã™ã‚‹ã€‚
 
   Arguments:    None.
 
-  Returns:      u16 -   İ’è‚·‚×‚«’TõŒÀ“xŠÔ(ms)B
+  Returns:      u16 -   è¨­å®šã™ã¹ãæ¢ç´¢é™åº¦æ™‚é–“(ms)ã€‚
  *---------------------------------------------------------------------------*/
 u16 WM_GetDispersionScanPeriod(void)
 {
@@ -543,13 +543,13 @@ u16 WM_GetDispersionScanPeriod(void)
 /*---------------------------------------------------------------------------*
   Name:         WM_GetOtherElements
 
-  Description:  ƒr[ƒRƒ““à‚ÌŠg’£ƒGƒŒƒƒ“ƒg‚ğæ“¾‚·‚éB
-                “¯ŠúŠÖ”B
+  Description:  ãƒ“ãƒ¼ã‚³ãƒ³å†…ã®æ‹¡å¼µã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã‚’å–å¾—ã™ã‚‹ã€‚
+                åŒæœŸé–¢æ•°ã€‚
 
-  Arguments:    bssDesc - e‹@î•ñ\‘¢‘ÌB
-                          WM_StartScan(Ex)‚É‚Äæ“¾‚µ‚½\‘¢‘Ì‚ğw’è‚·‚éB
+  Arguments:    bssDesc - è¦ªæ©Ÿæƒ…å ±æ§‹é€ ä½“ã€‚
+                          WM_StartScan(Ex)ã«ã¦å–å¾—ã—ãŸæ§‹é€ ä½“ã‚’æŒ‡å®šã™ã‚‹ã€‚
 
-  Returns:      WMOtherElements - Šg’£ƒGƒŒƒƒ“ƒg\‘¢‘ÌB
+  Returns:      WMOtherElements - æ‹¡å¼µã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆæ§‹é€ ä½“ã€‚
  *---------------------------------------------------------------------------*/
 WMOtherElements WM_GetOtherElements(WMBssDesc *bssDesc)
 {
@@ -557,48 +557,48 @@ WMOtherElements WM_GetOtherElements(WMBssDesc *bssDesc)
     u8     *p_elem;
     int     i;
     u8      curr_elem_len;
-    u8      elems_len;                 // elements‘S‘Ì‚Ì’·‚³
-    u8      elems_len_counter;         // elements‚Ì’·‚³ƒ`ƒFƒbƒN—pƒJƒEƒ“ƒ^
+    u8      elems_len;                 // elementså…¨ä½“ã®é•·ã•
+    u8      elems_len_counter;         // elementsã®é•·ã•ãƒã‚§ãƒƒã‚¯ç”¨ã‚«ã‚¦ãƒ³ã‚¿
 
-    // gameInfo‚ª“ü‚Á‚Ä‚¢‚éê‡‚ÍI—¹
+    // gameInfoãŒå…¥ã£ã¦ã„ã‚‹å ´åˆã¯çµ‚äº†
     if (bssDesc->gameInfoLength != 0)
     {
         elems.count = 0;
         return elems;
     }
 
-    // otherElement‚Ì”‚ğæ“¾‚µA0‚È‚çI—¹
+    // otherElementã®æ•°ã‚’å–å¾—ã—ã€0ãªã‚‰çµ‚äº†
     elems.count = (u8)(bssDesc->otherElementCount);
     if (elems.count == 0)
         return elems;
 
-    // elems‚Ì”‚ğWM_SCAN_OTHER_ELEMENT_MAXŒÂ‚Ü‚Å‚É§ŒÀ‚·‚é
+    // elemsã®æ•°ã‚’WM_SCAN_OTHER_ELEMENT_MAXå€‹ã¾ã§ã«åˆ¶é™ã™ã‚‹
     if (elems.count > WM_SCAN_OTHER_ELEMENT_MAX)
         elems.count = WM_SCAN_OTHER_ELEMENT_MAX;
 
-    // ƒGƒŒƒƒ“ƒg‚Ìæ“ª‚ğA‚Ü‚¸gameInfo‚Éİ’è
+    // ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã®å…ˆé ­ã‚’ã€ã¾ãšgameInfoã«è¨­å®š
     p_elem = (u8 *)&(bssDesc->gameInfo);
 
-    // elements‘S‘Ì‚Ì’·‚³‚ğæ“¾‚µAƒ`ƒFƒbƒN—pƒJƒEƒ“ƒ^‚ğ‰Šú‰»
+    // elementså…¨ä½“ã®é•·ã•ã‚’å–å¾—ã—ã€ãƒã‚§ãƒƒã‚¯ç”¨ã‚«ã‚¦ãƒ³ã‚¿ã‚’åˆæœŸåŒ–
     elems_len = (u8)((bssDesc->length * sizeof(u16)) - 64);
     elems_len_counter = 0;
 
-    // elems‚Ì”‚¾‚¯ƒ‹[ƒv‚·‚é
+    // elemsã®æ•°ã ã‘ãƒ«ãƒ¼ãƒ—ã™ã‚‹
     for (i = 0; i < elems.count; ++i)
     {
         elems.element[i].id = p_elem[0];
         elems.element[i].length = p_elem[1];
         elems.element[i].body = (u8 *)&(p_elem[2]);
 
-        // ¡‰ñ‚ÌƒGƒŒƒƒ“ƒg’·‚ğŒvZ‚µAƒ`ƒFƒbƒNƒJƒEƒ“ƒ^‚É‰Á‚¦‚é
+        // ä»Šå›ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆé•·ã‚’è¨ˆç®—ã—ã€ãƒã‚§ãƒƒã‚¯ã‚«ã‚¦ãƒ³ã‚¿ã«åŠ ãˆã‚‹
         curr_elem_len = (u8)(elems.element[i].length + 2);
         elems_len_counter += curr_elem_len;
 
         //OS_Printf("eles_len        =%d\n", elems_len);
         //OS_Printf("eles_len_counter=%d\n", elems_len_counter);
 
-        // elements‘S‘Ì‚Ì’·‚³‚ğ’´‚¦‚½ê‡‚ÍƒGƒ‰[‚Æ‚µA
-        // element‚Í–³‚©‚Á‚½‚à‚Ì‚Æ‚µ‚Ä’Ê’m‚·‚é
+        // elementså…¨ä½“ã®é•·ã•ã‚’è¶…ãˆãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼ã¨ã—ã€
+        // elementã¯ç„¡ã‹ã£ãŸã‚‚ã®ã¨ã—ã¦é€šçŸ¥ã™ã‚‹
         if (elems_len_counter > elems_len)
         {
             WM_WARNING("Elements length error.\n");
@@ -606,7 +606,7 @@ WMOtherElements WM_GetOtherElements(WMBssDesc *bssDesc)
             return elems;
         }
 
-        // Ÿ‚ÌƒGƒŒƒƒ“ƒg‚Ìæ“ªƒAƒhƒŒƒX‚ğŒvZ
+        // æ¬¡ã®ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨ˆç®—
         p_elem = (u8 *)(p_elem + curr_elem_len);
     }
 
@@ -616,20 +616,20 @@ WMOtherElements WM_GetOtherElements(WMBssDesc *bssDesc)
 /*---------------------------------------------------------------------------*
   Name:         WM_GetNextTgid
 
-  Description:  ©“®¶¬‚³‚ê‚½ˆêˆÓ‚È TGID ’l‚ğæ“¾‚·‚éB
-                “¯ŠúŠÖ”B
+  Description:  è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸä¸€æ„ãª TGID å€¤ã‚’å–å¾—ã™ã‚‹ã€‚
+                åŒæœŸé–¢æ•°ã€‚
 
   Arguments:    None.
 
-  Returns:      ‰‰ñŒÄ‚Ño‚µ‚Í RTC ‚ğ‚à‚Æ‚É¶¬‚³‚ê‚½ TGID‚ğA
-                Ÿ‰ñˆÈ~‚Í‘O‰ñ‚Ì•Ô‚è’l‚É 1 ‚¾‚¯‰ÁZ‚µ‚½’l‚ğ•Ô‚·B
+  Returns:      åˆå›å‘¼ã³å‡ºã—æ™‚ã¯ RTC ã‚’ã‚‚ã¨ã«ç”Ÿæˆã•ã‚ŒãŸ TGIDã‚’ã€
+                æ¬¡å›ä»¥é™ã¯å‰å›ã®è¿”ã‚Šå€¤ã« 1 ã ã‘åŠ ç®—ã—ãŸå€¤ã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 u16 WM_GetNextTgid(void)
 {
     enum
     { TGID_DEFAULT = (1 << 16) };
     static u32 tgid_bak = (u32)TGID_DEFAULT;
-    /* ©‹@ŒÅ—L‚ÌŠÔ‚É‚¨‚¯‚éˆêˆÓ«‚ğ•Û‚Â‚æ‚¤, ‰‰ñ‚Í RTC ‚Ì’l‚ğg—p */
+    /* è‡ªæ©Ÿå›ºæœ‰ã®æ™‚é–“ã«ãŠã‘ã‚‹ä¸€æ„æ€§ã‚’ä¿ã¤ã‚ˆã†, åˆå›ã¯ RTC ã®æ™‚åˆ»å€¤ã‚’ä½¿ç”¨ */
     if (tgid_bak == (u32)TGID_DEFAULT)
     {
         RTCTime rt[1];
@@ -643,7 +643,7 @@ u16 WM_GetNextTgid(void)
             OS_Warning("failed to get RTC-data to create unique TGID!\n");
         }
     }
-    /* ˆêˆÓ‚È’l‚ğí‚É‚µ‚Â‚Â–ˆ‰ñƒCƒ“ƒNƒŠƒƒ“ƒg‚·‚é */
+    /* ä¸€æ„ãªå€¤ã‚’ç¨®ã«ã—ã¤ã¤æ¯å›ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã™ã‚‹ */
     tgid_bak = (u16)(tgid_bak + 1);
     return (u16)tgid_bak;
 }

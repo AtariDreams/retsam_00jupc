@@ -2,12 +2,12 @@
 /**
  *
  *	@file		wbr_client.c
- *	@brief		ƒNƒ‰ƒCƒAƒ“ƒgƒVƒXƒeƒ€
+ *	@brief		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.02.22
  *
- *	•à‚«‰ñ‚è•`‰æPROC‚â
- *	‚»‚Ì‘¼PROC‚É•ªŠò‚·‚éˆ—‚ğŠÇ—
+ *	æ­©ãå›ã‚Šæç”»PROCã‚„
+ *	ãã®ä»–PROCã«åˆ†å²ã™ã‚‹å‡¦ç†ã‚’ç®¡ç†
  * 
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -24,49 +24,49 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-///	ƒNƒ‰ƒCƒAƒ“ƒgƒ[ƒN
+///	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WBR_CLIENT{
 	u32 seq;
 	WBR_CLIENT_COMMON common_data;
 
-	// ƒNƒ‰ƒCƒAƒ“ƒg‹¤’Êƒf[ƒ^
+	// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå…±é€šãƒ‡ãƒ¼ã‚¿
 	WBR_COMM_COMMON comm_data;
 }WBR_CLIENT;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCommDataInit( WBR_CLIENT* p_sys, WBR_COMM_COMMON* p_common_data );
@@ -74,23 +74,23 @@ static void WBR_ClientCommDataInit( WBR_CLIENT* p_sys, WBR_COMM_COMMON* p_common
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒNƒ‰ƒCƒAƒ“ƒgƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *	
- *	@param	p_init		‰Šú‰»ƒf[ƒ^
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ƒNƒ‰ƒCƒAƒ“ƒgƒ[ƒN
+ *	@return	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WBR_CLIENT* WBR_ClientInit( const WBR_CLIENT_INIT* p_init, u32 heapID )
 {
 	WBR_CLIENT* p_sys;
 
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_sys = sys_AllocMemory( heapID, sizeof( WBR_CLIENT ) );
 	memset( p_sys, 0, sizeof(WBR_CLIENT) );
 	
-	// ‰Šú‰»ƒf[ƒ^İ’è
+	// åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_sys->common_data.netid = p_init->netid;
 	p_sys->common_data.cp_mystatus = p_init->cp_mystatus;
 	p_sys->common_data.p_fsys = p_init->p_fsys;
@@ -101,42 +101,42 @@ WBR_CLIENT* WBR_ClientInit( const WBR_CLIENT_INIT* p_init, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒNƒ‰ƒCƒAƒ“ƒgƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_ClientExit( WBR_CLIENT* p_sys )
 {
-	GF_ASSERT( p_sys->seq == WBR_CLIENT_SEQ_END );	// I‚í‚èó‘Ô‚É‚È‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	GF_ASSERT( p_sys->seq == WBR_CLIENT_SEQ_END );	// çµ‚ã‚ã‚ŠçŠ¶æ…‹ã«ãªã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	sys_FreeMemoryEz( p_sys );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ŠÖ”
+ *	@brief	ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *	
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	’Êí
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€šå¸¸
  */
 //-----------------------------------------------------------------------------
 BOOL WBR_ClientMain( WBR_CLIENT* p_sys )
 {
 	switch( p_sys->seq ){
-	case WBR_CLIENT_SEQ_START_WAIT:		// e‚©‚ç‚ÌŠJn–½—ß‘Ò‚¿
+	case WBR_CLIENT_SEQ_START_WAIT:		// è¦ªã‹ã‚‰ã®é–‹å§‹å‘½ä»¤å¾…ã¡
 		break;
 
-	case WBR_CLIENT_SEQ_COMMDATA_SEND:	// ‹¤’Êƒf[ƒ^‘—M
+	case WBR_CLIENT_SEQ_COMMDATA_SEND:	// å…±é€šãƒ‡ãƒ¼ã‚¿é€ä¿¡
 
-		// ‹¤’Êƒf[ƒ^ì¬
+		// å…±é€šãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		WBR_ClientCommDataInit( p_sys, &p_sys->comm_data );
 		CommSendHugeData( CNM_WBR_KO_COMMON, &p_sys->comm_data, sizeof(WBR_COMM_COMMON) );
 		p_sys->seq ++;
 		break;
 
-	case WBR_CLIENT_SEQ_COMMDATA_WAIT:	// ‹¤’Êƒf[ƒ^óM‘Ò‚¿
+	case WBR_CLIENT_SEQ_COMMDATA_WAIT:	// å…±é€šãƒ‡ãƒ¼ã‚¿å—ä¿¡å¾…ã¡
 		break;
 			
 	case WBR_CLIENT_SEQ_WALK_START:
@@ -147,7 +147,7 @@ BOOL WBR_ClientMain( WBR_CLIENT* p_sys )
 				WBR_ClientCont_End,
 				NO_OVERLAY_ID
 			};
-			// ƒvƒƒZƒXŠJn
+			// ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹
 			GameSystem_StartSubProc( p_sys->common_data.p_fsys, &proc_data, &p_sys->common_data );
 
 			p_sys->seq ++;
@@ -157,15 +157,15 @@ BOOL WBR_ClientMain( WBR_CLIENT* p_sys )
 	case WBR_CLIENT_SEQ_WALK_ENDWAIT:
 		if( GameSystem_CheckSubProcExists( p_sys->common_data.p_fsys ) == FALSE ){
 
-			// Ÿ‰½‚ğ‚·‚é‚Ì‚©ƒ`ƒFƒbƒN
+			// æ¬¡ä½•ã‚’ã™ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
 			switch( p_sys->common_data.next_seq ){
 			case WBR_CLIENTCONT_RET_END:
-				// I—¹‚Ö
+				// çµ‚äº†ã¸
 				p_sys->seq = WBR_CLIENT_SEQ_END;	
 				break;
 
 			case WBR_CLIENTCONT_RET_TRCARD:
-				// ƒgƒŒ[ƒi[ƒJ[ƒh‚Ö
+				// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ã¸
 				p_sys->seq = WBR_CLIENT_SEQ_TRCARD_START;
 				break;
 			default:
@@ -183,7 +183,7 @@ BOOL WBR_ClientMain( WBR_CLIENT* p_sys )
 		
 	case WBR_CLIENT_SEQ_TRCARD_ENDWAIT:
 		if( GameSystem_CheckSubProcExists( p_sys->common_data.p_fsys ) == FALSE ){
-			// •à‚«‰ñ‚è•\¦‚É–ß‚é
+			// æ­©ãå›ã‚Šè¡¨ç¤ºã«æˆ»ã‚‹
 			p_sys->seq = WBR_CLIENT_SEQ_WALK_START;
 		}
 		break;
@@ -200,10 +200,10 @@ BOOL WBR_ClientMain( WBR_CLIENT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[ƒPƒ“ƒX‚ğİ’è‚·‚é
+ *	@brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	seq		ƒV[ƒPƒ“ƒX
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //-----------------------------------------------------------------------------
 void WBR_ClientSeqSet( WBR_CLIENT* p_sys, u32 seq )
@@ -213,10 +213,10 @@ void WBR_ClientSeqSet( WBR_CLIENT* p_sys, u32 seq )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹¤’Êƒf[ƒ^İ’è
+ *	@brief	å…±é€šãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_data		‹¤’Êƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		å…±é€šãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WBR_ClientCommDataSet( WBR_CLIENT* p_sys, const WBR_COMM_COMMON* cp_data )
@@ -226,10 +226,10 @@ void WBR_ClientCommDataSet( WBR_CLIENT* p_sys, const WBR_COMM_COMMON* cp_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒf[ƒ^İ’è
+ *	@brief	ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *		
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_data		‹¤’Êƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		å…±é€šãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WBR_ClientGameDataSet( WBR_CLIENT* p_sys, const WBR_OYA_COMM_GAME* cp_data )
@@ -239,10 +239,10 @@ void WBR_ClientGameDataSet( WBR_CLIENT* p_sys, const WBR_OYA_COMM_GAME* cp_data 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯ƒf[ƒ^æ“¾
+ *	@brief	è©±ã—ã‹ã‘ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_data		˜b‚µ‚©‚¯ƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		è©±ã—ã‹ã‘ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WBR_ClientTalkDataSet( WBR_CLIENT* p_sys, const WBR_KO_COMM_TALK* cp_data )
@@ -254,9 +254,9 @@ void WBR_ClientTalkDataSet( WBR_CLIENT* p_sys, const WBR_KO_COMM_TALK* cp_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€I—¹ƒf[ƒ^İ’è
+ *	@brief	ã‚²ãƒ¼ãƒ çµ‚äº†ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_ClientGameEndSet( WBR_CLIENT* p_sys )
@@ -266,12 +266,12 @@ void WBR_ClientGameEndSet( WBR_CLIENT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹¤’Êƒf[ƒ^Ši”[æƒoƒbƒtƒ@‚ğ•Ô‚·
+ *	@brief	å…±é€šãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆãƒãƒƒãƒ•ã‚¡ã‚’è¿”ã™
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	netid		ƒlƒbƒgID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	netid		ãƒãƒƒãƒˆID
  *
- *	@return	ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+ *	@return	ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 u8* WBR_ClientCommDataBuffPtrGet( WBR_CLIENT* p_sys, u32 netid )
@@ -283,10 +283,10 @@ u8* WBR_ClientCommDataBuffPtrGet( WBR_CLIENT* p_sys, u32 netid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒNƒ‰ƒCƒAƒ“ƒgƒf[ƒ^ì¬
+ *	@brief	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	p_sys			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_common_data	‹¤’Êƒf[ƒ^Ši”[æ
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_common_data	å…±é€šãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static void WBR_ClientCommDataInit( WBR_CLIENT* p_sys, WBR_COMM_COMMON* p_common_data )

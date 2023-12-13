@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pmsiv_tool.c
- * @bfief	ŠÈˆÕ‰ï˜b“ü—Í‰æ–Êi•`‰æ‰º¿‚¯F‹¤—Lƒc[ƒ‹—Şj
+ * @bfief	ç°¡æ˜“ä¼šè©±å…¥åŠ›ç”»é¢ï¼ˆæç”»ä¸‹è«‹ã‘ï¼šå…±æœ‰ãƒ„ãƒ¼ãƒ«é¡ï¼‰
  * @author	taya
  * @date	06.02.10
  */
@@ -35,14 +35,14 @@ static void bright_task( TCB_PTR tcb, void* wk_adrs );
 
 //------------------------------------------------------------------
 /**
- * ƒXƒNƒ[ƒ‹ˆ—ƒ[ƒNƒZƒbƒgƒAƒbƒv
+ * ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   bgl			bglƒ|ƒCƒ“ƒ^
- * @param   bg_frame	‘ÎÛBGƒtƒŒ[ƒ€
- * @param   direction	ƒXƒNƒ[ƒ‹•ûŒüiPMSIV_TOOL_SCROLL_DIRECTIONj
- * @param   vector		ƒXƒNƒ[ƒ‹—Ê
- * @param   wait		ƒXƒNƒ[ƒ‹‚É—v‚·‚éƒtƒŒ[ƒ€”
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   bgl			bglãƒã‚¤ãƒ³ã‚¿
+ * @param   bg_frame	å¯¾è±¡BGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param   direction	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ–¹å‘ï¼ˆPMSIV_TOOL_SCROLL_DIRECTIONï¼‰
+ * @param   vector		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é‡
+ * @param   wait		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã«è¦ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  *
  */
 //------------------------------------------------------------------
@@ -72,11 +72,11 @@ void PMSIV_TOOL_SetupScrollWork( PMSIV_TOOL_SCROLL_WORK* wk, GF_BGL_INI* bgl, u3
 
 //------------------------------------------------------------------
 /**
- * ƒXƒNƒ[ƒ‹ˆ—I—¹‘Ò‚¿
+ * ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†çµ‚äº†å¾…ã¡
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL PMSIV_TOOL_WaitScroll( PMSIV_TOOL_SCROLL_WORK* wk )
@@ -105,7 +105,7 @@ BOOL PMSIV_TOOL_WaitScroll( PMSIV_TOOL_SCROLL_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒXƒNƒ[ƒ‹ˆ—ƒ^ƒXƒN
+ * ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†ã‚¿ã‚¹ã‚¯
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -131,7 +131,7 @@ static void bg_scroll_task( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * ”¼“§–¾ƒGƒtƒFƒNƒgŠJn
+ * åŠé€æ˜ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
  * @param   wk		
  * @param   plane1		
@@ -207,7 +207,7 @@ static void fade_task( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * ‹P“xƒGƒtƒFƒNƒgŠJn
+ * è¼åº¦ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
  * @param   wk			
  * @param   bg_plane	
@@ -233,11 +233,11 @@ void PMSIV_TOOL_SetupBrightWork( PMSIV_TOOL_BLEND_WORK* wk, int bg_plane, int st
 
 //------------------------------------------------------------------
 /**
- * ‹P“xƒGƒtƒFƒNƒgI—¹‘Ò‚¿
+ * è¼åº¦ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾…ã¡
  *
  * @param   wk		
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL PMSIV_TOOL_WaitBright( PMSIV_TOOL_BLEND_WORK* wk )

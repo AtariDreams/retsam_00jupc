@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	fight_tool.c
- * @bfief	í“¬ƒVƒXƒeƒ€—pƒc[ƒ‹ƒvƒƒOƒ‰ƒ€
+ * @bfief	æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ„ãƒ¼ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.07.22
  */
@@ -52,7 +52,7 @@
 #endif PM_DEBUG
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 GF_BGL_INI			*BattleWorkGF_BGL_INIGet(BATTLE_WORK *bw);
@@ -236,13 +236,13 @@ static	void	AssertCheck(int client_no,int num);
 #endif
 
 //============================================================================================
-//	BattleWork\‘¢‘Ìƒ[ƒNæ“¾ŠÖ”ŒQ
+//	BattleWorkæ§‹é€ ä½“ãƒ¯ãƒ¼ã‚¯å–å¾—é–¢æ•°ç¾¤
 //============================================================================================
 //============================================================================================
 /**
- *	GF_BGL_INI‚ğæ“¾
+ *	GF_BGL_INIã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	bgl
  */
@@ -254,10 +254,10 @@ GF_BGL_INI	*BattleWorkGF_BGL_INIGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	GF_BGL_BMPWIN‚ğæ“¾
+ *	GF_BGL_BMPWINã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	no		æ“¾‚·‚éWinNo
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	no		å–å¾—ã™ã‚‹WinNo
  *
  * @retval	win
  */
@@ -269,9 +269,9 @@ GF_BGL_BMPWIN	*BattleWorkGF_BGL_BMPWINGet(BATTLE_WORK *bw,int no)
 
 //============================================================================================
 /**
- *	fight_type‚ğæ“¾
+ *	fight_typeã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	fight_type
  */
@@ -283,9 +283,9 @@ u32	BattleWorkFightTypeGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	server_param‚ğæ“¾
+ *	server_paramã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	server_param
  */
@@ -297,10 +297,10 @@ SERVER_PARAM	*BattleWorkServerParamGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	client_param‚ğæ“¾
+ *	client_paramã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	æ“¾‚µ‚½‚¢client_no
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å–å¾—ã—ãŸã„client_no
  *
  * @retval	client_param
  */
@@ -315,9 +315,9 @@ CLIENT_PARAM	*BattleWorkClientParamGet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	client_set_max‚ğæ“¾
+ *	client_set_maxã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	client_set_max
  */
@@ -329,10 +329,10 @@ int	BattleWorkClientSetMaxGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	POKEPARTY‚ğæ“¾
+ *	POKEPARTYã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	æ“¾‚·‚éclient_no
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å–å¾—ã™ã‚‹client_no
  *
  * @retval	poke_party[client_no]
  */
@@ -356,10 +356,10 @@ POKEPARTY		*BattleWorkPokePartyGet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	PokeCount‚ğæ“¾
+ *	PokeCountã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	æ“¾‚·‚éclient_no
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å–å¾—ã™ã‚‹client_no
  *
  * @retval	poke_party[client_no]->PokeCount
  */
@@ -383,11 +383,11 @@ int	BattleWorkPokeCountGet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	PokemonParam‚ğæ“¾
+ *	PokemonParamã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	æ“¾‚·‚éclient_no
- * @param[in]	sel_mons_no	æ“¾‚·‚éPokemonParam‚Ìæ“ª‚©‚ç‚ÌˆÊ’u
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å–å¾—ã™ã‚‹client_no
+ * @param[in]	sel_mons_no	å–å¾—ã™ã‚‹PokemonParamã®å…ˆé ­ã‹ã‚‰ã®ä½ç½®
  *
  * @retval	pp[client_no][sel_mons_no]
  */
@@ -411,9 +411,9 @@ POKEMON_PARAM	*BattleWorkPokemonParamGet(BATTLE_WORK *bw,int client_no,int sel_m
 
 //============================================================================================
 /**
- *	soft_sprite_manager‚ğæ“¾
+ *	soft_sprite_managerã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	soft_sprite_manager
  */
@@ -425,9 +425,9 @@ SOFT_SPRITE_MANAGER	*BattleWorkSoftSpriteManagerGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	wsp‚ğæ“¾
+ *	wspã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	wsp
  */
@@ -439,9 +439,9 @@ WE_SYS_PTR	BattleWorkWE_SYS_PTRGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	csp‚ğæ“¾
+ *	cspã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	csp
  */
@@ -453,9 +453,9 @@ CATS_SYS_PTR		BattleWorkCATS_SYS_PTRGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	csp‚ğæ“¾
+ *	cspã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	crp
  */
@@ -467,9 +467,9 @@ CATS_RES_PTR		BattleWorkCATS_RES_PTRGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	GROUND_WORK‚ğæ“¾
+ *	GROUND_WORKã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  * @param[in]	ground_no	GroundNo
  *
  * @retval	GROUND_WORK
@@ -482,9 +482,9 @@ GROUND_WORK			*BattleWorkGroundWorkGet(BATTLE_WORK *bw,int ground_no)
 
 //============================================================================================
 /**
- *	bip‚ğæ“¾
+ *	bipã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	bip
  */
@@ -496,9 +496,9 @@ BI_PARAM_PTR	BattleWorkGF_BGL_BIPGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	tg‚ğæ“¾
+ *	tgã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  * @param[in]	side	
  *
  * @retval	tg
@@ -511,11 +511,11 @@ TEMOTIGAUGE_PTR	BattleWorkGF_BGL_TGGet(BATTLE_WORK *bw, TEMOTI_SIDE side)
 
 //============================================================================================
 /**
- *	tg‚ğƒZƒbƒg
+ *	tgã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  * @param[in]	side	
- * @param[in]	tg		è‚¿ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	tg		æ‰‹æŒã¡ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	BattleWorkGF_BGL_TGSet(BATTLE_WORK *bw, TEMOTI_SIDE side, TEMOTIGAUGE_PTR tg)
@@ -525,9 +525,9 @@ void	BattleWorkGF_BGL_TGSet(BATTLE_WORK *bw, TEMOTI_SIDE side, TEMOTIGAUGE_PTR t
 
 //============================================================================================
 /**
- *	numfont_hp‚ğæ“¾
+ *	numfont_hpã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	numfont_hp
  */
@@ -539,9 +539,9 @@ NUMFONT *	BattleWorkGF_BGL_NumFontHPGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	numfont_lv‚ğæ“¾
+ *	numfont_lvã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	numfont_lv
  */
@@ -553,9 +553,9 @@ NUMFONT *	BattleWorkGF_BGL_NumFontLVGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	fight_msg‚ğæ“¾
+ *	fight_msgã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	fight_msg
  */
@@ -567,9 +567,9 @@ MSGDATA_MANAGER		*BattleWorkFightMsgGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	attack_msg‚ğæ“¾
+ *	attack_msgã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	attack_msg
  */
@@ -581,9 +581,9 @@ MSGDATA_MANAGER		*BattleWorkAttackMsgGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	pfd‚ğæ“¾
+ *	pfdã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	pfd
  */
@@ -595,9 +595,9 @@ PALETTE_FADE_PTR		BattleWorkPfdGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ZUKAN_WORK‚ğæ“¾
+ *	ZUKAN_WORKã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	zw
  */
@@ -612,9 +612,9 @@ ZUKAN_WORK	*BattleWorkZukanWorkGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	sio_send_buffer‚ğæ“¾
+ *	sio_send_bufferã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	sio_send_buffer
  */
@@ -626,9 +626,9 @@ u8	*BattleWorkSioSendBufGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	sio_recv_buffer‚ğæ“¾
+ *	sio_recv_bufferã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	sio_recv_buffer
  */
@@ -640,9 +640,9 @@ u8	*BattleWorkSioRecvBufGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	sio_send_read‚ğæ“¾
+ *	sio_send_readã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	sio_send_read
  */
@@ -654,9 +654,9 @@ u16	*BattleWorkSioSendReadGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	sio_send_write‚ğæ“¾
+ *	sio_send_writeã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	sio_send_write
  */
@@ -668,9 +668,9 @@ u16	*BattleWorkSioSendWriteGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	sio_send_over‚ğæ“¾
+ *	sio_send_overã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	sio_send_over
  */
@@ -682,9 +682,9 @@ u16	*BattleWorkSioSendOverGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	sio_recv_read‚ğæ“¾
+ *	sio_recv_readã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	sio_recv_read
  */
@@ -696,9 +696,9 @@ u16	*BattleWorkSioRecvReadGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	sio_recv_write‚ğæ“¾
+ *	sio_recv_writeã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	sio_recv_write
  */
@@ -710,9 +710,9 @@ u16	*BattleWorkSioRecvWriteGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	sio_recv_over‚ğæ“¾
+ *	sio_recv_overã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	sio_recv_over
  */
@@ -724,9 +724,9 @@ u16	*BattleWorkSioRecvOverGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	exchr_param‚ğæ“¾
+ *	exchr_paramã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	exchr_buffer
  */
@@ -738,9 +738,9 @@ EXCHR_PARAM	*BattleWorkExChrParamGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	wordset‚ğæ“¾
+ *	wordsetã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	wordset
  */
@@ -752,9 +752,9 @@ WORDSET	*BattleWorkWORDSETGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	strbuf‚ğæ“¾
+ *	strbufã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	msg_buf
  */
@@ -766,10 +766,10 @@ STRBUF	*BattleWorkSTRBUFGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[ID‚ğæ“¾
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	æ“¾‚·‚éClientNo
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å–å¾—ã™ã‚‹ClientNo
  *
  * @retval	trainer_id
  */
@@ -793,10 +793,10 @@ u16	BattleWorkTrainerIDGet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	TRAINER_DATA‚ğæ“¾
+ *	TRAINER_DATAã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	æ“¾‚·‚éTRAINER_DATA‚ÌClientNo
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å–å¾—ã™ã‚‹TRAINER_DATAã®ClientNo
  *
  * @retval	trainer_data
  */
@@ -820,10 +820,10 @@ TRAINER_DATA	*BattleWorkTrainerDataGet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	ƒ}ƒCƒXƒe[ƒ^ƒX‚ğæ“¾
+ *	ãƒã‚¤ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	æ“¾‚·‚éClientNo
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å–å¾—ã™ã‚‹ClientNo
  *
  * @retval	my_item
  */
@@ -856,9 +856,9 @@ MYSTATUS	*BattleWorkMyStatusGet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	è‚¿ƒAƒCƒeƒ€‚ğæ“¾
+ *	æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	my_item
  */
@@ -873,9 +873,9 @@ MYITEM	*BattleWorkMyItemGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒoƒbƒOƒJ[ƒ\ƒ‹‚ğæ“¾
+ *	ãƒãƒƒã‚°ã‚«ãƒ¼ã‚½ãƒ«ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	bag_cursor
  */
@@ -890,11 +890,11 @@ BAG_CURSOR	*BattleWorkBagCursorGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒ}ƒCƒf[ƒ^‚Ì«•Ê‚ğæ“¾
+ *	ãƒã‚¤ãƒ‡ãƒ¼ã‚¿ã®æ€§åˆ¥ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
- * @retval	©•ª‚Ì«•Ê
+ * @retval	è‡ªåˆ†ã®æ€§åˆ¥
  */
 //============================================================================================
 u32	BattleWorkMySexGet(BATTLE_WORK *bw,int client_no)
@@ -910,10 +910,10 @@ u32	BattleWorkMySexGet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	ClientType‚©‚çClientNo‚ğæ“¾
+ *	ClientTypeã‹ã‚‰ClientNoã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ClientNo‚ğæ“¾‚·‚éClientType
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ClientNoã‚’å–å¾—ã™ã‚‹ClientType
  *
  * @retval	ClientNo
  */
@@ -935,10 +935,10 @@ int	BattleWorkClientNoGet(BATTLE_WORK *bw,int client_type)
 
 //============================================================================================
 /**
- *	ClientType‚ğæ“¾
+ *	ClientTypeã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ClientType‚ğæ“¾‚·‚éClientNo
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ClientTypeã‚’å–å¾—ã™ã‚‹ClientNo
  *
  * @retval	ClientType
  */
@@ -953,12 +953,12 @@ u8	BattleWorkClientTypeGet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	“G‘¤‚©–¡•û‘¤‚©‚ğæ“¾
+ *	æ•µå´ã‹å‘³æ–¹å´ã‹ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	æ“¾‚·‚éClientNo
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å–å¾—ã™ã‚‹ClientNo
  *
- * @retval	0:–¡•û@1:“G
+ * @retval	0:å‘³æ–¹ã€€1:æ•µ
  */
 //============================================================================================
 u8	BattleWorkMineEnemyCheck(BATTLE_WORK *bw,int client_no)
@@ -971,9 +971,9 @@ u8	BattleWorkMineEnemyCheck(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE—pDSƒAƒCƒRƒ“ƒLƒƒƒ‰‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ *	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨DSã‚¢ã‚¤ã‚³ãƒ³ã‚­ãƒ£ãƒ©ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	bw->msg_icon
  */
@@ -988,9 +988,9 @@ void	*BattleWorkMsgIconGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE—pDSƒAƒCƒRƒ“ƒLƒƒƒ‰‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ *	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨DSã‚¢ã‚¤ã‚³ãƒ³ã‚­ãƒ£ãƒ©ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	bw->msg_icon
  */
@@ -1002,9 +1002,9 @@ void	BattleWorkMsgIconSet(BATTLE_WORK *bw,void *icon)
 
 //============================================================================================
 /**
- *	ƒ{ƒbƒNƒX\‘¢‘Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ *	ãƒœãƒƒã‚¯ã‚¹æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	bw->box
  */
@@ -1019,9 +1019,9 @@ BOX_DATA	*BattleWorkBoxDataGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ground_id‚ğæ“¾
+ *	ground_idã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	bw->ground_id
  */
@@ -1036,9 +1036,9 @@ int	BattleWorkGroundIDGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	bg_id‚ğæ“¾
+ *	bg_idã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	bw->bg_id
  */
@@ -1050,9 +1050,9 @@ int	BattleWorkBGIDGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	place_id‚ğæ“¾
+ *	place_idã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	bw->place_id
  */
@@ -1064,10 +1064,10 @@ int	BattleWorkPlaceIDGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	w’è‚µ‚½ClientNo‚Ìƒp[ƒgƒi[‚ÌClientNo‚ğæ“¾
+ *	æŒ‡å®šã—ãŸClientNoã®ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ClientNoã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	æ“¾‚·‚éClientNo
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å–å¾—ã™ã‚‹ClientNo
  *
  * @retval	ClientNo
  */
@@ -1085,7 +1085,7 @@ int	BattleWorkPartnerClientNoGet(BATTLE_WORK *bw,int client_no)
 	client_set_max=BattleWorkClientSetMaxGet(bw);
 	fight_type=BattleWorkFightTypeGet(bw);
 
-	//1vs1‚Í©•ª©g‚ğ•Ô‚·
+	//1vs1ã¯è‡ªåˆ†è‡ªèº«ã‚’è¿”ã™
 	if((fight_type&FIGHT_TYPE_2vs2)==0){
 		return client_no;
 	}
@@ -1098,7 +1098,7 @@ int	BattleWorkPartnerClientNoGet(BATTLE_WORK *bw,int client_no)
 	}
 #ifdef PM_DEBUG
 	if(partner_client_no==client_set_max){
-		GF_ASSERT_MSG(0,"ƒp[ƒgƒi[‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n");
+		GF_ASSERT_MSG(0,"ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n");
 		partner_client_no=0;
 	}
 #endif
@@ -1107,11 +1107,11 @@ int	BattleWorkPartnerClientNoGet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	w’è‚µ‚½ClientNo‚Ì‘Šè‚ÌClientNo‚ğæ“¾
+ *	æŒ‡å®šã—ãŸClientNoã®ç›¸æ‰‹ã®ClientNoã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	æ“¾‚·‚éClientNo
- * @param[in]	side		æ“¾‚·‚é‘¤(BWECNG_SIDE_RIGHT:‰E@BWECNG_SIDE_LEFT:¶j
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å–å¾—ã™ã‚‹ClientNo
+ * @param[in]	side		å–å¾—ã™ã‚‹å´(BWECNG_SIDE_RIGHT:å³ã€€BWECNG_SIDE_LEFT:å·¦ï¼‰
  *
  * @retval	ClientNo
  */
@@ -1129,7 +1129,7 @@ int	BattleWorkEnemyClientNoGet(BATTLE_WORK *bw,int client_no,int side)
 	client_set_max=BattleWorkClientSetMaxGet(bw);
 	fight_type=BattleWorkFightTypeGet(bw);
 
-	//1vs1‚Í‘f’¼‚É‘Šè‚ğ•Ô‚·
+	//1vs1ã¯ç´ ç›´ã«ç›¸æ‰‹ã‚’è¿”ã™
 	if((fight_type&FIGHT_TYPE_2vs2)==0){
 		return client_no^1;
 	}
@@ -1143,7 +1143,7 @@ int	BattleWorkEnemyClientNoGet(BATTLE_WORK *bw,int client_no,int side)
 	}
 #ifdef PM_DEBUG
 	if(enemy_client_no==client_set_max){
-		GF_ASSERT_MSG(0,"ƒp[ƒgƒi[‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n");
+		GF_ASSERT_MSG(0,"ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n");
 		enemy_client_no=0;
 	}
 #endif
@@ -1152,20 +1152,20 @@ int	BattleWorkEnemyClientNoGet(BATTLE_WORK *bw,int client_no,int side)
 
 //============================================================================================
 /**
- *	ƒAƒCƒeƒ€‚ğg—p‚µ‚Äƒ|ƒPƒ‚ƒ“‚Ìƒpƒ‰ƒ[ƒ^‚ğ•Ï‰»ií“¬—pƒAƒCƒeƒ€j
+ *	ã‚¢ã‚¤ãƒ†ãƒ ã‚’ä½¿ç”¨ã—ã¦ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰åŒ–ï¼ˆæˆ¦é—˜ç”¨ã‚¢ã‚¤ãƒ†ãƒ ï¼‰
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	•Ï‰»‚³‚¹‚éClientNo
- * @param[in]	sel_mons_no	•Ï‰»‚³‚¹‚éSelMonsNo
- * @param[in]	waza_pos	•Ï‰»‚³‚¹‚éWazaPos
- * @param[in]	item_no		g—p‚·‚éƒAƒCƒeƒ€
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å¤‰åŒ–ã•ã›ã‚‹ClientNo
+ * @param[in]	sel_mons_no	å¤‰åŒ–ã•ã›ã‚‹SelMonsNo
+ * @param[in]	waza_pos	å¤‰åŒ–ã•ã›ã‚‹WazaPos
+ * @param[in]	item_no		ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ 
  *
- * @retval	FALSE:ƒAƒCƒeƒ€g—p‚Å‚«‚È‚¢@TRUE:ƒAƒCƒeƒ€g—piƒpƒ‰ƒ[ƒ^‚à•Ï‰»Ï‚İj
+ * @retval	FALSE:ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ã§ããªã„ã€€TRUE:ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ï¼ˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚‚å¤‰åŒ–æ¸ˆã¿ï¼‰
  */
 //============================================================================================
 
-#define	FRIEND1	(100)	//‚È‚Â‚«“xŒvZ‚Ì’iŠK
-#define	FRIEND2	(200)	//‚È‚Â‚«“xŒvZ‚Ì’iŠK
+#define	FRIEND1	(100)	//ãªã¤ãåº¦è¨ˆç®—ã®æ®µéš
+#define	FRIEND2	(200)	//ãªã¤ãåº¦è¨ˆç®—ã®æ®µéš
 
 BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int waza_pos,int item_no)
 {
@@ -1202,7 +1202,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 	pp=BattleWorkPokemonParamGet(bw,client_no,sel_mons_no);
 	friend=0;
 
-	// –°‚è‰ñ•œ
+	// çœ ã‚Šå›å¾©
 	if(ItemParamGet(item_no,ITEM_PRM_SLEEP_RCV,HEAPID_BATTLE)){
 		data=PokeParaGet(pp,ID_PARA_condition,NULL);
 		if(data&CONDITION_NEMURI){
@@ -1219,7 +1219,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			ret=TRUE;
 		}
 	}
-	// “Å‰ñ•œ
+	// æ¯’å›å¾©
 	if(ItemParamGet(item_no,ITEM_PRM_POISON_RCV,HEAPID_BATTLE)){
 		data=PokeParaGet(pp,ID_PARA_condition,NULL);
 		if(data&CONDITION_DOKUALL){
@@ -1233,7 +1233,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			ret=TRUE;
 		}
 	}
-	// ‰Î‰ñ•œ
+	// ç«å‚·å›å¾©
 	if(ItemParamGet(item_no,ITEM_PRM_BURN_RCV,HEAPID_BATTLE)){
 		data=PokeParaGet(pp,ID_PARA_condition,NULL);
 		if(data&CONDITION_YAKEDO){
@@ -1247,7 +1247,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			ret=TRUE;
 		}
 	}
-	// •X‰ñ•œ
+	// æ°·å›å¾©
 	if(ItemParamGet(item_no,ITEM_PRM_ICE_RCV,HEAPID_BATTLE)){
 		data=PokeParaGet(pp,ID_PARA_condition,NULL);
 		if(data&CONDITION_KOORI){
@@ -1261,7 +1261,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			ret=TRUE;
 		}
 	}
-	// –ƒáƒ‰ñ•œ
+	// éº»ç—ºå›å¾©
 	if(ItemParamGet(item_no,ITEM_PRM_PARALYZE_RCV,HEAPID_BATTLE)){
 		data=PokeParaGet(pp,ID_PARA_condition,NULL);
 		if(data&CONDITION_MAHI){
@@ -1275,7 +1275,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			ret=TRUE;
 		}
 	}
-	// ¬—‰ñ•œ
+	// æ··ä¹±å›å¾©
 	if(ItemParamGet(item_no,ITEM_PRM_PANIC_RCV,HEAPID_BATTLE)){
 		if((pos1==sel_mons_no)||(pos2==sel_mons_no)){
 			data=ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_condition2,NULL);
@@ -1286,7 +1286,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			}
 		}
 	}
-	// ƒƒƒƒ‰ñ•œ
+	// ãƒ¡ãƒ­ãƒ¡ãƒ­å›å¾©
 	if(ItemParamGet(item_no,ITEM_PRM_MEROMERO_RCV,HEAPID_BATTLE)){
 		if((pos1==sel_mons_no)||(pos2==sel_mons_no)){
 			data=ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_condition2,NULL);
@@ -1297,7 +1297,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			}
 		}
 	}
-	// ”\—ÍƒK[ƒh
+	// èƒ½åŠ›ã‚¬ãƒ¼ãƒ‰
 	if(ItemParamGet(item_no,ITEM_PRM_ABILITY_GUARD,HEAPID_BATTLE)){
 		data=ST_ServerParamDataGet(bw,sp,ID_SP_shiroikiri_count,client_no);
 		if(data==0){
@@ -1308,7 +1308,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			ret=TRUE;
 		}
 	}
-	// UŒ‚—ÍƒAƒbƒv
+	// æ”»æ’ƒåŠ›ã‚¢ãƒƒãƒ—
 	if(ItemParamGet(item_no,ITEM_PRM_ATTACK_UP,HEAPID_BATTLE)){
 		if((pos1==sel_mons_no)||(pos2==sel_mons_no)){
 			if(ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_abiritycnt_pow,NULL)<12){
@@ -1317,7 +1317,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			}
 		}
 	}
-	// –hŒä—ÍƒAƒbƒv
+	// é˜²å¾¡åŠ›ã‚¢ãƒƒãƒ—
 	if(ItemParamGet(item_no,ITEM_PRM_DEFENCE_UP,HEAPID_BATTLE)){
 		if((pos1==sel_mons_no)||(pos2==sel_mons_no)){
 			if(ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_abiritycnt_def,NULL)<12){
@@ -1326,7 +1326,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			}
 		}
 	}
-	// “ÁUƒAƒbƒv
+	// ç‰¹æ”»ã‚¢ãƒƒãƒ—
 	if(ItemParamGet(item_no,ITEM_PRM_SP_ATTACK_UP,HEAPID_BATTLE)){
 		if((pos1==sel_mons_no)||(pos2==sel_mons_no)){
 			if(ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_abiritycnt_spepow,NULL)<12){
@@ -1335,7 +1335,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			}
 		}
 	}
-	// “Á–hƒAƒbƒv
+	// ç‰¹é˜²ã‚¢ãƒƒãƒ—
 	if(ItemParamGet(item_no,ITEM_PRM_SP_DEFENCE_UP,HEAPID_BATTLE)){
 		if((pos1==sel_mons_no)||(pos2==sel_mons_no)){
 			if(ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_abiritycnt_spedef,NULL)<12){
@@ -1344,7 +1344,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			}
 		}
 	}
-	// ‘f‘‚³ƒAƒbƒv
+	// ç´ æ—©ã•ã‚¢ãƒƒãƒ—
 	if(ItemParamGet(item_no,ITEM_PRM_AGILITY_UP,HEAPID_BATTLE)){
 		if((pos1==sel_mons_no)||(pos2==sel_mons_no)){
 			if(ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_abiritycnt_agi,NULL)<12){
@@ -1353,7 +1353,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			}
 		}
 	}
-	// –½’†—¦ƒAƒbƒv
+	// å‘½ä¸­ç‡ã‚¢ãƒƒãƒ—
 	if(ItemParamGet(item_no,ITEM_PRM_HIT_UP,HEAPID_BATTLE)){
 		if((pos1==sel_mons_no)||(pos2==sel_mons_no)){
 			if(ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_abiritycnt_hit,NULL)<12){
@@ -1362,7 +1362,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			}
 		}
 	}
-	// ƒNƒŠƒeƒBƒJƒ‹—¦ƒAƒbƒv
+	// ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ç‡ã‚¢ãƒƒãƒ—
 	if(ItemParamGet(item_no,ITEM_PRM_CRITICAL_UP,HEAPID_BATTLE)){
 		if((pos1==sel_mons_no)||(pos2==sel_mons_no)){
 			data=ST_ServerPokemonServerParamGet(sp,client_no,ID_PSP_condition2,NULL);
@@ -1373,7 +1373,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			}
 		}
 	}
-	// PP‰ñ•œ
+	// PPå›å¾©
 	if(ItemParamGet(item_no,ITEM_PRM_PP_RCV,HEAPID_BATTLE)){
 		data=ItemParamGet(item_no,ITEM_PRM_PP_RCV_POINT,HEAPID_BATTLE);
 		if(PokeParaGet(pp,ID_PARA_pp1+waza_pos,NULL)!=PokeParaGet(pp,ID_PARA_pp_max1+waza_pos,NULL)){
@@ -1387,7 +1387,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			ret=TRUE;
 		}
 	}
-	// PP‰ñ•œi‘S‚Ä‚Ì‹Zj
+	// PPå›å¾©ï¼ˆå…¨ã¦ã®æŠ€ï¼‰
 	if(ItemParamGet(item_no,ITEM_PRM_ALL_PP_RCV,HEAPID_BATTLE)){
 		data=ItemParamGet(item_no,ITEM_PRM_PP_RCV_POINT,HEAPID_BATTLE);
 		for(waza_pos=0;waza_pos<WAZA_TEMOTI_MAX;waza_pos++){
@@ -1403,10 +1403,10 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			}
 		}
 	}
-	// HP‰ñ•œ
+	// HPå›å¾©
 	if(ItemParamGet(item_no,ITEM_PRM_HP_RCV,HEAPID_BATTLE)){
 		data=0;
-		// •m€‰ñ•œ
+		// ç€•æ­»å›å¾©
 		if(ItemParamGet(item_no,ITEM_PRM_DEATH_RCV,HEAPID_BATTLE)){
 			if(PokeParaGet(pp,ID_PARA_hp,NULL)==0){
 				data=1;
@@ -1450,13 +1450,13 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			ret=TRUE;
 		}
 	}
-	// ‚È‚Â‚«“x‚P
+	// ãªã¤ãåº¦ï¼‘
 	if(ItemParamGet(item_no,ITEM_PRM_FRIEND1,HEAPID_BATTLE)){
 		if((PokeParaGet(pp,ID_PARA_friend,NULL)<FRIEND1)&&(ret==TRUE)){
 			friend=ItemParamGet(item_no,ITEM_PRM_FRIEND1_POINT,HEAPID_BATTLE);
 		}
 	}
-	// ‚È‚Â‚«“x‚Q
+	// ãªã¤ãåº¦ï¼’
 	if(ItemParamGet(item_no,ITEM_PRM_FRIEND2,HEAPID_BATTLE)){
 		if((PokeParaGet(pp,ID_PARA_friend,NULL)>=FRIEND1)&&
 		   (PokeParaGet(pp,ID_PARA_friend,NULL)<FRIEND2)&&
@@ -1464,7 +1464,7 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 			friend=ItemParamGet(item_no,ITEM_PRM_FRIEND2_POINT,HEAPID_BATTLE);
 		}
 	}
-	// ‚È‚Â‚«“x‚R
+	// ãªã¤ãåº¦ï¼“
 	if(ItemParamGet(item_no,ITEM_PRM_FRIEND3,HEAPID_BATTLE)){
 		if((PokeParaGet(pp,ID_PARA_friend,NULL)>=FRIEND2)&&(ret==TRUE)){
 			friend=ItemParamGet(item_no,ITEM_PRM_FRIEND3_POINT,HEAPID_BATTLE);
@@ -1472,15 +1472,15 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 	}
 	if(friend){
 		if(friend>0){
-			//“ü‚Á‚Ä‚¢‚éƒ{[ƒ‹Œø‰Ê
+			//å…¥ã£ã¦ã„ã‚‹ãƒœãƒ¼ãƒ«åŠ¹æœ
 			if(PokeParaGet(pp,ID_PARA_get_ball,NULL)==ITEM_GOOZYASUBOORU){
 				friend++;
 			}
-			//•ß‚Ü‚Á‚½êŠ‚Æ“¯‚¶Œø‰Ê
+			//æ•ã¾ã£ãŸå ´æ‰€ã¨åŒã˜åŠ¹æœ
 			if(PokeParaGet(pp,ID_PARA_get_place,NULL)==BattleWorkPlaceIDGet(bw)){
 				friend++;
 			}
-			//‘•”õŒø‰Ê
+			//è£…å‚™åŠ¹æœ
 			data=PokeParaGet(pp,ID_PARA_item,NULL);
 			if(ItemParamGet(item_no,ITEM_PRM_EQUIP,HEAPID_BATTLE)==SOUBI_NATUKIDOUP){
 				friend=friend*150/100;
@@ -1496,9 +1496,9 @@ BOOL	BattleWorkStatusRecover(BATTLE_WORK *bw,int client_no,int sel_mons_no,int w
 
 //============================================================================================
 /**
- *	battle_status_flag‚ğæ“¾
+ *	battle_status_flagã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	battle_status_flag
  */
@@ -1510,9 +1510,9 @@ u32	BattleWorkBattleStatusFlagGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	time_zone‚ğæ“¾
+ *	time_zoneã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	time_zone
  */
@@ -1524,11 +1524,11 @@ int	BattleWorkTimeZoneGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	time_zone‚ğæ“¾i3•ªŠ„j
+ *	time_zoneã‚’å–å¾—ï¼ˆ3åˆ†å‰²ï¼‰
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
- * @retval	time_zone‚ğ3•ªŠ„‚É‚·‚é
+ * @retval	time_zoneã‚’3åˆ†å‰²ã«ã™ã‚‹
  */
 //============================================================================================
 int	BattleWorkTimeZoneOffsetGet(BATTLE_WORK *bw)
@@ -1536,7 +1536,7 @@ int	BattleWorkTimeZoneOffsetGet(BATTLE_WORK *bw)
 	int	ofs;
 
 	switch(bw->bg_id){
-	//ŠÔ”½‰f‚ÍˆÈ‰º‚ÌID‚¾‚¯
+	//æ™‚é–“åæ˜ ã¯ä»¥ä¸‹ã®IDã ã‘
 	case BG_ID_BASIC:
 	case BG_ID_SEA:
 	case BG_ID_CITY:
@@ -1557,7 +1557,7 @@ int	BattleWorkTimeZoneOffsetGet(BATTLE_WORK *bw)
 			break;
 		}
 		break;
-	//‚»‚êˆÈŠO‚Í’‹‚Å•Ô‚·
+	//ãã‚Œä»¥å¤–ã¯æ˜¼ã§è¿”ã™
 	default:
 		ofs=0;
 		break;
@@ -1568,13 +1568,13 @@ int	BattleWorkTimeZoneOffsetGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	CommandSelect‚Åu‚É‚°‚év‚È‚Ì‚©u‚à‚Ç‚év‚È‚Ì‚©‚ğƒ`ƒFƒbƒN
+ *	CommandSelectã§ã€Œã«ã’ã‚‹ã€ãªã®ã‹ã€Œã‚‚ã©ã‚‹ã€ãªã®ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw					í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no			ƒ`ƒFƒbƒN‚·‚éƒNƒ‰ƒCƒAƒ“ƒgƒiƒ“ƒo[
- * @param[in]	no_reshuffle_client	ƒRƒ}ƒ“ƒh‘I‘ğ‚Å‚«‚È‚¢ƒNƒ‰ƒCƒAƒ“ƒg‚ªƒrƒbƒgŠi”[‚³‚ê‚Ä‚¢‚é
+ * @param[in]	bw					æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	no_reshuffle_client	ã‚³ãƒãƒ³ãƒ‰é¸æŠã§ããªã„ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãŒãƒ“ãƒƒãƒˆæ ¼ç´ã•ã‚Œã¦ã„ã‚‹
  *
- * @retval	COMSEL_ESCAPE:u‚É‚°‚év COMSEL_BACK:u‚à‚Ç‚év
+ * @retval	COMSEL_ESCAPE:ã€Œã«ã’ã‚‹ã€ COMSEL_BACK:ã€Œã‚‚ã©ã‚‹ã€
  */
 //============================================================================================
 u8		BattleWorkEscCanCheck(BATTLE_WORK *bw,int client_no,u8 no_reshuffle_client)
@@ -1593,7 +1593,7 @@ u8		BattleWorkEscCanCheck(BATTLE_WORK *bw,int client_no,u8 no_reshuffle_client)
 			}
 		}
 		else{
-			//ãˆÊ2ƒoƒCƒg‚ÍAƒoƒbƒO‚Ìƒy[ƒWƒiƒ“ƒo[‚È‚Ì‚ÅAƒ}ƒXƒN‚·‚é
+			//ä¸Šä½2ãƒã‚¤ãƒˆã¯ã€ãƒãƒƒã‚°ã®ãƒšãƒ¼ã‚¸ãƒŠãƒ³ãƒãƒ¼ãªã®ã§ã€ãƒã‚¹ã‚¯ã™ã‚‹
 			item=ST_ServerParamDataGet(bw,bw->server_param,ID_SP_act_work,CLIENT_NO_MINE)&0xffff;
 			if(((ST_ServerParamDataGet(bw,bw->server_param,ID_SP_act_no,CLIENT_NO_MINE)==SERVER_ITEM_COMMAND_NO)&&
 			    (item>ITEM_PURESYASUBOORU))||
@@ -1610,10 +1610,10 @@ u8		BattleWorkEscCanCheck(BATTLE_WORK *bw,int client_no,u8 no_reshuffle_client)
 
 //============================================================================================
 /**
- * @brief	í“¬i‰»ƒ`ƒFƒbƒN
+ * @brief	æˆ¦é—˜é€²åŒ–ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bp			í“¬ƒVƒXƒeƒ€—pƒ[ƒN\‘¢‘Ì
- * @param[in]	pp			ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^—pƒ[ƒN\‘¢‘Ì
+ * @param[in]	bp			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	pp			ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 u16	BattleWorkShinkaCheck(BATTLE_PARAM *bp,int *sel_mons_no,int *shinka_cond)
@@ -1646,9 +1646,9 @@ u16	BattleWorkShinkaCheck(BATTLE_PARAM *bp,int *sel_mons_no,int *shinka_cond)
 
 //============================================================================================
 /**
- *	server_flag‚ğæ“¾
+ *	server_flagã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	server_flag
  */
@@ -1660,9 +1660,9 @@ u8	BattleWorkServerFlagGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	safari_escape_count‚ğæ“¾
+ *	safari_escape_countã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	safari_escape_count
  */
@@ -1676,9 +1676,9 @@ u8	BattleWorkSafariEscapeCountGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	safari_ball‚ğæ“¾
+ *	safari_ballã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	safari_ball
  */
@@ -1690,9 +1690,9 @@ int	BattleWorkSafariBallCountGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	safari_ball‚ğƒZƒbƒg
+ *	safari_ballã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	safari_ball
  */
@@ -1704,9 +1704,9 @@ void	BattleWorkSafariBallCountSet(BATTLE_WORK *bw,int count)
 
 //============================================================================================
 /**
- *	ƒQ[ƒ€ƒRƒ“ƒtƒBƒO‚Ìæ“¾
+ *	ã‚²ãƒ¼ãƒ ã‚³ãƒ³ãƒ•ã‚£ã‚°ã®å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	config
  */
@@ -1721,16 +1721,16 @@ CONFIG	*BattleWorkConfigGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒQ[ƒ€ƒRƒ“ƒtƒBƒO‚Ì‹ZƒGƒtƒFƒNƒgƒIƒ“^ƒIƒt‚ğƒ`ƒFƒbƒN
+ *	ã‚²ãƒ¼ãƒ ã‚³ãƒ³ãƒ•ã‚£ã‚°ã®æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚ªãƒ³ï¼ã‚ªãƒ•ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	FALSE:OFF TRUE:ON
  */
 //============================================================================================
 BOOL	BattleWorkConfigWazaEffectOnOffCheck(BATTLE_WORK *bw)
 {
-	//’ÊM‘Îí‚Å‚ÍAí‚ÉON
+	//é€šä¿¡å¯¾æˆ¦ã§ã¯ã€å¸¸ã«ON
 	if((bw->fight_type&FIGHT_TYPE_SIO)&&
 	  ((bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE)==0)){
 		return TRUE;
@@ -1740,9 +1740,9 @@ BOOL	BattleWorkConfigWazaEffectOnOffCheck(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒQ[ƒ€ƒRƒ“ƒtƒBƒO‚ÌƒEƒBƒ“ƒhƒEí—Ş‚ğæ“¾
+ *	ã‚²ãƒ¼ãƒ ã‚³ãƒ³ãƒ•ã‚£ã‚°ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç¨®é¡ã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	WINTYPE
  */
@@ -1754,18 +1754,18 @@ WINTYPE	BattleWorkConfigWinTypeGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒQ[ƒ€ƒRƒ“ƒtƒBƒO‚ÌƒƒbƒZ[ƒWƒXƒs[ƒh‚ğæ“¾
+ *	ã‚²ãƒ¼ãƒ ã‚³ãƒ³ãƒ•ã‚£ã‚°ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
- * @retval	ƒƒbƒZ[ƒWƒXƒs[ƒh
+ * @retval	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰
  */
 //============================================================================================
 #define	MSG_SPEED_FAST	(1)
 
 u8	BattleWorkConfigMsgSpeedGet(BATTLE_WORK *bw)
 {
-	//’ÊM‘Îí‚Å‚ÍAí‚Éƒm[ƒ}ƒ‹ƒXƒs[ƒh
+	//é€šä¿¡å¯¾æˆ¦ã§ã¯ã€å¸¸ã«ãƒãƒ¼ãƒãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰
 	if((bw->fight_type&FIGHT_TYPE_SIO)&&
 	  ((bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE)==0)){
 		return MSG_SPEED_FAST;
@@ -1775,9 +1775,9 @@ u8	BattleWorkConfigMsgSpeedGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒQ[ƒ€ƒRƒ“ƒtƒBƒO‚Ìí“¬ƒ^ƒCƒv‚ğæ“¾
+ *	ã‚²ãƒ¼ãƒ ã‚³ãƒ³ãƒ•ã‚£ã‚°ã®æˆ¦é—˜ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	BATTLERULE
  */
@@ -1789,9 +1789,9 @@ BATTLERULE	BattleWorkConfigBattleRuleGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“ƒAƒjƒƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ *	ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	bw->pasp;
  */
@@ -1803,10 +1803,10 @@ POKE_ANM_SYS_PTR	BattleWorkPokeAnmSysPTRGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒ‚ƒ“‚Ì–Â‚«ºƒf[ƒ^‚ğæ“¾i‚Øƒ‰ƒbƒvƒf[ƒ^j
+ *	ãƒã‚±ãƒ¢ãƒ³ã®é³´ãå£°ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ï¼ˆãºãƒ©ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	æ“¾‚·‚éClientNo
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å–å¾—ã™ã‚‹ClientNo
  *
  * @retval	bw->poke_voice[client_no];
  */
@@ -1830,9 +1830,9 @@ PERAPVOICE	*BattleWorkPerapVoiceGet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	í“¬Œã‚ÉƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒ`ƒFƒbƒN
+ *	æˆ¦é—˜å¾Œã«ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 void	BattleWorkFormChgCheck(BATTLE_WORK *bw)
@@ -1841,7 +1841,7 @@ void	BattleWorkFormChgCheck(BATTLE_WORK *bw)
 	POKEMON_PARAM	*pp;
 	u16				monsno;
 
-	//FightType‚ÅƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‚È‚µ‚ÍA‚µ‚È‚¢
+	//FightTypeã§ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ãªã—ã¯ã€ã—ãªã„
 	if(bw->fight_type&FIGHT_TYPE_NO_FORM_CHG){
 		return;
 	}
@@ -1849,7 +1849,7 @@ void	BattleWorkFormChgCheck(BATTLE_WORK *bw)
 	for(i=0;i<BattleWorkPokeCountGet(bw,CLIENT_NO_MINE);i++){
 		pp=BattleWorkPokemonParamGet(bw,CLIENT_NO_MINE,i);
 		monsno=PokeParaGet(pp,ID_PARA_monsno_egg,NULL);
-		//ƒ~ƒmƒ€ƒbƒ`ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW
+		//ãƒŸãƒãƒ ãƒƒãƒãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸
 		if((monsno==MONSNO_MINOMUTTI)&&(bw->appear_flag[CLIENT_NO_MINE]&No2Bit(i))){
 			switch(BattleWorkGroundIDGet(bw)){
 			default:
@@ -1860,22 +1860,22 @@ void	BattleWorkFormChgCheck(BATTLE_WORK *bw)
 			case GROUND_ID_SANDS:
 			case GROUND_ID_ROCK:
 			case GROUND_ID_CAVE:
-			case GROUND_ID_HAKAI:		//”j‚ê‚½¢ŠE(‘Šè’n–Ê—L‚è)
-			case GROUND_ID_HAKAI_GIRA:	//”j‚ê‚½¢ŠE(ƒMƒ‰ƒeƒBƒií—pB‘Šè’n–Ê–³‚µ)
+			case GROUND_ID_HAKAI:		//ç ´ã‚ŒãŸä¸–ç•Œ(ç›¸æ‰‹åœ°é¢æœ‰ã‚Š)
+			case GROUND_ID_HAKAI_GIRA:	//ç ´ã‚ŒãŸä¸–ç•Œ(ã‚®ãƒ©ãƒ†ã‚£ãƒŠæˆ¦ç”¨ã€‚ç›¸æ‰‹åœ°é¢ç„¡ã—)
 				form=FORMNO_MINOMUTTI_SUNA;
 				break;
 			case GROUND_ID_FLOOR:
 			case GROUND_ID_BRIDGE:
-			case GROUND_ID_BIG_FOUR_A:	//l“V‰¤’n–ÊA
-			case GROUND_ID_BIG_FOUR_B:	//l“V‰¤’n–ÊB
-			case GROUND_ID_BIG_FOUR_C:	//l“V‰¤’n–ÊC
-			case GROUND_ID_BIG_FOUR_D:	//l“V‰¤’n–ÊD
-			case GROUND_ID_CHAMPION:	//ƒ`ƒƒƒ“ƒsƒIƒ“’n–Ê
-			case GROUND_ID_TOWER:		//ƒoƒgƒ‹ƒ^ƒ[
-			case GROUND_ID_FACTORY:		//ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
-			case GROUND_ID_ROULETTE:	//ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg
-			case GROUND_ID_CASTLE:		//ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
-			case GROUND_ID_STAGE:		//ƒoƒgƒ‹ƒXƒe[ƒW
+			case GROUND_ID_BIG_FOUR_A:	//å››å¤©ç‹åœ°é¢A
+			case GROUND_ID_BIG_FOUR_B:	//å››å¤©ç‹åœ°é¢B
+			case GROUND_ID_BIG_FOUR_C:	//å››å¤©ç‹åœ°é¢C
+			case GROUND_ID_BIG_FOUR_D:	//å››å¤©ç‹åœ°é¢D
+			case GROUND_ID_CHAMPION:	//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³åœ°é¢
+			case GROUND_ID_TOWER:		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+			case GROUND_ID_FACTORY:		//ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
+			case GROUND_ID_ROULETTE:	//ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
+			case GROUND_ID_CASTLE:		//ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+			case GROUND_ID_STAGE:		//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
 				form=FORMNO_MINOMUTTI_TETSU;
 				break;
 			}
@@ -1886,11 +1886,11 @@ void	BattleWorkFormChgCheck(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ŒJ‚èo‚µ‚½ƒ|ƒPƒ‚ƒ“‚ÌSelMonsNo‚ğƒrƒbƒg‚ÅŠi”[
+ *	ç¹°ã‚Šå‡ºã—ãŸãƒã‚±ãƒ¢ãƒ³ã®SelMonsNoã‚’ãƒ“ãƒƒãƒˆã§æ ¼ç´
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	Ši”[‚·‚éClientNo
- * @param[in]	sel_mons_no	Ši”[‚·‚éSleMonsNo
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	æ ¼ç´ã™ã‚‹ClientNo
+ * @param[in]	sel_mons_no	æ ¼ç´ã™ã‚‹SleMonsNo
  */
 //============================================================================================
 void	BattleWorkAppearFlagSet(BATTLE_WORK *bw,int client_no,int sel_mons_no)
@@ -1903,10 +1903,10 @@ void	BattleWorkAppearFlagSet(BATTLE_WORK *bw,int client_no,int sel_mons_no)
 
 //============================================================================================
 /**
- *	ƒ|ƒPƒbƒ`ƒf[ƒ^‚É•ßŠlƒ|ƒPƒ‚ƒ“î•ñ‚ğƒZƒbƒg
+ *	ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ã«æ•ç²ãƒã‚±ãƒ¢ãƒ³æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw	í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	pp	ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“\‘¢‘Ì
+ * @param[in]	bw	æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	pp	ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³æ§‹é€ ä½“
  */
 //============================================================================================
 void	BattleWorkPoketchDataSet(BATTLE_WORK *bw,POKEMON_PARAM *pp)
@@ -1914,7 +1914,7 @@ void	BattleWorkPoketchDataSet(BATTLE_WORK *bw,POKEMON_PARAM *pp)
 #ifdef PM_DEBUG
 	GF_ASSERT(bw->poketch_data!=NULL);
 #endif
-	//”O‚Ì‚½‚ßAƒAƒhƒŒƒX‚ª‚Í‚¢‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚é
+	//å¿µã®ãŸã‚ã€ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒã¯ã„ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 	if(bw->poketch_data){
 		PoketchData_PokeHistory_Add(bw->poketch_data,PPPPointerGet(pp));
 	}
@@ -1922,10 +1922,10 @@ void	BattleWorkPoketchDataSet(BATTLE_WORK *bw,POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	ƒeƒŒƒrƒf[ƒ^‚É•ßŠlƒ|ƒPƒ‚ƒ“î•ñ‚ğƒZƒbƒg
+ *	ãƒ†ãƒ¬ãƒ“ãƒ‡ãƒ¼ã‚¿ã«æ•ç²ãƒã‚±ãƒ¢ãƒ³æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw	í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	pp	ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“\‘¢‘Ì
+ * @param[in]	bw	æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	pp	ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³æ§‹é€ ä½“
  */
 //============================================================================================
 void	BattleWorkTVDataSet(BATTLE_WORK *bw,POKEMON_PARAM *pp)
@@ -1938,10 +1938,10 @@ void	BattleWorkTVDataSet(BATTLE_WORK *bw,POKEMON_PARAM *pp)
 
 //============================================================================================
 /**
- *	’nŒ`ƒOƒ‰ƒtƒBƒbƒN‚ğBG‚É•ÏŠ·‚·‚é
+ *	åœ°å½¢ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’BGã«å¤‰æ›ã™ã‚‹
  *
- * @param[in]	bw	í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	pp	ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“\‘¢‘Ì
+ * @param[in]	bw	æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	pp	ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³æ§‹é€ ä½“
  */
 //============================================================================================
 void	BattleWorkGroundBGChg(BATTLE_WORK *bw)
@@ -1953,18 +1953,18 @@ void	BattleWorkGroundBGChg(BATTLE_WORK *bw)
 	bw->bg_area=sys_AllocMemory(HEAPID_BATTLE,0x10000);
 	bw->pal_area=sys_AllocMemory(HEAPID_BATTLE,0x200);
 		
-	//BGƒLƒƒƒ‰ƒf[ƒ^ƒRƒs[
+	//BGã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 	MI_CpuCopy32((void*)(HW_BG_VRAM+0x10000),bw->bg_area,0x10000);
 
-	//BGƒpƒŒƒbƒgƒf[ƒ^ƒRƒs[
+	//BGãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 	MI_CpuCopy32(PaletteWorkDefaultWorkGet(bw->pfd,FADE_MAIN_BG),bw->pal_area,HW_BG_PLTT_SIZE);
 
-	//“G‘¤’nŒ`ƒf[ƒ^ƒAƒhƒŒƒXæ“¾
+	//æ•µå´åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	obj_vram=G2_GetOBJCharPtr();
 	image=CLACT_ImageProxyGet(bw->ground[GROUND_ENEMY].cap->act);
 	obj_vram+=image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
-	//“G‘¤’nŒ`ƒf[ƒ^‚ğBGƒLƒƒƒ‰ƒoƒbƒtƒ@‚Éã‘‚«
+	//æ•µå´åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚’BGã‚­ãƒ£ãƒ©ãƒãƒƒãƒ•ã‚¡ã«ä¸Šæ›¸ã
 	for(bg_y=20;bg_y<20+8;bg_y++){
 		for(bg_x=16;bg_x<32;bg_x++){
 			obj_x=bg_x-16;
@@ -1993,12 +1993,12 @@ void	BattleWorkGroundBGChg(BATTLE_WORK *bw)
 		}
 	}
 
-	//–¡•û‘¤’nŒ`ƒf[ƒ^ƒAƒhƒŒƒXæ“¾
+	//å‘³æ–¹å´åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	obj_vram=G2_GetOBJCharPtr();
 	image=CLACT_ImageProxyGet(bw->ground[GROUND_MINE].cap->act);
 	obj_vram+=image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN];
 
-	//“G‘¤’nŒ`ƒf[ƒ^‚ğBGƒLƒƒƒ‰ƒoƒbƒtƒ@‚Éã‘‚«
+	//æ•µå´åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚’BGã‚­ãƒ£ãƒ©ãƒãƒƒãƒ•ã‚¡ã«ä¸Šæ›¸ã
 	for(i=0;i<0x40*32;i++){
 		if(i&1){
 			obj_data=(obj_vram[i/2]&0xf0)>>4;
@@ -2028,18 +2028,18 @@ void	BattleWorkGroundBGChg(BATTLE_WORK *bw)
 		}
 	}
 
-	//VRAM‚É“]‘—
+	//VRAMã«è»¢é€
 	GF_BGL_LoadCharacter(bw->bgl,GF_BGL_FRAME3_M,bw->bg_area,0x10000,0);
-	//’nŒ`CLACTíœ
+	//åœ°å½¢CLACTå‰Šé™¤
 	Ground_ActorResourceDel(&bw->ground[0]);
 	Ground_ActorResourceDel(&bw->ground[1]);
 }
 
 //============================================================================================
 /**
- *	êŠi‰»î•ñ‚ğæ“¾
+ *	å ´æ‰€é€²åŒ–æƒ…å ±ã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	shinka_place_mode
  */
@@ -2051,9 +2051,9 @@ int	BattleWorkShinkaPlaceModeGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	”wŒiVRAM‘Ş”ğ—Ìˆæ‚Ìæ“¾
+ *	èƒŒæ™¯VRAMé€€é¿é ˜åŸŸã®å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	bg_area
  */
@@ -2065,9 +2065,9 @@ u8	*BattleWorkBGAreaGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	”wŒiCGVRAM‘Ş”ğ—Ìˆæ‚Ìæ“¾
+ *	èƒŒæ™¯CGVRAMé€€é¿é ˜åŸŸã®å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	pal_area
  */
@@ -2079,9 +2079,9 @@ u16	*BattleWorkPalAreaGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒRƒ“ƒeƒXƒg‚ğŒ©‚½‚©‚Ç‚¤‚©ƒtƒ‰ƒO‚Ìæ“¾
+ *	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚’è¦‹ãŸã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°ã®å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	contest_see_flag
  */
@@ -2093,9 +2093,9 @@ int	BattleWorkContestSeeFlagGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	BGƒpƒŒƒbƒg‘Ş”ğƒ[ƒN‚ÌƒAƒhƒŒƒX‚Ìæ“¾
+ *	BGãƒ‘ãƒ¬ãƒƒãƒˆé€€é¿ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	push_bg_palette
  */
@@ -2107,9 +2107,9 @@ u16	*BattleWorkPushBGPaletteGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	OBJƒpƒŒƒbƒg‘Ş”ğƒ[ƒN‚ÌƒAƒhƒŒƒX‚Ìæ“¾
+ *	OBJãƒ‘ãƒ¬ãƒƒãƒˆé€€é¿ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã®å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	push_bg_palette
  */
@@ -2121,9 +2121,9 @@ u16	*BattleWorkPushOBJPaletteGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒtƒB[ƒ‹ƒh“VŒóî•ñ‚ğæ“¾
+ *	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¤©å€™æƒ…å ±ã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	weather
  */
@@ -2135,9 +2135,9 @@ int	BattleWorkWeatherGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	•ßŠlƒfƒ‚—pƒV[ƒPƒ“ƒXƒiƒ“ƒo[‚ğæ“¾
+ *	æ•ç²ãƒ‡ãƒ¢ç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	demo_seq_no
  */
@@ -2149,9 +2149,9 @@ u8	BattleWorkDemoSeqNoGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	•ßŠlƒfƒ‚—pƒV[ƒPƒ“ƒXƒiƒ“ƒo[‚É’l‚ğƒZƒbƒg
+ *	æ•ç²ãƒ‡ãƒ¢ç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼ã«å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	demo_seq_no
  */
@@ -2163,9 +2163,9 @@ void	BattleWorkDemoSeqNoSet(BATTLE_WORK *bw,u8 data)
 
 //============================================================================================
 /**
- *	ƒ~ƒYƒL‚É‚ ‚Á‚½‚©‚Ç‚¤‚©ƒtƒ‰ƒO‚Ìæ“¾
+ *	ãƒŸã‚ºã‚­ã«ã‚ã£ãŸã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°ã®å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	mizuki_flag
  */
@@ -2177,15 +2177,15 @@ int	BattleWorkMizukiFlagGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒJƒEƒ“ƒgƒAƒbƒvƒ[ƒN‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+ *	ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	id		ƒJƒEƒ“ƒgƒAƒbƒv‚·‚éID
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	id		ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹ID
  */
 //============================================================================================
 void	BattleWorkIncRecord(BATTLE_WORK *bw,int id)
 {
-	//‘Îí˜^‰æÄ¶’†‚ÍƒCƒ“ƒNƒŠƒƒ“ƒg‚È‚µ
+	//å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­ã¯ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆãªã—
 	if(bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE){
 		return;
 	}
@@ -2197,14 +2197,14 @@ void	BattleWorkIncRecord(BATTLE_WORK *bw,int id)
 
 //============================================================================================
 /**
- *	}ŠÓ“o˜^ƒXƒRƒA‚ğ‰ÁZ
+ *	å›³é‘‘ç™»éŒ²ã‚¹ã‚³ã‚¢ã‚’åŠ ç®—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 void	BattleWorkZukanSetScoreAdd(BATTLE_WORK *bw)
 {
-	//‘Îí˜^‰æÄ¶’†‚Í‰ÁZ‚È‚µ
+	//å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­ã¯åŠ ç®—ãªã—
 	if(bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE){
 		return;
 	}
@@ -2216,9 +2216,9 @@ void	BattleWorkZukanSetScoreAdd(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒRƒ}ƒ“ƒhƒZƒŒƒNƒg‚Åƒ{ƒ^ƒ“‚ÌƒXƒ‰ƒCƒhƒCƒ“‚ÌI—¹‚Å—‚Æ‚·ƒtƒ‰ƒO‚Ìæ“¾
+ *	ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒ¬ã‚¯ãƒˆã§ãƒœã‚¿ãƒ³ã®ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³ã®çµ‚äº†æ™‚ã§è½ã¨ã™ãƒ•ãƒ©ã‚°ã®å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	bw->command_select_flag
  */
@@ -2230,10 +2230,10 @@ int	BattleWorkCommandSelectFlagGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	ƒRƒ}ƒ“ƒhƒZƒŒƒNƒg‚Åƒ{ƒ^ƒ“‚ÌƒXƒ‰ƒCƒhƒCƒ“‚ÌI—¹‚Å—‚Æ‚·ƒtƒ‰ƒO‚É’l‚ğƒZƒbƒg
+ *	ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒ¬ã‚¯ãƒˆã§ãƒœã‚¿ãƒ³ã®ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³ã®çµ‚äº†æ™‚ã§è½ã¨ã™ãƒ•ãƒ©ã‚°ã«å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	data	ƒZƒbƒg‚·‚é’l
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	data	ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  */
 //============================================================================================
 void	BattleWorkCommandSelectFlagSet(BATTLE_WORK *bw,int data)
@@ -2243,10 +2243,10 @@ void	BattleWorkCommandSelectFlagSet(BATTLE_WORK *bw,int data)
 
 //============================================================================================
 /**
- *	“ü‚ê‘Ö‚¦‚Å‚«‚È‚¢ClientNo‚ğƒZƒbƒg
+ *	å…¥ã‚Œæ›¿ãˆã§ããªã„ClientNoã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	data	ƒZƒbƒg‚·‚é’l
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	data	ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  */
 //============================================================================================
 void	BattleWorkNoReshuffleClientSet(BATTLE_WORK *bw,int data)
@@ -2256,9 +2256,9 @@ void	BattleWorkNoReshuffleClientSet(BATTLE_WORK *bw,int data)
 
 //============================================================================================
 /**
- *	’ÊM‘Ò‹@’†‚ÌŒvƒAƒCƒRƒ“ƒ^ƒXƒNƒ|ƒCƒ“ƒ^æ“¾
+ *	é€šä¿¡å¾…æ©Ÿä¸­ã®æ™‚è¨ˆã‚¢ã‚¤ã‚³ãƒ³ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
  * @retval	bw->time_icon
  */
@@ -2270,10 +2270,10 @@ void	*BattleWorkTimeIconGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	’ÊM‘Ò‹@’†‚ÌŒvƒAƒCƒRƒ“ƒ^ƒXƒNƒ|ƒCƒ“ƒ^Ši”[
+ *	é€šä¿¡å¾…æ©Ÿä¸­ã®æ™‚è¨ˆã‚¢ã‚¤ã‚³ãƒ³ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿æ ¼ç´
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	data	ƒZƒbƒg‚·‚é’l
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	data	ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  */
 //============================================================================================
 void	BattleWorkTimeIconSet(BATTLE_WORK *bw,void *data)
@@ -2283,13 +2283,13 @@ void	BattleWorkTimeIconSet(BATTLE_WORK *bw,void *data)
 
 //============================================================================================
 /**
- *	ƒJƒXƒ^ƒ€ƒ{[ƒ‹‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ *	ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒ`ƒFƒbƒN‚·‚éclient_no
- * @param[in]	sel_mons_no	ƒ`ƒFƒbƒN‚·‚éSelMonsNo
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹client_no
+ * @param[in]	sel_mons_no	ãƒã‚§ãƒƒã‚¯ã™ã‚‹SelMonsNo
  *
- * @retval	TRUE:ƒJƒXƒ^ƒ€ƒ{[ƒ‹
+ * @retval	TRUE:ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
  */
 //============================================================================================
 BOOL	BattleWorkCustomBallCheck(BATTLE_WORK *bw,int client_no,int sel_mons_no)
@@ -2302,17 +2302,17 @@ BOOL	BattleWorkCustomBallCheck(BATTLE_WORK *bw,int client_no,int sel_mons_no)
 	pp=BattleWorkPokemonParamGet(bw,client_no,sel_mons_no);
 
 	if(PokeParaGet(pp,ID_PARA_cb_id,NULL) != 0){
-		return TRUE;	//ƒJƒXƒ^ƒ€ƒ{[ƒ‹
+		return TRUE;	//ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
 	}
 	return FALSE;
 }
 
 //============================================================================================
 /**
- *	client_no‚ğw’è‚µ‚Äexchr_param‚ğæ“¾
+ *	client_noã‚’æŒ‡å®šã—ã¦exchr_paramã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	no		‰½”Ô–Ú‚ğæ“¾‚·‚é‚©(0-3)
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	no		ä½•ç•ªç›®ã‚’å–å¾—ã™ã‚‹ã‹(0-3)
  *
  * @retval	exchr_param
  */
@@ -2327,10 +2327,10 @@ EXCHR_PARAM	*BattleWorkExChrClientParamGet(BATTLE_WORK *bw, int no)
 
 //============================================================================================
 /**
- *	exchr_buffer‚ğæ“¾
+ *	exchr_bufferã‚’å–å¾—
  *
- * @param[in]	ep		EXCHR_PARAM\‘¢‘Ì
- * @param[in]	no		‰½”Ô–Ú‚ğæ“¾‚·‚é‚©(0-3)
+ * @param[in]	ep		EXCHR_PARAMæ§‹é€ ä½“
+ * @param[in]	no		ä½•ç•ªç›®ã‚’å–å¾—ã™ã‚‹ã‹(0-3)
  *
  * @retval	exchr_buffer
  */
@@ -2343,10 +2343,10 @@ u8	*ExChrParamExChrBufferGet(EXCHR_PARAM *ep,int no)
 
 //============================================================================================
 /**
- *	arcID‚ğæ“¾
+ *	arcIDã‚’å–å¾—
  *
- * @param[in]	ep		EXCHR_PARAM\‘¢‘Ì
- * @param[in]	no		‰½”Ô–Ú‚ğæ“¾‚·‚é‚©(0-3)
+ * @param[in]	ep		EXCHR_PARAMæ§‹é€ ä½“
+ * @param[in]	no		ä½•ç•ªç›®ã‚’å–å¾—ã™ã‚‹ã‹(0-3)
  *
  * @retval	arcID
  */
@@ -2359,11 +2359,11 @@ int	ExChrParamArcIDGet(EXCHR_PARAM *ep,int no)
 
 //============================================================================================
 /**
- *	arcID‚ÉŠi”[
+ *	arcIDã«æ ¼ç´
  *
- * @param[in]	ep		EXCHR_PARAM\‘¢‘Ì
- * @param[in]	no		‰½”Ô–Ú‚ÉŠi”[‚·‚é‚©(0-3)
- * @param[in]	data	Ši”[‚·‚é’l
+ * @param[in]	ep		EXCHR_PARAMæ§‹é€ ä½“
+ * @param[in]	no		ä½•ç•ªç›®ã«æ ¼ç´ã™ã‚‹ã‹(0-3)
+ * @param[in]	data	æ ¼ç´ã™ã‚‹å€¤
  */
 //============================================================================================
 void	ExChrParamArcIDSet(EXCHR_PARAM *ep,int no,int data)
@@ -2375,10 +2375,10 @@ void	ExChrParamArcIDSet(EXCHR_PARAM *ep,int no,int data)
 
 //============================================================================================
 /**
- *	pal_index‚ğæ“¾
+ *	pal_indexã‚’å–å¾—
  *
- * @param[in]	ep		EXCHR_PARAM\‘¢‘Ì
- * @param[in]	no		‰½”Ô–Ú‚ğæ“¾‚·‚é‚©(0-3)
+ * @param[in]	ep		EXCHR_PARAMæ§‹é€ ä½“
+ * @param[in]	no		ä½•ç•ªç›®ã‚’å–å¾—ã™ã‚‹ã‹(0-3)
  *
  * @retval	pal_index
  */
@@ -2391,11 +2391,11 @@ int	ExChrParamPalIndexGet(EXCHR_PARAM *ep,int no)
 
 //============================================================================================
 /**
- *	pal_index‚ÉŠi”[
+ *	pal_indexã«æ ¼ç´
  *
- * @param[in]	ep		EXCHR_PARAM\‘¢‘Ì
- * @param[in]	no		‰½”Ô–Ú‚ÉŠi”[‚·‚é‚©(0-3)
- * @param[in]	data	Ši”[‚·‚é’l
+ * @param[in]	ep		EXCHR_PARAMæ§‹é€ ä½“
+ * @param[in]	no		ä½•ç•ªç›®ã«æ ¼ç´ã™ã‚‹ã‹(0-3)
+ * @param[in]	data	æ ¼ç´ã™ã‚‹å€¤
  */
 //============================================================================================
 void	ExChrParamPalIndexSet(EXCHR_PARAM *ep,int no,int data)
@@ -2407,10 +2407,10 @@ void	ExChrParamPalIndexSet(EXCHR_PARAM *ep,int no,int data)
 
 //============================================================================================
 /**
- *	height‚ğæ“¾
+ *	heightã‚’å–å¾—
  *
- * @param[in]	ep		EXCHR_PARAM\‘¢‘Ì
- * @param[in]	no		‰½”Ô–Ú‚ğæ“¾‚·‚é‚©(0-3)
+ * @param[in]	ep		EXCHR_PARAMæ§‹é€ ä½“
+ * @param[in]	no		ä½•ç•ªç›®ã‚’å–å¾—ã™ã‚‹ã‹(0-3)
  *
  * @retval	height
  */
@@ -2423,11 +2423,11 @@ int	ExChrParamHeightGet(EXCHR_PARAM *ep,int no)
 
 //============================================================================================
 /**
- *	height‚ÉŠi”[
+ *	heightã«æ ¼ç´
  *
- * @param[in]	ep		EXCHR_PARAM\‘¢‘Ì
- * @param[in]	no		‰½”Ô–Ú‚ÉŠi”[‚·‚é‚©(0-3)
- * @param[in]	data	Ši”[‚·‚é’l
+ * @param[in]	ep		EXCHR_PARAMæ§‹é€ ä½“
+ * @param[in]	no		ä½•ç•ªç›®ã«æ ¼ç´ã™ã‚‹ã‹(0-3)
+ * @param[in]	data	æ ¼ç´ã™ã‚‹å€¤
  */
 //============================================================================================
 void	ExChrParamHeightSet(EXCHR_PARAM *ep,int no,int data)
@@ -2439,10 +2439,10 @@ void	ExChrParamHeightSet(EXCHR_PARAM *ep,int no,int data)
 
 //============================================================================================
 /**
- *	ProcMode‚ğƒZƒbƒg
+ *	ProcModeã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	mode	ƒZƒbƒg‚·‚éƒ‚[ƒhƒiƒ“ƒo[
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	mode	ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¢ãƒ¼ãƒ‰ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	BattleWorkProcModeSet(BATTLE_WORK *bw,int mode)
@@ -2452,10 +2452,10 @@ void	BattleWorkProcModeSet(BATTLE_WORK *bw,int mode)
 
 //============================================================================================
 /**
- *	tcb_sio_send_seq_no‚ğƒZƒbƒg
+ *	tcb_sio_send_seq_noã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	seq		ƒZƒbƒg‚·‚éƒV[ƒPƒ“ƒXƒiƒ“ƒo[ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	seq		ã‚»ãƒƒãƒˆã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	BattleWorkTSSSeqNoAdrsSet(BATTLE_WORK *bw,u8 *seq_no)
@@ -2465,10 +2465,10 @@ void	BattleWorkTSSSeqNoAdrsSet(BATTLE_WORK *bw,u8 *seq_no)
 
 //============================================================================================
 /**
- *	tcb_sio_recv_seq_no‚ğƒZƒbƒg
+ *	tcb_sio_recv_seq_noã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	seq		ƒZƒbƒg‚·‚éƒV[ƒPƒ“ƒXƒiƒ“ƒo[ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	seq		ã‚»ãƒƒãƒˆã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	BattleWorkTSRSeqNoAdrsSet(BATTLE_WORK *bw,u8 *seq_no)
@@ -2478,10 +2478,10 @@ void	BattleWorkTSRSeqNoAdrsSet(BATTLE_WORK *bw,u8 *seq_no)
 
 //============================================================================================
 /**
- *	tcb_sio_send_seq_no‚ÉƒZƒbƒg
+ *	tcb_sio_send_seq_noã«ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	seq		ƒZƒbƒg‚·‚éƒV[ƒPƒ“ƒXƒiƒ“ƒo[
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	seq		ã‚»ãƒƒãƒˆã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	BattleWorkTSSSeqNoSet(BATTLE_WORK *bw,u8 seq_no)
@@ -2491,10 +2491,10 @@ void	BattleWorkTSSSeqNoSet(BATTLE_WORK *bw,u8 seq_no)
 
 //============================================================================================
 /**
- *	tcb_sio_recv_seq_no‚ÉƒZƒbƒg
+ *	tcb_sio_recv_seq_noã«ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	seq		ƒZƒbƒg‚·‚éƒV[ƒPƒ“ƒXƒiƒ“ƒo[
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	seq		ã‚»ãƒƒãƒˆã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	BattleWorkTSRSeqNoSet(BATTLE_WORK *bw,u8 seq_no)
@@ -2504,10 +2504,10 @@ void	BattleWorkTSRSeqNoSet(BATTLE_WORK *bw,u8 seq_no)
 
 //============================================================================================
 /**
- *	fight_end_flag‚ÉƒZƒbƒg
+ *	fight_end_flagã«ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	data	ƒZƒbƒg‚·‚éƒiƒ“ƒo[
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	data	ã‚»ãƒƒãƒˆã™ã‚‹ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 void	BattleWorkFightEndFlagSet(BATTLE_WORK *bw,u8 data)
@@ -2517,11 +2517,11 @@ void	BattleWorkFightEndFlagSet(BATTLE_WORK *bw,u8 data)
 
 //============================================================================================
 /**
- *	HPƒQ[ƒWƒ[ƒN‚ğæ“¾
+ *	HPã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒNƒ‰ƒCƒAƒ“ƒgNo
- * @retval		GAUGE_WORK\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆNo
+ * @retval		GAUGE_WORKæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void *	BattleWorkGaugeWorkGet(BATTLE_WORK *bw, int client_no)
@@ -2534,9 +2534,9 @@ void *	BattleWorkGaugeWorkGet(BATTLE_WORK *bw, int client_no)
 
 //============================================================================================
 /**
- *	HPƒQ[ƒW‚ğ‰Šú‰»
+ *	HPã‚²ãƒ¼ã‚¸ã‚’åˆæœŸåŒ–
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 void	BattleWorkGaugeInit(BATTLE_WORK *bw)
@@ -2546,7 +2546,7 @@ void	BattleWorkGaugeInit(BATTLE_WORK *bw)
 
 	for(i=0;i<bw->client_set_max;i++){
 		gauge=CT_CPGaugeWorkGet(bw->client_param[i]);
-		//HPƒQ[ƒW¶¬
+		//HPã‚²ãƒ¼ã‚¸ç”Ÿæˆ
 		gauge->bw = bw;
 		gauge->type = Gauge_TypeGet(CT_CPClientTypeGet(bw->client_param[i]), BattleWorkFightTypeGet(bw));
 		Gauge_ActorResourceSet(gauge);
@@ -2556,10 +2556,10 @@ void	BattleWorkGaugeInit(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	HPƒQ[ƒW‚ğ•\¦
+ *	HPã‚²ãƒ¼ã‚¸ã‚’è¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 void	BattleWorkGaugeOn(BATTLE_WORK *bw)
@@ -2577,9 +2577,9 @@ void	BattleWorkGaugeOn(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	HPƒQ[ƒW‚ğ”ñ•\¦
+ *	HPã‚²ãƒ¼ã‚¸ã‚’éè¡¨ç¤º
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 void	BattleWorkGaugeOff(BATTLE_WORK *bw)
@@ -2595,9 +2595,9 @@ void	BattleWorkGaugeOff(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	HPƒQ[ƒW‚ğíœ
+ *	HPã‚²ãƒ¼ã‚¸ã‚’å‰Šé™¤
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 void	BattleWorkGaugeDelete(BATTLE_WORK *bw)
@@ -2613,9 +2613,9 @@ void	BattleWorkGaugeDelete(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	win_lose_flag‚©‚ç’l‚ğæ“¾
+ *	win_lose_flagã‹ã‚‰å€¤ã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 u8	BattleWorkWinLoseGet(BATTLE_WORK *bw)
@@ -2625,10 +2625,10 @@ u8	BattleWorkWinLoseGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	win_lose_flag‚É’l‚ğƒZƒbƒg
+ *	win_lose_flagã«å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	flag	ƒZƒbƒg‚·‚é’l
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	flag	ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  */
 //============================================================================================
 void	BattleWorkWinLoseSet(BATTLE_WORK *bw,u8 flag)
@@ -2638,9 +2638,9 @@ void	BattleWorkWinLoseSet(BATTLE_WORK *bw,u8 flag)
 
 //============================================================================================
 /**
- *	pinch_se_flag‚©‚ç’l‚ğæ“¾
+ *	pinch_se_flagã‹ã‚‰å€¤ã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 u8	BattleWorkPinchSEFlagGet(BATTLE_WORK *bw)
@@ -2650,10 +2650,10 @@ u8	BattleWorkPinchSEFlagGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	pinch_se_flag‚É’l‚ğƒZƒbƒg
+ *	pinch_se_flagã«å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	flag	ƒZƒbƒg‚·‚é’l
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	flag	ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  */
 //============================================================================================
 void	BattleWorkPinchSEFlagSet(BATTLE_WORK *bw,u8 flag)
@@ -2663,9 +2663,9 @@ void	BattleWorkPinchSEFlagSet(BATTLE_WORK *bw,u8 flag)
 
 //============================================================================================
 /**
- *	pinch_se_wait‚©‚ç’l‚ğæ“¾
+ *	pinch_se_waitã‹ã‚‰å€¤ã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 u8	BattleWorkPinchSEWaitGet(BATTLE_WORK *bw)
@@ -2675,10 +2675,10 @@ u8	BattleWorkPinchSEWaitGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	pinch_se_wait‚É’l‚ğƒZƒbƒg
+ *	pinch_se_waitã«å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	wait	ƒZƒbƒg‚·‚é’l
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	wait	ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  */
 //============================================================================================
 void	BattleWorkPinchSEWaitSet(BATTLE_WORK *bw,u8 wait)
@@ -2689,10 +2689,10 @@ void	BattleWorkPinchSEWaitSet(BATTLE_WORK *bw,u8 wait)
 
 //============================================================================================
 /**
- *	get_pokemon_client‚É’l‚ğƒZƒbƒg
+ *	get_pokemon_clientã«å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒZƒbƒg‚·‚é’l
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  */
 //============================================================================================
 void	BattleWorkGetPokemonClientSet(BATTLE_WORK *bw,int client_no)
@@ -2705,9 +2705,9 @@ void	BattleWorkGetPokemonClientSet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	í“¬ê—pƒ‰ƒ“ƒ_ƒ€æ“¾ŠÖ”i‘Îí˜^‰æ‚Ì‚½‚ß‚É‚¸‚ê‚È‚¢‚æ‚¤‚Éê—p‚ÌŠÖ”‚ğ—pˆÓj
+ *	æˆ¦é—˜å°‚ç”¨ãƒ©ãƒ³ãƒ€ãƒ å–å¾—é–¢æ•°ï¼ˆå¯¾æˆ¦éŒ²ç”»ã®ãŸã‚ã«ãšã‚Œãªã„ã‚ˆã†ã«å°‚ç”¨ã®é–¢æ•°ã‚’ç”¨æ„ï¼‰
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 u16		BattleWorkRandGet(BATTLE_WORK *bw)
@@ -2718,9 +2718,9 @@ u16		BattleWorkRandGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	í“¬ê—pƒ‰ƒ“ƒ_ƒ€æ“¾ŠÖ”iƒeƒ“ƒ|ƒ‰ƒŠƒ[ƒNj
+ *	æˆ¦é—˜å°‚ç”¨ãƒ©ãƒ³ãƒ€ãƒ å–å¾—é–¢æ•°ï¼ˆãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¯ãƒ¼ã‚¯ï¼‰
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 u32		BattleWorkRandTempGet(BATTLE_WORK *bw)
@@ -2730,10 +2730,10 @@ u32		BattleWorkRandTempGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	í“¬ê—pƒ‰ƒ“ƒ_ƒ€Ši”[ŠÖ”iƒeƒ“ƒ|ƒ‰ƒŠƒ[ƒNj
+ *	æˆ¦é—˜å°‚ç”¨ãƒ©ãƒ³ãƒ€ãƒ æ ¼ç´é–¢æ•°ï¼ˆãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¯ãƒ¼ã‚¯ï¼‰
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	rand		Ši”[‚·‚é—”’l
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	rand		æ ¼ç´ã™ã‚‹ä¹±æ•°å€¤
  */
 //============================================================================================
 void	BattleWorkRandTempSet(BATTLE_WORK *bw,u32 rand)
@@ -2743,11 +2743,11 @@ void	BattleWorkRandTempSet(BATTLE_WORK *bw,u32 rand)
 
 //============================================================================================
 /**
- *	í“¬˜^‰æˆ—
+ *	æˆ¦é—˜éŒ²ç”»å‡¦ç†
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	˜^‰æ‚ğs‚¤ClientNo
- * @param[in]	data		˜^‰æƒf[ƒ^
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	éŒ²ç”»ã‚’è¡Œã†ClientNo
+ * @param[in]	data		éŒ²ç”»ãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 void BattleWorkBattleRec( BATTLE_WORK *bw, int client_no, REC_DATA data)
@@ -2764,10 +2764,10 @@ void BattleWorkBattleRec( BATTLE_WORK *bw, int client_no, REC_DATA data)
 
 //============================================================================================
 /**
- *	í“¬Ä¶ˆ—
+ *	æˆ¦é—˜å†ç”Ÿå‡¦ç†
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	Ä¶‚ğs‚¤ClientNo
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	å†ç”Ÿã‚’è¡Œã†ClientNo
  */
 //============================================================================================
 BOOL	BattleWorkBattlePlay(BATTLE_WORK *bw,int client_no,REC_DATA *data)
@@ -2795,11 +2795,11 @@ BOOL	BattleWorkBattlePlay(BATTLE_WORK *bw,int client_no,REC_DATA *data)
 
 //============================================================================================
 /**
- *	’ÊM‚Å‘—‚éí“¬˜^‰æƒf[ƒ^‚ğ¶¬‚·‚é
+ *	é€šä¿¡ã§é€ã‚‹æˆ¦é—˜éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param	buf		¶¬‚µ‚½ƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+ * @param	buf		ç”Ÿæˆã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	¶¬‚µ‚½ƒf[ƒ^‚ÌƒTƒCƒY
+ * @return	ç”Ÿæˆã—ãŸãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
  *
  */
 //============================================================================================
@@ -2824,9 +2824,9 @@ u8	BattleWorkBattleRecordSendDataMake(BATTLE_WORK *bw,u8 *buf)
 
 //---------------------------------------------------------------------------------------------
 /**
- *	’ÊM‚Åó‚¯æ‚Á‚½í“¬˜^‰æƒf[ƒ^‚ğƒoƒbƒtƒ@‚É“WŠJ‚·‚é
+ *	é€šä¿¡ã§å—ã‘å–ã£ãŸæˆ¦é—˜éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«å±•é–‹ã™ã‚‹
  *
- * @param	buf		“WŠJ‚·‚éƒf[ƒ^‚ªŠi”[‚³‚ê‚½ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+ * @param	buf		å±•é–‹ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //---------------------------------------------------------------------------------------------
@@ -2837,13 +2837,13 @@ void	BattleWorkBattleRecordRecvDataSet(BATTLE_WORK *bw,u16 size,u8 *buf)
 	u8	byte;
 	u8	pos=0;
 
-	//’ÊM‘Îí‚¶‚á‚È‚¯‚ê‚ÎA‰½‚à‚µ‚È‚¢
+	//é€šä¿¡å¯¾æˆ¦ã˜ã‚ƒãªã‘ã‚Œã°ã€ä½•ã‚‚ã—ãªã„
 	if((bw->fight_type&FIGHT_TYPE_SIO)==0){
 		return;
 	}
 
 #if 0
-	//‚·‚×‚Ä‚ªƒvƒ‰ƒ`ƒi‚¶‚á‚È‚¯‚ê‚ÎA‰½‚à‚µ‚È‚¢iÀÛ‚ÍA‹à‹â‚ğl—¶‚·‚é‚ÆDP‚ªŠÜ‚Ü‚ê‚Ä‚¢‚½‚ç‰½‚à‚µ‚È‚¢j
+	//ã™ã¹ã¦ãŒãƒ—ãƒ©ãƒãƒŠã˜ã‚ƒãªã‘ã‚Œã°ã€ä½•ã‚‚ã—ãªã„ï¼ˆå®Ÿéš›ã¯ã€é‡‘éŠ€ã‚’è€ƒæ…®ã™ã‚‹ã¨DPãŒå«ã¾ã‚Œã¦ã„ãŸã‚‰ä½•ã‚‚ã—ãªã„ï¼‰
 	for(i=0;i<GetConnectSioMenberNum();i++){
 		if((SioTrainerInfo[i].Version&0xff)!=VERSION_EMERALD){
 			return;
@@ -2851,7 +2851,7 @@ void	BattleWorkBattleRecordRecvDataSet(BATTLE_WORK *bw,u16 size,u8 *buf)
 	}
 #endif
 
-	//ƒT[ƒo‹N“®‚ÍA‰½‚à‚µ‚È‚¢
+	//ã‚µãƒ¼ãƒèµ·å‹•æ™‚ã¯ã€ä½•ã‚‚ã—ãªã„
 	if(bw->server_flag){
 		return;
 	}
@@ -2874,11 +2874,11 @@ static	u8	RecvDataGet(u8 *buf,u8 *pos,u16 *size)
 
 //============================================================================================
 /**
- *	©•ª‚Ì’ÊMID‚ğæ“¾‚·‚é
+ *	è‡ªåˆ†ã®é€šä¿¡IDã‚’å–å¾—ã™ã‚‹
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  *
- * @retval	©•ª‚Ì’ÊMID
+ * @retval	è‡ªåˆ†ã®é€šä¿¡ID
  */
 //============================================================================================
 u16	BattleWorkCommIDGet(BATTLE_WORK *bw)
@@ -2888,12 +2888,12 @@ u16	BattleWorkCommIDGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	w’è‚³‚ê‚½’ÊMID‚Ì‘Îí•”‰®‚Å‚Ì—§‚¿ˆÊ’u‚ğæ“¾
+ *	æŒ‡å®šã•ã‚ŒãŸé€šä¿¡IDã®å¯¾æˆ¦éƒ¨å±‹ã§ã®ç«‹ã¡ä½ç½®ã‚’å–å¾—
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	id		æ“¾‚·‚é’ÊMID
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	id		å–å¾—ã™ã‚‹é€šä¿¡ID
  *
- * @retval	—§‚¿ˆÊ’u
+ * @retval	ç«‹ã¡ä½ç½®
  */
 //============================================================================================
 int	BattleWorkCommStandNoGet(BATTLE_WORK *bw,u16 id)
@@ -2903,13 +2903,13 @@ int	BattleWorkCommStandNoGet(BATTLE_WORK *bw,u16 id)
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[‚Ì‚¿ƒAƒCƒeƒ€‚ğæ“¾
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æŒã¡ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	æ“¾‚·‚éƒgƒŒ[ƒi[‚ÌClientNo
- * @param[in]	pos			æ“¾‚·‚éƒAƒCƒeƒ€ˆÊ’u
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	å–å¾—ã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ClientNo
+ * @param[in]	pos			å–å¾—ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ä½ç½®
  *
- * @retval	ƒAƒCƒeƒ€ƒiƒ“ƒo[
+ * @retval	ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
  */
 //============================================================================================
 u16	BattleWorkTrainerUseItemGet(BATTLE_WORK *bw,int client_no,int pos)
@@ -2922,9 +2922,9 @@ u16	BattleWorkTrainerUseItemGet(BATTLE_WORK *bw,int client_no,int pos)
 
 //============================================================================================
 /**
- *	‘Îí˜^‰æÄ¶’†’fƒtƒ‰ƒO‚ğæ“¾
+ *	å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­æ–­ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 u32		BattleWorkBattleRecStopFlagGet(BATTLE_WORK *bw)
@@ -2934,21 +2934,21 @@ u32		BattleWorkBattleRecStopFlagGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	‘Îí˜^‰æÄ¶’†’fƒtƒ‰ƒO‚ğŠi”[
+ *	å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­æ–­ãƒ•ãƒ©ã‚°ã‚’æ ¼ç´
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	flag		’†’fƒƒbƒZ[ƒW‚Ìí—ŞiBI_SYSMSG_STOP:’Êí BI_SYSMSG_ERROR:•s³ƒf[ƒ^’†’fj
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	flag		ä¸­æ–­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ç¨®é¡ï¼ˆBI_SYSMSG_STOP:é€šå¸¸ BI_SYSMSG_ERROR:ä¸æ­£ãƒ‡ãƒ¼ã‚¿ä¸­æ–­ï¼‰
  *
- * @retval	FALSE:’†’f‚Å‚«‚È‚©‚Á‚½@TRUE:’†’f‚µ‚½
+ * @retval	FALSE:ä¸­æ–­ã§ããªã‹ã£ãŸã€€TRUE:ä¸­æ–­ã—ãŸ
  */
 //============================================================================================
 void	BattleWorkBattleRecStopFlagSet(BATTLE_WORK *bw,int flag)
 {
-	//‘Îí˜^‰æÄ¶’†‚Å‚È‚¯‚ê‚Î–³‹
+	//å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­ã§ãªã‘ã‚Œã°ç„¡è¦–
 	if(((bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE)==0)||
-	//‚·‚Å‚É’†’fˆ—’†‚È‚ç–³‹
+	//ã™ã§ã«ä¸­æ–­å‡¦ç†ä¸­ãªã‚‰ç„¡è¦–
 		(bw->battle_rec_stop_flag)||
-	//Ÿ”s‚ªŒˆ‚µ‚Ä‚¢‚é‚È‚ç–³‹
+	//å‹æ•—ãŒæ±ºã—ã¦ã„ã‚‹ãªã‚‰ç„¡è¦–
 	   (ST_ServerParamDataGet(bw,bw->server_param,ID_SP_server_seq_no,0)==SERVER_FIGHT_END_NO)||
 	   (ST_ServerParamDataGet(bw,bw->server_param,ID_SP_next_server_seq_no,0)==SERVER_FIGHT_END_NO)){
 		return;
@@ -2966,21 +2966,21 @@ void	BattleWorkBattleRecStopFlagSet(BATTLE_WORK *bw,int flag)
 
 //============================================================================================
 /**
- *	‘Îí˜^‰æÄ¶’†’fó‘Ô‚ğƒ`ƒFƒbƒN
+ *	å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­æ–­çŠ¶æ…‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	flag		’†’fƒƒbƒZ[ƒW‚Ìí—ŞiBI_SYSMSG_STOP:’Êí BI_SYSMSG_ERROR:•s³ƒf[ƒ^’†’fj
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	flag		ä¸­æ–­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ç¨®é¡ï¼ˆBI_SYSMSG_STOP:é€šå¸¸ BI_SYSMSG_ERROR:ä¸æ­£ãƒ‡ãƒ¼ã‚¿ä¸­æ–­ï¼‰
  *
- * @retval	FALSE:’†’f’†@TRUE:’†’f‚µ‚Ä‚¢‚È‚¢
+ * @retval	FALSE:ä¸­æ–­ä¸­ã€€TRUE:ä¸­æ–­ã—ã¦ã„ãªã„
  */
 //============================================================================================
 BOOL	BattleWorkBattleRecStopFlagCheck(BATTLE_WORK *bw)
 {
-	//‘Îí˜^‰æÄ¶’†‚Å‚È‚¯‚ê‚Î–³‹
+	//å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­ã§ãªã‘ã‚Œã°ç„¡è¦–
 	if(((bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE)==0)||
-	//‚·‚Å‚É’†’fˆ—’†‚È‚ç–³‹
+	//ã™ã§ã«ä¸­æ–­å‡¦ç†ä¸­ãªã‚‰ç„¡è¦–
 		(bw->battle_rec_stop_flag)||
-	//Ÿ”s‚ªŒˆ‚µ‚Ä‚¢‚é‚È‚ç–³‹
+	//å‹æ•—ãŒæ±ºã—ã¦ã„ã‚‹ãªã‚‰ç„¡è¦–
 	   (ST_ServerParamDataGet(bw,bw->server_param,ID_SP_server_seq_no,0)==SERVER_FIGHT_END_NO)||
 	   (ST_ServerParamDataGet(bw,bw->server_param,ID_SP_next_server_seq_no,0)==SERVER_FIGHT_END_NO)){
 		return FALSE;
@@ -2990,16 +2990,16 @@ BOOL	BattleWorkBattleRecStopFlagCheck(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	‘Îí˜^‰æÄ¶’†’fƒ{ƒ^ƒ“‚ğƒZƒbƒg
+ *	å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­æ–­ãƒœã‚¿ãƒ³ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 void	BattleWorkPlayBackStopButtonSet(BATTLE_WORK *bw)
 {
-	//‘Îí˜^‰æÄ¶’†‚Å‚È‚¯‚ê‚Î–³‹
+	//å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­ã§ãªã‘ã‚Œã°ç„¡è¦–
 	if(((bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE)==0)||
-	//‚·‚Å‚ÉƒZƒbƒg‚³‚ê‚Ä‚¢‚ê‚Î–³‹
+	//ã™ã§ã«ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚Œã°ç„¡è¦–
 		(bw->pbsb)){
 		return;
 	}
@@ -3008,9 +3008,9 @@ void	BattleWorkPlayBackStopButtonSet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	‚Øƒ‰ƒbƒv‚Ì‚¨‚µ‚á‚×‚è—pƒpƒ‰ƒ[ƒ^‚ğæ“¾i˜^‰æÄ¶‚Ég—pj
+ *	ãºãƒ©ãƒƒãƒ—ã®ãŠã—ã‚ƒã¹ã‚Šç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ï¼ˆéŒ²ç”»å†ç”Ÿæ™‚ã«ä½¿ç”¨ï¼‰
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
  */
 //============================================================================================
 u8	BattleWorkVoiceWazaParamGet(BATTLE_WORK *bw,int client_no)
@@ -3032,10 +3032,10 @@ u8	BattleWorkVoiceWazaParamGet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- *	ClientType‚©‚çClientNo‚ğæ“¾‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@‚ğ¶¬‚·‚é
+ *	ClientTypeã‹ã‚‰ClientNoã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	buf		ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	buf		ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	BattleClientNoBufMake(BATTLE_WORK *bw,u8 *buf)
@@ -3049,10 +3049,10 @@ void	BattleClientNoBufMake(BATTLE_WORK *bw,u8 *buf)
 
 //============================================================================================
 /**
- *	ClientNo‚©‚çClientType‚ğæ“¾‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@‚ğ¶¬‚·‚é
+ *	ClientNoã‹ã‚‰ClientTypeã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	buf		ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	buf		ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	BattleClientTypeBufMake(BATTLE_WORK *bw,u8 *buf)
@@ -3070,10 +3070,10 @@ void	BattleClientTypeBufMake(BATTLE_WORK *bw,u8 *buf)
 
 //============================================================================================
 /**
- *	ClientNo‚©‚çSoftSprite‚ğæ“¾‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@‚ğ¶¬‚·‚é
+ *	ClientNoã‹ã‚‰SoftSpriteã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	buf		ƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	buf		ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 void	BattleSoftSpriteBufMake(BATTLE_WORK *bw,SOFT_SPRITE **buf)
@@ -3091,10 +3091,10 @@ void	BattleSoftSpriteBufMake(BATTLE_WORK *bw,SOFT_SPRITE **buf)
 
 //============================================================================================
 /**
- *	í“¬ƒQ[ƒW‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB‚ğƒZƒbƒg
+ *	æˆ¦é—˜ã‚²ãƒ¼ã‚¸ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw		í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	pri		ƒZƒbƒg‚·‚éƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param[in]	bw		æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	pri		ã‚»ãƒƒãƒˆã™ã‚‹ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  */
 //============================================================================================
 void	BattleGaugePriSet(BATTLE_WORK *bw,int pri)
@@ -3110,12 +3110,12 @@ void	BattleGaugePriSet(BATTLE_WORK *bw,int pri)
 
 //============================================================================================
 /**
- * ”sí‚Ìƒyƒiƒ‹ƒeƒBŒvZ
+ * æ•—æˆ¦æ™‚ã®ãƒšãƒŠãƒ«ãƒ†ã‚£è¨ˆç®—
  *
- * @param[in]	pp			è‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^\‘¢‘Ì
- * @param[in]	my_status	ƒ}ƒCƒXƒe[ƒ^ƒX
+ * @param[in]	pp			æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	my_status	ãƒã‚¤ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  *
- * @retval  u32		ˆø‚©‚ê‚é‚¨‹à
+ * @retval  u32		å¼•ã‹ã‚Œã‚‹ãŠé‡‘
  */
 //============================================================================================
 u32 CalcLosePenalty(POKEPARTY *ppt,MYSTATUS *my_status)
@@ -3140,10 +3140,10 @@ u32 CalcLosePenalty(POKEPARTY *ppt,MYSTATUS *my_status)
 
 //============================================================================================
 /**
- * ƒ|ƒPƒ‚ƒ“Œ©‚½ƒtƒ‰ƒO‚ğƒZƒbƒg
+ * ãƒã‚±ãƒ¢ãƒ³è¦‹ãŸãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“‚ÌClientNo
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ClientNo
  */
 //============================================================================================
 void	FT_ZukanFlagSetSee(BATTLE_WORK *bw,int client_no)
@@ -3167,7 +3167,7 @@ void	FT_ZukanFlagSetSee(BATTLE_WORK *bw,int client_no)
 			ZukanWork_SetPokeSee(bw->zw,pp);
 		}
 	}
-	//©•ª‚Ìè‚¿‚Ìƒ~ƒmƒ€ƒbƒ`‚ÍAƒtƒHƒ‹ƒ€‚ğ‹L‰¯‚·‚é‚½‚ß‚Éí‚ÉXV
+	//è‡ªåˆ†ã®æ‰‹æŒã¡ã®ãƒŸãƒãƒ ãƒƒãƒã¯ã€ãƒ•ã‚©ãƒ«ãƒ ã‚’è¨˜æ†¶ã™ã‚‹ãŸã‚ã«å¸¸ã«æ›´æ–°
 	if(((client_type&CLIENT_ENEMY_FLAG)==0)&&
 	    (PokeParaGet(pp,ID_PARA_monsno_egg,NULL)==MONSNO_MINOMUTTI)){
 		ZukanWork_SetPokeGet(bw->zw,pp);
@@ -3176,10 +3176,10 @@ void	FT_ZukanFlagSetSee(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- * ƒ|ƒPƒ‚ƒ“ƒQƒbƒgƒtƒ‰ƒO‚ğƒZƒbƒg
+ * ãƒã‚±ãƒ¢ãƒ³ã‚²ãƒƒãƒˆãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“‚ÌClientNo
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ClientNo
  */
 //============================================================================================
 void	FT_ZukanFlagSetGet(BATTLE_WORK *bw,int client_no)
@@ -3208,10 +3208,10 @@ void	FT_ZukanFlagSetGet(BATTLE_WORK *bw,int client_no)
 
 //============================================================================================
 /**
- * ƒ|ƒPƒ‚ƒ“ƒQƒbƒgƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+ * ãƒã‚±ãƒ¢ãƒ³ã‚²ãƒƒãƒˆãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	bw			í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	client_no	ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“‚ÌClientNo
+ * @param[in]	bw			æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	client_no	ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ClientNo
  */
 //============================================================================================
 BOOL	FT_ZukanFlagCheckGet(BATTLE_WORK *bw,int mons_no)
@@ -3221,7 +3221,7 @@ BOOL	FT_ZukanFlagCheckGet(BATTLE_WORK *bw,int mons_no)
 
 //============================================================================================
 /**
- * í“¬‚ÌƒfƒtƒHƒ‹ƒgƒuƒŒƒ“ƒhİ’è‚ğ‚·‚é
+ * æˆ¦é—˜ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®šã‚’ã™ã‚‹
  */
 //============================================================================================
 void	BattleDefaultBlendSet(void)
@@ -3231,12 +3231,12 @@ void	BattleDefaultBlendSet(void)
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[ƒƒbƒZ[ƒW•\¦ŠÖ”
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–¢æ•°
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	tr_id		•\¦‚·‚éƒƒbƒZ[ƒW‚ÌƒgƒŒ[ƒi[ID
- * @param[in]	msg_type	•\¦‚·‚éƒƒbƒZ[ƒW‚Ìƒ^ƒCƒv
- * @param[in]	wait		ƒƒbƒZ[ƒW•\¦ƒEƒGƒCƒg
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	tr_id		è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param[in]	msg_type	è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã‚¿ã‚¤ãƒ—
+ * @param[in]	wait		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚¦ã‚¨ã‚¤ãƒˆ
  *
  */
 //============================================================================================
@@ -3250,9 +3250,9 @@ u8	TrainerMSG_Print(BATTLE_WORK *bw,int tr_id,int client_no,int msg_type,int wai
 		GF_BGL_BMPWIN	*win=BattleWorkGF_BGL_BMPWINGet(bw,TALK_WIN_NO);
 		int				index;
 
-		//ƒoƒgƒ‹ƒ^ƒ[‚ÍA•Ê‚Ì•¶Í
+		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã¯ã€åˆ¥ã®æ–‡ç« 
 		if(bw->fight_type&FIGHT_TYPE_TOWER){
-			//WifiƒgƒŒ[ƒi[‚È‚çAŠÈˆÕ‰ï˜b‚ğ¶¬
+			//Wifiãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãªã‚‰ã€ç°¡æ˜“ä¼šè©±ã‚’ç”Ÿæˆ
 			if(tr_id==BATTLE_TOWER_TRAINER_ID){
 				{
 					STRBUF	*msg;
@@ -3319,9 +3319,9 @@ u8	TrainerMSG_Print(BATTLE_WORK *bw,int tr_id,int client_no,int msg_type,int wai
 	AssertCheck(client_no,26);
 #endif
 
-	//ƒoƒgƒ‹ƒ^ƒ[‚ÍA•Ê‚Ì•¶Í
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã¯ã€åˆ¥ã®æ–‡ç« 
 	if(bw->fight_type&FIGHT_TYPE_TOWER){
-		//WifiƒgƒŒ[ƒi[‚È‚çAŠÈˆÕ‰ï˜b‚ğ¶¬
+		//Wifiãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãªã‚‰ã€ç°¡æ˜“ä¼šè©±ã‚’ç”Ÿæˆ
 		if(tr_id==BATTLE_TOWER_TRAINER_ID){
 			{
 				STRBUF	*msg;
@@ -3384,13 +3384,13 @@ u8	TrainerMSG_Print(BATTLE_WORK *bw,int tr_id,int client_no,int msg_type,int wai
 
 //============================================================================================
 /**
- *	í“¬ƒƒbƒZ[ƒW•\¦ŠÖ”
+ *	æˆ¦é—˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–¢æ•°
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	win			BMPWINƒVƒXƒeƒ€İ’è\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	msg_m		ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	mp			ƒƒbƒZ[ƒWƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	wait		ƒƒbƒZ[ƒW•\¦ƒEƒGƒCƒg
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	win			BMPWINã‚·ã‚¹ãƒ†ãƒ è¨­å®šæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	msg_m		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	mp			ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	wait		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚¦ã‚¨ã‚¤ãƒˆ
  *
  */
 //============================================================================================
@@ -3426,17 +3426,17 @@ u8	BattleMSG_Print(BATTLE_WORK *bw,MSGDATA_MANAGER *msg_m,MESSAGE_PARAM *mp,int 
 
 //============================================================================================
 /**
- *	í“¬ƒƒbƒZ[ƒW•\¦ŠÖ”iX,Yw’è‚ ‚èj
+ *	æˆ¦é—˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–¢æ•°ï¼ˆX,YæŒ‡å®šã‚ã‚Šï¼‰
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	win			BMPWINƒVƒXƒeƒ€İ’è\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	msg_m		ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	mp			ƒƒbƒZ[ƒWƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	x			ƒƒbƒZ[ƒWŠJnˆÊ’uƒIƒtƒZƒbƒgiXj
- * @param[in]	y			ƒƒbƒZ[ƒWŠJnˆÊ’uƒIƒtƒZƒbƒgiYj
- * @param[in]	flag		ƒEƒCƒ“ƒhƒE“à‚ÌƒNƒŠƒA‚ğ‚·‚é‚©‚Ç‚¤‚©(FALSE:ƒNƒŠƒA‚µ‚È‚¢@TRUE:ƒNƒŠƒAj
- * @param[in]	width		ƒƒbƒZ[ƒW‚ğ•\¦‚·‚é—Ìˆæ‚Ì‰¡•i‰E‹l‚ß‚·‚é‚Æ‚«‚ÌŠJnˆÊ’u‚Ì•â³‚Ég—pj
- * @param[in]	wait		ƒƒbƒZ[ƒW•\¦ƒEƒGƒCƒg
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	win			BMPWINã‚·ã‚¹ãƒ†ãƒ è¨­å®šæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	msg_m		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	mp			ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	x			ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–‹å§‹ä½ç½®ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆXï¼‰
+ * @param[in]	y			ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–‹å§‹ä½ç½®ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆYï¼‰
+ * @param[in]	flag		ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…ã®ã‚¯ãƒªã‚¢ã‚’ã™ã‚‹ã‹ã©ã†ã‹(FALSE:ã‚¯ãƒªã‚¢ã—ãªã„ã€€TRUE:ã‚¯ãƒªã‚¢ï¼‰
+ * @param[in]	width		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹é ˜åŸŸã®æ¨ªå¹…ï¼ˆå³è©°ã‚ã™ã‚‹ã¨ãã®é–‹å§‹ä½ç½®ã®è£œæ­£ã«ä½¿ç”¨ï¼‰
+ * @param[in]	wait		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚¦ã‚¨ã‚¤ãƒˆ
  *
  */
 //============================================================================================
@@ -3465,10 +3465,10 @@ u8	StatusMSG_Print(BATTLE_WORK *bw,GF_BGL_BMPWIN *win,MSGDATA_MANAGER *msg_m,MES
 
 //============================================================================================
 /**
- *	í“¬ƒƒbƒZ[ƒWDirCheckiƒƒbƒZ[ƒW‚ÌAu‚ ‚¢‚Ä‚Ìv‚âu‚â‚¹‚¢‚Ìv‚È‚Ç‚ÌŒü‚«‚ÉŠÖ‚·‚é”»’è‚ğ‚·‚éj
+ *	æˆ¦é—˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸DirCheckï¼ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã€ã€Œã‚ã„ã¦ã®ã€ã‚„ã€Œã‚„ã›ã„ã®ã€ãªã©ã®å‘ãã«é–¢ã™ã‚‹åˆ¤å®šã‚’ã™ã‚‹ï¼‰
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	mp			MESSAGE_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	mp			MESSAGE_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //============================================================================================
@@ -3490,58 +3490,58 @@ static	void	BattleMSG_DirCheck(BATTLE_WORK *bw,MESSAGE_PARAM *mp)
 	}
 
 	switch(mp->msg_tag&TAG_NO_DIR_OFF){
-	case TAG_NONE:							//ƒ^ƒO‚È‚µ
-	case TAG_WAZA:							//‹Z–¼
-	case TAG_STAT:							//ƒXƒe[ƒ^ƒX–¼
-	case TAG_ITEM:							//“¹‹ï–¼
-	case TAG_NUM:							//”’l
-	case TAG_NUMS:							//”’li‰E‹l‚ßj
-	case TAG_TRNAME:						//trainer–¼
-	case TAG_WAZA_WAZA:						//‹Z–¼			‹Z–¼
-	case TAG_ITEM_WAZA:						//“¹‹ï–¼		‹Z–¼
-	case TAG_NUM_NUM:						//”’l			”’l
-	case TAG_TRNAME_TRNAME:					//trainer–¼		trainer–¼
-	case TAG_TRNAME_NICK:					//trainer–¼		nickname
-	case TAG_TRNAME_ITEM:					//trainer–¼		“¹‹ï–¼
-	case TAG_TRNAME_NUM:					//trainer–¼		”’l
-	case TAG_TRTYPE_TRNAME:					//trainerí•Ê	trainer–¼
-	case TAG_TRNAME_NICK_NICK:				//trainer–¼		nickname		nickname
-	case TAG_TRTYPE_TRNAME_NICK:			//trainerí•Ê	trainer–¼		nickname
-	case TAG_TRTYPE_TRNAME_ITEM:			//trainerí•Ê	trainer–¼		“¹‹ï–¼
-	case TAG_TRNAME_NICK_TRNAME_NICK:		//trainer–¼		nickname		trainer–¼		nickname
-	case TAG_TRTYPE_TRNAME_NICK_NICK:		//trainerí•Ê	trainer–¼		nickname		nickname
-	case TAG_TRTYPE_TRNAME_NICK_TRNAME:		//trainerí•Ê	trainer–¼		nickname		trainer–¼
-	case TAG_TRTYPE_TRNAME_TRTYPE_TRNAME:	//trainerí•Ê	trainer–¼		trainerí•Ê		trainer–¼
-	case TAG_TRTYPE_TRNAME_NICKx2:			//trainerí•Ê	trainer–¼		nickname ‚˜‚Q
+	case TAG_NONE:							//ã‚¿ã‚°ãªã—
+	case TAG_WAZA:							//æŠ€å
+	case TAG_STAT:							//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å
+	case TAG_ITEM:							//é“å…·å
+	case TAG_NUM:							//æ•°å€¤
+	case TAG_NUMS:							//æ•°å€¤ï¼ˆå³è©°ã‚ï¼‰
+	case TAG_TRNAME:						//trainerå
+	case TAG_WAZA_WAZA:						//æŠ€å			æŠ€å
+	case TAG_ITEM_WAZA:						//é“å…·å		æŠ€å
+	case TAG_NUM_NUM:						//æ•°å€¤			æ•°å€¤
+	case TAG_TRNAME_TRNAME:					//trainerå		trainerå
+	case TAG_TRNAME_NICK:					//trainerå		nickname
+	case TAG_TRNAME_ITEM:					//trainerå		é“å…·å
+	case TAG_TRNAME_NUM:					//trainerå		æ•°å€¤
+	case TAG_TRTYPE_TRNAME:					//trainerç¨®åˆ¥	trainerå
+	case TAG_TRNAME_NICK_NICK:				//trainerå		nickname		nickname
+	case TAG_TRTYPE_TRNAME_NICK:			//trainerç¨®åˆ¥	trainerå		nickname
+	case TAG_TRTYPE_TRNAME_ITEM:			//trainerç¨®åˆ¥	trainerå		é“å…·å
+	case TAG_TRNAME_NICK_TRNAME_NICK:		//trainerå		nickname		trainerå		nickname
+	case TAG_TRTYPE_TRNAME_NICK_NICK:		//trainerç¨®åˆ¥	trainerå		nickname		nickname
+	case TAG_TRTYPE_TRNAME_NICK_TRNAME:		//trainerç¨®åˆ¥	trainerå		nickname		trainerå
+	case TAG_TRTYPE_TRNAME_TRTYPE_TRNAME:	//trainerç¨®åˆ¥	trainerå		trainerç¨®åˆ¥		trainerå
+	case TAG_TRTYPE_TRNAME_NICKx2:			//trainerç¨®åˆ¥	trainerå		nickname ï½˜ï¼’
 		break;
-	case TAG_NONE_DIR:						//ƒ^ƒO‚È‚µi‚Ä‚«A‚İ‚©‚½”»’è‚ ‚èj
+	case TAG_NONE_DIR:						//ã‚¿ã‚°ãªã—ï¼ˆã¦ãã€ã¿ã‹ãŸåˆ¤å®šã‚ã‚Šï¼‰
 		if(BattleWorkMineEnemyCheck(bw,mp->msg_para[0]&0xff)){
 			mp->msg_id++;
 		}
 		break;
 	case TAG_NICK:							//nickname
-	case TAG_NICK_WAZA:						//nickname		‹Z–¼
-	case TAG_NICK_TOKU:						//nickname		“Á«–¼
-	case TAG_NICK_STAT:						//nickname		ƒXƒe[ƒ^ƒX–¼
-	case TAG_NICK_TYPE:						//nickname		ƒ^ƒCƒv–¼
-	case TAG_NICK_POKE:						//nickname		ƒ|ƒPƒ‚ƒ“–¼
-	case TAG_NICK_ITEM:						//nickname		“¹‹ï–¼
-	case TAG_NICK_PLOC:						//nickname		ƒ|ƒƒbƒN–¼
-	case TAG_NICK_NUM:						//nickname		”’l
-	case TAG_NICK_TRNAME:					//nickname		trainer–¼
-	case TAG_NICK_BOX:						//nickname		ƒ{ƒbƒNƒX–¼
-	case TAG_NICK_WAZA_WAZA:				//nickname		‹Z–¼			‹Z–¼
-	case TAG_NICK_WAZA_NUM:					//nickname		‹Z–¼			”’l
-	case TAG_NICK_TOKU_WAZA:				//nickname		“Á«–¼			‹Z–¼
-	case TAG_NICK_TOKU_ITEM:				//nickname		“Á«–¼			“¹‹ï–¼
-	case TAG_NICK_TOKU_STAT:				//nickname		“Á«–¼			ƒXƒe[ƒ^ƒX–¼
-	case TAG_NICK_TOKU_TYPE:				//nickname		“Á«–¼			ƒ^ƒCƒv–¼
-	case TAG_NICK_TOKU_COND:				//nickname		“Á«–¼			ó‘ÔˆÙí–¼
-	case TAG_NICK_TOKU_NUM:					//nickname		“Á«–¼			”’l
-	case TAG_NICK_ITEM_WAZA:				//nickname		“¹‹ï–¼			‹Z–¼
-	case TAG_NICK_ITEM_STAT:				//nickname		“¹‹ï–¼			ƒXƒe[ƒ^ƒX–¼
-	case TAG_NICK_ITEM_COND:				//nickname		“¹‹ï–¼			ó‘ÔˆÙí–¼
-	case TAG_NICK_BOX_BOX:					//nickname		ƒ{ƒbƒNƒX–¼		ƒ{ƒbƒNƒX–¼
+	case TAG_NICK_WAZA:						//nickname		æŠ€å
+	case TAG_NICK_TOKU:						//nickname		ç‰¹æ€§å
+	case TAG_NICK_STAT:						//nickname		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å
+	case TAG_NICK_TYPE:						//nickname		ã‚¿ã‚¤ãƒ—å
+	case TAG_NICK_POKE:						//nickname		ãƒã‚±ãƒ¢ãƒ³å
+	case TAG_NICK_ITEM:						//nickname		é“å…·å
+	case TAG_NICK_PLOC:						//nickname		ãƒãƒ­ãƒƒã‚¯å
+	case TAG_NICK_NUM:						//nickname		æ•°å€¤
+	case TAG_NICK_TRNAME:					//nickname		trainerå
+	case TAG_NICK_BOX:						//nickname		ãƒœãƒƒã‚¯ã‚¹å
+	case TAG_NICK_WAZA_WAZA:				//nickname		æŠ€å			æŠ€å
+	case TAG_NICK_WAZA_NUM:					//nickname		æŠ€å			æ•°å€¤
+	case TAG_NICK_TOKU_WAZA:				//nickname		ç‰¹æ€§å			æŠ€å
+	case TAG_NICK_TOKU_ITEM:				//nickname		ç‰¹æ€§å			é“å…·å
+	case TAG_NICK_TOKU_STAT:				//nickname		ç‰¹æ€§å			ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å
+	case TAG_NICK_TOKU_TYPE:				//nickname		ç‰¹æ€§å			ã‚¿ã‚¤ãƒ—å
+	case TAG_NICK_TOKU_COND:				//nickname		ç‰¹æ€§å			çŠ¶æ…‹ç•°å¸¸å
+	case TAG_NICK_TOKU_NUM:					//nickname		ç‰¹æ€§å			æ•°å€¤
+	case TAG_NICK_ITEM_WAZA:				//nickname		é“å…·å			æŠ€å
+	case TAG_NICK_ITEM_STAT:				//nickname		é“å…·å			ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å
+	case TAG_NICK_ITEM_COND:				//nickname		é“å…·å			çŠ¶æ…‹ç•°å¸¸å
+	case TAG_NICK_BOX_BOX:					//nickname		ãƒœãƒƒã‚¯ã‚¹å		ãƒœãƒƒã‚¯ã‚¹å
 		if(BattleWorkMineEnemyCheck(bw,mp->msg_para[0]&0xff)){
 			mp->msg_id++;
 			if(fight_type&FIGHT_TYPE_TRAINER){
@@ -3549,14 +3549,14 @@ static	void	BattleMSG_DirCheck(BATTLE_WORK *bw,MESSAGE_PARAM *mp)
 			}
 		}
 		break;
-	case TAG_WAZA_DIR:						//‹Z–¼i‚Ä‚«A‚İ‚©‚½”»’è‚ ‚èj
+	case TAG_WAZA_DIR:						//æŠ€åï¼ˆã¦ãã€ã¿ã‹ãŸåˆ¤å®šã‚ã‚Šï¼‰
 		if(BattleWorkMineEnemyCheck(bw,mp->msg_para[1]&0xff)){
 			mp->msg_id++;
 		}
 		break;
-	case TAG_WAZA_NICK:						//‹Z–¼			nickname
-	case TAG_TOKU_NICK:						//“Á«–¼		nickname
-	case TAG_ITEM_NICK_TASTE:				//“¹‹ï–¼		nickname		–Ø‚ÌÀ‚Ì–¡
+	case TAG_WAZA_NICK:						//æŠ€å			nickname
+	case TAG_TOKU_NICK:						//ç‰¹æ€§å		nickname
+	case TAG_ITEM_NICK_TASTE:				//é“å…·å		nickname		æœ¨ã®å®Ÿã®å‘³
 		if(BattleWorkMineEnemyCheck(bw,mp->msg_para[1]&0xff)){
 			mp->msg_id++;
 			if(fight_type&FIGHT_TYPE_TRAINER){
@@ -3565,9 +3565,9 @@ static	void	BattleMSG_DirCheck(BATTLE_WORK *bw,MESSAGE_PARAM *mp)
 		}
 		break;
 	case TAG_NICK_NICK:						//nickname		nickname
-	case TAG_NICK_NICK_WAZA:				//nickname		nickname		‹Z–¼
-	case TAG_NICK_NICK_TOKU:				//nickname		nickname		“Á«–¼
-	case TAG_NICK_NICK_ITEM:				//nickname		nickname		“¹‹ï–¼
+	case TAG_NICK_NICK_WAZA:				//nickname		nickname		æŠ€å
+	case TAG_NICK_NICK_TOKU:				//nickname		nickname		ç‰¹æ€§å
+	case TAG_NICK_NICK_ITEM:				//nickname		nickname		é“å…·å
 		if(BattleWorkMineEnemyCheck(bw,mp->msg_para[0]&0xff)){
 			mp->msg_id+=3;
 			if(fight_type&FIGHT_TYPE_TRAINER){
@@ -3586,12 +3586,12 @@ static	void	BattleMSG_DirCheck(BATTLE_WORK *bw,MESSAGE_PARAM *mp)
 			}
 		}
 		break;
-	case TAG_NICK_TOKU_NICK:				//nickname		“Á«–¼			nickname
-	case TAG_NICK_ITEM_NICK:				//nickname		“Á«–¼			nickname
-	case TAG_NICK_TOKU_NICK_WAZA:			//nickname		“Á«–¼			nickname		‹Z–¼
-	case TAG_NICK_TOKU_NICK_TOKU:			//nickname		“Á«–¼			nickname		“Á«–¼
-	case TAG_NICK_TOKU_NICK_STAT:			//nickname		“Á«–¼			nickname		ƒXƒe[ƒ^ƒX–¼
-	case TAG_NICK_ITEM_NICK_ITEM:			//nickname		“¹‹ï–¼			nickname		“¹‹ï–¼
+	case TAG_NICK_TOKU_NICK:				//nickname		ç‰¹æ€§å			nickname
+	case TAG_NICK_ITEM_NICK:				//nickname		ç‰¹æ€§å			nickname
+	case TAG_NICK_TOKU_NICK_WAZA:			//nickname		ç‰¹æ€§å			nickname		æŠ€å
+	case TAG_NICK_TOKU_NICK_TOKU:			//nickname		ç‰¹æ€§å			nickname		ç‰¹æ€§å
+	case TAG_NICK_TOKU_NICK_STAT:			//nickname		ç‰¹æ€§å			nickname		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å
+	case TAG_NICK_ITEM_NICK_ITEM:			//nickname		é“å…·å			nickname		é“å…·å
 		if(BattleWorkMineEnemyCheck(bw,mp->msg_para[0]&0xff)){
 			mp->msg_id+=3;
 			if(fight_type&FIGHT_TYPE_TRAINER){
@@ -3611,286 +3611,286 @@ static	void	BattleMSG_DirCheck(BATTLE_WORK *bw,MESSAGE_PARAM *mp)
 		}
 		break;
 	default:
-		GF_ASSERT_MSG(0,"‘¶İ‚µ‚È‚¢TAG‚Å‚·I\n");
+		GF_ASSERT_MSG(0,"å­˜åœ¨ã—ãªã„TAGã§ã™ï¼\n");
 		break;
 	}
 }
 
 //============================================================================================
 /**
- *	í“¬ƒƒbƒZ[ƒWƒ^ƒO“WŠJŠÖ”
+ *	æˆ¦é—˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚°å±•é–‹é–¢æ•°
  *
- * @param[in]	bw			í“¬ƒVƒXƒeƒ€\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	mp			MESSAGE_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	mp			MESSAGE_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //============================================================================================
 static	void	BattleMSG_TagExpand(BATTLE_WORK *bw,MESSAGE_PARAM *mp)
 {
 	switch(mp->msg_tag&TAG_NO_DIR_OFF){
-	case TAG_NONE:						//ƒ^ƒO‚È‚µ
-	case TAG_NONE_DIR:					//ƒ^ƒO‚È‚µi‚Ä‚«A‚İ‚©‚½”»’è‚ ‚èj
+	case TAG_NONE:						//ã‚¿ã‚°ãªã—
+	case TAG_NONE_DIR:					//ã‚¿ã‚°ãªã—ï¼ˆã¦ãã€ã¿ã‹ãŸåˆ¤å®šã‚ã‚Šï¼‰
 		break;
 	case TAG_NICK:						//nickname
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		break;
-	case TAG_WAZA:						//‹Z–¼
-	case TAG_WAZA_DIR:					//‹Z–¼i‚Ä‚«A‚İ‚©‚½”»’è‚ ‚èj	
+	case TAG_WAZA:						//æŠ€å
+	case TAG_WAZA_DIR:					//æŠ€åï¼ˆã¦ãã€ã¿ã‹ãŸåˆ¤å®šã‚ã‚Šï¼‰	
 		BattleMSG_WazaGet(		bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		break;
-	case TAG_STAT:						//ƒXƒe[ƒ^ƒX–¼
+	case TAG_STAT:						//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å
 		BattleMSG_StatusGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		break;
-	case TAG_ITEM:						//“¹‹ï–¼
+	case TAG_ITEM:						//é“å…·å
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		break;
-	case TAG_NUM:						//”’l
+	case TAG_NUM:						//æ•°å€¤
 		BattleMSG_NumGet(		bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		break;
-	case TAG_NUMS:						//”’li‰E‹l‚ßj
+	case TAG_NUMS:						//æ•°å€¤ï¼ˆå³è©°ã‚ï¼‰
 		BattleMSG_NumsGet(		bw,STR_TEMP_BUF0,mp->msg_para[0],mp->msg_keta);
 		break;
-	case TAG_TRNAME:					//trainer–¼
+	case TAG_TRNAME:					//trainerå
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		break;
 	case TAG_NICK_NICK:					//nickname		nickname
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_NICK_WAZA:					//nickname		‹Z–¼
+	case TAG_NICK_WAZA:					//nickname		æŠ€å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_WazaGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_NICK_TOKU:					//nickname		“Á«–¼
+	case TAG_NICK_TOKU:					//nickname		ç‰¹æ€§å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_NICK_STAT:					//nickname		ƒXƒe[ƒ^ƒX–¼
+	case TAG_NICK_STAT:					//nickname		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_StatusGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_NICK_TYPE:					//nickname		ƒ^ƒCƒv–¼
+	case TAG_NICK_TYPE:					//nickname		ã‚¿ã‚¤ãƒ—å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TypeGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_NICK_POKE:					//nickname		ƒ|ƒPƒ‚ƒ“–¼
+	case TAG_NICK_POKE:					//nickname		ãƒã‚±ãƒ¢ãƒ³å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_PokenameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_NICK_ITEM:					//nickname		“¹‹ï–¼
+	case TAG_NICK_ITEM:					//nickname		é“å…·å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_NICK_PLOC:					//nickname		ƒ|ƒƒbƒN–¼
+	case TAG_NICK_PLOC:					//nickname		ãƒãƒ­ãƒƒã‚¯å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_PolockGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_NICK_NUM:					//nickname		”’l
+	case TAG_NICK_NUM:					//nickname		æ•°å€¤
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_NumGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_NICK_TRNAME:				//nickname		trainer–¼
+	case TAG_NICK_TRNAME:				//nickname		trainerå
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_NICK_BOX:					//nickname		ƒ{ƒbƒNƒX–¼
+	case TAG_NICK_BOX:					//nickname		ãƒœãƒƒã‚¯ã‚¹å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_BoxNameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_WAZA_NICK:					//‹Z–¼			nickname
+	case TAG_WAZA_NICK:					//æŠ€å			nickname
 		BattleMSG_WazaGet(		bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_WAZA_WAZA:					//‹Z–¼			‹Z–¼
+	case TAG_WAZA_WAZA:					//æŠ€å			æŠ€å
 		BattleMSG_WazaGet(		bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_WazaGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_TOKU_NICK:					//“Á«–¼		nickname
+	case TAG_TOKU_NICK:					//ç‰¹æ€§å		nickname
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_ITEM_WAZA:					//“¹‹ï–¼		‹Z–¼
+	case TAG_ITEM_WAZA:					//é“å…·å		æŠ€å
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_WazaGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_NUM_NUM:					//”’l			”’l
+	case TAG_NUM_NUM:					//æ•°å€¤			æ•°å€¤
 		BattleMSG_NumGet(		bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_NumGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_TRNAME_TRNAME:				//trainer–¼		trainer–¼
+	case TAG_TRNAME_TRNAME:				//trainerå		trainerå
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_TRNAME_NICK:				//trainer–¼		nickname
+	case TAG_TRNAME_NICK:				//trainerå		nickname
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_TRNAME_ITEM:				//trainer–¼		“¹‹ï–¼
+	case TAG_TRNAME_ITEM:				//trainerå		é“å…·å
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_TRNAME_NUM:				//trainer–¼		”’l
+	case TAG_TRNAME_NUM:				//trainerå		æ•°å€¤
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_NumGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_TRTYPE_TRNAME:				//trainerí•Ê	trainer–¼
+	case TAG_TRTYPE_TRNAME:				//trainerç¨®åˆ¥	trainerå
 		BattleMSG_TRTypeGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		break;
-	case TAG_NICK_NICK_WAZA:			//nickname		nickname		‹Z–¼
+	case TAG_NICK_NICK_WAZA:			//nickname		nickname		æŠ€å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_WazaGet(		bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_NICK_TOKU:			//nickname		nickname		“Á«–¼
+	case TAG_NICK_NICK_TOKU:			//nickname		nickname		ç‰¹æ€§å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_NICK_ITEM:			//nickname		nickname		“¹‹ï–¼
+	case TAG_NICK_NICK_ITEM:			//nickname		nickname		é“å…·å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_WAZA_WAZA:			//nickname		‹Z–¼			‹Z–¼
+	case TAG_NICK_WAZA_WAZA:			//nickname		æŠ€å			æŠ€å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_WazaGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_WazaGet(		bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_WAZA_NUM:				//nickname		‹Z–¼			”’l
+	case TAG_NICK_WAZA_NUM:				//nickname		æŠ€å			æ•°å€¤
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_WazaGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_NumGet(		bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_TOKU_NICK:			//nickname		“Á«–¼			nickname
+	case TAG_NICK_TOKU_NICK:			//nickname		ç‰¹æ€§å			nickname
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_TOKU_WAZA:			//nickname		“Á«–¼			‹Z–¼
+	case TAG_NICK_TOKU_WAZA:			//nickname		ç‰¹æ€§å			æŠ€å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_WazaGet(		bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_TOKU_ITEM:			//nickname		“Á«–¼			“¹‹ï–¼
+	case TAG_NICK_TOKU_ITEM:			//nickname		ç‰¹æ€§å			é“å…·å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_TOKU_STAT:			//nickname		“Á«–¼			ƒXƒe[ƒ^ƒX–¼
+	case TAG_NICK_TOKU_STAT:			//nickname		ç‰¹æ€§å			ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_StatusGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_TOKU_TYPE:			//nickname		“Á«–¼			ƒ^ƒCƒv–¼
+	case TAG_NICK_TOKU_TYPE:			//nickname		ç‰¹æ€§å			ã‚¿ã‚¤ãƒ—å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_TypeGet(		bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_TOKU_COND:			//nickname		“Á«–¼			ó‘ÔˆÙí–¼
+	case TAG_NICK_TOKU_COND:			//nickname		ç‰¹æ€§å			çŠ¶æ…‹ç•°å¸¸å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_ConditionGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_TOKU_NUM:				//nickname		“Á«–¼			”’l
+	case TAG_NICK_TOKU_NUM:				//nickname		ç‰¹æ€§å			æ•°å€¤
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_NumGet(		bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_ITEM_NICK:			//nickname		“Á«–¼			nickname
+	case TAG_NICK_ITEM_NICK:			//nickname		ç‰¹æ€§å			nickname
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_ITEM_WAZA:			//nickname		“¹‹ï–¼			‹Z–¼
+	case TAG_NICK_ITEM_WAZA:			//nickname		é“å…·å			æŠ€å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_WazaGet(		bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_ITEM_STAT:			//nickname		“¹‹ï–¼			ƒXƒe[ƒ^ƒX–¼
+	case TAG_NICK_ITEM_STAT:			//nickname		é“å…·å			ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_StatusGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_ITEM_COND:			//nickname		“¹‹ï–¼			ó‘ÔˆÙí–¼
+	case TAG_NICK_ITEM_COND:			//nickname		é“å…·å			çŠ¶æ…‹ç•°å¸¸å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_ConditionGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_BOX_BOX:				//nickname		ƒ{ƒbƒNƒX–¼		ƒ{ƒbƒNƒX–¼
+	case TAG_NICK_BOX_BOX:				//nickname		ãƒœãƒƒã‚¯ã‚¹å		ãƒœãƒƒã‚¯ã‚¹å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_BoxNameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_BoxNameGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_ITEM_NICK_TASTE:			//“¹‹ï–¼		nickname		–Ø‚ÌÀ‚Ì–¡
+	case TAG_ITEM_NICK_TASTE:			//é“å…·å		nickname		æœ¨ã®å®Ÿã®å‘³
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_TasteGet(		bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_TRNAME_NICK_NICK:			//trainer–¼		nickname		nickname
+	case TAG_TRNAME_NICK_NICK:			//trainerå		nickname		nickname
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_TRTYPE_TRNAME_NICK:		//trainerí•Ê	trainer–¼		nickname
+	case TAG_TRTYPE_TRNAME_NICK:		//trainerç¨®åˆ¥	trainerå		nickname
 		BattleMSG_TRTypeGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_TRTYPE_TRNAME_ITEM:		//trainerí•Ê	trainer–¼		“¹‹ï–¼
+	case TAG_TRTYPE_TRNAME_ITEM:		//trainerç¨®åˆ¥	trainerå		é“å…·å
 		BattleMSG_TRTypeGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		break;
-	case TAG_NICK_TOKU_NICK_WAZA:		//nickname		“Á«–¼			nickname		‹Z–¼
+	case TAG_NICK_TOKU_NICK_WAZA:		//nickname		ç‰¹æ€§å			nickname		æŠ€å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		BattleMSG_WazaGet(		bw,STR_TEMP_BUF3,mp->msg_para[3]);
 		break;
-	case TAG_NICK_TOKU_NICK_TOKU:		//nickname		“Á«–¼			nickname		“Á«–¼
+	case TAG_NICK_TOKU_NICK_TOKU:		//nickname		ç‰¹æ€§å			nickname		ç‰¹æ€§å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF3,mp->msg_para[3]);
 		break;
-	case TAG_NICK_TOKU_NICK_STAT:		//nickname		“Á«–¼			nickname		ƒXƒe[ƒ^ƒX–¼
+	case TAG_NICK_TOKU_NICK_STAT:		//nickname		ç‰¹æ€§å			nickname		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TokuseiGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		BattleMSG_StatusGet(	bw,STR_TEMP_BUF3,mp->msg_para[3]);
 		break;
-	case TAG_NICK_ITEM_NICK_ITEM:		//nickname		“¹‹ï–¼			nickname		“¹‹ï–¼
+	case TAG_NICK_ITEM_NICK_ITEM:		//nickname		é“å…·å			nickname		é“å…·å
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		BattleMSG_ItemGet(		bw,STR_TEMP_BUF3,mp->msg_para[3]);
 		break;
-	case TAG_TRNAME_NICK_TRNAME_NICK:	//trainer–¼		nickname		trainer–¼		nickname
+	case TAG_TRNAME_NICK_TRNAME_NICK:	//trainerå		nickname		trainerå		nickname
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF3,mp->msg_para[3]);
 		break;
-	case TAG_TRTYPE_TRNAME_NICK_NICK:	//trainerí•Ê	trainer–¼		nickname		nickname
+	case TAG_TRTYPE_TRNAME_NICK_NICK:	//trainerç¨®åˆ¥	trainerå		nickname		nickname
 		BattleMSG_TRTypeGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF3,mp->msg_para[3]);
 		break;
-	case TAG_TRTYPE_TRNAME_NICK_TRNAME:	//trainerí•Ê	trainer–¼		nickname		trainer–¼
+	case TAG_TRTYPE_TRNAME_NICK_TRNAME:	//trainerç¨®åˆ¥	trainerå		nickname		trainerå
 		BattleMSG_TRTypeGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF3,mp->msg_para[3]);
 		break;
-	case TAG_TRTYPE_TRNAME_TRTYPE_TRNAME:	//trainerí•Ê	trainer–¼		trainerí•Ê		trainer–¼
+	case TAG_TRTYPE_TRNAME_TRTYPE_TRNAME:	//trainerç¨®åˆ¥	trainerå		trainerç¨®åˆ¥		trainerå
 		BattleMSG_TRTypeGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_TRTypeGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF3,mp->msg_para[3]);
 		break;
-	case TAG_TRTYPE_TRNAME_NICKx2:		//trainerí•Ê	trainer–¼		nickname ‚˜‚Q
+	case TAG_TRTYPE_TRNAME_NICKx2:		//trainerç¨®åˆ¥	trainerå		nickname ï½˜ï¼’
 		BattleMSG_TRTypeGet(	bw,STR_TEMP_BUF0,mp->msg_para[0]);
 		BattleMSG_TRNameGet(	bw,STR_TEMP_BUF1,mp->msg_para[1]);
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF2,mp->msg_para[2]);
@@ -3899,17 +3899,17 @@ static	void	BattleMSG_TagExpand(BATTLE_WORK *bw,MESSAGE_PARAM *mp)
 		BattleMSG_NicknameGet(	bw,STR_TEMP_BUF5,mp->msg_para[5]);
 		break;
 	default:
-		GF_ASSERT_MSG(0,"‘¶İ‚µ‚È‚¢TAG‚Å‚·I\n");
+		GF_ASSERT_MSG(0,"å­˜åœ¨ã—ãªã„TAGã§ã™ï¼\n");
 		break;
 	}
 }
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”iƒjƒbƒNƒl[ƒ€j
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_NicknameGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -3923,10 +3923,10 @@ static	void	BattleMSG_NicknameGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”i‹Zƒiƒ“ƒo[j
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆæŠ€ãƒŠãƒ³ãƒãƒ¼ï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_WazaGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -3936,10 +3936,10 @@ static	void	BattleMSG_WazaGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”i“¹‹ïƒiƒ“ƒo[j
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆé“å…·ãƒŠãƒ³ãƒãƒ¼ï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_ItemGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -3949,10 +3949,10 @@ static	void	BattleMSG_ItemGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”i”’lj
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆæ•°å€¤ï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_NumGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -3962,10 +3962,10 @@ static	void	BattleMSG_NumGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”i”’l‰E‹l‚ßj
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆæ•°å€¤å³è©°ã‚ï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_NumsGet(BATTLE_WORK *bw,u32 buf_id,int para,int keta)
@@ -3980,10 +3980,10 @@ static	void	BattleMSG_NumsGet(BATTLE_WORK *bw,u32 buf_id,int para,int keta)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”iƒ^ƒCƒvj
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆã‚¿ã‚¤ãƒ—ï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_TypeGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -3993,10 +3993,10 @@ static	void	BattleMSG_TypeGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”i“Á«j
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆç‰¹æ€§ï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_TokuseiGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -4006,10 +4006,10 @@ static	void	BattleMSG_TokuseiGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”iƒXƒe[ƒ^ƒX–¼j
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹åï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_StatusGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -4019,10 +4019,10 @@ static	void	BattleMSG_StatusGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”ió‘ÔˆÙí–¼j
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆçŠ¶æ…‹ç•°å¸¸åï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_ConditionGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -4032,10 +4032,10 @@ static	void	BattleMSG_ConditionGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”iƒ|ƒPƒ‚ƒ“–¼j
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆãƒã‚±ãƒ¢ãƒ³åï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_PokenameGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -4049,10 +4049,10 @@ static	void	BattleMSG_PokenameGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”iƒ|ƒƒbƒN–¼j
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆãƒãƒ­ãƒƒã‚¯åï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_PolockGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -4061,10 +4061,10 @@ static	void	BattleMSG_PolockGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”i–Ø‚ÌÀ‚Ì–¡j
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆæœ¨ã®å®Ÿã®å‘³ï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_TasteGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -4074,10 +4074,10 @@ static	void	BattleMSG_TasteGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”iƒgƒŒ[ƒi[í•Êj
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç¨®åˆ¥ï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_TRTypeGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -4091,10 +4091,10 @@ static	void	BattleMSG_TRTypeGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”iƒgƒŒ[ƒi[–¼j
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_TRNameGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -4105,7 +4105,7 @@ static	void	BattleMSG_TRNameGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 	WORDSET_RegisterTrainerNameBattle(bw->wordset,buf_id,tr_data);
 #if 0
-	//ƒgƒŒ[ƒi[ID‚O‚ÍA©•ª
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDï¼ã¯ã€è‡ªåˆ†
 	if((para&0xffff)==0){
 		WORDSET_RegisterPlayerName(bw->wordset,buf_id,BattleWorkMyStatusGet(bw,(para&0xffff0000)>>16));
 	}
@@ -4117,10 +4117,10 @@ static	void	BattleMSG_TRNameGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	MESSAGE_PARAM\‘¢‘Ìƒf[ƒ^¶¬ŠÖ”iƒ{ƒbƒNƒX–¼j
+ *	MESSAGE_PARAMæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆé–¢æ•°ï¼ˆãƒœãƒƒã‚¯ã‚¹åï¼‰
  *
- * @param[in]	sp		ƒT[ƒoƒpƒ‰ƒ[ƒ^\‘¢‘Ì
- * @param[in]	para	¶¬‘ÎÛƒpƒ‰ƒ[ƒ^iSIDE_ATTACKASIDE_DEFENCE‚È‚Çj
+ * @param[in]	sp		ã‚µãƒ¼ãƒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param[in]	para	ç”Ÿæˆå¯¾è±¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆSIDE_ATTACKã€SIDE_DEFENCEãªã©ï¼‰
  */
 //============================================================================================
 static	void	BattleMSG_BoxNameGet(BATTLE_WORK *bw,u32 buf_id,int para)
@@ -4130,13 +4130,13 @@ static	void	BattleMSG_BoxNameGet(BATTLE_WORK *bw,u32 buf_id,int para)
 
 //============================================================================================
 /**
- *	í“¬ƒƒbƒZ[ƒWƒƒbƒZ[ƒW“WŠJŠÖ”
+ *	æˆ¦é—˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹é–¢æ•°
  *
- * @param[in]	bgl		BGƒVƒXƒeƒ€İ’è\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	win		BMPWINƒVƒXƒeƒ€İ’è\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	arc_id	ƒƒbƒZ[ƒWƒf[ƒ^‚ÌƒA[ƒJƒCƒuID
- * @param[in]	msg_id	ƒƒbƒZ[ƒWƒf[ƒ^‚ÌƒA[ƒJƒCƒo“à‚ÌƒƒbƒZ[ƒWINDEXID
- * @param[in]	wait	ƒƒbƒZ[ƒW•\¦ƒEƒGƒCƒg
+ * @param[in]	bgl		BGã‚·ã‚¹ãƒ†ãƒ è¨­å®šæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	win		BMPWINã‚·ã‚¹ãƒ†ãƒ è¨­å®šæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	arc_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param[in]	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒå†…ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸INDEXID
+ * @param[in]	wait	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚¦ã‚¨ã‚¤ãƒˆ
  *
  */
 //============================================================================================
@@ -4153,7 +4153,7 @@ static	void	BattleMSG_MsgExpand(BATTLE_WORK *bw,MSGDATA_MANAGER *msg_m,MESSAGE_P
 
 //============================================================================================
 /**
- *	í“¬ƒƒbƒZ[ƒWƒR[ƒ‹ƒoƒbƒNŠÖ”
+ *	æˆ¦é—˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  */
 //============================================================================================
 static	BOOL	BattleMSG_CallBack(MSG_PRINT_HEADER *mph,u16 value)
@@ -4163,11 +4163,11 @@ static	BOOL	BattleMSG_CallBack(MSG_PRINT_HEADER *mph,u16 value)
 	ret=FALSE;
 
 	switch(value){
-	//SEI—¹‘Ò‚¿
+	//SEçµ‚äº†å¾…ã¡
 	case 1:
 		ret=Snd_SePlayCheckAll();
 		break;
-	//MEI—¹‘Ò‚¿
+	//MEçµ‚äº†å¾…ã¡
 	case 2:
 		ret=Snd_MePlayCheckBgmPlay();
 		break;

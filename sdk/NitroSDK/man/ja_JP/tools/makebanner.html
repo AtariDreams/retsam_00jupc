@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>makebanner</TITLE>
@@ -38,98 +38,98 @@ TD,TH{
 </HEAD>
 <BODY>
 <H1 align="left">makebanner</H1>
-<H2>����</H2>
-<P><CODE>�@makebanner</CODE> �́A�o�i�[�t�@�C���ƌĂ΂�� NITRO �N�����̃��j���[�ŕ\������A�v���P�[�V�����̎��ʉ摜���Ȃǂ��܂Ƃ߂��t�@�C�����쐬���邽�߂̃c�[���ł��B</P>
-<P>�@�o�i�[�t�@�C���ɂ͉摜�f�[�^�Ɗe���ꖈ�̃Q�[���^�C�g�����̏�񂪊܂܂�Ă���A�o�i�[�X�y�b�N�t�@�C���iBSF�j�ƌĂ΂��t�@�C���̋L�q�����ɐ�������܂��B�������ꂽ�o�i�[�t�@�C����
-<CODE>makerom</CODE> �ɂ���ăA�v���P�[�V���� ROM �C���[�W�֊i�[����܂��B</P>
-<H2>�g�p���@</H2>
-<H3>�N���R�}���h</H3>
+<H2>説明</H2>
+<P><CODE>　makebanner</CODE> は、バナーファイルと呼ばれる NITRO 起動時のメニューで表示するアプリケーションの識別画像情報などをまとめたファイルを作成するためのツールです。</P>
+<P>　バナーファイルには画像データと各言語毎のゲームタイトル名の情報が含まれており、バナースペックファイル（BSF）と呼ばれるファイルの記述を元に生成されます。生成されたバナーファイルは
+<CODE>makerom</CODE> によってアプリケーション ROM イメージへ格納されます。</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
 <P><CODE>% makebanner [-d] [-N ICON_BASENAME] SPECFILE [BANNERFILE]</CODE></P>
-<P><CODE>�@SPECFILE</CODE> �Ŏw�肳�ꂽ�o�i�[�X�y�b�N�t�@�C��(��q)�̋L�q�ɂ��������ăt�@�C�����������A
-<CODE>BANNERFILE</CODE> �Ƃ������O�ō쐬���܂��B<CODE>BANNERFILE</CODE> �͏ȗ��\�ł��B�ȗ����ɂ� <CODE>SPECFILE</CODE> �Ŏw�肳�ꂽ�t�@�C�����̊g���q������ <CODE>.bnr</CODE> �Ƃ����t�@�C�������g�p����܂��B</P>
-<P>�@<CODE>-N</CODE> �I�v�V�����ɂ���Ēʏ�o�i�[�X�y�b�N�t�@�C���Ŏw�肷��o�i�[�̃A�C�R���t�@�C�����R�}���h���C������w��ł��܂��B<CODE>ICON_BASENAME</CODE> �Ɏw�肳�ꂽ�x�[�X���Ɋg���q <CODE>.nbfc</CODE> ����� <CODE>.nbfp</CODE> ��t�������̂����ꂼ��摜�C���[�W�t�@�C������щ摜�p���b�g�t�@�C�����Ƃ��܂��B����̓o�i�[�X�y�b�N�t�@�C������
-<CODE>ImageFile:</CODE> ����� <CODE>PlttFile:</CODE> �p�����[�^�Ŏw�肷��l���㏑�����܂��B</P>
-<P>�@<CODE>-d</CODE> �I�v�V������ <CODE>makebanner</CODE> �̃f�o�O�p���b�Z�[�W�o�͗p�̃I�v�V�����Ŏ��s���Ƀf�o�O�p���b�Z�[�W���o�͂��܂��B���i�͕K�v����܂���B</P>
-<H3>�o�i�[�X�y�b�N�t�@�C���t�H�[�}�b�g</H3>
-<P>�@�o�i�[�X�y�b�N�t�@�C���͉摜�f�[�^�̃t�@�C����e����̃Q�[���^�C�g�������w�肷��e�L�X�g�t�@�C���ł��BUnicode
-(UTF-16LE BOM �t��) �ŋL�q�A�ۑ�����K�v������܂��BMS-Windows 2000/XP
-�̃����� (US��:NotePad) �� Unicode �ɑΉ����Ă��܂��B�ۑ����̕����R�[�h
-(US��:Encoding) �w��^�u�� <I>Unicode</I> ��I�����Ă��������B</P>
-<H3>�p�����[�^</H3>
-<P>�@�p�����[�^�̎w��ƒl�� <CODE>':'</CODE>(�R����)�ŋ�؂�܂��B</P>
-<H4>�摜�t�@�C���p�����[�^</H4>
+<P><CODE>　SPECFILE</CODE> で指定されたバナースペックファイル(後述)の記述にしたがってファイルを結合し、
+<CODE>BANNERFILE</CODE> という名前で作成します。<CODE>BANNERFILE</CODE> は省略可能です。省略時には <CODE>SPECFILE</CODE> で指定されたファイル名の拡張子部分を <CODE>.bnr</CODE> としたファイル名が使用されます。</P>
+<P>　<CODE>-N</CODE> オプションによって通常バナースペックファイルで指定するバナーのアイコンファイルをコマンドラインから指定できます。<CODE>ICON_BASENAME</CODE> に指定されたベース名に拡張子 <CODE>.nbfc</CODE> および <CODE>.nbfp</CODE> を付けたものをそれぞれ画像イメージファイルおよび画像パレットファイル名とします。これはバナースペックファイル内で
+<CODE>ImageFile:</CODE> および <CODE>PlttFile:</CODE> パラメータで指定する値を上書きします。</P>
+<P>　<CODE>-d</CODE> オプションは <CODE>makebanner</CODE> のデバグ用メッセージ出力用のオプションで実行時にデバグ用メッセージを出力します。普段は必要ありません。</P>
+<H3>バナースペックファイルフォーマット</H3>
+<P>　バナースペックファイルは画像データのファイルや各言語のゲームタイトル名を指定するテキストファイルです。Unicode
+(UTF-16LE BOM 付き) で記述、保存する必要があります。MS-Windows 2000/XP
+のメモ帳 (US版:NotePad) は Unicode に対応しています。保存時の文字コード
+(US版:Encoding) 指定タブで <I>Unicode</I> を選択してください。</P>
+<H3>パラメータ</H3>
+<P>　パラメータの指定と値は <CODE>':'</CODE>(コロン)で区切ります。</P>
+<H4>画像ファイルパラメータ</H4>
 <BLOCKQUOTE>
 <DL class="command_list">
-  <DT class="command_item"><CODE>ImageFile: </CODE><I>[�摜�C���[�W�t�@�C����]</I>
-  <DD class="command_desc">32�~32��16�F�̉摜�C���[�W�̃o�C�i�����w�肵�܂��B<BR>
-  �L�����N�^�f�[�^��1�����}�b�s���O�Ŋi�[���ĉ������B<BR>
-  �擪��512�o�C�g���o�i�[�t�@�C���֏������܂�܂��B
-  <DT class="command_item"><CODE>PlttFile: </CODE><I>[�摜�p���b�g�t�@�C����]</I>
-  <DD class="command_desc">�摜�p���b�g�̃o�C�i�����w�肵�܂��B<BR>
-  �擪��32�o�C�g���o�i�[�t�@�C���֏������܂�܂��B
+  <DT class="command_item"><CODE>ImageFile: </CODE><I>[画像イメージファイル名]</I>
+  <DD class="command_desc">32×32の16色の画像イメージのバイナリを指定します。<BR>
+  キャラクタデータを1次元マッピングで格納して下さい。<BR>
+  先頭の512バイトがバナーファイルへ書き込まれます。
+  <DT class="command_item"><CODE>PlttFile: </CODE><I>[画像パレットファイル名]</I>
+  <DD class="command_desc">画像パレットのバイナリを指定します。<BR>
+  先頭の32バイトがバナーファイルへ書き込まれます。
 </DL>
 </BLOCKQUOTE>
-<P><CODE>ntexconv (-no -bg -bgb -bgnc)</CODE> �Ȃǂ��g�p���ĉ摜�t�@�C������C���[�W�ƃp���b�g�̃o�C�i���f�[�^���쐬���ĉ������B</P>
-<P><CODE>-N</CODE> �I�v�V�����ɂ���ăR�}���h���C������摜�t�@�C���p�����[�^���w�肷�邱�Ƃ��ł��܂��B</P>
-<H4>�o�[�W�����p�����[�^</H4>
+<P><CODE>ntexconv (-no -bg -bgb -bgnc)</CODE> などを使用して画像ファイルからイメージとパレットのバイナリデータを作成して下さい。</P>
+<P><CODE>-N</CODE> オプションによってコマンドラインから画像ファイルパラメータを指定することもできます。</P>
+<H4>バージョンパラメータ</H4>
 <BLOCKQUOTE>
 <DL class="command_list">
-  <DT class="command_item"><CODE>Version: </CODE><I>[�o�i�[�o�[�W����]</I>
-  <DD class="command_desc">�o�i�[�o�[�W�������w�肵�܂��B<BR>
-  ���̃p�����[�^�͒����A�܂��͊؍������A�v���P�[�V�����̏ꍇ�̂ݕK�v�ł��B<BR>
-  ���������A�v���P�[�V�����̏ꍇ��<CODE>'2'</CODE>���A�؍������A�v���P�[�V�����̏ꍇ��<CODE>'3'</CODE>���w�肵�܂��B
+  <DT class="command_item"><CODE>Version: </CODE><I>[バナーバージョン]</I>
+  <DD class="command_desc">バナーバージョンを指定します。<BR>
+  このパラメータは中国、または韓国向けアプリケーションの場合のみ必要です。<BR>
+  中国向けアプリケーションの場合は<CODE>'2'</CODE>を、韓国向けアプリケーションの場合は<CODE>'3'</CODE>を指定します。
 </DL>
 </BLOCKQUOTE>
-<H4>����p�����[�^</H4>
+<H4>言語パラメータ</H4>
 <BLOCKQUOTE>
 <DL class="command_list">
-  <DT class="command_item"><CODE>JP: </CODE><I>[���{��Q�[���^�C�g����]</I><BR>
-  <CODE>EN: </CODE><I>[�p��Q�[���^�C�g����]</I><BR>
-  <CODE>FR: </CODE><I>[�t�����X��Q�[���^�C�g����]</I><BR>
-  <CODE>GE: </CODE><I>[�h�C�c��Q�[���^�C�g����]</I><BR>
-  <CODE>IT: </CODE><I>[�C�^���A��Q�[���^�C�g����]</I><BR>
-  <CODE>SP: </CODE><I>[�X�y�C����Q�[���^�C�g����]</I>
-  <DD class="command_desc">�e���ꖈ�̃Q�[���^�C�g�������L�q���܂��B�ő��3�s128�����܂Ŏw��ł��܂��i���s�������܂݂܂��j�B<BR>
-  1�s�ڂɂ͕K����������w�肵�ĉ������B�X�y�[�X�܂��̓^�u����n�߂��ꍇ�A�O�̍s�̑����̍s�ƂȂ�܂��B<BR>
-  ��s���͂��񂾏ꍇ�ɂ͎��̌���p�����[�^�܂ł̓��e�͔j������܂��B1�s�ڂ܂���2�s�ڂ��󗓂ɂ���3�s�ڂɋL�q�������ꍇ�́A�󗓂ɂ������s�̓��e��
-  &quot; &quot; �Ƃ��Ă��������B<BR>
-  �L�q�̏��ԂɊւ�炸�A���{��/�p��/�t�����X��/�h�C�c��/�C�^���A��/�X�y�C����̏��Ƀo�i�[�t�@�C���֊i�[����܂��B
-  �i�[�t�H�[�}�b�g�̓o�i�[�X�y�b�N�t�@�C���Ɠ��� UTF-16LE (������BOM����)
-  �ƂȂ�܂��B<BR>
+  <DT class="command_item"><CODE>JP: </CODE><I>[日本語ゲームタイトル名]</I><BR>
+  <CODE>EN: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>FR: </CODE><I>[フランス語ゲームタイトル名]</I><BR>
+  <CODE>GE: </CODE><I>[ドイツ語ゲームタイトル名]</I><BR>
+  <CODE>IT: </CODE><I>[イタリア語ゲームタイトル名]</I><BR>
+  <CODE>SP: </CODE><I>[スペイン語ゲームタイトル名]</I>
+  <DD class="command_desc">各言語毎のゲームタイトル名を記述します。最大で3行128文字まで指定できます（改行文字を含みます）。<BR>
+  1行目には必ず文字列を指定して下さい。スペースまたはタブから始めた場合、前の行の続きの行となります。<BR>
+  空行をはさんだ場合には次の言語パラメータまでの内容は破棄されます。1行目または2行目を空欄にして3行目に記述したい場合は、空欄にしたい行の内容を
+  &quot; &quot; としてください。<BR>
+  記述の順番に関わらず、日本語/英語/フランス語/ドイツ語/イタリア語/スペイン語の順にバナーファイルへ格納されます。
+  格納フォーマットはバナースペックファイルと同じ UTF-16LE (ただしBOM無し)
+  となります。<BR>
   <BR>
-  <DT class="command_item"><CODE>JP: </CODE><I>[������Q�[���^�C�g����]</I><BR>
-  <CODE>EN: </CODE><I>[������Q�[���^�C�g����]</I><BR>
-  <CODE>FR: </CODE><I>[������Q�[���^�C�g����]</I><BR>
-  <CODE>GE: </CODE><I>[������Q�[���^�C�g����]</I><BR>
-  <CODE>IT: </CODE><I>[������Q�[���^�C�g����]</I><BR>
-  <CODE>SP: </CODE><I>[������Q�[���^�C�g����]</I><BR>
-  <CODE>CN: </CODE><I>[������Q�[���^�C�g����]</I><BR>
-  <DD class="command_desc">���������A�v���P�[�V�����̏ꍇ�͏�L�̂悤�ɕW���̃o�i�[�w��ɉ����Ē�����̃o�i�[���w�肵�܂��B<BR>
-  ���̂Ƃ��Q�[���^�C�g�����͂��ׂĒ�����ŋL�q���܂��B
-  <DT class="command_item"><CODE>JP: </CODE><I>[�p��Q�[���^�C�g����]</I><BR>
-  <CODE>EN: </CODE><I>[�p��Q�[���^�C�g����]</I><BR>
-  <CODE>FR: </CODE><I>[�p��Q�[���^�C�g����]</I><BR>
-  <CODE>GE: </CODE><I>[�p��Q�[���^�C�g����]</I><BR>
-  <CODE>IT: </CODE><I>[�p��Q�[���^�C�g����]</I><BR>
-  <CODE>SP: </CODE><I>[�p��Q�[���^�C�g����]</I><BR>
-  <CODE>CN: </CODE><I>[�p��Q�[���^�C�g����]</I><BR>
-  <CODE>HN: </CODE><I>[�؍���Q�[���^�C�g����]</I>
-  <DD class="command_desc">�؍������A�v���P�[�V�����̏ꍇ�͏�L�̂悤�ɒ��������A�v���P�[�V�����̃o�i�[�w��ɉ����Ċ؍���̃o�i�[���w�肵�܂��B<BR>
-  ���̂Ƃ��؍���p�̃Q�[���^�C�g�����ȊO�́A���ׂĉp��ŋL�q���܂��B
+  <DT class="command_item"><CODE>JP: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <CODE>EN: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <CODE>FR: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <CODE>GE: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <CODE>IT: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <CODE>SP: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <CODE>CN: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <DD class="command_desc">中国向けアプリケーションの場合は上記のように標準のバナー指定に加えて中国語のバナーを指定します。<BR>
+  このときゲームタイトル名はすべて中国語で記述します。
+  <DT class="command_item"><CODE>JP: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>EN: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>FR: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>GE: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>IT: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>SP: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>CN: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>HN: </CODE><I>[韓国語ゲームタイトル名]</I>
+  <DD class="command_desc">韓国向けアプリケーションの場合は上記のように中国向けアプリケーションのバナー指定に加えて韓国語のバナーを指定します。<BR>
+  このとき韓国語用のゲームタイトル名以外は、すべて英語で記述します。
 </DL>
-  �g�p�\�ȕ����╶���R�[�h�ȂǂɊւ��Ă� DS �o�i�[�Ɋւ���h�L�������g��ʓr���Q�Ƃ��������B������ UTF-16LE �����R�[�h�̕\�����\�ȃG�f�B�^���K�v�ł��B
+  使用可能な文字や文字コードなどに関しては DS バナーに関するドキュメントを別途ご参照ください。ただし UTF-16LE 文字コードの表示が可能なエディタが必要です。
 </BLOCKQUOTE>
-<H3>�����ɂ���</H3>
-<P>�@�p�����[�^�w��͊e�s�̏��߂���L�q����K�v������܂��B'#' ����n�܂�s�̓R�����g�Ƃ��Ĉ����܂��B<BR>
-�@�擪�ȊO�̋󔒂͕�����֊܂܂�܂����A<CODE>&quot;</CODE> (�_�u���N�H�[�e�[�V����) �ň͂ނ��ƂŁA�擪�̋󔒂╶���񒆂� <CODE>&quot;</CODE> ���܂ނ��Ƃ��ł��܂��B</P>
+<H3>書式について</H3>
+<P>　パラメータ指定は各行の初めから記述する必要があります。'#' から始まる行はコメントとして扱われます。<BR>
+　先頭以外の空白は文字列へ含まれますが、<CODE>&quot;</CODE> (ダブルクォーテーション) で囲むことで、先頭の空白や文字列中の <CODE>&quot;</CODE> を含むことができます。</P>
 <BLOCKQUOTE>
 <PRE class="sample_source"><CODE>#BSF --- Banner Spec File
 
 ImageFile:  banner.nbfc
 PlttFile:   banner.nbfp
 
-JP:  �j�g��
-     &quot; �ɂق�&quot;
+JP:  ニトロ
+     &quot; にほんご&quot;
 EN:  Nitro1
      English
 FR:  Nitro2
@@ -138,13 +138,13 @@ IT:  Nitro4
 SP:  &quot; Nitro5&quot;
 </CODE></PRE>
 </BLOCKQUOTE>
-<H2>�ꏊ</H2>
+<H2>場所</H2>
 <P><CODE>$NitroSDK/tools/bin/makebanner.exe</CODE></P>
-<H2>�Q��</H2>
+<H2>参照</H2>
 <P><CODE><A href="makerom.html">makerom</A></CODE></P>
-<H2>����</H2>
-<P>2007/01/12 �����A�؍������A�v���P�[�V�����̂��߂̐����ǉ�<BR>
-2004/09/10 �g�p�\�����ꗗ�e�L�X�g�փ����N�ǉ�<BR>
-2004/08/28 ���ō쐬</P>
+<H2>履歴</H2>
+<P>2007/01/12 中国、韓国向けアプリケーションのための説明追加<BR>
+2004/09/10 使用可能文字一覧テキストへリンク追加<BR>
+2004/08/28 初版作成</P>
 </BODY>
 </HTML>

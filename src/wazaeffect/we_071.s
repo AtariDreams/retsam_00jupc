@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_071.s
- * @brief	Ç∑Ç¢Ç∆ÇÈ			71
+ * @brief	„Åô„ÅÑ„Å®„Çã			71
  * @author	goto
- * @date	2005.07.13(êÖ)
+ * @date	2005.07.13(Ê∞¥)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	Å°Ç∑Ç¢Ç∆ÇÈ			71
+//	‚ñ†„Åô„ÅÑ„Å®„Çã			71
 //
 //
 // =============================================================================
@@ -29,7 +29,7 @@ WEST_SUITORU:
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 0, 12, WE_PAL_BLACK,
 	WAIT_FLAG
 
-	///< ñ{óà
+	///< Êú¨Êù•
 	ADD_PARTICLE 	0,W_071_071_SUITORU1, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_EP, OPERATOR_AXIS_AT, OPERATOR_FLD_MAGNET_POS, OPERATOR_CAMERA_NONE
 	EX_DATA			OPERATOR_FLD_EX_DATA_NUM, OPERATOR_FLD_AT,OPERATOR_EX_REVERCE_ON,0,0,0

@@ -5,7 +5,7 @@
 
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_G2dSetRendererImageProxy</title>
@@ -14,7 +14,7 @@
 
 <body>
 <h1 align="left">NNS_G2dSetRendererImageProxy</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -28,54 +28,54 @@
 	);
   </CODE></pre>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pRend</font></strong></em></td>
-    <td width="87%">[OUT] �����_�� ����</td>
+    <td width="87%">[OUT] レンダラ 実体</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pImgProxy</font></strong></em></td>
-    <td width="87%">[IN] �摜���</td>
+    <td width="87%">[IN] 画像情報</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pPltProxy</font></strong></em></td>
-    <td width="87%">[IN] �p���b�g���</td>
+    <td width="87%">[IN] パレット情報</td>
   </tr>
   </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ�<BR>
+<h2>返り値</h2>
+<p>なし<BR>
 </p>
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-�����_�� ���̂� �摜���A�p���b�g����ݒ肵�܂��B<BR>
-�����_�� ���̂��g�p����O�Ɏ��s���Ă��������B<BR>
+レンダラ 実体に 画像情報、パレット情報を設定します。<BR>
+レンダラ 実体を使用する前に実行してください。<BR>
 <BR>
-�{�֐��́ABegin End Rendering()�u���b�N���ł��g�p���\�ł��B<BR>
+本関数は、Begin End Rendering()ブロック内でも使用が可能です。<BR>
 <BR>
-���ӁF<BR>
-�œK���t���O�ANNS_G2D_RDR_OPZHINT_LOCK_PARAMS �t���O���w�肵��
-�����_�����O���s���Ă���ꍇ�́ABegin End Rendering()�u���b�N���ł�
-�g�p���֎~����܂��B<BR>
-����́A�����_���R�A���W���[����Begin-End Rendering()�Ăяo����
-�����_�����W���[����Begin-End Rendering()�Ɠ����^�C�~���O�ŌĂяo�����l�ɂȂ邩��ł��B<BR>
+注意：<BR>
+最適化フラグ、NNS_G2D_RDR_OPZHINT_LOCK_PARAMS フラグを指定して
+レンダリングを行っている場合は、Begin End Rendering()ブロック内での
+使用が禁止されます。<BR>
+これは、レンダラコアモジュールのBegin-End Rendering()呼び出しが
+レンダラモジュールのBegin-End Rendering()と同じタイミングで呼び出される様になるからです。<BR>
 <BR>
-�����_���R�A���W���[���ł́ABegin-End Rendering()���ŉ摜�v���N�V�ݒ��؂�ւ��邱�Ƃ͋֎~����Ă��܂��B<BR>
-( ImageProxy�Ɋ֘A����p�����[�^�̑O�v�Z��Begin Rendering()�ōs���Ă��邽�߂ł��B�j<BR>
+レンダラコアモジュールでは、Begin-End Rendering()内で画像プロクシ設定を切り替えることは禁止されています。<BR>
+( ImageProxyに関連するパラメータの前計算をBegin Rendering()で行っているためです。）<BR>
 <BR>
 <BR>
-NNS_G2dSetCurrentImageProxy()����������܂����B�ȑO�̊֐����͕ʖ��Ƃ��Ďc����Ă��܂��B<BR>
+NNS_G2dSetCurrentImageProxy()が改名されました。以前の関数名は別名として残されています。<BR>
 <BR>
 </p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <CODE><A href="NNS_G2dSetCurrentImageProxy.html">NNS_G2dSetCurrentImageProxy</A><br></CODE>
 </p>
-<H2>����</H2>
-<P>2004/11/10 �����̒ǉ�</P>
-<P>2004/08/02 �֐������̎��{</P>
-<P>2004/05/28 ����</P>
+<H2>履歴</H2>
+<P>2004/11/10 説明の追加</P>
+<P>2004/08/02 関数改名の実施</P>
+<P>2004/05/28 初版</P>
 </body>
 </html>

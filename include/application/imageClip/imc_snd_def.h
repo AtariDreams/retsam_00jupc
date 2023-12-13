@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_snd_def.h
- *	@brief		ƒTƒEƒ“ƒh’è”	
+ *	@brief		ã‚µã‚¦ãƒ³ãƒ‰å®šæ•°	
  *	@author		tomoya takahashi
  *	@data		2005.10.24
  *
@@ -23,57 +23,57 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-//#define IMC_SE_RET_BUTTON_ON	(SEQ_SE_DP_SELECT)			// Ø‚è‘Ö‚¦ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‰¹
-//#define IMC_SE_RET_BUTTON_ON	(SEQ_SE_DP_TARARARAN)		// Ø‚è‘Ö‚¦ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‰¹
-#define IMC_SE_RET_BUTTON_ON	(SEQ_SE_DP_MAZYO3)			// Ø‚è‘Ö‚¦ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‰¹
+//#define IMC_SE_RET_BUTTON_ON	(SEQ_SE_DP_SELECT)			// åˆ‡ã‚Šæ›¿ãˆãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸéŸ³
+//#define IMC_SE_RET_BUTTON_ON	(SEQ_SE_DP_TARARARAN)		// åˆ‡ã‚Šæ›¿ãˆãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸéŸ³
+#define IMC_SE_RET_BUTTON_ON	(SEQ_SE_DP_MAZYO3)			// åˆ‡ã‚Šæ›¿ãˆãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸéŸ³
 
-//#define IMC_SE_BG_CHANGE		(SEQ_SE_DP_SELECT)			// ”wŒi‚ª•Ï‚í‚Á‚½‚Æ‚«‚Ì‰¹
-#define IMC_SE_BG_CHANGE		(SEQ_SE_DP_SYARAAN)			// ”wŒi‚ª•Ï‚í‚Á‚½‚Æ‚«‚Ì‰¹
+//#define IMC_SE_BG_CHANGE		(SEQ_SE_DP_SELECT)			// èƒŒæ™¯ãŒå¤‰ã‚ã£ãŸã¨ãã®éŸ³
+#define IMC_SE_BG_CHANGE		(SEQ_SE_DP_SYARAAN)			// èƒŒæ™¯ãŒå¤‰ã‚ã£ãŸã¨ãã®éŸ³
 
-//#define IMC_SE_BUTTON_ON		(SEQ_SE_DP_SELECT)			// ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‰¹
-#define IMC_SE_BUTTON_ON		(SEQ_SE_DP_PASO)			// ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‰¹
+//#define IMC_SE_BUTTON_ON		(SEQ_SE_DP_SELECT)			// ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸéŸ³
+#define IMC_SE_BUTTON_ON		(SEQ_SE_DP_PASO)			// ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸéŸ³
 
-//#define IMC_SE_HAVE_SAMETHING	(SEQ_SE_DP_SELECT)			// ¶ƒ{ƒbƒNƒX‚Å‰½‚©‘I‘ð‚µ‚½‰¹
-//#define IMC_SE_HAVE_SAMETHING	(SEQ_SE_DP_DECIDE2)			// ¶ƒ{ƒbƒNƒX‚Å‰½‚©‘I‘ð‚µ‚½‰¹
-#define IMC_SE_HAVE_SAMETHING	(SEQ_SE_DP_BOX02)			// ¶ƒ{ƒbƒNƒX‚Å‰½‚©‘I‘ð‚µ‚½‰¹
+//#define IMC_SE_HAVE_SAMETHING	(SEQ_SE_DP_SELECT)			// å·¦ãƒœãƒƒã‚¯ã‚¹ã§ä½•ã‹é¸æŠžã—ãŸéŸ³
+//#define IMC_SE_HAVE_SAMETHING	(SEQ_SE_DP_DECIDE2)			// å·¦ãƒœãƒƒã‚¯ã‚¹ã§ä½•ã‹é¸æŠžã—ãŸéŸ³
+#define IMC_SE_HAVE_SAMETHING	(SEQ_SE_DP_BOX02)			// å·¦ãƒœãƒƒã‚¯ã‚¹ã§ä½•ã‹é¸æŠžã—ãŸéŸ³
 
-//#define IMC_SE_TAKE_OFF			(SEQ_SE_DP_SELECT)		// ¶ƒ{ƒbƒNƒX‚Å•ú‚µ‚½‰¹
-//#define IMC_SE_TAKE_OFF			(SEQ_SE_DP_PIKO2)		// ¶ƒ{ƒbƒNƒX‚Å•ú‚µ‚½‰¹
-//#define IMC_SE_TAKE_OFF			(SEQ_SE_DP_BUTTON3)		// ¶ƒ{ƒbƒNƒX‚Å•ú‚µ‚½‰¹
-//#define IMC_SE_TAKE_OFF			(SEQ_SE_DP_DECIDE2)		// ¶ƒ{ƒbƒNƒX‚Å•ú‚µ‚½‰¹
-#define IMC_SE_TAKE_OFF				(SEQ_SE_DP_BOX02)		// ¶ƒ{ƒbƒNƒX‚Å•ú‚µ‚½‰¹
+//#define IMC_SE_TAKE_OFF			(SEQ_SE_DP_SELECT)		// å·¦ãƒœãƒƒã‚¯ã‚¹ã§æ”¾ã—ãŸéŸ³
+//#define IMC_SE_TAKE_OFF			(SEQ_SE_DP_PIKO2)		// å·¦ãƒœãƒƒã‚¯ã‚¹ã§æ”¾ã—ãŸéŸ³
+//#define IMC_SE_TAKE_OFF			(SEQ_SE_DP_BUTTON3)		// å·¦ãƒœãƒƒã‚¯ã‚¹ã§æ”¾ã—ãŸéŸ³
+//#define IMC_SE_TAKE_OFF			(SEQ_SE_DP_DECIDE2)		// å·¦ãƒœãƒƒã‚¯ã‚¹ã§æ”¾ã—ãŸéŸ³
+#define IMC_SE_TAKE_OFF				(SEQ_SE_DP_BOX02)		// å·¦ãƒœãƒƒã‚¯ã‚¹ã§æ”¾ã—ãŸéŸ³
 
-//#define IMC_SE_RET_LBOX			(SEQ_SE_DP_SELECT)		// ”ÍˆÍ‚ª‚ÅƒAƒNƒZƒTƒŠ‚ð•ú‚µ‚Ä¶ƒ{ƒbƒNƒX‚ÉƒAƒNƒZƒTƒŠ‚ª–ß‚é‚Æ‚«‚Ì‰¹
-//#define IMC_SE_RET_LBOX			(SEQ_SE_DP_DANSA9)		// ”ÍˆÍ‚ª‚ÅƒAƒNƒZƒTƒŠ‚ð•ú‚µ‚Ä¶ƒ{ƒbƒNƒX‚ÉƒAƒNƒZƒTƒŠ‚ª–ß‚é‚Æ‚«‚Ì‰¹
-//#define IMC_SE_RET_LBOX			(SEQ_SE_DP_BEYON)		// ”ÍˆÍ‚ª‚ÅƒAƒNƒZƒTƒŠ‚ð•ú‚µ‚Ä¶ƒ{ƒbƒNƒX‚ÉƒAƒNƒZƒTƒŠ‚ª–ß‚é‚Æ‚«‚Ì‰¹
-#define IMC_SE_RET_LBOX			(SEQ_SE_DP_HYUN2)			// ”ÍˆÍ‚ª‚ÅƒAƒNƒZƒTƒŠ‚ð•ú‚µ‚Ä¶ƒ{ƒbƒNƒX‚ÉƒAƒNƒZƒTƒŠ‚ª–ß‚é‚Æ‚«‚Ì‰¹
+//#define IMC_SE_RET_LBOX			(SEQ_SE_DP_SELECT)		// ç¯„å›²ãŒã§ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’æ”¾ã—ã¦å·¦ãƒœãƒƒã‚¯ã‚¹ã«ã‚¢ã‚¯ã‚»ã‚µãƒªãŒæˆ»ã‚‹ã¨ãã®éŸ³
+//#define IMC_SE_RET_LBOX			(SEQ_SE_DP_DANSA9)		// ç¯„å›²ãŒã§ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’æ”¾ã—ã¦å·¦ãƒœãƒƒã‚¯ã‚¹ã«ã‚¢ã‚¯ã‚»ã‚µãƒªãŒæˆ»ã‚‹ã¨ãã®éŸ³
+//#define IMC_SE_RET_LBOX			(SEQ_SE_DP_BEYON)		// ç¯„å›²ãŒã§ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’æ”¾ã—ã¦å·¦ãƒœãƒƒã‚¯ã‚¹ã«ã‚¢ã‚¯ã‚»ã‚µãƒªãŒæˆ»ã‚‹ã¨ãã®éŸ³
+#define IMC_SE_RET_LBOX			(SEQ_SE_DP_HYUN2)			// ç¯„å›²ãŒã§ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’æ”¾ã—ã¦å·¦ãƒœãƒƒã‚¯ã‚¹ã«ã‚¢ã‚¯ã‚»ã‚µãƒªãŒæˆ»ã‚‹ã¨ãã®éŸ³
 
-//#define IMC_SE_ON_RBOX			(SEQ_SE_DP_DENSI02)		// ‰Eƒ{ƒbƒNƒX‚É‚¨‚¢‚½‚Æ‚«
-//#define IMC_SE_ON_RBOX			(SEQ_SE_DP_DENSI05)		// ‰Eƒ{ƒbƒNƒX‚É‚¨‚¢‚½‚Æ‚«
-//#define IMC_SE_ON_RBOX			(SEQ_SE_DP_PIKO)		// ‰Eƒ{ƒbƒNƒX‚É‚¨‚¢‚½‚Æ‚«
-//#define IMC_SE_ON_RBOX			(SEQ_SE_DP_BUTTON3)		// ‰Eƒ{ƒbƒNƒX‚É‚¨‚¢‚½‚Æ‚«
-//#define IMC_SE_ON_RBOX			(SEQ_SE_DP_DECIDE2)		// ‰Eƒ{ƒbƒNƒX‚É‚¨‚¢‚½‚Æ‚«
-//#define IMC_SE_ON_RBOX			(SEQ_SE_DP_IMC_001)		// ‰Eƒ{ƒbƒNƒX‚É‚¨‚¢‚½‚Æ‚«
-#define IMC_SE_ON_RBOX				(SEQ_SE_DP_BOX01)		// ‰Eƒ{ƒbƒNƒX‚É‚¨‚¢‚½‚Æ‚«
+//#define IMC_SE_ON_RBOX			(SEQ_SE_DP_DENSI02)		// å³ãƒœãƒƒã‚¯ã‚¹ã«ãŠã„ãŸã¨ã
+//#define IMC_SE_ON_RBOX			(SEQ_SE_DP_DENSI05)		// å³ãƒœãƒƒã‚¯ã‚¹ã«ãŠã„ãŸã¨ã
+//#define IMC_SE_ON_RBOX			(SEQ_SE_DP_PIKO)		// å³ãƒœãƒƒã‚¯ã‚¹ã«ãŠã„ãŸã¨ã
+//#define IMC_SE_ON_RBOX			(SEQ_SE_DP_BUTTON3)		// å³ãƒœãƒƒã‚¯ã‚¹ã«ãŠã„ãŸã¨ã
+//#define IMC_SE_ON_RBOX			(SEQ_SE_DP_DECIDE2)		// å³ãƒœãƒƒã‚¯ã‚¹ã«ãŠã„ãŸã¨ã
+//#define IMC_SE_ON_RBOX			(SEQ_SE_DP_IMC_001)		// å³ãƒœãƒƒã‚¯ã‚¹ã«ãŠã„ãŸã¨ã
+#define IMC_SE_ON_RBOX				(SEQ_SE_DP_BOX01)		// å³ãƒœãƒƒã‚¯ã‚¹ã«ãŠã„ãŸã¨ã
 
-//#define IMC_SE_BUTTON_ENDON		(SEQ_SE_DP_PASO)		// I‚í‚éƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‰¹
-#define IMC_SE_BUTTON_ENDON			(SEQ_SE_DP_PIRORIRO)	// I‚í‚éƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‰¹
+//#define IMC_SE_BUTTON_ENDON		(SEQ_SE_DP_PASO)		// çµ‚ã‚ã‚‹ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸéŸ³
+#define IMC_SE_BUTTON_ENDON			(SEQ_SE_DP_PIRORIRO)	// çµ‚ã‚ã‚‹ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸéŸ³
 
-//‰º‰æ–Ê‚Ì‹¤’Êu‚Í‚¢A‚¢‚¢‚¦v‚É‚È‚Á‚½‚Ì‚Å–¢Žg—p
-//#define IMC_SE_RET_BUTTON_FINISH	(SEQ_SE_DP_TARARARAN)	// ÅIŒˆ’è‚ð‰Ÿ‚µ‚½‰¹
-#define IMC_SE_RET_BUTTON_FINISH	(SEQ_SE_DP_MAZYO)		// ÅIŒˆ’è‚ð‰Ÿ‚µ‚½‰¹
+//ä¸‹ç”»é¢ã®å…±é€šã€Œã¯ã„ã€ã„ã„ãˆã€ã«ãªã£ãŸã®ã§æœªä½¿ç”¨
+//#define IMC_SE_RET_BUTTON_FINISH	(SEQ_SE_DP_TARARARAN)	// æœ€çµ‚æ±ºå®šã‚’æŠ¼ã—ãŸéŸ³
+#define IMC_SE_RET_BUTTON_FINISH	(SEQ_SE_DP_MAZYO)		// æœ€çµ‚æ±ºå®šã‚’æŠ¼ã—ãŸéŸ³
 
 
 /////////////////////////////////////
-// ƒRƒ“ƒeƒXƒg
-#define IMC_SE_CON_10COUNT			(SEQ_SE_DP_HYUN2)		// ƒ‰ƒXƒg‚P‚OƒJƒEƒ“ƒg
-#define IMC_SE_CON_FINISH			(SEQ_SE_DP_MAZYO)		// I`—¹`
+// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+#define IMC_SE_CON_10COUNT			(SEQ_SE_DP_HYUN2)		// ãƒ©ã‚¹ãƒˆï¼‘ï¼ã‚«ã‚¦ãƒ³ãƒˆ
+#define IMC_SE_CON_FINISH			(SEQ_SE_DP_MAZYO)		// çµ‚ã€œäº†ã€œ
 
-#define IMC_SE_CON_DOOR_CLOSE		(SEQ_SE_DP_CON_017)	// ƒhƒA•Â‚Ü‚è‰¹
-#define IMC_SE_CON_START			(SEQ_SE_DP_CON_016)		// ƒNƒŠƒbƒvŠJŽn‰¹
+#define IMC_SE_CON_DOOR_CLOSE		(SEQ_SE_DP_CON_017)	// ãƒ‰ã‚¢é–‰ã¾ã‚ŠéŸ³
+#define IMC_SE_CON_START			(SEQ_SE_DP_CON_016)		// ã‚¯ãƒªãƒƒãƒ—é–‹å§‹éŸ³
 
 
 

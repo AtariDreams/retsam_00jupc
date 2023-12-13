@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pokemonranger.c	
- * @bfief	ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚Æ‚ÌÚ‘±‰æ–Ê/‚½‚Ü‚²“]‘—
+ * @bfief	ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã®æ¥ç¶šç”»é¢/ãŸã¾ã”è»¢é€
  * @author	Satoshi Mitsuhara
  * @date	06.04.27
  *
@@ -9,8 +9,8 @@
  */
 //============================================================================================
 
-// BG0		ƒƒjƒ…[‚âƒƒbƒZ[ƒW•\¦
-// BG1		Šiq–Í—l‚Ì”wŒi
+// BG0		ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+// BG1		æ ¼å­æ¨¡æ§˜ã®èƒŒæ™¯
 
 #include "common.h"
 #include "system/fontproc.h"
@@ -32,7 +32,7 @@
 #include "msgdata/msg_startmenu.h"
 #include "msgdata/msg_bconfind.h"
 #include "msgdata/msg_mystery.h"
-#include "strbuf_family.h"	//for STRBUF_SetStringCode ¡‚¾‚¯
+#include "strbuf_family.h"	//for STRBUF_SetStringCode ä»Šã ã‘
 
 #include "demo/title.h"
 #include "field/field.h"
@@ -57,7 +57,7 @@
 
 //============================================================================================
 /**
- * «ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚Æ‚ÌÚ‘±‰æ–Ê—pƒ[ƒN’è‹`«
+ * â†“ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã®æ¥ç¶šç”»é¢ç”¨ãƒ¯ãƒ¼ã‚¯å®šç¾©â†“
  */
 //============================================================================================
 
@@ -65,7 +65,7 @@
 #define POKEMONRANGER_FCOL		1
 #define POKEMONRANGER_TWCOL		2
 
-#define POKEMONRANGER_FCHR		1			// ’ÊíƒtƒŒ[ƒ€
+#define POKEMONRANGER_FCHR		1			// é€šå¸¸ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define POKEMONRANGER_TWCHR		(POKEMONRANGER_FCHR + MENU_WIN_CGX_SIZ)
 #define POKEMONRANGER_WCHR		(POKEMONRANGER_TWCHR + TALK_WIN_CGX_SIZ)
 
@@ -80,52 +80,52 @@ typedef struct {
   CONFIG *cfg;
 
   GF_BGL_BMPWIN	ewin;
-  GF_BGL_BMPWIN	twin;		// TalkWin—p‚Ìƒrƒbƒgƒ}ƒbƒvŠÇ—\‘¢‘Ì
-  GF_BGL_BMPWIN	swin;		// ƒXƒe[ƒ^ƒX•\¦—pƒrƒbƒgƒ}ƒbƒvŠÇ—\‘¢‘Ì
+  GF_BGL_BMPWIN	twin;		// TalkWinç”¨ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç®¡ç†æ§‹é€ ä½“
+  GF_BGL_BMPWIN	swin;		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºç”¨ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç®¡ç†æ§‹é€ ä½“
 
-  MYSTERY_WIN talkwin;		// TalkWint“o˜^—p
-  MYSTERY_WIN titlewin;		// ƒ^ƒCƒgƒ‹•\¦ƒEƒBƒ“ƒhƒE
-  MYSTERY_WIN statwin;		// ƒXƒe[ƒ^ƒX•\¦—pƒEƒBƒ“ƒhƒE
+  MYSTERY_WIN talkwin;		// TalkWintç™»éŒ²ç”¨
+  MYSTERY_WIN titlewin;		// ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+  MYSTERY_WIN statwin;		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
   int chrbase;
-  int commvramload;		// ƒCƒNƒjƒ…[ƒ‚ƒ“‚ª‘¶İ‚·‚é‚ÉTRUE
+  int commvramload;		// ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³ãŒå­˜åœ¨ã™ã‚‹æ™‚ã«TRUE
 
   
-  int beacon_seq;		// ƒr[ƒRƒ“æ“¾ƒV[ƒPƒ“ƒX
-  int beacon_ret;		// ã‹L‚ÌƒŠƒ^[ƒ“’l
+  int beacon_seq;		// ãƒ“ãƒ¼ã‚³ãƒ³å–å¾—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+  int beacon_ret;		// ä¸Šè¨˜ã®ãƒªã‚¿ãƒ¼ãƒ³å€¤
   
-  int beacon_check_time;	// ƒr[ƒRƒ“‚ğƒ`ƒFƒbƒN‚·‚éŠÔ
-  int doproc;			// true = MpProc‹ì“®
-  int seq;			// ‹ì“®ƒV[ƒPƒ“ƒX
-  int mp_time_out;		// ƒ^ƒCƒ€ƒAƒEƒg‚Ü‚Å‚ÌƒJƒEƒ“ƒg
-  int connect_num;		// ƒRƒlƒNƒVƒ‡ƒ“”Ô†
-  int disable;			// true = ’ÊM’†’f—v‹ƒtƒ‰ƒO
-  u8 mp_buf[12*1024];		// MP’ÊM‹ì“®—pƒ[ƒNƒGƒŠƒA(ÀÛ‚É‚Í–ñ10KB•K—v)
+  int beacon_check_time;	// ãƒ“ãƒ¼ã‚³ãƒ³ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹æ™‚é–“
+  int doproc;			// true = MpProcé§†å‹•
+  int seq;			// é§†å‹•ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+  int mp_time_out;		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã¾ã§ã®ã‚«ã‚¦ãƒ³ãƒˆ
+  int connect_num;		// ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ç•ªå·
+  int disable;			// true = é€šä¿¡ä¸­æ–­è¦æ±‚ãƒ•ãƒ©ã‚°
+  u8 mp_buf[12*1024];		// MPé€šä¿¡é§†å‹•ç”¨ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢(å®Ÿéš›ã«ã¯ç´„10KBå¿…è¦)
   PROC *proc;			// proc
 
   //  MYSTERY_CLACT act;
   CLACT_WORK_PTR arrow;
   
-  FUSHIGI_DATA *fdata;		// ƒZ[ƒu—p‚Ì‚Ó‚µ‚¬ƒf[ƒ^‚ğƒ[ƒh‚µ‚½êŠ
-  LOAD_RESULT result;		// ã‹Lƒf[ƒ^‚Ìƒ[ƒhó‹µ
+  FUSHIGI_DATA *fdata;		// ã‚»ãƒ¼ãƒ–ç”¨ã®ãµã—ããƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã—ãŸå ´æ‰€
+  LOAD_RESULT result;		// ä¸Šè¨˜ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰çŠ¶æ³
 
-  int warning_msg;		// Œx‰æ–Ê‚ÌƒƒbƒZ[ƒWID
+  int warning_msg;		// è­¦å‘Šç”»é¢æ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
 
-  GIFT_CARD gc;			// ƒJ[ƒh‚ğ•\¦‚·‚é‚½‚ß‚É•K—v
+  GIFT_CARD gc;			// ã‚«ãƒ¼ãƒ‰ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã«å¿…è¦
 
-  void *time_icon;		// ƒ^ƒCƒ€ƒAƒCƒRƒ“—p
+  void *time_icon;		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¤ã‚³ãƒ³ç”¨
   
 } POKEMONRANGER_WORK;
 
 
-// CheckPokemonRangerBeaconŠÖ”‚ª•Ô‚·’l
+// CheckPokemonRangerBeaconé–¢æ•°ãŒè¿”ã™å€¤
 enum {
-  POKEMONRANGER_RET_NONE,	// ‰½‚àƒCƒxƒ“ƒg‚Í–³‚¢
-  POKEMONRANGER_RET_FOUNDRANGER,// ƒŒƒ“ƒWƒƒ[‚ğŒ©‚Â‚¯‚½I
-  POKEMONRANGER_RET_DISCONNECT,	// ’ÊM‚ªØ‚ê‚½
-  POKEMONRANGER_RET_TIMEOUT,	// ƒ^ƒCƒ€ƒAƒEƒg
-  POKEMONRANGER_RET_SUCCESS,	// ‚½‚Ü‚²’ÊM¬Œ÷
-  POKEMONRANGER_RET_CANCEL,	// ƒ†[ƒU[‚©‚ç‚ÌƒLƒƒƒ“ƒZƒ‹
+  POKEMONRANGER_RET_NONE,	// ä½•ã‚‚ã‚¤ãƒ™ãƒ³ãƒˆã¯ç„¡ã„
+  POKEMONRANGER_RET_FOUNDRANGER,// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã‚’è¦‹ã¤ã‘ãŸï¼
+  POKEMONRANGER_RET_DISCONNECT,	// é€šä¿¡ãŒåˆ‡ã‚ŒãŸ
+  POKEMONRANGER_RET_TIMEOUT,	// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
+  POKEMONRANGER_RET_SUCCESS,	// ãŸã¾ã”é€šä¿¡æˆåŠŸ
+  POKEMONRANGER_RET_CANCEL,	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‹ã‚‰ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«
   POKEMONRANGER_RET_MAX
 };
 
@@ -168,35 +168,35 @@ char *vtable[] = {
 
 
 enum {
-    POKEMONRANGER_COMM_INIT,			// ƒ‚[ƒhŠJn’¼Œã‚ÌƒtƒF[ƒh‘Ò‚¿
-    POKEMONRANGER_COMM_IDLE,			// ’ÊMƒ‰ƒCƒuƒ‰ƒŠ‚Ì€”õ‘Ò‚¿
-    POKEMONRANGER_COMM_CHECK_PARENT_INIT,	// ƒŒƒ“ƒWƒƒ[ie‹@j‚ğ’T‚·‚½‚ß‚Ì‰Šú‰»
-    POKEMONRANGER_COMM_CHECK_PARENT,		// ƒŒƒ“ƒWƒƒ[ie‹@j‚ğ’T‚·
-    POKEMONRANGER_COMM_CONNECT_WAIT_PARENT,	// ƒŒƒ“ƒWƒƒ[ie‹@j‚ÌÚ‘±‰Â”\‚ğ‘Ò‚¿Ú‘±‚ğ—v‹
-    POKEMONRANGER_COMM_CREATE_SCREEN,		// V‹K’Ç‰Á@‰æ–Ê‚ğì‚é
-    POKEMONRANGER_COMM_WAIT_FADE_CREATE_SCREEN,	// V‹K’Ç‰Á@ƒtƒF[ƒh‚ªI—¹‚·‚é‚Ì‚ğ‘Ò‚Â
-    POKEMONRANGER_COMM_CONNECT_WAIT2_PARENT,	// ƒŒƒ“ƒWƒƒ[ie‹@j‚ÌÚ‘±‘Ò‚¿
-    POKEMONRANGER_COMM_SELECT_WAIT_PARENT,	// ƒŒƒ“ƒWƒƒ[ie‹@j‚Æƒf[ƒ^’ÊM‚·‚é‚©‚Ç‚¤‚©‚Ì‘I‘ğ
-    POKEMONRANGER_COMM_FIND_PARENT,		// ƒŒƒ“ƒWƒƒ[ie‹@j‚ÉÚ‘±’† ƒ†[ƒU[ƒf[ƒ^‘—M’†
-    POKEMONRANGER_COMM_SEND_USERDATA_WAIT,	// ƒŒƒ“ƒWƒƒ[ie‹@j‚Ö‚Ìƒ†[ƒU[ƒf[ƒ^‘—MI—¹‘Ò‚¿
-    POKEMONRANGER_COMM_RECV_PARENT_INIT,	// ƒŒƒ“ƒWƒƒ[ie‹@j‚©‚çóM‚·‚é‚½‚ß‚Ì‰Šú‰»
-    POKEMONRANGER_COMM_RECV_PARENT,		// ƒŒƒ“ƒWƒƒ[ie‹@j‚©‚çóM’†
-    POKEMONRANGER_COMM_RECV_SUCCESS,		// ƒŒƒ“ƒWƒƒ[ie‹@j‚©‚ç‚ÌóM¬Œ÷ ƒ^ƒ}ƒSî•ñƒZ[ƒuŠJn
-    POKEMONRANGER_COMM_SAVE_WAIT,		// ƒ^ƒ}ƒSî•ñƒZ[ƒu’†
-    POKEMONRANGER_COMM_SAVE_DUMMY_WAIT,		// ƒŒƒ“ƒWƒƒ[ie‹@j‚É“¯Šú‘Ò‚¿’†‘O‚Ìƒ_ƒ~[‘Ò‚¿
-    POKEMONRANGER_COMM_SAVE_SYNC,		// ƒ^ƒ}ƒSî•ñƒZ[ƒuI—¹ ƒŒƒ“ƒWƒƒ[ie‹@j‚É“¯Šú‘Ò‚¿ƒŠƒNƒGƒXƒg
-    POKEMONRANGER_COMM_SAVE_SYNC_WAIT,		// ƒŒƒ“ƒWƒƒ[ie‹@j‚É“¯Šú‘Ò‚¿’†    
+    POKEMONRANGER_COMM_INIT,			// ãƒ¢ãƒ¼ãƒ‰é–‹å§‹ç›´å¾Œã®ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡
+    POKEMONRANGER_COMM_IDLE,			// é€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®æº–å‚™å¾…ã¡
+    POKEMONRANGER_COMM_CHECK_PARENT_INIT,	// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã‚’æ¢ã™ãŸã‚ã®åˆæœŸåŒ–
+    POKEMONRANGER_COMM_CHECK_PARENT,		// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã‚’æ¢ã™
+    POKEMONRANGER_COMM_CONNECT_WAIT_PARENT,	// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã®æ¥ç¶šå¯èƒ½ã‚’å¾…ã¡æ¥ç¶šã‚’è¦æ±‚
+    POKEMONRANGER_COMM_CREATE_SCREEN,		// æ–°è¦è¿½åŠ ã€€ç”»é¢ã‚’ä½œã‚‹
+    POKEMONRANGER_COMM_WAIT_FADE_CREATE_SCREEN,	// æ–°è¦è¿½åŠ ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ãŒçµ‚äº†ã™ã‚‹ã®ã‚’å¾…ã¤
+    POKEMONRANGER_COMM_CONNECT_WAIT2_PARENT,	// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã®æ¥ç¶šå¾…ã¡
+    POKEMONRANGER_COMM_SELECT_WAIT_PARENT,	// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã¨ãƒ‡ãƒ¼ã‚¿é€šä¿¡ã™ã‚‹ã‹ã©ã†ã‹ã®é¸æŠ
+    POKEMONRANGER_COMM_FIND_PARENT,		// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã«æ¥ç¶šä¸­ ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿é€ä¿¡ä¸­
+    POKEMONRANGER_COMM_SEND_USERDATA_WAIT,	// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã¸ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿é€ä¿¡çµ‚äº†å¾…ã¡
+    POKEMONRANGER_COMM_RECV_PARENT_INIT,	// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã‹ã‚‰å—ä¿¡ã™ã‚‹ãŸã‚ã®åˆæœŸåŒ–
+    POKEMONRANGER_COMM_RECV_PARENT,		// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã‹ã‚‰å—ä¿¡ä¸­
+    POKEMONRANGER_COMM_RECV_SUCCESS,		// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã‹ã‚‰ã®å—ä¿¡æˆåŠŸ ã‚¿ãƒã‚´æƒ…å ±ã‚»ãƒ¼ãƒ–é–‹å§‹
+    POKEMONRANGER_COMM_SAVE_WAIT,		// ã‚¿ãƒã‚´æƒ…å ±ã‚»ãƒ¼ãƒ–ä¸­
+    POKEMONRANGER_COMM_SAVE_DUMMY_WAIT,		// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã«åŒæœŸå¾…ã¡ä¸­å‰ã®ãƒ€ãƒŸãƒ¼å¾…ã¡
+    POKEMONRANGER_COMM_SAVE_SYNC,		// ã‚¿ãƒã‚´æƒ…å ±ã‚»ãƒ¼ãƒ–çµ‚äº† ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã«åŒæœŸå¾…ã¡ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+    POKEMONRANGER_COMM_SAVE_SYNC_WAIT,		// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã«åŒæœŸå¾…ã¡ä¸­    
     POKEMONRANGER_COMM_SAVE_SYNC_END,
     POKEMONRANGER_COMM_RECV_END_WAIT,
-    POKEMONRANGER_COMM_RECV_END,		// ƒŒƒ“ƒWƒƒ[ie‹@j‚©‚ç‚ÌóM^ƒ^ƒ}ƒSî•ñƒZ[ƒuI—¹
-    POKEMONRANGER_COMM_NOTFIND_PARENT,		// ƒŒƒ“ƒWƒƒ[ie‹@j‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½^Ú‘±‚Å‚«‚È‚©‚Á‚½
-    POKEMONRANGER_COMM_DISCONNECT_PARENT,	// ƒŒƒ“ƒWƒƒ[ie‹@j‚Æ‚ÌÚ‘±‰ğœ
-    POKEMONRANGER_COMM_TIMEOUT,			// ƒŒƒ“ƒWƒƒ[‚Æ‚Ì’ÊM‚ªƒ^ƒCƒ€ƒAƒEƒg‚µ‚½
-    POKEMONRANGER_COMM_CANSEL,			// ƒŒƒ“ƒWƒƒ[‚Æ‚Ì’ÊM‚ğƒLƒƒƒ“ƒZƒ‹
-    POKEMONRANGER_COMM_STOP,			// ƒŒƒ“ƒWƒƒ[‚Æ‚Ì‘S‚Ä‚Ì’ÊMI—¹
-    POKEMONRANGER_COMM_RETURN_TITLE,		// ’ÊM‚ğI—¹‚³‚¹‚Äƒ^ƒCƒgƒ‹‚Ö–ß‚é
-    POKEMONRANGER_COMM_LOOP,			// ‰½‚à‚µ‚È‚¢
-    POKEMONRANGER_COMM_RESET,			// ƒŠƒZƒbƒgˆ—
+    POKEMONRANGER_COMM_RECV_END,		// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã‹ã‚‰ã®å—ä¿¡ï¼ã‚¿ãƒã‚´æƒ…å ±ã‚»ãƒ¼ãƒ–çµ‚äº†
+    POKEMONRANGER_COMM_NOTFIND_PARENT,		// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸï¼æ¥ç¶šã§ããªã‹ã£ãŸ
+    POKEMONRANGER_COMM_DISCONNECT_PARENT,	// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã¨ã®æ¥ç¶šè§£é™¤
+    POKEMONRANGER_COMM_TIMEOUT,			// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã®é€šä¿¡ãŒã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã—ãŸ
+    POKEMONRANGER_COMM_CANSEL,			// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã®é€šä¿¡ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+    POKEMONRANGER_COMM_STOP,			// ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã®å…¨ã¦ã®é€šä¿¡çµ‚äº†
+    POKEMONRANGER_COMM_RETURN_TITLE,		// é€šä¿¡ã‚’çµ‚äº†ã•ã›ã¦ã‚¿ã‚¤ãƒˆãƒ«ã¸æˆ»ã‚‹
+    POKEMONRANGER_COMM_LOOP,			// ä½•ã‚‚ã—ãªã„
+    POKEMONRANGER_COMM_RESET,			// ãƒªã‚»ãƒƒãƒˆå‡¦ç†
 
 #if AFTERMASTER_070207_POKEMONRANGER_CONNECTMENU_FIX
     POKEMONRANGER_COMM_SELECT_WAIT_PARENT_1,
@@ -209,26 +209,26 @@ enum {
 
 
 enum {
-  // ƒƒCƒ“ƒV[ƒPƒ“ƒX
-  POKEMONRANGER_SEQ_INIT,			// ˆê”ÔÅ‰‚Ì‰Šúİ’è
-  POKEMONRANGER_SEQ_DISP_ERROR,			// ‹N“®‚ÉƒGƒ‰[‚ª‚ ‚ê‚Î•\¦‚µ‚ÄI—¹
-  POKEMONRANGER_SEQ_INIT_SCREEN,		// Å‰‚Ì‰æ–Ê‚ğ•\¦
-  POKEMONRANGER_SEQ_FULL_WARNING,		// Œx‰æ–Ê•\¦
+  // ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+  POKEMONRANGER_SEQ_INIT,			// ä¸€ç•ªæœ€åˆã®åˆæœŸè¨­å®š
+  POKEMONRANGER_SEQ_DISP_ERROR,			// èµ·å‹•ã«ã‚¨ãƒ©ãƒ¼ãŒã‚ã‚Œã°è¡¨ç¤ºã—ã¦çµ‚äº†
+  POKEMONRANGER_SEQ_INIT_SCREEN,		// æœ€åˆã®ç”»é¢ã‚’è¡¨ç¤º
+  POKEMONRANGER_SEQ_FULL_WARNING,		// è­¦å‘Šç”»é¢è¡¨ç¤º
 
   POKEMONRANGER_SEQ_MAIN,
   POKEMONRANGER_SEQ_DISP_CARD_INIT,
   POKEMONRANGER_SEQ_DISP_CARD,
 
 
-  // ƒr[ƒRƒ“ŒŸõƒV[ƒPƒ“ƒX
-  POKEMONRANGER_SEQ_BEACON_INIT,		// “]‘—‚É•K—v‚Èƒf[ƒ^‚Ì‰Šú‰»
-  POKEMONRANGER_SEQ_BEACON_FIND,		// ƒr[ƒRƒ“‚ğ’T‚µ‚ÄÚ‘±
-  POKEMONRANGER_SEQ_BEACON_WAIT,		// ‰½‚à‚µ‚È‚¢
-  POKEMONRANGER_SEQ_BEACON_MAIN,		// ƒf[ƒ^‚ÌóM‚»‚Ì‘¼ˆ—
+  // ãƒ“ãƒ¼ã‚³ãƒ³æ¤œç´¢ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+  POKEMONRANGER_SEQ_BEACON_INIT,		// è»¢é€ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
+  POKEMONRANGER_SEQ_BEACON_FIND,		// ãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ¢ã—ã¦æ¥ç¶š
+  POKEMONRANGER_SEQ_BEACON_WAIT,		// ä½•ã‚‚ã—ãªã„
+  POKEMONRANGER_SEQ_BEACON_MAIN,		// ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡ãã®ä»–å‡¦ç†
 
 
-  POKEMONRANGER_SEQ_RESET,			// ƒ\ƒtƒgƒEƒFƒAƒŠƒZƒbƒg
-  POKEMONRANGER_SEQ_FINISH,			// I—¹‚µ‚Äƒ^ƒCƒgƒ‹‰æ–Ê‚Ö–ß‚é
+  POKEMONRANGER_SEQ_RESET,			// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒªã‚»ãƒƒãƒˆ
+  POKEMONRANGER_SEQ_FINISH,			// çµ‚äº†ã—ã¦ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã¸æˆ»ã‚‹
   POKEMONRANGER_SEQ_FADE_WAIT,
   
   POKEMONRANGER_SEQ_END
@@ -244,8 +244,8 @@ enum {
 #define POKEMONRANGER_WINDOWCHR	(POKEMONRANGER_FRAMECHR2+9)
 #define WAKU_PALETTE_NUMBER1	2
 #define WAKU_PALETTE_NUMBER2	3
-#define	FONT_PAL_NO_N		( 0 )	// ƒm[ƒ}ƒ‹ƒpƒŒƒbƒg
-#define	FONT_PAL_NO_S		( 1 )	// ‘I‘ğƒpƒŒƒbƒg
+#define	FONT_PAL_NO_N		( 0 )	// ãƒãƒ¼ãƒãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define	FONT_PAL_NO_S		( 1 )	// é¸æŠæ™‚ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define	POKEMONRANGER_BLACK	(GF_PRINTCOLOR_MAKE(1, 2, 15))
 #define	POKEMONRANGER_WHITE	(GF_PRINTCOLOR_MAKE(15, 2, 0))
 
@@ -267,15 +267,15 @@ extern void MysteryCard_DisplayCardOnly(GF_BGL_INI *bgl, void *, int heapid);
 
 
 
-// ƒ†[ƒU[–¼
+// ãƒ¦ãƒ¼ã‚¶ãƒ¼å
 static u16 ModeDptestName[PERSON_NAME_SIZE+EOM_SIZE] = { 0 };
-// ƒ†[ƒU[‚h‚c
+// ãƒ¦ãƒ¼ã‚¶ãƒ¼ï¼©ï¼¤
 static u16 ModeDptestUserId[10] = { 0 };
 
-// óMƒf[ƒ^ƒoƒbƒtƒ@
+// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
 static u8 ModeDptestRecvData[42] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, };
 
-// MP’ÊM—pƒfƒXƒNƒŠƒvƒ^
+// MPé€šä¿¡ç”¨ãƒ‡ã‚¹ã‚¯ãƒªãƒ—ã‚¿
 static MpInitDesc init_desc = {
   22, 1, OS_LANGUAGE_JAPANESE, POKEMONDP_CONNECT_ID, ModeDptestUserId, ModeDptestName,
 };
@@ -283,21 +283,21 @@ static MpInitDesc init_desc = {
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‹ì“®—p‚ÌVBlankFunc
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼é§†å‹•ç”¨ã®VBlankFunc
  */
 //------------------------------------------------------------------
 static void VBlankFunc( void * work )
 {
-  // ƒZƒ‹ƒAƒNƒ^[Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+  // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
   DoVramTransferManager();
-  // ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+  // ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
   REND_OAMTrans();	
   OS_SetIrqCheckFlag( OS_IE_V_BLANK );
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	’ÊM‚É•K—v‚Èƒf[ƒ^‚Ì‰Šú‰»
+ * @brief	é€šä¿¡ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
  * @param	NONE
  * @return	NONE
  */
@@ -308,12 +308,12 @@ static void PokemonRangerInitConnectData(POKEMONRANGER_WORK *wk)
   u32 code;
   const STRCODE *datap;
 
-  // ƒ†[ƒU[–¼‚ğRANGER-CODE‚Ö•ÏŠ·‚µ‚ÄŠi”[
+  // ãƒ¦ãƒ¼ã‚¶ãƒ¼åã‚’RANGER-CODEã¸å¤‰æ›ã—ã¦æ ¼ç´
   datap = MyStatus_GetMyName( wk->mst );
   for(i = 0; i < PERSON_NAME_SIZE+EOM_SIZE; i++)
     ModeDptestName[i] = ConvDP2Ranger(datap[i]);
 
-  // ƒ†[ƒU[ID‚ğ•¶š—ñ‚Ö•ÏŠ·‚µ‚ÄŠi”[
+  // ãƒ¦ãƒ¼ã‚¶ãƒ¼IDã‚’æ–‡å­—åˆ—ã¸å¤‰æ›ã—ã¦æ ¼ç´
   code = MyStatus_GetID_Low(wk->mst);
   ConvDPDec2RangerDec(&ModeDptestUserId[0], code);
   ModeDptestUserId[5] = ranger_EOM_;
@@ -322,7 +322,7 @@ static void PokemonRangerInitConnectData(POKEMONRANGER_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚a‚f‰Šú‰»
+ * @brief	ï¼¢ï¼§åˆæœŸåŒ–
  * @param	NONE
  * @return	NONE
  */
@@ -332,16 +332,16 @@ static void PokemonRangerInitScreen(POKEMONRANGER_WORK *wk)
   int type;
 
   GF_BGL_DISPVRAM tbl = {
-    GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-    GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-    GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-    GX_VRAM_SUB_BGEXTPLTT_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-    GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-    GX_VRAM_OBJEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-    GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-    GX_VRAM_SUB_OBJEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-    GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-    GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+    GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+    GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+    GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+    GX_VRAM_SUB_BGEXTPLTT_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+    GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+    GX_VRAM_OBJEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+    GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+    GX_VRAM_SUB_OBJEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+    GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+    GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
   };
   GF_BGL_SYS_HEADER BGsys_data = { GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BGMODE_0, GX_BG0_AS_2D };
 
@@ -355,45 +355,45 @@ static void PokemonRangerInitScreen(POKEMONRANGER_WORK *wk)
   MysteryLib_BgInitFrame(wk->bgl, GF_BGL_FRAME1_S, GF_BGL_SCRSIZ_256x256, 0x7000, 0x4000); /* SUB DISP BG1 */
   MSG_PrintInit();
 
-  /* ƒƒbƒZ[ƒW‚ÌƒtƒHƒ“ƒgƒJƒ‰[‚ğİ’è */
+  /* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ã‚’è¨­å®š */
   SystemFontPaletteLoad(PALTYPE_MAIN_BG, POKEMONRANGER_WCOL_NORMAL * 32, wk->heapid);
 
-  //ƒEƒBƒ“ƒhƒE˜gƒLƒƒƒ‰AƒpƒŒƒbƒg‚ğƒZƒbƒg
+  //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ ã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
   MenuWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, POKEMONRANGER_FCHR,  POKEMONRANGER_FCOL,     0, wk->heapid);
   type = CONFIG_GetWindowType(wk->cfg);
   TalkWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, POKEMONRANGER_TWCHR, POKEMONRANGER_TWCOL, type, wk->heapid);
 
-  // Šiq–Í—l‚ğ•\¦‚·‚é
-  // ƒƒCƒ“‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+  // æ ¼å­æ¨¡æ§˜ã‚’è¡¨ç¤ºã™ã‚‹
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
   ArcUtil_PalSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_nclr, PALTYPE_MAIN_BG, 16*2*8, 16*2, wk->heapid);
-  // ƒƒCƒ“‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
   ArcUtil_BgCharSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_lz_ccgr, wk->bgl,
 		    GF_BGL_FRAME1_M, 0, 10*16*0x20, 1, wk->heapid);
-  // ƒƒCƒ“‰æ–ÊƒXƒNƒŠ[ƒ“‚P
+  // ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ï¼‘
   ArcUtil_ScrnSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_lz_cscr, wk->bgl,
 		  GF_BGL_FRAME1_M, 0, 32*24*2, 1, wk->heapid);
   GF_BGL_ScrPalChange(wk->bgl, GF_BGL_FRAME1_M, 0, 0, 32, 24, 8);
   GF_BGL_LoadScreenReq(wk->bgl, GF_BGL_FRAME1_M);
-  // ƒTƒu‰æ–Ê‚ÌŠiq–Í—l‚ğ•\¦
+  // ã‚µãƒ–ç”»é¢ã®æ ¼å­æ¨¡æ§˜ã‚’è¡¨ç¤º
   PokemonRangerInitSubScreen(wk);
 }
 
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒu‰æ–Ê‚ÌŠiq–Í—l‚ğ•\¦
+ * @brief	ã‚µãƒ–ç”»é¢ã®æ ¼å­æ¨¡æ§˜ã‚’è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
 static void PokemonRangerInitSubScreen(POKEMONRANGER_WORK *wk)
 {
-  // ƒTƒu‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+  // ã‚µãƒ–ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
   ArcUtil_PalSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_nclr, PALTYPE_SUB_BG, 16*2*8, 16*2, wk->heapid);
-  // ƒTƒu‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+  // ã‚µãƒ–ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
   ArcUtil_BgCharSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_lz_ccgr, wk->bgl,
 		    GF_BGL_FRAME0_S, 0, 10*16*0x20, 1, wk->heapid);
-  // ƒTƒu‰æ–ÊƒXƒNƒŠ[ƒ“‚O
+  // ã‚µãƒ–ç”»é¢ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ï¼
   ArcUtil_ScrnSet(ARC_MYSTERY_GRA, NARC_mystery_fusigi_bg_00_lz_cscr, wk->bgl,
 		  GF_BGL_FRAME0_S, 0, 32*24*2, 1, wk->heapid);
   GF_BGL_ScrPalChange(wk->bgl, GF_BGL_FRAME0_S, 0, 0, 32, 24, 8);
@@ -402,7 +402,7 @@ static void PokemonRangerInitSubScreen(POKEMONRANGER_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚¸‚©‚ñ‚ğ‚Á‚Ä‚È‚¢‚ÌƒGƒ‰[•\¦
+ * @brief	ãšã‹ã‚“ã‚’æŒã£ã¦ãªã„æ™‚ã®ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -411,14 +411,14 @@ static BOOL PokemonRangerNoHaveZukan(POKEMONRANGER_WORK *wk)
 {
   MYSTERY_WIN mw;
 
-  // ƒGƒ‰[•\¦ƒEƒBƒ“ƒhƒE‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Å”»’f‚ğs‚¨‚¤‚©‚È
+  // ã‚¨ãƒ©ãƒ¼è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã§åˆ¤æ–­ã‚’è¡ŒãŠã†ã‹ãª
   if(GF_BGL_BmpWinAddCheck(&wk->ewin) == FALSE){
     MysteryLib_WinInit1(&mw, &wk->ewin, POKEMONRANGER_WCOL_NORMAL, NARC_msg_bconfind_dat, POKEMONRANGER_FCHR, POKEMONRANGER_FCOL);
     MysteryLib_WinInit2(&mw, 22, 16,wk->chrbase);
     MysteryLib_CreateWin(wk->bgl, &mw, 5, 4, bcon_003);
     return TRUE;
   } else {
-    // ƒGƒ‰[ƒEƒBƒ“ƒhƒE‚Ì•\¦’†
+    // ã‚¨ãƒ©ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºä¸­
     if(sys.trg & (PAD_BUTTON_DECIDE|PAD_BUTTON_CANCEL)){
       BmpMenuWinClear(&wk->ewin, WINDOW_TRANS_ON);
       GF_BGL_BmpWinDel(&wk->ewin);
@@ -431,7 +431,7 @@ static BOOL PokemonRangerNoHaveZukan(POKEMONRANGER_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	‚½‚Ü‚²‚ÌóM‰æ–Ê‚ğì¬
+ * @brief	ãŸã¾ã”ã®å—ä¿¡ç”»é¢ã‚’ä½œæˆ
  * @param	NONE
  * @return	NONE
  */
@@ -439,16 +439,16 @@ static BOOL PokemonRangerNoHaveZukan(POKEMONRANGER_WORK *wk)
 static void DisplayRangerStatus(POKEMONRANGER_WORK *wk);
 static void PokemonRangerCreateScreen(POKEMONRANGER_WORK *wk)
 {
-  // ‰Šú‚ÌƒƒbƒZ[ƒW•\¦(‰ï˜bƒEƒBƒ“ƒhƒE‚ğŠJ‚­)
+  // åˆæœŸã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º(ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã)
   MysteryLib_WinInit1(&wk->talkwin, &wk->twin,
 		      POKEMONRANGER_WCOL_NORMAL, NARC_msg_mystery_dat, POKEMONRANGER_TWCHR, POKEMONRANGER_TWCOL);
   MysteryLib_WinInit2(&wk->talkwin, 27, 4, /*mystery_test_001,*/ wk->chrbase);
   MysteryLib_WinInit3(&wk->talkwin, MYSTERYLIB_WINTYPE_TALK, FONT_TALK);
-  // uƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚©‚ç‚Ì@‚à‚¤‚µ‚±‚İ‚ğ\n‚¤‚¯‚Â‚¯‚Ä‚¢‚Ü‚·v
+  // ã€Œãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã‹ã‚‰ã®ã€€ã‚‚ã†ã—ã“ã¿ã‚’\nã†ã‘ã¤ã‘ã¦ã„ã¾ã™ã€
   MysteryLib_CreateWin(wk->bgl, &wk->talkwin, 2, 19, mystery_ranger_005);
   wk->chrbase += MysteryLib_GetWindowChr(&wk->talkwin);
 
-  // ‰æ–Êã‚Ìƒ^ƒCƒgƒ‹•\¦
+  // ç”»é¢ä¸Šã®ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
   MysteryLib_WinInit1(&wk->titlewin, &wk->ewin,
 		      POKEMONRANGER_WCOL_NORMAL, NARC_msg_mystery_dat, POKEMONRANGER_FCHR, POKEMONRANGER_FCOL);
   MysteryLib_WinInit2(&wk->titlewin, 30, 4, /*mystery_01_012,*/ wk->chrbase);
@@ -456,7 +456,7 @@ static void PokemonRangerCreateScreen(POKEMONRANGER_WORK *wk)
   MysteryLib_CreateWin(wk->bgl, &wk->titlewin, 1, 1, mystery_01_012);
   wk->chrbase += MysteryLib_GetWindowChr(&wk->titlewin);
 
-  // ƒAƒNƒ^[‰Šú‰»
+  // ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
   MysteryLib_InitCPManager();
   MysteryLib_InitClactSystem();
   MysteryLib_InitClact(ARC_MYSTERY_GRA,
@@ -465,7 +465,7 @@ static void PokemonRangerCreateScreen(POKEMONRANGER_WORK *wk)
 		       NARC_mystery_fusigi_cur_00_lz_ccer,
 		       NARC_mystery_fusigi_cur_00_lz_canr,
 		       GF_BGL_MAIN_DISP);
-  // «ƒAƒCƒRƒ“‚ğ“o˜^
+  // â†“ã‚¢ã‚¤ã‚³ãƒ³ã‚’ç™»éŒ²
   wk->arrow = MysteryLib_MakeCLACT(GF_BGL_MAIN_DISP, wk->arrow, HW_LCD_WIDTH/2, 76, 1);
   
   DisplayRangerStatus(wk);
@@ -474,7 +474,7 @@ static void PokemonRangerCreateScreen(POKEMONRANGER_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒŒƒ“ƒWƒƒ[‚É‘—‚Á‚½î•ñ‚ğ‚±‚¿‚ç‚É‚à•\¦
+ * @brief	ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã«é€ã£ãŸæƒ…å ±ã‚’ã“ã¡ã‚‰ã«ã‚‚è¡¨ç¤º
  * @param	NONE
  * @return	NONE
  */
@@ -495,17 +495,17 @@ static void DisplayRangerStatus(POKEMONRANGER_WORK *wk)
   //  wk->chrbase += MysteryLib_GetWindowChr(&wk->statwin);
   wk->statwin.word = word;
 
-  // –¼‘O‚ğİ’è
+  // åå‰ã‚’è¨­å®š
   WORDSET_RegisterPlayerName(word, 0, wk->mst);
-  // IDNo.‚ğİ’è
+  // IDNo.ã‚’è¨­å®š
   WORDSET_RegisterNumber(word, 1, MyStatus_GetID_Low(wk->mst), 5, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
   MysteryLib_CreateWin(wk->bgl, &wk->statwin, 3, 13, mystery_ranger_001);
 
-  // u‚à‚¤‚µ‚±‚İƒiƒ“ƒo[v•\¦
+  // ã€Œã‚‚ã†ã—ã“ã¿ãƒŠãƒ³ãƒãƒ¼ã€è¡¨ç¤º
   wk->statwin.redrawflag = FALSE;
   MysteryLib_WinSetPos(&wk->statwin, 0, FontHeaderGet(FONT_SYSTEM, FONT_HEADER_SIZE_Y));
   MysteryLib_CreateWin(wk->bgl, &wk->statwin, -1, -1, mystery_ranger_003);
-  // ‚à‚¤‚µ‚±‚İƒiƒ“ƒo[‚ğ‰E‹l‚Å•\¦
+  // ã‚‚ã†ã—ã“ã¿ãƒŠãƒ³ãƒãƒ¼ã‚’å³è©°ã§è¡¨ç¤º
   OS_GetMacAddress(mac_addr);
   mac_data = MpMACAddArrayToMACAddData(mac_addr);
   MpMACAddressToConnectCode(mac_data.u.data32, &high, &low);
@@ -520,7 +520,7 @@ static void DisplayRangerStatus(POKEMONRANGER_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	—˜—p‚µ‚½ƒƒ‚ƒŠ“™‚ğŠJ•ú
+ * @brief	åˆ©ç”¨ã—ãŸãƒ¡ãƒ¢ãƒªç­‰ã‚’é–‹æ”¾
  * @param	NONE
  * @return	NONE
  */
@@ -530,16 +530,16 @@ static void PokemonRangerFinish(PROC *proc)
   int i;
   POKEMONRANGER_WORK *wk = PROC_GetWork(proc);
 
-  // ƒZƒ‹ƒAƒNƒ^[‚ğíœ
+  // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤
   MysteryLib_RemoveClact();
   
-  // ƒEƒBƒ“ƒhƒEŠJ•ú
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
   if(GF_BGL_BmpWinAddCheck(&wk->ewin) == TRUE){
     GF_BGL_BmpWinOff(&wk->ewin); GF_BGL_BmpWinDel(&wk->ewin);
     GF_BGL_BmpWinOff(&wk->twin); GF_BGL_BmpWinDel(&wk->twin);
     GF_BGL_BmpWinOff(&wk->swin); GF_BGL_BmpWinDel(&wk->swin);
   }
-  // BGLŠJ•ú
+  // BGLé–‹æ”¾
   GF_BGL_BGControlExit(wk->bgl, GF_BGL_FRAME0_M);
   GF_BGL_BGControlExit(wk->bgl, GF_BGL_FRAME1_M);
   GF_BGL_BGControlExit(wk->bgl, GF_BGL_FRAME0_S);
@@ -550,8 +550,8 @@ static void PokemonRangerFinish(PROC *proc)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒX‹ì“®‚É•K—v‚Èƒ[ƒNƒGƒŠƒA‰Šú‰»
- * @param	wk	’ÊMŠÖŒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é§†å‹•ã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢åˆæœŸåŒ–
+ * @param	wk	é€šä¿¡é–¢ä¿‚ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	NONE
  */
 //--------------------------------------------------------------------------------------------
@@ -560,29 +560,29 @@ static PROC_RESULT PokemonRangerProc_Init(PROC * proc, int * seq)
   POKEMONRANGER_WORK *wk;
 
   wk = MysteryLib_InitProc(proc, HEAPID_POKEMONRANGER, sizeof(POKEMONRANGER_WORK), 0x20000);
-  // Šeí•Ï”‚Ì‰Šú‰»
+  // å„ç¨®å¤‰æ•°ã®åˆæœŸåŒ–
   wk->heapid = HEAPID_POKEMONRANGER;
   wk->bgl = GF_BGL_BglIniAlloc(wk->heapid);
   wk->sv = ((MAINWORK *)PROC_GetParentWork(proc))->savedata;
   wk->mst = SaveData_GetMyStatus(wk->sv);
   wk->zw = SaveData_GetZukanWork(wk->sv);
   wk->cfg = SaveData_GetConfig(wk->sv);
-  // ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»
+  // ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–
   MysteryLib_Init(wk->heapid);
-  // ‚Ó‚µ‚¬ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚ğ“¾‚é
+  // ãµã—ããƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹
   wk->fdata = SaveData_GetFushigiData(wk->sv);
   
-  // •Ï”‰Šú‰»
+  // å¤‰æ•°åˆæœŸåŒ–
   wk->beacon_seq = POKEMONRANGER_SEQ_BEACON_WAIT;
   wk->chrbase =POKEMONRANGER_WCHR;
   wk->beacon_check_time = 0;
   wk->seq = POKEMONRANGER_COMM_INIT;
   wk->doproc = FALSE;
 
-  // ’ÊMƒAƒCƒRƒ“‚ğ•\¦‚·‚é‚½‚ß‚Ìƒq[ƒvŠm•Û
+  // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒ’ãƒ¼ãƒ—ç¢ºä¿
   sys_CreateHeap( HEAPID_BASE_SYSTEM, HEAPID_COMMICON, 0x300 );
   
-  /* ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh */
+  /* ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ */
   Snd_DataSetByScene( SND_SCENE_AGB, SEQ_PRESENT, 1 );
 
   return PROC_RES_FINISH;
@@ -591,7 +591,7 @@ static PROC_RESULT PokemonRangerProc_Init(PROC * proc, int * seq)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒvƒƒZƒX‚ÌƒƒCƒ“ˆ—
+ * @brief	ãƒ—ãƒ­ã‚»ã‚¹ã®ãƒ¡ã‚¤ãƒ³å‡¦ç†
  * @param	NONE
  * @return	NONE
  */
@@ -603,7 +603,7 @@ static PROC_RESULT PokemonRangerProc_Main(PROC * proc, int * seq)
   switch(*seq){
   case POKEMONRANGER_SEQ_INIT:
     PokemonRangerInitScreen(wk);
-    // ‚¸‚©‚ñ‚ğ‚Á‚Ä‚¢‚È‚¯‚ê‚ÎŒx‚ğ•\¦‚µ‚Äƒ^ƒCƒgƒ‹‚Ö–ß‚é
+    // ãšã‹ã‚“ã‚’æŒã£ã¦ã„ãªã‘ã‚Œã°è­¦å‘Šã‚’è¡¨ç¤ºã—ã¦ã‚¿ã‚¤ãƒˆãƒ«ã¸æˆ»ã‚‹
     if(ZukanWork_GetZukanGetFlag(wk->zw) == FALSE)
       MysteryLib_RequestFade(WIPE_TYPE_FADEIN, POKEMONRANGER_SEQ_DISP_ERROR,  seq, POKEMONRANGER_SEQ_FADE_WAIT);
     else
@@ -611,7 +611,7 @@ static PROC_RESULT PokemonRangerProc_Main(PROC * proc, int * seq)
     break;
 
   case POKEMONRANGER_SEQ_DISP_ERROR:
-    // ‹N“®‚ÉƒGƒ‰[‚ª‚ ‚ê‚Î•\¦‚µ‚ÄI—¹
+    // èµ·å‹•ã«ã‚¨ãƒ©ãƒ¼ãŒã‚ã‚Œã°è¡¨ç¤ºã—ã¦çµ‚äº†
     if(PokemonRangerNoHaveZukan(wk) == FALSE){
       MysteryLib_ChangeFadeType(1);
       MysteryLib_RequestFade(WIPE_TYPE_FADEOUT, POKEMONRANGER_SEQ_FINISH, seq, POKEMONRANGER_SEQ_FADE_WAIT);
@@ -619,31 +619,31 @@ static PROC_RESULT PokemonRangerProc_Main(PROC * proc, int * seq)
     break;
     
   case POKEMONRANGER_SEQ_INIT_SCREEN:
-    // Å‰‚Ì‰æ–Ê‚ğ•\¦
+    // æœ€åˆã®ç”»é¢ã‚’è¡¨ç¤º
     PokemonRangerCreateScreen(wk);
 
 #if 0
     if(FUSHIGIDATA_CheckCardDataSpace(wk->fdata) == FALSE){
-      // ƒJ[ƒh—Ìˆæ‚ª‚¢‚Á‚Ï‚¢‚Ìê‡‚ÍŒx‚ğ•\¦‚µ‚ÄI—¹
+      // ã‚«ãƒ¼ãƒ‰é ˜åŸŸãŒã„ã£ã±ã„ã®å ´åˆã¯è­¦å‘Šã‚’è¡¨ç¤ºã—ã¦çµ‚äº†
       wk->talkwin.msgspd = 1;
       wk->warning_msg = MysteryLib_CreateWin(wk->bgl, &wk->talkwin, 2, 19, mystery_err_005);
       MysteryLib_RequestFade(WIPE_TYPE_FADEIN, POKEMONRANGER_SEQ_FULL_WARNING,  seq, POKEMONRANGER_SEQ_FADE_WAIT);
     } else
 #endif
       if(FUSHIGIDATA_CheckDeliDataSpace(wk->fdata) == FALSE){
-      // ”z’Bˆõ‚ª‚¢‚Á‚Ï‚¢‚Ìê‡‚ÍŒx‚ğ•\¦‚µ‚ÄI—¹
+      // é…é”å“¡ãŒã„ã£ã±ã„ã®å ´åˆã¯è­¦å‘Šã‚’è¡¨ç¤ºã—ã¦çµ‚äº†
       wk->talkwin.msgspd = 1;
       wk->warning_msg = MysteryLib_CreateWin(wk->bgl, &wk->talkwin, 2, 19, mystery_err_001);
       MysteryLib_RequestFade(WIPE_TYPE_FADEIN, POKEMONRANGER_SEQ_FULL_WARNING,  seq, POKEMONRANGER_SEQ_FADE_WAIT);
     } else {
-      // ƒr[ƒRƒ“ŒŸõŠJn
+      // ãƒ“ãƒ¼ã‚³ãƒ³æ¤œç´¢é–‹å§‹
       wk->beacon_seq = POKEMONRANGER_SEQ_BEACON_INIT;
       MysteryLib_RequestFade(WIPE_TYPE_FADEIN, POKEMONRANGER_SEQ_MAIN,  seq, POKEMONRANGER_SEQ_FADE_WAIT);
     }
     break;
 
   case POKEMONRANGER_SEQ_FULL_WARNING:
-    // Œx‰æ–Ê•\¦
+    // è­¦å‘Šç”»é¢è¡¨ç¤º
     if(GF_MSG_PrintEndCheck(wk->warning_msg) == 0 && sys.trg & PAD_BUTTON_DECIDE){
       MysteryLib_ChangeFadeType(1);
       MysteryLib_RequestFade(WIPE_TYPE_FADEOUT, POKEMONRANGER_SEQ_FINISH,  seq, POKEMONRANGER_SEQ_FADE_WAIT);
@@ -651,9 +651,9 @@ static PROC_RESULT PokemonRangerProc_Main(PROC * proc, int * seq)
     break;
     
   case POKEMONRANGER_SEQ_MAIN:
-    // ‚±‚±‚Å’ÊM‚ÌƒƒCƒ“ˆ—‚ğs‚¤
+    // ã“ã“ã§é€šä¿¡ã®ãƒ¡ã‚¤ãƒ³å‡¦ç†ã‚’è¡Œã†
     wk->beacon_ret = CheckPokemonRangerBeacon(wk);
-    // I—¹‚·‚é‚©AƒLƒƒƒ“ƒZƒ‹‚³‚ê‚é‚Ü‚Å‘Ò‚Â
+    // çµ‚äº†ã™ã‚‹ã‹ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã‚‹ã¾ã§å¾…ã¤
     if(wk->beacon_ret == POKEMONRANGER_RET_CANCEL){
       MysteryLib_ChangeFadeType(1);
       MysteryLib_RequestFade(WIPE_TYPE_FADEOUT, POKEMONRANGER_SEQ_FINISH,  seq, POKEMONRANGER_SEQ_FADE_WAIT);
@@ -668,11 +668,11 @@ static PROC_RESULT PokemonRangerProc_Main(PROC * proc, int * seq)
     break;
 
   case POKEMONRANGER_SEQ_DISP_CARD_INIT:
-    // ‰º‰æ–Ê‚ÍŠiq–Í—l‚ğ•œŠˆ
+    // ä¸‹ç”»é¢ã¯æ ¼å­æ¨¡æ§˜ã‚’å¾©æ´»
     PokemonRangerInitSubScreen(wk);
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
-    // ã‰æ–Ê‚ÍƒJ[ƒhî•ñ‚Ì•\¦
+    // ä¸Šç”»é¢ã¯ã‚«ãƒ¼ãƒ‰æƒ…å ±ã®è¡¨ç¤º
     MysteryCard_DisplayCardOnly(wk->bgl, &wk->gc, HEAPID_POKEMONRANGER);
     MysteryLib_RequestFade(WIPE_TYPE_FADEIN, POKEMONRANGER_SEQ_DISP_CARD, seq, POKEMONRANGER_SEQ_FADE_WAIT);
     wk->gc.beacon.have_card = 0;
@@ -684,23 +684,23 @@ static PROC_RESULT PokemonRangerProc_Main(PROC * proc, int * seq)
     break;
 
   case POKEMONRANGER_SEQ_RESET:
-    // ‰ü‘¢‘Îô“™‚Ì–î‚É‚æ‚èƒ\ƒtƒgƒEƒFƒAƒŠƒZƒbƒg
+    // æ”¹é€ å¯¾ç­–ç­‰ã®äº‹æƒ…ã«ã‚ˆã‚Šã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒªã‚»ãƒƒãƒˆ
     OS_ResetSystem(0); 
     break;
 
   case POKEMONRANGER_SEQ_FINISH:
-    // Œãn––‚µ‚Äƒ^ƒCƒgƒ‹‚Ö–ß‚é
+    // å¾Œå§‹æœ«ã—ã¦ã‚¿ã‚¤ãƒˆãƒ«ã¸æˆ»ã‚‹
     PokemonRangerFinish(proc);
     return PROC_RES_FINISH;
     break;
     
   case POKEMONRANGER_SEQ_FADE_WAIT:
-    // ƒtƒF[ƒh‚ªI—¹‚·‚é‚Ü‚Å‘Ò‚Á‚ÄŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
+    // ãƒ•ã‚§ãƒ¼ãƒ‰ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã£ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
     MysteryLib_FadeEndCheck(seq);
     break;
   }
 
-  // ƒAƒCƒRƒ“‚ğ•\¦‚·‚é‚½‚ß‚É•K—v‚È‹ì“®ˆ—
+  // ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã«å¿…è¦ãªé§†å‹•å‡¦ç†
   MysteryLib_DoClact();
 
   return PROC_RES_CONTINUE;
@@ -714,7 +714,7 @@ static PROC_RESULT PokemonRangerProc_End(PROC * proc, int * seq)
   PROC_FreeWork(proc);
   sys_DeleteHeap(HEAPID_POKEMONRANGER);
 
-  OS_TPrintf("I—¹‚µ‚Ü‚µ‚½\n");
+  OS_TPrintf("çµ‚äº†ã—ã¾ã—ãŸ\n");
 
   return PROC_RES_FINISH;
 }
@@ -722,7 +722,7 @@ static PROC_RESULT PokemonRangerProc_End(PROC * proc, int * seq)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚ÌƒZ[ƒuƒf[ƒ^‚ğì¬
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
  * @param	NONE
  * @return	NONE
  */
@@ -743,54 +743,54 @@ static void CreatePokemonRangerSaveData(POKEMONRANGER_WORK *wk)
   msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_mystery_dat, wk->heapid);
   word = WORDSET_Create(wk->heapid);
 
-  // ƒJ[ƒh‚Ìƒf[ƒ^‚ğì¬‚·‚é
-  gc->gift_type = MYSTERYGIFT_TYPE_RANGEREGG;	// ‚¨‚­‚è‚à‚Ìƒ^ƒCƒv‚Íuƒ}ƒiƒtƒB‚Ì‚½‚Ü‚²v
+  // ã‚«ãƒ¼ãƒ‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
+  gc->gift_type = MYSTERYGIFT_TYPE_RANGEREGG;	// ãŠãã‚Šã‚‚ã®ã‚¿ã‚¤ãƒ—ã¯ã€ŒãƒãƒŠãƒ•ã‚£ã®ãŸã¾ã”ã€
   
-  // ƒJ[ƒhƒ^ƒCƒgƒ‹‚Ìİ’è
+  // ã‚«ãƒ¼ãƒ‰ã‚¿ã‚¤ãƒˆãƒ«ã®è¨­å®š
   msg = MSGDAT_UTIL_AllocExpandString(word, msgman, mystery_ranger_011, wk->heapid);
   STRBUF_GetStringCode((const STRBUF *)msg, gc->beacon.event_name, GIFT_DATA_CARD_TITLE_MAX);
   STRBUF_Delete(msg);
 
-  gc->beacon.version = (			// ‘ÎÛƒo[ƒWƒ‡ƒ“
+  gc->beacon.version = (			// å¯¾è±¡ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 			MysteryLib_GetCasetteCode(VERSION_DIAMOND) |
 			MysteryLib_GetCasetteCode(VERSION_PEARL) |
 			MysteryLib_GetCasetteCode(VERSION_PLATINUM));
-  gc->beacon.event_id = MYSTERYGIFT_MANAFIEGG;	// ƒ}ƒiƒtƒB‚Ì‚½‚Ü‚²‚Í‚P”Ô
-  gc->beacon.only_one_flag = 0;			// ‚P“x‚¾‚¯”zMƒtƒ‰ƒO(‰½“x‚Å‚àó‚¯æ‚ê‚é)
-  gc->beacon.access_point = 0;			// ƒAƒNƒZƒXƒ|ƒCƒ“ƒg(–³Œø)
-  gc->beacon.have_card = 1;			// ƒJ[ƒhî•ñ‚ğŠÜ‚ñ‚Å‚¢‚é
-  gc->beacon.delivery_flag = 1;			// ”z’Bˆõ‚©‚çó‚¯æ‚é‚à‚Ì‚ğŠÜ‚ñ‚Å‚¢‚é
-  gc->beacon.groundchild_flag = 0;		// ‘·”z•z‚Å‚Í‚È‚¢
+  gc->beacon.event_id = MYSTERYGIFT_MANAFIEGG;	// ãƒãƒŠãƒ•ã‚£ã®ãŸã¾ã”ã¯ï¼‘ç•ª
+  gc->beacon.only_one_flag = 0;			// ï¼‘åº¦ã ã‘é…ä¿¡ãƒ•ãƒ©ã‚°(ä½•åº¦ã§ã‚‚å—ã‘å–ã‚Œã‚‹)
+  gc->beacon.access_point = 0;			// ã‚¢ã‚¯ã‚»ã‚¹ãƒã‚¤ãƒ³ãƒˆ(ç„¡åŠ¹)
+  gc->beacon.have_card = 1;			// ã‚«ãƒ¼ãƒ‰æƒ…å ±ã‚’å«ã‚“ã§ã„ã‚‹
+  gc->beacon.delivery_flag = 1;			// é…é”å“¡ã‹ã‚‰å—ã‘å–ã‚‹ã‚‚ã®ã‚’å«ã‚“ã§ã„ã‚‹
+  gc->beacon.groundchild_flag = 0;		// å­«é…å¸ƒã§ã¯ãªã„
   
-  // ƒCƒxƒ“ƒgƒeƒLƒXƒg‚Ì•¶š—ñ‚Ìİ’è
+  // ã‚¤ãƒ™ãƒ³ãƒˆãƒ†ã‚­ã‚¹ãƒˆã®æ–‡å­—åˆ—ã®è¨­å®š
   msg = MSGDAT_UTIL_AllocExpandString(word, msgman, mystery_ranger_010, wk->heapid);
   STRBUF_GetStringCode((const STRBUF *)msg, gc->event_text, GIFT_DATA_CARD_TEXT_MAX);
   STRBUF_Delete(msg);
 
-  gc->re_deal_count = 0;			// Ä”z•z‚Ì‰ñ”(Ä”z•z‚Ío—ˆ‚È‚¢)
-  gc->pokemon_icon[0] = MONSNO_MANAFI;		// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“(ƒ}ƒiƒtƒB)
-  gc->pokemon_icon[1] = 0;			// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“(‚È‚µ)
-  gc->pokemon_icon[2] = 0;			// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“(‚È‚µ)
-  gc->re_dealed_count = 0;			// ”z•z‚µ‚½‰ñ”
+  gc->re_deal_count = 0;			// å†é…å¸ƒã®å›æ•°(å†é…å¸ƒã¯å‡ºæ¥ãªã„)
+  gc->pokemon_icon[0] = MONSNO_MANAFI;		// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³(ãƒãƒŠãƒ•ã‚£)
+  gc->pokemon_icon[1] = 0;			// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³(ãªã—)
+  gc->pokemon_icon[2] = 0;			// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³(ãªã—)
+  gc->re_dealed_count = 0;			// é…å¸ƒã—ãŸå›æ•°
   GF_RTC_GetDate(&date);
-  gc->recv_date = RTC_ConvertDateToDay(&date);	// ƒZ[ƒu‚·‚é“ú•t‚ğ“ü‚ê‚é
+  gc->recv_date = RTC_ConvertDateToDay(&date);	// ã‚»ãƒ¼ãƒ–ã™ã‚‹æ—¥ä»˜ã‚’å…¥ã‚Œã‚‹
 
   WORDSET_Delete(word);
   MSGMAN_Delete(msgman);
 			
-  // ƒZ[ƒu—Ìˆæ‚É“o˜^(–‘O‚É‹ó‚«—Ìˆæ‚ğƒ`ƒFƒbƒN‚µ‚Ä‚é‚Ì‚Åâ‘Î‚É‘åä•v)
+  // ã‚»ãƒ¼ãƒ–é ˜åŸŸã«ç™»éŒ²(äº‹å‰ã«ç©ºãé ˜åŸŸã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ã‚‹ã®ã§çµ¶å¯¾ã«å¤§ä¸ˆå¤«)
 #if 0
   FUSHIGIDATA_SetCardData(wk->fdata, gc);
 #else
   FUSHIGIDATA_SetDeliData(wk->fdata, &gc->gift_type, GIFT_CARD_NONE);
 #endif
 #if 1
-  // ‚±‚±‚Å‰º‰æ–Ê‚ÌXV(ó‚¯æ‚èƒAƒjƒ[ƒVƒ‡ƒ“’Ç‰Á)
+  // ã“ã“ã§ä¸‹ç”»é¢ã®æ›´æ–°(å—ã‘å–ã‚Šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¿½åŠ )
   GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
   MysteryLib_InitGift(wk->bgl, (GIFT_DELIVERY *)gc);
 #endif
 #if 0
-  // Œãn––
+  // å¾Œå§‹æœ«
   sys_FreeMemoryEz(gc);
 #endif
 }
@@ -798,7 +798,7 @@ static void CreatePokemonRangerSaveData(POKEMONRANGER_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒ€ƒAƒEƒgİ’è
+ * @brief	ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆè¨­å®š
  * @param	NONE
  * @return	NONE
  */
@@ -811,28 +811,28 @@ static void PokemonRangerSetTimeOut(POKEMONRANGER_WORK *wk, int time)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ^ƒCƒ€ƒAƒEƒgA’ÊMØ’fAƒLƒƒƒ“ƒZƒ‹ˆ—
+ * @brief	ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã€é€šä¿¡åˆ‡æ–­ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
  * @param	NONE
  * @return	NONE
  */
 //------------------------------------------------------------------
 static int PokemonRangerCheckConnect(POKEMONRANGER_WORK *wk, int *seq, int flag, u32 key)
 {
-  // ƒ^ƒCƒ€ƒAƒEƒgˆ—
+  // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå‡¦ç†
   if(--wk->mp_time_out == 0){
     MpRequestClose();
     *seq = POKEMONRANGER_COMM_TIMEOUT;
     return 0;
   }
   if(flag){
-    // ’ÊMØ’fƒ`ƒFƒbƒN
+    // é€šä¿¡åˆ‡æ–­ãƒã‚§ãƒƒã‚¯
     if(!MpIsConnect()){
       MpRequestClose();
       *seq = POKEMONRANGER_COMM_DISCONNECT_PARENT;
       return 0;
     }
   }
-  // ƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒN
+  // ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯
   if(key && sys.trg & key){
     MpRequestClose();
     *seq = POKEMONRANGER_COMM_RETURN_TITLE;
@@ -845,8 +845,8 @@ static int PokemonRangerCheckConnect(POKEMONRANGER_WORK *wk, int *seq, int flag,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚Æ‚Ì’ÊMƒV[ƒPƒ“ƒX
- * ¦‚±‚Ìˆ—‚Ísrc/system/startmenu.c‚©‚çŒÄ‚Ño‚³‚ê‚Ü‚·
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã®é€šä¿¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ * â€»ã“ã®å‡¦ç†ã¯src/system/startmenu.cã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã¾ã™
  *
  * @param	none
  *
@@ -859,12 +859,12 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
   u16 *p1;
   int *seq = &wk->seq;
 
-  // ƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»‚ªI—¹‚·‚é‚Ü‚Å‚ÍMpProc‚ğŒÄ‚Ño‚³‚È‚¢
+  // ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–ãŒçµ‚äº†ã™ã‚‹ã¾ã§ã¯MpProcã‚’å‘¼ã³å‡ºã•ãªã„
   if(wk->doproc == TRUE){
     WirelessIconEasy_SetLevel(WM_LINK_LEVEL_3 - MpGetConnectLinkLevel());
-    // ƒƒCƒ“ˆ—‹ì“®
+    // ãƒ¡ã‚¤ãƒ³å‡¦ç†é§†å‹•
     MpProc();
-    // g—p‚·‚éƒ|[ƒg”Ô†İ’è
+    // ä½¿ç”¨ã™ã‚‹ãƒãƒ¼ãƒˆç•ªå·è¨­å®š
     MpSetChannel(POKEMONRANGER_CONNECT_CH);
   }
 
@@ -872,7 +872,7 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
 
   switch(*seq){
   case POKEMONRANGER_COMM_INIT:
-    /// VRAMD‚ÉƒCƒNƒjƒ…[ƒ‚ƒ“‚ğ“ü‚ê‚é
+    /// VRAMDã«ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³ã‚’å…¥ã‚Œã‚‹
     PokemonRangerInitConnectData(wk);
     CommVRAMDInitialize();
     wk->commvramload = TRUE;
@@ -880,63 +880,63 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
     break;
 
   case POKEMONRANGER_COMM_IDLE:
-    /// VRAMD‚ÖƒCƒNƒjƒ…[ƒ‚ƒ“‚ª“ü‚é‚Ì‚ğ‘Ò‚Â
+    /// VRAMDã¸ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³ãŒå…¥ã‚‹ã®ã‚’å¾…ã¤
     if(CommIsVRAMDInitialize()){
-      // ’ÊM‰Šú‰»
+      // é€šä¿¡åˆæœŸåŒ–
       MpInit(&init_desc, wk->mp_buf);
-      // ‚±‚êˆÈ~‚ÍMpProc‚ğŒÄ‚Ño‚µ‚ÄOK
+      // ã“ã‚Œä»¥é™ã¯MpProcã‚’å‘¼ã³å‡ºã—ã¦OK
       wk->doproc = TRUE;
-      // ’ÊMƒAƒCƒRƒ“•\¦
+      // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
       WirelessIconEasy();
       *seq = POKEMONRANGER_COMM_CHECK_PARENT_INIT;
     }
     break;
 
   case POKEMONRANGER_COMM_CHECK_PARENT_INIT:
-    // q‹@‚Æ‚µ‚Ä’ÊMŠJn
+    // å­æ©Ÿã¨ã—ã¦é€šä¿¡é–‹å§‹
     MpRequestScan();
-    // ƒ^ƒCƒ€ƒAƒEƒg‚Í1600ƒtƒŒ[ƒ€
+    // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã¯1600ãƒ•ãƒ¬ãƒ¼ãƒ 
     PokemonRangerSetTimeOut(wk, 1600);
     wk->time_icon = TimeWaitIconAdd(&wk->twin, POKEMONRANGER_TWCHR);
     *seq = POKEMONRANGER_COMM_CHECK_PARENT;
     break;
 
   case POKEMONRANGER_COMM_CHECK_PARENT:
-    // e‹@iƒŒƒ“ƒWƒƒ[j”­Œ©‘Ò‚¿
+    // è¦ªæ©Ÿï¼ˆãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼‰ç™ºè¦‹å¾…ã¡
     num = MpGetConnectListNum();
     if (num) {
-      // ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚ğ”­Œ©‚µ‚½I
+      // ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã‚’ç™ºè¦‹ã—ãŸï¼
       wk->connect_num = num - 1;
-      // ƒ^ƒCƒ€ƒAƒEƒgİ’è
+      // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆè¨­å®š
       PokemonRangerSetTimeOut(wk, 1800);
       *seq = POKEMONRANGER_COMM_CONNECT_WAIT_PARENT;
     }
-    // ƒ^ƒCƒ€ƒAƒEƒgA’ÊMØ’fAƒLƒƒƒ“ƒZƒ‹ˆ—
+    // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã€é€šä¿¡åˆ‡æ–­ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
     PokemonRangerCheckConnect(wk, seq, 0, PAD_BUTTON_CANCEL);
 
     break;
 
-    // «‚±‚±‚©‚çÚ‘±ˆ—
+    // â†“ã“ã“ã‹ã‚‰æ¥ç¶šå‡¦ç†
     
   case POKEMONRANGER_COMM_CONNECT_WAIT_PARENT:
-    // e‹@iƒŒƒ“ƒWƒƒ[j‚ÌÚ‘±‰Â”\‘Ò‚¿
+    // è¦ªæ©Ÿï¼ˆãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼‰ã®æ¥ç¶šå¯èƒ½å¾…ã¡
     if (MpGetConnectParentEnable(wk->connect_num)) {
-      // Ú‘±—v‹
+      // æ¥ç¶šè¦æ±‚
       MpConnectParent(wk->connect_num);
       *seq = POKEMONRANGER_COMM_CONNECT_WAIT2_PARENT;
       wk->mp_time_out = 1800;
     }
-    // ƒ^ƒCƒ€ƒAƒEƒgA’ÊMØ’fAƒLƒƒƒ“ƒZƒ‹ˆ—
+    // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã€é€šä¿¡åˆ‡æ–­ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
     PokemonRangerCheckConnect(wk, seq, 0, PAD_BUTTON_CANCEL);
     break;
 
   case POKEMONRANGER_COMM_CONNECT_WAIT2_PARENT:
-    // e‹@iƒŒƒ“ƒWƒƒ[j‚ÌÚ‘±‘Ò‚¿
+    // è¦ªæ©Ÿï¼ˆãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼‰ã®æ¥ç¶šå¾…ã¡
 
-    // ƒ^ƒCƒ€ƒAƒEƒgA’ÊMØ’fAƒLƒƒƒ“ƒZƒ‹ˆ—
+    // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã€é€šä¿¡åˆ‡æ–­ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
     PokemonRangerCheckConnect(wk, seq, 0, PAD_BUTTON_CANCEL);
 
-    // Ú‘±‚Å‚«‚½‚çPOKEMONRANGER_COMM_SELECT_WAIT_PARENT
+    // æ¥ç¶šã§ããŸã‚‰POKEMONRANGER_COMM_SELECT_WAIT_PARENT
     if (MpIsConnect()) {
 #if !AFTERMASTER_070207_POKEMONRANGER_CONNECTMENU_FIX
       *seq = POKEMONRANGER_COMM_SELECT_WAIT_PARENT;
@@ -948,8 +948,8 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
 
 #if AFTERMASTER_070207_POKEMONRANGER_CONNECTMENU_FIX
   case POKEMONRANGER_COMM_SELECT_WAIT_PARENT_1:
-    MysteryLib_CreateWin(wk->bgl, &wk->talkwin, 2, 19, mystery_test_002); // u‚`ƒ{ƒ^ƒ“‚ğ@‚¨‚µ‚Ä@‚­‚¾‚³‚¢v
-    // «ƒAƒCƒRƒ“‚ğˆê“I‚ÉÁ‚·
+    MysteryLib_CreateWin(wk->bgl, &wk->talkwin, 2, 19, mystery_test_002); // ã€Œï¼¡ãƒœã‚¿ãƒ³ã‚’ã€€ãŠã—ã¦ã€€ãã ã•ã„ã€
+    // â†“ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä¸€æ™‚çš„ã«æ¶ˆã™
     CLACT_SetDrawFlag(wk->arrow, 0);
     TimeWaitIconDel(wk->time_icon);
     wk->time_icon = NULL;
@@ -961,32 +961,32 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
     if(sys.trg & PAD_BUTTON_DECIDE){
       *seq = POKEMONRANGER_COMM_SELECT_WAIT_PARENT;
     }
-    // ƒ^ƒCƒ€ƒAƒEƒgA’ÊMØ’fAƒLƒƒƒ“ƒZƒ‹ˆ—
+    // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã€é€šä¿¡åˆ‡æ–­ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
     PokemonRangerCheckConnect(wk, seq, 1, PAD_BUTTON_CANCEL);
     break;
 #endif
 
   case POKEMONRANGER_COMM_SELECT_WAIT_PARENT:
-    // ƒŒƒ“ƒWƒƒ[ie‹@j‚Æƒf[ƒ^’ÊM‚·‚é‚©‚Ç‚¤‚©‚Ì‘I‘ğ
-    // ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚ÖÚ‘±‚ğ‚·‚é
+    // ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã¨ãƒ‡ãƒ¼ã‚¿é€šä¿¡ã™ã‚‹ã‹ã©ã†ã‹ã®é¸æŠ
+    // ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¸æ¥ç¶šã‚’ã™ã‚‹
     MpSetSendRedy();
     *seq = POKEMONRANGER_COMM_FIND_PARENT;
     wk->mp_time_out = 1800;
-    // ƒ^ƒCƒ€ƒAƒEƒgA’ÊMØ’fAƒLƒƒƒ“ƒZƒ‹ˆ—
+    // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã€é€šä¿¡åˆ‡æ–­ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
     PokemonRangerCheckConnect(wk, seq, 1, PAD_BUTTON_CANCEL);
     break;
 
   case POKEMONRANGER_COMM_FIND_PARENT:
-    // ƒf[ƒ^‘—M—v‹’ÊMI—¹H
+    // ãƒ‡ãƒ¼ã‚¿é€ä¿¡è¦æ±‚é€šä¿¡çµ‚äº†ï¼Ÿ
     if (MpIsSendDataEnd()) {
-      // ‚±‚¿‚ç‚Ìƒ†[ƒU[ƒf[ƒ^‘—M
+      // ã“ã¡ã‚‰ã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿é€ä¿¡
       MpSetSendUserData();
       *seq = POKEMONRANGER_COMM_SEND_USERDATA_WAIT;
       wk->mp_time_out = 3200;
-      // uƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚Ì@‚ª‚ß‚ñ‚ğ\nƒ^ƒbƒ`@‚µ‚Ä‚­‚¾‚³‚¢
+      // ã€Œãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã®ã€€ãŒã‚ã‚“ã‚’\nã‚¿ãƒƒãƒã€€ã—ã¦ãã ã•ã„
       MysteryLib_CreateWin(wk->bgl, &wk->talkwin, 2, 19, mystery_test_006);
 #if !AFTERMASTER_070207_POKEMONRANGER_CONNECTMENU_FIX
-      // «ƒAƒCƒRƒ“‚ğˆê“I‚ÉÁ‚·
+      // â†“ã‚¢ã‚¤ã‚³ãƒ³ã‚’ä¸€æ™‚çš„ã«æ¶ˆã™
       CLACT_SetDrawFlag(wk->arrow, 0);
       TimeWaitIconDel(wk->time_icon);
 #endif
@@ -995,57 +995,57 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
 
       return POKEMONRANGER_RET_FOUNDRANGER;
     }    
-    // ƒ^ƒCƒ€ƒAƒEƒgA’ÊMØ’fAƒLƒƒƒ“ƒZƒ‹ˆ—
+    // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã€é€šä¿¡åˆ‡æ–­ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
     PokemonRangerCheckConnect(wk, seq, 1, PAD_BUTTON_CANCEL);
     break;
 
 
-    // ‚±‚êˆÈ~‚ÍƒƒCƒ“ƒV[ƒPƒ“ƒX‚Ö
+    // ã“ã‚Œä»¥é™ã¯ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
     
   case POKEMONRANGER_COMM_SEND_USERDATA_WAIT:
-    // ‘—MI—¹‚Å¡Œã‚ÍƒŒƒ“ƒWƒƒ[‚©‚ç‚Ìƒf[ƒ^‚ğó‚¯æ‚é
+    // é€ä¿¡çµ‚äº†ã§ä»Šå¾Œã¯ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
     if (MpIsSendDataEnd()) {
-      // uƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚Ì\n‚Ä‚ñ‚»‚¤‚ğ@‚Ü‚Á‚Ä‚¢‚Ü‚·v
+      // ã€Œãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã®\nã¦ã‚“ãã†ã‚’ã€€ã¾ã£ã¦ã„ã¾ã™ã€
       MysteryLib_CreateWin(wk->bgl, &wk->talkwin, 2, 19, mystery_ranger_006);
-      // «ƒAƒCƒRƒ“‚ğ•\¦
+      // â†“ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤º
       CLACT_SetDrawFlag(wk->arrow, 1);
 
       DisplayRangerStatus(wk);
       *seq = POKEMONRANGER_COMM_RECV_PARENT_INIT;
     }
-    // ƒ^ƒCƒ€ƒAƒEƒgA’ÊMØ’fAƒLƒƒƒ“ƒZƒ‹ˆ—
+    // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã€é€šä¿¡åˆ‡æ–­ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
     PokemonRangerCheckConnect(wk, seq, 1, PAD_BUTTON_CANCEL);
     break;
       
   case POKEMONRANGER_COMM_RECV_PARENT_INIT:
-    // e‹@iƒŒƒ“ƒWƒƒ[j‚©‚ç‚Ìƒf[ƒ^óMŠJn
+    // è¦ªæ©Ÿï¼ˆãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼‰ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿å—ä¿¡é–‹å§‹
     MpSetRecvData(ModeDptestRecvData, 42, 1);
     *seq = POKEMONRANGER_COMM_RECV_PARENT;
     wk->mp_time_out = 3200;
     break;
 
   case POKEMONRANGER_COMM_RECV_PARENT:
-    // ƒf[ƒ^‚ÌóMI—¹‚Ü‚Å‘Ò‚Â
+    // ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡çµ‚äº†ã¾ã§å¾…ã¤
     if (MpIsRecvDataEnd()) {
       *seq = POKEMONRANGER_COMM_RECV_SUCCESS;
       wk->mp_time_out = 60;
-      // uƒ^ƒ}ƒS‚Ì@‚¶‚ã‚µ‚ñ‚É@‚¹‚¢‚±‚¤@‚µ‚Ü‚µ‚½v
+      // ã€Œã‚¿ãƒã‚´ã®ã€€ã˜ã‚…ã—ã‚“ã«ã€€ã›ã„ã“ã†ã€€ã—ã¾ã—ãŸã€
       MysteryLib_CreateWin(wk->bgl, &wk->talkwin, 2, 19, mystery_ranger_006);
     }
-    // ƒ^ƒCƒ€ƒAƒEƒgA’ÊMØ’fAƒLƒƒƒ“ƒZƒ‹ˆ—
+    // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã€é€šä¿¡åˆ‡æ–­ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†
     PokemonRangerCheckConnect(wk, seq, 1, PAD_BUTTON_CANCEL);
     break;
 
   case POKEMONRANGER_COMM_RECV_SUCCESS:
     if(--wk->mp_time_out == 0){
-      // ƒZ[ƒuŠJn
-      // uƒŒƒ|[ƒg‚ğ@‚©‚¢‚Ä‚¢‚Ü‚·@‚µ‚Î‚ç‚­@‚¨‚Ü‚¿@‚­‚¾‚³‚¢v
+      // ã‚»ãƒ¼ãƒ–é–‹å§‹
+      // ã€Œãƒ¬ãƒãƒ¼ãƒˆã‚’ã€€ã‹ã„ã¦ã„ã¾ã™ã€€ã—ã°ã‚‰ãã€€ãŠã¾ã¡ã€€ãã ã•ã„ã€
       MysteryLib_CreateWin(wk->bgl, &wk->talkwin, 2, 19, mystery_ranger_007);
       wk->time_icon = TimeWaitIconAdd(&wk->twin, POKEMONRANGER_TWCHR);
 
-      // ƒZ[ƒuƒf[ƒ^‚ğì¬
+      // ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
       CreatePokemonRangerSaveData(wk);
-      // ƒZ[ƒuˆ—ŠJn
+      // ã‚»ãƒ¼ãƒ–å‡¦ç†é–‹å§‹
       MysteryLib_InitSaveDSCard(wk->sv);
 
       *seq = POKEMONRANGER_COMM_SAVE_WAIT;
@@ -1053,7 +1053,7 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
     break;
 
   case POKEMONRANGER_COMM_SAVE_WAIT:
-    // ƒZ[ƒuI—¹‘Ò‚¿
+    // ã‚»ãƒ¼ãƒ–çµ‚äº†å¾…ã¡
     if(MysteryLib_SaveDSCard() == SAVE_RESULT_LAST){
       *seq = POKEMONRANGER_COMM_SAVE_DUMMY_WAIT;
       wk->mp_time_out = 6 + (OS_GetTickLo() % 54);
@@ -1061,24 +1061,24 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
     break;
 
   case POKEMONRANGER_COMM_SAVE_DUMMY_WAIT:
-    // ƒŒƒ“ƒWƒƒ[ie‹@j‚É“¯Šú‘Ò‚¿’†‘O‚Ìƒ_ƒ~[‘Ò‚¿
+    // ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã«åŒæœŸå¾…ã¡ä¸­å‰ã®ãƒ€ãƒŸãƒ¼å¾…ã¡
     if (--wk->mp_time_out == 0) {
       *seq = POKEMONRANGER_COMM_SAVE_SYNC;
     }
     break;
 
   case POKEMONRANGER_COMM_SAVE_SYNC:
-    // ƒŒƒ“ƒWƒƒ[ie‹@j‚É“¯Šú—pƒf[ƒ^‘—MŠJn
-    // “¯Šú‚Ì‚½‚ß‚Éƒf[ƒ^‘—M
+    // ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã«åŒæœŸç”¨ãƒ‡ãƒ¼ã‚¿é€ä¿¡é–‹å§‹
+    // åŒæœŸã®ãŸã‚ã«ãƒ‡ãƒ¼ã‚¿é€ä¿¡
     MpSetRecvData(ModeDptestRecvData, 42, 2);
     *seq = POKEMONRANGER_COMM_SAVE_SYNC_WAIT;
     wk->mp_time_out = 1200;
     break;
 
   case POKEMONRANGER_COMM_SAVE_SYNC_WAIT:
-    // ƒf[ƒ^‘—MI—¹‚ÅÅŒã‚ÌƒZ[ƒu
+    // ãƒ‡ãƒ¼ã‚¿é€ä¿¡çµ‚äº†ã§æœ€å¾Œã®ã‚»ãƒ¼ãƒ–
     if(MpIsRecvDataAcknowledge()) {
-      // ÅŒã‚Ì‚PƒZƒNƒ^‚ğƒZ[ƒu‚·‚é
+      // æœ€å¾Œã®ï¼‘ã‚»ã‚¯ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ã™ã‚‹
 #if 0
       MysteryLib_SaveDSCard();
 #else
@@ -1089,13 +1089,13 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
       wk->mp_time_out = 800;
       break;
     }
-    // ˆê’èŠÔ‚ªŒo‰ß‚µ‚Ä‚à’ÊM‚ªo—ˆ‚È‚©‚Á‚½
+    // ä¸€å®šæ™‚é–“ãŒçµŒéã—ã¦ã‚‚é€šä¿¡ãŒå‡ºæ¥ãªã‹ã£ãŸ
     if(--wk->mp_time_out == 0){
       MpRequestClose();
       *seq = POKEMONRANGER_COMM_TIMEOUT;
       wk->mp_time_out = 120;
     }
-    // Ú‘±‚ªØ‚ê‚½‚ç
+    // æ¥ç¶šãŒåˆ‡ã‚ŒãŸã‚‰
     if (!MpIsConnect()) {
       MpRequestClose();
       *seq = POKEMONRANGER_COMM_DISCONNECT_PARENT;
@@ -1104,7 +1104,7 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
     break;
       
   case POKEMONRANGER_COMM_SAVE_SYNC_END:
-    // ƒZ[ƒu‚ÌI—¹‚ğŠm”F‚µ‚Â‚ÂAƒf[ƒ^‘—MI—¹‚ğ‘Ò‚Â
+    // ã‚»ãƒ¼ãƒ–ã®çµ‚äº†ã‚’ç¢ºèªã—ã¤ã¤ã€ãƒ‡ãƒ¼ã‚¿é€ä¿¡çµ‚äº†ã‚’å¾…ã¤
     if(MysteryLib_GetSaveStatus() == MYSTERYLIB_SEQ_SAVE_NG){
       MpRequestClose();
       *seq = POKEMONRANGER_COMM_DISCONNECT_PARENT;
@@ -1119,7 +1119,7 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
 	break;
       }
     }
-    // ˆê’èŠÔ‚ªŒo‰ß‚µ‚Ä‚à’ÊM‚ªo—ˆ‚È‚©‚Á‚½
+    // ä¸€å®šæ™‚é–“ãŒçµŒéã—ã¦ã‚‚é€šä¿¡ãŒå‡ºæ¥ãªã‹ã£ãŸ
     if(--wk->mp_time_out == 0){
       MpRequestClose();
       *seq = POKEMONRANGER_COMM_TIMEOUT;
@@ -1127,12 +1127,12 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
     }
       
   case POKEMONRANGER_COMM_RECV_END_WAIT:
-    // ƒŒƒ“ƒWƒƒ[ie‹@j‚É“¯Šú‘Ò‚¿’†
+    // ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã«åŒæœŸå¾…ã¡ä¸­
     if (--wk->mp_time_out == 0) {
       *seq = POKEMONRANGER_COMM_RECV_END;
-      // u‚Ä‚ñ‚»‚¤‚ª@‚µ‚ã‚¤‚è‚å‚¤@‚µ‚Ü‚µ‚½\n‚`ƒ{ƒ^ƒ“‚Å@‚Å‚ñ‚°‚ñ‚ğ@‚«‚è‚Ü‚·v
+      // ã€Œã¦ã‚“ãã†ãŒã€€ã—ã‚…ã†ã‚Šã‚‡ã†ã€€ã—ã¾ã—ãŸ\nï¼¡ãƒœã‚¿ãƒ³ã§ã€€ã§ã‚“ã’ã‚“ã‚’ã€€ãã‚Šã¾ã™ã€
       MysteryLib_CreateWin(wk->bgl, &wk->talkwin, 2, 19, mystery_ranger_008);
-      // «ƒAƒCƒRƒ“‚Ì•\¦‚ğ~‚ß‚é
+      // â†“ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºã‚’æ­¢ã‚ã‚‹
       CLACT_SetDrawFlag(wk->arrow, 0);
       TimeWaitIconDel(wk->time_icon);
       Snd_SePlay(SEQ_SE_DP_SELECT);
@@ -1141,11 +1141,11 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
     break;
       
   case POKEMONRANGER_COMM_RECV_END:
-    // ƒŒƒ“ƒWƒƒ[ie‹@j‚©‚ç‚ÌóM^ƒ^ƒ}ƒSî•ñƒZ[ƒuI—¹
+    // ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ˆè¦ªæ©Ÿï¼‰ã‹ã‚‰ã®å—ä¿¡ï¼ã‚¿ãƒã‚´æƒ…å ±ã‚»ãƒ¼ãƒ–çµ‚äº†
     if (MpIsEnd()) {
       if(wk->commvramload == TRUE){
 	CommVRAMDFinalize();
-	WirelessIconEasyEnd(); // ’ÊMƒAƒCƒRƒ“íœ
+	WirelessIconEasyEnd(); // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
 	wk->commvramload = FALSE;
       }
       if(sys.trg & PAD_BUTTON_DECIDE){
@@ -1157,13 +1157,13 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
 
     
   case POKEMONRANGER_COMM_DISCONNECT_PARENT:
-    // ƒ^ƒCƒ€ƒAƒEƒg‚à’ÊMØ’f‚àˆ—‚ğ“¯‚¶‚É‚µ‚Ü‚·
+    // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚‚é€šä¿¡åˆ‡æ–­ã‚‚å‡¦ç†ã‚’åŒã˜ã«ã—ã¾ã™
     *seq = POKEMONRANGER_COMM_TIMEOUT;
   case POKEMONRANGER_COMM_TIMEOUT:
-    // ƒŒƒ“ƒWƒƒ[‚Æ‚Ì’ÊM‚ªƒ^ƒCƒ€ƒAƒEƒg
-    // uƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚Æ‚Ì@‚Â‚¤‚µ‚ñ‚ª@‚¹‚Â‚¾‚ñ@‚³‚ê‚Ü‚µ‚½v
+    // ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã®é€šä¿¡ãŒã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
+    // ã€Œãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã®ã€€ã¤ã†ã—ã‚“ãŒã€€ã›ã¤ã ã‚“ã€€ã•ã‚Œã¾ã—ãŸã€
     MysteryLib_CreateWin(wk->bgl, &wk->talkwin, 2, 19, mystery_ranger_009);
-    // «ƒAƒCƒRƒ“‚Ì•\¦‚ğ~‚ß‚é
+    // â†“ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºã‚’æ­¢ã‚ã‚‹
     CLACT_SetDrawFlag(wk->arrow, 0);
     if(wk->time_icon)
       TimeWaitIconDel(wk->time_icon);
@@ -1172,11 +1172,11 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
     break;
 
   case POKEMONRANGER_COMM_RESET:
-    // ’ÊM‚ğI—¹‚³‚¹‚ÄƒŠƒZƒbƒgˆ—
+    // é€šä¿¡ã‚’çµ‚äº†ã•ã›ã¦ãƒªã‚»ãƒƒãƒˆå‡¦ç†
     if (MpIsEnd()){
       if(wk->commvramload == TRUE){
 	CommVRAMDFinalize();
-	WirelessIconEasyEnd(); // ’ÊMƒAƒCƒRƒ“íœ
+	WirelessIconEasyEnd(); // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
 	wk->commvramload = FALSE;
       }
       if(sys.trg & PAD_BUTTON_DECIDE){
@@ -1186,11 +1186,11 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
     break;
 
   case POKEMONRANGER_COMM_RETURN_TITLE:
-    // ’ÊM‚ğI—¹‚³‚¹‚Äƒ^ƒCƒgƒ‹‚Ö–ß‚é
+    // é€šä¿¡ã‚’çµ‚äº†ã•ã›ã¦ã‚¿ã‚¤ãƒˆãƒ«ã¸æˆ»ã‚‹
     if (MpIsEnd()){
       if(wk->commvramload == TRUE){
 	CommVRAMDFinalize();
-	WirelessIconEasyEnd(); // ’ÊMƒAƒCƒRƒ“íœ
+	WirelessIconEasyEnd(); // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
 	wk->commvramload = FALSE;
 	if(wk->time_icon)
 	  TimeWaitIconDel(wk->time_icon);
@@ -1210,7 +1210,7 @@ int CheckPokemonRangerBeacon(POKEMONRANGER_WORK *wk)
 #if 0
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒŒƒ“ƒWƒƒ[‚Æ‚Ì’ÊMƒV[ƒPƒ“ƒX‚ğI—¹‚³‚¹‚é
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¨ã®é€šä¿¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’çµ‚äº†ã•ã›ã‚‹
  *
  * @param	none
  * @return	none
@@ -1223,10 +1223,10 @@ int DisablePokemonRangerBeacon(POKEMONRANGER_WORK *wk)
     wk->disable = FALSE;
   } else {
     if (MpIsEnd()) {
-      /// VRAMD‚ÌƒCƒNƒjƒ…[ƒ‚ƒ“‚ğÌ‚Ä‚é
+      /// VRAMDã®ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³ã‚’æ¨ã¦ã‚‹
       CommVRAMDFinalize();
       wk->doproc = FALSE;
-      WirelessIconEasyEnd(); // ’ÊMƒAƒCƒRƒ“íœ
+      WirelessIconEasyEnd(); // é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤
       return TRUE;
     }
   }

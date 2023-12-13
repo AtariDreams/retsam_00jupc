@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndWaveOutSetSpeed</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndWaveOutSetSpeed</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndWaveOutSetSpeed(
@@ -19,7 +19,7 @@
         int <var>speed</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDADMWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -27,11 +27,11 @@
 <tbody>
 <tr>
 <td><em><strong><code>handle</code></strong></em></td>
-<td>�g�`�Đ��n���h���ł��B</td>
+<td>波形再生ハンドルです。</td>
 </tr>
 <tr>
 <td><em><strong><code>speed</code></strong></em></td>
-<td>�Đ��X�s�[�h�ł��B</td>
+<td>再生スピードです。</td>
 </tr>
 </tbody>
 </table>
@@ -39,32 +39,32 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAZMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAANWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�g�`�Đ��̃X�s�[�h��ύX���܂��B
-���łɒ�~���̔g�`�Đ��n���h��<em><strong><code>handle</code></strong></em>�ɑ΂��A���̊֐����Ăт����Ă��������܂���B
+波形再生のスピードを変更します。
+すでに停止中の波形再生ハンドル<em><strong><code>handle</code></strong></em>に対し、この関数を呼びだしても何もしません。
 </p>
       <p>
-�Đ��X�s�[�h<em><strong><code>speed</code></strong></em>�́A�Đ����鑬�����w�肵�܂��B
-<em><strong><code>speed</code></strong></em>��32768�{�̑����ōĐ�����܂��B
-�Đ��X�s�[�h�𑬂�����ƁA�Đ����Ԃ��Z���Ȃ�A�Đ�����鉹�̍����������Ȃ�܂��B
+再生スピード<em><strong><code>speed</code></strong></em>は、再生する速さを指定します。
+<em><strong><code>speed</code></strong></em>÷32768倍の速さで再生されます。
+再生スピードを速くすると、再生時間が短くなり、再生される音の高さが高くなります。
 </p>
       <p>
-���̊֐��́A�Đ����ɍĐ��X�s�[�h��ύX���邽�߂ɌĂт����܂��B
-�Đ��J�n���̍Đ��X�s�[�h��ݒ肵�����ꍇ�́A
-<tt class="function"><a href="NNS_SndWaveOutStart.html">NNS_SndWaveOutStart</a></tt>�֐�
-�̈����Őݒ肵�Ă��������B
+この関数は、再生中に再生スピードを変更するために呼びだします。
+再生開始時の再生スピードを設定したい場合は、
+<tt class="function"><a href="NNS_SndWaveOutStart.html">NNS_SndWaveOutStart</a></tt>関数
+の引数で設定してください。
 </p>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndWaveOutStart.html">NNS_SndWaveOutStart</a></p>
-<h2>����</h2>
-<p>2004/10/19 �Ăяo�����̒��ӏ����ǉ�<br>2004/07/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/10/19 呼び出し方の注意書き追加<br>2004/07/01 初版<br></p>
 </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 /* MSL
- * Copyright © 1995-2006 Freescale Corporation.  All rights reserved.
+ * Copyright 1995-2006 Freescale Corporation.  All rights reserved.
  *
  * $Date: 2006/02/20 20:49:02 $
  * $Revision: 1.18.2.3 $
@@ -1019,7 +1019,7 @@ void __num2dec(const decform *f, double x, decimal *d)
 /*
  *	Now we scale x by exp10. The easy way to do this would be simply to
  *	multiply or divide by 10, exp10 times. However, as noted above, the largest
- *	binary exponent is 1024. It's decimal equivalent is 1024 log 2 ≈≈ 308.
+ *	binary exponent is 1024. It's decimal equivalent is 1024 log 2 „Éä„Éä 308.
  *	That's potentially a lot of multiplies/divides. Alternatively, we can scan
  *	the decimal exponent bitwise and, for each bit 2**i, scale by a constant
  *	10**(2**i) if that bit is nonzero. This results in at most nine multiplies

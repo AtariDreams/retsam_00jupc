@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	poke_anm_b019_2.s
- * @brief	ÉXÉpÅ[ÉN
+ * @brief	„Çπ„Éë„Éº„ÇØ
  * @author	
  * @date	
  *
@@ -18,14 +18,14 @@
 // =============================================================================
 //
 //
-//	îwñ 	ÉXÉpÅ[ÉN
+//	ËÉåÈù¢	„Çπ„Éë„Éº„ÇØ
 //
 //
 // =============================================================================
 PAST_ANIME_B019_2:
-	SET_WORK_VAL		WORK0,2		//óhÇÍïù
+	SET_WORK_VAL		WORK0,2		//Êè∫„ÇåÂπÖ
 
-	//à⁄ìÆ
+	//ÁßªÂãï
 	SET_ADD_PARAM	PARAM_DX,USE_WORK,WORK0,PARAM_SET
 	APPLY_TRANS
 	MUL_WORK_VAL	WORK0,CALC_VAL,WORK0,-1
@@ -44,7 +44,7 @@ PAST_ANIME_B019_2:
 	END_LOOP
 	
 	START_LOOP		5
-		//à⁄ìÆ
+		//ÁßªÂãï
 		SET_ADD_PARAM	PARAM_DX,USE_WORK,WORK0,PARAM_SET
 		APPLY_TRANS
 		MUL_WORK_VAL	WORK0,CALC_VAL,WORK0,-1

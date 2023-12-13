@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>BG_Overview</title>
@@ -12,53 +12,53 @@
 <body>
 
 
-<h1 align="left">BG�T�v</h1>
-<H2>����</H2>
+<h1 align="left">BG概要</h1>
+<H2>説明</H2>
 <p>
-G2D�̃����^�C���X�N���[���f�[�^��BG�̕\���ɕK�v�ȏ���NITRO-CHARACTER�̃o�C�i���f�[�^����p�����Ă��܂��B
-G2D BG���W���[���ł͂��̏����g�p����BG�ʐ��䂨��уO���t�B�b�N�X�f�[�^��VRAM�ւ̓ǂݍ��݂������I�ɍs���@�\��񋟂��܂��B
-����ɂ��v���O���}�͋��ʂ̏������̂ق��ɂ�VRAM�̊��蓖�āABG����Ԃ̐ݒ���s��������BG��\�����鎖���ł��܂��B
+G2DのランタイムスクリーンデータはBGの表示に必要な情報をNITRO-CHARACTERのバイナリデータから継承しています。
+G2D BGモジュールではこの情報を使用してBG面制御およびグラフィックスデータのVRAMへの読み込みを自動的に行う機能を提供します。
+これによりプログラマは共通の初期化のほかにはVRAMの割り当て、BG可視状態の設定を行うだけでBGを表示する事ができます。
 <BR>
-G2D BG���W���[�� �͐ÓI��BG��\�����邾���ł���A�X�N���[���Ȃǂ̋@�\�͎����܂���B
-�������ASDK�֐���p���鎖��BG�ʃX�N���[���͉\�ł��B<br>
+G2D BGモジュール は静的なBGを表示するだけであり、スクロールなどの機能は持ちません。
+ただし、SDK関数を用いる事でBG面スクロールは可能です。<br>
 <br>
 </p>
 
 <pre>
-�ȉ���BG���W���[���𗘗p���āABG�\������������܂ł̏����̗���������܂��B
+以下にBGモジュールを利用して、BG表示を実現するまでの処理の流れを示します。
  
- =========== ���������� =========== 
- 1.BG�̊e��p�����[�^�ݒ���s���܂��iSDK�֐��𗘗p�j�B
+ =========== 初期化処理 =========== 
+ 1.BGの各種パラメータ設定を行います（SDK関数を利用）。
 
-	�E�K�{
-		�EVRAM ���蓖��
-		�E�x�[�X�I�t�Z�b�g
-	�E�C��
-		�EBG �����
-		�EBG �D��x
-		�EBG ���U�C�N
-		�EBG �X�N���[��
-		�EBG �A�t�B��
-		�E�J���[�������
+	・必須
+		・VRAM 割り当て
+		・ベースオフセット
+	・任意
+		・BG 可視状態
+		・BG 優先度
+		・BG モザイク
+		・BG スクロール
+		・BG アフィン
+		・カラー特殊効果
 
- 2.���\�[�X(NCRL,NSCR,NCGR)�����C���������Ƀ��[�h���܂��B
- 3.VRAM�ւ̃��\�[�X�f�[�^�̓]���ABG ���[�h�̏��������s���܂��iNNS_G2dBGSetup()�j�B
- 4.���\�[�X�f�[�^�����C������������J�����܂�(�C��)�B
+ 2.リソース(NCRL,NSCR,NCGR)をメインメモリにロードします。
+ 3.VRAMへのリソースデータの転送、BG モードの初期化を行います（NNS_G2dBGSetup()）。
+ 4.リソースデータをメインメモリから開放します(任意)。
  
-    =========== �Q�[�����[�v =========== 
-    5.�C�ӂ̃^�C�~���O�ŕ\������BG�ʂ̐ݒ��ύX���܂��B(GX_SetVisiblePlane(), GXS_SetVisiblePlane())
+    =========== ゲームループ =========== 
+    5.任意のタイミングで表示するBG面の設定を変更します。(GX_SetVisiblePlane(), GXS_SetVisiblePlane())
     
-=========== �I������ =========== 
-6.���ɍs���ׂ������͂���܂���B
+=========== 終了処理 =========== 
+6.特に行うべき処理はありません。
 
 </pre>
 
 <BR>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
-�Ȃ�
+なし
 </p>
-<H2>����</H2>
-<P>2005/01/31 ����</P>
+<H2>履歴</H2>
+<P>2005/01/31 初版</P>
 </body>
 </html>

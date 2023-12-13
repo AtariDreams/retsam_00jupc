@@ -12,32 +12,32 @@
 
   $Log: dwc_utility.h,v $
   Revision 1.13  2007/03/28 05:17:18  takayama
-  ŽdŒü’n–k•Ä‚Ì‰pŒêƒƒbƒZ[ƒW‚©‚çƒTƒ|[ƒg—p“d˜b”Ô†‚ðíœB
+  ä»•å‘åœ°åŒ—ç±³ã®è‹±èªžãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‹ã‚‰ã‚µãƒãƒ¼ãƒˆç”¨é›»è©±ç•ªå·ã‚’å‰Šé™¤ã€‚
 
   Revision 1.12  2006/12/29 04:27:39  takayama
   EUC -> SJIS
 
   Revision 1.11  2006/12/18 02:17:42  takayama
-  ’è‹`‚ðC³(KORIA -> HANGUL)B
+  å®šç¾©ã‚’ä¿®æ­£(KORIA -> HANGUL)ã€‚
 
   Revision 1.10  2006/12/06 07:57:58  kokin
-  ŠØ‘Œê‘Î‰ž
+  éŸ“å›½èªžå¯¾å¿œ
 
   Revision 1.9  2005/09/13 13:12:56  tsukada
-  ƒ[ƒNƒƒ‚ƒŠƒTƒCƒY‚ðk¬
+  ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚’ç¸®å°
 
   Revision 1.8  2005/09/10 14:07:44  tsukada
-  ƒpƒ‰ƒ[ƒ^Žd—l‚ð•ÏX
+  ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»•æ§˜ã‚’å¤‰æ›´
 
   Revision 1.7  2005/09/01 13:22:17  tsukada
-  V‹K
+  æ–°è¦
 
   Revision 1.6  2005/08/20 07:01:21  sasakit
-  ƒwƒbƒ_ƒCƒ“ƒNƒ‹[ƒhƒK[ƒh‚Ì‘Ž®‚ð“ˆê‚µ‚½B
-  bm/dwc_init.h -> bm/dwc_bm_init.h‚É•ÏX
-  ƒwƒbƒ_‚ÉCopyright‚ð‚Â‚¯‚½B
-  \‘¢‘Ì‚Ì–¼‘O‹óŠÔ‚ð‚Å‚«‚é‚¾‚¯ƒ‹[ƒ‹‚É‚¿‚©‚Ã‚¯‚½B
-  util_wifiidtool.h‚Ædwc_backup.h‚ÌŠÖŒW‚ðŽáŠ±C³B
+  ãƒ˜ãƒƒãƒ€ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚¬ãƒ¼ãƒ‰ã®æ›¸å¼ã‚’çµ±ä¸€ã—ãŸã€‚
+  bm/dwc_init.h -> bm/dwc_bm_init.hã«å¤‰æ›´
+  ãƒ˜ãƒƒãƒ€ã«Copyrightã‚’ã¤ã‘ãŸã€‚
+  æ§‹é€ ä½“ã®åå‰ç©ºé–“ã‚’ã§ãã‚‹ã ã‘ãƒ«ãƒ¼ãƒ«ã«ã¡ã‹ã¥ã‘ãŸã€‚
+  util_wifiidtool.hã¨dwc_backup.hã®é–¢ä¿‚ã‚’è‹¥å¹²ä¿®æ­£ã€‚
 
 
   $NoKeywords: $
@@ -46,7 +46,7 @@
 #define DWC_UTILITY_H_
 /*****************************************************************************/
 /*                                                                           */
-/*  DWC ƒ†[ƒeƒBƒŠƒeƒB ƒwƒbƒ_ƒtƒ@ƒCƒ‹                                        */
+/*  DWC ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«                                        */
 /*      dwc_utility.h                                                        */
 /*          ver. 1.2                                                         */
 /*                                                                           */
@@ -57,75 +57,75 @@ extern  "C" {
 #endif         // __cplusplus
 
 //=============================================================================
-// ’è‹`
+// å®šç¾©
 //=============================================================================
-// ƒ[ƒNƒƒ‚ƒŠ‚ÌƒTƒCƒY
+// ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚º
 #define  DWC_UTILITY_WORK_SIZE    0x40000
 
-// Žg—pŒ¾Œê
+// ä½¿ç”¨è¨€èªž
 enum  DWC_LANGUAGE {
-	DWC_LANGUAGE_JAPANESE,             // “ú–{Œê
-	DWC_LANGUAGE_ENGLISH,              // ‰pŒê
-	DWC_LANGUAGE_FRENCH,               // ƒtƒ‰ƒ“ƒXŒê
-	DWC_LANGUAGE_GERMAN,               // ƒhƒCƒcŒê
-	DWC_LANGUAGE_ITALIAN,              // ƒCƒ^ƒŠƒAŒê
-	DWC_LANGUAGE_SPANISH,              // ƒXƒyƒCƒ“Œê
-	DWC_LANGUAGE_HANGUL                // ŠØ‘Œê
+	DWC_LANGUAGE_JAPANESE,             // æ—¥æœ¬èªž
+	DWC_LANGUAGE_ENGLISH,              // è‹±èªž
+	DWC_LANGUAGE_FRENCH,               // ãƒ•ãƒ©ãƒ³ã‚¹èªž
+	DWC_LANGUAGE_GERMAN,               // ãƒ‰ã‚¤ãƒ„èªž
+	DWC_LANGUAGE_ITALIAN,              // ã‚¤ã‚¿ãƒªã‚¢èªž
+	DWC_LANGUAGE_SPANISH,              // ã‚¹ãƒšã‚¤ãƒ³èªž
+	DWC_LANGUAGE_HANGUL                // éŸ“å›½èªž
 };
 
-// Ý’èƒ†[ƒeƒBƒŠƒeƒBŠJŽnŠÖ”•Ô’l
+// è¨­å®šãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–‹å§‹é–¢æ•°è¿”å€¤
 enum  DWCUTILRESULT {
-	DWC_UTIL_RESULT_SUCCESS =  0,      // ¬Œ÷
-	DWC_UTIL_RESULT_FAILED  = ~0       // ˆø”ƒGƒ‰[
+	DWC_UTIL_RESULT_SUCCESS =  0,      // æˆåŠŸ
+	DWC_UTIL_RESULT_FAILED  = ~0       // å¼•æ•°ã‚¨ãƒ©ãƒ¼
 };
 
-// ƒtƒ‰ƒO
+// ãƒ•ãƒ©ã‚°
 enum  DWCUTILFLAG0 {
 	DWC_UTIL_FLAG0_TOP      = 0x0000,
 	DWC_UTIL_FLAG0_SETTING  = 0x0001
 };
 enum  DWCUTILFLAG1 {
-	DWC_UTIL_FLAG1_RAKU     = 0x0001,   // ‚ç‚­‚ç‚­–³üƒXƒ^[ƒg‘Î‰ž
-	DWC_UTIL_FLAG1_USA      = 0x0002    // ‰pŒê‚ÌƒTƒ|[ƒg—p“d˜b”Ô†‘Î‰ž
+	DWC_UTIL_FLAG1_RAKU     = 0x0001,   // ã‚‰ãã‚‰ãç„¡ç·šã‚¹ã‚¿ãƒ¼ãƒˆå¯¾å¿œ
+	DWC_UTIL_FLAG1_USA      = 0x0002    // è‹±èªžã®ã‚µãƒãƒ¼ãƒˆç”¨é›»è©±ç•ªå·å¯¾å¿œ
 };
 
 //-----------------------------------------------------------------------------
-// ƒpƒ‰ƒ[ƒ^
+// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //-----------------------------------------------------------------------------
-//-------- ŽdŒü’nF–k•Ä --------
-// ƒgƒbƒvƒƒjƒ…[‚©‚çŠJŽn
+//-------- ä»•å‘åœ°ï¼šåŒ—ç±³ --------
+// ãƒˆãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰é–‹å§‹
 #define  DWC_UTILITY_TOP_MENU_FOR_USA                                         \
 	(DWC_UTIL_FLAG0_TOP)
 
-// Wi-Fi Ú‘±æ‘I‘ð‚©‚çŠJŽn
+// Wi-Fi æŽ¥ç¶šå…ˆé¸æŠžã‹ã‚‰é–‹å§‹
 #define  DWC_UTILITY_SETTING_FOR_USA                                          \
 	(DWC_UTIL_FLAG0_SETTING)
 
-//-------- ŽdŒü’nF‰¢B --------
-// ƒgƒbƒvƒƒjƒ…[‚©‚çŠJŽn
+//-------- ä»•å‘åœ°ï¼šæ¬§å·ž --------
+// ãƒˆãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰é–‹å§‹
 #define  DWC_UTILITY_TOP_MENU_FOR_EUR                                         \
 	(DWC_UTIL_FLAG0_TOP)
 
-// Wi-Fi Ú‘±æ‘I‘ð‚©‚çŠJŽn
+// Wi-Fi æŽ¥ç¶šå…ˆé¸æŠžã‹ã‚‰é–‹å§‹
 #define  DWC_UTILITY_SETTING_FOR_EUR                                          \
 	(DWC_UTIL_FLAG0_SETTING)
 
-//-------- ŽdŒü’nF“ú–{ --------
-// ƒgƒbƒvƒƒjƒ…[‚©‚çŠJŽn
+//-------- ä»•å‘åœ°ï¼šæ—¥æœ¬ --------
+// ãƒˆãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰é–‹å§‹
 #define  DWC_UTILITY_TOP_MENU_FOR_JPN                                         \
 	(DWC_UTIL_FLAG0_TOP | (DWC_UTIL_FLAG1_RAKU << 4))
 
-// Wi-Fi Ú‘±æ‘I‘ð‚©‚çŠJŽn
+// Wi-Fi æŽ¥ç¶šå…ˆé¸æŠžã‹ã‚‰é–‹å§‹
 #define  DWC_UTILITY_SETTING_FOR_JPN                                          \
 	(DWC_UTIL_FLAG0_SETTING | (DWC_UTIL_FLAG1_RAKU << 4))
 
-//-------- ŽdŒü’nF‹¤’Ê --------
-// (¦ “ú–{Œê‚Í•s‰Â)
-// ƒgƒbƒvƒƒjƒ…[‚©‚çŠJŽn
+//-------- ä»•å‘åœ°ï¼šå…±é€š --------
+// (â€» æ—¥æœ¬èªžã¯ä¸å¯)
+// ãƒˆãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰é–‹å§‹
 #define  DWC_UTILITY_TOP_MENU_COMMON                                          \
 	(DWC_UTIL_FLAG0_TOP)
 
-// Wi-Fi Ú‘±æ‘I‘ð‚©‚çŠJŽn
+// Wi-Fi æŽ¥ç¶šå…ˆé¸æŠžã‹ã‚‰é–‹å§‹
 #define  DWC_UTILITY_SETTING_COMMON                                           \
 	(DWC_UTIL_FLAG0_SETTING)
 
@@ -135,16 +135,16 @@ enum  DWCUTILFLAG1 {
 	DWC_UTILITY_SETTING_COMMON
 
 //=============================================================================
-// ŠÖ”
+// é–¢æ•°
 //=============================================================================
 //-----------------------------------------------------------------------------
-// ‹@”\ : Ý’èƒ†[ƒeƒBƒŠƒeƒBŠJŽn
-// ˆø” : work      - ƒ[ƒNƒƒ‚ƒŠ‚Ìæ“ªƒAƒhƒŒƒX
-//                    ¦ DWC_UTILITY_WORK_SIZE ƒoƒCƒgˆÈã‚Å‚©‚ÂA
-//                       32 ƒoƒCƒgƒAƒ‰ƒCƒ“‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·
-//                    ¦ ŠÖ”I—¹Œã‚Í”jŠü‚µ‚Ä‚©‚Ü‚¢‚Ü‚¹‚ñ
-//        language  - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÅŽg—p‚µ‚Ä‚¢‚éŒ¾Œê
-//        param     - ˆÈ‰º‚©‚ç‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢
+// æ©Ÿèƒ½ : è¨­å®šãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–‹å§‹
+// å¼•æ•° : work      - ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+//                    â€» DWC_UTILITY_WORK_SIZE ãƒã‚¤ãƒˆä»¥ä¸Šã§ã‹ã¤ã€
+//                       32 ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ³ã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
+//                    â€» é–¢æ•°çµ‚äº†å¾Œã¯ç ´æ£„ã—ã¦ã‹ã¾ã„ã¾ã›ã‚“
+//        language  - ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ä½¿ç”¨ã—ã¦ã„ã‚‹è¨€èªž
+//        param     - ä»¥ä¸‹ã‹ã‚‰é¸æŠžã—ã¦ãã ã•ã„
 //                        DWC_UTILITY_TOP_MENU_FOR_USA
 //                        DWC_UTILITY_SETTING_FOR_USA
 //                        DWC_UTILITY_TOP_MENU_FOR_EUR
@@ -153,68 +153,68 @@ enum  DWCUTILFLAG1 {
 //                        DWC_UTILITY_SETTING_FOR_JPN
 //                        DWC_UTILITY_TOP_MENU_COMMON
 //                        DWC_UTILITY_SETTING_COMMON
-// •Ô’l : int       - 0        : ³íI—¹
-//                    ‚»‚êˆÈŠO : ˆø”ƒGƒ‰[
+// è¿”å€¤ : int       - 0        : æ­£å¸¸çµ‚äº†
+//                    ãã‚Œä»¥å¤– : å¼•æ•°ã‚¨ãƒ©ãƒ¼
 //-----------------------------------------------------------------------------
 int  DWC_StartUtility(void* work, int language, int param);
 
 /*----------------------------------------------------------------------------/
-yÝ’èƒ†[ƒeƒBƒŠƒeƒB‚Ì’ˆÓŽ–€z
+ã€è¨­å®šãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã®æ³¨æ„äº‹é …ã€‘
 
-› ROM ƒCƒ[ƒW
-  Ý’èƒ†[ƒeƒBƒŠƒeƒB‚ÅŽg—p‚·‚éƒf[ƒ^‚ð ROM ƒCƒ[ƒW‚Æ‚µ‚ÄŽ‚Â•K—v‚ª‚ ‚è‚Ü‚·B
-  ƒtƒ@ƒCƒ‹
+â—‹ ROM ã‚¤ãƒ¡ãƒ¼ã‚¸
+  è¨­å®šãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’ ROM ã‚¤ãƒ¡ãƒ¼ã‚¸ã¨ã—ã¦æŒã¤å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+  ãƒ•ã‚¡ã‚¤ãƒ«
       /file/dwc/utility.bin
-  ‚ð NITRO ‘¤‚Ìƒ‹[ƒgƒfƒBƒŒƒNƒgƒŠ–¼‚Å
+  ã‚’ NITRO å´ã®ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåã§
       /dwc/
-  ‚ÌˆÊ’u‚É”z’u‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
-  ‹ï‘Ì“I‚É‚ÍAROM ƒXƒyƒbƒNƒtƒ@ƒCƒ‹‚Ì RomSpec ƒZƒbƒVƒ‡ƒ“‚É
+  ã®ä½ç½®ã«é…ç½®ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+  å…·ä½“çš„ã«ã¯ã€ROM ã‚¹ãƒšãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ã® RomSpec ã‚»ãƒƒã‚·ãƒ§ãƒ³ã«
 
       RomSpec
       {
 	      .
 	      .
 	      .
-          # ‚±‚±‚©‚ç
-		  HostRoot    ./file/dwc    # PC ‘¤ƒtƒ@ƒCƒ‹ƒfƒBƒŒƒNƒgƒŠ–¼
+          # ã“ã“ã‹ã‚‰
+		  HostRoot    ./file/dwc    # PC å´ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå
           Root        /dwc
           File        utility.bin
-          # ‚±‚±‚Ü‚Å
+          # ã“ã“ã¾ã§
       }
 
-  ‚Ì 3s‚ð•t‚¯‰Á‚¦‚Ä‚­‚¾‚³‚¢B
+  ã® 3è¡Œã‚’ä»˜ã‘åŠ ãˆã¦ãã ã•ã„ã€‚
 
-› ƒA[ƒJƒCƒu–¼
+â—‹ ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å
       "dwc"
-  ‚Æ‚¢‚¤ƒA[ƒJƒCƒu–¼‚ð—\–ñ‚µ‚Ä‚¢‚Ü‚·B
-  ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‘¤‚Å‚ÍŽg—p‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+  ã¨ã„ã†ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–åã‚’äºˆç´„ã—ã¦ã„ã¾ã™ã€‚
+  ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å´ã§ã¯ä½¿ç”¨ã—ãªã„ã§ãã ã•ã„ã€‚
 
-› ŒÄ‚Ño‚µŽž‚Ì’ˆÓ
-  E‚·‚×‚Ä‚Ìˆ—‚ðI—¹‚³‚¹‚Ä‚©‚çÝ’èƒ†[ƒeƒBƒŠƒeƒBŠJŽnŠÖ”‚ðƒR[ƒ‹‚µ‚Ä
-    ‚­‚¾‚³‚¢B
-	ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌƒI[ƒgƒTƒ“ƒvƒŠƒ“ƒO“™‚à’âŽ~‚³‚¹‚Ä‚­‚¾‚³‚¢B
-  EÝ’èƒ†[ƒeƒBƒŠƒeƒB‚Í^‚Á”’‚È‰æ–Ê‚©‚çŽn‚Ü‚é‚æ‚¤‚Éì¬‚³‚ê‚Ä‚¢‚é‚Ì‚ÅA
-    ”’‚¢‰æ–Ê‚©‚çŒÄ‚Ño‚·‚ÆŽ©‘R‚ÈŒq‚ª‚è‚É‚È‚è‚Ü‚·B
+â—‹ å‘¼ã³å‡ºã—æ™‚ã®æ³¨æ„
+  ãƒ»ã™ã¹ã¦ã®å‡¦ç†ã‚’çµ‚äº†ã•ã›ã¦ã‹ã‚‰è¨­å®šãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–‹å§‹é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«ã—ã¦
+    ãã ã•ã„ã€‚
+	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚ªãƒ¼ãƒˆã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ç­‰ã‚‚åœæ­¢ã•ã›ã¦ãã ã•ã„ã€‚
+  ãƒ»è¨­å®šãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã¯çœŸã£ç™½ãªç”»é¢ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ä½œæˆã•ã‚Œã¦ã„ã‚‹ã®ã§ã€
+    ç™½ã„ç”»é¢ã‹ã‚‰å‘¼ã³å‡ºã™ã¨è‡ªç„¶ãªç¹‹ãŒã‚Šã«ãªã‚Šã¾ã™ã€‚
 
-› ŠÖ”I—¹Žž‚Ì’ˆÓ
-  ELCD ‚Ö‚Ìo—Í‚ª OFF ‚Ìó‘Ô‚ÅI—¹‚µ‚Ü‚·B
-  E‚·‚×‚Ä‚Ì IRQ Š„‚èž‚Ý‚ð‹ÖŽ~‚µ‚½ó‘Ô‚ÅI—¹‚µ‚Ü‚·B
-  EVRAM ‚Ìó‘Ô‚Í•s’è‚Å‚·B
-  E‚½‚¾‚µAŠÖ”‚Ì•Ô’l‚ªƒGƒ‰[‚Ìê‡‚ÍA‰½‚àˆ—‚ð‚¹‚¸A‚·‚®‚ÉI—¹‚Æ‚È‚è‚Ü‚·B
+â—‹ é–¢æ•°çµ‚äº†æ™‚ã®æ³¨æ„
+  ãƒ»LCD ã¸ã®å‡ºåŠ›ãŒ OFF ã®çŠ¶æ…‹ã§çµ‚äº†ã—ã¾ã™ã€‚
+  ãƒ»ã™ã¹ã¦ã® IRQ å‰²ã‚Šè¾¼ã¿ã‚’ç¦æ­¢ã—ãŸçŠ¶æ…‹ã§çµ‚äº†ã—ã¾ã™ã€‚
+  ãƒ»VRAM ã®çŠ¶æ…‹ã¯ä¸å®šã§ã™ã€‚
+  ãƒ»ãŸã ã—ã€é–¢æ•°ã®è¿”å€¤ãŒã‚¨ãƒ©ãƒ¼ã®å ´åˆã¯ã€ä½•ã‚‚å‡¦ç†ã‚’ã›ãšã€ã™ãã«çµ‚äº†ã¨ãªã‚Šã¾ã™ã€‚
 
 /*---------------------------------------------------------------------------*/
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : Ý’èƒ†[ƒeƒBƒŠƒeƒBŠJŽn
-//          ƒ[ƒNƒƒ‚ƒŠ‚ð“à•”‚ÅŠm•Û‚µ‚Ü‚·
-// ˆø” : language  - ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÅŽg—p‚µ‚Ä‚¢‚éŒ¾Œê
-//        param     - ˆÈ‰º‚©‚ç‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢
+// æ©Ÿèƒ½ : è¨­å®šãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–‹å§‹
+//          ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªã‚’å†…éƒ¨ã§ç¢ºä¿ã—ã¾ã™
+// å¼•æ•° : language  - ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ä½¿ç”¨ã—ã¦ã„ã‚‹è¨€èªž
+//        param     - ä»¥ä¸‹ã‹ã‚‰é¸æŠžã—ã¦ãã ã•ã„
 //                        DWC_UTILITY_TOP_MENU_EXCEPT_JPN
 //                        DWC_UTILITY_SETTING_EXCEPT_JPN
 //                        DWC_UTILITY_TOP_MENU_FOR_JPN
 //                        DWC_UTILITY_SETTING_FOR_JPN
-// •Ô’l : int       - 0        : ³íI—¹
-//                    ‚»‚êˆÈŠO : ˆø”ƒGƒ‰[
+// è¿”å€¤ : int       - 0        : æ­£å¸¸çµ‚äº†
+//                    ãã‚Œä»¥å¤– : å¼•æ•°ã‚¨ãƒ©ãƒ¼
 //-----------------------------------------------------------------------------
 int  DWC_StartUtilityEx(int language, int param);
 

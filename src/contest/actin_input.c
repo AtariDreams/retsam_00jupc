@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	actin_input.c
- * @brief	‰‰‹Z—Í•”–å“ü—Í‰æ–Êˆ—
+ * @brief	æ¼”æŠ€åŠ›éƒ¨é–€å…¥åŠ›ç”»é¢å‡¦ç†
  * @author	matsuda
- * @date	2005.12.02(‹à)
+ * @date	2005.12.02(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -52,21 +52,21 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-//ƒfƒoƒbƒO—p’è‹`F‚PS_MSG‚ðŽg—p‚µ‚½³Ž®‚ÈŒ`B‚OS_MSG‘Î‰žExpand‚ª—pˆÓ‚³‚ê‚é‚Ü‚Å‚ÌŽb’èˆ—
+//ãƒ‡ãƒãƒƒã‚°ç”¨å®šç¾©ï¼šï¼‘ï¼S_MSGã‚’ä½¿ç”¨ã—ãŸæ­£å¼ãªå½¢ã€‚ï¼ï¼S_MSGå¯¾å¿œExpandãŒç”¨æ„ã•ã‚Œã‚‹ã¾ã§ã®æš«å®šå‡¦ç†
 #define S_MSG_DEBUG		(0)
 
 //--------------------------------------------------------------
-//	ƒƒbƒZ[ƒWŠÖŒW
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢ä¿‚
 //--------------------------------------------------------------
-///S_MSG‚ÅŽg—p‚·‚é”Ô†Fƒ|ƒPƒ‚ƒ“‘I‘ð(‹Z”ÍˆÍ)‚ÌŽž‚Ìƒ|ƒPƒ‚ƒ“–¼
+///S_MSGã§ä½¿ç”¨ã™ã‚‹ç•ªå·ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠž(æŠ€ç¯„å›²)ã®æ™‚ã®ãƒã‚±ãƒ¢ãƒ³å
 #define S_MSG_POKESELE_NAME		(0)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@”Ô†
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ç•ªå·
 enum{
 	SCRNBUF_BACKGROUND,
 	SCRNBUF_TITLE,
@@ -77,8 +77,8 @@ enum{
 	SCRNBUF_MAX,
 };
 
-///ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚É‘Î‰ž‚µ‚½ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ÌID
-///	¦SCRNBUF‚Æ•À‚Ñ‚ð“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆII
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã«å¯¾å¿œã—ãŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ID
+///	â€»SCRNBUFã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼ï¼
 ALIGN4 static const u16 ScrnArcDataNo[] = {
 	CON_SUB_BG_NSCR_BIN,
 	CON_TIT_NSCR_BIN,
@@ -88,7 +88,7 @@ ALIGN4 static const u16 ScrnArcDataNo[] = {
 };
 
 
-///ƒpƒŒƒbƒgƒoƒbƒtƒ@”Ô†
+///ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡ç•ªå·
 enum{
 	PALBUF_TITLE,
 	PALBUF_COMMAND,
@@ -96,15 +96,15 @@ enum{
 	PALBUF_MAX,
 };
 
-///ƒpƒŒƒbƒgƒoƒbƒtƒ@‚É‘Î‰ž‚µ‚½ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ÌID
-///	¦PALBUF‚Æ•À‚Ñ‚ð“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆII
+///ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡ã«å¯¾å¿œã—ãŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ID
+///	â€»PALBUFã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼ï¼
 ALIGN4 static const u16 PaletteArcDataNo[] = {
 	CONTEST_SUB_NCLR,
 	CON_ENGI_BUT_NCLR,
 };
 
 //--------------------------------------------------------------
-//	ƒ[ƒJƒ‹TCBƒvƒ‰ƒCƒIƒŠƒeƒB
+//	ãƒ­ãƒ¼ã‚«ãƒ«TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 #define VWAIT_TCBPRI_CGRTRANS			(10)
 #define VWAIT_TCBPRI_FRAMEVISIBLE		(10)
@@ -114,112 +114,112 @@ ALIGN4 static const u16 PaletteArcDataNo[] = {
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///˜A‘±‹ZŽg—p‚Ìˆ×A‘I‘ðo—ˆ‚È‚­‚È‚Á‚Ä‚¢‚éŽž‚Ìƒpƒlƒ‹ƒtƒF[ƒhEVY
+///é€£ç¶šæŠ€ä½¿ç”¨ã®ç‚ºã€é¸æŠžå‡ºæ¥ãªããªã£ã¦ã„ã‚‹æ™‚ã®ãƒ‘ãƒãƒ«ãƒ•ã‚§ãƒ¼ãƒ‰EVY
 #define NOT_TOUCH_WAZA_EVY		(8)
-///˜A‘±‹ZŽg—p‚Ìˆ×A‘I‘ðo—ˆ‚È‚­‚È‚Á‚Ä‚¢‚éŽž‚Ìƒpƒlƒ‹ƒtƒF[ƒhƒJƒ‰[
+///é€£ç¶šæŠ€ä½¿ç”¨ã®ç‚ºã€é¸æŠžå‡ºæ¥ãªããªã£ã¦ã„ã‚‹æ™‚ã®ãƒ‘ãƒãƒ«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚«ãƒ©ãƒ¼
 #define NOT_TOUCH_WAZA_COLOR	(0x6f39)
-///˜A‘±‹ZŽg—p‚Ìˆ×A‘I‘ðo—ˆ‚È‚­‚È‚Á‚Ä‚¢‚é‹Z‚ª1‚Â‚à‚È‚¢ê‡‚Ì‰Šú‰»ƒpƒ‰ƒ[ƒ^
+///é€£ç¶šæŠ€ä½¿ç”¨ã®ç‚ºã€é¸æŠžå‡ºæ¥ãªããªã£ã¦ã„ã‚‹æŠ€ãŒ1ã¤ã‚‚ãªã„å ´åˆã®åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 #define NOT_TOUCH_WAZA_POS_NULL	(0xff)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///BGŽw’è‚È‚µ
+///BGæŒ‡å®šãªã—
 #define NONE_ID			(0xffff)
 
-///BGŽg—p–Ê”
+///BGä½¿ç”¨é¢æ•°
 #define ACI_BG_NUM		(4)
 
-///•W€ƒpƒŒƒbƒgƒf[ƒ^Žg—p–{”
+///æ¨™æº–ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ä½¿ç”¨æœ¬æ•°
 #define BASE_PLTT_NUM	(16)
 
-///makedata_no‰Šú’l(–¢Žg—pó‘Ô)
+///makedata_noåˆæœŸå€¤(æœªä½¿ç”¨çŠ¶æ…‹)
 #define MAKEDATA_NO_INIT	(-1)
 
-///ƒRƒ“ƒeƒXƒg“ü—Í‰æ–Ê‚ÅŽg—po—ˆ‚éBG‚ÌCGRƒTƒCƒY
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¥åŠ›ç”»é¢ã§ä½¿ç”¨å‡ºæ¥ã‚‹BGã®CGRã‚µã‚¤ã‚º
 #define ACI_BG_CGR_SIZE			(0x6000)
 
-///BGƒXƒNƒŠ[ƒ“‚ÌƒNƒŠƒAƒR[ƒh
+///BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
 #define BG_CLEAR_CODE			(0)
 
-///”¼“§–¾‘æ1‘ÎÛ–Ê
+///åŠé€æ˜Žç¬¬1å¯¾è±¡é¢
 #define BLD_PLANE_1		(GX_BLEND_PLANEMASK_BG0)
-///”¼“§–¾‘æ2‘ÎÛ–Ê
+///åŠé€æ˜Žç¬¬2å¯¾è±¡é¢
 #define BLD_PLANE_2		(GX_BLEND_BGALL)
-///‘æ1‘ÎÛ–Ê‚É‘Î‚·‚éƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒOŒW”
+///ç¬¬1å¯¾è±¡é¢ã«å¯¾ã™ã‚‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ä¿‚æ•°
 #define BLD_ALPHA_1		(9)
-///‘æ2‘ÎÛ–Ê‚É‘Î‚·‚éƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒOŒW”
+///ç¬¬2å¯¾è±¡é¢ã«å¯¾ã™ã‚‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ä¿‚æ•°
 #define BLD_ALPHA_2		(8)
 
-///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNAƒ^ƒCƒv‚ð•\Ž¦‚·‚éƒvƒŒ[ƒg•”•ª‚ÌƒpƒŒƒbƒg”Ô†
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ã€ã‚¿ã‚¤ãƒ—ã‚’è¡¨ç¤ºã™ã‚‹ãƒ—ãƒ¬ãƒ¼ãƒˆéƒ¨åˆ†ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 #define PLATE_PALNO		(2)
 
-///‘I‘ðo—ˆ‚È‚¢ƒpƒlƒ‹‚ÌŠG‚ÌƒpƒŒƒbƒg”Ô†
+///é¸æŠžå‡ºæ¥ãªã„ãƒ‘ãƒãƒ«ã®çµµã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 #define ACI_NOT_SELECT_PANEL_PALNO		(0x8)
 
-///ƒRƒ}ƒ“ƒh‘I‘ð‰æ–Ê‚ÌƒoƒbƒNƒOƒ‰ƒEƒ“ƒh‚ÌƒpƒŒƒbƒg”Ô†
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžç”»é¢ã®ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 #define COMMAND_BACKGROUND_PALNO		(0xe)
 
 //--------------------------------------------------------------
-//	ƒXƒNƒŠ[ƒ“ƒXƒNƒ[ƒ‹’l
+//	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤
 //--------------------------------------------------------------
-///TYPE_A‚ÌBG•\Ž¦Žž‚Éƒ^ƒbƒ`ƒpƒlƒ‹‚ª‰Ÿ‚³‚ê‚½Žž‚ÉY•ûŒü‚ÉƒXƒNƒ[ƒ‹‚³‚¹‚é’l(ƒGƒtƒFƒNƒg–Ê)
+///TYPE_Aã®BGè¡¨ç¤ºæ™‚ã«ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãŒæŠ¼ã•ã‚ŒãŸæ™‚ã«Yæ–¹å‘ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹å€¤(ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢)
 #define SCRN_SCROLL_A_EFF_Y				(-2)
-///TYPE_A‚ÌBG•\Ž¦Žž‚Éƒ^ƒbƒ`ƒpƒlƒ‹‚ª‰Ÿ‚³‚ê‚½Žž‚ÉY•ûŒü‚ÉƒXƒNƒ[ƒ‹‚³‚¹‚é’l(ƒGƒtƒFƒNƒg–Ê)
+///TYPE_Aã®BGè¡¨ç¤ºæ™‚ã«ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãŒæŠ¼ã•ã‚ŒãŸæ™‚ã«Yæ–¹å‘ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹å€¤(ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢)
 #define SCRN_SCROLL_BACK_A_EFF_Y		(1)
 
 //--------------------------------------------------------------
-//	ƒ^ƒbƒ`ƒtƒF[ƒh
+//	ã‚¿ãƒƒãƒãƒ•ã‚§ãƒ¼ãƒ‰
 //--------------------------------------------------------------
-///ƒ^ƒbƒ`‚µ‚½Žž‚Ìƒ{ƒ^ƒ“ƒtƒF[ƒhEVY
+///ã‚¿ãƒƒãƒã—ãŸæ™‚ã®ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰EVY
 #define TOUCH_FADE_EVY		(10 << 8)
-///ƒ^ƒbƒ`‚µ‚½Žž‚Ìƒ{ƒ^ƒ“ƒtƒF[ƒhEVY‰ÁŽZ’l
+///ã‚¿ãƒƒãƒã—ãŸæ™‚ã®ãƒœã‚¿ãƒ³ãƒ•ã‚§ãƒ¼ãƒ‰EVYåŠ ç®—å€¤
 #define TOUCH_FADE_ADD_EVY	(TOUCH_FADE_EVY / 2)
 
 //--------------------------------------------------------------
-//	ƒJ[ƒ\ƒ‹
+//	ã‚«ãƒ¼ã‚½ãƒ«
 //--------------------------------------------------------------
-///ƒJ[ƒ\ƒ‹‚ÌƒAƒNƒ^[ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define SOFTPRI_CURSOR				(5)
-///ƒJ[ƒ\ƒ‹‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚«ãƒ¼ã‚½ãƒ«ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BGPRI_CURSOR				(0)
 
 //--------------------------------------------------------------
-//	ƒtƒHƒ“ƒgOBJ
+//	ãƒ•ã‚©ãƒ³ãƒˆOBJ
 //--------------------------------------------------------------
-///ƒtƒHƒ“ƒgOBJ‚Ì•¶ŽšŠÔŠuX
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®æ–‡å­—é–“éš”X
 #define PANEL_MSG_MARGIN		(0)
-///ƒtƒHƒ“ƒgOBJ‚ÌÅ‘åŽg—pOAM”
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®æœ€å¤§ä½¿ç”¨OAMæ•°
 #define PANEL_MSG_MAXOAM		(8)
-///ƒtƒHƒ“ƒgOBJ‚ÌƒAƒNƒ^[ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define PANEL_MSG_SOFTPRI		(100)
-///ƒtƒHƒ“ƒgOBJ‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define PANEL_MSG_BGPRI			(0)
 
 enum{
-	FONTOAM_LEFT,		///<X¶’[À•W
-	FONTOAM_CENTER,		///<X’†SÀ•W
+	FONTOAM_LEFT,		///<Xå·¦ç«¯åº§æ¨™
+	FONTOAM_CENTER,		///<Xä¸­å¿ƒåº§æ¨™
 };
 
-///ƒtƒHƒ“ƒgOBJƒAƒNƒ^[ƒ[ƒN‚ÅŽg—p‚·‚é“Y‚¦Žš‚ÌˆÊ’u
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã§ä½¿ç”¨ã™ã‚‹æ·»ãˆå­—ã®ä½ç½®
 enum{
 	//WALL
-	FA_NO_CONRANK = 0,				///<ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN
-	FA_NO_CONTYPE,				///<ƒRƒ“ƒeƒXƒgƒ^ƒCƒv
+	FA_NO_CONRANK = 0,				///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯
+	FA_NO_CONTYPE,				///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—
 	
 	//WAZA
-	FA_NO_WAZA_1 = 0,			///<ŽèŽ‚¿‹Z1
-	FA_NO_WAZA_2,				///<ŽèŽ‚¿‹Z2
-	FA_NO_WAZA_3,				///<ŽèŽ‚¿‹Z3
-	FA_NO_WAZA_4,				///<ŽèŽ‚¿‹Z4
-	FA_NO_SETUMEI_1_U,			///<‹Z1‚Ìà–¾ã’i
-	FA_NO_SETUMEI_2_U,			///<‹Z1‚Ìà–¾ã’i
-	FA_NO_SETUMEI_3_U,			///<‹Z1‚Ìà–¾ã’i
-	FA_NO_SETUMEI_4_U,			///<‹Z1‚Ìà–¾ã’i
-	FA_NO_SETUMEI_1_D,			///<‹Z2‚Ìà–¾‰º’i
-	FA_NO_SETUMEI_2_D,			///<‹Z2‚Ìà–¾‰º’i
-	FA_NO_SETUMEI_3_D,			///<‹Z2‚Ìà–¾‰º’i
-	FA_NO_SETUMEI_4_D,			///<‹Z2‚Ìà–¾‰º’i
+	FA_NO_WAZA_1 = 0,			///<æ‰‹æŒã¡æŠ€1
+	FA_NO_WAZA_2,				///<æ‰‹æŒã¡æŠ€2
+	FA_NO_WAZA_3,				///<æ‰‹æŒã¡æŠ€3
+	FA_NO_WAZA_4,				///<æ‰‹æŒã¡æŠ€4
+	FA_NO_SETUMEI_1_U,			///<æŠ€1ã®èª¬æ˜Žä¸Šæ®µ
+	FA_NO_SETUMEI_2_U,			///<æŠ€1ã®èª¬æ˜Žä¸Šæ®µ
+	FA_NO_SETUMEI_3_U,			///<æŠ€1ã®èª¬æ˜Žä¸Šæ®µ
+	FA_NO_SETUMEI_4_U,			///<æŠ€1ã®èª¬æ˜Žä¸Šæ®µ
+	FA_NO_SETUMEI_1_D,			///<æŠ€2ã®èª¬æ˜Žä¸‹æ®µ
+	FA_NO_SETUMEI_2_D,			///<æŠ€2ã®èª¬æ˜Žä¸‹æ®µ
+	FA_NO_SETUMEI_3_D,			///<æŠ€2ã®èª¬æ˜Žä¸‹æ®µ
+	FA_NO_SETUMEI_4_D,			///<æŠ€2ã®èª¬æ˜Žä¸‹æ®µ
 	
 	//JUDGE
 	FA_NO_JUDGE_1 = 0,
@@ -227,22 +227,22 @@ enum{
 	FA_NO_JUDGE_3,
 	FA_NO_JUDGE_MODORU,
 	
-	FA_NO_MAX = FA_NO_SETUMEI_4_D + 1,		///<ƒtƒHƒ“ƒgOBJ‚ðˆê“x‚Éo‚¹‚éÅ‘å”
+	FA_NO_MAX = FA_NO_SETUMEI_4_D + 1,		///<ãƒ•ã‚©ãƒ³ãƒˆOBJã‚’ä¸€åº¦ã«å‡ºã›ã‚‹æœ€å¤§æ•°
 };
 
-///‹Z–¼ƒtƒHƒ“ƒgOBJ‚Ì•\Ž¦À•W
+///æŠ€åãƒ•ã‚©ãƒ³ãƒˆOBJã®è¡¨ç¤ºåº§æ¨™
 ALIGN4 static const u16 FontWazaPos[][2] = {	//0:X, 1:Y
-	{2 * 8 + 3, 4 * 8},		//X‚Í¶’[À•W
+	{2 * 8 + 3, 4 * 8},		//Xã¯å·¦ç«¯åº§æ¨™
 	{0x12 * 8 + 3, 4 * 8},
 	{2 * 8 + 3, 0x10 * 8},
 	{0x12 * 8 + 3, 0x10 * 8},
 };
 
-///‹Zà–¾•¶ƒtƒHƒ“ƒgOBJ‚Ì•\Ž¦À•W
+///æŠ€èª¬æ˜Žæ–‡ãƒ•ã‚©ãƒ³ãƒˆOBJã®è¡¨ç¤ºåº§æ¨™
 ALIGN4 static const u16 FontSetumeiPos[][2][2] = {	//[no][UP,DOWN][X,Y]
 	{
-		{2 * 8 + 3, 8 * 8},		//X‚Í¶’[À•W
-		{2 * 8 + 3, 10 * 8},		//X‚Í¶’[À•W
+		{2 * 8 + 3, 8 * 8},		//Xã¯å·¦ç«¯åº§æ¨™
+		{2 * 8 + 3, 10 * 8},		//Xã¯å·¦ç«¯åº§æ¨™
 	},
 	{
 		{0x12 * 8 + 3, 8 * 8},
@@ -258,31 +258,31 @@ ALIGN4 static const u16 FontSetumeiPos[][2][2] = {	//[no][UP,DOWN][X,Y]
 	},
 };
 
-///R”»–¼ƒtƒHƒ“ƒgOBJ‚Ì•\Ž¦À•W
+///å¯©åˆ¤åãƒ•ã‚©ãƒ³ãƒˆOBJã®è¡¨ç¤ºåº§æ¨™
 ALIGN4 static const u16 FontJudgePos[][2] = {	//X,Y
-	{5 * 8, 9 * 8},		//X‚ÍƒZƒ“ƒ^[À•W
+	{5 * 8, 9 * 8},		//Xã¯ã‚»ãƒ³ã‚¿ãƒ¼åº§æ¨™
 	{16 * 8, 9 * 8},
 	{0x1b * 8, 9 * 8},
 };
 
-///R”»‘I‘ð‰æ–ÊFu‚à‚Ç‚év‚ÌƒtƒHƒ“ƒgOBJ•\Ž¦À•WX(ƒZƒ“ƒ^[À•W)
+///å¯©åˆ¤é¸æŠžç”»é¢ï¼šã€Œã‚‚ã©ã‚‹ã€ã®ãƒ•ã‚©ãƒ³ãƒˆOBJè¡¨ç¤ºåº§æ¨™X(ã‚»ãƒ³ã‚¿ãƒ¼åº§æ¨™)
 #define FONT_JUDGE_MODORU_X		(128)
-///R”»‘I‘ð‰æ–ÊFu‚à‚Ç‚év‚ÌƒtƒHƒ“ƒgOBJ•\Ž¦À•WY
+///å¯©åˆ¤é¸æŠžç”»é¢ï¼šã€Œã‚‚ã©ã‚‹ã€ã®ãƒ•ã‚©ãƒ³ãƒˆOBJè¡¨ç¤ºåº§æ¨™Y
 #define FONT_JUDGE_MODORU_Y		(0x14 * 8 + 4)
 
-///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNƒtƒHƒ“ƒgOBJ‚Ì•\Ž¦À•WX
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ãƒ•ã‚©ãƒ³ãƒˆOBJã®è¡¨ç¤ºåº§æ¨™X
 #define FONT_CONRANK_POS_X		(128)
-///ƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒNƒtƒHƒ“ƒgOBJ‚Ì•\Ž¦À•WY
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯ãƒ•ã‚©ãƒ³ãƒˆOBJã®è¡¨ç¤ºåº§æ¨™Y
 #define FONT_CONRANK_POS_Y		(8*0x10-1)
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒtƒHƒ“ƒgOBJ‚Ì•\Ž¦À•WX
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ãƒ•ã‚©ãƒ³ãƒˆOBJã®è¡¨ç¤ºåº§æ¨™X
 #define FONT_CONTYPE_POS_X		(128)
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒtƒHƒ“ƒgOBJ‚Ì•\Ž¦À•WY
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ãƒ•ã‚©ãƒ³ãƒˆOBJã®è¡¨ç¤ºåº§æ¨™Y
 #define FONT_CONTYPE_POS_Y		(8*0x14-1)
 
 //--------------------------------------------------------------
-//	ƒpƒŒƒbƒgŠÖ˜A’è‹`
+//	ãƒ‘ãƒ¬ãƒƒãƒˆé–¢é€£å®šç¾©
 //--------------------------------------------------------------
-///ƒtƒHƒ“ƒgOBJ‚ÌƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 enum{
 	PALOFS_CONRANK = 0,
 	PALOFS_WAZA = 0,
@@ -290,43 +290,43 @@ enum{
 	PALOFS_JUDGE = 0,
 };
 
-#define MSGCOLOR_CONRANK		(GF_PRINTCOLOR_MAKE(1, 2, 0))	//FONT_SYSTEM‚È‚Ì‚Å”wŒi”²‚«FŽw’è
+#define MSGCOLOR_CONRANK		(GF_PRINTCOLOR_MAKE(1, 2, 0))	//FONT_SYSTEMãªã®ã§èƒŒæ™¯æŠœãè‰²æŒ‡å®š
 #define MSGCOLOR_WAZA			(GF_PRINTCOLOR_MAKE(1, 7, 8))
-#define MSGCOLOR_SETUMEI		(GF_PRINTCOLOR_MAKE(1, 2, 0))	//FONT_SYSTEM‚È‚Ì‚Å”wŒi”²‚«FŽw’è
+#define MSGCOLOR_SETUMEI		(GF_PRINTCOLOR_MAKE(1, 2, 0))	//FONT_SYSTEMãªã®ã§èƒŒæ™¯æŠœãè‰²æŒ‡å®š
 #define MSGCOLOR_JUDGE			(GF_PRINTCOLOR_MAKE(1, 9, 0xa))
 
 //--------------------------------------------------------------
-//	ƒGƒtƒFƒNƒgTCB
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCB
 //--------------------------------------------------------------
-///ƒpƒlƒ‹‚ðƒ^ƒbƒ`‚µ‚½ŒãAƒGƒtƒFƒNƒg‚Å‘Ò‚ÂƒtƒŒ[ƒ€”
+///ãƒ‘ãƒãƒ«ã‚’ã‚¿ãƒƒãƒã—ãŸå¾Œã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§å¾…ã¤ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define SCRN_TOUCH_WAIT			(0)
-///ƒpƒlƒ‹‚ðƒ^ƒbƒ`‚µ‚½ŒãAƒGƒtƒFƒNƒg‚Å‘Ò‚ÂƒtƒŒ[ƒ€”
+///ãƒ‘ãƒãƒ«ã‚’ã‚¿ãƒƒãƒã—ãŸå¾Œã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§å¾…ã¤ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define SCRN_TOUCH_ANM_WAIT		(0)
 
 //--------------------------------------------------------------
-//	‹Zƒ^ƒCƒv
+//	æŠ€ã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
-///‹Zƒ^ƒCƒv‚ÌƒpƒŒƒbƒgŠJŽnˆÊ’u
+///æŠ€ã‚¿ã‚¤ãƒ—ã®ãƒ‘ãƒ¬ãƒƒãƒˆé–‹å§‹ä½ç½®
 #define WAZATYPE_START_PALPOS	(4)
 
 //--------------------------------------------------------------
-//	AP’l
+//	APå€¤
 //--------------------------------------------------------------
-///AP’lƒn[ƒg‚Ì•\Ž¦À•W
+///APå€¤ãƒãƒ¼ãƒˆã®è¡¨ç¤ºåº§æ¨™
 ALIGN4 static const AppHeartPos[][2] = {	//X, Y
 	{7*8 + 4 + 3, 6*8 + 4},
 	{0x17*8 + 4 + 3, 6*8 + 4},
 	{7*8 + 4 + 3, 0x12*8 + 4},
 	{0x17*8 + 4 + 3, 0x12*8 + 4},
 };
-///AP’lƒn[ƒg‚Ì—×‚Ìƒn[ƒgŠÔ‚ÌƒXƒy[ƒX
+///APå€¤ãƒãƒ¼ãƒˆã®éš£ã®ãƒãƒ¼ãƒˆé–“ã®ã‚¹ãƒšãƒ¼ã‚¹
 #define APP_HEART_SPACE_X		(8)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///‰‰‹Z—Í“ü—Í‰æ–ÊƒJ[ƒ\ƒ‹ˆÊ’u‹L‰¯
+///æ¼”æŠ€åŠ›å…¥åŠ›ç”»é¢ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®è¨˜æ†¶
 typedef struct{
 	s8 waza_x;
 	s8 waza_y;
@@ -334,16 +334,16 @@ typedef struct{
 	s8 judge_y;
 }ACI_CURSOR_SAVE;
 
-///ƒJ[ƒ\ƒ‹ˆÚ“®—pƒ[ƒN
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	u8 cursor_on;			///<TRUEFƒJ[ƒ\ƒ‹•\Ž¦ó‘Ô
-	s8 y_menu;				///<ŠK‘wƒƒjƒ…[‚ÌˆÊ’u(Y)
-	s8 x_menu;				///<…•½ƒƒjƒ…[‚ÌˆÊ’u(X)
+	u8 cursor_on;			///<TRUEï¼šã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºçŠ¶æ…‹
+	s8 y_menu;				///<éšŽå±¤ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½ç½®(Y)
+	s8 x_menu;				///<æ°´å¹³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä½ç½®(X)
 	
 	u8 dummy;
 }CURSOR_MOVE;
 
-///ƒXƒNƒŠ[ƒ“‘‚«Š·‚¦Žž‚Ì”ÍˆÍŽw’è\‘¢‘Ì
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆæ™‚ã®ç¯„å›²æŒ‡å®šæ§‹é€ ä½“
 typedef struct{
 	s32 top;
 	s32 bottom;
@@ -351,38 +351,38 @@ typedef struct{
 	s32 right;
 }REWRITE_SCRN_RECT;
 
-///CGR“]‘—ƒAƒjƒŽÀsŽž‚Ì”ÍˆÍƒf[ƒ^
+///CGRè»¢é€ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œæ™‚ã®ç¯„å›²ãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	u16 dest_x;			///<“]‘—æXŠJŽnˆÊ’u(ƒLƒƒƒ‰’PˆÊ)
-	u16 dest_y;			///<“]‘—æYŠJŽnˆÊ’u(ƒLƒƒƒ‰’PˆÊ)
-	u16 src_x;			///<“]‘—Œ³XŠJŽnˆÊ’u(ƒLƒƒƒ‰’PˆÊ)
-	u16 src_y;			///<“]‘—Œ³YŠJŽnˆÊ’u(ƒLƒƒƒ‰’PˆÊ)
-	u16 size_x;			///<X“]‘—ƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)
-	u16 size_y;			///<Y“]‘—ƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)
+	u16 dest_x;			///<è»¢é€å…ˆXé–‹å§‹ä½ç½®(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 dest_y;			///<è»¢é€å…ˆYé–‹å§‹ä½ç½®(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 src_x;			///<è»¢é€å…ƒXé–‹å§‹ä½ç½®(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 src_y;			///<è»¢é€å…ƒYé–‹å§‹ä½ç½®(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 size_x;			///<Xè»¢é€ã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)
+	u16 size_y;			///<Yè»¢é€ã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)
 }CGR_TRANS_RECTDATA;
 
-///CGR“]‘—ƒAƒjƒŽÀsŽž‚Ìƒpƒ‰ƒ[ƒ^
+///CGRè»¢é€ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œæ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
-	TCB_PTR v_tcb;		///<Vƒuƒ‰ƒ“ƒN“]‘—‚ðŽÀs‚·‚éTCB‚Ìƒ|ƒCƒ“ƒ^
-	u8 *dest_vram;		///<VRAM“]‘—æƒAƒhƒŒƒX
-	void *arc_data;		///<ƒA[ƒJƒCƒu‚µ‚½ƒLƒƒƒ‰ƒtƒ@ƒCƒ‹‚Ìƒ|ƒCƒ“ƒ^
-	u8 *raw_data;		///<ƒA[ƒJƒCƒu‚µ‚½ƒLƒƒƒ‰ƒtƒ@ƒCƒ‹‚ÌƒLƒƒƒ‰ƒf[ƒ^æ“ªƒAƒhƒŒƒX
-	CGR_TRANS_RECTDATA rd;	///<CGR“]‘—ƒAƒjƒŽÀsŽž‚Ì”ÍˆÍƒf[ƒ^
-	u16 x_len;			///<ƒLƒƒƒ‰ƒtƒ@ƒCƒ‹‚ÌX•(ƒoƒCƒg’PˆÊ)
+	TCB_PTR v_tcb;		///<Vãƒ–ãƒ©ãƒ³ã‚¯è»¢é€ã‚’å®Ÿè¡Œã™ã‚‹TCBã®ãƒã‚¤ãƒ³ã‚¿
+	u8 *dest_vram;		///<VRAMè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
+	void *arc_data;		///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã—ãŸã‚­ãƒ£ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 *raw_data;		///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã—ãŸã‚­ãƒ£ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+	CGR_TRANS_RECTDATA rd;	///<CGRè»¢é€ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œæ™‚ã®ç¯„å›²ãƒ‡ãƒ¼ã‚¿
+	u16 x_len;			///<ã‚­ãƒ£ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ã®Xå¹…(ãƒã‚¤ãƒˆå˜ä½)
 }CGR_TRANS_PARAM;
 
-///paracgr\‘¢‘Ì‚ÅŽg—p‚·‚éƒAƒNƒ^[ƒ|ƒCƒ“ƒ^‚Ì”
+///paracgræ§‹é€ ä½“ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿ã®æ•°
 #define PARACGR_CAP_MAX			(3)
-///ƒ{ƒ^ƒ“‚ÌƒAƒjƒƒpƒ^[ƒ“”
+///ãƒœã‚¿ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°
 #define BUTTON_ANM_NUM			(2)
 
-///ƒGƒtƒFƒNƒgTCB—p‚Ìƒ[ƒN
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBç”¨ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	s16 seq;
 	s16 wait;
 	union{
-		struct{		//CGR“]‘——p(”Ä—p)
-			CATS_ACT_PTR cap[PARACGR_CAP_MAX];	///<ˆê‚ÉƒXƒNƒ[ƒ‹‚³‚¹‚éƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+		struct{		//CGRè»¢é€ç”¨(æ±Žç”¨)
+			CATS_ACT_PTR cap[PARACGR_CAP_MAX];	///<ä¸€ç·’ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
 //			CGR_TRANS_PARAM *ctp;
 //			const CGR_TRANS_RECTDATA *ctp_rd_ptr[BUTTON_ANM_NUM];
@@ -392,44 +392,44 @@ typedef struct{
 			int tp_ret;
 			u8 scrnbuf_no;
 
-			u8 fa_no;						///<‘ÎÛƒtƒHƒ“ƒgOBJƒAƒNƒ^[ƒ[ƒN‚Ì“Y‚¦Žš
+			u8 fa_no;						///<å¯¾è±¡ãƒ•ã‚©ãƒ³ãƒˆOBJã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã®æ·»ãˆå­—
 		}paracgr;
 	};
 }ACI_EFFECT_WORK;
 
-///ƒJƒ‰[ƒGƒtƒFƒNƒgTCB—p‚Ìƒ[ƒN
+///ã‚«ãƒ©ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBç”¨ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	int tp_ret;
-	s16 evy;		///<EVY’l(‰ºˆÊ8ƒrƒbƒg¬”)
-	s16 evy_add;	///<EVY‰ÁŒ¸ŽZ’l(‰ºˆÊ8ƒrƒbƒg¬”)
+	s16 evy;		///<EVYå€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s16 evy_add;	///<EVYåŠ æ¸›ç®—å€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 	u8 seq;
-	u8 pal_pos;	///<ƒtƒF[ƒh‘ÎÛ‚ÌƒpƒŒƒbƒg”Ô†
+	u8 pal_pos;	///<ãƒ•ã‚§ãƒ¼ãƒ‰å¯¾è±¡ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 }ACI_COLOR_EFF_WORK;
 
-///ƒGƒtƒFƒNƒgBG‘‚«Š·‚¦ƒpƒ‰ƒ[ƒ^
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGæ›¸ãæ›ãˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
-	const REWRITE_SCRN_RECT *rsr;	///<ƒXƒNƒŠ[ƒ“‘‚«Š·‚¦”ÍˆÍƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u8 rsr_num;						///<rsrƒf[ƒ^ŒÂ”
-	s8 add_charname;				///<ƒLƒƒƒ‰ƒNƒ^ƒl[ƒ€‚É‘«‚µ‚±‚ÞƒIƒtƒZƒbƒg’l
+	const REWRITE_SCRN_RECT *rsr;	///<ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆç¯„å›²ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 rsr_num;						///<rsrãƒ‡ãƒ¼ã‚¿å€‹æ•°
+	s8 add_charname;				///<ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒ¼ãƒ ã«è¶³ã—ã“ã‚€ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 }EFFBG_WRITE_PARAM;
 
-///ƒtƒHƒ“ƒgƒAƒNƒ^[ƒ[ƒN
+///ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	FONTOAM_OBJ_PTR fontoam;
 	CHAR_MANAGER_ALLOCDATA cma;
 	u16 font_len;
 }FONT_ACTOR;
 
-///ƒtƒHƒ“ƒgOAMì¬ŽžAŠO‘¤‚ÅBMPŽw’è‚·‚éê‡‚ÉŽg—p
+///ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆæ™‚ã€å¤–å´ã§BMPæŒ‡å®šã™ã‚‹å ´åˆã«ä½¿ç”¨
 typedef struct{
 	GF_BGL_BMPWIN bmpwin;
 	u16 char_len;
 	u16 font_len;
 }FONT_EX_BMPWIN;
 
-///•`‰æˆ—‚‘¬‰»‚Ìˆ×A‚ ‚ç‚©‚¶‚ßƒf[ƒ^‚ðì¬‚µ‚Ä‚¨‚­ˆ×‚Ìƒ[ƒN
+///æç”»å‡¦ç†é«˜é€ŸåŒ–ã®ç‚ºã€ã‚ã‚‰ã‹ã˜ã‚ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦ãŠãç‚ºã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	//ƒtƒHƒ“ƒgOAM‚ÉŠÖ˜A•t‚¯‚éBMPWIN
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã«é–¢é€£ä»˜ã‘ã‚‹BMPWIN
 	FONT_EX_BMPWIN exbmp_waza[WAZA_TEMOTI_MAX];
 	FONT_EX_BMPWIN exbmp_explain_u[WAZA_TEMOTI_MAX];
 	FONT_EX_BMPWIN exbmp_explain_d[WAZA_TEMOTI_MAX];
@@ -440,52 +440,52 @@ typedef struct{
 	u8 con_type[WAZA_TEMOTI_MAX];
 }MEMORY_DECORD_WORK;
 
-///ƒRƒ“ƒeƒXƒg“ü—Í‰æ–Ê§Œäƒ[ƒN
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¥åŠ›ç”»é¢åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 typedef struct _ACI_PARAM{
 	CONTEST_SYSTEM *consys;
 	ACTIN_SYSTEM_PARAM *sys;
 	ACTIN_GAME_PARAM *a_game;
-	void *scene_work;	///<ƒV[ƒ“–ˆ‚ÉˆÙ‚È‚é•K—v‚Æ‚È‚éƒf[ƒ^—Þ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	TCB_PTR effect_tcb;	///<ƒGƒtƒFƒNƒg“®ìTCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	TCB_PTR color_eff_tcb;	///<ƒJƒ‰[ƒGƒtƒFƒNƒg“®ìTCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	EFFBG_WRITE_PARAM ewp;	///<ƒGƒtƒFƒNƒgBG‘‚«Š·‚¦ƒpƒ‰ƒ[ƒ^
+	void *scene_work;	///<ã‚·ãƒ¼ãƒ³æ¯Žã«ç•°ãªã‚‹å¿…è¦ã¨ãªã‚‹ãƒ‡ãƒ¼ã‚¿é¡žã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	TCB_PTR effect_tcb;	///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œTCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	TCB_PTR color_eff_tcb;	///<ã‚«ãƒ©ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œTCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	EFFBG_WRITE_PARAM ewp;	///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGæ›¸ãæ›ãˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-	//ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@
-	u16 *scrn_buf[SCRNBUF_MAX];	///<ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@
-	//ƒpƒŒƒbƒgƒoƒbƒtƒ@
-	u16 *pal_buf[PALBUF_MAX];				///<ƒpƒŒƒbƒgƒoƒbƒtƒ@
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡
+	u16 *scrn_buf[SCRNBUF_MAX];	///<ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡
+	u16 *pal_buf[PALBUF_MAX];				///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡
 
-	//ƒtƒHƒ“ƒgOAM
-	FONTOAM_SYS_PTR fontoam_sys;	///<ƒtƒHƒ“ƒgƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	FONT_ACTOR font_actor[FA_NO_MAX];	///<ƒtƒHƒ“ƒgƒAƒNƒ^[ƒ[ƒN
+	//ãƒ•ã‚©ãƒ³ãƒˆOAM
+	FONTOAM_SYS_PTR fontoam_sys;	///<ãƒ•ã‚©ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	FONT_ACTOR font_actor[FA_NO_MAX];	///<ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
 	
-	//ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“
-	CATS_ACT_PTR icon_cap[WAZA_TEMOTI_MAX];		///<ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
-	//¦‚¢R”»ƒn[ƒg
-	CATS_ACT_PTR special_heart_cap;			///<¦‚¢R”»ƒn[ƒg‚ÌƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
-	//AP’lE–WŠQ’lƒn[ƒg
-	CATS_ACT_PTR app_heart_cap[WAZA_TEMOTI_MAX][APP_HEART_MAX];	///<AP’lƒn[ƒg‚ÌƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³
+	CATS_ACT_PTR icon_cap[WAZA_TEMOTI_MAX];		///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	//å‡„ã„å¯©åˆ¤ãƒãƒ¼ãƒˆ
+	CATS_ACT_PTR special_heart_cap;			///<å‡„ã„å¯©åˆ¤ãƒãƒ¼ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+	//APå€¤ãƒ»å¦¨å®³å€¤ãƒãƒ¼ãƒˆ
+	CATS_ACT_PTR app_heart_cap[WAZA_TEMOTI_MAX][APP_HEART_MAX];	///<APå€¤ãƒãƒ¼ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
 	
 	MEMORY_DECORD_WORK memory_decord;
 	void *cgr_arc_data;
 	NNSG2dCharacterData *cgr_char_data;
 	
-	s8 makedata_no;		///<Œ»ÝŽg—p‚µ‚Ä‚¢‚éBgMakeData‚Ì”Ô†
-	u8 not_touch_pos;	///<˜A‘±Žg—p•s‰Â‹Z‚ÌŽèŽ‚¿ˆÊ’u(•s‰Â‹Z‚ª‚È‚¢ê‡‚ÍNOT_TOUCH_WAZA_POS_NULL)
+	s8 makedata_no;		///<ç¾åœ¨ä½¿ç”¨ã—ã¦ã„ã‚‹BgMakeDataã®ç•ªå·
+	u8 not_touch_pos;	///<é€£ç¶šä½¿ç”¨ä¸å¯æŠ€ã®æ‰‹æŒã¡ä½ç½®(ä¸å¯æŠ€ãŒãªã„å ´åˆã¯NOT_TOUCH_WAZA_POS_NULL)
 	
-	ACI_EFFECT_WORK effect_work;	///<ƒGƒtƒFƒNƒgTCB—pƒ[ƒN
-	ACI_COLOR_EFF_WORK color_work;	///<ƒJƒ‰[ƒGƒtƒFƒNƒgTCB—pƒ[ƒN
+	ACI_EFFECT_WORK effect_work;	///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBç”¨ãƒ¯ãƒ¼ã‚¯
+	ACI_COLOR_EFF_WORK color_work;	///<ã‚«ãƒ©ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBç”¨ãƒ¯ãƒ¼ã‚¯
 
-	ACI_CURSOR_SAVE cursor_save;	///<ƒJ[ƒ\ƒ‹ƒZ[ƒu—pƒ[ƒN
-	CCURSOR_PTR cursor;			///<ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	CURSOR_MOVE cursor_move;	///<ƒJ[ƒ\ƒ‹ˆÚ“®—pƒ[ƒN
-	u8 decend_key;				///<TRUE:Œˆ’èƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Ì‚ªƒJ[ƒ\ƒ‹
+	ACI_CURSOR_SAVE cursor_save;	///<ã‚«ãƒ¼ã‚½ãƒ«ã‚»ãƒ¼ãƒ–ç”¨ãƒ¯ãƒ¼ã‚¯
+	CCURSOR_PTR cursor;			///<ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	CURSOR_MOVE cursor_move;	///<ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ç”¨ãƒ¯ãƒ¼ã‚¯
+	u8 decend_key;				///<TRUE:æ±ºå®šãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã®ãŒã‚«ãƒ¼ã‚½ãƒ«
 }ACI_PARAM;
 
-///BGì¬ƒf[ƒ^\‘¢‘Ì
+///BGä½œæˆãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct{
-	u16 cgr_id;			///<Žg—pCGR‚ÌƒA[ƒJƒCƒuID
-	u16 pal_id;			///<Žg—pƒpƒŒƒbƒg‚ÌƒA[ƒJƒCƒuID
+	u16 cgr_id;			///<ä½¿ç”¨CGRã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+	u16 pal_id;			///<ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
 	union{
 		struct{
 			u16 scr0_id;
@@ -493,35 +493,35 @@ typedef struct{
 			u16 scr2_id;
 			u16 scr3_id;
 		};
-		u16 scr_id[ACI_BG_NUM];		///<Žg—pƒXƒNƒŠ[ƒ“‚ÌƒA[ƒJƒCƒuID
+		u16 scr_id[ACI_BG_NUM];		///<ä½¿ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
 	};
 	union{
 		struct{
-			u16 pri0;		///<BG0–Ê‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
-			u16 pri1;		///<BG1–Ê‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+			u16 pri0;		///<BG0é¢ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+			u16 pri1;		///<BG1é¢ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 			u16 pri2;
 			u16 pri3;
 		};
-		u16 pri[ACI_BG_NUM];		///<BG‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+		u16 pri[ACI_BG_NUM];		///<BGã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 	};
 	
-	//ƒ^ƒbƒ`ƒpƒlƒ‹
-	const RECT_HIT_TBL *tpd;	///<Žg—p‚·‚éƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	const int *tpd_ret;			///<ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŒ‹‰Ê
-	const u8 *tpd_pal;			///<ƒ^ƒbƒ`‚µ‚½•”•ª‚Ìƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«
+	const RECT_HIT_TBL *tpd;	///<ä½¿ç”¨ã™ã‚‹ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	const int *tpd_ret;			///<ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµæžœ
+	const u8 *tpd_pal;			///<ã‚¿ãƒƒãƒã—ãŸéƒ¨åˆ†ã®ãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	//ƒJ[ƒ\ƒ‹ˆÚ“®
-	int (*cursor_move_func)(ACI_PARAM_PTR, int);	///<ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	void (*cursor_save_func)(ACI_PARAM_PTR, int);	///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+	int (*cursor_move_func)(ACI_PARAM_PTR, int);	///<ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	void (*cursor_save_func)(ACI_PARAM_PTR, int);	///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	
-	//ŠÖ”ƒ|ƒCƒ“ƒ^
-	void (*callback_bg)(ACI_PARAM_PTR, int, int);	///<BGCreateŽž‚ÉŒÄ‚Ño‚·ŠÖ”
-	int (*callback_tp)(ACI_PARAM_PTR, int, int);	///<ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Ño‚·ŠÖ”
+	//é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+	void (*callback_bg)(ACI_PARAM_PTR, int, int);	///<BGCreateæ™‚ã«å‘¼ã³å‡ºã™é–¢æ•°
+	int (*callback_tp)(ACI_PARAM_PTR, int, int);	///<ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã³å‡ºã™é–¢æ•°
 }BG_MAKE_DATA;
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void * AINPUT_WorkInit(void);
 static void BGCallback_Wall(ACI_PARAM_PTR aci, int select_bg, int force_put);
@@ -573,14 +573,14 @@ static u32 CursorMove_KeyCheckMove(CURSOR_MOVE *move, int x_menu_num, int y_menu
 	const u8 *move_data);
 
 //==============================================================================
-//	ŠO•”ƒf[ƒ^
+//	å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 #include "con_engi_type_ncl_txt.dat"
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///ƒRƒ“ƒeƒXƒg“ü—Í‰æ–Ê—p‚ÌBGƒtƒŒ[ƒ€\¬
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¥åŠ›ç”»é¢ç”¨ã®BGãƒ•ãƒ¬ãƒ¼ãƒ æ§‹æˆ
 static const GF_BGL_BGCNT_HEADER AciBgCntDat[] = {
 	{//GF_BGL_FRAME0_S
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -605,209 +605,209 @@ static const GF_BGL_BGCNT_HEADER AciBgCntDat[] = {
 };
 
 //============================================================================================
-//	ƒ^ƒbƒ`ƒpƒlƒ‹—ÌˆæÝ’è
+//	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 //============================================================================================
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///‹Z‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹—ÌˆæÝ’è
+///æŠ€é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 static const RECT_HIT_TBL WazaSelectTouchData[] = {
 	//UP DOWN LEFT RIGHT
-	{1*8, 12*8, 1*8, 0xf*8},		//‹Z‚P
-	{1*8, 12*8, 0x11*8, 0x1f*8},	//‹Z‚Q
-	{13*8, 0x18*8, 1*8, 0xf*8},		//‹Z‚R
-	{13*8, 0x18*8, 0x11*8, 0x1f*8},	//‹Z‚S
+	{1*8, 12*8, 1*8, 0xf*8},		//æŠ€ï¼‘
+	{1*8, 12*8, 0x11*8, 0x1f*8},	//æŠ€ï¼’
+	{13*8, 0x18*8, 1*8, 0xf*8},		//æŠ€ï¼“
+	{13*8, 0x18*8, 0x11*8, 0x1f*8},	//æŠ€ï¼”
 	{ RECT_HIT_END, 0, 0, 0 }
 };
-///‹Z‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ^ƒbƒ`Œ‹‰Ê•ÔŽ–
+///æŠ€é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚¿ãƒƒãƒçµæžœè¿”äº‹
 static const int WazaSelectTouchRet[NELEMS(WazaSelectTouchData) - 1] = {
-	ACTIN_TP_WAZA_1,			//‹Z1
-	ACTIN_TP_WAZA_2,			//‹Z2
-	ACTIN_TP_WAZA_3,			//‹Z3
-	ACTIN_TP_WAZA_4,			//‹Z4
+	ACTIN_TP_WAZA_1,			//æŠ€1
+	ACTIN_TP_WAZA_2,			//æŠ€2
+	ACTIN_TP_WAZA_3,			//æŠ€3
+	ACTIN_TP_WAZA_4,			//æŠ€4
 };
-///ƒRƒ}ƒ“ƒh‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 ALIGN4 static const u8 WazaSelectPaletteNo[NELEMS(WazaSelectTouchData) - 1] = {
-	WAZATYPE_START_PALPOS + 0,		//‹Z1
-	WAZATYPE_START_PALPOS + 1,		//‹Z2
-	WAZATYPE_START_PALPOS + 2,		//‹Z3
-	WAZATYPE_START_PALPOS + 3,		//‹Z4
+	WAZATYPE_START_PALPOS + 0,		//æŠ€1
+	WAZATYPE_START_PALPOS + 1,		//æŠ€2
+	WAZATYPE_START_PALPOS + 2,		//æŠ€3
+	WAZATYPE_START_PALPOS + 3,		//æŠ€4
 };
 
-///ƒJ[ƒ\ƒ‹ˆÚ“®F‹Z‘I‘ð‚Ì…•½ƒƒjƒ…[‚ÌÅ‘å”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šæŠ€é¸æŠžã®æ°´å¹³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æœ€å¤§æ•°
 #define CURSOR_WAZA_SELECT_X_MENU_NUM		(2)
-///ƒJ[ƒ\ƒ‹ˆÚ“®F‹Z‘I‘ð‚Ìƒƒjƒ…[‚ÌŠK‘w‚Ì”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šæŠ€é¸æŠžã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®éšŽå±¤ã®æ•°
 #define CURSOR_WAZA_SELECT_Y_MENU_NUM		(2)
-///‹Z‘I‘ð‚Ìƒ^ƒbƒ`ƒpƒlƒ‹INDEX(WazaSelectTouchRet‚Ì‡”Ô)
+///æŠ€é¸æŠžã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«INDEX(WazaSelectTouchRetã®é †ç•ª)
 enum{
 	WAZASELE_INDEX_SKILL_1,
 	WAZASELE_INDEX_SKILL_2,
 	WAZASELE_INDEX_SKILL_3,
 	WAZASELE_INDEX_SKILL_4,
 };
-///ƒJ[ƒ\ƒ‹ˆÚ“®F‹Z‘I‘ð‚ÌˆÚ“®”ÍˆÍƒf[ƒ^
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šæŠ€é¸æŠžã®ç§»å‹•ç¯„å›²ãƒ‡ãƒ¼ã‚¿
 ALIGN4 static const u8 CursorMoveDataWazaSelect[CURSOR_WAZA_SELECT_Y_MENU_NUM][CURSOR_WAZA_SELECT_X_MENU_NUM] = {
-	{WAZASELE_INDEX_SKILL_1, WAZASELE_INDEX_SKILL_2},		//‹Z‚PA‹Z‚Q
-	{WAZASELE_INDEX_SKILL_3, WAZASELE_INDEX_SKILL_4},		//‹Z‚RA‹Z‚S
+	{WAZASELE_INDEX_SKILL_1, WAZASELE_INDEX_SKILL_2},		//æŠ€ï¼‘ã€æŠ€ï¼’
+	{WAZASELE_INDEX_SKILL_3, WAZASELE_INDEX_SKILL_4},		//æŠ€ï¼“ã€æŠ€ï¼”
 };
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///R”»‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹—ÌˆæÝ’è
+///å¯©åˆ¤é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é ˜åŸŸè¨­å®š
 static const RECT_HIT_TBL JudgeSelectTouchData[] = {
 	//UP DOWN LEFT RIGHT
-	{1*8, 0x10*8, 0*8, 10*8},		//R”»‚P
-	{1*8, 0x10*8, 11*8, 0x15*8},		//R”»‚Q
-	{1*8, 0x10*8, 0x16*8, 255},		//R”»‚R
-	{0x11*8, 0x18*8, 0, 255},			//‚à‚Ç‚é
+	{1*8, 0x10*8, 0*8, 10*8},		//å¯©åˆ¤ï¼‘
+	{1*8, 0x10*8, 11*8, 0x15*8},		//å¯©åˆ¤ï¼’
+	{1*8, 0x10*8, 0x16*8, 255},		//å¯©åˆ¤ï¼“
+	{0x11*8, 0x18*8, 0, 255},			//ã‚‚ã©ã‚‹
 	{ RECT_HIT_END, 0, 0, 0 }
 };
-///R”»‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚Ìƒ^ƒbƒ`Œ‹‰Ê•ÔŽ–
+///å¯©åˆ¤é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã‚¿ãƒƒãƒçµæžœè¿”äº‹
 static const int JudgeSelectTouchRet[NELEMS(JudgeSelectTouchData) - 1] = {
-	ACTIN_TP_JUDGE_1,		//R”»‚P
-	ACTIN_TP_JUDGE_2,		//R”»‚Q
-	ACTIN_TP_JUDGE_3,		//R”»‚R
-	ACTIN_TP_JUDGE_MODORU,	//‚à‚Ç‚é
+	ACTIN_TP_JUDGE_1,		//å¯©åˆ¤ï¼‘
+	ACTIN_TP_JUDGE_2,		//å¯©åˆ¤ï¼’
+	ACTIN_TP_JUDGE_3,		//å¯©åˆ¤ï¼“
+	ACTIN_TP_JUDGE_MODORU,	//ã‚‚ã©ã‚‹
 };
-///ƒRƒ}ƒ“ƒh‘I‘ðƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŠeƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+///ã‚³ãƒžãƒ³ãƒ‰é¸æŠžã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®å„ãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 ALIGN4 static const u8 JudgeSelectPaletteNo[NELEMS(JudgeSelectTouchData) - 1] = {
-	0,		//R”»1
-	1,		//R”»2
-	2,		//R”»3
-	3,		//‚à‚Ç‚é
+	0,		//å¯©åˆ¤1
+	1,		//å¯©åˆ¤2
+	2,		//å¯©åˆ¤3
+	3,		//ã‚‚ã©ã‚‹
 };
 
-///ƒJ[ƒ\ƒ‹ˆÚ“®F‹Z‘I‘ð‚Ì…•½ƒƒjƒ…[‚ÌÅ‘å”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šæŠ€é¸æŠžã®æ°´å¹³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æœ€å¤§æ•°
 #define CURSOR_JUDGE_SELECT_X_MENU_NUM		(3)
-///ƒJ[ƒ\ƒ‹ˆÚ“®F‹Z‘I‘ð‚Ìƒƒjƒ…[‚ÌŠK‘w‚Ì”
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šæŠ€é¸æŠžã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®éšŽå±¤ã®æ•°
 #define CURSOR_JUDGE_SELECT_Y_MENU_NUM		(2)
-///‹Z‘I‘ð‚Ìƒ^ƒbƒ`ƒpƒlƒ‹INDEX(JudgeSelectTouchRet‚Ì‡”Ô)
+///æŠ€é¸æŠžã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«INDEX(JudgeSelectTouchRetã®é †ç•ª)
 enum{
 	JUDGESELE_INDEX_1,
 	JUDGESELE_INDEX_2,
 	JUDGESELE_INDEX_3,
 	JUDGESELE_INDEX_CANCEL,
 };
-///ƒJ[ƒ\ƒ‹ˆÚ“®F‹Z‘I‘ð‚ÌˆÚ“®”ÍˆÍƒf[ƒ^
+///ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šæŠ€é¸æŠžã®ç§»å‹•ç¯„å›²ãƒ‡ãƒ¼ã‚¿
 ALIGN4 static const u8 CursorMoveDataJudgeSelect[CURSOR_JUDGE_SELECT_Y_MENU_NUM][CURSOR_JUDGE_SELECT_X_MENU_NUM] = {
-	{JUDGESELE_INDEX_1, JUDGESELE_INDEX_2, JUDGESELE_INDEX_3},		//R”»‚PC‚QC‚R
-	{JUDGESELE_INDEX_CANCEL, JUDGESELE_INDEX_CANCEL, JUDGESELE_INDEX_CANCEL},		//ƒLƒƒƒ“ƒZƒ‹
+	{JUDGESELE_INDEX_1, JUDGESELE_INDEX_2, JUDGESELE_INDEX_3},		//å¯©åˆ¤ï¼‘ï¼Œï¼’ï¼Œï¼“
+	{JUDGESELE_INDEX_CANCEL, JUDGESELE_INDEX_CANCEL, JUDGESELE_INDEX_CANCEL},		//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 };
 
 
 //==============================================================================
 //	
 //==============================================================================
-///BGì¬ƒf[ƒ^(¦‚±‚±‚Ì•À‚Ñ‚ð’Ç‰ÁA•ÏX‚µ‚½‚çAINPUT_TYPE_???‚Ì’è‹`‚à•ÏX‚·‚é‚±‚ÆII)
+///BGä½œæˆãƒ‡ãƒ¼ã‚¿(â€»ã“ã“ã®ä¸¦ã³ã‚’è¿½åŠ ã€å¤‰æ›´ã—ãŸã‚‰AINPUT_TYPE_???ã®å®šç¾©ã‚‚å¤‰æ›´ã™ã‚‹ã“ã¨ï¼ï¼)
 static const BG_MAKE_DATA BgMakeData[] = {
 	{//WALL
 		CON_SUB_NCGR_BIN,
 		PALBUF_TITLE,
 		{
-			SCRNBUF_TITLE,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			SCRNBUF_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_TITLE,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			SCRNBUF_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		NULL,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		NULL,				//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		NULL,				//ƒ^ƒbƒ`ƒpƒŒƒbƒg”Ô†
-		NULL,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_Wall,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		NULL,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_Wall,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//HEART_WALL
 		CON_BUT_NCGR_BIN,
 		PALBUF_COMMAND,
 		{
-			NONE_ID,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			SCRNBUF_COMMAND_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			NONE_ID,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			SCRNBUF_COMMAND_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		NULL,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		NULL,				//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		NULL,				//ƒ^ƒbƒ`ƒpƒŒƒbƒg”Ô†
-		NULL,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		NULL,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		NULL,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		NULL,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//WAZA
 		CON_BUT_NCGR_BIN,
 		PALBUF_COMMAND,
 		{
-			SCRNBUF_COMMAND_WAZA,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			SCRNBUF_COMMAND_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_COMMAND_WAZA,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			SCRNBUF_COMMAND_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		WazaSelectTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		WazaSelectTouchRet,					//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		WazaSelectPaletteNo,				//ƒ^ƒbƒ`ƒpƒŒƒbƒg”Ô†
-		CursorMove_WazaSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		CursorSave_WazaSelect,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_WazaSelect,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_WazaSelect,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		WazaSelectTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		WazaSelectTouchRet,					//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		WazaSelectPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_WazaSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		CursorSave_WazaSelect,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_WazaSelect,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_WazaSelect,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 	{//JUDGE
 		CON_BUT_NCGR_BIN,
 		PALBUF_COMMAND,
 		{
-			SCRNBUF_COMMAND_JUDGE,		//ƒpƒlƒ‹
-			NONE_ID,		//•˜g
-			SCRNBUF_COMMAND_BACKGROUND,		//”wŒi
-			NONE_ID,							//•˜gƒXƒ‰ƒCƒh—p
+			SCRNBUF_COMMAND_JUDGE,		//ãƒ‘ãƒãƒ«
+			NONE_ID,		//é»’æž 
+			SCRNBUF_COMMAND_BACKGROUND,		//èƒŒæ™¯
+			NONE_ID,							//é»’æž ã‚¹ãƒ©ã‚¤ãƒ‰ç”¨
 		},
 		{2, 1, 3, 0},
-		JudgeSelectTouchData,				//ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^
-		JudgeSelectTouchRet,				//ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê
-		JudgeSelectPaletteNo,				//ƒ^ƒbƒ`ƒpƒŒƒbƒg”Ô†
-		CursorMove_JudgeSelect,				//ƒL[“ü—Í‚ð‚µ‚½Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		CursorSave_JudgeSelect,			///<ƒL[ˆÊ’u‹L‰¯‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		BGCallback_JudgeSelect,				//BGì¬Žž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-		TPCallback_JudgeSelect,				//ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+		JudgeSelectTouchData,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+		JudgeSelectTouchRet,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ
+		JudgeSelectPaletteNo,				//ã‚¿ãƒƒãƒãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		CursorMove_JudgeSelect,				//ã‚­ãƒ¼å…¥åŠ›ã‚’ã—ãŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		CursorSave_JudgeSelect,			///<ã‚­ãƒ¼ä½ç½®è¨˜æ†¶ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		BGCallback_JudgeSelect,				//BGä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+		TPCallback_JudgeSelect,				//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	},
 };
 
 
 //==============================================================================
 //
-//	ƒAƒNƒ^[ƒwƒbƒ_
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 //
 //==============================================================================
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“FƒAƒNƒ^[ƒwƒbƒ_
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼šã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S ConTypeIconObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 100, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_CONTYPE_ICON_1,	//ƒLƒƒƒ‰
-		PLTTID_OBJ_COMMON_SUB,	//ƒpƒŒƒbƒg
-		CELLID_CONTYPE_ICON,	//ƒZƒ‹
-		CELLANMID_CONTYPE_ICON,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 100, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_CONTYPE_ICON_1,	//ã‚­ãƒ£ãƒ©
+		PLTTID_OBJ_COMMON_SUB,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_CONTYPE_ICON,	//ã‚»ãƒ«
+		CELLANMID_CONTYPE_ICON,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	1,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	1,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 
 //==============================================================================
 //
-//	‹Zƒ^ƒCƒv
+//	æŠ€ã‚¿ã‚¤ãƒ—
 //
 //==============================================================================
-///‹Z‚Ì‹Zƒ^ƒCƒvƒLƒƒƒ‰“]‘—ˆÊ’u(ƒLƒƒƒ‰ƒNƒ^’PˆÊ)
+///æŠ€ã®æŠ€ã‚¿ã‚¤ãƒ—ã‚­ãƒ£ãƒ©è»¢é€ä½ç½®(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½)
 ALIGN4 static const u16 WazaTypeCgrPos[] = {0+1, 6+1, 12+1, 18+1};
 
-///ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ÌÀ•W
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®åº§æ¨™
 ALIGN4 static const u16 WazaIconPos[][2] = {	//X, Y
 	{4*8 + 4 + 3, 6*8},
 	{0x14*8 + 4 + 3, 6*8},
@@ -820,47 +820,47 @@ ALIGN4 static const u16 WazaIconPos[][2] = {	//X, Y
 //	
 //
 //==============================================================================
-///ƒ{ƒ^ƒ“‚Ì‰Ÿ‚µ‚½Žž‚ÌƒAƒjƒƒpƒ^[ƒ“”
+///ãƒœã‚¿ãƒ³ã®æŠ¼ã—ãŸæ™‚ã®ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°
 #define BUTTON_ANM_MAX		(3)
 
 //--------------------------------------------------------------
-//	‰Ÿ‚¹‚È‚¢ƒpƒlƒ‹
+//	æŠ¼ã›ãªã„ãƒ‘ãƒãƒ«
 //--------------------------------------------------------------
-///ƒXƒNƒŠ[ƒ“”Ô†F‰Ÿ‚¹‚È‚¢ƒpƒlƒ‹@ƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ¼ã›ãªã„ãƒ‘ãƒãƒ«ã€€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_NOT_TOUCH_0		(0x220)
 
 //--------------------------------------------------------------
-//	‹Z‘I‘ð
+//	æŠ€é¸æŠž
 //--------------------------------------------------------------
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z0vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€0ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_0_0		(0xc)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z0vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€0ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_0_1		(0xcc)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z0vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€0ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_0_2		(0x18c)
 
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z1vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€1ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_1_0		(0xf)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z1vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€1ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_1_1		(0xcf)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z1vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€1ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_1_2		(0x18f)
 
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z2vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€2ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_2_0		(0x12)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z2vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€2ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_2_1		(0xd2)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z2vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€2ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_2_2		(0x192)
 
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z3vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€3ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_3_0		(0x15)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z3vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€3ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_3_1		(0xd5)
-///ƒXƒNƒŠ[ƒ“”Ô†F‹Z‘I‘ðu‹Z3vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šæŠ€é¸æŠžã€ŒæŠ€3ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_WAZA_SKILL_3_2		(0x195)
 
-///‹Z‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚Ìƒ{ƒ^ƒ“ƒAƒjƒ—pƒXƒNƒŠ[ƒ“ƒIƒtƒZƒbƒg’l
+///æŠ€é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 ALIGN4 static const s16 WazaButtonScrnOffset[][BUTTON_ANM_MAX] = {
 	{//SELECT_SKILL_1
 		SCRN_NO_WAZA_SKILL_0_0 - SCRN_NO_WAZA_SKILL_0_0,
@@ -884,7 +884,7 @@ ALIGN4 static const s16 WazaButtonScrnOffset[][BUTTON_ANM_MAX] = {
 	},
 };
 
-///‹Z‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚ÌƒXƒNƒŠ[ƒ“ƒAƒjƒ‘‚«Š·‚¦”ÍˆÍ
+///æŠ€é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆç¯„å›²
 ALIGN4 static const REWRITE_SCRN_RECT WazaButtonScrnRect[] = {
 	{0, 11, 1, 14},
 	{0, 11, 0x11, 0x1e},
@@ -892,7 +892,7 @@ ALIGN4 static const REWRITE_SCRN_RECT WazaButtonScrnRect[] = {
 	{12, 0x17, 0x11, 0x1e},
 };
 
-///‹Z‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚¹‚È‚¢ƒ{ƒ^ƒ“‚É‚·‚éŽž‚ÌƒXƒNƒŠ[ƒ“ƒIƒtƒZƒbƒg’l
+///æŠ€é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã›ãªã„ãƒœã‚¿ãƒ³ã«ã™ã‚‹æ™‚ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 ALIGN4 static const s16 WazaButtonNotTouchScrnOffset[] = {
 	SCRN_NO_NOT_TOUCH_0 - SCRN_NO_WAZA_SKILL_0_0,	//SELECT_SKILL_1
 	SCRN_NO_NOT_TOUCH_0 - SCRN_NO_WAZA_SKILL_1_0,	//SELECT_SKILL_1
@@ -900,7 +900,7 @@ ALIGN4 static const s16 WazaButtonNotTouchScrnOffset[] = {
 	SCRN_NO_NOT_TOUCH_0 - SCRN_NO_WAZA_SKILL_3_0,	//SELECT_SKILL_1
 };
 
-///‹Z‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚¹‚È‚¢ƒ{ƒ^ƒ“‚É‚·‚éŽž‚ÌƒXƒNƒŠ[ƒ“ƒAƒjƒ‘‚«Š·‚¦”ÍˆÍ
+///æŠ€é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã›ãªã„ãƒœã‚¿ãƒ³ã«ã™ã‚‹æ™‚ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆç¯„å›²
 ALIGN4 static const REWRITE_SCRN_RECT WazaButtonNotTouchScrnRect[] = {
 	{1, 11, 1, 14},
 	{1, 11, 0x11, 0x1e},
@@ -909,37 +909,37 @@ ALIGN4 static const REWRITE_SCRN_RECT WazaButtonNotTouchScrnRect[] = {
 };
 
 //--------------------------------------------------------------
-//	R”»‘I‘ð
+//	å¯©åˆ¤é¸æŠž
 //--------------------------------------------------------------
-///ƒXƒNƒŠ[ƒ“”Ô†FR”»‘I‘ðuR”»0vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå¯©åˆ¤é¸æŠžã€Œå¯©åˆ¤0ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_JUDGE_0_0		(0x0)
-///ƒXƒNƒŠ[ƒ“”Ô†FR”»‘I‘ðuR”»0vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå¯©åˆ¤é¸æŠžã€Œå¯©åˆ¤0ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_JUDGE_0_1		(0xc0)
-///ƒXƒNƒŠ[ƒ“”Ô†FR”»‘I‘ðuR”»0vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå¯©åˆ¤é¸æŠžã€Œå¯©åˆ¤0ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_JUDGE_0_2		(0x180)
 
-///ƒXƒNƒŠ[ƒ“”Ô†FR”»‘I‘ðuR”»1vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå¯©åˆ¤é¸æŠžã€Œå¯©åˆ¤1ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_JUDGE_1_0		(0x3)
-///ƒXƒNƒŠ[ƒ“”Ô†FR”»‘I‘ðuR”»1vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå¯©åˆ¤é¸æŠžã€Œå¯©åˆ¤1ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_JUDGE_1_1		(0xc3)
-///ƒXƒNƒŠ[ƒ“”Ô†FR”»‘I‘ðuR”»1vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå¯©åˆ¤é¸æŠžã€Œå¯©åˆ¤1ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_JUDGE_1_2		(0x183)
 
-///ƒXƒNƒŠ[ƒ“”Ô†FR”»‘I‘ðuR”»2vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå¯©åˆ¤é¸æŠžã€Œå¯©åˆ¤2ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_JUDGE_2_0		(0x6)
-///ƒXƒNƒŠ[ƒ“”Ô†FR”»‘I‘ðuR”»2vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå¯©åˆ¤é¸æŠžã€Œå¯©åˆ¤2ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_JUDGE_2_1		(0xc6)
-///ƒXƒNƒŠ[ƒ“”Ô†FR”»‘I‘ðuR”»2vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå¯©åˆ¤é¸æŠžã€Œå¯©åˆ¤2ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_JUDGE_2_2		(0x186)
 
-///ƒXƒNƒŠ[ƒ“”Ô†FR”»‘I‘ðuƒLƒƒƒ“ƒZƒ‹vƒAƒjƒ0A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå¯©åˆ¤é¸æŠžã€Œã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡0ã€å·¦ä¸Š
 #define SCRN_NO_JUDGE_CANCEL_0	(0x9)
-///ƒXƒNƒŠ[ƒ“”Ô†FR”»‘I‘ðuƒLƒƒƒ“ƒZƒ‹vƒAƒjƒ1A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå¯©åˆ¤é¸æŠžã€Œã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡1ã€å·¦ä¸Š
 #define SCRN_NO_JUDGE_CANCEL_1	(0xc9)
-///ƒXƒNƒŠ[ƒ“”Ô†FR”»‘I‘ðuƒLƒƒƒ“ƒZƒ‹vƒAƒjƒ2A¶ã
+///ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç•ªå·ï¼šå¯©åˆ¤é¸æŠžã€Œã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡2ã€å·¦ä¸Š
 #define SCRN_NO_JUDGE_CANCEL_2	(0x189)
 
-///R”»‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚Ìƒ{ƒ^ƒ“ƒAƒjƒ—pƒXƒNƒŠ[ƒ“ƒIƒtƒZƒbƒg’l
+///å¯©åˆ¤é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 ALIGN4 static const s16 JudgeButtonScrnOffset[][BUTTON_ANM_MAX] = {
 	{//JUDGE_1
 		SCRN_NO_JUDGE_0_0 - SCRN_NO_JUDGE_0_0,
@@ -963,7 +963,7 @@ ALIGN4 static const s16 JudgeButtonScrnOffset[][BUTTON_ANM_MAX] = {
 	},
 };
 
-///R”»‘I‘ðƒpƒlƒ‹‚ð‰Ÿ‚µ‚½Žž‚ÌƒXƒNƒŠ[ƒ“ƒAƒjƒ‘‚«Š·‚¦”ÍˆÍ
+///å¯©åˆ¤é¸æŠžãƒ‘ãƒãƒ«ã‚’æŠ¼ã—ãŸæ™‚ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆç¯„å›²
 ALIGN4 static const REWRITE_SCRN_RECT JudgeButtonScrnRect[] = {
 	{0, 0xf, 0, 9},
 	{0, 0xf, 11, 0x14},
@@ -981,9 +981,9 @@ ALIGN4 static const REWRITE_SCRN_RECT JudgeButtonScrnRect[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   BIƒVƒXƒeƒ€ƒ[ƒN‚ÌŠm•Û‚Æ‰Šú‰»
+ * @brief   BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿ã¨åˆæœŸåŒ–
  *
- * @retval  Šm•Û‚µ‚½BIƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç¢ºä¿ã—ãŸBIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void * AINPUT_WorkInit(void)
@@ -1000,8 +1000,8 @@ static void * AINPUT_WorkInit(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   BG\¬‚ð•W€ƒtƒŒ[ƒ€\¬‚ÅÝ’è‚·‚é
- * @param   bgl		BGLƒf[ƒ^
+ * @brief   BGæ§‹æˆã‚’æ¨™æº–ãƒ•ãƒ¬ãƒ¼ãƒ æ§‹æˆã§è¨­å®šã™ã‚‹
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void AINPUT_DefaultFrameSet(GF_BGL_INI *bgl)
@@ -1018,8 +1018,8 @@ void AINPUT_DefaultFrameSet(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief   BGƒtƒŒ[ƒ€I—¹ˆ—
- * @param   bgl		BGLƒf[ƒ^
+ * @brief   BGãƒ•ãƒ¬ãƒ¼ãƒ çµ‚äº†å‡¦ç†
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void AINPUT_FrameExit(GF_BGL_INI *bgl)
@@ -1034,9 +1034,9 @@ void AINPUT_FrameExit(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg“ü—Í‰æ–Ê‚ÌƒVƒXƒeƒ€‚ð‰Šú‰»
- * @param   bgl		BGLƒf[ƒ^
- * @retval  Alloc‚µ‚½ƒRƒ“ƒeƒXƒg“ü—Í‰æ–Ê‚ÌƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¥åŠ›ç”»é¢ã®ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿
+ * @retval  Allocã—ãŸã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¥åŠ›ç”»é¢ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void * AINPUT_SystemInit(CONTEST_SYSTEM *consys, ACTIN_SYSTEM_PARAM *sys, ACTIN_GAME_PARAM *a_game)
@@ -1044,32 +1044,32 @@ void * AINPUT_SystemInit(CONTEST_SYSTEM *consys, ACTIN_SYSTEM_PARAM *sys, ACTIN_
 	ACI_PARAM *aci;
 	ARCHANDLE* hdl_bg;
 	
-	//ƒ[ƒNŠm•Û
+	//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 	aci = AINPUT_WorkInit();
 	aci->consys = consys;
 	aci->sys = sys;
 	aci->a_game = a_game;
 	
-	//ƒtƒŒ[ƒ€\¬Ý’è	‚±‚±‚Å‚â‚é‚©‚Í”÷–­H
+	//ãƒ•ãƒ¬ãƒ¼ãƒ æ§‹æˆè¨­å®š	ã“ã“ã§ã‚„ã‚‹ã‹ã¯å¾®å¦™ï¼Ÿ
 //	AINPUT_DefaultFrameSet(bgl);
 
-	//ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€ì¬
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	aci->fontoam_sys = FONTOAM_SysInit(FA_NO_MAX, HEAPID_ACTIN);
 
-	//ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	//ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	hdl_bg  = ArchiveDataHandleOpen(ARC_CONTEST_BG,  HEAPID_ACTIN); 
 
-	//ƒXƒNƒŠ[ƒ“‘S“Ç‚Ýž‚Ý
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å…¨èª­ã¿è¾¼ã¿
 	{
 		NNSG2dScreenData *scrnData;
 		void *arc_data;
 		int i;
 		
 		for(i = 0; i < SCRNBUF_MAX; i++){
-			//ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@Šm•Û
+			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ç¢ºä¿
 			aci->scrn_buf[i] = sys_AllocMemory(HEAPID_ACTIN, 0x800);
 
-			//ƒXƒNƒŠ[ƒ““Ç‚Ýž‚Ý
+			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³èª­ã¿è¾¼ã¿
 			arc_data = ArcUtil_HDL_ScrnDataGet(hdl_bg, ScrnArcDataNo[i], 1, 
 				&scrnData, HEAPID_ACTIN);
 			MI_CpuCopy32(scrnData->rawData, aci->scrn_buf[i], 0x800);
@@ -1077,7 +1077,7 @@ void * AINPUT_SystemInit(CONTEST_SYSTEM *consys, ACTIN_SYSTEM_PARAM *sys, ACTIN_
 		}
 	}
 
-	//ƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	//ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	{
 		u16 *def_wk;
 		PALETTE_FADE_PTR pfd;
@@ -1094,7 +1094,7 @@ void * AINPUT_SystemInit(CONTEST_SYSTEM *consys, ACTIN_SYSTEM_PARAM *sys, ACTIN_
 		}
 	}
 
-	//ƒnƒ“ƒhƒ‹•Â‚¶‚é
+	//ãƒãƒ³ãƒ‰ãƒ«é–‰ã˜ã‚‹
 	ArchiveDataHandleClose( hdl_bg );
 
 	return aci;
@@ -1102,8 +1102,8 @@ void * AINPUT_SystemInit(CONTEST_SYSTEM *consys, ACTIN_SYSTEM_PARAM *sys, ACTIN_
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg“ü—Í‰æ–Ê‚ÌƒVƒXƒeƒ€‚ð‰ð•ú‚·‚é
- * @param   aci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…¥åŠ›ç”»é¢ã®ã‚·ã‚¹ãƒ†ãƒ ã‚’è§£æ”¾ã™ã‚‹
+ * @param   aci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AINPUT_SystemFree(ACI_PARAM_PTR aci)
@@ -1113,7 +1113,7 @@ void AINPUT_SystemFree(ACI_PARAM_PTR aci)
 	Sub_SceneOBJDelete(aci);
 	FONTOAM_SysDelete(aci->fontoam_sys);
 
-	//-- ƒJ[ƒ\ƒ‹ --//
+	//-- ã‚«ãƒ¼ã‚½ãƒ« --//
 	CCURSOR_ResourceFree(aci->sys->crp, CHARID_ACTIN_CURSOR, PLTTID_ACTIN_CURSOR,
 		CELLID_ACTIN_CURSOR, CELLANMID_ACTIN_CURSOR);
 	CCURSOR_ActorDelete(aci->cursor);
@@ -1132,12 +1132,12 @@ void AINPUT_SystemFree(ACI_PARAM_PTR aci)
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’èƒ^ƒCƒv‚ÌBG‰æ–Ê‚ðŒ`¬‚·‚é
+ * @brief   æŒ‡å®šã‚¿ã‚¤ãƒ—ã®BGç”»é¢ã‚’å½¢æˆã™ã‚‹
  *
- * @param   aci				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(AINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
- * @param   work			ƒV[ƒ“–ˆ‚ÉˆÙ‚È‚é•K—v‚Èƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   aci				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(AINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
+ * @param   work			ã‚·ãƒ¼ãƒ³æ¯Žã«ç•°ãªã‚‹å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void AINPUT_CreateBG(ACI_PARAM_PTR aci, int select_bg, int force_put, void *scene_work)
@@ -1162,10 +1162,10 @@ void AINPUT_CreateBG(ACI_PARAM_PTR aci, int select_bg, int force_put, void *scen
 	}
 	bmd = &BgMakeData[select_bg];
 
-	//”wŒiˆÈŠO‚Í‘S‚Ä”ñ•\Ž¦
+	//èƒŒæ™¯ä»¥å¤–ã¯å…¨ã¦éžè¡¨ç¤º
 //	Sub_BackScrnOnlyVisible();
 	
-	//ŠeBG–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒBXV
+	//å„BGé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£æ›´æ–°
 	{
 		for(i = 0; i < ACI_BG_NUM; i++){
 			GF_BGL_PrioritySet(GF_BGL_FRAME0_S + i, bmd->pri[i]);
@@ -1191,13 +1191,13 @@ void AINPUT_CreateBG(ACI_PARAM_PTR aci, int select_bg, int force_put, void *scen
 //	G2S_SetBlendAlpha(BLD_PLANE_1, BLD_PLANE_2, BLD_ALPHA_1, BLD_ALPHA_2);
 
 	Sub_SceneOBJDelete(aci);
-	//ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ
+	//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—
 	if(bmd->callback_bg != NULL){
 		bmd->callback_bg(aci, select_bg, force_put);
 	}
 
-	//CGR	ƒƒ‚ƒŠ‚ðVblank‚Å“]‘—‚·‚é‚Ü‚ÅŠm•Û‚µ‚½‚Ü‚Ü‚È‚Ì‚ÅAÅŒã‚É‚·‚é
-//	if(1){	//CGR“]‘—ƒAƒjƒ‚ðs‚¤‚È‚çƒLƒƒƒ‰ID‚ª“¯‚¶‚Å‚à•K‚¸“]‘—‚µ‚Ä‚¨‚©‚È‚¢‚ÆƒAƒjƒ‚ª–ß‚ç‚È‚¢
+	//CGR	ãƒ¡ãƒ¢ãƒªã‚’Vblankã§è»¢é€ã™ã‚‹ã¾ã§ç¢ºä¿ã—ãŸã¾ã¾ãªã®ã§ã€æœ€å¾Œã«ã™ã‚‹
+//	if(1){	//CGRè»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’è¡Œã†ãªã‚‰ã‚­ãƒ£ãƒ©IDãŒåŒã˜ã§ã‚‚å¿…ãšè»¢é€ã—ã¦ãŠã‹ãªã„ã¨ã‚¢ãƒ‹ãƒ¡ãŒæˆ»ã‚‰ãªã„
 	if(bmd->cgr_id != NONE_ID && (force_put == TRUE || bmd->cgr_id != old_bmd->cgr_id)){
 //		ArcUtil_BgCharSet(ARC_CONTEST_BG, bmd->cgr_id, bgl, GF_BGL_FRAME0_S, 
 //			0, ACI_BG_CGR_SIZE, 1, HEAPID_ACTIN);
@@ -1211,9 +1211,9 @@ void AINPUT_CreateBG(ACI_PARAM_PTR aci, int select_bg, int force_put, void *scen
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒpƒlƒ‹ó‘Ô‚ð’²‚×‚é
- * @param   aci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  Œ‹‰Ê(“–‚½‚è‚È‚µ‚Ìê‡‚ÍRECT_HIT_NONE)
+ * @brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çŠ¶æ…‹ã‚’èª¿ã¹ã‚‹
+ * @param   aci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  çµæžœ(å½“ãŸã‚Šãªã—ã®å ´åˆã¯RECT_HIT_NONE)
  */
 //--------------------------------------------------------------
 int AINPUT_TouchCheck(ACI_PARAM_PTR aci)
@@ -1246,7 +1246,7 @@ int AINPUT_TouchCheck(ACI_PARAM_PTR aci)
 		panel_pal = bmd->tpd_pal[hit];
 	}
 	
-	//ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ
+	//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—
 	if(bmd->callback_tp != NULL){
 		tp_ret = bmd->callback_tp(aci, tp_ret, panel_pal);
 		if(tp_ret != RECT_HIT_NONE){
@@ -1269,9 +1269,9 @@ int AINPUT_TouchCheck(ACI_PARAM_PTR aci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒtƒFƒNƒgTCB‚ªI—¹‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
- * @param   aci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:I—¹‚µ‚Ä‚¢‚éB@FALSE:I—¹‚µ‚Ä‚¢‚È‚¢
+ * @brief   ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+ * @param   aci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:çµ‚äº†ã—ã¦ã„ã‚‹ã€‚ã€€FALSE:çµ‚äº†ã—ã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 BOOL AINPUT_EffectEndCheck(ACI_PARAM_PTR aci)
@@ -1286,16 +1286,16 @@ BOOL AINPUT_EffectEndCheck(ACI_PARAM_PTR aci)
 
 //==============================================================================
 //
-//	BGì¬Žž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+//	BGä½œæˆæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   AINPUT_TYPE_WALL‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   AINPUT_TYPE_WALLã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   aci				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(AINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   aci				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(AINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_Wall(ACI_PARAM_PTR aci, int select_bg, int force_put)
@@ -1328,11 +1328,11 @@ static void BGCallback_Wall(ACI_PARAM_PTR aci, int select_bg, int force_put)
 
 //--------------------------------------------------------------
 /**
- * @brief   AINPUT_TYPE_A‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   AINPUT_TYPE_Aã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   aci				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(AINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   aci				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(AINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_WazaSelect(ACI_PARAM_PTR aci, int select_bg, int force_put)
@@ -1357,25 +1357,25 @@ static void BGCallback_WazaSelect(ACI_PARAM_PTR aci, int select_bg, int force_pu
 			appeal_no[i] = 0;
 		}
 		
-		//‹Z–¼
+		//æŠ€å
 		Sub_FontOamCreate(aci, &aci->font_actor[FA_NO_WAZA_1 + i], NULL, FONT_BUTTON, 
 			MSGCOLOR_WAZA, PALOFS_WAZA,
 			PLTTID_SUB_FONTACT, FontWazaPos[i][0], FontWazaPos[i][1], FONTOAM_LEFT, 
 			&mdw->exbmp_waza[i]);
 		
-		//‹Zà–¾Fã’i
+		//æŠ€èª¬æ˜Žï¼šä¸Šæ®µ
 		Sub_FontOamCreate(aci, &aci->font_actor[FA_NO_SETUMEI_1_U + i], 
 			NULL, FONT_SYSTEM, MSGCOLOR_SETUMEI, PALOFS_SETUMEI,
 			PLTTID_SUB_FONTACT, FontSetumeiPos[i][0][0], FontSetumeiPos[i][0][1], FONTOAM_LEFT,
 			&mdw->exbmp_explain_u[i]);
 		
-		//‹Zà–¾F‰º’i
+		//æŠ€èª¬æ˜Žï¼šä¸‹æ®µ
 		Sub_FontOamCreate(aci, &aci->font_actor[FA_NO_SETUMEI_1_D + i], 
 			NULL, FONT_SYSTEM, MSGCOLOR_SETUMEI, PALOFS_SETUMEI,
 			PLTTID_SUB_FONTACT, FontSetumeiPos[i][1][0], FontSetumeiPos[i][1][1], FONTOAM_LEFT,
 			&mdw->exbmp_explain_d[i]);
 		
-		//ŽèŽ‚¿‹Z‚ª‚È‚¢‚È‚çAƒtƒHƒ“ƒgOBJƒoƒjƒbƒVƒ…••˜gÁ‚·
+		//æ‰‹æŒã¡æŠ€ãŒãªã„ãªã‚‰ã€ãƒ•ã‚©ãƒ³ãƒˆOBJãƒãƒ‹ãƒƒã‚·ãƒ¥ï¼†é»’æž æ¶ˆã™
 		if(wazano[i] == 0){
 			FONTOAM_SetDrawFlag(aci->font_actor[FA_NO_WAZA_1 + i].fontoam, FALSE);
 			FONTOAM_SetDrawFlag(aci->font_actor[FA_NO_SETUMEI_1_U + i].fontoam, FALSE);
@@ -1383,7 +1383,7 @@ static void BGCallback_WazaSelect(ACI_PARAM_PTR aci, int select_bg, int force_pu
 		}
 	}
 
-	//-- ‹Zƒ^ƒCƒv–ˆ‚ÌCGR‚ð“]‘— --//
+	//-- æŠ€ã‚¿ã‚¤ãƒ—æ¯Žã®CGRã‚’è»¢é€ --//
 	{
 		for(i = 0; i < WAZA_TEMOTI_MAX; i++){
 			if(wazano[i] != 0){
@@ -1397,32 +1397,32 @@ static void BGCallback_WazaSelect(ACI_PARAM_PTR aci, int select_bg, int force_pu
 		}
 	}
 
-	//-- 2“x˜A‘±Žg—p‹Zƒ`ƒFƒbƒN --//
+	//-- 2åº¦é€£ç¶šä½¿ç”¨æŠ€ãƒã‚§ãƒƒã‚¯ --//
 	for(i = 0; i < WAZA_TEMOTI_MAX; i++){
 		if(wazano[i] != 0 
 				&& AT_WazaConsecutiveCheck(aci->a_game, aci->sys->c_game->my_breeder_no, 
 				wazano[i]) == FALSE){
-			//2“x˜A‘±Žg—p‚Å˜A‘±‹–‰Â‹Z‚Å‚à‚È‚¢‚Ì‚È‚çAˆÃ‚­‚µ‚Äƒ^ƒbƒ`o—ˆ‚È‚¢‚æ‚¤‚É‚·‚é
+			//2åº¦é€£ç¶šä½¿ç”¨ã§é€£ç¶šè¨±å¯æŠ€ã§ã‚‚ãªã„ã®ãªã‚‰ã€æš—ãã—ã¦ã‚¿ãƒƒãƒå‡ºæ¥ãªã„ã‚ˆã†ã«ã™ã‚‹
 		//	SoftFadePfd(aci->sys->pfd, FADE_SUB_BG, (WAZATYPE_START_PALPOS + i) * 16, 16, 
 		//		NOT_TOUCH_WAZA_EVY, NOT_TOUCH_WAZA_COLOR);
 			PaletteWorkSet(aci->sys->pfd, 
 				&aci->pal_buf[PALBUF_COMMAND][ACI_NOT_SELECT_PANEL_PALNO * 16], 
 				FADE_SUB_BG, (WAZATYPE_START_PALPOS + i) * 16, 0x20);
 			
-			GF_ASSERT(aci->not_touch_pos == NOT_TOUCH_WAZA_POS_NULL && "2‚ÂˆÈã‚Ì‹Z‚ª˜A‘±Žg—p•s‰Âó‘Ô‚É‚È‚Á‚Ä‚¢‚Ü‚·");
+			GF_ASSERT(aci->not_touch_pos == NOT_TOUCH_WAZA_POS_NULL && "2ã¤ä»¥ä¸Šã®æŠ€ãŒé€£ç¶šä½¿ç”¨ä¸å¯çŠ¶æ…‹ã«ãªã£ã¦ã„ã¾ã™");
 			aci->not_touch_pos = i;
 		}
 	}
 
-	//ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³
 	Sub_ConTypeIconCreateAll(aci, wazano);
 	
-	//AP’lE–WŠQ’l
+	//APå€¤ãƒ»å¦¨å®³å€¤
 	{
 		int ap_point;
 		int heart_num, loop;
 		
-		//ƒAƒNƒ^[ƒZƒbƒg
+		//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 		for(i = 0; i < WAZA_TEMOTI_MAX; i++){
 			if(wazano[i] == 0){
 				continue;
@@ -1443,11 +1443,11 @@ static void BGCallback_WazaSelect(ACI_PARAM_PTR aci, int select_bg, int force_pu
 
 //--------------------------------------------------------------
 /**
- * @brief   AINPUT_TYPE_B‚ÌBGCreateŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   AINPUT_TYPE_Bã®BGCreateæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   aci				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   select_bg		•\Ž¦BGƒ^ƒCƒv(AINPUT_TYPE_???)
- * @param   force_put		TRUE:‹­§“]‘—AFALSE:Šù‚É“¯‚¶ƒf[ƒ^‚ª“]‘—‚³‚ê‚Ä‚¢‚é‚È‚çÄ“]‘—‚Í‚µ‚È‚¢
+ * @param   aci				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   select_bg		è¡¨ç¤ºBGã‚¿ã‚¤ãƒ—(AINPUT_TYPE_???)
+ * @param   force_put		TRUE:å¼·åˆ¶è»¢é€ã€FALSE:æ—¢ã«åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè»¢é€ã•ã‚Œã¦ã„ã‚‹ãªã‚‰å†è»¢é€ã¯ã—ãªã„
  */
 //--------------------------------------------------------------
 static void BGCallback_JudgeSelect(ACI_PARAM_PTR aci, int select_bg, int force_put)
@@ -1474,7 +1474,7 @@ static void BGCallback_JudgeSelect(ACI_PARAM_PTR aci, int select_bg, int force_p
 			PLTTID_SUB_FONTACT, FONT_JUDGE_MODORU_X, FONT_JUDGE_MODORU_Y, FONTOAM_CENTER, NULL);
 	STRBUF_Delete(modoru_src);
 	
-	//¦‚¢R”»‚Ìˆó‚Ìƒn[ƒgƒAƒCƒRƒ“
+	//å‡„ã„å¯©åˆ¤ã®å°ã®ãƒãƒ¼ãƒˆã‚¢ã‚¤ã‚³ãƒ³
 	aci->special_heart_cap = ACIT_SubHeartJudgeActorAdd(aci->sys->csp, 
 		aci->sys->crp, aci->sys->c_game->special_judge_no);
 }
@@ -1483,18 +1483,18 @@ static void BGCallback_JudgeSelect(ACI_PARAM_PTR aci, int select_bg, int force_p
 
 //==============================================================================
 //
-//	ƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+//	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   AINPUT_TYPE_A‚Åƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   AINPUT_TYPE_Aã§ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   aci			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tp_ret		ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê(bmd->tpd_ret‚Ì’l‚©RECT_HIT_NONE)
- * @param   panel_pal	‰Ÿ‚µ‚½ƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+ * @param   aci			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tp_ret		ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ(bmd->tpd_retã®å€¤ã‹RECT_HIT_NONE)
+ * @param   panel_pal	æŠ¼ã—ãŸãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  * 
- * @retval  tp_ret‚ð•Ô‚·(ˆ—‚Ì’†‚Å•ÏX‚·‚é•K—v‚ª‚È‚¢‚È‚çAˆø”‚Å“n‚³‚ê‚½’l‚ð‚»‚Ì‚Ü‚Ü•Ô‚·)
+ * @retval  tp_retã‚’è¿”ã™(å‡¦ç†ã®ä¸­ã§å¤‰æ›´ã™ã‚‹å¿…è¦ãŒãªã„ãªã‚‰ã€å¼•æ•°ã§æ¸¡ã•ã‚ŒãŸå€¤ã‚’ãã®ã¾ã¾è¿”ã™)
  */
 //--------------------------------------------------------------
 static int TPCallback_WazaSelect(ACI_PARAM_PTR aci, int tp_ret, int panel_pal)
@@ -1516,7 +1516,7 @@ static int TPCallback_WazaSelect(ACI_PARAM_PTR aci, int tp_ret, int panel_pal)
 		wazano = PokeParaGet(aci->sys->c_game->pp[aci->sys->c_game->my_breeder_no], 
 			ID_PARA_waza1 + tp_ret, NULL);
 		if(wazano == 0 || aci->not_touch_pos == (tp_ret - ACTIN_TP_WAZA_1)){
-			return RECT_HIT_NONE;	//‰Ÿ‚³‚ê‚½êŠ‚ÌŽèŽ‚¿‹Z‚ª‚È‚¢
+			return RECT_HIT_NONE;	//æŠ¼ã•ã‚ŒãŸå ´æ‰€ã®æ‰‹æŒã¡æŠ€ãŒãªã„
 		}
 		scrn_offset = WazaButtonScrnOffset[rd_no];
 		scrn_range = &WazaButtonScrnRect[rd_no];
@@ -1535,13 +1535,13 @@ static int TPCallback_WazaSelect(ACI_PARAM_PTR aci, int tp_ret, int panel_pal)
 
 //--------------------------------------------------------------
 /**
- * @brief   AINPUT_TYPE_B‚Åƒ^ƒbƒ`ƒpƒlƒ‹”½‰žŽž‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   AINPUT_TYPE_Bã§ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åå¿œæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   aci			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tp_ret		ƒ^ƒbƒ`ƒpƒlƒ‹Œ‹‰Ê(bmd->tpd_ret‚Ì’l‚©RECT_HIT_NONE)
- * @param   panel_pal	‰Ÿ‚µ‚½ƒpƒlƒ‹‚ÌƒpƒŒƒbƒg”Ô†
+ * @param   aci			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tp_ret		ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«çµæžœ(bmd->tpd_retã®å€¤ã‹RECT_HIT_NONE)
+ * @param   panel_pal	æŠ¼ã—ãŸãƒ‘ãƒãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  * 
- * @retval  tp_ret‚ð•Ô‚·(ˆ—‚Ì’†‚Å•ÏX‚·‚é•K—v‚ª‚È‚¢‚È‚çAˆø”‚Å“n‚³‚ê‚½’l‚ð‚»‚Ì‚Ü‚Ü•Ô‚·)
+ * @retval  tp_retã‚’è¿”ã™(å‡¦ç†ã®ä¸­ã§å¤‰æ›´ã™ã‚‹å¿…è¦ãŒãªã„ãªã‚‰ã€å¼•æ•°ã§æ¸¡ã•ã‚ŒãŸå€¤ã‚’ãã®ã¾ã¾è¿”ã™)
  */
 //--------------------------------------------------------------
 static int TPCallback_JudgeSelect(ACI_PARAM_PTR aci, int tp_ret, int panel_pal)
@@ -1567,7 +1567,7 @@ static int TPCallback_JudgeSelect(ACI_PARAM_PTR aci, int tp_ret, int panel_pal)
 		break;
 	}
 	
-	//¦‚¢R”»‚ð‘I‘ð‚µ‚½‚©ƒ`ƒFƒbƒN
+	//å‡„ã„å¯©åˆ¤ã‚’é¸æŠžã—ãŸã‹ãƒã‚§ãƒƒã‚¯
 	special = (tp_ret == aci->sys->c_game->special_judge_no) ? TRUE:FALSE;
 
 	ColorEffTCB_PointFadeSet(aci, panel_pal);
@@ -1590,18 +1590,18 @@ static int TPCallback_JudgeSelect(ACI_PARAM_PTR aci, int tp_ret, int panel_pal)
 
 //==============================================================================
 //
-//	ƒTƒuŠÖ”
+//	ã‚µãƒ–é–¢æ•°
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   Žw’è”ÍˆÍ‚ÌƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ðŽw’èƒR[ƒh‚ÅƒNƒŠƒA‚·‚é
+ * @brief   æŒ‡å®šç¯„å›²ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã‚³ãƒ¼ãƒ‰ã§ã‚¯ãƒªã‚¢ã™ã‚‹
  *
- * @param   rsr[]			ƒNƒŠƒA”ÍˆÍ
- * @param   rsr_num			rsrƒf[ƒ^ŒÂ”
- * @param   bgl				BGLƒf[ƒ^
- * @param   frame_no		ƒtƒŒ[ƒ€”Ô†
- * @param   clear_code		ƒNƒŠƒA[ƒR[ƒh
+ * @param   rsr[]			ã‚¯ãƒªã‚¢ç¯„å›²
+ * @param   rsr_num			rsrãƒ‡ãƒ¼ã‚¿å€‹æ•°
+ * @param   bgl				BGLãƒ‡ãƒ¼ã‚¿
+ * @param   frame_no		ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param   clear_code		ã‚¯ãƒªã‚¢ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 static void Sub_ScrnErase(const REWRITE_SCRN_RECT rsr[], int rsr_num, GF_BGL_INI *bgl, 
@@ -1623,20 +1623,20 @@ static void Sub_ScrnErase(const REWRITE_SCRN_RECT rsr[], int rsr_num, GF_BGL_INI
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒHƒ“ƒgOAM‚ðì¬‚·‚é
+ * @brief   ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’ä½œæˆã™ã‚‹
  *
- * @param   aci			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   font_actor	¶¬‚µ‚½ƒtƒHƒ“ƒgOAMŠÖ˜A‚Ìƒ[ƒN‘ã“üæ
- * @param   str			•¶Žš—ñ
- * @param   font_type	ƒtƒHƒ“ƒgƒ^ƒCƒv(FONT_SYSTEM“™)
- * @param   color		ƒtƒHƒ“ƒgƒJƒ‰[\¬
- * @param   pal_offset	ƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg
- * @param   pal_id		“o˜^ŠJŽnƒpƒŒƒbƒgID
- * @param   x			À•WX
- * @param   y			À•WY
- * @param   pos_center  FONTOAM_LEFT(X¶’[À•W) or FONTOAM_CENTER(X’†SÀ•W)
- * @param   ex_bmpwin	ŒÄ‚Ño‚µ‘¤‚ÅƒtƒHƒ“ƒgOAM‚ÉŠÖ˜A•t‚¯‚éBMPWIN‚ðŽ‚Á‚Ä‚¢‚éê‡‚Í‚±‚±‚Å“n‚·B
- *          			NULL‚Ìê‡‚Í’†‚Åì¬‚³‚ê‚Ü‚·B(ex_bmpwin‚ðŽg—p‚·‚éê‡‚Ístr‚ÍNULL‚ÅOK)
+ * @param   aci			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   font_actor	ç”Ÿæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆOAMé–¢é€£ã®ãƒ¯ãƒ¼ã‚¯ä»£å…¥å…ˆ
+ * @param   str			æ–‡å­—åˆ—
+ * @param   font_type	ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—(FONT_SYSTEMç­‰)
+ * @param   color		ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼æ§‹æˆ
+ * @param   pal_offset	ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   pal_id		ç™»éŒ²é–‹å§‹ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param   x			åº§æ¨™X
+ * @param   y			åº§æ¨™Y
+ * @param   pos_center  FONTOAM_LEFT(Xå·¦ç«¯åº§æ¨™) or FONTOAM_CENTER(Xä¸­å¿ƒåº§æ¨™)
+ * @param   ex_bmpwin	å‘¼ã³å‡ºã—å´ã§ãƒ•ã‚©ãƒ³ãƒˆOAMã«é–¢é€£ä»˜ã‘ã‚‹BMPWINã‚’æŒã£ã¦ã„ã‚‹å ´åˆã¯ã“ã“ã§æ¸¡ã™ã€‚
+ *          			NULLã®å ´åˆã¯ä¸­ã§ä½œæˆã•ã‚Œã¾ã™ã€‚(ex_bmpwinã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯strã¯NULLã§OK)
  */
 //--------------------------------------------------------------
 static void Sub_FontOamCreate(ACI_PARAM_PTR aci, FONT_ACTOR *font_actor, const STRBUF *str, 
@@ -1657,7 +1657,7 @@ static void Sub_FontOamCreate(ACI_PARAM_PTR aci, FONT_ACTOR *font_actor, const S
 	bgl = aci->sys->bgl;
 	crp = aci->sys->crp;
 	
-	//•¶Žš—ñ‚Ìƒhƒbƒg•‚©‚çAŽg—p‚·‚éƒLƒƒƒ‰”‚ðŽZo‚·‚é
+	//æ–‡å­—åˆ—ã®ãƒ‰ãƒƒãƒˆå¹…ã‹ã‚‰ã€ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©æ•°ã‚’ç®—å‡ºã™ã‚‹
 	if(ex_bmpwin == NULL){
 		FontLenGet(str, font_type, &font_len, &char_len);
 	}
@@ -1666,7 +1666,7 @@ static void Sub_FontOamCreate(ACI_PARAM_PTR aci, FONT_ACTOR *font_actor, const S
 		char_len = ex_bmpwin->char_len;
 	}
 
-	//BMPì¬
+	//BMPä½œæˆ
 	if(ex_bmpwin == NULL){
 		GF_BGL_BmpWinInit(&bmpwin);
 		GF_BGL_BmpWinObjAdd(bgl, &bmpwin, char_len, 16 / 8, 0, 0);
@@ -1681,7 +1681,7 @@ static void Sub_FontOamCreate(ACI_PARAM_PTR aci, FONT_ACTOR *font_actor, const S
 	vram_size = FONTOAM_NeedCharSize(&bmpwin, NNS_G2D_VRAM_TYPE_2DSUB,  HEAPID_ACTIN);
 	CharVramAreaAlloc(vram_size, CHARM_CONT_AREACONT, NNS_G2D_VRAM_TYPE_2DSUB, &cma);
 	
-	//À•WˆÊ’uC³
+	//åº§æ¨™ä½ç½®ä¿®æ­£
 	if(pos_center == FONTOAM_CENTER){
 		x -= font_len / 2;
 	}
@@ -1706,7 +1706,7 @@ static void Sub_FontOamCreate(ACI_PARAM_PTR aci, FONT_ACTOR *font_actor, const S
 	FONTOAM_SetPaletteOffsetAddTransPlttNo(fontoam, pal_offset);
 	FONTOAM_SetMat(fontoam, x, y);
 	
-	//‰ð•úˆ—
+	//è§£æ”¾å‡¦ç†
 	if(ex_bmpwin == NULL){
 		GF_BGL_BmpWinDel(&bmpwin);
 	}
@@ -1718,8 +1718,8 @@ static void Sub_FontOamCreate(ACI_PARAM_PTR aci, FONT_ACTOR *font_actor, const S
 
 //--------------------------------------------------------------
 /**
- * @brief   ¶¬‚³‚ê‚Ä‚¢‚éƒtƒHƒ“ƒgOAM‚ð‘S‚Äíœ‚ð‚·‚é
- * @param   aci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’å…¨ã¦å‰Šé™¤ã‚’ã™ã‚‹
+ * @param   aci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_FontOamDeleteAll(ACI_PARAM_PTR aci)
@@ -1737,8 +1737,8 @@ static void Sub_FontOamDeleteAll(ACI_PARAM_PTR aci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ¦‚¢R”»ƒn[ƒg‚ð‘S‚Äíœ‚·‚é
- * @param   aci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å‡„ã„å¯©åˆ¤ãƒãƒ¼ãƒˆã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
+ * @param   aci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_SubHeartJudgeDeleteAll(ACI_PARAM_PTR aci)
@@ -1751,8 +1751,8 @@ static void Sub_SubHeartJudgeDeleteAll(ACI_PARAM_PTR aci)
 
 //--------------------------------------------------------------
 /**
- * @brief   AP’lƒn[ƒg‚ð‘S‚Äíœ‚·‚é
- * @param   aci			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   APå€¤ãƒãƒ¼ãƒˆã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
+ * @param   aci			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_AppHeartDeleteAll(ACI_PARAM_PTR aci)
@@ -1771,10 +1771,10 @@ static void Sub_AppHeartDeleteAll(ACI_PARAM_PTR aci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ð‘S‚Ä¶¬‚·‚é
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦ç”Ÿæˆã™ã‚‹
  *
- * @param   aci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wazano[]	ŽèŽ‚¿‚Ì‹Z”Ô†‚ª“ü‚Á‚½”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^(WAZA_TEMOTI_MAX•ª‚ ‚éŽ–!)
+ * @param   aci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wazano[]	æ‰‹æŒã¡ã®æŠ€ç•ªå·ãŒå…¥ã£ãŸé…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿(WAZA_TEMOTI_MAXåˆ†ã‚ã‚‹äº‹!)
  */
 //--------------------------------------------------------------
 static void Sub_ConTypeIconCreateAll(ACI_PARAM_PTR aci, u16 wazano[])
@@ -1807,8 +1807,8 @@ static void Sub_ConTypeIconCreateAll(ACI_PARAM_PTR aci, u16 wazano[])
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒgƒ^ƒCƒvƒAƒCƒRƒ“‚ð‘S‚Äíœ‚·‚é
- * @param   aci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
+ * @param   aci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_ConTypeIconDeleteAll(ACI_PARAM_PTR aci)
@@ -1830,13 +1830,13 @@ static void Sub_ConTypeIconDeleteAll(ACI_PARAM_PTR aci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠ[ƒ“‘‚«Š·‚¦
+ * @brief   ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆ
  *
- * @param   aci				ACIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   scrn_offset		‰ÁŽZ‚·‚éƒXƒNƒŠ[ƒ“’l
- * @param   range			ƒXƒNƒŠ[ƒ“‘‚«Š·‚¦”ÍˆÍ
- * @param   scrnbuf_no		Œ³ƒf[ƒ^‚Æ‚È‚éƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚Ì”Ô†
- * @param   anm_no			ƒAƒjƒ”Ô†
+ * @param   aci				ACIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   scrn_offset		åŠ ç®—ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å€¤
+ * @param   range			ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ›¸ãæ›ãˆç¯„å›²
+ * @param   scrnbuf_no		å…ƒãƒ‡ãƒ¼ã‚¿ã¨ãªã‚‹ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã®ç•ªå·
+ * @param   anm_no			ã‚¢ãƒ‹ãƒ¡ç•ªå·
  */
 //--------------------------------------------------------------
 static void Sub_ScrnOffsetRewrite(ACI_PARAM_PTR aci, const s16 *scrn_offset, 
@@ -1866,11 +1866,11 @@ static void Sub_ScrnOffsetRewrite(ACI_PARAM_PTR aci, const s16 *scrn_offset,
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒv–ˆ‚ÉCGRƒf[ƒ^‚ð‘‚«Š·‚¦‚é
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—æ¯Žã«CGRãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãæ›ãˆã‚‹
  *
- * @param   aci				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒg‹Zƒ^ƒCƒv(ŽèŽ‚¿–³‚µ‚Ìê‡‚Í-1)
- * @param   waza_pos		ŽèŽ‚¿‚Ì‹Z‚ÌˆÊ’u(0`3)
+ * @param   aci				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ã‚¿ã‚¤ãƒ—(æ‰‹æŒã¡ç„¡ã—ã®å ´åˆã¯-1)
+ * @param   waza_pos		æ‰‹æŒã¡ã®æŠ€ã®ä½ç½®(0ã€œ3)
  */
 //--------------------------------------------------------------
 static void Sub_WazaTypeCGRTrans(ACI_PARAM_PTR aci, int con_type, int waza_pos)
@@ -1910,7 +1910,7 @@ static void Sub_WazaTypeCGRTrans(ACI_PARAM_PTR aci, int con_type, int waza_pos)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”wŒiˆÈŠO‚ÌƒtƒŒ[ƒ€‚ð‘S‚Ä”ñ•\Ž¦‚É‚·‚é
+ * @brief   èƒŒæ™¯ä»¥å¤–ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å…¨ã¦éžè¡¨ç¤ºã«ã™ã‚‹
  */
 //--------------------------------------------------------------
 static void Sub_BackScrnOnlyVisible(void)
@@ -1929,8 +1929,8 @@ static void Sub_BackScrnOnlyVisible(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒlƒ‹ƒ^ƒbƒ`ƒGƒtƒFƒNƒgI—¹ŒãA”wŒi‚Ì‚Ý‚É‚·‚é‚½‚ß‚Ìˆ—‚ðFX‚·‚é(ƒtƒHƒ“ƒgOBJ‚Ìíœ‚Æ‚©)
- * @param   none		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‘ãƒãƒ«ã‚¿ãƒƒãƒã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾Œã€èƒŒæ™¯ã®ã¿ã«ã™ã‚‹ãŸã‚ã®å‡¦ç†ã‚’è‰²ã€…ã™ã‚‹(ãƒ•ã‚©ãƒ³ãƒˆOBJã®å‰Šé™¤ã¨ã‹)
+ * @param   none		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_TouchEndDelete(ACI_PARAM_PTR aci)
@@ -1941,8 +1941,8 @@ static void Sub_TouchEndDelete(ACI_PARAM_PTR aci)
 
 //--------------------------------------------------------------
 /**
- * @brief   BGƒ^ƒCƒv‚ªØ‚è‘Ö‚í‚é–ˆ‚Éíœ‚·‚é•K—v‚Ì‚ ‚éOBJ‚ÌDeleteˆ—
- * @param   aci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   BGã‚¿ã‚¤ãƒ—ãŒåˆ‡ã‚Šæ›¿ã‚ã‚‹æ¯Žã«å‰Šé™¤ã™ã‚‹å¿…è¦ã®ã‚ã‚‹OBJã®Deleteå‡¦ç†
+ * @param   aci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_SceneOBJDelete(ACI_PARAM_PTR aci)
@@ -1957,15 +1957,15 @@ static void Sub_SceneOBJDelete(ACI_PARAM_PTR aci)
 
 //==============================================================================
 //
-//	ƒGƒtƒFƒNƒgTCB
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCB
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒtƒFƒNƒgTCB‚ð¶¬‚·‚é
+ * @brief   ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   func		TCB‚ÉƒZƒbƒg‚·‚éŠÖ”ƒ|ƒCƒ“ƒ^
- * @param   aci			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   func		TCBã«ã‚»ãƒƒãƒˆã™ã‚‹é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+ * @param   aci			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void EffectTCB_Add(TCB_FUNC func, ACI_PARAM_PTR aci)
@@ -1978,8 +1978,8 @@ static void EffectTCB_Add(TCB_FUNC func, ACI_PARAM_PTR aci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒtƒFƒNƒgTCB‚ðíœ‚·‚é
- * @param   aci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBã‚’å‰Šé™¤ã™ã‚‹
+ * @param   aci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void EffectTCB_Delete(ACI_PARAM_PTR aci)
@@ -1994,11 +1994,11 @@ static void EffectTCB_Delete(ACI_PARAM_PTR aci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒlƒ‹•”•ª‚ðƒLƒƒƒ‰“]‘—ƒAƒjƒ‚ðŽÀs‚µ‚Ä‘‚«Š·‚¦‚Ü‚·B
- *          1‚Â‚Ìƒpƒlƒ‹‚É‘Î‚µ‚Ä1‚Â‚ÌƒtƒHƒ“ƒgOBJ‚ªƒZƒbƒg‚É‚È‚Á‚Ä‚¢‚é‚à‚Ì—p‚Ì”Ä—pƒ^ƒXƒN‚Å‚·
+ * @brief   ãƒ‘ãƒãƒ«éƒ¨åˆ†ã‚’ã‚­ãƒ£ãƒ©è»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’å®Ÿè¡Œã—ã¦æ›¸ãæ›ãˆã¾ã™ã€‚
+ *          1ã¤ã®ãƒ‘ãƒãƒ«ã«å¯¾ã—ã¦1ã¤ã®ãƒ•ã‚©ãƒ³ãƒˆOBJãŒã‚»ãƒƒãƒˆã«ãªã£ã¦ã„ã‚‹ã‚‚ã®ç”¨ã®æ±Žç”¨ã‚¿ã‚¹ã‚¯ã§ã™
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Effect_ButtonDown(TCB_PTR tcb, void *work)
@@ -2066,11 +2066,11 @@ static void Effect_ButtonDown(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒlƒ‹•”•ª‚ðƒLƒƒƒ‰“]‘—ƒAƒjƒ‚ðŽÀs‚µ‚Ä‘‚«Š·‚¦‚Ü‚·B
- *          ‹Z‘I‘ðŽžê—p‚Å‚·B
+ * @brief   ãƒ‘ãƒãƒ«éƒ¨åˆ†ã‚’ã‚­ãƒ£ãƒ©è»¢é€ã‚¢ãƒ‹ãƒ¡ã‚’å®Ÿè¡Œã—ã¦æ›¸ãæ›ãˆã¾ã™ã€‚
+ *          æŠ€é¸æŠžæ™‚å°‚ç”¨ã§ã™ã€‚
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	ACIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	ACIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Effect_WazaButtonDown(TCB_PTR tcb, void *work)
@@ -2123,7 +2123,7 @@ static void Effect_WazaButtonDown(TCB_PTR tcb, void *work)
 		wazano = wazano_array[3];
 		wazapos = 3;
 		break;
-//	case SELECT_CANCEL:		¡‚ÌŠƒLƒƒƒ“ƒZƒ‹‚Í‚È‚¢@2005.12.03(“y)
+//	case SELECT_CANCEL:		ä»Šã®æ‰€ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã¯ãªã„ã€€2005.12.03(åœŸ)
 	default:
 		fa_waza = 0;
 		fa_up = 0;
@@ -2156,7 +2156,7 @@ static void Effect_WazaButtonDown(TCB_PTR tcb, void *work)
 			}
 		}
 		else{
-		#if 0	//¡‚Ì‚Æ‚±‚ëƒLƒƒƒ“ƒZƒ‹‚È‚µ 2005.12.02(‹à)
+		#if 0	//ä»Šã®ã¨ã“ã‚ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãªã— 2005.12.02(é‡‘)
 			FontOBJ_PosGet(&aci->font_actor[FA_NO_WAZA_MODORU], FONTOBJ_POS_LEFT, &x, &y);
 			FontOBJ_PosSet(&aci->font_actor[FA_NO_WAZA_MODORU], FONTOBJ_POS_LEFT, 
 				x, y + SCRN_SCROLL_A_EFF_Y);
@@ -2196,7 +2196,7 @@ static void Effect_WazaButtonDown(TCB_PTR tcb, void *work)
 			}
 		}
 		else{
-		#if 0	//¡‚Ì‚Æ‚±‚ëƒLƒƒƒ“ƒZƒ‹‚È‚µ 2005.12.02(‹à)
+		#if 0	//ä»Šã®ã¨ã“ã‚ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãªã— 2005.12.02(é‡‘)
 			FontOBJ_PosGet(&aci->font_actor[FA_NO_WAZA_MODORU], FONTOBJ_POS_LEFT, &x, &y);
 			FontOBJ_PosSet(&aci->font_actor[FA_NO_WAZA_MODORU], FONTOBJ_POS_LEFT, 
 				x, y + SCRN_SCROLL_BACK_A_EFF_Y);
@@ -2218,10 +2218,10 @@ static void Effect_WazaButtonDown(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒ‰[ƒGƒtƒFƒNƒgTCB‚ð¶¬‚·‚é
+ * @brief   ã‚«ãƒ©ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   func		TCB‚ÉƒZƒbƒg‚·‚éŠÖ”ƒ|ƒCƒ“ƒ^
- * @param   aci			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   func		TCBã«ã‚»ãƒƒãƒˆã™ã‚‹é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+ * @param   aci			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ColorEffTCB_Add(TCB_FUNC func, ACI_PARAM_PTR aci)
@@ -2234,8 +2234,8 @@ static void ColorEffTCB_Add(TCB_FUNC func, ACI_PARAM_PTR aci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒ‰[ƒGƒtƒFƒNƒgTCB‚ðíœ‚·‚é
- * @param   aci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚«ãƒ©ãƒ¼ã‚¨ãƒ•ã‚§ã‚¯ãƒˆTCBã‚’å‰Šé™¤ã™ã‚‹
+ * @param   aci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ColorEffTCB_Delete(ACI_PARAM_PTR aci)
@@ -2249,9 +2249,9 @@ static void ColorEffTCB_Delete(ACI_PARAM_PTR aci)
 
 //--------------------------------------------------------------
 /**
- * @brief   “Á’è‚ÌˆÊ’u‚ÌƒJƒ‰[‚¾‚¯‚ðƒtƒF[ƒh‚³‚¹‚éƒ^ƒXƒN‚ð¶¬‚·‚é
- * @param   aci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pal_pos	ƒtƒF[ƒh‚³‚¹‚éƒpƒŒƒbƒg”Ô†
+ * @brief   ç‰¹å®šã®ä½ç½®ã®ã‚«ãƒ©ãƒ¼ã ã‘ã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹ã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã™ã‚‹
+ * @param   aci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pal_pos	ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 static void ColorEffTCB_PointFadeSet(ACI_PARAM_PTR aci, int pal_pos)
@@ -2266,10 +2266,10 @@ static void ColorEffTCB_PointFadeSet(ACI_PARAM_PTR aci, int pal_pos)
 
 //--------------------------------------------------------------
 /**
- * @brief   “Á’è‚ÌˆÊ’u‚ÌƒJƒ‰[‚¾‚¯‚ðƒtƒF[ƒh‚³‚¹‚é
+ * @brief   ç‰¹å®šã®ä½ç½®ã®ã‚«ãƒ©ãƒ¼ã ã‘ã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ColorEff_PointFade(TCB_PTR tcb, void *work)
@@ -2287,7 +2287,7 @@ static void ColorEff_PointFade(TCB_PTR tcb, void *work)
 	case 0:
 		cw->evy = TOUCH_FADE_EVY;
 		cw->evy_add = -TOUCH_FADE_ADD_EVY;
-		//Å‰‚ÌŒvŽZ•ª‚ð‘«‚µ‚±‚ñ‚Å‚¨‚­
+		//æœ€åˆã®è¨ˆç®—åˆ†ã‚’è¶³ã—ã“ã‚“ã§ãŠã
 		cw->evy -= cw->evy_add;
 		
 		cw->seq++;
@@ -2304,18 +2304,18 @@ static void ColorEff_PointFade(TCB_PTR tcb, void *work)
 		}
 		
 	#if 1
-		//‘S‘Ì‚ð”’‚­
+		//å…¨ä½“ã‚’ç™½ã
 		SoftFadePfd(pfd, FADE_SUB_BG, cw->pal_pos * 16, 16, cw->evy >> 8, 0x7fff);
 	#elif 0
-		//‘S‘Ì‚ðˆÃ‚­
+		//å…¨ä½“ã‚’æš—ã
 		SoftFadePfd(pfd, FADE_SUB_BG, cw->pal_pos * 16, 16, cw->evy >> 8, 0x0000);
-		//˜g‚¾‚¯”’‚­
+		//æž ã ã‘ç™½ã
 		SoftFadePfd(pfd, FADE_SUB_BG, cw->pal_pos * 16 + 3, 1, cw->evy >> 8, 0x7fff);
 	#else
 		SoftFadePfd(pfd, FADE_SUB_BG, cw->pal_pos * 16, 16, (cw->evy >> 8) / 2, 0x7fff);
-		//‘S‘Ì‚ðˆÃ‚­
+		//å…¨ä½“ã‚’æš—ã
 		SoftFadePfd(pfd, FADE_SUB_BG, cw->pal_pos * 16 + 1, 1, cw->evy >> 8, 0x7b1a);
-		//˜g‚¾‚¯”’‚­
+		//æž ã ã‘ç™½ã
 		SoftFadePfd(pfd, FADE_SUB_BG, cw->pal_pos * 16 + 0xa, 1, cw->evy >> 8, 0x4634);
 	#endif
 		if(end == TRUE){
@@ -2328,8 +2328,8 @@ static void ColorEff_PointFade(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   MEMORY_DECORD_WORK‚ð‰ð•ú‚·‚é
- * @param   aci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   MEMORY_DECORD_WORKã‚’è§£æ”¾ã™ã‚‹
+ * @param   aci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void MemoryDecordWorkFree(ACI_PARAM_PTR aci)
@@ -2357,10 +2357,10 @@ static void MemoryDecordWorkFree(ACI_PARAM_PTR aci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒpƒ‰ƒ[ƒ^‚Ìƒf[ƒ^‚ðƒƒ‚ƒŠ‚É“WŠJ‚·‚é
+ * @brief   æŠ€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ¡ãƒ¢ãƒªã«å±•é–‹ã™ã‚‹
  *
- * @param   aci				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   wazano			‹Z”Ô†‚Ì“ü‚Á‚½”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^(WAZA_TEMOTI_MAX•ª)
+ * @param   aci				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   wazano			æŠ€ç•ªå·ã®å…¥ã£ãŸé…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿(WAZA_TEMOTI_MAXåˆ†)
  */
 //--------------------------------------------------------------
 void AINPUT_WazaParaMemoryDecord(ACI_PARAM_PTR aci, u16 wazano[])
@@ -2383,12 +2383,12 @@ void AINPUT_WazaParaMemoryDecord(ACI_PARAM_PTR aci, u16 wazano[])
 			mdw->con_type[i] = 0;
 		}
 		
-		//BMPWINF‹Z–¼
+		//BMPWINï¼šæŠ€å
 		wazaname_p = MSGDAT_UTIL_GetWazaName(wazano[i], HEAPID_ACTIN);
 		FontExBmpwin_FontSet(aci, wazaname_p, FONT_BUTTON, &mdw->exbmp_waza[i], MSGCOLOR_WAZA);
 		STRBUF_Delete(wazaname_p);
 		
-		//BMPWIN:‹Zà–¾
+		//BMPWIN:æŠ€èª¬æ˜Ž
 		ConTool_GetAPSetumeiMsgID(mdw->ap_no[i], &u_id, &d_id);
 		setumei_u_src = MSGMAN_AllocString(aci->sys->explain_msg, u_id);
 		setumei_d_src = MSGMAN_AllocString(aci->sys->explain_msg, d_id);
@@ -2400,7 +2400,7 @@ void AINPUT_WazaParaMemoryDecord(ACI_PARAM_PTR aci, u16 wazano[])
 		STRBUF_Delete(setumei_d_src);
 	}
 	
-	//R”»–¼
+	//å¯©åˆ¤å
 	for(i = 0; i < JUDGE_MAX; i++){
 		judge_src = ADV_MSGDAT_GetJudgeName(aci->sys->c_game->jd[i].name_id, HEAPID_ACTIN);
 		FontExBmpwin_FontSet(aci, judge_src, FONT_BUTTON, &mdw->exbmp_judge[i], 
@@ -2408,7 +2408,7 @@ void AINPUT_WazaParaMemoryDecord(ACI_PARAM_PTR aci, u16 wazano[])
 		STRBUF_Delete(judge_src);
 	}
 
-	//-- ‚Â‚¢‚Å‚É‚±‚±‚ÅƒJ[ƒ\ƒ‹‚à¶¬ --//
+	//-- ã¤ã„ã§ã«ã“ã“ã§ã‚«ãƒ¼ã‚½ãƒ«ã‚‚ç”Ÿæˆ --//
 	{
 		CCURSOR_ResourceLoad(aci->sys->csp, aci->sys->crp, aci->sys->pfd, 
 			CHARID_ACTIN_CURSOR, PLTTID_ACTIN_CURSOR,
@@ -2421,13 +2421,13 @@ void AINPUT_WazaParaMemoryDecord(ACI_PARAM_PTR aci, u16 wazano[])
 
 //--------------------------------------------------------------
 /**
- * @brief   FONT_EX_BMPWIN‚É‘Î‚µ‚ÄƒtƒHƒ“ƒgƒf[ƒ^‚ðì¬‚µAƒZƒbƒg‚·‚é
+ * @brief   FONT_EX_BMPWINã«å¯¾ã—ã¦ãƒ•ã‚©ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã€ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   aci				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   str				•¶Žš—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   font_type		ƒtƒHƒ“ƒgƒ^ƒCƒv
- * @param   ex_bmpwin		ƒf[ƒ^‘ã“üæ
- * @param   color			•¶ŽšƒJƒ‰[
+ * @param   aci				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   str				æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   font_type		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   ex_bmpwin		ãƒ‡ãƒ¼ã‚¿ä»£å…¥å…ˆ
+ * @param   color			æ–‡å­—ã‚«ãƒ©ãƒ¼
  */
 //--------------------------------------------------------------
 static void FontExBmpwin_FontSet(ACI_PARAM_PTR aci, const STRBUF *str, FONT_TYPE font_type, 	
@@ -2449,19 +2449,19 @@ static void FontExBmpwin_FontSet(ACI_PARAM_PTR aci, const STRBUF *str, FONT_TYPE
 
 //--------------------------------------------------------------
 /**
- * @brief   •¶Žš—ñ‚Ì’·‚³‚ðŽæ“¾‚·‚é
+ * @brief   æ–‡å­—åˆ—ã®é•·ã•ã‚’å–å¾—ã™ã‚‹
  *
- * @param   str				•¶Žš—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   font_type		ƒtƒHƒ“ƒgƒ^ƒCƒv
- * @param   ret_dot_len		ƒhƒbƒg•‘ã“üæ
- * @param   ret_char_len	ƒLƒƒƒ‰•‘ã“üæ
+ * @param   str				æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   font_type		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   ret_dot_len		ãƒ‰ãƒƒãƒˆå¹…ä»£å…¥å…ˆ
+ * @param   ret_char_len	ã‚­ãƒ£ãƒ©å¹…ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 static void FontLenGet(const STRBUF *str, FONT_TYPE font_type, int *ret_dot_len, int *ret_char_len)
 {
 	int dot_len, char_len;
 	
-	//•¶Žš—ñ‚Ìƒhƒbƒg•‚©‚çAŽg—p‚·‚éƒLƒƒƒ‰”‚ðŽZo‚·‚é
+	//æ–‡å­—åˆ—ã®ãƒ‰ãƒƒãƒˆå¹…ã‹ã‚‰ã€ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©æ•°ã‚’ç®—å‡ºã™ã‚‹
 	dot_len = FontProc_GetPrintStrWidth(font_type, str, PANEL_MSG_MARGIN);
 	char_len = dot_len / 8;
 	if(FX_ModS32(dot_len, 8) != 0){
@@ -2476,14 +2476,14 @@ static void FontLenGet(const STRBUF *str, FONT_TYPE font_type, int *ret_dot_len,
 
 //==============================================================================
 //
-//	ƒL[“ü—Í
+//	ã‚­ãƒ¼å…¥åŠ›
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒL[“ü—Í”»’èˆ—
- * @param   aci		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  Œ‹‰Ê(“–‚½‚è‚È‚µ‚Ìê‡‚ÍRECT_HIT_NONE)
+ * @brief   ã‚­ãƒ¼å…¥åŠ›åˆ¤å®šå‡¦ç†
+ * @param   aci		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  çµæžœ(å½“ãŸã‚Šãªã—ã®å ´åˆã¯RECT_HIT_NONE)
  */
 //--------------------------------------------------------------
 static int CursorCheck(ACI_PARAM_PTR aci)
@@ -2503,7 +2503,7 @@ static int CursorCheck(ACI_PARAM_PTR aci)
 				(sys.trg & (PAD_BUTTON_A|PAD_BUTTON_B|PAD_BUTTON_X|PAD_BUTTON_Y
 				|PAD_KEY_RIGHT|PAD_KEY_LEFT|PAD_KEY_UP|PAD_KEY_DOWN))){
 			if(aci->decend_key == FALSE){
-				Snd_SePlay(ASE_CCURSOR_MOVE_SE);	//ƒL[‚ð‰Ÿ‚µ‚ÄƒJ[ƒ\ƒ‹‚ð•\Ž¦‚µ‚½Žž‰¹‚ð–Â‚ç‚·
+				Snd_SePlay(ASE_CCURSOR_MOVE_SE);	//ã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã‚«ãƒ¼ã‚½ãƒ«ã‚’è¡¨ç¤ºã—ãŸæ™‚éŸ³ã‚’é³´ã‚‰ã™
 			}
 			move->cursor_on = TRUE;
 			aci->decend_key = FALSE;
@@ -2517,12 +2517,12 @@ static int CursorCheck(ACI_PARAM_PTR aci)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÚ“®F‹Z‘I‘ð
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šæŠ€é¸æŠž
  *
- * @param   aci				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   init_flag		TRUE:‰Šú‰»ˆ—
+ * @param   aci				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   init_flag		TRUE:åˆæœŸåŒ–å‡¦ç†
  *
- * @retval  Œ‹‰Ê(“–‚½‚è‚È‚µ‚Ìê‡‚ÍRECT_HIT_NONE)
+ * @retval  çµæžœ(å½“ãŸã‚Šãªã—ã®å ´åˆã¯RECT_HIT_NONE)
  */
 //--------------------------------------------------------------
 static int CursorMove_WazaSelect(ACI_PARAM_PTR aci, int init_flag)
@@ -2563,10 +2563,10 @@ static int CursorMove_WazaSelect(ACI_PARAM_PTR aci, int init_flag)
 
 	MI_CpuCopy8(CursorMoveDataWazaSelect, move_data, 
 		CURSOR_WAZA_SELECT_Y_MENU_NUM * CURSOR_WAZA_SELECT_X_MENU_NUM);
-#if 0	//ŽèŽ‚¿‹Z‚ª‚È‚¢êŠ‚àƒJ[ƒ\ƒ‹‚ªˆÚ“®o—ˆ‚é‚æ‚¤‚É•ÏX 2006.05.27(“y)
+#if 0	//æ‰‹æŒã¡æŠ€ãŒãªã„å ´æ‰€ã‚‚ã‚«ãƒ¼ã‚½ãƒ«ãŒç§»å‹•å‡ºæ¥ã‚‹ã‚ˆã†ã«å¤‰æ›´ 2006.05.27(åœŸ)
 	for(i = 0; i < WAZA_TEMOTI_MAX; i++){
 		if(wazano[i] == 0){
-			((u8*)move_data)[i] = 0xff;	//ŽèŽ‚¿‹Z‚ª‚È‚¢Š‚Í”ÍˆÍ‚©‚ç‚Í‚¸‚·
+			((u8*)move_data)[i] = 0xff;	//æ‰‹æŒã¡æŠ€ãŒãªã„æ‰€ã¯ç¯„å›²ã‹ã‚‰ã¯ãšã™
 		}
 	}
 #endif
@@ -2596,9 +2596,9 @@ static int CursorMove_WazaSelect(ACI_PARAM_PTR aci, int init_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÊ’u•Û‘¶FƒRƒ}ƒ“ƒh‘I‘ð
- * @param   aci				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   index			‘I‘ð‚µ‚½€–Ú
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ä¿å­˜ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠž
+ * @param   aci				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   index			é¸æŠžã—ãŸé …ç›®
  */
 //--------------------------------------------------------------
 static void CursorSave_WazaSelect(ACI_PARAM_PTR aci, int index)
@@ -2620,12 +2620,12 @@ static void CursorSave_WazaSelect(ACI_PARAM_PTR aci, int index)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÚ“®FR”»‘I‘ð
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ï¼šå¯©åˆ¤é¸æŠž
  *
- * @param   aci				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   init_flag		TRUE:‰Šú‰»ˆ—
+ * @param   aci				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   init_flag		TRUE:åˆæœŸåŒ–å‡¦ç†
  *
- * @retval  Œ‹‰Ê(“–‚½‚è‚È‚µ‚Ìê‡‚ÍRECT_HIT_NONE)
+ * @retval  çµæžœ(å½“ãŸã‚Šãªã—ã®å ´åˆã¯RECT_HIT_NONE)
  */
 //--------------------------------------------------------------
 static int CursorMove_JudgeSelect(ACI_PARAM_PTR aci, int init_flag)
@@ -2680,9 +2680,9 @@ static int CursorMove_JudgeSelect(ACI_PARAM_PTR aci, int init_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÊ’u•Û‘¶FƒRƒ}ƒ“ƒh‘I‘ð
- * @param   aci				BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   index			‘I‘ð‚µ‚½€–Ú
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ä¿å­˜ï¼šã‚³ãƒžãƒ³ãƒ‰é¸æŠž
+ * @param   aci				BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   index			é¸æŠžã—ãŸé …ç›®
  */
 //--------------------------------------------------------------
 static void CursorSave_JudgeSelect(ACI_PARAM_PTR aci, int index)
@@ -2708,15 +2708,15 @@ static void CursorSave_JudgeSelect(ACI_PARAM_PTR aci, int index)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒL[“ü—Í‚É‚æ‚éƒJ[ƒ\ƒ‹ˆÚ“®ˆ—
+ * @brief   ã‚­ãƒ¼å…¥åŠ›ã«ã‚ˆã‚‹ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•å‡¦ç†
  *
- * @param   move			ƒJ[ƒ\ƒ‹ˆÚ“®—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   x_menu_num		…•½•ûŒü‚Ìƒƒjƒ…[”
- * @param   y_menu_num		‚’¼•ûŒü‚Ìƒƒjƒ…[”
- * @param   move_data		ˆÚ“®ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^(ˆÚ“®æ‚ª“¯‚¶êŠ‚È‚çˆÚ“®‚µ‚È‚¢”»’è‚É•K—v)
- *                          ‚»‚Ì”»’è‚ª•K—v‚Å‚È‚¢‚È‚çNULL‚ÅOK
+ * @param   move			ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   x_menu_num		æ°´å¹³æ–¹å‘ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ•°
+ * @param   y_menu_num		åž‚ç›´æ–¹å‘ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ•°
+ * @param   move_data		ç§»å‹•ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿(ç§»å‹•å…ˆãŒåŒã˜å ´æ‰€ãªã‚‰ç§»å‹•ã—ãªã„åˆ¤å®šã«å¿…è¦)
+ *                          ãã®åˆ¤å®šãŒå¿…è¦ã§ãªã„ãªã‚‰NULLã§OK
  *
- * @retval  ‰Ÿ‚³‚ê‚½ƒL[
+ * @retval  æŠ¼ã•ã‚ŒãŸã‚­ãƒ¼
  */
 //--------------------------------------------------------------
 static u32 CursorMove_KeyCheckMove(CURSOR_MOVE *move, int x_menu_num, int y_menu_num, 
@@ -2808,9 +2808,9 @@ static u32 CursorMove_KeyCheckMove(CURSOR_MOVE *move, int x_menu_num, int y_menu
 		old_index = move_data[x_menu_num * old_y_menu + old_x_menu];
 		new_index = move_data[x_menu_num * move->y_menu + move->x_menu];
 		
-		//ƒJ[ƒ\ƒ‹ˆÚ“®ŒãˆÊ’uŠm”F
+		//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•å¾Œä½ç½®ç¢ºèª
 		if(old_index == new_index){
-			//ˆÚ“®Œã‚Ìindex‚ª•Ï‚í‚ç‚È‚¢‚Ì‚Å‚ ‚ê‚ÎƒJ[ƒ\ƒ‹À•W‚ÌˆÚ“®‚Í‚µ‚È‚¢
+			//ç§»å‹•å¾Œã®indexãŒå¤‰ã‚ã‚‰ãªã„ã®ã§ã‚ã‚Œã°ã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™ã®ç§»å‹•ã¯ã—ãªã„
 			move->x_menu = old_x_menu;
 			move->y_menu = old_y_menu;
 		}
@@ -2832,15 +2832,15 @@ static u32 CursorMove_KeyCheckMove(CURSOR_MOVE *move, int x_menu_num, int y_menu
 
 //==============================================================================
 //
-//	Vƒuƒ‰ƒ“ƒNˆ—
+//	Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   CGR“]‘—‚ðs‚¤
+ * @brief   CGRè»¢é€ã‚’è¡Œã†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VWait_CgrTrans(TCB_PTR tcb, void *work)
@@ -2857,10 +2857,10 @@ static void VWait_CgrTrans(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠeƒtƒŒ[ƒ€‚ÌVisibleÝ’è‚ðs‚¤
+ * @brief   å„ãƒ•ãƒ¬ãƒ¼ãƒ ã®Visibleè¨­å®šã‚’è¡Œã†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VWait_FrameVisibleUpdate(TCB_PTR tcb, void *work)
@@ -2871,7 +2871,7 @@ static void VWait_FrameVisibleUpdate(TCB_PTR tcb, void *work)
 
 	bmd = &BgMakeData[aci->makedata_no];
 	
-	//ŠeBG–Ê‚Ì•\Ž¦E”ñ•\Ž¦Ý’è
+	//å„BGé¢ã®è¡¨ç¤ºãƒ»éžè¡¨ç¤ºè¨­å®š
 	for(i = 0; i < ACI_BG_NUM; i++){
 		if(bmd->scr_id[i] == NONE_ID){
 			GF_BGL_VisibleSet(GF_BGL_FRAME0_S + i, VISIBLE_OFF);
@@ -2886,10 +2886,10 @@ static void VWait_FrameVisibleUpdate(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”wŒiˆÈŠO‚ÌƒtƒŒ[ƒ€‘S‚Ä‚ð”ñ•\Ž¦‚É‚·‚é
+ * @brief   èƒŒæ™¯ä»¥å¤–ã®ãƒ•ãƒ¬ãƒ¼ãƒ å…¨ã¦ã‚’éžè¡¨ç¤ºã«ã™ã‚‹
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  
  *

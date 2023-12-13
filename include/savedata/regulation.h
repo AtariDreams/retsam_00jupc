@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	regulation.h
- * @brief	ƒoƒgƒ‹ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒAƒNƒZƒX—pƒwƒbƒ_
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨ãƒ˜ãƒƒãƒ€
  * @author	k.ohno
  * @date	2006.1.20
  */
@@ -9,43 +9,43 @@
 #ifndef __REGULATION_H__
 #define __REGULATION_H__
 
-#include "system/savedata_def.h"	//SAVEDATAŽQÆ‚Ì‚½‚ß
-#include "system/gamedata.h"        //EOM_SIZEŽQÆ‚Ì‚½‚ß
-#include "gflib/msg_print.h"		//STRCODEŽQÆ‚Ì‚½‚ß
-#include "gflib/strbuf.h"			//STRBUFŽQÆ‚Ì‚½‚ß
+#include "system/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
+#include "system/gamedata.h"        //EOM_SIZEå‚ç…§ã®ãŸã‚
+#include "gflib/msg_print.h"		//STRCODEå‚ç…§ã®ãŸã‚
+#include "gflib/strbuf.h"			//STRBUFå‚ç…§ã®ãŸã‚
 
 //============================================================================================
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^Œ^’è‹`
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿åž‹å®šç¾©
  */
 //----------------------------------------------------------
 typedef struct _REGULATION_DATA REGULATION_DATA;
 
 
-#define REGULATION_NAME_SIZE   (11)      // ƒ‹[ƒ‹–¼‚Ì’·‚³ 11•¶Žš22ƒoƒCƒg +EOM2byte
-#define REGULATION_MAX_NUM   (1)   // ‚P–{•Û‘¶‰Â”\ 
+#define REGULATION_NAME_SIZE   (11)      // ãƒ«ãƒ¼ãƒ«åã®é•·ã• 11æ–‡å­—22ãƒã‚¤ãƒˆ +EOM2byte
+#define REGULATION_MAX_NUM   (1)   // ï¼‘æœ¬ä¿å­˜å¯èƒ½ 
 
 typedef enum  {
-  REGULATION_NAME,          //ƒ‹[ƒ‹–¼
-  REGULATION_POKE_NUM,      //ƒ|ƒPƒ‚ƒ“”
-  REGULATION_LEVEL,         //ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
-  REGULATION_TOTAL_LEVEL,   //ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‡Œv
-  REGULATION_EVOLUTION,     //i‰»ƒ|ƒPƒ‚ƒ“‚©‚Ç‚¤‚©
-  REGULATION_HEIGHT,        //g’·   0.2 - 9.9m 
-  REGULATION_HEIGHT_LIMIT,  //g’·§ŒÀ  -1,0,1
-  REGULATION_WEIGHT,       //‘Ìd    1-99  kg
-  REGULATION_WEIGHT_LIMIT,   //‘Ìd§ŒÀ  -1,0,1
-  REGULATION_BOTH_ITEM,    //“¯‚¶“¹‹ï‚ª‚n‚j‚©H
-  REGULATION_BOTH_MONSTER, //“¯‚¶ƒ|ƒPƒ‚ƒ“‚n‚j‚©H
-  REGULATION_LEGEND,       // “`àŒn—L–³
-  REGULATION_FIXDAMAGE,    // ŒÅ’èƒ_ƒ[ƒW‹Z‚ª•K‚¸Ž¸”s
+  REGULATION_NAME,          //ãƒ«ãƒ¼ãƒ«å
+  REGULATION_POKE_NUM,      //ãƒã‚±ãƒ¢ãƒ³æ•°
+  REGULATION_LEVEL,         //ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
+  REGULATION_TOTAL_LEVEL,   //ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«åˆè¨ˆ
+  REGULATION_EVOLUTION,     //é€²åŒ–ãƒã‚±ãƒ¢ãƒ³ã‹ã©ã†ã‹
+  REGULATION_HEIGHT,        //èº«é•·   0.2 - 9.9m 
+  REGULATION_HEIGHT_LIMIT,  //èº«é•·åˆ¶é™  -1,0,1
+  REGULATION_WEIGHT,       //ä½“é‡    1-99  kg
+  REGULATION_WEIGHT_LIMIT,   //ä½“é‡åˆ¶é™  -1,0,1
+  REGULATION_BOTH_ITEM,    //åŒã˜é“å…·ãŒï¼¯ï¼«ã‹ï¼Ÿ
+  REGULATION_BOTH_MONSTER, //åŒã˜ãƒã‚±ãƒ¢ãƒ³ï¼¯ï¼«ã‹ï¼Ÿ
+  REGULATION_LEGEND,       // ä¼èª¬ç³»æœ‰ç„¡
+  REGULATION_FIXDAMAGE,    // å›ºå®šãƒ€ãƒ¡ãƒ¼ã‚¸æŠ€ãŒå¿…ãšå¤±æ•—
 } REGULATION_PARAM_TYPE;
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^Œ^’è‹`  fushigi_data.hŽQÆ‚Ìˆ×ŠO•”ŒöŠJ‚É
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿åž‹å®šç¾©  fushigi_data.hå‚ç…§ã®ç‚ºå¤–éƒ¨å…¬é–‹ã«
  */
 //----------------------------------------------------------
 typedef struct {
@@ -65,7 +65,7 @@ typedef struct {
 //============================================================================================
 //============================================================================================
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚â’ÊM‚ÅŽg—p‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ã‚„é€šä¿¡ã§ä½¿ç”¨ã™ã‚‹é–¢æ•°
 //----------------------------------------------------------
 extern int Regulation_GetWorkSize(void);
 extern int RegulationData_GetWorkSize(void);
@@ -74,12 +74,12 @@ extern void Regulation_Copy(const REGULATION * from, REGULATION * to);
 extern int Regulation_Cmp(const REGULATION* pCmp1,const REGULATION* pCmp2);
 
 //----------------------------------------------------------
-//	REGULATION‘€ì‚Ì‚½‚ß‚ÌŠÖ”
+//	REGULATIONæ“ä½œã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern void Regulation_Init(REGULATION * my);
 extern void RegulationData_Init(REGULATION_DATA * my);
 
-//–¼‘O
+//åå‰
 extern void Regulation_SetCupName(REGULATION * pReg, const STRBUF* pCupName);
 extern void Regulation_GetCupName(const REGULATION* pReg,STRBUF* pReturnCupName);
 extern STRBUF* Regulation_CreateCupName(const REGULATION* pReg, int heapID);
@@ -88,7 +88,7 @@ extern int Regulation_GetParam(const REGULATION* pReg, REGULATION_PARAM_TYPE typ
 extern BOOL Regulation_SetParam(REGULATION * pReg, REGULATION_PARAM_TYPE type, int param);
 
 //----------------------------------------------------------
-//	ƒZ[ƒuƒf[ƒ^Žæ“¾‚Ì‚½‚ß‚ÌŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—ã®ãŸã‚ã®é–¢æ•°
 //----------------------------------------------------------
 extern REGULATION* SaveData_GetRegulation(SAVEDATA* pSave,int regNo);
 extern void SaveData_SetRegulation(SAVEDATA* pSave, const REGULATION* pReg);

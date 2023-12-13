@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	codein_pv.h
- * @brief	•¶š“ü—ÍƒCƒ“ƒ^[ƒtƒF[ƒX privateƒwƒbƒ_
+ * @brief	æ–‡å­—å…¥åŠ›ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ privateãƒ˜ãƒƒãƒ€
  * @author	goto
- * @date	2007.07.11(…)
+ * @date	2007.07.11(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -16,15 +16,15 @@
 #include "codein_gra.naix"
 #include "system/font_arc.h"
 
-#define HEAP_SIZE_CODEIN	( 0x40000 )				///< HEAPƒTƒCƒY
-#define CODE_OAM_MAX		( 16 )					///< •¶šƒR[ƒh”
-#define BAR_OAM_MAX			( CODE_BLOCK_MAX - 1 )	///< ƒuƒƒbƒN
+#define HEAP_SIZE_CODEIN	( 0x40000 )				///< HEAPã‚µã‚¤ã‚º
+#define CODE_OAM_MAX		( 16 )					///< æ–‡å­—ã‚³ãƒ¼ãƒ‰æ•°
+#define BAR_OAM_MAX			( CODE_BLOCK_MAX - 1 )	///< ãƒ–ãƒ­ãƒƒã‚¯
 #define CUR_OAM_MAX			( 3 )
 #define BTN_OAM_MAX			( 2 )
 
 #define POS_CODE_Y			( 24 )
 
-///< ƒƒCƒ“ƒV[ƒPƒ“ƒX
+///< ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
 	
 	eSEQ_INIT		= 0,
@@ -35,7 +35,7 @@ enum {
 };
 
 
-///< OAM“o˜^—p‚h‚c
+///< OAMç™»éŒ²ç”¨ï¼©ï¼¤
 enum {
 	
 	eID_CODE_OAM	= 1000,
@@ -45,7 +45,7 @@ enum {
 		
 };
 
-///< “–‚½‚è”»’èƒ‰ƒxƒ‹
+///< å½“ãŸã‚Šåˆ¤å®šãƒ©ãƒ™ãƒ«
 enum {
 	
 	eHRT_CODE_0 = 0,
@@ -82,7 +82,7 @@ enum {
 	eHRT_MAX = 0x1c, // current enums put this as 0x18
 };
 
-///< ƒAƒjƒƒR[ƒh
+///< ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰
 enum {
 	
 	eANM_CODE_LN	= 0,	///< Large Nothing
@@ -97,14 +97,14 @@ enum {
 	eANM_CUR_TOUCH,
 };
 
-///< ƒ‚[ƒh
+///< ãƒ¢ãƒ¼ãƒ‰
 enum {
 	
 	eMPS_SET		= 0,
 	eMPS_MOVE_SET,	
 };
 
-///< Šeˆ——p
+///< å„å‡¦ç†ç”¨
 enum {
 	
 	eSTATE_INPUT	= 0,
@@ -123,10 +123,10 @@ enum {
 	ePAL_BACK,
 };
 
-///< ƒTƒCƒY‚Æ‚©
-#define L_SIZE			( 32 )	///< ‚Å‚©‚¢ƒvƒŒ[ƒg‚ÌŠG‚ÌƒTƒCƒY
-#define S_SIZE			( 8 )	///< ‚¿‚¢‚³‚¢ƒvƒŒ[ƒg‚ÌŠG‚ÌƒTƒCƒY
-#define M_SIZE			( ( L_SIZE + S_SIZE ) / 2 )		///< 2‚Â‚ª—×‚è‡‚¤• XXXX-xxx‚Æ‚©xxxx-XXX
+///< ã‚µã‚¤ã‚ºã¨ã‹
+#define L_SIZE			( 32 )	///< ã§ã‹ã„ãƒ—ãƒ¬ãƒ¼ãƒˆã®çµµã®ã‚µã‚¤ã‚º
+#define S_SIZE			( 8 )	///< ã¡ã„ã•ã„ãƒ—ãƒ¬ãƒ¼ãƒˆã®çµµã®ã‚µã‚¤ã‚º
+#define M_SIZE			( ( L_SIZE + S_SIZE ) / 2 )		///< 2ã¤ãŒéš£ã‚Šåˆã†å¹… XXXX-xxxã¨ã‹xxxx-XXX
 #define MOVE_WAIT		( 2 )
 	
 #define POS_4_4_4_p1	( 72 +  4 - 20 )
@@ -144,7 +144,7 @@ enum {
 
 // -----------------------------------------
 //
-//	ˆÚ“®ŠÇ——p
+//	ç§»å‹•ç®¡ç†ç”¨
 //
 // -----------------------------------------
 typedef struct {
@@ -160,55 +160,55 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	ƒR[ƒhŠÇ—OAM
+//	ã‚³ãƒ¼ãƒ‰ç®¡ç†OAM
 //
 // -----------------------------------------
 typedef struct {
 	
-	int				state;		///< code‚È‚ç”šE‚»‚êˆÈŠO‚È‚ç©•ª‚ÌˆÊ’u 0x0
-	int				group;		///< ƒOƒ‹[ƒv 0x4
+	int				state;		///< codeãªã‚‰æ•°å­—ãƒ»ãã‚Œä»¥å¤–ãªã‚‰è‡ªåˆ†ã®ä½ç½® 0x0
+	int				group;		///< ã‚°ãƒ«ãƒ¼ãƒ— 0x4
 	BOOL			size;		///< TRUE = laege 0x8
 	
 	CATS_ACT_PTR	cap;		///< OAM	0xc
-	RECT_HIT_TBL*	hit;		///< “–‚½‚è”»’è(ƒAƒhƒŒƒX‚¾‚¯‚à‚ç‚Á‚Ä‰Â•Ï‚³‚¹‚é) 0x10
-	CODE_MOVE_WORK	move_wk;	///< ˆÚ“®§Œä 0x14
+	RECT_HIT_TBL*	hit;		///< å½“ãŸã‚Šåˆ¤å®š(ã‚¢ãƒ‰ãƒ¬ã‚¹ã ã‘ã‚‚ã‚‰ã£ã¦å¯å¤‰ã•ã›ã‚‹) 0x10
+	CODE_MOVE_WORK	move_wk;	///< ç§»å‹•åˆ¶å¾¡ 0x14
 	// size = 0x1c
 } CODE_OAM;
 
 
 // -----------------------------------------
 //
-//	Šeˆ——pƒ[ƒN
+//	å„å‡¦ç†ç”¨ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
 	
-	int		param;				///< ‚Ç‚ñ‚Èˆ—‚ğ‚·‚é‚©	// 0x3ac
-	int		target;				///< ‘ÎÛ‚Í‰½‚© // 0x3b0
-	int		work;				///< “K“–‚Ég‚¤ƒ[ƒN // 0x3b4
+	int		param;				///< ã©ã‚“ãªå‡¦ç†ã‚’ã™ã‚‹ã‹	// 0x3ac
+	int		target;				///< å¯¾è±¡ã¯ä½•ã‹ // 0x3b0
+	int		work;				///< é©å½“ã«ä½¿ã†ãƒ¯ãƒ¼ã‚¯ // 0x3b4
 	// 0x3b8
 } CODEIN_STATE;
 
 
 // -----------------------------------------
 //
-//	ƒVƒXƒeƒ€Œnƒ[ƒN
+//	ã‚·ã‚¹ãƒ†ãƒ ç³»ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
 	
-	ARCHANDLE*			p_handle;			///< ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ // 0x2ec
+	ARCHANDLE*			p_handle;			///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ« // 0x2ec
 	
-	CATS_SYS_PTR		csp;				///< OAMƒVƒXƒeƒ€ 0x4 // 0x2f0
-	CATS_RES_PTR		crp;				///< ƒŠƒ\[ƒXˆêŠ‡ŠÇ— 0x8 // 0x2f4
+	CATS_SYS_PTR		csp;				///< OAMã‚·ã‚¹ãƒ†ãƒ  0x4 // 0x2f0
+	CATS_RES_PTR		crp;				///< ãƒªã‚½ãƒ¼ã‚¹ä¸€æ‹¬ç®¡ç† 0x8 // 0x2f4
 
 	GF_BGL_INI*			bgl;				///< BGL 0xc // 0x2f8
-	PALETTE_FADE_PTR	pfd;				///< ƒpƒŒƒbƒgƒtƒF[ƒh 0x10 // 0x2fc
+	PALETTE_FADE_PTR	pfd;				///< ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ 0x10 // 0x2fc
 	
-	BUTTON_MAN*			btn;				///< ƒ{ƒ^ƒ“ // 0x300
-	RECT_HIT_TBL		rht[ eHRT_MAX ];	///< “–‚½‚è”»’è(manager‚É“o˜^‚·‚é) 0x18 eHRT_MAX = 5 // 0x304
+	BUTTON_MAN*			btn;				///< ãƒœã‚¿ãƒ³ // 0x300
+	RECT_HIT_TBL		rht[ eHRT_MAX ];	///< å½“ãŸã‚Šåˆ¤å®š(managerã«ç™»éŒ²ã™ã‚‹) 0x18 eHRT_MAX = 5 // 0x304
 	
-	BOOL				touch;				///< ƒ‚[ƒh 0x374
+	BOOL				touch;				///< ãƒ¢ãƒ¼ãƒ‰ 0x374
 
 	FONTOAM_SYS_PTR			fontoam_sys; // 0x378
 	FONTOAM_OBJ_PTR			font_obj[ BTN_OAM_MAX ]; // 0x37c
@@ -221,7 +221,7 @@ typedef struct {
 
 // -----------------------------------------
 //
-//	ƒƒCƒ“ƒ[ƒN
+//	ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 typedef struct {
@@ -242,18 +242,18 @@ typedef struct {
 	int				gene_seq; // 0x2c8
 	int				gene_cnt; // 0x2cc
 	
-	int				code_max;		///< ƒR[ƒh“ü—Í” // 0x2d0
+	int				code_max;		///< ã‚³ãƒ¼ãƒ‰å…¥åŠ›æ•° // 0x2d0
 
-	int				focus_now;		///< “ü—Í‘ÎÛ // 0x2d4
-	int				focus_old;		///< “ü—Í‘ÎÛ // 0x2d8
-	int				ls;				///< Šg‘åƒuƒƒbƒNŠJnˆÊ’u // 0x2dc
-	int				le;				///< Šg‘åƒuƒƒbƒNI—¹ˆÊ’u // 0x2e0
-	int				ss;				///< k¬ƒuƒƒbƒNŠJnˆÊ’u // 0x2e4
-	int				se;				///< k¬ƒuƒƒbƒNŠJnˆÊ’u // 0x2e8
+	int				focus_now;		///< å…¥åŠ›å¯¾è±¡ // 0x2d4
+	int				focus_old;		///< å…¥åŠ›å¯¾è±¡ // 0x2d8
+	int				ls;				///< æ‹¡å¤§ãƒ–ãƒ­ãƒƒã‚¯é–‹å§‹ä½ç½® // 0x2dc
+	int				le;				///< æ‹¡å¤§ãƒ–ãƒ­ãƒƒã‚¯çµ‚äº†ä½ç½® // 0x2e0
+	int				ss;				///< ç¸®å°ãƒ–ãƒ­ãƒƒã‚¯é–‹å§‹ä½ç½® // 0x2e4
+	int				se;				///< ç¸®å°ãƒ–ãƒ­ãƒƒã‚¯é–‹å§‹ä½ç½® // 0x2e8
 	
-	CODEIN_SYS		sys;			///< ƒVƒXƒeƒ€ // 0x2ec
-	CODEIN_STATE	state;			///< ó‘Ô
-	CODEIN_PARAM	param;			///< ŠO‘¤‚©‚ç‚à‚ç‚¤ƒpƒ‰ƒ[ƒ^ // 0x3c8
+	CODEIN_SYS		sys;			///< ã‚·ã‚¹ãƒ†ãƒ  // 0x2ec
+	CODEIN_STATE	state;			///< çŠ¶æ…‹
+	CODEIN_PARAM	param;			///< å¤–å´ã‹ã‚‰ã‚‚ã‚‰ã†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ // 0x3c8
     int unk3ec;
     int unk3f0;
 } CODEIN_WORK;

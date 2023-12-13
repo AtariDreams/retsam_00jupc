@@ -15,28 +15,28 @@
   INDENT SOURCE
 
   Revision 1.8  2005/08/25 08:27:38  yasu
-  UDP ��M�ɂ�����o�b�t�@�����O�����ǉ�
+  UDP 受信におけるバッファリング処理追加
 
   Revision 1.7  2005/08/22 04:33:02  yasu
-  UDP �̎�M�o�b�t�@�T�C�Y���Œ�ɂ���
+  UDP の受信バッファサイズを固定にした
 
   Revision 1.6  2005/08/19 05:05:23  yasu
-  mtu/rwin �Ή�
+  mtu/rwin 対応
 
   Revision 1.5  2005/08/13 08:01:23  yasu
-  consumed_min �̒ǉ�
+  consumed_min の追加
 
   Revision 1.4  2005/07/30 22:30:14  yasu
-  �f���������悤�ɏC��
+  デモが動くように修正
 
   Revision 1.3  2005/07/30 15:28:29  yasu
-  UDP ���M��M��2�d��
+  UDP 送信受信の2重化
 
   Revision 1.2  2005/07/22 12:44:56  yasu
-  �񓯊�����������
+  非同期処理仮実装
 
   Revision 1.1  2005/07/18 13:16:28  yasu
-  ���M��M�X���b�h���쐬����
+  送信受信スレッドを作成する
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -45,10 +45,10 @@
 /*---------------------------------------------------------------------------*
   Name:         SOCLSocketParamTCP/SOCLSocketParamUDP
 
-  Description:  �\�P�b�g�ɂ�����f�t�H���g�̃��������p�p�����[�^�D
-                �ア�V���{���Ƃ��Ē�`���Ă���̂ŃA�v���P�[�V��������
-                ���������p�Ɋւ���ׂ��Ȑݒ�̂��߂ɃI�[�o�[���C�h�\�D
-                TCP �ł� UDP �ł�����
+  Description:  ソケットにおけるデフォルトのメモリ利用パラメータ．
+                弱いシンボルとして定義してあるのでアプリケーション側で
+                メモリ利用に関する細かな設定のためにオーバーライド可能．
+                TCP 版と UDP 版がある
  *---------------------------------------------------------------------------*/
 
 // TCP

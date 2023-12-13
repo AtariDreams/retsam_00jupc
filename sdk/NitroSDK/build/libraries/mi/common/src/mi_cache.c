@@ -24,25 +24,25 @@
 /*---------------------------------------------------------------------------*
   Name:         MI_InitCache
 
-  Description:  ƒƒ‚ƒŠƒLƒƒƒbƒVƒ…‚ğ‰Šú‰».
+  Description:  ãƒ¡ãƒ¢ãƒªã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’åˆæœŸåŒ–.
 
-  Arguments:    cache            ‰Šú‰»‚·‚éMICache\‘¢‘Ì.
-                page             1ƒy[ƒW‚ ‚½‚è‚Ìƒoƒbƒtƒ@ƒTƒCƒY.
-                                 4ˆÈã‚Å2‚Ì‚×‚«æ‚Å‚ ‚é•K—v‚ª‚ ‚é.
-                buffer           ƒy[ƒWŠÇ—î•ñ‚Ég—p‚·‚éƒoƒbƒtƒ@.
-                length           buffer‚ÌƒTƒCƒY.
+  Arguments:    cache            åˆæœŸåŒ–ã™ã‚‹MICacheæ§‹é€ ä½“.
+                page             1ãƒšãƒ¼ã‚¸ã‚ãŸã‚Šã®ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º.
+                                 4ä»¥ä¸Šã§2ã®ã¹ãä¹—ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹.
+                buffer           ãƒšãƒ¼ã‚¸ç®¡ç†æƒ…å ±ã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡.
+                length           bufferã®ã‚µã‚¤ã‚º.
                                  length / (sizeof(MICachePage) + page)
-                                 ‚Ì”‚¾‚¯‚Ìƒy[ƒWƒŠƒXƒg‚É•ªŠ„‚³‚ê‚é.
-                                 Šeƒy[ƒW(N=0,1,...)‚Ìƒoƒbƒtƒ@æ“ªƒAƒhƒŒƒX‚Í
-                                 (buffer + N * page) ‚Æ‚È‚é‚±‚Æ‚ª•ÛØ‚³‚ê‚é.
+                                 ã®æ•°ã ã‘ã®ãƒšãƒ¼ã‚¸ãƒªã‚¹ãƒˆã«åˆ†å‰²ã•ã‚Œã‚‹.
+                                 å„ãƒšãƒ¼ã‚¸(N=0,1,...)ã®ãƒãƒƒãƒ•ã‚¡å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã¯
+                                 (buffer + N * page) ã¨ãªã‚‹ã“ã¨ãŒä¿è¨¼ã•ã‚Œã‚‹.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void MI_InitCache(MICache *cache, u32 page, void *buffer, u32 length)
 {
-    /* Œ»İ‚ÌÀ‘•‚Ì“s‡ã, ƒ[ƒhƒTƒCƒY‚æ‚è¬‚³‚Èƒy[ƒW‚Í”ñ‘Î‰ */
+    /* ç¾åœ¨ã®å®Ÿè£…ã®éƒ½åˆä¸Š, ãƒ¯ãƒ¼ãƒ‰ã‚µã‚¤ã‚ºã‚ˆã‚Šå°ã•ãªãƒšãƒ¼ã‚¸ã¯éå¯¾å¿œ */
     SDK_ASSERT(page >= sizeof(u32));
-    /* ƒƒ“ƒo‰Šú‰» */
+    /* ãƒ¡ãƒ³ãƒåˆæœŸåŒ– */
     cache->pagewidth = MATH_CTZ(page);
     cache->valid_total = 0;
     cache->invalid_total = 0;
@@ -50,7 +50,7 @@ void MI_InitCache(MICache *cache, u32 page, void *buffer, u32 length)
     cache->valid = NULL;
     cache->invalid = NULL;
     cache->loading = NULL;
-    /* ƒy[ƒW•ªŠ„ */
+    /* ãƒšãƒ¼ã‚¸åˆ†å‰² */
     {
         u32             total = length / (sizeof(MICachePage) + page);
         u8             *buf = (u8*)buffer;
@@ -71,12 +71,12 @@ void MI_InitCache(MICache *cache, u32 page, void *buffer, u32 length)
 /*---------------------------------------------------------------------------*
   Name:         WFSi_TouchCachePages
 
-  Description:  w’è‚µ‚½ƒy[ƒW”ÍˆÍ‚Ìƒ[ƒh€”õ‚ğ—v‹‚·‚é.
-                –³ŒøƒŠƒXƒg‚ª‹ó‚Å‚ ‚ê‚Î—LŒøƒŠƒXƒg‚ğI’[‚©‚ç”jŠü‚·‚é.
+  Description:  æŒ‡å®šã—ãŸãƒšãƒ¼ã‚¸ç¯„å›²ã®ãƒ­ãƒ¼ãƒ‰æº–å‚™ã‚’è¦æ±‚ã™ã‚‹.
+                ç„¡åŠ¹ãƒªã‚¹ãƒˆãŒç©ºã§ã‚ã‚Œã°æœ‰åŠ¹ãƒªã‚¹ãƒˆã‚’çµ‚ç«¯ã‹ã‚‰ç ´æ£„ã™ã‚‹.
 
-  Arguments:    cache            MICache\‘¢‘Ì.
-                head             ƒ[ƒh‘ÎÛ‚Ìæ“ªƒy[ƒW”Ô†.
-                bitset           ƒ[ƒh‘ÎÛƒy[ƒW‚ÌƒrƒbƒgƒZƒbƒg.
+  Arguments:    cache            MICacheæ§‹é€ ä½“.
+                head             ãƒ­ãƒ¼ãƒ‰å¯¾è±¡ã®å…ˆé ­ãƒšãƒ¼ã‚¸ç•ªå·.
+                bitset           ãƒ­ãƒ¼ãƒ‰å¯¾è±¡ãƒšãƒ¼ã‚¸ã®ãƒ“ãƒƒãƒˆã‚»ãƒƒãƒˆ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -85,7 +85,7 @@ static void WFSi_TouchCachePages(MICache *cache, u32 head, u32 bitset)
     {
         PLATFORM_ENTER_CRITICALSECTION();
         MICachePage  **load;
-        /* —v‹ƒŠƒXƒg‚ğŒŸõ‚µ‚Ä¡‰ñ‚Æ‚Ìd•¡•ª‚ª‚ ‚ê‚ÎœŠO */
+        /* è¦æ±‚ãƒªã‚¹ãƒˆã‚’æ¤œç´¢ã—ã¦ä»Šå›ã¨ã®é‡è¤‡åˆ†ãŒã‚ã‚Œã°é™¤å¤– */
         for (load = &cache->loading; *load; load = &(*load)->next)
         {
             MICachePage *p = *load;
@@ -95,7 +95,7 @@ static void WFSi_TouchCachePages(MICache *cache, u32 head, u32 bitset)
                 bitset &= ~(1UL << pos);
             }
         }
-        /* –³ŒøƒŠƒXƒg‚ª•s‘«‚·‚éê‡, —LŒøƒŠƒXƒg‚ğI’[‚©‚ç”jŠü */
+        /* ç„¡åŠ¹ãƒªã‚¹ãƒˆãŒä¸è¶³ã™ã‚‹å ´åˆ, æœ‰åŠ¹ãƒªã‚¹ãƒˆã‚’çµ‚ç«¯ã‹ã‚‰ç ´æ£„ */
         {
             int     rest = MATH_CountPopulation(bitset) - cache->invalid_total;
             if (rest > 0)
@@ -119,7 +119,7 @@ static void WFSi_TouchCachePages(MICache *cache, u32 head, u32 bitset)
                 }
             }
         }
-        /* –³ŒøƒŠƒXƒg‚Ìæ“ª‚©‚ç—v‹ƒŠƒXƒg‚ÌI’[‚ÖˆÚ“® */
+        /* ç„¡åŠ¹ãƒªã‚¹ãƒˆã®å…ˆé ­ã‹ã‚‰è¦æ±‚ãƒªã‚¹ãƒˆã®çµ‚ç«¯ã¸ç§»å‹• */
         while (cache->invalid && bitset)
         {
             MICachePage *p = cache->invalid;
@@ -135,7 +135,7 @@ static void WFSi_TouchCachePages(MICache *cache, u32 head, u32 bitset)
         }
         PLATFORM_LEAVE_CRITICALSECTION();
     }
-    /* ƒy[ƒW”‚ªâ‘Î“I‚É•s‘«‚·‚éê‡‚Íg—p•û–@‚ª•s³‚È‚Ì‚Å1‰ñ‚¾‚¯Œx */
+    /* ãƒšãƒ¼ã‚¸æ•°ãŒçµ¶å¯¾çš„ã«ä¸è¶³ã™ã‚‹å ´åˆã¯ä½¿ç”¨æ–¹æ³•ãŒä¸æ­£ãªã®ã§1å›ã ã‘è­¦å‘Š */
     if (bitset)
     {
         static BOOL output_once = FALSE;
@@ -155,30 +155,30 @@ static void WFSi_TouchCachePages(MICache *cache, u32 head, u32 bitset)
 /*---------------------------------------------------------------------------*
   Name:         MI_ReadCache
 
-  Description:  ƒLƒƒƒbƒVƒ…‚©‚çƒf[ƒ^‚ğ“Ç‚İo‚µ.
-                ƒqƒbƒg‚µ‚½ƒy[ƒW‚Í—LŒøƒŠƒXƒg‚Ìæ“ª‚ÉˆÚ“®‚·‚é.
+  Description:  ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã—.
+                ãƒ’ãƒƒãƒˆã—ãŸãƒšãƒ¼ã‚¸ã¯æœ‰åŠ¹ãƒªã‚¹ãƒˆã®å…ˆé ­ã«ç§»å‹•ã™ã‚‹.
 
-  Arguments:    cache            MICache\‘¢‘Ì.
-                buffer           “]‘—æƒƒ‚ƒŠ.
-                                 NULL‚ğw’è‚µ‚½ê‡‚Í, ƒf[ƒ^‚ğ“Ç‚İo‚³‚¸
-                                 ’P‚ÉŠY“–”ÍˆÍ‘S‘Ì‚ÌƒLƒƒƒbƒVƒ…€”õ‚Ì‚İ—v‹‚·‚é.
-                offset           “]‘—Œ³ƒIƒtƒZƒbƒg.
-                length           “]‘—ƒTƒCƒY.
+  Arguments:    cache            MICacheæ§‹é€ ä½“.
+                buffer           è»¢é€å…ˆãƒ¡ãƒ¢ãƒª.
+                                 NULLã‚’æŒ‡å®šã—ãŸå ´åˆã¯, ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã•ãš
+                                 å˜ã«è©²å½“ç¯„å›²å…¨ä½“ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥æº–å‚™ã®ã¿è¦æ±‚ã™ã‚‹.
+                offset           è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                length           è»¢é€ã‚µã‚¤ã‚º.
 
-  Returns:      ‘S—Ìˆæ‚ªƒLƒƒƒbƒVƒ…‚Éƒqƒbƒg‚·‚ê‚ÎTRUE.
+  Returns:      å…¨é ˜åŸŸãŒã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«ãƒ’ãƒƒãƒˆã™ã‚Œã°TRUE.
  *---------------------------------------------------------------------------*/
 BOOL MI_ReadCache(MICache *cache, void *buffer, u32 offset, u32 length)
 {
     BOOL    retval = TRUE;
 
-    /* 32ƒy[ƒW’PˆÊ‚Åæ“ª‚©‚ç‡‚É”»’è */
+    /* 32ãƒšãƒ¼ã‚¸å˜ä½ã§å…ˆé ­ã‹ã‚‰é †ã«åˆ¤å®š */
     const u32   unit = (1UL << cache->pagewidth);
     u32     head = (offset >> cache->pagewidth);
     u32     tail = ((offset + length + unit - 1UL) >> cache->pagewidth);
     u32     pages;
     for (; (pages = MATH_MIN(tail - head, 32UL)), (pages > 0); head += pages)
     {
-        /* —LŒøƒŠƒXƒg‚©‚çŠY“–ƒy[ƒW‚ğŒŸõ */
+        /* æœ‰åŠ¹ãƒªã‚¹ãƒˆã‹ã‚‰è©²å½“ãƒšãƒ¼ã‚¸ã‚’æ¤œç´¢ */
         u32     bitset = (1UL << pages) - 1UL;
         {
             PLATFORM_ENTER_CRITICALSECTION();
@@ -193,10 +193,10 @@ BOOL MI_ReadCache(MICache *cache, void *buffer, u32 offset, u32 length)
                     {
                         /*
                          * TODO:
-                         *     ç’·‚ÈƒŠƒXƒgŒŸõ‚ğ‰ñ”ğ‚µ‚Â‚Â—LŒø‚Èõ–½‚à•Û‚Ä‚é‚Ì‚Å
-                         *     ƒqƒbƒg‚µ‚½ƒy[ƒW‚ğ—LŒøƒŠƒXƒg‚Ìæ“ª‚ÖˆÚ“®‚µ‚½‚Ù‚¤‚ª
-                         *     ƒpƒtƒH[ƒ}ƒ“ƒX‚Í‚ ‚é’ö“xŒüã‚·‚é‚©‚à‚µ‚ê‚È‚¢.
-                         *     (•ÏX‚ÌÛ‚Í‚±‚Ì for ƒ‹[ƒv‚ğl—¶‚Ì‚±‚Æ!)
+                         *     å†—é•·ãªãƒªã‚¹ãƒˆæ¤œç´¢ã‚’å›é¿ã—ã¤ã¤æœ‰åŠ¹ãªå¯¿å‘½ã‚‚ä¿ã¦ã‚‹ã®ã§
+                         *     ãƒ’ãƒƒãƒˆã—ãŸãƒšãƒ¼ã‚¸ã‚’æœ‰åŠ¹ãƒªã‚¹ãƒˆã®å…ˆé ­ã¸ç§»å‹•ã—ãŸã»ã†ãŒ
+                         *     ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã¯ã‚ã‚‹ç¨‹åº¦å‘ä¸Šã™ã‚‹ã‹ã‚‚ã—ã‚Œãªã„.
+                         *     (å¤‰æ›´ã®éš›ã¯ã“ã® for ãƒ«ãƒ¼ãƒ—ã‚’è€ƒæ…®ã®ã“ã¨!)
                          */
                         u32     len = unit;
                         int     src = 0;
@@ -218,7 +218,7 @@ BOOL MI_ReadCache(MICache *cache, void *buffer, u32 offset, u32 length)
             }
             PLATFORM_LEAVE_CRITICALSECTION();
         }
-        /* ƒy[ƒWƒtƒHƒ‹ƒg‚ª‚ ‚Á‚½ê‡ */
+        /* ãƒšãƒ¼ã‚¸ãƒ•ã‚©ãƒ«ãƒˆãŒã‚ã£ãŸå ´åˆ */
         if (bitset)
         {
             retval = FALSE;
@@ -231,16 +231,16 @@ BOOL MI_ReadCache(MICache *cache, void *buffer, u32 offset, u32 length)
 /*---------------------------------------------------------------------------*
   Name:         MI_LoadCache
 
-  Description:  ƒ[ƒh—v‹ƒŠƒXƒg‚É‘¶İ‚·‚é‘Sƒy[ƒW‚Ìƒ[ƒhˆ—‚ğÀs.
-                ƒ[ƒh—v‹ƒŠƒXƒg‚ª‹ó‚Å‚ ‚Á‚½ê‡‚Í‰½‚à‚¹‚¸‚½‚¾‚¿‚É§Œä‚ğ•Ô‚µ,
-                ŒÄ‚Ño‚µ’†‚Éƒ[ƒh—v‹ƒŠƒXƒg‚Ö’Ç‰Á‚³‚ê‚½ê‡‚Í‚»‚ê‚àˆ—‚·‚é.
+  Description:  ãƒ­ãƒ¼ãƒ‰è¦æ±‚ãƒªã‚¹ãƒˆã«å­˜åœ¨ã™ã‚‹å…¨ãƒšãƒ¼ã‚¸ã®ãƒ­ãƒ¼ãƒ‰å‡¦ç†ã‚’å®Ÿè¡Œ.
+                ãƒ­ãƒ¼ãƒ‰è¦æ±‚ãƒªã‚¹ãƒˆãŒç©ºã§ã‚ã£ãŸå ´åˆã¯ä½•ã‚‚ã›ãšãŸã ã¡ã«åˆ¶å¾¡ã‚’è¿”ã—,
+                å‘¼ã³å‡ºã—ä¸­ã«ãƒ­ãƒ¼ãƒ‰è¦æ±‚ãƒªã‚¹ãƒˆã¸è¿½åŠ ã•ã‚ŒãŸå ´åˆã¯ãã‚Œã‚‚å‡¦ç†ã™ã‚‹.
 
-  Note:         ‚±‚ÌŠÖ”‚ÍƒfƒoƒCƒX‚ªƒuƒƒbƒLƒ“ƒO‚µ‚Ä‚à‚æ‚¢ƒRƒ“ƒeƒLƒXƒg‚©‚ç
-                “KØ‚Èƒ^ƒCƒ~ƒ“ƒO‚ÅŒÄ‚Ño‚·•K—v‚ª‚ ‚é.
-                ‚·‚È‚í‚¿AŠ„‚è‚İƒnƒ“ƒhƒ‰‚È‚Ç‚©‚çŒÄ‚Ño‚µ‚Ä‚Í‚È‚ç‚È‚¢.
+  Note:         ã“ã®é–¢æ•°ã¯ãƒ‡ãƒã‚¤ã‚¹ãŒãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ã—ã¦ã‚‚ã‚ˆã„ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‹ã‚‰
+                é©åˆ‡ãªã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚‹.
+                ã™ãªã‚ã¡ã€å‰²ã‚Šè¾¼ã¿ãƒãƒ³ãƒ‰ãƒ©ãªã©ã‹ã‚‰å‘¼ã³å‡ºã—ã¦ã¯ãªã‚‰ãªã„.
 
-  Arguments:    cache            MICache\‘¢‘Ì.
-                device           ƒ[ƒh‘ÎÛ‚Æ‚È‚éƒfƒoƒCƒX.
+  Arguments:    cache            MICacheæ§‹é€ ä½“.
+                device           ãƒ­ãƒ¼ãƒ‰å¯¾è±¡ã¨ãªã‚‹ãƒ‡ãƒã‚¤ã‚¹.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -248,17 +248,17 @@ void    MI_LoadCache(MICache *cache, MIDevice *device)
 {
     for (;;)
     {
-        /* ƒ[ƒh—v‹ƒŠƒXƒg‚Ìæ“ª‚ğæ“¾ */
+        /* ãƒ­ãƒ¼ãƒ‰è¦æ±‚ãƒªã‚¹ãƒˆã®å…ˆé ­ã‚’å–å¾— */
         MICachePage *p = cache->loading;
         if (!p)
         {
             break;
         }
-        /* ƒfƒoƒCƒX‚©‚çƒy[ƒW‚ğ“Ç‚İ‚İ */
+        /* ãƒ‡ãƒã‚¤ã‚¹ã‹ã‚‰ãƒšãƒ¼ã‚¸ã‚’èª­ã¿è¾¼ã¿ */
         (void)MI_ReadDevice(device, p->buffer,
                             (p->offset << cache->pagewidth),
                             (1UL << cache->pagewidth));
-        /* ƒ[ƒhŠ®—¹‚µ‚½ƒy[ƒW‚ğ—LŒøƒŠƒXƒg‚Ìæ“ª‚Ö‘}“ü */
+        /* ãƒ­ãƒ¼ãƒ‰å®Œäº†ã—ãŸãƒšãƒ¼ã‚¸ã‚’æœ‰åŠ¹ãƒªã‚¹ãƒˆã®å…ˆé ­ã¸æŒ¿å…¥ */
         {
             PLATFORM_ENTER_CRITICALSECTION();
             cache->loading = p->next;

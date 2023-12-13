@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>GX_SetCapture</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">GX_SetCapture</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -28,67 +28,67 @@ void GX_SetCapture(
     int evb
 );<BR></CODE></PRE>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="237"><EM><STRONG><FONT face="Courier New">sz</FONT></STRONG></EM></TD>
-      <TD width="609">�L���v�`���T�C�Y</TD>
+      <TD width="609">キャプチャサイズ</TD>
     </TR>
     <TR>
       <TD><EM><STRONG><FONT face="Courier New">mode</FONT></STRONG></EM></TD>
-      <TD>�L���v�`�����[�h(A�P��/B�P��/AB���u�����h�������̂��L���v�`�����邩�I��)</TD>
+      <TD>キャプチャモード(A単独/B単独/ABをブレンドしたものをキャプチャするか選択)</TD>
     </TR>
     <TR>
       <TD><EM><STRONG><FONT face="Courier New">a</FONT></STRONG></EM></TD>
-      <TD>�L���v�`���f�[�^��A(3D/2D�u�����f�B���O��̉�ʂ�3D�ʂ݂̂���I���j</TD>
+      <TD>キャプチャデータ元A(3D/2Dブレンディング後の画面か3D面のみかを選択）</TD>
     </TR>
     <TR>
       <TD><EM><STRONG><FONT face="Courier New">b</FONT></STRONG></EM></TD>
-      <TD>�L���v�`���f�[�^��B(VRAM/���C����������I��)</TD>
+      <TD>キャプチャデータ元B(VRAM/メインメモリを選択)</TD>
     </TR>
     <TR>
       <TD><EM><STRONG><FONT face="Courier New">dest</FONT></STRONG></EM></TD>
-      <TD>�L���v�`���f�[�^�������ݐ�(VRAM-A,B,C,D�ƃI�t�Z�b�g�̑g�ݍ��킹��I��)</TD>
+      <TD>キャプチャデータ書き込み先(VRAM-A,B,C,Dとオフセットの組み合わせを選択)</TD>
     </TR>
     <TR>
       <TD><EM><STRONG><FONT face="Courier New">eva</FONT></STRONG></EM></TD>
-      <TD>�L���v�`���f�[�^��A�ɑ΂���u�����f�B���O�W��(0����16)</TD>
+      <TD>キャプチャデータ元Aに対するブレンディング係数(0から16)</TD>
     </TR>
     <TR>
       <TD><EM><STRONG><FONT face="Courier New">evb</FONT></STRONG></EM></TD>
-      <TD>�L���v�`���f�[�^��B�ɑ΂���u�����f�B���O�W��(0����16)</TD>
+      <TD>キャプチャデータ元Bに対するブレンディング係数(0から16)</TD>
     </TR>
   </TBODY>
 </TABLE>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ�</p>
-<H2>����</H2>
-<P>���t���[����0���C���ڂ���1��ʕ��̃f�[�^���L���v�`������悤�ݒ肵�܂��B���t���[���L���v�`������ꍇ�ɂ́A�t���[�����ɂ��̊֐����Ăяo���Ȃ��Ă͂����܂���B<BR>
+<h2>返り値</h2>
+<p>なし</p>
+<H2>説明</H2>
+<P>次フレームの0ライン目から1画面分のデータをキャプチャするよう設定します。毎フレームキャプチャする場合には、フレーム毎にこの関数を呼び出さなくてはいけません。<BR>
 <BR>
-<B>(����1)</B> �ΏۂƂȂ�VRAM��LCDC�������Ƀ}�b�v����Ă���K�v������܂��B<BR>
-<B>(����2)</B> <B><I>b</I></B>��VRAM��ݒ肵���ꍇ�A�Ώ�VRAM��<B><I>dest</I></B>�Ŏw�肳���VRAM�Ɠ����ɂȂ�܂��B<BR>
-<B>(����3)</B> VRAM�\�����[�h���ɂ�<B><I>b</I></B>�ɃI�t�Z�b�g�����VRAM��ݒ肵���ꍇ�ł��AVRAM�̃I�t�Z�b�g�w��͖����ɂȂ�܂��B���A�ǂݍ��ݒ��ɃI�t�Z�b�g��0x20000�𒴂����ꍇ�́A0x00000�ɉ�荞��œǂݍ��܂�܂��B<BR>
-<B>(����4)</B> <B><I>dest</I></B>�ւ̏������ݒ��ɃI�t�Z�b�g��0x20000�𒴂����ꍇ�ɂ́A0x00000�ɉ�荞��ŏ������܂�܂��B<BR>
-<B>(����5)</B>RAM���̃L���v�`�����͏�ɂP���C����256�h�b�g�̃C���[�W�Ƃ��ēǂݍ��܂�邽�߁A128�~128�h�b�g�̐ݒ�ł̓u�����f�B���O���ăL���v�`�����邱�Ƃ͂ł��܂���B<BR>
+<B>(注意1)</B> 対象となるVRAMはLCDCメモリにマップされている必要があります。<BR>
+<B>(注意2)</B> <B><I>b</I></B>にVRAMを設定した場合、対象VRAMは<B><I>dest</I></B>で指定されるVRAMと同じになります。<BR>
+<B>(注意3)</B> VRAM表示モード時には<B><I>b</I></B>にオフセットありのVRAMを設定した場合でも、VRAMのオフセット指定は無効になります。又、読み込み中にオフセットが0x20000を超えた場合は、0x00000に回り込んで読み込まれます。<BR>
+<B>(注意4)</B> <B><I>dest</I></B>への書き込み中にオフセットが0x20000を超えた場合には、0x00000に回り込んで書き込まれます。<BR>
+<B>(注意5)</B>RAM側のキャプチャ時は常に１ラインが256ドットのイメージとして読み込まれるため、128×128ドットの設定ではブレンディングしてキャプチャすることはできません。<BR>
 </P>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TD width="30%"><CODE>GX_CAPTURE_SIZE_128x128</CODE></TD>
-      <TD>128x128�h�b�g(0x08000�o�C�g)</TD>
+      <TD>128x128ドット(0x08000バイト)</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_SIZE_256x64</CODE></TD>
-      <TD>256x64�h�b�g(0x08000�o�C�g)</TD>
+      <TD>256x64ドット(0x08000バイト)</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_SIZE_256x128</CODE></TD>
-      <TD>256x128�h�b�g(0x10000�o�C�g)</TD>
+      <TD>256x128ドット(0x10000バイト)</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_SIZE_256x192</CODE></TD>
-      <TD>256x192�h�b�g(0x18000�o�C�g)</TD>
+      <TD>256x192ドット(0x18000バイト)</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -97,15 +97,15 @@ void GX_SetCapture(
   <TBODY>
     <TR>
       <TD width="30%"><CODE>GX_CAPTURE_MODE_A</CODE></TD>
-      <TD>�L���v�`����A�̃f�[�^���L���v�`�����܂��B</TD>
+      <TD>キャプチャ元Aのデータをキャプチャします。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_MODE_B</CODE></TD>
-      <TD>�L���v�`����B�̃f�[�^���L���v�`�����܂��B</TD>
+      <TD>キャプチャ元Bのデータをキャプチャします。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_MODE_AB</CODE></TD>
-      <TD>�L���v�`����A��B�̃f�[�^���u�����f�B���O���ăL���v�`�����܂��B</TD>
+      <TD>キャプチャ元AとBのデータをブレンディングしてキャプチャします。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -114,11 +114,11 @@ void GX_SetCapture(
   <TBODY>
     <TR>
       <TD width="30%"><CODE>GX_CAPTURE_SRCA_2D3D</CODE></TD>
-      <TD>�O���t�B�b�N�X�\�����(3D/2D�u�����f�B���O��)����荞�݂܂��B</TD>
+      <TD>グラフィックス表示画面(3D/2Dブレンディング後)を取り込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_SRCA_3D</CODE></TD>
-      <TD>3D�ʂ���荞�݂܂��B</TD>
+      <TD>3D面を取り込みます。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -127,23 +127,23 @@ void GX_SetCapture(
   <TBODY>
     <TR>
       <TD width="30%"><CODE>GX_CAPTURE_SRCB_VRAM_0x00000</CODE></TD>
-      <TD>VRAM�̃I�t�Z�b�g0x00000����ǂݍ��݂܂��B</TD>
+      <TD>VRAMのオフセット0x00000から読み込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_SRCB_MRAM</CODE></TD>
-      <TD>���C���������\�����[�h�ł̕\�����ʂ��L���v�`�����܂��B</TD>
+      <TD>メインメモリ表示モードでの表示結果をキャプチャします。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_SRCB_VRAM_0x08000</CODE></TD>
-      <TD>VRAM�̃I�t�Z�b�g0x08000����ǂݍ��݂܂��B</TD>
+      <TD>VRAMのオフセット0x08000から読み込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_SRCB_VRAM_0x10000</CODE></TD>
-      <TD>VRAM�̃I�t�Z�b�g0x10000����ǂݍ��݂܂��B</TD>
+      <TD>VRAMのオフセット0x10000から読み込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_SRCB_VRAM_0x18000</CODE></TD>
-      <TD>VRAM�̃I�t�Z�b�g0x18000����ǂݍ��݂܂��B</TD>
+      <TD>VRAMのオフセット0x18000から読み込みます。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -152,72 +152,72 @@ void GX_SetCapture(
   <TBODY>
     <TR>
       <TD width="30%"><CODE>GX_CAPTURE_DEST_VRAM_A_0x00000</CODE></TD>
-      <TD>VRAM-A�̃I�t�Z�b�g0x00000���珑�����݂܂��B</TD>
+      <TD>VRAM-Aのオフセット0x00000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_B_0x00000</CODE></TD>
-      <TD>VRAM-B�̃I�t�Z�b�g0x00000���珑�����݂܂��B</TD>
+      <TD>VRAM-Bのオフセット0x00000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_C_0x00000</CODE></TD>
-      <TD>VRAM-C�̃I�t�Z�b�g0x00000���珑�����݂܂��B</TD>
+      <TD>VRAM-Cのオフセット0x00000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_D_0x00000</CODE></TD>
-      <TD>VRAM-D�̃I�t�Z�b�g0x00000���珑�����݂܂��B</TD>
+      <TD>VRAM-Dのオフセット0x00000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_A_0x08000</CODE></TD>
-      <TD>VRAM-A�̃I�t�Z�b�g0x08000���珑�����݂܂��B</TD>
+      <TD>VRAM-Aのオフセット0x08000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_B_0x08000</CODE></TD>
-      <TD>VRAM-B�̃I�t�Z�b�g0x08000���珑�����݂܂��B</TD>
+      <TD>VRAM-Bのオフセット0x08000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_C_0x08000</CODE></TD>
-      <TD>VRAM-C�̃I�t�Z�b�g0x08000���珑�����݂܂��B</TD>
+      <TD>VRAM-Cのオフセット0x08000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_D_0x08000</CODE></TD>
-      <TD>VRAM-D�̃I�t�Z�b�g0x08000���珑�����݂܂��B</TD>
+      <TD>VRAM-Dのオフセット0x08000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_A_0x10000</CODE></TD>
-      <TD>VRAM-A�̃I�t�Z�b�g0x10000���珑�����݂܂��B</TD>
+      <TD>VRAM-Aのオフセット0x10000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_B_0x10000</CODE></TD>
-      <TD>VRAM-B�̃I�t�Z�b�g0x10000���珑�����݂܂��B</TD>
+      <TD>VRAM-Bのオフセット0x10000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_C_0x10000</CODE></TD>
-      <TD>VRAM-C�̃I�t�Z�b�g0x10000���珑�����݂܂��B</TD>
+      <TD>VRAM-Cのオフセット0x10000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_D_0x10000</CODE></TD>
-      <TD>VRAM-D�̃I�t�Z�b�g0x10000���珑�����݂܂��B</TD>
+      <TD>VRAM-Dのオフセット0x10000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_A_0x18000</CODE></TD>
-      <TD>VRAM-A�̃I�t�Z�b�g0x18000���珑�����݂܂��B</TD>
+      <TD>VRAM-Aのオフセット0x18000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_B_0x18000</CODE></TD>
-      <TD>VRAM-B�̃I�t�Z�b�g0x18000���珑�����݂܂��B</TD>
+      <TD>VRAM-Bのオフセット0x18000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_C_0x18000</CODE></TD>
-      <TD>VRAM-C�̃I�t�Z�b�g0x18000���珑�����݂܂��B</TD>
+      <TD>VRAM-Cのオフセット0x18000から書き込みます。</TD>
     </TR>
     <TR>
       <TD><CODE>GX_CAPTURE_DEST_VRAM_D_0x18000</CODE></TD>
-      <TD>VRAM-D�̃I�t�Z�b�g0x18000���珑�����݂܂��B</TD>
+      <TD>VRAM-Dのオフセット0x18000から書き込みます。</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
-�ȉ��Ɉ����Ɏg�p�����񋓌^�̌^��`�������Ă����܂��B</P>
+以下に引数に使用される列挙型の型定義を示しておきます。</P>
 <PRE><CODE>typedef enum
 {
     GX_CAPTURE_SIZE_128x128 = 0,
@@ -275,8 +275,8 @@ typedef enum
     GX_CAPTURE_DEST_VRAM_D_0x18000 = 15
 }
 GXCaptureDest;</CODE></PRE>
-<h2>�Q��</h2>
-<H2>����</H2>
+<h2>参照</h2>
+<H2>履歴</H2>
 <P>Ver. 2004/01/19</P>
 </body>
 </html>

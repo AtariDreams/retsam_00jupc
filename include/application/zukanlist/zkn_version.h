@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_version.h
- *	@brieuf		}ŠÓ ƒJ[ƒgƒŠƒbƒWƒo[ƒWƒ‡ƒ“•ªŠò
+ *	@brieuf		å›³é‘‘ ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãƒãƒ¼ã‚¸ãƒ§ãƒ³åˆ†å²
  *	@author		tomoya takahashi
  *	@data		2006.02.28
  *

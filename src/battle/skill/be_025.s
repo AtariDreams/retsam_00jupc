@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_025.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			025�@�G�Ǝ����̃|�P�����̃X�e�[�^�X�i�̂���傭�j�ُ̈�����ɖ߂�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			025　敵と自分のポケモンのステータス（のうりょく）の異常を元に戻す
  *
  *@author	HisashiSogabe
  *@data		2005.12.06

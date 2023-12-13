@@ -29,67 +29,67 @@ typedef enum{
 	TR_CARD_RANK_BLACK,
 }TR_CARD_RANK;
 
-extern  const PROC_DATA TrCardProcData;		// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+extern  const PROC_DATA TrCardProcData;		// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT TrCardProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT TrCardProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT TrCardProc_End( PROC * proc, int * seq );
 
 typedef struct TR_BADGE_DATA_tag
 {
-//	u8 GymReaderNo;			//ƒWƒ€ƒŠ[ƒ_[¯•Êƒiƒ“ƒo[<<‚¢‚ç‚È‚©‚à
-//	u8 BadgeType;			//ƒoƒbƒW¯•Êƒiƒ“ƒo[<<‚¢‚ç‚È‚¢‚©‚à
-//	u8 BadgeLevel;			//ƒoƒbƒWƒŒƒxƒ‹
-	int BadgeHold:1;			//ƒoƒbƒWŠƒtƒ‰ƒO
-	int BadgeScruchCount:31;	//–‚«‹ï‡
+//	u8 GymReaderNo;			//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼è­˜åˆ¥ãƒŠãƒ³ãƒãƒ¼<<ã„ã‚‰ãªã‹ã‚‚
+//	u8 BadgeType;			//ãƒãƒƒã‚¸è­˜åˆ¥ãƒŠãƒ³ãƒãƒ¼<<ã„ã‚‰ãªã„ã‹ã‚‚
+//	u8 BadgeLevel;			//ãƒãƒƒã‚¸ãƒ¬ãƒ™ãƒ«
+	int BadgeHold:1;			//ãƒãƒƒã‚¸æ‰€æŒãƒ•ãƒ©ã‚°
+	int BadgeScruchCount:31;	//ç£¨ãå…·åˆ
 	
 }TR_BADGE_DATA;
 
 typedef struct TR_CARD_DATA_tag
 {
-	u8 Version;			//ƒo[ƒWƒ‡ƒ“
-	u8 CountryCode;		//‘ƒR[ƒh
-	u8	GymReaderMask;			//ƒWƒ€ƒŠ[ƒ_[‚WlŠçƒ}ƒXƒNƒtƒ‰ƒO
-	u8 CardRank;		//ƒJ[ƒhƒ‰ƒ“ƒN
+	u8 Version;			//ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+	u8 CountryCode;		//å›½ã‚³ãƒ¼ãƒ‰
+	u8	GymReaderMask;			//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ï¼˜äººé¡”ãƒã‚¹ã‚¯ãƒ•ãƒ©ã‚°
+	u8 CardRank;		//ã‚«ãƒ¼ãƒ‰ãƒ©ãƒ³ã‚¯
 	
-	u8 BrushValid:1;		//ƒoƒbƒW–‚«ƒAƒvƒŠ—LŒøƒtƒ‰ƒO
-	u8 TimeUpdate:1;		//ŠÔXVƒtƒ‰ƒO
-	u8 TrSex:1;			//«•Ê
-	u8 PokeBookFlg:1;	//}ŠÓŠƒtƒ‰ƒO
+	u8 BrushValid:1;		//ãƒãƒƒã‚¸ç£¨ãã‚¢ãƒ—ãƒªæœ‰åŠ¹ãƒ•ãƒ©ã‚°
+	u8 TimeUpdate:1;		//æ™‚é–“æ›´æ–°ãƒ•ãƒ©ã‚°
+	u8 TrSex:1;			//æ€§åˆ¥
+	u8 PokeBookFlg:1;	//å›³é‘‘æ‰€æŒãƒ•ãƒ©ã‚°
 	u8 Dummy:4;
-	u8 UnionTrNo;		//ƒ†ƒjƒIƒ“ƒgƒŒ[ƒi[ƒiƒ“ƒo[i0`15jw’è–³‚µ‚Ì‚Æ‚«‚ÍUNION_TR_NONE(0xff)
+	u8 UnionTrNo;		//ãƒ¦ãƒ‹ã‚ªãƒ³ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒŠãƒ³ãƒãƒ¼ï¼ˆ0ã€œ15ï¼‰æŒ‡å®šç„¡ã—ã®ã¨ãã¯UNION_TR_NONE(0xff)
 	u8 Dummy2[2];
 	
-	STRCODE TrainerName[PERSON_NAME_SIZE+EOM_SIZE];	//ƒgƒŒ[ƒi[–¼
-	const PLAYTIME *PlayTime;	//ƒvƒŒƒCŠÔ\‘¢‘Ìi’ÊM‚ÍŠÔXV‚ªs‚í‚ê‚È‚¢‚Ì‚ÅNULL‚ğƒZƒbƒg‚·‚éj
+	STRCODE TrainerName[PERSON_NAME_SIZE+EOM_SIZE];	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
+	const PLAYTIME *PlayTime;	//ãƒ—ãƒ¬ã‚¤æ™‚é–“æ§‹é€ ä½“ï¼ˆé€šä¿¡æ™‚ã¯æ™‚é–“æ›´æ–°ãŒè¡Œã‚ã‚Œãªã„ã®ã§NULLã‚’ã‚»ãƒƒãƒˆã™ã‚‹ï¼‰
 	
-	u32 Money;			//‚¨‚±‚Ã‚©‚¢
-	u32 PokeBook;		//}ŠÓƒ‚ƒ“ƒXƒ^[”
-	u32 Score;			//ƒXƒRƒA
-	u16 TrainerID;		//ƒgƒŒ[ƒi[ID
+	u32 Money;			//ãŠã“ã¥ã‹ã„
+	u32 PokeBook;		//å›³é‘‘ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°
+	u32 Score;			//ã‚¹ã‚³ã‚¢
+	u16 TrainerID;		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
 	
-	u16 PlayTime_h;		//ƒvƒŒƒCŠÔij
-	u16 ClearTime_h;	//ƒNƒŠƒAŠÔij
+	u16 PlayTime_h;		//ãƒ—ãƒ¬ã‚¤æ™‚é–“ï¼ˆæ™‚ï¼‰
+	u16 ClearTime_h;	//ã‚¯ãƒªã‚¢æ™‚é–“ï¼ˆæ™‚ï¼‰
 	
-	u8 PlayTime_m;		//ƒvƒŒƒCŠÔi•ªj
-	u8 Start_y;			//ŠJn”N
-	u8 Start_m;			//ŠJnŒ
-	u8 Start_d;			//ŠJn“ú
+	u8 PlayTime_m;		//ãƒ—ãƒ¬ã‚¤æ™‚é–“ï¼ˆåˆ†ï¼‰
+	u8 Start_y;			//é–‹å§‹å¹´
+	u8 Start_m;			//é–‹å§‹æœˆ
+	u8 Start_d;			//é–‹å§‹æ—¥
 	
-	u8 Clear_y;			//ƒNƒŠƒA”N
-	u8 Clear_m;			//ƒNƒŠƒAŒ
-	u8 Clear_d;			//ƒNƒŠƒA“ú
-	u8 ClearTime_m;	//ƒNƒŠƒAŠÔi•ªj
+	u8 Clear_y;			//ã‚¯ãƒªã‚¢å¹´
+	u8 Clear_m;			//ã‚¯ãƒªã‚¢æœˆ
+	u8 Clear_d;			//ã‚¯ãƒªã‚¢æ—¥
+	u8 ClearTime_m;	//ã‚¯ãƒªã‚¢æ™‚é–“ï¼ˆåˆ†ï¼‰
 	
-	u32 CommNum;		//’ÊM‰ñ”
-	u32 CommBattleWin;	//‘ÎíŸ‚¿”
-	u32 CommBattleLose;	//‘Îí•‰‚¯”
-	u32 CommTrade;		//ŒğŠ·‰ñ”
+	u32 CommNum;		//é€šä¿¡å›æ•°
+	u32 CommBattleWin;	//å¯¾æˆ¦å‹ã¡æ•°
+	u32 CommBattleLose;	//å¯¾æˆ¦è² ã‘æ•°
+	u32 CommTrade;		//äº¤æ›å›æ•°
 	
-	TR_BADGE_DATA	BadgeData[8];	//ƒoƒbƒWƒf[ƒ^
+	TR_BADGE_DATA	BadgeData[8];	//ãƒãƒƒã‚¸ãƒ‡ãƒ¼ã‚¿
 	
-	u8	SignRawData[SIGN_SIZE_X*SIGN_SIZE_Y*8];	//ƒTƒCƒ“ƒf[ƒ^
-	u16	_xor;			// ŒŸØ—p
-	u16 reached;		// “’…ƒtƒ‰ƒO(’ÊM‚Ég—pj
+	u8	SignRawData[SIGN_SIZE_X*SIGN_SIZE_Y*8];	//ã‚µã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16	_xor;			// æ¤œè¨¼ç”¨
+	u16 reached;		// åˆ°ç€ãƒ•ãƒ©ã‚°(é€šä¿¡æ™‚ã«ä½¿ç”¨ï¼‰
 }TR_CARD_DATA;
 /**
 extern TR_CARD_DATA *MakeTrainerCardData(	const u8 inBadgeBrushFlg,

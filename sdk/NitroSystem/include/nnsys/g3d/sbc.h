@@ -33,35 +33,35 @@ extern "C" {
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// �\���̒�`�y��typedef
+// 構造体定義及びtypedef
 //
 
 /*---------------------------------------------------------------------------*
     NNSG3dRSFlag
 
-    NNSG3dRS���ɂ���1�r�b�g�t���O�̏W���B
-    NNS_G3dDraw��SBC�R�}���h�֐����ŃZ�b�g���ꂽ��Q�Ƃ��ꂽ�肷��B
+    NNSG3dRS内にある1ビットフラグの集合。
+    NNS_G3dDrawやSBCコマンド関数内でセットされたり参照されたりする。
 
-    NNS_G3D_RSFLAG_SKIP���R�[���o�b�N���Őݒ肷��ƁA����SBC���߂̍Ō�܂ŁA
-    �R�[���o�b�N�̔���ȊO�̓�����X�L�b�v����悤�ɂȂ��Ă���B
+    NNS_G3D_RSFLAG_SKIPをコールバック内で設定すると、そのSBC命令の最後まで、
+    コールバックの判定以外の動作をスキップするようになっている。
  *---------------------------------------------------------------------------*/
 typedef enum
 {
-    NNS_G3D_RSFLAG_NODE_VISIBLE           = 0x00000001,    // NODE�R�}���h��ON/OFF�����
-    NNS_G3D_RSFLAG_MAT_TRANSPARENT        = 0x00000002,    // MAT�R�}���h��ON/OFF�����
-    NNS_G3D_RSFLAG_CURRENT_NODE_VALID     = 0x00000004,    // NODE�R�}���h��ON�����
-    NNS_G3D_RSFLAG_CURRENT_MAT_VALID      = 0x00000008,    // MAT�R�}���h��ON�����
+    NNS_G3D_RSFLAG_NODE_VISIBLE           = 0x00000001,    // NODEコマンドでON/OFFされる
+    NNS_G3D_RSFLAG_MAT_TRANSPARENT        = 0x00000002,    // MATコマンドでON/OFFされる
+    NNS_G3D_RSFLAG_CURRENT_NODE_VALID     = 0x00000004,    // NODEコマンドでONされる
+    NNS_G3D_RSFLAG_CURRENT_MAT_VALID      = 0x00000008,    // MATコマンドでONされる
     NNS_G3D_RSFLAG_CURRENT_NODEDESC_VALID = 0x00000010,
-    NNS_G3D_RSFLAG_RETURN                 = 0x00000020,    // RET�R�}���h��ON�����
-    NNS_G3D_RSFLAG_SKIP                   = 0x00000040,    // �R�[���o�b�N�p���[�U�[�t���O(�R�}���h�̓��̎��̃R�[���o�b�N�܂ŃX�L�b�v)
+    NNS_G3D_RSFLAG_RETURN                 = 0x00000020,    // RETコマンドでONされる
+    NNS_G3D_RSFLAG_SKIP                   = 0x00000040,    // コールバック用ユーザーフラグ(コマンドの内の次のコールバックまでスキップ)
 
-    // �ȉ��͎��s�O��NNSG3dRenderObj�ɂ���Č��肳���l
-    NNS_G3D_RSFLAG_OPT_RECORD             = 0x00000080,    // NNSG3dRenderObj��recJntAnm, recMatAnm�Ɍv�Z���ʂ��L�^���܂��B
-    NNS_G3D_RSFLAG_OPT_NOGECMD            = 0x00000100,    // �W�I���g���R�}���h�𑗐M���܂���B
-    NNS_G3D_RSFLAG_OPT_SKIP_SBCDRAW       = 0x00000200,    // Draw�nSBC�R�}���h���X�L�b�v���܂��B�R�[���o�b�N���X�L�b�v���܂��B
-    NNS_G3D_RSFLAG_OPT_SKIP_SBCMTXCALC    = 0x00000400     // MtxCalc�nSBC�R�}���h���X�L�b�v���܂��B�R�[���o�b�N���X�L�b�v���܂��B
+    // 以下は実行前にNNSG3dRenderObjによって決定される値
+    NNS_G3D_RSFLAG_OPT_RECORD             = 0x00000080,    // NNSG3dRenderObjのrecJntAnm, recMatAnmに計算結果を記録します。
+    NNS_G3D_RSFLAG_OPT_NOGECMD            = 0x00000100,    // ジオメトリコマンドを送信しません。
+    NNS_G3D_RSFLAG_OPT_SKIP_SBCDRAW       = 0x00000200,    // Draw系SBCコマンドをスキップします。コールバックもスキップします。
+    NNS_G3D_RSFLAG_OPT_SKIP_SBCMTXCALC    = 0x00000400     // MtxCalc系SBCコマンドをスキップします。コールバックもスキップします。
 
-    // Draw�nSBC�R�}���h�ꗗ
+    // Draw系SBCコマンド一覧
     // NODE         --- NNSi_G3dFuncSbc_NODE
     // MTX          --- NNSi_G3dFuncSbc_MTX
     // MAT          --- NNSi_G3dFuncSbc_MAT
@@ -70,7 +70,7 @@ typedef enum
     // NODEDESC_BBY --- NNSi_G3dFuncSbc_BBY
     // POSSCALE     --- NNSi_G3dFuncSbc_POSSCALE
 
-    // MtxCalc�nSBC�R�}���h�ꗗ
+    // MtxCalc系SBCコマンド一覧
     // NODEDESC     --- NNSi_G3dFuncSbc_NODEDESC
 }
 NNSG3dRSFlag;
@@ -79,67 +79,67 @@ NNSG3dRSFlag;
 /*---------------------------------------------------------------------------*
     NNSG3dRS
 
-    �`��G���W���̏�Ԃ��i�[����̂Ɏg�p�B�ʏ��DTCM���g�p���邽�߃X�^�b�N��
-    �m�ۂ���邱�Ƃɒ��ӁB�`�撆�ɂ��Ƃ肷��ϐ��Ƃ����i�[�BNNS_G3dRS�Ƀ|�C���^��
-    �i�[����Ă���B
+    描画エンジンの状態を格納するのに使用。通常はDTCMを使用するためスタックに
+    確保されることに注意。描画中にやりとりする変数とかを格納。NNS_G3dRSにポインタが
+    格納されている。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dRS_
 {
-    // ��{���
-    u8*                               c;                   // ���ݎQ�Ƃ��Ă���SBC���߂ւ̃|�C���^
+    // 基本情報
+    u8*                               c;                   // 現在参照しているSBC命令へのポインタ
     NNSG3dRenderObj*                  pRenderObj;
     u32                               flag;                // NNSG3dRSFlag 
 
-    // �R�[���o�b�N�֐��x�N�^
-    NNSG3dSbcCallBackFunc             cbVecFunc[NNS_G3D_SBC_COMMAND_NUM];   // �R�[���o�b�N�֐��̃x�N�^
-    u8                                cbVecTiming[NNS_G3D_SBC_COMMAND_NUM]; // NNSG3dSbcCallBackTiming�̃x�N�^
+    // コールバック関数ベクタ
+    NNSG3dSbcCallBackFunc             cbVecFunc[NNS_G3D_SBC_COMMAND_NUM];   // コールバック関数のベクタ
+    u8                                cbVecTiming[NNS_G3D_SBC_COMMAND_NUM]; // NNSG3dSbcCallBackTimingのベクタ
 
-    // flag��NNS_G3D_RSFLAG_CURRENT_NODE_VALID��ON�̂Ƃ��A���O�ɌĂ΂ꂽ(���ݎ��s����)
-    // NODE�R�}���h��nodeID���i�[����Ă���B
+    // flagのNNS_G3D_RSFLAG_CURRENT_NODE_VALIDがONのとき、直前に呼ばれた(現在実行中の)
+    // NODEコマンドのnodeIDが格納されている。
     u8                                currentNode;
 
-    // flag��NNS_G3D_RSFLAG_CURRENT_MAT_VALID��ON�̂Ƃ��A���O�ɌĂ΂ꂽ(���ݎ��s����)
-    // MAT�R�}���h�̃}�e���A��ID���i�[����Ă���B
-    // MAT�R�}���h�Ŏw�肳��Ă���}�e���A��ID�������ꍇ�A�}�e���A������
-    // ���M���ȗ�����̂ŁA�R�[���o�b�N���Ń}�e���A���f�[�^��ύX�����ꍇ�́A
-    // NNS_G3D_RSFLAG_CURRENT_MAT_VALID��OFF�ɂ���K�v������B
+    // flagのNNS_G3D_RSFLAG_CURRENT_MAT_VALIDがONのとき、直前に呼ばれた(現在実行中の)
+    // MATコマンドのマテリアルIDが格納されている。
+    // MATコマンドで指定されているマテリアルIDが同じ場合、マテリアル情報の
+    // 送信を省略するので、コールバック等でマテリアルデータを変更した場合は、
+    // NNS_G3D_RSFLAG_CURRENT_MAT_VALIDをOFFにする必要がある。
     u8                                currentMat;
 
-    // flag��NNS_G3D_RSFLAG_CURRENT_NODEDESC_VALID��ON�̂Ƃ��A���O�ɌĂ΂ꂽ(���ݎ��s����)
-    // NODEDESC�R�}���h�̃m�[�hID���i�[����Ă���B
+    // flagのNNS_G3D_RSFLAG_CURRENT_NODEDESC_VALIDがONのとき、直前に呼ばれた(現在実行中の)
+    // NODEDESCコマンドのノードIDが格納されている。
     u8                                currentNodeDesc;
 
     u8                                dummy_;
-    // NNSG3dMatAnmResult,NNSG3dJntAnmResult,NNSG3dVisAnmResult���v�Z���ł���ꍇ�ɂ�
-    // ���̃����o�Ƀ|�C���^���i�[����Ă���B
-    // �R�[���o�b�N�Ōv�Z���ʂ�ύX���邱�Ƃ��ł���悤�ɂȂ��Ă���B
+    // NNSG3dMatAnmResult,NNSG3dJntAnmResult,NNSG3dVisAnmResultが計算中である場合には
+    // このメンバにポインタが格納されている。
+    // コールバックで計算結果を変更することができるようになっている。
 
-    // �ŏ���MAT�R�}���h���Ăяo�����܂ł�NULL
-    // ���̌�͒��O�Ɏ��s���ꂽMAT�R�}���h�ɂ��v�Z���ʂ��i�[
+    // 最初のMATコマンドが呼び出されるまではNULL
+    // その後は直前に実行されたMATコマンドによる計算結果を格納
     NNSG3dMatAnmResult*               pMatAnmResult;
 
-    // �ŏ���NODEDESC�R�}���h���Ăяo�����܂ł�NULL
-    // ���̌�͒��O�Ɏ��s���ꂽNODEDESC�R�}���h�ɂ��v�Z���ʂ��i�[
+    // 最初のNODEDESCコマンドが呼び出されるまではNULL
+    // その後は直前に実行されたNODEDESCコマンドによる計算結果を格納
     NNSG3dJntAnmResult*               pJntAnmResult;
 
-    // �ŏ���NODE�R�}���h���Ăяo�����܂ł�NULL
-    // ���̌�͒��O�Ɏ��s���ꂽNODE�R�}���h�ɂ��v�Z���ʂ��i�[
+    // 最初のNODEコマンドが呼び出されるまではNULL
+    // その後は直前に実行されたNODEコマンドによる計算結果を格納
     NNSG3dVisAnmResult*               pVisAnmResult;
 
-    // �}�e���A���f�[�^�����ɃL���b�V������Ă���ꍇ�̓r�b�g�������Ă���B
-    // �f�[�^�{�̂�NNSG3dRSOnHeap��matCache�Ɋi�[����Ă���B
+    // マテリアルデータが既にキャッシュされている場合はビットが立っている。
+    // データ本体はNNSG3dRSOnHeapのmatCacheに格納されている。
     u32                               isMatCached[NNS_G3D_SIZE_MAT_MAX / 32];
 
-    // �X�P�[���֘A�f�[�^���i�[����ꍇ�A�f�[�^��(1.0, 1.0, 1.0)�ł���ꍇ�́A
-    // �f�[�^���i�[�������ɑΉ�����r�b�g��ON�ɂ��Ă������Ƃő�p����B
+    // スケール関連データを格納する場合、データが(1.0, 1.0, 1.0)である場合は、
+    // データを格納する代わりに対応するビットをONにしておくことで代用する。
     u32                               isScaleCacheOne[NNS_G3D_SIZE_JNT_MAX / 32];
 
 #if (NNS_G3D_USE_EVPCACHE)
     u32                               isEvpCached[NNS_G3D_SIZE_JNT_MAX / 32];
 #endif
 
-    // resMdl�̒��ŌJ��Ԃ��g�������L���b�V�����Ă���
-    // ���[�U�[���G��Ȃ���΂����Ȃ����Ƃ͂Ȃ��B
+    // resMdlの中で繰り返し使う情報をキャッシュしておく
+    // ユーザーが触らなければいけないことはない。
     const NNSG3dResNodeInfo*          pResNodeInfo;
     const NNSG3dResMat*               pResMat;
     const NNSG3dResShp*               pResShp;
@@ -159,32 +159,32 @@ NNSG3dRS;
 /*---------------------------------------------------------------------------*
     NNSG3dRSOnGlb
 
-    �`��G���W���̏�Ԃ̂����A�T�C�Y���傫�����߃X�^�b�N�ɓ����̂ɂ͓K���Ȃ�
-    ���̂��i�[�B�O���[�o���ϐ���NNS_G3dRSOnGlb���g�p����B
-    �I�n���C���������Ɋm�ۂ��ꂽ�܂܂̏�Ԃł���B
+    描画エンジンの状態のうち、サイズが大きいためスタックに入れるのには適さない
+    ものを格納。グローバル変数のNNS_G3dRSOnGlbを使用する。
+    終始メインメモリに確保されたままの状態である。
  *---------------------------------------------------------------------------*/
 typedef struct NNSG3dRSOnGlb_
 {
     //
-    // Sbc��MAT���߂ɂ��L���b�V���O���ꂽ�}�e���A�����
-    // NNSG3dRS��isMatChached�̑Ή��r�b�g��ON�ł���ꍇ�Ƀf�[�^�͗L���ł���B
+    // SbcのMAT命令によりキャッシングされたマテリアル情報
+    // NNSG3dRSのisMatChachedの対応ビットがONである場合にデータは有効である。
     //
     struct NNSG3dMatAnmResult_ matCache[NNS_G3D_SIZE_MAT_MAX];
 
     //
-    // Maya��Segment Scale Compensate, SI3D��Classic Scale Off�̏ꍇ��
-    // �W���C���g�ɑΉ������X�P�[���֘A�f�[�^���i�[���邽�߂ɑ��݂���B
-    // Sbc��NODEDESC���߂ɂ�菑�����܂��B
-    // Maya��SSC�̏ꍇ:
-    // NODEDESC�̃t���O�����ŁANNS_G3D_SBC_NODEDESC_FLAG_MAYASSC_PARENT
-    // ��ON�̂Ƃ��A�X�P�[���̋t��������B
+    // MayaのSegment Scale Compensate, SI3DのClassic Scale Offの場合に
+    // ジョイントに対応したスケール関連データを格納するために存在する。
+    // SbcのNODEDESC命令により書き込まれる。
+    // MayaのSSCの場合:
+    // NODEDESCのフラグ引数で、NNS_G3D_SBC_NODEDESC_FLAG_MAYASSC_PARENT
+    // がONのとき、スケールの逆数が入る。
     //
-    // SI3D��Classic Scale Off�̏ꍇ:
-    // NNS_G3D_SCALINGRULE_SI3D���w�肳��Ă���
-    // �ꍇ�ɐe�܂ł̃X�P�[���̗ݏ悪�i�[����Ă���B
+    // SI3DのClassic Scale Offの場合:
+    // NNS_G3D_SCALINGRULE_SI3Dが指定されている
+    // 場合に親までのスケールの累乗が格納されている。
     // 
-    // ��������ANNSG3dRS��isScaleCacheOne�̑Ή�����r�b�g��OFF�̏ꍇ
-    // (�X�P�[����1.0�łȂ��Ƃ�)�̂ݒl���i�[����Ă���
+    // いずれも、NNSG3dRSのisScaleCacheOneの対応するビットがOFFの場合
+    // (スケールが1.0でないとき)のみ値が格納されている
     //
     struct
     {
@@ -208,7 +208,7 @@ NNSG3dRSOnGlb;
 /*---------------------------------------------------------------------------*
     NNSG3dFuncSbc
 
-    Sbc�R�}���h�֐��̃|�C���^�^
+    Sbcコマンド関数のポインタ型
  *---------------------------------------------------------------------------*/
 typedef void (*NNSG3dFuncSbc)(NNSG3dRS*, u32);
 
@@ -216,16 +216,16 @@ typedef void (*NNSG3dFuncSbc)(NNSG3dRS*, u32);
 /*---------------------------------------------------------------------------*
     NNSG3dFuncSbc_[Mat|Shp]Internal
 
-    Sbc��MAT/SHP�R�}���h�����֐��̃|�C���^�^
+    SbcのMAT/SHPコマンド内部関数のポインタ型
  *---------------------------------------------------------------------------*/
 typedef void (*NNSG3dFuncSbc_MatInternal)(NNSG3dRS*, u32, const NNSG3dResMatData*, u32);
 typedef void (*NNSG3dFuncSbc_ShpInternal)(NNSG3dRS*, u32, const NNSG3dResShpData*, u32);
 
 
 /*---------------------------------------------------------------------------*
-    g3dcvtr����������R�[�h�Ŏg�p���Ȃ��s��X�^�b�N�C���f�b�N�X�̒�`
-    NNS_G3D_MTXSTACK_SYS��G3D�����ŗ\�񂳂�Ă��āA
-    NNS_G3D_MTXSTACK_USER�̓��[�U�[���g�p���邱�Ƃ��ł���B
+    g3dcvtrが生成するコードで使用しない行列スタックインデックスの定義
+    NNS_G3D_MTXSTACK_SYSはG3D内部で予約されていて、
+    NNS_G3D_MTXSTACK_USERはユーザーが使用することができる。
  *---------------------------------------------------------------------------*/
 
 #define NNS_G3D_MTXSTACK_SYS  (30)
@@ -234,11 +234,11 @@ typedef void (*NNSG3dFuncSbc_ShpInternal)(NNSG3dRS*, u32, const NNSG3dResShpData
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// �֐��̐錾
+// 関数の宣言
 //
 
 //
-// NNS_G3dRS�ɑ΂���A�N�Z�T
+// NNS_G3dRSに対するアクセサ
 //
 NNS_G3D_INLINE void NNS_G3dRSSetCallBack(NNSG3dRS* rs, NNSG3dSbcCallBackFunc func, u8 cmd, NNSG3dSbcCallBackTiming timing);
 NNS_G3D_INLINE void NNS_G3dRSResetCallBack(NNSG3dRS* rs, u8 cmd);
@@ -258,7 +258,7 @@ NNS_G3D_INLINE fx32 NNS_G3dRSGetInvPosScale(const NNSG3dRS* rs);
 
 
 //
-// �`��
+// 描画
 //
 void NNS_G3dDraw(struct NNSG3dRenderObj_* pRenderObj);
 
@@ -281,7 +281,7 @@ void NNSi_G3dFuncSbc_ENVMAP(NNSG3dRS*, u32);
 void NNSi_G3dFuncSbc_PRJMAP(NNSG3dRS*, u32);
 
 
-// MAT/SHP��itemTag��0�̂Ƃ��̓���
+// MAT/SHPのitemTagが0のときの動作
 void NNSi_G3dFuncSbc_SHP_InternalDefault(NNSG3dRS* rs,
                                         u32 opt,
                                         const NNSG3dResShpData* shp,
@@ -293,7 +293,7 @@ void NNSi_G3dFuncSbc_MAT_InternalDefault(NNSG3dRS* rs,
                                         u32 idxMat);
 
 //
-// �R�[���o�b�N�̃`�F�b�N 
+// コールバックのチェック 
 //
 NNS_G3D_INLINE BOOL NNSi_G3dCallBackCheck_A(NNSG3dRS* rs, u8 cmd, NNSG3dSbcCallBackTiming* pTiming);
 NNS_G3D_INLINE BOOL NNSi_G3dCallBackCheck_B(NNSG3dRS* rs, u8 cmd, NNSG3dSbcCallBackTiming* pTiming);
@@ -302,7 +302,7 @@ NNS_G3D_INLINE NNSG3dSbcCallBackTiming NNSi_CheckPossibilityOfCallBack(NNSG3dRS*
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// �O���[�o���ϐ�
+// グローバル変数
 //
 extern NNSG3dFuncSbc NNS_G3dFuncSbcTable[NNS_G3D_SBC_COMMAND_NUM];
 extern NNSG3dFuncSbc_MatInternal NNS_G3dFuncSbcMatTable[NNS_G3D_SIZE_MAT_VTBL_NUM];

@@ -1,11 +1,11 @@
 //=============================================================================
 /**
  * @file	comm_command_balloon.c
- * @brief	ƒf[ƒ^‚ğ‘—‚é‚½‚ß‚ÌƒRƒ}ƒ“ƒh‚ğƒe[ƒuƒ‹‰»‚µ‚Ä‚¢‚Ü‚·
- *          •—‘Dƒ~ƒjƒQ[ƒ€—p‚Å‚·
- *          comm_command_balloon.h ‚Ì enum ‚Æ“¯‚¶•À‚Ñ‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·
+ * @brief	ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹ãŸã‚ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«åŒ–ã—ã¦ã„ã¾ã™
+ *          é¢¨èˆ¹ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ç”¨ã§ã™
+ *          comm_command_balloon.h ã® enum ã¨åŒã˜ä¸¦ã³ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
  * @author	matsuda
- * @date    2007.11.26(Œ)
+ * @date    2007.11.26(æœˆ)
  */
 //=============================================================================
 #include "common.h"
@@ -44,7 +44,7 @@
 
 
 //==============================================================================
-//  ƒe[ƒuƒ‹‚É‘‚­ŠÖ”‚Ì’è‹`
+//  ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ›¸ãé–¢æ•°ã®å®šç¾©
 //==============================================================================
 static	void Recv_CommTiming(int id_no,int size,void *pData,void *work);
 static	void Recv_CommBalloonPlayData(int id_no,int size,void *pData,void *work);
@@ -52,18 +52,18 @@ static	void Recv_CommGameEnd(int id_no,int size,void *pData,void *work);
 static	void Recv_CommServerVersion(int id_no,int size,void *pData,void *work);
 
 //==============================================================================
-//  static’è‹`
+//  staticå®šç¾©
 //==============================================================================
 static int _getGamePlaySize(void);
 static int _getServerVersionSize(void);
 
 
 //==============================================================================
-//	ƒe[ƒuƒ‹éŒ¾
-//  comm_shar.h ‚Ì enum ‚Æ“¯‚¶‚È‚ç‚Ñ‚É‚µ‚Ä‚­‚¾‚³‚¢
-//  CALLBACK‚ğŒÄ‚Î‚ê‚½‚­‚È‚¢ê‡‚ÍNULL‚ğ‘‚¢‚Ä‚­‚¾‚³‚¢
-//  ƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY‚ğ•Ô‚·ŠÖ”‚ğ‘‚¢‚Ä‚à‚ç‚¦‚é‚Æ’ÊM‚ªŒy‚­‚È‚è‚Ü‚·
-//  _getZero‚ÍƒTƒCƒY‚È‚µ‚ğ•Ô‚µ‚Ü‚·B_getVariable‚Í‰Â•Ïƒf[ƒ^g—p‚Ég‚¢‚Ü‚·
+//	ãƒ†ãƒ¼ãƒ–ãƒ«å®£è¨€
+//  comm_shar.h ã® enum ã¨åŒã˜ãªã‚‰ã³ã«ã—ã¦ãã ã•ã„
+//  CALLBACKã‚’å‘¼ã°ã‚ŒãŸããªã„å ´åˆã¯NULLã‚’æ›¸ã„ã¦ãã ã•ã„
+//  ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™é–¢æ•°ã‚’æ›¸ã„ã¦ã‚‚ã‚‰ãˆã‚‹ã¨é€šä¿¡ãŒè»½ããªã‚Šã¾ã™
+//  _getZeroã¯ã‚µã‚¤ã‚ºãªã—ã‚’è¿”ã—ã¾ã™ã€‚_getVariableã¯å¯å¤‰ãƒ‡ãƒ¼ã‚¿ä½¿ç”¨æ™‚ã«ä½¿ã„ã¾ã™
 //==============================================================================
 static const CommPacketTbl _CommPacketTbl[] = {
     {NULL,                      _getZero, 			NULL},	// CB_EXIT_BALLOON
@@ -74,7 +74,7 @@ static const CommPacketTbl _CommPacketTbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ“ƒeƒXƒg—p‚ÌƒRƒ}ƒ“ƒh‘ÌŒn‚É‰Šú‰»‚µ‚Ü‚·
+ * @brief   ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ã®ã‚³ãƒãƒ³ãƒ‰ä½“ç³»ã«åˆæœŸåŒ–ã—ã¾ã™
  * @param   none
  * @retval  none
  */
@@ -84,14 +84,14 @@ void CommCommandBalloonInitialize(void* pWork)
     int length = sizeof(_CommPacketTbl)/sizeof(CommPacketTbl);
     CommCommandInitialize(_CommPacketTbl, length, pWork);
     
-    GF_ASSERT(sizeof(BALLOON_SIO_PLAY_WORK) < 256);	//‚±‚ÌƒTƒCƒY‚ğ’´‚¦‚½‚çHugeBuff‚É‚·‚é•K—v‚ª‚ ‚é
+    GF_ASSERT(sizeof(BALLOON_SIO_PLAY_WORK) < 256);	//ã“ã®ã‚µã‚¤ã‚ºã‚’è¶…ãˆãŸã‚‰HugeBuffã«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚R‚Â‚Æ‚àƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·
- * @param   command         ƒRƒ}ƒ“ƒh
- * @retval  ƒTƒCƒY   ‰Â•Ï‚È‚ç COMM_VARIABLE_SIZE Zero‚Í‚O‚ğ•Ô‚·
+ * @brief   ï¼“ã¤ã¨ã‚‚ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™
+ * @param   command         ã‚³ãƒãƒ³ãƒ‰
+ * @retval  ã‚µã‚¤ã‚º   å¯å¤‰ãªã‚‰ COMM_VARIABLE_SIZE Zeroã¯ï¼ã‚’è¿”ã™
  */
 //--------------------------------------------------------------
 static int _getGamePlaySize(void)
@@ -101,9 +101,9 @@ static int _getGamePlaySize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒT[ƒo[ƒo[ƒWƒ‡ƒ“ƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·
- * @param   command         ƒRƒ}ƒ“ƒh
- * @retval  ƒTƒCƒY   ‰Â•Ï‚È‚ç COMM_VARIABLE_SIZE Zero‚Í‚O‚ğ•Ô‚·
+ * @brief   ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™
+ * @param   command         ã‚³ãƒãƒ³ãƒ‰
+ * @retval  ã‚µã‚¤ã‚º   å¯å¤‰ãªã‚‰ COMM_VARIABLE_SIZE Zeroã¯ï¼ã‚’è¿”ã™
  */
 //--------------------------------------------------------------
 static int _getServerVersionSize(void)
@@ -122,11 +122,11 @@ static int _getServerVersionSize(void)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   “¯Šúæ‚è’ÊMóMˆ—
+ * @brief   åŒæœŸå–ã‚Šé€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  * @param   work		
  */
 //--------------------------------------------------------------
@@ -141,11 +141,11 @@ static	void Recv_CommTiming(int id_no,int size,void *pData,void *work)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€ƒvƒŒƒC’†ƒf[ƒ^’ÊMóMˆ—
+ * @brief   ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ä¸­ãƒ‡ãƒ¼ã‚¿é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  * @param   work		
  */
 //--------------------------------------------------------------
@@ -158,9 +158,9 @@ static	void Recv_CommBalloonPlayData(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€ƒvƒŒƒC’†ƒf[ƒ^‘—M–½—ß
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @brief   ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ä¸­ãƒ‡ãƒ¼ã‚¿é€ä¿¡å‘½ä»¤
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL Send_CommBalloonPlayData(BALLOON_GAME_PTR game, BALLOON_SIO_PLAY_WORK *send_data)
@@ -177,11 +177,11 @@ BOOL Send_CommBalloonPlayData(BALLOON_GAME_PTR game, BALLOON_SIO_PLAY_WORK *send
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€I—¹‚ğ“`‚¦‚é
+ * @brief   ã‚²ãƒ¼ãƒ çµ‚äº†ã‚’ä¼ãˆã‚‹
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  * @param   work		
  */
 //--------------------------------------------------------------
@@ -194,9 +194,9 @@ static	void Recv_CommGameEnd(int id_no,int size,void *pData,void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€I—¹ƒƒbƒZ[ƒW‘—M–½—ß
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @brief   ã‚²ãƒ¼ãƒ çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡å‘½ä»¤
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL Send_CommGameEnd(BALLOON_GAME_PTR game)
@@ -212,11 +212,11 @@ BOOL Send_CommGameEnd(BALLOON_GAME_PTR game)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚ğóM‚·‚é
+ * @brief   ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å—ä¿¡ã™ã‚‹
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  * @param   work		
  */
 //--------------------------------------------------------------
@@ -235,15 +235,15 @@ static	void Recv_CommServerVersion(int id_no,int size,void *pData,void *work)
 		}
 	}
 	GF_ASSERT(i < game->bsw->player_max);
-	OS_TPrintf("óMFƒT[ƒo[ƒo[ƒWƒ‡ƒ“ = %d(net_id=%d, óMƒTƒCƒY=%d)\n", server_version, id_no, size);
+	OS_TPrintf("å—ä¿¡ï¼šã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ = %d(net_id=%d, å—ä¿¡ã‚µã‚¤ã‚º=%d)\n", server_version, id_no, size);
 	game->recv_server_version_cnt++;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‘—M–½—ß
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  TRUE:‘—M‚µ‚½B@FALSE:‘—M¸”s
+ * @brief   ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³é€ä¿¡å‘½ä»¤
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  TRUE:é€ä¿¡ã—ãŸã€‚ã€€FALSE:é€ä¿¡å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL Send_CommServerVersion(BALLOON_GAME_PTR game)

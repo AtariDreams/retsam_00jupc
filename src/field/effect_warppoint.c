@@ -2,7 +2,7 @@
 /**
  *
  *@file		effect_warppoint.c
- *@brief	ƒ[ƒvƒ|ƒCƒ“ƒg
+ *@brief	ãƒ¯ãƒ¼ãƒ—ãƒã‚¤ãƒ³ãƒˆ
  *@author	k.ohno
  *@data		2006.06.21
  *
@@ -17,7 +17,7 @@
 #include "system/bmp_menu.h"
 #include "worldmap.h"
 #include "fieldobj.h"
-#include "fieldobj_code.h" //AC_WALK...“™ ƒAƒjƒ[ƒVƒ‡ƒ“ƒR[ƒh‚ª‚Ü‚Æ‚ß‚Ä‚ ‚è‚Ü‚·B
+#include "fieldobj_code.h" //AC_WALK...ç­‰ ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰ãŒã¾ã¨ã‚ã¦ã‚ã‚Šã¾ã™ã€‚
 #include "fieldsys.h"
 #include "fieldmap.h"
 #include "fld_bmp.h"
@@ -52,7 +52,7 @@ typedef struct{
 
 //--------------------------------------------------------------
 /**
- * ŽŸ‚Ì‰ñ“]•ûŒü‚ðƒZƒbƒg‚·‚é
+ * æ¬¡ã®å›žè»¢æ–¹å‘ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  * @param	dir
  * @retval	dir
  */
@@ -117,7 +117,7 @@ static void _upPlayer(TCB_PTR tcb, void* work)
                            WIPE_FADE_BLACK,COMM_BRIGHTNESS_SYNC,
                            1,HEAPID_FIELD);
         }
-        else if((wk->timer > _UP_TIME) && WIPE_SYS_EndCheck()){         //ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+        else if((wk->timer > _UP_TIME) && WIPE_SYS_EndCheck()){         //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
             *wk->pBEnd = TRUE;
             sys_FreeMemoryEz(wk);
             TCB_Delete(tcb);
@@ -176,7 +176,7 @@ static void _downPlayer(TCB_PTR tcb, void* work)
         }
         break;
       case _END:
-        if(WIPE_SYS_EndCheck()){         //ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+        if(WIPE_SYS_EndCheck()){         //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
             Player_DirSet(wk->pFSys->player, DIR_DOWN);
             *wk->pBEnd = TRUE;
             sys_FreeMemoryEz(wk);
@@ -227,7 +227,7 @@ static void _downPlayer(TCB_PTR tcb, void* work)
         }
         break;
       case _END:
-        if(WIPE_SYS_EndCheck()){         //ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+        if(WIPE_SYS_EndCheck()){         //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
             Player_DirSet(wk->pFSys->player, DIR_DOWN);
             *wk->pBEnd = TRUE;
             sys_FreeMemoryEz(wk);
@@ -240,10 +240,10 @@ static void _downPlayer(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *@brief	’n‰ºƒ}ƒbƒvƒtƒF[ƒhƒGƒtƒFƒNƒg
- *@param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒN
- *@param	no		ƒGƒtƒFƒNƒgƒiƒ“ƒo[
- *@param	end		I—¹ƒ`ƒFƒbƒNƒtƒ‰ƒO
+ *@brief	åœ°ä¸‹ãƒžãƒƒãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+ *@param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *@param	no		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼
+ *@param	end		çµ‚äº†ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°
  *@return	none
  */
 //-----------------------------------------------------------------------------
@@ -251,7 +251,7 @@ void StartJumpPointEffect(FIELDSYS_WORK* fsys, BOOL bUp, BOOL* end)
 {
     WARP_EVENT_WORK* wk = sys_AllocMemoryLo( HEAPID_FIELD, sizeof(WARP_EVENT_WORK) );
 
-    /* ƒIƒuƒWƒFƒNƒgì¬ */
+    /* ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä½œæˆ */
     MI_CpuClear8(wk,sizeof(WARP_EVENT_WORK));
     wk->pFSys = fsys;
     wk->pBEnd = end;

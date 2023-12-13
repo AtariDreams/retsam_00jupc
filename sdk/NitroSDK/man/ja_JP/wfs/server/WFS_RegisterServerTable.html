@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <title>WFS_RegisterServerTable</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
@@ -9,7 +9,7 @@
 <body>
 
 <h1>WFS_RegisterServerTable</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -19,55 +19,55 @@
   <br />
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <table border="1" width="100%">
   <tbody>
     <tr>
       <td style="width:13%"><em><strong>context</strong></em></td>
-      <td style="width:87%">WFSServerContext�\���̂̃|�C���^</td>
+      <td style="width:87%">WFSServerContext構造体のポインタ</td>
     </tr>
     <tr>
       <td style="width:13%"><em><strong>device</strong></em></td>
-      <td style="width:87%">ROM�C���[�W���i�[����Ă���f�o�C�X�ւ̃C���^�t�F�[�X</td>
+      <td style="width:87%">ROMイメージが格納されているデバイスへのインタフェース</td>
     </tr>
     <tr>
       <td style="width:13%"><em><strong>fatbase</strong></em></td>
-      <td style="width:87%">ROM�C���[�W���z�u����Ă���f�o�C�X���̃A�h���X</td>
+      <td style="width:87%">ROMイメージが配置されているデバイス内のアドレス</td>
     </tr>
     <tr>
       <td style="width:13%"><em><strong>overlay</strong></em></td>
-      <td style="width:87%">�}�[�W�������I�[�o�[���C���܂�ROM�C���[�W���z�u����Ă���f�o�C�X���̃A�h���X<br />
-      �I�[�o�[���C���}�[�W���Ȃ��ꍇ�ɂ�fatbase�Ɠ����l���w�肵�܂��B</td>
+      <td style="width:87%">マージしたいオーバーレイを含むROMイメージが配置されているデバイス内のアドレス<br />
+      オーバーレイをマージしない場合にはfatbaseと同じ値を指定します。</td>
     </tr>
   </tbody>
 </table>
-<h2>�Ԃ�l</h2>
-<p>ROM�t�@�C���e�[�u���𐳂������[�h���o�^�ł����TRUE���A�����łȂ����FALSE��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>ROMファイルテーブルを正しくロードし登録できればTRUEを、そうでなければFALSEを返します。</p>
 
-<h2>����</h2>
-<p>�C�ӂ̃f�o�C�X��ɑ��݂���ROM�C���[�W����t�@�C���e�[�u���𒊏o����WFS�T�[�o�R���e�L�X�g�\���̂ɓo�^���܂��B<br />
-�ڑ�����WFS�N���C�A���g�́A���̃t�@�C���e�[�u���������I�ɃT�[�o����擾���܂��B<br />
+<h2>説明</h2>
+<p>任意のデバイス上に存在するROMイメージからファイルテーブルを抽出してWFSサーバコンテキスト構造体に登録します。<br />
+接続したWFSクライアントは、このファイルテーブルを自動的にサーバから取得します。<br />
 </p>
 <p>
-���̊֐��œo�^����ROM�C���[�W�Ɋւ��ăN���C�A���g����ǂݍ��݃��N�G�X�g�����������<a href="../WFSEventType.html">WFS_EVENT_SERVER_SEGMENT_REQUEST</a>�C�x���g���ʒm����܂��B
-�A�v���P�[�V�����́A�C�x���g�R�[���o�b�N���œK�؂ɓǂݍ��݃��N�G�X�g�֑Ή�����K�v������܂��B<br />
+この関数で登録したROMイメージに関してクライアントから読み込みリクエストが発生すると<a href="../WFSEventType.html">WFS_EVENT_SERVER_SEGMENT_REQUEST</a>イベントが通知されます。
+アプリケーションは、イベントコールバック内で適切に読み込みリクエストへ対応する必要があります。<br />
 </p>
 <p>
-�t�@�C���e�[�u���̐ݒ��ǂݍ��݃��N�G�X�g�̉����ɓ��ʂȏ�����K�v�Ƃ��Ȃ��ꍇ�́A
-���̊֐��ł͂Ȃ�<a href="WFS_ExecuteRomServerThread.html">WFS_ExecuteRomServerThread</a>�֐����g�p��������e�ՂɃT�[�o�������������邱�Ƃ��o���܂��B
+ファイルテーブルの設定や読み込みリクエストの応答に特別な処理を必要としない場合は、
+この関数ではなく<a href="WFS_ExecuteRomServerThread.html">WFS_ExecuteRomServerThread</a>関数を使用する方が容易にサーバ処理を実現することが出来ます。
 </p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><code>
 <a href="WFS_InitServer.html">WFS_InitServer</a> 
 <a href="WFS_EndServer.html">WFS_EndServer</a> 
 <a href="WFS_ExecuteRomServerThread.html">WFS_ExecuteRomServerThread</a> 
 <br /></code></p>
 
-<h2>����</h2>
+<h2>履歴</h2>
 <p>
-2007/06/14 WFS_ExecuteRomServerThread�֐��Ɋւ���L�q��ǉ�<br />
-2007/06/06 ����<br />
+2007/06/14 WFS_ExecuteRomServerThread関数に関する記述を追加<br />
+2007/06/06 初版<br />
 </p>
 </body>
 </html>

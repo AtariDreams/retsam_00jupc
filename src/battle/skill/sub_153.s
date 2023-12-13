@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_153.s
- *@brief	�퓬�V�[�P���X
- *			���������`�F�b�N�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			おいうちチェックシーケンス
  *@author	HisashiSogabe
  *@data		2006.02.10
  *
@@ -18,14 +18,14 @@ SUB_153:
 	GOSUB			SUB_SEQ_AD_PUSH
 SUB_153_LOOP:
 	OIUCHI_CHECK	SUB_153_END
-	//�������������́A�_���[�W���Q�{�ɂ���
+	//おいうち発動は、ダメージを２倍にする
 	VALUE			VAL_SET,BUF_PARA_DAMAGE_VALUE,20
 	CRITICAL_CHECK
 	DAMAGE_CALC
 	TYPE_CHECK
-	//AttackMsg���o��悤�Ƀt���O�𗎂Ƃ�
+	//AttackMsgが出るようにフラグを落とす
 	VALUE			VAL_NBIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_ATTACK_MSG
-	//WazaEffect���o��悤�Ƀt���O�𗎂Ƃ�
+	//WazaEffectが出るようにフラグを落とす
 	VALUE			VAL_NBIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_WAZA_EFFECT
 	ATTACK_MESSAGE
 	SERVER_WAIT
@@ -36,16 +36,16 @@ SUB_153_LOOP:
 	MIGAWARI_CHECK	SIDE_DEFENCE,Migawari
 
 #if AFTER_MASTER_070202_BT2_FIX
-	//��������_���[�W�̌v�Z������i�ʏ�U���j
+	//かいがらダメージの計算をする（通常攻撃）
 KaigaraDamageCalc:
 	VALUE_WORK		VAL_SET,BUF_PARA_TEMP_WORK,BUF_PARA_DAMAGE
 	VALUE			VAL_MUL,BUF_PARA_TEMP_WORK,-1
 	IF_PSP_WORK		IF_FLAG_NC,SIDE_DEFENCE,ID_PSP_hp,BUF_PARA_TEMP_WORK,KaigaraDamageSetNowHP
-	//�_���[�W�ʂ���������_���[�W���[�N�ɑ��
+	//ダメージ量をかいがらダメージワークに代入
 KaigaraDamageSetDamage:
 	VALUE_WORK		VAL_SET,BUF_PARA_OSTF_KAIGARA_DAMAGE,BUF_PARA_DAMAGE
 	BRANCH			Normal
-	//���݂�HP����������_���[�W���[�N�ɑ��
+	//現在のHPをかいがらダメージワークに代入
 KaigaraDamageSetNowHP:
 	PSP_VALUE_WORK	VAL_GET,SIDE_DEFENCE,ID_PSP_hp,BUF_PARA_OSTF_KAIGARA_DAMAGE
 	VALUE			VAL_MUL,BUF_PARA_OSTF_KAIGARA_DAMAGE,-1
@@ -62,33 +62,33 @@ Normal:
 	GOSUB			SUB_SEQ_HP_CALC
 	GOSUB			SUB_SEQ_CRITICAL_HIT
 	GOSUB			SUB_SEQ_WAZA_STATUS_MSG
-	//�C�₳�����炨��˂�`�F�b�N������
+	//気絶させたらおんねんチェックをする
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_hp,0,OnnenCheck
-	//�Z���q�b�g�������Ƀ`�F�b�N����������`�F�b�N
+	//技がヒットした時にチェックする特性をチェック
 	WAZA_HIT_TOKUSEI_CHECK	SUB_153_SOUBI_ITEM
 	GOSUB_WORK		BUF_PARA_TEMP_WORK
 
 #if AFTER_MASTER_070202_BT2_FIX
 SUB_153_SOUBI_ITEM:
-	//�Z���q�b�g�������Ƀ`�F�b�N���鑕���A�C�e�����`�F�b�N
+	//技がヒットした時にチェックする装備アイテムをチェック
 	WAZA_HIT_SOUBI_ITEM_CHECK	SUB_153_SOUBI_ITEM_2
 	GOSUB_WORK		BUF_PARA_TEMP_WORK
 
 SUB_153_SOUBI_ITEM_2:
-	//���̃`�F�b�N�̂��߂ɋZ���q�b�g�����t���O�𗧂ĂĂ���
+	//次のチェックのために技がヒットしたフラグを立てておく
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_WAZA_HIT
-	//�Z���q�b�g�������Ƀ`�F�b�N���鑕���A�C�e�����`�F�b�N�i�Ƃ�ڂ�����p�̂��ĂԁB��������̂����A���̂��̂��ܗp�j
+	//技がヒットした時にチェックする装備アイテムをチェック（とんぼがえり用のも呼ぶ。かいがらのすず、いのちのたま用）
 	WAZA_HIT_SOUBI_ITEM_CHECK_TONBOGAERI	SUB_153_NEXT_JUMP
 	GOSUB_WORK		BUF_PARA_TEMP_WORK
 
 SUB_153_NEXT_JUMP:
-	//���̃`�F�b�N�̂��߂ɗ��ĂĂ������t���O�𗎂Ƃ��i���Ƃ��Ȃ��Ă������͂������悩��ʓ�������Ȃ��悤�ɔO�̂��߁j
+	//次のチェックのために立てておいたフラグを落とす（落とさなくてもいいはずだがよからぬ動作をしないように念のため）
 	VALUE			VAL_NBIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_WAZA_HIT
 	BRANCH			SUB_153_NEXT
 
 #else //AFTER_MASTER_070202_BT2_FIX
 SUB_153_SOUBI_ITEM:
-	//�Z���q�b�g�������Ƀ`�F�b�N���鑕���A�C�e�����`�F�b�N
+	//技がヒットした時にチェックする装備アイテムをチェック
 	WAZA_HIT_SOUBI_ITEM_CHECK	SUB_153_NEXT
 	GOSUB_WORK		BUF_PARA_TEMP_WORK
 
@@ -97,19 +97,19 @@ SUB_153_SOUBI_ITEM:
 
 Migawari:
 #if AFTER_MASTER_070202_BT2_FIX
-	//��������_���[�W�̌v�Z������i�݂����U���j
+	//かいがらダメージの計算をする（みがわり攻撃）
 KaigaraDamageCalcMigawari:
 	VALUE_WORK		VAL_SET,BUF_PARA_TEMP_WORK,BUF_PARA_DAMAGE
 	VALUE			VAL_MUL,BUF_PARA_TEMP_WORK,-1
 	IF_PSP_WORK		IF_FLAG_NC,SIDE_DEFENCE,ID_PSP_wkw_migawari_hp,BUF_PARA_TEMP_WORK,KaigaraDamageSetMigawariHP
-	//�_���[�W�ʂ���������_���[�W���[�N�ɑ��
+	//ダメージ量をかいがらダメージワークに代入
 //KaigaraDamageSetDamage:
 	VALUE_WORK		VAL_SET,BUF_PARA_OSTF_KAIGARA_DAMAGE,BUF_PARA_DAMAGE
 	BRANCH			MigawariNext
-	//���݂�HP����������_���[�W���[�N�ɑ��
+	//現在のHPをかいがらダメージワークに代入
 KaigaraDamageSetMigawariHP:
 #if AFTER_MASTER_070202_BT4_FIX
-	//�݂����͏�����̂ŁA�t���O�𗎂Ƃ��Ă���
+	//みがわりは消えるので、フラグを落としておく
 	PSP_VALUE		VAL_NBIT,SIDE_DEFENCE,ID_PSP_condition2,CONDITION2_MIGAWARI
 #endif //AFTER_MASTER_070202_BT4_FIX
 	PSP_VALUE_WORK	VAL_GET,SIDE_DEFENCE,ID_PSP_wkw_migawari_hp,BUF_PARA_OSTF_KAIGARA_DAMAGE
@@ -117,7 +117,7 @@ KaigaraDamageSetMigawariHP:
 MigawariNext:
 #endif //AFTER_MASTER_070202_BT2_FIX
 #if AFTER_MASTER_070123_BT1_FIX
-	//DefenceClient��ClientWork�ɃR�s�[
+	//DefenceClientをClientWorkにコピー
 	VALUE_WORK		VAL_SET,BUF_PARA_CLIENT_WORK,BUF_PARA_DEFENCE_CLIENT
 #endif //AFTER_MASTER_070123_BT1_FIX
 	GOSUB			SUB_SEQ_MIGAWARI_HIT
@@ -130,12 +130,12 @@ OiuchiHazure:
 	GOSUB			SUB_SEQ_WAZA_NO_HIT
 
 SUB_153_NEXT:
-	//�������������������AttackClient�ADefenceClient�Awaza_no_now���ς���Ă���̂ŁA���ɖ߂�
+	//おいうちが発動するとAttackClient、DefenceClient、waza_no_nowが変わっているので、元に戻す
 	GOSUB			SUB_SEQ_AD_POP
 	VALUE_WORK		VAL_GET,BUF_PARA_WAZA_NO_TEMP,BUF_PARA_WAZA_NO_NOW
 	BRANCH			SUB_153_LOOP
 
-//����˂�`�F�b�N
+//おんねんチェック
 OnnenCheck:
 //	ONNEN			TokuseiCheck
 //	MESSAGE			OnnenDamageMineMsg,TAG_NICK_WAZA,SIDE_ATTACK,SIDE_WORK
@@ -144,36 +144,36 @@ OnnenCheck:
 	GOSUB			SUB_SEQ_MICHIDURE_KIZETSU
 
 TokuseiCheck:
-	//�Z���q�b�g�������Ƀ`�F�b�N����������`�F�b�N�i���������ŋC�₪���肤��̂ŁA����˂�`�F�b�N�̂��Ƃɂ���j
+	//技がヒットした時にチェックする特性をチェック（特性発動で気絶がありうるので、おんねんチェックのあとにする）
 	WAZA_HIT_TOKUSEI_CHECK	SoubiItemCheck
 	GOSUB_WORK		BUF_PARA_TEMP_WORK
 
 #if AFTER_MASTER_070202_BT2_FIX
 SoubiItemCheck:
-	//�Z���q�b�g�������Ƀ`�F�b�N���鑕���A�C�e�����`�F�b�N
+	//技がヒットした時にチェックする装備アイテムをチェック
 	WAZA_HIT_SOUBI_ITEM_CHECK	SoubiItemCheck2
 	GOSUB_WORK		BUF_PARA_TEMP_WORK
 
 SoubiItemCheck2:
-	//���̃`�F�b�N�̂��߂ɋZ���q�b�g�����t���O�𗧂ĂĂ���
+	//次のチェックのために技がヒットしたフラグを立てておく
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_WAZA_HIT
-	//�Z���q�b�g�������Ƀ`�F�b�N���鑕���A�C�e�����`�F�b�N�i�Ƃ�ڂ�����p�̂��ĂԁB��������̂����A���̂��̂��ܗp�j
+	//技がヒットした時にチェックする装備アイテムをチェック（とんぼがえり用のも呼ぶ。かいがらのすず、いのちのたま用）
 	WAZA_HIT_SOUBI_ITEM_CHECK_TONBOGAERI	SoubiItemCheckAfter
 	GOSUB_WORK		BUF_PARA_TEMP_WORK
 
 SoubiItemCheckAfter:
-	//���̃`�F�b�N�̂��߂ɗ��ĂĂ������t���O�𗎂Ƃ��i���Ƃ��Ȃ��Ă������͂������悩��ʓ�������Ȃ��悤�ɔO�̂��߁j
+	//次のチェックのために立てておいたフラグを落とす（落とさなくてもいいはずだがよからぬ動作をしないように念のため）
 	VALUE			VAL_NBIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_WAZA_HIT
 
 #else //AFTER_MASTER_070202_BT2_FIX
 SoubiItemCheck:
-	//�Z���q�b�g�������Ƀ`�F�b�N���鑕���A�C�e�����`�F�b�N
+	//技がヒットした時にチェックする装備アイテムをチェック
 	WAZA_HIT_SOUBI_ITEM_CHECK	SUB_153_POP
 	GOSUB_WORK		BUF_PARA_TEMP_WORK
 
 #endif //AFTER_MASTER_070202_BT2_FIX
 SUB_153_POP:
-	//�ǂ������ő��肪�C�₵���Ƃ��̌o���l�擾����
+	//追い討ちで相手が気絶したときの経験値取得処理
 	VALUE_WORK		VAL_SET,BUF_PARA_TEMP_WORK,BUF_PARA_KIZETSU_CLIENT
 	VALUE			VAL_SET,BUF_PARA_KIZETSU_CLIENT,0
 	VALUE_WORK		VAL_SET,BUF_PARA_CALC_WORK,BUF_PARA_SERVER_STATUS_FLAG2
@@ -188,7 +188,7 @@ SUB_153_GET_EXP_NEXT:
 	IF				IF_FLAG_NE,BUF_PARA_CALC_WORK,0,SUB_153_GET_EXP_LOOP
 	VALUE_WORK		BUF_PARA_KIZETSU_CLIENT,VAL_SET,BUF_PARA_TEMP_WORK
 
-	//�������������������AttackClient�ADefenceClient�Awaza_no_now���ς���Ă���̂ŁA���ɖ߂�
+	//おいうちが発動するとAttackClient、DefenceClient、waza_no_nowが変わっているので、元に戻す
 	GOSUB			SUB_SEQ_AD_POP
 	VALUE_WORK		VAL_GET,BUF_PARA_WAZA_NO_TEMP,BUF_PARA_WAZA_NO_NOW
 

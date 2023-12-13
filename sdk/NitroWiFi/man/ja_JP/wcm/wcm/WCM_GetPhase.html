@@ -13,8 +13,8 @@
 
   $Log: WCM_GetPhase.html,v $
   Revision 1.2  2005/07/22 13:00:24  terui
-  "�t�F�[�Y"��"���"�ɗp�ꓝ��
-  �����̏��œ��𓝈�
+  "フェーズ"を"状態"に用語統一
+  履歴の初版日を統一
 
   Revision 1.1  2005/07/20 13:11:10  terui
   Initial upload
@@ -23,7 +23,7 @@
  ==========================================================================-->
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>WCM_GetPhase</TITLE>
 		<LINK rel="stylesheet" href="../../css/nitro.css">
@@ -32,7 +32,7 @@
 	<BODY>
 		<H1>WCM_GetPhase</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>
@@ -43,31 +43,31 @@ s32   WCM_GetPhase( void );
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-			WCM ���C�u�����̌��݂̓�����Ԃ��擾���铯���֐��ł��B
+			WCM ライブラリの現在の内部状態を取得する同期関数です。
 		</P>
 
-		<H2>����</H2>
+		<H2>引数</H2>
 		<P>
-			����܂���B
+			ありません。
 		</P>
 
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<P>
-			WCM ���C�u�����̌��݂̓�����Ԃ� s32 �^�ŕԂ��܂��B�Ԃ�����l�ɂ��Ă� <A href="WCM_CONSTANT_NUMBER.html#phase">WCM ���C�u�����萔</A>���Q�Ƃ��ĉ������B
+			WCM ライブラリの現在の内部状態を s32 型で返します。返しうる値については <A href="WCM_CONSTANT_NUMBER.html#phase">WCM ライブラリ定数</A>を参照して下さい。
 		</P>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 			<CODE>
 				<A href="WCM_Init.html">WCM_Init</A>, <A href="WCM_Finish.html">WCM_Finish</A>
 			</CODE>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2005/07/22 ����<BR>
+			2005/07/22 初版<BR>
 		</P>
 
 	</BODY>

@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	wpcd_debug.c
- * @brief	ƒfƒoƒbƒO
+ * @brief	ãƒ‡ãƒãƒƒã‚°
  * @author	goto
- * @date	2006.03.03(‹à)
+ * @date	2006.03.03(é‡‘)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -25,7 +25,7 @@
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒOî•ñ•\¦
+ * @brief	ãƒ‡ãƒãƒƒã‚°æƒ…å ±è¡¨ç¤º
  *
  * @param	odp	
  *
@@ -35,21 +35,21 @@
 //--------------------------------------------------------------
 void Debug_OperatorStatusPrint(ECB_OPERATOR_DATA* odp)
 {
-	OS_Printf("\n----- operator —˜—p’† -----\n");
-	OS_Printf("ŠJnƒNƒ‰ƒCƒAƒ“ƒg@%d\n", odp->s_client);
-	OS_Printf("I—¹ƒNƒ‰ƒCƒAƒ“ƒg@%d\n", odp->e_client);
-	OS_Printf("”½“]ƒtƒ‰ƒO@@@@%d\n", odp->reverce_flag);
+	OS_Printf("\n----- operator åˆ©ç”¨ä¸­ -----\n");
+	OS_Printf("é–‹å§‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã€€%d\n", odp->s_client);
+	OS_Printf("çµ‚äº†ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã€€%d\n", odp->e_client);
+	OS_Printf("åè»¢ãƒ•ãƒ©ã‚°ã€€ã€€ã€€ã€€%d\n", odp->reverce_flag);
 	OS_Printf("\n----- operator mode -----\n");
-	OS_Printf("ƒ^[ƒQƒbƒg@@@@%d\n", odp->mode[0]);
-	OS_Printf("À•W‘€ì@@@@@%d\n", odp->mode[1]);
-	OS_Printf("•ûŒü‘€ì@@@@@%d\n", odp->mode[2]);
-	OS_Printf("ƒtƒB[ƒ‹ƒh‘€ì@@%d\n", odp->mode[3]);
-	OS_Printf("ƒJƒƒ‰‘€ì@@@@%d\n", odp->mode[4]);
+	OS_Printf("ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã€€ã€€ã€€ã€€%d\n", odp->mode[0]);
+	OS_Printf("åº§æ¨™æ“ä½œã€€ã€€ã€€ã€€ã€€%d\n", odp->mode[1]);
+	OS_Printf("æ–¹å‘æ“ä½œã€€ã€€ã€€ã€€ã€€%d\n", odp->mode[2]);
+	OS_Printf("ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æ“ä½œã€€ã€€%d\n", odp->mode[3]);
+	OS_Printf("ã‚«ãƒ¡ãƒ©æ“ä½œã€€ã€€ã€€ã€€%d\n", odp->mode[4]);
 	
-	///< Ú×
+	///< è©³ç´°
 	if (odp->mode[ ECB_MODE_FIELD ] == OPERATOR_FLD_NONE){ return; }
 	
-	OS_Printf("ƒtƒB[ƒ‹ƒh‘€ì@Ú×%d\n");
+	OS_Printf("ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æ“ä½œã€€è©³ç´°%d\n");
 	{
 		int i;
 		int num;

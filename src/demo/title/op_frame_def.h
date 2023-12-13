@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	op_frame_def.h
- * @brief	ƒI[ƒvƒjƒ“ƒOƒfƒ‚ƒtƒŒ[ƒ€’è‹`
+ * @brief	ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ãƒ‡ãƒ¢ãƒ•ãƒ¬ãƒ¼ãƒ å®šç¾©
  * @author	Saito  GAME FREAK Inc.
  */
 //=============================================================================
@@ -40,20 +40,20 @@
 #define FM_3D_WHITE_OUT		(1576)	//(54*30 - 15 - 30 + 1)
 
 #define FM_HERO_WALK		(1600)	//(55*30 - 15)
-#define FM_BALL_THROW		(62*30 - 15 - 15)		//ƒ{[ƒ‹“Š‚°‚éƒAƒjƒ
-#define FM_BALL_HAND		(64*30 - 15 - 15 - 45)		//Žè‚ÌƒAƒbƒv
-#define FM_BALL_HAND_RELEASE	(65*30 - 15 - 15 - 45 - 15)	//Žè‚©‚çƒ{[ƒ‹‚ð—£‚·
+#define FM_BALL_THROW		(62*30 - 15 - 15)		//ãƒœãƒ¼ãƒ«æŠ•ã’ã‚‹ã‚¢ãƒ‹ãƒ¡
+#define FM_BALL_HAND		(64*30 - 15 - 15 - 45)		//æ‰‹ã®ã‚¢ãƒƒãƒ—
+#define FM_BALL_HAND_RELEASE	(65*30 - 15 - 15 - 45 - 15)	//æ‰‹ã‹ã‚‰ãƒœãƒ¼ãƒ«ã‚’é›¢ã™
 
-#define FM_POKE_APPEAR_FLASH	(1935 - 15)	//ƒ|ƒPƒ‚ƒ““oêŽž‚Ìƒtƒ‰ƒbƒVƒ…
+#define FM_POKE_APPEAR_FLASH	(1935 - 15)	//ãƒã‚±ãƒ¢ãƒ³ç™»å ´æ™‚ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 #define FM_POKE_APPEAR_FIRST	(FM_POKE_APPEAR_FLASH + 8)
 #define FM_POKE_APPEAR_SECOND	(FM_POKE_APPEAR_FLASH + 14)
 #define FM_POKE_APPEAR_THIRD	(FM_POKE_APPEAR_FLASH + 20)
 
-#define FM_WAZA_RIGHT		(1995 + 15)//‰E‘¤‚Ìƒ|ƒPƒ‚ƒ“‚ª‹ZŒJ‚èo‚µ(ˆÈ~‹ZI—¹ŒãŽŸX‚ÆŒJ‚èo‚·)
+#define FM_WAZA_RIGHT		(1995 + 15)//å³å´ã®ãƒã‚±ãƒ¢ãƒ³ãŒæŠ€ç¹°ã‚Šå‡ºã—(ä»¥é™æŠ€çµ‚äº†å¾Œæ¬¡ã€…ã¨ç¹°ã‚Šå‡ºã™)
 #define FM_WAZA_LEFT		(2085 + 15+30)
 
-#define FM_POKE_ATTACK		(2200 + 15)		//ƒ|ƒPƒ‚ƒ“‘Ì“–‚½‚è
-#define FM_SCENE2_END_WIPE	(FM_POKE_ATTACK + 1)	//2216	//ƒV[ƒ“2I—¹‚ÌƒƒCƒvŠJŽn
+#define FM_POKE_ATTACK		(2200 + 15)		//ãƒã‚±ãƒ¢ãƒ³ä½“å½“ãŸã‚Š
+#define FM_SCENE2_END_WIPE	(FM_POKE_ATTACK + 1)	//2216	//ã‚·ãƒ¼ãƒ³2çµ‚äº†ã®ãƒ¯ã‚¤ãƒ—é–‹å§‹
 
 
 
@@ -68,7 +68,7 @@
 #define FM_HIKOZARU_WAIT	(1998)
 #define FM_POTTYAMA_WAIT	(2216)
 
-#if 0	//ƒvƒ‰ƒ`ƒi‚Å‚Íƒeƒ“ƒKƒ“ƒUƒ“‚ÌŽÚ‚ð’Z‚­‚µ‚ÄA‚»‚Ì•ªƒ^ƒCƒgƒ‹(‘„‚Ì’Œƒfƒ‚)‚ÅŽžŠÔ‚ðŽg‚¤
+#if 0	//ãƒ—ãƒ©ãƒãƒŠã§ã¯ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³ã®å°ºã‚’çŸ­ãã—ã¦ã€ãã®åˆ†ã‚¿ã‚¤ãƒˆãƒ«(æ§ã®æŸ±ãƒ‡ãƒ¢)ã§æ™‚é–“ã‚’ä½¿ã†
 #define FM_TENGAN_IN		(2275)
 #define FM_THUNDER1			(2430)
 #define FM_THUNDER2			(2515)

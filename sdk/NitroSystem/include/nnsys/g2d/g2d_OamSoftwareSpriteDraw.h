@@ -17,7 +17,7 @@
 #define NNS_G2D_OAMSOFTWARESPRITEEMU_H_
 
 #include <nitro.h>
-#include <nnsys/g2d/g2d_Image.h> // TODO : ‚±‚ÌˆË‘¶‚ÍOK‚©H—vŒŸ“¢
+#include <nnsys/g2d/g2d_Image.h> // TODO : ã“ã®ä¾å­˜ã¯OKã‹ï¼Ÿè¦æ¤œè¨
 
 #ifdef __cplusplus
 extern "C" {
@@ -27,8 +27,8 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dUVFlipCorrectFunc
 
-  Description:  Oamƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒGƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ 
-                ‚Åg—p‚³‚ê‚é UV’l•â³ŠÖ”ƒ|ƒCƒ“ƒ^
+  Description:  Oamã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚¨ãƒŸãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ 
+                ã§ä½¿ç”¨ã•ã‚Œã‚‹ UVå€¤è£œæ­£é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
                 
  *---------------------------------------------------------------------------*/
 typedef void (*NNS_G2dOamSoftEmuUVFlipCorrectFunc)( fx32*   pRetU0,  
@@ -86,7 +86,7 @@ void NNS_G2dSetOamSoftEmuSpriteParamCache
 );
 
 //------------------------------------------------------------------------------
-// NNS_G2dDrawOneOam3DDirectUsingParamCache() ‚Í—pˆÓ‚³‚ê‚Ü‚¹‚ñB
+// NNS_G2dDrawOneOam3DDirectUsingParamCache() ã¯ç”¨æ„ã•ã‚Œã¾ã›ã‚“ã€‚
 void NNS_G2dDrawOneOam3DDirectUsingParamCacheFast
 ( 
     s16                             posX,
@@ -96,13 +96,13 @@ void NNS_G2dDrawOneOam3DDirectUsingParamCacheFast
 );
 
 //------------------------------------------------------------------------------
-// UV ’l•â³ƒR[ƒ‹ƒoƒbƒNŠÖ˜A
+// UV å€¤è£œæ­£ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢é€£
 void    NNS_G2dSetOamSoftEmuUVFlipCorrectFunc( NNS_G2dOamSoftEmuUVFlipCorrectFunc pFunc );
 void    NNS_G2dResetOamSoftEmuUVFlipCorrectFunc();
 
 
 //------------------------------------------------------------------------------
-// ©“®Z’lƒIƒtƒZƒbƒg‹@”\ŠÖ˜A
+// è‡ªå‹•Zå€¤ã‚ªãƒ•ã‚»ãƒƒãƒˆæ©Ÿèƒ½é–¢é€£
 
 void NNSi_G2dSetOamSoftEmuAutoZOffsetFlag   ( BOOL flag );
 fx32 NNSi_G2dGetOamSoftEmuAutoZOffset       ( void );
@@ -113,7 +113,7 @@ fx32 NNSi_G2dGetOamSoftEmuAutoZOffsetStep   ( void );
 
 
 //------------------------------------------------------------------------------
-// inline ŠÖ”
+// inline é–¢æ•°
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------

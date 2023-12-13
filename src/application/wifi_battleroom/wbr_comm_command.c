@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wbr_comm_command.c
- *	@brief		wifi	ƒoƒgƒ‹ƒ‹[ƒ€’ÊMƒRƒ}ƒ“ƒh
+ *	@brief		wifi	ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ é€šä¿¡ã‚³ãƒžãƒ³ãƒ‰
  *	@author		tomoya takahashi
  *	@data		2007.02.15
  *
@@ -18,65 +18,65 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
-*/
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-/**
- *					\‘¢‘ÌéŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *			’ÊMƒf[ƒ^
+ *					æ§‹é€ ä½“å®£è¨€
+*/
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+/**
+ *			é€šä¿¡ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const CommPacketTbl _CommWbrPacketTbl[] = {
 	//-------------------------------------
-	//@ƒQ[ƒ€—p
+	//ã€€ã‚²ãƒ¼ãƒ ç”¨
 	//=====================================
-	// “¯Šú—p	
-	{ WBR_CNM_GameSysStart, WBR_CNM_ZeroSizeGet, NULL },		///< OYA->KO €”õŠ®—¹
-	{ WBR_CNM_GameSysGameStart, WBR_CNM_ZeroSizeGet, NULL },		///< OYA->KO ƒQ[ƒ€ŠJŽn
-	{ WBR_CNM_GameSysEnd,	WBR_CNM_ZeroSizeGet, NULL },		///< OYA->KO I—¹ 	
-	// ƒf[ƒ^ŽóM—p
-	{ WBR_CNM_KoCommonRecv,		WBR_CNM_KoCommonSizeGet, WBR_CNM_KoCommRecvBuffGet },		///< KO->OYA ‹¤’Êƒf[ƒ^
-	{ WBR_CNM_KoGameDataRecv,	WBR_CNM_KoGameDataSizeGet, NULL },		///< KO->OYA ƒQ[ƒ€ƒRƒ}ƒ“ƒh
-	{ WBR_CNM_OyaGameDataRecv,	WBR_CNM_OyaGameDataSizeGet, NULL },		///< OYA->KO ƒQ[ƒ€ó‘Ôƒf[ƒ^
-	{ WBR_CNM_KoOyaDataGetRecv,	WBR_CNM_ZeroSizeGet, NULL },		///< KO->OYA Œ»Ý‚ÌƒQ[ƒ€ó‘Ô‹­§Žæ“¾
-	{ WBR_CNM_KoTalkDataRecv,	WBR_CNM_KoTalkDataSizeGet, NULL },		///< KO->OYA ˜b‚µ‚©‚¯ƒf[ƒ^
-	{ WBR_CNM_KoTalkReqRecv,	WBR_CNM_KoTalkReqSizeGet, NULL },		///< KO->OYA ˜b‚µ‚©‚¯ƒf[ƒ^
+	// åŒæœŸç”¨	
+	{ WBR_CNM_GameSysStart, WBR_CNM_ZeroSizeGet, NULL },		///< OYA->KO æº–å‚™å®Œäº†
+	{ WBR_CNM_GameSysGameStart, WBR_CNM_ZeroSizeGet, NULL },		///< OYA->KO ã‚²ãƒ¼ãƒ é–‹å§‹
+	{ WBR_CNM_GameSysEnd,	WBR_CNM_ZeroSizeGet, NULL },		///< OYA->KO çµ‚äº† 	
+	// ãƒ‡ãƒ¼ã‚¿å—ä¿¡ç”¨
+	{ WBR_CNM_KoCommonRecv,		WBR_CNM_KoCommonSizeGet, WBR_CNM_KoCommRecvBuffGet },		///< KO->OYA å…±é€šãƒ‡ãƒ¼ã‚¿
+	{ WBR_CNM_KoGameDataRecv,	WBR_CNM_KoGameDataSizeGet, NULL },		///< KO->OYA ã‚²ãƒ¼ãƒ ã‚³ãƒžãƒ³ãƒ‰
+	{ WBR_CNM_OyaGameDataRecv,	WBR_CNM_OyaGameDataSizeGet, NULL },		///< OYA->KO ã‚²ãƒ¼ãƒ çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿
+	{ WBR_CNM_KoOyaDataGetRecv,	WBR_CNM_ZeroSizeGet, NULL },		///< KO->OYA ç¾åœ¨ã®ã‚²ãƒ¼ãƒ çŠ¶æ…‹å¼·åˆ¶å–å¾—
+	{ WBR_CNM_KoTalkDataRecv,	WBR_CNM_KoTalkDataSizeGet, NULL },		///< KO->OYA è©±ã—ã‹ã‘ãƒ‡ãƒ¼ã‚¿
+	{ WBR_CNM_KoTalkReqRecv,	WBR_CNM_KoTalkReqSizeGet, NULL },		///< KO->OYA è©±ã—ã‹ã‘ãƒ‡ãƒ¼ã‚¿
 };
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹‚ðŽæ“¾
+ *	@brief		ã‚³ãƒžãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
  */
 //-----------------------------------------------------------------------------
 const CommPacketTbl* Wbr_CommCommandTclGet( void )
@@ -86,7 +86,7 @@ const CommPacketTbl* Wbr_CommCommandTclGet( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹—v‘f”‚ðŽæ“¾
+ *	@brief	ã‚³ãƒžãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«è¦ç´ æ•°ã‚’å–å¾—
  */
 //-----------------------------------------------------------------------------
 int Wbr_CommCommandTblNumGet( void )

@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SOC_GetHostByAddr</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">SOC_GetHostByAddr</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
@@ -20,43 +20,43 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 
 <table width="100%">
   <tr>
     <td><code><em><strong>addr</strong></em></code></td>
-    <td>�l�b�g���[�N�o�C�g�I�[�_�[�ł̃A�h���X�ւ̃|�C���^�B</td>
+    <td>ネットワークバイトオーダーでのアドレスへのポインタ。</td>
   </tr>
   <tr>
     <td><code><em><strong>len</strong></em></code></td>
-    <td><code><em><strong>addr</strong></em></code>�ɂ���ă|�C���g�����A�h���X�̒����B</td>
+    <td><code><em><strong>addr</strong></em></code>によってポイントされるアドレスの長さ。</td>
   </tr>
   <tr>
     <td><code><em><strong>type</strong></em></code></td>
-    <td>�A�h���X�̃t�@�~���[�^�C�v(IPv4�A�h���X�ɂ�<code>SOC_PF_INET</code>)</td>
+    <td>アドレスのファミリータイプ(IPv4アドレスには<code>SOC_PF_INET</code>)</td>
   </tr>
 </table>
 
-<h2>�Ԃ�l</h2>
+<h2>返り値</h2>
 
-<p>�v�����ꂽ�G���g���[������������<code><a href="SOCHostEnt.html">SOCHostEnt</a></code>�\���̂ւ̃|�C���^��Ԃ��܂��B</p>
+<p>要求されたエントリーが発見されると<code><a href="SOCHostEnt.html">SOCHostEnt</a></code>構造体へのポインタを返します。</p>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p>�A�h���X<code><em><strong>addr</strong></em></code>�ɑΉ�����z�X�g�ɂ��Ă̏���Ԃ��܂��B</p>
+<p>アドレス<code><em><strong>addr</strong></em></code>に対応するホストについての情報を返します。</p>
 
-<p><strong><em>����</em></strong>�F<code>SOC_GetHostByAddr()</code>�͍ē��\�ł��X���b�h�Z�[�t�ł�����܂���B</p>
+<p><strong><em>注意</em></strong>：<code>SOC_GetHostByAddr()</code>は再入可能でもスレッドセーフでもありません。</p>
 
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 
 <p>
 <code><a href="SOC_GetHostByName.html">SOC_GetHostByName</a></code>,
 <code><a href="SOCConfig.html">SOCConfig</a></code>,
 <code><a href="SOCHostEnt.html">SOCHostEnt</a></code>
 </p>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/09/13 ����</P>
+2005/09/13 初版</P>
 </body>
 </html>

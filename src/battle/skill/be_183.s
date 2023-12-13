@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_183.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			183�@�ǂ��A�܂ЁA�˂ނ�A������A��ǂ肬���̋Z��Ԃ��B�i�}�W�b�N�R�[�g�t���O�Q�Ɓj
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			183　どく、まひ、ねむり、こんらん、やどりぎ等の技を返す。（マジックコートフラグ参照）
  *
  *@author	HisashiSogabe
  *@data		2005.10.03

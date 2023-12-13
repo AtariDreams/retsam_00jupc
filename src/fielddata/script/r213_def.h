@@ -1,7 +1,7 @@
 #ifndef _R213_DEF_H_
 #define _R213_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R213_FLAG_CHANGE		(1)
 #define	SCRID_R213_GINGAM		(2)
 #define	SCRID_R213_FISHING1		(3)
@@ -10,6 +10,6 @@
 #define	SCRID_R213_SIGN1		(6)
 #define	SCRID_R213_SIGN2		(7)
 #define	SCRID_R213_SIGN3		(8)
-#define	SCRID_R213_DATA_MAX		(8)		//最大数
+#define	SCRID_R213_DATA_MAX		(8)		//譛螟ｧ謨ｰ
 
 #endif //_R213_DEF_H_

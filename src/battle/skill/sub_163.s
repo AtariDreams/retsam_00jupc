@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_163.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			‚¢‚¦‚«ƒV[ƒPƒ“ƒX
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ã„ãˆãã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *@author	HisashiSogabe
  *@data		2006.02.14
  *
@@ -15,11 +15,11 @@
 	.include	"waza_seq_def.h"
 
 SUB_163:
-	//‚Ý‚ª‚í‚è‚ðo‚³‚ê‚Ä‚¢‚é‚Æ‚«‚ÍAŽ¸”s‚·‚é
+	//ã¿ãŒã‚ã‚Šã‚’å‡ºã•ã‚Œã¦ã„ã‚‹ã¨ãã¯ã€å¤±æ•—ã™ã‚‹
 	MIGAWARI_CHECK	SIDE_DEFENCE,Umakukimaran
 	IF_PSP			IF_FLAG_BIT,SIDE_DEFENCE,ID_PSP_waza_kouka,WAZAKOUKA_IEKI,Umakukimaran
 	IF				IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_NOHIT_CHG,Umakukimaran
-	//“Á«ƒ}ƒ‹ƒ`ƒ^ƒCƒv‚ÍA‚¤‚Ü‚­‚«‚Ü‚ç‚ñ
+	//ç‰¹æ€§ãƒžãƒ«ãƒã‚¿ã‚¤ãƒ—ã¯ã€ã†ã¾ããã¾ã‚‰ã‚“
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_speabino,TOKUSYU_MARUTITAIPU,Umakukimaran
 
 	GOSUB			SUB_SEQ_WAZA_OUT_EFF

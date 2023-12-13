@@ -1,9 +1,9 @@
 #ifndef _D34R0111_DEF_H_
 #define _D34R0111_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D34R0111_FLAG_CHANGE		(1)
 #define	SCRID_D34R0111_HOLE		(2)
-#define	SCRID_D34R0111_DATA_MAX		(2)		//最大数
+#define	SCRID_D34R0111_DATA_MAX		(2)		//譛螟ｧ謨ｰ
 
 #endif //_D34R0111_DEF_H_

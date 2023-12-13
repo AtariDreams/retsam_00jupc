@@ -2,7 +2,7 @@
 /**
  *
  *@file		wipe_wnd.c
- *@brief	ƒEƒBƒ“ƒhƒE‘€ì‚ÌŠÖ”‚ğƒpƒbƒN‚µ‚½ŠÖ”ŒS
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ“ä½œã®é–¢æ•°ã‚’ãƒ‘ãƒƒã‚¯ã—ãŸé–¢æ•°éƒ¡
  *@author	tomoya takahashi 
  *@data		2005.08.22
  *
@@ -16,20 +16,20 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void wndp_v_SetVisibleWnd(TCB_PTR tcb, void* data);
@@ -41,10 +41,10 @@ static void wndp_v_SetWndPosition(TCB_PTR tcb, void* data);
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚Ì•\¦E”ñ•\¦
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºãƒ»éè¡¨ç¤º
  *
- *@param	window	•\¦‚³‚¹‚éƒEƒBƒ“ƒhƒE
- *@param	disp	•\¦–Ê
+ *@param	window	è¡¨ç¤ºã•ã›ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	none
  *
@@ -62,9 +62,9 @@ void WNDP_SetVisibleWnd(int window, int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚Ì•\¦E”ñ•\¦‚ğæ“¾
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºãƒ»éè¡¨ç¤ºã‚’å–å¾—
  *
- *@param	disp	•\¦–Ê
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	int
  *
@@ -84,12 +84,12 @@ int WNDP_GetVisibleWnd(int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚Ì“à‘¤‚É“ü‚éBG
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å†…å´ã«å…¥ã‚‹BG
  *
- *@param	wnd		“à‘¤‚É“ü‚éBG
- *@param	effect	“à‘¤‚ÌBG‚ÉƒGƒtƒFƒNƒg‚ª‚ ‚é‚©
- *@param	wnd_no	ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
- *@param	disp	•\¦–Ê
+ *@param	wnd		å†…å´ã«å…¥ã‚‹BG
+ *@param	effect	å†…å´ã®BGã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒã‚ã‚‹ã‹
+ *@param	wnd_no	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	none
  *
@@ -116,11 +116,11 @@ void WNDP_SetWndInsidePlane(int wnd, BOOL effect, int wnd_no, int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚ÌŠO‘¤‚É—ˆ‚éBG‚Ìİ’è
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å¤–å´ã«æ¥ã‚‹BGã®è¨­å®š
  *
- *@param	wnd		ŠO‘¤‚É—ˆ‚éBG
- *@param	effect	ŠO‘¤‚É—ˆ‚éBG‚ÉƒGƒtƒFƒNƒg‚ª‚©‚©‚Á‚Ä‚¢‚é‚©
- *@param	disp	•\¦–Ê
+ *@param	wnd		å¤–å´ã«æ¥ã‚‹BG
+ *@param	effect	å¤–å´ã«æ¥ã‚‹BGã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒã‹ã‹ã£ã¦ã„ã‚‹ã‹
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	none
  *
@@ -138,10 +138,10 @@ void WNDP_SetWndOutsidePlane(int wnd, BOOL effect, int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚Ì“à‘¤‚ÌBG‚ğæ“¾
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å†…å´ã®BGã‚’å–å¾—
  *
- *@param	wnd_no	ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
- *@param	disp	•\¦–Ê
+ *@param	wnd_no	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	GXWndPlane
  *
@@ -170,9 +170,9 @@ GXWndPlane WNDP_GetWndInsidePlane(int wnd_no, int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚ÌŠO‘¤‚ÌBG‚ğæ“¾
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å¤–å´ã®BGã‚’å–å¾—
  *
- *@param	disp	•\¦–Ê
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	GXWndPlane
  *
@@ -192,11 +192,11 @@ GXWndPlane WNDP_GetWndOutsidePlane(int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	objƒEƒBƒ“ƒhƒE‚Ì“à‘¤‚É—ˆ‚éBG‚ğİ’è
+ *@brief	objã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å†…å´ã«æ¥ã‚‹BGã‚’è¨­å®š
  *
- *@param	wnd		“à‘¤‚É—ˆ‚éBG
- *@param	effect	“à‘¤‚É—ˆ‚éBG‚ÉƒGƒtƒFƒNƒg‚ª‚©‚©‚é‚©
- *@param	disp	•\¦–Ê
+ *@param	wnd		å†…å´ã«æ¥ã‚‹BG
+ *@param	effect	å†…å´ã«æ¥ã‚‹BGã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒã‹ã‹ã‚‹ã‹
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	none
  *
@@ -214,9 +214,9 @@ void WNDP_SetWndOBJInsidePlane(int wnd, BOOL effect, int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒIƒuƒWƒFƒEƒBƒ“ƒhƒE‚Ì“à‘¤‚ÌBG‚ğæ“¾
+ *@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å†…å´ã®BGã‚’å–å¾—
  *
- *@param	disp	•\¦–Ê
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	GXWndPlane
  *
@@ -236,14 +236,14 @@ GXWndPlane WNDP_GetWndOBJInsidePlane(int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚Ì•\¦ˆÊ’u‚ÆƒTƒCƒY‚ğİ’è
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºä½ç½®ã¨ã‚µã‚¤ã‚ºã‚’è¨­å®š
  *	
- *@param	x1	¶ˆÊ’u
- *@param	y1	ãˆÊ’u
- *@param	x2	‰EˆÊ’u
- *@param	y2	‰ºˆÊ’u
- *@param	wnd_no	ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
- *@param	disp	•\¦–Ê
+ *@param	x1	å·¦ä½ç½®
+ *@param	y1	ä¸Šä½ç½®
+ *@param	x2	å³ä½ç½®
+ *@param	y2	ä¸‹ä½ç½®
+ *@param	wnd_no	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	none
  *
@@ -271,11 +271,11 @@ void WNDP_SetWndPosition(int x1, int y1, int x2, int y2, int wnd_no, int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚Ì•\¦E”ñ•\¦Vblank‚Ås‚¤
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºãƒ»éè¡¨ç¤ºVblankã§è¡Œã†
  *
- *@param	sys		Vblank—pƒVƒXƒeƒ€ƒf[ƒ^
- *@param	window	•\¦‚³‚¹‚éƒEƒBƒ“ƒhƒE
- *@param	disp	•\¦–Ê
+ *@param	sys		Vblankç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *@param	window	è¡¨ç¤ºã•ã›ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	none
  *
@@ -294,13 +294,13 @@ void WNDP_V_SetVisibleWnd(WNDP_SYS_PTR sys, int window, int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚Ì“à‘¤‚É“ü‚éBG
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å†…å´ã«å…¥ã‚‹BG
  *
- *@param	sys		Vblank—pƒVƒXƒeƒ€ƒf[ƒ^
- *@param	wnd		“à‘¤‚É“ü‚éBG
- *@param	effect	“à‘¤‚ÌBG‚ÉƒGƒtƒFƒNƒg‚ª‚ ‚é‚©
- *@param	wnd_no	ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
- *@param	disp	•\¦–Ê
+ *@param	sys		Vblankç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *@param	wnd		å†…å´ã«å…¥ã‚‹BG
+ *@param	effect	å†…å´ã®BGã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒã‚ã‚‹ã‹
+ *@param	wnd_no	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	none
  *
@@ -322,12 +322,12 @@ void WNDP_V_SetWndInsidePlane(WNDP_SYS_PTR sys, int wnd, BOOL effect, int wnd_no
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚ÌŠO‘¤‚É—ˆ‚éBG‚Ìİ’è
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å¤–å´ã«æ¥ã‚‹BGã®è¨­å®š
  *
- *@param	sys		Vblank—pƒVƒXƒeƒ€ƒf[ƒ^
- *@param	wnd		ŠO‘¤‚É—ˆ‚éBG
- *@param	effect	ŠO‘¤‚É—ˆ‚éBG‚ÉƒGƒtƒFƒNƒg‚ª‚©‚©‚Á‚Ä‚¢‚é‚©
- *@param	disp	•\¦–Ê
+ *@param	sys		Vblankç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *@param	wnd		å¤–å´ã«æ¥ã‚‹BG
+ *@param	effect	å¤–å´ã«æ¥ã‚‹BGã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒã‹ã‹ã£ã¦ã„ã‚‹ã‹
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	none
  *
@@ -348,12 +348,12 @@ void WNDP_V_SetWndOutsidePlane(WNDP_SYS_PTR sys, int wnd, BOOL effect, int disp)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	objƒEƒBƒ“ƒhƒE‚Ì“à‘¤‚É—ˆ‚éBG‚ğİ’è
+ *@brief	objã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å†…å´ã«æ¥ã‚‹BGã‚’è¨­å®š
  *
- *@param	sys		Vblank—pƒVƒXƒeƒ€ƒf[ƒ^
- *@param	wnd		“à‘¤‚É—ˆ‚éBG
- *@param	effect	“à‘¤‚É—ˆ‚éBG‚ÉƒGƒtƒFƒNƒg‚ª‚©‚©‚é‚©
- *@param	disp	•\¦–Ê
+ *@param	sys		Vblankç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *@param	wnd		å†…å´ã«æ¥ã‚‹BG
+ *@param	effect	å†…å´ã«æ¥ã‚‹BGã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒã‹ã‹ã‚‹ã‹
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	none
  *
@@ -374,15 +374,15 @@ void WNDP_V_SetWndOBJInsidePlane(WNDP_SYS_PTR sys, int wnd, BOOL effect, int dis
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE‚Ì•\¦ˆÊ’u‚ÆƒTƒCƒY‚ğİ’è
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºä½ç½®ã¨ã‚µã‚¤ã‚ºã‚’è¨­å®š
  *	
- *@param	sys		Vblank—pƒVƒXƒeƒ€ƒf[ƒ^
- *@param	x1	¶ˆÊ’u
- *@param	y1	ãˆÊ’u
- *@param	x2	‰EˆÊ’u
- *@param	y2	‰ºˆÊ’u
- *@param	wnd_no	ƒEƒBƒ“ƒhƒEƒiƒ“ƒo[
- *@param	disp	•\¦–Ê
+ *@param	sys		Vblankç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *@param	x1	å·¦ä½ç½®
+ *@param	y1	ä¸Šä½ç½®
+ *@param	x2	å³ä½ç½®
+ *@param	y2	ä¸‹ä½ç½®
+ *@param	wnd_no	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒŠãƒ³ãƒãƒ¼
+ *@param	disp	è¡¨ç¤ºé¢
  *
  *@return	none
  *
@@ -411,10 +411,10 @@ void WNDP_V_SetWndPosition(WNDP_SYS_PTR sys, int x1, int y1, int x2, int y2, int
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	•\¦ƒEƒBƒ“ƒhƒE‚Ìİ’è‚ğVblankƒ^ƒXƒN‚Ås‚¤
+ *@brief	è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¨­å®šã‚’Vblankã‚¿ã‚¹ã‚¯ã§è¡Œã†
  *
- *@param	tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- *@param	data	WNDP_VISIBLE_PARAMŒ^‚Ìƒf[ƒ^
+ *@param	tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ *@param	data	WNDP_VISIBLE_PARAMå‹ã®ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -432,10 +432,10 @@ static void wndp_v_SetVisibleWnd(TCB_PTR tcb, void* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒE“à‚Ìİ’è‚ğVblankƒ^ƒXƒN‚Ås‚¤
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã®è¨­å®šã‚’Vblankã‚¿ã‚¹ã‚¯ã§è¡Œã†
  *
- *@param	tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- *@param	data	WNDP_INSIDE_PARAMŒ^‚Ìƒf[ƒ^
+ *@param	tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ *@param	data	WNDP_INSIDE_PARAMå‹ã®ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -453,10 +453,10 @@ static void wndp_v_SetWndInsidePlane(TCB_PTR tcb, void* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒEŠO‚Ìİ’è‚ğVblankƒ^ƒXƒN‚Ås‚¤
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤–ã®è¨­å®šã‚’Vblankã‚¿ã‚¹ã‚¯ã§è¡Œã†
  *
- *@param	tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- *@param	data	WNDP_OUTSIDE_PARAMŒ^‚Ìƒf[ƒ^
+ *@param	tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ *@param	data	WNDP_OUTSIDE_PARAMå‹ã®ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -474,9 +474,9 @@ static void wndp_v_SetWndOutsidePlane(TCB_PTR tcb, void* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒEŠO‚Ìİ’è‚ğVblankƒ^ƒXƒN‚Ås‚¤
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤–ã®è¨­å®šã‚’Vblankã‚¿ã‚¹ã‚¯ã§è¡Œã†
  *
- *@param	data	WNDP_OBJINSIDE_PARAMŒ^‚Ìƒf[ƒ^
+ *@param	data	WNDP_OBJINSIDE_PARAMå‹ã®ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -494,9 +494,9 @@ static void wndp_v_SetWndOBJInsidePlane(TCB_PTR tcb, void* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒEƒBƒ“ƒhƒEƒ|ƒWƒVƒ‡ƒ“‚Ìİ’è‚ğVblankƒ^ƒXƒN‚Ås‚¤
+ *@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¸ã‚·ãƒ§ãƒ³ã®è¨­å®šã‚’Vblankã‚¿ã‚¹ã‚¯ã§è¡Œã†
  *
- *@param	data	WNDP_POSITION_PARAMŒ^‚Ìƒf[ƒ^
+ *@param	data	WNDP_POSITION_PARAMå‹ã®ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *

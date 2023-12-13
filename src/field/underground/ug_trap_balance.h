@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_trap_balance.h
- * @brief	ã©‚Ìƒoƒ‰ƒ“ƒX‚Ìdefine
+ * @brief	ç½ ã®ãƒãƒ©ãƒ³ã‚¹ã®define
  * @author	k.ohno
  * @date    2006.06.08
  */
@@ -10,36 +10,36 @@
 #ifndef __UG_TRAP_BALANCE_H__
 #define __UG_TRAP_BALANCE_H__
 
-// ‚±‚ñ‚ç‚ñ
-#define _GIDDY_STEP_NUM  (30)  // ‚±‚ñ‚ç‚ñ•à”
+// ã“ã‚“ã‚‰ã‚“
+#define _GIDDY_STEP_NUM  (30)  // ã“ã‚“ã‚‰ã‚“æ­©æ•°
 
-// ‚Í‚ñ‚Ä‚ñ
-#define _REVERSE_STEP_NUM  (30)  // ”½“]•à”
+// ã¯ã‚“ã¦ã‚“
+#define _REVERSE_STEP_NUM  (30)  // åè»¢æ­©æ•°
 
-// ‚ ‚È
-#define _HOLE_STEP_NUM (10)   //‚ ‚ª‚­‰ñ”
+// ã‚ãª
+#define _HOLE_STEP_NUM (10)   //ã‚ãŒãå›žæ•°
 
-// ‚¨‚¨‚ ‚È
-#define _BIGHOLE_STEP_NUM (20)  // ‚ ‚ª‚­‰ñ”
+// ãŠãŠã‚ãª
+#define _BIGHOLE_STEP_NUM (20)  // ã‚ãŒãå›žæ•°
 
-// ‚Í‚È‚Ñ‚ç
-#define _CLACT_BLOSSOMS_OAMNUM             (32)   // ‰æ–Ê‚Éo‚·OAM”
-// ‚±‚Ì‚Í
-#define _CLACT_LEAF_OAMNUM             (16)   // ‰æ–Ê‚Éo‚·OAM”
-// ‚¨‚¨‚ ‚í
-#define _CLACT_BUBBLE_OAMNUM             (20)   // ‰æ–Ê‚Éo‚·BUBBLE‚ÌOAM”
-// ‚Õ‚¿‚ ‚í
-#define _CLACT_SUDS_OAMNUM             (7)   // ‰æ–Ê‚Éo‚·SUDS‚ÌOAM”
+// ã¯ãªã³ã‚‰
+#define _CLACT_BLOSSOMS_OAMNUM             (32)   // ç”»é¢ã«å‡ºã™OAMæ•°
+// ã“ã®ã¯
+#define _CLACT_LEAF_OAMNUM             (16)   // ç”»é¢ã«å‡ºã™OAMæ•°
+// ãŠãŠã‚ã‚
+#define _CLACT_BUBBLE_OAMNUM             (20)   // ç”»é¢ã«å‡ºã™BUBBLEã®OAMæ•°
+// ã·ã¡ã‚ã‚
+#define _CLACT_SUDS_OAMNUM             (7)   // ç”»é¢ã«å‡ºã™SUDSã®OAMæ•°
 
-// ‚í‚Èƒtƒ‰ƒbƒVƒ…ŽžŠÔ
+// ã‚ãªãƒ•ãƒ©ãƒƒã‚·ãƒ¥æ™‚é–“
 #define _FIRST_FLASH_LEVEL (10)
-// ‚í‚ÈŽÀsŽžˆÃ‚­‚µ‚Ä‚¢‚éƒŒƒxƒ‹
+// ã‚ãªå®Ÿè¡Œæ™‚æš—ãã—ã¦ã„ã‚‹ãƒ¬ãƒ™ãƒ«
 #define _TRAP_DARK_LEVEL (-4)
 
-// ‰Š‚Ì‚í‚È
-#define _MIC_SAMPLE_NUM (10)  //‚«‚©‚¯‚é‘§‚ÌƒTƒ“ƒvƒŠƒ“ƒO”
-#define _MIC_TOTAL_NUM  (500)  // ‘§‚Ì‡Œv’l  ˆê‘§128ˆÈ‰º
-#define _MIC_SCALEDOWN_TIME  (10)  // ˆêŒÂ¬‚³‚­‚È‚éˆ×‚ÌƒtƒŒ[ƒ€  30 = ˆê•b
+// ç‚Žã®ã‚ãª
+#define _MIC_SAMPLE_NUM (10)  //å¹ãã‹ã‘ã‚‹æ¯ã®ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°æ•°
+#define _MIC_TOTAL_NUM  (500)  // æ¯ã®åˆè¨ˆå€¤  ä¸€æ¯128ä»¥ä¸‹
+#define _MIC_SCALEDOWN_TIME  (10)  // ä¸€å€‹å°ã•ããªã‚‹ç‚ºã®ãƒ•ãƒ¬ãƒ¼ãƒ   30 = ä¸€ç§’
 
 
 

@@ -1,6 +1,6 @@
 /**
  *	@file	b_tower_fld.h
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@ƒXƒNƒŠƒvƒgŠÖ˜A@ƒTƒuƒ‹[ƒ`ƒ“ŒQ
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆé–¢é€£ã€€ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ç¾¤
  *	@author	Miyuki Iwasawa
  *	@date	06.04.17
  */
@@ -19,81 +19,81 @@
 #endif
 
 /**
- *	@brief	ŽQ‰Á‚Å‚«‚È‚¢ƒ|ƒPƒ‚ƒ“–¼‚ðƒ^ƒO“WŠJ
+ *	@brief	å‚åŠ ã§ããªã„ãƒã‚±ãƒ¢ãƒ³åã‚’ã‚¿ã‚°å±•é–‹
  */
 GLOBAL WORDSET* BtlTower_SetNgPokeName(SAVEDATA* sv,u16 pokenum,u16 sex,u8 flag,u8* num);
 
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒ^ƒCƒv‚©‚çl•¨OBJƒR[ƒh‚ð•Ô‚·
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‹ã‚‰äººç‰©OBJã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™
  */
 GLOBAL u16 BtlTower_TrType2ObjCode(u8 tr_type);
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[—p@ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^¶¬
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ã€€ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç”Ÿæˆ
  */
 GLOBAL BATTLE_PARAM* BtlTower_CreateBattleParam(BTOWER_SCRWORK* wk,FIELDSYS_WORK* fsys);
 
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@‘—‚ç‚ê‚Ä‚«‚½ƒvƒŒƒCƒ„[ƒf[ƒ^‚ðŽó‚¯Žæ‚é
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€ã‚‰ã‚Œã¦ããŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
  */
 GLOBAL u16 BTowerComm_RecvPlayerData(FIELDSYS_WORK* fsys,const u16* recv_buf);
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@‘—‚ç‚ê‚Ä‚«‚½ƒgƒŒ[ƒi[ƒf[ƒ^‚ðŽó‚¯Žæ‚é
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€ã‚‰ã‚Œã¦ããŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
  */
 GLOBAL u16	BTowerComm_RecvTrainerData(FIELDSYS_WORK* fsys,const u16* recv_buf);
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@‘—‚ç‚ê‚Ä‚«‚½ƒŠƒ^ƒCƒA‚·‚é‚©‚Ç‚¤‚©‚ÌŒ‹‰Ê‚ðŽó‚¯Žæ‚é
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€ã‚‰ã‚Œã¦ããŸãƒªã‚¿ã‚¤ã‚¢ã™ã‚‹ã‹ã©ã†ã‹ã®çµæžœã‚’å—ã‘å–ã‚‹
  *
- *	@retval	0	ƒŠƒ^ƒCƒA‚µ‚È‚¢
- *	@retval	1	ƒŠƒ^ƒCƒA‚·‚é
+ *	@retval	0	ãƒªã‚¿ã‚¤ã‚¢ã—ãªã„
+ *	@retval	1	ãƒªã‚¿ã‚¤ã‚¢ã™ã‚‹
  */
 GLOBAL u16	BTowerComm_RecvRetireSelect(FIELDSYS_WORK* fsys,const u16* recv_buf);
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@Ž©‹@«•Ê‚Æƒ‚ƒ“ƒXƒ^[No‚ð‘—M
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€è‡ªæ©Ÿæ€§åˆ¥ã¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼Noã‚’é€ä¿¡
  */
 GLOBAL void BTowerComm_SendPlayerData(BTOWER_SCRWORK* wk,SAVEDATA *sv);
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@’ÊMƒ}ƒ‹ƒ`@’Š‘I‚µ‚½ƒgƒŒ[ƒi[No‚ðŽq‹@‚É‘—M
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€šä¿¡ãƒžãƒ«ãƒã€€æŠ½é¸ã—ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Noã‚’å­æ©Ÿã«é€ä¿¡
  */
 GLOBAL void BTowerComm_SendTrainerData(BTOWER_SCRWORK* wk);
 
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@’ÊMƒ}ƒ‹ƒ`@ƒŠƒ^ƒCƒA‚·‚é‚©‚Ç‚¤‚©‚ðŒÝ‚¢‚É‘—M
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€šä¿¡ãƒžãƒ«ãƒã€€ãƒªã‚¿ã‚¤ã‚¢ã™ã‚‹ã‹ã©ã†ã‹ã‚’äº’ã„ã«é€ä¿¡
  *
- *	@param	retire	TRUE‚È‚çƒŠƒ^ƒCƒA
+ *	@param	retire	TRUEãªã‚‰ãƒªã‚¿ã‚¤ã‚¢
  */
 GLOBAL void BTowerComm_SendRetireSelect(BTOWER_SCRWORK* wk,u16 retire);
 
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒiƒ“ƒo[’Š‘I
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒŠãƒ³ãƒãƒ¼æŠ½é¸
  */
 GLOBAL u16	BattleTowerTrainerNoGet(BTOWER_SCRWORK* wk,u8 stage,u8 round,int play_mode);
 
 /**
- *	@brief	Wifi ƒgƒŒ[ƒi[’Š‘I
+ *	@brief	Wifi ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŠ½é¸
  */
 GLOBAL void btltower_BtlPartnerSelectWifi(SAVEDATA* sv,B_TOWER_PARTNER_DATA* wk,
 		const u8 round);
 
 //============================================================================================
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[ƒgƒŒ[ƒi[ƒf[ƒ^¶¬iƒƒ€ƒf[ƒ^‚ðB_TOWER_PARTNER_DATA\‘¢‘Ì‚É“WŠJj
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆãƒ­ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’B_TOWER_PARTNER_DATAæ§‹é€ ä½“ã«å±•é–‹ï¼‰
  *
- * @param[in/out]	tr_data		¶¬‚·‚éB_TOWER_PARTNAER_DATA\‘¢‘Ì
- * @param[in]		tr_no		¶¬Œ³‚É‚È‚éƒgƒŒ[ƒi[ID
- * @param[in]		cnt			ƒgƒŒ[ƒi[‚ÉŽ‚½‚¹‚éƒ|ƒPƒ‚ƒ“‚Ì”
- * @param[in]		set_poke_no	ƒyƒA‚ð‘g‚ñ‚Å‚¢‚éƒgƒŒ[ƒi[‚ÌŽ‚¿ƒ|ƒPƒ‚ƒ“iNULL‚¾‚Æƒ`ƒFƒbƒN‚È‚µj
- * @param[in]		set_item_no	ƒyƒA‚ð‘g‚ñ‚Å‚¢‚éƒgƒŒ[ƒi[‚ÌŽ‚¿ƒ|ƒPƒ‚ƒ“‚Ì‘•”õƒAƒCƒeƒ€iNULL‚¾‚Æƒ`ƒFƒbƒN‚È‚µj
- * @param[in/out]	poke		’Š‘I‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚Ì“ñ‘Ì‚Ìƒpƒ‰ƒ[ƒ^‚ðŠi”[‚µ‚Ä•Ô‚·\‘¢‘ÌŒ^ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^(NULL‚¾‚Æƒ`ƒFƒbƒN‚È‚µj
- * @param[in]		heapID		ƒq[ƒvID
+ * @param[in/out]	tr_data		ç”Ÿæˆã™ã‚‹B_TOWER_PARTNAER_DATAæ§‹é€ ä½“
+ * @param[in]		tr_no		ç”Ÿæˆå…ƒã«ãªã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param[in]		cnt			ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã«æŒãŸã›ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ•°
+ * @param[in]		set_poke_no	ãƒšã‚¢ã‚’çµ„ã‚“ã§ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æŒã¡ãƒã‚±ãƒ¢ãƒ³ï¼ˆNULLã ã¨ãƒã‚§ãƒƒã‚¯ãªã—ï¼‰
+ * @param[in]		set_item_no	ãƒšã‚¢ã‚’çµ„ã‚“ã§ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ï¼ˆNULLã ã¨ãƒã‚§ãƒƒã‚¯ãªã—ï¼‰
+ * @param[in/out]	poke		æŠ½é¸ã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ã®äºŒä½“ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ã¦è¿”ã™æ§‹é€ ä½“åž‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿(NULLã ã¨ãƒã‚§ãƒƒã‚¯ãªã—ï¼‰
+ * @param[in]		heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	FALSE	’Š‘Iƒ‹[ƒv‚ª50‰ñˆÈ“à‚ÅI‚í‚Á‚½
- * @retval	TRUE	’Š‘Iƒ‹[ƒv‚ª50‰ñˆÈ“à‚ÅI‚í‚ç‚È‚©‚Á‚½
+ * @retval	FALSE	æŠ½é¸ãƒ«ãƒ¼ãƒ—ãŒ50å›žä»¥å†…ã§çµ‚ã‚ã£ãŸ
+ * @retval	TRUE	æŠ½é¸ãƒ«ãƒ¼ãƒ—ãŒ50å›žä»¥å†…ã§çµ‚ã‚ã‚‰ãªã‹ã£ãŸ
  */
 //============================================================================================
 GLOBAL BOOL	RomBattleTowerTrainerDataMake(BTOWER_SCRWORK* wk,B_TOWER_PARTNER_DATA *tr_data,u16 tr_no,int cnt,
@@ -101,14 +101,14 @@ GLOBAL BOOL	RomBattleTowerTrainerDataMake(BTOWER_SCRWORK* wk,B_TOWER_PARTNER_DAT
 
 //============================================================================================
 /**
- *	ƒoƒgƒ‹ƒ^ƒ[ ƒyƒAƒgƒŒ[ƒi[ƒf[ƒ^Ä¶¬
- *	iƒZ[ƒu‚³‚ê‚½AIƒ}ƒ‹ƒ`ƒp[ƒgƒi[‚Ìƒf[ƒ^‚ðB_TOWER_PARTNER_DATA\‘¢‘Ì‚É“WŠJj
+ *	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ ãƒšã‚¢ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿å†ç”Ÿæˆ
+ *	ï¼ˆã‚»ãƒ¼ãƒ–ã•ã‚ŒãŸAIãƒžãƒ«ãƒãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’B_TOWER_PARTNER_DATAæ§‹é€ ä½“ã«å±•é–‹ï¼‰
  *
- * @param[in/out]	tr_data		¶¬‚·‚éB_TOWER_PARTNAER_DATA\‘¢‘Ì
- * @param[in]		tr_no		¶¬Œ³‚É‚È‚éƒgƒŒ[ƒi[ID
- * @param[in]		fixitem		TURE‚È‚çŒÅ’èƒAƒCƒeƒ€‚ðAFALSE‚È‚çromƒAƒCƒeƒ€‚ðƒZƒbƒg‚·‚é
- * @param[in]		poke		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^Ä¶¬‚É•K—v‚È\‘¢‘ÌŒ^ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]		heapID		ƒq[ƒvID
+ * @param[in/out]	tr_data		ç”Ÿæˆã™ã‚‹B_TOWER_PARTNAER_DATAæ§‹é€ ä½“
+ * @param[in]		tr_no		ç”Ÿæˆå…ƒã«ãªã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param[in]		fixitem		TUREãªã‚‰å›ºå®šã‚¢ã‚¤ãƒ†ãƒ ã‚’ã€FALSEãªã‚‰romã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param[in]		poke		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿å†ç”Ÿæˆã«å¿…è¦ãªæ§‹é€ ä½“åž‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]		heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //============================================================================================
 GLOBAL void RomBattleTowerPartnerDataMake(BTOWER_SCRWORK* wk,B_TOWER_PARTNER_DATA *tr_data,u16 tr_no,BOOL itemfix,

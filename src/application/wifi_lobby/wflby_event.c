@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_event.c
- *	@brief		ƒCƒxƒ“ƒgŠÇ—ƒVƒXƒeƒ€
+ *	@brief		ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.11.26
  *
@@ -17,28 +17,28 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
 
 #ifdef PM_DEBUG
-#define WFLBY_DEBUG_EVENT_PRINT		// ƒCƒxƒ“ƒgƒvƒŠƒ“ƒg
+#define WFLBY_DEBUG_EVENT_PRINT		// ã‚¤ãƒ™ãƒ³ãƒˆãƒ—ãƒªãƒ³ãƒˆ
 #endif
 
-// ƒfƒoƒbƒNƒvƒŠƒ“ƒgİ’è
+// ãƒ‡ãƒãƒƒã‚¯ãƒ—ãƒªãƒ³ãƒˆè¨­å®š
 #ifdef WFLBY_DEBUG_EVENT_PRINT
 #define WFLBY_EVENT_DEBUG_PRINT(...)		OS_TPrintf(__VA_ARGS__)
 #else
@@ -48,11 +48,11 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒCƒxƒ“ƒgƒ^ƒCƒ~ƒ“ƒO’è”
+///	ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒŸãƒ³ã‚°å®šæ•°
 //=====================================
 enum {
 	WFLBY_EVENT_FUNC_BEFORE,
@@ -62,72 +62,72 @@ enum {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒCƒxƒ“ƒgƒf[ƒ^
+///	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	const WFLBY_EVENT_DATA*	cp_data;	// ƒCƒxƒ“ƒgƒf[ƒ^
-	void*					p_wk;		// ƒ[ƒJƒ‹ƒ[ƒN
-	void*					p_param;	// ƒpƒ‰ƒ[ƒ^
-	u32						seq;		// ƒV[ƒPƒ“ƒX
+	const WFLBY_EVENT_DATA*	cp_data;	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+	void*					p_wk;		// ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯
+	void*					p_param;	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	u32						seq;		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 } WFLBY_EVENTWK_LOCAL;
 
 //-------------------------------------
-///	ƒCƒxƒ“ƒgƒ[ƒN
+///	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WFLBY_EVENTWK{
-	// ƒq[ƒvID
+	// ãƒ’ãƒ¼ãƒ—ID
 	u16				heapID;
 
-	// ƒCƒxƒ“ƒg“®ìƒtƒ‰ƒO
+	// ã‚¤ãƒ™ãƒ³ãƒˆå‹•ä½œãƒ•ãƒ©ã‚°
 	u8				evmove;
 
-	// ƒCƒxƒ“ƒgNO
+	// ã‚¤ãƒ™ãƒ³ãƒˆNO
 	u8				evno;
 
-	// Àsƒf[ƒ^
+	// å®Ÿè¡Œãƒ‡ãƒ¼ã‚¿
 	WFLBY_EVENTWK_LOCAL data;
 
-	// ‘Î”äæ
+	// å¯¾æ¯”å…ˆ
 	WFLBY_EVENTWK_LOCAL tmp;
 } WFLBY_EVENTWK;
 
 
 
 //-------------------------------------
-///	ƒCƒxƒ“ƒgŠÇ—ƒVƒXƒeƒ€
+///	ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _WFLBY_EVENT {
-	// ƒq[ƒvID
+	// ãƒ’ãƒ¼ãƒ—ID
 	u32				heapID;
 
-	// ƒƒr[ƒf[ƒ^
+	// ãƒ­ãƒ“ãƒ¼ãƒ‡ãƒ¼ã‚¿
 	WFLBY_ROOMWK*	p_rmwk;
 
-	// ŒÂ•ÊƒCƒxƒ“ƒgƒf[ƒ^
+	// å€‹åˆ¥ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 	WFLBY_EVENTWK	private[ WFLBY_PLAYER_MAX ];
 
-	// ‘S‘ÌƒCƒxƒ“ƒgƒf[ƒ^
+	// å…¨ä½“ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 	WFLBY_EVENTWK	global;
 }WFLBY_EVENT;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒVƒXƒeƒ€ŠÇ—ŠÖ”
+///	ã‚·ã‚¹ãƒ†ãƒ ç®¡ç†é–¢æ•°
 //=====================================
 static void WFLBY_EVENT_MainLocal( WFLBY_EVENT* p_sys, u32 timing );
 
 
 
 //-------------------------------------
-///	ƒCƒxƒ“ƒgŠÇ—ƒVƒXƒeƒ€ŠÖ”
+///	ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ é–¢æ•°
 //=====================================
 static void WFLBY_EVENTWK_Init( WFLBY_EVENTWK* p_wk, u32 evno, u32 heapID );
 static void WFLBY_EVENTWK_Exit( WFLBY_EVENTWK* p_wk );
@@ -149,16 +149,16 @@ static void WFLBY_EVENTWKCL_Clean( WFLBY_EVENTWK_LOCAL* p_wk );
 
 
 //-------------------------------------
-// ƒCƒxƒ“ƒgƒVƒXƒeƒ€ŠÇ—
+// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ç®¡ç†
 //=====================================
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒVƒXƒeƒ€	‰Šú‰»	
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–	
  *
- *	@param	p_rmwk		ROOMƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_rmwk		ROOMãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 WFLBY_EVENT* WFLBY_EVENT_Init( WFLBY_ROOMWK* p_rmwk, u32 heapID )
@@ -168,13 +168,13 @@ WFLBY_EVENT* WFLBY_EVENT_Init( WFLBY_ROOMWK* p_rmwk, u32 heapID )
 	p_sys = sys_AllocMemory( heapID, sizeof(WFLBY_EVENT) );
 	memset( p_sys, 0, sizeof(WFLBY_EVENT) );
 
-	// ƒq[ƒv•Û‘¶
+	// ãƒ’ãƒ¼ãƒ—ä¿å­˜
 	p_sys->heapID = heapID;
 
-	// •”‰®ƒf[ƒ^‚ğ•Û‘¶
+	// éƒ¨å±‹ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	p_sys->p_rmwk = p_rmwk;
 
-	// ŒÂ•ÊƒCƒxƒ“ƒg‰Šúİ’è
+	// å€‹åˆ¥ã‚¤ãƒ™ãƒ³ãƒˆåˆæœŸè¨­å®š
 	{
 		int i;
 		for( i=0; i<WFLBY_PLAYER_MAX; i++ ){
@@ -182,7 +182,7 @@ WFLBY_EVENT* WFLBY_EVENT_Init( WFLBY_ROOMWK* p_rmwk, u32 heapID )
 		}
 	}
 
-	// ‘S‘ÌƒCƒxƒ“ƒg‰Šúİ’è
+	// å…¨ä½“ã‚¤ãƒ™ãƒ³ãƒˆåˆæœŸè¨­å®š
 	WFLBY_EVENTWK_Init( &p_sys->global, 0, heapID );
 
 	return p_sys;
@@ -190,14 +190,14 @@ WFLBY_EVENT* WFLBY_EVENT_Init( WFLBY_ROOMWK* p_rmwk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒVƒXƒeƒ€	”jŠü
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 	ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_EVENT_Exit( WFLBY_EVENT* p_sys )
 {
-	// ŒÂ•ÊƒCƒxƒ“ƒg”jŠü
+	// å€‹åˆ¥ã‚¤ãƒ™ãƒ³ãƒˆç ´æ£„
 	{
 		int i;
 		for( i=0; i<WFLBY_PLAYER_MAX; i++ ){
@@ -205,22 +205,22 @@ void WFLBY_EVENT_Exit( WFLBY_EVENT* p_sys )
 		}
 	}
 
-	// ‘S‘ÌƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+	// å…¨ä½“ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	WFLBY_EVENTWK_Exit( &p_sys->global );
 
 
-	// ƒVƒXƒeƒ€”jŠü
+	// ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	sys_FreeMemoryEz( p_sys );
 }
 
 //-------------------------------------
-// ŠeÀsŠÖ”
+// å„å®Ÿè¡Œé–¢æ•°
 //=====================================
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒIƒuƒWƒF“®ìŒãÀsŠÖ”
+ *	@brief	å‹•ä½œã‚ªãƒ–ã‚¸ã‚§å‹•ä½œå¾Œå®Ÿè¡Œé–¢æ•°
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_EVENT_MainBefore( WFLBY_EVENT* p_sys )
@@ -230,9 +230,9 @@ void WFLBY_EVENT_MainBefore( WFLBY_EVENT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒIƒuƒWƒFƒŠƒNƒGƒXƒgİ’èŒãÀsŠÖ”
+ *	@brief	å‹•ä½œã‚ªãƒ–ã‚¸ã‚§ãƒªã‚¯ã‚¨ã‚¹ãƒˆè¨­å®šå¾Œå®Ÿè¡Œé–¢æ•°
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_EVENT_MainAfter( WFLBY_EVENT* p_sys )
@@ -243,11 +243,11 @@ void WFLBY_EVENT_MainAfter( WFLBY_EVENT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒpƒ‰ƒ[ƒ^‚ğæ“¾‚·‚é
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒpƒ‰ƒ[ƒ^
+ *	@return	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void* WFLBY_EVENTWK_GetParam( WFLBY_EVENTWK* p_wk )
@@ -257,10 +257,10 @@ void* WFLBY_EVENTWK_GetParam( WFLBY_EVENTWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgì‹Æ—Ìˆæ‚ğì¬‚·‚é
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆä½œæ¥­é ˜åŸŸã‚’ä½œæˆã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	size		ƒTƒCƒY
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	size		ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 void* WFLBY_EVENTWK_AllocWk( WFLBY_EVENTWK* p_wk, u32 size )
@@ -274,9 +274,9 @@ void* WFLBY_EVENTWK_AllocWk( WFLBY_EVENTWK* p_wk, u32 size )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgì‹Æ—Ìˆæ‚ğ”jŠü‚·‚é
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆä½œæ¥­é ˜åŸŸã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_EVENTWK_DeleteWk( WFLBY_EVENTWK* p_wk )
@@ -288,11 +288,11 @@ void WFLBY_EVENTWK_DeleteWk( WFLBY_EVENTWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgì‹Æ—Ìˆæ‚ğæ“¾‚·‚é
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆä½œæ¥­é ˜åŸŸã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ì‹Æ—Ìˆæ
+ *	@return	ä½œæ¥­é ˜åŸŸ
  */
 //-----------------------------------------------------------------------------
 void* WFLBY_EVENTWK_GetWk( WFLBY_EVENTWK* p_wk )
@@ -302,11 +302,11 @@ void* WFLBY_EVENTWK_GetWk( WFLBY_EVENTWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[ƒPƒ“ƒX‚ğæ“¾‚·‚é
+ *	@brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒV[ƒPƒ“ƒX
+ *	@return	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_EVENTWK_GetSeq( const WFLBY_EVENTWK* cp_wk )
@@ -316,10 +316,10 @@ u32 WFLBY_EVENTWK_GetSeq( const WFLBY_EVENTWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[ƒPƒ“ƒX‚ğİ’è‚·‚é
+ *	@brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_EVENTWK_SetSeq( WFLBY_EVENTWK* p_wk, u32 seq )
@@ -331,9 +331,9 @@ void WFLBY_EVENTWK_SetSeq( WFLBY_EVENTWK* p_wk, u32 seq )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[Œ”‚ğ‚Pi‚ß‚é
+ *	@brief	ã‚·ãƒ¼ä»¶æ•°ã‚’ï¼‘é€²ã‚ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_EVENTWK_AddSeq( WFLBY_EVENTWK* p_wk )
@@ -343,16 +343,16 @@ void WFLBY_EVENTWK_AddSeq( WFLBY_EVENTWK* p_wk )
 }
 
 //-------------------------------------
-// ŒÂ•ÊƒCƒxƒ“ƒgŠÇ—
+// å€‹åˆ¥ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†
 //=====================================
 //----------------------------------------------------------------------------
 /**
- *	@brief	í’“ƒCƒxƒ“ƒg‚ğİ’è‚·‚é
+ *	@brief	å¸¸é§ã‚¤ãƒ™ãƒ³ãƒˆã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	plno		ƒvƒŒƒCƒ„[ID
- *	@param	cp_data		ƒCƒxƒ“ƒgƒf[ƒ^
- *	@param	p_param	ƒpƒ‰ƒ[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	plno		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
+ *	@param	cp_data		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	p_param	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WFLBY_EVENT_SetPrivateEvent( WFLBY_EVENT* p_sys, u32 plno, const WFLBY_EVENT_DATA* cp_data, void* p_param )
@@ -360,18 +360,18 @@ void WFLBY_EVENT_SetPrivateEvent( WFLBY_EVENT* p_sys, u32 plno, const WFLBY_EVEN
 	GF_ASSERT( p_sys );
 	GF_ASSERT( plno < WFLBY_PLAYER_MAX );
 
-	// í’“ƒCƒxƒ“ƒgƒf[ƒ^İ’è
+	// å¸¸é§ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿è¨­å®š
 	WFLBY_EVENTWK_Set( &p_sys->private[ plno ], cp_data, p_param );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Š„‚è‚İƒCƒxƒ“ƒgƒf[ƒ^İ’è
+ *	@brief	å‰²ã‚Šè¾¼ã¿ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	plno		ƒvƒŒƒCƒ„[NO
- *	@param	cp_data		ƒf[ƒ^
- *	@param	p_param	ƒpƒ‰ƒ[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	plno		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼NO
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_param	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WFLBY_EVENT_SetPrivateIntrEvent( WFLBY_EVENT* p_sys, u32 plno, const WFLBY_EVENT_DATA* cp_data, void* p_param )
@@ -379,19 +379,19 @@ void WFLBY_EVENT_SetPrivateIntrEvent( WFLBY_EVENT* p_sys, u32 plno, const WFLBY_
 	GF_ASSERT( p_sys );
 	GF_ASSERT( plno < WFLBY_PLAYER_MAX );
 
-	// Š„‚è‚İƒCƒxƒ“ƒgİ’è
+	// å‰²ã‚Šè¾¼ã¿ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	WFLBY_EVENTWK_Push( &p_sys->private[ plno ], cp_data, p_param );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Š„‚è‚İƒCƒxƒ“ƒgI—¹ƒ`ƒFƒbƒN
+ *	@brief	å‰²ã‚Šè¾¼ã¿ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	plno		ƒvƒŒƒCƒ„[NO
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	plno		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼NO
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	Š„‚è‚İ’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	å‰²ã‚Šè¾¼ã¿ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_EVENT_WaitPrivateIntrEvent( const WFLBY_EVENT* cp_sys, u32 plno )
@@ -404,7 +404,7 @@ BOOL WFLBY_EVENT_WaitPrivateIntrEvent( const WFLBY_EVENT* cp_sys, u32 plno )
 
 
 #ifdef PM_DEBUG
-// ƒfƒoƒbƒN
+// ãƒ‡ãƒãƒƒã‚¯
 void WFLBY_EVENT_SetPrivateEvent_DEBUG( WFLBY_EVENT* p_sys, u32 plno, const WFLBY_EVENT_DATA* cp_data, void* p_param, u32 line )
 {
 	WFLBY_EVENT_DEBUG_PRINT( "event set plno=%d line=%d\n", plno, line );
@@ -422,11 +422,11 @@ void WFLBY_EVENT_SetPrivateIntrEvent_DEBUG( WFLBY_EVENT* p_sys, u32 plno, const 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒg‚Ì“®ìİ’è
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆã®å‹•ä½œè¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	plno		‘€ì‚·‚éƒCƒxƒ“ƒg‚ÌPLNO
- *	@param	move		“®ìƒtƒ‰ƒO	TRUEF“®ì		FALSEF”ñ“®ì
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	plno		æ“ä½œã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã®PLNO
+ *	@param	move		å‹•ä½œãƒ•ãƒ©ã‚°	TRUEï¼šå‹•ä½œ		FALSEï¼šéå‹•ä½œ
  *
  */
 //-----------------------------------------------------------------------------
@@ -442,29 +442,29 @@ void WFLBY_EVENT_SetPrivateEventMove( WFLBY_EVENT* p_sys, u32 plno, BOOL move )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘S‘ÌƒCƒxƒ“ƒg‚ğŠJn
+ *	@brief	å…¨ä½“ã‚¤ãƒ™ãƒ³ãƒˆã‚’é–‹å§‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_data		ƒCƒxƒ“ƒgƒf[ƒ^ 
- *	@param	p_param	ƒpƒ‰ƒ[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ 
+ *	@param	p_param	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WFLBY_EVENT_SetGlobalEvent( WFLBY_EVENT* p_sys, const WFLBY_EVENT_DATA* cp_data, void* p_param )
 {
 	GF_ASSERT( p_sys );
 
-	// Š„‚è‚İƒCƒxƒ“ƒgİ’è
+	// å‰²ã‚Šè¾¼ã¿ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	WFLBY_EVENTWK_Push( &p_sys->global, cp_data, p_param );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ[ƒoƒ‹ƒCƒxƒ“ƒg‚ªI—¹‚µ‚½‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¤ãƒ™ãƒ³ãƒˆãŒçµ‚äº†ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	cp_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_EVENT_WaitGlobalEvent( const WFLBY_EVENT* cp_sys )
@@ -478,19 +478,19 @@ BOOL WFLBY_EVENT_WaitGlobalEvent( const WFLBY_EVENT* cp_sys )
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EVENT_MainLocal( WFLBY_EVENT* p_sys, u32 timing )
 {
 
-	// ‘S‘ÌƒCƒxƒ“ƒgÀs‚ªÅ—Dæ
+	// å…¨ä½“ã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡ŒãŒæœ€å„ªå…ˆ
 	if( WFLBY_EVENTWK_CheckEventDo( &p_sys->global ) == TRUE ){
 		WFLBY_EVENTWK_Main( &p_sys->global, p_sys, timing, 0 );
 		return ;
 	}
 
-	// ƒvƒ‰ƒCƒx[ƒgƒCƒxƒ“ƒgÀs
+	// ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œ
 	{
 		int i;
 
@@ -507,11 +507,11 @@ static void WFLBY_EVENT_MainLocal( WFLBY_EVENT* p_sys, u32 timing )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒ[ƒN‰Šú‰»
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	evno		ƒCƒxƒ“ƒgƒiƒ“ƒo[
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	evno		ã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EVENTWK_Init( WFLBY_EVENTWK* p_wk, u32 evno, u32 heapID )
@@ -523,14 +523,14 @@ static void WFLBY_EVENTWK_Init( WFLBY_EVENTWK* p_wk, u32 evno, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒ[ƒN”jŠü
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EVENTWK_Exit( WFLBY_EVENTWK* p_wk )
 {
-	//  Àsƒf[ƒ^”jŠü
+	//  å®Ÿè¡Œãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	if( p_wk->data.p_wk != NULL ){
 		sys_FreeMemoryEz( p_wk->data.p_wk );
 	}
@@ -542,12 +542,12 @@ static void WFLBY_EVENTWK_Exit( WFLBY_EVENTWK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“Às
+ *	@brief	ãƒ¡ã‚¤ãƒ³å®Ÿè¡Œ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	timing		Àsƒ^ƒCƒ~ƒ“ƒO
- *	@param	plno		ƒvƒŒƒCƒ„[NO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	timing		å®Ÿè¡Œã‚¿ã‚¤ãƒŸãƒ³ã‚°
+ *	@param	plno		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼NO
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EVENTWK_Main( WFLBY_EVENTWK* p_wk, WFLBY_EVENT* p_sys, u32 timing, u32 plno )
@@ -555,12 +555,12 @@ static void WFLBY_EVENTWK_Main( WFLBY_EVENTWK* p_wk, WFLBY_EVENT* p_sys, u32 tim
 	BOOL result;
 	pEVENT_FUNC p_func;
 
-	// ƒCƒxƒ“ƒg“®ìƒ`ƒFƒbƒN
+	// ã‚¤ãƒ™ãƒ³ãƒˆå‹•ä½œãƒã‚§ãƒƒã‚¯
 	if( p_wk->evmove == FALSE ){
 		return ;
 	}
 
-	// ƒ^ƒCƒ~ƒ“ƒO‚É‚æ‚Á‚Ä“Ç‚İ‘Ö‚¦‚é
+	// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã«ã‚ˆã£ã¦èª­ã¿æ›¿ãˆã‚‹
 	switch( timing ){
 	case WFLBY_EVENT_FUNC_BEFORE:
 		p_func = p_wk->data.cp_data->p_before;
@@ -569,16 +569,16 @@ static void WFLBY_EVENTWK_Main( WFLBY_EVENTWK* p_wk, WFLBY_EVENT* p_sys, u32 tim
 		p_func = p_wk->data.cp_data->p_after;
 		break;
 	default:
-		GF_ASSERT(0);	// ‚ ‚è‚¦‚È‚¢
+		GF_ASSERT(0);	// ã‚ã‚Šãˆãªã„
 		break;
 	}
 	if( p_func != NULL ){
 		result = p_func( p_wk,
 				p_sys->p_rmwk, plno );
 
-		// I—¹‚ª‹A‚Á‚Ä‚«‚½‚ç
+		// çµ‚äº†ãŒå¸°ã£ã¦ããŸã‚‰
 		if( result == TRUE ){
-			// ‘Ş”ğƒf[ƒ^‚ğí’“‚É–ß‚·
+			// é€€é¿ãƒ‡ãƒ¼ã‚¿ã‚’å¸¸é§ã«æˆ»ã™
 			WFLBY_EVENTWK_Pop( p_wk );
 		}
 	}
@@ -586,19 +586,19 @@ static void WFLBY_EVENTWK_Main( WFLBY_EVENTWK* p_wk, WFLBY_EVENT* p_sys, u32 tim
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒf[ƒ^‚ğİ’è‚·‚é
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
- *	@param	p_param	ƒpƒ‰ƒ[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_param	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EVENTWK_Set( WFLBY_EVENTWK* p_wk, const WFLBY_EVENT_DATA* cp_data, void* p_param )
 {
-	// Š„‚è‚İ’†‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+	// å‰²ã‚Šè¾¼ã¿ä¸­ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT_MSG( WFLBY_EVENTWK_CheckIntrEnd( p_wk ) == TRUE, "intr event\n" );
 
-	// ƒf[ƒ^‚ªc‚Á‚Ä‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ãƒ‡ãƒ¼ã‚¿ãŒæ®‹ã£ã¦ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT_MSG( p_wk->data.p_wk == NULL, "rest wk\n" );
 
 	WFLBY_EVENTWKCL_SetData( &p_wk->data, cp_data, p_param, 0, NULL );
@@ -606,10 +606,10 @@ static void WFLBY_EVENTWK_Set( WFLBY_EVENTWK* p_wk, const WFLBY_EVENT_DATA* cp_d
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒtƒ‰ƒO‚ğİ’è‚·‚é
+ *	@brief	å‹•ä½œãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	move		“®ìƒtƒ‰ƒO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	move		å‹•ä½œãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EVENTWK_SetMove( WFLBY_EVENTWK* p_wk, BOOL move )
@@ -619,54 +619,54 @@ static void WFLBY_EVENTWK_SetMove( WFLBY_EVENTWK* p_wk, BOOL move )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒ[ƒN	Š„‚è‚İƒCƒxƒ“ƒg‚ğİ’è	í’“ƒCƒxƒ“ƒg‚ğ‘Ş”ğ
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯	å‰²ã‚Šè¾¼ã¿ã‚¤ãƒ™ãƒ³ãƒˆã‚’è¨­å®š	å¸¸é§ã‚¤ãƒ™ãƒ³ãƒˆã‚’é€€é¿
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		İ’è‚·‚é
- *	@param	p_param	ƒpƒ‰ƒ[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		è¨­å®šã™ã‚‹
+ *	@param	p_param	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EVENTWK_Push( WFLBY_EVENTWK* p_wk, const WFLBY_EVENT_DATA* cp_data, void* p_param )
 {
-	// Š„‚è‚İ‹N“®’†‚ÉŠ„‚è‚İİ’è‚Å‚«‚È‚¢
+	// å‰²ã‚Šè¾¼ã¿èµ·å‹•ä¸­ã«å‰²ã‚Šè¾¼ã¿è¨­å®šã§ããªã„
 	GF_ASSERT_MSG( WFLBY_EVENTWK_CheckIntrEnd( p_wk ) == TRUE, "event tmp over\n" );
 
-	// ‘Ş”ğ
+	// é€€é¿
 	p_wk->tmp	= p_wk->data;
 
-	// İ’è
+	// è¨­å®š
 	WFLBY_EVENTWKCL_SetData( &p_wk->data, cp_data, p_param, 0, NULL );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒ[ƒN	í’“ƒCƒxƒ“ƒg‚ğŒ³‚É–ß‚·
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯	å¸¸é§ã‚¤ãƒ™ãƒ³ãƒˆã‚’å…ƒã«æˆ»ã™
  *
  *	@param	p_wk 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EVENTWK_Pop( WFLBY_EVENTWK* p_wk )
 {
-	// ‘Ş”ğæ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
-//	GF_ASSERT( p_wk->cp_tmp != NULL, "event tmp none\n" );	// ‚â‚Á‚Ï‚è‘Ş”ğæ‚ª‚È‚­‚Ä‚à‚æ‚¢
-	// ƒf[ƒ^‚ªc‚Á‚Ä‚È‚¢‚©ƒ`ƒFƒbƒN
+	// é€€é¿å…ˆãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+//	GF_ASSERT( p_wk->cp_tmp != NULL, "event tmp none\n" );	// ã‚„ã£ã±ã‚Šé€€é¿å…ˆãŒãªãã¦ã‚‚ã‚ˆã„
+	// ãƒ‡ãƒ¼ã‚¿ãŒæ®‹ã£ã¦ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_wk->data.p_wk == NULL );
 
-	// ‘Ş”ğæ‚ğİ’è
+	// é€€é¿å…ˆã‚’è¨­å®š
 	p_wk->data		= p_wk->tmp;
 
-	// ‘Ş”ğæ‚ÌƒNƒŠƒA
+	// é€€é¿å…ˆã®ã‚¯ãƒªã‚¢
 	WFLBY_EVENTWKCL_Clean( &p_wk->tmp );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Š„‚è‚İƒCƒxƒ“ƒg‚ªI—¹‚µ‚½‚Ì‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	å‰²ã‚Šè¾¼ã¿ã‚¤ãƒ™ãƒ³ãƒˆãŒçµ‚äº†ã—ãŸã®ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_wk	ƒCƒxƒ“ƒgƒ[ƒN
+ *	@param	cp_wk	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_EVENTWK_CheckIntrEnd( const WFLBY_EVENTWK* cp_wk )
@@ -679,12 +679,12 @@ static BOOL WFLBY_EVENTWK_CheckIntrEnd( const WFLBY_EVENTWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Às‚·‚éƒCƒxƒ“ƒg‚ª‚ ‚é‚Ì‚©ƒ`ƒFƒbƒN
+ *	@brief	å®Ÿè¡Œã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆãŒã‚ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	 ƒCƒxƒ“ƒgƒ[ƒN
+ *	@param	cp_wk	 ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	Às‚·‚é
- *	@retval	FALSE	Às‚µ‚È‚¢
+ *	@retval	TRUE	å®Ÿè¡Œã™ã‚‹
+ *	@retval	FALSE	å®Ÿè¡Œã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_EVENTWK_CheckEventDo( const WFLBY_EVENTWK* cp_wk )
@@ -697,13 +697,13 @@ static BOOL WFLBY_EVENTWK_CheckEventDo( const WFLBY_EVENTWK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒf[ƒ^‚Éƒf[ƒ^‚ğİ’è‚·‚é
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
- *	@param	p_param		ƒpƒ‰ƒ[ƒ^
- *	@param	seq			ƒV[ƒPƒ“ƒX
- *	@param	p_evwk		ƒCƒxƒ“ƒgƒ[ƒJƒ‹ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *	@param	p_evwk		ã‚¤ãƒ™ãƒ³ãƒˆãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EVENTWKCL_SetData( WFLBY_EVENTWK_LOCAL* p_wk, const WFLBY_EVENT_DATA* cp_data, void* p_param, u32 seq, void* p_evwk )
@@ -716,9 +716,9 @@ static void WFLBY_EVENTWKCL_SetData( WFLBY_EVENTWK_LOCAL* p_wk, const WFLBY_EVEN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒf[ƒ^‚Ìƒf[ƒ^‚ğƒNƒŠ[ƒ“‚·‚é
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªãƒ¼ãƒ³ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_EVENTWKCL_Clean( WFLBY_EVENTWK_LOCAL* p_wk )

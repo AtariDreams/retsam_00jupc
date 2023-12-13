@@ -1,42 +1,42 @@
-#Žw’è‚³‚ê‚½ƒoƒCƒg”’PˆÊ‚Éƒtƒ@ƒCƒ‹‚Ì’†g‚ð‘‚«o‚·ƒVƒXƒeƒ€
-#ˆø”‚P
-#	‘‚«o‚·‚Æ‚«‚ÌƒoƒCƒg’PˆÊ
-#		C	1byte’PˆÊ
-#		S	2byte’PˆÊ
-#		I	4byte’PˆÊ
+#æŒ‡å®šã•ã‚ŒãŸãƒã‚¤ãƒˆæ•°å˜ä½ã«ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸­èº«ã‚’æ›¸ãå‡ºã™ã‚·ã‚¹ãƒ†ãƒ 
+#å¼•æ•°ï¼‘
+#	æ›¸ãå‡ºã™ã¨ãã®ãƒã‚¤ãƒˆå˜ä½
+#		C	1byteå˜ä½
+#		S	2byteå˜ä½
+#		I	4byteå˜ä½
 #
-#ˆø”‚Q
-#	ƒRƒ“ƒo[ƒgƒtƒ@ƒCƒ‹ƒpƒX
-#		ƒtƒ@ƒCƒ‹‚Í,‹æØ‚è‚Ìƒtƒ@ƒCƒ‹‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B
-#		‚Ü‚½Aˆø”‚PƒoƒCƒgˆÈã‚Ìƒf[ƒ^‚Í“ü‚ê‚È‚¢‚Å‚­‚¾‚³‚¢B
-#	‘Ž®—áj
-#		1,2,3,4,5,6,7,8,	comment•”
-#		3,5,6,7,8,5,4,23,435,	comment•”
-#		345,123,	comment•”
-#ˆø”‚R
-#	ƒRƒ“ƒo[ƒgŒãƒtƒ@ƒCƒ‹ƒpƒX
+#å¼•æ•°ï¼’
+#	ã‚³ãƒ³ãƒãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+#		ãƒ•ã‚¡ã‚¤ãƒ«ã¯,åŒºåˆ‡ã‚Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+#		ã¾ãŸã€å¼•æ•°ï¼‘ãƒã‚¤ãƒˆä»¥ä¸Šã®ãƒ‡ãƒ¼ã‚¿ã¯å…¥ã‚Œãªã„ã§ãã ã•ã„ã€‚
+#	æ›¸å¼ä¾‹ï¼‰
+#		1,2,3,4,5,6,7,8,	commentéƒ¨
+#		3,5,6,7,8,5,4,23,435,	commentéƒ¨
+#		345,123,	commentéƒ¨
+#å¼•æ•°ï¼“
+#	ã‚³ãƒ³ãƒãƒ¼ãƒˆå¾Œãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 #
-#–ß‚è’l
-#	¬Œ÷	0
-#	Ž¸”s	1
+#æˆ»ã‚Šå€¤
+#	æˆåŠŸ	0
+#	å¤±æ•—	1
 
-#ˆø”‚Í‚R‚Â•K—v‚Å‚·B
+#å¼•æ•°ã¯ï¼“ã¤å¿…è¦ã§ã™ã€‚
 #
-#•¶Žš‚ÌŽž‚Í•¶ŽšƒR[ƒh‚ð•Ô‚µ‚Ü‚·B
+#æ–‡å­—ã®æ™‚ã¯æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã—ã¾ã™ã€‚
 if( @ARGV < 3 ){
 
-	print( "err--ˆø”‚Í‚R‚Â•K—v‚Å‚·B\nparam1 byte size\nparam2 conv file path\nparam3 output file path\n" );
+	print( "err--å¼•æ•°ã¯ï¼“ã¤å¿…è¦ã§ã™ã€‚\nparam1 byte size\nparam2 conv file path\nparam3 output file path\n" );
 	print( "param1 byte size::::::::::::::::::::\n" );
 	print( "C 1byte S 2byte I 4byte\n" );
 
 	exit(1);
 }
 
-#ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“
+#ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 open( FILEIN, $ARGV[1] );
 @in_file = <FILEIN>;
 if( @in_file == 0 ){
-	print( "$ARGV[1]ƒI[ƒvƒ“Ž¸”s\n" );	
+	print( "$ARGV[1]ã‚ªãƒ¼ãƒ—ãƒ³å¤±æ•—\n" );	
 	exit(1);
 }
 close( FILEIN );
@@ -46,7 +46,7 @@ open( FILEOUT, ">$ARGV[2]" );
 
 binmode( FILEOUT );
 
-#‘‚«o‚µƒoƒCƒgƒTƒCƒY‚ðŽæ“¾‚µ‚Ä‚¨‚­
+#æ›¸ãå‡ºã—ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¦ãŠã
 if( $ARGV[0] eq "C" ){
 	$out_byte = 1;
 }elsif( $ARGV[0] eq "S" ){
@@ -55,17 +55,17 @@ if( $ARGV[0] eq "C" ){
 	$out_byte = 4;
 }
 
-#binary‚Å‘‚«o‚·
+#binaryã§æ›¸ãå‡ºã™
 foreach $one( @in_file ){
 
-	#‰üs‚Ì‘O‚Ì,‚©‚ç‰üs‚Ü‚Å‚ð”rœ
+	#æ”¹è¡Œã®å‰ã®,ã‹ã‚‰æ”¹è¡Œã¾ã§ã‚’æŽ’é™¤
 	$one =~ s/,[^,]*\r*\n/\n/;
 	
-	#ƒ^ƒuƒXƒy[ƒX‚ð”rœ
+	#ã‚¿ãƒ–ã‚¹ãƒšãƒ¼ã‚¹ã‚’æŽ’é™¤
 	$one =~ s/\s//g;
 	$one =~ s/\t//g;
 
-	#‰üsƒR[ƒh‚ð”jŠü
+	#æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’ç ´æ£„
 	$one =~ s/\n//;
 	
 	
@@ -73,13 +73,13 @@ foreach $one( @in_file ){
 
 	foreach $list_data (@one_list){
 	
-		#‰üsƒR[ƒh‚ÍƒXƒLƒbƒv
+		#æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã¯ã‚¹ã‚­ãƒƒãƒ—
 		if( $list_data =~ /\d+/ ){
-			#”Žš
+			#æ•°å­—
 			print( FILEOUT pack("$ARGV[0]", $list_data) );
 		}else{
-			#•¶Žš‚ÌŽž‚ÍƒGƒ‰[
-			print( "binary_conv.pl err!!!---$list_data\n•¶Žš‚ðƒoƒCƒiƒŠ‚Å‘‚«o‚»‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·II\n" );
+			#æ–‡å­—ã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼
+			print( "binary_conv.pl err!!!---$list_data\næ–‡å­—ã‚’ãƒã‚¤ãƒŠãƒªã§æ›¸ãå‡ºãã†ã¨ã—ã¦ã„ã¾ã™ï¼ï¼\n" );
 			close( FILEOUT );
 			exit(1);
 		}

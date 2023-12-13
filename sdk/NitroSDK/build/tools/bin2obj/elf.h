@@ -12,22 +12,22 @@
 
   $Log: elf.h,v $
   Revision 1.6  2006/07/21 07:57:19  yasu
-  PowerPC ‘Î‰
+  PowerPC å¯¾å¿œ
 
   Revision 1.5  2006/01/18 02:11:19  kitase_hirotake
   do-indent
 
   Revision 1.4  2005/11/29 11:13:03  yasu
-  ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒtƒ@ƒCƒ‹ƒA[ƒJƒCƒuŒ`®‚Ì‹Lq’Ç‰Á
+  ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å½¢å¼ã®è¨˜è¿°è¿½åŠ 
 
   Revision 1.3  2005/11/29 01:52:30  yasu
-  WEAK ƒVƒ“ƒ{ƒ‹ƒtƒ‰ƒO‚Ì’è‹`’Ç‰Á
+  WEAK ã‚·ãƒ³ãƒœãƒ«ãƒ•ãƒ©ã‚°ã®å®šç¾©è¿½åŠ 
 
   Revision 1.2  2005/06/10 12:55:42  yasu
-  1st ƒŠƒtƒ@ƒNƒ^ƒŠƒ“ƒO
+  1st ãƒªãƒ•ã‚¡ã‚¯ã‚¿ãƒªãƒ³ã‚°
 
   Revision 1.1  2005/06/10 00:43:01  yasu
-  ‰Šú”Å
+  åˆæœŸç‰ˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -46,15 +46,15 @@ typedef struct
     u16     e_machine;
     u32     e_version;
     u32     e_entry;
-    u32     e_phoff;                   // ProgramHeader ƒe[ƒuƒ‹‚Ö‚ÌƒIƒtƒZƒbƒg
-    u32     e_shoff;                   // SectionHeader ƒe[ƒuƒ‹‚Ö‚ÌƒIƒtƒZƒbƒg
+    u32     e_phoff;                   // ProgramHeader ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+    u32     e_shoff;                   // SectionHeader ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
     u32     e_flags;
-    u16     e_ehsize;                  // ElfHeader ‚ÌƒTƒCƒY
-    u16     e_phentsize;               // ProgramHeader ƒe[ƒuƒ‹‚ÌƒTƒCƒY
-    u16     e_phnum;                   // ProgramHeader ‚Ì”
-    u16     e_shentsize;               // SectionHeader ƒe[ƒuƒ‹‚ÌƒTƒCƒY
-    u16     e_shnum;                   // SectionHeader ‚Ì”
-    u16     e_shstrndx;                // Section –¼Ìƒe[ƒuƒ‹‚Ì index ”Ô†
+    u16     e_ehsize;                  // ElfHeader ã®ã‚µã‚¤ã‚º
+    u16     e_phentsize;               // ProgramHeader ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚µã‚¤ã‚º
+    u16     e_phnum;                   // ProgramHeader ã®æ•°
+    u16     e_shentsize;               // SectionHeader ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚µã‚¤ã‚º
+    u16     e_shnum;                   // SectionHeader ã®æ•°
+    u16     e_shstrndx;                // Section åç§°ãƒ†ãƒ¼ãƒ–ãƒ«ã® index ç•ªå·
 }
 ELF32_ElfHeader;
 
@@ -82,8 +82,8 @@ ELF32_ElfHeader;
 //
 typedef struct
 {
-    u32     sh_name;                   // Section–¼ƒe[ƒuƒ‹‚ÌŠJn index
-    u32     sh_type;                   // Sectioní  SHT_*
+    u32     sh_name;                   // Sectionåãƒ†ãƒ¼ãƒ–ãƒ«ã®é–‹å§‹ index
+    u32     sh_type;                   // Sectionç¨®  SHT_*
     u32     sh_flags;
     u32     sh_addr;
     u32     sh_offset;
@@ -110,11 +110,11 @@ ELF32_SectionHeader;
 //
 typedef struct
 {
-    u32     st_name;                   // Symbol–¼‚ÌŠJn index
-    u32     st_value;                  // Symbol‚Ì’l(lvalue)
-    u32     st_size;                   // Symbol©‘Ì‚ÌƒTƒCƒY(objectƒTƒCƒY‚È‚Ç)
-    u8      st_info;                   // STB_* ‚Æ STT_* ‚ğ˜AŒ‹‚·‚é
-    u8      st_other;                  // Œ»İ‚Í 0 ŒÅ’è
+    u32     st_name;                   // Symbolåã®é–‹å§‹ index
+    u32     st_value;                  // Symbolã®å€¤(lvalue)
+    u32     st_size;                   // Symbolè‡ªä½“ã®ã‚µã‚¤ã‚º(objectã‚µã‚¤ã‚ºãªã©)
+    u8      st_info;                   // STB_* ã¨ STT_* ã‚’é€£çµã™ã‚‹
+    u8      st_other;                  // ç¾åœ¨ã¯ 0 å›ºå®š
     u16     st_shndx;
 }
 ELF32_Symbol;

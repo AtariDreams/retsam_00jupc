@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_G2dSetCallBackFunctor</title>
@@ -11,7 +11,7 @@
 
 <body>
 <h1 align="left">NNS_G2dSetCallBackFunctor</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,46 +22,46 @@
                       u32                     param, 
                       NNSG2dAnmCallBackPtr    pFunc );</CODE></pre>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pAnimCtrl </font></strong></em></td>
-    <td width="87%">[OUT] NNSG2dAnimController ����</td>
+    <td width="87%">[OUT] NNSG2dAnimController 実体</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">type</font></strong></em></td>
-    <td width="87%">[IN] �R�[���o�b�N�Ăяo���̎��</td>
+    <td width="87%">[IN] コールバック呼び出しの種類</td>
   </tr>
 
   <tr>
     <td width="13%"><em><strong><font face="Courier New">param</font></strong></em></td>
-    <td width="87%">[IN] �R�[���o�b�N�֐��̈����ƂȂ� u32 �f�[�^</td>
+    <td width="87%">[IN] コールバック関数の引数となる u32 データ</td>
   </tr>
 
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pFunc </font></strong></em></td>
-    <td width="87%">[IN] �R�[���o�b�N�֐��|�C���^</td>
+    <td width="87%">[IN] コールバック関数ポインタ</td>
   </tr>
 
     </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
-<H2>����</H2>
-<P>�A�j���[�V�����R���g���[���ɃR�[���o�b�N��ݒ肵�܂��B<BR>
-�R�[���o�b�N�̓R���g���[�����̖���1��ނ̂ݓo�^�\�ł��B<BR>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>アニメーションコントローラにコールバックを設定します。<BR>
+コールバックはコントローラ実体毎に1種類のみ登録可能です。<BR>
 <BR>
-�{�֐��̈��� <CODE>type </CODE><CODE>�� </CODE>NNS_G2D_ANMCALLBACKTYPE_SPEC_FRM ���w�肷��͕̂s���ł��B<BR>
-���̏ꍇ�� NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame() �� �g�p����K�v������܂��B<BR>
-<BR>�{�֐��� NNS_G2dSetAnimCtrlCallBackFunctor() �� ��������܂����B�{�֐��́A�ߋ��̃o�[�W�����Ƃ̌݊����ێ��̂��߁A�ʖ��Ƃ��Ă̂�����܂��B<BR>
+本関数の引数 <CODE>type </CODE><CODE>に </CODE>NNS_G2D_ANMCALLBACKTYPE_SPEC_FRM を指定するのは不正です。<BR>
+その場合は NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame() を 使用する必要があります。<BR>
+<BR>本関数は NNS_G2dSetAnimCtrlCallBackFunctor() に 改名されました。本関数は、過去のバージョンとの互換性維持のため、別名としてのこされます。<BR>
 </p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <CODE><A href="NNS_G2dSetAnimCtrlCallBackFunctor.html">NNS_G2dSetAnimCtrlCallBackFunctor</A><br></CODE>
 <CODE><A href="NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame.html">NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame</A><br>
 </CODE></p>
-<H2>����</H2>
-<P>2004/08/02 �֐������̎��{</P><P>2004/05/28 ����</P>
+<H2>履歴</H2>
+<P>2004/08/02 関数改名の実施</P><P>2004/05/28 初版</P>
 </body>
 </html>

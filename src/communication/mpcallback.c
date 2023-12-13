@@ -2,7 +2,7 @@
  * @version "$Id: mpcallback.c,v 1.2 2006/07/19 04:48:04 mitsuhara Exp $"
  *
  * @file mpcallback.c
- * @brief –³ü’ÊMƒ‰ƒCƒuƒ‰ƒŠ ó‘Ô‘JˆÚƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief ç„¡ç·šé€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒª çŠ¶æ…‹é·ç§»ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  * 
  */
 #include "mpconnect.h"
@@ -13,7 +13,7 @@
 
 
 /**
- * ƒGƒ‰[”­¶‚Ì‚½‚ßReset‚ğs‚¢IDLEƒXƒe[ƒ^ƒX‚ÖˆÚs
+ * ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã®ãŸã‚Resetã‚’è¡Œã„IDLEã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã¸ç§»è¡Œ
  */
 static void MpErrorToReset(void)
 {
@@ -39,7 +39,7 @@ static MpMACVendorData MpBssIDToMACVendorData(u8 *bssid)
 
 
 /**
- * I—¹—v‹‚Ì‚½‚ßReset‚ğs‚¢IDLEƒXƒe[ƒ^ƒX‚ÖˆÚs
+ * çµ‚äº†è¦æ±‚ã®ãŸã‚Resetã‚’è¡Œã„IDLEã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã¸ç§»è¡Œ
  */
 static BOOL MpResetForEnd(void)
 {
@@ -60,7 +60,7 @@ static BOOL MpResetForEnd(void)
 }
 
 
-// w’èAID‚Ìq‹@‚ğ–¢Ú‘±ó‘Ô‚É‚·‚é
+// æŒ‡å®šAIDã®å­æ©Ÿã‚’æœªæ¥ç¶šçŠ¶æ…‹ã«ã™ã‚‹
 static void MpSetupDisconnectChid(u32 aid)
 {
   MpDataParentMP *parent_data = MpGetDataParentMP();
@@ -97,7 +97,7 @@ static u32 MpGetNextChannel(void)
 
 
 /**
- * ’ÊMƒ`ƒƒƒ“ƒlƒ‹ŒŸõ‰Šú‰»
+ * é€šä¿¡ãƒãƒ£ãƒ³ãƒãƒ«æ¤œç´¢åˆæœŸåŒ–
  */
 static BOOL MpSetupSearchChannel(void)
 {
@@ -120,7 +120,7 @@ static BOOL MpSetupSearchChannel(void)
 
 
 /**
- * e‹@î•ñ‚ğİ’è
+ * è¦ªæ©Ÿæƒ…å ±ã‚’è¨­å®š
  */
 static void MpSetupParentParameter(void)
 {
@@ -128,16 +128,16 @@ static void MpSetupParentParameter(void)
   
   MpPrintf("MpSetupParentParameter()\n");
   
-  // ƒr[ƒRƒ“ŠÔŠu‚ğ“K“x‚È’l‚Éİ’è
+  // ãƒ“ãƒ¼ã‚³ãƒ³é–“éš”ã‚’é©åº¦ãªå€¤ã«è¨­å®š
   param->beaconPeriod = WM_GetDispersionBeaconPeriod();
 
-  // tempID‚ğİ’è
+  // tempIDã‚’è¨­å®š
   param->tgid = WM_GetNextTgid();
 }
 
 
 /**
- * q‹@‚ÌƒXƒLƒƒƒ“î•ñ‚ğİ’è MpRequestStartScan‚Ì‘O‚ÉŒÄ‚Î‚ê‚é
+ * å­æ©Ÿã®ã‚¹ã‚­ãƒ£ãƒ³æƒ…å ±ã‚’è¨­å®š MpRequestStartScanã®å‰ã«å‘¼ã°ã‚Œã‚‹
  */
 static void MpSetupScanParameter(void)
 {  
@@ -148,10 +148,10 @@ static void MpSetupScanParameter(void)
   scan_param->scanBuf = MpGetBssDesc();
   scan_param->channel = MpGetParentParameter()->channel;
 
-  // ’TõŒÀ“xŠÔ‚ğ“K“x‚È’l‚Éİ’è
+  // æ¢ç´¢é™åº¦æ™‚é–“ã‚’é©åº¦ãªå€¤ã«è¨­å®š
   scan_param->maxChannelTime = WM_GetDispersionScanPeriod();
 
-  /* ƒuƒ[ƒhƒLƒƒƒXƒgƒAƒhƒŒƒX‚ğw’è‚µANINTENDO‚Ì‘S‹@‚ğ’Tõ‚·‚é‚æ‚¤İ’è */
+  /* ãƒ–ãƒ­ãƒ¼ãƒ‰ã‚­ãƒ£ã‚¹ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒ‡å®šã—ã€NINTENDOã®å…¨æ©Ÿã‚’æ¢ç´¢ã™ã‚‹ã‚ˆã†è¨­å®š */
   scan_param->bssid[0] = 0xff;
   scan_param->bssid[1] = 0xff;
   scan_param->bssid[2] = 0xff;
@@ -185,7 +185,7 @@ static void MpSetupNextScanCannel(void)
 
 
 /**
- * IndicationƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * Indicationã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  */
 void MpCallbackIndicate(void *arg)
 {
@@ -196,7 +196,7 @@ void MpCallbackIndicate(void *arg)
   MpPrintStateCode((WMStateCode)cb->state);
   
   if (cb->errcode == WM_ERRCODE_FIFO_ERROR) {
-    // •œ‹Œ•s”\‚ÈƒGƒ‰[
+    // å¾©æ—§ä¸èƒ½ãªã‚¨ãƒ©ãƒ¼
     MpPrintf("MpCallbackIndicate() error\n");
     MpPrintErrorCode((WMErrCode)cb->errcode);
     MpErrorToReset();
@@ -205,9 +205,9 @@ void MpCallbackIndicate(void *arg)
 
 
 /**
- * MpRequestSetMPDataToPort‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestSetMPDataToPortã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 void MpCallbackSetMPDataToPort(void *arg)
  {
@@ -231,9 +231,9 @@ void MpCallbackSetMPDataToPort(void *arg)
 
 
 /**
- * MpRequestEnable‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestEnableã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 void MpCallbackEnable(void *arg)
 {
@@ -244,10 +244,10 @@ void MpCallbackEnable(void *arg)
   if (cb->errcode == WM_ERRCODE_SUCCESS) {
     MpPrintf("MpCallbackEnable() MpRequestEnable success.\n");
 
-    // ƒXƒe[ƒ^ƒXİ’è
+    // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¨­å®š
     MpSetStatus(MP_STATUS_STOP);
 
-    // –³üI—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚ÍDisable‚ÉˆÚs
+    // ç„¡ç·šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯Disableã«ç§»è¡Œ
     if (MpGetRequestStatus() == MP_STATUS_END) {
       MpPrintf("MpCallbackEnable() request [END] to Disable\n");
       MpRequestDisable();
@@ -255,7 +255,7 @@ void MpCallbackEnable(void *arg)
       return;
     }
     
-    // –³üƒfƒoƒCƒX‚É“dŒ¹“Š“ü
+    // ç„¡ç·šãƒ‡ãƒã‚¤ã‚¹ã«é›»æºæŠ•å…¥
     if (MpRequestPowerOn() == FALSE) {
       MpRequestDisable();
       MpSetStatus(MP_STATUS_STOP);
@@ -273,9 +273,9 @@ void MpCallbackEnable(void *arg)
 
 
 /**
- * MpRequestDisable‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestDisableã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 void MpCallbackDisable(void *arg)
 {
@@ -287,13 +287,13 @@ void MpCallbackDisable(void *arg)
 
     MpPrintf("MpCallbackDisable() MpRequestDisable success.\n");
 
-    // –³üI—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚Í–³üƒ‰ƒCƒuƒ‰ƒŠ‚ğI—¹
+    // ç„¡ç·šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯ç„¡ç·šãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’çµ‚äº†
     if (MpGetRequestStatus() == MP_STATUS_END) {
       MpPrintf("MpCallbackDisable() request [END] to Finish\n");
       WM_Finish();
       MpSetStatus(MP_STATUS_END);
 
-      // –³üƒ‰ƒCƒuƒ‰ƒŠ‚ÌI—¹‚ğ‹L˜^
+      // ç„¡ç·šãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®çµ‚äº†ã‚’è¨˜éŒ²
       MpSetIsEnd(TRUE);
       return;
     }
@@ -312,9 +312,9 @@ void MpCallbackDisable(void *arg)
 
 
 /**
- * MpRequestSearchChannel‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestSearchChannelã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì 
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“ 
  */
 void MpCallbackSearchChannel(void *arg)
 {
@@ -335,23 +335,23 @@ void MpCallbackSearchChannel(void *arg)
     }
 
     {
-      /* Ÿ‚Ìƒ`ƒƒƒ“ƒlƒ‹æ“¾ */
+      /* æ¬¡ã®ãƒãƒ£ãƒ³ãƒãƒ«å–å¾— */
       u32 next_channel = MpGetNextChannel();
 
       MpPrintf("MpCallbackSearchChannel() next channel %d\n", next_channel);
       
-      /* Ÿ‚Ìƒ`ƒƒƒ“ƒlƒ‹‚Ì“d”gg—p—¦‘ª’è */
+      /* æ¬¡ã®ãƒãƒ£ãƒ³ãƒãƒ«ã®é›»æ³¢ä½¿ç”¨ç‡æ¸¬å®š */
       if (next_channel) {	
 	if (MpRequestSearchChannel(next_channel) == FALSE) MpErrorToReset();
       } else {
 
-	/* “d”gg—p—¦‚Ì’á‚¢ƒ`ƒƒƒ“ƒlƒ‹‚ªŒ©‚Â‚©‚Á‚½ê‡Ae‹@‚ÉˆÚs */
+	/* é›»æ³¢ä½¿ç”¨ç‡ã®ä½ã„ãƒãƒ£ãƒ³ãƒãƒ«ãŒè¦‹ã¤ã‹ã£ãŸå ´åˆã€è¦ªæ©Ÿã«ç§»è¡Œ */
 	if (parent_data->busy_ratio < MP_MEASURE_BUSYRATIO_MAX) {
 	
-	  /* e‹@—p‚Ìƒpƒ‰ƒ[ƒ^İ’è */
+	  /* è¦ªæ©Ÿç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š */
 	  MpSetupParentParameter();
 
-	  /* e‹@ƒpƒ‰ƒ[ƒ^İ’è‚ÉˆÚs */ 
+	  /* è¦ªæ©Ÿãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®šã«ç§»è¡Œ */ 
 	  if (MpRequestSetParentParameter() == FALSE) MpErrorToReset();
 	} else
 	  MpErrorToReset();
@@ -368,9 +368,9 @@ void MpCallbackSearchChannel(void *arg)
 
 
 /**
- * MpRequestSetParentParameter‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestSetParentParameterã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì 
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“ 
  */
 void MpCallbackSetParentParameter(void *arg)
 {
@@ -382,7 +382,7 @@ void MpCallbackSetParentParameter(void *arg)
 
     MpPrintf("MpCallbackSetParentParameter() MpRequestSetParentParameter() success.\n");
 
-    // –³üI—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚ÍReset‚ÉˆÚs
+    // ç„¡ç·šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯Resetã«ç§»è¡Œ
     if (MpResetForEnd()) return;
     
     if (MpRequestStartParent() == FALSE) MpErrorToReset();
@@ -399,10 +399,10 @@ void MpCallbackSetParentParameter(void *arg)
 
 
 /**
- * MpRequestStartParent‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestStartParentã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì 
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“ 
  */
 void MpCallbackStartParent(void *arg)
 {
@@ -415,14 +415,14 @@ void MpCallbackStartParent(void *arg)
 
     MpDataParentMP *parent_data = MpGetDataParentMP();
 
-    /* ƒXƒe[ƒ^ƒX‚ğe‹@Ú‘±Ï‚İ‚Éİ’è */
+    /* ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¦ªæ©Ÿæ¥ç¶šæ¸ˆã¿ã«è¨­å®š */
     MpSetStatus(MP_STATUS_PARENT);
 
-    /* –³üI—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚ÍReset‚ÉˆÚs */
+    /* ç„¡ç·šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯Resetã«ç§»è¡Œ */
     if (MpResetForEnd()) return;
 
     if (parent_data->status == MP_PARENT_MP_STATUS_SEARCH_CHANNEL)
-      /* e‹@ƒXƒe[ƒ^ƒX‚ğÚ‘±‘Ò‚¿‚É */
+      /* è¦ªæ©Ÿã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’æ¥ç¶šå¾…ã¡ã« */
       parent_data->status = MP_PARENT_MP_STATUS_WAIT_CONNECT;
     
     switch (cb->state) {
@@ -452,11 +452,11 @@ void MpCallbackStartParent(void *arg)
 		 MpGetConnectID());
 	
 	if (
-	    /* ƒvƒƒgƒRƒ‹ID‚ªˆê’v‚·‚é‚© */
+	    /* ãƒ—ãƒ­ãƒˆã‚³ãƒ«IDãŒä¸€è‡´ã™ã‚‹ã‹ */
 	    (ssid->header.data0.protocol_id == MpGetProtocolID()) &&
-	    /* ‘Î‰‰Â”\‚Èƒo[ƒWƒ‡ƒ“‚© */
+	    /* å¯¾å¿œå¯èƒ½ãªãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‹ */
 	    (ssid->header.data0.protocol_version <= MpGetProtocolVersion()) &&
-	    /* Ú‘±ID‚ªˆê’v‚·‚é‚©‚ğŠm”F */
+	    /* æ¥ç¶šIDãŒä¸€è‡´ã™ã‚‹ã‹ã‚’ç¢ºèª */
 	    (ssid->header.data1.connect_id == MpGetConnectID())) {
 
 	  int i;
@@ -467,15 +467,15 @@ void MpCallbackStartParent(void *arg)
 	  for (i=0; i<MP_SIZE_RECEIVE_MP_CHILD_LIST; i++) {
 	    MpMACAddData *mac_data = &parent_data->user_list[i].mac_addr;
 
-	    /* Šùo‚ÌMACƒAƒhƒŒƒX‚Ìê‡ƒpƒX */
+	    /* æ—¢å‡ºã®MACã‚¢ãƒ‰ãƒ¬ã‚¹ã®å ´åˆãƒ‘ã‚¹ */
 	    if (mac_data->u.data32 == mac_connect.u.data32) {
-	      /* AID‚ÆConnectFlag‚ğÄİ’è */
+	      /* AIDã¨ConnectFlagã‚’å†è¨­å®š */
 	      parent_data->user_list[i].aid = cb->aid;
 	      parent_data->user_list[i].connect_flag = 1;
 	      break;
 	    }
 	    
-	    /* –¢‹L˜^‚Ìƒoƒbƒtƒ@‚ª‚ ‚ê‚ÎA‚»‚±‚ÉMACƒAƒhƒŒƒX‚ÆAID‚ğ‹L˜^ */
+	    /* æœªè¨˜éŒ²ã®ãƒãƒƒãƒ•ã‚¡ãŒã‚ã‚Œã°ã€ãã“ã«MACã‚¢ãƒ‰ãƒ¬ã‚¹ã¨AIDã‚’è¨˜éŒ² */
 	    if (mac_data->u.data32 == 0) {
 	      parent_data->user_list[i].mac_addr.u.data32 = mac_connect.u.data32;
 	      parent_data->user_list[i].mac_vendor.u.data16 = vnd_connect.u.data16;
@@ -508,7 +508,7 @@ void MpCallbackStartParent(void *arg)
 
 
 /**
- * w’è‚³‚ê‚½bssid‚ğMpMACAddData‚É’Ç‰Á
+ * æŒ‡å®šã•ã‚ŒãŸbssidã‚’MpMACAddDataã«è¿½åŠ 
  */
 static BOOL MpReceiveMPAddParentAddr(WMstartScanCallback *cb, WMBssDesc *bss_desc)
 {
@@ -521,11 +521,11 @@ static BOOL MpReceiveMPAddParentAddr(WMstartScanCallback *cb, WMBssDesc *bss_des
     MpMACAddData *mac_data = &dcmp->user_list[i].mac_addr;
     MpMACVendorData *vnd_data = &dcmp->user_list[i].mac_vendor;
     
-    /* Šùo‚ÌMACƒAƒhƒŒƒX‚Ìê‡ƒpƒX */
+    /* æ—¢å‡ºã®MACã‚¢ãƒ‰ãƒ¬ã‚¹ã®å ´åˆãƒ‘ã‚¹ */
     if ((mac_data->u.data32 == mac_bss.u.data32) && (vnd_data->u.data16 == vnd_bss.u.data16))
       return TRUE;
 
-    /* –¢‹L˜^‚Ìƒoƒbƒtƒ@‚ª‚ ‚ê‚ÎA‚»‚±‚ÉMACƒAƒhƒŒƒX‚ÆUserName‚ğ‹L˜^ */
+    /* æœªè¨˜éŒ²ã®ãƒãƒƒãƒ•ã‚¡ãŒã‚ã‚Œã°ã€ãã“ã«MACã‚¢ãƒ‰ãƒ¬ã‚¹ã¨UserNameã‚’è¨˜éŒ² */
     if (mac_data->u.data32 == 0) {
       dcmp->user_list[i].mac_addr.u.data32 = mac_bss.u.data32;
       dcmp->user_list[i].name = ((MpUserGameInfo*)bss_desc->gameInfo.userGameInfo)->data.name;
@@ -536,26 +536,26 @@ static BOOL MpReceiveMPAddParentAddr(WMstartScanCallback *cb, WMBssDesc *bss_des
     }
   }
 
-  /* e‹@ƒŠƒXƒg‚ªˆê”t‚É‚È‚Á‚½ê‡ */
+  /* è¦ªæ©Ÿãƒªã‚¹ãƒˆãŒä¸€æ¯ã«ãªã£ãŸå ´åˆ */
   return FALSE;
 }
 
 
 static void MpCallbackStartScanParentNotFound(void)
 {
-  /* ƒXƒLƒƒƒ“‚Ìƒpƒ‰ƒ[ƒ^‚ğ•ÏX */
+  /* ã‚¹ã‚­ãƒ£ãƒ³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›´ */
   MpSetupNextScanCannel();
 
-  /* ‚à‚¤ˆê‰ñƒXƒLƒƒƒ“‚ğÀs‚·‚é */
+  /* ã‚‚ã†ä¸€å›ã‚¹ã‚­ãƒ£ãƒ³ã‚’å®Ÿè¡Œã™ã‚‹ */
   if (MpRequestStartScan() == FALSE) MpErrorToReset();
 }
 
 
 /**
- * MpCallbackStartScan‚Åe‹@‚ª”­Œ©‚³‚ê‚½ê‡‚Ìˆ—
+ * MpCallbackStartScanã§è¦ªæ©ŸãŒç™ºè¦‹ã•ã‚ŒãŸå ´åˆã®å‡¦ç†
  *
- * @param cb WM_StartScan‚ÌƒR[ƒ‹ƒoƒbƒN‚Ìˆø”
- * @return ÄƒXƒLƒƒƒ“‚ğs‚¤ê‡FALSE‚ğ•Ô‚·
+ * @param cb WM_StartScanã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•°
+ * @return å†ã‚¹ã‚­ãƒ£ãƒ³ã‚’è¡Œã†å ´åˆFALSEã‚’è¿”ã™
  */
 static BOOL MpCallbackStartScanParentFound(WMstartScanCallback *cb)
 {
@@ -564,7 +564,7 @@ static BOOL MpCallbackStartScanParentFound(WMstartScanCallback *cb)
 
   MpPrintf("MpCallbackStartScanParentFound() TimeCount %d\n", child_data->time_count);
 
-  /* ƒŠƒZƒbƒg—v‹‚Ìƒ`ƒFƒbƒN */
+  /* ãƒªã‚»ãƒƒãƒˆè¦æ±‚ã®ãƒã‚§ãƒƒã‚¯ */
   if (MpResetForEnd()) return TRUE;
 
 #if 1
@@ -579,17 +579,17 @@ static BOOL MpCallbackStartScanParentFound(WMstartScanCallback *cb)
       }
     }
   
-    /* ƒ^ƒCƒ€ƒAƒEƒg‚Ìƒ`ƒFƒbƒN */
+    /* ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã®ãƒã‚§ãƒƒã‚¯ */
     if ((find_flag != 0) && (child_data->time_count == 0)) {
       
-      /* EndScanƒXƒe[ƒ^ƒX‚ÉˆÚs */
+      /* EndScanã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«ç§»è¡Œ */
       if (MpRequestEndScan() == FALSE) MpErrorToReset();
       return TRUE;
     }
   }
 #endif
   
-  /* e‹@î•ñŠi”[ƒoƒbƒtƒ@‚ÌƒLƒƒƒbƒVƒ…‚ğ”jŠü */
+  /* è¦ªæ©Ÿæƒ…å ±æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ç ´æ£„ */
   DC_InvalidateRange(bss_desc, sizeof(WMbssDesc));
   
   MpPrintDataChildMP(MpGetDataChildMP());	    
@@ -598,7 +598,7 @@ static BOOL MpCallbackStartScanParentFound(WMstartScanCallback *cb)
 	   bss_desc->gameInfo.ggid,
 	   MpGetGameID());
   
-  /* GameGroupID‚ªˆê’v‚·‚é‚©‚ğŠm”F */
+  /* GameGroupIDãŒä¸€è‡´ã™ã‚‹ã‹ã‚’ç¢ºèª */
   if ((cb->gameInfoLength >= 8) && (bss_desc->gameInfo.ggid == MpGetGameID())) {
       
     MpUserGameInfo *info = (MpUserGameInfo*)bss_desc->gameInfo.userGameInfo;
@@ -612,23 +612,23 @@ static BOOL MpCallbackStartScanParentFound(WMstartScanCallback *cb)
 	     MpGetConnectID());
 
     if (
-	/* ƒvƒƒgƒRƒ‹ID‚ªˆê’v‚·‚é‚© */
+	/* ãƒ—ãƒ­ãƒˆã‚³ãƒ«IDãŒä¸€è‡´ã™ã‚‹ã‹ */
 	(info->header.data0.protocol_id == MpGetProtocolID()) &&
-	/* ‘Î‰‰Â”\‚Èƒo[ƒWƒ‡ƒ“‚© */
+	/* å¯¾å¿œå¯èƒ½ãªãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‹ */
 	(info->header.data0.protocol_version <= MpGetProtocolVersion()) &&
-    	/* Ú‘±ID‚ªˆê’v‚·‚é‚©‚ğŠm”F */
+    	/* æ¥ç¶šIDãŒä¸€è‡´ã™ã‚‹ã‹ã‚’ç¢ºèª */
 	(info->header.data1.connect_id == MpGetConnectID())) {
 
-      /* Ú‘±‘ÎÛ‚ğ‹L‰¯ */
+      /* æ¥ç¶šå¯¾è±¡ã‚’è¨˜æ†¶ */
       if (MpReceiveMPAddParentAddr(cb, bss_desc)) {
 	
-	/* e‹@ŒŸõ‰ñ”‚ÌãŒÀ‚É’B‚µ‚½‚©Šm”F */
+	/* è¦ªæ©Ÿæ¤œç´¢å›æ•°ã®ä¸Šé™ã«é”ã—ãŸã‹ç¢ºèª */
 	MpDataChildMP *child_data = MpGetDataChildMP();
 	if (++child_data->scan_retry_count > MP_NUM_RECEIVE_MP_RETRY) {
 	    
 	  MpPrintf("MpCallbackStartScanParentFound() over retry count (%d/%d)\n", child_data->scan_retry_count, MP_NUM_RECEIVE_MP_RETRY);
 
-	  /* EndScanƒXƒe[ƒ^ƒX‚ÉˆÚs */
+	  /* EndScanã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«ç§»è¡Œ */
 	  if (MpRequestEndScan() == FALSE) {
 	    MpErrorToReset();
 	    return TRUE;
@@ -638,7 +638,7 @@ static BOOL MpCallbackStartScanParentFound(WMstartScanCallback *cb)
 	
 	MpPrintf("MpCallbackStartScanParentFound() over parent list buff\n");
 	
-	/* Ú‘±‘ÎÛ‚ª‚¢‚Á‚Ï‚¢‚É‚È‚Á‚½‚Ì‚ÅEndScanƒXƒe[ƒ^ƒX‚ÉˆÚs */
+	/* æ¥ç¶šå¯¾è±¡ãŒã„ã£ã±ã„ã«ãªã£ãŸã®ã§EndScanã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«ç§»è¡Œ */
 	if (MpRequestEndScan() == FALSE) MpErrorToReset();
 	return TRUE;
       }
@@ -649,9 +649,9 @@ static BOOL MpCallbackStartScanParentFound(WMstartScanCallback *cb)
 
 
 /**
- * MpRequestStartScan‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestStartScanã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì 
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“ 
  */
 void MpCallbackStartScan(void *arg)
 {
@@ -668,13 +668,13 @@ void MpCallbackStartScan(void *arg)
       MpPrintBssDesc(bss_desc);
     }
     
-    /* ƒXƒe[ƒ^ƒX‚ğƒXƒLƒƒƒ“’†‚Éİ’è */
+    /* ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚¹ã‚­ãƒ£ãƒ³ä¸­ã«è¨­å®š */
     MpSetStatus(MP_STATUS_SCAN);    
 
-    // –³üI—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚ÍReset‚ÉˆÚs
+    // ç„¡ç·šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯Resetã«ç§»è¡Œ
     if (MpResetForEnd()) return;
     
-    /* ƒ‚[ƒh–ˆ‚ÌƒXƒe[ƒ^ƒXİ’è */
+    /* ãƒ¢ãƒ¼ãƒ‰æ¯ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¨­å®š */
     switch (MpGetMode()) {
     case MP_MODE_CHILD_MP :
       {
@@ -702,7 +702,7 @@ void MpCallbackStartScan(void *arg)
       if (MpCallbackStartScanParentFound(cb) != FALSE) break;
 
       // Don't break here.
-      // ‘±‚¯‚Ä‚à‚¤ˆê‰ñƒXƒLƒƒƒ“‚ğÀs
+      // ç¶šã‘ã¦ã‚‚ã†ä¸€å›ã‚¹ã‚­ãƒ£ãƒ³ã‚’å®Ÿè¡Œ
       
     case WM_STATECODE_PARENT_NOT_FOUND :
       MpCallbackStartScanParentNotFound();
@@ -724,10 +724,10 @@ void MpCallbackStartScan(void *arg)
 
 
 /**
- * MpCallbackStartScan2‚Åe‹@‚ª”­Œ©‚³‚ê‚½ê‡‚Ìˆ—
+ * MpCallbackStartScan2ã§è¦ªæ©ŸãŒç™ºè¦‹ã•ã‚ŒãŸå ´åˆã®å‡¦ç†
  *
- * @param cb WM_StartScan‚ÌƒR[ƒ‹ƒoƒbƒN‚Ìˆø”
- * @return ÄƒXƒLƒƒƒ“‚ğs‚¤ê‡FALSE‚ğ•Ô‚·
+ * @param cb WM_StartScanã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¼•æ•°
+ * @return å†ã‚¹ã‚­ãƒ£ãƒ³ã‚’è¡Œã†å ´åˆFALSEã‚’è¿”ã™
  */
 static BOOL MpCallbackStartScan2ParentFound(void)
 {
@@ -737,14 +737,14 @@ static BOOL MpCallbackStartScan2ParentFound(void)
 
   MpPrintf("MpCallbackStartScan2ParentFound()\n");
 
-  /* ƒŠƒZƒbƒg—v‹‚Ìƒ`ƒFƒbƒN */
+  /* ãƒªã‚»ãƒƒãƒˆè¦æ±‚ã®ãƒã‚§ãƒƒã‚¯ */
   if (MpResetForEnd()) return TRUE;
 
 #if 0
-  /* ƒ^ƒCƒ€ƒAƒEƒg‚Ìƒ`ƒFƒbƒN */
+  /* ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã®ãƒã‚§ãƒƒã‚¯ */
   if (child_data->time_count == 0) {
 
-    /* EndScanƒXƒe[ƒ^ƒX‚ÉˆÚs */
+    /* EndScanã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«ç§»è¡Œ */
     if (MpRequestEndScan() == FALSE) {
       MpErrorToReset();
     }
@@ -752,22 +752,22 @@ static BOOL MpCallbackStartScan2ParentFound(void)
   }    
 #endif
   
-  /* e‹@î•ñŠi”[ƒoƒbƒtƒ@‚ÌƒLƒƒƒbƒVƒ…‚ğ”jŠü */
+  /* è¦ªæ©Ÿæƒ…å ±æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ç ´æ£„ */
   DC_InvalidateRange(bss_desc, sizeof(WMbssDesc));
   
   MpPrintDataChildMP(MpGetDataChildMP());
   
-  /* GameGroupID‚ªˆê’v‚·‚é‚©‚ğŠm”F */
+  /* GameGroupIDãŒä¸€è‡´ã™ã‚‹ã‹ã‚’ç¢ºèª */
   if ((bss_desc->gameInfoLength >= 8) && (bss_desc->gameInfo.ggid == MpGetGameID())) {
       
     MpUserGameInfo *info = (MpUserGameInfo*)bss_desc->gameInfo.userGameInfo;
 
     if (
-	/* ƒvƒƒgƒRƒ‹ID‚ªˆê’v‚·‚é‚© */
+	/* ãƒ—ãƒ­ãƒˆã‚³ãƒ«IDãŒä¸€è‡´ã™ã‚‹ã‹ */
 	(info->header.data0.protocol_id == MpGetProtocolID()) &&
-	/* ‘Î‰‰Â”\‚Èƒo[ƒWƒ‡ƒ“‚© */
+	/* å¯¾å¿œå¯èƒ½ãªãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‹ */
 	(info->header.data0.protocol_version <= MpGetProtocolVersion()) &&
-    	/* Ú‘±ID‚ªˆê’v‚·‚é‚©‚ğŠm”F */
+    	/* æ¥ç¶šIDãŒä¸€è‡´ã™ã‚‹ã‹ã‚’ç¢ºèª */
 	(info->header.data1.connect_id == MpGetConnectID())) {
     
       /*  */
@@ -776,7 +776,7 @@ static BOOL MpCallbackStartScan2ParentFound(void)
       
       if (mac_data->u.data32 == mac_bss.u.data32) {
 	
-	/* EndScanƒXƒe[ƒ^ƒX‚ÉˆÚs */
+	/* EndScanã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«ç§»è¡Œ */
 	if (MpRequestEndScan() == FALSE) MpErrorToReset();
 	return TRUE;
       }
@@ -787,9 +787,9 @@ static BOOL MpCallbackStartScan2ParentFound(void)
 	
 
 /**
- * MpRequestStartScan2‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestStartScan2ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì 
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“ 
  */
 void MpCallbackStartScan2(void *arg)
 {
@@ -802,13 +802,13 @@ void MpCallbackStartScan2(void *arg)
     MpDataChildMP *dcmp = MpGetDataChildMP();
     MpPrintf("MpCallbackStartScan2() MpRequestStartScan2 success.\n");
 
-    /* ƒ‚[ƒh–ˆ‚ÌƒXƒe[ƒ^ƒXİ’è */
+    /* ãƒ¢ãƒ¼ãƒ‰æ¯ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¨­å®š */
     dcmp->status = MP_CHILD_MP_STATUS_SCAN_2;
 
-     /* ƒXƒe[ƒ^ƒX‚ğƒXƒLƒƒƒ“’†‚Éİ’è */
+     /* ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚¹ã‚­ãƒ£ãƒ³ä¸­ã«è¨­å®š */
     MpSetStatus(MP_STATUS_SCAN);    
 
-    // –³üI—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚ÍReset‚ÉˆÚs
+    // ç„¡ç·šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯Resetã«ç§»è¡Œ
     if (MpResetForEnd()) return;
     
     switch (cb->state) {
@@ -818,15 +818,15 @@ void MpCallbackStartScan2(void *arg)
       if (MpCallbackStartScan2ParentFound() != FALSE) break;
 
       // Don't break here.
-      // ‘±‚¯‚Ä‚à‚¤ˆê‰ñƒXƒLƒƒƒ“‚ğÀs
+      // ç¶šã‘ã¦ã‚‚ã†ä¸€å›ã‚¹ã‚­ãƒ£ãƒ³ã‚’å®Ÿè¡Œ
       MpPrintf("MpCallbackStartScan2() ReScan start.\n");
 
       
     case WM_STATECODE_PARENT_NOT_FOUND :
-      /* ƒXƒLƒƒƒ“‚Ìƒpƒ‰ƒ[ƒ^‚ğ•ÏX */
+      /* ã‚¹ã‚­ãƒ£ãƒ³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›´ */
       MpSetupNextScanCannel();
 
-      /* ‚à‚¤ˆê‰ñƒXƒLƒƒƒ“‚ğÀs‚·‚é */
+      /* ã‚‚ã†ä¸€å›ã‚¹ã‚­ãƒ£ãƒ³ã‚’å®Ÿè¡Œã™ã‚‹ */
       if (MpRequestStartScan2() == FALSE) MpErrorToReset();
       break;
 	
@@ -846,9 +846,9 @@ void MpCallbackStartScan2(void *arg)
 
 
 /**
- * MpRequestEndScan‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestEndScanã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 void MpCallbackEndScan(void *arg)
 {
@@ -861,16 +861,16 @@ void MpCallbackEndScan(void *arg)
     MpPrintf("WM_CallbackEndScan() MpRequestEndScan success.\n");
     MpSetStatus(MP_STATUS_ENDSCAN);
 
-    // –³üI—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚ÍReset‚ÉˆÚs
+    // ç„¡ç·šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯Resetã«ç§»è¡Œ
     if (MpResetForEnd()) return;
     
     if (MpGetMode() == MP_MODE_CHILD_MP) {
       MpDataChildMP *dcmp = MpGetDataChildMP();
 
-      /* Ú‘±ŠJn‚Ì‚½‚ß‚ÌƒXƒLƒƒƒ“Œã‚Ìê‡ */
+      /* æ¥ç¶šé–‹å§‹ã®ãŸã‚ã®ã‚¹ã‚­ãƒ£ãƒ³å¾Œã®å ´åˆ */
       if (dcmp->status == MP_CHILD_MP_STATUS_SCAN_2) {
 
-	/* q‹@‚Æ‚µ‚ÄƒRƒlƒNƒgŠJn */
+	/* å­æ©Ÿã¨ã—ã¦ã‚³ãƒã‚¯ãƒˆé–‹å§‹ */
 	if (MpRequestStartConnect() == FALSE) MpErrorToReset();
 	else MpSetStatus(MP_STATUS_IDLE);
       }
@@ -885,9 +885,9 @@ void MpCallbackEndScan(void *arg)
 
 
 /**
- * MpRequestStartConnect‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestStartConnectã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 void MpCallbackStartConnect(void *arg)
 {
@@ -899,39 +899,39 @@ void MpCallbackStartConnect(void *arg)
   if (cb->errcode == WM_ERRCODE_SUCCESS) {
     MpPrintf("MpCallbackStartConnect() MpRequestStartConnect success.\n");    
     
-    /* ƒXƒe[ƒ^ƒX‚ğq‹@Ú‘±’†‚Éİ’è */
+    /* ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å­æ©Ÿæ¥ç¶šä¸­ã«è¨­å®š */
     MpSetStatus(MP_STATUS_CHILD);    
 
-    // –³üI—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚ÍReset‚ÉˆÚs
+    // ç„¡ç·šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯Resetã«ç§»è¡Œ
     if (MpResetForEnd()) return;
     
     switch (cb->state) {
     case WM_STATECODE_CONNECT_START:
-      // CONNECTED‚É‚È‚é‚Ì‚ğ‘Ò‚Â‚Ì‚ÅAˆ—‚È‚µ
+      // CONNECTEDã«ãªã‚‹ã®ã‚’å¾…ã¤ã®ã§ã€å‡¦ç†ãªã—
       break;
 
     case WM_STATECODE_CONNECTED:
-      // Š„‚è“–‚Ä‚ç‚ê‚½AID‚ğ‘Ş”ğ
+      // å‰²ã‚Šå½“ã¦ã‚‰ã‚ŒãŸAIDã‚’é€€é¿
       MpSetAid(cb->aid);
 
-      // Ú‘±’Ê’m
+      // æ¥ç¶šé€šçŸ¥
       MpSetIsConnectFlag(TRUE);
       MpSetDisconnectTrigger(FALSE);
       
 #if 0      
-      // Šù‚Éq‹@‚Ìê‡‚Í‰½‚à‚µ‚È‚¢
+      // æ—¢ã«å­æ©Ÿã®å ´åˆã¯ä½•ã‚‚ã—ãªã„
       if (MpGetStatus() == MP_STATUS_CHILD) {
 	MpPrintf("MpCallbackStartConnect() - Connected , but already child mode.\n");
 
       } else {
 
-	/* MP’ÊM‚ğŠJn */
+	/* MPé€šä¿¡ã‚’é–‹å§‹ */
 	MpPrintf("MpCallbackStartConnect() MpRequestStartConnect success.\n");
 	if (MpRequestStartMP() == FALSE) MpErrorToReset();
 
       }
 #else
-      /* MP’ÊM‚ğŠJn */
+      /* MPé€šä¿¡ã‚’é–‹å§‹ */
       MpPrintf("MpCallbackStartConnect() MpRequestStartConnect success.\n");
       if (MpRequestStartMP() == FALSE) MpErrorToReset();
 #endif      
@@ -939,7 +939,7 @@ void MpCallbackStartConnect(void *arg)
 
     case WM_STATECODE_BEACON_LOST:
       MpPrintf("MpCallbackStartConnect() - Beacon from parent lost.\n");
-      // ƒr[ƒRƒ“‚ğ¸‚Á‚½‚¾‚¯‚Å‚ÍƒŠƒZƒbƒg‚µ‚È‚¢
+      // ãƒ“ãƒ¼ã‚³ãƒ³ã‚’å¤±ã£ãŸã ã‘ã§ã¯ãƒªã‚»ãƒƒãƒˆã—ãªã„
       break;
 
     case WM_STATECODE_DISCONNECTED:
@@ -979,16 +979,16 @@ static void MpCallbackNextStateFromIdele(void)
   case MP_MODE_PARENT_MP :
 
 #if 0    
-    /* e‹@—p‚Ìƒpƒ‰ƒ[ƒ^İ’è */
+    /* è¦ªæ©Ÿç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š */
     MpSetupParentParameter();
 
-    /* e‹@ƒpƒ‰ƒ[ƒ^İ’è‚ÉˆÚs */ 
+    /* è¦ªæ©Ÿãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®šã«ç§»è¡Œ */ 
     if (MpRequestSetParentParameter() == FALSE) MpErrorToReset();
     else MpSetStatus(MP_STATUS_IDLE);
 
 #else
     
-    /* ’ÊMƒ`ƒƒƒ“ƒlƒ‹ŒŸõ‰Šú‰» */
+    /* é€šä¿¡ãƒãƒ£ãƒ³ãƒãƒ«æ¤œç´¢åˆæœŸåŒ– */
     if ((MpSetupSearchChannel() != FALSE) &&
 	(MpRequestSearchChannel(MpGetNextChannel()) != FALSE)) {
       MpDataParentMP *parent_data = MpGetDataParentMP();
@@ -1001,10 +1001,10 @@ static void MpCallbackNextStateFromIdele(void)
 
   case MP_MODE_CHILD_MP :
 
-    /* q‹@‚ÌƒXƒLƒƒƒ“ŠJn—pƒpƒ‰ƒ[ƒ^İ’è */
+    /* å­æ©Ÿã®ã‚¹ã‚­ãƒ£ãƒ³é–‹å§‹ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š */
     MpSetupScanParameter();
 
-    /* q‹@ƒXƒLƒƒƒ“‚ÉˆÚs */
+    /* å­æ©Ÿã‚¹ã‚­ãƒ£ãƒ³ã«ç§»è¡Œ */
     if (MpRequestStartScan() == FALSE) MpErrorToReset();
     else MpSetStatus(MP_STATUS_IDLE);
     break;
@@ -1013,9 +1013,9 @@ static void MpCallbackNextStateFromIdele(void)
 
 
 /**
- * MpRequestDisConnect‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestDisConnectã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 void MpCallbackDisConnect(void *arg)
 {
@@ -1023,13 +1023,13 @@ void MpCallbackDisConnect(void *arg)
 
   MpPrintf("MpCallbackDisConnect()\n");
 
-  /* ƒXƒe[ƒ^ƒX‚ÍIDLEó‘Ô */
+  /* ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã¯IDLEçŠ¶æ…‹ */
   MpSetStatus(MP_STATUS_IDLE);
 
   if (cb->errcode == WM_ERRCODE_SUCCESS) {
     MpPrintf("MpCallbackDisConnect() MpRequestDisConnect success.\n");    
 
-    // –³üI—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚ÍReset‚ÉˆÚs
+    // ç„¡ç·šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯Resetã«ç§»è¡Œ
     if (MpResetForEnd()) return;
 
     MpCallbackNextStateFromIdele();
@@ -1046,9 +1046,9 @@ void MpCallbackDisConnect(void *arg)
 
 
 /**
- * MpRequestDisConnectChildren‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestDisConnectChildrenã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 void MpCallbackDisConnectChildren(void *arg)
 {
@@ -1070,7 +1070,7 @@ void MpCallbackDisConnectChildren(void *arg)
 	MpSetupDisconnectChid(i);
     }
     
-    // –³üI—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚ÍReset‚ÉˆÚs
+    // ç„¡ç·šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯Resetã«ç§»è¡Œ
     if (MpResetForEnd()) return;
   } else {
     MpPrintf("MpCallbacDisConnectChildren() MpRequestDisConnectChildren failed. ERRCODE: %x %x %x\n",
@@ -1083,9 +1083,9 @@ void MpCallbackDisConnectChildren(void *arg)
 
 
 /**
- * MpRequestStatMP‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestStatMPã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 void MpCallbackStartMP(void *arg)
 {
@@ -1114,11 +1114,11 @@ void MpCallbackStartMP(void *arg)
       break;
 
     case WM_STATECODE_MPEND_IND:
-      // e‹@‚Æ‚µ‚Ä‚Ì‘—óMŠ®—¹‚Ìindicate
+      // è¦ªæ©Ÿã¨ã—ã¦ã®é€å—ä¿¡å®Œäº†æ™‚ã®indicate
       break;
 
     case WM_STATECODE_MP_IND:
-      // q‹@‚Æ‚µ‚Ä‚ÌóMŠ®—¹‚Ìindicate
+      // å­æ©Ÿã¨ã—ã¦ã®å—ä¿¡å®Œäº†æ™‚ã®indicate
       break;
     }
   } else {
@@ -1127,12 +1127,12 @@ void MpCallbackStartMP(void *arg)
 
     case WM_ERRCODE_SEND_FAILED:
     case WM_ERRCODE_TIMEOUT:
-      // ‘—óM‚ªŠ®—¹‚µ‚È‚©‚Á‚½ê‡‚Ìindicate
-      // ‚È‚É‚à‚¹‚¸‚ÉÄ‘—‚³‚ê‚é‚Ì‚ğ‘Ò‚Â
+      // é€å—ä¿¡ãŒå®Œäº†ã—ãªã‹ã£ãŸå ´åˆã®indicate
+      // ãªã«ã‚‚ã›ãšã«å†é€ã•ã‚Œã‚‹ã®ã‚’å¾…ã¤
       break;      
 
     case WM_ERRCODE_INVALID_POLLBITMAP:
-      // ©•ªˆ¶‚Å‚Í‚È‚¢ MP ’ÊM‚ğó‚¯æ‚Á‚½ê‡‚Ì indicate
+      // è‡ªåˆ†å®›ã§ã¯ãªã„ MP é€šä¿¡ã‚’å—ã‘å–ã£ãŸå ´åˆã® indicate
       break;
 
     default:
@@ -1148,7 +1148,7 @@ static void MpUpdateSendData(void)
   MpTransData *td = MpGetTransData();  
   u32 send_size = MpGetSendBuffSize() - MpGetSendHeaderSize();
 
-  /* ƒV[ƒPƒ“ƒX”Ô†XV */
+  /* ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·æ›´æ–° */
   //td->sequence_num++;
   
   if (td->size > send_size) {
@@ -1167,41 +1167,41 @@ static void MpCallbackReceiveDataSendMp(WMPortRecvCallback *cb)
 
   MpPrintf("MpCallbackReceiveDataSendMp() TRANS MODE SEND trans status %d\n", td->state);  
   
-  /* ‰“š‘Ò‚¿‚©H */
+  /* å¿œç­”å¾…ã¡ã‹ï¼Ÿ */
   if (td->state == MP_TRANS_STATUS_WAIT) {
 
     MpSendHeader *header = (MpSendHeader *)td->recv_buff;
     
-    /* óMƒf[ƒ^‚ğ•œ† */
+    /* å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’å¾©å· */
     DC_FlushRange(cb->data, cb->length);	      
     MI_CpuCopy8(cb->data, td->recv_buff, cb->length);
 
     if (
-	/* ƒvƒƒgƒRƒ‹ID‚ªˆê’v‚·‚é‚© */
+	/* ãƒ—ãƒ­ãƒˆã‚³ãƒ«IDãŒä¸€è‡´ã™ã‚‹ã‹ */
 	(header->data0.protocol_id == MpGetProtocolID()) &&
-	/* ‘Î‰‰Â”\‚Èƒo[ƒWƒ‡ƒ“‚© */
+	/* å¯¾å¿œå¯èƒ½ãªãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‹ */
 	(header->data0.protocol_version <= MpGetProtocolVersion())) {
       
-      /* óMƒf[ƒ^‚ğ•œ† */
+      /* å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’å¾©å· */
       MpDecodeRecvData(td->recv_buff);
 
-      /* ’ÊM”Ô†‚ªˆê’v‚µ‚Ä‚¢‚é‚© */
+      /* é€šä¿¡ç•ªå·ãŒä¸€è‡´ã—ã¦ã„ã‚‹ã‹ */
       if (header->data2.sequence_num != td->seq_num) return;
       
       MpPrintSendHeader((MpSendHeader *)td->recv_buff);
       
-      /* ƒf[ƒ^‚ÌCRCƒ`ƒFƒbƒN */
+      /* ãƒ‡ãƒ¼ã‚¿ã®CRCãƒã‚§ãƒƒã‚¯ */
       if ((MpCheckRecvData(td->recv_buff)) && 
 
-	  /* Ä‘——v‹‚Å‚Í‚È‚¢*/
+	  /* å†é€è¦æ±‚ã§ã¯ãªã„*/
 	  (header->data2.control_code != MP_CONTROL_CODE_RETRY)) {
 
-	// óM‚ğŠm”F ’ÊM¬Œ÷
+	// å—ä¿¡ã‚’ç¢ºèª é€šä¿¡æˆåŠŸ
 	MpPrintf("MpCallbackReceiveData() TRANS MODE SEND recv success !!!\n");
 	td->state = MP_TRANS_STATUS_SUCCESS;
       } else {
 
-	/* óM¸”s iÄ‘——v‹orCRCƒGƒ‰[j‚à‚¤ˆê“x‘—M‚·‚é*/
+	/* å—ä¿¡å¤±æ•— ï¼ˆå†é€è¦æ±‚orCRCã‚¨ãƒ©ãƒ¼ï¼‰ã‚‚ã†ä¸€åº¦é€ä¿¡ã™ã‚‹*/
 	td->state = MP_TRANS_STATUS_ENABLE;
       }
     }
@@ -1224,15 +1224,15 @@ static void MppCallbackReceiveDataRecvMpReady(WMPortRecvCallback *cb)
     MI_CpuCopy8(cb->data, td->recv_buff, cb->length);
 
     if (
-	/* ƒvƒƒgƒRƒ‹ID‚ªˆê’v‚·‚é‚© */
+	/* ãƒ—ãƒ­ãƒˆã‚³ãƒ«IDãŒä¸€è‡´ã™ã‚‹ã‹ */
 	(header->data0.protocol_id == MpGetProtocolID()) &&
-	/* ‘Î‰‰Â”\‚Èƒo[ƒWƒ‡ƒ“‚© */
+	/* å¯¾å¿œå¯èƒ½ãªãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‹ */
 	(header->data0.protocol_version <= MpGetProtocolVersion())) {
       
-      /* óMƒf[ƒ^‚ğ•œ† */
+      /* å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’å¾©å· */
       MpDecodeRecvData(td->recv_buff);
       
-      /* ’ÊM”Ô†‚ªˆê’v‚µ‚Ä‚¢‚é‚© */
+      /* é€šä¿¡ç•ªå·ãŒä¸€è‡´ã—ã¦ã„ã‚‹ã‹ */
       if (header->data2.sequence_num != MP_SEQUENCE_READY) return;
       else {
 	MpDataParentMP *parent_data = MpGetDataParentMP();
@@ -1265,14 +1265,14 @@ static void MpCallbackReceiveDataRecvMp(WMPortRecvCallback *cb)
   
   MpPrintf("MpCallbackReceiveDataRecvMp() PrintHeader TRANS MODE RECV\n");
     
-  /* ƒf[ƒ^“]‘—€”õó‘Ô‚©H */
+  /* ãƒ‡ãƒ¼ã‚¿è»¢é€æº–å‚™çŠ¶æ…‹ã‹ï¼Ÿ */
   if (td->seq_num == MP_SEQUENCE_READY) {
 
     MppCallbackReceiveDataRecvMpReady(cb);
 
   } else {
      
-    /* ‰“š‘Ò‚¿‚©H */
+    /* å¿œç­”å¾…ã¡ã‹ï¼Ÿ */
     if (((td->state == MP_TRANS_STATUS_WAIT) || (td->state == MP_TRANS_STATUS_READY)) && (td->resend_count == 0)) {
       
       MpSendHeader *header = (MpSendHeader *)td->recv_buff;
@@ -1281,45 +1281,45 @@ static void MpCallbackReceiveDataRecvMp(WMPortRecvCallback *cb)
       MI_CpuCopy8(cb->data, td->recv_buff, cb->length);
       
       if (
-	  /* ƒvƒƒgƒRƒ‹ID‚ªˆê’v‚·‚é‚© */
+	  /* ãƒ—ãƒ­ãƒˆã‚³ãƒ«IDãŒä¸€è‡´ã™ã‚‹ã‹ */
 	  (header->data0.protocol_id == MpGetProtocolID()) &&
-	  /* ‘Î‰‰Â”\‚Èƒo[ƒWƒ‡ƒ“‚© */
+	  /* å¯¾å¿œå¯èƒ½ãªãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‹ */
 	  (header->data0.protocol_version <= MpGetProtocolVersion())) {
 	
-	/* óMƒf[ƒ^‚ğ•œ† */
+	/* å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’å¾©å· */
 	MpDecodeRecvData(td->recv_buff);
       
-	/* ’ÊM”Ô†‚ªˆê’v‚µ‚Ä‚¢‚é‚© */
+	/* é€šä¿¡ç•ªå·ãŒä¸€è‡´ã—ã¦ã„ã‚‹ã‹ */
 	if (header->data2.sequence_num != td->seq_num) return;
 	
 	MpPrintSendHeader((MpSendHeader *)td->recv_buff);
 	
-	/* ‘—M‰Â”\‚É‚·‚é */
+	/* é€ä¿¡å¯èƒ½ã«ã™ã‚‹ */
 	td->state = MP_TRANS_STATUS_ENABLE;
 	
-	/* ƒf[ƒ^‚ÌCRCƒ`ƒFƒbƒN */
+	/* ãƒ‡ãƒ¼ã‚¿ã®CRCãƒã‚§ãƒƒã‚¯ */
 	if (MpCheckRecvData(td->recv_buff)) {
 	  
 	  MpPrintf("MpCallbackReceiveData() TRANS MODE RECV recv success\n");
 	  
-	  /* ƒf[ƒ^‘—M€”õ */
+	  /* ãƒ‡ãƒ¼ã‚¿é€ä¿¡æº–å‚™ */
 	  if (header->data2.sequence_num == MP_SEQUENCE_READY) {
 	    MppCallbackReceiveDataRecvMpReady(cb);
 	    
 	  } else {
 	    
-	    /* óMƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğ“]‘— */
+	    /* å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ */
 	    MI_CpuCopy8((u8*)td->recv_buff + header->data3.header_size, td->data, header->data3.data_size);
 	  }
 	  
-	  /* óM¬Œ÷ ¬Œ÷‚µ‚½|‚ğ‘—M‚·‚é */
+	  /* å—ä¿¡æˆåŠŸ æˆåŠŸã—ãŸæ—¨ã‚’é€ä¿¡ã™ã‚‹ */
 	  header->data2.control_code = MP_CONTROL_CODE_ACKNOWLEDGE;
 	  
-	  /* ¬Œ÷‚Ì‘—M‚ğs‚¤‰ñ”w’è */
+	  /* æˆåŠŸã®é€ä¿¡ã‚’è¡Œã†å›æ•°æŒ‡å®š */
 	  td->resend_count = MP_RECV_ACKNOWLEDGE_SEND_NUM;
 	} else {
 	  
-	  /* CRCƒGƒ‰[‚ª‚ ‚Á‚½‚Ì‚ÅÄ‘——v‹ */
+	  /* CRCã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸã®ã§å†é€è¦æ±‚ */
 	  header->data2.control_code = MP_CONTROL_CODE_RETRY;
 	}
       }
@@ -1329,9 +1329,9 @@ static void MpCallbackReceiveDataRecvMp(WMPortRecvCallback *cb)
 
 
 /**
- * WM_SetPortCallback‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * WM_SetPortCallbackã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 void MpCallbackReceiveData(void *arg)
 {
@@ -1341,7 +1341,7 @@ void MpCallbackReceiveData(void *arg)
   MpPrintStateCode((WMStateCode)cb->state);
 
 #if 0  
-  // –³üI—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚ÍReset‚ÉˆÚs
+  // ç„¡ç·šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯Resetã«ç§»è¡Œ
   if (MpGetRequestStatus() == MP_STATUS_END) {
     MpPrintf("MpCallbackReceiveData() request [END] to Reset\n");
     (void)MpRequestReset();
@@ -1356,7 +1356,7 @@ void MpCallbackReceiveData(void *arg)
 
     case WM_STATECODE_PORT_RECV:
 
-      // ƒf[ƒ^óM
+      // ãƒ‡ãƒ¼ã‚¿å—ä¿¡
       switch (MpGetStatus()) {
 
       case MP_STATUS_PARENT_MP:
@@ -1366,10 +1366,10 @@ void MpCallbackReceiveData(void *arg)
 
 	  switch (td->mode) {
 	  case MP_TRANS_MODE_SEND :
-	    /* ƒf[ƒ^‘—Mƒ‚[ƒh‚©H */
+	    /* ãƒ‡ãƒ¼ã‚¿é€ä¿¡ãƒ¢ãƒ¼ãƒ‰ã‹ï¼Ÿ */
 	    MpCallbackReceiveDataSendMp(cb); break;
 
-	    /* ƒf[ƒ^óMƒ‚[ƒh‚©H */
+	    /* ãƒ‡ãƒ¼ã‚¿å—ä¿¡ãƒ¢ãƒ¼ãƒ‰ã‹ï¼Ÿ */
 	  case MP_TRANS_MODE_RECV :
 	    MpCallbackReceiveDataRecvMp(cb); break;
 	  }
@@ -1381,7 +1381,7 @@ void MpCallbackReceiveData(void *arg)
     case WM_STATECODE_CONNECTED:
 
 
-      // Ú‘±’Ê’m
+      // æ¥ç¶šé€šçŸ¥
       MpSetIsConnectFlag(TRUE);
       MpSetDisconnectTrigger(FALSE);
       break;
@@ -1392,16 +1392,16 @@ void MpCallbackReceiveData(void *arg)
 
       if (MpIsConnectFlag()) MpSetDisconnectTrigger(TRUE);
       
-      // Ø’f’Ê’m
+      // åˆ‡æ–­é€šçŸ¥
       switch (MpGetStatus()) {
       case MP_STATUS_PARENT_MP:       
-	// main‘¤‚ÉØ’f‚ğ’Ê’m
+	// mainå´ã«åˆ‡æ–­ã‚’é€šçŸ¥
 	//if (wcMpRecvCallback != NULL) wcMpRecvCallback(cb->aid, NULL, 0);
 	MpSetupDisconnectChid((u32)cb->aid);
 	break;
 
       case MP_STATUS_CHILD_MP:
-	// main‘¤‚ÉØ’f‚ğ’Ê’m
+	// mainå´ã«åˆ‡æ–­ã‚’é€šçŸ¥
 	MpSetIsConnectFlag(FALSE);      
 	break;
       }
@@ -1414,9 +1414,9 @@ void MpCallbackReceiveData(void *arg)
 
 
 /**
- * MpRequestPowerOn‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestPowerOnã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 void MpCallbackPowerOn(void *arg)
 {
@@ -1427,7 +1427,7 @@ void MpCallbackPowerOn(void *arg)
   if (cb->errcode == WM_ERRCODE_SUCCESS) {
     MpPrintf("MpCallbackPowerOn() MpRequestPowerOn success.\n");
 
-    // –³üI—¹ƒŠƒNƒGƒXƒg‚ª‚ ‚Á‚½ê‡‚ÍReset‚ÉˆÚs
+    // ç„¡ç·šçµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã£ãŸå ´åˆã¯Resetã«ç§»è¡Œ
     if (MpResetForEnd()) return;
 
     MpCallbackNextStateFromIdele();
@@ -1444,9 +1444,9 @@ void MpCallbackPowerOn(void *arg)
 
 
 /**
- * MpRequestPowerOff‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestPowerOffã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 void MpCallbackPowerOff(void *arg)
 {
@@ -1462,7 +1462,7 @@ void MpCallbackPowerOff(void *arg)
       ;
     } else {
 
-      /* ƒXƒe[ƒ^ƒX‚ğ’â~ó‘Ô‚É */
+      /* ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’åœæ­¢çŠ¶æ…‹ã« */
       MpSetStatus(MP_STATUS_STOP);
     }
       } else {
@@ -1475,9 +1475,9 @@ void MpCallbackPowerOff(void *arg)
 
 
 /**
- * MpRequestReset‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestResetã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 void MpCallbackReset(void *arg)
 {
@@ -1488,7 +1488,7 @@ void MpCallbackReset(void *arg)
   if (cb->errcode == WM_ERRCODE_SUCCESS) {
     MpPrintf("MpCallbackReset() MpRequestReset success.\n");
 
-    /* AIDƒŠƒZƒbƒg */
+    /* AIDãƒªã‚»ãƒƒãƒˆ */
     MpSetAid(0);
 
     //if (wcBtCallback != NULL) (*wcBtCallback)(arg);
@@ -1518,9 +1518,9 @@ void MpCallbackReset(void *arg)
 
 
 /**
- * MpRequestEnd‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestEndã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 void MpCallbackEnd(void *arg)
 {
@@ -1532,7 +1532,7 @@ void MpCallbackEnd(void *arg)
     MpPrintf("MpCallbackEnd() MpRequestEnd success.\n");
     MpSetStatus(MP_STATUS_END);
 
-    // –³üƒ‰ƒCƒuƒ‰ƒŠ‚ÌI—¹‚ğ‹L˜^
+    // ç„¡ç·šãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®çµ‚äº†ã‚’è¨˜éŒ²
     MpSetIsEnd(TRUE);
 
   } else {

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		nmix_game_comm.h
- *	@brief		�Q�[�����e�@�ʐM�f�[�^�\����
+ *	@brief		ゲーム内容　通信データ構造体
  *	@author		tomoya takahashi
  *	@data		2006.05.25
  *
@@ -25,7 +25,7 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 
@@ -36,13 +36,13 @@
 
 
 //-------------------------------------
-//	�������N�G�X�g�萔
+//	こげリクエスト定数
 //=====================================
 #define NMIX_GAME_COMM_KOGE_KOGE_REQ	( 1 )
 #define NMIX_GAME_COMM_KOGE_KEMURI_REQ	( 2 )
 
 //-------------------------------------
-//	�X�[�v�^�C�v��`
+//	スープタイプ定義
 //=====================================
 enum{
 	NMIX_SOOPTYPE_SOOP_0,
@@ -52,142 +52,142 @@ enum{
 };
 
 
-// �X�[�v��]���S���W
+// スープ回転中心座標
 #define NMIX_SOOP_ROTA_CX	( 128 )
 #define NMIX_SOOP_ROTA_CY	( 96 )
 
-// ���[�h�Z�b�g�ő吔
+// ワードセット最大数
 #define NMIX_GAME_WORD_SET_MAX	( 4 )
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	�Q�[���J�n�O�f�[�^	�q�[���e
+//	ゲーム開始前データ	子ー＞親
 //	4
 //=====================================
 typedef struct {
-	u32			nut_type;	// �؂̎��^�C�v			
+	u32			nut_type;	// 木の実タイプ			
 } NUTMIX_GAME_BGFORE;
 
 //-------------------------------------
-//	�e�X�̃f�[�^
+//	各々のデータ
 //	8byte
 //=====================================
 typedef struct {
-	u8  x;			// ����X���W
-	u8  y;			// ����Y���W
-	u16 rota;		// ��]�p�x
+	u8  x;			// 現在X座標
+	u8  y;			// 現在Y座標
+	u16 rota;		// 回転角度
 	
-	u8  rota_way;	// 0:�E 1:��	��]����
-	u8	dummy[3];	// 4byte���E�p
+	u8  rota_way;	// 0:右 1:左	回転方向
+	u8	dummy[3];	// 4byte境界用
 } NUTMIX_ONE;
 
 //-------------------------------------
-//	�e�̓]������f�[�^
+//	親の転送するデータ
 //	20byte
 //=====================================
 typedef struct {
-	u8	x[NUTMIXER_MEMBER_MAX];	// �F�̂����W
-	u8	y[NUTMIXER_MEMBER_MAX];	// �F�̂����W
+	u8	x[NUTMIXER_MEMBER_MAX];	// 皆のｘ座標
+	u8	y[NUTMIXER_MEMBER_MAX];	// 皆のｙ座標
 
-	u16 rota;			// �X�[�v��]�p�x
-	u16	rota_sp;		// ���̉�]���x
-	u8  rota_way;		// 0:�E 1:��	��]����
-	u8	mix_type;		// ���̃X�[�v�̌`��	3�^�C�v	
-	u8	rota_req_eff;	// ��]�������ς�����̂ŃG�t�F�N�g�o��
-	u8	kirakira_eff;	// �L���L���G�t�F�N�g���o���^�C�~���O
+	u16 rota;			// スープ回転角度
+	u16	rota_sp;		// 今の回転速度
+	u8  rota_way;		// 0:右 1:左	回転方向
+	u8	mix_type;		// 今のスープの形状	3タイプ	
+	u8	rota_req_eff;	// 回転方向が変わったのでエフェクト出す
+	u8	kirakira_eff;	// キラキラエフェクトを出すタイミング
 
-	u8	alpha_num;		// �`��̃��l�i���̌`��ɗn������ł����j
-	u8	now_rota_req;	// ����]���Ăق��������@0:�E��] 1:����]
-	u8	koge_req;		// �������N�G�X�g
-	u8	kobore_req;		// ���ڂꃊ�N�G�X�g
+	u8	alpha_num;		// 形状のα値（下の形状に溶け込んでいく）
+	u8	now_rota_req;	// 今回転してほしい方向　0:右回転 1:左回転
+	u8	koge_req;		// こげリクエスト
+	u8	kobore_req;		// こぼれリクエスト
 } NUTMIX_OYA;
 
 //-------------------------------------
-//	�Q�[�����̒ʐM���[�N
+//	ゲーム中の通信ワーク
 //	28byte
 //=====================================
 typedef struct {
-	NUTMIX_ONE one;		// ���ꂼ��̃f�[�^
-	NUTMIX_OYA oya;		// �e�f�[�^
+	NUTMIX_ONE one;		// それぞれのデータ
+	NUTMIX_OYA oya;		// 親データ
 } NUTMIX_COMM_DATA;
 
 //-------------------------------------
-//	�F�̖؂̎��f�[�^
-//	�e->�q
+//	皆の木の実データ
+//	親->子
 //=====================================
 typedef struct {
 	NUTMIX_GAME_BGFORE before[ NUTMIXER_MEMBER_MAX ];
-	NUTMIX_OYA oya;		// �����e�f�[�^
+	NUTMIX_OYA oya;		// 初期親データ
 } NUTMIX_COMM_BEFORE_KO;
 
 
 //-------------------------------------
-//	�v�Z���ʕ\���p�ʐM���[�N
-//	�e�[���q
+//	計算結果表示用通信ワーク
+//	親ー＞子
 //	20byte
 //=====================================
 typedef struct {
-	u32	kobore_num;	// ���ڂꂽ��
+	u32	kobore_num;	// こぼれた数
 	
-	u32	kogasi_num;	// �ł�������
+	u32	kogasi_num;	// 焦がした数
 
-	u32	match_num;	// �`�[�����[�N���_
+	u32	match_num;	// チームワーク得点
 
-	u8	poruto_type;// �o�����|���g�̃^�C�v
-	u8	poruto_lv;	// �o�����|���g�̃��x��
-	u8	min;		// ��
-	u8	second;		// �b
+	u8	poruto_type;// 出来たポルトのタイプ
+	u8	poruto_lv;	// 出来たポルトのレベル
+	u8	min;		// 分
+	u8	second;		// 秒
 	
-	u8	dec;		// �R���}
-	u8	dummy[3];	// 4byte���E�̂���
+	u8	dec;		// コンマ
+	u8	dummy[3];	// 4byte境界のため
 } NUTMIX_COMM_RESULT;
 
 
 //-------------------------------------
-//	�Q�[�����ʐM�f�[�^�@�p�b�N�\����
+//	ゲーム内通信データ　パック構造体
 //=====================================
 typedef struct {
-	// ���M�f�[�^
-	NUTMIX_GAME_BGFORE  send_before_data;	// �����̖؂̎��Ȃ�
-	NUTMIX_COMM_DATA	send_game_data;		// �����̈ʒu�@��]�p	�e�̂Ƃ��A�����ɍ��̃Q�[����Ԃ�ǉ��Őݒ肷��
+	// 送信データ
+	NUTMIX_GAME_BGFORE  send_before_data;	// 自分の木の実など
+	NUTMIX_COMM_DATA	send_game_data;		// 自分の位置　回転角	親のとき、ここに今のゲーム状態を追加で設定する
 
-	// �e���M�f�[�^
-	NUTMIX_COMM_RESULT	send_oya_result_data;		// �Q�[������
-	NUTMIX_COMM_BEFORE_KO get_oya_ko_before_data;	// ���̖؂̎����
+	// 親送信データ
+	NUTMIX_COMM_RESULT	send_oya_result_data;		// ゲーム結果
+	NUTMIX_COMM_BEFORE_KO get_oya_ko_before_data;	// この木の実情報
 
-	// ��M�o�b�t�@
-	NUTMIX_COMM_RESULT	get_result_data;			// �Q�[������
-	NUTMIX_COMM_BEFORE_KO get_ko_before_data;		// �F�̖؂̎����
-	NUTMIX_COMM_DATA	get_game_data[ NUTMIXER_MEMBER_MAX ];	// �Q�[���f�[�^
-	PORUTO_DATA*	p_get_ko_poruto;	// �|���g�擾�o�b�t�@
+	// 受信バッファ
+	NUTMIX_COMM_RESULT	get_result_data;			// ゲーム結果
+	NUTMIX_COMM_BEFORE_KO get_ko_before_data;		// 皆の木の実情報
+	NUTMIX_COMM_DATA	get_game_data[ NUTMIXER_MEMBER_MAX ];	// ゲームデータ
+	PORUTO_DATA*	p_get_ko_poruto;	// ポルト取得バッファ
 
-	// �e��M�o�b�t�@
+	// 親受信バッファ
 	u32		get_oya_resutl_end[ NUTMIXER_MEMBER_MAX ];
 	NUTMIX_GAME_BGFORE  get_before_data[ NUTMIXER_MEMBER_MAX ];
 	u8		get_before_data_flg[ NUTMIXER_MEMBER_MAX ];
-	u8		game_next[NUTMIXER_MEMBER_MAX];	// �Q�[�����Â��邩
+	u8		game_next[NUTMIXER_MEMBER_MAX];	// ゲームをつづけるか
 	u8		get_next_data_flg[ NUTMIXER_MEMBER_MAX ];
 
-	// �v���C���[�i���o�[����l�b�gID�i���o�[���擾
+	// プレイヤーナンバーからネットIDナンバーを取得
 	u8	playno_netid[NUTMIXER_MEMBER_MAX];
-	// �v���C���[�X�e�[�^�X
+	// プレイヤーステータス
 	const MYSTATUS*	p_mystate[NUTMIXER_MEMBER_MAX];
 
 	u8 my_netid;
 
-	// ��M�f�[�^
-	u8				get_game_next;		// �Q�[���𑱂���Ƃ� TRUE
+	// 受信データ
+	u8				get_game_next;		// ゲームを続けるとき TRUE
 } NUTMIX_GAME_COMM_PACK;
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 #undef	GLOBAL

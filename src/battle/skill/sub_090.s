@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_090.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			‚Ý‚ª‚í‚èƒqƒbƒgƒV[ƒPƒ“ƒX
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ã¿ãŒã‚ã‚Šãƒ’ãƒƒãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *@author	HisashiSogabe
  *@data		2006.01.25
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_090:
-	//ƒuƒŠƒ“ƒNƒGƒtƒFƒNƒg‚·‚é‚©‚µ‚È‚¢‚©ƒ`ƒFƒbƒN
+	//ãƒ–ãƒªãƒ³ã‚¯ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã™ã‚‹ã‹ã—ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	IF				IF_FLAG_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_BLINK,NoBlinkEffect
 	WAZAKOUKA_SE	SIDE_WORK
 	POKEMON_BLINK	SIDE_WORK

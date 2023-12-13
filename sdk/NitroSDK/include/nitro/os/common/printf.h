@@ -30,7 +30,7 @@
   do-indent.
 
   Revision 1.16  2005/02/28 04:26:12  yosizaki
-  SDK_NO_MESSAGE ‚ÉŠÖ‚·‚é¬‚³‚ÈC³.
+  SDK_NO_MESSAGE ã«é–¢ã™ã‚‹å°ã•ãªä¿®æ­£.
 
   Revision 1.15  2004/10/04 10:06:12  yasu
   support SDK_NO_MESSAGE
@@ -60,22 +60,22 @@
   workaround for OS_Warning, OS_Panic
 
   Revision 1.6  2003/12/02 02:39:18  yasu
-  ISDebugger ‚Å‚Ì printout ‚Ì‘g‚İ‚İ‚Ì‰’iŠK
+  ISDebugger ã§ã® printout ã®çµ„ã¿è¾¼ã¿ã®åˆæ®µéš
 
   Revision 1.5  2003/11/25 11:18:20  yasu
-  OS_PutChar ‚ğØ‚è‘Ö‚¦‰Â”\‚É‚·‚é
+  OS_PutChar ã‚’åˆ‡ã‚Šæ›¿ãˆå¯èƒ½ã«ã™ã‚‹
 
   Revision 1.4  2003/11/25 00:05:04  yasu
-  OS_VPrintf ŒöŠJ‚É”º‚È‚¤ include ƒtƒ@ƒCƒ‹‚Ì’Ç‰Á
+  OS_VPrintf å…¬é–‹ã«ä¼´ãªã† include ãƒ•ã‚¡ã‚¤ãƒ«ã®è¿½åŠ 
 
   Revision 1.3  2003/11/21 12:21:10  yada
-  REG_EMU_CONSOLE_OUT, reg_OS_EMU_CONSOLE_OUT ‚ğ’Ç‰ÁB
+  REG_EMU_CONSOLE_OUT, reg_OS_EMU_CONSOLE_OUT ã‚’è¿½åŠ ã€‚
 
   Revision 1.2  2003/11/17 00:35:05  yasu
-  OS_Halt ’Ç‰Á
+  OS_Halt è¿½åŠ 
 
   Revision 1.1  2003/11/17 00:22:26  yasu
-  os.h ‚æ‚è•ª—£
+  os.h ã‚ˆã‚Šåˆ†é›¢
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -84,7 +84,7 @@
 #define NITRO_OS_COMMON_PRINTF_H_
 
 #pragma  warn_padding off
-#include <stdio.h>                     // stdio.h ‚Å‚Ì PADDING Œx‚ğ~‚ß‚é
+#include <stdio.h>                     // stdio.h ã§ã® PADDING è­¦å‘Šã‚’æ­¢ã‚ã‚‹
 #pragma  warn_padding reset
 #include <stdarg.h>
 #include <nitro/types.h>

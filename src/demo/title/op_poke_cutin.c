@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	op_poke_cutin.c
- * @brief	ƒI[ƒvƒjƒ“ƒOƒ|ƒPƒ‚ƒ“ƒJƒbƒgƒCƒ“
+ * @brief	ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ãƒã‚±ãƒ¢ãƒ³ã‚«ãƒƒãƒˆã‚¤ãƒ³
  * @author	Nozomu Saito
  * @date	2006.06.03
  */
@@ -23,9 +23,9 @@
 #include "system/pm_rtc.h"
 
 #define MONS_MAX	(3)
-///í“¬ƒp[ƒeƒBƒNƒ‹‚ÌƒJƒƒ‰ƒjƒAİ’è
+///æˆ¦é—˜ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚«ãƒ¡ãƒ©ãƒ‹ã‚¢è¨­å®š
 #define BP_NEAR			(FX32_ONE)
-///í“¬ƒp[ƒeƒBƒNƒ‹‚ÌƒJƒƒ‰ƒtƒ@[İ’è
+///æˆ¦é—˜ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ã‚«ãƒ¡ãƒ©ãƒ•ã‚¡ãƒ¼è¨­å®š
 #define BP_FAR			(FX32_ONE * 900)
 
 #define OUT_WAIT	(20)
@@ -42,11 +42,11 @@ typedef struct OPD_SSM_tag
 	void *PtcHeap;
 	PTC_PTR PtcPtr;
 	int effect_no[MONS_MAX];
-	u8 CutInSeq;		//ƒJƒbƒgƒCƒ“ƒV[ƒPƒ“ƒX
+	u8 CutInSeq;		//ã‚«ãƒƒãƒˆã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	u8 Counter;
 }OPD_SSM;
 
-//O‘Ì‚Ìƒ|ƒPƒ‚ƒ“‚Ì‰ŠúˆÊ’u
+//ä¸‰ä½“ã®ãƒã‚±ãƒ¢ãƒ³ã®åˆæœŸä½ç½®
 typedef struct P2D_POS_tag
 {
 	int X;
@@ -59,19 +59,19 @@ static void ParticleCallBack(EMIT_PTR emit);
 
 static const P2D_POS PokeStartPos[MONS_MAX] = 
 {
-	{128-36,192},		//ƒiƒGƒgƒ‹
-	{224,192},		//ƒqƒRƒUƒ‹
-	{80,192},		//ƒ|ƒbƒ`ƒƒƒ}
+	{128-36,192},		//ãƒŠã‚¨ãƒˆãƒ«
+	{224,192},		//ãƒ’ã‚³ã‚¶ãƒ«
+	{80,192},		//ãƒãƒƒãƒãƒ£ãƒ
 };
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒNƒXƒ`ƒƒVRAMƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param   is4x4comp	4x4ˆ³kƒeƒNƒXƒ`ƒƒ‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO(TRUE=ˆ³kƒeƒNƒXƒ`ƒƒ)
+ * @param   size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param   is4x4comp	4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°(TRUE=åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£)
  *
- * @retval  “Ç‚İ‚İ‚ğŠJn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @retval  èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------
 static u32 sAllocTex(u32 size, BOOL is4x4comp)
@@ -81,7 +81,7 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 	
 	key = NNS_GfdAllocTexVram(size, is4x4comp, 0);
 
-	Particle_LnkTexKeySet(key);		//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_LnkTexKeySet(key);		//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	
 	GF_ASSERT(key != NNS_GFD_ALLOC_ERROR_TEXKEY);
 	
@@ -92,15 +92,15 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgVRAMƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆVRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param	size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param	is4pltt		4FƒpƒŒƒbƒg‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+ * @param	size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param	is4pltt		4è‰²ãƒ‘ãƒ¬ãƒƒãƒˆã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
  *
- * @retval	“Ç‚İ‚İ‚ğŠJn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @retval	èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * directŒ`®‚ÌƒeƒNƒXƒ`ƒƒ‚Ìê‡ASPL_LoadTexPlttByCallbackFunction‚Í
- * ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚Ño‚µ‚Ü‚¹‚ñB
+ * directå½¢å¼ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã€SPL_LoadTexPlttByCallbackFunctionã¯
+ * ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¾ã›ã‚“ã€‚
  */
 //--------------------------------------------------------------
 static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
@@ -111,10 +111,10 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 	key = NNS_GfdAllocPlttVram(size, is4pltt, NNS_GFD_ALLOC_FROM_LOW);
 	
 	if(key == NNS_GFD_ALLOC_ERROR_PLTTKEY){
-		GF_ASSERT(0 && "ƒp[ƒeƒBƒNƒ‹‚ÅƒpƒŒƒbƒg‚ÌŠm•Û‚ªo—ˆ‚Ü‚¹‚ñI\n");
+		GF_ASSERT(0 && "ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã§ãƒ‘ãƒ¬ãƒƒãƒˆã®ç¢ºä¿ãŒå‡ºæ¥ã¾ã›ã‚“ï¼\n");
 	}
 	
-	Particle_PlttLnkTexKeySet(key);	//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_PlttLnkTexKeySet(key);	//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	
 	address = NNS_GfdGetPlttKeyAddr(key);
 	OS_TPrintf("op_vram=%d\n", address);
@@ -128,7 +128,7 @@ const int  OPD_Poke_GetSSMSize(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   PTC_PTR‚ğæ“¾
+ * @brief   PTC_PTRã‚’å–å¾—
  *
  * @param   opd_ssm_ptr		
  */
@@ -141,12 +141,12 @@ PTC_PTR OPD_Poke_PtcGet(OPD_SSM_PTR opd_ssm_ptr)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠO•”‚©‚çOPD_SSM_PTR‚Ì‚ÂPTC‚ğg—p‚µ‚ÄƒGƒ~ƒbƒ^‚ğ¶¬‚·‚é
+ * @brief   å¤–éƒ¨ã‹ã‚‰OPD_SSM_PTRã®æŒã¤PTCã‚’ä½¿ç”¨ã—ã¦ã‚¨ãƒŸãƒƒã‚¿ã‚’ç”Ÿæˆã™ã‚‹
  *
  * @param   opd_ssm_ptr		
  * @param   spr_no		
  *
- * @retval  ¶¬‚µ‚½ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 EMIT_PTR OPD_EmitterSet(OPD_SSM_PTR opd_ssm_ptr, int spr_no)
@@ -168,7 +168,7 @@ void OPD_Poke_Init(OPD_SSM_PTR opd_ssm_ptr)
 	int dir, start;
 	RTCTime time;
 	
-	GF_RTC_GetTime( &time );		//gf_rand‚ªƒQ[ƒ€ŠJn‚ÅŒÅ’è’l‚Ìˆ×A‚Å—¬—p
+	GF_RTC_GetTime( &time );		//gf_randãŒã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã§å›ºå®šå€¤ã®ç‚ºã€æ™‚åˆ»ã§æµç”¨
 	dir = (time.hour * time.minute + time.second) & 1;
 	start = time.second % MONS_MAX;
 	for(i = 0; i < MONS_MAX; i++){
@@ -190,22 +190,22 @@ void OPD_Poke_Init(OPD_SSM_PTR opd_ssm_ptr)
 	
 	opd_ssm_ptr->SSMPtr = SoftSpriteInit(HEAPID_OP_DEMO);
 	for(i=0;i<MONS_MAX;i++){
-		//ÅŒã‚Ìˆø”‚ÍAFormNo‚ÆŒÂ«—”	i‚±‚±‚Å‚ÍNULL‚ğw’èj
+		//æœ€å¾Œã®å¼•æ•°ã¯ã€FormNoã¨å€‹æ€§ä¹±æ•°	ï¼ˆã“ã“ã§ã¯NULLã‚’æŒ‡å®šï¼‰
 		PokeGraArcDataGet( &ssa, put_monsno[i], PARA_MALE, PARA_FRONT, PARA_NORMAL, NULL, NULL );
 		opd_ssm_ptr->SoftSprit[i] = SoftSpriteAdd(opd_ssm_ptr->SSMPtr, &ssa,
 			PokeStartPos[opd_ssm_ptr->effect_no[i]].X, 
 			PokeStartPos[opd_ssm_ptr->effect_no[i]].Y, 1023, i, NULL, NULL);
-		//”ñ•\¦
+		//éè¡¨ç¤º
 		SoftSpriteParaSet(opd_ssm_ptr->SoftSprit[i],SS_PARA_VANISH,1);
 	}
-	//‚Q•C–Ú‚Í”½“]		2008.04.30(…)@ƒhƒ_ƒCƒgƒX‚ª”½“]•s‰Â‚Ìˆ×A‚â‚ß‚½
+	//ï¼’åŒ¹ç›®ã¯åè»¢		2008.04.30(æ°´)ã€€ãƒ‰ãƒ€ã‚¤ãƒˆã‚¹ãŒåè»¢ä¸å¯ã®ç‚ºã€ã‚„ã‚ãŸ
 //	SoftSpriteParaSet(opd_ssm_ptr->SoftSprit[CUT_IN_POKE_1],SS_PARA_H_FLIP,1);
 	
 	opd_ssm_ptr->UseSSFlg = 1;
 
-	Particle_SystemWorkInit();	//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	Particle_SystemWorkInit();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 
-	//ƒp[ƒeƒBƒNƒ‹ƒƒ‚ƒŠŠm•Û
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	opd_ssm_ptr->PtcHeap = sys_AllocMemory(HEAPID_OP_DEMO, PARTICLE_LIB_HEAP_SIZE);
 	opd_ssm_ptr->PtcPtr = Particle_SystemCreate(sAllocTex, sAllocTexPalette,
 												opd_ssm_ptr->PtcHeap, 
@@ -220,10 +220,10 @@ void OPD_Poke_Init(OPD_SSM_PTR opd_ssm_ptr)
 
 void OPD_Poke_End(OPD_SSM_PTR opd_ssm_ptr)
 {
-	//ƒp[ƒeƒBƒNƒ‹‰ğ•ú
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«è§£æ”¾
 	Particle_SystemExit(opd_ssm_ptr->PtcPtr);
 	sys_FreeMemoryEz(opd_ssm_ptr->PtcHeap);
-	//ƒXƒvƒ‰ƒCƒgI—¹
+	//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆçµ‚äº†
 	SoftSpriteEnd(opd_ssm_ptr->SSMPtr);
 }
 
@@ -291,16 +291,16 @@ BOOL OPD_Poke_CutIn(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster, const int inCou
 		
 		SoftSpriteParaSet(opd_ssm_ptr->SoftSprit[inMonster],SS_PARA_AFF_X,POKE_ZOOM);
 		SoftSpriteParaSet(opd_ssm_ptr->SoftSprit[inMonster],SS_PARA_AFF_Y,POKE_ZOOM);
-		//ƒXƒvƒ‰ƒCƒg•\¦
+		//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆè¡¨ç¤º
 		SoftSpriteParaSet(opd_ssm_ptr->SoftSprit[inMonster],SS_PARA_VANISH,0);
-		(*seq)++;	//<<break’u‚©‚È‚¢
-	case 1:	//ƒCƒ“
+		(*seq)++;	//<<breakç½®ã‹ãªã„
+	case 1:	//ã‚¤ãƒ³
 		if ( CutInTbl[ opd_ssm_ptr->effect_no[inMonster] ].InFunc(opd_ssm_ptr, inMonster) ){
 			opd_ssm_ptr->Counter = 0;
 			(*seq)++;
 		}
 		break;
-	case 2:	//ƒp[ƒeƒBƒNƒ‹
+	case 2:	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 		Particle_CameraTypeSet(opd_ssm_ptr->PtcPtr, GF_CAMERA_ORTHO);
 
 		Particle_CreateEmitterCallback(opd_ssm_ptr->PtcPtr, 
@@ -322,16 +322,16 @@ BOOL OPD_Poke_CutIn(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster, const int inCou
 		//	}
 		}
 		break;
-	case 4:	//ƒAƒEƒg
+	case 4:	//ã‚¢ã‚¦ãƒˆ
 		if ( CutInTbl[ opd_ssm_ptr->effect_no[inMonster] ].OutFunc(opd_ssm_ptr, inMonster) ){
-			//ƒXƒvƒ‰ƒCƒg”ñ•\¦
+			//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆéè¡¨ç¤º
 			SoftSpriteParaSet(opd_ssm_ptr->SoftSprit[inMonster],SS_PARA_VANISH,1);
 			opd_ssm_ptr->Counter = 0;
 			(*seq)++;
 		}
 		break;
 	case 5:
-		//‘Ş”ğ‚µ‚½‚Æ‚ÌƒEƒFƒCƒg
+		//é€€é¿ã—ãŸã¨ã®ã‚¦ã‚§ã‚¤ãƒˆ
 		opd_ssm_ptr->Counter++;
 		if (opd_ssm_ptr->Counter>=OUT_WAIT){
 			opd_ssm_ptr->Counter = 0;
@@ -342,11 +342,11 @@ BOOL OPD_Poke_CutIn(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster, const int inCou
 	return FALSE;
 }
 
-//ƒiƒGƒgƒ‹ƒCƒ“
+//ãƒŠã‚¨ãƒˆãƒ«ã‚¤ãƒ³
 static BOOL InNAETORU(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster)
 {
 	SOFT_SPRITE *ss = opd_ssm_ptr->SoftSprit[inMonster];
-	//6ƒtƒŒ‚©‚¯‚ÄˆÚ“®
+	//6ãƒ•ãƒ¬ã‹ã‘ã¦ç§»å‹•
 	SoftSpriteParaCalc(ss, SS_PARA_POS_X, 6);
 	SoftSpriteParaCalc(ss, SS_PARA_POS_Y, -16);
 	
@@ -363,11 +363,11 @@ static BOOL InNAETORU(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster)
 	return FALSE;
 }
 
-//ƒiƒGƒgƒ‹ƒAƒEƒg
+//ãƒŠã‚¨ãƒˆãƒ«ã‚¢ã‚¦ãƒˆ
 static BOOL OutNAETORU(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster)
 {
 	SOFT_SPRITE *ss = opd_ssm_ptr->SoftSprit[inMonster];
-	//6ƒtƒŒ‚©‚¯‚ÄˆÚ“®
+	//6ãƒ•ãƒ¬ã‹ã‘ã¦ç§»å‹•
 	SoftSpriteParaCalc(ss, SS_PARA_POS_X, -3);
 	SoftSpriteParaCalc(ss, SS_PARA_POS_Y, -18);
 
@@ -384,11 +384,11 @@ static BOOL OutNAETORU(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster)
 	return FALSE;
 }
 
-//ƒqƒRƒUƒ‹ƒCƒ“
+//ãƒ’ã‚³ã‚¶ãƒ«ã‚¤ãƒ³
 static BOOL InHIKOZARU(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster)
 {
 	SOFT_SPRITE *ss = opd_ssm_ptr->SoftSprit[inMonster];
-	//6ƒtƒŒ‚©‚¯‚ÄˆÚ“®
+	//6ãƒ•ãƒ¬ã‹ã‘ã¦ç§»å‹•
 	SoftSpriteParaCalc(ss, SS_PARA_POS_X, -16);
 	SoftSpriteParaCalc(ss, SS_PARA_POS_Y, -16);
 
@@ -405,11 +405,11 @@ static BOOL InHIKOZARU(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster)
 	return FALSE;
 }
 
-//ƒqƒRƒUƒ‹ƒAƒEƒg
+//ãƒ’ã‚³ã‚¶ãƒ«ã‚¢ã‚¦ãƒˆ
 static BOOL OutHIKOZARU(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster)
 {
 	SOFT_SPRITE *ss = opd_ssm_ptr->SoftSprit[inMonster];
-	//6ƒtƒŒ‚©‚¯‚ÄˆÚ“®
+	//6ãƒ•ãƒ¬ã‹ã‘ã¦ç§»å‹•
 	SoftSpriteParaCalc(ss, SS_PARA_POS_X, -6);
 	SoftSpriteParaCalc(ss, SS_PARA_POS_Y, -16);
 
@@ -426,11 +426,11 @@ static BOOL OutHIKOZARU(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster)
 	return FALSE;
 }
 
-//ƒ|ƒbƒ`ƒƒƒ}ƒCƒ“
+//ãƒãƒƒãƒãƒ£ãƒã‚¤ãƒ³
 static BOOL InPOTTYAMA(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster)
 {
 	SOFT_SPRITE *ss = opd_ssm_ptr->SoftSprit[inMonster];
-	//6ƒtƒŒ‚©‚¯‚ÄˆÚ“®
+	//6ãƒ•ãƒ¬ã‹ã‘ã¦ç§»å‹•
 	SoftSpriteParaCalc(ss, SS_PARA_POS_X, 8);
 	SoftSpriteParaCalc(ss, SS_PARA_POS_Y, -16);
 
@@ -447,11 +447,11 @@ static BOOL InPOTTYAMA(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster)
 	return FALSE;
 }
 
-//ƒ|ƒbƒ`ƒƒƒ}ƒAƒEƒg
+//ãƒãƒƒãƒãƒ£ãƒã‚¢ã‚¦ãƒˆ
 static BOOL OutPOTTYAMA(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster)
 {
 	SOFT_SPRITE *ss = opd_ssm_ptr->SoftSprit[inMonster];
-	//6ƒtƒŒ‚©‚¯‚ÄˆÚ“®
+	//6ãƒ•ãƒ¬ã‹ã‘ã¦ç§»å‹•
 	SoftSpriteParaCalc(ss, SS_PARA_POS_X, 6);
 	SoftSpriteParaCalc(ss, SS_PARA_POS_Y, -20);
 
@@ -470,24 +470,24 @@ static BOOL OutPOTTYAMA(OPD_SSM_PTR opd_ssm_ptr, const u8 inMonster)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬—pƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€EƒƒCƒ“ŠÖ”(ŒvZE•`‰æˆ—‚È‚Ç‚ğÀs)
+ * @brief   æˆ¦é—˜ç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ»ãƒ¡ã‚¤ãƒ³é–¢æ•°(è¨ˆç®—ãƒ»æç”»å‡¦ç†ãªã©ã‚’å®Ÿè¡Œ)
  *
- * @param   ptc		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ptc		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ParticleMain(void)
 {
 	int draw_num;
 	
-	draw_num = Particle_DrawAll();	//ƒp[ƒeƒBƒNƒ‹•`‰æ
+	draw_num = Particle_DrawAll();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æç”»
 
-	Particle_CalcAll();	//ƒp[ƒeƒBƒNƒ‹ŒvZ
+	Particle_CalcAll();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«è¨ˆç®—
 }
 
-#define ONE_DOT	(172)	//–ñ1ƒhƒbƒg
+#define ONE_DOT	(172)	//ç´„1ãƒ‰ãƒƒãƒˆ
 //--------------------------------------------------------------
 /**
- * @brief	ƒR[ƒ‹ƒoƒbƒN
+ * @brief	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param	emit	
  *

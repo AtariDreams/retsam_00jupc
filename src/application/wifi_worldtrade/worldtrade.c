@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	worldtrade.c
- * @bfief	¢ŠEŒðŠ·ƒƒCƒ“ˆ—
+ * @bfief	ä¸–ç•Œäº¤æ›ãƒ¡ã‚¤ãƒ³å‡¦ç†
  * @author	Akito Mori
  * @date	06.04.16
  */
@@ -54,7 +54,7 @@
 
 #include "msgdata/msg_ev_win.h"
 
-// SE—p’è‹`
+// SEç”¨å®šç¾©
 #define WORLD_MOVE_SE		(SEQ_SE_DP_SELECT)
 #define RECORD_DECIDE_SE	(SEQ_SE_DP_SELECT)
 #define RECORD_BS_SE		(SEQ_SE_DP_SELECT)
@@ -62,18 +62,18 @@
 #define WORLDTRADE_WORDSET_BUFLEN	( 64 )
 
 #define MYDWC_HEAPSIZE		0x20000
-#include "worldtrade.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "worldtrade.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 //============================================================================================
-//	’è”’è‹`
-//============================================================================================
-
-
-
-//============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	å®šæ•°å®šç¾©
 //============================================================================================
 
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+
+
+//============================================================================================
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
+//============================================================================================
+
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 static void VBlankFunc( void * work );
 static void VramBankSet(void);
 static void InitWork( WORLDTRADE_WORK *wk, PROC *proc );
@@ -97,10 +97,10 @@ static NNSFndHeapHandle _wtHeapHandle;
 
 
 //============================================================================================
-//	ŠÖ”ƒe[ƒuƒ‹’è‹`
+//	é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«å®šç¾©
 //============================================================================================
 
-// ¢ŠEŒðŠ·ƒTƒuƒvƒƒZƒX—pŠÖ””z—ñ’è‹`
+// ä¸–ç•Œäº¤æ›ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ç”¨é–¢æ•°é…åˆ—å®šç¾©
 static int (*SubProcessTable[][3])(WORLDTRADE_WORK *wk, int seq)={
 	{ WorldTrade_Enter_Init,   WorldTrade_Enter_Main,    WorldTrade_Enter_End   },
 	{ WorldTrade_Title_Init,   WorldTrade_Title_Main,    WorldTrade_Title_End   },
@@ -118,19 +118,19 @@ static int (*SubProcessTable[][3])(WORLDTRADE_WORK *wk, int seq)={
 WORLDTRADE_WORK *debug_worldtrade;
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT WorldTradeProc_Init( PROC * proc, int * seq )
@@ -143,8 +143,8 @@ PROC_RESULT WorldTradeProc_Init( PROC * proc, int * seq )
 		sys_GetHeapFreeSize( HEAPID_BASE_SYSTEM );
 		sys_GetHeapFreeSize( HEAPID_BASE_APP );
 #endif
-		sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-		sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+		sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+		sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 		GF_Disp_GX_VisibleControlInit();
 		GF_Disp_GXS_VisibleControlInit();
@@ -152,7 +152,7 @@ PROC_RESULT WorldTradeProc_Init( PROC * proc, int * seq )
 		GXS_SetVisiblePlane( 0 );
 
 
-		// ƒŒƒR[ƒhƒR[ƒi[—pƒq[ƒvì¬
+		// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ç”¨ãƒ’ãƒ¼ãƒ—ä½œæˆ
 		sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WORLDTRADE, 0x70000 );
 
 		wk = PROC_AllocWork( proc, sizeof(WORLDTRADE_WORK), HEAPID_WORLDTRADE );
@@ -169,7 +169,7 @@ PROC_RESULT WorldTradeProc_Init( PROC * proc, int * seq )
 		}
 		
 		
-		// •¶Žš—ñƒ}ƒl[ƒWƒƒ[¶¬
+		// æ–‡å­—åˆ—ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”Ÿæˆ
 		wk->WordSet    		 = WORDSET_CreateEx( 11, WORLDTRADE_WORDSET_BUFLEN, HEAPID_WORLDTRADE );
 		wk->MsgManager       = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wifi_gtc_dat, HEAPID_WORLDTRADE );
 		wk->LobbyMsgManager  = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wifi_lobby_dat, HEAPID_WORLDTRADE );
@@ -179,8 +179,8 @@ PROC_RESULT WorldTradeProc_Init( PROC * proc, int * seq )
 
 		sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-/* ‚f‚s‚r‚ÆWifiƒoƒgƒ‹ƒ^ƒ[Ú‘±‰æ–Ê‚ÌÅ‰‚ÉWIPE_ResetBrightness‚ðŒÄ‚ñ‚Å‚µ‚Ü‚Á‚Ä‚¢‚é‚½‚ß‚É
-   ƒoƒbƒNƒhƒƒbƒv–Ê‚ªŒ©‚¦‚Ä‚µ‚Ü‚¤Ž–‚ª‚ ‚éƒoƒO‚ð‘Îˆ */
+/* ï¼§ï¼´ï¼³ã¨Wifiãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æŽ¥ç¶šç”»é¢ã®æœ€åˆã«WIPE_ResetBrightnessã‚’å‘¼ã‚“ã§ã—ã¾ã£ã¦ã„ã‚‹ãŸã‚ã«
+   ãƒãƒƒã‚¯ãƒ‰ãƒ­ãƒƒãƒ—é¢ãŒè¦‹ãˆã¦ã—ã¾ã†äº‹ãŒã‚ã‚‹ãƒã‚°ã‚’å¯¾å‡¦ */
 #if AFTERMASTER_070215_GTS_WBTOWER_INIT_FIX
 //		WIPE_ResetBrightness( WIPE_DISP_MAIN );
 //		WIPE_ResetBrightness( WIPE_DISP_SUB );
@@ -189,22 +189,22 @@ PROC_RESULT WorldTradeProc_Init( PROC * proc, int * seq )
 		WIPE_ResetBrightness( WIPE_DISP_SUB );
 #endif
 
-//	//	InitTPSystem();						// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+//	//	InitTPSystem();						// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 //	//	InitTPNoBuff(2);
 
 
-		// ƒ[ƒN‰Šú‰»
+		// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		InitWork( wk, proc );
 
 		InitCLACT( wk );
 
-		// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒtƒB[ƒ‹ƒh)
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰)
 		//Snd_DataSetByScene( SND_SCENE_FIELD, SEQ_BLD_BLD_GTC, 1 );
 		Snd_DataSetByScene( SND_SCENE_P2P, SEQ_WIFILOBBY, 1 );
-		// ƒvƒ‰ƒ`ƒi‚ÅAƒ}ƒbƒv‚Ì‹È‚ÆA‰æ–Ê‚Ì‹È‚ª•ÏX‚É‚È‚Á‚½‚Ì‚ÅA
-		// ‰æ–Ê‚©‚çAƒtƒB[ƒ‹ƒh‚É–ß‚éŽž‚Ì‚½‚ß‚ÉƒV[ƒ“‚ð•ÏX
+		// ãƒ—ãƒ©ãƒãƒŠã§ã€ãƒžãƒƒãƒ—ã®æ›²ã¨ã€ç”»é¢ã®æ›²ãŒå¤‰æ›´ã«ãªã£ãŸã®ã§ã€
+		// ç”»é¢ã‹ã‚‰ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«æˆ»ã‚‹æ™‚ã®ãŸã‚ã«ã‚·ãƒ¼ãƒ³ã‚’å¤‰æ›´
 
-		// DWCƒ‰ƒCƒuƒ‰ƒŠiWifij‚É“n‚·‚½‚ß‚Ìƒ[ƒN—Ìˆæ‚ðŠm•Û
+		// DWCãƒ©ã‚¤ãƒ–ãƒ©ãƒªï¼ˆWifiï¼‰ã«æ¸¡ã™ãŸã‚ã®ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’ç¢ºä¿
 		wk->heapPtr    = sys_AllocMemory(HEAPID_WORLDTRADE, MYDWC_HEAPSIZE + 32);
 		wk->heapHandle = NNS_FndCreateExpHeap( (void *)( ((u32)wk->heapPtr + 31) / 32 * 32 ), MYDWC_HEAPSIZE);
 
@@ -216,7 +216,7 @@ PROC_RESULT WorldTradeProc_Init( PROC * proc, int * seq )
 
 		DpwCommonOverlayStart();
 
-		// ƒCƒNƒjƒ…[ƒ‚ƒ““]‘—
+		// ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³è»¢é€
 		CommVRAMDInitialize();
 
 
@@ -234,12 +234,12 @@ static int debug_obj_no = 0;
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 
@@ -247,21 +247,21 @@ PROC_RESULT WorldTradeProc_Main( PROC * proc, int * seq )
 {
 	WORLDTRADE_WORK * wk  = PROC_GetWork( proc );
 
-	// ŽóM‹­“xƒŠƒ“ƒN‚ð”½‰f‚³‚¹‚é
+	// å—ä¿¡å¼·åº¦ãƒªãƒ³ã‚¯ã‚’åæ˜ ã•ã›ã‚‹
 	DWC_UpdateConnection();
 
-	// Dpw_Tr_Main() ‚¾‚¯‚Í—áŠO“I‚É‚¢‚Â‚Å‚àŒÄ‚×‚é
+	// Dpw_Tr_Main() ã ã‘ã¯ä¾‹å¤–çš„ã«ã„ã¤ã§ã‚‚å‘¼ã¹ã‚‹
 	Dpw_Tr_Main();
 
 	switch( *seq ){
-	// ƒTƒuˆ—‰Šú‰»
+	// ã‚µãƒ–å‡¦ç†åˆæœŸåŒ–
 	case SEQ_INIT_DPW:
 //		InitDpw(wk->heapPtr, wk->heapHandle, AllocFunc, FreeFunc );
 		if(CommIsVRAMDInitialize()){
 			_wtHeapHandle = wk->heapHandle;
 	
 
-			// wifiƒƒ‚ƒŠŠÇ—ŠÖ”ŒÄ‚Ño‚µ
+			// wifiãƒ¡ãƒ¢ãƒªç®¡ç†é–¢æ•°å‘¼ã³å‡ºã—
 			DWC_SetMemFunc( AllocFunc, FreeFunc );
 
 			*seq = SEQ_INIT;
@@ -271,40 +271,40 @@ PROC_RESULT WorldTradeProc_Main( PROC * proc, int * seq )
 		*seq = (*SubProcessTable[wk->sub_process][0])(wk, *seq);
 		if(wk->subprocflag){
 			FreeCLACT( wk );
-			OS_Printf("OAMƒVƒXƒeƒ€—ÕŽž‰ð•ú");
+			OS_Printf("OAMã‚·ã‚¹ãƒ†ãƒ è‡¨æ™‚è§£æ”¾");
 		}
 		break;
 
-	// ƒTƒuˆ—ƒtƒF[ƒhƒCƒ“‘Ò‚¿
+	// ã‚µãƒ–å‡¦ç†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾…ã¡
 	case SEQ_FADEIN:
 		if( WIPE_SYS_EndCheck() ){
 			*seq = SEQ_MAIN;
 		}
 		break;
 
-	// ƒTƒuˆ—ƒƒCƒ“
+	// ã‚µãƒ–å‡¦ç†ãƒ¡ã‚¤ãƒ³
 	case SEQ_MAIN:
 		*seq = (*SubProcessTable[wk->sub_process][1])(wk, *seq);
 
 		break;
 
-	// ƒTƒuˆ—ƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
+	// ã‚µãƒ–å‡¦ç†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
 	case SEQ_FADEOUT:
 		if( WIPE_SYS_EndCheck() ){
-			// ƒTƒuˆ—‰ð•ú(SEQ_INIT‚És‚­‚©ASEQ_OUT‚É‚¢‚­‚©‚Í‚¨‚Ü‚©‚¹j
+			// ã‚µãƒ–å‡¦ç†è§£æ”¾(SEQ_INITã«è¡Œãã‹ã€SEQ_OUTã«ã„ãã‹ã¯ãŠã¾ã‹ã›ï¼‰
 			if(wk->subprocflag){
 				InitCLACT( wk );
 				WorldTrade_SubLcdActorAdd( wk, MyStatus_GetMySex(wk->param->mystatus) );
 				WorldTrade_SubLcdMatchObjAppear( wk, wk->SearchResult, 0 );
 				WorldTrade_SubLcdBgGraphicSet( wk );
 				wk->subprocflag = 0;
-				OS_Printf("OAMƒVƒXƒeƒ€—ÕŽž•œ‹A");
+				OS_Printf("OAMã‚·ã‚¹ãƒ†ãƒ è‡¨æ™‚å¾©å¸°");
 			}
 			*seq = (*SubProcessTable[wk->sub_process][2])(wk, *seq);
 		}
 		break;
 
-	// ¢ŠEŒðŠ·I—¹ˆ—
+	// ä¸–ç•Œäº¤æ›çµ‚äº†å‡¦ç†
 	case SEQ_OUT:
 		return PROC_RES_FINISH;
 		break;
@@ -313,7 +313,7 @@ PROC_RESULT WorldTradeProc_Main( PROC * proc, int * seq )
 	BoxPokeNumGet( wk );
 
 	if(wk->clactSet!=NULL){
-		CLACT_Draw( wk->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+		CLACT_Draw( wk->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 	}
 
 	return PROC_RES_CONTINUE;
@@ -321,18 +321,18 @@ PROC_RESULT WorldTradeProc_Main( PROC * proc, int * seq )
 
 #define DEFAULT_NAME_MAX		18
 
-// ƒ_ƒCƒ„Eƒp[ƒ‹‚Å•Ï‚í‚é‚ñ‚¾‚ë‚¤
+// ãƒ€ã‚¤ãƒ¤ãƒ»ãƒ‘ãƒ¼ãƒ«ã§å¤‰ã‚ã‚‹ã‚“ã ã‚ã†
 #define MALE_NAME_START			0
 #define FEMALE_NAME_START		18
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT WorldTradeProc_End( PROC * proc, int * seq )
@@ -345,15 +345,15 @@ PROC_RESULT WorldTradeProc_End( PROC * proc, int * seq )
 	DpwCommonOverlayEnd();
 	DwcOverlayEnd();
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ð•ú
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	FreeCLACT( wk );
 
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€I—¹
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
 //	StopTP();							
 
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[Eƒ[ƒhƒZƒbƒgƒ}ƒl[ƒWƒƒ[‰ð•ú
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ»ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼è§£æ”¾
 	
 	MSGMAN_Delete( wk->MonsNameManager );
 	MSGMAN_Delete( wk->SystemMsgManager );
@@ -362,22 +362,22 @@ PROC_RESULT WorldTradeProc_End( PROC * proc, int * seq )
 	MSGMAN_Delete( wk->CountryNameManager );
 	WORDSET_Delete( wk->WordSet );
 
-	// ƒ[ƒN‰ð•ú
+	// ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	FreeWork( wk );
 
-	// ƒCƒNƒjƒ…[ƒ‚ƒ“‰ð•ú
+	// ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³è§£æ”¾
 	CommVRAMDFinalize();
 
 
-	// BG_SYSTEM‰ð•ú
+	// BG_SYSTEMè§£æ”¾
 	sys_FreeMemoryEz( wk->bgl   );
 
-	// ¢ŠEŒðŠ·ƒpƒ‰ƒ[ƒ^‰ð•ú
+	// ä¸–ç•Œäº¤æ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è§£æ”¾
 	sys_FreeMemoryEz( wk->param );
 
-	PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
 
 	sys_DeleteHeap( HEAPID_WORLDTRADE );
 
@@ -386,7 +386,7 @@ PROC_RESULT WorldTradeProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -396,16 +396,16 @@ PROC_RESULT WorldTradeProc_End( PROC * proc, int * seq )
 static void VBlankFunc( void * work )
 {
 	WORLDTRADE_WORK *wk = work;
-	// VBlank’†“]‘—ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“ŽÀs
+	// VBlankä¸­è»¢é€ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³å®Ÿè¡Œ
 	if(wk->vfunc){
 	  wk->vfunc(work);
 	  wk->vfunc = NULL;
 	}
   
-	// ƒZƒ‹ƒAƒNƒ^[Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();	
 
 	ConnectBGPalAnm_VBlank(&wk->cbp);
@@ -416,7 +416,7 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMÝ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -426,20 +426,20 @@ static void VBlankFunc( void * work )
 static void VramBankSet(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 
@@ -450,7 +450,7 @@ static void VramBankSet(void)
 
 //------------------------------------------------------------------
 /**
- * ¢ŠEŒðŠ·ƒ[ƒN‰Šú‰»
+ * ä¸–ç•Œäº¤æ›ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   wk		WORLDTRADE_WORK*
  *
@@ -459,7 +459,7 @@ static void VramBankSet(void)
 //------------------------------------------------------------------
 static void InitWork( WORLDTRADE_WORK *wk, PROC *proc )
 {
-	// ŒÄ‚Ño‚µŽž‚Ìƒpƒ‰ƒ[ƒ^‚ðŽæ“¾
+	// å‘¼ã³å‡ºã—æ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
 	wk->param = (WORLDTRADE_PARAM*)PROC_GetParentWork( proc );
 
 	wk->sub_process 	= WORLDTRADE_ENTER;
@@ -483,7 +483,7 @@ static void InitWork( WORLDTRADE_WORK *wk, PROC *proc )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ[ƒN‰ð•ú
+ * $brief   ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
  * @param   wk		
  *
@@ -500,7 +500,7 @@ static void FreeWork( WORLDTRADE_WORK *wk )
 
 
 
-//** CharManager PlttManager—p **//
+//** CharManager PlttManagerç”¨ **//
 #define RECORD_CHAR_CONT_NUM				(20)
 #define RECORD_CHAR_VRAMTRANS_MAIN_SIZE		(2048)
 #define RECORD_CHAR_VRAMTRANS_SUB_SIZE		(2048)
@@ -508,13 +508,13 @@ static void FreeWork( WORLDTRADE_WORK *wk )
 
 //-------------------------------------
 //
-//	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[
-//	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 //
 //=====================================
 static void char_pltt_manager_init(void)
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			RECORD_CHAR_CONT_NUM,
@@ -524,10 +524,10 @@ static void char_pltt_manager_init(void)
 		};
 		InitCharManager(&cm);
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(RECORD_PLTT_CONT_NUM, HEAPID_WORLDTRADE);
 
-	// “Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 }
@@ -536,9 +536,9 @@ static void char_pltt_manager_init(void)
 #define TRANS_POKEICON_COLOR_NUM	( 3*16 )
 //------------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‰æ–Ê—pƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param   wk		ƒŒ[ƒ_[\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¬ãƒ¼ãƒ€ãƒ¼æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -550,83 +550,83 @@ static void InitCellActor(WORLDTRADE_WORK *wk)
 	
 	p_handle = ArchiveDataHandleOpen( ARC_WORLDTRADE_GRA, HEAPID_WORLDTRADE );
 	
-	// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	// OAMãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	// ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
+	// å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 	REND_OAMInit( 
-			0, 126,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 126,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 126,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 126,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			HEAPID_WORLDTRADE);
 	
 	
 	
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	wk->clactSet = CLACT_U_SetEasyInit( 72+6, &wk->renddata, HEAPID_WORLDTRADE );
 	
 	CLACT_U_SetSubSurfaceMatrix( &wk->renddata, 0, NAMEIN_SUB_ACTOR_DISTANCE );
 
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->resMan[i] = CLACT_U_ResManagerInit(3, i, HEAPID_WORLDTRADE);
 	}
 
 
-	//---------ã‰æ–Ê—p-------------------
-	//chara“Ç‚Ýž‚Ý
+	//---------ä¸Šç”»é¢ç”¨-------------------
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[CLACT_U_CHAR_RES], 
 			p_handle, NARC_worldtrade_worldtrade_obj_lz_ncgr, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_WORLDTRADE);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[CLACT_U_PLTT_RES],
 			p_handle, NARC_worldtrade_worldtrade_obj_nclr, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAPID_WORLDTRADE);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELL_RES],
 			p_handle, NARC_worldtrade_worldtrade_obj_lz_ncer, 1, 0, CLACT_U_CELL_RES,HEAPID_WORLDTRADE);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELLANM_RES],
 			p_handle, NARC_worldtrade_worldtrade_obj_lz_nanr, 1, 0, CLACT_U_CELLANM_RES,HEAPID_WORLDTRADE);
 
 
-	//---------‰º‰æ–Ê—p-------------------
+	//---------ä¸‹ç”»é¢ç”¨-------------------
 
 
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[CLACT_U_CHAR_RES], 
 							p_handle, NARC_worldtrade_hero_lz_ncgr, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAPID_WORLDTRADE);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[CLACT_U_PLTT_RES],
 							p_handle, NARC_worldtrade_hero_nclr, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 9, HEAPID_WORLDTRADE);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELL_RES],
 							p_handle, NARC_worldtrade_worldtrade_obj_s_lz_ncer, 1, 1, CLACT_U_CELL_RES,HEAPID_WORLDTRADE);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELLANM_RES],
 							p_handle, NARC_worldtrade_worldtrade_obj_s_lz_nanr, 1, 1, CLACT_U_CELLANM_RES,HEAPID_WORLDTRADE);
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 
-	// Chara“]‘—
+	// Charaè»¢é€
 	CLACT_U_CharManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] );
 	CLACT_U_CharManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] );
 //	CLACT_U_CharManagerSet( wk->resObjTbl[CHARA_RES][CLACT_U_CHAR_RES] );
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	CLACT_U_PlttManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] );
 	CLACT_U_PlttManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] );
 //	CLACT_U_PlttManagerSet( wk->resObjTbl[CHARA_RES][CLACT_U_PLTT_RES] );
 
-	// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“—pƒpƒŒƒbƒg‚ðˆê‹C‚É“Ç‚Ýž‚ñ‚ÅVRAM“]‘—‚·‚é
-	// ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒg‚ðˆÃ‚­‚µ‚½ƒf[ƒ^‚àì¬‚µ‚Ä“]‘—‚·‚é
+	// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä¸€æ°—ã«èª­ã¿è¾¼ã‚“ã§VRAMè»¢é€ã™ã‚‹
+	// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’æš—ãã—ãŸãƒ‡ãƒ¼ã‚¿ã‚‚ä½œæˆã—ã¦è»¢é€ã™ã‚‹
 	{
 		void              *buf;
 		NNSG2dPaletteData *palData;
@@ -676,7 +676,7 @@ static const u16 obj_pos_tbl[][2]={
 
 //==============================================================================
 /**
- * $brief   ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬ƒ‹[ƒ`ƒ“
+ * $brief   ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆãƒ«ãƒ¼ãƒãƒ³
  *
  * @param   wk		
  * @param   add		
@@ -703,7 +703,7 @@ void WorldTrade_MakeCLACT( CLACT_ADD *add, WORLDTRADE_WORK *wk, CLACT_HEADER *he
 
 //------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   wk			WORLDTRADE_WORK*
  *
@@ -713,7 +713,7 @@ void WorldTrade_MakeCLACT( CLACT_ADD *add, WORLDTRADE_WORK *wk, CLACT_HEADER *he
 static void SetCellActor(WORLDTRADE_WORK *wk)
 {
 	int i;
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
 	CLACT_U_MakeHeader(&wk->clActHeader_main, 0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
 	0, 0,
 	wk->resMan[CLACT_U_CHAR_RES],
@@ -721,9 +721,9 @@ static void SetCellActor(WORLDTRADE_WORK *wk)
 	wk->resMan[CLACT_U_CELL_RES],
 	wk->resMan[CLACT_U_CELLANM_RES],
 	NULL,NULL);
-	//‚Ü‚¾‰½‚à“]‘—‚µ‚Ä‚¢‚È‚¢‚©‚ç
+	//ã¾ã ä½•ã‚‚è»¢é€ã—ã¦ã„ãªã„ã‹ã‚‰
 	
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
 	CLACT_U_MakeHeader(&wk->clActHeader_sub, 1, 1, 1, 1, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
 	0, 0,
 	wk->resMan[CLACT_U_CHAR_RES],
@@ -732,31 +732,31 @@ static void SetCellActor(WORLDTRADE_WORK *wk)
 	wk->resMan[CLACT_U_CELLANM_RES],
 	NULL,NULL);
 
-	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒƒCƒ“‰æ–ÊOBJ–Ê‚n‚m
-	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒTƒu‰æ–ÊOBJ–Ê‚n‚m
+	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ãƒ¡ã‚¤ãƒ³ç”»é¢OBJé¢ï¼¯ï¼®
+	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//ã‚µãƒ–ç”»é¢OBJé¢ï¼¯ï¼®
 	
 }
 
 
 
-// ‚Í‚¢E‚¢‚¢‚¦
+// ã¯ã„ãƒ»ã„ã„ãˆ
 #define	BMP_YESNO_PX	( 23 )
 #define	BMP_YESNO_PY	( 13 )
 #define	BMP_YESNO_SX	( 7 )
 #define	BMP_YESNO_SY	( 4 )
 #define	BMP_YESNO_PAL	( 13 )
 
-// ‚Í‚¢E‚¢‚¢‚¦(ƒEƒCƒ“ƒhƒE—pj
+// ã¯ã„ãƒ»ã„ã„ãˆ(ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨ï¼‰
 static const BMPWIN_DAT YesNoBmpWin = {
 	GF_BGL_FRAME0_M, BMP_YESNO_PX, BMP_YESNO_PY,
 	BMP_YESNO_SX, BMP_YESNO_SY, BMP_YESNO_PAL, 
-	0, //Œã‚ÅŽw’è‚·‚é
+	0, //å¾Œã§æŒ‡å®šã™ã‚‹
 };
 
 
 //==============================================================================
 /**
- * $brief   ‚Í‚¢E‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE“o˜^
+ * $brief   ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç™»éŒ²
  *
  * @param   bgl		
  * @param   menuframe		
@@ -798,7 +798,7 @@ void WorldTrade_SetNextSeq( WORLDTRADE_WORK *wk, int to_seq, int next_seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒTƒuƒvƒƒZƒXI—¹Žž‚ÌŽŸ‚Ìs‚«æ‚ð“ü—Í‚·‚é
+ * $brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†æ™‚ã®æ¬¡ã®è¡Œãå…ˆã‚’å…¥åŠ›ã™ã‚‹
  *
  * @param   wk		
  * @param   to_seq		
@@ -814,9 +814,9 @@ void WorldTrade_SetNextProcess( WORLDTRADE_WORK *wk, int next_process )
 
 //==============================================================================
 /**
- * $brief   CLACT‚ÌÀ•W•ÏX
+ * $brief   CLACTã®åº§æ¨™å¤‰æ›´
  *
- * @param   act		ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @param   act		ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   x		
  * @param   y		
  *
@@ -836,7 +836,7 @@ void WorldTrade_ActPos( CLACT_WORK_PTR act, int x, int y )
 
 
 /*---------------------------------------------------------------------------*
-  ƒƒ‚ƒŠŠm•ÛŠÖ”
+  ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°
  *---------------------------------------------------------------------------*/
 static void *AllocFunc( DWCAllocType name, u32   size, int align )
 {
@@ -853,7 +853,7 @@ static void *AllocFunc( DWCAllocType name, u32   size, int align )
 }
 
 /*---------------------------------------------------------------------------*
-  ƒƒ‚ƒŠŠJ•úŠÖ”
+  ãƒ¡ãƒ¢ãƒªé–‹æ”¾é–¢æ•°
  *---------------------------------------------------------------------------*/
 static void FreeFunc(DWCAllocType name, void* ptr,  u32 size)
 {
@@ -870,7 +870,7 @@ static void FreeFunc(DWCAllocType name, void* ptr,  u32 size)
 
 //------------------------------------------------------------------
 /**
- * $brief   NitroDpw_Tr‰Šú‰»
+ * $brief   NitroDpw_TråˆæœŸåŒ–
  *
  * @param   heapPtr		
  * @param   headHandle		
@@ -886,10 +886,10 @@ static void InitDpw( void *heapPtr, NNSFndHeapHandle heapHandle, DWCAllocEx allo
 
 	_wtHeapHandle = heapHandle;
 	
-	// ƒCƒNƒjƒ…[ƒ‚ƒ““]‘—
+	// ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³è»¢é€
 //	CommVRAMDInitialize();
 
-	// wifiƒƒ‚ƒŠŠÇ—ŠÖ”ŒÄ‚Ño‚µ
+	// wifiãƒ¡ãƒ¢ãƒªç®¡ç†é–¢æ•°å‘¼ã³å‡ºã—
 	DWC_SetMemFunc( alloc, free );
 
 
@@ -902,7 +902,7 @@ static void InitDpw( void *heapPtr, NNSFndHeapHandle heapHandle, DWCAllocEx allo
 
 //==============================================================================
 /**
- * $brief   WIFIÚ‘±ó‹µŽæ“¾
+ * $brief   WIFIæŽ¥ç¶šçŠ¶æ³å–å¾—
  *
  * @param   none		
  *
@@ -919,7 +919,7 @@ int WorldTrade_WifiLinkLevel( void )
 
 //==============================================================================
 /**
- * @brief   ƒTƒuƒvƒƒZƒXƒ‚[ƒh‚ÌØ‚è‘Ö‚¦Žw’è
+ * @brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ãƒ¢ãƒ¼ãƒ‰ã®åˆ‡ã‚Šæ›¿ãˆæŒ‡å®š
  *
  * @param   wk			
  * @param   subprccess	
@@ -937,7 +937,7 @@ void WorldTrade_SubProcessChange( WORLDTRADE_WORK *wk, int subprccess, int mode 
 
 //==============================================================================
 /**
- * @brief   ŽŸ‚ÌƒTƒuƒvƒƒZƒX‚Ö‘JˆÚ‚·‚éiˆê‚Â‘O‚ðŽæ‚Á‚Ä‚¨‚­j
+ * @brief   æ¬¡ã®ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã¸é·ç§»ã™ã‚‹ï¼ˆä¸€ã¤å‰ã‚’å–ã£ã¦ãŠãï¼‰
  *
  * @param   wk		
  *
@@ -952,7 +952,7 @@ void WorldTrade_SubProcessUpdate( WORLDTRADE_WORK *wk )
 }
 //==============================================================================
 /**
- * @brief   ‰ï˜bƒXƒs[ƒh‚ðƒRƒ“ƒtƒBƒOƒf[ƒ^‚©‚çŽæ“¾‚·‚é
+ * @brief   ä¼šè©±ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—ã™ã‚‹
  *
  * @param   wk		
  *
@@ -966,7 +966,7 @@ int WorldTrade_GetTalkSpeed( WORLDTRADE_WORK *wk )
 
 //==============================================================================
 /**
- * @brief   ‰ï˜bƒEƒCƒ“ƒhƒE‚ÌŒ`ó‚ðƒRƒ“ƒtƒBƒOƒf[ƒ^‚©‚çŽæ“¾‚·‚é
+ * @brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®å½¢çŠ¶ã‚’ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—ã™ã‚‹
  *
  * @param   wk		
  *
@@ -1001,20 +1001,20 @@ WINTYPE WorldTrade_GetMesWinType( WORLDTRADE_WORK *wk )
 static void InitCLACT( WORLDTRADE_WORK *wk )
 {
 
-	// VRAM ƒoƒ“ƒNÝ’è
+	// VRAM ãƒãƒ³ã‚¯è¨­å®š
 	VramBankSet();
 
-	// OBJƒLƒƒƒ‰AƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// OBJã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	char_pltt_manager_init();
 
-	// CellActorƒVƒXƒeƒ€‰Šú‰»
+	// CellActorã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitCellActor(wk);
 		
-	// CellActro•\Ž¦“o˜^
+	// CellActroè¡¨ç¤ºç™»éŒ²
 	SetCellActor(wk);
 
 
-	// VBlankŠÖ”ƒZƒbƒg
+	// VBlanké–¢æ•°ã‚»ãƒƒãƒˆ
 	sys_VBlankFuncChange( VBlankFunc, wk );
 }
 
@@ -1031,31 +1031,31 @@ static void FreeCLACT( WORLDTRADE_WORK *wk )
 {
 	int i;
 
-	// ƒ†ƒjƒIƒ“‚n‚a‚iƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‰ð•ú
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ï¼¯ï¼¢ï¼ªã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	FreeFieldObjData( wk );
 
-	// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©è»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_CharManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES]);
 	CLACT_U_CharManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES]);
 //	CLACT_U_CharManagerDelete(wk->resObjTbl[CHARA_RES][CLACT_U_CHAR_RES]);
 
-	// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_PlttManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES]);
 	CLACT_U_PlttManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES]);
 //	CLACT_U_PlttManagerDelete(wk->resObjTbl[CHARA_RES][CLACT_U_PLTT_RES]);
 		
-	// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for(i=0;i<CLACT_RESOURCE_NUM;i++){
 		CLACT_U_ResManagerDelete(wk->resMan[i]);
 	}
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(wk->clactSet);
 	wk->clactSet = NULL;
 
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
-	// ƒŠƒ\[ƒX‰ð•ú
+	// ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	DeleteCharManager();
 	DeletePlttManager();
 
@@ -1064,7 +1064,7 @@ static void FreeCLACT( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   0‚É‚È‚é‚Ü‚Å‚PŒ¸‚ç‚·
+ * @brief   0ã«ãªã‚‹ã¾ã§ï¼‘æ¸›ã‚‰ã™
  *
  * @param   wk		
  *
@@ -1081,7 +1081,7 @@ static void ServerWaitTimeFunc( WORLDTRADE_WORK *wk )
 
 //==============================================================================
 /**
- * @brief   ‚Psync‚É‚PƒgƒŒƒC‚¸‚ÂBOX‚Ì”‚ðŠm”F‚µ‚Ä‚¢‚­ƒXƒ^[ƒg
+ * @brief   ï¼‘syncã«ï¼‘ãƒˆãƒ¬ã‚¤ãšã¤BOXã®æ•°ã‚’ç¢ºèªã—ã¦ã„ãã‚¹ã‚¿ãƒ¼ãƒˆ
  *
  * @param   wk		
  *
@@ -1097,7 +1097,7 @@ void WorldTrade_BoxPokeNumGetStart( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚Psync‚É‚PƒgƒŒƒC‚¸‚ÂBOX‚Ì”‚ðŠm”F‚µ‚Ä‚¢‚­(í’“ˆ—j
+ * @brief   ï¼‘syncã«ï¼‘ãƒˆãƒ¬ã‚¤ãšã¤BOXã®æ•°ã‚’ç¢ºèªã—ã¦ã„ã(å¸¸é§å‡¦ç†ï¼‰
  *
  * @param   wk		
  *
@@ -1111,7 +1111,7 @@ static void BoxPokeNumGet( WORLDTRADE_WORK *wk )
 		wk->boxSearchFlag++;
 		if(wk->boxSearchFlag==19){
 			wk->boxSearchFlag = 0;
-			OS_Printf("BOX‘”‚Í%d\n",wk->boxPokeNum);
+			OS_Printf("BOXç·æ•°ã¯%d\n",wk->boxPokeNum);
 		}
 
 	}
@@ -1122,7 +1122,7 @@ static void BoxPokeNumGet( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ŽžŠÔƒAƒCƒRƒ“’Ç‰Á
+ * @brief   æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ 
  *
  * @param   wk		
  *
@@ -1136,7 +1136,7 @@ void WorldTrade_TimeIconAdd( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ŽžŠÔƒAƒCƒRƒ“Á‹ŽiNULLƒ`ƒFƒbƒN‚·‚éj
+ * @brief   æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³æ¶ˆåŽ»ï¼ˆNULLãƒã‚§ãƒƒã‚¯ã™ã‚‹ï¼‰
  *
  * @param   wk		
  *

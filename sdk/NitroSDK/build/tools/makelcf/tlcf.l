@@ -13,40 +13,40 @@
 
   $Log: tlcf.l,v $
   Revision 1.25  2007/07/09 12:17:54  yasu
-  TARGET_NAME ‚ÌƒTƒ|[ƒg
+  TARGET_NAME ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.24  2007/07/09 07:02:00  yasu
-  IF.EXIST ‚ÌƒTƒ|[ƒg
+  IF.EXIST ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.23  2007/04/12 03:29:45  yasu
-  IF FIRST/LAST ‚ğ FOREACH OBJECT/LIBRARY ‚Å‚à‘Î‰‚Å‚«‚é‚æ‚¤‚É‚µ‚½
+  IF FIRST/LAST ã‚’ FOREACH OBJECT/LIBRARY ã§ã‚‚å¯¾å¿œã§ãã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.22  2007/04/10 14:13:20  yasu
-  •¡”‚Ì SEARCH_SYMBOL ‘Î‰
+  è¤‡æ•°ã® SEARCH_SYMBOL å¯¾å¿œ
 
   Revision 1.21  2006/05/10 02:06:00  yasu
-  CodeWarrior 2.x ‚Ö‚Ì‘Î‰
+  CodeWarrior 2.x ã¸ã®å¯¾å¿œ
 
   Revision 1.20  2006/03/30 23:59:45  yasu
-  ’˜ì”N“x‚Ì•ÏX
+  è‘—ä½œå¹´åº¦ã®å¤‰æ›´
 
   Revision 1.19  2006/03/30 03:17:46  yasu
-  ƒoƒO‘Îô‚Ì‚½‚ß NUMBER_OVERLAYS ‚à”F‚ß‚é‚±‚Æ‚É‚·‚é
+  ãƒã‚°å¯¾ç­–ã®ãŸã‚ NUMBER_OVERLAYS ã‚‚èªã‚ã‚‹ã“ã¨ã«ã™ã‚‹
 
   Revision 1.18  2006/03/29 13:13:22  yasu
-  IF-ELSE-ENDIF ‚ÌƒTƒ|[ƒg
+  IF-ELSE-ENDIF ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.17  2005/09/01 04:30:52  yasu
-  Overlay Group ‚ÌƒTƒ|[ƒg
+  Overlay Group ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.16  2005/08/26 11:23:11  yasu
-  ITCM/DTCM ‚Ö‚Ì overlay ‚Ì‘Î‰
+  ITCM/DTCM ã¸ã® overlay ã®å¯¾å¿œ
 
   Revision 1.15  2005/06/22 00:50:06  yasu
-  ’˜ì”N“xC³
+  è‘—ä½œå¹´åº¦ä¿®æ­£
 
   Revision 1.14  2005/06/20 12:21:48  yasu
-  Surffix -> Suffix C³
+  Surffix -> Suffix ä¿®æ­£
 
   Revision 1.13  2004/07/10 04:06:17  yasu
   Support command 'Library'
@@ -75,7 +75,7 @@
   one line <FOREACH.*> command enables
 
   Revision 1.5  2004/01/15 10:47:56  yasu
-  Static StackSize ‚ÌÀ‘•
+  Static StackSize ã®å®Ÿè£…
 
   Revision 1.4  2004/01/14 12:58:47  yasu
   Handle '\r' as newline
@@ -114,7 +114,7 @@ void  tlcf_yyerror( const char* str )
 
 static char* getSectionDot( int dotpos, const char* default_section )
 {
-    // dotpos > 0 ‚Ìê‡‚Í, dotpos ”Ô–Ú‚Ì . ‚ª‚ ‚ê‚ÎA‚»‚±‚©‚çŠJn‚·‚é
+    // dotpos > 0 ã®å ´åˆã¯, dotpos ç•ªç›®ã® . ãŒã‚ã‚Œã°ã€ãã“ã‹ã‚‰é–‹å§‹ã™ã‚‹
     char*  head = NULL;
     char*  p;
     
@@ -151,7 +151,7 @@ static char* getSectionDot( int dotpos, const char* default_section )
 
 static char* getSection( const char* default_section )
 {
-    return getSectionDot( 0, default_section );  // dot ‚Í’T‚³‚È‚¢
+    return getSectionDot( 0, default_section );  // dot ã¯æ¢ã•ãªã„
 }
 
 %}

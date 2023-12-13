@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	factory_bmp.c
- * @brief	uƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[vBMP
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€BMP
  * @author	Satoshi Nohara
  * @date	2007.03.15
  */
@@ -19,131 +19,131 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//uƒgƒŒ[ƒi[–¼v
+//ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã€
 #define WIN_TR1_PX			(1)
 #define WIN_TR1_PY			(1)
 #define WIN_TR1_SX			(10)
 #define WIN_TR1_SY			(2)
 #define WIN_TR1_CGX			(1)
 
-//uƒp[ƒgƒi[–¼v
+//ã€Œãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã€
 #define WIN_TR2_PX			(22)
 #define WIN_TR2_PY			(1)
 #define WIN_TR2_SX			(10)
 #define WIN_TR2_SY			(2)
 #define WIN_TR2_CGX			(WIN_TR1_CGX + WIN_TR1_SX * WIN_TR1_SY)
 
-//u‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“–¼1v
+//ã€Œé¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³å1ã€
 #define WIN_POKE1_PX		(1)
 #define WIN_POKE1_PY		(4)
 #define WIN_POKE1_SX		(9)
 #define WIN_POKE1_SY		(2)
 #define WIN_POKE1_CGX		(WIN_TR2_CGX + WIN_TR2_SX * WIN_TR2_SY)
 
-//u‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“–¼2v
+//ã€Œé¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³å2ã€
 #define WIN_POKE2_PX		(1)
 #define WIN_POKE2_PY		(6)
 #define WIN_POKE2_SX		(9)
 #define WIN_POKE2_SY		(2)
 #define WIN_POKE2_CGX		(WIN_POKE1_CGX + WIN_POKE1_SX * WIN_POKE1_SY)
 
-//u‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“–¼3v
+//ã€Œé¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³å3ã€
 #define WIN_POKE3_PX		(1)
 #define WIN_POKE3_PY		(8)
 #define WIN_POKE3_SX		(9)
 #define WIN_POKE3_SY		(2)
 #define WIN_POKE3_CGX		(WIN_POKE2_CGX + WIN_POKE2_SX * WIN_POKE2_SY)
 
-//u‰ï˜bv
+//ã€Œä¼šè©±ã€
 #define WIN_TALK_PX			(2)
 #define WIN_TALK_PY			(19)
 #define WIN_TALK_SX			(17)
 #define WIN_TALK_SY			(4)
 #define WIN_TALK_CGX		(WIN_POKE3_CGX + WIN_POKE3_SX * WIN_POKE3_SY)
 
-//u‚Í‚¢E‚¢‚¢‚¦v
+//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 #define WIN_YESNO_PX		(23)
 #define WIN_YESNO_PY		(19)
 #define WIN_YESNO_SX		(8)
 #define WIN_YESNO_SY		(4)
 #define WIN_YESNO_CGX		(WIN_TALK_CGX + WIN_TALK_SX * WIN_TALK_SY)
 
-//u‚Â‚æ‚³‚ð‚Ý‚év
+//ã€Œã¤ã‚ˆã•ã‚’ã¿ã‚‹ã€
 #define WIN_SEL_PX			(23)
 #define WIN_SEL_PY			(17)
 #define WIN_SEL_SX			(8)
 #define WIN_SEL_SY			(6)
 #define WIN_SEL_CGX			(WIN_YESNO_CGX + WIN_YESNO_SX * WIN_YESNO_SY)
 
-//uƒp[ƒgƒi[‚ª‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“–¼1v
+//ã€Œãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒé¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³å1ã€
 #define WIN_POKE4_PX		(22)
 #define WIN_POKE4_PY		(4)
 #define WIN_POKE4_SX		(9)
 #define WIN_POKE4_SY		(2)
 #define WIN_POKE4_CGX		(WIN_SEL_CGX + WIN_SEL_SX * WIN_SEL_SY)
 
-//uƒp[ƒgƒi[‚ª‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“–¼2v
+//ã€Œãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒé¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³å2ã€
 #define WIN_POKE5_PX		(22)
 #define WIN_POKE5_PY		(6)
 #define WIN_POKE5_SX		(9)
 #define WIN_POKE5_SY		(2)
 #define WIN_POKE5_CGX		(WIN_POKE4_CGX + WIN_POKE4_SX * WIN_POKE4_SY)
 
-//ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define BF_MENU_CGX_NUM		(1024-MENU_WIN_CGX_SIZ)
 
-//‰ï˜bƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define	BF_TALKWIN_CGX_SIZE	(TALK_WIN_CGX_SIZ)
 #define	BF_TALKWIN_CGX_NUM	(BF_MENU_CGX_NUM - BF_TALKWIN_CGX_SIZE)
 
 
 //==============================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
 static const BMPWIN_DAT FactoryBmpData[] =
 {
-	{	// 0:uƒgƒŒ[ƒi[–¼v
+	{	// 0:ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã€
 		BF_FRAME_WIN, WIN_TR1_PX, WIN_TR1_PY,
 		WIN_TR1_SX, WIN_TR1_SY, BF_FONT_PAL, WIN_TR1_CGX
 	},	
-	{	// 1:uƒp[ƒgƒi[–¼v
+	{	// 1:ã€Œãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã€
 		BF_FRAME_WIN, WIN_TR2_PX, WIN_TR2_PY,
 		WIN_TR2_SX, WIN_TR2_SY, BF_FONT_PAL, WIN_TR2_CGX
 	},	
-	{	// 2:uƒ|ƒPƒ‚ƒ“–¼1v
+	{	// 2:ã€Œãƒã‚±ãƒ¢ãƒ³å1ã€
 		BF_FRAME_WIN, WIN_POKE1_PX, WIN_POKE1_PY,
 		WIN_POKE1_SX, WIN_POKE1_SY, BF_FONT_PAL, WIN_POKE1_CGX
 	},	
-	{	// 3:uƒ|ƒPƒ‚ƒ“–¼2v
+	{	// 3:ã€Œãƒã‚±ãƒ¢ãƒ³å2ã€
 		BF_FRAME_WIN, WIN_POKE2_PX, WIN_POKE2_PY,
 		WIN_POKE2_SX, WIN_POKE2_SY, BF_FONT_PAL, WIN_POKE2_CGX
 	},	
-	{	// 4:uƒ|ƒPƒ‚ƒ“–¼3v
+	{	// 4:ã€Œãƒã‚±ãƒ¢ãƒ³å3ã€
 		BF_FRAME_WIN, WIN_POKE3_PX, WIN_POKE3_PY,
 		WIN_POKE3_SX, WIN_POKE3_SY, BF_FONT_PAL, WIN_POKE3_CGX
 	},	
-	{	// 5:u‰ï˜bv
+	{	// 5:ã€Œä¼šè©±ã€
 		BF_FRAME_WIN, WIN_TALK_PX, WIN_TALK_PY,
 		WIN_TALK_SX, WIN_TALK_SY, BF_MSGFONT_PAL, WIN_TALK_CGX
 	},
-	{	// 6:u‚Í‚¢E‚¢‚¢‚¦v
+	{	// 6:ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 		BF_FRAME_WIN, WIN_YESNO_PX, WIN_YESNO_PY,
 		WIN_YESNO_SX, WIN_YESNO_SY, BF_FONT_PAL, WIN_YESNO_CGX
 	},
-	{	// 7:u‚Â‚æ‚³‚ð‚Ý‚év
+	{	// 7:ã€Œã¤ã‚ˆã•ã‚’ã¿ã‚‹ã€
 		BF_FRAME_WIN, WIN_SEL_PX, WIN_SEL_PY,
 		WIN_SEL_SX, WIN_SEL_SY, BF_FONT_PAL, WIN_SEL_CGX
 	},
-	{	// 8:uƒp[ƒgƒi[‚Ìƒ|ƒPƒ‚ƒ“–¼1v
+	{	// 8:ã€Œãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ãƒã‚±ãƒ¢ãƒ³å1ã€
 		BF_FRAME_WIN, WIN_POKE4_PX, WIN_POKE4_PY,
 		WIN_POKE4_SX, WIN_POKE4_SY, BF_FONT_PAL, WIN_POKE4_CGX
 	},	
-	{	// 9:uƒp[ƒgƒi[‚Ìƒ|ƒPƒ‚ƒ“–¼2v
+	{	// 9:ã€Œãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ãƒã‚±ãƒ¢ãƒ³å2ã€
 		BF_FRAME_WIN, WIN_POKE5_PX, WIN_POKE5_PY,
 		WIN_POKE5_SX, WIN_POKE5_SY, BF_FONT_PAL, WIN_POKE5_CGX
 	},	
@@ -152,7 +152,7 @@ static const BMPWIN_DAT FactoryBmpData[] =
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 void FactoryAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win );
@@ -164,16 +164,16 @@ void FactoryTalkWinPut( GF_BGL_BMPWIN * win, WINTYPE wintype );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—è¿½åŠ 
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -183,10 +183,10 @@ void FactoryAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 	u8 i;
 	const BMPWIN_DAT* dat = FactoryBmpData;
 
-	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—è¿½åŠ 
 	for( i=0; i < FACTORY_BMPWIN_MAX; i++ ){
 		GF_BGL_BmpWinAddEx( bgl, &win[i], &dat[i] );
-		GF_BGL_BmpWinDataFill( &win[i], FBMP_COL_NULL );		//“h‚è‚Â‚Ô‚µ
+		GF_BGL_BmpWinDataFill( &win[i], FBMP_COL_NULL );		//å¡—ã‚Šã¤ã¶ã—
 	}
 
 	return;
@@ -194,9 +194,9 @@ void FactoryAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü	
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„	
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -214,9 +214,9 @@ void FactoryExitBmpWin( GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒIƒt
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ•
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -234,29 +234,29 @@ void FactoryOffBmpWin( GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ƒEƒBƒ“ƒhƒE•\Ž¦
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
 //--------------------------------------------------------------
 void FactoryWriteMenuWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 {
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ðƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet( bgl, BF_FRAME_WIN, BF_MENU_CGX_NUM, BF_MENU_PAL, 0, HEAPID_FACTORY );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ð•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_OFF, BF_MENU_CGX_NUM, BF_MENU_PAL );
 	return;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‰ï˜bƒEƒBƒ“ƒhƒE•\Ž¦
+ * @brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	win		BMPƒf[ƒ^
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */

@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_084.s
- *@brief	�퓬�V�[�P���X
- *			����݃V�[�P���X
+ *@brief	戦闘シーケンス
+ *			うらみシーケンス
  *@author	HisashiSogabe
  *@data		2006.01.24
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_084:
-	//�������ŊO��Ă��鎞�́A���܂����܂��ɂ���
+	//命中率で外れている時は、うまくきまらんにする
 	IF			IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_NOHIT_CHG,Umakukimaran
 	URAMI		Umakukimaran
 	GOSUB		SUB_SEQ_WAZA_OUT_EFF

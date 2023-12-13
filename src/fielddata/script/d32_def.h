@@ -1,7 +1,7 @@
 #ifndef _D32_DEF_H_
 #define _D32_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D32_JUDGE		(1)
 #define	SCRID_D32_BABYBOY1_01		(2)
 #define	SCRID_D32_FIGHTER_01		(3)
@@ -40,6 +40,6 @@
 #define	SCRID_POS_D32_ROULETTE		(36)
 #define	SCRID_POS_D32_FACTORY		(37)
 #define	SCRID_D32_FLAG_CHANGE		(38)
-#define	SCRID_D32_DATA_MAX		(38)		//最大数
+#define	SCRID_D32_DATA_MAX		(38)		//譛螟ｧ謨ｰ
 
 #endif //_D32_DEF_H_

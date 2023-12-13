@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_106.s
- *@brief	�퓬�V�[�P���X
- *			���������ǉ����ʃV�[�P���X
+ *@brief	戦闘シーケンス
+ *			メロメロ追加効果シーケンス
  *@author	HisashiSogabe
  *@data		2006.01.31
  *
@@ -15,14 +15,14 @@
 	.include	"waza_seq_def.h"
 
 SUB_106:
-	//�����ǂ񂩂�������Ă�ꍇ�́A���������ɂȂ�Ȃ�
+	//特性どんかんを持ってる場合は、メロメロにならない
 	KATAYABURI_TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_TSUIKA,TOKUSYU_DONKAN,NoMeromero
 	IF				IF_FLAG_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_NOHIT_CHG,Umakukimaran
 	MEROMERO		Umakukimaran
 	GOSUB			SUB_SEQ_WAZA_OUT_EFF
-//�����ǉ��̏ꍇ�A��p���b�Z�[�W��
+//特性追加の場合、専用メッセージへ
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_TOKUSEI,TokuseiMsg
-//�����A�C�e���̏ꍇ�A��p���b�Z�[�W��
+//装備アイテムの場合、専用メッセージへ
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_SOUBIITEM,SoubiItemMsg
 NormalMsg:
 	MESSAGE			MeromeroMineMsg,TAG_NICK,SIDE_TSUIKA
@@ -37,14 +37,14 @@ SoubiItemMsg:
 SUB_106_NEXT:
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//�����A�C�e���u���������Ɓv�̂��߂ɒǉ����ʂ��������t���O�𗧂Ă�
+	//装備アイテム「あかいいと」のために追加効果があったフラグを立てる
 	VALUE			VAL_BIT,BUF_PARA_OSTF_STATUS_FLAG_TSUIKA,OSTF_STATUS_FLAG_MEROMERO
 	SEQ_END
 
 NoMeromero:
-//�����ǉ��̏ꍇ�A��p���b�Z�[�W��
+//特性追加の場合、専用メッセージへ
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_TOKUSEI,TokuseiNoMeromero
-//�����A�C�e���̏ꍇ�A��p���b�Z�[�W��
+//装備アイテムの場合、専用メッセージへ
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_SOUBIITEM,SoubiItemNoMeromero
 	ATTACK_MESSAGE
 	SERVER_WAIT
@@ -52,13 +52,13 @@ NoMeromero:
 	MESSAGE			DonkanMineMsg,TAG_NICK_TOKU,SIDE_TSUIKA,SIDE_TSUIKA
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//�Z�̋N���Ɏ��s�t���O�𗧂Ă�
+	//技の起動に失敗フラグを立てる
 	//VALUE			VAL_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_SIPPAI_RENZOKU_CHECK
 	VALUE			VAL_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_SIPPAI
 	SEQ_END
 
 TokuseiNoMeromero:
-//�����ǉ��̏ꍇ�́A���b�Z�[�W�Ȃ�
+//特性追加の場合は、メッセージなし
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_TOKUSEI,SUB_106_RET
 	MESSAGE			TokuseiNoTokuseiM2MMsg,TAG_NICK_TOKU_NICK_TOKU,SIDE_TSUIKA,SIDE_TSUIKA,SIDE_WORK,SIDE_CLIENT_WORK
 	SERVER_WAIT
@@ -72,7 +72,7 @@ SoubiItemNoMeromero:
 	SEQ_END
 
 Umakukimaran:
-//�����ǉ��̏ꍇ�́A���b�Z�[�W�Ȃ�
+//特性追加の場合は、メッセージなし
 	IF				IF_FLAG_EQ,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_TOKUSEI,SUB_106_RET
 	VALUE			VAL_BIT,BUF_PARA_WAZA_STATUS_FLAG,WAZA_STATUS_FLAG_UMAKUKIMARAN
 SUB_106_RET:

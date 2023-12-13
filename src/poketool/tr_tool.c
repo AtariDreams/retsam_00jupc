@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	tr_tool.c
- * @bfief	ƒgƒŒ[ƒi[ƒf[ƒ^ƒc[ƒ‹ŒS
+ * @bfief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ„ãƒ¼ãƒ«éƒ¡
  * @author	HisashiSogabe
  * @date	05.12.14
  */
@@ -24,18 +24,18 @@
 
 #include	"msgdata/msg.naix"
 
-//MAKE‚ÌˆË‘¶ŠÖŒW‚ÉŠÜ‚ß‚é‚½‚ß‚ÉINCLUDE
+//MAKEã®ä¾å­˜é–¢ä¿‚ã«å«ã‚ã‚‹ãŸã‚ã«INCLUDE
 #include	"trmsg/trtbl.naix"
 
 //============================================================================================
 /**
- * ’è”éŒ¾
+ * å®šæ•°å®£è¨€
  */
 //============================================================================================
 
 //============================================================================================
 /**
- * ƒvƒƒgƒ^ƒCƒvéŒ¾
+ * ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //============================================================================================
 
@@ -53,11 +53,11 @@ static	void	TT_EncountTrainerPokeDataMake(BATTLE_PARAM *bp,int num,int heapID);
 
 //============================================================================================
 /**
- *	ƒGƒ“ƒJƒEƒ“ƒgƒgƒŒ[ƒi[ƒf[ƒ^‚ğ¶¬‚·‚é
+ *	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param[in/out]	bp		í“¬ƒVƒXƒeƒ€‚Éˆø‚«“n‚·\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]		sv		ƒZ[ƒuƒf[ƒ^\‘¢‘Ìiƒ‰ƒCƒoƒ‹‚Ì–¼‘O‚ğæ‚èo‚·‚Ì‚É•K—vj
- * @param[in]		heapID	ƒƒ‚ƒŠŠm•Û‚·‚é‚½‚ß‚Ìƒq[ƒvID
+ * @param[in/out]	bp		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ã«å¼•ãæ¸¡ã™æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]		sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ï¼ˆãƒ©ã‚¤ãƒãƒ«ã®åå‰ã‚’å–ã‚Šå‡ºã™ã®ã«å¿…è¦ï¼‰
+ * @param[in]		heapID	ãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹ãŸã‚ã®ãƒ’ãƒ¼ãƒ—ID
  */
 //============================================================================================
 void	TT_EncountTrainerDataMake(BATTLE_PARAM *bp,const SAVEDATA * sv,int heapID)
@@ -91,12 +91,12 @@ void	TT_EncountTrainerDataMake(BATTLE_PARAM *bp,const SAVEDATA * sv,int heapID)
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[ƒf[ƒ^‚ğæ“¾‚·‚é
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- * @param[in]	waza_no		æ“¾‚µ‚½‚¢‹Zƒiƒ“ƒo[
- * @param[in]	id			æ“¾‚µ‚½‚¢’l‚Ìí—Ş
+ * @param[in]	waza_no		å–å¾—ã—ãŸã„æŠ€ãƒŠãƒ³ãƒãƒ¼
+ * @param[in]	id			å–å¾—ã—ãŸã„å€¤ã®ç¨®é¡
  *
- *	@retval	ŒvZŒ‹‰Ê‚Ìƒ_ƒ[ƒW—Ê
+ *	@retval	è¨ˆç®—çµæœã®ãƒ€ãƒ¡ãƒ¼ã‚¸é‡
  */
 //============================================================================================
 u32	TT_TrainerDataParaGet(int tr_id,int id)
@@ -107,28 +107,28 @@ u32	TT_TrainerDataParaGet(int tr_id,int id)
 	TT_TrainerDataGet(tr_id,&td);
 
 	switch(id){
-	case ID_TD_data_type:		//ƒf[ƒ^ƒ^ƒCƒv
+	case ID_TD_data_type:		//ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
 		ret=td.data_type;
 		break;
-	case ID_TD_tr_type:			//ƒgƒŒ[ƒi[•ª—Ş
+	case ID_TD_tr_type:			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åˆ†é¡
 		ret=td.tr_type;
 		break;
-	case ID_TD_tr_gra:			//ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒN
+	case ID_TD_tr_gra:			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 		ret=td.tr_gra;
 		break;
-	case ID_TD_poke_count:		//Šƒ|ƒPƒ‚ƒ“”
+	case ID_TD_poke_count:		//æ‰€æŒãƒã‚±ãƒ¢ãƒ³æ•°
 		ret=td.poke_count;
 		break;
-	case ID_TD_use_item1:		//g—p“¹‹ï1
-	case ID_TD_use_item2:		//g—p“¹‹ï2
-	case ID_TD_use_item3:		//g—p“¹‹ï3
-	case ID_TD_use_item4:		//g—p“¹‹ï4
+	case ID_TD_use_item1:		//ä½¿ç”¨é“å…·1
+	case ID_TD_use_item2:		//ä½¿ç”¨é“å…·2
+	case ID_TD_use_item3:		//ä½¿ç”¨é“å…·3
+	case ID_TD_use_item4:		//ä½¿ç”¨é“å…·4
 		ret=td.use_item[id-ID_TD_use_item1];
 		break;
-	case ID_TD_aibit:			//AIƒpƒ^[ƒ“
+	case ID_TD_aibit:			//AIãƒ‘ã‚¿ãƒ¼ãƒ³
 		ret=td.aibit;
 		break;
-	case ID_TD_fight_type:		//í“¬ƒ^ƒCƒvi1vs1or2vs2j
+	case ID_TD_fight_type:		//æˆ¦é—˜ã‚¿ã‚¤ãƒ—ï¼ˆ1vs1or2vs2ï¼‰
 		ret=td.fight_type;
 		break;
 	}
@@ -137,13 +137,13 @@ u32	TT_TrainerDataParaGet(int tr_id,int id)
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[ƒƒbƒZ[ƒWƒf[ƒ^‚ª‘¶İ‚·‚é‚©ƒ`ƒFƒbƒN
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	tr_id		ƒ`ƒFƒbƒN‚µ‚½‚¢ƒgƒŒ[ƒi[ID
- * @param[in]	kindID		ƒ`ƒFƒbƒN‚µ‚½‚¢ƒƒbƒZ[ƒW‚Ìí—Ş
- * @param[in]	heapID		ƒeƒ“ƒ|ƒ‰ƒŠ—Ìˆæ‚Ì¶¬æƒq[ƒvID
+ * @param[in]	tr_id		ãƒã‚§ãƒƒã‚¯ã—ãŸã„ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param[in]	kindID		ãƒã‚§ãƒƒã‚¯ã—ãŸã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ç¨®é¡
+ * @param[in]	heapID		ãƒ†ãƒ³ãƒãƒ©ãƒªé ˜åŸŸã®ç”Ÿæˆå…ˆãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	TRUE:‘¶İ‚·‚é@FALSE:‘¶İ‚µ‚È‚¢
+ * @retval	TRUE:å­˜åœ¨ã™ã‚‹ã€€FALSE:å­˜åœ¨ã—ãªã„
  */
 //============================================================================================
 BOOL	TT_TrainerMessageCheck(int tr_id,int kindID,int heapID)
@@ -178,12 +178,12 @@ BOOL	TT_TrainerMessageCheck(int tr_id,int kindID,int heapID)
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[ƒƒbƒZ[ƒWƒf[ƒ^‚ğæ“¾
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in]	tr_id		æ“¾‚µ‚½‚¢ƒgƒŒ[ƒi[ID
- * @param[in]	kindID		æ“¾‚µ‚½‚¢ƒƒbƒZ[ƒW‚Ìí—Ş
- * @param[out]	msg			æ“¾‚µ‚½ƒƒbƒZ[ƒW‚ÌŠi”[æ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]	heapID		ƒeƒ“ƒ|ƒ‰ƒŠ—Ìˆæ‚Ì¶¬æƒq[ƒvID
+ * @param[in]	tr_id		å–å¾—ã—ãŸã„ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param[in]	kindID		å–å¾—ã—ãŸã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ç¨®é¡
+ * @param[out]	msg			å–å¾—ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®æ ¼ç´å…ˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	heapID		ãƒ†ãƒ³ãƒãƒ©ãƒªé ˜åŸŸã®ç”Ÿæˆå…ˆãƒ’ãƒ¼ãƒ—ID
  */
 //============================================================================================
 void	TT_TrainerMessageGet(int tr_id,int kindID,STRBUF *msg,int heapID)
@@ -208,7 +208,7 @@ void	TT_TrainerMessageGet(int tr_id,int kindID,STRBUF *msg,int heapID)
 	ArchiveDataHandleClose(handle);
 
 //	GF_ASSERT_MSG(ofs!=size,"TrainerMessage Not Found");
-	//ƒƒbƒZ[ƒW‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚çASTRBUF‚ğƒNƒŠƒA‚µ‚Ä•Ô‚·
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰ã€STRBUFã‚’ã‚¯ãƒªã‚¢ã—ã¦è¿”ã™
 	if(ofs==size){
 		OS_TPrintf("TrainerMessage Not Found");
 		STRBUF_Clear(msg);
@@ -217,10 +217,10 @@ void	TT_TrainerMessageGet(int tr_id,int kindID,STRBUF *msg,int heapID)
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[\‘¢‘Ìƒf[ƒ^‚ğæ“¾
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in]	tr_id		æ“¾‚µ‚½‚¢ƒgƒŒ[ƒi[ID
- * @param[in]	td			æ“¾‚µ‚½ƒgƒŒ[ƒi[ƒf[ƒ^‚ÌŠi”[æ‚ğw’è
+ * @param[in]	tr_id		å–å¾—ã—ãŸã„ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param[in]	td			å–å¾—ã—ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å…ˆã‚’æŒ‡å®š
  */
 //============================================================================================
 void	TT_TrainerDataGet(int tr_id,TRAINER_DATA *td)
@@ -230,10 +230,10 @@ void	TT_TrainerDataGet(int tr_id,TRAINER_DATA *td)
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[‚¿ƒ|ƒPƒ‚ƒ“\‘¢‘Ìƒf[ƒ^‚ğæ“¾
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŒã¡ãƒã‚±ãƒ¢ãƒ³æ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in]	tr_id		æ“¾‚µ‚½‚¢ƒgƒŒ[ƒi[ID
- * @param[in]	td			æ“¾‚µ‚½ƒgƒŒ[ƒi[‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ÌŠi”[æ‚ğw’è
+ * @param[in]	tr_id		å–å¾—ã—ãŸã„ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param[in]	td			å–å¾—ã—ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å…ˆã‚’æŒ‡å®š
  */
 //============================================================================================
 void	TT_TrainerPokeDataGet(int tr_id,void *tpd)
@@ -243,9 +243,9 @@ void	TT_TrainerPokeDataGet(int tr_id,void *tpd)
 
 //============================================================================================
 /**
- *	ƒgƒŒ[ƒi[ƒ^ƒCƒv‚©‚ç«•Ê‚ğæ“¾‚·‚é
+ *	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‹ã‚‰æ€§åˆ¥ã‚’å–å¾—ã™ã‚‹
  *
- * @param[in]	trtype		æ“¾‚µ‚½‚¢ƒgƒŒ[ƒi[ƒ^ƒCƒv
+ * @param[in]	trtype		å–å¾—ã—ãŸã„ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
  */
 //============================================================================================
 u8	TT_TrainerTypeSexGet(int trtype)
@@ -255,16 +255,16 @@ u8	TT_TrainerTypeSexGet(int trtype)
 
 //============================================================================================
 /**
- *							ŠO•”ŒöŠJ‚µ‚È‚¢ŠÖ”ŒS
+ *							å¤–éƒ¨å…¬é–‹ã—ãªã„é–¢æ•°éƒ¡
  */
 //============================================================================================
 //============================================================================================
 /**
- *	ƒGƒ“ƒJƒEƒ“ƒgƒgƒŒ[ƒi[‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğ¶¬‚·‚é
+ *	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param[in/out]	bp		í“¬ƒVƒXƒeƒ€‚Éˆø‚«“n‚·\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param[in]		num		‰½”Ô–Ú‚ÌƒgƒŒ[ƒi[IDHiƒ^ƒbƒO‚Ì‚Ì‚½‚ßj
- * @param[in]		heapID	ƒƒ‚ƒŠŠm•Û‚·‚é‚½‚ß‚Ìƒq[ƒvID
+ * @param[in/out]	bp		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ã«å¼•ãæ¸¡ã™æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]		num		ä½•ç•ªç›®ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDï¼Ÿï¼ˆã‚¿ãƒƒã‚°ã®æ™‚ã®ãŸã‚ï¼‰
+ * @param[in]		heapID	ãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹ãŸã‚ã®ãƒ’ãƒ¼ãƒ—ID
  */
 //============================================================================================
 static	void	TT_EncountTrainerPokeDataMake(BATTLE_PARAM *bp,int num,int heapID)
@@ -276,7 +276,7 @@ static	void	TT_EncountTrainerPokeDataMake(BATTLE_PARAM *bp,int num,int heapID)
 	u8				pow;
 	POKEMON_PARAM	*pp;
 
-	//Œ»İ‚Ì—”‚Ìí‚ğ‘Ş”ğ
+	//ç¾åœ¨ã®ä¹±æ•°ã®ç¨®ã‚’é€€é¿
 	seed_tmp=gf_get_seed();
 
 	PokeParty_Init(bp->poke_party[num],POKEMON_TEMOTI_MAX);
@@ -304,7 +304,7 @@ static	void	TT_EncountTrainerPokeDataMake(BATTLE_PARAM *bp,int num,int heapID)
 			for(i=0;i<bp->trainer_data[num].poke_count;i++){
 				monsno=ptn[i].monsno&0x03ff;
 				form_no=(ptn[i].monsno&0xfc00)>>10;
-				//‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚ğg—p‚µ‚ÄAƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”‚ğ¶¬
+				//æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã—ã¦ã€ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°ã‚’ç”Ÿæˆ
 				rnd=ptn[i].pow+ptn[i].level+monsno+bp->trainer_id[num];
 				gf_srand(rnd);
 				for(j=0;j<bp->trainer_data[num].tr_type;j++){
@@ -329,7 +329,7 @@ static	void	TT_EncountTrainerPokeDataMake(BATTLE_PARAM *bp,int num,int heapID)
 			for(i=0;i<bp->trainer_data[num].poke_count;i++){
 				monsno=ptw[i].monsno&0x03ff;
 				form_no=(ptw[i].monsno&0xfc00)>>10;
-				//‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚ğg—p‚µ‚ÄAƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”‚ğ¶¬
+				//æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã—ã¦ã€ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°ã‚’ç”Ÿæˆ
 				rnd=ptw[i].pow+ptw[i].level+monsno+bp->trainer_id[num];
 				gf_srand(rnd);
 				for(j=0;j<bp->trainer_data[num].tr_type;j++){
@@ -357,7 +357,7 @@ static	void	TT_EncountTrainerPokeDataMake(BATTLE_PARAM *bp,int num,int heapID)
 			for(i=0;i<bp->trainer_data[num].poke_count;i++){
 				monsno=pti[i].monsno&0x03ff;
 				form_no=(pti[i].monsno&0xfc00)>>10;
-				//‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚ğg—p‚µ‚ÄAƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”‚ğ¶¬
+				//æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã—ã¦ã€ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°ã‚’ç”Ÿæˆ
 				rnd=pti[i].pow+pti[i].level+monsno+bp->trainer_id[num];
 				gf_srand(rnd);
 				for(j=0;j<bp->trainer_data[num].tr_type;j++){
@@ -383,7 +383,7 @@ static	void	TT_EncountTrainerPokeDataMake(BATTLE_PARAM *bp,int num,int heapID)
 			for(i=0;i<bp->trainer_data[num].poke_count;i++){
 				monsno=ptm[i].monsno&0x03ff;
 				form_no=(ptm[i].monsno&0xfc00)>>10;
-				//‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^‚ğg—p‚µ‚ÄAƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”‚ğ¶¬
+				//æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã—ã¦ã€ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°ã‚’ç”Ÿæˆ
 				rnd=ptm[i].pow+ptm[i].level+monsno+bp->trainer_id[num];
 				gf_srand(rnd);
 				for(j=0;j<bp->trainer_data[num].tr_type;j++){
@@ -406,7 +406,7 @@ static	void	TT_EncountTrainerPokeDataMake(BATTLE_PARAM *bp,int num,int heapID)
 	sys_FreeMemoryEz(buf);
 	sys_FreeMemoryEz(pp);
 
-	//‘Ş”ğ‚µ‚Ä‚¢‚½—”‚Ìí‚ğ–ß‚·
+	//é€€é¿ã—ã¦ã„ãŸä¹±æ•°ã®ç¨®ã‚’æˆ»ã™
 	gf_srand(seed_tmp);
 }
 			

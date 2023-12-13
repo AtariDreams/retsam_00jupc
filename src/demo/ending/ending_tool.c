@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	ending_tool.c
- * @brief	ƒGƒ“ƒfƒBƒ“ƒOFƒc[ƒ‹—Ş
+ * @brief	ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ï¼šãƒ„ãƒ¼ãƒ«é¡
  * @author	matsuda
- * @date	2008.04.10(–Ø)
+ * @date	2008.04.10(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -29,7 +29,7 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 #define MODEL_LINE_START_X		(0)
 #define MODEL_LINE_START_Y		(-64 * FX32_ONE)
@@ -39,34 +39,34 @@
 #define MODEL_LINE_END_Y		(-32 * FX32_ONE)
 #define MODEL_LINE_END_Z		(64 * FX32_ONE)
 
-///START‚ÆEND‚ÌŠÔ‚É‚¢‚­‚Âƒ‚ƒfƒ‹‚ğ’u‚­‚©
-#define MODEL_LINE_MDL_NUM		(10)	//ENDING_SCENE_LINE_3DOBJ_MAX-1 ‚æ‚è¬‚³‚¢•K—v‚ª‚ ‚é
+///STARTã¨ENDã®é–“ã«ã„ãã¤ãƒ¢ãƒ‡ãƒ«ã‚’ç½®ãã‹
+#define MODEL_LINE_MDL_NUM		(10)	//ENDING_SCENE_LINE_3DOBJ_MAX-1 ã‚ˆã‚Šå°ã•ã„å¿…è¦ãŒã‚ã‚‹
 
 //--------------------------------------------------------------
-//	ålŒöƒAƒjƒ
+//	ä¸»äººå…¬ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
-///ålŒö‚ªu‚«‚Å–Ú‚ğ•Â‚¶‚Ä‚¢‚éŠÔ
+///ä¸»äººå…¬ãŒç¬ãã§ç›®ã‚’é–‰ã˜ã¦ã„ã‚‹æ™‚é–“
 #define HERO_MABATAKI_CLOSE_TIME		(1)
-///ålŒö‚ªu‚«‚Å–Ú‚ğ•Â‚¶‚Ä‚¢‚éŠÔ
+///ä¸»äººå…¬ãŒç¬ãã§ç›®ã‚’é–‰ã˜ã¦ã„ã‚‹æ™‚é–“
 #define HERO_MABATAKI_OPEN_TIME			(40)	//(90)
-///u‚«ƒAƒjƒ‚Ìˆ×‚ÌAƒLƒƒƒ‰ƒNƒ^“]‘—ƒAƒjƒˆÊ’u(’j)
+///ç¬ãã‚¢ãƒ‹ãƒ¡ã®ç‚ºã®ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€ã‚¢ãƒ‹ãƒ¡ä½ç½®(ç”·)
 #define HERO_MABATAKI_CHAR_POS_0		(0x1d)
 #define HERO_MABATAKI_CHAR_POS_1		(0x1e)
 #define HERO_MABATAKI_CHAR_POS_2		(0x25)
 #define HERO_MABATAKI_CHAR_POS_3		(0x26)
-///u‚«ƒAƒjƒ‚Ìˆ×‚ÌAƒLƒƒƒ‰ƒNƒ^“]‘—ƒAƒjƒˆÊ’u(—)
+///ç¬ãã‚¢ãƒ‹ãƒ¡ã®ç‚ºã®ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€ã‚¢ãƒ‹ãƒ¡ä½ç½®(å¥³)
 #define HEROINE_MABATAKI_CHAR_POS_0		(0x45)
 #define HEROINE_MABATAKI_CHAR_POS_1		(0x46)
 #define HEROINE_MABATAKI_CHAR_POS_2		(0x4d)
 #define HEROINE_MABATAKI_CHAR_POS_3		(0x4e)
-///ålŒö‚Ì©“]Ô‚±‚¬ƒAƒjƒ‚ğ‰½‰ñŒJ‚è•Ô‚·‚ÆA‘†‚¬–³‚µƒAƒjƒ‚ÉˆÚs‚³‚¹‚é‚©
-#define HERO_RUN_LOOP_COUNT				(16)	//‚±‚Ì‰ñ”‚ğ’´‚¦‚é‚Æƒ‰ƒ“ƒ_ƒ€‚Å‘†‚¬–³‚µ‚ÉˆÚs
+///ä¸»äººå…¬ã®è‡ªè»¢è»Šã“ãã‚¢ãƒ‹ãƒ¡ã‚’ä½•å›ç¹°ã‚Šè¿”ã™ã¨ã€æ¼•ãç„¡ã—ã‚¢ãƒ‹ãƒ¡ã«ç§»è¡Œã•ã›ã‚‹ã‹
+#define HERO_RUN_LOOP_COUNT				(16)	//ã“ã®å›æ•°ã‚’è¶…ãˆã‚‹ã¨ãƒ©ãƒ³ãƒ€ãƒ ã§æ¼•ãç„¡ã—ã«ç§»è¡Œ
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒLƒƒƒvƒ`ƒƒ[ƒOƒ‰ƒtƒBƒbƒNIDQÆ\‘¢‘Ì
+///ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯IDå‚ç…§æ§‹é€ ä½“
 typedef struct{
 	u16 ncg_id;
 	u16 nsc_id;
@@ -77,11 +77,11 @@ typedef struct{
 }CAPTURE_GRA_TBL;
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///”z’u•¨‚Ì”z’uƒf[ƒ^
+///é…ç½®ç‰©ã®é…ç½®ãƒ‡ãƒ¼ã‚¿
 static const MDL_LINE_ARRANGE_DATA MdlArrangeData[][MODEL_LINE_MAX] = {
-	{//ƒ}ƒbƒv1
+	{//ãƒãƒƒãƒ—1
 		{//MODEL_LINE_0
 			14, 940,
 			415744,			116736,
@@ -95,7 +95,7 @@ static const MDL_LINE_ARRANGE_DATA MdlArrangeData[][MODEL_LINE_MAX] = {
 			28672,			290816,
 		},
 	},
-	{//ƒ}ƒbƒv2
+	{//ãƒãƒƒãƒ—2
 		{//MODEL_LINE_0
 			14, 940 - 500,
 			415744,			116736,
@@ -109,7 +109,7 @@ static const MDL_LINE_ARRANGE_DATA MdlArrangeData[][MODEL_LINE_MAX] = {
 			0,				0,
 		},
 	},
-	{//ƒ}ƒbƒv3
+	{//ãƒãƒƒãƒ—3
 		{//MODEL_LINE_0
 			ENDING_SCENE_LINE_3DOBJ_MAX, 940,
 			415744,			116736,
@@ -125,7 +125,7 @@ static const MDL_LINE_ARRANGE_DATA MdlArrangeData[][MODEL_LINE_MAX] = {
 	},
 };
 
-///ƒLƒƒƒvƒ`ƒƒ[ƒOƒ‰ƒtƒBƒbƒNIDŠÇ—ƒe[ƒuƒ‹(’j—p)
+///ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯IDç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«(ç”·ç”¨)
 static const CAPTURE_GRA_TBL CaptureGraphicIDTbl_Male[] = {
 	{
 		NARC_ending_ed_scene01m_NCGR,
@@ -189,7 +189,7 @@ static const CAPTURE_GRA_TBL CaptureGraphicIDTbl_Male[] = {
 	},
 };
 
-///ƒLƒƒƒvƒ`ƒƒ[ƒOƒ‰ƒtƒBƒbƒNIDŠÇ—ƒe[ƒuƒ‹(——p)
+///ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯IDç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«(å¥³ç”¨)
 static const CAPTURE_GRA_TBL CaptureGraphicIDTbl_Female[] = {
 	{
 		NARC_ending_ed_scene01f_NCGR,
@@ -253,9 +253,9 @@ static const CAPTURE_GRA_TBL CaptureGraphicIDTbl_Female[] = {
 	},
 };
 
-///ƒLƒƒƒvƒ`ƒƒ[ƒOƒ‰ƒtƒBƒbƒNIDŠÇ—ƒe[ƒuƒ‹(ƒtƒB[ƒ‹ƒh’j—p)
+///ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯IDç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”·ç”¨)
 static const CAPTURE_GRA_TBL CaptureGraphicIDTbl_FieldMale[] = {
-	//ÅŒã‚ÌƒtƒB[ƒ‹ƒhƒLƒƒƒvƒ`ƒƒ
+	//æœ€å¾Œã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£
 	{
 		NARC_ending_ed_sp_01m_NCGR,
 		NARC_ending_ed_spscene_bg_NSCR,
@@ -282,9 +282,9 @@ static const CAPTURE_GRA_TBL CaptureGraphicIDTbl_FieldMale[] = {
 	},
 };
 
-///ƒLƒƒƒvƒ`ƒƒ[ƒOƒ‰ƒtƒBƒbƒNIDŠÇ—ƒe[ƒuƒ‹(ƒtƒB[ƒ‹ƒh——p)
+///ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯IDç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¥³ç”¨)
 static const CAPTURE_GRA_TBL CaptureGraphicIDTbl_FieldFemale[] = {
-	//ÅŒã‚ÌƒtƒB[ƒ‹ƒhƒLƒƒƒvƒ`ƒƒ
+	//æœ€å¾Œã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚­ãƒ£ãƒ—ãƒãƒ£
 	{
 		NARC_ending_ed_sp_01f_NCGR,
 		NARC_ending_ed_spscene_bg_NSCR,
@@ -320,10 +320,10 @@ static const CAPTURE_GRA_TBL CaptureGraphicIDTbl_FieldFemale[] = {
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒ‚ƒfƒ‹”z’u•¨ƒf[ƒ^‚É‰Šú’l‚ğİ’è‚·‚é
+ * @brief   ãƒ¢ãƒ‡ãƒ«é…ç½®ç‰©ãƒ‡ãƒ¼ã‚¿ã«åˆæœŸå€¤ã‚’è¨­å®šã™ã‚‹
  *
  * @param   emw		
- * @param   map_no	‰½”Ô–Ú‚Ìƒ}ƒbƒv‚©
+ * @param   map_no	ä½•ç•ªç›®ã®ãƒãƒƒãƒ—ã‹
  */
 //--------------------------------------------------------------
 void EndingTool_ModelLineArrangeDataInit(ENDING_MAIN_WORK *emw, int map_no)
@@ -338,7 +338,7 @@ void EndingTool_ModelLineArrangeDataInit(ENDING_MAIN_WORK *emw, int map_no)
 #ifdef PM_DEBUG
 //--------------------------------------------------------------
 /**
- * @brief   ”z’u•¨ƒpƒ‰ƒ[ƒ^‚ğ•ÏX‚·‚é	¦ƒfƒoƒbƒO—p
+ * @brief   é…ç½®ç‰©ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å¤‰æ›´ã™ã‚‹	â€»ãƒ‡ãƒãƒƒã‚°ç”¨
  *
  * @param   emw			
  * @param   line		
@@ -379,7 +379,7 @@ void EndingTool_Debug_ModelLineArrangeSetting(ENDING_MAIN_WORK *emw, int line)
 			flg++;
 		}
 
-		//”z’u•¨‚Ì”‚ğ•ÏX
+		//é…ç½®ç‰©ã®æ•°ã‚’å¤‰æ›´
 		if(sys.trg & PAD_BUTTON_Y){
 			ad->mdl_num--;
 			if(ad->mdl_num < 1){
@@ -421,7 +421,7 @@ void EndingTool_Debug_ModelLineArrangeSetting(ENDING_MAIN_WORK *emw, int line)
 			flg++;
 		}
 
-		//‘¬“x•ÏX
+		//é€Ÿåº¦å¤‰æ›´
 		if(sys.trg & PAD_BUTTON_Y){
 			ad->move_frame -= sp_frame;
 			if(ad->move_frame < 4){
@@ -444,7 +444,7 @@ void EndingTool_Debug_ModelLineArrangeSetting(ENDING_MAIN_WORK *emw, int line)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ‚ƒfƒ‹ƒf[ƒ^‚ÌÀ•W‚âƒXƒP[ƒ‹‚ğ‰Šúİ’è‚·‚é
+ * @brief   ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®åº§æ¨™ã‚„ã‚¹ã‚±ãƒ¼ãƒ«ã‚’åˆæœŸè¨­å®šã™ã‚‹
  *
  * @param   emw		
  */
@@ -475,7 +475,7 @@ void EndingTool_ModelLineInit(ENDING_MAIN_WORK *emw)
 		}
 	}
 	
-	//×–‚‚È‚Ì‚Åˆê“I‚ÉÁ‚·
+	//é‚ªé­”ãªã®ã§ä¸€æ™‚çš„ã«æ¶ˆã™
 //	for(i = 0; i < ENDING_SCENE_LINE_3DOBJ_MAX; i++){
 //		D3DOBJ_SetDraw(&emw->obj[MODEL_LINE_1][i], FALSE );
 //	}
@@ -483,12 +483,12 @@ void EndingTool_ModelLineInit(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ‚ƒfƒ‹ƒf[ƒ^‚ÌƒXƒNƒ[ƒ‹
+ * @brief   ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  *
  * @param   emw		
- * @param   mdl_index_no	‰ñ‚è‚ñ‚¾ƒ‚ƒfƒ‹‚ÉŠ„‚è“–‚Ä‚éƒ‚ƒfƒ‹Index(–¢g—p‚Ìê‡‚Í-1)
+ * @param   mdl_index_no	å›ã‚Šè¾¼ã‚“ã ãƒ¢ãƒ‡ãƒ«ã«å‰²ã‚Šå½“ã¦ã‚‹ãƒ¢ãƒ‡ãƒ«Index(æœªä½¿ç”¨ã®å ´åˆã¯-1)
  * 
- * @retval  TRUE:‰ñ‚è‚İ‚ª”­¶‚µ‚½
+ * @retval  TRUE:å›ã‚Šè¾¼ã¿ãŒç™ºç”Ÿã—ãŸ
  */
 //--------------------------------------------------------------
 BOOL EndintTool_ModelLineScroll(ENDING_MAIN_WORK *emw, s32 mdl_index_no)
@@ -518,7 +518,7 @@ BOOL EndintTool_ModelLineScroll(ENDING_MAIN_WORK *emw, s32 mdl_index_no)
 					pos_x + add_x - ad->space_x * ad->mdl_num, 
 					pos_y + add_y - ad->space_y * ad->mdl_num, 
 					pos_z + add_z - ad->space_z * ad->mdl_num);
-				//ƒV[ƒ“‚Rê—p‚Ìˆ—
+				//ã‚·ãƒ¼ãƒ³ï¼“å°‚ç”¨ã®å‡¦ç†
 				if(mdl_index_no != -1 && line == MODEL_LINE_0){
 					//D3DOBJ_Init( &emw->obj[line][i], &emw->mdl[mdl_index_no] );
 					MI_CpuClear8(&emw->obj[line][i].render, sizeof(NNSG3dRenderObj));
@@ -535,7 +535,7 @@ BOOL EndintTool_ModelLineScroll(ENDING_MAIN_WORK *emw, s32 mdl_index_no)
 		}
 	}
 
-	//×–‚‚È‚Ì‚Åˆê“I‚ÉÁ‚·
+	//é‚ªé­”ãªã®ã§ä¸€æ™‚çš„ã«æ¶ˆã™
 //	for(i = 0; i < ENDING_SCENE_LINE_3DOBJ_MAX; i++){
 //		D3DOBJ_SetDraw(&emw->obj[MODEL_LINE_1][i], FALSE );
 //	}
@@ -545,11 +545,11 @@ BOOL EndintTool_ModelLineScroll(ENDING_MAIN_WORK *emw, s32 mdl_index_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒLƒƒƒvƒ`ƒƒ‰æ‘œ‚ğVRAM“]‘—‚·‚é
+ * @brief   ã‚­ãƒ£ãƒ—ãƒãƒ£ç”»åƒã‚’VRAMè»¢é€ã™ã‚‹
  *
- * @param   emw			ƒGƒ“ƒfƒBƒ“ƒOƒƒCƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   cap_no		ƒLƒƒƒvƒ`ƒƒ[”Ô†
- * @param   frameno		BGƒtƒŒ[ƒ€”Ô†
+ * @param   emw			ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   cap_no		ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ç•ªå·
+ * @param   frameno		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  * @param   tbl_type	CAPTURE_TBL_TYPE_???
  */
 //--------------------------------------------------------------
@@ -584,21 +584,21 @@ void EndingTool_CaptureGraphicTrans(ENDING_MAIN_WORK *emw, int cap_no, int frame
 		break;
 	}
 	
-	// ƒpƒŒƒbƒgƒf[ƒ^‚ğŠg’£ƒpƒŒƒbƒgVRAM‚É“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆVRAMã«è»¢é€
 	p_work = ArcUtil_HDL_PalDataGet(emw->ending_hdl, 
 		gratbl->pal_id, &palData, HEAPID_ENDING_DEMO);
 	DC_FlushRange(palData->pRawData, palData->szByte);
-	GX_BeginLoadBGExtPltt();	   // ƒpƒŒƒbƒgƒf[ƒ^‚Ì“]‘—€”õ
+	GX_BeginLoadBGExtPltt();	   // ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®è»¢é€æº–å‚™
 	if(frame_no == GF_BGL_FRAME3_M){
 		GX_LoadBGExtPltt(palData->pRawData, 0x6000, 0x2000);
 	}
 	else{
 		GX_LoadBGExtPltt(palData->pRawData, 0x4000, 0x2000);
 	}
-    GX_EndLoadBGExtPltt();         // ƒpƒŒƒbƒgƒf[ƒ^‚Ì“]‘—Š®—¹
+    GX_EndLoadBGExtPltt();         // ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®è»¢é€å®Œäº†
     sys_FreeMemoryEz(p_work);
 
-	//‰æ–ÊŠO‚ğ^‚Á•‚É‚·‚éˆ×Aæ“ª‚ÌƒpƒŒƒbƒg‚É‹­§‚Å•‚ğƒZƒbƒg
+	//ç”»é¢å¤–ã‚’çœŸã£é»’ã«ã™ã‚‹ç‚ºã€å…ˆé ­ã®ãƒ‘ãƒ¬ãƒƒãƒˆã«å¼·åˆ¶ã§é»’ã‚’ã‚»ãƒƒãƒˆ
 	PaletteWork_Clear(emw->pfd, FADE_MAIN_BG, FADEBUF_ALL, 0x0000, 0, 1);
 	PaletteWork_Clear(emw->pfd, FADE_SUB_BG, FADEBUF_ALL, 0x0000, 0, 1);
 
@@ -614,10 +614,10 @@ void EndingTool_CaptureGraphicTrans(ENDING_MAIN_WORK *emw, int cap_no, int frame
 
 //--------------------------------------------------------------
 /**
- * @brief   ålŒöƒAƒjƒXVˆ—
+ * @brief   ä¸»äººå…¬ã‚¢ãƒ‹ãƒ¡æ›´æ–°å‡¦ç†
  *
  * @param   emw		
- * @param   cap		ålŒöƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   cap		ä¸»äººå…¬ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  
  */
@@ -632,15 +632,15 @@ void EndingTool_HeroAnimeUpdate(ENDING_MAIN_WORK *emw, CATS_ACT_PTR cap)
 		return;
 	}
 	
-	//‚Ü‚Î‚½‚«
-	if(emw->hero_anm_work.run_anm_count == -1){	//‘†‚¢‚Å‚¢‚È‚¢‚Æ‚«‚¾‚¯u‚«
+	//ã¾ã°ãŸã
+	if(emw->hero_anm_work.run_anm_count == -1){	//æ¼•ã„ã§ã„ãªã„ã¨ãã ã‘ç¬ã
 		if(emw->hero_anm_work.mabataki_frame > 0){
 			emw->hero_anm_work.mabataki_frame--;
 		}
 		else{
 			obj_vram = G2_GetOBJCharPtr();
 			image = CLACT_ImageProxyGet(cap->act);
-			//o—ˆã‚ª‚Á‚½‚à‚Ì‚ğVram‚Ö‘‚«–ß‚·
+			//å‡ºæ¥ä¸ŠãŒã£ãŸã‚‚ã®ã‚’Vramã¸æ›¸ãæˆ»ã™
 			if(emw->parent_work->playerSex == PM_MALE){
 				MI_CpuCopy32(
 					&emw->hero_eye_charbuf[emw->hero_anm_work.mabataki_anmno*(HERO_EYE_CHARBUF_SIZE/2)], 
@@ -689,7 +689,7 @@ void EndingTool_HeroAnimeUpdate(ENDING_MAIN_WORK *emw, CATS_ACT_PTR cap)
 			if(emw->hero_anm_work.mabataki_anmno == 0){
 				if(emw->hero_anm_work.mabataki_count % 3 == 0){
 					if(gf_rand() & 1){
-						emw->hero_anm_work.mabataki_frame = gf_rand() % 10;	//‚ ‚¯‚Ä‚¢‚éŠÔ
+						emw->hero_anm_work.mabataki_frame = gf_rand() % 10;	//ã‚ã‘ã¦ã„ã‚‹æ™‚é–“
 						emw->hero_anm_work.mabataki_count++;
 					}
 					else{
@@ -697,18 +697,18 @@ void EndingTool_HeroAnimeUpdate(ENDING_MAIN_WORK *emw, CATS_ACT_PTR cap)
 					}
 				}
 				else{
-					emw->hero_anm_work.mabataki_frame = HERO_MABATAKI_OPEN_TIME;//‚ ‚¯‚Ä‚¢‚éŠÔ
+					emw->hero_anm_work.mabataki_frame = HERO_MABATAKI_OPEN_TIME;//ã‚ã‘ã¦ã„ã‚‹æ™‚é–“
 					emw->hero_anm_work.mabataki_count++;
 				}
 			}
 			else{
-				emw->hero_anm_work.mabataki_frame = HERO_MABATAKI_CLOSE_TIME;	//u‚«‚ğ•Â‚¶‚Ä‚¢‚éŠÔ
+				emw->hero_anm_work.mabataki_frame = HERO_MABATAKI_CLOSE_TIME;	//ç¬ãã‚’é–‰ã˜ã¦ã„ã‚‹æ™‚é–“
 			}
 			emw->hero_anm_work.mabataki_anmno ^= 1;
 		}
 	}
 	
-	//‘–‚èƒAƒjƒ
+	//èµ°ã‚Šã‚¢ãƒ‹ãƒ¡
 	if(CATS_ObjectAnimeActiveCheckCap(cap) == FALSE){
 		if(emw->hero_anm_work.run_anm_count != -1){
 			emw->hero_anm_work.run_anm_count++;

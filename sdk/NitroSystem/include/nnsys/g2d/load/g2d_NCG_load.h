@@ -25,13 +25,13 @@ extern "C" {
 #endif
 
 //------------------------------------------------------------------------------
-// OBJ —p  (BG—p‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚É‚ÍANNS_G2dGetUnpackedBGCharacterData()‚ğ‚²—˜—p‚­‚¾‚³‚¢B)
+// OBJ ç”¨  (BGç”¨ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã«ã¯ã€NNS_G2dGetUnpackedBGCharacterData()ã‚’ã”åˆ©ç”¨ãã ã•ã„ã€‚)
 //------------------------------------------------------------------------------
 BOOL NNS_G2dGetUnpackedCharacterData( void* pNcgrFile, NNSG2dCharacterData** ppCharData );
 void NNS_G2dUnpackNCG( NNSG2dCharacterData* pCharData );
 
 //------------------------------------------------------------------------------
-// BG —p  (OBJ—p‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚É‚ÍANNS_G2dGetUnpackedCharacterData()‚ğ‚²—˜—p‚­‚¾‚³‚¢B)
+// BG ç”¨  (OBJç”¨ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã«ã¯ã€NNS_G2dGetUnpackedCharacterData()ã‚’ã”åˆ©ç”¨ãã ã•ã„ã€‚)
 //------------------------------------------------------------------------------
 BOOL NNS_G2dGetUnpackedBGCharacterData( void* pNcgrFile, NNSG2dCharacterData** ppCharData );
 void NNS_G2dUnpackBGNCG( NNSG2dCharacterData* pCharData );

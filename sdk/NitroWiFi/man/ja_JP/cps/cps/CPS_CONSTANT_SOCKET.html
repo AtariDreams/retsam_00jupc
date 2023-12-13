@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CPS_STT_*</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">CPS_STT_*</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
@@ -33,9 +33,9 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p>CPSSoc.state�ɐݒ肳���萔�ł��B�\�P�b�g�̏�Ԃ������܂��B���[�U�͂��̒l��ύX���Ȃ��ł��������B</p>
+<p>CPSSoc.stateに設定される定数です。ソケットの状態を示します。ユーザはこの値を変更しないでください。</p>
 <TABLE border="1">
 	<TBODY>
 		<TR>
@@ -49,25 +49,25 @@
 			CPS_STT_FIN_WAIT1<BR>
 			CPS_STT_FIN_WAIT2<BR>
 			CPS_STT_CLOSING</CODE></STRONG></EM></TD>
-			<TD width="75%">���ꂼ��Ή�����TCP�X�e�[�g�������܂��B</TD>
+			<TD width="75%">それぞれ対応するTCPステートを示します。</TD>
 		</TR>
 		<TR>
 			<TD><EM><STRONG><CODE>CPS_STT_DATAGRAM</CODE></STRONG></EM></TD>
-			<TD>�\�P�b�g��UDP���[�h�ł��邱�Ƃ������܂��B</TD>
+			<TD>ソケットがUDPモードであることを示します。</TD>
 		</TR>
 		<TR>
 			<TD><EM><STRONG><CODE>CPS_STT_PING</CODE></STRONG></EM></TD>
-			<TD>�\�P�b�g��PING(ICMP echo)���[�h�ł��邱�Ƃ������܂��B</TD>
+			<TD>ソケットがPING(ICMP echo)モードであることを示します。</TD>
 		</TR>
 	</TBODY>
 </TABLE>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 
 <p>
 </p>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-Ver. 2005/09/13 ����</P>
+Ver. 2005/09/13 初版</P>
 </body>
 </html>

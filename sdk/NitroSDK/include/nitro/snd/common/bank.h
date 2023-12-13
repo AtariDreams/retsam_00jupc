@@ -15,34 +15,34 @@
   do-indent
 
   Revision 1.19  2005/09/15 00:57:19  ida
-  gcc�x���΍�
+  gcc警告対策
 
   Revision 1.18  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL �̔��蕔���� SDK_WIN32 �ł̔�����ǉ�
+  SDK_FROM_TOOL の判定部分に SDK_WIN32 での判定も追加
 
   Revision 1.17  2005/08/18 04:33:09  ida
-  �c�[�������̏C��
+  ツール向けの修正
 
   Revision 1.16  2005/05/10 01:51:09  ida
-  SND_BANK_DISABLE_RELEASE�̒ǉ�
+  SND_BANK_DISABLE_RELEASEの追加
 
   Revision 1.15  2005/04/12 06:15:07  ida
-  SND��NITRO-SDK�ֈڐ�
+  SNDをNITRO-SDKへ移設
 
   Revision 1.17  2005/04/12 00:51:22  ida
-  SNDBankDataCallback�̒ǉ�
+  SNDBankDataCallbackの追加
 
   Revision 1.16  2005/03/17 04:25:36  ida
-  SND_INST_NULL�ǉ�
+  SND_INST_NULL追加
 
   Revision 1.15  2005/02/21 02:37:33  ida
-  �x���΍�
+  警告対策
 
   Revision 1.14  2005/02/02 05:10:33  ida
   for SDK_FROM_TOOL
 
   Revision 1.13  2005/01/19 06:23:54  ida
-  �O���Q�Ɣg�`�A�[�J�C�u�����֘A�̊֐��ǉ�
+  外部参照波形アーカイブ実装関連の関数追加
 
   Revision 1.12  2004/07/13 05:42:46  ida
   change API name

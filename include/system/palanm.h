@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	palanm.h
- * @brief	�p���b�g�t�F�[�h����
+ * @brief	パレットフェード処理
  * @author	Hiroyuki Nakamura
  * @date	2004.11.24
  */
@@ -17,25 +17,25 @@
 
 
 //============================================================================================
-//	�萔��`
+//	定数定義
 //============================================================================================
-// PaletteFadeReq�Ŏg�p
-#define	PF_BIT_MAIN_BG		( 0x0001 )	// ���C����ʂ̒ʏ�BG�p���b�g
-#define	PF_BIT_SUB_BG		( 0x0002 )	// �T�u��ʂ̒ʏ�BG�p���b�g
-#define	PF_BIT_MAIN_OBJ		( 0x0004 )	// ���C����ʂ̒ʏ�OBJ�p���b�g
-#define	PF_BIT_SUB_OBJ		( 0x0008 )	// �T�u��ʂ̒ʏ�OBJ�p���b�g
-#define	PF_BIT_MAIN_BG_EX0	( 0x0010 )	// ���C����ʂ̊g��BG�p���b�g0
-#define	PF_BIT_MAIN_BG_EX1	( 0x0020 )	// ���C����ʂ̊g��BG�p���b�g1
-#define	PF_BIT_MAIN_BG_EX2	( 0x0040 )	// ���C����ʂ̊g��BG�p���b�g2
-#define	PF_BIT_MAIN_BG_EX3	( 0x0080 )	// ���C����ʂ̊g��BG�p���b�g3
-#define	PF_BIT_SUB_BG_EX0	( 0x0100 )	// �T�u��ʂ̊g��BG�p���b�g0
-#define	PF_BIT_SUB_BG_EX1	( 0x0200 )	// �T�u��ʂ̊g��BG�p���b�g1
-#define	PF_BIT_SUB_BG_EX2	( 0x0400 )	// �T�u��ʂ̊g��BG�p���b�g2
-#define	PF_BIT_SUB_BG_EX3	( 0x0800 )	// �T�u��ʂ̊g��BG�p���b�g3
-#define	PF_BIT_MAIN_OBJ_EX	( 0x1000 )	// ���C����ʂ̊g��OBJ�p���b�g
-#define	PF_BIT_SUB_OBJ_EX	( 0x2000 )	// �T�u��ʂ̊g��OBJ�p���b�g
+// PaletteFadeReqで使用
+#define	PF_BIT_MAIN_BG		( 0x0001 )	// メイン画面の通常BGパレット
+#define	PF_BIT_SUB_BG		( 0x0002 )	// サブ画面の通常BGパレット
+#define	PF_BIT_MAIN_OBJ		( 0x0004 )	// メイン画面の通常OBJパレット
+#define	PF_BIT_SUB_OBJ		( 0x0008 )	// サブ画面の通常OBJパレット
+#define	PF_BIT_MAIN_BG_EX0	( 0x0010 )	// メイン画面の拡張BGパレット0
+#define	PF_BIT_MAIN_BG_EX1	( 0x0020 )	// メイン画面の拡張BGパレット1
+#define	PF_BIT_MAIN_BG_EX2	( 0x0040 )	// メイン画面の拡張BGパレット2
+#define	PF_BIT_MAIN_BG_EX3	( 0x0080 )	// メイン画面の拡張BGパレット3
+#define	PF_BIT_SUB_BG_EX0	( 0x0100 )	// サブ画面の拡張BGパレット0
+#define	PF_BIT_SUB_BG_EX1	( 0x0200 )	// サブ画面の拡張BGパレット1
+#define	PF_BIT_SUB_BG_EX2	( 0x0400 )	// サブ画面の拡張BGパレット2
+#define	PF_BIT_SUB_BG_EX3	( 0x0800 )	// サブ画面の拡張BGパレット3
+#define	PF_BIT_MAIN_OBJ_EX	( 0x1000 )	// メイン画面の拡張OBJパレット
+#define	PF_BIT_SUB_OBJ_EX	( 0x2000 )	// サブ画面の拡張OBJパレット
 
-//�ʏ�p���b�g���ׂ�
+//通常パレットすべて
 #define	PF_BIT_NORMAL_ALL	(PF_BIT_MAIN_BG|\
 							 PF_BIT_SUB_BG|\
 							 PF_BIT_MAIN_OBJ|\
@@ -47,7 +47,7 @@
 #define	PF_BIT_SUB_ALL		(PF_BIT_SUB_BG|\
 							 PF_BIT_SUB_OBJ)
 
-// �f�[�^�Q�Ɨp��`
+// データ参照用定義
 typedef enum {
 	FADE_MAIN_BG = 0,
 	FADE_SUB_BG,
@@ -66,18 +66,18 @@ typedef enum {
 	FADE_SUB_OBJ_EX
 }FADEREQ;
 
-// �o�b�t�@�I��
+// バッファ選択
 typedef enum{
-	FADEBUF_TRANS,		///<�]���o�b�t�@��Ώ�
-	FADEBUF_SRC,		///<�]�����o�b�t�@��Ώ�
-	FADEBUF_ALL,		///<�S�Ẵo�b�t�@��Ώ�
+	FADEBUF_TRANS,		///<転送バッファを対象
+	FADEBUF_SRC,		///<転送元バッファを対象
+	FADEBUF_ALL,		///<全てのバッファを対象
 }FADEBUF;
 
 #define	NORMAL_PALETTE_SIZE	( 4 )		// BGx2 + OBJx2
 #define	EXTRA_PALETTE_SIZE	( 10 )		// BGx8 + OBJx2
 #define	ALL_PALETTE_SIZE	( NORMAL_PALETTE_SIZE + EXTRA_PALETTE_SIZE )
 
-// �v�Z�f�[�^
+// 計算データ
 typedef struct {
 	u16	fade_bit;
 
@@ -88,7 +88,7 @@ typedef struct {
 	u16	next_rgb:15;
 	u16	direction:1;		//0:evy inc  1:evy dec
 	
-	u16	fade_value:4;		//̪��ނ����鎞��1Sync��EVY�ɑ΂��ĉ����Z����l
+	u16	fade_value:4;		//フェードをする時の1SyncにEVYに対して加減算する値
 	u16	wait_cnt:6;
 	u16	dmy:6;
 }FADE_REQ_PARAM;
@@ -97,47 +97,47 @@ typedef struct {
 	u16 * def_wk;
 	u16 * trans_wk;
 
-	u32	siz;	// �ʏ�p���b�g��16�A�g���p���b�g��256�P��
+	u32	siz;	// 通常パレットは16個、拡張パレットは256個単位
 /*
-	�ʏ�p���b�g32�� : siz = 16*2*2
-	�g���p���b�g1024�� : siz = 256*4*2
+	通常パレット32個 : siz = 16*2*2
+	拡張パレット1024個 : siz = 256*4*2
 */
 	FADE_REQ_PARAM	prm;
 
 }FADE_REQ_EX2;
 
 
-// �g���p���b�g�̓]���A�h���X
-#define	EX_PAL_SLOT0_ADRS	( 0x0000 )		// �g���p���b�g�O
-#define	EX_PAL_SLOT1_ADRS	( 0x2000 )		// �g���p���b�g�P
-#define	EX_PAL_SLOT2_ADRS	( 0x4000 )		// �g���p���b�g�Q
-#define	EX_PAL_SLOT3_ADRS	( 0x6000 )		// �g���p���b�g�R
+// 拡張パレットの転送アドレス
+#define	EX_PAL_SLOT0_ADRS	( 0x0000 )		// 拡張パレット０
+#define	EX_PAL_SLOT1_ADRS	( 0x2000 )		// 拡張パレット１
+#define	EX_PAL_SLOT2_ADRS	( 0x4000 )		// 拡張パレット２
+#define	EX_PAL_SLOT3_ADRS	( 0x6000 )		// 拡張パレット３
 
-// �p���b�g�P�{���̃T�C�Y
-#define	FADE_PAL_ONE_SIZE	( 32 )		// �ʏ�p���b�g 16x2
-#define	FADE_EXPAL_ONE_SIZE	( 512 )		// �g���p���b�g 256x2
-// �p���b�g�P�U�{���̃T�C�Y
-#define	FADE_PAL_ALL_SIZE	( FADE_PAL_ONE_SIZE * 16 )		// �ʏ�p���b�g 16x2x16
-#define	FADE_EXPAL_ALL_SIZE	( FADE_EXPAL_ONE_SIZE * 16 )	// �g���p���b�g 256x2x16
+// パレット１本分のサイズ
+#define	FADE_PAL_ONE_SIZE	( 32 )		// 通常パレット 16x2
+#define	FADE_EXPAL_ONE_SIZE	( 512 )		// 拡張パレット 256x2
+// パレット１６本分のサイズ
+#define	FADE_PAL_ALL_SIZE	( FADE_PAL_ONE_SIZE * 16 )		// 通常パレット 16x2x16
+#define	FADE_EXPAL_ALL_SIZE	( FADE_EXPAL_ONE_SIZE * 16 )	// 拡張パレット 256x2x16
 
-///EVY�ő�l
+///EVY最大値
 #define EVY_MAX				(16)
 
 //--------------------------------------------------------------
-//	�v�Z
+//	計算
 //--------------------------------------------------------------
 #define FADE_CHANGE( before, after, evy )					\
 			( before + ( ( after - before ) * evy >> 4 ) )
 
 //==============================================================================
-//	�s��`�|�C���^�^��`
+//	不定形ポインタ型定義
 //==============================================================================
-// �p���b�g�t�F�[�h�f�[�^�\���̂̕s��`�|�C���^
+// パレットフェードデータ構造体の不定形ポインタ
 typedef struct _PALETTE_FADE_DATA * PALETTE_FADE_PTR;
 
 
 //============================================================================================
-//	�O���֐��錾
+//	外部関数宣言
 //============================================================================================
 extern PALETTE_FADE_PTR PaletteFadeInit(int heap_id);
 extern void PaletteFadeFree(PALETTE_FADE_PTR pfd);

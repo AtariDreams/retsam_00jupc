@@ -23,7 +23,7 @@ extern "C" {
 #include	<nitro/os/common/printf.h>
 
 //--------------------------------------------------------------------------------
-//  C++ópÉ}ÉNÉç
+//  C++Áî®„Éû„ÇØ„É≠
 //
 #ifdef __cplusplus
 #define NNS_IFDEFCPP extern "C" {

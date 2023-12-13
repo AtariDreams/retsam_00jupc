@@ -18,27 +18,27 @@
 // =============================================================================
 //
 //
-//	�w��	�K�N���K�N���X���[
+//	背面	ガクンガクンスロー
 //
 //
 // =============================================================================
 PAST_ANIME_B008_3:
-	SET_WORK_VAL	 WORK0,0		//�J�E���^�Ƃ��Ďg�p
-	SET_WORK_VAL	 WORK2,0		//�p�x�Ƃ��Ďg�p
+	SET_WORK_VAL	 WORK0,0		//カウンタとして使用
+	SET_WORK_VAL	 WORK2,0		//角度として使用
 
 	START_LOOP 15
 		ADD_WORK_VAL	WORK0,CALC_VAL,WORK0,1
 		ADD_WORK_VAL	WORK2,CALC_VAL,WORK2,0x3000
 	
-		//�h�ꕝ���v�Z����WORK1�ɃZ�b�g
+		//揺れ幅を計算してWORK1にセット
 		SUB_WORK_VAL	WORK1,CALC_VAL,CALC_WORK,15,WORK0
 		MUL_WORK_VAL	WORK1,CALC_VAL,WORK1,6
 		DIV_WORK_VAL	WORK1,CALC_WORK,CALC_VAL,WORK1,15
 
-		//WORK3�ɃT�C���v�Z���ʂ��Z�b�g�@�p�xWORK2,�U��WORK1�A�ʑ�0
+		//WORK3にサイン計算結果をセット　角度WORK2,振幅WORK1、位相0
 		SET_WORK_VAL_SIN	WORK3,WORK2,USE_WORK,WORK1,USE_VAL,0
 
-		//�A�j���f�[�^dy��WORK3���Z�b�g
+		//アニメデータdyにWORK3をセット
 		SET_ADD_PARAM	PARAM_DY,USE_WORK,WORK3,PARAM_SET
 
 		APPLY_TRANS
@@ -47,22 +47,22 @@ PAST_ANIME_B008_3:
 
 	SET_WAIT	7
 
-	SET_WORK_VAL	 WORK0,0		//�J�E���^�Ƃ��Ďg�p
-	SET_WORK_VAL	 WORK2,0		//�p�x�Ƃ��Ďg�p
+	SET_WORK_VAL	 WORK0,0		//カウンタとして使用
+	SET_WORK_VAL	 WORK2,0		//角度として使用
 
 	START_LOOP 15
 		ADD_WORK_VAL	WORK0,CALC_VAL,WORK0,1
 		ADD_WORK_VAL	WORK2,CALC_VAL,WORK2,0x3000
 	
-		//�h�ꕝ���v�Z����WORK1�ɃZ�b�g
+		//揺れ幅を計算してWORK1にセット
 		SUB_WORK_VAL	WORK1,CALC_VAL,CALC_WORK,15,WORK0
 		MUL_WORK_VAL	WORK1,CALC_VAL,WORK1,6
 		DIV_WORK_VAL	WORK1,CALC_WORK,CALC_VAL,WORK1,15
 
-		//WORK3�ɃT�C���v�Z���ʂ��Z�b�g�@�p�xWORK2,�U��WORK1�A�ʑ�0
+		//WORK3にサイン計算結果をセット　角度WORK2,振幅WORK1、位相0
 		SET_WORK_VAL_SIN	WORK3,WORK2,USE_WORK,WORK1,USE_VAL,0
 
-		//�A�j���f�[�^dy��WORK3���Z�b�g
+		//アニメデータdyにWORK3をセット
 		SET_ADD_PARAM	PARAM_DY,USE_WORK,WORK3,PARAM_SET
 
 		APPLY_TRANS

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	wo_main.c
- * @brief	‹Z‹³‚¦/v‚¢o‚µˆ—@ƒƒCƒ“
+ * @brief	æŠ€æ•™ãˆ/æ€ã„å‡ºã—å‡¦ç†ã€€ãƒ¡ã‚¤ãƒ³
  * @author	Hiroyuki Nakamura
  * @date	06.05.09
  */
@@ -37,64 +37,64 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 enum {
-	WIN_STR_BATTLE = 0,		// u‚½‚½‚©‚¤‚í‚´v
-	WIN_STR_CONTEST,		// uƒRƒ“ƒeƒXƒg‚í‚´v
-	WIN_STR_CLASS,			// u‚Ô‚ñ‚é‚¢v
-	WIN_STR_ATTACK,			// u‚¢‚è‚å‚­v
-	WIN_STR_HIT,			// u‚ß‚¢‚¿‚ã‚¤v
-	WIN_STR_PP,				// uPPv
-	WIN_STR_APP,			// uƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgv
-	WIN_PRM_ATTACK,			// ˆĞ—Í’l
-	WIN_PRM_HIT,			// –½’†’l
-	WIN_PRM_PP,				// PP’l
-	WIN_BTL_INFO,			// í“¬à–¾
-	WIN_CON_INFO,			// ƒRƒ“ƒeƒXƒgà–¾
-	WIN_MSG,				// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
-	WIN_LIST,				// ‹ZƒŠƒXƒg
-	WIN_YESNO,				// ‚Í‚¢/‚¢‚¢‚¦
+	WIN_STR_BATTLE = 0,		// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+	WIN_STR_CONTEST,		// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
+	WIN_STR_CLASS,			// ã€Œã¶ã‚“ã‚‹ã„ã€
+	WIN_STR_ATTACK,			// ã€Œã„ã‚Šã‚‡ãã€
+	WIN_STR_HIT,			// ã€Œã‚ã„ã¡ã‚…ã†ã€
+	WIN_STR_PP,				// ã€ŒPPã€
+	WIN_STR_APP,			// ã€Œã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã€
+	WIN_PRM_ATTACK,			// å¨åŠ›å€¤
+	WIN_PRM_HIT,			// å‘½ä¸­å€¤
+	WIN_PRM_PP,				// PPå€¤
+	WIN_BTL_INFO,			// æˆ¦é—˜èª¬æ˜
+	WIN_CON_INFO,			// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆèª¬æ˜
+	WIN_MSG,				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WIN_LIST,				// æŠ€ãƒªã‚¹ãƒˆ
+	WIN_YESNO,				// ã¯ã„/ã„ã„ãˆ
 
 	WIN_MAX
 };
 
 enum {
-	WO_CLA_ARROW_L = 0,		// ƒy[ƒWƒJ[ƒ\ƒ‹¶
-	WO_CLA_ARROW_R,			// ƒy[ƒWƒJ[ƒ\ƒ‹‰E
-	WO_CLA_ARROW_U,			// ƒŠƒXƒgƒJ[ƒ\ƒ‹ã
-	WO_CLA_ARROW_D,			// ƒŠƒXƒgƒJ[ƒ\ƒ‹‰º
-	WO_CLA_CURSOR,			// ‘I‘ğƒJ[ƒ\ƒ‹
-	WO_CLA_KIND,			// •ª—ŞƒAƒCƒRƒ“
-	WO_CLA_TYPE1,			// ƒ^ƒCƒvƒAƒCƒRƒ“‚P
-	WO_CLA_TYPE2,			// ƒ^ƒCƒvƒAƒCƒRƒ“‚Q
-	WO_CLA_TYPE3,			// ƒ^ƒCƒvƒAƒCƒRƒ“‚R
-	WO_CLA_TYPE4,			// ƒ^ƒCƒvƒAƒCƒRƒ“‚S
-	WO_CLA_TYPE5,			// ƒ^ƒCƒvƒAƒCƒRƒ“‚T
-	WO_CLA_TYPE6,			// ƒ^ƒCƒvƒAƒCƒRƒ“‚U
-	WO_CLA_TYPE7,			// ƒ^ƒCƒvƒAƒCƒRƒ“‚V
+	WO_CLA_ARROW_L = 0,		// ãƒšãƒ¼ã‚¸ã‚«ãƒ¼ã‚½ãƒ«å·¦
+	WO_CLA_ARROW_R,			// ãƒšãƒ¼ã‚¸ã‚«ãƒ¼ã‚½ãƒ«å³
+	WO_CLA_ARROW_U,			// ãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«ä¸Š
+	WO_CLA_ARROW_D,			// ãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«ä¸‹
+	WO_CLA_CURSOR,			// é¸æŠã‚«ãƒ¼ã‚½ãƒ«
+	WO_CLA_KIND,			// åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³
+	WO_CLA_TYPE1,			// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼‘
+	WO_CLA_TYPE2,			// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼’
+	WO_CLA_TYPE3,			// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼“
+	WO_CLA_TYPE4,			// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼”
+	WO_CLA_TYPE5,			// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼•
+	WO_CLA_TYPE6,			// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼–
+	WO_CLA_TYPE7,			// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼—
 
 	WO_CLA_MAX
 };
 
 typedef struct {
-	WAZAOSHIE_DATA * dat;			// ŠO•”İ’èƒf[ƒ^
+	WAZAOSHIE_DATA * dat;			// å¤–éƒ¨è¨­å®šãƒ‡ãƒ¼ã‚¿
 
-	GF_BGL_INI * bgl;				// BGLƒf[ƒ^
+	GF_BGL_INI * bgl;				// BGLãƒ‡ãƒ¼ã‚¿
 
-	GF_BGL_BMPWIN	win[WIN_MAX];	// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_BMPWIN	win[WIN_MAX];	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
-	MSGDATA_MANAGER * mman;		// ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ
-	WORDSET * wset;				// ’PŒêƒZƒbƒg
-//	NUMFONT * nfnt;				// 8x8ƒtƒHƒ“ƒg
-	STRBUF * mbuf;				// ”Ä—p•¶š—ñ“WŠJ—Ìˆæ
+	MSGDATA_MANAGER * mman;		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£
+	WORDSET * wset;				// å˜èªã‚»ãƒƒãƒˆ
+//	NUMFONT * nfnt;				// 8x8ãƒ•ã‚©ãƒ³ãƒˆ
+	STRBUF * mbuf;				// æ±ç”¨æ–‡å­—åˆ—å±•é–‹é ˜åŸŸ
 
-	BMPLIST_WORK * lw;			// BMPƒŠƒXƒgƒ[ƒN
-	BMP_MENULIST_DATA * ld;		// BMPƒŠƒXƒgƒf[ƒ^
+	BMPLIST_WORK * lw;			// BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+	BMP_MENULIST_DATA * ld;		// BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 
-	BMPMENU_WORK * mw;			// BMPƒƒjƒ…[ƒ[ƒN
+	BMPMENU_WORK * mw;			// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
 
-	// ƒZƒ‹ƒAƒNƒ^[
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 	CATS_SYS_PTR	csp;
 	CATS_RES_PTR	crp;
 	CATS_ACT_PTR	cap[WO_CLA_MAX];
@@ -103,183 +103,183 @@ typedef struct {
 	PSTATUS_DATA	psd;
 	PROC * subProc;
 
-	int	next_seq;				// Ÿ‚ÌƒV[ƒPƒ“ƒX
+	int	next_seq;				// æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 
 	u8	sel_max;
 
-	u8	midx;					// ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
-	u8	ynidx;					// ‚Í‚¢E‚¢‚¢‚¦ID
+	u8	midx;					// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	ynidx;					// ã¯ã„ãƒ»ã„ã„ãˆID
 
 }WO_WORK;
 
 
 typedef int (*WO_SEQ_FUNC)(WO_WORK*);
 
-// ‚Í‚¢E‚¢‚¢‚¦ˆ—
+// ã¯ã„ãƒ»ã„ã„ãˆå‡¦ç†
 typedef struct {
-	WO_SEQ_FUNC	yes;	// ‚Í‚¢
-	WO_SEQ_FUNC	no;		// ‚¢‚¢‚¦
+	WO_SEQ_FUNC	yes;	// ã¯ã„
+	WO_SEQ_FUNC	no;		// ã„ã„ãˆ
 }YESNO_FUNC;
 
-// ƒy[ƒW
+// ãƒšãƒ¼ã‚¸
 enum {
-	WO_PAGE_BATTLE = 0,	// í“¬
-	WO_PAGE_CONTEST		// ƒRƒ“ƒeƒXƒg
+	WO_PAGE_BATTLE = 0,	// æˆ¦é—˜
+	WO_PAGE_CONTEST		// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 };
 
-// ƒƒCƒ“ƒV[ƒPƒ“ƒX
+// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
-	SEQ_FADE_WAIT = 0,	// ƒtƒF[ƒhI—¹‘Ò‚¿
-	SEQ_SELECT,			// ‹ZƒZƒŒƒNƒg
-	SEQ_MSG_WAIT,		// ƒƒbƒZ[ƒWI—¹‘Ò‚¿
-	SEQ_YESNO_PUT,		// ‚Í‚¢E‚¢‚¢‚¦ƒZƒbƒg
-	SEQ_YESNO_WAIT,		// ‚Í‚¢E‚¢‚¢‚¦‘I‘ğ‘Ò‚¿
-	SEQ_WAZA_SET,		// ‹ZŠo‚¦
-	SEQ_WAZADEL_SET,	// –Y‚ê‚Ä‹ZŠo‚¦
-	SEQ_DEL_CHECK,		// –Y‚ê‚³‚¹‚é‹Z‚ğƒ`ƒFƒbƒN
-	SEQ_FADEOUT_SET,	// ƒtƒF[ƒhƒAƒEƒgƒZƒbƒg
-	SEQ_END,			// I—¹
+	SEQ_FADE_WAIT = 0,	// ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
+	SEQ_SELECT,			// æŠ€ã‚»ãƒ¬ã‚¯ãƒˆ
+	SEQ_MSG_WAIT,		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
+	SEQ_YESNO_PUT,		// ã¯ã„ãƒ»ã„ã„ãˆã‚»ãƒƒãƒˆ
+	SEQ_YESNO_WAIT,		// ã¯ã„ãƒ»ã„ã„ãˆé¸æŠå¾…ã¡
+	SEQ_WAZA_SET,		// æŠ€è¦šãˆ
+	SEQ_WAZADEL_SET,	// å¿˜ã‚Œã¦æŠ€è¦šãˆ
+	SEQ_DEL_CHECK,		// å¿˜ã‚Œã•ã›ã‚‹æŠ€ã‚’ãƒã‚§ãƒƒã‚¯
+	SEQ_FADEOUT_SET,	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚»ãƒƒãƒˆ
+	SEQ_END,			// çµ‚äº†
 
-	SEQ_PST_INIT,		// ƒXƒe[ƒ^ƒX‰æ–Ê‚Ö
-	SEQ_PST_CALL,		// ƒXƒe[ƒ^ƒX‰æ–ÊŒÄ‚Ño‚µ
-	SEQ_PST_WAIT,		// ƒXƒe[ƒ^ƒX‰æ–ÊI—¹‘Ò‚¿
+	SEQ_PST_INIT,		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã¸
+	SEQ_PST_CALL,		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢å‘¼ã³å‡ºã—
+	SEQ_PST_WAIT,		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢çµ‚äº†å¾…ã¡
 };
 
-// ƒƒbƒZ[ƒWƒe[ƒuƒ‹ID
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ†ãƒ¼ãƒ–ãƒ«ID
 enum {
-	MSG_SEL_WAZA = 0,		// @0‚É@‚Ç‚Ì‚í‚´‚ğ@‚¨‚Ú‚¦‚³‚¹‚éH
-	MSG_SET_CHECK,			// @1@‚ğ  ‚¨‚Ú‚¦‚³‚¹‚Ü‚·‚©H
-	MSG_END_CHECK,			// @0‚É@‚í‚´‚ğ  ‚¨‚Ú‚¦‚³‚¹‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©H
-	MSG_SET_WAZA,			// @0‚Í@‚ ‚½‚ç‚µ‚­@@1‚ğ@‚¨‚Ú‚¦‚½I¥
-	MSG_CHG_CHECK,			// @0‚Í@‚ ‚½‚ç‚µ‚­@@1‚ğ@‚¨‚Ú‚¦‚½‚¢cc¥@‚µ‚©‚µ@`
-	MSG_DEL_WAZA,			// ‚P@‚Q‚Ìcc@ƒ|ƒJƒ“I¥@@0‚Í@@1‚Ì ‚Â‚©‚¢‚©‚½‚ğ@`
-	MSG_CHG_WAZA,			// @0‚Í@‚ ‚½‚ç‚µ‚­ @1‚ğ@‚¨‚Ú‚¦‚½I¥
-	MSG_DEL_CHECK,			// ‚»‚ê‚Å‚Ícc@@1‚ğ@‚¨‚Ú‚¦‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©H
-	MSG_CANCEL,				// @0‚Í@@1‚ğ@‚¨‚Ú‚¦‚¸‚É@‚¨‚í‚Á‚½I¥
-	MSG_SUB_ITEM,			// @2‚Í@‚¨‚ê‚¢‚É@ƒn[ƒg‚ÌƒEƒƒR‚ğ@‚P‚Ü‚¢@‚ ‚°‚½I¥
-	MSG_DEL_ENTER,			// @0‚ğ@‚í‚·‚ê‚³‚¹‚Ä@‚æ‚ë‚µ‚¢‚Å‚·‚ËH"
+	MSG_SEL_WAZA = 0,		// @0ã«ã€€ã©ã®ã‚ã–ã‚’ã€€ãŠã¼ãˆã•ã›ã‚‹ï¼Ÿ
+	MSG_SET_CHECK,			// @1ã€€ã‚’  ãŠã¼ãˆã•ã›ã¾ã™ã‹ï¼Ÿ
+	MSG_END_CHECK,			// @0ã«ã€€ã‚ã–ã‚’  ãŠã¼ãˆã•ã›ã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿ
+	MSG_SET_WAZA,			// @0ã¯ã€€ã‚ãŸã‚‰ã—ãã€€@1ã‚’ã€€ãŠã¼ãˆãŸï¼â–¼
+	MSG_CHG_CHECK,			// @0ã¯ã€€ã‚ãŸã‚‰ã—ãã€€@1ã‚’ã€€ãŠã¼ãˆãŸã„â€¦â€¦â–¼ã€€ã—ã‹ã—ã€€ã€œ
+	MSG_DEL_WAZA,			// ï¼‘ã€€ï¼’ã®â€¦â€¦ã€€ãƒã‚«ãƒ³ï¼â–¼ã€€@0ã¯ã€€@1ã® ã¤ã‹ã„ã‹ãŸã‚’ã€€ã€œ
+	MSG_CHG_WAZA,			// @0ã¯ã€€ã‚ãŸã‚‰ã—ã @1ã‚’ã€€ãŠã¼ãˆãŸï¼â–¼
+	MSG_DEL_CHECK,			// ãã‚Œã§ã¯â€¦â€¦ã€€@1ã‚’ã€€ãŠã¼ãˆã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿ
+	MSG_CANCEL,				// @0ã¯ã€€@1ã‚’ã€€ãŠã¼ãˆãšã«ã€€ãŠã‚ã£ãŸï¼â–¼
+	MSG_SUB_ITEM,			// @2ã¯ã€€ãŠã‚Œã„ã«ã€€ãƒãƒ¼ãƒˆã®ã‚¦ãƒ­ã‚³ã‚’ã€€ï¼‘ã¾ã„ã€€ã‚ã’ãŸï¼â–¼
+	MSG_DEL_ENTER,			// @0ã‚’ã€€ã‚ã™ã‚Œã•ã›ã¦ã€€ã‚ˆã‚ã—ã„ã§ã™ã­ï¼Ÿ"
 };
 
-// ‚Í‚¢E‚¢‚¢‚¦ˆ—ƒe[ƒuƒ‹ID
+// ã¯ã„ãƒ»ã„ã„ãˆå‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«ID
 enum {
-	YESNO_SET_CHECK = 0,	// @1@‚ğ  ‚¨‚Ú‚¦‚³‚¹‚Ü‚·‚©H
-	YESNO_END_CHECK,		// @0‚É@‚í‚´‚ğ  ‚¨‚Ú‚¦‚³‚¹‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©H
-	YESNO_CHG_CHECK,		// @0‚Í@‚ ‚½‚ç‚µ‚­@@1‚ğ@‚¨‚Ú‚¦‚½‚¢cc¥@‚µ‚©‚µ@`
-	YESNO_DEL_CHECK,		// ‚»‚ê‚Å‚Ícc@@1‚ğ@‚¨‚Ú‚¦‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©H
-	YESNO_DEL_ENTER,		// @0‚ğ@‚í‚·‚ê‚³‚¹‚Ä@‚æ‚ë‚µ‚¢‚Å‚·‚ËH"
+	YESNO_SET_CHECK = 0,	// @1ã€€ã‚’  ãŠã¼ãˆã•ã›ã¾ã™ã‹ï¼Ÿ
+	YESNO_END_CHECK,		// @0ã«ã€€ã‚ã–ã‚’  ãŠã¼ãˆã•ã›ã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿ
+	YESNO_CHG_CHECK,		// @0ã¯ã€€ã‚ãŸã‚‰ã—ãã€€@1ã‚’ã€€ãŠã¼ãˆãŸã„â€¦â€¦â–¼ã€€ã—ã‹ã—ã€€ã€œ
+	YESNO_DEL_CHECK,		// ãã‚Œã§ã¯â€¦â€¦ã€€@1ã‚’ã€€ãŠã¼ãˆã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿ
+	YESNO_DEL_ENTER,		// @0ã‚’ã€€ã‚ã™ã‚Œã•ã›ã¦ã€€ã‚ˆã‚ã—ã„ã§ã™ã­ï¼Ÿ"
 };
 
-// •¶š“WŠJƒ‚[ƒh
+// æ–‡å­—å±•é–‹ãƒ¢ãƒ¼ãƒ‰
 enum {
-	STR_MODE_LEFT = 0,	// ¶‹l‚ß
-	STR_MODE_RIGHT,		// ‰E‹l‚ß
-	STR_MODE_CENTER,	// ’†‰›
+	STR_MODE_LEFT = 0,	// å·¦è©°ã‚
+	STR_MODE_RIGHT,		// å³è©°ã‚
+	STR_MODE_CENTER,	// ä¸­å¤®
 };
 
-#define	TMP_MSGBUF_SIZ	( 256 )		// ”Ä—p•¶š—ñ“WŠJ—ÌˆæƒTƒCƒY
+#define	TMP_MSGBUF_SIZ	( 256 )		// æ±ç”¨æ–‡å­—åˆ—å±•é–‹é ˜åŸŸã‚µã‚¤ã‚º
 
-#define	WOFCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
-#define	WOFCOL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F”’
-//#define	WOFCOL_N_BLUE	( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÂ
-//#define	WOFCOL_N_RED	( GF_PRINTCOLOR_MAKE( 5, 6, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÔ
-#define	WOFCOL_W_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
+#define	WOFCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
+#define	WOFCOL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šç™½
+//#define	WOFCOL_N_BLUE	( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé’
+//#define	WOFCOL_N_RED	( GF_PRINTCOLOR_MAKE( 5, 6, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šèµ¤
+#define	WOFCOL_W_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
 
-#define	HEART_PUT_PX	( 34 )		// ƒn[ƒg‘‚«Š·‚¦XÀ•W
-#define	HEART_PUT_PY	( 5 )		// ƒn[ƒg‘‚«Š·‚¦YÀ•W
-#define	HEART_MAX		( 6 )		// ƒn[ƒg”
+#define	HEART_PUT_PX	( 34 )		// ãƒãƒ¼ãƒˆæ›¸ãæ›ãˆXåº§æ¨™
+#define	HEART_PUT_PY	( 5 )		// ãƒãƒ¼ãƒˆæ›¸ãæ›ãˆYåº§æ¨™
+#define	HEART_MAX		( 6 )		// ãƒãƒ¼ãƒˆæ•°
 
-#define	HEART_POINT_CHR	( 0x0e )	// ƒn[ƒgƒLƒƒƒ‰”Ô†iƒ|ƒCƒ“ƒg‚ ‚èj
-#define	HEART_NONE_CHR	( 0x12 )	// ƒn[ƒgƒLƒƒƒ‰”Ô†iƒ|ƒCƒ“ƒg‚È‚µj
+#define	HEART_POINT_CHR	( 0x0e )	// ãƒãƒ¼ãƒˆã‚­ãƒ£ãƒ©ç•ªå·ï¼ˆãƒã‚¤ãƒ³ãƒˆã‚ã‚Šï¼‰
+#define	HEART_NONE_CHR	( 0x12 )	// ãƒãƒ¼ãƒˆã‚­ãƒ£ãƒ©ç•ªå·ï¼ˆãƒã‚¤ãƒ³ãƒˆãªã—ï¼‰
 
 
-#define	CLACT_ID_COMMON		( 47272 )	// ‚±‚Ì‰æ–Ê‚Åg—p‚·‚éƒZƒ‹ƒAƒNƒ^[‚ÌID
+#define	CLACT_ID_COMMON		( 47272 )	// ã“ã®ç”»é¢ã§ä½¿ç”¨ã™ã‚‹ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ID
 
-// ƒLƒƒƒ‰ƒŠƒ\[ƒXID
+// ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹ID
 enum {
-	WO_CHR_ID_ARROW_LR = CLACT_ID_COMMON,	// ƒy[ƒWƒJ[ƒ\ƒ‹
-	WO_CHR_ID_ARROW_UD,						// ƒŠƒXƒgƒJ[ƒ\ƒ‹
-	WO_CHR_ID_CURSOR,						// ‘I‘ğƒJ[ƒ\ƒ‹
-	WO_CHR_ID_KIND,							// •ª—ŞƒAƒCƒRƒ“
-	WO_CHR_ID_TYPE1,						// ƒ^ƒCƒvƒAƒCƒRƒ“‚P
-	WO_CHR_ID_TYPE2,						// ƒ^ƒCƒvƒAƒCƒRƒ“‚Q
-	WO_CHR_ID_TYPE3,						// ƒ^ƒCƒvƒAƒCƒRƒ“‚R
-	WO_CHR_ID_TYPE4,						// ƒ^ƒCƒvƒAƒCƒRƒ“‚S
-	WO_CHR_ID_TYPE5,						// ƒ^ƒCƒvƒAƒCƒRƒ“‚T
-	WO_CHR_ID_TYPE6,						// ƒ^ƒCƒvƒAƒCƒRƒ“‚U
-	WO_CHR_ID_TYPE7,						// ƒ^ƒCƒvƒAƒCƒRƒ“‚V
-	WO_CHR_ID_MAX = WO_CHR_ID_TYPE7 - WO_CHR_ID_ARROW_LR + 1	// Å‘å
+	WO_CHR_ID_ARROW_LR = CLACT_ID_COMMON,	// ãƒšãƒ¼ã‚¸ã‚«ãƒ¼ã‚½ãƒ«
+	WO_CHR_ID_ARROW_UD,						// ãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«
+	WO_CHR_ID_CURSOR,						// é¸æŠã‚«ãƒ¼ã‚½ãƒ«
+	WO_CHR_ID_KIND,							// åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³
+	WO_CHR_ID_TYPE1,						// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼‘
+	WO_CHR_ID_TYPE2,						// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼’
+	WO_CHR_ID_TYPE3,						// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼“
+	WO_CHR_ID_TYPE4,						// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼”
+	WO_CHR_ID_TYPE5,						// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼•
+	WO_CHR_ID_TYPE6,						// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼–
+	WO_CHR_ID_TYPE7,						// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼—
+	WO_CHR_ID_MAX = WO_CHR_ID_TYPE7 - WO_CHR_ID_ARROW_LR + 1	// æœ€å¤§
 };
 
-// ƒpƒŒƒbƒgƒŠƒ\[ƒXID
+// ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ID
 enum {
-	WO_PAL_ID_OBJ = CLACT_ID_COMMON,	// ‚¢‚ë‚¢‚ë
-	WO_PAL_ID_TYPE,						// ƒ^ƒCƒvE•ª—ŞƒAƒCƒRƒ“
-	WO_PAL_ID_MAX = WO_PAL_ID_TYPE - WO_PAL_ID_OBJ + 1	// Å‘å
+	WO_PAL_ID_OBJ = CLACT_ID_COMMON,	// ã„ã‚ã„ã‚
+	WO_PAL_ID_TYPE,						// ã‚¿ã‚¤ãƒ—ãƒ»åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³
+	WO_PAL_ID_MAX = WO_PAL_ID_TYPE - WO_PAL_ID_OBJ + 1	// æœ€å¤§
 };
 
-// ƒZƒ‹ƒŠƒ\[ƒXID
+// ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ID
 enum {
-	WO_CEL_ID_ARROW_LR = CLACT_ID_COMMON,	// ƒy[ƒWƒJ[ƒ\ƒ‹
-	WO_CEL_ID_ARROW_UD,						// ƒŠƒXƒgƒJ[ƒ\ƒ‹
-	WO_CEL_ID_CURSOR,						// ‘I‘ğƒJ[ƒ\ƒ‹
-	WO_CEL_ID_TYPE,							// ƒ^ƒCƒvƒAƒCƒRƒ“
-	WO_CEL_ID_MAX = WO_CEL_ID_TYPE - WO_CEL_ID_ARROW_LR + 1		// Å‘å
+	WO_CEL_ID_ARROW_LR = CLACT_ID_COMMON,	// ãƒšãƒ¼ã‚¸ã‚«ãƒ¼ã‚½ãƒ«
+	WO_CEL_ID_ARROW_UD,						// ãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«
+	WO_CEL_ID_CURSOR,						// é¸æŠã‚«ãƒ¼ã‚½ãƒ«
+	WO_CEL_ID_TYPE,							// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³
+	WO_CEL_ID_MAX = WO_CEL_ID_TYPE - WO_CEL_ID_ARROW_LR + 1		// æœ€å¤§
 };
 
-// ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒXID
+// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ID
 enum {
-	WO_ANM_ID_ARROW_LR = CLACT_ID_COMMON,	// ƒy[ƒWƒJ[ƒ\ƒ‹
-	WO_ANM_ID_ARROW_UD,						// ƒŠƒXƒgƒJ[ƒ\ƒ‹
-	WO_ANM_ID_CURSOR,						// ‘I‘ğƒJ[ƒ\ƒ‹
-	WO_ANM_ID_TYPE,							// ƒ^ƒCƒvƒAƒCƒRƒ“
-	WO_ANM_ID_MAX = WO_ANM_ID_TYPE - WO_ANM_ID_ARROW_LR + 1		// Å‘å
+	WO_ANM_ID_ARROW_LR = CLACT_ID_COMMON,	// ãƒšãƒ¼ã‚¸ã‚«ãƒ¼ã‚½ãƒ«
+	WO_ANM_ID_ARROW_UD,						// ãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«
+	WO_ANM_ID_CURSOR,						// é¸æŠã‚«ãƒ¼ã‚½ãƒ«
+	WO_ANM_ID_TYPE,							// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³
+	WO_ANM_ID_MAX = WO_ANM_ID_TYPE - WO_ANM_ID_ARROW_LR + 1		// æœ€å¤§
 };
 
 
-// ƒy[ƒWƒJ[ƒ\ƒ‹¶
+// ãƒšãƒ¼ã‚¸ã‚«ãƒ¼ã‚½ãƒ«å·¦
 #define	PAGE_CUR_L_PX	( 146 )
 #define	PAGE_CUR_L_PY	( 8 )
-// ƒy[ƒWƒJ[ƒ\ƒ‹‰E
+// ãƒšãƒ¼ã‚¸ã‚«ãƒ¼ã‚½ãƒ«å³
 #define	PAGE_CUR_R_PX	( 246 )
 #define	PAGE_CUR_R_PY	( 8 )
-// ƒŠƒXƒgƒJ[ƒ\ƒ‹ã
+// ãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«ä¸Š
 #define	LIST_CUR_U_PX	( 196 )
 #define	LIST_CUR_U_PY	( 20 )
-// ƒŠƒXƒgƒJ[ƒ\ƒ‹‰º
+// ãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«ä¸‹
 #define	LIST_CUR_D_PX	( 196 )
 #define	LIST_CUR_D_PY	( 140 )
-// ‘I‘ğƒJ[ƒ\ƒ‹
+// é¸æŠã‚«ãƒ¼ã‚½ãƒ«
 #define	SEL_CURSOR_PX	( 196 )
 #define	SEL_CURSOR_PY	( 32 )
 #define	SEL_CURSOR_SY	( 16 )
-// •ª—ŞƒAƒCƒRƒ“
+// åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³
 #define	KIND_ICON_PX	( 116 )
 #define	KIND_ICON_PY	( 8 )
-// ƒ^ƒCƒvƒAƒCƒRƒ“‚P
+// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼‘
 #define	TYPE_ICON1_PX	( 152 )
 #define	TYPE_ICON1_PY	( 32 )
-// ƒ^ƒCƒvƒAƒCƒRƒ“‚Q
+// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼’
 #define	TYPE_ICON2_PX	( TYPE_ICON1_PX )
 #define	TYPE_ICON2_PY	( TYPE_ICON1_PY+16 )
-// ƒ^ƒCƒvƒAƒCƒRƒ“‚R
+// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼“
 #define	TYPE_ICON3_PX	( TYPE_ICON1_PX )
 #define	TYPE_ICON3_PY	( TYPE_ICON2_PY+16 )
-// ƒ^ƒCƒvƒAƒCƒRƒ“‚S
+// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼”
 #define	TYPE_ICON4_PX	( TYPE_ICON1_PX )
 #define	TYPE_ICON4_PY	( TYPE_ICON3_PY+16 )
-// ƒ^ƒCƒvƒAƒCƒRƒ“‚T
+// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼•
 #define	TYPE_ICON5_PX	( TYPE_ICON1_PX )
 #define	TYPE_ICON5_PY	( TYPE_ICON4_PY+16 )
-// ƒ^ƒCƒvƒAƒCƒRƒ“‚U
+// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼–
 #define	TYPE_ICON6_PX	( TYPE_ICON1_PX )
 #define	TYPE_ICON6_PY	( TYPE_ICON5_PY+16 )
-// ƒ^ƒCƒvƒAƒCƒRƒ“‚V
+// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼—
 #define	TYPE_ICON7_PX	( TYPE_ICON1_PX )
 #define	TYPE_ICON7_PY	( TYPE_ICON6_PY+16 )
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void WO_DispInit( WO_WORK * wk );
 static void WO_DispExit( WO_WORK * wk );
@@ -350,210 +350,210 @@ static void WO_ScrollCursorOff( WO_WORK * wk );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT BmpWinData[] =
 {
-	{	// u‚½‚½‚©‚¤‚í‚´v
+	{	// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
 		GF_BGL_FRAME1_M, WIN_STR_BATTLE_PX, WIN_STR_BATTLE_PY,
 		WIN_STR_BATTLE_SX, WIN_STR_BATTLE_SY, WIN_STR_BATTLE_PAL, WIN_STR_BATTLE_CGX
 	},
-	{	// uƒRƒ“ƒeƒXƒg‚í‚´v
+	{	// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
 		GF_BGL_FRAME1_M, WIN_STR_CONTEST_PX, WIN_STR_CONTEST_PY,
 		WIN_STR_CONTEST_SX, WIN_STR_CONTEST_SY, WIN_STR_CONTEST_PAL, WIN_STR_CONTEST_CGX
 	},
-	{	// u‚Ô‚ñ‚é‚¢v
+	{	// ã€Œã¶ã‚“ã‚‹ã„ã€
 		GF_BGL_FRAME1_M, WIN_STR_CLASS_PX, WIN_STR_CLASS_PY,
 		WIN_STR_CLASS_SX, WIN_STR_CLASS_SY, WIN_STR_CLASS_PAL, WIN_STR_CLASS_CGX
 	},
-	{	// u‚¢‚è‚å‚­v
+	{	// ã€Œã„ã‚Šã‚‡ãã€
 		GF_BGL_FRAME1_M, WIN_STR_ATTACK_PX, WIN_STR_ATTACK_PY,
 		WIN_STR_ATTACK_SX, WIN_STR_ATTACK_SY, WIN_STR_ATTACK_PAL, WIN_STR_ATTACK_CGX
 	},
-	{	// u‚ß‚¢‚¿‚ã‚¤v
+	{	// ã€Œã‚ã„ã¡ã‚…ã†ã€
 		GF_BGL_FRAME1_M, WIN_STR_HIT_PX, WIN_STR_HIT_PY,
 		WIN_STR_HIT_SX, WIN_STR_HIT_SY, WIN_STR_HIT_PAL, WIN_STR_HIT_CGX
 	},
-	{	// uPPv
+	{	// ã€ŒPPã€
 		GF_BGL_FRAME1_M, WIN_STR_PP_PX, WIN_STR_PP_PY,
 		WIN_STR_PP_SX, WIN_STR_PP_SY, WIN_STR_PP_PAL, WIN_STR_PP_CGX
 	},
-	{	// uƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgv
+	{	// ã€Œã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã€
 		GF_BGL_FRAME1_M, WIN_STR_APP_PX, WIN_STR_APP_PY,
 		WIN_STR_APP_SX, WIN_STR_APP_SY, WIN_STR_APP_PAL, WIN_STR_APP_CGX
 	},
-	{	// ˆĞ—Í’l
+	{	// å¨åŠ›å€¤
 		GF_BGL_FRAME1_M, WIN_PRM_ATTACK_PX, WIN_PRM_ATTACK_PY,
 		WIN_PRM_ATTACK_SX, WIN_PRM_ATTACK_SY, WIN_PRM_ATTACK_PAL, WIN_PRM_ATTACK_CGX
 	},
-	{	// –½’†’l
+	{	// å‘½ä¸­å€¤
 		GF_BGL_FRAME1_M, WIN_PRM_HIT_PX, WIN_PRM_HIT_PY,
 		WIN_PRM_HIT_SX, WIN_PRM_HIT_SY, WIN_PRM_HIT_PAL, WIN_PRM_HIT_CGX
 	},
-	{	// PP’l
+	{	// PPå€¤
 		GF_BGL_FRAME1_M, WIN_PRM_PP_PX, WIN_PRM_PP_PY,
 		WIN_PRM_PP_SX, WIN_PRM_PP_SY, WIN_PRM_PP_PAL, WIN_PRM_PP_CGX
 	},
-	{	// í“¬à–¾
+	{	// æˆ¦é—˜èª¬æ˜
 		GF_BGL_FRAME1_M, WIN_BTL_INFO_PX, WIN_BTL_INFO_PY,
 		WIN_BTL_INFO_SX, WIN_BTL_INFO_SY, WIN_BTL_INFO_PAL, WIN_BTL_INFO_CGX
 	},
-	{	// ƒRƒ“ƒeƒXƒgà–¾
+	{	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆèª¬æ˜
 		GF_BGL_FRAME1_M, WIN_CON_INFO_PX, WIN_CON_INFO_PY,
 		WIN_CON_INFO_SX, WIN_CON_INFO_SY, WIN_CON_INFO_PAL, WIN_CON_INFO_CGX
 	},
-	{	// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
+	{	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 		GF_BGL_FRAME0_M, WIN_MSG_PX, WIN_MSG_PY,
 		WIN_MSG_SX, WIN_MSG_SY, WIN_MSG_PAL, WIN_MSG_CGX,
 	},
-	{	// ‹ZƒŠƒXƒg
+	{	// æŠ€ãƒªã‚¹ãƒˆ
 		GF_BGL_FRAME1_M, WIN_LIST_PX, WIN_LIST_PY,
 		WIN_LIST_SX, WIN_LIST_SY, WIN_LIST_PAL, WIN_LIST_CGX
 	},
-	{	// ‚Í‚¢/‚¢‚¢‚¦
+	{	// ã¯ã„/ã„ã„ãˆ
 		GF_BGL_FRAME0_M, WIN_YESNO_PX, WIN_YESNO_PY,
 		WIN_YESNO_SX, WIN_YESNO_SY, WIN_YESNO_PAL, WIN_YESNO_CGX
 	}
 };
 
-// ‹ZƒŠƒXƒgƒf[ƒ^iBMPƒŠƒXƒgj
+// æŠ€ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ï¼ˆBMPãƒªã‚¹ãƒˆï¼‰
 static const BMPLIST_HEADER BagItemList = {
 	NULL, CB_WazaListMove, CB_WazaListWrite, NULL,
 	0, 7, 0,
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-	// ‚í‚´–¼‚Æƒ^ƒCƒvƒAƒCƒRƒ“‚ÌŠÔŠu‚ğu‚Â‚æ‚³‚ğ‚İ‚év‰æ–Ê‚Æ“¯‚¶‚¾‚¯Šm•Û
-	2, 0,			// €–ÚX, ƒJ[ƒ\ƒ‹X
+	// ã‚ã–åã¨ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®é–“éš”ã‚’ã€Œã¤ã‚ˆã•ã‚’ã¿ã‚‹ã€ç”»é¢ã¨åŒã˜ã ã‘ç¢ºä¿
+	2, 0,			// é …ç›®X, ã‚«ãƒ¼ã‚½ãƒ«X
 	// ----------------------------------------------------------------------------
-	0,				// •\¦Y
+	0,				// è¡¨ç¤ºY
 	FBMP_COL_BLACK, FBMP_COL_NULL, FBMP_COL_BLK_SDW,
-	0, 16,						// •¶šŠÔŠu‚x
+	0, 16,						// æ–‡å­—é–“éš”ï¼¹
 	BMPLIST_NO_SKIP, FONT_SYSTEM, 1,
 	NULL,
 };
 
-// ƒƒbƒZ[ƒWƒe[ƒuƒ‹
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u32 MsgDataTbl[2][11] =
 {
-	{	// ‹Z‹³‚¦
-		msg_waza_oboe_01,	// @0‚É@‚Ç‚Ì‚í‚´‚ğ@‚¨‚Ú‚¦‚³‚¹‚éH
-		msg_waza_oboe_02,	// @1@‚ğ  ‚¨‚Ú‚¦‚³‚¹‚Ü‚·‚©H
-		msg_waza_oboe_03,	// @0‚É@‚í‚´‚ğ  ‚¨‚Ú‚¦‚³‚¹‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©H
-		msg_waza_oboe_04,	// @0‚Í@‚ ‚½‚ç‚µ‚­@@1‚ğ@‚¨‚Ú‚¦‚½I¥"
-		msg_waza_oboe_05,	// @0‚Í@‚ ‚½‚ç‚µ‚­@@1‚ğ@‚¨‚Ú‚¦‚½‚¢cc¥@‚µ‚©‚µ@`
-		msg_waza_oboe_06,	// ‚P@‚Q‚Ìcc@ƒ|ƒJƒ“I¥@@0‚Í@@1‚Ì ‚Â‚©‚¢‚©‚½‚ğ@`
-		msg_waza_oboe_07,	// @0‚Í@‚ ‚½‚ç‚µ‚­ @1‚ğ@‚¨‚Ú‚¦‚½I¥
-		msg_waza_oboe_08,	// ‚»‚ê‚Å‚Ícc@@1‚ğ@‚¨‚Ú‚¦‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©H"
-		msg_waza_oboe_09,	// @0‚Í@@1‚ğ@‚¨‚Ú‚¦‚¸‚É@‚¨‚í‚Á‚½I¥
-		msg_waza_oboe_10,	// @2‚Í@‚¨‚ê‚¢‚É@ƒn[ƒg‚ÌƒEƒƒR‚ğ@‚P‚Ü‚¢@‚ ‚°‚½I¥
-		msg_waza_oboe_11,	// @0‚ğ@‚í‚·‚ê‚³‚¹‚Ä@‚æ‚ë‚µ‚¢‚Å‚·‚ËH"
+	{	// æŠ€æ•™ãˆ
+		msg_waza_oboe_01,	// @0ã«ã€€ã©ã®ã‚ã–ã‚’ã€€ãŠã¼ãˆã•ã›ã‚‹ï¼Ÿ
+		msg_waza_oboe_02,	// @1ã€€ã‚’  ãŠã¼ãˆã•ã›ã¾ã™ã‹ï¼Ÿ
+		msg_waza_oboe_03,	// @0ã«ã€€ã‚ã–ã‚’  ãŠã¼ãˆã•ã›ã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿ
+		msg_waza_oboe_04,	// @0ã¯ã€€ã‚ãŸã‚‰ã—ãã€€@1ã‚’ã€€ãŠã¼ãˆãŸï¼â–¼"
+		msg_waza_oboe_05,	// @0ã¯ã€€ã‚ãŸã‚‰ã—ãã€€@1ã‚’ã€€ãŠã¼ãˆãŸã„â€¦â€¦â–¼ã€€ã—ã‹ã—ã€€ã€œ
+		msg_waza_oboe_06,	// ï¼‘ã€€ï¼’ã®â€¦â€¦ã€€ãƒã‚«ãƒ³ï¼â–¼ã€€@0ã¯ã€€@1ã® ã¤ã‹ã„ã‹ãŸã‚’ã€€ã€œ
+		msg_waza_oboe_07,	// @0ã¯ã€€ã‚ãŸã‚‰ã—ã @1ã‚’ã€€ãŠã¼ãˆãŸï¼â–¼
+		msg_waza_oboe_08,	// ãã‚Œã§ã¯â€¦â€¦ã€€@1ã‚’ã€€ãŠã¼ãˆã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿ"
+		msg_waza_oboe_09,	// @0ã¯ã€€@1ã‚’ã€€ãŠã¼ãˆãšã«ã€€ãŠã‚ã£ãŸï¼â–¼
+		msg_waza_oboe_10,	// @2ã¯ã€€ãŠã‚Œã„ã«ã€€ãƒãƒ¼ãƒˆã®ã‚¦ãƒ­ã‚³ã‚’ã€€ï¼‘ã¾ã„ã€€ã‚ã’ãŸï¼â–¼
+		msg_waza_oboe_11,	// @0ã‚’ã€€ã‚ã™ã‚Œã•ã›ã¦ã€€ã‚ˆã‚ã—ã„ã§ã™ã­ï¼Ÿ"
 	},
-	{	// ‹Zv‚¢o‚µ
-		msg_waza_omoi_01,	// @0‚É ‚Ç‚Ì‚í‚´‚ğ@‚¨‚à‚¢‚¾‚³‚¹‚éH
-		msg_waza_omoi_02,	// @1@‚ğ ‚¨‚à‚¢‚¾‚µ‚Ü‚·‚©H
-		msg_waza_omoi_03,	// @0‚É@‚í‚´‚ğ ‚¨‚à‚¢‚¾‚³‚¹‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©H
-		msg_waza_omoi_04,	// @0‚Í@‚í‚·‚ê‚Ä‚¢‚½@@1‚ğ@‚¨‚à‚¢‚¾‚µ‚½I¥
-		msg_waza_omoi_05,	// @0‚Í@@1‚ğ@‚¨‚à‚¢‚¾‚µ‚½‚¢cc¥@‚µ‚©‚µ@`
-		msg_waza_omoi_06,	// ‚P@‚Q‚Ìcc@ƒ|ƒJƒ“I¥@@0‚Í@@1‚Ì ‚Â‚©‚¢‚©‚½‚ğ@`
-		msg_waza_omoi_07,	// @0‚Í@‚í‚·‚ê‚Ä‚¢‚½@@1‚ğ@‚¨‚à‚¢‚¾‚µ‚½I¥
-		msg_waza_omoi_08,	// ‚»‚ê‚Å‚Ícc@@1‚ğ@‚¨‚à‚¢‚¾‚·‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©H
-		msg_waza_omoi_09,	// @0‚Í@@1‚ğ@‚¨‚à‚¢‚¾‚³‚¸‚É@‚¨‚í‚Á‚½I¥
-		msg_waza_omoi_10,	// @2‚Í@‚¨‚ê‚¢‚É ƒn[ƒg‚ÌƒEƒƒR‚ğ@‚P‚Ü‚¢@‚ ‚°‚½I¥
-		msg_waza_omoi_11,	// @0‚ğ@‚í‚·‚ê‚³‚¹‚Ä@‚æ‚ë‚µ‚¢‚Å‚·‚ËH"
+	{	// æŠ€æ€ã„å‡ºã—
+		msg_waza_omoi_01,	// @0ã« ã©ã®ã‚ã–ã‚’ã€€ãŠã‚‚ã„ã ã•ã›ã‚‹ï¼Ÿ
+		msg_waza_omoi_02,	// @1ã€€ã‚’ ãŠã‚‚ã„ã ã—ã¾ã™ã‹ï¼Ÿ
+		msg_waza_omoi_03,	// @0ã«ã€€ã‚ã–ã‚’ ãŠã‚‚ã„ã ã•ã›ã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿ
+		msg_waza_omoi_04,	// @0ã¯ã€€ã‚ã™ã‚Œã¦ã„ãŸã€€@1ã‚’ã€€ãŠã‚‚ã„ã ã—ãŸï¼â–¼
+		msg_waza_omoi_05,	// @0ã¯ã€€@1ã‚’ã€€ãŠã‚‚ã„ã ã—ãŸã„â€¦â€¦â–¼ã€€ã—ã‹ã—ã€€ã€œ
+		msg_waza_omoi_06,	// ï¼‘ã€€ï¼’ã®â€¦â€¦ã€€ãƒã‚«ãƒ³ï¼â–¼ã€€@0ã¯ã€€@1ã® ã¤ã‹ã„ã‹ãŸã‚’ã€€ã€œ
+		msg_waza_omoi_07,	// @0ã¯ã€€ã‚ã™ã‚Œã¦ã„ãŸã€€@1ã‚’ã€€ãŠã‚‚ã„ã ã—ãŸï¼â–¼
+		msg_waza_omoi_08,	// ãã‚Œã§ã¯â€¦â€¦ã€€@1ã‚’ã€€ãŠã‚‚ã„ã ã™ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿ
+		msg_waza_omoi_09,	// @0ã¯ã€€@1ã‚’ã€€ãŠã‚‚ã„ã ã•ãšã«ã€€ãŠã‚ã£ãŸï¼â–¼
+		msg_waza_omoi_10,	// @2ã¯ã€€ãŠã‚Œã„ã« ãƒãƒ¼ãƒˆã®ã‚¦ãƒ­ã‚³ã‚’ã€€ï¼‘ã¾ã„ã€€ã‚ã’ãŸï¼â–¼
+		msg_waza_omoi_11,	// @0ã‚’ã€€ã‚ã™ã‚Œã•ã›ã¦ã€€ã‚ˆã‚ã—ã„ã§ã™ã­ï¼Ÿ"
 	}
 };
 
-// ‚Í‚¢E‚¢‚¢‚¦ˆ—ƒe[ƒuƒ‹
+// ã¯ã„ãƒ»ã„ã„ãˆå‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«
 static const YESNO_FUNC YesNoFunc[] =
 {
-	{ WO_SetCheck_Yes, WO_SetCheck_No },	// @1@‚ğ  ‚¨‚Ú‚¦‚³‚¹‚Ü‚·‚©H
-	{ WO_EndCheck_Yes, WO_EndCheck_No },	// @0‚É@‚í‚´‚ğ  ‚¨‚Ú‚¦‚³‚¹‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©H
-	{ WO_ChgCheck_Yes, WO_ChgCheck_No },	// @0‚Í@‚ ‚½‚ç‚µ‚­@@1‚ğ@‚¨‚Ú‚¦‚½‚¢cc¥@‚µ‚©‚µ@`
-	{ WO_DelCheck_Yes, WO_DelCheck_No },	// ‚»‚ê‚Å‚Ícc@@1‚ğ@‚¨‚Ú‚¦‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©H
-	{ WO_DelEnter_Yes, WO_DelEnter_No },	// @0‚ğ@‚í‚·‚ê‚³‚¹‚Ä@‚æ‚ë‚µ‚¢‚Å‚·‚ËH"
+	{ WO_SetCheck_Yes, WO_SetCheck_No },	// @1ã€€ã‚’  ãŠã¼ãˆã•ã›ã¾ã™ã‹ï¼Ÿ
+	{ WO_EndCheck_Yes, WO_EndCheck_No },	// @0ã«ã€€ã‚ã–ã‚’  ãŠã¼ãˆã•ã›ã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿ
+	{ WO_ChgCheck_Yes, WO_ChgCheck_No },	// @0ã¯ã€€ã‚ãŸã‚‰ã—ãã€€@1ã‚’ã€€ãŠã¼ãˆãŸã„â€¦â€¦â–¼ã€€ã—ã‹ã—ã€€ã€œ
+	{ WO_DelCheck_Yes, WO_DelCheck_No },	// ãã‚Œã§ã¯â€¦â€¦ã€€@1ã‚’ã€€ãŠã¼ãˆã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿ
+	{ WO_DelEnter_Yes, WO_DelEnter_No },	// @0ã‚’ã€€ã‚ã™ã‚Œã•ã›ã¦ã€€ã‚ˆã‚ã—ã„ã§ã™ã­ï¼Ÿ"
 };
 
-// ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^
+// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
 static const TCATS_OBJECT_ADD_PARAM_S ClactParamTbl[] =
 {
-	{	// ƒy[ƒWƒJ[ƒ\ƒ‹¶
+	{	// ãƒšãƒ¼ã‚¸ã‚«ãƒ¼ã‚½ãƒ«å·¦
 		PAGE_CUR_L_PX, PAGE_CUR_L_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_ARROW_LR, WO_PAL_ID_OBJ, WO_CEL_ID_ARROW_LR, WO_ANM_ID_ARROW_LR, 0, 0 },
 		2, 0
 	},
-	{	// ƒy[ƒWƒJ[ƒ\ƒ‹‰E
+	{	// ãƒšãƒ¼ã‚¸ã‚«ãƒ¼ã‚½ãƒ«å³
 		PAGE_CUR_R_PX, PAGE_CUR_R_PY, 0,
 		1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_ARROW_LR, WO_PAL_ID_OBJ, WO_CEL_ID_ARROW_LR, WO_ANM_ID_ARROW_LR, 0, 0 },
 		2, 0
 	},
-	{	// ƒŠƒXƒgƒJ[ƒ\ƒ‹ã
+	{	// ãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«ä¸Š
 		LIST_CUR_U_PX, LIST_CUR_U_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_ARROW_UD, WO_PAL_ID_OBJ, WO_CEL_ID_ARROW_UD, WO_ANM_ID_ARROW_UD, 0, 0 },
 		2, 0
 	},
-	{	// ƒŠƒXƒgƒJ[ƒ\ƒ‹‰º
+	{	// ãƒªã‚¹ãƒˆã‚«ãƒ¼ã‚½ãƒ«ä¸‹
 		LIST_CUR_D_PX, LIST_CUR_D_PY, 0,
 		1, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_ARROW_UD, WO_PAL_ID_OBJ, WO_CEL_ID_ARROW_UD, WO_ANM_ID_ARROW_UD, 0, 0 },
 		2, 0
 	},
-	{	// ‘I‘ğƒJ[ƒ\ƒ‹
+	{	// é¸æŠã‚«ãƒ¼ã‚½ãƒ«
 		SEL_CURSOR_PX, SEL_CURSOR_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_CURSOR, WO_PAL_ID_OBJ, WO_CEL_ID_CURSOR, WO_ANM_ID_CURSOR, 0, 0 },
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/21
-		// •¶š‚ªƒJ[ƒ\ƒ‹‚Ìã‚É—ˆ‚È‚¢‚æ‚¤‚ÉC³
+		// æ–‡å­—ãŒã‚«ãƒ¼ã‚½ãƒ«ã®ä¸Šã«æ¥ãªã„ã‚ˆã†ã«ä¿®æ­£
 		1, 0
 		// ----------------------------------------------------------------------------
 	},
-	{	// •ª—ŞƒAƒCƒRƒ“
+	{	// åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³
 		KIND_ICON_PX, KIND_ICON_PY, 0,
 		0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_KIND, WO_PAL_ID_OBJ, WO_CEL_ID_TYPE, WO_ANM_ID_TYPE, 0, 0 },
 		2, 0
 	},
-	{	// ƒ^ƒCƒvƒAƒCƒRƒ“‚P
+	{	// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼‘
 		TYPE_ICON1_PX, TYPE_ICON1_PY, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_TYPE1, WO_PAL_ID_OBJ, WO_CEL_ID_TYPE, WO_ANM_ID_TYPE, 0, 0 },
 		2, 0
 	},
-	{	// ƒ^ƒCƒvƒAƒCƒRƒ“‚Q
+	{	// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼’
 		TYPE_ICON2_PX, TYPE_ICON2_PY, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_TYPE2, WO_PAL_ID_OBJ, WO_CEL_ID_TYPE, WO_ANM_ID_TYPE, 0, 0 },
 		2, 0
 	},
-	{	// ƒ^ƒCƒvƒAƒCƒRƒ“‚R
+	{	// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼“
 		TYPE_ICON3_PX, TYPE_ICON3_PY, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_TYPE3, WO_PAL_ID_OBJ, WO_CEL_ID_TYPE, WO_ANM_ID_TYPE, 0, 0 },
 		2, 0
 	},
-	{	// ƒ^ƒCƒvƒAƒCƒRƒ“‚S
+	{	// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼”
 		TYPE_ICON4_PX, TYPE_ICON4_PY, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_TYPE4, WO_PAL_ID_OBJ, WO_CEL_ID_TYPE, WO_ANM_ID_TYPE, 0, 0 },
 		2, 0
 	},
-	{	// ƒ^ƒCƒvƒAƒCƒRƒ“‚T
+	{	// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼•
 		TYPE_ICON5_PX, TYPE_ICON5_PY, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_TYPE5, WO_PAL_ID_OBJ, WO_CEL_ID_TYPE, WO_ANM_ID_TYPE, 0, 0 },
 		2, 0
 	},
-	{	// ƒ^ƒCƒvƒAƒCƒRƒ“‚U
+	{	// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼–
 		TYPE_ICON6_PX, TYPE_ICON6_PY, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_TYPE6, WO_PAL_ID_OBJ, WO_CEL_ID_TYPE, WO_ANM_ID_TYPE, 0, 0 },
 		2, 0
 	},
-	{	// ƒ^ƒCƒvƒAƒCƒRƒ“‚V
+	{	// ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ï¼—
 		TYPE_ICON7_PX, TYPE_ICON7_PY, 0,
 		0, 1, 2, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_TYPE7, WO_PAL_ID_OBJ, WO_CEL_ID_TYPE, WO_ANM_ID_TYPE, 0, 0 },
@@ -563,17 +563,17 @@ static const TCATS_OBJECT_ADD_PARAM_S ClactParamTbl[] =
 
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT WazaOshieProc_Init( PROC * proc, int * seq )
@@ -589,8 +589,8 @@ PROC_RESULT WazaOshieProc_Init( PROC * proc, int * seq )
 	WO_DispInit( wk );
 
 /*
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();				// HBlank’â~
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();				// HBlankåœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -601,9 +601,9 @@ PROC_RESULT WazaOshieProc_Init( PROC * proc, int * seq )
 
 	APP_WipeStart( APP_WIPE_IN, HEAPID_WAZAOSHIE );
 
-	WO_VramBankSet();				// VRAMİ’è
-	WO_BgSet( wk->bgl );			// BGİ’è
-	WO_BgGraphicSet( wk );			// BGƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+	WO_VramBankSet();				// VRAMè¨­å®š
+	WO_BgSet( wk->bgl );			// BGè¨­å®š
+	WO_BgGraphicSet( wk );			// BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 
 	WO_ObjInit( wk );
 
@@ -635,19 +635,19 @@ PROC_RESULT WazaOshieProc_Init( PROC * proc, int * seq )
 
 	WO_ScrollCursorPut( wk );
 
-	sys_VBlankFuncChange( WO_VBlank, wk );	// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( WO_VBlank, wk );	// VBlankã‚»ãƒƒãƒˆ
 
 	return PROC_RES_FINISH;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT WazaOshieProc_Main( PROC * proc, int * seq )
@@ -655,54 +655,54 @@ PROC_RESULT WazaOshieProc_Main( PROC * proc, int * seq )
 	WO_WORK * wk  = PROC_GetWork( proc );
 
 	switch( *seq ){
-	case SEQ_FADE_WAIT:		// ƒtƒF[ƒhI—¹‘Ò‚¿
+	case SEQ_FADE_WAIT:		// ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 		*seq = WO_SeqFadeWait( wk );
 		break;
 
-	case SEQ_SELECT:		// ‹ZƒZƒŒƒNƒg
+	case SEQ_SELECT:		// æŠ€ã‚»ãƒ¬ã‚¯ãƒˆ
 		*seq = WO_SeqSelect( wk );
 		break;
 
-	case SEQ_MSG_WAIT:		// ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+	case SEQ_MSG_WAIT:		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		*seq = WO_SeqMsgWait( wk );
 		break;
 
-	case SEQ_YESNO_PUT:		// ‚Í‚¢E‚¢‚¢‚¦ƒZƒbƒg
+	case SEQ_YESNO_PUT:		// ã¯ã„ãƒ»ã„ã„ãˆã‚»ãƒƒãƒˆ
 		*seq = WO_SeqYesNoPut( wk );
 		break;
 
-	case SEQ_YESNO_WAIT:	// ‚Í‚¢E‚¢‚¢‚¦‘I‘ğ‘Ò‚¿
+	case SEQ_YESNO_WAIT:	// ã¯ã„ãƒ»ã„ã„ãˆé¸æŠå¾…ã¡
 		*seq = WO_SeqYesNoWait( wk );
 		break;
 
-	case SEQ_WAZA_SET:		// ‹ZŠo‚¦
+	case SEQ_WAZA_SET:		// æŠ€è¦šãˆ
 		*seq = WO_SeqWazaSet( wk );
 		break;
 
-	case SEQ_WAZADEL_SET:	// –Y‚ê‚Ä‹ZŠo‚¦
+	case SEQ_WAZADEL_SET:	// å¿˜ã‚Œã¦æŠ€è¦šãˆ
 		*seq = WO_SeqWazaDelSet( wk );
 		break;
 
-	case SEQ_DEL_CHECK:		// –Y‚ê‚³‚¹‚é‹Z‚ğƒ`ƒFƒbƒN
+	case SEQ_DEL_CHECK:		// å¿˜ã‚Œã•ã›ã‚‹æŠ€ã‚’ãƒã‚§ãƒƒã‚¯
 		*seq = WO_SeqDelCheck( wk );
 		break;
 
-	case SEQ_FADEOUT_SET:	// ƒtƒF[ƒhƒAƒEƒgƒZƒbƒg
+	case SEQ_FADEOUT_SET:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚»ãƒƒãƒˆ
 		*seq = WO_SeqFadeOutSet( wk );
 		break;
 
-	case SEQ_END:			// I—¹
+	case SEQ_END:			// çµ‚äº†
 		return PROC_RES_FINISH;
 
-	case SEQ_PST_INIT:		// ƒXƒe[ƒ^ƒX‰æ–Ê‚Ö
+	case SEQ_PST_INIT:		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã¸
 		*seq = WO_SeqPstInit( wk );
 		break;
 
-	case SEQ_PST_CALL:		// ƒXƒe[ƒ^ƒX‰æ–ÊŒÄ‚Ño‚µ
+	case SEQ_PST_CALL:		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢å‘¼ã³å‡ºã—
 		*seq = WO_SeqPstCall( wk );
 		return PROC_RES_CONTINUE;
 
-	case SEQ_PST_WAIT:		// ƒXƒe[ƒ^ƒX‰æ–ÊI—¹‘Ò‚¿
+	case SEQ_PST_WAIT:		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢çµ‚äº†å¾…ã¡
 		*seq = WO_SeqPstWait( wk );
 		return PROC_RES_CONTINUE;
 	}
@@ -715,12 +715,12 @@ PROC_RESULT WazaOshieProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT WazaOshieProc_End( PROC * proc, int * seq )
@@ -730,7 +730,7 @@ PROC_RESULT WazaOshieProc_End( PROC * proc, int * seq )
 /*
 	WO_WazaListExit( wk );
 	WO_BmpWinExit( wk );
-	WO_BgExit( wk->bgl );		// BGLíœ
+	WO_BgExit( wk->bgl );		// BGLå‰Šé™¤
 
 	WO_MsgRelease( wk );
 
@@ -740,7 +740,7 @@ PROC_RESULT WazaOshieProc_End( PROC * proc, int * seq )
 
 	WO_DispExit( wk );
 
-	PROC_FreeWork( proc );					// ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );					// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
 	sys_DeleteHeap( HEAPID_WAZAOSHIE );
 
@@ -749,9 +749,9 @@ PROC_RESULT WazaOshieProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰Šúİ’è
+ * åˆæœŸè¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -760,8 +760,8 @@ static void WO_DispInit( WO_WORK * wk )
 {
 	ARCHANDLE* p_handle;
 	
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();				// HBlank’â~
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();				// HBlankåœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -774,9 +774,9 @@ static void WO_DispInit( WO_WORK * wk )
 
 	p_handle = ArchiveDataHandleOpen( ARC_WAZAOSHIE_GRA, HEAPID_WAZAOSHIE );
 	
-	WO_VramBankSet();				// VRAMİ’è
-	WO_BgSet( wk->bgl );			// BGİ’è
-	WO_BgGraphicSet( wk, p_handle );			// BGƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+	WO_VramBankSet();				// VRAMè¨­å®š
+	WO_BgSet( wk->bgl );			// BGè¨­å®š
+	WO_BgGraphicSet( wk, p_handle );			// BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 
 	WO_ObjInit( wk, p_handle );
 
@@ -785,16 +785,16 @@ static void WO_DispInit( WO_WORK * wk )
 	WO_WazaListMake( wk );
 	WO_PageChange( wk );
 
-	sys_VBlankFuncChange( WO_VBlank, wk );	// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( WO_VBlank, wk );	// VBlankã‚»ãƒƒãƒˆ
 
 	ArchiveDataHandleClose( p_handle );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ğ•úˆ—
+ * è§£æ”¾å‡¦ç†
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -803,22 +803,22 @@ static void WO_DispExit( WO_WORK * wk )
 {
 	WO_WazaListExit( wk );
 	WO_BmpWinExit( wk );
-	WO_BgExit( wk->bgl );		// BGLíœ
+	WO_BgExit( wk->bgl );		// BGLå‰Šé™¤
 
 	WO_MsgRelease( wk );
 
 	WO_ObjFree( wk );
 	DellVramTransferManager();
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
 }
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
- * @param	work	ƒ[ƒN
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -829,8 +829,8 @@ static void WO_VBlank( void * work )
 
 	GF_BGL_VBlankFunc( wk->bgl );
 
-	// ƒZƒ‹ƒAƒNƒ^[
-	DoVramTransferManager();	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	DoVramTransferManager();	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	CATS_RenderOamTrans();
 	
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
@@ -838,7 +838,7 @@ static void WO_VBlank( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMİ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -848,29 +848,29 @@ static void WO_VBlank( void * work )
 static void WO_VramBankSet(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGİ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -919,9 +919,9 @@ static void WO_BgSet( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ğ•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -941,9 +941,9 @@ static void WO_BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -965,10 +965,10 @@ static void WO_BgGraphicSet( WO_WORK * wk, ARCHANDLE* p_handle )
 //	SystemFontPaletteLoad( PALTYPE_MAIN_BG, SYS_FONT_PAL * 32, HEAPID_BAG );
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, WO_PAL_TALK_FONT * 32, HEAPID_WAZAOSHIE );
 
-	// ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒZƒbƒg
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet(
 		wk->bgl, GF_BGL_FRAME0_M, WO_MENU_WIN_CGX, WO_PAL_MENU_WIN, 0, HEAPID_WAZAOSHIE );
-	// ‰ï˜bƒEƒBƒ“ƒhƒEƒZƒbƒg
+	// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
 	TalkWinGraphicSet(
 		wk->bgl, GF_BGL_FRAME0_M, WO_TALK_WIN_CGX,
 		WO_PAL_TALK_WIN, CONFIG_GetWindowType(wk->dat->cfg), HEAPID_WAZAOSHIE );
@@ -976,9 +976,9 @@ static void WO_BgGraphicSet( WO_WORK * wk, ARCHANDLE* p_handle )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒEƒBƒ“ƒhƒEƒZƒbƒg
+ * BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1000,9 +1000,9 @@ static void WO_BmpWinSet( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒEƒBƒ“ƒhƒEíœ
+ * BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1018,9 +1018,9 @@ static void WO_BmpWinExit( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWŠÖ˜Aì¬
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£ä½œæˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1036,9 +1036,9 @@ static void WO_MsgCreate( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWŠÖ˜Aíœ
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1054,11 +1054,11 @@ static void WO_MsgRelease( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFƒtƒF[ƒhƒCƒ“
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SeqFadeWait( WO_WORK * wk )
@@ -1071,11 +1071,11 @@ static int WO_SeqFadeWait( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXF‹Z‘I‘ğ
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€é¸æŠ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SeqSelect( WO_WORK * wk )
@@ -1134,11 +1134,11 @@ static int WO_SeqSelect( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFƒƒbƒZ[ƒWI—¹‘Ò‚¿
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SeqMsgWait( WO_WORK * wk )
@@ -1151,11 +1151,11 @@ static int WO_SeqMsgWait( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXF‚Í‚¢E‚¢‚¢‚¦•\¦
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã¯ã„ãƒ»ã„ã„ãˆè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SeqYesNoPut( WO_WORK * wk )
@@ -1168,20 +1168,20 @@ static int WO_SeqYesNoPut( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXF‚Í‚¢E‚¢‚¢‚¦ˆ—
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã¯ã„ãƒ»ã„ã„ãˆå‡¦ç†
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SeqYesNoWait( WO_WORK * wk )
 {
 	switch( BmpYesNoSelectMain( wk->mw, HEAPID_WAZAOSHIE ) ){
-	case 0:					// ‚Í‚¢
+	case 0:					// ã¯ã„
 		return YesNoFunc[wk->ynidx].yes( wk );
 
-	case BMPMENU_CANCEL:	// ‚¢‚¢‚¦ or ƒLƒƒƒ“ƒZƒ‹
+	case BMPMENU_CANCEL:	// ã„ã„ãˆ or ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		return YesNoFunc[wk->ynidx].no( wk );
 	}
 
@@ -1190,11 +1190,11 @@ static int WO_SeqYesNoWait( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXF‹ZƒZƒbƒg
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SeqWazaSet( WO_WORK * wk )
@@ -1224,11 +1224,11 @@ static int WO_SeqWazaSet( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXF‹ZƒZƒbƒgŠ®—¹ƒƒbƒZ[ƒWƒZƒbƒg
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€ã‚»ãƒƒãƒˆå®Œäº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SeqWazaDelSet( WO_WORK * wk )
@@ -1240,11 +1240,11 @@ static int WO_SeqWazaDelSet( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXF‹Z‘I‘ğƒ`ƒFƒbƒN
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€é¸æŠãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SeqDelCheck( WO_WORK * wk )
@@ -1263,11 +1263,11 @@ static int WO_SeqDelCheck( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFƒtƒF[ƒhƒAƒEƒgƒZƒbƒg
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SeqFadeOutSet( WO_WORK * wk )
@@ -1280,9 +1280,9 @@ static int WO_SeqFadeOutSet( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWØ‚è‘Ö‚¦
+ * ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1345,13 +1345,13 @@ static void WO_PageChange( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •¶š•\¦
+ * æ–‡å­—è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	widx	ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	fnt		•\¦ƒtƒHƒ“ƒg
- * @param	col		•\¦ƒJƒ‰[
- * @param	mode	•\¦ƒ‚[ƒh
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	widx	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	fnt		è¡¨ç¤ºãƒ•ã‚©ãƒ³ãƒˆ
+ * @param	col		è¡¨ç¤ºã‚«ãƒ©ãƒ¼
+ * @param	mode	è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰
  *
  * @return	none
  */
@@ -1363,15 +1363,15 @@ static void StrPut( WO_WORK * wk, u32 widx, u32 fnt, u32 col, u32 mode )
 	u8	px;
 
 	switch( mode ){
-	case STR_MODE_LEFT:		// ¶‹l‚ß
+	case STR_MODE_LEFT:		// å·¦è©°ã‚
 		px = 0;
 		break;
-	case STR_MODE_RIGHT:	// ‰E‹l‚ß
+	case STR_MODE_RIGHT:	// å³è©°ã‚
 		siz = FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->mbuf, 0 );
 		wsx = GF_BGL_BmpWinGet_SizeX( &wk->win[widx] ) * 8;
 		px  = wsx - siz;
 		break;
-	case STR_MODE_CENTER:	// ’†‰›
+	case STR_MODE_CENTER:	// ä¸­å¤®
 		siz = FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->mbuf, 0 );
 		wsx = GF_BGL_BmpWinGet_SizeX( &wk->win[widx] ) * 8;
 		px  = (wsx-siz)/2;
@@ -1382,13 +1382,13 @@ static void StrPut( WO_WORK * wk, u32 widx, u32 fnt, u32 col, u32 mode )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”š“ü‚è•¶š—ñ“WŠJ
+ * æ•°å­—å…¥ã‚Šæ–‡å­—åˆ—å±•é–‹
  *
- * @param	wk		ƒ[ƒN
- * @param	msg_id	ƒƒbƒZ[ƒWID
- * @param	num		”š
- * @param	keta	Œ…
- * @param	type	•\¦ƒ^ƒCƒv
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	msg_id	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	num		æ•°å­—
+ * @param	keta	æ¡
+ * @param	type	è¡¨ç¤ºã‚¿ã‚¤ãƒ—
  *
  * @return	none
  */
@@ -1406,9 +1406,9 @@ static void NumPrmSet( WO_WORK * wk, u32 msg_id, u32 num, u8 keta, u8 type )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŒÅ’è•¶š—ñ•`‰æ
+ * å›ºå®šæ–‡å­—åˆ—æç”»
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1417,31 +1417,31 @@ static void WO_DefStrWrite( WO_WORK * wk )
 {
 	u32	siz;
 
-	// u‚½‚½‚©‚¤‚í‚´v
+	// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
 	MSGMAN_GetString( wk->mman, msg_waza_oboe_01_05, wk->mbuf );
 	StrPut( wk, WIN_STR_BATTLE, FONT_SYSTEM, WOFCOL_N_WHITE, STR_MODE_CENTER );
 
-	// uƒRƒ“ƒeƒXƒg‚í‚´v
+	// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
 	MSGMAN_GetString( wk->mman, msg_waza_oboe_01_07, wk->mbuf );
 	StrPut( wk, WIN_STR_CONTEST, FONT_SYSTEM, WOFCOL_N_WHITE, STR_MODE_CENTER );
 
-	// u‚Ô‚ñ‚é‚¢v
+	// ã€Œã¶ã‚“ã‚‹ã„ã€
 	MSGMAN_GetString( wk->mman, msg_waza_oboe_01_01, wk->mbuf );
 	StrPut( wk, WIN_STR_CLASS, FONT_SYSTEM, WOFCOL_N_WHITE, STR_MODE_LEFT );
 
-	// u‚¢‚è‚å‚­v
+	// ã€Œã„ã‚Šã‚‡ãã€
 	MSGMAN_GetString( wk->mman, msg_waza_oboe_01_02, wk->mbuf );
 	StrPut( wk, WIN_STR_ATTACK, FONT_SYSTEM, WOFCOL_N_WHITE, STR_MODE_LEFT );
 
-	// u‚ß‚¢‚¿‚ã‚¤v
+	// ã€Œã‚ã„ã¡ã‚…ã†ã€
 	MSGMAN_GetString( wk->mman, msg_waza_oboe_01_03, wk->mbuf );
 	StrPut( wk, WIN_STR_HIT, FONT_SYSTEM, WOFCOL_N_WHITE, STR_MODE_LEFT );
 
-	// uPPv
+	// ã€ŒPPã€
 	MSGMAN_GetString( wk->mman, msg_waza_oboe_01_04, wk->mbuf );
 	StrPut( wk, WIN_STR_PP, FONT_SYSTEM, WOFCOL_N_BLACK, STR_MODE_LEFT );
 
-	// uƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgv
+	// ã€Œã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã€
 	MSGMAN_GetString( wk->mman, msg_waza_oboe_01_06, wk->mbuf );
 	StrPut( wk, WIN_STR_APP, FONT_SYSTEM, WOFCOL_N_WHITE, STR_MODE_CENTER );
 }
@@ -1449,11 +1449,11 @@ static void WO_DefStrWrite( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z”æ“¾
+ * æŠ€æ•°å–å¾—
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	‹Z”
+ * @return	æŠ€æ•°
  */
 //--------------------------------------------------------------------------------------------
 static u32 WO_WazaTableNumGet( WO_WORK * wk )
@@ -1470,9 +1470,9 @@ static u32 WO_WazaTableNumGet( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹ZƒŠƒXƒgì¬
+ * æŠ€ãƒªã‚¹ãƒˆä½œæˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1515,9 +1515,9 @@ static void WO_WazaListMake( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹ZƒŠƒXƒgíœ
+ * æŠ€ãƒªã‚¹ãƒˆå‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1530,11 +1530,11 @@ static void WO_WazaListExit( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒŠƒXƒgƒR[ƒ‹ƒoƒbƒNŠÖ”iƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æj
+ * ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ï¼ˆã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ï¼‰
  *
- * @param	work	BMPƒŠƒXƒg‚Åİ’è‚µ‚½ƒ[ƒN
- * @param	param	BMPƒŠƒXƒg‚Ìƒpƒ‰ƒ[ƒ^
- * @param	mode	‰Šú‰» = 1
+ * @param	work	BMPãƒªã‚¹ãƒˆã§è¨­å®šã—ãŸãƒ¯ãƒ¼ã‚¯
+ * @param	param	BMPãƒªã‚¹ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	mode	åˆæœŸåŒ–æ™‚ = 1
  *
  * @return	none
  */
@@ -1556,12 +1556,12 @@ static void CB_WazaListMove( BMPLIST_WORK * work, u32 param, u8 mode )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒŠƒXƒgƒR[ƒ‹ƒoƒbƒNŠÖ”iˆê—ñ•\¦‚²‚Æj
+ * ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ï¼ˆä¸€åˆ—è¡¨ç¤ºã”ã¨ï¼‰
  *
- * @param	work	BMPƒŠƒXƒg‚Åİ’è‚µ‚½ƒ[ƒN
- * @param	index	BMPƒŠƒXƒg‚ªg—p‚µ‚Ä‚¢‚éƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
- * @param	param	BMPƒŠƒXƒg‚Ìƒpƒ‰ƒ[ƒ^
- * @param	y		YÀ•W
+ * @param	work	BMPãƒªã‚¹ãƒˆã§è¨­å®šã—ãŸãƒ¯ãƒ¼ã‚¯
+ * @param	index	BMPãƒªã‚¹ãƒˆãŒä½¿ç”¨ã—ã¦ã„ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	param	BMPãƒªã‚¹ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	y		Yåº§æ¨™
  *
  * @return	none
  */
@@ -1592,10 +1592,10 @@ static void CB_WazaListWrite( BMPLIST_WORK * work, u32 param, u8 y )
 
 //--------------------------------------------------------------------------------------------
 /**
- * í“¬‹Zƒpƒ‰ƒ[ƒ^•\¦
+ * æˆ¦é—˜æŠ€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	prm		BMPƒŠƒXƒgƒf[ƒ^iå‚É‹Z”Ô†j
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	prm		BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ï¼ˆä¸»ã«æŠ€ç•ªå·ï¼‰
  *
  * @return	none
  */
@@ -1613,37 +1613,37 @@ static void BattleWazaParamPut( WO_WORK * wk, u32 prm )
 		MSGDATA_MANAGER * mman;
 		u32	tmp;
 
-		// ˆĞ—Í
+		// å¨åŠ›
 		tmp = WT_WazaDataParaGet( prm, ID_WTD_damage );
 		if( tmp <= 1 ){
 			MSGMAN_GetString( wk->mman, msg_waza_oboe_01_12, wk->mbuf );
 		}else{
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2006/12/21
-			// ‚¢‚è‚å‚­‚Ì’l‚ğ‰E‘µ‚¦‚µ‚½ã‚Å’†‰›Šñ‚¹‚É
+			// ã„ã‚Šã‚‡ãã®å€¤ã‚’å³æƒãˆã—ãŸä¸Šã§ä¸­å¤®å¯„ã›ã«
 			NumPrmSet( wk, msg_waza_oboe_01_08, tmp, 3, NUM_MODE_SPACE );
 			// ----------------------------------------------------------------------------
 		}
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/21
-		// ‚¢‚è‚å‚­‚Ì’l‚ğ‰E‘µ‚¦‚µ‚½ã‚Å’†‰›Šñ‚¹‚É
+		// ã„ã‚Šã‚‡ãã®å€¤ã‚’å³æƒãˆã—ãŸä¸Šã§ä¸­å¤®å¯„ã›ã«
 		StrPut( wk, WIN_PRM_ATTACK, FONT_SYSTEM, WOFCOL_N_BLACK, STR_MODE_CENTER );
 		// ----------------------------------------------------------------------------
 
-		// –½’†
+		// å‘½ä¸­
 		tmp = WT_WazaDataParaGet( prm, ID_WTD_hitprobability );
 		if( tmp == 0 ){
 			MSGMAN_GetString( wk->mman, msg_waza_oboe_01_12, wk->mbuf );
 		}else{
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2006/12/21
-			// ‚ß‚¢‚¿‚ã‚¤‚Ì’l‚ğ‰E‘µ‚¦‚µ‚½ã‚Å’†‰›Šñ‚¹‚É
+			// ã‚ã„ã¡ã‚…ã†ã®å€¤ã‚’å³æƒãˆã—ãŸä¸Šã§ä¸­å¤®å¯„ã›ã«
 			NumPrmSet( wk, msg_waza_oboe_01_09, tmp, 3, NUM_MODE_SPACE );
 			// ----------------------------------------------------------------------------
 		}
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/21
-		// ‚ß‚¢‚¿‚ã‚¤‚Ì’l‚ğ‰E‘µ‚¦‚µ‚½ã‚Å’†‰›Šñ‚¹‚É
+		// ã‚ã„ã¡ã‚…ã†ã®å€¤ã‚’å³æƒãˆã—ãŸä¸Šã§ä¸­å¤®å¯„ã›ã«
 		StrPut( wk, WIN_PRM_HIT, FONT_SYSTEM, WOFCOL_N_BLACK, STR_MODE_CENTER );
 		// ----------------------------------------------------------------------------
 
@@ -1652,11 +1652,11 @@ static void BattleWazaParamPut( WO_WORK * wk, u32 prm )
 		NumPrmSet( wk, msg_waza_oboe_01_10, tmp, 2, NUM_MODE_LEFT );
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/21
-		// PP‚Ì’l‚ğ’†‰›Šñ‚¹‚É
+		// PPã®å€¤ã‚’ä¸­å¤®å¯„ã›ã«
 		StrPut( wk, WIN_PRM_PP, FONT_SYSTEM, WOFCOL_N_BLACK, STR_MODE_CENTER );
 		// ----------------------------------------------------------------------------
 
-		// à–¾
+		// èª¬æ˜
 		mman = MSGMAN_Create(
 				MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_wazainfo_dat, HEAPID_WAZAOSHIE );
 		MSGMAN_GetString( mman, prm, wk->mbuf );
@@ -1685,10 +1685,10 @@ static void BattleWazaParamPut( WO_WORK * wk, u32 prm )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Zƒpƒ‰ƒ[ƒ^•\¦
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	prm		BMPƒŠƒXƒgƒf[ƒ^iå‚É‹Z”Ô†j
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	prm		BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ï¼ˆä¸»ã«æŠ€ç•ªå·ï¼‰
  *
  * @return	none
  */
@@ -1727,11 +1727,11 @@ static void ContestWazaParamPut( WO_WORK * wk, u32 prm )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Z‚Ìƒn[ƒg•\¦ƒƒCƒ“
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ã®ãƒãƒ¼ãƒˆè¡¨ç¤ºãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		ƒ[ƒN
- * @param	chr		g—pƒLƒƒƒ‰
- * @param	num		•\¦ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	chr		ä½¿ç”¨ã‚­ãƒ£ãƒ©
+ * @param	num		è¡¨ç¤ºä½ç½®
  *
  * @return	none
  */
@@ -1754,9 +1754,9 @@ static void WO_HeartPutMain( WO_WORK * wk, u16 chr, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Z‚Ìƒn[ƒg•\¦‰Šú‰»
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ã®ãƒãƒ¼ãƒˆè¡¨ç¤ºåˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1773,10 +1773,10 @@ static void WO_HeartInit( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒg‹Z‚Ìƒn[ƒg•\¦
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€ã®ãƒãƒ¼ãƒˆè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	waza	‹Z”Ô†
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ç•ªå·
  *
  * @return	none
  */
@@ -1802,10 +1802,10 @@ static void WO_HeartPut( WO_WORK * wk, u16 waza )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWì¬
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä½œæˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	id		ƒƒbƒZ[ƒWID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  *
  * @return	none
  */
@@ -1815,42 +1815,42 @@ static void WO_MsgMake( WO_WORK * wk, u32 id )
 	STRBUF * str;
 
 	switch( id ){
-	case MSG_SEL_WAZA:	// @0‚É@‚Ç‚Ì‚í‚´‚ğ@‚¨‚Ú‚¦‚³‚¹‚éH
+	case MSG_SEL_WAZA:	// @0ã«ã€€ã©ã®ã‚ã–ã‚’ã€€ãŠã¼ãˆã•ã›ã‚‹ï¼Ÿ
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(wk->dat->pp) );
 		break;
-	case MSG_SET_CHECK:	// @1@‚ğ  ‚¨‚Ú‚¦‚³‚¹‚Ü‚·‚©H
+	case MSG_SET_CHECK:	// @1ã€€ã‚’  ãŠã¼ãˆã•ã›ã¾ã™ã‹ï¼Ÿ
 		WORDSET_RegisterWazaName( wk->wset, 1, WO_SelWazaGet( wk ) );
 		break;
-	case MSG_END_CHECK:	// @0‚É@‚í‚´‚ğ  ‚¨‚Ú‚¦‚³‚¹‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©H
+	case MSG_END_CHECK:	// @0ã«ã€€ã‚ã–ã‚’  ãŠã¼ãˆã•ã›ã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿ
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(wk->dat->pp) );
 		break;
-	case MSG_SET_WAZA:	// @0‚Í@‚ ‚½‚ç‚µ‚­@@1‚ğ@‚¨‚Ú‚¦‚½I¥"
-		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(wk->dat->pp) );
-		WORDSET_RegisterWazaName( wk->wset, 1, WO_SelWazaGet( wk ) );
-		break;
-	case MSG_CHG_CHECK:	// @0‚Í@‚ ‚½‚ç‚µ‚­@@1‚ğ@‚¨‚Ú‚¦‚½‚¢cc¥@‚µ‚©‚µ@`
+	case MSG_SET_WAZA:	// @0ã¯ã€€ã‚ãŸã‚‰ã—ãã€€@1ã‚’ã€€ãŠã¼ãˆãŸï¼â–¼"
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(wk->dat->pp) );
 		WORDSET_RegisterWazaName( wk->wset, 1, WO_SelWazaGet( wk ) );
 		break;
-	case MSG_DEL_WAZA:	// ‚P@‚Q‚Ìcc@ƒ|ƒJƒ“I¥@@0‚Í@@1‚Ì ‚Â‚©‚¢‚©‚½‚ğ@`
+	case MSG_CHG_CHECK:	// @0ã¯ã€€ã‚ãŸã‚‰ã—ãã€€@1ã‚’ã€€ãŠã¼ãˆãŸã„â€¦â€¦â–¼ã€€ã—ã‹ã—ã€€ã€œ
+		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(wk->dat->pp) );
+		WORDSET_RegisterWazaName( wk->wset, 1, WO_SelWazaGet( wk ) );
+		break;
+	case MSG_DEL_WAZA:	// ï¼‘ã€€ï¼’ã®â€¦â€¦ã€€ãƒã‚«ãƒ³ï¼â–¼ã€€@0ã¯ã€€@1ã® ã¤ã‹ã„ã‹ãŸã‚’ã€€ã€œ
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(wk->dat->pp) );
 		WORDSET_RegisterWazaName( wk->wset, 1, WO_DelWazaGet( wk ) );
 		break;
-	case MSG_CHG_WAZA:	// @0‚Í@‚ ‚½‚ç‚µ‚­ @1‚ğ@‚¨‚Ú‚¦‚½I¥
+	case MSG_CHG_WAZA:	// @0ã¯ã€€ã‚ãŸã‚‰ã—ã @1ã‚’ã€€ãŠã¼ãˆãŸï¼â–¼
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(wk->dat->pp) );
 		WORDSET_RegisterWazaName( wk->wset, 1, WO_SelWazaGet( wk ) );
 		break;
-	case MSG_DEL_CHECK:	// ‚»‚ê‚Å‚Ícc@@1‚ğ@‚¨‚Ú‚¦‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©H
+	case MSG_DEL_CHECK:	// ãã‚Œã§ã¯â€¦â€¦ã€€@1ã‚’ã€€ãŠã¼ãˆã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿ
 		WORDSET_RegisterWazaName( wk->wset, 1, WO_SelWazaGet( wk ) );
 		break;
-	case MSG_CANCEL:	// @0‚Í@@1‚ğ@‚¨‚Ú‚¦‚¸‚É@‚¨‚í‚Á‚½I¥
+	case MSG_CANCEL:	// @0ã¯ã€€@1ã‚’ã€€ãŠã¼ãˆãšã«ã€€ãŠã‚ã£ãŸï¼â–¼
 		WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(wk->dat->pp) );
 		WORDSET_RegisterWazaName( wk->wset, 1, WO_SelWazaGet( wk ) );
 		break;
-	case MSG_SUB_ITEM:	// @2‚Í@‚¨‚ê‚¢‚É@ƒn[ƒg‚ÌƒEƒƒR‚ğ@‚P‚Ü‚¢@‚ ‚°‚½I¥
+	case MSG_SUB_ITEM:	// @2ã¯ã€€ãŠã‚Œã„ã«ã€€ãƒãƒ¼ãƒˆã®ã‚¦ãƒ­ã‚³ã‚’ã€€ï¼‘ã¾ã„ã€€ã‚ã’ãŸï¼â–¼
 		WORDSET_RegisterPlayerName( wk->wset, 2, wk->dat->myst );
 		break;
-	case MSG_DEL_ENTER:	// @0‚ğ@‚í‚·‚ê‚³‚¹‚Ä@‚æ‚ë‚µ‚¢‚Å‚·‚ËH
+	case MSG_DEL_ENTER:	// @0ã‚’ã€€ã‚ã™ã‚Œã•ã›ã¦ã€€ã‚ˆã‚ã—ã„ã§ã™ã­ï¼Ÿ
 		WORDSET_RegisterWazaName( wk->wset, 0, WO_DelWazaGet( wk ) );
 		break;
 	}
@@ -1862,11 +1862,11 @@ static void WO_MsgMake( WO_WORK * wk, u32 id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šo‚¦‚é‹Z‚ğæ“¾
+ * è¦šãˆã‚‹æŠ€ã‚’å–å¾—
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Šo‚¦‚é‹Z
+ * @return	è¦šãˆã‚‹æŠ€
  */
 //--------------------------------------------------------------------------------------------
 static u16 WO_SelWazaGet( WO_WORK * wk )
@@ -1876,11 +1876,11 @@ static u16 WO_SelWazaGet( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –Y‚ê‚é‹Zæ“¾
+ * å¿˜ã‚Œã‚‹æŠ€å–å¾—
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	–Y‚ê‚é‹Z
+ * @return	å¿˜ã‚Œã‚‹æŠ€
  */
 //--------------------------------------------------------------------------------------------
 static u16 WO_DelWazaGet( WO_WORK * wk )
@@ -1890,10 +1890,10 @@ static u16 WO_DelWazaGet( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bi•—jƒƒbƒZ[ƒW•\¦
+ * ä¼šè©±ï¼ˆé¢¨ï¼‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	id		ƒƒbƒZ[ƒWID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
  *
  * @return	none
  */
@@ -1912,37 +1912,37 @@ static void WO_TalkMsgSet( WO_WORK * wk, u32 id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bi•—jƒƒbƒZ[ƒWƒR[ƒ‹ƒoƒbƒN
+ * ä¼šè©±ï¼ˆé¢¨ï¼‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- * @param	mph		ƒƒbƒZ[ƒW•`‰æƒf[ƒ^
- * @param	value	ƒR[ƒ‹ƒoƒbƒNƒiƒ“ƒo
+ * @param	mph		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»ãƒ‡ãƒ¼ã‚¿
+ * @param	value	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒŠãƒ³ãƒ
  *
- * @retval	"TRUE = ‘Ò‚¿"
- * @retval	"FALSE = Ÿ‚Ìˆ—‚Ö"
+ * @retval	"TRUE = å¾…ã¡"
+ * @retval	"FALSE = æ¬¡ã®å‡¦ç†ã¸"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL WO_TalkMsgCallBack( MSG_PRINT_HEADER * mph, u16 value )
 {
 	switch( value ){
-	case 1:		// SEI—¹‘Ò‚¿
+	case 1:		// SEçµ‚äº†å¾…ã¡
 		return Snd_SePlayCheckAll();
 
-	case 2:		// MEI—¹‘Ò‚¿
+	case 2:		// MEçµ‚äº†å¾…ã¡
 		return Snd_MePlayCheckBgmPlay();
 /*
 	case 2:
 		Snd_MePlay( SEQ_FANFA5 );
 		break;
 */
-	case 3:		// "ƒ|ƒJƒ“"
+	case 3:		// "ãƒã‚«ãƒ³"
 		Snd_SePlay( SEQ_SE_DP_KON );
 		break;
 
-	case 4:		// "‚¨‚Ú‚¦‚½"
+	case 4:		// "ãŠã¼ãˆãŸ"
 		Snd_MePlay( SEQ_FANFA1 );
 		break;
 
-	case 5:		// "ƒ|ƒJƒ“"‚ÌSEI—¹‘Ò‚¿
+	case 5:		// "ãƒã‚«ãƒ³"ã®SEçµ‚äº†å¾…ã¡
 		return Snd_SePlayCheck( SEQ_SE_DP_KON );
 	}
 
@@ -1951,12 +1951,12 @@ static BOOL WO_TalkMsgCallBack( MSG_PRINT_HEADER * mph, u16 value )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‚ğ‚S‚ÂŠo‚¦‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * æŠ€ã‚’ï¼”ã¤è¦šãˆã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"Šo‚¦‚Ä‚¢‚éê‡ = 4"
- * @retval	"Šo‚¦‚Ä‚¢‚È‚¢ê‡ = 0 ` 3"
+ * @retval	"è¦šãˆã¦ã„ã‚‹å ´åˆ = 4"
+ * @retval	"è¦šãˆã¦ã„ãªã„å ´åˆ = 0 ã€œ 3"
  */
 //--------------------------------------------------------------------------------------------
 static u8 WO_WazaSetCheck( WO_WORK * wk )
@@ -1974,11 +1974,11 @@ static u8 WO_WazaSetCheck( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u@1@‚ğ  ‚¨‚Ú‚¦‚³‚¹‚Ü‚·‚©Hv‚Åu‚Í‚¢v‚ª‘I‘ğ‚³‚ê‚½ê‡
+ * ã€Œ@1ã€€ã‚’  ãŠã¼ãˆã•ã›ã¾ã™ã‹ï¼Ÿã€ã§ã€Œã¯ã„ã€ãŒé¸æŠã•ã‚ŒãŸå ´åˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SetCheck_Yes( WO_WORK * wk )
@@ -1990,11 +1990,11 @@ static int WO_SetCheck_Yes( WO_WORK * wk )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * u@1@‚ğ  ‚¨‚Ú‚¦‚³‚¹‚Ü‚·‚©Hv‚Åu‚¢‚¢‚¦v‚ª‘I‘ğ‚³‚ê‚½ê‡
+ * ã€Œ@1ã€€ã‚’  ãŠã¼ãˆã•ã›ã¾ã™ã‹ï¼Ÿã€ã§ã€Œã„ã„ãˆã€ãŒé¸æŠã•ã‚ŒãŸå ´åˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SetCheck_No( WO_WORK * wk )
@@ -2010,11 +2010,11 @@ static int WO_SetCheck_No( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u@0‚É@‚í‚´‚ğ  ‚¨‚Ú‚¦‚³‚¹‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©Hv‚Åu‚Í‚¢v‚ª‘I‘ğ‚³‚ê‚½ê‡
+ * ã€Œ@0ã«ã€€ã‚ã–ã‚’  ãŠã¼ãˆã•ã›ã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿã€ã§ã€Œã¯ã„ã€ãŒé¸æŠã•ã‚ŒãŸå ´åˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_EndCheck_Yes( WO_WORK * wk )
@@ -2026,11 +2026,11 @@ static int WO_EndCheck_Yes( WO_WORK * wk )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * u@0‚É@‚í‚´‚ğ  ‚¨‚Ú‚¦‚³‚¹‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©Hv‚Åu‚¢‚¢‚¦v‚ª‘I‘ğ‚³‚ê‚½ê‡
+ * ã€Œ@0ã«ã€€ã‚ã–ã‚’  ãŠã¼ãˆã•ã›ã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿã€ã§ã€Œã„ã„ãˆã€ãŒé¸æŠã•ã‚ŒãŸå ´åˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_EndCheck_No( WO_WORK * wk )
@@ -2046,11 +2046,11 @@ static int WO_EndCheck_No( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u@0‚Í@‚ ‚½‚ç‚µ‚­@@1‚ğ@‚¨‚Ú‚¦‚½‚¢cc¥@‚µ‚©‚µ@`v‚Åu‚Í‚¢v‚ª‘I‘ğ‚³‚ê‚½ê‡
+ * ã€Œ@0ã¯ã€€ã‚ãŸã‚‰ã—ãã€€@1ã‚’ã€€ãŠã¼ãˆãŸã„â€¦â€¦â–¼ã€€ã—ã‹ã—ã€€ã€œã€ã§ã€Œã¯ã„ã€ãŒé¸æŠã•ã‚ŒãŸå ´åˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_ChgCheck_Yes( WO_WORK * wk )
@@ -2062,11 +2062,11 @@ static int WO_ChgCheck_Yes( WO_WORK * wk )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * u@0‚Í@‚ ‚½‚ç‚µ‚­@@1‚ğ@‚¨‚Ú‚¦‚½‚¢cc¥@‚µ‚©‚µ@`v‚Åu‚¢‚¢‚¦v‚ª‘I‘ğ‚³‚ê‚½ê‡
+ * ã€Œ@0ã¯ã€€ã‚ãŸã‚‰ã—ãã€€@1ã‚’ã€€ãŠã¼ãˆãŸã„â€¦â€¦â–¼ã€€ã—ã‹ã—ã€€ã€œã€ã§ã€Œã„ã„ãˆã€ãŒé¸æŠã•ã‚ŒãŸå ´åˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_ChgCheck_No( WO_WORK * wk )
@@ -2079,11 +2079,11 @@ static int WO_ChgCheck_No( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚»‚ê‚Å‚Ícc@@1‚ğ@‚¨‚Ú‚¦‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©Hv‚Åu‚Í‚¢v‚ª‘I‘ğ‚³‚ê‚½ê‡
+ * ã€Œãã‚Œã§ã¯â€¦â€¦ã€€@1ã‚’ã€€ãŠã¼ãˆã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿã€ã§ã€Œã¯ã„ã€ãŒé¸æŠã•ã‚ŒãŸå ´åˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_DelCheck_Yes( WO_WORK * wk )
@@ -2095,11 +2095,11 @@ static int WO_DelCheck_Yes( WO_WORK * wk )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * u‚»‚ê‚Å‚Ícc@@1‚ğ@‚¨‚Ú‚¦‚é‚Ì‚ğ@‚ ‚«‚ç‚ß‚Ü‚·‚©Hv‚Åu‚¢‚¢‚¦v‚ª‘I‘ğ‚³‚ê‚½ê‡
+ * ã€Œãã‚Œã§ã¯â€¦â€¦ã€€@1ã‚’ã€€ãŠã¼ãˆã‚‹ã®ã‚’ã€€ã‚ãã‚‰ã‚ã¾ã™ã‹ï¼Ÿã€ã§ã€Œã„ã„ãˆã€ãŒé¸æŠã•ã‚ŒãŸå ´åˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_DelCheck_No( WO_WORK * wk )
@@ -2112,11 +2112,11 @@ static int WO_DelCheck_No( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u@0‚ğ@‚í‚·‚ê‚³‚¹‚Ä@‚æ‚ë‚µ‚¢‚Å‚·‚ËHv‚Åu‚Í‚¢v‚ª‘I‘ğ‚³‚ê‚½ê‡
+ * ã€Œ@0ã‚’ã€€ã‚ã™ã‚Œã•ã›ã¦ã€€ã‚ˆã‚ã—ã„ã§ã™ã­ï¼Ÿã€ã§ã€Œã¯ã„ã€ãŒé¸æŠã•ã‚ŒãŸå ´åˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_DelEnter_Yes( WO_WORK * wk )
@@ -2127,11 +2127,11 @@ static int WO_DelEnter_Yes( WO_WORK * wk )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * u@0‚ğ@‚í‚·‚ê‚³‚¹‚Ä@‚æ‚ë‚µ‚¢‚Å‚·‚ËHv‚Åu‚¢‚¢‚¦v‚ª‘I‘ğ‚³‚ê‚½ê‡
+ * ã€Œ@0ã‚’ã€€ã‚ã™ã‚Œã•ã›ã¦ã€€ã‚ˆã‚ã—ã„ã§ã™ã­ï¼Ÿã€ã§ã€Œã„ã„ãˆã€ãŒé¸æŠã•ã‚ŒãŸå ´åˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_DelEnter_No( WO_WORK * wk )
@@ -2145,14 +2145,14 @@ static int WO_DelEnter_No( WO_WORK * wk )
 
 
 //============================================================================================
-//	ƒZƒ‹ƒAƒNƒ^[
+//	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
+ * ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2192,9 +2192,9 @@ static void WO_ClactResManInit( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‰ğ•ú
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è§£æ”¾
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2212,9 +2212,9 @@ static void WO_ObjFree( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[ƒAƒjƒ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2231,9 +2231,9 @@ static void WO_ObjAnm( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ó‘ÔˆÙíƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒXİ’è
+ * çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2242,7 +2242,7 @@ static void WO_ResourceLoad( WO_WORK * wk, ARCHANDLE* p_handle )
 {
 	u32	i;
 
-	// ƒLƒƒƒ‰
+	// ã‚­ãƒ£ãƒ©
 	CATS_LoadResourceCharArcH(
 		wk->csp, wk->crp, p_handle,
 		NARC_waza_oshie_gra_page_cur_NCGR, 0, NNS_G2D_VRAM_TYPE_2DMAIN, WO_CHR_ID_ARROW_LR );
@@ -2257,13 +2257,13 @@ static void WO_ResourceLoad( WO_WORK * wk, ARCHANDLE* p_handle )
 	}
 	WazaKindIcon_CharResourceLoad(wk->csp,wk->crp,NNS_G2D_VRAM_TYPE_2DMAIN,0,WO_CHR_ID_KIND);
 
-	// ƒpƒŒƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 	CATS_LoadResourcePlttArcH(
 		wk->csp, wk->crp, p_handle,
 		NARC_waza_oshie_gra_waza_oboe_obj_NCLR, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, WO_PAL_ID_OBJ );
 	WazaTypeIcon_PlttResourceLoad( wk->csp, wk->crp, NNS_G2D_VRAM_TYPE_2DMAIN, WO_PAL_ID_TYPE );
 
-	// ƒZƒ‹
+	// ã‚»ãƒ«
 	CATS_LoadResourceCellArcH(
 		wk->csp, wk->crp, p_handle,
 		NARC_waza_oshie_gra_page_cur_NCER, 0, WO_CEL_ID_ARROW_LR );
@@ -2274,7 +2274,7 @@ static void WO_ResourceLoad( WO_WORK * wk, ARCHANDLE* p_handle )
 		wk->csp, wk->crp, p_handle,
 		NARC_waza_oshie_gra_list_cur_NCER, 0, WO_CEL_ID_CURSOR );
 
-	// ƒZƒ‹ƒAƒjƒ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	CATS_LoadResourceCellAnmArcH(
 		wk->csp, wk->crp, p_handle,
 		NARC_waza_oshie_gra_page_cur_NANR, 0, WO_ANM_ID_ARROW_LR );
@@ -2291,11 +2291,11 @@ static void WO_ResourceLoad( WO_WORK * wk, ARCHANDLE* p_handle )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒCƒvƒAƒCƒRƒ“Ø‚è‘Ö‚¦
+ * ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	waza	‹Z”Ô†
- * @param	num		ƒAƒCƒRƒ“”Ô†
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ç•ªå·
+ * @param	num		ã‚¢ã‚¤ã‚³ãƒ³ç•ªå·
  *
  * @return	none
  */
@@ -2319,9 +2319,9 @@ static void WO_TypeIconChange( WO_WORK * wk, u16 waza, u16 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒCƒvƒAƒCƒRƒ“‰Šú‰»
+ * ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2344,11 +2344,11 @@ static void WO_TypeIconInit( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒCƒvƒAƒCƒRƒ“ƒXƒNƒ[ƒ‹
+ * ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  *
- * @param	wk			ƒ[ƒN
- * @param	old_scr		¡‚Ü‚Å‚ÌƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^
- * @param	new_scr		V‚µ‚¢ƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^
+ * @param	wk			ãƒ¯ãƒ¼ã‚¯
+ * @param	old_scr		ä»Šã¾ã§ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿
+ * @param	new_scr		æ–°ã—ã„ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2402,10 +2402,10 @@ static void WO_TypeIconScroll( WO_WORK * wk, u16 old_scr, u16 new_scr )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •ª—ŞƒAƒCƒRƒ“Ø‚è‘Ö‚¦
+ * åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	waza	‹Z”Ô†
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ç•ªå·
  *
  * @return	none
  */
@@ -2424,9 +2424,9 @@ static void WO_KindIconChange( WO_WORK * wk, u16 waza )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2445,11 +2445,11 @@ static void WO_ObjInit( WO_WORK * wk, ARCHANDLE* p_handle )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Z‘I‘ğƒJ[ƒ\ƒ‹Ø‚è‘Ö‚¦
+ * æŠ€é¸æŠã‚«ãƒ¼ã‚½ãƒ«åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		•\¦ˆÊ’u
- * @param	pal		•\¦ƒpƒŒƒbƒg
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		è¡¨ç¤ºä½ç½®
+ * @param	pal		è¡¨ç¤ºãƒ‘ãƒ¬ãƒƒãƒˆ
  *
  * @return	none
  */
@@ -2464,10 +2464,10 @@ static void WO_SelCursorChange( WO_WORK * wk, u8 pos, u8 pal )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒy[ƒWƒJ[ƒ\ƒ‹•\¦Ø‘Ö
+ * ãƒšãƒ¼ã‚¸ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºåˆ‡æ›¿
  *
- * @param	wk		ƒ[ƒN
- * @param	flg		•\¦ƒtƒ‰ƒO
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	flg		è¡¨ç¤ºãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -2480,9 +2480,9 @@ static void WO_PageCursorPut( WO_WORK * wk, u8 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹•\¦Ø‘Ö
+ * ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºåˆ‡æ›¿
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2503,9 +2503,9 @@ static void WO_ScrollCursorPut( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒ[ƒ‹ƒJ[ƒ\ƒ‹”ñ•\¦
+ * ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ãƒ¼ã‚½ãƒ«éè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2520,11 +2520,11 @@ static void WO_ScrollCursorOff( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX‰æ–ÊŒÄ‚Ño‚µƒZƒbƒg
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢å‘¼ã³å‡ºã—ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SeqPstInit( WO_WORK * wk )
@@ -2536,18 +2536,18 @@ static int WO_SeqPstInit( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX‰æ–ÊŒÄ‚Ño‚µ
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢å‘¼ã³å‡ºã—
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SeqPstCall( WO_WORK * wk )
 {
 	u8 page[] = {
-		PST_PAGE_B_SKILL,		// u‚½‚½‚©‚¤‚í‚´v
-		PST_PAGE_C_SKILL,		// uƒRƒ“ƒeƒXƒg‚í‚´v
+		PST_PAGE_B_SKILL,		// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+		PST_PAGE_C_SKILL,		// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
 		PST_PAGE_MAX
 	};
 
@@ -2570,11 +2570,11 @@ static int WO_SeqPstCall( WO_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX‰æ–ÊI—¹‘Ò‚¿
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢çµ‚äº†å¾…ã¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	Ÿ‚ÌƒV[ƒPƒ“ƒX
+ * @return	æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int WO_SeqPstWait( WO_WORK * wk )

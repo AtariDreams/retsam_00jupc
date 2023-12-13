@@ -13,11 +13,11 @@
         typedef
    ======================================================================== */
 
-/* [nakata] NALƒRƒ“ƒgƒ[ƒ‹\‘¢‘Ì */
+/* [nakata] NALã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«æ§‹é€ ä½“ */
 typedef struct {
-	DWCHttp			http;		/* [nakata] HTTP\‘¢‘Ì */
-	DWCAuthParam	authparam;	/* [nakata] DWCAuth—pƒpƒ‰ƒ[ƒ^ */
-	DWCAuthResult	result;		/* [nakata] ”FØŒ‹‰ÊŠi”[—p\‘¢‘Ì */
+	DWCHttp			http;		/* [nakata] HTTPæ§‹é€ ä½“ */
+	DWCAuthParam	authparam;	/* [nakata] DWCAuthç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ */
+	DWCAuthResult	result;		/* [nakata] èªè¨¼çµæœæ ¼ç´ç”¨æ§‹é€ ä½“ */
 } DWCNalCnt;
 
 /* =======================================================================
@@ -36,19 +36,19 @@ static DWCNalCnt *nalcnt = NULL;
    ======================================================================== */
 
 /* =======================================================================
-        external functions(ingamesnŠÖŒW)
+        external functions(ingamesné–¢ä¿‚)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:			DWC_GetIngamesnCheckResult
 
-  Description:	NAS‚É‚æ‚éingamesn”»’è‚ÌŒ‹‰Ê‚ğæ“¾‚·‚é
+  Description:	NASã«ã‚ˆã‚‹ingamesnåˆ¤å®šã®çµæœã‚’å–å¾—ã™ã‚‹
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
-  Returns:		DWC_INGAMESN_NOTCHECKED	Œ»İƒ`ƒFƒbƒN’†(ƒƒOƒCƒ“ˆ—’†)
-                DWC_INGAMESN_VALID		’¼‘O‚ÌƒƒOƒCƒ“‚Ìingamesn‚ÍNAS‚Éó‚¯“ü‚ê‚ç‚ê‚½
-				DWC_INGAMESN_INVALID	’¼‘O‚ÌƒƒOƒCƒ“‚Ìingamesn‚ÍNAS‚É‹‘”Û‚³‚ê‚½
+  Returns:		DWC_INGAMESN_NOTCHECKED	ç¾åœ¨ãƒã‚§ãƒƒã‚¯ä¸­(ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†ä¸­)
+                DWC_INGAMESN_VALID		ç›´å‰ã®ãƒ­ã‚°ã‚¤ãƒ³ã®ingamesnã¯NASã«å—ã‘å…¥ã‚Œã‚‰ã‚ŒãŸ
+				DWC_INGAMESN_INVALID	ç›´å‰ã®ãƒ­ã‚°ã‚¤ãƒ³ã®ingamesnã¯NASã«æ‹’å¦ã•ã‚ŒãŸ
  *---------------------------------------------------------------------------*/
 DWCIngamesnCheckResult DWC_GetIngamesnCheckResult(void)
 {
@@ -56,19 +56,19 @@ DWCIngamesnCheckResult DWC_GetIngamesnCheckResult(void)
 }
 
 /* =======================================================================
-        external function(NASŠÔŠÖ˜A)
+        external function(NASæ™‚é–“é–¢é€£)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:			DWC_GetIngamesnCheckResult
 
-  Description:	NAS‚ÌŠÔ‚ğRTCŒ`®‚Åæ“¾‚·‚é
+  Description:	NASã®æ™‚é–“ã‚’RTCå½¢å¼ã§å–å¾—ã™ã‚‹
 
-  Arguments:	date	æ“¾Œ‹‰Ê‚ÌRTCDate‚ğ‘‚«‚Ş—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-				time	æ“¾Œ‹‰Ê‚ÌRTCTime‚ğ‘‚«‚Ş—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:	date	å–å¾—çµæœã®RTCDateã‚’æ›¸ãè¾¼ã‚€é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
+				time	å–å¾—çµæœã®RTCTimeã‚’æ›¸ãè¾¼ã‚€é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:		TRUE	æ“¾¬Œ÷
-				FALSE - æ“¾¸”s
+  Returns:		TRUE	å–å¾—æˆåŠŸ
+				FALSE - å–å¾—å¤±æ•—
  *---------------------------------------------------------------------------*/
 extern s64     DWCnastimediffbase;
 
@@ -79,16 +79,16 @@ BOOL DWC_GetDateTime(RTCDate *date, RTCTime *time)
 	if(DWCnastimediffvalid == FALSE)
 		return FALSE;
 	
-	// [nakata] –{‘ÌŒvî•ñ‚ğæ“¾
+	// [nakata] æœ¬ä½“æ™‚è¨ˆæƒ…å ±ã‚’å–å¾—
 	if(RTC_GetDateTime(date, time) != 0)
 		return FALSE;
 	
-	// [nakata] –{‘ÌŒv‚Ì’l‚ğ•b‚É•ÏŠ·
+	// [nakata] æœ¬ä½“æ™‚è¨ˆã®å€¤ã‚’ç§’ã«å¤‰æ›
 	localsec = RTC_ConvertDateTimeToSecond(date, time);
 	if(localsec == -1)
 		return FALSE;
 	
-	// [nakata] •b‚ÉƒT[ƒoŠÔ‚Æ‚Ì·‚ğ‘«‚·
+	// [nakata] ç§’ã«ã‚µãƒ¼ãƒæ™‚é–“ã¨ã®å·®ã‚’è¶³ã™
     if(localsec < DWCnastimediffbase) {
         DWC_Printf(DWC_REPORTFLAG_DEBUG, "RTC overflow detected.\n");
         localsec += 3155760000;
@@ -97,25 +97,25 @@ BOOL DWC_GetDateTime(RTCDate *date, RTCTime *time)
 	if(localsec < 0 || localsec > 3155759999)
 		return FALSE;
 	
-	// [nakata] Date/Time‚ğ¶¬
+	// [nakata] Date/Timeã‚’ç”Ÿæˆ
 	RTC_ConvertSecondToDateTime(date, time, localsec);
 	return TRUE;
 }
 
 /* =======================================================================
-        external function(SVLŠÖ˜A)
+        external function(SVLé–¢é€£)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:			DWC_SVLGetTokenAsync
 
-  Description:	ƒg[ƒNƒ“æ“¾ŠÖ”
+  Description:	ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—é–¢æ•°
 
-  Arguments:	svl		ƒT[ƒrƒXí•Ê‚ğw’è‚·‚é4•¶š‚ÌASCII•¶š—ñ
-				result	æ“¾‚µ‚½Œ‹‰Ê‚ğŠi”[‚·‚é—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:	svl		ã‚µãƒ¼ãƒ“ã‚¹ç¨®åˆ¥ã‚’æŒ‡å®šã™ã‚‹4æ–‡å­—ã®ASCIIæ–‡å­—åˆ—
+				result	å–å¾—ã—ãŸçµæœã‚’æ ¼ç´ã™ã‚‹é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:		TRUE	æ“¾ŠJn
-				FALSE	æ“¾ŠJn‚Å‚«‚È‚¢
+  Returns:		TRUE	å–å¾—é–‹å§‹
+				FALSE	å–å¾—é–‹å§‹ã§ããªã„
  *---------------------------------------------------------------------------*/
 BOOL DWC_SVLGetTokenAsync(char *svl, DWCSvlResult *result)
 {
@@ -124,23 +124,23 @@ BOOL DWC_SVLGetTokenAsync(char *svl, DWCSvlResult *result)
 	SDK_ASSERT(svl);
 	SDK_ASSERT(result);
 
-	/* [nakata] ‰Šú‰»ˆ— */
+	/* [nakata] åˆæœŸåŒ–å‡¦ç† */
 	flag = DWC_Svl_Init((DWCAuthAlloc)DWC_Alloc, (DWCAuthFree)DWC_Free);
 	if(flag == FALSE) {
-		/* [nakata] “à•”‚ÅDWCƒGƒ‰[İ’èÏ‚İ */
+		/* [nakata] å†…éƒ¨ã§DWCã‚¨ãƒ©ãƒ¼è¨­å®šæ¸ˆã¿ */
 		return FALSE;
 	}
 	
-	/* [nakata] ƒg[ƒNƒ“æ“¾ˆ—ŠJn */
+	/* [nakata] ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å‡¦ç†é–‹å§‹ */
 	if(strlen(svl) == 0)
 		flag = DWC_Svl_GetTokenAsync("0000", result);
 	else
 		flag = DWC_Svl_GetTokenAsync(svl, result);
 	
 	if(flag == FALSE) {
-		/* [nakata] DWC_SVL‚Ìƒ[ƒNƒGƒŠƒA‚ğŠJ•ú */
+		/* [nakata] DWC_SVLã®ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã‚’é–‹æ”¾ */
 		DWC_Svl_Cleanup();
-		/* [nakata] “à•”‚ÅDWCƒGƒ‰[İ’èÏ‚İ */
+		/* [nakata] å†…éƒ¨ã§DWCã‚¨ãƒ©ãƒ¼è¨­å®šæ¸ˆã¿ */
 		return FALSE;
 	}
 	return TRUE;
@@ -149,9 +149,9 @@ BOOL DWC_SVLGetTokenAsync(char *svl, DWCSvlResult *result)
 /*---------------------------------------------------------------------------*
   Name:			DWC_SVLProcess
 
-  Description:	SVLƒg[ƒNƒ“æ“¾ˆ—isŠÖ”
+  Description:	SVLãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å‡¦ç†é€²è¡Œé–¢æ•°
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
   Returns:		DWCSvcState
  *---------------------------------------------------------------------------*/
@@ -160,8 +160,8 @@ DWCSvlState DWC_SVLProcess(void)
 	DWCSvlState state;
 	state = DWC_Svl_Process();
 	if(state == DWC_SVL_STATE_ERROR || state == DWC_SVL_STATE_SUCCESS || state == DWC_SVL_STATE_CANCELED)
-		/* [nakata] DWC_SVL‚Ìƒ[ƒNƒGƒŠƒA‚ğŠJ•ú */
-		/* [nakata] “à•”‚ÅDWCƒGƒ‰[İ’èÏ‚İ */
+		/* [nakata] DWC_SVLã®ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã‚’é–‹æ”¾ */
+		/* [nakata] å†…éƒ¨ã§DWCã‚¨ãƒ©ãƒ¼è¨­å®šæ¸ˆã¿ */
 		DWC_Svl_Cleanup();
 	return state;
 }
@@ -169,11 +169,11 @@ DWCSvlState DWC_SVLProcess(void)
 /*---------------------------------------------------------------------------*
   Name:			DWC_SVLAbort
 
-  Description:	SVLƒg[ƒNƒ“æ“¾ˆ—isŠÖ”
+  Description:	SVLãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å‡¦ç†é€²è¡Œé–¢æ•°
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
-  Returns:		‚È‚µ
+  Returns:		ãªã—
  *---------------------------------------------------------------------------*/
 void DWC_SVLAbort(void)
 {
@@ -181,25 +181,25 @@ void DWC_SVLAbort(void)
 }
 
 /* =======================================================================
-        external function(NAS”FØŠÖ˜A)
+        external function(NASèªè¨¼é–¢é€£)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:			DWC_NASLoginAsync
 
-  Description:	NASƒƒOƒCƒ“ŠJn
+  Description:	NASãƒ­ã‚°ã‚¤ãƒ³é–‹å§‹
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
-  Returns:		TRUE  - ƒƒOƒCƒ“ˆ—ŠJn¬Œ÷
-				FALSE - ƒƒOƒCƒ“ˆ—ŠJn¸”s
+  Returns:		TRUE  - ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†é–‹å§‹æˆåŠŸ
+				FALSE - ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†é–‹å§‹å¤±æ•—
  *---------------------------------------------------------------------------*/
 BOOL DWC_NASLoginAsync(void)
 {
 	if(nalcnt != NULL)
 		OS_Panic("You can't request more than one NAS login request at once.\n");
 	
-	/* [nakata] “à•”ƒ[ƒNƒGƒŠƒA‚ğŠm•Û/‰Šú‰» */
+	/* [nakata] å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã‚’ç¢ºä¿/åˆæœŸåŒ– */
 	nalcnt = DWC_Alloc(DWC_ALLOCTYPE_BASE, sizeof(DWCNalCnt));
 	if(nalcnt == NULL) {
 		DWCi_SetError(DWC_ERROR_FATAL, -20100);
@@ -207,14 +207,14 @@ BOOL DWC_NASLoginAsync(void)
 	}
 	MI_CpuClear8(nalcnt, sizeof(DWCNalCnt));
 	
-	/* [nakata] Authƒpƒ‰ƒ[ƒ^‰Šú‰» */
-	/* [nakata] nalcnt->authparam.ingamesn‚Í‹ó•¶š—ñ */
-	/* [nakata] nalcnt->authparam.gsbrcd‚Í‹ó•¶š—ñ */
+	/* [nakata] Authãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ– */
+	/* [nakata] nalcnt->authparam.ingamesnã¯ç©ºæ–‡å­—åˆ— */
+	/* [nakata] nalcnt->authparam.gsbrcdã¯ç©ºæ–‡å­—åˆ— */
 	MI_CpuCopy8("", nalcnt->authparam.gsbrcd, 9);
 	nalcnt->authparam.alloc	= (DWCAuthAlloc)DWC_Alloc;
 	nalcnt->authparam.free	= (DWCAuthFree)DWC_Free;
 	
-	/* [nakata] AuthŠJn */
+	/* [nakata] Authé–‹å§‹ */
 #if 1
 	DWC_Auth_Create(&nalcnt->authparam, &nalcnt->http);
 #else
@@ -231,9 +231,9 @@ BOOL DWC_NASLoginAsync(void)
 /*---------------------------------------------------------------------------*
   Name:			DWC_NASLoginProcess
 
-  Description:	NASƒƒOƒCƒ“ˆ—is
+  Description:	NASãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†é€²è¡Œ
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
   Returns:		DWCNasLoginState
  *---------------------------------------------------------------------------*/
@@ -244,15 +244,15 @@ DWCNasLoginState DWC_NASLoginProcess(void)
 	if(nalcnt == NULL)
 		return DWC_NASLOGIN_STATE_DIRTY;
 	
-	/* [nakata] HTTP’ÊMó‘ÔŠm”F */
-	// [nakata] ‚±‚Ì•”•ª‚Ìˆ—‚Í•K—v‚È‚­A‚Ü‚½ƒoƒO‚ğ”­¶‚³‚¹‚Ä‚¢‚½‚Ì‚Åíœ‚µ‚½(DWC‚Ìloginˆ—‚É€‚¸‚éˆ—‚É‚È‚Á‚½)
+	/* [nakata] HTTPé€šä¿¡çŠ¶æ…‹ç¢ºèª */
+	// [nakata] ã“ã®éƒ¨åˆ†ã®å‡¦ç†ã¯å¿…è¦ãªãã€ã¾ãŸãƒã‚°ã‚’ç™ºç”Ÿã•ã›ã¦ã„ãŸã®ã§å‰Šé™¤ã—ãŸ(DWCã®loginå‡¦ç†ã«æº–ãšã‚‹å‡¦ç†ã«ãªã£ãŸ)
 	//if(nalcnt->http.thread.id == 0)
 	//	return DWC_NASLOGIN_STATE_IDLE;
 	
-	// [nakata] ƒXƒŒƒbƒhID‚ª‘¶İ‚µ‚Ä‚¢‚é‚½‚ßA“®ì‚É‚æ‚Á‚Ä•ªŠò‚·‚é
+	// [nakata] ã‚¹ãƒ¬ãƒƒãƒ‰IDãŒå­˜åœ¨ã—ã¦ã„ã‚‹ãŸã‚ã€å‹•ä½œã«ã‚ˆã£ã¦åˆ†å²ã™ã‚‹
 	switch(DWC_Auth_GetError()) {
 	case DWCAUTH_E_NOERR:
-		/* [nakata] HTTP’ÊM’† */
+		/* [nakata] HTTPé€šä¿¡ä¸­ */
 		return DWC_NASLOGIN_STATE_HTTP;
 	case DWCAUTH_E_FINISH:
 		DWC_Auth_Destroy();
@@ -260,7 +260,7 @@ DWCNasLoginState DWC_NASLoginProcess(void)
 		nalcnt = NULL;
 		return DWC_NASLOGIN_STATE_SUCCESS;
 	case DWCAUTH_E_ABORT:
-		/* [nakata] ’†’f‚Ìê‡‚É‚ÍƒGƒ‰[‚ğƒZƒbƒg‚µ‚È‚¢ */
+		/* [nakata] ä¸­æ–­ã®å ´åˆã«ã¯ã‚¨ãƒ©ãƒ¼ã‚’ã‚»ãƒƒãƒˆã—ãªã„ */
 		DWC_Auth_Destroy();
 		DWC_Free(DWC_ALLOCTYPE_BASE, nalcnt, sizeof(DWCNalCnt));
 		nalcnt = NULL;
@@ -278,11 +278,11 @@ DWCNasLoginState DWC_NASLoginProcess(void)
 /*---------------------------------------------------------------------------*
   Name:			DWC_NASLoginAbort
 
-  Description:	”C“V“°”FØƒT[ƒoƒƒOƒCƒ“ˆ—’†’fŠÖ”
+  Description:	ä»»å¤©å ‚èªè¨¼ã‚µãƒ¼ãƒãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†ä¸­æ–­é–¢æ•°
 
-  Arguments:	‚È‚µ
+  Arguments:	ãªã—
 
-  Returns:		‚È‚µ
+  Returns:		ãªã—
  *---------------------------------------------------------------------------*/
 void DWC_NASLoginAbort(void)
 {

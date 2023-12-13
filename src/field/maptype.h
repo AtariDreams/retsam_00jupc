@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	maptype.h
- * @brief	�}�b�v�̎�ގw��
+ * @brief	マップの種類指定
  * @date	2005.12.15
  *
  */
@@ -10,26 +10,26 @@
 #define	__MAPTYPE_H__
 //------------------------------------------------------------------
 /**
- * @brief	�}�b�v�̎�ގw��
+ * @brief	マップの種類指定
  *
- * ���ӁF�}�b�v�̎�ގw����ʂ̉ӏ��ŎQ�Ƃ��邱�Ƃ͋֎~����B
- * �܂�A
+ * 注意：マップの種類指定を個別の箇所で参照することは禁止する。
+ * つまり、
  *	if (maptype == MAPTYPE_FIELD) { ... }
- * �Ƃ����悤�ȃv���O�����͏����Ȃ��B
- * MAPTYPE�͍���ǉ������\�������邽�߁A�ʂ̃\�[�X�ł��̂悤��
- * �Q�Ɖӏ�������ƒǉ����s�\�ɂȂ��Ă��܂��B
- * maptype.c����MAPTYPE_IsFieldCheck()�Ƃ����悤�Ȋ֐����`���āA
- * �����ŎQ�Ƃ��s�����ƁB
+ * というようなプログラムは書かない。
+ * MAPTYPEは今後追加される可能性があるため、個別のソースでそのような
+ * 参照箇所があると追加が不可能になってしまう。
+ * maptype.c内にMAPTYPE_IsFieldCheck()というような関数を定義して、
+ * そこで参照を行うこと。
  */
 //------------------------------------------------------------------
 typedef enum {
-	MAPTYPE_NOWHERE = 0,		///<�ǂ��ł��Ȃ��B�Q�Ƃ���Ȃ��͂�
-	MAPTYPE_TOWN,				///<��
-	MAPTYPE_ROAD,				///<���H
-	MAPTYPE_CAVE,				///<���A�i�o���G�[�V�����ǉ������\������j
-	MAPTYPE_ROOM,				///<�����i�o���G�[�V�����ǉ������\������j
-	MAPTYPE_POKECEN,			///<�|�P�Z��
-	MAPTYPE_UNDERGROUND,		///<���񂱂�
+	MAPTYPE_NOWHERE = 0,		///<どこでもない。参照されないはず
+	MAPTYPE_TOWN,				///<町
+	MAPTYPE_ROAD,				///<道路
+	MAPTYPE_CAVE,				///<洞窟（バリエーション追加される可能性あり）
+	MAPTYPE_ROOM,				///<部屋（バリエーション追加される可能性あり）
+	MAPTYPE_POKECEN,			///<ポケセン
+	MAPTYPE_UNDERGROUND,		///<たんこう
 }MAPTYPE;
 
 #endif	//	__MAPTYPE_H__

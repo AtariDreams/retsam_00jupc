@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_recv.h
- * @brief	‘Sˆõ‚Ìƒf[ƒ^‚ð‚Ü‚Æ‚ß‚ÄŒŸ¸‚µ‚½‚¢ê‡‚±‚±‚É‹Lq‚µ‚Ü‚·
+ * @brief	å…¨å“¡ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã¾ã¨ã‚ã¦æ¤œæŸ»ã—ãŸã„å ´åˆã“ã“ã«è¨˜è¿°ã—ã¾ã™
  * @author	Katsumi Ohno
  * @date    2005.07.12
  */
@@ -12,22 +12,22 @@
 #define _COMM_RECV_H_
 
 //==============================================================================
-// externéŒ¾
+// externå®£è¨€
 //==============================================================================
 
-/// ƒƒr[‚ð”²‚¯‚é–½—ß‚ª‚«‚½‚©‚Ç‚¤‚©
+/// ãƒ­ãƒ“ãƒ¼ã‚’æŠœã‘ã‚‹å‘½ä»¤ãŒããŸã‹ã©ã†ã‹
 extern BOOL CommRecvIsExitRobby(void);
-/// I—¹ƒLƒƒƒ“ƒZƒ‹‚ðŽóM
+/// çµ‚äº†ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã‚’å—ä¿¡
 extern BOOL CommRecvIsExitCancel(void);
-/// I—¹‚ðŽóM
+/// çµ‚äº†ã‚’å—ä¿¡
 extern BOOL CommRecvIsExit(void);
-/// ‘Sˆõ‚ÌI—¹‚ðŽóM
+/// å…¨å“¡ã®çµ‚äº†ã‚’å—ä¿¡
 extern BOOL CommRecvIsExitAll(void);
-/// ‘Sˆõ‚ªƒQƒXƒgƒ‹[ƒ€‚És‚­‚±‚Æ‚ð³‘ø‚µ‚½
+/// å…¨å“¡ãŒã‚²ã‚¹ãƒˆãƒ«ãƒ¼ãƒ ã«è¡Œãã“ã¨ã‚’æ‰¿è«¾ã—ãŸ
 extern BOOL CommRecvIsPleaseGuestRoomAll(void);
-/// I—¹ƒRƒ}ƒ“ƒh‚ðŽóM‚µ‚½‚çƒ‚[ƒh‚É‰ž‚¶‚Äˆ—‚ðs‚¢Ž©“®Ø’f‚·‚é
+/// çµ‚äº†ã‚³ãƒžãƒ³ãƒ‰ã‚’å—ä¿¡ã—ãŸã‚‰ãƒ¢ãƒ¼ãƒ‰ã«å¿œã˜ã¦å‡¦ç†ã‚’è¡Œã„è‡ªå‹•åˆ‡æ–­ã™ã‚‹
 extern void CommAutoExitCommandFunc(void);
-/// Ž©“®I—¹ƒRƒ}ƒ“ƒhŽóM
+/// è‡ªå‹•çµ‚äº†ã‚³ãƒžãƒ³ãƒ‰å—ä¿¡
 extern void CommRecvAutoExit(int netID, int size, void* pData, void* pWork);
 
 

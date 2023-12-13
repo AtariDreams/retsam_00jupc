@@ -59,7 +59,7 @@ static const char*  GetStrNNSG2dCharacterDataMapingType_ ( GXOBJVRamModeChar typ
 
  
 //------------------------------------------------------------------------------
-// OBJ —p  (BG—p‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚É‚ÍANNS_G2dGetUnpackedBGCharacterData()‚ğ‚²—˜—p‚­‚¾‚³‚¢B)
+// OBJ ç”¨  (BGç”¨ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã«ã¯ã€NNS_G2dGetUnpackedBGCharacterData()ã‚’ã”åˆ©ç”¨ãã ã•ã„ã€‚)
 //------------------------------------------------------------------------------
 BOOL NNS_G2dGetUnpackedCharacterData( void* pNcgrFile, NNSG2dCharacterData** ppCharData )
 {
@@ -109,7 +109,7 @@ void NNS_G2dUnpackNCG( NNSG2dCharacterData* pCharData )
         = NNS_G2D_UNPACK_OFFSET_PTR( pCharData->pRawData, pCharData );
     
     //
-    // ƒpƒ‰ƒ[ƒ^ŒQ‚Ì³“–«
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç¾¤ã®æ­£å½“æ€§
     //
     NNS_G2D_MINMAX_ASSERT( pCharData->pixelFmt
         , GX_TEXFMT_PLTT16, GX_TEXFMT_PLTT256 );
@@ -121,7 +121,7 @@ void NNS_G2dUnpackNCG( NNSG2dCharacterData* pCharData )
         , NNS_G2D_CHARACTER_FMT_CHAR, NNS_G2D_CHARACTER_FMT_MAX );
     
     //
-    // 2D ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚Ì‚É‚Í—LŒø‚ÈƒTƒCƒY‚©Šm”F‚ğ‚·‚é
+    // 2D ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã«ã¯æœ‰åŠ¹ãªã‚µã‚¤ã‚ºã‹ç¢ºèªã‚’ã™ã‚‹
     //
     if( (pCharData->characterFmt == NNS_G2D_CHARACTER_FMT_CHAR)
     	&& (pCharData->mapingType == GX_OBJVRAMMODE_CHAR_2D) )
@@ -139,7 +139,7 @@ void NNS_G2dUnpackNCG( NNSG2dCharacterData* pCharData )
 
 
 //------------------------------------------------------------------------------
-// BG —p (OBJ—p‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚É‚ÍANNS_G2dGetUnpackedCharacterData()‚ğ‚²—˜—p‚­‚¾‚³‚¢B)
+// BG ç”¨ (OBJç”¨ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã«ã¯ã€NNS_G2dGetUnpackedCharacterData()ã‚’ã”åˆ©ç”¨ãã ã•ã„ã€‚)
 //------------------------------------------------------------------------------
 BOOL NNS_G2dGetUnpackedBGCharacterData( void* pNcgrFile, NNSG2dCharacterData** ppCharData )
 {
@@ -181,23 +181,23 @@ BOOL NNS_G2dGetUnpackedBGCharacterData( void* pNcgrFile, NNSG2dCharacterData** p
 }
 
 //------------------------------------------------------------------------------
-// ˆÊ’uî•ñƒuƒƒbƒN‚Ìæ“¾
+// ä½ç½®æƒ…å ±ãƒ–ãƒ­ãƒƒã‚¯ã®å–å¾—
 //------------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetUnpackedCharacterPosInfo
 
-  Description:  NCBR NCGR ƒtƒ@ƒCƒ‹‚©‚çAƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒ[ƒhˆÊ’uî•ñƒuƒƒbƒN‚ğæ“¾‚µ‚Ü‚·B
+  Description:  NCBR NCGR ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ä½ç½®æƒ…å ±ãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-                ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒ[ƒhˆÊ’uî•ñƒuƒƒbƒN‚ÍAƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğVRAM‚É“Ç‚İ‚ŞÛ
-                ‚Ç‚ÌˆÊ’u‚Éƒ[ƒh‚³‚ê‚é‚×‚«ƒf[ƒ^‚Å‚ ‚é‚©‚Æ‚¢‚¤î•ñ‚ğ•\‚µ‚Ä‚¢‚Ü‚·B
+                ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ä½ç½®æƒ…å ±ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’VRAMã«èª­ã¿è¾¼ã‚€éš›
+                ã©ã®ä½ç½®ã«ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã‚‹ã¹ããƒ‡ãƒ¼ã‚¿ã§ã‚ã‚‹ã‹ã¨ã„ã†æƒ…å ±ã‚’è¡¨ã—ã¦ã„ã¾ã™ã€‚
                 
-                ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒ[ƒhˆÊ’uî•ñƒuƒƒbƒN‚ÍA
-                2D ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ÅŠi”[‚³‚ê‚Ä‚¢‚é NCGR, NCBR ƒtƒ@ƒCƒ‹‚Ì‚İ‚Åæ“¾‰Â”\‚Å‚·B
+                ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ä½ç½®æƒ…å ±ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€
+                2D ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã§æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ NCGR, NCBR ãƒ•ã‚¡ã‚¤ãƒ«ã®ã¿ã§å–å¾—å¯èƒ½ã§ã™ã€‚
                 
-  Arguments:    pNcgrFile         NCGƒtƒ@ƒCƒ‹‚ğ‚³‚·ƒ|ƒCƒ“ƒ^
-                ppCharPosInfo     ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒ[ƒhˆÊ’uî•ñ
+  Arguments:    pNcgrFile         NCGãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã•ã™ãƒã‚¤ãƒ³ã‚¿
+                ppCharPosInfo     ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ä½ç½®æƒ…å ±
                                     
-  Returns:      æ“¾‚É¬Œ÷‚µ‚½ê‡ TRUE
+  Returns:      å–å¾—ã«æˆåŠŸã—ãŸå ´åˆ TRUE
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dGetUnpackedCharacterPosInfo
@@ -247,7 +247,7 @@ void NNS_G2dUnpackBGNCG( NNSG2dCharacterData* pCharData )
         = NNS_G2D_UNPACK_OFFSET_PTR( pCharData->pRawData, pCharData );
     
     //
-    // ƒpƒ‰ƒ[ƒ^ŒQ‚Ì³“–«
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç¾¤ã®æ­£å½“æ€§
     //
     NNS_G2D_MINMAX_ASSERT( pCharData->pixelFmt
         , GX_TEXFMT_PLTT16, GX_TEXFMT_PLTT256 );
@@ -255,7 +255,7 @@ void NNS_G2dUnpackBGNCG( NNSG2dCharacterData* pCharData )
     NNS_G2D_MINMAX_ASSERT( pCharData->mapingType
         , GX_OBJVRAMMODE_CHAR_2D, GX_OBJVRAMMODE_CHAR_1D_256K );
         
-	// ƒLƒƒƒ‰ƒNƒ^Œ`®‚Ì‚İOKABMPŒ`®‚ÍNG
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å½¢å¼ã®ã¿OKã€BMPå½¢å¼ã¯NG
     NNS_G2D_ASSERT( NNSi_G2dGetCharacterFmtType( pCharData->characterFmt )
     	== NNS_G2D_CHARACTER_FMT_CHAR );
 
@@ -265,12 +265,12 @@ void NNS_G2dUnpackBGNCG( NNSG2dCharacterData* pCharData )
 
 
 //------------------------------------------------------------------------------
-// ‹¤’Ê
+// å…±é€š
 //------------------------------------------------------------------------------
 #ifndef SDK_FINALROM 
 
 //------------------------------------------------------------------------------
-// ƒfƒoƒbƒNî•ño—Í(ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^)
+// ãƒ‡ãƒãƒƒã‚¯æƒ…å ±å‡ºåŠ›(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿)
 void NNS_G2dPrintCharacterData( const NNSG2dCharacterData* pCharData )
 {
     NNS_G2D_NULL_ASSERT( pCharData );
@@ -282,7 +282,7 @@ void NNS_G2dPrintCharacterData( const NNSG2dCharacterData* pCharData )
         OS_Printf( " szByte         = %d \n", pCharData->szByte );
         
         //
-        // ‚PDƒ}ƒbƒsƒ“ƒO‚É‚Í H,W ‚É‚Í NNS_G2D_1D_MAPPING_CHAR_SIZE ‚ªƒRƒ“ƒo[ƒ^ƒc[ƒ‹‚É‚Äİ’è‚³‚ê‚Ü‚·
+        // ï¼‘Dãƒãƒƒãƒ”ãƒ³ã‚°æ™‚ã«ã¯ H,W ã«ã¯ NNS_G2D_1D_MAPPING_CHAR_SIZE ãŒã‚³ãƒ³ãƒãƒ¼ã‚¿ãƒ„ãƒ¼ãƒ«ã«ã¦è¨­å®šã•ã‚Œã¾ã™
         //
         {
             if( pCharData->W == NNS_G2D_1D_MAPPING_CHAR_SIZE )
@@ -309,7 +309,7 @@ void NNS_G2dPrintCharacterData( const NNSG2dCharacterData* pCharData )
 }
 
 //------------------------------------------------------------------------------
-// ƒfƒoƒbƒNî•ño—Í(ƒLƒƒƒ‰ƒNƒ^ˆÊ’uî•ñ)
+// ãƒ‡ãƒãƒƒã‚¯æƒ…å ±å‡ºåŠ›(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ä½ç½®æƒ…å ±)
 void NNS_G2dPrintCharacterPosInfo( const NNSG2dCharacterPosInfo* pPosInfo )
 {
     NNS_G2D_NULL_ASSERT( pPosInfo );

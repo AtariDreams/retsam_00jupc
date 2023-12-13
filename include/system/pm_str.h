@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pm_str.h
- * @brief	������֘A����
+ * @brief	文字列関連処理
  * @author	Hiroyuki Nakamura
  * @date	2004.11.02
  */
@@ -9,7 +9,7 @@
 #ifndef PM_STR_H
 #define PM_STR_H
 
-#include "gflib/msg_print.h"	// STRCODE ��`�̂���
+#include "gflib/msg_print.h"	// STRCODE 定義のため
 
 #undef GLOBAL
 #ifdef PM_STR_H_GLOBAL
@@ -20,17 +20,17 @@
 
 
 //============================================================================================
-//	�V���{����`
+//	シンボル定義
 //============================================================================================
 enum {
-	NUM_MODE_LEFT = 0,		// ���l
-	NUM_MODE_SPACE,			// �E�l�A����Ȃ������͋�
-	NUM_MODE_ZERO			// �E�l�A����Ȃ������͐����̃[��
+	NUM_MODE_LEFT = 0,		// 左詰
+	NUM_MODE_SPACE,			// 右詰、足りない部分は空白
+	NUM_MODE_ZERO			// 右詰、足りない部分は数字のゼロ
 };
 
 
 //============================================================================================
-//	�O���[�o���ϐ�
+//	グローバル変数
 //============================================================================================
 #ifndef PM_STR_H_GLOBAL
 GLOBAL STRCODE	MsgExpandBuffer[];
@@ -38,228 +38,228 @@ GLOBAL STRCODE	MsgExpandBuffer[];
 
 
 //============================================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ������R�s�[
+ * 文字列コピー
  *
- * @param	to_str		�R�s�[��o�b�t�@
- * @param	from_str	������f�[�^
+ * @param	to_str		コピー先バッファ
+ * @param	from_str	文字列データ
  *
- * @return	�o�b�t�@�ɃR�s�[�����f�[�^�Ō��EOM_�ւ̃|�C���^
+ * @return	バッファにコピーしたデータ最後のEOM_へのポインタ
  *
- *	�f�[�^���Ȃ�(������f�[�^�擪��EOM_������)�ꍇ�A
- *	EOM_���o�b�t�@�擪�ɏ������݁A�����ւ̃|�C���^��Ԃ�
+ *	データがない(文字列データ先頭がEOM_だった)場合、
+ *	EOM_をバッファ先頭に書きこみ、そこへのポインタを返す
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u16 * PM_strcpy( u16 * to_str, const u16 * from_str );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ������R�s�[�i�������w��j
+ * 文字列コピー（文字数指定）
  *
- * @param	to_str		�R�s�[��o�b�t�@
- * @param	from_str	������f�[�^
- * @param	len			�R�s�[���镶����
+ * @param	to_str		コピー先バッファ
+ * @param	from_str	文字列データ
+ * @param	len			コピーする文字数
  *
- * @return	�u�R�s�[��o�b�t�@ + �R�s�[���镶�����v�ւ̃|�C���^
+ * @return	「コピー先バッファ + コピーする文字数」へのポインタ
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL STRCODE * PM_strncpy( STRCODE* to_str, const STRCODE* from_str, u32 len );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ������A��
+ * 文字列連結
  *
- * @param	to_str		�A�������f�[�^�iram��ɂ��邱�ƁI�I�j
- * @param	from_str	�A������f�[�^
+ * @param	to_str		連結されるデータ（ram上にあること！！）
+ * @param	from_str	連結するデータ
  *
- * @return	�A����̃o�b�t�@��̃f�[�^����EOM_�ւ̃|�C���^
+ * @return	連結後のバッファ上のデータ末のEOM_へのポインタ
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL STRCODE* PM_strcat( STRCODE* to_str, const STRCODE* from_str );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ������A���i�������w��j
+ * 文字列連結（文字数指定）
  *
- * @param	to_str		�A�������f�[�^�iram��ɂ��邱�ƁI�I�j
- * @param	from_str	�A������f�[�^
- * @param	len			�A�����镶����
+ * @param	to_str		連結されるデータ（ram上にあること！！）
+ * @param	from_str	連結するデータ
+ * @param	len			連結する文字数
  *
- * @return	�A����̃o�b�t�@��̃f�[�^���ւ̃|�C���^��Ԃ�
+ * @return	連結後のバッファ上のデータ末へのポインタを返す
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL STRCODE* PM_strncat( STRCODE* to_str, const STRCODE* from_str, u32 len );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �����񒷎擾
+ * 文字列長取得
  *
- * @param	str		�Ώە�����ւ̃|�C���^
+ * @param	str		対象文字列へのポインタ
  *
- * @return	�Ώە�����̒����iEOM_�܂ł̕������j��Ԃ�
+ * @return	対象文字列の長さ（EOM_までの文字数）を返す
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u32 PM_strlen( const STRCODE* str );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �������r
+ * 文字列比較
  *
- * @param	s		�Ώە�����ւ̃|�C���^
- * @param	t		�Ώە�����ւ̃|�C���^
+ * @param	s		対象文字列へのポインタ
+ * @param	t		対象文字列へのポインタ
  *
- * @retval	"0 = ��v"
- * @retval	"1 = �s��v"
+ * @retval	"0 = 一致"
+ * @retval	"1 = 不一致"
  *
- * @li	�b�W���֐��ƈႢ�����̔�r�͂��Ă��Ȃ�
+ * @li	Ｃ標準関数と違い長さの比較はしていない
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL BOOL PM_strcmp( const STRCODE* s, const STRCODE* t );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �������r�i�������w��j
+ * 文字列比較（文字数指定）
  *
- * @param	s		�Ώە�����ւ̃|�C���^
- * @param	t		�Ώە�����ւ̃|�C���^
- * @param	n		��r���镶����
+ * @param	s		対象文字列へのポインタ
+ * @param	t		対象文字列へのポインタ
+ * @param	n		比較する文字数
  *
- * @retval	"0 = ��v"
- * @retval	"1 = �s��v"
+ * @retval	"0 = 一致"
+ * @retval	"1 = 不一致"
  *
- * @li	�b�W���֐��ƈႢ�����̔�r�͂��Ă��Ȃ�
+ * @li	Ｃ標準関数と違い長さの比較はしていない
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL BOOL PM_strncmp( const STRCODE* s, const STRCODE* t, u32 n );
 
 //--------------------------------------------------------------------------------------------
 /**	
- * ��������̓`�F�b�N
+ * 文字列入力チェック
  *
- * @param	str		�Ώە�����ւ̃|�C���^
- * @param	n		�`�F�b�N���镶����
+ * @param	str		対象文字列へのポインタ
+ * @param	n		チェックする文字数
  *
  * 
- * @retval	"1 = ���͂���"
- * @retval	"0 = ���͂Ȃ�"
+ * @retval	"1 = 入力あり"
+ * @retval	"0 = 入力なし"
  *
- * @li	�w�肳�ꂽ�o�b�t�@�ɋ󔒂�EOM�ȊO�̃R�[�h���܂܂�Ă��邩�`�F�b�N
+ * @li	指定されたバッファに空白とEOM以外のコードが含まれているかチェック
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL BOOL PM_strnchk( STRCODE* str, u32 n );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ������o�b�t�@���w�蕶���R�[�h�ŃN���A
+ * 文字列バッファを指定文字コードでクリア
  *
- * @param	str		������o�b�t�@
- * @param	code	�����R�[�h
- * @param	len		�N���A���镶����
+ * @param	str		文字列バッファ
+ * @param	code	文字コード
+ * @param	len		クリアする文字数
  *
- * @return	EOM_ �A�h���X
+ * @return	EOM_ アドレス
 */
 //--------------------------------------------------------------------------------------------
 GLOBAL STRCODE* PM_strclear( STRCODE * str, STRCODE code, u32 len );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ������o�b�t�@��EOM_�R�[�h�ŃN���A
+ * 文字列バッファをEOM_コードでクリア
  *
- * @param	str		������o�b�t�@
- * @param	len		�N���A���镶����
+ * @param	str		文字列バッファ
+ * @param	len		クリアする文字数
  *
- * @return	�N���A�I�[��EOM_ �A�h���X
+ * @return	クリア終端のEOM_ アドレス
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL STRCODE * PM_strclearEOM_( STRCODE * str, u32 len );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ������R�s�[��A�w�蕶�����ɖ����Ȃ��������A�w�蕶���R�[�h�ŃN���A
+ * 文字列コピー後、指定文字数に満たない分だけ、指定文字コードでクリア
  *
- * @param	to		�R�s�[�敶����o�b�t�@
- * @param	from	�R�s�[��������
- * @param	code	�N���A�����R�[�h
- * @param	len		�S�̂̕�����
+ * @param	to		コピー先文字列バッファ
+ * @param	from	コピー元文字列
+ * @param	code	クリア文字コード
+ * @param	len		全体の文字数
  *
- * @return	EOM_ �A�h���X
+ * @return	EOM_ アドレス
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL STRCODE* PM_strcpy_clear( STRCODE* to, const STRCODE* from, STRCODE code, u32 len );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���l�𕶎���ɕϊ��i�P�O�i�j
+ * 数値を文字列に変換（１０進）
  *
- * @param	buf		������W�J�ꏊ
- * @param	num		���l
- * @param	type	�ϊ�����
- * @param	keta	����
+ * @param	buf		文字列展開場所
+ * @param	num		数値
+ * @param	type	変換方式
+ * @param	keta	桁数
  *
- * @return	���l�̌��ɏ�������EOM_�ւ̃|�C���^
+ * @return	数値の後ろに書きこんだEOM_へのポインタ
  *
- * @li	type = NUM_MODE_LEFT	���l
- * @li	type = NUM_MODE_SPACE	�E�l�A����Ȃ������͋�
- * @li	type = NUM_MODE_ZERO	�E�l�A����Ȃ������͐����̃[��
+ * @li	type = NUM_MODE_LEFT	左詰
+ * @li	type = NUM_MODE_SPACE	右詰、足りない部分は空白
+ * @li	type = NUM_MODE_ZERO	右詰、足りない部分は数字のゼロ
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL STRCODE* PM_NumMsgSet( STRCODE* buf, s32 num, u32 type, u32 keta );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���l�𕶎���ɕϊ��i�P�O�i�A�}�C�i�X�͂Ȃ��j
+ * 数値を文字列に変換（１０進、マイナスはなし）
  *
- * @param	buf		������W�J�ꏊ
- * @param	num		���l
- * @param	type	�ϊ�����
- * @param	keta	����
+ * @param	buf		文字列展開場所
+ * @param	num		数値
+ * @param	type	変換方式
+ * @param	keta	桁数
  *
- * @return	���l�̌��ɏ�������EOM_�ւ̃|�C���^
+ * @return	数値の後ろに書きこんだEOM_へのポインタ
  *
- * @li	type = NUM_MODE_LEFT	���l
- * @li	type = NUM_MODE_SPACE	�E�l�A����Ȃ������͋�
- * @li	type = NUM_MODE_ZERO	�E�l�A����Ȃ������͐����̃[��
+ * @li	type = NUM_MODE_LEFT	左詰
+ * @li	type = NUM_MODE_SPACE	右詰、足りない部分は空白
+ * @li	type = NUM_MODE_ZERO	右詰、足りない部分は数字のゼロ
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL STRCODE* PM_NumMsgSetUnsigned( STRCODE* buf, u32 num, u32 type, u32 keta );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���l�𕶎���ɕϊ��i�P�U�i�j
+ * 数値を文字列に変換（１６進）
  *
- * @param	buf		������W�J�ꏊ
- * @param	num		���l
- * @param	type	�ϊ�����
- * @param	keta	����
+ * @param	buf		文字列展開場所
+ * @param	num		数値
+ * @param	type	変換方式
+ * @param	keta	桁数
  *
- * @return	���l�̌��ɏ�������EOM_�ւ̃|�C���^
+ * @return	数値の後ろに書きこんだEOM_へのポインタ
  *
- * @li	type = NUM_MODE_LEFT	���l
- * @li	type = NUM_MODE_SPACE	�E�l�A����Ȃ������͋�
- * @li	type = NUM_MODE_ZERO	�E�l�A����Ȃ������͐����̃[��
+ * @li	type = NUM_MODE_LEFT	左詰
+ * @li	type = NUM_MODE_SPACE	右詰、足りない部分は空白
+ * @li	type = NUM_MODE_ZERO	右詰、足りない部分は数字のゼロ
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL STRCODE* PM_HexNumMsgSet( STRCODE* buf, s32 num, u32 type, u32 keta );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���b�Z�[�W�W�J�����iS_MSG_���݁j
+ * メッセージ展開処理（S_MSG_込み）
  *
- * @param	buf		�W�J��
- * @param	data	�����b�Z�[�W
+ * @param	buf		展開先
+ * @param	data	元メッセージ
  *
- * @return	EOM_�̃A�h���X
+ * @return	EOM_のアドレス
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL STRCODE* PM_MsgExpand( STRCODE* buf, const STRCODE* data );
 
 //--------------------------------------------------------------------------------------------
 /**
- * S_MSG_����������
+ * S_MSG_初期化処理
  *
  * @param	none
  *
@@ -270,10 +270,10 @@ GLOBAL void MsgExp_Init(void);
 
 //--------------------------------------------------------------------------------------------
 /**
- * S_MSG_�ݒ菈��
+ * S_MSG_設定処理
  *
  * @param	id		ID
- * @param	str		�Z�b�g���镶����
+ * @param	str		セットする文字列
  *
  * @return	none
  */
@@ -283,17 +283,17 @@ GLOBAL void MsgExp_AdrsSet( u32 id, const STRCODE* str );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���l�𕶎���ɕϊ� ( str )
+ * 数値を文字列に変換 ( str )
  *
- * @param	str		������i�[�ꏊ
- * @param	num		�ϊ����鐔�l
- * @param	keta	��
+ * @param	str		文字列格納場所
+ * @param	num		変換する数値
+ * @param	keta	桁
  *
  * @return	none
  *
- * @li	�t�@�C�����̍쐬�ȂǂɎg�p����֐��B
- * @li	keta = 0  : ���l��
- * @li	keta != 0 : 0�Ŗ��߂�
+ * @li	ファイル名の作成などに使用する関数。
+ * @li	keta = 0  : 左詰め
+ * @li	keta != 0 : 0で埋める
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void StrNumSet( char* str, u32 num, u32 keta );

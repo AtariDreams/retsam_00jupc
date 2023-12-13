@@ -29,9 +29,9 @@ rebooter_init()
 {
 // [for pokemon_dp download] ---
     /*
-     * ‹N“®Žž‚É 1 ‰ñ‚±‚ÌŠÖ”‚ðŒÄ‚Ño‚µ‚Ä‚¨‚«‚Ü‚·.
-     * ‚±‚Ìˆ—‚Í, ‰‰ñ‚É‹N“®‚µ‚½–{‘ÌƒvƒƒOƒ‰ƒ€Ž©g‚©‚ç‚à
-     * Ä‹N“®‚µ‚½•ÊƒvƒƒOƒ‰ƒ€‚©‚ç‚àŒÄ‚Ño‚·•K—v‚ª‚ ‚è‚Ü‚·.
+     * èµ·å‹•æ™‚ã« 1 å›žã“ã®é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¦ãŠãã¾ã™.
+     * ã“ã®å‡¦ç†ã¯, åˆå›žã«èµ·å‹•ã—ãŸæœ¬ä½“ãƒ—ãƒ­ã‚°ãƒ©ãƒ è‡ªèº«ã‹ã‚‰ã‚‚
+     * å†èµ·å‹•ã—ãŸåˆ¥ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‹ã‚‰ã‚‚å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚Šã¾ã™.
      */
     NormalizeRomArchive();
 }
@@ -42,8 +42,8 @@ void
 rebooter(const char *path)
 {
 	/*
-	 * ƒQ[ƒ€‘I‘ð‰æ–Ê‚ð‹N“®‚µ, Žw’è‚µ‚½ƒvƒƒOƒ‰ƒ€‚ðƒŠƒu[ƒg‚µ‚Ü‚·.
-	 * ƒŠƒu[ƒgŒãŽÀs‚µ‚½‚¢ƒtƒ@ƒCƒ‹‚ðHW_ROM_BASE_OFFSET_BUF‚ÉŽw’è‚µ‚Ä‚¨‚«‚Ü‚·B
+	 * ã‚²ãƒ¼ãƒ é¸æŠžç”»é¢ã‚’èµ·å‹•ã—, æŒ‡å®šã—ãŸãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ãƒªãƒ–ãƒ¼ãƒˆã—ã¾ã™.
+	 * ãƒªãƒ–ãƒ¼ãƒˆå¾Œå®Ÿè¡Œã—ãŸã„ãƒ•ã‚¡ã‚¤ãƒ«ã‚’HW_ROM_BASE_OFFSET_BUFã«æŒ‡å®šã—ã¦ãŠãã¾ã™ã€‚
 	 */
 
 	FSFile file;

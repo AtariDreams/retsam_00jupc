@@ -29,12 +29,12 @@
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbInit
 
-    NNS_G3dGlb�\���̂̃C�j�V�����C�Y
+    NNS_G3dGlb構造体のイニシャライズ
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dGlbInit(void)
 {
-    // �萔�̐ݒ�
+    // 定数の設定
     NNS_G3dGlb.cmd0 = GX_PACK_OP(G3OP_MTX_MODE, G3OP_MTX_LOAD_4x4, G3OP_MTX_MODE, G3OP_MTX_LOAD_4x3);
     NNS_G3dGlb.mtxmode_proj   = GX_MTXMODE_PROJECTION;
     NNS_G3dGlb.mtxmode_posvec = GX_MTXMODE_POSITION_VECTOR;
@@ -47,17 +47,17 @@ NNS_G3dGlbInit(void)
 
     NNS_G3dGlb.cmd4 = GX_PACK_OP(G3OP_MTX_MULT_4x3, G3OP_MTX_SCALE, G3OP_TEXIMAGE_PARAM, G3OP_NOP);
         
-    // ���ꂼ���P�ʍs��ɃZ�b�g
+    // それぞれを単位行列にセット
     MTX_Identity43(&NNS_G3dGlb.cameraMtx);
     MTX_Identity44(&NNS_G3dGlb.projMtx);
 
-    // ���C�g�x�N�g���́A�s���łȂ��l�ɐݒ�
+    // ライトベクトルは、不当でない値に設定
     NNS_G3dGlb.lightVec[0] = GX_PACK_LIGHTVECTOR_PARAM(0, -FX16_SQRT1_3, -FX16_SQRT1_3, -FX16_SQRT1_3);
     NNS_G3dGlb.lightVec[1] = GX_PACK_LIGHTVECTOR_PARAM(1, -FX16_ONE, 0, 0);
     NNS_G3dGlb.lightVec[2] = GX_PACK_LIGHTVECTOR_PARAM(2,  FX16_ONE - 1, 0, 0);
     NNS_G3dGlb.lightVec[3] = GX_PACK_LIGHTVECTOR_PARAM(3, 0, -FX16_ONE, 0);
 
-    // �ݒ�}�e���A���J���[�͕ύX�̉\������
+    // 設定マテリアルカラーは変更の可能性あり
     NNS_G3dGlb.prmMatColor0 = GX_PACK_DIFFAMB_PARAM(GX_RGB(16, 16, 16),
                                                     GX_RGB(16, 16, 16),
                                                     TRUE);
@@ -65,8 +65,8 @@ NNS_G3dGlbInit(void)
                                                     GX_RGB(16, 16, 16),
                                                     TRUE);
 
-    // PolygonAttr�͖���Ȑݒ�ɂ��Ă���
-    NNS_G3dGlb.prmPolygonAttr = GX_PACK_POLYGONATTR_PARAM(0xf,  // ���C�gON
+    // PolygonAttrは無難な設定にしておく
+    NNS_G3dGlb.prmPolygonAttr = GX_PACK_POLYGONATTR_PARAM(0xf,  // ライトON
                                                           GX_POLYGONMODE_MODULATE,
                                                           GX_CULL_BACK,
                                                           0,  // PolygonID
@@ -105,12 +105,12 @@ NNS_G3dGlbInit(void)
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbFlushP
 
-    NNSG3dGlb�̓��e���W�I���g���G���W���ɔ��f������B
-    �J�����g�ˉe�s��ɂ͎ˉe�ϊ��s�񂪐ݒ肳���B
-    �J�����g�ʒu���W�s��ɂ̓J�����s��ƃ��[���h�ϊ��s��������������̂��ݒ肳���B
+    NNSG3dGlbの内容をジオメトリエンジンに反映させる。
+    カレント射影行列には射影変換行列が設定される。
+    カレント位置座標行列にはカメラ行列とワールド変換行列を合成したものが設定される。
 
-    Color���𑗂�̂́A�����Ȃ�Sbc��SHP�R�}���h������悤�ȏꍇ�ɔ����Ă���B
-    �R�}���h���������ꂽ��́APOSITION/VECTOR���[�h�ɂȂ��Ă���B
+    Color等を送るのは、いきなりSbcのSHPコマンドが来るような場合に備えている。
+    コマンドが処理された後は、POSITION/VECTORモードになっている。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dGlbFlushP(void)
@@ -162,7 +162,7 @@ NNS_G3dGlbFlushP(void)
     NNS_G3dGlb.flag &= ~NNS_G3D_GLB_FLAG_FLUSH_WVP;
     NNS_G3dGlb.flag &= ~NNS_G3D_GLB_FLAG_FLUSH_VP;
     //
-    // �R�}���h�̏������POSITION/VECTOR���[�h�ɂȂ��Ă���B
+    // コマンドの処理後はPOSITION/VECTORモードになっている。
     //
 }
 
@@ -170,12 +170,12 @@ NNS_G3dGlbFlushP(void)
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbFlushVP
 
-    NNSG3dGlb�̓��e���W�I���g���G���W���ɔ��f������B
-    �J�����g�ˉe�s��ɂ͎ˉe�ϊ��s��ƃJ�����s��������������̂��ݒ肳���B
-    �J�����g�ʒu���W�s��ɂ̓��[���h�ϊ��s�񂪐ݒ肳���B
+    NNSG3dGlbの内容をジオメトリエンジンに反映させる。
+    カレント射影行列には射影変換行列とカメラ行列を合成したものが設定される。
+    カレント位置座標行列にはワールド変換行列が設定される。
 
-    Color���𑗂�̂́A�����Ȃ�Sbc��SHP�R�}���h������悤�ȏꍇ�ɔ����Ă���B
-    �R�}���h���������ꂽ��́APOSITION/VECTOR���[�h�ɂȂ��Ă���B
+    Color等を送るのは、いきなりSbcのSHPコマンドが来るような場合に備えている。
+    コマンドが処理された後は、POSITION/VECTORモードになっている。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dGlbFlushVP(void)
@@ -217,13 +217,13 @@ NNS_G3dGlbFlushVP(void)
                                        (G3OP_MTX_SCALE << 8)    |
                                        (G3OP_TEXIMAGE_PARAM << 16)));
 
-    // Projection�s�񃂁[�h�ɂ���Projection�s���ݒ�
+    // Projection行列モードにしてProjection行列を設定
     NNS_G3dGeBufferOP_N(GX_PACK_OP(G3OP_MTX_MODE, G3OP_MTX_LOAD_4x4, G3OP_NOP, G3OP_NOP),
                         (u32*)&NNS_G3dGlb.mtxmode_proj,
                         (sizeof(NNS_G3dGlb.mtxmode_proj) +
                          sizeof(NNS_G3dGlb.projMtx)) / 4);    
 
-    // Projection�s��ɃJ�����s���������
+    // Projection行列にカメラ行列をかける
     NNS_G3dGeBufferOP_N((G3OP_MTX_MULT_4x3 << 0),
                         (u32*)&NNS_G3dGlb.cameraMtx,
                         sizeof(NNS_G3dGlb.cameraMtx) / 4);
@@ -239,12 +239,12 @@ NNS_G3dGlbFlushVP(void)
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbFlushWVP
 
-    NNSG3dGlb�̓��e���W�I���g���G���W���ɔ��f������B
-    �J�����g�ˉe�s��ɂ͎ˉe�ϊ��s��ƃJ�����s��ƃ��[���h�ϊ��s��������������̂��ݒ肳���B
-    �J�����g�ʒu���W�s��ɂ͒P�ʍs�񂪐ݒ肳���B
+    NNSG3dGlbの内容をジオメトリエンジンに反映させる。
+    カレント射影行列には射影変換行列とカメラ行列とワールド変換行列を合成したものが設定される。
+    カレント位置座標行列には単位行列が設定される。
 
-    Color���𑗂�̂́A�����Ȃ�Sbc��SHP�R�}���h������悤�ȏꍇ�ɔ����Ă���B
-    �R�}���h���������ꂽ��́APOSITION/VECTOR���[�h�ɂȂ��Ă���B
+    Color等を送るのは、いきなりSbcのSHPコマンドが来るような場合に備えている。
+    コマンドが処理された後は、POSITION/VECTORモードになっている。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dGlbFlushWVP(void)
@@ -282,18 +282,18 @@ NNS_G3dGlbFlushWVP(void)
                                        (G3OP_TEXIMAGE_PARAM << 16)));
 
 
-    // Projection�s�񃂁[�h�ɂ���Projection�s���ݒ�
+    // Projection行列モードにしてProjection行列を設定
     NNS_G3dGeBufferOP_N(GX_PACK_OP(G3OP_MTX_MODE, G3OP_MTX_LOAD_4x4, G3OP_NOP, G3OP_NOP),
                         (u32*)&NNS_G3dGlb.mtxmode_proj,
                         (sizeof(NNS_G3dGlb.mtxmode_proj) +
                          sizeof(NNS_G3dGlb.projMtx)) / 4);
 
-    // Projection�s��ɃJ�����s���������
+    // Projection行列にカメラ行列をかける
     NNS_G3dGeBufferOP_N((G3OP_MTX_MULT_4x3 << 0),
                         (u32*)&NNS_G3dGlb.cameraMtx,
                         sizeof(NNS_G3dGlb.cameraMtx) / 4);
 
-    // Projection�s��Ƀx�[�X�s���������
+    // Projection行列にベース行列をかける
     NNS_G3dGeBufferOP_N(GX_PACK_OP(G3OP_MTX_MULT_4x3,G3OP_MTX_SCALE, G3OP_NOP, G3OP_NOP),
                         (u32*)&NNS_G3dGlb.prmBaseRot,
                         (sizeof(NNS_G3dGlb.prmBaseRot) +
@@ -302,7 +302,7 @@ NNS_G3dGlbFlushWVP(void)
 
     NNS_G3dGeMtxMode(GX_MTXMODE_POSITION_VECTOR);
 
-    // ���C�g�x�N�g���ɂ̓x�[�X��]�s��̋t�s���������(���[���h���烍�[�J���ɕϊ��j
+    // ライトベクトルにはベース回転行列の逆行列をかける(ワールドからローカルに変換）
     {
         MtxFx43 inv;
         int result;
@@ -321,7 +321,7 @@ NNS_G3dGlbFlushWVP(void)
     NNS_G3dGlb.flag &= ~NNS_G3D_GLB_FLAG_FLUSH_VP;
 
     //
-    // �R�}���h�̏������POSITION/VECTOR���[�h�ɂȂ��Ă���B
+    // コマンドの処理後はPOSITION/VECTORモードになっている。
     //
 }
 
@@ -329,7 +329,7 @@ NNS_G3dGlbFlushWVP(void)
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbSetBaseTrans
 
-    NNS_G3dGlb�̃x�[�X�s��i���[���h�ϊ��s��j��Translation��ݒ肷��B
+    NNS_G3dGlbのベース行列（ワールド変換行列）のTranslationを設定する。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dGlbSetBaseTrans(const VecFx32* pTrans)
@@ -349,7 +349,7 @@ NNS_G3dGlbSetBaseTrans(const VecFx32* pTrans)
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbSetBaseScale
 
-    NNS_G3dGlb�̃x�[�X�s��i���[���h�ϊ��s��j��Scale��ݒ肷��B
+    NNS_G3dGlbのベース行列（ワールド変換行列）のScaleを設定する。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dGlbSetBaseScale(const VecFx32* pScale)
@@ -369,8 +369,8 @@ NNS_G3dGlbSetBaseScale(const VecFx32* pScale)
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbLightVector
 
-    NNS_G3dGlb�̃��C�g�x�N�g����ύX����B
-    �W�I���g���G���W���ɂ́ANNS_G3dGlbFlush���ĂԂ܂Ŕ��f����Ȃ��B
+    NNS_G3dGlbのライトベクトルを変更する。
+    ジオメトリエンジンには、NNS_G3dGlbFlushを呼ぶまで反映されない。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dGlbLightVector(GXLightId lightID,
@@ -391,7 +391,7 @@ NNS_G3dGlbLightVector(GXLightId lightID,
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbLightColor
 
-    NNS_G3dGlb�̃��C�g�J���[��ݒ肷��B
+    NNS_G3dGlbのライトカラーを設定する。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dGlbLightColor(GXLightId lightID, GXRgb rgb)
@@ -406,7 +406,7 @@ NNS_G3dGlbLightColor(GXLightId lightID, GXRgb rgb)
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbMaterialColorDiffAmb
 
-    NNS_G3dGlb��diffuse��ambient��ݒ肷��B
+    NNS_G3dGlbのdiffuseとambientを設定する。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dGlbMaterialColorDiffAmb(GXRgb diffuse,
@@ -423,7 +423,7 @@ NNS_G3dGlbMaterialColorDiffAmb(GXRgb diffuse,
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbMaterialColorSpecEmi
 
-    NNS_G3dGlb��specular��emission��ݒ肷��B
+    NNS_G3dGlbのspecularとemissionを設定する。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dGlbMaterialColorSpecEmi(GXRgb specular,
@@ -440,7 +440,7 @@ NNS_G3dGlbMaterialColorSpecEmi(GXRgb specular,
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbPolygonAttr
 
-    NNS_G3dGlb��PolygonAttr��ݒ肷��B
+    NNS_G3dGlbのPolygonAttrを設定する。
  *---------------------------------------------------------------------------*/
 void 
 NNS_G3dGlbPolygonAttr(int light,
@@ -469,7 +469,7 @@ NNS_G3dGlbPolygonAttr(int light,
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbGetInvW
 
-    ���f�����O�s��̋t�s��ւ̃|�C���^��Ԃ��܂��B
+    モデリング行列の逆行列へのポインタを返します。
  *---------------------------------------------------------------------------*/
 const MtxFx43*
 NNS_G3dGlbGetInvW(void)
@@ -494,7 +494,7 @@ NNS_G3dGlbGetInvW(void)
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbGetInvV
 
-    �J�����s��̋t�s��ւ̃|�C���^��Ԃ��܂��B
+    カメラ行列の逆行列へのポインタを返します。
  *---------------------------------------------------------------------------*/
 const MtxFx43*
 NNS_G3dGlbGetInvV(void)
@@ -592,7 +592,7 @@ static int mtx_inverse44(const MtxFx44 * pSrc, MtxFx44 * pDst)
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbGetInvP
 
-    �ˉe�ϊ��s��̋t�s��ւ̃|�C���^��Ԃ��܂��B
+    射影変換行列の逆行列へのポインタを返します。
  *---------------------------------------------------------------------------*/
 const MtxFx44*
 NNS_G3dGlbGetInvP(void)
@@ -630,7 +630,7 @@ calcSrtCameraMtx_(void)
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbGetWV
 
-    �J�����s���BaseSRT�s����������s��ւ̃|�C���^��Ԃ��܂��B
+    カメラ行列にBaseSRT行列をかけた行列へのポインタを返します。
  *---------------------------------------------------------------------------*/
 const MtxFx43*
 NNS_G3dGlbGetWV(void)
@@ -648,7 +648,7 @@ NNS_G3dGlbGetWV(void)
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbGetInvWV
 
-    �J�����s���BaseSRT�s����������s��̋t�s��ւ̃|�C���^��Ԃ��܂��B
+    カメラ行列にBaseSRT行列をかけた行列の逆行列へのポインタを返します。
  *---------------------------------------------------------------------------*/
 const MtxFx43*
 NNS_G3dGlbGetInvWV(void)
@@ -686,7 +686,7 @@ NNS_G3dGlbGetInvVP(void)
 /*---------------------------------------------------------------------------*
     NNS_G3dGlbGetViewPort
 
-    NNS_G3dGlb�ɐݒ肵�Ă���r���[�|�[�g���W����肾���܂��B
+    NNS_G3dGlbに設定してあるビューポート座標を取りだします。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dGlbGetViewPort(int* px1, int* py1, int* px2, int* py2)
@@ -709,13 +709,13 @@ NNS_G3dGlbGetViewPort(int* px1, int* py1, int* px2, int* py2)
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// �O���[�o���ϐ�
+// グローバル変数
 //
 
 /*---------------------------------------------------------------------------*
     NNS_G3dGlb
 
-    �J�����E���C�g����G3D�Ŏg�p����O���[�o����Ԃ��i�[���邽�߂̍\���́B
+    カメラ・ライト等のG3Dで使用するグローバル状態を格納するための構造体。
  *---------------------------------------------------------------------------*/
 NNSG3dGlb NNS_G3dGlb;
 

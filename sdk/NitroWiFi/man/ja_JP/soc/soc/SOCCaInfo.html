@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SOCCaInfo</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">SOCCaInfo</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
@@ -26,45 +26,45 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p>�F�؋ǂ̏ؖ�����ێ����邽�߂̍\���̂ł��BSSL �ʐM�Ŏg�p���܂��B</p>
+<p>認証局の証明書を保持するための構造体です。SSL 通信で使用します。</p>
 
 <table width="100%" height="77">
   <tr>
-    <th><strong>�����o</strong></th>
-    <th><strong>����</strong></th>
+    <th><strong>メンバ</strong></th>
+    <th><strong>説明</strong></th>
   </tr>
   <tr>
     <td valign="top"><font size="-1"><code><strong><em>dn</em></strong></code></td>
-    <td><font size="-1">�ؖ����� distinguished name �ւ̃|�C���^���w�肷��B</td>
+    <td><font size="-1">証明書の distinguished name へのポインタを指定する。</td>
   </tr>
   <tr>
     <td valign="top"><font size="-1"><code><strong><em>modulus_len</em></strong></code></td>
-    <td><font size="-1">�ؖ����� modulus �̒������w�肷��B</td>
+    <td><font size="-1">証明書の modulus の長さを指定する。</td>
   </tr>
   <tr>
     <td valign="top"><font size="-1"><code><strong><em>modulus</em></strong></code></td>
-    <td><font size="-1">�ؖ����� modulus �ւ̃|�C���^���w�肷��B</td>
+    <td><font size="-1">証明書の modulus へのポインタを指定する。</td>
   </tr>
   <tr>
     <td valign="top"><font size="-1"><code><strong><em>exponent_len</em></strong></code></td>
-    <td><font size="-1">�ؖ����� exponent �̒������w�肷��B</td>
+    <td><font size="-1">証明書の exponent の長さを指定する。</td>
   </tr>
   <tr>
     <td valign="top"><font size="-1"><code><strong><em>exponent</em></strong></code></td>
-    <td><font size="-1">�ؖ����� exponent �ւ̃|�C���^���w�肷��B</td>
+    <td><font size="-1">証明書の exponent へのポインタを指定する。</td>
   </tr>
 </table>
 
-<p>SSL �֘A�̗p��ɂ��ẮA�s�̂� SSL �Ɋւ����������Q�Ƃ��Ă��������B</p>
+<p>SSL 関連の用語については、市販の SSL に関する解説書を参照してください。</p>
 
-<p>�Ȃ��A��ʂ� SSL Tool Kit �Ƃ͈قȂ�ASSL ���C�u�����ɗ^����ؖ����̃f�[�^�͌��؂ɕK�v�ȍŒ���̂��݂̂̂ƂȂ��Ă��܂��B
-�ؖ����̃f�[�^�`���𗝉�����Έ�ʓI�ȏؖ����̌`������蓮�ŕϊ����邱�Ƃ��\�ł����A
-DER �`���� X.509 �ؖ����f�[�^���炱�̍\���̂̃f�[�^�ɕϊ��������ꍇ�́A
-<A href="../../tools/certconv.html"><code>certconv</code> �c�[��</A>��p���ĕϊ����邱�Ƃ��\�ł��B</p>
+<p>なお、一般の SSL Tool Kit とは異なり、SSL ライブラリに与える証明書のデータは検証に必要な最低限のもののみとなっています。
+証明書のデータ形式を理解すれば一般的な証明書の形式から手動で変換することも可能ですが、
+DER 形式の X.509 証明書データからこの構造体のデータに変換したい場合は、
+<A href="../../tools/certconv.html"><code>certconv</code> ツール</A>を用いて変換することが可能です。</p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 
 <p>
 <code><a href="SOCSslConnection.html">SOCSslConnection</a></code>,
@@ -72,9 +72,9 @@ DER �`���� X.509 �ؖ����f�[�^���炱�̍\���̂̃f�[�^�ɕϊ��������ꍇ�́A
 <code><a href="../../tools/certconv.html">certconv</a></code>
 </p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2006/01/30 certconv �c�[���ɂ��Ă̋L�q��ǉ�</P>
-2005/12/21 ����</P>
+2006/01/30 certconv ツールについての記述を追加</P>
+2005/12/21 初版</P>
 </body>
 </html>

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	boxv_sublcd.c
- * @brief	ƒ{ƒbƒNƒX‘€ì‰æ–Ê@•`‰æ‰º¿‚¯iƒŠ[ƒ‹ƒRƒ“ƒgƒ[ƒ‹ŠÖ˜Aj
+ * @brief	ãƒœãƒƒã‚¯ã‚¹æ“ä½œç”»é¢ã€€æç”»ä¸‹è«‹ã‘ï¼ˆãƒªãƒ¼ãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é–¢é€£ï¼‰
  * @author	taya
  * @date	2005.11.07
  */
@@ -25,17 +25,17 @@
 #define TRAYICON_MOVE_MAX	(4)
 
 //==============================================================================================================
-// ’è”
+// å®šæ•°
 //==============================================================================================================
 enum {
-	USE_PAL_NUMS = 3,		// BGƒpƒŒƒbƒgg—p–{”
+	USE_PAL_NUMS = 3,		// BGãƒ‘ãƒ¬ãƒƒãƒˆä½¿ç”¨æœ¬æ•°
 
 	ICON_DISP_MAX = 6,
 
 	TRAYICON_LEFT_NUM = 3,
 	TRAYICON_RIGHT_NUM = 2,
 
-	TRAYICON_ADD_MAX = ICON_DISP_MAX + TRAYICON_MOVE_MAX,	// ‡Œv10‚Ü‚Å‚É‚µ‚È‚¢‚ÆCGX—Ìˆæ‚ª‘«‚è‚È‚¢
+	TRAYICON_ADD_MAX = ICON_DISP_MAX + TRAYICON_MOVE_MAX,	// åˆè¨ˆ10ã¾ã§ã«ã—ãªã„ã¨CGXé ˜åŸŸãŒè¶³ã‚Šãªã„
 	TRAYICON_CHAR_FREE = -1,
 
 	MARKICON_DISP_MAX = 6,
@@ -47,13 +47,13 @@ enum {
 };
 
 
-// ƒ{ƒ^ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“
+// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 enum {
 	BUTTON_ANM_FREE,
 	BUTTON_ANM_PUSH,
 };
 
-// ƒ}[ƒNƒAƒCƒRƒ“ƒAƒjƒ[ƒVƒ‡ƒ“
+// ãƒãƒ¼ã‚¯ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 enum {
 	MARKICON_ANM_ALLOFF_OFF,
 	MARKICON_ANM_ALLOFF_ON,
@@ -71,7 +71,7 @@ enum {
 	MARKICON_ANM_MARK5_ON,
 };
 
-// ƒŠ[ƒ‹BG•\¦ˆÊ’uAƒXƒNƒ[ƒ‹“®ìƒpƒ‰ƒ[ƒ^
+// ãƒªãƒ¼ãƒ«BGè¡¨ç¤ºä½ç½®ã€ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 enum {
 	REEL_DEFAULT_X = 0,
 	REEL_TRAYMODE_X = ((-96) * FX32_ONE),
@@ -91,12 +91,12 @@ static const int LineDispXpos[] = {
 };
 
 //==============================================================================================================
-// ‰æ–ÊƒŒƒCƒAƒEƒg
+// ç”»é¢ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
 //==============================================================================================================
 enum {
 	BUTTON_LEFT_X = 0,
 	BUTTON_LEFT_Y = SUBSURFACE_YOFS+184,
-	BUTTON_RIGHT_X = 256,	//‰æ‘œƒTƒCƒY‚ÉˆË‘¶
+	BUTTON_RIGHT_X = 256,	//ç”»åƒã‚µã‚¤ã‚ºã«ä¾å­˜
 	BUTTON_RIGHT_Y = BUTTON_LEFT_Y,
 
 	TRAYICON_START_XPOS = 16,
@@ -131,7 +131,7 @@ enum {
 	TRAYNAME_5TH_YPOS = TRAYNAME_YDIFF + 136,
 	TRAYNAME_6TH_YPOS = TRAYNAME_YDIFF + 168,
 
-	TRAYNAME_WIN_WIDTH = 96 + 8,	// •¶š•`‰æ—p96ƒhƒbƒg{¶‰E—]”’4ƒhƒbƒg‚¸‚Â
+	TRAYNAME_WIN_WIDTH = 96 + 8,	// æ–‡å­—æç”»ç”¨96ãƒ‰ãƒƒãƒˆï¼‹å·¦å³ä½™ç™½4ãƒ‰ãƒƒãƒˆãšã¤
 	TRAYNAME_WIN_HEIGHT = 16,
 	TRAYNAME_WRITE_XOFS = 4,
 	TRAYNAME_WRITE_YOFS = 2,
@@ -307,18 +307,18 @@ static const u16 IconFixedPosTbl[] = {
 
 
 //==============================================================================================================
-// \‘¢‘Ì’è‹`
+// æ§‹é€ ä½“å®šç¾©
 //==============================================================================================================
 
 //---------------------------------------------
 /**
- * ƒ‚[ƒhØ‘ÖƒGƒtƒFƒNƒg—pƒ^ƒXƒNƒ[ƒN
+ * ãƒ¢ãƒ¼ãƒ‰åˆ‡æ›¿ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //---------------------------------------------
 
 typedef struct {
-	REEL_VIEW_WORK*	wk;		///< ƒƒCƒ“ƒ[ƒN
-	u32					seq;	///< ƒV[ƒPƒ“ƒX
+	REEL_VIEW_WORK*	wk;		///< ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
+	u32					seq;	///< ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	CLACT_WORK_PTR  	button_actor;
 	u16					timer;
 	s16					blend;
@@ -330,7 +330,7 @@ typedef struct {
 
 //---------------------------------------------
 /**
- * ƒAƒCƒRƒ“ˆÚ“®ˆ—ƒ^ƒXƒNƒ[ƒN
+ * ã‚¢ã‚¤ã‚³ãƒ³ç§»å‹•å‡¦ç†ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //---------------------------------------------
 typedef struct {
@@ -356,7 +356,7 @@ typedef struct {
 
 //---------------------------------------------
 /**
- * ƒAƒCƒRƒ“ˆÚ“®ƒRƒ“ƒgƒ[ƒ‹ƒ^ƒXƒNƒ[ƒN
+ * ã‚¢ã‚¤ã‚³ãƒ³ç§»å‹•ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
  */
 //---------------------------------------------
 typedef struct {
@@ -372,7 +372,7 @@ typedef struct {
 
 //---------------------------------------------
 /**
- * ƒƒCƒ“ƒ[ƒN
+ * ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
  */
 //---------------------------------------------
 struct _REEL_VIEW_WORK {
@@ -454,20 +454,20 @@ static void  update_tray_name( REEL_VIEW_WORK* wk );
 
 
 //==============================================================================================================
-// ƒƒCƒ“ƒ‚ƒWƒ…[ƒ‹‚©‚çŒÄ‚Î‚ê‚é‰Šú‰»EI—¹ŠÖ˜A
+// ãƒ¡ã‚¤ãƒ³ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‹ã‚‰å‘¼ã°ã‚Œã‚‹åˆæœŸåŒ–ãƒ»çµ‚äº†é–¢é€£
 //==============================================================================================================
 
 //======================================================================================
 /**
- * ‰Šú‰»ˆ—
+ * åˆæœŸåŒ–å‡¦ç†
  *
- * @param   wk_ptr_adrs		[out] Šm•Û‚µ‚½ƒ[ƒN‚ÌƒAƒhƒŒƒX‚ğ•Û‘¶‚µ‚Ä‚¨‚­ƒ|ƒCƒ“ƒ^‚ÌƒAƒhƒŒƒX
- * @param   vwk				[in]  •`‰æƒƒCƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   vpara			[in]  QÆ—p•`‰æƒpƒ‰ƒ[ƒ^
- * @param   bgl				[in]  GF BGLib ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param   actsys			[in]  GF ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param   wk_ptr_adrs		[out] ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã—ã¦ãŠããƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   vwk				[in]  æç”»ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   vpara			[in]  å‚ç…§ç”¨æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param   bgl				[in]  GF BGLib ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param   actsys			[in]  GF ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚Å¬Œ÷^ FALSE‚Å¸”s
+ * @retval  BOOL	TRUEã§æˆåŠŸï¼ FALSEã§å¤±æ•—
  */
 //======================================================================================
 BOOL BoxAppView_Reel_Init( REEL_VIEW_WORK** wk_ptr_adrs, BOXAPP_VIEW_WORK* vwk, const BOXAPP_VPARAM* vpara, GF_BGL_INI* bgl, CLACT_SET_PTR actsys )
@@ -517,10 +517,10 @@ BOOL BoxAppView_Reel_Init( REEL_VIEW_WORK** wk_ptr_adrs, BOXAPP_VIEW_WORK* vwk, 
 
 //------------------------------------------------------------------
 /**
- * ‘ÑBG—pƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒhŒW”ƒe[ƒuƒ‹‚ğì¬‚µ‚Ä‚¨‚­
- * ¦ 0 ‚ª‘ÑBG•\¦ƒIƒtAMAX‚Å•\¦Š®‘SƒIƒ“
+ * å¸¯BGç”¨ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ä¿‚æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã—ã¦ãŠã
+ * â€» 0 ãŒå¸¯BGè¡¨ç¤ºã‚ªãƒ•ã€MAXã§è¡¨ç¤ºå®Œå…¨ã‚ªãƒ³
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^i“à•”ƒe[ƒuƒ‹‚Éì¬j
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ï¼ˆå†…éƒ¨ãƒ†ãƒ¼ãƒ–ãƒ«ã«ä½œæˆï¼‰
  *
  */
 //------------------------------------------------------------------
@@ -548,7 +548,7 @@ static void setup_blend_alpha_table( REEL_VIEW_WORK* wk )
 
 //======================================================================================
 /**
- * I—¹ˆ—
+ * çµ‚äº†å‡¦ç†
  *
  * @param   wk		
  *
@@ -603,9 +603,9 @@ void BoxAppView_Reel_Quit( REEL_VIEW_WORK* wk )
 }
 //======================================================================================
 /**
- * ‰Šú‰æ–Êì¬
+ * åˆæœŸç”»é¢ä½œæˆ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //======================================================================================
@@ -634,9 +634,9 @@ void BoxAppView_Reel_Setup( REEL_VIEW_WORK* wk, ARCHANDLE* p_boxgra_handle )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒNƒ^[‰Šúó‘ÔƒZƒbƒgƒAƒbƒv
+ * ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸçŠ¶æ…‹ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -670,9 +670,9 @@ static void setup_actors( REEL_VIEW_WORK* wk, ARCHANDLE* p_boxgra_handle )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒNƒ^[•\¦‚É•K—v‚ÈƒZƒ‹•ƒAƒjƒƒf[ƒ^‚ğRAMã‚É“Ç‚İ‚ñ‚Å‚¨‚­
+ * ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºã«å¿…è¦ãªã‚»ãƒ«ï¼†ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã‚’RAMä¸Šã«èª­ã¿è¾¼ã‚“ã§ãŠã
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -701,17 +701,17 @@ static void load_actor_datas( REEL_VIEW_WORK* wk, ARCHANDLE* p_boxgra_handle )
 }
 
 //==============================================================================================================
-// ƒƒCƒ“ƒ‚ƒWƒ…[ƒ‹‚©‚çŒÄ‚Î‚ê‚éƒRƒ}ƒ“ƒhˆ—ŠÖ”ŒQ
+// ãƒ¡ã‚¤ãƒ³ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã‚³ãƒãƒ³ãƒ‰å‡¦ç†é–¢æ•°ç¾¤
 //==============================================================================================================
 
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒh—pTCBƒXƒ^[ƒg
+ * ã‚³ãƒãƒ³ãƒ‰ç”¨TCBã‚¹ã‚¿ãƒ¼ãƒˆ
  *
- * @param   wk			ƒ‚ƒWƒ…[ƒ‹ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   func		TCBŠÖ”
- * @param   taskwk		TCB—pƒ[ƒN
+ * @param   wk			ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   func		TCBé–¢æ•°
+ * @param   taskwk		TCBç”¨ãƒ¯ãƒ¼ã‚¯
  *
  */
 //------------------------------------------------------------------
@@ -722,9 +722,9 @@ static TCB_PTR start_command_tcb( REEL_VIEW_WORK* wk, TCB_FUNC func, void* taskw
 }
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒh—pTCBƒXƒgƒbƒv
+ * ã‚³ãƒãƒ³ãƒ‰ç”¨TCBã‚¹ãƒˆãƒƒãƒ—
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -735,11 +735,11 @@ static void stop_command_tcb( REEL_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒh—pTCBI—¹ƒ`ƒFƒbƒN
+ * ã‚³ãƒãƒ³ãƒ‰ç”¨TCBçµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚ÅI—¹‚µ‚Ä‚¢‚é
+ * @retval  BOOL		TRUEã§çµ‚äº†ã—ã¦ã„ã‚‹
  */
 //------------------------------------------------------------------
 static BOOL check_command_tcb_end( REEL_VIEW_WORK* wk )
@@ -749,7 +749,7 @@ static BOOL check_command_tcb_end( REEL_VIEW_WORK* wk )
 
 //==============================================================================================
 /**
- * ƒŠ[ƒ‹•\¦iBG)‚ğƒ‚[ƒh‚É‡‚í‚¹‚Ä•ÏX
+ * ãƒªãƒ¼ãƒ«è¡¨ç¤ºï¼ˆBG)ã‚’ãƒ¢ãƒ¼ãƒ‰ã«åˆã‚ã›ã¦å¤‰æ›´
  *
  * @param   wk		
  *
@@ -829,7 +829,7 @@ BOOL BoxAppView_Reel_ChangeStateWait( REEL_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ’Êí‚©‚çƒgƒŒƒC‘I‘ğƒ‚[ƒh^i‚è‚İƒ‚[ƒh‚ÖBG•\¦‚ğˆÚs‚·‚é
+ * é€šå¸¸æ™‚ã‹ã‚‰ãƒˆãƒ¬ã‚¤é¸æŠãƒ¢ãƒ¼ãƒ‰ï¼çµã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã¸BGè¡¨ç¤ºã‚’ç§»è¡Œã™ã‚‹
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -883,7 +883,7 @@ static void dispmode_on_task( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒC‘I‘ğƒ‚[ƒh <-> i‚è‚İƒ‚[ƒh‚Ì‘ŠŒİØ‚è‘Ö‚¦
+ * ãƒˆãƒ¬ã‚¤é¸æŠãƒ¢ãƒ¼ãƒ‰ <-> çµã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã®ç›¸äº’åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -948,7 +948,7 @@ static void dispmode_switch_task( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒC‘I‘ğƒ‚[ƒh^i‚è‚İƒ‚[ƒh‚©‚ç’Êí‚Ìó‘Ô‚Ö
+ * ãƒˆãƒ¬ã‚¤é¸æŠãƒ¢ãƒ¼ãƒ‰ï¼çµã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰é€šå¸¸æ™‚ã®çŠ¶æ…‹ã¸
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -994,9 +994,9 @@ static void dispmode_off_task( TCB_PTR tcb, void* wk_adrs )
 }
 //==============================================================================================
 /**
- * ƒ‚[ƒh‚É‡‚í‚¹‚ÄƒAƒCƒRƒ“oŒ»“®ìŠJn
+ * ãƒ¢ãƒ¼ãƒ‰ã«åˆã‚ã›ã¦ã‚¢ã‚¤ã‚³ãƒ³å‡ºç¾å‹•ä½œé–‹å§‹
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //==============================================================================================
@@ -1016,11 +1016,11 @@ void BoxAppView_Reel_DispIcon( REEL_VIEW_WORK* wk )
 
 //==============================================================================================
 /**
- * ƒAƒCƒRƒ“oŒ»“®ì‚ÌI—¹‘Ò‚¿
+ * ã‚¢ã‚¤ã‚³ãƒ³å‡ºç¾å‹•ä½œã®çµ‚äº†å¾…ã¡
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //==============================================================================================
 BOOL BoxAppView_Reel_DispIconWait( REEL_VIEW_WORK* wk )
@@ -1037,9 +1037,9 @@ BOOL BoxAppView_Reel_DispIconWait( REEL_VIEW_WORK* wk )
 }
 //==============================================================================================
 /**
- * ƒAƒCƒRƒ“ˆÚ“®ŠJn
+ * ã‚¢ã‚¤ã‚³ãƒ³ç§»å‹•é–‹å§‹
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //==============================================================================================
@@ -1089,7 +1089,7 @@ static void trayicon_move_end_proc( REEL_VIEW_WORK* wk )
 	for(i=0; i<wk->trayMoveIconCnt; i++)
 	{
 		#ifdef SUBLCD_PRINT_DEBUG
-		OS_TPrintf("ƒAƒNƒ^[[%d]Á‚·‚Ë‚ñ\n", act_id);
+		OS_TPrintf("ã‚¢ã‚¯ã‚¿ãƒ¼[%d]æ¶ˆã™ã­ã‚“\n", act_id);
 		#endif
 		GF_ASSERT( wk->trayIconActor[act_id] != NULL );
 		CLACT_Delete( wk->trayIconActor[act_id] );
@@ -1125,11 +1125,11 @@ static void markicon_move_end_proc( REEL_VIEW_WORK* wk )
 
 //==============================================================================================
 /**
- * ƒAƒCƒRƒ“ˆÚ“®‚ÌI—¹‘Ò‚¿
+ * ã‚¢ã‚¤ã‚³ãƒ³ç§»å‹•ã®çµ‚äº†å¾…ã¡
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //==============================================================================================
 BOOL BoxAppView_Reel_MoveIconWait( REEL_VIEW_WORK* wk )
@@ -1151,9 +1151,9 @@ BOOL BoxAppView_Reel_MoveIconWait( REEL_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒ‚[ƒh—pƒAƒCƒRƒ“ƒAƒNƒ^[“o˜^
+ * ãƒˆãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ç”¨ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1211,7 +1211,7 @@ static u32 get_trayicon_free_actno( REEL_VIEW_WORK* wk, int direction, u32 actno
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“‚ª“®‚­‚Æ‚«‚ÉV‹K’Ç‰Á‚³‚ê‚éƒAƒCƒRƒ“ƒAƒNƒ^[‚Ì“o˜^
+ * ã‚¢ã‚¤ã‚³ãƒ³ãŒå‹•ãã¨ãã«æ–°è¦è¿½åŠ ã•ã‚Œã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç™»éŒ²
  *
  * @param   wk		
  *
@@ -1228,7 +1228,7 @@ static void setup_traymode_move_icon_actor( REEL_VIEW_WORK* wk )
 	trayno = BoxAppVPara_GetSubLCDPos( wk->vpara );// + TRAYICON_LEFT_NUM;
 
 	#ifdef SUBLCD_PRINT_DEBUG
-	OS_TPrintf("Ÿ‚Ì’†S‚ÍƒgƒŒƒC %d\n", trayno);
+	OS_TPrintf("æ¬¡ã®ä¸­å¿ƒã¯ãƒˆãƒ¬ã‚¤ %d\n", trayno);
 	#endif
 
 	if( wk->vpara->subLCD.move > 0 )
@@ -1280,7 +1280,7 @@ static void setup_traymode_move_icon_actor( REEL_VIEW_WORK* wk )
 		GF_ASSERT(wk->trayIconActor[act_id] != NULL);
 
 		#ifdef SUBLCD_PRINT_DEBUG
-		OS_TPrintf("ƒAƒNƒ^[[%d]‘«‚µ‚½(trayno=%d) \n", act_id, trayno);
+		OS_TPrintf("ã‚¢ã‚¯ã‚¿ãƒ¼[%d]è¶³ã—ãŸ(trayno=%d) \n", act_id, trayno);
 		#endif
 
 		trayno += trayno_add;
@@ -1300,9 +1300,9 @@ static void setup_traymode_move_icon_actor( REEL_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒ‚[ƒh—pƒAƒCƒRƒ“ƒAƒNƒ^[‘Síœ
+ * ãƒˆãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ç”¨ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼å…¨å‰Šé™¤
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1322,12 +1322,12 @@ static void cleanup_traymode_icon_actor( REEL_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ}[ƒNƒAƒCƒRƒ“‚ÉƒZƒbƒg‚·‚éƒAƒjƒƒiƒ“ƒo[‚ğæ“¾
+ * ãƒãƒ¼ã‚¯ã‚¢ã‚¤ã‚³ãƒ³ã«ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param   icon_id			ƒ}[ƒNƒAƒCƒRƒ“ID
- * @param   bit_flag		i‚è‚İƒ‚[ƒh‚Ìƒrƒbƒgƒtƒ‰ƒO
+ * @param   icon_id			ãƒãƒ¼ã‚¯ã‚¢ã‚¤ã‚³ãƒ³ID
+ * @param   bit_flag		çµã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã®ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
  *
- * @retval  u32		ƒAƒjƒƒiƒ“ƒo[
+ * @retval  u32		ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 static u32 get_markicon_anmno( u32 icon_id, u32 bit_flag )
@@ -1348,9 +1348,9 @@ static u32 get_markicon_anmno( u32 icon_id, u32 bit_flag )
 }
 //------------------------------------------------------------------
 /**
- * ƒ}[ƒNƒ‚[ƒh—pƒAƒCƒRƒ“ƒAƒNƒ^[“o˜^
+ * ãƒãƒ¼ã‚¯ãƒ¢ãƒ¼ãƒ‰ç”¨ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1388,9 +1388,9 @@ static void setup_markmode_icon_actor( REEL_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒ}[ƒNƒ‚[ƒh—pƒAƒCƒRƒ“ƒAƒNƒ^[‘Síœ
+ * ãƒãƒ¼ã‚¯ãƒ¢ãƒ¼ãƒ‰ç”¨ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼å…¨å‰Šé™¤
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1411,7 +1411,7 @@ static void cleanup_markmode_icon_actor( REEL_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“‚ªƒŠ[ƒ‹‚É‰ˆ‚Á‚Ä“®‚­“®ìƒ^ƒXƒNi¶‘¤—pj
+ * ã‚¢ã‚¤ã‚³ãƒ³ãŒãƒªãƒ¼ãƒ«ã«æ²¿ã£ã¦å‹•ãå‹•ä½œã‚¿ã‚¹ã‚¯ï¼ˆå·¦å´ç”¨ï¼‰
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1454,7 +1454,7 @@ static void icon_movetask( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“‚ªƒŠ[ƒ‹‚É‰ˆ‚Á‚Ä“®‚­“®ìƒ^ƒXƒNi‰E‘¤—pj
+ * ã‚¢ã‚¤ã‚³ãƒ³ãŒãƒªãƒ¼ãƒ«ã«æ²¿ã£ã¦å‹•ãå‹•ä½œã‚¿ã‚¹ã‚¯ï¼ˆå³å´ç”¨ï¼‰
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1507,7 +1507,7 @@ static void icon_reverse_movetask( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒŠ[ƒ‹“®ìƒ^ƒXƒN’â~
+ * ã‚¢ã‚¤ã‚³ãƒ³ãƒªãƒ¼ãƒ«å‹•ä½œã‚¿ã‚¹ã‚¯åœæ­¢
  *
  * @param   tcb		
  * @param   taskwk		
@@ -1542,15 +1542,15 @@ static void  print_iconmove_taskcnt( int cnt )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“‚ªƒŠ[ƒ‹‚É‰ˆ‚Á‚Ä“®‚­ƒ^ƒXƒN‚ÌƒZƒbƒg
+ * ã‚¢ã‚¤ã‚³ãƒ³ãŒãƒªãƒ¼ãƒ«ã«æ²¿ã£ã¦å‹•ãã‚¿ã‚¹ã‚¯ã®ã‚»ãƒƒãƒˆ
  *
- * @param   cwk				eƒ^ƒXƒN‚Ìƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   act				ƒAƒCƒRƒ“ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
- * @param   taskwk			ƒ^ƒXƒNƒ[ƒNiŠm•ÛÏ‚İ—Ìˆæjƒ|ƒCƒ“ƒ^
- * @param   startPos		ŠJnˆÊ’u
- * @param   endPos			I—¹ˆÊ’u
- * @param   time			ˆÚ“®‚É—v‚·‚éƒtƒŒ[ƒ€”
- * @param   reverse_flag	TRUE‚¾‚Æ‰E‘¤ƒŠ[ƒ‹‚Ì“®‚«
+ * @param   cwk				è¦ªã‚¿ã‚¹ã‚¯ã®ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   act				ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+ * @param   taskwk			ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯ï¼ˆç¢ºä¿æ¸ˆã¿é ˜åŸŸï¼‰ãƒã‚¤ãƒ³ã‚¿
+ * @param   startPos		é–‹å§‹ä½ç½®
+ * @param   endPos			çµ‚äº†ä½ç½®
+ * @param   time			ç§»å‹•ã«è¦ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+ * @param   reverse_flag	TRUEã ã¨å³å´ãƒªãƒ¼ãƒ«ã®å‹•ã
  *
  */
 //------------------------------------------------------------------
@@ -1582,11 +1582,11 @@ static void icon_movetask_set( ICON_DISP_CTRL_WORK* cwk, CLACT_WORK_PTR act, ICO
 }
 //------------------------------------------------------------------
 /**
- * ªicon_movetask_set ‚ÅƒZƒbƒg‚µ‚½“®ì‚ÌI—¹ŒãA‚³‚ç‚É“®‚«n‚ß‚½‚¢‚Ì“®ì
+ * â†‘icon_movetask_set ã§ã‚»ãƒƒãƒˆã—ãŸå‹•ä½œã®çµ‚äº†å¾Œã€ã•ã‚‰ã«å‹•ãå§‹ã‚ãŸã„æ™‚ã®å‹•ä½œ
  *
  * @param   cwk			
- * @param   taskwk		icon_movetask_set ‚ÅƒZƒbƒg‚µ‚½‚Ì‚Æ“¯‚¶ƒ[ƒN
- * @param   wait		“®‚«n‚ß‚é‚Ü‚Å‚ÌƒEƒFƒCƒg
+ * @param   taskwk		icon_movetask_set ã§ã‚»ãƒƒãƒˆã—ãŸã®ã¨åŒã˜ãƒ¯ãƒ¼ã‚¯
+ * @param   wait		å‹•ãå§‹ã‚ã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆ
  * @param   startPos	
  * @param   endPos		
  *
@@ -1615,7 +1615,7 @@ static void icon_movework_set_nextparam( ICON_DISP_CTRL_WORK* cwk,ICON_MOVE_WORK
 }
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒAƒCƒRƒ“oŒ»ƒ^ƒXƒNiŠeƒAƒCƒRƒ““®ìƒ^ƒXƒN‚Ìe‚É‚È‚éj
+ * ãƒˆãƒ¬ã‚¤ã‚¢ã‚¤ã‚³ãƒ³å‡ºç¾ã‚¿ã‚¹ã‚¯ï¼ˆå„ã‚¢ã‚¤ã‚³ãƒ³å‹•ä½œã‚¿ã‚¹ã‚¯ã®è¦ªã«ãªã‚‹ï¼‰
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1672,9 +1672,9 @@ static void trayicon_appear_task( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒAƒCƒRƒ“oŒ»“®ìƒ^ƒXƒN‚ÌŠJn
+ * ãƒˆãƒ¬ã‚¤ã‚¢ã‚¤ã‚³ãƒ³å‡ºç¾å‹•ä½œã‚¿ã‚¹ã‚¯ã®é–‹å§‹
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void setup_trayicon_appear_task( REEL_VIEW_WORK* wk )
@@ -1703,7 +1703,7 @@ static void setup_trayicon_appear_task( REEL_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒAƒCƒRƒ“ƒXƒ‰ƒCƒh“®ìƒ^ƒXƒNiŠeƒAƒCƒRƒ““®ìƒ^ƒXƒN‚Ìe‚É‚È‚éj
+ * ãƒˆãƒ¬ã‚¤ã‚¢ã‚¤ã‚³ãƒ³ã‚¹ãƒ©ã‚¤ãƒ‰å‹•ä½œã‚¿ã‚¹ã‚¯ï¼ˆå„ã‚¢ã‚¤ã‚³ãƒ³å‹•ä½œã‚¿ã‚¹ã‚¯ã®è¦ªã«ãªã‚‹ï¼‰
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1739,11 +1739,11 @@ static void trayicon_move_task( TCB_PTR tcb, void* wk_adrs )
 			}
 
 
-			// ¡‚©‚çÁ‚¦‚é
+			// ä»Šã‹ã‚‰æ¶ˆãˆã‚‹
 			for(i=0; i<wk->trayMoveIconCnt; i++)
 			{
 				#ifdef SUBLCD_PRINT_DEBUG
-				OS_TPrintf("Á‚¦‚éƒAƒNƒ^[[%d]  %d -> %d\n", act_id, start_pos, end_pos);
+				OS_TPrintf("æ¶ˆãˆã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼[%d]  %d -> %d\n", act_id, start_pos, end_pos);
 				#endif
 				icon_movetask_set( cwk, cwk->actor[act_id], &cwk->icon_move_work[act_id],
 								start_pos, end_pos, (i+1)*ICON_MOVE_TIME, 0, FALSE );
@@ -1757,13 +1757,13 @@ static void trayicon_move_task( TCB_PTR tcb, void* wk_adrs )
 				}
 			}
 
-			// •’Ê‚É‚¸‚ê‚é
+			// æ™®é€šã«ãšã‚Œã‚‹
 			max = (ICON_DISP_MAX - wk->trayMoveIconCnt);
 			for(i=0; i<max; i++)
 			{
 				end_pos = start_pos - (id_add * wk->trayMoveIconCnt);
 				#ifdef SUBLCD_PRINT_DEBUG
-				OS_TPrintf("‚¸‚ê‚éƒAƒNƒ^[[%d] %d -> %d\n", act_id, start_pos, end_pos);
+				OS_TPrintf("ãšã‚Œã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼[%d] %d -> %d\n", act_id, start_pos, end_pos);
 				#endif
 				icon_movetask_set( cwk, cwk->actor[act_id], &cwk->icon_move_work[act_id],
 								start_pos, end_pos, wk->trayMoveIconCnt*ICON_MOVE_TIME, 0, FALSE );
@@ -1777,7 +1777,7 @@ static void trayicon_move_task( TCB_PTR tcb, void* wk_adrs )
 				}
 			}
 
-			// ¡‚©‚ço‚Ä‚­‚é
+			// ä»Šã‹ã‚‰å‡ºã¦ãã‚‹
 			if( wk->vpara->subLCD.move > 0 ){
 				start_pos = 0;
 				end_pos = wk->trayMoveIconCnt;
@@ -1789,7 +1789,7 @@ static void trayicon_move_task( TCB_PTR tcb, void* wk_adrs )
 			for(i=0; i<max; i++)
 			{
 				#ifdef SUBLCD_PRINT_DEBUG
-				OS_TPrintf("Œ»‚ê‚éƒAƒNƒ^[[%d] %d -> %d\n", act_id, start_pos, end_pos);
+				OS_TPrintf("ç¾ã‚Œã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼[%d] %d -> %d\n", act_id, start_pos, end_pos);
 				#endif
 				icon_movetask_set( cwk, cwk->actor[act_id], &cwk->icon_move_work[act_id],
 								start_pos, end_pos, (wk->trayMoveIconCnt-i)*ICON_MOVE_TIME,
@@ -1819,9 +1819,9 @@ static void trayicon_move_task( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒAƒCƒRƒ“ƒXƒ‰ƒCƒh“®ìƒ^ƒXƒNƒZƒbƒg
+ * ãƒˆãƒ¬ã‚¤ã‚¢ã‚¤ã‚³ãƒ³ã‚¹ãƒ©ã‚¤ãƒ‰å‹•ä½œã‚¿ã‚¹ã‚¯ã‚»ãƒƒãƒˆ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1855,7 +1855,7 @@ static void setup_traymode_iconmove_task( REEL_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ}[ƒNƒAƒCƒRƒ“oŒ»“®ìƒ^ƒXƒNiŠeƒAƒCƒRƒ““®ìƒ^ƒXƒN‚Ìe‚É‚È‚éj
+ * ãƒãƒ¼ã‚¯ã‚¢ã‚¤ã‚³ãƒ³å‡ºç¾å‹•ä½œã‚¿ã‚¹ã‚¯ï¼ˆå„ã‚¢ã‚¤ã‚³ãƒ³å‹•ä½œã‚¿ã‚¹ã‚¯ã®è¦ªã«ãªã‚‹ï¼‰
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1900,9 +1900,9 @@ static void markicon_appear_task( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * ƒ}[ƒNƒAƒCƒRƒ“oŒ»“®ìƒ^ƒXƒN‚ÌŠJn
+ * ãƒãƒ¼ã‚¯ã‚¢ã‚¤ã‚³ãƒ³å‡ºç¾å‹•ä½œã‚¿ã‚¹ã‚¯ã®é–‹å§‹
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void setup_markicon_appear_task( REEL_VIEW_WORK* wk )
@@ -1931,7 +1931,7 @@ static void setup_markicon_appear_task( REEL_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒ}[ƒNƒAƒCƒRƒ“ƒXƒ‰ƒCƒh“®ìƒ^ƒXƒNiŠeƒAƒCƒRƒ““®ìƒ^ƒXƒN‚Ìe‚É‚È‚éj
+ * ãƒãƒ¼ã‚¯ã‚¢ã‚¤ã‚³ãƒ³ã‚¹ãƒ©ã‚¤ãƒ‰å‹•ä½œã‚¿ã‚¹ã‚¯ï¼ˆå„ã‚¢ã‚¤ã‚³ãƒ³å‹•ä½œã‚¿ã‚¹ã‚¯ã®è¦ªã«ãªã‚‹ï¼‰
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1972,7 +1972,7 @@ static void markicon_move_task( TCB_PTR tcb, void* wk_adrs )
 			move_max = MARKICON_DISP_MAX + move_len;
 			for(i=0; i<move_len; i++)
 			{
-				OS_TPrintf("Á‚¦‚é: act=%d, pos=%d, endpos=%d wait=0\n", act, pos, end_pos);
+				OS_TPrintf("æ¶ˆãˆã‚‹: act=%d, pos=%d, endpos=%d wait=0\n", act, pos, end_pos);
 				icon_movetask_set( cwk, wk->markIconActor[act], &(cwk->icon_move_work[act]), pos, end_pos,
 					ICON_MOVE_TIME*(i+1), 0, TRUE );
 				pos -= add;
@@ -1989,7 +1989,7 @@ static void markicon_move_task( TCB_PTR tcb, void* wk_adrs )
 			{
 				end_pos -= add;
 
-				OS_TPrintf("‚¸‚ê‚é: act=%d, pos=%d, endpos=%d wait=%d\n", act, pos, end_pos, wait);
+				OS_TPrintf("ãšã‚Œã‚‹: act=%d, pos=%d, endpos=%d wait=%d\n", act, pos, end_pos, wait);
 				icon_movetask_set( cwk, wk->markIconActor[act], &(cwk->icon_move_work[act]), pos, end_pos,
 					ICON_MOVE_TIME*(move_len), wait, TRUE );
 
@@ -2021,7 +2021,7 @@ static void markicon_move_task( TCB_PTR tcb, void* wk_adrs )
 //			OS_TPrintf("movelen=%d, i=%d, movemax=%d\n", move_len, i, move_max);
 			for( ; i<move_max; i++)
 			{
-				OS_TPrintf("Œ»‚ê‚é: act=%d, pos=%d, endpos=%d\n", act, pos, end_pos);
+				OS_TPrintf("ç¾ã‚Œã‚‹: act=%d, pos=%d, endpos=%d\n", act, pos, end_pos);
 				icon_movework_set_nextparam( cwk, &(cwk->icon_move_work[act]), ICON_MOVE_TIME, pos, end_pos );
 				end_pos -= add;
 				act += add;
@@ -2047,9 +2047,9 @@ static void markicon_move_task( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * ƒ}[ƒNƒAƒCƒRƒ“ƒXƒ‰ƒCƒh“®ìƒ^ƒXƒNƒZƒbƒg
+ * ãƒãƒ¼ã‚¯ã‚¢ã‚¤ã‚³ãƒ³ã‚¹ãƒ©ã‚¤ãƒ‰å‹•ä½œã‚¿ã‚¹ã‚¯ã‚»ãƒƒãƒˆ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -2081,9 +2081,9 @@ static void setup_markmode_iconmove_task( REEL_VIEW_WORK* wk )
 
 //==============================================================================================
 /**
- * i‚è‚İƒAƒCƒRƒ“‚Ì•\¦ó‘ÔXV
+ * çµã‚Šè¾¼ã¿ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºçŠ¶æ…‹æ›´æ–°
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================================
 void BoxAppView_Reel_MarkIconUpdate( REEL_VIEW_WORK* wk )
@@ -2103,7 +2103,7 @@ void BoxAppView_Reel_MarkIconUpdate( REEL_VIEW_WORK* wk )
 
 
 //=====================================================================================
-// BitmapWindowŠÖ˜A
+// BitmapWindowé–¢é€£
 //=====================================================================================
 
 static void dispoff_tray_name( REEL_VIEW_WORK* wk )

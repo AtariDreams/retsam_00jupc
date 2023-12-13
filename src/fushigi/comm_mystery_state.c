@@ -1,10 +1,10 @@
 //=============================================================================
 /**
  * @file	comm_mystery_state.c
- * @brief	’ÊMó‘Ô‚ğŠÇ—‚·‚éƒT[ƒrƒX  ’ÊM‚ÌãˆÊ‚É‚ ‚é
- *          	ƒXƒŒƒbƒh‚Ì‚Ğ‚Æ‚Â‚Æ‚µ‚Ä“­‚«A©•ª‚Ì’ÊMó‘Ô‚â‘¼‚Ì‹@Ší‚Ì
- *          	ŠJn‚âI—¹‚ğŠÇ—‚·‚é
- *		¦comm_field_state.c‚Ì^—‚Áq
+ * @brief	é€šä¿¡çŠ¶æ…‹ã‚’ç®¡ç†ã™ã‚‹ã‚µãƒ¼ãƒ“ã‚¹  é€šä¿¡ã®ä¸Šä½ã«ã‚ã‚‹
+ *          	ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã²ã¨ã¤ã¨ã—ã¦åƒãã€è‡ªåˆ†ã®é€šä¿¡çŠ¶æ…‹ã‚„ä»–ã®æ©Ÿå™¨ã®
+ *          	é–‹å§‹ã‚„çµ‚äº†ã‚’ç®¡ç†ã™ã‚‹
+ *		â€»comm_field_state.cã®çœŸä¼¼ã£å­
  * @author	Satoshi Mitsuhara
  * @date    	2006.05.17
  */
@@ -20,51 +20,51 @@
 #include "comm_mystery_gift.h"
 
 //==============================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //==============================================================================
-// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ì‘®
+// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®æ›¸å¼
 typedef void (*PTRStateFunc)(void);
 //==============================================================================
-// ƒ[ƒN
+// ãƒ¯ãƒ¼ã‚¯
 //==============================================================================
 typedef struct{
   MYSTERYGIFT_WORK *pMSys;
-  MATHRandContext32 sRand; 			//< eq‹@ƒlƒSƒVƒG[ƒVƒ‡ƒ“—p—”ƒL[
+  MATHRandContext32 sRand; 			//< è¦ªå­æ©Ÿãƒã‚´ã‚·ã‚¨ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ä¹±æ•°ã‚­ãƒ¼
   TCB_PTR pTcb;
   PTRStateFunc state;
   u16 timer;
   u8 bStateNoChange;
-  u8 connectIndex;   				// q‹@‚ªÚ‘±‚·‚ée‹@‚Ìindex”Ô†
+  u8 connectIndex;   				// å­æ©ŸãŒæ¥ç¶šã™ã‚‹è¦ªæ©Ÿã®indexç•ªå·
   MYSTATUS *status[SCAN_PARENT_COUNT_MAX];
 
-  GIFT_DATA recv_data;				// óM‚µ‚½ƒf[ƒ^
-  u8 recv_flag;					// óM‚µ‚½ƒtƒ‰ƒO
-  u8 result_flag[SCAN_PARENT_COUNT_MAX];	// ‚¿‚á‚ñ‚ÆóM‚µ‚Ü‚µ‚½•Ô–
+  GIFT_DATA recv_data;				// å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿
+  u8 recv_flag;					// å—ä¿¡ã—ãŸãƒ•ãƒ©ã‚°
+  u8 result_flag[SCAN_PARENT_COUNT_MAX];	// ã¡ã‚ƒã‚“ã¨å—ä¿¡ã—ã¾ã—ãŸè¿”äº‹
 
-  //  u8 beacon_data[MYSTERY_BEACON_DATA_SIZE];	// ƒr[ƒRƒ“ƒf[ƒ^
+  //  u8 beacon_data[MYSTERY_BEACON_DATA_SIZE];	// ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿
   
 } _COMM_STATE_WORK;
 
-static _COMM_STATE_WORK *_pCommStateM = NULL;  ///<@ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+static _COMM_STATE_WORK *_pCommStateM = NULL;  ///<ã€€ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
 
 //==============================================================================
-// ’è‹`
+// å®šç¾©
 //==============================================================================
-#define _START_TIME (50)     // ŠJnŠÔ
-#define _CHILD_P_SEARCH_TIME (12) ///q‹@‚Æ‚µ‚Äe‚ğ’T‚·ŠÔ
-#define _PARENT_WAIT_TIME (40) ///e‚Æ‚µ‚Ä‚Ì‚ñ‚Ñ‚è‘Ò‚ÂŠÔ
+#define _START_TIME (50)     // é–‹å§‹æ™‚é–“
+#define _CHILD_P_SEARCH_TIME (12) ///å­æ©Ÿã¨ã—ã¦è¦ªã‚’æ¢ã™æ™‚é–“
+#define _PARENT_WAIT_TIME (40) ///è¦ªã¨ã—ã¦ã®ã‚“ã³ã‚Šå¾…ã¤æ™‚é–“
 #define _FINALIZE_TIME (2)
 #define _EXIT_SENDING_TIME (5)
 #define _PARENT_END_TIME (2)
 #define _SEND_NAME_TIME (10)
-#define _PARENTSCAN_PA (3)  // e‹@‚Æ‚µ‚ÄŒŸõ‚·‚éŠm—§‚Í1/3
+#define _PARENTSCAN_PA (3)  // è¦ªæ©Ÿã¨ã—ã¦æ¤œç´¢ã™ã‚‹ç¢ºç«‹ã¯1/3
 
-#define _TCB_COMMCHECK_PRT   (10)    ///< ƒtƒB[ƒ‹ƒh‚ğ•à‚­’ÊM‚ÌŠÄ‹ƒ‹[ƒ`ƒ“‚ÌPRI
+#define _TCB_COMMCHECK_PRT   (10)    ///< ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’æ­©ãé€šä¿¡ã®ç›£è¦–ãƒ«ãƒ¼ãƒãƒ³ã®PRI
 
 //==============================================================================
-// staticéŒ¾
+// staticå®£è¨€
 //==============================================================================
-static void _commCheckFunc(TCB_PTR tcb, void* work);  // ƒXƒe[ƒg‚ğÀs‚µ‚Ä‚¢‚éƒ^ƒXƒN
+static void _commCheckFunc(TCB_PTR tcb, void* work);  // ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å®Ÿè¡Œã—ã¦ã„ã‚‹ã‚¿ã‚¹ã‚¯
 static void _mysteryParentInit(void);
 static void _mysteryParentWaiting(void);
 
@@ -78,7 +78,7 @@ static void _mysteryChildWaiting(void);
 
 //==============================================================================
 /**
- * ’ÊMŠÇ—ƒXƒe[ƒg‚Ì‰Šú‰»ˆ—
+ * é€šä¿¡ç®¡ç†ã‚¹ãƒ†ãƒ¼ãƒˆã®åˆæœŸåŒ–å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -87,11 +87,11 @@ static void _commStateInitialize(MYSTERYGIFT_WORK *pMSys)
 {
   void* pWork;
 
-  if(_pCommStateM != NULL)		// ‚·‚Å‚É“®ì’†‚Ìê‡•K—v‚È‚¢
+  if(_pCommStateM != NULL)		// ã™ã§ã«å‹•ä½œä¸­ã®å ´åˆå¿…è¦ãªã„
     return;
 
   CommCommandMysteryInitialize((void *)pMSys);
-  // ‰Šú‰»
+  // åˆæœŸåŒ–
   _pCommStateM = (_COMM_STATE_WORK*)sys_AllocMemory(HEAPID_COMMUNICATION, sizeof(_COMM_STATE_WORK));
   MI_CpuFill8(_pCommStateM, 0, sizeof(_COMM_STATE_WORK));
   _pCommStateM->timer = _START_TIME;
@@ -103,9 +103,9 @@ static void _commStateInitialize(MYSTERYGIFT_WORK *pMSys)
 
 //==============================================================================
 /**
- * ’ÊMŠÇ—ƒXƒe[ƒg‚Ì•ÏX
- * @param   state  •Ï‚¦‚éƒXƒe[ƒg‚ÌŠÖ”
- * @param   time   ƒXƒe[ƒg•ÛŠÔ
+ * é€šä¿¡ç®¡ç†ã‚¹ãƒ†ãƒ¼ãƒˆã®å¤‰æ›´
+ * @param   state  å¤‰ãˆã‚‹ã‚¹ãƒ†ãƒ¼ãƒˆã®é–¢æ•°
+ * @param   time   ã‚¹ãƒ†ãƒ¼ãƒˆä¿æŒæ™‚é–“
  * @retval  none
  */
 //==============================================================================
@@ -118,7 +118,7 @@ static void _changeState(PTRStateFunc state, int time)
 
 //==============================================================================
 /**
- * e‹@‚Æ‚µ‚Ä‰Šú‰»‚ğs‚¤
+ * è¦ªæ©Ÿã¨ã—ã¦åˆæœŸåŒ–ã‚’è¡Œã†
  * @param   none
  * @retval  none
  */
@@ -128,15 +128,15 @@ static void _mysteryParentInit(void)
   int i;
   //  MYSTERYGIFT_WORK *wk;
   
-  // ‚Ü‚¸‚Í©•ª‚ÆÚ‘±‚ğ‚·‚é
+  // ã¾ãšã¯è‡ªåˆ†ã¨æ¥ç¶šã‚’ã™ã‚‹
   if(!CommIsConnect(CommGetCurrentID()))
     return;
 
   for(i = 0; i < SCAN_PARENT_COUNT_MAX; i++)
     _pCommStateM->result_flag[i] = FALSE;
-  // e‹@‚Æ‚µ‚Ä‚Ì€”õ‚ªŠ®—¹‚µ‚½‚Ì‚ÅAƒr[ƒRƒ“î•ñ‚ğ“Y•t‚·‚é
+  // è¦ªæ©Ÿã¨ã—ã¦ã®æº–å‚™ãŒå®Œäº†ã—ãŸã®ã§ã€ãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ã‚’æ·»ä»˜ã™ã‚‹
   //  wk = PROC_GetWork(MyseryGiftGetProcp());
-  // «‚±‚Ìƒf[ƒ^‚Í‘—‚ç‚Ë‚Î
+  // â†“ã“ã®ãƒ‡ãƒ¼ã‚¿ã¯é€ã‚‰ã­ã°
   CommInfoSendPokeData();
   _CHANGE_STATE(_mysteryParentWaiting, 0);
 }
@@ -144,7 +144,7 @@ static void _mysteryParentInit(void)
 
 //==============================================================================
 /**
- * e‹@‚Æ‚µ‚Ä‘Ò‹@’†
+ * è¦ªæ©Ÿã¨ã—ã¦å¾…æ©Ÿä¸­
  * @param   none
  * @retval  none
  */
@@ -157,7 +157,7 @@ static void _mysteryParentWaiting(void)
       _pCommStateM->status[i] = CommInfoGetMyStatus(i);
       if(_pCommStateM->status[i]){
 #if 0//def DEBUG_ONLY_FOR_mituhara
-	OS_Printf("q‹@ %d ‚©‚ç•ÔM‚ª‚ ‚è‚Ü‚µ‚½I\n", i);
+	OS_Printf("å­æ©Ÿ %d ã‹ã‚‰è¿”ä¿¡ãŒã‚ã‚Šã¾ã—ãŸï¼\n", i);
 #endif
       }
     }
@@ -167,7 +167,7 @@ static void _mysteryParentWaiting(void)
 
 //==============================================================================
 /**
- * q‹@‚Ì‰Šú‰»
+ * å­æ©Ÿã®åˆæœŸåŒ–
  * @param   none
  * @retval  none
  */
@@ -183,7 +183,7 @@ static void _mysteryChildInit(void)
 
 //==============================================================================
 /**
- * q‹@‘Ò‹@ó‘Ô  e‹@ƒr[ƒRƒ“ûW’†
+ * å­æ©Ÿå¾…æ©ŸçŠ¶æ…‹  è¦ªæ©Ÿãƒ“ãƒ¼ã‚³ãƒ³åé›†ä¸­
  * @param   none
  * @retval  none
  */
@@ -196,7 +196,7 @@ static void _mysteryChildBconScanning(void)
 
 //==============================================================================
 /**
- * q‹@‘Ò‹@ó‘Ô  e‹@‚É‹–‰Â‚à‚ç‚¢’†
+ * å­æ©Ÿå¾…æ©ŸçŠ¶æ…‹  è¦ªæ©Ÿã«è¨±å¯ã‚‚ã‚‰ã„ä¸­
  * @param   none
  * @retval  none
  */
@@ -210,7 +210,7 @@ static void _mysteryChildConnecting(void)
 
 //==============================================================================
 /**
- * q‹@‘Ò‹@ó‘Ô  e‹@‚Éî•ñ‚ğ‘—M
+ * å­æ©Ÿå¾…æ©ŸçŠ¶æ…‹  è¦ªæ©Ÿã«æƒ…å ±ã‚’é€ä¿¡
  * @param   none
  * @retval  none
  */
@@ -229,14 +229,14 @@ static void _mysteryChildSendName(void)
 
 //==============================================================================
 /**
- * q‹@‘Ò‹@ó‘Ô
+ * å­æ©Ÿå¾…æ©ŸçŠ¶æ…‹
  * @param   none
  * @retval  none
  */
 //==============================================================================
 static void _mysteryChildWaiting(void)
 {
-  //Exit‚ğó‚¯æ‚Á‚½‚çq‹@Ø’f
+  //Exitã‚’å—ã‘å–ã£ãŸã‚‰å­æ©Ÿåˆ‡æ–­
 }
 
 
@@ -244,7 +244,7 @@ static void _mysteryChildWaiting(void)
 
 //==============================================================================
 /**
- * ’ÊMŠÇ—ƒXƒe[ƒg‚Ìˆ—
+ * é€šä¿¡ç®¡ç†ã‚¹ãƒ†ãƒ¼ãƒˆã®å‡¦ç†
  * @param
  * @retval  none
  */
@@ -266,15 +266,15 @@ void _commCheckFunc(TCB_PTR tcb, void* work)
 
 //==============================================================================
 /**
- * u‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ìv‚Ìe‚Æ‚µ‚Ä‚Ì’ÊMˆ—ŠJn
- * @param   serviceNo  ’ÊMƒT[ƒrƒX”Ô†
+ * ã€Œãµã—ããªãŠãã‚Šã‚‚ã®ã€ã®è¦ªã¨ã—ã¦ã®é€šä¿¡å‡¦ç†é–‹å§‹
+ * @param   serviceNo  é€šä¿¡ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·
  * @retval  none
  */
 //==============================================================================
 void CommMysteryStateEnterGiftParent(MYSTERYGIFT_WORK *pMSys, SAVEDATA *sv, int serviceNo)
 {
   if(CommIsInitialize())
-    return;      // ‚Â‚È‚ª‚Á‚Ä‚¢‚éê‡¡‚ÍœŠO‚·‚é
+    return;      // ã¤ãªãŒã£ã¦ã„ã‚‹å ´åˆä»Šã¯é™¤å¤–ã™ã‚‹
 
   CommStateEnterMysteryParent(sv, serviceNo);
   _commStateInitialize(pMSys);
@@ -283,7 +283,7 @@ void CommMysteryStateEnterGiftParent(MYSTERYGIFT_WORK *pMSys, SAVEDATA *sv, int 
 
 //==============================================================================
 /**
- * €”õ‚ªŠ®—¹‚µ‚½q‚Ì”‚ğ•Ô‚·
+ * æº–å‚™ãŒå®Œäº†ã—ãŸå­ã®æ•°ã‚’è¿”ã™
  * @param   none
  * @retval  none
  */
@@ -298,7 +298,7 @@ int CommMysteryGetCommChild(void)
 
 //==============================================================================
 /**
- * e‹@FŒq‚ª‚Á‚Ä‚¢‚éq‹@‚Öƒf[ƒ^‚ğ‘—‚é
+ * è¦ªæ©Ÿï¼šç¹‹ãŒã£ã¦ã„ã‚‹å­æ©Ÿã¸ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
  * @param   none
  * @retval  none
  */
@@ -319,8 +319,8 @@ void CommMysterySendGiftDataParent(const void *p, int size)
 
 //==============================================================================
 /**
- * u‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ìv‚Ìq‚Æ‚µ‚Ä‚Ì’ÊMˆ—ŠJn
- * @param   serviceNo  ’ÊMƒT[ƒrƒX”Ô†
+ * ã€Œãµã—ããªãŠãã‚Šã‚‚ã®ã€ã®å­ã¨ã—ã¦ã®é€šä¿¡å‡¦ç†é–‹å§‹
+ * @param   serviceNo  é€šä¿¡ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·
  * @retval  none
  */
 //==============================================================================
@@ -328,9 +328,9 @@ void CommMysteryStateEnterGiftChild(MYSTERYGIFT_WORK *pMSys, int serviceNo)
 {
   SAVEDATA *sv;
   if(CommIsInitialize())
-    return;      // ‚Â‚È‚ª‚Á‚Ä‚¢‚éê‡¡‚ÍœŠO‚·‚é
+    return;      // ã¤ãªãŒã£ã¦ã„ã‚‹å ´åˆä»Šã¯é™¤å¤–ã™ã‚‹
 
-  // ’ÊMƒq[ƒvì¬
+  // é€šä¿¡ãƒ’ãƒ¼ãƒ—ä½œæˆ
   sv = ((MAINWORK *)PROC_GetParentWork(MyseryGiftGetProcp()))->savedata;
   CommStateEnterMysteryChild(sv, serviceNo);
     _commStateInitialize(pMSys);
@@ -340,8 +340,8 @@ void CommMysteryStateEnterGiftChild(MYSTERYGIFT_WORK *pMSys, int serviceNo)
 
 //==============================================================================
 /**
- * u‚Ó‚µ‚¬‚È‚¨‚­‚è‚à‚Ìv‚Ìq‚Æ‚µ‚Ä‚Ì’ÊMˆ—ŠJn
- * @param   connectIndex Ú‘±‚·‚ée‹@‚ÌIndex
+ * ã€Œãµã—ããªãŠãã‚Šã‚‚ã®ã€ã®å­ã¨ã—ã¦ã®é€šä¿¡å‡¦ç†é–‹å§‹
+ * @param   connectIndex æ¥ç¶šã™ã‚‹è¦ªæ©Ÿã®Index
  * @retval  none
  */
 //==============================================================================
@@ -353,10 +353,10 @@ void CommMysteryStateConnectGiftChild(int connectIndex)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	—LŒø‚Èƒr[ƒRƒ“î•ñ‚ğó‚¯æ‚Á‚½‚©•Ô‚·
+ * @brief	æœ‰åŠ¹ãªãƒ“ãƒ¼ã‚³ãƒ³æƒ…å ±ã‚’å—ã‘å–ã£ãŸã‹è¿”ã™
  * @param	NONE
- * @return	0`15: ó‚¯æ‚Á‚½ -1: ó‚¯æ‚ç‚È‚©‚Á‚½
- *		¦ó‚¯æ‚Á‚½ê‡‚Íbeacon_data‚Éî•ñ‚ªƒRƒs[‚³‚ê‚é
+ * @return	0ã€œ15: å—ã‘å–ã£ãŸ -1: å—ã‘å–ã‚‰ãªã‹ã£ãŸ
+ *		â€»å—ã‘å–ã£ãŸå ´åˆã¯beacon_dataã«æƒ…å ±ãŒã‚³ãƒ”ãƒ¼ã•ã‚Œã‚‹
 */
 //--------------------------------------------------------------------------------------------
 int CommMysteryCheckParentBeacon(MYSTERYGIFT_WORK *wk)
@@ -373,7 +373,7 @@ int CommMysteryCheckParentBeacon(MYSTERYGIFT_WORK *wk)
 #endif
 	memcpy(&wk->gift_data.beacon, p, sizeof(GIFT_BEACON));
 #if 0//def DEBUG_ONLY_FOR_mituhara
-	OS_Printf("ƒr[ƒRƒ“ƒf[ƒ^‚ğ %d ‚Éó‚¯æ‚è‚Ü‚µ‚½I\n", i);
+	OS_Printf("ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ %d ã«å—ã‘å–ã‚Šã¾ã—ãŸï¼\n", i);
 	OS_Printf("event_id = %d\n", p->event_id);
 	OS_Printf("have_card = %d\n", p->have_card);
 #endif
@@ -386,7 +386,7 @@ int CommMysteryCheckParentBeacon(MYSTERYGIFT_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‚¿‚á‚ñ‚Æƒf[ƒ^‚ğó‚¯æ‚ê‚½–‚ğe‹@‚Ö“`’B
+ * @brief	ã¡ã‚ƒã‚“ã¨ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚ŒãŸäº‹ã‚’è¦ªæ©Ÿã¸ä¼é”
  * @param	NONE
  * @return	NONE
  */
@@ -399,29 +399,29 @@ void CommMysteryResultRecvData(void)
 
 //==============================================================================
 /**
- * ‚¨‚­‚è‚à‚Ì@‚Ìƒf[ƒ^‚ğó‚¯æ‚Á‚½Û‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
- * @param   size     ‘—‚ç‚ê‚Ä‚«‚½ƒf[ƒ^ƒTƒCƒY
- * @param   pData    ‚¨‚­‚è‚à‚Ì‚Ö‚Ìƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * ãŠãã‚Šã‚‚ã®ã€€ã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã£ãŸéš›ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
+ * @param   size     é€ã‚‰ã‚Œã¦ããŸãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData    ãŠãã‚Šã‚‚ã®ã¸ã®ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
 void CommMysteryGiftRecvPlace(int netID, int size, void* pBuff, void* pWork)
 {
-  /* ’m‚ç‚È‚¢‘Šè‚©‚çƒf[ƒ^‚ª‘—‚ç‚ê‚Ä‚«‚½‚ç–³‹ */
+  /* çŸ¥ã‚‰ãªã„ç›¸æ‰‹ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ãŒé€ã‚‰ã‚Œã¦ããŸã‚‰ç„¡è¦– */
   if(_pCommStateM->connectIndex != netID)
     return;
   _pCommStateM->recv_flag = 1;
 #if 0//def DEBUG_ONLY_FOR_mituhara
-  OS_Printf("‚¨‚­‚è‚à‚Ì‚Ìƒf[ƒ^‚ğó‚¯æ‚è‚Ü‚µ‚½I\n");
+  OS_Printf("ãŠãã‚Šã‚‚ã®ã®ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚Šã¾ã—ãŸï¼\n");
 #endif
 }
 
 //==============================================================================
 /**
- * @brief	‚¨‚­‚è‚à‚Ì‚Ìƒf[ƒ^‚ª‘—‚ç‚ê‚Ä‚«‚½‚©•Ô‚·
+ * @brief	ãŠãã‚Šã‚‚ã®ã®ãƒ‡ãƒ¼ã‚¿ãŒé€ã‚‰ã‚Œã¦ããŸã‹è¿”ã™
  * @param	NONE
- * @return	TRUE: ‘—‚ç‚ê‚Ä‚«‚½ : FALSE: ‘—‚ç‚ê‚Ä‚«‚Ä‚¢‚È‚¢
+ * @return	TRUE: é€ã‚‰ã‚Œã¦ããŸ : FALSE: é€ã‚‰ã‚Œã¦ãã¦ã„ãªã„
  */
 //==============================================================================
 int CommMysteryCheckRecvData(void)
@@ -431,9 +431,9 @@ int CommMysteryCheckRecvData(void)
 
 //==============================================================================
 /**
- * ‚¨‚­‚è‚à‚Ì@‚Ìƒf[ƒ^ƒTƒCƒY‚ğ•Ô‚·
+ * ãŠãã‚Šã‚‚ã®ã€€ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param   none
- * @retval  ƒf[ƒ^ƒTƒCƒY
+ * @retval  ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //==============================================================================
 int CommMysteryGetRecvPlaceSize(void)
@@ -443,9 +443,9 @@ int CommMysteryGetRecvPlaceSize(void)
 
 //==============================================================================
 /**
- * ‚¨‚­‚è‚à‚Ì@‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * ãŠãã‚Šã‚‚ã®ã€€ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  * @param   none
- * @retval  ƒ|ƒCƒ“ƒ^
+ * @retval  ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 u8* CommGetMysteryGiftRecvBuff( int netID, void* pWork, int size)
@@ -455,9 +455,9 @@ u8* CommGetMysteryGiftRecvBuff( int netID, void* pWork, int size)
 
 //==============================================================================
 /**
- * ‚¨‚­‚è‚à‚Ì@‚ª‘—‚ç‚ê‚Ä‚«‚½‚±‚Æ‚ğ‘—‚é
+ * ãŠãã‚Šã‚‚ã®ã€€ãŒé€ã‚‰ã‚Œã¦ããŸã“ã¨ã‚’é€ã‚‹
  * @param   none
- * @retval  ƒ|ƒCƒ“ƒ^
+ * @retval  ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 void CommMysterySendRecvResult(int netID, int size, void* pBuff, void* pWork)
@@ -471,9 +471,9 @@ void CommMysterySendRecvResult(int netID, int size, void* pBuff, void* pWork)
 
 //==============================================================================
 /**
- * Ú‘±‚³‚ê‚Ä‚¢‚é‚·‚×‚Ä‚Ìq‹@‚©‚ç•Ô–‚ª•Ô‚Á‚Ä‚«‚½‚©•Ô‚·
+ * æ¥ç¶šã•ã‚Œã¦ã„ã‚‹ã™ã¹ã¦ã®å­æ©Ÿã‹ã‚‰è¿”äº‹ãŒè¿”ã£ã¦ããŸã‹è¿”ã™
  * @param   none
- * @retval  TRUE: •Ô‚Á‚Ä‚«‚½ : FALSE: •Ô‚Á‚Ä‚«‚Ä‚¢‚È‚¢
+ * @retval  TRUE: è¿”ã£ã¦ããŸ : FALSE: è¿”ã£ã¦ãã¦ã„ãªã„
  */
 //==============================================================================
 int CommMysteryGiftGetRecvCheck(void)
@@ -489,7 +489,7 @@ int CommMysteryGiftGetRecvCheck(void)
 
 //==============================================================================
 /**
- * ’ÊM‚ğI—¹‚³‚¹‚é
+ * é€šä¿¡ã‚’çµ‚äº†ã•ã›ã‚‹
  * @param   none
  * @retval  none
  */

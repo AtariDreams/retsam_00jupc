@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_enc_cutin.c
- * @brief	ƒtƒƒ“ƒeƒBƒAƒuƒŒ[ƒ“í‚ÌƒJƒbƒgƒCƒ“ƒGƒtƒFƒNƒg
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ–ãƒ¬ãƒ¼ãƒ³æˆ¦ã®ã‚«ãƒƒãƒˆã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  * @author	matsuda
- * @date	2008.01.28(ŒŽ)
+ * @date	2008.01.28(æœˆ)
  */
 //==============================================================================
 #include "common.h"
@@ -47,20 +47,20 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-// OAMƒf[ƒ^
-// ƒAƒNƒ^[ƒf[ƒ^”
-#define ENCOUNT_SPTR_BRAIN_CELL_NUM		( 8 )	// ƒ[ƒN”
-#define ENCOUNT_SPTR_BRAIN_CELL_RES_NUM	( 3 )	// ƒŠƒ\[ƒX”
+// OAMãƒ‡ãƒ¼ã‚¿
+// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿æ•°
+#define ENCOUNT_SPTR_BRAIN_CELL_NUM		( 8 )	// ãƒ¯ãƒ¼ã‚¯æ•°
+#define ENCOUNT_SPTR_BRAIN_CELL_RES_NUM	( 3 )	// ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ENCOUNT_SPTR_BRAIN_CELL_CONT_ID	( 600000 )
-#define ENCOUNT_SPTR_BRAIN_LEADER_DRAW_BOTTOM	( 30 )	// ‰º‚Í‚±‚ÌƒTƒCƒY‚Ü‚Å•\Ž¦‚·‚é
+#define ENCOUNT_SPTR_BRAIN_LEADER_DRAW_BOTTOM	( 30 )	// ä¸‹ã¯ã“ã®ã‚µã‚¤ã‚ºã¾ã§è¡¨ç¤ºã™ã‚‹
 #define ENCOUNT_SPTR_BRAIN_LEADER_COLOR_FADE		( GX_RGB( 0,0,0 ) )
 #define ENCOUNT_SPTR_BRAIN_LEADER_COLOR_FADE_EVY	( 14 )
-#define ENCOUNT_SPTR_BRAIN_LEADER_CHAR_OFS_CX	(0)	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‘‚«o‚·Žž‚ÌAXƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg’l
+#define ENCOUNT_SPTR_BRAIN_LEADER_CHAR_OFS_CX	(0)	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã™æ™‚ã®ã€Xã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
 
-#define ENCOUNT_SPTR_BRAIN_ZIGUZAGU_IN_WND ( GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_BG3|GX_WND_PLANEMASK_OBJ)				// ƒWƒOƒUƒO“®‚³ƒEƒBƒ“ƒhƒE’†
-#define ENCOUNT_SPTR_BRAIN_ZIGUZAGU_OUT_WND ( GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_OBJ)				// ƒWƒOƒUƒO“®‚³ƒEƒBƒ“ƒhƒEŠO
+#define ENCOUNT_SPTR_BRAIN_ZIGUZAGU_IN_WND ( GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_BG3|GX_WND_PLANEMASK_OBJ)				// ã‚¸ã‚°ã‚¶ã‚°å‹•ã•ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä¸­
+#define ENCOUNT_SPTR_BRAIN_ZIGUZAGU_OUT_WND ( GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_OBJ)				// ã‚¸ã‚°ã‚¶ã‚°å‹•ã•ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¤–
 enum{	//VSOAM
 	ENCOUNT_SPTR_BRAIN_VSOAM_ANM0,
 	ENCOUNT_SPTR_BRAIN_VSOAM_ANM1,
@@ -68,50 +68,50 @@ enum{	//VSOAM
 	ENCOUNT_SPTR_BRAIN_VSOAM,
 	ENCOUNT_SPTR_BRAIN_VSOAM_NUM,
 };
-#define ENCOUNT_SPTR_BRAIN_TRNAME_X		( 0 )	// ƒgƒŒ[ƒi[–¼XƒLƒƒƒ‰À•W
-#define ENCOUNT_SPTR_BRAIN_TRNAME_Y		( 11 )	// ƒgƒŒ[ƒi[–¼YƒLƒƒƒ‰À•W
-#define ENCOUNT_SPTR_BRAIN_TRNAME_SIZX	( 16 )	// ƒgƒŒ[ƒi[–¼BMPXƒLƒƒƒ‰ƒTƒCƒY
-#define ENCOUNT_SPTR_BRAIN_TRNAME_SIZY	( 2 )	// ƒgƒŒ[ƒi[–¼BMPYƒLƒƒƒ‰ƒTƒCƒY
+#define ENCOUNT_SPTR_BRAIN_TRNAME_X		( 0 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åXã‚­ãƒ£ãƒ©åº§æ¨™
+#define ENCOUNT_SPTR_BRAIN_TRNAME_Y		( 11 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åYã‚­ãƒ£ãƒ©åº§æ¨™
+#define ENCOUNT_SPTR_BRAIN_TRNAME_SIZX	( 16 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åBMPXã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
+#define ENCOUNT_SPTR_BRAIN_TRNAME_SIZY	( 2 )	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åBMPYã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚º
 #define ENCOUNT_SPTR_BRAIN_TRNAME_CGX		( FFD_FREE_CGX )
 #define ENCOUNT_SPTR_BRAIN_TRNAME_PAL		( FFD_MESFONT_PAL )
 #define ENCOUNT_SPTR_BRAIN_TRNAME_COL		( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )
 
-// “®‚³ƒpƒ‰ƒ[ƒ^	iG‚Á‚Ä‚æ‚¢•”•ªj
-#define ENCOUNT_SPTR_BRAIN_OAM_START_X	( 272*FX32_ONE )	// OAM“®‚³ŠJŽnX
-#define ENCOUNT_SPTR_BRAIN_OAM_X_SS		( -64*FX32_ONE )	// ‰Šú‘¬“x
-#define ENCOUNT_SPTR_BRAIN_OAM_START_Y	( 66*FX32_ONE )		// OAMYÀ•W
-#define ENCOUNT_SPTR_BRAIN_OAM_MOVE_SYNC	( 4 )				// OAM“®‚³ƒVƒ“ƒN
-#define ENCOUNT_SPTR_BRAIN_TRNAME_OFS_X	( -92 )				// OAM‚ÌˆÊ’u‚©‚çŒ©‚ÄTRNAME‚ð‚Ç‚ÌˆÊ’u‚É•\Ž¦‚·‚é‚©
-#define ENCOUNT_SPTR_BRAIN_ZIGUZAGU_DOT	( 8 )				// ƒWƒOƒUƒO‹æØ‚èYƒhƒbƒg”
-#define ENCOUNT_SPTR_BRAIN_ZIGUZAGU_WIDTH	( 16 )				// ƒWƒOƒUƒO•
-#define ENCOUNT_SPTR_BRAIN_ZIGUZAGU_SYNC	( 6 )				// ƒWƒOƒUƒO“®‚³ƒVƒ“ƒN
-#define ENCOUNT_SPTR_BRAIN_BG_CY			( 68 )	// BG‚Ì’†S
-#define ENCOUNT_SPTR_BRAIN_BG_AUTOMOVE_X	( 30 )	// AUTO“®‚³ƒXƒs[ƒh
-#define ENCOUNT_SPTR_BRAIN_BG_AFTER_WAIT	( 10 )				// BG“®‚³ŒãƒEƒGƒCƒg
-#define	ENCOUNT_SPTR_BRAIN_FLASHOUT_SYNC	( 3 )				// ƒtƒ‰ƒbƒVƒ…ƒAƒEƒgƒVƒ“ƒN”
-#define	ENCOUNT_SPTR_BRAIN_FLASHIN_SYNC	( 3 )				// ƒtƒ‰ƒbƒVƒ…ƒCƒ“ƒVƒ“ƒN”
-#define ENCOUNT_SPTR_BRAIN_FLASH_AFTER_WAIT	( 26 )			// ƒtƒ‰ƒbƒVƒ…Œã‚ÌƒEƒGƒCƒg
-#define ENCOUNT_SPTR_BRAIN_SCALE_S			( FX32_CONST(1.0f) )	// Šg‘åŠJŽn
-#define ENCOUNT_SPTR_BRAIN_SCALE_E			( FX32_CONST(1.0f) )	// Šg‘åŠJŽn
-#define ENCOUNT_SPTR_BRAIN_FADEOUT_SYNC		( 15 )			// ƒtƒF[ƒhƒAƒEƒgƒVƒ“ƒN
-#define ENCOUNT_SPTR_BRAIN_VSMARK_X		( FX32_CONST( 72 ) )	// VSMARK‚ÌˆÊ’u
-#define ENCOUNT_SPTR_BRAIN_VSMARK_Y		( FX32_CONST( 82 ) )	// VSMARK‚ÌˆÊ’u
-#define ENCOUNT_SPTR_BRAIN_VSANMSYNC		( 6 )	// ‚P‚Â‚ÌŠgkƒAƒjƒ‚ÌƒVƒ“ƒN”
-#define ENCOUNT_SPTR_BRAIN_VSANMTIMING	( 3 )	//	ŽŸ‚ðo‚·ƒ^ƒCƒ~ƒ“ƒO
-#define ENCOUNT_SPTR_BRAIN_3DAREA_BRIGHTNESS	( -14 )// 3D–Ê‚ðˆÃ‚­‚·‚é’l
+// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿	ï¼ˆè§¦ã£ã¦ã‚ˆã„éƒ¨åˆ†ï¼‰
+#define ENCOUNT_SPTR_BRAIN_OAM_START_X	( 272*FX32_ONE )	// OAMå‹•ã•é–‹å§‹X
+#define ENCOUNT_SPTR_BRAIN_OAM_X_SS		( -64*FX32_ONE )	// åˆæœŸé€Ÿåº¦
+#define ENCOUNT_SPTR_BRAIN_OAM_START_Y	( 66*FX32_ONE )		// OAMYåº§æ¨™
+#define ENCOUNT_SPTR_BRAIN_OAM_MOVE_SYNC	( 4 )				// OAMå‹•ã•ã‚·ãƒ³ã‚¯
+#define ENCOUNT_SPTR_BRAIN_TRNAME_OFS_X	( -92 )				// OAMã®ä½ç½®ã‹ã‚‰è¦‹ã¦TRNAMEã‚’ã©ã®ä½ç½®ã«è¡¨ç¤ºã™ã‚‹ã‹
+#define ENCOUNT_SPTR_BRAIN_ZIGUZAGU_DOT	( 8 )				// ã‚¸ã‚°ã‚¶ã‚°åŒºåˆ‡ã‚ŠYãƒ‰ãƒƒãƒˆæ•°
+#define ENCOUNT_SPTR_BRAIN_ZIGUZAGU_WIDTH	( 16 )				// ã‚¸ã‚°ã‚¶ã‚°å¹…
+#define ENCOUNT_SPTR_BRAIN_ZIGUZAGU_SYNC	( 6 )				// ã‚¸ã‚°ã‚¶ã‚°å‹•ã•ã‚·ãƒ³ã‚¯
+#define ENCOUNT_SPTR_BRAIN_BG_CY			( 68 )	// BGã®ä¸­å¿ƒ
+#define ENCOUNT_SPTR_BRAIN_BG_AUTOMOVE_X	( 30 )	// AUTOå‹•ã•ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define ENCOUNT_SPTR_BRAIN_BG_AFTER_WAIT	( 10 )				// BGå‹•ã•å¾Œã‚¦ã‚¨ã‚¤ãƒˆ
+#define	ENCOUNT_SPTR_BRAIN_FLASHOUT_SYNC	( 3 )				// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¢ã‚¦ãƒˆã‚·ãƒ³ã‚¯æ•°
+#define	ENCOUNT_SPTR_BRAIN_FLASHIN_SYNC	( 3 )				// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¤ãƒ³ã‚·ãƒ³ã‚¯æ•°
+#define ENCOUNT_SPTR_BRAIN_FLASH_AFTER_WAIT	( 26 )			// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å¾Œã®ã‚¦ã‚¨ã‚¤ãƒˆ
+#define ENCOUNT_SPTR_BRAIN_SCALE_S			( FX32_CONST(1.0f) )	// æ‹¡å¤§é–‹å§‹
+#define ENCOUNT_SPTR_BRAIN_SCALE_E			( FX32_CONST(1.0f) )	// æ‹¡å¤§é–‹å§‹
+#define ENCOUNT_SPTR_BRAIN_FADEOUT_SYNC		( 15 )			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚·ãƒ³ã‚¯
+#define ENCOUNT_SPTR_BRAIN_VSMARK_X		( FX32_CONST( 72 ) )	// VSMARKã®ä½ç½®
+#define ENCOUNT_SPTR_BRAIN_VSMARK_Y		( FX32_CONST( 82 ) )	// VSMARKã®ä½ç½®
+#define ENCOUNT_SPTR_BRAIN_VSANMSYNC		( 6 )	// ï¼‘ã¤ã®æ‹¡ç¸®ã‚¢ãƒ‹ãƒ¡ã®ã‚·ãƒ³ã‚¯æ•°
+#define ENCOUNT_SPTR_BRAIN_VSANMTIMING	( 3 )	//	æ¬¡ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define ENCOUNT_SPTR_BRAIN_3DAREA_BRIGHTNESS	( -14 )// 3Dé¢ã‚’æš—ãã™ã‚‹å€¤
 
 //--------------------------------------------------------------
-//	V‹K’è‹`
+//	æ–°è¦å®šç¾©
 //--------------------------------------------------------------
-///ƒJƒbƒgƒCƒ“BG‚ÌƒpƒŒƒbƒg“WŠJˆÊ’u
+///ã‚«ãƒƒãƒˆã‚¤ãƒ³BGã®ãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹ä½ç½®
 #define ENCOUNT_CUTIN_BG_PALNO		( FFD_SYSFONT_PAL )
-///ƒtƒHƒ“ƒgOAM‚ÌŽg—p”(ƒgƒŒ[ƒi[–¼‚Ì•\Ž¦‚Ì‚Ý‚ÉŽg—p)
+///ãƒ•ã‚©ãƒ³ãƒˆOAMã®ä½¿ç”¨æ•°(ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã®è¡¨ç¤ºã®ã¿ã«ä½¿ç”¨)
 #define ENCOUNT_FONT_OAM_MAX		(4)
-///ƒWƒOƒUƒOBG‚ÌƒpƒŒƒbƒg“WŠJˆÊ’u
+///ã‚¸ã‚°ã‚¶ã‚°BGã®ãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹ä½ç½®
 #define ZIGZAG_BG_PALNO				(FFD_MENUFRAME_PAL)
-///ƒWƒOƒUƒOBG‚ÌƒpƒŒƒbƒgƒAƒjƒ–{”
+///ã‚¸ã‚°ã‚¶ã‚°BGã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡æœ¬æ•°
 #define ZIGZAG_BG_PAL_ANM_NUM		(8)
-///ƒWƒOƒUƒOBG‚ÌƒpƒŒƒbƒgƒAƒjƒ‚ÌƒEƒFƒCƒg
+///ã‚¸ã‚°ã‚¶ã‚°BGã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define ZIGZAG_BGPALANM_WAIT		(0)
 
 enum{
@@ -119,50 +119,50 @@ enum{
 	WINEFF_CLOSE,
 };
 
-///ƒEƒBƒ“ƒhƒE‚ðŠJ‚­Å‘åƒhƒbƒg”
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ãæœ€å¤§ãƒ‰ãƒƒãƒˆæ•°
 #define WNDOPEN_EFF_OPEN_Y_DOT		(8*8 + 4)
-///ƒEƒBƒ“ƒhƒE‚ðŠJ‚­‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ãé€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define WNDOPEN_EFF_ADD_Y			(0x0800)
-///ƒEƒBƒ“ƒhƒE‚ÌƒZƒ“ƒ^[À•W
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚»ãƒ³ã‚¿ãƒ¼åº§æ¨™
 #define WNDOPEN_EFF_CENTER_Y		(10*8)
 
-///Šç“oê
+///é¡”ç™»å ´
 enum{
 	FACE_IN_END_X = 256 - 6 * 8,
 	FACE_IN_START_X = FACE_IN_END_X + 6 * 8,
 	FACE_IN_START_Y = 10 * 8,
-	FACE_IN_SPEED_X = 0x0f00,	//ƒCƒ“‚µ‚Ä‚­‚éŽž‚Ì‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+	FACE_IN_SPEED_X = 0x0f00,	//ã‚¤ãƒ³ã—ã¦ãã‚‹æ™‚ã®é€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 };
 
 enum{
-	FONTOAM_LEFT,		///<X¶’[À•W
-	FONTOAM_CENTER,		///<X’†SÀ•W
+	FONTOAM_LEFT,		///<Xå·¦ç«¯åº§æ¨™
+	FONTOAM_CENTER,		///<Xä¸­å¿ƒåº§æ¨™
 };
 
 
-///ƒtƒHƒ“ƒgOAMì¬ŽžAŠO‘¤‚ÅBMPŽw’è‚·‚éê‡‚ÉŽg—p
+///ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆæ™‚ã€å¤–å´ã§BMPæŒ‡å®šã™ã‚‹å ´åˆã«ä½¿ç”¨
 typedef struct{
 	GF_BGL_BMPWIN bmpwin;
 	u16 char_len;
 	u16 font_len;
 }FONT_EX_BMPWIN;
 
-///ƒtƒHƒ“ƒgƒAƒNƒ^[ƒ[ƒN
+///ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	FONTOAM_OBJ_PTR fontoam;
 	CHAR_MANAGER_ALLOCDATA cma;
 	u16 font_len;
 }FONT_ACTOR;
 
-///ƒEƒBƒ“ƒhƒE‹@”\‚ÌŠJ‚¯•Â‚¶ƒGƒtƒFƒNƒg—pƒ[ƒN
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ©Ÿèƒ½ã®é–‹ã‘é–‰ã˜ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	s32 y1;						///<ƒEƒBƒ“ƒhƒEÀ•WY(ã‘¤)F‰ºˆÊ8ƒrƒbƒg¬”
-	s32 y2;						///<ƒEƒBƒ“ƒhƒEÀ•WY(‰º‘¤)F‰ºˆÊ8ƒrƒbƒg¬”
+	s32 y1;						///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åº§æ¨™Y(ä¸Šå´)ï¼šä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°
+	s32 y2;						///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åº§æ¨™Y(ä¸‹å´)ï¼šä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°
 	
-	u8 end_flag;				///<I—¹ŒãTRUE‚ªƒZƒbƒg‚³‚ê‚é
-	u8 seq;						///<ƒV[ƒPƒ“ƒX”Ô†
+	u8 end_flag;				///<çµ‚äº†å¾ŒTRUEãŒã‚»ãƒƒãƒˆã•ã‚Œã‚‹
+	u8 seq;						///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 
-	u8 wnd0_x1;						///<ƒEƒBƒ“ƒhƒE0‚ÌX1À•W
+	u8 wnd0_x1;						///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦0ã®X1åº§æ¨™
 	u8 wnd0_y1;
 	u8 wnd0_x2;
 	u8 wnd0_y2;
@@ -173,7 +173,7 @@ typedef struct{
 	u8 wnd1_y2;
 }WNDOPEN_EFF_WORK;
 
-///ŠçƒXƒ‰ƒCƒhƒCƒ“§Œäƒ[ƒN
+///é¡”ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	int x;
 	int seq;
@@ -181,45 +181,45 @@ typedef struct{
 
 //-------------------------------------
 //
-//	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒ[ƒN
+//	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 //
 //=====================================
 typedef struct _ENCOUNT_EFFECT_WORK{
 	int seq;
 	int wait;
 	int count;
-	void* work;		// ŠeŽ©AŽ©—R‚ÉŽg—p
+	void* work;		// å„è‡ªã€è‡ªç”±ã«ä½¿ç”¨
 	GF_BGL_INI *bgl;
 	CATS_SYS_PTR csp;
 	CATS_RES_PTR crp;
 	PALETTE_FADE_PTR pfd;
-	u16* end;		// I—¹Áª¯¸—p
-	ARCHANDLE* p_handle;	// ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+	u16* end;		// çµ‚äº†ãƒã‚§ãƒƒã‚¯ç”¨
+	ARCHANDLE* p_handle;	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
 	s16 map_x;
 	s16 map_y;
 	
-	u8 effect_no;			///<ƒGƒtƒFƒNƒg”Ô†
-	FONTOAM_SYS_PTR fontoam_sys;		///<ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	u8 effect_no;			///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç•ªå·
+	FONTOAM_SYS_PTR fontoam_sys;		///<ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	TCB_PTR tcb_vwait;		///<VwaitXVTCB
+	TCB_PTR tcb_vwait;		///<Vwaitæ›´æ–°TCB
 	
-	//BGƒpƒŒƒbƒgƒAƒjƒ
-	int palanm_wait;		///<ƒpƒŒƒbƒgƒAƒjƒ‚ÌƒEƒFƒCƒg
-	int palanm_no;			///<ƒpƒŒƒbƒgƒAƒjƒˆÊ’u
-	u16 palbuf[ZIGZAG_BG_PAL_ANM_NUM * 16];	///ƒpƒŒƒbƒgƒAƒjƒƒoƒbƒtƒ@
-	TCB_PTR tcb_bgpalanm;	///<ƒpƒŒƒbƒgƒAƒjƒXVTCB
+	//BGãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
+	int palanm_wait;		///<ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã®ã‚¦ã‚§ã‚¤ãƒˆ
+	int palanm_no;			///<ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ä½ç½®
+	u16 palbuf[ZIGZAG_BG_PAL_ANM_NUM * 16];	///ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒãƒƒãƒ•ã‚¡
+	TCB_PTR tcb_bgpalanm;	///<ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡æ›´æ–°TCB
 
-	//ƒEƒBƒ“ƒhƒE
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	WNDOPEN_EFF_WORK wineff;
 	
-	//ŠçƒXƒ‰ƒCƒhƒCƒ“
+	//é¡”ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³
 	FACE_MOVE_WORK face_move_work;
 	int face_palno;
 	u32 obj_palbit;
 }ENCOUNT_EFFECT_WORK;
 
 //-------------------------------------
-//	”Ä—p“®ì
+//	æ±Žç”¨å‹•ä½œ
 //=====================================
 typedef struct {
 	fx32 x;
@@ -230,7 +230,7 @@ typedef struct {
 } ENC_MOVE_WORK_FX;
 
 //-------------------------------------
-///	VSƒAƒjƒ
+///	VSã‚¢ãƒ‹ãƒ¡
 //=====================================
 typedef struct {
 	s16 timing;
@@ -240,20 +240,20 @@ typedef struct {
 } ENCOUNT_SPTR_BRAIN_VSANM;
 //
 //-------------------------------------
-//	ƒWƒ€ƒŠ[ƒ_[
+//	ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼
 //=====================================
 typedef struct {
 	ENC_MOVE_WORK_FX scale;
 	ENCOUNT_SPTR_BRAIN_VSANM vsanm;
 	s32 wait;
 	
-	//V‹K’è‹`
-	FONT_ACTOR fontoam_trainer_name;	///ƒtƒHƒ“ƒgOAM(ƒgƒŒ[ƒi[–¼)
+	//æ–°è¦å®šç¾©
+	FONT_ACTOR fontoam_trainer_name;	///ãƒ•ã‚©ãƒ³ãƒˆOAM(ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å)
 	CATS_ACT_PTR cap_face;
 } ENCOUNT_SPTR_BRAIN;
 
 
-// ‚»‚ê‚¼‚ê‚Å•Ï‚í‚é‚Æ‚±‚ë
+// ãã‚Œãžã‚Œã§å¤‰ã‚ã‚‹ã¨ã“ã‚
 typedef struct {
 	u32	trno;
 	u8	nclr;
@@ -266,10 +266,10 @@ typedef struct {
 	u8	pad;
 } ENCOUNT_SPTR_BRAIN_PARAM;
 
-// ‚»‚ê‚¼‚ê‚Ì’è”
+// ãã‚Œãžã‚Œã®å®šæ•°
 static const ENCOUNT_SPTR_BRAIN_PARAM ENCOUNT_SPTR_BrainDef[] = {
 	{	//FRONTIER_NO_TOWER
-		TR_KUROTUGU_01,			// ƒŠ[ƒ_[ƒ^ƒCƒv
+		TR_KUROTUGU_01,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
 		NARC_field_encounteffect_trpl_fbface05_NCLR,
 		NARC_field_encounteffect_trpl_fbface05_NCGR,
 		NARC_field_encounteffect_trpl_fbface05_NCER,
@@ -280,7 +280,7 @@ static const ENCOUNT_SPTR_BRAIN_PARAM ENCOUNT_SPTR_BrainDef[] = {
 		0,
 	},
 	{	//FRONTIER_NO_FACTORY_LV50
-		TR_FBOSS2_01,			// ƒŠ[ƒ_[ƒ^ƒCƒv
+		TR_FBOSS2_01,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
 		NARC_field_encounteffect_trpl_fbface02_NCLR,
 		NARC_field_encounteffect_trpl_fbface02_NCGR,
 		NARC_field_encounteffect_trpl_fbface02_NCER,
@@ -291,7 +291,7 @@ static const ENCOUNT_SPTR_BRAIN_PARAM ENCOUNT_SPTR_BrainDef[] = {
 		0,
 	},
 	{	//FRONTIER_NO_FACTORY_LV100
-		TR_FBOSS2_01,			// ƒŠ[ƒ_[ƒ^ƒCƒv
+		TR_FBOSS2_01,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
 		NARC_field_encounteffect_trpl_fbface02_NCLR,
 		NARC_field_encounteffect_trpl_fbface02_NCGR,
 		NARC_field_encounteffect_trpl_fbface02_NCER,
@@ -302,7 +302,7 @@ static const ENCOUNT_SPTR_BRAIN_PARAM ENCOUNT_SPTR_BrainDef[] = {
 		0,
 	},
 	{	//FRONTIER_NO_CASTLE
-		TR_FBOSS4_01,			// ƒŠ[ƒ_[ƒ^ƒCƒv
+		TR_FBOSS4_01,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
 		NARC_field_encounteffect_trpl_fbface01_NCLR,
 		NARC_field_encounteffect_trpl_fbface01_NCGR,
 		NARC_field_encounteffect_trpl_fbface01_NCER,
@@ -313,7 +313,7 @@ static const ENCOUNT_SPTR_BRAIN_PARAM ENCOUNT_SPTR_BrainDef[] = {
 		0,
 	},
 	{	//FRONTIER_NO_STAGE
-		TR_FBOSS1_01,			// ƒŠ[ƒ_[ƒ^ƒCƒv
+		TR_FBOSS1_01,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
 		NARC_field_encounteffect_trpl_fbface04_NCLR,
 		NARC_field_encounteffect_trpl_fbface04_NCGR,
 		NARC_field_encounteffect_trpl_fbface04_NCER,
@@ -324,7 +324,7 @@ static const ENCOUNT_SPTR_BRAIN_PARAM ENCOUNT_SPTR_BrainDef[] = {
 		0,
 	},
 	{	//FRONTIER_NO_ROULETTE
-		TR_FBOSS3_01,			// ƒŠ[ƒ_[ƒ^ƒCƒv
+		TR_FBOSS3_01,			// ãƒªãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¤ãƒ—
 		NARC_field_encounteffect_trpl_fbface03_NCLR,
 		NARC_field_encounteffect_trpl_fbface03_NCGR,
 		NARC_field_encounteffect_trpl_fbface03_NCER,
@@ -336,55 +336,55 @@ static const ENCOUNT_SPTR_BRAIN_PARAM ENCOUNT_SPTR_BrainDef[] = {
 	},
 };
 
-///ƒAƒNƒ^[ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚¢ã‚¯ã‚¿ãƒ¼ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 enum{
 	CUTIN_SOFTPRI_VS = 10,
 	CUTIN_SOFTPRI_NAME,
 	CUTIN_SOFTPRI_FACE,
 };
 
-///ƒAƒNƒ^[BGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚¢ã‚¯ã‚¿ãƒ¼BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define CUTIN_BGPRI_VS			(0)
 #define CUTIN_BGPRI_NAME		(0)
 #define CUTIN_BGPRI_FACE		(0)
 
-///Šç ƒAƒNƒ^[ƒwƒbƒ_
+///é¡” ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S FaceObjParam = {
 	0,0,0,		//X,Y,Z
-	0, CUTIN_SOFTPRI_FACE, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		FR_CHARID_CUTIN_FACE,			//ƒLƒƒƒ‰
-		FR_PLTTID_CUTIN_FACE,			//ƒpƒŒƒbƒg
-		FR_CELLID_CUTIN_FACE,			//ƒZƒ‹
-		FR_CELLANMID_CUTIN_FACE,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, CUTIN_SOFTPRI_FACE, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		FR_CHARID_CUTIN_FACE,			//ã‚­ãƒ£ãƒ©
+		FR_PLTTID_CUTIN_FACE,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		FR_CELLID_CUTIN_FACE,			//ã‚»ãƒ«
+		FR_CELLANMID_CUTIN_FACE,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	CUTIN_BGPRI_FACE,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	CUTIN_BGPRI_FACE,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///VS ƒAƒNƒ^[ƒwƒbƒ_
+///VS ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S VsObjParam = {
 	0,0,0,		//X,Y,Z
-	0, CUTIN_SOFTPRI_VS, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		FR_CHARID_CUTIN_VS,			//ƒLƒƒƒ‰
-		FR_PLTTID_CUTIN_VS,			//ƒpƒŒƒbƒg
-		FR_CELLID_CUTIN_VS,			//ƒZƒ‹
-		FR_CELLANMID_CUTIN_VS,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, CUTIN_SOFTPRI_VS, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		FR_CHARID_CUTIN_VS,			//ã‚­ãƒ£ãƒ©
+		FR_PLTTID_CUTIN_VS,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		FR_CELLID_CUTIN_VS,			//ã‚»ãƒ«
+		FR_CELLANMID_CUTIN_VS,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	CUTIN_BGPRI_VS,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	CUTIN_BGPRI_VS,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void ENC_End( ENCOUNT_EFFECT_WORK* eew, TCB_PTR tcb );
 static void VWait_EncountUpdateTCB(TCB_PTR tcb, void *work);
@@ -413,11 +413,11 @@ static void FontLenGet(const STRBUF *str, FONT_TYPE font_type, int *ret_dot_len,
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŠJŽn
+ *@brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *@param	No		ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgNO(FRONTIER_NO_???)
- *@param	*fsw	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- *@param	end		I—¹ƒ`ƒFƒbƒN—p@TRUEFI—¹‚µ‚½ 
+ *@param	No		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆNO(FRONTIER_NO_???)
+ *@param	*fsw	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ *@param	end		çµ‚äº†ãƒã‚§ãƒƒã‚¯ç”¨ã€€TRUEï¼šçµ‚äº†ã—ãŸ 
  *
  *@return	none
  *
@@ -435,34 +435,34 @@ void BrainCutin_EffectStart(int No, GF_BGL_INI *bgl, CATS_SYS_PTR csp, CATS_RES_
 	eew->csp = csp;
 	eew->crp = crp;
 	eew->pfd = pfd;
-	eew->end = end;		// I—¹ƒtƒ‰ƒOÝ’è
+	eew->end = end;		// çµ‚äº†ãƒ•ãƒ©ã‚°è¨­å®š
 	eew->map_x = map_x;
 	eew->map_y = map_y;
 	eew->p_handle = ArchiveDataHandleOpen( ARC_ENCOUNTEFFECT, HEAPID_FRONTIERMAP );
 	if(eew->end != NULL){
 		*(eew->end) = FALSE;
 	}
-	eew->effect_no = No - 1;	//0origin‚É‚·‚é
+	eew->effect_no = No - 1;	//0originã«ã™ã‚‹
 
-	//VRAMƒNƒŠƒA	ƒXƒNƒŠ[ƒ“‚ÌƒNƒŠƒAƒR[ƒh‚ª0‚Å‚Í‚È‚¢ˆ×A‚Ç‚±‚ªƒNƒŠƒAƒR[ƒh‚É‚È‚Á‚Ä‚¢‚Ä‚à
-	//				–â‘è‚È‚¢‚æ‚¤‚Éˆê“x‘S‚Ä‚ÌƒLƒƒƒ‰ƒNƒ^—Ìˆæ‚ðƒNƒŠƒA‚µ‚Ä‚¨‚­
+	//VRAMã‚¯ãƒªã‚¢	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰ãŒ0ã§ã¯ãªã„ç‚ºã€ã©ã“ãŒã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰ã«ãªã£ã¦ã„ã¦ã‚‚
+	//				å•é¡Œãªã„ã‚ˆã†ã«ä¸€åº¦å…¨ã¦ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿é ˜åŸŸã‚’ã‚¯ãƒªã‚¢ã—ã¦ãŠã
 	MI_CpuClear32(GF_BGL_CgxGet(FRMAP_FRAME_WIN), 0x8000);
 
 	GF_BGL_ScrollReq(bgl, FRMAP_FRAME_WIN, GF_BGL_SCROLL_X_SET, 0);
 	GF_BGL_ScrollReq(bgl, FRMAP_FRAME_WIN, GF_BGL_SCROLL_Y_SET, 0);
 
-	// BGÝ’è
+	// BGè¨­å®š
 	ZigzagBG_Load(eew, &ENCOUNT_SPTR_BrainDef[eew->effect_no]);
-	//VwaitXVƒ^ƒXƒN¶¬
+	//Vwaitæ›´æ–°ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	eew->tcb_vwait = VWaitTCB_Add(VWait_EncountUpdateTCB, eew, 1);
 }
 
 //----------------------------------------------------------------------------
 /**
- * encount_effect_subˆÈŠO‚ÌŠO•””ñŒöŠJ
- *	@brief	ƒ[ƒN‚Æƒ^ƒXƒN”jŠüŠÖ”
+ * encount_effect_subä»¥å¤–ã®å¤–éƒ¨éžå…¬é–‹
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã¨ã‚¿ã‚¹ã‚¯ç ´æ£„é–¢æ•°
  *
- *	@param	eew ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒ[ƒN
+ *	@param	eew ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ENC_End( ENCOUNT_EFFECT_WORK* eew, TCB_PTR tcb )
@@ -472,14 +472,14 @@ static void ENC_End( ENCOUNT_EFFECT_WORK* eew, TCB_PTR tcb )
 	
 	ArchiveDataHandleClose( eew->p_handle );
 	sys_FreeMemory(HEAPID_FRONTIERMAP, eew->work);
-	PMDS_taskDel(tcb);	//ƒ^ƒXƒNI—¹
+	PMDS_taskDel(tcb);	//ã‚¿ã‚¹ã‚¯çµ‚äº†
 }
 
 static void VWait_EncountUpdateTCB(TCB_PTR tcb, void *work)
 {
 	ENCOUNT_EFFECT_WORK *eew = work;
 	
-	//ƒEƒBƒ“ƒhƒEÀ•W
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åº§æ¨™
 	G2_SetWnd0Position(eew->wineff.wnd0_x1, eew->wineff.wnd0_y1, 
 		eew->wineff.wnd0_x2, eew->wineff.wnd0_y2);
 	G2_SetWnd1Position(eew->wineff.wnd1_x1, eew->wineff.wnd1_y1, 
@@ -488,7 +488,7 @@ static void VWait_EncountUpdateTCB(TCB_PTR tcb, void *work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ŠeƒWƒ€
+ *	@brief		å„ã‚¸ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void CutinEffect_MainTCB(TCB_PTR tcb, void* work)
@@ -504,14 +504,14 @@ static void CutinEffect_MainTCB(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒƒ“ƒeƒBƒAƒuƒŒ[ƒ“ê—pƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg
+ *	@brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ–ãƒ¬ãƒ¼ãƒ³å°‚ç”¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- *	@param	eew		ƒGƒtƒFƒNƒgƒ[ƒN
- *	@param	heapID	ƒq[ƒvID
- *	@param	cp_def	ƒfƒtƒ@ƒCƒ“’è‹`
+ *	@param	eew		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
+ *	@param	cp_def	ãƒ‡ãƒ•ã‚¡ã‚¤ãƒ³å®šç¾©
  *
- *	@retval	TRUE		I—¹
- *	@retval	FALSE		“r’†
+ *	@retval	TRUE		çµ‚äº†
+ *	@retval	FALSE		é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL EncountEffect_FBrainMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, const ENCOUNT_SPTR_BRAIN_PARAM* cp_def )
@@ -552,14 +552,14 @@ static BOOL EncountEffect_FBrainMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, cons
 		memset( eew->work, 0, sizeof(ENCOUNT_SPTR_BRAIN) );
 		task_w = eew->work;
 
-		// ƒtƒHƒ“ƒgOAMƒpƒŒƒbƒg“Ç‚Ýž‚Ý	
+		// ãƒ•ã‚©ãƒ³ãƒˆOAMãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿	
 		palno = CATS_LoadResourcePlttWorkArcH(eew->pfd, FADE_MAIN_OBJ, eew->csp, eew->crp, 
 			eew->p_handle, NARC_field_encounteffect_cutin_gym_font_NCLR, 0, 1, 
 			NNS_G2D_VRAM_TYPE_2DMAIN, FR_PLTTID_CUTIN_NAME);
 		OS_TPrintf("fontoam palno = %d\n", palno);
 		eew->obj_palbit |= 1 << palno;
 		
-		//ƒgƒŒ[ƒi[–¼•\Ž¦‚Ìˆ×‚ÌFONTOAM‚ðì¬
+		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åè¡¨ç¤ºã®ç‚ºã®FONTOAMã‚’ä½œæˆ
 		eew->fontoam_sys = FONTOAM_SysInit(ENCOUNT_FONT_OAM_MAX, HEAPID_FRONTIERMAP);
 		{
 			MSGDATA_MANAGER *man;
@@ -571,14 +571,14 @@ static BOOL EncountEffect_FBrainMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, cons
 				ENCOUNT_SPTR_BRAIN_TRNAME_COL, 0, 
 				FR_PLTTID_CUTIN_NAME, FACE_IN_END_X + ENCOUNT_SPTR_BRAIN_TRNAME_OFS_X + eew->map_x,
 				ENCOUNT_SPTR_BRAIN_TRNAME_Y * 8 + eew->map_y, FONTOAM_LEFT, NULL);
-			FONTOAM_SetDrawFlag(task_w->fontoam_trainer_name.fontoam, FALSE);	//”ñ•\Ž¦
+			FONTOAM_SetDrawFlag(task_w->fontoam_trainer_name.fontoam, FALSE);	//éžè¡¨ç¤º
 			STRBUF_Delete(name);
 			MSGMAN_Delete(man);
 		}
 		
-		//ƒŠƒ\[ƒXƒ[ƒh
+		//ãƒªã‚½ãƒ¼ã‚¹ãƒ­ãƒ¼ãƒ‰
 		{
-			//-- Šç --//
+			//-- é¡” --//
 			eew->face_palno = CATS_LoadResourcePlttWorkArcH(
 				eew->pfd, FADE_MAIN_OBJ, eew->csp, eew->crp, 
 				eew->p_handle, cp_def->nclr, 0, 1, 
@@ -606,7 +606,7 @@ static BOOL EncountEffect_FBrainMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, cons
 				NARC_field_encounteffect_cutin_gym_vs128k_NANR, 0, FR_CELLANMID_CUTIN_VS);
 		}
 
-		// ƒAƒNƒ^[“o˜^
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 		task_w->cap_face = CATS_ObjectAdd_S(eew->csp, eew->crp, &FaceObjParam);
 		CATS_ObjectEnableCap(task_w->cap_face, CATS_ENABLE_FALSE);
 		CATS_ObjectUpdate(task_w->cap_face->act);
@@ -615,10 +615,10 @@ static BOOL EncountEffect_FBrainMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, cons
 			ENCOUNT_SPTR_BRAIN_VSMARK_X + FX32_CONST(eew->map_x), 
 			ENCOUNT_SPTR_BRAIN_VSMARK_Y + FX32_CONST(eew->map_y), heapID );
 
-		// ƒJƒ‰[ƒpƒŒƒbƒg‚ðÝ’è
+		// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã‚’è¨­å®š
 	//	ENC_CLACT_ResColorChange( task_w->clact, heapID, cp_def->type, ENCOUNT_SPTR_BRAIN_LEADER_COLOR_FADE_EVY, ENCOUNT_SPTR_BRAIN_LEADER_COLOR_FADE );
 
-		// ƒWƒOƒUƒOƒEƒBƒ“ƒhƒE‰Šú‰»
+		// ã‚¸ã‚°ã‚¶ã‚°ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
 	//	task_w->p_ziguzagu = ENC_BG_WndZiguzagu_Alloc();
 
 		eew->seq ++;
@@ -648,7 +648,7 @@ static BOOL EncountEffect_FBrainMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, cons
 		break;
 
 	case ENCOUNT_SPTR_BRAIN_BG_IN:
-		//ƒEƒBƒ“ƒhƒEƒI[ƒvƒ“
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ¼ãƒ—ãƒ³
 		WndOpenEffStart(eew, WINEFF_OPEN);
 		eew->seq++;
 		break;
@@ -667,7 +667,7 @@ static BOOL EncountEffect_FBrainMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, cons
 			break;
 		}
 
-		// VS‚ðo‚·
+		// VSã‚’å‡ºã™
 		result = EncountEffect_SpTr_VsAnmMain( &task_w->vsanm );
 		if( result == TRUE ){
 			eew->seq++;
@@ -704,19 +704,19 @@ static BOOL EncountEffect_FBrainMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, cons
 		
 	case ENCOUNT_SPTR_BRAIN_OAM_FLASH_OUT_WAIT:
 		if( WIPE_SYS_EndCheck() ) {
-			//ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg‚ÅAdd‚µ‚½ˆÈŠO‚ÌOBJ‚Ì‹P“x‚ð—Ž‚Æ‚·
+			//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§Addã—ãŸä»¥å¤–ã®OBJã®è¼åº¦ã‚’è½ã¨ã™
 			OS_TPrintf("color conce palbit = %d, %d\n", eew->obj_palbit, eew->obj_palbit^0x3fff);
 			ColorConceChangePfd(eew->pfd, FADE_MAIN_OBJ, eew->obj_palbit ^ 0x3fff, 
 				ENCOUNT_SPTR_BRAIN_LEADER_COLOR_FADE_EVY, 0x0000);
-			// Šç‚ÌƒJƒ‰[ƒpƒŒƒbƒg•ÏX
+			// é¡”ã®ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
 			SoftFadePfd(eew->pfd, FADE_MAIN_OBJ, eew->face_palno * 16, 16, 
 				0, ENCOUNT_SPTR_BRAIN_LEADER_COLOR_FADE);
 
-			// ‚RD–Ê‚Éƒuƒ‰ƒCƒgƒlƒX‚ð‚©‚¯‚é
+			// ï¼“Dé¢ã«ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ã‹ã‘ã‚‹
 			SetBrightness( ENCOUNT_SPTR_BRAIN_3DAREA_BRIGHTNESS,
 					PLANEMASK_BG2|PLANEMASK_BG3|PLANEMASK_BD, MASK_MAIN_DISPLAY );
 
-			//@•¶Žš‚ðo‚·	ƒWƒ€ƒŠ[ƒ_[OAM‚ÌˆÊ’u‚ðŠî€‚Éo‚·
+			//ã€€æ–‡å­—ã‚’å‡ºã™	ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼OAMã®ä½ç½®ã‚’åŸºæº–ã«å‡ºã™
 			FONTOAM_SetDrawFlag(task_w->fontoam_trainer_name.fontoam, TRUE);
 			eew->seq++;
 		}
@@ -743,7 +743,7 @@ static BOOL EncountEffect_FBrainMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, cons
 		
 	case ENCOUNT_SPTR_BRAIN_WIPE:
 
-		// ƒzƒƒCƒgƒAƒEƒg
+		// ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
 		WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_WHITE, ENCOUNT_SPTR_BRAIN_FADEOUT_SYNC, 1, HEAPID_FRONTIERMAP );
 		eew->seq ++;
 		break;
@@ -758,21 +758,21 @@ static BOOL EncountEffect_FBrainMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, cons
 		WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_WHITE );
 		
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ð•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 		
-		//FONTOAM”jŠü
+		//FONTOAMç ´æ£„
 		Sub_FontOamDelete(&task_w->fontoam_trainer_name);
 		FONTOAM_SysDelete(eew->fontoam_sys);
 		
-		// OAM”jŠü
+		// OAMç ´æ£„
 		CATS_ActorPointerDelete_S(task_w->cap_face);
 		EncountEffect_SpTr_VsAnmExit( &task_w->vsanm );
 
-		// ƒEƒBƒ“ƒhƒE”jŠü
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	//	GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
-		// ƒuƒ‰ƒCƒgƒlƒX‚Í‚«
+		// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã¯ã
 	//	SetBrightness( BRIGHTNESS_NORMAL,
 	//			PLANEMASK_NONE, MASK_MAIN_DISPLAY );
 		
@@ -784,20 +784,20 @@ static BOOL EncountEffect_FBrainMain( ENCOUNT_EFFECT_WORK *eew, u32 heapID, cons
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒHƒ“ƒgOAM‚ðì¬‚·‚é
+ * @brief   ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’ä½œæˆã™ã‚‹
  *
- * @param   aci			BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   font_actor	¶¬‚µ‚½ƒtƒHƒ“ƒgOAMŠÖ˜A‚Ìƒ[ƒN‘ã“üæ
- * @param   str			•¶Žš—ñ
- * @param   font_type	ƒtƒHƒ“ƒgƒ^ƒCƒv(FONT_SYSTEM“™)
- * @param   color		ƒtƒHƒ“ƒgƒJƒ‰[\¬
- * @param   pal_offset	ƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg
- * @param   pal_id		“o˜^ŠJŽnƒpƒŒƒbƒgID
- * @param   x			À•WX
- * @param   y			À•WY
- * @param   pos_center  FONTOAM_LEFT(X¶’[À•W) or FONTOAM_CENTER(X’†SÀ•W)
- * @param   ex_bmpwin	ŒÄ‚Ño‚µ‘¤‚ÅƒtƒHƒ“ƒgOAM‚ÉŠÖ˜A•t‚¯‚éBMPWIN‚ðŽ‚Á‚Ä‚¢‚éê‡‚Í‚±‚±‚Å“n‚·B
- *          			NULL‚Ìê‡‚Í’†‚Åì¬‚³‚ê‚Ü‚·B(ex_bmpwin‚ðŽg—p‚·‚éê‡‚Ístr‚ÍNULL‚ÅOK)
+ * @param   aci			BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   font_actor	ç”Ÿæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆOAMé–¢é€£ã®ãƒ¯ãƒ¼ã‚¯ä»£å…¥å…ˆ
+ * @param   str			æ–‡å­—åˆ—
+ * @param   font_type	ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—(FONT_SYSTEMç­‰)
+ * @param   color		ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼æ§‹æˆ
+ * @param   pal_offset	ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   pal_id		ç™»éŒ²é–‹å§‹ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param   x			åº§æ¨™X
+ * @param   y			åº§æ¨™Y
+ * @param   pos_center  FONTOAM_LEFT(Xå·¦ç«¯åº§æ¨™) or FONTOAM_CENTER(Xä¸­å¿ƒåº§æ¨™)
+ * @param   ex_bmpwin	å‘¼ã³å‡ºã—å´ã§ãƒ•ã‚©ãƒ³ãƒˆOAMã«é–¢é€£ä»˜ã‘ã‚‹BMPWINã‚’æŒã£ã¦ã„ã‚‹å ´åˆã¯ã“ã“ã§æ¸¡ã™ã€‚
+ *          			NULLã®å ´åˆã¯ä¸­ã§ä½œæˆã•ã‚Œã¾ã™ã€‚(ex_bmpwinã‚’ä½¿ç”¨ã™ã‚‹å ´åˆã¯strã¯NULLã§OK)
  */
 //--------------------------------------------------------------
 static void Sub_FontOamCreate(ENCOUNT_EFFECT_WORK *eew, FONT_ACTOR *font_actor, const STRBUF *str, 
@@ -818,7 +818,7 @@ static void Sub_FontOamCreate(ENCOUNT_EFFECT_WORK *eew, FONT_ACTOR *font_actor, 
 	bgl = eew->bgl;
 	crp = eew->crp;
 	
-	//•¶Žš—ñ‚Ìƒhƒbƒg•‚©‚çAŽg—p‚·‚éƒLƒƒƒ‰”‚ðŽZo‚·‚é
+	//æ–‡å­—åˆ—ã®ãƒ‰ãƒƒãƒˆå¹…ã‹ã‚‰ã€ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©æ•°ã‚’ç®—å‡ºã™ã‚‹
 	if(ex_bmpwin == NULL){
 		FontLenGet(str, font_type, &font_len, &char_len);
 	}
@@ -827,7 +827,7 @@ static void Sub_FontOamCreate(ENCOUNT_EFFECT_WORK *eew, FONT_ACTOR *font_actor, 
 		char_len = ex_bmpwin->char_len;
 	}
 
-	//BMPì¬
+	//BMPä½œæˆ
 	if(ex_bmpwin == NULL){
 		GF_BGL_BmpWinInit(&bmpwin);
 		GF_BGL_BmpWinObjAdd(bgl, &bmpwin, char_len, 16 / 8, 0, 0);
@@ -842,7 +842,7 @@ static void Sub_FontOamCreate(ENCOUNT_EFFECT_WORK *eew, FONT_ACTOR *font_actor, 
 	vram_size = FONTOAM_NeedCharSize(&bmpwin, NNS_G2D_VRAM_TYPE_2DMAIN,  HEAPID_FRONTIERMAP);
 	CharVramAreaAlloc(vram_size, CHARM_CONT_AREACONT, NNS_G2D_VRAM_TYPE_2DMAIN, &cma);
 	
-	//À•WˆÊ’uC³
+	//åº§æ¨™ä½ç½®ä¿®æ­£
 	if(pos_center == FONTOAM_CENTER){
 		x -= font_len / 2;
 	}
@@ -867,7 +867,7 @@ static void Sub_FontOamCreate(ENCOUNT_EFFECT_WORK *eew, FONT_ACTOR *font_actor, 
 	FONTOAM_SetPaletteOffsetAddTransPlttNo(fontoam, pal_offset);
 	FONTOAM_SetMat(fontoam, x, y);
 	
-	//‰ð•úˆ—
+	//è§£æ”¾å‡¦ç†
 	if(ex_bmpwin == NULL){
 		GF_BGL_BmpWinDel(&bmpwin);
 	}
@@ -879,8 +879,8 @@ static void Sub_FontOamCreate(ENCOUNT_EFFECT_WORK *eew, FONT_ACTOR *font_actor, 
 
 //--------------------------------------------------------------
 /**
- * @brief   ¶¬‚³‚ê‚Ä‚¢‚éƒtƒHƒ“ƒgOAM‚ð‘S‚Äíœ‚ð‚·‚é
- * @param   eew		BIƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’å…¨ã¦å‰Šé™¤ã‚’ã™ã‚‹
+ * @param   eew		BIã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Sub_FontOamDelete(FONT_ACTOR *font_actor)
@@ -891,19 +891,19 @@ static void Sub_FontOamDelete(FONT_ACTOR *font_actor)
 
 //--------------------------------------------------------------
 /**
- * @brief   •¶Žš—ñ‚Ì’·‚³‚ðŽæ“¾‚·‚é
+ * @brief   æ–‡å­—åˆ—ã®é•·ã•ã‚’å–å¾—ã™ã‚‹
  *
- * @param   str				•¶Žš—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   font_type		ƒtƒHƒ“ƒgƒ^ƒCƒv
- * @param   ret_dot_len		ƒhƒbƒg•‘ã“üæ
- * @param   ret_char_len	ƒLƒƒƒ‰•‘ã“üæ
+ * @param   str				æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   font_type		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @param   ret_dot_len		ãƒ‰ãƒƒãƒˆå¹…ä»£å…¥å…ˆ
+ * @param   ret_char_len	ã‚­ãƒ£ãƒ©å¹…ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 static void FontLenGet(const STRBUF *str, FONT_TYPE font_type, int *ret_dot_len, int *ret_char_len)
 {
 	int dot_len, char_len;
 	
-	//•¶Žš—ñ‚Ìƒhƒbƒg•‚©‚çAŽg—p‚·‚éƒLƒƒƒ‰”‚ðŽZo‚·‚é
+	//æ–‡å­—åˆ—ã®ãƒ‰ãƒƒãƒˆå¹…ã‹ã‚‰ã€ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©æ•°ã‚’ç®—å‡ºã™ã‚‹
 	dot_len = FontProc_GetPrintStrWidth(font_type, str, 0);
 	char_len = dot_len / 8;
 	if(FX_ModS32(dot_len, 8) != 0){
@@ -916,10 +916,10 @@ static void FontLenGet(const STRBUF *str, FONT_TYPE font_type, int *ret_dot_len,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VSƒAƒjƒ	‰Šú‰»
+ *	@brief	VSã‚¢ãƒ‹ãƒ¡	åˆæœŸåŒ–
  *	
- *	@param	task_w		ƒ^ƒXƒNƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	task_w		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void EncountEffect_SpTr_VsAnmInit(ENCOUNT_EFFECT_WORK *eew, ENCOUNT_SPTR_BRAIN_VSANM* p_wk, fx32 x, fx32 y, u32 heapID )
@@ -938,16 +938,16 @@ static void EncountEffect_SpTr_VsAnmInit(ENCOUNT_EFFECT_WORK *eew, ENCOUNT_SPTR_
 		p_wk->cap_vs[i] = CATS_ObjectAdd_S(eew->csp, eew->crp, &head);
 		CATS_ObjectEnableCap(p_wk->cap_vs[i], CATS_ENABLE_FALSE);
 
-		if( i!=ENCOUNT_SPTR_BRAIN_VSOAM ){	// ÅŒã‚Ì‚P‚Â‚ª•¶Žš
+		if( i!=ENCOUNT_SPTR_BRAIN_VSOAM ){	// æœ€å¾Œã®ï¼‘ã¤ãŒæ–‡å­—
 			CLACT_SetAffineParam( p_wk->cap_vs[i]->act, CLACT_AFFINE_DOUBLE );
 			CLACT_AnmChg( p_wk->cap_vs[i]->act, 1 );
-			// Šg‘åk¬ƒf[ƒ^ì¬
+			// æ‹¡å¤§ç¸®å°ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 			ENC_MoveReqFx( &p_wk->vsscale[i],
 					FX32_CONST(2),
 					FX32_CONST(1),
 					ENCOUNT_SPTR_BRAIN_VSANMSYNC );
 		}else{
-			// Šg‘åk¬ƒf[ƒ^ì¬
+			// æ‹¡å¤§ç¸®å°ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 			ENC_MoveReqFx( &p_wk->vsscale[i],
 					FX32_CONST(1),
 					FX32_CONST(1),
@@ -965,12 +965,12 @@ static void EncountEffect_SpTr_VsAnmExit( ENCOUNT_SPTR_BRAIN_VSANM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VSƒAƒjƒ	ƒƒCƒ“
+ *	@brief	VSã‚¢ãƒ‹ãƒ¡	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	task_w		ƒ^ƒXƒNƒ[ƒN
+ *	@param	task_w		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	Š®—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	å®Œäº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL EncountEffect_SpTr_VsAnmMain( ENCOUNT_SPTR_BRAIN_VSANM* p_wk )
@@ -980,9 +980,9 @@ static BOOL EncountEffect_SpTr_VsAnmMain( ENCOUNT_SPTR_BRAIN_VSANM* p_wk )
 	BOOL ret = TRUE;
 	VecFx32 scale;
 		
-	// ‚Ý‚ñ‚È‚ð“®‚©‚·ƒ^ƒCƒ~ƒ“ƒO‚ð§Œä
+	// ã¿ã‚“ãªã‚’å‹•ã‹ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’åˆ¶å¾¡
 	if( p_wk->movenum < ENCOUNT_SPTR_BRAIN_VSOAM_NUM ){
-		ret = FALSE;	// ‚Ü‚¾‘S•”“®‚«‚«‚Á‚Ä‚È‚¢
+		ret = FALSE;	// ã¾ã å…¨éƒ¨å‹•ããã£ã¦ãªã„
 		p_wk->timing--;
 		if( p_wk->timing <= 0 ){
 			p_wk->timing = ENCOUNT_SPTR_BRAIN_VSANMTIMING;
@@ -990,7 +990,7 @@ static BOOL EncountEffect_SpTr_VsAnmMain( ENCOUNT_SPTR_BRAIN_VSANM* p_wk )
 		}
 	}
 
-	// “®‚©‚µ‚Ä‚¢‚¢l”•ª“®‚©‚·
+	// å‹•ã‹ã—ã¦ã„ã„äººæ•°åˆ†å‹•ã‹ã™
 	for( i=0; i<p_wk->movenum; i++ ){
 		result = ENC_MoveMainFx( &p_wk->vsscale[i] );
 
@@ -999,7 +999,7 @@ static BOOL EncountEffect_SpTr_VsAnmMain( ENCOUNT_SPTR_BRAIN_VSANM* p_wk )
 				p_wk->vsscale[i].x, p_wk->vsscale[i].x );
 		CLACT_SetScale( p_wk->cap_vs[i]->act, &scale );
 		CLACT_SetDrawFlag( p_wk->cap_vs[i]->act, TRUE );
-		// 1‚Â‚Å‚à‚Ü‚¾“®‚«‚«‚Á‚Ä‚¢‚È‚¢‚Ì‚ª‚ ‚é‚È‚ç“r’†
+		// 1ã¤ã§ã‚‚ã¾ã å‹•ããã£ã¦ã„ãªã„ã®ãŒã‚ã‚‹ãªã‚‰é€”ä¸­
 		if( result == FALSE ){
 			ret = FALSE;
 		}
@@ -1010,12 +1010,12 @@ static BOOL EncountEffect_SpTr_VsAnmMain( ENCOUNT_SPTR_BRAIN_VSANM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ì‰Šú‰»
+ *	@brief	å‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_work			“®ìƒ[ƒN
- *	@param	s_x				ŠJŽnxÀ•W
- *	@param	e_x				I—¹xÀ•W
- *	@param	count_max		ƒJƒEƒ“ƒgÅ‘å’l
+ *	@param	p_work			å‹•ä½œãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x				é–‹å§‹xåº§æ¨™
+ *	@param	e_x				çµ‚äº†xåº§æ¨™
+ *	@param	count_max		ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§å€¤
  *
  *	@return	none
  */
@@ -1031,19 +1031,19 @@ static void ENC_MoveReqFx( ENC_MOVE_WORK_FX* p_work, fx32 s_x, fx32 e_x, int cou
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒƒCƒ“
+ *	@brief	å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ENC_MoveMainFx( ENC_MOVE_WORK_FX* p_work )
 {
 	fx32 w_x;
 
-	// Œ»ÝÀ•WŽæ“¾
+	// ç¾åœ¨åº§æ¨™å–å¾—
 	w_x = FX_Mul( p_work->dis_x, p_work->count << FX32_SHIFT );
 	w_x = FX_Div( w_x, p_work->count_max << FX32_SHIFT );
 	
@@ -1060,13 +1060,13 @@ static BOOL ENC_MoveMainFx( ENC_MOVE_WORK_FX* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒxƒNƒgƒ‹ì¬
+ *	@brief	ãƒ™ã‚¯ãƒˆãƒ«ä½œæˆ
  *
- *	@param	x	‚˜’l
- *	@param	y	‚™’l
- *	@param	z	‚š’l
+ *	@param	x	ï½˜å€¤
+ *	@param	y	ï½™å€¤
+ *	@param	z	ï½šå€¤
  *
- *	@return	ƒxƒNƒgƒ‹
+ *	@return	ãƒ™ã‚¯ãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 static VecFx32 ENC_MakeVec( fx32 x, fx32 y, fx32 z )
@@ -1080,7 +1080,7 @@ static VecFx32 ENC_MakeVec( fx32 x, fx32 y, fx32 z )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒWƒOƒUƒOBG‚ðƒ[ƒh‚·‚é
+ * @brief   ã‚¸ã‚°ã‚¶ã‚°BGã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  *
  * @param   eew			
  * @param   cp_def		
@@ -1088,7 +1088,7 @@ static VecFx32 ENC_MakeVec( fx32 x, fx32 y, fx32 z )
 //--------------------------------------------------------------
 static void ZigzagBG_Load(ENCOUNT_EFFECT_WORK *eew, const ENCOUNT_SPTR_BRAIN_PARAM *cp_def)
 {
-	//ƒEƒBƒ“ƒhƒE‹@”\‚ðŽg—p‚µ‚ÄAƒEƒBƒ“ƒhƒE“à‚µ‚©•\Ž¦‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ©Ÿèƒ½ã‚’ä½¿ç”¨ã—ã¦ã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã—ã‹è¡¨ç¤ºã•ã‚Œãªã„ã‚ˆã†ã«ã™ã‚‹
 	GX_SetVisibleWnd(GX_WNDMASK_W0 | GX_WNDMASK_W1);
 	G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | 
 		GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE);
@@ -1101,7 +1101,7 @@ static void ZigzagBG_Load(ENCOUNT_EFFECT_WORK *eew, const ENCOUNT_SPTR_BRAIN_PAR
 	G2_SetWnd1Position(0,0,0,0);
 
 
-	//ƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	//ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	PaletteWorkSet_Arc(eew->pfd, ARC_ENCOUNTEFFECT, 
 		cp_def->bg_nclr, HEAPID_FRONTIERMAP, FADE_MAIN_BG, 0x20, 
 		ZIGZAG_BG_PALNO * 16);
@@ -1109,17 +1109,17 @@ static void ZigzagBG_Load(ENCOUNT_EFFECT_WORK *eew, const ENCOUNT_SPTR_BRAIN_PAR
 	ArcUtil_HDL_BgCharSet(eew->p_handle, cp_def->bg_ncgr, eew->bgl, FRMAP_FRAME_WIN, 
 		0, 0, FALSE, HEAPID_FRONTIERMAP );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	ArcUtil_HDL_ScrnSet(eew->p_handle, cp_def->bg_nscr, eew->bgl, 
 		FRMAP_FRAME_WIN, 0, 0, 0, HEAPID_FRONTIERMAP);
 
-	// ƒpƒŒƒbƒg‚ð‚ ‚í‚¹‚é
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚ã‚ã›ã‚‹
 	GF_BGL_ScrPalChange(eew->bgl, FRMAP_FRAME_WIN, 0, 0, 32, 32, ZIGZAG_BG_PALNO);
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(eew->bgl, FRMAP_FRAME_WIN);
 	
-	{//ƒpƒŒƒbƒgƒAƒjƒ—p‚Ìƒf[ƒ^‚ðƒoƒbƒtƒ@‚ÉƒRƒs[
+	{//ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ç”¨ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
 		void *plbuf;
 		NNSG2dPaletteData* paldata;
 		
@@ -1129,13 +1129,13 @@ static void ZigzagBG_Load(ENCOUNT_EFFECT_WORK *eew, const ENCOUNT_SPTR_BRAIN_PAR
 		sys_FreeMemoryEz(plbuf);
 	}
 	
-	//ƒpƒŒƒbƒgƒAƒjƒXV—p‚ÌTCB‚ð¶¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡æ›´æ–°ç”¨ã®TCBã‚’ç”Ÿæˆ
 	eew->tcb_bgpalanm = TCB_Add(ZigzagPalAnmTCB, eew, TCBPRI_ENC_CUTIN_BGPALANM);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒWƒOƒUƒOBG‚ÌƒpƒŒƒbƒgƒAƒjƒXVTCB
+ * @brief   ã‚¸ã‚°ã‚¶ã‚°BGã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡æ›´æ–°TCB
  *
  * @param   tcb		
  * @param   work		
@@ -1162,10 +1162,10 @@ static void ZigzagPalAnmTCB(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒEƒBƒ“ƒhƒE‹@”\‚ÌŠJ‚¯•Â‚¶ƒGƒtƒFƒNƒgŠJŽn
+ * @brief   ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ©Ÿèƒ½ã®é–‹ã‘é–‰ã˜ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
  * @param   open_close		WINEFF_OPEN or WINEFF_CLOSE
- * @param   end_flag		ƒGƒtƒFƒNƒgI—¹ŒãA‚±‚Ìƒ[ƒN‚ÉTRUE‚ªƒZƒbƒg‚³‚ê‚Ü‚·
+ * @param   end_flag		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾Œã€ã“ã®ãƒ¯ãƒ¼ã‚¯ã«TRUEãŒã‚»ãƒƒãƒˆã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------
 static void WndOpenEffStart(ENCOUNT_EFFECT_WORK *eew, int open_close)
@@ -1189,9 +1189,9 @@ static void WndOpenEffStart(ENCOUNT_EFFECT_WORK *eew, int open_close)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒEƒBƒ“ƒhƒE‹@”\FƒI[ƒvƒ“ƒGƒtƒFƒNƒgŽÀs
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		WNDOPEN_EFF_WORK\‘¢‘Ì
+ * @brief   ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ©Ÿèƒ½ï¼šã‚ªãƒ¼ãƒ—ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œ
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		WNDOPEN_EFF_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void WndEffOpenTask(TCB_PTR tcb, void *work)
@@ -1207,7 +1207,7 @@ static void WndEffOpenTask(TCB_PTR tcb, void *work)
 			wew->y2 = (WNDOPEN_EFF_CENTER_Y + WNDOPEN_EFF_OPEN_Y_DOT/2) << 8;
 			wew->seq++;
 		}
-		//left=0, right=255‚Å‚â‚é‚Æ‰E’[‚ª1ƒhƒbƒgŽc‚é‚Ì‚Å2–‡Žg‚Á‚Ä–³—–î—ˆÍ‚Þ
+		//left=0, right=255ã§ã‚„ã‚‹ã¨å³ç«¯ãŒ1ãƒ‰ãƒƒãƒˆæ®‹ã‚‹ã®ã§2æžšä½¿ã£ã¦ç„¡ç†çŸ¢ç†å›²ã‚€
 		wew->wnd0_x1 = 0;
 		wew->wnd0_y1 = wew->y1 >> 8;
 		wew->wnd0_x2 = 255;
@@ -1226,9 +1226,9 @@ static void WndEffOpenTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒEƒBƒ“ƒhƒE‹@”\FƒNƒ[ƒYƒGƒtƒFƒNƒgŽÀs
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		WNDOPEN_EFF_WORK\‘¢‘Ì
+ * @brief   ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ©Ÿèƒ½ï¼šã‚¯ãƒ­ãƒ¼ã‚ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œ
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		WNDOPEN_EFF_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void WndEffCloseTask(TCB_PTR tcb, void *work)
@@ -1244,7 +1244,7 @@ static void WndEffCloseTask(TCB_PTR tcb, void *work)
 			wew->y2 = WNDOPEN_EFF_CENTER_Y << 8;
 			wew->seq++;
 		}
-		//left=0, right=255‚Å‚â‚é‚Æ‰E’[‚ª1ƒhƒbƒgŽc‚é‚Ì‚Å2–‡Žg‚Á‚Ä–³—–î—ˆÍ‚Þ
+		//left=0, right=255ã§ã‚„ã‚‹ã¨å³ç«¯ãŒ1ãƒ‰ãƒƒãƒˆæ®‹ã‚‹ã®ã§2æžšä½¿ã£ã¦ç„¡ç†çŸ¢ç†å›²ã‚€
 		wew->wnd0_x1 = 0;
 		wew->wnd0_y1 = wew->y1 >> 8;
 		wew->wnd0_x2 = 255;
@@ -1263,12 +1263,12 @@ static void WndEffCloseTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŠçƒXƒ‰ƒCƒhƒCƒ“‚ÌƒƒCƒ“ˆ—
+ * @brief   é¡”ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³ã®ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
  * @param   task_w		
  * @param   fmw			
  *
- * @retval  TRUE:ƒXƒ‰ƒCƒhƒCƒ“Š®—¹
+ * @retval  TRUE:ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³å®Œäº†
  */
 //--------------------------------------------------------------
 static BOOL FaceIn_Main(ENCOUNT_EFFECT_WORK *eew, ENCOUNT_SPTR_BRAIN* task_w, FACE_MOVE_WORK *fmw)

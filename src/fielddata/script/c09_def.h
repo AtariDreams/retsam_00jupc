@@ -1,7 +1,7 @@
 #ifndef _C09_DEF_H_
 #define _C09_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C09_FLAG_CHANGE		(1)
 #define	SCRID_C09_WOMAN4A		(2)
 #define	SCRID_POS_C09_WOMAN4A		(3)
@@ -14,6 +14,6 @@
 #define	SCRID_C09_SIGN1		(10)
 #define	SCRID_C09_SIGN2		(11)
 #define	SCRID_C09_SHIP		(12)
-#define	SCRID_C09_DATA_MAX		(12)		//最大数
+#define	SCRID_C09_DATA_MAX		(12)		//譛螟ｧ謨ｰ
 
 #endif //_C09_DEF_H_

@@ -1,17 +1,17 @@
 //============================================================================================
 /**
  * @file	fss_tower_sub.c
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhƒTƒuFƒ^ƒ[
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚µãƒ–ï¼šã‚¿ãƒ¯ãƒ¼
  * @author	Satoshi Nohara
  * @date	07.05.25
  *
- * b_tower_scr.c‚Ìˆ—‚ðˆÚ“®
+ * b_tower_scr.cã®å‡¦ç†ã‚’ç§»å‹•
  *
- * ŠÖ˜Aƒ\[ƒX	field/scr_btower.c		í’“
- *				field/b_tower_scr.c		ƒtƒB[ƒ‹ƒhƒTƒu¨í’“
- *				field/b_tower_ev.c		í’“
- *				field/b_tower_wifi.c	í’“
- *				field/b_tower_fld.c		ƒtƒB[ƒ‹ƒhƒTƒu¨í’“
+ * é–¢é€£ã‚½ãƒ¼ã‚¹	field/scr_btower.c		å¸¸é§
+ *				field/b_tower_scr.c		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µãƒ–â†’å¸¸é§
+ *				field/b_tower_ev.c		å¸¸é§
+ *				field/b_tower_wifi.c	å¸¸é§
+ *				field/b_tower_fld.c		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µãƒ–â†’å¸¸é§
  */
 //============================================================================================
 #include "common.h"
@@ -39,30 +39,30 @@
 #include "field/evwkdef.h"
 #include "../field/sysflag.h"
 #include "../field/syswork.h"
-//ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€
+//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ 
 #include "frontier_tool.h"
 #include "../field/scr_tool.h"				//FactoryScr_GetWinRecordID
 #include "itemtool/itemsym.h"
-//’ÊM
+//é€šä¿¡
 //#include "communication/comm_system.h"
 //#include "communication/comm_tool.h"
 //#include "communication/comm_def.h"
-//ƒoƒgƒ‹ƒ^ƒ[
-#include "../field/b_tower_scr.h"			//BTOWER_SCRWORK‚ÌéŒ¾‚ª‚ ‚é
+//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+#include "../field/b_tower_scr.h"			//BTOWER_SCRWORKã®å®£è¨€ãŒã‚ã‚‹
 #include "../field/b_tower_ev.h"
 #include "tower_tool.h"
 
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
-//	ŠÖ”‚Ì“ª‚ÉFS‚ð‚Â‚¯‚½(ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€‚Ì—ª)
+//	é–¢æ•°ã®é ­ã«FSã‚’ã¤ã‘ãŸ(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã®ç•¥)
 //
-//	(b_tower_scr.c‚ÉTools‚ª“ª‚É‚Â‚¢‚Ä‚¢‚é‚Ì‚Æ‚Â‚¢‚Ä‚¢‚È‚¢‚Ì‚ª‚ ‚é‚Ì‚ÍH)
+//	(b_tower_scr.cã«ToolsãŒé ­ã«ã¤ã„ã¦ã„ã‚‹ã®ã¨ã¤ã„ã¦ã„ãªã„ã®ãŒã‚ã‚‹ã®ã¯ï¼Ÿ)
 //
 //============================================================================================
-//“ª‚ÉTools‚ª‚Â‚¢‚Ä‚¢‚È‚¢
+//é ­ã«ToolsãŒã¤ã„ã¦ã„ãªã„
 void FSTowerScr_ChoiceBtlPartner(BTOWER_SCRWORK* wk,SAVEDATA* sv);
 u16 FSTowerScr_GetEnemyObj(BTOWER_SCRWORK* wk,u16 idx);
 void FSTowerScr_SetLeaderClearFlag(BTOWER_SCRWORK* wk,u16 mode);
@@ -72,13 +72,13 @@ u16 FSTowerScr_GetRenshouCount(BTOWER_SCRWORK* wk);
 
 //============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- *	@brief	‘ÎíƒgƒŒ[ƒi[’Š‘I
+ *	@brief	å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŠ½é¸
  */
 //--------------------------------------------------------------
 void FSTowerScr_ChoiceBtlPartner(BTOWER_SCRWORK* wk,SAVEDATA* sv)
@@ -98,7 +98,7 @@ void FSTowerScr_ChoiceBtlPartner(BTOWER_SCRWORK* wk,SAVEDATA* sv)
 		FSRomBattleTowerTrainerDataMake(wk,&(wk->tr_data[0]),
 			wk->trainer[(wk->now_round-1)*2+0],wk->member_num,NULL,NULL,NULL,wk->heapID);
 		
-		//ƒ‚ƒ“ƒXƒ^[No‚Ìd•¡ƒ`ƒFƒbƒN
+		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼Noã®é‡è¤‡ãƒã‚§ãƒƒã‚¯
 		for(i = 0;i < wk->member_num;i++){
 			monsno[i] = wk->tr_data[0].btpwd[i].mons_no;
 			itemno[i] = wk->tr_data[0].btpwd[i].item_no;
@@ -117,18 +117,18 @@ void FSTowerScr_ChoiceBtlPartner(BTOWER_SCRWORK* wk,SAVEDATA* sv)
 
 //--------------------------------------------------------------
 /**
- *	@brief	‘ÎíƒgƒŒ[ƒi[OBJƒR[ƒhŽæ“¾
+ *	@brief	å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼OBJã‚³ãƒ¼ãƒ‰å–å¾—
  */
 //--------------------------------------------------------------
 u16 FSTowerScr_GetEnemyObj(BTOWER_SCRWORK* wk,u16 idx)
 {
-	//ƒgƒŒ[ƒi[ƒ^ƒCƒv‚©‚çOBJƒR[ƒh‚ðŽæ“¾‚µ‚Ä‚­‚é
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‹ã‚‰OBJã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã—ã¦ãã‚‹
 	return Frontier_TrType2ObjCode(wk->tr_data[idx].bt_trd.tr_type);
 }
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒŠ[ƒ_[ƒNƒŠƒAƒtƒ‰ƒO‚ð—§‚Ä‚é
+ *	@brief	ãƒªãƒ¼ãƒ€ãƒ¼ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
  */
 //--------------------------------------------------------------
 void FSTowerScr_SetLeaderClearFlag(BTOWER_SCRWORK* wk,u16 mode)
@@ -138,16 +138,16 @@ void FSTowerScr_SetLeaderClearFlag(BTOWER_SCRWORK* wk,u16 mode)
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒEƒ“ƒh”‚ðƒCƒ“ƒNƒŠƒƒ“ƒg
+ *	@brief	ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  */
 //--------------------------------------------------------------
 u16	FSTowerScr_IncRound(BTOWER_SCRWORK* wk)
 {
-	++wk->now_win;	//Ÿ—˜”‚àƒCƒ“ƒNƒŠƒƒ“ƒg
+	++wk->now_win;	//å‹åˆ©æ•°ã‚‚ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 
-	//ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á‚³‚ê‚½WIFIƒ}ƒ‹ƒ`‚Íœ‚­
+	//ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ ã•ã‚ŒãŸWIFIãƒžãƒ«ãƒã¯é™¤ã
 	if( wk->play_mode != BTWR_MODE_WIFI_MULTI ){
-		//ƒ‰ƒ“ƒ_ƒ€‚ÌŽíXV
+		//ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®æ›´æ–°
 		wk->play_rnd_seed = BtlTower_PlayFixRand(wk->play_rnd_seed);
 	}
 
@@ -158,7 +158,7 @@ u16	FSTowerScr_IncRound(BTOWER_SCRWORK* wk)
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒC’†‚Ì˜AŸ”‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒ—ãƒ¬ã‚¤ä¸­ã®é€£å‹æ•°ã‚’å–å¾—ã™ã‚‹
  */
 //--------------------------------------------------------------
 u16 FSTowerScr_GetRenshouCount(BTOWER_SCRWORK* wk)

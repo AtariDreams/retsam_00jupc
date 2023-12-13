@@ -1,6 +1,6 @@
 /**
  *	@file	d_iwa.c
- *	@brief	ŠâàVƒfƒoƒbƒO—pƒ\[ƒX
+ *	@brief	å²©æ¾¤ãƒ‡ãƒãƒƒã‚°ç”¨ã‚½ãƒ¼ã‚¹
  *	@author	Miyuki Iwasawa
  *	@date	04.12.04
  * */
@@ -40,7 +40,7 @@
 #include "msgdata/msg_debug_miyuki.h"
 #include "savedata/guinness.h"
 
-#include "fld_debug.h"		// 2007.10.25	e’†—Ìˆæ‚ğ‘‚â‚·‚½‚ß‚É@ASCIIcode2DSuni‚ğgflib/fntsys‚©‚çˆÚ“®‚µ‚½‚½‚ß’Ç‰Á
+#include "fld_debug.h"		// 2007.10.25	éŠƒä¸­é ˜åŸŸã‚’å¢—ã‚„ã™ãŸã‚ã«ã€€ASCIIcode2DSuniã‚’gflib/fntsysã‹ã‚‰ç§»å‹•ã—ãŸãŸã‚è¿½åŠ 
 
 #include "d_iwa.h"
 
@@ -77,7 +77,7 @@ static void DebugSub_PorutoDataMake(void* work,int mode);
 static void DebugSub_NutMixerLocal(void* work);
 
 //------------------------------------------------------------------
-///	ƒƒjƒ…[ƒŠƒXƒgƒf[ƒ^
+///	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 //------------------------------------------------------------------
 typedef struct{
 	u32	str_id;
@@ -85,34 +85,34 @@ typedef struct{
 }MENU_PARAM;
 
 static const MENU_PARAM MiyukiMenuList[] = {
-	{ msg_label_script,	 BMPLIST_RABEL},			//ƒ‰ƒxƒ‹01
-	{ msg_tower_rndseed, 9},		//00:ƒ^ƒ[ƒ‰ƒ“ƒ_ƒ€‚Ì‚½‚Ë‚¢‚«‚È‚è“¯Šú
-	{ msg_tower_roomf_clear, 10},		//00:ƒ^ƒ[Wifiƒ‹[ƒ€ƒtƒ‰ƒOƒNƒŠƒA
-	{ msg_tower_guinness, 11},		//00:ƒ^ƒ[ ƒMƒlƒXƒz[ƒ‹ƒf[ƒ^‚ğƒ_ƒ~[‚Å–„‚ß‚é
-	{ msg_tower_wifidata, 12},		//00:ƒ^ƒ[ wifiƒ_ƒ~[ƒAƒbƒvƒf[ƒgƒf[ƒ^ì¬ 
-	{ msg_tower_bpget, 13},		//00:ƒ^ƒ[ 500BPƒQƒbƒg
-	{ msg_tower_bpget2, 14},		//00:ƒ^ƒ[ 9998BPƒQƒbƒg
-	{ msg_label_tmap,	 BMPLIST_RABEL},			//ƒ‰ƒxƒ‹01
-	{ msg_dtmapN, (u32)DebugSub_TMapNormalInit},	//00:ƒ[ƒ‹ƒhƒ}ƒbƒv
-	{ msg_dtmapJ, (u32)DebugSub_TMapJumpInit},		//00:ƒ[ƒ‹ƒhƒ}ƒbƒv
-	{ msg_dtmapB, (u32)DebugSub_TMapBGInit},		//00:ƒ[ƒ‹ƒhƒ}ƒbƒv
-	{ msg_label_mail,	 BMPLIST_RABEL},			//ƒ‰ƒxƒ‹02
-	{ msg_dmailV, 2},		//00:ƒ[ƒ‹Œ©‚é
-	{ msg_dmailC, 3},		//00:ƒ[ƒ‹ì¬
-	{ msg_label_poruto,	 BMPLIST_RABEL},			//ƒ‰ƒxƒ‹03
-	{ msg_porucase,4},		//00:ƒ|ƒ‹ƒgƒP[ƒX
-	{ msg_poru_allmake,5},	//00:ƒ|ƒ‹ƒg
-	{ msg_poru_alldel,6},		//00:ƒ|ƒ‹ƒgƒP[ƒX
-	{ msg_label_nutmixer,	 BMPLIST_RABEL},			//ƒ‰ƒxƒ‹04
-	{ msg_nmixer_local,7},		//00:ƒiƒbƒcƒ~ƒLƒT[ƒ[ƒJƒ‹
-	{ msg_nmixer_scr,8},		//00:ƒiƒbƒcƒ~ƒLƒT[ƒXƒNƒŠƒvƒg
-	{ msg_exit,		 0x00000001},		//00:•Â‚¶‚é
-	{ msg_label_end,	 BMPLIST_RABEL},			//ƒ‰ƒxƒ‹02
+	{ msg_label_script,	 BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«01
+	{ msg_tower_rndseed, 9},		//00:ã‚¿ãƒ¯ãƒ¼ãƒ©ãƒ³ãƒ€ãƒ ã®ãŸã­ã„ããªã‚ŠåŒæœŸ
+	{ msg_tower_roomf_clear, 10},		//00:ã‚¿ãƒ¯ãƒ¼Wifiãƒ«ãƒ¼ãƒ ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
+	{ msg_tower_guinness, 11},		//00:ã‚¿ãƒ¯ãƒ¼ ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ€ãƒŸãƒ¼ã§åŸ‹ã‚ã‚‹
+	{ msg_tower_wifidata, 12},		//00:ã‚¿ãƒ¯ãƒ¼ wifiãƒ€ãƒŸãƒ¼ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ 
+	{ msg_tower_bpget, 13},		//00:ã‚¿ãƒ¯ãƒ¼ 500BPã‚²ãƒƒãƒˆ
+	{ msg_tower_bpget2, 14},		//00:ã‚¿ãƒ¯ãƒ¼ 9998BPã‚²ãƒƒãƒˆ
+	{ msg_label_tmap,	 BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«01
+	{ msg_dtmapN, (u32)DebugSub_TMapNormalInit},	//00:ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—
+	{ msg_dtmapJ, (u32)DebugSub_TMapJumpInit},		//00:ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—
+	{ msg_dtmapB, (u32)DebugSub_TMapBGInit},		//00:ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—
+	{ msg_label_mail,	 BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«02
+	{ msg_dmailV, 2},		//00:ãƒ¡ãƒ¼ãƒ«è¦‹ã‚‹
+	{ msg_dmailC, 3},		//00:ãƒ¡ãƒ¼ãƒ«ä½œæˆ
+	{ msg_label_poruto,	 BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«03
+	{ msg_porucase,4},		//00:ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹
+	{ msg_poru_allmake,5},	//00:ãƒãƒ«ãƒˆ
+	{ msg_poru_alldel,6},		//00:ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹
+	{ msg_label_nutmixer,	 BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«04
+	{ msg_nmixer_local,7},		//00:ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ãƒ­ãƒ¼ã‚«ãƒ«
+	{ msg_nmixer_scr,8},		//00:ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+	{ msg_exit,		 0x00000001},		//00:é–‰ã˜ã‚‹
+	{ msg_label_end,	 BMPLIST_RABEL},			//ãƒ©ãƒ™ãƒ«02
 };
 
 #define BLIST_NUM	NELEMS(MiyukiMenuList)
 
-///	ƒŠƒXƒgƒVƒXƒeƒ€‚©‚ç‚ÌƒR[ƒ‹ƒoƒbƒN¦ˆês•\¦‚²‚Æ
+///	ãƒªã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯â€»ä¸€è¡Œè¡¨ç¤ºã”ã¨
 static void	InfoCallBack(BMPLIST_WORK* lw,u32 param,u8 y)
 {
 	if(param == BMPLIST_RABEL){
@@ -123,37 +123,37 @@ static void	InfoCallBack(BMPLIST_WORK* lw,u32 param,u8 y)
 }
 
 //------------------------------------------------------------------
-///	€–ÚƒŠƒXƒgƒf[ƒ^
+///	é …ç›®ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 //------------------------------------------------------------------
 static const BMPLIST_HEADER DebugListHeader = {
-	NULL,			//•\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	NULL,				//ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	InfoCallBack,		//‚Ps‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	NULL,			//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	NULL,				//ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	InfoCallBack,		//ï¼‘è¡Œã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-	NULL,				//GF_BGL_BMPWIN\‘¢‘Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	BLIST_NUM,			//ƒŠƒXƒg€–Ú”
-	6,					//•\¦Å‘å€–Ú”
-	2,					//ƒ‰ƒxƒ‹•\¦‚wÀ•W
-	12,					//€–Ú•\¦‚wÀ•W
-	1,					//ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-	2,					//•\¦‚xÀ•W
-	FBMP_COL_WHITE,		//•¶šF
-	FBMP_COL_BLACK,		//”wŒiF
-	FBMP_COL_BLK_SDW,	//•¶š‰eF
-	0,					//•¶šŠÔŠu‚w
-	1,					//•¶šŠÔŠu‚x
-	BMPLIST_LRKEY_SKIP,	//ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-	FONT_SYSTEM,		//•¶šw’è
-	0,					//‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
-	NULL,				//ƒ[ƒNƒ|ƒCƒ“ƒ^
+	NULL,				//GF_BGL_BMPWINæ§‹é€ ä½“ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	BLIST_NUM,			//ãƒªã‚¹ãƒˆé …ç›®æ•°
+	6,					//è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+	2,					//ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	12,					//é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+	1,					//ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+	2,					//è¡¨ç¤ºï¼¹åº§æ¨™
+	FBMP_COL_WHITE,		//æ–‡å­—è‰²
+	FBMP_COL_BLACK,		//èƒŒæ™¯è‰²
+	FBMP_COL_BLK_SDW,	//æ–‡å­—å½±è‰²
+	0,					//æ–‡å­—é–“éš”ï¼¸
+	1,					//æ–‡å­—é–“éš”ï¼¹
+	BMPLIST_LRKEY_SKIP,	//ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+	FONT_SYSTEM,		//æ–‡å­—æŒ‡å®š
+	0,					//ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
+	NULL,				//ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 };
 
-//ƒvƒƒgƒ^ƒCƒv
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 void DebugMiyukiInit(void* fsys);
 static void DebugMiyukiEnd(TCB_PTR tcb,void* work);
 
 /**
- *	@brief	ƒŠƒXƒg‰Šú‰»
+ *	@brief	ãƒªã‚¹ãƒˆåˆæœŸåŒ–
  */
 void DebugMiyukiViewInit(_DebugIwaWork* wp,void* fsys,u8 list,u8 cursor)
 {
@@ -163,20 +163,20 @@ void DebugMiyukiViewInit(_DebugIwaWork* wp,void* fsys,u8 list,u8 cursor)
 	int	size = NELEMS(MiyukiMenuList);
 	wp->fsys =fsys;
 	
-	//BMPƒEƒBƒ“ƒhƒE‰Šú‰»(FieldSys‚Ì‰Šú‰»ƒf[ƒ^‚ğæ“¾)
+	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–(FieldSysã®åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—)
 	wp->pBglIni = FieldBglIniGet(fsys);
 	
-	//ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰ƒNƒ^ƒZƒbƒg
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚»ãƒƒãƒˆ
 	FieldBitMapWinCgxSet(wp->pBglIni);
 
 	GF_BGL_ScrFill(wp->pBglIni,GF_BGL_FRAME3_M,0x0000,0,0,32,32,GF_BGL_SCRWRT_PALIN);
 	GF_BGL_LoadScreenV_Req(wp->pBglIni,GF_BGL_FRAME3_M);
 
-	//ƒNƒŠƒA
+	//ã‚¯ãƒªã‚¢
 	memset(&(wp->bmpwin),0,sizeof(GF_BGL_BMPWIN));
 	wp->List = list;
 
-	//BMPMAPƒƒjƒ…[’Ç‰Á
+	//BMPMAPãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ 
 	wp->menulist = BMP_MENULIST_Create(size,HEAPID_BASE_DEBUG);
 	GF_BGL_BmpWinAddEx(wp->pBglIni,&(wp->bmpwin),d_miyuki_BmpDat);
 
@@ -198,7 +198,7 @@ void DebugMiyukiViewInit(_DebugIwaWork* wp,void* fsys,u8 list,u8 cursor)
 			PM_strclear(tmpbuf,EOM_,128);
 			STRBUF_Clear(mstr);
 			
-			//ƒ][ƒ“–¼æ“¾
+			//ã‚¾ãƒ¼ãƒ³åå–å¾—
 			if(ASCIIcode2DSuni(0,(u8*)ZoneData_GetZoneName(i+2),tmpbuf)){
 				tmpbuf[0] = EOM_;
 			}
@@ -208,7 +208,7 @@ void DebugMiyukiViewInit(_DebugIwaWork* wp,void* fsys,u8 list,u8 cursor)
 		STRBUF_Delete(mstr);
 	}
 	
-	//BMPƒŠƒXƒgİ’è
+	//BMPãƒªã‚¹ãƒˆè¨­å®š
 	memcpy(&(wp->bmplist_h),&DebugListHeader,sizeof(BMPLIST_HEADER));
 	wp->Cursor = cursor;
 	wp->bmplist_h.win = &(wp->bmpwin);
@@ -219,24 +219,24 @@ void DebugMiyukiViewInit(_DebugIwaWork* wp,void* fsys,u8 list,u8 cursor)
 }
 
 /**
- *	@brief	ƒŠƒXƒg‰ğ•ú
+ *	@brief	ãƒªã‚¹ãƒˆè§£æ”¾
  */
 void DebugMiyukiViewEnd(_DebugIwaWork* wp)
 {
-	//BMPWIN”jŠü
+	//BMPWINç ´æ£„
 	GF_BGL_BmpWinOff(&(wp->bmpwin));	//WindowOFF
-	//BMPƒŠƒXƒg‚ÌŠJ•ú
-	BmpListExit(wp->blistWk,&(wp->List),&(wp->Cursor));	//ƒŠƒXƒg”jŠü
-	BMP_MENULIST_Delete(wp->menulist);	//ƒƒjƒ…[•¶š—ñ”jŠü
+	//BMPãƒªã‚¹ãƒˆã®é–‹æ”¾
+	BmpListExit(wp->blistWk,&(wp->List),&(wp->Cursor));	//ãƒªã‚¹ãƒˆç ´æ£„
+	BMP_MENULIST_Delete(wp->menulist);	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ–‡å­—åˆ—ç ´æ£„
 	GF_BGL_BmpWinDel(&(wp->bmpwin));	//BMPWindowDel
 }
 
 /**
- *	ƒfƒoƒbƒOƒVƒXƒeƒ€‰Šú‰»
+ *	ãƒ‡ãƒãƒƒã‚°ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
  *	u8	DebugMiyukiInit(void* fsys)
  *
- *	@param	void* FLD_DEB_DAT‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	void* FLD_DEB_DATã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *	@return none
  */
 void DebugMiyukiInit(void* fsys)
@@ -245,11 +245,11 @@ void DebugMiyukiInit(void* fsys)
 	_DebugIwaWork *wp = NULL;
 	GF_BGL_INI *ini = NULL;
 
-	//ƒfƒoƒbƒOƒVƒXƒeƒ€ƒƒ‚ƒŠŠm•Û
+	//ãƒ‡ãƒãƒƒã‚°ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	wp = sys_AllocMemory(HEAPID_BASE_DEBUG,sizeof(_DebugIwaWork));
 
 	if(wp == NULL){
-		//ƒ[ƒN‚ªŠm•Û‚Å‚«‚È‚ê‚Î‰½‚à‚µ‚È‚¢
+		//ãƒ¯ãƒ¼ã‚¯ãŒç¢ºä¿ã§ããªã‚Œã°ä½•ã‚‚ã—ãªã„
 		OS_Printf("iwasawa debug menu create field\n");
 		return;
 	}
@@ -263,11 +263,11 @@ void DebugMiyukiInit(void* fsys)
 
 //=============================================================================
 /**
- *	ƒfƒoƒbƒOƒVƒXƒeƒ€ƒL[æ“¾(ƒƒCƒ“ƒ^ƒXƒN)
+ *	ãƒ‡ãƒãƒƒã‚°ã‚·ã‚¹ãƒ†ãƒ ã‚­ãƒ¼å–å¾—(ãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯)
  *	void DebugMiyukiMain(u8 id);
  *
- *	@param	tcb	TCB_PTR	ƒ^ƒXƒNƒuƒƒbƒNƒ|ƒCƒ“ƒ^	
- *	@param	work	ƒ^ƒXƒNƒ[ƒNƒ|ƒCƒ“ƒ^	
+ *	@param	tcb	TCB_PTR	ã‚¿ã‚¹ã‚¯ãƒ–ãƒ­ãƒƒã‚¯ãƒã‚¤ãƒ³ã‚¿	
+ *	@param	work	ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿	
  *	@return	none
  */
 //=============================================================================
@@ -281,7 +281,7 @@ void DebugMiyukiMain(TCB_PTR tcb,void* work)
 
 	ret_code = BmpListMain(wp->blistWk);
 
-	//ƒL[‘€ì”»’è
+	//ã‚­ãƒ¼æ“ä½œåˆ¤å®š
 	if(sys.trg & PAD_BUTTON_DECIDE){
 		switch(ret_code){
 		case BMPMENU_NULL:
@@ -292,64 +292,64 @@ void DebugMiyukiMain(TCB_PTR tcb,void* work)
 			switch(ret_code){
 			case 0:
 				return;
-			case 1:	//ƒƒjƒ…[I—¹
+			case 1:	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼çµ‚äº†
 				DebugMiyukiEnd(tcb,work);
 				return;
-			case 2:	//ƒ[ƒ‹
+			case 2:	//ãƒ¡ãƒ¼ãƒ«
 			case 3:
 				wp->ret_val = ret_code-1;
 				DebugSubMenu_MailBoxCall(tcb,work);
 				return;
-			case 4:	//ƒ|ƒ‹ƒgƒP[ƒX
+			case 4:	//ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹
 				wp->UserFunc = DebugSub_PoruCaseInit;
 				TCB_ChangeFunc(tcb,DebugMiyukiFuncCall);
 				wp->func_mode = 2;
 				return;
-			case 5:	//ƒ|ƒ‹ƒg–ƒ^ƒ“
+			case 5:	//ãƒãƒ«ãƒˆæº€ã‚¿ãƒ³
 				DebugSub_PorutoDataMake(wp,0);
 				DebugMiyukiEnd(tcb,work);
 				return;
-			case 6:	//ƒ|ƒ‹ƒg‹ó‚Á‚Û
+			case 6:	//ãƒãƒ«ãƒˆç©ºã£ã½
 				DebugSub_PorutoDataMake(wp,1);
 				DebugMiyukiEnd(tcb,work);
 				return;
-			case 7:	//ƒiƒbƒcƒ~ƒLƒT[ƒ[ƒJƒ‹
+			case 7:	//ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ãƒ­ãƒ¼ã‚«ãƒ«
 				wp->UserFunc = DebugSub_NutMixerLocal;
 				TCB_ChangeFunc(tcb,DebugMiyukiFuncCall);
 				wp->func_mode = 0;
 				return;
-			case 8:	//ƒiƒbƒcƒ~ƒLƒT[ƒXƒNƒŠƒvƒg
+			case 8:	//ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 				EventSet_Script(wp->fsys,SCRID_PORUTO_SCR,NULL);
 				DebugMiyukiEnd(tcb,work);
 				return;
-			case 9:	//ƒ^ƒ[ƒXƒNƒŠƒvƒg@ƒ‰ƒ“ƒ_ƒ€‚Ìí‚¢‚«‚È‚è“¯Šú
+			case 9:	//ã‚¿ãƒ¯ãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã„ããªã‚ŠåŒæœŸ
 				BtlTower_UpdateDayRndSeed(wp->fsys->savedata);
 	//			EventSet_Script(wp->fsys,SCRID_TOWER_GATE_LOCAL_01,NULL);
 //				EventSet_Script(wp->fsys,SCRID_D31R0201_GIRL2_01,NULL);
 				DebugMiyukiEnd(tcb,work);
 				return;
-			case 10:	//ƒ^ƒ[ wifiƒ‹[ƒ€ƒtƒ‰ƒOƒNƒŠƒA
+			case 10:	//ã‚¿ãƒ¯ãƒ¼ wifiãƒ«ãƒ¼ãƒ ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
 				TowerWifiData_ClearRoomDataFlag(
 					SaveData_GetTowerWifiData(wp->fsys->savedata));
 				DebugMiyukiEnd(tcb,work);
 				return;
-			case 11:	//ƒMƒlƒXƒz[ƒ‹@ƒfƒoƒbƒO@‹L˜^ˆê”t
+			case 11:	//ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ã€€ãƒ‡ãƒãƒƒã‚°ã€€è¨˜éŒ²ä¸€æ¯
 				DebugGNSRank_MakeDmyRankingData(
 					SaveData_GetGuinnessData(wp->fsys->savedata));
 				return;
-			case 12:	//wifiƒ^ƒ[ƒ_ƒ~[ƒAƒbƒvƒf[ƒgƒf[ƒ^ì¬
+			case 12:	//wifiã‚¿ãƒ¯ãƒ¼ãƒ€ãƒŸãƒ¼ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 				DebugWifiBTower_DummyDataMake(wp->fsys->savedata);
 				return;
-			case 13:	//500BPƒQƒbƒg
+			case 13:	//500BPã‚²ãƒƒãƒˆ
 				TowerScoreData_SetBattlePoint(
 					SaveData_GetTowerScoreData(wp->fsys->savedata),500,BTWR_DATA_add);
 				return;
-			case 14:	//9998BPƒQƒbƒg
+			case 14:	//9998BPã‚²ãƒƒãƒˆ
 				TowerScoreData_SetBattlePoint(
 					SaveData_GetTowerScoreData(wp->fsys->savedata),9998,BTWR_DATA_set);
 				return;
 			default:
-				//ŠÖ”ƒ|ƒCƒ“ƒ^•Û‘¶
+				//é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ä¿å­˜
 				wp->UserFunc = (void*)ret_code;
 				TCB_ChangeFunc(tcb,DebugMiyukiFuncCall);
 
@@ -363,7 +363,7 @@ void DebugMiyukiMain(TCB_PTR tcb,void* work)
 		}
 		return;
 	}
-	//ƒƒjƒ…[ƒLƒƒƒ“ƒZƒ‹
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 	if(sys.trg & PAD_BUTTON_B){
 		DebugMiyukiEnd(tcb,work);
 		return;
@@ -371,11 +371,11 @@ void DebugMiyukiMain(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒfƒoƒbƒOƒƒjƒ…[‚ÌI—¹ˆ—
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®çµ‚äº†å‡¦ç†
  *
- *	ƒfƒoƒbƒOƒƒjƒ…[—pƒ[ƒN‚ÆƒŠƒXƒg‚Ì”jŠü‚ğs‚¤
- *	@param	tcb		TCB_PTR:ŒÄ‚Ño‚µŒ³ƒ^ƒXƒNƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	work	void*:ŒÄ‚Ño‚µŒ³ƒ^ƒXƒNƒuƒƒbƒNƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ãƒ¯ãƒ¼ã‚¯ã¨ãƒªã‚¹ãƒˆã®ç ´æ£„ã‚’è¡Œã†
+ *	@param	tcb		TCB_PTR:å‘¼ã³å‡ºã—å…ƒã‚¿ã‚¹ã‚¯ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	work	void*:å‘¼ã³å‡ºã—å…ƒã‚¿ã‚¹ã‚¯ãƒ–ãƒ­ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 static void DebugMiyukiEnd(TCB_PTR tcb,void* work)
 {
@@ -383,11 +383,11 @@ static void DebugMiyukiEnd(TCB_PTR tcb,void* work)
 
 	DebugMiyukiViewEnd(wp);
 
-	//ƒfƒoƒbƒOƒ[ƒNƒƒ‚ƒŠŠJ•ú
+	//ãƒ‡ãƒãƒƒã‚°ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
 	sys_FreeMemoryEz(work);
 	TCB_Delete(tcb);
 
-	//OBJ“™‚Ì“®ì’â~‰ğœ
+	//OBJç­‰ã®å‹•ä½œåœæ­¢è§£é™¤
 	FieldSystemProc_SeqHoldEnd();
 	return;
 }
@@ -401,13 +401,13 @@ static void DebugMiyukiSubMenuWait(TCB_PTR tcb,void* work)
 		return;
 	}
 	wp->ret_val = 0;
-	//ƒfƒoƒbƒOƒƒjƒ…[•œ‹A
+	//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼å¾©å¸°
 	DebugMiyukiViewInit(wp,wp->fsys,wp->List,wp->Cursor);
 	TCB_ChangeFunc(tcb,DebugMiyukiMain);
 }
 #endif
 /**
- *	@brief	ƒfƒoƒbƒOƒƒjƒ…[‚ğ•Â‚¶‚é
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‰ã˜ã‚‹
  */
 static void DebugMenuExit(TCB_PTR tcb,void* work)
 {
@@ -415,7 +415,7 @@ static void DebugMenuExit(TCB_PTR tcb,void* work)
 }
 
 /**
- *	@brief	ƒfƒoƒbƒOƒƒjƒ…[@ƒ^ƒEƒ“ƒ}ƒbƒvŒÄ‚Ño‚µ
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—å‘¼ã³å‡ºã—
  */
 //extern void FieldTMap_CallDataSet(FIELDSYS_WORK* fsys,TOWNMAP_PARAM *tp,int mode);
 
@@ -429,7 +429,7 @@ static void* DebugTMapCall(FIELDSYS_WORK* fsys,u8 mode)
 	return tp;
 }
 /**
- *	@brief	ƒfƒoƒbƒOƒƒjƒ…[@ƒ^ƒEƒ“ƒ}ƒbƒvŒÄ‚Ño‚µƒV[ƒPƒ“ƒX‰Šú‰»
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—å‘¼ã³å‡ºã—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆæœŸåŒ–
  */
 static void DebugSub_TMapNormalInit(void* work)
 {
@@ -438,7 +438,7 @@ static void DebugSub_TMapNormalInit(void* work)
 	wp->subWork = DebugTMapCall(wp->fsys,TMAP_MNORMAL);
 }
 /**
- *	@brief	ƒfƒoƒbƒOƒƒjƒ…[@ƒ^ƒEƒ“ƒ}ƒbƒvŒÄ‚Ño‚µƒV[ƒPƒ“ƒX‰Šú‰»
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—å‘¼ã³å‡ºã—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆæœŸåŒ–
  */
 static void DebugSub_TMapJumpInit(void* work)
 {
@@ -447,7 +447,7 @@ static void DebugSub_TMapJumpInit(void* work)
 	wp->subWork = DebugTMapCall(wp->fsys,TMAP_MJUMP);
 }
 /**
- *	@brief	ƒfƒoƒbƒOƒƒjƒ…[@ƒ^ƒEƒ“ƒ}ƒbƒvŒÄ‚Ño‚µƒV[ƒPƒ“ƒX‰Šú‰»
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—å‘¼ã³å‡ºã—ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆæœŸåŒ–
  */
 static void DebugSub_TMapBGInit(void* work)
 {
@@ -460,17 +460,17 @@ static void DebugSubMenu_MailBoxCall(TCB_PTR tcb,void* work)
 {
 	_DebugIwaWork *wp  =(_DebugIwaWork*)work;
 	
-	//ƒfƒoƒbƒOƒƒjƒ…[ƒEƒBƒ“ƒhƒE”jŠü
+	//ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	DebugMiyukiViewEnd(wp);
 
-	//ƒ[ƒ‹ƒ{ƒbƒNƒXƒ^ƒXƒN“o˜^
+	//ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	MailBox_Call(wp->fsys,&(wp->ret_val));
 	TCB_ChangeFunc(tcb,DebugMiyukiSubMenuWait);
 	FieldSystemProc_SeqHold();
 }
 
 /**
- *	@brief	ƒfƒoƒbƒOƒƒjƒ…[@ƒ[ƒ‹ì¬ŒÄ‚Ño‚µ
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ãƒ¡ãƒ¼ãƒ«ä½œæˆå‘¼ã³å‡ºã—
  */
 static void DebugSub_MailCreateInit(void* work)
 {
@@ -481,7 +481,7 @@ static void DebugSub_MailCreateInit(void* work)
 }
 
 /**
- *	@brief	ƒfƒoƒbƒOƒƒjƒ…[@ƒ[ƒ‹•`‰æŒÄ‚Ño‚µ
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ãƒ¡ãƒ¼ãƒ«æç”»å‘¼ã³å‡ºã—
  */
 static void DebugSub_MailViewInit(void* work)
 {
@@ -492,7 +492,7 @@ static void DebugSub_MailViewInit(void* work)
 }
 
 /**
- *	@brief	ƒfƒoƒbƒOƒƒjƒ…[@ƒ|ƒ‹ƒgƒP[ƒXŒÄ‚Ño‚µ
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹å‘¼ã³å‡ºã—
  */
 static void DebugSub_PoruCaseInit(void* work)
 {
@@ -501,7 +501,7 @@ static void DebugSub_PoruCaseInit(void* work)
 }
 
 /**
- *	@brief	ƒfƒoƒbƒOƒƒjƒ…[@ƒ|ƒ‹ƒgƒf[ƒ^ì¬
+ *	@brief	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
  */
 static void DebugSub_PorutoDataMake(void* work,int mode)
 {
@@ -518,7 +518,7 @@ static void DebugSub_PorutoDataMake(void* work,int mode)
 }
 
 /**
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[@ƒ[ƒJƒ‹
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã€€ãƒ­ãƒ¼ã‚«ãƒ«
  */
 static void DebugSub_NutMixerLocal(void* work)
 {

@@ -1,10 +1,10 @@
 //=============================================================================
 /**
  * @file	comm_state.h
- * @brief	’ÊMó‘Ô‚ğŠÇ—‚·‚éƒT[ƒrƒX  ’ÊM‚ÌãˆÊ‚É‚ ‚é
- *          ƒXƒŒƒbƒh‚Ì‚Ğ‚Æ‚Â‚Æ‚µ‚Ä“­‚«A©•ª‚Ì’ÊMó‘Ô‚â‘¼‚Ì‹@Ší‚Ì
- *          ŠJn‚âI—¹‚ğŠÇ—‚·‚é
- *          communication•”•ª‚Ì‚İ‚ğÄˆÚ“®
+ * @brief	é€šä¿¡çŠ¶æ…‹ã‚’ç®¡ç†ã™ã‚‹ã‚µãƒ¼ãƒ“ã‚¹  é€šä¿¡ã®ä¸Šä½ã«ã‚ã‚‹
+ *          ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã²ã¨ã¤ã¨ã—ã¦åƒãã€è‡ªåˆ†ã®é€šä¿¡çŠ¶æ…‹ã‚„ä»–ã®æ©Ÿå™¨ã®
+ *          é–‹å§‹ã‚„çµ‚äº†ã‚’ç®¡ç†ã™ã‚‹
+ *          communicationéƒ¨åˆ†ã®ã¿ã‚’å†ç§»å‹•
  * @author	k.ohno
  * @date    2006.01.12
  */
@@ -18,11 +18,11 @@
 #include "wifi/dwc_lobbylib.h"
 
 #ifdef PM_DEBUG
-#define COMMST_DEBUG_WFLBY_START	// ƒfƒoƒbƒNŠJn’è‹`
+#define COMMST_DEBUG_WFLBY_START	// ãƒ‡ãƒãƒƒã‚¯é–‹å§‹å®šç¾©
 #endif
 
 //==============================================================================
-// externéŒ¾
+// externå®£è¨€
 //==============================================================================
 #ifdef PM_DEBUG
 extern void DebugOhnoCommDebugUnderNo(int no);
@@ -32,73 +32,73 @@ extern void DebugOhnoCommDebugUnderChildOnly(int no);
 
 
 extern BOOL CommStateIsInitialize(void);
-// ’n‰º‚É“ü‚éê‡‚Ìˆ— ƒXƒe[ƒg‚ª’n‰º—p‚É•ÏX‚³‚ê‚é
+// åœ°ä¸‹ã«å…¥ã‚‹å ´åˆã®å‡¦ç† ã‚¹ãƒ†ãƒ¼ãƒˆãŒåœ°ä¸‹ç”¨ã«å¤‰æ›´ã•ã‚Œã‚‹
 extern void CommStateEnterUnderGround(SAVEDATA* pSaveData);
-// ’n‰º‚ğ‚Å‚éê‡‚Ìˆ— ƒXƒe[ƒg‚ª‰½‚à‚È‚µ‚É•ÏX‚³‚ê‚é
+// åœ°ä¸‹ã‚’ã§ã‚‹å ´åˆã®å‡¦ç† ã‚¹ãƒ†ãƒ¼ãƒˆãŒä½•ã‚‚ãªã—ã«å¤‰æ›´ã•ã‚Œã‚‹
 extern void CommStateExitUnderGround(void);
-// ’n‰º‚É‚¨‚¢‚ÄÚ‘±’†STATE‚È‚Ì‚©‚Ç‚¤‚©•Ô‚·
+// åœ°ä¸‹ã«ãŠã„ã¦æ¥ç¶šä¸­STATEãªã®ã‹ã©ã†ã‹è¿”ã™
 extern BOOL CommIsUnderGroundConnectingState(void);
-// ’n‰º‚É‚¨‚¢‚ÄRESETƒXƒe[ƒg‚È‚Ì‚©‚Ç‚¤‚©
+// åœ°ä¸‹ã«ãŠã„ã¦RESETã‚¹ãƒ†ãƒ¼ãƒˆãªã®ã‹ã©ã†ã‹
 extern BOOL CommIsUnderResetState(void);
-// ’n‰º‚É‚¨‚¢‚Ä”é–§Šî’n‚É“ü‚éˆ×‚ÉØ’f‚ğs‚¤
+// åœ°ä¸‹ã«ãŠã„ã¦ç§˜å¯†åŸºåœ°ã«å…¥ã‚‹ç‚ºã«åˆ‡æ–­ã‚’è¡Œã†
 extern void CommStateUnderGroundOfflineSecretBase(void);
-// ”é–§Šî’n‚©‚ço‚Ä‚«‚½‚çÚ‘±ˆ—‚ğs‚¤
+// ç§˜å¯†åŸºåœ°ã‹ã‚‰å‡ºã¦ããŸã‚‰æ¥ç¶šå‡¦ç†ã‚’è¡Œã†
 extern void CommStateUnderGroundOnlineSecretBase(void);
-// ’n‰º‚Ìƒr[ƒRƒ“ûW‚ğÄŠJ
+// åœ°ä¸‹ã®ãƒ“ãƒ¼ã‚³ãƒ³åé›†ã‚’å†é–‹
 extern void CommStateUnderRestart(void);
-// ’n‰º‚Ìƒr[ƒRƒ“ûW‚ğÄŠJ
+// åœ°ä¸‹ã®ãƒ“ãƒ¼ã‚³ãƒ³åé›†ã‚’å†é–‹
 extern void CommStateUnderParentRestart(void);
-// ’n‰ºŒŸõ’â~ó‘Ô‚É‚·‚é
+// åœ°ä¸‹æ¤œç´¢åœæ­¢çŠ¶æ…‹ã«ã™ã‚‹
 extern void CommStaetUnderPause(BOOL bFlg);
-// ‚©‚¹‚«Œ@‚èƒXƒ^[ƒg
+// ã‹ã›ãæ˜ã‚Šã‚¹ã‚¿ãƒ¼ãƒˆ
 extern void CommStateUnderGroundDigFossilStart(void);
 extern void CommStateUnderGroundDigFossilEnd(void);
 
 
-// ƒoƒgƒ‹‚Ée‚É‚È‚éê‡‚Ìˆ—ŠJn
+// ãƒãƒˆãƒ«æ™‚ã«è¦ªã«ãªã‚‹å ´åˆã®å‡¦ç†é–‹å§‹
 #ifdef PM_DEBUG
 extern void CommStateEnterBattleParent(SAVEDATA* pSaveData, int serviceNo, int regulationNo, const REGULATION* pReg, BOOL bWifi, int soloDebugNo);
 #else
 extern void CommStateEnterBattleParent(SAVEDATA* pSaveData, int serviceNo, int regulationNo, const REGULATION* pReg, BOOL bWifi);
 #endif
-// ƒoƒgƒ‹‚Éq‚É‚È‚éê‡‚Ìˆ—ŠJn
+// ãƒãƒˆãƒ«æ™‚ã«å­ã«ãªã‚‹å ´åˆã®å‡¦ç†é–‹å§‹
 #ifdef PM_DEBUG
 extern void CommStateEnterBattleChild(SAVEDATA* pSaveData, int serviceNo, int regulationNo, const REGULATION* pReg, BOOL bWifi, int soloDebugNo);
 #else
 extern void CommStateEnterBattleChild(SAVEDATA* pSaveData, int serviceNo, int regulationNo, const REGULATION* pReg, BOOL bWifi);
 #endif
-// ƒoƒgƒ‹‚Ée‚ğŒˆ‚ß‚½Û‚Ìq‹@‚Ìˆ—
+// ãƒãƒˆãƒ«æ™‚ã«è¦ªã‚’æ±ºã‚ãŸéš›ã®å­æ©Ÿã®å‡¦ç†
 extern void CommStateConnectBattleChild(int connectIndex);
-// ƒoƒgƒ‹‚Éq‹@‚ğÄ‹N“®‚·‚é‚Ìˆ—
+// ãƒãƒˆãƒ«æ™‚ã«å­æ©Ÿã‚’å†èµ·å‹•ã™ã‚‹æ™‚ã®å‡¦ç†
 extern void CommStateRebootBattleChild(void);
-// I—¹ˆ—è‘±‚«
+// çµ‚äº†å‡¦ç†æ‰‹ç¶šã
 extern void CommStateExitBattle(void);
-// ƒoƒgƒ‹Ú‘±’†STATE‚È‚Ì‚©‚Ç‚¤‚©•Ô‚·
+// ãƒãƒˆãƒ«æ¥ç¶šä¸­STATEãªã®ã‹ã©ã†ã‹è¿”ã™
 extern BOOL CommIsBattleConnectingState(void);
 
-/// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Åƒr[ƒRƒ“‚ÌûW
+/// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§ãƒ“ãƒ¼ã‚³ãƒ³ã®åé›†
 extern void CommStateUnionBconCollection(SAVEDATA* pSaveData);
-/// ƒ†ƒjƒIƒ“q‹@‚É‚È‚é—\’è‚È‚Ì‚Å’N‚à‚Â‚È‚ª‚ç‚È‚¢
+/// ãƒ¦ãƒ‹ã‚ªãƒ³å­æ©Ÿã«ãªã‚‹äºˆå®šãªã®ã§èª°ã‚‚ã¤ãªãŒã‚‰ãªã„
 extern void CommStateChildReserve(void);
-/// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚Å‰ï˜bŠJn
+/// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§ä¼šè©±é–‹å§‹
 extern void CommStateUnionTalkStart(void);
-/// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚ÅÚ‘±ŠJn 
+/// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã§æ¥ç¶šé–‹å§‹ 
 extern void CommStateUnionConnectStart(int index);
-/// Ú‘±‚µ‚½‚©‚Ç‚¤‚©
+/// æ¥ç¶šã—ãŸã‹ã©ã†ã‹
 extern int CommStateIsUnionConnectSuccess(void);
-/// e‹@‚Æ‚µ‚ÄÚ‘±‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
+/// è¦ªæ©Ÿã¨ã—ã¦æ¥ç¶šã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
 extern BOOL CommStateIsUnionParentConnectSuccess(void);
-/// ƒr[ƒRƒ“ûWÄŠJ
+/// ãƒ“ãƒ¼ã‚³ãƒ³åé›†å†é–‹
 extern void CommStateUnionBconCollectionRestart(void);
-/// ƒr[ƒRƒ“ûWÄŠJ‚Ì—¬‚ê‚É–ß‚Á‚½‚©‚Ç‚¤‚©
+/// ãƒ“ãƒ¼ã‚³ãƒ³åé›†å†é–‹ã®æµã‚Œã«æˆ»ã£ãŸã‹ã©ã†ã‹
 extern BOOL CommStateUnionIsRestartSuccess(void);
-// I—¹ˆ—è‘±‚«
+// çµ‚äº†å‡¦ç†æ‰‹ç¶šã
 extern void CommStateExitUnion(void);
-/// ˆê’â~
+/// ä¸€æ™‚åœæ­¢
 extern void CommStateUnionPause(void);
-/// ƒ†ƒjƒIƒ“ƒ‹[ƒ€“à‚ÌÚ‘±ƒ‚[ƒh‚É–ß‚·
+/// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ å†…ã®æ¥ç¶šãƒ¢ãƒ¼ãƒ‰ã«æˆ»ã™
 extern void CommStateUnionAppEnd(void);
-/// uƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒAƒvƒŠƒP[ƒVƒ‡ƒ“v‚Æ‚¢‚¤Ú‘±ƒ‚[ƒh‚É•Ï‚¦‚é
+/// ã€Œãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã€ã¨ã„ã†æ¥ç¶šãƒ¢ãƒ¼ãƒ‰ã«å¤‰ãˆã‚‹
 extern void CommStateUnionAppStart(void);
 
 
@@ -107,82 +107,82 @@ extern void CommStateUnionAppStart(void);
 
 
 extern void CommStateSetPokemon(u8* sel);
-// ƒRƒs[
+// ã‚³ãƒ”ãƒ¼
 extern void CommStateGetPokemon(u8* sel);
 
-// •sv‹c’ÊMe‹@‚ÌÚ‘±
+// ä¸æ€è­°é€šä¿¡è¦ªæ©Ÿã®æ¥ç¶š
 extern void CommStateEnterMysteryParent(SAVEDATA* pSaveData, int serviceNo);
-// •sv‹c’ÊMq‹@‚ÌÚ‘±
+// ä¸æ€è­°é€šä¿¡å­æ©Ÿã®æ¥ç¶š
 extern void CommStateEnterMysteryChild(SAVEDATA* pSaveData, int serviceNo);
 
 
 #ifdef PM_DEBUG
-// ƒ^ƒCƒgƒ‹‚©‚ç’ÊMƒfƒoƒbƒO‚ğs‚¤‚ÌŠÖ”
+// ã‚¿ã‚¤ãƒˆãƒ«ã‹ã‚‰é€šä¿¡ãƒ‡ãƒãƒƒã‚°ã‚’è¡Œã†æ™‚ã®é–¢æ•°
 extern void CommStateDBattleConnect(BOOL bParent, int gameMode ,SAVEDATA* pSaveData);
-// WIFIƒXƒe[ƒgˆ—
+// WIFIã‚¹ãƒ†ãƒ¼ãƒˆå‡¦ç†
 extern void CommStateWifiCheckFunc(void);
 
-// ƒfƒoƒbƒOƒXƒ^[ƒg‚ğ‚»‚ë‚¦‚éŠÖ”
+// ãƒ‡ãƒãƒƒã‚°ã‚¹ã‚¿ãƒ¼ãƒˆã‚’ãã‚ãˆã‚‹é–¢æ•°
 extern void CommStateRecvDebugStart(int netID, int size, void* pData, void* pWork);
-// í“¬ƒV[ƒPƒ“ƒX‚Éi‚ñ‚Å‚¢‚¢‚©‚Ç‚¤‚©
+// æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«é€²ã‚“ã§ã„ã„ã‹ã©ã†ã‹
 extern BOOL CommStateDBattleIsReady(void);
 
 
 #endif
 
-// ‚¨ŠG‚©‚«Œf¦”Â‚æ‚¤Ú‘±‚É•ÏX
+// ãŠçµµã‹ãæ²ç¤ºæ¿ã‚ˆã†æ¥ç¶šã«å¤‰æ›´
 extern void CommStateUnionPictureBoardChange(void);
-//‚¨ŠG‚©‚«state‚ÉˆÚs‚µ‚½ê‡TRUE
+//ãŠçµµã‹ãstateã«ç§»è¡Œã—ãŸå ´åˆTRUE
 extern BOOL CommStateIsUnionPictureBoardState(void);
-// ‚¨ŠG‚©‚«q‹@‚Æ‚µ‚ÄŒq‚®
+// ãŠçµµã‹ãå­æ©Ÿã¨ã—ã¦ç¹‹ã
 extern void CommStateUnionPictureBoardChild(int index);
 
-// ƒŒƒR[ƒhƒR[ƒi[‚Ìó‘Ô‚ÉØ‚è‘Ö‚¦‚é
+// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã®çŠ¶æ…‹ã«åˆ‡ã‚Šæ›¿ãˆã‚‹
 extern void CommStateUnionRecordCornerChange(void);
-// ƒŒƒR[ƒhƒR[ƒi[q‹@‚Æ‚µ‚ÄŒq‚®
+// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼å­æ©Ÿã¨ã—ã¦ç¹‹ã
 extern void CommStateUnionRecordCornerChild(int index);
 
-// ‚®‚é‚®‚éŒğŠ·‚Ìó‘Ô‚ÉØ‚è‘Ö‚¦‚é
+// ãã‚‹ãã‚‹äº¤æ›ã®çŠ¶æ…‹ã«åˆ‡ã‚Šæ›¿ãˆã‚‹
 extern void CommStateUnionGuru2Change(void);
-// ‚®‚é‚®‚éŒğŠ·q‹@‚Æ‚µ‚ÄŒq‚®
+// ãã‚‹ãã‚‹äº¤æ›å­æ©Ÿã¨ã—ã¦ç¹‹ã
 extern void CommStateUnionGuru2Child(int index);
 
 
-/// Ú‘±Šm”FŒŸ¸
+/// æ¥ç¶šç¢ºèªæ¤œæŸ»
 extern void CommRecvNegotiation(int netID, int size, void* pData, void* pWork);
-/// Ú‘±Šm”FŒŸ¸ e‹@‚©‚ç‚Ì•Ô–
+/// æ¥ç¶šç¢ºèªæ¤œæŸ» è¦ªæ©Ÿã‹ã‚‰ã®è¿”äº‹
 extern void CommRecvNegotiationReturn(int netID, int size, void* pData, void* pWork);
-/// Ú‘±Šm”FƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY
+/// æ¥ç¶šç¢ºèªã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚º
 extern int CommRecvGetNegotiationSize(void);
 
-/// “ü‚Á‚Ä‚­‚él‚Ì”‚ğ§ŒÀ
+/// å…¥ã£ã¦ãã‚‹äººã®æ•°ã‚’åˆ¶é™
 extern void CommStateSetLimitNum(int num);
-/// ‚Û‚¯‚Á‚¿Ú‘±ŠJn
+/// ã½ã‘ã£ã¡æ¥ç¶šé–‹å§‹
 extern void CommStateEnterPockchChild(SAVEDATA* pSaveData);
-/// ‚Û‚¯‚Á‚¿ˆ—è‘±‚«
+/// ã½ã‘ã£ã¡å‡¦ç†æ‰‹ç¶šã
 extern void CommStateExitPoketch(void);
-/// ‚Û‚¯‚Á‚¿‚É‚¨‚¢‚Äî•ñûWSTATE‚È‚Ì‚©‚Ç‚¤‚©•Ô‚·
+/// ã½ã‘ã£ã¡ã«ãŠã„ã¦æƒ…å ±åé›†STATEãªã®ã‹ã©ã†ã‹è¿”ã™
 extern BOOL CommIsPoketchSearchingState(void);
 
-// ƒp[ƒeƒB[ƒQ[ƒ€í—Ş
+// ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã‚²ãƒ¼ãƒ ç¨®é¡
 #define PARTYGAME_MYSTERY_BCON (0x01)
 #define PARTYGAME_RANGER_BCON  (0x02)
 #define PARTYGAME_WII_BCON     (0x04)
 #define PARTYGAME_DOWNLOAD_BCON (0x08)
 
-// * ƒp[ƒeƒB[ƒQ[ƒ€ŒŸõ‚Ì’ÊMˆ—ŠJniq‹@ó‘Ô‚Ì‚İj
+// * ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã‚²ãƒ¼ãƒ æ¤œç´¢ã®é€šä¿¡å‡¦ç†é–‹å§‹ï¼ˆå­æ©ŸçŠ¶æ…‹ã®ã¿ï¼‰
 extern void CommStateEnterPartyGameScanChild(SAVEDATA* pSaveData);
-// ƒp[ƒeƒB[ƒQ[ƒ€ƒT[ƒ`‚ÌI—¹ˆ—
+// ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã‚²ãƒ¼ãƒ ã‚µãƒ¼ãƒã®çµ‚äº†å‡¦ç†
 extern void CommStateExitPartyGameScan(void);
-// E‚Á‚½ƒr[ƒRƒ“‚ÌBIT‚ğ•Ô‚·
+// æ‹¾ã£ãŸãƒ“ãƒ¼ã‚³ãƒ³ã®BITã‚’è¿”ã™
 extern u8 CommStateGetPartyGameBit(void);
 
-/// ƒŠƒZƒbƒg—p‚Ì’ÊMØ’f
+/// ãƒªã‚»ãƒƒãƒˆç”¨ã®é€šä¿¡åˆ‡æ–­
 extern BOOL CommStateExitReset(void);
 
 extern void CommStateCheckFunc(void);
 
-// WIFIƒoƒgƒ‹Ú‘±—pŠÖ”
+// WIFIãƒãƒˆãƒ«æ¥ç¶šç”¨é–¢æ•°
 #ifdef PM_DEBUG
 void CommStateWifiEnterBattleChild(SAVEDATA* pSaveData, int serviceNo, int regulationNo, int soloDebugNo);
 #else
@@ -226,15 +226,15 @@ extern void CommStateWifiLogout(void);
 //extern int CommStateGetWifiErrorNo(void);
 extern BOOL CommStateIsWifiError(void);
 
-//ƒQ[ƒ€‚ğŠJn‚·‚é
+//ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã™ã‚‹
 extern int CommWifiBattleStart( int target );
-// ‚Sl—pƒQ[ƒ€‚ğŠJn‚·‚é
+// ï¼”äººç”¨ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã™ã‚‹
 extern int CommWifiPofinStart( int target );
 
-//ƒ}ƒbƒ`ƒ“ƒO‚ªŠ®—¹‚µ‚½‚©‚Ç‚¤‚©‚ğ”»’è
+//ãƒãƒƒãƒãƒ³ã‚°ãŒå®Œäº†ã—ãŸã‹ã©ã†ã‹ã‚’åˆ¤å®š
 extern int CommWifiIsMatched();
 
-// ’ÊM‚ªWIFIÚ‘±‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•Ô‚·
+// é€šä¿¡ãŒWIFIæ¥ç¶šã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™
 extern BOOL CommStateIsWifiConnect(void);
 
 
@@ -249,7 +249,7 @@ extern void CommStateWifiEMailEnd(void);
 
 
 
-// ƒƒr[‚Å‚àg—p‚Å‚«‚éŠÖ”
+// ãƒ­ãƒ“ãƒ¼ã§ã‚‚ä½¿ç”¨ã§ãã‚‹é–¢æ•°
 //	BOOL CommStateIsInitialize();
 //	BOOL CommStateIsWifiLoginState(void);
 //	BOOL CommStateIsWifiLoginMatchState(void);
@@ -257,19 +257,19 @@ extern void CommStateWifiEMailEnd(void);
 //	BOOL CommStateIsWifiError(void);
 //	BOOL CommStateIsWifiConnect(void);
 //
-// ƒƒr[ê—p‚ÌŠÖ”
-// ‚±‚ÌŠÖ”‚ğŒÄ‚Ô‘O‚ÉDWC_LOBBY_Init‚ğs‚Á‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢B
+// ãƒ­ãƒ“ãƒ¼å°‚ç”¨ã®é–¢æ•°
+// ã“ã®é–¢æ•°ã‚’å‘¼ã¶å‰ã«DWC_LOBBY_Initã‚’è¡Œã£ã¦ãŠã„ã¦ãã ã•ã„ã€‚
 extern void CommStateWifiLobbyLogin( SAVEDATA* p_save, const void* cp_initprofile );
 extern void CommStateWifiLobbyLogout( void );
 extern BOOL CommStateWifiLobbyDwcLoginCheck( void );
 extern BOOL CommStateWifiLobbyError( void );
 extern void CommStateWifiP2PStart( DWC_LOBBY_MG_TYPE type );
-extern void CommStateWifiP2PEnd( void );	// CommStateWifiP2PGetConnectStateŠÖ”‚ÅØ’fƒ`ƒFƒbƒN‚ğs‚¤‚±‚Æ
+extern void CommStateWifiP2PEnd( void );	// CommStateWifiP2PGetConnectStateé–¢æ•°ã§åˆ‡æ–­ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã“ã¨
 enum{
-	COMMSTATE_WIFIP2P_CONNECT_NONE,			// Ú‘±‚µ‚Ä‚È‚¢
-	COMMSTATE_WIFIP2P_CONNECT_MATCHWAIT,	// Ú‘±‘Ò‚¿
-	COMMSTATE_WIFIP2P_CONNECT_MATCH,		// Ú‘±Š®—¹
-	COMMSTATE_WIFIP2P_CONNECT_DISCONNECT,	// Ø’f’†
+	COMMSTATE_WIFIP2P_CONNECT_NONE,			// æ¥ç¶šã—ã¦ãªã„
+	COMMSTATE_WIFIP2P_CONNECT_MATCHWAIT,	// æ¥ç¶šå¾…ã¡
+	COMMSTATE_WIFIP2P_CONNECT_MATCH,		// æ¥ç¶šå®Œäº†
+	COMMSTATE_WIFIP2P_CONNECT_DISCONNECT,	// åˆ‡æ–­ä¸­
 };
 extern u32 CommStateWifiP2PGetConnectState( void );
 #ifdef COMMST_DEBUG_WFLBY_START
@@ -283,20 +283,20 @@ extern void CommStateWifiLobbyLogin_Debug( SAVEDATA* p_save, const void* cp_init
 #define COMM_ERROR_RESET_OTHER (4)
 
 
-// ƒŠƒZƒbƒg‚·‚éƒGƒ‰[‚ª”­¶‚µ‚½ê‡‚ÉŒÄ‚Ô
+// ãƒªã‚»ãƒƒãƒˆã™ã‚‹ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã«å‘¼ã¶
 extern void CommSetErrorReset(u8 type);
-// ƒŠƒZƒbƒg‚·‚éƒGƒ‰[‚ª”­¶‚µ‚½‚©‚Ç‚¤‚©
+// ãƒªã‚»ãƒƒãƒˆã™ã‚‹ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸã‹ã©ã†ã‹
 extern u8 CommIsResetError(void);
 
-// fatalƒGƒ‰[ŠÖ”
+// fatalã‚¨ãƒ©ãƒ¼é–¢æ•°
 extern void CommFatalErrorFunc(int no);
 extern void CommFatalErrorFunc_NoNumber( void );
 
 
-// ’n‰º‚Í‚¶‚ß‚ÌƒCƒxƒ“ƒg‚ğs‚¤ê‡İ’è
+// åœ°ä¸‹ã¯ã˜ã‚ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’è¡Œã†å ´åˆè¨­å®š
 extern void CommStateSetFirstEvent(void);
 
-// WIFI‚©‚çØ’f—v‹
+// WIFIã‹ã‚‰åˆ‡æ–­è¦æ±‚
 extern void CommRecvExit(int netID, int size, void* pData, void* pWork);
 
 extern BOOL CommStateIsResetEnd(void);
@@ -304,26 +304,26 @@ extern BOOL CommStateIsResetEnd(void);
 extern void CommStateSetParentOnlyFlg(BOOL bFlg);
 
 
-#define COMM_ERRORTYPE_ARESET (0)     // Aƒ{ƒ^ƒ“‚ÅƒŠƒZƒbƒg
-#define COMM_ERRORTYPE_POWEROFF (1)   // “dŒ¹‚ğØ‚ç‚È‚¢‚Æ‚¢‚¯‚È‚¢
-#define COMM_ERRORTYPE_TITLE (2)     // Aƒ{ƒ^ƒ“‚ÅƒŠƒZƒbƒg ƒ^ƒCƒgƒ‹–ß‚µ
-#define COMM_ERRORTYPE_GTS (3)     // Aƒ{ƒ^ƒ“‚ÅƒŠƒZƒbƒg ƒZ[ƒuƒ|ƒCƒ“ƒg‚Ö–ß‚·
-#define COMM_ERRORTYPE_ARESET_WIFI (5)  // Aƒ{ƒ^ƒ“‚ÅƒŠƒZƒbƒg(Wi-FiÚ‘±)
-#define COMM_ERRORTYPE_TITLE_WIFI (6)  // Aƒ{ƒ^ƒ“‚ÅƒŠƒZƒbƒg ƒ^ƒCƒgƒ‹–ß‚µ(Wi-FiÚ‘±)
+#define COMM_ERRORTYPE_ARESET (0)     // Aãƒœã‚¿ãƒ³ã§ãƒªã‚»ãƒƒãƒˆ
+#define COMM_ERRORTYPE_POWEROFF (1)   // é›»æºã‚’åˆ‡ã‚‰ãªã„ã¨ã„ã‘ãªã„
+#define COMM_ERRORTYPE_TITLE (2)     // Aãƒœã‚¿ãƒ³ã§ãƒªã‚»ãƒƒãƒˆ ã‚¿ã‚¤ãƒˆãƒ«æˆ»ã—
+#define COMM_ERRORTYPE_GTS (3)     // Aãƒœã‚¿ãƒ³ã§ãƒªã‚»ãƒƒãƒˆ ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ãƒˆã¸æˆ»ã™
+#define COMM_ERRORTYPE_ARESET_WIFI (5)  // Aãƒœã‚¿ãƒ³ã§ãƒªã‚»ãƒƒãƒˆ(Wi-Fiæ¥ç¶šæ™‚)
+#define COMM_ERRORTYPE_TITLE_WIFI (6)  // Aãƒœã‚¿ãƒ³ã§ãƒªã‚»ãƒƒãƒˆ ã‚¿ã‚¤ãƒˆãƒ«æˆ»ã—(Wi-Fiæ¥ç¶šæ™‚)
 
-// ƒGƒ‰[•\¦ŠÖ”
+// ã‚¨ãƒ©ãƒ¼è¡¨ç¤ºé–¢æ•°
 extern void ComErrorWarningResetCall( int heapID, int type, int code );
 extern void DWClibWarningCall( int heapID, int error_msg_id );
 
 
-// ƒGƒ‰[‚É‚·‚éŠÖ”   ˆÈ‰º‚Ì”Ô†‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢
+// ã‚¨ãƒ©ãƒ¼ã«ã™ã‚‹é–¢æ•°   ä»¥ä¸‹ã®ç•ªå·ã‚’ä½¿ç”¨ã—ã¦ãã ã•ã„
 //#define COMM_ERROR_RESET_SAVEPOINT  (1)
 //#define COMM_ERROR_RESET_TITLE  (2)
 //#define COMM_ERROR_RESET_GTS  (3)
 //#define COMM_ERROR_RESET_OTHER (4)
 extern BOOL CommStateSetError(int no);
 
-// WIFIƒ|ƒtƒBƒ“
+// WIFIãƒãƒ•ã‚£ãƒ³
 extern void CommStateChangeWiFiPofin( void );
 extern void CommStateChangeWiFiLobbyMinigame( void );
 extern void CommStateChangeWiFiLogin( void );
@@ -332,8 +332,8 @@ extern void CommStateChangeWiFiClub( void );
 
 extern void CommStateChangeWiFiFactory( void );
 
-// ƒ|ƒPƒbƒ`‚ÌˆÈŠO‚Å’ÊM‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•Ô‚·
-// @retval  ’ÊMó‘Ô’†‚ÍTRUE
+// ãƒã‚±ãƒƒãƒã®æ™‚ä»¥å¤–ã§é€šä¿¡ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™
+// @retval  é€šä¿¡çŠ¶æ…‹ä¸­ã¯TRUE
 extern BOOL CommStateIsInitializeOtherPoketch(void);
 //
 extern void CommStateSetWifiError(int code, int type, int ret);

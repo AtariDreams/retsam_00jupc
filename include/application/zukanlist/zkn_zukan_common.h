@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_zukan_common.h
- *	@brief		}ŠÓ‹¤’ÊƒAƒvƒŠƒP[ƒVƒ‡ƒ“
+ *	@brief		å›³é‘‘å…±é€šã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
  *	@author		tomoya takahashi
  *	@data		2006.01.20
  *
@@ -22,19 +22,19 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL void ZKN_ZukanCommonAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap );
@@ -49,7 +49,7 @@ GLOBAL BOOL ZKN_ZukanCommonBrightnessOnFlagGet( const ZKN_APL_DATA* cp_glb );
 GLOBAL BOOL ZKN_ZukanCommonSubBrightnessOnFlagGet( const ZKN_APL_DATA* cp_glb );
 GLOBAL BOOL ZKN_ZukanCommonSubMoveFlagGet( const ZKN_APL_DATA* cp_glb );
 
-// ƒJ[ƒ\ƒ‹‘€ì—LŒø–³Œø
+// ã‚«ãƒ¼ã‚½ãƒ«æ“ä½œæœ‰åŠ¹ç„¡åŠ¹
 GLOBAL void ZKN_ZukanCommonSubCursorFlagSet( ZKN_APL_DATA* p_glb, BOOL flag );
 GLOBAL BOOL ZKN_ZukanCommonSubCursorFlagGet( const ZKN_APL_DATA* cp_glb );
 

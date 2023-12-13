@@ -1,8 +1,8 @@
 #ifndef _SAISEN_DEF_H_
 #define _SAISEN_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_BTL_SEARCHER		(8950)
-#define	SCRID_SAISEN_DATA_MAX		(1)		//最大数
+#define	SCRID_SAISEN_DATA_MAX		(1)		//譛螟ｧ謨ｰ
 
 #endif //_SAISEN_DEF_H_

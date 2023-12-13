@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_108.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			108@‚¿‚¢‚³‚­‚È‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			108ã€€ã¡ã„ã•ããªã‚‹
  *
  *@author	HisashiSogabe
  *@data		2006.01.27

@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_104.s
- *@brief	�퓬�V�[�P���X
- *			�V��n�p���V�[�P���X
+ *@brief	戦闘シーケンス
+ *			天候系継続シーケンス
  *@author	HisashiSogabe
  *@data		2006.01.27
  *
@@ -25,7 +25,7 @@ TenkouDamageLoop:
 	IF					IF_FLAG_EQ,BUF_PARA_TEMP_WORK,TENKOU_URUOIBODY,UruoiBodySeq
 	IF					IF_FLAG_EQ,BUF_PARA_HP_CALC_WORK,0,TenkouDamageNext
 	IF					IF_FLAG_C,BUF_PARA_HP_CALC_WORK,0,Kaifuku
-	//�����}�W�b�N�K�[�h�́A�_���[�W���󂯂Ȃ�
+	//特性マジックガードは、ダメージを受けない
 	TOKUSEI_CHECK		TOKUSEI_HAVE,SIDE_WORK,TOKUSYU_MAZIKKUGAADO,TenkouDamageNext
 	IF					IF_FLAG_BIT,BUF_PARA_FIELD_CONDITION,FIELD_CONDITION_HARE_ALL,KansouhadaDamage
 Damage:
@@ -41,7 +41,7 @@ HPCalc:
 	SERVER_WAIT
 	WAIT				MSG_WAIT
 	GOSUB				SUB_SEQ_HP_CALC
-	//�C�₵�Ă�����A�C��G�t�F�N�g��
+	//気絶していたら、気絶エフェクトへ
 	IF					IF_FLAG_NBIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_KIZETSU,TenkouDamageNext
 	GOSUB				SUB_SEQ_KIZETSU
 	BRANCH				TenkouDamageNext

@@ -1,27 +1,27 @@
 #
 #  treasure_info_make.rb
 #
-#  g—p•û–@Fruby treasure_info_make.rb <base_goods.txt>
-#         (’n‰º‘fŞ•\ ƒ^ƒu‹æØ‚è‚ÌƒeƒLƒXƒgƒtƒ@ƒCƒ‹)
+#  ä½¿ç”¨æ–¹æ³•ï¼šruby treasure_info_make.rb <base_goods.txt>
+#         (åœ°ä¸‹ç´ æè¡¨ ã‚¿ãƒ–åŒºåˆ‡ã‚Šã®ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«)
 #
 
-#  ŒğŠ·‘ÎÛ¤•i‚Ìƒf[ƒ^o—Í
+#  äº¤æ›å¯¾è±¡å•†å“ã®ãƒ‡ãƒ¼ã‚¿å‡ºåŠ›
 #
 def _changeStoneParam(stoneName, minNum, maxNum, output, count)
   begin
     stoneNo = 0
 	case stoneName
-	when "‚±‚ñ‚²‚¤ƒ_ƒ}"
+	when "ã“ã‚“ã”ã†ãƒ€ãƒ"
 	  stoneNo = 1
-	when "‚µ‚çƒ^ƒ}"
+	when "ã—ã‚‰ã‚¿ãƒ"
 	  stoneNo = 2
-	when "‚ ‚©‚¢ƒ^ƒ}"
+	when "ã‚ã‹ã„ã‚¿ãƒ"
 	  stoneNo = 3
-	when "‚ ‚¨‚¢ƒ^ƒ}"
+	when "ã‚ãŠã„ã‚¿ãƒ"
 	  stoneNo = 4
-	when "‚İ‚Ç‚èƒ_ƒ}"
+	when "ã¿ã©ã‚Šãƒ€ãƒ"
 	  stoneNo = 5
-	when "ƒ‰ƒ“ƒ_ƒ€"
+	when "ãƒ©ãƒ³ãƒ€ãƒ "
 	  stoneNo = 6
     when ""
 	  stoneNo = 0
@@ -40,21 +40,21 @@ def _changeStoneParam(stoneName, minNum, maxNum, output, count)
   end
 end
 
-## ƒƒCƒ“ƒ‹[ƒ`ƒ“
+## ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
 
 trap_list = open("treasure_info.dat","w")
 
-trap_list.printf("//‚±‚Ìƒtƒ@ƒCƒ‹‚ÍƒRƒ“ƒo[ƒ^[‚É‚æ‚è¶¬‚³‚ê‚Ü‚· treasure_info_make.rb\n");
-trap_list.printf("//’n‰ºƒgƒ‰ƒbƒv‚ÌŒğŠ·‘Î‰ƒf[ƒ^ƒtƒ@ƒCƒ‹‚Å‚·\n");
+trap_list.printf("//ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯ã‚³ãƒ³ãƒãƒ¼ã‚¿ãƒ¼ã«ã‚ˆã‚Šç”Ÿæˆã•ã‚Œã¾ã™ treasure_info_make.rb\n");
+trap_list.printf("//åœ°ä¸‹ãƒˆãƒ©ãƒƒãƒ—ã®äº¤æ›å¯¾å¿œãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã§ã™\n");
 trap_list.puts "static const TREASURE_SHOP_INFO TreasureShopInfo[] = "
 trap_list.puts "{"
-trap_list.puts "\t\t{0,0,0},  // ƒ_ƒ~["
+trap_list.puts "\t\t{0,0,0},  // ãƒ€ãƒŸãƒ¼"
 
 
 while f = ARGV.shift
 	file_name = f
 	csv_file = open(file_name,"r")
-	line = csv_file.gets    ## “ñs“Ç‚İ”ò‚Î‚µ
+	line = csv_file.gets    ## äºŒè¡Œèª­ã¿é£›ã°ã—
 	line = csv_file.gets
 
 	count = 0;

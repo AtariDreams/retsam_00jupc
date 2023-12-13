@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	tower_scr_common.h
- * @bfief	ƒoƒgƒ‹ƒ^ƒ[ƒXƒNƒŠƒvƒg‹¤’Êƒwƒbƒ_[
+ * @bfief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆå…±é€šãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	07.05.28
  */
@@ -15,74 +15,74 @@
 
 //============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //============================================================================================
-///ƒoƒgƒ‹ƒ^ƒ[@ƒXƒNƒŠƒvƒgƒ[ƒN
+///ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯
 typedef struct _BTOWER_SCRWORK{
-	int	magicNo;	///<ƒ}ƒWƒbƒNƒiƒ“ƒo[
-	int	heapID;	///<ƒq[ƒv
-	u32	play_rnd_seed;	///<ƒvƒŒƒC—pƒ‰ƒ“ƒ_ƒ€ƒV[ƒh
-	u8	now_round;	///<Œ»Ý‰½l–ÚH
-	u8	now_win;	///<Œ»Ý‰½l‚ÉŸ‚Á‚½H
-	u8	member_num;	///<ƒƒ“ƒo[”
-	u8	play_mode;	///<ƒvƒŒƒCƒf[ƒ^
+	int	magicNo;	///<ãƒžã‚¸ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼
+	int	heapID;	///<ãƒ’ãƒ¼ãƒ—
+	u32	play_rnd_seed;	///<ãƒ—ãƒ¬ã‚¤ç”¨ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰
+	u8	now_round;	///<ç¾åœ¨ä½•äººç›®ï¼Ÿ
+	u8	now_win;	///<ç¾åœ¨ä½•äººã«å‹ã£ãŸï¼Ÿ
+	u8	member_num;	///<ãƒ¡ãƒ³ãƒãƒ¼æ•°
+	u8	play_mode;	///<ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿
 
-	u8	clear_f:1;	///<ƒNƒŠƒAƒtƒ‰ƒO
-	u8	leader_f:2;	///<ƒ^ƒCƒN[ƒ“2
-	u8	retire_f:1;	///<ƒŠƒ^ƒCƒAƒtƒ‰ƒO
-	u8	prize_f:1;	///<‚²–J”üƒtƒ‰ƒO
-	u8	partner:3;	///<ƒp[ƒgƒi[No
+	u8	clear_f:1;	///<ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°
+	u8	leader_f:2;	///<ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³2
+	u8	retire_f:1;	///<ãƒªã‚¿ã‚¤ã‚¢ãƒ•ãƒ©ã‚°
+	u8	prize_f:1;	///<ã”è¤’ç¾Žãƒ•ãƒ©ã‚°
+	u8	partner:3;	///<ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼No
 
-	u8	my_sex;			///<Ž©•ª‚Ì«•Ê
-	u8	pare_sex;		///<Ž©•ª‚Æƒp[ƒgƒi[‚Ì«•Ê
-	u16	pare_stage;		///<’ÊMƒ}ƒ‹ƒ`ƒp[ƒgƒi[‚ÌŽü‰ñ”
-	u16	pare_poke[2];	///<’ÊMƒ}ƒ‹ƒ`ƒp[ƒgƒi[‚ªŽ‚Âƒ|ƒPƒ‚ƒ“No
+	u8	my_sex;			///<è‡ªåˆ†ã®æ€§åˆ¥
+	u8	pare_sex;		///<è‡ªåˆ†ã¨ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®æ€§åˆ¥
+	u16	pare_stage;		///<é€šä¿¡ãƒžãƒ«ãƒãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®å‘¨å›žæ•°
+	u16	pare_poke[2];	///<é€šä¿¡ãƒžãƒ«ãƒãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒæŒã¤ãƒã‚±ãƒ¢ãƒ³No
 	
-	u16	renshou;	///<Œ»Ý‚Ì˜AŸ”
-	u16	stage;		///<Œ»Ý‚ÌŽü‰ñ”
-	u32	win_cnt;	///<Œ»Ý‚Ü‚Å‚Ì‘Ÿ—˜”
+	u16	renshou;	///<ç¾åœ¨ã®é€£å‹æ•°
+	u16	stage;		///<ç¾åœ¨ã®å‘¨å›žæ•°
+	u32	win_cnt;	///<ç¾åœ¨ã¾ã§ã®ç·å‹åˆ©æ•°
 
-	u16	rec_turn;	///<‚©‚©‚Á‚½ƒ^[ƒ“”
-	u16	rec_damage;	///<H‚ç‚Á‚½ƒ_ƒ[ƒW
-	u16	rec_down;	///<ƒ|ƒPƒ‚ƒ“‚Ìƒ_ƒEƒ“”
+	u16	rec_turn;	///<ã‹ã‹ã£ãŸã‚¿ãƒ¼ãƒ³æ•°
+	u16	rec_damage;	///<é£Ÿã‚‰ã£ãŸãƒ€ãƒ¡ãƒ¼ã‚¸
+	u16	rec_down;	///<ãƒã‚±ãƒ¢ãƒ³ã®ãƒ€ã‚¦ãƒ³æ•°
 
-	u8	member[BTOWER_STOCK_MEMBER_MAX];	///<‘I‚ñ‚¾ƒ|ƒPƒ‚ƒ“‚ÌŽèŽ‚¿No
-	u16	mem_poke[BTOWER_STOCK_MEMBER_MAX];	///<‘I‚ñ‚¾ƒ|ƒPƒ‚ƒ“‚Ìmonsno
-	u16	mem_item[BTOWER_STOCK_MEMBER_MAX];	///<‘I‚ñ‚¾ƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒeƒ€no
-	u16	trainer[BTOWER_STOCK_TRAINER_MAX];	///<‘ÎíƒgƒŒ[ƒi[No
+	u8	member[BTOWER_STOCK_MEMBER_MAX];	///<é¸ã‚“ã ãƒã‚±ãƒ¢ãƒ³ã®æ‰‹æŒã¡No
+	u16	mem_poke[BTOWER_STOCK_MEMBER_MAX];	///<é¸ã‚“ã ãƒã‚±ãƒ¢ãƒ³ã®monsno
+	u16	mem_item[BTOWER_STOCK_MEMBER_MAX];	///<é¸ã‚“ã ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ãƒ†ãƒ no
+	u16	trainer[BTOWER_STOCK_TRAINER_MAX];	///<å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼No
 
-	//Œ»Ý‚ÌƒƒP[ƒVƒ‡ƒ“‚ð‹L‰¯‚µ‚Ä‚¨‚­
+	//ç¾åœ¨ã®ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¨˜æ†¶ã—ã¦ãŠã
 	LOCATION_WORK	now_location;
 
-	BTLTOWER_PLAYWORK*	playSave;	///<ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	BTLTOWER_SCOREWORK*	scoreSave;	///<ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	BTLTOWER_PLAYWORK*	playSave;	///<ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	BTLTOWER_SCOREWORK*	scoreSave;	///<ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	//‘Îí‘ŠŽèƒf[ƒ^Ši”[êŠ
+	//å¯¾æˆ¦ç›¸æ‰‹ãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
 	B_TOWER_PARTNER_DATA	tr_data[2];
 	
-	//5lO’Š‘Iƒf[ƒ^Ši”[êŠ
+	//5äººè¡†æŠ½é¸ãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
 	B_TOWER_PARTNER_DATA	five_data[BTWR_FIVE_NUM];
 
-	//5lO’Š‘Iƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^Ši”[êŠ
+	//5äººè¡†æŠ½é¸ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
 	B_TOWER_PAREPOKE_PARAM	five_poke[BTWR_FIVE_NUM];
 
-	//5lO’Š‘Iƒ|ƒPƒ‚ƒ“ƒAƒCƒeƒ€fixƒtƒ‰ƒO
+	//5äººè¡†æŠ½é¸ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ãƒ†ãƒ fixãƒ•ãƒ©ã‚°
 	u8						five_item[BTWR_FIVE_NUM];
 
-	//’ÊM—pƒf[ƒ^ƒoƒbƒtƒ@
+	//é€šä¿¡ç”¨ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
 	u16	send_buf[35];
 	u16	recv_buf[35];
 
 	/***********************************************************************************/
 	/***********************************************************************************/
 	/***********************************************************************************/
-	//ƒvƒ‰ƒ`ƒi‚Å’Ç‰Á
-	int winlose_flag;		//(LOCATION_WORK‚ðÁ‚µ‚ÄA‚»‚±‚É“ü‚ê‚é‚±‚Æ‚à‰Â”\H)
-	void* p_work;			//(LOCATION_WORK‚ðÁ‚µ‚ÄA‚»‚±‚É“ü‚ê‚é‚±‚Æ‚à‰Â”\H)
+	//ãƒ—ãƒ©ãƒãƒŠã§è¿½åŠ 
+	int winlose_flag;		//(LOCATION_WORKã‚’æ¶ˆã—ã¦ã€ãã“ã«å…¥ã‚Œã‚‹ã“ã¨ã‚‚å¯èƒ½ï¼Ÿ)
+	void* p_work;			//(LOCATION_WORKã‚’æ¶ˆã—ã¦ã€ãã“ã«å…¥ã‚Œã‚‹ã“ã¨ã‚‚å¯èƒ½ï¼Ÿ)
 	u8	recieve_count;
 	u8	mode;
-	u8	first_btl_flag;		//‰í‚ð‚¨‚±‚È‚Á‚½‚©ƒtƒ‰ƒO
+	u8	first_btl_flag;		//åˆæˆ¦ã‚’ãŠã“ãªã£ãŸã‹ãƒ•ãƒ©ã‚°
 	u8	dummy;
 	u16	check_work;
 	u16	ret_wkno;

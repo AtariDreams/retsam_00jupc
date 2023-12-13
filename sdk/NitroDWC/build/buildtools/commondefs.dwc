@@ -87,13 +87,13 @@ NITRODWC_INSTALL_INCDIR		= $(NITRODWC_INSTALL_ROOT)/include
 NITRODWC_INSTALL_LIBDIR		= $(NITRODWC_INSTALL_ROOT)/lib/$(NITRO_LIBTYPE)
 
 #----------------------------------------------------------------------------
-# %.nef�̃����N���ɃI�u�W�F�N�g�^���C�u�������ˑ�������ꂽ��֗��B
-# �������̂Ƃ��̂��߁A��`��������Ă����B
+# %.nefのリンク時にオブジェクト／ライブラリを依存させられたら便利。
+# もしかのときのため、定義だけ入れておく。
 NITRODWC_LIB_DEPENDS += $(addprefix $(NITRODWC_LIBDIR)/,$(NITRODWC_LIBS)) \
 						$(addprefix $(NITRODWC_GSLIBDIR)/,$(NITRODWC_GSLIBS))
 
 #----------------------------------------------------------------------------
-##LLIBRARY_DIRS�ALLIBRARIES�ɒǉ����܂��B
+##LLIBRARY_DIRS、LLIBRARIESに追加します。
 LLIBRARY_DIRS		+= $(NITRODWC_LIBDIR) $(NITRODWC_GSLIBDIR)
 LLIBRARIES			+= $(NITRODWC_LIBS) $(NITRODWC_GSLIBS)
 
@@ -101,18 +101,18 @@ LLIBRARIES			+= $(NITRODWC_LIBS) $(NITRODWC_GSLIBS)
 LLIBRARIES += libcrypto$(NITRO_LIBSUFFIX).a
 
 #----------------------------------------------------------------------------
-##LINCLUDES�ɒǉ����܂��B
+##LINCLUDESに追加します。
 LINCLUDES			+= $(NITRODWC_INCDIR)
 
 #----------------------------------------------------------------------------
-## gamespy�p��NITRO��`
+## gamespy用のNITRO定義
 MACRO_FLAGS += -D_NITRO
 CCFLAGS_WARNING += -w nonotused -w nopadding
 
 ##MACRO_FLAGS += -D_NITRO -DGSI_MEM_MANAGED -w nonotused -w nopadding
 ##CCFLAGS += -D_NITRO -DGSI_MEM_MANAGED -DSB_ICMP_SUPPORT -w nonotused -w nopadding
 
-## �s��̋z���̂��߁B
+## 不具合の吸収のため。
 #MACRO_FLAGS += -DDWC_BUG_WIFI_DELAY_SEND
 
 ifdef NITRODWC_NOGS

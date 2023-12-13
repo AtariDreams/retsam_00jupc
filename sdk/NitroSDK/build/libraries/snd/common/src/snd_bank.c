@@ -15,31 +15,31 @@
   do-indent
 
   Revision 1.10  2005/05/10 01:52:16  ida
-  SND_BANK_DISABLE_RELEASE‚Ì’Ç‰Á
+  SND_BANK_DISABLE_RELEASEã®è¿½åŠ 
 
   Revision 1.9  2005/05/10 00:55:10  ida
-  ƒŠƒŠ[ƒX255‚Ìƒm[ƒg’·‚ğ–³ŒÀ‚Æ‚·‚é‚æ‚¤‚É‚µ‚½B
+  ãƒªãƒªãƒ¼ã‚¹255ã®æ™‚ãƒãƒ¼ãƒˆé•·ã‚’ç„¡é™ã¨ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.8  2005/04/12 06:16:12  ida
-  SND‚ğNITRO-SDK‚ÖˆÚİ
+  SNDã‚’NITRO-SDKã¸ç§»è¨­
 
   Revision 1.21  2005/03/17 04:25:36  ida
-  SND_INST_NULL’Ç‰Á
+  SND_INST_NULLè¿½åŠ 
 
   Revision 1.20  2005/02/21 02:37:17  ida
-  Œx‘Îô
+  è­¦å‘Šå¯¾ç­–
 
   Revision 1.19  2005/02/02 05:09:53  ida
   for SDK_FROM_TOOL
 
   Revision 1.18  2005/01/24 05:52:19  ida
-  ”gŒ`ƒA[ƒJƒCƒu•ÒWŒã‚ÌƒLƒƒƒbƒVƒ…ƒXƒgƒA’Ç‰Á
+  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç·¨é›†å¾Œã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚¹ãƒˆã‚¢è¿½åŠ 
 
   Revision 1.17  2005/01/19 23:45:33  ida
-  ƒRƒ“ƒpƒCƒ‹ƒGƒ‰[‘Îˆ
+  ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¨ãƒ©ãƒ¼å¯¾å‡¦
 
   Revision 1.16  2005/01/19 06:19:58  ida
-  ŠO•”QÆ”gŒ`ƒA[ƒJƒCƒuÀ‘•ŠÖ˜A‚ÌŠÖ”’Ç‰Á
+  å¤–éƒ¨å‚ç…§æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®Ÿè£…é–¢é€£ã®é–¢æ•°è¿½åŠ 
 
   Revision 1.15  2004/11/22 04:30:17  ida
   workaround thread safe
@@ -151,7 +151,7 @@ static const SNDWaveData *GetWaveData(const SNDBankData *bank, int waveArcNo, in
 /*---------------------------------------------------------------------------*
   Name:         SND_AssignWaveArc
 
-  Description:  ƒoƒ“ƒN‚É”gŒ`ƒA[ƒJƒCƒu‚ğŠ„‚è•t‚¯‚Ü‚·(ThreadSafe)
+  Description:  ãƒãƒ³ã‚¯ã«æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’å‰²ã‚Šä»˜ã‘ã¾ã™(ThreadSafe)
 
   Arguments:    bank    - pointer to SNDBankData structure
                 index   - wave archive index
@@ -176,16 +176,16 @@ void SND_AssignWaveArc(SNDBankData *bank, int index, SNDWaveArc *waveArc)
 
     if (bank->waveArcLink[index].waveArc != NULL)
     {
-        // ‚·‚Å‚ÉÚ‘±Ï‚İ‚Ìê‡
+        // ã™ã§ã«æ¥ç¶šæ¸ˆã¿ã®å ´åˆ
 
-        // Ú‘±‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚é”gŒ`ƒA[ƒJƒCƒu‚Æ“¯‚¶‚¾‚Á‚½‚çA‰½‚à‚µ‚È‚¢
+        // æ¥ç¶šã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã¨åŒã˜ã ã£ãŸã‚‰ã€ä½•ã‚‚ã—ãªã„
         if (waveArc == bank->waveArcLink[index].waveArc)
         {
             SNDi_UnlockMutex();
             return;
         }
 
-        // ˆá‚¤”gŒ`ƒA[ƒJƒCƒu‚ªÚ‘±‚³‚ê‚Ä‚¢‚½‚çAˆê’UÚ‘±‚ğØ’f‚·‚é
+        // é•ã†æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒæ¥ç¶šã•ã‚Œã¦ã„ãŸã‚‰ã€ä¸€æ—¦æ¥ç¶šã‚’åˆ‡æ–­ã™ã‚‹
         if (&bank->waveArcLink[index] == bank->waveArcLink[index].waveArc->topLink)
         {
             bank->waveArcLink[index].waveArc->topLink = bank->waveArcLink[index].next;
@@ -228,7 +228,7 @@ void SND_AssignWaveArc(SNDBankData *bank, int index, SNDWaveArc *waveArc)
 /*---------------------------------------------------------------------------*
   Name:         SND_DestroyBank
 
-  Description:  ƒoƒ“ƒN‚ğ”jŠü‚µ‚Ü‚·(ThreadSafe)
+  Description:  ãƒãƒ³ã‚¯ã‚’ç ´æ£„ã—ã¾ã™(ThreadSafe)
 
   Arguments:    bank - pointer to SNDBankData structure
 
@@ -285,7 +285,7 @@ void SND_DestroyBank(SNDBankData *bank)
 /*---------------------------------------------------------------------------*
   Name:         SND_DestroyWaveArc
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒu‚ğ”jŠü‚µ‚Ü‚·B(ThreadSafe)
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’ç ´æ£„ã—ã¾ã™ã€‚(ThreadSafe)
 
   Arguments:    waveArc - pointer to SNDWaveArc structure
 
@@ -324,14 +324,14 @@ void SND_DestroyWaveArc(SNDWaveArc *waveArc)
 /*---------------------------------------------------------------------------*
   Name:         SND_ReadInstData
 
-  Description:  ƒoƒ“ƒN‚©‚çƒCƒ“ƒXƒgƒpƒ‰ƒ[ƒ^‚ğæ“¾‚µ‚Ü‚·(ThreadSafe)
+  Description:  ãƒãƒ³ã‚¯ã‹ã‚‰ã‚¤ãƒ³ã‚¹ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã—ã¾ã™(ThreadSafe)
 
   Arguments:    bank - pointer to SNDBankData structure
                 prgNo - program number
                 key - note key
                 inst - pointer to SNDInstData structure
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL SND_ReadInstData(const SNDBankData *bank, int prgNo, int key, SNDInstData *inst)
 {
@@ -365,7 +365,7 @@ BOOL SND_ReadInstData(const SNDBankData *bank, int prgNo, int key, SNDInstData *
     inst->type = (u8)(instOffset & 0xff);
     instOffset >>= 8;
 
-    // ƒCƒ“ƒXƒgƒ^ƒCƒv–ˆ‚Ìˆ—
+    // ã‚¤ãƒ³ã‚¹ãƒˆã‚¿ã‚¤ãƒ—æ¯ã®å‡¦ç†
     switch (inst->type)
     {
     case SND_INST_PCM:
@@ -429,14 +429,14 @@ BOOL SND_ReadInstData(const SNDBankData *bank, int prgNo, int key, SNDInstData *
 /*---------------------------------------------------------------------------*
   Name:         SND_WriteInstData
 
-  Description:  ƒCƒ“ƒXƒgƒf[ƒ^‚ğ‘‚«‚İ‚Ü‚·(ThreadSafe)
+  Description:  ã‚¤ãƒ³ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã¿ã¾ã™(ThreadSafe)
 
   Arguments:    bank - pointer to SNDBankData structure
                 prgNo - program number
                 key - note key
                 inst - pointer to SNDInstData structure
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©‚ğ•Ô‚µ‚Ü‚·
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹ã‚’è¿”ã—ã¾ã™
  *---------------------------------------------------------------------------*/
 BOOL SND_WriteInstData(SNDBankData *bank, int prgNo, int key, const struct SNDInstData *inst)
 {
@@ -460,7 +460,7 @@ BOOL SND_WriteInstData(SNDBankData *bank, int prgNo, int key, const struct SNDIn
     type = (u8)(instOffset & 0xff);
     instOffset >>= 8;
 
-    // ƒCƒ“ƒXƒgƒ^ƒCƒv–ˆ‚Ìˆ—
+    // ã‚¤ãƒ³ã‚¹ãƒˆã‚¿ã‚¤ãƒ—æ¯ã®å‡¦ç†
     switch (type)
     {
     case SND_INST_PCM:
@@ -529,11 +529,11 @@ BOOL SND_WriteInstData(SNDBankData *bank, int prgNo, int key, const struct SNDIn
 /*---------------------------------------------------------------------------*
   Name:         SND_GetFirstInstDataPos
 
-  Description:  ƒCƒ“ƒXƒgƒf[ƒ^‘–¸‚Ì‚½‚ß‚ÌSNDInstPosæ“¾
+  Description:  ã‚¤ãƒ³ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿èµ°æŸ»ã®ãŸã‚ã®SNDInstPoså–å¾—
 
-  Arguments:    bank - ƒoƒ“ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    bank - ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      SNDInstPos\‘¢‘Ì
+  Returns:      SNDInstPosæ§‹é€ ä½“
  *---------------------------------------------------------------------------*/
 SNDInstPos SND_GetFirstInstDataPos(const SNDBankData *bank)
 {
@@ -552,13 +552,13 @@ SNDInstPos SND_GetFirstInstDataPos(const SNDBankData *bank)
 /*---------------------------------------------------------------------------*
   Name:         SND_GetNextInstData
 
-  Description:  Ÿ‚ÌƒCƒ“ƒXƒgƒf[ƒ^‚ğæ“¾‚·‚é
+  Description:  æ¬¡ã®ã‚¤ãƒ³ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 
-  Arguments:    bank - ƒoƒ“ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                inst - æ“¾‚µ‚½ƒCƒ“ƒXƒgƒf[ƒ^‚ªŠi”[‚³‚ê‚éƒ|ƒCƒ“ƒ^
-                pos - SNDInstPos\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    bank - ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                inst - å–å¾—ã—ãŸã‚¤ãƒ³ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã‚‹ãƒã‚¤ãƒ³ã‚¿
+                pos - SNDInstPosæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      æ“¾‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      å–å¾—ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL SND_GetNextInstData(const SNDBankData *bank, SNDInstData *inst, SNDInstPos *pos)
 {
@@ -623,11 +623,11 @@ BOOL SND_GetNextInstData(const SNDBankData *bank, SNDInstData *inst, SNDInstPos 
 /*---------------------------------------------------------------------------*
   Name:         SND_GetWaveDataCount
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒu’†‚Ì”gŒ`ƒf[ƒ^‚ÌŒÂ”‚ğæ“¾
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä¸­ã®æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°ã‚’å–å¾—
 
-  Arguments:    waveArc - ”gŒ`ƒA[ƒJƒCƒu‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    waveArc - æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ”gŒ`ƒf[ƒ^‚ÌŒÂ”
+  Returns:      æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
  *---------------------------------------------------------------------------*/
 u32 SND_GetWaveDataCount(const struct SNDWaveArc *waveArc)
 {
@@ -639,11 +639,11 @@ u32 SND_GetWaveDataCount(const struct SNDWaveArc *waveArc)
 /*---------------------------------------------------------------------------*
   Name:         SND_SetWaveDataAddress
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒu‚É”gŒ`ƒf[ƒ^‚ğ“o˜^
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²
 
-  Arguments:    waveArc - ”gŒ`ƒA[ƒJƒCƒu‚Ìƒ|ƒCƒ“ƒ^
-                index - ”gŒ`ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX”Ô†
-                address - ”gŒ`ƒf[ƒ^‚ÌƒAƒhƒŒƒX
+  Arguments:    waveArc - æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿
+                index - æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
+                address - æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -667,12 +667,12 @@ void SND_SetWaveDataAddress(SNDWaveArc *waveArc, int index, const SNDWaveData *a
 /*---------------------------------------------------------------------------*
   Name:         SND_GetWaveDataAddress
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒu‚É“o˜^‚³‚ê‚Ä‚¢‚é”gŒ`ƒf[ƒ^‚ğæ“¾
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 
-  Arguments:    waveArc - ”gŒ`ƒA[ƒJƒCƒu‚Ìƒ|ƒCƒ“ƒ^
-                index - ”gŒ`ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX”Ô†
+  Arguments:    waveArc - æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿
+                index - æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
 
-  Returns:      æ“¾‚µ‚½”gŒ`ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+  Returns:      å–å¾—ã—ãŸæ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  *---------------------------------------------------------------------------*/
 const SNDWaveData *SND_GetWaveDataAddress(const SNDWaveArc *waveArc, int index)
 {
@@ -711,7 +711,7 @@ const SNDWaveData *SND_GetWaveDataAddress(const SNDWaveArc *waveArc, int index)
 /*---------------------------------------------------------------------------*
   Name:         SND_NoteOn
 
-  Description:  ƒoƒ“ƒN‚ğg‚Á‚ÄAƒm[ƒgƒIƒ“‚ğs‚¢‚Ü‚·
+  Description:  ãƒãƒ³ã‚¯ã‚’ä½¿ã£ã¦ã€ãƒãƒ¼ãƒˆã‚ªãƒ³ã‚’è¡Œã„ã¾ã™
 
   Arguments:    
 
@@ -803,7 +803,7 @@ BOOL SND_NoteOn(SNDExChannel *ch_p,
 /*---------------------------------------------------------------------------*
   Name:         GetWaveData
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒu‚©‚ç”gŒ`ƒf[ƒ^‚ğæ“¾‚µ‚Ü‚·
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ã¾ã™
 
   Arguments:    bank - pointer to SNDBankData
                 waveArcNo - wave archive number

@@ -1,18 +1,18 @@
 #ifndef __F_ECCOUNT_H__
 #define __F_ECCOUNT_H__
 
-///HDMA“]‘—æƒAƒhƒŒƒX
+///HDMAè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
 #define ENCOUNT_HDMA_DEST_ADDRS					((u32)&reg_G2_BG2PA)
 
-#define ENCOUNT_TR_DAN_HIGH_BALL_MOVE_SYNC		( 2 )	// ˆÚ“®ƒVƒ“ƒN
-#define ENCOUNT_TR_DAN_HIGH_BLOCK_SYNC			( 1 )	// ƒƒCƒvƒVƒ“ƒN
-#define ENCOUNT_TR_DAN_HIGH_BLOCK_START_SYNC	( 1 )	// ƒƒCƒvƒVƒ“ƒN
+#define ENCOUNT_TR_DAN_HIGH_BALL_MOVE_SYNC		( 2 )	// ç§»å‹•ã‚·ãƒ³ã‚¯
+#define ENCOUNT_TR_DAN_HIGH_BLOCK_SYNC			( 1 )	// ãƒ¯ã‚¤ãƒ—ã‚·ãƒ³ã‚¯
+#define ENCOUNT_TR_DAN_HIGH_BLOCK_START_SYNC	( 1 )	// ãƒ¯ã‚¤ãƒ—ã‚·ãƒ³ã‚¯
 
 
 #define TCB_TSK_PRI	(5)
 #define TCB_VWAIT_BR_TSK_PRI	(10)
 
-///ƒ‰ƒXƒ^[ƒoƒbƒtƒ@
+///ãƒ©ã‚¹ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡
 typedef struct{
 	//BG2
 	u16 bg2_pa;
@@ -32,7 +32,7 @@ typedef struct{
 }ENC_LASTER_BUFFER;
 
 //-------------------------------------
-//	”Ä—p“®ì
+//	æ±ç”¨å‹•ä½œ
 //=====================================
 typedef struct {
 	int x;
@@ -45,12 +45,12 @@ typedef struct {
 extern void FENC_MoveReq( FENC_MOVE_WORK* p_work, int s_x, int e_x, int count_max );
 extern BOOL	FENC_MoveMain( FENC_MOVE_WORK* p_work );
 
-// ƒtƒ‰ƒbƒVƒ…
+// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 extern void FENC_EncountFlashTask(int disp, u32 bright_color, u32 sub_bright_color, BOOL* end, u32 flash_num );
 
 //-------------------------------------
 //	
-//	Ï½À°ƒuƒ‰ƒCƒgƒlƒXŠÖ˜A
+//	ãƒã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹é–¢é€£
 //	
 //=====================================
 typedef struct {
@@ -58,7 +58,7 @@ typedef struct {
 	int disp;
 } BR_BRIGHTNESS_FADE;
 
-#define ENCOUNT_TR_DAN_HIGH_BLOCK_FILLCOLOR	( 15 )	// “h‚è‚Â‚Ô
+#define ENCOUNT_TR_DAN_HIGH_BLOCK_FILLCOLOR	( 15 )	// å¡—ã‚Šã¤ã¶
 
 extern void FENC_SetMstBrightness( int disp, int no );
 extern void FENC_ChangeMstBrightness( BR_BRIGHTNESS_FADE* p_data, int start, int end, int disp, int sync );
@@ -66,7 +66,7 @@ extern BOOL FENC_ChangeMstBrightnessMain( BR_BRIGHTNESS_FADE* p_data );
 extern void FENC_V_SetMstBrightness( int disp, int no );
 
 
-// ƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒNó“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒg
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯çŠ¶å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 typedef struct _FENC_BMP_FILL_BLOCK FENC_BMP_FILL_BLOCK;
 
 extern FENC_BMP_FILL_BLOCK* FENC_BMP_FillBlockAlloc( u32 heapID );
@@ -74,7 +74,7 @@ extern void FENC_BMP_FillBlockDelete( FENC_BMP_FILL_BLOCK* p_work );
 extern void FENC_BMP_FillBlockStart( FENC_BMP_FILL_BLOCK* p_work, int s_x, int e_x, int s_y, int e_y, int sync, GF_BGL_BMPWIN* p_bmp, u32 width, u32 height, u8 col );
 extern BOOL FENC_BMP_FillBlockMain( FENC_BMP_FILL_BLOCK* p_work );
 
-// ƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒN–„‚ßs‚­‚µƒVƒXƒeƒ€
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯åŸ‹ã‚å°½ãã—ã‚·ã‚¹ãƒ†ãƒ 
 typedef struct _FENC_BMP_FILL_BLOCK_MOVE FENC_BMP_FILL_BLOCK_MOVE;
 
 extern FENC_BMP_FILL_BLOCK_MOVE* FENC_BMP_FillBlockMoveAlloc( u32 heapID );
@@ -86,27 +86,27 @@ extern BOOL FENC_BMP_FillBlockMoveMain_LinesUP( FENC_BMP_FILL_BLOCK_MOVE* p_work
 extern BOOL FENC_BMP_FillBlockMoveMain_Place( FENC_BMP_FILL_BLOCK_MOVE* p_work );
 
 
-#define ENCOUNT_LASTER_SCALE_SS		( FX32_CONST( 0.1f ) )	// Šgk‰‘¬“x
-#define ENCOUNT_LASTER_SIN_R		( FX32_CONST( 18 ) )	// ”¼Œa
-#define ENCOUNT_LASTER_SP			( 4*100 )				// ƒ‰ƒXƒ^[ƒXƒs[ƒh
-#define ENCOUNT_LASTER_SIN_ADDR		( (0xffff/192) * 2 )	// ƒ‰ƒXƒ^[Šp“xƒXƒs[ƒh
+#define ENCOUNT_LASTER_SCALE_SS		( FX32_CONST( 0.1f ) )	// æ‹¡ç¸®åˆé€Ÿåº¦
+#define ENCOUNT_LASTER_SIN_R		( FX32_CONST( 18 ) )	// åŠå¾„
+#define ENCOUNT_LASTER_SP			( 4*100 )				// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define ENCOUNT_LASTER_SIN_ADDR		( (0xffff/192) * 2 )	// ãƒ©ã‚¹ã‚¿ãƒ¼è§’åº¦ã‚¹ãƒ”ãƒ¼ãƒ‰
 
 #define ENCOUNT_LASTER_TASK_PRI		( TCB_TSK_PRI - 1 )
 #define ENCOUNT_LASTER_FLIP_DOT		( 2 )
 
 
 //-------------------------------------
-//	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹@ƒ^ƒXƒN—Dæ‡ˆÊ
+//	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã€€ã‚¿ã‚¹ã‚¯å„ªå…ˆé †ä½
 //=====================================
 #define ENCOUNT_EFF_LASTER_SCRLL_VWAIT_BUFF_SWITCH_TASK_PRI	( 1024 )
 #define ENCOUNT_EFF_LASTER_SCRLL_VINTR_DMA_SET_TASK_PRI	( 1024 )
-#define ENCOUNT_TR_WATER_HIGH_SIN_R		( FX32_CONST( 12 ) )	// ”¼Œa
-#define ENCOUNT_TR_WATER_HIGH_LASTER_SP	( 100 )	// ƒ‰ƒXƒ^[ƒXƒs[ƒh
-#define ENCOUNT_TR_WATER_HIGH_SIN_ADDR	( (0xffff/192) * 2 )// ƒ‰ƒXƒ^[Šp“xƒXƒs[ƒh
+#define ENCOUNT_TR_WATER_HIGH_SIN_R		( FX32_CONST( 12 ) )	// åŠå¾„
+#define ENCOUNT_TR_WATER_HIGH_LASTER_SP	( 100 )	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define ENCOUNT_TR_WATER_HIGH_SIN_ADDR	( (0xffff/192) * 2 )// ãƒ©ã‚¹ã‚¿ãƒ¼è§’åº¦ã‚¹ãƒ”ãƒ¼ãƒ‰
 #define ENCOUNT_TR_WATER_HIGH_LASTER_TASK_PRI	( 0x10000 - 1 )
 #define ENCOUNT_TR_WATER_HIGH_LASTER_FLIP_DOT	( 2 )
 //-------------------------------------
-//	p_lasterƒXƒNƒ[ƒ‹ƒ[ƒN
+//	p_lasterã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	LASTER_SCROLL_PTR p_laster;
@@ -124,17 +124,17 @@ extern void FEF_Laster_BuffXFlip( FENCOUNT_LASTER_SCROLL* p_laster, u32 dot );
 
 //-------------------------------------
 //	
-//	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+//	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
 //
-//	‚R‚O•ª‚Ì‚PƒtƒŒ[ƒ€Var
+//	ï¼“ï¼åˆ†ã®ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ Var
 //
-//	‚±‚ÌƒVƒXƒeƒ€‚ª‚â‚é‚±‚Æ
-//		‰Šú‰»ˆ—		‚ğ‚Ü‚Æ‚ß‚Äs‚¤
-//		”jŠüˆ—		‚ğ‚Ü‚Æ‚ß‚Äs‚¤
-//		VBlankŠúŠÔˆ—	‚ğ‚Ü‚Æ‚ß‚Äs‚¤
+//	ã“ã®ã‚·ã‚¹ãƒ†ãƒ ãŒã‚„ã‚‹ã“ã¨
+//		åˆæœŸåŒ–å‡¦ç†		ã‚’ã¾ã¨ã‚ã¦è¡Œã†
+//		ç ´æ£„å‡¦ç†		ã‚’ã¾ã¨ã‚ã¦è¡Œã†
+//		VBlankæœŸé–“å‡¦ç†	ã‚’ã¾ã¨ã‚ã¦è¡Œã†
 //
-//	g‚¤l‚ª‚â‚é‚±‚Æ
-//		ƒoƒbƒtƒ@‚Ö‚Ì’l‚Ìİ’è
+//	ä½¿ã†äººãŒã‚„ã‚‹ã“ã¨
+//		ãƒãƒƒãƒ•ã‚¡ã¸ã®å€¤ã®è¨­å®š
 //	
 //=====================================
 #define FEFTOOL_DEFLASTER_BUFF_SIZE	(192)

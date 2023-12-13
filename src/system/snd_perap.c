@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	snd_perap.c
- * @brief	�T�E���h �y���b�v�֐�
+ * @brief	サウンド ペラップ関数
  * @author	Satoshi Nohara
  * @date	2006.04.15
  */
@@ -16,7 +16,7 @@
 
 //==============================================================================================
 //
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //
 //==============================================================================================
 BOOL Snd_MainPerapCheck( void );
@@ -43,16 +43,16 @@ BOOL Snd_PerapVoicePMVoiceTypeCheck( int type );
 
 //==============================================================================================
 //
-//	��`
+//	定義
 //
 //==============================================================================================
-#define PERAP_SAMPLING_RATE		(2000)									//�T���v�����O���[�g
-#define PERAP_SAMPLING_TIME		(1)										//�T���v�����O���鎞��
-#define PERAP_SAMPLING_SIZE		(PERAP_SAMPLING_RATE * PERAP_SAMPLING_TIME)	//�K�v�ȃf�[�^��
+#define PERAP_SAMPLING_RATE		(2000)									//サンプリングレート
+#define PERAP_SAMPLING_TIME		(1)										//サンプリングする時間
+#define PERAP_SAMPLING_SIZE		(PERAP_SAMPLING_RATE * PERAP_SAMPLING_TIME)	//必要なデータ量
 
-#define PERAP_MALE_WAVEOUT_SPD		(WAVEOUT_PLAY_SPDx1 - 4096)			//�I�X�̍Đ��X�s�[�h
-#define PERAP_FEMALE_WAVEOUT_SPD	(WAVEOUT_PLAY_SPDx1 + 9192)			//���X�̍Đ��X�s�[�h
-#define PERAP_WAVEOUT_SPD_RAND	(8192)									//�Đ��X�s�[�h�̃����_��
+#define PERAP_MALE_WAVEOUT_SPD		(WAVEOUT_PLAY_SPDx1 - 4096)			//オスの再生スピード
+#define PERAP_FEMALE_WAVEOUT_SPD	(WAVEOUT_PLAY_SPDx1 + 9192)			//メスの再生スピード
+#define PERAP_WAVEOUT_SPD_RAND	(8192)									//再生スピードのランダム
 
 
 //==============================================================================================
@@ -63,12 +63,12 @@ BOOL Snd_PerapVoicePMVoiceTypeCheck( int type );
 
 //--------------------------------------------------------------
 /**
- * @brief	�T�E���h���C������Ă΂��
- *			�؃��b�v�̘^�������f�[�^�̍Đ��I�����Ď����ă`�����l���J��������
+ * @brief	サウンドメインから呼ばれる
+ *			ぺラップの録音したデータの再生終了を監視してチャンネル開放をする
  *
  * @param	none
  *
- * @retval	"��������=TRUE�A�������Ȃ�=FALSE"
+ * @retval	"処理した=TRUE、何もしない=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_MainPerapCheck( void )
@@ -76,35 +76,35 @@ BOOL Snd_MainPerapCheck( void )
 	u8* ch_normal_flag	= Snd_GetParamAdrs(SND_W_ID_WAVEOUT_CH_NORMAL_FLAG);
 	u8* perap_play_flag	= Snd_GetParamAdrs(SND_W_ID_PERAP_PLAY_FLAG);
 
-	//�y���b�v�̘^�������������Đ����Ă��邩�t���O
+	//ペラップの録音した鳴き声を再生しているかフラグ
 	if( *perap_play_flag == 1 ){
 
-		if( *ch_normal_flag == 1 ){										//CH�m�ۂ��Ă�����
+		if( *ch_normal_flag == 1 ){										//CH確保していたら
 
-			//�g�`�Đ����I�����Ă�����
+			//波形再生が終了していたら
 			if( Snd_WaveOutIsPlaying(WAVEOUT_CH_NORMAL) == FALSE ){
 
-				Snd_PerapVoiceStop();	//��~
+				Snd_PerapVoiceStop();	//停止
 				return TRUE;
 			}
 
 		}else{
 #if 0
-			�_�u���o�g���̎�O�ŁA�؃��b�v�^������A����ȊO�̃|�P��o�ꂳ����ƁA
-			����ȊO�̃|�P�ŁASnd_PMVoicePlayEx���Ă΂�āA
-			�֐����ŁA�`�����l���J���������Ă΂��
+			ダブルバトルの手前で、ぺラップ録音あり、それ以外のポケを登場させると、
+			それ以外のポケで、Snd_PMVoicePlayExが呼ばれて、
+			関数内で、チャンネル開放処理が呼ばれる
 
-			�Ȃ̂ŁA�Đ����t���O(perap_play_flag)�������Ă��Ă��A
-			�`�����l�����m�ۂ��Ă��Ȃ��󋵂���������A
-			�؃��b�v��~�������Ă�(�����I�ɂ�perap_play_flag�𗎂Ƃ�����)
+			なので、再生中フラグ(perap_play_flag)が立っていても、
+			チャンネルを確保していない状況があったら、
+			ぺラップ停止処理を呼ぶ(処理的にはperap_play_flagを落とすだけ)
 
-			�Ώ�������Ȃ��_
-			�E2�C�ڂ��؃��b�v�ɂ���ƁA�Đ��O�ɒ�~���������邽�߁A
-			�@1�C�ڂ̖������r�؂�Ă��܂�
-			�@���g�`�Đ����K�����̎���1�̂ݍĐ���z�肵�Ă��邽��(�����Ɠ����͂Ȃ�)
-			�@�@�ʁX�̘^���؃��b�v2�C�Đ��p�̃o�b�t�@�͂Ȃ��̂ŁB
+			対処しきれない点
+			・2匹目をぺラップにすると、再生前に停止処理が入るため、
+			　1匹目の鳴き声が途切れてしまう
+			　→波形再生が必ずその時は1つのみ再生を想定しているため(鳴き声と同時はなし)
+			　　別々の録音ぺラップ2匹再生用のバッファはないので。
 #endif
-			Snd_PerapVoiceStop();	//��~
+			Snd_PerapVoiceStop();	//停止
 			return TRUE;
 		}
 	}
@@ -114,11 +114,11 @@ BOOL Snd_MainPerapCheck( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	�y���b�v�̘^�������f�[�^���Đ��\���`�F�b�N
+ * @brief	ペラップの録音したデータが再生可能かチェック
  *
- * @param	no		�|�P�����i���o�[
+ * @param	no		ポケモンナンバー
  *
- * @retval	"�Đ��\=TRUE�A�Đ��s��=FALSE"
+ * @retval	"再生可能=TRUE、再生不可=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_PerapVoiceCheck( const PERAPVOICE* perap )
@@ -126,17 +126,17 @@ BOOL Snd_PerapVoiceCheck( const PERAPVOICE* perap )
 	u8* perap_default_flag	= Snd_GetParamAdrs(SND_W_ID_PERAP_DEFAULT_FLAG);
 	u8* battle_rec_flag		= Snd_GetParamAdrs(SND_W_ID_BATTLE_REC_FLAG);
 
-	//���f�[�^�����݂��邩�ǂ����̃`�F�b�N
+	//声データが存在するかどうかのチェック
 	if( PERAPVOICE_GetExistFlag(perap) == FALSE ){
 		return FALSE;
 	}
 
-	//�o�g���^��Đ����͍Đ��s��
+	//バトル録画再生中は再生不可
 	if( *battle_rec_flag == 1 ){
 		return FALSE;		
 	}
 
-	//�f�t�H���g�̖������Đ�����t���O�̃`�F�b�N
+	//デフォルトの鳴き声を再生するフラグのチェック
 	if( *perap_default_flag == TRUE ){
 		return FALSE;
 	}
@@ -146,11 +146,11 @@ BOOL Snd_PerapVoiceCheck( const PERAPVOICE* perap )
 
 //--------------------------------------------------------------
 /**
- * @brief	�y���b�v�̘^�������f�[�^���Đ����Ă��邩�`�F�b�N
+ * @brief	ペラップの録音したデータを再生しているかチェック
  *
- * @param	no		�|�P�����i���o�[
+ * @param	no		ポケモンナンバー
  *
- * @retval	"�Đ���=TRUE�A�Đ����Ă��Ȃ�=FALSE"
+ * @retval	"再生中=TRUE、再生していない=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_PerapVoicePlayingCheck( const PERAPVOICE* perap )
@@ -166,14 +166,14 @@ BOOL Snd_PerapVoicePlayingCheck( const PERAPVOICE* perap )
 
 //--------------------------------------------------------------
 /**
- * @brief	�y���b�v�̘^�������f�[�^���Đ�
+ * @brief	ペラップの録音したデータを再生
  *
- * @param	perap	PERAPVOICE�^�̃|�C���^
- * @param	sex		����
- * @param	vol		�{�����[��
- * @param	pan		�p��
+ * @param	perap	PERAPVOICE型のポインタ
+ * @param	sex		性別
+ * @param	vol		ボリューム
+ * @param	pan		パン
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_PerapVoicePlaySub( const PERAPVOICE* perap, u32 sex, int vol, int pan )
@@ -183,12 +183,12 @@ BOOL Snd_PerapVoicePlaySub( const PERAPVOICE* perap, u32 sex, int vol, int pan )
 	s8* sWaveBuffer			= Snd_GetWaveBufAdrs();
 	u8* perap_play_flag		= Snd_GetParamAdrs( SND_W_ID_PERAP_PLAY_FLAG );
 
-	//�y���b�v�̘^�������f�[�^���Đ��s�\���`�F�b�N
+	//ペラップの録音したデータが再生不可能かチェック
 	if( Snd_PerapVoiceCheck(perap) == FALSE ){
 		return FALSE;
 	}
 
-#if 0	//�E�F�C�g�w��ɑΉ����鎞�ɕύX����ӏ�
+#if 0	//ウェイト指定に対応する時に変更する箇所
 
 	if( wait > 0 ){
 
@@ -196,16 +196,16 @@ BOOL Snd_PerapVoicePlaySub( const PERAPVOICE* perap, u32 sex, int vol, int pan )
 		//sex
 		//vol
 		//pan
-		//�̏�������Ă����K�v������
+		//の情報を取っておく必要がある
 		
-		return TRUE;				//���m�ɂ͍Đ��\��
+		return TRUE;				//正確には再生予約中
 
-		//��~������A�ēx�Đ����������ɂ��Ή�������K�v������
+		//停止処理や、再度再生がきた時にも対応させる必要がある
 
 		//snd_system.c
-		//�ēx���̊֐����Ă�łȂ炷
+		//再度この関数を呼んでならす
 
-		//�E�F�C�g�w�肵�ăy���b�v�������Đ����悤�Ƃ��Ă�����
+		//ウェイト指定してペラップ鳴き声を再生しようとしていたら
 		if( wk->perap_wait != 0 ){
 			wk->perap_wait--;
 			if( wk->perap_wait == 0 ){
@@ -217,73 +217,73 @@ BOOL Snd_PerapVoicePlaySub( const PERAPVOICE* perap, u32 sex, int vol, int pan )
 
 #endif
 
-	//�V�[�P���X�Đ��̃p����(-127 - 0 - 127)�ƂȂ��Ă���
-	//�g�`�Đ��̃p����(0 - 64 - 127)�ƂȂ��Ă���
+	//シーケンス再生のパンは(-127 - 0 - 127)となっている
+	//波形再生のパンは(0 - 64 - 127)となっている
 	
-	//�g�`�Đ��p�����擾
+	//波形再生パンを取得
 	if( pan < 0 ){
-		wave_pan = 64 + (pan / 2);		//0 - 64  �ɂ���
+		wave_pan = 64 + (pan / 2);		//0 - 64  にする
 	}else{
-		wave_pan = 64 + (pan / 2);		//64 - 127 �ɂ���
+		wave_pan = 64 + (pan / 2);		//64 - 127 にする
 	}
 
-	Snd_PMVoiceStop(0);		//������~
+	Snd_PMVoiceStop(0);		//鳴き声停止
 
-	//�Đ��I���O�ɁA
-	//�ēx���̊֐����Ă΂�邱�Ƃ�����̂ŁA
-	//��x��~���Ă���A�Đ��֐i�ނ悤�ɂ���
+	//再生終了前に、
+	//再度この関数が呼ばれることがあるので、
+	//一度停止してから、再生へ進むようにする
 	Snd_PerapVoiceStop();
 
-	//�g�`�Đ��p�`�����l�����m�ۂ���
+	//波形再生用チャンネルを確保する
 	Snd_WaveOutAllocChannel( WAVEOUT_CH_NORMAL );
 
-	//�����_���ɉ�����ς���
+	//ランダムに音程を変える
 	//gf_srand( sys.vsync_counter );
 	add_spd = ( gf_rand() % PERAP_WAVEOUT_SPD_RAND );
 
-	//���f�[�^�̓W�J
+	//声データの展開
 	PERAPVOICE_ExpandVoiceData( sWaveBuffer, PERAPVOICE_GetVoiceData(perap) );
 
 	{
 		WAVEOUT_WORK waveout_wk;
-		waveout_wk.handle			= Snd_WaveOutHandleGet(WAVEOUT_CH_NORMAL);	//�g�`�Đ��n���h��
-		waveout_wk.format			= NNS_SND_WAVE_FORMAT_PCM8;		//�g�`�f�[�^�t�H�[�}�b�g
+		waveout_wk.handle			= Snd_WaveOutHandleGet(WAVEOUT_CH_NORMAL);	//波形再生ハンドル
+		waveout_wk.format			= NNS_SND_WAVE_FORMAT_PCM8;		//波形データフォーマット
 
-		waveout_wk.dataaddr			= Snd_GetWaveBufAdrs();			//�g�`�f�[�^�̐擪�A�h���X
+		waveout_wk.dataaddr			= Snd_GetWaveBufAdrs();			//波形データの先頭アドレス
 
-		waveout_wk.loopFlag			= FALSE;						//���[�v�t���O
-		waveout_wk.loopStartSample	= 0;							//���[�v�J�n�T���v���ʒu
-		waveout_wk.samples			= PERAP_SAMPLING_SIZE;			//�g�`�f�[�^�̃T���v����
-		waveout_wk.sampleRate		= PERAP_SAMPLING_RATE;			//�g�`�f�[�^�̃T���v�����O���[�g
-		waveout_wk.volume			= vol;							//����
-		waveout_wk.speed			= (WAVEOUT_PLAY_SPDx1+add_spd);	//�Đ��X�s�[�h
-		waveout_wk.pan				= wave_pan;						//�p��(0-127)
+		waveout_wk.loopFlag			= FALSE;						//ループフラグ
+		waveout_wk.loopStartSample	= 0;							//ループ開始サンプル位置
+		waveout_wk.samples			= PERAP_SAMPLING_SIZE;			//波形データのサンプル数
+		waveout_wk.sampleRate		= PERAP_SAMPLING_RATE;			//波形データのサンプリングレート
+		waveout_wk.volume			= vol;							//音量
+		waveout_wk.speed			= (WAVEOUT_PLAY_SPDx1+add_spd);	//再生スピード
+		waveout_wk.pan				= wave_pan;						//パン(0-127)
 		ret = Snd_WaveOutStart( &waveout_wk, WAVEOUT_CH_NORMAL );
 
-		//�{�C�X�`���b�g�̉��ʑΉ�
+		//ボイスチャットの音量対応
 		Snd_WaveOutSetVolume( WAVEOUT_CH_NORMAL, vol );
 	}
 
 #if 0
-	//������ς���
+	//音程を変える
 	if( ret == TRUE ){
 		if( sex == PM_MALE ){
-			Snd_WaveOutSetSpeed( WAVEOUT_CH_NORMAL, PERAP_MALE_WAVEOUT_SPD );	//�I�X
+			Snd_WaveOutSetSpeed( WAVEOUT_CH_NORMAL, PERAP_MALE_WAVEOUT_SPD );	//オス
 		}else{
-			Snd_WaveOutSetSpeed( WAVEOUT_CH_NORMAL, PERAP_FEMALE_WAVEOUT_SPD );	//���X
+			Snd_WaveOutSetSpeed( WAVEOUT_CH_NORMAL, PERAP_FEMALE_WAVEOUT_SPD );	//メス
 		}
 	}
 #endif
 
-	*perap_play_flag = 1;					//�؃��b�v�̘^�������������Đ����Ă���t���OON
-	Snd_PerapVoiceDefaultFlagSet( FALSE );	//�؃��b�v�̃f�t�H���g�̖������Đ�����t���OOFF
+	*perap_play_flag = 1;					//ぺラップの録音した鳴き声を再生しているフラグON
+	Snd_PerapVoiceDefaultFlagSet( FALSE );	//ぺラップのデフォルトの鳴き声を再生するフラグOFF
 
 	return ret;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�y���b�v�̘^�������f�[�^���~
+ * @brief	ペラップの録音したデータを停止
  *
  * @param	none
  *
@@ -295,35 +295,35 @@ void Snd_PerapVoiceStop( void )
 	u8* ch_normal_flag	= Snd_GetParamAdrs(SND_W_ID_WAVEOUT_CH_NORMAL_FLAG);
 	u8* perap_play_flag	= Snd_GetParamAdrs(SND_W_ID_PERAP_PLAY_FLAG);
 
-	if( *ch_normal_flag == 1 ){										//CH�m�ۂ��Ă�����
-		Snd_WaveOutStopReverse( WAVEOUT_CH_NORMAL );				//buf�J��
-		Snd_WaveOutFreeChannel( WAVEOUT_CH_NORMAL );				//ch �J��
+	if( *ch_normal_flag == 1 ){										//CH確保していたら
+		Snd_WaveOutStopReverse( WAVEOUT_CH_NORMAL );				//buf開放
+		Snd_WaveOutFreeChannel( WAVEOUT_CH_NORMAL );				//ch 開放
 	}
 
-	*perap_play_flag = 0;											//�t���O�N���A
+	*perap_play_flag = 0;											//フラグクリア
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�y���b�v�f�[�^�^���J�n(�T�E���h�V�X�e���̗̈�Ɉꎞ�ۑ�����)
+ * @brief	ペラップデータ録音開始(サウンドシステムの領域に一時保存する)
  *
  * @param	none
  *
- * @retval	"MIC_RESULT_SUCCESS		����������Ɋ���"
- * @retval	"����ȊO				���炩�̌����Ŏ��s"
+ * @retval	"MIC_RESULT_SUCCESS		処理が正常に完了"
+ * @retval	"それ以外				何らかの原因で失敗"
  */
 //--------------------------------------------------------------
 MICResult Snd_PerapVoiceRecStart( void )
 {
-	MICAutoParam mic;	//�}�C�N�p�����[�^
+	MICAutoParam mic;	//マイクパラメータ
 
-	//�g�`�Đ��p�`�����l�����m�ۂ���
+	//波形再生用チャンネルを確保する
 	//Snd_WaveOutAllocChannel( WAVEOUT_CH_NORMAL );
 
-	mic.type			= MIC_SAMPLING_TYPE_SIGNED_8BIT;	//�T���v�����O���
+	mic.type			= MIC_SAMPLING_TYPE_SIGNED_8BIT;	//サンプリング種別
 
-	//�o�b�t�@��32�o�C�g�A���C�����ꂽ�A�h���X�łȂ��ƃ_���I
+	//バッファは32バイトアラインされたアドレスでないとダメ！
 	mic.buffer			= Snd_GetWaveBufAdrs();
 
 	mic.size			= PERAP_SAMPLING_SIZE;
@@ -332,30 +332,30 @@ MICResult Snd_PerapVoiceRecStart( void )
 		mic.size &= 0xffffffe0;
 	}
 
-	//��\�I�ȃT���v�����O���[�g��ARM7�̃^�C�}�[�����Ɋ��Z�����l�̒�`
+	//代表的なサンプリングレートをARM7のタイマー周期に換算した値の定義
 	//mic.rate			= MIC_SAMPLING_RATE_8K;
 	mic.rate			= HW_CPU_CLOCK_ARM7 / PERAP_SAMPLING_RATE;
 
-	//�A���T���v�����O���Ƀo�b�t�@�����[�v������t���O
+	//連続サンプリング時にバッファをループさせるフラグ
 	mic.loop_enable		= FALSE;
 
-	//�o�b�t�@���O�a�����ۂɌĂяo���R�[���o�b�N�֐��ւ̃|�C���^
+	//バッファが飽和した際に呼び出すコールバック関数へのポインタ
 	mic.full_callback	= NULL;
 
-	//�o�b�t�@���O�a�����ۂɌĂяo���R�[���o�b�N�֐��֓n������
+	//バッファが飽和した際に呼び出すコールバック関数へ渡す引数
 	mic.full_arg		= NULL;
 
-	return Snd_MicStartAutoSampling( &mic );		//�^���J�n
+	return Snd_MicStartAutoSampling( &mic );		//録音開始
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�y���b�v�f�[�^�^����~
+ * @brief	ペラップデータ録音停止
  *
  * @param	none
  *
- * @retval	"MIC_RESULT_SUCCESS		����������Ɋ���"
- * @retval	"����ȊO				���炩�̌����Ŏ��s"
+ * @retval	"MIC_RESULT_SUCCESS		処理が正常に完了"
+ * @retval	"それ以外				何らかの原因で失敗"
  */
 //--------------------------------------------------------------
 MICResult Snd_PerapVoiceRecStop( void )
@@ -365,7 +365,7 @@ MICResult Snd_PerapVoiceRecStop( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	�^�������f�[�^���Z�[�u�f�[�^�ɃZ�b�g
+ * @brief	録音したデータをセーブデータにセット
  *
  * @param	none
  *
@@ -380,42 +380,42 @@ void Snd_PerapVoiceDataSave( PERAPVOICE* perap )
 
 
 /***********/
-//��~�A�Đ������`�F�b�N���Ή����Ă��邩�m�F�I
+//停止、再生中かチェックも対応しているか確認！
 /***********/
 
 
 //==============================================================================================
 //
-//	�T�E���h�V�X�e�����ŁA
+//	サウンドシステム内で、
 //
-//	���؃��b�v�i���o�[���`�F�b�N
-//	���f�t�H���g�̖�����炷�t���O���`�F�b�N
+//	●ぺラップナンバーかチェック
+//	●デフォルトの鳴き声を鳴らすフラグをチェック
 //
-//	�^�������f�[�^���Đ����邩�ɑΉ������֘A
+//	録音したデータを再生するかに対応される関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�؃��b�v�̃f�t�H���g�̖������Đ�����t���O����
+ * @brief	ぺラップのデフォルトの鳴き声を再生するフラグ操作
  *
- * @param	no		�t���O����
+ * @param	no		フラグ操作
  *
  * @retval	none
  *
  * 08.06.04
- * �^��Đ����̂؃��b�v�̓f�t�H���g�̖������Đ�������Ώ�
+ * 録画再生時のぺラップはデフォルトの鳴き声を再生させる対処
  *
- * ��O��2�C���؃��b�v�̎����ƁA2�C�̓o�ꂪ�d�Ȃ邽�߁A
- * 1�C�ڂ̍Đ����I��������ɁA1�����Ȃ�perap_default_flag��0�ɂȂ��Ă��܂��A
- * 2�C�ڂ̍Đ����ɁA�^�������f�[�^�����݂���ƁA�^���f�[�^���Đ�����Ă��܂�
+ * 手前の2匹がぺラップの時だと、2匹の登場が重なるため、
+ * 1匹目の再生が終わった時に、1つしかないperap_default_flagが0になってしまい、
+ * 2匹目の再生時に、録音したデータが存在すると、録音データが再生されてしまう
  *
- * �Ȃ̂ŁAperap_default_flag���J�E���^�ɕύX���đΏ�����
+ * なので、perap_default_flagをカウンタに変更して対処した
  *
- * 08.06.27 �ǋL
- * �n�C�p�[�{�C�X�ȂǁA�Z�n�̖������l������Ă��Ȃ����߁A
- * �J�E���^�̒l�����������Ȃ��Ă��܂�
- * �o�g���^��Đ��t���O��p�ӂ��đΏ��ɕύX
+ * 08.06.27 追記
+ * ハイパーボイスなど、技系の鳴き声が考慮されていないため、
+ * カウンタの値がおかしくなってしまう
+ * バトル録画再生フラグを用意して対処に変更
  */
 //--------------------------------------------------------------
 void Snd_PerapVoiceDefaultFlagSet( u8 no )
@@ -429,20 +429,20 @@ void Snd_PerapVoiceDefaultFlagSet( u8 no )
 
 //==============================================================================================
 //
-//	�ʐM�m�ۂ����؃��b�v�f�[�^�̃|�C���^���󂯎��A�Đ�����֘A
+//	通信確保されるぺラップデータのポインタを受け取り、再生する関連
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�y���b�v�̘^�������f�[�^���Đ�
+ * @brief	ペラップの録音したデータを再生
  *
- * @param	perap	�y���b�v�f�[�^�̃|�C���^
- * @param	sex		����(PM_MALE�Ȃ�)
- * @param	vol		�{�����[��(0 �` 127)
- * @param	pan		�p��(-128 �` 127)
+ * @param	perap	ペラップデータのポインタ
+ * @param	sex		性別(PM_MALEなど)
+ * @param	vol		ボリューム(0 〜 127)
+ * @param	pan		パン(-128 〜 127)
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_PerapVoicePlay( PERAPVOICE* perap, u32 sex, int vol, int pan )
@@ -450,40 +450,40 @@ BOOL Snd_PerapVoicePlay( PERAPVOICE* perap, u32 sex, int vol, int pan )
 	int ret;
 	PERAPVOICE** my_p = Snd_GetParamAdrs( SND_W_ID_MY_PERAP_PTR );
 
-	//�y���b�v�̘^�������f�[�^�Đ�
+	//ペラップの録音したデータ再生
 	if( perap == NULL ){
-		ret = Snd_PerapVoicePlaySub( *my_p, sex, vol, pan );		//�G���[���
+		ret = Snd_PerapVoicePlaySub( *my_p, sex, vol, pan );		//エラー回避
 	}else{
 		ret = Snd_PerapVoicePlaySub( perap, sex, vol, pan );
 	}
 
-	//�؃��b�v�̘^�������f�[�^�Đ��o���Ȃ�������
+	//ぺラップの録音したデータ再生出来なかった時
 	if( ret == FALSE ){
-		Snd_PerapVoiceDefaultFlagSet( TRUE );			//�f�t�H���g���Đ�����
+		Snd_PerapVoiceDefaultFlagSet( TRUE );			//デフォルトを再生する
 
-		//�q�[�vID���w�肵�Ă��邪�������m�ۂ͂��Ă��Ȃ��I(PV_NORMAL�Œ�Ȃ̂�)
+		//ヒープIDを指定しているがメモリ確保はしていない！(PV_NORMAL固定なので)
 		ret = Snd_PMVoicePlayEx( PV_NORMAL, MONSNO_PERAPPU, pan, vol, HEAPID_WORLD, 0 );
 	}
 
-	//Snd_PMVoicePlayEx�̒��ŁASnd_PerapVoicePlaySub���Ă΂�邪�A
-	//����ɓn�����̂́A�����̂؃��b�v�f�[�^�Ȃ̂ŁA�ЂƂ܂Ƃ߂ɂ��Ă͂��߁I
-	//default_flag�������Ă���̂ŁA�����؃��b�v�̍Đ��ɂ͂������A
-	//�f�t�H���g�̖������Ȃ�悤�ɂȂ�I
+	//Snd_PMVoicePlayExの中で、Snd_PerapVoicePlaySubが呼ばれるが、
+	//それに渡されるのは、自分のぺラップデータなので、ひとまとめにしてはだめ！
+	//default_flagが立っているので、自分ぺラップの再生にはいかず、
+	//デフォルトの鳴き声がなるようになる！
 	
 	return ret;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�y���b�v�̘^�������f�[�^���Đ�(�E�F�C�g�w�肠��)
+ * @brief	ペラップの録音したデータを再生(ウェイト指定あり)
  *
- * @param	perap	�y���b�v�f�[�^�̃|�C���^
- * @param	sex		����(PM_MALE�Ȃ�)
- * @param	vol		�{�����[��(0 �` 127)
- * @param	pan		�p��(-128 �` 127)
- * @param	wait	�E�F�C�g
+ * @param	perap	ペラップデータのポインタ
+ * @param	sex		性別(PM_MALEなど)
+ * @param	vol		ボリューム(0 〜 127)
+ * @param	pan		パン(-128 〜 127)
+ * @param	wait	ウェイト
  *
- * @retval	"�Đ�����=TRUE�A���s=FALSE"
+ * @retval	"再生成功=TRUE、失敗=FALSE"
  */
 //--------------------------------------------------------------
 BOOL Snd_PerapVoiceWaitPlay( PERAPVOICE* perap, u32 sex, int vol, int pan, u8 wait )
@@ -491,29 +491,29 @@ BOOL Snd_PerapVoiceWaitPlay( PERAPVOICE* perap, u32 sex, int vol, int pan, u8 wa
 	int ret;
 	PERAPVOICE** my_p = Snd_GetParamAdrs( SND_W_ID_MY_PERAP_PTR );
 
-	//�y���b�v�̘^�������f�[�^�Đ�
+	//ペラップの録音したデータ再生
 	if( perap == NULL ){
-		ret = Snd_PerapVoicePlaySub( *my_p, sex, vol, pan );		//�G���[���
+		ret = Snd_PerapVoicePlaySub( *my_p, sex, vol, pan );		//エラー回避
 	}else{
 		ret = Snd_PerapVoicePlaySub( perap, sex, vol, pan );
 	}
 
-	//�؃��b�v�̘^�������f�[�^�Đ��o���Ȃ�������
+	//ぺラップの録音したデータ再生出来なかった時
 	if( ret == FALSE ){
-		Snd_PerapVoiceDefaultFlagSet( TRUE );			//�f�t�H���g���Đ�����
+		Snd_PerapVoiceDefaultFlagSet( TRUE );			//デフォルトを再生する
 
-		//�q�[�vID���w�肵�Ă��邪�������m�ۂ͂��Ă��Ȃ��I(PV_NORMAL�Œ�Ȃ̂�)
+		//ヒープIDを指定しているがメモリ確保はしていない！(PV_NORMAL固定なので)
 		//ret = Snd_PMVoiceWaitPlayEx( PV_NORMAL, MONSNO_PERAPPU, pan, vol, HEAPID_WORLD, wait );
 		Snd_PMVoiceWaitPlayEx( PV_NORMAL, MONSNO_PERAPPU, pan, vol, HEAPID_WORLD, wait, 0 );
 
-		//�K���Đ����������Ă���̂Œ��ӁI
+		//必ず再生成功を入れているので注意！
 		ret = TRUE;
 	}
 
-	//Snd_PMVoicePlayEx�̒��ŁASnd_PerapVoicePlaySub���Ă΂�邪�A
-	//����ɓn�����̂́A�����̂؃��b�v�f�[�^�Ȃ̂ŁA�ЂƂ܂Ƃ߂ɂ��Ă͂��߁I
-	//default_flag�������Ă���̂ŁA�����؃��b�v�̍Đ��ɂ͂������A
-	//�f�t�H���g�̖������Ȃ�悤�ɂȂ�I
+	//Snd_PMVoicePlayExの中で、Snd_PerapVoicePlaySubが呼ばれるが、
+	//それに渡されるのは、自分のぺラップデータなので、ひとまとめにしてはだめ！
+	//default_flagが立っているので、自分ぺラップの再生にはいかず、
+	//デフォルトの鳴き声がなるようになる！
 	
 	return ret;
 }
@@ -521,17 +521,17 @@ BOOL Snd_PerapVoiceWaitPlay( PERAPVOICE* perap, u32 sex, int vol, int pan, u8 wa
 
 //==============================================================================================
 //
-//	�Z�u������ׂ�v
+//	技「おしゃべり」
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	�Z�̃p�����[�^���擾
+ * @brief	技のパラメータを取得
  *
- * @param	perap		�؃��b�v�f�[�^�̃|�C���^
+ * @param	perap		ぺラップデータのポインタ
  *
- * @retval	"�p�����[�^ 0�`2"
+ * @retval	"パラメータ 0〜2"
  */
 //--------------------------------------------------------------
 int Snd_PerapVoiceWazaParamGet( PERAPVOICE* perap )
@@ -539,12 +539,12 @@ int Snd_PerapVoiceWazaParamGet( PERAPVOICE* perap )
 	const s8* voicedata;
 	s8 num;
 
-	//���f�[�^�����݂��邩�ǂ����̃`�F�b�N
+	//声データが存在するかどうかのチェック
 	if( PERAPVOICE_GetExistFlag(perap) == FALSE ){
 		return 0;
 	}
 
-	//�v�f��[15]�����ăp�����[�^�����肷��
+	//要素数[15]を見てパラメータを決定する
 	voicedata = PERAPVOICE_GetVoiceData(perap);
 	num = voicedata[15];
 	//OS_Printf( "voicedata[15] = %d\n", voicedata[15] );
@@ -564,31 +564,31 @@ int Snd_PerapVoiceWazaParamGet( PERAPVOICE* perap )
 
 //--------------------------------------------------------------
 /**
- * @brief	�^���f�[�^�A�f�t�H���g�f�[�^�ǂ�����Đ����邩�`�F�b�N
+ * @brief	録音データ、デフォルトデータどちらを再生するかチェック
  *
- * @param	type		�Đ��p�^�[��
+ * @param	type		再生パターン
  *
- * @retval	"TRUE=�^�������f�[�^���Đ�����AFALSE=�f�t�H���g�̖������Đ�����"
+ * @retval	"TRUE=録音したデータを再生する、FALSE=デフォルトの鳴き声を再生する"
  */
 //--------------------------------------------------------------
 BOOL Snd_PerapVoicePMVoiceTypeCheck( int type )
 {
 	switch( type ){
-	case PV_NORMAL:				//�ʏ�Đ�
-	case PV_HALF:				//�Đ����ԒZ�k�i�Q�����Q�o�g���Ń|�P�����o�ꎞ�j
-	//case PV_FLDEVENT:			//�{�����|�P�����i�t�B�[���h�C�x���g�j
-	//case PV_W_TOOBOE:			//�Z���ʉ��E�Ƃ��ڂ��p
-	//case PV_W_HYPER1:			//�Z���ʉ��E�n�C�p�[�{�C�X�p�P
-	case PV_POKEDOWN:			//�|�P���������ꂽ��
-	//case PV_W_HYPER2:			//�Z���ʉ��E�n�C�p�[�{�C�X�p�Q
-	//case PV_W_HOERU1:			//�Z���ʉ��E�ق���P
-	//case PV_W_HOERU2:			//�Z���ʉ��E�ق���Q
-	//case PV_W_NAKIGOE1:		//�Z���ʉ��E�Ȃ������P
-	//case PV_W_NAKIGOE2:		//�Z���ʉ��E�Ȃ������Q
-	case PV_PINCHNORMAL:		//�ʏ�Đ�(���C�Ȃ�)
-	case PV_PINCHHALF:			//�Đ����ԒZ�k�i�Q�����Q�o�g���Ń|�P�����o�ꎞ�j(���C�Ȃ�)
-	//case PV_ZUKAN_CHORUS:		//�}�ӃR�[���X�Đ�(�ǉ�06.03.03)
-	//case PV_ZUKAN_NORMAL:		//�}�Ӄm�[�}���Đ�(�ǉ�06.04.21)
+	case PV_NORMAL:				//通常再生
+	case PV_HALF:				//再生時間短縮（２ｖｓ２バトルでポケモン登場時）
+	//case PV_FLDEVENT:			//怒ったポケモン（フィールドイベント）
+	//case PV_W_TOOBOE:			//技効果音・とおぼえ用
+	//case PV_W_HYPER1:			//技効果音・ハイパーボイス用１
+	case PV_POKEDOWN:			//ポケモンがやられた時
+	//case PV_W_HYPER2:			//技効果音・ハイパーボイス用２
+	//case PV_W_HOERU1:			//技効果音・ほえる１
+	//case PV_W_HOERU2:			//技効果音・ほえる２
+	//case PV_W_NAKIGOE1:		//技効果音・なきごえ１
+	//case PV_W_NAKIGOE2:		//技効果音・なきごえ２
+	case PV_PINCHNORMAL:		//通常再生(元気なし)
+	case PV_PINCHHALF:			//再生時間短縮（２ｖｓ２バトルでポケモン登場時）(元気なし)
+	//case PV_ZUKAN_CHORUS:		//図鑑コーラス再生(追加06.03.03)
+	//case PV_ZUKAN_NORMAL:		//図鑑ノーマル再生(追加06.04.21)
 		return TRUE;
 	};
 

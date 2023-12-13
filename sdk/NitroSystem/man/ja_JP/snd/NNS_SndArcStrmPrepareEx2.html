@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndArcStrmPrepareEx2</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndArcStrmPrepareEx2</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndArcStrmPrepareEx2(
@@ -26,7 +26,7 @@
         void* <var>sndArcStrmCallbackArg</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDAWMWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -34,39 +34,39 @@
 <tbody>
 <tr>
 <td><em><strong><code>handle</code></strong></em></td>
-<td>�X�g���[���n���h���̃|�C���^�ł��B</td>
+<td>ストリームハンドルのポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>playerNo</code></strong></em></td>
-<td>�v���C���[�ԍ��ł��B</td>
+<td>プレイヤー番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>playerPrio</code></strong></em></td>
-<td>�v���C���[�v���C�I���e�B�ł��B�l�͈̔͂�0�`127�ŁA�傫���قǗD��x�������Ȃ�܂��B</td>
+<td>プレイヤープライオリティです。値の範囲は0〜127で、大きいほど優先度が高くなります。</td>
 </tr>
 <tr>
 <td><em><strong><code>strmNo</code></strong></em></td>
-<td>�X�g���[���ԍ��ł��B</td>
+<td>ストリーム番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>offset</code></strong></em></td>
-<td>�J�n�I�t�Z�b�g�ʒu�ł��Bmsec�P�ʂł��B</td>
+<td>開始オフセット位置です。msec単位です。</td>
 </tr>
 <tr>
 <td><em><strong><code>strmCallback</code></strong></em></td>
-<td>�X�g���[���R�[���o�b�N�֐��̃|�C���^�ł��B</td>
+<td>ストリームコールバック関数のポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>strmCallbackArg</code></strong></em></td>
-<td>�X�g���[���R�[���o�b�N�֐��̃��[�U�[�����ł��B</td>
+<td>ストリームコールバック関数のユーザー引数です。</td>
 </tr>
 <tr>
 <td><em><strong><code>sndArcStrmCallback</code></strong></em></td>
-<td>�T�E���h�A�[�J�C�u�X�g���[���R�[���o�b�N�֐��̃|�C���^�ł��B</td>
+<td>サウンドアーカイブストリームコールバック関数のポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>sndArcStrmCallbackArg</code></strong></em></td>
-<td>�T�E���h�A�[�J�C�u�X�g���[���R�[���o�b�N�֐��̃��[�U�[�����ł��B</td>
+<td>サウンドアーカイブストリームコールバック関数のユーザー引数です。</td>
 </tr>
 </tbody>
 </table>
@@ -74,86 +74,86 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDA3OWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
       <p>
-�Đ��ɐ��������ꍇ�́ATRUE��Ԃ��܂��B���s����ƁAFALSE���Ԃ�܂��B 
+再生に成功した場合は、TRUEを返します。失敗すると、FALSEが返ります。 
 </p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAEPWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�R�[���o�b�N�֐���o�^���āA�X�g���[���̏������s���܂��B
+コールバック関数を登録して、ストリームの準備を行います。
 </p>
       <p>
-���炩���߁A
-<tt class="function"><a href="NNS_SndArcStrmInit.html">NNS_SndArcStrmInit</a></tt>�֐��ŁA
-�T�E���h�A�[�J�C�u�X�g���[�����C�u����������������Ă���K�v������܂��B
+あらかじめ、
+<tt class="function"><a href="NNS_SndArcStrmInit.html">NNS_SndArcStrmInit</a></tt>関数で、
+サウンドアーカイブストリームライブラリが初期化されている必要があります。
 </p>
       <p>
-�X�g���[���n���h��<em><strong><code>handle</code></strong></em>�́A���炩���߁A<tt class="function"><a href="NNS_SndStrmHandleInit.html">NNS_SndStrmHandleInit</a></tt>�֐��ŁA�P�x�������������Ă����Ȃ���΂Ȃ�܂���B
-���̊֐����Ăт����ƁA�X�g���[���n���h���Ɋ��Ɍ��т����Ă����X�g���[���͐؂藣����܂��i��~����킯�ł͂���܂���j�B
-�Đ��ɐ�������ƁA�X�g���[���n���h���ɃX�g���[�������т����܂��B
+ストリームハンドル<em><strong><code>handle</code></strong></em>は、あらかじめ、<tt class="function"><a href="NNS_SndStrmHandleInit.html">NNS_SndStrmHandleInit</a></tt>関数で、１度だけ初期化しておかなければなりません。
+この関数を呼びだすと、ストリームハンドルに既に結びつけられていたストリームは切り離されます（停止するわけではありません）。
+再生に成功すると、ストリームハンドルにストリームが結びつけられます。
 </p>
       <p>
-�v���C���[�ԍ�<em><strong><code>playerNo</code></strong></em>�ƁA
-�v���C���[�v���C�I���e�B<em><strong><code>playerPrio</code></strong></em>�ɁA
--1���w�肷��ƁA�T�E���h�f�[�^�Őݒ肵���p�����[�^���g�p����܂��B
+プレイヤー番号<em><strong><code>playerNo</code></strong></em>と、
+プレイヤープライオリティ<em><strong><code>playerPrio</code></strong></em>に、
+-1を指定すると、サウンドデータで設定したパラメータが使用されます。
 </p>
       <p>
-�J�n�I�t�Z�b�g�ʒu<em><strong><code>offset</code></strong></em>�ɁA0�ȊO�̒l������ƁA�X�g���[���f�[�^�̓r������Đ����邱�Ƃ��ł��܂��B
+開始オフセット位置<em><strong><code>offset</code></strong></em>に、0以外の値を入れると、ストリームデータの途中から再生することができます。
 </p>
        <p>
-�X�g���[���R�[���o�b�N�֐�<em><strong><code>strmCallback</code></strong></em>�́A�Đ����ɒ���I�ɌĂт�����܂��B
-���̃R�[���o�b�N�֐����ŁA�Đ��g�`�f�[�^�����H���邱�Ƃ��ł��܂��B
-�X�g���[���R�[���o�b�N�֐��̃��[�U�[����<em><strong><code>strmCallbackArg</code></strong></em>�́A
-�X�g���[���R�[���o�b�N�֐�<em><strong><code>strmCallback</code></strong></em>�̈����ɂ��̂܂ܓn����܂��B
-�X�g���[���R�[���o�b�N�֐��̓o�^���s�v�̏ꍇ�́ANULL�����܂��B
-�X�g���[���R�[���o�b�N�֐��ɂ��ẮA<tt class="function"><a href="NNSSndStrmCallback.html">NNSSndStrmCallback</a></tt>�̐�����
-�Q�Ƃ��Ă��������B
+ストリームコールバック関数<em><strong><code>strmCallback</code></strong></em>は、再生中に定期的に呼びだされます。
+このコールバック関数内で、再生波形データを加工することができます。
+ストリームコールバック関数のユーザー引数<em><strong><code>strmCallbackArg</code></strong></em>は、
+ストリームコールバック関数<em><strong><code>strmCallback</code></strong></em>の引数にそのまま渡されます。
+ストリームコールバック関数の登録が不要の場合は、NULLを入れます。
+ストリームコールバック関数については、<tt class="function"><a href="NNSSndStrmCallback.html">NNSSndStrmCallback</a></tt>の説明を
+参照してください。
 </p>
        <p>
-�T�E���h�A�[�J�C�u�X�g���[���R�[���o�b�N�֐�<em><strong><code>sndArcStrmCallback</code></strong></em>�́A
-����̃^�C�~���O�ŌĂт�����܂��B
-�����̃X�g���[���f�[�^�����A���^�C���ɂȂ��čĐ����邱�ƂȂǂ��ł��܂��B
-�T�E���h�A�[�J�C�u�X�g���[���R�[���o�b�N�֐��̃��[�U�[����<em><strong><code>sndArcStrmCallbackArg</code></strong></em>�́A
-�T�E���h�A�[�J�C�u�X�g���[���R�[���o�b�N�֐�<em><strong><code>sndArcStrmCallback</code></strong></em>�̈����ɂ��̂܂ܓn����܂��B
-�T�E���h�A�[�J�C�u�X�g���[���R�[���o�b�N�֐��̓o�^���s�v�̏ꍇ�́ANULL�����܂��B
-�T�E���h�A�[�J�C�u�X�g���[���R�[���o�b�N�֐��ɂ��ẮA
-<tt class="function"><a href="NNSSndArcStrmCallback.html">NNSSndArcStrmCallback</a></tt>�̐�����
-�Q�Ƃ��Ă��������B
+サウンドアーカイブストリームコールバック関数<em><strong><code>sndArcStrmCallback</code></strong></em>は、
+特定のタイミングで呼びだされます。
+複数のストリームデータをリアルタイムにつなげて再生することなどができます。
+サウンドアーカイブストリームコールバック関数のユーザー引数<em><strong><code>sndArcStrmCallbackArg</code></strong></em>は、
+サウンドアーカイブストリームコールバック関数<em><strong><code>sndArcStrmCallback</code></strong></em>の引数にそのまま渡されます。
+サウンドアーカイブストリームコールバック関数の登録が不要の場合は、NULLを入れます。
+サウンドアーカイブストリームコールバック関数については、
+<tt class="function"><a href="NNSSndArcStrmCallback.html">NNSSndArcStrmCallback</a></tt>の説明を
+参照してください。
 </p>
       <p>
-�����������������ǂ����́A<tt class="function"><a href="NNS_SndArcStrmIsPrepared.html">NNS_SndArcStrmIsPrepared</a></tt>�֐���
-���ׂ邱�Ƃ��ł��܂��B
-�������������X�g���[�����Đ����邽�߂ɂ́A
-<tt class="function"><a href="NNS_SndArcStrmStartPrepared.html">NNS_SndArcStrmStartPrepared</a></tt>�֐����Ăт����܂��B
+準備が完了したかどうかは、<tt class="function"><a href="NNS_SndArcStrmIsPrepared.html">NNS_SndArcStrmIsPrepared</a></tt>関数で
+調べることができます。
+準備完了したストリームを再生するためには、
+<tt class="function"><a href="NNS_SndArcStrmStartPrepared.html">NNS_SndArcStrmStartPrepared</a></tt>関数を呼びだします。
 </p>
       <p>
-�X�g���[���Đ��Ɏg�p����`�����l���́A���̊֐����Ŋm�ۂ���܂��B�m�ۂ���`�����l�����V�[�P���X�Đ��Ŏg�p���������ꍇ�A
-�������̉��͋����I�Ɏ~�߂��܂��B
-�`�����l���m�ۂ̃^�C�~���O�𐧌䂵�����ꍇ�́A�O������
-<tt class="function"><a href="NNS_SndArcStrmAllocChannel.html">NNS_SndArcStrmAllocChannel</a></tt>�֐����Ăт����܂��B
+ストリーム再生に使用するチャンネルは、この関数内で確保されます。確保するチャンネルがシーケンス再生で使用中だった場合、
+発音中の音は強制的に止められます。
+チャンネル確保のタイミングを制御したい場合は、前もって
+<tt class="function"><a href="NNS_SndArcStrmAllocChannel.html">NNS_SndArcStrmAllocChannel</a></tt>関数を呼びだします。
 </p>
       <p>
-�X�g���[���f�[�^���X�e���I�������ꍇ�A�`�����l��0�͍�����A�`�����l��1�͉E����o�͂���܂��B
-���̐ݒ�́A<tt class="function"><a href="NNS_SndArcStrmSetChannelPan.html">NNS_SndArcStrmSetChannelPan</a></tt>�֐��ŕύX���邱�Ƃ��ł��܂��B
+ストリームデータがステレオだった場合、チャンネル0は左から、チャンネル1は右から出力されます。
+この設定は、<tt class="function"><a href="NNS_SndArcStrmSetChannelPan.html">NNS_SndArcStrmSetChannelPan</a></tt>関数で変更することができます。
 </p>
       <p>
-�Đ��̎��s�ɂ́A�ȉ��̌������l�����܂��B 
+再生の失敗には、以下の原因が考えられます。 
 </p>
 <div class="itemizedlist">
 <ul type="disc">
-<li>�X�g���[���ԍ�������</li>
-<li>���ɍĐ����̃X�g���[�������D��x���Ⴂ</li>
-<li>�X�g���[���v���C���[���g�p����`�����l�����ʗp�r�Ŏg�p��</li>
+<li>ストリーム番号が無効</li>
+<li>既に再生中のストリームよりも優先度が低い</li>
+<li>ストリームプレイヤーが使用するチャンネルが別用途で使用中</li>
 </ul>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndArcStrmInit.html">NNS_SndArcStrmInit</a>, <a href="NNS_SndStrmHandleInit.html">NNS_SndStrmHandleInit</a>, <a href="NNSSndStrmCallback.html">NNSSndStrmCallback</a>, <a href="NNSSndArcStrmCallback.html">NNSSndArcStrmCallback</a>, <a href="NNS_SndArcStrmIsPrepared.html">NNS_SndArcStrmIsPrepared</a>, <a href="NNS_SndArcStrmStartPrepared.html">NNS_SndArcStrmStartPrepared</a>, <a href="NNS_SndArcStrmAllocChannel.html">NNS_SndArcStrmAllocChannel</a>, <a href="NNS_SndArcStrmSetChannelPan.html">NNS_SndArcStrmSetChannelPan</a></p>
-<h2>����</h2>
-<p>2004/11/26 ����<br></p>
+<h2>履歴</h2>
+<p>2004/11/26 初版<br></p>
 </div>
 </body>
 </html>

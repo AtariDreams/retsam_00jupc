@@ -12,13 +12,13 @@
 
   $Log: config.h,v $
   Revision 1.18  2005/04/12 10:49:15  terui
-  ������Ή��ׂ̈ɉ���
+  中国語対応の為に改造
 
   Revision 1.17  2005/02/28 05:26:03  yosizaki
   do-indent.
 
   Revision 1.16  2004/10/01 02:54:29  terui
-  NVRAM���̖����g�p�\�`�����l���ւ̃I�t�Z�b�g��`��ǉ��B
+  NVRAM内の無線使用可能チャンネルへのオフセット定義を追加。
 
   Revision 1.15  2004/09/13 05:49:56  yasu
   merged with NitroSDK_2_00pr6_branch
@@ -30,19 +30,19 @@
   fix typo
 
   Revision 1.13  2004/09/03 04:29:15  terui
-  NVRAM�����[�U�[���Ɋւ���\���̒�`�����ɔ����C���B
+  NVRAM内ユーザー情報に関する構造体定義整理に伴う修正。
 
   Revision 1.12  2004/09/02 02:24:36  terui
-  ����MAC�A�h���X�i�[�ʒu���`�ɒǉ��B
+  無線MACアドレス格納位置を定義に追加。
 
   Revision 1.11  2004/08/31 09:46:16  yosiokat
-  SDK_SMALL_BUILD��SDK_NCD_LOCAL_USE�ɕύX�B
+  SDK_SMALL_BUILDをSDK_NCD_LOCAL_USEに変更。
 
   Revision 1.10  2004/08/27 12:39:04  yosiokat
-  IPL_BUILD_��SDK_SMALL_BUILD�ɕύX�B
+  IPL_BUILD_をSDK_SMALL_BUILDに変更。
 
   Revision 1.9  2004/08/25 09:21:50  terui
-  userInfo��`��ʃt�@�C���ɐ؂�o���ATS_VERSION�ɂĐ؂�ւ���悤�ύX�B
+  userInfo定義を別ファイルに切り出し、TS_VERSIONにて切り替えるよう変更。
 
   Revision 1.8  2004/07/27 11:04:17  yasu
   Add #pragma  warn_padding off for SDK_TEG
@@ -51,26 +51,26 @@
   Add padding explicitly
 
   Revision 1.6  2004/06/30 10:36:18  terui
-  TS�ɂ����郆�[�U�[���t�H�[�}�b�g�̒�`��ύX
+  TSにおけるユーザー情報フォーマットの定義を変更
 
   Revision 1.5  2004/06/30 09:12:11  terui
-  TS�̏ꍇ�ANVRAM���̃��[�U�[����T�����߂ɃI�t�Z�b�g��p����悤��`��ύX�B
+  TSの場合、NVRAM内のユーザー情報を探すためにオフセットを用いるよう定義を変更。
 
   Revision 1.4  2004/05/21 07:57:30  terui
-  ���[�U�[���ւ̃A�h���X���Œ�l�ɂł���悤�ɕύX�B
-  �^�b�`�p�l��calibration�f�[�^�t�B�[���h��12�o�C�g�Ɋg���B
+  ユーザー情報へのアドレスを固定値にできるように変更。
+  タッチパネルcalibrationデータフィールドを12バイトに拡張。
 
   Revision 1.3  2004/05/21 05:52:30  yosiokat
-  IPl2�̃r���h���ɂ��̃t�@�C�����C���N���[�h�����̂�h���悤�C���B
+  IPl2のビルド時にこのファイルがインクルードされるのを防ぐよう修正。
 
   Revision 1.2  2004/05/20 10:31:33  takano_makoto
-  c++����̃R���p�C�����ʂ�Ȃ��o�O���C��
+  c++からのコンパイルが通らないバグを修正
 
   Revision 1.1  2004/05/20 09:41:06  terui
-  ���[�U�[���ւ̃I�t�Z�b�g�̃A�h���X��`�Ȃǂ�ǉ��B
+  ユーザー情報へのオフセットのアドレス定義などを追加。
 
   Revision 1.2  2004/05/19 08:25:28  yosiokat
-  �X�V���O�̒ǉ��B
+  更新ログの追加。
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -87,7 +87,7 @@ extern "C" {
 #include <nitro/memorymap.h>
 #include <nitro/spec.h>
 
-// userInfo��`
+// userInfo定義
 #ifdef  SDK_TS
 #if ( SDK_TS_VERSION >= 200 || SDK_NVRAM_FORMAT >= 100 )
 #if ( SDK_NVRAM_FORMAT >= 300 )
@@ -102,11 +102,11 @@ extern "C" {
 #include <nitro/spi/common/userInfo_teg.h>
 #endif
 
-// NVRAM����userInfo�i�[�ʒu
+// NVRAM内のuserInfo格納位置
 #ifdef  SDK_TS
-#undef  NVRAM_CONFIG_CONST_ADDRESS     // ���[�U�[���̈ʒu�̓w�b�_�̃I�t�Z�b�g����擾����
+#undef  NVRAM_CONFIG_CONST_ADDRESS     // ユーザー情報の位置はヘッダのオフセットから取得する
 #else
-#define NVRAM_CONFIG_CONST_ADDRESS     // ���[�U�[���̈ʒu���Œ�A�h���X��
+#define NVRAM_CONFIG_CONST_ADDRESS     // ユーザー情報の位置を固定アドレスに
 #endif
 
 #ifdef  NVRAM_CONFIG_CONST_ADDRESS
@@ -117,10 +117,10 @@ extern "C" {
 #define NVRAM_CONFIG_DATA_OFFSET_SHIFT      3
 #endif
 
-#define NVRAM_CONFIG_SAVE_COUNT_MAX         0x0080      // NitroConfigData.saveCount�̍ő�l
-#define NVRAM_CONFIG_SAVE_COUNT_MASK        0x007f      // NitroConfigData.saveCount�̒l�͈̔͂��}�X�N����B(0x00-0x7f�j
+#define NVRAM_CONFIG_SAVE_COUNT_MAX         0x0080      // NitroConfigData.saveCountの最大値
+#define NVRAM_CONFIG_SAVE_COUNT_MASK        0x007f      // NitroConfigData.saveCountの値の範囲をマスクする。(0x00-0x7f）
 
-// NVRAM����MAC�A�h���X�i�[�ʒu
+// NVRAM内のMACアドレス格納位置
 #define NVRAM_CONFIG_MACADDRESS_ADDRESS     0x00036
 #define NVRAM_CONFIG_ENABLECHANNEL_ADDRESS  0x0003c
 

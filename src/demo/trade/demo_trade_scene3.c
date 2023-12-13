@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	demo_trade_scene3.c
- * @brief	ƒ|ƒPƒ‚ƒ“ŒðŠ·ƒfƒ‚iƒV[ƒ“‚RFƒ|ƒPƒ‚ƒ“‚ª‚·‚êˆá‚¤j
+ * @brief	ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒ‡ãƒ¢ï¼ˆã‚·ãƒ¼ãƒ³ï¼“ï¼šãƒã‚±ãƒ¢ãƒ³ãŒã™ã‚Œé•ã†ï¼‰
  * @author	taya
  * @date	2006.04.18
  */
@@ -21,7 +21,7 @@
 //======================================================================================================
 //======================================================================================================
 //======================================================================================================
-// “®ì‚ðŒ©‚È‚ª‚ç’²®‚µ‚½‚¢ƒpƒ‰ƒ[ƒ^ŒQ
+// å‹•ä½œã‚’è¦‹ãªãŒã‚‰èª¿æ•´ã—ãŸã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç¾¤
 //======================================================================================================
 
 #ifdef		RUNTIME_ADJUST
@@ -39,7 +39,7 @@ DECLARE_VALUE( s32,		MOVE_FRAMES,			  60 );
 
 //----------------------------------------------
 /**
- *	’è”
+ *	å®šæ•°
  */ 
 //----------------------------------------------
 enum {
@@ -95,11 +95,11 @@ static void set_bg_vofs( GF_BGL_INI* bgl, int send, int recv );
 
 //------------------------------------------------------------------
 /**
- * ƒV[ƒ“ƒ[ƒN\’z
+ * ã‚·ãƒ¼ãƒ³ãƒ¯ãƒ¼ã‚¯æ§‹ç¯‰
  *
  * @param   mainWork		
  *
- * @retval  void*		ì¬‚µ‚½ƒV[ƒ“—pƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @retval  void*		ä½œæˆã—ãŸã‚·ãƒ¼ãƒ³ç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void* DemoTrade_Scene3Init( DEMO_TRADE_WORK* mainWork )
@@ -117,9 +117,9 @@ void* DemoTrade_Scene3Init( DEMO_TRADE_WORK* mainWork )
 }
 //------------------------------------------------------------------
 /**
- * ƒV[ƒ“‚Rƒ[ƒN”jŠü
+ * ã‚·ãƒ¼ãƒ³ï¼“ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- * @param   void*		ƒV[ƒ“—pƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   void*		ã‚·ãƒ¼ãƒ³ç”¨ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void DemoTrade_Scene3Quit( void* wk_adrs )
@@ -135,12 +135,12 @@ void DemoTrade_Scene3Quit( void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * ƒV[ƒ“‚RƒƒCƒ“
+ * ã‚·ãƒ¼ãƒ³ï¼“ãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  * @param   seq		
  *
- * @retval  BOOL	TRUE‚ÅƒV[ƒ“I—¹
+ * @retval  BOOL	TRUEã§ã‚·ãƒ¼ãƒ³çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL DemoTrade_Scene3Main( void* wk_adrs, int* seq )
@@ -166,12 +166,12 @@ BOOL DemoTrade_Scene3Main( void* wk_adrs, int* seq )
 }
 /*
 
-ƒA[ƒNID@ARC_BATT_BG
+ã‚¢ãƒ¼ã‚¯IDã€€ARC_BATT_BG
 
-’Êí@POKE_SCREEN_N_NSCR
-”½“]@POKE_SCREEN_F_NSCR
+é€šå¸¸ã€€POKE_SCREEN_N_NSCR
+åè»¢ã€€POKE_SCREEN_F_NSCR
 
-‚Å‚·B
+ã§ã™ã€‚
 
 
 battle/graphic/pl_batt_bg_def.h
@@ -180,7 +180,7 @@ battle/graphic/pl_batt_bg_def.h
 
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒOƒ‰ƒtƒBƒbƒNƒZƒbƒgƒAƒbƒv
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
  * @param   mainWork
  *
@@ -196,7 +196,7 @@ static int subseq_setup( SCENE_WORK* wk, int* seq )
 }
 //------------------------------------------------------------------
 /**
- * ƒTƒuƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ“‚ª‚·‚êˆá‚¤
+ * ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³ãŒã™ã‚Œé•ã†
  *
  * @param   mainWork
  *
@@ -265,16 +265,16 @@ static void poke_cross_task( TCB_PTR tcb, void* wk_adrs )
 static void setup_bg_params( SCENE_WORK* wk )
 {
 	static const GF_BGL_DISPVRAM SetBankData = {
-		GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_23_G,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_32_H,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_16_F,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_0123_E			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_23_G,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_32_H,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_16_F,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_0123_E			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	static const GF_BGL_SYS_HEADER BGsys_data = {
 			GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BGMODE_0, GX_BG0_AS_3D,
@@ -302,7 +302,7 @@ static void setup_bg_params( SCENE_WORK* wk )
 	};
 
 	enum {
-		CLEAR_CHARPOS = 200,	// ƒ|ƒPƒ‚ƒ“ƒLƒƒƒ‰ƒTƒCƒY•ª‹ó‚¯‚é
+		CLEAR_CHARPOS = 200,	// ãƒã‚±ãƒ¢ãƒ³ã‚­ãƒ£ãƒ©ã‚µã‚¤ã‚ºåˆ†ç©ºã‘ã‚‹
 	};
 
 	GF_Disp_SetBank( &SetBankData );

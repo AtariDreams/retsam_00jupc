@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_ripple.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@…”g–ä
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€æ°´æ³¢ç´‹
  * @author	kagaya
  * @data	05.07.13
  *
@@ -17,9 +17,9 @@
 //==============================================================================
 //	define
 //==============================================================================
-//#define DEBUG_RIPPLE_WRITE_OFF	//’è‹`‚Å…”g–ä•`‰æOFF
+//#define DEBUG_RIPPLE_WRITE_OFF	//å®šç¾©ã§æ°´æ³¢ç´‹æç”»OFF
 
-#define RIPPLE_DRAW_Y_OFFSET (-FX32_ONE*(8))		///<…”g–ä•`‰æƒIƒtƒZƒbƒgY²
+#define RIPPLE_DRAW_Y_OFFSET (-FX32_ONE*(8))		///<æ°´æ³¢ç´‹æç”»ã‚ªãƒ•ã‚»ãƒƒãƒˆYè»¸
 #define RIPPLE_DRAW_Z_OFFSET (FX32_ONE*(1))
 
 #define RIPPLE_ON_FRAME (30)
@@ -29,12 +29,12 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_RIPPLEŒ^
+///	FE_RIPPLEå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_RIPPLE * FE_RIPPLE_PTR;
 
 //--------------------------------------------------------------
-///	FE_RIPPLE\‘¢‘Ì
+///	FE_RIPPLEæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_RIPPLE
 {
@@ -43,10 +43,10 @@ typedef struct _TAG_FE_RIPPLE
 	FRO_ANM m_ranm;
 }FE_RIPPLE;
 
-#define FE_RIPPLE_SIZE (sizeof(FE_RIPPLE)) ///<FE_RIPPLEƒTƒCƒY
+#define FE_RIPPLE_SIZE (sizeof(FE_RIPPLE)) ///<FE_RIPPLEã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	RIPPLE_ADD_H\‘¢‘Ì
+///	RIPPLE_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -54,22 +54,22 @@ typedef struct
 	FE_RIPPLE_PTR ripple;		///<FE_RIPPLE_PTR
 }RIPPLE_ADD_H;
 
-#define RIPPLE_ADD_H_SIZE (sizeof(RIPPLE_ADD_H)) ///<RIPPLE_ADD_HƒTƒCƒY
+#define RIPPLE_ADD_H_SIZE (sizeof(RIPPLE_ADD_H)) ///<RIPPLE_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	RIPPLE_WORK\‘¢‘Ì
+///	RIPPLE_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	FRO_ANM ranm;
 	FRO_OBJ robj;
-	RIPPLE_ADD_H head;						///<’Ç‰Á‚ÌRIPPLE_ADD_H
+	RIPPLE_ADD_H head;						///<è¿½åŠ æ™‚ã®RIPPLE_ADD_H
 }RIPPLE_WORK;
 
-#define RIPPLE_WORK_SIZE (sizeof(RIPPLE_WORK))	///<RIPPLE_WORKƒTƒCƒY
+#define RIPPLE_WORK_SIZE (sizeof(RIPPLE_WORK))	///<RIPPLE_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Ripple_GraphicInit( FE_RIPPLE_PTR ripple );
 static void Ripple_GraphicDelete( FE_RIPPLE_PTR ripple );
@@ -77,11 +77,11 @@ static void Ripple_GraphicDelete( FE_RIPPLE_PTR ripple );
 static const EOA_H_NPP DATA_EoaH_Ripple;
 
 //==============================================================================
-//	…”g–ä@ƒVƒXƒeƒ€
+//	æ°´æ³¢ç´‹ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * …”g–ä‰Šú‰»
+ * æ°´æ³¢ç´‹åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_RIPPLE_PTR	FE_RIPPLE_PTR
  */
@@ -99,7 +99,7 @@ void * FE_Ripple_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * …”g–äíœ
+ * æ°´æ³¢ç´‹å‰Šé™¤
  * @param	ripple		FE_RIPPLE_PTR
  * @retval	nothing
  */
@@ -112,11 +112,11 @@ void FE_Ripple_Delete( void *work )
 }
 
 //==============================================================================
-//	…”g–ä@ƒOƒ‰ƒtƒBƒbƒN
+//	æ°´æ³¢ç´‹ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * …”g–ä ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * æ°´æ³¢ç´‹ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	ripple	FE_RIPPLE_PTR
  * @retval	nothing
  */
@@ -125,14 +125,14 @@ static void Ripple_GraphicInit( FE_RIPPLE_PTR rip )
 {
 	FE_FROMdl_ResSetArcLoadTexTrans(
 		rip->fes, &rip->m_rmdl, 0, NARC_fldeff_ripple_nsbmd, ALLOC_FR );
-	//ƒƒCƒ“ƒŠƒ\[ƒX‚Ì‚İƒ[ƒh
+	//ãƒ¡ã‚¤ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã®ã¿ãƒ­ãƒ¼ãƒ‰
 	FE_FROAnm_AnmResSetArcLoad(
 		rip->fes, &rip->m_ranm, 0, NARC_fldeff_ripple_nsbtp, ALLOC_FR );
 }
 
 //--------------------------------------------------------------
 /**
- * …”g–ä ƒOƒ‰ƒtƒBƒbƒNíœ
+ * æ°´æ³¢ç´‹ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	ripple	FE_RIPPLE_PTR
  * @retval	nothing
  */
@@ -144,15 +144,15 @@ static void Ripple_GraphicDelete( FE_RIPPLE_PTR rip )
 }
 
 //==============================================================================
-//	…”g–ä@EOA
+//	æ°´æ³¢ç´‹ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * …”g–ä’Ç‰Á
- * @param	fldobj	‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR
- * @param	gx		•\¦‚·‚éƒOƒŠƒbƒhXÀ•W
- * @param	gz		•\¦‚·‚éƒOƒŠƒbƒhZÀ•W
- * @retval	EOA_PTR	…”g–äEOA_PTR
+ * æ°´æ³¢ç´‹è¿½åŠ 
+ * @param	fldobj	å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR
+ * @param	gx		è¡¨ç¤ºã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	gz		è¡¨ç¤ºã™ã‚‹ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @retval	EOA_PTR	æ°´æ³¢ç´‹EOA_PTR
  */
 //--------------------------------------------------------------
 void FE_FldOBJRippleSet( FIELD_OBJ_PTR fldobj, int gx, int gy, int gz )
@@ -176,10 +176,10 @@ void FE_FldOBJRippleSet( FIELD_OBJ_PTR fldobj, int gx, int gy, int gz )
 
 //--------------------------------------------------------------
 /**
- * EOA …”g–ä@‰Šú‰»
+ * EOA æ°´æ³¢ç´‹ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaRipple_Init( EOA_PTR eoa, void *wk )
@@ -196,7 +196,7 @@ static int EoaRipple_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA …”g–ä@íœ
+ * EOA æ°´æ³¢ç´‹ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -210,7 +210,7 @@ static void EoaRipple_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA …”g–ä@“®ì
+ * EOA æ°´æ³¢ç´‹ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -230,7 +230,7 @@ static void EoaRipple_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA …”g–ä@•`‰æ
+ * EOA æ°´æ³¢ç´‹ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -248,7 +248,7 @@ static void EoaRipple_Draw( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	…”g–äEOA_H
+///	æ°´æ³¢ç´‹EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Ripple =
 {

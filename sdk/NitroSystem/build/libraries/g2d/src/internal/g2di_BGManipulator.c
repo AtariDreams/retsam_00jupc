@@ -17,7 +17,7 @@
 
 
 
-//---- BGnCNT ���W�X�^�e�[�u��
+//---- BGnCNT レジスタテーブル
 REGType16v* const NNSiG2dBGCNTTable[] =
 {
     &reg_G2_BG0CNT, &reg_G2_BG1CNT, &reg_G2_BG2CNT, &reg_G2_BG3CNT,
@@ -28,13 +28,13 @@ REGType16v* const NNSiG2dBGCNTTable[] =
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dBGGetCharSize
 
-  Description:  �Ώ� BG �ʂ̃L�����N�^�P�ʂł̃T�C�Y���擾���܂��B
+  Description:  対象 BG 面のキャラクタ単位でのサイズを取得します。
 
-  Arguments:    pWidth:     BG �ʂ̕����i�[����o�b�t�@�ւ̃|�C���^�B
-                pHeight:    BG �ʂ̍������i�[����o�b�t�@�ւ̃|�C���^�B
-                n:          �ΏۂƂ��� BG �ʁB
+  Arguments:    pWidth:     BG 面の幅を格納するバッファへのポインタ。
+                pHeight:    BG 面の高さを格納するバッファへのポインタ。
+                n:          対象とする BG 面。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void NNSi_G2dBGGetCharSize(int* pWidth, int* pHeight, NNSG2dBGSelect n)
 {

@@ -5,13 +5,13 @@
 #include "savedata/custom_ball.h"
 
 
-#if 0 ///< ŒöŠJ‚·‚é
+#if 0 ///< å…¬é–‹ã™ã‚‹
 ///< custom
 struct _CUSTOM_BALL_SEAL {
 	
-	u8	seal_id;		///< ƒV[ƒ‹”Ô†
-	u8	x;				///< x À•W
-	u8	y;				///< y À•W
+	u8	seal_id;		///< ã‚·ãƒ¼ãƒ«ç•ªå·
+	u8	x;				///< x åº§æ¨™
+	u8	y;				///< y åº§æ¨™
 	
 };
 

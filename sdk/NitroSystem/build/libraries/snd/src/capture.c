@@ -42,7 +42,7 @@ typedef struct CaptureParam
     void* bufferL;
     void* bufferR;
     u32 bufLen;
-    u32 blockSize;  // 1ƒuƒƒbƒN‚ÌƒTƒCƒY
+    u32 blockSize;  // 1ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
     int curBuffer;
     
     u32 chBitMask;
@@ -96,15 +96,15 @@ static void CaptureThread( void* arg );
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndCaptureStartReverb
 
-  Description:  ƒŠƒo[ƒu‚ÌŠJn
+  Description:  ãƒªãƒãƒ¼ãƒ–ã®é–‹å§‹
 
-  Arguments:    buffer_p   - ƒŠƒo[ƒuƒoƒbƒtƒ@æ“ªƒAƒhƒŒƒX
-                bufSize    - ƒŠƒo[ƒuƒoƒbƒtƒ@ƒTƒCƒY
-                format     - ƒLƒƒƒvƒ`ƒƒ[ƒtƒH[ƒ}ƒbƒg
-                sampleRate - ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
-                volume     - ƒŠƒo[ƒu¬•ª‚Ìƒ{ƒŠƒ…[ƒ€
+  Arguments:    buffer_p   - ãƒªãƒãƒ¼ãƒ–ãƒãƒƒãƒ•ã‚¡å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+                bufSize    - ãƒªãƒãƒ¼ãƒ–ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+                format     - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+                sampleRate - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
+                volume     - ãƒªãƒãƒ¼ãƒ–æˆåˆ†ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ 
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndCaptureStartReverb(    
     void* buffer_p,
@@ -155,10 +155,10 @@ BOOL NNS_SndCaptureStartReverb(
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndCaptureSetReverbVolume
 
-  Description:  ƒŠƒo[ƒu¬•ª‚Ìƒ{ƒŠƒ…[ƒ€‚Ìİ’è
+  Description:  ãƒªãƒãƒ¼ãƒ–æˆåˆ†ã®ãƒœãƒªãƒ¥ãƒ¼ãƒ ã®è¨­å®š
 
-  Arguments:    volume - ƒ^[ƒQƒbƒgƒ{ƒŠƒ…[ƒ€
-                frames - •Ï‰»‚·‚éƒtƒŒ[ƒ€”
+  Arguments:    volume - ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒœãƒªãƒ¥ãƒ¼ãƒ 
+                frames - å¤‰åŒ–ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -177,9 +177,9 @@ void NNS_SndCaptureSetReverbVolume( int volume, int frames )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndCaptureStopReverb
 
-  Description:  ƒŠƒo[ƒu‚Ì’â~
+  Description:  ãƒªãƒãƒ¼ãƒ–ã®åœæ­¢
 
-  Arguments:    frames - ƒtƒF[ƒhƒAƒEƒgƒtƒŒ[ƒ€
+  Arguments:    frames - ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -203,17 +203,17 @@ void NNS_SndCaptureStopReverb( int frames )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndCaptureStartEffect
 
-  Description:  ƒGƒtƒFƒNƒg‚ÌŠJn
+  Description:  ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®é–‹å§‹
 
-  Arguments:    buffer_p - ƒGƒtƒFƒNƒgƒoƒbƒtƒ@æ“ªƒAƒhƒŒƒX
-                bufSize  - ƒGƒtƒFƒNƒgƒoƒbƒtƒ@ƒTƒCƒY
-                format   - ƒLƒƒƒvƒ`ƒƒ[ƒtƒH[ƒ}ƒbƒg
-                sampleRate - ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
-                interval - ƒR[ƒ‹ƒoƒbƒNƒCƒ“ƒ^[ƒoƒ‹
-                callback - ƒR[ƒ‹ƒoƒbƒNŠÖ”
-                arg      - ƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    buffer_p - ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒƒãƒ•ã‚¡å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+                bufSize  - ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+                format   - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+                sampleRate - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
+                interval - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«
+                callback - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+                arg      - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndCaptureStartEffect(    
     void* buffer_p,
@@ -260,7 +260,7 @@ BOOL NNS_SndCaptureStartEffect(
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndCaptureStopEffect
 
-  Description:  ƒGƒtƒFƒNƒg‚Ì’â~
+  Description:  ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®åœæ­¢
 
   Arguments:    None.
 
@@ -277,17 +277,17 @@ void NNS_SndCaptureStopEffect( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndCaptureStartSampling
 
-  Description:  ƒTƒ“ƒvƒŠƒ“ƒO‚ÌŠJn
+  Description:  ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã®é–‹å§‹
 
-  Arguments:    buffer_p - ƒTƒ“ƒvƒŠƒ“ƒOƒoƒbƒtƒ@æ“ªƒAƒhƒŒƒX
-                bufSize  - ƒTƒ“ƒvƒŠƒ“ƒOƒoƒbƒtƒ@ƒTƒCƒY
-                format   - ƒLƒƒƒvƒ`ƒƒ[ƒtƒH[ƒ}ƒbƒg
-                sampleRate - ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
-                interval - ƒR[ƒ‹ƒoƒbƒNƒCƒ“ƒ^[ƒoƒ‹
-                callback - ƒR[ƒ‹ƒoƒbƒNŠÖ”
-                arg      - ƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    buffer_p - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+                bufSize  - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+                format   - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+                sampleRate - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
+                interval - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«
+                callback - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+                arg      - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndCaptureStartSampling(    
     void* buffer_p,
@@ -334,7 +334,7 @@ BOOL NNS_SndCaptureStartSampling(
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndCaptureStopSampling
 
-  Description:  ƒTƒ“ƒvƒŠƒ“ƒO‚Ì’â~
+  Description:  ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã®åœæ­¢
 
   Arguments:    None.
 
@@ -351,9 +351,9 @@ void NNS_SndCaptureStopSampling( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndCaptureCreateThread
 
-  Description:  ƒLƒƒƒvƒ`ƒƒ[ƒXƒŒƒbƒh‚Ìì¬
+  Description:  ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½œæˆ
 
-  Arguments:    threadPrio - ƒXƒŒƒbƒhƒvƒ‰ƒCƒIƒŠƒeƒB
+  Arguments:    threadPrio - ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -384,7 +384,7 @@ void NNS_SndCaptureCreateThread( u32 threadPrio )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndCaptureDestroyThread
 
-  Description:  ƒLƒƒƒvƒ`ƒƒ[ƒXƒŒƒbƒh‚Ì”jŠü
+  Description:  ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã‚¹ãƒ¬ãƒƒãƒ‰ã®ç ´æ£„
 
   Arguments:    None.
 
@@ -406,11 +406,11 @@ void NNS_SndCaptureDestroyThread()
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndCaptureIsActive
 
-  Description:  ƒLƒƒƒvƒ`ƒƒ‚ªg—p’†‚©‚Ç‚¤‚©‚ğæ“¾‚·‚é
+  Description:  ã‚­ãƒ£ãƒ—ãƒãƒ£ãŒä½¿ç”¨ä¸­ã‹ã©ã†ã‹ã‚’å–å¾—ã™ã‚‹
 
   Arguments:    None.
 
-  Returns:      g—p’†‚©‚Ç‚¤‚©
+  Returns:      ä½¿ç”¨ä¸­ã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndCaptureIsActive( void )
 {
@@ -420,11 +420,11 @@ BOOL NNS_SndCaptureIsActive( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndCaptureGetCaptureType
 
-  Description:  Œ»İg—p’†‚ÌƒLƒƒƒvƒ`ƒƒ‚Ìí—Ş‚ğæ“¾‚·‚é
+  Description:  ç¾åœ¨ä½¿ç”¨ä¸­ã®ã‚­ãƒ£ãƒ—ãƒãƒ£ã®ç¨®é¡ã‚’å–å¾—ã™ã‚‹
 
   Arguments:    None.
 
-  Returns:      Œ»İg—p’†‚ÌƒLƒƒƒvƒ`ƒƒ‚Ìí—Ş
+  Returns:      ç¾åœ¨ä½¿ç”¨ä¸­ã®ã‚­ãƒ£ãƒ—ãƒãƒ£ã®ç¨®é¡
  *---------------------------------------------------------------------------*/
 NNSSndCaptureType NNS_SndCaptureGetCaptureType( void )
 {
@@ -440,7 +440,7 @@ NNSSndCaptureType NNS_SndCaptureGetCaptureType( void )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndCaptureInit
 
-  Description:  ƒLƒƒƒvƒ`ƒƒƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»
+  Description:  ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–
 
   Arguments:    None.
 
@@ -456,7 +456,7 @@ void NNSi_SndCaptureInit( void )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndCaptureMain
 
-  Description:  ƒLƒƒƒvƒ`ƒƒƒ‰ƒCƒuƒ‰ƒŠƒtƒŒ[ƒ€ƒ[ƒN
+  Description:  ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯
 
   Arguments:    None.
 
@@ -474,10 +474,10 @@ void NNSi_SndCaptureMain( void )
     {
         fader = & cap->fader;
         
-        // ƒtƒF[ƒ_[ˆ—
+        // ãƒ•ã‚§ãƒ¼ãƒ€ãƒ¼å‡¦ç†
         NNSi_SndFaderUpdate( fader );
         
-        // ƒtƒF[ƒhƒAƒEƒgŠ®—¹ƒ`ƒFƒbƒN
+        // ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå®Œäº†ãƒã‚§ãƒƒã‚¯
         if ( cap->fadeOutFlag )
         {
             if ( NNSi_SndFaderIsFinished( fader ) )
@@ -505,25 +505,25 @@ void NNSi_SndCaptureMain( void )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndCaptureStart
 
-  Description:  ƒLƒƒƒvƒ`ƒƒ[‚ÌŠJn
+  Description:  ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã®é–‹å§‹
 
-  Arguments:    type - ƒLƒƒƒvƒ`ƒƒ[ƒ^ƒCƒv
-                buffer0 - ƒLƒƒƒvƒ`ƒƒ[ƒoƒbƒtƒ@0æ“ªƒAƒhƒŒƒX
-                buffer1 - ƒLƒƒƒvƒ`ƒƒ[ƒoƒbƒtƒ@1æ“ªƒAƒhƒŒƒX
-                bufLen  - ƒLƒƒƒvƒ`ƒƒ[ƒoƒbƒtƒ@ƒTƒCƒY
-                format  - ƒLƒƒƒvƒ`ƒƒ[ƒtƒH[ƒ}ƒbƒg
-                input   - ƒLƒƒƒvƒ`ƒƒ[“ü—Íİ’è
-                output  - ƒLƒƒƒvƒ`ƒƒ[o—Íİ’è
-                loopFlag - ƒ‹[ƒvƒtƒ‰ƒO
-                sampleRate - ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg
-                volume   - o—Íƒ{ƒŠƒ…[ƒ€
-                pan0     - ƒLƒƒƒvƒ`ƒƒ[0o—Íƒpƒ“
-                pan1     - ƒLƒƒƒvƒ`ƒƒ[0o—Íƒpƒ“
-                interval - ƒR[ƒ‹ƒoƒbƒNƒCƒ“ƒ^[ƒoƒ‹
-                callback - ƒR[ƒ‹ƒoƒbƒNŠÖ”
-                arg      - ƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    type - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã‚¿ã‚¤ãƒ—
+                buffer0 - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ãƒãƒƒãƒ•ã‚¡0å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+                buffer1 - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ãƒãƒƒãƒ•ã‚¡1å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+                bufLen  - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+                format  - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+                input   - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼å…¥åŠ›è¨­å®š
+                output  - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼å‡ºåŠ›è¨­å®š
+                loopFlag - ãƒ«ãƒ¼ãƒ—ãƒ•ãƒ©ã‚°
+                sampleRate - ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ãƒ¬ãƒ¼ãƒˆ
+                volume   - å‡ºåŠ›ãƒœãƒªãƒ¥ãƒ¼ãƒ 
+                pan0     - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼0å‡ºåŠ›ãƒ‘ãƒ³
+                pan1     - ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼0å‡ºåŠ›ãƒ‘ãƒ³
+                interval - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«
+                callback - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+                arg      - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNSi_SndCaptureStart(
     NNSSndCaptureType type,
@@ -566,7 +566,7 @@ BOOL NNSi_SndCaptureStart(
     DC_FlushRange( buffer0, bufLen );
     DC_FlushRange( buffer1, bufLen );
     
-    /* ƒpƒ‰ƒ[ƒ^‚ÌŒvZ */
+    /* ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨ˆç®— */
     is8bit = format == NNS_SND_CAPTURE_FORMAT_PCM8 ? TRUE: FALSE;
     
     timer = SND_TIMER_CLOCK / sampleRate;
@@ -598,7 +598,7 @@ BOOL NNSi_SndCaptureStart(
         playChBitMask = chBitMask;
     }
     
-    /* ƒŠƒ\[ƒX‚ÌƒƒbƒN */    
+    /* ãƒªã‚½ãƒ¼ã‚¹ã®ãƒ­ãƒƒã‚¯ */    
     if ( callback != NULL )
     {
         alarmNo = NNS_SndAllocAlarm();
@@ -614,7 +614,7 @@ BOOL NNSi_SndCaptureStart(
         return FALSE;
     }
     
-    /* ƒ`ƒƒƒ“ƒlƒ‹•ƒLƒƒƒvƒ`ƒƒİ’è */
+    /* ãƒãƒ£ãƒ³ãƒãƒ«ï¼†ã‚­ãƒ£ãƒ—ãƒãƒ£è¨­å®š */
     SND_SetupChannelPcm(
         SND_CAPTURE_0_OUT_CHANNEL,
         wave_format,
@@ -669,7 +669,7 @@ BOOL NNSi_SndCaptureStart(
         );
     }
     
-    /* o—ÍƒZƒŒƒNƒ^İ’è */
+    /* å‡ºåŠ›ã‚»ãƒ¬ã‚¯ã‚¿è¨­å®š */
     if ( type == NNS_SND_CAPTURE_TYPE_EFFECT )
     {
         SND_SetOutputSelector(
@@ -680,7 +680,7 @@ BOOL NNSi_SndCaptureStart(
         );
     }
     
-    /* ƒ^ƒCƒ}[ƒXƒ^[ƒg */
+    /* ã‚¿ã‚¤ãƒãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ */
     SND_StartTimer(
         playChBitMask,
         capBitMask,
@@ -688,7 +688,7 @@ BOOL NNSi_SndCaptureStart(
         0
     );
     
-    /* ƒpƒ‰ƒ[ƒ^Ši”[ */
+    /* ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ ¼ç´ */
     cap->activeFlag = TRUE;
     cap->type = type;
     
@@ -722,7 +722,7 @@ BOOL NNSi_SndCaptureStart(
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndCaptureStop
 
-  Description:  ƒLƒƒƒvƒ`ƒƒ[‚Ì’â~
+  Description:  ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã®åœæ­¢
 
   Arguments:    None.
 
@@ -738,7 +738,7 @@ void NNSi_SndCaptureStop( void )
     
     useAlarm = cap->alarmNo >= 0 ? TRUE : FALSE;
     
-    /* ƒ^ƒCƒ}[’â~ */
+    /* ã‚¿ã‚¤ãƒãƒ¼åœæ­¢ */
     SND_StopTimer(
         cap->playChBitMask,
         cap->capBitMask,
@@ -747,23 +747,23 @@ void NNSi_SndCaptureStop( void )
     );
     
     if ( useAlarm ) {
-        // ƒAƒ‰[ƒ€‚ğg‚Á‚Ä‚¢‚é‚Æ‚«‚ÍAƒR[ƒ‹ƒoƒbƒN‚ª‚©‚©‚ç‚È‚¢‚æ‚¤‚É
-        // ARM7‚Å‚Ìˆ—‚ğ‘Ò‚Â
+        // ã‚¢ãƒ©ãƒ¼ãƒ ã‚’ä½¿ã£ã¦ã„ã‚‹ã¨ãã¯ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒã‹ã‹ã‚‰ãªã„ã‚ˆã†ã«
+        // ARM7ã§ã®å‡¦ç†ã‚’å¾…ã¤
         commandTag = SND_GetCurrentCommandTag();
         (void)SND_FlushCommand( SND_COMMAND_BLOCK );
         SND_WaitForCommandProc( commandTag );
         
-        // —­‚Ü‚Á‚Ä‚¢‚éƒƒbƒZ[ƒW‚ğ”jŠü‚·‚é
+        // æºœã¾ã£ã¦ã„ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ç ´æ£„ã™ã‚‹
         while( OS_ReceiveMessage( &sMesgQ, NULL, OS_MESSAGE_NOBLOCK ) ) {
         }
     }
     
-    /* ƒŠƒ\[ƒX‚Ì‰ğ•ú */
+    /* ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾ */
     if ( cap->capBitMask ) NNS_SndUnlockCapture( cap->capBitMask );
     if ( cap->chBitMask ) NNS_SndUnlockChannel( cap->chBitMask );
     if ( useAlarm ) NNS_SndFreeAlarm( cap->alarmNo );
     
-    /* o—ÍƒZƒŒƒNƒ^•œ‹A */
+    /* å‡ºåŠ›ã‚»ãƒ¬ã‚¯ã‚¿å¾©å¸° */
     if ( cap->type == NNS_SND_CAPTURE_TYPE_EFFECT )
     {
         SND_SetOutputSelector(
@@ -774,14 +774,14 @@ void NNSi_SndCaptureStop( void )
         );
     }
     
-    /* ƒXƒe[ƒ^ƒX‚Ì•ÏX */
+    /* ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®å¤‰æ›´ */
     cap->activeFlag = FALSE;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndCaptureBeginSleep
 
-  Description:  ƒXƒŠ[ƒvƒ‚[ƒh‚Ì‘Oˆ—
+  Description:  ã‚¹ãƒªãƒ¼ãƒ—ãƒ¢ãƒ¼ãƒ‰ã®å‰å‡¦ç†
 
   Arguments:    None.
 
@@ -811,7 +811,7 @@ void NNSi_SndCaptureBeginSleep( void )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndCaptureEndSleep
 
-  Description:  ƒXƒŠ[ƒvƒ‚[ƒh‚ÌŒãˆ—
+  Description:  ã‚¹ãƒªãƒ¼ãƒ—ãƒ¢ãƒ¼ãƒ‰ã®å¾Œå‡¦ç†
 
   Arguments:    None.
 
@@ -847,16 +847,16 @@ void NNSi_SndCaptureEndSleep( void )
 /*---------------------------------------------------------------------------*
   Name:         AlarmCallback
 
-  Description:  ƒAƒ‰[ƒ€ƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Description:  ã‚¢ãƒ©ãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-  Arguments:    arg - ƒR[ƒ‹ƒoƒbƒNˆø”iƒLƒƒƒvƒ`ƒƒƒpƒ‰ƒ[ƒ^j
+  Arguments:    arg - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°ï¼ˆã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 static void AlarmCallback( void* arg )
 {
     CaptureParam* cap = (CaptureParam*)arg;
-    const u32 blockSize = cap->blockSize; // 1ƒuƒƒbƒN‚ÌƒTƒCƒY
+    const u32 blockSize = cap->blockSize; // 1ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
     const u32 offset = blockSize * cap->curBuffer;
     void* bufL_p = (u8*)cap->bufferL + offset;
     void* bufR_p = (u8*)cap->bufferR + offset;
@@ -873,8 +873,8 @@ static void AlarmCallback( void* arg )
         
         result = OS_SendMessage( & sMesgQ, (OSMessage)info, OS_MESSAGE_NOBLOCK );
         
-        // ƒLƒƒƒvƒ`ƒƒ[ƒXƒŒƒbƒh‚Ìˆ—‚ª’èŠú“I‚És‚í‚ê‚Ä‚¢‚È‚¢‚Æ
-        // result ‚ª FALSE ‚É‚È‚è‚Ü‚·B
+        // ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ã‚¹ãƒ¬ãƒƒãƒ‰ã®å‡¦ç†ãŒå®šæœŸçš„ã«è¡Œã‚ã‚Œã¦ã„ãªã„ã¨
+        // result ãŒ FALSE ã«ãªã‚Šã¾ã™ã€‚
         NNS_WARNING( result, "Capture thread is too busy." );
         
         sCurEffectInfo++;
@@ -902,9 +902,9 @@ static void AlarmCallback( void* arg )
 /*---------------------------------------------------------------------------*
   Name:         CaptureThread
 
-  Description:  ƒLƒƒƒvƒ`ƒƒƒXƒŒƒbƒh
+  Description:  ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚¹ãƒ¬ãƒƒãƒ‰
 
-  Arguments:    arg - ƒ†[ƒU[ƒf[ƒ^i–¢g—pj
+  Arguments:    arg - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆæœªä½¿ç”¨ï¼‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	b_plist.h
- * @brief	í“¬—pƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê@ŠO•”ŒöŠJƒwƒbƒ_ƒtƒ@ƒCƒ‹
+ * @brief	æˆ¦é—˜ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã€€å¤–éƒ¨å…¬é–‹ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
  * @author	Hiroyuki Nakamura
  * @date	05.02.01
  */
@@ -17,82 +17,82 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-#define	BPL_SEL_EXIT		( 6 )	// ƒLƒƒƒ“ƒZƒ‹
-#define	BPL_SEL_WP_CANCEL	( 4 )	// ‹Z–Y‚êƒLƒƒƒ“ƒZƒ‹iV‚µ‚­Šo‚¦‚é‹ZˆÊ’uj
+#define	BPL_SEL_EXIT		( 6 )	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+#define	BPL_SEL_WP_CANCEL	( 4 )	// æŠ€å¿˜ã‚Œã‚­ãƒ£ãƒ³ã‚»ãƒ«ï¼ˆæ–°ã—ãè¦šãˆã‚‹æŠ€ä½ç½®ï¼‰
 
-// ƒŠƒXƒgˆ—’è‹`
+// ãƒªã‚¹ãƒˆå‡¦ç†å®šç¾©
 enum {
-	BPL_MODE_NORMAL = 0,	// ’Êí‚Ìƒ|ƒPƒ‚ƒ“‘I‘ð
-	BPL_MODE_NO_CANCEL,		// ƒLƒƒƒ“ƒZƒ‹•s‰Â
-	BPL_MODE_ITEMUSE,		// ƒAƒCƒeƒ€Žg—p
-	BPL_MODE_WAZASET,		// ‹Z–Y‚ê
+	BPL_MODE_NORMAL = 0,	// é€šå¸¸ã®ãƒã‚±ãƒ¢ãƒ³é¸æŠž
+	BPL_MODE_NO_CANCEL,		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ä¸å¯
+	BPL_MODE_ITEMUSE,		// ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨
+	BPL_MODE_WAZASET,		// æŠ€å¿˜ã‚Œ
 };
 
-// ƒy[ƒW’è‹`
+// ãƒšãƒ¼ã‚¸å®šç¾©
 enum {
-	BPLIST_PAGE_SELECT = 0,		// ƒ|ƒPƒ‚ƒ“‘I‘ðƒy[ƒW
-	BPLIST_PAGE_POKE_CHG,		// ƒ|ƒPƒ‚ƒ““ü‚ê‘Ö‚¦ƒy[ƒW
-	BPLIST_PAGE_MAIN,			// ƒXƒe[ƒ^ƒXƒƒCƒ“ƒy[ƒW	
-	BPLIST_PAGE_WAZA_SEL,		// ƒXƒe[ƒ^ƒX‹Z‘I‘ðƒy[ƒW
-	BPLIST_PAGE_SKILL,			// ƒXƒe[ƒ^ƒX‹ZÚ×ƒy[ƒW
-	BPLIST_PAGE_PP_RCV,			// PP‰ñ•œ‹Z‘I‘ðƒy[ƒW
-	BPLIST_PAGE_WAZASET_BS,		// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Pƒy[ƒWií“¬‹Z‘I‘ðj
-	BPLIST_PAGE_WAZASET_BI,		// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Qƒy[ƒWií“¬‹ZÚ×j
-	BPLIST_PAGE_WAZASET_CS,		// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Rƒy[ƒWiƒRƒ“ƒeƒXƒg‹Z‘I‘ðj
-	BPLIST_PAGE_WAZASET_CI,		// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‚Sƒy[ƒWiƒRƒ“ƒeƒXƒg‹ZÚ×j
+	BPLIST_PAGE_SELECT = 0,		// ãƒã‚±ãƒ¢ãƒ³é¸æŠžãƒšãƒ¼ã‚¸
+	BPLIST_PAGE_POKE_CHG,		// ãƒã‚±ãƒ¢ãƒ³å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸
+	BPLIST_PAGE_MAIN,			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ã‚¤ãƒ³ãƒšãƒ¼ã‚¸	
+	BPLIST_PAGE_WAZA_SEL,		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€é¸æŠžãƒšãƒ¼ã‚¸
+	BPLIST_PAGE_SKILL,			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€è©³ç´°ãƒšãƒ¼ã‚¸
+	BPLIST_PAGE_PP_RCV,			// PPå›žå¾©æŠ€é¸æŠžãƒšãƒ¼ã‚¸
+	BPLIST_PAGE_WAZASET_BS,		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼‘ãƒšãƒ¼ã‚¸ï¼ˆæˆ¦é—˜æŠ€é¸æŠžï¼‰
+	BPLIST_PAGE_WAZASET_BI,		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼’ãƒšãƒ¼ã‚¸ï¼ˆæˆ¦é—˜æŠ€è©³ç´°ï¼‰
+	BPLIST_PAGE_WAZASET_CS,		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼“ãƒšãƒ¼ã‚¸ï¼ˆã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€é¸æŠžï¼‰
+	BPLIST_PAGE_WAZASET_CI,		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚Œï¼”ãƒšãƒ¼ã‚¸ï¼ˆã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€è©³ç´°ï¼‰
 };
 
-// ƒŠƒXƒgƒf[ƒ^
+// ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 typedef struct {
-	POKEPARTY * pp;		// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	void * myitem;		// ƒAƒCƒeƒ€ƒf[ƒ^
+	POKEPARTY * pp;		// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	void * myitem;		// ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 
-	BATTLE_WORK * bw;		// í“¬—pƒ[ƒN
+	BATTLE_WORK * bw;		// æˆ¦é—˜ç”¨ãƒ¯ãƒ¼ã‚¯
 
-	u32	heap;			// ƒq[ƒvID
+	u32	heap;			// ãƒ’ãƒ¼ãƒ—ID
 
-//	u8	fight_type;		// ƒVƒ“ƒOƒ‹^ƒ_ƒuƒ‹^ƒ}ƒ‹ƒ`
-	u8	multi_pos;		// ƒ}ƒ‹ƒ`‚Ì—§ˆÊ’u
-	u8	sel_poke;		// ‘I‘ð‚³‚ê‚½ƒ|ƒPƒ‚ƒ“ or –ß‚é
-	u8	double_sel;		// ƒ_ƒuƒ‹ƒoƒgƒ‹‚Å‚·‚Å‚É‘I‘ð‚³‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“
-	u8	ret_mode;		// ‘I‘ð‚³‚ê‚½ˆ—
+//	u8	fight_type;		// ã‚·ãƒ³ã‚°ãƒ«ï¼ãƒ€ãƒ–ãƒ«ï¼ãƒžãƒ«ãƒ
+	u8	multi_pos;		// ãƒžãƒ«ãƒã®ç«‹ä½ç½®
+	u8	sel_poke;		// é¸æŠžã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ or æˆ»ã‚‹
+	u8	double_sel;		// ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã§ã™ã§ã«é¸æŠžã•ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³
+	u8	ret_mode;		// é¸æŠžã•ã‚ŒãŸå‡¦ç†
 
-	u8	fight_poke1;	// í“¬‚Éo‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚P
-	u8	fight_poke2;	// í“¬‚Éo‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚Q
+	u8	fight_poke1;	// æˆ¦é—˜ã«å‡ºã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ï¼‘
+	u8	fight_poke2;	// æˆ¦é—˜ã«å‡ºã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ï¼’
 
-	u32	skill_item_use[2];	// ‹Z‚ÅŽg—p•s‰Â
+	u32	skill_item_use[2];	// æŠ€ã§ä½¿ç”¨ä¸å¯
 
-	u16	hp_rcv;			// HP‰ñ•œ—Ê
+	u16	hp_rcv;			// HPå›žå¾©é‡
 
-	u16	item;			// ƒAƒCƒeƒ€
-	u16	chg_waza;		// ‚¢‚ê‚©‚¦‹ÖŽ~‹ZEV‚µ‚­Šo‚¦‚é‹Z
+	u16	item;			// ã‚¢ã‚¤ãƒ†ãƒ 
+	u16	chg_waza;		// ã„ã‚Œã‹ãˆç¦æ­¢æŠ€ãƒ»æ–°ã—ãè¦šãˆã‚‹æŠ€
 
-	s32 client_no;						// ƒNƒ‰ƒCƒAƒ“ƒgNo
-	u8	list_row[POKEMON_TEMOTI_MAX];	// ƒŠƒXƒgƒƒE
+	s32 client_no;						// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆNo
+	u8	list_row[POKEMON_TEMOTI_MAX];	// ãƒªã‚¹ãƒˆãƒ­ã‚¦
 
-	u8	cursor_flg;		// ƒJ[ƒ\ƒ‹•\Ž¦ƒtƒ‰ƒO
+	u8	cursor_flg;		// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºãƒ•ãƒ©ã‚°
 
-	u8	bag_page;		// ƒoƒbƒO‚Ìƒy[ƒW
+	u8	bag_page;		// ãƒãƒƒã‚°ã®ãƒšãƒ¼ã‚¸
 
-	u8	sel_wp;			// ‘I‘ð‚³‚ê‚½‹ZˆÊ’u
+	u8	sel_wp;			// é¸æŠžã•ã‚ŒãŸæŠ€ä½ç½®
 
-	u8	mode;			// ƒŠƒXƒgƒ‚[ƒh
-	u8	end_flg;		// I—¹ƒtƒ‰ƒO
+	u8	mode;			// ãƒªã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰
+	u8	end_flg;		// çµ‚äº†ãƒ•ãƒ©ã‚°
 
 }BPLIST_DATA;
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * í“¬—pƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ^ƒXƒN’Ç‰Á
+ * æˆ¦é—˜ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚¿ã‚¹ã‚¯è¿½åŠ 
  *
- * @param	dat		ƒŠƒXƒgƒf[ƒ^
+ * @param	dat		ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  * @return none
  */

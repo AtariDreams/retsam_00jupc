@@ -9,11 +9,11 @@
 	.include	"../../../src/field/b_tower_scr_def.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d31r0202_flag_change
 _EVENT_DATA		ev_tower_ev_to_ways
@@ -28,7 +28,7 @@ _EVENT_DATA_END
 ev_d31r0202_flag_change:
 	_IFVAL_CALL		WK_SCENE_D31R0202,NE,0,ev_d31r0202_poketch_hook_set
 
-	/*˜A‚ê•à‚¢‚Ä‚¢‚­Œ©‚½–Ú‚ð•ÏX‚·‚é*/
+	/*é€£ã‚Œæ­©ã„ã¦ã„ãè¦‹ãŸç›®ã‚’å¤‰æ›´ã™ã‚‹*/
 	_BTOWER_TOOLS	BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,LOCALWORK10
 	_CALL			ev_d31r0202_flag_change_single_char_set
 	_IFVAL_CALL		LOCALWORK10,EQ,BTWR_MODE_MULTI,ev_d31r0202_flag_change_multi_char_set
@@ -40,22 +40,22 @@ ev_d31r0202_flag_change:
 	_IFVAL_CALL		LOCALWORK10,EQ,BTWR_MODE_WIFI_MULTI,ev_d31r0202_flag_change_wifi_char_set
 	_END
 
-//ƒ|ƒPƒbƒ`ƒtƒbƒN
+//ãƒã‚±ãƒƒãƒãƒ•ãƒƒã‚¯
 ev_d31r0202_poketch_hook_set:
 	_POKETCH_HOOK_SET
 	_RET
 
-/*^‚ñ’†‚ÌƒQ[ƒg*/
+/*çœŸã‚“ä¸­ã®ã‚²ãƒ¼ãƒˆ*/
 ev_d31r0202_flag_change_single_char_set:
 	_LDVAL			OBJCHRWORK10,BFSM
 	_RET
 
-/*‰E‚ÌƒQ[ƒg*/
+/*å³ã®ã‚²ãƒ¼ãƒˆ*/
 ev_d31r0202_flag_change_wifi_char_set:
 	_LDVAL			OBJCHRWORK10,WIFISW
 	_RET
 
-/*¶‚ÌƒQ[ƒg*/
+/*å·¦ã®ã‚²ãƒ¼ãƒˆ*/
 ev_d31r0202_flag_change_multi_char_set:
 	_LDVAL			OBJCHRWORK10,BFSW1
 	_RET
@@ -64,17 +64,17 @@ ev_d31r0202_flag_change_multi_char_set:
 /********************************************************************/
 /*																	*/
 /********************************************************************/
-//ƒVƒ“ƒOƒ‹ƒ‚[ƒh’Ê˜H‚ÖˆÚ“®
+//ã‚·ãƒ³ã‚°ãƒ«ãƒ¢ãƒ¼ãƒ‰é€šè·¯ã¸ç§»å‹•
 ev_tower_gate_common_move_ways:
 	//_MAP_CHANGE		ZONE_ID_D31R0203,0,SB_WAYS_PLAYER_SX,SB_WAYS_PLAYER_SY,DIR_DOWN
 
-	/*ƒ^ƒ[‚Ö*/
+	/*ã‚¿ãƒ¯ãƒ¼ã¸*/
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	//////////////////////////////////////////////////////////////////////
-	/*V‹K*/
-	//–ß‚èÀ•W‚ªˆá‚¤‚Ì‚Å‚±‚±‚Å•ªŠò‚³‚¹‚é
+	/*æ–°è¦*/
+	//æˆ»ã‚Šåº§æ¨™ãŒé•ã†ã®ã§ã“ã“ã§åˆ†å²ã•ã›ã‚‹
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,BTWR_MODE_WIFI,ev_tower_wifi_gate_common_move_ways
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,BTWR_MODE_RETRY,ev_tower_wifi_gate_common_move_ways
@@ -83,10 +83,10 @@ ev_tower_gate_common_move_ways:
 	_FINISH_MAP_PROC
 	_FRONTIER_SYSTEM_CALL	FSS_SCENEID_TOWER_SINGLE_WAY
 
-	/*’ÊMI—¹*/
+	/*é€šä¿¡çµ‚äº†*/
 	//_IFVAL_CALL		WK_SCENE_FACTORY_TYPE,EQ,FACTORY_TYPE_MULTI,frontier_system_go_comm_end
 
-	/*ƒtƒB[ƒ‹ƒhƒvƒƒZƒX•œ‹A*/
+	/*ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°*/
 	_SET_MAP_PROC
 
 	_MAP_CHANGE_NONE_FADE	ZONE_ID_D31R0201,0,15,6,DIR_UP
@@ -97,32 +97,32 @@ ev_tower_gate_common_move_ways:
 	_END
 
 /*
-//ƒVƒ“ƒOƒ‹ƒoƒgƒ‹•”‰®‚ÉˆÚ“®
+//ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«éƒ¨å±‹ã«ç§»å‹•
 ev_tower_gate_common_move_rooms:
 	_MAP_CHANGE		ZONE_ID_D31R0205,0,SB_ROOMS_PLAYER_SX,SB_ROOMS_PLAYER_SY,DIR_UP
 	_EVENT_END
 	_END
 */
 
-//ƒ}ƒ‹ƒ`’Ê˜H‚ÖˆÚ“®
+//ãƒžãƒ«ãƒé€šè·¯ã¸ç§»å‹•
 ev_tower_gate_common_move_wayd:
 	//_MAP_CHANGE		ZONE_ID_D31R0204,0,SB_WAYD_PLAYER_SX,SB_WAYD_PLAYER_SY,DIR_DOWN
 
-	/*ƒ^ƒ[‚Ö*/
+	/*ã‚¿ãƒ¯ãƒ¼ã¸*/
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	_FINISH_MAP_PROC
 	_FRONTIER_SYSTEM_CALL	FSS_SCENEID_TOWER_MULTI_WAY
 
-	/*’ÊMI—¹*/
+	/*é€šä¿¡çµ‚äº†*/
 	//_IFVAL_CALL		WK_SCENE_FACTORY_TYPE,EQ,FACTORY_TYPE_MULTI,frontier_system_go_comm_end
 
-	/*ƒtƒB[ƒ‹ƒhƒvƒƒZƒX•œ‹A*/
+	/*ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°*/
 	_SET_MAP_PROC
 
 	////////////////////////////////////////
-	/*WIFI‚Ì–ß‚èæ‚ð‘Î‰ž‚µ‚È‚¢‚Æ‚¾‚ß‚»‚¤I*/
+	/*WIFIã®æˆ»ã‚Šå…ˆã‚’å¯¾å¿œã—ãªã„ã¨ã ã‚ãã†ï¼*/
 	////////////////////////////////////////
 
 	_MAP_CHANGE_NONE_FADE	ZONE_ID_D31R0201,0,11,6,DIR_UP
@@ -133,15 +133,15 @@ ev_tower_gate_common_move_wayd:
 	//_WIPE_FADE_END_CHECK
 	_END
 
-/*	//–¢Žg—p
-//ƒ}ƒ‹ƒ`ƒoƒgƒ‹•”‰®‚ÖˆÚ“®
+/*	//æœªä½¿ç”¨
+//ãƒžãƒ«ãƒãƒãƒˆãƒ«éƒ¨å±‹ã¸ç§»å‹•
 ev_tower_gate_common_move_roomd:
 	_MAP_CHANGE		ZONE_ID_D31R0206,0,SB_WAYD_PLAYER_SX,SB_WAYD_PLAYER_SY,DIR_DOWN
 	_EVENT_END
 	_END
 */
 
-//ƒTƒƒ“•”‰®‚ÖˆÚ“®
+//ã‚µãƒ­ãƒ³éƒ¨å±‹ã¸ç§»å‹•
 ev_tower_gate_common_move_salon:
 	_MAP_CHANGE		ZONE_ID_D31R0207,0,SB_SALON_PLAYER_SX,SB_SALON_PLAYER_SY,DIR_DOWN
 	_EVENT_END
@@ -150,20 +150,20 @@ ev_tower_gate_common_move_salon:
 
 //====================================================================
 /********************************************************************/
-/*	ƒoƒgƒ‹ƒGƒŒƒx[ƒ^ƒRƒ‚ƒ“											*/
+/*	ãƒãƒˆãƒ«ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ã‚³ãƒ¢ãƒ³											*/
 /********************************************************************/
 //====================================================================
 ev_tower_ev_common:
-	//“üê
+	//å…¥å ´
 	_CALL			ev_tower_ev_comanm_in
 	_ELEVATOR_ANM	LOCALWORK0,3
-	//oê
+	//å‡ºå ´
 	_CALL			ev_tower_ev_comanm_out
 	_RET
 
 //====================================================================
 /********************************************************************/
-/*	ƒoƒgƒ‹ƒGƒŒƒx[ƒ^@ƒVƒ“ƒOƒ‹’Ê˜H‚Ö								*/
+/*	ãƒãƒˆãƒ«ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ã€€ã‚·ãƒ³ã‚°ãƒ«é€šè·¯ã¸								*/
 /********************************************************************/
 //====================================================================
 ev_tower_ev_to_ways:
@@ -189,7 +189,7 @@ ev_tower_ev_to_salon:
 
 //====================================================================
 /********************************************************************/
-/*	ƒoƒgƒ‹ƒ^ƒ[@ƒGƒŒƒx[ƒ^ƒAƒjƒƒRƒ‚ƒ“							*/
+/*	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¢ãƒ³							*/
 /********************************************************************/
 //====================================================================
 ev_tower_ev_comanm_in:
@@ -204,7 +204,7 @@ ev_tower_ev_comanm_out:
 	_RET
 
 //--------------------------------------------------------------------
-//Žó‚¯•t‚¯ì@In
+//å—ã‘ä»˜ã‘å¬¢ã€€In
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0202_pcwoman2_in
 	_ANIME_DATA	AC_WALK_U_8F,2
@@ -214,7 +214,7 @@ _ANIME_LABEL	anm_d31r0202_pcwoman2_in
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Ž©‹@@In
+//è‡ªæ©Ÿã€€In
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0202_player_in
 	_ANIME_DATA	AC_WALK_U_8F,2
@@ -222,7 +222,7 @@ _ANIME_LABEL	anm_d31r0202_player_in
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Žó‚¯•t‚¯ì@Out
+//å—ã‘ä»˜ã‘å¬¢ã€€Out
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0202_pcwoman2_out
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -234,7 +234,7 @@ _ANIME_LABEL	anm_d31r0202_pcwoman2_out
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//Ž©‹@@Out
+//è‡ªæ©Ÿã€€Out
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0202_player_out
 	_ANIME_DATA	AC_WAIT_8F,2
@@ -245,16 +245,16 @@ _ANIME_LABEL	anm_d31r0202_player_out
 
 
 /********************************************************************/
-/*						wifiƒQ[ƒg									*/
+/*						wifiã‚²ãƒ¼ãƒˆ									*/
 /********************************************************************/
 ev_tower_wifi_gate_common_move_ways:
 	_FINISH_MAP_PROC
 	_FRONTIER_SYSTEM_CALL	FSS_SCENEID_TOWER_SINGLE_WAY
 
-	/*’ÊMI—¹*/
+	/*é€šä¿¡çµ‚äº†*/
 	//_IFVAL_CALL		WK_SCENE_FACTORY_TYPE,EQ,FACTORY_TYPE_MULTI,frontier_system_go_comm_end
 
-	/*ƒtƒB[ƒ‹ƒhƒvƒƒZƒX•œ‹A*/
+	/*ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°*/
 	_SET_MAP_PROC
 
 	_MAP_CHANGE_NONE_FADE	ZONE_ID_D31R0201,0,19,6,DIR_UP

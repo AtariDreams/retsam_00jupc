@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	battle_server.h
- * @bfief	�퓬�p�\�[�X�̃w�b�_�Ŏg�p����萔��`�݂̂��`�ibattle_common.h����퓬�����̒�`�𒊏o�j
+ * @bfief	戦闘用ソースのヘッダで使用する定数定義のみを定義（battle_common.hから戦闘特化の定義を抽出）
  * @author	HisashiSogabe
  * @date	05.05.30
  */
@@ -17,197 +17,197 @@
 	.include "../../../include/bugfix.h"
 #endif	__ASM_NO_DEF_
 
-//client_status�̒�`
-#define	CLIENT_STATUS_POKE_RESHUFFLE		(0x00000001)			///<�C��ɂ��|�P��������ւ��N��
+//client_statusの定義
+#define	CLIENT_STATUS_POKE_RESHUFFLE		(0x00000001)			///<気絶によるポケモン入れ替え起動
 
-#define	CLIENT_STATUS_POKE_RESHUFFLE_OFF	(0x00000001)^0xffffffff	///<�C��ɂ��|�P��������ւ��N��
+#define	CLIENT_STATUS_POKE_RESHUFFLE_OFF	(0x00000001)^0xffffffff	///<気絶によるポケモン入れ替え起動
 
-#define	BATTLE_MSG_WAIT		(1)		///<�퓬���b�Z�[�W�̃E�G�C�g
+#define	BATTLE_MSG_WAIT		(1)		///<戦闘メッセージのウエイト
 
-#define	NO_SEL_MONS			(6)		///<����ւ���|�P�����������Ȃ�Client��SelMonsNo
+#define	NO_SEL_MONS			(6)		///<入れ替えるポケモンを持たないClientのSelMonsNo
 
-//ADD_STATUS�̃i���o�[�i�ǉ����ʁj
-#define	ADD_COND_NONE					(0x00000000)			//�Ȃ�
-#define	ADD_COND_NEMURI					(0x00000001)			//�˂ނ�
-#define	ADD_COND_DOKU					(0x00000002)			//��
-#define	ADD_COND_YAKEDO					(0x00000003)			//�₯��
-#define	ADD_COND_KOORI					(0x00000004)			//������
-#define	ADD_COND_MAHI					(0x00000005)			//�܂�
-#define	ADD_COND_DOKUDOKU				(0x00000006)			//�ǂ��ǂ�
-#define	ADD_COND2_KONRAN				(0x00000007)			//������
-#define	ADD_COND2_HIRUMU				(0x00000008)			//�Ђ��
-#define	ADD_COND2_NEMURU				(0x00000009)			//�˂ނ�
-#define	ADD_COND2_SAWAGU				(0x0000000a)			//���킮
-#define	ADD_COND2_NEKONIKOBAN			(0x0000000b)			//�˂��ɂ��΂�
-#define	ADD_COND2_KEEP					(0x0000000c)			//���ߌn�̋Z
-#define	ADD_COND2_SHIME					(0x0000000d)			//���ߌn�̋Z
-#define	ADD_COND2_HANEKAERI				(0x0000000e)			//�͂˂�����n�̋Z(1/4)
-#define	ADD_COND2_POWUP					(0x0000000f)			//�U���̓A�b�v
-#define	ADD_COND2_DEFUP					(0x00000010)			//�h��̓A�b�v
-#define	ADD_COND2_AGIUP					(0x00000011)			//�f�����A�b�v
-#define	ADD_COND2_SPEPOWUP				(0x00000012)			//���U�A�b�v
-#define	ADD_COND2_SPEDEFUP				(0x00000013)			//���h�A�b�v
-#define	ADD_COND2_HITUP					(0x00000014)			//�������A�b�v
-#define	ADD_COND2_AVOIDUP				(0x00000015)			//��𗦃A�b�v
-#define	ADD_COND2_POWDOWN				(0x00000016)			//�U���̓_�E��
-#define	ADD_COND2_DEFDOWN				(0x00000017)			//�h��̓_�E��
-#define	ADD_COND2_AGIDOWN				(0x00000018)			//�f�����_�E��
-#define	ADD_COND2_SPEPOWDOWN			(0x00000019)			//���U�_�E��
-#define	ADD_COND2_SPEDEFDOWN			(0x0000001a)			//���h�_�E��
-#define	ADD_COND2_HITDOWN				(0x0000001b)			//�������_�E��
-#define	ADD_COND2_AVOIDDOWN				(0x0000001c)			//��𗦃_�E��
-#define	ADD_COND2_HANDOU				(0x0000001d)			//�͂�ǂ�
-#define	ADD_COND2_IKARI					(0x0000001e)			//������
-#define	ADD_COND2_DOROBOU				(0x0000001f)			//�ǂ�ڂ�
-#define	ADD_COND2_KUROIMANAZASHI		(0x00000020)			//���낢�܂Ȃ���
-#define	ADD_COND2_AKUMU					(0x00000021)			//������
-#define	ADD_COND2_GENSHINOCHIKARA		(0x00000022)			//���񂵂̂�����
-#define	ADD_COND2_KOUSOKUSPIN			(0x00000023)			//���������X�s��
-#define	ADD_COND_NOMAHI					(0x00000024)			//�܂Ђ��Ȃ���
-#define	ADD_COND2_BAKADIKARA			(0x00000025)			//�΂�������
-#define	ADD_COND2_HANEKAERI2			(0x00000026)			//�͂˂�����n�̋Z(1/3)
-#define	ADD_COND2_POWUP2				(0x00000027)			//�U���̓A�b�v(2�i�K�j
-#define	ADD_COND2_DEFUP2				(0x00000028)			//�h��̓A�b�v(2�i�K�j
-#define	ADD_COND2_AGIUP2				(0x00000029)			//�f�����A�b�v(2�i�K�j
-#define	ADD_COND2_SPEPOWUP2				(0x0000002a)			//���U�A�b�v(2�i�K�j
-#define	ADD_COND2_SPEDEFUP2				(0x0000002b)			//���h�A�b�v(2�i�K�j
-#define	ADD_COND2_HITUP2				(0x0000002c)			//�������A�b�v(2�i�K�j
-#define	ADD_COND2_AVOIDUP2				(0x0000002d)			//��𗦃A�b�v(2�i�K�j
-#define	ADD_COND2_POWDOWN2				(0x0000002e)			//�U���̓_�E��(2�i�K�j
-#define	ADD_COND2_DEFDOWN2				(0x0000002f)			//�h��̓_�E��(2�i�K�j
-#define	ADD_COND2_AGIDOWN2				(0x00000030)			//�f�����_�E��(2�i�K�j
-#define	ADD_COND2_SPEPOWDOWN2			(0x00000031)			//���U�_�E��(2�i�K�j
-#define	ADD_COND2_SPEDEFDOWN2			(0x00000032)			//���h�_�E��(2�i�K�j
-#define	ADD_COND2_HITDOWN2				(0x00000033)			//�������_�E��(2�i�K�j
-#define	ADD_COND2_AVOIDDOWN2			(0x00000034)			//��𗦃_�E��(2�i�K�j
-#define	ADD_COND2_ABARERU				(0x00000035)			//���΂��
-#define	ADD_COND2_HATAKIOTOSU			(0x00000036)			//�͂������Ƃ�
-#define	ADD_COND2_COSMO_POWER			(0x00000037)			//�R�X���p���[�i�����A�b�v�iabiritycnt�n�j�j
-#define	ADD_COND2_BUILD_UP				(0x00000038)			//�r���h�A�b�v�i�����A�b�v�iabiritycnt�n�j�j
-#define	ADD_COND2_KUSUGURU				(0x00000039)			//��������i�����_�E���iabiritycnt�n�j�j
-#define	ADD_COND2_MEISOU				(0x0000003a)			//�߂������i�����A�b�v�iabiritycnt�n�j�j
-#define	ADD_COND2_RYUUNOMAI				(0x0000003b)			//��イ�̂܂��i�����A�b�v�iabiritycnt�n�j�j
-#define	ADD_COND2_SUITORI				(0x0000003c)			//HP�����Ƃ�n
-#define	ADD_COND2_YUMEKUI				(0x0000003d)			//��߂���
-#define	ADD_COND2_KUROIKIRI				(0x0000003e)			//���낢����
-#define	ADD_COND2_GAMAN					(0x0000003f)			//���܂�
-#define	ADD_COND2_WARUAGAKI				(0x00000040)			//��邠����
-#define	ADD_COND2_TEXTURE				(0x00000041)			//�e�N�X�`���[
-#define	ADD_COND2_JIKOSAISEI			(0x00000042)			//������������
-#define	ADD_COND2_HIKARINOKABE			(0x00000043)			//�Ђ���̂���
-#define	ADD_COND2_RIHUREKUTAA			(0x00000044)			//���t���N�^�[
-#define	ADD_COND2_SIROIKIRI				(0x00000045)			//���낢����
-#define	ADD_COND2_KIAIDAME				(0x00000046)			//����������
-#define	ADD_COND2_MONOMANE				(0x00000047)			//���̂܂�
-#define	ADD_COND2_YADORIGI				(0x00000048)			//��ǂ肬
-#define	ADD_COND2_KANASIBARI			(0x00000049)			//���Ȃ��΂�
-#define	ADD_COND2_ENCORE				(0x0000004a)			//�A���R�[��
-#define	ADD_COND2_ITAMIWAKE				(0x0000004b)			//�����݂킯
-#define	ADD_COND2_TEXTURE2				(0x0000004c)			//�e�N�X�`���Q
-#define	ADD_COND2_LOCKON				(0x0000004d)			//���b�N�I��
-#define	ADD_COND2_SKETCH				(0x0000004e)			//�X�P�b�`
-#define	ADD_COND2_FEINT					(0x0000004f)			//�t�F�C���g
-#define	ADD_COND2_MICHIDURE				(0x00000050)			//�݂��Â�
-#define	ADD_COND2_URAMI					(0x00000051)			//�����
-#define	ADD_COND2_GUARD					(0x00000052)			//�܂���A�݂���A���炦��Ȃ�
-#define	ADD_COND2_IYASINOSUZU			(0x00000053)			//���₵�̂���
-#define	ADD_COND2_MIGAWARI				(0x00000054)			//�݂����
-#define	ADD_COND2_HUKITOBASI			(0x00000055)			//�ӂ��Ƃ΂�
-#define	ADD_COND2_HENSIN				(0x00000056)			//�ւ񂵂�
-#define	ADD_COND2_CHIISAKUNARU			(0x00000057)			//���������Ȃ�
-#define	ADD_COND2_NORMAL_NOROI			(0x00000058)			//�̂낢�i�m�[�}���j
-#define	ADD_COND2_GHOST_NOROI			(0x00000059)			//�̂낢�i�S�[�X�g�j
-#define	ADD_COND2_MESSAGE_WORK			(0x0000005a)			//���b�Z�[�W�\��
-#define	ADD_COND2_MIYABURU				(0x0000005b)			//�݂�Ԃ�
-#define	ADD_COND2_HOROBINOUTA			(0x0000005c)			//�ق�т̂���
-#define	ADD_COND2_TENKOU				(0x0000005d)			//�V�C�n
-#define	ADD_COND2_IBARU					(0x0000005e)			//���΂�
-#define	ADD_COND2_MEROMERO				(0x0000005f)			//��������
-#define	ADD_COND2_SHINPI				(0x00000060)			//����҂̂܂���
-#define	ADD_COND2_PRESENT				(0x00000061)			//�v���[���g
-#define	ADD_COND2_MAGNITUDE				(0x00000062)			//�}�O�j�`���[�h
-#define	ADD_COND2_BATONTOUCH			(0x00000063)			//�o�g���^�b�`
-#define	ADD_COND2_HARADAIKO				(0x00000064)			//�͂炾����
-#define	ADD_COND2_TELEPORT				(0x00000065)			//�e���|�[�g
-#define	ADD_COND2_HUKURODATAKI			(0x00000066)			//�ӂ��낾����
-#define	ADD_COND2_TAKUWAERU				(0x00000067)			//�����킦��
-#define	ADD_COND2_NOMIKOMU				(0x00000068)			//�݂̂���
-#define	ADD_COND2_ICHAMON				(0x00000069)			//���������
-#define	ADD_COND2_ODATERU				(0x0000006a)			//�����Ă�
-#define	ADD_COND2_OKIMIYAGE				(0x0000006b)			//�����݂₰
-#define	ADD_COND2_JUUDEN				(0x0000006c)			//���イ�ł�
-#define	ADD_COND2_CHOUHATSU				(0x0000006d)			//���傤�͂�
-#define	ADD_COND2_TRICK					(0x0000006e)			//�g���b�N
-#define	ADD_COND2_NARIKIRI				(0x0000006f)			//�Ȃ肫��
-#define	ADD_COND2_KAWARAWARI			(0x00000070)			//�������
-#define	ADD_COND2_AKUBI					(0x00000071)			//������
-#define	ADD_COND2_SKILLSWAP				(0x00000072)			//�X�L���X���b�v
-#define	ADD_COND2_REFRESH				(0x00000073)			//���t���b�V��
-#define	ADD_COND2_HANEYASUME			(0x00000074)			//�͂˂₷��
-#define	ADD_COND_NONEMURI				(0x00000075)			//�߂��܂��r���^
-#define	ADD_COND2_JUURYOKU				(0x00000076)			//���イ��傭
-#define	ADD_COND2_MIRACLE_EYE			(0x00000077)			//�~���N���A�C
-#define	ADD_COND2_IYASINONEGAI			(0x00000078)			//���₵�̂˂���
-#define	ADD_COND2_OIKAZE				(0x00000079)			//��������
-#define	ADD_COND2_INFIGHT				(0x0000007a)			//�C���t�@�C�g
-#define	ADD_COND2_POWER_TRICK			(0x0000007b)			//�p���[�g���b�N
-#define	ADD_COND2_IEKI					(0x0000007c)			//������
-#define	ADD_COND2_OMAZINAI				(0x0000007d)			//���܂��Ȃ�
-#define	ADD_COND2_POWER_SWAP			(0x0000007e)			//�p���[�X���b�v
-#define	ADD_COND2_GUARD_SWAP			(0x0000007f)			//�K�[�h�X���b�v
-#define	ADD_COND2_NAYAMINOTANE			(0x00000080)			//�Ȃ�݂̂���
-#define	ADD_COND2_HEART_SWAP			(0x00000081)			//�n�[�g�X���b�v
-#define	ADD_COND2_HEAT_ATTACK			(0x00000082)			//�q�[�g�A�^�b�N
-#define	ADD_COND2_KIRIHARAI				(0x00000083)			//����͂炢
-#define	ADD_COND2_HEALBLOCK				(0x00000084)			//�q�[���u���b�N
-#define	ADD_COND2_TONBOGAERI			(0x00000085)			//�Ƃ�ڂ�����
-#define	ADD_COND2_SHUTOUT				(0x00000086)			//�V���b�g�A�E�g
-#define	ADD_COND2_TSUIBAMU				(0x00000087)			//���΂�
-#define	ADD_COND2_NAGETSUKERU			(0x00000088)			//�Ȃ�����
-#define	ADD_COND2_VOLT					(0x00000089)			//�{���e�b�J�[
-#define	ADD_COND2_HANEKAERI3			(0x0000008a)			//�͂˂�����n�̋Z(1/2)
-#define	ADD_COND2_YAKEDO_HIRUMU			(0x0000008b)			//�₯�ǁ{�Ђ�ނ̒ǉ�����
-#define	ADD_COND2_KOORI_HIRUMU			(0x0000008c)			//������{�Ђ�ނ̒ǉ�����
-#define	ADD_COND2_MAHI_HIRUMU			(0x0000008d)			//�܂Ё{�Ђ�ނ̒ǉ�����
-#define	ADD_COND2_OSYABERI				(0x0000008e)			//������ׂ�
-#define	ADD_COND2_MIKADUKINOMAI			(0x0000008f)			//�݂��Â��̂܂�
-#define	ADD_COND2_SURIKOMI				(0x00000090)			//���肱��
+//ADD_STATUSのナンバー（追加効果）
+#define	ADD_COND_NONE					(0x00000000)			//なし
+#define	ADD_COND_NEMURI					(0x00000001)			//ねむり
+#define	ADD_COND_DOKU					(0x00000002)			//毒
+#define	ADD_COND_YAKEDO					(0x00000003)			//やけど
+#define	ADD_COND_KOORI					(0x00000004)			//こおり
+#define	ADD_COND_MAHI					(0x00000005)			//まひ
+#define	ADD_COND_DOKUDOKU				(0x00000006)			//どくどく
+#define	ADD_COND2_KONRAN				(0x00000007)			//こんらん
+#define	ADD_COND2_HIRUMU				(0x00000008)			//ひるむ
+#define	ADD_COND2_NEMURU				(0x00000009)			//ねむる
+#define	ADD_COND2_SAWAGU				(0x0000000a)			//さわぐ
+#define	ADD_COND2_NEKONIKOBAN			(0x0000000b)			//ねこにこばん
+#define	ADD_COND2_KEEP					(0x0000000c)			//ため系の技
+#define	ADD_COND2_SHIME					(0x0000000d)			//しめ系の技
+#define	ADD_COND2_HANEKAERI				(0x0000000e)			//はねかえり系の技(1/4)
+#define	ADD_COND2_POWUP					(0x0000000f)			//攻撃力アップ
+#define	ADD_COND2_DEFUP					(0x00000010)			//防御力アップ
+#define	ADD_COND2_AGIUP					(0x00000011)			//素早さアップ
+#define	ADD_COND2_SPEPOWUP				(0x00000012)			//特攻アップ
+#define	ADD_COND2_SPEDEFUP				(0x00000013)			//特防アップ
+#define	ADD_COND2_HITUP					(0x00000014)			//命中率アップ
+#define	ADD_COND2_AVOIDUP				(0x00000015)			//回避率アップ
+#define	ADD_COND2_POWDOWN				(0x00000016)			//攻撃力ダウン
+#define	ADD_COND2_DEFDOWN				(0x00000017)			//防御力ダウン
+#define	ADD_COND2_AGIDOWN				(0x00000018)			//素早さダウン
+#define	ADD_COND2_SPEPOWDOWN			(0x00000019)			//特攻ダウン
+#define	ADD_COND2_SPEDEFDOWN			(0x0000001a)			//特防ダウン
+#define	ADD_COND2_HITDOWN				(0x0000001b)			//命中率ダウン
+#define	ADD_COND2_AVOIDDOWN				(0x0000001c)			//回避率ダウン
+#define	ADD_COND2_HANDOU				(0x0000001d)			//はんどう
+#define	ADD_COND2_IKARI					(0x0000001e)			//いかり
+#define	ADD_COND2_DOROBOU				(0x0000001f)			//どろぼう
+#define	ADD_COND2_KUROIMANAZASHI		(0x00000020)			//くろいまなざし
+#define	ADD_COND2_AKUMU					(0x00000021)			//あくむ
+#define	ADD_COND2_GENSHINOCHIKARA		(0x00000022)			//げんしのちから
+#define	ADD_COND2_KOUSOKUSPIN			(0x00000023)			//こうそくスピン
+#define	ADD_COND_NOMAHI					(0x00000024)			//まひをなおす
+#define	ADD_COND2_BAKADIKARA			(0x00000025)			//ばかぢから
+#define	ADD_COND2_HANEKAERI2			(0x00000026)			//はねかえり系の技(1/3)
+#define	ADD_COND2_POWUP2				(0x00000027)			//攻撃力アップ(2段階）
+#define	ADD_COND2_DEFUP2				(0x00000028)			//防御力アップ(2段階）
+#define	ADD_COND2_AGIUP2				(0x00000029)			//素早さアップ(2段階）
+#define	ADD_COND2_SPEPOWUP2				(0x0000002a)			//特攻アップ(2段階）
+#define	ADD_COND2_SPEDEFUP2				(0x0000002b)			//特防アップ(2段階）
+#define	ADD_COND2_HITUP2				(0x0000002c)			//命中率アップ(2段階）
+#define	ADD_COND2_AVOIDUP2				(0x0000002d)			//回避率アップ(2段階）
+#define	ADD_COND2_POWDOWN2				(0x0000002e)			//攻撃力ダウン(2段階）
+#define	ADD_COND2_DEFDOWN2				(0x0000002f)			//防御力ダウン(2段階）
+#define	ADD_COND2_AGIDOWN2				(0x00000030)			//素早さダウン(2段階）
+#define	ADD_COND2_SPEPOWDOWN2			(0x00000031)			//特攻ダウン(2段階）
+#define	ADD_COND2_SPEDEFDOWN2			(0x00000032)			//特防ダウン(2段階）
+#define	ADD_COND2_HITDOWN2				(0x00000033)			//命中率ダウン(2段階）
+#define	ADD_COND2_AVOIDDOWN2			(0x00000034)			//回避率ダウン(2段階）
+#define	ADD_COND2_ABARERU				(0x00000035)			//あばれる
+#define	ADD_COND2_HATAKIOTOSU			(0x00000036)			//はたきおとす
+#define	ADD_COND2_COSMO_POWER			(0x00000037)			//コスモパワー（複数アップ（abiritycnt系））
+#define	ADD_COND2_BUILD_UP				(0x00000038)			//ビルドアップ（複数アップ（abiritycnt系））
+#define	ADD_COND2_KUSUGURU				(0x00000039)			//くすぐる（複数ダウン（abiritycnt系））
+#define	ADD_COND2_MEISOU				(0x0000003a)			//めいそう（複数アップ（abiritycnt系））
+#define	ADD_COND2_RYUUNOMAI				(0x0000003b)			//りゅうのまい（複数アップ（abiritycnt系））
+#define	ADD_COND2_SUITORI				(0x0000003c)			//HPすいとり系
+#define	ADD_COND2_YUMEKUI				(0x0000003d)			//ゆめくい
+#define	ADD_COND2_KUROIKIRI				(0x0000003e)			//くろいきり
+#define	ADD_COND2_GAMAN					(0x0000003f)			//がまん
+#define	ADD_COND2_WARUAGAKI				(0x00000040)			//わるあがき
+#define	ADD_COND2_TEXTURE				(0x00000041)			//テクスチャー
+#define	ADD_COND2_JIKOSAISEI			(0x00000042)			//じこさいせい
+#define	ADD_COND2_HIKARINOKABE			(0x00000043)			//ひかりのかべ
+#define	ADD_COND2_RIHUREKUTAA			(0x00000044)			//リフレクター
+#define	ADD_COND2_SIROIKIRI				(0x00000045)			//しろいきり
+#define	ADD_COND2_KIAIDAME				(0x00000046)			//きあいだめ
+#define	ADD_COND2_MONOMANE				(0x00000047)			//ものまね
+#define	ADD_COND2_YADORIGI				(0x00000048)			//やどりぎ
+#define	ADD_COND2_KANASIBARI			(0x00000049)			//かなしばり
+#define	ADD_COND2_ENCORE				(0x0000004a)			//アンコール
+#define	ADD_COND2_ITAMIWAKE				(0x0000004b)			//いたみわけ
+#define	ADD_COND2_TEXTURE2				(0x0000004c)			//テクスチャ２
+#define	ADD_COND2_LOCKON				(0x0000004d)			//ロックオン
+#define	ADD_COND2_SKETCH				(0x0000004e)			//スケッチ
+#define	ADD_COND2_FEINT					(0x0000004f)			//フェイント
+#define	ADD_COND2_MICHIDURE				(0x00000050)			//みちづれ
+#define	ADD_COND2_URAMI					(0x00000051)			//うらみ
+#define	ADD_COND2_GUARD					(0x00000052)			//まもる、みきり、こらえるなど
+#define	ADD_COND2_IYASINOSUZU			(0x00000053)			//いやしのすず
+#define	ADD_COND2_MIGAWARI				(0x00000054)			//みがわり
+#define	ADD_COND2_HUKITOBASI			(0x00000055)			//ふきとばし
+#define	ADD_COND2_HENSIN				(0x00000056)			//へんしん
+#define	ADD_COND2_CHIISAKUNARU			(0x00000057)			//ちいさくなる
+#define	ADD_COND2_NORMAL_NOROI			(0x00000058)			//のろい（ノーマル）
+#define	ADD_COND2_GHOST_NOROI			(0x00000059)			//のろい（ゴースト）
+#define	ADD_COND2_MESSAGE_WORK			(0x0000005a)			//メッセージ表示
+#define	ADD_COND2_MIYABURU				(0x0000005b)			//みやぶる
+#define	ADD_COND2_HOROBINOUTA			(0x0000005c)			//ほろびのうた
+#define	ADD_COND2_TENKOU				(0x0000005d)			//天気系
+#define	ADD_COND2_IBARU					(0x0000005e)			//いばる
+#define	ADD_COND2_MEROMERO				(0x0000005f)			//メロメロ
+#define	ADD_COND2_SHINPI				(0x00000060)			//しんぴのまもり
+#define	ADD_COND2_PRESENT				(0x00000061)			//プレゼント
+#define	ADD_COND2_MAGNITUDE				(0x00000062)			//マグニチュード
+#define	ADD_COND2_BATONTOUCH			(0x00000063)			//バトンタッチ
+#define	ADD_COND2_HARADAIKO				(0x00000064)			//はらだいこ
+#define	ADD_COND2_TELEPORT				(0x00000065)			//テレポート
+#define	ADD_COND2_HUKURODATAKI			(0x00000066)			//ふくろだたき
+#define	ADD_COND2_TAKUWAERU				(0x00000067)			//たくわえる
+#define	ADD_COND2_NOMIKOMU				(0x00000068)			//のみこむ
+#define	ADD_COND2_ICHAMON				(0x00000069)			//いちゃもん
+#define	ADD_COND2_ODATERU				(0x0000006a)			//おだてる
+#define	ADD_COND2_OKIMIYAGE				(0x0000006b)			//おきみやげ
+#define	ADD_COND2_JUUDEN				(0x0000006c)			//じゅうでん
+#define	ADD_COND2_CHOUHATSU				(0x0000006d)			//ちょうはつ
+#define	ADD_COND2_TRICK					(0x0000006e)			//トリック
+#define	ADD_COND2_NARIKIRI				(0x0000006f)			//なりきり
+#define	ADD_COND2_KAWARAWARI			(0x00000070)			//かわらわり
+#define	ADD_COND2_AKUBI					(0x00000071)			//あくび
+#define	ADD_COND2_SKILLSWAP				(0x00000072)			//スキルスワップ
+#define	ADD_COND2_REFRESH				(0x00000073)			//リフレッシュ
+#define	ADD_COND2_HANEYASUME			(0x00000074)			//はねやすめ
+#define	ADD_COND_NONEMURI				(0x00000075)			//めざましビンタ
+#define	ADD_COND2_JUURYOKU				(0x00000076)			//じゅうりょく
+#define	ADD_COND2_MIRACLE_EYE			(0x00000077)			//ミラクルアイ
+#define	ADD_COND2_IYASINONEGAI			(0x00000078)			//いやしのねがい
+#define	ADD_COND2_OIKAZE				(0x00000079)			//おいかぜ
+#define	ADD_COND2_INFIGHT				(0x0000007a)			//インファイト
+#define	ADD_COND2_POWER_TRICK			(0x0000007b)			//パワートリック
+#define	ADD_COND2_IEKI					(0x0000007c)			//いえき
+#define	ADD_COND2_OMAZINAI				(0x0000007d)			//おまじない
+#define	ADD_COND2_POWER_SWAP			(0x0000007e)			//パワースワップ
+#define	ADD_COND2_GUARD_SWAP			(0x0000007f)			//ガードスワップ
+#define	ADD_COND2_NAYAMINOTANE			(0x00000080)			//なやみのたね
+#define	ADD_COND2_HEART_SWAP			(0x00000081)			//ハートスワップ
+#define	ADD_COND2_HEAT_ATTACK			(0x00000082)			//ヒートアタック
+#define	ADD_COND2_KIRIHARAI				(0x00000083)			//きりはらい
+#define	ADD_COND2_HEALBLOCK				(0x00000084)			//ヒールブロック
+#define	ADD_COND2_TONBOGAERI			(0x00000085)			//とんぼがえり
+#define	ADD_COND2_SHUTOUT				(0x00000086)			//シャットアウト
+#define	ADD_COND2_TSUIBAMU				(0x00000087)			//ついばむ
+#define	ADD_COND2_NAGETSUKERU			(0x00000088)			//なげつける
+#define	ADD_COND2_VOLT					(0x00000089)			//ボルテッカー
+#define	ADD_COND2_HANEKAERI3			(0x0000008a)			//はねかえり系の技(1/2)
+#define	ADD_COND2_YAKEDO_HIRUMU			(0x0000008b)			//やけど＋ひるむの追加効果
+#define	ADD_COND2_KOORI_HIRUMU			(0x0000008c)			//こおり＋ひるむの追加効果
+#define	ADD_COND2_MAHI_HIRUMU			(0x0000008d)			//まひ＋ひるむの追加効果
+#define	ADD_COND2_OSYABERI				(0x0000008e)			//おしゃべり
+#define	ADD_COND2_MIKADUKINOMAI			(0x0000008f)			//みかづきのまい
+#define	ADD_COND2_SURIKOMI				(0x00000090)			//すりこみ
 	
-#define	ADD_STATUS_WAZAKOUKA_KAWARAWARI	(0x00800000)			//�Z���L�̒ǉ����ʁi���������L�j
-#define	ADD_STATUS_WAZAKOUKA_NOHP		(0x01000000)			//�Z���L�̒ǉ����ʁiNoHit�A�g������`�F�b�N�j
-#define	ADD_STATUS_WAZAKOUKA_CHECK		(0x02000000)			//�Z���L�̒ǉ����ʁiNoHit�ANoHp�A�g������`�F�b�N�j
-#define	ADD_STATUS_WAZAKOUKA_PROB		(0x04000000)			//�Z���L�̒ǉ����ʁi�m���Ŕ������邩���`�F�b�N�j
-#define	ADD_STATUS_NO_TOKUSEI			(0x08000000)			//�����ȂǂŖh���Ȃ�
-#define	ADD_STATUS_WAZAKOUKA_NOHIT		(0x10000000)			//�Z���L�̒ǉ����ʁi�Z���O��Ă��Ă��`�F�b�N�j
-#define	ADD_STATUS_WAZAKOUKA			(0x20000000)			//�Z���L�̒ǉ�����
-#define	ADD_STATUS_ATTACK				(0x40000000)			//AttckClient��ǉ����ʑΏۂɂ���
-#define	ADD_STATUS_DEFENCE				(0x80000000)			//DefenceClient��ǉ����ʑΏۂɂ���
+#define	ADD_STATUS_WAZAKOUKA_KAWARAWARI	(0x00800000)			//技特有の追加効果（かわらわり特有）
+#define	ADD_STATUS_WAZAKOUKA_NOHP		(0x01000000)			//技特有の追加効果（NoHit、身代わりもチェック）
+#define	ADD_STATUS_WAZAKOUKA_CHECK		(0x02000000)			//技特有の追加効果（NoHit、NoHp、身代わりもチェック）
+#define	ADD_STATUS_WAZAKOUKA_PROB		(0x04000000)			//技特有の追加効果（確率で発動するかもチェック）
+#define	ADD_STATUS_NO_TOKUSEI			(0x08000000)			//特性などで防げない
+#define	ADD_STATUS_WAZAKOUKA_NOHIT		(0x10000000)			//技特有の追加効果（技が外れていてもチェック）
+#define	ADD_STATUS_WAZAKOUKA			(0x20000000)			//技特有の追加効果
+#define	ADD_STATUS_ATTACK				(0x40000000)			//AttckClientを追加効果対象にする
+#define	ADD_STATUS_DEFENCE				(0x80000000)			//DefenceClientを追加効果対象にする
 
-#define	ADD_STATUS_MASK				(0x007fffff)			//�ǉ����ʃi���o�[���������o��MASK
+#define	ADD_STATUS_MASK				(0x007fffff)			//追加効果ナンバーだけを取り出すMASK
 
-#define	ADD_STATUS_NONE				(0)						//�ǉ����ʎ�ށF�ǉ����ʂȂ�
-#define	ADD_STATUS_DIRECT			(1)						//�ǉ����ʎ�ށF����
-#define	ADD_STATUS_INDIRECT			(2)						//�ǉ����ʎ�ށF�Ԑ�
-#define	ADD_STATUS_TOKUSEI			(3)						//�ǉ����ʎ�ށF����
-#define	ADD_STATUS_WAZA_KOUKA		(4)						//�ǉ����ʎ�ށF�Z����
-#define	ADD_STATUS_SOUBIITEM		(5)						//�ǉ����ʎ�ށF�����A�C�e������
-#define	ADD_STATUS_DOKUBISI			(6)						//�ǉ����ʎ�ށF�ǂ��т��ǉ�����
-#define	ADD_STATUS_IGNORE			(7)						//�ǉ����ʎ�ށF�������Ƃ������Ȃ����̒ǉ�����
+#define	ADD_STATUS_NONE				(0)						//追加効果種類：追加効果なし
+#define	ADD_STATUS_DIRECT			(1)						//追加効果種類：直接
+#define	ADD_STATUS_INDIRECT			(2)						//追加効果種類：間接
+#define	ADD_STATUS_TOKUSEI			(3)						//追加効果種類：特性
+#define	ADD_STATUS_WAZA_KOUKA		(4)						//追加効果種類：技効果
+#define	ADD_STATUS_SOUBIITEM		(5)						//追加効果種類：装備アイテム効果
+#define	ADD_STATUS_DOKUBISI			(6)						//追加効果種類：どくびし追加効果
+#define	ADD_STATUS_IGNORE			(7)						//追加効果種類：いうことをきかない時の追加効果
 
-//abiritycnt�̓Y����
-#define	COND_HP				(0x00)	///<�̗�
-#define	COND_POW			(0x01)	///<�U����
-#define	COND_DEF			(0x02)	///<�h���
-#define	COND_AGI			(0x03)	///<�f����
-#define	COND_SPEPOW			(0x04)	///<���U
-#define	COND_SPEDEF			(0x05)	///<���h
-#define	COND_HIT			(0x06)	///<������
-#define	COND_AVOID			(0x07)	///<���
-#define	COND_MAX			(0x08)	///<COND��MAX�i���낢����p�j
+//abiritycntの添え字
+#define	COND_HP				(0x00)	///<体力
+#define	COND_POW			(0x01)	///<攻撃力
+#define	COND_DEF			(0x02)	///<防御力
+#define	COND_AGI			(0x03)	///<素早さ
+#define	COND_SPEPOW			(0x04)	///<特攻
+#define	COND_SPEDEF			(0x05)	///<特防
+#define	COND_HIT			(0x06)	///<命中率
+#define	COND_AVOID			(0x07)	///<回避率
+#define	COND_MAX			(0x08)	///<CONDのMAX（くろいきり用）
 
-#define	COND_NUM_DEFAULT	(6)		///<abiritycnt�̃f�t�H���g�l
+#define	COND_NUM_DEFAULT	(6)		///<abiritycntのデフォルト値
 
-//���b�Z�[�W�p�̏�Ԉُ�i���o�[��`
+//メッセージ用の状態異常ナンバー定義
 #define	MSG_COND_NEMURI		(0)
 #define	MSG_COND_DOKU		(1)
 #define	MSG_COND_YAKEDO		(2)
@@ -216,11 +216,11 @@
 #define	MSG_COND_KONRAN		(5)
 #define	MSG_COND_MEROMERO	(6)
 
-//�V��_���[�W�p�̒�`
+//天候ダメージ用の定義
 #define	TENKOU_URUOIBODY	(1)
 #define	TENKOU_SUNPOWER		(2)
 
-///<�T�[�o�V�[�P���X�̃C���f�b�N�X�錾
+///<サーバシーケンスのインデックス宣言
 #define	SUB_SEQ_START_NO					(0)
 #define	SUB_SEQ_POKEMON_ENCOUNT				(SUB_SEQ_START_NO+0)
 #define	SUB_SEQ_WAZA_OUT					(SUB_SEQ_START_NO+1)
@@ -515,7 +515,7 @@
 #define	SUB_SEQ_TSUIBAMU_CHECK				(SUB_SEQ_START_NO+290)
 #define	SUB_SEQ_WAZA_EFFECT_WAIT			(SUB_SEQ_START_NO+291)
 #define	SUB_SEQ_EQPITEM_2TURNWO1TURN_ROCKET	(SUB_SEQ_START_NO+292)
-//-------��������v���`�i�Œǉ�
+//-------ここからプラチナで追加
 #define	SUB_SEQ_FORM_CHG_CHECK				(SUB_SEQ_START_NO+293)
 #define	SUB_SEQ_FIELD_HARE					(SUB_SEQ_START_NO+294)
 #define	SUB_SEQ_FIELD_TRICKROOM				(SUB_SEQ_START_NO+295)
@@ -526,35 +526,35 @@
 //		waza_status_flag
 //=========================================================================
 
-#define	WAZA_STATUS_FLAG_NOHIT					(0x00000001)	//�������v�Z�ł͂���
-#define	WAZA_STATUS_FLAG_BATSUGUN				(0x00000002)	//���ʂ͔��Q
-#define	WAZA_STATUS_FLAG_IMAHITOTSU				(0x00000004)	//���ʂ͂��܂ЂƂ�
-#define	WAZA_STATUS_FLAG_KOUKANAI				(0x00000008)	//���ʂ��Ȃ�
-#define	WAZA_STATUS_FLAG_CRITICAL				(0x00000010)	//�}��
-#define	WAZA_STATUS_FLAG_ICHIGEKI				(0x00000020)	//�ꌂ�K�E
-#define	WAZA_STATUS_FLAG_UMAKUKIMARAN			(0x00000040)	//���܂����܂��
-#define	WAZA_STATUS_FLAG_KORAETA				(0x00000080)	//���炦��
-#define	WAZA_STATUS_FLAG_ITEM_KORAETA			(0x00000100)	//�����A�C�e���ł��炦��
-#define	WAZA_STATUS_FLAG_PP_NONE				(0x00000200)	//PP���Ȃ�
-#define	WAZA_STATUS_FLAG_LOCK_ON				(0x00000400)	//���b�N�I����ԂŃq�b�g
-#define	WAZA_STATUS_FLAG_JIMEN_NOHIT			(0x00000800)	//���߂�Z��������Ȃ�
-#define	WAZA_STATUS_FLAG_ICHIGEKI_NOHIT			(0x00001000)	//�ꌂ�K�E�������v�Z���ʂœ�����Ȃ�
-#define	WAZA_STATUS_FLAG_NANIMOOKORAN			(0x00002000)	//�Ȃɂ�������Ȃ��i�͂˂�j
-#define	WAZA_STATUS_FLAG_RENZOKU_NOHIT			(0x00004000)	//�A���U���̓r���ŊO�ꂽ
-#define	WAZA_STATUS_FLAG_MAMORU_NOHIT			(0x00008000)	//�܂���ꂽ
-#define	WAZA_STATUS_FLAG_KIE_NOHIT				(0x00010000)	//��ɂ��Ȃ��̂ŊO�ꂽ
-#define	WAZA_STATUS_FLAG_WAZA_KOYUU_NOHIT		(0x00020000)	//�Z���ƂɌŗL�Ȃ͂��ꃁ�b�Z�[�W���o��
-#define	WAZA_STATUS_FLAG_BATSUGUN_NOHIT			(0x00040000)	//�΂���ȊO������Ȃ�
-#define	WAZA_STATUS_FLAG_GANZYOU_NOHIT			(0x00080000)	//���񂶂傤�œ�����Ȃ�
-#define	WAZA_STATUS_FLAG_DENZIHUYUU_NOHIT		(0x00100000)	//�ł񂶂ӂ䂤�œ�����Ȃ�
+#define	WAZA_STATUS_FLAG_NOHIT					(0x00000001)	//命中率計算ではずれ
+#define	WAZA_STATUS_FLAG_BATSUGUN				(0x00000002)	//効果は抜群
+#define	WAZA_STATUS_FLAG_IMAHITOTSU				(0x00000004)	//効果はいまひとつ
+#define	WAZA_STATUS_FLAG_KOUKANAI				(0x00000008)	//効果がない
+#define	WAZA_STATUS_FLAG_CRITICAL				(0x00000010)	//急所
+#define	WAZA_STATUS_FLAG_ICHIGEKI				(0x00000020)	//一撃必殺
+#define	WAZA_STATUS_FLAG_UMAKUKIMARAN			(0x00000040)	//うまくきまらん
+#define	WAZA_STATUS_FLAG_KORAETA				(0x00000080)	//こらえる
+#define	WAZA_STATUS_FLAG_ITEM_KORAETA			(0x00000100)	//装備アイテムでこらえる
+#define	WAZA_STATUS_FLAG_PP_NONE				(0x00000200)	//PPがない
+#define	WAZA_STATUS_FLAG_LOCK_ON				(0x00000400)	//ロックオン状態でヒット
+#define	WAZA_STATUS_FLAG_JIMEN_NOHIT			(0x00000800)	//じめん技が当たらない
+#define	WAZA_STATUS_FLAG_ICHIGEKI_NOHIT			(0x00001000)	//一撃必殺命中率計算結果で当たらない
+#define	WAZA_STATUS_FLAG_NANIMOOKORAN			(0x00002000)	//なにもおこらない（はねる）
+#define	WAZA_STATUS_FLAG_RENZOKU_NOHIT			(0x00004000)	//連続攻撃の途中で外れた
+#define	WAZA_STATUS_FLAG_MAMORU_NOHIT			(0x00008000)	//まもられた
+#define	WAZA_STATUS_FLAG_KIE_NOHIT				(0x00010000)	//場にいないので外れた
+#define	WAZA_STATUS_FLAG_WAZA_KOYUU_NOHIT		(0x00020000)	//技ごとに固有なはずれメッセージを出す
+#define	WAZA_STATUS_FLAG_BATSUGUN_NOHIT			(0x00040000)	//ばつぐん以外当たらない
+#define	WAZA_STATUS_FLAG_GANZYOU_NOHIT			(0x00080000)	//がんじょうで当たらない
+#define	WAZA_STATUS_FLAG_DENZIHUYUU_NOHIT		(0x00100000)	//でんじふゆうで当たらない
 
-#define	WAZA_STATUS_FLAG_SIPPAI					(0x80000000)	//�Z�̔����Ɏ��s�i�Z�̃V�[�P���X���̂��I������j
+#define	WAZA_STATUS_FLAG_SIPPAI					(0x80000000)	//技の発動に失敗（技のシーケンス自体を終了する）
 
 #define	WAZA_STATUS_FLAG_NOHIT_OFF		(WAZA_STATUS_FLAG_NOHIT^0xffffffff)
 #define	WAZA_STATUS_FLAG_BATSUGUN_OFF	(WAZA_STATUS_FLAG_BATSUGUN^0xffffffff)
 #define	WAZA_STATUS_FLAG_IMAHITOTSU_OFF	(WAZA_STATUS_FLAG_IMAHITOTSU^0xffffffff)
 
-//�Z��������Ȃ��n�̃t���O
+//技が当たらない系のフラグ
 #define	WAZA_STATUS_FLAG_HAZURE			(WAZA_STATUS_FLAG_NOHIT|WAZA_STATUS_FLAG_KOUKANAI|\
 										 WAZA_STATUS_FLAG_UMAKUKIMARAN|\
 										 WAZA_STATUS_FLAG_JIMEN_NOHIT|\
@@ -571,27 +571,27 @@
 										 WAZA_STATUS_FLAG_PP_NONE|\
 										 WAZA_STATUS_FLAG_SIPPAI)
 
-//�^�C�v�ɂ��A�΂���Ƃ��܂ЂƂ̑��E
+//タイプによる、ばつぐんといまひとつの相殺
 #define	WAZA_STATUS_FLAG_SOUSAI			(WAZA_STATUS_FLAG_BATSUGUN|\
 										 WAZA_STATUS_FLAG_IMAHITOTSU)
 
-//�y�i���e�B���ۂ��Ȃ�NOHIT�n�t���O
+//ペナルティを課さないNOHIT系フラグ
 //#define	WAZA_STATUS_FLAG_NOHIT_PENALTY	(WAZA_STATUS_FLAG_NOHIT|\ 
 //										 WAZA_STATUS_FLAG_KIE_NOHIT|\ 
 //										 WAZA_STATUS_FLAG_MAMORU_NOHIT)^0xffffffff
 
-//�y�i���e�B���ۂ�NOHIT�n�t���O
+//ペナルティを課すNOHIT系フラグ
 #define	WAZA_STATUS_FLAG_NOHIT_PENALTY	(WAZA_STATUS_FLAG_NOHIT|\
 										 WAZA_STATUS_FLAG_KIE_NOHIT|\
 										 WAZA_STATUS_FLAG_MAMORU_NOHIT)
 
-//���܂����܂��ɕω�������NOHIT�n�t���O
+//うまくきまらんに変化させるNOHIT系フラグ
 #define	WAZA_STATUS_FLAG_NOHIT_CHG		(WAZA_STATUS_FLAG_NOHIT|WAZA_STATUS_FLAG_KIE_NOHIT)
 
-//�������̒ǉ����ʂ𔭓�������NOHIT�n�t���O
+//かわらわりの追加効果を発動させるNOHIT系フラグ
 #define	WAZA_STATUS_FLAG_KAWARAWARI		(WAZA_STATUS_FLAG_KOUKANAI|WAZA_STATUS_FLAG_BATSUGUN_NOHIT)
 
-//POKEMON_BLINK_SET�p�̒�`
+//POKEMON_BLINK_SET用の定義
 
 #define	WAZA_HIT_NORMAL			(0)
 #define	WAZA_HIT_IMAHITOTSU		(1)
@@ -601,23 +601,23 @@
 //		field_condition
 //=========================================================================
 
-#define	FIELD_CONDITION_AME				(0x00000001)	//�J���
-#define	FIELD_CONDITION_AMEHURASHI		(0x00000002)	//�J��ԁi����or�t�B�[���h�V��j
-#define	FIELD_CONDITION_AME_ALL			(0x00000003)	//�J��ԁi���ׂāj
-#define	FIELD_CONDITION_SUNAARASHI		(0x00000004)	//�������
-#define	FIELD_CONDITION_SUNAOKOSHI		(0x00000008)	//�������(����or�t�B�[���h�V��j
-#define	FIELD_CONDITION_SUNAARASHI_ALL	(0x0000000c)	//�������(���ׂāj
-#define	FIELD_CONDITION_HARE			(0x00000010)	//������
-#define	FIELD_CONDITION_HIDERI			(0x00000020)	//������(����or�t�B�[���h�V��j
-#define	FIELD_CONDITION_HARE_ALL		(0x00000030)	//������(���ׂāj
-#define	FIELD_CONDITION_ARARE			(0x00000040)	//�������
-#define	FIELD_CONDITION_YUKIHURASHI		(0x00000080)	//�������(����or�t�B�[���h�V��j
-#define	FIELD_CONDITION_ARARE_ALL		(0x000000c0)	//�������(���ׂāj
+#define	FIELD_CONDITION_AME				(0x00000001)	//雨状態
+#define	FIELD_CONDITION_AMEHURASHI		(0x00000002)	//雨状態（特性orフィールド天候）
+#define	FIELD_CONDITION_AME_ALL			(0x00000003)	//雨状態（すべて）
+#define	FIELD_CONDITION_SUNAARASHI		(0x00000004)	//砂嵐状態
+#define	FIELD_CONDITION_SUNAOKOSHI		(0x00000008)	//砂嵐状態(特性orフィールド天候）
+#define	FIELD_CONDITION_SUNAARASHI_ALL	(0x0000000c)	//砂嵐状態(すべて）
+#define	FIELD_CONDITION_HARE			(0x00000010)	//晴れ状態
+#define	FIELD_CONDITION_HIDERI			(0x00000020)	//晴れ状態(特性orフィールド天候）
+#define	FIELD_CONDITION_HARE_ALL		(0x00000030)	//晴れ状態(すべて）
+#define	FIELD_CONDITION_ARARE			(0x00000040)	//あられ状態
+#define	FIELD_CONDITION_YUKIHURASHI		(0x00000080)	//あられ状態(特性orフィールド天候）
+#define	FIELD_CONDITION_ARARE_ALL		(0x000000c0)	//あられ状態(すべて）
 
-#define	FIELD_CONDITION_SAWAGU			(0x00000f00)	//���킪������ԁiClientNo�ŗ��Ă�j
-#define	FIELD_CONDITION_JUURYOKU		(0x00007000)	//���イ��傭
-#define	FIELD_CONDITION_HUKAIKIRI		(0x00008000)	//�ӂ�������
-#define	FIELD_CONDITION_TRICKROOM		(0x00070000)	//�g���b�N���[��
+#define	FIELD_CONDITION_SAWAGU			(0x00000f00)	//さわがしい状態（ClientNoで立てる）
+#define	FIELD_CONDITION_JUURYOKU		(0x00007000)	//じゅうりょく
+#define	FIELD_CONDITION_HUKAIKIRI		(0x00008000)	//ふかいきり
+#define	FIELD_CONDITION_TRICKROOM		(0x00070000)	//トリックルーム
 
 #define	FIELD_CONDITION_AME_OFF			(0x00000001^0xffffffff)
 #define	FIELD_CONDITION_AMEHURASHI_OFF	(0x00000002^0xffffffff)
@@ -627,15 +627,15 @@
 #define	FIELD_CONDITION_HIDERI_OFF		(0x00000020^0xffffffff)
 #define	FIELD_CONDITION_ARARE_OFF		(0x00000040^0xffffffff)
 #define	FIELD_CONDITION_SAWAGU_OFF		(0x00000f00^0xffffffff)
-#define	FIELD_CONDITION_JUURYOKU_OFF	(0x00007000^0xffffffff)	//���イ��傭
-#define	FIELD_CONDITION_HUKAIKIRI_OFF	(0x00008000^0xffffffff)	//�ӂ�������
-#define	FIELD_CONDITION_TRICKROOM_OFF	(0x00070000^0xffffffff)	//�g���b�N���[��
+#define	FIELD_CONDITION_JUURYOKU_OFF	(0x00007000^0xffffffff)	//じゅうりょく
+#define	FIELD_CONDITION_HUKAIKIRI_OFF	(0x00008000^0xffffffff)	//ふかいきり
+#define	FIELD_CONDITION_TRICKROOM_OFF	(0x00070000^0xffffffff)	//トリックルーム
 
 #define	FIELD_CONDITION_TENKI_CHG		(FIELD_CONDITION_AME_ALL|FIELD_CONDITION_HARE_ALL|FIELD_CONDITION_ARARE_ALL)
 #define	FIELD_CONDITION_TENKI			(FIELD_CONDITION_AME_ALL|FIELD_CONDITION_SUNAARASHI_ALL|FIELD_CONDITION_HARE_ALL|FIELD_CONDITION_ARARE_ALL|FIELD_CONDITION_HUKAIKIRI)
 #define	FIELD_CONDITION_TENKI_OFF		(FIELD_CONDITION_AME_ALL|FIELD_CONDITION_SUNAARASHI_ALL|FIELD_CONDITION_HARE_ALL|FIELD_CONDITION_ARARE_ALL|FIELD_CONDITION_HUKAIKIRI)^0xffffffff
 
-//�\�[���[�r�[���̈З͂𔼌�����V��
+//ソーラービームの威力を半減する天候
 #define	FIELD_CONDITION_NO_SOLAR		(FIELD_CONDITION_AME_ALL|FIELD_CONDITION_SUNAARASHI_ALL|\
 										 FIELD_CONDITION_ARARE_ALL|FIELD_CONDITION_HUKAIKIRI)
 
@@ -657,18 +657,18 @@
 //		side_condition
 //=========================================================================
 
-#define	SIDE_CONDITION_BUTSURIGUARD		(0x00000001)	//�����U���_���[�W����
-#define	SIDE_CONDITION_TOKUSYUGUARD		(0x00000002)	//����U���_���[�W����
-#define	SIDE_CONDITION_MAKIBISHI		(0x00000004)	//�܂��т��i�g���[�i�[AI�Ŏg�p�j
-#define	SIDE_CONDITION_SHINPI			(0x00000008)	//����҂̂܂���
-#define	SIDE_CONDITION_MIRAIYOCHI		(0x00000010)	//�݂炢�悿�i�g���[�i�[AI�Ŏg�p�j
-#define	SIDE_CONDITION_NEGAIGOTO		(0x00000020)	//�˂�������
-#define	SIDE_CONDITION_SHIROIKIRI		(0x00000040)	//���낢����
-#define	SIDE_CONDITION_STEALTHROCK		(0x00000080)	//�X�e���X���b�N
-#define	SIDE_CONDITION_OIKAZE			(0x00000300)	//��������
-#define	SIDE_CONDITION_DOKUBISHI		(0x00000400)	//�ǂ��т��i�g���[�i�[AI�Ŏg�p�j
-//#define	�����Ă܂�					(0x00000800)	//��
-#define	SIDE_CONDITION_OMAZINAI			(0x00007000)	//���܂��Ȃ�
+#define	SIDE_CONDITION_BUTSURIGUARD		(0x00000001)	//物理攻撃ダメージ半減
+#define	SIDE_CONDITION_TOKUSYUGUARD		(0x00000002)	//特殊攻撃ダメージ半減
+#define	SIDE_CONDITION_MAKIBISHI		(0x00000004)	//まきびし（トレーナーAIで使用）
+#define	SIDE_CONDITION_SHINPI			(0x00000008)	//しんぴのまもり
+#define	SIDE_CONDITION_MIRAIYOCHI		(0x00000010)	//みらいよち（トレーナーAIで使用）
+#define	SIDE_CONDITION_NEGAIGOTO		(0x00000020)	//ねがいごと
+#define	SIDE_CONDITION_SHIROIKIRI		(0x00000040)	//しろいきり
+#define	SIDE_CONDITION_STEALTHROCK		(0x00000080)	//ステルスロック
+#define	SIDE_CONDITION_OIKAZE			(0x00000300)	//おいかぜ
+#define	SIDE_CONDITION_DOKUBISHI		(0x00000400)	//どくびし（トレーナーAIで使用）
+//#define	あいてます					(0x00000800)	//空き
+#define	SIDE_CONDITION_OMAZINAI			(0x00007000)	//おまじない
 
 #define	SIDE_CONDITION_BUTSURIGUARD_OFF		(0x00000001^0xffffffff)
 #define	SIDE_CONDITION_TOKUSYUGUARD_OFF		(0x00000002^0xffffffff)
@@ -684,70 +684,70 @@
 #define	OMAZINAI_SHIFT	(12)
 
 //=========================================================================
-//	waza_kouka�iAI��IF_WAZAKOUKA�ł��g�p����j
+//	waza_kouka（AIのIF_WAZAKOUKAでも使用する）
 //=========================================================================
 
-#define	WAZAKOUKA_YADORIGI		0x00000003		//���h���M�o����ClientNo���i�[
-#define	WAZAKOUKA_YADORARE		0x00000004		//���h���M
-#define	WAZAKOUKA_LOCKON		0x00000018		//���b�N�I������Ă���
-#define	WAZAKOUKA_HOROBINOUTA	0x00000020		//�ق�т̂���
-#define	WAZAKOUKA_SORAWOTOBU	0x00000040		//������Ƃ�
-#define	WAZAKOUKA_ANAWOHORU		0x00000080		//���Ȃ��ق�
-#define	WAZAKOUKA_CHIISAKUNARU	0x00000100		//���������Ȃ�
-#define	WAZAKOUKA_JUUDEN		0x00000200		//���イ�ł�
-#define	WAZAKOUKA_NEWOHARU		0x00000400		//�˂��͂�
-#define	WAZAKOUKA_AKUBI			0x00001800		//������
-#define	WAZAKOUKA_HUUIN			0x00002000		//�ӂ�����
-#define	WAZAKOUKA_ONNEN			0x00004000		//����˂�
-#define	WAZAKOUKA_NOCRITICAL	0x00008000		//�N���e�B�J���q�b�g���Ȃ�
-#define	WAZAKOUKA_DOROASOBI		0x00010000		//�ǂ날����
-#define	WAZAKOUKA_MIZUASOBI		0x00020000		//�݂�������
-#define	WAZAKOUKA_DAIBINGU		0x00040000		//�_�C�r���O
-#define	WAZAKOUKA_IKAKU			0x00080000		//������
-#define	WAZAKOUKA_TRACE			0x00100000		//�g���[�X
-#define	WAZAKOUKA_IEKI			0x00200000		//������
-#define	WAZAKOUKA_MIRACLE_EYE	0x00400000		//�~���N���A�C
-#define	WAZAKOUKA_POWER_TRICK	0x00800000		//�p���[�g���b�N
-#define	WAZAKOUKA_AQUARING		0x01000000		//�A�N�A�����O
-#define	WAZAKOUKA_HEALBLOCK		0x02000000		//�����ӂ��ӂ���
-#define	WAZAKOUKA_SHUTOUT		0x04000000		//�V���b�g�A�E�g
-#define	WAZAKOUKA_DENZIHUYUU	0x08000000		//�ł񂶂ӂ䂤
-#define	WAZAKOUKA_HOGOSYOKU		0x10000000		//�ق����傭���i�ZAI�̂��߂ɕK�v�j
-#define	WAZAKOUKA_SHADOW_DIVE	0x20000000		//�V���h�E�_�C�u��
-#define	WAZAKOUKA_HUUIN_DID		0x40000000		//�ӂ���������߂����i�ZAI�̂��߂ɕK�v�j
+#define	WAZAKOUKA_YADORIGI		0x00000003		//ヤドリギ出したClientNoを格納
+#define	WAZAKOUKA_YADORARE		0x00000004		//ヤドリギ
+#define	WAZAKOUKA_LOCKON		0x00000018		//ロックオンされている
+#define	WAZAKOUKA_HOROBINOUTA	0x00000020		//ほろびのうた
+#define	WAZAKOUKA_SORAWOTOBU	0x00000040		//そらをとぶ
+#define	WAZAKOUKA_ANAWOHORU		0x00000080		//あなをほる
+#define	WAZAKOUKA_CHIISAKUNARU	0x00000100		//ちいさくなる
+#define	WAZAKOUKA_JUUDEN		0x00000200		//じゅうでん
+#define	WAZAKOUKA_NEWOHARU		0x00000400		//ねをはる
+#define	WAZAKOUKA_AKUBI			0x00001800		//あくび
+#define	WAZAKOUKA_HUUIN			0x00002000		//ふういん
+#define	WAZAKOUKA_ONNEN			0x00004000		//おんねん
+#define	WAZAKOUKA_NOCRITICAL	0x00008000		//クリティカルヒットしない
+#define	WAZAKOUKA_DOROASOBI		0x00010000		//どろあそび
+#define	WAZAKOUKA_MIZUASOBI		0x00020000		//みずあそび
+#define	WAZAKOUKA_DAIBINGU		0x00040000		//ダイビング
+#define	WAZAKOUKA_IKAKU			0x00080000		//いかく
+#define	WAZAKOUKA_TRACE			0x00100000		//トレース
+#define	WAZAKOUKA_IEKI			0x00200000		//いえき
+#define	WAZAKOUKA_MIRACLE_EYE	0x00400000		//ミラクルアイ
+#define	WAZAKOUKA_POWER_TRICK	0x00800000		//パワートリック
+#define	WAZAKOUKA_AQUARING		0x01000000		//アクアリング
+#define	WAZAKOUKA_HEALBLOCK		0x02000000		//かいふくふうじ
+#define	WAZAKOUKA_SHUTOUT		0x04000000		//シャットアウト
+#define	WAZAKOUKA_DENZIHUYUU	0x08000000		//でんじふゆう
+#define	WAZAKOUKA_HOGOSYOKU		0x10000000		//ほごしょく中（技AIのために必要）
+#define	WAZAKOUKA_SHADOW_DIVE	0x20000000		//シャドウダイブ中
+#define	WAZAKOUKA_HUUIN_DID		0x40000000		//ふういんをためした（技AIのために必要）
 
 #define	LOCKON_COUNT			0x00000008
 #define	AKUBI_COUNT				0x00000800
 #define BATTLE_VRAM_TRANFER_TASK_NUM	(64)
-#define	WAZAKOUKA_YADORIGI_OFF		(0x00000003^0xffffffff)	//���h���M�o����ClientNo���i�[
-#define	WAZAKOUKA_YADORARE_OFF		(0x00000004^0xffffffff)	//���h���M
-#define	WAZAKOUKA_LOCKON_OFF		(0x00000018^0xffffffff)	//���b�N�I������Ă���
-#define	WAZAKOUKA_HOROBINOUTA_OFF	(0x00000020^0xffffffff)	//�ق�т̂���
+#define	WAZAKOUKA_YADORIGI_OFF		(0x00000003^0xffffffff)	//ヤドリギ出したClientNoを格納
+#define	WAZAKOUKA_YADORARE_OFF		(0x00000004^0xffffffff)	//ヤドリギ
+#define	WAZAKOUKA_LOCKON_OFF		(0x00000018^0xffffffff)	//ロックオンされている
+#define	WAZAKOUKA_HOROBINOUTA_OFF	(0x00000020^0xffffffff)	//ほろびのうた
 
-#define	WAZAKOUKA_SORAWOTOBU_OFF	(0x00000040^0xffffffff)	//������Ƃ�
-#define	WAZAKOUKA_ANAWOHORU_OFF		(0x00000080^0xffffffff)	//���Ȃ��ق�
-#define	WAZAKOUKA_CHIISAKUNARU_OFF	(0x00000100^0xffffffff)	//���������Ȃ�
-#define	WAZAKOUKA_JUUDEN_OFF		(0x00000200^0xffffffff)	//���イ�ł�
-#define	WAZAKOUKA_NEWOHARU_OFF		(0x00000400^0xffffffff)	//�˂��͂�
-#define	WAZAKOUKA_AKUBI_OFF			(0x00001800^0xffffffff)	//������
-#define	WAZAKOUKA_HUUIN_OFF			(0x00002000^0xffffffff)	//�ӂ�����
-#define	WAZAKOUKA_ONNEN_OFF			(0x00004000^0xffffffff)	//����˂�
-#define	WAZAKOUKA_NOCRITICAL_OFF	(0x00008000^0xffffffff)	//�N���e�B�J���q�b�g���Ȃ�
-#define	WAZAKOUKA_DAIBINGU_OFF		(0x00040000^0xffffffff)	//�_�C�r���O
-#define	WAZAKOUKA_IKAKU_OFF			(0x00080000^0xffffffff)	//������
-#define	WAZAKOUKA_TRACE_OFF			(0x00100000^0xffffffff)	//�g���[�X
-#define	WAZAKOUKA_IEKI_OFF			(0x00200000^0xffffffff)	//������
-#define	WAZAKOUKA_MIRACLE_EYE_OFF	(0x00400000^0xffffffff)	//�~���N���A�C
-#define	WAZAKOUKA_POWER_TRICK_OFF	(0x00800000^0xffffffff)	//�p���[�g���b�N
-#define	WAZAKOUKA_AQUARING_OFF		(0x01000000^0xffffffff)	//�A�N�A�����O
-#define	WAZAKOUKA_HEALBLOCK_OFF		(0x02000000^0xffffffff)	//�����ӂ��ӂ���
-#define	WAZAKOUKA_SHUTOUT_OFF		(0x04000000^0xffffffff)	//�V���b�g�A�E�g
-#define	WAZAKOUKA_DENZIHUYUU_OFF	(0x08000000^0xffffffff)	//�ł񂶂ӂ䂤
-#define	WAZAKOUKA_HOGOSYOKU_OFF		(0x10000000^0xffffffff)	//�ق����傭���i�ZAI�̂��߂ɕK�v�j
-#define	WAZAKOUKA_SHADOW_DIVE_OFF	(0x20000000^0xffffffff)	//�V���h�E�_�C�u��
-#define	WAZAKOUKA_HUUIN_DID_OFF		(0x40000000^0xffffffff)	//�ӂ���������߂����i�ZAI�̂��߂ɕK�v�j
+#define	WAZAKOUKA_SORAWOTOBU_OFF	(0x00000040^0xffffffff)	//そらをとぶ
+#define	WAZAKOUKA_ANAWOHORU_OFF		(0x00000080^0xffffffff)	//あなをほる
+#define	WAZAKOUKA_CHIISAKUNARU_OFF	(0x00000100^0xffffffff)	//ちいさくなる
+#define	WAZAKOUKA_JUUDEN_OFF		(0x00000200^0xffffffff)	//じゅうでん
+#define	WAZAKOUKA_NEWOHARU_OFF		(0x00000400^0xffffffff)	//ねをはる
+#define	WAZAKOUKA_AKUBI_OFF			(0x00001800^0xffffffff)	//あくび
+#define	WAZAKOUKA_HUUIN_OFF			(0x00002000^0xffffffff)	//ふういん
+#define	WAZAKOUKA_ONNEN_OFF			(0x00004000^0xffffffff)	//おんねん
+#define	WAZAKOUKA_NOCRITICAL_OFF	(0x00008000^0xffffffff)	//クリティカルヒットしない
+#define	WAZAKOUKA_DAIBINGU_OFF		(0x00040000^0xffffffff)	//ダイビング
+#define	WAZAKOUKA_IKAKU_OFF			(0x00080000^0xffffffff)	//いかく
+#define	WAZAKOUKA_TRACE_OFF			(0x00100000^0xffffffff)	//トレース
+#define	WAZAKOUKA_IEKI_OFF			(0x00200000^0xffffffff)	//いえき
+#define	WAZAKOUKA_MIRACLE_EYE_OFF	(0x00400000^0xffffffff)	//ミラクルアイ
+#define	WAZAKOUKA_POWER_TRICK_OFF	(0x00800000^0xffffffff)	//パワートリック
+#define	WAZAKOUKA_AQUARING_OFF		(0x01000000^0xffffffff)	//アクアリング
+#define	WAZAKOUKA_HEALBLOCK_OFF		(0x02000000^0xffffffff)	//かいふくふうじ
+#define	WAZAKOUKA_SHUTOUT_OFF		(0x04000000^0xffffffff)	//シャットアウト
+#define	WAZAKOUKA_DENZIHUYUU_OFF	(0x08000000^0xffffffff)	//でんじふゆう
+#define	WAZAKOUKA_HOGOSYOKU_OFF		(0x10000000^0xffffffff)	//ほごしょく中（技AIのために必要）
+#define	WAZAKOUKA_SHADOW_DIVE_OFF	(0x20000000^0xffffffff)	//シャドウダイブ中
+#define	WAZAKOUKA_HUUIN_DID_OFF		(0x40000000^0xffffffff)	//ふういんをためした（技AIのために必要）
 
-//�o�g���^�b�`�ň����p�����̂�OR
+//バトンタッチで引き継ぐものをOR
 #define	WAZAKOUKA_BATON_TOUCH_ON	(WAZAKOUKA_YADORIGI|WAZAKOUKA_YADORARE|WAZAKOUKA_LOCKON|\
 									 WAZAKOUKA_HOROBINOUTA|WAZAKOUKA_NEWOHARU|WAZAKOUKA_DOROASOBI|\
 									 WAZAKOUKA_MIZUASOBI|WAZAKOUKA_NOCRITICAL|WAZAKOUKA_POWER_TRICK|\
@@ -761,74 +761,74 @@
 //		server_status_flag
 //=========================================================================
 
-#define	SERVER_STATUS_FLAG_NO_ATTACK_MSG		(0x00000001)			//�A�^�b�N���b�Z�[�W��\�����Ȃ�
-#define	SERVER_STATUS_FLAG_NO_DOUBLE_CHECK		(0x00000002)			//2�̂ɓ�����`�F�b�N�����Ȃ��i���ߋZ�n��1�^�[���ڂȂǁj
-#define	SERVER_STATUS_FLAG_SORAWOTOBU_HIT		(0x00000004)			//�u������Ƃԁv�ɓ��Ă�
-#define	SERVER_STATUS_FLAG_ANAWOHORU_HIT		(0x00000008)			//�u���Ȃ��ق�v�ɓ��Ă�
-#define	SERVER_STATUS_FLAG_DAIBINGU_HIT			(0x00000010)			//�u�_�C�r���O�v�ɓ��Ă�
-#define	SERVER_STATUS_FLAG_TAME					(0x00000020)			//���ߏ�Ԃɂ���
-#define	SERVER_STATUS_FLAG_NO_BLINK				(0x00000040)			//�_���[�W�G�t�F�N�g�̓_�ł����Ȃ�
-#define	SERVER_STATUS_FLAG_SINKURO_TSUIKA		(0x00000080)			//�V���N������ǉ����ʂ����������Ƃ������t���O
-#define	SERVER_STATUS_FLAG_BATON_TOUCH			(0x00000100)			//�o�g���^�b�`����
-#define	SERVER_STATUS_FLAG_TAME_AFTER			(0x00000200)			//���ߏ�Ԍ�̊J�����
-#define	SERVER_STATUS_FLAG_OTHER_HIT_CALC		(0x00000400)			//ServerHitCheck�ȊO�̖������v�Z������
-#define	SERVER_STATUS_FLAG_TYPE_FLAT			(0x00000800)			//�^�C�v�␳�v�Z�𖳎�����
-#define	SERVER_STATUS_FLAG_NOHIT_PENALTY		(0x00001000)			//�Z���O�ꂽ���Ƀy�i���e�B���ۂ�
-#define	SERVER_STATUS_FLAG_WAZA_HIT				(0x00002000)			//�Z�������������Ƃ������t���O
-#define	SERVER_STATUS_FLAG_NO_WAZA_EFFECT		(0x00004000)			//�Z�G�t�F�N�g��\�����Ȃ�
-#define	SERVER_STATUS_FLAG_TYPE_NONE			(0x00008000)			//�^�C�v�𖳑����ɂ���
-#define	SERVER_STATUS_FLAG_NO_LOOP_HIT_MSG		(0x00010000)			//�A���U����Hit�񐔃��b�Z�[�W��\�����Ȃ�
-#define	SERVER_STATUS_FLAG_COND_CHG_NG			(0x00020000)			//abiritycnt���グ�����o���Ȃ�����
-#define	SERVER_STATUS_FLAG_MORE_NOHIT_MSG		(0x00040000)			//�Z���͂��ꂽ���b�Z�[�W�ɒǉ�����
+#define	SERVER_STATUS_FLAG_NO_ATTACK_MSG		(0x00000001)			//アタックメッセージを表示しない
+#define	SERVER_STATUS_FLAG_NO_DOUBLE_CHECK		(0x00000002)			//2体に当たるチェックをしない（ため技系の1ターン目など）
+#define	SERVER_STATUS_FLAG_SORAWOTOBU_HIT		(0x00000004)			//「そらをとぶ」に当てる
+#define	SERVER_STATUS_FLAG_ANAWOHORU_HIT		(0x00000008)			//「あなをほる」に当てる
+#define	SERVER_STATUS_FLAG_DAIBINGU_HIT			(0x00000010)			//「ダイビング」に当てる
+#define	SERVER_STATUS_FLAG_TAME					(0x00000020)			//ため状態にした
+#define	SERVER_STATUS_FLAG_NO_BLINK				(0x00000040)			//ダメージエフェクトの点滅をしない
+#define	SERVER_STATUS_FLAG_SINKURO_TSUIKA		(0x00000080)			//シンクロする追加効果があったことを示すフラグ
+#define	SERVER_STATUS_FLAG_BATON_TOUCH			(0x00000100)			//バトンタッチした
+#define	SERVER_STATUS_FLAG_TAME_AFTER			(0x00000200)			//ため状態後の開放状態
+#define	SERVER_STATUS_FLAG_OTHER_HIT_CALC		(0x00000400)			//ServerHitCheck以外の命中率計算をした
+#define	SERVER_STATUS_FLAG_TYPE_FLAT			(0x00000800)			//タイプ補正計算を無視する
+#define	SERVER_STATUS_FLAG_NOHIT_PENALTY		(0x00001000)			//技が外れた時にペナルティを課す
+#define	SERVER_STATUS_FLAG_WAZA_HIT				(0x00002000)			//技があたったことを示すフラグ
+#define	SERVER_STATUS_FLAG_NO_WAZA_EFFECT		(0x00004000)			//技エフェクトを表示しない
+#define	SERVER_STATUS_FLAG_TYPE_NONE			(0x00008000)			//タイプを無属性にする
+#define	SERVER_STATUS_FLAG_NO_LOOP_HIT_MSG		(0x00010000)			//連続攻撃のHit回数メッセージを表示しない
+#define	SERVER_STATUS_FLAG_COND_CHG_NG			(0x00020000)			//abiritycntを上げ下げ出来なかった
+#define	SERVER_STATUS_FLAG_MORE_NOHIT_MSG		(0x00040000)			//技がはずれたメッセージに追加あり
 #if AFTER_MASTER_070409_49_EUR_FIX
-#define	SERVER_STATUS_FLAG_SHADOW_DIVE_HIT		(0x00080000)	//�u�V���h�E�_�C�u�v�ɓ��Ă�
+#define	SERVER_STATUS_FLAG_SHADOW_DIVE_HIT		(0x00080000)	//「シャドウダイブ」に当てる
 #else AFTER_MASTER_070409_49_EUR_FIX
-#define	SERVER_STATUS_FLAG_ESCAPE				(0x00080000)			//�������I��
+#define	SERVER_STATUS_FLAG_ESCAPE				(0x00080000)			//逃げるを選択
 #endif //AFTER_MASTER_070409_49_EUR_FIX
-#define	SERVER_STATUS_FLAG_NO_WAZANO_SET		(0x00100000)			//AttackClient���ω������̂ŁA�Z�i���o�[�̊i�[�����Ȃ�
-																		//�i�}�W�b�N�R�[�g�A�悱�ǂ肪���������Ȃǁj
-#define	SERVER_STATUS_FLAG_NO_DIRECT_MSG		(0x00200000)			//���ڒǉ��n�̃A�T�[�g���b�Z�[�W���\��
-#define	SERVER_STATUS_FLAG_TSUIKA				(0x00400000)			//�ǉ����ʔ����i�q�[�g�A�^�b�N�p�j
-#define	SERVER_STATUS_FLAG_KATAYABURI			(0x00800000)			//������Ԃ蔭��
+#define	SERVER_STATUS_FLAG_NO_WAZANO_SET		(0x00100000)			//AttackClientが変化したので、技ナンバーの格納をしない
+																		//（マジックコート、よこどりが発動したなど）
+#define	SERVER_STATUS_FLAG_NO_DIRECT_MSG		(0x00200000)			//直接追加系のアサートメッセージを非表示
+#define	SERVER_STATUS_FLAG_TSUIKA				(0x00400000)			//追加効果発動（ヒートアタック用）
+#define	SERVER_STATUS_FLAG_KATAYABURI			(0x00800000)			//かたやぶり発動
 
-#define	SERVER_STATUS_FLAG_KIZETSU				(0x0f000000)			//�|�P�������C�₵��
-#define	SERVER_STATUS_FLAG_KIZETSU_SHIFT		(24)					//�C�₵�������t���O�̃V�t�g��
+#define	SERVER_STATUS_FLAG_KIZETSU				(0x0f000000)			//ポケモンが気絶した
+#define	SERVER_STATUS_FLAG_KIZETSU_SHIFT		(24)					//気絶したしたフラグのシフト回数
 
-#define	SERVER_STATUS_FLAG_JIBAKU				(0x10000000)			//��������
-#define	SERVER_STATUS_FLAG_JIBAKU_MASK			(0xf0000000)			//��������ClientNo��Bit�Ŋi�[
+#define	SERVER_STATUS_FLAG_JIBAKU				(0x10000000)			//自爆した
+#define	SERVER_STATUS_FLAG_JIBAKU_MASK			(0xf0000000)			//自爆したClientNoをBitで格納
 #define	SERVER_STATUS_FLAG_JIBAKU_MASK_OFF		(0xf0000000^0xffffffff)	//
-#define	SERVER_STATUS_FLAG_JIBAKU_SHIFT			(28)					//���������t���O�̃V�t�g��
+#define	SERVER_STATUS_FLAG_JIBAKU_SHIFT			(28)					//自爆したフラグのシフト回数
 
-#define	SERVER_STATUS_FLAG_NO_ATTACK_MSG_OFF	(0x00000001^0xffffffff)	//�A�^�b�N���b�Z�[�W��\�����Ȃ�
-#define	SERVER_STATUS_FLAG_NO_DOUBLE_CHECK_OFF	(0x00000002^0xffffffff)	//2�̂ɓ�����`�F�b�N�����Ȃ��i���ߋZ�n��1�^�[���ڂȂǁj
-#define	SERVER_STATUS_FLAG_SINKURO_TSUIKA_OFF	(0x00000080^0xffffffff)	//�V���N������ǉ����ʂ����������Ƃ������t���O
-#define	SERVER_STATUS_FLAG_TYPE_FLAT_OFF		(0x00000800^0xffffffff)	//�^�C�v�␳�v�Z�𖳎�����
-#define	SERVER_STATUS_FLAG_NO_WAZA_EFFECT_OFF	(0x00004000^0xffffffff)	//�Z�G�t�F�N�g��\�����Ȃ�
-#define	SERVER_STATUS_FLAG_COND_CHG_NG_OFF		(0x00020000^0xffffffff)	//abiritycnt���グ�����o���Ȃ�����
-#define	SERVER_STATUS_FLAG_ESCAPE_OFF			(0x00080000^0xffffffff)	//�������I��
-#define	SERVER_STATUS_FLAG_TSUIKA_OFF			(0x00400000^0xffffffff)	//�ǉ����ʔ����i�q�[�g�A�^�b�N�p�j
-#define	SERVER_STATUS_FLAG_KATAYABURI_OFF		(0x00800000^0xffffffff)	//������Ԃ蔭��
+#define	SERVER_STATUS_FLAG_NO_ATTACK_MSG_OFF	(0x00000001^0xffffffff)	//アタックメッセージを表示しない
+#define	SERVER_STATUS_FLAG_NO_DOUBLE_CHECK_OFF	(0x00000002^0xffffffff)	//2体に当たるチェックをしない（ため技系の1ターン目など）
+#define	SERVER_STATUS_FLAG_SINKURO_TSUIKA_OFF	(0x00000080^0xffffffff)	//シンクロする追加効果があったことを示すフラグ
+#define	SERVER_STATUS_FLAG_TYPE_FLAT_OFF		(0x00000800^0xffffffff)	//タイプ補正計算を無視する
+#define	SERVER_STATUS_FLAG_NO_WAZA_EFFECT_OFF	(0x00004000^0xffffffff)	//技エフェクトを表示しない
+#define	SERVER_STATUS_FLAG_COND_CHG_NG_OFF		(0x00020000^0xffffffff)	//abiritycntを上げ下げ出来なかった
+#define	SERVER_STATUS_FLAG_ESCAPE_OFF			(0x00080000^0xffffffff)	//逃げるを選択
+#define	SERVER_STATUS_FLAG_TSUIKA_OFF			(0x00400000^0xffffffff)	//追加効果発動（ヒートアタック用）
+#define	SERVER_STATUS_FLAG_KATAYABURI_OFF		(0x00800000^0xffffffff)	//かたやぶり発動
 
-//���ߌn�̋Z�́A���߃^�[�����ɗ��Ă�t���O��OR
+//ため系の技の、ためターン時に立てるフラグをOR
 #define	SERVER_STATUS_FLAG_TAME_BEFORE	(SERVER_STATUS_FLAG_NO_ATTACK_MSG|\
 										 SERVER_STATUS_FLAG_NO_DOUBLE_CHECK|\
 										 SERVER_STATUS_FLAG_TAME)
 
 #if AFTER_MASTER_070409_49_EUR_FIX
-//�����Ă��鑊��ł����Ă�t���O��OR
+//消えている相手でも当てるフラグをOR
 #define	SERVER_STATUS_FLAG_KIE_HIT		(SERVER_STATUS_FLAG_SORAWOTOBU_HIT|\
 										 SERVER_STATUS_FLAG_ANAWOHORU_HIT|\
 										 SERVER_STATUS_FLAG_SHADOW_DIVE_HIT|\
 										 SERVER_STATUS_FLAG_DAIBINGU_HIT)
 #else //AFTER_MASTER_070409_49_EUR_FIX
-//�����Ă��鑊��ł����Ă�t���O��OR
+//消えている相手でも当てるフラグをOR
 #define	SERVER_STATUS_FLAG_KIE_HIT		(SERVER_STATUS_FLAG_SORAWOTOBU_HIT|\
 										 SERVER_STATUS_FLAG_ANAWOHORU_HIT|\
 										 SERVER_STATUS_FLAG_DAIBINGU_HIT)
 #endif //AFTER_MASTER_070409_49_EUR_FIX
 
-//�����̃^�[���̂݃t���O���L���Ȃ��̂�OR
-//�΂����������ǁA1�s�̒������I�[�o�[���Ă�̂ŁA2��������
+//自分のターンのみフラグが有効なものをOR
+//ばかくさいけど、1行の長さをオーバーしてるので、2分割した
 #if AFTER_MASTER_070409_49_EUR_FIX
 #define	SERVER_STATUS_FLAG_ATTACK_TURN_1	(SERVER_STATUS_FLAG_NO_ATTACK_MSG|SERVER_STATUS_FLAG_NO_DOUBLE_CHECK|\
 											 SERVER_STATUS_FLAG_SORAWOTOBU_HIT|SERVER_STATUS_FLAG_ANAWOHORU_HIT|\
@@ -866,32 +866,32 @@
 //		server_status_flag2
 //=========================================================================
 
-#define	SERVER_STATUS_FLAG2_NO_EXP_KIZETSU		(0x00000001)	//�o���l�̓���Ȃ��C�⏈��
-#define	SERVER_STATUS_FLAG2_ABICNT_EFF_FLAG		(0x00000002)	//�X�e�[�^�X�㏸���~�G�t�F�N�g����
-#define	SERVER_STATUS_FLAG2_ATTACK_MSG			(0x00000004)	//�A�^�b�N���b�Z�[�W��\������
-#define	SERVER_STATUS_FLAG2_MAGIC_CORT_A_D		(0x00000008)	//�}�W�b�N�R�[�g��Attack��Defence�����ւ���
-#define	SERVER_STATUS_FLAG2_TONBOGAERI			(0x00000010)	//�Ƃ�ڂ�����ł̓���ւ���������
-#define	SERVER_STATUS_FLAG2_FIRST_DAMAGE_MSG	(0x00000020)	//�ŏ��̃_���[�W���b�Z�[�W�\��
-#define	SERVER_STATUS_FLAG2_WAZA_OUT			(0x00000040)	//������͂���͖�킸�Z���o����
-#define	SERVER_STATUS_FLAG2_ABICNT_EFF_CHECK	(0x00000080)	//�X�e�[�^�X�㏸���~�G�t�F�N�g�����`�F�b�N�t���O
-#define	SERVER_STATUS_FLAG2_KAIFUKU_EFFECT		(0x00000100)	//�񕜃G�t�F�N�g����ɂ���iSUB_SEQ_KAIFUKU�p�j
+#define	SERVER_STATUS_FLAG2_NO_EXP_KIZETSU		(0x00000001)	//経験値の入らない気絶処理
+#define	SERVER_STATUS_FLAG2_ABICNT_EFF_FLAG		(0x00000002)	//ステータス上昇下降エフェクト発動
+#define	SERVER_STATUS_FLAG2_ATTACK_MSG			(0x00000004)	//アタックメッセージを表示した
+#define	SERVER_STATUS_FLAG2_MAGIC_CORT_A_D		(0x00000008)	//マジックコートでAttackとDefenceを入れ替えた
+#define	SERVER_STATUS_FLAG2_TONBOGAERI			(0x00000010)	//とんぼがえりでの入れ替えがあった
+#define	SERVER_STATUS_FLAG2_FIRST_DAMAGE_MSG	(0x00000020)	//最初のダメージメッセージ表示
+#define	SERVER_STATUS_FLAG2_WAZA_OUT			(0x00000040)	//あたりはずれは問わず技が出せた
+#define	SERVER_STATUS_FLAG2_ABICNT_EFF_CHECK	(0x00000080)	//ステータス上昇下降エフェクト発動チェックフラグ
+#define	SERVER_STATUS_FLAG2_KAIFUKU_EFFECT		(0x00000100)	//回復エフェクトありにする（SUB_SEQ_KAIFUKU用）
 
-#define	SERVER_STATUS_FLAG2_FORM_CHG			(0x04000000)	//�t�H�����i���o�[��������iPSPtoPP�p�j
-#define	SERVER_STATUS_FLAG2_POKEPARA_CALC		(0x08000000)	//�|�P�����p�����[�^�̍Čv�Z���w������iPSPtoPP�p�j
+#define	SERVER_STATUS_FLAG2_FORM_CHG			(0x04000000)	//フォルムナンバーを代入する（PSPtoPP用）
+#define	SERVER_STATUS_FLAG2_POKEPARA_CALC		(0x08000000)	//ポケモンパラメータの再計算を指示する（PSPtoPP用）
 
-#define	SERVER_STATUS_FLAG2_GET_EXP			(0xf0000000)	//�o���l�擾�̂��߂�ClientNo��Bit�Ŋi�[
-#define	SERVER_STATUS_FLAG2_GET_EXP_SHIFT	(28)			//�t���O�̃V�t�g��
+#define	SERVER_STATUS_FLAG2_GET_EXP			(0xf0000000)	//経験値取得のためのClientNoをBitで格納
+#define	SERVER_STATUS_FLAG2_GET_EXP_SHIFT	(28)			//フラグのシフト回数
 
-#define	SERVER_STATUS_FLAG2_SIO_WAIT		(0x0f000000)	//�ʐM�҂����b�Z�[�W�̂��߂�ClientNo��Bit�Ŋi�[
-#define	SERVER_STATUS_FLAG2_SIO_WAIT_SHIFT	(24)			//�t���O�̃V�t�g��
+#define	SERVER_STATUS_FLAG2_SIO_WAIT		(0x0f000000)	//通信待ちメッセージのためのClientNoをBitで格納
+#define	SERVER_STATUS_FLAG2_SIO_WAIT_SHIFT	(24)			//フラグのシフト回数
 
-#define	SERVER_STATUS_FLAG2_ABICNT_EFF_FLAG_OFF	(0x00000002^0xffffffff)	//�X�e�[�^�X�㏸���~�G�t�F�N�g����
-#define	SERVER_STATUS_FLAG2_MAGIC_CORT_A_D_OFF	(0x00000008^0xffffffff)	//�}�W�b�N�R�[�g��Attack��Defence�����ւ���
+#define	SERVER_STATUS_FLAG2_ABICNT_EFF_FLAG_OFF	(0x00000002^0xffffffff)	//ステータス上昇下降エフェクト発動
+#define	SERVER_STATUS_FLAG2_MAGIC_CORT_A_D_OFF	(0x00000008^0xffffffff)	//マジックコートでAttackとDefenceを入れ替えた
 
-#define	SERVER_STATUS_FLAG2_FORM_CHG_OFF		(0x04000000^0xffffffff)	//�t�H�����i���o�[��������iPSPtoPP�p�j
-#define	SERVER_STATUS_FLAG2_POKEPARA_CALC_OFF	(0x08000000^0xffffffff)	//�|�P�����p�����[�^�̍Čv�Z���w������iPSPtoPP�p�j
+#define	SERVER_STATUS_FLAG2_FORM_CHG_OFF		(0x04000000^0xffffffff)	//フォルムナンバーを代入する（PSPtoPP用）
+#define	SERVER_STATUS_FLAG2_POKEPARA_CALC_OFF	(0x08000000^0xffffffff)	//ポケモンパラメータの再計算を指示する（PSPtoPP用）
 
-#define	SERVER_STATUS_FLAG2_SIO_WAIT_OFF		(0x0f000000^0xffffffff)	//�ʐM�҂����b�Z�[�W�̂��߂�ClientNo��Bit�Ŋi�[
+#define	SERVER_STATUS_FLAG2_SIO_WAIT_OFF		(0x0f000000^0xffffffff)	//通信待ちメッセージのためのClientNoをBitで格納
 
 #define	SERVER_STATUS_FLAG2_ATTACK_TURN		(SERVER_STATUS_FLAG2_ABICNT_EFF_FLAG|SERVER_STATUS_FLAG2_ATTACK_MSG|\
 											 SERVER_STATUS_FLAG2_MAGIC_CORT_A_D|SERVER_STATUS_FLAG2_TONBOGAERI|\
@@ -901,35 +901,35 @@
 //		ostf->status_flag
 //=========================================================================
 
-#define	OSTF_STATUS_FLAG_EQPITEM_POWDOWN	(0x00000001)	//�������ʂɂ���ċZ�̈З͂���߂��t���O
-#define	OSTF_STATUS_FLAG_TSUIBAMU			(0x00000002)	//���΂ޔ���
-#define	OSTF_STATUS_FLAG_MEROMERO			(0x00000004)	//���������ɂȂ���
-#define	OSTF_STATUS_FLAG_MIGAWARI_HIT		(0x00000008)	//�݂����Ŗh����
+#define	OSTF_STATUS_FLAG_EQPITEM_POWDOWN	(0x00000001)	//装備効果によって技の威力を弱めたフラグ
+#define	OSTF_STATUS_FLAG_TSUIBAMU			(0x00000002)	//ついばむ発動
+#define	OSTF_STATUS_FLAG_MEROMERO			(0x00000004)	//メロメロになった
+#define	OSTF_STATUS_FLAG_MIGAWARI_HIT		(0x00000008)	//みがわりで防いだ
 
 //=======================================================================
-//		��邠�����`�F�b�N�p�t���O
+//		わるあがきチェック用フラグ
 //=======================================================================
 
-#define	SSWC_WAZA_NONE		0x00000001	//�Z�������i�Z�i���o�[�O�j
-#define	SSWC_PP_NONE		0x00000002	//PP������
-#define	SSWC_KANASHIBARI	0x00000004	//���Ȃ��΂肳��Ă���
-#define	SSWC_ICHAMON		0x00000008	//���������������Ă���
-#define	SSWC_CHOUHATSU		0x00000010	//���傤�͂���Ă���
-#define	SSWC_HUUIN			0x00000020	//�ӂ����񂳂�Ă���
-#define	SSWC_JUURYOKU		0x00000040	//���イ��傭���󂯂Ă���
-#define	SSWC_HEALBLOCK		0x00000080	//�q�[���u���b�N���󂯂Ă���
-#define	SSWC_ENCORE			0x00000100	//�A���R�[�����󂯂Ă���
-#define	SSWC_KODAWARI		0x00000200	//�������n�`�}�L
-#define	SSWC_ALL			0xffffffff	//���ׂă`�F�b�N
+#define	SSWC_WAZA_NONE		0x00000001	//技が無い（技ナンバー０）
+#define	SSWC_PP_NONE		0x00000002	//PPが無い
+#define	SSWC_KANASHIBARI	0x00000004	//かなしばりされている
+#define	SSWC_ICHAMON		0x00000008	//いちゃもんをつけられている
+#define	SSWC_CHOUHATSU		0x00000010	//ちょうはつされている
+#define	SSWC_HUUIN			0x00000020	//ふういんされている
+#define	SSWC_JUURYOKU		0x00000040	//じゅうりょくを受けている
+#define	SSWC_HEALBLOCK		0x00000080	//ヒールブロックを受けている
+#define	SSWC_ENCORE			0x00000100	//アンコールを受けている
+#define	SSWC_KODAWARI		0x00000200	//こだわりハチマキ
+#define	SSWC_ALL			0xffffffff	//すべてチェック
 
 //=======================================================================
-//		�C��`�F�b�N�p�t���O
+//		気絶チェック用フラグ
 //=======================================================================
-#define	SKC_MICHIDURE_ON	(0)		//�݂��Â�`�F�b�N����
-#define	SKC_MICHIDURE_OFF	(1)		//�݂��Â�`�F�b�N�Ȃ�
+#define	SKC_MICHIDURE_ON	(0)		//みちづれチェックあり
+#define	SKC_MICHIDURE_OFF	(1)		//みちづれチェックなし
 
 //=========================================================================
-//	ST_PokemonServerParamGet�Ŏg�p����ID��`�i�Z�V�[�P���X�ł��g�p�j
+//	ST_PokemonServerParamGetで使用するID定義（技シーケンスでも使用）
 //=========================================================================
 
 #define	ID_PSP_monsno						(0)
@@ -1030,13 +1030,13 @@
 #define	ID_PSP_wkw_item_hp_recover			(95)
 #define	ID_PSP_slow_start_flag				(96)
 #define	ID_PSP_slow_start_end_flag			(97)
-//�v���`�i����ǉ�
+//プラチナから追加
 #define	ID_PSP_form_no						(98)
 
-#define	ID_PSP_work							(100)				//sp->temp_work�Ɋi�[����Ă���l��ID�ɂ��Ď擾
+#define	ID_PSP_work							(100)				//sp->temp_workに格納されている値をIDにして取得
 
 //=========================================================================
-//	ST_ServerParamDataGet�Ŏg�p����ID��`�i�Z�V�[�P���X�ł��g�p�j
+//	ST_ServerParamDataGetで使用するID定義（技シーケンスでも使用）
 //=========================================================================
 
 #define	ID_SP_side_condition				(0)
@@ -1056,141 +1056,141 @@
 #define ID_SP_next_server_seq_no			(14)
 
 //=========================================================================
-//		WS_MESSAGE�p�̒萔��`
+//		WS_MESSAGE用の定数定義
 //=========================================================================
 //=========================================================================
-//		TAG�^�C�v
+//		TAGタイプ
 //=========================================================================
-#define	TAG_NONE						(0)		//�^�O�Ȃ�
+#define	TAG_NONE						(0)		//タグなし
 
-#define	TAG_NONE_DIR					(1)		//�^�O�Ȃ��i�Ă��A�݂������肠��j
+#define	TAG_NONE_DIR					(1)		//タグなし（てき、みかた判定あり）
 #define	TAG_NICK						(2)		//nickname
-#define	TAG_WAZA						(3)		//�Z��
-#define	TAG_STAT						(4)		//�X�e�[�^�X��
-#define	TAG_ITEM						(5)		//���
-#define	TAG_NUM							(6)		//���l
-#define	TAG_NUMS						(7)		//���l�i�E�l�߁j
-#define	TAG_TRNAME						(8)		//trainer��
+#define	TAG_WAZA						(3)		//技名
+#define	TAG_STAT						(4)		//ステータス名
+#define	TAG_ITEM						(5)		//道具名
+#define	TAG_NUM							(6)		//数値
+#define	TAG_NUMS						(7)		//数値（右詰め）
+#define	TAG_TRNAME						(8)		//trainer名
 
 #define	TAG_NICK_NICK					(9)		//nickname		nickname
-#define	TAG_NICK_WAZA					(10)	//nickname		�Z��
-#define	TAG_NICK_TOKU					(11)	//nickname		������
-#define	TAG_NICK_STAT					(12)	//nickname		�X�e�[�^�X��
-#define	TAG_NICK_TYPE					(13)	//nickname		�^�C�v��
-#define	TAG_NICK_POKE					(14)	//nickname		�|�P������
-#define	TAG_NICK_ITEM					(15)	//nickname		���
-#define	TAG_NICK_PLOC					(16)	//nickname		�|���b�N��
-#define	TAG_NICK_NUM					(17)	//nickname		���l
-#define	TAG_NICK_TRNAME					(18)	//nickname		trainer��
-#define	TAG_NICK_BOX					(19)	//nickname		�{�b�N�X��
-#define	TAG_WAZA_DIR					(20)	//�Z���i�Ă��A�݂������肠��j
-#define	TAG_WAZA_NICK					(21)	//�Z��			nickname
-#define	TAG_WAZA_WAZA					(22)	//�Z��			�Z��
-#define	TAG_TOKU_NICK					(23)	//������		nickname
-#define	TAG_ITEM_WAZA					(24)	//���		�Z��
-#define	TAG_NUM_NUM						(25)	//���l			���l
-#define	TAG_TRNAME_TRNAME				(26)	//trainer��		trainer��
-#define	TAG_TRNAME_NICK					(27)	//trainer��		nickname
-#define	TAG_TRNAME_ITEM					(28)	//trainer��		���
-#define	TAG_TRNAME_NUM					(29)	//trainer��		���l
-#define	TAG_TRTYPE_TRNAME				(30)	//trainer���	trainer��
+#define	TAG_NICK_WAZA					(10)	//nickname		技名
+#define	TAG_NICK_TOKU					(11)	//nickname		特性名
+#define	TAG_NICK_STAT					(12)	//nickname		ステータス名
+#define	TAG_NICK_TYPE					(13)	//nickname		タイプ名
+#define	TAG_NICK_POKE					(14)	//nickname		ポケモン名
+#define	TAG_NICK_ITEM					(15)	//nickname		道具名
+#define	TAG_NICK_PLOC					(16)	//nickname		ポロック名
+#define	TAG_NICK_NUM					(17)	//nickname		数値
+#define	TAG_NICK_TRNAME					(18)	//nickname		trainer名
+#define	TAG_NICK_BOX					(19)	//nickname		ボックス名
+#define	TAG_WAZA_DIR					(20)	//技名（てき、みかた判定あり）
+#define	TAG_WAZA_NICK					(21)	//技名			nickname
+#define	TAG_WAZA_WAZA					(22)	//技名			技名
+#define	TAG_TOKU_NICK					(23)	//特性名		nickname
+#define	TAG_ITEM_WAZA					(24)	//道具名		技名
+#define	TAG_NUM_NUM						(25)	//数値			数値
+#define	TAG_TRNAME_TRNAME				(26)	//trainer名		trainer名
+#define	TAG_TRNAME_NICK					(27)	//trainer名		nickname
+#define	TAG_TRNAME_ITEM					(28)	//trainer名		道具名
+#define	TAG_TRNAME_NUM					(29)	//trainer名		数値
+#define	TAG_TRTYPE_TRNAME				(30)	//trainer種別	trainer名
 
-#define	TAG_NICK_NICK_WAZA				(31)	//nickname		nickname		�Z��
-#define	TAG_NICK_NICK_TOKU				(32)	//nickname		nickname		������
-#define	TAG_NICK_NICK_ITEM				(33)	//nickname		nickname		���
-#define	TAG_NICK_WAZA_WAZA				(34)	//nickname		�Z��			�Z��
-#define	TAG_NICK_WAZA_NUM				(35)	//nickname		�Z��			���l
-#define	TAG_NICK_TOKU_NICK				(36)	//nickname		������			nickname
-#define	TAG_NICK_TOKU_WAZA				(37)	//nickname		������			�Z��
-#define	TAG_NICK_TOKU_ITEM				(38)	//nickname		������			���
-#define	TAG_NICK_TOKU_STAT				(39)	//nickname		������			�X�e�[�^�X��
-#define	TAG_NICK_TOKU_TYPE				(40)	//nickname		������			�^�C�v��
-#define	TAG_NICK_TOKU_COND				(41)	//nickname		������			��Ԉُ햼
-#define	TAG_NICK_TOKU_NUM				(42)	//nickname		������			���l
-#define	TAG_NICK_ITEM_NICK				(43)	//nickname		���			nickname
-#define	TAG_NICK_ITEM_WAZA				(44)	//nickname		���			�Z��
-#define	TAG_NICK_ITEM_STAT				(45)	//nickname		���			�X�e�[�^�X��
-#define	TAG_NICK_ITEM_COND				(46)	//nickname		���			��Ԉُ햼
-#define	TAG_NICK_BOX_BOX				(47)	//nickname		�{�b�N�X��		�{�b�N�X��
-#define	TAG_ITEM_NICK_TASTE				(48)	//���		nickname		�؂̎��̖�
-#define	TAG_TRNAME_NICK_NICK			(49)	//trainer��		nickname		nickname
-#define	TAG_TRTYPE_TRNAME_NICK			(50)	//trainer���	trainer��		nickname
-#define	TAG_TRTYPE_TRNAME_ITEM			(51)	//trainer���	trainer��		���
+#define	TAG_NICK_NICK_WAZA				(31)	//nickname		nickname		技名
+#define	TAG_NICK_NICK_TOKU				(32)	//nickname		nickname		特性名
+#define	TAG_NICK_NICK_ITEM				(33)	//nickname		nickname		道具名
+#define	TAG_NICK_WAZA_WAZA				(34)	//nickname		技名			技名
+#define	TAG_NICK_WAZA_NUM				(35)	//nickname		技名			数値
+#define	TAG_NICK_TOKU_NICK				(36)	//nickname		特性名			nickname
+#define	TAG_NICK_TOKU_WAZA				(37)	//nickname		特性名			技名
+#define	TAG_NICK_TOKU_ITEM				(38)	//nickname		特性名			道具名
+#define	TAG_NICK_TOKU_STAT				(39)	//nickname		特性名			ステータス名
+#define	TAG_NICK_TOKU_TYPE				(40)	//nickname		特性名			タイプ名
+#define	TAG_NICK_TOKU_COND				(41)	//nickname		特性名			状態異常名
+#define	TAG_NICK_TOKU_NUM				(42)	//nickname		特性名			数値
+#define	TAG_NICK_ITEM_NICK				(43)	//nickname		道具名			nickname
+#define	TAG_NICK_ITEM_WAZA				(44)	//nickname		道具名			技名
+#define	TAG_NICK_ITEM_STAT				(45)	//nickname		道具名			ステータス名
+#define	TAG_NICK_ITEM_COND				(46)	//nickname		道具名			状態異常名
+#define	TAG_NICK_BOX_BOX				(47)	//nickname		ボックス名		ボックス名
+#define	TAG_ITEM_NICK_TASTE				(48)	//道具名		nickname		木の実の味
+#define	TAG_TRNAME_NICK_NICK			(49)	//trainer名		nickname		nickname
+#define	TAG_TRTYPE_TRNAME_NICK			(50)	//trainer種別	trainer名		nickname
+#define	TAG_TRTYPE_TRNAME_ITEM			(51)	//trainer種別	trainer名		道具名
 
-#define	TAG_NICK_TOKU_NICK_WAZA			(52)	//nickname		������			nickname		�Z��
-#define	TAG_NICK_TOKU_NICK_TOKU			(53)	//nickname		������			nickname		������
-#define	TAG_NICK_TOKU_NICK_STAT			(54)	//nickname		������			nickname		�X�e�[�^�X��
-#define	TAG_NICK_ITEM_NICK_ITEM			(55)	//nickname		���			nickname		���
-#define	TAG_TRNAME_NICK_TRNAME_NICK		(56)	//trainer��		nickname		trainer��		nickname
-#define	TAG_TRTYPE_TRNAME_NICK_NICK		(57)	//trainer���	trainer��		nickname		nickname
-#define	TAG_TRTYPE_TRNAME_NICK_TRNAME	(58)	//trainer���	trainer��		nickname		trainer��
-#define	TAG_TRTYPE_TRNAME_TRTYPE_TRNAME	(59)	//trainer���	trainer��		trainer���		trainer��
+#define	TAG_NICK_TOKU_NICK_WAZA			(52)	//nickname		特性名			nickname		技名
+#define	TAG_NICK_TOKU_NICK_TOKU			(53)	//nickname		特性名			nickname		特性名
+#define	TAG_NICK_TOKU_NICK_STAT			(54)	//nickname		特性名			nickname		ステータス名
+#define	TAG_NICK_ITEM_NICK_ITEM			(55)	//nickname		道具名			nickname		道具名
+#define	TAG_TRNAME_NICK_TRNAME_NICK		(56)	//trainer名		nickname		trainer名		nickname
+#define	TAG_TRTYPE_TRNAME_NICK_NICK		(57)	//trainer種別	trainer名		nickname		nickname
+#define	TAG_TRTYPE_TRNAME_NICK_TRNAME	(58)	//trainer種別	trainer名		nickname		trainer名
+#define	TAG_TRTYPE_TRNAME_TRTYPE_TRNAME	(59)	//trainer種別	trainer名		trainer種別		trainer名
 
-#define	TAG_TRTYPE_TRNAME_NICKx2		(60)	//trainer���	trainer��		nickname ���Q
+#define	TAG_TRTYPE_TRNAME_NICKx2		(60)	//trainer種別	trainer名		nickname ｘ２
 
-#define	TAG_NO_DIR						(0x80)	//�G�A�����A��������Ȃ�
-#define	TAG_DIR							(0x40)	//�G�A�����A���肠��
-#define	TAG_NO_DIR_OFF					(0x3f)	//�G�A�����A��������Ȃ�
-
-//=========================================================================
-//		WS_IF�p�̒萔��`
-//=========================================================================
-//=========================================================================
-//		act�p�����[�^
-//=========================================================================
-#define	IF_FLAG_EQ		(0)		//��v
-#define	IF_FLAG_NE		(1)		//�s��v
-#define	IF_FLAG_C		(2)		//������
-#define	IF_FLAG_NC		(3)		//�ȉ�
-#define	IF_FLAG_BIT		(4)		//�r�b�gON
-#define	IF_FLAG_NBIT	(5)		//�r�b�gOFF
-#define	IF_FLAG_AND		(6)		//�r�b�gMASK���Ċ��S��v���邩�H
-
-#define	IF_FLAG_END		(6)		//��̒�`�̍Ō�̒l�Ɠ����ɂ���iVAL_�`�n�̃X�^�[�g�l�Ɏg�p�j
+#define	TAG_NO_DIR						(0x80)	//敵、味方、判定をしない
+#define	TAG_DIR							(0x40)	//敵、味方、判定あり
+#define	TAG_NO_DIR_OFF					(0x3f)	//敵、味方、判定をしない
 
 //=========================================================================
-//		WS_VALUE�p�̒萔��`
+//		WS_IF用の定数定義
 //=========================================================================
 //=========================================================================
-//		act�p�����[�^�iWS_VALUE,WS_PSP_VALUE�j
+//		actパラメータ
+//=========================================================================
+#define	IF_FLAG_EQ		(0)		//一致
+#define	IF_FLAG_NE		(1)		//不一致
+#define	IF_FLAG_C		(2)		//超える
+#define	IF_FLAG_NC		(3)		//以下
+#define	IF_FLAG_BIT		(4)		//ビットON
+#define	IF_FLAG_NBIT	(5)		//ビットOFF
+#define	IF_FLAG_AND		(6)		//ビットMASKして完全一致するか？
+
+#define	IF_FLAG_END		(6)		//上の定義の最後の値と同じにする（VAL_〜系のスタート値に使用）
+
+//=========================================================================
+//		WS_VALUE用の定数定義
+//=========================================================================
+//=========================================================================
+//		actパラメータ（WS_VALUE,WS_PSP_VALUE）
 //=========================================================================
 #define	VAL_START		(IF_FLAG_END+1)
 
-#define	VAL_SET			(VAL_START+0)		//�l���Z�b�g
-#define	VAL_ADD			(VAL_START+1)		//�l�����Z
-#define	VAL_SUB			(VAL_START+2)		//�l�����Z
-#define	VAL_BIT			(VAL_START+3)		//�l��OR
-#define	VAL_NBIT		(VAL_START+4)		//�l���r�b�g���]����AND
-#define	VAL_MUL			(VAL_START+5)		//�|���Z
-#define	VAL_DIV			(VAL_START+6)		//����Z
-#define	VAL_LSH			(VAL_START+7)		//���V�t�g
-#define	VAL_RSH			(VAL_START+8)		//�E�V�t�g
-#define	VAL_TO_BIT		(VAL_START+9)		//�E�V�t�g
-#define	VAL_GET			(VAL_START+10)		//�l���Q�b�g WS_PSP_VALUE_WORK����
-#define	VAL_SUB_ZERO	(VAL_START+11)		//�l�����Z�i�������l���}�C�i�X�ɂȂ�����A�O�ɂ���j
-#define	VAL_XOR			(VAL_START+12)		//�l��XOR
-#define	VAL_AND			(VAL_START+13)		//�l��AND
+#define	VAL_SET			(VAL_START+0)		//値をセット
+#define	VAL_ADD			(VAL_START+1)		//値を加算
+#define	VAL_SUB			(VAL_START+2)		//値を減算
+#define	VAL_BIT			(VAL_START+3)		//値をOR
+#define	VAL_NBIT		(VAL_START+4)		//値をビット反転してAND
+#define	VAL_MUL			(VAL_START+5)		//掛け算
+#define	VAL_DIV			(VAL_START+6)		//割り算
+#define	VAL_LSH			(VAL_START+7)		//左シフト
+#define	VAL_RSH			(VAL_START+8)		//右シフト
+#define	VAL_TO_BIT		(VAL_START+9)		//右シフト
+#define	VAL_GET			(VAL_START+10)		//値をゲット WS_PSP_VALUE_WORK限定
+#define	VAL_SUB_ZERO	(VAL_START+11)		//値を減算（引いた値がマイナスになったら、０にする）
+#define	VAL_XOR			(VAL_START+12)		//値をXOR
+#define	VAL_AND			(VAL_START+13)		//値をAND
 
 //=========================================================================
-//		WS_TOKUSEI_CHECK�p�̒萔��`
+//		WS_TOKUSEI_CHECK用の定数定義
 //=========================================================================
 //=========================================================================
-//		flag�p�����[�^
+//		flagパラメータ
 //=========================================================================
-#define	TOKUSEI_HAVE	(0)		//�����Ă���
-#define	TOKUSEI_NO_HAVE	(1)		//�����Ă��Ȃ�
+#define	TOKUSEI_HAVE	(0)		//持っている
+#define	TOKUSEI_NO_HAVE	(1)		//持っていない
 
 //=========================================================================
-//		WS_SOUBI_CHECK�p�̒萔��`
+//		WS_SOUBI_CHECK用の定数定義
 //=========================================================================
 //=========================================================================
-//		flag�p�����[�^
+//		flagパラメータ
 //=========================================================================
-#define	SOUBI_HAVE		(0)		//�����Ă���
-#define	SOUBI_NO_HAVE	(1)		//�����Ă��Ȃ�
+#define	SOUBI_HAVE		(0)		//持っている
+#define	SOUBI_NO_HAVE	(1)		//持っていない
 
 //=========================================================================
-//		src�p�����[�^(WS_IF,WS_VALUE)	���Ȃ炸4�o�C�g�̕ϐ����w�肷�邱�ƁI
+//		srcパラメータ(WS_IF,WS_VALUE)	かならず4バイトの変数を指定すること！
 //=========================================================================
 #define	BUF_PARA_FIGHT_TYPE					(0)		//bw->fight_type
 #define	BUF_PARA_CRITICAL_COUNT				(1)		//sp->critical_count
@@ -1266,56 +1266,56 @@
 #define	BUF_PARA_CLIENT_WORKING_COUNT		(69)	//sp->client_working_count
 
 //=========================================================================
-//		WS_VANISH_ON_OFF�p�̒萔��`
+//		WS_VANISH_ON_OFF用の定数定義
 //=========================================================================
-#define	SW_VANISH_OFF	(0)	//�|�P�����\��
-#define	SW_VANISH_ON	(1)	//�|�P������\��
+#define	SW_VANISH_OFF	(0)	//ポケモン表示
+#define	SW_VANISH_ON	(1)	//ポケモン非表示
 
 //=========================================================================
-//		WS_RENZOKU�p�̒萔��`
+//		WS_RENZOKU用の定数定義
 //=========================================================================
-#define	BADGE_CHECK_OFF		(0x00000001)	//�o�b�W�`�F�b�N�Ȃ�
-#define	TYPE_CHECK_OFF		(0x00000002)	//�^�C�v�`�F�b�N�Ȃ�
-#define	STATUS_CHECK_OFF	(0x00000004)	//�X�e�[�^�X�`�F�b�N�Ȃ�
-#define	PP_CHECK_OFF		(0x00000008)	//PP�`�F�b�N�Ȃ�
-#define	TOKUSEI_CHECK_OFF	(0x00000010)	//�����`�F�b�N�Ȃ�
-#define	HIT_CHECK_OFF		(0x00000020)	//�������`�F�b�N�Ȃ�
-#define	WAZAKOUKA_CHECK_OFF	(0x00000040)	//�Z���ʃ`�F�b�N�Ȃ�
-#define	WAZAKOYUU_CHECK_OFF	(0x00000080)	//�Z�ŗL�`�F�b�N�Ȃ�
+#define	BADGE_CHECK_OFF		(0x00000001)	//バッジチェックなし
+#define	TYPE_CHECK_OFF		(0x00000002)	//タイプチェックなし
+#define	STATUS_CHECK_OFF	(0x00000004)	//ステータスチェックなし
+#define	PP_CHECK_OFF		(0x00000008)	//PPチェックなし
+#define	TOKUSEI_CHECK_OFF	(0x00000010)	//特性チェックなし
+#define	HIT_CHECK_OFF		(0x00000020)	//命中率チェックなし
+#define	WAZAKOUKA_CHECK_OFF	(0x00000040)	//技効果チェックなし
+#define	WAZAKOYUU_CHECK_OFF	(0x00000080)	//技固有チェックなし
 
-//�����̃q�b�g�n�̃r�b�g
+//複数体ヒット系のビット
 #define	DOUBLE_HIT_OFF		(BADGE_CHECK_OFF|STATUS_CHECK_OFF|PP_CHECK_OFF)
-//�A���n�̃r�b�g
+//連続系のビット
 #define	RENZOKU_HIT_OFF		(BADGE_CHECK_OFF|STATUS_CHECK_OFF|PP_CHECK_OFF|\
 							 TOKUSEI_CHECK_OFF|HIT_CHECK_OFF|WAZAKOUKA_CHECK_OFF|WAZAKOYUU_CHECK_OFF)
 
-//�g���v���L�b�N�̃r�b�g
+//トリプルキックのビット
 #define	TRIPLEKICK_HIT_OFF	(BADGE_CHECK_OFF|STATUS_CHECK_OFF|PP_CHECK_OFF|\
 							 TOKUSEI_CHECK_OFF|WAZAKOUKA_CHECK_OFF|WAZAKOYUU_CHECK_OFF)
 
 //=========================================================================
-//		WS_RESHUFFLE_CHECK�p�̒萔��`
+//		WS_RESHUFFLE_CHECK用の定数定義
 //=========================================================================
-#define	POKE_LIST_OFF	(0)	//�|�P�������X�g�t���O�͗��ĂȂ�
-#define	POKE_LIST_ON	(1)	//�|�P�������X�g�t���O�𗧂Ă�
+#define	POKE_LIST_OFF	(0)	//ポケモンリストフラグは立てない
+#define	POKE_LIST_ON	(1)	//ポケモンリストフラグを立てる
 
 //=========================================================================
-//		WS_OTF_SET�p�̒萔��`
+//		WS_OTF_SET用の定数定義
 //=========================================================================
-#define	OTF_waruagaki_flag		(0)		//��邠�����t���O
-#define	OTF_pp_dec_flag			(1)		//PP�����炵���t���O
-#define	OTF_mamoru_flag			(2)		//�܂���t���O
-#define	OTF_tedasuke_flag		(3)		//�Ă������t���O
+#define	OTF_waruagaki_flag		(0)		//わるあがきフラグ
+#define	OTF_pp_dec_flag			(1)		//PPを減らしたフラグ
+#define	OTF_mamoru_flag			(2)		//まもるフラグ
+#define	OTF_tedasuke_flag		(3)		//てだすけフラグ
 #define	OTF_magic_cort_flag		(4)
 #define	OTF_yokodori_flag		(5)
 #define	OTF_haneyasume_flag		(6)
 
 //=========================================================================
-//		WS_SIDE_CONDITION_CHECK�p�̒萔��`
+//		WS_SIDE_CONDITION_CHECK用の定数定義
 //=========================================================================
-#define	SCC_MODE_Z_CHECK		(0)		//0��������AJUMP
-#define	SCC_MODE_NZ_CHECK		(1)		//0�ȊO��������AJUMP
-#define	SCC_MODE_CLEAR			(2)		//�J�E���^���N���A�iJUMP�͂��Ȃ��j
+#define	SCC_MODE_Z_CHECK		(0)		//0だったら、JUMP
+#define	SCC_MODE_NZ_CHECK		(1)		//0以外だったら、JUMP
+#define	SCC_MODE_CLEAR			(2)		//カウンタをクリア（JUMPはしない）
 
 #define	SCC_butsuri_guard_count	(0)
 #define	SCC_tokusyu_guard_count	(1)
@@ -1325,27 +1325,27 @@
 #define	SCC_dokubisi_count		(5)
 
 //=========================================================================
-//		WS_JUMP_WAZA_WORK�p�̒萔��`
+//		WS_JUMP_WAZA_WORK用の定数定義
 //=========================================================================
-#define	JWW_FLAG_NORMAL			(0)		//�ʏ퓮��
-#define	JWW_FLAG_SET_DEFENCE	(1)		//DefenceClient�̓Z�b�g�ς�
+#define	JWW_FLAG_NORMAL			(0)		//通常動作
+#define	JWW_FLAG_SET_DEFENCE	(1)		//DefenceClientはセット済み
 
 //=========================================================================
-//		ServerWazaOutAfterMessage�p�̒萔��`
+//		ServerWazaOutAfterMessage用の定数定義
 //=========================================================================
-#define	SWOAM_NORMAL	(0)	//�ʏ�
-#define	SWOAM_LOOP		(1)	//���[�v�̎�
+#define	SWOAM_NORMAL	(0)	//通常
+#define	SWOAM_LOOP		(1)	//ループの時
 
 //=========================================================================
-//		�����ڂ�����������Ă���t���O
+//		特性ぼうおんをもっているフラグ
 //=========================================================================
-#define	BOUON_SIDE_1	(1)	//����
-#define	BOUON_SIDE_2	(2)	//�p�[�g�i�[
-#define	NOSET_SIDE_1	(4)	//����
-#define	NOSET_SIDE_2	(8)	//�p�[�g�i�[
+#define	BOUON_SIDE_1	(1)	//自分
+#define	BOUON_SIDE_2	(2)	//パートナー
+#define	NOSET_SIDE_1	(4)	//自分
+#define	NOSET_SIDE_2	(8)	//パートナー
 
 //=========================================================================
-//		���b�Z�[�W�̃E�G�C�g
+//		メッセージのウエイト
 //=========================================================================
 #define	MSG_WAIT				(30)	//(15)
 #define	SLIDE_WAIT				(40)	//(20)
@@ -1353,21 +1353,21 @@
 #define	BALL_GAUGE_ENCOUNT_WAIT	(96)	//(48)
 
 //=========================================================================
-//		TRAINER_IN�p�o��ʒu�t���O
+//		TRAINER_IN用登場位置フラグ
 //=========================================================================
 #define	POS_APPEAR	(0)
 #define	POS_MSG		(1)
 
 //=========================================================================
-//		�g���[�i�[���b�Z�[�W�p�t���O
+//		トレーナーメッセージ用フラグ
 //=========================================================================
-#define	TRAINER_MESSAGE_FLAG_FIRST_DAMAGE		(0x01)	//�ŏ��̍U�����q�b�g
-#define	TRAINER_MESSAGE_FLAG_POKE_HP_HALF		(0x02)	//HP�������ȉ�
-#define	TRAINER_MESSAGE_FLAG_POKE_LAST			(0x03)	//�|�P�������Ō�̂P��
-#define	TRAINER_MESSAGE_FLAG_POKE_LAST_HP_HALF	(0x04)	//�|�P�������Ō�̂P�̂�HP�������ȉ�
+#define	TRAINER_MESSAGE_FLAG_FIRST_DAMAGE		(0x01)	//最初の攻撃がヒット
+#define	TRAINER_MESSAGE_FLAG_POKE_HP_HALF		(0x02)	//HPが半分以下
+#define	TRAINER_MESSAGE_FLAG_POKE_LAST			(0x03)	//ポケモンが最後の１体
+#define	TRAINER_MESSAGE_FLAG_POKE_LAST_HP_HALF	(0x04)	//ポケモンが最後の１体でHPが半分以下
 
 //=========================================================================
-//		���b�Z�[�W�p�؂̎��̖���`
+//		メッセージ用木の実の味定義
 //=========================================================================
 #define	TASTE_KARAI		(0)
 #define	TASTE_SIBUI		(1)
@@ -1376,96 +1376,96 @@
 #define	TASTE_SUPPAI	(4)
 
 //=========================================================================
-//		�؂̎��̖���`
+//		木の実の味定義
 //=========================================================================
 #define	LIKE_TASTE		(1)
 #define	NORMAL_TASTE	(0)
 #define	DISLIKE_TASTE	(-1)
 
 //=========================================================================
-//		����HP(�����������A��u��HP��0�\���ɂ���ׁA�_���[�W�l�ɂ��̒l������)
+//		自爆HP(自爆した時、一瞬でHPを0表示にする為、ダメージ値にこの値を入れる)
 //=========================================================================
 #define JIBAKU_HP			(0x7fff)
 
 //=========================================================================
-//		BattleMSG_PrintXY�p��`
+//		BattleMSG_PrintXY用定義
 //=========================================================================
-#define BATTLE_MSG_WIN_CLEAR	(0x00000001)	///<���b�Z�[�W�E�C���h�E���N���A
-#define BATTLE_MSG_WIDTH_OFS	(0x00000002)	///<���b�Z�[�W�̉E�l�ߕ␳������
-
-//=========================================================================
-//		�T�t�@���]�[���p��`
-//=========================================================================
-#define	SAFARI_COUNT_FLAT		(6)				///<�ߊl���A�������v�Z�p�J�E���^�̓��{���̒l
-#define	SAFARI_COUNT_MAX		(12)			///<�ߊl���A�������v�Z�p�J�E���^��MAX�l
-
-#define	SAFARI_ATARI			(10)			///<�ߊl���A�������v�Z�p�J�E���^�̑哖����̊m��(gf_rand()%??==0)
+#define BATTLE_MSG_WIN_CLEAR	(0x00000001)	///<メッセージウインドウをクリア
+#define BATTLE_MSG_WIDTH_OFS	(0x00000002)	///<メッセージの右詰め補正をする
 
 //=========================================================================
-//		YES_NO_SELECT�p�̃t���O
+//		サファリゾーン用定義
 //=========================================================================
-#define	YNTYPE_YES_NO				(0)			//�ʏ�̂͂��^������
-#define	YNTYPE_WASURE				(1)			//�Z�Y��p
-#define	YNTYPE_AKIRAME				(2)			//�Z�o��������ߗp
-#define	YNTYPE_NEXT_POKEMON			(3)			//�u���́@�|�P�������@�����v
-#define	YNTYPE_CHANGE_POKEMON		(4)			//�u�|�P�������@���ꂩ����v
-#define	YNTYPE_NICK_NAME			(5)			//�j�b�N�l�[��������̂͂��^������
+#define	SAFARI_COUNT_FLAT		(6)				///<捕獲率、逃走率計算用カウンタの等倍時の値
+#define	SAFARI_COUNT_MAX		(12)			///<捕獲率、逃走率計算用カウンタのMAX値
+
+#define	SAFARI_ATARI			(10)			///<捕獲率、逃走率計算用カウンタの大当たりの確率(gf_rand()%??==0)
 
 //=========================================================================
-//	�|�P�����̃t�H�����i���o�[��`
+//		YES_NO_SELECT用のフラグ
 //=========================================================================
-//�|������
-#define	FORMNO_POWARUN_NORMAL		(0)		///<�m�[�}���|������
-#define	FORMNO_POWARUN_SUN			(1)		///<���z�|������
-#define	FORMNO_POWARUN_RAIN			(2)		///<�J�|������
-#define	FORMNO_POWARUN_SNOW			(3)		///<�����|������
+#define	YNTYPE_YES_NO				(0)			//通常のはい／いいえ
+#define	YNTYPE_WASURE				(1)			//技忘れ用
+#define	YNTYPE_AKIRAME				(2)			//技覚えあきらめ用
+#define	YNTYPE_NEXT_POKEMON			(3)			//「つぎの　ポケモンを　つかう」
+#define	YNTYPE_CHANGE_POKEMON		(4)			//「ポケモンを　いれかえる」
+#define	YNTYPE_NICK_NAME			(5)			//ニックネームをつけるのはい／いいえ
 
-#define	FORMNO_POWARUN_MAX			(3)		///<�|�������̕ʃt�H����MAX
+//=========================================================================
+//	ポケモンのフォルムナンバー定義
+//=========================================================================
+//ポワルン
+#define	FORMNO_POWARUN_NORMAL		(0)		///<ノーマルポワルン
+#define	FORMNO_POWARUN_SUN			(1)		///<太陽ポワルン
+#define	FORMNO_POWARUN_RAIN			(2)		///<雨ポワルン
+#define	FORMNO_POWARUN_SNOW			(3)		///<あられポワルン
 
-//�~�m���b�`
-#define	FORMNO_MINOMUTTI_KUSA		(0)		///<�����݂�
-#define	FORMNO_MINOMUTTI_SUNA		(1)		///<���Ȃ݂�
-#define	FORMNO_MINOMUTTI_TETSU		(2)		///<�Ă݂�
+#define	FORMNO_POWARUN_MAX			(3)		///<ポワルンの別フォルムMAX
 
-#define	FORMNO_MINOMUTTI_MAX		(2)		///<�~�m���b�`�̕ʃt�H����MAX
+//ミノムッチ
+#define	FORMNO_MINOMUTTI_KUSA		(0)		///<くさみの
+#define	FORMNO_MINOMUTTI_SUNA		(1)		///<すなみの
+#define	FORMNO_MINOMUTTI_TETSU		(2)		///<てつみの
 
-//�`�F���V��
-#define	FORMNO_THERISYU_NORMAL		(0)		///<�ڂ݃`�F���V��
-#define	FORMNO_THERISYU_SUN			(1)		///<�炢�Ă�`�F���V��
+#define	FORMNO_MINOMUTTI_MAX		(2)		///<ミノムッチの別フォルムMAX
 
-#define	FORMNO_THERISYU_MAX			(1)		///<�`�F���V���̕ʃt�H����MAX
+//チェリシュ
+#define	FORMNO_THERISYU_NORMAL		(0)		///<つぼみチェリシュ
+#define	FORMNO_THERISYU_SUN			(1)		///<咲いてるチェリシュ
 
-//�V�[�E�V�E�V�[�h���S
-#define	FORMNO_SII_WEST				(0)		///<���V�[�E�V�E�V�[�h���S
-#define	FORMNO_SII_EAST				(1)		///<���V�[�E�V�E�V�[�h���S
+#define	FORMNO_THERISYU_MAX			(1)		///<チェリシュの別フォルムMAX
 
-#define	FORMNO_SII_MAX				(1)		///<�V�[�E�V�E�V�[�h���S�̕ʃt�H����MAX
+//シーウシ・シードルゴ
+#define	FORMNO_SII_WEST				(0)		///<西シーウシ・シードルゴ
+#define	FORMNO_SII_EAST				(1)		///<東シーウシ・シードルゴ
 
-//�V�F�C�~
-#define	FORMNO_SHEIMI_NORMAL		(0)		///<�V�F�C�~�m�[�}��
-#define	FORMNO_SHEIMI_FLOWER		(1)		///<�V�F�C�~�ԍ炫
+#define	FORMNO_SII_MAX				(1)		///<シーウシ・シードルゴの別フォルムMAX
 
-#define	FORMNO_SHEIMI_MAX			(1)		///<�V�F�C�~�̕ʃt�H����MAX
+//シェイミ
+#define	FORMNO_SHEIMI_NORMAL		(0)		///<シェイミノーマル
+#define	FORMNO_SHEIMI_FLOWER		(1)		///<シェイミ花咲き
 
-//�f�I�L�V�X
-#define	FORMNO_DEOKISISU_NORMAL		(0)		///<�m�[�}���t�H����
-#define	FORMNO_DEOKISISU_ATTACK		(1)		///<�A�^�b�N�t�H����
-#define	FORMNO_DEOKISISU_DEFENCE	(2)		///<�f�B�t�F���X�t�H����
-#define	FORMNO_DEOKISISU_SPEED		(3)		///<�X�s�[�h�t�H����
+#define	FORMNO_SHEIMI_MAX			(1)		///<シェイミの別フォルムMAX
 
-#define	FORMNO_DEOKISISU_MAX		(3)		///<�f�I�L�V�X�̕ʃt�H����MAX
+//デオキシス
+#define	FORMNO_DEOKISISU_NORMAL		(0)		///<ノーマルフォルム
+#define	FORMNO_DEOKISISU_ATTACK		(1)		///<アタックフォルム
+#define	FORMNO_DEOKISISU_DEFENCE	(2)		///<ディフェンスフォルム
+#define	FORMNO_DEOKISISU_SPEED		(3)		///<スピードフォルム
 
-// ���g���̃t�H������`
-#define	FORMNO_ROTOMU_NORMAL	(0)			// �m�[�}���t�H����
-#define	FORMNO_ROTOMU_HOT		(1)			// �d�q�����W�t�H����
-#define	FORMNO_ROTOMU_WASH		(2)			// ����@�t�H����
-#define	FORMNO_ROTOMU_COLD		(3)			// �①�Ƀt�H����
-#define	FORMNO_ROTOMU_FAN		(4)			// ��@�t�H����
-#define	FORMNO_ROTOMU_CUT		(5)			// ������@�t�H����
+#define	FORMNO_DEOKISISU_MAX		(3)		///<デオキシスの別フォルムMAX
 
-#define	FORMNO_ROTOMU_MAX		(5)			// ���g���̕ʃt�H����MAX
+// ロトムのフォルム定義
+#define	FORMNO_ROTOMU_NORMAL	(0)			// ノーマルフォルム
+#define	FORMNO_ROTOMU_HOT		(1)			// 電子レンジフォルム
+#define	FORMNO_ROTOMU_WASH		(2)			// 洗濯機フォルム
+#define	FORMNO_ROTOMU_COLD		(3)			// 冷蔵庫フォルム
+#define	FORMNO_ROTOMU_FAN		(4)			// 扇風機フォルム
+#define	FORMNO_ROTOMU_CUT		(5)			// 草刈り機フォルム
 
-// ���g���̃t�H������`(BIT�w��)
+#define	FORMNO_ROTOMU_MAX		(5)			// ロトムの別フォルムMAX
+
+// ロトムのフォルム定義(BIT指定)
 #define FORMNO_ROTOMU_BIT_NORMAL		(1 << FORMNO_ROTOMU_NORMAL)
 #define FORMNO_ROTOMU_BIT_HOT			(1 << FORMNO_ROTOMU_HOT)
 #define FORMNO_ROTOMU_BIT_WASH			(1 << FORMNO_ROTOMU_WASH)
@@ -1473,14 +1473,14 @@
 #define FORMNO_ROTOMU_BIT_FAN			(1 << FORMNO_ROTOMU_FAN)
 #define FORMNO_ROTOMU_BIT_CUT			(1 << FORMNO_ROTOMU_CUT)
 
-// �M���e�B�i�t�H������`
-#define FORMNO_GIRATINA_NORMAL	(0)			// �m�[�}��
-#define FORMNO_GIRATINA_ORIGIN	(1)			// �I���W��
+// ギラティナフォルム定義
+#define FORMNO_GIRATINA_NORMAL	(0)			// ノーマル
+#define FORMNO_GIRATINA_ORIGIN	(1)			// オリジン
 
 #define FORMNO_GIRATINA_MAX		(1)
 
 //=========================================================================
-//		�A�C�e���^�C�v�iAI�p�j
+//		アイテムタイプ（AI用）
 //=========================================================================
 #define	ITEMTYPE_KAIHUKUNOKUSURI	(0)
 #define	ITEMTYPE_HP_KAIHUKU			(1)
@@ -1490,89 +1490,89 @@
 #define	ITEMTYPE_UNKOWN				(5)
 
 //=========================================================================
-//		�A�C�e��USE���b�Z�[�W�C���f�b�N�X
+//		アイテムUSEメッセージインデックス
 //=========================================================================
-#define	ITEM_USE_MSG_RECV_KONRAN	(0)		//�����񒼂�
-#define	ITEM_USE_MSG_RECV_MAHI		(1)		//�܂В���
-#define	ITEM_USE_MSG_RECV_KOORI		(2)		//�����蒼��
-#define	ITEM_USE_MSG_RECV_YAKEDO	(3)		//�₯�ǒ���
-#define	ITEM_USE_MSG_RECV_DOKU		(4)		//�ǂ�����
-#define	ITEM_USE_MSG_RECV_NEMURI	(5)		//�˂ނ蒼��
-#define	ITEM_USE_MSG_RECV_MULTI		(6)		//������{������
+#define	ITEM_USE_MSG_RECV_KONRAN	(0)		//こんらん直し
+#define	ITEM_USE_MSG_RECV_MAHI		(1)		//まひ直し
+#define	ITEM_USE_MSG_RECV_KOORI		(2)		//こおり直し
+#define	ITEM_USE_MSG_RECV_YAKEDO	(3)		//やけど直し
+#define	ITEM_USE_MSG_RECV_DOKU		(4)		//どく直し
+#define	ITEM_USE_MSG_RECV_NEMURI	(5)		//ねむり直し
+#define	ITEM_USE_MSG_RECV_MULTI		(6)		//こんらん＋α直し
 
 //=========================================================================
-//		�g���[�i�[�w�ʃO���t�B�b�N�pTRTYPE��`
+//		トレーナー背面グラフィック用TRTYPE定義
 //=======================================================================
-#define	TRTYPE_TRB_BOY				(0)		//�j��l��
-#define	TRTYPE_TRB_GIRL				(1)		//����l��
-#define	TRTYPE_TRB_RIVAL			(2)		//���C�o��
-#define	TRTYPE_TRB_BTFIVE1			(3)		//�ܐl�O�i���~�j
-#define	TRTYPE_TRB_BTFIVE2			(4)		//�ܐl�O�i�Q���j
-#define	TRTYPE_TRB_BTFIVE3			(5)		//�ܐl�O�i�}�C�j
-#define	TRTYPE_TRB_BTFIVE4			(6)		//�ܐl�O�i�o�N�j
-#define	TRTYPE_TRB_BTFIVE5			(7)		//�ܐl�O�i�~���j
-#define	TRTYPE_TRB_BOY_DP			(8)		//�j��l��(DP)
-#define	TRTYPE_TRB_GIRL_DP			(9)		//����l��(DP)
-#define	TRTYPE_TRB_RIVAL_DP			(10)	//���C�o��(DP)
+#define	TRTYPE_TRB_BOY				(0)		//男主人公
+#define	TRTYPE_TRB_GIRL				(1)		//女主人公
+#define	TRTYPE_TRB_RIVAL			(2)		//ライバル
+#define	TRTYPE_TRB_BTFIVE1			(3)		//五人衆（モミ）
+#define	TRTYPE_TRB_BTFIVE2			(4)		//五人衆（ゲン）
+#define	TRTYPE_TRB_BTFIVE3			(5)		//五人衆（マイ）
+#define	TRTYPE_TRB_BTFIVE4			(6)		//五人衆（バク）
+#define	TRTYPE_TRB_BTFIVE5			(7)		//五人衆（ミル）
+#define	TRTYPE_TRB_BOY_DP			(8)		//男主人公(DP)
+#define	TRTYPE_TRB_GIRL_DP			(9)		//女主人公(DP)
+#define	TRTYPE_TRB_RIVAL_DP			(10)	//ライバル(DP)
 
 //=========================================================================
-//		POKEMON_GET_INIT�ɃZ�b�g����^�C�v
+//		POKEMON_GET_INITにセットするタイプ
 //=======================================================================
-#define	GET_NORMAL					(0)		//�ʏ�ߊl
-#define	GET_SAFARI					(1)		//�T�t�@���ߊl
+#define	GET_NORMAL					(0)		//通常捕獲
+#define	GET_SAFARI					(1)		//サファリ捕獲
 
 //=========================================================================
-//		TRAINER_THROW�ɃZ�b�g����^�C�v
+//		TRAINER_THROWにセットするタイプ
 //=======================================================================
-#define	TT_TYPE_ENCOUNT				(0)		//�G���J�E���g
-#define	TT_TYPE_SAFARI_BALL			(1)		//�T�t�@���{�[������
-#define	TT_TYPE_SAFARI_STONE		(2)		//�T�t�@���Γ���
-#define	TT_TYPE_SAFARI_FOOD			(3)		//�T�t�@����������
-#define	TT_TYPE_PARK_BALL			(4)		//�|�P�p�[�N�{�[������
+#define	TT_TYPE_ENCOUNT				(0)		//エンカウント
+#define	TT_TYPE_SAFARI_BALL			(1)		//サファリボール投げ
+#define	TT_TYPE_SAFARI_STONE		(2)		//サファリ石投げ
+#define	TT_TYPE_SAFARI_FOOD			(3)		//サファリえさ投げ
+#define	TT_TYPE_PARK_BALL			(4)		//ポケパークボール投げ
 
 //=========================================================================
-//		INC_RECORD�ɃZ�b�g����t���O
+//		INC_RECORDにセットするフラグ
 //=======================================================================
-#define	CLIENT_BOOT_TYPE_MINE		(0)		//��������
-#define	CLIENT_BOOT_TYPE_NOMINE		(1)		//��������ȊO
+#define	CLIENT_BOOT_TYPE_MINE		(0)		//自分制御
+#define	CLIENT_BOOT_TYPE_NOMINE		(1)		//自分制御以外
 
 //=========================================================================
-//		POKEMON_APPEAR�̃t���O
+//		POKEMON_APPEARのフラグ
 //=======================================================================
-#define	POKEMON_APPEAR_KURIDASI		(0)		//�J��o��
-#define	POKEMON_APPEAR_GET_FAILED	(1)		//�ߊl���s
+#define	POKEMON_APPEAR_KURIDASI		(0)		//繰り出し
+#define	POKEMON_APPEAR_GET_FAILED	(1)		//捕獲失敗
 
 //=========================================================================
-//		command_select_flag�̃t���O
+//		command_select_flagのフラグ
 //=======================================================================
-#define	SLIDE_IN_BEFORE				(0)		//�X���C�h�O
-#define	SLIDE_IN_AFTER				(1)		//�X���C�h��
+#define	SLIDE_IN_BEFORE				(0)		//スライド前
+#define	SLIDE_IN_AFTER				(1)		//スライド後
 
 //=========================================================================
-//		ST_EscCanCheck�̕Ԃ�l
+//		ST_EscCanCheckの返り値
 //=======================================================================
-#define	COMSEL_ESCAPE				(0)		//�u�ɂ���v
-#define	COMSEL_BACK					(1)		//�u���ǂ�v
+#define	COMSEL_ESCAPE				(0)		//「にげる」
+#define	COMSEL_BACK					(1)		//「もどる」
 
 //=========================================================================
-//		�f�o�b�O�p�t���O
+//		デバッグ用フラグ
 //=========================================================================
-#define	DEBUG_FLAG_ADD_STATUS				(0x00000001)			///<�ǉ�����100%
-#define	DEBUG_FLAG_TOKUSYU					(0x00000002)			///<��������100%
-#define	DEBUG_FLAG_SOUBI					(0x00000004)			///<�������ʔ���100%
-#define	DEBUG_FLAG_DAMAGE_LOCK				(0x00000008)			///<�_���[�W�������Œ�
-#define	DEBUG_FLAG_RESHUFFLE_CONTROL		(0x00000010)			///<�|�P��������ւ��𐧌�
-#define	DEBUG_FLAG_YUBIHURU_DEBUG_SET		(0x00000020)			///<��т��ӂ�f�o�b�O�Z�Œ�
-#define	DEBUG_FLAG_YUBIHURU_DEBUG_RANGE		(0x00000040)			///<��т��ӂ�f�o�b�O�Z�͈�
-#define	DEBUG_FLAG_CRITICAL					(0x00000080)			///<�}��100%
+#define	DEBUG_FLAG_ADD_STATUS				(0x00000001)			///<追加効果100%
+#define	DEBUG_FLAG_TOKUSYU					(0x00000002)			///<特性発動100%
+#define	DEBUG_FLAG_SOUBI					(0x00000004)			///<装備効果発動100%
+#define	DEBUG_FLAG_DAMAGE_LOCK				(0x00000008)			///<ダメージ乱数を固定
+#define	DEBUG_FLAG_RESHUFFLE_CONTROL		(0x00000010)			///<ポケモン入れ替えを制御
+#define	DEBUG_FLAG_YUBIHURU_DEBUG_SET		(0x00000020)			///<ゆびをふるデバッグ技固定
+#define	DEBUG_FLAG_YUBIHURU_DEBUG_RANGE		(0x00000040)			///<ゆびをふるデバッグ技範囲
+#define	DEBUG_FLAG_CRITICAL					(0x00000080)			///<急所100%
 
-#define	DEBUG_FLAG_ADD_STATUS_OFF			(0x00000001)^0xffffffff	///<�ǉ�����100%
-#define	DEBUG_FLAG_TOKUSYU_OFF				(0x00000002)^0xffffffff	///<��������100%
-#define	DEBUG_FLAG_SOUBI_OFF				(0x00000004)^0xffffffff	///<�������ʔ���100%
-#define	DEBUG_FLAG_DAMAGE_LOCK_OFF			(0x00000008)^0xffffffff	///<�_���[�W�������Œ�
-#define	DEBUG_FLAG_RESHUFFLE_CONTROL_OFF	(0x00000010)^0xffffffff	///<�|�P��������ւ��𐧌�
-#define	DEBUG_FLAG_YUBIHURU_DEBUG_SET_OFF	(0x00000020)^0xffffffff	///<��т��ӂ�f�o�b�O�Z�Œ�
-#define	DEBUG_FLAG_YUBIHURU_DEBUG_RANGE_OFF	(0x00000040)^0xffffffff	///<��т��ӂ�f�o�b�O�Z�͈�
-#define	DEBUG_FLAG_CRITICAL_OFF				(0x00000080)^0xffffffff	///<�}��100%
+#define	DEBUG_FLAG_ADD_STATUS_OFF			(0x00000001)^0xffffffff	///<追加効果100%
+#define	DEBUG_FLAG_TOKUSYU_OFF				(0x00000002)^0xffffffff	///<特性発動100%
+#define	DEBUG_FLAG_SOUBI_OFF				(0x00000004)^0xffffffff	///<装備効果発動100%
+#define	DEBUG_FLAG_DAMAGE_LOCK_OFF			(0x00000008)^0xffffffff	///<ダメージ乱数を固定
+#define	DEBUG_FLAG_RESHUFFLE_CONTROL_OFF	(0x00000010)^0xffffffff	///<ポケモン入れ替えを制御
+#define	DEBUG_FLAG_YUBIHURU_DEBUG_SET_OFF	(0x00000020)^0xffffffff	///<ゆびをふるデバッグ技固定
+#define	DEBUG_FLAG_YUBIHURU_DEBUG_RANGE_OFF	(0x00000040)^0xffffffff	///<ゆびをふるデバッグ技範囲
+#define	DEBUG_FLAG_CRITICAL_OFF				(0x00000080)^0xffffffff	///<急所100%
 
 #endif __BATTLE_SERVER_H_

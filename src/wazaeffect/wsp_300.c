@@ -1,39 +1,39 @@
 //==============================================================================
 /**
  * @file	wsp_300.c
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
  * @date	2006.02.28
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
 
-#include "common.h"				///< •K{
-#include "system/lib_pack.h"	///< •K{
-#include "west_sp.h"			///< •K{
-#include "wsp.h"				///< xxx.c‚É‘Î‚·‚éxxx.h‚Í•K{
+#include "common.h"				///< å¿…é ˆ
+#include "system/lib_pack.h"	///< å¿…é ˆ
+#include "west_sp.h"			///< å¿…é ˆ
+#include "wsp.h"				///< xxx.cã«å¯¾ã™ã‚‹xxx.hã¯å¿…é ˆ
 
-#include "wazatool.h"			///< ‹ZƒGƒtƒFƒNƒgx‰‡ŠÖ”ŒS
+#include "wazatool.h"			///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ”¯æ´é–¢æ•°éƒ¡
 #include "we_tool.h"			///< 
 
 #include "ball_effect.h"
-#include "system/arc_tool.h"	///< ƒA[ƒJƒCƒu—p
-#include "system/arc_util.h"	///< ƒA[ƒJƒCƒu—p
+#include "system/arc_tool.h"	///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨
+#include "system/arc_util.h"	///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç”¨
 
 #include "we_def.h"
 
 ///< No 300-
 typedef struct {
 
-	TWE_TOOL_SYS		ts;		///< ‹ZƒGƒtƒFƒNƒg”Ä—p\‘¢‘Ì
-	TWE_POKE_SYS		poke;	///< ƒ|ƒPƒ‚ƒ“”Ä—p\‘¢‘Ì
+	TWE_TOOL_SYS		ts;		///< æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ±ç”¨æ§‹é€ ä½“
+	TWE_POKE_SYS		poke;	///< ãƒã‚±ãƒ¢ãƒ³æ±ç”¨æ§‹é€ ä½“
 	CATS_ACT_PTR		cap;
 	
-	WAZATOOL_CALCMOVE	cm;		///< ”Ä—pƒ[ƒN
-	WAZATOOL_CALCMOVE	cm_t;	///< ”Ä—pƒ[ƒN
-	WAZATOOL_CALCMOVE	cm_t2;	///< ”Ä—pƒ[ƒN
+	WAZATOOL_CALCMOVE	cm;		///< æ±ç”¨ãƒ¯ãƒ¼ã‚¯
+	WAZATOOL_CALCMOVE	cm_t;	///< æ±ç”¨ãƒ¯ãƒ¼ã‚¯
+	WAZATOOL_CALCMOVE	cm_t2;	///< æ±ç”¨ãƒ¯ãƒ¼ã‚¯
 
 	u8	loop;
 	u8	wait;
@@ -108,7 +108,7 @@ static void We325_TCB(TCB_PTR tcb, void* work)
 		break;
 	
 	default:
-		///< ‰ğ•úˆ—
+		///< è§£æ”¾å‡¦ç†
 		WEEffect_TCB_Delete(wk->ts.wsp, tcb);
 		WET_SAFE_RELEASE(wk);
 		return;
@@ -173,7 +173,7 @@ typedef struct {
 	s16				time[WE338_OAM_MAX];
 	CATS_ACT_PTR	cap[WE338_OAM_MAX];
 	
-	WAZATOOL_CALCMOVE	cm;		///< ”Ä—pƒ[ƒN
+	WAZATOOL_CALCMOVE	cm;		///< æ±ç”¨ãƒ¯ãƒ¼ã‚¯
 
 } TWE_338_SYS;
 
@@ -220,7 +220,7 @@ void WestSp_CAT_WE_338(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 	{
 		int i;
 
-		///< OAM“o˜^
+		///< OAMç™»éŒ²
 		{
 			s16 ofs1,ofs2;
 			TCATS_OBJECT_ADD_PARAM_S coap;
@@ -235,7 +235,7 @@ void WestSp_CAT_WE_338(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 			}
 		}
 
-		///< ’¼üŒvZ‰Šú‰»
+		///< ç›´ç·šè¨ˆç®—åˆæœŸåŒ–
 		{
 			SOFT_SPRITE* ssp;
 			s16 x1,x2,y1,y2;
@@ -250,7 +250,7 @@ void WestSp_CAT_WE_338(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 			WazaTool_InitStraightSyncFx(&wk->cm, x1, x2, y1, y2, (WE338_OAM_MAX+2) * 2);
 		}
 
-		///< ’¼üó‚Ì”z’u
+		///< ç›´ç·šçŠ¶ã®é…ç½®
 		{
 			BOOL res;
 			int  cnt = 0;
@@ -279,7 +279,7 @@ void WestSp_CAT_WE_338(WE_SYS_PTR we_sys, CATS_SYS_PTR csp, CATS_RES_PTR crp, CA
 			} while(res == TRUE);
 		}
 	
-		///< •\¦ŠÔŒvZ
+		///< è¡¨ç¤ºæ™‚é–“è¨ˆç®—
 		{
 			int pri  = BT_BGPriorityGet(wk->ts.wsp, WES_BF_EFFECT);
 			int pri2 = BT_BGPriorityGet(wk->ts.wsp, WES_BF_BACKGROUND);
@@ -513,13 +513,13 @@ void WSP_272(WE_SYS_PTR we_sys)
 }
 
 
-///< ‚æ‚±‚Ç‚è
+///< ã‚ˆã“ã©ã‚Š
 
 typedef struct {
 
 	TWE_TOOL_SYS		ts;
-	TWE_POKE_SYS		poke;	///< ƒ|ƒPƒ‚ƒ“”Ä—p\‘¢‘Ì	
-	WAZATOOL_CALCMOVE	cm;		///< ”Ä—pƒ[ƒN	
+	TWE_POKE_SYS		poke;	///< ãƒã‚±ãƒ¢ãƒ³æ±ç”¨æ§‹é€ ä½“	
+	WAZATOOL_CALCMOVE	cm;		///< æ±ç”¨ãƒ¯ãƒ¼ã‚¯	
 	
 	s16	vec;
 	int rev;
@@ -541,7 +541,7 @@ static void W289_TCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->ts.seq){
 	case 0:
-		///< ‰Šú‰»			
+		///< åˆæœŸåŒ–			
 		WazaTool_InitStraightSyncFx(&wk->cm,
 									wk->poke.p.x, wk->point_x[wk->cnt],
 									wk->point_y[wk->cnt], wk->point_y[wk->cnt], 
@@ -551,7 +551,7 @@ static void W289_TCB(TCB_PTR tcb, void* work)
 		wk->ts.seq++;
 		
 	case 1:
-		///< ˆÚ“®
+		///< ç§»å‹•
 		if (WazaTool_CalcStraightFx(&wk->cm) == FALSE){
 			wk->cnt++;
 			if (wk->cnt > 2){
@@ -687,7 +687,7 @@ typedef struct {
 	SOFT_SPRITE*		ssp;
 	
 	TWE_TOOL_SYS		ts;
-	TWE_POKE_SYS		poke;	///< ƒ|ƒPƒ‚ƒ“”Ä—p\‘¢‘Ì	
+	TWE_POKE_SYS		poke;	///< ãƒã‚±ãƒ¢ãƒ³æ±ç”¨æ§‹é€ ä½“	
 	
 } W166;
 

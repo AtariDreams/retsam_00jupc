@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		worldtimer.c
- *	@brief		¢ŠEŽžŒv
+ *	@brief		ä¸–ç•Œæ™‚è¨ˆ
  *	@author		tomoya takahashi
  *	@data		2007.09.14
  *
@@ -48,34 +48,34 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒfƒoƒbƒNÝ’è
+ *				ãƒ‡ãƒãƒƒã‚¯è¨­å®š
  */
 //-----------------------------------------------------------------------------
 #ifdef  PM_DEBUG
-#define WLDTIMER_DEBUG_ALLPLACEOPEN		// ‘S’nˆæ‚Ì•\Ž¦
-//#define WLDTIMER_DEBUG_TIMEZONE	// ƒ^ƒCƒ€ƒ][ƒ“‚ðƒRƒ“ƒgƒ[ƒ‹‚·‚é
+#define WLDTIMER_DEBUG_ALLPLACEOPEN		// å…¨åœ°åŸŸã®è¡¨ç¤º
+//#define WLDTIMER_DEBUG_TIMEZONE	// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‚’ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã™ã‚‹
 #endif
 
-// ƒ^ƒCƒ€ƒ][ƒ“ƒRƒ“ƒgƒ[ƒ‹
+// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 #ifdef WLDTIMER_DEBUG_TIMEZONE
 static s32 s_WLDTIMER_DEBUG_TimeZone;
 #endif
@@ -86,13 +86,13 @@ static BOOL s_WLDTIMER_DEBUG_ALLPLACEOPEN_FLAG = FALSE;
 
 
 //-----------------------------------------------------------------------------
-//	src/application/wifi_earth/wifi_earth‚©‚çƒRƒs[
+//	src/application/wifi_earth/wifi_earthã‹ã‚‰ã‚³ãƒ”ãƒ¼
 //-----------------------------------------------------------------------------
 
-//’n“_“o˜^Å‘å”
-#define WORLD_PLACE_NUM_MAX	(0x400)	//‚¾‚¢‚½‚¢‚P‚O‚O‚O‘‚­‚ç‚¢‚Æ‚é
+//åœ°ç‚¹ç™»éŒ²æœ€å¤§æ•°
+#define WORLD_PLACE_NUM_MAX	(0x400)	//ã ã„ãŸã„ï¼‘ï¼ï¼ï¼å›½ãã‚‰ã„ã¨ã‚‹
 
-//’n‹…ƒ‚ƒfƒ‹‰Šú‰»’è‹`
+//åœ°çƒãƒ¢ãƒ‡ãƒ«åˆæœŸåŒ–å®šç¾©
 #define INIT_EARTH_TRANS_XVAL	(0)
 #define INIT_EARTH_TRANS_YVAL	(0)
 #define INIT_EARTH_TRANS_ZVAL	(0)
@@ -101,30 +101,30 @@ static BOOL s_WLDTIMER_DEBUG_ALLPLACEOPEN_FLAG = FALSE;
 #define INIT_EARTH_SCALE_ZVAL	(FX32_ONE)
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/18
-// ƒfƒtƒHƒ‹ƒgˆÊ’u‚ðŒ¾Œê‚²‚Æ‚É•ÏX
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä½ç½®ã‚’è¨€èªžã”ã¨ã«å¤‰æ›´
 #if PM_LANG == LANG_ENGLISH
-#define INIT_EARTH_ROTATE_XVAL	(0x1A40)	// ƒAƒƒŠƒJ‚Ì^‚ñ’†‚ ‚½‚è
+#define INIT_EARTH_ROTATE_XVAL	(0x1A40)	// ã‚¢ãƒ¡ãƒªã‚«ã®çœŸã‚“ä¸­ã‚ãŸã‚Š
 #define INIT_EARTH_ROTATE_YVAL	(0x7C00)
 #elif PM_LANG == LANG_FRANCE
-#define INIT_EARTH_ROTATE_XVAL	(0x2300)	// ƒpƒŠiƒCƒ‹EƒhEƒtƒ‰ƒ“ƒXj
+#define INIT_EARTH_ROTATE_XVAL	(0x2300)	// ãƒ‘ãƒªï¼ˆã‚¤ãƒ«ãƒ»ãƒ‰ãƒ»ãƒ•ãƒ©ãƒ³ã‚¹ï¼‰
 #define INIT_EARTH_ROTATE_YVAL	(0x3100)
 #elif PM_LANG == LANG_GERMANY
-#define INIT_EARTH_ROTATE_XVAL	(0x2580)	// ƒxƒ‹ƒŠƒ“
+#define INIT_EARTH_ROTATE_XVAL	(0x2580)	// ãƒ™ãƒ«ãƒªãƒ³
 #define INIT_EARTH_ROTATE_YVAL	(0x2A00)
 #elif PM_LANG == LANG_ITALY
-#define INIT_EARTH_ROTATE_XVAL	(0x1DE0)	// ƒ[ƒ}iƒ‰ƒcƒBƒIj
+#define INIT_EARTH_ROTATE_XVAL	(0x1DE0)	// ãƒ­ãƒ¼ãƒžï¼ˆãƒ©ãƒ„ã‚£ã‚ªï¼‰
 #define INIT_EARTH_ROTATE_YVAL	(0x2A00)
 #elif PM_LANG == LANG_SPENCE
-#define INIT_EARTH_ROTATE_XVAL	(0x1CA0)	// ƒ}ƒhƒŠƒbƒh
+#define INIT_EARTH_ROTATE_XVAL	(0x1CA0)	// ãƒžãƒ‰ãƒªãƒƒãƒ‰
 #define INIT_EARTH_ROTATE_YVAL	(0x35E0)
 #else
-#define INIT_EARTH_ROTATE_XVAL	(0x1980)	//“Œ‹ž‚ðƒfƒtƒHƒ‹ƒgˆÊ’u‚É‚·‚é
-#define INIT_EARTH_ROTATE_YVAL	(0xcfe0)	//“Œ‹ž‚ðƒfƒtƒHƒ‹ƒgˆÊ’u‚É‚·‚é
+#define INIT_EARTH_ROTATE_XVAL	(0x1980)	//æ±äº¬ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä½ç½®ã«ã™ã‚‹
+#define INIT_EARTH_ROTATE_YVAL	(0xcfe0)	//æ±äº¬ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä½ç½®ã«ã™ã‚‹
 #endif
 // ---------------------------------------------------------------------------
 #define INIT_EARTH_ROTATE_ZVAL	(0)
 
-//ƒJƒƒ‰‰Šú‰»’è‹`
+//ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–å®šç¾©
 #define INIT_CAMERA_TARGET_XVAL	(0)
 #define INIT_CAMERA_TARGET_YVAL	(0)
 #define INIT_CAMERA_TARGET_ZVAL	(0)
@@ -139,54 +139,54 @@ static BOOL s_WLDTIMER_DEBUG_ALLPLACEOPEN_FLAG = FALSE;
 #define CAMERA_ANGLE_MIN		(-0x4000+0x200)
 #define CAMERA_ANGLE_MAX		(0x4000-0x200)
 
-//ƒ‰ƒCƒg‰Šú‰»’è‹`
+//ãƒ©ã‚¤ãƒˆåˆæœŸåŒ–å®šç¾©
 #define USE_LIGHT_NUM			(0)
 #define LIGHT_VECDEF			(FX32_ONE-1)
 #define INIT_LIGHT_ANGLE_XVAL	(0)
 #define INIT_LIGHT_ANGLE_YVAL	(0)
 #define INIT_LIGHT_ANGLE_ZVAL	(-LIGHT_VECDEF)
 
-//“®ìˆ——p’è”
-#define CAMERA_MOVE_SPEED_NEAR	(0x20)	//ƒJƒƒ‰‹ß‹——£Žžã‰º¶‰EˆÚ“®ƒXƒs[ƒh	
-#define CAMERA_MOVE_SPEED_FAR	(0x200)	//ƒJƒƒ‰‰“‹——£Žžã‰º¶‰EˆÚ“®ƒXƒs[ƒh
-#define CAMERA_INOUT_SPEED	(0x8000)	//ƒJƒƒ‰‰“‹ßˆÚ“®ƒXƒs[ƒh
-#define MARK_SCALE_INCDEC	(0x80)		//’n“_ƒ}[ƒN‰“‹ßˆÚ“®’†Šgk”ä—¦
-#define EARTH_LIMIT_ROTATE_XMIN	(0x1300)	//“ú–{Šg‘å’n}‚Ìc‰ñ“]ƒŠƒ~ƒbƒg‰ºŒÀi‰«“êj
-#define EARTH_LIMIT_ROTATE_XMAX	(0x2020)	//“ú–{Šg‘å’n}‚Ìc‰ñ“]ƒŠƒ~ƒbƒgãŒÀi–kŠC“¹’t“àj
-#define EARTH_LIMIT_ROTATE_YMIN	(0xcc80)	//“ú–{Šg‘å’n}‚Ì‰¡‰ñ“]ƒŠƒ~ƒbƒg‰ºŒÀi–kŠC“¹‹ú˜Hj
-#define EARTH_LIMIT_ROTATE_YMAX	(0xd820)	//“ú–{Šg‘å’n}‚Ì‰¡‰ñ“]ƒŠƒ~ƒbƒgãŒÀi‰«“êj
+//å‹•ä½œå‡¦ç†ç”¨å®šæ•°
+#define CAMERA_MOVE_SPEED_NEAR	(0x20)	//ã‚«ãƒ¡ãƒ©è¿‘è·é›¢æ™‚ä¸Šä¸‹å·¦å³ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰	
+#define CAMERA_MOVE_SPEED_FAR	(0x200)	//ã‚«ãƒ¡ãƒ©é è·é›¢æ™‚ä¸Šä¸‹å·¦å³ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define CAMERA_INOUT_SPEED	(0x8000)	//ã‚«ãƒ¡ãƒ©é è¿‘ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define MARK_SCALE_INCDEC	(0x80)		//åœ°ç‚¹ãƒžãƒ¼ã‚¯é è¿‘ç§»å‹•ä¸­æ‹¡ç¸®æ¯”çŽ‡
+#define EARTH_LIMIT_ROTATE_XMIN	(0x1300)	//æ—¥æœ¬æ‹¡å¤§åœ°å›³ã®ç¸¦å›žè»¢ãƒªãƒŸãƒƒãƒˆä¸‹é™ï¼ˆæ²–ç¸„ï¼‰
+#define EARTH_LIMIT_ROTATE_XMAX	(0x2020)	//æ—¥æœ¬æ‹¡å¤§åœ°å›³ã®ç¸¦å›žè»¢ãƒªãƒŸãƒƒãƒˆä¸Šé™ï¼ˆåŒ—æµ·é“ç¨šå†…ï¼‰
+#define EARTH_LIMIT_ROTATE_YMIN	(0xcc80)	//æ—¥æœ¬æ‹¡å¤§åœ°å›³ã®æ¨ªå›žè»¢ãƒªãƒŸãƒƒãƒˆä¸‹é™ï¼ˆåŒ—æµ·é“é‡§è·¯ï¼‰
+#define EARTH_LIMIT_ROTATE_YMAX	(0xd820)	//æ—¥æœ¬æ‹¡å¤§åœ°å›³ã®æ¨ªå›žè»¢ãƒªãƒŸãƒƒãƒˆä¸Šé™ï¼ˆæ²–ç¸„ï¼‰
 
-// ƒAƒCƒRƒ“ƒEƒBƒ“ƒhƒE
+// ã‚¢ã‚¤ã‚³ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	EARTH_ICON_WIN_PX		(25)
 #define	EARTH_ICON_WIN_PY		(21)
 #define	EARTH_ICON_WIN_SX		(6)
 #define	EARTH_ICON_WIN_SY		(2)
 #define DOTSIZE					(8)
 
-//’n‹…‰ñ“]ƒ‚[ƒh’è‹`
+//åœ°çƒå›žè»¢ãƒ¢ãƒ¼ãƒ‰å®šç¾©
 enum {
 	JAPAN_MODE = 0,
 	GLOBAL_MODE,
 };
 
-//ƒJƒƒ‰‹——£ƒtƒ‰ƒO’è‹`
+//ã‚«ãƒ¡ãƒ©è·é›¢ãƒ•ãƒ©ã‚°å®šç¾©
 enum {
 	CAMERA_FAR = 0,
 	CAMERA_NEAR,
 };
 
-//ƒŠƒXƒgƒf[ƒ^\‘¢‘ÌiƒoƒCƒiƒŠƒf[ƒ^¨ŽÀÛ‚ÉŽg—p‚·‚éƒŠƒXƒg—pƒf[ƒ^‚É•ÏŠ·j
+//ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ï¼ˆãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿â†’å®Ÿéš›ã«ä½¿ç”¨ã™ã‚‹ãƒªã‚¹ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›ï¼‰
 typedef struct EARTH_DEMO_LIST_DATA_tag
 {
 	s16 x;
 	s16 y;
-	MtxFx33 rotate;	//‘Š‘Î‰ñ“]s—ñ‚ð‚ ‚ç‚©‚¶‚ßŒvŽZ‚µ‚Ä•Û‘¶
+	MtxFx33 rotate;	//ç›¸å¯¾å›žè»¢è¡Œåˆ—ã‚’ã‚ã‚‰ã‹ã˜ã‚è¨ˆç®—ã—ã¦ä¿å­˜
 	u16	col;
 	u16	nationID;
 	u16	areaID;
 }EARTH_DEMO_LIST_DATA;
 
-//ƒŠƒXƒgƒf[ƒ^\‘¢‘ÌiƒoƒCƒiƒŠƒf[ƒ^¨ŽÀÛ‚ÉŽg—p‚·‚éƒŠƒXƒg—pƒf[ƒ^‚É•ÏŠ·j
+//ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ï¼ˆãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿â†’å®Ÿéš›ã«ä½¿ç”¨ã™ã‚‹ãƒªã‚¹ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›ï¼‰
 typedef struct EARTH_DEMO_LIST_tag
 {
 	u32	listcount;
@@ -202,31 +202,31 @@ typedef struct EARTH_DEMO_LIST_tag
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	‚É‚Ù‚ñ@‘ƒR[ƒh
+///	ã«ã»ã‚“ã€€å›½ã‚³ãƒ¼ãƒ‰
 //=====================================
 #define WLDTIMER_JPN_NATIONID	(country103)
 
 
 
 //-------------------------------------
-///	ƒƒbƒZ[ƒWƒoƒbƒtƒ@”
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡æ•°
 //=====================================
 #define WLDTIMER_MSGMAN_STRBUFNUM	(128)
 
 
 //-------------------------------------
-///	Vram“]‘—ƒ}ƒl[ƒWƒƒ@ƒ^ƒXƒN”
+///	Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ã€€ã‚¿ã‚¹ã‚¯æ•°
 //=====================================
 #define WLDTIMER_VRAMTRANS_TASKNUM	( 64 )
 
 
 //-------------------------------------
-///	“®ìŠÇ—
+///	å‹•ä½œç®¡ç†
 //=====================================
 enum{
 	WLDTIMER_SEQ_FADEIN,
@@ -237,30 +237,30 @@ enum{
 	WLDTIMER_SEQ_FADEOUT,
 	WLDTIMER_SEQ_FADEOUTWAIT,
 };
-enum{	// ’n‹…‹V‰æ–Ê‚ÌƒV[ƒPƒ“ƒX
+enum{	// åœ°çƒå„€ç”»é¢ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	WLDTIMER_MAINSEQ_CONTROL,
 	WLDTIMER_MAINSEQ_CAMERAMOVE,
 
 	WLDTIMER_MAINSEQ_ENDCHECK,
 	WLDTIMER_MAINSEQ_ENDCHECKWAIT,
 };
-enum{	// ƒ^ƒXƒN‰æ–Ê‚ÌƒV[ƒPƒ“ƒX
+enum{	// ã‚¿ã‚¹ã‚¯ç”»é¢ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	WLDTIMER_SUB_SEQ_CONTROL,
 };
 
 //-------------------------------------
-///	’nˆæÝ’è
+///	åœ°åŸŸè¨­å®š
 //=====================================
 enum{
-	WLDTIMER_PLACE_COL_IN,		// “üŽºƒJƒ‰[
-	WLDTIMER_PLACE_COL_OUT,		// ‘ÞŽºƒJƒ‰[
-	WLDTIMER_PLACE_COL_TOUCH,	// ƒ^ƒbƒ`ˆÊ’uƒJƒ‰[
-	WLDTIMER_PLACE_COL_NUM,		// ƒJƒ‰[”
+	WLDTIMER_PLACE_COL_IN,		// å…¥å®¤ã‚«ãƒ©ãƒ¼
+	WLDTIMER_PLACE_COL_OUT,		// é€€å®¤ã‚«ãƒ©ãƒ¼
+	WLDTIMER_PLACE_COL_TOUCH,	// ã‚¿ãƒƒãƒä½ç½®ã‚«ãƒ©ãƒ¼
+	WLDTIMER_PLACE_COL_NUM,		// ã‚«ãƒ©ãƒ¼æ•°
 	
-	// •”‰®‚É‚¢‚È‚¢’nˆæ‚ÉÝ’è‚³‚ê‚Ä‚¢‚éƒJƒ‰[
+	// éƒ¨å±‹ã«ã„ãªã„åœ°åŸŸã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ã‚«ãƒ©ãƒ¼
 	WLDTIMER_PLACE_COL_NONE = WLDTIMER_PLACE_COL_NUM,	
 };
-static const u32 sc_WLDTIMER_PLACE_MDL[ WLDTIMER_PLACE_COL_NUM ] = {	// ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
+static const u32 sc_WLDTIMER_PLACE_MDL[ WLDTIMER_PLACE_COL_NUM ] = {	// ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
 	NARC_worldtimer_earth_mark_1_nsbmd,
 	NARC_worldtimer_earth_mark_2_nsbmd,
 	NARC_worldtimer_earth_mark_3_nsbmd,
@@ -269,23 +269,23 @@ static const u32 sc_WLDTIMER_PLACE_MDL[ WLDTIMER_PLACE_COL_NUM ] = {	// ƒ‚ƒfƒ‹ƒŠ
 
 
 //-------------------------------------
-///	BANKÝ’è
+///	BANKè¨­å®š
 //=====================================
 static const GF_BGL_DISPVRAM sc_WLDTIMER_BANK = {
-	GX_VRAM_BG_16_F,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_OBJ_16_G,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-	GX_VRAM_TEXPLTT_0123_E			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+	GX_VRAM_BG_16_F,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_OBJ_16_G,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+	GX_VRAM_TEXPLTT_0123_E			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 };
 
 //-------------------------------------
-///	BGÝ’è
+///	BGè¨­å®š
 //=====================================
 static const GF_BGL_SYS_HEADER sc_BGINIT = {
 	GX_DISPMODE_GRAPHICS,
@@ -296,9 +296,9 @@ static const GF_BGL_SYS_HEADER sc_BGINIT = {
 
 
 //-------------------------------------
-///	‚a‚fƒRƒ“ƒgƒ[ƒ‹ƒf[ƒ^
+///	ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
 //=====================================
-#define WLDTIMER_BGCNT_NUM	( 5 )	// ‚a‚fƒRƒ“ƒgƒ[ƒ‹ƒe[ƒuƒ‹”
+#define WLDTIMER_BGCNT_NUM	( 5 )	// ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
 static const u32 sc_WLDTIMER_BGCNT_FRM[ WLDTIMER_BGCNT_NUM ] = {
 	GF_BGL_FRAME1_M,
 	GF_BGL_FRAME2_S,
@@ -323,7 +323,7 @@ static const GF_BGL_BGCNT_HEADER sc_WLDTIMER_BGCNT_DATA[ WLDTIMER_BGCNT_NUM ] = 
 		3, 0, 0, FALSE
 	},
 
-	// ƒTƒu‰æ–Ê‚OC‚P‚Í“¯‚¶ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg
+	// ã‚µãƒ–ç”»é¢ï¼ï¼Œï¼‘ã¯åŒã˜ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	{	// GF_BGL_FRAME0_S
 		0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 		GX_BG_SCRBASE_0xe800, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
@@ -338,9 +338,9 @@ static const GF_BGL_BGCNT_HEADER sc_WLDTIMER_BGCNT_DATA[ WLDTIMER_BGCNT_NUM ] = 
 
 
 //-------------------------------------
-///	‚a‚fƒpƒŒƒbƒg\¬
+///	ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆæ§‹æˆ
 //=====================================
-enum{	// ƒTƒu
+enum{	// ã‚µãƒ–
 	WLDTIMER_PALSUB_BACK00,
 	WLDTIMER_PALSUB_BACK01,
 	WLDTIMER_PALSUB_BACK02,
@@ -358,7 +358,7 @@ enum{	// ƒTƒu
 	WLDTIMER_PALSUB_SPFONT,
 	WLDTIMER_PALSUB_BACK04,
 };
-enum{	// ƒƒCƒ“
+enum{	// ãƒ¡ã‚¤ãƒ³
 	WLDTIMER_PALMAIN_SYSTEM,
 	WLDTIMER_PALMAIN_FONT,
 	WLDTIMER_PALMAIN_TALK,
@@ -378,10 +378,10 @@ enum{	// ƒƒCƒ“
 };
 
 //-------------------------------------
-///	OAMÝ’è
+///	OAMè¨­å®š
 //=====================================
 #define WLDTIMER_OAM_CONTNUM	( 32 )
-#define WLDTIMER_RESMAN_NUM		( 4 )	// OAMƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”
+#define WLDTIMER_RESMAN_NUM		( 4 )	// OAMãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£æ•°
 #define WLDTIMER_SF_MAT_Y		( FX32_CONST(256) )
 static const CHAR_MANAGER_MAKE sc_WLDTIMER_CHARMAN_INIT = {
 	WLDTIMER_OAM_CONTNUM,
@@ -392,7 +392,7 @@ static const CHAR_MANAGER_MAKE sc_WLDTIMER_CHARMAN_INIT = {
 
 
 //-------------------------------------
-///	ƒJƒƒ‰
+///	ã‚«ãƒ¡ãƒ©
 //=====================================
 static const VecFx32 sc_WLDTIMER_CAMERA_TARGET={
 	INIT_CAMERA_TARGET_XVAL,
@@ -406,7 +406,7 @@ static const VecFx32 sc_WLDTIMER_CAMERA_POS={
 };
 
 //-------------------------------------
-///	Ú‹ß‚µ‚Ä‚¢‚é‚Æ‚«‚Ì’nˆæƒXƒP[ƒ‹’l
+///	æŽ¥è¿‘ã—ã¦ã„ã‚‹ã¨ãã®åœ°åŸŸã‚¹ã‚±ãƒ¼ãƒ«å€¤
 //=====================================
 #define INIT_EARTH_SCALE_NEAR_XVAL	(0x300)
 #define INIT_EARTH_SCALE_NEAR_YVAL	(0x300)
@@ -414,64 +414,64 @@ static const VecFx32 sc_WLDTIMER_CAMERA_POS={
 
 
 //-------------------------------------
-///	’n‹…‹VŠÇ—ŠÇ—
+///	åœ°çƒå„€ç®¡ç†ç®¡ç†
 //=====================================
 enum{
-	WLDTIMER_EARTHCONT_RET_NONE,			// ‰½‚à‚È‚µ
-	WLDTIMER_EARTHCONT_RET_CAMERA_MOVE,		// ƒJƒƒ‰“®ì
-	WLDTIMER_EARTHCONT_RET_END,				// I—¹
+	WLDTIMER_EARTHCONT_RET_NONE,			// ä½•ã‚‚ãªã—
+	WLDTIMER_EARTHCONT_RET_CAMERA_MOVE,		// ã‚«ãƒ¡ãƒ©å‹•ä½œ
+	WLDTIMER_EARTHCONT_RET_END,				// çµ‚äº†
 };
-#define WLDTIMER_POINTPLANE_HITAREA	( 0x80 )	// ’nˆæ‚Éƒ|ƒCƒ“ƒg‚ª‚ ‚½‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚éƒGƒŠƒA
+#define WLDTIMER_POINTPLANE_HITAREA	( 0x80 )	// åœ°åŸŸã«ãƒã‚¤ãƒ³ãƒˆãŒã‚ãŸã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¨ãƒªã‚¢
 
 
 //-------------------------------------
-///	ƒ^ƒbƒ`
+///	ã‚¿ãƒƒãƒ
 //=====================================
 enum{
 	WLDTIMER_TOUCH_PM_RESULT,
 	WLDTIMER_TOUCH_PM_LENX,
 	WLDTIMER_TOUCH_PM_LENY,
 };
-#define WLDTIMER_TOUCH_ZOOMWAIT_COUNT	( 4 )	// trg‚©‚ç‚±‚ÌƒVƒ“ƒNˆÈ“à‚Éƒ^ƒbƒ`‚ð‚â‚ß‚½‚çƒJƒƒ‰‚ð“®‚©‚·
-#define WLDTIMER_TOUCH_LEN_LIMIT		( 0x3f )	// ƒXƒ‰ƒCƒh‹——£ƒŠƒ~ƒbƒg
-#define WLDTIMER_TOUCH_EARTHSPEED_DIVNEAR	( 3 )	// ƒ^ƒbƒ`‚Å’n‹…‹V‚ð‰ñ‚·‚Æ‚«‚ÉŠ„‚é’l
-#define WLDTIMER_TOUCH_EARTHSPEED_DIVFAR	( 6 )	// ƒ^ƒbƒ`‚Å’n‹…‹V‚ð‰ñ‚·‚Æ‚«‚ÉŠ„‚é’l
+#define WLDTIMER_TOUCH_ZOOMWAIT_COUNT	( 4 )	// trgã‹ã‚‰ã“ã®ã‚·ãƒ³ã‚¯ä»¥å†…ã«ã‚¿ãƒƒãƒã‚’ã‚„ã‚ãŸã‚‰ã‚«ãƒ¡ãƒ©ã‚’å‹•ã‹ã™
+#define WLDTIMER_TOUCH_LEN_LIMIT		( 0x3f )	// ã‚¹ãƒ©ã‚¤ãƒ‰è·é›¢ãƒªãƒŸãƒƒãƒˆ
+#define WLDTIMER_TOUCH_EARTHSPEED_DIVNEAR	( 3 )	// ã‚¿ãƒƒãƒã§åœ°çƒå„€ã‚’å›žã™ã¨ãã«å‰²ã‚‹å€¤
+#define WLDTIMER_TOUCH_EARTHSPEED_DIVFAR	( 6 )	// ã‚¿ãƒƒãƒã§åœ°çƒå„€ã‚’å›žã™ã¨ãã«å‰²ã‚‹å€¤
 #define	WLDTIMER_TOUCH_END_MSG_COL	( GF_PRINTCOLOR_MAKE( 2, 1, 15 ) )
 
 
 
 
 //-------------------------------------
-///	 ŽžŠÔ‘Ñƒf[ƒ^	ZONETYPE
+///	 æ™‚é–“å¸¯ãƒ‡ãƒ¼ã‚¿	ZONETYPE
 //=====================================
 enum{
-	WLDTIMER_ZONETYPE_MORNING,	// ’©
-	WLDTIMER_ZONETYPE_NOON,		// ’‹
-	WLDTIMER_ZONETYPE_EVENING,	// —[•û
-	WLDTIMER_ZONETYPE_NIGHT,	// –é
-	WLDTIMER_ZONETYPE_MIDNIGHT,	// [–é
-	WLDTIMER_ZONETYPE_NUM,		// ”
+	WLDTIMER_ZONETYPE_MORNING,	// æœ
+	WLDTIMER_ZONETYPE_NOON,		// æ˜¼
+	WLDTIMER_ZONETYPE_EVENING,	// å¤•æ–¹
+	WLDTIMER_ZONETYPE_NIGHT,	// å¤œ
+	WLDTIMER_ZONETYPE_MIDNIGHT,	// æ·±å¤œ
+	WLDTIMER_ZONETYPE_NUM,		// æ•°
 };
-enum{	// ƒ|ƒPƒ‚ƒ“
-	WLDTIMER_TIME_POKE_EEFI= 0,		// ƒG[ƒtƒB[
-	WLDTIMER_TIME_POKE_POPPO,		// ƒ|ƒbƒ|
-	WLDTIMER_TIME_POKE_MITSUHANII,	// ƒ~ƒcƒnƒj[
-	WLDTIMER_TIME_POKE_CHERIMU,		// ƒ`ƒFƒŠƒ€
-	WLDTIMER_TIME_POKE_SORUROKKU,	// ƒ\ƒ‹ƒƒbƒN
-	WLDTIMER_TIME_POKE_KIMAWARI,	// ƒLƒ}ƒƒŠ
-	WLDTIMER_TIME_POKE_YAMIKARASU,	// ƒ„ƒ~ƒJƒ‰ƒX	
-	WLDTIMER_TIME_POKE_FUWANTE,		// ƒtƒƒ“ƒe
-	WLDTIMER_TIME_POKE_SURIPA,		// ƒXƒŠ[ƒp[
-	WLDTIMER_TIME_POKE_GOOSUTO,		// ƒS[ƒXƒg
-	WLDTIMER_TIME_POKE_RUNATON,		// ƒ‹ƒiƒg[ƒ“
-	WLDTIMER_TIME_POKE_BURAKKI,		// ƒuƒ‰ƒbƒL[
+enum{	// ãƒã‚±ãƒ¢ãƒ³
+	WLDTIMER_TIME_POKE_EEFI= 0,		// ã‚¨ãƒ¼ãƒ•ã‚£ãƒ¼
+	WLDTIMER_TIME_POKE_POPPO,		// ãƒãƒƒãƒ
+	WLDTIMER_TIME_POKE_MITSUHANII,	// ãƒŸãƒ„ãƒãƒ‹ãƒ¼
+	WLDTIMER_TIME_POKE_CHERIMU,		// ãƒã‚§ãƒªãƒ 
+	WLDTIMER_TIME_POKE_SORUROKKU,	// ã‚½ãƒ«ãƒ­ãƒƒã‚¯
+	WLDTIMER_TIME_POKE_KIMAWARI,	// ã‚­ãƒžãƒ¯ãƒª
+	WLDTIMER_TIME_POKE_YAMIKARASU,	// ãƒ¤ãƒŸã‚«ãƒ©ã‚¹	
+	WLDTIMER_TIME_POKE_FUWANTE,		// ãƒ•ãƒ¯ãƒ³ãƒ†
+	WLDTIMER_TIME_POKE_SURIPA,		// ã‚¹ãƒªãƒ¼ãƒ‘ãƒ¼
+	WLDTIMER_TIME_POKE_GOOSUTO,		// ã‚´ãƒ¼ã‚¹ãƒˆ
+	WLDTIMER_TIME_POKE_RUNATON,		// ãƒ«ãƒŠãƒˆãƒ¼ãƒ³
+	WLDTIMER_TIME_POKE_BURAKKI,		// ãƒ–ãƒ©ãƒƒã‚­ãƒ¼
 	WLDTIMER_TIME_POKE_NUM,
 };
-#define	WLDTIMER_TIMEZONE_DATANUM	( 24 )	// ƒ^ƒCƒ€ƒ][ƒ“”
-#define WLDTIMER_TIMEZONE_START_HOUR	(4)	// ƒCƒ“ƒfƒbƒNƒX0‚ÌŽžŠÔ
+#define	WLDTIMER_TIMEZONE_DATANUM	( 24 )	// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³æ•°
+#define WLDTIMER_TIMEZONE_START_HOUR	(4)	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹0ã®æ™‚é–“
 typedef struct{
-	u8			zone;		// ƒ][ƒ“ID
-	u8			mons;		// ƒ|ƒPƒ‚ƒ“‚ÌŠG
+	u8			zone;		// ã‚¾ãƒ¼ãƒ³ID
+	u8			mons;		// ãƒã‚±ãƒ¢ãƒ³ã®çµµ
 } WLDTIMER_TIMERZONE;
 static const WLDTIMER_TIMERZONE	sc_WLDTIMER_TIMEZONE_DATA[ WLDTIMER_TIMEZONE_DATANUM ] ={
 	{	// 4hour
@@ -552,9 +552,9 @@ static const WLDTIMER_TIMERZONE	sc_WLDTIMER_TIMEZONE_DATA[ WLDTIMER_TIMEZONE_DAT
 
 
 //-------------------------------------
-///	ŽžŠÔ•\Ž¦‰æ–Ê	
+///	æ™‚é–“è¡¨ç¤ºç”»é¢	
 //=====================================
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
 	WLDTIMER_VIEWER_SEQ_MAIN,
 	WLDTIMER_VIEWER_SEQ_FADE_INIT,
@@ -563,30 +563,30 @@ enum{
 	WLDTIMER_VIEWER_SEQ_FADE_SKIP,
 };
 
-// •\Ž¦ƒf[ƒ^ƒoƒbƒtƒ@”
-// •\Ž¦ƒf[ƒ^3‚Â  
-// ƒLƒ…[ÅŒã”ö—pƒoƒbƒtƒ@1‚Â
+// è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡æ•°
+// è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿3ã¤  
+// ã‚­ãƒ¥ãƒ¼æœ€å¾Œå°¾ç”¨ãƒãƒƒãƒ•ã‚¡1ã¤
 #define WLDTIMER_VIEWER_BUFFNUM	( 4 )	
-enum{	// •\Ž¦Œ”
-	WLDTIMER_VIEWER_DRAW_TOP,	// ã
-	WLDTIMER_VIEWER_DRAW_MID,	// ’†
-	WLDTIMER_VIEWER_DRAW_UND,	// ‰º
+enum{	// è¡¨ç¤ºä»¶æ•°
+	WLDTIMER_VIEWER_DRAW_TOP,	// ä¸Š
+	WLDTIMER_VIEWER_DRAW_MID,	// ä¸­
+	WLDTIMER_VIEWER_DRAW_UND,	// ä¸‹
 	WLDTIMER_VIEWER_DRAWNUM
 };
-// ƒXƒNƒŠ[ƒ““]‘—ˆÊ’u
-#define WLDTIMER_VIEWER_SCRN_X	( 0 )	// •\Ž¦ŠJŽnˆÊ’u
+// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ä½ç½®
+#define WLDTIMER_VIEWER_SCRN_X	( 0 )	// è¡¨ç¤ºé–‹å§‹ä½ç½®
 #define WLDTIMER_VIEWER_SCRN_Y	( 0 )	
-#define WLDTIMER_VIEWER_SCRN_SX	( 32 )	// ƒXƒNƒŠ[ƒ“‰¡ƒTƒCƒY
-#define WLDTIMER_VIEWER_SCRN_SY	( 6 )	// ƒXƒNƒŠ[ƒ“cƒTƒCƒY
-// ƒAƒjƒƒf[ƒ^
+#define WLDTIMER_VIEWER_SCRN_SX	( 32 )	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æ¨ªã‚µã‚¤ã‚º
+#define WLDTIMER_VIEWER_SCRN_SY	( 6 )	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç¸¦ã‚µã‚¤ã‚º
+// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 static const u8 WLDTIMER_VIEWER_ANM_FRAME[ WLDTIMER_ZONETYPE_NUM ] = {
-	30,		// ’©
-	30,		// ’‹
-	30,		// —[•û
-	30,		// –é
-	30,		// [–é
+	30,		// æœ
+	30,		// æ˜¼
+	30,		// å¤•æ–¹
+	30,		// å¤œ
+	30,		// æ·±å¤œ
 };
-// ƒƒbƒZ[ƒW
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 #define WLDTIMER_VIEWER_MSG_TITLE_X		( 0 )
 #define WLDTIMER_VIEWER_MSG_TITLE_Y		( 0 )
 #define WLDTIMER_VIEWER_MSG_NATION_X	( 0 )
@@ -603,10 +603,10 @@ static const GF_PRINTCOLOR WLDTIMER_VIEWER_MSG_TITLE_COL[ WLDTIMER_ZONETYPE_NUM 
 	GF_PRINTCOLOR_MAKE( 11, 12, 0 ),
 };
 
-// ƒtƒF[ƒh•ªŠ„”
-#define WLDTIMER_VIEWER_FADE_DIV_ONE	( 6 )	// ‚Pƒ][ƒ“ƒ^ƒCƒv‚Ì•ªŠ„”
-#define WLDTIMER_VIEWER_FADE_DIV		( 3*6 )	// ‘S•ªŠ„”
-#define WLDTIMER_VIEWER_FADE_DIV_START	( 2 )	// WLDTIMER_VIEWER_FADE_DIV_START‚Ã‚ÂƒtƒF[ƒh‚µ‚Ä‚¢‚­
+// ãƒ•ã‚§ãƒ¼ãƒ‰åˆ†å‰²æ•°
+#define WLDTIMER_VIEWER_FADE_DIV_ONE	( 6 )	// ï¼‘ã‚¾ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ã®åˆ†å‰²æ•°
+#define WLDTIMER_VIEWER_FADE_DIV		( 3*6 )	// å…¨åˆ†å‰²æ•°
+#define WLDTIMER_VIEWER_FADE_DIV_START	( 2 )	// WLDTIMER_VIEWER_FADE_DIV_STARTã¥ã¤ãƒ•ã‚§ãƒ¼ãƒ‰ã—ã¦ã„ã
 enum{
 	WLDTIMER_VIEWER_FADE_DIV_SEQ_CHANGE00,
 //	WLDTIMER_VIEWER_FADE_DIV_SEQ_WAIT00,
@@ -615,35 +615,35 @@ enum{
 	WLDTIMER_VIEWER_FADE_DIV_SEQ_CHANGE01,
 	WLDTIMER_VIEWER_FADE_DIV_SEQ_NUM,
 };
-#define WLDTIMER_VIEWER_FADE_SKIP_ONE		( 2 )	// ƒXƒLƒbƒvŽžˆê‹C‚ÉƒtƒF[ƒh‚³‚¹‚éƒ‰ƒCƒ“
+#define WLDTIMER_VIEWER_FADE_SKIP_ONE		( 2 )	// ã‚¹ã‚­ãƒƒãƒ—æ™‚ä¸€æ°—ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹ãƒ©ã‚¤ãƒ³
 #define WLDTIMER_VIEWER_FADE_SKIP_COUNTNUM	( WLDTIMER_VIEWER_FADE_DIV/WLDTIMER_VIEWER_FADE_SKIP_ONE )
-#define WLDTIMER_VIEWER_FADE_SKIP01_START	( 1 )	// ƒXƒLƒbƒvŽžˆê‹C‚ÉƒtƒF[ƒh‚³‚¹‚éƒ‰ƒCƒ“
-// ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“
+#define WLDTIMER_VIEWER_FADE_SKIP01_START	( 1 )	// ã‚¹ã‚­ãƒƒãƒ—æ™‚ä¸€æ°—ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹ãƒ©ã‚¤ãƒ³
+// ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³
 #define WLDTIMER_VIEWER_POKEBLN_NCGR_GET(x)	(NARC_worldtimer_world_w_balloon00_NCGR + ((x)*3))
 #define WLDTIMER_VIEWER_POKEBLN_NCLR_GET(x)	(NARC_worldtimer_world_w_balloon_NCLR)
 #define WLDTIMER_VIEWER_POKEBLN_NCER_GET(x)	(NARC_worldtimer_world_w_balloon00_NCER + ((x)*3))
 #define WLDTIMER_VIEWER_POKEBLN_NANR_GET(x)	(NARC_worldtimer_world_w_balloon00_NANR + ((x)*3))
-#define WLDTIMER_VIEWER_POKEBLN_NCLR_CONTID	( 0 )	// ƒpƒŒƒbƒgŠÇ—ID
-#define WLDTIMER_VIEWER_POKEBLN_PL_NUM		(12)		// “Ç‚Ýž‚ÞƒpƒŒƒbƒg”
-#define WLDTIMER_VIEWER_POKEBLN_BG_PRI		(1)		// BG—Dæ‡ˆÊ
-#define WLDTIMER_VIEWER_POKEBLN_SFT_PRI		(64)	// ƒ\ƒtƒg—Dæ‡ˆÊ
-#define WLDTIMER_VIEWER_POKEBLN_WAIT		(128)	// ŽŸ‚Ì•\Ž¦‚Ü‚Å‚ÌƒEƒGƒCƒg
+#define WLDTIMER_VIEWER_POKEBLN_NCLR_CONTID	( 0 )	// ãƒ‘ãƒ¬ãƒƒãƒˆç®¡ç†ID
+#define WLDTIMER_VIEWER_POKEBLN_PL_NUM		(12)		// èª­ã¿è¾¼ã‚€ãƒ‘ãƒ¬ãƒƒãƒˆæ•°
+#define WLDTIMER_VIEWER_POKEBLN_BG_PRI		(1)		// BGå„ªå…ˆé †ä½
+#define WLDTIMER_VIEWER_POKEBLN_SFT_PRI		(64)	// ã‚½ãƒ•ãƒˆå„ªå…ˆé †ä½
+#define WLDTIMER_VIEWER_POKEBLN_WAIT		(128)	// æ¬¡ã®è¡¨ç¤ºã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
 #define WLDTIMER_VIEWER_POKEBLN_OAM_SIZ		(32)	
 #define WLDTIMER_VIEWER_POKEBLN_OAM_HFSIZ	(16)	
 
 
 
 //-------------------------------------
-///	ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“ƒAƒjƒƒf[ƒ^
+///	ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	s16 sx;				// ŠJŽnˆÊ’u
+	s16 sx;				// é–‹å§‹ä½ç½®
 	s16 sy;
-	s16 ex;				// I—¹ˆÊ’u
+	s16 ex;				// çµ‚äº†ä½ç½®
 	s16 ey;
-	s16 countmax;		// “®ìƒJƒEƒ“ƒgÅ‘å’l
-	s16 wx;				// ‚ä‚ê•
-	s16 wcountmax;		// ‚ä‚ê•ƒJƒEƒ“ƒgÅ‘å
+	s16 countmax;		// å‹•ä½œã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§å€¤
+	s16 wx;				// ã‚†ã‚Œå¹…
+	s16 wcountmax;		// ã‚†ã‚Œå¹…ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§
 	u16 pad;
 } WLDTIMER_POKEBLN_MOVEDATA;
 #define WLDTIMER_POKEBLN_MOVEDATANUM	(WLDTIMER_TIME_POKE_NUM)
@@ -653,103 +653,103 @@ typedef struct {
 #define WLDTIMER_POKEBLN_WC_MIDDLE		( 80 )
 #define WLDTIMER_POKEBLN_WX_HEAVY		( 4 )
 #define WLDTIMER_POKEBLN_WC_HEAVY		( 100 )
-#define WLDTIMER_POKEBLN_CM_LIGHT		( 220 )	// Œy‚¢•—‘D‚Ìã‚É‚¢‚­ƒXƒs[ƒh
-#define WLDTIMER_POKEBLN_CM_MIDDLE		( 319 )	// •’Ê•—‘D‚Ìã‚É‚¢‚­ƒXƒs[ƒh
-#define WLDTIMER_POKEBLN_CM_HEAVY		( 399 )	// d‚¢•—‘D‚Ìã‚É‚¢‚­ƒXƒs[ƒh
+#define WLDTIMER_POKEBLN_CM_LIGHT		( 220 )	// è»½ã„é¢¨èˆ¹ã®ä¸Šã«ã„ãã‚¹ãƒ”ãƒ¼ãƒ‰
+#define WLDTIMER_POKEBLN_CM_MIDDLE		( 319 )	// æ™®é€šé¢¨èˆ¹ã®ä¸Šã«ã„ãã‚¹ãƒ”ãƒ¼ãƒ‰
+#define WLDTIMER_POKEBLN_CM_HEAVY		( 399 )	// é‡ã„é¢¨èˆ¹ã®ä¸Šã«ã„ãã‚¹ãƒ”ãƒ¼ãƒ‰
 static const WLDTIMER_POKEBLN_MOVEDATA sc_WLDTIMER_POKEBLN_MOVEDATA_TBL[ WLDTIMER_POKEBLN_MOVEDATANUM ][ WLDTIMER_VIEWER_DRAWNUM ] = {
 	//		sx		sy		ex		ey	cmax						wx							wcmax
-	{	//ƒG[ƒtƒB[ƒ|ƒPƒ‚ƒ“
-		{	160,	48,		190,	0,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ã
-		{	206,	96,		160,	48,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ’†
-		{	150,	144,	206,	96,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ‰º
+	{	//ã‚¨ãƒ¼ãƒ•ã‚£ãƒ¼ãƒã‚±ãƒ¢ãƒ³
+		{	160,	48,		190,	0,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ä¸Š
+		{	206,	96,		160,	48,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ä¸­
+		{	150,	144,	206,	96,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ä¸‹
 	},
-	{	// ‚Û‚Á‚Ûƒ|ƒPƒ‚ƒ“
-		{	190,	48,		140,	0,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ã
-		{	150,	96,		190,	48,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ’†
-		{	200,	144,	150,	96,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ‰º
+	{	// ã½ã£ã½ãƒã‚±ãƒ¢ãƒ³
+		{	190,	48,		140,	0,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸Š
+		{	150,	96,		190,	48,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸­
+		{	200,	144,	150,	96,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸‹
 	},
-	{	// ƒ~ƒcƒnƒj[ƒ|ƒPƒ‚ƒ“
-		{	128,	48,		160,	0,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ã
-		{	210,	96,		128,	48,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ’†
-		{	160,	144,	210,	96,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ‰º
+	{	// ãƒŸãƒ„ãƒãƒ‹ãƒ¼ãƒã‚±ãƒ¢ãƒ³
+		{	128,	48,		160,	0,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸Š
+		{	210,	96,		128,	48,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸­
+		{	160,	144,	210,	96,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸‹
 	},
-	{	// ƒ`ƒFƒŠƒ€ƒ|ƒPƒ‚ƒ“
-		{	180,	48,		138,	0,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ã
-		{	138,	96,		180,	48,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ’†
-		{	180,	144,	138,	96,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ‰º
+	{	// ãƒã‚§ãƒªãƒ ãƒã‚±ãƒ¢ãƒ³
+		{	180,	48,		138,	0,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸Š
+		{	138,	96,		180,	48,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸­
+		{	180,	144,	138,	96,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸‹
 	},
-	{	// ƒ\ƒ‹ƒƒbƒNƒ|ƒPƒ‚ƒ“
-		{	180,	48,		160,	0,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ã
-		{	130,	96,		180,	48,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ’†
-		{	128,	144,	130,	96,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ‰º
+	{	// ã‚½ãƒ«ãƒ­ãƒƒã‚¯ãƒã‚±ãƒ¢ãƒ³
+		{	180,	48,		160,	0,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ä¸Š
+		{	130,	96,		180,	48,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ä¸­
+		{	128,	144,	130,	96,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ä¸‹
 	},
-	{	// ƒLƒ}ƒƒŠƒ|ƒPƒ‚ƒ“
-		{	180,	48,		116,	0,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ã
-		{	116,	96,		180,	48,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ’†
-		{	180,	144,	116,	96,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ‰º
+	{	// ã‚­ãƒžãƒ¯ãƒªãƒã‚±ãƒ¢ãƒ³
+		{	180,	48,		116,	0,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ä¸Š
+		{	116,	96,		180,	48,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ä¸­
+		{	180,	144,	116,	96,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ä¸‹
 	},
-	{	// ƒ„ƒ~ƒJƒ‰ƒXƒ|ƒPƒ‚ƒ“
-		{	180,	48,		240,	0,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ã
-		{	160,	96,		180,	48,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ’†
-		{	96,		144,	160,	96,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ‰º
+	{	// ãƒ¤ãƒŸã‚«ãƒ©ã‚¹ãƒã‚±ãƒ¢ãƒ³
+		{	180,	48,		240,	0,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸Š
+		{	160,	96,		180,	48,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸­
+		{	96,		144,	160,	96,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸‹
 	},
-	{	// ƒtƒƒ“ƒeƒ|ƒPƒ‚ƒ“
-		{	144,	48,		218,	0,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ã
-		{	218,	96,		144,	48,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ’†
-		{	144,	144,	218,	96,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ‰º
+	{	// ãƒ•ãƒ¯ãƒ³ãƒ†ãƒã‚±ãƒ¢ãƒ³
+		{	144,	48,		218,	0,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸Š
+		{	218,	96,		144,	48,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸­
+		{	144,	144,	218,	96,	WLDTIMER_POKEBLN_CM_LIGHT,	WLDTIMER_POKEBLN_WX_LIGHT,	WLDTIMER_POKEBLN_WC_LIGHT },	// ä¸‹
 	},
-	{	// ƒXƒŠ[ƒp[ƒ|ƒPƒ‚ƒ“
-		{	160,	48,		192,	0,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ã
-		{	192,	96,		160,	48,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ’†
-		{	160,	144,	192,	96,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ‰º
+	{	// ã‚¹ãƒªãƒ¼ãƒ‘ãƒ¼ãƒã‚±ãƒ¢ãƒ³
+		{	160,	48,		192,	0,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ä¸Š
+		{	192,	96,		160,	48,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ä¸­
+		{	160,	144,	192,	96,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ä¸‹
 	},
-	{	// ƒS[ƒXƒgƒ|ƒPƒ‚ƒ“
-		{	140,	48,		96,		0,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ã
-		{	190,	96,		140,	48,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ’†
-		{	240,	144,	190,	96,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ‰º
+	{	// ã‚´ãƒ¼ã‚¹ãƒˆãƒã‚±ãƒ¢ãƒ³
+		{	140,	48,		96,		0,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ä¸Š
+		{	190,	96,		140,	48,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ä¸­
+		{	240,	144,	190,	96,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ä¸‹
 	},
-	{	// ƒ‹ƒiƒg[ƒ“ƒ|ƒPƒ‚ƒ“
-		{	212,	48,		160,	0,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ã
-		{	212,	96,		212,	48,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ’†
-		{	160,	144,	212,	96,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ‰º
+	{	// ãƒ«ãƒŠãƒˆãƒ¼ãƒ³ãƒã‚±ãƒ¢ãƒ³
+		{	212,	48,		160,	0,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ä¸Š
+		{	212,	96,		212,	48,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ä¸­
+		{	160,	144,	212,	96,	WLDTIMER_POKEBLN_CM_HEAVY,	WLDTIMER_POKEBLN_WX_HEAVY,	WLDTIMER_POKEBLN_WC_HEAVY },	// ä¸‹
 	},
-	{	// ƒuƒ‰ƒbƒL[ƒ|ƒPƒ‚ƒ“
-		{	123,	48,		170,	0,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ã
-		{	198,	96,		123,	48,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ’†
-		{	133,	144,	198,	96,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ‰º
+	{	// ãƒ–ãƒ©ãƒƒã‚­ãƒ¼ãƒã‚±ãƒ¢ãƒ³
+		{	123,	48,		170,	0,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ä¸Š
+		{	198,	96,		123,	48,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ä¸­
+		{	133,	144,	198,	96,	WLDTIMER_POKEBLN_CM_MIDDLE,	WLDTIMER_POKEBLN_WX_MIDDLE,	WLDTIMER_POKEBLN_WC_MIDDLE },	// ä¸‹
 	},
 };
  
 //-------------------------------------
-///	ƒEƒBƒ“ƒhƒEŠÖ˜A
+///	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–¢é€£
 //
 //----------------------------------------------------------------------------
 /**
 //----------------------------------------------------------------------------
-/*	‘‚Æ’nˆæ‚©‚ç‚»‚ÌˆÊ’u‚ð’†S‚ÉŽ‚Á‚Ä‚¢‚­*
+/*	å›½ã¨åœ°åŸŸã‹ã‚‰ãã®ä½ç½®ã‚’ä¸­å¿ƒã«æŒã£ã¦ã„ã*
  *	@brief
- @param			ƒ[ƒN
+ @param			ãƒ¯ãƒ¼ã‚¯
  */	
 //-----------------------------------------------------------------------------
 //=====================================
-// ƒTƒu‰æ–Ê‚Ìƒg[ƒNƒEƒBƒ“ƒhƒE
-#define WLDTIMER_SUB_TALKWIN_CGX	(10)	// ƒtƒŒ[ƒ€ƒLƒƒƒ‰ƒNƒ^‚ÌŒã‚É‘±‚­
+// ã‚µãƒ–ç”»é¢ã®ãƒˆãƒ¼ã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+#define WLDTIMER_SUB_TALKWIN_CGX	(10)	// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®å¾Œã«ç¶šã
 #define WLDTIMER_SUB_TALKWIN_PAL	(WLDTIMER_PALSUB_TALKWIN)
 #define WLDTIMER_SUB_TALKWIN_CGXEND	(WLDTIMER_SUB_TALKWIN_CGX+TALK_WIN_CGX_SIZ)
 
-// ƒƒCƒ“‰æ–Ê‚Ì‰ï˜bƒEƒBƒ“ƒhƒE
+// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define WLDTIMER_MAIN_TALKWIN_CGX		(1)
 #define WLDTIMER_MAIN_TALKWIN_PAL		(WLDTIMER_PALMAIN_TALK)
 #define WLDTIMER_MAIN_TALKWIN_CGXEND	(WLDTIMER_MAIN_TALKWIN_CGX+TALK_WIN_CGX_SIZ)
 
-// ƒƒCƒ“‰æ–Ê‚ÌƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE
+// ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define WLDTIMER_MAIN_SYSTEMWIN_CGX		(WLDTIMER_MAIN_TALKWIN_CGXEND)
 #define WLDTIMER_MAIN_SYSTEMWIN_PAL		(WLDTIMER_PALMAIN_SYSTEM)
 #define WLDTIMER_MAIN_SYSTEMWIN_CGXEND	(WLDTIMER_MAIN_SYSTEMWIN_CGX+MENU_WIN_CGX_SIZ)
 
 										
 //-------------------------------------
-///	ƒƒCƒ“‰æ–Êƒ{ƒ^ƒ“
+///	ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒœã‚¿ãƒ³
 //=====================================
 #define WLDTIMER_MAIN_BTTNBMP_X		(EARTH_ICON_WIN_PX)
 #define WLDTIMER_MAIN_BTTNBMP_Y		(EARTH_ICON_WIN_PY)
@@ -760,7 +760,7 @@ static const WLDTIMER_POKEBLN_MOVEDATA sc_WLDTIMER_POKEBLN_MOVEDATA_TBL[ WLDTIME
 #define WLDTIMER_MAIN_BTTNBMP_CGXEND ( WLDTIMER_MAIN_BTTNBMP_CGX+(WLDTIMER_MAIN_BTTNBMP_SIZX*WLDTIMER_MAIN_BTTNBMP_SIZY) )
 
 //-------------------------------------
-///	ƒƒCƒ“‰æ–Ê‰ï˜bƒEƒBƒ“ƒhƒE
+///	ãƒ¡ã‚¤ãƒ³ç”»é¢ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 #define WLDTIMER_MAIN_TALKBMP_X		(2)
 #define WLDTIMER_MAIN_TALKBMP_Y		(1)
@@ -771,7 +771,7 @@ static const WLDTIMER_POKEBLN_MOVEDATA sc_WLDTIMER_POKEBLN_MOVEDATA_TBL[ WLDTIME
 #define WLDTIMER_MAIN_TALKBMP_CGXEND ( WLDTIMER_MAIN_TALKBMP_CGX+(WLDTIMER_MAIN_TALKBMP_SIZX*WLDTIMER_MAIN_TALKBMP_SIZY) )
 
 //-------------------------------------
-///	ƒƒCƒ“‰æ–Êƒ^ƒbƒ`ƒ{ƒ^ƒ“ƒEƒBƒ“ƒhƒE
+///	ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¿ãƒƒãƒãƒœã‚¿ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 #define WLDTIMER_MAIN_SUBBTTN_CGX	( WLDTIMER_MAIN_TALKBMP_CGXEND )
 #define WLDTIMER_MAIN_SUBBTTN_PLTT	( WLDTIMER_PALMAIN_BTTN )
@@ -789,7 +789,7 @@ static const TOUCH_SW_PARAM sc_TOUCH_SW_PARAM = {
 
 
 //-------------------------------------
-///	ƒTƒu‰æ–Ê‰ï˜bƒEƒBƒ“ƒhƒE
+///	ã‚µãƒ–ç”»é¢ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //=====================================
 #define WLDTIMER_SUB_TALKBMP_X		(2)
 #define WLDTIMER_SUB_TALKBMP_Y		(19)
@@ -800,7 +800,7 @@ static const TOUCH_SW_PARAM sc_TOUCH_SW_PARAM = {
 #define WLDTIMER_SUB_TALKBMP_CGSIZ	( WLDTIMER_SUB_TALKBMP_SIZX*WLDTIMER_SUB_TALKBMP_SIZY )
 
 //-------------------------------------
-///	ƒrƒ…[ƒA[ƒƒbƒZ[ƒW
+///	ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 //=====================================
 #define WLDTIMER_VIEWER_MSGBMP_X		( 0 )
 #define WLDTIMER_VIEWER_MSGBMP_Y		( 0 )
@@ -812,29 +812,29 @@ static const TOUCH_SW_PARAM sc_TOUCH_SW_PARAM = {
 
 
 //-------------------------------------
-///	ƒ^ƒCƒ€ƒ][ƒ“ƒAƒjƒ‰Šú‰»ƒf[ƒ^
+///	ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
 //=====================================
 #define WLDTIMER_TIMEZONEANM_SCRNANM_MAX	(2)
 typedef struct {
-	// ƒXƒNƒŠ[ƒ“ƒAƒjƒƒf[ƒ^
-	u16	scrn_idx[ WLDTIMER_TIMEZONEANM_SCRNANM_MAX ];	// ‚È‚¢‚Æ‚«NULL
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
+	u16	scrn_idx[ WLDTIMER_TIMEZONEANM_SCRNANM_MAX ];	// ãªã„ã¨ãNULL
 	u16	scrn_frame;
 
-	// ƒpƒŒƒbƒgƒAƒjƒƒf[ƒ^
-	u16		pltt_idx;		// ‚È‚¢‚Æ‚«‚Í‚Ç‚ñ‚È’l‚Å‚àOK
-	u16		pltt_frame;		// –³‚¢‚Æ‚«‚Í‚O
-	u16		pltt_no;		// “]‘—ƒpƒŒƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
+	u16		pltt_idx;		// ãªã„ã¨ãã¯ã©ã‚“ãªå€¤ã§ã‚‚OK
+	u16		pltt_frame;		// ç„¡ã„ã¨ãã¯ï¼
+	u16		pltt_no;		// è»¢é€ãƒ‘ãƒ¬ãƒƒãƒˆ
 } WLDTIMER_TIMEZONEANM_INIT;
 
 static const WLDTIMER_TIMEZONEANM_INIT	sc_WLDTIMER_TIMEZONE_ANMINIT[ WLDTIMER_ZONETYPE_NUM ] ={
-	{	// ’©
+	{	// æœ
 		{
 			NARC_worldtimer_world_watch1_NSCR,
 		},
 		1,
 		NARC_worldtimer_world_w0anim_NCLR,	4, 0,
 	},
-	{	// ’‹
+	{	// æ˜¼
 		{
 			NARC_worldtimer_world_watch2a_NSCR,
 			NARC_worldtimer_world_watch2b_NSCR,
@@ -842,21 +842,21 @@ static const WLDTIMER_TIMEZONEANM_INIT	sc_WLDTIMER_TIMEZONE_ANMINIT[ WLDTIMER_ZO
 		2,
 		0,	0, 1,
 	},
-	{	// —[•û
+	{	// å¤•æ–¹
 		{
 			NARC_worldtimer_world_watch3_NSCR,
 		},
 		1,
 		NARC_worldtimer_world_w2anim_NCLR,	4, 2,
 	},
-	{	// –é
+	{	// å¤œ
 		{
 			NARC_worldtimer_world_watch4_NSCR,
 		},
 		1,
 		NARC_worldtimer_world_w3anim_NCLR,	16, 3,
 	},
-	{	// [–é
+	{	// æ·±å¤œ
 		{
 			NARC_worldtimer_world_watch5_NSCR,
 		},
@@ -867,49 +867,49 @@ static const WLDTIMER_TIMEZONEANM_INIT	sc_WLDTIMER_TIMEZONE_ANMINIT[ WLDTIMER_ZO
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	“®ìƒtƒ‰ƒO
+///	å‹•ä½œãƒ•ãƒ©ã‚°
 //=====================================
 typedef struct{
-	u32	world	:1;		// ¢ŠE•\Ž¦ƒ‚[ƒh‚©‚Ç‚¤‚©
-	u32	japan	:1;		// “ú–{ROM‚©‚Ç‚¤‚©
+	u32	world	:1;		// ä¸–ç•Œè¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹
+	u32	japan	:1;		// æ—¥æœ¬ROMã‹ã©ã†ã‹
 	u32	pad		:31;
 }WLDTIMER_FLAG;
 
 //-------------------------------------
-///	•\Ž¦ƒVƒXƒeƒ€
+///	è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct {
 	// BG
 	GF_BGL_INI*				p_bgl;
 
 	// OAM
-    CLACT_SET_PTR           p_clactset;		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-    CLACT_U_EASYRENDER_DATA renddata;       // ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-    CLACT_U_RES_MANAGER_PTR p_resman[WLDTIMER_RESMAN_NUM]; // ƒLƒƒƒ‰EƒpƒŒƒbƒgƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+    CLACT_SET_PTR           p_clactset;		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+    CLACT_U_EASYRENDER_DATA renddata;       // ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+    CLACT_U_RES_MANAGER_PTR p_resman[WLDTIMER_RESMAN_NUM]; // ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
 	
 
 	// 3D
 	GF_G3DMAN* p_3dman;
 
-	// ƒA[ƒJƒCƒu
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 	ARCHANDLE* p_handle;
 } WLDTIMER_DRAWSYS;
 
 
 //-------------------------------------
-///	’n‹…‹Vƒ[ƒN
+///	åœ°çƒå„€ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// •\Ž¦ƒf[ƒ^
+	// è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿
 	VecFx32 trans;
 	VecFx32 scale;
 	VecFx32	rotate;
 
-	// ƒOƒ‰ƒtƒBƒbƒN
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
     D3DOBJ	obj;
 	D3DOBJ_MDL	mdl;
 	
@@ -917,184 +917,184 @@ typedef struct {
 
 
 //-------------------------------------
-///	’nˆæƒf[ƒ^
+///	åœ°åŸŸãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	// ƒf[ƒ^
+	// ãƒ‡ãƒ¼ã‚¿
 	EARTH_DEMO_LIST	placelist;
 
-	// •\Ž¦ƒf[ƒ^
+	// è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿
 	VecFx32	list_scale;
     D3DOBJ	obj[WLDTIMER_PLACE_COL_NUM];
 	D3DOBJ_MDL	mdl[WLDTIMER_PLACE_COL_NUM];
 } WLDTIMER_PLACE;
 
 //-------------------------------------
-///	ƒJƒƒ‰ƒ[ƒN
+///	ã‚«ãƒ¡ãƒ©ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	GF_CAMERA_PTR	p_camera;	// ƒJƒƒ‰ƒIƒuƒWƒF
-	CAMERA_ANGLE	angle;		// ƒJƒƒ‰ƒAƒ“ƒOƒ‹
-	fx32			dist;		// ƒJƒƒ‰‹——£
-	u16				status;		// ƒJƒƒ‰ó‘Ô
-	u16				move;		// “®ìƒtƒ‰ƒO
+	GF_CAMERA_PTR	p_camera;	// ã‚«ãƒ¡ãƒ©ã‚ªãƒ–ã‚¸ã‚§
+	CAMERA_ANGLE	angle;		// ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«
+	fx32			dist;		// ã‚«ãƒ¡ãƒ©è·é›¢
+	u16				status;		// ã‚«ãƒ¡ãƒ©çŠ¶æ…‹
+	u16				move;		// å‹•ä½œãƒ•ãƒ©ã‚°
 } WLDTIMER_CAMERA;
 
 //-------------------------------------
-///	’nˆæî•ñ‚Pƒf[ƒ^
-//	ƒTƒu‰æ–Ê‚Ìî•ñƒEƒCƒ“ƒhƒE‚É“n‚·ƒf[ƒ^
+///	åœ°åŸŸæƒ…å ±ï¼‘ãƒ‡ãƒ¼ã‚¿
+//	ã‚µãƒ–ç”»é¢ã®æƒ…å ±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã«æ¸¡ã™ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	u32		timezone;		// ŽžŠÔ‘Ñ	sc_WLDTIMER_TIMEZONE_DATA‚ÌƒCƒ“ƒfƒbƒNƒX
-	u32		nation;			// ‘ID
-	u32		area;			// ’nˆæID
+	u32		timezone;		// æ™‚é–“å¸¯	sc_WLDTIMER_TIMEZONE_DATAã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u32		nation;			// å›½ID
+	u32		area;			// åœ°åŸŸID
 } WLDTIMER_POINTDATA;
 
 //-------------------------------------
-///	’©A’‹A—[•ûA–éA[–é@ƒAƒjƒƒf[ƒ^
+///	æœã€æ˜¼ã€å¤•æ–¹ã€å¤œã€æ·±å¤œã€€ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 
-	// ƒJƒEƒ“ƒ^
+	// ã‚«ã‚¦ãƒ³ã‚¿
 	u16 count;
 	u16 count_max;
 
-	// Še•”•ªƒAƒjƒONOFF
-	u8	drawflag[4];		// ã’†‰º
+	// å„éƒ¨åˆ†ã‚¢ãƒ‹ãƒ¡ONOFF
+	u8	drawflag[4];		// ä¸Šä¸­ä¸‹
 
-	// ƒAƒjƒƒŠƒ\[ƒX
-	void*				p_scrnbuff[ WLDTIMER_TIMEZONEANM_SCRNANM_MAX ];	// ƒXƒNƒŠ[ƒ“ƒAƒjƒƒoƒbƒtƒ@
-	NNSG2dScreenData*	p_scrndata[ WLDTIMER_TIMEZONEANM_SCRNANM_MAX ];	// frame”•¶ƒXƒNƒŠ[ƒ“ƒtƒ@ƒCƒ‹‚ª‚ ‚é
+	// ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
+	void*				p_scrnbuff[ WLDTIMER_TIMEZONEANM_SCRNANM_MAX ];	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒãƒƒãƒ•ã‚¡
+	NNSG2dScreenData*	p_scrndata[ WLDTIMER_TIMEZONEANM_SCRNANM_MAX ];	// frameæ•°æ–‡ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹
 	u16					scrnframe;
 	u16					scrnframe_now;
-	void*				p_plttbuff;		// ƒpƒŒƒbƒgƒAƒjƒƒoƒbƒtƒ@
-	NNSG2dPaletteData*	p_plttdata;		// plttframe•ª‚Ì–{”ƒpƒŒƒbƒg‚ª‚ ‚é
+	void*				p_plttbuff;		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒãƒƒãƒ•ã‚¡
+	NNSG2dPaletteData*	p_plttdata;		// plttframeåˆ†ã®æœ¬æ•°ãƒ‘ãƒ¬ãƒƒãƒˆãŒã‚ã‚‹
 	u8					plttframe;
 	u8					plttframe_now;	
-	u8					plttno;			// “]‘—ƒpƒŒƒbƒg
+	u8					plttno;			// è»¢é€ãƒ‘ãƒ¬ãƒƒãƒˆ
 	u8					pad;
 	
 } WLDTIMER_TIMEZONEANM;
 
 //-------------------------------------
-///		ƒtƒF[ƒhƒf[ƒ^
+///		ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	u8	start;	// ƒJƒEƒ“ƒg“®ìƒXƒ^[ƒgƒtƒ‰ƒO
-	s8	count;	// ƒJƒEƒ“ƒ^[
+	u8	start;	// ã‚«ã‚¦ãƒ³ãƒˆå‹•ä½œã‚¹ã‚¿ãƒ¼ãƒˆãƒ•ãƒ©ã‚°
+	s8	count;	// ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 	u8	pad[2];
 } WLDTIMER_VIEWER_FADE;
 
 //-------------------------------------
-///	ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ““®ì
-//	—§‚Ä“®ì‚Æ‰¡“®ì
+///	ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³å‹•ä½œ
+//	ç«‹ã¦å‹•ä½œã¨æ¨ªå‹•ä½œ
 //=====================================
 typedef struct {
-	// Œ»ÝÀ•W
+	// ç¾åœ¨åº§æ¨™
 	s16 x;	
 	s16 y;	
 
-	s16 count;	// “®ìƒJƒEƒ“ƒg
-	s16 wcount;	// ‚ä‚êƒJƒEƒ“ƒg
+	s16 count;	// å‹•ä½œã‚«ã‚¦ãƒ³ãƒˆ
+	s16 wcount;	// ã‚†ã‚Œã‚«ã‚¦ãƒ³ãƒˆ
 
-	// ‚R‚Â‚ÌˆÊ’u‚ª“¯‚¶ƒ|ƒPƒ‚ƒ“‚©‚Ìƒtƒ‰ƒO
+	// ï¼“ã¤ã®ä½ç½®ãŒåŒã˜ãƒã‚±ãƒ¢ãƒ³ã‹ã®ãƒ•ãƒ©ã‚°
 	u16 under_equaldata;	
 	u16 top_equaldata;	
 	
 
-	// “®ìƒf[ƒ^
+	// å‹•ä½œãƒ‡ãƒ¼ã‚¿
 	const WLDTIMER_POKEBLN_MOVEDATA* cp_data;
 
 } WLDTIMER_POKEBLN_MOVE;
 
 
 //-------------------------------------
-///	ƒ|ƒPƒ‚ƒ“@•—‘D
+///	ãƒã‚±ãƒ¢ãƒ³ã€€é¢¨èˆ¹
 //=====================================
 typedef struct {
-	// ƒf[ƒ^
+	// ãƒ‡ãƒ¼ã‚¿
 	WLDTIMER_POKEBLN_MOVE	move[ WLDTIMER_VIEWER_DRAWNUM ];
-	s16						drawtype;		// Œ»Ý‚Ì•\Ž¦ƒ^ƒCƒv	
-	s16						wait;			// ŽŸ‚ÌŠJŽnŽžŠÔ
+	s16						drawtype;		// ç¾åœ¨ã®è¡¨ç¤ºã‚¿ã‚¤ãƒ—	
+	s16						wait;			// æ¬¡ã®é–‹å§‹æ™‚é–“
 	
-	// •`‰æƒtƒ‰ƒO
-	u8					drawflag[4];	// ã’†‰º
-	u8					pokegra[4];		// •`‰æƒ|ƒPƒ‚ƒ“
+	// æç”»ãƒ•ãƒ©ã‚°
+	u8					drawflag[4];	// ä¸Šä¸­ä¸‹
+	u8					pokegra[4];		// æç”»ãƒã‚±ãƒ¢ãƒ³
 
-	// ƒOƒ‰ƒtƒBƒbƒN
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 	CLACT_WORK_PTR		p_act[ WLDTIMER_TIME_POKE_NUM ];
 	CLACT_U_RES_OBJ_PTR	p_res[ WLDTIMER_TIME_POKE_NUM ][ WLDTIMER_RESMAN_NUM ];
 } WLDTIMER_POKEBALLOON;
 
 //-------------------------------------
-///	ƒTƒu‰æ–ÊƒEƒBƒ“ƒhƒEƒ[ƒN
+///	ã‚µãƒ–ç”»é¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	s16 wnd0;		// ƒf[ƒ^Ý’èƒtƒ‰ƒO
-	s16 wnd1;		// ƒf[ƒ^Ý’èƒtƒ‰ƒO
+	s16 wnd0;		// ãƒ‡ãƒ¼ã‚¿è¨­å®šãƒ•ãƒ©ã‚°
+	s16 wnd1;		// ãƒ‡ãƒ¼ã‚¿è¨­å®šãƒ•ãƒ©ã‚°
 	s16 wnd0_sy;
 	s16 wnd0_ey;
 	s16 wnd1_sy;
 	s16 wnd1_ey;
 
-	TCB_PTR p_tcb;	// Vƒuƒ‰ƒ“ƒNƒ^ƒXƒN
+	TCB_PTR p_tcb;	// Vãƒ–ãƒ©ãƒ³ã‚¯ã‚¿ã‚¹ã‚¯
 } WLDTIMER_VWND;
 
 
 //-------------------------------------
-///	ƒTƒu‰æ–Êî•ñƒEƒCƒ“ƒhƒE
+///	ã‚µãƒ–ç”»é¢æƒ…å ±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 //=====================================
 typedef struct {
-	// ƒV[ƒPƒ“ƒX
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	u32 seq;
 	
-	// ƒf[ƒ^ƒLƒ…[
+	// ãƒ‡ãƒ¼ã‚¿ã‚­ãƒ¥ãƒ¼
 	WLDTIMER_POINTDATA	data[ WLDTIMER_VIEWER_BUFFNUM ];
-	u16 top;		// æ“ª
-	u16	tail;		// ––”ö
-	u32 datacount;	// ¡“ü‚Á‚Ä‚¢‚éŒ”
+	u16 top;		// å…ˆé ­
+	u16	tail;		// æœ«å°¾
+	u32 datacount;	// ä»Šå…¥ã£ã¦ã„ã‚‹ä»¶æ•°
 
-	// ƒtƒF[ƒh
-	u16						fadecount;	// ƒtƒF[ƒhƒJƒEƒ“ƒ^
-	u16						fade_divnum;// •ªŠ„‚µ‚ÄƒtƒF[ƒh‚µ‚Ä‚¢‚­”
+	// ãƒ•ã‚§ãƒ¼ãƒ‰
+	u16						fadecount;	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚«ã‚¦ãƒ³ã‚¿
+	u16						fade_divnum;// åˆ†å‰²ã—ã¦ãƒ•ã‚§ãƒ¼ãƒ‰ã—ã¦ã„ãæ•°
 	WLDTIMER_VIEWER_FADE	fade[ WLDTIMER_VIEWER_FADE_DIV ];
 	u32						drawtype_zonetype[ WLDTIMER_VIEWER_DRAWNUM ];
-	void*					p_fadescrnbuff;	// ƒtƒF[ƒh—pƒXƒNƒŠ[ƒ“ƒAƒjƒƒoƒbƒtƒ@
-	NNSG2dScreenData*		p_fadescrndata;	// ƒtƒF[ƒh—pƒXƒNƒŠ[ƒ“ƒtƒ@ƒCƒ‹
+	void*					p_fadescrnbuff;	// ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒãƒƒãƒ•ã‚¡
+	NNSG2dScreenData*		p_fadescrndata;	// ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«
 
-	// •`‰æƒf[ƒ^
-	u16						msg_now;						// ¡‚ÌƒƒbƒZ[ƒW
-	u16						pad;							// ƒAƒjƒƒJƒEƒ“ƒ^
-	WLDTIMER_TIMEZONEANM	anm[ WLDTIMER_ZONETYPE_NUM ];	// ƒ^ƒCƒ€ƒ][ƒ“ƒAƒjƒƒf[ƒ^
-	GF_BGL_BMPWIN			msg[ WLDTIMER_VIEWER_DRAWNUM ];	// ƒƒbƒZ[ƒWƒf[ƒ^
-	GF_BGL_BMPWIN			dummy;							// ƒtƒF[ƒh—pƒƒbƒZ[ƒW
-	GF_BGL_BMPWIN			talkwin;						// ‰ï˜bƒƒbƒZ[ƒWƒf[ƒ^
-	WLDTIMER_POKEBALLOON	poke;							// ƒ|ƒPƒ‚ƒ“BALLOON
-	WLDTIMER_VWND			wnd;							// ƒEƒBƒ“ƒhƒE
+	// æç”»ãƒ‡ãƒ¼ã‚¿
+	u16						msg_now;						// ä»Šã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	u16						pad;							// ã‚¢ãƒ‹ãƒ¡ã‚«ã‚¦ãƒ³ã‚¿
+	WLDTIMER_TIMEZONEANM	anm[ WLDTIMER_ZONETYPE_NUM ];	// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
+	GF_BGL_BMPWIN			msg[ WLDTIMER_VIEWER_DRAWNUM ];	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+	GF_BGL_BMPWIN			dummy;							// ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	GF_BGL_BMPWIN			talkwin;						// ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
+	WLDTIMER_POKEBALLOON	poke;							// ãƒã‚±ãƒ¢ãƒ³BALLOON
+	WLDTIMER_VWND			wnd;							// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 } WLDTIMER_VIEWER;
 
 
 
 //-------------------------------------
-///	ƒ^ƒbƒ`ŠÇ—
+///	ã‚¿ãƒƒãƒç®¡ç†
 //=====================================
 typedef struct {
-	int tp_result;	// ƒ^ƒbƒ`‚ðƒpƒbƒhî•ñ‚É•ÏX‚µ‚½‚à‚Ì
-	int tp_seq;		// ƒ^ƒbƒ`ƒV[ƒPƒ“ƒX
-	int tp_x;		// ƒ^ƒbƒ`‚˜À•W
-	int tp_y;		// ƒ^ƒbƒ`‚™À•W
-	int tp_lenx;	// ƒXƒ‰ƒCƒh‚˜À•W
-	int tp_leny;	// ƒXƒ‰ƒCƒh‚™À•W
-	int tp_count;	// ƒz[ƒ‹ƒhƒJƒEƒ“ƒg
+	int tp_result;	// ã‚¿ãƒƒãƒã‚’ãƒ‘ãƒƒãƒ‰æƒ…å ±ã«å¤‰æ›´ã—ãŸã‚‚ã®
+	int tp_seq;		// ã‚¿ãƒƒãƒã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	int tp_x;		// ã‚¿ãƒƒãƒï½˜åº§æ¨™
+	int tp_y;		// ã‚¿ãƒƒãƒï½™åº§æ¨™
+	int tp_lenx;	// ã‚¹ãƒ©ã‚¤ãƒ‰ï½˜åº§æ¨™
+	int tp_leny;	// ã‚¹ãƒ©ã‚¤ãƒ‰ï½™åº§æ¨™
+	int tp_count;	// ãƒ›ãƒ¼ãƒ«ãƒ‰ã‚«ã‚¦ãƒ³ãƒˆ
 
-	// ƒ{ƒ^ƒ“•\Ž¦
+	// ãƒœã‚¿ãƒ³è¡¨ç¤º
 	GF_BGL_BMPWIN bttn;
 
 } WLDTIMER_TOUCH;
 
 
 //-------------------------------------
-///	I—¹•\Ž¦
+///	çµ‚äº†è¡¨ç¤º
 //=====================================
 typedef struct {
 	u32				seq;
@@ -1107,61 +1107,61 @@ typedef struct {
 
 
 //-------------------------------------
-///	ƒƒbƒZ[ƒWƒVƒXƒeƒ€
+///	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct {
-	MSGDATA_MANAGER*	p_msgman;		// Šî–{ƒƒbƒZ[ƒW
-	WORDSET*			p_wordset;		// ƒ[ƒhƒZƒbƒg
-	STRBUF*				p_msgstr;		// ƒƒbƒZ[ƒWƒoƒbƒtƒ@
-	STRBUF*				p_msgtmp;		// ƒƒbƒZ[ƒWƒoƒbƒtƒ@
+	MSGDATA_MANAGER*	p_msgman;		// åŸºæœ¬ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	WORDSET*			p_wordset;		// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+	STRBUF*				p_msgstr;		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡
+	STRBUF*				p_msgtmp;		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡
 } WLDTIMER_MSGMAN;
 
 
 
 //-------------------------------------
-///	¢ŠEŽžŒvƒ[ƒN
+///	ä¸–ç•Œæ™‚è¨ˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 
-	// “®ìŠÇ—
-	u16				main_seq;	// ƒƒCƒ“‰æ–ÊƒV[ƒPƒ“ƒX
-	u16				sub_seq;	// ƒTƒu‰æ–ÊƒV[ƒPƒ“ƒX
-	WLDTIMER_FLAG	flag;		// “®ìƒtƒ‰ƒO
+	// å‹•ä½œç®¡ç†
+	u16				main_seq;	// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u16				sub_seq;	// ã‚µãƒ–ç”»é¢ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	WLDTIMER_FLAG	flag;		// å‹•ä½œãƒ•ãƒ©ã‚°
 	
 
-	//ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 	WIFI_HISTORY*	p_wifisv;
 	CONFIG*			p_config;
 
-	// Ž©•ª‚Ì“o˜^’nˆæ
+	// è‡ªåˆ†ã®ç™»éŒ²åœ°åŸŸ
 	int		my_nation;
 	int		my_area;
 
-	// ¢ŠEŽžŠÔ
+	// ä¸–ç•Œæ™‚é–“
 	WFLBY_TIME	worldtime;
 
-	// •\Ž¦ƒVƒXƒeƒ€
+	// è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ 
 	WLDTIMER_DRAWSYS drawsys;
 
-	// ƒƒbƒZ[ƒWŠÇ—ƒVƒXƒeƒ€
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 	WLDTIMER_MSGMAN msgman;
 
-	// ’n‹…‹VŠÇ—
+	// åœ°çƒå„€ç®¡ç†
 	WLDTIMER_EARTH earth;
 
-	// ’n“_ƒŠƒXƒg
+	// åœ°ç‚¹ãƒªã‚¹ãƒˆ
 	WLDTIMER_PLACE place;
 	
-	// ƒJƒƒ‰
+	// ã‚«ãƒ¡ãƒ©
 	WLDTIMER_CAMERA camera;
 
-	// ƒ^ƒbƒ`ŠÇ—
+	// ã‚¿ãƒƒãƒç®¡ç†
 	WLDTIMER_TOUCH touch;
 
-	// î•ñƒrƒ…[ƒA[
+	// æƒ…å ±ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼
 	WLDTIMER_VIEWER view;
 
-	// ‚µ‚½‰æ–ÊI—¹ƒ`ƒFƒbƒN
+	// ã—ãŸç”»é¢çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	WLDTIMER_END_MSG end_msg;
 
 } WLDTIMER_WK;
@@ -1173,13 +1173,13 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-//	src/application/wifi_earth/wifi_earth‚©‚çƒRƒs[
-//	‚½‚¾AŠ®‘S‚ÈƒRƒs[‚Å‚Í‚È‚­A\‘¢‘Ì‚Ì\¬‚È‚Ç•ÏX‚µ‚Ä‚ ‚è‚Ü‚·B
+//	src/application/wifi_earth/wifi_earthã‹ã‚‰ã‚³ãƒ”ãƒ¼
+//	ãŸã ã€å®Œå…¨ãªã‚³ãƒ”ãƒ¼ã§ã¯ãªãã€æ§‹é€ ä½“ã®æ§‹æˆãªã©å¤‰æ›´ã—ã¦ã‚ã‚Šã¾ã™ã€‚
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EarthListLoad( WLDTIMER_PLACE* p_wk, const WFLBY_WLDTIMER* cp_data, u32 heapID );
 static void WLDTIMER_EarthListSet( WLDTIMER_PLACE* p_wk,u32 index, s16 x,s16 y,u16 nationID,u16 areaID, const WFLBY_WLDTIMER* cp_data );
@@ -1192,17 +1192,17 @@ static u32 WLDTIMER_Earth3D_Control( WLDTIMER_WK* p_wk,int keytrg,int keycont );
 //-----------------------------------------------------------------------------
 
 
-// ƒc[ƒ‹
+// ãƒ„ãƒ¼ãƒ«
 static void WLDTIMER_MinusRotateChange( VecFx32* p_rot );
 static BOOL WLDTIMER_RotateCheck( s32 minx, s32 maxx, u16 rotx );
 
-// ‘S‘Ì
+// å…¨ä½“
 static BOOL WLDTIMER_WkMainControl( WLDTIMER_WK* p_wk );
 static void WLDTIMER_WkSubControl( WLDTIMER_WK* p_wk );
 static void WLDTIMER_WkDraw( WLDTIMER_WK* p_wk );
 static void WLDTIMER_WkVBlank( void* p_work );
 
-// ’n‹…‹VŠÇ—
+// åœ°çƒå„€ç®¡ç†
 static u32 WLDTIMER_EarthControl( WLDTIMER_WK* p_wk );
 static void WLDTIMER_EarthStartSetUp( WLDTIMER_WK* p_wk, const WLDTIMER_PARAM* cp_param );
 static BOOL WLDTIMER_EarthGetPointData( const WLDTIMER_WK* cp_wk, WLDTIMER_POINTDATA* p_data );
@@ -1211,10 +1211,10 @@ static u32 WLDTIMER_EarthGetRotateDist( const VecFx32* cp_earth, const VecFx32* 
 static u32 WLDTIMER_EarthGetTimeZone( const WLDTIMER_WK* cp_wk, u32 placeindex, WFLBY_TIME worldtime );
 static BOOL WLDTIMER_EarthSetNationAreaRotate( WLDTIMER_WK* p_wk, u8 nationID, u8 areaID );
 
-// “®ìƒtƒ‰ƒO 
+// å‹•ä½œãƒ•ãƒ©ã‚° 
 static void WLDTIMER_FlagControl( WLDTIMER_WK* p_wk, const WLDTIMER_PARAM* cp_param );
 
-// •\Ž¦ƒVƒXƒeƒ€
+// è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ 
 static void WLDTIMER_DrawSysInit( WLDTIMER_DRAWSYS* p_wk, CONFIG* p_config, u32 heapID );
 static void WLDTIMER_DrawSysExit( WLDTIMER_DRAWSYS* p_wk );
 static void WLDTIMER_DrawSysDraw( WLDTIMER_DRAWSYS* p_wk );
@@ -1227,7 +1227,7 @@ static void WLDTIMER_DrawSys3DInit( WLDTIMER_DRAWSYS* p_wk, u32 heapID );
 static void WLDTIMER_DrawSys3DExit( WLDTIMER_DRAWSYS* p_wk );
 static void WLDTIMER_DrawSys3DSetUp( void );
 
-// ’n‹…‹Vƒf[ƒ^
+// åœ°çƒå„€ãƒ‡ãƒ¼ã‚¿
 static void WLDTIMER_EarthInit( WLDTIMER_EARTH* p_wk, WLDTIMER_DRAWSYS* p_drawsys, u32 heapID );
 static void WLDTIMER_EarthExit( WLDTIMER_EARTH* p_wk );
 static void WLDTIMER_EarthDraw( WLDTIMER_EARTH* p_wk );
@@ -1236,7 +1236,7 @@ static void WLDTIMER_EarthGetRotMtx( const WLDTIMER_EARTH* cp_wk, MtxFx33* p_rot
 static void WLDTIMER_EarthGetRotaVec( const WLDTIMER_EARTH* cp_wk, VecFx32* p_vec );
 static void WLDTIMER_EarthSetRotaVec( WLDTIMER_EARTH* p_wk, const VecFx32* cp_vec );
 
-// ’nˆæƒf[ƒ^
+// åœ°åŸŸãƒ‡ãƒ¼ã‚¿
 static void WLDTIMER_PlaceInit( WLDTIMER_PLACE* p_wk, const WFLBY_WLDTIMER* cp_data, WLDTIMER_DRAWSYS* p_drawsys, WLDTIMER_FLAG flag, u32 heapID );
 static void WLDTIMER_PlaceExit( WLDTIMER_PLACE* p_wk );
 static void WLDTIMER_PlaceDraw( WLDTIMER_PLACE* p_wk, const WLDTIMER_EARTH* cp_earth );
@@ -1249,7 +1249,7 @@ static u32 WLDTIMER_PlaceGetIdxNationID( const WLDTIMER_PLACE* cp_wk, int index 
 static u32 WLDTIMER_PlaceGetIdxAreaID( const WLDTIMER_PLACE* cp_wk, int index );
 static u32 WLDTIMER_PlaceGetListNum( const WLDTIMER_PLACE* cp_wk );
 
-// ƒJƒƒ‰ƒf[ƒ^
+// ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 static void WLDTIMER_CameraInit( WLDTIMER_CAMERA* p_wk, WLDTIMER_FLAG flag, u32 heapID );
 static void WLDTIMER_CameraExit( WLDTIMER_CAMERA* p_wk );
 static void WLDTIMER_CameraDraw( const WLDTIMER_CAMERA* cp_wk );
@@ -1257,7 +1257,7 @@ static void WLDTIMER_CameraMoveReq( WLDTIMER_CAMERA* p_wk );
 static BOOL WLDTIMER_CameraMove( WLDTIMER_CAMERA* p_wk, WLDTIMER_PLACE* p_place );
 static u32	WLDTIMER_CameraGetStatus( const WLDTIMER_CAMERA* cp_wk );
 
-// ƒ^ƒbƒ`ŠÇ—
+// ã‚¿ãƒƒãƒç®¡ç†
 static void WLDTIMER_TouchInit( WLDTIMER_TOUCH* p_wk, WLDTIMER_DRAWSYS* p_drawsys, WLDTIMER_MSGMAN* p_msgman, u32 heapID );
 static void WLDTIMER_TouchExit( WLDTIMER_TOUCH* p_wk );
 static void WLDTIMER_TouchSetParam( WLDTIMER_TOUCH* p_touch );
@@ -1265,7 +1265,7 @@ static int WLDTIMER_TouchGetParam( const WLDTIMER_TOUCH* cp_touch, u32 type );
 static void WLDTIMER_TouchBttnOff( WLDTIMER_TOUCH* p_wk );
 static void WLDTIMER_TouchBttnOn( WLDTIMER_TOUCH* p_wk );
 
-// I—¹ƒ`ƒFƒbƒNŠÇ—
+// çµ‚äº†ãƒã‚§ãƒƒã‚¯ç®¡ç†
 static void WLDTIMER_EndMsgInit( WLDTIMER_END_MSG* p_wk, WLDTIMER_DRAWSYS* p_drawsys, WLDTIMER_MSGMAN* p_msgman, SAVEDATA* p_save, u32 heapID );
 static void WLDTIMER_EndMsgExit( WLDTIMER_END_MSG* p_wk );
 static void WLDTIMER_EndMsgStart( WLDTIMER_END_MSG* p_wk );
@@ -1273,7 +1273,7 @@ static u32 WLDTIMER_EndMsgMain( WLDTIMER_END_MSG* p_wk );
 static void WLDTIMER_EndMsgEnd( WLDTIMER_END_MSG* p_wk );
 
 
-// ƒTƒu‰æ–Êî•ñƒEƒBƒ“ƒhƒE
+// ã‚µãƒ–ç”»é¢æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 static void WLDTIMER_ViewerInit( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_drawsys, WLDTIMER_MSGMAN* p_msgman, u32 heapID );
 static void WLDTIMER_ViewerExit( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_drawsys );
 static void WLDTIMER_ViewerMain( WLDTIMER_VIEWER* p_wk, WLDTIMER_MSGMAN* p_msgman, WLDTIMER_DRAWSYS* p_drawsys );
@@ -1304,7 +1304,7 @@ static void WLDTIMER_ViewerWnd1SetPos( WLDTIMER_VWND* p_wk, s16 sy, s16 ey );
 static void WLDTIMER_ViewerWndTcb( TCB_PTR p_tcb, void* p_work );
 
 
-// ‘•¶Žš—ñ‘‚«ž‚Ý
+// å›½æ–‡å­—åˆ—æ›¸ãè¾¼ã¿
 static void WLDTIMER_ViewerMsgInit( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_drawsys, u32 heapID );
 static void WLDTIMER_ViewerMsgExit( WLDTIMER_VIEWER* p_wk ); 
 static void WLDTIMER_ViewerMsgWrite( WLDTIMER_VIEWER* p_wk, u32 drawtype, const WLDTIMER_POINTDATA* cp_data, WLDTIMER_MSGMAN* p_msgman );
@@ -1313,7 +1313,7 @@ static u8* WLDTIMER_ViewerDummyGetCharBuffPtr( WLDTIMER_VIEWER* p_wk, u32 y );
 static void WLDTIMER_ViewerMsgCharTrans( WLDTIMER_VIEWER* p_wk, u32 drawtype, u32 y, const u8* cp_buff );
 
 
-// ƒ^ƒCƒ€ƒ][ƒ“ƒAƒjƒ
+// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡
 static void WLDTIMER_TimeZoneAnm_Init( WLDTIMER_TIMEZONEANM* p_wk, WLDTIMER_DRAWSYS* p_drawsys, const WLDTIMER_TIMEZONEANM_INIT* cp_init, u16 count_max, u32 heapID );
 static void WLDTIMER_TimeZoneAnm_Exit( WLDTIMER_TIMEZONEANM* p_wk );
 static void WLDTIMER_TimeZoneAnm_Main( WLDTIMER_TIMEZONEANM* p_wk, WLDTIMER_DRAWSYS* p_drawsys );
@@ -1322,7 +1322,7 @@ static void WLDTIMER_TimeZoneAnm_ResetFlag( WLDTIMER_TIMEZONEANM* p_wk );
 static void WLDTIMER_TimeZoneAnm_LineTrans( WLDTIMER_TIMEZONEANM* p_wk, u32 y, WLDTIMER_DRAWSYS* p_drawsys );
 
 
-// ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“
+// ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³
 static void WLDTIMER_PokeBaloon_Init( WLDTIMER_POKEBALLOON* p_wk, WLDTIMER_DRAWSYS* p_drawsys, WLDTIMER_VWND* p_wnd, u32 heapID );
 static void WLDTIMER_PokeBaloon_Exit( WLDTIMER_POKEBALLOON* p_wk, WLDTIMER_DRAWSYS* p_drawsys );
 static void WLDTIMER_PokeBaloon_Reset( WLDTIMER_POKEBALLOON* p_wk );
@@ -1342,11 +1342,11 @@ static void WLDTIMER_PokeBln_WndMskSet( const WLDTIMER_POKEBLN_MOVE* cp_wk, WLDT
 static void WLDTIMER_PokeBln_ActSetMatrix( WLDTIMER_POKEBALLOON* p_wk, u32 drawtype );
 
 
-// ƒ^ƒCƒ€ƒ][ƒ“ƒf[ƒ^Žæ“¾
+// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
 static u16 WLDTIMER_TIMEZONE_GetZoneType( u32 timezone );
 static u16 WLDTIMER_TIMEZONE_GetMons( u32 timezone );
 
-// ƒƒbƒZ[ƒWƒVƒXƒeƒ€
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ 
 static void WLDTIMER_MsgManInit( WLDTIMER_MSGMAN* p_wk, u32 heapID );
 static void WLDTIMER_MsgManExit( WLDTIMER_MSGMAN* p_wk );
 static STRBUF* WLDTIMER_MsgManGetStr( WLDTIMER_MSGMAN* p_wk, u32 msg );
@@ -1354,7 +1354,7 @@ static STRBUF* WLDTIMER_MsgManCountryGetStr( WLDTIMER_MSGMAN* p_wk, u32 nationID
 static STRBUF* WLDTIMER_MsgManPlaceGetStr( WLDTIMER_MSGMAN* p_wk, u32 nationID, u32 areaID );
 static void WLDTIMER_MsgManGetStrBuff( WLDTIMER_MSGMAN* p_wk, u32 msg, STRBUF* p_str );
 
-// •\Ž¦ƒf[ƒ^ƒx[ƒX
+// è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹
 static u32 WLDTIMER_WFLBYDATA_GetFirst( const WFLBY_WLDTIMER* cp_data );
 
 
@@ -1362,13 +1362,13 @@ static u32 WLDTIMER_WFLBYDATA_GetFirst( const WFLBY_WLDTIMER* cp_data );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠEŽžŒv	‰Šú‰»
+ *	@brief	ä¸–ç•Œæ™‚è¨ˆ	åˆæœŸåŒ–
  *
- *	@param	p_proc		ƒvƒƒbƒNƒ[ƒN
- *	@param	p_seq		ƒV[ƒPƒ“ƒX
+ *	@param	p_proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@retval	PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *	@retval	PROC_RES_FINISH,			///<“®ìI—¹
+ *	@retval	PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *	@retval	PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WLDTIMER_Init(PROC* p_proc, int* p_seq)
@@ -1376,7 +1376,7 @@ PROC_RESULT WLDTIMER_Init(PROC* p_proc, int* p_seq)
 	WLDTIMER_WK* p_wk;
 	WLDTIMER_PARAM* p_param;
 
-	// ‘S’nˆæ•\Ž¦‚ÅƒoƒbƒN‹@”\ 
+	// å…¨åœ°åŸŸè¡¨ç¤ºã§ãƒãƒƒã‚¯æ©Ÿèƒ½ 
 #ifdef WLDTIMER_DEBUG_ALLPLACEOPEN
 	if( sys.cont & PAD_BUTTON_R ){
 		s_WLDTIMER_DEBUG_ALLPLACEOPEN_FLAG = TRUE;
@@ -1389,67 +1389,67 @@ PROC_RESULT WLDTIMER_Init(PROC* p_proc, int* p_seq)
 
 	OS_TPrintf( "end cgx %d\n", WLDTIMER_MAIN_SUBBTTN_CGXEND );
 
-	//ƒq[ƒvƒGƒŠƒAì¬
+	//ãƒ’ãƒ¼ãƒ—ã‚¨ãƒªã‚¢ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WLDTIMER, 0x50000 );
 
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_wk = PROC_AllocWork( p_proc, sizeof(WLDTIMER_WK), HEAPID_WLDTIMER );
 	memset( p_wk, 0, sizeof(WLDTIMER_WK) );
 
-	// ƒZ[ƒuƒf[ƒ^Žæ“¾
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_wk->p_wifisv = SaveData_GetWifiHistory( p_param->p_save );
 	p_wk->p_config = SaveData_GetConfig( p_param->p_save );
 
-	// Ž©•ª‚Ì“o˜^’nˆæŽæ“¾
+	// è‡ªåˆ†ã®ç™»éŒ²åœ°åŸŸå–å¾—
 	p_wk->my_nation = WIFIHISTORY_GetMyNation( p_wk->p_wifisv );
 	p_wk->my_area = WIFIHISTORY_GetMyArea( p_wk->p_wifisv );
 
-	// ¢ŠEŽžŠÔ
+	// ä¸–ç•Œæ™‚é–“
 	p_wk->worldtime = p_param->worldtime;
 
 //	OS_TPrintf( "world time hour[%d] minute[%d] second[%d]\n", p_wk->worldtime.hour, p_wk->worldtime.minute, p_wk->worldtime.second );
 
-	// ƒtƒ‰ƒO‰Šú‰»
+	// ãƒ•ãƒ©ã‚°åˆæœŸåŒ–
 	WLDTIMER_FlagControl( p_wk, p_param );
 
-	// ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
 	WLDTIMER_DrawSysInit( &p_wk->drawsys, p_wk->p_config, HEAPID_WLDTIMER );
 
-	// ’n‹…‹V‰Šú‰»
+	// åœ°çƒå„€åˆæœŸåŒ–
 	WLDTIMER_EarthInit( &p_wk->earth, &p_wk->drawsys, HEAPID_WLDTIMER );
 
-	// •¶ŽšƒVƒXƒeƒ€‰Šú‰»
+	// æ–‡å­—ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	WLDTIMER_MsgManInit( &p_wk->msgman, HEAPID_WLDTIMER );
 
-	// ’nˆæ‰Šú‰»
+	// åœ°åŸŸåˆæœŸåŒ–
 	WLDTIMER_PlaceInit( &p_wk->place, p_param->cp_data, &p_wk->drawsys, p_wk->flag, HEAPID_WLDTIMER );
 
-	// ƒJƒƒ‰‰Šú‰»
+	// ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–
 	WLDTIMER_CameraInit( &p_wk->camera, p_wk->flag, HEAPID_WLDTIMER );
 
-	// ƒ^ƒbƒ`‰Šú‰»
+	// ã‚¿ãƒƒãƒåˆæœŸåŒ–
 	WLDTIMER_TouchInit( &p_wk->touch, &p_wk->drawsys, &p_wk->msgman, HEAPID_WLDTIMER );
 
-	// I—¹ƒ`ƒFƒbƒN‰Šú‰»
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯åˆæœŸåŒ–
 	WLDTIMER_EndMsgInit( &p_wk->end_msg, &p_wk->drawsys, &p_wk->msgman, p_param->p_save, HEAPID_WLDTIMER );
 
-	// ƒrƒ…[ƒA[‰Šú‰»
+	// ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼åˆæœŸåŒ–
 	WLDTIMER_ViewerInit( &p_wk->view, &p_wk->drawsys, &p_wk->msgman, HEAPID_WLDTIMER );
 	
-	// ’n‹…‹VŠJŽnƒZƒbƒgƒAƒbƒv
+	// åœ°çƒå„€é–‹å§‹ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	WLDTIMER_EarthStartSetUp( p_wk, p_param );
 
 	
-	// Š„‚èž‚ÝÝ’è
+	// å‰²ã‚Šè¾¼ã¿è¨­å®š
 	sys_VBlankFuncChange( WLDTIMER_WkVBlank, p_wk );
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	return	PROC_RES_FINISH;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠEŽžŒv	ƒƒCƒ“
+ *	@brief	ä¸–ç•Œæ™‚è¨ˆ	ãƒ¡ã‚¤ãƒ³
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WLDTIMER_Main(PROC* p_proc, int* p_seq)
@@ -1476,10 +1476,10 @@ PROC_RESULT WLDTIMER_Main(PROC* p_proc, int* p_seq)
 				WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, 
 				WIPE_FADE_BLACK, WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_WLDTIMER );
 
-		// BGM‚ðƒtƒF[ƒhƒAƒEƒg
+		// BGMã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		WFLBY_SYSTEM_SetBGMVolumeDown( p_param->p_system, TRUE );
 
-		// ƒƒr[‚É“ü‚Á‚Ä‚«‚½‰¹‚ðo‚·
+		// ãƒ­ãƒ“ãƒ¼ã«å…¥ã£ã¦ããŸéŸ³ã‚’å‡ºã™
 //		Snd_SePlay( WFLBY_SND_WLDTMIN );
 
 		(*p_seq) ++;
@@ -1505,7 +1505,7 @@ PROC_RESULT WLDTIMER_Main(PROC* p_proc, int* p_seq)
 			result = TRUE;
 		}
 		
-		if( result == TRUE ){	// I—¹ƒ`ƒFƒbƒN
+		if( result == TRUE ){	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 			(*p_seq) = WLDTIMER_SEQ_FADEOUT;
 		}
 		break;
@@ -1525,7 +1525,7 @@ PROC_RESULT WLDTIMER_Main(PROC* p_proc, int* p_seq)
 		break;
 	}
 
-	// •`‰æ
+	// æç”»
 	WLDTIMER_WkDraw( p_wk );
 
 	return	PROC_RES_CONTINUE;
@@ -1533,7 +1533,7 @@ PROC_RESULT WLDTIMER_Main(PROC* p_proc, int* p_seq)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠEŽžŒv	”jŠü
+ *	@brief	ä¸–ç•Œæ™‚è¨ˆ	ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 PROC_RESULT WLDTIMER_Exit(PROC* p_proc, int* p_seq)
@@ -1544,38 +1544,38 @@ PROC_RESULT WLDTIMER_Exit(PROC* p_proc, int* p_seq)
 	p_wk	= PROC_GetWork( p_proc );
 	p_param = PROC_GetParentWork( p_proc );
 
-	// Š„‚èž‚ÝÝ’è
+	// å‰²ã‚Šè¾¼ã¿è¨­å®š
 	sys_VBlankFuncChange( NULL, NULL );
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	// ƒrƒ…[ƒA[”jŠü
+	// ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ç ´æ£„
 	WLDTIMER_ViewerExit( &p_wk->view, &p_wk->drawsys );
 
-	// I—¹ƒ`ƒFƒbƒN”jŠü
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯ç ´æ£„
 	WLDTIMER_EndMsgExit( &p_wk->end_msg );
 
-	// ƒ^ƒbƒ`”jŠü
+	// ã‚¿ãƒƒãƒç ´æ£„
 	WLDTIMER_TouchExit( &p_wk->touch );
 
-	// ƒJƒƒ‰”jŠü
+	// ã‚«ãƒ¡ãƒ©ç ´æ£„
 	WLDTIMER_CameraExit( &p_wk->camera );
 
-	// ’n‹…‹V”jŠü
+	// åœ°çƒå„€ç ´æ£„
 	WLDTIMER_EarthExit( &p_wk->earth );
 
-	// ’nˆæƒf[ƒ^”jŠü
+	// åœ°åŸŸãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	WLDTIMER_PlaceExit( &p_wk->place );
 
-	// •¶ŽšƒVƒXƒeƒ€”jŠü
+	// æ–‡å­—ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WLDTIMER_MsgManExit( &p_wk->msgman );
 
-	// •`‰æƒVƒXƒeƒ€”jŠü
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WLDTIMER_DrawSysExit( &p_wk->drawsys );
 
-	//ƒ[ƒN”jŠü
+	//ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	PROC_FreeWork( p_proc );
 	
-	//ƒq[ƒv”jŠü
+	//ãƒ’ãƒ¼ãƒ—ç ´æ£„
 	sys_DeleteHeap( HEAPID_WLDTIMER );
 
 	return	PROC_RES_FINISH;
@@ -1605,29 +1605,29 @@ PROC_RESULT WLDTIMER_DebugExit(PROC* p_proc, int* p_seq)
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-//	src/application/wifi_earth/wifi_earth‚©‚çƒRƒs[
+//	src/application/wifi_earth/wifi_earthã‹ã‚‰ã‚³ãƒ”ãƒ¼
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n“_ƒŠƒXƒg‚ð“Ç‚Ýž‚Þ
+ *	@brief	åœ°ç‚¹ãƒªã‚¹ãƒˆã‚’èª­ã¿è¾¼ã‚€
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	cp_data	•\Ž¦’nˆæƒf[ƒ^ƒoƒbƒtƒ@
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data	è¡¨ç¤ºåœ°åŸŸãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EarthListLoad( WLDTIMER_PLACE* p_wk, const WFLBY_WLDTIMER* cp_data, u32 heapID )
 {
 	ARCHANDLE* p_handle = ArchiveDataHandleOpen( ARC_WIFI_EARCH_PLACE, heapID );
 	
-	//’n“_ƒŠƒXƒg‘”‰Šú‰»
+	//åœ°ç‚¹ãƒªã‚¹ãƒˆç·æ•°åˆæœŸåŒ–
 	p_wk->placelist.listcount = 0;
 
-	{//’n“_ƒ}[ƒN‰ñ“]‰Šú‰»i‘ƒf[ƒ^ƒoƒCƒiƒŠƒf[ƒ^ƒ[ƒhj
+	{//åœ°ç‚¹ãƒžãƒ¼ã‚¯å›žè»¢åˆæœŸåŒ–ï¼ˆå›½ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ï¼‰
 		void* filep;
 		EARTH_DATA_NATION* listp;
 		u32	size;
@@ -1636,12 +1636,12 @@ static void WLDTIMER_EarthListLoad( WLDTIMER_PLACE* p_wk, const WFLBY_WLDTIMER* 
 		filep = ArcUtil_HDL_LoadEx( p_handle, NARC_wifi_earth_place_place_pos_wrd_dat, 
 								FALSE, heapID, ALLOC_TOP, &size );
 
-		listp = (EARTH_DATA_NATION*)filep;	//ƒtƒ@ƒCƒ‹“Ç‚Ýž‚Ý—p‚É•ÏŠ·
-		listcount = size/6;				//’n“_”Žæ“¾iƒf[ƒ^’·F‚P’n“_‚É‚Â‚«‚UƒoƒCƒgj
+		listp = (EARTH_DATA_NATION*)filep;	//ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ç”¨ã«å¤‰æ›
+		listcount = size/6;				//åœ°ç‚¹æ•°å–å¾—ï¼ˆãƒ‡ãƒ¼ã‚¿é•·ï¼šï¼‘åœ°ç‚¹ã«ã¤ãï¼–ãƒã‚¤ãƒˆï¼‰
 
-		listp++;	//1origin‚Ì‚½‚ß“Ç‚Ý”ò‚Î‚µ
+		listp++;	//1originã®ãŸã‚èª­ã¿é£›ã°ã—
 		for(i=1;i<listcount;i++){
-			if(listp->flag != 2){	//2‚Ìê‡‚Í’nˆæƒŠƒXƒg‚ª‘¶Ý‚·‚é
+			if(listp->flag != 2){	//2ã®å ´åˆã¯åœ°åŸŸãƒªã‚¹ãƒˆãŒå­˜åœ¨ã™ã‚‹
 				WLDTIMER_EarthListSet(p_wk,p_wk->placelist.listcount,
 						listp->x,listp->y,i,0, cp_data);
 				p_wk->placelist.listcount++;
@@ -1650,7 +1650,7 @@ static void WLDTIMER_EarthListLoad( WLDTIMER_PLACE* p_wk, const WFLBY_WLDTIMER* 
 		}
 		sys_FreeMemoryEz(filep);
 	}
-	{//’n“_ƒ}[ƒN‰ñ“]‰Šú‰»i’nˆæƒf[ƒ^ƒoƒCƒiƒŠƒf[ƒ^ƒ[ƒhj
+	{//åœ°ç‚¹ãƒžãƒ¼ã‚¯å›žè»¢åˆæœŸåŒ–ï¼ˆåœ°åŸŸãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ï¼‰
 		void* filep;
 		EARTH_DATA_AREA* listp;
 		u32	size, data_id;
@@ -1665,10 +1665,10 @@ static void WLDTIMER_EarthListLoad( WLDTIMER_PLACE* p_wk, const WFLBY_WLDTIMER* 
 			filep = ArcUtil_HDL_LoadEx( p_handle, data_id, FALSE, 
 									heapID, ALLOC_TOP, &size );
 
-			listp = (EARTH_DATA_AREA*)filep;	//ƒtƒ@ƒCƒ‹“Ç‚Ýž‚Ý—p‚É•ÏŠ·
-			listcount = size/4;		//’n“_”Žæ“¾iƒf[ƒ^’·F‚P’n“_‚É‚Â‚«‚SƒoƒCƒgj
+			listp = (EARTH_DATA_AREA*)filep;	//ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ç”¨ã«å¤‰æ›
+			listcount = size/4;		//åœ°ç‚¹æ•°å–å¾—ï¼ˆãƒ‡ãƒ¼ã‚¿é•·ï¼šï¼‘åœ°ç‚¹ã«ã¤ãï¼”ãƒã‚¤ãƒˆï¼‰
 
-			listp++;	//1origin‚Ì‚½‚ß“Ç‚Ý”ò‚Î‚µ
+			listp++;	//1originã®ãŸã‚èª­ã¿é£›ã°ã—
 			for(i=1;i<listcount;i++){//1orgin
 				WLDTIMER_EarthListSet(p_wk,p_wk->placelist.listcount,listp->x,listp->y,
 								WIFI_COUNTRY_DataIndexToCountryCode(index),i, cp_data);
@@ -1685,15 +1685,15 @@ static void WLDTIMER_EarthListLoad( WLDTIMER_PLACE* p_wk, const WFLBY_WLDTIMER* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n“_î•ñ‚ðƒŠƒXƒg‚ÉÝ’è
+ *	@brief	åœ°ç‚¹æƒ…å ±ã‚’ãƒªã‚¹ãƒˆã«è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	index		ƒCƒ“ƒfƒbƒNƒX
- *	@param	x			‚˜‘Š‘Î‰ñ“]Šp“x
- *	@param	y			‚™‘Š‘Î‰ñ“]Šp“x
- *	@param	nationID	‘ID
- *	@param	areaID		’nˆæID
- *	@param	cp_data		•\Ž¦’nˆæƒf[ƒ^ƒoƒbƒtƒ@
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	index		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	x			ï½˜ç›¸å¯¾å›žè»¢è§’åº¦
+ *	@param	y			ï½™ç›¸å¯¾å›žè»¢è§’åº¦
+ *	@param	nationID	å›½ID
+ *	@param	areaID		åœ°åŸŸID
+ *	@param	cp_data		è¡¨ç¤ºåœ°åŸŸãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EarthListSet( WLDTIMER_PLACE* p_wk,u32 index, s16 x,s16 y,u16 nationID,u16 areaID, const WFLBY_WLDTIMER* cp_data )
@@ -1701,16 +1701,16 @@ static void WLDTIMER_EarthListSet( WLDTIMER_PLACE* p_wk,u32 index, s16 x,s16 y,u
 	MtxFx33 rotMtx = {FX32_ONE,0,0,0,FX32_ONE,0,0,0,FX32_ONE};
 	VecFx32 rotVec;
 
-	p_wk->placelist.place[index].x = x;	//‚w‰ñ“]ƒIƒtƒZƒbƒgŽæ“¾
-	p_wk->placelist.place[index].y = y;	//‚x‰ñ“]ƒIƒtƒZƒbƒgŽæ“¾
+	p_wk->placelist.place[index].x = x;	//ï¼¸å›žè»¢ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
+	p_wk->placelist.place[index].y = y;	//ï¼¹å›žè»¢ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 	
 	rotVec.x = x;
 	rotVec.y = y;
 	rotVec.z = INIT_EARTH_ROTATE_ZVAL;
-	WLDTIMER_EarthVecFx32_to_MtxFx33_place(&rotMtx,&rotVec);	//‰ŠúˆÊ’u‚©‚ç‚Ì‘Š‘ÎÀ•WŒvŽZ
+	WLDTIMER_EarthVecFx32_to_MtxFx33_place(&rotMtx,&rotVec);	//åˆæœŸä½ç½®ã‹ã‚‰ã®ç›¸å¯¾åº§æ¨™è¨ˆç®—
 	p_wk->placelist.place[index].rotate = rotMtx;
 
-	//ƒ}[ƒNFÝ’è(‘ÞŽºƒtƒ‰ƒO‚É‚ ‚í‚¹‚é)
+	//ãƒžãƒ¼ã‚¯è‰²è¨­å®š(é€€å®¤ãƒ•ãƒ©ã‚°ã«ã‚ã‚ã›ã‚‹)
 #ifdef WLDTIMER_DEBUG_ALLPLACEOPEN
 	if( s_WLDTIMER_DEBUG_ALLPLACEOPEN_FLAG == TRUE ){
 		p_wk->placelist.place[index].col = WLDTIMER_PLACE_COL_IN;
@@ -1726,17 +1726,17 @@ static void WLDTIMER_EarthListSet( WLDTIMER_PLACE* p_wk,u32 index, s16 x,s16 y,u
 #endif
 //	OS_Printf( "p_wk->placelist.place[index].col %d  nation %d  area %d\n", p_wk->placelist.place[index].col, nationID, areaID );
 
-	p_wk->placelist.place[index].nationID = nationID;	//ŠY“–‘‚h‚c
-	p_wk->placelist.place[index].areaID = areaID;		//ŠY“–’nˆæ‚h‚c
+	p_wk->placelist.place[index].nationID = nationID;	//è©²å½“å›½ï¼©ï¼¤
+	p_wk->placelist.place[index].areaID = areaID;		//è©²å½“åœ°åŸŸï¼©ï¼¤
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	3D‰ñ“]ŒvŽZ
+ *	@brief	3Då›žè»¢è¨ˆç®—
  *
- *	@param	dst		‘‚«o‚µæs—ñ
- *	@param	src		‰ñ“]ƒxƒNƒgƒ‹
+ *	@param	dst		æ›¸ãå‡ºã—å…ˆè¡Œåˆ—
+ *	@param	src		å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EarthVecFx32_to_MtxFx33( MtxFx33* dst, const VecFx32* src )
@@ -1754,10 +1754,10 @@ static void WLDTIMER_EarthVecFx32_to_MtxFx33( MtxFx33* dst, const VecFx32* src )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RD‰ñ“]ŒvŽZ	‘Š‘Î‰ñ“]
+ *	@brief	ï¼“Då›žè»¢è¨ˆç®—	ç›¸å¯¾å›žè»¢
  *
- *	@param	dst		‘‚«o‚µæs—ñ
- *	@param	src		‰ñ“]ƒxƒNƒgƒ‹
+ *	@param	dst		æ›¸ãå‡ºã—å…ˆè¡Œåˆ—
+ *	@param	src		å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EarthVecFx32_to_MtxFx33_place( MtxFx33* dst, const VecFx32* src )
@@ -1780,7 +1780,7 @@ static void WLDTIMER_Earth_TouchPanelParamGet( int prevx,int prevy,int* dirx_p,i
 	int x_len = 0;
 	int y_len = 0;
 
-	//‚w•ûŒü•ˆÚ“®•Žæ“¾
+	//ï¼¸æ–¹å‘ï¼†ç§»å‹•å¹…å–å¾—
 	if(sys.tp_x != 0xffff){
 		x_len = sys.tp_x - prevx;
 		if(x_len < 0){
@@ -1792,11 +1792,11 @@ static void WLDTIMER_Earth_TouchPanelParamGet( int prevx,int prevy,int* dirx_p,i
 			}
 		}
 	}
-	x_len &= WLDTIMER_TOUCH_LEN_LIMIT;	//ƒŠƒ~ƒbƒ^[
+	x_len &= WLDTIMER_TOUCH_LEN_LIMIT;	//ãƒªãƒŸãƒƒã‚¿ãƒ¼
 	*dirx_p = x_dir;
 	*lenx_p = x_len;
 
-	//‚x•ûŒü•ˆÚ“®•Žæ“¾
+	//ï¼¹æ–¹å‘ï¼†ç§»å‹•å¹…å–å¾—
 	if(sys.tp_y != 0xffff){
 		y_len = sys.tp_y - prevy;
 		if(y_len < 0){
@@ -1808,13 +1808,13 @@ static void WLDTIMER_Earth_TouchPanelParamGet( int prevx,int prevy,int* dirx_p,i
 			}
 		}
 	}
-	y_len &= WLDTIMER_TOUCH_LEN_LIMIT;	//ƒŠƒ~ƒbƒ^[
+	y_len &= WLDTIMER_TOUCH_LEN_LIMIT;	//ãƒªãƒŸãƒƒã‚¿ãƒ¼
 	*diry_p = y_dir;
 	*leny_p = y_len;
 }
 
 //----------------------------------
-//’n‹…‘€ìŠÖ”
+//åœ°çƒæ“ä½œé–¢æ•°
 //----------------------------------
 static u32 WLDTIMER_Earth3D_Control( WLDTIMER_WK* p_wk,int keytrg,int keycont )
 {
@@ -1828,31 +1828,31 @@ static u32 WLDTIMER_Earth3D_Control( WLDTIMER_WK* p_wk,int keytrg,int keycont )
 	int tp_lenx, tp_leny;
 	u32 camera_status;
 
-	// Šeƒf[ƒ^Žæ“¾
-	WLDTIMER_EarthGetRotaVec( &p_wk->earth, &rotate );	// ’n‹…‹V‰ñ“]ƒxƒNƒgƒ‹
-	tp_result	= WLDTIMER_TouchGetParam(				// ƒ^ƒbƒ`Œ‹‰Êƒpƒbƒh’l
+	// å„ãƒ‡ãƒ¼ã‚¿å–å¾—
+	WLDTIMER_EarthGetRotaVec( &p_wk->earth, &rotate );	// åœ°çƒå„€å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«
+	tp_result	= WLDTIMER_TouchGetParam(				// ã‚¿ãƒƒãƒçµæžœãƒ‘ãƒƒãƒ‰å€¤
 					&p_wk->touch, WLDTIMER_TOUCH_PM_RESULT );
-	tp_lenx		= WLDTIMER_TouchGetParam(				// ƒ^ƒbƒ`ƒXƒ‰ƒCƒh‚˜’l
+	tp_lenx		= WLDTIMER_TouchGetParam(				// ã‚¿ãƒƒãƒã‚¹ãƒ©ã‚¤ãƒ‰ï½˜å€¤
 					&p_wk->touch, WLDTIMER_TOUCH_PM_LENX );
-	tp_leny		= WLDTIMER_TouchGetParam(				// ƒ^ƒbƒ`ƒXƒ‰ƒCƒh‚™’l
+	tp_leny		= WLDTIMER_TouchGetParam(				// ã‚¿ãƒƒãƒã‚¹ãƒ©ã‚¤ãƒ‰ï½™å€¤
 					&p_wk->touch, WLDTIMER_TOUCH_PM_LENY );
-	camera_status = WLDTIMER_CameraGetStatus(			// ƒJƒƒ‰ó‘Ô
+	camera_status = WLDTIMER_CameraGetStatus(			// ã‚«ãƒ¡ãƒ©çŠ¶æ…‹
 					&p_wk->camera );	
 
 	rotate_x = rotate.x;
 	rotate_y = rotate.y;
 
-	//ƒJƒƒ‰‰“‹ßˆÚ“®”»’èi¢ŠE’n‹…‹Vƒ‚[ƒh‚Ì‚Ýj
+	//ã‚«ãƒ¡ãƒ©é è¿‘ç§»å‹•åˆ¤å®šï¼ˆä¸–ç•Œåœ°çƒå„€ãƒ¢ãƒ¼ãƒ‰ã®ã¿ï¼‰
 	if((keytrg & PAD_BUTTON_A)||(tp_result & PAD_BUTTON_A)){
 		if(p_wk->flag.world == GLOBAL_MODE){
 			result = WLDTIMER_EARTHCONT_RET_CAMERA_MOVE;
 		}
 		return result;
 	}
-	//ƒJƒƒ‰ˆÚ“®ƒXƒs[ƒh‰ŠúÝ’è
+	//ã‚«ãƒ¡ãƒ©ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰åˆæœŸè¨­å®š
 	if(camera_status == CAMERA_FAR){
-		//‰“‹——£
-		if((tp_lenx)||(tp_leny)){ //ƒ^ƒbƒ`ƒpƒlƒ‹“ü—Í‚ ‚è
+		//é è·é›¢
+		if((tp_lenx)||(tp_leny)){ //ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å…¥åŠ›ã‚ã‚Š
 			rotate_speed_x = (CAMERA_MOVE_SPEED_FAR/WLDTIMER_TOUCH_EARTHSPEED_DIVFAR) * tp_lenx;
 			rotate_speed_y = (CAMERA_MOVE_SPEED_FAR/WLDTIMER_TOUCH_EARTHSPEED_DIVFAR) * tp_leny;
 		}else{
@@ -1860,8 +1860,8 @@ static u32 WLDTIMER_Earth3D_Control( WLDTIMER_WK* p_wk,int keytrg,int keycont )
 			rotate_speed_y = CAMERA_MOVE_SPEED_FAR;
 		}
 	}else{
-		//‹ß‹——£
-		if((tp_lenx)||(tp_leny)){ //ƒ^ƒbƒ`ƒpƒlƒ‹“ü—Í‚ ‚è
+		//è¿‘è·é›¢
+		if((tp_lenx)||(tp_leny)){ //ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å…¥åŠ›ã‚ã‚Š
 			rotate_speed_x = (CAMERA_MOVE_SPEED_NEAR/WLDTIMER_TOUCH_EARTHSPEED_DIVNEAR) * tp_lenx;
 			rotate_speed_y = (CAMERA_MOVE_SPEED_NEAR/WLDTIMER_TOUCH_EARTHSPEED_DIVNEAR) * tp_leny;
 		}else{
@@ -1869,7 +1869,7 @@ static u32 WLDTIMER_Earth3D_Control( WLDTIMER_WK* p_wk,int keytrg,int keycont )
 			rotate_speed_y = CAMERA_MOVE_SPEED_NEAR;
 		}
 	}
-	//ƒJƒƒ‰ã‰º¶‰EˆÚ“®”»’è
+	//ã‚«ãƒ¡ãƒ©ä¸Šä¸‹å·¦å³ç§»å‹•åˆ¤å®š
 	if((keycont & PAD_KEY_LEFT)||(tp_result & PAD_KEY_LEFT)){
 		if(p_wk->flag.world == GLOBAL_MODE){
 			rotate.y += rotate_speed_x;
@@ -1928,9 +1928,9 @@ static u32 WLDTIMER_Earth3D_Control( WLDTIMER_WK* p_wk,int keytrg,int keycont )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒCƒiƒX‚Ì’l‚Ì‰ñ“]Šp“x‚â‚R‚U‚O“xˆÈã‚Ì‰ñ“]Šp“x‚ð‚È‚­‚·
+ *	@brief	ãƒžã‚¤ãƒŠã‚¹ã®å€¤ã®å›žè»¢è§’åº¦ã‚„ï¼“ï¼–ï¼åº¦ä»¥ä¸Šã®å›žè»¢è§’åº¦ã‚’ãªãã™
  *
- *	@param	p_rot	‰ñ“]ƒxƒNƒgƒ‹
+ *	@param	p_rot	å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_MinusRotateChange( VecFx32* p_rot )
@@ -1949,10 +1949,10 @@ static void WLDTIMER_MinusRotateChange( VecFx32* p_rot )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]Šp“xƒ`ƒFƒbƒN
+ *	@brief	å›žè»¢è§’åº¦ãƒã‚§ãƒƒã‚¯
  *
- *	@retval	TRUE	‚Í‚¢‚Á‚Ä‚¢‚é
- *	@retval	FALSE	‚Í‚¢‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ã¯ã„ã£ã¦ã„ã‚‹
+ *	@retval	FALSE	ã¯ã„ã£ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_RotateCheck( s32 minx, s32 maxx, u16 rotx )
@@ -1974,12 +1974,12 @@ static BOOL WLDTIMER_RotateCheck( s32 minx, s32 maxx, u16 rotx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n‹…‹V‰æ–Ê‘¤§Œä
+ *	@brief	åœ°çƒå„€ç”»é¢å´åˆ¶å¾¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	‘±s
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	ç¶šè¡Œ
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_WkMainControl( WLDTIMER_WK* p_wk )
@@ -2003,7 +2003,7 @@ static BOOL WLDTIMER_WkMainControl( WLDTIMER_WK* p_wk )
 
 	
 	switch( p_wk->main_seq ){
-	// ƒ^ƒbƒ`ˆ—
+	// ã‚¿ãƒƒãƒå‡¦ç†
 	case WLDTIMER_MAINSEQ_CONTROL:
 		result = WLDTIMER_EarthControl( p_wk );
 		switch( result ){
@@ -2016,12 +2016,12 @@ static BOOL WLDTIMER_WkMainControl( WLDTIMER_WK* p_wk )
 			break;
 			
 		case WLDTIMER_EARTHCONT_RET_END:
-			p_wk->main_seq = WLDTIMER_MAINSEQ_ENDCHECK;	// I—¹ƒ`ƒFƒbƒN
+			p_wk->main_seq = WLDTIMER_MAINSEQ_ENDCHECK;	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 			break;
 		}
 		break;
 		
-	// ƒJƒƒ‰“®ì
+	// ã‚«ãƒ¡ãƒ©å‹•ä½œ
 	case WLDTIMER_MAINSEQ_CAMERAMOVE:
 		result = WLDTIMER_CameraMove( &p_wk->camera, &p_wk->place );
 		if( result == TRUE ){
@@ -2041,10 +2041,10 @@ static BOOL WLDTIMER_WkMainControl( WLDTIMER_WK* p_wk )
 			u32 result;
 			result = WLDTIMER_EndMsgMain( &p_wk->end_msg );
 			switch( result ){
-			case TOUCH_SW_RET_NORMAL:	// ‰½‚à‚È‚µ
+			case TOUCH_SW_RET_NORMAL:	// ä½•ã‚‚ãªã—
 				break;
 
-			case TOUCH_SW_RET_NO:		// ‚¢‚¢‚¦
+			case TOUCH_SW_RET_NO:		// ã„ã„ãˆ
 				WLDTIMER_ViewerTalkWinOn( &p_wk->view );
 				WLDTIMER_EndMsgEnd( &p_wk->end_msg );
 				WLDTIMER_TouchBttnOn( &p_wk->touch );
@@ -2052,7 +2052,7 @@ static BOOL WLDTIMER_WkMainControl( WLDTIMER_WK* p_wk )
 				break;;
 
 			default:
-			case TOUCH_SW_RET_YES:		// ‚Í‚¢
+			case TOUCH_SW_RET_YES:		// ã¯ã„
 				return TRUE;
 
 			}
@@ -2069,9 +2069,9 @@ static BOOL WLDTIMER_WkMainControl( WLDTIMER_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒXƒN‰æ–Ê‘¤§Œä
+ *	@brief	ã‚¿ã‚¹ã‚¯ç”»é¢å´åˆ¶å¾¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_WkSubControl( WLDTIMER_WK* p_wk )
@@ -2086,25 +2086,25 @@ static void WLDTIMER_WkSubControl( WLDTIMER_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦ˆ—
+ *	@brief	è¡¨ç¤ºå‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_WkDraw( WLDTIMER_WK* p_wk )
 {
 	GF_G3X_Reset();
 	
-	// ƒJƒƒ‰Ý’è
+	// ã‚«ãƒ¡ãƒ©è¨­å®š
 	WLDTIMER_CameraDraw( &p_wk->camera );
 	
-	// ’n‹…‹V•`‰æ
+	// åœ°çƒå„€æç”»
 	WLDTIMER_EarthDraw( &p_wk->earth );
 
-	// ’nˆæƒf[ƒ^•`‰æ
+	// åœ°åŸŸãƒ‡ãƒ¼ã‚¿æç”»
 	WLDTIMER_PlaceDraw( &p_wk->place, &p_wk->earth );
 
-	// •`‰æƒVƒXƒeƒ€•`‰æ
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ æç”»
 	WLDTIMER_DrawSysDraw( &p_wk->drawsys );
 
 	// 
@@ -2113,7 +2113,7 @@ static void WLDTIMER_WkDraw( WLDTIMER_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBLANKˆ—
+ *	@brief	VBLANKå‡¦ç†
  *
  *	@param	p_work 
  */
@@ -2128,13 +2128,13 @@ static void WLDTIMER_WkVBlank( void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n‹…‹VŠÇ—
+ *	@brief	åœ°çƒå„€ç®¡ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	WLDTIMER_EARTHCONT_RET_NONE,			// ‰½‚à‚È‚µ
- *	@retval	WLDTIMER_EARTHCONT_RET_CAMERA_MOVE,		// ƒJƒƒ‰“®ì
- *	@retval	WLDTIMER_EARTHCONT_RET_END,				// I—¹
+ *	@retval	WLDTIMER_EARTHCONT_RET_NONE,			// ä½•ã‚‚ãªã—
+ *	@retval	WLDTIMER_EARTHCONT_RET_CAMERA_MOVE,		// ã‚«ãƒ¡ãƒ©å‹•ä½œ
+ *	@retval	WLDTIMER_EARTHCONT_RET_END,				// çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 static u32 WLDTIMER_EarthControl( WLDTIMER_WK* p_wk )
@@ -2144,36 +2144,36 @@ static u32 WLDTIMER_EarthControl( WLDTIMER_WK* p_wk )
 	
 	WLDTIMER_TouchSetParam( &p_wk->touch );
 
-	//I—¹”»’è
+	//çµ‚äº†åˆ¤å®š
 	if((p_wk->touch.tp_result & PAD_BUTTON_B))
 	{
 		Snd_SePlay( WLDTIMER_SND_YAMERU );
 		return WLDTIMER_EARTHCONT_RET_END;
 	}
 	else{
-		// ˆÊ’u‘I‘ð
+		// ä½ç½®é¸æŠž
 		if( (sys.trg & PAD_BUTTON_X) ){
-			// ’n‹…‹V‚ª‚³‚µ‚Ä‚¢‚éˆÊ’u‚Ì’nˆæƒf[ƒ^‚ðŽæ“¾
+			// åœ°çƒå„€ãŒã•ã—ã¦ã„ã‚‹ä½ç½®ã®åœ°åŸŸãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 			{
 				WLDTIMER_POINTDATA draw_point;
 				result = WLDTIMER_EarthGetPointData( p_wk, &draw_point );
 				if( result == TRUE ){
 
 #ifdef WLDTIMER_DEBUG_TIMEZONE
-					result = FALSE;	// d•¡ƒ`ƒFƒbƒNOFF
+					result = FALSE;	// é‡è¤‡ãƒã‚§ãƒƒã‚¯OFF
 #else
-					// ˆê‚Ìƒf[ƒ^‚ª‚È‚¢‚©ƒ`ƒFƒbƒN
+					// ä¸€ç·’ã®ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 					result = WLDTIMER_ViewerEqualDataCheck( &p_wk->view, &draw_point );
 #endif
 					if( result == FALSE ){
 
-						// ‚³‚µ‚Ä‚¢‚é’nˆæ‚ª‚ ‚Á‚½‚Ì‚Åî•ñ‰æ–Ê‚É•\Ž¦
-						OS_Printf( "‚ ‚Á‚½I\n" );
+						// ã•ã—ã¦ã„ã‚‹åœ°åŸŸãŒã‚ã£ãŸã®ã§æƒ…å ±ç”»é¢ã«è¡¨ç¤º
+						OS_Printf( "ã‚ã£ãŸï¼\n" );
 						result = WLDTIMER_ViewerPushData( &p_wk->view, &draw_point );
 						if( result == FALSE ){
-							OS_Printf( "¡‚Í–³—‚Ý‚½‚¢B\n" );
+							OS_Printf( "ä»Šã¯ç„¡ç†ã¿ãŸã„ã€‚\n" );
 						}else{
-							// ‚»‚ÌˆÊ’u‚É‚ ‚í‚¹‚é
+							// ãã®ä½ç½®ã«ã‚ã‚ã›ã‚‹
 							WLDTIMER_EarthSetNationAreaRotate( p_wk, 
 									draw_point.nation, draw_point.area );
 							Snd_SePlay( WLDTIMER_SND_XSELECT );
@@ -2183,7 +2183,7 @@ static u32 WLDTIMER_EarthControl( WLDTIMER_WK* p_wk )
 			}
 		}else{
 
-			//’n‹…‰ñ“]ƒRƒ“ƒgƒ[ƒ‹
+			//åœ°çƒå›žè»¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 			ret = WLDTIMER_Earth3D_Control(p_wk, sys.trg, sys.cont);
 		}
 	}
@@ -2193,10 +2193,10 @@ static u32 WLDTIMER_EarthControl( WLDTIMER_WK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n‹…‹V‰ñ“]Šp“x‚Ì‰ŠúÝ’è
+ *	@brief	åœ°çƒå„€å›žè»¢è§’åº¦ã®åˆæœŸè¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_param	•\Ž¦ƒf[ƒ^ƒx[ƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_param	è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EarthStartSetUp( WLDTIMER_WK* p_wk, const WLDTIMER_PARAM* cp_param )
@@ -2207,15 +2207,15 @@ static void WLDTIMER_EarthStartSetUp( WLDTIMER_WK* p_wk, const WLDTIMER_PARAM* c
 	BOOL result;
 	
 
-	// Ž©•ª‚Ì’nˆæ‚ðÝ’è‚·‚é
+	// è‡ªåˆ†ã®åœ°åŸŸã‚’è¨­å®šã™ã‚‹
 	result = WLDTIMER_EarthSetNationAreaRotate( p_wk, p_wk->my_nation, p_wk->my_area );
 	
 	if( result == FALSE ){
 		
-		// •\Ž¦‚·‚é‚à‚Ì‚É‚È‚©‚Á‚½‚çƒf[ƒ^ƒx[ƒX‚Ì‚P”Ô–Ú‚Ì’nˆæ‚ÉÝ’è
+		// è¡¨ç¤ºã™ã‚‹ã‚‚ã®ã«ãªã‹ã£ãŸã‚‰ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®ï¼‘ç•ªç›®ã®åœ°åŸŸã«è¨­å®š
 		index = WLDTIMER_WFLBYDATA_GetFirst( cp_param->cp_data );
 		
-		if( index != WFLBY_WLDTIMER_DATA_MAX ){		// •\Ž¦‚·‚é‚©ƒ`ƒFƒbƒN
+		if( index != WFLBY_WLDTIMER_DATA_MAX ){		// è¡¨ç¤ºã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			
 			nation = WFLBY_WLDTIMER_GetNation( cp_param->cp_data, index );
 			area = WFLBY_WLDTIMER_GetArea( cp_param->cp_data, index );
@@ -2223,11 +2223,11 @@ static void WLDTIMER_EarthStartSetUp( WLDTIMER_WK* p_wk, const WLDTIMER_PARAM* c
 			result = WLDTIMER_EarthSetNationAreaRotate( p_wk, nation, area );
 
 
-			// ‚±‚±‚Í’nˆæƒf[ƒ^‚ª‚È‚¢‚Æ¢‚é
+			// ã“ã“ã¯åœ°åŸŸãƒ‡ãƒ¼ã‚¿ãŒãªã„ã¨å›°ã‚‹
 			GF_ASSERT( result == TRUE );
 		}else{
 
-			// Å‰‚Ìƒf[ƒ^‚·‚ç‚È‚¢‚Æ‚«
+			// æœ€åˆã®ãƒ‡ãƒ¼ã‚¿ã™ã‚‰ãªã„ã¨ã
 		}
 		
 	}
@@ -2235,28 +2235,28 @@ static void WLDTIMER_EarthStartSetUp( WLDTIMER_WK* p_wk, const WLDTIMER_PARAM* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n‹…‹V‚Ìƒ|ƒCƒ“ƒgˆÊ’u‚ª‚³‚µ‚Ä‚¢‚é’nˆæƒf[ƒ^‚ÌŽæ“¾
+ *	@brief	åœ°çƒå„€ã®ãƒã‚¤ãƒ³ãƒˆä½ç½®ãŒã•ã—ã¦ã„ã‚‹åœ°åŸŸãƒ‡ãƒ¼ã‚¿ã®å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	p_data		’nˆæƒf[ƒ^Ši”[æ
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		åœ°åŸŸãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
- *	@retval	TRUE	’nˆæ‚ª‚ ‚Á‚½
- *	@retval	FALSE	’nˆæ‚ª‚È‚©‚Á‚½
+ *	@retval	TRUE	åœ°åŸŸãŒã‚ã£ãŸ
+ *	@retval	FALSE	åœ°åŸŸãŒãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_EarthGetPointData( const WLDTIMER_WK* cp_wk, WLDTIMER_POINTDATA* p_data )
 {
 	u32 index;
 	
-	// ‹ß‚¢ˆÊ’u‚É‚ ‚é’nˆæƒf[ƒ^‚ð‹‚ß‚é
+	// è¿‘ã„ä½ç½®ã«ã‚ã‚‹åœ°åŸŸãƒ‡ãƒ¼ã‚¿ã‚’æ±‚ã‚ã‚‹
 	index = WLDTIMER_EarthGetPlaceData( cp_wk );
 
-	// ƒCƒ“ƒfƒbƒNƒX‚ª‚ ‚Á‚½‚©ƒ`ƒFƒbƒN
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒã‚ã£ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( index >= WLDTIMER_PlaceGetListNum( &cp_wk->place ) ){
-		return FALSE;	// ‚È‚©‚Á‚½
+		return FALSE;	// ãªã‹ã£ãŸ
 	}
 	
-	// ‚»‚Ì’nˆæ‚Ìî•ñ‚ðŠi”[
+	// ãã®åœ°åŸŸã®æƒ…å ±ã‚’æ ¼ç´
 	p_data->timezone	= WLDTIMER_EarthGetTimeZone( cp_wk, index, cp_wk->worldtime );
 	p_data->nation		= WLDTIMER_PlaceGetIdxNationID( &cp_wk->place, index );
 	p_data->area		= WLDTIMER_PlaceGetIdxAreaID( &cp_wk->place, index );
@@ -2267,12 +2267,12 @@ static BOOL WLDTIMER_EarthGetPointData( const WLDTIMER_WK* cp_wk, WLDTIMER_POINT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹ß‚­‚É‚ ‚é’nˆæƒf[ƒ^‚ðŽæ“¾‚·‚é
+ *	@brief	è¿‘ãã«ã‚ã‚‹åœ°åŸŸãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	’nˆæƒf[ƒ^‚Ìindex
- *	@retval	cp_wk->place.planelist.listcount	‚È‚©‚Á‚½
+ *	@retval	åœ°åŸŸãƒ‡ãƒ¼ã‚¿ã®index
+ *	@retval	cp_wk->place.planelist.listcount	ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static u32 WLDTIMER_EarthGetPlaceData( const WLDTIMER_WK* cp_wk )
@@ -2282,8 +2282,8 @@ static u32 WLDTIMER_EarthGetPlaceData( const WLDTIMER_WK* cp_wk )
 	s16		maxx;
 	s16		miny;
 	s16		maxy;
-	u32 dist;		// ‹——£ŒvŽZ
-	u32 mindist;	// Å¬‹——£
+	u32 dist;		// è·é›¢è¨ˆç®—
+	u32 mindist;	// æœ€å°è·é›¢
 	VecFx32 rotate;
 	VecFx32 place_rotate;
 	u32	place_col;
@@ -2292,38 +2292,38 @@ static u32 WLDTIMER_EarthGetPlaceData( const WLDTIMER_WK* cp_wk )
 	BOOL xcheck;
 	BOOL ycheck;
 
-	// ’nˆæƒŠƒXƒg”Žæ“¾
+	// åœ°åŸŸãƒªã‚¹ãƒˆæ•°å–å¾—
 	listnum = WLDTIMER_PlaceGetListNum( &cp_wk->place );
 
-	// ’n‹…‹V‚Ì‰ñ“]ƒxƒNƒgƒ‹Žæ“¾
+	// åœ°çƒå„€ã®å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«å–å¾—
 	WLDTIMER_EarthGetRotaVec( &cp_wk->earth, &rotate );
 	
-	// ”»’è‹éŒ`‚ð‹‚ß‚é
+	// åˆ¤å®šçŸ©å½¢ã‚’æ±‚ã‚ã‚‹
 	minx = (s16)(rotate.x - WLDTIMER_POINTPLANE_HITAREA);
 	maxx = (s16)(rotate.x + WLDTIMER_POINTPLANE_HITAREA);
 	miny = (s16)(rotate.y - WLDTIMER_POINTPLANE_HITAREA);
 	maxy = (s16)(rotate.y + WLDTIMER_POINTPLANE_HITAREA);	
 
-	// Å¬‹——£‚ð‚ ‚è‚¦‚È‚¢‹——£‚Å‰Šú‰»
+	// æœ€å°è·é›¢ã‚’ã‚ã‚Šãˆãªã„è·é›¢ã§åˆæœŸåŒ–
 	mindist = WLDTIMER_POINTPLANE_HITAREA*2;	
 	minindex = listnum;
 
 	for( i=0; i<listnum; i++ ){
 		
-		// ‚»‚Ì’nˆæ‚É‰ñ“]ƒxƒNƒgƒ‹Žæ“¾
+		// ãã®åœ°åŸŸã«å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«å–å¾—
 		WLDTIMER_PlaceGetIdxRotVec( &cp_wk->place, &place_rotate, i );
-		// ‚»‚Ì’nˆæ‚Ì•\Ž¦ƒJƒ‰[Žæ“¾
+		// ãã®åœ°åŸŸã®è¡¨ç¤ºã‚«ãƒ©ãƒ¼å–å¾—
 		place_col = WLDTIMER_PlaceGetIdxCol( &cp_wk->place, i );
 
 		if( (place_rotate.x > minx)&&(place_rotate.x < maxx) &&
 			(place_rotate.y > miny)&&(place_rotate.y < maxy) &&
 			(place_col != WLDTIMER_PLACE_COL_NONE) ){
 
-			// ‹——£‚ð‹‚ß‚éˆ×‚É‰ñ“]Šp“x‚ð’²®
+			// è·é›¢ã‚’æ±‚ã‚ã‚‹ç‚ºã«å›žè»¢è§’åº¦ã‚’èª¿æ•´
 			WLDTIMER_MinusRotateChange( &rotate );
 			WLDTIMER_MinusRotateChange( &place_rotate );
 
-			// ‰ñ“]Šp“x‚Ì‹——£‚ðŽæ“¾
+			// å›žè»¢è§’åº¦ã®è·é›¢ã‚’å–å¾—
 			dist = WLDTIMER_EarthGetRotateDist( &rotate, &place_rotate );
 
 			if( dist < mindist ){
@@ -2333,7 +2333,7 @@ static u32 WLDTIMER_EarthGetPlaceData( const WLDTIMER_WK* cp_wk )
 		}
 	}
 
-	// Å¬‚Ì‹——£‚ÌƒCƒ“ƒfƒbƒNƒX‚ð•Ô‚·
+	// æœ€å°ã®è·é›¢ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿”ã™
 	return minindex;
 
 
@@ -2344,8 +2344,8 @@ static u32 WLDTIMER_EarthGetPlaceData( const WLDTIMER_WK* cp_wk )
 	s32		maxx;
 	s32		miny;
 	s32		maxy;
-	u32 dist;		// ‹——£ŒvŽZ
-	u32 mindist;	// Å¬‹——£
+	u32 dist;		// è·é›¢è¨ˆç®—
+	u32 mindist;	// æœ€å°è·é›¢
 	VecFx32 rotate;
 	VecFx32 place_rotate;
 	u32	place_col;
@@ -2354,32 +2354,32 @@ static u32 WLDTIMER_EarthGetPlaceData( const WLDTIMER_WK* cp_wk )
 	BOOL xcheck;
 	BOOL ycheck;
 
-	// ’nˆæƒŠƒXƒg”Žæ“¾
+	// åœ°åŸŸãƒªã‚¹ãƒˆæ•°å–å¾—
 	listnum = WLDTIMER_PlaceGetListNum( &cp_wk->place );
 
-	// ’n‹…‹V‚Ì‰ñ“]ƒxƒNƒgƒ‹Žæ“¾
+	// åœ°çƒå„€ã®å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«å–å¾—
 	WLDTIMER_EarthGetRotaVec( &cp_wk->earth, &rotate );
 
-	// ‰ñ“]Šp“x‚ð’²®
+	// å›žè»¢è§’åº¦ã‚’èª¿æ•´
 	WLDTIMER_MinusRotateChange( &rotate );
 	
-	// ”»’è‹éŒ`‚ð‹‚ß‚é
+	// åˆ¤å®šçŸ©å½¢ã‚’æ±‚ã‚ã‚‹
 	minx = (s32)(rotate.x - WLDTIMER_POINTPLANE_HITAREA);
 	maxx = (s32)(rotate.x + WLDTIMER_POINTPLANE_HITAREA);
 	miny = (s32)(rotate.y - WLDTIMER_POINTPLANE_HITAREA);
 	maxy = (s32)(rotate.y + WLDTIMER_POINTPLANE_HITAREA);	
 
-	// Å¬‹——£‚ð‚ ‚è‚¦‚È‚¢‹——£‚Å‰Šú‰»
+	// æœ€å°è·é›¢ã‚’ã‚ã‚Šãˆãªã„è·é›¢ã§åˆæœŸåŒ–
 	mindist = WLDTIMER_POINTPLANE_HITAREA*2;	
 	minindex = listnum;
 
 	for( i=0; i<listnum; i++ ){
 		
-		// ‚»‚Ì’nˆæ‚É‰ñ“]ƒxƒNƒgƒ‹Žæ“¾
+		// ãã®åœ°åŸŸã«å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«å–å¾—
 		WLDTIMER_PlaceGetIdxRotVec( &cp_wk->place, &place_rotate, i );
-		// ‰ñ“]Šp“x‚ð’²®
+		// å›žè»¢è§’åº¦ã‚’èª¿æ•´
 		WLDTIMER_MinusRotateChange( &place_rotate );
-		// ‚»‚Ì’nˆæ‚Ì•\Ž¦ƒJƒ‰[Žæ“¾
+		// ãã®åœ°åŸŸã®è¡¨ç¤ºã‚«ãƒ©ãƒ¼å–å¾—
 		place_col = WLDTIMER_PlaceGetIdxCol( &cp_wk->place, i );
 
 		xcheck = WLDTIMER_RotateCheck( minx, maxx, place_rotate.x );
@@ -2389,7 +2389,7 @@ static u32 WLDTIMER_EarthGetPlaceData( const WLDTIMER_WK* cp_wk )
 			(ycheck == TRUE) &&
 			(place_col != WLDTIMER_PLACE_COL_NONE) ){
 
-			// ‰ñ“]Šp“x‚Ì‹——£‚ðŽæ“¾
+			// å›žè»¢è§’åº¦ã®è·é›¢ã‚’å–å¾—
 			dist = WLDTIMER_EarthGetRotateDist( &rotate, &place_rotate );
 
 			if( dist < mindist ){
@@ -2399,19 +2399,19 @@ static u32 WLDTIMER_EarthGetPlaceData( const WLDTIMER_WK* cp_wk )
 		}
 	}
 
-	// Å¬‚Ì‹——£‚ÌƒCƒ“ƒfƒbƒNƒX‚ð•Ô‚·
+	// æœ€å°ã®è·é›¢ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿”ã™
 	return minindex;
 #endif
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]ƒxƒNƒgƒ‹‚Ì‹——£‚ð‹‚ß‚é
+ *	@brief	å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«ã®è·é›¢ã‚’æ±‚ã‚ã‚‹
  *
- *	@param	cp_earth		’n‹…‹V‚Ì‰ñ“]ƒxƒNƒgƒ‹
- *	@param	cp_place		’nˆæ‚Ì‰ñ“]ƒxƒNƒgƒ‹
+ *	@param	cp_earth		åœ°çƒå„€ã®å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«
+ *	@param	cp_place		åœ°åŸŸã®å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«
  *
- *	@return	‹——£iu32’PˆÊj
+ *	@return	è·é›¢ï¼ˆu32å˜ä½ï¼‰
  */
 //-----------------------------------------------------------------------------
 static u32 WLDTIMER_EarthGetRotateDist( const VecFx32* cp_earth, const VecFx32* cp_place )
@@ -2419,7 +2419,7 @@ static u32 WLDTIMER_EarthGetRotateDist( const VecFx32* cp_earth, const VecFx32* 
 	s32 dif_x, dif_y;
 	u32 dist;
 
-	// ‹——£‚ª‹ß‚¢‚Ù‚¤‚ð‘I‚Ô
+	// è·é›¢ãŒè¿‘ã„ã»ã†ã‚’é¸ã¶
 	dif_x = MATH_ABS(cp_earth->x - cp_place->x);
 	dif_y = MATH_ABS(cp_earth->y - cp_place->y);
 	if( dif_x > RotKey(180) ){
@@ -2436,13 +2436,13 @@ static u32 WLDTIMER_EarthGetRotateDist( const VecFx32* cp_earth, const VecFx32* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽžŠÔƒ][ƒ“‚ÌŽæ“¾
+ *	@brief	æ™‚é–“ã‚¾ãƒ¼ãƒ³ã®å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	placeindex	’nˆæƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX
- *	@param	worldtime	¢ŠEŽžŠÔ
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	placeindex	åœ°åŸŸãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	worldtime	ä¸–ç•Œæ™‚é–“
  *
- *	@return	ŽžŠÔƒ][ƒ“
+ *	@return	æ™‚é–“ã‚¾ãƒ¼ãƒ³
  */
 //-----------------------------------------------------------------------------
 static u32 WLDTIMER_EarthGetTimeZone( const WLDTIMER_WK* cp_wk, u32 placeindex, WFLBY_TIME worldtime )
@@ -2450,31 +2450,31 @@ static u32 WLDTIMER_EarthGetTimeZone( const WLDTIMER_WK* cp_wk, u32 placeindex, 
 #ifdef WLDTIMER_DEBUG_TIMEZONE
 	return s_WLDTIMER_DEBUG_TimeZone;
 #else
-	s32 timezone;	// ŽžŠÔƒ][ƒ“
+	s32 timezone;	// æ™‚é–“ã‚¾ãƒ¼ãƒ³
 	u16 rota;
-	VecFx32 gmt_rotate;	// Šî€‰ñ“]ƒxƒNƒgƒ‹
-	VecFx32 place_rotate;	// ’nˆæ‚Ì‰ñ“]ƒxƒNƒgƒ‹
+	VecFx32 gmt_rotate;	// åŸºæº–å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«
+	VecFx32 place_rotate;	// åœ°åŸŸã®å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«
 	int index;
 
-	// ¢ŠEŽžŠÔ‚©‚çŠî€ƒ^ƒCƒ€ƒ][ƒ“‚ð‹‚ß‚é
+	// ä¸–ç•Œæ™‚é–“ã‹ã‚‰åŸºæº–ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‚’æ±‚ã‚ã‚‹
 	timezone = worldtime.hour - WLDTIMER_TIMEZONE_START_HOUR;
 
-	// Šî€‰ñ“]ƒxƒNƒgƒ‹‚ÌŽæ“¾
+	// åŸºæº–å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«ã®å–å¾—
 	index = WLDTIMER_PlaceGetIdx( &cp_wk->place, 
 			WLDTIMER_GMT_NATIONID, WLDTIMER_GMT_AREAID );
 	GF_ASSERT( index < WLDTIMER_PlaceGetListNum( &cp_wk->place ) );
 	WLDTIMER_PlaceGetIdxRotVec( &cp_wk->place, &gmt_rotate, index );
 	
-	// ’nˆæ‚Ì‰ñ“]ƒxƒNƒgƒ‹Žæ“¾
+	// åœ°åŸŸã®å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«å–å¾—
 	WLDTIMER_PlaceGetIdxRotVec( &cp_wk->place, &place_rotate, placeindex );
 
-	// YŽ²‰ñ“]Šp“x‚Ì·‚©‚çŽžŠÔ‚ð‹‚ß‚é
+	// Yè»¸å›žè»¢è§’åº¦ã®å·®ã‹ã‚‰æ™‚é–“ã‚’æ±‚ã‚ã‚‹
 	rota = gmt_rotate.y - place_rotate.y;
-	timezone += (rota*WLDTIMER_TIMEZONE_DATANUM)/0xffff;	// ‰ñ“]’l‚©‚çƒ^ƒCƒ€ƒe[ƒuƒ‹‚ð‹‚ß‚é
+	timezone += (rota*WLDTIMER_TIMEZONE_DATANUM)/0xffff;	// å›žè»¢å€¤ã‹ã‚‰ã‚¿ã‚¤ãƒ ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ±‚ã‚ã‚‹
 
 //	OS_Printf( "timezone %d  rota %d\n", timezone, rota );
 
-	// ƒ}ƒCƒiƒX‚Ì’l‚¾‚Á‚½‚èAƒI[ƒo[‚µ‚½‚è‚µ‚Ä‚¢‚é‚Í‚¸‚È‚Ì‚Å’²®
+	// ãƒžã‚¤ãƒŠã‚¹ã®å€¤ã ã£ãŸã‚Šã€ã‚ªãƒ¼ãƒãƒ¼ã—ãŸã‚Šã—ã¦ã„ã‚‹ã¯ãšãªã®ã§èª¿æ•´
 	if( timezone < 0 ){
 		timezone += WLDTIMER_TIMEZONE_DATANUM;
 	}
@@ -2489,14 +2489,14 @@ static u32 WLDTIMER_EarthGetTimeZone( const WLDTIMER_WK* cp_wk, u32 placeindex, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘‚Æ’nˆæ‚©‚ç‚»‚ÌˆÊ’u‚ð’†S‚ÉŽ‚Á‚Ä‚¢‚­
+ *	@brief	å›½ã¨åœ°åŸŸã‹ã‚‰ãã®ä½ç½®ã‚’ä¸­å¿ƒã«æŒã£ã¦ã„ã
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	nationID	‘ID
- *	@param	areaID		’nˆæID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	nationID	å›½ID
+ *	@param	areaID		åœ°åŸŸID
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	Ž¸”s
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_EarthSetNationAreaRotate( WLDTIMER_WK* p_wk, u8 nationID, u8 areaID )
@@ -2505,14 +2505,14 @@ static BOOL WLDTIMER_EarthSetNationAreaRotate( WLDTIMER_WK* p_wk, u8 nationID, u
 	VecFx32 earth_vec;
 	u32 col;
 
-	// ’nˆæ‚Ì•\Ž¦F‚Æ‘Š‘Î‰ñ“]ƒxƒNƒgƒ‹‚ðŽæ“¾
-	// •\Ž¦F‚ÍA‚»‚Ì’nˆæ‚ª•\Ž¦‚·‚éƒf[ƒ^‚É‚ ‚é‚©‚ð•\‚·
+	// åœ°åŸŸã®è¡¨ç¤ºè‰²ã¨ç›¸å¯¾å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—
+	// è¡¨ç¤ºè‰²ã¯ã€ãã®åœ°åŸŸãŒè¡¨ç¤ºã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã«ã‚ã‚‹ã‹ã‚’è¡¨ã™
 	col = WLDTIMER_PlaceGetData( &p_wk->place, nationID, areaID, &vec );
 	
-	if( col != WLDTIMER_PLACE_COL_NONE ){			// •\Ž¦‚·‚é‚©ƒ`ƒFƒbƒN
+	if( col != WLDTIMER_PLACE_COL_NONE ){			// è¡¨ç¤ºã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		
 		WLDTIMER_EarthGetRotaVec( &p_wk->earth, &earth_vec );
-		vec.z = earth_vec.z;						// ‚š‚Í’n‹…‹V‚ðˆø‚«Œp‚®
+		vec.z = earth_vec.z;						// ï½šã¯åœ°çƒå„€ã‚’å¼•ãç¶™ã
 		WLDTIMER_EarthSetRotaVec( &p_wk->earth, &vec );
 		return TRUE;
 	}
@@ -2522,34 +2522,34 @@ static BOOL WLDTIMER_EarthSetNationAreaRotate( WLDTIMER_WK* p_wk, u8 nationID, u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ‰ƒOÝ’è
+ *	@brief	ãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	p_flag		ƒtƒ‰ƒOƒ[ƒN
- *	@param	cp_param	•\Ž¦ƒf[ƒ^
+ *	@param	p_flag		ãƒ•ãƒ©ã‚°ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_param	è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_FlagControl( WLDTIMER_WK* p_wk, const WLDTIMER_PARAM* cp_param )
 {
 	int i;
 
-	// ƒtƒ‰ƒO‚ð‰Šú‰»
+	// ãƒ•ãƒ©ã‚°ã‚’åˆæœŸåŒ–
 	p_wk->flag.japan = 0;
 	p_wk->flag.world = JAPAN_MODE;
 
-	// “ú–{ROM‚©ƒ`ƒFƒbƒN
+	// æ—¥æœ¬ROMã‹ãƒã‚§ãƒƒã‚¯
 	if( CasetteLanguage == LANG_JAPAN ){
 		p_wk->flag.japan = TRUE;
 	}else{
 		p_wk->flag.japan = FALSE;
 	}
 
-	// ¢ŠE•\Ž¦ƒ‚[ƒh‚©’²‚×‚é
+	// ä¸–ç•Œè¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰ã‹èª¿ã¹ã‚‹
 	if( p_wk->flag.japan == TRUE ){
 		for( i=0; i<WFLBY_WLDTIMER_DATA_MAX; i++ ){
 			
-			// ƒf[ƒ^—L–³
+			// ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡
 			if( cp_param->cp_data->data[i].flag == TRUE ){
-				// “ú–{ˆÈŠO‚Ì‘‚ª‚ ‚Á‚½‚ç¢ŠE•\Ž¦ƒ‚[ƒh‚É‚·‚é
+				// æ—¥æœ¬ä»¥å¤–ã®å›½ãŒã‚ã£ãŸã‚‰ä¸–ç•Œè¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹
 				if( cp_param->cp_data->data[i].nation != WLDTIMER_JPN_NATIONID ){
 					p_wk->flag.world = GLOBAL_MODE;
 				}
@@ -2570,65 +2570,65 @@ static void WLDTIMER_FlagControl( WLDTIMER_WK* p_wk, const WLDTIMER_PARAM* cp_pa
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦•¨‚Ì‰Šú‰»
+ *	@brief	è¡¨ç¤ºç‰©ã®åˆæœŸåŒ–
  *
- *	@param	p_wk		•\Ž¦ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_config	ƒRƒ“ƒtƒBƒOƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_config	ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_DrawSysInit( WLDTIMER_DRAWSYS* p_wk, CONFIG* p_config, u32 heapID )
 {
-	// ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
 	p_wk->p_handle = ArchiveDataHandleOpen( ARC_WORLDTIMER, heapID );
 
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒì¬
+	// Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	initVramTransferManagerHeap( WLDTIMER_VRAMTRANS_TASKNUM, heapID );
 	
-	// ƒoƒ“ƒNÝ’è
+	// ãƒãƒ³ã‚¯è¨­å®š
 	GF_Disp_SetBank( &sc_WLDTIMER_BANK );
 
-	// BGÝ’è
+	// BGè¨­å®š
 	WLDTIMER_DrawSysBgInit( p_wk, p_config, heapID );
 
-	// OAMÝ’è
+	// OAMè¨­å®š
 	WLDTIMER_DrawSysOamInit( p_wk, heapID );
 
-	// 3DÝ’è
+	// 3Dè¨­å®š
 	WLDTIMER_DrawSys3DInit( p_wk, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\Ž¦•¨‚Ì”jŠü
+ *	@brief	è¡¨ç¤ºç‰©ã®ç ´æ£„
  *
- *	@param	p_wk		•\Ž¦ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk		è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_DrawSysExit( WLDTIMER_DRAWSYS* p_wk )
 {
-	// ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
 	ArchiveDataHandleClose( p_wk->p_handle );
 
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒ”jŠü
+	// Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	DellVramTransferManager();
 	
-	// BGÝ’è
+	// BGè¨­å®š
 	WLDTIMER_DrawSysBgExit( p_wk );
 
-	// OAMÝ’è
+	// OAMè¨­å®š
 	WLDTIMER_DrawSysOamExit( p_wk );
 
-	// 3DÝ’è
+	// 3Dè¨­å®š
 	WLDTIMER_DrawSys3DExit( p_wk );
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æˆ—
+ *	@brief	æç”»å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_DrawSysDraw( WLDTIMER_DRAWSYS* p_wk )
@@ -2638,38 +2638,38 @@ static void WLDTIMER_DrawSysDraw( WLDTIMER_DRAWSYS* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlankˆ—
+ *	@brief	VBlankå‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_DrawSysVBlank( WLDTIMER_DRAWSYS* p_wk )
 {
-    // BG‘‚«Š·‚¦
+    // BGæ›¸ãæ›ãˆ
     GF_BGL_VBlankFunc( p_wk->p_bgl );
 
-    // ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+    // ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
     REND_OAMTrans();
 
-	// Vram“]‘—
+	// Vramè»¢é€
 	DoVramTransferManager();
 }
 
 // BG
 static void WLDTIMER_DrawSysBgInit( WLDTIMER_DRAWSYS* p_wk, CONFIG* p_config, u32 heapID )
 {
-	// BGÝ’è
+	// BGè¨­å®š
 	GF_BGL_InitBG(&sc_BGINIT);
 	
-	// BGLì¬
+	// BGLä½œæˆ
 	p_wk->p_bgl = GF_BGL_BglIniAlloc( heapID );
 
-	// ƒƒCƒ“‚ÆƒTƒu‚ðØ‚è‘Ö‚¦‚é
+	// ãƒ¡ã‚¤ãƒ³ã¨ã‚µãƒ–ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	sys.disp3DSW = DISP_3D_TO_SUB;
 	GF_Disp_DispSelect();
 
 
-	// BGƒRƒ“ƒgƒ[ƒ‹Ý’è
+	// BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
 	{
 		int i;
 
@@ -2682,12 +2682,12 @@ static void WLDTIMER_DrawSysBgInit( WLDTIMER_DRAWSYS* p_wk, CONFIG* p_config, u3
 		}
 	}
 
-	// Šî–{ƒLƒƒƒ‰ƒNƒ^ƒpƒŒƒbƒgƒtƒŒ[ƒ€
-	// ƒTƒu‰æ–Ê
+	// åŸºæœ¬ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
+	// ã‚µãƒ–ç”»é¢
 	ArcUtil_HDL_PalSet( p_wk->p_handle, NARC_worldtimer_world_watch_NCLR,
 			PALTYPE_SUB_BG, 0, 0, heapID );
 	
-	// ƒtƒŒ[ƒ€
+	// ãƒ•ãƒ¬ãƒ¼ãƒ 
 	{
 		ArcUtil_HDL_BgCharSet( p_wk->p_handle, 
 				NARC_worldtimer_world_watch_frame_NCGR, p_wk->p_bgl,
@@ -2698,7 +2698,7 @@ static void WLDTIMER_DrawSysBgInit( WLDTIMER_DRAWSYS* p_wk, CONFIG* p_config, u3
 				GF_BGL_FRAME0_S, 0, 0, FALSE, heapID );
 	}
 
-	// ”wŒi
+	// èƒŒæ™¯
 	{
 		ArcUtil_HDL_BgCharSet( p_wk->p_handle,
 				NARC_worldtimer_world_watch_NCGR, p_wk->p_bgl, 
@@ -2709,7 +2709,7 @@ static void WLDTIMER_DrawSysBgInit( WLDTIMER_DRAWSYS* p_wk, CONFIG* p_config, u3
 				GF_BGL_FRAME3_S, 0, 0, FALSE, heapID );
 	}
 	
-	// ƒtƒHƒ“ƒgƒJƒ‰[
+	// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼
     TalkFontPaletteLoad( PALTYPE_MAIN_BG, WLDTIMER_PALMAIN_FONT*0x20, heapID );
     TalkFontPaletteLoad( PALTYPE_SUB_BG, WLDTIMER_PALSUB_FONT*0x20, heapID );
 
@@ -2717,12 +2717,12 @@ static void WLDTIMER_DrawSysBgInit( WLDTIMER_DRAWSYS* p_wk, CONFIG* p_config, u3
         p_wk->p_bgl, GF_BGL_FRAME1_M, 
 		WLDTIMER_MAIN_SYSTEMWIN_CGX, WLDTIMER_PALMAIN_SYSTEM, 0, heapID );
 
-	// ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE
+	// ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
     MenuWinGraphicSet(
         p_wk->p_bgl, GF_BGL_FRAME1_M, 
 		WLDTIMER_MAIN_SYSTEMWIN_CGX, WLDTIMER_PALMAIN_SYSTEM, 0, heapID );
 
-	// ƒg[ƒNƒEƒBƒ“ƒhƒE
+	// ãƒˆãƒ¼ã‚¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	{
 		u8 win_num = CONFIG_GetWindowType( p_config );
 		TalkWinGraphicSet( p_wk->p_bgl, GF_BGL_FRAME0_S,
@@ -2734,12 +2734,12 @@ static void WLDTIMER_DrawSysBgInit( WLDTIMER_DRAWSYS* p_wk, CONFIG* p_config, u3
 				win_num, heapID );
 	}
 
-	// ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒJƒ‰[Ý’è
+	// ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚«ãƒ©ãƒ¼è¨­å®š
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0x72ca );
 }
 static void WLDTIMER_DrawSysBgExit( WLDTIMER_DRAWSYS* p_wk )
 {
-	// ‚a‚fƒRƒ“ƒgƒ[ƒ‹”jŠü
+	// ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ç ´æ£„
 	{
 		int i;
 
@@ -2748,10 +2748,10 @@ static void WLDTIMER_DrawSysBgExit( WLDTIMER_DRAWSYS* p_wk )
 		}
 	}
 	
-	// BGL”jŠü
+	// BGLç ´æ£„
 	sys_FreeMemoryEz( p_wk->p_bgl );
 
-	// ƒƒCƒ“‚ÆƒTƒu‚ðŒ³‚É–ß‚·
+	// ãƒ¡ã‚¤ãƒ³ã¨ã‚µãƒ–ã‚’å…ƒã«æˆ»ã™
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 }
@@ -2761,50 +2761,50 @@ static void WLDTIMER_DrawSysOamInit( WLDTIMER_DRAWSYS* p_wk, u32 heapID )
 {
     int i;
 
-    // OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+    // OAMãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
     NNS_G2dInitOamManagerModule();
 
-    // ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-    // ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-    // ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
+    // å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
     REND_OAMInit(
-        0, 126,     // ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,      // ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-        0, 126,     // ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 31,      // ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+        0, 126,     // ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,      // ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+        0, 126,     // ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 31,      // ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
         heapID);
 
 
-    // ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
     InitCharManagerReg(&sc_WLDTIMER_CHARMAN_INIT, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K );
-    // ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
     InitPlttManager(WLDTIMER_OAM_CONTNUM, heapID);
 
-    // “Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+    // èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
     CharLoadStartAll();
     PlttLoadStartAll();
 
-    //’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+    //é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
     CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_32K);
     CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
     
 
-    // ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
     p_wk->p_clactset = CLACT_U_SetEasyInit( WLDTIMER_OAM_CONTNUM, &p_wk->renddata, heapID );
 
-    // ƒT[ƒtƒF[ƒXˆÊ’u‚ðˆÚ“®‚³‚¹‚é
+    // ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ä½ç½®ã‚’ç§»å‹•ã•ã›ã‚‹
     CLACT_U_SetSubSurfaceMatrix( &p_wk->renddata, 0, WLDTIMER_SF_MAT_Y );
     
-    // ƒLƒƒƒ‰‚ÆƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+    // ã‚­ãƒ£ãƒ©ã¨ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
     for( i=0; i<WLDTIMER_RESMAN_NUM; i++ ){
         p_wk->p_resman[i] = CLACT_U_ResManagerInit(WLDTIMER_OAM_CONTNUM, i, heapID);
     }
 
-	// ‰º‰æ–Ê‚É’ÊMƒAƒCƒRƒ“‚ðo‚·
-	WirelessIconEasy();  // Ú‘±’†‚È‚Ì‚ÅƒAƒCƒRƒ“•\Ž¦
+	// ä¸‹ç”»é¢ã«é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã‚’å‡ºã™
+	WirelessIconEasy();  // æŽ¥ç¶šä¸­ãªã®ã§ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 
 
-	// •\Ž¦ŠJŽn
+	// è¡¨ç¤ºé–‹å§‹
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 }
@@ -2812,29 +2812,29 @@ static void WLDTIMER_DrawSysOamExit( WLDTIMER_DRAWSYS* p_wk )
 {
     int i;
 
-    // ƒAƒNƒ^[‚Ì”jŠü
+    // ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç ´æ£„
     CLACT_DestSet( p_wk->p_clactset );
 
     for( i=0; i<WLDTIMER_RESMAN_NUM; i++ ){
         CLACT_U_ResManagerDelete( p_wk->p_resman[i] );
     }
 
-    // ƒŠƒ\[ƒX‰ð•ú
+    // ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
     DeleteCharManager();
     DeletePlttManager();
 
-    //OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+    //OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
     REND_OAM_Delete();
 }
 
 // 3D
 static void WLDTIMER_DrawSys3DInit( WLDTIMER_DRAWSYS* p_wk, u32 heapID )
 {
-	// ‚RDÝ’è
+	// ï¼“Dè¨­å®š
 	p_wk->p_3dman = GF_G3DMAN_Init( heapID, GF_G3DMAN_LNK, GF_G3DTEX_256K, 
 			GF_G3DMAN_LNK, GF_G3DPLT_64K, WLDTIMER_DrawSys3DSetUp );
 
-	// ƒ‰ƒCƒg‰Šú‰»
+	// ãƒ©ã‚¤ãƒˆåˆæœŸåŒ–
 	NNS_G3dGlbLightVector(USE_LIGHT_NUM,
 			INIT_LIGHT_ANGLE_XVAL,INIT_LIGHT_ANGLE_YVAL,INIT_LIGHT_ANGLE_ZVAL);
 }
@@ -2844,57 +2844,57 @@ static void WLDTIMER_DrawSys3DExit( WLDTIMER_DRAWSYS* p_wk )
 }
 static void WLDTIMER_DrawSys3DSetUp( void )
 {
-	// ‚R‚cŽg—p–Ê‚ÌÝ’è(•\Ž¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(1);
 
-	// ŠeŽí•`‰æƒ‚[ƒh‚ÌÝ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜Ž)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( TRUE );
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚ÌÝ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(26,26,26),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
-	// ƒrƒ…[ƒ|[ƒg‚ÌÝ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 
-	// ƒoƒbƒNƒJƒ‰[Ý’è
+	// ãƒãƒƒã‚¯ã‚«ãƒ©ãƒ¼è¨­å®š
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n‹…‹V‰Šú‰»
+ *	@brief	åœ°çƒå„€åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EarthInit( WLDTIMER_EARTH* p_wk, WLDTIMER_DRAWSYS* p_drawsys, u32 heapID )
 {
-	// •\Ž¦ƒf[ƒ^‰Šú‰»
+	// è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	{
-		VEC_Set( &p_wk->trans,			// À•W
+		VEC_Set( &p_wk->trans,			// åº§æ¨™
 				INIT_EARTH_TRANS_XVAL,
 				INIT_EARTH_TRANS_YVAL,
 				INIT_EARTH_TRANS_ZVAL );
 
-		VEC_Set( &p_wk->scale,			// Šg‘å
+		VEC_Set( &p_wk->scale,			// æ‹¡å¤§
 				INIT_EARTH_SCALE_XVAL,
 				INIT_EARTH_SCALE_YVAL,
 				INIT_EARTH_SCALE_ZVAL );
 
-		VEC_Set( &p_wk->rotate,			// ‰ñ“]
+		VEC_Set( &p_wk->rotate,			// å›žè»¢
 				INIT_EARTH_ROTATE_XVAL,
 				INIT_EARTH_ROTATE_YVAL,
 				INIT_EARTH_ROTATE_ZVAL );
 	}
 
-	// •\Ž¦ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+	// è¡¨ç¤ºãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	{
 		D3DOBJ_MdlLoadH( &p_wk->mdl, p_drawsys->p_handle, 
 				NARC_worldtimer_wifi_earth_nsbmd, heapID );
@@ -2904,14 +2904,14 @@ static void WLDTIMER_EarthInit( WLDTIMER_EARTH* p_wk, WLDTIMER_DRAWSYS* p_drawsy
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n‹…‹V”jŠü
+ *	@brief	åœ°çƒå„€ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EarthExit( WLDTIMER_EARTH* p_wk )
 {
-	// ƒŠƒ\[ƒX‚Ì”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
 	{
 		D3DOBJ_MdlDelete( &p_wk->mdl );
 	}
@@ -2919,9 +2919,9 @@ static void WLDTIMER_EarthExit( WLDTIMER_EARTH* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n‹…‹V•`‰æ
+ *	@brief	åœ°çƒå„€æç”»
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EarthDraw( WLDTIMER_EARTH* p_wk )
@@ -2929,27 +2929,27 @@ static void WLDTIMER_EarthDraw( WLDTIMER_EARTH* p_wk )
 	MtxFx33 rotmtx;
 
 
-	// ‰ñ“]s—ñŽæ“¾
+	// å›žè»¢è¡Œåˆ—å–å¾—
 	WLDTIMER_EarthGetRotMtx( p_wk, &rotmtx );
 	
-	// À•WAŠg‘å‚ðÝ’è
+	// åº§æ¨™ã€æ‹¡å¤§ã‚’è¨­å®š
 	D3DOBJ_SetMatrix( &p_wk->obj, 
 			p_wk->trans.x, p_wk->trans.y, p_wk->trans.z );
 	D3DOBJ_SetScale( &p_wk->obj, 
 			p_wk->scale.x, p_wk->scale.y, p_wk->scale.z );
 
 
-	// •\Ž¦
+	// è¡¨ç¤º
 	D3DOBJ_DrawRMtx( &p_wk->obj,
 					 &rotmtx );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n‹…‹V•\Ž¦À•W‚ðŽæ“¾
+ *	@brief	åœ°çƒå„€è¡¨ç¤ºåº§æ¨™ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	p_mat		À•WŠi”[æ
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_mat		åº§æ¨™æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EarthGetTrans( const WLDTIMER_EARTH* cp_wk, VecFx32* p_mat )
@@ -2959,10 +2959,10 @@ static void WLDTIMER_EarthGetTrans( const WLDTIMER_EARTH* cp_wk, VecFx32* p_mat 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n‹…‹V‰ñ“]s—ñ‚ðŽæ“¾
+ *	@brief	åœ°çƒå„€å›žè»¢è¡Œåˆ—ã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	p_rot	s—ñŠi”[æ
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_rot	è¡Œåˆ—æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EarthGetRotMtx( const WLDTIMER_EARTH* cp_wk, MtxFx33* p_rot )
@@ -2972,10 +2972,10 @@ static void WLDTIMER_EarthGetRotMtx( const WLDTIMER_EARTH* cp_wk, MtxFx33* p_rot
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n‹…‹V	‰ñ“]ƒxƒNƒgƒ‹Žæ“¾
+ *	@brief	åœ°çƒå„€	å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	p_vec	‰ñ“]ƒxƒNƒgƒ‹
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_vec	å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EarthGetRotaVec( const WLDTIMER_EARTH* cp_wk, VecFx32* p_vec )
@@ -2985,10 +2985,10 @@ static void WLDTIMER_EarthGetRotaVec( const WLDTIMER_EARTH* cp_wk, VecFx32* p_ve
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’n‹…‹V	‰ñ“]ƒxƒNƒgƒ‹Ý’è
+ *	@brief	åœ°çƒå„€	å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_vec		‰ñ“]ƒxƒNƒgƒ‹
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_vec		å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EarthSetRotaVec( WLDTIMER_EARTH* p_wk, const VecFx32* cp_vec )
@@ -2999,29 +2999,29 @@ static void WLDTIMER_EarthSetRotaVec( WLDTIMER_EARTH* p_wk, const VecFx32* cp_ve
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’nˆæƒf[ƒ^‰Šú‰»
+ *	@brief	åœ°åŸŸãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		•\Ž¦’nˆæƒf[ƒ^
- *	@param	flag		ƒtƒ‰ƒOƒf[ƒ^
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		è¡¨ç¤ºåœ°åŸŸãƒ‡ãƒ¼ã‚¿
+ *	@param	flag		ãƒ•ãƒ©ã‚°ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PlaceInit( WLDTIMER_PLACE* p_wk, const WFLBY_WLDTIMER* cp_data, WLDTIMER_DRAWSYS* p_drawsys, WLDTIMER_FLAG flag, u32 heapID )
 {
 	int i;
 	
-	// ’nˆæƒŠƒXƒg“Ç‚Ýž‚Ý
+	// åœ°åŸŸãƒªã‚¹ãƒˆèª­ã¿è¾¼ã¿
 	WLDTIMER_EarthListLoad( p_wk, cp_data, heapID );
 
-	// •`‰æƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+	// æç”»ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	for( i=0; i<WLDTIMER_PLACE_COL_NUM; i++ ){
-		D3DOBJ_MdlLoadH( &p_wk->mdl[i], p_drawsys->p_handle,// “Ç‚Ýž‚Ý
+		D3DOBJ_MdlLoadH( &p_wk->mdl[i], p_drawsys->p_handle,// èª­ã¿è¾¼ã¿
 				sc_WLDTIMER_PLACE_MDL[i], heapID );
-		D3DOBJ_Init( &p_wk->obj[i], &p_wk->mdl[i] );		// •\Ž¦ƒIƒuƒWƒF‰Šú‰»
+		D3DOBJ_Init( &p_wk->obj[i], &p_wk->mdl[i] );		// è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§åˆæœŸåŒ–
 	}
 
-	// ƒ}[ƒNƒXƒP[ƒ‹‰Šú‰»
+	// ãƒžãƒ¼ã‚¯ã‚¹ã‚±ãƒ¼ãƒ«åˆæœŸåŒ–
 	if( flag.world == JAPAN_MODE ){
 		VEC_Set( &p_wk->list_scale,
 				 INIT_EARTH_SCALE_NEAR_XVAL,
@@ -3037,16 +3037,16 @@ static void WLDTIMER_PlaceInit( WLDTIMER_PLACE* p_wk, const WFLBY_WLDTIMER* cp_d
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’nˆæƒf[ƒ^”jŠü
+ *	@brief	åœ°åŸŸãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PlaceExit( WLDTIMER_PLACE* p_wk )
 {
 	int i;
 	
-	// •`‰æƒŠƒ\[ƒX”jŠü
+	// æç”»ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	for( i=0; i<WLDTIMER_PLACE_COL_NUM; i++ ){
 		D3DOBJ_MdlDelete( &p_wk->mdl[i] );
 	}
@@ -3054,10 +3054,10 @@ static void WLDTIMER_PlaceExit( WLDTIMER_PLACE* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’nˆæƒf[ƒ^‚Ì•\Ž¦
+ *	@brief	åœ°åŸŸãƒ‡ãƒ¼ã‚¿ã®è¡¨ç¤º
  *	
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_earth	’n‹…ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_earth	åœ°çƒãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PlaceDraw( WLDTIMER_PLACE* p_wk, const WLDTIMER_EARTH* cp_earth )
@@ -3067,14 +3067,14 @@ static void WLDTIMER_PlaceDraw( WLDTIMER_PLACE* p_wk, const WLDTIMER_EARTH* cp_e
 	MtxFx33 earthrotmtx;
 	VecFx32 trans;
 
-	// ’n‹…‹V‚Ì•\Ž¦ƒf[ƒ^Žæ“¾
+	// åœ°çƒå„€ã®è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿å–å¾—
 	WLDTIMER_EarthGetTrans( cp_earth, &trans );
 	WLDTIMER_EarthGetRotMtx( cp_earth, &earthrotmtx );
 
-	// •\Ž¦ƒ‚ƒfƒ‹‚É•\Ž¦ƒf[ƒ^‚ðŠi”[
+	// è¡¨ç¤ºãƒ¢ãƒ‡ãƒ«ã«è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
 	for( i=0; i<WLDTIMER_PLACE_COL_NUM; i++ ){
 		D3DOBJ_SetMatrix( &p_wk->obj[i], trans.x, trans.y, trans.z );
-		// ƒ^ƒbƒ`ƒ}[ƒN‚Íâ‘Î‚É‘S•”‚Ìƒ}[ƒN‚Ìã‚É•\Ž¦‚³‚ê‚é
+		// ã‚¿ãƒƒãƒãƒžãƒ¼ã‚¯ã¯çµ¶å¯¾ã«å…¨éƒ¨ã®ãƒžãƒ¼ã‚¯ã®ä¸Šã«è¡¨ç¤ºã•ã‚Œã‚‹
 		if( i==WLDTIMER_PLACE_COL_TOUCH ){
 			D3DOBJ_SetScale( &p_wk->obj[i], 
 					p_wk->list_scale.x, 
@@ -3086,7 +3086,7 @@ static void WLDTIMER_PlaceDraw( WLDTIMER_PLACE* p_wk, const WLDTIMER_EARTH* cp_e
 		}
 	}
 
-	// G‚Á‚Ä‚¢‚éˆÊ’u‚Ì•\Ž¦
+	// è§¦ã£ã¦ã„ã‚‹ä½ç½®ã®è¡¨ç¤º
 	{
 		MTX_Identity33( &rotate_tmp );
 		D3DOBJ_DrawRMtx( &p_wk->obj[ WLDTIMER_PLACE_COL_TOUCH ],
@@ -3094,7 +3094,7 @@ static void WLDTIMER_PlaceDraw( WLDTIMER_PLACE* p_wk, const WLDTIMER_EARTH* cp_e
 	}
 	
 
-	// Še’n“_‚Ì•\Ž¦
+	// å„åœ°ç‚¹ã®è¡¨ç¤º
 	{
 		for(i=0;i<p_wk->placelist.listcount;i++){
 			MTX_Concat33(&p_wk->placelist.place[i].rotate,&earthrotmtx,&rotate_tmp);
@@ -3109,15 +3109,15 @@ static void WLDTIMER_PlaceDraw( WLDTIMER_PLACE* p_wk, const WLDTIMER_EARTH* cp_e
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘ID‚Æ’nˆæID‚©‚ç‚»‚Ì’nˆæ‚ð‰½F‚Å•\Ž¦‚µ‚½‚ç‚æ‚¢‚©‚ð•Ô‚·
+ *	@brief	å›½IDã¨åœ°åŸŸIDã‹ã‚‰ãã®åœ°åŸŸã‚’ä½•è‰²ã§è¡¨ç¤ºã—ãŸã‚‰ã‚ˆã„ã‹ã‚’è¿”ã™
  *
- *	@param	cp_data			•\Ž¦’nˆæƒf[ƒ^
- *	@param	nationID		‘ID
- *	@param	areaID			ƒGƒŠƒAID
+ *	@param	cp_data			è¡¨ç¤ºåœ°åŸŸãƒ‡ãƒ¼ã‚¿
+ *	@param	nationID		å›½ID
+ *	@param	areaID			ã‚¨ãƒªã‚¢ID
  *
- *	@retval WLDTIMER_PLACE_COL_IN,		// “üŽºƒJƒ‰[
- *	@retval WLDTIMER_PLACE_COL_OUT,		// ‘ÞŽºƒJƒ‰[
- *	@retval	WLDTIMER_PLACE_COL_NONE,	// •”‰®‚É‚¢‚È‚¢’nˆæ‚ÉÝ’è‚³‚ê‚Ä‚¢‚éƒJƒ‰[
+ *	@retval WLDTIMER_PLACE_COL_IN,		// å…¥å®¤ã‚«ãƒ©ãƒ¼
+ *	@retval WLDTIMER_PLACE_COL_OUT,		// é€€å®¤ã‚«ãƒ©ãƒ¼
+ *	@retval	WLDTIMER_PLACE_COL_NONE,	// éƒ¨å±‹ã«ã„ãªã„åœ°åŸŸã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ã‚«ãƒ©ãƒ¼
  */
 //-----------------------------------------------------------------------------
 static u32 WLDTIMER_PlaceGetCol( const WFLBY_WLDTIMER* cp_data, u16 nationID, u16 areaID )
@@ -3128,16 +3128,16 @@ static u32 WLDTIMER_PlaceGetCol( const WFLBY_WLDTIMER* cp_data, u16 nationID, u1
 	u8 nation, area;
 
 	for( i=0; i<WFLBY_WLDTIMER_DATA_MAX; i++ ){
-		dataflag = WFLBY_WLDTIMER_GetDataFlag( cp_data, i );	// ƒf[ƒ^—L–³
+		dataflag = WFLBY_WLDTIMER_GetDataFlag( cp_data, i );	// ãƒ‡ãƒ¼ã‚¿æœ‰ç„¡
 		if( dataflag ){
-			outside = WFLBY_WLDTIMER_GetOutSide( cp_data, i );	// ‘ÞŽºƒtƒ‰ƒO
-			nation	= WFLBY_WLDTIMER_GetNation( cp_data, i );	// ‘ID
-			area	= WFLBY_WLDTIMER_GetArea( cp_data, i );		// ’nˆæID
+			outside = WFLBY_WLDTIMER_GetOutSide( cp_data, i );	// é€€å®¤ãƒ•ãƒ©ã‚°
+			nation	= WFLBY_WLDTIMER_GetNation( cp_data, i );	// å›½ID
+			area	= WFLBY_WLDTIMER_GetArea( cp_data, i );		// åœ°åŸŸID
 
-			// ‘‚Æ’nˆæ‚ª‡‚¤‚©ƒ`ƒFƒbƒN
+			// å›½ã¨åœ°åŸŸãŒåˆã†ã‹ãƒã‚§ãƒƒã‚¯
 			if( (nation == nationID) && (area == areaID) ){
 				
-				// ‘ÞŽº‚µ‚½‚©ƒ`ƒFƒbƒN
+				// é€€å®¤ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
 				if( outside == TRUE ){
 					return	WLDTIMER_PLACE_COL_OUT; 
 				}
@@ -3151,14 +3151,14 @@ static u32 WLDTIMER_PlaceGetCol( const WFLBY_WLDTIMER* cp_data, u16 nationID, u1
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’nˆæƒf[ƒ^‚ÌŽæ“¾
+ *	@brief	åœ°åŸŸãƒ‡ãƒ¼ã‚¿ã®å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	nationID	‘ID
- *	@param	areaID		ƒGƒŠƒAID
- *	@param	p_vec		‘Š‘Î‰ñ“]ƒxƒNƒgƒ‹Žæ“¾
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	nationID	å›½ID
+ *	@param	areaID		ã‚¨ãƒªã‚¢ID
+ *	@param	p_vec		ç›¸å¯¾å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«å–å¾—
  *
- *	@return	•\Ž¦ƒJƒ‰[Žæ“¾
+ *	@return	è¡¨ç¤ºã‚«ãƒ©ãƒ¼å–å¾—
  */
 //-----------------------------------------------------------------------------
 static u32 WLDTIMER_PlaceGetData( const WLDTIMER_PLACE* cp_wk, u16 nationID, u16 areaID, VecFx32* p_vec )
@@ -3169,14 +3169,14 @@ static u32 WLDTIMER_PlaceGetData( const WLDTIMER_PLACE* cp_wk, u16 nationID, u16
 
 	listnum = WLDTIMER_PlaceGetListNum( cp_wk );
 
-	// ƒCƒ“ƒfƒbƒNƒX‚ÌŽæ“¾
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å–å¾—
 	index = WLDTIMER_PlaceGetIdx( cp_wk, nationID, areaID );
 	if( index < listnum ){
 
-		// ƒJƒ‰[Žæ“¾
+		// ã‚«ãƒ©ãƒ¼å–å¾—
 		col = WLDTIMER_PlaceGetIdxCol( cp_wk, index );
 
-		// ‰ñ“]ƒxƒNƒgƒ‹Žæ“¾
+		// å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«å–å¾—
 		WLDTIMER_PlaceGetIdxRotVec( cp_wk, p_vec, index );
 	}
 
@@ -3185,14 +3185,14 @@ static u32 WLDTIMER_PlaceGetData( const WLDTIMER_PLACE* cp_wk, u16 nationID, u16
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘ID‚Æ’nˆæID‚©‚ç’nˆæƒf[ƒ^ƒx[ƒX‚ÌƒCƒ“ƒfƒbƒNƒX’l‚ðŽæ“¾
+ *	@brief	å›½IDã¨åœ°åŸŸIDã‹ã‚‰åœ°åŸŸãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã‚’å–å¾—
  *
- *	@param	cp_wk			’nˆæƒf[ƒ^ƒx[ƒX
- *	@param	nationID		‘ID
- *	@param	areaID			’nˆæID
+ *	@param	cp_wk			åœ°åŸŸãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹
+ *	@param	nationID		å›½ID
+ *	@param	areaID			åœ°åŸŸID
  *
- *	@return	index			ƒCƒ“ƒfƒbƒNƒX
- *	@retval	cp_wk->placelist.listcount	‚È‚ç“–‚Ä‚Í‚Ü‚é‚Ì‚à‚ª‚È‚¢
+ *	@return	index			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@retval	cp_wk->placelist.listcount	ãªã‚‰å½“ã¦ã¯ã¾ã‚‹ã®ã‚‚ãŒãªã„
  */
 //-----------------------------------------------------------------------------
 static u32 WLDTIMER_PlaceGetIdx( const WLDTIMER_PLACE* cp_wk, u16 nationID, u16 areaID )
@@ -3212,11 +3212,11 @@ static u32 WLDTIMER_PlaceGetIdx( const WLDTIMER_PLACE* cp_wk, u16 nationID, u16 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ“ƒfƒbƒNƒX‚Ì‰ñ“]ƒxƒNƒgƒ‹‚ðŽæ“¾
+ *	@brief	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	p_vec		‰ñ“]ƒxƒNƒgƒ‹Ši”[æ
- *	@param	index		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_vec		å›žè»¢ãƒ™ã‚¯ãƒˆãƒ«æ ¼ç´å…ˆ
+ *	@param	index		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PlaceGetIdxRotVec( const WLDTIMER_PLACE* cp_wk, VecFx32* p_vec, int index )
@@ -3230,12 +3230,12 @@ static void WLDTIMER_PlaceGetIdxRotVec( const WLDTIMER_PLACE* cp_wk, VecFx32* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ“ƒfƒbƒNƒX‚ÌƒJƒ‰[‚ðŽæ“¾
+ *	@brief	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ã‚«ãƒ©ãƒ¼ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	index		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	index		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	ƒJƒ‰[
+ *	@return	ã‚«ãƒ©ãƒ¼
  */
 //-----------------------------------------------------------------------------
 static u32 WLDTIMER_PlaceGetIdxCol( const WLDTIMER_PLACE* cp_wk, int index )
@@ -3247,12 +3247,12 @@ static u32 WLDTIMER_PlaceGetIdxCol( const WLDTIMER_PLACE* cp_wk, int index )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ“ƒfƒbƒNƒX‚Ì‘ID‚ðŽæ“¾
+ *	@brief	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å›½IDã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	index		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	index		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	‘ID
+ *	@return	å›½ID
  */
 //-----------------------------------------------------------------------------
 static u32 WLDTIMER_PlaceGetIdxNationID( const WLDTIMER_PLACE* cp_wk, int index )
@@ -3264,12 +3264,12 @@ static u32 WLDTIMER_PlaceGetIdxNationID( const WLDTIMER_PLACE* cp_wk, int index 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ“ƒfƒbƒNƒX‚Ì’nˆæID‚ðŽæ“¾
+ *	@brief	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®åœ°åŸŸIDã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	index		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	index		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	’nˆæID
+ *	@return	åœ°åŸŸID
  */
 //-----------------------------------------------------------------------------
 static u32 WLDTIMER_PlaceGetIdxAreaID( const WLDTIMER_PLACE* cp_wk, int index )
@@ -3281,11 +3281,11 @@ static u32 WLDTIMER_PlaceGetIdxAreaID( const WLDTIMER_PLACE* cp_wk, int index )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ“ƒfƒbƒNƒX‚Ì‘‚Æ’nˆæ‚ÌƒŠƒXƒg”Žæ“¾
+ *	@brief	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å›½ã¨åœ°åŸŸã®ãƒªã‚¹ãƒˆæ•°å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *		
- *	@return	ƒŠƒXƒg”
+ *	@return	ãƒªã‚¹ãƒˆæ•°
  */
 //-----------------------------------------------------------------------------
 static u32 WLDTIMER_PlaceGetListNum( const WLDTIMER_PLACE* cp_wk )
@@ -3296,50 +3296,50 @@ static u32 WLDTIMER_PlaceGetListNum( const WLDTIMER_PLACE* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰‰Šú‰»
+ *	@brief	ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	flag	“®ìƒtƒ‰ƒO
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag	å‹•ä½œãƒ•ãƒ©ã‚°
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_CameraInit( WLDTIMER_CAMERA* p_wk, WLDTIMER_FLAG flag, u32 heapID )
 {
-	// ƒJƒƒ‰ì¬
+	// ã‚«ãƒ¡ãƒ©ä½œæˆ
 	p_wk->p_camera = GFC_AllocCamera( heapID );
 	
-	//ƒJƒƒ‰ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»
+	//ã‚«ãƒ¡ãƒ©ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–
 	GFC_InitCameraTC(	&sc_WLDTIMER_CAMERA_TARGET,&sc_WLDTIMER_CAMERA_POS,
 						INIT_CAMERA_PERSPWAY,
 						GF_CAMERA_PERSPECTIV,
 						FALSE,
 						p_wk->p_camera);
 
-	//ƒNƒŠƒbƒvŠÖ˜AÝ’è
+	//ã‚¯ãƒªãƒƒãƒ—é–¢é€£è¨­å®š
 	GFC_SetCameraClip(INIT_CAMERA_CLIP_NEAR,INIT_CAMERA_CLIP_FAR,p_wk->p_camera);
 	GFC_SetCameraView(GF_CAMERA_PERSPECTIV,p_wk->p_camera);
-	//ƒJƒƒ‰‚n‚m
+	//ã‚«ãƒ¡ãƒ©ï¼¯ï¼®
 	GFC_AttachCamera(p_wk->p_camera);
 
 	if(flag.world == JAPAN_MODE){
-		//¢ŠEmode‚¶‚á‚È‚¢‚Ì‚ÅA‹ß‚­‚©‚ç
+		//ä¸–ç•Œmodeã˜ã‚ƒãªã„ã®ã§ã€è¿‘ãã‹ã‚‰
 		p_wk->status = CAMERA_NEAR;
 		p_wk->dist = INIT_CAMERA_DISTANCE_NEAR;
 	}else{
-		//¢ŠEmode‚È‚Ì‚Å‰“‚­‚©‚ç
+		//ä¸–ç•Œmodeãªã®ã§é ãã‹ã‚‰
 		p_wk->status = CAMERA_FAR;
 		p_wk->dist = INIT_CAMERA_DISTANCE_FAR;
 	}
 
-	// ‰ŠúƒJƒƒ‰Ý’è
+	// åˆæœŸã‚«ãƒ¡ãƒ©è¨­å®š
 	GFC_SetCameraDistance(p_wk->dist,p_wk->p_camera);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰”jŠü
+ *	@brief	ã‚«ãƒ¡ãƒ©ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_CameraExit( WLDTIMER_CAMERA* p_wk )
@@ -3349,9 +3349,9 @@ static void WLDTIMER_CameraExit( WLDTIMER_CAMERA* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰•\Ž¦
+ *	@brief	ã‚«ãƒ¡ãƒ©è¡¨ç¤º
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_CameraDraw( const WLDTIMER_CAMERA* cp_wk )
@@ -3361,9 +3361,9 @@ static void WLDTIMER_CameraDraw( const WLDTIMER_CAMERA* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰“®ì	ƒŠƒNƒGƒXƒg
+ *	@brief	ã‚«ãƒ¡ãƒ©å‹•ä½œ	ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_CameraMoveReq( WLDTIMER_CAMERA* p_wk )
@@ -3380,13 +3380,13 @@ static void WLDTIMER_CameraMoveReq( WLDTIMER_CAMERA* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰“®ì	
+ *	@brief	ã‚«ãƒ¡ãƒ©å‹•ä½œ	
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_place	’nˆæƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_place	åœ°åŸŸãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	Š®—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	å®Œäº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_CameraMove( WLDTIMER_CAMERA* p_wk, WLDTIMER_PLACE* p_place )
@@ -3425,12 +3425,12 @@ static BOOL WLDTIMER_CameraMove( WLDTIMER_CAMERA* p_wk, WLDTIMER_PLACE* p_place 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰ó‘Ô‚ÌŽæ“¾
+ *	@brief	ã‚«ãƒ¡ãƒ©çŠ¶æ…‹ã®å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	CAMERA_FAR = 0,	// ‰“‹——£
- *	@retval	CAMERA_NEAR,	// ‹ß‹——£
+ *	@retval	CAMERA_FAR = 0,	// é è·é›¢
+ *	@retval	CAMERA_NEAR,	// è¿‘è·é›¢
  */
 //-----------------------------------------------------------------------------
 static u32	WLDTIMER_CameraGetStatus( const WLDTIMER_CAMERA* cp_wk )
@@ -3441,16 +3441,16 @@ static u32	WLDTIMER_CameraGetStatus( const WLDTIMER_CAMERA* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒbƒ`ŠÇ—‰Šú‰»
+ *	@brief	ã‚¿ãƒƒãƒç®¡ç†åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_TouchInit( WLDTIMER_TOUCH* p_wk, WLDTIMER_DRAWSYS* p_drawsys, WLDTIMER_MSGMAN* p_msgman, u32 heapID )
 {
 	memset( p_wk, 0, sizeof(WLDTIMER_TOUCH) );
 
-	// ƒ{ƒ^ƒ“ƒrƒbƒgƒ}ƒbƒvì¬
+	// ãƒœã‚¿ãƒ³ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½œæˆ
 	GF_BGL_BmpWinAdd(
 				p_drawsys->p_bgl, &p_wk->bttn, GF_BGL_FRAME1_M,
 				WLDTIMER_MAIN_BTTNBMP_X, WLDTIMER_MAIN_BTTNBMP_Y,
@@ -3459,12 +3459,12 @@ static void WLDTIMER_TouchInit( WLDTIMER_TOUCH* p_wk, WLDTIMER_DRAWSYS* p_drawsy
 	
 	GF_BGL_BmpWinDataFill( &p_wk->bttn, 15 );
 
-	// ‚â‚ß‚é•`‰æ
+	// ã‚„ã‚ã‚‹æç”»
 	{
 		STRBUF* p_str;
 		p_str = WLDTIMER_MsgManGetStr( p_msgman, msg_01 );
 
-		FontProc_LoadFont( FONT_BUTTON, heapID );	//ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg‚Ìƒ[ƒh
+		FontProc_LoadFont( FONT_BUTTON, heapID );	//ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆã®ãƒ­ãƒ¼ãƒ‰
         {
             // MatchComment
             u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_BUTTON, p_str, 0, 48);
@@ -3472,33 +3472,33 @@ static void WLDTIMER_TouchInit( WLDTIMER_TOUCH* p_wk, WLDTIMER_DRAWSYS* p_drawsy
 					xofs,0,MSG_NO_PUT, WLDTIMER_TOUCH_END_MSG_COL, NULL);
         }
                 
-		FontProc_UnloadFont( FONT_BUTTON );				//ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg‚Ì”jŠü
+		FontProc_UnloadFont( FONT_BUTTON );				//ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆã®ç ´æ£„
 	}
 
-	// ƒEƒBƒ“ƒhƒE•`‰æ
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 	BmpMenuWinWrite(&p_wk->bttn,WINDOW_TRANS_ON,
 			WLDTIMER_MAIN_SYSTEMWIN_CGX,WLDTIMER_MAIN_SYSTEMWIN_PAL);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒbƒ`ŠÇ—”jŠü
+ *	@brief	ã‚¿ãƒƒãƒç®¡ç†ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_TouchExit( WLDTIMER_TOUCH* p_wk )
 {
-	// ƒrƒbƒgƒ}ƒbƒv”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ç ´æ£„
 	GF_BGL_BmpWinDel( &p_wk->bttn );
 	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»ó‚Ìƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ðƒ[ƒN‚ÉÝ’è
+ *	@brief	ç¾çŠ¶ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã‚’ãƒ¯ãƒ¼ã‚¯ã«è¨­å®š
  *
- *	@param	p_touch		ƒ[ƒN
+ *	@param	p_touch		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_TouchSetParam( WLDTIMER_TOUCH* p_touch )
@@ -3512,7 +3512,7 @@ static void WLDTIMER_TouchSetParam( WLDTIMER_TOUCH* p_touch )
 			(sys.tp_x <= ((EARTH_ICON_WIN_PX + EARTH_ICON_WIN_SX) * DOTSIZE))&&
 			(sys.tp_y >= ((EARTH_ICON_WIN_PY) * DOTSIZE))&&
 			(sys.tp_y <= ((EARTH_ICON_WIN_PY + EARTH_ICON_WIN_SY) * DOTSIZE))){
-			//u‚â‚ß‚év
+			//ã€Œã‚„ã‚ã‚‹ã€
 			p_touch->tp_result = PAD_BUTTON_B;
 			return;
 		} else {
@@ -3521,7 +3521,7 @@ static void WLDTIMER_TouchSetParam( WLDTIMER_TOUCH* p_touch )
 			p_touch->tp_leny = 0;
 			p_touch->tp_count = 0;
 			p_touch->tp_result = 0;
-			//‰‰ñ‚ÌŒŸoˆÊ’u‚ð•Û‘¶
+			//åˆå›žã®æ¤œå‡ºä½ç½®ã‚’ä¿å­˜
 			p_touch->tp_x = sys.tp_x;
 			p_touch->tp_y = sys.tp_y;
 			p_touch->tp_count = WLDTIMER_TOUCH_ZOOMWAIT_COUNT;
@@ -3530,7 +3530,7 @@ static void WLDTIMER_TouchSetParam( WLDTIMER_TOUCH* p_touch )
 	if(sys.tp_cont){
 		switch(p_touch->tp_seq){
 		case 0:
-			//Å‰‚ÌƒJƒEƒ“ƒg‚ÍƒgƒŠƒK[”FŽ¯—p‚É–³Ž‹
+			//æœ€åˆã®ã‚«ã‚¦ãƒ³ãƒˆã¯ãƒˆãƒªã‚¬ãƒ¼èªè­˜ç”¨ã«ç„¡è¦–
 			if(!p_touch->tp_count){
 				p_touch->tp_seq++;
 			}else{
@@ -3558,12 +3558,12 @@ static void WLDTIMER_TouchSetParam( WLDTIMER_TOUCH* p_touch )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹ƒpƒ‰ƒ[ƒ^Žæ“¾
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	cp_touch	ƒ^ƒbƒ`ƒ[ƒN
- *	@param	type		Žæ“¾ƒpƒ‰ƒ[ƒ^ƒ^ƒCƒv
+ *	@param	cp_touch	ã‚¿ãƒƒãƒãƒ¯ãƒ¼ã‚¯
+ *	@param	type		å–å¾—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
  *
- *	@return	ƒpƒ‰ƒ[ƒ^
+ *	@return	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static int WLDTIMER_TouchGetParam( const WLDTIMER_TOUCH* cp_touch, u32 type )
@@ -3590,9 +3590,9 @@ static int WLDTIMER_TouchGetParam( const WLDTIMER_TOUCH* cp_touch, u32 type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“•\Ž¦OFF
+ *	@brief	ãƒœã‚¿ãƒ³è¡¨ç¤ºOFF
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_TouchBttnOff( WLDTIMER_TOUCH* p_wk )
@@ -3603,9 +3603,9 @@ static void WLDTIMER_TouchBttnOff( WLDTIMER_TOUCH* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“•\Ž¦ON
+ *	@brief	ãƒœã‚¿ãƒ³è¡¨ç¤ºON
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_TouchBttnOn( WLDTIMER_TOUCH* p_wk )
@@ -3618,30 +3618,30 @@ static void WLDTIMER_TouchBttnOn( WLDTIMER_TOUCH* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒ`ƒFƒbƒN	‰Šú‰»
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯	åˆæœŸåŒ–
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	p_drawsys		•`‰æƒ[ƒN
- *	@param	p_msgman		ƒƒbƒZ[ƒWŠÇ—
- *	@param	p_save			ƒZ[ƒuƒf[ƒ^
- *	@param	heapID			ƒq[ƒv
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msgman		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç®¡ç†
+ *	@param	p_save			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EndMsgInit( WLDTIMER_END_MSG* p_wk, WLDTIMER_DRAWSYS* p_drawsys, WLDTIMER_MSGMAN* p_msgman, SAVEDATA* p_save, u32 heapID )
 {
 	memset( p_wk, 0, sizeof(WLDTIMER_TOUCH) );
 
-	// ƒƒbƒZ[ƒWƒXƒs[ƒh
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰
 	{
 		CONFIG* p_config;
 		p_config = SaveData_GetConfig( p_save );
 		p_wk->msg_wait = CONFIG_GetMsgPrintSpeed( p_config );
 	}
 
-	// ƒƒbƒZ[ƒWƒoƒbƒtƒ@
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡
 	p_wk->p_str = STRBUF_Create( WLDTIMER_MSGMAN_STRBUFNUM, heapID );
 
-	// ƒ{ƒ^ƒ“ƒrƒbƒgƒ}ƒbƒvì¬
+	// ãƒœã‚¿ãƒ³ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½œæˆ
 	GF_BGL_BmpWinAdd(
 				p_drawsys->p_bgl, &p_wk->win, GF_BGL_FRAME1_M,
 				WLDTIMER_MAIN_TALKBMP_X, WLDTIMER_MAIN_TALKBMP_Y,
@@ -3650,48 +3650,48 @@ static void WLDTIMER_EndMsgInit( WLDTIMER_END_MSG* p_wk, WLDTIMER_DRAWSYS* p_dra
 	
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 
-	// •`‰æ
+	// æç”»
 	WLDTIMER_MsgManGetStrBuff( p_msgman, msg_05, p_wk->p_str );
 
-	// ƒTƒuƒEƒBƒ“ƒhƒEƒ^ƒbƒ`ƒ[ƒN‰Šú‰»
+	// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ãƒƒãƒãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	p_wk->p_touch_sw = TOUCH_SW_AllocWork( heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒ`ƒFƒbƒN	ƒ[ƒN”jŠü
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯	ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EndMsgExit( WLDTIMER_END_MSG* p_wk )
 {
-	// ƒƒbƒZ[ƒW•\Ž¦’†‚È‚çOFF
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ãªã‚‰OFF
 	if( GF_MSG_PrintEndCheck( p_wk->msg_no ) != 0 ){
 		GF_STR_PrintForceStop( p_wk->msg_no  );
 	}
 	
-	// ƒƒbƒZ[ƒWƒoƒbƒtƒ@”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ç ´æ£„
 	STRBUF_Delete( p_wk->p_str );
 	
-	// ƒTƒuƒEƒBƒ“ƒhƒEƒ^ƒbƒ`ƒ[ƒN”jŠü
+	// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ãƒƒãƒãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	TOUCH_SW_FreeWork( p_wk->p_touch_sw );
 
-	// ƒrƒbƒgƒ}ƒbƒv”jŠü
+	// ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ç ´æ£„
 	GF_BGL_BmpWinDel( &p_wk->win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒ`ƒFƒbƒN	ŠJŽn
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯	é–‹å§‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EndMsgStart( WLDTIMER_END_MSG* p_wk )
 {
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
-	// ƒ{ƒ^ƒ“‚ÆƒƒbƒZ[ƒW•\Ž¦
+	// ãƒœã‚¿ãƒ³ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	BmpTalkWinWrite( &p_wk->win, WINDOW_TRANS_OFF, 
 			WLDTIMER_MAIN_TALKWIN_CGX, WLDTIMER_MAIN_TALKWIN_PAL );
 	GF_BGL_BmpWinOnVReq( &p_wk->win );
@@ -3704,13 +3704,13 @@ static void WLDTIMER_EndMsgStart( WLDTIMER_END_MSG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒ`ƒFƒbƒN	ƒƒCƒ“
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TOUCH_SW_RET_NORMAL	// ‰½‚à‚È‚µ
- *	@retval	TOUCH_SW_RET_YES	// ‚Í‚¢
- *	@retval	TOUCH_SW_RET_NO		// ‚¢‚¢‚¦
+ *	@retval	TOUCH_SW_RET_NORMAL	// ä½•ã‚‚ãªã—
+ *	@retval	TOUCH_SW_RET_YES	// ã¯ã„
+ *	@retval	TOUCH_SW_RET_NO		// ã„ã„ãˆ
  */
 //-----------------------------------------------------------------------------
 static u32 WLDTIMER_EndMsgMain( WLDTIMER_END_MSG* p_wk )
@@ -3719,7 +3719,7 @@ static u32 WLDTIMER_EndMsgMain( WLDTIMER_END_MSG* p_wk )
 	switch( p_wk->seq ){
 	case 0:
 		ret = TOUCH_SW_RET_NORMAL;
-		// ƒƒbƒZ[ƒWI—¹‘Ò‚¿
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾…ã¡
 		if( GF_MSG_PrintEndCheck( p_wk->msg_no ) == 0 ){
 			TOUCH_SW_PARAM param;
 			param		= sc_TOUCH_SW_PARAM;
@@ -3737,9 +3737,9 @@ static u32 WLDTIMER_EndMsgMain( WLDTIMER_END_MSG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒ`ƒFƒbƒN@Á‚·
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯ã€€æ¶ˆã™
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_EndMsgEnd( WLDTIMER_END_MSG* p_wk )
@@ -3754,22 +3754,22 @@ static void WLDTIMER_EndMsgEnd( WLDTIMER_END_MSG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ…[ƒA[‰Šú‰»
+ *	@brief	ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	p_msgman	ƒƒbƒZ[ƒW
- *	@param	heapID		ƒq[ƒv‚h‚c
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_msgman	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerInit( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_drawsys, WLDTIMER_MSGMAN* p_msgman, u32 heapID )
 {
 	p_wk->seq = WLDTIMER_VIEWER_SEQ_MAIN;
 
-	// ƒLƒ…[ƒpƒ‰ƒ[ƒ^‰Šú‰»
+	// ã‚­ãƒ¥ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 	WLDTIMER_ViewerQInit( p_wk );
 
-	// ƒ^ƒCƒ€ƒ][ƒ“ƒAƒjƒ‰Šú‰»
+	// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
 	{
 		int i;
 		
@@ -3778,7 +3778,7 @@ static void WLDTIMER_ViewerInit( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_draw
 		}
 	}
 
-	// ƒg[ƒNƒƒbƒZ[ƒW•\Ž¦
+	// ãƒˆãƒ¼ã‚¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	{
 		STRBUF* p_str;
 
@@ -3796,11 +3796,11 @@ static void WLDTIMER_ViewerInit( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_draw
 				WLDTIMER_SUB_TALKWIN_CGX, WLDTIMER_SUB_TALKWIN_PAL );
 	}
 
-	// ’nˆæƒƒbƒZ[ƒW‰Šú‰»
+	// åœ°åŸŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆæœŸåŒ–
 	WLDTIMER_ViewerMsgInit( p_wk, p_drawsys, heapID );
 
 
-	// ƒtƒF[ƒh—pƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	{
 		p_wk->p_fadescrnbuff = ArcUtil_HDL_ScrnDataGet(p_drawsys->p_handle, 
 				NARC_worldtimer_world_watch_roll_NSCR, FALSE,
@@ -3808,42 +3808,42 @@ static void WLDTIMER_ViewerInit( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_draw
 
 	}
 
-	// ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“‰Šú‰»
+	// ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³åˆæœŸåŒ–
 	WLDTIMER_PokeBaloon_Init( &p_wk->poke, p_drawsys, &p_wk->wnd, heapID );
 
-	// ƒEƒBƒ“ƒhƒEƒ}ƒXƒNÝ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒžã‚¹ã‚¯è¨­å®š
 	WLDTIMER_ViewerWndInit( &p_wk->wnd );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ…[ƒA[”jŠü
+ *	@brief	ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerExit( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_drawsys )
 {
-	// ƒEƒBƒ“ƒhƒEƒ}ƒXƒN
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒžã‚¹ã‚¯
 	WLDTIMER_ViewerWndExit( &p_wk->wnd );
 
-	// ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“”jŠü
+	// ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³ç ´æ£„
 	WLDTIMER_PokeBaloon_Exit( &p_wk->poke, p_drawsys );
 
-	// ƒtƒF[ƒhƒXƒNƒŠ[ƒ“ƒf[ƒ^”jŠü
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	sys_FreeMemoryEz( p_wk->p_fadescrnbuff );
 
-	// ’nˆæƒƒbƒZ[ƒW”jŠü
+	// åœ°åŸŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç ´æ£„
 	WLDTIMER_ViewerMsgExit( p_wk );
 	
-	// ƒƒbƒZ[ƒW”jŠü
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç ´æ£„
 	GF_BGL_BmpWinDel( &p_wk->talkwin );
 	
-	// ƒLƒ…[ƒpƒ‰ƒ[ƒ^”jŠü
+	// ã‚­ãƒ¥ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç ´æ£„
 	WLDTIMER_ViewerQExit( p_wk );
 	
-	// ƒ^ƒCƒ€ƒ][ƒ“ƒAƒjƒ”jŠü
+	// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ç ´æ£„
 	{
 		int i;
 		
@@ -3855,9 +3855,9 @@ static void WLDTIMER_ViewerExit( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_draw
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ…[ƒA[ƒƒCƒ“
+ *	@brief	ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ãƒ¡ã‚¤ãƒ³
  *	
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerMain( WLDTIMER_VIEWER* p_wk, WLDTIMER_MSGMAN* p_msgman, WLDTIMER_DRAWSYS* p_drawsys )
@@ -3866,22 +3866,22 @@ static void WLDTIMER_ViewerMain( WLDTIMER_VIEWER* p_wk, WLDTIMER_MSGMAN* p_msgma
 	
 	switch( p_wk->seq ){
 
-	// ƒƒCƒ“ˆ—
+	// ãƒ¡ã‚¤ãƒ³å‡¦ç†
 	case WLDTIMER_VIEWER_SEQ_MAIN:
-		// ƒ^ƒCƒ€ƒ][ƒ“ƒAƒjƒƒƒCƒ“
+		// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
 		WLDTIMER_ViewerAnmCont( p_wk, p_drawsys );
 
-		// ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“ƒƒCƒ“
+		// ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³ãƒ¡ã‚¤ãƒ³
 		WLDTIMER_PokeBaloon_Main( &p_wk->poke, &p_wk->wnd );
 		break;
 		
-	// ƒtƒF[ƒh‰Šú‰»
+	// ãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
 	case WLDTIMER_VIEWER_SEQ_FADE_INIT:
 		WLDTIMER_ViewerFadeInit( p_wk, p_msgman, p_drawsys );
 		p_wk->seq = WLDTIMER_VIEWER_SEQ_FADE;
 		break;
 	
-	// ƒtƒF[ƒhˆ—
+	// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 	case WLDTIMER_VIEWER_SEQ_FADE:
 		result = WLDTIMER_ViewerFade( p_wk, p_drawsys );
 		if( result == TRUE ){
@@ -3889,14 +3889,14 @@ static void WLDTIMER_ViewerMain( WLDTIMER_VIEWER* p_wk, WLDTIMER_MSGMAN* p_msgma
 		}
 		break;
 
-	// ƒtƒF[ƒhƒXƒLƒbƒv‰Šú‰»
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¹ã‚­ãƒƒãƒ—åˆæœŸåŒ–
 	case WLDTIMER_VIEWER_SEQ_FADE_SKIP_INIT:
 		WLDTIMER_ViewerFade_SkipInit01( p_wk );
-		WLDTIMER_ViewerFade_Skip01( p_wk, p_drawsys );	// ‚P‚©‚¢“®‚©‚·
+		WLDTIMER_ViewerFade_Skip01( p_wk, p_drawsys );	// ï¼‘ã‹ã„å‹•ã‹ã™
 		p_wk->seq = WLDTIMER_VIEWER_SEQ_FADE_SKIP;
 		break;
 
-	// ƒtƒF[ƒhƒXƒLƒbƒvˆ—
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¹ã‚­ãƒƒãƒ—å‡¦ç†
 	case WLDTIMER_VIEWER_SEQ_FADE_SKIP:
 		result = WLDTIMER_ViewerFade_Skip01( p_wk, p_drawsys );
 		if( result == TRUE ){
@@ -3908,9 +3908,9 @@ static void WLDTIMER_ViewerMain( WLDTIMER_VIEWER* p_wk, WLDTIMER_MSGMAN* p_msgma
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒE‚ÌOFF
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®OFF
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerTalkWinOff( WLDTIMER_VIEWER* p_wk )
@@ -3921,7 +3921,7 @@ static void WLDTIMER_ViewerTalkWinOff( WLDTIMER_VIEWER* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒEƒBƒ“ƒhƒE‚ÌON
+ *	@brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ON
  *
  *	@param	p_wk 
  */
@@ -3935,18 +3935,18 @@ static void WLDTIMER_ViewerTalkWinOn( WLDTIMER_VIEWER* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ…[ƒA[î•ñ‚ðƒvƒbƒVƒ…
+ *	@brief	ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼æƒ…å ±ã‚’ãƒ—ãƒƒã‚·ãƒ¥
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		’Ç‰Áƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		è¿½åŠ ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	ƒ^ƒCƒ~ƒ“ƒO‚ª‚í‚é‚¢
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒã‚ã‚‹ã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_ViewerPushData( WLDTIMER_VIEWER* p_wk, const WLDTIMER_POINTDATA* cp_data )
 {
-	// Ø‚è‘Ö‚¦ƒAƒjƒ‚Ö
+	// åˆ‡ã‚Šæ›¿ãˆã‚¢ãƒ‹ãƒ¡ã¸
 	switch( p_wk->seq ){
 	case WLDTIMER_VIEWER_SEQ_MAIN:
 		p_wk->seq = WLDTIMER_VIEWER_SEQ_FADE_INIT;
@@ -3956,14 +3956,14 @@ static BOOL WLDTIMER_ViewerPushData( WLDTIMER_VIEWER* p_wk, const WLDTIMER_POINT
 		p_wk->seq = WLDTIMER_VIEWER_SEQ_FADE_SKIP_INIT;
 		return FALSE;
 		
-	// ƒ^ƒCƒ~ƒ“ƒO‚ª‚í‚é‚¢EEE
+	// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒã‚ã‚‹ã„ãƒ»ãƒ»ãƒ»
 	case WLDTIMER_VIEWER_SEQ_FADE_SKIP_INIT:
 	case WLDTIMER_VIEWER_SEQ_FADE_SKIP:
 	case WLDTIMER_VIEWER_SEQ_FADE_INIT:
 		return FALSE;
 	}
 
-	// ƒf[ƒ^‚ðƒvƒbƒVƒ…
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ—ãƒƒã‚·ãƒ¥
 	WLDTIMER_ViewerQPush( p_wk, cp_data );
 
 	return TRUE;
@@ -3971,13 +3971,13 @@ static BOOL WLDTIMER_ViewerPushData( WLDTIMER_VIEWER* p_wk, const WLDTIMER_POINT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“¯‚¶ƒf[ƒ^‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	cp_data		ƒ`ƒFƒbƒN‚·‚éƒf[ƒ^
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	ƒf[ƒ^‚ª‚ ‚é
- *	@retval	FALSE	ƒf[ƒ^‚ª‚È‚¢
+ *	@retval	TRUE	ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹
+ *	@retval	FALSE	ãƒ‡ãƒ¼ã‚¿ãŒãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_ViewerEqualDataCheck( const WLDTIMER_VIEWER* cp_wk, const WLDTIMER_POINTDATA* cp_data )
@@ -3989,7 +3989,7 @@ static BOOL WLDTIMER_ViewerEqualDataCheck( const WLDTIMER_VIEWER* cp_wk, const W
 	for( i=0; i<WLDTIMER_VIEWER_DRAWNUM; i++ ){
 		result = WLDTIMER_ViewerQGetData( cp_wk, &point, i );
 		if( result == FALSE ){
-			return FALSE;	// ˆê‚Ì‚È‚µ
+			return FALSE;	// ä¸€ç·’ã®ãªã—
 		}
 
 		if( (point.nation == cp_data->nation) &&
@@ -4002,67 +4002,67 @@ static BOOL WLDTIMER_ViewerEqualDataCheck( const WLDTIMER_VIEWER* cp_wk, const W
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ…[ƒA[‚p‚Ìˆ—
+ *	@brief	ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ï¼±ã®å‡¦ç†
  */
 //-----------------------------------------------------------------------------
-// ‰Šú‰»
+// åˆæœŸåŒ–
 static void WLDTIMER_ViewerQInit( WLDTIMER_VIEWER* p_wk )
 {
 	p_wk->top = 0;
 	p_wk->tail = 0;
 	p_wk->datacount = 0;
 }
-// ”jŠü
+// ç ´æ£„
 static void WLDTIMER_ViewerQExit( WLDTIMER_VIEWER* p_wk )
 {
 	p_wk->top = 0;
 	p_wk->tail = 0;
 	p_wk->datacount = 0;
 }
-// ƒvƒbƒVƒ…
+// ãƒ—ãƒƒã‚·ãƒ¥
 static void WLDTIMER_ViewerQPush( WLDTIMER_VIEWER* p_wk, const WLDTIMER_POINTDATA* cp_data )
 {
-	// ––”ö+1‚ªæ“ª‚ÌŽž–ž”t
+	// æœ«å°¾+1ãŒå…ˆé ­ã®æ™‚æº€æ¯
 	if( ((p_wk->tail + 1)%WLDTIMER_VIEWER_BUFFNUM) == p_wk->top ){
-		// –ž”t
-		// 1‚Âƒf[ƒ^‚ðƒ|ƒbƒv‚µ‚Äƒf[ƒ^Ši”[
+		// æº€æ¯
+		// 1ã¤ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ—ã—ã¦ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 		WLDTIMER_ViewerQPop( p_wk );
 	}
 
-	// ƒf[ƒ^Ý’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_wk->data[ p_wk->tail ] = *cp_data;
 
-	// ––”öˆÊ’u‚ð“®‚©‚·
+	// æœ«å°¾ä½ç½®ã‚’å‹•ã‹ã™
 	p_wk->tail = (p_wk->tail + 1)%WLDTIMER_VIEWER_BUFFNUM;
 
-	// ƒf[ƒ^”ƒJƒEƒ“ƒg
+	// ãƒ‡ãƒ¼ã‚¿æ•°ã‚«ã‚¦ãƒ³ãƒˆ
 	p_wk->datacount ++;
 
 //	OS_Printf( "set nation %d  area %d time %d\n", cp_data->nation, cp_data->area, ((cp_data->timezone + WLDTIMER_TIMEZONE_START_HOUR) % WLDTIMER_TIMEZONE_DATANUM) );
 }
-// ƒ|ƒbƒv
+// ãƒãƒƒãƒ—
 static void WLDTIMER_ViewerQPop( WLDTIMER_VIEWER* p_wk )
 {
-	// æ“ª=––”ö	ƒf[ƒ^‚ª‚È‚¢
+	// å…ˆé ­=æœ«å°¾	ãƒ‡ãƒ¼ã‚¿ãŒãªã„
 	if( p_wk->tail == p_wk->top ){
 		return ;
 	}
 
-	// æ“ªˆÊ’u‚ð“®‚©‚·
+	// å…ˆé ­ä½ç½®ã‚’å‹•ã‹ã™
 	p_wk->top = (p_wk->top + 1)%WLDTIMER_VIEWER_BUFFNUM;
 
 	p_wk->datacount --;
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ…[ƒA[‚p‚©‚ç¡“ü‚Á‚Ä‚¢‚éƒf[ƒ^‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ï¼±ã‹ã‚‰ä»Šå…¥ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	p_data		ƒf[ƒ^
- *	@param	index		tailˆÊ’u‚©‚ç‚ÌƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	index		tailä½ç½®ã‹ã‚‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	ƒf[ƒ^‚ ‚é
- *	@retval	FALSE	ƒf[ƒ^‚È‚µ
+ *	@retval	TRUE	ãƒ‡ãƒ¼ã‚¿ã‚ã‚‹
+ *	@retval	FALSE	ãƒ‡ãƒ¼ã‚¿ãªã—
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_ViewerQGetData( const WLDTIMER_VIEWER* cp_wk, WLDTIMER_POINTDATA* p_data, u32 index )
@@ -4074,7 +4074,7 @@ static BOOL WLDTIMER_ViewerQGetData( const WLDTIMER_VIEWER* cp_wk, WLDTIMER_POIN
 	}
 
 	
-	// Žæ“¾‚·‚éƒoƒbƒtƒ@‚ÌƒCƒ“ƒfƒbƒNƒX‚ð‹‚ß‚é
+	// å–å¾—ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ±‚ã‚ã‚‹
 	index_num = (cp_wk->tail-1) - index;
 	if( index_num < 0 ){
 		index_num += WLDTIMER_VIEWER_BUFFNUM;
@@ -4088,10 +4088,10 @@ static BOOL WLDTIMER_ViewerQGetData( const WLDTIMER_VIEWER* cp_wk, WLDTIMER_POIN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ…[ƒA[ƒAƒjƒŠÇ—
+ *	@brief	ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ã‚¢ãƒ‹ãƒ¡ç®¡ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerAnmCont( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_drawsys )
@@ -4105,22 +4105,22 @@ static void WLDTIMER_ViewerAnmCont( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_d
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhˆ—‰Šú‰»
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_msgman	ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_msgman	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerFadeInit( WLDTIMER_VIEWER* p_wk, WLDTIMER_MSGMAN* p_msgman, WLDTIMER_DRAWSYS* p_drawsys )
 {
-	// ƒtƒF[ƒhƒ[ƒN‰Šú‰»
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	memset( p_wk->fade, 0, sizeof(WLDTIMER_VIEWER_FADE)*WLDTIMER_VIEWER_FADE_DIV );
 	p_wk->fadecount = 0;
 	p_wk->fade_divnum = 0;
 	
-	// V‚µ‚¢ƒƒbƒZ[ƒW‚ÆƒAƒjƒƒtƒ‰ƒO‚ðÝ’è
-	// ƒAƒjƒ‚à‰Šú‰»
+	// æ–°ã—ã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¨ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
+	// ã‚¢ãƒ‹ãƒ¡ã‚‚åˆæœŸåŒ–
 	{
 		int i;
 		int drawtype;
@@ -4129,50 +4129,50 @@ static void WLDTIMER_ViewerFadeInit( WLDTIMER_VIEWER* p_wk, WLDTIMER_MSGMAN* p_m
 		int timezone_tmp;
 		WLDTIMER_POINTDATA pointdata;
 
-		// ƒAƒjƒƒtƒ‰ƒO‚ðƒŠƒZƒbƒg
+		// ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆ
 		for( i=0; i<WLDTIMER_ZONETYPE_NUM; i++ ){
 			WLDTIMER_TimeZoneAnm_ResetFlag( &p_wk->anm[i] );
 		}
 
-		// ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“‚ðƒŠƒZƒbƒg
+		// ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³ã‚’ãƒªã‚»ãƒƒãƒˆ
 		WLDTIMER_PokeBaloon_Reset( &p_wk->poke );
 
-		// ƒ^ƒCƒ€ƒ][ƒ“ƒ`ƒFƒbƒNƒ[ƒN‰Šú‰»
+		// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		timezone_tmp = -1;
 
-		// UNDER‚©‚çTOP‚Ö‚Æƒf[ƒ^‚ðŽæ“¾
+		// UNDERã‹ã‚‰TOPã¸ã¨ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 		for( i=0; i<WLDTIMER_VIEWER_DRAWNUM; i++ ){
 			drawtype = WLDTIMER_VIEWER_DRAW_UND - i;
 			dataflag = WLDTIMER_ViewerQGetData( p_wk, &pointdata, i );
 
 			if( dataflag == TRUE ){
 
-				// ƒ][ƒ“ƒ^ƒCƒvŽæ“¾
+				// ã‚¾ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—å–å¾—
 				zonetype = WLDTIMER_TIMEZONE_GetZoneType( pointdata.timezone );
 					
-				// ƒAƒjƒƒtƒ‰ƒOÝ’è
+				// ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°è¨­å®š
 				WLDTIMER_TimeZoneAnm_SetFlag( &p_wk->anm[ zonetype ], drawtype, TRUE );
 
-				// ’nˆæƒf[ƒ^‘‚«ž‚Ý
+				// åœ°åŸŸãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 				WLDTIMER_ViewerMsgWrite( p_wk, drawtype, &pointdata, p_msgman );
 
-				// •`‰æƒ^ƒCƒv[„ƒ^ƒCƒ€ƒ][ƒ“ƒe[ƒuƒ‹‚ÉŠi”[
+				// æç”»ã‚¿ã‚¤ãƒ—ãƒ¼ï¼žã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ ¼ç´
 				p_wk->drawtype_zonetype[ drawtype ] = zonetype;
 
-				// ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“Ý’è
+				// ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³è¨­å®š
 				WLDTIMER_PokeBaloon_SetDraw( &p_wk->poke, drawtype, 
 						pointdata.timezone, timezone_tmp );
 
-				// ƒtƒF[ƒh‚·‚é•ªŠ„‚Ì”‚ð‹‚ß‚é
+				// ãƒ•ã‚§ãƒ¼ãƒ‰ã™ã‚‹åˆ†å‰²ã®æ•°ã‚’æ±‚ã‚ã‚‹
 				p_wk->fade_divnum += WLDTIMER_VIEWER_FADE_DIV_ONE;
 
-				// ƒ^ƒCƒ€ƒ][ƒ“•Û‘¶
+				// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ä¿å­˜
 				timezone_tmp = pointdata.timezone;
 			}else{
-				// •`‰æƒ^ƒCƒv[„ƒ^ƒCƒ€ƒ][ƒ“ƒe[ƒuƒ‹‚ÉŠi”[
+				// æç”»ã‚¿ã‚¤ãƒ—ãƒ¼ï¼žã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ ¼ç´
 				p_wk->drawtype_zonetype[ drawtype ] = WLDTIMER_ZONETYPE_NUM;
 
-				// ƒ^ƒCƒ€ƒ][ƒ“‰Šú‰»
+				// ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³åˆæœŸåŒ–
 				timezone_tmp = -1;
 			}
 		}
@@ -4181,13 +4181,13 @@ static void WLDTIMER_ViewerFadeInit( WLDTIMER_VIEWER* p_wk, WLDTIMER_MSGMAN* p_m
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhƒƒCƒ“
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN	
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯	
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_ViewerFade( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_drawsys )
@@ -4197,24 +4197,24 @@ static BOOL WLDTIMER_ViewerFade( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_draw
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒLƒbƒvŽž‚ÌƒtƒF[ƒh‰Šú‰»
+ *	@brief	ã‚¹ã‚­ãƒƒãƒ—æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	ƒXƒLƒbƒvˆ—‚Í‚P“x@ViewerFadeInit‚ª‚P“xs‚í‚ê‚½ó‘Ô‚ÅŒÄ‚Î‚ê‚é•K—v‚ª‚ ‚é
+ *	ã‚¹ã‚­ãƒƒãƒ—å‡¦ç†ã¯ï¼‘åº¦ã€€ViewerFadeInitãŒï¼‘åº¦è¡Œã‚ã‚ŒãŸçŠ¶æ…‹ã§å‘¼ã°ã‚Œã‚‹å¿…è¦ãŒã‚ã‚‹
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerFade_SkipInit( WLDTIMER_VIEWER* p_wk )
 {
-	int startnum;	// ƒtƒF[ƒhŠJŽn”
+	int startnum;	// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹æ•°
 	int restnum;
 	int i;
 	
-	// ƒtƒF[ƒhƒJƒEƒ“ƒ^‚©‚çƒXƒLƒbƒv—pƒtƒF[ƒhƒJƒEƒ“ƒ^‚ð‹‚ß‚é
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚«ã‚¦ãƒ³ã‚¿ã‹ã‚‰ã‚¹ã‚­ãƒƒãƒ—ç”¨ãƒ•ã‚§ãƒ¼ãƒ‰ã‚«ã‚¦ãƒ³ã‚¿ã‚’æ±‚ã‚ã‚‹
 	startnum = p_wk->fadecount / WLDTIMER_VIEWER_FADE_DIV_START;
 
-	// ‚±‚ê‚©‚çƒXƒLƒbƒv‚µ‚Ä‚¢‚­‚Æ‚«‚ÉA
-	// ˆê‹C‚ÉƒtƒF[ƒh‚³‚¹‚é”‚ÅŠ„‚èØ‚ê‚é‚¿‚å‚¤‚Ç‚¢‚¢’l‚É’²®‚µ‚Ä‚¨‚­
+	// ã“ã‚Œã‹ã‚‰ã‚¹ã‚­ãƒƒãƒ—ã—ã¦ã„ãã¨ãã«ã€
+	// ä¸€æ°—ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹æ•°ã§å‰²ã‚Šåˆ‡ã‚Œã‚‹ã¡ã‚‡ã†ã©ã„ã„å€¤ã«èª¿æ•´ã—ã¦ãŠã
 	restnum = (startnum % WLDTIMER_VIEWER_FADE_SKIP_ONE);
 	if( restnum > 0 ){
 		startnum += WLDTIMER_VIEWER_FADE_SKIP_ONE-restnum;
@@ -4224,19 +4224,19 @@ static void WLDTIMER_ViewerFade_SkipInit( WLDTIMER_VIEWER* p_wk )
 		WLDTIMER_ViewerFadeDiv_Start( p_wk, i );
 	}
 
-	// ƒtƒF[ƒh‚©ƒEƒ“ƒg’l‚ð’²®‚·‚é
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‹ã‚¦ãƒ³ãƒˆå€¤ã‚’èª¿æ•´ã™ã‚‹
 	p_wk->fadecount = startnum / WLDTIMER_VIEWER_FADE_SKIP_ONE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒLƒbƒvŽž‚ÌƒtƒF[ƒhˆ—
+ *	@brief	ã‚¹ã‚­ãƒƒãƒ—æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WLDTIMER_ViewerFade_Skip( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_drawsys )
@@ -4246,7 +4246,7 @@ BOOL WLDTIMER_ViewerFade_Skip( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_drawsy
 	BOOL ret = TRUE;
 
 
-	// ƒtƒF[ƒhŠJŽnƒ`ƒFƒbƒN
+	// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹ãƒã‚§ãƒƒã‚¯
 	if( p_wk->fadecount < WLDTIMER_VIEWER_FADE_SKIP_COUNTNUM ){
 		for( i=0;  i<WLDTIMER_VIEWER_FADE_SKIP_ONE; i++ ){
 			WLDTIMER_ViewerFadeDiv_Start( p_wk, 
@@ -4254,22 +4254,22 @@ BOOL WLDTIMER_ViewerFade_Skip( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_drawsy
 		}
 	}
 
-	// ƒJƒEƒ“ƒgˆ—
+	// ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 	if( (p_wk->fadecount+1) < WLDTIMER_VIEWER_FADE_SKIP_COUNTNUM ){
 		p_wk->fadecount ++;
 	}
 
-	//@‘S•”ŠJŽn‚³‚¹‚È‚ª‚ç“®‚©‚·
+	//ã€€å…¨éƒ¨é–‹å§‹ã•ã›ãªãŒã‚‰å‹•ã‹ã™
 	for( i=0; i<p_wk->fade_divnum; i++ ){
 		result = WLDTIMER_ViewerFadeDiv_Main( p_wk, i, p_drawsys );
 
-		// 1‚Â‚Å‚àI‚í‚Á‚Ä‚È‚¯‚ê‚ÎA‘±‚¯‚é
+		// 1ã¤ã§ã‚‚çµ‚ã‚ã£ã¦ãªã‘ã‚Œã°ã€ç¶šã‘ã‚‹
 		if( result == FALSE ){
 			ret = FALSE;
 		}
 	}
 
-	// I—¹Žž‚Éƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“‚Ì•\Ž¦‚ðOFF‚·‚é
+	// çµ‚äº†æ™‚ã«ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³ã®è¡¨ç¤ºã‚’OFFã™ã‚‹
 	if( ret == TRUE ){
 		WLDTIMER_PokeBaloon_CleanDraw( &p_wk->poke );
 		WLDTIMER_ViewerWnd1SetPos( &p_wk->wnd, 0, 0 );
@@ -4280,14 +4280,14 @@ BOOL WLDTIMER_ViewerFade_Skip( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_drawsy
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒLƒbƒvˆ—	ã‰º‚©‚ç
+ *	@brief	ã‚¹ã‚­ãƒƒãƒ—å‡¦ç†	ä¸Šä¸‹ã‹ã‚‰
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerFade_SkipInit01( WLDTIMER_VIEWER* p_wk )
 {
 	int startnum;
 	
-	// ƒtƒF[ƒhƒJƒEƒ“ƒ^‚©‚çƒXƒLƒbƒv—pƒtƒF[ƒhƒJƒEƒ“ƒ^‚ð‹‚ß‚é
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚«ã‚¦ãƒ³ã‚¿ã‹ã‚‰ã‚¹ã‚­ãƒƒãƒ—ç”¨ãƒ•ã‚§ãƒ¼ãƒ‰ã‚«ã‚¦ãƒ³ã‚¿ã‚’æ±‚ã‚ã‚‹
 	startnum = p_wk->fadecount / WLDTIMER_VIEWER_FADE_DIV_START;
 	p_wk->fadecount = startnum * WLDTIMER_VIEWER_FADE_SKIP01_START;
 }
@@ -4298,14 +4298,14 @@ static BOOL WLDTIMER_ViewerFade_Skip01( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒh‹¤’Êˆ—
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å…±é€šå‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	fade_timing	ƒ^ƒCƒ~ƒ“ƒO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	fade_timing	ã‚¿ã‚¤ãƒŸãƒ³ã‚°
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_ViewerFade_Main( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_drawsys, int fade_timing )
@@ -4315,28 +4315,28 @@ static BOOL WLDTIMER_ViewerFade_Main( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p
 	BOOL result;
 	BOOL ret = TRUE;
 	
-	// ƒtƒF[ƒhŠJŽnƒ`ƒFƒbƒN
+	// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹ãƒã‚§ãƒƒã‚¯
 	if((p_wk->fadecount % fade_timing) == 0){
 		start = p_wk->fadecount / fade_timing;
 		WLDTIMER_ViewerFadeDiv_Start( p_wk, start );
 	}
 
-	// ƒJƒEƒ“ƒgˆ—
+	// ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 	if( (p_wk->fadecount+1) < (WLDTIMER_VIEWER_FADE_DIV*fade_timing) ){
 		p_wk->fadecount ++;
 	}
 
-	// ƒƒCƒ“ˆ—
+	// ãƒ¡ã‚¤ãƒ³å‡¦ç†
 	for( i=0; i<p_wk->fade_divnum; i++ ){
 		result = WLDTIMER_ViewerFadeDiv_Main( p_wk, i, p_drawsys );
 
-		// 1‚Â‚Å‚àI‚í‚Á‚Ä‚È‚¯‚ê‚ÎA‘±‚¯‚é
+		// 1ã¤ã§ã‚‚çµ‚ã‚ã£ã¦ãªã‘ã‚Œã°ã€ç¶šã‘ã‚‹
 		if( result == FALSE ){
 			ret = FALSE;
 		}
 	}
 
-	// I—¹Žž‚Éƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“‚Ì•\Ž¦‚ðOFF‚·‚é
+	// çµ‚äº†æ™‚ã«ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³ã®è¡¨ç¤ºã‚’OFFã™ã‚‹
 	if( ret == TRUE ){
 		WLDTIMER_PokeBaloon_CleanDraw( &p_wk->poke );
 		WLDTIMER_ViewerWnd1SetPos( &p_wk->wnd, 0, 0 );
@@ -4347,10 +4347,10 @@ static BOOL WLDTIMER_ViewerFade_Main( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ªŠ„ƒtƒF[ƒhˆ—	ŠJŽn
+ *	@brief	åˆ†å‰²ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†	é–‹å§‹
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerFadeDiv_Start( WLDTIMER_VIEWER* p_wk, u32 idx )
@@ -4360,14 +4360,14 @@ static void WLDTIMER_ViewerFadeDiv_Start( WLDTIMER_VIEWER* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ªŠ„ƒtƒF[ƒhˆ—	ƒƒCƒ“
+ *	@brief	åˆ†å‰²ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	idx			ƒtƒF[ƒhƒCƒ“ƒfƒbƒNƒX
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	TRUE	Š®—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	å®Œäº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_ViewerFadeDiv_Main( WLDTIMER_VIEWER* p_wk, u32 idx, WLDTIMER_DRAWSYS* p_drawsys )
@@ -4378,16 +4378,16 @@ static BOOL WLDTIMER_ViewerFadeDiv_Main( WLDTIMER_VIEWER* p_wk, u32 idx, WLDTIME
 	u32 zonetype;
 	
 	if( p_wk->fade[idx].start == FALSE ){
-		return FALSE;	// ‚Í‚¶‚Ü‚Á‚Ä‚à‚¢‚È‚¢
+		return FALSE;	// ã¯ã˜ã¾ã£ã¦ã‚‚ã„ãªã„
 	}
 
-	// I—¹ƒ`ƒFƒbƒN
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( p_wk->fade[idx].count >= WLDTIMER_VIEWER_FADE_DIV_SEQ_NUM ){
 		return TRUE;
 	}
 
-	// Ž©•ª‚Ì•`‰æƒ^ƒCƒvAƒ^ƒCƒ€ƒ][ƒ“‚ð‹‚ß‚é
-	y		 = (WLDTIMER_VIEWER_FADE_DIV - idx) - 1;	//1org‚ð0org‚É‚·‚é
+	// è‡ªåˆ†ã®æç”»ã‚¿ã‚¤ãƒ—ã€ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‚’æ±‚ã‚ã‚‹
+	y		 = (WLDTIMER_VIEWER_FADE_DIV - idx) - 1;	//1orgã‚’0orgã«ã™ã‚‹
 	drawtype = y / WLDTIMER_VIEWER_FADE_DIV_ONE;
 	ofs_y	 = y % WLDTIMER_VIEWER_FADE_DIV_ONE;
 	zonetype = p_wk->drawtype_zonetype[ drawtype ];
@@ -4396,41 +4396,41 @@ static BOOL WLDTIMER_ViewerFadeDiv_Main( WLDTIMER_VIEWER* p_wk, u32 idx, WLDTIME
 
 	switch( p_wk->fade[idx].count ){
 
-	// ‚Ð‚Á‚­‚è•Ô‚µƒtƒŒ[ƒ€‚ðo‚·
+	// ã²ã£ãã‚Šè¿”ã—ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å‡ºã™
 	case WLDTIMER_VIEWER_FADE_DIV_SEQ_CHANGE00:
-		// ‚Ð‚Á‚­‚è•Ô‚µƒXƒNƒŠ[ƒ“‚ÉØ‚è‘Ö‚¦
-		// ƒNƒŠ[ƒ“ƒLƒƒƒ‰ƒNƒ^‚Ì“]‘—
+		// ã²ã£ãã‚Šè¿”ã—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«åˆ‡ã‚Šæ›¿ãˆ
+		// ã‚¯ãƒªãƒ¼ãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®è»¢é€
 		{
 			u8* p_buff;
 			p_buff = WLDTIMER_ViewerDummyGetCharBuffPtr( p_wk, ofs_y );
 			WLDTIMER_ViewerMsgCharTrans( p_wk, drawtype, ofs_y, p_buff );
 		}
-		// ”wŒi‚Ì‚·‚­‚è[‚ñ‚ð‚Ð‚Á‚­‚è•Ô‚·
+		// èƒŒæ™¯ã®ã™ãã‚Šãƒ¼ã‚“ã‚’ã²ã£ãã‚Šè¿”ã™
 		{
 			WLDTIMER_ViewerFadeScrn_LineTrans( p_wk, y, p_drawsys );
 		}
-		// OAMƒEƒBƒ“ƒhƒEÝ’è
+		// OAMã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 		{
 			WLDTIMER_ViewerWnd1SetPos( &p_wk->wnd, y*8, WLDTIMER_VIEWER_FADE_DIV*8 );
 		}
 		break;
 
-	// V‚µ‚¢–Ê‚ðo‚·
+	// æ–°ã—ã„é¢ã‚’å‡ºã™
 	case WLDTIMER_VIEWER_FADE_DIV_SEQ_CHANGE01:
-		// VƒXƒNƒŠ[ƒ“o‚·
-		// VƒLƒƒƒ‰ƒNƒ^‚Ì“]‘—
+		// æ–°ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å‡ºã™
+		// æ–°ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®è»¢é€
 		{
 			u8* p_buff;
 			p_buff = WLDTIMER_ViewerMsgGetCharBuffPtr( p_wk, drawtype, ofs_y );
 			WLDTIMER_ViewerMsgCharTrans( p_wk, drawtype, ofs_y, p_buff );
 		}
-		// ”wŒi‚Ì‚·‚­‚è[‚ñ‚ð‚Ð‚Á‚­‚è•Ô‚·
+		// èƒŒæ™¯ã®ã™ãã‚Šãƒ¼ã‚“ã‚’ã²ã£ãã‚Šè¿”ã™
 		{
 			WLDTIMER_TimeZoneAnm_LineTrans( &p_wk->anm[ zonetype ], y, p_drawsys );
 		}
 		break;
 
-	// ‘Ò‚¿
+	// å¾…ã¡
 	default:
 		break;
 	}
@@ -4441,12 +4441,12 @@ static BOOL WLDTIMER_ViewerFadeDiv_Main( WLDTIMER_VIEWER* p_wk, u32 idx, WLDTIME
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒh—pƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ð“]‘—‚·‚é
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	drawtyep	•`‰æƒ^ƒCƒv
- *	@param	y			‚™À•W
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	drawtyep	æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerFadeScrn_LineTrans( WLDTIMER_VIEWER* p_wk, u32 y, WLDTIMER_DRAWSYS* p_drawsys )
@@ -4463,18 +4463,18 @@ static void WLDTIMER_ViewerFadeScrn_LineTrans( WLDTIMER_VIEWER* p_wk, u32 y, WLD
 			p_wk->p_fadescrndata->screenWidth/8,
 			p_wk->p_fadescrndata->screenHeight/8 );
 
-	// “]‘—ƒtƒ‰ƒO‚ð—§‚Ä‚é
+	// è»¢é€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	GF_BGL_LoadScreenV_Req( p_drawsys->p_bgl, GF_BGL_FRAME2_S );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒEƒ}ƒXƒN‰Šú‰»
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒžã‚¹ã‚¯åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerWndInit( WLDTIMER_VWND* p_wk )
 {
-	// ƒEƒBƒ“ƒhƒE‚Ì’†‚ÍOBJ‚Í•\Ž¦‚µ‚È‚¢
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸­ã¯OBJã¯è¡¨ç¤ºã—ãªã„
 	GXS_SetVisibleWnd( GX_WNDMASK_W0|GX_WNDMASK_W1 );
 	G2S_SetWndOutsidePlane( GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_BG3|GX_WND_PLANEMASK_OBJ, FALSE );
 	G2S_SetWnd0InsidePlane( GX_WND_PLANEMASK_BG0|GX_WND_PLANEMASK_BG1|GX_WND_PLANEMASK_BG2|GX_WND_PLANEMASK_BG3, FALSE );
@@ -4483,13 +4483,13 @@ static void WLDTIMER_ViewerWndInit( WLDTIMER_VWND* p_wk )
 	WLDTIMER_ViewerWnd0SetPos( p_wk, 0, 0 );
 	WLDTIMER_ViewerWnd1SetPos( p_wk, 0, 0 );
 
-	// ƒEƒBƒ“ƒhƒEƒf[ƒ^Ý’èƒ^ƒXƒN
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿è¨­å®šã‚¿ã‚¹ã‚¯
 	p_wk->p_tcb = VWaitTCB_Add( WLDTIMER_ViewerWndTcb, p_wk, 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒEƒ}ƒXƒN”jŠü
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒžã‚¹ã‚¯ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerWndExit( WLDTIMER_VWND* p_wk )
@@ -4500,10 +4500,10 @@ static void WLDTIMER_ViewerWndExit( WLDTIMER_VWND* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒEƒ}ƒXƒN‚ÌÀ•W‚ðÝ’è
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒžã‚¹ã‚¯ã®åº§æ¨™ã‚’è¨­å®š
  *
- *	@param	sy	YŠJŽn
- *	@param	ey	YI—¹
+ *	@param	sy	Yé–‹å§‹
+ *	@param	ey	Yçµ‚äº†
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerWnd0SetPos( WLDTIMER_VWND* p_wk, s16 sy, s16 ey )
@@ -4533,10 +4533,10 @@ static void WLDTIMER_ViewerWnd1SetPos( WLDTIMER_VWND* p_wk, s16 sy, s16 ey )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒEƒf[ƒ^Ý’èƒ^ƒXƒN
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿è¨­å®šã‚¿ã‚¹ã‚¯
  *
  *	@param	p_tcb	TCB
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerWndTcb( TCB_PTR p_tcb, void* p_work )
@@ -4557,11 +4557,11 @@ static void WLDTIMER_ViewerWndTcb( TCB_PTR p_tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ…[ƒA[ƒƒbƒZ[ƒW‰Šú‰»
+ *	@brief	ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerMsgInit( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_drawsys, u32 heapID )
@@ -4598,9 +4598,9 @@ static void WLDTIMER_ViewerMsgInit( WLDTIMER_VIEWER* p_wk, WLDTIMER_DRAWSYS* p_d
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ…[ƒA[ƒƒbƒZ[ƒW”jŠü
+ *	@brief	ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerMsgExit( WLDTIMER_VIEWER* p_wk )
@@ -4615,12 +4615,12 @@ static void WLDTIMER_ViewerMsgExit( WLDTIMER_VIEWER* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ…[ƒA[ƒƒbƒZ[ƒW‚Ì‘‚«ž‚Ý
+ *	@brief	ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®æ›¸ãè¾¼ã¿
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	drawtype	•`‰æˆÊ’u
- *	@param	cp_data		•`‰æƒf[ƒ^
- *	@param	p_msgman	ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	drawtype	æç”»ä½ç½®
+ *	@param	cp_data		æç”»ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_msgman	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerMsgWrite( WLDTIMER_VIEWER* p_wk, u32 drawtype, const WLDTIMER_POINTDATA* cp_data, WLDTIMER_MSGMAN* p_msgman )
@@ -4633,13 +4633,13 @@ static void WLDTIMER_ViewerMsgWrite( WLDTIMER_VIEWER* p_wk, u32 drawtype, const 
 	
 	p_bmp = &p_wk->msg[drawtype];
 	
-	// ƒNƒŠƒAƒJƒ‰[‚Å‰Šú‰»
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã§åˆæœŸåŒ–
 	GF_BGL_BmpWinDataFill( p_bmp, 0 );
 
-	// ƒ][ƒ“ƒ^ƒCƒvŽæ“¾
+	// ã‚¾ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—å–å¾—
 	zonetype = WLDTIMER_TIMEZONE_GetZoneType( cp_data->timezone );
 
-	// ƒ^ƒCƒgƒ‹•\Ž¦
+	// ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
 	{
 		p_str = WLDTIMER_MsgManGetStr( p_msgman, msg_02 );
 		GF_STR_PrintColor(p_bmp,FONT_TALK,p_str,
@@ -4647,7 +4647,7 @@ static void WLDTIMER_ViewerMsgWrite( WLDTIMER_VIEWER* p_wk, u32 drawtype, const 
 				MSG_NO_PUT, WLDTIMER_VIEWER_MSG_TITLE_COL[ zonetype ], NULL);
 	}
 
-	// ‘•\Ž¦
+	// å›½è¡¨ç¤º
 	{
 		p_str = WLDTIMER_MsgManCountryGetStr( p_msgman, cp_data->nation );
 		GF_STR_PrintColor(p_bmp,FONT_TALK,p_str,
@@ -4655,7 +4655,7 @@ static void WLDTIMER_ViewerMsgWrite( WLDTIMER_VIEWER* p_wk, u32 drawtype, const 
 				MSG_NO_PUT, WLDTIMER_VIEWER_MSG_NATION_COL, NULL);
 	}
 
-	// ’nˆæ•\Ž¦
+	// åœ°åŸŸè¡¨ç¤º
 	{
 		p_str = WLDTIMER_MsgManPlaceGetStr( p_msgman, cp_data->nation, cp_data->area );
 		GF_STR_PrintColor(p_bmp,FONT_TALK,p_str,
@@ -4666,12 +4666,12 @@ static void WLDTIMER_ViewerMsgWrite( WLDTIMER_VIEWER* p_wk, u32 drawtype, const 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ…[ƒA[ƒƒbƒZ[ƒW	•`‰æˆÊ’u‚Æ‚³‚ç‚É‚™ˆÊ’u‚ÌƒLƒƒƒ‰ƒNƒ^ƒ|ƒCƒ“ƒ^Žæ“¾
- *			‚Ð‚Á‚­‚è•Ô‚µƒGƒtƒFƒNƒg—p
+ *	@brief	ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸	æç”»ä½ç½®ã¨ã•ã‚‰ã«ï½™ä½ç½®ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒã‚¤ãƒ³ã‚¿å–å¾—
+ *			ã²ã£ãã‚Šè¿”ã—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	drawtype	•`‰æˆÊ’u
- *	@param	y			•`‰æˆÊ’u“à‚ÌYÀ•W
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	drawtype	æç”»ä½ç½®
+ *	@param	y			æç”»ä½ç½®å†…ã®Yåº§æ¨™
  */
 //-----------------------------------------------------------------------------
 static u8* WLDTIMER_ViewerMsgGetCharBuffPtr( WLDTIMER_VIEWER* p_wk, u32 drawtype, u32 y )
@@ -4679,54 +4679,54 @@ static u8* WLDTIMER_ViewerMsgGetCharBuffPtr( WLDTIMER_VIEWER* p_wk, u32 drawtype
 	u8* p_buff;
 	GF_ASSERT( drawtype < WLDTIMER_VIEWER_DRAWNUM );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒoƒbƒtƒ@Žæ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ•ã‚¡å–å¾—
 	p_buff = p_wk->msg[ drawtype ].chrbuf;
 
-	// –Ú“IˆÊ’u‚Ìƒ|ƒCƒ“ƒ^‚ð•Ô‚·
+	// ç›®çš„ä½ç½®ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
 	return &p_buff[((WLDTIMER_VIEWER_MSGBMP_SIZX*y)*32)];
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒ…[ƒA[ƒ_ƒ~[ƒƒbƒZ[ƒW	‚™ˆÊ’u‚ÌƒLƒƒƒ‰ƒNƒ^ƒ|ƒCƒ“ƒ^Žæ“¾
- *			‚Ð‚Á‚­‚è•Ô‚µƒGƒtƒFƒNƒg—p
+ *	@brief	ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ãƒ€ãƒŸãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸	ï½™ä½ç½®ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒã‚¤ãƒ³ã‚¿å–å¾—
+ *			ã²ã£ãã‚Šè¿”ã—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	y			•`‰æˆÊ’u“à‚ÌYÀ•W
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	y			æç”»ä½ç½®å†…ã®Yåº§æ¨™
  */
 //-----------------------------------------------------------------------------
 static u8* WLDTIMER_ViewerDummyGetCharBuffPtr( WLDTIMER_VIEWER* p_wk, u32 y )
 {
 	u8* p_buff;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒoƒbƒtƒ@Žæ“¾
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ•ã‚¡å–å¾—
 	p_buff = p_wk->dummy.chrbuf;
 
-	// –Ú“IˆÊ’u‚Ìƒ|ƒCƒ“ƒ^‚ð•Ô‚·
+	// ç›®çš„ä½ç½®ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
 	return &p_buff[((WLDTIMER_VIEWER_MSGBMP_SIZX*y)*32)];
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	drawtype	•`‰æƒ^ƒCƒv
- *	@param	y			‚™À•W
- *	@param	cp_buff		ƒLƒƒƒ‰ƒNƒ^ƒoƒbƒtƒ@
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	drawtype	æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	cp_buff		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ•ã‚¡
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_ViewerMsgCharTrans( WLDTIMER_VIEWER* p_wk, u32 drawtype, u32 y, const u8* cp_buff )
 {
 	u16 cgx;
 
-	// “]‘—æƒIƒtƒZƒbƒgŽæ“¾
+	// è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 	cgx = GF_BGL_BmpWinGet_Chrofs( &p_wk->msg[ drawtype ] );
 
-	// YÀ•W‚ÌƒIƒtƒZƒbƒg‚É‚·‚é
+	// Yåº§æ¨™ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã«ã™ã‚‹
 	cgx += (WLDTIMER_VIEWER_MSGBMP_SIZX*y);
 
-	// “]‘—
+	// è»¢é€
 	AddVramTransferManager( NNS_GFD_DST_2D_BG1_CHAR_SUB, cgx*32, 
 			(void*)cp_buff, WLDTIMER_VIEWER_MSGBMP_SIZX*32 );
 }
@@ -4735,13 +4735,13 @@ static void WLDTIMER_ViewerMsgCharTrans( WLDTIMER_VIEWER* p_wk, u32 drawtype, u3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒ][ƒ“ƒAƒjƒ	‰Šú‰»
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	cp_init		‰Šú‰»ƒf[ƒ^
- *	@param	ƒJƒEƒ“ƒgÅ‘å’l
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_init		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§å€¤
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_TimeZoneAnm_Init( WLDTIMER_TIMEZONEANM* p_wk, WLDTIMER_DRAWSYS* p_drawsys, const WLDTIMER_TIMEZONEANM_INIT* cp_init, u16 count_max, u32 heapID )
@@ -4750,12 +4750,12 @@ static void WLDTIMER_TimeZoneAnm_Init( WLDTIMER_TIMEZONEANM* p_wk, WLDTIMER_DRAW
 	
 	memset( p_wk, 0, sizeof(WLDTIMER_TIMEZONEANM) );
 
-	// ƒJƒEƒ“ƒgƒf[ƒ^
+	// ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 	p_wk->count_max = count_max;
 
-	// ƒXƒNƒŠ[ƒ““Ç‚Ýž‚Ý
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³èª­ã¿è¾¼ã¿
 	if( cp_init->scrn_frame > 0 ){
-		p_wk->scrnframe = cp_init->scrn_frame;	// ”
+		p_wk->scrnframe = cp_init->scrn_frame;	// æ•°
 		for( i=0; i<p_wk->scrnframe; i++ ){
 			
 			p_wk->p_scrnbuff[i] = ArcUtil_HDL_ScrnDataGet( 
@@ -4764,7 +4764,7 @@ static void WLDTIMER_TimeZoneAnm_Init( WLDTIMER_TIMEZONEANM* p_wk, WLDTIMER_DRAW
 		}
 	}
 
-	// ƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	if( cp_init->pltt_frame > 0 ){
 		
 		p_wk->plttframe = cp_init->pltt_frame;
@@ -4778,23 +4778,23 @@ static void WLDTIMER_TimeZoneAnm_Init( WLDTIMER_TIMEZONEANM* p_wk, WLDTIMER_DRAW
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒ][ƒ“ƒAƒjƒ	”jŠü
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡	ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_TimeZoneAnm_Exit( WLDTIMER_TIMEZONEANM* p_wk )
 {
 	int i;
 	
-	// ƒXƒNƒŠ[ƒ“”jŠü
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç ´æ£„
 	if( p_wk->scrnframe > 0 ){
 		for( i=0; i<p_wk->scrnframe; i++ ){
 			sys_FreeMemoryEz( p_wk->p_scrnbuff[i] );
 		}
 	}
 
-	// ƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	if( p_wk->plttframe > 0 ){
 		sys_FreeMemoryEz( p_wk->p_plttbuff );
 	}
@@ -4802,12 +4802,12 @@ static void WLDTIMER_TimeZoneAnm_Exit( WLDTIMER_TIMEZONEANM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒ][ƒ“ƒAƒjƒ	ƒƒCƒ“
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	count		ƒJƒEƒ“ƒg’l
- *	@param	count_max	Å‘åƒJƒEƒ“ƒg
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	count		ã‚«ã‚¦ãƒ³ãƒˆå€¤
+ *	@param	count_max	æœ€å¤§ã‚«ã‚¦ãƒ³ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_TimeZoneAnm_Main( WLDTIMER_TIMEZONEANM* p_wk, WLDTIMER_DRAWSYS* p_drawsys )
@@ -4815,19 +4815,19 @@ static void WLDTIMER_TimeZoneAnm_Main( WLDTIMER_TIMEZONEANM* p_wk, WLDTIMER_DRAW
 	int i;
 	u32 pltt_frame, scrn_frame;
 
-	// ƒtƒŒ[ƒ€ŒvŽZ
+	// ãƒ•ãƒ¬ãƒ¼ãƒ è¨ˆç®—
 	scrn_frame = (p_wk->count * p_wk->scrnframe) / p_wk->count_max;
 	pltt_frame = (p_wk->count * p_wk->plttframe) / p_wk->count_max;
 
-	// ƒJƒEƒ“ƒgˆ—
+	// ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 	p_wk->count = (p_wk->count + 1) % p_wk->count_max;
 		
-	// ƒXƒNƒŠ[ƒ“ƒAƒjƒ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡
 	if( (p_wk->scrnframe>0) && (scrn_frame!=p_wk->scrnframe_now) ){
-		p_wk->scrnframe_now = scrn_frame;	// •Û‘¶
+		p_wk->scrnframe_now = scrn_frame;	// ä¿å­˜
 		for( i=0; i<WLDTIMER_VIEWER_DRAWNUM; i++ ){
 			if( p_wk->drawflag[ i ] == TRUE ){
-				// “]‘—ˆ—
+				// è»¢é€å‡¦ç†
 				GF_BGL_ScrWriteExpand(
 						p_drawsys->p_bgl, GF_BGL_FRAME2_S, 
 						WLDTIMER_VIEWER_SCRN_X, 
@@ -4839,20 +4839,20 @@ static void WLDTIMER_TimeZoneAnm_Main( WLDTIMER_TIMEZONEANM* p_wk, WLDTIMER_DRAW
 						p_wk->p_scrndata[ p_wk->scrnframe_now ]->screenWidth/8,
 						p_wk->p_scrndata[ p_wk->scrnframe_now ]->screenHeight/8 );
 
-				// “]‘—ƒtƒ‰ƒO‚ð—§‚Ä‚é
+				// è»¢é€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 				GF_BGL_LoadScreenV_Req( p_drawsys->p_bgl, GF_BGL_FRAME2_S );
 			}
 		}
 	}
 
-	// ƒpƒŒƒbƒgƒAƒjƒ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 	if( (p_wk->plttframe>0) && (pltt_frame!=p_wk->plttframe_now) ){
 		BOOL result;
 		u8* p_data;
 		
-		p_wk->plttframe_now = pltt_frame;	// •Û‘¶
+		p_wk->plttframe_now = pltt_frame;	// ä¿å­˜
 
-		// “]‘—
+		// è»¢é€
 		p_data = (u8*)p_wk->p_plttdata->pRawData;
 		result = AddVramTransferManager( NNS_GFD_DST_2D_BG_PLTT_SUB,
 				p_wk->plttno*32, &p_data[p_wk->plttframe_now*32], 32 );
@@ -4862,16 +4862,16 @@ static void WLDTIMER_TimeZoneAnm_Main( WLDTIMER_TIMEZONEANM* p_wk, WLDTIMER_DRAW
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒONOFFƒtƒ‰ƒO‚ðÝ’è‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ONOFFãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	drawtype	•`‰æƒ^ƒCƒv
- *	@param	flag		ƒtƒ‰ƒO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	drawtype	æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	flag		ãƒ•ãƒ©ã‚°
  *	
  *	drawtype
-		WLDTIMER_VIEWER_DRAW_TOP,	// ã
-		WLDTIMER_VIEWER_DRAW_MID,	// ’†
-		WLDTIMER_VIEWER_DRAW_UND,	// ‰º
+		WLDTIMER_VIEWER_DRAW_TOP,	// ä¸Š
+		WLDTIMER_VIEWER_DRAW_MID,	// ä¸­
+		WLDTIMER_VIEWER_DRAW_UND,	// ä¸‹
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_TimeZoneAnm_SetFlag( WLDTIMER_TIMEZONEANM* p_wk, u32 drawtype, BOOL flag )
@@ -4882,9 +4882,9 @@ static void WLDTIMER_TimeZoneAnm_SetFlag( WLDTIMER_TIMEZONEANM* p_wk, u32 drawty
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒtƒ‰ƒOó‘Ô‚ð‘S•”OFF‚É‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°çŠ¶æ…‹ã‚’å…¨éƒ¨OFFã«ã™ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_TimeZoneAnm_ResetFlag( WLDTIMER_TIMEZONEANM* p_wk )
@@ -4894,16 +4894,16 @@ static void WLDTIMER_TimeZoneAnm_ResetFlag( WLDTIMER_TIMEZONEANM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ðƒ‰ƒCƒ“‚Å“]‘—‚·‚é
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ©ã‚¤ãƒ³ã§è»¢é€ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	y			YÀ•W
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	y			Yåº§æ¨™
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_TimeZoneAnm_LineTrans( WLDTIMER_TIMEZONEANM* p_wk, u32 y, WLDTIMER_DRAWSYS* p_drawsys )
 {
-	// ƒtƒŒ[ƒ€‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ÌYƒ‰ƒCƒ“‚¾‚¯‚ð“]‘—
+	// ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®Yãƒ©ã‚¤ãƒ³ã ã‘ã‚’è»¢é€
 	if( p_wk->scrnframe>0 ){
 		GF_BGL_ScrWriteExpand(
 				p_drawsys->p_bgl, GF_BGL_FRAME2_S, 
@@ -4916,7 +4916,7 @@ static void WLDTIMER_TimeZoneAnm_LineTrans( WLDTIMER_TIMEZONEANM* p_wk, u32 y, W
 				p_wk->p_scrndata[ p_wk->scrnframe_now ]->screenWidth/8,
 				p_wk->p_scrndata[ p_wk->scrnframe_now ]->screenHeight/8 );
 
-		// “]‘—ƒtƒ‰ƒO‚ð—§‚Ä‚é
+		// è»¢é€ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		GF_BGL_LoadScreenV_Req( p_drawsys->p_bgl, GF_BGL_FRAME2_S );
 	}
 }
@@ -4925,12 +4925,12 @@ static void WLDTIMER_TimeZoneAnm_LineTrans( WLDTIMER_TIMEZONEANM* p_wk, u32 y, W
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“	‰Šú‰»
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
- *	@param	p_wnd		ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wnd		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PokeBaloon_Init( WLDTIMER_POKEBALLOON* p_wk, WLDTIMER_DRAWSYS* p_drawsys, WLDTIMER_VWND* p_wnd, u32 heapID )
@@ -4940,22 +4940,22 @@ static void WLDTIMER_PokeBaloon_Init( WLDTIMER_POKEBALLOON* p_wk, WLDTIMER_DRAWS
 	BOOL result;
 	CLACT_ADD_SIMPLE add = {NULL};
 
-	// 0ƒNƒŠƒA
+	// 0ã‚¯ãƒªã‚¢
 	memset( p_wk, 0, sizeof(WLDTIMER_POKEBALLOON) );
 
-	// ƒf[ƒ^‰Šú‰»
-	p_wk->drawtype	= WLDTIMER_VIEWER_DRAW_UND;	//  ‰º‚©‚ç•\Ž¦
+	// ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
+	p_wk->drawtype	= WLDTIMER_VIEWER_DRAW_UND;	//  ä¸‹ã‹ã‚‰è¡¨ç¤º
 	p_wk->wait		= WLDTIMER_VIEWER_POKEBLN_WAIT;
 	
 
-	// “o˜^Šî–{î•ñì¬
+	// ç™»éŒ²åŸºæœ¬æƒ…å ±ä½œæˆ
 	add.ClActSet	= p_drawsys->p_clactset;
 	add.ClActHeader = &header;
 	add.pri			= WLDTIMER_VIEWER_POKEBLN_SFT_PRI;
 	add.DrawArea	= NNS_G2D_VRAM_TYPE_2DSUB;
 	add.heap		= heapID;
 
-	// ƒpƒŒƒbƒg‚Í‹¤’Ê
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã¯å…±é€š
 	p_wk->p_res[ 0 ][ 1 ] = CLACT_U_ResManagerResAddArcPltt_ArcHandle( 
 			p_drawsys->p_resman[1], p_drawsys->p_handle,
 			WLDTIMER_VIEWER_POKEBLN_NCLR_GET(i),
@@ -4967,33 +4967,33 @@ static void WLDTIMER_PokeBaloon_Init( WLDTIMER_POKEBALLOON* p_wk, WLDTIMER_DRAWS
 		
 	
 	
-	// ƒ|ƒPƒ‚ƒ“‚ÌƒOƒ‰ƒtƒBƒbƒN“Ç‚Ýž‚Ý
+	// ãƒã‚±ãƒ¢ãƒ³ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿
 	for( i=0; i<WLDTIMER_TIME_POKE_NUM; i++ ){
 
-		// ƒLƒƒƒ‰ƒNƒ^“Ç‚Ýž‚Ý
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿èª­ã¿è¾¼ã¿
 		p_wk->p_res[ i ][ 0 ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 				p_drawsys->p_resman[0], p_drawsys->p_handle,
 				WLDTIMER_VIEWER_POKEBLN_NCGR_GET(i),
 				FALSE, i, NNS_G2D_VRAM_TYPE_2DSUB, heapID );
 		
-		// ƒZƒ‹
+		// ã‚»ãƒ«
 		p_wk->p_res[ i ][ 2 ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( 
 				p_drawsys->p_resman[2], p_drawsys->p_handle,
 				WLDTIMER_VIEWER_POKEBLN_NCER_GET(i),
 				FALSE, i, CLACT_U_CELL_RES, heapID );
 
-		// ƒZƒ‹ƒAƒjƒ
+		// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		p_wk->p_res[ i ][ 3 ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( 
 				p_drawsys->p_resman[3], p_drawsys->p_handle,
 				WLDTIMER_VIEWER_POKEBLN_NANR_GET(i),
 				FALSE, i, CLACT_U_CELLANM_RES, heapID );
 
-		// VRAM“]‘—
+		// VRAMè»¢é€
 		result =CLACT_U_CharManagerSetAreaCont( p_wk->p_res[ i ][ 0 ] );
 		GF_ASSERT( result );
 		CLACT_U_ResManagerResOnlyDelete( p_wk->p_res[ i ][ 0 ] );
 
-		// ƒwƒbƒ_[ì¬
+		// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 		CLACT_U_MakeHeader( &header, i, WLDTIMER_VIEWER_POKEBLN_NCLR_CONTID, i, i,
 				CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
 				0, WLDTIMER_VIEWER_POKEBLN_BG_PRI,
@@ -5003,51 +5003,51 @@ static void WLDTIMER_PokeBaloon_Init( WLDTIMER_POKEBALLOON* p_wk, WLDTIMER_DRAWS
 				p_drawsys->p_resman[3],
 				NULL, NULL );
 
-		// ƒAƒNƒ^[ì¬
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ä½œæˆ
 		p_wk->p_act[ i ] = CLACT_AddSimple( &add );
 
-		// ƒI[ƒgƒAƒjƒON
+		// ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ON
 		CLACT_SetAnmFlag( p_wk->p_act[ i ], TRUE );
 		CLACT_SetAnmFrame( p_wk->p_act[ i ], FX32_ONE );
 	}
 
-	// OAM”ñ•\Ž¦
+	// OAMéžè¡¨ç¤º
 	WLDTIMER_PokeBaloon_CleanDraw( p_wk );
 	WLDTIMER_ViewerWnd1SetPos( p_wnd, 0, 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“	”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³	ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_drawsys	•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawsys	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PokeBaloon_Exit( WLDTIMER_POKEBALLOON* p_wk, WLDTIMER_DRAWSYS* p_drawsys )
 {
 	int i, j;
 
-	// ‰¹‚ª‚È‚Á‚Ä‚½‚ç’âŽ~
-	Snd_SeStopBySeqNo( WLDTIMER_SND_BALLOON, 0 );	// •—‘D‰¹’âŽ~
+	// éŸ³ãŒãªã£ã¦ãŸã‚‰åœæ­¢
+	Snd_SeStopBySeqNo( WLDTIMER_SND_BALLOON, 0 );	// é¢¨èˆ¹éŸ³åœæ­¢
 
 
-	// ƒŠƒ\[ƒX‚Æƒ[ƒN”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ã¨ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	for( i=0; i<WLDTIMER_TIME_POKE_NUM; i++ ){
-		// ƒ[ƒN”jŠü
+		// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		CLACT_Delete( p_wk->p_act[i] );
 
-		// VRAMŠJ•ú
+		// VRAMé–‹æ”¾
 		CLACT_U_CharManagerDelete( p_wk->p_res[i][0] );
 		if( i==0 ){
-			// ƒpƒŒƒbƒg”jŠü
+			// ãƒ‘ãƒ¬ãƒƒãƒˆç ´æ£„
 			CLACT_U_PlttManagerDelete( p_wk->p_res[i][1] );
 			CLACT_U_ResManagerResDelete( p_drawsys->p_resman[1], p_wk->p_res[i][1] );
 		}
 		
-		// ƒŠƒ\[ƒX”jŠü
+		// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 		for( j=0; j<WLDTIMER_RESMAN_NUM; j++ ){
-			if(j!=1){	// ƒpƒŒƒbƒgˆÈŠO”jŠü
+			if(j!=1){	// ãƒ‘ãƒ¬ãƒƒãƒˆä»¥å¤–ç ´æ£„
 				CLACT_U_ResManagerResDelete( p_drawsys->p_resman[j], p_wk->p_res[i][j] );
 			}
 		}
@@ -5056,9 +5056,9 @@ static void WLDTIMER_PokeBaloon_Exit( WLDTIMER_POKEBALLOON* p_wk, WLDTIMER_DRAWS
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“	ƒAƒjƒƒf[ƒ^@ƒŠƒZƒbƒg
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã€€ãƒªã‚»ãƒƒãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PokeBaloon_Reset( WLDTIMER_POKEBALLOON* p_wk )
@@ -5072,12 +5072,12 @@ static void WLDTIMER_PokeBaloon_Reset( WLDTIMER_POKEBALLOON* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“	•`‰æƒtƒ‰ƒOÝ’è
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³	æç”»ãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	drawtype	•`‰æƒ^ƒCƒv
- *	@param	timezone	ƒ^ƒCƒ€ƒ][ƒ“
- *	@param	last_timezone	‚P‚Â‚Ü‚¦‚Ìƒ^ƒCƒ€ƒ][ƒ“
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	drawtype	æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	timezone	ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³
+ *	@param	last_timezone	ï¼‘ã¤ã¾ãˆã®ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PokeBaloon_SetDraw( WLDTIMER_POKEBALLOON* p_wk, u8 drawtype, u8 timezone, u8 last_timezone )
@@ -5086,12 +5086,12 @@ static void WLDTIMER_PokeBaloon_SetDraw( WLDTIMER_POKEBALLOON* p_wk, u8 drawtype
 	p_wk->drawflag[ drawtype ]	= TRUE;
 	p_wk->pokegra[ drawtype ]	= WLDTIMER_TIMEZONE_GetMons( timezone );
 
-	// “®ì‰Šú‰»
+	// å‹•ä½œåˆæœŸåŒ–
 	WLDTIMER_PokeBln_MoveInit( &p_wk->move[drawtype],
 			&sc_WLDTIMER_POKEBLN_MOVEDATA_TBL[ p_wk->pokegra[drawtype] ][drawtype] );
 
-	// 1‚Â‘O‚Ìƒoƒ‹[ƒ“‚Ìãequalƒtƒ‰ƒOÝ’è
-	// ¡‚Ìƒoƒ‹[ƒ“‚Ì‰ºequalƒtƒ‰ƒOÝ’è
+	// 1ã¤å‰ã®ãƒãƒ«ãƒ¼ãƒ³ã®ä¸Šequalãƒ•ãƒ©ã‚°è¨­å®š
+	// ä»Šã®ãƒãƒ«ãƒ¼ãƒ³ã®ä¸‹equalãƒ•ãƒ©ã‚°è¨­å®š
 	if( last_timezone<WLDTIMER_TIMEZONE_DATANUM ){
 		last_pokegra = WLDTIMER_TIMEZONE_GetMons( last_timezone );
 		if( last_pokegra == p_wk->pokegra[ drawtype ] ){
@@ -5105,9 +5105,9 @@ static void WLDTIMER_PokeBaloon_SetDraw( WLDTIMER_POKEBALLOON* p_wk, u8 drawtype
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“	•`‰æƒNƒŠ[ƒ“
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³	æç”»ã‚¯ãƒªãƒ¼ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PokeBaloon_CleanDraw( WLDTIMER_POKEBALLOON* p_wk )
@@ -5120,31 +5120,31 @@ static void WLDTIMER_PokeBaloon_CleanDraw( WLDTIMER_POKEBALLOON* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“	ƒƒCƒ“ˆ—
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³	ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_wnd	ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wnd	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PokeBaloon_Main( WLDTIMER_POKEBALLOON* p_wk, WLDTIMER_VWND* p_wnd )
 {
 	BOOL result;
 	
-	// ŠJŽnƒEƒGƒCƒg
+	// é–‹å§‹ã‚¦ã‚¨ã‚¤ãƒˆ
 	if( p_wk->wait > 0 ){
 		p_wk->wait --;
 
-		// ƒEƒGƒCƒg‚ª‚O‚È‚ç“®ìŠJŽnˆ—‚ð“ü‚ê‚é
+		// ã‚¦ã‚¨ã‚¤ãƒˆãŒï¼ãªã‚‰å‹•ä½œé–‹å§‹å‡¦ç†ã‚’å…¥ã‚Œã‚‹
 		if( p_wk->wait == 0 ){
 			result = WLDTIMER_PokeBaloon_Start( p_wk, p_wk->drawtype, p_wnd );
 			if( result == TRUE ){
-				Snd_SePlay( WLDTIMER_SND_BALLOON );	// •—‘D‰¹
+				Snd_SePlay( WLDTIMER_SND_BALLOON );	// é¢¨èˆ¹éŸ³
 			}
 		}
 		return ;
 	}
 	
-	// “®ì
+	// å‹•ä½œ
 	result = WLDTIMER_PokeBaloon_Move( p_wk, p_wk->drawtype, p_wnd );
 
 	if( result == TRUE ){
@@ -5152,7 +5152,7 @@ static void WLDTIMER_PokeBaloon_Main( WLDTIMER_POKEBALLOON* p_wk, WLDTIMER_VWND*
 			p_wk->drawtype--;
 			WLDTIMER_PokeBaloon_Start( p_wk, p_wk->drawtype, p_wnd );
 		}else{
-			Snd_SeStopBySeqNo( WLDTIMER_SND_BALLOON, 0 );	// •—‘D‰¹’âŽ~
+			Snd_SeStopBySeqNo( WLDTIMER_SND_BALLOON, 0 );	// é¢¨èˆ¹éŸ³åœæ­¢
 			p_wk->drawtype = WLDTIMER_VIEWER_DRAW_UND;
 			p_wk->wait = WLDTIMER_VIEWER_POKEBLN_WAIT;
 		}
@@ -5161,30 +5161,30 @@ static void WLDTIMER_PokeBaloon_Main( WLDTIMER_POKEBALLOON* p_wk, WLDTIMER_VWND*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒ‹[ƒ“ƒIƒuƒWƒFƒNƒg	“®ìŠJŽn
+ *	@brief	ãƒãƒ«ãƒ¼ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ	å‹•ä½œé–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	drawtype	•`‰æƒ^ƒCƒv
- *	@param	p_wnd		ƒEƒBƒ“ƒhƒE
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	drawtype	æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	p_wnd		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- *	@retval	TRUE	“®ìŠJŽn‚µ‚½
- *	@retval	FALSE	ŠJŽn‚µ‚È‚©‚Á‚½
+ *	@retval	TRUE	å‹•ä½œé–‹å§‹ã—ãŸ
+ *	@retval	FALSE	é–‹å§‹ã—ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_PokeBaloon_Start( WLDTIMER_POKEBALLOON* p_wk, u32 drawtype, WLDTIMER_VWND* p_wnd )
 {
-	// ƒAƒjƒ—L–³ƒ`ƒFƒbƒN
+	// ã‚¢ãƒ‹ãƒ¡æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
 	if( p_wk->drawflag[ drawtype ] == FALSE ){
 		return FALSE;
 	}
 
-	// “®ìƒŠƒZƒbƒg
+	// å‹•ä½œãƒªã‚»ãƒƒãƒˆ
 	WLDTIMER_PokeBln_MoveReset( &p_wk->move[drawtype], p_wnd );
 
-	// •\Ž¦ON
+	// è¡¨ç¤ºON
 	CLACT_SetDrawFlag( p_wk->p_act[ p_wk->pokegra[ drawtype ] ], TRUE );
 
-	// À•WÝ’è
+	// åº§æ¨™è¨­å®š
 	WLDTIMER_PokeBln_ActSetMatrix( p_wk, drawtype );
 
 	return TRUE;
@@ -5192,28 +5192,28 @@ static BOOL WLDTIMER_PokeBaloon_Start( WLDTIMER_POKEBALLOON* p_wk, u32 drawtype,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒ‹[ƒ“ƒIƒuƒWƒF“®ì
+ *	@brief	ãƒãƒ«ãƒ¼ãƒ³ã‚ªãƒ–ã‚¸ã‚§å‹•ä½œ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	drawtype	“®ì‚³‚¹‚é•`‰æƒ^ƒCƒv
- *	@param	p_wnd		ƒEƒBƒ“ƒhƒEƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	drawtype	å‹•ä½œã•ã›ã‚‹æç”»ã‚¿ã‚¤ãƒ—
+ *	@param	p_wnd		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	TRUE	“®ìŠ®—¹
- *	@retval	FALSE	“®ì“r’†
+ *	@retval	TRUE	å‹•ä½œå®Œäº†
+ *	@retval	FALSE	å‹•ä½œé€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_PokeBaloon_Move( WLDTIMER_POKEBALLOON* p_wk, u32 drawtype, WLDTIMER_VWND* p_wnd )
 {
 	BOOL result;
 
-	// ƒAƒjƒI—¹ƒ`ƒFƒbƒN
+	// ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( p_wk->drawflag[ drawtype ] == FALSE ){
 		return TRUE;
 	}
 
-	// ƒAƒjƒƒƒCƒ“
-	result = WLDTIMER_PokeBln_MoveMain( &p_wk->move[ drawtype ], p_wnd );	// “®ì
-	WLDTIMER_PokeBln_ActSetMatrix( p_wk, drawtype );				// À•WÝ’è
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
+	result = WLDTIMER_PokeBln_MoveMain( &p_wk->move[ drawtype ], p_wnd );	// å‹•ä½œ
+	WLDTIMER_PokeBln_ActSetMatrix( p_wk, drawtype );				// åº§æ¨™è¨­å®š
 
 	if( result == TRUE ){
 		CLACT_SetDrawFlag( p_wk->p_act[ p_wk->pokegra[ drawtype ] ], FALSE );
@@ -5224,10 +5224,10 @@ static BOOL WLDTIMER_PokeBaloon_Move( WLDTIMER_POKEBALLOON* p_wk, u32 drawtype, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“@“®ìƒ[ƒN‰Šú‰»
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³ã€€å‹•ä½œãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PokeBln_MoveInit( WLDTIMER_POKEBLN_MOVE* p_wk, const WLDTIMER_POKEBLN_MOVEDATA* cp_data )
@@ -5243,9 +5243,9 @@ static void WLDTIMER_PokeBln_MoveInit( WLDTIMER_POKEBLN_MOVE* p_wk, const WLDTIM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚R‚Â‚ÌˆÊ’u‚ª“¯‚¶ƒ|ƒPƒ‚ƒ“‚©‚Ìƒtƒ‰ƒOÝ’è
+ *	@brief	ï¼“ã¤ã®ä½ç½®ãŒåŒã˜ãƒã‚±ãƒ¢ãƒ³ã‹ã®ãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *	@param	mskon 
  */
 //-----------------------------------------------------------------------------
@@ -5256,9 +5256,9 @@ static void WLDTIMER_PokeBln_UnderEqualDataSet( WLDTIMER_POKEBLN_MOVE* p_wk, BOO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚R‚Â‚ÌˆÊ’u‚ª“¯‚¶ƒ|ƒPƒ‚ƒ“‚©‚Ìƒtƒ‰ƒOÝ’è
+ *	@brief	ï¼“ã¤ã®ä½ç½®ãŒåŒã˜ãƒã‚±ãƒ¢ãƒ³ã‹ã®ãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *	@param	mskon 
  */
 //-----------------------------------------------------------------------------
@@ -5269,36 +5269,36 @@ static void WLDTIMER_PokeBln_TopEqualDataSet( WLDTIMER_POKEBLN_MOVE* p_wk, BOOL 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒƒCƒ“
+ *	@brief	å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_wnd	ƒEƒBƒ“ƒhƒE
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wnd	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- *	@retval	TRUE	I—¹
- *	@retval	FLASE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FLASE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WLDTIMER_PokeBln_MoveMain( WLDTIMER_POKEBLN_MOVE* p_wk, WLDTIMER_VWND* p_wnd )
 {
 	
-	// I—¹ƒ`ƒFƒbƒN
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( p_wk->count > p_wk->cp_data->countmax ){
 		return TRUE;
 	}
 
-	// À•W‚ð‹‚ß‚é
+	// åº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	WLDTIMER_PokeBln_MatrixCalc( p_wk );
 
 
-	// ƒJƒEƒ“ƒgˆ—
-	p_wk->count ++;	// ’Êí“®ì
-	if( (p_wk->wcount+1) > p_wk->cp_data->wcountmax ){	// ‚ä‚ç‚ä‚çƒAƒjƒ
+	// ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
+	p_wk->count ++;	// é€šå¸¸å‹•ä½œ
+	if( (p_wk->wcount+1) > p_wk->cp_data->wcountmax ){	// ã‚†ã‚‰ã‚†ã‚‰ã‚¢ãƒ‹ãƒ¡
 		p_wk->wcount = 0;
 	}else{
 		p_wk->wcount++;
 	}
 
-	// ƒEƒBƒ“ƒhƒEƒ}ƒXƒNÝ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒžã‚¹ã‚¯è¨­å®š
 	WLDTIMER_PokeBln_WndMskSet( p_wk, p_wnd );
 
 	return FALSE;
@@ -5306,10 +5306,10 @@ static BOOL WLDTIMER_PokeBln_MoveMain( WLDTIMER_POKEBLN_MOVE* p_wk, WLDTIMER_VWN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ““®ì	ƒŠƒZƒbƒg
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³å‹•ä½œ	ãƒªã‚»ãƒƒãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_wnd	ƒEƒBƒ“ƒhƒE
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wnd	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PokeBln_MoveReset( WLDTIMER_POKEBLN_MOVE* p_wk, WLDTIMER_VWND* p_wnd )
@@ -5317,18 +5317,18 @@ static void WLDTIMER_PokeBln_MoveReset( WLDTIMER_POKEBLN_MOVE* p_wk, WLDTIMER_VW
 	p_wk->count = 0;
 	p_wk->wcount = 0;
 
-	// À•W‚ð‹‚ß‚é
+	// åº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	WLDTIMER_PokeBln_MatrixCalc( p_wk );
-	// ƒEƒBƒ“ƒhƒEƒ}ƒXƒNÝ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒžã‚¹ã‚¯è¨­å®š
 	WLDTIMER_PokeBln_WndMskSet( p_wk, p_wnd );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒoƒ‹[ƒ“•\Ž¦À•W‚ðŽæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒãƒ«ãƒ¼ãƒ³è¡¨ç¤ºåº§æ¨™ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	p_pos		•\Ž¦À•W
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_pos		è¡¨ç¤ºåº§æ¨™
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PokeBln_MoveGetPos( const WLDTIMER_POKEBLN_MOVE* cp_wk, VecFx32* p_pos )
@@ -5339,9 +5339,9 @@ static void WLDTIMER_PokeBln_MoveGetPos( const WLDTIMER_POKEBLN_MOVE* cp_wk, Vec
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•W‚ÌŒvŽZ‚ÆŠi”[‚Ì‚Ýs‚¤
+ *	@brief	åº§æ¨™ã®è¨ˆç®—ã¨æ ¼ç´ã®ã¿è¡Œã†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PokeBln_MatrixCalc( WLDTIMER_POKEBLN_MOVE* p_wk )
@@ -5349,48 +5349,48 @@ static void WLDTIMER_PokeBln_MatrixCalc( WLDTIMER_POKEBLN_MOVE* p_wk )
 	u16 rota;
 	s16 sy, ey;
 
-	// ã‚ªˆê
+	// ä¸ŠãŒä¸€ç·’
 	if( p_wk->top_equaldata == FALSE ){
 		ey = p_wk->cp_data->ey - WLDTIMER_VIEWER_POKEBLN_OAM_HFSIZ;
 	}else{
 		ey = p_wk->cp_data->ey;
 	}
 
-	// ‰º‚ªˆê
+	// ä¸‹ãŒä¸€ç·’
 	if( p_wk->under_equaldata == FALSE ){
 	  	sy = p_wk->cp_data->sy + WLDTIMER_VIEWER_POKEBLN_OAM_HFSIZ;
 	}else{
 	  	sy = p_wk->cp_data->sy;
 	}
 
-	// ’ÊíˆÚ“®À•WŒvŽZ
+	// é€šå¸¸ç§»å‹•åº§æ¨™è¨ˆç®—
 	p_wk->x = p_wk->cp_data->sx + (((p_wk->cp_data->ex - p_wk->cp_data->sx) * p_wk->count) / p_wk->cp_data->countmax);
 	p_wk->y = sy + (((ey - sy) * p_wk->count) / p_wk->cp_data->countmax);
 
-	// ‚ä‚êŒvŽZ
+	// ã‚†ã‚Œè¨ˆç®—
 	rota = (p_wk->wcount*0xffff)/p_wk->cp_data->wcountmax;
 	p_wk->x += FX_Mul( FX32_CONST(p_wk->cp_data->wx), FX_SinIdx( rota ) ) >> FX32_SHIFT;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒEƒBƒ“ƒhƒEƒ}ƒXƒN‚ðÝ’è
+ *	@brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒžã‚¹ã‚¯ã‚’è¨­å®š
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PokeBln_WndMskSet( const WLDTIMER_POKEBLN_MOVE* cp_wk, WLDTIMER_VWND* p_wnd )
 {
-	// YÀ•W‚ÅƒEƒBƒ“ƒhƒEƒ}ƒXƒN‚ðÝ’è‚·‚é
-	WLDTIMER_ViewerWnd0SetPos( p_wnd, 0, 0 );	// Ý’è‚Ì‰ðœ
-	// ‰º‚ÉÝ’è‚·‚é‚©‚¿‚¥‚Á‚­
+	// Yåº§æ¨™ã§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒžã‚¹ã‚¯ã‚’è¨­å®šã™ã‚‹
+	WLDTIMER_ViewerWnd0SetPos( p_wnd, 0, 0 );	// è¨­å®šã®è§£é™¤
+	// ä¸‹ã«è¨­å®šã™ã‚‹ã‹ã¡ã‡ã£ã
 	if( cp_wk->under_equaldata == FALSE ){
 		if( cp_wk->y > (cp_wk->cp_data->sy - WLDTIMER_VIEWER_POKEBLN_OAM_HFSIZ) ){
 			WLDTIMER_ViewerWnd0SetPos( p_wnd, cp_wk->cp_data->sy, 
 					cp_wk->cp_data->sy+WLDTIMER_VIEWER_POKEBLN_OAM_SIZ );
 		}
 	}
-	// ã‚ÉÝ’è‚·‚é‚©ƒ`ƒFƒbƒN
+	// ä¸Šã«è¨­å®šã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( cp_wk->top_equaldata == FALSE ){
 		if( (cp_wk->y - WLDTIMER_VIEWER_POKEBLN_OAM_HFSIZ) <= cp_wk->cp_data->ey ){
 			WLDTIMER_ViewerWnd0SetPos( p_wnd, cp_wk->cp_data->ey-WLDTIMER_VIEWER_POKEBLN_OAM_SIZ, 
@@ -5401,10 +5401,10 @@ static void WLDTIMER_PokeBln_WndMskSet( const WLDTIMER_POKEBLN_MOVE* cp_wk, WLDT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚Ìƒ|ƒPƒ‚ƒ“‚É¡‚ÌÀ•W‚ðÝ’è‚·‚é
+ *	@brief	ä»Šã®ãƒã‚±ãƒ¢ãƒ³ã«ä»Šã®åº§æ¨™ã‚’è¨­å®šã™ã‚‹
  *	
- *	@param	p_wk		ƒ[ƒN
- *	@param	drawtype	•`‰æƒ^ƒCƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	drawtype	æç”»ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_PokeBln_ActSetMatrix( WLDTIMER_POKEBALLOON* p_wk, u32 drawtype )
@@ -5412,7 +5412,7 @@ static void WLDTIMER_PokeBln_ActSetMatrix( WLDTIMER_POKEBALLOON* p_wk, u32 drawt
 	VecFx32 pos;
 	CLACT_WORK_PTR p_obj;
 
-	WLDTIMER_PokeBln_MoveGetPos( &p_wk->move[ drawtype ], &pos );	// À•WÝ’è
+	WLDTIMER_PokeBln_MoveGetPos( &p_wk->move[ drawtype ], &pos );	// åº§æ¨™è¨­å®š
 	
 	p_obj = p_wk->p_act[ p_wk->pokegra[ drawtype ] ];
 	CLACT_SetMatrix( p_obj, &pos );
@@ -5423,11 +5423,11 @@ static void WLDTIMER_PokeBln_ActSetMatrix( WLDTIMER_POKEBALLOON* p_wk, u32 drawt
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒ][ƒ“‚©‚çƒ][ƒ“ƒ^ƒCƒv‚ðŽæ“¾
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‹ã‚‰ã‚¾ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- *	@param	timezone	ƒ^ƒCƒ€ƒ][ƒ“
+ *	@param	timezone	ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³
  *
- *	@return	ƒ][ƒ“ƒ^ƒCƒv
+ *	@return	ã‚¾ãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static u16 WLDTIMER_TIMEZONE_GetZoneType( u32 timezone )
@@ -5438,11 +5438,11 @@ static u16 WLDTIMER_TIMEZONE_GetZoneType( u32 timezone )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒCƒ€ƒ][ƒ“‚©‚ç•\Ž¦ƒ‚ƒ“ƒXƒ^[‚ðŽæ“¾
+ *	@brief	ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã‹ã‚‰è¡¨ç¤ºãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å–å¾—
  *
- *	@param	timezone	ƒ^ƒCƒ€ƒ][ƒ“
+ *	@param	timezone	ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³
  *
- *	@return	•\Ž¦ƒ‚ƒ“ƒXƒ^[
+ *	@return	è¡¨ç¤ºãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼
  */
 //-----------------------------------------------------------------------------
 static u16 WLDTIMER_TIMEZONE_GetMons( u32 timezone )
@@ -5454,61 +5454,61 @@ static u16 WLDTIMER_TIMEZONE_GetMons( u32 timezone )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‰Šú‰»
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_MsgManInit( WLDTIMER_MSGMAN* p_wk, u32 heapID )
 {
-	// Šî–{ƒ}ƒl[ƒWƒƒì¬
+	// åŸºæœ¬ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	{
 		p_wk->p_msgman = MSGMAN_Create(MSGMAN_TYPE_NORMAL,ARC_MSG,NARC_msg_worldtimer_dat,heapID );
 	}
 
-	// ’nˆæƒƒbƒZ[ƒW
+	// åœ°åŸŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	{
 		p_wk->p_wordset = WORDSET_CreateEx( WORDSET_DEFAULT_SETNUM, WORDSET_COUNTRY_BUFLEN, heapID );
 	}
 
-	// ‹¤—LƒƒbƒZ[ƒW—ÌˆæŠm•Û
+	// å…±æœ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é ˜åŸŸç¢ºä¿
 	p_wk->p_msgstr = STRBUF_Create( WLDTIMER_MSGMAN_STRBUFNUM, heapID );
 	p_wk->p_msgtmp = STRBUF_Create( WLDTIMER_MSGMAN_STRBUFNUM, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ”jŠü
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_MsgManExit( WLDTIMER_MSGMAN* p_wk )
 {
-	// Šî–{ƒ}ƒl[ƒWƒƒ
+	// åŸºæœ¬ãƒžãƒãƒ¼ã‚¸ãƒ£
 	{
 		MSGMAN_Delete(p_wk->p_msgman);
 	}
 
-	// ’nˆæƒ}ƒl[ƒWƒƒ
+	// åœ°åŸŸãƒžãƒãƒ¼ã‚¸ãƒ£
 	{
 		WORDSET_Delete( p_wk->p_wordset );
 	}
 
-	// ‹¤—LƒƒbƒZ[ƒWƒoƒbƒtƒ@
+	// å…±æœ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡
 	STRBUF_Delete( p_wk->p_msgstr );
 	STRBUF_Delete( p_wk->p_msgtmp );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	msg		ƒƒbƒZ[ƒW
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	msg		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  *
- *	@return	•¶Žš—ñ
+ *	@return	æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static STRBUF* WLDTIMER_MsgManGetStr( WLDTIMER_MSGMAN* p_wk, u32 msg )
@@ -5519,11 +5519,11 @@ static STRBUF* WLDTIMER_MsgManGetStr( WLDTIMER_MSGMAN* p_wk, u32 msg )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW‚ðŽæ“¾
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å–å¾—
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	msg			ƒƒbƒZ[ƒW
- *	@param	p_str		ƒoƒbƒtƒ@
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	msg			ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ *	@param	p_str		ãƒãƒƒãƒ•ã‚¡
  */
 //-----------------------------------------------------------------------------
 static void WLDTIMER_MsgManGetStrBuff( WLDTIMER_MSGMAN* p_wk, u32 msg, STRBUF* p_str )
@@ -5533,12 +5533,12 @@ static void WLDTIMER_MsgManGetStrBuff( WLDTIMER_MSGMAN* p_wk, u32 msg, STRBUF* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘‚Ì–¼‘O‚ðŽæ“¾
+ *	@brief	å›½ã®åå‰ã‚’å–å¾—
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	nationID	‘‚h‚c
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	nationID	å›½ï¼©ï¼¤
  *
- *	@return	•¶Žš—ñ
+ *	@return	æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static STRBUF* WLDTIMER_MsgManCountryGetStr( WLDTIMER_MSGMAN* p_wk, u32 nationID )
@@ -5551,13 +5551,13 @@ static STRBUF* WLDTIMER_MsgManCountryGetStr( WLDTIMER_MSGMAN* p_wk, u32 nationID
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’nˆæ–¼‚ðŽæ“¾
+ *	@brief	åœ°åŸŸåã‚’å–å¾—
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	nationID	‘‚h‚c
- *	@param	areaID		’nˆæ‚h‚c
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	nationID	å›½ï¼©ï¼¤
+ *	@param	areaID		åœ°åŸŸï¼©ï¼¤
  *
- *	@return	•¶Žš—ñ
+ *	@return	æ–‡å­—åˆ—
  */
 //-----------------------------------------------------------------------------
 static STRBUF* WLDTIMER_MsgManPlaceGetStr( WLDTIMER_MSGMAN* p_wk, u32 nationID, u32 areaID )
@@ -5572,12 +5572,12 @@ static STRBUF* WLDTIMER_MsgManPlaceGetStr( WLDTIMER_MSGMAN* p_wk, u32 nationID, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠE’n}•\Ž¦’nˆæƒf[ƒ^‚©‚çÅ‰‚É”­Œ©‚³‚ê‚éƒf[ƒ^‚ð•Ô‚·
+ *	@brief	ä¸–ç•Œåœ°å›³è¡¨ç¤ºåœ°åŸŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æœ€åˆã«ç™ºè¦‹ã•ã‚Œã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
  *
- *	@param	cp_data	¢ŠE’n}•\Ž¦’nˆæƒf[ƒ^
+ *	@param	cp_data	ä¸–ç•Œåœ°å›³è¡¨ç¤ºåœ°åŸŸãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ƒf[ƒ^‚ÌINDEX		
- *	@retval	WFLBY_WLDTIMER_DATA_MAX	‚Ý‚Â‚©‚ç‚È‚©‚Á‚½
+ *	@retval	ãƒ‡ãƒ¼ã‚¿ã®INDEX		
+ *	@retval	WFLBY_WLDTIMER_DATA_MAX	ã¿ã¤ã‹ã‚‰ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static u32 WLDTIMER_WFLBYDATA_GetFirst( const WFLBY_WLDTIMER* cp_data )

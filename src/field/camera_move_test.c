@@ -22,7 +22,7 @@ BOOL CameraInput(GF_CAMERA_PTR camera_ptr)
 static int shift_count = 0;
 
 	if (/*sys.cont & PAD_BUTTON_L*/1){
-		if (sys.cont & PAD_BUTTON_B){			//ƒJƒƒ‰‰ñ“]iŒö“]j
+		if (sys.cont & PAD_BUTTON_B){			//ã‚«ãƒ¡ãƒ©å›è»¢ï¼ˆå…¬è»¢ï¼‰
 			if (sys.cont & PAD_KEY_UP){
 				angle.x = ANGLE_MOVE;
 				GFC_AddCameraAngleRev(&angle,camera_ptr);
@@ -37,7 +37,7 @@ static int shift_count = 0;
 				GFC_AddCameraAngleRev(&angle,camera_ptr);
 			}
 		}
-		else if (sys.cont & PAD_BUTTON_Y){		//ƒJƒƒ‰‰ñ“]i©“]j
+		else if (sys.cont & PAD_BUTTON_Y){		//ã‚«ãƒ¡ãƒ©å›è»¢ï¼ˆè‡ªè»¢ï¼‰
 			if (sys.cont & PAD_KEY_UP){
 				angle.x = ANGLE_MOVE;
 				GFC_AddCameraAngleRot(&angle,camera_ptr);
@@ -53,12 +53,12 @@ static int shift_count = 0;
 			}
 		}
 		else if (sys.cont & PAD_BUTTON_A){
-			if (sys.cont & PAD_KEY_UP){			//ƒJƒƒ‰ƒY[ƒ€ƒAƒEƒg
+			if (sys.cont & PAD_KEY_UP){			//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ
 				persp_way = GFC_GetCameraPerspWay(camera_ptr);
 				if (persp_way+64<0x4000){
 					GFC_AddCameraPerspWay(64,camera_ptr);
 				}
-			}else if (sys.cont & PAD_KEY_DOWN){	//ƒJƒƒ‰ƒY[ƒ€ƒCƒ“
+			}else if (sys.cont & PAD_KEY_DOWN){	//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ ã‚¤ãƒ³
 				persp_way = GFC_GetCameraPerspWay(camera_ptr);
 				if ((u16)(persp_way-64)>0x0000){
 					GFC_AddCameraPerspWay(-64,camera_ptr);
@@ -66,20 +66,20 @@ static int shift_count = 0;
 			}else if (sys.cont & PAD_KEY_LEFT){
 				GFC_AddCameraPerspWay(64,camera_ptr);
 				persp_way = GFC_GetCameraPerspWay(camera_ptr);
-				//ƒJƒƒ‰‚Ì’†S‚É‚ ‚é2D‰æ‘œ‚ªA•ö‚ê‚¸‚É•\¦‚Å‚«‚é‹——£‚ğ‹‚ß‚é
-				//‚Â‚Ô‚ê‚¸‚É•\¦‚·‚é‚½‚ß‚É‚ÍA1Dot@@1Unit‚ÅŒvZ‚·‚ê‚Î‚æ‚¢
-				//ƒJƒƒ‰‚ª‰æ–Ê’†S‚ğŒ©‚Â‚ß‚é‚Æ‚«A‰æ–Ê”¼•ª‚ÌƒTƒCƒY‚ÍA96Dot
-				//•\¦‚³‚¹‚½‚¢AƒJƒƒ‰‚Ìƒp[ƒX‚ğl‚¦A96Dot@@96Unit‚É‚È‚é‹——£‚É‚·‚ê‚Î‚æ‚¢
+				//ã‚«ãƒ¡ãƒ©ã®ä¸­å¿ƒã«ã‚ã‚‹2Dç”»åƒãŒã€å´©ã‚Œãšã«è¡¨ç¤ºã§ãã‚‹è·é›¢ã‚’æ±‚ã‚ã‚‹
+				//ã¤ã¶ã‚Œãšã«è¡¨ç¤ºã™ã‚‹ãŸã‚ã«ã¯ã€1Dotã€€ï¼ã€€1Unitã§è¨ˆç®—ã™ã‚Œã°ã‚ˆã„
+				//ã‚«ãƒ¡ãƒ©ãŒç”»é¢ä¸­å¿ƒã‚’è¦‹ã¤ã‚ã‚‹ã¨ãã€ç”»é¢åŠåˆ†ã®ã‚µã‚¤ã‚ºã¯ã€96Dot
+				//è¡¨ç¤ºã•ã›ãŸã„ã€ã‚«ãƒ¡ãƒ©ã®ãƒ‘ãƒ¼ã‚¹ã‚’è€ƒãˆã€96Dotã€€ï¼ã€€96Unitã«ãªã‚‹è·é›¢ã«ã™ã‚Œã°ã‚ˆã„
 				dist = FX_Div( FX_Mul( FX_CosIdx( persp_way ), FX_F32_TO_FX32(96) ),	
 									 FX_SinIdx( persp_way ));
 				GFC_SetCameraDistance(dist,camera_ptr);
 			}else if(sys.cont & PAD_KEY_RIGHT){
 				GFC_AddCameraPerspWay(-64,camera_ptr);
 				persp_way = GFC_GetCameraPerspWay(camera_ptr);
-				//ƒJƒƒ‰‚Ì’†S‚É‚ ‚é2D‰æ‘œ‚ªA•ö‚ê‚¸‚É•\¦‚Å‚«‚é‹——£‚ğ‹‚ß‚é
-				//‚Â‚Ô‚ê‚¸‚É•\¦‚·‚é‚½‚ß‚É‚ÍA1Dot@@1Unit‚ÅŒvZ‚·‚ê‚Î‚æ‚¢
-				//ƒJƒƒ‰‚ª‰æ–Ê’†S‚ğŒ©‚Â‚ß‚é‚Æ‚«A‰æ–Ê”¼•ª‚ÌƒTƒCƒY‚ÍA96Dot
-				//•\¦‚³‚¹‚½‚¢AƒJƒƒ‰‚Ìƒp[ƒX‚ğl‚¦A96Dot@@96Unit‚É‚È‚é‹——£‚É‚·‚ê‚Î‚æ‚¢
+				//ã‚«ãƒ¡ãƒ©ã®ä¸­å¿ƒã«ã‚ã‚‹2Dç”»åƒãŒã€å´©ã‚Œãšã«è¡¨ç¤ºã§ãã‚‹è·é›¢ã‚’æ±‚ã‚ã‚‹
+				//ã¤ã¶ã‚Œãšã«è¡¨ç¤ºã™ã‚‹ãŸã‚ã«ã¯ã€1Dotã€€ï¼ã€€1Unitã§è¨ˆç®—ã™ã‚Œã°ã‚ˆã„
+				//ã‚«ãƒ¡ãƒ©ãŒç”»é¢ä¸­å¿ƒã‚’è¦‹ã¤ã‚ã‚‹ã¨ãã€ç”»é¢åŠåˆ†ã®ã‚µã‚¤ã‚ºã¯ã€96Dot
+				//è¡¨ç¤ºã•ã›ãŸã„ã€ã‚«ãƒ¡ãƒ©ã®ãƒ‘ãƒ¼ã‚¹ã‚’è€ƒãˆã€96Dotã€€ï¼ã€€96Unitã«ãªã‚‹è·é›¢ã«ã™ã‚Œã°ã‚ˆã„
 				dist = FX_Div( FX_Mul( FX_CosIdx( persp_way ), FX_F32_TO_FX32(96) ),	
 									 FX_SinIdx( persp_way ));					
 				GFC_SetCameraDistance(dist,camera_ptr);
@@ -133,7 +133,7 @@ static int shift_count = 0;
 				GFC_SetCameraClip(near,far,camera_ptr);
 			}
 		}
-		else if (sys.cont & PAD_KEY_UP){	//ƒJƒƒ‰‚ğ‰“‚´‚¯‚é
+		else if (sys.cont & PAD_KEY_UP){	//ã‚«ãƒ¡ãƒ©ã‚’é ã–ã‘ã‚‹
 			GFC_AddCameraDistance(FX32_ONE,camera_ptr);
 /**			
 			{
@@ -143,7 +143,7 @@ static int shift_count = 0;
 				OS_Printf("shift=%d",shift_count);
 			}
 */			
-		}else if (sys.cont & PAD_KEY_DOWN){	//ƒJƒƒ‰‚ğ‹ß‚Ã‚¯‚é
+		}else if (sys.cont & PAD_KEY_DOWN){	//ã‚«ãƒ¡ãƒ©ã‚’è¿‘ã¥ã‘ã‚‹
 			GFC_AddCameraDistance(-FX32_ONE,camera_ptr);
 /**			
 			{
@@ -155,7 +155,7 @@ static int shift_count = 0;
 */
 		}
 		else if (sys.trg & PAD_BUTTON_SELECT){
-			//Ë‰eæ“¾
+			//å°„å½±å–å¾—
 			view = GFC_GetCameraView(camera_ptr);
 			view = ((view+1)%2);
 			GFC_SetCameraView(view,camera_ptr);

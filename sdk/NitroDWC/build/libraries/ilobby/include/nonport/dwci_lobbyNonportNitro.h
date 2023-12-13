@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief Wi-Fi ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ ƒwƒbƒ_
+ * @brief Wi-Fi ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª ãƒ˜ãƒƒãƒ€
  */
 
 #ifndef DWCi_NONPORT_NITRO_H_

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fss_castle_sub.c
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhƒTƒuFƒLƒƒƒbƒXƒ‹
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ã‚µãƒ–ï¼šã‚­ãƒ£ãƒƒã‚¹ãƒ«
  * @author	Satoshi Nohara
  * @date	07.07.04
  */
@@ -38,7 +38,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 CASTLE_SCRWORK* CastleScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 pos1, u16 pos2, u16 pos3, u16* work );
@@ -54,23 +54,23 @@ void CastleScr_BtlAfterPartySet( CASTLE_SCRWORK* wk );
 void CastleScr_BtlWinPokeData( CASTLE_SCRWORK* wk );
 int CastleScr_GetBtlWinCpPoint( CASTLE_SCRWORK* wk );
 
-//’ÊM
+//é€šä¿¡
 BOOL CastleScr_CommSetSendBuf( CASTLE_SCRWORK* wk, u16 type, u16 param );
 
 
 //============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒGƒŠƒAŠm•Û
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ç¢ºä¿
  *
  * @param	none
  *	
- * –‚©‚È‚ç‚¸ CastleScr_WorkRelease()‚Å—Ìˆæ‚ğŠJ•ú‚·‚é‚±‚Æ
+ * ï¼Šã‹ãªã‚‰ãš CastleScr_WorkRelease()ã§é ˜åŸŸã‚’é–‹æ”¾ã™ã‚‹ã“ã¨
  */
 //--------------------------------------------------------------
 CASTLE_SCRWORK* CastleScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 pos1, u16 pos2, u16 pos3, u16* work )
@@ -81,13 +81,13 @@ CASTLE_SCRWORK* CastleScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 
 	CASTLEDATA* ca_sv;
 	u8 clear_flag,m_max;
 	u16	i,chg_flg;
-	static CASTLE_SCRWORK* wk;					//‚ ‚Æ‚ÅŠm”F]]]]]]]]]]]]]]]]]]]]]]]]]
+	static CASTLE_SCRWORK* wk;					//ã‚ã¨ã§ç¢ºèª]]]]]]]]]]]]]]]]]]]]]]]]]
 	CASTLESCORE* score_sv;
 
 	wk = sys_AllocMemory( HEAPID_WORLD, sizeof(CASTLE_SCRWORK) );
 	MI_CpuClear8( wk, sizeof(CASTLE_SCRWORK) );
 
-	//ƒZ[ƒuƒf[ƒ^æ“¾
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 	wk->castle_savedata	= SaveData_GetCastleData( savedata );
 	wk->sv				= savedata;
 	wk->heapID			= HEAPID_WORLD;
@@ -98,14 +98,14 @@ CASTLE_SCRWORK* CastleScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 
 	ca_sv = wk->castle_savedata;
 	score_sv = SaveData_GetCastleScore( savedata );
 
-	//V‹K‚©AŒp‘±‚©
+	//æ–°è¦ã‹ã€ç¶™ç¶šã‹
 	if( init == 0 ){
 		wk->type	= type;
 		wk->round	= 0;
 
-		CASTLEDATA_Init( ca_sv );	//’†’fƒf[ƒ^‰Šú‰»
+		CASTLEDATA_Init( ca_sv );	//ä¸­æ–­ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 
-		//WIFI‚Ì‚İ“Áê
+		//WIFIã®ã¿ç‰¹æ®Š
 		if( wk->type == CASTLE_TYPE_WIFI_MULTI ){
 #if 0
 			clear_flag = FrontierRecord_Get(SaveData_GetFrontier(wk->sv), 
@@ -116,7 +116,7 @@ CASTLE_SCRWORK* CastleScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 
 #endif
 
 		}else{
-			//ƒNƒŠƒA‚µ‚½‚©ƒtƒ‰ƒO‚ğæ“¾
+			//ã‚¯ãƒªã‚¢ã—ãŸã‹ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 			clear_flag = (u8)CASTLESCORE_GetScoreData(	score_sv, CASTLESCORE_ID_CLEAR_FLAG, 
 														wk->type, 0, NULL );
 		}
@@ -128,18 +128,18 @@ CASTLE_SCRWORK* CastleScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 
 		}else{
 			wk->rensyou = 0;
 
-			//"CP"‚ğ0‚É‚·‚é
+			//"CP"ã‚’0ã«ã™ã‚‹
 			FrontierRecord_Set(	SaveData_GetFrontier(wk->sv), 
 								CastleScr_GetCPRecordID(wk->type),
 								Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)), 0 );
 
-			//"g—p‚µ‚½CP"‚ğ0‚É‚·‚é
+			//"ä½¿ç”¨ã—ãŸCP"ã‚’0ã«ã™ã‚‹
 			FrontierRecord_Set(	SaveData_GetFrontier(wk->sv), 
 								CastleScr_GetUsedCPRecordID(type),
 								Frontier_GetFriendIndex(CastleScr_GetUsedCPRecordID(type)), 0 );
 
 #if 1
-			//V‹K‚Å‰’§í‚Ì‚ÍA1ƒIƒŠƒWƒ“ƒZƒbƒg
+			//æ–°è¦ã§åˆæŒ‘æˆ¦ã®æ™‚ã¯ã€1ã‚ªãƒªã‚¸ãƒ³ã‚»ãƒƒãƒˆ
 			for( i=0; i < CASTLE_RANK_TYPE_MAX ;i++ ){
 				FrontierRecord_Set(	SaveData_GetFrontier(wk->sv), 
 						CastleScr_GetRankRecordID(wk->type,i),
@@ -152,23 +152,23 @@ CASTLE_SCRWORK* CastleScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 
 		wk->lap		= (u16)(wk->rensyou / CASTLE_LAP_ENEMY_MAX);
 		wk->win_cnt	= 0;
 
-		//‘I‘ğ‚µ‚½è‚¿‚ÌˆÊ’u
+		//é¸æŠã—ãŸæ‰‹æŒã¡ã®ä½ç½®
 		wk->mine_poke_pos[0] = pos1;
 		wk->mine_poke_pos[1] = pos2;
 		wk->mine_poke_pos[2] = pos3;
 
-		//"+10‚·‚é‘O‚Éˆ—‚·‚é"’§íŠJn‚ÌCP‚ğ‘Ş”ğ
+		//"+10ã™ã‚‹å‰ã«å‡¦ç†ã™ã‚‹"æŒ‘æˆ¦é–‹å§‹æ™‚ã®CPã‚’é€€é¿
 		wk->temp_start_cp = FrontierRecord_Get(	SaveData_GetFrontier(wk->sv), 
 								CastleScr_GetCPRecordID(wk->type),
 								Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)) );
 
-		//’§íŠJn‚Ì‚ÉCP+10‚·‚é	
+		//æŒ‘æˆ¦é–‹å§‹ã®æ™‚ã«CP+10ã™ã‚‹	
 		FrontierRecord_Add(	SaveData_GetFrontier(wk->sv), 
 							CastleScr_GetCPRecordID(wk->type),
 							Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)), 10 );
 
 	}else{
-		//Œ»İ‚ÌƒvƒŒƒCisƒf[ƒ^æ“¾
+		//ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤é€²è¡Œãƒ‡ãƒ¼ã‚¿å–å¾—
 		wk->type = (u8)CASTLEDATA_GetPlayData( ca_sv, CASTLEDATA_ID_TYPE, 0, 0, NULL);
 		wk->round = (u8)CASTLEDATA_GetPlayData( ca_sv, CASTLEDATA_ID_ROUND, 0, 0, NULL);
 		wk->rensyou = FrontierRecord_Get(	SaveData_GetFrontier(wk->sv), 
@@ -182,31 +182,31 @@ CASTLE_SCRWORK* CastleScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 
 		}
 	}
 
-	//ŠƒAƒCƒeƒ€‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+	//æ‰€æŒã‚¢ã‚¤ãƒ†ãƒ ã‚’ä¿å­˜ã—ã¦ãŠã
 	for( i=0; i < CASTLE_ENTRY_POKE_MAX ;i++ ){
 		temp_poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(wk->sv), 
 												wk->mine_poke_pos[i] );
 		wk->itemno[i] = PokeParaGet( temp_poke, ID_PARA_item, NULL );
 	}
 
-	//oêƒ|ƒPƒ‚ƒ“‚ğƒZƒbƒg
+	//å‡ºå ´ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 	temoti_party = SaveData_GetTemotiPokemon( wk->sv );
-	m_max = Castle_GetMinePokeNum( wk->type, CASTLE_FLAG_SOLO );		//–¡•û
+	m_max = Castle_GetMinePokeNum( wk->type, CASTLE_FLAG_SOLO );		//å‘³æ–¹
 	for( i=0; i < m_max; i++ ){
 
 		PokeParty_Add(	wk->p_m_party, 
 						PokeParty_GetMemberPointer(temoti_party,wk->mine_poke_pos[i]) );
 
 		////////////////////////////////////////////////////////////
-		//•Û‘¶‚µ‚Ä‚¨‚¢‚½AHPAPPAƒAƒCƒeƒ€‚È‚Ç‚ğŒ³‚É–ß‚³‚È‚¢‚Æƒ_ƒI
+		//ä¿å­˜ã—ã¦ãŠã„ãŸã€HPã€PPã€ã‚¢ã‚¤ãƒ†ãƒ ãªã©ã‚’å…ƒã«æˆ»ã•ãªã„ã¨ãƒ€ãƒ¡ï¼
 		////////////////////////////////////////////////////////////
 		
-		//ƒAƒCƒeƒ€‚ğŠO‚·
+		//ã‚¢ã‚¤ãƒ†ãƒ ã‚’å¤–ã™
 		temp_poke = PokeParty_GetMemberPointer( wk->p_m_party, i );
 		buf = 0;
 		PokeParaPut( temp_poke, ID_PARA_item, &buf );
 
-		//ƒŒƒxƒ‹’²®
+		//ãƒ¬ãƒ™ãƒ«èª¿æ•´
 		if( PokeParaGet(temp_poke,ID_PARA_level,NULL) > 50 ){
 			exp = PokeLevelExpGet( PokeParaGet(temp_poke,ID_PARA_monsno,NULL), 50 );
 			PokeParaPut( temp_poke, ID_PARA_exp, &exp );
@@ -215,7 +215,7 @@ CASTLE_SCRWORK* CastleScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 
 	}
 
 #ifdef PM_DEBUG
-	//CP‚ğ9999ƒZƒbƒg
+	//CPã‚’9999ã‚»ãƒƒãƒˆ
 	if( sys.cont & PAD_BUTTON_L ){
 		FrontierRecord_Set(	SaveData_GetFrontier(wk->sv), 
 							CastleScr_GetCPRecordID(wk->type),
@@ -223,7 +223,7 @@ CASTLE_SCRWORK* CastleScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 
 	}
 #endif
 
-	//’n‹…‹V“o˜^
+	//åœ°çƒå„€ç™»éŒ²
 	if( Castle_CommCheck(wk->type) == TRUE ){
 		FrontierTool_WifiHistory( wk->sv );
 	}
@@ -233,25 +233,25 @@ CASTLE_SCRWORK* CastleScr_WorkAlloc( SAVEDATA* savedata, u16 init, u8 type, u16 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒGƒŠƒA‚ğæ“¾‚µ‚Ä‰Šú‰»‚·‚é
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã‚’å–å¾—ã—ã¦åˆæœŸåŒ–ã™ã‚‹
  *
- * @param	savedata	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	init		‰Šú‰»ƒ‚[ƒh BTWR_PLAY_NEW:‰‚ß‚©‚çABTWR_PLAY_CONTINE:‘±‚«‚©‚ç
+ * @param	savedata	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	init		åˆæœŸåŒ–ãƒ¢ãƒ¼ãƒ‰ BTWR_PLAY_NEW:åˆã‚ã‹ã‚‰ã€BTWR_PLAY_CONTINE:ç¶šãã‹ã‚‰
  *	
- * –‚©‚È‚ç‚¸ CastleScr_WorkRelease()‚Å—Ìˆæ‚ğŠJ•ú‚·‚é‚±‚Æ
+ * ï¼Šã‹ãªã‚‰ãš CastleScr_WorkRelease()ã§é ˜åŸŸã‚’é–‹æ”¾ã™ã‚‹ã“ã¨
  */
 //--------------------------------------------------------------
 void CastleScr_WorkInit( CASTLE_SCRWORK* wk, u16 init )
 {
-	//V‹K‚©AŒp‘±‚©
+	//æ–°è¦ã‹ã€ç¶™ç¶šã‹
 	if( init == 0 ){
-		//OS_Printf( "‘O V‹K –â‘è‚Ìwk = %d\n", wk );
+		//OS_Printf( "å‰ æ–°è¦ å•é¡Œã®wk = %d\n", wk );
 		CastleScr_InitDataSet( wk );
-		//OS_Printf( "Œã V‹K –â‘è‚Ìwk = %d\n", wk );
+		//OS_Printf( "å¾Œ æ–°è¦ å•é¡Œã®wk = %d\n", wk );
 	}else{
-		//OS_Printf( "‘O Œp‘± –â‘è‚Ìwk = %d\n", wk );
+		//OS_Printf( "å‰ ç¶™ç¶š å•é¡Œã®wk = %d\n", wk );
 		CastleScr_ContinueDataSet( wk );
-		//OS_Printf( "Œã Œp‘± –â‘è‚Ìwk = %d\n", wk );
+		//OS_Printf( "å¾Œ ç¶™ç¶š å•é¡Œã®wk = %d\n", wk );
 	}
 
 	return;
@@ -259,9 +259,9 @@ void CastleScr_WorkInit( CASTLE_SCRWORK* wk, u16 init )
 
 //--------------------------------------------------------------
 /**
- * @brief	V‹KFƒgƒŒ[ƒi[Aƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğ¶¬
+ * @brief	æ–°è¦ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã€ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆ
  *
- * @param	wk		CASTLE_SCRWORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void CastleScr_InitDataSet( CASTLE_SCRWORK* wk )
@@ -274,30 +274,30 @@ static void CastleScr_InitDataSet( CASTLE_SCRWORK* wk )
 	u16 poke_check_tbl[6];	//rental
 	u16 item_check_tbl[6];	//rental
 
-	OS_Printf( "V‹KFƒf[ƒ^‚ğ¶¬\n" );
+	OS_Printf( "æ–°è¦ï¼šãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆ\n" );
 
 	count = PokeParty_GetPokeCount( wk->p_m_party );
 	for( i=0; i < count ;i++ ){
 		temp_poke = PokeParty_GetMemberPointer( wk->p_m_party, i );
-		wk->pp[i][0] = PokeParaGet( temp_poke, ID_PARA_pp1, NULL );					//PP•Û‘¶
+		wk->pp[i][0] = PokeParaGet( temp_poke, ID_PARA_pp1, NULL );					//PPä¿å­˜
 		wk->pp[i][1] = PokeParaGet( temp_poke, ID_PARA_pp2, NULL );
 		wk->pp[i][2] = PokeParaGet( temp_poke, ID_PARA_pp3, NULL );
 		wk->pp[i][3] = PokeParaGet( temp_poke, ID_PARA_pp4, NULL );
 	}
 
-	//07.09.25 í‚Éü‰ñ”*2‚ÌƒgƒŒ[ƒi[‚ğæ“¾
-	//ƒVƒ“ƒOƒ‹(0-6)Aƒ}ƒ‹ƒ`‚Ìƒp[ƒgƒi[(7-13)‚Åæ“¾
-	//‚»‚Ìü‚É“oê‚·‚éƒgƒŒ[ƒi[‚Ìindex‚ğ‘S‚Äæ“¾
+	//07.09.25 å¸¸ã«å‘¨å›æ•°*2ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚’å–å¾—
+	//ã‚·ãƒ³ã‚°ãƒ«(0-6)ã€ãƒãƒ«ãƒã®ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼(7-13)ã§å–å¾—
+	//ãã®å‘¨ã«ç™»å ´ã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®indexã‚’å…¨ã¦å–å¾—
 	Castle_EnemyLapAllTrainerIndexGet(	wk->type, CastleScr_CommGetLap(wk), wk->tr_index, 
 										CASTLE_LAP_MULTI_ENEMY_MAX );
 	OS_Printf( "lap = %d\n", CastleScr_CommGetLap(wk) );
 
-	//ƒfƒoƒbƒNî•ñ
+	//ãƒ‡ãƒãƒƒã‚¯æƒ…å ±
 	for( i=0; i < CASTLE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		OS_Printf( "tr_index[%d] = %d\n", i, wk->tr_index[i] );
 	}
 
-	//“GƒgƒŒ[ƒi[‚ªo‚·ƒ|ƒPƒ‚ƒ“¶¬
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒå‡ºã™ãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆ
 	Frontier_EnemyPokeMake(	Castle_GetEnemyPokeNum(wk->type,CASTLE_FLAG_TOTAL),
 							wk->tr_index[wk->round],
 							wk->tr_index[wk->round+CASTLE_LAP_ENEMY_MAX], 
@@ -322,9 +322,9 @@ static void CastleScr_InitDataSet( CASTLE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Œp‘±F•Û‘¶‚µ‚Ä‚¨‚¢‚½ƒf[ƒ^‚ğg‚Á‚ÄB_TOWER_POKEMON‚È‚Ç‚ğ¶¬
+ * @brief	ç¶™ç¶šï¼šä¿å­˜ã—ã¦ãŠã„ãŸãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ã£ã¦B_TOWER_POKEMONãªã©ã‚’ç”Ÿæˆ
  *
- * @param	wk		CASTLE_SCRWORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void CastleScr_ContinueDataSet( CASTLE_SCRWORK* wk )
@@ -337,14 +337,14 @@ static void CastleScr_ContinueDataSet( CASTLE_SCRWORK* wk )
 	u8 pow_rnd[CASTLE_PARTY_POKE_MAX];
 	u16 poke_index[CASTLE_PARTY_POKE_MAX];
 	u32 personal_rnd[CASTLE_PARTY_POKE_MAX];
-	OS_Printf( "Œp‘±F•Û‘¶‚µ‚Ä‚¨‚¢‚½ƒf[ƒ^‚ğƒ[ƒh\n" );
+	OS_Printf( "ç¶™ç¶šï¼šä¿å­˜ã—ã¦ãŠã„ãŸãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰\n" );
 
-	//"è‚¿ƒ|ƒPƒ‚ƒ“‚Ìó‘Ô"ƒ[ƒh
+	//"æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹"ãƒ­ãƒ¼ãƒ‰
 	CastleScr_ContinuePokePara( wk );
 
 	//-----------------------------------------------------------------------------------
 	
-	//•Û‘¶‚µ‚Ä‚¨‚¢‚½ƒgƒŒ[ƒi[‚Ìindexæ“¾
+	//ä¿å­˜ã—ã¦ãŠã„ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®indexå–å¾—
 	for( i=0; i < CASTLE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		wk->tr_index[i] = (u16)CASTLEDATA_GetPlayData(	wk->castle_savedata, 
 														CASTLEDATA_ID_TR_INDEX, i, 0, NULL );
@@ -353,28 +353,28 @@ static void CastleScr_ContinueDataSet( CASTLE_SCRWORK* wk )
 
 	//---------------------------------------------------------------------------------------
 	//---------------------------------------------------------------------------------------
-	//•Û‘¶‚µ‚Ä‚¨‚¢‚½“Gƒ|ƒPƒ‚ƒ“æ“¾
+	//ä¿å­˜ã—ã¦ãŠã„ãŸæ•µãƒã‚±ãƒ¢ãƒ³å–å¾—
 	for( i=0; i < CASTLE_ENEMY_POKE_MAX ;i++ ){
 
 		poke_index[i] = (u16)CASTLEDATA_GetPlayData(wk->castle_savedata, 
 												CASTLEDATA_ID_ENEMY_POKE_INDEX, i, 0, NULL );
 		//OS_Printf( "poke_index[%d] = %d\n", i, poke_index[i] );
 		
-		//“Gƒ|ƒPƒ‚ƒ“‚ÌƒCƒ“ƒfƒbƒNƒXŠi”[
+		//æ•µãƒã‚±ãƒ¢ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ ¼ç´
 		wk->enemy_poke_index[i] = poke_index[i];
 	}
 
-	//è‚¿ƒ|ƒPƒ‚ƒ“‚ğˆê“x‚É¶¬(personal‚È‚µ)
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ(personalãªã—)
 	Frontier_PokemonParamCreateAll(	bt_poke, poke_index, pow_rnd,
 									NULL, personal_rnd, CASTLE_ENEMY_POKE_MAX, HEAPID_WORLD,
 									ARC_PL_BTD_PM );
 
 	pp = PokemonParam_AllocWork( HEAPID_WORLD );
 	for( i=0; i < CASTLE_ENEMY_POKE_MAX ;i++ ){
-		//ƒoƒgƒ‹ƒ^ƒ[—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚©‚çPOKEMON_PARAM‚ğ¶¬
+		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰POKEMON_PARAMã‚’ç”Ÿæˆ
 		Frontier_PokeParaMake( &bt_poke[i], pp, Castle_GetLevel(wk) );
 		Castle_PokePartyAdd( wk, wk->p_e_party, pp );
-		OS_Printf( "Œp‘±e_party[%d] monsno = %d\n", i, PokeParaGet(pp,ID_PARA_monsno,NULL) );
+		OS_Printf( "ç¶™ç¶še_party[%d] monsno = %d\n", i, PokeParaGet(pp,ID_PARA_monsno,NULL) );
 
 	}
 	sys_FreeMemoryEz( pp );
@@ -384,9 +384,9 @@ static void CastleScr_ContinueDataSet( CASTLE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Œp‘±FHPAPPACONDITIONAITEM‚ğƒ[ƒh
+ * @brief	ç¶™ç¶šï¼šHPã€PPã€CONDITIONã€ITEMã‚’ãƒ­ãƒ¼ãƒ‰
  *
- * @param	wk		CASTLE_SCRWORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void CastleScr_ContinuePokePara( CASTLE_SCRWORK* wk )
@@ -400,14 +400,14 @@ static void CastleScr_ContinuePokePara( CASTLE_SCRWORK* wk )
 
 	count = PokeParty_GetPokeCount( wk->p_m_party );
 
-	//"è‚¿ƒ|ƒPƒ‚ƒ“‚Ìó‘Ô"ƒ[ƒh
+	//"æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹"ãƒ­ãƒ¼ãƒ‰
 	for( i=0; i < count ;i++ ){
 
 		pp = PokeParty_GetMemberPointer( wk->p_m_party, i );
 
 		buf16 = (u16)CASTLEDATA_GetPlayData(	wk->castle_savedata, 
 											CASTLEDATA_ID_TEMOTI_HP, i, 0, NULL );
-		OS_Printf( "ƒ[ƒh‚ÌHP = %d\n", buf16 );
+		OS_Printf( "ãƒ­ãƒ¼ãƒ‰æ™‚ã®HP = %d\n", buf16 );
 		PokeParaPut( pp, ID_PARA_hp, &buf16 );			//HP
 
 		buf8 = (u8)CASTLEDATA_GetPlayData(	wk->castle_savedata, 
@@ -440,7 +440,7 @@ static void CastleScr_ContinuePokePara( CASTLE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒGƒŠƒA‚ğŠJ•ú‚·‚é
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ã‚’é–‹æ”¾ã™ã‚‹
  */
 //--------------------------------------------------------------
 void CastleScr_WorkRelease( CASTLE_SCRWORK* wk )
@@ -468,9 +468,9 @@ void CastleScr_WorkRelease( CASTLE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒbƒXƒ‹‰æ–ÊŒÄ‚Ño‚µŒã‚ÌŒ‹‰Êæ“¾
+ * @brief	ã‚­ãƒ£ãƒƒã‚¹ãƒ«ç”»é¢å‘¼ã³å‡ºã—å¾Œã®çµæœå–å¾—
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CastleScr_GetResult( CASTLE_SCRWORK* wk, void* castle_call )
@@ -478,13 +478,13 @@ void CastleScr_GetResult( CASTLE_SCRWORK* wk, void* castle_call )
 	int i;
 	CASTLE_CALL_WORK* call_wk = castle_call;
 
-	//Œ‹‰Ê‚ğæ“¾‚·‚é
+	//çµæœã‚’å–å¾—ã™ã‚‹
 	for( i=0; i < CASTLE_RET_WORK_MAX ;i++ ){
 		wk->ret_work[i] = CastleCall_GetRetWork( castle_call, i );
 		OS_Printf( "wk->ret_work[%d] = %d\n", i, wk->ret_work[i] );
 	}
 
-	//î•ñ‚ªŒöŠJ‚³‚ê‚½‚©ƒtƒ‰ƒO
+	//æƒ…å ±ãŒå…¬é–‹ã•ã‚ŒãŸã‹ãƒ•ãƒ©ã‚°
 	for( i=0; i < CASTLE_ENEMY_POKE_MAX ;i++ ){
 		wk->enemy_temoti_flag[i]	= call_wk->enemy_temoti_flag[i];
 		wk->enemy_level_flag[i]		= call_wk->enemy_level_flag[i];
@@ -497,7 +497,7 @@ void CastleScr_GetResult( CASTLE_SCRWORK* wk, void* castle_call )
 		OS_Printf( "enemy_waza_flag[%d] = %d\n", i, wk->enemy_waza_flag[i] );
 	}
 
-	//ƒp[ƒgƒi[‚ÌCP
+	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®CP
 	wk->pair_cp	= call_wk->pair_cp;
 
 	return;
@@ -505,12 +505,12 @@ void CastleScr_GetResult( CASTLE_SCRWORK* wk, void* castle_call )
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹‚Ìƒ|ƒPƒ‚ƒ“‘I‘ğ‰æ–Ê‚Å‚ÌŒ‹‰Ê‚ğæ“¾
+ * @brief	ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã®ãƒã‚±ãƒ¢ãƒ³é¸æŠç”»é¢ã§ã®çµæœã‚’å–å¾—
  *
- * @param	param	CASTLE_CALL_WORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	param	CASTLE_CALL_WORKã®ãƒã‚¤ãƒ³ã‚¿
  * @param	pos		ret_work[pos](0-5)
  *
- * @return	"Œ‹‰Ê"
+ * @return	"çµæœ"
  */
 //----------------------------------------------------------------------------
 u16 CastleCall_GetRetWork( void* param, u8 pos )
@@ -547,10 +547,10 @@ void CastleScr_SetClear( CASTLE_SCRWORK* wk );
 
 //--------------------------------------------------------------
 /**
- * @brief	‹x‚Ş‚Æ‚«‚ÉŒ»İ‚ÌƒvƒŒƒCó‹µ‚ğƒZ[ƒu‚É‘‚«o‚·
+ * @brief	ä¼‘ã‚€ã¨ãã«ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤çŠ¶æ³ã‚’ã‚»ãƒ¼ãƒ–ã«æ›¸ãå‡ºã™
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	mode	FR_MODE_CLEAR="ƒNƒŠƒA",FR_MODE_LOSE="•‰‚¯",FR_MODE_REST="‹x‚Ş"
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	mode	FR_MODE_CLEAR="ã‚¯ãƒªã‚¢",FR_MODE_LOSE="è² ã‘",FR_MODE_REST="ä¼‘ã‚€"
  */
 //--------------------------------------------------------------
 void CastleScr_SaveRestPlayData( CASTLE_SCRWORK* wk, u8 mode )
@@ -568,80 +568,80 @@ void CastleScr_SaveRestPlayData( CASTLE_SCRWORK* wk, u8 mode )
 
 	fr_sv = SaveData_GetFrontier( wk->sv );
 
-	//ƒ^ƒCƒv‚É‚æ‚Á‚Äƒ|ƒPƒ‚ƒ“‚Ì”‚ğæ“¾
-	e_max = Castle_GetEnemyPokeNum( wk->type, CASTLE_FLAG_TOTAL );	//“G
+	//ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
+	e_max = Castle_GetEnemyPokeNum( wk->type, CASTLE_FLAG_TOTAL );	//æ•µ
 
-	//"ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`"‘‚«o‚µ
+	//"ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã€wifiãƒãƒ«ãƒ"æ›¸ãå‡ºã—
 	buf8[0] = wk->type;
 	CASTLEDATA_PutPlayData( wk->castle_savedata, CASTLEDATA_ID_TYPE, 0, 0, buf8 );
 	
-	//ƒZ[ƒuƒtƒ‰ƒO‚ğ—LŒøó‘Ô‚ÉƒŠƒZƒbƒg
+	//ã‚»ãƒ¼ãƒ–ãƒ•ãƒ©ã‚°ã‚’æœ‰åŠ¹çŠ¶æ…‹ã«ãƒªã‚»ãƒƒãƒˆ
 	CASTLEDATA_SetSaveFlag( wk->castle_savedata, TRUE );
 
-	//"ƒ‰ƒEƒ“ƒh”"‘‚«o‚µ(0-6l–Ú‚Ì‰½l–Ú‚©‚ğ‚ ‚í‚ç‚·)
+	//"ãƒ©ã‚¦ãƒ³ãƒ‰æ•°"æ›¸ãå‡ºã—(0-6äººç›®ã®ä½•äººç›®ã‹ã‚’ã‚ã‚ã‚‰ã™)
 	buf8[0] = wk->round;
 	//OS_Printf( "wk->round = %d\n", wk->round );
 	CASTLEDATA_PutPlayData( wk->castle_savedata, CASTLEDATA_ID_ROUND, 0, 0, buf8 );
 
 #if 0
-	//˜AŸ / 7 = ü‰ñ”
-	//˜AŸ % 7 = ‰½l–Ú‚©
+	//é€£å‹ / 7 = å‘¨å›æ•°
+	//é€£å‹ % 7 = ä½•äººç›®ã‹
 #endif
-	//"˜AŸ”"‘‚«o‚µ(uŸ‚Í27l–Ú‚Å‚·v‚Æ‚¢‚¤‚æ‚¤‚Ég‚¤)
+	//"é€£å‹æ•°"æ›¸ãå‡ºã—(ã€Œæ¬¡ã¯27äººç›®ã§ã™ã€ã¨ã„ã†ã‚ˆã†ã«ä½¿ã†)
 	//OS_Printf( "rensyou = %d\n", wk->rensyou );
 	FrontierRecord_Set(	fr_sv, 
 						CastleScr_GetWinRecordID(wk->type),
 						Frontier_GetFriendIndex(CastleScr_GetWinRecordID(wk->type)), wk->rensyou );
 	
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//"‹x‚Ş"ˆÈŠO
+	//"ä¼‘ã‚€"ä»¥å¤–
 	if( mode != FR_MODE_REST ){
 
-		//•ÏX‘O"Å‘å˜AŸ”"‚ğæ“¾‚µ‚Ä‚¨‚­
+		//å¤‰æ›´å‰"æœ€å¤§é€£å‹æ•°"ã‚’å–å¾—ã—ã¦ãŠã
 		before_max_rensyou = FrontierRecord_Get(	fr_sv, 
 							CastleScr_GetMaxWinRecordID(wk->type),
 							Frontier_GetFriendIndex(CastleScr_GetMaxWinRecordID(wk->type)) );
 
-		//"Å‘å˜AŸ”"‘‚«o‚µ
+		//"æœ€å¤§é€£å‹æ•°"æ›¸ãå‡ºã—
 		after = FrontierRecord_SetIfLarge(	fr_sv,
 								CastleScr_GetMaxWinRecordID(wk->type),
 								Frontier_GetFriendIndex(CastleScr_GetMaxWinRecordID(wk->type)), 
 								wk->rensyou );
 
-		//•ÏXŒã"Å‘å˜AŸ”"‚ğæ“¾‚µ‚Ä‚¨‚­
+		//å¤‰æ›´å¾Œ"æœ€å¤§é€£å‹æ•°"ã‚’å–å¾—ã—ã¦ãŠã
 		after_max_rensyou = FrontierRecord_Get(	fr_sv, 
 							CastleScr_GetMaxWinRecordID(wk->type),
 							Frontier_GetFriendIndex(CastleScr_GetMaxWinRecordID(wk->type)) );
 
-		//Œ»İ‚ÌCP‚ğæ“¾‚µ‚Ä‚¨‚­
+		//ç¾åœ¨ã®CPã‚’å–å¾—ã—ã¦ãŠã
 		cp = FrontierRecord_Get(fr_sv, 
 								CastleScr_GetCPRecordID(wk->type),
 								Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)) );
-		OS_Printf( "Œ»İ‚Ìcp = %d\n", cp );
+		OS_Printf( "ç¾åœ¨ã®cp = %d\n", cp );
 
-		//Œ»İ‚Ì˜AŸ”‚ªA‘O‚ÌÅ‘å˜AŸ”‚Æ“¯‚¶
+		//ç¾åœ¨ã®é€£å‹æ•°ãŒã€å‰ã®æœ€å¤§é€£å‹æ•°ã¨åŒã˜æ™‚
 		if( wk->rensyou == before_max_rensyou ){
 
-			//”äŠr‚µ‚Ä"Å‚˜AŸ‹L˜^"‚Ì"c‚èCP"‚àXV‚·‚é
+			//æ¯”è¼ƒã—ã¦"æœ€é«˜é€£å‹è¨˜éŒ²æ™‚"ã®"æ®‹ã‚ŠCP"ã‚‚æ›´æ–°ã™ã‚‹
 			FrontierRecord_SetIfLarge(	fr_sv, 
 					CastleScr_GetRemainderCPRecordID(wk->type),
 					Frontier_GetFriendIndex(CastleScr_GetRemainderCPRecordID(wk->type)), 
 					cp );
 
-		//Å‘å˜AŸ”‚ğXV‚µ‚½
+		//æœ€å¤§é€£å‹æ•°ã‚’æ›´æ–°ã—ãŸæ™‚
 		}else if( before_max_rensyou < after_max_rensyou ){
 
-			//"Å‚˜AŸ‹L˜^"‚Ì"c‚èCP"‚àXV‚·‚é
+			//"æœ€é«˜é€£å‹è¨˜éŒ²æ™‚"ã®"æ®‹ã‚ŠCP"ã‚‚æ›´æ–°ã™ã‚‹
 			FrontierRecord_Set(	fr_sv, 
 					CastleScr_GetRemainderCPRecordID(wk->type),
 					Frontier_GetFriendIndex(CastleScr_GetRemainderCPRecordID(wk->type)), cp );
 		}
 
-		//"7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO"‘‚«o‚µ
+		//"7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°"æ›¸ãå‡ºã—
 		buf8[0] = wk->clear_flag;
 		CASTLESCORE_PutScoreData( score_sv, CASTLESCORE_ID_CLEAR_FLAG, wk->type, 0, buf8 );
 
-		//WIFI‚Ì‚İ“Áê
+		//WIFIã®ã¿ç‰¹æ®Š
 		if( wk->type == CASTLE_TYPE_WIFI_MULTI ){
 			FrontierRecord_Set(	fr_sv, 
 					FRID_CASTLE_MULTI_WIFI_CLEAR_BIT,
@@ -650,26 +650,26 @@ void CastleScr_SaveRestPlayData( CASTLE_SCRWORK* wk, u8 mode )
 	}
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 
-	//"ƒgƒŒ[ƒi[ƒCƒ“ƒfƒbƒNƒX"‘‚«o‚µ
+	//"ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"æ›¸ãå‡ºã—
 	for( i=0; i < CASTLE_LAP_MULTI_ENEMY_MAX ;i++ ){
 		buf16[0] = wk->tr_index[i];
 		CASTLEDATA_PutPlayData( wk->castle_savedata, CASTLEDATA_ID_TR_INDEX, i, 0, buf16 );
 	}
 
-	//"è‚¿ˆÊ’u"‘‚«o‚µ
+	//"æ‰‹æŒã¡ä½ç½®"æ›¸ãå‡ºã—
 	for( i=0; i < CASTLE_ENTRY_POKE_MAX ;i++ ){
 		buf8[0] = wk->mine_poke_pos[i];
 		CASTLEDATA_PutPlayData(	wk->castle_savedata, CASTLEDATA_ID_MINE_POKE_POS, i, 0, buf8 );
 	}
 
-	//"è‚¿ƒ|ƒPƒ‚ƒ“‚Ìó‘Ô"‘‚«o‚µ
+	//"æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹"æ›¸ãå‡ºã—
 	count = PokeParty_GetPokeCount( wk->p_m_party );
 	for( i=0; i < count ;i++ ){
 
 		pp = PokeParty_GetMemberPointer( wk->p_m_party, i );
 
 		buf16[0] = PokeParaGet( pp, ID_PARA_hp, NULL );			//HP
-		OS_Printf( "‚â‚·‚Ş‚ÌHP = %d\n", buf16[0] );
+		OS_Printf( "ã‚„ã™ã‚€æ™‚ã®HP = %d\n", buf16[0] );
 		CASTLEDATA_PutPlayData( wk->castle_savedata, CASTLEDATA_ID_TEMOTI_HP, i, 0, buf16 );
 
 		buf8[0] = PokeParaGet( pp, ID_PARA_pp1, NULL );			//PP1
@@ -691,15 +691,15 @@ void CastleScr_SaveRestPlayData( CASTLE_SCRWORK* wk, u8 mode )
 		CASTLEDATA_PutPlayData( wk->castle_savedata, CASTLEDATA_ID_TEMOTI_ITEM, i, 0, buf16 );
 	}
 
-	//“G
+	//æ•µ
 	count = PokeParty_GetPokeCount( wk->p_e_party );
 	for( i=0; i < count ;i++ ){
 
 		pp = PokeParty_GetMemberPointer( wk->p_e_party, i );
 
 		//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-		//‚±‚±‚ªƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚Å‚Í‚È‚¢I
-		//ƒCƒ“ƒfƒbƒNƒXI
+		//ã“ã“ãŒãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã§ã¯ãªã„ï¼
+		//ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼
 		//buf16[0] = PokeParaGet( pp, ID_PARA_monsno, NULL );
 		buf16[0] = wk->enemy_poke_index[i];
 		CASTLEDATA_PutPlayData( wk->castle_savedata, CASTLEDATA_ID_ENEMY_POKE_INDEX, i, 0, buf16 );
@@ -711,9 +711,9 @@ void CastleScr_SaveRestPlayData( CASTLE_SCRWORK* wk, u8 mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒEƒ“ƒh”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+ * @brief	ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 u16	CastleScr_IncRound( CASTLE_SCRWORK* wk )
@@ -724,9 +724,9 @@ u16	CastleScr_IncRound( CASTLE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒEƒ“ƒh”‚ğæ“¾
+ * @brief	ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’å–å¾—
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 u16	CastleScr_GetRound( CASTLE_SCRWORK* wk )
@@ -736,10 +736,10 @@ u16	CastleScr_GetRound( CASTLE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‘ÎíƒgƒŒ[ƒi[OBJƒR[ƒhæ“¾
+ * @brief	å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼OBJã‚³ãƒ¼ãƒ‰å–å¾—
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	param	0=1l–ÚA1=2l–Ú(“G‚Ìƒp[ƒgƒi|)
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param	0=1äººç›®ã€1=2äººç›®(æ•µã®ãƒ‘ãƒ¼ãƒˆãƒŠâˆ’)
  */
 //--------------------------------------------------------------
 u16 CastleScr_GetEnemyObjCode( CASTLE_SCRWORK* wk, u8 param )
@@ -748,22 +748,22 @@ u16 CastleScr_GetEnemyObjCode( CASTLE_SCRWORK* wk, u8 param )
 	B_TOWER_TRAINER_ROM_DATA* p_rom_tr;
 	u8 index;
 
-	//æ“¾‚·‚éƒgƒŒ[ƒi[ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+	//å–å¾—ã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	index = wk->round + (param * CASTLE_LAP_ENEMY_MAX);
 
-	//ROM‚©‚çƒgƒŒ[ƒi[ƒf[ƒ^‚ğŠm•Û
+	//ROMã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ç¢ºä¿
 	p_rom_tr = Frontier_TrainerDataGet( &bt_trd, wk->tr_index[index], HEAPID_WORLD, ARC_PL_BTD_TR );
 	sys_FreeMemoryEz( p_rom_tr );
 
-	//ƒgƒŒ[ƒi[ƒ^ƒCƒv‚©‚çOBJƒR[ƒh‚ğæ“¾‚µ‚Ä‚­‚é
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‹ã‚‰OBJã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã—ã¦ãã‚‹
 	return Frontier_TrType2ObjCode( bt_trd.tr_type );
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	”sí‚µ‚½‚Ìˆ—
+ * @brief	æ•—æˆ¦ã—ãŸæ™‚ã®å‡¦ç†
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CastleScr_SetLose( CASTLE_SCRWORK* wk )
@@ -771,9 +771,9 @@ void CastleScr_SetLose( CASTLE_SCRWORK* wk )
 	u16 buf16[4];
 	int i;
 
-	OS_Printf( "\nƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹ƒf[ƒ^@”síƒZƒbƒg\n" );
+	OS_Printf( "\nãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ‡ãƒ¼ã‚¿ã€€æ•—æˆ¦ã‚»ãƒƒãƒˆ\n" );
 
-	//•‰‚¯‚½‚Ì‚İƒ‰ƒ“ƒN‚ğŒ³‚É–ß‚·(7˜AŸ‚Ì‚Íƒ‰ƒ“ƒN‚»‚Ì‚Ü‚Üˆø‚«Œp‚®)
+	//è² ã‘ãŸæ™‚ã®ã¿ãƒ©ãƒ³ã‚¯ã‚’å…ƒã«æˆ»ã™(7é€£å‹ã®æ™‚ã¯ãƒ©ãƒ³ã‚¯ãã®ã¾ã¾å¼•ãç¶™ã)
 	buf16[0] = 1;
 	for( i=0; i < CASTLE_RANK_TYPE_MAX ;i++ ){
 		FrontierRecord_Set(	SaveData_GetFrontier(wk->sv), 
@@ -781,71 +781,71 @@ void CastleScr_SetLose( CASTLE_SCRWORK* wk )
 					Frontier_GetFriendIndex(CastleScr_GetRankRecordID(wk->type,i)), 1 );
 	}
 
-	//Œ»İ‚Ì5˜AŸ‚È‚Ç‚ğ•Û‘¶‚·‚é•K—v‚ª‚ ‚éI
-	CastleScr_SaveRestPlayData( wk, FR_MODE_LOSE );		//ƒZ[ƒuƒf[ƒ^‚É‘ã“ü
+	//ç¾åœ¨ã®5é€£å‹ãªã©ã‚’ä¿å­˜ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ï¼
+	CastleScr_SaveRestPlayData( wk, FR_MODE_LOSE );		//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«ä»£å…¥
 
 #if 0
-	//Œ»İ‚Ìó‘Ô‚Í•Û‚·‚é‚Ì‚ÅƒNƒŠƒA‚µ‚È‚­‚Ä‚æ‚¢@08.03.17
-	//Ä’§í‚·‚éA•s³‚ÉI—¹‚µ‚½‚ÉƒNƒŠƒA‚³‚ê‚é
+	//ç¾åœ¨ã®çŠ¶æ…‹ã¯ä¿æŒã™ã‚‹ã®ã§ã‚¯ãƒªã‚¢ã—ãªãã¦ã‚ˆã„ã€€08.03.17
+	//å†æŒ‘æˆ¦ã™ã‚‹æ™‚ã€ä¸æ­£ã«çµ‚äº†ã—ãŸæ™‚ã«ã‚¯ãƒªã‚¢ã•ã‚Œã‚‹
 	
-	//"CP"‚ğ0‚É‚·‚é
+	//"CP"ã‚’0ã«ã™ã‚‹
 	FrontierRecord_Set(	SaveData_GetFrontier(wk->sv), 
 						CastleScr_GetCPRecordID(wk->type),
 						Frontier_GetFriendIndex(CastleScr_GetCPRecordID(wk->type)), 0 );
 #endif
 
-	//V‹K‚©AŒp‘±‚©‚ÍAWK_SCENE_CASTLE_LOBBY‚ÉŠi”[‚³‚ê‚Ä‚¢‚é‚Ì‚ÅA
-	//‚±‚±‚Åround‚È‚Ç‚ğƒNƒŠƒA‚µ‚È‚­‚Ä‚àA
-	//WK_SCENE_CASTLE_LOBBY‚ªŒp‘±‚Å‚Í‚È‚¢ó‘Ô‚ÅƒZ[ƒu‚³‚ê‚é‚Ì‚ÅA
-	//ó•t‚É˜b‚µ‚©‚¯‚Ä‚àAV‹K”»’è‚É‚È‚èƒ[ƒN‚ÍƒNƒŠƒA‚³‚ê‚éB
+	//æ–°è¦ã‹ã€ç¶™ç¶šã‹ã¯ã€WK_SCENE_CASTLE_LOBBYã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã®ã§ã€
+	//ã“ã“ã§roundãªã©ã‚’ã‚¯ãƒªã‚¢ã—ãªãã¦ã‚‚ã€
+	//WK_SCENE_CASTLE_LOBBYãŒç¶™ç¶šã§ã¯ãªã„çŠ¶æ…‹ã§ã‚»ãƒ¼ãƒ–ã•ã‚Œã‚‹ã®ã§ã€
+	//å—ä»˜ã«è©±ã—ã‹ã‘ã¦ã‚‚ã€æ–°è¦åˆ¤å®šã«ãªã‚Šãƒ¯ãƒ¼ã‚¯ã¯ã‚¯ãƒªã‚¢ã•ã‚Œã‚‹ã€‚
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	7˜AŸ(ƒNƒŠƒA)‚µ‚½‚Ìˆ—
+ * @brief	7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸæ™‚ã®å‡¦ç†
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CastleScr_SetClear( CASTLE_SCRWORK* wk )
 {
-	OS_Printf( "\nƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹ƒf[ƒ^@7˜AŸ(ƒNƒŠƒA)ƒZƒbƒg\n" );
+	OS_Printf( "\nãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ãƒ‡ãƒ¼ã‚¿ã€€7é€£å‹(ã‚¯ãƒªã‚¢)ã‚»ãƒƒãƒˆ\n" );
 	
 	/***********************************************************/
 	//
-	//ƒŒƒR[ƒh‚É‚àƒf[ƒ^‚ğ•Û‚·‚é•K—v‚ª‚ ‚é‚©‚Í•Û—¯
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰ã«ã‚‚ãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ã¯ä¿ç•™
 	//
 	//
-	//ƒXƒRƒAƒEƒBƒ“ƒhƒE‚ğŠJ‚­‚ÉQÆ‚·‚éƒf[ƒ^‚ªA
-	//ƒŒƒR[ƒh‚Æ‚¢‚¤ì‚èHH‚»‚ê‚Æ‚àA’ÊM‚Å“n‚·ƒf[ƒ^HH
+	//ã‚¹ã‚³ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ãæ™‚ã«å‚ç…§ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒã€
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰ã¨ã„ã†ä½œã‚Šï¼Ÿï¼Ÿãã‚Œã¨ã‚‚ã€é€šä¿¡ã§æ¸¡ã™ãƒ‡ãƒ¼ã‚¿ï¼Ÿï¼Ÿ
 	//
 	/***********************************************************/
 
-	wk->clear_flag = 1;						//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒOON
+	wk->clear_flag = 1;						//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°ON
 
-	//wk->rensyou		= 0;				//Œ»İ‚Ì˜AŸ”
+	//wk->rensyou		= 0;				//ç¾åœ¨ã®é€£å‹æ•°
 	if( wk->lap < CASTLE_LAP_MAX ){
-		wk->lap++;							//ü‰ñ”‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+		wk->lap++;							//å‘¨å›æ•°ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	}
 
 #if 0
-	//CastleScr_CommGetLap‚Å‚¸‚ê‚ªo‚È‚¢‚æ‚¤‚ÉƒyƒA‚àXV
+	//CastleScr_CommGetLapã§ãšã‚ŒãŒå‡ºãªã„ã‚ˆã†ã«ãƒšã‚¢ã‚‚æ›´æ–°
 	if( wk->pair_lap < CASTLE_LAP_MAX ){
-		wk->pair_lap++;						//ü‰ñ”‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+		wk->pair_lap++;						//å‘¨å›æ•°ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	}
 #endif
 
-	wk->round			= 0;				//¡‰½l–ÚH
-	CastleScr_SaveRestPlayData( wk, FR_MODE_CLEAR );		//ƒZ[ƒuƒf[ƒ^‚É‘ã“ü
+	wk->round			= 0;				//ä»Šä½•äººç›®ï¼Ÿ
+	CastleScr_SaveRestPlayData( wk, FR_MODE_CLEAR );		//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«ä»£å…¥
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	í“¬‘O‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ * @brief	æˆ¦é—˜å‰ã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CastleScr_BtlBeforePartySet( CASTLE_SCRWORK* wk )
@@ -856,9 +856,9 @@ void CastleScr_BtlBeforePartySet( CASTLE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ * @brief	ãƒãƒˆãƒ«å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CastleScr_BtlAfterPartySet( CASTLE_SCRWORK* wk )
@@ -872,23 +872,23 @@ void CastleScr_BtlAfterPartySet( CASTLE_SCRWORK* wk )
 	B_TOWER_TRAINER bt_trd;
 	B_TOWER_TRAINER_ROM_DATA* trd;
 
-	//‰Šú‰»	
+	//åˆæœŸåŒ–	
 	for( i=0; i < CASTLE_TOTAL_POKE_MAX ; i++ ){	
 		check_monsno[i] = 0;
 		check_itemno[i] = 0;
 	}
 
-	//ƒ^ƒCƒv‚É‚æ‚Á‚Äƒ|ƒPƒ‚ƒ“‚Ì”‚ğæ“¾
-	e_max = Castle_GetEnemyPokeNum( wk->type, CASTLE_FLAG_TOTAL );//“G
+	//ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
+	e_max = Castle_GetEnemyPokeNum( wk->type, CASTLE_FLAG_TOTAL );//æ•µ
 
 	count = PokeParty_GetPokeCount( wk->p_m_party );
-	for( i=0; i < count ; i++ ){									//è‚¿ƒ|ƒPƒ‚ƒ“
+	for( i=0; i < count ; i++ ){									//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³
 		temp_poke = PokeParty_GetMemberPointer( wk->p_m_party, i );
 		check_monsno[i] = PokeParaGet(temp_poke, ID_PARA_monsno, NULL);
 		check_itemno[i] = PokeParaGet(temp_poke, ID_PARA_item, NULL);
 
 #if 0
-		//PPXV
+		//PPæ›´æ–°
 		wk->pp[i][0] = PokeParaGet( temp_poke, ID_PARA_pp1, NULL );
 		wk->pp[i][1] = PokeParaGet( temp_poke, ID_PARA_pp2, NULL );
 		wk->pp[i][2] = PokeParaGet( temp_poke, ID_PARA_pp3, NULL );
@@ -898,25 +898,25 @@ void CastleScr_BtlAfterPartySet( CASTLE_SCRWORK* wk )
 	tmp_count = count;
 
 	count = PokeParty_GetPokeCount( wk->p_e_party );
-	for( i=0; i < count ; i++ ){									//“Gƒ|ƒPƒ‚ƒ“
+	for( i=0; i < count ; i++ ){									//æ•µãƒã‚±ãƒ¢ãƒ³
 		temp_poke = PokeParty_GetMemberPointer( wk->p_e_party, i );
 		check_monsno[i+tmp_count] = PokeParaGet(temp_poke, ID_PARA_monsno, NULL);
 		check_itemno[i+tmp_count] = PokeParaGet(temp_poke, ID_PARA_item, NULL);
 	}
 
-	SDK_ASSERTMSG( (tmp_count + count) <= CASTLE_TOTAL_POKE_MAX, "check buf‚Ì—v‘f”‚ª‘«‚è‚È‚¢I" );
+	SDK_ASSERTMSG( (tmp_count + count) <= CASTLE_TOTAL_POKE_MAX, "check bufã®è¦ç´ æ•°ãŒè¶³ã‚Šãªã„ï¼" );
 
-	//ROM‚©‚çƒgƒŒ[ƒi[ƒf[ƒ^‚ğŠm•Û
+	//ROMã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ç¢ºä¿
 	trd = Frontier_TrainerDataGet( &bt_trd, wk->tr_index[wk->round], HEAPID_WORLD, ARC_PL_BTD_TR );
 
-	//”í‚èƒ|ƒPAƒAƒCƒeƒ€Aƒf[ƒ^”Aæ“¾‚·‚é”A‘ã“üæ
+	//è¢«ã‚Šãƒã‚±ã€ã‚¢ã‚¤ãƒ†ãƒ ã€ãƒ‡ãƒ¼ã‚¿æ•°ã€å–å¾—ã™ã‚‹æ•°ã€ä»£å…¥å…ˆ
 	Frontier_PokemonIndexCreate(	trd, check_monsno, check_itemno, 
-									(tmp_count + count),				//è‚¿A“G‚Ì”
+									(tmp_count + count),				//æ‰‹æŒã¡ã€æ•µã®æ•°
 									e_max, wk->enemy_poke_index, HEAPID_WORLD );
 
 	sys_FreeMemoryEz( trd );
 
-	//“Gƒ|ƒPƒ‚ƒ“‚ğˆê“x‚É¶¬(personal‚È‚µ)
+	//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ(personalãªã—)
 	Frontier_PokemonParamCreateAll(	wk->enemy_poke, wk->enemy_poke_index, 
 									wk->enemy_pow_rnd, NULL, wk->enemy_personal_rnd, 
 									e_max, HEAPID_WORLD, ARC_PL_BTD_PM );
@@ -924,7 +924,7 @@ void CastleScr_BtlAfterPartySet( CASTLE_SCRWORK* wk )
 
 
 #else
-	//“GƒgƒŒ[ƒi[‚ªo‚·ƒ|ƒPƒ‚ƒ“¶¬
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒå‡ºã™ãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆ
 	Frontier_EnemyPokeMake(	Castle_GetEnemyPokeNum(wk->type,CASTLE_FLAG_TOTAL),
 							wk->tr_index[wk->round],
 							wk->tr_index[wk->round+CASTLE_LAP_ENEMY_MAX], 
@@ -942,16 +942,16 @@ void CastleScr_BtlAfterPartySet( CASTLE_SCRWORK* wk )
 	}
 #endif
 
-	//“Gƒp[ƒeƒB‚ÌƒZƒbƒg
+	//æ•µãƒ‘ãƒ¼ãƒ†ã‚£ã®ã‚»ãƒƒãƒˆ
 	Castle_EnemyPartySet( wk );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹Œã‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^XV
+ * @brief	ãƒãƒˆãƒ«å¾Œã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ›´æ–°
  *
- * @param	wk		CASTLE_SCRWORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_SCRWORKã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void CastleScr_BtlWinPokeData( CASTLE_SCRWORK* wk )
@@ -960,7 +960,7 @@ void CastleScr_BtlWinPokeData( CASTLE_SCRWORK* wk )
 	int i,count;
 	POKEMON_PARAM* temp_poke;
 
-	//p_m_party‚ÌƒIƒtƒZƒbƒg
+	//p_m_partyã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		offset = 0;
 	}else{
@@ -970,20 +970,20 @@ void CastleScr_BtlWinPokeData( CASTLE_SCRWORK* wk )
 	m_max = Castle_GetMinePokeNum( wk->type, CASTLE_FLAG_SOLO );
 	count = PokeParty_GetPokeCount( wk->p_m_party );
 
-	for( i=offset; i < (m_max+offset) ; i++ ){							//è‚¿ƒ|ƒPƒ‚ƒ“
+	for( i=offset; i < (m_max+offset) ; i++ ){							//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³
 		temp_poke = PokeParty_GetMemberPointer( wk->p_m_party, i );
 
-		//PPXV
+		//PPæ›´æ–°
 		wk->pp[i-offset][0] = PokeParaGet( temp_poke, ID_PARA_pp1, NULL );
 		wk->pp[i-offset][1] = PokeParaGet( temp_poke, ID_PARA_pp2, NULL );
 		wk->pp[i-offset][2] = PokeParaGet( temp_poke, ID_PARA_pp3, NULL );
 		wk->pp[i-offset][3] = PokeParaGet( temp_poke, ID_PARA_pp4, NULL );
 	}
 
-	//è‚¿ƒ|ƒPƒ‚ƒ“‚Ìó‘Ô‚ğƒLƒƒƒbƒXƒ‹d—l‰ñ•œ
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹ã‚’ã‚­ãƒ£ãƒƒã‚¹ãƒ«ä»•æ§˜å›å¾©
 	Castle_PokePartyRecoverAll( wk->p_m_party );
 
-	//î•ñ‚ªŒöŠJ‚³‚ê‚½‚©ƒtƒ‰ƒO‚ğƒNƒŠƒA
+	//æƒ…å ±ãŒå…¬é–‹ã•ã‚ŒãŸã‹ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢
 	for( i=0; i < CASTLE_ENEMY_POKE_MAX ;i++ ){
 		wk->enemy_temoti_flag[i]	= 0;
 		wk->enemy_level_flag[i]		= 0;
@@ -996,11 +996,11 @@ void CastleScr_BtlWinPokeData( CASTLE_SCRWORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹Ÿ—˜Œã‚Ì‚à‚ç‚¦‚é‚b‚oƒ|ƒCƒ“ƒgŒvZA‘‚â‚·
+ * @brief	ãƒãƒˆãƒ«å‹åˆ©å¾Œã®ã‚‚ã‚‰ãˆã‚‹ï¼£ï¼°ãƒã‚¤ãƒ³ãƒˆè¨ˆç®—ã€å¢—ã‚„ã™
  *
- * @param	wk			CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk			CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"CPƒ|ƒCƒ“ƒg"
+ * @return	"CPãƒã‚¤ãƒ³ãƒˆ"
  */
 //--------------------------------------------------------------
 int CastleScr_GetBtlWinCpPoint( CASTLE_SCRWORK* wk )
@@ -1025,9 +1025,9 @@ int CastleScr_GetBtlWinCpPoint( CASTLE_SCRWORK* wk )
 		ID_LV_MINUS,			//10
 	};
 
-	OS_Printf( "********************\ní“¬Œã‚Ì‚à‚ç‚¦‚éCPŒvZ\n" );
+	OS_Printf( "********************\næˆ¦é—˜å¾Œã®ã‚‚ã‚‰ãˆã‚‹CPè¨ˆç®—\n" );
 
-	//ƒNƒŠƒA
+	//ã‚¯ãƒªã‚¢
 	for( i=0; i < 20 ;i++ ){
 		tmp[i] = 0;
 	}
@@ -1035,7 +1035,7 @@ int CastleScr_GetBtlWinCpPoint( CASTLE_SCRWORK* wk )
 	wk->hinsi_flag = 0;
 	after_pp_max = 0;
 
-	//p_m_party‚ÌƒIƒtƒZƒbƒg
+	//p_m_partyã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	if( CommGetCurrentID() == COMM_PARENT_ID ){
 		offset = 0;
 	}else{
@@ -1057,63 +1057,63 @@ int CastleScr_GetBtlWinCpPoint( CASTLE_SCRWORK* wk )
 		hp		= PokeParaGet( pp, ID_PARA_hp, NULL );
 		hpmax	= PokeParaGet( pp, ID_PARA_hpmax, NULL );
 
-		//‹Câ‚µ‚Ä‚¢‚È‚¢ƒ|ƒPƒ‚ƒ“”
+		//æ°—çµ¶ã—ã¦ã„ãªã„ãƒã‚±ãƒ¢ãƒ³æ•°
 		if( hp > 0 ){
 
 			tmp[ID_NO_HINSI]++;
 
-			//HP–ƒ^ƒ“‚Ìƒ|ƒPƒ‚ƒ“”
+			//HPæº€ã‚¿ãƒ³ã®ãƒã‚±ãƒ¢ãƒ³æ•°
 			if( hp == hpmax ){
 
 				tmp[ID_HP_MAX]++;
 
 			}else{
 
-				//HP”¼•ªˆÈã‚Ìƒ|ƒPƒ‚ƒ“”(–ƒ^ƒ“ŠÜ‚Ü‚¸)
+				//HPåŠåˆ†ä»¥ä¸Šã®ãƒã‚±ãƒ¢ãƒ³æ•°(æº€ã‚¿ãƒ³å«ã¾ãš)
 				if( hp >= (hpmax / 2) ){
 
 					tmp[ID_HP_HALF_UP]++;
 
 				}else{
 
-					//HP”¼•ªˆÈ‰º(•m€ŠÜ‚Ü‚¸)‚Ìƒ|ƒPƒ‚ƒ“”
+					//HPåŠåˆ†ä»¥ä¸‹(ç€•æ­»å«ã¾ãš)ã®ãƒã‚±ãƒ¢ãƒ³æ•°
 					tmp[ID_HP_HALF_DOWN]++;
 
 				}
 			}
 
-			//ó‘ÔˆÙí‚É‚È‚Á‚Ä‚¢‚È‚¢ƒ|ƒPƒ‚ƒ“”
+			//çŠ¶æ…‹ç•°å¸¸ã«ãªã£ã¦ã„ãªã„ãƒã‚±ãƒ¢ãƒ³æ•°
 			if( PokeParaGet(pp,ID_PARA_condition,NULL) == 0 ){
 				tmp[ID_CONDITION]++;
 			}
 
 		}else{
-			wk->hinsi_flag = 1;		//•m€ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é
+			wk->hinsi_flag = 1;		//ç€•æ­»ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹
 		}
 
-		//í“¬Œã‚ÌPP‡Œv‚ğæ“¾
+		//æˆ¦é—˜å¾Œã®PPåˆè¨ˆã‚’å–å¾—
 		after_pp_max += PokeParaGet( pp, ID_PARA_pp1, NULL );
 		after_pp_max += PokeParaGet( pp, ID_PARA_pp2, NULL );
 		after_pp_max += PokeParaGet( pp, ID_PARA_pp3, NULL );
 		after_pp_max += PokeParaGet( pp, ID_PARA_pp4, NULL );
 	}
 
-	//‘Îíƒ|ƒPƒ‚ƒ“
+	//å¯¾æˆ¦ãƒã‚±ãƒ¢ãƒ³
 	for( i=0; i < e_max; i++ ){
 
-		//‘Îí‘Šè‚ÌƒŒƒxƒ‹‚ğ+5‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”
+		//å¯¾æˆ¦ç›¸æ‰‹ã®ãƒ¬ãƒ™ãƒ«ã‚’+5ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®æ•°
 		if( wk->enemy_level_flag[i] == 1 ){
 
 			tmp[ID_LV_PLUS]++;
 
 		}else if( wk->enemy_level_flag[i] == 2 ){
 
-			//‘Îí‘Šè‚ÌƒŒƒxƒ‹‚ğ-5‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì”
+			//å¯¾æˆ¦ç›¸æ‰‹ã®ãƒ¬ãƒ™ãƒ«ã‚’-5ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®æ•°
 			//tmp[ID_LV_MINUS]++;
 		}
 	}
 
-	//í“¬‘O‚ÌPP‡Œv‚ğæ“¾
+	//æˆ¦é—˜å‰ã®PPåˆè¨ˆã‚’å–å¾—
 	before_pp_max = 0;
 	for( i=0; i < m_max; i++ ){
 		for( j=0; j < 4; j++ ){
@@ -1121,20 +1121,20 @@ int CastleScr_GetBtlWinCpPoint( CASTLE_SCRWORK* wk )
 		}
 	}
 
-	//‡ŒvPP‚ÌŒ¸‚Á‚½’l‚ª5ˆÈ‰º‚Ìê‡
+	//åˆè¨ˆPPã®æ¸›ã£ãŸå€¤ãŒ5ä»¥ä¸‹ã®å ´åˆ
 	if( (before_pp_max - after_pp_max) <= 5 ){
 		tmp[ID_PP_5]++;
 
-	//‡ŒvPP‚ÌŒ¸‚Á‚½’l‚ª10ˆÈ‰º‚Ìê‡
+	//åˆè¨ˆPPã®æ¸›ã£ãŸå€¤ãŒ10ä»¥ä¸‹ã®å ´åˆ
 	}else if( (before_pp_max - after_pp_max) <= 10 ){
 		tmp[ID_PP_10]++;
 
-	//‡ŒvPP‚ÌŒ¸‚Á‚½’l‚ª15ˆÈ‰º‚Ìê‡
+	//åˆè¨ˆPPã®æ¸›ã£ãŸå€¤ãŒ15ä»¥ä¸‹ã®å ´åˆ
 	}else if( (before_pp_max - after_pp_max) <= 15 ){
 		tmp[ID_PP_15]++;
 	}
 
-	//“¾“_ŒvZ
+	//å¾—ç‚¹è¨ˆç®—
 	ret += tmp[ID_NO_HINSI]		*3;
 	OS_Printf( "ID_NO_HINSI = %d\n", tmp[ID_NO_HINSI] );
 	ret += tmp[ID_HP_MAX]		*3;
@@ -1160,16 +1160,16 @@ int CastleScr_GetBtlWinCpPoint( CASTLE_SCRWORK* wk )
 		ret = 1;
 	}
 
-	OS_Printf( "‡Œv = %d\n", ret );
+	OS_Printf( "åˆè¨ˆ = %d\n", ret );
 	return ret;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	CP‘‚â‚·
+ * @brief	CPå¢—ã‚„ã™
  *
- * @param	wk			CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	num			‘‚â‚·’l
+ * @param	wk			CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	num			å¢—ã‚„ã™å€¤
  *
  * @return	none
  */
@@ -1178,12 +1178,12 @@ void CastleScr_AddCP( SAVEDATA* sv, u8 type, int num )
 {
 	u16 now_cp;
 
-	//Œ»İ‚ÌCP‚ğæ“¾
+	//ç¾åœ¨ã®CPã‚’å–å¾—
 	now_cp = FrontierRecord_Get(SaveData_GetFrontier(sv), 
 								CastleScr_GetCPRecordID(type),
 								Frontier_GetFriendIndex(CastleScr_GetCPRecordID(type)) );
 
-	//9999ƒŠƒ~ƒbƒgƒ`ƒFƒbƒN
+	//9999ãƒªãƒŸãƒƒãƒˆãƒã‚§ãƒƒã‚¯
 	if( now_cp + num > CASTLE_CP_MAX ){
 		FrontierRecord_Set(	SaveData_GetFrontier(sv), 
 							CastleScr_GetCPRecordID(type),
@@ -1195,7 +1195,7 @@ void CastleScr_AddCP( SAVEDATA* sv, u8 type, int num )
 							Frontier_GetFriendIndex(CastleScr_GetCPRecordID(type)), num );
 	}
 
-	//ƒŒƒR[ƒhXV(‚±‚ê‚ÍƒQ[ƒ€“àƒŒƒR[ƒh‚È‚Ì‚Å§ŒÀ‚ÍŠO‚Å‚©‚¯‚Ä‚­‚ê‚é)
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰æ›´æ–°(ã“ã‚Œã¯ã‚²ãƒ¼ãƒ å†…ãƒ¬ã‚³ãƒ¼ãƒ‰ãªã®ã§åˆ¶é™ã¯å¤–ã§ã‹ã‘ã¦ãã‚Œã‚‹)
 	RECORD_Add( SaveData_GetRecord(sv), RECID_CASTLE_POINT, num );
 	return;
 }
@@ -1203,16 +1203,16 @@ void CastleScr_AddCP( SAVEDATA* sv, u8 type, int num )
 
 //==============================================================================================
 //
-//	’ÊM(CommStart)
+//	é€šä¿¡(CommStart)
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	‘—MƒEƒFƒCƒg@
+ * @brief	é€ä¿¡ã‚¦ã‚§ã‚¤ãƒˆã€€
  *
- * @param	wk			CASTLE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	type		‘—Mƒ^ƒCƒv
+ * @param	wk			CASTLE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	type		é€ä¿¡ã‚¿ã‚¤ãƒ—
  *
  * @retval	none
  */
@@ -1258,7 +1258,7 @@ BOOL CastleScr_CommSetSendBuf( CASTLE_SCRWORK* wk, u16 type, u16 param )
 
 //==============================================================================================
 //
-//	–¼‘O{CPƒEƒBƒ“ƒhƒE
+//	åå‰ï¼‹CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //
 //==============================================================================================
 #include "savedata/castle_savedata.h"
@@ -1277,20 +1277,20 @@ void FSSC_Sub_CPWrite( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk );
 static void FSSC_Sub_CPWinWrite2( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win );
 static void FSSC_Sub_CPWrite2( FSS_PTR fss, GF_BGL_BMPWIN* win, MYSTATUS* my, u16 cp );
 
-#define FSEVWIN_CP_BUF_SIZE		(10*2)			//CPƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define FSEVWIN_CP_BUF_SIZE		(10*2)			//CPãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------------------------------------
 /**
- * CPƒEƒBƒ“ƒhƒE•\¦
+ * CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param	fsys
  * @param	wk
- * @param	x		•\¦XÀ•W
- * @param	y		•\¦YÀ•W
+ * @param	x		è¡¨ç¤ºXåº§æ¨™
+ * @param	y		è¡¨ç¤ºYåº§æ¨™
  *
- * @return	Šm•Û‚µ‚½BMPƒEƒBƒ“ƒhƒE
+ * @return	ç¢ºä¿ã—ãŸBMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
- * EvWin_GoldWinDel‚Åíœ‚·‚é‚±‚ÆI
+ * EvWin_GoldWinDelã§å‰Šé™¤ã™ã‚‹ã“ã¨ï¼
  */
 //--------------------------------------------------------------------------------------------
 void FSSC_Sub_CPWinWrite( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk )
@@ -1300,7 +1300,7 @@ void FSSC_Sub_CPWinWrite( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk )
 	GF_ASSERT( fss->pParentNameCPWin == NULL );
 	GF_ASSERT( fss->pChildNameCPWin == NULL );
 
-	//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹
+	//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«
 	if( Castle_CommCheck(bc_scr_wk->type) == FALSE ){
 		fss->pParentNameCPWin	= GF_BGL_BmpWinAllocGet( HEAPID_WORLD, 1 );
 		GF_BGL_BmpWinAdd(	fmap->bgl, fss->pParentNameCPWin, FRMAP_FRAME_WIN, 
@@ -1308,7 +1308,7 @@ void FSSC_Sub_CPWinWrite( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk )
 							FFD_CP_WIN_SX, FFD_CP_WIN_SY, FFD_CP_WIN_PAL, FFD_CP_WIN_CGX );
 		FSSC_Sub_CPWinWrite2( fmap->bgl, fss->pParentNameCPWin );
 	//////////////////////////////////////////////////////////////////////////
-	//’ÊM
+	//é€šä¿¡
 	}else{
 		fss->pParentNameCPWin	= GF_BGL_BmpWinAllocGet( HEAPID_WORLD, 1 );
 		fss->pChildNameCPWin	= GF_BGL_BmpWinAllocGet( HEAPID_WORLD, 1 );
@@ -1331,17 +1331,17 @@ void FSSC_Sub_CPWinWrite( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk )
 
 static void FSSC_Sub_CPWinWrite2( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 {
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ğ•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_OFF, FR_MENU_WIN_CGX_NUM, FR_MENU_WIN_PAL );
 
-	//w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚µ
+	//æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã—
 	GF_BGL_BmpWinDataFill( win, FBMP_COL_WHITE );
 	return;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * Š‹àƒEƒBƒ“ƒhƒEíœ
+ * æ‰€æŒé‡‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  *
  * @param	wk
  *
@@ -1353,23 +1353,23 @@ void FSSC_Sub_CPWinDel( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk )
 	GF_BGL_BMPWIN* l_win;
 	GF_BGL_BMPWIN* r_win;
 
-	//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹
+	//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«
 	if( Castle_CommCheck(bc_scr_wk->type) == FALSE ){
 		GF_ASSERT( fss->pParentNameCPWin != NULL );
 		l_win = fss->pParentNameCPWin;
 		BmpMenuWinClear( l_win, WINDOW_TRANS_ON );
 		GF_BGL_BmpWinFree( l_win, 1 );
 	//////////////////////////////////////////////////////////////////////////
-	//’ÊM
+	//é€šä¿¡
 	}else{
 		GF_ASSERT( fss->pParentNameCPWin != NULL );
 		GF_ASSERT( fss->pChildNameCPWin != NULL );
 
-		//e
+		//è¦ª
 		if( CommGetCurrentID() == COMM_PARENT_ID ){
 			l_win = fss->pParentNameCPWin;
 			r_win = fss->pChildNameCPWin;
-		//q
+		//å­
 		}else{
 			l_win = fss->pChildNameCPWin;
 			r_win = fss->pParentNameCPWin;
@@ -1388,7 +1388,7 @@ void FSSC_Sub_CPWinDel( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒŒƒCƒ„[–¼{CP•`‰æ
+ * ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åï¼‹CPæç”»
  *
  * @param	fsys
  * @param	wk
@@ -1400,7 +1400,7 @@ void FSSC_Sub_CPWrite( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk )
 {
 	u16 l_cp,r_cp;
 
-	//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹
+	//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«
 	if( Castle_CommCheck(bc_scr_wk->type) == FALSE ){
 		GF_ASSERT( fss->pParentNameCPWin != NULL );
 		l_cp = FrontierRecord_Get(	SaveData_GetFrontier(bc_scr_wk->sv), 
@@ -1408,25 +1408,25 @@ void FSSC_Sub_CPWrite( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk )
 							Frontier_GetFriendIndex(CastleScr_GetCPRecordID(bc_scr_wk->type)) );
 		FSSC_Sub_CPWrite2( fss, fss->pParentNameCPWin, SaveData_GetMyStatus(bc_scr_wk->sv), l_cp );
 	//////////////////////////////////////////////////////////////////////////
-	//’ÊM
+	//é€šä¿¡
 	}else{
 		GF_ASSERT( fss->pParentNameCPWin != NULL );
 		GF_ASSERT( fss->pChildNameCPWin != NULL );
 
-		//e
+		//è¦ª
 		if( CommGetCurrentID() == COMM_PARENT_ID ){
 			l_cp = FrontierRecord_Get(	SaveData_GetFrontier(bc_scr_wk->sv), 
 							CastleScr_GetCPRecordID(bc_scr_wk->type),
 							Frontier_GetFriendIndex(CastleScr_GetCPRecordID(bc_scr_wk->type)) );
 			r_cp = bc_scr_wk->pair_cp;
-			OS_Printf( "eF–¼‘O{CPƒEƒBƒ“ƒhƒE\n" );
-		//q
+			OS_Printf( "è¦ªï¼šåå‰ï¼‹CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦\n" );
+		//å­
 		}else{
 			l_cp = bc_scr_wk->pair_cp;
 			r_cp = FrontierRecord_Get(	SaveData_GetFrontier(bc_scr_wk->sv), 
 								CastleScr_GetCPRecordID(bc_scr_wk->type),
 								Frontier_GetFriendIndex(CastleScr_GetCPRecordID(bc_scr_wk->type)) );
-			OS_Printf( "qF–¼‘O{CPƒEƒBƒ“ƒhƒE\n" );
+			OS_Printf( "å­ï¼šåå‰ï¼‹CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦\n" );
 		}
 
 		FSSC_Sub_CPWrite2( fss, fss->pParentNameCPWin, CommInfoGetMyStatus(0), l_cp );
@@ -1451,18 +1451,18 @@ static void FSSC_Sub_CPWrite2( FSS_PTR fss, GF_BGL_BMPWIN* win, MYSTATUS* my, u1
 
 	MSGMAN_GetString( man, msg_castle_poke_cp_01, tmp_buf );
 
-	//“o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ‚·‚é
+	//ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
 	WORDSET_ExpandStr( fss->wordset, tmp_buf2, tmp_buf );
 
 	GF_STR_PrintSimple( win, FONT_SYSTEM, tmp_buf2, CASTLE_NAME_CP_START_X, 2*8, MSG_NO_PUT, NULL );
 
 	//////////////////////////////////////////////////////////////////////////////
-	//–¼‘O
+	//åå‰
 	WORDSET_RegisterPlayerName( fss->wordset, 0, my );
 
 	MSGMAN_GetString( man, msg_castle_poke_name_01, tmp_buf );
 
-	//“o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ‚·‚é
+	//ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
 	WORDSET_ExpandStr( fss->wordset, tmp_buf2, tmp_buf );
 
 	GF_STR_PrintSimple( win, FONT_SYSTEM, tmp_buf2, 0, 0, MSG_ALLPUT, NULL );
@@ -1479,11 +1479,11 @@ static void FSSC_Sub_CPWrite2( FSS_PTR fss, GF_BGL_BMPWIN* win, MYSTATUS* my, u1
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒbƒXƒ‹ƒNƒŠƒA‚É–á‚¦‚éƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ğæ“¾
+ * ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã‚¯ãƒªã‚¢æ™‚ã«è²°ãˆã‚‹ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’å–å¾—
  *
  * @param	wk
  *
- * @return	"–á‚¦‚éƒoƒgƒ‹ƒ|ƒCƒ“ƒg"
+ * @return	"è²°ãˆã‚‹ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆ"
  */
 //--------------------------------------------------------------------------------------------
 u16	CastleScr_GetAddBtlPoint( CASTLE_SCRWORK* wk );
@@ -1492,40 +1492,40 @@ u16	CastleScr_GetAddBtlPoint( CASTLE_SCRWORK* wk )
 	u8 add_bp;
 	u16 lap;
 	static const u8 bppoint_normal[CASTLE_LAP_MAX+1] = {0, 
-													3, 3, 4, 4, 5, 5, 7, 7 };//0,1ü`8üˆÈ~
+													3, 3, 4, 4, 5, 5, 7, 7 };//0,1å‘¨ã€œ8å‘¨ä»¥é™
 
 	static const u8 bppoint_multi[CASTLE_LAP_MAX+1]  = {0, 
-													8, 9, 11, 12, 14, 15, 18, 18 };//0,1ü`8üˆÈ~
+													8, 9, 11, 12, 14, 15, 18, 18 };//0,1å‘¨ã€œ8å‘¨ä»¥é™
 
 	//lap = CastleScr_CommGetLap( wk );
 	lap = wk->lap;
 
-	OS_Printf( "ü‰ñ” = %d\n", lap );
-	OS_Printf( "˜AŸ” = %d\n", wk->rensyou );
+	OS_Printf( "å‘¨å›æ•° = %d\n", lap );
+	OS_Printf( "é€£å‹æ•° = %d\n", wk->rensyou );
 
-	//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹
+	//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«
 	if( (wk->type == CASTLE_TYPE_SINGLE) || (wk->type == CASTLE_TYPE_DOUBLE) ){
 
-		//Å‘åü‰ñ”ƒ`ƒFƒbƒN
+		//æœ€å¤§å‘¨å›æ•°ãƒã‚§ãƒƒã‚¯
 		if( lap >= CASTLE_LAP_MAX ){
-			add_bp = bppoint_normal[ CASTLE_LAP_MAX ];		//ƒe[ƒuƒ‹‚ª+1‚µ‚Ä‚¢‚é‚Ì‚Å
+			add_bp = bppoint_normal[ CASTLE_LAP_MAX ];		//ãƒ†ãƒ¼ãƒ–ãƒ«ãŒ+1ã—ã¦ã„ã‚‹ã®ã§
 		}else{
 			add_bp = bppoint_normal[ lap ];
 		}
 
 	////////////////////////////////////////////////////////////////////////////////////
-	//ƒ}ƒ‹ƒ`AWIFI
+	//ãƒãƒ«ãƒã€WIFI
 	}else{
 
-		//Å‘åü‰ñ”ƒ`ƒFƒbƒN
+		//æœ€å¤§å‘¨å›æ•°ãƒã‚§ãƒƒã‚¯
 		if( lap >= CASTLE_LAP_MAX ){
-			add_bp = bppoint_multi[ CASTLE_LAP_MAX ];		//ƒe[ƒuƒ‹‚ª+1‚µ‚Ä‚¢‚é‚Ì‚Å
+			add_bp = bppoint_multi[ CASTLE_LAP_MAX ];		//ãƒ†ãƒ¼ãƒ–ãƒ«ãŒ+1ã—ã¦ã„ã‚‹ã®ã§
 		}else{
 			add_bp = bppoint_multi[ lap ];
 		}
 	}
 
-	//ƒuƒŒ[ƒ“ƒ`ƒFƒbƒN
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ãƒã‚§ãƒƒã‚¯
 	if( wk->type == CASTLE_TYPE_SINGLE ){
 		if( (wk->rensyou == CASTLE_LEADER_SET_1ST) || (wk->rensyou == CASTLE_LEADER_SET_2ND) ){
 			add_bp = 20;

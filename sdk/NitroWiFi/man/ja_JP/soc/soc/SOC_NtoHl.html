@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SOC_NtoHl, SOC_HtoNs, SOC_NtoHl, SOC_NtoHs</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">SOC_HtoNl<br>SOC_HtoNs<br>SOC_NtoHl<br>SOC_NtoHs</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
@@ -23,39 +23,39 @@ u16 SOC_NtoHs ( u16 <strong><em>netshort</em></strong> );</code></pre>
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 
 <table width="100%">
   <tr>
     <td><code><strong><em>netlong</em></strong></code></td>
-    <td>�l�b�g���[�N�o�C�g�I�[�_�[�� 32bit�����B</td>
+    <td>ネットワークバイトオーダーの 32bit整数。</td>
   </tr>
   <tr>
     <td><code><strong><em>netshort</em></strong></code></td>
-    <td>�l�b�g���[�N�o�C�g�I�[�_�[�� 16bit�����B</td>
+    <td>ネットワークバイトオーダーの 16bit整数。</td>
   </tr>
   <tr>
     <td><code><strong><em>hostlong</em></strong></code></td>
-    <td>�z�X�g�o�C�g�I�[�_�[�� 32bit�����B</td>
+    <td>ホストバイトオーダーの 32bit整数。</td>
   </tr>
   <tr>
     <td><code><strong><em>hostshort</em></strong></code></td>
-    <td>�z�X�g�o�C�g�I�[�_�[�� 16bit�����B</td>
+    <td>ホストバイトオーダーの 16bit整数。</td>
   </tr>
 </table>
 
-<h2>�Ԃ�l</h2>
+<h2>返り値</h2>
 
-<p> <code>SOCHtoNl()</code>��<code>SOCHtoNs()</code>�́A�z�X�g�o�C�g�I�[�_�[����l�b�g���[�N�o�C�g�I�[�_�[�ɕϊ����ꂽ�����̒l��Ԃ��܂��B</p>
-<p> <code>SOCNtoHl()</code>��<code>SOCNtoHs()</code>�́A�l�b�g���[�N�o�C�g�I�[�_�[����z�X�g�o�C�g�I�[�_�[�ɕϊ����ꂽ�����̒l��Ԃ��܂��B</p>
+<p> <code>SOCHtoNl()</code>と<code>SOCHtoNs()</code>は、ホストバイトオーダーからネットワークバイトオーダーに変換された引数の値を返します。</p>
+<p> <code>SOCNtoHl()</code>と<code>SOCNtoHs()</code>は、ネットワークバイトオーダーからホストバイトオーダーに変換された引数の値を返します。</p>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p>�����̊֐��́A16bit�܂���32bit�̒l���A�l�b�g���[�N�o�C�g�I�[�_�[�ƃz�X�g�o�C�g�I�[�_�[�̊Ԃŕϊ����܂��B</p>
+<p>これらの関数は、16bitまたは32bitの値を、ネットワークバイトオーダーとホストバイトオーダーの間で変換します。</p>
 
-<h2>�Q��</h2>
-<H2>����</H2>
+<h2>参照</h2>
+<H2>履歴</H2>
 <P>
-2005/09/13 ����</P>
+2005/09/13 初版</P>
 </body>
 </html>

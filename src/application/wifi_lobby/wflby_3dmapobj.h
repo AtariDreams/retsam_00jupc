@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_3dmapobj.h
- *	@brief		�}�b�v�\�����Ǘ�
+ *	@brief		マップ表示物管理
  *	@author		tomoya takahashi
  *	@data		2007.11.14
  *
@@ -20,11 +20,11 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	�t���[�g�^�C�v�萔
+///	フロートタイプ定数
 //=====================================
 typedef enum {
 	WFLBY_3DMAPOBJ_FLOAT_00,
@@ -33,11 +33,11 @@ typedef enum {
 } WFLBY_3DMAPOBJ_FLOAT_TYPE;
 
 //-------------------------------------
-///	�z�u�I�u�W�F�^�C�v�萔
+///	配置オブジェタイプ定数
 //=====================================
 typedef enum {
 	WFLBY_3DMAPOBJ_BIGBRONZE,
-	WFLBY_3DMAPOBJ_SMALLBRONZE00,	// ���ꂼ��S�p�^�[��
+	WFLBY_3DMAPOBJ_SMALLBRONZE00,	// それぞれ４パターン
 	WFLBY_3DMAPOBJ_SMALLBRONZE01,	// 
 	WFLBY_3DMAPOBJ_SMALLBRONZE02,	// 
 	WFLBY_3DMAPOBJ_SMALLBRONZE03,	// 
@@ -58,79 +58,79 @@ typedef enum {
 } WFLBY_3DMAPOBJ_WK_TYPE;
 
 //-------------------------------------
-///	�z�u�I�u�W�F	�A�j���^�C�v�萔
+///	配置オブジェ	アニメタイプ定数
 //=====================================
 typedef enum {
 
-	// �傫�ȃI�u�W�F
-	WFLBY_3DMAPOBJ_BIGBRONZEZ_ANM_ALL=0,	// �풓�A�j��
-	WFLBY_3DMAPOBJ_BIGBRONZEZ_ANM_ALL01,	// �풓�A�j��
-	WFLBY_3DMAPOBJ_BIGBRONZEZ_ANM_ALL02,	// �풓�A�j��
-	WFLBY_3DMAPOBJ_BIGBRONZEZ_ANM_NUM,		// ��
+	// 大きなオブジェ
+	WFLBY_3DMAPOBJ_BIGBRONZEZ_ANM_ALL=0,	// 常駐アニメ
+	WFLBY_3DMAPOBJ_BIGBRONZEZ_ANM_ALL01,	// 常駐アニメ
+	WFLBY_3DMAPOBJ_BIGBRONZEZ_ANM_ALL02,	// 常駐アニメ
+	WFLBY_3DMAPOBJ_BIGBRONZEZ_ANM_NUM,		// 数
 
-	// �������I�u�W�F
-	WFLBY_3DMAPOBJ_SMALLBRONZE_ANM_TOUCH = 0,	// �G�ꂽ�Ƃ��A�j��
-	WFLBY_3DMAPOBJ_SMALLBRONZE_ANM_TOUCH00,	// �G�ꂽ�Ƃ��A�j��
-	WFLBY_3DMAPOBJ_SMALLBRONZE_ANM_TOUCH01,	// �G�ꂽ�Ƃ��A�j��
-	WFLBY_3DMAPOBJ_SMALLBRONZE_ANM_NUM,		// ��
+	// 小さいオブジェ
+	WFLBY_3DMAPOBJ_SMALLBRONZE_ANM_TOUCH = 0,	// 触れたときアニメ
+	WFLBY_3DMAPOBJ_SMALLBRONZE_ANM_TOUCH00,	// 触れたときアニメ
+	WFLBY_3DMAPOBJ_SMALLBRONZE_ANM_TOUCH01,	// 触れたときアニメ
+	WFLBY_3DMAPOBJ_SMALLBRONZE_ANM_NUM,		// 数
 
-	// �Ŕ�
-	WFLBY_3DMAPOBJ_KANBAN_ANM_LAMP=0,	// �_���A�j��
-	WFLBY_3DMAPOBJ_KANBAN_ANM_NUM,		// ��
+	// 看板
+	WFLBY_3DMAPOBJ_KANBAN_ANM_LAMP=0,	// 点灯アニメ
+	WFLBY_3DMAPOBJ_KANBAN_ANM_NUM,		// 数
 
-	// �����v
-	WFLBY_3DMAPOBJ_LAMP_ANM_ON=0,		// �_���A�j��
-	WFLBY_3DMAPOBJ_LAMP_ANM_YURE,		// ���A�j��
+	// ランプ
+	WFLBY_3DMAPOBJ_LAMP_ANM_ON=0,		// 点灯アニメ
+	WFLBY_3DMAPOBJ_LAMP_ANM_YURE,		// ゆれアニメ
 	WFLBY_3DMAPOBJ_LAMP_ANM_NUM,
 
-	// �ԉ�
-	WFLBY_3DMAPOBJ_HANABI_ANM_NICA=0,	// �ʏ�ԉ�
-	WFLBY_3DMAPOBJ_HANABI_ANM_NITA,		// �ʏ�ԉ�
-	WFLBY_3DMAPOBJ_HANABI_ANM_NITP,		// �ʏ�ԉ�
-	WFLBY_3DMAPOBJ_HANABI_ANM_NUM,		// ��
+	// 花火
+	WFLBY_3DMAPOBJ_HANABI_ANM_NICA=0,	// 通常花火
+	WFLBY_3DMAPOBJ_HANABI_ANM_NITA,		// 通常花火
+	WFLBY_3DMAPOBJ_HANABI_ANM_NITP,		// 通常花火
+	WFLBY_3DMAPOBJ_HANABI_ANM_NUM,		// 数
 
-	// �ł����ԉ�
-	WFLBY_3DMAPOBJ_HANABIBIG_ANM_NICA=0,	// �ʏ�ԉ�
-	WFLBY_3DMAPOBJ_HANABIBIG_ANM_NITP,		// �ʏ�ԉ�
-	WFLBY_3DMAPOBJ_HANABIBIG_ANM_NUM,		// ��
+	// でかい花火
+	WFLBY_3DMAPOBJ_HANABIBIG_ANM_NICA=0,	// 通常花火
+	WFLBY_3DMAPOBJ_HANABIBIG_ANM_NITP,		// 通常花火
+	WFLBY_3DMAPOBJ_HANABIBIG_ANM_NUM,		// 数
 
-	// �����ԉ�
-	WFLBY_3DMAPOBJ_BRHANABI_ANM_NICA=0,		// �ʏ�ԉ�
-	WFLBY_3DMAPOBJ_BRHANABI_ANM_NITA,		// �ʏ�ԉ�
-	WFLBY_3DMAPOBJ_BRHANABI_ANM_NITP,		// �ʏ�ԉ�
-	WFLBY_3DMAPOBJ_BRHANABI_ANM_NUM,		// �ʏ�ԉ�
+	// 銅像花火
+	WFLBY_3DMAPOBJ_BRHANABI_ANM_NICA=0,		// 通常花火
+	WFLBY_3DMAPOBJ_BRHANABI_ANM_NITA,		// 通常花火
+	WFLBY_3DMAPOBJ_BRHANABI_ANM_NITP,		// 通常花火
+	WFLBY_3DMAPOBJ_BRHANABI_ANM_NUM,		// 通常花火
 
-	// �����ł����ԉ�
-	WFLBY_3DMAPOBJ_BRHANABIBIG_ANM_NICA=0,	// �ʏ�ԉ�
-	WFLBY_3DMAPOBJ_BRHANABIBIG_ANM_NITA,		// �ʏ�ԉ�
-	WFLBY_3DMAPOBJ_BRHANABIBIG_ANM_NITP,		// �ʏ�ԉ�
-	WFLBY_3DMAPOBJ_BRHANABIBIG_ANM_NUM,		// �ʏ�ԉ�
+	// 銅像でかい花火
+	WFLBY_3DMAPOBJ_BRHANABIBIG_ANM_NICA=0,	// 通常花火
+	WFLBY_3DMAPOBJ_BRHANABIBIG_ANM_NITA,		// 通常花火
+	WFLBY_3DMAPOBJ_BRHANABIBIG_ANM_NITP,		// 通常花火
+	WFLBY_3DMAPOBJ_BRHANABIBIG_ANM_NUM,		// 通常花火
 	
-	// �~�j�Q�[��
-	WFLBY_3DMAPOBJ_MG_ANM_ALL=0,	// ��ɃA�j��
-	WFLBY_3DMAPOBJ_MG_ANM_MOVE,		// ���쒆�A�j��
-	WFLBY_3DMAPOBJ_MG_ANM_NUM,		// ��
+	// ミニゲーム
+	WFLBY_3DMAPOBJ_MG_ANM_ALL=0,	// 常にアニメ
+	WFLBY_3DMAPOBJ_MG_ANM_MOVE,		// 動作中アニメ
+	WFLBY_3DMAPOBJ_MG_ANM_NUM,		// 数
 	
 
-	// �S�̂ň�ԑ����A�j����
+	// 全体で一番多いアニメ数
 	WFLBY_3DMAPOBJ_ALL_ANM_MAX	= 3,
 } WFLBY_3DMAPOBJ_WK_ANM_TYPE;
-typedef enum {	// �z�u�I�u�W�F�A�j���@�Đ��^�C�v
-	WFLBY_3DMAPOBJ_WK_ANM_LOOP,				// ���[�v
-	WFLBY_3DMAPOBJ_WK_ANM_NOLOOP,			// ���[�v�Ȃ�
-	WFLBY_3DMAPOBJ_WK_ANM_NOAUTO,			// �t���[�����[�U�w��
-	WFLBY_3DMAPOBJ_WK_ANM_BACKLOOP,			// �t�Đ����[�v
-	WFLBY_3DMAPOBJ_WK_ANM_BACKNOLOOP,		// �t�Đ����[�v�Ȃ�
-	WFLBY_3DMAPOBJ_WK_ANM_RANDWAIT,			// �����_���E�G�C�g�Đ�	���[�v
-	WFLBY_3DMAPOBJ_WK_ANM_RANDSTART,		// �����_���X�^�[�g�Đ�	���[�v
+typedef enum {	// 配置オブジェアニメ　再生タイプ
+	WFLBY_3DMAPOBJ_WK_ANM_LOOP,				// ループ
+	WFLBY_3DMAPOBJ_WK_ANM_NOLOOP,			// ループなし
+	WFLBY_3DMAPOBJ_WK_ANM_NOAUTO,			// フレームユーザ指定
+	WFLBY_3DMAPOBJ_WK_ANM_BACKLOOP,			// 逆再生ループ
+	WFLBY_3DMAPOBJ_WK_ANM_BACKNOLOOP,		// 逆再生ループなし
+	WFLBY_3DMAPOBJ_WK_ANM_RANDWAIT,			// ランダムウエイト再生	ループ
+	WFLBY_3DMAPOBJ_WK_ANM_RANDSTART,		// ランダムスタート再生	ループ
 	WFLBY_3DMAPOBJ_WK_ANM_PLAYNUM,
 } WFLBY_3DMAPOBJ_WK_ANM_PLAY;
-#define WFLBY_3DMAPOBJ_WK_ANM_RANDWAIT_WAITDEF	( 20 )	// ���������_���E�G�C�g�萔
+#define WFLBY_3DMAPOBJ_WK_ANM_RANDWAIT_WAITDEF	( 20 )	// 初期ランダムウエイト定数
 
 
 
 //-------------------------------------
-///	�t���[�g�J���[�萔
+///	フロートカラー定数
 //=====================================
 typedef enum {
 	WFLBY_3DMAPOBJ_FLOAT_COL_00,
@@ -143,27 +143,27 @@ typedef enum {
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	�}�b�v�\�����Ǘ��V�X�e��
+///	マップ表示物管理システム
 //=====================================
 typedef struct _WFLBY_3DMAPOBJ WFLBY_3DMAPOBJ;
 
 //-------------------------------------
-///	�t���[�g���[�N
+///	フロートワーク
 //=====================================
 typedef struct _WFLBY_3DMAPOBJ_FLOAT	WFLBY_3DMAPOBJ_FLOAT;
 
 //-------------------------------------
-///	���̑��̕����[�N
-//	(�\����\�����炢�����o���Ȃ�)
+///	その他の物ワーク
+//	(表示非表示くらいしか出来ない)
 //=====================================
 typedef struct _WFLBY_3DMAPOBJ_WK	WFLBY_3DMAPOBJ_WK;
 
 //-------------------------------------
-///	�A�j���I���R�[���o�b�N
+///	アニメ終了コールバック
 //=====================================
 typedef void (*pWFLBY_3DMAPOBJ_WK_AnmCallBack)( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk );
 
@@ -171,25 +171,25 @@ typedef void (*pWFLBY_3DMAPOBJ_WK_AnmCallBack)( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DM
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
-// �V�X�e���Ǘ�
+// システム管理
 extern WFLBY_3DMAPOBJ* WFLBY_3DMAPOBJ_Init( u32 float_num, u32 objwk_num, u32 heapID, u32 gheapID );
 extern void WFLBY_3DMAPOBJ_Exit( WFLBY_3DMAPOBJ* p_sys );
 extern void WFLBY_3DMAPOBJ_Main( WFLBY_3DMAPOBJ* p_sys );
 extern void WFLBY_3DMAPOBJ_Draw( WFLBY_3DMAPOBJ* p_sys );
 extern void WFLBY_3DMAPOBJ_VBlank( WFLBY_3DMAPOBJ* p_sys );
 
-// �����̃��\�[�X
+// 部屋のリソース
 extern void WFLBY_3DMAPOBJ_ResLoad( WFLBY_3DMAPOBJ* p_sys, WFLBY_ROOM_TYPE room, WFLBY_SEASON_TYPE season, u32 heapID, u32 gheapID );
 extern void WFLBY_3DMAPOBJ_ResRelease( WFLBY_3DMAPOBJ* p_sys );
 
-// �}�b�v����
+// マップ操作
 extern void WFLBY_3DMAPOBJ_MAP_OnPoll( WFLBY_3DMAPOBJ* p_sys );
 extern void WFLBY_3DMAPOBJ_MAP_OffPoll( WFLBY_3DMAPOBJ* p_sys );
 
-// �t���[�g���[�N����
+// フロートワーク操作
 extern WFLBY_3DMAPOBJ_FLOAT* WFLBY_3DMAPOBJ_FLOAT_Add( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_FLOAT_TYPE floattype, WFLBY_3DMAPOBJ_FLOAT_COL floatcol, const VecFx32* cp_mat );
 extern void WFLBY_3DMAPOBJ_FLOAT_Del( WFLBY_3DMAPOBJ_FLOAT* p_wk );
 extern void WFLBY_3DMAPOBJ_FLOAT_SetPos( WFLBY_3DMAPOBJ_FLOAT* p_wk, const VecFx32* cp_mat );
@@ -203,7 +203,7 @@ extern void WFLBY_3DMAPOBJ_FLOAT_SetRotaX( WFLBY_3DMAPOBJ_FLOAT* p_wk, u16 x );
 extern BOOL WFLBY_3DMAPOBJ_FLOAT_CheckAnmSound( const WFLBY_3DMAPOBJ_FLOAT* cp_wk );
 extern BOOL WFLBY_3DMAPOBJ_FLOAT_CheckAnmBody( const WFLBY_3DMAPOBJ_FLOAT* cp_wk );
 
-// �z�u�I�u�W�F����
+// 配置オブジェ操作
 extern WFLBY_3DMAPOBJ_WK* WFLBY_3DMAPOBJ_WK_Add( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK_TYPE objtype, u32 gridx, u32 gridy );
 extern void WFLBY_3DMAPOBJ_WK_Del( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk );
 extern WFLBY_3DMAPOBJ_WK_TYPE WFLBY_3DMAPOBJ_WK_GetType( const WFLBY_3DMAPOBJ_WK* cp_wk );
@@ -214,7 +214,7 @@ extern void WFLBY_3DMAPOBJ_WK_AddAnmAnmCallBack( WFLBY_3DMAPOBJ* p_sys, WFLBY_3D
 extern void WFLBY_3DMAPOBJ_WK_DelAnm( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk, WFLBY_3DMAPOBJ_WK_ANM_TYPE anm );
 extern void WFLBY_3DMAPOBJ_WK_DelAnmAll( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk );
 extern BOOL WFLBY_3DMAPOBJ_WK_CheckAnm( const WFLBY_3DMAPOBJ* cp_sys, const WFLBY_3DMAPOBJ_WK* cp_wk, WFLBY_3DMAPOBJ_WK_ANM_TYPE anm );
-extern void WFLBY_3DMAPOBJ_WK_SetAnmFrame( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk, WFLBY_3DMAPOBJ_WK_ANM_TYPE anm, fx32 frame );	// �A�j���^�C�v��WFLBY_3DMAPOBJ_WK_ANM_NOAUTO�̂Ƃ���p
+extern void WFLBY_3DMAPOBJ_WK_SetAnmFrame( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk, WFLBY_3DMAPOBJ_WK_ANM_TYPE anm, fx32 frame );	// アニメタイプがWFLBY_3DMAPOBJ_WK_ANM_NOAUTOのとき専用
 extern BOOL WFLBY_3DMAPOBJ_WK_GetAnmFlag( const WFLBY_3DMAPOBJ_WK* cp_wk, WFLBY_3DMAPOBJ_WK_ANM_TYPE anm );
 extern fx32 WFLBY_3DMAPOBJ_WK_GetAnmFrame( const WFLBY_3DMAPOBJ_WK* cp_wk, WFLBY_3DMAPOBJ_WK_ANM_TYPE anm );
 extern void WFLBY_3DMAPOBJ_WK_SetRandWait( WFLBY_3DMAPOBJ_WK* p_wk, u32 wait );

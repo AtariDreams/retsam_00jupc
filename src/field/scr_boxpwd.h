@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	scr_boxpwd.h
- * @brief	ƒ{ƒbƒNƒXƒpƒXƒ[ƒh•Ç†ŠÖ˜Aˆ—
+ * @brief	ãƒœãƒƒã‚¯ã‚¹ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰å£ç´™é–¢é€£å‡¦ç†
  * @author	taya
  * @date	2006/06/01
  */
@@ -12,7 +12,7 @@
 #define BOXPWD_RESULT_ERROR 	-1
 //------------------------------------------------------------------
 /**
- * •Ç†ƒpƒXƒ[ƒh³‰ğƒ`ƒFƒbƒN
+ * å£ç´™ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰æ­£è§£ãƒã‚§ãƒƒã‚¯
  *
  * @param   mystatus		
  * @param   word1		
@@ -21,7 +21,7 @@
  * @param   word4		
  * @param	heapID
  *
- * @retval  int			³‰ğ‚Ìê‡A•Ç†ƒiƒ“ƒo[(0`7) / •s³‰ğ‚È‚ç BOXPWD_RESULT_ERROR
+ * @retval  int			æ­£è§£ã®å ´åˆã€å£ç´™ãƒŠãƒ³ãƒãƒ¼(0ã€œ7) / ä¸æ­£è§£ãªã‚‰ BOXPWD_RESULT_ERROR
  */
 //------------------------------------------------------------------
 extern int  BOXPWD_HitCheck( const MYSTATUS* mystatus, PMS_WORD word1, PMS_WORD word2, PMS_WORD word3, PMS_WORD word4, u32 heapID );

@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	wpcb_camera.c
- * @brief	ƒR[ƒ‹ƒoƒbƒNƒJƒƒ‰Ý’è
+ * @brief	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚«ãƒ¡ãƒ©è¨­å®š
  * @author	goto
- * @date	2006.03.02(–Ø)
+ * @date	2006.03.02(æœ¨)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -25,14 +25,14 @@
 
 // -----------------------------------------
 //
-//	ƒTƒ|[ƒgŠÖ”
+//	ã‚µãƒãƒ¼ãƒˆé–¢æ•°
 //
 // -----------------------------------------
 static void COT_ExDataGet(ECB_OPERATOR_DATA* odp, int data[]);
 
 // -----------------------------------------
 //
-//	ƒJƒƒ‰‘€ìŠÖ”
+//	ã‚«ãƒ¡ãƒ©æ“ä½œé–¢æ•°
 //
 // -----------------------------------------
 static BOOL COT_None(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);
@@ -49,7 +49,7 @@ static BOOL COT_DFCamera(EMIT_PTR emit, ECB_OPERATOR_DATA* odp);
 //--------------------------------------------------------------
 /**
  *
- * @brief	ƒJƒƒ‰Ý’èŠÖ”ƒe[ƒuƒ‹
+ * @brief	ã‚«ãƒ¡ãƒ©è¨­å®šé–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  */
 //--------------------------------------------------------------
@@ -69,13 +69,13 @@ static BOOL (* const CameraOperatorTool[])(EMIT_PTR emit, ECB_OPERATOR_DATA* odp
 // =============================================================================
 //
 //
-//	¡ private
+//	â–  private
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	Šg’£ƒf[ƒ^Žæ“¾
+ * @brief	æ‹¡å¼µãƒ‡ãƒ¼ã‚¿å–å¾—
  *
  * @param	odp	
  * @param	data[]	
@@ -92,7 +92,7 @@ static void COT_ExDataGet(ECB_OPERATOR_DATA* odp, int data[])
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰‘€ì
+ * @brief	ã‚«ãƒ¡ãƒ©æ“ä½œ
  *
  * @param	emit	
  * @param	odp	
@@ -123,7 +123,7 @@ static BOOL COT_None(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒsƒ“ƒJƒƒ‰Ý’è
+ * @brief	ã‚¹ãƒ”ãƒ³ã‚«ãƒ¡ãƒ©è¨­å®š
  *
  * @param	emit	
  * @param	odp	
@@ -142,8 +142,8 @@ static BOOL COT_SpinCamera(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	
 	camera_ptr = Particle_GetCameraPtr(odp->ptc);
 	
-	Particle_CameraTypeSet(odp->ptc, GF_CAMERA_ORTHO);			///< ³ŽË‰e
-	GFC_SetCameraAngleRev(&angle, camera_ptr);					///< ƒJƒƒ‰ƒAƒ“ƒOƒ‹‚ð•ÏX
+	Particle_CameraTypeSet(odp->ptc, GF_CAMERA_ORTHO);			///< æ­£å°„å½±
+	GFC_SetCameraAngleRev(&angle, camera_ptr);					///< ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ã‚’å¤‰æ›´
 //	SetCameraAngleRot(&angle, camera_ptr);
 
 	return TRUE;
@@ -152,7 +152,7 @@ static BOOL COT_SpinCamera(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ†[ƒU[ƒJƒƒ‰Ý’è
+ * @brief	ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚«ãƒ¡ãƒ©è¨­å®š
  *
  * @param	emit	
  * @param	odp	
@@ -188,7 +188,7 @@ static BOOL COT_UserCamera(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ˆÚ“®ƒJƒƒ‰Ý’è
+ * @brief	ç§»å‹•ã‚«ãƒ¡ãƒ©è¨­å®š
  *
  * @param	emit	
  * @param	odp	
@@ -207,8 +207,8 @@ static BOOL COT_MoveCamera(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	
 	camera_ptr = Particle_GetCameraPtr(odp->ptc);
 	
-	Particle_CameraTypeSet(odp->ptc, GF_CAMERA_ORTHO);			///< ³ŽË‰e
-	GFC_SetCameraAngleRev(&angle, camera_ptr);					///< ƒJƒƒ‰ƒAƒ“ƒOƒ‹‚ð•ÏX
+	Particle_CameraTypeSet(odp->ptc, GF_CAMERA_ORTHO);			///< æ­£å°„å½±
+	GFC_SetCameraAngleRev(&angle, camera_ptr);					///< ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ã‚’å¤‰æ›´
 	
 	return TRUE;
 }
@@ -223,13 +223,13 @@ static BOOL COT_MoveCamera145(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	CAMERA_ANGLE  angle2 = { 9248, 3744, 0 };
 	
 	camera_ptr = Particle_GetCameraPtr(odp->ptc);		
-	Particle_CameraTypeSet(odp->ptc, GF_CAMERA_ORTHO);			///< ³ŽË‰e
+	Particle_CameraTypeSet(odp->ptc, GF_CAMERA_ORTHO);			///< æ­£å°„å½±
 	
 	if (WES_ContestFlag_Get(odp->wsp) == TRUE){
-		GFC_SetCameraAngleRev(&angle, camera_ptr);					///< ƒJƒƒ‰ƒAƒ“ƒOƒ‹‚ð•ÏX
+		GFC_SetCameraAngleRev(&angle, camera_ptr);					///< ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ã‚’å¤‰æ›´
 	}
 	else {
-		GFC_SetCameraAngleRev(&angle2, camera_ptr);					///< ƒJƒƒ‰ƒAƒ“ƒOƒ‹‚ð•ÏX
+		GFC_SetCameraAngleRev(&angle2, camera_ptr);					///< ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ã‚’å¤‰æ›´
 	}
 	
 	return TRUE;
@@ -242,8 +242,8 @@ static BOOL COT_MoveCamera169(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	
 	camera_ptr = Particle_GetCameraPtr(odp->ptc);
 	
-	Particle_CameraTypeSet(odp->ptc, GF_CAMERA_ORTHO);			///< ³ŽË‰e
-	GFC_SetCameraAngleRev(&angle, camera_ptr);					///< ƒJƒƒ‰ƒAƒ“ƒOƒ‹‚ð•ÏX
+	Particle_CameraTypeSet(odp->ptc, GF_CAMERA_ORTHO);			///< æ­£å°„å½±
+	GFC_SetCameraAngleRev(&angle, camera_ptr);					///< ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ã‚’å¤‰æ›´
 	
 	return TRUE;
 }
@@ -255,8 +255,8 @@ static BOOL COT_MoveCamera126(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 	
 	camera_ptr = Particle_GetCameraPtr(odp->ptc);
 	
-	Particle_CameraTypeSet(odp->ptc, GF_CAMERA_ORTHO);			///< ³ŽË‰e
-	GFC_SetCameraAngleRev(&angle, camera_ptr);					///< ƒJƒƒ‰ƒAƒ“ƒOƒ‹‚ð•ÏX
+	Particle_CameraTypeSet(odp->ptc, GF_CAMERA_ORTHO);			///< æ­£å°„å½±
+	GFC_SetCameraAngleRev(&angle, camera_ptr);					///< ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«ã‚’å¤‰æ›´
 	
 	return TRUE;	
 }
@@ -296,13 +296,13 @@ static BOOL COT_DFCamera(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 // =============================================================================
 //
 //
-//	¡ public
+//	â–  public
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰Ý’èŽÀsŠÖ”
+ * @brief	ã‚«ãƒ¡ãƒ©è¨­å®šå®Ÿè¡Œé–¢æ•°
  *
  * @param	no	
  * @param	emit	

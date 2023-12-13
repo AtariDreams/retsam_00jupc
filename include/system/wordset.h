@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	wordset.h
- * @brief	’PŒêƒZƒbƒgƒIƒuƒWƒFƒNƒg
+ * @brief	å˜èªã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  * @author	taya
  * @date	2005.09.28
  *
@@ -12,9 +12,9 @@
 
 #include  "system/pm_str.h"
 #include  "system/msgdata.h"
-#include  "poketool/poke_tool.h"	// POKEMON_PASO_PARAM QÆ“™
-#include  "field/field_common.h"	// FIELDSYS_WORK QÆ
-#include  "system/mystatus.h"		// MYSTATUS QÆ
+#include  "poketool/poke_tool.h"	// POKEMON_PASO_PARAM å‚ç…§ç­‰
+#include  "field/field_common.h"	// FIELDSYS_WORK å‚ç…§
+#include  "system/mystatus.h"		// MYSTATUS å‚ç…§
 #include  "gflib/number_str.h"
 #include  "system/savedata_def.h"
 #include  "poketool/boxdata.h"
@@ -23,10 +23,10 @@
 #include  "application/wifi_lobby/wflby_def.h"
 
 enum {
-	WORDSET_DEFAULT_SETNUM = 8,		// ƒfƒtƒHƒ‹ƒgƒoƒbƒtƒ@”
-	WORDSET_DEFAULT_BUFLEN = 32,	// ƒfƒtƒHƒ‹ƒgƒoƒbƒtƒ@’·i•¶š”j
+	WORDSET_DEFAULT_SETNUM = 8,		// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒƒãƒ•ã‚¡æ•°
+	WORDSET_DEFAULT_BUFLEN = 32,	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒƒãƒ•ã‚¡é•·ï¼ˆæ–‡å­—æ•°ï¼‰
 
-	WORDSET_COUNTRY_BUFLEN = 64,	// ‘’nˆæ–¼—pƒoƒbƒtƒ@’·i•¶š”j(WORDSET_CreateEx‚Åw’è)
+	WORDSET_COUNTRY_BUFLEN = 64,	// å›½åœ°åŸŸåç”¨ãƒãƒƒãƒ•ã‚¡é•·ï¼ˆæ–‡å­—æ•°ï¼‰(WORDSET_CreateExã§æŒ‡å®š)
 };
 
 
@@ -87,9 +87,9 @@ extern void WORDSET_ExpandStr( const WORDSET* wordset, STRBUF* dstbuf, const STR
 
 //------------------------------------------------------------------
 /**
- * “à•”ƒoƒbƒtƒ@‚ğ‘S‚Ä‹ó•¶š—ñ‚ÅƒNƒŠƒA‚·‚é
+ * å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã‚’å…¨ã¦ç©ºæ–‡å­—åˆ—ã§ã‚¯ãƒªã‚¢ã™ã‚‹
  *
- * @param   wordset		WORDSETƒ|ƒCƒ“ƒ^
+ * @param   wordset		WORDSETãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 extern void WORDSET_ClearAllBuffer( WORDSET* wordset );
@@ -102,7 +102,7 @@ extern void WORDSET_RegisterMonumentName( WORDSET* wordset, u32 bufID, const SAV
 extern void WORDSET_RegisterPokeMonsName( WORDSET* wordset, u32 bufID, POKEMON_PASO_PARAM* ppp );
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/11
-// •s’èŠ¥Œ•t‚«‚Ìƒ|ƒPƒ‚ƒ“–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®ãƒã‚±ãƒ¢ãƒ³åã‚’å¼•ã£å¼µã£ã¦ãã‚‹é–¢æ•°ã‚’è¿½åŠ 
 extern void WORDSET_RegisterPokeMonsNameIndefinate( WORDSET* wordset, u32 bufID, POKEMON_PASO_PARAM* ppp );
 extern void WORDSET_RegisterPokeMonsNameIndefinateByNo( WORDSET* wordset, u32 bufID, u32 monsno );
 // ----------------------------------------------------------------------------
@@ -116,7 +116,7 @@ extern void WORDSET_RegisterSeikaku( WORDSET * wordset, u32 bufID, u32 seikakuID
 extern void WORDSET_RegisterItemName( WORDSET* wordset, u32 bufID, u32 itemID );
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/13
-// Š¥Œ•t‚«E•¡”Œ`‚ÌƒAƒCƒeƒ€–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éƒXƒNƒŠƒvƒg–½—ß‚ğ’Ç‰Á
+// å† è©ä»˜ããƒ»è¤‡æ•°å½¢ã®ã‚¢ã‚¤ãƒ†ãƒ åã‚’å¼•ã£å¼µã£ã¦ãã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‘½ä»¤ã‚’è¿½åŠ 
 extern void WORDSET_RegisterItemNameIndefinate( WORDSET* wordset, u32 bufID, u32 itemID );
 extern void WORDSET_RegisterItemNamePlural( WORDSET* wordset, u32 bufID, u32 itemID );
 // ----------------------------------------------------------------------------
@@ -131,7 +131,7 @@ extern void WORDSET_RegisterPoketchAppName( WORDSET* wordset, u32 bufID, u32 str
 extern void WORDSET_RegisterTrTypeName( WORDSET* wordset, u32 bufID, u32 strID );
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/19
-// •s’èŠ¥Œ•t‚«‚ÌƒgƒŒ[ƒi[ƒ^ƒCƒv–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éƒXƒNƒŠƒvƒg–½—ß‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—åã‚’å¼•ã£å¼µã£ã¦ãã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‘½ä»¤ã‚’è¿½åŠ 
 extern void WORDSET_RegisterTrTypeNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID );
 // ----------------------------------------------------------------------------
 extern void WORDSET_RegisterTrTypeNameBattle( WORDSET* wordset, u32 bufID, TRAINER_DATA *tr_data );
@@ -143,7 +143,7 @@ extern void WORDSET_RegisterUGItemName( WORDSET* wordset, u32 bufID, u32 strID )
 extern void WORDSET_RegisterUGTrapName( WORDSET* wordset, u32 bufID, u32 strID );
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/27
-// •s’èŠ¥Œ•t‚«‚Ì’n‰ºƒAƒCƒeƒ€Eã©–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ»ç½ åã‚’å¼•ã£å¼µã£ã¦ãã‚‹é–¢æ•°ã‚’è¿½åŠ 
 extern void WORDSET_RegisterUGItemNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID );
 extern void WORDSET_RegisterUGTrapNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID );
 // ----------------------------------------------------------------------------
@@ -155,7 +155,7 @@ extern void WORDSET_RegisterSecretAnswer( WORDSET* wordset, u32 bufID, u32 strID
 extern void WORDSET_RegisterUGGoodsName( WORDSET* wordset, u32 bufID, u32 strID );
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/27
-// •s’èŠ¥Œ•t‚«‚Ì’n‰ºƒOƒbƒY–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®åœ°ä¸‹ã‚°ãƒƒã‚ºåã‚’å¼•ã£å¼µã£ã¦ãã‚‹é–¢æ•°ã‚’è¿½åŠ 
 extern void WORDSET_RegisterUGGoodsNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID );
 // ----------------------------------------------------------------------------
 extern void WORDSET_RegisterPokeMonsSex( WORDSET* wordset, u32 bufID, u8 sex);
@@ -168,7 +168,7 @@ extern void WORDSET_RegisterPMSWord( WORDSET* wordset, u32 bufID, PMS_WORD word 
 extern void WORDSET_RegisterSealName( WORDSET* wordset, u32 bufID, u32 strID );
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/26
-// •¡”Œ`‚ÌƒV[ƒ‹–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éŠÖ”‚ğ’Ç‰Á
+// è¤‡æ•°å½¢ã®ã‚·ãƒ¼ãƒ«åã‚’å¼•ã£å¼µã£ã¦ãã‚‹é–¢æ•°ã‚’è¿½åŠ 
 extern void WORDSET_RegisterSealNamePlural( WORDSET* wordset, u32 bufID, u32 strID );
 // ----------------------------------------------------------------------------
 extern void WORDSET_RegisterPokeGetPlace( WORDSET* wordset, u32 bufID, u32 placeNumber );
@@ -176,19 +176,19 @@ extern void WORDSET_RegisterPorutoName( WORDSET* wordset, u32 bufID, u32 porutoI
 extern void WORDSET_RegisterAccessoryName( WORDSET* wordset, u32 bufID, u32 acID );
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/11
-// •s’èŠ¥Œ•t‚«‚ÌƒAƒNƒZƒTƒŠ[–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼åã‚’å¼•ã£å¼µã£ã¦ãã‚‹é–¢æ•°ã‚’è¿½åŠ 
 extern void WORDSET_RegisterAccessoryNameIndefinate(WORDSET* wordset, u32 bufID, u32 acID );
 // ----------------------------------------------------------------------------
 extern void WORDSET_RegisterImageClibBgName( WORDSET* wordset, u32 bufID, u32 bgID );
 extern void WORDSET_RegisterGroupName(WORDSET * ws, SAVEDATA * sv, int gid, int bufID, int name_type);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/29
-// Œ‚Ì–¼‘Oi‚Ì’ZkŒ`j‚ğˆø‚¢‚Ä‚­‚éŠÖ”‚ğ’Ç‰Á
+// æœˆã®åå‰ï¼ˆã®çŸ­ç¸®å½¢ï¼‰ã‚’å¼•ã„ã¦ãã‚‹é–¢æ•°ã‚’è¿½åŠ 
 void WORDSET_RegisterMonthName( WORDSET* wordset, u32 bufID, u32 month );
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/24
-// w’èƒoƒbƒtƒ@‚Ìæ“ª•¶š‚ğƒLƒƒƒsƒ^ƒ‰ƒCƒY‚·‚éŠÖ”‚ğ’Ç‰Á
+// æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­æ–‡å­—ã‚’ã‚­ãƒ£ãƒ”ã‚¿ãƒ©ã‚¤ã‚ºã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
 extern void WORDSET_Capitalize( WORDSET* wordset, u32 bufID );
 // ----------------------------------------------------------------------------
 extern void WORDSET_RegisterWiFiLobbyGameName( WORDSET* wordset, u32 bufID, WFLBY_GAMETYPE type );

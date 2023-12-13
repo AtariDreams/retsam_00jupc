@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	rah_cylinder_anm.c
- * @bfief	ƒŒƒCEƒAƒCEƒnƒC‚ÌƒVƒŠƒ“ƒ_[ƒAƒjƒ
+ * @bfief	ãƒ¬ã‚¤ãƒ»ã‚¢ã‚¤ãƒ»ãƒã‚¤ã®ã‚·ãƒªãƒ³ãƒ€ãƒ¼ã‚¢ãƒ‹ãƒ¡
  * @author	Nozomu Saito
  *
  */
@@ -18,9 +18,9 @@ static BOOL AnimeEvent(GMEVENT_CONTROL * event);
 
 //--------------------------------------------------------------
 /**
- * ‰Šú‰»
+ * åˆæœŸåŒ–
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -28,16 +28,16 @@ static BOOL AnimeEvent(GMEVENT_CONTROL * event);
 void RAH_CYL_ANM_Setup(FIELDSYS_WORK *fsys)
 {
 	FLD_3D_ANM_DAT_PTR anime;
-	//‹~oƒCƒxƒ“ƒgƒtƒ‰ƒO‚É‚æ‚Á‚Ä•ªŠò
+	//æ•‘å‡ºã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã«ã‚ˆã£ã¦åˆ†å²
 	if ( !SysFlag_ReiAiHaiCheck( SaveData_GetEventWork(fsys->savedata) ) ){
-		//‹~o‘O
-		//1”ÔƒAƒjƒ‚ðŠJŽnƒtƒŒ[ƒ€‚Å’âŽ~ ƒ‹[ƒv”‚ð1‚ÉƒZƒbƒg
+		//æ•‘å‡ºå‰
+		//1ç•ªã‚¢ãƒ‹ãƒ¡ã‚’é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ ã§åœæ­¢ ãƒ«ãƒ¼ãƒ—æ•°ã‚’1ã«ã‚»ãƒƒãƒˆ
 		anime = F3DA_GetFld3DAnmPtr( BMID_D26_O02, 1, fsys->field_3d_anime );
 		F3DA_SetAnimeLoopMax(anime, 1);
 		F3DA_SetStopFlg(anime, TRUE);
 	}else{
-		//‹~oŒã
-		//0”ÔƒAƒjƒ‚ð’âŽ~@1”ÔƒAƒjƒ‚ðÅIƒtƒŒ[ƒ€‚Å’âŽ~
+		//æ•‘å‡ºå¾Œ
+		//0ç•ªã‚¢ãƒ‹ãƒ¡ã‚’åœæ­¢ã€€1ç•ªã‚¢ãƒ‹ãƒ¡ã‚’æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ã§åœæ­¢
 		anime = F3DA_GetFld3DAnmPtr( BMID_D26_O02, 0, fsys->field_3d_anime );
 		F3DA_SetStopFlg(anime, TRUE);
 		anime = F3DA_GetFld3DAnmPtr( BMID_D26_O02, 1, fsys->field_3d_anime );
@@ -48,26 +48,26 @@ void RAH_CYL_ANM_Setup(FIELDSYS_WORK *fsys)
 
 //--------------------------------------------------------------
 /**
- * ƒVƒŠƒ“ƒ_[‹~oƒAƒjƒŠJŽn
+ * ã‚·ãƒªãƒ³ãƒ€ãƒ¼æ•‘å‡ºã‚¢ãƒ‹ãƒ¡é–‹å§‹
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 void RAH_CYL_ANM_StartFreeEvent(FIELDSYS_WORK *fsys)
 {
-	//ƒAƒjƒƒCƒxƒ“ƒgƒR[ƒ‹
+	//ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«
 	FieldEvent_Call(fsys->event, AnimeEvent, NULL);
 }
 
 //--------------------------------------------------------------
 /**
- * ƒVƒŠƒ“ƒ_[‹~oƒAƒjƒƒCƒxƒ“ƒg
+ * ã‚·ãƒªãƒ³ãƒ€ãƒ¼æ•‘å‡ºã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ™ãƒ³ãƒˆ
  *
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	BOOL	TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @retval	BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //--------------------------------------------------------------
 static BOOL AnimeEvent(GMEVENT_CONTROL * event)
@@ -78,21 +78,21 @@ static BOOL AnimeEvent(GMEVENT_CONTROL * event)
 	
 	seq  = FieldEvent_GetSeqWork(event);
 	switch(*seq){
-	case 0: //0”ÔƒAƒjƒ‚ÌÅIƒtƒŒ[ƒ€‘Ò‚¿
-		//ƒAƒjƒŒŸõ
+	case 0: //0ç•ªã‚¢ãƒ‹ãƒ¡ã®æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ å¾…ã¡
+		//ã‚¢ãƒ‹ãƒ¡æ¤œç´¢
 		anime = F3DA_GetFld3DAnmPtr( BMID_D26_O02, 0, fsys->field_3d_anime );
 		if ( F3DA_IsLastFrame(anime) ){
-			F3DA_SetStopFlg(anime, TRUE);		//’âŽ~
+			F3DA_SetStopFlg(anime, TRUE);		//åœæ­¢
 			(*seq)++;
 		}
 		break;
-	case 1: //1”ÔƒAƒjƒƒXƒ^[ƒg
-		//ƒAƒjƒŒŸõ
+	case 1: //1ç•ªã‚¢ãƒ‹ãƒ¡ã‚¹ã‚¿ãƒ¼ãƒˆ
+		//ã‚¢ãƒ‹ãƒ¡æ¤œç´¢
 		anime = F3DA_GetFld3DAnmPtr( BMID_D26_O02, 1, fsys->field_3d_anime );
-		F3DA_SetStopFlg(anime, FALSE);		//Ä¶
+		F3DA_SetStopFlg(anime, FALSE);		//å†ç”Ÿ
 		(*seq)++;
 		break;
-	case 2:	//1”ÔƒAƒjƒ‘Ò‚¿
+	case 2:	//1ç•ªã‚¢ãƒ‹ãƒ¡å¾…ã¡
 		anime = F3DA_GetFld3DAnmPtr( BMID_D26_O02, 1, fsys->field_3d_anime );
 		if ( F3DA_IsAnimeEnd(anime) ){
 			return TRUE;

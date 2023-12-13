@@ -1,10 +1,10 @@
 //============================================================================================
 /**
  * @file	eventdata.h
- * @brief	ƒCƒxƒ“ƒg‹N“®ƒ`ƒFƒbƒN—pƒf[ƒ^’è‹`ƒwƒbƒ_
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯ç”¨ãƒ‡ãƒ¼ã‚¿å®šç¾©ãƒ˜ãƒƒãƒ€
  * @date	2005.10.14
  *
- * 2005.10.18	check_data.h-->eventdata.h‚ÉƒŠƒl[ƒ€‚µ‚½
+ * 2005.10.18	check_data.h-->eventdata.hã«ãƒªãƒãƒ¼ãƒ ã—ãŸ
  */
 //============================================================================================
 #ifndef	__EVENTDATA_H__
@@ -26,8 +26,8 @@ extern const POS_EVENT_DATA * EventData_GetNowPosEventData(const FIELDSYS_WORK *
 extern void EventData_LoadEncountData(ENCOUNT_DATA *enc_data, int zone_id);
 //------------------------------------------------------------------
 /**
- * @brief	npc_countæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	npc_countå–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	"npc_count"
  */
 //------------------------------------------------------------------
@@ -35,8 +35,8 @@ extern u32 EventData_GetNpcCount(const FIELDSYS_WORK * fsys);
 
 //------------------------------------------------------------------
 /**
- * @brief	npc_dataæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	npc_dataå–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	"npc_data"
  */
 //------------------------------------------------------------------
@@ -44,80 +44,80 @@ extern const FIELD_OBJ_H* EventData_GetNpcData(const FIELDSYS_WORK * fsys);
 
 //------------------------------------------------------------------
 /**
- * @brief	npc_data‚ÌÀ•W‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	gx		ƒOƒŠƒbƒhX
- * @param	gz		ƒOƒŠƒbƒhZ
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	npc_dataã®åº§æ¨™ã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	gx		ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gz		ã‚°ãƒªãƒƒãƒ‰Z
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 extern BOOL EventData_NpcDataPosChange(FIELDSYS_WORK * fsys, int id, u16 gx, u16 gz );
 
 //------------------------------------------------------------------
 /**
- * @brief	npc_data‚Ì•ûŒü‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	dir		•ûŒü
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	npc_dataã®æ–¹å‘ã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	dir		æ–¹å‘
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 extern BOOL EventData_NpcDataDirChange(FIELDSYS_WORK * fsys, int id, int dir );
 
 //------------------------------------------------------------------
 /**
- * @brief	npc_data‚Ì“®ìƒR[ƒh‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	mv		“®ìƒR[ƒh
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	npc_dataã®å‹•ä½œã‚³ãƒ¼ãƒ‰ã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	mv		å‹•ä½œã‚³ãƒ¼ãƒ‰
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 extern BOOL EventData_NpcDataMoveCodeChange(FIELDSYS_WORK * fsys, int id, int mv );
 
 //------------------------------------------------------------------
 /**
- * @brief	connect_data‚ÌÀ•W‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	x		ƒZƒbƒg‚·‚éX
- * @param	z		ƒZƒbƒg‚·‚éZ
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	connect_dataã®åº§æ¨™ã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	x		ã‚»ãƒƒãƒˆã™ã‚‹X
+ * @param	z		ã‚»ãƒƒãƒˆã™ã‚‹Z
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 extern BOOL EventData_ConnectDataPosChange(FIELDSYS_WORK * fsys, u16 id, u16 x, u16 z );
 
 //------------------------------------------------------------------
 /**
- * @brief	connect_data‚ÌÚ‘±æƒ][ƒ“ID‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	zone	ƒZƒbƒg‚·‚éƒ][ƒ“
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	connect_dataã®æ¥ç¶šå…ˆã‚¾ãƒ¼ãƒ³IDã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	zone	ã‚»ãƒƒãƒˆã™ã‚‹ã‚¾ãƒ¼ãƒ³
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 extern BOOL EventData_ConnectDataZoneChange(FIELDSYS_WORK * fsys, u16 id, u16 zone );
 
 //------------------------------------------------------------------
 /**
- * @brief	connect_data‚ÌÚ‘±æƒ][ƒ“ID‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	zone	ƒZƒbƒg‚·‚éƒ][ƒ“
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	connect_dataã®æ¥ç¶šå…ˆã‚¾ãƒ¼ãƒ³IDã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	zone	ã‚»ãƒƒãƒˆã™ã‚‹ã‚¾ãƒ¼ãƒ³
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 extern BOOL EventData_ConnectDataDoorChange(FIELDSYS_WORK * fsys, u16 id, u16 door );
 
 //------------------------------------------------------------------
 /**
- * @brief	bg_data‚ÌÀ•W‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	x		ƒZƒbƒg‚·‚éX
- * @param	z		ƒZƒbƒg‚·‚éZ
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	bg_dataã®åº§æ¨™ã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	x		ã‚»ãƒƒãƒˆã™ã‚‹X
+ * @param	z		ã‚»ãƒƒãƒˆã™ã‚‹Z
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 extern BOOL EventData_BgDataPosChange(FIELDSYS_WORK * fsys, u16 id, u16 x, u16 z );
@@ -130,13 +130,13 @@ extern void * EventData_GetSpecialScript(const FIELDSYS_WORK * fsys);
 
 //------------------------------------------------------------------
 /**
- * ’n‰º‚Éö‚é‚±‚Æ‚ªo—ˆ‚éÀ•W‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+ * åœ°ä¸‹ã«æ½œã‚‹ã“ã¨ãŒå‡ºæ¥ã‚‹åº§æ¨™ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param   fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   gx			ƒ`ƒFƒbƒN‚·‚é‚wÀ•W
- * @param   gz			ƒ`ƒFƒbƒN‚·‚é‚yÀ•W
+ * @param   fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   gx			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ï¼¸åº§æ¨™
+ * @param   gz			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ï¼ºåº§æ¨™
  *
- * @retval  BOOL		"TRUE=ö‚é‚±‚Æ‚ª‚Å‚«‚é FALSE=‚Å‚«‚È‚¢"
+ * @retval  BOOL		"TRUE=æ½œã‚‹ã“ã¨ãŒã§ãã‚‹ FALSE=ã§ããªã„"
  */
 //------------------------------------------------------------------
 extern BOOL EventData_CheckIntoUGPos( const FIELDSYS_WORK* fsys, u16 gx, u16 gz );

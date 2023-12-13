@@ -1,16 +1,16 @@
 //============================================================================================
 /**
  * @file	bmp_menu_list.h
- * @brief	bmp_menu �� bmp_list �Ŏg�p����\���̂̒�`
+ * @brief	bmp_menu と bmp_list で使用する構造体の定義
  * @author	taya
  * @date	2005.12.02
  *
- * bmp_menu �� bmp_list �őS�������^�E�����p�r�̍\���̂�ʌɒ�`���Ă���̂ł܂Ƃ߂Ă����B
+ * bmp_menu と bmp_list で全く同じ型・同じ用途の構造体を別個に定義しているのでまとめておく。
  *
- * �������Ă����΁A���̍\���̂𓮓I�ɐ�������֐��ȂǁA���ʂ̂��̂��Ăяo����B
+ * こうしておけば、この構造体を動的に生成する関数など、共通のものを呼び出せる。
  *
- * ����ɁA���̕����z��iSTRCODE = u16�j���g�p���Ă���ӏ���STRBUF�^�ɒu�����������A
- * �����̒�`�݂̂�����������Ηǂ��B
+ * さらに、生の文字配列（STRCODE = u16）を使用している箇所がSTRBUF型に置き換わったら、
+ * ここの定義のみを書き換えれば良い。
  *
  */
 //============================================================================================
@@ -23,7 +23,7 @@
 
 //------------------------------------------------------------------------------------
 /**
- *	���j���[�\���p�̕�����ƁA���ꂪ�I�����ꂽ���̃p�����[�^�l���`���邽�߂̍\���́B
+ *	メニュー表示用の文字列と、それが選択された時のパラメータ値を定義するための構造体。
  */
 //------------------------------------------------------------------------------------
 struct _BMP_MENULIST_DATA {
@@ -32,19 +32,19 @@ struct _BMP_MENULIST_DATA {
 };
 
 
-// �ǂ����������^�Ƃ��Ē�`���Ă������ƂŁA�ȉ��̋��ʊ֐��Q���Ăяo����
+// どっちも同じ型として定義しておくことで、以下の共通関数群を呼び出せる
 typedef	struct _BMP_MENULIST_DATA		BMP_MENULIST_DATA, BMPLIST_DATA, BMPMENU_DATA;
 
 
 
 //------------------------------------------------------------------
 /**
- * ���X�g�o�b�t�@���쐬
+ * リストバッファを作成
  *
- * @param   maxElems		���X�g�ɓo�^���镶����̍ő吔
- * @param   heapID			���X�g�쐬��q�[�vID
+ * @param   maxElems		リストに登録する文字列の最大数
+ * @param   heapID			リスト作成先ヒープID
  *
- * @retval  BMP_MENULIST_DATA*		�쐬���ꂽ���X�g�o�b�t�@
+ * @retval  BMP_MENULIST_DATA*		作成されたリストバッファ
  */
 //------------------------------------------------------------------
 extern BMP_MENULIST_DATA*  BMP_MENULIST_Create( u32 maxElems, u32 heapID );
@@ -52,10 +52,10 @@ extern BMP_MENULIST_DATA*  BMP_MENULIST_Create( u32 maxElems, u32 heapID );
 
 //------------------------------------------------------------------
 /**
- * ���X�g�o�b�t�@��j������
- * ��BMP_MENULIST_Create�ō쐬�������̈ȊO��n���Ă̓_���B
+ * リストバッファを破棄する
+ * ※BMP_MENULIST_Createで作成したもの以外を渡してはダメ。
  *
- * @param   list		���X�g�o�b�t�@
+ * @param   list		リストバッファ
  */
 //------------------------------------------------------------------
 extern void BMP_MENULIST_Delete( BMP_MENULIST_DATA* list );
@@ -63,12 +63,12 @@ extern void BMP_MENULIST_Delete( BMP_MENULIST_DATA* list );
 
 //------------------------------------------------------------------
 /**
- * ���X�g�o�b�t�@�ɕ����񁕃p�����[�^���Z�b�g����i�}�l�[�W������ăA�[�J�C�u�f�[�^����ǂݍ��݁j
+ * リストバッファに文字列＆パラメータをセットする（マネージャを介してアーカイブデータから読み込み）
  *
- * @param   list		[in] ���X�g�o�b�t�@
- * @param   man			[in] ���b�Z�[�W�f�[�^�}�l�[�W��
- * @param   strID		������ID
- * @param   param		������p�����[�^
+ * @param   list		[in] リストバッファ
+ * @param   man			[in] メッセージデータマネージャ
+ * @param   strID		文字列ID
+ * @param   param		文字列パラメータ
  */
 //------------------------------------------------------------------
 extern void BMP_MENULIST_AddArchiveString( BMP_MENULIST_DATA* list, const MSGDATA_MANAGER* man, u32 strID, u32 param );
@@ -76,11 +76,11 @@ extern void BMP_MENULIST_AddArchiveString( BMP_MENULIST_DATA* list, const MSGDAT
 
 //------------------------------------------------------------------
 /**
- * ���X�g�o�b�t�@�ɕ����񁕃p�����[�^���Z�b�g����i������𒼐ڎw�肷��j
+ * リストバッファに文字列＆パラメータをセットする（文字列を直接指定する）
  *
- * @param   list		[in] ���X�g�o�b�t�@
- * @param   str			[in] ������
- * @param   param		������p�����[�^
+ * @param   list		[in] リストバッファ
+ * @param   str			[in] 文字列
+ * @param   param		文字列パラメータ
  *
  */
 //------------------------------------------------------------------
@@ -88,9 +88,9 @@ extern void BMP_MENULIST_AddString( BMP_MENULIST_DATA* list, const STRBUF* str, 
 
 //------------------------------------------------------------------
 /**
- * ���X�g�o�b�t�@�ɑ��̃��X�g�̃f�[�^��Link����
- * @param   list		[inout] ���X�g�o�b�t�@
- * @param   insList		[in] ���X�g�|�C���^
+ * リストバッファに他のリストのデータをLinkする
+ * @param   list		[inout] リストバッファ
+ * @param   insList		[in] リストポインタ
  *
  */
 //------------------------------------------------------------------
@@ -98,10 +98,10 @@ extern void BMP_MENULIST_AddLinkList( BMP_MENULIST_DATA* list, const BMP_MENULIS
 
 //------------------------------------------------------------------
 /**
- * ���X�g�o�b�t�@��STRBUF��j������
- * ��BMP_MENULIST_Create�ō쐬�������̈ȊO��n���Ă̓_���B
+ * リストバッファのSTRBUFを破棄する
+ * ※BMP_MENULIST_Createで作成したもの以外を渡してはダメ。
  *
- * @param   list		���X�g�o�b�t�@
+ * @param   list		リストバッファ
  *
  */
 //------------------------------------------------------------------

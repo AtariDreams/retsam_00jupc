@@ -22,8 +22,8 @@ extern "C" {
 #include <nitro.h>
 
 //
-// �f�o�b�N�o�͂�L���ɂ���X�C�b�`
-// ��`���Ƀf�o�b�N�o�͂��L���ɂȂ�܂�
+// デバック出力を有効にするスイッチ
+// 定義時にデバック出力が有効になります
 //
 //#define NNS_GFD_DEBUG
 
@@ -48,12 +48,12 @@ extern "C" {
 
 
 //
-//	VRAM���烁�������m�ۂ�������������萔�B
+//	VRAMからメモリを確保する方向を示す定数。
 // ----------------------------------------------------------------------------
 enum
 {
-	NNS_GFD_ALLOC_FROM_HIGH		= 0,		// VRAM�̏�ʂ��烁�������m�ہB
-	NNS_GFD_ALLOC_FROM_LOW		= 1			// VRAM�̉��ʂ��烁�������m�ہB
+	NNS_GFD_ALLOC_FROM_HIGH		= 0,		// VRAMの上位からメモリを確保。
+	NNS_GFD_ALLOC_FROM_LOW		= 1			// VRAMの下位からメモリを確保。
 };
 
 

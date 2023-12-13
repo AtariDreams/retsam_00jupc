@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_G2dMakeCellToOams</title>
@@ -11,7 +11,7 @@
 
 <body>
 <h1 align="left">NNS_G2dMakeCellToOams</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -30,63 +30,63 @@ u16 NNS_G2dMakeCellToOams
 
   </CODE></pre>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pDstOams</font></strong></em></td>
-    <td width="87%">[OUT] �ϊ����ʂ��i�[����o�b�t�@�̐擪�|�C���^</td>
+    <td width="87%">[OUT] 変換結果を格納するバッファの先頭ポインタ</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">numDstOam</font></strong></em></td>
-    <td width="87%">[IN] �ϊ����ʂ��i�[����o�b�t�@��</td>
+    <td width="87%">[IN] 変換結果を格納するバッファ長</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pCell</font></strong></em></td>
-    <td width="87%">[IN] �Z���f�[�^</td>
+    <td width="87%">[IN] セルデータ</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pMtxSR</font></strong></em></td>
-    <td width="87%">[IN] �A�t�B���ϊ��i�C�Ӂj</td>
+    <td width="87%">[IN] アフィン変換（任意）</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pBaseTrans</font></strong></em></td>
-    <td width="87%">[IN] ���s�ړ��l�i�C�Ӂj</td>
+    <td width="87%">[IN] 平行移動値（任意）</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">affineIdx</font></strong></em></td>
-    <td width="87%">[IN] �A�t�B���C���f�b�N�X�i�C�Ӂj</td>
+    <td width="87%">[IN] アフィンインデックス（任意）</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">bDoubleAffine</font></strong></em></td>
-    <td width="87%">[IN] �{�p�A�t�B�����[�h�𗘗p���邩</td>
+    <td width="87%">[IN] 倍角アフィンモードを利用するか</td>
   </tr>
   </table>
-<h2>�Ԃ�l</h2>
-<p>�g�p����OBJ��<BR>
+<h2>返り値</h2>
+<p>使用したOBJ数<BR>
 </p>
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-�Z����`�悷��OBJ��������o���܂��B<BR>
-�o�b�t�@�ɏ\���ȗe�ʂ��m�ۂ���K�v������܂��B
-�A�t�B���ϊ��A���s�ړ��l���������Ȃ��ꍇ�� pMtxSR�ApBaseTrans��NULL��n���Ă��������B<BR>
-�A�t�B���ϊ����s���ꍇ�́A�A�t�B���C���f�b�N�X���w�肵�Ă��������B<BR>
+セルを描画するOBJ列を書き出します。<BR>
+バッファに十分な容量を確保する必要があります。
+アフィン変換、平行移動値をしたくない場合は pMtxSR、pBaseTransにNULLを渡してください。<BR>
+アフィン変換を行う場合は、アフィンインデックスを指定してください。<BR>
 <BR>
-�{�֐����󂯎��Affine�ϊ��s��͈�ʓI�Ȍ`���̍s��ł���K�v������܂��B<BR>
-2D�O���t�B�b�N�X�G���W���̃A�t�B���p�����[�^�Ƃ��Ďg�p�����X�P�[���l���t���̌`���̍s��͎g�p�ł��Ȃ��_�ɂ����ӂ��������B<BR>
+本関数が受け取るAffine変換行列は一般的な形式の行列である必要があります。<BR>
+2Dグラフィックスエンジンのアフィンパラメータとして使用されるスケール値が逆数の形式の行列は使用できない点にご注意ください。<BR>
 <BR>
 <BR>
-�{�p�A�t�B�����[�h���w�肳�ꂽ�ꍇ�A�֐�������OBJ�̈ʒu�␳�������s���܂��B<BR>
-05/06/06�ł���A�ʒu�␳�����́A���ۂ�OBJ�̃A�t�B���ϊ����[�h���ύX���ꂽ�ꍇ�ɂ����s����悤�ɕύX����܂����B<BR>
-(�܂�A���Ƃ��Ɣ{�p�A�t�B��OBJ�Ƃ��č쐬���ꂽ�f�[�^�ɂ͕␳�������s�킢�܂���B)<BR>        
+倍角アフィンモードが指定された場合、関数内部でOBJの位置補正処理が行われます。<BR>
+05/06/06版から、位置補正処理は、実際にOBJのアフィン変換モードが変更された場合にだけ行われるように変更されました。<BR>
+(つまり、もともと倍角アフィンOBJとして作成されたデータには補正処理を行わいません。)<BR>        
 
 </p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="NNS_G2dCopyCellAsOamAttr.html">NNS_G2dCopyCellAsOamAttr</A><br>
 </CODE></p>
-<H2>����</H2>
-<P>2005/06/06 �ʒu�␳�����Ɋւ��钍�ӏ�����ǉ�</P>
-<P>2004/05/28 ����</P>
+<H2>履歴</H2>
+<P>2005/06/06 位置補正処理に関する注意書きを追加</P>
+<P>2004/05/28 初版</P>
 </body>
 </html>

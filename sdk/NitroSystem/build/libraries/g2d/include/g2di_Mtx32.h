@@ -127,8 +127,8 @@ NNS_G2D_INLINE void NNSi_G2dGetMtxRS( const MtxFx32 *m, MtxFx22* pRet )
 //------------------------------------------------------------------------------
 // FIX ME !
 // This function should be located in global utility module or SDK.
-// SDK ‚Å ŽÀ‘•‚³‚ê‚é‚±‚Æ‚Æ‚È‚é
-// ŽÀ‘• ‚³‚êŽŸ‘æAÁ‹Ž‚³‚ê‚é
+// SDK ã§ å®Ÿè£…ã•ã‚Œã‚‹ã“ã¨ã¨ãªã‚‹
+// å®Ÿè£… ã•ã‚Œæ¬¡ç¬¬ã€æ¶ˆåŽ»ã•ã‚Œã‚‹
 NNS_G2D_INLINE void MulMtx22( const MtxFx22* m, const NNSG2dFVec2* pSrc, NNSG2dFVec2* pDst )
 {
     NNSG2dFVec2    temp;

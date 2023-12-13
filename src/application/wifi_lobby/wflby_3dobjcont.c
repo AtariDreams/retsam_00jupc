@@ -3,8 +3,8 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_3dobjcont.c
- *	@brief		“oê‚·‚él•¨‚ð‚·‚×‚ÄŠÇ—‚·‚éƒVƒXƒeƒ€	
- *				l•¨‚É‘Î‚·‚éƒŠƒNƒGƒXƒg‚à‚·‚×‚Ä‚±‚±‚ð“–‚µ‚Äs‚¤
+ *	@brief		ç™»å ´ã™ã‚‹äººç‰©ã‚’ã™ã¹ã¦ç®¡ç†ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 	
+ *				äººç‰©ã«å¯¾ã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚‚ã™ã¹ã¦ã“ã“ã‚’å½“ã—ã¦è¡Œã†
  *	@author		tomoya takahashi
  *	@data		2007.11.13
  *
@@ -26,32 +26,32 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define WFLBY_3DOBJCONT_QBUF_NUM	( 32 )	// ƒRƒ}ƒ“ƒhƒLƒ…[ƒoƒbƒtƒ@”
+#define WFLBY_3DOBJCONT_QBUF_NUM	( 32 )	// ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ãƒãƒƒãƒ•ã‚¡æ•°
 
 
 
 //-------------------------------------
-///	NPC“®ì’è”
+///	NPCå‹•ä½œå®šæ•°
 //=====================================
 enum{
 	WFLBY_3DOBJCONT_NPC_SEQ_WAITSET,
@@ -69,72 +69,72 @@ static const u8 sc_WFLBY_3DOBJCONT_NPC_WAY[] = {
 
 
 //-------------------------------------
-///	‚Ì‚Ú‚è@‚­‚¾‚è@“®ì
+///	ã®ã¼ã‚Šã€€ãã ã‚Šã€€å‹•ä½œ
 //=====================================
-// ‚­‚¾‚è
+// ãã ã‚Š
 enum{
 	WFLBY_3DOBJCONT_FLYDOWN_SEQ_INIT,
 	WFLBY_3DOBJCONT_FLYDOWN_SEQ_MAIN,
-	WFLBY_3DOBJCONT_FLYDOWN_SEQ_ONEROTA,	// ‚³‚ç‚É‚P‰ñ“]
+	WFLBY_3DOBJCONT_FLYDOWN_SEQ_ONEROTA,	// ã•ã‚‰ã«ï¼‘å›žè»¢
 	WFLBY_3DOBJCONT_FLYDOWN_SEQ_END,
 };
-// ã‚è
+// ä¸Šã‚Š
 enum{
 	WFLBY_3DOBJCONT_FLYUP_SEQ_INIT,
-	WFLBY_3DOBJCONT_FLYUP_SEQ_ONEROTA,	// ‚P‰ñ“]
+	WFLBY_3DOBJCONT_FLYUP_SEQ_ONEROTA,	// ï¼‘å›žè»¢
 	WFLBY_3DOBJCONT_FLYUP_SEQ_MAIN,
 	WFLBY_3DOBJCONT_FLYUP_SEQ_END,
 };
-#define WFLBY_3DOBJCONT_FLY_Y			( FX32_CONST(500) )	// ”ò‚ñ‚Å‚¢‚­‹——£
-#define WFLBY_3DOBJCONT_FLY_COUNT		( 24 )		// “®ìƒVƒ“ƒN”
+#define WFLBY_3DOBJCONT_FLY_Y			( FX32_CONST(500) )	// é£›ã‚“ã§ã„ãè·é›¢
+#define WFLBY_3DOBJCONT_FLY_COUNT		( 24 )		// å‹•ä½œã‚·ãƒ³ã‚¯æ•°
 #define WFLBY_3DOBJCONT_ROTA_ONE_COUNT	( 32 )
 
 //-------------------------------------
-///	‰ñ“]‚«”ò‚Ñ“®ì
+///	å›žè»¢å¹ãé£›ã³å‹•ä½œ
 //=====================================
 enum {
 	WFLBY_3DOBJCONT_ROTA_SEQ_INIT,
 	WFLBY_3DOBJCONT_ROTA_SEQ_MAIN,
-	WFLBY_3DOBJCONT_ROTA_SEQ_ONEROTA,	// ‚³‚ç‚É‚P‰ñ“]
+	WFLBY_3DOBJCONT_ROTA_SEQ_ONEROTA,	// ã•ã‚‰ã«ï¼‘å›žè»¢
 	WFLBY_3DOBJCONT_ROTA_SEQ_END,
 } ;
-#define WFLBY_3DOBJCONT_ROTA_DIST	( WFLBY_3DMATRIX_GRID_GRIDSIZ )	// ˆÚ“®‚·‚é’l
-#define WFLBY_3DOBJCONT_ROTA_COUNT	( 4 )							// ˆÚ“®‚·‚éƒVƒ“ƒN”
+#define WFLBY_3DOBJCONT_ROTA_DIST	( WFLBY_3DMATRIX_GRID_GRIDSIZ )	// ç§»å‹•ã™ã‚‹å€¤
+#define WFLBY_3DOBJCONT_ROTA_COUNT	( 4 )							// ç§»å‹•ã™ã‚‹ã‚·ãƒ³ã‚¯æ•°
 #define WFLBY_3DOBJCONT_ROTA_ONEROTA_COUNT	( 4 )
-#define WFLBY_3DOBJCONT_ROTA_ONESIDEROTA	( 2 )			// ‰ñ“]‚PƒZƒ‹‚É•K—v‚ÈƒVƒ“ƒN”
-#define WFLBY_3DOBJCONT_ROTA_ANMSPEED		( 2 )			// ‰ñ“]ƒAƒjƒƒXƒs[ƒh
+#define WFLBY_3DOBJCONT_ROTA_ONESIDEROTA	( 2 )			// å›žè»¢ï¼‘ã‚»ãƒ«ã«å¿…è¦ãªã‚·ãƒ³ã‚¯æ•°
+#define WFLBY_3DOBJCONT_ROTA_ANMSPEED		( 2 )			// å›žè»¢ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
 
 
 //-------------------------------------
-///	ƒWƒƒƒ“ƒv“®ì
+///	ã‚¸ãƒ£ãƒ³ãƒ—å‹•ä½œ
 //=====================================
 enum {
 	WFLBY_3DOBJCONT_JUMP_SEQ_INIT,
 	WFLBY_3DOBJCONT_JUMP_SEQ_MAIN,
 } ;
 
-#define WFLBY_3DOBJCONT_MOVEOBJ_JUMP_EFFCOUNT	( 6 )// ƒWƒƒƒ“ƒv‚µ‚Ä‚¢‚éŽžŠÔ
-#define WFLBY_3DOBJCONT_MOVEOBJ_JUMP_WAITCOUNT	( 16 )// ŽŸ‚ÌƒWƒƒƒ“ƒv‚Ü‚Å‚ÌƒEƒGƒCƒg
-#define WFLBY_3DOBJCONT_MOVEOBJ_JUMP_COUNT		( (WFLBY_3DOBJCONT_MOVEOBJ_JUMP_EFFCOUNT*2)+WFLBY_3DOBJCONT_MOVEOBJ_JUMP_WAITCOUNT )// ‚PƒWƒƒƒ“ƒvƒJƒEƒ“ƒg
-#define WFLBY_3DOBJCONT_MOVEOBJ_JUMP_DIS	( 10 )// ƒWƒƒƒ“ƒv‚Ì‚‚³
-#define WFLBY_3DOBJCONT_MOVEOBJ_JUMP_ZDIS	( -2 )// ƒWƒƒƒ“ƒv‚Ì‚‚³
-#define WFLBY_3DOBJCONT_MOVEOBJ_JUMP_RMAX	(180)// ‰ñ“]ŒÊMAX
+#define WFLBY_3DOBJCONT_MOVEOBJ_JUMP_EFFCOUNT	( 6 )// ã‚¸ãƒ£ãƒ³ãƒ—ã—ã¦ã„ã‚‹æ™‚é–“
+#define WFLBY_3DOBJCONT_MOVEOBJ_JUMP_WAITCOUNT	( 16 )// æ¬¡ã®ã‚¸ãƒ£ãƒ³ãƒ—ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
+#define WFLBY_3DOBJCONT_MOVEOBJ_JUMP_COUNT		( (WFLBY_3DOBJCONT_MOVEOBJ_JUMP_EFFCOUNT*2)+WFLBY_3DOBJCONT_MOVEOBJ_JUMP_WAITCOUNT )// ï¼‘ã‚¸ãƒ£ãƒ³ãƒ—ã‚«ã‚¦ãƒ³ãƒˆ
+#define WFLBY_3DOBJCONT_MOVEOBJ_JUMP_DIS	( 10 )// ã‚¸ãƒ£ãƒ³ãƒ—ã®é«˜ã•
+#define WFLBY_3DOBJCONT_MOVEOBJ_JUMP_ZDIS	( -2 )// ã‚¸ãƒ£ãƒ³ãƒ—ã®é«˜ã•
+#define WFLBY_3DOBJCONT_MOVEOBJ_JUMP_RMAX	(180)// å›žè»¢å¼§MAX
 
 
 
 //-------------------------------------
-///	‰e‚ÌF‚ð•ÏX‚·‚éƒVƒXƒeƒ€
+///	å½±ã®è‰²ã‚’å¤‰æ›´ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 #define WFLBY_3DOBJCONT_SHADOW_ALHA_FADE_COUNT	( 60 )
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	üŒ`“®ìƒ[ƒN
+///	ç·šå½¢å‹•ä½œãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	fx32 x;
@@ -145,42 +145,42 @@ typedef struct {
 
 
 //-------------------------------------
-///	‰e‚ÌƒAƒ‹ƒtƒ@’l•Ï“®ƒVƒXƒeƒ€
+///	å½±ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤å¤‰å‹•ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct {
-	u8	move;		// “®ì’†‚©
-	u8	now;		// ¡‚Ì’l
-	s8  start;		// ŠJŽn‚ÌƒAƒ‹ƒtƒ@’l
-	s8	diff;		// •Ï‰»—Ê
-	s16 count;		// ƒJƒEƒ“ƒg’l
-	s16 count_max;	// Å‘åƒJƒEƒ“ƒg’l
+	u8	move;		// å‹•ä½œä¸­ã‹
+	u8	now;		// ä»Šã®å€¤
+	s8  start;		// é–‹å§‹ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤
+	s8	diff;		// å¤‰åŒ–é‡
+	s16 count;		// ã‚«ã‚¦ãƒ³ãƒˆå€¤
+	s16 count_max;	// æœ€å¤§ã‚«ã‚¦ãƒ³ãƒˆå€¤
 } WFLBY_SHADOW_ALPHA;
 
 
 //-------------------------------------
-///	“®ìƒ[ƒN\‘¢‘Ì
+///	å‹•ä½œãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 //=====================================
 typedef union{
-	// MOVENPCƒ[ƒN
+	// MOVENPCãƒ¯ãƒ¼ã‚¯
 	struct{
 		s16 wait;
 		s16 way;
 	}npc;
 
-	// MOVEFLYŒnƒ[ƒN
+	// MOVEFLYç³»ãƒ¯ãƒ¼ã‚¯
 	struct{
 		WFLBY_3DOBJCONT_MOVE_WK	y;
 		u32						count;
 	}fly;
 
-	// rotaŒnƒ[ƒN
+	// rotaç³»ãƒ¯ãƒ¼ã‚¯
 	struct{
 		WFLBY_3DOBJCONT_MOVE_WK	dist;
 		u32						count;
 		fx32					def;
 	}rota;
 
-	// jumpŒnƒ[ƒN
+	// jumpç³»ãƒ¯ãƒ¼ã‚¯
 	struct{
 		s32						count;
 		VecFx32					def_mat;
@@ -188,25 +188,25 @@ typedef union{
 } WFLBY_3DPARSON_MOVEWK;
 
 //-------------------------------------
-///	ƒ[ƒN\‘¢‘Ì
+///	ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 //=====================================
 typedef struct _WFLBY_3DPERSON{
 	WF2DMAP_OBJWK* p_obj;
 	WFLBY_3DOBJWK* p_draw;
 
-	// “®ìŠÖ”ƒ[ƒN
+	// å‹•ä½œé–¢æ•°ãƒ¯ãƒ¼ã‚¯
 	u16						seq;
 	u8						moveend;
 	u8						movetype;
 	WFLBY_3DPARSON_MOVEWK	work;
 
-	// Šî–{“®ìŠÖ”
+	// åŸºæœ¬å‹•ä½œé–¢æ•°
 	void (*p_func)( struct _WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys );
 }WFLBY_3DPERSON;
 typedef void (*pWFLBY_3DPARSON_FUNC)( struct _WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys );
 
 //-------------------------------------
-///	ƒVƒXƒeƒ€\‘¢‘Ì
+///	ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“
 //=====================================
 typedef struct _WFLBY_3DOBJCONT{
 	WF2DMAP_OBJSYS*		p_objsys;
@@ -224,29 +224,29 @@ typedef struct _WFLBY_3DOBJCONT{
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒ}ƒbƒv”z’ul•¨‰Šú‰»
+///	ãƒžãƒƒãƒ—é…ç½®äººç‰©åˆæœŸåŒ–
 //=====================================
 static void WFLBY_3DOBJCONT_MAPOBJ_Init( WFLBY_3DOBJCONT* p_sys );
 
 
 //-------------------------------------
-///	ƒRƒ}ƒ“ƒhÝ’è
+///	ã‚³ãƒžãƒ³ãƒ‰è¨­å®š
 //=====================================
 static void WFLBY_3DOBJCONT_REQCMD_Set( WFLBY_3DOBJCONT* p_sys, s32 cmd, s32 way, s32 playid );
 
 
 //-------------------------------------
-///	ƒ†[ƒeƒBƒŠƒeƒBŠÖ”
+///	ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–¢æ•°
 //=====================================
-// —”‚Åƒe[ƒuƒ‹‚Ì’†‚Ì‚P‚Â‚Ì—v‘f‚Ì’l‚ð•Ô‚·
+// ä¹±æ•°ã§ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä¸­ã®ï¼‘ã¤ã®è¦ç´ ã®å€¤ã‚’è¿”ã™
 static u8 WFLBY_3DOBJCONT_GetRndTbl( const u8* cp_tbl, u32 tblnum );	
-// l•¨‚Ìway•ûŒü‚ÌƒOƒŠƒbƒh‚ÌOBJID‚ðƒ`ƒFƒbƒN‚·‚é
+// äººç‰©ã®wayæ–¹å‘ã®ã‚°ãƒªãƒƒãƒ‰ã®OBJIDã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 static BOOL WFLBY_3DOBJCONT_CheckWayObjID( const WFLBY_3DOBJCONT* cp_sys, const WFLBY_3DPERSON* cp_obj, WF2DMAP_WAY way, u32 objid );
-// üŒ`“®ì
+// ç·šå½¢å‹•ä½œ
 static void WFLBY_3DOBJCONT_MOVEWK_Init( WFLBY_3DOBJCONT_MOVE_WK* p_wk, fx32 s_x, fx32 e_x, u32 count_max );
 static BOOL WFLBY_3DOBJCONT_MOVEWK_Main( WFLBY_3DOBJCONT_MOVE_WK* p_wk, u32 count );
 static fx32 WFLBY_3DOBJCONT_MOVEWK_GetNum( const WFLBY_3DOBJCONT_MOVE_WK* cp_wk );
@@ -254,11 +254,11 @@ static fx32 WFLBY_3DOBJCONT_MOVEWK_GetNum( const WFLBY_3DOBJCONT_MOVE_WK* cp_wk 
 
 
 //-------------------------------------
-///	l•¨ƒ[ƒN‘€ì
+///	äººç‰©ãƒ¯ãƒ¼ã‚¯æ“ä½œ
 //=====================================
 static WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetCleanWk( WFLBY_3DOBJCONT* p_sys );
 static BOOL WFLBY_3DOBJCONT_CheckCleanWk( const WFLBY_3DPERSON* cp_wk );
-// l•¨“®ìŠÖ”
+// äººç‰©å‹•ä½œé–¢æ•°
 static void WFLBY_3DOBJCONT_MoveNone(  WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys );
 static void WFLBY_3DOBJCONT_PlayerMove(  WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys );
 static void WFLBY_3DOBJCONT_NpcMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys );
@@ -274,7 +274,7 @@ static void WFLBY_3DOBJCONT_JumpEnd( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sy
 
 
 //-------------------------------------
-///	‰e‚ÌƒAƒ‹ƒtƒ@’l•ÏXƒVƒXƒeƒ€
+///	å½±ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤å¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 static void WFLBY_3DOBJCONT_ShadowAlpha_Init( WFLBY_SHADOW_ALPHA* p_wk, WFLBY_3DOBJSYS* p_sys, u32 alpha );
 static void WFLBY_3DOBJCONT_ShadowAlpha_Start( WFLBY_SHADOW_ALPHA* p_wk, u32 alpha );
@@ -285,7 +285,7 @@ static BOOL WFLBY_3DOBJCONT_ShadowAlpha_Main( WFLBY_SHADOW_ALPHA* p_wk, WFLBY_3D
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒ}ƒbƒv”z’ul•¨ƒf[ƒ^
+ *			ãƒžãƒƒãƒ—é…ç½®äººç‰©ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
@@ -307,7 +307,7 @@ static const WFLBY_MAPOBJDATA sc_WFLBY_3DPARSON_MAPOBJ[] = {
 
 //-----------------------------------------------------------------------------
 /**
- *				“®ìƒe[ƒuƒ‹
+ *				å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //-----------------------------------------------------------------------------
 static const pWFLBY_3DPARSON_FUNC sc_WFLBY_3DPARSON_FUNC[WFLBY_3DOBJCONT_MOVENUM] = {
@@ -341,7 +341,7 @@ static const pWFLBY_3DPARSON_FUNC sc_WFLBY_3DPARSON_END_FUNC[WFLBY_3DOBJCONT_MOV
 
 //-----------------------------------------------------------------------------
 /**
- *		‰e‚ÌƒAƒ‹ƒtƒ@’lƒe[ƒuƒ‹
+ *		å½±ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //-----------------------------------------------------------------------------
 static const u32 sc_WFLBY_3DOBJCONT_SHADOW_ALPHA[ WFLBY_LIGHT_NEON_ROOMNUM ] = {
@@ -366,18 +366,18 @@ static const u32 sc_WFLBY_3DOBJCONT_SHADOW_ALPHA[ WFLBY_LIGHT_NEON_ROOMNUM ] = {
 
 
 
-// ƒVƒXƒeƒ€ŠÇ—
+// ã‚·ã‚¹ãƒ†ãƒ ç®¡ç†
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨ŠÇ—ƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	äººç‰©ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	objnum		ƒIƒuƒWƒFƒNƒg”
- *	@param	hero_sex	«•Ê
- *	@param	cp_map		ƒ}ƒbƒvƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID
- *	@param	gheapID		ƒOƒ‰ƒtƒBƒbƒNƒq[ƒvID
+ *	@param	objnum		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
+ *	@param	hero_sex	æ€§åˆ¥
+ *	@param	cp_map		ãƒžãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	gheapID		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ’ãƒ¼ãƒ—ID
  *	
- *	@return	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@return	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DOBJCONT* WFLBY_3DOBJCONT_Init( u32 objnum, u32 hero_sex, const WFLBY_MAPCONT* cp_map, u32 heapID, u32 gheapID )
@@ -387,23 +387,23 @@ WFLBY_3DOBJCONT* WFLBY_3DOBJCONT_Init( u32 objnum, u32 hero_sex, const WFLBY_MAP
 	p_sys = sys_AllocMemory( heapID, sizeof(WFLBY_3DOBJCONT) );
 	memset( p_sys, 0, sizeof(WFLBY_3DOBJCONT) );
 
-	// ƒVƒXƒeƒ€ì¬
+	// ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	p_sys->p_objsys		= WF2DMAP_OBJSysInit( objnum, heapID );
 	p_sys->p_drawsys	= WFLBY_3DOBJSYS_Init( objnum, hero_sex, heapID, gheapID );
 	p_sys->p_reqQ		= WF2DMAP_REQCMDQSysInit( WFLBY_3DOBJCONT_QBUF_NUM, heapID );
 
-	// ƒIƒuƒWƒFƒNƒgƒ[ƒNì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_sys->objnum		= objnum;
 	p_sys->p_objbuf		= sys_AllocMemory( heapID, sizeof(WFLBY_3DPERSON)*objnum );
 	memset( p_sys->p_objbuf, 0, sizeof(WFLBY_3DPERSON)*objnum );
 
-	// ƒ}ƒbƒvƒVƒXƒeƒ€‚ð•Û‘¶‚µ‚Ä‚¨‚­
+	// ãƒžãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ã‚’ä¿å­˜ã—ã¦ãŠã
 	p_sys->cp_mapsys = cp_map;
 
-	// ŽålŒö‚Ì«•Ê‚ð•Û‘¶‚µ‚Ä‚¨‚­
+	// ä¸»äººå…¬ã®æ€§åˆ¥ã‚’ä¿å­˜ã—ã¦ãŠã
 	p_sys->hero_sex = hero_sex;
 
-	// Žó•t‚Ì‚¨‚Ë‚¦‚³‚ñ‚È‚Ç‚ð’Ç‰Á
+	// å—ä»˜ã®ãŠã­ãˆã•ã‚“ãªã©ã‚’è¿½åŠ 
 	WFLBY_3DOBJCONT_MAPOBJ_Init( p_sys );
 	
 	return p_sys;
@@ -411,53 +411,53 @@ WFLBY_3DOBJCONT* WFLBY_3DOBJCONT_Init( u32 objnum, u32 hero_sex, const WFLBY_MAP
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨ŠÇ—ƒVƒXƒeƒ€	”jŠü
+ *	@brief	äººç‰©ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	ç ´æ£„
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_Exit( WFLBY_3DOBJCONT* p_sys )
 {
 	
-	//  ƒIƒuƒWƒFƒNƒgƒ[ƒN”jŠü
+	//  ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_sys->p_objbuf );
 	
-	// ƒVƒXƒeƒ€”jŠü
+	// ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	WF2DMAP_REQCMDQSysExit( p_sys->p_reqQ );
 	WFLBY_3DOBJSYS_Exit( p_sys->p_drawsys );
 	WF2DMAP_OBJSysExit( p_sys->p_objsys );
 
-	// ƒVƒXƒeƒ€Ž©‘Ì‚ð”jŠü
+	// ã‚·ã‚¹ãƒ†ãƒ è‡ªä½“ã‚’ç ´æ£„
 	sys_FreeMemoryEz( p_sys );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨ƒVƒXƒeƒ€	“®ìˆ—
+ *	@brief	äººç‰©ã‚·ã‚¹ãƒ†ãƒ 	å‹•ä½œå‡¦ç†
  *		
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_Move( WFLBY_3DOBJCONT* p_sys )
 {
-	// ƒIƒuƒWƒFƒNƒgƒVƒXƒeƒ€
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 	WF2DMAP_OBJSysMain( p_sys->p_objsys );
 
-	// ‰e‚ÌF‚ð•ÏX
+	// å½±ã®è‰²ã‚’å¤‰æ›´
 	WFLBY_3DOBJCONT_ShadowAlpha_Main( &p_sys->shadow_alpha, p_sys->p_drawsys );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨ƒVƒXƒeƒ€	ƒŠƒNƒGƒXƒg”½‰fˆ—
+ *	@brief	äººç‰©ã‚·ã‚¹ãƒ†ãƒ 	ãƒªã‚¯ã‚¨ã‚¹ãƒˆåæ˜ å‡¦ç†
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_ReqMove( WFLBY_3DOBJCONT* p_sys )
 {
 
-	// ƒvƒŒƒCƒ„[“®ì
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‹•ä½œ
 	{
 		int i;
 		for( i=0; i<p_sys->objnum; i++ ){
@@ -467,17 +467,17 @@ void WFLBY_3DOBJCONT_ReqMove( WFLBY_3DOBJCONT* p_sys )
 		}
 	}
 	
-	// “®ìƒ`ƒFƒbƒNˆ—
+	// å‹•ä½œãƒã‚§ãƒƒã‚¯å‡¦ç†
 	{
 		WF2DMAP_REQCMD req;
 		WF2DMAP_ACTCMD act;
 		BOOL result;
 		const WF2DMAP_MAPSYS* cp_map_sys;
 
-		// ƒ}ƒbƒvƒRƒAƒVƒXƒeƒ€
+		// ãƒžãƒƒãƒ—ã‚³ã‚¢ã‚·ã‚¹ãƒ†ãƒ 
 		cp_map_sys = WFLBY_MAPCONT_GetMapCoreSys( p_sys->cp_mapsys );
 
-		// ƒRƒ}ƒ“ƒh‚ªŠÔƒRƒ}ƒ“ƒh‚ðŽÀs
+		// ã‚³ãƒžãƒ³ãƒ‰ãŒé–“ã‚³ãƒžãƒ³ãƒ‰ã‚’å®Ÿè¡Œ
 		while( WF2DMAP_REQCMDQSysCmdPop( p_sys->p_reqQ, &req ) == TRUE ){
 			result = WF2DMAP_JUDGESysCmdJudge( cp_map_sys, p_sys->p_objsys, &req, &act );
 			if( result == TRUE ){
@@ -486,15 +486,15 @@ void WFLBY_3DOBJCONT_ReqMove( WFLBY_3DOBJCONT* p_sys )
 		}
 	}
 
-	// •`‰æƒAƒbƒvƒf[ƒg
+	// æç”»ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 	WFLBY_3DOBJSYS_Updata( p_sys->p_drawsys );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨ŠÇ—ƒVƒXƒeƒ€	•`‰æˆ—
+ *	@brief	äººç‰©ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	æç”»å‡¦ç†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_Draw( WFLBY_3DOBJCONT* p_sys )
@@ -504,9 +504,9 @@ void WFLBY_3DOBJCONT_Draw( WFLBY_3DOBJCONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨ŠÇ—ƒVƒXƒeƒ€	VBlankˆ—
+ *	@brief	äººç‰©ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	VBlankå‡¦ç†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_VBlank( WFLBY_3DOBJCONT* p_sys )
@@ -517,10 +517,10 @@ void WFLBY_3DOBJCONT_VBlank( WFLBY_3DOBJCONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰e‚ÌF‚ð‰Šú‰»‚·‚é
+ *	@brief	å½±ã®è‰²ã‚’åˆæœŸåŒ–ã™ã‚‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	roomtype	•”‰®‚Ì–¾‚é‚³ƒ^ƒCƒv
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	roomtype	éƒ¨å±‹ã®æ˜Žã‚‹ã•ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_InitShadowAlpha( WFLBY_3DOBJCONT* p_sys, WFLBY_LIGHT_NEON_ROOMTYPE roomtype )
@@ -530,10 +530,10 @@ void WFLBY_3DOBJCONT_InitShadowAlpha( WFLBY_3DOBJCONT* p_sys, WFLBY_LIGHT_NEON_R
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨‚Ì‰e‚ÌF‚ðÝ’è‚·‚é
+ *	@brief	äººç‰©ã®å½±ã®è‰²ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	roomtype	•”‰®ƒ^ƒCƒv
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	roomtype	éƒ¨å±‹ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_SetShadowAlpha( WFLBY_3DOBJCONT* p_sys, WFLBY_LIGHT_NEON_ROOMTYPE roomtype )
@@ -542,13 +542,13 @@ void WFLBY_3DOBJCONT_SetShadowAlpha( WFLBY_3DOBJCONT* p_sys, WFLBY_LIGHT_NEON_RO
 }
 
 
-// ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhÝ’è
+// ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰è¨­å®š
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh‚ðÝ’è
+ *	@brief	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚’è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_cmd		ƒRƒ}ƒ“ƒhƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_cmd		ã‚³ãƒžãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_SetReqCmd( WFLBY_3DOBJCONT* p_sys, const WF2DMAP_REQCMD* cp_cmd )
@@ -556,15 +556,15 @@ void WFLBY_3DOBJCONT_SetReqCmd( WFLBY_3DOBJCONT* p_sys, const WF2DMAP_REQCMD* cp
 	WF2DMAP_REQCMDQSysCmdPush( p_sys->p_reqQ, cp_cmd );
 }
 
-//  ƒ[ƒN‘€ì
+//  ãƒ¯ãƒ¼ã‚¯æ“ä½œ
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚ð“o˜^
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ç™»éŒ²
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	plid		ƒvƒŒƒCƒ„[ID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	plid		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddPlayer( WFLBY_3DOBJCONT* p_sys, u32 plid )
@@ -572,33 +572,33 @@ WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddPlayer( WFLBY_3DOBJCONT* p_sys, u32 plid )
 	u16 addx, addy;
 	BOOL result;
 
-	// “o˜^ˆÊ’u‚ð‹‚ß‚é
+	// ç™»éŒ²ä½ç½®ã‚’æ±‚ã‚ã‚‹
 	result = WFLBY_MAPCONT_SarchObjID( p_sys->cp_mapsys, 
 			WFLBY_MAPOBJID_PLAYER_IN, &addx, &addy, 0 );
-	GF_ASSERT( result );	// “o˜^ˆÊ’u‚ª‚È‚¢
+	GF_ASSERT( result );	// ç™»éŒ²ä½ç½®ãŒãªã„
 	return WFLBY_3DOBJCONT_AddPlayerEx( p_sys, plid, addx, addy );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽålŒö‚Ì“o˜^	oŒ»ˆÊ’uŽw’è
+ *	@brief	ä¸»äººå…¬ã®ç™»éŒ²	å‡ºç¾ä½ç½®æŒ‡å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	plid		ƒvƒŒƒCƒ„[ID
- *	@param	gridx		ƒOƒŠƒbƒhX
- *	@param	gridy		ƒOƒŠƒbƒhY
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	plid		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
+ *	@param	gridx		ã‚°ãƒªãƒƒãƒ‰X
+ *	@param	gridy		ã‚°ãƒªãƒƒãƒ‰Y
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddPlayerEx( WFLBY_3DOBJCONT* p_sys, u32 plid, u32 gridx,  u32 gridy )
 {
 	WFLBY_3DPERSON* p_wk;
 	
-	// ‹ó‚Ìƒ[ƒN‚ðŽæ“¾
+	// ç©ºã®ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
 	p_wk = WFLBY_3DOBJCONT_GetCleanWk( p_sys );
 	
-	// OBJ‚Ì“o˜^
+	// OBJã®ç™»éŒ²
 	{
 		WF2DMAP_OBJDATA	objdata;
 		objdata.x		= WF2DMAP_GRID2POS(gridx);
@@ -614,15 +614,15 @@ WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddPlayerEx( WFLBY_3DOBJCONT* p_sys, u32 plid, u
 		p_wk->p_obj = WF2DMAP_OBJWkNew( p_sys->p_objsys, &objdata );
 	}
 
-	// drawobj‚Ì“o˜^
+	// drawobjã®ç™»éŒ²
 	{
 		p_wk->p_draw = WFLBY_3DOBJWK_New( p_sys->p_drawsys, p_wk->p_obj );
 	}
 
-	// ƒvƒŒƒCƒ„[ƒf[ƒ^‚Í•Û‘¶‚µ‚Ä‚¨‚­
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã¯ä¿å­˜ã—ã¦ãŠã
 	p_sys->p_player = p_wk;
 
-	// “®ìŠÖ”Ý’è
+	// å‹•ä½œé–¢æ•°è¨­å®š
 	WFLBY_3DOBJCONT_SetWkMove( p_sys, p_wk, WFLBY_3DOBJCONT_MOVENONE );
 
 	return p_wk;
@@ -630,23 +630,23 @@ WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddPlayerEx( WFLBY_3DOBJCONT* p_sys, u32 plid, u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPC‚ð“o˜^
+ *	@brief	NPCã‚’ç™»éŒ²
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	plid	ƒvƒŒƒCƒ„[ID
- *	@param	trtype	trainerƒ^ƒCƒv
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	plid	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
+ *	@param	trtype	trainerã‚¿ã‚¤ãƒ—
  *
- *	@return	ƒ[ƒN	NULL	¡‚Í“o˜^‚Å‚«‚Ü‚¹‚ñ
+ *	@return	ãƒ¯ãƒ¼ã‚¯	NULL	ä»Šã¯ç™»éŒ²ã§ãã¾ã›ã‚“
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddNpc( WFLBY_3DOBJCONT* p_sys, u32 plid, u32 trtype )
 {
 	WFLBY_3DPERSON* p_wk;
 	
-	// ‹ó‚Ìƒ[ƒN‚ðŽæ“¾
+	// ç©ºã®ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
 	p_wk = WFLBY_3DOBJCONT_GetCleanWk( p_sys );
 	
-	// OBJ‚Ì“o˜^
+	// OBJã®ç™»éŒ²
 	{
 		WF2DMAP_OBJDATA	objdata;
 		u16 addx, addy, point_idx;
@@ -654,18 +654,18 @@ WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddNpc( WFLBY_3DOBJCONT* p_sys, u32 plid, u32 tr
 		BOOL add_ok = FALSE;
 		WFLBY_3DPERSON* p_player;
 
-		// “o˜^ˆÊ’u‚ð‹‚ß‚é
-		// ŽålŒö‚ª‚¢‚È‚­‚ÄA‚»‚Ìl‚ªo‚é‚±‚Æ‚Ìo—ˆ‚éêŠ
+		// ç™»éŒ²ä½ç½®ã‚’æ±‚ã‚ã‚‹
+		// ä¸»äººå…¬ãŒã„ãªãã¦ã€ãã®äººãŒå‡ºã‚‹ã“ã¨ã®å‡ºæ¥ã‚‹å ´æ‰€
 		point_idx = 0;
 		do{
 			result = WFLBY_MAPCONT_SarchObjID( p_sys->cp_mapsys, 
 					WFLBY_MAPOBJID_NPC_00+plid, &addx, &addy, point_idx );
 			
 			if( result == FALSE ){
-				OS_TPrintf( "npc “o˜^•s‰Â”\\n" );
-				return NULL;	// Œ»Ý“o˜^•s‰Â”\ 
+				OS_TPrintf( "npc ç™»éŒ²ä¸å¯èƒ½\n" );
+				return NULL;	// ç¾åœ¨ç™»éŒ²ä¸å¯èƒ½ 
 			}else{
-				// ‚»‚ÌˆÊ’u‚ÉŽålŒö‚ª‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+				// ãã®ä½ç½®ã«ä¸»äººå…¬ãŒã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 				p_player = WFLBY_3DOBJCONT_GetPlayer( p_sys );
 				if( p_player == NULL ){
 					add_ok = TRUE;
@@ -676,7 +676,7 @@ WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddNpc( WFLBY_3DOBJCONT* p_sys, u32 plid, u32 tr
 				}
 			}
 			
-			// ŽŸ‚Ìƒ|ƒCƒ“ƒg‚ðƒ`ƒFƒbƒN
+			// æ¬¡ã®ãƒã‚¤ãƒ³ãƒˆã‚’ãƒã‚§ãƒƒã‚¯
 			point_idx ++;
 		}while( add_ok == FALSE );
 
@@ -689,12 +689,12 @@ WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddNpc( WFLBY_3DOBJCONT* p_sys, u32 plid, u32 tr
 		p_wk->p_obj = WF2DMAP_OBJWkNew( p_sys->p_objsys, &objdata );
 	}
 
-	// drawobj‚Ì“o˜^
+	// drawobjã®ç™»éŒ²
 	{
 		p_wk->p_draw = WFLBY_3DOBJWK_New( p_sys->p_drawsys, p_wk->p_obj );
 	}
 
-	// “®ìŠÖ”Ý’è
+	// å‹•ä½œé–¢æ•°è¨­å®š
 	WFLBY_3DOBJCONT_SetWkMove( p_sys, p_wk, WFLBY_3DOBJCONT_MOVENONE );
 
 	return p_wk;
@@ -702,9 +702,9 @@ WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddNpc( WFLBY_3DOBJCONT* p_sys, u32 plid, u32 tr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨‚ð”jŠü
+ *	@brief	äººç‰©ã‚’ç ´æ£„
  *	
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_Delete( WFLBY_3DPERSON* p_wk )
@@ -717,12 +717,12 @@ void WFLBY_3DOBJCONT_Delete( WFLBY_3DPERSON* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[ID‚Ål•¨‚ðŽæ“¾
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼IDã§äººç‰©ã‚’å–å¾—
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	plid	ƒvƒŒƒCƒ„[ID
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	plid	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetPlIDWk( WFLBY_3DOBJCONT* p_sys, u32 plid )
@@ -744,11 +744,11 @@ WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetPlIDWk( WFLBY_3DOBJCONT* p_sys, u32 plid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽålŒö‚ðŽæ“¾‚·‚é
+ *	@brief	ä¸»äººå…¬ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_sys	ƒ[ƒN
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ŽålŒö
+ *	@return	ä¸»äººå…¬
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetPlayer( WFLBY_3DOBJCONT* p_sys )
@@ -758,11 +758,11 @@ WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetPlayer( WFLBY_3DOBJCONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒsƒGƒ‚ðŽæ“¾
+ *	@brief	ãƒ”ã‚¨ãƒ­ã‚’å–å¾—
  *
- *	@param	p_sys	ƒ[ƒN
+ *	@param	p_sys	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒsƒGƒƒIƒuƒWƒFƒf[ƒ^
+ *	@return	ãƒ”ã‚¨ãƒ­ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetPierrot( WFLBY_3DOBJCONT* p_sys )
@@ -772,15 +772,15 @@ WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetPierrot( WFLBY_3DOBJCONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•W‚ÌÝ’è
+ *	@brief	åº§æ¨™ã®è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	pos			ˆÊ’u
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	pos			ä½ç½®
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_SetWkPos( WFLBY_3DPERSON* p_wk, WF2DMAP_POS pos )
 {
-	// Œ»ÝˆÊ’uA‰ß‹ŽˆÊ’u—¼•û‚É“ü‚ê‚é
+	// ç¾åœ¨ä½ç½®ã€éŽåŽ»ä½ç½®ä¸¡æ–¹ã«å…¥ã‚Œã‚‹
 	GF_ASSERT( p_wk->p_obj );
 	WF2DMAP_OBJWkMatrixSet( p_wk->p_obj, pos );
 	WF2DMAP_OBJWkLastMatrixSet( p_wk->p_obj, pos );
@@ -790,11 +790,11 @@ void WFLBY_3DOBJCONT_SetWkPos( WFLBY_3DPERSON* p_wk, WF2DMAP_POS pos )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•WÝ’è{•ûŒü
+ *	@brief	åº§æ¨™è¨­å®šï¼‹æ–¹å‘
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	pos		ˆÊ’u
- *	@param	way		•ûŒü
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	pos		ä½ç½®
+ *	@param	way		æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_SetWkPosAndWay( WFLBY_3DPERSON* p_wk, WF2DMAP_POS pos, WF2DMAP_WAY way )
@@ -806,9 +806,9 @@ void WFLBY_3DOBJCONT_SetWkPosAndWay( WFLBY_3DPERSON* p_wk, WF2DMAP_POS pos, WF2D
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒWƒVƒ‡ƒ“‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_POS WFLBY_3DOBJCONT_GetWkPos( const WFLBY_3DPERSON* cp_wk )
@@ -819,12 +819,12 @@ WF2DMAP_POS WFLBY_3DOBJCONT_GetWkPos( const WFLBY_3DPERSON* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	wf2dmap_obj‚Ìƒf[ƒ^‚ðŽæ“¾‚·‚é
+ *	@brief	wf2dmap_objã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	pm		Žæ“¾‚·‚éƒf[ƒ^‚Ì’è”
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	pm		å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®å®šæ•°
  *
- *	@return	ƒf[ƒ^
+ *	@return	ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_3DOBJCONT_GetWkObjData( const WFLBY_3DPERSON* cp_wk, WF2DMAP_OBJPARAM pm )
@@ -835,11 +835,11 @@ u32 WFLBY_3DOBJCONT_GetWkObjData( const WFLBY_3DPERSON* cp_wk, WF2DMAP_OBJPARAM 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	wf2dmap_obj‚Ìƒ[ƒN‚ðŽæ“¾‚·‚é
+ *	@brief	wf2dmap_objã®ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	WF2DMAP_OBJWKƒ|ƒCƒ“ƒ^
+ *	@return	WF2DMAP_OBJWKãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_OBJWK* WFLBY_3DOBJCONT_GetWkObjWk( WFLBY_3DPERSON* p_wk )
@@ -850,12 +850,12 @@ WF2DMAP_OBJWK* WFLBY_3DOBJCONT_GetWkObjWk( WFLBY_3DPERSON* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨‚ÌƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh‚ð”­s‚·‚é
+ *	@brief	äººç‰©ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚’ç™ºè¡Œã™ã‚‹
  *
- *	@param	p_sys		ƒIƒuƒWƒFŠÇ—ƒVƒXƒeƒ€
- *	@param	cp_wk		l•¨ƒ[ƒN
- *	@param	cmd			ƒRƒ}ƒ“ƒh
- *	@param	way			•ûŒü
+ *	@param	p_sys		ã‚ªãƒ–ã‚¸ã‚§ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_wk		äººç‰©ãƒ¯ãƒ¼ã‚¯
+ *	@param	cmd			ã‚³ãƒžãƒ³ãƒ‰
+ *	@param	way			æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_SetWkReqCmd( WFLBY_3DOBJCONT* p_sys, const WFLBY_3DPERSON* cp_wk, WF2DMAP_CMD cmd, WF2DMAP_WAY way )
@@ -871,12 +871,12 @@ void WFLBY_3DOBJCONT_SetWkReqCmd( WFLBY_3DOBJCONT* p_sys, const WFLBY_3DPERSON* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚Å‹­§“I‚É“®‚©‚·
+ *	@brief	ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã§å¼·åˆ¶çš„ã«å‹•ã‹ã™
  *
- *	@param	p_sys		ƒIƒuƒWƒFŠÇ—ƒVƒXƒeƒ€
- *	@param	cp_wk		l•¨ƒ[ƒN
- *	@param	cmd			ƒRƒ}ƒ“ƒh
- *	@param	way			•ûŒü
+ *	@param	p_sys		ã‚ªãƒ–ã‚¸ã‚§ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_wk		äººç‰©ãƒ¯ãƒ¼ã‚¯
+ *	@param	cmd			ã‚³ãƒžãƒ³ãƒ‰
+ *	@param	way			æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_SetWkActCmd( WFLBY_3DOBJCONT* p_sys, const WFLBY_3DPERSON* cp_wk, WF2DMAP_CMD cmd, WF2DMAP_WAY way )
@@ -891,17 +891,17 @@ void WFLBY_3DOBJCONT_SetWkActCmd( WFLBY_3DOBJCONT* p_sys, const WFLBY_3DPERSON* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨‚Ì“®ì‚ðÝ’è
+ *	@brief	äººç‰©ã®å‹•ä½œã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	movetype	“®ìƒ^ƒCƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	movetype	å‹•ä½œã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_SetWkMove( WFLBY_3DOBJCONT* p_sys, WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT_MOVETYPE movetype )
 {
 	GF_ASSERT( movetype < WFLBY_3DOBJCONT_MOVENUM );
 
-	// “®ì‚ÌI—¹ˆ—
+	// å‹•ä½œã®çµ‚äº†å‡¦ç†
 	if( sc_WFLBY_3DPARSON_END_FUNC[ p_wk->movetype ] != NULL ){
 		sc_WFLBY_3DPARSON_END_FUNC[ p_wk->movetype ]( p_wk, p_sys );
 	}
@@ -915,12 +915,12 @@ void WFLBY_3DOBJCONT_SetWkMove( WFLBY_3DOBJCONT* p_sys, WFLBY_3DPERSON* p_wk, WF
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[“®ì‚ªI—¹‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‹•ä½œãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DOBJCONT_CheckWkMoveEnd( const WFLBY_3DPERSON* cp_wk )
@@ -930,11 +930,11 @@ BOOL WFLBY_3DOBJCONT_CheckWkMoveEnd( const WFLBY_3DPERSON* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[“®ìƒ^ƒCƒv‚ðŽæ“¾‚·‚é
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‹•ä½œã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	“®ìƒ^ƒCƒv
+ *	@return	å‹•ä½œã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DOBJCONT_MOVETYPE WFLBY_3DOBJCONT_GetWkMove( const WFLBY_3DPERSON* cp_wk )
@@ -944,13 +944,13 @@ WFLBY_3DOBJCONT_MOVETYPE WFLBY_3DOBJCONT_GetWkMove( const WFLBY_3DPERSON* cp_wk 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨‚Ì–Ú‚Ì‘O‚Ìl•¨‚ðŽæ“¾‚·‚é
+ *	@brief	äººç‰©ã®ç›®ã®å‰ã®äººç‰©ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval			–Ú‚Ì‘O‚Ìl•¨
- *	@retval	NULL	–Ú‚Ì‘O‚É‚Í’N‚à‚¢‚È‚¢
+ *	@retval			ç›®ã®å‰ã®äººç‰©
+ *	@retval	NULL	ç›®ã®å‰ã«ã¯èª°ã‚‚ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetFrontPerson( WFLBY_3DOBJCONT* p_sys, const WFLBY_3DPERSON* cp_wk )
@@ -962,7 +962,7 @@ WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetFrontPerson( WFLBY_3DOBJCONT* p_sys, const WF
 	way = WF2DMAP_OBJWkDataGet( cp_wk->p_obj, WF2DMAP_OBJPM_WAY );
 	cp_hitobj = WF2DMAP_OBJSysHitCheck( cp_wk->p_obj, p_sys->p_objsys, way );
 
-	// ‚¢‚½‚©H
+	// ã„ãŸã‹ï¼Ÿ
 	if( cp_hitobj == NULL ){
 		return NULL;
 	}
@@ -973,12 +973,12 @@ WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetFrontPerson( WFLBY_3DOBJCONT* p_sys, const WF
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒŠƒ“ƒOƒtƒ‰ƒOÝ’è
+ *	@brief	ã‚«ãƒªãƒ³ã‚°ãƒ•ãƒ©ã‚°è¨­å®š
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒJƒŠƒ“ƒO‚µ‚Ä”ñ•\Ž¦’†
- *	@retval	FALSE	ƒJƒŠƒ“ƒO‚µ‚Ä‚È‚¢•\Ž¦’†
+ *	@retval	TRUE	ã‚«ãƒªãƒ³ã‚°ã—ã¦éžè¡¨ç¤ºä¸­
+ *	@retval	FALSE	ã‚«ãƒªãƒ³ã‚°ã—ã¦ãªã„è¡¨ç¤ºä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DOBJCONT_GetCullingFlag( const WFLBY_3DPERSON* cp_wk )
@@ -988,14 +988,14 @@ BOOL WFLBY_3DOBJCONT_GetCullingFlag( const WFLBY_3DPERSON* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Žw’è‚µ‚½ƒOƒŠƒbƒh‚Él•¨‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	æŒ‡å®šã—ãŸã‚°ãƒªãƒƒãƒ‰ã«äººç‰©ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€
- *	@param	gridx		ƒOƒŠƒbƒh‚˜
- *	@param	gridy		ƒOƒŠƒbƒh‚™
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	gridx		ã‚°ãƒªãƒƒãƒ‰ï½˜
+ *	@param	gridy		ã‚°ãƒªãƒƒãƒ‰ï½™
  *
- *	@retval	NULLˆÈŠO	Ž©•ª•¨‚ª‚¢‚é
- *	@retval	NULL		l•¨‚Í‚¢‚È‚¢
+ *	@retval	NULLä»¥å¤–	è‡ªåˆ†ç‰©ãŒã„ã‚‹
+ *	@retval	NULL		äººç‰©ã¯ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 const WFLBY_3DPERSON* WFLBY_3DOBJCONT_CheckSysGridHit( const WFLBY_3DOBJCONT* cp_sys, u16 gridx, u16 gridy )
@@ -1009,11 +1009,11 @@ const WFLBY_3DPERSON* WFLBY_3DOBJCONT_CheckSysGridHit( const WFLBY_3DOBJCONT* cp
 	
 	cp_obj = WF2DMAP_OBJSysPosHitCheck( cp_sys->p_objsys, pos );
 
-	if( cp_obj == NULL ){	// ‚¢‚È‚©‚Á‚½
+	if( cp_obj == NULL ){	// ã„ãªã‹ã£ãŸ
 		return NULL;
 	}
 
-	// ‚»‚ÌƒIƒuƒWƒF‚ÌŽ©•ª•¨ƒf[ƒ^‚ð•Ô‚·
+	// ãã®ã‚ªãƒ–ã‚¸ã‚§ã®è‡ªåˆ†ç‰©ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
 	for( i=0; i<cp_sys->objnum; i++ ){
 
 		if( cp_sys->p_objbuf[i].p_obj == cp_obj ){
@@ -1021,20 +1021,20 @@ const WFLBY_3DPERSON* WFLBY_3DOBJCONT_CheckSysGridHit( const WFLBY_3DOBJCONT* cp
 		}
 	}
 
-	GF_ASSERT( 0 );	// ‚¨‚©‚µ‚¢
+	GF_ASSERT( 0 );	// ãŠã‹ã—ã„
 	return NULL;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒŠƒbƒhˆÊ’u‚É‚±‚ÌƒIƒuƒWƒF‚ª‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ã‚°ãƒªãƒƒãƒ‰ä½ç½®ã«ã“ã®ã‚ªãƒ–ã‚¸ã‚§ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	gridx		ƒOƒŠƒbƒh‚˜À•W
- *	@param	gridy		ƒOƒŠƒbƒh‚™À•W
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	gridx		ã‚°ãƒªãƒƒãƒ‰ï½˜åº§æ¨™
+ *	@param	gridy		ã‚°ãƒªãƒƒãƒ‰ï½™åº§æ¨™
  *
- *	@retval	TRUE	‚»‚ÌˆÊ’u‚É‚¢‚é
- *	@retval	FALSE	‚»‚ÌˆÊ’u‚É‚¢‚È‚¢
+ *	@retval	TRUE	ãã®ä½ç½®ã«ã„ã‚‹
+ *	@retval	FALSE	ãã®ä½ç½®ã«ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DOBJCONT_CheckGridHit( const WFLBY_3DPERSON* cp_wk, u16 gridx, u16 gridy )
@@ -1056,17 +1056,17 @@ BOOL WFLBY_3DOBJCONT_CheckGridHit( const WFLBY_3DPERSON* cp_wk, u16 gridx, u16 g
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨ŠO‚S•ûŒü‚É‹ó‚¢‚Ä‚¢‚éêŠ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	äººç‰©å¤–ï¼”æ–¹å‘ã«ç©ºã„ã¦ã„ã‚‹å ´æ‰€ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	cp_wk		ƒ[ƒN
- *	@param	p_way		•ûŒü
- *	@param	p_pos		ˆÊ’u
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_way		æ–¹å‘
+ *	@param	p_pos		ä½ç½®
  *
- *	@retval	TRUE	‹ó‚¢‚Ä‚¢‚é‚Æ‚±‚ë‚ª‚ ‚Á‚½
- *	@retval	FALSE	‹ó‚¢‚Ä‚¢‚é‚Æ‚±‚ë‚ª‚È‚¢
+ *	@retval	TRUE	ç©ºã„ã¦ã„ã‚‹ã¨ã“ã‚ãŒã‚ã£ãŸ
+ *	@retval	FALSE	ç©ºã„ã¦ã„ã‚‹ã¨ã“ã‚ãŒãªã„
  *
- *	—Dæ‡ˆÊ‚ÍA‰E„¶„‰º„ã
+ *	å„ªå…ˆé †ä½ã¯ã€å³ï¼žå·¦ï¼žä¸‹ï¼žä¸Š
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DOBJCONT_GetOpenGird4Way( WFLBY_3DOBJCONT* p_sys, const WFLBY_3DPERSON* cp_wk, u32* p_way, WF2DMAP_POS* p_pos )
@@ -1084,34 +1084,34 @@ BOOL WFLBY_3DOBJCONT_GetOpenGird4Way( WFLBY_3DOBJCONT* p_sys, const WFLBY_3DPERS
 	u32 eventid;
 	const WF2DMAP_OBJWK* cp_hitobj;
 
-	// l•¨‚ÌÀ•W‚ðŽæ“¾
+	// äººç‰©ã®åº§æ¨™ã‚’å–å¾—
 	pos = WF2DMAP_OBJWkMatrixGet( cp_wk->p_obj );
 
 	
 	for( i=0; i<WF2DMAP_WAY_NUM; i++ ){
 		waypos = WF2DMAP_OBJToolWayPosGet( pos, sc_WAY[i] );	
 
-		// ’nŒ`‚Æ”»’è
-		// “–‚½‚è”»’è
+		// åœ°å½¢ã¨åˆ¤å®š
+		// å½“ãŸã‚Šåˆ¤å®š
 		hit = WFLBY_MAPCONT_HitGet( p_sys->cp_mapsys, 
 				WF2DMAP_POS2GRID(waypos.x), WF2DMAP_POS2GRID(waypos.y) );
 		if( hit == TRUE ){
-			continue;	// ŽŸ‚Ö
+			continue;	// æ¬¡ã¸
 		}
-		// ‚»‚ÌˆÊ’u‚É‰½‚©‚ÌƒCƒxƒ“ƒg‚ª‚È‚¢‚©
+		// ãã®ä½ç½®ã«ä½•ã‹ã®ã‚¤ãƒ™ãƒ³ãƒˆãŒãªã„ã‹
 		eventid = WFLBY_MAPCONT_EventGet( p_sys->cp_mapsys, 
 				WF2DMAP_POS2GRID(waypos.x), WF2DMAP_POS2GRID(waypos.y) );
 		if( (eventid != 0) && (eventid != WFLBY_MAPEVID_EV_ROOF_MAT) ){
-			continue;	// ŽŸ‚Ö
+			continue;	// æ¬¡ã¸
 		}
 
-		// Ž©•ª•¨‚ª‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+		// è‡ªåˆ†ç‰©ãŒã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		cp_hitobj = WF2DMAP_OBJSysPosHitCheck( p_sys->p_objsys, waypos );
 		if( cp_hitobj != NULL ){
-			continue;	// ŽŸ‚Ö
+			continue;	// æ¬¡ã¸
 		}
 
-		// ‚±‚ÌˆÊ’u‹ó‚¢‚Ä‚Ü‚·
+		// ã“ã®ä½ç½®ç©ºã„ã¦ã¾ã™
 		*p_way = sc_WAY[i];
 		*p_pos = waypos;
 		return TRUE;
@@ -1119,13 +1119,13 @@ BOOL WFLBY_3DOBJCONT_GetOpenGird4Way( WFLBY_3DOBJCONT* p_sys, const WFLBY_3DPERS
 	return FALSE;
 }
 
-// ŠO‘¤‚©‚ç•\Ž¦•”•ª‚Ì‚Ý•ÏX‚·‚é
+// å¤–å´ã‹ã‚‰è¡¨ç¤ºéƒ¨åˆ†ã®ã¿å¤‰æ›´ã™ã‚‹
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æXVƒtƒ‰ƒO‚ðÝ’è
+ *	@brief	æç”»æ›´æ–°ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	updata		ƒAƒbƒvƒf[ƒgƒtƒ‰ƒO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	updata		ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_DRAW_SetUpdata( WFLBY_3DPERSON* p_wk, BOOL updata )
@@ -1135,12 +1135,12 @@ void WFLBY_3DOBJCONT_DRAW_SetUpdata( WFLBY_3DPERSON* p_wk, BOOL updata )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒAƒbƒvƒf[ƒgƒtƒ‰ƒO‚ðŽæ“¾
+ *	@brief	æç”»ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒAƒbƒvƒf[ƒg’†
- *	@retval	FALSE	ƒAƒbƒvƒf[ƒg‚µ‚È‚¢
+ *	@retval	TRUE	ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆä¸­
+ *	@retval	FALSE	ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã—ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DOBJCONT_DRAW_GetUpdata( const WFLBY_3DPERSON* cp_wk )
@@ -1150,10 +1150,10 @@ BOOL WFLBY_3DOBJCONT_DRAW_GetUpdata( const WFLBY_3DPERSON* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À•W‚ðÝ’è‚·‚é
+ *	@brief	åº§æ¨™ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_pos		ˆÊ’u
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_pos		ä½ç½®
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_DRAW_SetMatrix( WFLBY_3DPERSON* p_wk, const WF2DMAP_POS* cp_pos )
@@ -1163,10 +1163,10 @@ void WFLBY_3DOBJCONT_DRAW_SetMatrix( WFLBY_3DPERSON* p_wk, const WF2DMAP_POS* cp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚RDÀ•W‚ðÝ’è
+ *	@brief	ï¼“Dåº§æ¨™ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_vec		ƒxƒNƒgƒ‹
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_vec		ãƒ™ã‚¯ãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_DRAW_Set3DMatrix( WFLBY_3DPERSON* p_wk, const VecFx32* cp_vec )
@@ -1176,10 +1176,10 @@ void WFLBY_3DOBJCONT_DRAW_Set3DMatrix( WFLBY_3DPERSON* p_wk, const VecFx32* cp_v
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	3DÀ•W‚ðŽæ“¾‚·‚é
+ *	@brief	3Dåº§æ¨™ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	p_vec	ƒxƒNƒgƒ‹Ši”[æ
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_vec	ãƒ™ã‚¯ãƒˆãƒ«æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_DRAW_Get3DMatrix( const WFLBY_3DPERSON* cp_wk, VecFx32* p_vec )
@@ -1189,10 +1189,10 @@ void WFLBY_3DOBJCONT_DRAW_Get3DMatrix( const WFLBY_3DPERSON* cp_wk, VecFx32* p_v
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æ‚·‚é•ûŒü‚ð•ÏX
+ *	@brief	æç”»ã™ã‚‹æ–¹å‘ã‚’å¤‰æ›´
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	way		•ûŒü
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	way		æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_DRAW_SetWay( WFLBY_3DPERSON* p_wk, WF2DMAP_WAY way )
@@ -1202,10 +1202,10 @@ void WFLBY_3DOBJCONT_DRAW_SetWay( WFLBY_3DPERSON* p_wk, WF2DMAP_WAY way )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æ	ƒWƒƒƒ“ƒvƒV[ƒ“‚Ì•`‰æ
+ *	@brief	æç”»	ã‚¸ãƒ£ãƒ³ãƒ—ã‚·ãƒ¼ãƒ³ã®æç”»
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		‚s‚q‚t‚dFÄ¶	‚e‚`‚k‚r‚dFƒIƒƒŠ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ï¼´ï¼²ï¼µï¼¥ï¼šå†ç”Ÿ	ï¼¦ï¼¡ï¼¬ï¼³ï¼¥ï¼šã‚ªãƒ¯ãƒª
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_DRAW_SetAnmJump( WFLBY_3DPERSON* p_wk, BOOL flag )
@@ -1219,10 +1219,10 @@ void WFLBY_3DOBJCONT_DRAW_SetAnmJump( WFLBY_3DPERSON* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æ	‰ñ“]ƒAƒjƒ•`‰æ
+ *	@brief	æç”»	å›žè»¢ã‚¢ãƒ‹ãƒ¡æç”»
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		‚s‚q‚t‚dFÄ¶	‚e‚`‚k‚r‚dFƒIƒƒŠ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ï¼´ï¼²ï¼µï¼¥ï¼šå†ç”Ÿ	ï¼¦ï¼¡ï¼¬ï¼³ï¼¥ï¼šã‚ªãƒ¯ãƒª
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_DRAW_SetAnmRota( WFLBY_3DPERSON* p_wk, BOOL flag )
@@ -1236,10 +1236,10 @@ void WFLBY_3DOBJCONT_DRAW_SetAnmRota( WFLBY_3DPERSON* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æ	ƒoƒ^ƒoƒ^ƒAƒjƒ•`‰æ
+ *	@brief	æç”»	ãƒã‚¿ãƒã‚¿ã‚¢ãƒ‹ãƒ¡æç”»
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		‚s‚q‚t‚dFÄ¶	‚e‚`‚k‚r‚dFƒIƒƒŠ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ï¼´ï¼²ï¼µï¼¥ï¼šå†ç”Ÿ	ï¼¦ï¼¡ï¼¬ï¼³ï¼¥ï¼šã‚ªãƒ¯ãƒª
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_DRAW_SetAnmBata( WFLBY_3DPERSON* p_wk, BOOL flag )
@@ -1253,10 +1253,10 @@ void WFLBY_3DOBJCONT_DRAW_SetAnmBata( WFLBY_3DPERSON* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æ	ƒ‰ƒCƒgƒtƒ‰ƒO‚ðON
+ *	@brief	æç”»	ãƒ©ã‚¤ãƒˆãƒ•ãƒ©ã‚°ã‚’ON
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	light_msk	ƒ‰ƒCƒgƒ}ƒXƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	light_msk	ãƒ©ã‚¤ãƒˆãƒžã‚¹ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_DRAW_SetLight( WFLBY_3DPERSON* p_wk, u32 light_msk )
@@ -1267,10 +1267,10 @@ void WFLBY_3DOBJCONT_DRAW_SetLight( WFLBY_3DPERSON* p_wk, u32 light_msk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æ	•`‰æƒtƒ‰ƒO‚ðÝ’è
+ *	@brief	æç”»	æç”»ãƒ•ãƒ©ã‚°ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		ƒtƒ‰ƒO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DOBJCONT_DRAW_SetDraw( WFLBY_3DPERSON* p_wk,  BOOL flag )
@@ -1280,12 +1280,12 @@ void WFLBY_3DOBJCONT_DRAW_SetDraw( WFLBY_3DPERSON* p_wk,  BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æ	•`‰æƒtƒ‰ƒO‚ðŽæ“¾
+ *	@brief	æç”»	æç”»ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	•`‰æ’†
- *	@retval	FALSE	”ñ•\Ž¦’†
+ *	@retval	TRUE	æç”»ä¸­
+ *	@retval	FALSE	éžè¡¨ç¤ºä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DOBJCONT_DRAW_GetDraw( const WFLBY_3DPERSON* cp_wk )
@@ -1302,14 +1302,14 @@ BOOL WFLBY_3DOBJCONT_DRAW_GetDraw( const WFLBY_3DPERSON* cp_wk )
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *				ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒv”z’ul•¨‚Ì”z’u
+ *	@brief	ãƒžãƒƒãƒ—é…ç½®äººç‰©ã®é…ç½®
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_MAPOBJ_Init( WFLBY_3DOBJCONT* p_sys )
@@ -1320,16 +1320,16 @@ static void WFLBY_3DOBJCONT_MAPOBJ_Init( WFLBY_3DOBJCONT* p_sys )
 	BOOL result;
 	u16 idx;
 	
-	// ƒ}ƒbƒv‚Ì’†‚É”z’uƒIƒuƒWƒF‚ª‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ãƒžãƒƒãƒ—ã®ä¸­ã«é…ç½®ã‚ªãƒ–ã‚¸ã‚§ãŒã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	for( i=0; i<NELEMS(sc_WFLBY_3DPARSON_MAPOBJ); i++ ){
 		idx = 0;
 		while( WFLBY_MAPCONT_SarchObjID( p_sys->cp_mapsys, 
 					sc_WFLBY_3DPARSON_MAPOBJ[i].mapobjid, &addx, &addy, idx ) == TRUE ){
 
-			// ‹ó‚Ìƒ[ƒN‚ðŽæ“¾
+			// ç©ºã®ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
 			p_wk = WFLBY_3DOBJCONT_GetCleanWk( p_sys );
 
-			// “o˜^
+			// ç™»éŒ²
 			{
 				WF2DMAP_OBJDATA	objdata;
 
@@ -1342,15 +1342,15 @@ static void WFLBY_3DOBJCONT_MAPOBJ_Init( WFLBY_3DOBJCONT* p_sys )
 				p_wk->p_obj = WF2DMAP_OBJWkNew( p_sys->p_objsys, &objdata );
 			}
 
-			// drawobj‚Ì“o˜^
+			// drawobjã®ç™»éŒ²
 			{
 				p_wk->p_draw = WFLBY_3DOBJWK_New( p_sys->p_drawsys, p_wk->p_obj );
 			}
 
-			// “®ìŠÖ”Ý’è
+			// å‹•ä½œé–¢æ•°è¨­å®š
 			WFLBY_3DOBJCONT_SetWkMove( p_sys, p_wk, WFLBY_3DOBJCONT_MOVENONE );
 
-			// ƒsƒGƒ‚¾‚¯•Û‘¶‚·‚é
+			// ãƒ”ã‚¨ãƒ­ã ã‘ä¿å­˜ã™ã‚‹
 			if( sc_WFLBY_3DPARSON_MAPOBJ[i].mapobjid == WFLBY_MAPOBJID_ANKETO_MAN ){
 				p_sys->p_pierrot = p_wk;
 			}
@@ -1364,12 +1364,12 @@ static void WFLBY_3DOBJCONT_MAPOBJ_Init( WFLBY_3DOBJCONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒ…[‚ÉƒRƒ}ƒ“ƒh‚ðÝ’è
+ *	@brief	ã‚­ãƒ¥ãƒ¼ã«ã‚³ãƒžãƒ³ãƒ‰ã‚’è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cmd			ƒRƒ}ƒ“ƒh
- *	@param	way			•ûŒü
- *	@param	playid		ƒvƒŒƒCƒ„[ƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cmd			ã‚³ãƒžãƒ³ãƒ‰
+ *	@param	way			æ–¹å‘
+ *	@param	playid		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_REQCMD_Set( WFLBY_3DOBJCONT* p_sys, s32 cmd, s32 way, s32 playid )
@@ -1388,12 +1388,12 @@ static void WFLBY_3DOBJCONT_REQCMD_Set( WFLBY_3DOBJCONT* p_sys, s32 cmd, s32 way
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒe[ƒuƒ‹‚Ì’†‚©‚çD‚«‚Èƒf[ƒ^‚ð—”‚ÅŽæ“¾‚·‚é
+ *	@brief	ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä¸­ã‹ã‚‰å¥½ããªãƒ‡ãƒ¼ã‚¿ã‚’ä¹±æ•°ã§å–å¾—ã™ã‚‹
  *
- *	@param	cp_tbl		ƒe[ƒuƒ‹
- *	@param	tblnum		ƒe[ƒuƒ‹”
+ *	@param	cp_tbl		ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	tblnum		ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
  *
- *	@return	‘I‘ð‚³‚ê‚½”Žš
+ *	@return	é¸æŠžã•ã‚ŒãŸæ•°å­—
  */
 //-----------------------------------------------------------------------------
 static u8 WFLBY_3DOBJCONT_GetRndTbl( const u8* cp_tbl, u32 tblnum )
@@ -1405,15 +1405,15 @@ static u8 WFLBY_3DOBJCONT_GetRndTbl( const u8* cp_tbl, u32 tblnum )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	l•¨‚Ìway‚Ì•ûŒü‚É‚ ‚é‚Ì‚ªobjid‚Ìƒ}ƒbƒv‚©ƒ`ƒFƒbƒN
+ *	@brief	äººç‰©ã®wayã®æ–¹å‘ã«ã‚ã‚‹ã®ãŒobjidã®ãƒžãƒƒãƒ—ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€
- *	@param	cp_obj		l•¨ƒ[ƒN
- *	@param	way			•ûŒü
- *	@param	objid		ƒIƒuƒWƒFID
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_obj		äººç‰©ãƒ¯ãƒ¼ã‚¯
+ *	@param	way			æ–¹å‘
+ *	@param	objid		ã‚ªãƒ–ã‚¸ã‚§ID
  *
- *	@retval	TRUE	way‚Ì•ûŒü‚É‚ ‚é‚Ì‚Íobjid
- *	@retval	FALSE	way‚Ì•ûŒü‚É‚ ‚é‚Ì‚Íobjid‚Å‚Í‚È‚¢
+ *	@retval	TRUE	wayã®æ–¹å‘ã«ã‚ã‚‹ã®ã¯objid
+ *	@retval	FALSE	wayã®æ–¹å‘ã«ã‚ã‚‹ã®ã¯objidã§ã¯ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_3DOBJCONT_CheckWayObjID( const WFLBY_3DOBJCONT* cp_sys, const WFLBY_3DPERSON* cp_obj, WF2DMAP_WAY way, u32 objid )
@@ -1421,11 +1421,11 @@ static BOOL WFLBY_3DOBJCONT_CheckWayObjID( const WFLBY_3DOBJCONT* cp_sys, const 
 	WF2DMAP_POS pos;
 	u32 mapobjid;
 
-	// way•ûŒü‚ÌÀ•W‚ð‹‚ß‚é
+	// wayæ–¹å‘ã®åº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	pos = WF2DMAP_OBJWkMatrixGet( cp_obj->p_obj );
 	pos = WF2DMAP_OBJToolWayPosGet( pos, way );
 
-	// ‚»‚±‚ÌOBJID‚ðŽæ“¾
+	// ãã“ã®OBJIDã‚’å–å¾—
 	mapobjid = WFLBY_MAPCONT_ObjIDGet( cp_sys->cp_mapsys, WF2DMAP_POS2GRID(pos.x), WF2DMAP_POS2GRID(pos.y) );
 	
 	if( mapobjid == objid ){
@@ -1436,12 +1436,12 @@ static BOOL WFLBY_3DOBJCONT_CheckWayObjID( const WFLBY_3DOBJCONT* cp_sys, const 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	üŒ`“®ì‰Šú‰»
+ *	@brief	ç·šå½¢å‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	s_x			ŠJŽnÀ•W
- *	@param	e_x			I—¹À•W
- *	@param	count_max	ƒJƒEƒ“ƒgÅ‘å’l
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x			é–‹å§‹åº§æ¨™
+ *	@param	e_x			çµ‚äº†åº§æ¨™
+ *	@param	count_max	ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§å€¤
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_MOVEWK_Init( WFLBY_3DOBJCONT_MOVE_WK* p_wk, fx32 s_x, fx32 e_x, u32 count_max )
@@ -1454,20 +1454,20 @@ static void WFLBY_3DOBJCONT_MOVEWK_Init( WFLBY_3DOBJCONT_MOVE_WK* p_wk, fx32 s_x
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	üŒ`“®ìƒƒCƒ“
+ *	@brief	ç·šå½¢å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	count		ƒJƒEƒ“ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	count		ã‚«ã‚¦ãƒ³ã‚¿
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_3DOBJCONT_MOVEWK_Main( WFLBY_3DOBJCONT_MOVE_WK* p_wk, u32 count )
 {
 	fx32 w_x;
 
-	// Œ»ÝÀ•WŽæ“¾
+	// ç¾åœ¨åº§æ¨™å–å¾—
 	w_x = FX_Mul( p_wk->dis_x, FX32_CONST(count) );
 	w_x = FX_Div( w_x, FX32_CONST(p_wk->count_max) );
 
@@ -1483,11 +1483,11 @@ static BOOL WFLBY_3DOBJCONT_MOVEWK_Main( WFLBY_3DOBJCONT_MOVE_WK* p_wk, u32 coun
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’l‚ðŽæ“¾‚·‚é
+ *	@brief	å€¤ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	’l
+ *	@return	å€¤
  */
 //-----------------------------------------------------------------------------
 static fx32 WFLBY_3DOBJCONT_MOVEWK_GetNum( const WFLBY_3DOBJCONT_MOVE_WK* cp_wk )
@@ -1500,11 +1500,11 @@ static fx32 WFLBY_3DOBJCONT_MOVEWK_GetNum( const WFLBY_3DOBJCONT_MOVE_WK* cp_wk 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹ó‚¢‚Ä‚¢‚éƒ[ƒN‚ðŽæ“¾‚·‚é
+ *	@brief	ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ 
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ  
  *
- *	@return	‹ó‚¢‚Ä‚¢‚éƒ[ƒN
+ *	@return	ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetCleanWk( WFLBY_3DOBJCONT* p_sys )
@@ -1523,12 +1523,12 @@ static WFLBY_3DPERSON* WFLBY_3DOBJCONT_GetCleanWk( WFLBY_3DOBJCONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹ó‚¢‚Ä‚¢‚éƒ[ƒN‚©ƒ`ƒFƒbƒN
+ *	@brief	ç©ºã„ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‹ó‚¢‚Ä‚é
- *	@retval	FALSE	‹ó‚¢‚Ä‚È‚¢
+ *	@retval	TRUE	ç©ºã„ã¦ã‚‹
+ *	@retval	FALSE	ç©ºã„ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_3DOBJCONT_CheckCleanWk( const WFLBY_3DPERSON* cp_wk )
@@ -1541,7 +1541,7 @@ static BOOL WFLBY_3DOBJCONT_CheckCleanWk( const WFLBY_3DPERSON* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ì‚È‚µ
+ *	@brief	å‹•ä½œãªã—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_MoveNone(  WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys )
@@ -1550,7 +1550,7 @@ static void WFLBY_3DOBJCONT_MoveNone(  WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽålŒö‚Ì“®ì
+ *	@brief	ä¸»äººå…¬ã®å‹•ä½œ
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_PlayerMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys  )
@@ -1564,21 +1564,21 @@ static void WFLBY_3DOBJCONT_PlayerMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p
 	way = WF2DMAP_OBJWkDataGet( p_wk->p_obj, WF2DMAP_OBJPM_WAY );
 	playid = WF2DMAP_OBJWkDataGet( p_wk->p_obj, WF2DMAP_OBJPM_PLID );
 
-	// ‘Ò‹@ó‘Ô‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+	// å¾…æ©ŸçŠ¶æ…‹ã§ãªã‘ã‚Œã°ãªã‚‰ãªã„
 	status = WF2DMAP_OBJWkDataGet( p_wk->p_obj, WF2DMAP_OBJPM_ST );
 	if( status != WF2DMAP_OBJST_NONE ){
 		return;
 	}
 
 
-	// •à‚­‚©‘–‚é‚©
+	// æ­©ãã‹èµ°ã‚‹ã‹
 	if( sys.cont & PAD_BUTTON_B ){
 		cmd = WF2DMAP_OBJST_RUN;
 	}else{
 		cmd = WF2DMAP_OBJST_WALK;
 	}
 	
-	// ˆÚ“®ŠÖŒW
+	// ç§»å‹•é–¢ä¿‚
 	if( sys.cont & PAD_KEY_UP ){
 		if( way == WF2DMAP_WAY_UP ){
 			WFLBY_3DOBJCONT_REQCMD_Set( p_sys, cmd, way, playid );
@@ -1608,43 +1608,43 @@ static void WFLBY_3DOBJCONT_PlayerMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NPC‚Ì“®ì
+ *	@brief	NPCã®å‹•ä½œ
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_NpcMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys )
 {
 	switch( p_wk->seq ){
-	// ƒEƒGƒCƒg‚ð—”‚ÅŒˆ’è
+	// ã‚¦ã‚¨ã‚¤ãƒˆã‚’ä¹±æ•°ã§æ±ºå®š
 	case WFLBY_3DOBJCONT_NPC_SEQ_WAITSET:
 		p_wk->work.npc.wait = WFLBY_3DOBJCONT_GetRndTbl( sc_WFLBY_3DOBJCONT_NPC_WAIT, NELEMS( sc_WFLBY_3DOBJCONT_NPC_WAIT ) );
 		p_wk->seq++;
 		break;
-	// ƒEƒGƒCƒg
+	// ã‚¦ã‚¨ã‚¤ãƒˆ
 	case WFLBY_3DOBJCONT_NPC_SEQ_WAIT:
 		p_wk->work.npc.wait --;
 		if( p_wk->work.npc.wait == 0 ){
 			p_wk->seq++;
 		}
 		break;
-	// •à‚­–”‚ÍU‚èŒü‚­•ûŒü‚ð—”‚ÅŒˆ’è
+	// æ­©ãåˆã¯æŒ¯ã‚Šå‘ãæ–¹å‘ã‚’ä¹±æ•°ã§æ±ºå®š
 	case WFLBY_3DOBJCONT_NPC_SEQ_WAYSET:
 		{
 			u32 plno;
 			u32 way;
 
-			// ƒ†[ƒUNO‚Æ•ûŒü‚ðŽæ“¾
+			// ãƒ¦ãƒ¼ã‚¶NOã¨æ–¹å‘ã‚’å–å¾—
 			plno = WF2DMAP_OBJWkDataGet( p_wk->p_obj, WF2DMAP_OBJPM_PLID );
 			way	 = WF2DMAP_OBJWkDataGet( p_wk->p_obj, WF2DMAP_OBJPM_WAY );
 			
-			// —”‚©‚ç•ûŒü‚ð‹‚ß‚é
+			// ä¹±æ•°ã‹ã‚‰æ–¹å‘ã‚’æ±‚ã‚ã‚‹
 			p_wk->work.npc.way = WFLBY_3DOBJCONT_GetRndTbl( sc_WFLBY_3DOBJCONT_NPC_WAY, NELEMS( sc_WFLBY_3DOBJCONT_NPC_WAY ) );
 
-			// ‚»‚Ì•ûŒü‚Éi‚ñ‚Å‘åä•v‚©ƒ`ƒFƒbƒN
-			// ‘åä•v[„•à‚­
-			// ‚¾‚ß@|„U‚èŒü‚­‚¾‚¯
+			// ãã®æ–¹å‘ã«é€²ã‚“ã§å¤§ä¸ˆå¤«ã‹ãƒã‚§ãƒƒã‚¯
+			// å¤§ä¸ˆå¤«ãƒ¼ï¼žæ­©ã
+			// ã ã‚ã€€âˆ’ï¼žæŒ¯ã‚Šå‘ãã ã‘
 			if( WFLBY_3DOBJCONT_CheckWayObjID( p_sys, p_wk, p_wk->work.npc.way, WFLBY_MAPOBJID_NPC_00+plno ) == TRUE ){
 
-				// ‚à‚¤‚»‚Ì•ûŒü‚ðŒü‚¢‚Ä‚¢‚é‚Ì‚©H
+				// ã‚‚ã†ãã®æ–¹å‘ã‚’å‘ã„ã¦ã„ã‚‹ã®ã‹ï¼Ÿ
 				if( way == p_wk->work.npc.way ){
 					WFLBY_3DOBJCONT_SetWkReqCmd( p_sys, p_wk, WF2DMAP_CMD_WALK, p_wk->work.npc.way );
 					p_wk->seq = WFLBY_3DOBJCONT_NPC_SEQ_WAYMOVEWAIT;
@@ -1659,7 +1659,7 @@ static void WFLBY_3DOBJCONT_NpcMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sy
 			
 		}
 		break;
-	// •à‚­“®ì‚ÅU‚èŒü‚­•K—v‚ª‚ ‚éê‡
+	// æ­©ãå‹•ä½œã§æŒ¯ã‚Šå‘ãå¿…è¦ãŒã‚ã‚‹å ´åˆ
 	case WFLBY_3DOBJCONT_NPC_SEQ_WAYMOVEWALKTURN:
 		{
 			u32 st;
@@ -1670,7 +1670,7 @@ static void WFLBY_3DOBJCONT_NpcMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sy
 			}
 		}
 		break;
-	// •à‚­EU‚èŒü‚­“®ì‚ÌI—¹‘Ò‚¿
+	// æ­©ããƒ»æŒ¯ã‚Šå‘ãå‹•ä½œã®çµ‚äº†å¾…ã¡
 	case WFLBY_3DOBJCONT_NPC_SEQ_WAYMOVEWAIT:
 		{
 			u32 st;
@@ -1687,26 +1687,26 @@ static void WFLBY_3DOBJCONT_NpcMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sy
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	^ã‚É”ò‚ñ‚Å‚¢‚­
+ *	@brief	çœŸä¸Šã«é£›ã‚“ã§ã„ã
  *
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_FlyUpMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys )
 {
 	switch( p_wk->seq ){
-	// ƒpƒ‰ƒ[ƒ^‰Šú‰»	‚»‚Ì‚Ü‚ÜMAIN‚Ö
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–	ãã®ã¾ã¾MAINã¸
 	case WFLBY_3DOBJCONT_FLYUP_SEQ_INIT:
-		// ƒOƒ‰ƒtƒBƒbƒNXV‚ðOFF
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ›´æ–°ã‚’OFF
 		WFLBY_3DOBJWK_SetUpdata( p_wk->p_draw, FALSE );
 		WFLBY_3DOBJWK_StartAnm( p_wk->p_draw, WFLBY_3DOBJ_ANM_ROTA );
 		
-		// üŒ`“®ì‰Šú‰»
+		// ç·šå½¢å‹•ä½œåˆæœŸåŒ–
 		WFLBY_3DOBJCONT_MOVEWK_Init( &p_wk->work.fly.y, 
 				WFLBY_3DMATRIX_FLOOR_MAT, WFLBY_3DOBJCONT_FLY_Y, WFLBY_3DOBJCONT_FLY_COUNT );
 		p_wk->work.fly.count = WFLBY_3DOBJCONT_ROTA_ONE_COUNT;
 		p_wk->seq ++;
 
-	// ‚³‚ç‚É‚P‰ñ“]
+	// ã•ã‚‰ã«ï¼‘å›žè»¢
 	case WFLBY_3DOBJCONT_FLYUP_SEQ_ONEROTA:
 		p_wk->work.fly.count--;
 		if( p_wk->work.fly.count == 0 ){
@@ -1715,13 +1715,13 @@ static void WFLBY_3DOBJCONT_FlyUpMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_
 			p_wk->work.fly.count = 0;
 
 
-			// ã‚Á‚Ä‚¢‚­‰¹
+			// ä¸Šã£ã¦ã„ãéŸ³
 			Snd_SePlay( WFLBY_SND_PLOUT );
 
 		}
 		break;
 		
-	// “®ìƒƒCƒ“
+	// å‹•ä½œãƒ¡ã‚¤ãƒ³
 	case WFLBY_3DOBJCONT_FLYUP_SEQ_MAIN:
 		{
 			BOOL result;
@@ -1731,7 +1731,7 @@ static void WFLBY_3DOBJCONT_FlyUpMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_
 
 			p_wk->work.fly.count ++;
 
-			// À•W‚ðÝ’è
+			// åº§æ¨™ã‚’è¨­å®š
 			WFLBY_3DOBJWK_Get3DMatrix( p_wk->p_draw, &vec );
 			vec.y = WFLBY_3DOBJCONT_MOVEWK_GetNum( &p_wk->work.fly.y );
 			WFLBY_3DOBJWK_Set3DMatrix( p_wk->p_draw, &vec );
@@ -1744,7 +1744,7 @@ static void WFLBY_3DOBJCONT_FlyUpMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_
 			}
 		}
 		break;
-	// I—¹‘Ò‚¿
+	// çµ‚äº†å¾…ã¡
 	case WFLBY_3DOBJCONT_FLYDOWN_SEQ_END:
 		break;
 	}
@@ -1752,28 +1752,28 @@ static void WFLBY_3DOBJCONT_FlyUpMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰º‚É‰º‚è‚Ä‚­‚é
+ *	@brief	ä¸‹ã«ä¸‹ã‚Šã¦ãã‚‹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_FlyDownMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys )
 {
 	switch( p_wk->seq ){
-	// ƒpƒ‰ƒ[ƒ^‰Šú‰»	‚»‚Ì‚Ü‚ÜMAIN‚Ö
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–	ãã®ã¾ã¾MAINã¸
 	case WFLBY_3DOBJCONT_FLYDOWN_SEQ_INIT:
-		// ƒOƒ‰ƒtƒBƒbƒNXV‚ðOFF
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ›´æ–°ã‚’OFF
 		WFLBY_3DOBJWK_SetUpdata( p_wk->p_draw, FALSE );
 		WFLBY_3DOBJWK_StartAnm( p_wk->p_draw, WFLBY_3DOBJ_ANM_ROTA );
 		
-		// üŒ`“®ì‰Šú‰»
+		// ç·šå½¢å‹•ä½œåˆæœŸåŒ–
 		WFLBY_3DOBJCONT_MOVEWK_Init( &p_wk->work.fly.y, 
 				WFLBY_3DOBJCONT_FLY_Y, WFLBY_3DMATRIX_FLOOR_MAT, WFLBY_3DOBJCONT_FLY_COUNT );
 		p_wk->work.fly.count = 0;
 		p_wk->seq ++;
 
-		// —Ž‚¿‚Ä‚­‚é‰¹
+		// è½ã¡ã¦ãã‚‹éŸ³
 		Snd_SePlay( WFLBY_SND_PLOUT );
 
-	// “®ìƒƒCƒ“
+	// å‹•ä½œãƒ¡ã‚¤ãƒ³
 	case WFLBY_3DOBJCONT_FLYDOWN_SEQ_MAIN:
 		{
 			BOOL result;
@@ -1783,7 +1783,7 @@ static void WFLBY_3DOBJCONT_FlyDownMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* 
 
 			p_wk->work.fly.count ++;
 
-			// À•W‚ðÝ’è
+			// åº§æ¨™ã‚’è¨­å®š
 			WFLBY_3DOBJWK_Get3DMatrix( p_wk->p_draw, &vec );
 			vec.y = WFLBY_3DOBJCONT_MOVEWK_GetNum( &p_wk->work.fly.y );
 			WFLBY_3DOBJWK_Set3DMatrix( p_wk->p_draw, &vec );
@@ -1794,19 +1794,19 @@ static void WFLBY_3DOBJCONT_FlyDownMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* 
 			}
 		}
 		break;
-	// ‚³‚ç‚É‚P‰ñ“]
+	// ã•ã‚‰ã«ï¼‘å›žè»¢
 	case WFLBY_3DOBJCONT_FLYDOWN_SEQ_ONEROTA:
 		p_wk->work.fly.count--;
 		if( p_wk->work.fly.count == 0 ){
 			p_wk->seq ++;
 
-			// •`‰æXV‚ðON
+			// æç”»æ›´æ–°ã‚’ON
 			WFLBY_3DOBJWK_EndAnm( p_wk->p_draw );
 			WFLBY_3DOBJWK_SetUpdata( p_wk->p_draw, TRUE );
 			p_wk->moveend = TRUE;
 		}
 		break;
-	// I—¹‘Ò‚¿
+	// çµ‚äº†å¾…ã¡
 	case WFLBY_3DOBJCONT_FLYDOWN_SEQ_END:
 		break;
 	}
@@ -1814,10 +1814,10 @@ static void WFLBY_3DOBJCONT_FlyDownMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚ ‚é•ûŒü‚É‰ñ“]‚µ‚È‚ª‚ç‚PƒOƒŠƒbƒh‚«”ò‚Ô
+ *	@brief	ã‚ã‚‹æ–¹å‘ã«å›žè»¢ã—ãªãŒã‚‰ï¼‘ã‚°ãƒªãƒƒãƒ‰å¹ãé£›ã¶
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	p_sys	ƒVƒXƒeƒ€
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_RotaLeftMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys )
@@ -1840,28 +1840,28 @@ static void WFLBY_3DOBJCONT_RotaDownMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚ ‚é•ûŒü‚É‰ñ“]‚µ‚È‚ª‚ç‚«”ò‚Ô
+ *	@brief	ã‚ã‚‹æ–¹å‘ã«å›žè»¢ã—ãªãŒã‚‰å¹ãé£›ã¶
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	way			•ûŒü
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	way			æ–¹å‘
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_RotaMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys, WF2DMAP_WAY way )
 {
 	switch( p_wk->seq ){
-	// “®ì‰Šú‰»
+	// å‹•ä½œåˆæœŸåŒ–
 	case WFLBY_3DOBJCONT_ROTA_SEQ_INIT:
-		// ƒOƒ‰ƒtƒBƒbƒNXV‚ðOFF
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ›´æ–°ã‚’OFF
 		WFLBY_3DOBJWK_SetUpdata( p_wk->p_draw, FALSE );
 		WFLBY_3DOBJWK_StartAnm( p_wk->p_draw, WFLBY_3DOBJ_ANM_ROTA );
 		WFLBY_3DOBJWK_SetAnmSpeed( p_wk->p_draw, WFLBY_3DOBJCONT_ROTA_ANMSPEED );
 
-		// üŒ`“®ì‰Šú‰»
+		// ç·šå½¢å‹•ä½œåˆæœŸåŒ–
 		WFLBY_3DOBJCONT_MOVEWK_Init( &p_wk->work.rota.dist, 
 				0, WFLBY_3DOBJCONT_ROTA_DIST, WFLBY_3DOBJCONT_ROTA_COUNT );
 
-		// Šî–{‚Æ‚È‚é‚»‚ÌˆÊ’u‚ðŽæ“¾
+		// åŸºæœ¬ã¨ãªã‚‹ãã®ä½ç½®ã‚’å–å¾—
 		{
 			VecFx32 vec;
 			WFLBY_3DOBJWK_Get3DMatrix( p_wk->p_draw, &vec );
@@ -1880,7 +1880,7 @@ static void WFLBY_3DOBJCONT_RotaMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_s
 		p_wk->work.rota.count = 0;
 		p_wk->seq ++;
 		
-	// “®ìƒƒCƒ“
+	// å‹•ä½œãƒ¡ã‚¤ãƒ³
 	case WFLBY_3DOBJCONT_ROTA_SEQ_MAIN:
 		{
 			BOOL result;
@@ -1890,7 +1890,7 @@ static void WFLBY_3DOBJCONT_RotaMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_s
 
 			p_wk->work.rota.count ++;
 
-			// À•W‚ðÝ’è
+			// åº§æ¨™ã‚’è¨­å®š
 			WFLBY_3DOBJWK_Get3DMatrix( p_wk->p_draw, &vec );
 			switch( way ){
 			case WF2DMAP_WAY_UP:
@@ -1915,7 +1915,7 @@ static void WFLBY_3DOBJCONT_RotaMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_s
 			if( result == TRUE ){
 				u32 retway;
 				retway	= WF2DMPA_OBJToolRetWayGet( way );
-				// •ûŒü‚É‚æ‚Á‚Ä‚P‰ñ“]‚ÌŽžŠÔ‚ð•ÏX‚·‚é
+				// æ–¹å‘ã«ã‚ˆã£ã¦ï¼‘å›žè»¢ã®æ™‚é–“ã‚’å¤‰æ›´ã™ã‚‹
 				p_wk->work.rota.count = WFLBY_3DOBJCONT_ROTA_ONEROTA_COUNT;
 				switch( retway ){
 				case WF2DMAP_WAY_RIGHT:
@@ -1932,12 +1932,12 @@ static void WFLBY_3DOBJCONT_RotaMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_s
 		}
 		break;
 		
-	case WFLBY_3DOBJCONT_ROTA_SEQ_ONEROTA:	// ‚³‚ç‚É‚P‰ñ“]
+	case WFLBY_3DOBJCONT_ROTA_SEQ_ONEROTA:	// ã•ã‚‰ã«ï¼‘å›žè»¢
 		p_wk->work.rota.count--;
 		if( p_wk->work.rota.count == 0 ){
 			p_wk->seq ++;
 
-			// À•W‚ð‚«”ò‚ñ‚¾æ‚ÉÝ’è
+			// åº§æ¨™ã‚’å¹ãé£›ã‚“ã å…ˆã«è¨­å®š
 			{
 				WF2DMAP_POS pos;
 				u32			retway;
@@ -1947,7 +1947,7 @@ static void WFLBY_3DOBJCONT_RotaMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_s
 				WFLBY_3DOBJCONT_SetWkPosAndWay( p_wk, pos, retway );
 			}
 			
-			// •`‰æXV‚ðON
+			// æç”»æ›´æ–°ã‚’ON
 			WFLBY_3DOBJWK_EndAnm( p_wk->p_draw );
 			WFLBY_3DOBJWK_SetUpdata( p_wk->p_draw, TRUE );
 			p_wk->moveend = TRUE;
@@ -1962,7 +1962,7 @@ static void WFLBY_3DOBJCONT_RotaMove( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_s
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒƒƒ“ƒvˆ—
+ *	@brief	ã‚¸ãƒ£ãƒ³ãƒ—å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_Jump( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys )
@@ -1977,41 +1977,41 @@ static void WFLBY_3DOBJCONT_Jump( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys )
 
 	case WFLBY_3DOBJCONT_JUMP_SEQ_MAIN:
 
-		// ƒJƒEƒ“ƒgˆ—
+		// ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 		p_wk->work.jump.count --;
 		if( p_wk->work.jump.count < 0 ){
 			p_wk->work.jump.count = WFLBY_3DOBJCONT_MOVEOBJ_JUMP_COUNT;
 		}
 		
 		
-		// •`‰æ”½‰fˆ—
+		// æç”»åæ˜ å‡¦ç†
 		{
 			u32 r;
 			VecFx32 matrix;
 			s16 count;
 
-			// À•WŽæ“¾
+			// åº§æ¨™å–å¾—
 			matrix = p_wk->work.jump.def_mat;
 
-			// ƒJƒEƒ“ƒg’lŽæ“¾
+			// ã‚«ã‚¦ãƒ³ãƒˆå€¤å–å¾—
 			count = p_wk->work.jump.count - WFLBY_3DOBJCONT_MOVEOBJ_JUMP_WAITCOUNT;
 
-			// count > 0@‚¾‚ÆƒWƒƒƒ“ƒv’†	‚»‚êˆÈŠO‚ÍŽŸ‚ÌƒWƒƒƒ“ƒv‚Ü‚Å‚ÌƒEƒGƒCƒg
+			// count > 0ã€€ã ã¨ã‚¸ãƒ£ãƒ³ãƒ—ä¸­	ãã‚Œä»¥å¤–ã¯æ¬¡ã®ã‚¸ãƒ£ãƒ³ãƒ—ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
 			if( count > 0 ){
 
 				count = count % WFLBY_3DOBJCONT_MOVEOBJ_JUMP_EFFCOUNT;
 
-				// SINƒJ[ƒu‚ÌŠp“x‚ðŽæ“¾
+				// SINã‚«ãƒ¼ãƒ–ã®è§’åº¦ã‚’å–å¾—
 				r = (WFLBY_3DOBJCONT_MOVEOBJ_JUMP_RMAX*count) / WFLBY_3DOBJCONT_MOVEOBJ_JUMP_EFFCOUNT;
 
-				// ƒWƒƒƒ“ƒv
+				// ã‚¸ãƒ£ãƒ³ãƒ—
 				matrix.z += FX_Mul( Sin360(r), WFLBY_3DOBJCONT_MOVEOBJ_JUMP_ZDIS*FX32_ONE );
 				matrix.y += FX_Mul( Sin360(r), WFLBY_3DOBJCONT_MOVEOBJ_JUMP_DIS*FX32_ONE );
 			}
 
 			WFLBY_3DOBJWK_Set3DMatrix( p_wk->p_draw, &matrix );
 
-			// ‰º‚ðŒü‚©‚¹‚é
+			// ä¸‹ã‚’å‘ã‹ã›ã‚‹
 			WFLBY_3DOBJWK_SetWay( p_wk->p_draw, WF2DMAP_WAY_DOWN );
 		}
 		break;
@@ -2020,7 +2020,7 @@ static void WFLBY_3DOBJCONT_Jump( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒWƒƒƒ“ƒvI—¹ˆ—
+ *	@brief	ã‚¸ãƒ£ãƒ³ãƒ—çµ‚äº†å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_JumpEnd( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sys )
@@ -2029,7 +2029,7 @@ static void WFLBY_3DOBJCONT_JumpEnd( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sy
 	
 	WFLBY_3DOBJWK_SetUpdata( p_wk->p_draw, TRUE );
 
-	// À•WŽæ“¾
+	// åº§æ¨™å–å¾—
 	WFLBY_3DOBJWK_Get3DMatrix( p_wk->p_draw, &matrix );
 	matrix.y = WFLBY_3DMATRIX_FLOOR_MAT;
 	WFLBY_3DOBJWK_Set3DMatrix( p_wk->p_draw, &matrix );
@@ -2038,11 +2038,11 @@ static void WFLBY_3DOBJCONT_JumpEnd( WFLBY_3DPERSON* p_wk, WFLBY_3DOBJCONT* p_sy
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰eƒAƒ‹ƒtƒ@’l•ÏXƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	å½±ã‚¢ãƒ«ãƒ•ã‚¡å€¤å¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		‚RDƒIƒuƒWƒF•`‰æƒVƒXƒeƒ€
- *	@param	alpha		ƒAƒ‹ƒtƒ@’l
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ï¼“Dã‚ªãƒ–ã‚¸ã‚§æç”»ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	alpha		ã‚¢ãƒ«ãƒ•ã‚¡å€¤
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_ShadowAlpha_Init( WFLBY_SHADOW_ALPHA* p_wk, WFLBY_3DOBJSYS* p_sys, u32 alpha )
@@ -2058,10 +2058,10 @@ static void WFLBY_3DOBJCONT_ShadowAlpha_Init( WFLBY_SHADOW_ALPHA* p_wk, WFLBY_3D
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰eƒAƒ‹ƒtƒ@’l•ÏXƒVƒXƒeƒ€	ŠJŽn
+ *	@brief	å½±ã‚¢ãƒ«ãƒ•ã‚¡å€¤å¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ 	é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	alpha		ƒAƒ‹ƒtƒ@’l
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	alpha		ã‚¢ãƒ«ãƒ•ã‚¡å€¤
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DOBJCONT_ShadowAlpha_Start( WFLBY_SHADOW_ALPHA* p_wk, u32 alpha )
@@ -2075,13 +2075,13 @@ static void WFLBY_3DOBJCONT_ShadowAlpha_Start( WFLBY_SHADOW_ALPHA* p_wk, u32 alp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰eƒAƒ‹ƒtƒ@’l•ÏXƒVƒXƒeƒ€	ƒƒCƒ“
+ *	@brief	å½±ã‚¢ãƒ«ãƒ•ã‚¡å€¤å¤‰æ›´ã‚·ã‚¹ãƒ†ãƒ 	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_sys		‚RDƒIƒuƒWƒF•`‰æƒVƒXƒeƒ€
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_sys		ï¼“Dã‚ªãƒ–ã‚¸ã‚§æç”»ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	TRUE	ƒAƒ‹ƒtƒ@•ÏXŠ®—¹
- *	@retval	FALSE	ƒAƒ‹ƒtƒ@•ÏX’†
+ *	@retval	TRUE	ã‚¢ãƒ«ãƒ•ã‚¡å¤‰æ›´å®Œäº†
+ *	@retval	FALSE	ã‚¢ãƒ«ãƒ•ã‚¡å¤‰æ›´ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_3DOBJCONT_ShadowAlpha_Main( WFLBY_SHADOW_ALPHA* p_wk, WFLBY_3DOBJSYS* p_sys )

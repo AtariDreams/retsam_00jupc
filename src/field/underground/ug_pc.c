@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_pc.c
- * @brief	’n‰ºƒpƒ\ƒRƒ“‚ðŠÇ—‚·‚éƒNƒ‰ƒX
+ * @brief	åœ°ä¸‹ãƒ‘ã‚½ã‚³ãƒ³ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author	k.ohno
  * @date    2006.02.02
  */
@@ -39,12 +39,12 @@
 
 
 
-#define _RADAR_BRIGHTNESS_FL   (-6)   // ‰Ô‚Ñ‚ç‚Ì•‘Å‰‚ÌƒtƒF[ƒhƒŒƒxƒ‹ -16‚Å^‚Á•
+#define _RADAR_BRIGHTNESS_FL   (-6)   // èŠ±ã³ã‚‰ã®èˆžæœ€åˆã®ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¬ãƒ™ãƒ« -16ã§çœŸã£é»’
 
 typedef struct {
-    u8 accessNetID;     // ƒAƒNƒZƒXŽÒ
-    u8 targetPCNetID;   // ƒ^[ƒQƒbƒgƒpƒ\ƒRƒ“
-    u8 bFlagGet;      // Šø‚ð‚Æ‚Á‚½
+    u8 accessNetID;     // ã‚¢ã‚¯ã‚»ã‚¹è€…
+    u8 targetPCNetID;   // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ‘ã‚½ã‚³ãƒ³
+    u8 bFlagGet;      // æ——ã‚’ã¨ã£ãŸ
 } _resultAccessCommand;
 
 
@@ -56,11 +56,11 @@ typedef struct{
 }_EVENT_EDITRAP_WORK;
 
 
-#define _DEF_ALONE_X (15)   // ƒpƒ\ƒRƒ“‚ÌˆÊ’u
-#define _DEF_X (15+32)   // ƒpƒ\ƒRƒ“‚ÌˆÊ’u
-#define _DEF_Z (12)    // ƒpƒ\ƒRƒ“‚ÌˆÊ’u
-#define _ADD_X (32)   // ƒpƒ\ƒRƒ“‚ÌID‚É‚æ‚éˆÚ“®ˆÊ’u
-#define _ADD_Z (32)   // ƒpƒ\ƒRƒ“‚ÌID‚É‚æ‚éˆÚ“®ˆÊ’u
+#define _DEF_ALONE_X (15)   // ãƒ‘ã‚½ã‚³ãƒ³ã®ä½ç½®
+#define _DEF_X (15+32)   // ãƒ‘ã‚½ã‚³ãƒ³ã®ä½ç½®
+#define _DEF_Z (12)    // ãƒ‘ã‚½ã‚³ãƒ³ã®ä½ç½®
+#define _ADD_X (32)   // ãƒ‘ã‚½ã‚³ãƒ³ã®IDã«ã‚ˆã‚‹ç§»å‹•ä½ç½®
+#define _ADD_Z (32)   // ãƒ‘ã‚½ã‚³ãƒ³ã®IDã«ã‚ˆã‚‹ç§»å‹•ä½ç½®
 
 static const BMPWIN_DAT _yesNoBmpDat = {
     GF_BGL_FRAME3_M, FLD_YESNO_WIN_PX, FLD_YESNO_WIN_PY,
@@ -69,16 +69,16 @@ static const BMPWIN_DAT _yesNoBmpDat = {
 
 
 static void _flagGetYesNoInit(FIELDSYS_WORK* pFSys, _resultAccessCommand* pAC);
-// ƒpƒ\ƒRƒ“ƒƒjƒ…[‚ðŠJ‚­
+// ãƒ‘ã‚½ã‚³ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ã
 static void UgPcMenuInit(FIELDSYS_WORK* pFSys);
 
 static void UgListMoveSe( _START_WORK* pStart );
 
 //==============================================================================
 /**
- * ã‰ºƒJ[ƒ\ƒ‹‚Ì•\Ž¦ŒŸ¸
- * @param   pTouch    ŒŸ¸ˆÊ’u
- * @retval  INVALID_NETID ‚© netID
+ * ä¸Šä¸‹ã‚«ãƒ¼ã‚½ãƒ«ã®è¡¨ç¤ºæ¤œæŸ»
+ * @param   pTouch    æ¤œæŸ»ä½ç½®
+ * @retval  INVALID_NETID ã‹ netID
  */
 //==============================================================================
 
@@ -105,9 +105,9 @@ void _udCurDisp(_START_WORK* pPc, int line,  int maxLine , int windowNum)
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚Ìƒ`ƒFƒbƒN‚Ìˆ—
- * @param   pTouch    ŒŸ¸ˆÊ’u
- * @retval  INVALID_NETID ‚© netID
+ * ãƒ‘ã‚½ã‚³ãƒ³ã®ãƒã‚§ãƒƒã‚¯ã®å‡¦ç†
+ * @param   pTouch    æ¤œæŸ»ä½ç½®
+ * @retval  INVALID_NETID ã‹ netID
  */
 //==============================================================================
 
@@ -146,9 +146,9 @@ int CommUnderPCCheck(Grid* pTouch,int dir)
 
 //==============================================================================
 /**
- * Šî’n”Ô†‚©‚çƒpƒ\ƒRƒ“‚ÌX’l‚ð•Ô‚·
- * @param   Šî’n”Ô†
- * @retval  X’l
+ * åŸºåœ°ç•ªå·ã‹ã‚‰ãƒ‘ã‚½ã‚³ãƒ³ã®Xå€¤ã‚’è¿”ã™
+ * @param   åŸºåœ°ç•ªå·
+ * @retval  Xå€¤
  */
 //==============================================================================
 
@@ -165,9 +165,9 @@ int UgPCGetPosX(int roomNo)
 
 //==============================================================================
 /**
- * Šî’n”Ô†‚©‚çƒpƒ\ƒRƒ“‚ÌZ’l‚ð•Ô‚·
- * @param   Šî’n”Ô†
- * @retval  Z’l
+ * åŸºåœ°ç•ªå·ã‹ã‚‰ãƒ‘ã‚½ã‚³ãƒ³ã®Zå€¤ã‚’è¿”ã™
+ * @param   åŸºåœ°ç•ªå·
+ * @retval  Zå€¤
  */
 //==============================================================================
 
@@ -181,10 +181,10 @@ int UgPCGetPosZ(int roomNo)
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚Ìƒ`ƒFƒbƒN‚Ìˆ—
+ * ãƒ‘ã‚½ã‚³ãƒ³ã®ãƒã‚§ãƒƒã‚¯ã®å‡¦ç†
  * @param   netID   netID
- * @param   pTouch    ŒŸ¸ˆÊ’u
- * @retval  ƒpƒ\ƒRƒ“‚Ì‘O‚¾‚ÆTRUE
+ * @param   pTouch    æ¤œæŸ»ä½ç½®
+ * @retval  ãƒ‘ã‚½ã‚³ãƒ³ã®å‰ã ã¨TRUE
  */
 //==============================================================================
 
@@ -205,17 +205,17 @@ BOOL CommUnderPCCheckAndMessage(int netID, Grid* pTouch)
         ret.targetPCNetID = id;
         ret.accessNetID = netID;
         ret.bFlagGet = FALSE;
-        if(id != netID){  //‘¼l‚Ìƒpƒ\ƒRƒ“
+        if(id != netID){  //ä»–äººã®ãƒ‘ã‚½ã‚³ãƒ³
             if(!CommPlayerIsFlagData(netID)){
-                ret.bFlagGet = TRUE;            // ‚Í‚½GET—\–ñ
+                ret.bFlagGet = TRUE;            // ã¯ãŸGETäºˆç´„
             }
             else{
-                // ‚Í‚½‚·‚Å‚ÉŽ‚Á‚Ä‚¢‚½
+                // ã¯ãŸã™ã§ã«æŒã£ã¦ã„ãŸ
             }
         }
-        else{  // Ž©•ª‚Ìƒpƒ\ƒRƒ“
-            if(CommPlayerIsFlagData(netID)){   // Šø‚ðŽ‚Á‚Ä‚¢‚é‚Î‚ ‚¢
-                u8 state = UNDER_FLAG_DELIVERY;  // Šø‚ðŽ‚¿‹A‚Á‚½
+        else{  // è‡ªåˆ†ã®ãƒ‘ã‚½ã‚³ãƒ³
+            if(CommPlayerIsFlagData(netID)){   // æ——ã‚’æŒã£ã¦ã„ã‚‹ã°ã‚ã„
+                u8 state = UNDER_FLAG_DELIVERY;  // æ——ã‚’æŒã¡å¸°ã£ãŸ
                 CommPlayerRecvFlagState(netID, 1,&state, NULL);
                 return TRUE;
             }
@@ -230,7 +230,7 @@ BOOL CommUnderPCCheckAndMessage(int netID, Grid* pTouch)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒW‚ðŽ©“®•\Ž¦‚µ‚½ê‡‚ÌI—¹ŽžƒR[ƒ‹ƒoƒbƒN
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è‡ªå‹•è¡¨ç¤ºã—ãŸå ´åˆã®çµ‚äº†æ™‚ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -243,10 +243,10 @@ static void _msgEndCallBack(int num)
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚Ö‚ÌƒAƒNƒZƒX‚ª‚ ‚Á‚½  CF_PC_ACCESS
+ * ãƒ‘ã‚½ã‚³ãƒ³ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ãŒã‚ã£ãŸ  CF_PC_ACCESS
  * @param   netID   netID
- * @param   pTouch    ŒŸ¸ˆÊ’u
- * @retval  ƒpƒ\ƒRƒ“‚Ì‘O‚¾‚ÆTRUE
+ * @param   pTouch    æ¤œæŸ»ä½ç½®
+ * @retval  ãƒ‘ã‚½ã‚³ãƒ³ã®å‰ã ã¨TRUE
  */
 //==============================================================================
 
@@ -258,13 +258,13 @@ void CommUnderPCRecvAccess(int netID, int size, void* pData, void* pWork)
     if(!CommIsSendMoveData()){
         return;
     }
-    if(pRet->accessNetID == CommGetCurrentID()){  // Ž©•ª‚ÌŠ
-        if(pRet->targetPCNetID == CommGetCurrentID()){ // Ž©•ª‚Ìƒ}ƒVƒ“
+    if(pRet->accessNetID == CommGetCurrentID()){  // è‡ªåˆ†ã®æ‰€
+        if(pRet->targetPCNetID == CommGetCurrentID()){ // è‡ªåˆ†ã®ãƒžã‚·ãƒ³
 			Snd_SePlay( SEQ_SE_DP_PC_ON );
             CommPlayerHold();
-            UgPcMenuInit(pFSys);  // ƒpƒ\ƒRƒ“ƒƒjƒ…[
+            UgPcMenuInit(pFSys);  // ãƒ‘ã‚½ã‚³ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
         }
-        else{  // ‘¼l‚Ìƒ}ƒVƒ“  -- flagGet
+        else{  // ä»–äººã®ãƒžã‚·ãƒ³  -- flagGet
             CommPlayerHoldBit(_HOLD_FLAG_PC_GET);
             if(pRet->bFlagGet){
                 _flagGetYesNoInit(pFSys,pRet);
@@ -274,17 +274,17 @@ void CommUnderPCRecvAccess(int netID, int size, void* pData, void* pWork)
             }
         }
     }
-    else{  // ‘¼l‚ÌƒAƒNƒZƒX
+    else{  // ä»–äººã®ã‚¢ã‚¯ã‚»ã‚¹
     }
     if(pRet->bFlagGet){
-        // Šø‚ð‚Æ‚Á‚½l‚ÉŠø‚½‚Ä
+        // æ——ã‚’ã¨ã£ãŸäººã«æ——ãŸã¦
 //        CommPlayerGetFlag(pRet->accessNetID, pRet->targetPCNetID);
     }
 }
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚Ö‚ÌƒAƒNƒZƒXƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY
+ * ãƒ‘ã‚½ã‚³ãƒ³ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚³ãƒžãƒ³ãƒ‰ã®ã‚µã‚¤ã‚º
  * @param   none
  * @retval  size
  */
@@ -297,13 +297,13 @@ int CommUnderPCGetAccessSize(void)
 
 
 
-//-------------------------------------------ƒpƒ\ƒRƒ“
+//-------------------------------------------ãƒ‘ã‚½ã‚³ãƒ³
 
 //==============================================================================
 /**
- * ŽèŽ‚¿ƒOƒbƒY‚ðƒpƒ\ƒRƒ“‚É“ü‚ê‚é
- * @param   index    ‰½”Ô–Ú‚ÌGOODS‚ð“¾‚é‚©
- * @retval  “ü‚Á‚½‚çTRUE
+ * æ‰‹æŒã¡ã‚°ãƒƒã‚ºã‚’ãƒ‘ã‚½ã‚³ãƒ³ã«å…¥ã‚Œã‚‹
+ * @param   index    ä½•ç•ªç›®ã®GOODSã‚’å¾—ã‚‹ã‹
+ * @retval  å…¥ã£ãŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -322,9 +322,9 @@ static BOOL _underBagGoodsSendPC(int index,_START_WORK* pStart)
 
 //==============================================================================
 /**
- * ƒpƒ\ƒRƒ“‚ÌƒOƒbƒY‚ðƒoƒbƒO‚É“ü‚ê‚é
- * @param   index    ‰½”Ô–Ú‚ÌGOODS‚ð“¾‚é‚©
- * @retval  “ü‚Á‚½‚ç1  ‚¢‚Á‚Ï‚¢‚È‚ç‚O ”z’u‚µ‚Ä‚ ‚é‚à‚Ì‚Í[‚P
+ * ãƒ‘ã‚½ã‚³ãƒ³ã®ã‚°ãƒƒã‚ºã‚’ãƒãƒƒã‚°ã«å…¥ã‚Œã‚‹
+ * @param   index    ä½•ç•ªç›®ã®GOODSã‚’å¾—ã‚‹ã‹
+ * @retval  å…¥ã£ãŸã‚‰1  ã„ã£ã±ã„ãªã‚‰ï¼ é…ç½®ã—ã¦ã‚ã‚‹ã‚‚ã®ã¯ãƒ¼ï¼‘
  */
 //==============================================================================
 
@@ -338,7 +338,7 @@ static int _underPcGoodsSendBag(int index,_START_WORK* pStart)
     }
     type = UnderGroundGetGoodsPCItem(pUGData, index);
     if(  CommUnderBagAddGoods(type) ){
-        UnderGroundDelGoodsPCItem(pUGData, index);  // Á‚·
+        UnderGroundDelGoodsPCItem(pUGData, index);  // æ¶ˆã™
         return TRUE;
     }
     return FALSE;
@@ -397,9 +397,9 @@ static void _pcRadarMenuLineSelect(BMPLIST_WORK * wk,u32 param,u8 mode)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒ\ƒRƒ“ƒƒCƒ“ƒƒjƒ…[ˆ—
- * @param   tcb         ƒ^ƒXƒN
- * @param   work		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‘ã‚½ã‚³ãƒ³ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
+ * @param   tcb         ã‚¿ã‚¹ã‚¯
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -423,7 +423,7 @@ static BOOL _pcTopMenuFunc(TCB_PTR tcb, void* work)
 		Snd_SePlay( SEQ_SE_DP_PC_LOGOFF );
         pStart->seq = _PC_END;
         break;
-      case 0:  // –Í—l‘Ö‚¦
+      case 0:  // æ¨¡æ§˜æ›¿ãˆ
         {
             UNDERGROUNDDATA* pUGData = SaveData_GetUnderGroundData(pStart->pFSys->savedata);
             if( 0 == UnderGroundGetNumGoodsPCItem(pUGData)){
@@ -442,19 +442,19 @@ static BOOL _pcTopMenuFunc(TCB_PTR tcb, void* work)
             }
         }
         break;
-      case 4:  // ƒŒ[ƒ_[
+      case 4:  // ãƒ¬ãƒ¼ãƒ€ãƒ¼
 		Snd_SePlay( SEQ_SE_DP_SELECT );
         pStart->seq = _PC_RADAR_START;
         break;
-      case 3:  // Šø
+      case 3:  // æ——
 		Snd_SePlay( SEQ_SE_DP_SELECT );
         pStart->seq = _PC_FLAG_START;
         break;
-      case 1:  // —a‚¯‚é
+      case 1:  // é ã‘ã‚‹
 		Snd_SePlay( SEQ_SE_DP_SELECT );
         pStart->seq = _PC_SEND_GOODS_START;//_PC_SEND_START;
         break;
-      case 2:  // ˆø‚«o‚·
+      case 2:  // å¼•ãå‡ºã™
 		Snd_SePlay( SEQ_SE_DP_SELECT );
         pStart->seq = _PC_RECV_GOODS_START;//_PC_RECV_START;
         break;
@@ -468,8 +468,8 @@ static BOOL _pcTopMenuFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒ\ƒRƒ“—a‚¯‚éƒƒjƒ…[ƒXƒ^[ƒg
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‘ã‚½ã‚³ãƒ³é ã‘ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -479,11 +479,11 @@ static BOOL _pcTopMenuFunc(TCB_PTR tcb, void* work)
 #define _PCMAIN_MENU_SIZE_X  (14)
 #define _PCMAIN_MENU_SIZE_Y  (16)
 
-// Ø‚è‘Ö‚¦Žž‚Éƒ`ƒ‰‚Â‚­‚Ì‚ÅAƒLƒƒƒ‰ˆÊ’u‚ð•Ê‚ÌˆÊ’u‚ÉÅ‘åƒTƒCƒY‚ÅŒÅ’è 2006/08/01 by nakahiro
-// PCƒƒjƒ…[‚ÌƒLƒƒƒ‰ˆÊ’u
+// åˆ‡ã‚Šæ›¿ãˆæ™‚ã«ãƒãƒ©ã¤ãã®ã§ã€ã‚­ãƒ£ãƒ©ä½ç½®ã‚’åˆ¥ã®ä½ç½®ã«æœ€å¤§ã‚µã‚¤ã‚ºã§å›ºå®š 2006/08/01 by nakahiro
+// PCãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚­ãƒ£ãƒ©ä½ç½®
 //#define	_PCMAIN_MENU_CGX	( MENU_WIN_CGX_NUM-_PCMAIN_MENU_SIZE_X*_PCMAIN_MENU_SIZE_Y )
 #define	_PCMAIN_MENU_CGX	( 2 )
-// PCƒƒjƒ…[€–Ú‚ÌƒLƒƒƒ‰ˆÊ’u
+// PCãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®ã‚­ãƒ£ãƒ©ä½ç½®
 #define	_PCPARAM_MENU_CGX	( _PCMAIN_MENU_CGX+_PCMAIN_MENU_SIZE_X*_PCMAIN_MENU_SIZE_Y )
 
 
@@ -495,7 +495,7 @@ static void _pcMainMenuStart(_START_WORK* pStart,int msgNo,int count, pBmpCallBa
 
 #ifdef  DEBUG_ONLY_FOR_ohno
 #else
-    if(FLAG_LV_GOLD > SecretBaseRecordGetFlagType(SaveData_GetSecretBaseRecord(pStart->pFSys->savedata))){  // ƒS[ƒ‹ƒhƒtƒ‰ƒbƒOˆÈ‰º
+    if(FLAG_LV_GOLD > SecretBaseRecordGetFlagType(SaveData_GetSecretBaseRecord(pStart->pFSys->savedata))){  // ã‚´ãƒ¼ãƒ«ãƒ‰ãƒ•ãƒ©ãƒƒã‚°ä»¥ä¸‹
         bRadar = FALSE;
         line -= 1;
     }
@@ -503,7 +503,7 @@ static void _pcMainMenuStart(_START_WORK* pStart,int msgNo,int count, pBmpCallBa
     _startMenuEnd(pStart);
 //	GF_BGL_LoadScreenReq( pStart->pFSys->bgl, GF_BGL_FRAME3_M );
 
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     pStart->menulist = BMP_MENULIST_Create( line, HEAPID_FIELD );
 /*
     GF_BGL_BmpWinAdd(pStart->pFSys->bgl,&pStart->win,
@@ -524,7 +524,7 @@ static void _pcMainMenuStart(_START_WORK* pStart,int msgNo,int count, pBmpCallBa
 		msgman = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_uwpersonal_dat, HEAPID_FIELD);
 		for(i = 0; i < line ; i++)
 		{
-            if(i == (line-1)){  // ‚â‚ß‚é
+            if(i == (line-1)){  // ã‚„ã‚ã‚‹
                 BMP_MENULIST_AddArchiveString( pStart->menulist, msgman,
                                                msgNo + 5, BMPLIST_CANCEL );
             }
@@ -563,7 +563,7 @@ static void _pcMenuStart(_START_WORK* pStart,int msgNo,int count, pBmpCallBack p
     _startMenuEnd(pStart);
 //	GF_BGL_LoadScreenReq( pStart->pFSys->bgl, GF_BGL_FRAME3_M );
 
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     pStart->menulist = BMP_MENULIST_Create( line, HEAPID_FIELD );
 /*
     GF_BGL_BmpWinAdd(pStart->pFSys->bgl,&pStart->win,
@@ -583,7 +583,7 @@ static void _pcMenuStart(_START_WORK* pStart,int msgNo,int count, pBmpCallBack p
 		msgman = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_uwpersonal_dat, HEAPID_FIELD);
 		for(i = 0; i < line ; i++)
 		{
-            if(i == count){  // ‚â‚ß‚é
+            if(i == count){  // ã‚„ã‚ã‚‹
                 BMP_MENULIST_AddArchiveString( pStart->menulist, msgman,
                                                msgNo+i, BMPLIST_CANCEL );
             }
@@ -614,9 +614,9 @@ static void _pcMenuStart(_START_WORK* pStart,int msgNo,int count, pBmpCallBack p
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒ[ƒ_[ƒƒjƒ…[ˆ—
- * @param   tcb         ƒ^ƒXƒN
- * @param   work		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¬ãƒ¼ãƒ€ãƒ¼ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
+ * @param   tcb         ã‚¿ã‚¹ã‚¯
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -641,7 +641,7 @@ static BOOL _pcRadarMenuFunc(TCB_PTR tcb, void* work)
 		Snd_SePlay( SEQ_SE_DP_SELECT );
         pStart->seq = _PC_START;
         break;
-      case 0:  // ‚©‚¹‚«ƒŒ[ƒ_[
+      case 0:  // ã‹ã›ããƒ¬ãƒ¼ãƒ€ãƒ¼
         if(CommMPIsConnectStalth()){
             pStart->seq = _FOSSIL_RADAR_FAILED;
         }
@@ -649,7 +649,7 @@ static BOOL _pcRadarMenuFunc(TCB_PTR tcb, void* work)
             pStart->seq = _FOSSIL_RADAR;
         }
         break;
-      case 1:  // ‚½‚ÜƒŒ[ƒ_[
+      case 1:  // ãŸã¾ãƒ¬ãƒ¼ãƒ€ãƒ¼
         if(CommMPIsConnectStalth()){
             pStart->seq = _STONE_RADAR_FAILED;
         }
@@ -657,7 +657,7 @@ static BOOL _pcRadarMenuFunc(TCB_PTR tcb, void* work)
             pStart->seq = _STONE_RADAR;
         }
         break;
-      case 2:  // ƒgƒ‰ƒbƒvƒŒ[ƒ_[
+      case 2:  // ãƒˆãƒ©ãƒƒãƒ—ãƒ¬ãƒ¼ãƒ€ãƒ¼
         if(CommMPIsConnectStalth()){
             pStart->seq = _TRAP_RADAR_FAILED;
         }
@@ -674,9 +674,9 @@ static BOOL _pcRadarMenuFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒOƒbƒY‚ð—a‚¯‚éƒƒjƒ…[ˆ—
- * @param   tcb         ƒ^ƒXƒN
- * @param   work		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ã‚°ãƒƒã‚ºã‚’é ã‘ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
+ * @param   tcb         ã‚¿ã‚¹ã‚¯
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -710,8 +710,8 @@ static BOOL _pcSendGoodsMenuFunc(TCB_PTR tcb, void* work)
         break;
     default:
         CommMsgTalkWindowEnd(CommUnderGetMsgUnderItem());
-        type = _underBagGetGoodsID(ret, pStart);  //ƒOƒbƒY”Ô†
-        if(_underBagGoodsSendPC(ret, pStart)){  // ƒpƒ\ƒRƒ“‚É“ü‚ê‚é
+        type = _underBagGetGoodsID(ret, pStart);  //ã‚°ãƒƒã‚ºç•ªå·
+        if(_underBagGoodsSendPC(ret, pStart)){  // ãƒ‘ã‚½ã‚³ãƒ³ã«å…¥ã‚Œã‚‹
             CommMsgRegisterUGGoodsName(CommUnderGetMsgUnderShop(), type);
             CommMsgTalkWindowStart(CommUnderGetMsgUnderShop(),mes_uw_pers_41,FALSE,NULL);
         }
@@ -727,9 +727,9 @@ static BOOL _pcSendGoodsMenuFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒOƒbƒY‚ð‚à‚ç‚¤ƒƒjƒ…[ˆ—
- * @param   tcb         ƒ^ƒXƒN
- * @param   work		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ã‚°ãƒƒã‚ºã‚’ã‚‚ã‚‰ã†ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
+ * @param   tcb         ã‚¿ã‚¹ã‚¯
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -764,9 +764,9 @@ static BOOL _pcRecvGoodsMenuFunc(TCB_PTR tcb, void* work)
         break;
     default:
         CommMsgTalkWindowEnd(CommUnderGetMsgUnderItem());
-        type = _underPcGetGoodsID(ret, pStart);  // ƒOƒbƒY”Ô†
+        type = _underPcGetGoodsID(ret, pStart);  // ã‚°ãƒƒã‚ºç•ªå·
         getRet = _underPcGoodsSendBag(ret, pStart);
-        if(1 == getRet){  // ƒoƒbƒO‚É“ü‚ê‚é
+        if(1 == getRet){  // ãƒãƒƒã‚°ã«å…¥ã‚Œã‚‹
             CommMsgRegisterUGGoodsName(CommUnderGetMsgUnderShop(), type);
             CommMsgTalkWindowStart(CommUnderGetMsgUnderShop(),mes_uw_pers_40,FALSE,NULL);
         }
@@ -787,8 +787,8 @@ static BOOL _pcRecvGoodsMenuFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒWI—¹{ƒL[‚ð‘Ò‚Â
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†ï¼‹ã‚­ãƒ¼ã‚’å¾…ã¤
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -806,8 +806,8 @@ static BOOL _msgEndWait(_START_WORK* pPc)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰‚ð”é–§Šî’n’†‰›‚É‚·‚éA‚Ü‚½‚Í–ß‚·
- * @param   bCenter		^‚ñ’†=TRUE
+ * @brief   ã‚«ãƒ¡ãƒ©ã‚’ç§˜å¯†åŸºåœ°ä¸­å¤®ã«ã™ã‚‹ã€ã¾ãŸã¯æˆ»ã™
+ * @param   bCenter		çœŸã‚“ä¸­=TRUE
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -823,7 +823,7 @@ static void _camMove(BOOL bCenter, FIELDSYS_WORK* pFSys)
         pos.x = -pos.x;
         pos.z = -pos.z;
     }
-    //ƒJƒƒ‰‚Æ’Ž‹“_‚ð“¯Žž‚É•½sˆÚ“®
+    //ã‚«ãƒ¡ãƒ©ã¨æ³¨è¦–ç‚¹ã‚’åŒæ™‚ã«å¹³è¡Œç§»å‹•
    GFC_ShiftCamera(&pos, pFSys->camera_ptr);
 }
 
@@ -831,8 +831,8 @@ static void _camMove(BOOL bCenter, FIELDSYS_WORK* pFSys)
 
 //--------------------------------------------------------------
 /**
- * @brief   FIELDEDIT‚ðŒÄ‚Ño‚·‚½‚ß‚Ìƒ‰ƒbƒp[ƒCƒxƒ“ƒg
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   FIELDEDITã‚’å‘¼ã³å‡ºã™ãŸã‚ã®ãƒ©ãƒƒãƒ‘ãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆ
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -867,7 +867,7 @@ static BOOL _GMEVENT_EditRap(GMEVENT_CONTROL * event)
       case _REMODELING_FADE:
         if(WIPE_SYS_EndCheck()){
             Player_DispON_OFF_Set(fsys->player,FALSE);
-            //ƒJƒƒ‰ˆÚ“®–½—ß
+            //ã‚«ãƒ¡ãƒ©ç§»å‹•å‘½ä»¤
             _camMove(TRUE, fsys);
             mdw->seq = _REMODELING_END;
         }
@@ -881,7 +881,7 @@ static BOOL _GMEVENT_EditRap(GMEVENT_CONTROL * event)
         break;
       case _BACK_EDIT_END:
 
-        //ƒJƒƒ‰ˆÚ“®–½—ß
+        //ã‚«ãƒ¡ãƒ©ç§»å‹•å‘½ä»¤
         Player_DispON_OFF_Set(fsys->player,TRUE);
         _camMove(FALSE, fsys);
         WIPE_SYS_Start(WIPE_PATTERN_FMAS,
@@ -905,9 +905,9 @@ static BOOL _GMEVENT_EditRap(GMEVENT_CONTROL * event)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒEƒCƒ“ƒhƒEÁ‹Ž
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ¶ˆåŽ»
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -934,8 +934,8 @@ static void _delEnd(TCB_PTR tcb, _START_WORK* pStart)
 
 //--------------------------------------------------------------
 /**
- * @brief   GOODSƒƒjƒ…[ˆ—
- * @param   pStart		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   GOODSãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
+ * @param   pStart		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -960,7 +960,7 @@ static void _pcMenuFunc(TCB_PTR tcb, void* work)
         break;
       case _PC_END:
         CommPlayerHoldEnd();
-        UgMgrEndNowTCB();  // I—¹‚È‚Ì‚ÅŠJ•úŠÖ”ƒNƒŠƒA
+        UgMgrEndNowTCB();  // çµ‚äº†ãªã®ã§é–‹æ”¾é–¢æ•°ã‚¯ãƒªã‚¢
         _delEnd(tcb, pPc);
         break;
       case _PC_FLAG_START:
@@ -1041,9 +1041,9 @@ static void _pcMenuFunc(TCB_PTR tcb, void* work)
                     UgMgrSetNoneRadarDisp();
                 }
                 else{
-                    UgMgrSetMyTrapRadarDisp();  // Ž©•ª‚Ìã©‚É–ß‚·
+                    UgMgrSetMyTrapRadarDisp();  // è‡ªåˆ†ã®ç½ ã«æˆ»ã™
                 }
-                UgTrapRecvNatureRadarEnd();  // I—¹ˆ—
+                UgTrapRecvNatureRadarEnd();  // çµ‚äº†å‡¦ç†
                 UgFossilPcRadarEnd();
                 UgStonePcRadarEnd();
                 pPc->seq = _PC_RADAR_START;
@@ -1051,7 +1051,7 @@ static void _pcMenuFunc(TCB_PTR tcb, void* work)
         }
         break;
       case _PC_REMODELING:
-        // I—¹ ƒCƒxƒ“ƒg‚ÉˆøŒp‚¬
+        // çµ‚äº† ã‚¤ãƒ™ãƒ³ãƒˆã«å¼•ç¶™ãŽ
         if(pPc->pFSys->event==NULL){
             mdw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(_EVENT_EDITRAP_WORK));
             MI_CpuClear8(mdw, sizeof(_EVENT_EDITRAP_WORK));
@@ -1101,8 +1101,8 @@ static void _pcMenuFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒ\ƒRƒ“ƒƒjƒ…[‚ðŠJ‚­
- * @param   FIELDSYS_WORK   ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‘ã‚½ã‚³ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ã
+ * @param   FIELDSYS_WORK   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1111,7 +1111,7 @@ static void UgPcMenuInit(FIELDSYS_WORK* pFSys)
 {
     BMPLIST_HEADER list_h;
     _START_WORK* pPc;
-    const int LISTMAX = 6;  // ƒŠƒXƒg‚ÌÅ‘å
+    const int LISTMAX = 6;  // ãƒªã‚¹ãƒˆã®æœ€å¤§
 
     UgMgrOpenRecordKey(_KEY_NAME_PC);
     pPc = sys_AllocMemory(HEAPID_FIELD, sizeof(_START_WORK));
@@ -1124,7 +1124,7 @@ static void UgPcMenuInit(FIELDSYS_WORK* pFSys)
     pPc->pWordSet = WORDSET_Create( HEAPID_FIELD );
 
 
-	//ƒJ[ƒ\ƒ‹ƒAƒNƒ^[‰Šú‰»
+	//ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	pPc->fca = FComAct_Init(HEAPID_FIELD);
 	FComAct_CursorPosSet(pPc->fca,200,20,122);
 	FComAct_SetDrawFlg(pPc->fca,FCA_UCURSOR,FALSE);
@@ -1132,13 +1132,13 @@ static void UgPcMenuInit(FIELDSYS_WORK* pFSys)
 
     pPc->pTCB = TCB_Add(_pcMenuFunc, pPc, _MENU_UG_PRI);
 
-    UgMgrSetNowTCB(pPc, pPc->pTCB, UgGoodsMenuForceDelete2);  // ƒpƒ\ƒRƒ“ƒƒjƒ…[
+    UgMgrSetNowTCB(pPc, pPc->pTCB, UgGoodsMenuForceDelete2);  // ãƒ‘ã‚½ã‚³ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 }
 
 //--------------------------------------------------------------
 /**
  * @brief   
- * @param   FIELDSYS_WORK   ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   FIELDSYS_WORK   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1174,13 +1174,13 @@ static void _flagGetYesNoFunc(TCB_PTR tcb, void* work)
         break;
       case _MSG_WAIT:
         ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_FIELD);
-        if(ret == BMPMENU_NULL){ // ‚¢‚¢‚¦‚ð‘I‘ð‚µ‚½ê‡ I—¹
+        if(ret == BMPMENU_NULL){ // ã„ã„ãˆã‚’é¸æŠžã—ãŸå ´åˆ çµ‚äº†
             return;
         }
-        else if(ret == 0){ // ‚Í‚¢‚ð‘I‘ð‚µ‚½ê‡
+        else if(ret == 0){ // ã¯ã„ã‚’é¸æŠžã—ãŸå ´åˆ
             CommSendFixSizeData(CF_GET_FLAG,&wk->ac);
         }
-        else{ // ‚¢‚¢‚¦‚ð‘I‘ð‚µ‚½ê‡ I—¹
+        else{ // ã„ã„ãˆã‚’é¸æŠžã—ãŸå ´åˆ çµ‚äº†
             CommPlayerHoldBitEnd(_HOLD_FLAG_PC_GET);
             CommMsgTalkWindowEnd(CommUnderGetMsgUnderWorld());
         }
@@ -1197,8 +1197,8 @@ static void _flagGetYesNoFunc(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   “G‚ÌŠî’n‚©‚çƒnƒ^‚ðŽæ‚é‚½‚ß‚Ìƒ‹[ƒ`ƒ“‚ð‹­§I—¹
- * @param   FIELDSYS_WORK   ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   æ•µã®åŸºåœ°ã‹ã‚‰ãƒã‚¿ã‚’å–ã‚‹ãŸã‚ã®ãƒ«ãƒ¼ãƒãƒ³ã‚’å¼·åˆ¶çµ‚äº†
+ * @param   FIELDSYS_WORK   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1216,8 +1216,8 @@ static void _flagGetTCBForceDel(TCB_PTR pTCB, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief   “G‚ÌŠî’n‚©‚çƒnƒ^‚ðŽæ‚é‚½‚ß‚Ìƒ‹[ƒ`ƒ“
- * @param   FIELDSYS_WORK   ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   æ•µã®åŸºåœ°ã‹ã‚‰ãƒã‚¿ã‚’å–ã‚‹ãŸã‚ã®ãƒ«ãƒ¼ãƒãƒ³
+ * @param   FIELDSYS_WORK   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1237,14 +1237,14 @@ static void _flagGetYesNoInit(FIELDSYS_WORK* pFSys,_resultAccessCommand* pAC)
     wk->ac.targetPCNetID = pAC->targetPCNetID;
     wk->ac.bFlagGet = pAC->bFlagGet;
 
-    UgMgrSetNowTCB(wk, wk->pTCB, _flagGetTCBForceDel);  // ƒpƒ\ƒRƒ“ƒƒjƒ…[
+    UgMgrSetNowTCB(wk, wk->pTCB, _flagGetTCBForceDel);  // ãƒ‘ã‚½ã‚³ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒNƒ‰ƒCƒAƒ“ƒg‚©‚çƒnƒ^‚ðŽæ‚éŽw—ß‚ª—ˆ‚½ CF_GET_FLAG
- * @param   FIELDSYS_WORK   ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‹ã‚‰ãƒã‚¿ã‚’å–ã‚‹æŒ‡ä»¤ãŒæ¥ãŸ CF_GET_FLAG
+ * @param   FIELDSYS_WORK   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1253,15 +1253,15 @@ void UgPcRecvFlagGet(int netID, int size, void* pData, void* pWork)
 {
     _resultAccessCommand* pAC = pData;
 
-    if(CommPlayerGetFlag(pAC->accessNetID, pAC->targetPCNetID)){   // Šø‚ð‚Æ‚Á‚Ä‚Ý‚é
+    if(CommPlayerGetFlag(pAC->accessNetID, pAC->targetPCNetID)){   // æ——ã‚’ã¨ã£ã¦ã¿ã‚‹
         CommSendFixSizeData_ServerSide(CF_GET_FLAG_RET, pAC);
     }
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒNƒ‰ƒCƒAƒ“ƒg‚©‚çƒnƒ^‚ðŽæ‚éŽw—ß‚ª—ˆ‚½ CF_GET_FLAG_RET
- * @param   FIELDSYS_WORK   ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‹ã‚‰ãƒã‚¿ã‚’å–ã‚‹æŒ‡ä»¤ãŒæ¥ãŸ CF_GET_FLAG_RET
+ * @param   FIELDSYS_WORK   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -1279,10 +1279,10 @@ void UgPcRecvFlagGetRet(int netID, int size, void* pData, void* pWork)
         CommMsgTalkWindowStart(CommUnderGetMsgUnderFlag(),mes_uw_flag_13, TRUE, _msgEndCallBack);
         Snd_BgmPlay( SEQ_HATANIGE );
     }
-    // Šø‚ð‚Æ‚Á‚½l‚ÉŠø‚½‚Ä
+    // æ——ã‚’ã¨ã£ãŸäººã«æ——ãŸã¦
         
     CommPlayerGetFlag(pAC->accessNetID, pAC->targetPCNetID);
-    // ƒŒ[ƒ_[ƒƒO
+    // ãƒ¬ãƒ¼ãƒ€ãƒ¼ãƒ­ã‚°
     UgSecretBaseSetFlagGetLog(pAC->accessNetID, pAC->targetPCNetID);
 }
 
@@ -1309,11 +1309,11 @@ static void UgListMoveSe( _START_WORK* pStart )
 {
 	u16 tmp_pos_bak;
 
-	//BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ðŽæ“¾
-	tmp_pos_bak = pStart->pos_bak;		//‘Þ”ð
+	//BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
+	tmp_pos_bak = pStart->pos_bak;		//é€€é¿
 	BmpListDirectPosGet( pStart->lw, &pStart->pos_bak );
 
-	//ƒJ[ƒ\ƒ‹‚ª“®‚¢‚½‚©ƒ`ƒFƒbƒN
+	//ã‚«ãƒ¼ã‚½ãƒ«ãŒå‹•ã„ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( tmp_pos_bak != pStart->pos_bak ){
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}

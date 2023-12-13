@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	balloon_types.h
- * @brief	•—‘Dƒ~ƒjƒQ[ƒ€‚Ì”Ä—p’è‹`
+ * @brief	é¢¨èˆ¹ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®æ±Žç”¨å®šç¾©
  * @author	matsuda
- * @date	2007.11.27(‰Î)
+ * @date	2007.11.27(ç«)
  */
 //==============================================================================
 #ifndef __BALLOON_GAME_TYPES_H__
@@ -11,7 +11,7 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 enum{
 	DIR_DOWN,
@@ -20,51 +20,51 @@ enum{
 	DIR_RIGHT,
 };
 
-///“¯Žž‚Éo‚¹‚é‹ó‹CƒAƒNƒ^[Å‘å”(‘SƒvƒŒƒCƒ„[‚Ì‡Œv)
+///åŒæ™‚ã«å‡ºã›ã‚‹ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°(å…¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åˆè¨ˆ)
 #define PLAYER_AIR_PARAM_MAX			(40)
 
-///“¯Žž‚Éo‚¹‚é•—‘DƒAƒCƒRƒ“ƒAƒNƒ^[Å‘å”
+///åŒæ™‚ã«å‡ºã›ã‚‹é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼æœ€å¤§æ•°
 #define ICON_BALLOON_PARAM_MAX			(5)
 
-///”j—ôƒGƒtƒFƒNƒg‚ð•\Ž¦‚µ‚Ä‚¢‚éŽžŠÔ
+///ç ´è£‚ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’è¡¨ç¤ºã—ã¦ã„ã‚‹æ™‚é–“
 #define EXPLODED_ANM_TIME				(30)
 
-///ƒJƒEƒ“ƒ^[‚ÌŒ…”
+///ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®æ¡æ•°
 enum{
 	BALLOON_COUNTER_0,
 	BALLOON_COUNTER_1,
 	BALLOON_COUNTER_MAX,
 };
-///ƒJƒEƒ“ƒ^[‚ÌŒ…”
+///ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®æ¡æ•°
 #define BALLOON_COUNTER_KETA_MAX		(6)
 
 
-///”¼“§–¾‘æ1‘ÎÛ–Ê
+///åŠé€æ˜Žç¬¬1å¯¾è±¡é¢
 #define BLD_PLANE_1		(GX_BLEND_PLANEMASK_BG3)
-///”¼“§–¾‘æ2‘ÎÛ–Ê
+///åŠé€æ˜Žç¬¬2å¯¾è±¡é¢
 #define BLD_PLANE_2		(GX_BLEND_BGALL | GX_BLEND_PLANEMASK_OBJ)
-///‘æ1‘ÎÛ–Ê‚É‘Î‚·‚éƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒOŒW”
+///ç¬¬1å¯¾è±¡é¢ã«å¯¾ã™ã‚‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ä¿‚æ•°
 #define BLD_ALPHA_1		13//(0x1b)	//(9)
-///‘æ2‘ÎÛ–Ê‚É‘Î‚·‚éƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒOŒW”
+///ç¬¬2å¯¾è±¡é¢ã«å¯¾ã™ã‚‹Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ä¿‚æ•°
 #define BLD_ALPHA_2		(3)
 
 //--------------------------------------------------------------
-//	BMPƒEƒBƒ“ƒhƒE
+//	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //--------------------------------------------------------------
 enum{
-	BALLOON_BMPWIN_TALK,		///<‰ï˜bƒEƒBƒ“ƒhƒE
+	BALLOON_BMPWIN_TALK,		///<ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
-	BALLOON_BMPWIN_NAME_1,		///<ƒvƒŒƒCƒ„[–¼
-	BALLOON_BMPWIN_NAME_2,		///<ƒvƒŒƒCƒ„[–¼
-	BALLOON_BMPWIN_NAME_3,		///<ƒvƒŒƒCƒ„[–¼
+	BALLOON_BMPWIN_NAME_1,		///<ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å
+	BALLOON_BMPWIN_NAME_2,		///<ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å
+	BALLOON_BMPWIN_NAME_3,		///<ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å
 	
-	BALLOON_BMPWIN_SUB_TALK,	///<ƒTƒu‰æ–Ê—p‰ï˜bƒEƒBƒ“ƒhƒE
+	BALLOON_BMPWIN_SUB_TALK,	///<ã‚µãƒ–ç”»é¢ç”¨ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
 	BALLOON_BMPWIN_MAX,
 };
 
 //--------------------------------------------------------------
-//	ƒAƒNƒ^[ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum{
 	BALLOON_SOFTPRI_START = 10,
@@ -78,7 +78,7 @@ enum{
 };
 
 //--------------------------------------------------------------
-//	ƒTƒu‰æ–Ê‚ÌƒAƒNƒ^[ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+//	ã‚µãƒ–ç”»é¢ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
 enum{
 	BALLOONSUB_SOFTPRI_START = 10,
@@ -97,169 +97,169 @@ enum{
 };
 
 //--------------------------------------------------------------
-//	BGƒvƒ‰ƒCƒIƒŠƒeƒB
+//	BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
-///ƒ^ƒbƒ`ƒyƒ“ƒAƒNƒ^[‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚¿ãƒƒãƒãƒšãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOON_BGPRI_TOUCH_PEN			(0)
 
-///ƒJƒEƒ“ƒ^[ƒAƒNƒ^[‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOON_BGPRI_COUNTER			(3)
-///ƒJƒEƒ“ƒ^[ƒAƒNƒ^[WindowOFFŽž‚Ìƒ_ƒ~[ƒAƒNƒ^[BGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼WindowOFFæ™‚ã®ãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOON_BGPRI_DUMMY_COUNTER		(1)
 
-///Æ€ƒAƒNƒ^[‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ç…§æº–ã‚¢ã‚¯ã‚¿ãƒ¼ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOON_BGPRI_AIM				(1)
 
 //--------------------------------------------------------------
-//	ƒTƒu‰æ–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+//	ã‚µãƒ–ç”»é¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 //--------------------------------------------------------------
-///‹ó‹CƒAƒNƒ^[‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOONSUB_BGPRI_AIR			(3)
-///•—‘D”j—ôƒAƒNƒ^[‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///é¢¨èˆ¹ç ´è£‚ã‚¢ã‚¯ã‚¿ãƒ¼ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOONSUB_BGPRI_EXPLODED		(1)
-///•—‘DƒAƒCƒRƒ“ƒAƒNƒ^[‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOONSUB_BGPRI_ICON_BALLOON	(1)
-///ƒWƒ‡ƒCƒ“ƒgƒAƒNƒ^[‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOONSUB_BGPRI_JOINT			(3)
-///ƒu[ƒXƒ^[ƒAƒNƒ^[‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define BALLOONSUB_BGPRI_BOOSTER		(3)
 
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///“¯Žž‚Éo‚¹‚é‹ó‹C‚ÌÅ‘å”
+///åŒæ™‚ã«å‡ºã›ã‚‹ç©ºæ°—ã®æœ€å¤§æ•°
 #define PIPE_AIR_AIR_MAX		(8)
 
-///‹ó‹Cƒ‚ƒfƒ‹‚Ìƒ^ƒCƒv
+///ç©ºæ°—ãƒ¢ãƒ‡ãƒ«ã®ã‚¿ã‚¤ãƒ—
 enum{
 	PIPE_3D_AIR_TYPE_SMALL,
 	PIPE_3D_AIR_TYPE_MIDDLE,
 	PIPE_3D_AIR_TYPE_BIG,
-	PIPE_3D_AIR_TYPE_SPECIAL,	///<ƒ\[ƒiƒ“ƒX‚ª‚Å‚©‚­‚È‚Á‚½‚Æ‚«‚É‰Ÿ‚µž‚ñ‚¾‚Æ‚«
+	PIPE_3D_AIR_TYPE_SPECIAL,	///<ã‚½ãƒ¼ãƒŠãƒ³ã‚¹ãŒã§ã‹ããªã£ãŸã¨ãã«æŠ¼ã—è¾¼ã‚“ã ã¨ã
 	
 	PIPE_3D_AIR_TYPE_MAX,
 };
 
 //--------------------------------------------------------------
-//	•—‘DƒAƒCƒRƒ“
+//	é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³
 //--------------------------------------------------------------
-///•—‘DƒAƒCƒRƒ“‚Ìó‘Ô
+///é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã®çŠ¶æ…‹
 enum{
-	ICON_BALLOON_STATUS_NULL,			///<¶¬‚³‚ê‚Ä‚¢‚È‚¢
-	ICON_BALLOON_STATUS_NORMAL,			///<’Êíó‘Ô
-	ICON_BALLOON_STATUS_PINCH,			///<•—‘D‚ª”j—ô‚µ‚»‚¤‚Èó‘Ô
-	ICON_BALLOON_STATUS_EXPLODED,		///<”š”­’†
+	ICON_BALLOON_STATUS_NULL,			///<ç”Ÿæˆã•ã‚Œã¦ã„ãªã„
+	ICON_BALLOON_STATUS_NORMAL,			///<é€šå¸¸çŠ¶æ…‹
+	ICON_BALLOON_STATUS_PINCH,			///<é¢¨èˆ¹ãŒç ´è£‚ã—ãã†ãªçŠ¶æ…‹
+	ICON_BALLOON_STATUS_EXPLODED,		///<çˆ†ç™ºä¸­
 };
 
 //--------------------------------------------------------------
-//	ƒJƒEƒ“ƒgƒ_ƒEƒ“
+//	ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³
 //--------------------------------------------------------------
 enum{
-	BALLOON_COUNTDOWN_NULL,				///<‰Šúó‘Ô
-	BALLOON_COUNTDOWN_TOUCHPEN_DEMO_INIT,	///<ƒ^ƒbƒ`ƒyƒ“ƒfƒ‚
-	BALLOON_COUNTDOWN_TOUCHPEN_DEMO,	///<ƒ^ƒbƒ`ƒyƒ“ƒfƒ‚
-	BALLOON_COUNTDOWN_START,			///<ƒJƒEƒ“ƒgƒ_ƒEƒ“ŠJŽn
-	BALLOON_COUNTDOWN_START_WAIT,		///<I—¹‘Ò‚¿ó‘Ô
-	BALLOON_COUNTDOWN_START_END,		///<ŠJŽnƒJƒEƒ“ƒgƒ_ƒEƒ“I—¹
-	BALLOON_COUNTDOWN_TIMEUP,			///<ƒ^ƒCƒ€ƒAƒbƒvŠJŽn
-	BALLOON_COUNTDOWN_TIMEUP_WAIT,		///<ƒ^ƒCƒ€ƒAƒbƒv‘Ò‚¿ó‘Ô
-	BALLOON_COUNTDOWN_TIMEUP_END,		///<ƒ^ƒCƒ€ƒAƒbƒvI—¹
+	BALLOON_COUNTDOWN_NULL,				///<åˆæœŸçŠ¶æ…‹
+	BALLOON_COUNTDOWN_TOUCHPEN_DEMO_INIT,	///<ã‚¿ãƒƒãƒãƒšãƒ³ãƒ‡ãƒ¢
+	BALLOON_COUNTDOWN_TOUCHPEN_DEMO,	///<ã‚¿ãƒƒãƒãƒšãƒ³ãƒ‡ãƒ¢
+	BALLOON_COUNTDOWN_START,			///<ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³é–‹å§‹
+	BALLOON_COUNTDOWN_START_WAIT,		///<çµ‚äº†å¾…ã¡çŠ¶æ…‹
+	BALLOON_COUNTDOWN_START_END,		///<é–‹å§‹ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³çµ‚äº†
+	BALLOON_COUNTDOWN_TIMEUP,			///<ã‚¿ã‚¤ãƒ ã‚¢ãƒƒãƒ—é–‹å§‹
+	BALLOON_COUNTDOWN_TIMEUP_WAIT,		///<ã‚¿ã‚¤ãƒ ã‚¢ãƒƒãƒ—å¾…ã¡çŠ¶æ…‹
+	BALLOON_COUNTDOWN_TIMEUP_END,		///<ã‚¿ã‚¤ãƒ ã‚¢ãƒƒãƒ—çµ‚äº†
 };
 
 //--------------------------------------------------------------
-//	ƒWƒ‡ƒCƒ“ƒg”Ô†
+//	ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆç•ªå·
 //--------------------------------------------------------------
-///ƒWƒ‡ƒCƒ“ƒg‚ÌƒAƒNƒ^[”Ô†
+///ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ç•ªå·
 enum{
-	JOINT_ACTOR_D,		//‰º
-	JOINT_ACTOR_U,		//ã
-	JOINT_ACTOR_L,		//¶
-	JOINT_ACTOR_R,		//‰E
+	JOINT_ACTOR_D,		//ä¸‹
+	JOINT_ACTOR_U,		//ä¸Š
+	JOINT_ACTOR_L,		//å·¦
+	JOINT_ACTOR_R,		//å³
 	
 	JOINT_ACTOR_MAX,
 };
 
 //--------------------------------------------------------------
-//	ƒu[ƒXƒ^[”Ô†
+//	ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç•ªå·
 //--------------------------------------------------------------
 enum{
-	BOOSTER_ACTOR_NORMAL,	//’Êí
-	BOOSTER_ACTOR_WEAK,		//”¼Œ¸ƒu[ƒXƒ^[
-	BOOSTER_ACTOR_HARD,		//3”{ƒu[ƒXƒ^[
+	BOOSTER_ACTOR_NORMAL,	//é€šå¸¸
+	BOOSTER_ACTOR_WEAK,		//åŠæ¸›ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼
+	BOOSTER_ACTOR_HARD,		//3å€ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼
 	
 	BOOSTER_ACTOR_MAX,
 };
 
-///“¯Žž‚Éo‚¹‚éSIOƒu[ƒXƒ^[‚Ì”
+///åŒæ™‚ã«å‡ºã›ã‚‹SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®æ•°
 #define SIO_BOOSTER_ACTOR_MAX		(3)
 
 //--------------------------------------------------------------
-//	ƒu[ƒXƒ^[ƒ^ƒCƒv
+//	ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 enum{
-	BOOSTER_TYPE_NONE,		//‚È‚µ
-	BOOSTER_TYPE_NORMAL,	//’Êí(2”{)
-	BOOSTER_TYPE_WEAK,		//”¼Œ¸ƒu[ƒXƒ^[
-	BOOSTER_TYPE_HARD,		//3”{ƒu[ƒXƒ^[
+	BOOSTER_TYPE_NONE,		//ãªã—
+	BOOSTER_TYPE_NORMAL,	//é€šå¸¸(2å€)
+	BOOSTER_TYPE_WEAK,		//åŠæ¸›ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼
+	BOOSTER_TYPE_HARD,		//3å€ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼
 };
 
 //--------------------------------------------------------------
-//	ƒu[ƒXƒ^[’…’n‚Ì‰Œ
+//	ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç€åœ°ã®ç…™
 //--------------------------------------------------------------
-///ƒu[ƒXƒ^[’…’n‚Åo‚é‰Œ‚Ì”
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç€åœ°ã§å‡ºã‚‹ç…™ã®æ•°
 #define BOOSTER_LAND_SMOKE_NUM				(2)
-///ƒu[ƒXƒ^[’…’n‚Åo‚é‰Œ‚ÌŽõ–½
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç€åœ°ã§å‡ºã‚‹ç…™ã®å¯¿å‘½
 #define BOOSTER_LAND_SMOKE_DELETE_TIME		(8)
-///ƒu[ƒXƒ^[’…’n‰Œ‚ÌƒAƒjƒŽí—Þ
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç€åœ°ç…™ã®ã‚¢ãƒ‹ãƒ¡ç¨®é¡ž
 #define BOOSTER_LAND_SMOKE_ANM_PATERN		(2)
 
 //--------------------------------------------------------------
-//	”š”­
+//	çˆ†ç™º
 //--------------------------------------------------------------
-///”š”­‚ÌŽ†‚Ó‚Ô‚«‚ÅŽg—p‚·‚éƒAƒNƒ^[”
+///çˆ†ç™ºã®ç´™ãµã¶ãã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼æ•°
 #define EXPLODED_STORM_ACTOR_MAX		(36)	//(40)
-///”š”­‚Ì‰Œ‚ÅŽg—p‚·‚éƒAƒNƒ^[”
+///çˆ†ç™ºã®ç…™ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼æ•°
 #define EXPLODED_SMOKE_ACTOR_MAX		(8)//(12)
-///”š”­‚Ì•—‘D‚Ì”j•Ð‚ÅŽg—p‚·‚éƒAƒNƒ^[”
+///çˆ†ç™ºã®é¢¨èˆ¹ã®ç ´ç‰‡ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼æ•°
 #define EXPLODED_CHIP_ACTOR_MAX			(3)//(4)
 
 //--------------------------------------------------------------
-//	ƒJƒEƒ“ƒ^[
+//	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 //--------------------------------------------------------------
-///ƒJƒEƒ“ƒ^[‚ÌƒtƒHƒ“ƒgƒJƒ‰[Ý’è
+///ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼è¨­å®š
 #define COUNTER_FONT_COLOR		(GF_PRINTCOLOR_MAKE(0xe,0xf,0))
-///ƒJƒEƒ“ƒ^[XÀ•WŠî€’l
+///ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼Xåº§æ¨™åŸºæº–å€¤
 #define COUNTER_BASE_X			(6)
-///ƒJƒEƒ“ƒ^[XÀ•W‚Ì”z’uŠÔŠu
+///ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼Xåº§æ¨™ã®é…ç½®é–“éš”
 #define COUNTER_X_SPACE			(6)
-///ƒJƒEƒ“ƒ^[YÀ•W
+///ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼Yåº§æ¨™
 #define COUNTER_Y				(168)
 
 //==============================================================================
-//	Œ^’è‹`
+//	åž‹å®šç¾©
 //==============================================================================
-///ƒ\[ƒiƒ“ƒX“®ì§ŒäƒVƒXƒeƒ€ƒ[ƒN‚Ì•s’èŒ`ƒ|ƒCƒ“ƒ^
+///ã‚½ãƒ¼ãƒŠãƒ³ã‚¹å‹•ä½œåˆ¶å¾¡ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ä¸å®šå½¢ãƒã‚¤ãƒ³ã‚¿
 typedef struct _SONANS_SYS * SONANS_SYS_PTR;
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///‹ó‹CƒAƒNƒ^[‚ÌˆÊ’u–ˆ‚Ìƒf[ƒ^
+///ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼ã®ä½ç½®æ¯Žã®ãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	s16 x;				///<‹ó‹CoŒ»À•WX
-	s16 y;				///<‹ó‹CoŒ»À•WY
-	u16 anmseq;			///<ƒAƒjƒƒV[ƒPƒ“ƒX”Ô†
-	u8 pal_ofs;			///<ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
-	u8 move_dir;		///<ˆÚ“®•ûŒü
+	s16 x;				///<ç©ºæ°—å‡ºç¾åº§æ¨™X
+	s16 y;				///<ç©ºæ°—å‡ºç¾åº§æ¨™Y
+	u16 anmseq;			///<ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	u8 pal_ofs;			///<ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	u8 move_dir;		///<ç§»å‹•æ–¹å‘
 	
 	u8 dummy[2];
 }AIR_POSITION_DATA;
 
-///ƒvƒŒƒCƒ„[‚»‚ê‚¼‚ê‚ª”­¶‚³‚¹‚½‹ó‹Cƒpƒ‰ƒ[ƒ^
+///ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãã‚Œãžã‚ŒãŒç™ºç”Ÿã•ã›ãŸç©ºæ°—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
-	BOOL occ;			///<TRUE:—LŒø@FALSE:–³Œø
+	BOOL occ;			///<TRUE:æœ‰åŠ¹ã€€FALSE:ç„¡åŠ¹
 	s16 net_id;
 	s16 balloon_no;
 	s32 air;
@@ -272,7 +272,7 @@ typedef struct{
 	const AIR_POSITION_DATA *apd;
 }PLAYER_AIR_PARAM; 
 
-///Ž†‚Ó‚Ô‚«ƒ[ƒN
+///ç´™ãµã¶ããƒ¯ãƒ¼ã‚¯
 typedef struct{
 	CATS_ACT_PTR cap;
 	fx32 furihaba;
@@ -282,9 +282,9 @@ typedef struct{
 	s16 delete_wait;
 }STORM_WORK;
 
-///”j—ôƒAƒNƒ^[ƒpƒ‰ƒ[ƒ^
+///ç ´è£‚ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
-	BOOL occ;			///<TRUE:”š”­ƒAƒjƒ’†
+	BOOL occ;			///<TRUE:çˆ†ç™ºã‚¢ãƒ‹ãƒ¡ä¸­
 	STORM_WORK storm[EXPLODED_STORM_ACTOR_MAX];
 	STORM_WORK smoke[EXPLODED_SMOKE_ACTOR_MAX];
 	STORM_WORK chip[EXPLODED_CHIP_ACTOR_MAX];
@@ -292,24 +292,24 @@ typedef struct{
 	u8 dummy[2];
 }EXPLODED_PARAM; 
 
-///•—‘DƒAƒCƒRƒ“ƒAƒNƒ^[ƒpƒ‰ƒ[ƒ^
+///é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
 	CATS_ACT_PTR cap;
-	u8 type;			///<ƒAƒCƒRƒ“‚ÌŽí—Þ(BALLOON_LEVEL_???)
-	u8 status;			///<Œ»Ý‚Ìó‘Ô(ICON_BALLOON_STATUS_???)
-	u8 pos;				///<•\Ž¦ˆÊ’u(ˆê”Ô‰E’[‚©‚ç‚ÌƒIƒtƒZƒbƒg”Ô†)
+	u8 type;			///<ã‚¢ã‚¤ã‚³ãƒ³ã®ç¨®é¡ž(BALLOON_LEVEL_???)
+	u8 status;			///<ç¾åœ¨ã®çŠ¶æ…‹(ICON_BALLOON_STATUS_???)
+	u8 pos;				///<è¡¨ç¤ºä½ç½®(ä¸€ç•ªå³ç«¯ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆç•ªå·)
 	u8 dummy;
 	
-	s16 balloon_no;		///<’S“–‚·‚é•—‘D”Ô†
+	s16 balloon_no;		///<æ‹…å½“ã™ã‚‹é¢¨èˆ¹ç•ªå·
 	s16 dummy_2;
 }ICONBALLOON_PARAM;
 
-///ƒWƒ‡ƒCƒ“ƒg“®ì§Œä
+///ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆå‹•ä½œåˆ¶å¾¡
 typedef struct{
 	CATS_ACT_PTR cap[JOINT_ACTOR_MAX];
 }JOINT_WORK;
 
-///ƒu[ƒXƒ^[’…’nŽž‚Ì‰ŒƒAƒNƒ^[“®ì§Œä\‘¢‘Ì
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç€åœ°æ™‚ã®ç…™ã‚¢ã‚¯ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡æ§‹é€ ä½“
 typedef struct{
 	CATS_ACT_PTR cap[BOOSTER_LAND_SMOKE_NUM];
 	fx32 add_x[BOOSTER_LAND_SMOKE_NUM];
@@ -318,18 +318,18 @@ typedef struct{
 	u8 time;
 }BOOSTER_LAND_SMOKE;
 
-///ƒu[ƒXƒ^[‚Ì“®ìƒ[ƒN
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®å‹•ä½œãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	CATS_ACT_PTR cap;
-	CATS_ACT_PTR hit_cap;		///<ƒqƒbƒg‚µ‚½Žž‚Éo‚·ƒGƒtƒFƒNƒgƒAƒNƒ^[
-	CATS_ACT_PTR shadow_cap;	///<‰eƒAƒNƒ^[
-	fx32 start_theta;		///<ƒXƒ^[ƒgŠp“x
+	CATS_ACT_PTR hit_cap;		///<ãƒ’ãƒƒãƒˆã—ãŸæ™‚ã«å‡ºã™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼
+	CATS_ACT_PTR shadow_cap;	///<å½±ã‚¢ã‚¯ã‚¿ãƒ¼
+	fx32 start_theta;		///<ã‚¹ã‚¿ãƒ¼ãƒˆè§’åº¦
 	u8 mode;				///<BOOSTER_MODE_???
 	u8 seq;
 	u8 local_frame;
 	u8 local_wait;
-	u8 booster_type;		///<ƒu[ƒXƒ^[ƒ^ƒCƒv
-	u8 hit_ok;				///<TRUE:‹ó‹C‚Æ‚Ì“–‚½‚è”»’è”­¶‰Â”\ 
+	u8 booster_type;		///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚¿ã‚¤ãƒ—
+	u8 hit_ok;				///<TRUE:ç©ºæ°—ã¨ã®å½“ãŸã‚Šåˆ¤å®šç™ºç”Ÿå¯èƒ½ 
 	s32 local_work;
 	s16 local_x;
 	s16 local_y;
@@ -338,26 +338,26 @@ typedef struct{
 	fx32 local_fx_x;
 	fx32 local_fx_y;
 	
-	BOOSTER_LAND_SMOKE land_smoke;	///<ƒu[ƒXƒ^[’…’nŽž‚Ì‰ŒƒAƒNƒ^[“®ì§Œäƒ[ƒN
+	BOOSTER_LAND_SMOKE land_smoke;	///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç€åœ°æ™‚ã®ç…™ã‚¢ã‚¯ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 }BOOSTER_MOVE;
 
-///ƒu[ƒXƒ^[“®ì§Œä\‘¢‘Ì
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡æ§‹é€ ä½“
 typedef struct{
-	BOOSTER_MOVE move[BOOSTER_ACTOR_MAX];			///<ƒu[ƒXƒ^[“®ìƒ[ƒN
-	fx32 theta;				///<Œ»Ý‚Ì•bjŠp“x
-	fx32 add_theta;			///<•bj‚É‰ÁŽZ‚·‚éŠp“x
-	u32 world_frame;		///<ƒu[ƒXƒ^[‚ª“®ì‚µ‚Ä‚¢‚éÅ’†Aí‚ÉƒJƒEƒ“ƒ^ƒAƒbƒv
-	u8 byousin_pos;			///<•bj‚ªŒ»Ý‚Ç‚±‚ð‚³‚µ‚Ä‚¢‚é‚©
-	u8 stop;				///<TRUE:ƒu[ƒXƒ^[‘S‚Ä‚Ì“®ì‚ð’âŽ~‚·‚é
-	u8 wait;				///<ƒEƒFƒCƒg
-	u8 frame;				///<•bjŠÔ‚ÌˆÚ“®ƒtƒŒ[ƒ€
-	u8 lap;					///<Œ»Ý‚ÌŽü‰ñ
+	BOOSTER_MOVE move[BOOSTER_ACTOR_MAX];			///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œãƒ¯ãƒ¼ã‚¯
+	fx32 theta;				///<ç¾åœ¨ã®ç§’é‡è§’åº¦
+	fx32 add_theta;			///<ç§’é‡ã«åŠ ç®—ã™ã‚‹è§’åº¦
+	u32 world_frame;		///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãŒå‹•ä½œã—ã¦ã„ã‚‹æœ€ä¸­ã€å¸¸ã«ã‚«ã‚¦ãƒ³ã‚¿ã‚¢ãƒƒãƒ—
+	u8 byousin_pos;			///<ç§’é‡ãŒç¾åœ¨ã©ã“ã‚’ã•ã—ã¦ã„ã‚‹ã‹
+	u8 stop;				///<TRUE:ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å…¨ã¦ã®å‹•ä½œã‚’åœæ­¢ã™ã‚‹
+	u8 wait;				///<ã‚¦ã‚§ã‚¤ãƒˆ
+	u8 frame;				///<ç§’é‡é–“ã®ç§»å‹•ãƒ•ãƒ¬ãƒ¼ãƒ 
+	u8 lap;					///<ç¾åœ¨ã®å‘¨å›ž
 }BOOSTER_WORK;
 
-///SIOƒu[ƒXƒ^[‚Ì“®ìƒ[ƒN
+///SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®å‹•ä½œãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	CATS_ACT_PTR cap;
-	CATS_ACT_PTR hit_cap;	///<ƒqƒbƒg‚µ‚½Žž‚Éo‚·ƒGƒtƒFƒNƒgƒAƒNƒ^[
+	CATS_ACT_PTR hit_cap;	///<ãƒ’ãƒƒãƒˆã—ãŸæ™‚ã«å‡ºã™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼
 	fx32 local_fx_x;
 	fx32 local_fx_y;
 	s16 end_y;
@@ -368,79 +368,79 @@ typedef struct{
 	s16 start_wait;
 }SIO_BOOSTER_MOVE;
 
-///SIOƒu[ƒXƒ^[“®ì§Œä\‘¢‘Ì
+///SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡æ§‹é€ ä½“
 typedef struct{
-	SIO_BOOSTER_MOVE move[SIO_BOOSTER_ACTOR_MAX];			///<ƒu[ƒXƒ^[“®ìƒ[ƒN
+	SIO_BOOSTER_MOVE move[SIO_BOOSTER_ACTOR_MAX];			///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œãƒ¯ãƒ¼ã‚¯
 }SIO_BOOSTER_WORK;
 
-///ƒtƒHƒ“ƒgOAM—p‚Ì\‘¢‘Ì’è‹`
+///ãƒ•ã‚©ãƒ³ãƒˆOAMç”¨ã®æ§‹é€ ä½“å®šç¾©
 typedef struct{
-	FONTOAM_OBJ_PTR fontoam;		///<ƒtƒHƒ“ƒgOAM
-	CHAR_MANAGER_ALLOCDATA cma;		///<ƒtƒHƒ“ƒgOAMƒLƒƒƒ‰—Ìˆæƒf[ƒ^
-	u16 len;						///<ƒtƒHƒ“ƒg‚Ìƒhƒbƒg’·
+	FONTOAM_OBJ_PTR fontoam;		///<ãƒ•ã‚©ãƒ³ãƒˆOAM
+	CHAR_MANAGER_ALLOCDATA cma;		///<ãƒ•ã‚©ãƒ³ãƒˆOAMã‚­ãƒ£ãƒ©é ˜åŸŸãƒ‡ãƒ¼ã‚¿
+	u16 len;						///<ãƒ•ã‚©ãƒ³ãƒˆã®ãƒ‰ãƒƒãƒˆé•·
 }BALLOON_FONTACT;
 
-///ƒJƒEƒ“ƒ^[§Œä\‘¢‘Ì’è‹`
+///ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼åˆ¶å¾¡æ§‹é€ ä½“å®šç¾©
 typedef struct{
-	CATS_ACT_PTR win_cap;			///<ƒEƒBƒ“ƒhƒEƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
-	BALLOON_FONTACT fontact[BALLOON_COUNTER_KETA_MAX][BALLOON_COUNTER_MAX];	///<ƒtƒHƒ“ƒgƒAƒNƒ^[(ƒJƒEƒ“ƒ^[)
-	BALLOON_FONTACT fontact_cc;		///<ƒtƒHƒ“ƒgƒAƒNƒ^[(CC)
-	BALLOON_FONTACT fontact_dummy[BALLOON_COUNTER_KETA_MAX];	///<ƒtƒHƒ“ƒgƒAƒNƒ^[(ƒJƒEƒ“ƒ^[ƒ_ƒ~[)
+	CATS_ACT_PTR win_cap;			///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
+	BALLOON_FONTACT fontact[BALLOON_COUNTER_KETA_MAX][BALLOON_COUNTER_MAX];	///<ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼(ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼)
+	BALLOON_FONTACT fontact_cc;		///<ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼(CC)
+	BALLOON_FONTACT fontact_dummy[BALLOON_COUNTER_KETA_MAX];	///<ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼(ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãƒ€ãƒŸãƒ¼)
 	
-	u8 number[BALLOON_COUNTER_KETA_MAX];		///<ƒXƒNƒ[ƒ‹ƒhƒbƒg’PˆÊ(Œ»Ý’l)
-	u8 last_number[BALLOON_COUNTER_KETA_MAX];	///<ƒXƒNƒ[ƒ‹ƒhƒbƒg’PˆÊ(’âŽ~’l)
-	u8 next_number[BALLOON_COUNTER_KETA_MAX];	///<ƒXƒNƒ[ƒ‹ƒhƒbƒg’PˆÊ(ƒŠƒNƒGƒXƒg’l)
-	u8 rotate_count[BALLOON_COUNTER_KETA_MAX];	///<‰½Žü‚µ‚½‚©ƒJƒEƒ“ƒg
-	s8 move_wait[BALLOON_COUNTER_KETA_MAX];		///<“®ìŠJŽn‘O‚ÌƒEƒFƒCƒg
+	u8 number[BALLOON_COUNTER_KETA_MAX];		///<ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‰ãƒƒãƒˆå˜ä½(ç¾åœ¨å€¤)
+	u8 last_number[BALLOON_COUNTER_KETA_MAX];	///<ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‰ãƒƒãƒˆå˜ä½(åœæ­¢å€¤)
+	u8 next_number[BALLOON_COUNTER_KETA_MAX];	///<ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‰ãƒƒãƒˆå˜ä½(ãƒªã‚¯ã‚¨ã‚¹ãƒˆå€¤)
+	u8 rotate_count[BALLOON_COUNTER_KETA_MAX];	///<ä½•å‘¨ã—ãŸã‹ã‚«ã‚¦ãƒ³ãƒˆ
+	s8 move_wait[BALLOON_COUNTER_KETA_MAX];		///<å‹•ä½œé–‹å§‹å‰ã®ã‚¦ã‚§ã‚¤ãƒˆ
 	s8 wait;
-	u8 move_keta;								///<‰½Œ…‚Ü‚Å‰ñ“]“®ì‚µ‚Ä‚¢‚é‚©
+	u8 move_keta;								///<ä½•æ¡ã¾ã§å›žè»¢å‹•ä½œã—ã¦ã„ã‚‹ã‹
 	u8 seq;
 }BALLOON_COUNTER;
 
-///ƒ^ƒbƒ`ƒyƒ“§Œä\‘¢‘Ì’è‹`
+///ã‚¿ãƒƒãƒãƒšãƒ³åˆ¶å¾¡æ§‹é€ ä½“å®šç¾©
 typedef struct{
-	CATS_ACT_PTR cap;				///<ƒ^ƒbƒ`ƒyƒ“ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+	CATS_ACT_PTR cap;				///<ã‚¿ãƒƒãƒãƒšãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
 	s16 seq;
 	s16 wait;
 	s16 x;
 	s16 y;
-	int tp_x;						///<‹^Ž—ƒ^ƒbƒ`ƒyƒ“À•W
+	int tp_x;						///<ç–‘ä¼¼ã‚¿ãƒƒãƒãƒšãƒ³åº§æ¨™
 	int tp_y;
 	int tp_cont;
 	int tp_trg;
-	BOOL demo_end;					///<TRUE:ƒfƒ‚I—¹
+	BOOL demo_end;					///<TRUE:ãƒ‡ãƒ¢çµ‚äº†
 }BALLOON_PEN;
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ\[ƒiƒ“ƒX‚ÉŒq‚ª‚Á‚Ä‚¢‚éƒpƒCƒv‚Æ‹ó‹C‚Ì“®ì§Œä\‘¢‘Ì
+ * @brief   ã‚½ãƒ¼ãƒŠãƒ³ã‚¹ã«ç¹‹ãŒã£ã¦ã„ã‚‹ãƒ‘ã‚¤ãƒ—ã¨ç©ºæ°—ã®å‹•ä½œåˆ¶å¾¡æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 typedef struct{
-	D3DOBJ_MDL	pipe_mdl;		///<ƒpƒCƒvƒ‚ƒfƒ‹
-   	D3DOBJ		pipe_obj;		///<ƒpƒCƒvOBJ
+	D3DOBJ_MDL	pipe_mdl;		///<ãƒ‘ã‚¤ãƒ—ãƒ¢ãƒ‡ãƒ«
+   	D3DOBJ		pipe_obj;		///<ãƒ‘ã‚¤ãƒ—OBJ
    	
-	D3DOBJ_MDL	air_mdl[PIPE_3D_AIR_TYPE_MAX];	///<‹ó‹Cƒ‚ƒfƒ‹
+	D3DOBJ_MDL	air_mdl[PIPE_3D_AIR_TYPE_MAX];	///<ç©ºæ°—ãƒ¢ãƒ‡ãƒ«
 	struct{
-		int occ;				///<TRUE:ƒf[ƒ^‚ª¶¬‚³‚ê‚Ä‚¢‚é
-		D3DOBJ obj;				///<‹ó‹COBJ
-		D3DOBJ_ANM	anm;		///<‹ó‹CƒAƒjƒ
+		int occ;				///<TRUE:ãƒ‡ãƒ¼ã‚¿ãŒç”Ÿæˆã•ã‚Œã¦ã„ã‚‹
+		D3DOBJ obj;				///<ç©ºæ°—OBJ
+		D3DOBJ_ANM	anm;		///<ç©ºæ°—ã‚¢ãƒ‹ãƒ¡
 	}air[PIPE_AIR_AIR_MAX][PIPE_3D_AIR_TYPE_MAX];
 }PIPE_AIR_WORK;
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ\[ƒiƒ“ƒX‚ÉŒq‚ª‚Á‚Ä‚¢‚é‘äÀ‚Ì“®ì§Œä\‘¢‘Ì
+ * @brief   ã‚½ãƒ¼ãƒŠãƒ³ã‚¹ã«ç¹‹ãŒã£ã¦ã„ã‚‹å°åº§ã®å‹•ä½œåˆ¶å¾¡æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 typedef struct{
-	D3DOBJ_MDL	mdl;		///<‘äÀƒ‚ƒfƒ‹
-   	D3DOBJ		obj;		///<‘äÀOBJ
+	D3DOBJ_MDL	mdl;		///<å°åº§ãƒ¢ãƒ‡ãƒ«
+   	D3DOBJ		obj;		///<å°åº§OBJ
 }DAIZA_WORK;
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒT[ƒo[—p‚ÌƒVƒXƒeƒ€ƒ[ƒN
+ * @brief   ã‚µãƒ¼ãƒãƒ¼ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 typedef struct{
@@ -452,91 +452,91 @@ typedef struct{
 	int local_work;
 	int local_wait;
 	
-	u8 req_timing_no;		///<“¯ŠúŽæ‚è‚æ‚¤‚É‘Sˆõ‚É”­s‚µ‚½“¯Šú”Ô†
+	u8 req_timing_no;		///<åŒæœŸå–ã‚Šã‚ˆã†ã«å…¨å“¡ã«ç™ºè¡Œã—ãŸåŒæœŸç•ªå·
 	u8 dummy[3];
 }BALLOON_SERVER_WORK;
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DŠ„‚èƒQ[ƒ€§ŒäƒƒCƒ“\‘¢‘Ì
+ * @brief   é¢¨èˆ¹å‰²ã‚Šã‚²ãƒ¼ãƒ åˆ¶å¾¡ãƒ¡ã‚¤ãƒ³æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 typedef struct _BALLOON_GAME_WORK{
-	BALLOON_SYSTEM_WORK *bsw;		///<•—‘DŠ„‚èƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int server_netid;				///<ƒT[ƒo[’S“–‚ÌƒlƒbƒgID
-	u32 recv_server_version_cnt;	///<ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚ÌŽóMŒ”
-	u32 recv_server_version[BALLOON_PLAYER_MAX];	///ŽóM‚µ‚½ƒT[ƒo[ƒo[ƒWƒ‡ƒ“
+	BALLOON_SYSTEM_WORK *bsw;		///<é¢¨èˆ¹å‰²ã‚Šã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int server_netid;				///<ã‚µãƒ¼ãƒãƒ¼æ‹…å½“ã®ãƒãƒƒãƒˆID
+	u32 recv_server_version_cnt;	///<ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®å—ä¿¡ä»¶æ•°
+	u32 recv_server_version[BALLOON_PLAYER_MAX];	///å—ä¿¡ã—ãŸã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 	
-	MNGM_COUNTWK *mgcount;			///<ƒ~ƒjƒQ[ƒ€‹¤’ÊƒJƒEƒ“ƒgƒ_ƒEƒ“ƒGƒtƒFƒNƒgƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int countdown_eff;				///<ƒJƒEƒ“ƒgƒ_ƒEƒ“ƒGƒtƒFƒNƒg‚ÌŒ»Ý‚Ìó‘Ô
+	MNGM_COUNTWK *mgcount;			///<ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int countdown_eff;				///<ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç¾åœ¨ã®çŠ¶æ…‹
 	
 	CATS_SYS_PTR		csp;
 	CATS_RES_PTR		crp;
 	GF_BGL_INI *bgl;
 	GF_BGL_BMPWIN win[BALLOON_BMPWIN_MAX];
-	MSGDATA_MANAGER *msgman;		///<ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ‚Ìƒ|ƒCƒ“ƒ^
-	WORDSET *wordset;				///<Alloc‚µ‚½ƒƒbƒZ[ƒW—p’PŒêƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	STRBUF *msg_buf;				///<Alloc‚µ‚½•¶Žš—ñƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	PALETTE_FADE_PTR pfd;			///<ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	FONTOAM_SYS_PTR fontoam_sys;	///<FONTOAMƒVƒXƒeƒ€
+	MSGDATA_MANAGER *msgman;		///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ã®ãƒã‚¤ãƒ³ã‚¿
+	WORDSET *wordset;				///<Allocã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨å˜èªžãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	STRBUF *msg_buf;				///<Allocã—ãŸæ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	PALETTE_FADE_PTR pfd;			///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	FONTOAM_SYS_PTR fontoam_sys;	///<FONTOAMã‚·ã‚¹ãƒ†ãƒ 
 
 	TCB_PTR update_tcb;
 	GF_G3DMAN *g3Dman;
 
-	GF_CAMERA_PTR camera;			///<ƒJƒƒ‰‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	GF_CAMERA_PTR camera_3d;		///<3Dƒ‚ƒfƒ‹—pƒJƒƒ‰‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	GF_CAMERA_PTR camera;			///<ã‚«ãƒ¡ãƒ©ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	GF_CAMERA_PTR camera_3d;		///<3Dãƒ¢ãƒ‡ãƒ«ç”¨ã‚«ãƒ¡ãƒ©ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	PTC_PTR ptc;					///<ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	PTC_PTR ptc;					///<ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-    // ƒAƒƒP[ƒ^
+    // ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
     NNSFndAllocator allocator;
 	
-	BALLOON_SERVER_WORK server_work;	///<ƒT[ƒo[—p‚ÌƒVƒXƒeƒ€ƒ[ƒN
+	BALLOON_SERVER_WORK server_work;	///<ã‚µãƒ¼ãƒãƒ¼ç”¨ã®ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 	
-	SONANS_SYS_PTR sns;				///<ƒ\[ƒiƒ“ƒX“®ì§ŒäƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	SONANS_SYS_PTR sns;				///<ã‚½ãƒ¼ãƒŠãƒ³ã‚¹å‹•ä½œåˆ¶å¾¡ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	PIPE_AIR_WORK pipe_air;			///<ƒ\[ƒiƒ“ƒX‚ÉŒq‚ª‚éƒpƒCƒv‚Æ‹ó‹C3D§Œä\‘¢‘Ì
-	DAIZA_WORK daiza;				///<‘äÀ§Œä\‘¢‘Ì
+	PIPE_AIR_WORK pipe_air;			///<ã‚½ãƒ¼ãƒŠãƒ³ã‚¹ã«ç¹‹ãŒã‚‹ãƒ‘ã‚¤ãƒ—ã¨ç©ºæ°—3Dåˆ¶å¾¡æ§‹é€ ä½“
+	DAIZA_WORK daiza;				///<å°åº§åˆ¶å¾¡æ§‹é€ ä½“
 	
-	BALLOON_STATUS bst;				///<•—‘DƒXƒe[ƒ^ƒX
+	BALLOON_STATUS bst;				///<é¢¨èˆ¹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 
-	JOINT_WORK joint;				///<ƒWƒ‡ƒCƒ“ƒg§Œäƒ[ƒN
-	BOOSTER_WORK booster;				///<ƒu[ƒXƒ^[“®ì§Œäƒ[ƒN
-	SIO_BOOSTER_WORK sio_booster;		///<SIOƒu[ƒXƒ^[“®ì§Œäƒ[ƒN
+	JOINT_WORK joint;				///<ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
+	BOOSTER_WORK booster;				///<ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
+	SIO_BOOSTER_WORK sio_booster;		///<SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 	
-	BALLOON_COUNTER counter;		///<ƒJƒEƒ“ƒ^[“®ì§Œäƒ[ƒN
-	BALLOON_PEN pen;				///<ƒ^ƒbƒ`ƒyƒ““®ì§Œäƒ[ƒN
+	BALLOON_COUNTER counter;		///<ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
+	BALLOON_PEN pen;				///<ã‚¿ãƒƒãƒãƒšãƒ³å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 	
-	BALLOON_SIO_BUFFER send_buf;	///<‘—Mƒoƒbƒtƒ@
-	BALLOON_SIO_BUFFER recv_buf[BALLOON_PLAYER_MAX];	///<ŽóMƒoƒbƒtƒ@
-	BALLOON_SIO_PLAY_WORK send_important;		///<d—vƒf[ƒ^ê—p‘—Mƒoƒbƒtƒ@(e‚Ì‚Ý‚ªŽg—p)
-	BALLOON_SIO_PLAY_WORK recv_important;		///<d—vƒf[ƒ^ê—pŽóMƒoƒbƒtƒ@
-	int recv_write_ring_no[BALLOON_PLAYER_MAX];	///<ŽóM—pƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì‘‚«ž‚ÝˆÊ’u
-	int recv_read_ring_no[BALLOON_PLAYER_MAX];	///<ŽóM—pƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì“Ç‚Ýž‚ÝˆÊ’u
-	int send_write_ring_no;						///<‘—M—pƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì‘‚«ž‚ÝˆÊ’u
-	int send_read_ring_no;						///<‘—M—pƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì“Ç‚Ýž‚ÝˆÊ’u
-	BALLOON_AIR_DATA send_airdata_stack[PIPE_AIR_AIR_MAX];	///<‹ó‹Cƒf[ƒ^ƒXƒ^ƒbƒN
-	int send_airdata_read_no;					///<‹ó‹Cƒf[ƒ^ƒXƒ^ƒbƒNŽQÆ”Ô†(“Ç‚Ýo‚µ)
-	int send_airdata_write_no;					///<‹ó‹Cƒf[ƒ^ƒXƒ^ƒbƒNŽQÆ”Ô†(‘‚«ž‚Ý)
+	BALLOON_SIO_BUFFER send_buf;	///<é€ä¿¡ãƒãƒƒãƒ•ã‚¡
+	BALLOON_SIO_BUFFER recv_buf[BALLOON_PLAYER_MAX];	///<å—ä¿¡ãƒãƒƒãƒ•ã‚¡
+	BALLOON_SIO_PLAY_WORK send_important;		///<é‡è¦ãƒ‡ãƒ¼ã‚¿å°‚ç”¨é€ä¿¡ãƒãƒƒãƒ•ã‚¡(è¦ªã®ã¿ãŒä½¿ç”¨)
+	BALLOON_SIO_PLAY_WORK recv_important;		///<é‡è¦ãƒ‡ãƒ¼ã‚¿å°‚ç”¨å—ä¿¡ãƒãƒƒãƒ•ã‚¡
+	int recv_write_ring_no[BALLOON_PLAYER_MAX];	///<å—ä¿¡ç”¨ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®æ›¸ãè¾¼ã¿ä½ç½®
+	int recv_read_ring_no[BALLOON_PLAYER_MAX];	///<å—ä¿¡ç”¨ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®èª­ã¿è¾¼ã¿ä½ç½®
+	int send_write_ring_no;						///<é€ä¿¡ç”¨ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®æ›¸ãè¾¼ã¿ä½ç½®
+	int send_read_ring_no;						///<é€ä¿¡ç”¨ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®èª­ã¿è¾¼ã¿ä½ç½®
+	BALLOON_AIR_DATA send_airdata_stack[PIPE_AIR_AIR_MAX];	///<ç©ºæ°—ãƒ‡ãƒ¼ã‚¿ã‚¹ã‚¿ãƒƒã‚¯
+	int send_airdata_read_no;					///<ç©ºæ°—ãƒ‡ãƒ¼ã‚¿ã‚¹ã‚¿ãƒƒã‚¯å‚ç…§ç•ªå·(èª­ã¿å‡ºã—)
+	int send_airdata_write_no;					///<ç©ºæ°—ãƒ‡ãƒ¼ã‚¿ã‚¹ã‚¿ãƒƒã‚¯å‚ç…§ç•ªå·(æ›¸ãè¾¼ã¿)
 	
-	u32 time;					///<ƒQ[ƒ€ƒvƒŒƒCƒ^ƒCƒ€
-	int game_start;				///<TRUE:ƒQ[ƒ€ŠJŽn
-	int game_finish;			///<TRUE:ƒQ[ƒ€I—¹(I—¹‰‰o‚ÖˆÚs)
-	int game_end;				///<TRUE:ƒQ[ƒ€I—¹(‰æ–ÊˆÃ“]‚ÖˆÚs)
-	int sio_wait;				///<Wifi•‰‰×‘Îô—p‚Éˆê“x‘—M‚·‚é‚Æˆê’èŠúŠÔ‘—Mo—ˆ‚È‚¢‚æ‚¤‚É‚·‚é
-	int balloon_no;				///<Œ»Ý‚Ì•—‘D”Ô†
-	int balloon_occ;			///<TRUEF•—‘D‚ª¶¬‚³‚ê‚Ä‚¢‚é
-	int exploded_count;			///<•—‘D‚ð”j—ô‚³‚¹‚½‰ñ”
+	u32 time;					///<ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ã‚¿ã‚¤ãƒ 
+	int game_start;				///<TRUE:ã‚²ãƒ¼ãƒ é–‹å§‹
+	int game_finish;			///<TRUE:ã‚²ãƒ¼ãƒ çµ‚äº†(çµ‚äº†æ¼”å‡ºã¸ç§»è¡Œ)
+	int game_end;				///<TRUE:ã‚²ãƒ¼ãƒ çµ‚äº†(ç”»é¢æš—è»¢ã¸ç§»è¡Œ)
+	int sio_wait;				///<Wifiè² è·å¯¾ç­–ç”¨ã«ä¸€åº¦é€ä¿¡ã™ã‚‹ã¨ä¸€å®šæœŸé–“é€ä¿¡å‡ºæ¥ãªã„ã‚ˆã†ã«ã™ã‚‹
+	int balloon_no;				///<ç¾åœ¨ã®é¢¨èˆ¹ç•ªå·
+	int balloon_occ;			///<TRUEï¼šé¢¨èˆ¹ãŒç”Ÿæˆã•ã‚Œã¦ã„ã‚‹
+	int exploded_count;			///<é¢¨èˆ¹ã‚’ç ´è£‚ã•ã›ãŸå›žæ•°
 	
-	int timing_req;				///<“¯ŠúŽæ‚èƒŠƒNƒGƒXƒg”Ô†
-	int timing_no;				///<“¯Šú”Ô†
+	int timing_req;				///<åŒæœŸå–ã‚Šãƒªã‚¯ã‚¨ã‚¹ãƒˆç•ªå·
+	int timing_no;				///<åŒæœŸç•ªå·
 	
-	PLAYER_AIR_PARAM air_param[PLAYER_AIR_PARAM_MAX];	///<‹ó‹CƒAƒNƒ^[ƒpƒ‰ƒ[ƒ^
-	EXPLODED_PARAM exploded_param;		///<”j—ôƒAƒNƒ^[ƒpƒ‰ƒ[ƒ^
-	ICONBALLOON_PARAM iconballoon_param[ICON_BALLOON_PARAM_MAX];	///<•—‘DƒAƒCƒRƒ“ƒpƒ‰ƒ[ƒ^
+	PLAYER_AIR_PARAM air_param[PLAYER_AIR_PARAM_MAX];	///<ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	EXPLODED_PARAM exploded_param;		///<ç ´è£‚ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	ICONBALLOON_PARAM iconballoon_param[ICON_BALLOON_PARAM_MAX];	///<é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	
-	s32 my_total_air;			///<Ž©•ª‚ª“ü‚ê‚½‹ó‹C—Ê‚Ì‡Œv’l
-	u32 main_frame;				///<ƒQ[ƒ€ŠJŽn‚©‚ç‚ÌƒtƒŒ[ƒ€”
+	s32 my_total_air;			///<è‡ªåˆ†ãŒå…¥ã‚ŒãŸç©ºæ°—é‡ã®åˆè¨ˆå€¤
+	u32 main_frame;				///<ã‚²ãƒ¼ãƒ é–‹å§‹ã‹ã‚‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 }BALLOON_GAME_WORK;
 
 

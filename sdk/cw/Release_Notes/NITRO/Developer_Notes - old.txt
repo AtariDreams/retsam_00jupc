@@ -1,6 +1,6 @@
 ===============================================================================
 Old Developer Notes:
-Metrowerks CodeWarrior® Development Studio for NINTENDO DS® v0.1 to v0.9
+Metrowerks CodeWarriorDevelopment Studio for NINTENDO DSãƒ§ v0.1 to v0.9
 ===============================================================================
 
 ===============================================================================

@@ -1,22 +1,22 @@
-//---- 僐儞僶乕僞丗SPAConv.exe  Version 1.13
+//---- 銈炽兂銉愩兗銈匡細SPAConv.exe  Version 1.13
 
 #ifndef __FRONTIER_PARTICLE_LST_H__
 #define __FRONTIER_PARTICLE_LST_H__
 
-//test_001.h偺spr儕僜乕僗掕媊
+//test_001.h銇畇pr銉偨銉笺偣瀹氱京
 #define TEST_001_000_EC001_1A		0
 #define TEST_001_000_EC001_1B		1
-//test_001.spa撪偺儕僜乕僗屄悢
+//test_001.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define TEST_001_SPAMAX	(2)
 
-//test_002.h偺spr儕僜乕僗掕媊
+//test_002.h銇畇pr銉偨銉笺偣瀹氱京
 #define TEST_002_000_EC001_1B		0
 #define TEST_002_000_EC001_1C		1
 #define TEST_002_000_EC001_1D		2
-//test_002.spa撪偺儕僜乕僗屄悢
+//test_002.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define TEST_002_SPAMAX	(3)
 
-//stage.h偺spr儕僜乕僗掕媊
+//stage.h銇畇pr銉偨銉笺偣瀹氱京
 #define STAGE_BS_KAMITAPE_L		0
 #define STAGE_BS_KAMITAPE_R		1
 #define STAGE_BS_KAMI_01_L		2
@@ -38,10 +38,10 @@
 #define STAGE_BS_SPOT01		18
 #define STAGE_BS_SPOT01_BG		19
 #define STAGE_BS_SPOT02		20
-//stage.spa撪偺儕僜乕僗屄悢
+//stage.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define STAGE_SPAMAX	(21)
 
-//roulette.h偺spr儕僜乕僗掕媊
+//roulette.h銇畇pr銉偨銉笺偣瀹氱京
 #define ROULETTE_BR_KEMURI01_L		0
 #define ROULETTE_BR_KEMURI01_R		1
 #define ROULETTE_BR_KEMURI02_L		2
@@ -90,30 +90,30 @@
 #define ROULETTE_BS_LASOR_YELLOW02		45
 #define ROULETTE_BS_LASOR_YELLOW03		46
 #define ROULETTE_BS_LASOR_YELLOW04		47
-//roulette.spa撪偺儕僜乕僗屄悢
+//roulette.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define ROULETTE_SPAMAX	(48)
 
-//roulette_brain.h偺spr儕僜乕僗掕媊
+//roulette_brain.h銇畇pr銉偨銉笺偣瀹氱京
 #define ROULETTE_BRAIN_BR_MIRROR_YELLOW		0
 #define ROULETTE_BRAIN_BR_MIRROR_YELLOWBG		1
-//roulette_brain.spa撪偺儕僜乕僗屄悢
+//roulette_brain.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define ROULETTE_BRAIN_SPAMAX	(2)
 
-//factory.h偺spr儕僜乕僗掕媊
+//factory.h銇畇pr銉偨銉笺偣瀹氱京
 #define FACTORY_BF_WARP01		0
 #define FACTORY_BF_WARP02		1
 #define FACTORY_BF_WARP03		2
-//factory.spa撪偺儕僜乕僗屄悢
+//factory.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define FACTORY_SPAMAX	(3)
 
-//castle.h偺spr儕僜乕僗掕媊
+//castle.h銇畇pr銉偨銉笺偣瀹氱京
 #define CASTLE_BC_KIRA		0
-//castle.spa撪偺儕僜乕僗屄悢
+//castle.spa鍐呫伄銉偨銉笺偣鍊嬫暟
 #define CASTLE_SPAMAX	(1)
 
 
 
-//---- frontier_particle_lst_tbl僥乕僽儖偺define掕媊 ----
+//---- frontier_particle_lst_tbl銉嗐兗銉栥儷銇甦efine瀹氱京 ----
 #define SPA_TEST_001		(0)
 #define SPA_TEST_002		(1)
 #define SPA_STAGE		(2)

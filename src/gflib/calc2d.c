@@ -8,33 +8,33 @@
 
 //---------------------------------------------------------------------------------------------------------
 /**
- *  ŠOÏ‚ğg—p‚µ‚Äw’èÀ•W‚ªw’èƒxƒNƒgƒ‹‚Ì¶‰E‚Ç‚¿‚ç‚É‚ ‚é‚©‚ğ”»’è
- *  @param  *inS_Vec        ƒxƒNƒgƒ‹n“_
- *  @param  *inE_Vec        ƒxƒNƒgƒ‹I“_
- *  @param  *inT_Vec        w’èÀ•W
+ *  å¤–ç©ã‚’ä½¿ç”¨ã—ã¦æŒ‡å®šåº§æ¨™ãŒæŒ‡å®šãƒ™ã‚¯ãƒˆãƒ«ã®å·¦å³ã©ã¡ã‚‰ã«ã‚ã‚‹ã‹ã‚’åˆ¤å®š
+ *  @param  *inS_Vec        ãƒ™ã‚¯ãƒˆãƒ«å§‹ç‚¹
+ *  @param  *inE_Vec        ãƒ™ã‚¯ãƒˆãƒ«çµ‚ç‚¹
+ *  @param  *inT_Vec        æŒ‡å®šåº§æ¨™
  *
- *  @retval int         1:•\iƒxƒNƒgƒ‹ã‚ğŠÜ‚Şj@0:— 
+ *  @retval int         1:è¡¨ï¼ˆãƒ™ã‚¯ãƒˆãƒ«ä¸Šã‚’å«ã‚€ï¼‰ã€€0:è£
 */
 //---------------------------------------------------------------------------------------------------------
 int BG2D_VectorSideS32( const Vec2DS32 *inS_Vec, const Vec2DS32 *inE_Vec, const Vec2DS32 *inT_Vec )
 {
     s32 n;
     
-    //ŠOÏ‚ğ‹‚ß‚éiVEC_CrossProduct–¢g—pj
+    //å¤–ç©ã‚’æ±‚ã‚ã‚‹ï¼ˆVEC_CrossProductæœªä½¿ç”¨ï¼‰
     n = ( inT_Vec->x * (inS_Vec->y - inE_Vec->y))+(inS_Vec->x * (inE_Vec->y - inT_Vec->y))+(inE_Vec->x * (inT_Vec->y - inS_Vec->y));
     if      ( n >= 0 ){
-		return  1; // •\(¶)
+		return  1; // è¡¨(å·¦)
 	}
-    else  return 0; // — (‰E)
+    else  return 0; // è£(å³)
 }
 
 //---------------------------------------------------------------------------------------------------------
 /**
- * ü•ª“¯m‚ÌŒğ·”»’è
- *  @param  *inS_Vec1        ƒxƒNƒgƒ‹n“_
- *  @param  *inE_Vec1        ƒxƒNƒgƒ‹I“_
- *  @param  *inS_Vec2        ƒxƒNƒgƒ‹n“_
- *  @param  *inE_Vec2        ƒxƒNƒgƒ‹I“_
+ * ç·šåˆ†åŒå£«ã®äº¤å·®åˆ¤å®š
+ *  @param  *inS_Vec1        ãƒ™ã‚¯ãƒˆãƒ«å§‹ç‚¹
+ *  @param  *inE_Vec1        ãƒ™ã‚¯ãƒˆãƒ«çµ‚ç‚¹
+ *  @param  *inS_Vec2        ãƒ™ã‚¯ãƒˆãƒ«å§‹ç‚¹
+ *  @param  *inE_Vec2        ãƒ™ã‚¯ãƒˆãƒ«çµ‚ç‚¹
  *
  *  @retval BOOL
 */
@@ -52,125 +52,125 @@ BOOL BG2D_CheckSegmentToSegmentS32( const Vec2DS32 *inS_Vec1, const Vec2DS32 *in
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒxƒNƒgƒ‹ƒf[ƒ^‚ğì¬‚·‚é
+ *@brief	ãƒ™ã‚¯ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
  *
- *@param	u16 x1Fn“_À•W
- *@param	u16 y1Fn“_À•W
- *@param	u16 x2FI“_À•W
- *@param	u16 y2FI“_À•W
+ *@param	u16 x1ï¼šå§‹ç‚¹åº§æ¨™
+ *@param	u16 y1ï¼šå§‹ç‚¹åº§æ¨™
+ *@param	u16 x2ï¼šçµ‚ç‚¹åº§æ¨™
+ *@param	u16 y2ï¼šçµ‚ç‚¹åº§æ¨™
  *
- *@return	TP_VECTOR_DATAŒ^FƒxƒNƒgƒ‹‚ÌŒX‚«‚ÌX=‚O‚Ì‚Ì‚‚³
+ *@return	TP_VECTOR_DATAå‹ï¼šãƒ™ã‚¯ãƒˆãƒ«ã®å‚¾ãã®X=ï¼ã®æ™‚ã®é«˜ã•
  *
  */
 //-----------------------------------------------------------------------------
 TP_VECTOR_DATA MakeVector( u16 x1, u16 y1, u16 x2, u16 y2 )
 {
-	s16 height;		// “_‚Ì‹——£‚‚³
-	s16 width;		// “_‚Ì‹——£•
-	TP_VECTOR_DATA	vect;	// ƒxƒNƒgƒ‹ƒf[ƒ^
+	s16 height;		// ç‚¹ã®è·é›¢é«˜ã•
+	s16 width;		// ç‚¹ã®è·é›¢å¹…
+	TP_VECTOR_DATA	vect;	// ãƒ™ã‚¯ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿
 	
 	//
-	// ŠJnÀ•W‚ÆI“_À•W‚©‚çŒX‚«‚Æ‚˜‚O‚Ì‚ÌY‚Ì’l‚ğ‹‚ß‚é
+	// é–‹å§‹åº§æ¨™ã¨çµ‚ç‚¹åº§æ¨™ã‹ã‚‰å‚¾ãã¨ï½˜ï¼ï¼ã®æ™‚ã®Yã®å€¤ã‚’æ±‚ã‚ã‚‹
 	//
 	height = y2 - y1;
 	width = x2 - x1;
-	if( width != 0 ){	// ‚OŠ„‰ñ”ğ
-		vect.x = FX_Div( height << FX32_SHIFT, width << FX32_SHIFT );		// ŒX‚«
+	if( width != 0 ){	// ï¼å‰²å›é¿
+		vect.x = FX_Div( height << FX32_SHIFT, width << FX32_SHIFT );		// å‚¾ã
 	}else{
-		vect.x = 255 << FX32_SHIFT;		// ŒÀ‚è‚È‚­Y²‚É‹ß‚¢ŒX‚«’l‚ğ“ü‚ê‚é
+		vect.x = 255 << FX32_SHIFT;		// é™ã‚ŠãªãYè»¸ã«è¿‘ã„å‚¾ãå€¤ã‚’å…¥ã‚Œã‚‹
 	}
-	vect.c = (y1 << FX32_SHIFT) - FX_Mul(vect.x, x1 << FX32_SHIFT);	// X=0‚Ì‚Ì’lƒZƒbƒg
+	vect.c = (y1 << FX32_SHIFT) - FX_Mul(vect.x, x1 << FX32_SHIFT);	// X=0ã®æ™‚ã®å€¤ã‚»ãƒƒãƒˆ
 
-	return vect;		// ƒxƒNƒgƒ‹‚ğ•Ô‚·
+	return vect;		// ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¿”ã™
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒxƒNƒgƒ‹‚ÌŒğ“_‚ğ‹‚ß‚é
+ *@brief	ãƒ™ã‚¯ãƒˆãƒ«ã®äº¤ç‚¹ã‚’æ±‚ã‚ã‚‹
  *
- *@param	Vec2DS32* vector1_sFƒxƒNƒgƒ‹‚P‚ÌŠJn“_
- *@param	Vec2DS32* vector1_eFƒxƒNƒgƒ‹‚P‚ÌI—¹“_
- *@param	Vec2DS32* vector2_sFƒxƒNƒgƒ‹‚Q‚ÌŠJn“_
- *@param	Vec2DS32* vector2_eFƒxƒNƒgƒ‹‚Q‚ÌI—¹“_
- *@param	Vec2DS32* crossFŒğ“_À•W
+ *@param	Vec2DS32* vector1_sï¼šãƒ™ã‚¯ãƒˆãƒ«ï¼‘ã®é–‹å§‹ç‚¹
+ *@param	Vec2DS32* vector1_eï¼šãƒ™ã‚¯ãƒˆãƒ«ï¼‘ã®çµ‚äº†ç‚¹
+ *@param	Vec2DS32* vector2_sï¼šãƒ™ã‚¯ãƒˆãƒ«ï¼’ã®é–‹å§‹ç‚¹
+ *@param	Vec2DS32* vector2_eï¼šãƒ™ã‚¯ãƒˆãƒ«ï¼’ã®çµ‚äº†ç‚¹
+ *@param	Vec2DS32* crossï¼šäº¤ç‚¹åº§æ¨™
  *
- *@return	u32Œ^F‚OFŒğ“_‚È‚µ		‚PFŒğ“_‚ ‚è
+ *@return	u32å‹ï¼šï¼ï¼šäº¤ç‚¹ãªã—		ï¼‘ï¼šäº¤ç‚¹ã‚ã‚Š
  *
  */
 //-----------------------------------------------------------------------------
 u32 CheckCrossMatrix( Vec2DS32* vector1_s, Vec2DS32* vector1_e, Vec2DS32* vector2_s, Vec2DS32* vector2_e, Vec2DS32* cross )
 {
-	fx32 cross_x;					// ¬”“_Œ^‚ÌŒğ“_
-	fx32 cross_y;					// ¬”“_Œ^‚ÌŒğ“_
-	fx32 half_x;					// lÌŒÜ“ü—p
-	fx32 half_y;					// lÌŒÜ“ü—p	
-	TP_VECTOR_DATA vector_data_1;	// Œğ“_ŒvZ—pƒxƒNƒgƒ‹ƒf[ƒ^‚P
-	TP_VECTOR_DATA vector_data_2;	// Œğ“_ŒvZ—pƒxƒNƒgƒ‹ƒf[ƒ^‚Q
-	Vec2DS32 vect1_max;				// ƒxƒNƒgƒ‹‚P‚ÌÅ‘å ”ÍˆÍ“à‚©Áª¯¸—p
-	Vec2DS32 vect1_min;				// ƒxƒNƒgƒ‹‚P‚ÌÅ¬ ”ÍˆÍ“à‚©Áª¯¸—p
-	Vec2DS32 vect2_max;				// ƒxƒNƒgƒ‹‚Q‚ÌÅ‘å ”ÍˆÍ“à‚©Áª¯¸—p
-	Vec2DS32 vect2_min;				// ƒxƒNƒgƒ‹‚Q‚ÌÅ¬ ”ÍˆÍ“à‚©Áª¯¸—p
+	fx32 cross_x;					// å°æ•°ç‚¹å‹ã®äº¤ç‚¹
+	fx32 cross_y;					// å°æ•°ç‚¹å‹ã®äº¤ç‚¹
+	fx32 half_x;					// å››æ¨äº”å…¥ç”¨
+	fx32 half_y;					// å››æ¨äº”å…¥ç”¨	
+	TP_VECTOR_DATA vector_data_1;	// äº¤ç‚¹è¨ˆç®—ç”¨ãƒ™ã‚¯ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ï¼‘
+	TP_VECTOR_DATA vector_data_2;	// äº¤ç‚¹è¨ˆç®—ç”¨ãƒ™ã‚¯ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ï¼’
+	Vec2DS32 vect1_max;				// ãƒ™ã‚¯ãƒˆãƒ«ï¼‘ã®æœ€å¤§ ç¯„å›²å†…ã‹ãƒã‚§ãƒƒã‚¯ç”¨
+	Vec2DS32 vect1_min;				// ãƒ™ã‚¯ãƒˆãƒ«ï¼‘ã®æœ€å° ç¯„å›²å†…ã‹ãƒã‚§ãƒƒã‚¯ç”¨
+	Vec2DS32 vect2_max;				// ãƒ™ã‚¯ãƒˆãƒ«ï¼’ã®æœ€å¤§ ç¯„å›²å†…ã‹ãƒã‚§ãƒƒã‚¯ç”¨
+	Vec2DS32 vect2_min;				// ãƒ™ã‚¯ãƒˆãƒ«ï¼’ã®æœ€å° ç¯„å›²å†…ã‹ãƒã‚§ãƒƒã‚¯ç”¨
 	
 
 
 	//
-	// Œğ“_‰Šú‰»
+	// äº¤ç‚¹åˆæœŸåŒ–
 	//
-	// Œğ“_‚ğƒZƒbƒg
+	// äº¤ç‚¹ã‚’ã‚»ãƒƒãƒˆ
  	if( cross != NULL ){
 		cross->x = 0xffff;
 		cross->y = 0xffff;
 	}
 
 
-	// ƒxƒNƒgƒ‹”ÍˆÍ“à‚ÉŒğ“_‚ª‚ ‚é‚Ì‚©ƒ`ƒFƒbƒN
+	// ãƒ™ã‚¯ãƒˆãƒ«ç¯„å›²å†…ã«äº¤ç‚¹ãŒã‚ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
 	if( BG2D_CheckSegmentToSegmentS32( vector1_s, vector1_e,
 							vector2_s, vector2_e ) == FALSE ){
-		// Œğ“_‚Í‚ ‚è‚Ü‚¹‚ñ
+		// äº¤ç‚¹ã¯ã‚ã‚Šã¾ã›ã‚“
 		return 0;
 	}
 	
 
-	// Œğ“_‚ğ‹‚ß‚é‚½‚ß‚ÌƒxƒNƒgƒ‹ƒf[ƒ^‚ğì¬
+	// äº¤ç‚¹ã‚’æ±‚ã‚ã‚‹ãŸã‚ã®ãƒ™ã‚¯ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 	vector_data_1 = MakeVector( vector1_s->x, vector1_s->y, vector1_e->x, vector1_e->y );
 	vector_data_2 = MakeVector( vector2_s->x, vector2_s->y, vector2_e->x, vector2_e->y );
 
 	
 	//
-	// Œğ“_‚ğ‹‚ß‚é
-	// ƒxƒNƒgƒ‹‚Ì‚QD‚Ìü‚Ì•û’ö®‚©‚ç
-	// ‹‚ß‚é
-	// Œğ“_‚ª‚ ‚é‚©ƒ`ƒFƒbƒN	= •½s‚©ƒ`ƒFƒbƒN
+	// äº¤ç‚¹ã‚’æ±‚ã‚ã‚‹
+	// ãƒ™ã‚¯ãƒˆãƒ«ã®ï¼’Dã®ç·šã®æ–¹ç¨‹å¼ã‹ã‚‰
+	// æ±‚ã‚ã‚‹
+	// äº¤ç‚¹ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯	= å¹³è¡Œã‹ãƒã‚§ãƒƒã‚¯
 	if( vector_data_1.x == vector_data_2.x ){
 		return 0;
 	}
 
-	// •½s‚Å‚È‚¢‚Æ‚«
-	// XÀ•W				
+	// å¹³è¡Œã§ãªã„ã¨ã
+	// Xåº§æ¨™				
 	cross_x = FX_Div( (vector_data_2.c - vector_data_1.c), vector_data_1.x - vector_data_2.x );
 	
-	// YÀ•W
+	// Yåº§æ¨™
 	cross_y = FX_Mul(vector_data_2.x, cross_x) + vector_data_2.c;
 	
 
-	// XÀ•W‚ğlÌŒÜ“ü‚µ‚Äs32‚ÌÀ•W‚É‚·‚é
+	// Xåº§æ¨™ã‚’å››æ¨äº”å…¥ã—ã¦s32ã®åº§æ¨™ã«ã™ã‚‹
 	if( FX_Modf( cross_x, &half_x ) >= FX32_HALF ){
 		half_x += FX32_ONE;
 	}
 	cross->x = half_x >> FX32_SHIFT;
 
-	// YÀ•W‚ğlÌŒÜ“ü‚µ‚Äs32‚ÌÀ•W‚É‚·‚é
+	// Yåº§æ¨™ã‚’å››æ¨äº”å…¥ã—ã¦s32ã®åº§æ¨™ã«ã™ã‚‹
 	if( FX_Modf( cross_y, &half_y ) >= FX32_HALF ){
 		half_y += FX32_ONE;
 	}
 	cross->y = half_y >> FX32_SHIFT;
 
 	//
-	// ƒxƒNƒgƒ‹‚Ì”ÍˆÍ“à‚É‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ™ã‚¯ãƒˆãƒ«ã®ç¯„å›²å†…ã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	// 
-	// Å‘åÅ¬’l‚ğƒZƒbƒg
-	// ƒxƒNƒgƒ‹‚P
+	// æœ€å¤§æœ€å°å€¤ã‚’ã‚»ãƒƒãƒˆ
+	// ãƒ™ã‚¯ãƒˆãƒ«ï¼‘
 	if( vector1_s->x >= vector1_e->x ){
 		vect1_max.x = vector1_s->x;
 		vect1_min.x = vector1_e->x;
@@ -185,7 +185,7 @@ u32 CheckCrossMatrix( Vec2DS32* vector1_s, Vec2DS32* vector1_e, Vec2DS32* vector
 		vect1_max.y = vector1_e->y;
 		vect1_min.y = vector1_s->y;
 	}
-	// ƒxƒNƒgƒ‹‚Q
+	// ãƒ™ã‚¯ãƒˆãƒ«ï¼’
 	if( vector2_s->x >= vector2_e->x ){
 		vect2_max.x = vector2_s->x;
 		vect2_min.x = vector2_e->x;
@@ -202,7 +202,7 @@ u32 CheckCrossMatrix( Vec2DS32* vector1_s, Vec2DS32* vector1_e, Vec2DS32* vector
 	}
 	
 	//
-	// ”ÍˆÍ“à‚©ƒ`ƒFƒbƒN
+	// ç¯„å›²å†…ã‹ãƒã‚§ãƒƒã‚¯
 	//
 	if( (((vect1_max.x >= cross->x) && (vect1_min.x <= cross->x)) &&
 		((vect1_max.y >= cross->y) && (vect1_min.y <= cross->y))) &&
@@ -210,7 +210,7 @@ u32 CheckCrossMatrix( Vec2DS32* vector1_s, Vec2DS32* vector1_e, Vec2DS32* vector
 		((vect2_max.y >= cross->y) && (vect2_min.y <= cross->y))) ){
 
 #if 0
-	OS_Printf( "Œğ“_  x[%d] y[%d]\n", cross->x, cross->y );
+	OS_Printf( "äº¤ç‚¹  x[%d] y[%d]\n", cross->x, cross->y );
 	OS_Printf( "vect1 x[%d] y[%d] - x[%d] y[%d]\n", vect1_max.x, vect1_max.y, vect1_min.x, vect1_min.y );
 	OS_Printf( "vect2 x[%d] y[%d] - x[%d] y[%d]\n", vect2_max.x, vect2_max.y, vect2_min.x, vect2_min.y );
 	OS_Printf( "vect1 s_x[%d] s_y[%d] e_x[%d] e_y[%d]\n", vector1_s->x, vector1_s->y, vector1_e->x, vector1_e->y );
@@ -219,122 +219,122 @@ u32 CheckCrossMatrix( Vec2DS32* vector1_s, Vec2DS32* vector1_e, Vec2DS32* vector
 	OS_Printf( "vect2 a[%d] c[%d]\n\n", vector_data_2.x >> FX32_SHIFT, vector_data_2.c >> FX32_SHIFT );
 #endif
 		
-		return 1;		// Œğ“_‚ª‚ ‚é
+		return 1;		// äº¤ç‚¹ãŒã‚ã‚‹
 	}
 	
-	return 0;		// Œğ“_‚Í‚ ‚é‚ªA”ÍˆÍ“à‚Å‚Í‚È‚¢
+	return 0;		// äº¤ç‚¹ã¯ã‚ã‚‹ãŒã€ç¯„å›²å†…ã§ã¯ãªã„
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ŠG‚Ìî•ñ‚©‚ç“àŠO”»’è‚ğ‚·‚é
+ *@brief	çµµã®æƒ…å ±ã‹ã‚‰å†…å¤–åˆ¤å®šã‚’ã™ã‚‹
  *
- *@param	Vec2DS32* pDataFƒsƒNƒ`ƒƒ[ƒf[ƒ^
- *@param	u32 SizeFƒf[ƒ^ƒTƒCƒY
- *@param	u16 xF”»’è‚·‚éXÀ•W
- *@param	u16 yF”»’è‚·‚éYÀ•W
+ *@param	Vec2DS32* pDataï¼šãƒ”ã‚¯ãƒãƒ£ãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *@param	u32 Sizeï¼šãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ *@param	u16 xï¼šåˆ¤å®šã™ã‚‹Xåº§æ¨™
+ *@param	u16 yï¼šåˆ¤å®šã™ã‚‹Yåº§æ¨™
  *
- *@return	u32Œ^F‚OFŠO@‚PF“à
+ *@return	u32å‹ï¼šï¼ï¼šå¤–ã€€ï¼‘ï¼šå†…
  *
  */
 //-----------------------------------------------------------------------------
 u32 CheckInOut( Vec2DS32* pData, u32 Size, u16 x, u16 y )
 {
-	int				i;					// ƒ‹[ƒv—p	
-	u32				check_num;			// €“_”
-	Vec2DS32		main_s;				// Áª¯¸—pƒxƒNƒgƒ‹n“_À•W
-	Vec2DS32		main_e;				// Áª¯¸—pƒxƒNƒgƒ‹I“_À•W
-	u8				next_way;			// Ÿ‚Ìƒf[ƒ^‚Ì•ûŒü
-	u8				now_way;			// ¡‚Ì•ûŒü
-	u8				skip_flag;			// ŸŒğ“_‚ª‚ ‚Á‚Ä‚àƒXƒLƒbƒv‚·‚éƒtƒ‰ƒO
-	u32				skip_data_num;		// ƒXƒLƒbƒvƒ`ƒFƒbƒN‚·‚éƒf[ƒ^‚Ì—v‘f”
-	s32				skip_work;			// ƒXƒLƒbƒvƒ`ƒFƒbƒN‚Ìì‹Æ—p
+	int				i;					// ãƒ«ãƒ¼ãƒ—ç”¨	
+	u32				check_num;			// é …ç‚¹æ•°
+	Vec2DS32		main_s;				// ãƒã‚§ãƒƒã‚¯ç”¨ãƒ™ã‚¯ãƒˆãƒ«å§‹ç‚¹åº§æ¨™
+	Vec2DS32		main_e;				// ãƒã‚§ãƒƒã‚¯ç”¨ãƒ™ã‚¯ãƒˆãƒ«çµ‚ç‚¹åº§æ¨™
+	u8				next_way;			// æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã®æ–¹å‘
+	u8				now_way;			// ä»Šã®æ–¹å‘
+	u8				skip_flag;			// æ¬¡äº¤ç‚¹ãŒã‚ã£ã¦ã‚‚ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹ãƒ•ãƒ©ã‚°
+	u32				skip_data_num;		// ã‚¹ã‚­ãƒƒãƒ—ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®è¦ç´ æ•°
+	s32				skip_work;			// ã‚¹ã‚­ãƒƒãƒ—ãƒã‚§ãƒƒã‚¯ã®ä½œæ¥­ç”¨
 	
 
 	//
-	// n“_‚ÆI“_‚ğì¬
+	// å§‹ç‚¹ã¨çµ‚ç‚¹ã‚’ä½œæˆ
 	//
-	main_s.x = x;					// ƒ`ƒFƒbƒN‚·‚é’¸“_À•W‚ğ‘ã“ü
-	main_s.y = y;					// ƒ`ƒFƒbƒN‚·‚é’¸“_À•W‚ğ‘ã“ü
-	main_e.x = x;					// ƒ`ƒFƒbƒN‚·‚é’¸“_À•W‚Ì^‰º‚Ì“_‚ğ‘ã“ü
-	main_e.y = CALC_IN_OUT_CECK_Y;	// ƒ`ƒFƒbƒN‚·‚é’¸“_À•W‚Ì^‰º‚Ì“_‚ğ‘ã“ü
+	main_s.x = x;					// ãƒã‚§ãƒƒã‚¯ã™ã‚‹é ‚ç‚¹åº§æ¨™ã‚’ä»£å…¥
+	main_s.y = y;					// ãƒã‚§ãƒƒã‚¯ã™ã‚‹é ‚ç‚¹åº§æ¨™ã‚’ä»£å…¥
+	main_e.x = x;					// ãƒã‚§ãƒƒã‚¯ã™ã‚‹é ‚ç‚¹åº§æ¨™ã®çœŸä¸‹ã®ç‚¹ã‚’ä»£å…¥
+	main_e.y = CALC_IN_OUT_CECK_Y;	// ãƒã‚§ãƒƒã‚¯ã™ã‚‹é ‚ç‚¹åº§æ¨™ã®çœŸä¸‹ã®ç‚¹ã‚’ä»£å…¥
 
-	// •Ï”‰Šú‰»
-	skip_flag = 0;			// ƒXƒLƒbƒv‚µ‚È‚¢‚æ‚¤‚É‰Šú‰»
+	// å¤‰æ•°åˆæœŸåŒ–
+	skip_flag = 0;			// ã‚¹ã‚­ãƒƒãƒ—ã—ãªã„ã‚ˆã†ã«åˆæœŸåŒ–
 
 	
 	//
-	// ƒsƒNƒ`ƒƒƒf[ƒ^“à‚Ì‘SƒxƒNƒgƒ‹‚ğŒŸõ‚µAŒğ“_‚Ì‚ ‚éƒxƒNƒgƒ‹‚Ì”
-	// ‚ğ”‚¦‚é
-	// •¡”‚ÌFŠO
-	// ’P”‚ÌF“à
+	// ãƒ”ã‚¯ãƒãƒ£ãƒ‡ãƒ¼ã‚¿å†…ã®å…¨ãƒ™ã‚¯ãƒˆãƒ«ã‚’æ¤œç´¢ã—ã€äº¤ç‚¹ã®ã‚ã‚‹ãƒ™ã‚¯ãƒˆãƒ«ã®æ•°
+	// ã‚’æ•°ãˆã‚‹
+	// è¤‡æ•°ã®æ™‚ï¼šå¤–
+	// å˜æ•°ã®æ™‚ï¼šå†…
 	//
-	check_num = 0;		// €“_”ƒJƒEƒ“ƒg‰Šú‰»
+	check_num = 0;		// é …ç‚¹æ•°ã‚«ã‚¦ãƒ³ãƒˆåˆæœŸåŒ–
 	for( i = 0; i < Size - 1; i++ ){
 
-		// ƒXƒLƒbƒv‚©ƒ`ƒFƒbƒN
+		// ã‚¹ã‚­ãƒƒãƒ—ã‹ãƒã‚§ãƒƒã‚¯
 		if( skip_flag == 1 ){
 			
-			skip_flag = 0;		// ƒXƒLƒbƒv‰ğœ
+			skip_flag = 0;		// ã‚¹ã‚­ãƒƒãƒ—è§£é™¤
 			
 		}else{
-			// ¡‚Ì“_‚ªƒ`ƒFƒbƒN‚·‚éƒxƒNƒgƒ‹‚Ì‰E‚É‚ ‚é‚©¶‚É‚ ‚é‚©ƒ`ƒFƒbƒN 
-			// ‚O‚Ì‚Íâ‘Î‚É’Ê‚é‚æ‚¤‚É‚·‚é
+			// ä»Šã®ç‚¹ãŒãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ™ã‚¯ãƒˆãƒ«ã®å³ã«ã‚ã‚‹ã‹å·¦ã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ 
+			// ï¼ã®æ™‚ã¯çµ¶å¯¾ã«é€šã‚‹ã‚ˆã†ã«ã™ã‚‹
 			skip_work = pData[ i ].x - main_s.x;
 			if( skip_work == 0 ){	
-				// ’¸“_‚Æ“¯‚¶
+				// é ‚ç‚¹ã¨åŒã˜
 				now_way = 2;
 			}else{
 				if( skip_work < 0 ){
-					// ¶
+					// å·¦
 					now_way = 0;
 				}else{
-					// ‰E
+					// å³
 					now_way = 1;
 				}
 			}
 			
-			// Ÿ‚Ì•ûŒü‚ğƒ`ƒFƒbƒN
+			// æ¬¡ã®æ–¹å‘ã‚’ãƒã‚§ãƒƒã‚¯
 			skip_work = pData[ i + 1 ].x - main_s.x;
 			if( skip_work == 0 ){
-				// ’¸“_‚Æ“¯‚¶
+				// é ‚ç‚¹ã¨åŒã˜
 				next_way = 2;
 			}else{
 				if( skip_work < 0 ){
-					// ¶
+					// å·¦
 					next_way = 0;
 				}else{
-					// ‰E
+					// å³
 					next_way = 1;
 				}
 			}
 
-			// •ûŒüƒ`ƒFƒbƒN
+			// æ–¹å‘ãƒã‚§ãƒƒã‚¯
 			if( (now_way != next_way) ||
 				((now_way == 2) || (next_way == 2)) ){
 			
-				// Œğ“_‚ª‚ ‚é‚Ì‚©Áª¯¸
+				// äº¤ç‚¹ãŒã‚ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
 				if( BG2D_CheckSegmentToSegmentS32( &main_s, &main_e,
 							&pData[ i ], &pData[ i + 1 ] ) == TRUE ){
-					// ƒXƒLƒbƒvƒ`ƒFƒbƒN‚Ì—v‘f”‚ğƒZƒbƒg
+					// ã‚¹ã‚­ãƒƒãƒ—ãƒã‚§ãƒƒã‚¯ã®è¦ç´ æ•°ã‚’ã‚»ãƒƒãƒˆ
 					skip_data_num = i + 2;
 
-					// ƒoƒbƒtƒ@‚ğƒI[ƒo[‚µ‚½‚ç‚P‚Ì’¸“_‚©‚ç‚ÌˆÊ’u‚É‚·‚é
-					// ‚È‚º‚È‚çÅI‚Ì’¸“_‚Æ‚O‚Ì’¸“_‚Íˆê‚É‚È‚é‚æ‚¤‚Éì‚ç‚ê‚Ä‚¢‚é‚½‚ß‚Å‚·
+					// ãƒãƒƒãƒ•ã‚¡ã‚’ã‚ªãƒ¼ãƒãƒ¼ã—ãŸã‚‰ï¼‘ã®é ‚ç‚¹ã‹ã‚‰ã®ä½ç½®ã«ã™ã‚‹
+					// ãªãœãªã‚‰æœ€çµ‚ã®é ‚ç‚¹ã¨ï¼ã®é ‚ç‚¹ã¯ä¸€ç·’ã«ãªã‚‹ã‚ˆã†ã«ä½œã‚‰ã‚Œã¦ã„ã‚‹ãŸã‚ã§ã™
 					if( skip_data_num >= Size ){
 						skip_data_num = (skip_data_num % Size) + 1;
 					}
 					
-					// ‚à‚µ‚Q‚ÂŸ‚Ì’¸“_‚ªmain_s-_e‚Åì¬‚³‚ê‚éƒxƒNƒgƒ‹‚ÉY²‚Å‚Q•ªŠ„‚³‚ê‚Ä‚¢‚é‚Æ‚«‚ÍA
-					// ’¸“_‚Í‚P‚Â‚É‚È‚é‚Ì‚ÅŸ‚ÅAŒğ“_‚ª‚ ‚é‚Æ‚«‚ÍƒXƒLƒbƒv‚·‚é
+					// ã‚‚ã—ï¼’ã¤æ¬¡ã®é ‚ç‚¹ãŒmain_s-_eã§ä½œæˆã•ã‚Œã‚‹ãƒ™ã‚¯ãƒˆãƒ«ã«Yè»¸ã§ï¼’åˆ†å‰²ã•ã‚Œã¦ã„ã‚‹ã¨ãã¯ã€
+					// é ‚ç‚¹ã¯ï¼‘ã¤ã«ãªã‚‹ã®ã§æ¬¡ã§ã€äº¤ç‚¹ãŒã‚ã‚‹ã¨ãã¯ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
 					if( (BG2D_VectorSideS32( &main_s, &main_e, &pData[ i ] ) ^
 						BG2D_VectorSideS32( &main_s, &main_e, &pData[ skip_data_num ] )) == 1 ){
-						// ŸŒğ“_‚ª‚ ‚Á‚½‚çƒXƒLƒbƒv‚·‚é
+						// æ¬¡äº¤ç‚¹ãŒã‚ã£ãŸã‚‰ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
 						skip_flag = 1;
 					}
 
-					// ƒ`ƒFƒbƒN
+					// ãƒã‚§ãƒƒã‚¯
 					check_num++;
 				}				
 			}
@@ -343,7 +343,7 @@ u32 CheckInOut( Vec2DS32* pData, u32 Size, u16 x, u16 y )
 
 
 	//
-	// €“_”‚ª’P”‚È‚ç‚P‚ğ•Ô‚·
+	// é …ç‚¹æ•°ãŒå˜æ•°ãªã‚‰ï¼‘ã‚’è¿”ã™
 	//
 	return check_num % 2;
 }
@@ -351,45 +351,45 @@ u32 CheckInOut( Vec2DS32* pData, u32 Size, u16 x, u16 y )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒxƒNƒgƒ‹‚Ìì‚éŠp“x‚ğ‹‚ß‚é
+ *@brief	ãƒ™ã‚¯ãƒˆãƒ«ã®ä½œã‚‹è§’åº¦ã‚’æ±‚ã‚ã‚‹
  *
- *@param	u16 x1Fn“_À•W
- *@param	u16 y1Fn“_À•W
- *@param	u16 x2FI“_À•W
- *@param	u16 y2FI“_À•W
- *@param	u16 x3Fn“_‚QÀ•W
- *@param	u16 y3Fn“_‚QÀ•W
- *@param	u16 x4FI“_‚QÀ•W
- *@param	u16 y4FI“_‚QÀ•W
+ *@param	u16 x1ï¼šå§‹ç‚¹åº§æ¨™
+ *@param	u16 y1ï¼šå§‹ç‚¹åº§æ¨™
+ *@param	u16 x2ï¼šçµ‚ç‚¹åº§æ¨™
+ *@param	u16 y2ï¼šçµ‚ç‚¹åº§æ¨™
+ *@param	u16 x3ï¼šå§‹ç‚¹ï¼’åº§æ¨™
+ *@param	u16 y3ï¼šå§‹ç‚¹ï¼’åº§æ¨™
+ *@param	u16 x4ï¼šçµ‚ç‚¹ï¼’åº§æ¨™
+ *@param	u16 y4ï¼šçµ‚ç‚¹ï¼’åº§æ¨™
  *
- *@return	u16Œ^FƒxƒNƒgƒ‹‚P‚Æ‚Q‚Ìì‚é‹·‚¢‚Ù‚¤‚ÌŠp“x
+ *@return	u16å‹ï¼šãƒ™ã‚¯ãƒˆãƒ«ï¼‘ã¨ï¼’ã®ä½œã‚‹ç‹­ã„ã»ã†ã®è§’åº¦
  *
  */
 //-----------------------------------------------------------------------------
 u16 GetVectorAngle( u16 x1, u16 y1, u16 x2, u16 y2, u16 x3, u16 y3, u16 x4, u16 y4 )
 {
-	u16 rota1, rota2;		// ‰ñ“]Šp
-	s16	vec_x, vec_y;		// ƒxƒNƒgƒ‹
+	u16 rota1, rota2;		// å›è»¢è§’
+	s16	vec_x, vec_y;		// ãƒ™ã‚¯ãƒˆãƒ«
 	
 	//
-	// 1-2@1-3‚ÌƒxƒNƒgƒ‹‚ğì¬‚µA‚Q’¼üŠÔ‚ÌŠp“x‚ğ•Ô‚· 
+	// 1-2ã€€1-3ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ä½œæˆã—ã€ï¼’ç›´ç·šé–“ã®è§’åº¦ã‚’è¿”ã™ 
 	//
-	// 1-2‚ÌŠp“x‚ğŒvZ
+	// 1-2ã®è§’åº¦ã‚’è¨ˆç®—
 	vec_x = x2 - x1;
 	vec_y = y2 - y1;
 
-	// Šp“x‚ğ‹‚ß‚é
+	// è§’åº¦ã‚’æ±‚ã‚ã‚‹
 	rota1 = FX_Atan2Idx( vec_y << FX32_SHIFT, vec_x << FX32_SHIFT );
 
-	// 1-3‚ÌŠp“x‚ğŒvZ
+	// 1-3ã®è§’åº¦ã‚’è¨ˆç®—
 	vec_x = x3 - x4;
 	vec_y = y3 - y4;
 
-	// Šp“x‚ğ‹‚ß‚é
+	// è§’åº¦ã‚’æ±‚ã‚ã‚‹
 	rota2 = FX_Atan2Idx( vec_y << FX32_SHIFT, vec_x << FX32_SHIFT );
 	
 	
-	// ŠÔ‚ÌŠp“x‚É‚·‚é
+	// é–“ã®è§’åº¦ã«ã™ã‚‹
 	if( rota1 > rota2 ){
 		rota1 -= rota2;
 	}else{
@@ -397,7 +397,7 @@ u16 GetVectorAngle( u16 x1, u16 y1, u16 x2, u16 y2, u16 x3, u16 y3, u16 x4, u16 
 		rota1 = rota2;
 	}
 
-	// ŠÔ‚ÌŠp“x‚ª180‚æ‚è‘½‚«‚Æ‚«‚Í”½‘Î‘¤‚Ì¬‚³‚¢Šp“x‚Ì•û‚Ì’l‚É‚·‚é
+	// é–“ã®è§’åº¦ãŒ180ã‚ˆã‚Šå¤šãã¨ãã¯åå¯¾å´ã®å°ã•ã„è§’åº¦ã®æ–¹ã®å€¤ã«ã™ã‚‹
 	if( rota1 > (180 * 182) ){
 		rota1 = (360*182) - rota1;
 	}
@@ -409,29 +409,29 @@ u16 GetVectorAngle( u16 x1, u16 y1, u16 x2, u16 y2, u16 x3, u16 y3, u16 x4, u16 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒxƒNƒgƒ‹‚Ì’·‚³‚ğ‹‚ß‚é
+ *@brief	ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã‚’æ±‚ã‚ã‚‹
  *
- *@param	s32 x1, s32 y1F’¸“_‚P
- *@param	s32 x2, s32 y2F’¸“_‚Q
+ *@param	s32 x1, s32 y1ï¼šé ‚ç‚¹ï¼‘
+ *@param	s32 x2, s32 y2ï¼šé ‚ç‚¹ï¼’
  *
  *
- *@return	u32Œ^F’·‚³
+ *@return	u32å‹ï¼šé•·ã•
  *
  */
 //-----------------------------------------------------------------------------
 u32 GetVectorDistance( s32 x1, s32 y1, s32 x2, s32 y2 )
 {
-	s32 dist_x, dist_y;			// Še•ûŒü‚Ì’·‚³
-	u32	dist;					// ƒxƒNƒgƒ‹‚Ì’·‚³
+	s32 dist_x, dist_y;			// å„æ–¹å‘ã®é•·ã•
+	u32	dist;					// ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•
 	
 	
 	//
-	// ƒxƒNƒgƒ‹‚Ì’·‚³‚ğ‹‚ß‚é
+	// ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã‚’æ±‚ã‚ã‚‹
 	//
 	dist_x = x1 - x2;
 	dist_y = y1 - y2;
 
-	// ’·‚³‚ğ‹‚ß‚é
+	// é•·ã•ã‚’æ±‚ã‚ã‚‹
 	dist = FX_Sqrt( ((dist_x * dist_x) + (dist_y * dist_y)) << FX32_SHIFT ) >> FX32_SHIFT;
 
 	return dist;
@@ -440,35 +440,35 @@ u32 GetVectorDistance( s32 x1, s32 y1, s32 x2, s32 y2 )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	’¸“_‚Ìƒoƒbƒtƒ@‚ğó‚¯æ‚è’†S‚ÌÀ•W‚ğ‹‚ß‚é
+ *@brief	é ‚ç‚¹ã®ãƒãƒƒãƒ•ã‚¡ã‚’å—ã‘å–ã‚Šä¸­å¿ƒã®åº§æ¨™ã‚’æ±‚ã‚ã‚‹
  *
- *@param	Vec2DS32* pBuffFƒoƒbƒtƒ@
- *@param	u32 SizeFƒTƒCƒY
+ *@param	Vec2DS32* pBuffï¼šãƒãƒƒãƒ•ã‚¡
+ *@param	u32 Sizeï¼šã‚µã‚¤ã‚º
  *
  *
- *@return	Vec2DS32Œ^F’†S‚ÌÀ•W
+ *@return	Vec2DS32å‹ï¼šä¸­å¿ƒã®åº§æ¨™
  *
  */
 //-----------------------------------------------------------------------------
 Vec2DS32 GetCenterMatrix( Vec2DS32* pBuff, u32 Size )
 {
-	Vec2DS32 max;		// Å‘å’l
-	Vec2DS32 min;		// Å¬’l
-	Vec2DS32 ret;		// –ß‚è’l—p
-	int	i;				// ƒ‹[ƒv—p
+	Vec2DS32 max;		// æœ€å¤§å€¤
+	Vec2DS32 min;		// æœ€å°å€¤
+	Vec2DS32 ret;		// æˆ»ã‚Šå€¤ç”¨
+	int	i;				// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 
 	
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	min = pBuff[ 0 ];
 	max = pBuff[ 0 ];
 	
 	//
-	//‚½‚Ä‚Æ‰¡‚ÌÅ‘åAÅ¬’l‚ğæ“¾ 
+	//ãŸã¦ã¨æ¨ªã®æœ€å¤§ã€æœ€å°å€¤ã‚’å–å¾— 
 	//
 	for( i = 0; i < Size; i++ ){
 		//
-		// X‚ÆY‚ÌÅ‘åÅ¬ƒ`ƒFƒbƒN
+		// Xã¨Yã®æœ€å¤§æœ€å°ãƒã‚§ãƒƒã‚¯
 		//
 		if( min.x > pBuff[ i ].x ){
 			min.x = pBuff[ i ].x;
@@ -489,7 +489,7 @@ Vec2DS32 GetCenterMatrix( Vec2DS32* pBuff, u32 Size )
 
 
 	//
-	// ’†SÀ•W‚ğ‹‚ß‚é
+	// ä¸­å¿ƒåº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	//
 	ret.x = ((max.x - min.x) / 2) + min.x;
 	ret.y = ((max.y - min.y) / 2) + min.y;
@@ -501,13 +501,13 @@ Vec2DS32 GetCenterMatrix( Vec2DS32* pBuff, u32 Size )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	s—ñ‚É‰ñ“]s—ñ‚ğ‚©‚¯‚é
+ *@brief	è¡Œåˆ—ã«å›è»¢è¡Œåˆ—ã‚’ã‹ã‘ã‚‹
  *
- *@param	MtxFx33* p_matrixFs—ñ
- *@param	u16 rota_numF‰ñ“]Šp
+ *@param	MtxFx33* p_matrixï¼šè¡Œåˆ—
+ *@param	u16 rota_numï¼šå›è»¢è§’
  *
  *
- *@return	‚È‚µ
+ *@return	ãªã—
  *
  */
 //-----------------------------------------------------------------------------
@@ -515,26 +515,26 @@ void SetRotaMatrix2D( MtxFx33* p_matrix, u16 rota_num )
 {
 	MtxFx33 work;
 	//
-	// ‰ñ“]s—ñ‚ğ‚©‚¯‚é
+	// å›è»¢è¡Œåˆ—ã‚’ã‹ã‘ã‚‹
 	//
 	MTX_RotZ33( &work, FX_SinIdx(rota_num), FX_CosIdx(rota_num) );
 
-	// ‚©‚¯‡‚í‚¹‚é
+	// ã‹ã‘åˆã‚ã›ã‚‹
 	MTX_Concat33( &work, p_matrix, p_matrix );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	s—ñ‚ÉŠgks—ñ‚ğ‚©‚¯‚é
- *			g—p‘O‚ÉMTX_Identity33ij‚Å’PˆÊs—ñ‚É‚µ‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢
+ *@brief	è¡Œåˆ—ã«æ‹¡ç¸®è¡Œåˆ—ã‚’ã‹ã‘ã‚‹
+ *			ä½¿ç”¨å‰ã«MTX_Identity33ï¼ˆï¼‰ã§å˜ä½è¡Œåˆ—ã«ã—ã¦ãŠã„ã¦ãã ã•ã„
  *
- *@param	MtxFx33* p_matrixFs—ñ
- *@param	fx32 xF‰¡Šgk’l
- *@param	fx32 yF‚½‚ÄŠgk’l
+ *@param	MtxFx33* p_matrixï¼šè¡Œåˆ—
+ *@param	fx32 xï¼šæ¨ªæ‹¡ç¸®å€¤
+ *@param	fx32 yï¼šãŸã¦æ‹¡ç¸®å€¤
  *
  *
- *@return	‚È‚µ
+ *@return	ãªã—
  *
  */
 //-----------------------------------------------------------------------------
@@ -543,34 +543,34 @@ void SetScaleMatrix2D( MtxFx33* p_matrix, fx32 x, fx32 y )
 	MtxFx33 work;
 
 	//
-	// ‰ñ“]s—ñ‚ğ‚©‚¯‚é
+	// å›è»¢è¡Œåˆ—ã‚’ã‹ã‘ã‚‹
 	//
 	MTX_Scale33( &work, x, y, FX32_ONE );
 
-	// ‚©‚¯‡‚í‚¹‚é
+	// ã‹ã‘åˆã‚ã›ã‚‹
 	MTX_Concat33( &work, p_matrix, p_matrix );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	s—ñ‚ÉÀ•W‚ğ‚©‚¯‚ÄA‰ñ“]AŠgkŒã‚ÌÀ•W‚ğ‹‚ß‚é
- *			g—p‘O‚ÉMTX_Identity33ij‚Å’PˆÊs—ñ‚É‚µ‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢
+ *@brief	è¡Œåˆ—ã«åº§æ¨™ã‚’ã‹ã‘ã¦ã€å›è»¢ã€æ‹¡ç¸®å¾Œã®åº§æ¨™ã‚’æ±‚ã‚ã‚‹
+ *			ä½¿ç”¨å‰ã«MTX_Identity33ï¼ˆï¼‰ã§å˜ä½è¡Œåˆ—ã«ã—ã¦ãŠã„ã¦ãã ã•ã„
  *
- *@param	MtxFx33* p_matrixFs—ñ
- *@param	fx32 xF‰¡À•W
- *@param	fx32 yF‚½‚ÄÀ•W
- *@param	fx32* p_get_xF•ÏŠ·Œã‚ÌÀ•WŠi”[—p
- *@param	fx32* p_get_yF•ÏŠ·Œã‚ÌÀ•WŠi”[—p
+ *@param	MtxFx33* p_matrixï¼šè¡Œåˆ—
+ *@param	fx32 xï¼šæ¨ªåº§æ¨™
+ *@param	fx32 yï¼šãŸã¦åº§æ¨™
+ *@param	fx32* p_get_xï¼šå¤‰æ›å¾Œã®åº§æ¨™æ ¼ç´ç”¨
+ *@param	fx32* p_get_yï¼šå¤‰æ›å¾Œã®åº§æ¨™æ ¼ç´ç”¨
  *
  *
- *@return	‚È‚µ
+ *@return	ãªã—
  *
  */
 //-----------------------------------------------------------------------------
 void GetMatrix2D( MtxFx33* p_matrix, fx32 x, fx32 y, fx32* p_get_x, fx32* p_get_y )
 {
-	// ŒvZ‚·‚é
+	// è¨ˆç®—ã™ã‚‹
 	*p_get_x = FX_Mul( p_matrix->_00, x ) + FX_Mul( p_matrix->_01, y );
 	*p_get_y = FX_Mul( p_matrix->_10, x ) + FX_Mul( p_matrix->_11, y );
 }
@@ -578,39 +578,39 @@ void GetMatrix2D( MtxFx33* p_matrix, fx32 x, fx32 y, fx32* p_get_x, fx32* p_get_
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‹ß‚¢“_‚ğ‹‚ß‚é
+ *@brief	è¿‘ã„ç‚¹ã‚’æ±‚ã‚ã‚‹
  *
- *@param	Vec2DS32* pBuffFƒoƒbƒtƒ@
- *@param	u32 SizeFƒTƒCƒY
- *@param	Vec2DS32 matF‹ß‚¢“_‚ğ’T‚·À•W
+ *@param	Vec2DS32* pBuffï¼šãƒãƒƒãƒ•ã‚¡
+ *@param	u32 Sizeï¼šã‚µã‚¤ã‚º
+ *@param	Vec2DS32 matï¼šè¿‘ã„ç‚¹ã‚’æ¢ã™åº§æ¨™
  *
  *
- *@return	u32 Œ^F‹ß‚¢À•W‚Ì“Y‚¦š
+ *@return	u32 å‹ï¼šè¿‘ã„åº§æ¨™ã®æ·»ãˆå­—
  *
  */
 //-----------------------------------------------------------------------------
 u32 GetNearMatrix( Vec2DS32* pBuff, u32 Size, Vec2DS32 mat )
 {
-	u32		  ret;				// –ß‚è’l—p
-	u32		  dist;				// Å’Z‹——£Ši”[—p
-	int		  i;				// ƒ‹[ƒv—p
-	u32		  dist_work;		// Å’ZÁª¯¸—p
+	u32		  ret;				// æˆ»ã‚Šå€¤ç”¨
+	u32		  dist;				// æœ€çŸ­è·é›¢æ ¼ç´ç”¨
+	int		  i;				// ãƒ«ãƒ¼ãƒ—ç”¨
+	u32		  dist_work;		// æœ€çŸ­ãƒã‚§ãƒƒã‚¯ç”¨
 		
 
 	//
-	// ƒoƒbƒtƒ@‚O‚Ì’l‚Å‰Šú‰»
+	// ãƒãƒƒãƒ•ã‚¡ï¼ã®å€¤ã§åˆæœŸåŒ–
 	// 
 	ret = 0;
 	dist = GetVectorDistance( pBuff[0].x, pBuff[0].y, mat.x, mat.y );
 	
 	//
-	// ˆê”Ô‹ß‚¢“_‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+	// ä¸€ç•ªè¿‘ã„ç‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
 	//
 	for( i = 0; i < Size; i++ ){
-		// ‹——£‚ğ‹‚ß‚é
+		// è·é›¢ã‚’æ±‚ã‚ã‚‹
 		dist_work = GetVectorDistance( pBuff[i].x, pBuff[i].y, mat.x, mat.y );
 
-		// Å’Z‚©ƒ`ƒFƒbƒN
+		// æœ€çŸ­ã‹ãƒã‚§ãƒƒã‚¯
 		if( dist > dist_work  ){
 			dist = dist_work;
 			ret = i;

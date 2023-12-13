@@ -1,8 +1,8 @@
 #ifndef _DUMMY_SCR_DEF_H_
 #define _DUMMY_SCR_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_DUMMY_01		(1)
-#define	SCRID_DUMMY_SCR_DATA_MAX		(1)		//最大数
+#define	SCRID_DUMMY_SCR_DATA_MAX		(1)		//譛螟ｧ謨ｰ
 
 #endif //_DUMMY_SCR_DEF_H_

@@ -24,8 +24,8 @@
 /*---------------------------------------------------------------------------*
     NNSi_G3dAnmObjInitNsBva
 
-    NNSG3dAnmObj��.nsbva���\�[�X�p�ɃC�j�V�����C�Y���܂��B
-    NNS_G3dInitAnmObj����Ăяo����܂��B
+    NNSG3dAnmObjを.nsbvaリソース用にイニシャライズします。
+    NNS_G3dInitAnmObjから呼び出されます。
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dAnmObjInitNsBva(NNSG3dAnmObj* pAnmObj,
@@ -44,7 +44,7 @@ NNSi_G3dAnmObjInitNsBva(NNSG3dAnmObj* pAnmObj,
     pAnmObj->resAnm = (void*)visAnm;
     
     //
-    // �r�W�r���e�B�A�j���[�V�����̏ꍇ�͑S�Ẵm�[�h�ɑ΂��Ē�`����Ă���B
+    // ビジビリティアニメーションの場合は全てのノードに対して定義されている。
     //
     for (i = 0; i < pAnmObj->numMapData; ++i)
     {
@@ -56,9 +56,9 @@ NNSi_G3dAnmObjInitNsBva(NNSG3dAnmObj* pAnmObj,
 /*---------------------------------------------------------------------------*
     NNSi_G3dAnmCalcNsBva
 
-    pResult: �r�W�r���e�B�A�j���[�V�����̌��ʂ��i�[���܂��B
+    pResult: ビジビリティアニメーションの結果を格納します。
     pAnmObj:
-    dataIdx: ���\�[�X���f�[�^�̊i�[�ꏊ�������C���f�b�N�X�ł�
+    dataIdx: リソース内データの格納場所を示すインデックスです
 
  *---------------------------------------------------------------------------*/
 void NNSi_G3dAnmCalcNsBva(NNSG3dVisAnmResult* pResult,

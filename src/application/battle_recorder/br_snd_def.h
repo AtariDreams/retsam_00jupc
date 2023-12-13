@@ -8,43 +8,43 @@
 
 enum {
 	
-	//eBR_SND_NG		= SEQ_SE_DP_CUSTOM06,		//ƒ^ƒbƒ`FNG
-	//eBR_SND_NG			= SEQ_SE_PL_BREC57,			//ƒ^ƒbƒ`FNG
-	eBR_SND_NG			= SEQ_SE_PL_BREC58,			//ƒ^ƒbƒ`FNG
+	//eBR_SND_NG		= SEQ_SE_DP_CUSTOM06,		//ã‚¿ãƒƒãƒï¼šNG
+	//eBR_SND_NG			= SEQ_SE_PL_BREC57,			//ã‚¿ãƒƒãƒï¼šNG
+	eBR_SND_NG			= SEQ_SE_PL_BREC58,			//ã‚¿ãƒƒãƒï¼šNG
 
-	//eBR_SND_TOUCH		= SEQ_SE_DP_BUTTON9,		//ƒ^ƒbƒ`FOK
-	eBR_SND_TOUCH		= SEQ_SE_PL_BREC57,			//ƒ^ƒbƒ`FOK
-	//eBR_SND_TOUCH		= SEQ_SE_PL_BREC58,			//ƒ^ƒbƒ`FOK
-	//eBR_SND_TOUCH		= SEQ_SE_PL_BREC59,			//ƒ^ƒbƒ`FOK
+	//eBR_SND_TOUCH		= SEQ_SE_DP_BUTTON9,		//ã‚¿ãƒƒãƒï¼šOK
+	eBR_SND_TOUCH		= SEQ_SE_PL_BREC57,			//ã‚¿ãƒƒãƒï¼šOK
+	//eBR_SND_TOUCH		= SEQ_SE_PL_BREC58,			//ã‚¿ãƒƒãƒï¼šOK
+	//eBR_SND_TOUCH		= SEQ_SE_PL_BREC59,			//ã‚¿ãƒƒãƒï¼šOK
 
-	//eBR_SND_SEND_OK	= SEQ_SE_DP_TARARARAN,		//ƒf[ƒ^‘—M"Š®—¹"
-	eBR_SND_SEND_OK		= SEQ_SE_PL_BREC12,			//ƒf[ƒ^‘—M"Š®—¹"
+	//eBR_SND_SEND_OK	= SEQ_SE_DP_TARARARAN,		//ãƒ‡ãƒ¼ã‚¿é€ä¿¡"å®Œäº†"
+	eBR_SND_SEND_OK		= SEQ_SE_PL_BREC12,			//ãƒ‡ãƒ¼ã‚¿é€ä¿¡"å®Œäº†"
 
-	//eBR_SND_RECV_OK	= SEQ_SE_DP_TARARARAN,		//ƒf[ƒ^ŽóM"Š®—¹"
-	eBR_SND_RECV_OK		= SEQ_SE_PL_BREC12,			//ƒf[ƒ^ŽóM"Š®—¹"
+	//eBR_SND_RECV_OK	= SEQ_SE_DP_TARARARAN,		//ãƒ‡ãƒ¼ã‚¿å—ä¿¡"å®Œäº†"
+	eBR_SND_RECV_OK		= SEQ_SE_PL_BREC12,			//ãƒ‡ãƒ¼ã‚¿å—ä¿¡"å®Œäº†"
 
-	eBR_SND_FRONTIER_IN	= SEQ_SE_PL_BREC20,			//uƒtƒƒ“ƒeƒBƒA‚Ì‚«‚ë‚­vŒÄ‚Ño‚µ
-	eBR_SND_FRONTIER_OUT= SEQ_SE_PL_BREC21,			//uƒtƒƒ“ƒeƒBƒA‚Ì‚«‚ë‚­v”²‚¯‚é
+	eBR_SND_FRONTIER_IN	= SEQ_SE_PL_BREC20,			//ã€Œãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã®ãã‚ãã€å‘¼ã³å‡ºã—
+	eBR_SND_FRONTIER_OUT= SEQ_SE_PL_BREC21,			//ã€Œãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã®ãã‚ãã€æŠœã‘ã‚‹
 
 	/////////////////////////////////////////////////////////////////////////////////////
-	//08.03.19 ’Ç‰Á
-	eBR_SND_SEARCH		= SEQ_SE_PL_BREC80,			//ƒf[ƒ^ŒŸõ’†A‘—M’†AŽóM’†(ƒ‹[ƒv‰¹)
+	//08.03.19 è¿½åŠ 
+	eBR_SND_SEARCH		= SEQ_SE_PL_BREC80,			//ãƒ‡ãƒ¼ã‚¿æ¤œç´¢ä¸­ã€é€ä¿¡ä¸­ã€å—ä¿¡ä¸­(ãƒ«ãƒ¼ãƒ—éŸ³)
 
-	//«ƒ‹[ƒv‚É‚·‚é‚©–¢’è
-	eBR_SND_SCROLL		= SEQ_SE_PL_BUTTON,			//ƒ^ƒbƒ`FƒXƒNƒ[ƒ‹ƒo[‚ð“®‚©‚·
+	//â†“ãƒ«ãƒ¼ãƒ—ã«ã™ã‚‹ã‹æœªå®š
+	eBR_SND_SCROLL		= SEQ_SE_PL_BUTTON,			//ã‚¿ãƒƒãƒï¼šã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã‚’å‹•ã‹ã™
 
-	eBR_SND_COL_CHG		= eBR_SND_TOUCH,			//ƒ^ƒbƒ`F‰æ–Ê‚ÌF‚ð•ÏX
+	eBR_SND_COL_CHG		= eBR_SND_TOUCH,			//ã‚¿ãƒƒãƒï¼šç”»é¢ã®è‰²ã‚’å¤‰æ›´
 
-	//eBR_SND_TOUCH_HERE= SEQ_SE_DP_SELECT,			//‰æ–Ê‚É“HH‚ª—Ž‚¿‚½‰¹(TOUCH HERE)
-	//eBR_SND_TOUCH_HERE	= SEQ_SE_PL_BREC11,			//‰æ–Ê‚É“HH‚ª—Ž‚¿‚½‰¹(TOUCH HERE)
-	eBR_SND_TOUCH_HERE	= SEQ_SE_PL_BREC11_2,			//‰æ–Ê‚É“HH‚ª—Ž‚¿‚½‰¹(TOUCH HERE)
+	//eBR_SND_TOUCH_HERE= SEQ_SE_DP_SELECT,			//ç”»é¢ã«æ»´ï¼ŸãŒè½ã¡ãŸéŸ³(TOUCH HERE)
+	//eBR_SND_TOUCH_HERE	= SEQ_SE_PL_BREC11,			//ç”»é¢ã«æ»´ï¼ŸãŒè½ã¡ãŸéŸ³(TOUCH HERE)
+	eBR_SND_TOUCH_HERE	= SEQ_SE_PL_BREC11_2,			//ç”»é¢ã«æ»´ï¼ŸãŒè½ã¡ãŸéŸ³(TOUCH HERE)
 
-	//«br_start.c‚ÌSEŒÄ‚Ño‚µ’è‹`‚ð’u‚«Š·‚¦‚Ä—~‚µ‚¢‚Å‚·B
-	eBR_SND_START	= SEQ_SE_PL_BREC03,			//‹N“®
-	eBR_SND_START2	= SEQ_SE_PL_BREC03,				//‹N“®
-	eBR_SND_START3	= SEQ_SE_PL_BREC03,				//‹N“®
+	//â†“br_start.cã®SEå‘¼ã³å‡ºã—å®šç¾©ã‚’ç½®ãæ›ãˆã¦æ¬²ã—ã„ã§ã™ã€‚
+	eBR_SND_START	= SEQ_SE_PL_BREC03,			//èµ·å‹•
+	eBR_SND_START2	= SEQ_SE_PL_BREC03,				//èµ·å‹•
+	eBR_SND_START3	= SEQ_SE_PL_BREC03,				//èµ·å‹•
 
-	//‚Ù‚©‰½‚©‚ ‚é‚©‚ÈH
+	//ã»ã‹ä½•ã‹ã‚ã‚‹ã‹ãªï¼Ÿ
 };
 
 

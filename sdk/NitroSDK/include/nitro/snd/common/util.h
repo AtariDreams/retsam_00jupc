@@ -15,16 +15,16 @@
   do-indent
 
   Revision 1.15  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL ‚Ì”»’è•”•ª‚É SDK_WIN32 ‚Å‚Ì”»’è‚à’Ç‰Á
+  SDK_FROM_TOOL ã®åˆ¤å®šéƒ¨åˆ†ã« SDK_WIN32 ã§ã®åˆ¤å®šã‚‚è¿½åŠ 
 
   Revision 1.14  2005/03/24 04:35:33  ida
   sound patch for NITRO-System 2005/03/28
 
   Revision 1.11  2005/03/08 05:45:01  ida
-  SDK_FROM_TOOL‘Î‰ž
+  SDK_FROM_TOOLå¯¾å¿œ
 
   Revision 1.10  2005/02/02 05:31:58  ida
-  ’˜ìŒ ”NŽŸ•\‹L‚ðXV
+  è‘—ä½œæ¨©å¹´æ¬¡è¡¨è¨˜ã‚’æ›´æ–°
 
   Revision 1.9  2005/02/02 05:10:47  ida
   for SDK_FROM_TOOL
@@ -96,10 +96,10 @@ extern "C" {
     macro definition
  ******************************************************************************/
 
-#define SND_PITCH_DIVISION_BIT     6   // ”¼‰¹•ª‰ð”\.iƒrƒbƒg”j
-#define SND_PITCH_DIVISION_RANGE ( 1 << SND_PITCH_DIVISION_BIT )        // ”¼‰¹•ª‰ð”\.
+#define SND_PITCH_DIVISION_BIT     6   // åŠéŸ³åˆ†è§£èƒ½.ï¼ˆãƒ“ãƒƒãƒˆæ•°ï¼‰
+#define SND_PITCH_DIVISION_RANGE ( 1 << SND_PITCH_DIVISION_BIT )        // åŠéŸ³åˆ†è§£èƒ½.
 
-#define SND_PITCH_TABLE_SIZE     ( 12 * SND_PITCH_DIVISION_RANGE )      // ƒsƒbƒ`ŒvŽZƒe[ƒuƒ‹ƒTƒCƒY.
+#define SND_PITCH_TABLE_SIZE     ( 12 * SND_PITCH_DIVISION_RANGE )      // ãƒ”ãƒƒãƒè¨ˆç®—ãƒ†ãƒ¼ãƒ–ãƒ«ã‚µã‚¤ã‚º.
 #define SND_PITCH_TABLE_BIAS       0x10000
 #define SND_PITCH_TABLE_SHIFT     16
 

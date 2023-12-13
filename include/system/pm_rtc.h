@@ -1,12 +1,12 @@
 //============================================================================================
 /**
  * @file	pm_rtc.h
- * @brief	RTCƒAƒNƒZƒXƒ‰ƒbƒp[—pƒwƒbƒ_
+ * @brief	RTCã‚¢ã‚¯ã‚»ã‚¹ãƒ©ãƒƒãƒ‘ãƒ¼ç”¨ãƒ˜ãƒƒãƒ€
  * @author	tamada	GAME FREAK inc.
  * @date	2005.11.21
  *
- * ’¼Ú‚ÌRTCƒ‰ƒCƒuƒ‰ƒŠg—p‚Í‹Ö~‚·‚éB
- * ‚±‚ÌŠÖ”Œo—R‚Å‚ÌƒAƒNƒZƒX‚ğs‚¤B
+ * ç›´æ¥ã®RTCãƒ©ã‚¤ãƒ–ãƒ©ãƒªä½¿ç”¨ã¯ç¦æ­¢ã™ã‚‹ã€‚
+ * ã“ã®é–¢æ•°çµŒç”±ã§ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’è¡Œã†ã€‚
  */
 //============================================================================================
 #ifndef	__PM_RTC_H__
@@ -17,13 +17,13 @@
 
 #include "system/timezone.h"
 //--------------------------------------------------------------
-//	‰Šú‰»•ƒƒCƒ“
+//	åˆæœŸåŒ–ï¼†ãƒ¡ã‚¤ãƒ³
 //--------------------------------------------------------------
 extern void GF_RTC_Init(void);
 extern void GF_RTC_Main(void);
 
 //--------------------------------------------------------------
-//	æ“¾—pŠÖ”
+//	å–å¾—ç”¨é–¢æ•°
 //--------------------------------------------------------------
 extern void GF_RTC_GetDateTime(RTCDate * date, RTCTime * time);
 extern void GF_RTC_GetTime(RTCTime * time);
@@ -31,16 +31,16 @@ extern void GF_RTC_GetDate(RTCDate * date);
 extern int GF_RTC_GetTimeBySecond(void);
 extern s64 GF_RTC_GetDateTimeBySecond(void);
 
-//Œo‰ßŠÔ‚Ìæ“¾
+//çµŒéæ™‚é–“ã®å–å¾—
 extern s64 GF_RTC_GetPassTime(s64 start_sec, s64 end_sec);
 
 //--------------------------------------------------------------
-//	ƒc[ƒ‹ŠÖ”
+//	ãƒ„ãƒ¼ãƒ«é–¢æ•°
 //--------------------------------------------------------------
 extern int GF_RTC_ConvertHourToTimeZone(int hour);
 extern int GF_RTC_GetTimeZone(void);
 extern int GF_RTC_GetDaysOffset(const RTCDate * date);
-//–é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+//å¤œã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 extern BOOL GF_RTC_IsNightTime(void);
 
 static inline BOOL GF_RTC_IsLeapYear(u32 year)
@@ -54,7 +54,7 @@ static inline BOOL GF_RTC_IsLeapYear(u32 year)
 
 #ifdef	PM_DEBUG
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒO—pŠÖ”
+//	ãƒ‡ãƒãƒƒã‚°ç”¨é–¢æ•°
 //--------------------------------------------------------------
 extern void DEBUG_StartFakeTime(int rate);
 extern void DEBUG_StopFakeTime(void);

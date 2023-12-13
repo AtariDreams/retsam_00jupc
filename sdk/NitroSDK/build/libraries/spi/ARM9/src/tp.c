@@ -12,50 +12,50 @@
 
   $Log: tp.c,v $
   Revision 1.36.18.1  2008/01/18 01:06:18  seiki_masashi
-  HEAD �ƃ}�[�W
+  HEAD とマージ
 
   Revision 1.38  2007/12/20 01:06:08  terui
   Correct copyright year.
 
   Revision 1.37  2007/12/19 01:10:55  terui
-  TP_Wait[All]Busy() �ɂ����āA�ҋ@����̕��A���������ɖ������Ă���ꍇ��
-  �����݋���ԂɊւ�炸��������悤�ɏC���B
+  TP_Wait[All]Busy() において、待機からの復帰条件を既に満たしている場合は
+  割込み許可状態に関わらず成功するように修正。
 
   Revision 1.36  2006/01/18 02:12:27  kitase_hirotake
   do-indent
 
   Revision 1.35  2005/04/14 05:07:42  takano_makoto
-  �L�����u���[�V�����p�����[�^���s���ȏꍇ�ɍ��W�l��0�Ƃ��ĕԂ��悤�C��
+  キャリブレーションパラメータが不正な場合に座標値を0として返すよう修正
 
   Revision 1.34  2005/04/14 04:05:10  takano_makoto
-  TP_GetUserInfo�����TRUE��Ԃ��悤�ɏC��
+  TP_GetUserInfoが常にTRUEを返すように修正
 
   Revision 1.33  2005/02/28 05:26:25  yosizaki
   do-indent.
 
   Revision 1.32  2005/02/18 08:54:02  yasu
-  ����N�x�ύX
+  著作年度変更
 
   Revision 1.31  2005/02/18 07:29:41  yasu
-  Signed/Unsigned �ϊ��x���}��
+  Signed/Unsigned 変換警告抑制
 
   Revision 1.30  2004/12/29 06:08:57  takano_makoto
-  TP_GetRatestRawPointInAuto�֐��ɍ��W��ё΍􏈗���ǉ�
+  TP_GetRatestRawPointInAuto関数に座標飛び対策処理を追加
 
   Revision 1.29  2004/12/29 04:00:26  takano_makoto
-  TP_RequestSetStability�֐��̈����ɉߋ��Ƃ̌݊��̂���retry�p�����[�^��ǉ�(�����ł͎g�p����Ȃ�)
+  TP_RequestSetStability関数の引数に過去との互換のためretryパラメータを追加(内部では使用されない)
 
   Revision 1.28  2004/12/29 02:04:34  takano_makoto
-  SetStability�֐���retry�p�����[�^��p�~
+  SetStability関数のretryパラメータを廃止
 
   Revision 1.27  2004/12/14 00:20:29  takano_makoto
-  TP_GetLatestRawPointInAuto����tpState.index�̒l�����炩���ߑޔ����Ă����悤�ɏC��
+  TP_GetLatestRawPointInAuto中のtpState.indexの値をあらかじめ退避しておくように修正
 
   Revision 1.26  2004/12/13 09:01:33  takano_makoto
-  ����A�v���P�[�V������validity�����Ă��Ȃ��ꍇ�̂��߁ATP_GetLatestRawPointInAuto�֐���INVALID�̏ꍇ�ł����W�l���ꉞ�ݒ肵�Ă����B
+  万一アプリケーションがvalidityを見ていない場合のため、TP_GetLatestRawPointInAuto関数でINVALIDの場合でも座標値を一応設定しておく。
 
   Revision 1.25  2004/12/08 06:16:37  takano_makoto
-  TP_GetLatestRawPointInAuto�ŁAinvalid�ȍ��W�l���������ł��Ȃ������ꍇ�ɂ� invalid�t���O�𗧂Ă��l��Ԃ��悤�ɏC���B
+  TP_GetLatestRawPointInAutoで、invalidな座標値しか発見できなかった場合には invalidフラグを立てた値を返すように修正。
 
   Revision 1.24  2004/11/02 10:26:33  takano_makoto
   fix typo.
@@ -64,13 +64,13 @@
   fix typo.
 
   Revision 1.22  2004/10/20 06:34:45  terui
-  LCD�̃��C������`����ύX
+  LCDのライン数定義名を変更
 
   Revision 1.21  2004/09/27 10:06:37  takano_makoto
-  branch�Ƃ�Merge
+  branchとのMerge
 
   Revision 1.20.2.1  2004/09/27 10:02:33  takano_makoto
-  TP_CalcCalivrateParam�Ŋ��荞�݋֎~�̂܂܃G���[�I������ꍇ���������o�O���C��
+  TP_CalcCalivrateParamで割り込み禁止のままエラー終了する場合があったバグを修正
 
   Revision 1.20  2004/09/13 05:49:56  yasu
   merged with NitroSDK_2_00pr6_branch
@@ -79,10 +79,10 @@
   Support SDK_NVRAM_FORMAT
 
   Revision 1.19  2004/09/03 04:29:15  terui
-  NVRAM�����[�U�[���Ɋւ���\���̒�`�����ɔ����C���B
+  NVRAM内ユーザー情報に関する構造体定義整理に伴う修正。
 
   Revision 1.18  2004/08/25 09:29:17  terui
-  calibration���ǂݏo��������TS_VERSION�ɂ��؂蕪����悤�ɕύX�B
+  calibration情報読み出し部分をTS_VERSIONにより切り分けるように変更。
 
   Revision 1.17  2004/07/27 07:31:10  yasu
   Add #pragma  warn_padding off
@@ -94,25 +94,25 @@
   Add TP_GetCalibratedResult
 
   Revision 1.14  2004/06/10 05:00:47  takano_makoto
-  TP_WaitBusy, TP_WaitAllBusy�ł�ASSERT�C��
+  TP_WaitBusy, TP_WaitAllBusyでのASSERT修正
 
   Revision 1.13  2004/06/10 04:41:37  yasu
   fix assert condition in TP_RequestAutoSamplingStartAsync
 
   Revision 1.12  2004/06/09 04:16:00  takano_makoto
-  TP_GetCalibratePoint()��invalid�Ȓl�ɑ΂��Ă��ϊ������s����悤�ɏC��
+  TP_GetCalibratePoint()でinvalidな値に対しても変換を実行するように修正
 
   Revision 1.11  2004/06/02 06:14:37  takano_makoto
-  �o�O�C���ATP_RequestAutoSamplingStartAsync(), TP_SetCallback()�̈����ύX
+  バグ修正、TP_RequestAutoSamplingStartAsync(), TP_SetCallback()の引数変更
 
   Revision 1.10  2004/05/31 07:54:35  takano_makoto
-  PXI���M����Ɋ��荞�݂����������ꍇ�̃o�O�C��
+  PXI送信直後に割り込みが発生した場合のバグ修正
 
   Revision 1.9  2004/05/21 10:01:39  takano_makoto
-  TP_GetUserInfo()��ǉ�
+  TP_GetUserInfo()を追加
 
   Revision 1.8  2004/05/18 01:38:48  terui
-  ARM7�Ƃ�PXI�����@�\�ɑΉ�
+  ARM7とのPXI同期機構に対応
 
   Revision 1.7  2004/05/14 00:42:18  takano_makoto
   Modify Calibrate Parameter format.
@@ -158,13 +158,13 @@ static void TPi_TpCallback(PXIFifoTag tag, u32 data, BOOL err);
  *---------------------------------------------------------------------------*/
 typedef struct
 {
-    s32     x0;                        // X���W�̐ؕ�
-    s32     xDotSize;                  // X�h�b�g��
-    s32     xDotSizeInv;               // X����
+    s32     x0;                        // X座標の切片
+    s32     xDotSize;                  // Xドット幅
+    s32     xDotSizeInv;               // X分母
 
-    s32     y0;                        // Y���W�̐ؕ�
-    s32     yDotSize;                  // Y�h�b�g��
-    s32     yDotSizeInv;               // Y����
+    s32     y0;                        // Y座標の切片
+    s32     yDotSize;                  // Yドット幅
+    s32     yDotSizeInv;               // Y分母
 
 }
 TPiCalibrateParam;
@@ -172,19 +172,19 @@ TPiCalibrateParam;
 #pragma  warn_padding off
 static struct
 {
-    TPRecvCallback callback;           // TP�l���擾�������ɌĂяo�����[�U�R�[���o�b�N�֐�
-    TPData  buf;                       // TP�l�P��擾����TP�l��M�o�b�t�@
-    u16     index;                     // �I�[�g�T���v�����O���̍ŐV�o�b�t�@�C���f�b�N�X
-    u16     frequence;                 // �I�[�g�T���v�����O���̂P�t���[���T���v�����O��
-    TPData *samplingBufs;              // �I�[�g�T���v�����O����TP�l�o�b�t�@�|�C���^
-    u16     bufSize;                   // �I�[�g�T���v�����O����TP�o�b�t�@�T�C�Y
+    TPRecvCallback callback;           // TP値を取得した時に呼び出すユーザコールバック関数
+    TPData  buf;                       // TP値１回取得時のTP値受信バッファ
+    u16     index;                     // オートサンプリング時の最新バッファインデックス
+    u16     frequence;                 // オートサンプリング時の１フレームサンプリング回数
+    TPData *samplingBufs;              // オートサンプリング時のTP値バッファポインタ
+    u16     bufSize;                   // オートサンプリング時のTPバッファサイズ
     // PADDING 2 BYTE
-    TPiCalibrateParam calibrate;       // �L�����u���[�V�����p�����[�^
-    u16     calibrate_flg;             // �L�����u���[�V�����t���O
+    TPiCalibrateParam calibrate;       // キャリブレーションパラメータ
+    u16     calibrate_flg;             // キャリブレーションフラグ
 
-    vu16    state;                     // �^�b�`�p�l���̏��
-    vu16    err_flg;                   // �G���[�t���O
-    vu16    command_flg;               // ���N�G�X�g�R�}���h���s���t���O
+    vu16    state;                     // タッチパネルの状態
+    vu16    err_flg;                   // エラーフラグ
+    vu16    command_flg;               // リクエストコマンド実行中フラグ
 }
 tpState;
 #pragma  warn_padding reset
@@ -193,20 +193,20 @@ tpState;
 /*---------------------------------------------------------------------------*
     Inline sub-routine definition
     
-    �����̖��߂ɑ΂���ARM7����̉�����PXI���C�u�����o�R�ŕԂ���܂��B
-    PXI�Ƀ^�O"PXI_FIFO_TAG_TOUCHPANEL"�̃R�[���o�b�N���w�肷�邱�Ƃ�
-    ARM7����̉����𓾂邱�Ƃ��ł��܂��B
+    これらの命令に対するARM7からの応答はPXIライブラリ経由で返されます。
+    PXIにタグ"PXI_FIFO_TAG_TOUCHPANEL"のコールバックを指定することで
+    ARM7からの応答を得ることができます。
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
   Name:         TPi_SamplingNow
 
-  Description:  �^�b�`�p�l�������T���v�����O����B
+  Description:  タッチパネルを一回サンプリングする。
 
   Arguments:    None.
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL TPi_SamplingNow(void)
 {
@@ -226,15 +226,15 @@ static inline BOOL TPi_SamplingNow(void)
 /*---------------------------------------------------------------------------*
   Name:         TPi_AutoSamplingOn
 
-  Description:  �^�b�`�p�l���̃I�[�g�T���v�����O���J�n����B
+  Description:  タッチパネルのオートサンプリングを開始する。
 
-  Arguments:    vCount -    �T���v�����O���s��V�J�E���g�B
-                            1�t���[���ɕ�����T���v�����O����ꍇ�A������
-                            �N�_��1�t���[���������������B
-                frequency - 1�t���[���ɉ���T���v�����O���邩�̕p�x�B
+  Arguments:    vCount -    サンプリングを行うVカウント。
+                            1フレームに複数回サンプリングする場合、ここを
+                            起点に1フレームが時分割される。
+                frequency - 1フレームに何回サンプリングするかの頻度。
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL TPi_AutoSamplingOn(u16 vCount, u8 frequency)
 {
@@ -260,12 +260,12 @@ static inline BOOL TPi_AutoSamplingOn(u16 vCount, u8 frequency)
 /*---------------------------------------------------------------------------*
   Name:         TPi_AutoSamplingOff
 
-  Description:  �^�b�`�p�l���̃I�[�g�T���v�����O���~����B
+  Description:  タッチパネルのオートサンプリングを停止する。
 
   Arguments:    None.
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL TPi_AutoSamplingOff(void)
 {
@@ -285,13 +285,13 @@ static inline BOOL TPi_AutoSamplingOff(void)
 /*---------------------------------------------------------------------------*
   Name:         TPi_SetupStability
 
-  Description:  �T���v�����O�ɂ�������蔻��p�����[�^��ݒ肷��B
+  Description:  サンプリングにおける安定判定パラメータを設定する。
 
-  Arguments:    range - �A�������T���v�����O�ɂ����āA���o�d�������肵���Ƃ݂Ȃ��덷�B
-                        �Ȃ��A���o�l��12bit�� 0 �` 4095�B
+  Arguments:    range - 連続したサンプリングにおいて、検出電圧が安定したとみなす誤差。
+                        なお、検出値は12bitで 0 〜 4095。
 
-  Returns:      BOOL - ���߂�PXI�o�R�Ő���ɑ��M�ł����ꍇTRUE�A
-                       ���s�����ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL - 命令をPXI経由で正常に送信できた場合TRUE、
+                       失敗した場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 static inline BOOL TPi_SetupStability(u16 range)
 {
@@ -312,10 +312,10 @@ static inline BOOL TPi_SetupStability(u16 range)
 /*---------------------------------------------------------------------------*
   Name:         TPi_CopyTpFromSystemWork
 
-  Description:  ARM7����shared memory�֏������܂ꂽ�^�b�`�p�l���l�̃f�[�^
-                ��ʗ̈�ɓǂݏo���B
+  Description:  ARM7からshared memoryへ書き込まれたタッチパネル値のデータ
+                を別領域に読み出す。
 
-  Returns:      result - �ǂݏo���ꂽ�ŐV�̃^�b�`�p�l���l���i�[����B
+  Returns:      result - 読み出された最新のタッチパネル値を格納する。
  *---------------------------------------------------------------------------*/
 static inline void TPi_CopyTpFromSystemWork(TPData *result)
 {
@@ -324,7 +324,7 @@ static inline void TPi_CopyTpFromSystemWork(TPData *result)
     spi_tp.halfs[0] = *(u16 *)(&(OS_GetSystemWork()->touch_panel[0]));
     spi_tp.halfs[1] = *(u16 *)(&(OS_GetSystemWork()->touch_panel[2]));
 
-    // �V�X�e���̈悩��ǂݏo��( 2�o�C�g�A�N�Z�X )
+    // システム領域から読み出し( 2バイトアクセス )
     result->x = (u16)spi_tp.e.x;
     result->y = (u16)spi_tp.e.y;
     result->touch = (u8)spi_tp.e.touch;
@@ -335,11 +335,11 @@ static inline void TPi_CopyTpFromSystemWork(TPData *result)
 /*---------------------------------------------------------------------------*
   Name:         TPi_ErrorAtPxi
 
-  Description:  ARM7�Ƃ�PXI�ʐM�ɂ����ăG���[�����������ꍇ�̏����B
-                �R�[���o�b�N���ݒ肳��Ă���ꍇ�ɂ�, TP_RESULT_PXI_BUSY
-                �R�[���o�b�N��Ԃ��܂��B
+  Description:  ARM7とのPXI通信においてエラーが発生した場合の処理。
+                コールバックが設定されている場合には, TP_RESULT_PXI_BUSY
+                コールバックを返します。
                 
-  Arguments:    command - ���N�G�X�g�̎��
+  Arguments:    command - リクエストの種類
                 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -362,15 +362,15 @@ static inline void TPi_ErrorAtPxi(TPRequestCommand command)
 /*---------------------------------------------------------------------------*
   Name:         TPi_TpCallback
 
-  Description:  PXI��ARM7����^�b�`�p�l���֘A�̃��b�Z�[�W���󂯎�����ꍇ��
-                �Ăяo�����֐��B
-                ARM7����̃^�b�`�p�l���l�̑ޔ����s���A�R�[���o�b�N�֐���
-                �ݒ肳��Ă���ꍇ�ɂ́A�X�Ƀ��[�U�[�R�[���o�b�N���Ăяo���B
+  Description:  PXIがARM7からタッチパネル関連のメッセージを受け取った場合に
+                呼び出される関数。
+                ARM7からのタッチパネル値の退避を行い、コールバック関数が
+                設定されている場合には、更にユーザーコールバックを呼び出す。
                 
 
-  Arguments:    tag -  PXI����ʂ��������邽�߂̃^�O�B
-                data - ARM7����̃��b�Z�[�W�f�[�^�B
-                err -  PXI�]���̃G���[�t���O�B
+  Arguments:    tag -  PXIが種別を見分けるためのタグ。
+                data - ARM7からのメッセージデータ。
+                err -  PXI転送のエラーフラグ。
                 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -384,7 +384,7 @@ static void TPi_TpCallback(PXIFifoTag tag, u32 data, BOOL err)
     result = (u16)(data & SPI_PXI_DATA_MASK);
     command = (u16)((result & 0x7f00) >> 8);
 
-    // PXI�]���G���[
+    // PXI転送エラー
     if (err)
     {
         TPi_ErrorAtPxi((TPRequestCommand)command);
@@ -393,7 +393,7 @@ static void TPi_TpCallback(PXIFifoTag tag, u32 data, BOOL err)
 
     if (command == SPI_PXI_COMMAND_TP_AUTO_SAMPLING)
     {
-        // �I�[�g�T���v�����O�̎��s�����ʒm
+        // オートサンプリングの実行完了通知
 //        tpState.index = (u16) (result & 0x00FF);
         tpState.index++;
         if (tpState.index >= tpState.bufSize)
@@ -401,7 +401,7 @@ static void TPi_TpCallback(PXIFifoTag tag, u32 data, BOOL err)
             tpState.index = 0;
         }
 
-        // Shared�̈悩��^�b�`�p�l���l��ޔ�
+        // Shared領域からタッチパネル値を退避
         TPi_CopyTpFromSystemWork(&tpState.samplingBufs[tpState.index]);
 
         if (tpState.callback)
@@ -421,11 +421,11 @@ static void TPi_TpCallback(PXIFifoTag tag, u32 data, BOOL err)
     switch ((u8)(result & 0x00ff))
     {
     case SPI_PXI_RESULT_SUCCESS:
-        // ���������ꍇ�̏���
+        // 成功した場合の処理
         switch (command)
         {
         case SPI_PXI_COMMAND_TP_SAMPLING:
-            // �T���v�����O���ʂ��擾
+            // サンプリング結果を取得
             TPi_CopyTpFromSystemWork(&tpState.buf);
             tpState.state = TP_STATE_READY;
             break;
@@ -439,10 +439,10 @@ static void TPi_TpCallback(PXIFifoTag tag, u32 data, BOOL err)
             break;
         }
 
-        // �r�W�[�t���O��������
+        // ビジーフラグを下げる
         tpState.command_flg &= ~(1 << command);
 
-        // �R�[���o�b�N�Ăяo��
+        // コールバック呼び出し
         if (tpState.callback)
         {
             (tpState.callback) ((TPRequestCommand)command, TP_RESULT_SUCCESS, 0);
@@ -461,8 +461,8 @@ static void TPi_TpCallback(PXIFifoTag tag, u32 data, BOOL err)
         result = TP_RESULT_ILLEGAL_STATUS;
 
       common:
-        // �G���[����
-        // �G���[�t���O�𗧂Ă�
+        // エラー処理
+        // エラーフラグを立てる
         tpState.err_flg |= (1 << command);
         tpState.command_flg &= ~(1 << command);
 
@@ -474,7 +474,7 @@ static void TPi_TpCallback(PXIFifoTag tag, u32 data, BOOL err)
 
     case SPI_PXI_RESULT_INVALID_COMMAND:
     default:
-        // �ُ�I��
+        // 異常終了
 //        OS_Printf("result=%x\n",result);
         OS_Panic("Get illegal TP command from ARM7!\n");
         return;
@@ -487,7 +487,7 @@ static void TPi_TpCallback(PXIFifoTag tag, u32 data, BOOL err)
 /*---------------------------------------------------------------------------*
   Name:         TP_Init
 
-  Description:  �^�b�`�p�l�����C�u�����̏�����.
+  Description:  タッチパネルライブラリの初期化.
 
   Arguments:    None.
 
@@ -528,12 +528,12 @@ void TP_Init(void)
 /*---------------------------------------------------------------------------*
   Name:         TP_GetUserInfo
 
-  Description:  �L�����u���[�V�����̂��߂̃p�����[�^��{�̓��t���b�V�����������
-                �擾����֐��B
+  Description:  キャリブレーションのためのパラメータを本体内フラッシュメモリより
+                取得する関数。
 
-  Returns:      param - �p�����[�^���擾����̈�ւ̃|�C���^�B
-                BOOL  - �l�̎擾�ɐ��������ꍇ��TRUE
-                        �L���Ȓl��������Ȃ������ꍇ��FALSE��Ԃ��B
+  Returns:      param - パラメータを取得する領域へのポインタ。
+                BOOL  - 値の取得に成功した場合はTRUE
+                        有効な値が見つからなかった場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL TP_GetUserInfo(TPCalibrateParam *calibrate)
 {
@@ -563,13 +563,13 @@ BOOL TP_GetUserInfo(TPCalibrateParam *calibrate)
     dx2 = MI_ReadByte((u8 *)(&(info->ncd.tp.calib_data[5])));
 #endif
 
-    /* �L�����u���[�V�����l�̗L���t���O���Ȃ��̂łƂ肠���� */
+    /* キャリブレーション値の有効フラグがないのでとりあえず */
     if ((x1 == 0 && x2 == 0 && y1 == 0 && y2 == 0) ||
         (TP_CalcCalibrateParam(calibrate, x1, y1, dx1, dy1, x2, y2, dx2, dy2) != 0))
     {
-        // IPL�Ńf�[�^��CRC�`�F�b�N�����Ă��Ȃ��̂ŁA�ُ�l�̏ꍇ�͂��ׂẴp�����[�^��
-        // 0�ŃN���A�������TRUE��Ԃ��܂��B 
-        // ���̏ꍇ�L�����u���[�g���TP�l�͏��(0,0)�ɂȂ�܂��B
+        // IPLでデータのCRCチェックをしていないので、異常値の場合はすべてのパラメータを
+        // 0でクリアした上でTRUEを返します。 
+        // この場合キャリブレート後のTP値は常に(0,0)になります。
         calibrate->x0 = 0;
         calibrate->y0 = 0;
         calibrate->xDotSize = 0;
@@ -583,15 +583,15 @@ BOOL TP_GetUserInfo(TPCalibrateParam *calibrate)
 /*---------------------------------------------------------------------------*
   Name:         TP_SetCalibrateParam
 
-  Description:  �L�����u���[�V�����̂��߂̃p�����[�^���Z�b�g����B
-                ���̊֐��Ńp�����[�^��ݒ肷��ƁA�ȍ~TP_WaitCalibratedResult()
+  Description:  キャリブレーションのためのパラメータをセットする。
+                この関数でパラメータを設定すると、以降TP_WaitCalibratedResult()
                 TP_GetLatestCalibratedPointInAuto(), TP_GetCalibratedPoint(),
-                TP_GetUnCalibratedPoint()�ɂ����Ă��̒l���g�p���ăL�����u���[�V������
-                �s����B�h�b�g�T�C�Y�̋t���͂��̎��_�ł��炩���ߌv�Z�����B
+                TP_GetUnCalibratedPoint()においてこの値を使用してキャリブレーションが
+                行われる。ドットサイズの逆数はこの時点であらかじめ計算される。
 
-  Arguments:    param - �ݒ肷��L�����u���[�V�����p�����[�^�ւ̃|�C���^�B
-                        NULL���ݒ肳�ꂽ�ꍇ�ɂ́A�ȍ~�L�����u���[�V�����ɂ����W�ϊ���
-                        �s���Ȃ��B (�f�t�H���g�l: NULL)
+  Arguments:    param - 設定するキャリブレーションパラメータへのポインタ。
+                        NULLが設定された場合には、以降キャリブレーションによる座標変換は
+                        行われない。 (デフォルト値: NULL)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -605,7 +605,7 @@ void TP_SetCalibrateParam(const TPCalibrateParam *param)
         return;
     }
 
-    // �\��xDotSize, yDotSIze�̋t�����v�Z���Ă���
+    // 予めxDotSize, yDotSIzeの逆数を計算しておく
     enabled = OS_DisableInterrupts();
 
     if (param->xDotSize != 0)
@@ -648,11 +648,11 @@ void TP_SetCalibrateParam(const TPCalibrateParam *param)
 /*---------------------------------------------------------------------------*
   Name:         TP_SetCallback
 
-  Description:  �^�b�`�p�l�����珈�����ʂ��Ԃ��Ă������ɌĂяo��
-                ���[�U�R�[���o�b�N�֐���ݒ肷��B
+  Description:  タッチパネルから処理結果が返ってきた時に呼び出す
+                ユーザコールバック関数を設定する。
 
-  Arguments:    callback - ���[�U�R�[���o�b�N�֐��|�C���^�B
-                           NULL�̏ꍇ�̓R�[���o�b�N���Ăяo���Ȃ�(�f�t�H���g:NULL)
+  Arguments:    callback - ユーザコールバック関数ポインタ。
+                           NULLの場合はコールバックを呼び出さない(デフォルト:NULL)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -670,10 +670,10 @@ void TP_SetCallback(TPRecvCallback callback)
 /*---------------------------------------------------------------------------*
   Name:         TP_RequestSamplingAsync
 
-  Description:  ARM7�ɑ΂��ă^�b�`�p�l���l��v������B
-                ���̊֐����R�[��������TP_WaitRawResult() �܂��́A
-                TP_WaitCalibratedResult()�Ń^�b�`�p�l���l��ǂݏo�����Ƃ��ł���B
-                �I�[�g�T���v�����O���͎g�p�ł��Ȃ��B
+  Description:  ARM7に対してタッチパネル値を要求する。
+                この関数をコールした後TP_WaitRawResult() または、
+                TP_WaitCalibratedResult()でタッチパネル値を読み出すことができる。
+                オートサンプリング中は使用できない。
                 
   Arguments:    None.
 
@@ -689,7 +689,7 @@ void TP_RequestSamplingAsync(void)
 
     if (TPi_SamplingNow() == FALSE)
     {
-        // PXI���M���s
+        // PXI送信失敗
         (void)OS_RestoreInterrupts(enabled);
         TPi_ErrorAtPxi(TP_REQUEST_COMMAND_SAMPLING);
         return;
@@ -704,16 +704,16 @@ void TP_RequestSamplingAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         TP_WaitRawResult
 
-  Description:  ARM7����^�b�`�p�l���l���Z�b�g�����̂�҂��A
-                �L�����u���[�g����Ă��Ȃ����̒l��ǂݏo���B
-                �����œ�����l�̓`���^�����O�΍�ς݁B
+  Description:  ARM7からタッチパネル値がセットされるのを待ち、
+                キャリブレートされていない生の値を読み出す。
+                ここで得られる値はチャタリング対策済み。
 
   Arguments:    None.
 
-  Returns:      result - �^�b�`�p�l���l���擾���邽�߂̕ϐ��ւ̃|�C���^�B
-                         x,y���W�̓L�����u���[�g����Ă��Ȃ��l(0�`4095)���Ƃ�B
-                u32    - �f�[�^�̎擾�ɐ��������ꍇ�ɂ� 0�A
-                         ���s�����ꍇ�ɂ� 0�ȊO��Ԃ��B
+  Returns:      result - タッチパネル値を取得するための変数へのポインタ。
+                         x,y座標はキャリブレートされていない値(0〜4095)をとる。
+                u32    - データの取得に成功した場合には 0、
+                         失敗した場合には 0以外を返す。
  *---------------------------------------------------------------------------*/
 u32 TP_WaitRawResult(TPData *result)
 {
@@ -735,17 +735,17 @@ u32 TP_WaitRawResult(TPData *result)
 /*---------------------------------------------------------------------------*
   Name:         TP_GetCalibratedResult
 
-  Description:  ARM7����^�b�`�p�l���l���Z�b�g����Ă���Ƃ݂Ȃ��A
-                �L�����u���[�g���ꂽ��ʍ��W�ɑΉ������l��ǂݏo���B
-                �����œ�����l�̓`���^�����O�΍�ς݁B
+  Description:  ARM7からタッチパネル値がセットされているとみなし、
+                キャリブレートされた画面座標に対応した値を読み出す。
+                ここで得られる値はチャタリング対策済み。
 
-  Arguments:    result - �^�b�`�p�l���l���擾���邽�߂̕ϐ��ւ̃|�C���^�B
-                         x,y���W�͉�ʍ��W�ɑΉ������l���Ƃ�B
-                         �������L�����u���[�V�����p�����[�^���ݒ肳��Ă��Ȃ��ꍇ
-                         �ɂ�(0�`4095)�̃^�b�`�p�l���l��������B
+  Arguments:    result - タッチパネル値を取得するための変数へのポインタ。
+                         x,y座標は画面座標に対応した値をとる。
+                         もしもキャリブレーションパラメータが設定されていない場合
+                         には(0〜4095)のタッチパネル値が得られる。
                          
-  Returns:      u32    - �f�[�^�̎擾�ɐ��������ꍇ�ɂ� 0�A
-                         ���s�����ꍇ�ɂ� 0�ȊO��Ԃ��B
+  Returns:      u32    - データの取得に成功した場合には 0、
+                         失敗した場合には 0以外を返す。
  *---------------------------------------------------------------------------*/
 u32 TP_GetCalibratedResult(TPData *result)
 {
@@ -765,17 +765,17 @@ u32 TP_GetCalibratedResult(TPData *result)
 /*---------------------------------------------------------------------------*
   Name:         TP_WaitCalibratedResult
 
-  Description:  ARM7����^�b�`�p�l���l���Z�b�g�����̂�҂��A
-                �L�����u���[�g���ꂽ��ʍ��W�ɑΉ������l��ǂݏo���B
-                �����œ�����l�̓`���^�����O�΍�ς݁B
+  Description:  ARM7からタッチパネル値がセットされるのを待ち、
+                キャリブレートされた画面座標に対応した値を読み出す。
+                ここで得られる値はチャタリング対策済み。
 
-  Arguments:    result - �^�b�`�p�l���l���擾���邽�߂̕ϐ��ւ̃|�C���^�B
-                         x,y���W�͉�ʍ��W�ɑΉ������l���Ƃ�B
-                         �������L�����u���[�V�����p�����[�^���ݒ肳��Ă��Ȃ��ꍇ
-                         �ɂ�(0�`4095)�̃^�b�`�p�l���l��������B
+  Arguments:    result - タッチパネル値を取得するための変数へのポインタ。
+                         x,y座標は画面座標に対応した値をとる。
+                         もしもキャリブレーションパラメータが設定されていない場合
+                         には(0〜4095)のタッチパネル値が得られる。
                          
-  Returns:      u32    - �f�[�^�̎擾�ɐ��������ꍇ�ɂ� 0�A
-                         ���s�����ꍇ�ɂ� 0�ȊO��Ԃ��B
+  Returns:      u32    - データの取得に成功した場合には 0、
+                         失敗した場合には 0以外を返す。
  *---------------------------------------------------------------------------*/
 u32 TP_WaitCalibratedResult(TPData *result)
 {
@@ -787,15 +787,15 @@ u32 TP_WaitCalibratedResult(TPData *result)
 /*---------------------------------------------------------------------------*
   Name:         TP_RequestAutoSamplingStartAsync
 
-  Description:  ARM7�ɑ΂��ă^�b�`�p�l���l�̃I�[�g�T���v�����O�J�n�v�����o���B
-                1�t���[����frequence��̃f�[�^���ϓ��ȊԊu�ŃT���v�����O����A
-                ���ʂ�samplingBufs�Ŏw�肵���z��֊i�[����B
+  Description:  ARM7に対してタッチパネル値のオートサンプリング開始要求を出す。
+                1フレームにfrequence回のデータが均等な間隔でサンプリングされ、
+                結果をsamplingBufsで指定した配列へ格納する。
 
-  Arguments:    vcount       - �I�[�g�T���v�����O���s����ƂȂ�VCOUNT�l��ݒ�B
-                frequence    - �P�t���[���ɉ���̃T���v�����O���s�����̐ݒ�B
-                samplingBufs - �I�[�g�T���v�����O�����f�[�^���i�[����̈��ݒ�B
-                bufSize      - �o�b�t�@�T�C�Y�̐ݒ�B
-                               samplingBufs�̔z��busSize�̃����O�o�b�t�@�Ƃ��Ďg�p�����B
+  Arguments:    vcount       - オートサンプリングを行う基準となるVCOUNT値を設定。
+                frequence    - １フレームに何回のサンプリングを行うかの設定。
+                samplingBufs - オートサンプリングしたデータを格納する領域を設定。
+                bufSize      - バッファサイズの設定。
+                               samplingBufsの配列がbusSizeのリングバッファとして使用される。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -825,7 +825,7 @@ void TP_RequestAutoSamplingStartAsync(u16 vcount, u16 frequence, TPData sampling
 
     if ((u8)TPi_AutoSamplingOn(vcount, (u8)frequence) == FALSE)
     {
-        // PXI���M���s
+        // PXI送信失敗
         (void)OS_RestoreInterrupts(enabled);
         TPi_ErrorAtPxi(TP_REQUEST_COMMAND_AUTO_ON);
         return;
@@ -839,7 +839,7 @@ void TP_RequestAutoSamplingStartAsync(u16 vcount, u16 frequence, TPData sampling
 /*---------------------------------------------------------------------------*
   Name:         TP_RequestAutoSamplingStopAsync
 
-  Description:  ARM7�ɑ΂��ă^�b�`�p�l���l�̃I�[�g�T���v�����O��~�v�����o���B
+  Description:  ARM7に対してタッチパネル値のオートサンプリング停止要求を出す。
 
   Arguments:    None.
 
@@ -856,7 +856,7 @@ void TP_RequestAutoSamplingStopAsync(void)
 
     if (TPi_AutoSamplingOff() == FALSE)
     {
-        // PXI���M���s
+        // PXI送信失敗
         (void)OS_RestoreInterrupts(enabled);
         TPi_ErrorAtPxi(TP_REQUEST_COMMAND_AUTO_OFF);
         return;
@@ -873,14 +873,14 @@ void TP_RequestAutoSamplingStopAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         TP_RequestSetStabilityAsync
 
-  Description:  �^�b�`�p�l���̃`���^�����O�΍�p�����[�^��ݒ肷��B
-                �l�����肷��܂ł̃��g���C�T���v�����O�񐔂ƁA
-                �l�����肵���Ɣ��肷�邽�߂̃����W��ݒ�B
+  Description:  タッチパネルのチャタリング対策パラメータを設定する。
+                値が安定するまでのリトライサンプリング回数と、
+                値が安定したと判定するためのレンジを設定。
 
-  Arguments:    retry -  ���̈����͓����ł͎g�p����Ă��܂���B
-                range -  �l�����肵�����ǂ����𔻒肷�邽�߂̃����W.
-                         ���W�l�����͈̔͂Ɏ������Ȃ������ꍇ�ɂ�invalid�ƂȂ�܂��B
-                         (�͈�:0�`4095, �f�t�H���g�l:20)
+  Arguments:    retry -  この引数は内部では使用されていません。
+                range -  値が安定したかどうかを判定するためのレンジ.
+                         座標値がこの範囲に収束しなかった場合にはinvalidとなります。
+                         (範囲:0〜4095, デフォルト値:20)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -896,7 +896,7 @@ void TP_RequestSetStabilityAsync(u8 retry, u16 range)
 
     if (TPi_SetupStability(range) == FALSE)
     {
-        // PXI���M���s
+        // PXI送信失敗
         (void)OS_RestoreInterrupts(enabled);
         TPi_ErrorAtPxi(TP_REQUEST_COMMAND_SET_STABILITY);
         return;
@@ -912,12 +912,12 @@ void TP_RequestSetStabilityAsync(u8 retry, u16 range)
 /*---------------------------------------------------------------------------*
   Name:         TP_GetLatestRawPointInAuto
 
-  Description:  �I�[�g�T���v�����O���ʂ���A�L���ȍŐV�̃^�b�`�p�l���l���擾����B
-                �l��x,y���W�̓L�����u���[�V��������Ă��Ȃ�(0�`4095)�͈̔͂��Ƃ�B
+  Description:  オートサンプリング結果から、有効な最新のタッチパネル値を取得する。
+                値のx,y座標はキャリブレーションされていない(0〜4095)の範囲をとる。
 
   Arguments:    None.
 
-  Returns:      result - �L���ȍŐV�̃^�b�`�p�l���l���擾���邽�߂̃|�C���^�B
+  Returns:      result - 有効な最新のタッチパネル値を取得するためのポインタ。
  *---------------------------------------------------------------------------*/
 void TP_GetLatestRawPointInAuto(TPData *result)
 {
@@ -931,14 +931,14 @@ void TP_GetLatestRawPointInAuto(TPData *result)
 
     curr_index = tpState.index;
 
-    // �T���v�����O�o�b�t�@�T�C�Y���P�̏ꍇ�́A���݂̍��W�l�����̂܂ܕԂ�
+    // サンプリングバッファサイズが１の場合は、現在の座標値をそのまま返す
     if (tpState.frequence == 1 || tpState.bufSize == 1)
     {
         *result = tpState.samplingBufs[curr_index];
         return;
     }
 
-    // �L���ȃT���v�����O�l�̒��ōŐV�̂��̂�����
+    // 有効なサンプリング値の中で最新のものを検索
     for (i = 0; i < tpState.frequence && i < tpState.bufSize - 1; i++)
     {
         s32     index;
@@ -957,10 +957,10 @@ void TP_GetLatestRawPointInAuto(TPData *result)
             return;
         }
 
-        // �����ȃf�[�^���܂ޏꍇ�͂P�Â��T���v�����O�l���Q��
+        // 無効なデータを含む場合は１つ古いサンプリング値を参照
         if (result->validity & TP_VALIDITY_INVALID_X)
         {
-            /* X���W */
+            /* X座標 */
             if (!(tp->validity & TP_VALIDITY_INVALID_X))
             {
                 result->x = tp->x;
@@ -973,7 +973,7 @@ void TP_GetLatestRawPointInAuto(TPData *result)
 
         if (result->validity & TP_VALIDITY_INVALID_Y)
         {
-            /* Y���W */
+            /* Y座標 */
             if (!(tp->validity & TP_VALIDITY_INVALID_Y))
             {
                 result->y = tp->y;
@@ -991,7 +991,7 @@ void TP_GetLatestRawPointInAuto(TPData *result)
         }
     }
 
-    // �����ȍ��W�l���c���Ă���ꍇ�͎擾�ł����l��Ԃ��B
+    // 無効な座標値が残っている場合は取得できた値を返す。
     result->touch = TP_TOUCH_ON;
     return;
 }
@@ -1001,12 +1001,12 @@ void TP_GetLatestRawPointInAuto(TPData *result)
 /*---------------------------------------------------------------------------*
   Name:         TP_GetLatestCalibratedPointInAuto
 
-  Description:  �I�[�g�T���v�����O���ʂ���A�L���ȍŐV�̃^�b�`�p�l���l���擾����B
-                �l��x,y���W�͉�ʍ��W�͈̔͂��Ƃ�B
+  Description:  オートサンプリング結果から、有効な最新のタッチパネル値を取得する。
+                値のx,y座標は画面座標の範囲をとる。
 
   Arguments:    None.
 
-  Returns:      result - �L���ȍŐV�̃^�b�`�p�l���l���擾���邽�߂̃|�C���^�B
+  Returns:      result - 有効な最新のタッチパネル値を取得するためのポインタ。
  *---------------------------------------------------------------------------*/
 void TP_GetLatestCalibratedPointInAuto(TPData *result)
 {
@@ -1022,12 +1022,12 @@ void TP_GetLatestCalibratedPointInAuto(TPData *result)
 /*---------------------------------------------------------------------------*
   Name:         TP_GetLatestIndexInAuto
 
-  Description:  �I�[�g�T���v�����O�ɂ���Ēl���i�[����郋�[�v�o�b�t�@�̒��ŁA
-                �Ō�ɃT���v�����O���ꂽ�f�[�^�̃C���f�b�N�X��Ԃ��B
+  Description:  オートサンプリングによって値が格納されるループバッファの中で、
+                最後にサンプリングされたデータのインデックスを返す。
 
   Arguments:    None.
 
-  Returns:      u16 - �Ō�ɃT���v�����O���ꂽ�f�[�^�̃C���f�b�N�X�B
+  Returns:      u16 - 最後にサンプリングされたデータのインデックス。
  *---------------------------------------------------------------------------*/
 u16 TP_GetLatestIndexInAuto(void)
 {
@@ -1040,17 +1040,17 @@ u16 TP_GetLatestIndexInAuto(void)
 /*---------------------------------------------------------------------------*
   Name:         TP_CalcCalibrateParam
 
-  Description:  �Q�_�̃^�b�`�p�l���l�Ɖ�ʍ��W����A�L�����u���[�V�����p��
-                �p�����[�^���v�Z����B
+  Description:  ２点のタッチパネル値と画面座標から、キャリブレーション用の
+                パラメータを計算する。
 
-  Arguments:    raw_x1, raw_y1 - �|�C���g�P�̃^�b�`�p�l���l
-                dx1, dy1       - �|�C���g�P�̉�ʍ��W
-                raw_x2, raw_y2 - �|�C���g�Q�̃^�b�`�p�l���l
-                dx2, dy2,      - �|�C���g�Q�̉�ʍ��W
+  Arguments:    raw_x1, raw_y1 - ポイント１のタッチパネル値
+                dx1, dy1       - ポイント１の画面座標
+                raw_x2, raw_y2 - ポイント２のタッチパネル値
+                dx2, dy2,      - ポイント２の画面座標
                 
-  Returns:      calibrate      - �L�����u���[�V�����p�����[�^
-                u32            - �L���ȃp�����[�^�̏ꍇ��0
-                                 �L���łȂ��p�����[�^�̏ꍇ��0�ȊO��Ԃ�
+  Returns:      calibrate      - キャリブレーションパラメータ
+                u32            - 有効なパラメータの場合は0
+                                 有効でないパラメータの場合は0以外を返す
                                  
  *---------------------------------------------------------------------------*/
 u32 TP_CalcCalibrateParam(TPCalibrateParam *calibrate,
@@ -1071,7 +1071,7 @@ u32 TP_CalcCalibrateParam(TPCalibrateParam *calibrate,
     /*                                                                  */
 
     SDK_NULL_ASSERT(calibrate);
-    // ���W�͈̔̓`�F�b�N
+    // 座標の範囲チェック
     if (raw_x1 >= TP_RAW_MAX || raw_y1 >= TP_RAW_MAX || raw_x2 >= TP_RAW_MAX
         || raw_y2 >= TP_RAW_MAX)
     {
@@ -1092,7 +1092,7 @@ u32 TP_CalcCalibrateParam(TPCalibrateParam *calibrate,
 
     enabled = OS_DisableInterrupts();
 
-    // xDotSize���v�Z
+    // xDotSizeを計算
     CP_SetDiv32_32(((u32)rx_width) << TP_CALIBRATE_DOT_SCALE_SHIFT, (u32)dx_width);
 
     ry_width = raw_y1 - raw_y2;
@@ -1143,14 +1143,14 @@ u32 TP_CalcCalibrateParam(TPCalibrateParam *calibrate,
 /*---------------------------------------------------------------------------*
   Name:         TP_GetCalibratedPoint
   
-  Description:  �^�b�`�p�l���l�����ʍ��W�ւ̕ϊ��������Ȃ��B
-                �L�����u���[�V�����p�����[�^���ݒ肳��Ă��Ȃ��ꍇ�ɂ�
-                �^�b�`�p�l���l�����̂܂܏o�͂����B
-                ����disp��raw�ɂ͓����|�C���^��n���Ă��\��Ȃ��B
+  Description:  タッチパネル値から画面座標への変換をおこなう。
+                キャリブレーションパラメータが設定されていない場合には
+                タッチパネル値がそのまま出力される。
+                引数dispとrawには同じポインタを渡しても構わない。
 
-  Arguments:    raw      - �ϊ����̃^�b�`�p�l���l�ւ̃|�C���^�B
+  Arguments:    raw      - 変換元のタッチパネル値へのポインタ。
                 
-  ReturnValue:  disp     - ��ʍ��W�֕ϊ����ꂽ�l���Ԃ����ϐ��ւ̃|�C���^�B
+  ReturnValue:  disp     - 画面座標へ変換された値が返される変数へのポインタ。
  *---------------------------------------------------------------------------*/
 void TP_GetCalibratedPoint(TPData *disp, const TPData *raw)
 {
@@ -1186,7 +1186,7 @@ void TP_GetCalibratedPoint(TPData *disp, const TPData *raw)
         return;
     }
 
-    // X���W�ϊ�
+    // X座標変換
     // disp->x = (x - x0) / xDotSize;
     disp->x =
         (u16)((((u64)(raw->x << TP_CALIBRATE_ORIGIN_SCALE_SHIFT) -
@@ -1201,7 +1201,7 @@ void TP_GetCalibratedPoint(TPData *disp, const TPData *raw)
     {
         disp->x = MAX_X;
     }
-    // Y���W�ϊ�
+    // Y座標変換
     // disp->y = (y - y0) / yDotSize;
     disp->y =
         (u16)((((u64)(raw->y << TP_CALIBRATE_ORIGIN_SCALE_SHIFT) -
@@ -1221,14 +1221,14 @@ void TP_GetCalibratedPoint(TPData *disp, const TPData *raw)
 /*---------------------------------------------------------------------------*
   Name:         TP_GetUnCalibratedPoint
 
-  Description:  �L�����u���[�V�����̋t�ϊ����ʂ��擾����B
-                ��ʍ��W����^�b�`�p�l���l�ւ̕ϊ��B
-                �L�����u���[�V�����p�����[�^���ݒ肳��Ă��Ȃ��ꍇ�ɂ�
-                ��ʍ��W�����̂܂܏o�͂����B
+  Description:  キャリブレーションの逆変換結果を取得する。
+                画面座標からタッチパネル値への変換。
+                キャリブレーションパラメータが設定されていない場合には
+                画面座標がそのまま出力される。
 
-  Arguments:    dx, dy       - ��ʂ�XY���W�B
+  Arguments:    dx, dy       - 画面のXY座標。
                 
-  ReturnValue:  raw_x, raw_y - �Ή�����^�b�`�p�l���l��Ԃ����߂̃|�C���^�B
+  ReturnValue:  raw_x, raw_y - 対応するタッチパネル値を返すためのポインタ。
  *---------------------------------------------------------------------------*/
 void TP_GetUnCalibratedPoint(u16 *raw_x, u16 *raw_y, u16 dx, u16 dy)
 {
@@ -1264,9 +1264,9 @@ void TP_GetUnCalibratedPoint(u16 *raw_x, u16 *raw_y, u16 dx, u16 dy)
 /*---------------------------------------------------------------------------*
   Name:         TP_WaitBusy
 
-  Description:  ARM7���^�b�`�p�l���̗v�����I������܂ŃE�F�C�g����B
+  Description:  ARM7がタッチパネルの要求を終了するまでウェイトする。
 
-  Arguments:    command_flgs - �^�b�`�p�l���ւ̗v���̎�ށB
+  Arguments:    command_flgs - タッチパネルへの要求の種類。
                 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1278,14 +1278,14 @@ void TP_WaitBusy(TPRequestCommandFlag command_flgs)
         return;
     }
 #endif
-    // ���荞�݂�OFF�̏ꍇ�͖������[�v�Ɋׂ�
+    // 割り込みがOFFの場合は無限ループに陥る
     SDK_ASSERT(OS_GetCpsrIrq() == OS_INTRMODE_IRQ_ENABLE);
     SDK_ASSERT(reg_OS_IME == 1);
     SDK_ASSERT(OS_GetIrqMask() & OS_IE_SPFIFO_RECV);
 
-    // ���[�v�̊J�n�O�� ASSERT ������D���荞�݋֎~��Ԃł��̊֐���
-    // �Ă΂�邱�Ƃ������ׂ��ł͂Ȃ��DtpState �̃t���O�����ɃN���A�����
-    // ���邩�ǂ����͏󋵂ɂ���č��E�����\�������邽��
+    // ループの開始前に ASSERT を入れる．割り込み禁止状態でこの関数が
+    // 呼ばれることを許すべきではない．tpState のフラグが既にクリアされて
+    // いるかどうかは状況によって左右される可能性があるため
 
     while (tpState.command_flg & command_flgs)
     {
@@ -1298,7 +1298,7 @@ void TP_WaitBusy(TPRequestCommandFlag command_flgs)
 /*---------------------------------------------------------------------------*
   Name:         TP_WaitAllBusy
 
-  Description:  ARM7���^�b�`�p�l���̗v�������ׂďI������܂ŃE�F�C�g����B
+  Description:  ARM7がタッチパネルの要求をすべて終了するまでウェイトする。
 
   Arguments:    None.
                 
@@ -1312,7 +1312,7 @@ void TP_WaitAllBusy(void)
         return;
     }
 #endif
-    // ���荞�݂�OFF�̏ꍇ�͖������[�v�Ɋׂ�
+    // 割り込みがOFFの場合は無限ループに陥る
     SDK_ASSERT(OS_GetCpsrIrq() == OS_INTRMODE_IRQ_ENABLE);
     SDK_ASSERT(reg_OS_IME == 1);
     SDK_ASSERT(OS_GetIrqMask() & OS_IE_SPFIFO_RECV);
@@ -1329,12 +1329,12 @@ void TP_WaitAllBusy(void)
 /*---------------------------------------------------------------------------*
   Name:         TP_CheckBusy
 
-  Description:  ARM7�ւ̃^�b�`�p�l���v�����r�W�[���ł��邩���`�F�b�N����B
+  Description:  ARM7へのタッチパネル要求がビジー中であるかをチェックする。
 
-  Arguments:    command_flgs - �^�b�`�p�l���ւ̗v���̎�ށB
+  Arguments:    command_flgs - タッチパネルへの要求の種類。
                 
-  Returns:      u32          - �r�W�[���łȂ���� 0�A
-                               �r�W�[���Ȃ�� 0�ȊO��Ԃ�
+  Returns:      u32          - ビジー中でなければ 0、
+                               ビジー中ならば 0以外を返す
  *---------------------------------------------------------------------------*/
 u32 TP_CheckBusy(TPRequestCommandFlag command_flgs)
 {
@@ -1346,12 +1346,12 @@ u32 TP_CheckBusy(TPRequestCommandFlag command_flgs)
 /*---------------------------------------------------------------------------*
   Name:         TP_CheckError
 
-  Description:  ARM7�ւ̃^�b�`�p�l���v�����G���[�I�����Ă��Ȃ����`�F�b�N����B
+  Description:  ARM7へのタッチパネル要求がエラー終了していないかチェックする。
 
-  Arguments:    command_flgs  - �^�b�`�p�l���ւ̗v���̎�ށB
+  Arguments:    command_flgs  - タッチパネルへの要求の種類。
                 
-  Returns:      u32           - �G���[���������Ă��Ȃ���� 0�A
-                                �G���[���������Ă���� 0�ȊO��Ԃ�
+  Returns:      u32           - エラーが発生していなければ 0、
+                                エラーが発生していれば 0以外を返す
  *---------------------------------------------------------------------------*/
 u32 TP_CheckError(TPRequestCommandFlag command_flgs)
 {

@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	honey_tree_enc.c
- * @bfief	–¨“h‚èƒGƒ“ƒJƒEƒ“ƒg
+ * @bfief	èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
  * @author	Nozomu Saito
  *
  *
@@ -22,9 +22,9 @@
 #include "savedata/encount.h"
 #include "arc/encdata_ex.naix"
 
-#define START_TIME	(24*60)		//–¨‚ğ“h‚Á‚½’¼Œã‚ÌŠÔ 24‚˜60•ª
+#define START_TIME	(24*60)		//èœœã‚’å¡—ã£ãŸç›´å¾Œã®æ™‚é–“ 24ï½˜60åˆ†
 
-#define ENC_START_TIME	(18*60)	//ƒGƒ“ƒJƒEƒ“ƒg‰Â”\‚ÈŠÔ@18‚˜60•ª
+#define ENC_START_TIME	(18*60)	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå¯èƒ½ãªæ™‚é–“ã€€18ï½˜60åˆ†
 
 typedef enum{
 	TH_ENC_TBL_NORM,
@@ -33,10 +33,10 @@ typedef enum{
 }HT_ENC_TBL;
 
 typedef enum{
-	SWAY_LV_NONE,		//—h‚ê‚È‚¢
-	SWAY_LV_NORMAL,		//’Êí—h‚ê
-	SWAY_LV_GRATE,		//‚·‚²‚­—h‚ê‚é
-	SWAY_LV_G_GRATE,	//‚à‚Ì‚²‚Á‚Â—h‚ê‚é
+	SWAY_LV_NONE,		//æºã‚Œãªã„
+	SWAY_LV_NORMAL,		//é€šå¸¸æºã‚Œ
+	SWAY_LV_GRATE,		//ã™ã”ãæºã‚Œã‚‹
+	SWAY_LV_G_GRATE,	//ã‚‚ã®ã”ã£ã¤æºã‚Œã‚‹
 }SWAY_LV;
 
 enum{
@@ -58,7 +58,7 @@ typedef struct HONEY_TREE_DAT_tag
 	int ZoneList[HONEY_TREE_MAX];
 }HONEY_TREE_DAT;
 
-//—h‚ê‚é–Ø‚Ìƒ][ƒ“ƒŠƒXƒg(ƒ][ƒ“‚ğ‚Ü‚½‚¢‚¾‚Æ‚«‚ÉQÆ‚·‚é‚Ì‚ÅAƒA[ƒJƒCƒu‚É‚µ‚È‚¢‚ÅAŒÅ’è‚Å‚¿‚Ü‚·)
+//æºã‚Œã‚‹æœ¨ã®ã‚¾ãƒ¼ãƒ³ãƒªã‚¹ãƒˆ(ã‚¾ãƒ¼ãƒ³ã‚’ã¾ãŸã„ã ã¨ãã«å‚ç…§ã™ã‚‹ã®ã§ã€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«ã—ãªã„ã§ã€å›ºå®šã§æŒã¡ã¾ã™)
 static const int HoneyTreeZoneList[HONEY_TREE_MAX] = {
 	ZONE_ID_R205A,
 	ZONE_ID_R205B,
@@ -83,19 +83,19 @@ static const int HoneyTreeZoneList[HONEY_TREE_MAX] = {
 	ZONE_ID_D13R0101,
 };
 
-//ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXƒe[ƒuƒ‹
-//ƒ_ƒCƒ„
+//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
+//ãƒ€ã‚¤ãƒ¤
 static const int HoneyEncArcTbl_Dia[] = {
-	NARC_encdata_ex_honey_dia_nrm_bin,		//’Êí
-	NARC_encdata_ex_honey_dia_rare_bin,		//ƒŒƒA
-	NARC_encdata_ex_honey_dia_s_rare_bin,	//ŒƒƒŒƒA
+	NARC_encdata_ex_honey_dia_nrm_bin,		//é€šå¸¸
+	NARC_encdata_ex_honey_dia_rare_bin,		//ãƒ¬ã‚¢
+	NARC_encdata_ex_honey_dia_s_rare_bin,	//æ¿€ãƒ¬ã‚¢
 };
 
-//ƒp[ƒ‹
+//ãƒ‘ãƒ¼ãƒ«
 static const int HoneyEncArcTbl_Perl[] = {
-	NARC_encdata_ex_honey_perl_nrm_bin,		//’Êí
-	NARC_encdata_ex_honey_perl_rare_bin,		//ƒŒƒA
-	NARC_encdata_ex_honey_perl_s_rare_bin,	//ŒƒƒŒƒA
+	NARC_encdata_ex_honey_perl_nrm_bin,		//é€šå¸¸
+	NARC_encdata_ex_honey_perl_rare_bin,		//ãƒ¬ã‚¢
+	NARC_encdata_ex_honey_perl_s_rare_bin,	//æ¿€ãƒ¬ã‚¢
 };
 
 static void SetRareLv(const BOOL inHit, u8 *outRare);
@@ -110,10 +110,10 @@ static BOOL CheckRareFlg(const u32 inTrainerID, const u8 inIndex);
 
 //==============================================================================
 /**
- * –¨–Øƒf[ƒ^‚ÌŠm•Û‚Æ‰Šú‰»
+ * èœœæœ¨ãƒ‡ãƒ¼ã‚¿ã®ç¢ºä¿ã¨åˆæœŸåŒ–
  *
  * 
- * @retval	HTD_PTR			–¨–Øƒf[ƒ^ƒ|ƒCƒ“ƒ^		
+ * @retval	HTD_PTR			èœœæœ¨ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿		
  * 
  */
 //==============================================================================
@@ -131,9 +131,9 @@ HTD_PTR HTE_AllocHoneyTreeDat(void)
 
 //==============================================================================
 /**
- * ‰ğ•úˆ—
+ * è§£æ”¾å‡¦ç†
  *
- * @param	outHoneyTree	–¨–Øƒf[ƒ^ƒ|ƒCƒ“ƒ^	
+ * @param	outHoneyTree	èœœæœ¨ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿	
  * 
  * @retval  none		
  */
@@ -146,12 +146,12 @@ void HTE_FreeHoneyTreeDat(HTD_PTR *outHoneyTree)
 
 //==============================================================================
 /**
- * –¨“h‚è–Ø‚ÌÚGƒ`ƒFƒbƒN
+ * èœœå¡—ã‚Šæœ¨ã®æ¥è§¦ãƒã‚§ãƒƒã‚¯
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	outScrID	ƒXƒNƒŠƒvƒgIDŠi”[ƒAƒhƒŒƒX
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	outScrID	ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDæ ¼ç´ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * @return	BOOL	TRUE:HIT@FALSE:NO HIT
+ * @return	BOOL	TRUE:HITã€€FALSE:NO HIT
  */
 //==============================================================================
 BOOL HTE_CheckHoneyTree(FIELDSYS_WORK *fsys, int *outScrID)
@@ -162,18 +162,18 @@ BOOL HTE_CheckHoneyTree(FIELDSYS_WORK *fsys, int *outScrID)
 	int dir;
 
 	*outScrID = SCRID_HONEY_TREE;
-	//©‹@À•Wæ“¾(ƒOƒŠƒbƒh)
+	//è‡ªæ©Ÿåº§æ¨™å–å¾—(ã‚°ãƒªãƒƒãƒ‰)
 	x = Player_NowGPosXGet( fsys->player );
 	z = Player_NowGPosZGet( fsys->player );
 	
-	//©‹@•ûŒüæ“¾
+	//è‡ªæ©Ÿæ–¹å‘å–å¾—
 	dir = Player_DirGet( fsys->player );
 	if (dir == DIR_UP){
-		//©‹@•ûŒü‚Ì‘O•û1ƒOƒŠƒbƒh‚Ì‹éŒ`‚ğì¬
+		//è‡ªæ©Ÿæ–¹å‘ã®å‰æ–¹1ã‚°ãƒªãƒƒãƒ‰ã®çŸ©å½¢ã‚’ä½œæˆ
 		MPTL_MakeTargetRect( x, z, 0, -1, 1, 1, &rect);
 
 		rc = MPTL_CheckMap3DObjInRect(	fsys,
-										BMID_TREEEFF,			//—h‚ê‚é–Ø
+										BMID_TREEEFF,			//æºã‚Œã‚‹æœ¨
 										&rect,
 										NULL);
 	}else{
@@ -184,11 +184,11 @@ BOOL HTE_CheckHoneyTree(FIELDSYS_WORK *fsys, int *outScrID)
 
 //==============================================================================
 /**
- * Œ»İ‚¢‚éƒ][ƒ“‚Ì–¨“h‚è–Ø‚ÌƒXƒe[ƒgæ“¾
+ * ç¾åœ¨ã„ã‚‹ã‚¾ãƒ¼ãƒ³ã®èœœå¡—ã‚Šæœ¨ã®ã‚¹ãƒ†ãƒ¼ãƒˆå–å¾—
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	u16			–Ø‚ÌƒXƒe[ƒg
+ * @return	u16			æœ¨ã®ã‚¹ãƒ†ãƒ¼ãƒˆ
  */
 //==============================================================================
 u16 HTE_GetNowLocHoneyTreeState(FIELDSYS_WORK *fsys)
@@ -196,30 +196,30 @@ u16 HTE_GetNowLocHoneyTreeState(FIELDSYS_WORK *fsys)
 	u8 tree_no;
 	HT_PTR ptr;
 	HONEY_DATA *data;
-	//Œ»İ‚Ìƒ][ƒ“ID‚ğæ“¾
+	//ç¾åœ¨ã®ã‚¾ãƒ¼ãƒ³IDã‚’å–å¾—
 	tree_no = GetTreeNoFromZoneID(fsys->location->zone_id);
-	GF_ASSERT(tree_no!=HONEY_TREE_MAX&&"–¨“h‚è–Ø‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ" );
+	GF_ASSERT(tree_no!=HONEY_TREE_MAX&&"èœœå¡—ã‚Šæœ¨ãŒç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“" );
 
 	ptr = EncDataSave_GetHoneyTree(EncDataSave_GetSaveDataPtr(fsys->savedata));
 ///	ptr = HTSave_GetHoneyTree(fsys->savedata);
 	data = HTSave_GetHoneyDataPtr(tree_no, ptr);
 	if ( CheckHoneyTreeEncTime(data->Time) ){
-		return HONEY_SPREAD_ENCOUNT;//ƒGƒ“ƒJƒEƒ“ƒg‰Â
+		return HONEY_SPREAD_ENCOUNT;//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå¯
 	}else{
 		if (data->Time != 0){
-			//–¨‚ğ“h‚Á‚ÄŠÔŒo‰ß‚ªŠJn‚³‚ê‚Ä‚¢‚éê‡
-			return HONEY_SPREAD_ALREADY;	//–¨“h‚è‰Âi‚·‚Å‚É“h‚Á‚Ä‚ ‚éó‘Ôj
+			//èœœã‚’å¡—ã£ã¦æ™‚é–“çµŒéãŒé–‹å§‹ã•ã‚Œã¦ã„ã‚‹å ´åˆ
+			return HONEY_SPREAD_ALREADY;	//èœœå¡—ã‚Šå¯ï¼ˆã™ã§ã«å¡—ã£ã¦ã‚ã‚‹çŠ¶æ…‹ï¼‰
 		}else{
-			return HONEY_SPREAD_OK;	//–¨“h‚è‰Â
+			return HONEY_SPREAD_OK;	//èœœå¡—ã‚Šå¯
 		}
 	}
 }
 
 //==============================================================================
 /**
- * Œ»İ‚¢‚éƒ][ƒ“‚Ì–¨“h‚è–Ø‚ÌƒZƒbƒgƒAƒbƒv
+ * ç¾åœ¨ã„ã‚‹ã‚¾ãƒ¼ãƒ³ã®èœœå¡—ã‚Šæœ¨ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -230,9 +230,9 @@ void HTE_SetupNowLocHoneyTree(FIELDSYS_WORK *fsys)
 	HT_PTR ptr;
 	HONEY_DATA *data;
 	BOOL rare_flg;
-	//Œ»İ‚Ìƒ][ƒ“ID‚ğæ“¾
+	//ç¾åœ¨ã®ã‚¾ãƒ¼ãƒ³IDã‚’å–å¾—
 	tree_no = GetTreeNoFromZoneID(fsys->location->zone_id);
-	GF_ASSERT(tree_no!=HONEY_TREE_MAX&&"–¨“h‚è–Ø‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ" );
+	GF_ASSERT(tree_no!=HONEY_TREE_MAX&&"èœœå¡—ã‚Šæœ¨ãŒç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“" );
 	
 	ptr = EncDataSave_GetHoneyTree(EncDataSave_GetSaveDataPtr(fsys->savedata));
 	data = HTSave_GetHoneyDataPtr(tree_no, ptr);
@@ -240,43 +240,43 @@ void HTE_SetupNowLocHoneyTree(FIELDSYS_WORK *fsys)
 	data->Time = START_TIME;
 	{
 		MYSTATUS *my_st = SaveData_GetMyStatus(fsys->savedata);
-		//ƒgƒŒ[ƒi[ID‚©‚çA“–‚½‚è”Ô†‚ğŒˆ’è
+		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‹ã‚‰ã€å½“ãŸã‚Šç•ªå·ã‚’æ±ºå®š
 		rare_flg = CheckRareFlg(MyStatus_GetID(my_st), tree_no);
 	}
-	//‘O‰ñ‚Ì–Ø‚Æ”äŠrB“¯‚¶–Ø‚È‚çA‘O‰ñ‚Ìƒ|ƒPƒ‚ƒ“‚Æ‚ÌƒGƒ“ƒJƒEƒ“ƒg—¦‚ª‚‚­‚È‚é>ƒe[ƒuƒ‹‚Ì‚İ“¯‚¶‚É•ÏX 20060619
+	//å‰å›ã®æœ¨ã¨æ¯”è¼ƒã€‚åŒã˜æœ¨ãªã‚‰ã€å‰å›ã®ãƒã‚±ãƒ¢ãƒ³ã¨ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ãŒé«˜ããªã‚‹>ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã¿åŒã˜ã«å¤‰æ›´ 20060619
 	if (HTSave_GetBeforeTreeNo(ptr) == tree_no){
-		if ( (gf_p_rand(100) ) <90){	//“¯‚¶ƒ|ƒPƒ‚ƒ“‚ÆƒGƒ“ƒJƒEƒ“ƒg(9Š„‚è‚Å“¯‚¶)
+		if ( (gf_p_rand(100) ) <90){	//åŒã˜ãƒã‚±ãƒ¢ãƒ³ã¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ(9å‰²ã‚Šã§åŒã˜)
 			SetHoneyTreeTblMonsNo(&data->TblMonsNo);
-			//–Ø‚Ì—h‚ê•û‚ğŒˆ’è
+			//æœ¨ã®æºã‚Œæ–¹ã‚’æ±ºå®š
 			data->SwayLv = SetSwayLv(data->RareLv);
 			return;
 		}
 	}
-	{	//Ä’Š‘I
+	{	//å†æŠ½é¸
 		SetRareLv(rare_flg, &data->RareLv);
-		//ƒnƒYƒŒˆÈŠO‚È‚ç
+		//ãƒã‚ºãƒ¬ä»¥å¤–ãªã‚‰
 		if (data->RareLv != HTE_NONE){
 			SetHoneyTreeTblMonsNo(&data->TblMonsNo);
-			//ƒe[ƒuƒ‹Œˆ’è
+			//ãƒ†ãƒ¼ãƒ–ãƒ«æ±ºå®š
 			data->TblNo = SetHoneyTreeEncTbl( data->RareLv );
-		}else{	//ƒnƒYƒŒ‚Ì‚Æ‚«‚ÍAƒe[ƒuƒ‹‚ğƒm[ƒ}ƒ‹‚É‚·‚é
+		}else{	//ãƒã‚ºãƒ¬ã®ã¨ãã¯ã€ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ãƒãƒ¼ãƒãƒ«ã«ã™ã‚‹
 			data->TblNo = TH_ENC_TBL_NORM;
 			data->TblMonsNo = 0;
-			//ƒnƒYƒŒ‚È‚Ì‚ÅAŠÔ‚ğ‰Šú‰»
+			//ãƒã‚ºãƒ¬ãªã®ã§ã€æ™‚é–“ã‚’åˆæœŸåŒ–
 			data->Time = 0;
 		}
-		//–Ø‚Ì—h‚ê•û‚ğŒˆ’è
+		//æœ¨ã®æºã‚Œæ–¹ã‚’æ±ºå®š
 		data->SwayLv = SetSwayLv(data->RareLv);
 	}
-	//–Ø‚Ì”Ô†‚ğ‹L‰¯
+	//æœ¨ã®ç•ªå·ã‚’è¨˜æ†¶
 	HTSave_SetBeforeTreeNo(tree_no, ptr);
 }
 
 //==============================================================================
 /**
- * –¨“h‚è–Ø‚Ìí“¬Œãˆ—
+ * èœœå¡—ã‚Šæœ¨ã®æˆ¦é—˜å¾Œå‡¦ç†
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -286,16 +286,16 @@ void HTE_SetHoneyTreeInfoAfterBtl(FIELDSYS_WORK *fsys)
 	u8 tree_no;
 	
 	tree_no = GetTreeNoFromZoneID(fsys->location->zone_id);
-	GF_ASSERT(tree_no!=HONEY_TREE_MAX&&"–¨“h‚è–Ø‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ" );
-	//ƒAƒjƒƒXƒgƒbƒv
+	GF_ASSERT(tree_no!=HONEY_TREE_MAX&&"èœœå¡—ã‚Šæœ¨ãŒç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“" );
+	//ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒˆãƒƒãƒ—
 	if (fsys->HoneyTreePtr->HoneyData[tree_no].AnimeFlg){
 		u8 idx;
 		M3DO_PTR obj_ptr;
 		M3DOL_PTR obj_list;
 		NNSG3dRenderObj *render_obj;
-		//ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+		//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 		idx = GetNowLocalIndex(fsys->map_cont_dat);
-		//‚n‚a‚iƒŠƒXƒg‚ğæ“¾
+		//ï¼¯ï¼¢ï¼ªãƒªã‚¹ãƒˆã‚’å–å¾—
 		Get3DObjListFromLocalIdx(idx, fsys->map_cont_dat, &obj_list);
 		obj_ptr = M3DO_GetMap3DObjDataFromID(obj_list, BMID_TREEEFF);
 		render_obj = M3DO_GetRenderObj(obj_ptr);
@@ -306,17 +306,17 @@ void HTE_SetHoneyTreeInfoAfterBtl(FIELDSYS_WORK *fsys)
 									fsys->HoneyTreePtr->HoneyData[tree_no].AnimeNo);
 		}
 		fsys->HoneyTreePtr->HoneyData[tree_no].AnimeFlg = FALSE;
-///		OS_Printf("—h‚ê‘ƒAƒjƒƒXƒgƒbƒv\n");
+///		OS_Printf("æºã‚Œè‰ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒˆãƒƒãƒ—\n");
 	}
-	//ƒ‚ƒ“ƒXƒ^[ƒe[ƒuƒ‹”Ô†‚ÍÁ‚³‚È‚¢‚±‚Æ!!
+	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·ã¯æ¶ˆã•ãªã„ã“ã¨!!
 }
 
 //==============================================================================
 /**
- * –¨“h‚è–Ø‚ÌƒŒƒA“x‚ğŒˆ’è
+ * èœœå¡—ã‚Šæœ¨ã®ãƒ¬ã‚¢åº¦ã‚’æ±ºå®š
  *
- * @param	inHit		“–‚½‚èƒtƒ‰ƒO
- * @param	outRare		ƒŒƒA“x‚ğŠi”[‚·‚éƒoƒbƒtƒ@		
+ * @param	inHit		å½“ãŸã‚Šãƒ•ãƒ©ã‚°
+ * @param	outRare		ãƒ¬ã‚¢åº¦ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡		
  * 
  * @return	none
  */
@@ -327,30 +327,30 @@ static void SetRareLv(const BOOL inHit, u8 *outRare)
 	rand = gf_p_rand(100);
 	if (inHit){
 		if(rand<1){			//1%
-			*outRare = HTE_GRATE_RARE;	//ŒƒƒŒƒA
+			*outRare = HTE_GRATE_RARE;	//æ¿€ãƒ¬ã‚¢
 		}else if(rand<10){	//9%
-			*outRare = HTE_NONE;		//ƒnƒYƒŒ
+			*outRare = HTE_NONE;		//ãƒã‚ºãƒ¬
 		}else if(rand<30){	//20%
-			*outRare = HTE_NORMAL;	//’Êí
+			*outRare = HTE_NORMAL;	//é€šå¸¸
 		}else{				//70%
-			*outRare = HTE_RARE;	//ƒŒƒA
+			*outRare = HTE_RARE;	//ãƒ¬ã‚¢
 		}
 	}else{
 		if(rand<10){	//10%
-			*outRare = HTE_NONE;		//ƒnƒYƒŒ
+			*outRare = HTE_NONE;		//ãƒã‚ºãƒ¬
 		}else if(rand<30){	//20%
-			*outRare = HTE_RARE;	//ƒŒƒA
+			*outRare = HTE_RARE;	//ãƒ¬ã‚¢
 		}else{				//70%
-			*outRare = HTE_NORMAL;	//’Êí
+			*outRare = HTE_NORMAL;	//é€šå¸¸
 		}
 	}
 }
 
 //==============================================================================
 /**
- * –¨“h‚è–Ø‚ÌƒGƒ“ƒJƒEƒ“ƒgƒ‚ƒ“ƒXƒ^[ƒe[ƒuƒ‹ƒiƒ“ƒo[‚ğŒˆ’è
+ * èœœå¡—ã‚Šæœ¨ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼ã‚’æ±ºå®š
  *
- * @param	outTblMonsNo		ƒ‚ƒ“ƒXƒ^[ƒe[ƒuƒ‹ƒiƒ“ƒo[‚ğŠi”[‚·‚éƒoƒbƒtƒ@
+ * @param	outTblMonsNo		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
  *
  * @return	none
  */
@@ -376,21 +376,21 @@ static void SetHoneyTreeTblMonsNo(u8 *outTblMonsNo)
 
 //==============================================================================
 /**
- * –¨“h‚èƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹Œˆ’è
+ * èœœå¡—ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«æ±ºå®š
  *
- * @param	inRareLv		ƒŒƒA“x
+ * @param	inRareLv		ãƒ¬ã‚¢åº¦
  *
- * @return	int				ƒe[ƒuƒ‹”Ô†
+ * @return	int				ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·
  */
 //==============================================================================
 static const int SetHoneyTreeEncTbl(const u8 inRareLv)
 {
 	int tbl_no;
-	if (inRareLv == HTE_GRATE_RARE){	//’´ƒŒƒA
+	if (inRareLv == HTE_GRATE_RARE){	//è¶…ãƒ¬ã‚¢
 		tbl_no = TH_ENC_TBL_G_RARE;
-	}else if(inRareLv == HTE_RARE){		//ƒŒƒA
+	}else if(inRareLv == HTE_RARE){		//ãƒ¬ã‚¢
 		tbl_no = TH_ENC_TBL_RARE;
-	}else{								//ƒm[ƒ}ƒ‹
+	}else{								//ãƒãƒ¼ãƒãƒ«
 		tbl_no = TH_ENC_TBL_NORM;
 	}
 	return tbl_no;
@@ -398,11 +398,11 @@ static const int SetHoneyTreeEncTbl(const u8 inRareLv)
 
 //==============================================================================
 /**
- * —h‚ê‹ï‡‚ğƒZƒbƒg
+ * æºã‚Œå…·åˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	inRareLv		ƒŒƒA“x
+ * @param	inRareLv		ãƒ¬ã‚¢åº¦
  *
- * @return	int				—h‚ê‹ï‡
+ * @return	int				æºã‚Œå…·åˆ
  */
 //==============================================================================
 static const int SetSwayLv(const u8 inRareLv)
@@ -411,7 +411,7 @@ static const int SetSwayLv(const u8 inRareLv)
 	int rand;
 	rand = gf_p_rand(100);
 	
-	if (inRareLv == HTE_GRATE_RARE){	//’´ƒŒƒA
+	if (inRareLv == HTE_GRATE_RARE){	//è¶…ãƒ¬ã‚¢
 		if (rand<5){		//5%
 			sway_lv = SWAY_LV_GRATE;
 		}else if(rand<6){	//1%
@@ -421,7 +421,7 @@ static const int SetSwayLv(const u8 inRareLv)
 		}else{				//93%
 			sway_lv = SWAY_LV_G_GRATE;
 		}
-	}else if(inRareLv == HTE_RARE){		//ƒŒƒA
+	}else if(inRareLv == HTE_RARE){		//ãƒ¬ã‚¢
 		if (rand<75){		//75%
 			sway_lv = SWAY_LV_GRATE;
 		}else if(rand<95){	//20%
@@ -431,7 +431,7 @@ static const int SetSwayLv(const u8 inRareLv)
 		}else{				//4%
 			sway_lv = SWAY_LV_G_GRATE;
 		}
-	}else if(inRareLv == HTE_NORMAL){	//ƒm[ƒ}ƒ‹
+	}else if(inRareLv == HTE_NORMAL){	//ãƒãƒ¼ãƒãƒ«
 		if (rand<19){		//19%
 			sway_lv = SWAY_LV_GRATE;
 		}else if(rand<79){	//60%
@@ -441,7 +441,7 @@ static const int SetSwayLv(const u8 inRareLv)
 		}else{				//1%
 			sway_lv = SWAY_LV_G_GRATE;
 		}
-	}else{								//ƒnƒYƒŒ
+	}else{								//ãƒã‚ºãƒ¬
 		if (rand<1){		//1%
 			sway_lv = SWAY_LV_GRATE;
 		}else if(rand<19){	//18%
@@ -457,18 +457,18 @@ static const int SetSwayLv(const u8 inRareLv)
 
 //==============================================================================
 /**
- * —h‚êƒAƒjƒƒiƒ“ƒo[‚ÌƒZƒbƒg
- * ƒAƒjƒƒiƒ“ƒo[‚ÍAfield_3d_anime.c“à‚ÌƒAƒjƒƒe[ƒuƒ‹‚ÉˆË‘¶‚µ‚Ü‚·
+ * æºã‚Œã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ã®ã‚»ãƒƒãƒˆ
+ * ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ã¯ã€field_3d_anime.cå†…ã®ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«ã«ä¾å­˜ã—ã¾ã™
  *
- * @param	inRareLv		—h‚ê‹ï‡
- * @oaram	outAnimeNo		ƒAƒjƒƒiƒ“ƒo[@0Fƒm[ƒ}ƒ‹@1‚·‚²‚­—h‚ê‚é@2F‚à‚Ì‚²‚Á‚Â—h‚ê‚é
+ * @param	inRareLv		æºã‚Œå…·åˆ
+ * @oaram	outAnimeNo		ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ã€€0ï¼šãƒãƒ¼ãƒãƒ«ã€€1ã™ã”ãæºã‚Œã‚‹ã€€2ï¼šã‚‚ã®ã”ã£ã¤æºã‚Œã‚‹
  *
- * @return	BOOL			TRUEFƒAƒjƒ‚·‚é	FALSEFƒAƒjƒ‚µ‚È‚¢
+ * @return	BOOL			TRUEï¼šã‚¢ãƒ‹ãƒ¡ã™ã‚‹	FALSEï¼šã‚¢ãƒ‹ãƒ¡ã—ãªã„
  */
 //==============================================================================
 static const BOOL GetAnimeNoForHoneyTree(const int inSwayLv, u8 *outAnimeNo)
 {
-	u8 anime_no;	//ƒAƒjƒƒiƒ“ƒo[
+	u8 anime_no;	//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
 	BOOL rc;
 	rc = TRUE;
 	if (inSwayLv == SWAY_LV_G_GRATE){
@@ -485,11 +485,11 @@ static const BOOL GetAnimeNoForHoneyTree(const int inSwayLv, u8 *outAnimeNo)
 
 //==============================================================================
 /**
- * –¨“h‚è–Ø‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgƒƒCƒ“
+ * èœœå¡—ã‚Šæœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆãƒ¡ã‚¤ãƒ³
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inMap3DObjList	ƒ}ƒbƒv3DOBJƒŠƒXƒg
- * @param	inBlockIdx		ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMap3DObjList	ãƒãƒƒãƒ—3DOBJãƒªã‚¹ãƒˆ
+ * @param	inBlockIdx		ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  * @return	none
  */
@@ -499,9 +499,9 @@ static void SetHoneyTreeAnimation(FIELDSYS_WORK *fsys, M3DOL_PTR inMap3DObjList,
 	u16 zone_id;
 	u8 tree_no;
 	
-	//ƒuƒƒbƒN‚Ìƒ][ƒ“ID‚ğæ“¾
+	//ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¾ãƒ¼ãƒ³IDã‚’å–å¾—
 	zone_id = World_GetZoneIDFromBlockIdx(fsys->World, inBlockIdx);
-	//æ“¾‚µ‚½ƒ][ƒ“‚h‚c‚Í–¨“h‚è‚·‚éêŠ‚©‚ğ’²‚×‚é
+	//å–å¾—ã—ãŸã‚¾ãƒ¼ãƒ³ï¼©ï¼¤ã¯èœœå¡—ã‚Šã™ã‚‹å ´æ‰€ã‹ã‚’èª¿ã¹ã‚‹
 	tree_no = GetTreeNoFromZoneID(zone_id);
 
 	if (tree_no != HONEY_TREE_MAX){
@@ -513,23 +513,23 @@ static void SetHoneyTreeAnimation(FIELDSYS_WORK *fsys, M3DOL_PTR inMap3DObjList,
 ///		ptr = HTSave_GetHoneyTree(fsys->savedata);
 		data = HTSave_GetHoneyDataPtr(tree_no, ptr);	
 		
-		//–¨“h‚è‚·‚éêŠ‚Ìê‡A‚»‚ÌêŠ‚ÌA–¨“h‚è–Ø‚Ìó‹µ‚ğæ“¾
+		//èœœå¡—ã‚Šã™ã‚‹å ´æ‰€ã®å ´åˆã€ãã®å ´æ‰€ã®ã€èœœå¡—ã‚Šæœ¨ã®çŠ¶æ³ã‚’å–å¾—
 		if ( CheckHoneyTreeEncTime(data->Time) ){
 			BOOL rc;
 			u8 anime_no;
-			//‚ä‚ê•û‚ğ•ªŠò
+			//ã‚†ã‚Œæ–¹ã‚’åˆ†å²
 			rc = GetAnimeNoForHoneyTree(data->SwayLv, &anime_no);
 			
 			if(!rc){
 				return;
 			}
 			
-			//ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgiƒAƒjƒ‚»‚Ì‚à‚Ì‚ÍAƒuƒ‰ƒbƒNƒAƒEƒg‚ÉÏ‚Ü‚¹‚Ä‚¨‚­j
+			//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆï¼ˆã‚¢ãƒ‹ãƒ¡ãã®ã‚‚ã®ã¯ã€ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆæ™‚ã«æ¸ˆã¾ã›ã¦ãŠãï¼‰
 			obj_ptr = M3DO_GetMap3DObjDataFromID(inMap3DObjList, BMID_TREEEFF);
 			if (obj_ptr != NULL){
 				NNSG3dRenderObj *render_obj;
 				render_obj = M3DO_GetRenderObj(obj_ptr);
-				//‚·‚Å‚ÉƒAƒjƒ‚µ‚Ä‚é‚©‚à‚µ‚ê‚È‚¢‚Ì‚ÅA‚±‚±‚ÅAƒAƒjƒ‚ğƒIƒt‚É‚·‚é
+				//ã™ã§ã«ã‚¢ãƒ‹ãƒ¡ã—ã¦ã‚‹ã‹ã‚‚ã—ã‚Œãªã„ã®ã§ã€ã“ã“ã§ã€ã‚¢ãƒ‹ãƒ¡ã‚’ã‚ªãƒ•ã«ã™ã‚‹
 				F3DA_RemoveFld3DAnime(	fsys->field_3d_anime,
 										render_obj,
 										BMID_TREEEFF,
@@ -548,11 +548,11 @@ static void SetHoneyTreeAnimation(FIELDSYS_WORK *fsys, M3DOL_PTR inMap3DObjList,
 
 //==============================================================================
 /**
- * ƒ][ƒ“ID‚©‚ç–¨“h‚è–Ø‚Ìƒiƒ“ƒo[‚ğæ“¾
+ * ã‚¾ãƒ¼ãƒ³IDã‹ã‚‰èœœå¡—ã‚Šæœ¨ã®ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param	inZoneID		ƒ][ƒ“ID
+ * @param	inZoneID		ã‚¾ãƒ¼ãƒ³ID
  *
- * @return	u8				–Øƒiƒ“ƒo[
+ * @return	u8				æœ¨ãƒŠãƒ³ãƒãƒ¼
  */
 //==============================================================================
 static u8 GetTreeNoFromZoneID(const int inZoneID)
@@ -568,11 +568,11 @@ static u8 GetTreeNoFromZoneID(const int inZoneID)
 
 //==============================================================================
 /**
- * ƒGƒ“ƒJƒEƒ“ƒg‚Å‚«‚éŠÔ‚©‚ğƒ`ƒFƒbƒN
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã§ãã‚‹æ™‚é–“ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param	inTime		ŠÔ
+ * @param	inTime		æ™‚é–“
  *
- * @return  BOOL	TRUE:ƒGƒ“ƒJƒEƒ“ƒg‰Â		FALSEFƒGƒ“ƒJƒEƒ“ƒg•s‰Â
+ * @return  BOOL	TRUE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå¯		FALSEï¼šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆä¸å¯
  */
 //==============================================================================
 static const BOOL CheckHoneyTreeEncTime(const int inTime)
@@ -587,19 +587,19 @@ static const BOOL CheckHoneyTreeEncTime(const int inTime)
 
 //==============================================================================
 /**
- * ƒgƒŒ[ƒi[‚h‚c‚ğƒL[‚É‚µ‚Ä“–‚½‚è‚ğŠ„‚èo‚·
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤ã‚’ã‚­ãƒ¼ã«ã—ã¦å½“ãŸã‚Šã‚’å‰²ã‚Šå‡ºã™
  *
- * @param	inTrainerID		ƒgƒŒ[ƒi[‚h‚c
- * @param	inIndex			Œ»İ‚Ì–ØƒCƒ“ƒfƒbƒNƒX
+ * @param	inTrainerID		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤
+ * @param	inIndex			ç¾åœ¨ã®æœ¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @return	BOOL		TRUE:“–‚½‚è		FALSE:ƒnƒYƒŒ
+ * @return	BOOL		TRUE:å½“ãŸã‚Š		FALSE:ãƒã‚ºãƒ¬
  */
 //==============================================================================
 static BOOL CheckRareFlg(const u32 inTrainerID, const u8 inIndex)
 {
 	u8 i,j;
 	u8 temp[4];
-	//4‚Â‚É•ªŠ„
+	//4ã¤ã«åˆ†å‰²
 	temp[0] = (inTrainerID >> 24) & 0xff;
 	temp[1] = (inTrainerID >> 16) & 0xff;
 	temp[2] = (inTrainerID >> 8) & 0xff;
@@ -625,28 +625,28 @@ static BOOL CheckRareFlg(const u32 inTrainerID, const u8 inIndex)
 
 	for(i=0;i<4;i++){
 		if (inIndex == temp[i]){
-			return TRUE;	//“–‚½‚è
+			return TRUE;	//å½“ãŸã‚Š
 		}
 	}
 
-	return FALSE;		//ƒnƒYƒŒ
+	return FALSE;		//ãƒã‚ºãƒ¬
 }
 
 //==============================================================================
 /**
- * –¨“h‚è–Ø‚ÌƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“‚ğæ“¾
+ * èœœå¡—ã‚Šæœ¨ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³ã‚’å–å¾—
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	int			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ * @return	int			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 //==============================================================================
 int HTE_GetHoneyTreeMonster(FIELDSYS_WORK *fsys)
 {
 	u8 tree_no;
-	//Œ»İ‚Ìƒ][ƒ“ID‚ğæ“¾
+	//ç¾åœ¨ã®ã‚¾ãƒ¼ãƒ³IDã‚’å–å¾—
 	tree_no = GetTreeNoFromZoneID(fsys->location->zone_id);
-	GF_ASSERT(tree_no!=HONEY_TREE_MAX&&"–¨“h‚è–Ø‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ" );
+	GF_ASSERT(tree_no!=HONEY_TREE_MAX&&"èœœå¡—ã‚Šæœ¨ãŒç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“" );
 	{
 		int *tbl;
 		int monsno;
@@ -656,15 +656,15 @@ int HTE_GetHoneyTreeMonster(FIELDSYS_WORK *fsys)
 		ptr = EncDataSave_GetHoneyTree(EncDataSave_GetSaveDataPtr(fsys->savedata));
 ///		ptr = HTSave_GetHoneyTree(fsys->savedata);
 		data = HTSave_GetHoneyDataPtr(tree_no, ptr);
-		if( PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM ){		//ƒ_ƒCƒ„
+		if( PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM ){		//ãƒ€ã‚¤ãƒ¤
 			tbl = ArchiveDataLoadMallocLo(ARC_ENCDATA_EX, HoneyEncArcTbl_Dia[data->TblNo], HEAPID_FIELD);
-		}else{										//ƒp[ƒ‹
+		}else{										//ãƒ‘ãƒ¼ãƒ«
 			tbl = ArchiveDataLoadMallocLo(ARC_ENCDATA_EX, HoneyEncArcTbl_Perl[data->TblNo], HEAPID_FIELD);
 		}
 #ifdef PM_DEBUG		
 		{
 			int i;
-			OS_Printf("ƒe[ƒuƒ‹ŒŸØ\n");
+			OS_Printf("ãƒ†ãƒ¼ãƒ–ãƒ«æ¤œè¨¼\n");
 			for(i=0;i<5;i++){
 				OS_Printf("%d,",tbl[i]);
 			}
@@ -679,11 +679,11 @@ int HTE_GetHoneyTreeMonster(FIELDSYS_WORK *fsys)
 
 //==============================================================================
 /**
- * ƒAƒjƒƒZƒbƒgƒR[ƒ‹ƒoƒbƒN
+ * ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- * @param	work			ƒ[ƒN
- * @param	inBlockIndex	ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
- * @param	inObjList		OBJƒŠƒXƒg
+ * @param	work			ãƒ¯ãƒ¼ã‚¯
+ * @param	inBlockIndex	ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inObjList		OBJãƒªã‚¹ãƒˆ
  *
  * @return	none
  */
@@ -702,9 +702,9 @@ void HTE_SetHoneyTreeAnimeCallBack(void* work, const int inBlockIndex, const M3D
 
 //==============================================================================
 /**
- * Œ»İ‚¢‚éƒ][ƒ“‚Ì–¨–ØƒAƒjƒƒtƒ‰ƒO‚ğ—‚Æ‚·
+ * ç¾åœ¨ã„ã‚‹ã‚¾ãƒ¼ãƒ³ã®èœœæœ¨ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -714,13 +714,13 @@ void HTE_ResetAnimeFlg(FIELDSYS_WORK *fsys)
 	HT_PTR ptr;
 	HONEY_DATA *data;
 	u8 tree_no;
-	//Œ»İ‚Ìƒ][ƒ“ID‚ğæ“¾
+	//ç¾åœ¨ã®ã‚¾ãƒ¼ãƒ³IDã‚’å–å¾—
 	tree_no = GetTreeNoFromZoneID(fsys->location->zone_id);
-	GF_ASSERT(tree_no!=HONEY_TREE_MAX&&"–¨“h‚è–Ø‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ" );
+	GF_ASSERT(tree_no!=HONEY_TREE_MAX&&"èœœå¡—ã‚Šæœ¨ãŒç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“" );
 	fsys->HoneyTreePtr->HoneyData[tree_no].AnimeFlg = FALSE;
 	
 	ptr = EncDataSave_GetHoneyTree(EncDataSave_GetSaveDataPtr(fsys->savedata));
 	data = HTSave_GetHoneyDataPtr(tree_no, ptr);
-	//–¨ƒf[ƒ^‚ÌŠÔ‚ğ0‚É‚·‚é
+	//èœœãƒ‡ãƒ¼ã‚¿ã®æ™‚é–“ã‚’0ã«ã™ã‚‹
 	data->Time = 0;
 }

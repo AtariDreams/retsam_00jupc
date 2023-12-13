@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_171.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			‚«‚è‚Í‚ç‚¢’Ç‰ÁŒø‰ÊƒV[ƒPƒ“ƒX
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ãã‚Šã¯ã‚‰ã„è¿½åŠ åŠ¹æžœã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *@author	HisashiSogabe
  *@data		2006.02.15
  *
@@ -27,7 +27,7 @@ SUB_171:
 SUB_171_NEXT:
 	GOSUB					SUB_SEQ_WAZA_OUT_EFF
 SUB_171_START:
-	//‰ñ”ð‚ð1’iŠK‰º‚°‚é‚ðƒZƒbƒg
+	//å›žé¿ã‚’1æ®µéšŽä¸‹ã’ã‚‹ã‚’ã‚»ãƒƒãƒˆ
 	VALUE					VAL_SET,BUF_PARA_TSUIKA_PARA,ADD_COND2_AVOIDDOWN
 	GOSUB					SUB_SEQ_ABICNT_CALC
 

@@ -30,15 +30,15 @@
 
 typedef struct
 {
-    u32     current_pos;                /* �p���X�Z�b�g���̌��݈ʒu */
-    u32     rest_pos;                   /* �x�~���ԂɂȂ�ʒu */
-    u32     rest_tick;                  /* �x�~���Ԃ̒����B1 = 1 Tick */
-    u32     on_tick[VIB_PULSE_NUM_MAX]; /* �N�����Ԃ̒����B1 = 1 Tick */
-    u32     off_tick[VIB_PULSE_NUM_MAX];/* ��~���Ԃ̒����B1 = 1 Tick */
-    BOOL    is_enable;                  /* �U�����Ă���Ƃ�TRUE�ɂȂ� */
-    u32     repeat_num;                 /* �p���X�Z�b�g���J��Ԃ����B0�̂Ƃ��́A�I���Ȃ��J��Ԃ��܂��B */
-    u32     current_count;              /* ����p���X�Z�b�g���J��Ԃ������������܂��B */
-    VIBCartridgePulloutCallback cartridge_pullout_callback;     /* �J�[�g���b�W�����̃R�[���o�b�N */
+    u32     current_pos;                /* パルスセット内の現在位置 */
+    u32     rest_pos;                   /* 休止時間になる位置 */
+    u32     rest_tick;                  /* 休止時間の長さ。1 = 1 Tick */
+    u32     on_tick[VIB_PULSE_NUM_MAX]; /* 起動時間の長さ。1 = 1 Tick */
+    u32     off_tick[VIB_PULSE_NUM_MAX];/* 停止時間の長さ。1 = 1 Tick */
+    BOOL    is_enable;                  /* 振動しているときTRUEになる */
+    u32     repeat_num;                 /* パルスセットを繰り返す数。0のときは、終わりなく繰り返します。 */
+    u32     current_count;              /* 何回パルスセットを繰り返したかを示します。 */
+    VIBCartridgePulloutCallback cartridge_pullout_callback;     /* カートリッジ抜けのコールバック */
 }
 VIBiPulseInfo;
 
@@ -64,7 +64,7 @@ static void VIBi_SleepCallback(void *);
                     Variable
  *-----------------------------------------------------------------------*/
 
-/* �L���b�V����32�o�C�g�P�ʂŃA�N�Z�X����̂Ő擪�𑵂��� */
+/* キャッシュは32バイト単位でアクセスするので先頭を揃える */
 static VIBiPulseInfo pulse_vib ATTRIBUTE_ALIGN(32);
 static PMSleepCallbackInfo sc_info;
 
@@ -73,14 +73,14 @@ static PMSleepCallbackInfo sc_info;
  *-----------------------------------------------------------------------*/
 
 /*!
-    �p���X�U�������������܂��B\n
-    ��d�Ăт��s�����ꍇ�́AVIB_IsCartridgeEnabled �֐��Ɠ����ɂȂ�܂��B
+    パルス振動を初期化します。\n
+    二重呼びを行った場合は、VIB_IsCartridgeEnabled 関数と同等になります。
     
-    ���̊֐����ŁANitroSDK�� PM_AppendPreSleepCallback �֐���p���āA�X���[�v�ɓ���O��
-    �U�����~�߂�R�[���o�b�N���o�^����܂��B
+    この関数内で、NitroSDKの PM_AppendPreSleepCallback 関数を用いて、スリープに入る前に
+    振動を止めるコールバックが登録されます。
     
-    @retval TRUE    ���������������܂����B
-    @retval FALSE   �����������s���܂����B
+    @retval TRUE    初期化が成功しました。
+    @retval FALSE   初期化が失敗しました。
 */
 BOOL VIB_Init(void)
 {
@@ -98,7 +98,7 @@ BOOL VIB_Init(void)
         MI_CpuClearFast(&pulse_vib, sizeof(pulse_vib));
         CTRDG_SetPulledOutCallback(VIBi_PulledOutCallbackCartridge);
 
-        /* �X���[�v�ɓ���O�̃R�[���o�b�N��o�^���� */
+        /* スリープに入る前のコールバックを登録する */
         PM_SetSleepCallbackInfo(&sc_info, VIBi_SleepCallback, NULL);
         PM_AppendPreSleepCallback(&sc_info);
 
@@ -111,12 +111,12 @@ BOOL VIB_Init(void)
 }
 
 /*!
-    �U���J�[�g���b�W���C�u�����̎g�p���~�߂܂��B
+    振動カートリッジライブラリの使用を止めます。
     
-    �p���X�U���̒�~�A
-    VIB_Init �֐��œo�^�����X���[�v�O�̃R�[���o�b�N�̍폜�A
-    �J�[�g���b�W�����R�[���o�b�N�̍폜�A
-    ���s���Ă��܂��B
+    パルス振動の停止、
+    VIB_Init 関数で登録したスリープ前のコールバックの削除、
+    カートリッジ抜けコールバックの削除、
+    を行っています。
 */
 void VIB_End(void)
 {
@@ -127,17 +127,17 @@ void VIB_End(void)
 }
 
 /*!
-    �p���X�U�����J�n���܂��B\n
-    �����ȑO�̃p���X�U�����I�����Ă��Ȃ��ꍇ�́A��������I�����Ă���n�߂܂��B\n
-    �X�e�[�^�X�̓��C�u�������ŃR�s�[���܂��̂ŁA���������m�ۂ��Ă����K�v�͂���܂���B
+    パルス振動を開始します。\n
+    もし以前のパルス振動が終了していない場合は、いったん終了してから始めます。\n
+    ステータスはライブラリ側でコピーしますので、メモリを確保しておく必要はありません。
     
-    �U���J�n�O�Ƀn�[�h�E�F�A�����̃`�F�b�N���s���܂��B
-    �����ɔ����Ă����ꍇ�ADEBUG����RELEASE�r���h�ł́AOS_Panic �֐��Ń��b�Z�[�W��\�����A
-    �v���O�������~���܂��BFINALROM�r���h�ł́A�p���X�U�����J�n����܂���B
+    振動開始前にハードウェア制限のチェックを行います。
+    制限に反していた場合、DEBUG又はRELEASEビルドでは、OS_Panic 関数でメッセージを表示し、
+    プログラムを停止します。FINALROMビルドでは、パルス振動が開始されません。
     
     @sa VIBPulseState
     
-    @param state    �p���X�U���̃X�e�[�^�X
+    @param state    パルス振動のステータス
 */
 void VIB_StartPulse(const VIBPulseState * state)
 {
@@ -149,16 +149,16 @@ void VIB_StartPulse(const VIBPulseState * state)
     {
         int     i;
 
-        /* ON���Ԃ̃`�F�b�N */
+        /* ON時間のチェック */
         for (i = 0; i < state->pulse_num; i++)
         {
-            /* ON���Ԃ�0�łȂ����ǂ��� */
+            /* ON時間が0でないかどうか */
             if (state->on_time[i] == 0)
             {
                 VIBi_FatalError("pulse_vib: on_time[%d] must not be 0.\n", i);
                 return;
             }
-            /* ON���Ԃ� VIB_ON_TIME_MAX �𒴂��Ă��Ȃ����ǂ��� */
+            /* ON時間が VIB_ON_TIME_MAX を超えていないかどうか */
             if (state->on_time[i] > VIB_ON_TIME_MAX)
             {
                 VIBi_FatalError("pulse_vib: on_time[%d] is over VIB_ON_TIME_MAX.\n", i);
@@ -166,23 +166,23 @@ void VIB_StartPulse(const VIBPulseState * state)
             }
         }
         
-        /* OFF���Ԃ̃`�F�b�N */
+        /* OFF時間のチェック */
         for (i = 0; i < state->pulse_num - 1; i++)
         {
-            /* OFF���Ԃ�0�łȂ����ǂ��� */
+            /* OFF時間が0でないかどうか */
             if (state->off_time[i] == 0)
             {
                 VIBi_FatalError("pulse_vib: off_time[%d] must not be 0.\n", i);
                 return;
             }
-            /* OFF���Ԃ����O��ON���Ԃ𒴂��Ă��Ȃ��� */
+            /* OFF時間が直前のON時間を超えていないか */
             if (state->on_time[i] > state->off_time[i])
             {
                 VIBi_FatalError("pulse_vib: on_time[%d] is over off_time[%d].\n", i, i);
                 return;
             }
         }
-        /* REST���Ԃ� VIB_REST_TIME_MIN �����ɂȂ��Ă��Ȃ��� */
+        /* REST時間が VIB_REST_TIME_MIN 未満になっていないか */
         if (state->rest_time < VIB_REST_TIME_MIN)
         {
             VIBi_FatalError("pulse_vib: rest_time is less than VIB_REST_TIME_MIN.\n", i);
@@ -209,12 +209,12 @@ void VIB_StartPulse(const VIBPulseState * state)
     pulse_vib.rest_pos = state->pulse_num * 2 - 1;
 
     pulse_vib.is_enable = TRUE;
-    /* pulse_vib�\���̂̃|�C���^�𑗂� */
+    /* pulse_vib構造体のポインタを送る */
     VIBi_MotorOnOff(&pulse_vib);
 }
 
 /*!
-    �p���X�U�����~���܂��B
+    パルス振動を停止します。
 */
 void VIB_StopPulse(void)
 {
@@ -223,16 +223,16 @@ void VIB_StopPulse(void)
     {
 
         pulse_vib.is_enable = FALSE;
-        /* pulse_vib�\���̂̃|�C���^�𑗂� */
+        /* pulse_vib構造体のポインタを送る */
         VIBi_MotorOnOff(&pulse_vib);
     }
 }
 
 /*!
-    �p���X�U�����I���������ۂ���Ԃ��܂��B�Ō��rest_time���I��������_�ŏI�������ƌ��Ȃ���܂��B
+    パルス振動が終了したか否かを返します。最後のrest_timeが終わった時点で終了したと見なされます。
     
-    @retval TRUE    �p���X�U���͏I�����Ă��܂���B
-    @retval FALSE   �p���X�U���͏I�����Ă��܂��B
+    @retval TRUE    パルス振動は終了していません。
+    @retval FALSE   パルス振動は終了しています。
 */
 BOOL VIB_IsExecuting(void)
 {
@@ -241,13 +241,13 @@ BOOL VIB_IsExecuting(void)
 }
 
 /*!
-    �J�[�g���b�W�����R�[���o�b�N��o�^���܂��B
+    カートリッジ抜けコールバックを登録します。
     
-    �J�[�g���b�W�������N�������ꍇ�A���C�u�����͒����Ƀp���X�U�����~���܂��B@n
-    ���̊֐���p���ăR�[���o�b�N���o�^����Ă����ꍇ�́A���̌�ɃR�[���o�b�N��
-    �Ă΂�܂��B
+    カートリッジ抜けが起こった場合、ライブラリは直ちにパルス振動を停止します。@n
+    この関数を用いてコールバックが登録されていた場合は、その後にコールバックが
+    呼ばれます。
     
-    @param func �J�[�g���b�W�����R�[���o�b�N
+    @param func カートリッジ抜けコールバック
 */
 void VIB_SetCartridgePulloutCallback(VIBCartridgePulloutCallback func)
 {
@@ -256,11 +256,11 @@ void VIB_SetCartridgePulloutCallback(VIBCartridgePulloutCallback func)
 }
 
 /*!
-    �U���J�[�g���b�W���L���ȏ�Ԃ��ǂ�����Ԃ��܂��B
-    �i��x�����������s�����ꍇ�́ATRUE��Ԃ��܂���B�j
+    振動カートリッジが有効な状態かどうかを返します。
+    （一度抜き差しを行った場合は、TRUEを返しません。）
     
-    @retval TRUE    �U���J�[�g���b�W���L���ȏ�Ԃł���
-    @retval FALSE   �U���J�[�g���b�W���L���ȏ�Ԃł͂Ȃ��B
+    @retval TRUE    振動カートリッジが有効な状態である
+    @retval FALSE   振動カートリッジが有効な状態ではない。
 */
 BOOL VIB_IsCartridgeEnabled(void)
 {
@@ -287,7 +287,7 @@ static BOOL VIBi_PulledOutCallbackCartridge(void)
         pulse_vib.cartridge_pullout_callback();
     }
 
-    return FALSE;                      /* �����Ƀ\�t�g���~���Ȃ� */
+    return FALSE;                      /* すぐにソフトを停止しない */
 }
 
 /*!
@@ -299,7 +299,7 @@ static BOOL VIBi_PulledOutCallbackCartridge(void)
 */
 static void VIBi_MotorOnOff(VIBiPulseInfo * pulse_vib)
 {
-    /* �ݒ肵�����L���������t���b�V�� */
+    /* 設定した共有メモリをフラッシュ */
     DC_FlushRange(pulse_vib, sizeof(VIBiPulseInfo));
     if (pulse_vib->is_enable == TRUE)
     {

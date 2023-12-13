@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_011.s
- *@brief	�퓬�V�[�P���X
- *			�|�P�����ߊl�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			ポケモン捕獲シーケンス
  *@author	HisashiSogabe
  *@data		2005.07.20
  *
@@ -20,7 +20,7 @@ SUB_011:
 	POKEMON_GET_INIT	GET_NORMAL
 	POKEMON_GET
 #if AFTER_MASTER_070409_60_EUR_FIX
-//�ԈႦ��4�o�C�g�̃T�C�Y�ł͂Ȃ��o�b�t�@��ǂ߂�悤�ɂ��Ă���̂ŁA32bit�̃��[�N�ɃR�s�[������A0xff�Ń}�X�N
+//間違えて4バイトのサイズではないバッファを読めるようにしているので、32bitのワークにコピーした後、0xffでマスク
 	VALUE_WORK			VAL_GET,BUF_PARA_WIN_LOSE_FLAG,BUF_PARA_TEMP_WORK
 	VALUE				VAL_AND,BUF_PARA_TEMP_WORK,0x000000ff
 	IF					IF_FLAG_NE,BUF_PARA_TEMP_WORK,FIGHT_POKE_GET,SUB_011_END

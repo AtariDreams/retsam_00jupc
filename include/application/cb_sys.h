@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	cb_sys.h
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
- * @date	2006.04.03(Œ)
+ * @date	2006.04.03(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -40,7 +40,7 @@
 
 #include "seal_id.h"
 
-extern const PROC_DATA CustomBallProcData;		///< ƒvƒƒZƒX’è‹`ƒf[ƒ^
+extern const PROC_DATA CustomBallProcData;		///< ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 
 #define CB_DEF_EDIT_OFF			(0)
 #define CB_DEF_EDIT_ON			(1)
@@ -62,12 +62,12 @@ extern const PROC_DATA CustomBallProcData;		///< ƒvƒƒZƒX’è‹`ƒf[ƒ^
 
 // ------------------------------------
 //
-//	¡‰¡•À‚Ñ‚É‚·‚é‚©‚Ç‚¤‚©
+//	â– æ¨ªä¸¦ã³ã«ã™ã‚‹ã‹ã©ã†ã‹
 //
 // ------------------------------------
 #define SEAL_SBS
 
-/// ----- ’è‹` ----------------------
+/// ----- å®šç¾© ----------------------
 
 #define CB_DEF_SEAL_OFS_X	(+7 * 8)
 #define CB_DEF_SEAL_OFS_Y	(-2 * 8)
@@ -123,19 +123,19 @@ enum {
 };
 
 enum {
-	///< ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+	///< ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 	CB_ENUM_ICON_CHAR_ID	= 15000,
 	CB_ENUM_ICON_PLTT_ID	= 16000,
 	CB_ENUM_ICON_CELL_ID	= 17000,
 	CB_ENUM_ICON_CELLANM_ID = 18000,
 	
-	///< ƒV[ƒ‹
+	///< ã‚·ãƒ¼ãƒ«
 	CB_ENUM_SEAL_CHAR_ID	= 20000,
 	CB_ENUM_SEAL_PLTT_ID	= 21000,
 	CB_ENUM_SEAL_CELL_ID	= 22000,
 	CB_ENUM_SEAL_CELLANM_ID = 23000,
 	
-	///< ƒ{ƒ^ƒ“
+	///< ãƒœã‚¿ãƒ³
 	CB_ENUM_BTN_CHAR_ID		= 25000,
 	CB_ENUM_BTN_EYE_CHAR_ID	= 35000,
 	CB_ENUM_BTN_PLTT_ID		= 26000,
@@ -144,10 +144,10 @@ enum {
 	CB_ENUM_BTN_SEAL		= 0,
 	CB_ENUM_BTN_ETC			= 1,
 	
-	///< ƒ{ƒ^ƒ“ƒJƒ‰[
+	///< ãƒœã‚¿ãƒ³ã‚«ãƒ©ãƒ¼
 	CB_ENUM_FONT_OMA_BTN_PLTT_ID = 30000,
 	
-	///< ‚Ò‚±‚Ò‚±	
+	///< ã´ã“ã´ã“	
 	CB_ENUM_PIKO_CHAR_ID		= 45000,
 	CB_ENUM_PIKO_PLTT_ID		= CB_ENUM_BTN_PLTT_ID,
 	CB_ENUM_PIKO_CELL_ID		= 47000,
@@ -165,9 +165,9 @@ enum {
 #define CB_DEF_CUR_MOVE_UD(n)	(n / CB_DEF_LINE)
 
 
-///< ƒpƒŒƒbƒg(ã‰ºŠÇ—)
+///< ãƒ‘ãƒ¬ãƒƒãƒˆ(ä¸Šä¸‹ç®¡ç†)
 enum {
-	///< ã‰æ–Ê
+	///< ä¸Šç”»é¢
 	CB_ENUM_PAL_SEL_BG		= 0,
 	CB_ENUM_PAL_FLD_BG		= 1,
 
@@ -176,7 +176,7 @@ enum {
 	CB_ENUM_PAL_FONT,
 	CB_ENUM_PAL_BACK,
 
-	///< ‰º‰æ–Ê
+	///< ä¸‹ç”»é¢
 	CB_ENUM_PAL_BALL_BG		= 0,
 	CB_ENUM_PAL_EDIT_BG		= 1,
 	CB_ENUM_PAL_LIST_BG		= 3,
@@ -186,7 +186,7 @@ enum {
 	CB_ENUM_PAL_NUM			= 11,
 };
 
-///< OBJ—Dæ“x(ã‰ºŠÇ—)
+///< OBJå„ªå…ˆåº¦(ä¸Šä¸‹ç®¡ç†)
 enum {
 	CB_ENUM_BG_PRI_T_OBJ	= CB_BG_PRI_SCR_SELECT,
 
@@ -200,28 +200,28 @@ enum {
 	CB_ENUM_OAM_BTN_PRI		= 60,
 };
 
-///< ƒ{[ƒ‹‚Ìó‘Ô
+///< ãƒœãƒ¼ãƒ«ã®çŠ¶æ…‹
 enum {
-	CB_ENUM_BALL_STATE_FREE = 0,		///< ƒtƒŠ[
-	CB_ENUM_BALL_STATE_CUSTOM,			///< •ÒWÏ‚İ
-	CB_ENUM_BALL_STATE_CUSTOM_SET,		///< •ÒWÏ‚İ‚©‚Âƒ|ƒPƒ‚ƒ“‚ÉƒZƒbƒg
-	CB_ENUM_BALL_STATE_FREE_SET,		///< ƒtƒŠ[‚Åƒ|ƒPƒ‚ƒ“‚ÉƒZƒbƒg
+	CB_ENUM_BALL_STATE_FREE = 0,		///< ãƒ•ãƒªãƒ¼
+	CB_ENUM_BALL_STATE_CUSTOM,			///< ç·¨é›†æ¸ˆã¿
+	CB_ENUM_BALL_STATE_CUSTOM_SET,		///< ç·¨é›†æ¸ˆã¿ã‹ã¤ãƒã‚±ãƒ¢ãƒ³ã«ã‚»ãƒƒãƒˆ
+	CB_ENUM_BALL_STATE_FREE_SET,		///< ãƒ•ãƒªãƒ¼ã§ãƒã‚±ãƒ¢ãƒ³ã«ã‚»ãƒƒãƒˆ
 };
 
-///< ƒEƒBƒ“ƒhƒE‚Ìí—Ş
+///< ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¨®é¡
 enum {
-	CB_ENUM_WIN_T_MAIN		= 0,		///< ã‰æ–Ê‚ÌŠî–{ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
-	CB_ENUM_WIN_T_SEL,					///< ã‰æ–Ê‚Ì‘I‘ğƒEƒBƒ“ƒhƒE
+	CB_ENUM_WIN_T_MAIN		= 0,		///< ä¸Šç”»é¢ã®åŸºæœ¬ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	CB_ENUM_WIN_T_SEL,					///< ä¸Šç”»é¢ã®é¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	
-	CB_ENUM_WIN_B_MAIN,					///< ‰º‰æ–Ê‚ÌŠî–{ƒƒbƒZ[ƒW
-	CB_ENUM_WIN_B_LIST_1,				///< ƒŠƒXƒg
-	CB_ENUM_WIN_B_LIST_2,				///< ƒŠƒXƒg
-	CB_ENUM_WIN_B_LIST_3,				///< ƒŠƒXƒg
-	CB_ENUM_WIN_B_LIST_4,				///< ƒŠƒXƒg
-	CB_ENUM_WIN_B_LIST_5,				///< ƒŠƒXƒg
-	CB_ENUM_WIN_B_LIST_6,				///< ƒŠƒXƒg
-	CB_ENUM_WIN_B_LIST_7,				///< ƒŠƒXƒg
-	CB_ENUM_WIN_B_LIST_8,				///< ƒŠƒXƒg
+	CB_ENUM_WIN_B_MAIN,					///< ä¸‹ç”»é¢ã®åŸºæœ¬ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	CB_ENUM_WIN_B_LIST_1,				///< ãƒªã‚¹ãƒˆ
+	CB_ENUM_WIN_B_LIST_2,				///< ãƒªã‚¹ãƒˆ
+	CB_ENUM_WIN_B_LIST_3,				///< ãƒªã‚¹ãƒˆ
+	CB_ENUM_WIN_B_LIST_4,				///< ãƒªã‚¹ãƒˆ
+	CB_ENUM_WIN_B_LIST_5,				///< ãƒªã‚¹ãƒˆ
+	CB_ENUM_WIN_B_LIST_6,				///< ãƒªã‚¹ãƒˆ
+	CB_ENUM_WIN_B_LIST_7,				///< ãƒªã‚¹ãƒˆ
+	CB_ENUM_WIN_B_LIST_8,				///< ãƒªã‚¹ãƒˆ
 	
 	CB_ENUM_WIN_MAX,
 };
@@ -236,24 +236,24 @@ enum {
 
 #define CB_DEF_BMPWIN_MAX				(CB_ENUM_WIN_MAX)
 
-///< ƒTƒuƒV[ƒPƒ“ƒX
+///< ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
-	///< •ÒW
+	///< ç·¨é›†
 	CBS_CUSTOM_INIT			= 0,
 	CBS_CUSTOM_T_FADE_OUT,
 	CBS_CUSTOM_T_FADE_OUT_WAIT,
 	CBS_CUSTOM_T_FIELD_FADE_OUT_WAIT,
 	CBS_CUSTOM_MAIN,
-	CBS_CUSTOM_CON,		///< ptŠm”F
-	CBS_CUSTOM_DEC,		///< ‚¯‚Á‚Ä‚¢
-	CBS_CUSTOM_END,		///< ‚â‚ß‚é
+	CBS_CUSTOM_CON,		///< ptç¢ºèª
+	CBS_CUSTOM_DEC,		///< ã‘ã£ã¦ã„
+	CBS_CUSTOM_END,		///< ã‚„ã‚ã‚‹
 	CBS_CUSTOM_T_FADE_IN,
 	CBS_CUSTOM_T_FADE_IN_2,
 	CBS_CUSTOM_T_FADE_IN_WAIT,
 };
 
 enum {
-	///< ‘I‘ğ
+	///< é¸æŠ
 	CBS_SELECT_INIT			= 0,
 	CBS_SELECT_WIPE_IN,
 	CBS_SELECT_WIPE_IN_WAIT,
@@ -264,21 +264,21 @@ enum {
 };
 
 enum {
-	///< ƒZƒbƒg
+	///< ã‚»ãƒƒãƒˆ
 	CBS_SET_INIT			= 0,
 	CBS_SET_WIPE_OUT,
 	CBS_SET_WIPE_OUT_WAIT,
 };
 
 enum {
-	///< ‚Í‚¸‚·
+	///< ã¯ãšã™
 	CBS_REM_INIT			= 0,
 	CBS_REM_MAIN,
 	CBS_REM_END,
 };
 
 enum {
-	///< ‚¢‚ê‚©‚¦
+	///< ã„ã‚Œã‹ãˆ
 	CBS_CHANGE_INIT			= 0,
 	CBS_CHANGE_MAIN,
 	CBS_CHANGE_KEY_WAIT,
@@ -289,17 +289,17 @@ enum {
 
 #define CB_DEF_KEEP_SEQ_SET		(0xff)
 	
-#define CB_DEF_WIN_USE_BTW_WIN_OFS		(0)	///< ˜g‚ÆBMP‚ÌŠÔ‚É‚¨‚­‹C‹x‚ßƒLƒƒƒ‰
+#define CB_DEF_WIN_USE_BTW_WIN_OFS		(0)	///< æ ã¨BMPã®é–“ã«ãŠãæ°—ä¼‘ã‚ã‚­ãƒ£ãƒ©
 
-// ---- «««‚±‚±‚©‚ç‰º‰æ–Ê‚Å“¯‚¶İ’è‚ğg‚¤ -----
-#define CB_DEF_WIN_T_TALK_CHAR_OFS		(1)		///< ˜g‚ÌƒLƒƒƒ‰ŠJnˆÊ’u
+// ---- â†“â†“â†“ã“ã“ã‹ã‚‰ä¸‹ç”»é¢ã§åŒã˜è¨­å®šã‚’ä½¿ã† -----
+#define CB_DEF_WIN_T_TALK_CHAR_OFS		(1)		///< æ ã®ã‚­ãƒ£ãƒ©é–‹å§‹ä½ç½®
 #define CB_DEF_WIN_T_MENU_CHAR_OFS		(CB_DEF_WIN_T_TALK_CHAR_OFS + TALK_WIN_CGX_SIZ)
-#define CB_DEF_WIN_T_USE_OFS			(CB_DEF_WIN_T_MENU_CHAR_OFS + MENU_WIN_CGX_SIZ)	///< bmpwin’Ç‰ÁŠJnˆÊ’u
+#define CB_DEF_WIN_T_USE_OFS			(CB_DEF_WIN_T_MENU_CHAR_OFS + MENU_WIN_CGX_SIZ)	///< bmpwinè¿½åŠ é–‹å§‹ä½ç½®
 #define CB_DEF_WIN_CHAR_OFS				(CB_DEF_WIN_USE_BTW_WIN_OFS + CB_DEF_WIN_T_USE_OFS)
-// ---- ªªªƒRƒR‚Ü‚Å“¯‚¶İ’è -----
+// ---- â†‘â†‘â†‘ã‚³ã‚³ã¾ã§åŒã˜è¨­å®š -----
 
 
-// ---- «««ã‰æ–ÊƒEƒBƒ“ƒhƒE ----
+// ---- â†“â†“â†“ä¸Šç”»é¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ ----
 #define CB_DEF_WIN_T_MAIN_X				(2)
 #define CB_DEF_WIN_T_MAIN_Y				(21)
 #define CB_DEF_WIN_T_MAIN_SX			(27)	///< 
@@ -313,13 +313,13 @@ enum {
 #define CB_DEF_WIN_T_MENU_SX			(9)
 #define CB_DEF_WIN_T_MENU_SY_1			(4+2)
 #define CB_DEF_WIN_T_MENU_SY_2			(8)
-#define CB_DEF_WIN_T_MENU_SIZE			(CB_DEF_WIN_T_MENU_SX * CB_DEF_WIN_T_MENU_SY_2)	///< ‚Å‚©‚¢‚Ù‚¤‚ÅŒvZ
+#define CB_DEF_WIN_T_MENU_SIZE			(CB_DEF_WIN_T_MENU_SX * CB_DEF_WIN_T_MENU_SY_2)	///< ã§ã‹ã„ã»ã†ã§è¨ˆç®—
 #define CB_DEF_WIN_T_MENU_SIZE_END		(CB_DEF_WIN_T_MENU_SIZE + CB_DEF_WIN_T_MAIN_SIZE_END)
-// ---- ªªªã‰æ–ÊƒEƒBƒ“ƒhƒEİ’è ----
+// ---- â†‘â†‘â†‘ä¸Šç”»é¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š ----
 
 
-// ---- «««‰º‰æ–ÊƒEƒBƒ“ƒhƒEİ’è ----
-#define CB_DEF_WIN_B_MAIN_X				(2)			///< ƒƒCƒ“
+// ---- â†“â†“â†“ä¸‹ç”»é¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š ----
+#define CB_DEF_WIN_B_MAIN_X				(2)			///< ãƒ¡ã‚¤ãƒ³
 #define CB_DEF_WIN_B_MAIN_Y				(1)
 #define CB_DEF_WIN_B_MAIN_SX			(27)
 #define CB_DEF_WIN_B_MAIN_SY			(4)
@@ -333,57 +333,57 @@ enum {
 
 #ifdef SEAL_SBS
 
-	///< ‰¡•À‚Ñ
-	#define CB_DEF_WIN_B_LIST_1_X			(CB_DEF_WIN_LIST_X1)			///< ƒŠƒXƒg
+	///< æ¨ªä¸¦ã³
+	#define CB_DEF_WIN_B_LIST_1_X			(CB_DEF_WIN_LIST_X1)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_1_Y			(2)
 	#define CB_DEF_WIN_B_LIST_1_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_1_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_1_SIZE		(CB_DEF_WIN_B_LIST_1_SX * CB_DEF_WIN_B_LIST_1_SY)
 	#define CB_DEF_WIN_B_LIST_1_SIZE_END	(CB_DEF_WIN_B_LIST_1_SIZE + CB_DEF_WIN_B_MAIN_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_2_X			(CB_DEF_WIN_LIST_X2)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_2_X			(CB_DEF_WIN_LIST_X2)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_2_Y			(2)
 	#define CB_DEF_WIN_B_LIST_2_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_2_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_2_SIZE		(CB_DEF_WIN_B_LIST_2_SX * CB_DEF_WIN_B_LIST_2_SY)
 	#define CB_DEF_WIN_B_LIST_2_SIZE_END	(CB_DEF_WIN_B_LIST_2_SIZE + CB_DEF_WIN_B_LIST_1_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_3_X			(CB_DEF_WIN_LIST_X1)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_3_X			(CB_DEF_WIN_LIST_X1)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_3_Y			(5)
 	#define CB_DEF_WIN_B_LIST_3_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_3_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_3_SIZE		(CB_DEF_WIN_B_LIST_3_SX * CB_DEF_WIN_B_LIST_3_SY)
 	#define CB_DEF_WIN_B_LIST_3_SIZE_END	(CB_DEF_WIN_B_LIST_3_SIZE + CB_DEF_WIN_B_LIST_2_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_4_X			(CB_DEF_WIN_LIST_X2)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_4_X			(CB_DEF_WIN_LIST_X2)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_4_Y			(5)
 	#define CB_DEF_WIN_B_LIST_4_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_4_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_4_SIZE		(CB_DEF_WIN_B_LIST_4_SX * CB_DEF_WIN_B_LIST_4_SY)
 	#define CB_DEF_WIN_B_LIST_4_SIZE_END	(CB_DEF_WIN_B_LIST_4_SIZE + CB_DEF_WIN_B_LIST_3_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_5_X			(CB_DEF_WIN_LIST_X1)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_5_X			(CB_DEF_WIN_LIST_X1)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_5_Y			(8)
 	#define CB_DEF_WIN_B_LIST_5_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_5_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_5_SIZE		(CB_DEF_WIN_B_LIST_5_SX * CB_DEF_WIN_B_LIST_5_SY)
 	#define CB_DEF_WIN_B_LIST_5_SIZE_END	(CB_DEF_WIN_B_LIST_5_SIZE + CB_DEF_WIN_B_LIST_4_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_6_X			(CB_DEF_WIN_LIST_X2)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_6_X			(CB_DEF_WIN_LIST_X2)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_6_Y			(8)
 	#define CB_DEF_WIN_B_LIST_6_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_6_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_6_SIZE		(CB_DEF_WIN_B_LIST_6_SX * CB_DEF_WIN_B_LIST_6_SY)
 	#define CB_DEF_WIN_B_LIST_6_SIZE_END	(CB_DEF_WIN_B_LIST_6_SIZE + CB_DEF_WIN_B_LIST_5_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_7_X			(CB_DEF_WIN_LIST_X1)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_7_X			(CB_DEF_WIN_LIST_X1)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_7_Y			(11)
 	#define CB_DEF_WIN_B_LIST_7_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_7_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_7_SIZE		(CB_DEF_WIN_B_LIST_7_SX * CB_DEF_WIN_B_LIST_7_SY)
 	#define CB_DEF_WIN_B_LIST_7_SIZE_END	(CB_DEF_WIN_B_LIST_7_SIZE + CB_DEF_WIN_B_LIST_6_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_8_X			(CB_DEF_WIN_LIST_X2)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_8_X			(CB_DEF_WIN_LIST_X2)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_8_Y			(11)
 	#define CB_DEF_WIN_B_LIST_8_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_8_SY			(CB_DEF_WIN_LIST_H)
@@ -393,57 +393,57 @@ enum {
 
 #else
 
-	///< c•À‚Ñ
-	#define CB_DEF_WIN_B_LIST_1_X			(CB_DEF_WIN_LIST_X1)			///< ƒŠƒXƒg
+	///< ç¸¦ä¸¦ã³
+	#define CB_DEF_WIN_B_LIST_1_X			(CB_DEF_WIN_LIST_X1)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_1_Y			(2)
 	#define CB_DEF_WIN_B_LIST_1_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_1_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_1_SIZE		(CB_DEF_WIN_B_LIST_1_SX * CB_DEF_WIN_B_LIST_1_SY)
 	#define CB_DEF_WIN_B_LIST_1_SIZE_END	(CB_DEF_WIN_B_LIST_1_SIZE + CB_DEF_WIN_B_MAIN_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_2_X			(CB_DEF_WIN_LIST_X1)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_2_X			(CB_DEF_WIN_LIST_X1)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_2_Y			(5)
 	#define CB_DEF_WIN_B_LIST_2_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_2_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_2_SIZE		(CB_DEF_WIN_B_LIST_2_SX * CB_DEF_WIN_B_LIST_2_SY)
 	#define CB_DEF_WIN_B_LIST_2_SIZE_END	(CB_DEF_WIN_B_LIST_2_SIZE + CB_DEF_WIN_B_LIST_1_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_3_X			(CB_DEF_WIN_LIST_X1)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_3_X			(CB_DEF_WIN_LIST_X1)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_3_Y			(8)
 	#define CB_DEF_WIN_B_LIST_3_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_3_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_3_SIZE		(CB_DEF_WIN_B_LIST_3_SX * CB_DEF_WIN_B_LIST_3_SY)
 	#define CB_DEF_WIN_B_LIST_3_SIZE_END	(CB_DEF_WIN_B_LIST_3_SIZE + CB_DEF_WIN_B_LIST_2_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_4_X			(CB_DEF_WIN_LIST_X1)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_4_X			(CB_DEF_WIN_LIST_X1)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_4_Y			(11)
 	#define CB_DEF_WIN_B_LIST_4_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_4_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_4_SIZE		(CB_DEF_WIN_B_LIST_4_SX * CB_DEF_WIN_B_LIST_4_SY)
 	#define CB_DEF_WIN_B_LIST_4_SIZE_END	(CB_DEF_WIN_B_LIST_4_SIZE + CB_DEF_WIN_B_LIST_3_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_5_X			(CB_DEF_WIN_LIST_X2)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_5_X			(CB_DEF_WIN_LIST_X2)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_5_Y			(2)
 	#define CB_DEF_WIN_B_LIST_5_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_5_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_5_SIZE		(CB_DEF_WIN_B_LIST_5_SX * CB_DEF_WIN_B_LIST_5_SY)
 	#define CB_DEF_WIN_B_LIST_5_SIZE_END	(CB_DEF_WIN_B_LIST_5_SIZE + CB_DEF_WIN_B_LIST_4_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_6_X			(CB_DEF_WIN_LIST_X2)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_6_X			(CB_DEF_WIN_LIST_X2)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_6_Y			(5)
 	#define CB_DEF_WIN_B_LIST_6_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_6_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_6_SIZE		(CB_DEF_WIN_B_LIST_6_SX * CB_DEF_WIN_B_LIST_6_SY)
 	#define CB_DEF_WIN_B_LIST_6_SIZE_END	(CB_DEF_WIN_B_LIST_6_SIZE + CB_DEF_WIN_B_LIST_5_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_7_X			(CB_DEF_WIN_LIST_X2)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_7_X			(CB_DEF_WIN_LIST_X2)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_7_Y			(8)
 	#define CB_DEF_WIN_B_LIST_7_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_7_SY			(CB_DEF_WIN_LIST_H)
 	#define CB_DEF_WIN_B_LIST_7_SIZE		(CB_DEF_WIN_B_LIST_7_SX * CB_DEF_WIN_B_LIST_7_SY)
 	#define CB_DEF_WIN_B_LIST_7_SIZE_END	(CB_DEF_WIN_B_LIST_7_SIZE + CB_DEF_WIN_B_LIST_6_SIZE_END)
 
-	#define CB_DEF_WIN_B_LIST_8_X			(CB_DEF_WIN_LIST_X2)			///< ƒŠƒXƒg
+	#define CB_DEF_WIN_B_LIST_8_X			(CB_DEF_WIN_LIST_X2)			///< ãƒªã‚¹ãƒˆ
 	#define CB_DEF_WIN_B_LIST_8_Y			(11)
 	#define CB_DEF_WIN_B_LIST_8_SX			(CB_DEF_WIN_LIST_W)
 	#define CB_DEF_WIN_B_LIST_8_SY			(CB_DEF_WIN_LIST_H)
@@ -456,19 +456,19 @@ enum {
 
 #define CB_DEF_SW_X						(25)
 #define CB_DEF_SW_Y						(6)
-// ---- ªªª‰º‰æ–ÊƒEƒBƒ“ƒhƒEİ’è ----
+// ---- â†‘â†‘â†‘ä¸‹ç”»é¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š ----
 
 
 #define CB_DEF_ICON_OFS_X				(-16)
 #define CB_DEF_ICON_OFS_Y				(+12)
 
 enum {
-	CB_MODE_SELECT = 0,		///< •ÒW‘ÎÛ‚ğ‘I‚Ô‰æ–Ê
-	CB_MODE_EDIT,			///< •ÒW‰æ–Ê
-	CB_MODE_SETTING_SET,	///< ƒZƒbƒeƒBƒ“ƒO -- ‚Í‚ß‚é
-	CB_MODE_SETTING_REMOVE,	///< ƒZƒbƒeƒBƒ“ƒO -- ‚Í‚¸‚·
-	CB_MODE_CHANGE,			///< “ü‚ê‘Ö‚¦
-	CB_MODE_END,			///< I—¹ ‚Æ‚É‚©‚­ÅŒã‚ÍƒRƒR‚ğŒo—R‚·‚éİŒv
+	CB_MODE_SELECT = 0,		///< ç·¨é›†å¯¾è±¡ã‚’é¸ã¶ç”»é¢
+	CB_MODE_EDIT,			///< ç·¨é›†ç”»é¢
+	CB_MODE_SETTING_SET,	///< ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚° -- ã¯ã‚ã‚‹
+	CB_MODE_SETTING_REMOVE,	///< ã‚»ãƒƒãƒ†ã‚£ãƒ³ã‚° -- ã¯ãšã™
+	CB_MODE_CHANGE,			///< å…¥ã‚Œæ›¿ãˆ
+	CB_MODE_END,			///< çµ‚äº† ã¨ã«ã‹ãæœ€å¾Œã¯ã‚³ã‚³ã‚’çµŒç”±ã™ã‚‹è¨­è¨ˆ
 };
 
 #define CB_DEF_MODE_MAX		(CB_MODE_END)
@@ -481,12 +481,12 @@ enum {
 
 // -----------------------------------------
 //
-//	 ƒƒbƒZ[ƒWŠÖ˜A
+//	â–¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢é€£
 //
 // -----------------------------------------
-#define CB_DEF_MSG_ARC				(NARC_msg_ball_custom_dat)		///< ’ÊíƒƒbƒZ[ƒW
-#define CB_SEAL_MSG_ARC				(NARC_msg_bc_seal_name_dat)		///< ƒV[ƒ‹‚Ì–¼‘O
-#define CB_SEAL_COMMENT_MSG_ARC		(NARC_msg_seal_comment_dat)		///< ƒV[ƒ‹‚Ìà–¾
+#define CB_DEF_MSG_ARC				(NARC_msg_ball_custom_dat)		///< é€šå¸¸ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+#define CB_SEAL_MSG_ARC				(NARC_msg_bc_seal_name_dat)		///< ã‚·ãƒ¼ãƒ«ã®åå‰
+#define CB_SEAL_COMMENT_MSG_ARC		(NARC_msg_seal_comment_dat)		///< ã‚·ãƒ¼ãƒ«ã®èª¬æ˜
 
 #define CB_DEF_MENU_MSG_LEN		(30*2)
 #define CB_DEF_INFO_MSG_LEN		(30*2)
@@ -496,38 +496,38 @@ enum {
 
 #define CB_DEF_INFO_MSG_START	(msg_info_00_01)
 enum {
-	CB_MSG_ID_CLEAR  = 0xFFFF,					///< ƒNƒŠƒA
-	CB_MSG_ID_CB_SEL = CB_DEF_INFO_MSG_START,	///< ƒJƒvƒZƒ‹‘I‚ñ‚Å‚­‚¾‚³‚¢
-	CB_MSG_ID_CB_HDYD,							///< ƒJƒvƒZƒ‹‚Ç‚¤‚·‚éH
-	CB_MSG_ID_CB_REM,							///< ƒJƒvƒZƒ‹‚ğ‚Í‚¸‚µ‚½
-	CB_MSG_ID_CB_REP,							///< ‚Ç‚ê‚Æ“ü‚ê‘Ö‚¦‚éH
-	CB_MSG_ID_CB_REP_END,						///< “ü‚ê‘Ö‚¦‚½
-	CB_MSG_ID_EDIT_END,							///< ƒJƒvƒZƒ‹‚ÉƒV[ƒ‹‚ğ‚Í‚Á‚½
-	CB_MSG_ID_CON,								///< Šm”F’†
-	CB_MSG_ID_END_QUE,							///< ƒJƒvƒZƒ‹ƒfƒUƒCƒ“‚ğ•Ï‚¦‚È‚¢‚Å‚â‚ß‚Ü‚·‚©H
-	CB_MSG_ID_NG,								///< ‚à‚¤‚¨‚¯‚È‚¢‚æI
-	CB_MSG_ID_ZERO,								///< ‚à‚¤ƒV[ƒ‹‚È‚¢‚æI
+	CB_MSG_ID_CLEAR  = 0xFFFF,					///< ã‚¯ãƒªã‚¢
+	CB_MSG_ID_CB_SEL = CB_DEF_INFO_MSG_START,	///< ã‚«ãƒ—ã‚»ãƒ«é¸ã‚“ã§ãã ã•ã„
+	CB_MSG_ID_CB_HDYD,							///< ã‚«ãƒ—ã‚»ãƒ«ã©ã†ã™ã‚‹ï¼Ÿ
+	CB_MSG_ID_CB_REM,							///< ã‚«ãƒ—ã‚»ãƒ«ã‚’ã¯ãšã—ãŸ
+	CB_MSG_ID_CB_REP,							///< ã©ã‚Œã¨å…¥ã‚Œæ›¿ãˆã‚‹ï¼Ÿ
+	CB_MSG_ID_CB_REP_END,						///< å…¥ã‚Œæ›¿ãˆãŸ
+	CB_MSG_ID_EDIT_END,							///< ã‚«ãƒ—ã‚»ãƒ«ã«ã‚·ãƒ¼ãƒ«ã‚’ã¯ã£ãŸ
+	CB_MSG_ID_CON,								///< ç¢ºèªä¸­
+	CB_MSG_ID_END_QUE,							///< ã‚«ãƒ—ã‚»ãƒ«ãƒ‡ã‚¶ã‚¤ãƒ³ã‚’å¤‰ãˆãªã„ã§ã‚„ã‚ã¾ã™ã‹ï¼Ÿ
+	CB_MSG_ID_NG,								///< ã‚‚ã†ãŠã‘ãªã„ã‚ˆï¼
+	CB_MSG_ID_ZERO,								///< ã‚‚ã†ã‚·ãƒ¼ãƒ«ãªã„ã‚ˆï¼
 };
 
 enum {
-	CB_PROC_NEXT_MODE_END = 0,					///< I—¹
-	CB_PROC_NEXT_MODE_LIST,						///< ƒŠƒXƒg
+	CB_PROC_NEXT_MODE_END = 0,					///< çµ‚äº†
+	CB_PROC_NEXT_MODE_LIST,						///< ãƒªã‚¹ãƒˆ
 };
 
 // -----------------------------------------
 //
-//	 ’Êí”z’uƒ{ƒ^ƒ“
+//	â–¡é€šå¸¸é…ç½®ãƒœã‚¿ãƒ³
 //
 // -----------------------------------------
 #define CB_DEF_MAIN_BG_PAL	(0)
 #define CB_DEF_MAIN_BG2_PAL	(1)
 #define CB_DEF_SUB_BG_PAL	(0)
 enum {
-	CB_ENUM_BHIT_SEAL_1 = 0,	///< seal ¶
+	CB_ENUM_BHIT_SEAL_1 = 0,	///< seal å·¦
 	CB_ENUM_BHIT_SEAL_2,
 	CB_ENUM_BHIT_SEAL_3,
 	CB_ENUM_BHIT_SEAL_4,
-	CB_ENUM_BHIT_SEAL_5,		///< seal ‰E
+	CB_ENUM_BHIT_SEAL_5,		///< seal å³
 	CB_ENUM_BHIT_SEAL_6,
 	CB_ENUM_BHIT_SEAL_7,
 	CB_ENUM_BHIT_SEAL_8,
@@ -537,7 +537,7 @@ enum {
 	CB_ENUM_BHIT_DEC,
 	CB_ENUM_BHIT_END,
 	
-	CB_ENUM_BTN_NUM,		///< BHIT_SEAL‚ÉˆøŒp‚¬
+	CB_ENUM_BTN_NUM,		///< BHIT_SEALã«å¼•ç¶™ã
 };
 
 enum {
@@ -553,7 +553,7 @@ enum {
 	CB_BHIT_SEAL_MAX,
 };
 
-#define CB_DEF_HIT_TBL_MAX	(CB_BHIT_SEAL_MAX)	///< ŒÅ’èƒ{ƒ^ƒ“{ƒV[ƒ‹
+#define CB_DEF_HIT_TBL_MAX	(CB_BHIT_SEAL_MAX)	///< å›ºå®šãƒœã‚¿ãƒ³ï¼‹ã‚·ãƒ¼ãƒ«
 
 typedef struct {
 	
@@ -564,24 +564,24 @@ typedef struct {
 
 typedef struct {
 	
-	int no;			///< ‰½ƒy[ƒW–Ú‚©
-	int max;		///< ‰½ƒy[ƒW‚Ü‚Å‚ ‚é‚©
+	int no;			///< ä½•ãƒšãƒ¼ã‚¸ç›®ã‹
+	int max;		///< ä½•ãƒšãƒ¼ã‚¸ã¾ã§ã‚ã‚‹ã‹
 	
-	u8	item[ CB_DEF_PAGE_ITEMS ];	///< Œ»İ‚ÌƒAƒCƒeƒ€
+	u8	item[ CB_DEF_PAGE_ITEMS ];	///< ç¾åœ¨ã®ã‚¢ã‚¤ãƒ†ãƒ 
 	
 } TPAGE_DATA;
 
 // -----------------------------------------
 //
-//	  ƒf[ƒ^\’z—p
+//	â–¡ ãƒ‡ãƒ¼ã‚¿æ§‹ç¯‰ç”¨
 //
 // -----------------------------------------
 typedef struct {
 
-	int 			poke_cnt;					///< è‚¿‚ÌƒJƒY
-	POKEMON_PARAM*	poke_para[ TEMOTI_POKEMAX ];///< è‚¿ƒ|ƒPƒ‚ƒ“
+	int 			poke_cnt;					///< æ‰‹æŒã¡ã®ã‚«ã‚º
+	POKEMON_PARAM*	poke_para[ TEMOTI_POKEMAX ];///< æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³
 	POKEPARTY*		pparty;
-	CB_SAVE_DATA*	save_data;					///< ƒZ[ƒuƒf[ƒ^
+	CB_SAVE_DATA*	save_data;					///< ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 	CONFIG*			cfg;						///< config
 	SAVEDATA*		save;						///< save
 	
@@ -598,14 +598,14 @@ enum {
 
 // -----------------------------------------
 //
-//	  ƒƒCƒ“ƒ[ƒN
+//	â–¡ ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 //
 // -----------------------------------------
 ///< system
 typedef struct {
 
-	int					hold;					///< ƒV[ƒ‹ƒz[ƒ‹ƒh
-	BOOL				main_tp_active;			///< ƒƒCƒ“ƒpƒlƒ‹‚Ì‘€ìƒtƒ‰ƒO
+	int					hold;					///< ã‚·ãƒ¼ãƒ«ãƒ›ãƒ¼ãƒ«ãƒ‰
+	BOOL				main_tp_active;			///< ãƒ¡ã‚¤ãƒ³ãƒ‘ãƒãƒ«ã®æ“ä½œãƒ•ãƒ©ã‚°
 	
 	CATS_SYS_PTR		csp;
 	CATS_RES_PTR		crp;
@@ -646,34 +646,34 @@ typedef struct {
 	
 } CB_SYS;
 
-///< ƒ}[ƒNƒ{[ƒ‹
+///< ãƒãƒ¼ã‚¯ãƒœãƒ¼ãƒ«
 typedef struct {
 	
-	int poke_idx;								///< ƒ|ƒPƒ‚ƒ“‚É‚½‚¹‚Ä‚¢‚é‚©
-	int edit_flag;								///< •ÒWÏ‚İ‚©
+	int poke_idx;								///< ãƒã‚±ãƒ¢ãƒ³ã«æŒãŸã›ã¦ã„ã‚‹ã‹
+	int edit_flag;								///< ç·¨é›†æ¸ˆã¿ã‹
 	CATS_ACT_PTR	cap;						///< OBJ
 	
 } CB_MARK_OBJ;
 
-///< ƒGƒfƒBƒbƒgƒf[ƒ^
+///< ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 typedef struct {
 	
-	int	poke_idx;								///< ƒZ[ƒu‚Æ—‚ŞA‚Á‚Ä‚éƒ|ƒPƒ‚ƒ“NO
-	CB_CORE*		core;						///< ƒZ[ƒu‚Æ—‚ŞAƒRƒAƒf[ƒ^
+	int	poke_idx;								///< ã‚»ãƒ¼ãƒ–ã¨çµ¡ã‚€ã€æŒã£ã¦ã‚‹ãƒã‚±ãƒ¢ãƒ³NO
+	CB_CORE*		core;						///< ã‚»ãƒ¼ãƒ–ã¨çµ¡ã‚€ã€ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿
 	
 } CB_EDIT_DATA;
 
-///< ƒV[ƒ‹ƒf[ƒ^
+///< ã‚·ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
 typedef struct {
-	BOOL			pop;						///< ƒ|ƒbƒv‚µ‚½‚©H
+	BOOL			pop;						///< ãƒãƒƒãƒ—ã—ãŸã‹ï¼Ÿ
 	
-	u8				id;							///< ƒV[ƒ‹ID
+	u8				id;							///< ã‚·ãƒ¼ãƒ«ID
 	u8				x;
 	u8				y;
 	
 	CATS_ACT_PTR	cap;
 
-	RECT_HIT_TBL*	hit;						///< “–‚½‚è”»’è
+	RECT_HIT_TBL*	hit;						///< å½“ãŸã‚Šåˆ¤å®š
 	
 } CB_SEAL_ONE;
 
@@ -682,35 +682,35 @@ typedef struct _CB_SEAL_ONE * SEAL_PTR;
 ///< main
 typedef struct {
 	
-	CB_PROC_WORK*		cb_pw;					///< ŠO•”‚©‚ç‚à‚ç‚¤ƒf[ƒ^(save)
+	CB_PROC_WORK*		cb_pw;					///< å¤–éƒ¨ã‹ã‚‰ã‚‚ã‚‰ã†ãƒ‡ãƒ¼ã‚¿(save)
 
-	CB_EDIT_DATA		cb_edit_data[ CB_DEF_CORE_MAX ];///< •ÒW’†‚ÌƒJƒXƒ^ƒ€ƒ{[ƒ‹
-	CB_ITEM_DATA*		cb_item_data;			///< ŠƒV[ƒ‹
+	CB_EDIT_DATA		cb_edit_data[ CB_DEF_CORE_MAX ];///< ç·¨é›†ä¸­ã®ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
+	CB_ITEM_DATA*		cb_item_data;			///< æ‰€æŒã‚·ãƒ¼ãƒ«
 	
-	CB_CORE				backup_edit;			///< ƒoƒbƒNƒAƒbƒv •ÒW
+	CB_CORE				backup_edit;			///< ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ— ç·¨é›†
 	u8					backup_item[ CB_DEF_ITEM_DATA_NUM ];
 
-	CB_SYS	sys;								///< ƒVƒXƒeƒ€
+	CB_SYS	sys;								///< ã‚·ã‚¹ãƒ†ãƒ 
 
-	CB_MARK_OBJ			mo[ CB_DEF_CORE_MAX ];	///< ƒ}[ƒNOBJ
+	CB_MARK_OBJ			mo[ CB_DEF_CORE_MAX ];	///< ãƒãƒ¼ã‚¯OBJ
 	CATS_ACT_PTR		cap_cur[2];
-	CATS_ACT_PTR		icon[ TEMOTI_POKEMAX ];	///< è‚¿ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“
+	CATS_ACT_PTR		icon[ TEMOTI_POKEMAX ];	///< æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³
 	CATS_ACT_PTR		piko[ 4 ];
 
-	CB_SEAL_ONE			seal[ CB_DEF_SEAL_MAX ];///< ƒV[ƒ‹
+	CB_SEAL_ONE			seal[ CB_DEF_SEAL_MAX ];///< ã‚·ãƒ¼ãƒ«
 	int					seal_pri[ CB_DEF_SEAL_MAX ];
 
-	int	select[2];								///< ‘I‘ğ’†ƒ{[ƒ‹
+	int	select[2];								///< é¸æŠä¸­ãƒœãƒ¼ãƒ«
 
-	int mode;									///< ‰æ–Ê‚Ìƒ‚[ƒh
-	int next_mode;								///< Ÿ‚Ìƒ‚[ƒh
-	int seq;									///< ‰æ–Ê“à‚Å‚ÌƒV[ƒPƒ“ƒX
-	int keep_seq;								///< •Û‘¶‚·‚éƒV[ƒPƒ“ƒX
-	int sub_seq;								///< ƒTƒuƒV[ƒPƒ“ƒX
+	int mode;									///< ç”»é¢ã®ãƒ¢ãƒ¼ãƒ‰
+	int next_mode;								///< æ¬¡ã®ãƒ¢ãƒ¼ãƒ‰
+	int seq;									///< ç”»é¢å†…ã§ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	int keep_seq;								///< ä¿å­˜ã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	int sub_seq;								///< ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	int sub_work;
 	
-	TUSUALLY_BTN		button_obj;				///< ’Êí”z’u‚³‚ê‚Ä‚¢‚éƒ{ƒ^ƒ“
-	TPAGE_DATA			page;					///< ƒy[ƒWó‘Ô
+	TUSUALLY_BTN		button_obj;				///< é€šå¸¸é…ç½®ã•ã‚Œã¦ã„ã‚‹ãƒœã‚¿ãƒ³
+	TPAGE_DATA			page;					///< ãƒšãƒ¼ã‚¸çŠ¶æ…‹
 
 	POKEMON_PARAM*		test_pp;
 	
@@ -720,7 +720,7 @@ typedef struct {
 
 
 
-///< ƒƒjƒ…[
+///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 typedef struct {
 
 	int	msg_id;
@@ -885,93 +885,93 @@ extern void CB_Tool_CoreDataRemove(CB_MAIN_WORK* cbmw, int this);
 // =============================================================================
 //
 //
-//	¡ƒV[ƒ‹ƒf[ƒ^æ“¾ŠÖ”
+//	â– ã‚·ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—é–¢æ•°
 //
 //
 // =============================================================================
 enum {
 	CB_SEAL_DMY	= 0,
 
-	CB_SEAL_HART01,			// ƒn[ƒgƒV[ƒ‹‚` 
-	CB_SEAL_HART02,         // ƒn[ƒgƒV[ƒ‹‚a
-	CB_SEAL_HART03,         // ƒn[ƒgƒV[ƒ‹‚b
-	CB_SEAL_HART04,         // ƒn[ƒgƒV[ƒ‹‚c
-	CB_SEAL_HART05,         // ƒn[ƒgƒV[ƒ‹‚d
-	CB_SEAL_HART06,         // ƒn[ƒgƒV[ƒ‹‚e
-	CB_SEAL_STAR01,         // ƒXƒ^[ƒV[ƒ‹‚`
-	CB_SEAL_STAR02,         // ƒXƒ^[ƒV[ƒ‹‚a
-	CB_SEAL_STAR03,         // ƒXƒ^[ƒV[ƒ‹‚b
-	CB_SEAL_STAR04,         // ƒXƒ^[ƒV[ƒ‹‚c
-	CB_SEAL_STAR05,         // ƒXƒ^[ƒV[ƒ‹‚d
-	CB_SEAL_STAR06,         // ƒXƒ^[ƒV[ƒ‹‚e
-	CB_SEAL_LINE01,         // ƒ‰ƒCƒ“ƒV[ƒ‹‚`
-	CB_SEAL_LINE02,         // ƒ‰ƒCƒ“ƒV[ƒ‹‚a
-	CB_SEAL_LINE03,         // ƒ‰ƒCƒ“ƒV[ƒ‹‚b
-	CB_SEAL_LINE04,         // ƒ‰ƒCƒ“ƒV[ƒ‹‚c
-	CB_SEAL_KEMURI01,       // ƒXƒ‚[ƒNƒV[ƒ‹‚`
-	CB_SEAL_KEMURI02,       // ƒXƒ‚[ƒNƒV[ƒ‹‚a
-	CB_SEAL_KEMURI03,       // ƒXƒ‚[ƒNƒV[ƒ‹‚b
-	CB_SEAL_KEMURI04,       // ƒXƒ‚[ƒNƒV[ƒ‹‚c
-	CB_SEAL_TUNDER01,       // ƒGƒŒƒLƒV[ƒ‹‚`
-	CB_SEAL_TUNDER02,       // ƒGƒŒƒLƒV[ƒ‹‚a
-	CB_SEAL_TUNDER03,       // ƒGƒŒƒLƒV[ƒ‹‚b
-	CB_SEAL_TUNDER04,       // ƒGƒŒƒLƒV[ƒ‹‚c
-	CB_SEAL_BALL01,         // ƒoƒuƒ‹ƒV[ƒ‹‚`
-	CB_SEAL_BALL02,         // ƒoƒuƒ‹ƒV[ƒ‹‚a
-	CB_SEAL_BALL03,         // ƒoƒuƒ‹ƒV[ƒ‹‚b
-	CB_SEAL_BALL04,         // ƒoƒuƒ‹ƒV[ƒ‹‚c
-	CB_SEAL_FIRE01,         // ƒtƒ@ƒCƒAƒV[ƒ‹‚`
-	CB_SEAL_FIRE02,         // ƒtƒ@ƒCƒAƒV[ƒ‹‚a
-	CB_SEAL_FIRE03,         // ƒtƒ@ƒCƒAƒV[ƒ‹‚b
-	CB_SEAL_FIRE04,         // ƒtƒ@ƒCƒAƒV[ƒ‹‚c
-	CB_SEAL_PAPER01,        // ƒp[ƒeƒBƒV[ƒ‹‚`
-	CB_SEAL_PAPER02,        // ƒp[ƒeƒBƒV[ƒ‹‚a
-	CB_SEAL_PAPER03,        // ƒp[ƒeƒBƒV[ƒ‹‚b
-	CB_SEAL_PAPER04,        // ƒp[ƒeƒBƒV[ƒ‹‚c
-	CB_SEAL_HANA01,         // ƒtƒ‰ƒ[ƒV[ƒ‹‚`
-	CB_SEAL_HANA02,         // ƒtƒ‰ƒ[ƒV[ƒ‹‚a
-	CB_SEAL_HANA03,         // ƒtƒ‰ƒ[ƒV[ƒ‹‚b
-	CB_SEAL_HANA04,         // ƒtƒ‰ƒ[ƒV[ƒ‹‚c
-	CB_SEAL_HANA05,         // ƒtƒ‰ƒ[ƒV[ƒ‹‚d
-	CB_SEAL_HANA06,         // ƒtƒ‰ƒ[ƒV[ƒ‹‚e
-	CB_SEAL_ONPU01,         // ƒ\ƒ“ƒOƒV[ƒ‹‚`
-	CB_SEAL_ONPU02,         // ƒ\ƒ“ƒOƒV[ƒ‹‚a
-	CB_SEAL_ONPU03,         // ƒ\ƒ“ƒOƒV[ƒ‹‚b
-	CB_SEAL_ONPU04,         // ƒ\ƒ“ƒOƒV[ƒ‹‚c
-	CB_SEAL_ONPU05,         // ƒ\ƒ“ƒOƒV[ƒ‹‚d
-	CB_SEAL_ONPU06,         // ƒ\ƒ“ƒOƒV[ƒ‹‚e
-	CB_SEAL_ONPU07,         // ƒ\ƒ“ƒOƒV[ƒ‹‚f
-	CB_SEAL_ALPHA_A,        // ‚`ƒV[ƒ‹
-	CB_SEAL_ALPHA_B,        // ‚aƒV[ƒ‹
-	CB_SEAL_ALPHA_C,        // ‚bƒV[ƒ‹
-	CB_SEAL_ALPHA_D,        // ‚cƒV[ƒ‹
-	CB_SEAL_ALPHA_E,        // ‚dƒV[ƒ‹
-	CB_SEAL_ALPHA_F,        // ‚eƒV[ƒ‹
-	CB_SEAL_ALPHA_G,        // ‚fƒV[ƒ‹
-	CB_SEAL_ALPHA_H,        // ‚gƒV[ƒ‹
-	CB_SEAL_ALPHA_I,        // ‚hƒV[ƒ‹
-	CB_SEAL_ALPHA_J,        // ‚iƒV[ƒ‹
-	CB_SEAL_ALPHA_K,        // ‚jƒV[ƒ‹
-	CB_SEAL_ALPHA_L,        // ‚kƒV[ƒ‹
-	CB_SEAL_ALPHA_M,        // ‚lƒV[ƒ‹
-	CB_SEAL_ALPHA_N,        // ‚mƒV[ƒ‹
-	CB_SEAL_ALPHA_O,        // ‚nƒV[ƒ‹
-	CB_SEAL_ALPHA_P,        // ‚oƒV[ƒ‹
-	CB_SEAL_ALPHA_Q,        // ‚pƒV[ƒ‹
-	CB_SEAL_ALPHA_R,        // ‚qƒV[ƒ‹
-	CB_SEAL_ALPHA_S,        // ‚rƒV[ƒ‹
-	CB_SEAL_ALPHA_T,        // ‚sƒV[ƒ‹
-	CB_SEAL_ALPHA_U,        // ‚tƒV[ƒ‹
-	CB_SEAL_ALPHA_V,        // ‚uƒV[ƒ‹
-	CB_SEAL_ALPHA_W,        // ‚vƒV[ƒ‹
-	CB_SEAL_ALPHA_X,        // ‚wƒV[ƒ‹
-	CB_SEAL_ALPHA_Y,        // ‚xƒV[ƒ‹
-	CB_SEAL_ALPHA_Z,        // ‚yƒV[ƒ‹
-	CB_SEAL_ALPHA_MARK_1,   // ‚Ñ‚Á‚­‚èƒV[ƒ‹
-	CB_SEAL_ALPHA_MARK_2,	// ‚Í‚Ä‚ÈƒV[ƒ‹
-	CB_SEAL_SP_1,           // ƒŠƒLƒbƒhƒV[ƒ‹
-	CB_SEAL_SP_2,           // ‚Î‚­‚Í‚ÂƒV[ƒ‹
-	CB_SEAL_SP_3,           // ƒLƒ‰ƒLƒ‰ƒV[ƒ‹
+	CB_SEAL_HART01,			// ãƒãƒ¼ãƒˆã‚·ãƒ¼ãƒ«ï¼¡ 
+	CB_SEAL_HART02,         // ãƒãƒ¼ãƒˆã‚·ãƒ¼ãƒ«ï¼¢
+	CB_SEAL_HART03,         // ãƒãƒ¼ãƒˆã‚·ãƒ¼ãƒ«ï¼£
+	CB_SEAL_HART04,         // ãƒãƒ¼ãƒˆã‚·ãƒ¼ãƒ«ï¼¤
+	CB_SEAL_HART05,         // ãƒãƒ¼ãƒˆã‚·ãƒ¼ãƒ«ï¼¥
+	CB_SEAL_HART06,         // ãƒãƒ¼ãƒˆã‚·ãƒ¼ãƒ«ï¼¦
+	CB_SEAL_STAR01,         // ã‚¹ã‚¿ãƒ¼ã‚·ãƒ¼ãƒ«ï¼¡
+	CB_SEAL_STAR02,         // ã‚¹ã‚¿ãƒ¼ã‚·ãƒ¼ãƒ«ï¼¢
+	CB_SEAL_STAR03,         // ã‚¹ã‚¿ãƒ¼ã‚·ãƒ¼ãƒ«ï¼£
+	CB_SEAL_STAR04,         // ã‚¹ã‚¿ãƒ¼ã‚·ãƒ¼ãƒ«ï¼¤
+	CB_SEAL_STAR05,         // ã‚¹ã‚¿ãƒ¼ã‚·ãƒ¼ãƒ«ï¼¥
+	CB_SEAL_STAR06,         // ã‚¹ã‚¿ãƒ¼ã‚·ãƒ¼ãƒ«ï¼¦
+	CB_SEAL_LINE01,         // ãƒ©ã‚¤ãƒ³ã‚·ãƒ¼ãƒ«ï¼¡
+	CB_SEAL_LINE02,         // ãƒ©ã‚¤ãƒ³ã‚·ãƒ¼ãƒ«ï¼¢
+	CB_SEAL_LINE03,         // ãƒ©ã‚¤ãƒ³ã‚·ãƒ¼ãƒ«ï¼£
+	CB_SEAL_LINE04,         // ãƒ©ã‚¤ãƒ³ã‚·ãƒ¼ãƒ«ï¼¤
+	CB_SEAL_KEMURI01,       // ã‚¹ãƒ¢ãƒ¼ã‚¯ã‚·ãƒ¼ãƒ«ï¼¡
+	CB_SEAL_KEMURI02,       // ã‚¹ãƒ¢ãƒ¼ã‚¯ã‚·ãƒ¼ãƒ«ï¼¢
+	CB_SEAL_KEMURI03,       // ã‚¹ãƒ¢ãƒ¼ã‚¯ã‚·ãƒ¼ãƒ«ï¼£
+	CB_SEAL_KEMURI04,       // ã‚¹ãƒ¢ãƒ¼ã‚¯ã‚·ãƒ¼ãƒ«ï¼¤
+	CB_SEAL_TUNDER01,       // ã‚¨ãƒ¬ã‚­ã‚·ãƒ¼ãƒ«ï¼¡
+	CB_SEAL_TUNDER02,       // ã‚¨ãƒ¬ã‚­ã‚·ãƒ¼ãƒ«ï¼¢
+	CB_SEAL_TUNDER03,       // ã‚¨ãƒ¬ã‚­ã‚·ãƒ¼ãƒ«ï¼£
+	CB_SEAL_TUNDER04,       // ã‚¨ãƒ¬ã‚­ã‚·ãƒ¼ãƒ«ï¼¤
+	CB_SEAL_BALL01,         // ãƒãƒ–ãƒ«ã‚·ãƒ¼ãƒ«ï¼¡
+	CB_SEAL_BALL02,         // ãƒãƒ–ãƒ«ã‚·ãƒ¼ãƒ«ï¼¢
+	CB_SEAL_BALL03,         // ãƒãƒ–ãƒ«ã‚·ãƒ¼ãƒ«ï¼£
+	CB_SEAL_BALL04,         // ãƒãƒ–ãƒ«ã‚·ãƒ¼ãƒ«ï¼¤
+	CB_SEAL_FIRE01,         // ãƒ•ã‚¡ã‚¤ã‚¢ã‚·ãƒ¼ãƒ«ï¼¡
+	CB_SEAL_FIRE02,         // ãƒ•ã‚¡ã‚¤ã‚¢ã‚·ãƒ¼ãƒ«ï¼¢
+	CB_SEAL_FIRE03,         // ãƒ•ã‚¡ã‚¤ã‚¢ã‚·ãƒ¼ãƒ«ï¼£
+	CB_SEAL_FIRE04,         // ãƒ•ã‚¡ã‚¤ã‚¢ã‚·ãƒ¼ãƒ«ï¼¤
+	CB_SEAL_PAPER01,        // ãƒ‘ãƒ¼ãƒ†ã‚£ã‚·ãƒ¼ãƒ«ï¼¡
+	CB_SEAL_PAPER02,        // ãƒ‘ãƒ¼ãƒ†ã‚£ã‚·ãƒ¼ãƒ«ï¼¢
+	CB_SEAL_PAPER03,        // ãƒ‘ãƒ¼ãƒ†ã‚£ã‚·ãƒ¼ãƒ«ï¼£
+	CB_SEAL_PAPER04,        // ãƒ‘ãƒ¼ãƒ†ã‚£ã‚·ãƒ¼ãƒ«ï¼¤
+	CB_SEAL_HANA01,         // ãƒ•ãƒ©ãƒ¯ãƒ¼ã‚·ãƒ¼ãƒ«ï¼¡
+	CB_SEAL_HANA02,         // ãƒ•ãƒ©ãƒ¯ãƒ¼ã‚·ãƒ¼ãƒ«ï¼¢
+	CB_SEAL_HANA03,         // ãƒ•ãƒ©ãƒ¯ãƒ¼ã‚·ãƒ¼ãƒ«ï¼£
+	CB_SEAL_HANA04,         // ãƒ•ãƒ©ãƒ¯ãƒ¼ã‚·ãƒ¼ãƒ«ï¼¤
+	CB_SEAL_HANA05,         // ãƒ•ãƒ©ãƒ¯ãƒ¼ã‚·ãƒ¼ãƒ«ï¼¥
+	CB_SEAL_HANA06,         // ãƒ•ãƒ©ãƒ¯ãƒ¼ã‚·ãƒ¼ãƒ«ï¼¦
+	CB_SEAL_ONPU01,         // ã‚½ãƒ³ã‚°ã‚·ãƒ¼ãƒ«ï¼¡
+	CB_SEAL_ONPU02,         // ã‚½ãƒ³ã‚°ã‚·ãƒ¼ãƒ«ï¼¢
+	CB_SEAL_ONPU03,         // ã‚½ãƒ³ã‚°ã‚·ãƒ¼ãƒ«ï¼£
+	CB_SEAL_ONPU04,         // ã‚½ãƒ³ã‚°ã‚·ãƒ¼ãƒ«ï¼¤
+	CB_SEAL_ONPU05,         // ã‚½ãƒ³ã‚°ã‚·ãƒ¼ãƒ«ï¼¥
+	CB_SEAL_ONPU06,         // ã‚½ãƒ³ã‚°ã‚·ãƒ¼ãƒ«ï¼¦
+	CB_SEAL_ONPU07,         // ã‚½ãƒ³ã‚°ã‚·ãƒ¼ãƒ«ï¼§
+	CB_SEAL_ALPHA_A,        // ï¼¡ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_B,        // ï¼¢ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_C,        // ï¼£ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_D,        // ï¼¤ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_E,        // ï¼¥ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_F,        // ï¼¦ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_G,        // ï¼§ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_H,        // ï¼¨ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_I,        // ï¼©ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_J,        // ï¼ªã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_K,        // ï¼«ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_L,        // ï¼¬ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_M,        // ï¼­ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_N,        // ï¼®ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_O,        // ï¼¯ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_P,        // ï¼°ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_Q,        // ï¼±ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_R,        // ï¼²ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_S,        // ï¼³ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_T,        // ï¼´ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_U,        // ï¼µã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_V,        // ï¼¶ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_W,        // ï¼·ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_X,        // ï¼¸ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_Y,        // ï¼¹ã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_Z,        // ï¼ºã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_MARK_1,   // ã³ã£ãã‚Šã‚·ãƒ¼ãƒ«
+	CB_SEAL_ALPHA_MARK_2,	// ã¯ã¦ãªã‚·ãƒ¼ãƒ«
+	CB_SEAL_SP_1,           // ãƒªã‚­ãƒƒãƒ‰ã‚·ãƒ¼ãƒ«
+	CB_SEAL_SP_2,           // ã°ãã¯ã¤ã‚·ãƒ¼ãƒ«
+	CB_SEAL_SP_3,           // ã‚­ãƒ©ã‚­ãƒ©ã‚·ãƒ¼ãƒ«
 };
 
 extern int Seal_Li_CharArcGet(u8 id);

@@ -12,23 +12,23 @@
 
   $Log: dwc_auth.h,v $
   Revision 1.42  2006/06/13 00:00:22  nakata
-  ƒuƒ‰ƒEƒUŒü‚¯‚ÌƒGƒ‰[€–Ú’Ç‰Á
+  ãƒ–ãƒ©ã‚¦ã‚¶å‘ã‘ã®ã‚¨ãƒ©ãƒ¼é …ç›®è¿½åŠ 
 
   Revision 1.41  2006/04/27 07:06:09  takayama
-  ingamesn‚ð10•¶Žš‚©‚ç25•¶Žš‚ÉŠg’£B
+  ingamesnã‚’10æ–‡å­—ã‹ã‚‰25æ–‡å­—ã«æ‹¡å¼µã€‚
 
   Revision 1.40  2006/03/09 04:06:36  nakata
-  ˆê•”‰üsƒR[ƒh‚ª³í‚Å‚È‚©‚Á‚½•”•ª‚ðC³
+  ä¸€éƒ¨æ”¹è¡Œã‚³ãƒ¼ãƒ‰ãŒæ­£å¸¸ã§ãªã‹ã£ãŸéƒ¨åˆ†ã‚’ä¿®æ­£
 
   Revision 1.39  2006/03/02 05:21:58  nakata
-  DWC_Svcƒ‚ƒWƒ…[ƒ‹’Ç‰Á
-  DWC_Util_Alloc/DWC_Util_FreeŠÖ”‚Ì–¼‘O‚ðDWC_Auth_Alloc/DWC_Auth_FreeŠÖ”‚É–¼‘O‚ð•ÏX
+  DWC_Svcãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«è¿½åŠ 
+  DWC_Util_Alloc/DWC_Util_Freeé–¢æ•°ã®åå‰ã‚’DWC_Auth_Alloc/DWC_Auth_Freeé–¢æ•°ã«åå‰ã‚’å¤‰æ›´
 
   Revision 1.38  2006/03/01 02:43:53  nakata
-  CALŽæ“¾‹@”\‚ðdwc_auth.c‚©‚ç•ª—£‚µ‚½
+  CALå–å¾—æ©Ÿèƒ½ã‚’dwc_auth.cã‹ã‚‰åˆ†é›¢ã—ãŸ
 
   Revision 1.37  2006/02/24 05:31:08  nakata
-  •K—v‚È‚¢ƒRƒƒ“ƒg‚ðíœ‚µ‚½B
+  å¿…è¦ãªã„ã‚³ãƒ¡ãƒ³ãƒˆã‚’å‰Šé™¤ã—ãŸã€‚
 
   Revision 1.36  2006/01/17 07:15:38  nakata
   Fixed the bug related to determining ingamesn length in DWCi_RemoteLoginProcess().
@@ -66,11 +66,11 @@
   Add runtime custom nas setting function to DWC_Auth.
 
   Revision 1.17  2005/08/20 07:01:18  sasakit
-  ƒwƒbƒ_ƒCƒ“ƒNƒ‹[ƒhƒK[ƒh‚Ì‘Ž®‚ð“ˆê‚µ‚½B
-  bm/dwc_init.h -> bm/dwc_bm_init.h‚É•ÏX
-  ƒwƒbƒ_‚ÉCopyright‚ð‚Â‚¯‚½B
-  \‘¢‘Ì‚Ì–¼‘O‹óŠÔ‚ð‚Å‚«‚é‚¾‚¯ƒ‹[ƒ‹‚É‚¿‚©‚Ã‚¯‚½B
-  util_wifiidtool.h‚Ædwc_backup.h‚ÌŠÖŒW‚ðŽáŠ±C³B
+  ãƒ˜ãƒƒãƒ€ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚¬ãƒ¼ãƒ‰ã®æ›¸å¼ã‚’çµ±ä¸€ã—ãŸã€‚
+  bm/dwc_init.h -> bm/dwc_bm_init.hã«å¤‰æ›´
+  ãƒ˜ãƒƒãƒ€ã«Copyrightã‚’ã¤ã‘ãŸã€‚
+  æ§‹é€ ä½“ã®åå‰ç©ºé–“ã‚’ã§ãã‚‹ã ã‘ãƒ«ãƒ¼ãƒ«ã«ã¡ã‹ã¥ã‘ãŸã€‚
+  util_wifiidtool.hã¨dwc_backup.hã®é–¢ä¿‚ã‚’è‹¥å¹²ä¿®æ­£ã€‚
 
 
   $NoKeywords: $
@@ -89,93 +89,93 @@ extern "C" {
 #endif // [nakata] __cplusplus
 
 //=============================================================================
-// [nakata] ’è‹`
+// [nakata] å®šç¾©
 //=============================================================================
 
-// [nakata] ’è”’è‹`
+// [nakata] å®šæ•°å®šç¾©
 #define DWCAUTH_INGAMESN_LEN	(25+1)
 #define DWCAUTH_GSBRCDBYTES		(11+1)
 
-// [nakata] DWCAuth‚ÌŒ‹‰Ê‚ðŠi”[‚·‚é\‘¢‘Ì
+// [nakata] DWCAuthã®çµæžœã‚’æ ¼ç´ã™ã‚‹æ§‹é€ ä½“
 
-// [nakata] NASƒGƒ‰[ƒR[ƒhˆê——
-// 0‚Ü‚½‚Í³‚Ì’l	¬Œ÷
+// [nakata] NASã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ä¸€è¦§
+// 0ã¾ãŸã¯æ­£ã®å€¤	æˆåŠŸ
 //
-// -20100	DS‘¤‚Å”­¶‚µ‚½ƒGƒ‰[(ƒƒ‚ƒŠ•s‘«/ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»Ž¸”s‚È‚Ç)‚É‚æ‚è”FØ‚ðŠ®—¹‚Å‚«‚È‚¢
-// -20101	ƒT[ƒo‘¤‚ÅˆÈ‰º‚É’è‹`‚µ‚½‚à‚ÌˆÈŠO‚ÌƒGƒ‰[‚ª”­¶‚µ”FØ‚ðŠ®—¹‚Å‚«‚È‚¢
-// -20102	‘—M‚µ‚½MACƒAƒhƒŒƒX‚ªNAS‚ÌBANƒŠƒXƒg‚É“ü‚Á‚Ä‚¢‚é
-// -20103	ƒƒOƒCƒ“/V‹Kƒ†[ƒU[ì¬‚ÉŽg—p‚µ‚½ƒ†[ƒU[–¼‚©‚ç’Šo‚µ‚½MACƒAƒhƒŒƒX‚ªDS‚Ì‚à‚Ì‚Å‚È‚¢
-// -20104	ID‚ª‚·‚Å‚ÉŽg—p‚³‚ê‚Ä‚¨‚èAID‚ð•Ï‰»‚³‚¹‚ÄƒŠƒgƒ‰ƒC‚ð‚µ‚Ä‚àV‹Kì¬‚ÉŽ¸”s‚µ‚½
-// -20105	ID‚ª‘¶Ý‚µ‚È‚¢‚½‚ßƒƒOƒCƒ“‚Å‚«‚È‚¢
-// -20106	‚±‚ÌDS‚©‚çì‚é‚±‚Æ‚ª‚Å‚«‚éID”‚ÌãŒÀ‚ð’´‚¦‚ÄID‚ðì‚ë‚¤‚Æ‚µ‚Ä‚¢‚é
-// -20107	‘—M‚µ‚½ƒQ[ƒ€ƒR[ƒh‚ªNAS‚É“o˜^‚³‚ê‚Ä‚¢‚È‚¢
-// -20108	ID‚ÌŽg—pŠúŒÀ‚ªØ‚ê‚Ä‚¢‚é
-// -20109	DS‚©‚ç•K—v‚Èî•ñ‚ª‘—‚ç‚ê‚Ä‚«‚Ä‚¢‚È‚¢A•s³ƒAƒNƒZƒX‹^‚¢
-// -20110	‘—M‚µ‚½ƒQ[ƒ€ƒR[ƒh‚Å‚ÍWiFiƒRƒlƒNƒVƒ‡ƒ“ƒT[ƒrƒX‚ªI—¹‚µ‚Ä‚¢‚é
+// -20100	DSå´ã§ç™ºç”Ÿã—ãŸã‚¨ãƒ©ãƒ¼(ãƒ¡ãƒ¢ãƒªä¸è¶³/ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–å¤±æ•—ãªã©)ã«ã‚ˆã‚Šèªè¨¼ã‚’å®Œäº†ã§ããªã„
+// -20101	ã‚µãƒ¼ãƒå´ã§ä»¥ä¸‹ã«å®šç¾©ã—ãŸã‚‚ã®ä»¥å¤–ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—èªè¨¼ã‚’å®Œäº†ã§ããªã„
+// -20102	é€ä¿¡ã—ãŸMACã‚¢ãƒ‰ãƒ¬ã‚¹ãŒNASã®BANãƒªã‚¹ãƒˆã«å…¥ã£ã¦ã„ã‚‹
+// -20103	ãƒ­ã‚°ã‚¤ãƒ³/æ–°è¦ãƒ¦ãƒ¼ã‚¶ãƒ¼ä½œæˆã«ä½¿ç”¨ã—ãŸãƒ¦ãƒ¼ã‚¶ãƒ¼åã‹ã‚‰æŠ½å‡ºã—ãŸMACã‚¢ãƒ‰ãƒ¬ã‚¹ãŒDSã®ã‚‚ã®ã§ãªã„
+// -20104	IDãŒã™ã§ã«ä½¿ç”¨ã•ã‚Œã¦ãŠã‚Šã€IDã‚’å¤‰åŒ–ã•ã›ã¦ãƒªãƒˆãƒ©ã‚¤ã‚’ã—ã¦ã‚‚æ–°è¦ä½œæˆã«å¤±æ•—ã—ãŸ
+// -20105	IDãŒå­˜åœ¨ã—ãªã„ãŸã‚ãƒ­ã‚°ã‚¤ãƒ³ã§ããªã„
+// -20106	ã“ã®DSã‹ã‚‰ä½œã‚‹ã“ã¨ãŒã§ãã‚‹IDæ•°ã®ä¸Šé™ã‚’è¶…ãˆã¦IDã‚’ä½œã‚ã†ã¨ã—ã¦ã„ã‚‹
+// -20107	é€ä¿¡ã—ãŸã‚²ãƒ¼ãƒ ã‚³ãƒ¼ãƒ‰ãŒNASã«ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
+// -20108	IDã®ä½¿ç”¨æœŸé™ãŒåˆ‡ã‚Œã¦ã„ã‚‹
+// -20109	DSã‹ã‚‰å¿…è¦ãªæƒ…å ±ãŒé€ã‚‰ã‚Œã¦ãã¦ã„ãªã„ã€ä¸æ­£ã‚¢ã‚¯ã‚»ã‚¹ç–‘ã„
+// -20110	é€ä¿¡ã—ãŸã‚²ãƒ¼ãƒ ã‚³ãƒ¼ãƒ‰ã§ã¯WiFiã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚µãƒ¼ãƒ“ã‚¹ãŒçµ‚äº†ã—ã¦ã„ã‚‹
 //
-// -20200	NAS“à•”ƒvƒƒZƒXƒGƒ‰[
-// -20301	NAS‹@”\–¢ŽÀ‘•
+// -20200	NASå†…éƒ¨ãƒ—ãƒ­ã‚»ã‚¹ã‚¨ãƒ©ãƒ¼
+// -20301	NASæ©Ÿèƒ½æœªå®Ÿè£…
 //
-// -20403	‰{——Œ ŒÀ‚È‚µ(HTTPƒT[ƒoƒGƒ‰[)
-// -20404	‰{——‘ÎÛƒtƒ@ƒCƒ‹‚È‚µ(HTTPƒT[ƒoƒGƒ‰[)
-// -20500	ƒT[ƒoƒCƒ“ƒ^[ƒiƒ‹ƒGƒ‰[(HTTPƒT[ƒoƒGƒ‰[)
-// -20503	HTTPƒT[ƒoˆ—ƒGƒ‰[/RADIUSƒGƒ‰[(HTTPƒT[ƒoƒGƒ‰[)
+// -20403	é–²è¦§æ¨©é™ãªã—(HTTPã‚µãƒ¼ãƒã‚¨ãƒ©ãƒ¼)
+// -20404	é–²è¦§å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«ãªã—(HTTPã‚µãƒ¼ãƒã‚¨ãƒ©ãƒ¼)
+// -20500	ã‚µãƒ¼ãƒã‚¤ãƒ³ã‚¿ãƒ¼ãƒŠãƒ«ã‚¨ãƒ©ãƒ¼(HTTPã‚µãƒ¼ãƒã‚¨ãƒ©ãƒ¼)
+// -20503	HTTPã‚µãƒ¼ãƒå‡¦ç†ã‚¨ãƒ©ãƒ¼/RADIUSã‚¨ãƒ©ãƒ¼(HTTPã‚µãƒ¼ãƒã‚¨ãƒ©ãƒ¼)
 
 typedef struct
 {
-	int returncode;			// [nakata] NASƒGƒ‰[ƒR[ƒh
+	int returncode;			// [nakata] NASã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 	
-	// [nakata] ”FØ‚ÌŒ‹‰Ê“¾‚ç‚ê‚½ŠeŽíî•ñ(•¶Žš—ñ)
-	char retcode[3+1];		// [nakata] HTTPƒŠƒUƒ‹ƒg
-	char datetime[14+1];	// [nakata] YYYYMMDDHHMMSSŒ`Ž®‚ÌƒT[ƒoŽžŠÔ
-	char locator[50+1];		// [nakata] GameSpyƒT[ƒo‚ÌƒhƒƒCƒ“–¼
-	char token[300+1];		// [nakata] ƒg[ƒNƒ“•¶Žš—ñ
-	char challenge[8+1];	// [nakata] ƒ`ƒƒƒŒƒ“ƒWƒR[ƒh
-	char cookie[64+1];		// [nakata] ƒNƒbƒL[
+	// [nakata] èªè¨¼ã®çµæžœå¾—ã‚‰ã‚ŒãŸå„ç¨®æƒ…å ±(æ–‡å­—åˆ—)
+	char retcode[3+1];		// [nakata] HTTPãƒªã‚¶ãƒ«ãƒˆ
+	char datetime[14+1];	// [nakata] YYYYMMDDHHMMSSå½¢å¼ã®ã‚µãƒ¼ãƒæ™‚é–“
+	char locator[50+1];		// [nakata] GameSpyã‚µãƒ¼ãƒã®ãƒ‰ãƒ¡ã‚¤ãƒ³å
+	char token[300+1];		// [nakata] ãƒˆãƒ¼ã‚¯ãƒ³æ–‡å­—åˆ—
+	char challenge[8+1];	// [nakata] ãƒãƒ£ãƒ¬ãƒ³ã‚¸ã‚³ãƒ¼ãƒ‰
+	char cookie[64+1];		// [nakata] ã‚¯ãƒƒã‚­ãƒ¼
 } DWCAuthResult;
 
-// [nakata] DWCAuth‚ÌƒGƒ‰[ó‘Ô‚ðŽ¦‚·—ñ‹“Œ^
+// [nakata] DWCAuthã®ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹ã‚’ç¤ºã™åˆ—æŒ™åž‹
 typedef enum
 {
-	DWCAUTH_E_NOERR,				// [nakata] ‰Šúó‘Ô/ˆ—’†
-	DWCAUTH_E_BMINITERR,			// [nakata] DS‚ÌFlashƒAƒNƒZƒX—pƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»Ž¸”s
-	DWCAUTH_E_MEMERR,				// [nakata] ƒƒ‚ƒŠŠm•ÛŽ¸”s
-	DWCAUTH_E_ACERR,				// [nakata] Ž©“®Ú‘±ƒ‰ƒCƒuƒ‰ƒŠ‚©‚çÚ‘±ó‹µ‚ðŽæ“¾‚Å‚«‚È‚¢
-	DWCAUTH_E_HTTPINITERR,			// [nakata] DWCHttp‚ª‰Šú‰»‚Å‚«‚È‚¢
-	DWCAUTH_E_CALERR,				// [nakata] CALî•ñŽæ“¾‚ÉŽ¸”s‚µ‚½
-	DWCAUTH_E_INVALIDPARAM,			// [nakata] •s³‚Èƒpƒ‰ƒ[ƒ^‚ª—^‚¦‚ç‚ê‚Ä‚¢‚é
-	DWCAUTH_E_CANTADDHTTPHEADER,	// [nakata] HTTPƒpƒPƒbƒg‚Éƒwƒbƒ_ƒAƒCƒeƒ€‚ð’Ç‰Á‚Å‚«‚È‚¢
-	DWCAUTH_E_CANTADDPOSTITEM,		// [nakata] HTTPƒpƒPƒbƒg‚ÉPOSTƒAƒCƒeƒ€‚ð’Ç‰Á‚Å‚«‚È‚¢
-	DWCAUTH_E_DNSERR,				// [nakata] DNSƒGƒ‰[
-	DWCAUTH_E_CANTSTARTHTTPTHREAD,	// [nakata] HTTPƒXƒŒƒbƒh‚ðŠJŽn‚Å‚«‚È‚¢
-	DWCAUTH_E_HTTPCONERR,			// [nakata] TCPÚ‘±‚ðŠm—§‚Å‚«‚È‚¢
-	DWCAUTH_E_HTTPPARSEERR,			// [nakata] ŽóM‚µ‚½HTTPƒpƒPƒbƒg‚ª•s³‚Åƒp[ƒX‚Å‚«‚È‚¢
-	DWCAUTH_E_HTTPERR,				// [nakata] DWCHttp‚ÉŠÖ‚·‚é–¢•ª—Þ‚ÌƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚é
-	DWCAUTH_E_NASPARSEERR,			// [nakata] ŽóM‚µ‚½NAS‚Ì‰ž“š‚ª•s³‚Åƒp[ƒX‚Å‚«‚È‚¢
-	DWCAUTH_E_BMERR,				// [nakata] DS‚ÌFlash‘€ì‚ÉŽ¸”s‚µ‚½
-	DWCAUTH_E_NASALREADYEXIST,		// [nakata] NASã‚Éì‚ë‚¤‚Æ‚µ‚½ƒAƒJƒEƒ“ƒg‚ªŠù‚É‘¶Ý‚µ‚Ä‚¢‚½
-	DWCAUTH_E_NASACCTEXPIRE,		// [nakata] ƒƒOƒCƒ“‚µ‚æ‚¤‚Æ‚µ‚½ƒAƒJƒEƒ“ƒg‚ÍNASã‚ÅŠúŒÀØ‚ê‚¾‚Á‚½
-	DWCAUTH_E_NASERR,				// [nakata] NAS‚©‚çƒGƒ‰[‚ª‹A‚Á‚Ä‚«‚Ä‚¢‚é
-	DWCAUTH_E_TOOMANYRETRY,			// [nakata] ƒŠƒgƒ‰ƒC‚ª‘½‚·‚¬‚é‚Ì‚ÅƒGƒ‰[
+	DWCAUTH_E_NOERR,				// [nakata] åˆæœŸçŠ¶æ…‹/å‡¦ç†ä¸­
+	DWCAUTH_E_BMINITERR,			// [nakata] DSã®Flashã‚¢ã‚¯ã‚»ã‚¹ç”¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–å¤±æ•—
+	DWCAUTH_E_MEMERR,				// [nakata] ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—
+	DWCAUTH_E_ACERR,				// [nakata] è‡ªå‹•æŽ¥ç¶šãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‹ã‚‰æŽ¥ç¶šçŠ¶æ³ã‚’å–å¾—ã§ããªã„
+	DWCAUTH_E_HTTPINITERR,			// [nakata] DWCHttpãŒåˆæœŸåŒ–ã§ããªã„
+	DWCAUTH_E_CALERR,				// [nakata] CALæƒ…å ±å–å¾—ã«å¤±æ•—ã—ãŸ
+	DWCAUTH_E_INVALIDPARAM,			// [nakata] ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒä¸Žãˆã‚‰ã‚Œã¦ã„ã‚‹
+	DWCAUTH_E_CANTADDHTTPHEADER,	// [nakata] HTTPãƒ‘ã‚±ãƒƒãƒˆã«ãƒ˜ãƒƒãƒ€ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¿½åŠ ã§ããªã„
+	DWCAUTH_E_CANTADDPOSTITEM,		// [nakata] HTTPãƒ‘ã‚±ãƒƒãƒˆã«POSTã‚¢ã‚¤ãƒ†ãƒ ã‚’è¿½åŠ ã§ããªã„
+	DWCAUTH_E_DNSERR,				// [nakata] DNSã‚¨ãƒ©ãƒ¼
+	DWCAUTH_E_CANTSTARTHTTPTHREAD,	// [nakata] HTTPã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹å§‹ã§ããªã„
+	DWCAUTH_E_HTTPCONERR,			// [nakata] TCPæŽ¥ç¶šã‚’ç¢ºç«‹ã§ããªã„
+	DWCAUTH_E_HTTPPARSEERR,			// [nakata] å—ä¿¡ã—ãŸHTTPãƒ‘ã‚±ãƒƒãƒˆãŒä¸æ­£ã§ãƒ‘ãƒ¼ã‚¹ã§ããªã„
+	DWCAUTH_E_HTTPERR,				// [nakata] DWCHttpã«é–¢ã™ã‚‹æœªåˆ†é¡žã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹
+	DWCAUTH_E_NASPARSEERR,			// [nakata] å—ä¿¡ã—ãŸNASã®å¿œç­”ãŒä¸æ­£ã§ãƒ‘ãƒ¼ã‚¹ã§ããªã„
+	DWCAUTH_E_BMERR,				// [nakata] DSã®Flashæ“ä½œã«å¤±æ•—ã—ãŸ
+	DWCAUTH_E_NASALREADYEXIST,		// [nakata] NASä¸Šã«ä½œã‚ã†ã¨ã—ãŸã‚¢ã‚«ã‚¦ãƒ³ãƒˆãŒæ—¢ã«å­˜åœ¨ã—ã¦ã„ãŸ
+	DWCAUTH_E_NASACCTEXPIRE,		// [nakata] ãƒ­ã‚°ã‚¤ãƒ³ã—ã‚ˆã†ã¨ã—ãŸã‚¢ã‚«ã‚¦ãƒ³ãƒˆã¯NASä¸Šã§æœŸé™åˆ‡ã‚Œã ã£ãŸ
+	DWCAUTH_E_NASERR,				// [nakata] NASã‹ã‚‰ã‚¨ãƒ©ãƒ¼ãŒå¸°ã£ã¦ãã¦ã„ã‚‹
+	DWCAUTH_E_TOOMANYRETRY,			// [nakata] ãƒªãƒˆãƒ©ã‚¤ãŒå¤šã™ãŽã‚‹ã®ã§ã‚¨ãƒ©ãƒ¼
 	DWCAUTH_E_ABORT,
-	DWCAUTH_E_FINISH,				// [nakata] ”FØ‚É¬Œ÷‚µ‚½
-	DWCAUTH_E_NOTINITIALIZED,		// [nakata] ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+	DWCAUTH_E_FINISH,				// [nakata] èªè¨¼ã«æˆåŠŸã—ãŸ
+	DWCAUTH_E_NOTINITIALIZED,		// [nakata] åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
 	DWCAUTH_E_MAX
 } DWCAuthError;
 
-// [nakata] DWC_Auth‚ð‰Šú‰»‚·‚é‚½‚ß‚É•K—v‚Èî•ñ‚ðŠi”[‚·‚é\‘¢‘Ì
+// [nakata] DWC_Authã‚’åˆæœŸåŒ–ã™ã‚‹ãŸã‚ã«å¿…è¦ãªæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹æ§‹é€ ä½“
 typedef struct
 {
-	// [nakata] ‚±‚ê‚ç‚Ìƒpƒ‰ƒ[ƒ^‚Í‘S‚ÄNULLI’[‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚é
-	unsigned short ingamesn[DWCAUTH_INGAMESN_LEN];	// [nakata] ƒQ[ƒ€“àƒXƒNƒŠ[ƒ“–¼
+	// [nakata] ã“ã‚Œã‚‰ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯å…¨ã¦NULLçµ‚ç«¯ã—ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹
+	unsigned short ingamesn[DWCAUTH_INGAMESN_LEN];	// [nakata] ã‚²ãƒ¼ãƒ å†…ã‚¹ã‚¯ãƒªãƒ¼ãƒ³å
 	char           gsbrcd[DWCAUTH_GSBRCDBYTES];		// [nakata] Gamespy ID Branch Code
 	
-	// [nakata] ƒƒ‚ƒŠŠÇ—ŠÖ”
+	// [nakata] ãƒ¡ãƒ¢ãƒªç®¡ç†é–¢æ•°
 	DWCAuthAlloc	alloc;
 	DWCAuthFree 	free;
 } DWCAuthParam;
 
-// [nakata] ingamesnƒ`ƒFƒbƒNŒ‹‰Ê—ñ‹“Žq
+// [nakata] ingamesnãƒã‚§ãƒƒã‚¯çµæžœåˆ—æŒ™å­
 typedef enum
 {
 	DWC_AUTH_INGAMESN_NOT_CHECKED	= 0,
@@ -186,60 +186,60 @@ typedef enum
 extern DWCAuthIngamesnCheckResult DWCauthingamesncheckresult;
 
 //=============================================================================
-// [nakata] ŠÖ”
+// [nakata] é–¢æ•°
 //=============================================================================
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWC_Auth‚ÅŽg—p‚·‚éƒJƒXƒ^ƒ€NASƒAƒhƒŒƒX‚ðÝ’è‚·‚é
-// ˆø” : nasaddr - Žg—p‚·‚éNAS‚ÌURL•¶Žš—ñ
-// •Ô’l : ‚È‚µ
+// æ©Ÿèƒ½ : DWC_Authã§ä½¿ç”¨ã™ã‚‹ã‚«ã‚¹ã‚¿ãƒ NASã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨­å®šã™ã‚‹
+// å¼•æ•° : nasaddr - ä½¿ç”¨ã™ã‚‹NASã®URLæ–‡å­—åˆ—
+// è¿”å€¤ : ãªã—
 //-----------------------------------------------------------------------------
 void DWC_Auth_SetCustomNas(const char *nasaddr);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWCAuth‚ÅŽg—p‚·‚é\‘¢‘Ì‚Ì‰Šú‰»/ƒƒ‚ƒŠŠm•Û
-// ˆø” : param - ‰Šú‰»ƒpƒ‰ƒ[ƒ^
-//      : http  - DWCAuth‚ªŽg—p‚·‚éDWCHttp\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-// •Ô’l : DWCAuthError
+// æ©Ÿèƒ½ : DWCAuthã§ä½¿ç”¨ã™ã‚‹æ§‹é€ ä½“ã®åˆæœŸåŒ–/ãƒ¡ãƒ¢ãƒªç¢ºä¿
+// å¼•æ•° : param - åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+//      : http  - DWCAuthãŒä½¿ç”¨ã™ã‚‹DWCHttpæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+// è¿”å€¤ : DWCAuthError
 //-----------------------------------------------------------------------------
 DWCAuthError DWC_Auth_Create(DWCAuthParam *param, void *http);
 DWCAuthError DWC_Auth_Create_WFCUtil(DWCAuthParam *param, void *http);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWCAuthƒAƒ{[ƒg
+// æ©Ÿèƒ½ : DWCAuthã‚¢ãƒœãƒ¼ãƒˆ
 //        
-// ˆø” : ‚È‚µ
-// •Ô’l : ‚È‚µ
+// å¼•æ•° : ãªã—
+// è¿”å€¤ : ãªã—
 //-----------------------------------------------------------------------------
 void DWC_Auth_Abort(void);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWCAuth‚ÅŽg—p‚µ‚½ƒƒ‚ƒŠ‚Ì‰ð•ú/ƒlƒbƒgƒ[ƒNØ’f
-// ˆø” : ‚È‚µ
-// •Ô’l : ‚È‚µ
+// æ©Ÿèƒ½ : DWCAuthã§ä½¿ç”¨ã—ãŸãƒ¡ãƒ¢ãƒªã®è§£æ”¾/ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯åˆ‡æ–­
+// å¼•æ•° : ãªã—
+// è¿”å€¤ : ãªã—
 //-----------------------------------------------------------------------------
 void DWC_Auth_Destroy(void);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWCAuthƒXƒŒƒbƒh‚ªI—¹‚·‚é‚Ì‚ðOS_JoinThread‚µ‚Ä‘Ò‚Â
-// ˆø” : ‚È‚µ
-// •Ô’l : ‚È‚µ
+// æ©Ÿèƒ½ : DWCAuthã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã™ã‚‹ã®ã‚’OS_JoinThreadã—ã¦å¾…ã¤
+// å¼•æ•° : ãªã—
+// è¿”å€¤ : ãªã—
 //-----------------------------------------------------------------------------
 void DWC_Auth_Join(void);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : ”r‘¼“I‚ÉDWCAuth‚ÌƒGƒ‰[ƒR[ƒh‚ðŽæ“¾‚·‚é
-//        (DWCAuth‚Ìó‘Ô‚ðƒ|[ƒŠƒ“ƒO‚·‚éê‡‚É‚àŽg‚¦‚é)
-// ˆø” : ‚È‚µ
-// •Ô’l : DWCAuthError
+// æ©Ÿèƒ½ : æŽ’ä»–çš„ã«DWCAuthã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
+//        (DWCAuthã®çŠ¶æ…‹ã‚’ãƒãƒ¼ãƒªãƒ³ã‚°ã™ã‚‹å ´åˆã«ã‚‚ä½¿ãˆã‚‹)
+// å¼•æ•° : ãªã—
+// è¿”å€¤ : DWCAuthError
 //-----------------------------------------------------------------------------
 DWCAuthError DWC_Auth_GetError(void);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : Mutex‚ðŽg—p‚¹‚¸‚ÉDWCAuth‚ÌŒ‹‰Ê‚ðŽæ“¾‚·‚é
-//        (AuthƒXƒŒƒbƒh‚ªI—¹‚µ‚Ä‚©‚çŽg‚¤‚±‚ÆADWC_Auth_Destroy‘O‚ÉŽg‚¤‚±‚Æ)
-// ˆø” : ‚È‚µ
-// •Ô’l : DWCAuthResult
+// æ©Ÿèƒ½ : Mutexã‚’ä½¿ç”¨ã›ãšã«DWCAuthã®çµæžœã‚’å–å¾—ã™ã‚‹
+//        (Authã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã—ã¦ã‹ã‚‰ä½¿ã†ã“ã¨ã€DWC_Auth_Destroyå‰ã«ä½¿ã†ã“ã¨)
+// å¼•æ•° : ãªã—
+// è¿”å€¤ : DWCAuthResult
 //-----------------------------------------------------------------------------
 void DWC_Auth_GetResult(DWCAuthResult *result);
 

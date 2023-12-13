@@ -26,33 +26,33 @@ NNSGfdFuncFreeTexVram   NNS_GfdDefaultFuncFreeTexVram  = FreeTexVram_;
 /*---------------------------------------------------------------------------*
   Name:         AllocTexVram_
 
-  Description:  ƒƒ‚ƒŠŠm•Û‚Ìƒ_ƒ~[ŠÖ”BƒfƒtƒHƒ‹ƒg‚Ìƒƒ‚ƒŠŠm•ÛŠÖ”‚ª“o˜^‚³‚ê
-  				‚Ä‚¢‚È‚¢ŽžA‚±‚ÌŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªç¢ºä¿ã®ãƒ€ãƒŸãƒ¼é–¢æ•°ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°ãŒç™»éŒ²ã•ã‚Œ
+  				ã¦ã„ãªã„æ™‚ã€ã“ã®é–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã™ã€‚
                  
-  Arguments:   szByte           :  ƒTƒCƒY
-               is4x4comp        :  4x4ˆ³kƒeƒNƒXƒ`ƒƒ‚©H
-               opt              :  ŽÀ‘•ˆË‘¶ƒpƒ‰ƒ[ƒ^
+  Arguments:   szByte           :  ã‚µã‚¤ã‚º
+               is4x4comp        :  4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ï¼Ÿ
+               opt              :  å®Ÿè£…ä¾å­˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
                             
-  Returns:     ƒeƒNƒXƒ`ƒƒƒL[
+  Returns:     ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
  *---------------------------------------------------------------------------*/
 static NNSGfdTexKey
 AllocTexVram_( u32 /* szByte */, BOOL /* is4x4comp */, u32 /* opt */ )
 {
     NNS_GFD_WARNING("no default AllocTexVram function.");
 
-    // ƒGƒ‰[FƒGƒ‰[‚ð•\Œ»‚·‚éTexKey‚ð‚©‚¦‚·
+    // ã‚¨ãƒ©ãƒ¼ï¼šã‚¨ãƒ©ãƒ¼ã‚’è¡¨ç¾ã™ã‚‹TexKeyã‚’ã‹ãˆã™
     return NNS_GFD_ALLOC_ERROR_TEXKEY;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         FreeFrmTexVram_
 
-  Description:  ƒƒ‚ƒŠŠJ•ú‚Ìƒ_ƒ~[ŠÖ”BƒfƒtƒHƒ‹ƒg‚Ìƒƒ‚ƒŠ‰ð•úŠÖ”‚ª“o˜^‚³‚ê
-  				‚Ä‚¢‚È‚¢ŽžA‚±‚ÌŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªé–‹æ”¾ã®ãƒ€ãƒŸãƒ¼é–¢æ•°ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ¡ãƒ¢ãƒªè§£æ”¾é–¢æ•°ãŒç™»éŒ²ã•ã‚Œ
+  				ã¦ã„ãªã„æ™‚ã€ã“ã®é–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã™ã€‚
                  
-  Arguments:   memKey          :   ƒeƒNƒXƒ`ƒƒƒL[
+  Arguments:   memKey          :   ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
                             
-  Returns:     ¬”Ûi0 ‚È‚ç‚Î ¬Œ÷)
+  Returns:     æˆå¦ï¼ˆ0 ãªã‚‰ã° æˆåŠŸ)
  *---------------------------------------------------------------------------*/
 static int
 FreeTexVram_( NNSGfdTexKey /* memKey */ )

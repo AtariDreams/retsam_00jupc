@@ -18,22 +18,22 @@
   GetDigest -> GetHash
 
   Revision 1.6  2005/04/11 10:34:25  seiki_masashi
-  MATH_CalcMD5, MATH_CalcSHA1 ŠÖ”‚Ì’Ç‰Á
+  MATH_CalcMD5, MATH_CalcSHA1 é–¢æ•°ã®è¿½åŠ 
 
   Revision 1.5  2005/04/04 01:23:08  seiki_masashi
   small fix
 
   Revision 1.4  2005/04/01 12:29:14  seiki_masashi
-  u8* digest ‚ğ void* digest ‚É•ÏX
+  u8* digest ã‚’ void* digest ã«å¤‰æ›´
 
   Revision 1.3  2005/04/01 07:45:37  seiki_masashi
-  HMAC ŠÖ˜AŠÖ”‚Ì•ÏX
+  HMAC é–¢é€£é–¢æ•°ã®å¤‰æ›´
 
   Revision 1.2  2005/03/29 09:30:35  seiki_masashi
-  ŒöŠJ—p‚É®—
+  å…¬é–‹ç”¨ã«æ•´ç†
 
   Revision 1.1  2005/03/28 04:20:27  seiki_masashi
-  math/dgt.h ‚ğ’Ç‰Á
+  math/dgt.h ã‚’è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -54,11 +54,11 @@ extern "C" {
 // Constant definition
 //----------------------------------------------------------------------------
 
-// ƒ_ƒCƒWƒFƒXƒg’·
+// ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆé•·
 #define MATH_MD5_DIGEST_SIZE    DGT_HASH1_DIGEST_SIZE   // 128bit
 #define MATH_SHA1_DIGEST_SIZE   DGT_HASH2_DIGEST_SIZE   // 160bit
 
-// ˆ—ƒuƒƒbƒN’·
+// å‡¦ç†ãƒ–ãƒ­ãƒƒã‚¯é•·
 #define MATH_MD5_BLOCK_SIZE     DGT_HASH_BLOCK_SIZE     // 512bit
 #define MATH_SHA1_BLOCK_SIZE    DGT_HASH_BLOCK_SIZE     // 512bit
 
@@ -80,9 +80,9 @@ typedef DGTHash2Context MATHSHA1Context;
 /*---------------------------------------------------------------------------*
   Name:         MATH_MD5Init
 
-  Description:  MD5 ’l‚ğ‹‚ß‚é‚½‚ß‚Ég‚¤ MATHMD5Context \‘¢‘Ì‚ğ‰Šú‰»‚·‚éB
+  Description:  MD5 å€¤ã‚’æ±‚ã‚ã‚‹ãŸã‚ã«ä½¿ã† MATHMD5Context æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
   
-  Arguments:    context MATHMD5Context \‘¢‘Ì
+  Arguments:    context MATHMD5Context æ§‹é€ ä½“
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -94,11 +94,11 @@ static inline void MATH_MD5Init(MATHMD5Context * context)
 /*---------------------------------------------------------------------------*
   Name:         MATH_MD5Update
 
-  Description:  MD5 ’l‚ğ—^‚¦‚½ƒf[ƒ^‚ÅXV‚·‚éB
+  Description:  MD5 å€¤ã‚’ä¸ãˆãŸãƒ‡ãƒ¼ã‚¿ã§æ›´æ–°ã™ã‚‹ã€‚
   
-  Arguments:    context MATHMD5Context \‘¢‘Ì
-                input   “ü—Íƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                length  “ü—Íƒf[ƒ^’·
+  Arguments:    context MATHMD5Context æ§‹é€ ä½“
+                input   å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                length  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -110,10 +110,10 @@ static inline void MATH_MD5Update(MATHMD5Context * context, const void *input, u
 /*---------------------------------------------------------------------------*
   Name:         MATH_MD5GetHash
 
-  Description:  ÅI“I‚È MD5 ’l‚ğ“¾‚éB
+  Description:  æœ€çµ‚çš„ãª MD5 å€¤ã‚’å¾—ã‚‹ã€‚
   
-  Arguments:    context MATHMD5Context \‘¢‘Ì
-                digest  MD5 ’l‚ğŠi”[‚·‚éêŠ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    context MATHMD5Context æ§‹é€ ä½“
+                digest  MD5 å€¤ã‚’æ ¼ç´ã™ã‚‹å ´æ‰€ã¸ã®ãƒã‚¤ãƒ³ã‚¿
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -122,7 +122,7 @@ static inline void MATH_MD5GetHash(MATHMD5Context * context, void *digest)
     DGT_Hash1GetDigest_R((u8 *)digest, context);
 }
 
-// ‰ºˆÊŒİŠ·‚Ì‚½‚ß
+// ä¸‹ä½äº’æ›ã®ãŸã‚
 static inline void MATH_MD5GetDigest(MATHMD5Context * context, void *digest)
 {
     MATH_MD5GetHash(context, digest);
@@ -136,9 +136,9 @@ static inline void MATH_MD5GetDigest(MATHMD5Context * context, void *digest)
 /*---------------------------------------------------------------------------*
   Name:         MATH_SHA1Init
 
-  Description:  SHA1 ’l‚ğ‹‚ß‚é‚½‚ß‚Ég‚¤ MATHSHA1Context \‘¢‘Ì‚ğ‰Šú‰»‚·‚éB
+  Description:  SHA1 å€¤ã‚’æ±‚ã‚ã‚‹ãŸã‚ã«ä½¿ã† MATHSHA1Context æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
   
-  Arguments:    context MATHSHA1Context \‘¢‘Ì
+  Arguments:    context MATHSHA1Context æ§‹é€ ä½“
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -150,11 +150,11 @@ static inline void MATH_SHA1Init(MATHSHA1Context * context)
 /*---------------------------------------------------------------------------*
   Name:         MATH_SHA1Update
 
-  Description:  SHA1 ’l‚ğ—^‚¦‚½ƒf[ƒ^‚ÅXV‚·‚éB
+  Description:  SHA1 å€¤ã‚’ä¸ãˆãŸãƒ‡ãƒ¼ã‚¿ã§æ›´æ–°ã™ã‚‹ã€‚
   
-  Arguments:    context MATHSHA1Context \‘¢‘Ì
-                input   “ü—Íƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                length  “ü—Íƒf[ƒ^’·
+  Arguments:    context MATHSHA1Context æ§‹é€ ä½“
+                input   å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                length  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -166,10 +166,10 @@ static inline void MATH_SHA1Update(MATHSHA1Context * context, const void *input,
 /*---------------------------------------------------------------------------*
   Name:         MATH_SHA1GetHash
 
-  Description:  ÅI“I‚È SHA1 ’l‚ğ“¾‚éB
+  Description:  æœ€çµ‚çš„ãª SHA1 å€¤ã‚’å¾—ã‚‹ã€‚
   
-  Arguments:    context MATHSHA1Context \‘¢‘Ì
-                digest  SHA1 ’l‚ğŠi”[‚·‚éêŠ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    context MATHSHA1Context æ§‹é€ ä½“
+                digest  SHA1 å€¤ã‚’æ ¼ç´ã™ã‚‹å ´æ‰€ã¸ã®ãƒã‚¤ãƒ³ã‚¿
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -178,7 +178,7 @@ static inline void MATH_SHA1GetHash(MATHSHA1Context * context, void *digest)
     DGT_Hash2GetDigest(context, (u8 *)digest);
 }
 
-// ‰ºˆÊŒİŠ·‚Ì‚½‚ß
+// ä¸‹ä½äº’æ›ã®ãŸã‚
 static inline void MATH_SHA1GetDigest(MATHSHA1Context * context, void *digest)
 {
     MATH_SHA1GetHash(context, digest);
@@ -186,17 +186,17 @@ static inline void MATH_SHA1GetDigest(MATHSHA1Context * context, void *digest)
 
 
 /*****************************************************************************/
-/* ƒ†[ƒeƒBƒŠƒeƒBŠÖ”                                                        */
+/* ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é–¢æ•°                                                        */
 /*****************************************************************************/
 
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcMD5
 
-  Description:  MD5 ‚ğŒvZ‚·‚éB
+  Description:  MD5 ã‚’è¨ˆç®—ã™ã‚‹ã€‚
   
-  Arguments:    digest  MD5 ’l‚ğŠi”[‚·‚éêŠ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                dataLength  “ü—Íƒf[ƒ^’·
+  Arguments:    digest  MD5 å€¤ã‚’æ ¼ç´ã™ã‚‹å ´æ‰€ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                dataLength  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -205,11 +205,11 @@ void    MATH_CalcMD5(void *digest, const void *data, u32 dataLength);
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcSHA1
 
-  Description:  SHA-1 ‚ğŒvZ‚·‚éB
+  Description:  SHA-1 ã‚’è¨ˆç®—ã™ã‚‹ã€‚
   
-  Arguments:    digest  SHA-1 ’l‚ğŠi”[‚·‚éêŠ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                dataLength  “ü—Íƒf[ƒ^’·
+  Arguments:    digest  SHA-1 å€¤ã‚’æ ¼ç´ã™ã‚‹å ´æ‰€ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                dataLength  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -219,13 +219,13 @@ void    MATH_CalcSHA1(void *digest, const void *data, u32 dataLength);
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcHMACMD5
 
-  Description:  HMAC-MD5 ‚ğŒvZ‚·‚éB
+  Description:  HMAC-MD5 ã‚’è¨ˆç®—ã™ã‚‹ã€‚
   
-  Arguments:    digest  HMAC-MD5 ’l‚ğŠi”[‚·‚éêŠ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                dataLength  “ü—Íƒf[ƒ^’·
-                key     Œ®‚Ìƒ|ƒCƒ“ƒ^
-                keyLength   Œ®‚Ì’·‚³
+  Arguments:    digest  HMAC-MD5 å€¤ã‚’æ ¼ç´ã™ã‚‹å ´æ‰€ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                dataLength  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
+                key     éµã®ãƒã‚¤ãƒ³ã‚¿
+                keyLength   éµã®é•·ã•
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -238,13 +238,13 @@ MATH_CalcHMACMD5(void *digest, const void *data, u32 dataLength, const void *key
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcHMACSHA1
 
-  Description:  HMAC-SHA-1 ‚ğŒvZ‚·‚éB
+  Description:  HMAC-SHA-1 ã‚’è¨ˆç®—ã™ã‚‹ã€‚
   
-  Arguments:    digest  HMAC-SHA-1 ’l‚ğŠi”[‚·‚éêŠ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                dataLength  “ü—Íƒf[ƒ^’·
-                key     Œ®‚Ìƒ|ƒCƒ“ƒ^
-                keyLength   Œ®‚Ì’·‚³
+  Arguments:    digest  HMAC-SHA-1 å€¤ã‚’æ ¼ç´ã™ã‚‹å ´æ‰€ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                dataLength  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
+                key     éµã®ãƒã‚¤ãƒ³ã‚¿
+                keyLength   éµã®é•·ã•
   
   Returns:      None.
  *---------------------------------------------------------------------------*/

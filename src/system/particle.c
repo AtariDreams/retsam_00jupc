@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	particle.c
- * @brief	ƒp[ƒeƒBƒNƒ‹§Œäƒc[ƒ‹
+ * @brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆ¶å¾¡ãƒ„ãƒ¼ãƒ«
  * @author	matsuda
- * @date	2005.07.04(Œ)
+ * @date	2005.07.04(æœˆ)
  */
 //==============================================================================
 #include "common.h"
@@ -16,125 +16,125 @@
 
 	PTC_PTR gDebugPTC = NULL;
 	
-	//‹ZƒGƒtƒFƒNƒgŠÖ˜A‚ÌƒfƒoƒbƒO—pƒ[ƒN
+	//æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–¢é€£ã®ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ¯ãƒ¼ã‚¯
 	WE_DEBUG_WORK WeDebugWork = {0};
 	
 #endif
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 //SPL_Init
 enum{
-	EMIT_MAX = 20,			///<1‚Â‚ÌƒŠƒ\[ƒX‚Å“¯‚Éo‚¹‚éÅ‘åƒGƒ~ƒbƒ^”
-	PARTICLE_MAX = 200,		///<Å‘åƒp[ƒeƒBƒNƒ‹”
-	FIX_POLYGON_ID = 5,		///<ŒÅ’èƒ|ƒŠƒSƒ“ID
-	MIN_POLYGON_ID = 6,		///<Å¬ƒ|ƒŠƒSƒ“ID
-	MAX_POLYGON_ID = 63,	///<Å‘åƒ|ƒŠƒSƒ“ID
+	EMIT_MAX = 20,			///<1ã¤ã®ãƒªã‚½ãƒ¼ã‚¹ã§åŒæ™‚ã«å‡ºã›ã‚‹æœ€å¤§ã‚¨ãƒŸãƒƒã‚¿æ•°
+	PARTICLE_MAX = 200,		///<æœ€å¤§ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æ•°
+	FIX_POLYGON_ID = 5,		///<å›ºå®šãƒãƒªã‚´ãƒ³ID
+	MIN_POLYGON_ID = 6,		///<æœ€å°ãƒãƒªã‚´ãƒ³ID
+	MAX_POLYGON_ID = 63,	///<æœ€å¤§ãƒãƒªã‚´ãƒ³ID
 };
 
-///ƒGƒ~ƒbƒ^‚ª¶¬‚³‚ê‚Ä‚¢‚È‚¢ƒtƒ‰ƒO
+///ã‚¨ãƒŸãƒƒã‚¿ãŒç”Ÿæˆã•ã‚Œã¦ã„ãªã„ãƒ•ãƒ©ã‚°
 #define NON_EMIT		(0xffff)
 
-///ƒŠƒ“ƒNƒhƒeƒNƒXƒ`ƒƒVRAMƒ}ƒl[ƒWƒƒ‚ÅÅ‘åŠÇ—o—ˆ‚é”
+///ãƒªãƒ³ã‚¯ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMãƒãƒãƒ¼ã‚¸ãƒ£ã§æœ€å¤§ç®¡ç†å‡ºæ¥ã‚‹æ•°
 #define LNK_TEX_KEY_MAX		(16)
 
-///ƒŠƒ“ƒNƒhƒpƒŒƒbƒgVRAMƒ}ƒl[ƒWƒƒ‚ÅÅ‘åŠÇ—o—ˆ‚é”
-//‹¤—p‘Ì‚Ì‘Š•ûNNSGfdFrmPlttVramState‚Æ“¯ƒTƒCƒY‚É‚·‚é‚È‚ç2ŒÂ‚È‚ñ‚¾‚¯‚ÇA
-//‚»‚ê‚¾‚Æ‚ ‚Ü‚è‚É‚à”‚ª­‚È‚¢‚Ì‚Å‚Æ‚è‚ ‚¦‚¸8ŒÂ
+///ãƒªãƒ³ã‚¯ãƒ‰ãƒ‘ãƒ¬ãƒƒãƒˆVRAMãƒãƒãƒ¼ã‚¸ãƒ£ã§æœ€å¤§ç®¡ç†å‡ºæ¥ã‚‹æ•°
+//å…±ç”¨ä½“ã®ç›¸æ–¹NNSGfdFrmPlttVramStateã¨åŒã‚µã‚¤ã‚ºã«ã™ã‚‹ãªã‚‰2å€‹ãªã‚“ã ã‘ã©ã€
+//ãã‚Œã ã¨ã‚ã¾ã‚Šã«ã‚‚æ•°ãŒå°‘ãªã„ã®ã§ã¨ã‚Šã‚ãˆãš8å€‹
 #define LNK_PLTT_KEY_MAX	(16)
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^ƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 typedef struct{
-	SPLEmitter *emit_ptr;			///<ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u16 res_no;						///<ƒŠƒ\[ƒX”Ô†
+	SPLEmitter *emit_ptr;			///<ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u16 res_no;						///<ãƒªã‚½ãƒ¼ã‚¹ç•ªå·
 }EMIT_PARAM;
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€\‘¢‘Ì
+ * @brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 typedef struct _PARTICLE_SYSTEM{
-	SPLManager *spl_manager;		///<SPLƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-//	EMIT_PARAM emitter[EMIT_MAX];	///<ƒGƒ~ƒbƒ^ƒpƒ‰ƒ[ƒ^
-	void *res_ptcl;					///<ƒp[ƒeƒBƒNƒ‹ƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	SPLEmitter *temp_emit;			///<ÅŒã‚É¶¬‚µ‚½ƒGƒ~ƒbƒ^‚Ìƒ|ƒCƒ“ƒ^‚ğ•Û‚·‚é
+	SPLManager *spl_manager;		///<SPLãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+//	EMIT_PARAM emitter[EMIT_MAX];	///<ã‚¨ãƒŸãƒƒã‚¿ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	void *res_ptcl;					///<ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	SPLEmitter *temp_emit;			///<æœ€å¾Œã«ç”Ÿæˆã—ãŸã‚¨ãƒŸãƒƒã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿æŒã™ã‚‹
 	
-	void *heap_start;				///<SPLƒ‰ƒCƒuƒ‰ƒŠ‚Åg—p‚·‚éƒ[ƒN‚Ìæ“ªƒAƒhƒŒƒX
-	void *heap;						///<ƒq[ƒv‚ÌŒ»İ‚Ì‹ó‚«—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX‚ğw‚·
-	void *heap_end;					///<ƒq[ƒv‚Åg—po—ˆ‚éI—¹’n“_‚ÌƒAƒhƒŒƒX
+	void *heap_start;				///<SPLãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+	void *heap;						///<ãƒ’ãƒ¼ãƒ—ã®ç¾åœ¨ã®ç©ºãé ˜åŸŸã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒ‡ã™
+	void *heap_end;					///<ãƒ’ãƒ¼ãƒ—ã§ä½¿ç”¨å‡ºæ¥ã‚‹çµ‚äº†åœ°ç‚¹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 	
-	pTexCallback user_tex_func;		///<ƒeƒNƒXƒ`ƒƒVRAMƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-	pTexCallback user_pltt_func;	///<ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	pTexCallback user_tex_func;		///<ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+	pTexCallback user_pltt_func;	///<ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	
-	GF_CAMERA_PTR camera;			///<ƒJƒƒ‰
+	GF_CAMERA_PTR camera;			///<ã‚«ãƒ¡ãƒ©
 	VecFx32 vec;
-	u16 persp_way;					///<“ŠË‰e‚ÌŠp“x
+	u16 persp_way;					///<æŠ•å°„å½±ã®è§’åº¦
 	
-	VecFx32 eye;		//ƒJƒƒ‰‚ÌˆÊ’uƒxƒNƒgƒ‹
-	VecFx32 v_up;		//ƒJƒƒ‰‚Ìã•ûŒü‚ÌƒxƒNƒgƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	VecFx32 at;			//ƒJƒƒ‰‚ÌÅ“_‚Ö‚ÌƒxƒNƒgƒ‹
+	VecFx32 eye;		//ã‚«ãƒ¡ãƒ©ã®ä½ç½®ãƒ™ã‚¯ãƒˆãƒ«
+	VecFx32 v_up;		//ã‚«ãƒ¡ãƒ©ã®ä¸Šæ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	VecFx32 at;			//ã‚«ãƒ¡ãƒ©ã®ç„¦ç‚¹ã¸ã®ãƒ™ã‚¯ãƒˆãƒ«
 	
 	union{
-		NNSGfdFrmTexVramState tex_frm_state;	///<ƒtƒŒ[ƒ€ƒeƒNƒXƒ`ƒƒ‚ÌŒ»İ‚Ìƒƒ‚ƒŠŠm•Ûó‘Ô
-		NNSGfdTexKey tex_key[LNK_TEX_KEY_MAX];	///<ƒŠƒ“ƒNƒhƒeƒNƒXƒ`ƒƒ‚ÌƒeƒNƒXƒ`ƒƒƒL[
+		NNSGfdFrmTexVramState tex_frm_state;	///<ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç¾åœ¨ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿çŠ¶æ…‹
+		NNSGfdTexKey tex_key[LNK_TEX_KEY_MAX];	///<ãƒªãƒ³ã‚¯ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
 	};
 	union{
-		NNSGfdFrmPlttVramState pltt_frm_state;		///<ƒtƒŒ[ƒ€ƒpƒŒƒbƒg‚ÌŒ»İ‚Ìƒƒ‚ƒŠŠm•Ûó‘Ô
-		NNSGfdPlttKey pltt_key[LNK_PLTT_KEY_MAX];	///<ƒŠƒ“ƒNƒhƒpƒŒƒbƒg‚ÌƒpƒŒƒbƒgƒL[
+		NNSGfdFrmPlttVramState pltt_frm_state;		///<ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‘ãƒ¬ãƒƒãƒˆã®ç¾åœ¨ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿çŠ¶æ…‹
+		NNSGfdPlttKey pltt_key[LNK_PLTT_KEY_MAX];	///<ãƒªãƒ³ã‚¯ãƒ‰ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
 	};
 	
-	u8 vram_free;					///<Vram‚Ì©“®‰ğ•úƒ‚[ƒh(PTC_AUTO???_???)
-	u8 seq;							///<ƒV[ƒPƒ“ƒX”Ô†
-	u8 global_no;					///<g—p‚·‚éƒOƒ[ƒoƒ‹•Ï””Ô†
-	u8 camera_type;					///<ƒJƒƒ‰‚ÌË‰e•û®(GF_CAMERA_PERSPECTIV“™)
+	u8 vram_free;					///<Vramã®è‡ªå‹•è§£æ”¾ãƒ¢ãƒ¼ãƒ‰(PTC_AUTO???_???)
+	u8 seq;							///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	u8 global_no;					///<ä½¿ç”¨ã™ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ç•ªå·
+	u8 camera_type;					///<ã‚«ãƒ¡ãƒ©ã®å°„å½±æ–¹å¼(GF_CAMERA_PERSPECTIVç­‰)
 }PARTICLE_SYSTEM;
 
 
 //==============================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * Œ»İ¶¬‚³‚ê‚Ä‚¢ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚Ìƒ|ƒCƒ“ƒ^‚ª“ü‚éB
- * SPLƒ‰ƒCƒuƒ‰ƒŠ‚Åg—p‚·‚éLocalAllocŠÖ”“à‚ÅAƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚ÅŠm•Û‚µ‚Ä‚¢‚éƒq[ƒv—Ìˆæ‚Ì
- * æ“¾‚·‚é•K—v‚ª‚ ‚éB‚µ‚©‚µLocalAlloc‚ÍSPLƒ‰ƒCƒuƒ‰ƒŠ‚ÅŠÖ”‚ÌŒ^‚ªŒˆ‚ß‚ç‚ê‚Ä‚¢‚é‚½‚ßA
- * ƒq[ƒv—Ìˆæ‚Ìƒ|ƒCƒ“ƒ^‚ğ“n‚·‚±‚Æ‚ªo—ˆ‚È‚¢‚Ì‚ÅA‚±‚ÌƒOƒ[ƒoƒ‹•Ï”Œo—R‚Å“n‚·B
+ * ç¾åœ¨ç”Ÿæˆã•ã‚Œã¦ã„ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒã‚¤ãƒ³ã‚¿ãŒå…¥ã‚‹ã€‚
+ * SPLãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ä½¿ç”¨ã™ã‚‹LocalAllocé–¢æ•°å†…ã§ã€ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã§ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®
+ * å–å¾—ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚ã—ã‹ã—LocalAllocã¯SPLãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§é–¢æ•°ã®å‹ãŒæ±ºã‚ã‚‰ã‚Œã¦ã„ã‚‹ãŸã‚ã€
+ * ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®ãƒã‚¤ãƒ³ã‚¿ã‚’æ¸¡ã™ã“ã¨ãŒå‡ºæ¥ãªã„ã®ã§ã€ã“ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°çµŒç”±ã§æ¸¡ã™ã€‚
  */
 //--------------------------------------------------------------
 static void *ParticleSystemPtr[PARTICLE_GLOBAL_MAX];
 
 //--------------------------------------------------------------
 /**
- * ƒGƒ~ƒbƒ^ì¬‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”’†‚ÅA”CˆÓ‚Ìƒf[ƒ^‚ğQÆo—ˆ‚é‚æ‚¤A
- * ˆê“I‚É‚±‚±‚É“n‚µ‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚ğ“ü‚ê‚éB
- * (©–ÅƒGƒ~ƒbƒ^‚Ìê‡AEmitCreate‚ÅNULLƒ|ƒCƒ“ƒ^‚ª•Ô‚Á‚Ä‚­‚é‚Ì‚ÅAƒGƒ~ƒbƒ^“®ì‚ğ•Ï‚¦‚éê‡A
- *  ƒR[ƒ‹ƒoƒbƒNŠÖ”“à‚Å•ÏX‚µ‚Ä‚ ‚°‚é•K—v‚ª‚ ‚é‚½‚ß)
+ * ã‚¨ãƒŸãƒƒã‚¿ä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ä¸­ã§ã€ä»»æ„ã®ãƒ‡ãƒ¼ã‚¿ã‚’å‚ç…§å‡ºæ¥ã‚‹ã‚ˆã†ã€
+ * ä¸€æ™‚çš„ã«ã“ã“ã«æ¸¡ã—ãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å…¥ã‚Œã‚‹ã€‚
+ * (è‡ªæ»…ã‚¨ãƒŸãƒƒã‚¿ã®å ´åˆã€EmitCreateã§NULLãƒã‚¤ãƒ³ã‚¿ãŒè¿”ã£ã¦ãã‚‹ã®ã§ã€ã‚¨ãƒŸãƒƒã‚¿å‹•ä½œã‚’å¤‰ãˆã‚‹å ´åˆã€
+ *  ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…ã§å¤‰æ›´ã—ã¦ã‚ã’ã‚‹å¿…è¦ãŒã‚ã‚‹ãŸã‚)
  */
 //--------------------------------------------------------------
 static void *ParticleTempPtr;
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒ[ƒh‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”“à‚ÅAƒŠƒ“ƒNƒhƒ}ƒl[ƒWƒƒ[‚Ìê‡AƒL[î•ñ‚ğ
- * PTC‚É‹L‰¯‚·‚é•K—v‚ª‚ ‚é‚Ì‚ÅA‚±‚±‚Éˆê“I‚ÉPTC‚ÌƒAƒhƒŒƒX‚ğƒZƒbƒg‚µ‚Ä‚¨‚­
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…ã§ã€ãƒªãƒ³ã‚¯ãƒ‰ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å ´åˆã€ã‚­ãƒ¼æƒ…å ±ã‚’
+ * PTCã«è¨˜æ†¶ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã®ã§ã€ã“ã“ã«ä¸€æ™‚çš„ã«PTCã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã
  */
 //--------------------------------------------------------------
 static PTC_PTR TexLoadTempPtc;
 
 
 //==============================================================================
-//	ƒf[ƒ^’è‹`
+//	ãƒ‡ãƒ¼ã‚¿å®šç¾©
 //==============================================================================
-///ƒfƒtƒHƒ‹ƒg‚ÌƒJƒƒ‰‚ÌˆÊ’uƒxƒNƒgƒ‹
+///ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚«ãƒ¡ãƒ©ã®ä½ç½®ãƒ™ã‚¯ãƒˆãƒ«
 static const VecFx32 DefaultEye = {
 //	0, -0x2500, 0x3500
 //	0x2500, 0, 0x2200
@@ -145,17 +145,17 @@ static const VecFx32 DefaultEye = {
 //	0, 15*0x1000, 0
 //	128*0x1000, 128*0x1000, 0x4000
 };
-///ƒfƒtƒHƒ‹ƒg‚ÌƒJƒƒ‰‚Ìã•ûŒü‚ÌƒxƒNƒgƒ‹
+///ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚«ãƒ¡ãƒ©ã®ä¸Šæ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«
 static const VecFx32 DefaultUp = {
 	0, FX32_ONE, 0
 };
-///ƒfƒtƒHƒ‹ƒg‚ÌƒJƒƒ‰‚ÌÅ“_‚Ö‚ÌƒxƒNƒgƒ‹
+///ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚«ãƒ¡ãƒ©ã®ç„¦ç‚¹ã¸ã®ãƒ™ã‚¯ãƒˆãƒ«
 static const VecFx32 DefaultAt = {
 	0, 0, 0
 };
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void *Particle_LocalAlloc_0(u32 size);
 static void *Particle_LocalAlloc_1(u32 size);
@@ -184,7 +184,7 @@ void Particle_ResourceSet(PTC_PTR psys, void *resource, int vram_free, int tex_a
 //==============================================================================
 //	
 //==============================================================================
-///ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚é—ÌˆæŠm•ÛŠÖ”‚Ìƒ|ƒCƒ“ƒ^ƒe[ƒuƒ‹
+///ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹é ˜åŸŸç¢ºä¿é–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 static const SPLAlloc LocalAllocFunc[] = {
 	Particle_LocalAlloc_0,
 	Particle_LocalAlloc_1,
@@ -206,7 +206,7 @@ static const SPLAlloc LocalAllocFunc[] = {
 
 
 
-#if 0	//------- ƒp[ƒeƒBƒNƒ‹g—p—á ---- 2005.07.15(‹à)
+#if 0	//------- ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ä½¿ç”¨ä¾‹ ---- 2005.07.15(é‡‘)
 
 void BattleParticle_TestInit(void)
 {
@@ -229,20 +229,20 @@ static void BattleParticle_Main(TCB_PTR tcb, void *work)
 		psys->seq++;
 		break;
 	case 1:
-		Particle_Draw(psys);	//ƒp[ƒeƒBƒNƒ‹•`‰æ
-		Particle_Calc(psys);	//ƒp[ƒeƒBƒNƒ‹ŒvZ
+		Particle_Draw(psys);	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æç”»
+		Particle_Calc(psys);	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«è¨ˆç®—
 		break;
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒNƒXƒ`ƒƒVRAMƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief   ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param   is4x4comp	4x4ˆ³kƒeƒNƒXƒ`ƒƒ‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO(TRUE=ˆ³kƒeƒNƒXƒ`ƒƒ)
+ * @param   size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param   is4x4comp	4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°(TRUE=åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£)
  *
- * @retval  “Ç‚İ‚İ‚ğŠJn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @retval  èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------
 static u32 sAllocTex(u32 size, BOOL is4x4comp)
@@ -258,22 +258,22 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 	key = NNS_GfdAllocTexVram(size, is4x4comp, 0);
 	SDK_ASSERT(key != NNS_GFD_ALLOC_ERROR_TEXKEY);
 	address = NNS_GfdGetTexKeyAddr(key);
-	OS_Printf("VramƒAƒhƒŒƒX%#x\n", address);
+	OS_Printf("Vramã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%#x\n", address);
 	return address;
 #endif
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgVRAMƒAƒhƒŒƒX‚ğ•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆVRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param	size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param	is4pltt		4FƒpƒŒƒbƒg‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+ * @param	size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param	is4pltt		4è‰²ãƒ‘ãƒ¬ãƒƒãƒˆã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
  *
- * @retval	“Ç‚İ‚İ‚ğŠJn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @retval	èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * directŒ`®‚ÌƒeƒNƒXƒ`ƒƒ‚Ìê‡ASPL_LoadTexPlttByCallbackFunction‚Í
- * ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚Ño‚µ‚Ü‚¹‚ñB
+ * directå½¢å¼ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã€SPL_LoadTexPlttByCallbackFunctionã¯
+ * ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¾ã›ã‚“ã€‚
  */
 //--------------------------------------------------------------
 static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
@@ -281,7 +281,7 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 #if 0
 	NNSGfdPlttKey key = NNS_GfdAllocPlttVram(size, is4pltt, 0);
 	if(key == NNS_GFD_ALLOC_ERROR_PLTTKEY){
-		GF_ASSERT(0 && "ƒpƒŒƒbƒgƒGƒ‰[");
+		GF_ASSERT(0 && "ãƒ‘ãƒ¬ãƒƒãƒˆã‚¨ãƒ©ãƒ¼");
 	}
 	return NNS_GfdGetPlttKeyAddr(key);
 #else
@@ -289,16 +289,16 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 #endif
 }
 
-#endif	//------------- ƒp[ƒeƒBƒNƒ‹g—p—á ---------------------------
+#endif	//------------- ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ä½¿ç”¨ä¾‹ ---------------------------
 
 
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚Åg—p‚·‚éƒ[ƒN‚Ì‰Šú‰»
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- * Particle_SystemCreate‚æ‚è‚àæ‚É‚±‚ê‚ğÀs‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * Particle_SystemCreateã‚ˆã‚Šã‚‚å…ˆã«ã“ã‚Œã‚’å®Ÿè¡Œã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void Particle_SystemWorkInit(void)
@@ -312,27 +312,27 @@ void Particle_SystemWorkInit(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚ğì¬‚·‚é
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‚’ä½œæˆã™ã‚‹
  *
- * @param   tex_func		ƒeƒNƒXƒ`ƒƒƒ[ƒhAg—p‚·‚éVramƒAƒhƒŒƒX‚ğ•Ô‚·ŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pltt_func		ƒeƒNƒXƒ`ƒƒƒ[ƒhAg—p‚·‚éƒpƒŒƒbƒgVramƒAƒhƒŒƒX‚ğ•Ô‚·ŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work			SPLƒ‰ƒCƒuƒ‰ƒŠ‚Åg—p‚·‚é‚½‚ß‚ÉŠ„‚è“–‚Ä‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param   work_size		“n‚µ‚½ƒ[ƒN‚ÌƒTƒCƒY(PARTICLE_LIB_HEAP_SIZE‚Æ“¯“™ORˆÈã‚ÌƒTƒCƒY‚ª•K—v)
- * @param   personal_camera		ƒp[ƒeƒBƒNƒ‹“Æ©‚ÌƒJƒƒ‰İ’è‚ğ‚Âê‡‚ÍTRUEB
- * @param   heap_id			ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ì¬‚Ég—p‚·‚éƒq[ƒvID
+ * @param   tex_func		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰æ™‚ã€ä½¿ç”¨ã™ã‚‹Vramã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pltt_func		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰æ™‚ã€ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆVramã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work			SPLãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ä½¿ç”¨ã™ã‚‹ãŸã‚ã«å‰²ã‚Šå½“ã¦ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work_size		æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚º(PARTICLE_LIB_HEAP_SIZEã¨åŒç­‰ORä»¥ä¸Šã®ã‚µã‚¤ã‚ºãŒå¿…è¦)
+ * @param   personal_camera		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç‹¬è‡ªã®ã‚«ãƒ¡ãƒ©è¨­å®šã‚’æŒã¤å ´åˆã¯TRUEã€‚
+ * @param   heap_id			ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ä½œæˆã«ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^(¶¬o—ˆ‚È‚©‚Á‚½ê‡‚ÍNULL)
+ * @retval  ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿(ç”Ÿæˆå‡ºæ¥ãªã‹ã£ãŸå ´åˆã¯NULL)
  *
- * tex_func, pltt_func ‚ÉNULLw’è‚µ‚½ê‡‚ÍNitroSystem‚ÌVramAPlttƒ}ƒl[ƒWƒƒ‚ÉˆË‘¶‚µ‚Ü‚·B
+ * tex_func, pltt_func ã«NULLæŒ‡å®šã—ãŸå ´åˆã¯NitroSystemã®Vramã€Plttãƒãƒãƒ¼ã‚¸ãƒ£ã«ä¾å­˜ã—ã¾ã™ã€‚
  *
- * work‚Å“n‚µ‚½ƒ[ƒN‚ÍSPLƒ‰ƒCƒuƒ‰ƒŠ‚Åg—p‚µ‚Ü‚·B
- * Alloc‚µ‚Äè‚É“ü‚ê‚½ƒ[ƒN—Ìˆæ‚Ìƒ|ƒCƒ“ƒ^‚ğ“n‚µ‚½ê‡AParticle_SystemExitŒãAŠO‘¤‚Å
- * ‰ğ•úˆ—‚ğs‚Á‚Ä‚­‚¾‚³‚¢B(ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‘¤‚Åƒ[ƒN‚Ì‰ğ•úˆ—‚Í‚µ‚Ü‚¹‚ñ)
+ * workã§æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ã¯SPLãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ä½¿ç”¨ã—ã¾ã™ã€‚
+ * Allocã—ã¦æ‰‹ã«å…¥ã‚ŒãŸãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®ãƒã‚¤ãƒ³ã‚¿ã‚’æ¸¡ã—ãŸå ´åˆã€Particle_SystemExitå¾Œã€å¤–å´ã§
+ * è§£æ”¾å‡¦ç†ã‚’è¡Œã£ã¦ãã ã•ã„ã€‚(ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å´ã§ãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†ã¯ã—ã¾ã›ã‚“)
  *
- * global_noFƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚ÅSPLƒ‰ƒCƒuƒ‰ƒŠ‚Æ‚Ì‚â‚èæ‚è‚ÅƒOƒ[ƒoƒ‹•Ï”‚ğg—p‚µ‚Ü‚·B
- * ‚»‚Ìˆ×‚ÌƒOƒ[ƒoƒ‹•Ï”‚ª”z—ñ‚ÅŠù‚É—pˆÓ‚³‚ê‚Ä‚¢‚Ü‚·B‚»‚Ì‰½”Ô–Ú‚ÌƒOƒ[ƒoƒ‹•Ï”‚ğg—p‚µ‚ÄA
- * ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚ğ“®‚©‚·‚©A‚Æ‚¢‚¤w’è‚Å‚·B
- * —pˆÓ‚³‚ê‚Ä‚¢‚éƒOƒ[ƒoƒ‹•Ï”‚É‚ÍŒÀ‚è‚ª‚ ‚è‚Ü‚·B(2005.07.26(‰Î)Œ»İ‚Í3‚Â(0`2))
+ * global_noï¼šãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§SPLãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¨ã®ã‚„ã‚Šå–ã‚Šã§ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’ä½¿ç”¨ã—ã¾ã™ã€‚
+ * ãã®ç‚ºã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ãŒé…åˆ—ã§æ—¢ã«ç”¨æ„ã•ã‚Œã¦ã„ã¾ã™ã€‚ãã®ä½•ç•ªç›®ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’ä½¿ç”¨ã—ã¦ã€
+ * ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‚’å‹•ã‹ã™ã‹ã€ã¨ã„ã†æŒ‡å®šã§ã™ã€‚
+ * ç”¨æ„ã•ã‚Œã¦ã„ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã«ã¯é™ã‚ŠãŒã‚ã‚Šã¾ã™ã€‚(2005.07.26(ç«)ç¾åœ¨ã¯3ã¤(0ã€œ2))
  */
 //--------------------------------------------------------------
 PTC_PTR Particle_SystemCreate(pTexCallback tex_func, pTexCallback pltt_func, void *work, int work_size, int personal_camera, int heap_id)
@@ -340,7 +340,7 @@ PTC_PTR Particle_SystemCreate(pTexCallback tex_func, pTexCallback pltt_func, voi
 	PARTICLE_SYSTEM *psys;
 	int global_no;
 	
-	//ƒOƒ[ƒoƒ‹•Ï”‚Ì‹ó‚«‚ğƒT[ƒ`
+	//ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã®ç©ºãã‚’ã‚µãƒ¼ãƒ
 	for(global_no = 0; global_no < PARTICLE_GLOBAL_MAX; global_no++){
 		if(ParticleSystemPtr[global_no] == NULL){
 			break;
@@ -350,14 +350,14 @@ PTC_PTR Particle_SystemCreate(pTexCallback tex_func, pTexCallback pltt_func, voi
 		return NULL;
 	}
 	
-	//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚Ìƒƒ‚ƒŠŠm•Û
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	psys = sys_AllocMemory(heap_id, sizeof(PARTICLE_SYSTEM));
 	if(psys == NULL){
-		GF_ASSERT(0 && "ƒƒ‚ƒŠŠm•Û¸”s\n");
+		GF_ASSERT(0 && "ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—\n");
 	}
 	memset(psys, 0, sizeof(PARTICLE_SYSTEM));
 
-	//ƒpƒ‰ƒ[ƒ^‰Šúİ’è
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸè¨­å®š
 	psys->user_tex_func = tex_func;
 	psys->user_pltt_func = pltt_func;
 
@@ -365,7 +365,7 @@ PTC_PTR Particle_SystemCreate(pTexCallback tex_func, pTexCallback pltt_func, voi
 	psys->v_up = DefaultUp;
 	psys->at = DefaultAt;
 
-	//ƒƒ‚ƒŠİ’è
+	//ãƒ¡ãƒ¢ãƒªè¨­å®š
 	SDK_ASSERT(global_no < PARTICLE_GLOBAL_MAX);
 	memset(work, 0, work_size);
 	psys->heap_start = work;
@@ -374,7 +374,7 @@ PTC_PTR Particle_SystemCreate(pTexCallback tex_func, pTexCallback pltt_func, voi
 	psys->global_no = global_no;
 	ParticleSystemPtr[global_no] = psys;
 	
-	//ƒJƒƒ‰İ’è
+	//ã‚«ãƒ¡ãƒ©è¨­å®š
 	if(personal_camera == TRUE){
 		psys->camera = GFC_AllocCamera(heap_id);
 		{
@@ -382,23 +382,23 @@ PTC_PTR Particle_SystemCreate(pTexCallback tex_func, pTexCallback pltt_func, voi
 			psys->persp_way = 8192;//0x06c1;
 		#if 0
 			GFC_InitCameraTDA(&psys->vec,
-						0x1000,					//‹——£
+						0x1000,					//è·é›¢
 						&psys->angle,
-						psys->persp_way,		//“ŠË‰e‚ÌŠp“x
+						psys->persp_way,		//æŠ•å°„å½±ã®è§’åº¦
 						GF_CAMERA_PERSPECTIV,
 						psys->camera
 						);
 		#elif 0
 			GFC_InitCameraCDA(&psys->vec,
-						0x1000,					//‹——£
+						0x1000,					//è·é›¢
 						&psys->angle,
-						psys->persp_way,		//“ŠË‰e‚ÌŠp“x
+						psys->persp_way,		//æŠ•å°„å½±ã®è§’åº¦
 						GF_CAMERA_PERSPECTIV,
 						psys->camera
 						);
 		#else
 			GFC_InitCameraTC(&DefaultAt, &DefaultEye,
-						psys->persp_way,		//“ŠË‰e‚ÌŠp“x
+						psys->persp_way,		//æŠ•å°„å½±ã®è§’åº¦
 						GF_CAMERA_PERSPECTIV,
 						FALSE,
 						psys->camera
@@ -409,7 +409,7 @@ PTC_PTR Particle_SystemCreate(pTexCallback tex_func, pTexCallback pltt_func, voi
 		}
 	}
 
-	// ƒp[ƒeƒBƒNƒ‹ƒ}ƒl[ƒWƒƒ‚ğ‰Šú‰»
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£ã‚’åˆæœŸåŒ–
 	psys->spl_manager = SPL_Init(LocalAllocFunc[global_no], EMIT_MAX, PARTICLE_MAX, 
 		FIX_POLYGON_ID, MIN_POLYGON_ID, MAX_POLYGON_ID);
 	
@@ -420,9 +420,9 @@ PTC_PTR Particle_SystemCreate(pTexCallback tex_func, pTexCallback pltt_func, voi
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€I—¹ˆ—
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†å‡¦ç†
  *
- * @param   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Particle_SystemExit(PTC_PTR psys)
@@ -432,15 +432,15 @@ void Particle_SystemExit(PTC_PTR psys)
 	SDK_ASSERT(psys != NULL);
 	SDK_ASSERT(psys->spl_manager != NULL);
 
-	//ƒGƒ~ƒbƒ^‘Síœ
+	//ã‚¨ãƒŸãƒƒã‚¿å…¨å‰Šé™¤
 	Particle_EmitterDeleteAll(psys);
 	
-	//ƒeƒNƒXƒ`ƒƒVram©“®‰ğ•ú
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£Vramè‡ªå‹•è§£æ”¾
 	if(psys->vram_free & PTC_AUTOTEX_FRM){
 		NNS_GfdSetFrmTexVramState(&psys->tex_frm_state);
 	}
 	else if(psys->vram_free & PTC_AUTOTEX_LNK){
-		//2005.07.25(Œ)@Œ»İ–¢À‘• ‚¾‚¯‚Çíœ©‘Ì‚Ìˆ—‚Íì‚ê‚é‚Ì‚ÅAíœ‚¾‚¯‚Íì¬
+		//2005.07.25(æœˆ)ã€€ç¾åœ¨æœªå®Ÿè£… ã ã‘ã©å‰Šé™¤è‡ªä½“ã®å‡¦ç†ã¯ä½œã‚Œã‚‹ã®ã§ã€å‰Šé™¤ã ã‘ã¯ä½œæˆ
 		int i;
 		for(i = 0; i < LNK_TEX_KEY_MAX; i++){
 			if(psys->tex_key[i] != NNS_GFD_ALLOC_ERROR_TEXKEY){
@@ -449,12 +449,12 @@ void Particle_SystemExit(PTC_PTR psys)
 			}
 		}
 	}
-	//ƒpƒŒƒbƒgVram©“®‰ğ•úƒpƒ‰ƒ[ƒ^‰Šú‰»
+	//ãƒ‘ãƒ¬ãƒƒãƒˆVramè‡ªå‹•è§£æ”¾ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 	if(psys->vram_free & PTC_AUTOPLTT_FRM){
 		NNS_GfdSetFrmPlttVramState(&psys->pltt_frm_state);
 	}
 	else if(psys->vram_free & PTC_AUTOPLTT_LNK){
-		//2005.07.25(Œ)@Œ»İ–¢À‘• ‚¾‚¯‚Çíœ©‘Ì‚Ìˆ—‚Íì‚ê‚é‚Ì‚ÅAíœ‚¾‚¯‚Íì¬
+		//2005.07.25(æœˆ)ã€€ç¾åœ¨æœªå®Ÿè£… ã ã‘ã©å‰Šé™¤è‡ªä½“ã®å‡¦ç†ã¯ä½œã‚Œã‚‹ã®ã§ã€å‰Šé™¤ã ã‘ã¯ä½œæˆ
 		int i;
 		for(i = 0; i < LNK_PLTT_KEY_MAX; i++){
 			if(psys->pltt_key[i] != NNS_GFD_ALLOC_ERROR_PLTTKEY){
@@ -466,22 +466,22 @@ void Particle_SystemExit(PTC_PTR psys)
 	psys->vram_free = PTC_AUTOTEX_NULL | PTC_AUTOPLTT_NULL;
 	psys->temp_emit = NULL;
 
-	//ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ñ‚Å‚¢‚éƒƒ‚ƒŠ‚ğ‰ğ•ú
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã§ã„ã‚‹ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
 	if(psys->res_ptcl != NULL){
 		sys_FreeMemoryEz(psys->res_ptcl);
 		psys->res_ptcl = NULL;
 	}
 	
-	//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚Ìƒ[ƒN‰ğ•ú
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	for(i = 0; i < PARTICLE_GLOBAL_MAX; i++){
 		if(ParticleSystemPtr[i] == psys){
 			ParticleSystemPtr[i] = NULL;
 			break;
 		}
 	}
-	SDK_ASSERT(i < PARTICLE_GLOBAL_MAX); //ParticleSystemPtr‚Éˆø‚Á‚©‚©‚ç‚È‚¢‚Æ‚¢‚¤‚±‚Æ‚Í•s³‚È’l
+	SDK_ASSERT(i < PARTICLE_GLOBAL_MAX); //ParticleSystemPtrã«å¼•ã£ã‹ã‹ã‚‰ãªã„ã¨ã„ã†ã“ã¨ã¯ä¸æ­£ãªå€¤
 	
-	//ƒJƒƒ‰‰ğ•ú
+	//ã‚«ãƒ¡ãƒ©è§£æ”¾
 	if(psys->camera != NULL){
 		GFC_FreeCamera(psys->camera);
 	}
@@ -491,7 +491,7 @@ void Particle_SystemExit(PTC_PTR psys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ¶¬‚³‚ê‚Ä‚¢‚éƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‘S‚Ä‚ğI—¹‚³‚¹‚é
+ * @brief   ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å…¨ã¦ã‚’çµ‚äº†ã•ã›ã‚‹
  */
 //--------------------------------------------------------------
 void Particle_SystemExitAll(void)
@@ -507,11 +507,11 @@ void Particle_SystemExitAll(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
  *
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static inline void *Particle_LocalAlloc(PARTICLE_SYSTEM *psys, u32 size)
@@ -524,22 +524,22 @@ static inline void *Particle_LocalAlloc(PARTICLE_SYSTEM *psys, u32 size)
 	heap_adrs = (u32)psys->heap + size;
 	rem = heap_adrs % 4;
 	if(rem > 0){
-		heap_adrs += 4 - rem;	//4ƒoƒCƒg•â³
+		heap_adrs += 4 - rem;	//4ãƒã‚¤ãƒˆè£œæ­£
 	}
 	psys->heap = (void*)heap_adrs;
 
 	if(psys->heap >= psys->heap_end){
-		GF_ASSERT(0 && "ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚Åƒƒ‚ƒŠƒI[ƒo[‚ª”­¶‚µ‚Ü‚µ‚½I\n");
+		GF_ASSERT(0 && "ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã§ãƒ¡ãƒ¢ãƒªã‚ªãƒ¼ãƒãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸï¼\n");
 	}
 	return work;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_0(u32 size)
@@ -552,10 +552,10 @@ static void *Particle_LocalAlloc_0(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_1(u32 size)
@@ -568,10 +568,10 @@ static void *Particle_LocalAlloc_1(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_2(u32 size)
@@ -584,10 +584,10 @@ static void *Particle_LocalAlloc_2(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_3(u32 size)
@@ -600,10 +600,10 @@ static void *Particle_LocalAlloc_3(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_4(u32 size)
@@ -616,10 +616,10 @@ static void *Particle_LocalAlloc_4(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_5(u32 size)
@@ -632,10 +632,10 @@ static void *Particle_LocalAlloc_5(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_6(u32 size)
@@ -648,10 +648,10 @@ static void *Particle_LocalAlloc_6(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_7(u32 size)
@@ -664,10 +664,10 @@ static void *Particle_LocalAlloc_7(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_8(u32 size)
@@ -680,10 +680,10 @@ static void *Particle_LocalAlloc_8(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_9(u32 size)
@@ -696,10 +696,10 @@ static void *Particle_LocalAlloc_9(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_10(u32 size)
@@ -712,10 +712,10 @@ static void *Particle_LocalAlloc_10(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_11(u32 size)
@@ -728,10 +728,10 @@ static void *Particle_LocalAlloc_11(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_12(u32 size)
@@ -744,10 +744,10 @@ static void *Particle_LocalAlloc_12(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_13(u32 size)
@@ -760,10 +760,10 @@ static void *Particle_LocalAlloc_13(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_14(u32 size)
@@ -776,10 +776,10 @@ static void *Particle_LocalAlloc_14(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€“à‚Åg—p‚·‚éAllocŠÖ”
- * @param   size		Šm•Û‚·‚éƒƒ‚ƒŠƒTƒCƒY
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å†…ã§ä½¿ç”¨ã™ã‚‹Allocé–¢æ•°
+ * @param   size		ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
  *
- * SPL_Init‚ÅŠÖ”ƒ|ƒCƒ“ƒ^‚Æ‚µ‚Ä“n‚µ‚Ä‚¢‚é‚Ì‚ÅA‚±‚ÌŠÖ”‚ÌŒ`‚ğ•Ï‚¦‚Ä‚Í‚¢‚¯‚È‚¢B
+ * SPL_Initã§é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦æ¸¡ã—ã¦ã„ã‚‹ã®ã§ã€ã“ã®é–¢æ•°ã®å½¢ã‚’å¤‰ãˆã¦ã¯ã„ã‘ãªã„ã€‚
  */
 //--------------------------------------------------------------
 static void *Particle_LocalAlloc_15(u32 size)
@@ -792,15 +792,15 @@ static void *Particle_LocalAlloc_15(u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹‚ÌƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
  *
- * @param   heap_id		ƒq[ƒvID
- * @param   path		“Ç‚İ‚ŞƒŠƒ\[ƒXƒtƒ@ƒCƒ‹(*.spa)‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   heap_id		ãƒ’ãƒ¼ãƒ—ID
+ * @param   path		èª­ã¿è¾¼ã‚€ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«(*.spa)ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  “Ç‚İ‚ñ‚¾ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * Particle_ResourceSetŠÖ”‚ÆƒZƒbƒg‚Åg—p‚·‚é–‚ª‘O’ñ‚Å‚·B
- * “Ç‚İ‚ñ‚¾ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚ÍParticle_SystemExit‚ÅFreeMemory‚³‚ê‚Ü‚·B
+ * Particle_ResourceSeté–¢æ•°ã¨ã‚»ãƒƒãƒˆã§ä½¿ç”¨ã™ã‚‹äº‹ãŒå‰æã§ã™ã€‚
+ * èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã¯Particle_SystemExitã§FreeMemoryã•ã‚Œã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void * Particle_ResourceLoad(int heap_id, const char *path)
@@ -810,16 +810,16 @@ void * Particle_ResourceLoad(int heap_id, const char *path)
 
 //--------------------------------------------------------------
 /**
- * @brief   Arc‚³‚ê‚Ä‚¢‚éƒp[ƒeƒBƒNƒ‹‚ÌƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+ * @brief   Arcã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
  *
- * @param   file_kind	“Ç‚İ‚ŞƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚Ìí—ŞƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[iarc_tool.h‚É‹Lq)
- * @param   index		“Ç‚İ‚Şƒf[ƒ^‚ÌƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ã‚ÌƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
- * @param   heap_id		ƒq[ƒvID
+ * @param   file_kind	èª­ã¿è¾¼ã‚€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¨®é¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼ï¼ˆarc_tool.hã«è¨˜è¿°)
+ * @param   index		èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
+ * @param   heap_id		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  “Ç‚İ‚ñ‚¾ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * Particle_ResourceSetŠÖ”‚ÆƒZƒbƒg‚Åg—p‚·‚é–‚ª‘O’ñ‚Å‚·B
- * “Ç‚İ‚ñ‚¾ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚ÍParticle_SystemExit‚ÅFreeMemory‚³‚ê‚Ü‚·B
+ * Particle_ResourceSeté–¢æ•°ã¨ã‚»ãƒƒãƒˆã§ä½¿ç”¨ã™ã‚‹äº‹ãŒå‰æã§ã™ã€‚
+ * èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã¯Particle_SystemExitã§FreeMemoryã•ã‚Œã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void * Particle_ArcResourceLoad(int file_kind, int index, int heap_id)
@@ -829,17 +829,17 @@ void * Particle_ArcResourceLoad(int file_kind, int index, int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹‚ÌƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚ğƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚ÉƒZƒbƒg‚µ‰Šú‰»‚ğs‚¤
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã«ã‚»ãƒƒãƒˆã—åˆæœŸåŒ–ã‚’è¡Œã†
  *
- * @param   psys			ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   resource		Particle_(Arc)ResourceLoad‚Å“Ç‚İ‚ñ‚¾ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚Ìƒ|ƒCƒ“ƒ^
- * @param   vram_free		Vram‚Ì©“®‰ğ•ú(ƒrƒbƒgw’èFPTC_AUTOTEX_??? | PTC_AUTOPLTT_???)
- * @param   tex_at_once		TRUE:ƒeƒNƒXƒ`ƒƒ‘¦“]‘—AFALSE:Vƒuƒ‰ƒ“ƒN’†‚É“]‘—
+ * @param   psys			ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   resource		Particle_(Arc)ResourceLoadã§èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vram_free		Vramã®è‡ªå‹•è§£æ”¾(ãƒ“ãƒƒãƒˆæŒ‡å®šï¼šPTC_AUTOTEX_??? | PTC_AUTOPLTT_???)
+ * @param   tex_at_once		TRUE:ãƒ†ã‚¯ã‚¹ãƒãƒ£å³è»¢é€ã€FALSE:Vãƒ–ãƒ©ãƒ³ã‚¯ä¸­ã«è»¢é€
  *
- * vram_free•â‘«:ƒ‚[ƒh‚ğ—LŒø‚É‚·‚é‚±‚Æ‚ÅAParticle_SystemExit‚ÉƒeƒNƒXƒ`ƒƒ‚Åè—L‚µ‚½Vramó‘Ô‚ğ
- * LoadFileÀs‘O‚Ìó‘Ô‚É–ß‚µ‚Ü‚·B
- * ’A‚µParticle_SystemCreate‚ÉAƒeƒNƒXƒ`ƒƒ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚µ‚È‚©‚Á‚½ê‡‚ÍSPLƒ‰ƒCƒuƒ‰ƒŠ‚Ì
- * “®ì‚ÉˆË‘¶‚·‚é‚±‚Æ‚É‚È‚è‚Ü‚·B(‘½•ª©“®‚Å‰ğ•ú‚µ‚Ä‚­‚ê‚é‚ñ‚¶‚á‚È‚¢‚Å‚µ‚å‚¤‚©c)
+ * vram_freeè£œè¶³:ãƒ¢ãƒ¼ãƒ‰ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã“ã¨ã§ã€Particle_SystemExitæ™‚ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§å æœ‰ã—ãŸVramçŠ¶æ…‹ã‚’
+ * LoadFileå®Ÿè¡Œå‰ã®çŠ¶æ…‹ã«æˆ»ã—ã¾ã™ã€‚
+ * ä½†ã—Particle_SystemCreateæ™‚ã«ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã—ãªã‹ã£ãŸå ´åˆã¯SPLãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®
+ * å‹•ä½œã«ä¾å­˜ã™ã‚‹ã“ã¨ã«ãªã‚Šã¾ã™ã€‚(å¤šåˆ†è‡ªå‹•ã§è§£æ”¾ã—ã¦ãã‚Œã‚‹ã‚“ã˜ã‚ƒãªã„ã§ã—ã‚‡ã†ã‹â€¦)
  */
 //--------------------------------------------------------------
 void Particle_ResourceSet(PTC_PTR psys, void *resource, int vram_free, int tex_at_once)
@@ -848,35 +848,35 @@ void Particle_ResourceSet(PTC_PTR psys, void *resource, int vram_free, int tex_a
 	GF_ASSERT(psys->res_ptcl == NULL);
 	
 	psys->vram_free = vram_free;
-	//ƒeƒNƒXƒ`ƒƒVram©“®‰ğ•úƒpƒ‰ƒ[ƒ^‰Šú‰»
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£Vramè‡ªå‹•è§£æ”¾ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 	if(vram_free & PTC_AUTOTEX_FRM){
 		NNS_GfdGetFrmTexVramState(&psys->tex_frm_state);
 	}
 	else if(vram_free & PTC_AUTOTEX_LNK){
-		//2005.07.25(Œ)@Œ»İ–¢À‘•(ŠÖ”ƒRƒƒ“ƒg‚É‚àó‘Ô‚ª‘‚¢‚Ä‚ ‚è‚Ü‚·)
-		//‚Æ‚è‚ ‚¦‚¸‰Šú‰»‚¾‚¯‚µ‚Ä‚¨‚­
+		//2005.07.25(æœˆ)ã€€ç¾åœ¨æœªå®Ÿè£…(é–¢æ•°ã‚³ãƒ¡ãƒ³ãƒˆã«ã‚‚çŠ¶æ…‹ãŒæ›¸ã„ã¦ã‚ã‚Šã¾ã™)
+		//ã¨ã‚Šã‚ãˆãšåˆæœŸåŒ–ã ã‘ã—ã¦ãŠã
 		int i;
 		for(i = 0; i < LNK_TEX_KEY_MAX; i++){
 			psys->tex_key[i] = NNS_GFD_ALLOC_ERROR_TEXKEY;
 		}
 	}
-	//ƒpƒŒƒbƒgVram©“®‰ğ•úƒpƒ‰ƒ[ƒ^‰Šú‰»
+	//ãƒ‘ãƒ¬ãƒƒãƒˆVramè‡ªå‹•è§£æ”¾ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 	if(vram_free & PTC_AUTOPLTT_FRM){
 		NNS_GfdGetFrmPlttVramState(&psys->pltt_frm_state);
 	}
 	else if(vram_free & PTC_AUTOPLTT_LNK){
-		//2005.07.25(Œ)@Œ»İ–¢À‘•(ŠÖ”ƒRƒƒ“ƒg‚É‚àó‘Ô‚ª‘‚¢‚Ä‚ ‚è‚Ü‚·)
-		//‚Æ‚è‚ ‚¦‚¸‰Šú‰»‚¾‚¯‚µ‚Ä‚¨‚­
+		//2005.07.25(æœˆ)ã€€ç¾åœ¨æœªå®Ÿè£…(é–¢æ•°ã‚³ãƒ¡ãƒ³ãƒˆã«ã‚‚çŠ¶æ…‹ãŒæ›¸ã„ã¦ã‚ã‚Šã¾ã™)
+		//ã¨ã‚Šã‚ãˆãšåˆæœŸåŒ–ã ã‘ã—ã¦ãŠã
 		int i;
 		for(i = 0; i < LNK_PLTT_KEY_MAX; i++){
 			psys->pltt_key[i] = NNS_GFD_ALLOC_ERROR_PLTTKEY;
 		}
 	}
 	
-	//ƒp[ƒeƒBƒNƒ‹ƒŠƒ\[ƒX‚ğŠÖ˜A•t‚¯‚é
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’é–¢é€£ä»˜ã‘ã‚‹
 	psys->res_ptcl = resource;
 	
-	//ƒeƒNƒXƒ`ƒƒƒ[ƒh
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰
 	if(tex_at_once == TRUE){
 		Particle_TexLoad(psys);
 	}
@@ -887,23 +887,23 @@ void Particle_ResourceSet(PTC_PTR psys, void *resource, int vram_free, int tex_a
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹‚ÌƒeƒNƒXƒ`ƒƒ[ƒ[ƒh
- * @param   psys		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ãƒ­ãƒ¼ãƒ‰
+ * @param   psys		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Particle_TexLoad(PTC_PTR psys)
 {
-	//ƒ}ƒl[ƒWƒƒ‚É‘Î‚µ‚Äƒp[ƒeƒBƒNƒ‹ƒŠƒ\[ƒX‚ğ“Ç‚İ‚Ş
+	//ãƒãƒãƒ¼ã‚¸ãƒ£ã«å¯¾ã—ã¦ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
 	SPL_Load(psys->spl_manager, psys->res_ptcl);
 
-	// ƒeƒNƒXƒ`ƒƒ‚ğ“Ç‚İ‚İ
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’èª­ã¿è¾¼ã¿
 	TexLoadTempPtc = psys;
 	if(psys->user_tex_func == NULL){
-		//NitroSystem‚ÌVRAMƒ}ƒl[ƒWƒƒ‚ÉˆË‘¶‚·‚é
+		//NitroSystemã®VRAMãƒãƒãƒ¼ã‚¸ãƒ£ã«ä¾å­˜ã™ã‚‹
 		(void)SPL_LoadTexByVRAMManager(psys->spl_manager);
 	}
 	else{
-		// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ—p‚¢‚ÄƒeƒNƒXƒ`ƒƒ“Ç‚İ‚İ‚ğ©‘O‚Å‚¨‚±‚È‚¤ê‡
+		// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç”¨ã„ã¦ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿ã‚’è‡ªå‰ã§ãŠã“ãªã†å ´åˆ
 		SPL_LoadTexByCallbackFunction(psys->spl_manager, psys->user_tex_func);
 	}
 	if(psys->user_pltt_func == NULL){
@@ -918,17 +918,17 @@ static void Particle_TexLoad(PTC_PTR psys)
 		u32 tex_size;
 		tex_size = SPL_GetTexSizeOnResource(psys->res_ptcl);
 	#ifdef OSP_PARTICLE_ON
-		OS_Printf("ƒeƒNƒXƒ`ƒƒƒTƒCƒY%#x\n", tex_size);
+		OS_Printf("ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚ºï¼%#x\n", tex_size);
 	#endif
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Vƒuƒ‰ƒ“ƒNƒ^ƒXƒNFƒp[ƒeƒBƒNƒ‹‚ÌƒeƒNƒXƒ`ƒƒ[ƒ[ƒh
+ * @brief   Vãƒ–ãƒ©ãƒ³ã‚¯ã‚¿ã‚¹ã‚¯ï¼šãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ãƒ­ãƒ¼ãƒ‰
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VWait_TexLoad(TCB_PTR tcb, void *work)
@@ -941,12 +941,12 @@ static void VWait_TexLoad(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŠƒ“ƒNƒhƒŠƒXƒg‚ÌƒeƒNƒXƒ`ƒƒƒL[‚ğ‹L‰¯‚·‚é
+ * @brief   ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã‚’è¨˜æ†¶ã™ã‚‹
  *
- * @param   psys		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tex_key		ƒeƒNƒXƒ`ƒƒƒL[
+ * @param   psys		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tex_key		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
  *
- * ¦ƒeƒNƒXƒ`ƒƒƒ[ƒh‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”“à‚Å‚Ì‚İŒÄ‚Ô–‚ª‹–‚³‚ê‚Ü‚·
+ * â€»ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…ã§ã®ã¿å‘¼ã¶äº‹ãŒè¨±ã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------
 void Particle_LnkTexKeySet(NNSGfdTexKey tex_key)
@@ -965,17 +965,17 @@ void Particle_LnkTexKeySet(NNSGfdTexKey tex_key)
 			return;
 		}
 	}
-	GF_ASSERT(0 && "ƒp[ƒeƒBƒNƒ‹ƒeƒNƒXƒ`ƒƒŠÇ—”‚ğ’´‚¦‚Ä‚¢‚Ü‚·!\n");
+	GF_ASSERT(0 && "ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ç®¡ç†æ•°ã‚’è¶…ãˆã¦ã„ã¾ã™!\n");
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒŒƒbƒgƒŠƒ“ƒNƒhƒŠƒXƒg‚ÌƒeƒNƒXƒ`ƒƒƒL[‚ğ‹L‰¯‚·‚é
+ * @brief   ãƒ‘ãƒ¬ãƒƒãƒˆãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã‚’è¨˜æ†¶ã™ã‚‹
  *
- * @param   psys		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tex_key		ƒeƒNƒXƒ`ƒƒƒL[
+ * @param   psys		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tex_key		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
  *
- * ¦ƒeƒNƒXƒ`ƒƒƒ[ƒh‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”“à‚Å‚Ì‚İŒÄ‚Ô–‚ª‹–‚³‚ê‚Ü‚·
+ * â€»ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ­ãƒ¼ãƒ‰æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…ã§ã®ã¿å‘¼ã¶äº‹ãŒè¨±ã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------
 void Particle_PlttLnkTexKeySet(NNSGfdPlttKey pltt_key)
@@ -994,14 +994,14 @@ void Particle_PlttLnkTexKeySet(NNSGfdPlttKey pltt_key)
 			return;
 		}
 	}
-	GF_ASSERT(0 && "ƒp[ƒeƒBƒNƒ‹ƒpƒŒƒbƒgƒeƒNƒXƒ`ƒƒŠÇ—”‚ğ’´‚¦‚Ä‚¢‚Ü‚·!\n");
+	GF_ASSERT(0 && "ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ç®¡ç†æ•°ã‚’è¶…ãˆã¦ã„ã¾ã™!\n");
 }
 
 #ifdef PM_DEBUG		//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //--------------------------------------------------------------
 /**
- * @brief   ƒL[“ü—Í‚É‚æ‚Á‚ÄƒJƒƒ‰‚ÌˆÊ’u‚ğˆÚ“®‚·‚é(ƒfƒoƒbƒO‹@”\)
- * @param   psys		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚­ãƒ¼å…¥åŠ›ã«ã‚ˆã£ã¦ã‚«ãƒ¡ãƒ©ã®ä½ç½®ã‚’ç§»å‹•ã™ã‚‹(ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½)
+ * @param   psys		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void DebugCameraMove(PTC_PTR psys)
@@ -1013,7 +1013,7 @@ static void DebugCameraMove(PTC_PTR psys)
 		WeDebugWork.eye = DefaultEye;
 		WeDebugWork.up = DefaultUp;
 		WeDebugWork.at = DefaultAt;
-		OS_Printf("DebugCamera:•W€İ’è‚É–ß‚µ‚Ü‚µ‚½\n");
+		OS_Printf("DebugCamera:æ¨™æº–è¨­å®šã«æˆ»ã—ã¾ã—ãŸ\n");
 		return;
 	}
 	
@@ -1100,7 +1100,7 @@ static void DebugCameraMove(PTC_PTR psys)
 
 //--------------------------------------------------------------
 /**
- * @brief	•`‰æ
+ * @brief	æç”»
  */
 //--------------------------------------------------------------
 void Particle_Draw(PTC_PTR psys)
@@ -1115,7 +1115,7 @@ void Particle_Draw(PTC_PTR psys)
 			WeDebugWork.up = DefaultUp;
 			WeDebugWork.at = DefaultAt;
 		}
-		OS_Printf("ƒfƒoƒbƒOƒJƒƒ‰ˆÚ“® = %d\n", WeDebugWork.debug_flag & WE_DEBUG_BIT_CAMERA);
+		OS_Printf("ãƒ‡ãƒãƒƒã‚°ã‚«ãƒ¡ãƒ©ç§»å‹• = %d\n", WeDebugWork.debug_flag & WE_DEBUG_BIT_CAMERA);
 	}
 	if(WeDebugWork.debug_flag & WE_DEBUG_BIT_CAMERA){
 		DebugCameraMove(psys);
@@ -1131,10 +1131,10 @@ void Particle_Draw(PTC_PTR psys)
 		GFC_CameraLookAt();
 	}
 	
-	//ƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚ğ“K—p
+	//ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’é©ç”¨
 	NNS_G3dGlbFlush();
 
-	// ƒp[ƒeƒBƒNƒ‹•`‰æ
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æç”»
 	camera_ptr = NNS_G3dGlbGetCameraMtx();
 	SPL_Draw(psys->spl_manager, camera_ptr);
 
@@ -1142,13 +1142,13 @@ void Particle_Draw(PTC_PTR psys)
 		GFC_PurgeCamera();
 	}
 
-	//Ä‚ÑƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚ğ“K—pBƒTƒ“ƒvƒ‹‚ÌSimple‚ª‚±‚¤‚â‚Á‚Ä‚é‚ñ‚Å^—B
+	//å†ã³ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã‚’é©ç”¨ã€‚ã‚µãƒ³ãƒ—ãƒ«ã®SimpleãŒã“ã†ã‚„ã£ã¦ã‚‹ã‚“ã§çœŸä¼¼ã€‚
 	NNS_G3dGlbFlush();
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ŒvZ
+ * @brief	è¨ˆç®—
  */
 //--------------------------------------------------------------
 void Particle_Calc(PTC_PTR psys)
@@ -1158,8 +1158,8 @@ void Particle_Calc(PTC_PTR psys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ÀÛ‚É“®ì‚µ‚Ä‚¢‚éƒp[ƒeƒBƒNƒ‹ƒ}ƒl[ƒWƒƒ‚Ì”‚ğæ“¾‚·‚é
- * @retval  Às‚³‚ê‚Ä‚¢‚éƒ}ƒl[ƒWƒƒ”
+ * @brief   å®Ÿéš›ã«å‹•ä½œã—ã¦ã„ã‚‹ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£ã®æ•°ã‚’å–å¾—ã™ã‚‹
+ * @retval  å®Ÿè¡Œã•ã‚Œã¦ã„ã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£æ•°
  */
 //--------------------------------------------------------------
 int Particle_GetActionNum(void)
@@ -1177,8 +1177,8 @@ int Particle_GetActionNum(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ¶¬‚³‚ê‚Ä‚¢‚éƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‘S‚Ä‚Ì•`‰æ‚ğs‚¤
- * @retval  •`‰æ‚ªs‚í‚ê‚½‰ñ”
+ * @brief   ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å…¨ã¦ã®æç”»ã‚’è¡Œã†
+ * @retval  æç”»ãŒè¡Œã‚ã‚ŒãŸå›æ•°
  */
 //--------------------------------------------------------------
 int Particle_DrawAll(void)
@@ -1197,8 +1197,8 @@ int Particle_DrawAll(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ¶¬‚³‚ê‚Ä‚¢‚éƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‘S‚Ä‚ÌŒvZ‚ğs‚¤
- * @retval  ŒvZ‚ªs‚í‚ê‚½‰ñ”
+ * @brief   ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ å…¨ã¦ã®è¨ˆç®—ã‚’è¡Œã†
+ * @retval  è¨ˆç®—ãŒè¡Œã‚ã‚ŒãŸå›æ•°
  */
 //--------------------------------------------------------------
 int Particle_CalcAll(void)
@@ -1217,13 +1217,13 @@ int Particle_CalcAll(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚ğ¶¬
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã‚’ç”Ÿæˆ
  *
- * @param   psys			ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   res_no			ƒŠƒ\[ƒX”Ô†
- * @param   init_pos		ˆÊ’u(ƒŠƒ\[ƒX‚Éİ’è‚³‚ê‚½ƒGƒ~ƒbƒ^ƒIƒtƒZƒbƒgˆÊ’u‚É‰ÁZ‚µ‚Ü‚·)
+ * @param   psys			ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   res_no			ãƒªã‚½ãƒ¼ã‚¹ç•ªå·
+ * @param   init_pos		ä½ç½®(ãƒªã‚½ãƒ¼ã‚¹ã«è¨­å®šã•ã‚ŒãŸã‚¨ãƒŸãƒƒã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®ã«åŠ ç®—ã—ã¾ã™)
  *
- * @retval  ¶¬‚³‚ê‚½ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^B©–ÅƒGƒ~ƒbƒ^‚Ìê‡‚ÍNULL‚ª•Ô‚è‚Ü‚·
+ * @retval  ç”Ÿæˆã•ã‚ŒãŸã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚è‡ªæ»…ã‚¨ãƒŸãƒƒã‚¿ã®å ´åˆã¯NULLãŒè¿”ã‚Šã¾ã™
  */
 //--------------------------------------------------------------
 EMIT_PTR Particle_CreateEmitter(PTC_PTR psys, int res_no, const VecFx32 *init_pos)
@@ -1242,21 +1242,21 @@ EMIT_PTR Particle_CreateEmitter(PTC_PTR psys, int res_no, const VecFx32 *init_po
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚ğ¶¬(¶¬‚µ‚½‚Écallback‚É“o˜^‚µ‚½ŠÖ”‚ªÀs‚³‚ê‚Ü‚·)
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã‚’ç”Ÿæˆ(ç”Ÿæˆã—ãŸæ™‚ã«callbackã«ç™»éŒ²ã—ãŸé–¢æ•°ãŒå®Ÿè¡Œã•ã‚Œã¾ã™)
  *
- * @param   psys			ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   res_no			ƒŠƒ\[ƒX”Ô†
- * @param   callback		ƒGƒ~ƒbƒ^¶¬‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   temp_ptr		ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ì’†‚ÅParticle_GetTempPtrŠÖ”‚ğg‚¤–‚ÅA
- *                          ‚±‚±‚Å“n‚µ‚½ƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é–‚ªo—ˆ‚Ü‚·B
- *                          Particle_GetTempPtrŠÖ”‚ªg‚¦‚é‚Ì‚ÍƒR[ƒ‹ƒoƒbƒNŠÖ”“à‚Ì‚İ‚Å‚·B
+ * @param   psys			ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   res_no			ãƒªã‚½ãƒ¼ã‚¹ç•ªå·
+ * @param   callback		ã‚¨ãƒŸãƒƒã‚¿ç”Ÿæˆæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   temp_ptr		ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®ä¸­ã§Particle_GetTempPtré–¢æ•°ã‚’ä½¿ã†äº‹ã§ã€
+ *                          ã“ã“ã§æ¸¡ã—ãŸãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹äº‹ãŒå‡ºæ¥ã¾ã™ã€‚
+ *                          Particle_GetTempPtré–¢æ•°ãŒä½¿ãˆã‚‹ã®ã¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…ã®ã¿ã§ã™ã€‚
  *
- * @retval  ¶¬‚³‚ê‚½ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^B©–ÅƒGƒ~ƒbƒ^‚Ìê‡‚ÍNULL‚ª•Ô‚è‚Ü‚·
+ * @retval  ç”Ÿæˆã•ã‚ŒãŸã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚è‡ªæ»…ã‚¨ãƒŸãƒƒã‚¿ã®å ´åˆã¯NULLãŒè¿”ã‚Šã¾ã™
  *
- * ©–ÅƒGƒ~ƒbƒ^‚ğSPL_Create‚Åì¬‚µ‚½ê‡ANULL‚ª‚©‚¦‚Á‚Ä‚­‚é‚Ì‚ÅƒGƒ~ƒbƒ^‚Ìİ’è‚ğƒvƒƒOƒ‰ƒ€‚©‚ç
- * •ÏX‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB‚±‚ÌŠÖ”‚ğ‚à‚¿‚¢‚ÄSPLEmitter*‚ğˆø”‚Æ‚·‚éƒR[ƒ‹ƒoƒbƒN‚ğ“o˜^‚·‚é
- * ‚±‚Æ‚ÅA©–Å‘O‚Ì©–ÅƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğˆø”‚Æ‚µ‚ÄƒR[ƒ‹ƒoƒbƒNŠÖ”‚ªŒÄ‚Ño‚³‚ê‚Ü‚·B
- * ‚±‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”’†‚ÅƒGƒ~ƒbƒ^‚Ìİ’è‚ğ•ÏX‚·‚é‚±‚Æ‚ª‰Â”\‚Å‚·B 
+ * è‡ªæ»…ã‚¨ãƒŸãƒƒã‚¿ã‚’SPL_Createã§ä½œæˆã—ãŸå ´åˆã€NULLãŒã‹ãˆã£ã¦ãã‚‹ã®ã§ã‚¨ãƒŸãƒƒã‚¿ã®è¨­å®šã‚’ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‹ã‚‰
+ * å¤‰æ›´ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“ã€‚ã“ã®é–¢æ•°ã‚’ã‚‚ã¡ã„ã¦SPLEmitter*ã‚’å¼•æ•°ã¨ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’ç™»éŒ²ã™ã‚‹
+ * ã“ã¨ã§ã€è‡ªæ»…å‰ã®è‡ªæ»…ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å¼•æ•°ã¨ã—ã¦ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãŒå‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
+ * ã“ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ä¸­ã§ã‚¨ãƒŸãƒƒã‚¿ã®è¨­å®šã‚’å¤‰æ›´ã™ã‚‹ã“ã¨ãŒå¯èƒ½ã§ã™ã€‚ 
  */
 //--------------------------------------------------------------
 EMIT_PTR Particle_CreateEmitterCallback(PTC_PTR psys, int res_no, pEmitFunc callback, void *temp_ptr)
@@ -1273,11 +1273,11 @@ EMIT_PTR Particle_CreateEmitterCallback(PTC_PTR psys, int res_no, pEmitFunc call
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒNƒeƒBƒu‚ÈƒGƒ~ƒbƒ^‚Ì”‚ğæ“¾‚µ‚Ü‚·
+ * @brief   ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚¨ãƒŸãƒƒã‚¿ã®æ•°ã‚’å–å¾—ã—ã¾ã™
  *
- * @param   psys		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   psys		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ƒAƒNƒeƒBƒu‚ÈƒGƒ~ƒbƒ^”
+ * @retval  ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãªã‚¨ãƒŸãƒƒã‚¿æ•°
  */
 //--------------------------------------------------------------
 s32 Particle_GetEmitterNum(PTC_PTR psys)
@@ -1287,18 +1287,18 @@ s32 Particle_GetEmitterNum(PTC_PTR psys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚ªŠÇ—‚µ‚Ä‚¢‚éƒp[ƒeƒBƒNƒ‹‚ğ‘S‚Äíœ
- * @param   psys		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãŒç®¡ç†ã—ã¦ã„ã‚‹ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’å…¨ã¦å‰Šé™¤
+ * @param   psys		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Particle_EmitterDeleteAll(PTC_PTR psys)
 {
-	SPL_DeleteAll(psys->spl_manager);	//ƒp[ƒeƒBƒNƒ‹‘Síœ
+	SPL_DeleteAll(psys->spl_manager);	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«å…¨å‰Šé™¤
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	emitter1ŒÂíœ
+ * @brief	emitter1å€‹å‰Šé™¤
  *
  * @param	psys	
  * @param	emit	
@@ -1309,17 +1309,17 @@ void Particle_EmitterDeleteAll(PTC_PTR psys)
 //--------------------------------------------------------------
 void Particle_EmitterDelete(PTC_PTR psys, EMIT_PTR emit)
 {
-	SPL_Delete(psys->spl_manager, emit);	//ƒp[ƒeƒBƒNƒ‹‘Síœ
+	SPL_Delete(psys->spl_manager, emit);	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«å…¨å‰Šé™¤
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ÅŒã‚É¶¬‚µ‚½ƒGƒ~ƒbƒ^‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+ * @brief   æœ€å¾Œã«ç”Ÿæˆã—ãŸã‚¨ãƒŸãƒƒã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- * @param   psys		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   psys		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ÅŒã‚É¶¬‚µ‚½ƒGƒ~ƒbƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  æœ€å¾Œã«ç”Ÿæˆã—ãŸã‚¨ãƒŸãƒƒã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 EMIT_PTR Particle_TempEmitterPtrGet(PTC_PTR psys)
@@ -1329,11 +1329,11 @@ EMIT_PTR Particle_TempEmitterPtrGet(PTC_PTR psys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Éİ’è‚³‚ê‚Ä‚¢‚éƒq[ƒv—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒX‚ğæ“¾
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- * @param   psys		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   psys		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ƒq[ƒv‚Ìæ“ªƒAƒhƒŒƒX(Particle_SystemCreate‚Å“n‚µ‚½ƒAƒhƒŒƒX‚ª•Ô‚è‚Ü‚·)
+ * @retval  ãƒ’ãƒ¼ãƒ—ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹(Particle_SystemCreateã§æ¸¡ã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¿”ã‚Šã¾ã™)
  */
 //--------------------------------------------------------------
 void * Particle_HeapPtrGet(PTC_PTR psys)
@@ -1343,9 +1343,9 @@ void * Particle_HeapPtrGet(PTC_PTR psys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰‚ÌˆÊ’uƒxƒNƒgƒ‹‚ğæ“¾
- * @param   ptc		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   eye		’l‘ã“üæ
+ * @brief   ã‚«ãƒ¡ãƒ©ã®ä½ç½®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—
+ * @param   ptc		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   eye		å€¤ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void Particle_GetEye(PTC_PTR psys, VecFx32 *eye)
@@ -1355,11 +1355,11 @@ void Particle_GetEye(PTC_PTR psys, VecFx32 *eye)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰‚ÌˆÊ’uƒxƒNƒgƒ‹‚ğƒZƒbƒg
- * @param   ptc		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   eye		’l‘ã“üæ
+ * @brief   ã‚«ãƒ¡ãƒ©ã®ä½ç½®ãƒ™ã‚¯ãƒˆãƒ«ã‚’ã‚»ãƒƒãƒˆ
+ * @param   ptc		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   eye		å€¤ä»£å…¥å…ˆ
  *
- * GFLib‚ÌƒJƒƒ‰‚ğg—p‚µ‚Ä‚¢‚éê‡‚Í‚±‚ê‚Í‹@”\‚µ‚Ü‚¹‚ñ
+ * GFLibã®ã‚«ãƒ¡ãƒ©ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ã“ã‚Œã¯æ©Ÿèƒ½ã—ã¾ã›ã‚“
  */
 //--------------------------------------------------------------
 void Particle_SetEye(PTC_PTR psys, const VecFx32 *eye)
@@ -1369,9 +1369,9 @@ void Particle_SetEye(PTC_PTR psys, const VecFx32 *eye)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰‚Ìã•ûŒüƒxƒNƒgƒ‹‚ğæ“¾
- * @param   ptc		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   v_up		’l‘ã“üæ
+ * @brief   ã‚«ãƒ¡ãƒ©ã®ä¸Šæ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—
+ * @param   ptc		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   v_up		å€¤ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void Particle_GetVup(PTC_PTR psys, VecFx32 *v_up)
@@ -1381,9 +1381,9 @@ void Particle_GetVup(PTC_PTR psys, VecFx32 *v_up)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒƒ‰‚Ìã•ûŒüƒxƒNƒgƒ‹‚ğƒZƒbƒg
- * @param   ptc		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   v_up		’l‘ã“üæ
+ * @brief   ã‚«ãƒ¡ãƒ©ã®ä¸Šæ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã‚’ã‚»ãƒƒãƒˆ
+ * @param   ptc		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   v_up		å€¤ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void Particle_SetVup(PTC_PTR psys, const VecFx32 *v_up)
@@ -1394,10 +1394,10 @@ void Particle_SetVup(PTC_PTR psys, const VecFx32 *v_up)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒ“ƒ|ƒ‰ƒŠƒ[ƒN‚ÉƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
- * @retval  ƒeƒ“ƒ|ƒ‰ƒŠƒ[ƒN‚ÉƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¯ãƒ¼ã‚¯ã«ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
+ * @retval  ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¯ãƒ¼ã‚¯ã«ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒGƒ~ƒbƒ^ì¬‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”“à‚Å‚Ì‚İg—p‰Â”\‚Å‚·B
+ * ã‚¨ãƒŸãƒƒã‚¿ä½œæˆæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…ã§ã®ã¿ä½¿ç”¨å¯èƒ½ã§ã™ã€‚
  */
 //--------------------------------------------------------------
 void * Particle_GetTempPtr(void)
@@ -1408,8 +1408,8 @@ void * Particle_GetTempPtr(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒtƒHƒ‹ƒgƒJƒƒ‰ˆÊ’uƒxƒNƒgƒ‹‚ğæ“¾
- * @param   eye		’l‘ã“üæ
+ * @brief   ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚«ãƒ¡ãƒ©ä½ç½®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—
+ * @param   eye		å€¤ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void Particle_GetDefaultEye(VecFx32 *eye)
@@ -1419,8 +1419,8 @@ void Particle_GetDefaultEye(VecFx32 *eye)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒtƒHƒ‹ƒgƒJƒƒ‰‚Ìã•ûŒüƒxƒNƒgƒ‹‚ğæ“¾
- * @param   eye		’l‘ã“üæ
+ * @brief   ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚«ãƒ¡ãƒ©ã®ä¸Šæ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—
+ * @param   eye		å€¤ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void Particle_GetDefaultUp(VecFx32 *v_up)
@@ -1430,8 +1430,8 @@ void Particle_GetDefaultUp(VecFx32 *v_up)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒfƒtƒHƒ‹ƒgƒJƒƒ‰‚ÌÅ“_‚Ö‚ÌƒxƒNƒgƒ‹‚ğæ“¾
- * @param   eye		’l‘ã“üæ
+ * @brief   ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚«ãƒ¡ãƒ©ã®ç„¦ç‚¹ã¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—
+ * @param   eye		å€¤ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void Particle_GetDefaultAt(VecFx32 *at)
@@ -1441,9 +1441,9 @@ void Particle_GetDefaultAt(VecFx32 *at)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚ª‚Á‚Ä‚¢‚éƒJƒƒ‰‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·
- * @param   ptc		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  GFƒJƒƒ‰‚Ö‚Ìƒ|ƒCƒ“ƒ^(“Æ©‚ÌƒJƒƒ‰‚ğg—p‚µ‚Ä‚¢‚È‚¢ê‡‚ÍNULL)
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãŒæŒã£ã¦ã„ã‚‹ã‚«ãƒ¡ãƒ©ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™
+ * @param   ptc		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  GFã‚«ãƒ¡ãƒ©ã¸ã®ãƒã‚¤ãƒ³ã‚¿(ç‹¬è‡ªã®ã‚«ãƒ¡ãƒ©ã‚’ä½¿ç”¨ã—ã¦ã„ãªã„å ´åˆã¯NULL)
  */
 //--------------------------------------------------------------
 GF_CAMERA_PTR Particle_GetCameraPtr(PTC_PTR ptc)
@@ -1453,8 +1453,8 @@ GF_CAMERA_PTR Particle_GetCameraPtr(PTC_PTR ptc)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚ÌƒJƒƒ‰Ë‰e•û®‚ğƒZƒbƒg‚·‚é
- * @param   ptc				ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ã‚«ãƒ¡ãƒ©å°„å½±æ–¹å¼ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   ptc				ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   camera_type		GF_CAMERA_PERSPECTIV or GF_CAMERA_ORTHO
  */
 //--------------------------------------------------------------
@@ -1465,8 +1465,8 @@ void Particle_CameraTypeSet(PTC_PTR ptc, int camera_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‚ÌƒJƒƒ‰Ë‰e•û®‚ğæ“¾‚·‚é
- * @param   ptc		ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ã‚«ãƒ¡ãƒ©å°„å½±æ–¹å¼ã‚’å–å¾—ã™ã‚‹
+ * @param   ptc		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  GF_CAMERA_PERSPECTIV or GF_CAMERA_ORTHO
  */
 //--------------------------------------------------------------
@@ -1477,10 +1477,10 @@ u8 Particle_CameraTypeGet(PTC_PTR ptc)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚Ì‘¬“x‚ğæ“¾‚µ‚Ü‚·
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®é€Ÿåº¦ã‚’å–å¾—ã—ã¾ã™
  *
- * @param   emit	ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vel		’l‘ã“üæ
+ * @param   emit	ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vel		å€¤ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void SplSub_GetEmitterVelocity(EMIT_PTR emit, VecFx32 *vel)
@@ -1490,10 +1490,10 @@ void SplSub_GetEmitterVelocity(EMIT_PTR emit, VecFx32 *vel)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚Ì‘¬“x‚ğƒZƒbƒg‚µ‚Ü‚·
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®é€Ÿåº¦ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™
  *
- * @param   emit	ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vel		ƒZƒbƒg‚·‚é’l
+ * @param   emit	ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vel		ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  */
 //--------------------------------------------------------------
 void SplSub_SetEmitterVelocity(EMIT_PTR emit, const VecFx32 *vel)
@@ -1503,9 +1503,9 @@ void SplSub_SetEmitterVelocity(EMIT_PTR emit, const VecFx32 *vel)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚ÌŒü‚«‚ğæ“¾
- * @param   emit		ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vec			’l‘ã“üæ
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®å‘ãã‚’å–å¾—
+ * @param   emit		ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vec			å€¤ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void SplSub_GetEmitterAxis(EMIT_PTR emit, VecFx16 *vec)
@@ -1515,9 +1515,9 @@ void SplSub_GetEmitterAxis(EMIT_PTR emit, VecFx16 *vec)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚Ì‘å‚«‚³‚ğæ“¾
- * @param   emit		ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  ‘å‚«‚³
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®å¤§ãã•ã‚’å–å¾—
+ * @param   emit		ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  å¤§ãã•
  */
 //--------------------------------------------------------------
 fx32 SplSub_GetEmitterRadius(EMIT_PTR emit)
@@ -1527,9 +1527,9 @@ fx32 SplSub_GetEmitterRadius(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚Ì‘S•ûŒü‰‘¬‚ğæ“¾
- * @param   emit		ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  ‘S•ûŒü‰‘¬
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®å…¨æ–¹å‘åˆé€Ÿã‚’å–å¾—
+ * @param   emit		ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  å…¨æ–¹å‘åˆé€Ÿ
  */
 //--------------------------------------------------------------
 fx16 SplSub_GetEmitterInitVelocityPos(EMIT_PTR emit)
@@ -1539,9 +1539,9 @@ fx16 SplSub_GetEmitterInitVelocityPos(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚Ì²•ûŒü‰‘¬‚ğæ“¾
- * @param   emit		ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  ²•ûŒü‰‘¬
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®è»¸æ–¹å‘åˆé€Ÿã‚’å–å¾—
+ * @param   emit		ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  è»¸æ–¹å‘åˆé€Ÿ
  */
 //--------------------------------------------------------------
 fx16 SplSub_GetEmitterInitVelocityAxis(EMIT_PTR emit)
@@ -1551,9 +1551,9 @@ fx16 SplSub_GetEmitterInitVelocityAxis(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚ÌŠî–{ƒXƒP[ƒ‹‚ğæ“¾
- * @param   emit		ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  Šî–{ƒXƒP[ƒ‹
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®åŸºæœ¬ã‚¹ã‚±ãƒ¼ãƒ«ã‚’å–å¾—
+ * @param   emit		ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  åŸºæœ¬ã‚¹ã‚±ãƒ¼ãƒ«
  */
 //--------------------------------------------------------------
 fx16 SplSub_GetEmitterBaseScale(EMIT_PTR emit)
@@ -1563,9 +1563,9 @@ fx16 SplSub_GetEmitterBaseScale(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚Ì¶¬ŠÔŠu‚ğæ“¾
- * @param   emit		ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  ¶¬ŠÔŠu
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®ç”Ÿæˆé–“éš”ã‚’å–å¾—
+ * @param   emit		ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  ç”Ÿæˆé–“éš”
  */
 //--------------------------------------------------------------
 u16 SplSub_GetEmitterEmissionInterval(EMIT_PTR emit)
@@ -1575,9 +1575,9 @@ u16 SplSub_GetEmitterEmissionInterval(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚ÌŠî–{ƒ¿‚ğæ“¾
- * @param   emit		ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  Šî–{ƒ¿
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®åŸºæœ¬Î±ã‚’å–å¾—
+ * @param   emit		ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  åŸºæœ¬Î±
  */
 //--------------------------------------------------------------
 u16 SplSub_GetEmitterBaseAlpha(EMIT_PTR emit)
@@ -1587,9 +1587,9 @@ u16 SplSub_GetEmitterBaseAlpha(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚ÌƒOƒ[ƒoƒ‹F‚ğæ“¾
- * @param   emit		ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  ƒOƒ[ƒoƒ‹F
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«è‰²ã‚’å–å¾—
+ * @param   emit		ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  ã‚°ãƒ­ãƒ¼ãƒãƒ«è‰²
  */
 //--------------------------------------------------------------
 GXRgb SplSub_GetEmitterGlobalColor(EMIT_PTR emit)
@@ -1599,12 +1599,12 @@ GXRgb SplSub_GetEmitterGlobalColor(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‚µ‚½ƒGƒ~ƒbƒ^‚Ì•úoƒŒ[ƒg‚ğİ’è‚µ‚Ü‚·
+ * @brief   æŒ‡å®šã—ãŸã‚¨ãƒŸãƒƒã‚¿ã®æ”¾å‡ºãƒ¬ãƒ¼ãƒˆã‚’è¨­å®šã—ã¾ã™
  *
- * @param   emit		ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   gen_num		İ’è•úoƒŒ[ƒg
+ * @param   emit		ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   gen_num		è¨­å®šæ”¾å‡ºãƒ¬ãƒ¼ãƒˆ
  *
- * SPL_SetEmitterGenerationRatioŠÖ”‚ª‚È‚¢‚æ‚¤‚È‚Ì‚Å‘ã‚í‚è
+ * SPL_SetEmitterGenerationRatioé–¢æ•°ãŒãªã„ã‚ˆã†ãªã®ã§ä»£ã‚ã‚Š
  */
 //--------------------------------------------------------------
 void SplSub_SetEmitterGenerationRatio(EMIT_PTR emit, fx32 gen_num)
@@ -1614,9 +1614,9 @@ void SplSub_SetEmitterGenerationRatio(EMIT_PTR emit, fx32 gen_num)
 
 //--------------------------------------------------------------
 /**
- * @brief   •úoƒŒ[ƒg‚ğæ“¾‚µ‚Ü‚·
- * @param   emit		ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  •úoƒŒ[ƒg
+ * @brief   æ”¾å‡ºãƒ¬ãƒ¼ãƒˆã‚’å–å¾—ã—ã¾ã™
+ * @param   emit		ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  æ”¾å‡ºãƒ¬ãƒ¼ãƒˆ
  */
 //--------------------------------------------------------------
 fx32 SplSub_GetEmitterGenerationRatio(EMIT_PTR emit)
@@ -1626,10 +1626,10 @@ fx32 SplSub_GetEmitterGenerationRatio(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚ÌŒ»İˆÊ’u‚ğæ“¾‚·‚é
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®ç¾åœ¨ä½ç½®ã‚’å–å¾—ã™ã‚‹
  *
- * @param   p_emtr		ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   p_pos		æ“¾À•W‘ã“üæ
+ * @param   p_emtr		ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   p_pos		å–å¾—åº§æ¨™ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void SplSub_GetEmitterPosition(EMIT_PTR emit, VecFx32 * p_pos)
@@ -1639,10 +1639,10 @@ void SplSub_GetEmitterPosition(EMIT_PTR emit, VecFx32 * p_pos)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒ~ƒbƒ^‚ÌƒfƒtƒHƒ‹ƒgˆÊ’u‚ğæ“¾‚·‚é
+ * @brief   ã‚¨ãƒŸãƒƒã‚¿ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä½ç½®ã‚’å–å¾—ã™ã‚‹
  *
- * @param   emit		ƒGƒ~ƒbƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   p_pos		æ“¾À•W‘ã“üæ
+ * @param   emit		ã‚¨ãƒŸãƒƒã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   p_pos		å–å¾—åº§æ¨™ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void SplSub_GetEmitterBasePosition(EMIT_PTR emit, VecFx32 * p_pos)
@@ -1657,9 +1657,9 @@ void SplSub_GetEmitterBasePosition(EMIT_PTR emit, VecFx32 * p_pos)
 //
 //
 //
-//	  Field ‘€ìŒn‚Ì“Æ©ŠÖ”ŒS
-//		ƒp[ƒeƒBƒNƒ‹ƒ‰ƒCƒuƒ‰ƒŠ‘¤‚Åprivate‚Åˆµ‚í‚ê‚é•Ï”‚ğ
-//		ŠO‚©‚çˆµ‚Á‚Ä‚¢‚é‚Ì‚Å•s‹ï‡‚ª‚ ‚é‚©‚à‚µ‚ê‚È‚¢
+//	â–¡ Field æ“ä½œç³»ã®ç‹¬è‡ªé–¢æ•°éƒ¡
+//		ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå´ã§privateã§æ‰±ã‚ã‚Œã‚‹å¤‰æ•°ã‚’
+//		å¤–ã‹ã‚‰æ‰±ã£ã¦ã„ã‚‹ã®ã§ä¸å…·åˆãŒã‚ã‚‹ã‹ã‚‚ã—ã‚Œãªã„
 //
 //
 //
@@ -1667,29 +1667,29 @@ void SplSub_GetEmitterBasePosition(EMIT_PTR emit, VecFx32 * p_pos)
 // ----------------------------------------------------------------------------
 #if 0
 
-typedef struct SPLGravity{				// d—ÍƒtƒB[ƒ‹ƒh
+typedef struct SPLGravity{				// é‡åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
     VecFx16 mag;
     u16 reserved0;
 } SPLGravity;
 
-typedef struct SPLRandom{				// ƒ‰ƒ“ƒ_ƒ€ƒtƒB[ƒ‹ƒh
+typedef struct SPLRandom{				// ãƒ©ãƒ³ãƒ€ãƒ ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
     VecFx16 mag;
     u16 intvl;
 } SPLRandom;
 
-typedef struct SPLMagnet{				// ƒ}ƒOƒlƒbƒgƒtƒB[ƒ‹ƒh
+typedef struct SPLMagnet{				// ãƒã‚°ãƒãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
     VecFx32 pos;
     fx16    mag;
     u16     reserved0;
 } SPLMagnet;
 
-typedef struct SPLSpin{					// ƒXƒsƒ“ƒtƒB[ƒ‹ƒh
+typedef struct SPLSpin{					// ã‚¹ãƒ”ãƒ³ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
     u16 radian;
     u16 axis_type;
 } SPLSpin;
 
-typedef struct SPLSimpleCollisionField{	// ƒVƒ“ƒvƒ‹ƒRƒŠƒWƒ‡ƒ“ƒtƒB[ƒ‹ƒh
-    fx32 y ; // ƒCƒxƒ“ƒg‚ª‹N‚±‚éy•½–Ê‚Ì’l
+typedef struct SPLSimpleCollisionField{	// ã‚·ãƒ³ãƒ—ãƒ«ã‚³ãƒªã‚¸ãƒ§ãƒ³ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+    fx32 y ; // ã‚¤ãƒ™ãƒ³ãƒˆãŒèµ·ã“ã‚‹yå¹³é¢ã®å€¤
     fx16 coeff_bounce ;
     
     struct {
@@ -1699,9 +1699,9 @@ typedef struct SPLSimpleCollisionField{	// ƒVƒ“ƒvƒ‹ƒRƒŠƒWƒ‡ƒ“ƒtƒB[ƒ‹ƒh
     } etc ;
 } SPLSimpleCollisionField ;
 
-typedef struct SPLConvergence{			// ˆÊ’u‚É‰ÁZƒtƒB[ƒ‹ƒhiƒ}ƒOƒlƒbƒg‚ÌˆŸíj
-    VecFx32 pos  ; // ‹z‚¢Šñ‚¹‚ç‚ê‚éêŠ
-    fx16    ratio; // ‹z‚¢Šñ‚¹‚ç‚ê‚é‹­‚³
+typedef struct SPLConvergence{			// ä½ç½®ã«åŠ ç®—ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼ˆãƒã‚°ãƒãƒƒãƒˆã®äºœç¨®ï¼‰
+    VecFx32 pos  ; // å¸ã„å¯„ã›ã‚‰ã‚Œã‚‹å ´æ‰€
+    fx16    ratio; // å¸ã„å¯„ã›ã‚‰ã‚Œã‚‹å¼·ã•
     u16     reserved0;
 } SPLConvergence ;
 
@@ -1715,23 +1715,23 @@ void spl_calc_convergence(const void* p_obj, SPLParticle* p_ptcl, VecFx32* p_acc
 #endif
 
 enum {
-	SPL_FLD_TYPE_GRAVITY = 0,		///< d—Í
-	SPL_FLD_TYPE_RANDOM,			///< ƒ‰ƒ“ƒ_ƒ€
-	SPL_FLD_TYPE_MAGNET,			///< ƒ}ƒOƒlƒbƒg
-	SPL_FLD_TYPE_SPIN,				///< ƒXƒsƒ“
-	SPL_FLD_TYPE_SIMPLE_COLL,		///< ƒVƒ“ƒvƒ‹ƒRƒŠƒWƒ‡ƒ“
-	SPL_FLD_TYPE_CONVERGENCE,		///< ƒRƒ“ƒo[ƒWƒFƒ“ƒX
+	SPL_FLD_TYPE_GRAVITY = 0,		///< é‡åŠ›
+	SPL_FLD_TYPE_RANDOM,			///< ãƒ©ãƒ³ãƒ€ãƒ 
+	SPL_FLD_TYPE_MAGNET,			///< ãƒã‚°ãƒãƒƒãƒˆ
+	SPL_FLD_TYPE_SPIN,				///< ã‚¹ãƒ”ãƒ³
+	SPL_FLD_TYPE_SIMPLE_COLL,		///< ã‚·ãƒ³ãƒ—ãƒ«ã‚³ãƒªã‚¸ãƒ§ãƒ³
+	SPL_FLD_TYPE_CONVERGENCE,		///< ã‚³ãƒ³ãƒãƒ¼ã‚¸ã‚§ãƒ³ã‚¹
 };
 
 
 //--------------------------------------------------------------
 /**
- * @brief	SPL_FieldObject ‚Ìƒ|ƒCƒ“ƒ^æ“¾
+ * @brief	SPL_FieldObject ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
- * @param	emit					ƒGƒ~ƒbƒ^[
- * @param	field_type				æ“¾ƒtƒB[ƒ‹ƒh‚Ìƒ^ƒCƒv
+ * @param	emit					ã‚¨ãƒŸãƒƒã‚¿ãƒ¼
+ * @param	field_type				å–å¾—ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ã‚¿ã‚¤ãƒ—
  *
- * @retval	static const void*		ƒ|ƒCƒ“ƒ^
+ * @retval	static const void*		ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //--------------------------------------------------------------
@@ -1794,10 +1794,10 @@ static const void* SPLFieldObj_PointerSearch(EMIT_PTR emit, int field_type)
 
 // -----------------------------------------
 //
-//	d—Í
+//	é‡åŠ›
 //
 //--------------------------------------------------------------
-///< d—Í‚ÌÀ•W‘€ì
+///< é‡åŠ›ã®åº§æ¨™æ“ä½œ
 void SplSub_SetSPLField_GravityPos(EMIT_PTR emit, VecFx16 *mag)
 {
 	SPLGravity* p_obj;
@@ -1827,10 +1827,10 @@ void SplSub_GetSPLField_GravityPos(EMIT_PTR emit, VecFx16 *mag)
 
 // -----------------------------------------
 //
-//	ƒ‰ƒ“ƒ_ƒ€
+//	ãƒ©ãƒ³ãƒ€ãƒ 
 //
 // -----------------------------------------
-///< g‚¤•K—v‚ª‚ ‚é‚©•s–¾‚È‚Ì‚Å‚Æ‚è‚ ‚¦‚¸–¢À‘•
+///< ä½¿ã†å¿…è¦ãŒã‚ã‚‹ã‹ä¸æ˜ãªã®ã§ã¨ã‚Šã‚ãˆãšæœªå®Ÿè£…
 void SplSub_SetSPLField_RandomMag(EMIT_PTR emit, VecFx16* mag)
 {
 }
@@ -1846,10 +1846,10 @@ void SplSub_GetSPLField_RandomIntvl(EMIT_PTR emit, u16* mag)
 
 // -----------------------------------------
 //
-// ƒ}ƒOƒlƒbƒg
+// ãƒã‚°ãƒãƒƒãƒˆ
 //
 // -----------------------------------------
-///< ƒ}ƒOƒlƒbƒg‚ÌÀ•W‘€ì
+///< ãƒã‚°ãƒãƒƒãƒˆã®åº§æ¨™æ“ä½œ
 void SplSub_SetSPLField_MagnetPos(EMIT_PTR emit, VecFx32* p_pos)
 {
 	SPLMagnet* p_obj;
@@ -1876,7 +1876,7 @@ void SplSub_GetSPLField_MagnetPos(EMIT_PTR emit, VecFx32* p_pos)
 	*p_pos = p_obj->pos;
 }
 
-///< ƒ}ƒOƒlƒbƒg‚Ìƒ}ƒO‘€ì
+///< ãƒã‚°ãƒãƒƒãƒˆã®ãƒã‚°æ“ä½œ
 void SplSub_SetSPLField_MagnetMag(EMIT_PTR emit, fx16* mag)
 {
 	SPLMagnet* p_obj;
@@ -1905,10 +1905,10 @@ void SplSub_GetSPLField_MagnetMag(EMIT_PTR emit, fx16* mag)
 
 // -----------------------------------------
 //
-//	ƒXƒsƒ“
+//	ã‚¹ãƒ”ãƒ³
 //
 // -----------------------------------------
-///< ƒXƒsƒ“‚ÌŠp“x‘€ì
+///< ã‚¹ãƒ”ãƒ³ã®è§’åº¦æ“ä½œ
 void SplSub_SetSPLField_SpinRad(EMIT_PTR emit, u16* rad)
 {
 	SPLSpin* p_obj;
@@ -1934,7 +1934,7 @@ void SplSub_GetSPLField_SpinRad(EMIT_PTR emit, u16* rad)
 	*rad = p_obj->radian;
 }
 
-///< ƒXƒsƒ“‚Ì•ûŒüƒ^ƒCƒv‘€ì
+///< ã‚¹ãƒ”ãƒ³ã®æ–¹å‘ã‚¿ã‚¤ãƒ—æ“ä½œ
 void SplSub_SetSPLField_SpinAxisType(EMIT_PTR emit, u16* axis_type)
 {
 	SPLSpin* p_obj;
@@ -1962,10 +1962,10 @@ void SplSub_GetSPLField_SpinAxisType(EMIT_PTR emit, u16* axis_type)
 
 // -----------------------------------------
 //
-//	ƒVƒ“ƒvƒ‹ƒRƒŠƒWƒ‡ƒ“
+//	ã‚·ãƒ³ãƒ—ãƒ«ã‚³ãƒªã‚¸ãƒ§ãƒ³
 //
 // -----------------------------------------
-///< ‘€ì‚·‚é•K—v‚ª‚ ‚é‚©•s–¾‚È‚Ì‚ÅA‚Æ‚è‚ ‚¦‚¸–¢À‘•
+///< æ“ä½œã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ä¸æ˜ãªã®ã§ã€ã¨ã‚Šã‚ãˆãšæœªå®Ÿè£…
 void SplSub_SetSPLField_SimpleCollisionYPos(EMIT_PTR emit, fx32* y)
 {
 }
@@ -1993,10 +1993,10 @@ void SplSub_GetSPLField_SimpleCollisionGlobal(EMIT_PTR emit, u16* global)
 
 // -----------------------------------------
 //
-//	ƒRƒ“ƒo[ƒWƒFƒ“ƒX
+//	ã‚³ãƒ³ãƒãƒ¼ã‚¸ã‚§ãƒ³ã‚¹
 //
 // -----------------------------------------
-///< ƒRƒ“ƒo[ƒWƒFƒ“ƒX‚ÌÀ•W‘€ì
+///< ã‚³ãƒ³ãƒãƒ¼ã‚¸ã‚§ãƒ³ã‚¹ã®åº§æ¨™æ“ä½œ
 void SplSub_SetSPLField_ConvergencePos(EMIT_PTR emit, VecFx32* p_pos)
 {
 	SPLConvergence* p_obj;
@@ -2023,7 +2023,7 @@ void SplSub_GetSPLField_ConvergencePos(EMIT_PTR emit, VecFx32* p_pos)
 	*p_pos = p_obj->pos;
 }
 
-///< ƒRƒ“ƒo[ƒWƒFƒ“ƒX‚Ì‹­‚³‘€ì
+///< ã‚³ãƒ³ãƒãƒ¼ã‚¸ã‚§ãƒ³ã‚¹ã®å¼·ã•æ“ä½œ
 void SplSub_SetSPLField_ConvergenceRatio(EMIT_PTR emit, fx16* ratio)
 {
 	SPLConvergence* p_obj;

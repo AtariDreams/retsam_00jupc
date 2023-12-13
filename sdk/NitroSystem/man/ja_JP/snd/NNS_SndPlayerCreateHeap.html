@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndPlayerCreateHeap</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>NNS_SndPlayerCreateHeap</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndPlayerCreateHeap(
@@ -20,7 +20,7 @@
         u32 <var>size</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA4LWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -28,70 +28,70 @@
 <tbody>
 <tr>
 <td><em><strong><code>playerNo</code></strong></em></td>
-<td>�v���C���[�ԍ��ł��B</td>
+<td>プレイヤー番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>heap</code></strong></em></td>
-<td>�v���C���[�q�[�v���m�ۂ��邽�߂̃q�[�v�ł��B</td>
+<td>プレイヤーヒープを確保するためのヒープです。</td>
 </tr>
 <tr>
 <td><em><strong><code>size</code></strong></em></td>
-<td>�v���C���[�q�[�v�̃T�C�Y�ł��B</td>
+<td>プレイヤーヒープのサイズです。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDA1MWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�v���C���[�q�[�v�̍쐬�ɐ����������ǂ�����Ԃ��܂��B</p>
+      <p>プレイヤーヒープの作成に成功したかどうかを返します。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDACNWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�v���C���[�q�[�v���쐬���܂��B
+プレイヤーヒープを作成します。
 </p>
       <p>
-�T�E���h�q�[�v<em><strong><code>heap</code></strong></em>��ɁA�T�C�Y<em><strong><code>size</code></strong></em>�̃v���C���[�q�[�v���쐬���܂��B
-�v���C���[�q�[�v�̊Ǘ��̈悪�K�v�Ȃ��߁A���ۂɂ̓T�C�Y<em><strong><code>size</code></strong></em>��葽���̃�����������܂��B
-���̃T�E���h�q�[�v<em><strong><code>heap</code></strong></em>�ɏ\���ȋ󂫗e�ʂ������ꍇ�A�֐��͎��s���܂��B
+サウンドヒープ<em><strong><code>heap</code></strong></em>上に、サイズ<em><strong><code>size</code></strong></em>のプレイヤーヒープを作成します。
+プレイヤーヒープの管理領域が必要なため、実際にはサイズ<em><strong><code>size</code></strong></em>より多くのメモリを消費します。
+元のサウンドヒープ<em><strong><code>heap</code></strong></em>に十分な空き容量が無い場合、関数は失敗します。
 </p>
       <p>
-�쐬���ꂽ�T�E���h�q�[�v�́A�w�肵���v���C���[<em><strong><code>playerNo</code></strong></em>�ɐڑ�����܂��B
-<tt class="function"><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeq</a></tt>�֐����g���āA
-�w��v���C���[<em><strong><code>playerNo</code></strong></em>�ŃV�[�P���X���Đ����悤�Ƃ����Ƃ��ɁA
-���̃v���C���[�q�[�v���g�p����܂��B
+作成されたサウンドヒープは、指定したプレイヤー<em><strong><code>playerNo</code></strong></em>に接続されます。
+<tt class="function"><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeq</a></tt>関数を使って、
+指定プレイヤー<em><strong><code>playerNo</code></strong></em>でシーケンスを再生しようとしたときに、
+このプレイヤーヒープが使用されます。
 </p>
       <p>
-���̊֐����J��Ԃ��Ăт����ƁA�w�肵���v���C���[<em><strong><code>playerNo</code></strong></em>�ɑ΂��A
-�v���C���[�q�[�v���ǉ�����Ă����܂��B�ʏ�A�v���C���[���̃V�[�P���X�����Đ��ő吔��
-���������̃v���C���[�q�[�v���쐬���܂��B
-�i�������A�Đ��ɕK�v�ȃT�E���h�f�[�^���T�E���h�q�[�v��ɂ���ꍇ�́A�v���C���[�q�[�v��
-�쐬����K�v�͂���܂���B�j
+この関数を繰り返し呼びだすと、指定したプレイヤー<em><strong><code>playerNo</code></strong></em>に対し、
+プレイヤーヒープが追加されていきます。通常、プレイヤー毎のシーケンス同時再生最大数と
+同じだけのプレイヤーヒープを作成します。
+（ただし、再生に必要なサウンドデータがサウンドヒープ上にある場合は、プレイヤーヒープを
+作成する必要はありません。）
 </p>
       <p>
-���̃T�E���h�q�[�v<em><strong><code>heap</code></strong></em>�̃q�[�v����ɂ���āA
-�v���C���[�q�[�v���m�ۂ����̈悪�J�����ꂽ�Ƃ��A�����I�Ƀv���C���[����v���C���[�q�[�v��
-�؂藣����܂��B
+元のサウンドヒープ<em><strong><code>heap</code></strong></em>のヒープ操作によって、
+プレイヤーヒープを確保した領域が開放されたとき、自動的にプレイヤーからプレイヤーヒープが
+切り離されます。
 </p>
       <div class="note">
-<h3 class="title">����</h3>
+<h3 class="title">注意</h3>
 <p>
-���̊֐��́A<tt class="function"><a href="NNS_SndArcPlayerSetup.html">NNS_SndArcPlayerSetup</a></tt>�֐����ŁA
-�Ăт�����Ă��܂��B�ēx�A���̊֐����Ăт����ƁA�T�E���h�A�[�J�C�u�ł̐ݒ�ɉ�����`�ŁA�v���C���[�q�[�v���ǉ�����܂��B
+この関数は、<tt class="function"><a href="NNS_SndArcPlayerSetup.html">NNS_SndArcPlayerSetup</a></tt>関数内で、
+呼びだされています。再度、この関数を呼びだすと、サウンドアーカイブでの設定に加える形で、プレイヤーヒープが追加されます。
 </p>
 <p>
-�v���C���[�q�[�v�̃T�C�Y<var>size</var>�́A�e�v���C���[���ɓ����l���w�肵�Ă��������B
-�P�̃v���C���[�ɁA�قȂ�T�C�Y�̃v���C���[�q�[�v���ڑ�����Ă���ƁA
-�f�[�^�̃��[�h�ɐ��������莸�s������Ƃ������s����ȓ��������悤�ɂȂ�܂��B
+プレイヤーヒープのサイズ<var>size</var>は、各プレイヤー毎に同じ値を指定してください。
+１つのプレイヤーに、異なるサイズのプレイヤーヒープが接続されていると、
+データのロードに成功したり失敗したりといった不安定な動作をするようになります。
 </p>
 </div>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeq</a>, <a href="NNS_SndArcPlayerSetup.html">NNS_SndArcPlayerSetup</a></p>
-<h2>����</h2>
-<p>2004/06/01 ����<br></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
 </div>
 </body>
 </html>

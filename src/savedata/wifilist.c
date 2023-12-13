@@ -1,13 +1,13 @@
 //============================================================================================
 /**
  * @file	wifilist.c
- * @brief	WIFIƒtƒŒƒ“ƒhƒR[ƒhŠÇ—  > ‚Æ‚à‚¾‚¿è’ ‚Ìƒf[ƒ^ŠÇ—
+ * @brief	WIFIãƒ•ãƒ¬ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰ç®¡ç†  > ã¨ã‚‚ã ã¡æ‰‹å¸³ã®ãƒ‡ãƒ¼ã‚¿ç®¡ç†
  * @author	mori san   >  k.ohno
- * @date	2006.03.27 ‚­‚ç‚¢
+ * @date	2006.03.27 ãã‚‰ã„
  */
 //============================================================================================
 
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
 #include "common.h"
 #include <dwc.h>
@@ -33,13 +33,13 @@
 
 //============================================================================================
 //
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	©•ªó‘Ô•Ûƒ[ƒN‚ÌƒTƒCƒYæ“¾
- * @return	int		ƒTƒCƒYiƒoƒCƒg’PˆÊj
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚ºå–å¾—
+ * @return	int		ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  */
 //----------------------------------------------------------
 int WifiList_GetWorkSize(void)
@@ -49,9 +49,9 @@ int WifiList_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief	©•ªó‘Ô•Ûƒ[ƒN‚ÌŠm•Û
- * @param	heapID		ƒƒ‚ƒŠŠm•Û‚ğ‚¨‚±‚È‚¤ƒq[ƒvw’è
- * @return	WIFI_LIST	æ“¾‚µ‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿
+ * @param	heapID		ãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚’ãŠã“ãªã†ãƒ’ãƒ¼ãƒ—æŒ‡å®š
+ * @return	WIFI_LIST	å–å¾—ã—ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 WIFI_LIST * WifiList_AllocWork(u32 heapID)
@@ -67,9 +67,9 @@ WIFI_LIST * WifiList_AllocWork(u32 heapID)
 
 //----------------------------------------------------------
 /**
- * @brief	WIFI_LIST‚ÌƒRƒs[
- * @param	from	ƒRƒs[Œ³WIFI_LIST‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	to		ƒRƒs[æWIFI_LIST‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	WIFI_LISTã®ã‚³ãƒ”ãƒ¼
+ * @param	from	ã‚³ãƒ”ãƒ¼å…ƒWIFI_LISTã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	to		ã‚³ãƒ”ãƒ¼å…ˆWIFI_LISTã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void WifiList_Copy(const WIFI_LIST * from, WIFI_LIST * to)
@@ -79,12 +79,12 @@ void WifiList_Copy(const WIFI_LIST * from, WIFI_LIST * to)
 
 //============================================================================================
 //
-//	WIFI_LIST‘€ì‚Ì‚½‚ß‚ÌŠÖ”
+//	WIFI_LISTæ“ä½œã®ãŸã‚ã®é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief			Wifi—p‚Æ‚à‚¾‚¿ƒŠƒXƒgE©•ª—pƒf[ƒ^‚Ì‰Šú‰»
+ * @brief			Wifiç”¨ã¨ã‚‚ã ã¡ãƒªã‚¹ãƒˆãƒ»è‡ªåˆ†ç”¨ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
  * @param			
  */
 //----------------------------------------------------------
@@ -99,7 +99,7 @@ void WifiList_Init(WIFI_LIST * list)
 		list->friend[i].groupName[0] = EOM_;
         list->friend[i].sex = PM_NEUTRAL;
 	}
-    mydwc_createUserData(list);  //GameSpyƒƒOƒCƒ“—p‰¼userƒR[ƒh‚Ìì¬(â‘Î•K—vj
+    mydwc_createUserData(list);  //GameSpyãƒ­ã‚°ã‚¤ãƒ³ç”¨ä»®userã‚³ãƒ¼ãƒ‰ã®ä½œæˆ(çµ¶å¯¾å¿…è¦ï¼‰
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_WIFILIST)
 	SVLD_SetCrc(GMDATA_ID_WIFILIST);
 #endif //CRC_LOADCHECK
@@ -108,9 +108,9 @@ void WifiList_Init(WIFI_LIST * list)
 
 //==============================================================================
 /**
- * $brief   ©•ª‚ÌWIFIÚ‘±–¼î•ñ‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * $brief   è‡ªåˆ†ã®WIFIæ¥ç¶šç½²åæƒ…å ±ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  *
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  u8*		
  */
@@ -124,11 +124,11 @@ DWCUserData* WifiList_GetMyUserInfo( WIFI_LIST* list )
 
 //==============================================================================
 /**
- * $brief   WIFI—F’Bî•ñ‚ğƒ^ƒCƒv–ˆ‚É•Ô‚·
+ * $brief   WIFIå‹é”æƒ…å ±ã‚’ã‚¿ã‚¤ãƒ—æ¯ã«è¿”ã™
  *
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½”Ô–Ú‚Ì—F’B‚©
- * @param   type	İ’è‚·‚éî•ñ‚Ìƒ^ƒCƒviwifilist.h‚ÉenuméŒ¾‚ ‚è)
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•ç•ªç›®ã®å‹é”ã‹
+ * @param   type	è¨­å®šã™ã‚‹æƒ…å ±ã®ã‚¿ã‚¤ãƒ—ï¼ˆwifilist.hã«enumå®£è¨€ã‚ã‚Š)
  *
  * @retval  u32		
  */
@@ -188,10 +188,10 @@ u32 WifiList_GetFriendInfo( WIFI_LIST* list, int no, int type )
 /**
  * $brief   
  *
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½”Ô–Ú‚Ì—F’B‚©
- * @param   type	İ’è‚·‚éî•ñ‚Ìƒ^ƒCƒviwifilist.h‚ÉenuméŒ¾‚ ‚è)
- * @param   value	İ’è‚·‚é’l
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•ç•ªç›®ã®å‹é”ã‹
+ * @param   type	è¨­å®šã™ã‚‹æƒ…å ±ã®ã‚¿ã‚¤ãƒ—ï¼ˆwifilist.hã«enumå®£è¨€ã‚ã‚Š)
+ * @param   value	è¨­å®šã™ã‚‹å€¤
  *
  * @retval  none	
  */
@@ -240,10 +240,10 @@ void WifiList_SetFriendInfo( WIFI_LIST* list, int no, int type, u32 value )
 
 //==============================================================================
 /**
- * $brief   ‚Æ‚à‚¾‚¿ƒŠƒXƒg‚©‚ç—F’B‚ÌWIFI—pî•ñ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ * $brief   ã¨ã‚‚ã ã¡ãƒªã‚¹ãƒˆã‹ã‚‰å‹é”ã®WIFIç”¨æƒ…å ±æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½l–Ú‚Ì—F’B‚©
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•äººç›®ã®å‹é”ã‹
  *
  * @retval  DWCFriendData	*		
  */
@@ -260,8 +260,8 @@ DWCFriendData	*WifiList_GetDwcDataPtr( WIFI_LIST* list, int no )
 /**
  * $brief   
  *
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½l–Ú‚Ì—F’B‚©
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•äººç›®ã®å‹é”ã‹
  *
  * @retval  u8 *		
  */
@@ -277,8 +277,8 @@ STRCODE *WifiList_GetFriendNamePtr( WIFI_LIST *list, int no )
 /**
  * $brief   
  *
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½l–Ú‚Ì—F’B‚©
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•äººç›®ã®å‹é”ã‹
  *
  * @retval  u8 *		
  */
@@ -297,8 +297,8 @@ void WifiList_SetFriendName( WIFI_LIST *list, int no, STRBUF* pBuf )
 /**
  * $brief   
  *
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½l–Ú‚Ì—F’B‚©
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•äººç›®ã®å‹é”ã‹
  *
  * @retval  u8 *		
  */
@@ -313,8 +313,8 @@ STRCODE *WifiList_GetFriendGroupNamePtr( WIFI_LIST *list, int no )
 //==============================================================================
 /**
  * $brief   
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½l–Ú‚Ì—F’B‚©
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•äººç›®ã®å‹é”ã‹
  * @retval  u8 *		
  */
 //==============================================================================
@@ -330,24 +330,24 @@ void WifiList_SetFriendGroupName( WIFI_LIST *list, int no, STRBUF* pBuf )
 
 //==============================================================================
 /**
- * $brief   ƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½l–Ú‚Ì—F’B‚©
+ * $brief   ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•äººç›®ã®å‹é”ã‹
  * @retval  BOOL
  */
 //==============================================================================
 BOOL WifiList_IsFriendData( WIFI_LIST *list, int no )
 {
 	GF_ASSERT( no < WIFILIST_FRIEND_MAX );
-    // ƒtƒŒƒ“ƒhƒR[ƒh‚ª³‚µ‚¢‚©‚Ç‚¤‚©‚Å”»’f
+    // ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰ãŒæ­£ã—ã„ã‹ã©ã†ã‹ã§åˆ¤æ–­
     return DWC_IsValidFriendData(&list->friend_dwc[no]);
 }
 
 //==============================================================================
 /**
- * $brief   “ü‚Á‚Ä‚¢‚él”‚ğ‚©‚¦‚·
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½l–Ú‚Ì—F’B‚©
+ * $brief   å…¥ã£ã¦ã„ã‚‹äººæ•°ã‚’ã‹ãˆã™
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•äººç›®ã®å‹é”ã‹
  * @retval  BOOL
  */
 //==============================================================================
@@ -365,11 +365,11 @@ int WifiList_GetFriendDataNum( WIFI_LIST *list )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“ü‚Á‚Ä‚¢‚é—F’B‚ÌÅŒã‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
+ *	@brief	å…¥ã£ã¦ã„ã‚‹å‹é”ã®æœ€å¾Œã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	list	\‘¢‘Ì
+ *	@param	list	æ§‹é€ ä½“
  *
- *	@retval	ÅŒã‚ÌƒCƒ“ƒfƒbƒNƒX
+ *	@retval	æœ€å¾Œã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 int WifiList_GetFriendDataLastIdx( WIFI_LIST *list )
@@ -386,9 +386,9 @@ int WifiList_GetFriendDataLastIdx( WIFI_LIST *list )
 
 //==============================================================================
 /**
- * $brief   ƒtƒŒƒ“ƒh‚Ì–¼‘O‚ğÁ‚·
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½l–Ú‚Ì—F’B‚©
+ * $brief   ãƒ•ãƒ¬ãƒ³ãƒ‰ã®åå‰ã‚’æ¶ˆã™
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•äººç›®ã®å‹é”ã‹
  * @retval  none
  */
 //==============================================================================
@@ -415,10 +415,10 @@ void WifiList_ResetData( WIFI_LIST *list, int no)
 
 //==============================================================================
 /**
- * $brief   ƒtƒŒƒ“ƒh‚Ì–¼‘O‚ğˆÚ“®‚·‚é
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		    ‚±‚±‚ÉˆÚ“®
- * @param   moveNo		ˆÚ“®‚³‚¹‚éƒf[ƒ^
+ * $brief   ãƒ•ãƒ¬ãƒ³ãƒ‰ã®åå‰ã‚’ç§»å‹•ã™ã‚‹
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		    ã“ã“ã«ç§»å‹•
+ * @param   moveNo		ç§»å‹•ã•ã›ã‚‹ãƒ‡ãƒ¼ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -437,10 +437,10 @@ static void WifiList_MoveData( WIFI_LIST *list, int no, int moveNo)
 
 //==============================================================================
 /**
- * $brief   ƒtƒŒƒ“ƒh‚Ìƒf[ƒ^‚ğƒRƒs[‚·‚é
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		    ‚±‚±‚ÉˆÚ“®
- * @param   moveNo		ˆÚ“®‚³‚¹‚éƒf[ƒ^
+ * $brief   ãƒ•ãƒ¬ãƒ³ãƒ‰ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		    ã“ã“ã«ç§»å‹•
+ * @param   moveNo		ç§»å‹•ã•ã›ã‚‹ãƒ‡ãƒ¼ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -475,9 +475,9 @@ void WifiList_SetCountStopNum( WIFI_LIST *list, int no )
 
 //==============================================================================
 /**
- * $brief   ƒtƒŒƒ“ƒh‚ğ‚Â‚ß‚é
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½l–Ú‚Ì—F’B‚©
+ * $brief   ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚’ã¤ã‚ã‚‹
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•äººç›®ã®å‹é”ã‹
  * @retval  none
  */
 //==============================================================================
@@ -488,15 +488,15 @@ void WifiList_FormUpData( WIFI_LIST *list)
     for(i = 0; i < WIFILIST_FRIEND_MAX; i++){
         if(WifiList_IsFriendData(list, i)){
             if(blank != -1){
-                WifiList_MoveData(list, blank, i);  // ‹ó‚«‚ÉˆÚ“®
+                WifiList_MoveData(list, blank, i);  // ç©ºãã«ç§»å‹•
                 OS_TPrintf("friend move %d < %d\n",blank,i);
-                i = -1;  // ‚à‚¤ˆê‰ñŒŸ¸
+                i = -1;  // ã‚‚ã†ä¸€å›æ¤œæŸ»
                 blank = -1;
             }
         }
         else{
             if(blank == -1){
-                blank = i;  // ‹ó‚«‚ğ‹L‰¯
+                blank = i;  // ç©ºãã‚’è¨˜æ†¶
             }
         }
     }
@@ -507,9 +507,9 @@ void WifiList_FormUpData( WIFI_LIST *list)
 
 //==============================================================================
 /**
- * $brief   “ú‚Ì‹L˜^‚ğ‚Â‚¯‚é
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½l–Ú‚Ì—F’B‚©
+ * $brief   æ—¥æ™‚ã®è¨˜éŒ²ã‚’ã¤ã‘ã‚‹
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•äººç›®ã®å‹é”ã‹
  * @retval  none
  */
 //==============================================================================
@@ -527,12 +527,12 @@ void WifiList_SetLastPlayDate( WIFI_LIST *list, int no)
 
 //==============================================================================
 /**
- * $brief   Ÿ‚¿•‰‚¯‚Ì‹L˜^‚ğ‚Â‚¯‚é
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½l–Ú‚Ì—F’B‚©
- * @param   winNum  Ÿ‚¿”
- * @param   loseNum •‰‚¯”
- * @param   trade   ŒğŠ·”
+ * $brief   å‹ã¡è² ã‘ã®è¨˜éŒ²ã‚’ã¤ã‘ã‚‹
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•äººç›®ã®å‹é”ã‹
+ * @param   winNum  å‹ã¡æ•°
+ * @param   loseNum è² ã‘æ•°
+ * @param   trade   äº¤æ›æ•°
  * @retval  none
  */
 //==============================================================================
@@ -556,11 +556,11 @@ void WifiList_SetResult( WIFI_LIST *list, int no, int winNum, int loseNum,int tr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒtƒBƒ“‰ñ”‘«‚µZ
+ *	@brief	ãƒãƒ•ã‚£ãƒ³å›æ•°è¶³ã—ç®—
  *
- *	@param	list		WIFILISTƒ|ƒCƒ“ƒ^
- *	@param	no			‰½l–Ú‚Ì—F’B‚©
- *	@param	pofin		‘«‚µZ”
+ *	@param	list		WIFILISTãƒã‚¤ãƒ³ã‚¿
+ *	@param	no			ä½•äººç›®ã®å‹é”ã‹
+ *	@param	pofin		è¶³ã—ç®—æ•°
  */
 //-----------------------------------------------------------------------------
 void WifiList_AddPorin( WIFI_LIST *list, int no, int pofin )
@@ -577,11 +577,11 @@ void WifiList_AddPorin( WIFI_LIST *list, int no, int pofin )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹Ê“Š‚°ƒ~ƒjƒQ[ƒ€‰ñ”ƒJƒEƒ“ƒg
+ *	@brief	ç‰æŠ•ã’ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å›æ•°ã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@param	list		ƒ[ƒN
- *	@param	no			—F’Bnumber
- *	@param	addnum		‘«‚·’l
+ *	@param	list		ãƒ¯ãƒ¼ã‚¯
+ *	@param	no			å‹é”number
+ *	@param	addnum		è¶³ã™å€¤
  */
 //-----------------------------------------------------------------------------
 void WifiList_AddMinigameBallSlow( WIFI_LIST *list, int no, int addnum )
@@ -622,12 +622,12 @@ void WifiList_AddMinigameBalloon( WIFI_LIST *list, int no, int addnum )
 
 //==============================================================================
 /**
- * $brief   A‚Ìl‚Ìƒf[ƒ^‚ğB‚Ìl‚Éƒ}[ƒW‚·‚é
- * @param   list	WIFI_LIST\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   no		‰½l–Ú‚Ì—F’B‚©
- * @param   winNum  Ÿ‚¿”
- * @param   loseNum •‰‚¯”
- * @param   trade   ŒğŠ·”
+ * $brief   Aã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’Bã®äººã«ãƒãƒ¼ã‚¸ã™ã‚‹
+ * @param   list	WIFI_LISTæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   no		ä½•äººç›®ã®å‹é”ã‹
+ * @param   winNum  å‹ã¡æ•°
+ * @param   loseNum è² ã‘æ•°
+ * @param   trade   äº¤æ›æ•°
  * @retval  none
  */
 //==============================================================================
@@ -662,8 +662,8 @@ void WifiList_DataMarge( WIFI_LIST *list, int delNo, int no)
         list->friend[no].minigame_balloon = WIFILIST_COUNT_RANGE_MAX;
     }
 
-	// delNo‚Ì‚Ù‚¤‚ªÅV‚Ìî•ñ‚È‚Ì‚ÅAƒOƒ‹[ƒv–¼‚ÍÅV‚Ì‚Ù‚¤‚ğc‚·
-	// ƒf[ƒ^‚Æ‚µ‚Äc‚é‚Ì‚Í‘å–{‚Ì‚Ù‚¤iŒÃ‚¢‚Ù‚¤j‚È‚Ì‚ÅA–¼‘O‚ÍAæ‚Á‚Ä‚¨‚­B
+	// delNoã®ã»ã†ãŒæœ€æ–°ã®æƒ…å ±ãªã®ã§ã€ã‚°ãƒ«ãƒ¼ãƒ—åã¯æœ€æ–°ã®ã»ã†ã‚’æ®‹ã™
+	// ãƒ‡ãƒ¼ã‚¿ã¨ã—ã¦æ®‹ã‚‹ã®ã¯å¤§æœ¬ã®ã»ã†ï¼ˆå¤ã„ã»ã†ï¼‰ãªã®ã§ã€åå‰ã¯ã€å–ã£ã¦ãŠãã€‚
 	MI_CpuCopyFast( list->friend[delNo].groupName, list->friend[no].groupName, ( sizeof(STRCODE)*(PERSON_NAME_SIZE + EOM_SIZE) ) );
 	
 	MI_CpuClearFast(&list->friend[delNo], sizeof(WIFI_FRIEND));
@@ -679,9 +679,9 @@ void WifiList_DataMarge( WIFI_LIST *list, int delNo, int no)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	WIFIƒŠƒXƒg‚ğƒZ[ƒuƒf[ƒ^‚©‚çˆø‚«o‚·
- * @param	sv			ƒZ[ƒuƒf[ƒ^•Ûƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	WIFI_LIST	WIFIƒŠƒXƒg
+ * @brief	WIFIãƒªã‚¹ãƒˆã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å¼•ãå‡ºã™
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	WIFI_LIST	WIFIãƒªã‚¹ãƒˆ
  */
 //---------------------------------------------------------------------------
 WIFI_LIST* SaveData_GetWifiListData(SAVEDATA * sv)

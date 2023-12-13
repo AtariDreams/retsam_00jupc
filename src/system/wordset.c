@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	wordset.c
- * @brief	’PŒêƒ‚ƒWƒ…[ƒ‹ˆ—
+ * @brief	å˜èªãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‡¦ç†
  * @author	taya
  * @date	2005.09.28
  */
@@ -24,7 +24,7 @@
 #include "msgdata/msg_supportname.h"
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/29
-// Œ‚Ì–¼‘Oi‚Ì’ZkŒ`j‚ğ—ñ‹“‚µ‚½gmm‚ğ’Ç‰Á
+// æœˆã®åå‰ï¼ˆã®çŸ­ç¸®å½¢ï¼‰ã‚’åˆ—æŒ™ã—ãŸgmmã‚’è¿½åŠ 
 #include "msgdata/msg_month.h"
 // ----------------------------------------------------------------------------
 
@@ -35,30 +35,30 @@
 #include "msgdata/msg_place_name_haihu.h"
 #include "msgdata/msg_place_name_tokusyu.h"
 // localize_spec_mark(LANG_ALL) anon2 2021/12/07
-// ‚±‚Ì‹@”\‚ªƒgƒoƒŠƒfƒp[ƒg‚ÉŠÖ˜A‚µ‚Ä‚¢‚é‚±‚Æ‚ğŠm”F‚µ‚Ü‚·
+// ã“ã®æ©Ÿèƒ½ãŒãƒˆãƒãƒªãƒ‡ãƒ‘ãƒ¼ãƒˆã«é–¢é€£ã—ã¦ã„ã‚‹ã“ã¨ã‚’ç¢ºèªã—ã¾ã™
 #include "msgdata/msg_ev_win.h"
 
 
 /*----------------------------------*/
-/** •¶–@«                          */
+/** æ–‡æ³•æ€§                          */
 /*----------------------------------*/
 enum {
-	WORDSET_GRAMMER_NONE,		///< g—p‚µ‚È‚¢
-	WORDSET_GRAMMER_MALE,		///< ’j«
-	WORDSET_GRAMMER_FEMALE,		///< —«
-	WORDSET_GRAMMER_NEUTRAL,	///< ’†«
+	WORDSET_GRAMMER_NONE,		///< ä½¿ç”¨ã—ãªã„
+	WORDSET_GRAMMER_MALE,		///< ç”·æ€§
+	WORDSET_GRAMMER_FEMALE,		///< å¥³æ€§
+	WORDSET_GRAMMER_NEUTRAL,	///< ä¸­æ€§
 };
 
 
 /*----------------------------------*/
-/** ’PŒêƒpƒ‰ƒ[ƒ^                  */
+/** å˜èªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿                  */
 /*----------------------------------*/
 typedef struct {
-	u8  def_article;		///< ’èŠ¥Œ‚h‚c
-	u8  indef_article;		///< •s’èŠ¥Œ‚h‚c
-	u8  preposition;		///< ‘O’uŒ‚h‚c
-	u8  grammer : 7;		///< •¶–@«
-	u8  form : 1;			///< ’P”E•¡”i0 = ’P”j
+	u8  def_article;		///< å®šå† è©ï¼©ï¼¤
+	u8  indef_article;		///< ä¸å®šå† è©ï¼©ï¼¤
+	u8  preposition;		///< å‰ç½®è©ï¼©ï¼¤
+	u8  grammer : 7;		///< æ–‡æ³•æ€§
+	u8  form : 1;			///< å˜æ•°ãƒ»è¤‡æ•°ï¼ˆ0 = å˜æ•°ï¼‰
 }WORDSET_PARAM;
 
 
@@ -101,16 +101,16 @@ void WORDSET_RegisterMonthName( WORDSET* wordset, u32 bufID, u32 month );
 void WORDSET_Capitalize( WORDSET* wordset, u32 bufID );
 void WORDSET_RegisterTobariDepartFloorNo( WORDSET* wordset, u32 bufID, u32 floorID );
 //======================================================================================================
-// ƒVƒXƒeƒ€‰Šú‰»EI—¹
+// ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–ãƒ»çµ‚äº†
 //======================================================================================================
 
 //------------------------------------------------------------------
 /**
- * ’PŒêƒZƒbƒgƒ‚ƒWƒ…[ƒ‹ì¬
+ * å˜èªã‚»ãƒƒãƒˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ä½œæˆ
  *
- * @param   heapID			ì¬æƒq[ƒv‚h‚c
+ * @param   heapID			ä½œæˆå…ˆãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- * @retval  WORDSET*		’PŒêƒZƒbƒg
+ * @retval  WORDSET*		å˜èªã‚»ãƒƒãƒˆ
  */
 //------------------------------------------------------------------
 WORDSET*  WORDSET_Create( u32 heapID )
@@ -120,7 +120,7 @@ WORDSET*  WORDSET_Create( u32 heapID )
 
 //------------------------------------------------------------------
 /**
- * ’PŒêƒZƒbƒgƒ‚ƒWƒ…[ƒ‹ì¬i“o˜^’PŒê”E•¶š—ñ’·‚Ìw’è”Åj
+ * å˜èªã‚»ãƒƒãƒˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ä½œæˆï¼ˆç™»éŒ²å˜èªæ•°ãƒ»æ–‡å­—åˆ—é•·ã®æŒ‡å®šç‰ˆï¼‰
  *
  * @param   word_max		
  * @param   buflen			
@@ -175,7 +175,7 @@ WORDSET* WORDSET_CreateEx( u32 word_max, u32 buflen, u32 heapID )
 
 //------------------------------------------------------------------
 /**
- * ’PŒêƒZƒbƒg”jŠü
+ * å˜èªã‚»ãƒƒãƒˆç ´æ£„
  *
  * @param   wordset		
  *
@@ -215,29 +215,29 @@ void WORDSET_Delete( WORDSET* wordset )
 
 //------------------------------------------------------------------
 /**
- * ’PŒêƒpƒ‰ƒ[ƒ^‰Šú‰»
+ * å˜èªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- * @param   param		ƒpƒ‰ƒ[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
 static void InitParam(WORDSET_PARAM* param)
 {
-	// Œ»ó‚È‚É‚à‚µ‚Ä‚¢‚È‚¢
+	// ç¾çŠ¶ãªã«ã‚‚ã—ã¦ã„ãªã„
 }
 
 //======================================================================================================
-// ’PŒêƒZƒbƒgƒ‚ƒWƒ…[ƒ‹‚ÉŠeí’PŒê‚ğ“o˜^‚·‚é
+// å˜èªã‚»ãƒƒãƒˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã«å„ç¨®å˜èªã‚’ç™»éŒ²ã™ã‚‹
 //======================================================================================================
 
 //------------------------------------------------------------------
 /**
- * ’PŒê•¶š—ñ•ƒpƒ‰ƒ[ƒ^‚ğw’èƒoƒbƒtƒ@‚É“o˜^
+ * å˜èªæ–‡å­—åˆ—ï¼†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²
  *
- * @param   wordset		’PŒêƒZƒbƒgƒ‚ƒWƒ…[ƒ‹
- * @param   bufID		ƒoƒbƒtƒ@‚h‚c
- * @param   str			•¶š—ñ
- * @param   param		•¶š—ñ‚É•t‚·‚éƒpƒ‰ƒ[ƒ^
+ * @param   wordset		å˜èªã‚»ãƒƒãƒˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+ * @param   bufID		ãƒãƒƒãƒ•ã‚¡ï¼©ï¼¤
+ * @param   str			æ–‡å­—åˆ—
+ * @param   param		æ–‡å­—åˆ—ã«ä»˜éšã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -259,14 +259,14 @@ static void RegisterWord( WORDSET* wordset, u32 bufID, const STRBUF* str, const 
 
 //------------------------------------------------------------------
 /**
- * ”CˆÓ•¶š—ñ‚ğƒpƒ‰ƒ[ƒ^•t‚«‚Å“o˜^
+ * ä»»æ„æ–‡å­—åˆ—ã‚’ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»˜ãã§ç™»éŒ²
  *
- * @param   wordset			’PŒêƒZƒbƒg
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   word			•¶š—ñ
- * @param   sex				«•ÊƒR[ƒh
- * @param	singular_flag	’P^•¡iTRUE‚Å’P”j
- * @param   lang			Œ¾ŒêƒR[ƒh
+ * @param   wordset			å˜èªã‚»ãƒƒãƒˆ
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   word			æ–‡å­—åˆ—
+ * @param   sex				æ€§åˆ¥ã‚³ãƒ¼ãƒ‰
+ * @param	singular_flag	å˜ï¼è¤‡ï¼ˆTRUEã§å˜æ•°ï¼‰
+ * @param   lang			è¨€èªã‚³ãƒ¼ãƒ‰
  *
  */
 //------------------------------------------------------------------
@@ -278,10 +278,10 @@ void WORDSET_RegisterWord( WORDSET* wordset, u32 bufID, const STRBUF* word, u32 
 
 //------------------------------------------------------------------
 /**
- * ƒvƒŒƒCƒ„[–¼‚ğ“o˜^
+ * ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚’ç™»éŒ²
  *
- * @param   wordset		’PŒêƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		ƒoƒbƒtƒ@ID
+ * @param   wordset		å˜èªã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ãƒãƒƒãƒ•ã‚¡ID
  * @param   status		
  *
  */
@@ -298,11 +298,11 @@ void WORDSET_RegisterPlayerName( WORDSET* wordset, u32 bufID, const MYSTATUS* st
 
 //------------------------------------------------------------------
 /**
- * ƒ‰ƒCƒoƒ‹–¼‚ğ“o˜^
+ * ãƒ©ã‚¤ãƒãƒ«åã‚’ç™»éŒ²
  *
- * @param   wordset		’PŒêƒZƒbƒgƒ‚ƒWƒ…[ƒ‹
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   savedata		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wordset		å˜èªã‚»ãƒƒãƒˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   savedata		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -313,7 +313,7 @@ void WORDSET_RegisterRivalName( WORDSET* wordset,  u32 bufID, const SAVEDATA * s
 		PA_, bou_, RU_, EOM_,
 	};
 
-	// [[[ ¡‚ÍŒÅ’è–¼‚ğƒRƒs[‚µ‚Ä‚¢‚é‚¾‚¯B‚¢‚¸‚êƒgƒŒ[ƒi[î•ñ‚ğQÆ‚µ‚Ä‚¢‚ë‚¢‚ë‚â‚éB
+	// [[[ ä»Šã¯å›ºå®šåã‚’ã‚³ãƒ”ãƒ¼ã—ã¦ã„ã‚‹ã ã‘ã€‚ã„ãšã‚Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±ã‚’å‚ç…§ã—ã¦ã„ã‚ã„ã‚ã‚„ã‚‹ã€‚
 	STRBUF_SetStringCode( wordset->tmpBuf, name );
 #endif
 	const STRCODE * rivalname = MISC_GetRivalName(SaveData_GetMiscReadOnly(savedata));
@@ -324,10 +324,10 @@ void WORDSET_RegisterRivalName( WORDSET* wordset,  u32 bufID, const SAVEDATA * s
 
 //------------------------------------------------------------------
 /**
- * ƒTƒ|[ƒgƒLƒƒƒ‰–¼‚ğw’èƒoƒbƒtƒ@‚É“o˜^
+ * ã‚µãƒãƒ¼ãƒˆã‚­ãƒ£ãƒ©åã‚’æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²
  *
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   savedata		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   savedata		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -353,11 +353,11 @@ void WORDSET_RegisterSupportName( WORDSET* wordset, u32 bufID, const SAVEDATA * 
 }
 //------------------------------------------------------------------
 /**
- * Î”è‚Ì–¼‘O‚ğw’èƒoƒbƒtƒ@‚É“o˜^
+ * çŸ³ç¢‘ã®åå‰ã‚’æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²
  *
  * @param	wordset	
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   savedata		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   savedata		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void WORDSET_RegisterMonumentName( WORDSET* wordset, u32 bufID, const SAVEDATA * savedata )
@@ -369,10 +369,10 @@ void WORDSET_RegisterMonumentName( WORDSET* wordset, u32 bufID, const SAVEDATA *
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚Éƒ|ƒPƒ‚ƒ“–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒã‚±ãƒ¢ãƒ³åã‚’ç™»éŒ²
  *
- * @param   bufID		ƒoƒbƒtƒ@ID
- * @param   ppp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   bufID		ãƒãƒƒãƒ•ã‚¡ID
+ * @param   ppp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -383,7 +383,7 @@ void WORDSET_RegisterPokeMonsName( WORDSET* wordset, u32 bufID, POKEMON_PASO_PAR
 
 	man = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_monsname_dat, wordset->heapID );
 
-	// [[[‚±‚±‚Åƒ|ƒPƒ‚ƒ“‚Ì«•Ê“™‚ğƒ`ƒFƒbƒN‚Å‚«‚é]]]
+	// [[[ã“ã“ã§ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ç­‰ã‚’ãƒã‚§ãƒƒã‚¯ã§ãã‚‹]]]
 	monsno = PokePasoParaGet( ppp, ID_PARA_monsno, NULL );
 	MSGMAN_GetString( man, monsno, wordset->tmpBuf );
 	RegisterWord( wordset, bufID, wordset->tmpBuf, NULL);
@@ -393,7 +393,7 @@ void WORDSET_RegisterPokeMonsName( WORDSET* wordset, u32 bufID, POKEMON_PASO_PAR
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/11
-// •s’èŠ¥Œ•t‚«‚Ìƒ|ƒPƒ‚ƒ“–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®ãƒã‚±ãƒ¢ãƒ³åã‚’å¼•ã£å¼µã£ã¦ãã‚‹é–¢æ•°ã‚’è¿½åŠ 
 
 void WORDSET_RegisterPokeMonsNameIndefinate( WORDSET* wordset, u32 bufID, POKEMON_PASO_PARAM* ppp )
 {
@@ -419,32 +419,32 @@ void WORDSET_RegisterPokeMonsNameIndefinateByNo( WORDSET* wordset, u32 bufID, u3
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚Éƒ|ƒPƒ‚ƒ“‚ÌƒjƒbƒNƒl[ƒ€‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ç™»éŒ²
  *
- * @param   bufID		ƒoƒbƒtƒ@ID
- * @param   ppp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   bufID		ãƒãƒƒãƒ•ã‚¡ID
+ * @param   ppp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  */
 //------------------------------------------------------------------
 void WORDSET_RegisterPokeNickName( WORDSET* wordset, u32 bufID, POKEMON_PASO_PARAM* ppp )
 {
-	// [[[‚±‚±‚Åƒ|ƒPƒ‚ƒ“‚Ì«•Ê“™‚ğƒ`ƒFƒbƒN‚Å‚«‚é]]]
+	// [[[ã“ã“ã§ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ç­‰ã‚’ãƒã‚§ãƒƒã‚¯ã§ãã‚‹]]]
 	PokePasoParaGet( ppp, ID_PARA_nickname_buf, wordset->tmpBuf );
 	RegisterWord( wordset, bufID, wordset->tmpBuf, NULL);
 }
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚Éƒ|ƒPƒ‚ƒ“‚Ìe–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒã‚±ãƒ¢ãƒ³ã®è¦ªåã‚’ç™»éŒ²
  *
- * @param   bufID		ƒoƒbƒtƒ@ID
- * @param   ppp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * @param   bufID		ãƒãƒƒãƒ•ã‚¡ID
+ * @param   ppp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  */
 //------------------------------------------------------------------
 void WORDSET_RegisterPokeOyaName( WORDSET* wordset,  u32 bufID, POKEMON_PASO_PARAM* ppp )
 {
-	// [[[‚±‚±‚Åe‚Ì«•Ê‚àƒ`ƒFƒbƒN‚Å‚«‚é]]]
+	// [[[ã“ã“ã§è¦ªã®æ€§åˆ¥ã‚‚ãƒã‚§ãƒƒã‚¯ã§ãã‚‹]]]
 	PokePasoParaGet( ppp, ID_PARA_oyaname_buf, wordset->tmpBuf );
 	RegisterWord( wordset, bufID, wordset->tmpBuf, NULL);
 
@@ -452,22 +452,22 @@ void WORDSET_RegisterPokeOyaName( WORDSET* wordset,  u32 bufID, POKEMON_PASO_PAR
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚É”š‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«æ•°å­—ã‚’ç™»éŒ²
  *
- * @param   bufID		ƒoƒbƒtƒ@ID
- * @param   number		”’l
- * @param   keta		Œ…”
- * @param   dispType	®Œ`ƒ^ƒCƒv
- * @param   codeType	•¶šƒR[ƒhƒ^ƒCƒv
+ * @param   bufID		ãƒãƒƒãƒ•ã‚¡ID
+ * @param   number		æ•°å€¤
+ * @param   keta		æ¡æ•°
+ * @param   dispType	æ•´å½¢ã‚¿ã‚¤ãƒ—
+ * @param   codeType	æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚¿ã‚¤ãƒ—
  *
- * dispType :  NUMBER_DISPTYPE_LEFT    ¶‹l‚ß
- *             NUMBER_DISPTYPE_SPACE   ‰E‹l‚ßiƒXƒy[ƒX–„‚ßj
- *             NUMBER_DISPTYPE_ZERO    ‰E‹l‚ßiƒ[ƒ–„‚ßj
+ * dispType :  NUMBER_DISPTYPE_LEFT    å·¦è©°ã‚
+ *             NUMBER_DISPTYPE_SPACE   å³è©°ã‚ï¼ˆã‚¹ãƒšãƒ¼ã‚¹åŸ‹ã‚ï¼‰
+ *             NUMBER_DISPTYPE_ZERO    å³è©°ã‚ï¼ˆã‚¼ãƒ­åŸ‹ã‚ï¼‰
  *
  *
- * codeType :  NUMBER_CODETYPE_DEFAULT  ƒ[ƒJƒ‰ƒCƒY‚ÌƒfƒtƒHƒ‹ƒg•i“ú–{‘SŠp•^ŠCŠO”¼Šp•j‚É‚È‚é
- *             NUMBER_CODETYPE_ZENKAKU  ‘SŠp•w’è
- *             NUMBER_CODETYPE_HANKAKU  ”¼Šp•w’è
+ * codeType :  NUMBER_CODETYPE_DEFAULT  ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºæ™‚ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå¹…ï¼ˆæ—¥æœ¬ï¼å…¨è§’å¹…ï¼æµ·å¤–ï¼åŠè§’å¹…ï¼‰ã«ãªã‚‹
+ *             NUMBER_CODETYPE_ZENKAKU  å…¨è§’å¹…æŒ‡å®š
+ *             NUMBER_CODETYPE_HANKAKU  åŠè§’å¹…æŒ‡å®š
  */
 //------------------------------------------------------------------
 void WORDSET_RegisterNumber( WORDSET* wordset, u32 bufID, s32 number, u32 keta, NUMBER_DISPTYPE dispType, NUMBER_CODETYPE codeType )
@@ -478,10 +478,10 @@ void WORDSET_RegisterNumber( WORDSET* wordset, u32 bufID, s32 number, u32 keta, 
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒƒU–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒ¯ã‚¶åã‚’ç™»éŒ²
  *
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   wazaID			ƒƒUID
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   wazaID			ãƒ¯ã‚¶ID
  *
  */
 //------------------------------------------------------------------
@@ -498,10 +498,10 @@ void WORDSET_RegisterWazaName( WORDSET* wordset, u32 bufID, u32 wazaID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒŠƒ{ƒ“–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒªãƒœãƒ³åã‚’ç™»éŒ²
  *
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   ribbonID		ƒŠƒ{ƒ“ID
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   ribbonID		ãƒªãƒœãƒ³ID
  *
  */
 //------------------------------------------------------------------
@@ -518,10 +518,10 @@ void WORDSET_RegisterRibbonName( WORDSET* wordset, u32 bufID, u32 ribbonID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚Éƒ|ƒPƒ‚ƒ“‚Ì‚Æ‚­‚¹‚¢–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒã‚±ãƒ¢ãƒ³ã®ã¨ãã›ã„åã‚’ç™»éŒ²
  *
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   tokuseiID		‚Æ‚­‚¹‚¢ID
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   tokuseiID		ã¨ãã›ã„ID
  *
  */
 //------------------------------------------------------------------
@@ -538,10 +538,10 @@ void WORDSET_RegisterTokuseiName( WORDSET* wordset, u32 bufID, u32 tokuseiID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚Éƒ|ƒPƒ‚ƒ“‚Ì‚¹‚¢‚©‚­‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒã‚±ãƒ¢ãƒ³ã®ã›ã„ã‹ãã‚’ç™»éŒ²
  *
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   seikakuID		‚¹‚¢‚©‚­ID
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   seikakuID		ã›ã„ã‹ãID
  *
  */
 //------------------------------------------------------------------
@@ -559,10 +559,10 @@ void WORDSET_RegisterSeikaku( WORDSET * wordset, u32 bufID, u32 seikakuID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒAƒCƒeƒ€–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ã‚¢ã‚¤ãƒ†ãƒ åã‚’ç™»éŒ²
  *
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   itemID			ƒAƒCƒeƒ€ID
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   itemID			ã‚¢ã‚¤ãƒ†ãƒ ID
  *
  */
 //------------------------------------------------------------------
@@ -579,13 +579,13 @@ void WORDSET_RegisterItemName( WORDSET* wordset, u32 bufID, u32 itemID )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/13
-// Š¥Œ•t‚«E•¡”Œ`‚ÌƒAƒCƒeƒ€–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éƒXƒNƒŠƒvƒg–½—ß‚ğ’Ç‰Á
+// å† è©ä»˜ããƒ»è¤‡æ•°å½¢ã®ã‚¢ã‚¤ãƒ†ãƒ åã‚’å¼•ã£å¼µã£ã¦ãã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‘½ä»¤ã‚’è¿½åŠ 
 
 void WORDSET_RegisterItemNameIndefinate( WORDSET* wordset, u32 bufID, u32 itemID )
 {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/22
-	// Š¥Œ•t‚«ƒAƒCƒeƒ€–¼‚Ì dat ƒtƒ@ƒCƒ‹‚ª—pˆÓ‚Å‚«‚½‚Ì‚Å‚»‚±‚©‚çˆø‚­‚æ‚¤‚É
+	// å† è©ä»˜ãã‚¢ã‚¤ãƒ†ãƒ åã® dat ãƒ•ã‚¡ã‚¤ãƒ«ãŒç”¨æ„ã§ããŸã®ã§ãã“ã‹ã‚‰å¼•ãã‚ˆã†ã«
 	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_itemname_ind_dat, wordset->heapID);
 	// ----------------------------------------------------------------------------
 	if( man )
@@ -600,7 +600,7 @@ void WORDSET_RegisterItemNamePlural( WORDSET* wordset, u32 bufID, u32 itemID )
 {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/22
-	// •¡”Œ`ƒAƒCƒeƒ€–¼‚Ì dat ƒtƒ@ƒCƒ‹‚ª—pˆÓ‚Å‚«‚½‚Ì‚Å‚»‚±‚©‚çˆø‚­‚æ‚¤‚É
+	// è¤‡æ•°å½¢ã‚¢ã‚¤ãƒ†ãƒ åã® dat ãƒ•ã‚¡ã‚¤ãƒ«ãŒç”¨æ„ã§ããŸã®ã§ãã“ã‹ã‚‰å¼•ãã‚ˆã†ã«
 	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_itemname_plu_dat, wordset->heapID);
 	// ----------------------------------------------------------------------------
 	if( man )
@@ -615,10 +615,10 @@ void WORDSET_RegisterItemNamePlural( WORDSET* wordset, u32 bufID, u32 itemID )
 //------------------------------------------------------------------
 
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒAƒCƒeƒ€‚ğ“ü‚ê‚éƒ|ƒPƒbƒg–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ã‚¢ã‚¤ãƒ†ãƒ ã‚’å…¥ã‚Œã‚‹ãƒã‚±ãƒƒãƒˆåã‚’ç™»éŒ²
  *
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   wazaID			ƒ|ƒPƒbƒgID
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   wazaID			ãƒã‚±ãƒƒãƒˆID
  *
  */
 //------------------------------------------------------------------
@@ -635,10 +635,10 @@ void WORDSET_RegisterItemPocketName( WORDSET* wordset, u32 bufID, u32 pocketID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒAƒCƒeƒ€‚ğ“ü‚ê‚éƒ|ƒPƒbƒg–¼iƒAƒCƒRƒ“•t‚«j‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ã‚¢ã‚¤ãƒ†ãƒ ã‚’å…¥ã‚Œã‚‹ãƒã‚±ãƒƒãƒˆåï¼ˆã‚¢ã‚¤ã‚³ãƒ³ä»˜ãï¼‰ã‚’ç™»éŒ²
  *
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   wazaID			ƒ|ƒPƒbƒgID
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   wazaID			ãƒã‚±ãƒƒãƒˆID
  *
  */
 //------------------------------------------------------------------
@@ -655,11 +655,11 @@ void WORDSET_RegisterItemPocketWithIcon( WORDSET* wordset, u32 bufID, u32 pocket
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚Éƒ|ƒPƒ‚ƒ“iƒƒUjƒ^ƒCƒv–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒã‚±ãƒ¢ãƒ³ï¼ˆãƒ¯ã‚¶ï¼‰ã‚¿ã‚¤ãƒ—åã‚’ç™»éŒ²
  *
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   typeID			ƒ^ƒCƒvID
- * @param   msgManager		ƒ^ƒCƒv–¼GMM‚ğ‘€ì‚·‚éƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   typeID			ã‚¿ã‚¤ãƒ—ID
+ * @param   msgManager		ã‚¿ã‚¤ãƒ—åGMMã‚’æ“ä½œã™ã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -675,11 +675,11 @@ void WORDSET_RegisterPokeTypeName( WORDSET* wordset, u32 bufID, u32 typeID )
 }
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚Éƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹åã‚’ç™»éŒ²
  *
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   statusID		ƒXƒe[ƒ^ƒXID
- * @param   msgManager		ƒXƒe[ƒ^ƒX–¼GMM‚ğ‘€ì‚·‚éƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   statusID		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ID
+ * @param   msgManager		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹åGMMã‚’æ“ä½œã™ã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -695,11 +695,11 @@ void WORDSET_RegisterPokeStatusName( WORDSET* wordset, u32 bufID, u32 statusID )
 }
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚Éó‘ÔˆÙí–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«çŠ¶æ…‹ç•°å¸¸åã‚’ç™»éŒ²
  *
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   conditionID		ó‘ÔˆÙíID
- * @param   msgManager		ó‘ÔˆÙí–¼GMM‚ğ‘€ì‚·‚éƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   conditionID		çŠ¶æ…‹ç•°å¸¸ID
+ * @param   msgManager		çŠ¶æ…‹ç•°å¸¸åGMMã‚’æ“ä½œã™ã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -716,11 +716,11 @@ void WORDSET_RegisterBadConditionName( WORDSET* wordset, u32 bufID, u32 conditio
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚É–Ø‚ÌÀ‚Ì–¡–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«æœ¨ã®å®Ÿã®å‘³åã‚’ç™»éŒ²
  *
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   tasteID			–Ø‚ÌÀ‚Ì–¡ID
- * @param   msgManager		–Ø‚ÌÀ‚Ì–¡–¼GMM‚ğ‘€ì‚·‚éƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   tasteID			æœ¨ã®å®Ÿã®å‘³ID
+ * @param   msgManager		æœ¨ã®å®Ÿã®å‘³åGMMã‚’æ“ä½œã™ã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -737,11 +737,11 @@ void WORDSET_RegisterSeedTasteName( WORDSET* wordset, u32 bufID, u32 tasteID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚É’n–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«åœ°åã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		’n–¼ID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		åœ°åID
  *
  */
 //------------------------------------------------------------------
@@ -764,11 +764,11 @@ void WORDSET_RegisterPlaceName( WORDSET* wordset, u32 bufID, u32 strID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚Éƒ|ƒPƒbƒ`ƒAƒvƒŠ–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒã‚±ãƒƒãƒã‚¢ãƒ—ãƒªåã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		ƒAƒvƒŠ–¼ID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ã‚¢ãƒ—ãƒªåID
  *
  */
 //------------------------------------------------------------------
@@ -785,18 +785,18 @@ void WORDSET_RegisterPoketchAppName( WORDSET* wordset, u32 bufID, u32 strID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒgƒŒ[ƒi[í•Ê‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç¨®åˆ¥ã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		ƒgƒŒ[ƒi[í•ÊID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç¨®åˆ¥ID
  *
  */
 //------------------------------------------------------------------
 void WORDSET_RegisterTrTypeName( WORDSET* wordset, u32 bufID, u32 strID )
 {
-	//poketool/tr_tool.h‚ğƒCƒ“ƒNƒ‹[ƒh‚µ‚Ä
-	//TT_TrainerTypeSexGet(strID)‚Æ‚·‚é‚±‚Æ‚ÅƒgƒŒ[ƒi[‚Ì«•Ê‚ªæ“¾‚Å‚«‚Ü‚·
+	//poketool/tr_tool.hã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã—ã¦
+	//TT_TrainerTypeSexGet(strID)ã¨ã™ã‚‹ã“ã¨ã§ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æ€§åˆ¥ãŒå–å¾—ã§ãã¾ã™
 	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_trtype_dat, wordset->heapID);
 	if( man )
 	{
@@ -809,7 +809,7 @@ void WORDSET_RegisterTrTypeName( WORDSET* wordset, u32 bufID, u32 strID )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/19
-// •s’èŠ¥Œ•t‚«‚ÌƒgƒŒ[ƒi[ƒ^ƒCƒv–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éƒXƒNƒŠƒvƒg–½—ß‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—åã‚’å¼•ã£å¼µã£ã¦ãã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‘½ä»¤ã‚’è¿½åŠ 
 void WORDSET_RegisterTrTypeNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID )
 {
 	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_trtype_ind_dat, wordset->heapID);
@@ -824,18 +824,18 @@ void WORDSET_RegisterTrTypeNameIndefinate( WORDSET* wordset, u32 bufID, u32 strI
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒgƒŒ[ƒi[í•Ê‚ğ“o˜^ií“¬ê—pj
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç¨®åˆ¥ã‚’ç™»éŒ²ï¼ˆæˆ¦é—˜å°‚ç”¨ï¼‰
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		ƒgƒŒ[ƒi[í•ÊID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç¨®åˆ¥ID
  *
  */
 //------------------------------------------------------------------
 void WORDSET_RegisterTrTypeNameBattle( WORDSET* wordset, u32 bufID, TRAINER_DATA *tr_data )
 {
-	//poketool/tr_tool.h‚ğƒCƒ“ƒNƒ‹[ƒh‚µ‚Ä
-	//TT_TrainerTypeSexGet(tr_data->tr_type)‚Æ‚·‚é‚±‚Æ‚ÅƒgƒŒ[ƒi[‚Ì«•Ê‚ªæ“¾‚Å‚«‚Ü‚·
+	//poketool/tr_tool.hã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã—ã¦
+	//TT_TrainerTypeSexGet(tr_data->tr_type)ã¨ã™ã‚‹ã“ã¨ã§ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æ€§åˆ¥ãŒå–å¾—ã§ãã¾ã™
 	
 	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_trtype_dat, wordset->heapID);
 	if( man )
@@ -848,11 +848,11 @@ void WORDSET_RegisterTrTypeNameBattle( WORDSET* wordset, u32 bufID, TRAINER_DATA
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒgƒŒ[ƒi[–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		ƒgƒŒ[ƒi[í•ÊID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç¨®åˆ¥ID
  *
  */
 //------------------------------------------------------------------
@@ -869,11 +869,11 @@ void WORDSET_RegisterTrainerName( WORDSET* wordset, u32 bufID, u32 strID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚É"ƒoƒgƒ‹ƒ^ƒ[ƒf[ƒ^"‚ÌƒgƒŒ[ƒi[–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«"ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ‡ãƒ¼ã‚¿"ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		ƒgƒŒ[ƒi[í•ÊID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç¨®åˆ¥ID
  *
  */
 //------------------------------------------------------------------
@@ -890,18 +890,18 @@ void WORDSET_RegisterTowerTrainerName( WORDSET* wordset, u32 bufID, u32 strID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒgƒŒ[ƒi[–¼‚ğ“o˜^ií“¬ê—pj
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã‚’ç™»éŒ²ï¼ˆæˆ¦é—˜å°‚ç”¨ï¼‰
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		ƒgƒŒ[ƒi[í•ÊID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç¨®åˆ¥ID
  *
  */
 //------------------------------------------------------------------
 void WORDSET_RegisterTrainerNameBattle( WORDSET* wordset, u32 bufID, TRAINER_DATA *tr_data )
 {
-	//poketool/tr_tool.h‚ğƒCƒ“ƒNƒ‹[ƒh‚µ‚Ä
-	//TT_TrainerTypeSexGet(tr_data->tr_type)‚Æ‚·‚é‚±‚Æ‚ÅƒgƒŒ[ƒi[‚Ì«•Ê‚ªæ“¾‚Å‚«‚Ü‚·
+	//poketool/tr_tool.hã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã—ã¦
+	//TT_TrainerTypeSexGet(tr_data->tr_type)ã¨ã™ã‚‹ã“ã¨ã§ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æ€§åˆ¥ãŒå–å¾—ã§ãã¾ã™
 
 	STRBUF_SetStringCode( wordset->tmpBuf, &tr_data->name[0] );
 	RegisterWord( wordset, bufID, wordset->tmpBuf, NULL);
@@ -909,11 +909,11 @@ void WORDSET_RegisterTrainerNameBattle( WORDSET* wordset, u32 bufID, TRAINER_DAT
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚É’n‰ºƒAƒCƒeƒ€i‰»Îj–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ï¼ˆåŒ–çŸ³ï¼‰åã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		’n‰ºƒAƒCƒeƒ€i‰»ÎjID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ï¼ˆåŒ–çŸ³ï¼‰ID
  *
  */
 //------------------------------------------------------------------
@@ -930,7 +930,7 @@ void WORDSET_RegisterUGItemName( WORDSET* wordset, u32 bufID, u32 strID )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/27
-// •s’èŠ¥Œ•t‚«‚Ì’n‰ºƒAƒCƒeƒ€–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ åã‚’å¼•ã£å¼µã£ã¦ãã‚‹é–¢æ•°ã‚’è¿½åŠ 
 void WORDSET_RegisterUGItemNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID )
 {
 	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_undergrounditem_ind_dat, wordset->heapID);
@@ -945,11 +945,11 @@ void WORDSET_RegisterUGItemNameIndefinate( WORDSET* wordset, u32 bufID, u32 strI
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚É’n‰ºã©–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«åœ°ä¸‹ç½ åã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		’n‰º‚í‚ÈID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		åœ°ä¸‹ã‚ãªID
  *
  */
 //------------------------------------------------------------------
@@ -966,7 +966,7 @@ void WORDSET_RegisterUGTrapName( WORDSET* wordset, u32 bufID, u32 strID )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/27
-// •s’èŠ¥Œ•t‚«‚Ì’n‰ºã©–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®åœ°ä¸‹ç½ åã‚’å¼•ã£å¼µã£ã¦ãã‚‹é–¢æ•°ã‚’è¿½åŠ 
 void WORDSET_RegisterUGTrapNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID )
 {
 	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_undergroundtrap_ind_dat, wordset->heapID);
@@ -981,11 +981,11 @@ void WORDSET_RegisterUGTrapNameIndefinate( WORDSET* wordset, u32 bufID, u32 strI
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉR”»–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«å¯©åˆ¤åã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		R”»–¼ID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		å¯©åˆ¤åID
  *
  */
 //------------------------------------------------------------------
@@ -1002,11 +1002,11 @@ void WORDSET_RegisterJudgeName( WORDSET* wordset, u32 bufID, u32 strID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒRƒ“ƒeƒXƒgƒ‰ƒ“ƒN–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ©ãƒ³ã‚¯åã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		ƒ‰ƒ“ƒNID(CAMSG_CONRANK_NORMAL, CAMSG_CONRANK_SUPER, “™)
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ãƒ©ãƒ³ã‚¯ID(CAMSG_CONRANK_NORMAL, CAMSG_CONRANK_SUPER, ç­‰)
  *
  */
 //------------------------------------------------------------------
@@ -1023,11 +1023,11 @@ void WORDSET_RegisterContestRank( WORDSET* wordset, u32 bufID, u32 strID )
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(ƒRƒ“ƒeƒXƒg–¼Ì)‚Éƒ^ƒCƒv–¼‚ğ“o˜^
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(ã‚³ãƒ³ãƒ†ã‚¹ãƒˆåç§°)ã«ã‚¿ã‚¤ãƒ—åã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		ƒ^ƒCƒvID(CAMSG_CONTYPE_STYLE, “™)
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ã‚¿ã‚¤ãƒ—ID(CAMSG_CONTYPE_STYLE, ç­‰)
  *
  */
 //------------------------------------------------------------------
@@ -1044,11 +1044,11 @@ void WORDSET_RegisterContestType( WORDSET* wordset, u32 bufID, u32 strID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚É”é–§‚Ì¿–â‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç§˜å¯†ã®è³ªå•ã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		”é–§‚Ì¿–âID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ç§˜å¯†ã®è³ªå•ID
  *
  */
 //------------------------------------------------------------------
@@ -1065,11 +1065,11 @@ void WORDSET_RegisterSecretQuestion( WORDSET* wordset, u32 bufID, u32 strID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚É”é–§‚Ì¿–â‚Ì“š‚¦‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç§˜å¯†ã®è³ªå•ã®ç­”ãˆã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		”é–§‚Ì¿–â‚Ì“š‚¦ID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ç§˜å¯†ã®è³ªå•ã®ç­”ãˆID
  *
  */
 //------------------------------------------------------------------
@@ -1086,11 +1086,11 @@ void WORDSET_RegisterSecretAnswer( WORDSET* wordset, u32 bufID, u32 strID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒOƒbƒY–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ã‚°ãƒƒã‚ºåã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		ƒOƒbƒY–¼ID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ã‚°ãƒƒã‚ºåID
  *
  */
 //------------------------------------------------------------------
@@ -1107,7 +1107,7 @@ void WORDSET_RegisterUGGoodsName( WORDSET* wordset, u32 bufID, u32 strID )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/27
-// •s’èŠ¥Œ•t‚«‚Ì’n‰ºƒOƒbƒY–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®åœ°ä¸‹ã‚°ãƒƒã‚ºåã‚’å¼•ã£å¼µã£ã¦ãã‚‹é–¢æ•°ã‚’è¿½åŠ 
 void WORDSET_RegisterUGGoodsNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID )
 {
 	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_undergroundgoods_ind_dat, wordset->heapID);
@@ -1122,10 +1122,10 @@ void WORDSET_RegisterUGGoodsNameIndefinate( WORDSET* wordset, u32 bufID, u32 str
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚Éƒ|ƒPƒ‚ƒ“«•Ê–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒã‚±ãƒ¢ãƒ³æ€§åˆ¥åã‚’ç™»éŒ²
  *
- * @param   bufID		ƒoƒbƒtƒ@ID
- * @param   sex			«•Ê
+ * @param   bufID		ãƒãƒƒãƒ•ã‚¡ID
+ * @param   sex			æ€§åˆ¥
  *
  */
 //------------------------------------------------------------------
@@ -1152,12 +1152,12 @@ void WORDSET_RegisterPokeMonsSex( WORDSET* wordset, u32 bufID, u8 sex)
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚Éƒ{ƒbƒNƒX‚ÌƒgƒŒƒC–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒœãƒƒã‚¯ã‚¹ã®ãƒˆãƒ¬ã‚¤åã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^
- * @param   bufID		ƒoƒbƒtƒ@ID
- * @param   boxData		ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   u32         ƒgƒŒƒCƒiƒ“ƒo[
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿
+ * @param   bufID		ãƒãƒƒãƒ•ã‚¡ID
+ * @param   boxData		ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   u32         ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
  *
  */
 //------------------------------------------------------------------
@@ -1169,11 +1169,11 @@ void WORDSET_RegisterBoxTrayName( WORDSET* wordset, u32 bufID, const BOX_DATA* b
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒWƒ€–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ã‚¸ãƒ åã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		ƒOƒbƒY–¼ID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ã‚°ãƒƒã‚ºåID
  *
  */
 //------------------------------------------------------------------
@@ -1190,11 +1190,11 @@ void WORDSET_RegisterGymName( WORDSET* wordset, u32 bufID, u32 strID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉŠÔ‘Ñ‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«æ™‚é–“å¸¯ã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		ƒOƒbƒY–¼ID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ã‚°ãƒƒã‚ºåID
  *
  */
 //------------------------------------------------------------------
@@ -1211,11 +1211,11 @@ void WORDSET_RegisterTimeType( WORDSET* wordset, u32 bufID, u32 strID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚É‘–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«å›½åã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		‘ID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		å›½ID
  *
  */
 //------------------------------------------------------------------
@@ -1232,12 +1232,12 @@ void WORDSET_RegisterCountryName( WORDSET* wordset, u32 bufID, u32 countryID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚É’nˆæ–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«åœ°åŸŸåã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   countryID	‘ID
- * @param   placeID		’nˆæID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   countryID	å›½ID
+ * @param   placeID		åœ°åŸŸID
  *
  */
 //------------------------------------------------------------------
@@ -1264,11 +1264,11 @@ void WORDSET_RegisterLocalPlaceName( WORDSET* wordset, u32 bufID, u32 countryID,
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉŠÈˆÕ‰ï˜b’PŒê‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç°¡æ˜“ä¼šè©±å˜èªã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   word		ŠÈˆÕ‰ï˜b’PŒêƒiƒ“ƒo[
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   word		ç°¡æ˜“ä¼šè©±å˜èªãƒŠãƒ³ãƒãƒ¼
  *
  */
 //------------------------------------------------------------------
@@ -1281,11 +1281,11 @@ void WORDSET_RegisterPMSWord( WORDSET* wordset, u32 bufID, PMS_WORD word )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒV[ƒ‹–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ã‚·ãƒ¼ãƒ«åã‚’ç™»éŒ²
  *
- * @param   wordset		ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID		‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   strID		ƒV[ƒ‹–¼ID
+ * @param   wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID		ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   strID		ã‚·ãƒ¼ãƒ«åID
  *
  */
 //------------------------------------------------------------------
@@ -1302,7 +1302,7 @@ void WORDSET_RegisterSealName( WORDSET* wordset, u32 bufID, u32 strID )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/26
-// •¡”Œ`‚ÌƒV[ƒ‹–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éŠÖ”‚ğ’Ç‰Á
+// è¤‡æ•°å½¢ã®ã‚·ãƒ¼ãƒ«åã‚’å¼•ã£å¼µã£ã¦ãã‚‹é–¢æ•°ã‚’è¿½åŠ 
 
 void WORDSET_RegisterSealNamePlural( WORDSET* wordset, u32 bufID, u32 strID )
 {
@@ -1319,11 +1319,11 @@ void WORDSET_RegisterSealNamePlural( WORDSET* wordset, u32 bufID, u32 strID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚Éƒ|ƒPƒ‚ƒ“•ßŠlêŠ–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒã‚±ãƒ¢ãƒ³æ•ç²å ´æ‰€åã‚’ç™»éŒ²
  *
- * @param   wordset			ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID			‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   placeNumber		•ßŠlêŠƒiƒ“ƒo[
+ * @param   wordset			ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID			ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   placeNumber		æ•ç²å ´æ‰€ãƒŠãƒ³ãƒãƒ¼
  *
  */
 //------------------------------------------------------------------
@@ -1378,11 +1378,11 @@ void WORDSET_RegisterPokeGetPlace( WORDSET* wordset, u32 bufID, u32 placeNumber 
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚Éƒ|ƒ‹ƒg–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ãƒãƒ«ãƒˆåã‚’ç™»éŒ²
  *
- * @param   wordset			ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID			‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   porutoID		ƒ|ƒ‹ƒgID
+ * @param   wordset			ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID			ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   porutoID		ãƒãƒ«ãƒˆID
  *
  */
 //------------------------------------------------------------------
@@ -1399,11 +1399,11 @@ void WORDSET_RegisterPorutoName( WORDSET* wordset, u32 bufID, u32 porutoID )
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒAƒNƒZƒTƒŠ–¼iƒCƒ[ƒWƒNƒŠƒbƒvj‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ã‚¢ã‚¯ã‚»ã‚µãƒªåï¼ˆã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ï¼‰ã‚’ç™»éŒ²
  *
- * @param   wordset			ƒ[ƒhƒZƒbƒgƒIƒuƒWƒFƒNƒg
- * @param   bufID			‰½”Ô‚Ìƒoƒbƒtƒ@‚É“o˜^‚·‚é‚©
- * @param   porutoID		ƒAƒNƒZƒTƒŠID
+ * @param   wordset			ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ * @param   bufID			ä½•ç•ªã®ãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²ã™ã‚‹ã‹
+ * @param   porutoID		ã‚¢ã‚¯ã‚»ã‚µãƒªID
  *
  */
 //------------------------------------------------------------------
@@ -1420,7 +1420,7 @@ void WORDSET_RegisterAccessoryName( WORDSET* wordset, u32 bufID, u32 acID )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/11
-// •s’èŠ¥Œ•t‚«‚ÌƒAƒNƒZƒTƒŠ[–¼‚ğˆø‚Á’£‚Á‚Ä‚­‚éŠÖ”‚ğ’Ç‰Á
+// ä¸å®šå† è©ä»˜ãã®ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼åã‚’å¼•ã£å¼µã£ã¦ãã‚‹é–¢æ•°ã‚’è¿½åŠ 
 
 void WORDSET_RegisterAccessoryNameIndefinate( WORDSET* wordset, u32 bufID, u32 acID )
 {
@@ -1437,7 +1437,7 @@ void WORDSET_RegisterAccessoryNameIndefinate( WORDSET* wordset, u32 bufID, u32 a
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚ÉƒCƒ[ƒWƒNƒŠƒbƒv”wŒi‚Ì–¼‘O‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—èƒŒæ™¯ã®åå‰ã‚’ç™»éŒ²
  *
  * @param   wordset		
  * @param   bufID		
@@ -1458,11 +1458,11 @@ void WORDSET_RegisterImageClibBgName( WORDSET* wordset, u32 bufID, u32 bgID )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒOƒ‹[ƒv–¼EƒŠ[ƒ_[–¼‚Ì’PŒê“o˜^
- * @param	ws			WORDSET‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	sv			ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	gid			ƒOƒ‹[ƒvw’èID
- * @param	bufID		ƒoƒbƒtƒ@w’èID
+ * @brief	ã‚°ãƒ«ãƒ¼ãƒ—åãƒ»ãƒªãƒ¼ãƒ€ãƒ¼åã®å˜èªç™»éŒ²
+ * @param	ws			WORDSETã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	gid			ã‚°ãƒ«ãƒ¼ãƒ—æŒ‡å®šID
+ * @param	bufID		ãƒãƒƒãƒ•ã‚¡æŒ‡å®šID
  * @param	name_type	RANDOMGROUP_NAME_GROUP or RANDOMGROUP_NAME_LEADER
  */
 //------------------------------------------------------------------
@@ -1473,7 +1473,7 @@ void WORDSET_RegisterGroupName(WORDSET * ws, SAVEDATA * sv, int gid, int bufID, 
 	RANDOM_GROUP * rg = SaveData_GetRandomGroup(sv);
 	sex = RandomGroup_GetSex(rg, gid);
 	region_code = RandomGroup_GetRegionCode(rg, gid);
-	strbuf = STRBUF_Create(64, HEAPID_FIELD);	//ƒoƒbƒtƒ@’·‚Ä‚«‚Æ[
+	strbuf = STRBUF_Create(64, HEAPID_FIELD);	//ãƒãƒƒãƒ•ã‚¡é•·ã¦ãã¨ãƒ¼
 	STRBUF_SetStringCode(strbuf, RandomGroup_GetNamePtr(rg, gid, name_type));
 	WORDSET_RegisterWord(ws, bufID, strbuf, sex, TRUE, region_code);
 	STRBUF_Delete(strbuf);
@@ -1483,11 +1483,11 @@ void WORDSET_RegisterGroupName(WORDSET * ws, SAVEDATA * sv, int gid, int bufID, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[	ƒ~ƒjƒQ[ƒ€–¼‚Ì’PŒê“o˜^
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ åã®å˜èªç™»éŒ²
  *
- *	@param	wordset		ƒ[ƒhƒZƒbƒg
- * @param	bufID		ƒoƒbƒtƒ@w’èID
- *	@param	type		ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
+ *	@param	wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ * @param	bufID		ãƒãƒƒãƒ•ã‚¡æŒ‡å®šID
+ *	@param	type		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 void WORDSET_RegisterWiFiLobbyGameName( WORDSET* wordset, u32 bufID, WFLBY_GAMETYPE type )
@@ -1503,11 +1503,11 @@ void WORDSET_RegisterWiFiLobbyGameName( WORDSET* wordset, u32 bufID, WFLBY_GAMET
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[	ƒCƒxƒ“ƒg–¼‚Ì’PŒê“o˜^
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼	ã‚¤ãƒ™ãƒ³ãƒˆåã®å˜èªç™»éŒ²
  *
- *	@param	wordset		ƒ[ƒhƒZƒbƒg
- * @param	bufID		ƒoƒbƒtƒ@w’èID
- *	@param	type		ƒCƒxƒ“ƒgƒ^ƒCƒv
+ *	@param	wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ * @param	bufID		ãƒãƒƒãƒ•ã‚¡æŒ‡å®šID
+ *	@param	type		ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 void WORDSET_RegisterWiFiLobbyEventName( WORDSET* wordset, u32 bufID, WFLBY_EVENTGMM_TYPE type )
@@ -1523,11 +1523,11 @@ void WORDSET_RegisterWiFiLobbyEventName( WORDSET* wordset, u32 bufID, WFLBY_EVEN
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[	ƒAƒCƒeƒ€–¼‚Ì’PŒê“o˜^
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼	ã‚¢ã‚¤ãƒ†ãƒ åã®å˜èªç™»éŒ²
  *
- *	@param	wordset		ƒ[ƒhƒZƒbƒg
- * @param	bufID		ƒoƒbƒtƒ@w’èID
- *	@param	type		ƒAƒCƒeƒ€ƒ^ƒCƒv
+ *	@param	wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ * @param	bufID		ãƒãƒƒãƒ•ã‚¡æŒ‡å®šID
+ *	@param	type		ã‚¢ã‚¤ãƒ†ãƒ ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 void WORDSET_RegisterWiFiLobbyItemName( WORDSET* wordset, u32 bufID, WFLBY_ITEMTYPE type )
@@ -1543,11 +1543,11 @@ void WORDSET_RegisterWiFiLobbyItemName( WORDSET* wordset, u32 bufID, WFLBY_ITEMT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[	“ú–{ˆ¥A‚Ì’PŒê“o˜^
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼	æ—¥æœ¬æŒ¨æ‹¶ã®å˜èªç™»éŒ²
  *
- *	@param	wordset		ƒ[ƒhƒZƒbƒg
- *	@param	bufID		ƒoƒbƒtƒ@w’èID
- *	@param	time_zone	ŠÔ‘Ñ	iWFLBY_AISATSU_TIMEZONEj
+ *	@param	wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ *	@param	bufID		ãƒãƒƒãƒ•ã‚¡æŒ‡å®šID
+ *	@param	time_zone	æ™‚é–“å¸¯	ï¼ˆWFLBY_AISATSU_TIMEZONEï¼‰
  */
 //-----------------------------------------------------------------------------
 void WORDSET_RegisterWiFiLobbyAisatsuJapan( WORDSET* wordset, u32 bufID, u32 time_zone )
@@ -1563,11 +1563,11 @@ void WORDSET_RegisterWiFiLobbyAisatsuJapan( WORDSET* wordset, u32 bufID, u32 tim
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[	‰pŒêˆ¥A‚Ì’PŒê“o˜^
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼	è‹±èªæŒ¨æ‹¶ã®å˜èªç™»éŒ²
  *
- *	@param	wordset		ƒ[ƒhƒZƒbƒg
- *	@param	bufID		ƒoƒbƒtƒ@w’èID
- *	@param	time_zone	ŠÔ‘Ñ	iWFLBY_AISATSU_TIMEZONEj
+ *	@param	wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ *	@param	bufID		ãƒãƒƒãƒ•ã‚¡æŒ‡å®šID
+ *	@param	time_zone	æ™‚é–“å¸¯	ï¼ˆWFLBY_AISATSU_TIMEZONEï¼‰
  */
 //-----------------------------------------------------------------------------
 void WORDSET_RegisterWiFiLobbyAisatsuEnglish( WORDSET* wordset, u32 bufID, u32 time_zone )
@@ -1583,11 +1583,11 @@ void WORDSET_RegisterWiFiLobbyAisatsuEnglish( WORDSET* wordset, u32 bufID, u32 t
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[	ƒtƒ‰ƒ“ƒXˆ¥A‚Ì’PŒê“o˜^
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼	ãƒ•ãƒ©ãƒ³ã‚¹æŒ¨æ‹¶ã®å˜èªç™»éŒ²
  *
- *	@param	wordset		ƒ[ƒhƒZƒbƒg
- *	@param	bufID		ƒoƒbƒtƒ@w’èID
- *	@param	time_zone	ŠÔ‘Ñ	iWFLBY_AISATSU_TIMEZONEj
+ *	@param	wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ *	@param	bufID		ãƒãƒƒãƒ•ã‚¡æŒ‡å®šID
+ *	@param	time_zone	æ™‚é–“å¸¯	ï¼ˆWFLBY_AISATSU_TIMEZONEï¼‰
  */
 //-----------------------------------------------------------------------------
 void WORDSET_RegisterWiFiLobbyAisatsuFrance( WORDSET* wordset, u32 bufID, u32 time_zone )
@@ -1603,11 +1603,11 @@ void WORDSET_RegisterWiFiLobbyAisatsuFrance( WORDSET* wordset, u32 bufID, u32 ti
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[	ƒCƒ^ƒŠƒAˆ¥A‚Ì’PŒê“o˜^
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼	ã‚¤ã‚¿ãƒªã‚¢æŒ¨æ‹¶ã®å˜èªç™»éŒ²
  *
- *	@param	wordset		ƒ[ƒhƒZƒbƒg
- *	@param	bufID		ƒoƒbƒtƒ@w’èID
- *	@param	time_zone	ŠÔ‘Ñ	iWFLBY_AISATSU_TIMEZONEj
+ *	@param	wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ *	@param	bufID		ãƒãƒƒãƒ•ã‚¡æŒ‡å®šID
+ *	@param	time_zone	æ™‚é–“å¸¯	ï¼ˆWFLBY_AISATSU_TIMEZONEï¼‰
  */
 //-----------------------------------------------------------------------------
 void WORDSET_RegisterWiFiLobbyAisatsuItaly( WORDSET* wordset, u32 bufID, u32 time_zone )
@@ -1623,11 +1623,11 @@ void WORDSET_RegisterWiFiLobbyAisatsuItaly( WORDSET* wordset, u32 bufID, u32 tim
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[	ƒhƒCƒcˆ¥A‚Ì’PŒê“o˜^
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼	ãƒ‰ã‚¤ãƒ„æŒ¨æ‹¶ã®å˜èªç™»éŒ²
  *
- *	@param	wordset		ƒ[ƒhƒZƒbƒg
- *	@param	bufID		ƒoƒbƒtƒ@w’èID
- *	@param	time_zone	ŠÔ‘Ñ	iWFLBY_AISATSU_TIMEZONEj
+ *	@param	wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ *	@param	bufID		ãƒãƒƒãƒ•ã‚¡æŒ‡å®šID
+ *	@param	time_zone	æ™‚é–“å¸¯	ï¼ˆWFLBY_AISATSU_TIMEZONEï¼‰
  */
 //-----------------------------------------------------------------------------
 void WORDSET_RegisterWiFiLobbyAisatsuGerMany( WORDSET* wordset, u32 bufID, u32 time_zone )
@@ -1643,11 +1643,11 @@ void WORDSET_RegisterWiFiLobbyAisatsuGerMany( WORDSET* wordset, u32 bufID, u32 t
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[	ƒXƒyƒCƒ“ˆ¥A‚Ì’PŒê“o˜^
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼	ã‚¹ãƒšã‚¤ãƒ³æŒ¨æ‹¶ã®å˜èªç™»éŒ²
  *
- *	@param	wordset		ƒ[ƒhƒZƒbƒg
- *	@param	bufID		ƒoƒbƒtƒ@w’èID
- *	@param	time_zone	ŠÔ‘Ñ	iWFLBY_AISATSU_TIMEZONEj
+ *	@param	wordset		ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ *	@param	bufID		ãƒãƒƒãƒ•ã‚¡æŒ‡å®šID
+ *	@param	time_zone	æ™‚é–“å¸¯	ï¼ˆWFLBY_AISATSU_TIMEZONEï¼‰
  */
 //-----------------------------------------------------------------------------
 void WORDSET_RegisterWiFiLobbyAisatsuSpain( WORDSET* wordset, u32 bufID, u32 time_zone )
@@ -1663,10 +1663,10 @@ void WORDSET_RegisterWiFiLobbyAisatsuSpain( WORDSET* wordset, u32 bufID, u32 tim
 
 //------------------------------------------------------------------
 /**
- * w’èƒoƒbƒtƒ@‚É•Ê‘‘‚Ì‰Æ‹ï–¼‚ğ“o˜^
+ * æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«åˆ¥è˜ã®å®¶å…·åã‚’ç™»éŒ²
  *
- * @param   bufID			ƒoƒbƒtƒ@ID
- * @param   furnitureID		‰Æ‹ïID
+ * @param   bufID			ãƒãƒƒãƒ•ã‚¡ID
+ * @param   furnitureID		å®¶å…·ID
  *
  */
 //------------------------------------------------------------------
@@ -1684,9 +1684,9 @@ void WORDSET_RegisterFurniture( WORDSET * wordset, u32 bufID, u32 furnitureID )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/29
-// Œ‚Ì–¼‘Oi‚Ì’ZkŒ`j‚ğˆø‚¢‚Ä‚­‚éŠÖ”‚ğ’Ç‰Á
+// æœˆã®åå‰ï¼ˆã®çŸ­ç¸®å½¢ï¼‰ã‚’å¼•ã„ã¦ãã‚‹é–¢æ•°ã‚’è¿½åŠ 
 // localize_spec_mark(LANG_ALL) imatake 2007/01/26
-// month ‚É 1 ? 12 ˆÈŠO‚ª‚«‚½‚Æ‚«‚É‚Í _NULL_ ‚ğƒZƒbƒg‚·‚é‚æ‚¤‚É•ÏX
+// month ã« 1 ? 12 ä»¥å¤–ãŒããŸã¨ãã«ã¯ _NULL_ ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
 void WORDSET_RegisterMonthName( WORDSET* wordset, u32 bufID, u32 month )
 {
@@ -1696,11 +1696,11 @@ void WORDSET_RegisterMonthName( WORDSET* wordset, u32 bufID, u32 month )
 	{
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/26
-		// month ‚É 1 ? 12 ˆÈŠO‚ª‚«‚½‚Æ‚«‚É‚Íu‚P‚ª‚Âv‚ğƒZƒbƒg‚·‚é‚æ‚¤‚É•ÏX
+		// month ã« 1 ? 12 ä»¥å¤–ãŒããŸã¨ãã«ã¯ã€Œï¼‘ãŒã¤ã€ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 		if (month < 1 || month > 12) month = 1;
 		// ----------------------------------------------------------------------------
 
-		MSGMAN_GetString( man, month - 1 + msg_month_01, wordset->tmpBuf );		// í’“‚·‚é‚±‚Æ‚ğl—¶‚µAƒe[ƒuƒ‹‚Í‚½‚È‚¢
+		MSGMAN_GetString( man, month - 1 + msg_month_01, wordset->tmpBuf );		// å¸¸é§ã™ã‚‹ã“ã¨ã‚’è€ƒæ…®ã—ã€ãƒ†ãƒ¼ãƒ–ãƒ«ã¯æŒãŸãªã„
 		RegisterWord( wordset, bufID, wordset->tmpBuf, NULL );
 		MSGMAN_Delete(man);
 	}
@@ -1708,7 +1708,7 @@ void WORDSET_RegisterMonthName( WORDSET* wordset, u32 bufID, u32 month )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/24
-// w’èƒoƒbƒtƒ@‚Ìæ“ª•¶š‚ğƒLƒƒƒsƒ^ƒ‰ƒCƒY‚·‚éŠÖ”‚ğ’Ç‰Á
+// æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­æ–‡å­—ã‚’ã‚­ãƒ£ãƒ”ã‚¿ãƒ©ã‚¤ã‚ºã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
 
 void WORDSET_Capitalize( WORDSET* wordset, u32 bufID )
 {
@@ -1717,7 +1717,7 @@ void WORDSET_Capitalize( WORDSET* wordset, u32 bufID )
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) anon2 2021/12/07
-// ‚±‚Ì‹@”\‚ªƒgƒoƒŠƒfƒp[ƒg‚ÉŠÖ˜A‚µ‚Ä‚¢‚é‚±‚Æ‚ğŠm”F‚µ‚Ü‚·
+// ã“ã®æ©Ÿèƒ½ãŒãƒˆãƒãƒªãƒ‡ãƒ‘ãƒ¼ãƒˆã«é–¢é€£ã—ã¦ã„ã‚‹ã“ã¨ã‚’ç¢ºèªã—ã¾ã™
 
 void WORDSET_RegisterTobariDepartFloorNo( WORDSET* wordset, u32 bufID, u32 floorID )
 {
@@ -1728,9 +1728,9 @@ void WORDSET_RegisterTobariDepartFloorNo( WORDSET* wordset, u32 bufID, u32 floor
 	if( man )
 	{
         if (floorID == 0) {
-            floorID = msg_ev_win_118; // ‚¿‚©‚P‚©‚¢
+            floorID = msg_ev_win_118; // ã¡ã‹ï¼‘ã‹ã„
         } else {
-            floorID += msg_ev_win_113 - 1; // ‚P‚©‚¢‚È‚Ç
+            floorID += msg_ev_win_113 - 1; // ï¼‘ã‹ã„ãªã©
         }
 
 		MSGMAN_GetString(man, floorID, wordset->tmpBuf );
@@ -1740,15 +1740,15 @@ void WORDSET_RegisterTobariDepartFloorNo( WORDSET* wordset, u32 bufID, u32 floor
 }
 
 //======================================================================================================
-// •¶š—ñ“WŠJ
+// æ–‡å­—åˆ—å±•é–‹
 //======================================================================================================
 
 //------------------------------------------------------------------
 /**
- * “o˜^‚³‚ê‚½’PŒê‚ğg‚Á‚Ä•¶š—ñ“WŠJ‚·‚é
+ * ç™»éŒ²ã•ã‚ŒãŸå˜èªã‚’ä½¿ã£ã¦æ–‡å­—åˆ—å±•é–‹ã™ã‚‹
  *
- * @param   dst		“WŠJæƒoƒbƒtƒ@
- * @param   src		“WŠJŒ³•¶š—ñ
+ * @param   dst		å±•é–‹å…ˆãƒãƒƒãƒ•ã‚¡
+ * @param   src		å±•é–‹å…ƒæ–‡å­—åˆ—
  *
  */
 //------------------------------------------------------------------
@@ -1772,7 +1772,7 @@ void WORDSET_ExpandStr( const WORDSET* wordset, STRBUF* dstbuf, const STRBUF* sr
 
 				GF_ASSERT( word_id < wordset->max );
 
-				// [[[ŠCŠO”Å‚Å‚Íƒpƒ‰ƒ[ƒ^‚Ì‰ğß‚ª•K—v]]]
+				// [[[æµ·å¤–ç‰ˆã§ã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è§£é‡ˆãŒå¿…è¦]]]
 				//STRBUF_AddStr( dstbuf, wordset->word[ word_id ].str );
 				STRBUF_AddCompStr( dstbuf, wordset->word[ word_id ].str );
 				src = STRCODE_SkipTag(src);
@@ -1800,14 +1800,14 @@ void WORDSET_ExpandStr( const WORDSET* wordset, STRBUF* dstbuf, const STRBUF* sr
 
 
 //======================================================================================================
-// ƒoƒbƒtƒ@ƒNƒŠƒA
+// ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 //======================================================================================================
 
 //------------------------------------------------------------------
 /**
- * “à•”ƒoƒbƒtƒ@‚ğ‘S‚Ä‹ó•¶š—ñ‚ÅƒNƒŠƒA‚·‚é
+ * å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã‚’å…¨ã¦ç©ºæ–‡å­—åˆ—ã§ã‚¯ãƒªã‚¢ã™ã‚‹
  *
- * @param   wordset		WORDSET‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wordset		WORDSETã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------

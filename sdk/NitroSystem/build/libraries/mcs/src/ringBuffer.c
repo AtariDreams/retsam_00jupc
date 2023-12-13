@@ -23,14 +23,14 @@
 #include <nnsys/mcs/config.h>
 
 /* ========================================================================
-    ƒRƒ“ƒpƒCƒ‹ƒXƒCƒbƒ`
+    ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¹ã‚¤ãƒƒãƒ
    ======================================================================== */
 
 #define USE_DISABLE_IRQ 0
 
 
 /* ========================================================================
-    ƒ}ƒNƒŠÖ”
+    ãƒã‚¯ãƒ­é–¢æ•°
    ======================================================================== */
 
 #if USE_DISABLE_IRQ
@@ -64,7 +64,7 @@
 
 
 /* ========================================================================
-    staticŠÖ”
+    staticé–¢æ•°
    ======================================================================== */
 
 static NNS_MCS_INLINE uint32_t
@@ -183,9 +183,9 @@ GetRingBufferHeader(
     NNSMcsRingBuffer    rb
 )
 {
-    const NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ƒ^[ƒQƒbƒg‚ÌƒAƒhƒŒƒX
+    const NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-    // ƒ[ƒJƒ‹‚ÉƒRƒs[
+    // ãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚³ãƒ”ãƒ¼
     DISABLE_IRQ_BLOCK(
         (
             GetVarFromRBMem(pBrgn->buf    , pRbh->brgn.buf    ),
@@ -223,7 +223,7 @@ SetState(
     uint32_t            addState
 )
 {
-    NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ƒ^[ƒQƒbƒg‚ÌƒAƒhƒŒƒX
+    NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹
     uint32_t state;
 
     DISABLE_IRQ_BLOCK(
@@ -237,7 +237,7 @@ SetState(
 
 
 /* ========================================================================
-    ŠO•”ŠÖ”
+    å¤–éƒ¨é–¢æ•°
    ======================================================================== */
 
 NNSMcsRingBuffer
@@ -258,7 +258,7 @@ NNS_McsInitRingBuffer(
     SetVarToRBMem(pRbh->mrng.start  , startBuf);
     SetVarToRBMem(pRbh->mrng.end    , startBuf);
 
-    SetVarToRBMem(pRbh->signature   , signature);   // ÅŒã‚Ésigunature‚ğƒZƒbƒg(‰Šú‰»Š®—¹)
+    SetVarToRBMem(pRbh->signature   , signature);   // æœ€å¾Œã«sigunatureã‚’ã‚»ãƒƒãƒˆ(åˆæœŸåŒ–å®Œäº†)
 
     return (NNSMcsRingBuffer)pRbh;
 }
@@ -269,7 +269,7 @@ NNS_McsGetRingBufferReadableBytes(NNSMcsRingBuffer rb)
     NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb;
     NNSiMcsMsgRange mrng;
 
-    // ƒ[ƒJƒ‹‚ÉƒRƒs[
+    // ãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚³ãƒ”ãƒ¼
     DISABLE_IRQ_BLOCK(
         (
             GetVarFromRBMem(mrng.start, pRbh->mrng.start),
@@ -288,7 +288,7 @@ NNS_McsGetRingBufferTotalReadableBytes(NNSMcsRingBuffer rb)
     NNSiMcsBufRgn brgn;
     NNSiMcsMsgRange mrng;
 
-    // ƒ[ƒJƒ‹‚ÉƒRƒs[
+    // ãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚³ãƒ”ãƒ¼
     DISABLE_IRQ_BLOCK(
         (
             GetVarFromRBMem(brgn.buf    , pRgh->brgn.buf    ),
@@ -323,11 +323,11 @@ NNS_McsGetRingBufferTotalReadableBytes(NNSMcsRingBuffer rb)
 uint32_t
 NNS_McsGetRingBufferWritableBytes(NNSMcsRingBuffer rb)
 {
-    NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ƒ^[ƒQƒbƒg‚ÌƒAƒhƒŒƒX
+    NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹
     NNSiMcsMsgRange mrng;
     uint32_t bufSize;
 
-    // ƒ[ƒJƒ‹‚ÉƒRƒs[
+    // ãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚³ãƒ”ãƒ¼
     DISABLE_IRQ_BLOCK(
         (
             GetVarFromRBMem(bufSize   , pRbh->brgn.bufSize),
@@ -348,12 +348,12 @@ NNS_McsReadRingBuffer(
     uint32_t*                pReadBytes
 )
 {
-    NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ƒ^[ƒQƒbƒg‚ÌƒAƒhƒŒƒX
+    NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹
     NNSiMcsBufRgn brgn;
     NNSiMcsMsgRange mrng;
     uint32_t readableBytes;
 
-    // ƒ[ƒJƒ‹‚ÉƒRƒs[
+    // ãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚³ãƒ”ãƒ¼
     DISABLE_IRQ_BLOCK(
         (
             GetVarFromRBMem(brgn.buf    , pRbh->brgn.buf    ),
@@ -380,7 +380,7 @@ NNS_McsReadRingBuffer(
 
         if (readableBytes > size)
         {
-            // ƒTƒCƒYƒwƒbƒ_‚ğ’u‚­•K—vãA‘S•”“Ç‚İo‚³‚È‚¢‚Æ‚«‚Í4ƒoƒCƒgƒAƒ‰ƒCƒƒ“ƒg‚·‚é
+            // ã‚µã‚¤ã‚ºãƒ˜ãƒƒãƒ€ã‚’ç½®ãå¿…è¦ä¸Šã€å…¨éƒ¨èª­ã¿å‡ºã•ãªã„ã¨ãã¯4ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã™ã‚‹
             restSize = RoundDown(size, 4);
         }
         else
@@ -401,8 +401,8 @@ NNS_McsReadRingBuffer(
         if (*pReadBytes != readableBytes)
         {
             const uint32_t newSize = readableBytes - *pReadBytes;
-            pSrc = GetRingBufferPtrDec(pSrc, sizeof(uint32_t), &brgn);   // uint32_t•ª–ß‚é
-            SetVarToRBMem(RefU32(pSrc), newSize);                   // c‚è‚ÌƒTƒCƒY‚ğƒZƒbƒg
+            pSrc = GetRingBufferPtrDec(pSrc, sizeof(uint32_t), &brgn);   // uint32_tåˆ†æˆ»ã‚‹
+            SetVarToRBMem(RefU32(pSrc), newSize);                   // æ®‹ã‚Šã®ã‚µã‚¤ã‚ºã‚’ã‚»ãƒƒãƒˆ
 
             bRet = FALSE;
         }
@@ -414,9 +414,9 @@ NNS_McsReadRingBuffer(
 }
 
 /*
-    end ƒ|ƒCƒ“ƒg‚ªAbuf + bufSize ‚Å‚È‚¢‚æ‚¤‚É‚·‚é‚±‚ÆB‚±‚Ì‚Æ‚«‚ÍAbuf‚ğw‚·‚æ‚¤‚É‚·‚éB
+    end ãƒã‚¤ãƒ³ãƒˆãŒã€buf + bufSize ã§ãªã„ã‚ˆã†ã«ã™ã‚‹ã“ã¨ã€‚ã“ã®ã¨ãã¯ã€bufã‚’æŒ‡ã™ã‚ˆã†ã«ã™ã‚‹ã€‚
     
-    ‘‚«‚Ş‚Æ‚«‚ÍAend ‚Ístart‚Æ“¯‚¶’l‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚·‚é‚±‚ÆBí‚Éend ‚Íí‚É start‚É‘Î‚µ‚Ä 4ƒoƒCƒgˆÈã‹ó‚«‚ğæ‚é‚±‚Æ‚É‚È‚éB
+    æ›¸ãè¾¼ã‚€ã¨ãã¯ã€end ã¯startã¨åŒã˜å€¤ã«ãªã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ã“ã¨ã€‚å¸¸ã«end ã¯å¸¸ã« startã«å¯¾ã—ã¦ 4ãƒã‚¤ãƒˆä»¥ä¸Šç©ºãã‚’å–ã‚‹ã“ã¨ã«ãªã‚‹ã€‚
 */
 BOOL
 NNS_McsWriteRingBuffer(
@@ -428,7 +428,7 @@ NNS_McsWriteRingBuffer(
     NNSiMcsBufRgn brgn;
     NNSiMcsMsgRange mrng;
 
-    // ƒ[ƒJƒ‹‚ÉƒRƒs[
+    // ãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚³ãƒ”ãƒ¼
     GetRingBufferHeader(&brgn, &mrng, rb);
 
     if (size > GetRingBufferWritableBytes(&mrng, brgn.bufSize))
@@ -440,7 +440,7 @@ NNS_McsWriteRingBuffer(
     SetVarToRBMem(RefU32(mrng.end), size);
 
     {
-        NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ƒ^[ƒQƒbƒg‚ÌƒAƒhƒŒƒX
+        NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹
         NNSiMcsUIntPtr pDst = GetRingBufferPtrInc(mrng.end, sizeof(uint32_t), &brgn);
         pDst = WriteBuffer(pDst, (const uint8_t*)buf, size, &brgn);
         DISABLE_IRQ_BLOCK( SetVarToRBMem(pRbh->mrng.end, pDst) );
@@ -461,7 +461,7 @@ NNS_McsWriteRingBufferEx(
     NNSiMcsBufRgn brgn;
     NNSiMcsMsgRange mrng;
 
-    // ƒ[ƒJƒ‹‚ÉƒRƒs[
+    // ãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚³ãƒ”ãƒ¼
     GetRingBufferHeader(&brgn, &mrng, rb);
 
     if (offset + size > GetRingBufferWritableBytes(&mrng, brgn.bufSize))
@@ -477,7 +477,7 @@ NNS_McsWriteRingBufferEx(
         pDst = WriteBuffer(pDst, (const uint8_t*)buf, size, &brgn);
         if (offset + size == totalSize)
         {
-            NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ƒ^[ƒQƒbƒg‚ÌƒAƒhƒŒƒX
+            NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹
             DISABLE_IRQ_BLOCK( SetVarToRBMem(pRbh->mrng.end, pDst) );
         }
     }
@@ -492,7 +492,7 @@ NNS_McsClearRingBuffer(NNSMcsRingBuffer rb)
     NNSiMcsUIntPtr endPtr;
     const uint32_t state = 0;
 
-    // endƒ|ƒCƒ“ƒ^‚Ì’l‚ğstartƒ|ƒCƒ“ƒ^‚ÉƒZƒbƒg‚µAƒXƒe[ƒg‚ğƒNƒŠƒA
+    // endãƒã‚¤ãƒ³ã‚¿ã®å€¤ã‚’startãƒã‚¤ãƒ³ã‚¿ã«ã‚»ãƒƒãƒˆã—ã€ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ã‚¯ãƒªã‚¢
     DISABLE_IRQ_BLOCK(
         (
             GetVarFromRBMem(endPtr          , pRbh->mrng.end),
@@ -505,7 +505,7 @@ NNS_McsClearRingBuffer(NNSMcsRingBuffer rb)
 BOOL
 NNS_McsCheckRingBuffer(NNSMcsRingBuffer rb)
 {
-    NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ƒ^[ƒQƒbƒg‚ÌƒAƒhƒŒƒX
+    NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹
     uint32_t signature;
 
     DISABLE_IRQ_BLOCK( GetVarFromRBMem(signature, pRbh->signature) );
@@ -516,7 +516,7 @@ NNS_McsCheckRingBuffer(NNSMcsRingBuffer rb)
 uint32_t
 NNS_McsGetRingBufferState(NNSMcsRingBuffer rb)
 {
-    NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ƒ^[ƒQƒbƒg‚ÌƒAƒhƒŒƒX
+    NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹
     uint32_t state;
 
     DISABLE_IRQ_BLOCK( GetVarFromRBMem(state, pRbh->state) );
@@ -527,7 +527,7 @@ NNS_McsGetRingBufferState(NNSMcsRingBuffer rb)
 void
 NNS_McsClearRingBufferState(NNSMcsRingBuffer rb)
 {
-    NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ƒ^[ƒQƒbƒg‚ÌƒAƒhƒŒƒX
+    NNSiMcsRingBufferHeader* pRbh = (NNSiMcsRingBufferHeader*)rb; // ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹
     const uint32_t state = 0;
 
     DISABLE_IRQ_BLOCK( SetVarToRBMem(pRbh->state, state) );

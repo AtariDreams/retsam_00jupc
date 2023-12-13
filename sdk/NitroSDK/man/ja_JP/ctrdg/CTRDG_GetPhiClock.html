@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>CTRDG_GetPhiClock</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">CTRDG_GetPhiClock</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -20,45 +20,45 @@
   <BR>
   <CODE>CTRDGPhiClock CTRDG_GetPhiClock( void )</CODE></dd>
 </dl>
-<h2>����</h2>
-<P>�Ȃ��B</P>
-<h2>�Ԃ�l</h2>
-<p>PHI�[�q�o�͐���̐ݒ�B</p>
+<h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>PHI端子出力制御の設定。</p>
 
-<H2>����</H2>
-<P>PHI�[�q�o�͐���̐ݒ���擾���܂��B</P>
-<P>�Ԃ�l �� <CODE>CTRDGPhiClock</CODE> �񋓌^�ŁA�ȉ��̈Ӗ��������܂��B</P>
+<H2>説明</H2>
+<P>PHI端子出力制御の設定を取得します。</P>
+<P>返り値 は <CODE>CTRDGPhiClock</CODE> 列挙型で、以下の意味を持ちます。</P>
 <TABLE>
   <TBODY>
     <TR>
       <TD bgcolor="#eeeeee"><CODE>CTRDG_PHI_CLOCK_LOW</CODE></TD>
-      <TD bgcolor="#eeeeee">Low���x���o��</TD>
+      <TD bgcolor="#eeeeee">Lowレベル出力</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee"><CODE>CTRDG_PHI_CLOCK_4MHZ</CODE></TD>
-      <TD bgcolor="#eeeeee">4.19MHz�N���b�N�o��</TD>
+      <TD bgcolor="#eeeeee">4.19MHzクロック出力</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee"><CODE>CTRDG_PHI_CLOCK_8MHZ</CODE></TD>
-      <TD bgcolor="#eeeeee">8.38MHz�N���b�N�o��</TD>
+      <TD bgcolor="#eeeeee">8.38MHzクロック出力</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee"><CODE>CTRDG_PHI_CLOCK_16MHZ</CODE></TD>
-      <TD bgcolor="#eeeeee">16.76MHz�N���b�N�o��</TD>
+      <TD bgcolor="#eeeeee">16.76MHzクロック出力</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
-���̊֐��ł� ARM9 �̐ݒ�l��ǂݎ���Ēl��Ԃ��܂��B(�ʏ�� ARM9 �� ARM7 �͓����ݒ�l�Ŏg�p���܂��B<CODE><A href="CTRDG_SetPhiClock.html">CTRDG_SetPhiClock()</A></CODE> �͗��v���Z�b�T�̐ݒ�𓯎��ɍs���֐��ł��B)</P>
-<h2>��������</h2>
-<P>IO���W�X�^�́AEXMEMCNT(0x4000204)�ɃA�N�Z�X���Ă��܂��B</P>
+この関数では ARM9 の設定値を読み取って値を返します。(通常は ARM9 と ARM7 は同じ設定値で使用します。<CODE><A href="CTRDG_SetPhiClock.html">CTRDG_SetPhiClock()</A></CODE> は両プロセッサの設定を同時に行う関数です。)</P>
+<h2>内部動作</h2>
+<P>IOレジスタの、EXMEMCNT(0x4000204)にアクセスしています。</P>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="CTRDG_SetPhiClock.html">CTRDG_SetPhiClock</A><br>
 </CODE></p>
 
-<H2>����</H2>
-<P>2006/04/28 MI_ ���� CTRDG_ �Ɉړ�<BR>
-2003/12/18 ����</P>
+<H2>履歴</H2>
+<P>2006/04/28 MI_ から CTRDG_ に移動<BR>
+2003/12/18 初版</P>
 </body>
 </html>

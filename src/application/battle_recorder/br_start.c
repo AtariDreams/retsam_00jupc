@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_start.c
- * @brief	ƒoƒgƒ‹ƒŒƒR[ƒ_[
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
  * @author	goto
- * @date	2007.07.26(–Ø)
+ * @date	2007.07.26(æœ¨)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -168,7 +168,7 @@ static BOOL BR_start_Boot( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒF[ƒh
+ * @brief	ãƒ•ã‚§ãƒ¼ãƒ‰
  *
  * @param	wk	
  *
@@ -181,7 +181,7 @@ static BOOL BR_start_Fade( BR_WORK* wk )
 	switch ( wk->sub_seq ){
 		
 	case 0:
-		///< ‚±‚±‚Å‚Ìì¬‚Íâ‘Î“®‚©‚¹‚È‚¢
+		///< ã“ã“ã§ã®ä½œæˆã¯çµ¶å¯¾å‹•ã‹ã›ãªã„
 		CATS_SystemActiveSet( wk, TRUE );
 		BR_SideBar_Load( wk );
 		BR_SideBar_Add( wk );
@@ -192,7 +192,7 @@ static BOOL BR_start_Fade( BR_WORK* wk )
 		BR_Tag_SubRecover( wk );
 		CATS_SystemActiveSet( wk, FALSE );
 
-		///< ƒŠƒJƒo[ó‘Ô‚ÌŽžAOAM“™‚ðì¬ŒãŠeƒV[ƒPƒ“ƒX‚ÉˆÚs		
+		///< ãƒªã‚«ãƒãƒ¼çŠ¶æ…‹ã®æ™‚ã€OAMç­‰ã‚’ä½œæˆå¾Œå„ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«ç§»è¡Œ		
 		if ( BR_RecoverCheck( wk ) == TRUE ){
 			if ( wk->mode == BR_MODE_BROWSE ){
 				ArcUtil_HDL_ScrnSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_browse_bg0u_NSCR, wk->sys.bgl, GF_BGL_FRAME1_S, 0, 0, 0, HEAPID_BR );
@@ -209,7 +209,7 @@ static BOOL BR_start_Fade( BR_WORK* wk )
 		}
 //		ColorConceChangePfd( wk->sys.pfd, FADE_SUB_BG,  LOGO_PALETTE, 16, wk->sys.logo_color );
 //		ColorConceChangePfd( wk->sys.pfd, FADE_MAIN_OBJ, TAG_PALETTE, 16, wk->sys.logo_color );
-		///< ‚±‚±‚©‚ç‚Í’Êí‚Ì‹N“®‚Ì—¬‚ê
+		///< ã“ã“ã‹ã‚‰ã¯é€šå¸¸ã®èµ·å‹•ã®æµã‚Œ
 //		WIPE_SYS_Start( WIPE_PATTERN_WMS,
 //					    WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN,
 //					    WIPE_FADE_BLACK,  WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_BR );
@@ -275,7 +275,7 @@ static BOOL BR_start_Fade( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹N“®
+ * @brief	èµ·å‹•
  *
  * @param	wk	
  *
@@ -287,7 +287,7 @@ static BOOL BR_start_On( BR_WORK* wk )
 {
 	switch ( wk->sub_seq ){
 	case 0:
-		///< ‚¿‚ç‚Ý
+		///< ã¡ã‚‰ã¿
 		Cursor_PosSetFix( wk->cur_wk, 256/2, 192/2 );
 		Cursor_PosSet( wk->cur_wk, 256/2, 192/2 );
 		Cursor_Visible( wk->cur_wk, TRUE );
@@ -301,13 +301,13 @@ static BOOL BR_start_On( BR_WORK* wk )
 		break;
 	
 	case 1:
-		///< Œ©‚¦‚È‚­‚µ‚Ä
+		///< è¦‹ãˆãªãã—ã¦
 		ColorConceChangePfd( wk->sys.pfd, FADE_SUB_BG, LOGO_PALETTE, wk->wait, wk->sys.logo_color );
 		wk->sub_seq++;
 		break;
 	
 	case 2:
-		///< ƒtƒF[ƒh
+		///< ãƒ•ã‚§ãƒ¼ãƒ‰
 		wk->wait--;
 		ColorConceChangePfd( wk->sys.pfd, FADE_SUB_BG, LOGO_PALETTE, wk->wait, wk->sys.logo_color );		
 		if ( wk->wait == 0 ){
@@ -324,7 +324,7 @@ static BOOL BR_start_On( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ƒCƒ“
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¤ãƒ³
  *
  * @param	wk	
  *
@@ -350,7 +350,7 @@ static BOOL BR_start_pv_MenuIn( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	br_input.c‚Å‚àcall
+ * @brief	br_input.cã§ã‚‚call
  *
  * @param	wk	
  *
@@ -364,7 +364,7 @@ BOOL BR_start_MenuIn( BR_WORK* wk )
 	
 	switch ( wk->sub_seq ){
 	case 0:	
-		///< ƒƒ‚ƒŠŠm•Û
+		///< ãƒ¡ãƒ¢ãƒªç¢ºä¿
 		swk = sys_AllocMemory( HEAPID_BR, sizeof( BR_TAG_WORK ) );		
 		MI_CpuFill8( swk, 0, sizeof( BR_TAG_WORK ) );
 		wk->sub_work = swk;	
@@ -392,7 +392,7 @@ BOOL BR_start_MenuIn( BR_WORK* wk )
 		break;
 
 	case 1:
-		///< ‚È‚ñ‚â‚©‚ñ‚â
+		///< ãªã‚“ã‚„ã‹ã‚“ã‚„
 		swk = wk->sub_work;
 		
 		if ( swk->color != 0 ){

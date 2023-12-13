@@ -25,64 +25,64 @@ extern "C" {
 
 
 /* ========================================================================
-    ƒ}ƒNƒ’è”
+    ãƒžã‚¯ãƒ­å®šæ•°
    ======================================================================== */
 
-// –³Œø‚Èƒq[ƒvƒnƒ“ƒhƒ‹
+// ç„¡åŠ¹ãªãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«
 #define NNS_FND_HEAP_INVALID_HANDLE     NULL
 
-// ƒq[ƒv‚©‚çƒƒ‚ƒŠ‚ðŠ„‚è“–‚Ä‚é‚Æ‚«‚ÌƒfƒtƒHƒ‹ƒg‚ÌƒAƒ‰ƒCƒƒ“ƒgƒTƒCƒY
+// ãƒ’ãƒ¼ãƒ—ã‹ã‚‰ãƒ¡ãƒ¢ãƒªã‚’å‰²ã‚Šå½“ã¦ã‚‹ã¨ãã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã‚µã‚¤ã‚º
 #define NNS_FND_HEAP_DEFAULT_ALIGNMENT    4
 
-// Šg’£ƒq[ƒv‚ÌƒVƒOƒlƒ`ƒƒ
+// æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ã‚·ã‚°ãƒãƒãƒ£
 #define NNSI_EXPHEAP_SIGNATURE    ('EXPH')
 
-// ƒtƒŒ[ƒ€ƒq[ƒv‚ÌƒVƒOƒlƒ`ƒƒ
+// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ’ãƒ¼ãƒ—ã®ã‚·ã‚°ãƒãƒãƒ£
 #define NNSI_FRMHEAP_SIGNATURE    ('FRMH')
 
-// ƒ†ƒjƒbƒgƒq[ƒv‚ÌƒVƒOƒlƒ`ƒƒ
+// ãƒ¦ãƒ‹ãƒƒãƒˆãƒ’ãƒ¼ãƒ—ã®ã‚·ã‚°ãƒãƒãƒ£
 #define NNSI_UNTHEAP_SIGNATURE    ('UNTH')
 
 
 /* ------------------------------------------------------------------------
-    ƒtƒBƒ‹ŠÖŒW
+    ãƒ•ã‚£ãƒ«é–¢ä¿‚
    ------------------------------------------------------------------------ */
 
-// ƒƒ‚ƒŠŠm•ÛŽž‚Éƒƒ‚ƒŠ‚ð0‚ÅƒNƒŠƒA
+// ãƒ¡ãƒ¢ãƒªç¢ºä¿æ™‚ã«ãƒ¡ãƒ¢ãƒªã‚’0ã§ã‚¯ãƒªã‚¢
 #define NNS_FND_HEAP_OPT_0_CLEAR        (1 <<0)
 
-// ƒq[ƒvì¬ŽžEƒƒ‚ƒŠŠm•ÛE‰ð•úŽž‚Éƒƒ‚ƒŠ[“U
+// ãƒ’ãƒ¼ãƒ—ä½œæˆæ™‚ãƒ»ãƒ¡ãƒ¢ãƒªç¢ºä¿ãƒ»è§£æ”¾æ™‚ã«ãƒ¡ãƒ¢ãƒªå……å¡«
 #define NNS_FND_HEAP_OPT_DEBUG_FILL     (1 <<1)
 
 
 /* ------------------------------------------------------------------------
-    ƒq[ƒvƒ`ƒFƒbƒNŠÖŒW
+    ãƒ’ãƒ¼ãƒ—ãƒã‚§ãƒƒã‚¯é–¢ä¿‚
    ------------------------------------------------------------------------ */
 
-//  ‚±‚Ìƒrƒbƒg‚ª—§‚Á‚Ä‚¢‚é‚ÆƒGƒ‰[o—Í
+//  ã“ã®ãƒ“ãƒƒãƒˆãŒç«‹ã£ã¦ã„ã‚‹ã¨ã‚¨ãƒ©ãƒ¼å‡ºåŠ›
 #define NNS_FND_HEAP_ERROR_PRINT        (1 <<0)
 
 
 /* ========================================================================
-    enum’è”
+    enumå®šæ•°
    ======================================================================== */
 
 enum {
-    NNS_FND_HEAP_FILL_NOUSE,    // ƒfƒoƒbƒOƒtƒBƒ‹–¢Žg—pŽž
-    NNS_FND_HEAP_FILL_ALLOC,    // ƒfƒoƒbƒOƒtƒBƒ‹Šm•ÛŽž
-    NNS_FND_HEAP_FILL_FREE,     // ƒfƒoƒbƒOƒtƒBƒ‹‰ð•úŽž
+    NNS_FND_HEAP_FILL_NOUSE,    // ãƒ‡ãƒãƒƒã‚°ãƒ•ã‚£ãƒ«æœªä½¿ç”¨æ™‚
+    NNS_FND_HEAP_FILL_ALLOC,    // ãƒ‡ãƒãƒƒã‚°ãƒ•ã‚£ãƒ«ç¢ºä¿æ™‚
+    NNS_FND_HEAP_FILL_FREE,     // ãƒ‡ãƒãƒƒã‚°ãƒ•ã‚£ãƒ«è§£æ”¾æ™‚
 
     NNS_FND_HEAP_FILL_MAX
 };
 
 
 /* =======================================================================
-    Œ^’è‹`
+    åž‹å®šç¾©
    ======================================================================== */
 
 typedef struct NNSiFndHeapHead NNSiFndHeapHead;
 
-// ƒq[ƒv‹¤’Êƒwƒbƒ_
+// ãƒ’ãƒ¼ãƒ—å…±é€šãƒ˜ãƒƒãƒ€
 struct NNSiFndHeapHead
 {
     u32             signature;
@@ -90,28 +90,28 @@ struct NNSiFndHeapHead
     NNSFndLink      link;
     NNSFndList      childList;
 
-    void*           heapStart;      // ƒq[ƒvæ“ªƒAƒhƒŒƒX
-    void*           heapEnd;        // ƒq[ƒv––”ö(+1)ƒAƒhƒŒƒX
+    void*           heapStart;      // ãƒ’ãƒ¼ãƒ—å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+    void*           heapEnd;        // ãƒ’ãƒ¼ãƒ—æœ«å°¾(+1)ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-    u32             attribute;      // ‘®«
-                                    // [8:ƒIƒvƒVƒ‡ƒ“ƒtƒ‰ƒO]
+    u32             attribute;      // å±žæ€§
+                                    // [8:ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°]
 };
 
-typedef NNSiFndHeapHead* NNSFndHeapHandle;   // ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹‚ð•\‚·Œ^
+typedef NNSiFndHeapHead* NNSFndHeapHandle;   // ãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’è¡¨ã™åž‹
 
 
 /* ========================================================================
-    ƒ}ƒNƒŠÖ”
+    ãƒžã‚¯ãƒ­é–¢æ•°
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetHeapStartAddress
 
-  Description:  ƒq[ƒv‚ª—˜—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠJŽnƒAƒhƒŒƒX‚ðŽæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ’ãƒ¼ãƒ—ãŒåˆ©ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    heap:  ƒq[ƒvƒnƒ“ƒhƒ‹B
+  Arguments:    heap:  ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«ã€‚
 
-  Returns:      ƒq[ƒv‚ª—˜—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌŠJŽnƒAƒhƒŒƒX‚ð•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ’ãƒ¼ãƒ—ãŒåˆ©ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 #define             NNS_FndGetHeapStartAddress(heap) \
                         ((void*)(heap))
@@ -119,18 +119,18 @@ typedef NNSiFndHeapHead* NNSFndHeapHandle;   // ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹‚ð•\‚·Œ^
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetHeapEndAddress
 
-  Description:  ƒq[ƒv‚ª—˜—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌI—¹ƒAƒhƒŒƒX +1 ‚ðŽæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ’ãƒ¼ãƒ—ãŒåˆ©ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®çµ‚äº†ã‚¢ãƒ‰ãƒ¬ã‚¹ +1 ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    heap:  ƒq[ƒvƒnƒ“ƒhƒ‹B
+  Arguments:    heap:  ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«ã€‚
 
-  Returns:      ƒq[ƒv‚ª—˜—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚ÌI—¹ƒAƒhƒŒƒX +1 ‚ð•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ’ãƒ¼ãƒ—ãŒåˆ©ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®çµ‚äº†ã‚¢ãƒ‰ãƒ¬ã‚¹ +1 ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 #define             NNS_FndGetHeapEndAddress(heap) \
                         (((NNSiFndHeapHead*)(heap))->heapEnd)
 
 
 /* =======================================================================
-    ŠÖ”ƒvƒƒgƒ^ƒCƒv
+    é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
    ======================================================================== */
 
 NNSFndHeapHandle    NNS_FndFindContainHeap(

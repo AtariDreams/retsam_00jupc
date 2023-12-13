@@ -12,17 +12,17 @@
 
   $Log: dwc_netcheck.h,v $
   Revision 1.19  2006/11/07 04:54:35  nakata
-  DWC_SimpleNetcheckŒn‚Ì’Ç‰Á
+  DWC_SimpleNetcheckç³»ã®è¿½åŠ 
 
   Revision 1.18  2006/04/06 09:21:33  nakata
-  302ƒGƒ‰[‚ð–³Ž‹‚·‚éƒ‚[ƒh‚ðÝ’è‚·‚éŠÖ”‚ð’Ç‰ÁB
+  302ã‚¨ãƒ©ãƒ¼ã‚’ç„¡è¦–ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹é–¢æ•°ã‚’è¿½åŠ ã€‚
 
   Revision 1.17  2006/04/04 07:47:35  nakata
-  ‰üsƒR[ƒhC³B
+  æ”¹è¡Œã‚³ãƒ¼ãƒ‰ä¿®æ­£ã€‚
 
   Revision 1.16  2006/03/02 05:21:58  nakata
-  DWC_Svcƒ‚ƒWƒ…[ƒ‹’Ç‰Á
-  DWC_Util_Alloc/DWC_Util_FreeŠÖ”‚Ì–¼‘O‚ðDWC_Auth_Alloc/DWC_Auth_FreeŠÖ”‚É–¼‘O‚ð•ÏX
+  DWC_Svcãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«è¿½åŠ 
+  DWC_Util_Alloc/DWC_Util_Freeé–¢æ•°ã®åå‰ã‚’DWC_Auth_Alloc/DWC_Auth_Freeé–¢æ•°ã«åå‰ã‚’å¤‰æ›´
 
   Revision 1.15  2005/12/21 12:02:19  nakata
   Rollback Auth related code to versiont "2005-11-21 08:00:00"
@@ -34,14 +34,14 @@
   Modified some Makefile for successful compilation.
 
   Revision 1.11  2005/08/20 10:28:07  sasakit
-  s––‚É\—ˆ‚Ä‚¢‚és‚Ì‘ÎôB
+  è¡Œæœ«ã«\æ¥ã¦ã„ã‚‹è¡Œã®å¯¾ç­–ã€‚
 
   Revision 1.10  2005/08/20 07:01:18  sasakit
-  ƒwƒbƒ_ƒCƒ“ƒNƒ‹[ƒhƒK[ƒh‚Ì‘Ž®‚ð“ˆê‚µ‚½B
-  bm/dwc_init.h -> bm/dwc_bm_init.h‚É•ÏX
-  ƒwƒbƒ_‚ÉCopyright‚ð‚Â‚¯‚½B
-  \‘¢‘Ì‚Ì–¼‘O‹óŠÔ‚ð‚Å‚«‚é‚¾‚¯ƒ‹[ƒ‹‚É‚¿‚©‚Ã‚¯‚½B
-  util_wifiidtool.h‚Ædwc_backup.h‚ÌŠÖŒW‚ðŽáŠ±C³B
+  ãƒ˜ãƒƒãƒ€ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚¬ãƒ¼ãƒ‰ã®æ›¸å¼ã‚’çµ±ä¸€ã—ãŸã€‚
+  bm/dwc_init.h -> bm/dwc_bm_init.hã«å¤‰æ›´
+  ãƒ˜ãƒƒãƒ€ã«Copyrightã‚’ã¤ã‘ãŸã€‚
+  æ§‹é€ ä½“ã®åå‰ç©ºé–“ã‚’ã§ãã‚‹ã ã‘ãƒ«ãƒ¼ãƒ«ã«ã¡ã‹ã¥ã‘ãŸã€‚
+  util_wifiidtool.hã¨dwc_backup.hã®é–¢ä¿‚ã‚’è‹¥å¹²ä¿®æ­£ã€‚
 
 
   $NoKeywords: $
@@ -50,7 +50,7 @@
 #define DWC_NETCHECK_H_
 /*****************************************************************************/
 /*                                                                           */
-/*  Ú‘±«ŒŸØƒ‰ƒCƒuƒ‰ƒŠ DWC_Netcheck ƒwƒbƒ_ƒtƒ@ƒCƒ‹                         */
+/*  æŽ¥ç¶šæ€§æ¤œè¨¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª DWC_Netcheck ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«                         */
 /*      dwc_netcheck.h                                                       */
 /*          ver. 0.5                                                         */
 /*                                                                           */
@@ -63,39 +63,39 @@ extern "C" {
 #endif // [nakata] __cplusplus
 
 //=============================================================================
-// [nakata] ’è‹`
+// [nakata] å®šç¾©
 //=============================================================================
 
-// [nakata] DWCNetcheck‚ÌƒGƒ‰[ó‘Ô‚ðŽ¦‚·—ñ‹“Œ^
+// [nakata] DWCNetcheckã®ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹ã‚’ç¤ºã™åˆ—æŒ™åž‹
 typedef enum {
-	DWCNETCHECK_E_NOERR,			// [nakata] ‰Šúó‘Ô/ˆ—’†
+	DWCNETCHECK_E_NOERR,			// [nakata] åˆæœŸçŠ¶æ…‹/å‡¦ç†ä¸­
 
-	DWCNETCHECK_E_HTTPINITERR,		// [nakata] DWCHttp‚ª‰Šú‰»‚Å‚«‚È‚¢
-	DWCNETCHECK_E_HTTPPARSEERR,		// [nakata] ŽóM‚µ‚½HTTPƒpƒPƒbƒg‚ª•s³‚Åƒp[ƒX‚Å‚«‚È‚¢
-	DWCNETCHECK_E_HTTPERR,			// [nakata] DWCHttp‚ÉŠÖ‚·‚é–¢•ª—Þ‚ÌƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚é
-	DWCNETCHECK_E_MEMERR,			// [nakata] ƒƒ‚ƒŠŠm•ÛŽ¸”s
-	DWCNETCHECK_E_AUTHINITERR,		// [nakata] DWCAuth‚ª‰Šú‰»‚Å‚«‚È‚¢
-	DWCNETCHECK_E_AUTHERR,			// [nakata] DWCAuth‚ÉŠÖ‚·‚é–¢•ª—Þ‚ÌƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚é
-	DWCNETCHECK_E_302TWICE,			// [nakata] Wayport”FØ‚ðs‚Á‚½‚Ì‚É302ƒGƒ‰[‚ªo‚½
-	DWCNETCHECK_E_CANTADDPOSTITEM,	// [nakata] HTTPƒpƒPƒbƒg‚ÉPOSTƒAƒCƒeƒ€‚ð’Ç‰Á‚Å‚«‚È‚¢
-	DWCNETCHECK_E_NASPARSEERR,		// [nakata] NASƒpƒPƒbƒg‚Æ‚µ‚Ä³í‚Éƒp[ƒX‚Å‚«‚È‚¢
+	DWCNETCHECK_E_HTTPINITERR,		// [nakata] DWCHttpãŒåˆæœŸåŒ–ã§ããªã„
+	DWCNETCHECK_E_HTTPPARSEERR,		// [nakata] å—ä¿¡ã—ãŸHTTPãƒ‘ã‚±ãƒƒãƒˆãŒä¸æ­£ã§ãƒ‘ãƒ¼ã‚¹ã§ããªã„
+	DWCNETCHECK_E_HTTPERR,			// [nakata] DWCHttpã«é–¢ã™ã‚‹æœªåˆ†é¡žã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹
+	DWCNETCHECK_E_MEMERR,			// [nakata] ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—
+	DWCNETCHECK_E_AUTHINITERR,		// [nakata] DWCAuthãŒåˆæœŸåŒ–ã§ããªã„
+	DWCNETCHECK_E_AUTHERR,			// [nakata] DWCAuthã«é–¢ã™ã‚‹æœªåˆ†é¡žã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹
+	DWCNETCHECK_E_302TWICE,			// [nakata] Wayportèªè¨¼ã‚’è¡Œã£ãŸã®ã«302ã‚¨ãƒ©ãƒ¼ãŒå‡ºãŸ
+	DWCNETCHECK_E_CANTADDPOSTITEM,	// [nakata] HTTPãƒ‘ã‚±ãƒƒãƒˆã«POSTã‚¢ã‚¤ãƒ†ãƒ ã‚’è¿½åŠ ã§ããªã„
+	DWCNETCHECK_E_NASPARSEERR,		// [nakata] NASãƒ‘ã‚±ãƒƒãƒˆã¨ã—ã¦æ­£å¸¸ã«ãƒ‘ãƒ¼ã‚¹ã§ããªã„
 	
-	DWCNETCHECK_E_NETUNAVAIL,		// [nakata] (DWCNetcheckŒ‹‰Ê)ƒlƒbƒgƒ[ƒNÚ‘±•s‰Â”\ 
-	DWCNETCHECK_E_NETAVAIL,			// [nakata] (DWCNetcheckŒ‹‰Ê)ƒlƒbƒgƒ[ƒNÚ‘±‰Â”\ 
+	DWCNETCHECK_E_NETUNAVAIL,		// [nakata] (DWCNetcheckçµæžœ)ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯æŽ¥ç¶šä¸å¯èƒ½ 
+	DWCNETCHECK_E_NETAVAIL,			// [nakata] (DWCNetcheckçµæžœ)ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯æŽ¥ç¶šå¯èƒ½ 
 
 	DWCNETCHECK_E_MAX
 } DWCNetcheckError;
 
-// [nakata] DWCNetcheck‚Ì‰Šú‰»ƒpƒ‰ƒ[ƒ^
+// [nakata] DWCNetcheckã®åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct
 {
-	DWCAuthAlloc	alloc;	// [nakata] ƒƒ‚ƒŠŠm•ÛŠÖ”
-	DWCAuthFree	free;	// [nakata] ƒƒ‚ƒŠ‰ð•úŠÖ”
+	DWCAuthAlloc	alloc;	// [nakata] ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°
+	DWCAuthFree	free;	// [nakata] ãƒ¡ãƒ¢ãƒªè§£æ”¾é–¢æ•°
 	
-	void *bmworkarea;		// [nakata] BM—p—Ìˆæ(32bitƒAƒ‰ƒCƒ“ƒƒ“ƒg‚³‚ê‚½Ã“I‚Èƒƒ‚ƒŠ—Ìˆæ)
+	void *bmworkarea;		// [nakata] BMç”¨é ˜åŸŸ(32bitã‚¢ãƒ©ã‚¤ãƒ³ãƒ¡ãƒ³ãƒˆã•ã‚ŒãŸé™çš„ãªãƒ¡ãƒ¢ãƒªé ˜åŸŸ)
 } DWCNetcheckParam;
 
-// [nakata] SIMPLE_CHECK—p
+// [nakata] SIMPLE_CHECKç”¨
 typedef enum
 {
 	DWC_SIMPLENETCHECK_PROCESSING = 0,
@@ -106,80 +106,80 @@ typedef enum
 } DWCSimpleNetcheckResult;
 
 //=============================================================================
-// [nakata] ŠÖ”
+// [nakata] é–¢æ•°
 //=============================================================================
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWCNetcheck‚ÅŽg—p‚·‚é\‘¢‘Ì‚Ì‰Šú‰»/ƒƒ‚ƒŠŠm•Û/ƒXƒŒƒbƒhŽÀs
-// ˆø” : param - ‰Šú‰»ƒpƒ‰ƒ[ƒ^
-// •Ô’l : DWCNetcheckError
+// æ©Ÿèƒ½ : DWCNetcheckã§ä½¿ç”¨ã™ã‚‹æ§‹é€ ä½“ã®åˆæœŸåŒ–/ãƒ¡ãƒ¢ãƒªç¢ºä¿/ã‚¹ãƒ¬ãƒƒãƒ‰å®Ÿè¡Œ
+// å¼•æ•° : param - åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+// è¿”å€¤ : DWCNetcheckError
 //-----------------------------------------------------------------------------
 DWCNetcheckError DWC_Netcheck_Create(DWCNetcheckParam *param);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWCNetcheck‚ÅŽg—p‚µ‚½ƒƒ‚ƒŠ‚Ì‰ð•ú/ƒlƒbƒgƒ[ƒNØ’f
-// ˆø” : ‚È‚µ
-// •Ô’l : ‚È‚µ
+// æ©Ÿèƒ½ : DWCNetcheckã§ä½¿ç”¨ã—ãŸãƒ¡ãƒ¢ãƒªã®è§£æ”¾/ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯åˆ‡æ–­
+// å¼•æ•° : ãªã—
+// è¿”å€¤ : ãªã—
 //-----------------------------------------------------------------------------
 void DWC_Netcheck_Destroy(void);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWCNetcheckƒXƒŒƒbƒhƒAƒ{[ƒg
-// ˆø” : ‚È‚µ
-// •Ô’l : ‚È‚µ
+// æ©Ÿèƒ½ : DWCNetcheckã‚¹ãƒ¬ãƒƒãƒ‰ã‚¢ãƒœãƒ¼ãƒˆ
+// å¼•æ•° : ãªã—
+// è¿”å€¤ : ãªã—
 //-----------------------------------------------------------------------------
 void DWC_Netcheck_Abort(void);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWCNetcheckƒXƒŒƒbƒh‚ªI—¹‚·‚é‚Ì‚ðOS_JoinThread‚µ‚Ä‘Ò‚Â
-// ˆø” : ‚È‚µ
-// •Ô’l : ‚È‚µ
+// æ©Ÿèƒ½ : DWCNetcheckã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã™ã‚‹ã®ã‚’OS_JoinThreadã—ã¦å¾…ã¤
+// å¼•æ•° : ãªã—
+// è¿”å€¤ : ãªã—
 //-----------------------------------------------------------------------------
 void DWC_Netcheck_Join(void);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWC_Netcheck‚Ì“®ì‚ðƒ|[ƒŠƒ“ƒO‚·‚é‚½‚ß‚ÌŠÖ”
-// ˆø” : ‚È‚µ
-// •Ô’l : BOOL - DWCNETCHECK_NOERR : ‚Ü‚¾ˆ—‚ªI‚í‚Á‚Ä‚¢‚È‚¢
-//             - ‚»‚êˆÈŠO          : Netcheckˆ—‚ªI‚í‚Á‚½
+// æ©Ÿèƒ½ : DWC_Netcheckã®å‹•ä½œã‚’ãƒãƒ¼ãƒªãƒ³ã‚°ã™ã‚‹ãŸã‚ã®é–¢æ•°
+// å¼•æ•° : ãªã—
+// è¿”å€¤ : BOOL - DWCNETCHECK_NOERR : ã¾ã å‡¦ç†ãŒçµ‚ã‚ã£ã¦ã„ãªã„
+//             - ãã‚Œä»¥å¤–          : Netcheckå‡¦ç†ãŒçµ‚ã‚ã£ãŸ
 //-----------------------------------------------------------------------------
 DWCNetcheckError DWC_Netcheck_GetError(void);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : Mutex‚ðŽg—p‚¹‚¸‚ÉDWCNetcheck‚ÌŒ‹‰Ê‚ðŽæ“¾‚·‚é
-//        (AuthƒXƒŒƒbƒh‚ªI—¹‚µ‚Ä‚©‚çŽg‚¤‚±‚ÆADWC_Netcheck_Destroy‘O‚ÉŽg‚¤‚±‚Æ)
-// ˆø” : ‚È‚µ
-// •Ô’l : int
+// æ©Ÿèƒ½ : Mutexã‚’ä½¿ç”¨ã›ãšã«DWCNetcheckã®çµæžœã‚’å–å¾—ã™ã‚‹
+//        (Authã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã—ã¦ã‹ã‚‰ä½¿ã†ã“ã¨ã€DWC_Netcheck_Destroyå‰ã«ä½¿ã†ã“ã¨)
+// å¼•æ•° : ãªã—
+// è¿”å€¤ : int
 //-----------------------------------------------------------------------------
 int DWC_Netcheck_GetReturnCode(void);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWC_Netcheck‚ÌBlacklistƒTƒCƒg‚ðÝ’è‚·‚é
-// ˆø” : const char * - BlacklistƒTƒCƒg‚ÌURL
-// •Ô’l : ‚È‚µ
+// æ©Ÿèƒ½ : DWC_Netcheckã®Blacklistã‚µã‚¤ãƒˆã‚’è¨­å®šã™ã‚‹
+// å¼•æ•° : const char * - Blacklistã‚µã‚¤ãƒˆã®URL
+// è¿”å€¤ : ãªã—
 //-----------------------------------------------------------------------------
 void DWC_Netcheck_SetCustomBlacklist(const char *url);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : DWC_Netcheck‚ª302ƒGƒ‰[‚ðƒlƒbƒgƒ[ƒNÚ‘±Ï‚Ý‚Æ”FŽ¯‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ðÝ’è‚·‚é
-// ˆø” : allow302 - TRUE  - DWC_Netcheck‚Í302ƒGƒ‰[‚ðÚ‘±ˆµ‚¢‚Æ‚·‚é
-//                   FALSE - DWC_Netcheck‚Í302ƒGƒ‰[‚ðÚ‘±ˆµ‚¢‚Æ‚µ‚È‚¢
-// •Ô’l : ‚È‚µ
+// æ©Ÿèƒ½ : DWC_NetcheckãŒ302ã‚¨ãƒ©ãƒ¼ã‚’ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯æŽ¥ç¶šæ¸ˆã¿ã¨èªè­˜ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
+// å¼•æ•° : allow302 - TRUE  - DWC_Netcheckã¯302ã‚¨ãƒ©ãƒ¼ã‚’æŽ¥ç¶šæ‰±ã„ã¨ã™ã‚‹
+//                   FALSE - DWC_Netcheckã¯302ã‚¨ãƒ©ãƒ¼ã‚’æŽ¥ç¶šæ‰±ã„ã¨ã—ãªã„
+// è¿”å€¤ : ãªã—
 //-----------------------------------------------------------------------------
 void DWC_Netcheck_SetAllow302(BOOL allow302);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : SIMPLE_CHECK‚ð‰Šú‰»
-// ˆø” : ƒ^ƒCƒ€ƒAƒEƒgŽžŠÔ(ƒ~ƒŠ•b)
-// •Ô’l : TRUE - SIMPLE_CHECK‚ðŠJŽn‚µ‚½
-//      : FALSE - SIMPLE_CHECK‚ðŠJŽn‚Å‚«‚È‚©‚Á‚½
+// æ©Ÿèƒ½ : SIMPLE_CHECKã‚’åˆæœŸåŒ–
+// å¼•æ•° : ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“(ãƒŸãƒªç§’)
+// è¿”å€¤ : TRUE - SIMPLE_CHECKã‚’é–‹å§‹ã—ãŸ
+//      : FALSE - SIMPLE_CHECKã‚’é–‹å§‹ã§ããªã‹ã£ãŸ
 //-----------------------------------------------------------------------------
 BOOL DWC_SimpleNetcheckAsync(int timeout);
 
 //-----------------------------------------------------------------------------
-// ‹@”\ : SIMPLE_CHECK‚ðprocess‚·‚é
-// ˆø” : ‚È‚µ
-// •Ô’l : DWCSimpleNetcheckResult
+// æ©Ÿèƒ½ : SIMPLE_CHECKã‚’processã™ã‚‹
+// å¼•æ•° : ãªã—
+// è¿”å€¤ : DWCSimpleNetcheckResult
 //-----------------------------------------------------------------------------
 DWCSimpleNetcheckResult DWC_SimpleNetcheckProcess(void);
 

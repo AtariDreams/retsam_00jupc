@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	tr_card_setup.c
- * @bfief	ƒgƒŒ[ƒi[ƒJ[ƒhî•ñƒZƒbƒgƒAƒbƒv
+ * @bfief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰æƒ…å ±ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * @author	Nozomu Saito
  */
 //============================================================================================
@@ -65,14 +65,14 @@ static BOOL SetupTrCardEvent(GMEVENT_CONTROL * event);
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒJ[ƒhî•ñ‚ğûW‚µ‚ÄAƒf[ƒ^‚ğì¬
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰æƒ…å ±ã‚’åé›†ã—ã¦ã€ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
  *
- * @param	inBadgeBrushFlg		ƒoƒbƒW–‚«—LŒø—L–³
- * @param	inTimeUpdate		ŠÔXVƒtƒ‰ƒO
- * @;aram	inGymRaederMask		ƒWƒ€ƒŠ[ƒ_[ƒ}ƒXƒN
- * @param	inUnionTrNo			ƒ†ƒjƒIƒ“ƒgƒŒ[ƒi[ƒiƒ“ƒo[i0`15j@w’è‚µ‚È‚¢‚Æ‚«‚Í,UNION_TR_NONE
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	outTrCardData		ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inBadgeBrushFlg		ãƒãƒƒã‚¸ç£¨ãæœ‰åŠ¹æœ‰ç„¡
+ * @param	inTimeUpdate		æ™‚é–“æ›´æ–°ãƒ•ãƒ©ã‚°
+ * @;aram	inGymRaederMask		ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ãƒã‚¹ã‚¯
+ * @param	inUnionTrNo			ãƒ¦ãƒ‹ã‚ªãƒ³ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒŠãƒ³ãƒãƒ¼ï¼ˆ0ã€œ15ï¼‰ã€€æŒ‡å®šã—ãªã„ã¨ãã¯,UNION_TR_NONE
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	outTrCardData		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -95,7 +95,7 @@ void TRCSET_MakeTrainerInfo(const u8 inBadgeBrushFlg,
 
 	{
 		u8 rank;
-		//ƒ‰ƒ“ƒNZo
+		//ãƒ©ãƒ³ã‚¯ç®—å‡º
 		rank = TRCSET_GetCardRank(fsys);
 	
 		TRCSET_SetTrCardDataCommon( inBadgeBrushFlg, PM_VERSION, rank,
@@ -112,9 +112,9 @@ void TRCSET_MakeTrainerInfo(const u8 inBadgeBrushFlg,
 								outTrCardData);
 
 	{
-		RTCDate start_date;	//ŠJn”NŒ“ú
-		RTCDate clear_date;	//ƒNƒŠƒA”NŒ“ú
-		RTCTime time;		//ƒNƒŠƒAŠÔ
+		RTCDate start_date;	//é–‹å§‹å¹´æœˆæ—¥
+		RTCDate clear_date;	//ã‚¯ãƒªã‚¢å¹´æœˆæ—¥
+		RTCTime time;		//ã‚¯ãƒªã‚¢æ™‚é–“
 
 		PLAYTIME *play_time;
 
@@ -137,16 +137,16 @@ void TRCSET_MakeTrainerInfo(const u8 inBadgeBrushFlg,
 		TR_CARD_SV_PTR trc_ptr;
 		trc_ptr = TRCSave_GetSaveDataPtr(fsys->savedata);
 		
-		//’ÊM‰ñ”	ƒƒCƒ„ƒŒƒXƒRƒ“ƒeƒXƒg+ƒƒCƒ„ƒŒƒXŒğŠ·+WiFiŒğŠ·+ƒƒCƒ„ƒŒƒX‘Îí+WiFi‘Îí+ƒƒCƒ„ƒŒƒXƒ|ƒ‹ƒg
+		//é€šä¿¡å›æ•°	ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ+ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹äº¤æ›+WiFiäº¤æ›+ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹å¯¾æˆ¦+WiFiå¯¾æˆ¦+ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹ãƒãƒ«ãƒˆ
 		count = RECORD_Get(rec, RECID_CONTEST_COMM_ENTRY)+
 				RECORD_Get(rec, RECID_COMM_TRADE)+RECORD_Get(rec, RECID_WIFI_TRADE)+
 				RECORD_Get(rec, RECID_COMM_BATTLE)+RECORD_Get(rec, RECID_WIFI_BATTLE)+
 				RECORD_Get(rec, RECID_PORUTO_COMM);
-		//Ÿ‚¿”	ƒƒCƒ„ƒŒƒX+WiFi
+		//å‹ã¡æ•°	ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹+WiFi
 		win = RECORD_Get(rec, RECID_COMM_BTL_WIN)+RECORD_Get(rec, RECID_WIFI_BTL_WIN);
-		//•‰‚¯”	ƒƒCƒ„ƒŒƒX+WiFi
+		//è² ã‘æ•°	ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹+WiFi
 		lose = RECORD_Get(rec, RECID_COMM_BTL_LOSE)+RECORD_Get(rec, RECID_WIFI_BTL_LOSE);
-		//’ÊMŒğŠ·	ƒƒCƒ„ƒŒƒX+WiFi
+		//é€šä¿¡äº¤æ›	ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹+WiFi
 		trade = RECORD_Get(rec, RECID_COMM_TRADE)+RECORD_Get(rec, RECID_WIFI_TRADE);
 
 		TRCSET_SetTrCardDataBack(	count,
@@ -175,11 +175,11 @@ void TRCSET_MakeTrainerInfo(const u8 inBadgeBrushFlg,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒJ[ƒhƒƒ‚ƒŠƒAƒƒP[ƒVƒ‡ƒ“
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ¡ãƒ¢ãƒªã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³
  *
- * @param	inHeapID		ƒq[ƒvID
+ * @param	inHeapID		ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	TR_CARD_DATA*	ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	TR_CARD_DATA*	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 TR_CARD_DATA *TRCSET_AllocTrainerCardData( const u16 inHeapID )
@@ -192,9 +192,9 @@ TR_CARD_DATA *TRCSET_AllocTrainerCardData( const u16 inHeapID )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒJ[ƒhƒƒ‚ƒŠ‰ğ•ú
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ¡ãƒ¢ãƒªè§£æ”¾
  *
- * @param	*outData	‰ğ•ú‚·‚éƒƒ‚ƒŠ
+ * @param	*outData	è§£æ”¾ã™ã‚‹ãƒ¡ãƒ¢ãƒª
  *
  * @return	none
  */
@@ -206,7 +206,7 @@ void TRCSET_FreeTrainerCardData( TR_CARD_DATA *outData )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒJ[ƒhƒ‰ƒ“ƒNæ“¾
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ©ãƒ³ã‚¯å–å¾—
  *
  * @param
  *
@@ -229,15 +229,15 @@ u8 TRCSET_GetCardRank(FIELDSYS_WORK *fsys)
 	frontier = SaveData_GetFrontier(sv);
 	rank = TR_CARD_RANK_NORMAL;
 	
-	//“a“°“ü‚èiƒNƒŠƒAƒtƒ‰ƒOj
+	//æ®¿å ‚å…¥ã‚Šï¼ˆã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ï¼‰
 	if ( SysFlag_GameClearCheck( ev ) ){
 		rank++;
 	}
-	//‘S‘}ŠÓŠ®¬iƒCƒxƒ“ƒgŒnƒ|ƒPƒ‚ƒ“‚ğœ‚­ƒ|ƒPƒ‚ƒ“‚ğƒQƒbƒg‚µ‚Ä‚¢‚é‚©j
+	//å…¨å›½å›³é‘‘å®Œæˆï¼ˆã‚¤ãƒ™ãƒ³ãƒˆç³»ãƒã‚±ãƒ¢ãƒ³ã‚’é™¤ããƒã‚±ãƒ¢ãƒ³ã‚’ã‚²ãƒƒãƒˆã—ã¦ã„ã‚‹ã‹ï¼‰
 	if ( ZukanWork_CheckZenkokuComp(SaveData_GetZukanWork(sv)) ){
 		rank++;
 	}
-	//ƒoƒgƒ‹ƒ^ƒ[100˜AŸiƒ^ƒCƒv‚Í‚È‚ñ‚Å‚àj
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼100é€£å‹ï¼ˆã‚¿ã‚¤ãƒ—ã¯ãªã‚“ã§ã‚‚ï¼‰
 	if ( (FrontierRecord_Get(frontier,FRID_TOWER_SINGLE_RENSHOU, FRONTIER_RECORD_NOT_FRIEND )>=100)||
 		 (FrontierRecord_Get(frontier,FRID_TOWER_DOUBLE_RENSHOU, FRONTIER_RECORD_NOT_FRIEND )>=100)||
 		 (FrontierRecord_Get(frontier,FRID_TOWER_MULTI_NPC_RENSHOU, FRONTIER_RECORD_NOT_FRIEND )>=100)||
@@ -245,7 +245,7 @@ u8 TRCSET_GetCardRank(FIELDSYS_WORK *fsys)
 		 (FrontierRecord_Get(frontier,FRID_TOWER_WIFI_DL_RENSHOU, FRONTIER_RECORD_NOT_FRIEND )>=100) ){ 
 		rank++;
 	}
-	//ƒRƒ“ƒeƒXƒgƒ}ƒXƒ^[—DŸiƒ^ƒCƒv‚Í‚È‚ñ‚Å‚àj
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒã‚¹ã‚¿ãƒ¼å„ªå‹ï¼ˆã‚¿ã‚¤ãƒ—ã¯ãªã‚“ã§ã‚‚ï¼‰
 	if ( SysFlag_ConMasterCheck( ev, CONTYPE_STYLE )||
 		 SysFlag_ConMasterCheck( ev, CONTYPE_BEAUTIFUL )||
 		 SysFlag_ConMasterCheck( ev, CONTYPE_CLEVER )||
@@ -253,7 +253,7 @@ u8 TRCSET_GetCardRank(FIELDSYS_WORK *fsys)
 		 SysFlag_ConMasterCheck( ev, CONTYPE_CUTE ) ){
 		rank++;
 	}
-	//’n‰ºƒ}ƒXƒ^[
+	//åœ°ä¸‹ãƒã‚¹ã‚¿ãƒ¼
 	
 	if ( SecretBaseRecordGetUGRank(sbd) == UG_RANK_MASTER ){
 		rank++;
@@ -263,14 +263,14 @@ u8 TRCSET_GetCardRank(FIELDSYS_WORK *fsys)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒJ[ƒhî•ñƒZƒbƒg
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰æƒ…å ±ã‚»ãƒƒãƒˆ
  *
- * @param	inBadgeBrushFlg		ƒoƒbƒW–‚«—LŒø—L–³
- * @param	inVersion			ƒo[ƒWƒ‡ƒ“
- * @param	inCardRank			ƒJ[ƒhƒ‰ƒ“ƒN
- * @param	inGymReaderMask		ƒWƒ€ƒŠ[ƒ_[ƒ}ƒXƒN
- * @param	inCoutryCode		‘ƒR[ƒh
- * @param	outTrCardData		ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inBadgeBrushFlg		ãƒãƒƒã‚¸ç£¨ãæœ‰åŠ¹æœ‰ç„¡
+ * @param	inVersion			ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+ * @param	inCardRank			ã‚«ãƒ¼ãƒ‰ãƒ©ãƒ³ã‚¯
+ * @param	inGymReaderMask		ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ãƒã‚¹ã‚¯
+ * @param	inCoutryCode		å›½ã‚³ãƒ¼ãƒ‰
+ * @param	outTrCardData		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -282,18 +282,18 @@ static void TRCSET_SetTrCardDataCommon(	const u8 inBadgeBrushFlg,
 										const u8 inCountryCode,
 										TR_CARD_DATA *outTrCardData)
 {
-	//ƒoƒbƒW–‚«ƒAƒvƒŠ—LŒøƒtƒ‰ƒO
+	//ãƒãƒƒã‚¸ç£¨ãã‚¢ãƒ—ãƒªæœ‰åŠ¹ãƒ•ãƒ©ã‚°
 	outTrCardData->BrushValid = inBadgeBrushFlg;
-	//ƒ\ƒtƒgƒo[ƒWƒ‡ƒ“
+	//ã‚½ãƒ•ãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³
 	outTrCardData->Version = inVersion;
-	//ƒJ[ƒhƒ‰ƒ“ƒN;
+	//ã‚«ãƒ¼ãƒ‰ãƒ©ãƒ³ã‚¯;
 	outTrCardData->CardRank = inCardRank;
-	//‘ƒR[ƒh
+	//å›½ã‚³ãƒ¼ãƒ‰
 	outTrCardData->CountryCode = inCountryCode;
-	//ƒWƒ€ƒŠ[ƒ_[ƒ}ƒXƒN
+	//ã‚¸ãƒ ãƒªãƒ¼ãƒ€ãƒ¼ãƒã‚¹ã‚¯
 	outTrCardData->GymReaderMask = inGymReaderMask;
 
-	//‹[—•Êƒo[ƒWƒ‡ƒ“ˆ—
+	//æ“¬ä¼¼åˆ¥ãƒãƒ¼ã‚¸ãƒ§ãƒ³å‡¦ç†
 #ifdef PM_DEBUG
 //	if (sys.cont & PAD_BUTTON_L){
 //		outTrCardData->Version = VERSION_PLATINUM;	//VERSION_DP_NEXT;
@@ -304,16 +304,16 @@ static void TRCSET_SetTrCardDataCommon(	const u8 inBadgeBrushFlg,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒJ[ƒhî•ñƒZƒbƒg(•\–Ê)
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰æƒ…å ±ã‚»ãƒƒãƒˆ(è¡¨é¢)
  *
- * @param	inID			ƒgƒŒ[ƒi[ID
- * @param	inSex			«•Ê
- * @param	inName			‚È‚Ü‚¦
- * @param	inMoney			‚¨‚±‚Ã‚©‚¢
- * @param	inPokeBook		}ŠÓƒ‚ƒ“ƒXƒ^[”
- * @param	inPokeBookFlg	}ŠÓŠƒtƒ‰ƒO
- * @param	inScore			ƒXƒRƒA
- * @param	outTrCardData	ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inID			ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param	inSex			æ€§åˆ¥
+ * @param	inName			ãªã¾ãˆ
+ * @param	inMoney			ãŠã“ã¥ã‹ã„
+ * @param	inPokeBook		å›³é‘‘ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°
+ * @param	inPokeBookFlg	å›³é‘‘æ‰€æŒãƒ•ãƒ©ã‚°
+ * @param	inScore			ã‚¹ã‚³ã‚¢
+ * @param	outTrCardData	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -327,34 +327,34 @@ static void TRCSET_SetTrCardDataFace(	const u16 inID,
 										const u32 inScore,
 										TR_CARD_DATA *outTrCardData)
 {
-	//ƒgƒŒ[ƒi[ID
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
 	outTrCardData->TrainerID = inID;
-	//«•Ê
+	//æ€§åˆ¥
 	outTrCardData->TrSex = inSex;
-	//ƒgƒŒ[ƒi[–¼
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	PM_strncpy( outTrCardData->TrainerName, inName, PERSON_NAME_SIZE+EOM_SIZE );
 //	outTrCardData->TrainerName = inName;
-	//‚¨‚±‚Ã‚©‚¢
+	//ãŠã“ã¥ã‹ã„
 	outTrCardData->Money = inMoney;
-	//‚¸‚©‚ñ
+	//ãšã‹ã‚“
 	outTrCardData->PokeBook = inPokeBook;
-	//‚¸‚©‚ñ‚Á‚Ä‚é‚©
+	//ãšã‹ã‚“æŒã£ã¦ã‚‹ã‹
 	outTrCardData->PokeBookFlg = inPokeBookFlg;
-	//ƒXƒRƒA
+	//ã‚¹ã‚³ã‚¢
 	outTrCardData->Score = inScore;
 
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒJ[ƒhî•ñƒZƒbƒg(ŠÔ)
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰æƒ…å ±ã‚»ãƒƒãƒˆ(æ™‚é–“)
  * 
- * @param	inClearFlg		ƒNƒŠƒAƒtƒ‰ƒO
- * @param	inPlayTime		ƒvƒŒƒCŠÔ
- * @param	inStartDate		ŠJn”NŒ“ú
- * @param	inClearDate		ƒNƒŠƒA”NŒ“ú
- * @param	inClearTime		ƒNƒŠƒAŠÔ
- * @param	outTrCardData	ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inClearFlg		ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°
+ * @param	inPlayTime		ãƒ—ãƒ¬ã‚¤æ™‚é–“
+ * @param	inStartDate		é–‹å§‹å¹´æœˆæ—¥
+ * @param	inClearDate		ã‚¯ãƒªã‚¢å¹´æœˆæ—¥
+ * @param	inClearTime		ã‚¯ãƒªã‚¢æ™‚é–“
+ * @param	outTrCardData	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -367,34 +367,34 @@ static void TRCSET_SetTrCardDataTime(	const u8 inClearFlg,
 										const u8 inTimeUpdate,
 										TR_CARD_DATA *outTrCardData)
 {
-	//ƒvƒŒƒCŠÔ
+	//ãƒ—ãƒ¬ã‚¤æ™‚é–“
 	outTrCardData->PlayTime_h = PLAYTIME_GetHour(inPlayTime);
 	outTrCardData->PlayTime_m = PLAYTIME_GetMinute(inPlayTime);
-	//ŠJn”NŒ“ú
+	//é–‹å§‹å¹´æœˆæ—¥
 	outTrCardData->Start_y = inStartDate->year;
 	outTrCardData->Start_m = inStartDate->month;
 	outTrCardData->Start_d = inStartDate->day;
 	if (inClearFlg){
-		//ƒNƒŠƒA”NŒ“ú
+		//ã‚¯ãƒªã‚¢å¹´æœˆæ—¥
 		outTrCardData->Clear_y = inClearDate->year;
 		outTrCardData->Clear_m = inClearDate->month;
 		outTrCardData->Clear_d = inClearDate->day;
-		//ƒNƒŠƒAŠÔ
+		//ã‚¯ãƒªã‚¢æ™‚é–“
 		outTrCardData->ClearTime_h = inClearTime->hour;
 		outTrCardData->ClearTime_m = inClearTime->minute;
 	}else{
-		//ƒNƒŠƒA”NŒ“ú
+		//ã‚¯ãƒªã‚¢å¹´æœˆæ—¥
 		outTrCardData->Clear_y = 0;
 		outTrCardData->Clear_m = 0;
 		outTrCardData->Clear_d = 0;
-		//ƒNƒŠƒAŠÔ
+		//ã‚¯ãƒªã‚¢æ™‚é–“
 		outTrCardData->ClearTime_h = 0;
 		outTrCardData->ClearTime_m = 0;
 	}
 	
-	//ŠÔXVƒtƒ‰ƒO
+	//æ™‚é–“æ›´æ–°ãƒ•ãƒ©ã‚°
 	outTrCardData->TimeUpdate = inTimeUpdate;
-	//ŠÔXVƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚é‚È‚ç‚ÎAƒvƒŒƒCŠÔ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^‚ğƒZƒbƒg
+	//æ™‚é–“æ›´æ–°ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹ãªã‚‰ã°ã€ãƒ—ãƒ¬ã‚¤æ™‚é–“æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	if (inTimeUpdate){
 		outTrCardData->PlayTime = inPlayTime;
 	}else{
@@ -404,13 +404,13 @@ static void TRCSET_SetTrCardDataTime(	const u8 inClearFlg,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒJ[ƒhî•ñƒZƒbƒg(— –Ê)
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰æƒ…å ±ã‚»ãƒƒãƒˆ(è£é¢)
  *
- * @param	inCommNum			’ÊM‰ñ”
- * @param	inCommBattleWin		’ÊM‘ÎíŸ‚¿”
- * @param	inCommBattleLose	’ÊM‘Îí•‰‚¯”
- * @param	inCommTrade			ŒğŠ·‰ñ”
- * @param	outTrCardData		ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inCommNum			é€šä¿¡å›æ•°
+ * @param	inCommBattleWin		é€šä¿¡å¯¾æˆ¦å‹ã¡æ•°
+ * @param	inCommBattleLose	é€šä¿¡å¯¾æˆ¦è² ã‘æ•°
+ * @param	inCommTrade			äº¤æ›å›æ•°
+ * @param	outTrCardData		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -422,13 +422,13 @@ static void TRCSET_SetTrCardDataBack(	const u32 inCommNum,
 										const u8 *inSignData,
 										TR_CARD_DATA *outTrCardData)
 {
-	//’ÊM‰ñ”
+	//é€šä¿¡å›æ•°
 	outTrCardData->CommNum = inCommNum;
 	if (outTrCardData->CommNum > COMM_NUM_MAX){
 		outTrCardData->CommNum = COMM_NUM_MAX;
 	}
 	
-	//’ÊMí“¬‰ñ”
+	//é€šä¿¡æˆ¦é—˜å›æ•°
 	outTrCardData->CommBattleWin = inCommBattleWin;
 	outTrCardData->CommBattleLose = inCommBattleLose;
 	if (outTrCardData->CommBattleWin > BATTLE_WIN_MAX){
@@ -437,22 +437,22 @@ static void TRCSET_SetTrCardDataBack(	const u32 inCommNum,
 	if (outTrCardData->CommBattleLose > BATTLE_LOSE_MAX){
 		outTrCardData->CommBattleLose = BATTLE_LOSE_MAX;
 	}
-	//’ÊMŒğŠ·
+	//é€šä¿¡äº¤æ›
 	outTrCardData->CommTrade = inCommTrade;
 	if (outTrCardData->CommTrade > TRADE_MAX){
 		outTrCardData->CommTrade = TRADE_MAX;
 	}
-	//ƒTƒCƒ“ƒf[ƒ^‚ğƒZ[ƒuƒf[ƒ^‚©‚çƒRƒs[
+	//ã‚µã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚³ãƒ”ãƒ¼
 	MI_CpuCopy8( inSignData, outTrCardData->SignRawData, SIGN_SIZE_X*SIGN_SIZE_Y*8 );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ƒJ[ƒhî•ñƒZƒbƒg(•\–Ê)
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰æƒ…å ±ã‚»ãƒƒãƒˆ(è¡¨é¢)
  *
- * @param	inMySt			ƒ}ƒCƒXƒe[ƒ^ƒX
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	outTrCardData	ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inMySt			ãƒã‚¤ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	outTrCardData	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -466,24 +466,24 @@ static void TRCSET_SetTrCardDataBadge(	MYSTATUS *inMySt, FIELDSYS_WORK *fsys, TR
 	badge_ptr = TRCSave_GetBadgeDataPtr(trc_ptr);
 	
 	for(i=0;i<8;i++){
-		//ƒoƒbƒWŠƒtƒ‰ƒO
+		//ãƒãƒƒã‚¸æ‰€æŒãƒ•ãƒ©ã‚°
 		if (MyStatus_GetBadgeFlag(inMySt, i)){
 			outTrCardData->BadgeData[i].BadgeHold = 1;
 		}else{
 			outTrCardData->BadgeData[i].BadgeHold = 0;
 		}
 		
-		//–‚«‹ï‡
+		//ç£¨ãå…·åˆ
 		outTrCardData->BadgeData[i].BadgeScruchCount = TRCSave_GetBadgeScruchCount(i, badge_ptr);
 	}
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒW–‚«‰ñ”XV
+ * ãƒãƒƒã‚¸ç£¨ãå›æ•°æ›´æ–°
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inTrCardData	ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inTrCardData	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -502,7 +502,7 @@ void TRCSET_UpdateBadgeScruchCount(FIELDSYS_WORK *fsys, const TR_CARD_DATA *inTr
 }
 
 //==============================================================================
-// ƒgƒŒ[ƒi[ƒJ[ƒhƒ[ƒNƒCƒxƒ“ƒg‚Åg—p‚·‚é\‘¢‘Ì
+// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯ã‚¤ãƒ™ãƒ³ãƒˆã§ä½¿ç”¨ã™ã‚‹æ§‹é€ ä½“
 //==============================================================================
 typedef struct{
 	int	seq;
@@ -512,20 +512,20 @@ typedef struct{
 
 //==============================================================================
 /**
- * ’ÊM—pƒgƒŒ[ƒi[ƒJ[ƒhì¬
+ * é€šä¿¡ç”¨ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ä½œæˆ
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none
  */
 //==============================================================================
 void TRCSET_SetupTrCardEvent(FIELDSYS_WORK * fsys)
 {
-	// ƒCƒxƒ“ƒgƒ[ƒNì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	COMM_TRAINER_EVENT_WORK *wk = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(COMM_TRAINER_EVENT_WORK));
 	wk->seq = 0;
 
-	// ƒgƒŒ[ƒi[ƒJ[ƒhƒ[ƒNì¬{‘Šè‚ÌƒgƒŒ[ƒi[ƒJ[ƒhƒ|ƒCƒ“ƒ^‚ğæ“¾
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯ä½œæˆï¼‹ç›¸æ‰‹ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 	wk->partner = (TR_CARD_DATA*)Union_TrainerCardWorkInit(fsys->union_work);
 	
 	FieldEvent_Call(fsys->event, SetupTrCardEvent, wk);
@@ -533,11 +533,11 @@ void TRCSET_SetupTrCardEvent(FIELDSYS_WORK * fsys)
 
 //==============================================================================
 /**
- * ’ÊM—pƒgƒŒ[ƒi[ƒJ[ƒhì¬ƒCƒxƒ“ƒg
+ * é€šä¿¡ç”¨ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ä½œæˆã‚¤ãƒ™ãƒ³ãƒˆ
  * 
- * @param	@param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	@param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE:ƒCƒxƒ“ƒgI—¹@FALSEFƒCƒxƒ“ƒgŒp‘±
+ * @retval  BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSEï¼šã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //==============================================================================
 static BOOL SetupTrCardEvent(GMEVENT_CONTROL * event)
@@ -547,33 +547,33 @@ static BOOL SetupTrCardEvent(GMEVENT_CONTROL * event)
 
 	switch(wk->seq){
 	case 0:
-		//ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^‘—M
+		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿é€ä¿¡
 		Union_SendTrainerCardData(fsys->union_work);
-		OS_Printf("ƒJ[ƒh—ÌˆæŠm•Û\n");
+		OS_Printf("ã‚«ãƒ¼ãƒ‰é ˜åŸŸç¢ºä¿\n");
 		wk->seq = 1;
 	case 1:
-		// ‘Šè‚ÌƒJ[ƒhƒf[ƒ^‚ğóM‚µ‚½
+		// ç›¸æ‰‹ã®ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸ
 		if(wk->partner->reached!=0){
-			OS_Printf("ƒJ[ƒhƒf[ƒ^óM\n");
+			OS_Printf("ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿å—ä¿¡\n");
 			wk->seq = 10;
 		}
 		break;
 		
 
 	case 10:
-		// ‘Šè‚ÌƒgƒŒ[ƒi[ƒJ[ƒh‰{——ŠJn
+		// ç›¸æ‰‹ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰é–²è¦§é–‹å§‹
 		FieldTrCard_SetProc( fsys, wk->partner );	
-		OS_Printf("ƒJ[ƒh•\¦ŠJn\n");
+		OS_Printf("ã‚«ãƒ¼ãƒ‰è¡¨ç¤ºé–‹å§‹\n");
 		wk->seq = 11;
 		break;
 	case 11:
-		// ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+		// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 		if( !FieldEvent_Cmd_WaitSubProcEnd( fsys ) ) {
 
-			// ƒgƒŒ[ƒi[ƒJ[ƒhƒ[ƒN‚ğ‰ğ•ú
+			// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾
 			Union_trainerCardWorkFree(fsys->union_work);
 
-			// ƒCƒxƒ“ƒgƒ[ƒN‰ğ•ú
+			// ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯è§£æ”¾
 			sys_FreeMemoryEz(wk);
 			return TRUE;
 		}

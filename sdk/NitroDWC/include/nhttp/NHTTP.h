@@ -6,8 +6,8 @@
 
   $Log: NHTTP.h,v $
   Revision 1.13  2007/02/21 04:23:18  takayama
-  DlLibs_20070116 �Ɠ����B
-  �������ANHTTP_SetCAChain�֐��̈������̕ύX(calength->cabuiltins)�͈��p���B
+  DlLibs_20070116 と同期。
+  ただし、NHTTP_SetCAChain関数の引数名の変更(calength->cabuiltins)は引継ぎ。
 
   Revision 1.11  2006/06/23 06:54:22  aida
   replaced DWC_ND_COUNTBUFFER_LENGTH by DWC_ND_RECVBUF_MIN
@@ -76,20 +76,20 @@ extern "C" {
 
 //////////////////////////////////////////////////////////////
 
-// �ʐM�X���b�h�̃X�^�b�N�̑傫��
+// 通信スレッドのスタックの大きさ
 #define NHTTP_COMMTHREAD_STACK	(8*1024)	// [byte]
 
-// HTTP,HTTPS��TCP�|�[�g�ԍ�
+// HTTP,HTTPSのTCPポート番号
 #define NHTTP_HTTP_PORT			80
 #define NHTTP_HTTPS_PORT		443
 
-// HTTP���N�G�X�g�w�b�_�ɓY�t����o�[�W����������    GET / HTTP/1.1 �Ƃ�
+// HTTPリクエストヘッダに添付するバージョン文字列    GET / HTTP/1.1 とか
 #define NHTTP_STR_HTTPVER		"1.1"	
 
-// �G���e�B�e�B�w�b�_�̏�����M�o�b�t�@�̑傫�� (�d�l�Œ�`)
+// エンティティヘッダの初期受信バッファの大きさ (仕様で定義)
 #define NHTTP_HDRRECVBUF_INILEN			1024	// [byte]
 
-// �G���e�B�e�B�w�b�_�̎�M�o�b�t�@���g������ۂ̃u���b�N�� (�d�l�Œ�`)
+// エンティティヘッダの受信バッファを拡張する際のブロック長 (仕様で定義)
 #define NHTTP_HDRRECVBUF_BLOCKSHIFT	9
 #define NHTTP_HDRRECVBUF_BLOCKLEN		(1<<NHTTP_HDRRECVBUF_BLOCKSHIFT)	// [byte]
 #define NHTTP_HDRRECVBUF_BLOCKMASK	(NHTTP_HDRRECVBUF_BLOCKLEN-1)

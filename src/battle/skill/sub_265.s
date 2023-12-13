@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_265.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			ˆê“x‚¾‚¯–½’†—¦‚ð‚ ‚°‚é‘•”õŒø‰Ê
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ä¸€åº¦ã ã‘å‘½ä¸­çŽ‡ã‚’ã‚ã’ã‚‹è£…å‚™åŠ¹æžœ
  *@author	HisashiSogabe
  *@data		2006.05.19
  *

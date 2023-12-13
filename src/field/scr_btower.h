@@ -1,6 +1,6 @@
 /**
  *	@file	scr_btower.h
- *	@brief	僶僩儖僞儚乕愱梡僗僋儕僾僩僐儅儞僪僜乕僗僿僢僟
+ *	@brief	銉愩儓銉偪銉兗灏傜敤銈广偗銉儣銉堛偝銉炪兂銉夈偨銉笺偣銉樸儍銉�
  *	@author	Miyuki Iwasawa
  *	@date	06.05.23
  */
@@ -10,17 +10,17 @@
 
 //============================================================================================
 //
-//	僗僋儕僾僩偐傜傕嶲徠偡傞掕媊
+//	銈广偗銉儣銉堛亱銈夈倐鍙傜収銇欍倠瀹氱京
 //
 //======================================================================================
 #define BP_GIFT_NUM01	(26)
 #define BP_GIFT_NUM02	(15)
 //============================================================================================
 //
-//	僾儘僌儔儉偱偺傒嶲徠偡傞掕媊
+//	銉椼儹銈般儵銉犮仹銇伩鍙傜収銇欍倠瀹氱京
 //
 //======================================================================================
-//__ASM_NO_DEF_偑掕媊偝傟偰偄傞応崌丄傾僙儞僽儔僜乕僗側偺偱埲壓偼柍岠偵偡傞
+//__ASM_NO_DEF_銇屽畾缇┿仌銈屻仸銇勩倠鍫村悎銆併偄銈汇兂銉栥儵銈姐兗銈广仾銇仹浠ヤ笅銇劇鍔广伀銇欍倠
 #ifndef	__ASM_NO_DEF_
 
 #undef GLOBAL
@@ -31,7 +31,7 @@
 #define GLOBAL	extern
 #endif
 
-//僶僩儖僞儚乕
+//銉愩儓銉偪銉兗
 GLOBAL BOOL EvCmdBattleTowerWorkClear(VM_MACHINE* core);
 GLOBAL BOOL EvCmdBattleTowerWorkInit(VM_MACHINE* core);
 GLOBAL BOOL EvCmdBattleTowerWorkRelease(VM_MACHINE* core);

@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_245.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			245�@���肪�p���[�A�b�v���Ă���΂���قǈЗ͂������B
- *				 �З́F60+�i�i�K���~20�j�B�З͍͂ő�200�܂ŁB�A�b�v���Ă����Ԃ݂̂��݂āA�}�C�i�X�̏�Ԃ݂͂Ȃ��B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			245　相手がパワーアップしていればいるほど威力が高い。
+ *				 威力：60+（段階数×20）。威力は最大200まで。アップしている状態のみをみて、マイナスの状態はみない。
  *
  *@author	HisashiSogabe
  *@data		2006.02.15

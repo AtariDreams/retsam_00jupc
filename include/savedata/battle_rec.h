@@ -1,23 +1,23 @@
 //==============================================================================
 /**
  * @file	battle_rec.h
- * @brief	í“¬˜^‰æƒf[ƒ^—pƒwƒbƒ_
+ * @brief	æˆ¦é—˜éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ç”¨ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2007.03.06(‰Î)
+ * @date	2007.03.06(ç«)
  */
 //==============================================================================
 #ifndef	__BATTLE_REC_H__
 #define	__BATTLE_REC_H__
 
 
-#ifndef	__ASM_NO_DEF_	// «‚±‚êˆÈ~‚ÍAƒAƒZƒ“ƒuƒ‰‚Å‚Í–³‹ +++++++++++++++
+#ifndef	__ASM_NO_DEF_	// â†“ã“ã‚Œä»¥é™ã¯ã€ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã§ã¯ç„¡è¦– +++++++++++++++
 
 #include "common.h"
 #include "savedata/savedata_def.h"
 #include "poketool/poke_tool.h"
 
 #include "battle/battle_common.h"
-#include "savedata/gds_profile.h"	//GDS_PROFILE_PTR’è‹`
+#include "savedata/gds_profile.h"	//GDS_PROFILE_PTRå®šç¾©
 
 #include "application/battle_recorder/gds_battle_rec.h"
 
@@ -25,163 +25,163 @@
 
 
 
-#define	REC_BUFFER_SIZE	(0x0400)	///<‘Îí˜^‰æƒoƒbƒtƒ@ƒTƒCƒY
-#define	REC_BUFFER_END	(0xff)		///<‘Îí˜^‰æƒoƒbƒtƒ@‚ÌI’[’è‹`
+#define	REC_BUFFER_SIZE	(0x0400)	///<å¯¾æˆ¦éŒ²ç”»ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+#define	REC_BUFFER_END	(0xff)		///<å¯¾æˆ¦éŒ²ç”»ãƒãƒƒãƒ•ã‚¡ã®çµ‚ç«¯å®šç¾©
 
-//ƒ[ƒhƒf[ƒ^—pƒCƒ“ƒfƒbƒNƒX
+//ãƒ­ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ç”¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 #define LOADDATA_MYREC		(0)
 #define LOADDATA_DOWNLOAD0	(1)
 #define LOADDATA_DOWNLOAD1	(2)
 #define LOADDATA_DOWNLOAD2	(3)
 
-///˜^‰æƒf[ƒ^ƒ[ƒh‚ÌŒ‹‰Ê’l
-#define RECLOAD_RESULT_NULL		(0)	///<ƒf[ƒ^‚È‚µ
-#define RECLOAD_RESULT_OK		(1)	///<³í“Ç‚İ‚İ
-#define RECLOAD_RESULT_NG		(2)	///<ƒf[ƒ^•s³
-#define RECLOAD_RESULT_ERROR	(3)	///<ƒ[ƒh‚Å“Ç‚İo‚µ¸”s(ƒZ[ƒuƒf[ƒ^‚ª”j‰ó‚³‚ê‚Ä‚¢‚éê‡‚È‚Ç)
+///éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰æ™‚ã®çµæœå€¤
+#define RECLOAD_RESULT_NULL		(0)	///<ãƒ‡ãƒ¼ã‚¿ãªã—
+#define RECLOAD_RESULT_OK		(1)	///<æ­£å¸¸èª­ã¿è¾¼ã¿
+#define RECLOAD_RESULT_NG		(2)	///<ãƒ‡ãƒ¼ã‚¿ä¸æ­£
+#define RECLOAD_RESULT_ERROR	(3)	///<ãƒ­ãƒ¼ãƒ‰ã§èª­ã¿å‡ºã—å¤±æ•—(ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒç ´å£Šã•ã‚Œã¦ã„ã‚‹å ´åˆãªã©)
 
-#define REC_COUNTER_MAX			( 9999 )	///< ˜AŸ‹L˜^Å‘å’l
+#define REC_COUNTER_MAX			( 9999 )	///< é€£å‹è¨˜éŒ²æœ€å¤§å€¤
 
 
 //--------------------------------------------------------------
-//	í“¬ƒ‚[ƒh({İˆê——)
+//	æˆ¦é—˜ãƒ¢ãƒ¼ãƒ‰(æ–½è¨­ä¸€è¦§)
 //--------------------------------------------------------------
-///ƒoƒgƒ‹ƒ^ƒ[ / ƒVƒ“ƒOƒ‹
+///ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ / ã‚·ãƒ³ã‚°ãƒ«
 #define RECMODE_TOWER_SINGLE		(GT_BATTLE_MODE_TOWER_SINGLE)
-///ƒoƒgƒ‹ƒ^ƒ[ / ƒ_ƒuƒ‹
+///ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ / ãƒ€ãƒ–ãƒ«
 #define RECMODE_TOWER_DOUBLE		(GT_BATTLE_MODE_TOWER_DOUBLE)
-///ƒoƒgƒ‹ƒ^ƒ[ / WIFIƒ_ƒEƒ“ƒ[ƒh
+///ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ / WIFIãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 #define RECMODE_TOWER_WIFI_DL		(GT_BATTLE_MODE_TOWER_SINGLE)
 
-///ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ / ƒVƒ“ƒOƒ‹
+///ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ / ã‚·ãƒ³ã‚°ãƒ«
 #define RECMODE_FACTORY_SINGLE		(GT_BATTLE_MODE_FACTORY50_SINGLE)
-///ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ / ƒ_ƒuƒ‹
+///ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ / ãƒ€ãƒ–ãƒ«
 #define RECMODE_FACTORY_DOUBLE		(GT_BATTLE_MODE_FACTORY50_DOUBLE)
 
-///ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ / ƒVƒ“ƒOƒ‹100
+///ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ / ã‚·ãƒ³ã‚°ãƒ«100
 #define RECMODE_FACTORY_SINGLE100	(GT_BATTLE_MODE_FACTORY100_SINGLE)
-///ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ / ƒ_ƒuƒ‹100
+///ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ / ãƒ€ãƒ–ãƒ«100
 #define RECMODE_FACTORY_DOUBLE100	(GT_BATTLE_MODE_FACTORY100_DOUBLE)
 
-///ƒoƒgƒ‹ƒXƒe[ƒW / ƒVƒ“ƒOƒ‹
+///ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ / ã‚·ãƒ³ã‚°ãƒ«
 #define RECMODE_STAGE_SINGLE		(GT_BATTLE_MODE_STAGE_SINGLE)
-///ƒoƒgƒ‹ƒXƒe[ƒW / ƒ_ƒuƒ‹
+///ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ / ãƒ€ãƒ–ãƒ«
 #define RECMODE_STAGE_DOUBLE		(GT_BATTLE_MODE_STAGE_DOUBLE)
 
-///ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹ / ƒVƒ“ƒOƒ‹
+///ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ« / ã‚·ãƒ³ã‚°ãƒ«
 #define RECMODE_CASTLE_SINGLE		(GT_BATTLE_MODE_CASTLE_SINGLE)
-///ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹ / ƒ_ƒuƒ‹
+///ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ« / ãƒ€ãƒ–ãƒ«
 #define RECMODE_CASTLE_DOUBLE		(GT_BATTLE_MODE_CASTLE_DOUBLE)
 
-///ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg / ƒVƒ“ƒOƒ‹
+///ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ / ã‚·ãƒ³ã‚°ãƒ«
 #define RECMODE_ROULETTE_SINGLE		(GT_BATTLE_MODE_ROULETTE_SINGLE)
-///ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg / ƒ_ƒuƒ‹
+///ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ / ãƒ€ãƒ–ãƒ«
 #define RECMODE_ROULETTE_DOUBLE		(GT_BATTLE_MODE_ROULETTE_DOUBLE)
 
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒVƒ“ƒOƒ‹(§ŒÀ–³‚µ)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ã‚·ãƒ³ã‚°ãƒ«(åˆ¶é™ç„¡ã—)
 #define RECMODE_COLOSSEUM_SINGLE			(GT_BATTLE_MODE_COLOSSEUM_SINGLE)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒVƒ“ƒOƒ‹(ƒXƒ^ƒ“ƒ_[ƒhƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ã‚·ãƒ³ã‚°ãƒ«(ã‚¹ã‚¿ãƒ³ãƒ€ãƒ¼ãƒ‰ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_SINGLE_STANDARD	(GT_BATTLE_MODE_COLOSSEUM_SINGLE_STANDARD)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒVƒ“ƒOƒ‹(ƒtƒ@ƒ“ƒV[ƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ã‚·ãƒ³ã‚°ãƒ«(ãƒ•ã‚¡ãƒ³ã‚·ãƒ¼ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_SINGLE_FANCY		(GT_BATTLE_MODE_COLOSSEUM_SINGLE_FANCY)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒVƒ“ƒOƒ‹(ƒŠƒgƒ‹ƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ã‚·ãƒ³ã‚°ãƒ«(ãƒªãƒˆãƒ«ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_SINGLE_LITTLE		(GT_BATTLE_MODE_COLOSSEUM_SINGLE_LITTLE)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒVƒ“ƒOƒ‹(ƒ‰ƒCƒgƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ã‚·ãƒ³ã‚°ãƒ«(ãƒ©ã‚¤ãƒˆã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_SINGLE_LIGHT		(GT_BATTLE_MODE_COLOSSEUM_SINGLE_LIGHT)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒVƒ“ƒOƒ‹(ƒ_ƒuƒ‹ƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ã‚·ãƒ³ã‚°ãƒ«(ãƒ€ãƒ–ãƒ«ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_SINGLE_DOUBLE		(GT_BATTLE_MODE_COLOSSEUM_SINGLE_DOUBLE)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒVƒ“ƒOƒ‹(‚»‚Ì‘¼‚ÌƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ã‚·ãƒ³ã‚°ãƒ«(ãã®ä»–ã®ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_SINGLE_ETC		(GT_BATTLE_MODE_COLOSSEUM_SINGLE_ETC)
 
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ_ƒuƒ‹
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒ€ãƒ–ãƒ«
 #define RECMODE_COLOSSEUM_DOUBLE			(GT_BATTLE_MODE_COLOSSEUM_DOUBLE)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ_ƒuƒ‹(ƒXƒ^ƒ“ƒ_[ƒhƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒ€ãƒ–ãƒ«(ã‚¹ã‚¿ãƒ³ãƒ€ãƒ¼ãƒ‰ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_DOUBLE_STANDARD	(GT_BATTLE_MODE_COLOSSEUM_DOUBLE_STANDARD)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ_ƒuƒ‹(ƒtƒ@ƒ“ƒV[ƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒ€ãƒ–ãƒ«(ãƒ•ã‚¡ãƒ³ã‚·ãƒ¼ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_DOUBLE_FANCY		(GT_BATTLE_MODE_COLOSSEUM_DOUBLE_FANCY)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ_ƒuƒ‹(ƒŠƒgƒ‹ƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒ€ãƒ–ãƒ«(ãƒªãƒˆãƒ«ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_DOUBLE_LITTLE		(GT_BATTLE_MODE_COLOSSEUM_DOUBLE_LITTLE)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ_ƒuƒ‹(ƒ‰ƒCƒgƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒ€ãƒ–ãƒ«(ãƒ©ã‚¤ãƒˆã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_DOUBLE_LIGHT		(GT_BATTLE_MODE_COLOSSEUM_DOUBLE_LIGHT)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ_ƒuƒ‹(ƒ_ƒuƒ‹ƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒ€ãƒ–ãƒ«(ãƒ€ãƒ–ãƒ«ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_DOUBLE_DOUBLE		(GT_BATTLE_MODE_COLOSSEUM_DOUBLE_DOUBLE)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ_ƒuƒ‹(‚»‚Ì‘¼‚ÌƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒ€ãƒ–ãƒ«(ãã®ä»–ã®ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_DOUBLE_ETC		(GT_BATTLE_MODE_COLOSSEUM_DOUBLE_ETC)
 
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ~ƒbƒNƒX(§ŒÀ–³‚µ)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒŸãƒƒã‚¯ã‚¹(åˆ¶é™ç„¡ã—)
 #define RECMODE_COLOSSEUM_MIX				(GT_BATTLE_MODE_COLOSSEUM_SINGLE)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ~ƒbƒNƒX(ƒXƒ^ƒ“ƒ_[ƒhƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒŸãƒƒã‚¯ã‚¹(ã‚¹ã‚¿ãƒ³ãƒ€ãƒ¼ãƒ‰ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_MIX_STANDARD		(GT_BATTLE_MODE_COLOSSEUM_SINGLE_STANDARD)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ~ƒbƒNƒX(ƒtƒ@ƒ“ƒV[ƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒŸãƒƒã‚¯ã‚¹(ãƒ•ã‚¡ãƒ³ã‚·ãƒ¼ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_MIX_FANCY			(GT_BATTLE_MODE_COLOSSEUM_SINGLE_FANCY)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ~ƒbƒNƒX(ƒŠƒgƒ‹ƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒŸãƒƒã‚¯ã‚¹(ãƒªãƒˆãƒ«ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_MIX_LITTLE		(GT_BATTLE_MODE_COLOSSEUM_SINGLE_LITTLE)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ~ƒbƒNƒX(ƒ‰ƒCƒgƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒŸãƒƒã‚¯ã‚¹(ãƒ©ã‚¤ãƒˆã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_MIX_LIGHT			(GT_BATTLE_MODE_COLOSSEUM_SINGLE_LIGHT)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ~ƒbƒNƒX(ƒ_ƒuƒ‹ƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒŸãƒƒã‚¯ã‚¹(ãƒ€ãƒ–ãƒ«ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_MIX_DOUBLE		(GT_BATTLE_MODE_COLOSSEUM_SINGLE_DOUBLE)
-///ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ~ƒbƒNƒX(‚»‚Ì‘¼‚ÌƒJƒbƒv)
+///ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒŸãƒƒã‚¯ã‚¹(ãã®ä»–ã®ã‚«ãƒƒãƒ—)
 #define RECMODE_COLOSSEUM_MIX_ETC			(GT_BATTLE_MODE_COLOSSEUM_SINGLE_ETC)
 
-//ˆÈ‰ºAƒ}ƒ‹ƒ`ƒ‚[ƒh
-#define RECMODE_TOWER_MULTI 		(GT_BATTLE_MODE_TOWER_MULTI)	///<ƒoƒgƒ‹ƒ^ƒ[ / ƒ}ƒ‹ƒ`
-#define RECMODE_FACTORY_MULTI		(GT_BATTLE_MODE_FACTORY50_MULTI)	///<ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ / ƒ}ƒ‹ƒ`
-#define RECMODE_FACTORY_MULTI100	(GT_BATTLE_MODE_FACTORY100_MULTI)///<ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ / ƒ}ƒ‹ƒ`100
-#define RECMODE_STAGE_MULTI			(GT_BATTLE_MODE_STAGE_MULTI)	///<ƒoƒgƒ‹ƒXƒe[ƒW / ƒ}ƒ‹ƒ`
-#define RECMODE_CASTLE_MULTI		(GT_BATTLE_MODE_CASTLE_MULTI)	///<ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹ / ƒ}ƒ‹ƒ`
-#define RECMODE_ROULETTE_MULTI		(GT_BATTLE_MODE_ROULETTE_MULTI)	///<ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg / ƒ}ƒ‹ƒ`
-#define RECMODE_COLOSSEUM_MULTI		(GT_BATTLE_MODE_COLOSSEUM_MULTI)///<ƒRƒƒVƒAƒ€(’ÊM‘Îí) / ƒ}ƒ‹ƒ`
+//ä»¥ä¸‹ã€ãƒãƒ«ãƒãƒ¢ãƒ¼ãƒ‰
+#define RECMODE_TOWER_MULTI 		(GT_BATTLE_MODE_TOWER_MULTI)	///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ / ãƒãƒ«ãƒ
+#define RECMODE_FACTORY_MULTI		(GT_BATTLE_MODE_FACTORY50_MULTI)	///<ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ / ãƒãƒ«ãƒ
+#define RECMODE_FACTORY_MULTI100	(GT_BATTLE_MODE_FACTORY100_MULTI)///<ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ / ãƒãƒ«ãƒ100
+#define RECMODE_STAGE_MULTI			(GT_BATTLE_MODE_STAGE_MULTI)	///<ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ / ãƒãƒ«ãƒ
+#define RECMODE_CASTLE_MULTI		(GT_BATTLE_MODE_CASTLE_MULTI)	///<ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ« / ãƒãƒ«ãƒ
+#define RECMODE_ROULETTE_MULTI		(GT_BATTLE_MODE_ROULETTE_MULTI)	///<ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ / ãƒãƒ«ãƒ
+#define RECMODE_COLOSSEUM_MULTI		(GT_BATTLE_MODE_COLOSSEUM_MULTI)///<ã‚³ãƒ­ã‚·ã‚¢ãƒ (é€šä¿¡å¯¾æˆ¦) / ãƒãƒ«ãƒ
 
-//I’[
+//çµ‚ç«¯
 #define RECMODE_MAX						(GT_BATTLE_MODE_ROULETTE_MULTI + 1)
 
 
 //--------------------------------------------------------------
-//	˜^‰æƒwƒbƒ_‚Ìƒpƒ‰ƒ[ƒ^æ“¾—vINDEX
+//	éŒ²ç”»ãƒ˜ãƒƒãƒ€ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—è¦INDEX
 //--------------------------------------------------------------
-#define RECHEAD_IDX_MONSNO			(0)		///<ƒ|ƒPƒ‚ƒ“”Ô†
-#define RECHEAD_IDX_FORM_NO			(1)		///<ƒtƒHƒ‹ƒ€”Ô†
-#define RECHEAD_IDX_COUNTER			(2)		///<‰½í–Ú‚©
-#define RECHEAD_IDX_MODE			(3)		///<˜^‰æ{İ
-#define RECHEAD_IDX_DATA_NUMBER		(4)		///<ƒf[ƒ^ƒiƒ“ƒo[
-#define RECHEAD_IDX_SECURE			(5)		///<ˆÀ‘S‹’®Ï‚İ
+#define RECHEAD_IDX_MONSNO			(0)		///<ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+#define RECHEAD_IDX_FORM_NO			(1)		///<ãƒ•ã‚©ãƒ«ãƒ ç•ªå·
+#define RECHEAD_IDX_COUNTER			(2)		///<ä½•æˆ¦ç›®ã‹
+#define RECHEAD_IDX_MODE			(3)		///<éŒ²ç”»æ–½è¨­
+#define RECHEAD_IDX_DATA_NUMBER		(4)		///<ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
+#define RECHEAD_IDX_SECURE			(5)		///<å®‰å…¨è¦–è´æ¸ˆã¿
 
 
 
-#ifndef	__ASM_NO_DEF_	// «‚±‚êˆÈ~‚ÍAƒAƒZƒ“ƒuƒ‰‚Å‚Í–³‹ +++++++++++++++
+#ifndef	__ASM_NO_DEF_	// â†“ã“ã‚Œä»¥é™ã¯ã€ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã§ã¯ç„¡è¦– +++++++++++++++
 
 //--------------------------------------------------------------
 /**
- *	í“¬˜^‰æƒZ[ƒuƒf[ƒ^‚Ì•sŠ®‘SŒ^\‘¢‘ÌéŒ¾
+ *	æˆ¦é—˜éŒ²ç”»ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ä¸å®Œå…¨å‹æ§‹é€ ä½“å®£è¨€
  */
 //--------------------------------------------------------------
 typedef struct _BATTLE_REC_SAVEDATA		BATTLE_REC_SAVEDATA;
 
 //--------------------------------------------------------------
 /**
- *	í“¬˜^‰æ–{‘Ì‚Ì•sŠ®‘SŒ^\‘¢‘ÌéŒ¾
+ *	æˆ¦é—˜éŒ²ç”»æœ¬ä½“ã®ä¸å®Œå…¨å‹æ§‹é€ ä½“å®£è¨€
  */
 //--------------------------------------------------------------
 typedef struct _BATTLE_REC_WORK * 	BATTLE_REC_WORK_PTR;
 
 //--------------------------------------------------------------
 /**
- *	í“¬˜^‰æƒwƒbƒ_‚Ì•sŠ®‘SŒ^\‘¢‘ÌéŒ¾
+ *	æˆ¦é—˜éŒ²ç”»ãƒ˜ãƒƒãƒ€ã®ä¸å®Œå…¨å‹æ§‹é€ ä½“å®£è¨€
  */
 //--------------------------------------------------------------
 typedef struct _BATTLE_REC_HEADER * 	BATTLE_REC_HEADER_PTR;
 
 //--------------------------------------------------------------
 /**
- *	í“¬˜^‰æ‚Ìƒ~ƒ‰[ƒŠƒ“ƒOQÆæ§Œä\‘¢‘Ì
+ *	æˆ¦é—˜éŒ²ç”»ã®ãƒŸãƒ©ãƒ¼ãƒªãƒ³ã‚°å‚ç…§å…ˆåˆ¶å¾¡æ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 typedef struct{
-	u32 rec_key;				///<”FØƒL[
-	u8 rec_flag:2;				///<QÆæƒtƒ‰ƒO
-	u8 			:6;		//—]‚è
+	u32 rec_key;				///<èªè¨¼ã‚­ãƒ¼
+	u8 rec_flag:2;				///<å‚ç…§å…ˆãƒ•ãƒ©ã‚°
+	u8 			:6;		//ä½™ã‚Š
 	
-	u8 padding[3];		//ƒpƒfƒBƒ“ƒO
+	u8 padding[3];		//ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
 }BATTLE_REC_SAVE_KEY;
 
 //==============================================================================
@@ -192,9 +192,9 @@ extern void BattleRec_WorkInit(BATTLE_REC_SAVEDATA *rec);
 
 //------------------------------------------------------------------
 /**
- * ƒf[ƒ^‰Šú‰»
+ * ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- * @param   heapID	ƒƒ‚ƒŠŠm•Û‚·‚é‚½‚ß‚Ìƒq[ƒvID		
+ * @param   heapID	ãƒ¡ãƒ¢ãƒªç¢ºä¿ã™ã‚‹ãŸã‚ã®ãƒ’ãƒ¼ãƒ—ID		
  *
  */
 //------------------------------------------------------------------
@@ -202,25 +202,25 @@ extern	void BattleRec_Init(SAVEDATA *sv,int heapID,LOAD_RESULT *result);
 
 //------------------------------------------------------------------
 /**
- * ‘Îí˜^‰æƒf[ƒ^‚Ì”jŠü
+ * å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®ç ´æ£„
  */
 //------------------------------------------------------------------
 extern	void BattleRec_Exit(void);
 
 //------------------------------------------------------------------
 /**
- * ‘Îí˜^‰æƒf[ƒ^‚Ìƒƒ‚ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @retval	TRUE:‘¶İ‚·‚é@FALSE:‘¶İ‚µ‚È‚¢
+ * @retval	TRUE:å­˜åœ¨ã™ã‚‹ã€€FALSE:å­˜åœ¨ã—ãªã„
  */
 //------------------------------------------------------------------
 extern	BOOL BattleRec_DataExistCheck(void);
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ[ƒN‚ÌƒAƒhƒŒƒX‚ğæ“¾
+ * @brief   ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- * @retval	brs‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒ[ƒNƒAƒhƒŒƒX		
+ * @retval	brsã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹		
  */
 //--------------------------------------------------------------
 extern	BATTLE_REC_SAVEDATA *BattleRec_WorkAdrsGet( void );
@@ -228,33 +228,33 @@ extern void * BattleRec_RecWorkAdrsGet( void );
 
 //------------------------------------------------------------------
 /**
- * ‘Îí˜^‰æƒf[ƒ^‚Ìƒ[ƒh
+ * å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	heapID	ƒf[ƒ^‚ğƒ[ƒh‚·‚éƒƒ‚ƒŠ‚ğŠm•Û‚·‚é‚½‚ß‚Ìƒq[ƒvID
- * @param	result	ƒ[ƒhŒ‹‰Ê‚ğŠi”[‚·‚éƒ[ƒN
- * @param	bp		ƒ[ƒh‚µ‚½ƒf[ƒ^‚©‚ç¶¬‚·‚éBATTLE_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	num		ƒ[ƒh‚·‚éƒf[ƒ^ƒiƒ“ƒo[iLOADDATA_MYRECALOADDATA_DOWNLOAD0ALOADDATA_DOWNLOAD1cj
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	heapID	ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãŸã‚ã®ãƒ’ãƒ¼ãƒ—ID
+ * @param	result	ãƒ­ãƒ¼ãƒ‰çµæœã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
+ * @param	bp		ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ç”Ÿæˆã™ã‚‹BATTLE_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	num		ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ï¼ˆLOADDATA_MYRECã€LOADDATA_DOWNLOAD0ã€LOADDATA_DOWNLOAD1â€¦ï¼‰
  *
- * @retval	TRUE:³í“Ç‚İ‚İB@FALSE:ƒf[ƒ^•s³
+ * @retval	TRUE:æ­£å¸¸èª­ã¿è¾¼ã¿ã€‚ã€€FALSE:ãƒ‡ãƒ¼ã‚¿ä¸æ­£
  */
 //------------------------------------------------------------------
 BOOL BattleRec_Load(SAVEDATA *sv,int heapID,LOAD_RESULT *result,BATTLE_PARAM *bp,int num);
 
 //------------------------------------------------------------------
 /**
- * ‘Îí˜^‰æƒf[ƒ^‚ÌƒZ[ƒu
+ * å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒ¼ãƒ–
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ƒZ[ƒuŒ‹‰Ê
+ * @retval	ã‚»ãƒ¼ãƒ–çµæœ
  */
 //------------------------------------------------------------------
 extern SAVE_RESULT BattleRec_Save(SAVEDATA *sv, int rec_mode, int fight_count, int num, u16 *work0, u16 *work1);
 
 //--------------------------------------------------------------
 /**
- * @brief   w’èˆÊ’u‚Ì˜^‰æƒf[ƒ^‚ğíœ(‰Šú‰»)‚µ‚ÄƒZ[ƒuÀs
+ * @brief   æŒ‡å®šä½ç½®ã®éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤(åˆæœŸåŒ–)ã—ã¦ã‚»ãƒ¼ãƒ–å®Ÿè¡Œ
  *
  * @param   sv			
  * @param   heap_id		
@@ -269,42 +269,42 @@ extern SAVE_RESULT BattleRec_SaveDataErase(SAVEDATA *sv, int heap_id, int num);
 
 //============================================================================================
 /**
- *	í“¬˜^‰æˆ—
+ *	æˆ¦é—˜éŒ²ç”»å‡¦ç†
  *
- * @param[in]	client_no	˜^‰æ‚ğs‚¤ClientNo
- * @param[in]	pos			˜^‰æƒf[ƒ^‚ÌŠi”[êŠ
- * @param[in]	data		˜^‰æƒf[ƒ^
+ * @param[in]	client_no	éŒ²ç”»ã‚’è¡Œã†ClientNo
+ * @param[in]	pos			éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å ´æ‰€
+ * @param[in]	data		éŒ²ç”»ãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 extern	void BattleRec_DataRec(int client_no,int pos,REC_DATA data);
 
 //============================================================================================
 /**
- *	í“¬Ä¶ƒf[ƒ^æ“¾ˆ—
+ *	æˆ¦é—˜å†ç”Ÿãƒ‡ãƒ¼ã‚¿å–å¾—å‡¦ç†
  *
- * @param[in]	rp			í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	client_no	˜^‰æ‚ğs‚¤ClientNo
- * @param[in]	pos			˜^‰æƒf[ƒ^‚ÌŠi”[êŠ
+ * @param[in]	rp			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	client_no	éŒ²ç”»ã‚’è¡Œã†ClientNo
+ * @param[in]	pos			éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å ´æ‰€
  */
 //============================================================================================
 extern	REC_DATA BattleRec_DataPlay(int client_no,int pos);
 
 //============================================================================================
 /**
- *	BATTLE_PARAM\‘¢‘Ì•Û‘¶ˆ—
+ *	BATTLE_PARAMæ§‹é€ ä½“ä¿å­˜å‡¦ç†
  *
- * @param[in]	rec			˜^‰æÄ¶ƒf[ƒ^•Û‘¶ƒ[ƒN‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	bp			BATTLE_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	rec			éŒ²ç”»å†ç”Ÿãƒ‡ãƒ¼ã‚¿ä¿å­˜ãƒ¯ãƒ¼ã‚¯ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	bp			BATTLE_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 extern	void BattleRec_BattleParamRec(BATTLE_PARAM *bp);
 
 //============================================================================================
 /**
- *	BATTLE_PARAM\‘¢‘Ì¶¬ˆ—
+ *	BATTLE_PARAMæ§‹é€ ä½“ç”Ÿæˆå‡¦ç†
  *
- * @param[in]	rec			˜^‰æÄ¶ƒf[ƒ^•Û‘¶ƒ[ƒN‚Ì\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param[in]	bp			BATTLE_PARAM\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in]	rec			éŒ²ç”»å†ç”Ÿãƒ‡ãƒ¼ã‚¿ä¿å­˜ãƒ¯ãƒ¼ã‚¯ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	bp			BATTLE_PARAMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //============================================================================================
 extern	void BattleRec_BattleParamCreate(BATTLE_PARAM *bp,SAVEDATA *sv);
@@ -312,7 +312,7 @@ extern void BattleRec_ServerVersionUpdate(int id_no, u32 server_version);
 extern BOOL BattleRec_ServerVersionCheck(void);
 
 //extern DENDOU_SAVEDATA* SaveData_GetDendouData( SAVEDATA* sv );
-//˜^‰æƒf[ƒ^‚Í’ÊíƒZ[ƒuƒf[ƒ^‚Å‚È‚¢‚½‚ßAƒAƒNƒZƒX‚É‚Í‰º‹LŠÖ”‚ğg—p‚µ‚Äƒtƒ‰ƒbƒVƒ…‚©‚ç“Ç‚İ‘‚«‚·‚é
+//éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã¯é€šå¸¸ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã§ãªã„ãŸã‚ã€ã‚¢ã‚¯ã‚»ã‚¹æ™‚ã«ã¯ä¸‹è¨˜é–¢æ•°ã‚’ä½¿ç”¨ã—ã¦ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‹ã‚‰èª­ã¿æ›¸ãã™ã‚‹
 extern BATTLE_REC_SAVEDATA * SaveData_Extra_LoadBattleRecData(SAVEDATA * sv, int heap_id, 
 	LOAD_RESULT * result, int num);
 extern SAVE_RESULT SaveData_Extra_SaveBattleRecData(
@@ -331,7 +331,7 @@ extern SAVE_RESULT BattleRec_SecureSetSave(SAVEDATA *sv, int num);
 extern void BattleRec_ClientTemotiGet(int rec_mode, int *client_max, int *temoti_max);
 
 //==============================================================================
-//	ƒf[ƒ^æ“¾
+//	ãƒ‡ãƒ¼ã‚¿å–å¾—
 //==============================================================================
 extern BATTLE_REC_HEADER_PTR BattleRec_HeaderAllocCopy(int heap_id);
 extern GDS_PROFILE_PTR BattleRec_GDSProfileAllocCopy(int heap_id);
@@ -343,14 +343,14 @@ extern void BattleRec_DataSet(GDS_PROFILE_PTR gpp, BATTLE_REC_HEADER_PTR head,
 	BATTLE_REC_WORK_PTR rec, BATTLE_PARAM *bp, SAVEDATA *sv);
 
 //==============================================================================
-//	ˆê•”ŠÖ”‚ğbattle_rec_ov.c‚ÉˆÚ“®‚µ‚½ˆ×AŠO•”ŒöŠJ‚·‚é•K—v‚É‚È‚Á‚½‚à‚Ì
+//	ä¸€éƒ¨é–¢æ•°ã‚’battle_rec_ov.cã«ç§»å‹•ã—ãŸç‚ºã€å¤–éƒ¨å…¬é–‹ã™ã‚‹å¿…è¦ã«ãªã£ãŸã‚‚ã®
 //==============================================================================
 extern SAVE_RESULT Local_BattleRecSave(SAVEDATA *sv, BATTLE_REC_SAVEDATA *work, int num, u16 *seq);
 extern void	BattleRec_Coded(void *data,u32 size,u32 code);
 
 //==============================================================================
 //	battl_rec_ov.c
-//			¦battle_recorderƒI[ƒo[ƒŒƒC—Ìˆæ‚É”z’u‚³‚ê‚Ä‚¢‚é‚Ì‚Å’ˆÓ!
+//			â€»battle_recorderã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸã«é…ç½®ã•ã‚Œã¦ã„ã‚‹ã®ã§æ³¨æ„!
 //==============================================================================
 extern void BattleRecTool_ErrorStrCheck(BATTLE_REC_SAVEDATA *src, BATTLE_PARAM *bp, int heap_id);
 #ifdef PM_DEBUG

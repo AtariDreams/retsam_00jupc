@@ -1,229 +1,229 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<TITLE>���荞�� (overview)</TITLE>
+<TITLE>割り込み (overview)</TITLE>
 <LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </HEAD>
 <BODY>
-<H1 align="left">���荞�� (overview)</H1>
-<H2>����</H2>
-<P>���荞�݂͌��ݎ��s���̃v���O�������ꎞ���f���A���ً}���̍����v���O���������s���Č��̃v���O�����ɖ߂邽�߂̋@�\�ł��B</P>
-<P>�V�X�e����n�[�h�E�F�A�̏�Ԃɂ���Ă����ɓ���̏������s�Ȃ�Ȃ���΂Ȃ�Ȃ��ꍇ�A���荞�݂��g�p���Ȃ���Έ����Ԃ��Ƃɏ�Ԃ𒲂ׁA�������v�ŏ������s�Ȃ��Ƃ����|�[�����O�������̂邱�Ƃ����o���܂��񂪁A���荞�݂��g�p����ƁA�����𖞂����Η\�ߐݒ肳�ꂽ�v���O�����𑦍��Ɏ��s����Ƃ����������s�Ȃ����Ƃ��o���܂��B���̋@�\���g�p����΁A�|�[�����O�����������������������҂ł��܂����A����胁�C���v���O�����͎����̏����ɐ�O���邱�Ƃ��ł��܂��B</P>
-<P>���̃h�L�������g�ł͊��荞�݂���舵�����߂̊֐��ɂ��Đ������܂��B</P>
+<H1 align="left">割り込み (overview)</H1>
+<H2>説明</H2>
+<P>割り込みは現在実行中のプログラムを一時中断し、より緊急性の高いプログラムを実行して元のプログラムに戻るための機構です。</P>
+<P>システムやハードウェアの状態によってすぐに特定の処理を行なわなければならない場合、割り込みを使用しなければ一定期間ごとに状態を調べ、条件合致で処理を行なうというポーリング方式を採ることしか出来ませんが、割り込みを使用すると、条件を満たせば予め設定されたプログラムを即座に実行するという処理を行なうことが出来ます。この機構を使用すれば、ポーリング方式よりも高い即時性が期待できますし、何よりメインプログラムは自分の処理に専念することができます。</P>
+<P>このドキュメントでは割り込みを取り扱うための関数について説明します。</P>
 <HR>
-<P><B>���荞�݂̗v��</B></P>
-<P>���荞�݂���������v���͗l�X�ŁAARM9 �� ARM7 �ňقȂ�܂��BARM9 �ł͈ȉ��̗v���Ŋ��荞�݂��������܂��B<BR>
+<P><B>割り込みの要因</B></P>
+<P>割り込みが発生する要因は様々で、ARM9 と ARM7 で異なります。ARM9 では以下の要因で割り込みが発生します。<BR>
 </P>
 <TABLE>
 <TBODY>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_V_BLANK</TD>
-<TD bgColor=#eeeeee>V�u�����N���荞��</TD>
+<TD bgColor=#eeeeee>Vブランク割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_H_BLANK</TD>
-<TD bgColor=#eeeeee>H�u�����N���荞��</TD>
+<TD bgColor=#eeeeee>Hブランク割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_V_COUNT</TD>
-<TD bgColor=#eeeeee>V�J�E���^�[���荞��</TD>
+<TD bgColor=#eeeeee>Vカウンター割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_TIMER0</TD>
-<TD bgColor=#eeeeee>�^�C�}�[0���荞��</TD>
+<TD bgColor=#eeeeee>タイマー0割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_TIMER1</TD>
-<TD bgColor=#eeeeee>�^�C�}�[1���荞��</TD>
+<TD bgColor=#eeeeee>タイマー1割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_TIMER2</TD>
-<TD bgColor=#eeeeee>�^�C�}�[2���荞��</TD>
+<TD bgColor=#eeeeee>タイマー2割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_TIMER3</TD>
-<TD bgColor=#eeeeee>�^�C�}�[3���荞��</TD>
+<TD bgColor=#eeeeee>タイマー3割り込み</TD>
     </TR>
     <TR>
 <TD bgColor=#eeeeee>OS_IE_DMA0</TD>
-<TD bgColor=#eeeeee>DMA0���荞��</TD>
+<TD bgColor=#eeeeee>DMA0割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_DMA1</TD>
-<TD bgColor=#eeeeee>DMA1���荞��</TD>
+<TD bgColor=#eeeeee>DMA1割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_DMA2</TD>
-<TD bgColor=#eeeeee>DMA2���荞��</TD>
+<TD bgColor=#eeeeee>DMA2割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_DMA3</TD>
-<TD bgColor=#eeeeee>DMA3���荞��</TD>
+<TD bgColor=#eeeeee>DMA3割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_KEY</TD>
-<TD bgColor=#eeeeee>�L�[���荞�� <B><FONT color="#ff0033">*1</FONT></B></TD>
+<TD bgColor=#eeeeee>キー割り込み <B><FONT color="#ff0033">*1</FONT></B></TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_CARTRIDGE</TD>
-<TD bgColor=#eeeeee>�J�[�g���b�WIREQ/DREQ���荞��</TD>
+<TD bgColor=#eeeeee>カートリッジIREQ/DREQ割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_SUBP</TD>
-<TD bgColor=#eeeeee>ARM7���荞��</TD>
+<TD bgColor=#eeeeee>ARM7割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_SPFIFO_SEND</TD>
-<TD bgColor=#eeeeee>ARM9�EARM7�ԑ��MFIFO�G���v�e�B���荞��</TD>
+<TD bgColor=#eeeeee>ARM9・ARM7間送信FIFOエンプティ割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_SPFIFO_RECV</TD>
-<TD bgColor=#eeeeee>ARM9�EARM7�Ԏ�MFIFO�m�b�g�G���v�e�B���荞��</TD>
+<TD bgColor=#eeeeee>ARM9・ARM7間受信FIFOノットエンプティ割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_CARD_DATA</TD>
-<TD bgColor=#eeeeee>�J�[�h�f�[�^�]���I�����荞��</TD>
+<TD bgColor=#eeeeee>カードデータ転送終了割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_CARD_IREQ</TD>
-<TD bgColor=#eeeeee>�J�[�hIREQ���荞��</TD>
+<TD bgColor=#eeeeee>カードIREQ割り込み</TD>
     </TR>
 <TR>
 <TD bgColor=#eeeeee>OS_IE_GXFIFO</TD>
-<TD bgColor=#eeeeee>�W�I���g���R�}���hFIFO���荞��</TD>
+<TD bgColor=#eeeeee>ジオメトリコマンドFIFO割り込み</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><B><FONT color="#ff0033"><BR>
 <BR>
-*1</FONT></B>�@�L�[���荞�݂̓n�[�h�E�F�A�̎d�l��A�g�p���Ȃ��ŉ������B�������A�X���[�v����̕��A�Ɏg�p���邱�Ƃ͉\�ł��B<BR>
+*1</FONT></B>　キー割り込みはハードウェアの仕様上、使用しないで下さい。ただし、スリープからの復帰に使用することは可能です。<BR>
 </P>
 <HR>
-<P><B>���荞�݊֘A�̃��W�X�^�ƃ��[�N�̈�</B></P>
-<P>�S�Ă̊��荞�݂̃C�l�[�u���E�f�B�Z�[�u����؂�ւ���}�X�^�[�C�l�[�u���t���O�̓��W�X�^
-reg_IME (0x04000208) �ɂ���܂��B���̃r�b�g��1 �Ȃ�΃C�l�[�u���ŁA0 �Ȃ�΃f�B�Z�[�u���ł��B���̃t���O�𑀍삷��֐���
-<CODE><A href="OS_EnableIrq.html">OS_EnableIrq()</A></CODE>, <CODE><A href="OS_DisableIrq.html">OS_DisableIrq()</A></CODE>, <CODE><A href="OS_RestoreIrq.html">OS_RestoreIrq()</A></CODE> �ł��B</P>
+<P><B>割り込み関連のレジスタとワーク領域</B></P>
+<P>全ての割り込みのイネーブル・ディセーブルを切り替えるマスターイネーブルフラグはレジスタ
+reg_IME (0x04000208) にあります。このビットが1 ならばイネーブルで、0 ならばディセーブルです。このフラグを操作する関数は
+<CODE><A href="OS_EnableIrq.html">OS_EnableIrq()</A></CODE>, <CODE><A href="OS_DisableIrq.html">OS_DisableIrq()</A></CODE>, <CODE><A href="OS_RestoreIrq.html">OS_RestoreIrq()</A></CODE> です。</P>
 <BLOCKQUOTE><IMG src="image_reg_IME.gif" border="0"></BLOCKQUOTE>
 <P><BR>
 <BR>
-���荞�ݔ����̋��́A���荞�ݗv�����ƂɎw��ł��AI/O ���W�X�^�� reg_IE (0x04000210)
-�ōs�Ȃ��܂��B�r�b�g��1 �̂��̂��C�l�[�u���ƂȂ��Ă��銄�荞�ݗv���ł��B���̃r�b�g��ݒ�E�擾����֐���
-<CODE><A href="OS_SetIrqMask.html">OS_SetIrqMask()</A></CODE>, <CODE><A href="OS_GetIrqMask.html">OS_GetIrqMask()</A></CODE>, <CODE><A href="OS_EnableIrq.html">OS_EnableIrqMask()</A></CODE>, <CODE><A href="OS_DisableIrqMask.html">OS_DisableIrqMask()</A>�ł��B( Set�֐��� Enable�֐��̈Ⴂ�ɒ��ӂ��ĉ����� )<BR>
+割り込み発生の許可は、割り込み要因ごとに指定でき、I/O レジスタの reg_IE (0x04000210)
+で行ないます。ビットが1 のものがイネーブルとなっている割り込み要因です。このビットを設定・取得する関数は
+<CODE><A href="OS_SetIrqMask.html">OS_SetIrqMask()</A></CODE>, <CODE><A href="OS_GetIrqMask.html">OS_GetIrqMask()</A></CODE>, <CODE><A href="OS_EnableIrq.html">OS_EnableIrqMask()</A></CODE>, <CODE><A href="OS_DisableIrqMask.html">OS_DisableIrqMask()</A>です。( Set関数と Enable関数の違いに注意して下さい )<BR>
 </CODE></P>
 <BLOCKQUOTE><IMG src="image_reg_IE.gif" border="0"></BLOCKQUOTE>
 <P><BR>
 <BR>
-���荞�݃��N�G�X�g���W�X�^ reg_IF (0x03000214) �̊e�r�b�g�́A�Ή����銄�荞�݂����������Ƃ���
-1 �ɂȂ�܂��B���荞�݂Ɗe�r�b�g�̊֌W�� reg_IE �Ɠ����ł��B���̃t���O��ݒ�E�擾����֐���
-<CODE><A href="OS_ResetRequestIrqMask.html">OS_ResetRequestIrqMask()</A></CODE>, <CODE><A href="OS_GetRequestIrqMask.html">OS_GetRequestIrqMask()</A></CODE> �ł��B</P>
+割り込みリクエストレジスタ reg_IF (0x03000214) の各ビットは、対応する割り込みが発生したときに
+1 になります。割り込みと各ビットの関係は reg_IE と同じです。このフラグを設定・取得する関数は
+<CODE><A href="OS_ResetRequestIrqMask.html">OS_ResetRequestIrqMask()</A></CODE>, <CODE><A href="OS_GetRequestIrqMask.html">OS_GetRequestIrqMask()</A></CODE> です。</P>
 <BLOCKQUOTE><IMG src="image_reg_IF.gif" border="0"></BLOCKQUOTE>
 <P><BR>
 <BR>
-����ɁAARM9�v���Z�b�T�̃X�e�[�^�X���W�X�^ CPSR (Current Program Status
-Register) �ɁAIRQ ���C�l�[�u���ɂ��邩�ǂ����̃r�b�g������܂��B( <A href="../system/about_System.html">�V�X�e��(�T�v)</A>���Q��)�@�@���̃��W�X�^�� I �t���O�� 1 �̂Ƃ��� IRQ �̓f�B�Z�[�u���ƂȂ�A0
-�̂Ƃ��̓C�l�[�u���ƂȂ�܂��B���́u���荞�݁v�J�e�S���ł͂Ȃ��u�V�X�e����ԁv�J�e�S���Ɋ܂܂�܂����A���̃X�e�[�^�X��ύX����֐���
-<CODE><A href="../system/OS_EnableInterrupts.html">OS_EnableInterrupts()</A></CODE>, <CODE><A href="../system/OS_DisableInterrupts.html">OS_DisableInterrupts()</A></CODE>, <CODE><A href="../system/OS_DisableInterrupts.html">OS_RestoreInterrupts()</A>�ł��B</CODE></P>
+さらに、ARM9プロセッサのステータスレジスタ CPSR (Current Program Status
+Register) に、IRQ をイネーブルにするかどうかのビットがあります。( <A href="../system/about_System.html">システム(概要)</A>を参照)　　このレジスタの I フラグが 1 のときに IRQ はディセーブルとなり、0
+のときはイネーブルとなります。この「割り込み」カテゴリではなく「システム状態」カテゴリに含まれますが、このステータスを変更する関数は
+<CODE><A href="../system/OS_EnableInterrupts.html">OS_EnableInterrupts()</A></CODE>, <CODE><A href="../system/OS_DisableInterrupts.html">OS_DisableInterrupts()</A></CODE>, <CODE><A href="../system/OS_DisableInterrupts.html">OS_RestoreInterrupts()</A>です。</CODE></P>
 <BLOCKQUOTE><IMG src="../system/image_cpsr.gif" width="536" height="127" border="0"></BLOCKQUOTE>
 <P><BR>
 <BR>
-���荞�݂����������Ƃ��ɁA���荞�݃n���h���ł��̊��荞�݂������������Ƃ��`�F�b�N���Ă������߂Ƀ`�F�b�N�t���O�̈悪�݂��Ă���܂��B���̗̈��
-DTCM ��ɂ���܂��B���荞�ݗv���Ɗe�r�b�g�̊֌W�� reg_IE �Ɠ����ł��B�`�F�b�N�t���O��ݒ�E�擾����֐��́A<CODE><A href="OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag()</A></CODE>, <CODE><A href="OS_ClearIrqCheckFlag.html">OS_ClearIrqCheckFlag()</A></CODE>, <CODE><A href="OS_GetIrqCheckFlag.html">OS_GetIrqCheckFlag()</A>�ł��B</CODE></P>
+割り込みが発生したときに、割り込みハンドラでその割り込みが発生したことをチェックしておくためにチェックフラグ領域が設けてあります。この領域は
+DTCM 上にあります。割り込み要因と各ビットの関係は reg_IE と同じです。チェックフラグを設定・取得する関数は、<CODE><A href="OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag()</A></CODE>, <CODE><A href="OS_ClearIrqCheckFlag.html">OS_ClearIrqCheckFlag()</A></CODE>, <CODE><A href="OS_GetIrqCheckFlag.html">OS_GetIrqCheckFlag()</A>です。</CODE></P>
 <BLOCKQUOTE><IMG src="image_checkFlag.gif" border="0"></BLOCKQUOTE>
 <P><BR>
 <BR>
-���荞�݂̓v���Z�b�T��O�̈��ł��B�V�X�e���� DTCM ��ɂ��銄�荞�݃x�N�^
-HW_INTR_VECTOR_BUF �Ɋi�[����Ă���A�h���X�ɃW�����v���܂��B�ʏ�� OS
-�� IRQ �n���h���̃A�h���X���i�[����Ă��܂����A���[�U���Ǝ����荞�݃��[�`�����g�������ꍇ�͂��������������邱�ƂɂȂ�܂��B</P>
+割り込みはプロセッサ例外の一種です。システムは DTCM 上にある割り込みベクタ
+HW_INTR_VECTOR_BUF に格納されているアドレスにジャンプします。通常は OS
+の IRQ ハンドラのアドレスが格納されていますが、ユーザが独自割り込みルーチンを使いたい場合はここを書き換えることになります。</P>
 <BLOCKQUOTE><IMG src="image_intrVector.gif" border="0"></BLOCKQUOTE>
 <HR>
-<P><B>���荞�ݔ����܂ł̗���</B></P>
-<P>�f�o�C�X������̊��荞�݂̒ʒm�́A���̐}�̂悤�ȗ���Ńv���Z�b�T�ɓ��B���܂��B</P>
+<P><B>割り込み発生までの流れ</B></P>
+<P>デバイス等からの割り込みの通知は、下の図のような流れでプロセッサに到達します。</P>
 <BLOCKQUOTE><IMG src="image_irq1.gif" border="0"></BLOCKQUOTE>
-<P>�w��̃f�o�C�X�ɑ΂��A���荞�݂𔭐�������悤�ɐݒ肵�Ă���΁A���̃f�o�C�X�̊��荞�ݏ����𖞂������Ƃ��ɁA�Ή�����
-IF �̃r�b�g�� 1 �ɂȂ�܂��B</P>
-<P>1 �ɂȂ��� IF �̃r�b�g�̊��荞�ݗv���� IE �ŋ�����Ă��Ȃ���Ί��荞�݂͔������܂���B�܂��AIME
-���f�B�Z�[�u���ł���Ί��荞�݂� CPU �ɒʒm����܂���B�����܂ł̏����𖞂����Ί��荞�ݒʒm��ARM9�v���Z�b�T�ɓ��B���܂����ACPSR
-�� IRQ�t���O��0 (�C�l�[�u��)�ł���ꍇ��IRQ���荞�݂��������܂��B1(�f�B�Z�[�u��)�ł������ꍇ��
-IRQ���荞�݂͒x������܂��B</P>
-<P>IRQ���荞�݂́AARM�v���Z�b�T�̗�O�̈�� ( IRQ ��O ) �ł��B�ڍׂ� <A href="../exception/about_exception.html">��O(�T�v)</A> ���Q�Ƃ��Ă��������B</P>
-<P>IRQ ��O�����������Ƃ��AARM9 �v���Z�b�T�̓v���O�����𒆒f���� 0xFFFF0018
-�ɃW�����v���܂��B���̐}���Q�Ƃ��Ă��������B</P>
+<P>指定のデバイスに対し、割り込みを発生させるように設定してあれば、そのデバイスの割り込み条件を満たしたときに、対応する
+IF のビットが 1 になります。</P>
+<P>1 になった IF のビットの割り込み要因が IE で許可されていなければ割り込みは発生しません。また、IME
+がディセーブルであれば割り込みは CPU に通知されません。ここまでの条件を満たせば割り込み通知がARM9プロセッサに到達しますが、CPSR
+の IRQフラグが0 (イネーブル)である場合にIRQ割り込みが発生します。1(ディセーブル)であった場合は
+IRQ割り込みは遅延されます。</P>
+<P>IRQ割り込みは、ARMプロセッサの例外の一種 ( IRQ 例外 ) です。詳細は <A href="../exception/about_exception.html">例外(概要)</A> を参照してください。</P>
+<P>IRQ 例外が発生したとき、ARM9 プロセッサはプログラムを中断して 0xFFFF0018
+にジャンプします。下の図を参照してください。</P>
 <BLOCKQUOTE><IMG src="image_irq2.gif" border="0"></BLOCKQUOTE>
-<P>0xFFFF0018 �A�h���X�ɃW�����v������ADTCM �̈�̈�ł��� HW_INTR_VECTOR_BUF
-�Ɋi�[����Ă���A�h���X�ɐ��䂪�ڂ�܂��B����͒ʏ� OS �� IRQ�n���h���̃A�h���X�ƂȂ��Ă��܂��B���[�U��
-IRQ �n���h����Ǝ��ɍ쐬����ۂ́AHW_INTR_VECTOR_BUF �����������Ă��������BIRQ
-�n���h���̒�����́A���O�ɓo�^���Ă��������[�U�̊��荞�݃n���h�����Ăяo����܂��BIRQ�n���h������߂�����́A���荞�݂����������A�h���X�̎�����v���O�������ĊJ���܂��B(
-�������A�X���b�h���؂�ւ�邱�Ƃ�����܂��B<A href="../thread/about_Thread.html">�X���b�h(�T�v)</A> ���Q�� )</P>
-<P>OS �� IRQ �n���h�����̏���������ɏڂ����������܂��B</P>
+<P>0xFFFF0018 アドレスにジャンプした後、DTCM の一領域である HW_INTR_VECTOR_BUF
+に格納されているアドレスに制御が移ります。これは通常 OS の IRQハンドラのアドレスとなっています。ユーザが
+IRQ ハンドラを独自に作成する際は、HW_INTR_VECTOR_BUF を書き換えてください。IRQ
+ハンドラの中からは、事前に登録しておいたユーザの割り込みハンドラが呼び出されます。IRQハンドラから戻った後は、割り込みが発生したアドレスの次からプログラムを再開します。(
+ただし、スレッドが切り替わることもあります。<A href="../thread/about_Thread.html">スレッド(概要)</A> を参照 )</P>
+<P>OS の IRQ ハンドラ内の処理をさらに詳しく説明します。</P>
 <BLOCKQUOTE><IMG src="image_irq3.gif" border="0"></BLOCKQUOTE>
-<P>�n���h���̍ŏ��ł� IME ���C�l�[�u�����ǂ����𒲂ׁA�C�l�[�u���łȂ���Ή��������ɖ߂�܂��B����
-IE �� IF �̘_���ς��Ƃ�A���ꂪ 0 �ł���Ή��������ɖ߂�܂��B0�łȂ���΁A1
-�ƂȂ��Ă���r�b�g�����񏈗����銄�荞�݂Ƃ������ƂɂȂ�܂��B������ IME
-�� IE �� IF �𒲂ׂ�̂́AI/O ���W�X�^�ɃA�N�Z�X���Ċ��荞�݋֎~�����⊄�荞�ݗv���̕ύX���������Ă���Ԃɂ��A���̕ύX����Ɋ��荞�ݐM�����v���Z�b�T�ɓ��邱�Ƃ����邩��ł��B�����Ń`�F�b�N���s�Ȃ����Ƃɂ��A���m��
-I/O ���W�X�^�̐ݒ�ɏ����邱�Ƃ��ۏ؂ł��܂��B</P>
-<P>���̌�̗����������܂��B��قǌv�Z���� IE �� IF �̘_���ς̌��ʁA1 �ƂȂ��Ă���r�b�g�ɑΉ����銄�荞�݃n���h�����Ăяo���܂��B���̃n���h���́A�\�߃��[�U��
-IRQ �e�[�u���ɓo�^���Ă����܂��BIRQ �n���h������͂��̃e�[�u�����Q�Ƃ��ă��[�U�̊��荞�݃n���h���̃A�h���X���擾���܂��B</P>
-<P>���[�U�̊��荞�݃n���h������߂�����A���[�U�v���O�����ɕ��A���܂��B���������荞�݃n���h�����ŃX���b�h�̐؂�ւ�����������悤�Ȏ��ۂ������Ă���΁A�X���b�h�̃��X�P�W���[�����O���s�Ȃ��܂��B(
-<A href="../thread/about_Thread.html">�X���b�h(�T�v)</A>�@�Q�� )</P>
-<P>�Ȃ��A���[�U�̊��荞�݃n���h���̒��ł́A���荞�݂ɑΉ�����`�F�b�N�t���O���Z�b�g���Ă��������B���̃t���O�͑���OS�֐��Ŏg�p����܂����A���̊֐����g��Ȃ��ꍇ�̓`�F�b�N�t���O���Z�b�g����K�v�͖{������܂���B�������ʂɏ�����ς��邱�ƂŎ��ۂɕK�v�Ȍ��ŋL�q���Y��邱�Ƃ����邩������܂���̂ŁA��肪�Ȃ���Ώ�Ɋ��荞�݂ɑ΂��Ă̓Z�b�g���邱�Ƃ������߂��܂��B(
-<CODE><A href="OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag()</A></CODE> �Q�� )</P>
+<P>ハンドラの最初では IME がイネーブルかどうかを調べ、イネーブルでなければ何もせずに戻ります。次に
+IE と IF の論理積をとり、これが 0 であれば何もせずに戻ります。0でなければ、1
+となっているビットが今回処理する割り込みということになります。ここで IME
+と IE と IF を調べるのは、I/O レジスタにアクセスして割り込み禁止処理や割り込み要因の変更処理をしている間にも、その変更より先に割り込み信号がプロセッサに入ることがあるからです。ここでチェックを行なうことにより、正確に
+I/O レジスタの設定に準じることが保証できます。</P>
+<P>その後の流れを説明します。先ほど計算した IE と IF の論理積の結果、1 となっているビットに対応する割り込みハンドラを呼び出します。このハンドラは、予めユーザが
+IRQ テーブルに登録しておきます。IRQ ハンドラからはこのテーブルを参照してユーザの割り込みハンドラのアドレスを取得します。</P>
+<P>ユーザの割り込みハンドラから戻った後、ユーザプログラムに復帰します。ただし割り込みハンドラ内でスレッドの切り替えが発生するような事象が生じていれば、スレッドのリスケジューリングが行なわれます。(
+<A href="../thread/about_Thread.html">スレッド(概要)</A>　参照 )</P>
+<P>なお、ユーザの割り込みハンドラの中では、割り込みに対応するチェックフラグをセットしてください。このフラグは他のOS関数で使用されますが、その関数を使わない場合はチェックフラグをセットする必要は本来ありません。しかし個別に処理を変えることで実際に必要な個所で記述し忘れることもあるかもしれませんので、問題がなければ常に割り込みに対してはセットすることをお奨めします。(
+<CODE><A href="OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag()</A></CODE> 参照 )</P>
 <HR>
-<P><B>���荞�݂̃C�l�[�u���E�f�B�Z�[�u��</B></P>
-<P>�ȉ��̊֐��͑S�Ă̊��荞�݂̃}�X�^�[�C�l�[�u���t���O�𑀍삵�܂��B</P>
+<P><B>割り込みのイネーブル・ディセーブル</B></P>
+<P>以下の関数は全ての割り込みのマスターイネーブルフラグを操作します。</P>
 <P><CODE><A href="OS_EnableIrq.html">OS_EnableIrq()</A></CODE>, <CODE><A href="OS_DisableIrq.html">OS_DisableIrq()</A></CODE>, <CODE><A href="OS_RestoreIrq.html">OS_RestoreIrq()</A></CODE></P>
 <HR>
-<P><B>�V�X�e����Ԃ̊��荞�݃C�l�[�u���E�f�B�Z�[�u��</B></P>
-<P>�ڍׂ� <A href="../system/about_System.html">�V�X�e��(�T�v)</A>���Q�Ƃ��ĉ������B�ȉ��́A�u���荞�݁v�J�e�S���ł͂Ȃ��u�V�X�e���v�J�e�S���̊֐��ł��B<BR>
-�����̊֐��� CPSR �̃X�e�[�^�X��ύX���邱�Ƃ��o���܂��B</P>
+<P><B>システム状態の割り込みイネーブル・ディセーブル</B></P>
+<P>詳細は <A href="../system/about_System.html">システム(概要)</A>を参照して下さい。以下は、「割り込み」カテゴリではなく「システム」カテゴリの関数です。<BR>
+これらの関数で CPSR のステータスを変更することが出来ます。</P>
 <P><CODE><A href="../system/OS_EnableInterrupts.html">OS_EnableInterrupts()</A></CODE>, <CODE><A href="../system/OS_DisableInterrupts.html">OS_DisableInterrupts()</A></CODE>, <CODE><A href="../system/OS_DisableInterrupts.html">OS_RestoreInterrupts()</A></CODE></P>
 
 <HR>
-<P><B>���荞�ݗv���̐ݒ�</B></P><P>�ȉ��̊֐��Ŋ��荞�ݗv����ݒ�E�擾���邱�Ƃ��o���܂��B</P>
+<P><B>割り込み要因の設定</B></P><P>以下の関数で割り込み要因を設定・取得することが出来ます。</P>
 
 <P>
 <CODE><A href="OS_SetIrqMask.html">OS_SetIrqMask()</A></CODE>, <CODE><A href="OS_GetIrqMask.html">OS_GetIrqMask()</A></CODE>, <CODE><A href="OS_EnableIrq.html">OS_EnableIrqMask()</A></CODE>, <CODE><A href="OS_DisableIrqMask.html">OS_DisableIrqMask()</A></CODE>
 </P>
 <HR>
-<P><B>���荞�݃��N�G�X�g�t���O�̑���</B></P>
-<P>�ȉ��̊֐��Ŋ��荞�݃��N�G�X�g�t���O�𑀍삷�邱�Ƃ��o���܂��B</P>
+<P><B>割り込みリクエストフラグの操作</B></P>
+<P>以下の関数で割り込みリクエストフラグを操作することが出来ます。</P>
 <P><CODE><A href="OS_ResetRequestIrqMask.html">OS_ResetRequestIrqMask()</A></CODE>, <CODE><A href="OS_GetRequestIrqMask.html">OS_GetRequestIrqMask()</A></CODE></P>
 <HR>
-<P><B>���荞�݃n���h���̐ݒ�</B></P>
-<P>�ȉ��̊֐��Ŋ��荞�݃n���h����ݒ�E�擾���邱�Ƃ��o���܂��B</P>
+<P><B>割り込みハンドラの設定</B></P>
+<P>以下の関数で割り込みハンドラを設定・取得することが出来ます。</P>
 
 <P>
 <CODE><A href="OS_InitIrqTable.html">OS_InitIrqTable()</A></CODE>, <CODE><A href="OS_SetIrqFunction.html">OS_SetIrqFunction()</A></CODE>, <CODE><A href="OS_GetIrqFunction.html">OS_GetIrqFunction()</A></CODE>
 </P>
 <HR>
-<P><B>���荞�݃`�F�b�N�t���O�̑���</B></P>
-<P>�ȉ��̊֐��Ŋ��荞�݃`�F�b�N�t���O�𑀍삵�܂��B</P>
+<P><B>割り込みチェックフラグの操作</B></P>
+<P>以下の関数で割り込みチェックフラグを操作します。</P>
 <P><CODE><A href="OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag()</A></CODE>, <CODE><A href="OS_ClearIrqCheckFlag.html">OS_ClearIrqCheckFlag()</A></CODE>, <CODE><A href="OS_GetIrqCheckFlag.html">OS_GetIrqCheckFlag()</A></CODE></P>
 <HR>
-<P><B>���荞�ݑ҂�</B></P>
-<P>���荞�݂���������܂ŁA�E�F�C�g����Ƃ����ړI�Ŏ��̊֐����p�ӂ���Ă��܂��B</P>
+<P><B>割り込み待ち</B></P>
+<P>割り込みが発生するまで、ウェイトするという目的で次の関数が用意されています。</P>
 <P><CODE><A href="OS_WaitIrq.html">OS_WaitIrq()</A></CODE>, <CODE><A href="OS_WaitAnyIrq.html">OS_WaitAnyIrq()</A></CODE>, <CODE><A href="../system/OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE></P>
-<P>���̂��� <CODE><A href="OS_WaitIrq.html">OS_WaitIrq()</A></CODE> �A <CODE><A href="../system/OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE> �͈����Ŏw�肵�����荞�݂�҂��܂��B<BR>
-����ɑ΂��A<CODE><A href="OS_WaitAnyIrq.html">OS_WaitAnyIrq()</A></CODE> �͂����銄�荞�݂�҂��܂��B</P>
-<P><CODE><A href="OS_WaitIrq.html">OS_WaitIrq()</A></CODE> �� <CODE><A href="../system/OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE> �̈Ⴂ�́A���荞�݂�҂ۂ̓���ł��B<CODE><A href="OS_WaitIrq.html">OS_WaitIrq()</A></CODE> �̓R���e�L�X�g��؂�ւ��đ��̃X���b�h�ɏ������ڂ��܂����A<CODE><A href="../system/OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE> �� <CODE><A href="../system/OS_Halt.html">OS_Halt()</A></CODE> ���Ă�ł��̏�Œ�~���܂��̂ŃX���b�h�̐؂�ւ��͔������܂���B�X���b�h�V�X�e�����g�p���Ă��Ȃ��ꍇ�͗��҂̈Ⴂ�͂���܂���B</P>
-<P>�V�X�e���R�[���ɂ� V�u�����N��҂��߂� <CODE><A href="../../svc/SVC_WaitVBlankIntr.html">SVC_WaitVBlankIntr()</A></CODE> �Ƃ����֐�������܂��B���̊֐��̓X���b�h��؂�ւ��܂���B</P>
-<P>�����̊��荞�ݑ҂��֐��̓����ł́A<CODE><A href="../system/OS_Halt.html">OS_Halt()</A></CODE> �ňꎞ��~��ԂɂȂ��Ă����葼�̃X���b�h�ɏ����𖾂��n���Ă��܂����A���荞�݂��������Ď��s��ԂɂȂ����Ƃ��ɁA���������̂��w��̊��荞�݂��������ǂ������肷�邽�߂ɁA���荞�݃`�F�b�N�t���O���Q�Ƃ��܂��B���̂��ߊ��荞�݃n���h���ł́A���荞�݃`�F�b�N�t���O���Z�b�g����K�v������܂��B</P>
+<P>このうち <CODE><A href="OS_WaitIrq.html">OS_WaitIrq()</A></CODE> 、 <CODE><A href="../system/OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE> は引数で指定した割り込みを待ちます。<BR>
+これに対し、<CODE><A href="OS_WaitAnyIrq.html">OS_WaitAnyIrq()</A></CODE> はあらゆる割り込みを待ちます。</P>
+<P><CODE><A href="OS_WaitIrq.html">OS_WaitIrq()</A></CODE> と <CODE><A href="../system/OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE> の違いは、割り込みを待つ際の動作です。<CODE><A href="OS_WaitIrq.html">OS_WaitIrq()</A></CODE> はコンテキストを切り替えて他のスレッドに処理を移しますが、<CODE><A href="../system/OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE> は <CODE><A href="../system/OS_Halt.html">OS_Halt()</A></CODE> を呼んでその場で停止しますのでスレッドの切り替わりは発生しません。スレッドシステムを使用していない場合は両者の違いはありません。</P>
+<P>システムコールには Vブランクを待つための <CODE><A href="../../svc/SVC_WaitVBlankIntr.html">SVC_WaitVBlankIntr()</A></CODE> という関数があります。この関数はスレッドを切り替えません。</P>
+<P>これらの割り込み待ち関数の内部では、<CODE><A href="../system/OS_Halt.html">OS_Halt()</A></CODE> で一時停止状態になっていたり他のスレッドに処理を明け渡していますが、割り込みが発生して実行状態になったときに、発生したのが指定の割り込みだったかどうか判定するために、割り込みチェックフラグを参照します。そのため割り込みハンドラでは、割り込みチェックフラグをセットする必要があります。</P>
 <HR>
-<P><B>V�u�����N�J�E���^�ɂ���</B></P>
-<P>V�u�����N���荞�݂𗘗p����V�u�����N�J�E���^�̒l���擾����ȉ��̊֐����p�ӂ���Ă��܂��B</P>
+<P><B>Vブランクカウンタについて</B></P>
+<P>Vブランク割り込みを利用したVブランクカウンタの値を取得する以下の関数が用意されています。</P>
 <P><CODE><A href="OS_GetVBlankCount.html">OS_GetVBlankCount()</A></CODE></P>
-<P>�����ł́AARM7 �����V�u�����N���荞�݂��C�l�[�u���ɂ��Ă����A���荞�݂̉񐔂����C���������̋��L�̈�ɏ������݂܂��BARM9
-�̂��̖��߂́A���L�̈�ɏ����ꂽ�l��Ԃ��܂��B</P>
-<H2>�Q��</H2>
-<P><CODE><A href="../list_os.html#Irq">OS�֐��ꗗ(���荞��)</A><BR>
+<P>内部では、ARM7 が常にVブランク割り込みをイネーブルにしておき、割り込みの回数をメインメモリの共有領域に書き込みます。ARM9
+のその命令は、共有領域に書かれた値を返します。</P>
+<H2>参照</H2>
+<P><CODE><A href="../list_os.html#Irq">OS関数一覧(割り込み)</A><BR>
 </CODE></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/03/08 �p�ꓝ�� [������] �� [���荞��]<br>
-2004/12/14 �p������ȂǏC��<BR>
-2004/12/08 OS_IE_KEY �ɂ��Ă̒��ӂ�ǉ�<BR>
-2004/11/17 ����</P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/12/14 用語や語尾など修正<BR>
+2004/12/08 OS_IE_KEY についての注意を追加<BR>
+2004/11/17 初版</P>
 </BODY>
 </HTML>

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fssc_factory.c
- * @bfief	ƒtƒƒ“ƒeƒBƒAƒVƒXƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒtƒ@ƒNƒgƒŠ[
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚·ã‚¹ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
  * @author	Satoshi Nohara
  * @date	07.04.10
  */
@@ -28,7 +28,7 @@
 
 #include "field/eventflag.h"
 #include "field/evwkdef.h"
-#include "gflib/strbuf_family.h"				//‹–‰Â§
+#include "gflib/strbuf_family.h"				//è¨±å¯åˆ¶
 
 #include "../field/field_battle.h"				//BattleParam_IsWinResult
 #include "../field/field_subproc.h"				//TestBattleProcData
@@ -55,16 +55,16 @@
 
 //============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //============================================================================================
-#define FACTORY_SCROLL_MAP_RAIL_Y	(1)			//ƒ}ƒbƒv‚ÌƒŒ[ƒ‹ƒXƒNƒ[ƒ‹‘¬“x(256‚É‚ ‚¤‚æ‚¤‚É‚·‚é)
-#define FACTORY_RAIL_TCB_PRI		(5)			//ƒ}ƒbƒv‚ÌƒŒ[ƒ‹TCB‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+#define FACTORY_SCROLL_MAP_RAIL_Y	(1)			//ãƒžãƒƒãƒ—ã®ãƒ¬ãƒ¼ãƒ«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦(256ã«ã‚ã†ã‚ˆã†ã«ã™ã‚‹)
+#define FACTORY_RAIL_TCB_PRI		(5)			//ãƒžãƒƒãƒ—ã®ãƒ¬ãƒ¼ãƒ«TCBã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 BOOL FSSC_FactoryWorkAlloc( FSS_TASK * core );
@@ -86,21 +86,21 @@ static BOOL WaitFactoryRecvBuf( FSS_TASK * core );
 void Factory_MapRailMoveMain( TCB_PTR tcb, void * work );
 BOOL FSSC_FactoryTalkMsgAppear(FSS_TASK* core);
 
-//“n‚µ‚½ƒ[ƒN‚Ì‰ð•úˆ—
+//æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†
 static void FactoryFreeMemory( void *parent_work );
 
 
 //============================================================================================
 //
-//	ƒRƒ}ƒ“ƒh
+//	ã‚³ãƒžãƒ³ãƒ‰
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒ@ƒNƒgƒŠ[ƒ[ƒNŠm•Û
+ * @brief	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- * @param	core	‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core	ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -118,15 +118,15 @@ BOOL FSSC_FactoryWorkAlloc( FSS_TASK * core )
 	wk = FactoryScr_WorkAlloc( ex_param->savedata, init, type, level );
 	Frontier_SysWorkSet( core->fss->fmain, wk );
 
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒtƒ@ƒNƒgƒŠ[ƒ[ƒNŠm•Û\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¯ãƒ¼ã‚¯ç¢ºä¿\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒ@ƒNƒgƒŠ[ƒ[ƒN‰Šú‰»
+ * @brief	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
- * @param	core	‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core	ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -140,15 +140,15 @@ BOOL FSSC_FactoryWorkInit( FSS_TASK * core )
 
 	FactoryScr_WorkInit( bf_scr_wk, init );
 
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒtƒ@ƒNƒgƒŠ[ƒ[ƒN‰Šú‰»\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒ@ƒNƒgƒŠ[ƒ[ƒNíœ
+ * @brief	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -158,15 +158,15 @@ BOOL FSSC_FactoryWorkFree( FSS_TASK * core )
 	FACTORY_SCRWORK* bf_scr_wk;
 	bf_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 	FactoryScr_WorkRelease( bf_scr_wk );
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒtƒ@ƒNƒgƒŠ[ƒ[ƒNŠJ•ú\n" );
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¯ãƒ¼ã‚¯é–‹æ”¾\n" );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒtƒ@ƒNƒgƒŠ[ƒŒƒ“ƒ^ƒ‹ŒÄ‚Ño‚µ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ¬ãƒ³ã‚¿ãƒ«å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -178,10 +178,10 @@ BOOL FSSC_FactoryRentalCall( FSS_TASK * core)
 	FACTORY_CALL_WORK* factory_call;
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
 
-	//ƒI[ƒo[ƒŒƒCIDéŒ¾
+	//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY( factory );
 	
-	//ƒtƒ@ƒNƒgƒŠ[ƒvƒƒZƒXƒf[ƒ^
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA FactoryProc = {	
 		FactoryProc_Init,
 		FactoryProc_Main,
@@ -191,7 +191,7 @@ BOOL FSSC_FactoryRentalCall( FSS_TASK * core)
 
 	bf_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	OS_Printf( "ƒtƒ@ƒNƒgƒŠ[ŒÄ‚Ño‚µ\n" );
+	OS_Printf( "ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å‘¼ã³å‡ºã—\n" );
 
 	factory_call = sys_AllocMemory( HEAPID_WORLD, sizeof(FACTORY_CALL_WORK) );
 	MI_CpuClear8( factory_call, sizeof(FACTORY_CALL_WORK) );
@@ -209,9 +209,9 @@ BOOL FSSC_FactoryRentalCall( FSS_TASK * core)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒtƒ@ƒNƒgƒŠ[í“¬Œ‹‰ÊŽæ“¾‚µ‚ÄŠJ•ú
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼æˆ¦é—˜çµæžœå–å¾—ã—ã¦é–‹æ”¾
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -227,16 +227,16 @@ BOOL FSSC_FactoryCallGetResult( FSS_TASK * core)
 	bf_scr_wk->winlose_flag = BattleParam_IsWinResult( param->win_lose_flag );
 	OS_Printf( "bf_scr_wk->winlose_flag = %d\n", bf_scr_wk->winlose_flag );
 
-	//BATTLE_PARAM‚ÌŠJ•ú
+	//BATTLE_PARAMã®é–‹æ”¾
 	BattleParam_Delete( param );
 	return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFí“¬ŒÄ‚Ño‚µ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šæˆ¦é—˜å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -249,22 +249,22 @@ BOOL FSSC_FactoryBattleCall( FSS_TASK * core)
 
 	bf_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	//ƒoƒgƒ‹ƒf[ƒ^‰Šú‰»
+	//ãƒãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	param = BtlFactory_CreateBattleParam( bf_scr_wk, ex_param );
 	bf_scr_wk->p_work = param;
 
-	//í“¬Ø‚è‘Ö‚¦
-//	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );		//ƒoƒgƒ‹‹ÈÄ¶
+	//æˆ¦é—˜åˆ‡ã‚Šæ›¿ãˆ
+//	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );		//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
     Frontier_SubProcSet(core->fss->fmain, &TestBattleProcData, param, FALSE, NULL );
-	OS_Printf( "ƒXƒNƒŠƒvƒgƒtƒ@ƒNƒgƒŠ[í“¬ŒÄ‚Ño‚µ\n" );			//field_encount.c
+	OS_Printf( "ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼æˆ¦é—˜å‘¼ã³å‡ºã—\n" );			//field_encount.c
 	return 1;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒtƒ@ƒNƒgƒŠ[ŒðŠ·ŒÄ‚Ño‚µ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼äº¤æ›å‘¼ã³å‡ºã—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -276,10 +276,10 @@ BOOL FSSC_FactoryTradeCall( FSS_TASK * core )
 	FACTORY_CALL_WORK* factory_call;
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
 
-	//ƒI[ƒo[ƒŒƒCIDéŒ¾
+	//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY( factory );
 	
-	//ƒtƒ@ƒNƒgƒŠ[ƒvƒƒZƒXƒf[ƒ^
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA FactoryProc = {	
 		FactoryProc_Init,
 		FactoryProc_Main,
@@ -289,13 +289,13 @@ BOOL FSSC_FactoryTradeCall( FSS_TASK * core )
 
 	bf_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
-	OS_Printf( "ƒtƒ@ƒNƒgƒŠ[ŒðŠ·ŒÄ‚Ño‚µ\n" );
+	OS_Printf( "ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼äº¤æ›å‘¼ã³å‡ºã—\n" );
 
-	//í“¬ŒÄ‚Ño‚µŽž‚ÉA
-	//POKEPARRY[0-2]‚ÉAŽèŽ‚¿‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é
-	//POKEPARRY[3-5]‚ÉA“Gƒ|ƒPƒ‚ƒ“‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é
+	//æˆ¦é—˜å‘¼ã³å‡ºã—æ™‚ã«ã€
+	//POKEPARRY[0-2]ã«ã€æ‰‹æŒã¡ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹
+	//POKEPARRY[3-5]ã«ã€æ•µãƒã‚±ãƒ¢ãƒ³ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹
 		
-	//ƒNƒŠƒA‚µ‚Ä‚©‚ç“n‚·
+	//ã‚¯ãƒªã‚¢ã—ã¦ã‹ã‚‰æ¸¡ã™
 	for( i=0; i < FACTORY_RET_WORK_MAX ;i++ ){
 		bf_scr_wk->ret_work[i] = 0;
 	}
@@ -314,25 +314,25 @@ BOOL FSSC_FactoryTradeCall( FSS_TASK * core )
 	return 1;
 }
 
-//ƒtƒ@ƒNƒgƒŠ[‰æ–Ê‚Å“n‚µ‚½ƒ[ƒN‚Ì‰ð•úˆ—
+//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ç”»é¢ã§æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾å‡¦ç†
 static void FactoryFreeMemory( void *parent_work )
 {
 	int i;
 	FACTORY_CALL_WORK* factory_call = parent_work;
 
-	//Œ‹‰Ê‚ðŽæ“¾
+	//çµæžœã‚’å–å¾—
 	FactoryScr_GetResult( factory_call->p_work, parent_work );
 
-	//FACTORY_CALL_WORK‚Ìíœ
+	//FACTORY_CALL_WORKã®å‰Šé™¤
 	sys_FreeMemoryEz( parent_work );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒŒƒ“ƒ^ƒ‹POKEPARTY‚ÌƒZƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ¬ãƒ³ã‚¿ãƒ«POKEPARTYã®ã‚»ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -347,9 +347,9 @@ BOOL FSSC_FactoryRentalPokePartySet( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒoƒgƒ‹Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -364,9 +364,9 @@ BOOL FSSC_FactoryBtlAfterPokePartySet( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒgƒŒ[ƒh‚µ‚½Œã‚Ìƒ|ƒPƒ‚ƒ“•ÏX
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒˆãƒ¬ãƒ¼ãƒ‰ã—ãŸå¾Œã®ãƒã‚±ãƒ¢ãƒ³å¤‰æ›´
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -381,9 +381,9 @@ BOOL FSSC_FactoryTradePokeChange( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒgƒŒ[ƒh‚µ‚½Œã‚Ìƒ|ƒPƒ‚ƒ“‚ÌPOKEPARTY‚ÌƒZƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒˆãƒ¬ãƒ¼ãƒ‰ã—ãŸå¾Œã®ãƒã‚±ãƒ¢ãƒ³ã®POKEPARTYã®ã‚»ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -398,9 +398,9 @@ BOOL FSSC_FactoryTradeAfterPokePartySet( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFFACTORY_SCR_WORK‚ÌƒZƒbƒgAƒQƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šFACTORY_SCR_WORKã®ã‚»ãƒƒãƒˆã€ã‚²ãƒƒãƒˆ
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -425,52 +425,52 @@ BOOL FSSC_FactoryScrWork( FSS_TASK * core )
 
 	switch( code ){
 
-	//ƒ‚[ƒh(ƒŒƒ“ƒ^ƒ‹AŒðŠ·)‚ÌƒZƒbƒg
+	//ãƒ¢ãƒ¼ãƒ‰(ãƒ¬ãƒ³ã‚¿ãƒ«ã€äº¤æ›)ã®ã‚»ãƒƒãƒˆ
 	case FA_ID_SET_MODE:
 		bf_scr_wk->mode = param1;
 		break;
 
-	//ƒŒƒxƒ‹(LV50AƒI[ƒvƒ“)‚ÌƒZƒbƒg
+	//ãƒ¬ãƒ™ãƒ«(LV50ã€ã‚ªãƒ¼ãƒ—ãƒ³)ã®ã‚»ãƒƒãƒˆ
 	case FA_ID_SET_LEVEL:
 		bf_scr_wk->level = param1;
 		break;
 
-	//ƒ^ƒCƒv(ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`)‚ÌƒZƒbƒg
+	//ã‚¿ã‚¤ãƒ—(ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒžãƒ«ãƒã€wifiãƒžãƒ«ãƒ)ã®ã‚»ãƒƒãƒˆ
 	case FA_ID_SET_TYPE:
 		bf_scr_wk->type = param1;
 		break;
 
-	//ret_work‚ÌŽæ“¾
+	//ret_workã®å–å¾—
 	case FA_ID_GET_RET_WORK:
 		*work = bf_scr_wk->ret_work[param1];
 		break;
 
-	//˜AŸ”‚ÌŽæ“¾
+	//é€£å‹æ•°ã®å–å¾—
 	case FA_ID_GET_RENSYOU:
 		*work = bf_scr_wk->rensyou;
 		break;
 
-	//˜AŸ”‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+	//é€£å‹æ•°ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	case FA_ID_INC_RENSYOU:
 		if( bf_scr_wk->rensyou < FACTORY_RENSYOU_MAX ){
 			bf_scr_wk->rensyou++;
 		}
 		break;
 
-	//ƒŠƒZƒbƒg‚µ‚Äƒ^ƒCƒgƒ‹‚É–ß‚é
+	//ãƒªã‚»ãƒƒãƒˆã—ã¦ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹
 	case FA_ID_SYSTEM_RESET:
 		OS_ResetSystem( 0 );
 		break;
 
 	//------------------------------------
-	//	FACTORYDATA‚ÉƒAƒNƒZƒX
+	//	FACTORYDATAã«ã‚¢ã‚¯ã‚»ã‚¹
 	//------------------------------------
-	//ƒZ[ƒuƒf[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©•Ô‚·
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹è¿”ã™
 	case FA_ID_IS_SAVE_DATA_ENABLE:
 		*work = FACTORYDATA_GetSaveFlag( bf_scr_wk->factory_savedata );
 		break;
 
-	//‹x‚ÞŽž‚ÉŒ»Ý‚ÌƒvƒŒƒCó‹µ‚ðƒZ[ƒu‚É‘‚«o‚·
+	//ä¼‘ã‚€æ™‚ã«ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤çŠ¶æ³ã‚’ã‚»ãƒ¼ãƒ–ã«æ›¸ãå‡ºã™
 	case FA_ID_SAVE_REST_PLAY_DATA:
 		FactoryScr_SaveRestPlayData( bf_scr_wk, FR_MODE_REST );
 		break;
@@ -479,59 +479,59 @@ BOOL FSSC_FactoryScrWork( FSS_TASK * core )
 	//	
 	//------------------------------------
 
-	//ƒ‰ƒEƒ“ƒh”‚ðƒCƒ“ƒNƒŠƒƒ“ƒg
+	//ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	case FA_ID_INC_ROUND:
 		*work = FactoryScr_IncRound( bf_scr_wk );
 		break;
 
-	//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ðŽæ“¾
+	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	case FA_ID_GET_MONSNO:
 		*work = bf_scr_wk->enemy_poke[param1].mons_no;
 		break;
 
-	//‹Zƒiƒ“ƒo[‚ðŽæ“¾
+	//æŠ€ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	case FA_ID_GET_WAZANO:
 		*work = bf_scr_wk->enemy_poke[param1].waza[param2];
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚ðŽæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
 	case FA_ID_GET_POKE_TYPE:
 		pp = PokemonParam_AllocWork( HEAPID_WORLD );
-		//ƒoƒgƒ‹ƒ^ƒ[—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚©‚çPOKEMON_PARAM‚ð¶¬
+		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰POKEMON_PARAMã‚’ç”Ÿæˆ
 		Frontier_PokeParaMake( &bf_scr_wk->enemy_poke[param1], pp, Factory_GetLevel(bf_scr_wk) );
 		*work = PokeParaGet( pp, ID_PARA_type1, NULL );
 		sys_FreeMemoryEz( pp );
 		break;
 
-	//Å‚à‘½‚¢ƒ^ƒCƒv‚ðŽæ“¾
+	//æœ€ã‚‚å¤šã„ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
 	case FA_ID_GET_LARGE_TYPE:
 
 		e_max = Factory_GetEnemyPokeNum( bf_scr_wk->type, FACTORY_FLAG_TOTAL );
 
-		//‰Šú‰»
+		//åˆæœŸåŒ–
 		for( i=0; i < (POKE_WAZA_TYPE_MAX+1) ;i++ ){
-			type_tbl[i]	= 0;		//‰½•C‚¢‚½‚©‚ÌƒJƒEƒ“ƒ^‚È‚Ì‚Å0‚É‚µ‚Ä‚¨‚­I
+			type_tbl[i]	= 0;		//ä½•åŒ¹ã„ãŸã‹ã®ã‚«ã‚¦ãƒ³ã‚¿ãªã®ã§0ã«ã—ã¦ãŠãï¼
 		}
 
-		//ƒ^ƒCƒv‚ðŽæ“¾‚µ‚ÄAƒoƒbƒtƒ@‚ÉƒZƒbƒg
+		//ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã—ã¦ã€ãƒãƒƒãƒ•ã‚¡ã«ã‚»ãƒƒãƒˆ
 		pp = PokemonParam_AllocWork( HEAPID_WORLD );
 		for( i=0; i < e_max ;i++ ){
 
-			//ƒoƒgƒ‹ƒ^ƒ[—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚©‚çPOKEMON_PARAM‚ð¶¬
+			//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰POKEMON_PARAMã‚’ç”Ÿæˆ
 			Frontier_PokeParaMake( &bf_scr_wk->enemy_poke[i], pp, Factory_GetLevel(bf_scr_wk) );
 
-			//ƒ^ƒCƒv1A2Žæ“¾
+			//ã‚¿ã‚¤ãƒ—1ã€2å–å¾—
 			type1 = PokeParaGet( pp, ID_PARA_type1, NULL );
 			type2 = PokeParaGet( pp, ID_PARA_type2, NULL );
 			OS_Printf( "enemy %d type1 = %d\n", i, type1 );
 			OS_Printf( "enemy %d type2 = %d\n", i, type2 );
 
-			//1‚Â‚µ‚©ƒ^ƒCƒv‚ðŽ‚Á‚Ä‚¢‚È‚¢Žž‚Í•Ð•û‚ðƒNƒŠƒA‚µ‚Ä‚¨‚­
+			//1ã¤ã—ã‹ã‚¿ã‚¤ãƒ—ã‚’æŒã£ã¦ã„ãªã„æ™‚ã¯ç‰‡æ–¹ã‚’ã‚¯ãƒªã‚¢ã—ã¦ãŠã
 			if( type1 == type2 ){
 				type2 = 0xff;
 			}
 
-			//ƒJƒEƒ“ƒgƒAƒbƒv‚·‚é
+			//ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ã™ã‚‹
 			type_tbl[type1]++;
 
 			if( type2 != 0xff ){
@@ -540,7 +540,7 @@ BOOL FSSC_FactoryScrWork( FSS_TASK * core )
 		}
 		sys_FreeMemoryEz( pp );
 
-		//”‚ð”äŠr‚µ‚Äˆê”Ô“¯‚¶ƒ^ƒCƒv‚ª‘¶Ý‚·‚éƒ^ƒCƒv‚ðŽæ“¾
+		//æ•°ã‚’æ¯”è¼ƒã—ã¦ä¸€ç•ªåŒã˜ã‚¿ã‚¤ãƒ—ãŒå­˜åœ¨ã™ã‚‹ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
 		check_pos = 0;
 		for( i=0; i < (POKE_WAZA_TYPE_MAX+1) ;i++ ){
 			if( type_tbl[check_pos] < type_tbl[i] ){
@@ -549,66 +549,66 @@ BOOL FSSC_FactoryScrWork( FSS_TASK * core )
 		}
 
 		if( type_tbl[check_pos] <= 1 ){
-			OS_Printf( "“¯‚¶ƒ^ƒCƒv‘¶Ý‚µ‚È‚¢I\n" );
+			OS_Printf( "åŒã˜ã‚¿ã‚¤ãƒ—å­˜åœ¨ã—ãªã„ï¼\n" );
 			*work = 0xff;						//
 		}else{
-			OS_Printf( "ƒ^ƒCƒv %d ‚ª‘½‚¢I\n", check_pos );
-			*work = check_pos;						//Å‚à”‚ª‘½‚¢ƒ^ƒCƒv‚ðƒZƒbƒg
+			OS_Printf( "ã‚¿ã‚¤ãƒ— %d ãŒå¤šã„ï¼\n", check_pos );
+			*work = check_pos;						//æœ€ã‚‚æ•°ãŒå¤šã„ã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ
 		}
 
 		break;
 
-	//Žü‰ñ”‚ðŽæ“¾
+	//å‘¨å›žæ•°ã‚’å–å¾—
 	case FA_ID_GET_LAP:
 		*work = FactoryScr_CommGetLap( bf_scr_wk );
 		break;
 
-	//“GƒgƒŒ[ƒi[‚ÌOBJƒR[ƒh‚ðŽæ“¾
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®OBJã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
 	case FA_ID_GET_TR_OBJ_CODE:
 		*work = FactoryScr_GetEnemyObjCode( bf_scr_wk, param1 );
 		break;
 
-	//”sí‚µ‚½Žž‚Ìˆ—
+	//æ•—æˆ¦ã—ãŸæ™‚ã®å‡¦ç†
 	case FA_ID_SET_LOSE:
 		FactoryScr_SetLose( bf_scr_wk );
 		break;
 
-	//7˜AŸ(ƒNƒŠƒA)‚µ‚½Žž‚Ìˆ—
+	//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸæ™‚ã®å‡¦ç†
 	case FA_ID_SET_CLEAR:
 		FactoryScr_SetClear( bf_scr_wk );
 		break;
 
-	//ƒ‰ƒEƒ“ƒh”‚ðŽæ“¾
+	//ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’å–å¾—
 	case FA_ID_GET_ROUND:
 		*work = FactoryScr_GetRound( bf_scr_wk );
 		break;
 
-	//ƒŠƒ^ƒCƒ„ƒtƒ‰ƒO‚ðŽæ“¾
+	//ãƒªã‚¿ã‚¤ãƒ¤ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 	case FA_ID_GET_RETIRE_FLAG:
 		*work = bf_scr_wk->pair_retire_flag;
 		break;
 
-	//ŒðŠ·‚µ‚½‚¢‚©ƒtƒ‰ƒO‚ðŽæ“¾
+	//äº¤æ›ã—ãŸã„ã‹ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 	case FA_ID_GET_TRADE_YESNO_FLAG:
 		*work = bf_scr_wk->pair_trade_yesno_flag;
 		break;
 
-	//’ÊMÝ’è
+	//é€šä¿¡è¨­å®š
 	case FA_ID_COMM_COMMAND_INITIALIZE:
 		CommCommandFrontierInitialize( bf_scr_wk );
 		break;
 
-	//’ÊMƒ^ƒCƒv‚©ƒ`ƒFƒbƒN
+	//é€šä¿¡ã‚¿ã‚¤ãƒ—ã‹ãƒã‚§ãƒƒã‚¯
 	case FA_ID_CHECK_COMM_TYPE:
 		*work = Factory_CommCheck( bf_scr_wk->type );
 		break;
 
-	//ƒ^ƒCƒvŽæ“¾
+	//ã‚¿ã‚¤ãƒ—å–å¾—
 	case FA_ID_GET_TYPE:
 		*work = bf_scr_wk->type;
 		break;
 
-	//ƒoƒgƒ‹•”‰®‚Ì’n–Ê‚ÌƒpƒŒƒbƒg‚ð•ÏX‚·‚é(evy‚ð•ÏX‚µ‚Ä‚¢‚­)
+	//ãƒãƒˆãƒ«éƒ¨å±‹ã®åœ°é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹(evyã‚’å¤‰æ›´ã—ã¦ã„ã)
 	case FA_ID_BTL_ROOM_PAL_CHG:
 #if 0
 		{
@@ -617,7 +617,7 @@ BOOL FSSC_FactoryScrWork( FSS_TASK * core )
 			u8 evy;
 			FMAP_PTR fmap = FSS_GetFMapAdrs( core->fss );
 
-			//ŒW”(0`16) (•ÏX‚Ì“x‡‚¢A0(Œ³‚ÌF)`2,3..(’†ŠÔF)`16(Žw’è‚µ‚½F)
+			//ä¿‚æ•°(0ã€œ16) (å¤‰æ›´ã®åº¦åˆã„ã€0(å…ƒã®è‰²)ã€œ2,3..(ä¸­é–“è‰²)ã€œ16(æŒ‡å®šã—ãŸè‰²)
 			evy = param1;
 			SoftFadePfd( fmap->pfd, FADE_MAIN_BG_EX3, 0, 1, evy, 0x0000 );
 			SoftFadePfd( fmap->pfd, FADE_MAIN_BG_EX3, 1, 1, evy, 0x62cd );
@@ -626,19 +626,19 @@ BOOL FSSC_FactoryScrWork( FSS_TASK * core )
 			SoftFadePfd( fmap->pfd, FADE_MAIN_BG_EX3, 4, 1, evy, 0x66ed );
 		}
 #else
-		OS_Printf( "Ø‚è‘Ö‚¦‚éƒpƒŒƒbƒgƒiƒ“ƒo[ = %d\n", param1 );
+		OS_Printf( "åˆ‡ã‚Šæ›¿ãˆã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ = %d\n", param1 );
 		GF_BGL_ScrPalChange( fmap->bgl, FRMAP_FRAME_MAP, 3, 10, 26, 11, param1 );
-		GF_BGL_LoadScreenV_Req( fmap->bgl, FRMAP_FRAME_MAP );			//ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+		GF_BGL_LoadScreenV_Req( fmap->bgl, FRMAP_FRAME_MAP );			//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 #endif
 		break;
 
-	//ƒ}ƒbƒv‚ÌƒŒ[ƒ‹ˆÚ“®TCB’Ç‰Á
+	//ãƒžãƒƒãƒ—ã®ãƒ¬ãƒ¼ãƒ«ç§»å‹•TCBè¿½åŠ 
 	case FA_ID_ADD_MAP_RAIL_TCB:
 		bf_scr_wk->rail_move_tcb = TCB_Add( Factory_MapRailMoveMain, FSS_GetFMapAdrs(core->fss), 
 											FACTORY_RAIL_TCB_PRI );
 		break;
 
-	//ƒ}ƒbƒv‚ÌƒŒ[ƒ‹ˆÚ“®TCBíœ
+	//ãƒžãƒƒãƒ—ã®ãƒ¬ãƒ¼ãƒ«ç§»å‹•TCBå‰Šé™¤
 	case FA_ID_DEL_MAP_RAIL_TCB:
 		if( bf_scr_wk->rail_move_tcb != NULL ){
 			TCB_Delete( bf_scr_wk->rail_move_tcb );
@@ -646,7 +646,7 @@ BOOL FSSC_FactoryScrWork( FSS_TASK * core )
 		}
 		break;
 
-	//í“¬‘O‰ï˜b‚Ì‚½‚ß‚ÉB_TOWER_PARTNER_DATA‚ÌƒZƒbƒg
+	//æˆ¦é—˜å‰ä¼šè©±ã®ãŸã‚ã«B_TOWER_PARTNER_DATAã®ã‚»ãƒƒãƒˆ
 	case FA_ID_SET_B_TOWER_PARTNER_DATA:
 		FSRomBattleTowerTrainerDataMake2( &(bf_scr_wk->tr_data[0]), 
 						bf_scr_wk->tr_index[bf_scr_wk->round], HEAPID_WORLD, ARC_PL_BTD_TR );
@@ -655,7 +655,7 @@ BOOL FSSC_FactoryScrWork( FSS_TASK * core )
 						ARC_PL_BTD_TR );
 		break;
 
-	//ŽålŒö‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“–¼‚ðƒZƒbƒg
+	//ä¸»äººå…¬ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³åã‚’ã‚»ãƒƒãƒˆ
 	case FA_ID_BRAIN_PLAYER_POKE_NAME:
 		m_max = Factory_GetMinePokeNum( bf_scr_wk->type );
 		for( i=0; i < m_max; i++ ){
@@ -664,21 +664,21 @@ BOOL FSSC_FactoryScrWork( FSS_TASK * core )
 		}
 		break;
 
-	//–á‚¦‚éƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ðŽæ“¾
+	//è²°ãˆã‚‹ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’å–å¾—
 	case FA_ID_GET_BP_POINT:
 		*work = FactoryScr_GetAddBtlPoint( bf_scr_wk );
 		break;
 
-	//ŒðŠ·‰ñ”‚ðƒCƒ“ƒNƒŠƒƒ“ƒg
+	//äº¤æ›å›žæ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 	case FA_ID_INC_TRADE_COUNT:
 		FactoryScr_TradeCountInc( bf_scr_wk );
 		break;
 
-	//ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN(0=‚È‚µA1=‰“oêA2=2‰ñ–Ú)
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯(0=ãªã—ã€1=åˆç™»å ´ã€2=2å›žç›®)
 	case FA_ID_CHECK_BRAIN:
 		*work = 0;
 
-		//ƒVƒ“ƒOƒ‹‚Ì‚Ý
+		//ã‚·ãƒ³ã‚°ãƒ«ã®ã¿
 		if( bf_scr_wk->type == FACTORY_TYPE_SINGLE ){
 
 			if( (bf_scr_wk->rensyou+1) == FACTORY_LEADER_SET_1ST ){
@@ -689,28 +689,28 @@ BOOL FSSC_FactoryScrWork( FSS_TASK * core )
 		}
 		break;
 
-	//ƒp[ƒgƒi[‚Ìƒ|ƒPƒ‚ƒ“¶¬
+	//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆ
 	case FA_ID_PAIR_POKE_CREATE:
 		Factory_PairPokeMake( bf_scr_wk );
 		break;
 
-	//“Gƒ|ƒPƒ‚ƒ“¶¬
+	//æ•µãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆ
 	case FA_ID_ENEMY_POKE_CREATE:
 		//B_TOWER_POKEMON enemy_poke[FACTORY_ENEMY_POKE_MAX];
 
-		//“Gƒ|ƒPƒ‚ƒ“‚ðˆê“x‚É¶¬
+		//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ
 		Frontier_PokemonParamCreateAll(	bf_scr_wk->enemy_poke, bf_scr_wk->enemy_poke_index, 
 										bf_scr_wk->enemy_pow_rnd, bf_scr_wk->enemy_personal_rnd, 
 										NULL, 
 										FACTORY_ENEMY_POKE_MAX, HEAPID_WORLD, ARC_PL_BTD_PM );
 		break;
 
-	//ƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“¶¬
+	//ãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆ
 	case FA_ID_RENTAL_POKE_CREATE:
 		Factory_RentalPokeMake2( bf_scr_wk );
 		break;
 
-	//ƒuƒŒ[ƒ““oêƒƒbƒZ[ƒW‚ð•\Ž¦‚µ‚½‚©
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ãŸã‹
 	case FA_ID_BRAIN_APPEAR_MSG_CHK:
 		*work = bf_scr_wk->brain_appear_msg_flag;
 		bf_scr_wk->brain_appear_msg_flag = 1;
@@ -724,10 +724,10 @@ BOOL FSSC_FactoryScrWork( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒtƒFƒNƒg–Ê(ƒŒ[ƒ‹)‚ðc‚ÉƒXƒNƒ[ƒ‹‚³‚¹‚Â‚Ã‚¯‚é
+ * @brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢(ãƒ¬ãƒ¼ãƒ«)ã‚’ç¸¦ã«ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã¤ã¥ã‘ã‚‹
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRåž‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -749,9 +749,9 @@ void Factory_MapRailMoveMain( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[”s–kƒ`ƒFƒbƒN
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æ•—åŒ—ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -764,22 +764,22 @@ BOOL FSSC_FactoryLoseCheck( FSS_TASK * core )
 	bf_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
 	*work = bf_scr_wk->winlose_flag;
-	OS_Printf( "”s–kƒ`ƒFƒbƒN*work TRUEŸ—˜ FALSE”s–k = %d\n", *work );
+	OS_Printf( "æ•—åŒ—ãƒã‚§ãƒƒã‚¯*work TRUEå‹åˆ© FALSEæ•—åŒ— = %d\n", *work );
 	return 0;
 }
 
 
 //==============================================================================================
 //
-//	‘—MAŽóM‚ÌŒÄ‚Ño‚µ
+//	é€ä¿¡ã€å—ä¿¡ã®å‘¼ã³å‡ºã—
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * ‘—M
+ * é€ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -799,9 +799,9 @@ BOOL FSSC_FactorySendBuf( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- * ŽóM
+ * å—ä¿¡
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒžã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -810,18 +810,18 @@ BOOL FSSC_FactoryRecvBuf( FSS_TASK * core )
 {
 	u16 wk_id = FSSTGetU16( core );
 
-	//‰¼‘zƒ}ƒVƒ“‚Ì”Ä—pƒŒƒWƒXƒ^‚Éƒ[ƒN‚ÌID‚ðŠi”[
+	//ä»®æƒ³ãƒžã‚·ãƒ³ã®æ±Žç”¨ãƒ¬ã‚¸ã‚¹ã‚¿ã«ãƒ¯ãƒ¼ã‚¯ã®IDã‚’æ ¼ç´
 	core->reg[0] = wk_id;
 
 	FSST_SetWait( core, WaitFactoryRecvBuf );
 	return 1;
 }
 
-//return 1 = I—¹
+//return 1 = çµ‚äº†
 static BOOL WaitFactoryRecvBuf( FSS_TASK * core )
 {
 	FACTORY_SCRWORK* bf_scr_wk;
-	u16 type = FSS_GetEventWorkValue( core, core->reg[0] );		//’ˆÓI
+	u16 type = FSS_GetEventWorkValue( core, core->reg[0] );		//æ³¨æ„ï¼
 
 	bf_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 
@@ -835,7 +835,7 @@ static BOOL WaitFactoryRecvBuf( FSS_TASK * core )
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[‘Îí‘OƒƒbƒZ[ƒWê—p•\Ž¦
+ *	@brief	ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å¯¾æˆ¦å‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å°‚ç”¨è¡¨ç¤º
  */
 //--------------------------------------------------------------
 BOOL FSSC_FactoryTalkMsgAppear(FSS_TASK* core)
@@ -843,7 +843,7 @@ BOOL FSSC_FactoryTalkMsgAppear(FSS_TASK* core)
 	u16	*msg;
 	FACTORY_SCRWORK* ba_scr_wk;
 	FRONTIER_EX_PARAM* ex_param = Frontier_ExParamGet( core->fss->fmain );
-	u16	tr_idx = FSSTGetU8(core);	//ˆêl–Ú‚©“ñl–Ú‚©H
+	u16	tr_idx = FSSTGetU8(core);	//ä¸€äººç›®ã‹äºŒäººç›®ã‹ï¼Ÿ
 
 	ba_scr_wk =  Frontier_SysWorkGet( core->fss->fmain );
 	if(ba_scr_wk == NULL){

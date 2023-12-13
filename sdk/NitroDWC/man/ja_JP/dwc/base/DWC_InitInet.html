@@ -1,6 +1,6 @@
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>DWC_InitInet</TITLE>
 		<LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
 	<BODY>
 		<H1>DWC_InitInet</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>#include &lt;dwc.h&gt;
@@ -23,53 +23,53 @@ void DWC_InitInetEx( DWCInetControl* inetCntl,
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-		  ���̊֐��́AinetCntl�Ŏw�肳�ꂽ�����ڑ�����I�u�W�F�N�g�̏��������s���܂��B
-		  �A�v���P�[�V�����ŁADWCInetControl�\���̕��̃o�b�t�@���������Ă��������B
+		  この関数は、inetCntlで指定された自動接続制御オブジェクトの初期化を行います。
+		  アプリケーションで、DWCInetControl構造体分のバッファを準備してください。
 		</P>
 		<P>
-		  <a href="DWC_CleanupInet.html">DWC_CleanupInet</a>�֐��ŁA�ڑ���Ԃ��������܂ŁA�����ڑ�����I�u�W�F�N�g�p�̃o�b�t�@��ێ�����悤�ɂ��Ă��������B
+		  <a href="DWC_CleanupInet.html">DWC_CleanupInet</a>関数で、接続状態を解放するまで、自動接続制御オブジェクト用のバッファを保持するようにしてください。
 		</P>
 		<P>
-		  �f�t�H���g�ł́A�J�������F�؃T�[�o���g�p���܂��B���i�����F�؃T�[�o���g�p����ꍇ�́A<a href="DWC_SetAuthServer.html">DWC_SetAuthServer</a>�֐������̊֐���<strong>����</strong>�ɌĂяo���Ă��������B
+		  デフォルトでは、開発向け認証サーバを使用します。製品向け認証サーバを使用する場合は、<a href="DWC_SetAuthServer.html">DWC_SetAuthServer</a>関数をこの関数の<strong>直後</strong>に呼び出してください。
 		</P>
 		<P>
-		  DWC_InitInetEx�֐��ł́A�����ڑ��������g�p����DMA�ԍ��AWM�̃p���[���[�h�ASSL�����̃X���b�h�D�揇�ʂ�ݒ�ł��܂��B������WM�̃p���[���[�h�ɂ͕K��1���w�肵�Ă��������B<BR>
-		  DWC_InitInet�֐��́A���C�u���������ň����� dma = 3, powerMode = 1, ssl_priority = 20 ���w�肵��DWC_InitInetEx�֐����Ăяo���Ă��܂��B
+		  DWC_InitInetEx関数では、自動接続処理が使用するDMA番号、WMのパワーモード、SSL処理のスレッド優先順位を設定できます。ただしWMのパワーモードには必ず1を指定してください。<BR>
+		  DWC_InitInet関数は、ライブラリ内部で引数に dma = 3, powerMode = 1, ssl_priority = 20 を指定してDWC_InitInetEx関数を呼び出しています。
 		</P>
 		<P>
-		  SSL�����ɂ͎��Ԃ������邽�߁A���C���X���b�h�����D�揇�ʂ������Ȃ���΃��C���X���b�h�̓���ɉe�����y�ڂ��܂��B
+		  SSL処理には時間がかかるため、メインスレッドよりも優先順位を下げなければメインスレッドの動作に影響を及ぼします。
 		</P>
 
-		<H2>����</H2>
+		<H2>引数</H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>inetCntl</CODE></STRONG></EM></TD>
-					<TD width="75%">�����ڑ�����I�u�W�F�N�g�̃|�C���^�B</TD>
+					<TD width="75%">自動接続制御オブジェクトのポインタ。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>dmaNo</CODE></STRONG></EM></TD>
-					<TD>�����ڑ��������g�p����DMA�ԍ��B</TD>
+					<TD>自動接続処理が使用するDMA番号。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>powerMode</CODE></STRONG></EM></TD>
-					<TD>�����ڑ���������WM�̃p���[���[�h�B�K��1���w�肵�Ă��������B</TD>
+					<TD>自動接続処理中のWMのパワーモード。必ず1を指定してください。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>ssl_priority</CODE></STRONG></EM></TD>
-					<TD>SSL�����̃X���b�h�D�揇�ʁB</TD>
+					<TD>SSL処理のスレッド優先順位。</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2>�Ԃ�l</H2>
+		<H2>返り値</H2>
 		<P>
-		  �Ȃ�
+		  なし
 		</P>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 			<CODE>
 				<A href="DWC_CheckInet.html">DWC_CheckInet</A>,
@@ -80,11 +80,11 @@ void DWC_InitInetEx( DWCInetControl* inetCntl,
 			</CODE>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-		  2005/12/16 DWC_InitInetEx�֐��̐�����ǉ�<BR>
-		  2005/10/26 ����<br>
-		  2005/07/22 ����<BR>
+		  2005/12/16 DWC_InitInetEx関数の説明を追加<BR>
+		  2005/10/26 改訂<br>
+		  2005/07/22 初版<BR>
 		</P>
 
 	</BODY>

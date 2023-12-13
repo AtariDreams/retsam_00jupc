@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FS_OpenFileFast</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FS_OpenFileFast</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,38 +22,38 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>p_file</STRONG></EM></TD>
-      <TD width="87%">FSFile�\���̂̃A�h���X</TD>
+      <TD width="87%">FSFile構造体のアドレス</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>file_id</STRONG></EM></TD>
-      <TD width="87%">FSDirEntry�\���̂�file_id�Ŏw�肳���t�@�C��ID</TD>
+      <TD width="87%">FSDirEntry構造体のfile_idで指定されるファイルID</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�t�@�C�����������J����� TRUE ��, �����łȂ��Ȃ� FALSE ��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>ファイルが正しく開ければ TRUE を, そうでないなら FALSE を返します。</p>
 
-<H2>����</H2>
-<P>�w�肵���t�@�C��ID�Ńt�@�C�����J���܂��B<BR>
-����ID��<A href="FS_ReadDir.html">FS_ReadDir</A>�֐��ɂ���Ď擾���܂��B<BR>
+<H2>説明</H2>
+<P>指定したファイルIDでファイルを開きます。<BR>
+このIDは<A href="FS_ReadDir.html">FS_ReadDir</A>関数によって取得します。<BR>
 <BR>
 </P>
-<h2>����</h2>
-<P>�A�v���P�[�V�����́A�V���{�� NITRO_MAKEROM
-��L���ɂ���ROM�t�@�C���V�X�e�����܂�ł���K�v������܂��B<br>
+<h2>注意</h2>
+<P>アプリケーションは、シンボル NITRO_MAKEROM
+を有効にしてROMファイルシステムを含んでいる必要があります。<br>
 <br>
 <font color="#800000">
-���̊֐������荞�݃n���h��(IRQ���[�h)����Ăяo�����Ƃ͂ł��܂���B<br>
-�܂��A���荞�݂��֎~�����܂܂̏�Ԃɂ���Ə������������Ȃ��ꍇ������_�ɒ��ӂ��ĉ������B<br>
+この関数を割り込みハンドラ(IRQモード)から呼び出すことはできません。<br>
+また、割り込みを禁止したままの状態にあると処理が完了しない場合がある点に注意して下さい。<br>
 </font>
 </P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../fs_file_id_type.html">FSFileID</A> 
 <A href="../fs_file_type.html">FSFile</A> 
@@ -68,13 +68,13 @@
 <A href="../fs_dir_entry_type.html">FSDirEntry</A>
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/11/02 ���������w�b�_�t�@�C���Ɠ���ɒ���<br>
-2004/09/24 �Ăяo��������ъ����̏����ɂ��Ă̒��ӂ��L�q�ǉ�<br>
-2004/05/14 id�̌^��u32����FSFileID�֕ύX<BR>
-2004/04/02 �t�@�C���V�X�e�� �� ROM �t�@�C���V�X�e��<BR>
-2004/04/01 ����<BR>
+2004/11/02 引数名をヘッダファイルと同一に訂正<br>
+2004/09/24 呼び出し時および完了の条件についての注意を記述追加<br>
+2004/05/14 idの型をu32からFSFileIDへ変更<BR>
+2004/04/02 ファイルシステム → ROM ファイルシステム<BR>
+2004/04/01 初版<BR>
 </P>
 </body>
 </html>

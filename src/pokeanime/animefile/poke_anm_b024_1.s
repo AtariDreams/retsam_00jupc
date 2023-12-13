@@ -18,7 +18,7 @@
 // =============================================================================
 //
 //
-//	”w–Ê	‚Â‚Ô‚ê‰¡—h‚êAƒNƒCƒbƒN‚˜2
+//	èƒŒé¢	ã¤ã¶ã‚Œæ¨ªæºã‚ŒAã‚¯ã‚¤ãƒƒã‚¯ï½˜2
 //
 //
 // =============================================================================
@@ -27,11 +27,11 @@
 #define SIZE	(0x40)
 PAST_ANIME_B024_1:
 	START_LOOP	2
-		//CALC_NUM‰ñ‚Ìƒ‹[ƒv‚Å0.5Žüi0x8000j•ªˆ—
+		//CALC_NUMå›žã®ãƒ«ãƒ¼ãƒ—ã§0.5å‘¨ï¼ˆ0x8000ï¼‰åˆ†å‡¦ç†
 		CALL_MF_CURVE_DIVTIME APPLY_SET,0,CURVE_SIN,TARGET_DX,WIDTH,0x8000,0,CALC_NUM
 		CALL_MF_CURVE_DIVTIME APPLY_ADD,0,CURVE_SIN_MINUS,TARGET_RX,SIZE,0x8000,0,CALC_NUM
 		HOLD_CMD
-		//CALC_NUM‰ñ‚Ìƒ‹[ƒv‚Å0.5Žüi0x8000j•ªˆ—
+		//CALC_NUMå›žã®ãƒ«ãƒ¼ãƒ—ã§0.5å‘¨ï¼ˆ0x8000ï¼‰åˆ†å‡¦ç†
 		CALL_MF_CURVE_DIVTIME APPLY_SET,0,CURVE_SIN,TARGET_DX,WIDTH,0x8000,0x8000,CALC_NUM
 		CALL_MF_CURVE_DIVTIME APPLY_ADD,0,CURVE_SIN_MINUS,TARGET_RX,SIZE,0x8000,0,CALC_NUM
 		HOLD_CMD

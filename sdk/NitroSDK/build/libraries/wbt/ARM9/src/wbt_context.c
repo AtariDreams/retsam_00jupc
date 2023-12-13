@@ -66,11 +66,11 @@
     }
 static const struct
 {
-    u32     type:8;         /* ©g‚ÌƒRƒ}ƒ“ƒhí•Ê */
-    u32     pair_type:8;    /* ‘Î‚É‚È‚éƒRƒ}ƒ“ƒhí•Ê */
-    u32     packet;         /* ƒRƒ}ƒ“ƒhƒpƒPƒbƒgƒTƒCƒY (Å’á’·) */
-    u32     is_req:1;       /* WBT_CMD_REQ_* ‚È‚ç TRUE */
-    u32     is_res:1;       /* WBT_CMD_RES_* ‚È‚ç TRUE */
+    u32     type:8;         /* è‡ªèº«ã®ã‚³ãƒãƒ³ãƒ‰ç¨®åˆ¥ */
+    u32     pair_type:8;    /* å¯¾ã«ãªã‚‹ã‚³ãƒãƒ³ãƒ‰ç¨®åˆ¥ */
+    u32     packet;         /* ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º (æœ€ä½é•·) */
+    u32     is_req:1;       /* WBT_CMD_REQ_* ãªã‚‰ TRUE */
+    u32     is_res:1;       /* WBT_CMD_RES_* ãªã‚‰ TRUE */
 }
 WBTi_CommandTable[] =
 {
@@ -116,12 +116,12 @@ SDK_INLINE int mod32(int a)
 /*---------------------------------------------------------------------------*
   Name:         WBTi_CopySafeMemory
 
-  Description:  ƒƒ‚ƒŠ“]‘—‚Ü‚½‚Í 0 ƒNƒŠƒA.
+  Description:  ãƒ¡ãƒ¢ãƒªè»¢é€ã¾ãŸã¯ 0 ã‚¯ãƒªã‚¢.
 
-  Arguments:    src               “]‘—Œ³ƒoƒbƒtƒ@‚Ü‚½‚Í NULL.
-                dst               “]‘—æƒoƒbƒtƒ@.
-                                  src ‚ª NULL ‚È‚ç 0 ƒNƒŠƒA‚³‚ê‚é.
-                len               “]‘—ƒTƒCƒY.
+  Arguments:    src               è»¢é€å…ƒãƒãƒƒãƒ•ã‚¡ã¾ãŸã¯ NULL.
+                dst               è»¢é€å…ˆãƒãƒƒãƒ•ã‚¡.
+                                  src ãŒ NULL ãªã‚‰ 0 ã‚¯ãƒªã‚¢ã•ã‚Œã‚‹.
+                len               è»¢é€ã‚µã‚¤ã‚º.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -140,17 +140,17 @@ PLATFORM_ATTRIBUTE_INLINE void WBTi_CopySafeMemory(const void *src, void *dst, u
 /*---------------------------------------------------------------------------*
   Name:         WBTi_GetFirstIterationAID
 
-  Description:  ‘O‰ñ‚Ì’ÊM‘ÎÛ‚ğŠî“_‚É‚µ‚Äƒ‹[ƒvŒŸõ‚·‚é‚½‚ß‚Ì€”õ.
+  Description:  å‰å›ã®é€šä¿¡å¯¾è±¡ã‚’åŸºç‚¹ã«ã—ã¦ãƒ«ãƒ¼ãƒ—æ¤œç´¢ã™ã‚‹ãŸã‚ã®æº–å‚™.
 
-  Arguments:    context           WBTContext\‘¢‘Ì.
+  Arguments:    context           WBTContextæ§‹é€ ä½“.
 
-  Returns:      ŒŸõŠJnˆÊ’u‚ÌAID.
+  Returns:      æ¤œç´¢é–‹å§‹ä½ç½®ã®AID.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 int WBTi_GetFirstIterationAID(WBTContext *context)
 {
     const int   mask = context->req_bitmap;
-    /* –³ŒÀƒ‹[ƒv‚Ì‰ñ”ğ. (‘O‰ñ‚Ì’ÊM‘ÎÛ‚ª‘¶İ‚µ‚È‚¯‚ê‚Îæ“ª‚©‚çŒŸõ) */
+    /* ç„¡é™ãƒ«ãƒ¼ãƒ—ã®å›é¿. (å‰å›ã®é€šä¿¡å¯¾è±¡ãŒå­˜åœ¨ã—ãªã‘ã‚Œã°å…ˆé ­ã‹ã‚‰æ¤œç´¢) */
     if (((1 << context->last_target_aid) & mask) == 0)
     {
         context->last_target_aid = 31 - (int)MATH_CLZ((u32)mask);
@@ -161,12 +161,12 @@ int WBTi_GetFirstIterationAID(WBTContext *context)
 /*---------------------------------------------------------------------------*
   Name:         WBTi_GetNextIterationAID
 
-  Description:  ƒ‹[ƒvŒŸõ‚ÅŸ‚ÌˆÊ’u‚É‚ ‚½‚éAID‚ğæ“¾.
+  Description:  ãƒ«ãƒ¼ãƒ—æ¤œç´¢ã§æ¬¡ã®ä½ç½®ã«ã‚ãŸã‚‹AIDã‚’å–å¾—.
 
-  Arguments:    aid               Œ»İ‚ÌAID.
-                mask              ŒŸõ‘ÎÛ‘S‘Ì‚Ìƒrƒbƒgƒ}ƒbƒv.
+  Arguments:    aid               ç¾åœ¨ã®AID.
+                mask              æ¤œç´¢å¯¾è±¡å…¨ä½“ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—.
 
-  Returns:      Ÿ‚ÌAID.
+  Returns:      æ¬¡ã®AID.
  *---------------------------------------------------------------------------*/
 PLATFORM_ATTRIBUTE_INLINE
 int WBTi_GetNextIterationAID(int aid, int mask)
@@ -182,12 +182,12 @@ int WBTi_GetNextIterationAID(int aid, int mask)
 /*---------------------------------------------------------------------------*
   Name:         WBTi_InitBitmap
 
-  Description:  ƒrƒbƒgƒ}ƒbƒv\‘¢‘Ì‚ğ‰Šú‰».
+  Description:  ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æ§‹é€ ä½“ã‚’åˆæœŸåŒ–.
 
-  Arguments:    pkt_bmp           ƒrƒbƒgƒ}ƒbƒv\‘¢‘Ì.
-                length            ƒf[ƒ^’·‚ÌƒoƒCƒgƒTƒCƒY.
-                bits              ƒrƒbƒgƒ}ƒbƒv—pƒoƒbƒtƒ@.
-                buffer            ƒf[ƒ^ƒoƒbƒtƒ@.
+  Arguments:    pkt_bmp           ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æ§‹é€ ä½“.
+                length            ãƒ‡ãƒ¼ã‚¿é•·ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º.
+                bits              ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç”¨ãƒãƒƒãƒ•ã‚¡.
+                buffer            ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡.
 
   Returns:      none.
  *---------------------------------------------------------------------------*/
@@ -206,14 +206,14 @@ static void WBTi_InitBitmap(WBTContext * work, WBTPacketBitmap * pkt_bmp, s32 le
 /*---------------------------------------------------------------------------*
   Name:         WBTi_MergeBitmapIndex
 
-  Description:  ƒrƒbƒgƒ}ƒbƒv“à‚Ìw’èƒCƒ“ƒfƒbƒNƒX‚ª–¢óM‚È‚çŠi”[.
+  Description:  ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å†…ã®æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒæœªå—ä¿¡ãªã‚‰æ ¼ç´.
 
-  Arguments:    pkt_bmp           ƒrƒbƒgƒ}ƒbƒv\‘¢‘Ì.
-                index             ƒpƒPƒbƒg‚ÌƒCƒ“ƒfƒbƒNƒX.
-                packet            ƒpƒPƒbƒg’PˆÊƒTƒCƒY.
-                src               ƒpƒPƒbƒgƒf[ƒ^.
+  Arguments:    pkt_bmp           ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æ§‹é€ ä½“.
+                index             ãƒ‘ã‚±ãƒƒãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹.
+                packet            ãƒ‘ã‚±ãƒƒãƒˆå˜ä½ã‚µã‚¤ã‚º.
+                src               ãƒ‘ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿.
 
-  Returns:      –¢óM‚È‚çŠi”[‚µ‚Ä TRUE.
+  Returns:      æœªå—ä¿¡ãªã‚‰æ ¼ç´ã—ã¦ TRUE.
  *---------------------------------------------------------------------------*/
 static BOOL WBTi_MergeBitmapIndex(WBTPacketBitmap * pkt_bmp, int index, u32 packet, const void *src)
 {
@@ -237,11 +237,11 @@ static BOOL WBTi_MergeBitmapIndex(WBTPacketBitmap * pkt_bmp, int index, u32 pack
 /*---------------------------------------------------------------------------*
   Name:         WBTi_FindBitmapIndex
 
-  Description:  ƒrƒbƒgƒ}ƒbƒv“à‚Ì–¢óMƒCƒ“ƒfƒbƒNƒX‚ğŒŸõ.
+  Description:  ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å†…ã®æœªå—ä¿¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ¤œç´¢.
 
-  Arguments:    pkt_bmp           ƒrƒbƒgƒ}ƒbƒv\‘¢‘Ì.
+  Arguments:    pkt_bmp           ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æ§‹é€ ä½“.
 
-  Returns:      –¢óMƒCƒ“ƒfƒbƒNƒX‚Ü‚½‚Í -1.
+  Returns:      æœªå—ä¿¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¾ãŸã¯ -1.
  *---------------------------------------------------------------------------*/
 static s32 WBTi_FindBitmapIndex(WBTPacketBitmap * pkt_bmp)
 {
@@ -261,28 +261,28 @@ static s32 WBTi_FindBitmapIndex(WBTPacketBitmap * pkt_bmp)
 
     for (;;)
     {
-        /* w’èƒCƒ“ƒfƒbƒNƒX‚ª–¢óM‚È‚çŒŸõŠ®—¹ */
+        /* æŒ‡å®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒæœªå—ä¿¡ãªã‚‰æ¤œç´¢å®Œäº† */
         if ((*bmp & (u32)((u32)1 << bit_num)) == 0)
         {
             break;
         }
-        /* ‚»‚¤‚Å‚È‚¯‚ê‚ÎŸ‚ÌƒCƒ“ƒfƒbƒNƒX‚Ö */
+        /* ãã†ã§ãªã‘ã‚Œã°æ¬¡ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¸ */
         else
         {
-            /* ƒCƒ“ƒfƒbƒNƒX‚ÌI’[‚É’B‚µ‚½‚çæ“ª‚Öƒ‹[ƒv */
+            /* ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®çµ‚ç«¯ã«é”ã—ãŸã‚‰å…ˆé ­ã¸ãƒ«ãƒ¼ãƒ— */
             if (++num >= pkt_bmp->total)
             {
                 num = 0;
                 bit_num = 0;
                 bmp = pkt_bmp->bitmap;
             }
-            /* óMŠÇ—ƒrƒbƒgƒ}ƒbƒv‚Í 32bit ‚²‚Æ‚ÉŠÇ— */
+            /* å—ä¿¡ç®¡ç†ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã¯ 32bit ã”ã¨ã«ç®¡ç† */
             else if (++bit_num >= 32)
             {
                 bit_num = 0;
                 ++bmp;
             }
-            /* ‘SƒpƒPƒbƒgóMÏ‚İ */
+            /* å…¨ãƒ‘ã‚±ãƒƒãƒˆå—ä¿¡æ¸ˆã¿ */
             if (num == last_num)
             {
                 num = -1;
@@ -296,14 +296,14 @@ static s32 WBTi_FindBitmapIndex(WBTPacketBitmap * pkt_bmp)
 /*---------------------------------------------------------------------------*
   Name:         WBTi_GetPacketBuffer
 
-  Description:  w’èƒuƒƒbƒN“àƒCƒ“ƒfƒbƒNƒX‚Å•\‚³‚ê‚é
-                ƒpƒPƒbƒgƒf[ƒ^‚Ìƒoƒbƒtƒ@‚ğæ“¾.
+  Description:  æŒ‡å®šãƒ–ãƒ­ãƒƒã‚¯å†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§è¡¨ã•ã‚Œã‚‹
+                ãƒ‘ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                id                —v‹‚³‚ê‚½ƒuƒƒbƒNID.
-                index             —v‹‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                id                è¦æ±‚ã•ã‚ŒãŸãƒ–ãƒ­ãƒƒã‚¯ID.
+                index             è¦æ±‚ã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹.
 
-  Returns:      ƒuƒƒbƒNƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^.
+  Returns:      ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿.
  *---------------------------------------------------------------------------*/
 static u8 *WBTi_GetPacketBuffer(WBTContext * work, u32 id, s32 index)
 {
@@ -318,8 +318,8 @@ static u8 *WBTi_GetPacketBuffer(WBTContext * work, u32 id, s32 index)
             {
                 /*
                  * CAUTION!:
-                 * “à•”ŠÇ——p‚Ì\‘¢‘Ì‚ğ‚»‚Ì‚Ü‚Ü“n‚³‚¸‚±‚±‚ÅƒGƒ“ƒfƒBƒAƒ“‚ğ‰ğŒˆ‚·‚é.
-                 * (‚½‚¾‚µ‚±‚ê‚ÍP‹v‘Îô‚Å‚Í‚È‚­ˆê“I‚È‰ñ”ğ)
+                 * å†…éƒ¨ç®¡ç†ç”¨ã®æ§‹é€ ä½“ã‚’ãã®ã¾ã¾æ¸¡ã•ãšã“ã“ã§ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³ã‚’è§£æ±ºã™ã‚‹.
+                 * (ãŸã ã—ã“ã‚Œã¯æ’ä¹…å¯¾ç­–ã§ã¯ãªãä¸€æ™‚çš„ãªå›é¿)
                  */
                 static WBTBlockInfo tmp;
                 tmp = list->data_info;
@@ -350,11 +350,11 @@ static u8 *WBTi_GetPacketBuffer(WBTContext * work, u32 id, s32 index)
 /*---------------------------------------------------------------------------*
   Name:         WBTi_SwitchNextCommand
 
-  Description:  ƒRƒ}ƒ“ƒhƒŠƒXƒg‚ÉXV‚ª‚ ‚Á‚½ê‡‚ÉŒÄ‚Ño‚·.
-                  - V‹KƒRƒ}ƒ“ƒh”­s.
-                  - Œ»İ‚ÌƒRƒ}ƒ“ƒhŠ®—¹.
+  Description:  ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã«æ›´æ–°ãŒã‚ã£ãŸå ´åˆã«å‘¼ã³å‡ºã™.
+                  - æ–°è¦ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œæ™‚.
+                  - ç¾åœ¨ã®ã‚³ãƒãƒ³ãƒ‰å®Œäº†æ™‚.
 
-  Arguments:    work              WBT \‘¢‘Ì.
+  Arguments:    work              WBT æ§‹é€ ä½“.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -362,24 +362,24 @@ static void WBTi_SwitchNextCommand(WBTContext * work)
 {
     BOOL    retval = FALSE;
 
-    /* XV‚³‚ê‚½ƒRƒ}ƒ“ƒh‚ª—LŒø‚Å‚ ‚ê‚Îˆ— */
+    /* æ›´æ–°ã•ã‚ŒãŸã‚³ãƒãƒ³ãƒ‰ãŒæœ‰åŠ¹ã§ã‚ã‚Œã°å‡¦ç† */
     WBTCommand *current = WBT_GetCurrentCommand(work);
     if (current)
     {
-        /* ƒRƒ}ƒ“ƒhƒJƒEƒ“ƒ^‚ğ‘‰Á (0‚Í”ğ‚¯‚é) */
+        /* ã‚³ãƒãƒ³ãƒ‰ã‚«ã‚¦ãƒ³ã‚¿ã‚’å¢—åŠ  (0ã¯é¿ã‘ã‚‹) */
         if (++work->my_command_counter == 0)
         {
             ++work->my_command_counter;
         }
         current->my_cmd_counter = work->my_command_counter;
 
-        /* ƒRƒ}ƒ“ƒh‚²‚Æ‚Ì‰Šú‰»ˆ— */
+        /* ã‚³ãƒãƒ³ãƒ‰ã”ã¨ã®åˆæœŸåŒ–å‡¦ç† */
         switch (current->command)
         {
 
         case WBT_CMD_REQ_GET_BLOCK:
         case WBT_CMD_REQ_GET_BLOCKINFO:
-            /* ƒrƒbƒgƒ}ƒbƒv‚ğ‰Šú‰» */
+            /* ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’åˆæœŸåŒ– */
             {
                 int     aid;
                 for (aid = 0; aid < 16; ++aid)
@@ -399,11 +399,11 @@ static void WBTi_SwitchNextCommand(WBTContext * work)
 
         case WBT_CMD_REQ_SYNC:
         case WBT_CMD_REQ_USER_DATA:
-            /* ‰Šú‰»‚Ì•s—v‚ÈƒRƒ}ƒ“ƒh */
+            /* åˆæœŸåŒ–ã®ä¸è¦ãªã‚³ãƒãƒ³ãƒ‰ */
             break;
 
         default:
-            /* ‚ ‚è‚¦‚È‚¢ƒRƒ}ƒ“ƒh */
+            /* ã‚ã‚Šãˆãªã„ã‚³ãƒãƒ³ãƒ‰ */
             current->command = WBT_CMD_REQ_NONE;
             break;
 
@@ -415,12 +415,12 @@ static void WBTi_SwitchNextCommand(WBTContext * work)
 /*---------------------------------------------------------------------------*
   Name:         WBTi_NotifySystemCallback
 
-  Description:  ƒVƒXƒeƒ€ƒR[ƒ‹ƒoƒbƒN’Ê’m.
+  Description:  ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é€šçŸ¥.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                event             ƒCƒxƒ“ƒgí•Ê.
-                aid               —v‹óMƒCƒxƒ“ƒg‚Ìê‡, ‘Šè‹Ç‚ÌAID.
-                result            ˆ—Œ‹‰Ê.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                event             ã‚¤ãƒ™ãƒ³ãƒˆç¨®åˆ¥.
+                aid               è¦æ±‚å—ä¿¡ã‚¤ãƒ™ãƒ³ãƒˆã®å ´åˆ, ç›¸æ‰‹å±€ã®AID.
+                result            å‡¦ç†çµæœ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -430,37 +430,37 @@ static void WBTi_NotifySystemCallback(WBTContext * work, WBTCommandType event, i
     BOOL    retval = TRUE;
     WBTRecvToken *peer = &work->peer_param[aid].recv_token;
 
-    /* WBT_CMD_PREPARE_SEND_DATA ˆÈŠO‚Í 1 ‰ñ‚¾‚¯’Ê’m */
+    /* WBT_CMD_PREPARE_SEND_DATA ä»¥å¤–ã¯ 1 å›ã ã‘é€šçŸ¥ */
     if ((event != WBT_CMD_PREPARE_SEND_DATA) &&
         (peer->token_peer_cmd_counter == peer->last_peer_cmd_counter))
     {
         retval = FALSE;
     }
     /*
-     * GetBlockInfo() ‚Ìˆ—‚Íƒ‰ƒCƒuƒ‰ƒŠ“à•”‚Å GetBlock() ‚ğg—p‚µ‚Ä‚¢‚é‚½‚ß,
-     * ‚±‚Ì“à•”ˆ—Š®—¹‚ÍƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚É’Ê’m‚·‚é•K—v‚Í‚È‚¢(‚µ‚Ä‚Í‚È‚ç‚È‚¢).
+     * GetBlockInfo() ã®å‡¦ç†ã¯ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ GetBlock() ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ãŸã‚,
+     * ã“ã®å†…éƒ¨å‡¦ç†å®Œäº†ã¯ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã«é€šçŸ¥ã™ã‚‹å¿…è¦ã¯ãªã„(ã—ã¦ã¯ãªã‚‰ãªã„).
      */
     else if ((event == WBT_CMD_REQ_GET_BLOCK_DONE) &&
              (peer->token_block_id < WBT_NUM_MAX_BLOCK_INFO_ID))
     {
         retval = FALSE;
     }
-    /* •K—v‚È‚çƒVƒXƒeƒ€ƒR[ƒ‹ƒoƒbƒN”­¶ */
+    /* å¿…è¦ãªã‚‰ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç™ºç”Ÿ */
     if (retval)
     {
         WBTCommand *cmd = &work->system_cmd;
         peer->last_peer_cmd_counter = peer->token_peer_cmd_counter;
-        cmd->peer_cmd_counter = peer->token_peer_cmd_counter;   /* ƒfƒoƒbƒO—p */
+        cmd->peer_cmd_counter = peer->token_peer_cmd_counter;   /* ãƒ‡ãƒãƒƒã‚°ç”¨ */
         cmd->result = result;
         cmd->event = event;
         cmd->command = WBT_CMD_SYSTEM_CALLBACK;
         cmd->peer_bmp = (u16)(1 << aid);
-        /* Vd—l */
+        /* æ–°ä»•æ§˜ */
         if (work->callback)
         {
             work->callback(work->userdata, cmd);
         }
-        /* ‹Œd—l */
+        /* æ—§ä»•æ§˜ */
         else if (cmd->callback)
         {
             (*cmd->callback) (cmd);
@@ -470,7 +470,7 @@ static void WBTi_NotifySystemCallback(WBTContext * work, WBTCommandType event, i
 
 
 /*****************************************************************************
- * ƒpƒPƒbƒg‘—Mˆ—.
+ * ãƒ‘ã‚±ãƒƒãƒˆé€ä¿¡å‡¦ç†.
  *****************************************************************************/
 
 PLATFORM_ATTRIBUTE_INLINE
@@ -486,16 +486,16 @@ PLATFORM_ATTRIBUTE_INLINE
 /*---------------------------------------------------------------------------*
   Name:         WBTi_TryCreateResponse
 
-  Description:  —v‹‚ğóM’†‚Å‚ ‚ê‚Î‰“š‚ğ¶¬.
+  Description:  è¦æ±‚ã‚’å—ä¿¡ä¸­ã§ã‚ã‚Œã°å¿œç­”ã‚’ç”Ÿæˆ.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                aid               ‘Šè‹Ç‚ÌAID.
-                buf               ‘—MƒRƒ}ƒ“ƒhì¬—pƒoƒbƒtƒ@.
-                size              ƒoƒbƒtƒ@ƒTƒCƒY.
-                command           ‰“š‚ğŠm”F‚·‚éƒRƒ}ƒ“ƒh.
-                foroce_blockinfo  w’è ID ‚ª‘¶İ‚µ‚È‚­‚Ä‚à‰“š‚·‚éê‡‚Í TRUE.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                aid               ç›¸æ‰‹å±€ã®AID.
+                buf               é€ä¿¡ã‚³ãƒãƒ³ãƒ‰ä½œæˆç”¨ãƒãƒƒãƒ•ã‚¡.
+                size              ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º.
+                command           å¿œç­”ã‚’ç¢ºèªã™ã‚‹ã‚³ãƒãƒ³ãƒ‰.
+                foroce_blockinfo  æŒ‡å®š ID ãŒå­˜åœ¨ã—ãªãã¦ã‚‚å¿œç­”ã™ã‚‹å ´åˆã¯ TRUE.
 
-  Returns:      ‰“š‚ª¶¬‚³‚ê‚ê‚Î‚»‚ÌƒpƒPƒbƒg’·, ‚»‚¤‚Å‚È‚¯‚ê‚Î 0.
+  Returns:      å¿œç­”ãŒç”Ÿæˆã•ã‚Œã‚Œã°ãã®ãƒ‘ã‚±ãƒƒãƒˆé•·, ãã†ã§ãªã‘ã‚Œã° 0.
  *---------------------------------------------------------------------------*/
 static
     int WBTi_TryCreateResponse(WBTContext * work, int aid, void *buf, int size, int command,
@@ -509,7 +509,7 @@ static
     {
         WBTPacketFormat *format = WBTi_MakeCommandHeader(buf, WBT_CMD_RES_SYNC, (1 << aid),
                                                          token->token_peer_cmd_counter);
-        /* ©‘¼‚Ì‹æ•Ê‚Í‘—Mæ‚ªŠî€‚Å‚ ‚é“_‚É’ˆÓ */
+        /* è‡ªä»–ã®åŒºåˆ¥ã¯é€ä¿¡å…ˆãŒåŸºæº–ã§ã‚ã‚‹ç‚¹ã«æ³¨æ„ */
         MI_StoreLE16(&format->res_sync.block_total, (u16)WBT_GetRegisteredCount(work));
         MI_StoreLE16(&format->res_sync.peer_packet, (u16)work->my_data_packet_size);
         MI_StoreLE16(&format->res_sync.own_packet, (u16)work->peer_data_packet_size);
@@ -537,11 +537,11 @@ static
     else if (command == WBT_CMD_REQ_GET_BLOCK)
     {
         /*
-         * —v‹‚³‚ê‚½ƒuƒƒbƒN‚ª‘¶İ‚µ‚È‚¢ê‡, Œ»ó‚Å‚Í‰½‚às‚í‚È‚¢.
-         * ƒGƒ‰[“™‚ğVİ‚µ‚Ä’Ê’m‚µ‚Ä‚à‚æ‚¢.
+         * è¦æ±‚ã•ã‚ŒãŸãƒ–ãƒ­ãƒƒã‚¯ãŒå­˜åœ¨ã—ãªã„å ´åˆ, ç¾çŠ¶ã§ã¯ä½•ã‚‚è¡Œã‚ãªã„.
+         * ã‚¨ãƒ©ãƒ¼ç­‰ã‚’æ–°è¨­ã—ã¦é€šçŸ¥ã—ã¦ã‚‚ã‚ˆã„.
          */
         u32     id = token->token_block_id;
-        /* ‚±‚±‚Å‚Í id < 1000 ‚Å‚àƒuƒƒbƒNî•ñ‚ğ•Ô‚µ‚½‚è‚Í‚µ‚È‚¢ */
+        /* ã“ã“ã§ã¯ id < 1000 ã§ã‚‚ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±ã‚’è¿”ã—ãŸã‚Šã¯ã—ãªã„ */
         WBTBlockInfoList *list = work->list;
         for (; list != NULL; list = list->next)
         {
@@ -553,29 +553,29 @@ static
         if (list)
         {
             /*
-             * ƒuƒƒbƒN—v‹‚É‘Î‚·‚é“KØ‚È‰“šƒCƒ“ƒfƒbƒNƒX‚ğŒvZ.
-             * MP ’ÊM‚Ìî•ñ’x‰„‚É‚æ‚è—v‹“à—e‚ªd•¡‚µ‚â‚·‚¢‚½‚ß,
-             * ‰“š‘¤‚Å‚Í—š—ğ‚ğŠÇ—‚µ‚Ä‰ß‹2‰ñ‚Ü‚Å‚Ìd•¡‚ğ”ğ‚¯‚é.
+             * ãƒ–ãƒ­ãƒƒã‚¯è¦æ±‚ã«å¯¾ã™ã‚‹é©åˆ‡ãªå¿œç­”ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¨ˆç®—.
+             * MP é€šä¿¡ã®æƒ…å ±é…å»¶ã«ã‚ˆã‚Šè¦æ±‚å†…å®¹ãŒé‡è¤‡ã—ã‚„ã™ã„ãŸã‚,
+             * å¿œç­”å´ã§ã¯å±¥æ­´ã‚’ç®¡ç†ã—ã¦éå»2å›ã¾ã§ã®é‡è¤‡ã‚’é¿ã‘ã‚‹.
              */
             s32     index = token->token_block_seq_no;
             s32     block_seq_no;
-            /* GetBlockInfo —v‹‚É‘Î‚µ‚Ä‚Íw’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚ğ‚»‚Ì‚Ü‚Ü‰“š */
+            /* GetBlockInfo è¦æ±‚ã«å¯¾ã—ã¦ã¯æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ãã®ã¾ã¾å¿œç­” */
             if (id >= WBT_NUM_MAX_BLOCK_INFO_ID)
             {
                 /*
-                 * w’è‚³‚ê‚½ƒuƒƒbƒN‚ğŒŸõ.
+                 * æŒ‡å®šã•ã‚ŒãŸãƒ–ãƒ­ãƒƒã‚¯ã‚’æ¤œç´¢.
                  * CAUTION!:
-                 *     —Bˆê‚±‚ÌŠÖ”‚ğŒÄ‚Ño‚·‰ÓŠ‚Å‚Í, ‚·‚Å‚É‚±‚Ì”»’è‚ğs‚Á‚Ä‚¢‚é.
-                 *     ‚æ‚Á‚Ä‚±‚ÌŠÖ”‚ª -1 ‚ğ•Ô‚·‚±‚Æ‚Í‚ ‚è‚¦‚È‚¢!
+                 *     å”¯ä¸€ã“ã®é–¢æ•°ã‚’å‘¼ã³å‡ºã™ç®‡æ‰€ã§ã¯, ã™ã§ã«ã“ã®åˆ¤å®šã‚’è¡Œã£ã¦ã„ã‚‹.
+                 *     ã‚ˆã£ã¦ã“ã®é–¢æ•°ãŒ -1 ã‚’è¿”ã™ã“ã¨ã¯ã‚ã‚Šãˆãªã„!
                  */
-                /* Å‹ß‰“š‚µ‚½ƒuƒƒbƒN‚Ìê‡‚Í‰“š—š—ğ‚ğl—¶ */
+                /* æœ€è¿‘å¿œç­”ã—ãŸãƒ–ãƒ­ãƒƒã‚¯ã®å ´åˆã¯å¿œç­”å±¥æ­´ã‚’è€ƒæ…® */
                 if (id == work->last_block_id)
                 {
                     const int index_total =
                         (list->data_info.block_size + work->my_data_packet_size -
                          1) / work->my_data_packet_size;
                     int     i;
-                    /* ‰“š—š—ğ‚É‘¶İ‚µ‚È‚¢’¼‹ß‚ÌƒCƒ“ƒfƒbƒNƒX‚ğŒŸõ */
+                    /* å¿œç­”å±¥æ­´ã«å­˜åœ¨ã—ãªã„ç›´è¿‘ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ¤œç´¢ */
                     for (i = 0; (i < 3) && ((index == work->last_seq_no_1) ||
                                             (index == work->last_seq_no_2)); ++i)
                     {
@@ -586,10 +586,10 @@ static
                     }
                 }
                 /*
-                 * ¡‰ñ‚Ì‰“š“à—e‚ğ‰“š—š—ğ‚É‹L˜^.
+                 * ä»Šå›ã®å¿œç­”å†…å®¹ã‚’å¿œç­”å±¥æ­´ã«è¨˜éŒ².
                  * CAUTION!:
-                 *     ‚±‚ÌÀ‘•‚¾‚Æ‘O‰ñ‚Ì–³ŠÖŒW‚ÈƒuƒƒbƒN‚ÌƒCƒ“ƒfƒbƒNƒX‚à
-                 *     last_seq_no_2 ‚Éc‚³‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é.
+                 *     ã“ã®å®Ÿè£…ã ã¨å‰å›ã®ç„¡é–¢ä¿‚ãªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚‚
+                 *     last_seq_no_2 ã«æ®‹ã•ã‚Œã¦ã—ã¾ã£ã¦ã„ã‚‹.
                  */
                 work->last_block_id = id;
                 work->last_seq_no_2 = work->last_seq_no_1;
@@ -610,7 +610,7 @@ static
                 }
                 else if (list->block_type == WBT_BLOCK_LIST_TYPE_USER)
                 {
-                    /* ƒf[ƒ^ƒpƒPƒbƒg€”õ‚ğƒ†[ƒU‚Ö‘£‚·’Ê’m */
+                    /* ãƒ‡ãƒ¼ã‚¿ãƒ‘ã‚±ãƒƒãƒˆæº–å‚™ã‚’ãƒ¦ãƒ¼ã‚¶ã¸ä¿ƒã™é€šçŸ¥ */
                     WBTCommand *system_cmd = &work->system_cmd;
                     system_cmd->prepare_send_data.block_id = id;
                     system_cmd->prepare_send_data.block_seq_no = block_seq_no;
@@ -629,10 +629,10 @@ static
                         sendable = TRUE;
                     }
                 }
-                /* ƒf[ƒ^‚ª€”õ‚ª‚³‚ê‚ê‚Î‘—M */
+                /* ãƒ‡ãƒ¼ã‚¿ãŒæº–å‚™ãŒã•ã‚Œã‚Œã°é€ä¿¡ */
                 if (sendable)
                 {
-                    /* CAUTION!: ‚±‚Ì‘—Mæƒrƒbƒgƒ}ƒbƒvŒvZ‚Íb’èˆ—‚ç‚µ‚¢ */
+                    /* CAUTION!: ã“ã®é€ä¿¡å…ˆãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¨ˆç®—ã¯æš«å®šå‡¦ç†ã‚‰ã—ã„ */
                     u16     target = (u16)((WBT_GetAid(work) == WBT_AID_PARENT) ? 0xFFFE : 0x0001);
                     WBTPacketFormat *format =
                         WBTi_MakeCommandHeader(buf, WBT_CMD_RES_GET_BLOCK, target,
@@ -657,13 +657,13 @@ static
                           packet);
         /*
          * CAUTION!:
-         *     w’è‚³‚ê‚½ID‚ÌƒuƒƒbƒN‚ª–³‚¢ê‡‚ÉŒÀ‚è data_ptr ‚ª NULL ‚É‚È‚è‚¤‚é.
-         *     ‚»‚Ìê‡‚ÍƒR[ƒ‹ƒoƒbƒN‚ğ•Ô‚·‚©í‚É 0 ƒf[ƒ^‚ğ‘—‚é•û‚ª—Ç‚¢‚Ì‚Å‚Í‚È‚¢‚©?
-         *     Œ»İ HEAD ‚Å‰ü‘¢’†!
+         *     æŒ‡å®šã•ã‚ŒãŸIDã®ãƒ–ãƒ­ãƒƒã‚¯ãŒç„¡ã„å ´åˆã«é™ã‚Š data_ptr ãŒ NULL ã«ãªã‚Šã†ã‚‹.
+         *     ãã®å ´åˆã¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¿”ã™ã‹å¸¸ã« 0 ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹æ–¹ãŒè‰¯ã„ã®ã§ã¯ãªã„ã‹?
+         *     ç¾åœ¨ HEAD ã§æ”¹é€ ä¸­!
          */
         if (foroce_blockinfo || data_ptr)
         {
-            /* CAUTION!: ‚±‚Ì‘—Mæƒrƒbƒgƒ}ƒbƒvŒvZ‚Íb’èˆ—‚ç‚µ‚¢ */
+            /* CAUTION!: ã“ã®é€ä¿¡å…ˆãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¨ˆç®—ã¯æš«å®šå‡¦ç†ã‚‰ã—ã„ */
             u16     target = (u16)((WBT_GetAid(work) == 0) ? 0xFFFF : 0x0001);
             WBTPacketFormat *format = WBTi_MakeCommandHeader(buf, WBT_CMD_RES_GET_BLOCKINFO, target,
                                                              token->token_peer_cmd_counter);
@@ -676,7 +676,7 @@ static
         }
     }
 
-    /* ‰“š‚µ‚½Œã‚Í—v‹“à—e‚ğ”jŠü‚·‚é */
+    /* å¿œç­”ã—ãŸå¾Œã¯è¦æ±‚å†…å®¹ã‚’ç ´æ£„ã™ã‚‹ */
     if (done)
     {
         work->req_bitmap &= ~(1 << aid);
@@ -687,13 +687,13 @@ static
 /*---------------------------------------------------------------------------*
   Name:         WBTi_CheckRequest
 
-  Description:  ©g‚ÌƒRƒ}ƒ“ƒh—v‹‚ğ¶¬‚·‚é.
+  Description:  è‡ªèº«ã®ã‚³ãƒãƒ³ãƒ‰è¦æ±‚ã‚’ç”Ÿæˆã™ã‚‹.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                buffer            ƒf[ƒ^Ši”[ƒoƒbƒtƒ@.
-                length            ƒoƒbƒtƒ@ƒTƒCƒY.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                buffer            ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡.
+                length            ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º.
 
-  Returns:      —v‹‚ğ¶¬‚µ‚½‚ç‚»‚ÌƒTƒCƒY, ‚»‚¤‚Å‚È‚¯‚ê‚Î 0.
+  Returns:      è¦æ±‚ã‚’ç”Ÿæˆã—ãŸã‚‰ãã®ã‚µã‚¤ã‚º, ãã†ã§ãªã‘ã‚Œã° 0.
  *---------------------------------------------------------------------------*/
 static int WBTi_CheckRequest(WBTContext * work, void *send_buf, int size)
 {
@@ -709,7 +709,7 @@ static int WBTi_CheckRequest(WBTContext * work, void *send_buf, int size)
                 WBTPacketFormat *format =
                     WBTi_MakeCommandHeader(send_buf, WBT_CMD_REQ_SYNC, current->target_bmp,
                                            current->my_cmd_counter);
-                /* ©‘¼‚Ì‹æ•Ê‚Í‘—Mæ‚ªŠî€‚Å‚ ‚é“_‚É’ˆÓ */
+                /* è‡ªä»–ã®åŒºåˆ¥ã¯é€ä¿¡å…ˆãŒåŸºæº–ã§ã‚ã‚‹ç‚¹ã«æ³¨æ„ */
                 MI_StoreLE16(&format->req_sync.peer_packet, (u16)work->my_data_packet_size);
                 MI_StoreLE16(&format->req_sync.own_packet, (u16)work->peer_data_packet_size);
                 send_size = (int /*temporary */ )sizeof(format->header) + sizeof(format->req_sync);
@@ -723,12 +723,12 @@ static int WBTi_CheckRequest(WBTContext * work, void *send_buf, int size)
                 int     aid;
                 for (aid = 0; aid < 16; ++aid)
                 {
-                    /* ©•ª‚ª—v‹‚·‚×‚«‘Šè‚©‚Ç‚¤‚©Šm”F */
+                    /* è‡ªåˆ†ãŒè¦æ±‚ã™ã¹ãç›¸æ‰‹ã‹ã©ã†ã‹ç¢ºèª */
                     if ((current->target_bmp & (1 << aid)) != 0)
                     {
                         WBTPacketBitmap *pkt_bmp = &work->peer_param[aid].pkt_bmp;
                         s32     next_seq_no = WBTi_FindBitmapIndex(pkt_bmp);
-                        /* óMŠ®—¹‚µ‚Ä‚¢‚ê‚Î BlockDone */
+                        /* å—ä¿¡å®Œäº†ã—ã¦ã„ã‚Œã° BlockDone */
                         if (next_seq_no == -1)
                         {
                             WBTPacketFormat *format =
@@ -739,7 +739,7 @@ static int WBTi_CheckRequest(WBTContext * work, void *send_buf, int size)
                                 sizeof(format->req_getblock_done);
                             WBT_DEBUG_OUTPUT0("send ReqBlockDone to %d 0x%04x\n", aid, (1 << aid));
                         }
-                        /* óMŠ®—¹‚µ‚Ä‚¢‚È‚¯‚ê‚ÎŸ‚ÌƒuƒƒbƒN‚ğ—v‹ */
+                        /* å—ä¿¡å®Œäº†ã—ã¦ã„ãªã‘ã‚Œã°æ¬¡ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’è¦æ±‚ */
                         else
                         {
                             WBTPacketFormat *format =
@@ -787,19 +787,19 @@ static int WBTi_CheckRequest(WBTContext * work, void *send_buf, int size)
 /*---------------------------------------------------------------------------*
   Name:         WBTi_CheckBlockResponse
 
-  Description:  ŠeAID‚©‚ç‚Ì—v‹‚ğ‡”Ô‚ÉŠm”F‚µ, “KØ‚ÈƒuƒƒbƒN‰“š‚ğ¶¬‚·‚é.
+  Description:  å„AIDã‹ã‚‰ã®è¦æ±‚ã‚’é †ç•ªã«ç¢ºèªã—, é©åˆ‡ãªãƒ–ãƒ­ãƒƒã‚¯å¿œç­”ã‚’ç”Ÿæˆã™ã‚‹.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                buffer            ƒf[ƒ^Ši”[ƒoƒbƒtƒ@.
-                length            ƒoƒbƒtƒ@ƒTƒCƒY.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                buffer            ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡.
+                length            ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º.
 
-  Returns:      ƒuƒƒbƒN‰“š‚ğ¶¬‚µ‚½‚ç‚»‚ÌƒTƒCƒY, ‚»‚¤‚Å‚È‚¯‚ê‚Î 0.
+  Returns:      ãƒ–ãƒ­ãƒƒã‚¯å¿œç­”ã‚’ç”Ÿæˆã—ãŸã‚‰ãã®ã‚µã‚¤ã‚º, ãã†ã§ãªã‘ã‚Œã° 0.
  *---------------------------------------------------------------------------*/
 static int WBTi_CheckBlockResponse(WBTContext * work, void *buffer, int length)
 {
     int     retval = 0;
 
-    /* —v‹’†‚Ì‘ÎÛ‚ğ‡‚É”»’è‚·‚é */
+    /* è¦æ±‚ä¸­ã®å¯¾è±¡ã‚’é †ã«åˆ¤å®šã™ã‚‹ */
     int     mask = work->req_bitmap;
     if (!retval && (mask != 0))
     {
@@ -813,14 +813,14 @@ static int WBTi_CheckBlockResponse(WBTContext * work, void *buffer, int length)
                 if (WBT_CMD_REQ_GET_BLOCK == token->token_command)
                 {
                     /*
-                     * ‰“šƒRƒ}ƒ“ƒh‚ğì¬s.
-                     * ‚±‚±‚Ü‚Å—ˆ‚Ä 0 ‚ª•Ô‚é‚Ì‚Í,
-                     * EWBT_CMD_REQ_GET_BLOCK
-                     *   - w’è ID ‚ÌƒuƒƒbƒN‚ª‚È‚¢.
-                     *   - PREPARE ƒR[ƒ‹ƒoƒbƒN‚Å€”õ‚³‚ê‚È‚©‚Á‚½.
-                     * ‚Ì‚İ.
-                     * ‚µ‚©‚µ WBT_CMD_REQ_GET_BLOCK ‚Í
-                     * ‰“š‚µ‚È‚­‚Ä‚à done ‚É‚¾‚¯‚Í‚È‚é.
+                     * å¿œç­”ã‚³ãƒãƒ³ãƒ‰ã‚’ä½œæˆè©¦è¡Œ.
+                     * ã“ã“ã¾ã§æ¥ã¦ 0 ãŒè¿”ã‚‹ã®ã¯,
+                     * ãƒ»WBT_CMD_REQ_GET_BLOCK
+                     *   - æŒ‡å®š ID ã®ãƒ–ãƒ­ãƒƒã‚¯ãŒãªã„.
+                     *   - PREPARE ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§æº–å‚™ã•ã‚Œãªã‹ã£ãŸ.
+                     * ã®ã¿.
+                     * ã—ã‹ã— WBT_CMD_REQ_GET_BLOCK ã¯
+                     * å¿œç­”ã—ãªãã¦ã‚‚ done ã«ã ã‘ã¯ãªã‚‹.
                      */
                     retval =
                         WBTi_TryCreateResponse(work, aid, buffer, length, WBT_CMD_REQ_GET_BLOCK,
@@ -865,13 +865,13 @@ static int WBTi_CheckBlockResponse(WBTContext * work, void *buffer, int length)
 /*---------------------------------------------------------------------------*
   Name:         WBT_CallPacketSendHook
 
-  Description:  ‘—MƒpƒPƒbƒgƒf[ƒ^‚ğ¶¬‚·‚é‚½‚ß‚ÌƒtƒbƒNŠÖ”.
+  Description:  é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹ãŸã‚ã®ãƒ•ãƒƒã‚¯é–¢æ•°.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                buffer            ƒf[ƒ^Ši”[ƒoƒbƒtƒ@.
-                length            ƒoƒbƒtƒ@ƒTƒCƒY.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                buffer            ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡.
+                length            ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º.
 
-  Returns:      ¶¬‚³‚ê‚½ƒpƒPƒbƒgƒTƒCƒY.
+  Returns:      ç”Ÿæˆã•ã‚ŒãŸãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
  *---------------------------------------------------------------------------*/
 int WBT_CallPacketSendHook(WBTContext * work, void *buffer, int length, BOOL is_parent)
 {
@@ -882,19 +882,19 @@ int WBT_CallPacketSendHook(WBTContext * work, void *buffer, int length, BOOL is_
         work->last_target_aid = (is_parent ? 1 : 0);
     }
 
-    /* ˆø”‚Ì³“–«”»’è */
+    /* å¼•æ•°ã®æ­£å½“æ€§åˆ¤å®š */
     if (!buffer || (length <= 0))
     {
         return 0;
     }
 
-    /* ŠeAID‚©‚ç‚Ì—v‹‚ğ‡”Ô‚ÉŠm”F‚µ, “KØ‚È‰“š‚ğ¶¬‚·‚é */
+    /* å„AIDã‹ã‚‰ã®è¦æ±‚ã‚’é †ç•ªã«ç¢ºèªã—, é©åˆ‡ãªå¿œç­”ã‚’ç”Ÿæˆã™ã‚‹ */
     {
         /*
          * CAUTION!:
-         *     ‰“š¶¬‚Ì—Dæ“x‚ª (AID‡˜ > ƒRƒ}ƒ“ƒh) ‚È‚ç,
-         *     “¯ˆêAID‚©‚ç•¡”‚ÌƒRƒ}ƒ“ƒh‚ğó—‚µ‚È‚¢‚Ì‚¾‚©‚ç
-         *     ”»’è‚Í1‰ñ‚Å‚æ‚¢‚Ì‚Å‚Í‚È‚¢‚©?
+         *     å¿œç­”ç”Ÿæˆã®å„ªå…ˆåº¦ãŒ (AIDé †åº > ã‚³ãƒãƒ³ãƒ‰) ãªã‚‰,
+         *     åŒä¸€AIDã‹ã‚‰è¤‡æ•°ã®ã‚³ãƒãƒ³ãƒ‰ã‚’å—ç†ã—ãªã„ã®ã ã‹ã‚‰
+         *     åˆ¤å®šã¯1å›ã§ã‚ˆã„ã®ã§ã¯ãªã„ã‹?
          */
         static const WBTCommandType tbl[] = {
             WBT_CMD_REQ_USER_DATA,
@@ -903,7 +903,7 @@ int WBT_CallPacketSendHook(WBTContext * work, void *buffer, int length, BOOL is_
             WBT_CMD_REQ_GET_BLOCK_DONE,
             WBT_CMD_REQ_NONE,
         };
-        /* —v‹’†‚Ì‘ÎÛ‚ğ‡‚É”»’è‚·‚é */
+        /* è¦æ±‚ä¸­ã®å¯¾è±¡ã‚’é †ã«åˆ¤å®šã™ã‚‹ */
         int     mask = work->req_bitmap;
         if (mask != 0)
         {
@@ -914,11 +914,11 @@ int WBT_CallPacketSendHook(WBTContext * work, void *buffer, int length, BOOL is_
                 if ((mask & (1 << aid)) != 0)
                 {
                     /*
-                     * ‰“šƒRƒ}ƒ“ƒh‚ğì¬s.
-                     * ‚±‚±‚Ü‚Å—ˆ‚Ä 0 ‚ª•Ô‚é‚Ì‚Í,
-                     * EWBT_CMD_REQ_GET_BLOCKINFO
-                     *   - w’è ID ‚ÌƒuƒƒbƒN‚ª‚È‚­, ‚©‚Â force ‚Å‚È‚¢.
-                     * ‚Ì‚İ.
+                     * å¿œç­”ã‚³ãƒãƒ³ãƒ‰ã‚’ä½œæˆè©¦è¡Œ.
+                     * ã“ã“ã¾ã§æ¥ã¦ 0 ãŒè¿”ã‚‹ã®ã¯,
+                     * ãƒ»WBT_CMD_REQ_GET_BLOCKINFO
+                     *   - æŒ‡å®š ID ã®ãƒ–ãƒ­ãƒƒã‚¯ãŒãªã, ã‹ã¤ force ã§ãªã„.
+                     * ã®ã¿.
                      */
                     WBTRecvToken *token = &work->peer_param[aid].recv_token;
                     int     i;
@@ -945,17 +945,17 @@ int WBT_CallPacketSendHook(WBTContext * work, void *buffer, int length, BOOL is_
     if (!retval)
     {
         /*
-         * e‹@‚ÌƒRƒ}ƒ“ƒh—Dæ“x‚Í
-         *   (1) ˆê”Ê‰“š. (”ñ“o˜^‚ÌGetBlockInfo‚Í–³‹)
-         *   (2) ©g‚Ì—v‹.
-         *   (3) ƒuƒƒbƒN‰“š. (”ñ“o˜^‚ÌGetBlockInfo‚à‹­§“I‚É‰“š)
+         * è¦ªæ©Ÿã®ã‚³ãƒãƒ³ãƒ‰å„ªå…ˆåº¦ã¯
+         *   (1) ä¸€èˆ¬å¿œç­”. (éç™»éŒ²ã®GetBlockInfoã¯ç„¡è¦–)
+         *   (2) è‡ªèº«ã®è¦æ±‚.
+         *   (3) ãƒ–ãƒ­ãƒƒã‚¯å¿œç­”. (éç™»éŒ²ã®GetBlockInfoã‚‚å¼·åˆ¶çš„ã«å¿œç­”)
          *   (4) (wait)
          */
         if (is_parent)
         {
             /*
-             * ‚±‚±‚Å 0 ‚ª•Ô‚é‚Ì‚Í,
-             * - ƒRƒ}ƒ“ƒh‚ğ”­s‚µ‚Ä‚¢‚È‚¢.
+             * ã“ã“ã§ 0 ãŒè¿”ã‚‹ã®ã¯,
+             * - ã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã—ã¦ã„ãªã„æ™‚.
              */
             retval = WBTi_CheckRequest(work, buffer, length);
             if (!retval)
@@ -964,10 +964,10 @@ int WBT_CallPacketSendHook(WBTContext * work, void *buffer, int length, BOOL is_
             }
         }
         /*
-         * q‹@‚ÌƒRƒ}ƒ“ƒh—Dæ“x‚Í
-         *   (1) ˆê”Ê‰“š. (”ñ“o˜^‚ÌGetBlockInfo‚Í–³‹)
-         *   (3) ƒuƒƒbƒN‰“š. (”ñ“o˜^‚ÌGetBlockInfo‚à‹­§“I‚É‰“š)
-         *   (2) ©g‚Ì—v‹.
+         * å­æ©Ÿã®ã‚³ãƒãƒ³ãƒ‰å„ªå…ˆåº¦ã¯
+         *   (1) ä¸€èˆ¬å¿œç­”. (éç™»éŒ²ã®GetBlockInfoã¯ç„¡è¦–)
+         *   (3) ãƒ–ãƒ­ãƒƒã‚¯å¿œç­”. (éç™»éŒ²ã®GetBlockInfoã‚‚å¼·åˆ¶çš„ã«å¿œç­”)
+         *   (2) è‡ªèº«ã®è¦æ±‚.
          *   (4) (wait)
          */
         else
@@ -976,15 +976,15 @@ int WBT_CallPacketSendHook(WBTContext * work, void *buffer, int length, BOOL is_
             if (!retval)
             {
                 /*
-                 * ‚±‚±‚Å 0 ‚ª•Ô‚é‚Ì‚Í,
-                 * - ƒRƒ}ƒ“ƒh‚ğ”­s‚µ‚Ä‚¢‚È‚¢.
+                 * ã“ã“ã§ 0 ãŒè¿”ã‚‹ã®ã¯,
+                 * - ã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã—ã¦ã„ãªã„æ™‚.
                  */
                 retval = WBTi_CheckRequest(work, buffer, length);
             }
         }
         if (!retval)
         {
-            /* WAIT ƒRƒ}ƒ“ƒh‚Íí‚ÉƒJƒEƒ“ƒ^ 0 ‚Å‘—M‚·‚é */
+            /* WAIT ã‚³ãƒãƒ³ãƒ‰ã¯å¸¸ã«ã‚«ã‚¦ãƒ³ã‚¿ 0 ã§é€ä¿¡ã™ã‚‹ */
             int     mask = (is_parent ? 0xFFFE : 0x0001);
             WBTPacketFormat *format =
                 WBTi_MakeCommandHeader(buffer, WBT_CMD_REQ_WAIT, (u16)mask, (WBTCommandCounter)0);
@@ -997,17 +997,17 @@ int WBT_CallPacketSendHook(WBTContext * work, void *buffer, int length, BOOL is_
 
 
 /*****************************************************************************
- * ƒpƒPƒbƒgóMˆ—.
+ * ãƒ‘ã‚±ãƒƒãƒˆå—ä¿¡å‡¦ç†.
  *****************************************************************************/
 
 /*---------------------------------------------------------------------------*
   Name:         WBTi_NotifyCompletionCallback
 
-  Description:  ƒ†[ƒU[ƒRƒ}ƒ“ƒhŠ®—¹’Ê’m.
+  Description:  ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒãƒ³ãƒ‰å®Œäº†é€šçŸ¥.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                event             ƒCƒxƒ“ƒgí•Ê.
-                aid               ƒRƒ}ƒ“ƒhŠ®—¹‚µ‚½‘Šè‹Ç‚ÌAID.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                event             ã‚¤ãƒ™ãƒ³ãƒˆç¨®åˆ¥.
+                aid               ã‚³ãƒãƒ³ãƒ‰å®Œäº†ã—ãŸç›¸æ‰‹å±€ã®AID.
 
   Returns:      none.
  *---------------------------------------------------------------------------*/
@@ -1016,30 +1016,30 @@ static void WBTi_NotifyCompletionCallback(WBTContext * work, WBTCommandType even
     WBTCommandList *list = WBT_GetCurrentCommandList(work);
     WBTCommand *current = WBT_GetCurrentCommand(work);
     WBTRecvToken *token = &work->peer_param[aid].recv_token;
-    /* ’Ê’m‚Í 1 ‰ñ‚¾‚¯”­¶ */
+    /* é€šçŸ¥ã¯ 1 å›ã ã‘ç™ºç”Ÿ */
     if (current->my_cmd_counter == token->token_peer_cmd_counter)
     {
         int     peer_bmp = (1 << aid);
         current->peer_cmd_counter = token->token_peer_cmd_counter;
-        current->peer_bmp = (u16)peer_bmp;      /* ƒfƒoƒbƒO—p */
+        current->peer_bmp = (u16)peer_bmp;      /* ãƒ‡ãƒãƒƒã‚°ç”¨ */
         if ((current->target_bmp & peer_bmp) != 0)
         {
-            /* Š®—¹’Ê’m‚È‚Ì‚ÅŒ‹‰Ê‚Íí‚É SUCCESS. (ƒGƒ‰[‚ÍƒVƒXƒeƒ€ƒR[ƒ‹ƒoƒbƒN‚Ö’Ê’m‚³‚ê‚é) */
+            /* å®Œäº†é€šçŸ¥ãªã®ã§çµæœã¯å¸¸ã« SUCCESS. (ã‚¨ãƒ©ãƒ¼ã¯ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¸é€šçŸ¥ã•ã‚Œã‚‹) */
             current->target_bmp &= ~peer_bmp;
             current->event = event;
             current->result = WBT_RESULT_SUCCESS;
-            /* Vd—l */
+            /* æ–°ä»•æ§˜ */
             if (list->callback)
             {
                 list->callback(work->userdata, current);
             }
-            /* ‹Œd—l */
+            /* æ—§ä»•æ§˜ */
             else if (current->callback)
             {
                 current->callback(current);
             }
         }
-        /* ‘S‘ÎÛ‚ª‰“šŠ®—¹‚µ‚½‚çƒRƒ}ƒ“ƒh”jŠü */
+        /* å…¨å¯¾è±¡ãŒå¿œç­”å®Œäº†ã—ãŸã‚‰ã‚³ãƒãƒ³ãƒ‰ç ´æ£„ */
         if (current->target_bmp == 0)
         {
             WBTCommandList *list = work->command;
@@ -1053,12 +1053,12 @@ static void WBTi_NotifyCompletionCallback(WBTContext * work, WBTCommandType even
 /*---------------------------------------------------------------------------*
   Name:         WBT_CallPacketRecvHook
 
-  Description:  óMƒpƒPƒbƒgƒf[ƒ^‚ğ‰ğÍ.
+  Description:  å—ä¿¡ãƒ‘ã‚±ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è§£æ.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                aid               ƒf[ƒ^‘—MŒ³‚ÌAID
-                buffer            óMƒf[ƒ^ƒoƒbƒtƒ@.
-                length            óMƒf[ƒ^’·.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                aid               ãƒ‡ãƒ¼ã‚¿é€ä¿¡å…ƒã®AID
+                buffer            å—ä¿¡ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡.
+                length            å—ä¿¡ãƒ‡ãƒ¼ã‚¿é•·.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1066,10 +1066,10 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
 {
     WBTRecvToken *token = &work->peer_param[aid].recv_token;
 
-    /* ‚±‚±‚Åí‚É‘O‰ñ‚ÌóMó‘Ô‚ªƒNƒŠƒA‚³‚ê‚é */
+    /* ã“ã“ã§å¸¸ã«å‰å›ã®å—ä¿¡çŠ¶æ…‹ãŒã‚¯ãƒªã‚¢ã•ã‚Œã‚‹ */
     work->req_bitmap &= ~(1 << aid);
 
-    /* ­‚È‚­‚Æ‚àƒRƒ}ƒ“ƒhƒwƒbƒ_‚Í•K‚¸‘¶İ‚·‚×‚« */
+    /* å°‘ãªãã¨ã‚‚ã‚³ãƒãƒ³ãƒ‰ãƒ˜ãƒƒãƒ€ã¯å¿…ãšå­˜åœ¨ã™ã¹ã */
     if (buffer && (length >= sizeof(WBTPacketHeaderFormat)))
     {
         const WBTPacketFormat *format = (const WBTPacketFormat *)buffer;
@@ -1084,20 +1084,20 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
 
 
         /*
-         * ©•ª‚ ‚Ä‚ÌƒpƒPƒbƒg‚È‚çƒRƒ}ƒ“ƒhˆ—.
-         * NOTE: if-else ‚É‚µ‚Ä‚¢‚é‚ªÅI“I‚É‚ÍŠÖ”ƒe[ƒuƒ‹‚É‚µ‚½‚¢.
+         * è‡ªåˆ†ã‚ã¦ã®ãƒ‘ã‚±ãƒƒãƒˆãªã‚‰ã‚³ãƒãƒ³ãƒ‰å‡¦ç†.
+         * NOTE: if-else ã«ã—ã¦ã„ã‚‹ãŒæœ€çµ‚çš„ã«ã¯é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã«ã—ãŸã„.
          */
         if ((WBT_GetAid(work) != -1) && ((bitmap & (1 << WBT_GetAid(work))) != 0))
         {
-            /* ”ÍˆÍŠO‚Ì–¢’m‚ÌƒRƒ}ƒ“ƒh‚Í–³‹ */
+            /* ç¯„å›²å¤–ã®æœªçŸ¥ã®ã‚³ãƒãƒ³ãƒ‰ã¯ç„¡è¦– */
             if (command >= WBT_COMMAND_MAX)
             {
             }
-            /* ƒRƒ}ƒ“ƒhƒpƒPƒbƒgƒTƒCƒY‚ªÅ’á’·‚É–‚½‚È‚¢ê‡‚Í–³‹ */
+            /* ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚ºãŒæœ€ä½é•·ã«æº€ãŸãªã„å ´åˆã¯ç„¡è¦– */
             else if (length < WBTi_CommandTable[command].packet)
             {
             }
-            /** —v‹ƒRƒ}ƒ“ƒh */
+            /** è¦æ±‚ã‚³ãƒãƒ³ãƒ‰ */
             else if (WBTi_CommandTable[command].is_req)
             {
                 if (command == WBT_CMD_REQ_WAIT)
@@ -1109,8 +1109,8 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
                     WBTRequestSyncCallback *cb = &work->system_cmd.sync;
                     cb->peer_packet_size = (s16)MI_LoadLE16(&format->req_sync.peer_packet);
                     cb->my_packet_size = (s16)MI_LoadLE16(&format->req_sync.own_packet);
-                    cb->num_of_list = 0;        /* ‹Œd—lã, ‚±‚Ìƒƒ“ƒo‚Ì‚İ—v‹‚ÉŠÜ‚Ü‚ê‚È‚¢ */
-                    /* q‹@‘¤‚Íí‚Ée‹@‚Ì‘—óMİ’è‚É]‚¤ */
+                    cb->num_of_list = 0;        /* æ—§ä»•æ§˜ä¸Š, ã“ã®ãƒ¡ãƒ³ãƒã®ã¿è¦æ±‚ã«å«ã¾ã‚Œãªã„ */
+                    /* å­æ©Ÿå´ã¯å¸¸ã«è¦ªæ©Ÿã®é€å—ä¿¡è¨­å®šã«å¾“ã† */
                     if (WBT_GetAid(work) != 0)
                     {
                         work->my_data_packet_size = cb->my_packet_size;
@@ -1118,7 +1118,7 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
                     }
                     work->req_bitmap |= (1 << aid);
                 }
-                /* ƒ†[ƒU’è‹`ƒf[ƒ^—v‹ */
+                /* ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ‡ãƒ¼ã‚¿è¦æ±‚ */
                 else if (command == WBT_CMD_REQ_USER_DATA)
                 {
                     WBTRecvUserDataCallback *cb = &work->system_cmd.user_data;
@@ -1130,7 +1130,7 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
                     MI_CpuCopy8(format->req_userdata.buffer, cb->data, cb->size);
                     work->req_bitmap |= (1 << aid);
                 }
-                /* ƒuƒƒbƒNî•ñ—v‹‚Ü‚½‚ÍƒuƒƒbƒN—v‹ (“¯ˆêƒtƒH[ƒ}ƒbƒg) */
+                /* ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±è¦æ±‚ã¾ãŸã¯ãƒ–ãƒ­ãƒƒã‚¯è¦æ±‚ (åŒä¸€ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ) */
                 else if ((command == WBT_CMD_REQ_GET_BLOCK) ||
                          (command == WBT_CMD_REQ_GET_BLOCKINFO))
                 {
@@ -1140,39 +1140,39 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
                     WBT_DEBUG_OUTPUT1("get req Block from %d id = %d seq no = %d\n", aid, token->token_block_id,
                                       token->token_block_seq_no);
                 }
-                /* ƒuƒƒbƒNóMŠ®—¹’Ê’m */
+                /* ãƒ–ãƒ­ãƒƒã‚¯å—ä¿¡å®Œäº†é€šçŸ¥ */
                 else if (command == WBT_CMD_REQ_GET_BLOCK_DONE)
                 {
                     WBTGetBlockDoneCallback *cb = &work->system_cmd.blockdone;
                     cb->block_id = MI_LoadLE32(&format->req_getblock_done.id);
-                    // ‘¼‚Ìq‹@‚ªÀs’†‚Ì“¯ˆêID‚Ö‚Ì—v‹‚É‘Šæ‚è‚µ‚Ä
-                    // 1‰ñ‚à—v‹‚ğo‚·‚±‚Æ‚È‚­Š®—¹‚ğ’Ê’m‚³‚ê‚é‚±‚Æ‚à‚ ‚é
+                    // ä»–ã®å­æ©ŸãŒå®Ÿè¡Œä¸­ã®åŒä¸€IDã¸ã®è¦æ±‚ã«ç›¸ä¹—ã‚Šã—ã¦
+                    // 1å›ã‚‚è¦æ±‚ã‚’å‡ºã™ã“ã¨ãªãå®Œäº†ã‚’é€šçŸ¥ã•ã‚Œã‚‹ã“ã¨ã‚‚ã‚ã‚‹
                     token->token_block_id = MI_LoadLE32(&format->req_getblock_done.id);
                     work->req_bitmap |= (1 << aid);
                 }
             }
 
-            /* ‰“šƒRƒ}ƒ“ƒh */
+            /* å¿œç­”ã‚³ãƒãƒ³ãƒ‰ */
             else if (WBTi_CommandTable[command].is_res)
             {
                 WBTCommand *current = WBT_GetCurrentCommand(work);
 
-                /* Œ»İƒRƒ}ƒ“ƒh—v‹’†‚Å‚È‚¯‚ê‚Î–³‹ */
+                /* ç¾åœ¨ã‚³ãƒãƒ³ãƒ‰è¦æ±‚ä¸­ã§ãªã‘ã‚Œã°ç„¡è¦– */
                 if (!current)
                 {
                 }
                 /*
                  * CAUTION!:
-                 *     REQ_ ‚Æ RES_ ‚Ì‘Î‰‚ªæ‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ì”»’èˆ—‚ğ“ˆê‰»‚µ‚½‚¢‚ª,
-                 *     GetBlock Œn‚ª1‘Î1‘Î‰‚Å‚È‚¢‚Ì‚Å–¢’…è.
+                 *     REQ_ ã¨ RES_ ã®å¯¾å¿œãŒå–ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šå‡¦ç†ã‚’çµ±ä¸€åŒ–ã—ãŸã„ãŒ,
+                 *     GetBlock ç³»ãŒ1å¯¾1å¯¾å¿œã§ãªã„ã®ã§æœªç€æ‰‹.
                  *     (1) WBT_CMD_RES_GET_BLOCK / WBT_CMD_REQ_GET_BLOCK
                  *     (2) WBT_CMD_RES_GET_BLOCKINFO / WBT_CMD_REQ_GET_BLOCKINFO
                  *     (3) WBT_CMD_RES_GET_BLOCK_DONE / WBT_CMD_REQ_GET_BLOCK, WBT_CMD_REQ_GET_BLOCKINFO
-                 *     WBT_CMD_REQ_GET_BLOCK_DONE ‚ğ‘—‚Á‚Ä‚¢‚é‚É‰½‚©‚·‚×‚«?
+                 *     WBT_CMD_REQ_GET_BLOCK_DONE ã‚’é€ã£ã¦ã„ã‚‹æ™‚ã«ä½•ã‹ã™ã¹ã?
                  */
                 else
                 {
-                    /* “¯Šú‰“š */
+                    /* åŒæœŸå¿œç­” */
                     if (command == WBT_CMD_RES_SYNC)
                     {
                         if (current->command == WBT_CMD_REQ_SYNC)
@@ -1184,7 +1184,7 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
                             current->sync.my_packet_size =
                                 (s16)MI_LoadLE16(&format->res_sync.own_packet);
 
-                            /* q‹@‘¤‚Íí‚Ée‹@‚Ì‘—óMİ’è‚É]‚¤ */
+                            /* å­æ©Ÿå´ã¯å¸¸ã«è¦ªæ©Ÿã®é€å—ä¿¡è¨­å®šã«å¾“ã† */
                             if (WBT_GetAid(work) != 0)
                             {
                                 work->my_data_packet_size = current->sync.my_packet_size;
@@ -1196,7 +1196,7 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
                             WBTi_NotifyCompletionCallback(work, (WBTCommandType)command, aid);
                         }
                     }
-                    /* Š®—¹’Ê’m */
+                    /* å®Œäº†é€šçŸ¥ */
                     else if (command == WBT_CMD_RES_USER_DATA)
                     {
                         if (current->command == WBT_CMD_REQ_USER_DATA)
@@ -1204,7 +1204,7 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
                             WBTi_NotifyCompletionCallback(work, (WBTCommandType)command, aid);
                         }
                     }
-                    /* ƒuƒƒbƒN‰“š */
+                    /* ãƒ–ãƒ­ãƒƒã‚¯å¿œç­” */
                     else if ((command == WBT_CMD_RES_GET_BLOCK) ||
                              (command == WBT_CMD_RES_GET_BLOCKINFO))
                     {
@@ -1214,26 +1214,26 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
                             u32     id = MI_LoadLE32(&format->res_getblock.id);
                             s32     index = (s32)MI_LoadLE32(&format->res_getblock.index);
 
-                            /* —v‹‚·‚é ID ‚Æˆê’v‚·‚é‚©”»’è */
+                            /* è¦æ±‚ã™ã‚‹ ID ã¨ä¸€è‡´ã™ã‚‹ã‹åˆ¤å®š */
                             if (id == current->get.block_id)
                             {
-                                /* —v‹æ‚©‚ç‚Ì‰“š‚©”»’è */
+                                /* è¦æ±‚å…ˆã‹ã‚‰ã®å¿œç­”ã‹åˆ¤å®š */
                                 if ((current->target_bmp & (1 << aid)) != 0)
                                 {
-                                    /* ”ÍˆÍ“à‚ÌƒCƒ“ƒfƒbƒNƒX‚©”»’è */
+                                    /* ç¯„å›²å†…ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹åˆ¤å®š */
                                     WBTPacketBitmap *pkt_bmp = &work->peer_param[aid].pkt_bmp;
                                     if (index >= pkt_bmp->total)
                                     {
                                         WBT_DEBUG_OUTPUT1
                                             ("%s num of seq over seq no = %d total = %d\n",
                                              __FUNCTION__, index, pkt_bmp->total);
-                                        /* ƒZ[ƒu‚É¸”s */
+                                        /* ã‚»ãƒ¼ãƒ–ã«å¤±æ•— */
                                         WBTi_NotifySystemCallback(work, WBT_CMD_RES_ERROR, aid,
                                                                   WBT_RESULT_ERROR_SAVE_FAILURE);
                                     }
                                     else
                                     {
-                                        /* –¢óM‚Ìƒf[ƒ^‚È‚çŠi”[ */
+                                        /* æœªå—ä¿¡ã®ãƒ‡ãƒ¼ã‚¿ãªã‚‰æ ¼ç´ */
                                         const void *src = (const u8 *)format +
                                             sizeof(format->header) + sizeof(format->res_getblock);
                                         u32     packet = (u32)work->peer_data_packet_size;
@@ -1246,10 +1246,10 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
                             }
                         }
                     }
-                    /* ƒuƒƒbƒNóMŠ®—¹’Ê’m */
+                    /* ãƒ–ãƒ­ãƒƒã‚¯å—ä¿¡å®Œäº†é€šçŸ¥ */
                     else if (command == WBT_CMD_RES_GET_BLOCK_DONE)
                     {
-                        /* Œ»İ‚Ì—v‹‚É‘Î‰‚µ‚½³‚µ‚¢‰“š‚Å‚ ‚ê‚ÎŠ®—¹’Ê’m */
+                        /* ç¾åœ¨ã®è¦æ±‚ã«å¯¾å¿œã—ãŸæ­£ã—ã„å¿œç­”ã§ã‚ã‚Œã°å®Œäº†é€šçŸ¥ */
                         if ((current->command == WBT_CMD_REQ_GET_BLOCK) ||
                             (current->command == WBT_CMD_REQ_GET_BLOCKINFO))
                         {
@@ -1271,7 +1271,7 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
                 }
             }
 
-            /* ”ñ‘Î‰‚Ü‚½‚Í•s³‚ÈƒRƒ}ƒ“ƒh */
+            /* éå¯¾å¿œã¾ãŸã¯ä¸æ­£ãªã‚³ãƒãƒ³ãƒ‰ */
             else
             {
                 WBTi_NotifySystemCallback(work, WBT_CMD_RES_ERROR, aid,
@@ -1280,10 +1280,10 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
 
         }
 
-        /* —v‹‚ğóM‚µ‚½‚çƒVƒXƒeƒ€ƒR[ƒ‹ƒoƒbƒN */
+        /* è¦æ±‚ã‚’å—ä¿¡ã—ãŸã‚‰ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ */
         if ((work->req_bitmap & (1 << aid)) != 0)
         {
-            /* ‚½‚¾‚µ GetBlock* ƒRƒ}ƒ“ƒh‚Í‰½“x‚àóM‚·‚é‚Ì‚Å’Ê’m‚µ‚È‚¢ */
+            /* ãŸã ã— GetBlock* ã‚³ãƒãƒ³ãƒ‰ã¯ä½•åº¦ã‚‚å—ä¿¡ã™ã‚‹ã®ã§é€šçŸ¥ã—ãªã„ */
             if ((command != WBT_CMD_REQ_GET_BLOCK) && (command != WBT_CMD_REQ_GET_BLOCKINFO))
             {
                 WBTi_NotifySystemCallback(work, (WBTCommandType)command, aid, WBT_RESULT_SUCCESS);
@@ -1296,11 +1296,11 @@ void WBT_CallPacketRecvHook(WBTContext * work, int aid, const void *buffer, int 
 /*---------------------------------------------------------------------------*
   Name:         WBT_InitContext
 
-  Description:  WBT \‘¢‘Ì‚ğ‰Šú‰».
+  Description:  WBT æ§‹é€ ä½“ã‚’åˆæœŸåŒ–.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                userdata          ”CˆÓ‚Ìƒ†[ƒU’è‹`’l.
-                callback          ƒVƒXƒeƒ€ƒR[ƒ‹ƒoƒbƒN.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                userdata          ä»»æ„ã®ãƒ¦ãƒ¼ã‚¶å®šç¾©å€¤.
+                callback          ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1309,12 +1309,12 @@ void WBT_InitContext(WBTContext * work, void *userdata, WBTEventCallback callbac
     work->userdata = userdata;
     work->callback = callback;
 
-    /* ƒuƒƒbƒN“]‘—‘—M—š—ğ‚Ì‰Šú‰» */
+    /* ãƒ–ãƒ­ãƒƒã‚¯è»¢é€é€ä¿¡å±¥æ­´ã®åˆæœŸåŒ– */
     work->last_block_id = (u32)-1;
     work->last_seq_no_1 = -1;
     work->last_seq_no_2 = -1;
 
-    /* ƒRƒ}ƒ“ƒhŠÇ—‚ğ‰Šú‰» */
+    /* ã‚³ãƒãƒ³ãƒ‰ç®¡ç†ã‚’åˆæœŸåŒ– */
     work->command = NULL;
     work->command_pool = NULL;
     work->my_command_counter = 0;
@@ -1323,17 +1323,17 @@ void WBT_InitContext(WBTContext * work, void *userdata, WBTEventCallback callbac
     MI_CpuFill8(&work->system_cmd, 0x00, sizeof(work->system_cmd));
     MI_CpuFill8(work->peer_param, 0x00, sizeof(work->peer_param));
 
-    /* ƒRƒ}ƒ“ƒhƒŠƒXƒg‚ğƒNƒŠƒA */
+    /* ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚’ã‚¯ãƒªã‚¢ */
     WBT_ResetContext(work, callback);
 }
 
 /*---------------------------------------------------------------------------*
   Name:         WBT_ResetContext
 
-  Description:  WBT \‘¢‘Ì‚ğÄ‰Šú‰».
+  Description:  WBT æ§‹é€ ä½“ã‚’å†åˆæœŸåŒ–.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                callback          ƒVƒXƒeƒ€ƒR[ƒ‹ƒoƒbƒN.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                callback          ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1348,7 +1348,7 @@ void WBT_ResetContext(WBTContext * work, WBTEventCallback callback)
     work->list = NULL;
     work->callback = callback;
 
-    /* ‘S‚Ä‚ÌƒRƒ}ƒ“ƒh‚ğ”jŠü */
+    /* å…¨ã¦ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ç ´æ£„ */
     while (work->command)
     {
         WBTCommandList *list = work->command;
@@ -1370,13 +1370,13 @@ void WBT_ResetContext(WBTContext * work, WBTEventCallback callback)
 /*---------------------------------------------------------------------------*
   Name:         WBT_PostCommand
 
-  Description:  ƒRƒ}ƒ“ƒh‚ğ”­s‚µ‚ÄƒRƒ}ƒ“ƒhƒLƒ…[‚É’Ç‰Á.
+  Description:  ã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã—ã¦ã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ã«è¿½åŠ .
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                cmd               ƒRƒ}ƒ“ƒhî•ñ‚ªŠi”[‚³‚ê‚½\‘¢‘Ì.
-                                  ƒRƒ}ƒ“ƒhŠ®—¹‚Ü‚Åƒ‰ƒCƒuƒ‰ƒŠ“à•”‚ÅŠÇ—‚³‚ê‚é.
-                bitmap            ƒRƒ}ƒ“ƒh”­s‘ÎÛ‚ÌAIDƒrƒbƒgƒ}ƒbƒv.
-                callback          ƒRƒ}ƒ“ƒhŠ®—¹ƒR[ƒ‹ƒoƒbƒN. •s—v‚È‚ç NULL.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                cmd               ã‚³ãƒãƒ³ãƒ‰æƒ…å ±ãŒæ ¼ç´ã•ã‚ŒãŸæ§‹é€ ä½“.
+                                  ã‚³ãƒãƒ³ãƒ‰å®Œäº†ã¾ã§ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã§ç®¡ç†ã•ã‚Œã‚‹.
+                bitmap            ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œå¯¾è±¡ã®AIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—.
+                callback          ã‚³ãƒãƒ³ãƒ‰å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯. ä¸è¦ãªã‚‰ NULL.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1387,7 +1387,7 @@ void WBT_PostCommand(WBTContext *work, WBTCommandList *list, u16 bitmap,
     {
         if (list)
         {
-            /* ƒRƒ}ƒ“ƒhƒŠƒXƒg‚ÌI’[‚É’Ç‰Á */
+            /* ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã®çµ‚ç«¯ã«è¿½åŠ  */
             WBTCommandList **pp;
             for (pp = &work->command; *pp; pp = &(*pp)->next)
             {
@@ -1396,7 +1396,7 @@ void WBT_PostCommand(WBTContext *work, WBTCommandList *list, u16 bitmap,
             list->next = NULL;
             list->command.target_bmp = bitmap;
             list->callback = callback;
-            /* ƒAƒCƒhƒ‹‚ÌV‹KƒRƒ}ƒ“ƒh‚È‚ç‚±‚±‚Åˆ—ŠJn */
+            /* ã‚¢ã‚¤ãƒ‰ãƒ«æ™‚ã®æ–°è¦ã‚³ãƒãƒ³ãƒ‰ãªã‚‰ã“ã“ã§å‡¦ç†é–‹å§‹ */
             if (work->command == list)
             {
                 WBTi_SwitchNextCommand(work);
@@ -1409,12 +1409,12 @@ void WBT_PostCommand(WBTContext *work, WBTCommandList *list, u16 bitmap,
 /*---------------------------------------------------------------------------*
   Name:         WBT_CancelCommand
 
-  Description:  Œ»İˆ—’†‚ÌƒRƒ}ƒ“ƒh‚ğ’†~.
+  Description:  ç¾åœ¨å‡¦ç†ä¸­ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ä¸­æ­¢.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                bitmap            ƒRƒ}ƒ“ƒh‚ğ’†~‚·‚é‘Šè.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                bitmap            ã‚³ãƒãƒ³ãƒ‰ã‚’ä¸­æ­¢ã™ã‚‹ç›¸æ‰‹.
 
-  Returns:      ÀÛ‚É’†~‚³‚ê‚½‘Šè‚ğ¦‚·ƒrƒbƒgƒ}ƒbƒv.
+  Returns:      å®Ÿéš›ã«ä¸­æ­¢ã•ã‚ŒãŸç›¸æ‰‹ã‚’ç¤ºã™ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—.
  *---------------------------------------------------------------------------*/
 int WBT_CancelCommand(WBTContext * work, int bitmap)
 {
@@ -1425,7 +1425,7 @@ int WBT_CancelCommand(WBTContext * work, int bitmap)
         if (current)
         {
             int     aid;
-            /* ˆ—’†‚Ì‘SAID‚É‚Â‚¢‚Ä’†~’Ê’m */
+            /* å‡¦ç†ä¸­ã®å…¨AIDã«ã¤ã„ã¦ä¸­æ­¢é€šçŸ¥ */
             bitmap &= current->target_bmp;
             for (aid = 0;; ++aid)
             {
@@ -1438,7 +1438,7 @@ int WBT_CancelCommand(WBTContext * work, int bitmap)
                 {
                     bitmap &= ~bit;
                 }
-                /* Vd—l */
+                /* æ–°ä»•æ§˜ */
                 else if (list->callback)
                 {
                     current->event = WBT_CMD_CANCEL;
@@ -1446,7 +1446,7 @@ int WBT_CancelCommand(WBTContext * work, int bitmap)
                     current->peer_bmp = (u16)bit;
                     list->callback(work->userdata, current);
                 }
-                /* ‹Œd—l */
+                /* æ—§ä»•æ§˜ */
                 else if (current->callback)
                 {
                     current->event = WBT_CMD_CANCEL;
@@ -1455,7 +1455,7 @@ int WBT_CancelCommand(WBTContext * work, int bitmap)
                     (*current->callback) (current);
                 }
             }
-            /* ƒLƒƒƒ“ƒZƒ‹‚µ‚½ƒRƒ}ƒ“ƒh‚ğ”jŠü (WBTi_NotifyCompletionCallback‚Æ“¯—l) */
+            /* ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸã‚³ãƒãƒ³ãƒ‰ã‚’ç ´æ£„ (WBTi_NotifyCompletionCallbackã¨åŒæ§˜) */
             if (current->target_bmp == 0)
             {
                 WBTCommandList *list = work->command;
@@ -1472,12 +1472,12 @@ int WBT_CancelCommand(WBTContext * work, int bitmap)
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetBitmapLength
 
-  Description:  ƒuƒƒbƒN“]‘—‚Ì§Œä‚É•K—v‚Èƒrƒbƒgƒ}ƒbƒvƒoƒbƒtƒ@ƒTƒCƒY‚ğæ“¾.
+  Description:  ãƒ–ãƒ­ãƒƒã‚¯è»¢é€ã®åˆ¶å¾¡ã«å¿…è¦ãªãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’å–å¾—.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                length            “]‘—‚·‚éƒuƒƒbƒN‚ÌÅ‘åƒTƒCƒY.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                length            è»¢é€ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã®æœ€å¤§ã‚µã‚¤ã‚º.
 
-  Returns:      •K—v‚Èƒrƒbƒgƒ}ƒbƒvƒoƒbƒtƒ@‚ÌƒTƒCƒY.
+  Returns:      å¿…è¦ãªãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º.
  *---------------------------------------------------------------------------*/
 int WBT_GetBitmapLength(const WBTContext *work, int length)
 {
@@ -1489,16 +1489,16 @@ int WBT_GetBitmapLength(const WBTContext *work, int length)
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetDownloadProgress
 
-  Description:  ƒuƒƒbƒN“]‘—‚Ìi’»ó‹µ‚ğæ“¾.
+  Description:  ãƒ–ãƒ­ãƒƒã‚¯è»¢é€ã®é€²æ—çŠ¶æ³ã‚’å–å¾—.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                id                óMƒuƒƒbƒNID.
-                aid               óMæAID.
-                count             óMÏ‚İƒpƒPƒbƒg”‚ÌŠi”[æ.
-                total             ƒpƒPƒbƒg‘”‚ÌŠi”[æ.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                id                å—ä¿¡ãƒ–ãƒ­ãƒƒã‚¯ID.
+                aid               å—ä¿¡å…ˆAID.
+                count             å—ä¿¡æ¸ˆã¿ãƒ‘ã‚±ãƒƒãƒˆæ•°ã®æ ¼ç´å…ˆ.
+                total             ãƒ‘ã‚±ãƒƒãƒˆç·æ•°ã®æ ¼ç´å…ˆ.
 
   Returns:      None.
-                ƒuƒƒbƒN“]‘—ó‘Ô‚É‚È‚¯‚ê‚Î current, total ‚Æ‚à 0 ‚ğ•Ô‚·.
+                ãƒ–ãƒ­ãƒƒã‚¯è»¢é€çŠ¶æ…‹ã«ãªã‘ã‚Œã° current, total ã¨ã‚‚ 0 ã‚’è¿”ã™.
  *---------------------------------------------------------------------------*/
 void WBT_GetDownloadProgress(const WBTContext *work, u32 id, int aid, int *count, int *total)
 {
@@ -1520,14 +1520,14 @@ void WBT_GetDownloadProgress(const WBTContext *work, u32 id, int aid, int *count
 /*---------------------------------------------------------------------------*
   Name:         WBT_SetPacketLength
 
-  Description:  ƒpƒPƒbƒgƒTƒCƒY‚ğ•ÏX.
-                e‹@‚Ì‚İg—p‰Â”\.
+  Description:  ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚ºã‚’å¤‰æ›´.
+                è¦ªæ©Ÿã®ã¿ä½¿ç”¨å¯èƒ½.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                own               ©g‚ÌMP‘—MƒpƒPƒbƒgƒTƒCƒY.
-                peer              ‘Šè‚ÌMP‘—MƒpƒPƒbƒgƒTƒCƒY.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                own               è‡ªèº«ã®MPé€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
+                peer              ç›¸æ‰‹ã®MPé€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º.
 
-  Returns:      İ’è‚É¬Œ÷‚·‚ê‚Î TRUE.
+  Returns:      è¨­å®šã«æˆåŠŸã™ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL WBT_SetPacketLength(WBTContext * work, int own, int peer)
 {
@@ -1538,7 +1538,7 @@ BOOL WBT_SetPacketLength(WBTContext * work, int own, int peer)
     SDK_ASSERT(peer >= WBT_PACKET_SIZE_MIN);
 
     current = WBT_GetCurrentCommand(work);
-    /* ƒuƒƒbƒN“]‘——v‹’†‚ÍƒpƒPƒbƒgƒTƒCƒY‚ğ•ÏX‚Å‚«‚È‚¢ */
+    /* ãƒ–ãƒ­ãƒƒã‚¯è»¢é€è¦æ±‚ä¸­ã¯ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã§ããªã„ */
     if ((current == NULL) ||
         ((current->command != WBT_CMD_REQ_GET_BLOCK) &&
         (current->command != WBT_CMD_REQ_GET_BLOCKINFO)))
@@ -1552,21 +1552,21 @@ BOOL WBT_SetPacketLength(WBTContext * work, int own, int peer)
 /*---------------------------------------------------------------------------*
   Name:         WBT_RegisterBlockInfo
 
-  Description:  V‹K‚Éƒf[ƒ^ƒuƒƒbƒN‚ğ“o˜^‚·‚é.
+  Description:  æ–°è¦ã«ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç™»éŒ²ã™ã‚‹.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                list              “o˜^‚Ég—p‚·‚éƒŠƒXƒg\‘¢‘Ì.
-                                  Unregister ‚Å‰ğ•ú‚·‚é‚Ü‚Åƒ‰ƒCƒuƒ‰ƒŠ‚ªg—p‚·‚é.
-                id                ƒf[ƒ^ƒuƒƒbƒN‚ÉŠÖ˜A•t‚¯‚éˆêˆÓ‚ÈID.
-                userinfo          ƒf[ƒ^ƒuƒƒbƒN‚ÉŠÖ˜A•t‚¯‚éƒ†[ƒU’è‹`î•ñ.
-                                  ‚±‚Ìƒ|ƒCƒ“ƒ^‚ªw‚·æ‚Í‚±‚ÌŠÖ”“à‚Å‚Ì‚İQÆ‚·‚é.
-                                  •s—v‚Èê‡‚Í NULL ‚ğw’è‚·‚é‚±‚Æ‚à‚Å‚«‚é.
-                buffer            ƒuƒƒbƒNƒf[ƒ^‚ğŠi”[‚µ‚½ƒoƒbƒtƒ@.
-                                  NULL ‚ğw’è‚·‚é‚Æ, •K—v‚É‰‚¶‚Äƒ‰ƒCƒuƒ‰ƒŠ‚©‚ç
-                                  WBT_CMD_PREPARE_SEND_DATA ƒR[ƒ‹ƒoƒbƒN‚ª’Ê’m‚³‚ê‚é.
-                length            ƒuƒƒbƒNƒf[ƒ^‚ÌƒTƒCƒY.
-                                  buffer ‚É NULL ‚ğw’è‚·‚éê‡‚Å‚ ‚Á‚Ä‚à
-                                  ‚±‚Ì’l‚Í³‚µ‚­w’è‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚é.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                list              ç™»éŒ²ã«ä½¿ç”¨ã™ã‚‹ãƒªã‚¹ãƒˆæ§‹é€ ä½“.
+                                  Unregister ã§è§£æ”¾ã™ã‚‹ã¾ã§ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒä½¿ç”¨ã™ã‚‹.
+                id                ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã«é–¢é€£ä»˜ã‘ã‚‹ä¸€æ„ãªID.
+                userinfo          ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã«é–¢é€£ä»˜ã‘ã‚‹ãƒ¦ãƒ¼ã‚¶å®šç¾©æƒ…å ±.
+                                  ã“ã®ãƒã‚¤ãƒ³ã‚¿ãŒæŒ‡ã™å…ˆã¯ã“ã®é–¢æ•°å†…ã§ã®ã¿å‚ç…§ã™ã‚‹.
+                                  ä¸è¦ãªå ´åˆã¯ NULL ã‚’æŒ‡å®šã™ã‚‹ã“ã¨ã‚‚ã§ãã‚‹.
+                buffer            ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ãŸãƒãƒƒãƒ•ã‚¡.
+                                  NULL ã‚’æŒ‡å®šã™ã‚‹ã¨, å¿…è¦ã«å¿œã˜ã¦ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‹ã‚‰
+                                  WBT_CMD_PREPARE_SEND_DATA ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒé€šçŸ¥ã•ã‚Œã‚‹.
+                length            ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º.
+                                  buffer ã« NULL ã‚’æŒ‡å®šã™ã‚‹å ´åˆã§ã‚ã£ã¦ã‚‚
+                                  ã“ã®å€¤ã¯æ­£ã—ãæŒ‡å®šã—ã¦ãŠãå¿…è¦ãŒã‚ã‚‹.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1586,7 +1586,7 @@ WBT_RegisterBlockInfo(WBTContext * work, WBTBlockInfoList *list, u32 id,
         list->data_info.block_size = length;
         WBTi_CopySafeMemory(userinfo, list->data_info.user_id, WBT_USER_ID_LEN);
         list->data_ptr = (void *)buffer;
-        /* Œ»ó•sg—p‚Èƒƒ“ƒo */
+        /* ç¾çŠ¶ä¸ä½¿ç”¨ãªãƒ¡ãƒ³ãƒ */
         list->permission_bmp = 0;
         list->block_type = (u16)(buffer ? WBT_BLOCK_LIST_TYPE_COMMON : WBT_BLOCK_LIST_TYPE_USER);
     }
@@ -1597,12 +1597,12 @@ WBT_RegisterBlockInfo(WBTContext * work, WBTBlockInfoList *list, u32 id,
 /*---------------------------------------------------------------------------*
   Name:         WBT_UnregisterBlockInfo
 
-  Description:  “o˜^Ï‚İ‚Ìƒf[ƒ^ƒuƒƒbƒN‚ğ‰ğ•ú‚·‚é.
+  Description:  ç™»éŒ²æ¸ˆã¿ã®ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã‚’è§£æ”¾ã™ã‚‹.
 
-  Arguments:    work              WBT \‘¢‘Ì.
-                id                ‰ğ•ú‚·‚éƒf[ƒ^ƒuƒƒbƒN‚ÉŠÖ˜A•t‚¯‚ç‚ê‚½ˆêˆÓ‚ÈID.
+  Arguments:    work              WBT æ§‹é€ ä½“.
+                id                è§£æ”¾ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã«é–¢é€£ä»˜ã‘ã‚‰ã‚ŒãŸä¸€æ„ãªID.
 
-  Returns:      ‰ğ•ú‚µ‚½ƒŠƒXƒg\‘¢‘Ì‚Ü‚½‚Í NULL.
+  Returns:      è§£æ”¾ã—ãŸãƒªã‚¹ãƒˆæ§‹é€ ä½“ã¾ãŸã¯ NULL.
  *---------------------------------------------------------------------------*/
 WBTBlockInfoList *WBT_UnregisterBlockInfo(WBTContext * work, u32 id)
 {
@@ -1627,11 +1627,11 @@ WBTBlockInfoList *WBT_UnregisterBlockInfo(WBTContext * work, u32 id)
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetRegisteredCount
 
-  Description:  “o˜^Ï‚İ‚Ìƒf[ƒ^ƒuƒƒbƒN‘”‚ğæ“¾.
+  Description:  ç™»éŒ²æ¸ˆã¿ã®ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ç·æ•°ã‚’å–å¾—.
 
-  Arguments:    work              WBT \‘¢‘Ì.
+  Arguments:    work              WBT æ§‹é€ ä½“.
 
-  Returns:      “o˜^Ï‚İ‚Ìƒf[ƒ^ƒuƒƒbƒN‘”.
+  Returns:      ç™»éŒ²æ¸ˆã¿ã®ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ç·æ•°.
  *---------------------------------------------------------------------------*/
 int WBT_GetRegisteredCount(const WBTContext * work)
 {

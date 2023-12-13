@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_162.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			162@‚½‚­‚í‚¦‚½•ª‚¾‚¯‚½‚­‚³‚ñ‰ñ•œ‚·‚éBUŒ‚I—¹ŒãA‚½‚­‚í‚¦‚é‚Åã‚°‚½AƒXƒe[ƒ^ƒX‚ðŒ³‚É–ß‚·B
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			162ã€€ãŸãã‚ãˆãŸåˆ†ã ã‘ãŸãã•ã‚“å›žå¾©ã™ã‚‹ã€‚æ”»æ’ƒçµ‚äº†å¾Œã€ãŸãã‚ãˆã‚‹ã§ä¸Šã’ãŸã€ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å…ƒã«æˆ»ã™ã€‚
  *
  *@author	HisashiSogabe
  *@data		2006.02.06
@@ -30,7 +30,7 @@ BE_162:
 	PSP_VALUE_WORK	VAL_SUB_ZERO,SIDE_ATTACK,ID_PSP_abiritycnt_spedef,BUF_PARA_CALC_WORK
 	PSP_VALUE		VAL_SET,SIDE_ATTACK,ID_PSP_wkw_takuwaeru_def_count,0
 	PSP_VALUE		VAL_SET,SIDE_ATTACK,ID_PSP_wkw_takuwaeru_spedef_count,0
-	//HP‘€ì‘ÎÛ‚ðAttackClient‚É
+	//HPæ“ä½œå¯¾è±¡ã‚’AttackClientã«
 	VALUE_WORK		VAL_SET,BUF_PARA_CLIENT_WORK,BUF_PARA_ATTACK_CLIENT
 	VALUE			VAL_SET,BUF_PARA_ADD_STATUS_DIRECT,ADD_COND2_NOMIKOMU|ADD_STATUS_WAZAKOUKA
 	SEQ_END

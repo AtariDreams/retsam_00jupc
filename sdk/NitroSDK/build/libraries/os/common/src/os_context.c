@@ -58,77 +58,77 @@
   change SDK prefix iris -> nitro
 
   Revision 1.15  2003/12/25 07:31:26  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.14  2003/12/17 08:20:42  yasu
-  OS_InitContext ‚Ìˆø”•ÏX
+  OS_InitContext ã®å¼•æ•°å¤‰æ›´
 
   Revision 1.13  2003/12/17 06:06:39  yasu
-  ’è”–¼•ÏX
+  å®šæ•°åå¤‰æ›´
 
   Revision 1.12  2003/12/16 07:15:19  yada
-  ƒXƒŒƒbƒh”ÍˆÍî•ñ‚ÍƒRƒ“ƒeƒLƒXƒg‚Å‚Í‚È‚­AƒXƒŒƒbƒh\‘¢‘Ì‚ÉˆÚ‚µ‚½
+  ã‚¹ãƒ¬ãƒƒãƒ‰ç¯„å›²æƒ…å ±ã¯ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã§ã¯ãªãã€ã‚¹ãƒ¬ãƒƒãƒ‰æ§‹é€ ä½“ã«ç§»ã—ãŸ
 
   Revision 1.11  2003/12/16 00:16:51  yada
-  thread‚ÉAƒXƒ^ƒbƒN”ÍˆÍî•ñ‚ğŠÜ‚ß‚½B
+  threadã«ã€ã‚¹ã‚¿ãƒƒã‚¯ç¯„å›²æƒ…å ±ã‚’å«ã‚ãŸã€‚
 
   Revision 1.10  2003/12/12 04:40:19  yada
-  ƒvƒƒZƒbƒTƒ‚[ƒh‚Ì’è‹`•ÏX‚É”º‚¤C³
+  ãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ¢ãƒ¼ãƒ‰ã®å®šç¾©å¤‰æ›´ã«ä¼´ã†ä¿®æ­£
 
   Revision 1.9  2003/12/11 00:41:10  yasu
-  include ‚Ì•ÏX mmap_stack.h -> memorymap.h
+  include ã®å¤‰æ›´ mmap_stack.h -> memorymap.h
 
   Revision 1.8  2003/12/08 10:02:37  yasu
-  ƒXƒ^ƒbƒNƒTƒCƒY‚ğ mmap_stack.h ‚©‚çæ“¾
+  ã‚¹ã‚¿ãƒƒã‚¯ã‚µã‚¤ã‚ºã‚’ mmap_stack.h ã‹ã‚‰å–å¾—
 
   Revision 1.7  2003/12/08 01:25:05  yasu
-  context ‚É SP_svc ‚ğ’Ç‰Á‚·‚é
+  context ã« SP_svc ã‚’è¿½åŠ ã™ã‚‹
 
   Revision 1.6  2003/12/01 09:51:04  yasu
-  context ‚ÉƒZ[ƒu‚·‚é’l‚ğ PC->PC+4 ‚Ö
+  context ã«ã‚»ãƒ¼ãƒ–ã™ã‚‹å€¤ã‚’ PC->PC+4 ã¸
 
   Revision 1.5  2003/12/01 04:15:23  yasu
-  ƒ}ƒNƒ USER_MODE -> NO_INTERWORKING ‚É•ÏX
+  ãƒã‚¯ãƒ­ USER_MODE -> NO_INTERWORKING ã«å¤‰æ›´
 
   Revision 1.4  2003/11/30 05:11:05  yasu
-  •s—vƒR[ƒh‚Ìíœ
+  ä¸è¦ã‚³ãƒ¼ãƒ‰ã®å‰Šé™¤
 
   Revision 1.3  2003/11/30 01:46:26  yasu
-  OS_CreateThread “à‚Å‚Ì context->lr ‘‚«Š·‚¦‚Ö‚Ì‘Îô
+  OS_CreateThread å†…ã§ã® context->lr æ›¸ãæ›ãˆã¸ã®å¯¾ç­–
 
   Revision 1.2  2003/11/29 11:06:56  yasu
-  OS_InitContext ‚ÌC³
+  OS_InitContext ã®ä¿®æ­£
 
   Revision 1.1  2003/11/29 01:25:46  yada
-  ƒtƒ@ƒCƒ‹–¼Ì•ÏX
+  ãƒ•ã‚¡ã‚¤ãƒ«åç§°å¤‰æ›´
 
   Revision 1.9  2003/11/28 10:30:00  yasu
-  irq —p OS_LoadContext ‚ÌƒeƒXƒg
+  irq ç”¨ OS_LoadContext ã®ãƒ†ã‚¹ãƒˆ
 
   Revision 1.8  2003/11/28 08:31:27  yada
-  ƒfƒoƒbƒO’†
+  ãƒ‡ãƒãƒƒã‚°ä¸­
 
   Revision 1.7  2003/11/28 02:52:13  yada
-  OS_LoadContext() ‚Å‚ÍAspsr_irq ‚ğŒo—R‚µAƒ‹[ƒ`ƒ“‚ÌI‚í‚è‚Å movs r15, xxx ...
-  ‚ğs‚¢ cpsr ‚ğ•ÏX‚·‚é‚æ‚¤‚É‚µ‚½B
+  OS_LoadContext() ã§ã¯ã€spsr_irq ã‚’çµŒç”±ã—ã€ãƒ«ãƒ¼ãƒãƒ³ã®çµ‚ã‚ã‚Šã§ movs r15, xxx ...
+  ã‚’è¡Œã„ cpsr ã‚’å¤‰æ›´ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.6  2003/11/27 13:42:30  yasu
-  ƒXƒŒƒbƒh‚ğ USER->SYSTEM ƒ‚[ƒh‚Ö•ÏX
+  ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ USER->SYSTEM ãƒ¢ãƒ¼ãƒ‰ã¸å¤‰æ›´
 
   Revision 1.5  2003/11/25 09:29:26  yasu
-  OS_IntrSwitchThread ‚ÌƒRƒƒ“ƒgƒAƒEƒg
+  OS_IntrSwitchThread ã®ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 
   Revision 1.4  2003/11/25 09:27:23  yasu
-  SaveContext C³CƒRƒƒ“ƒg’Ç‰Á, OS_DumpContext ’Ç‰Á
+  SaveContext ä¿®æ­£ï¼Œã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ , OS_DumpContext è¿½åŠ 
 
   Revision 1.3  2003/11/25 05:52:16  yada
-  OS_SaveContext()AOS_LoadContext() ’Ç‰Á
+  OS_SaveContext()ã€OS_LoadContext() è¿½åŠ 
 
   Revision 1.2  2003/11/25 05:03:05  yasu
-  ƒwƒbƒ_ƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ğ os.h ‚É•ÏX
+  ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã‚’ os.h ã«å¤‰æ›´
 
   Revision 1.1  2003/11/25 04:31:57  yasu
-  ‰”Å’Ç‰Á
+  åˆç‰ˆè¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -157,11 +157,11 @@ asm void OS_InitContext(
     register u32         newsp
     )
 {
-    // ---- ÀsˆÊ’u•Û‘¶ (r0 = context)
+    // ---- å®Ÿè¡Œä½ç½®ä¿å­˜ (r0 = context)
     add   newpc, newpc, #4
     str   newpc, [ context, #OS_CONTEXT_PC_PLUS4 ]
     
-    // ---- ƒXƒ^ƒbƒN•Û‘¶
+    // ---- ã‚¹ã‚¿ãƒƒã‚¯ä¿å­˜
 #ifdef  SDK_CONTEXT_HAS_SP_SVC
     str   newsp, [ context, #OS_CONTEXT_SP_SVC ]
     sub   newsp, newsp,     #HW_SVC_STACK_SIZE
@@ -174,7 +174,7 @@ asm void OS_InitContext(
 @subne2:
     str   newsp, [ context, #OS_CONTEXT_SP ]
         
-    // ---- ƒXƒe[ƒ^ƒXì¬
+    // ---- ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ä½œæˆ
     ands  r1, newpc, #1
     bne @movne1
     b @movne2
@@ -188,7 +188,7 @@ asm void OS_InitContext(
 @moveq2:
     str   r1, [ context, #OS_CONTEXT_CPSR ]
 
-    // ---- ‘¼‚ÌƒŒƒWƒXƒ^‚ğƒNƒŠƒA
+    // ---- ä»–ã®ãƒ¬ã‚¸ã‚¹ã‚¿ã‚’ã‚¯ãƒªã‚¢
     mov   r1, #0
     str   r1, [ context, #OS_CONTEXT_R0 ]
     str   r1, [ context, #OS_CONTEXT_R1 ]
@@ -284,7 +284,7 @@ asm void OS_LoadContext( register OSContext* context )
     ldmfd     sp!, { lr, r0 }
 #endif
     
-    //---- ƒ‚[ƒh‚ğ svc ‚É
+    //---- ãƒ¢ãƒ¼ãƒ‰ã‚’ svc ã«
     mrs       r1, cpsr
     bic       r1, r1, #HW_PSR_CPU_MODE_MASK
     orr       r1, r1, #HW_PSR_SVC_MODE|HW_PSR_IRQ_DISABLE|HW_PSR_FIQ_DISABLE

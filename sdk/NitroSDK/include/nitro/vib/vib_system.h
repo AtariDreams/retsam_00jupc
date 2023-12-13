@@ -12,13 +12,13 @@
 
   $Log: vib_system.h,v $
   Revision 1.3  2007/01/22 08:48:12  okubata_ryoma
-  log�ǉ�
+  log追加
 
   Revision 1.2  2006/03/03 00:35:00  okubata_ryoma
-  include��extern"C"�̊O��
+  includeをextern"C"の外へ
 
   Revision 1.1  2006/03/02 10:22:14  okubata_ryoma
-  vib_system.h�̒ǉ�
+  vib_system.hの追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -37,47 +37,47 @@ extern "C" {
  *-----------------------------------------------------------------------*/
 
 /*!
-    �p���X�Z�b�g���̃p���X�̍ő吔�B�ύX�����ꍇ�̓��C�u�������ăr���h���Ă��������B
+    パルスセット内のパルスの最大数。変更した場合はライブラリを再ビルドしてください。
 */
 #define VIB_PULSE_NUM_MAX   6
 
 /*!
-    ����on_time�̍ő�l�i0.1ms�P�ʁj
+    一回のon_timeの最大値（0.1ms単位）
 */
 #define VIB_ON_TIME_MAX 15
 
 /*!
-    rest_time�̍ŏ��l�i0.1ms�P�ʁj
+    rest_timeの最小値（0.1ms単位）
 */
 #define VIB_REST_TIME_MIN   15
 
 /*!
-    �p���X�U���̃X�e�[�^�X�������܂��B
+    パルス振動のステータスを示します。
     
-    1.5ms��ON�A1.5ms��OFF�A1.5ms��ON�Ƃ����p���X���W���I�ȐU���ŁA����ɂ����
-    �ł������U���𔭐������邱�Ƃ��ł��܂��B
+    1.5msのON、1.5msのOFF、1.5msのONというパルスが標準的な振動で、これによって
+    最も強い振動を発生させることができます。
     
-    VIBPulseState �̒l�́A�n�[�h�E�F�A�d�l��A�ȉ��̃��[�������K�v������܂��B
+    VIBPulseState の値は、ハードウェア仕様上、以下のルールを守る必要があります。
     
-    @li ���� on_time ��1.5ms�܂łƂ���B
-    @li off_time[n] �͒��O�� on_time[n] �ȏ�̒l��ݒ肷��B
-    @li rest_time ��1.5ms�ȏ�Ƃ���B
+    @li 一回の on_time は1.5msまでとする。
+    @li off_time[n] は直前の on_time[n] 以上の値を設定する。
+    @li rest_time は1.5ms以上とする。
     
-    �Ȃ��A VIB_StartPulse �֐����Ă΂ꂽ�ۂɂ������`�F�b�N���܂��B
+    なお、 VIB_StartPulse 関数が呼ばれた際にこれらをチェックします。
     
-    @image html pulse_vib.jpg "�p���X�U���̗�(�p���X����3�̏ꍇ)"
+    @image html pulse_vib.jpg "パルス振動の例(パルス数が3の場合)"
 */
 typedef struct
 {
-    u32     pulse_num;                  /*! ���̃p���X�Z�b�g�ŉ���p���X�𔭐������邩�B1�ȏ� VIB_PULSE_NUM_MAX �ȉ��ł���K�v������܂��B */
-    u32     rest_time;                  /*! �p���X�Z�b�g�Ԃ̋x�~���Ԃ̒����B1=0.1�~���b�ƂȂ�܂��B */
-    u32     on_time[VIB_PULSE_NUM_MAX]; /*! �N�����Ԃ̒����B0���傫���l�Ƃ��Ă��������B1=0.1�~���b�ƂȂ�܂��B */
-    u32     off_time[VIB_PULSE_NUM_MAX];/*! ��~���Ԃ̒����B0���傫���l�Ƃ��Ă��������B1=0.1�~���b�ƂȂ�܂��B */
-    u32     repeat_num;                 /*! �p���X�Z�b�g���J��Ԃ����B0�̎��́A�I���Ȃ��J��Ԃ��܂��B */
+    u32     pulse_num;                  /*! 一回のパルスセットで何回パルスを発生させるか。1以上 VIB_PULSE_NUM_MAX 以下である必要があります。 */
+    u32     rest_time;                  /*! パルスセット間の休止時間の長さ。1=0.1ミリ秒となります。 */
+    u32     on_time[VIB_PULSE_NUM_MAX]; /*! 起動時間の長さ。0より大きい値としてください。1=0.1ミリ秒となります。 */
+    u32     off_time[VIB_PULSE_NUM_MAX];/*! 停止時間の長さ。0より大きい値としてください。1=0.1ミリ秒となります。 */
+    u32     repeat_num;                 /*! パルスセットを繰り返す数。0の時は、終わりなく繰り返します。 */
 }
 VIBPulseState;
 
-/*! �J�[�g���b�W�����R�[���o�b�N�̌^�ł��B */
+/*! カートリッジ抜けコールバックの型です。 */
 typedef void (*VIBCartridgePulloutCallback) (void);
 
 /*-----------------------------------------------------------------------*
@@ -86,20 +86,20 @@ typedef void (*VIBCartridgePulloutCallback) (void);
 /*---------------------------------------------------------------------------*
   Name:         VIB_Init
 
-  Description:  �U���J�[�g���b�W���C�u���������������܂��B
-                ��x���̊֐����Ă񂾏�Ԃōēx���̊֐����Ă񂾏ꍇ�́A
-                VIB_IsCartridgeEnabled �֐��Ɠ����ɂȂ�܂��B
+  Description:  振動カートリッジライブラリを初期化します。
+                一度この関数を呼んだ状態で再度この関数を呼んだ場合は、
+                VIB_IsCartridgeEnabled 関数と同等になります。
                 
-                ���̊֐����ŁAPM_AppendPreSleepCallback �֐����Ă�ŁA�X���[�v�ɓ���O��
-                �U�����~�߂�R�[���o�b�N��o�^���Ă��܂��B
+                この関数内で、PM_AppendPreSleepCallback 関数を呼んで、スリープに入る前に
+                振動を止めるコールバックを登録しています。
                 
-                �܂��A�J�[�g���b�W�̔��������o������U�����~�߂�R�[���o�b�N�����̊֐����œo�^���Ă��܂��̂ŁA
-                ���̊֐����Ă񂾌�ŁACTRDG_SetPulledOutCallback �֐��ŃJ�[�g���b�W�����R�[���o�b�N���Z�b�g����ƁA
-                VIB_Init �֐��ŃZ�b�g���ꂽ�J�[�g���b�W�������o�R�[���o�b�N���㏑������Ă��܂��܂��B
-                ���̏ꍇ�̓Z�b�g�����J�[�g���b�W�����R�[���o�b�N���ŐU�����~�߂�K�v������܂��B
-                �J�[�g���b�W�̔����R�[���o�b�N���ŐU�����~�߂�ȊO�ɂ��������s�������ꍇ�� 
-                VIB_SetCartridgePulloutCallback �֐��ŃR�[���o�b�N��o�^����
-                ���̃R�[���o�b�N���ŏ������s���悤�ɂ��Ă��������B 
+                また、カートリッジの抜けを検出したら振動を止めるコールバックもこの関数内で登録していますので、
+                この関数を呼んだ後で、CTRDG_SetPulledOutCallback 関数でカートリッジ抜けコールバックをセットすると、
+                VIB_Init 関数でセットされたカートリッジ抜け検出コールバックが上書きされてしまいます。
+                その場合はセットしたカートリッジ抜けコールバック内で振動を止める必要があります。
+                カートリッジの抜けコールバック内で振動を止める以外にも処理を行いたい場合は 
+                VIB_SetCartridgePulloutCallback 関数でコールバックを登録して
+                そのコールバック内で処理を行うようにしてください。 
 
   Arguments:    None.
 
@@ -110,7 +110,7 @@ extern BOOL VIB_Init(void);
 /*---------------------------------------------------------------------------*
   Name:         VIB_End
 
-  Description:  �U���J�[�g���b�W���C�u�����̎g�p���I�����܂��B
+  Description:  振動カートリッジライブラリの使用を終了します。
 
   Arguments:    None.
 
@@ -121,11 +121,11 @@ extern void VIB_End(void);
 /*---------------------------------------------------------------------------*
   Name:         VIB_StartPulse
 
-  Description:  �p���X�U�����J�n���܂��B
-                �����ȑO�̃p���X�U�����I�����Ă��Ȃ��ꍇ�́A��������I�����Ă���n�߂܂��B
-                �X�e�[�^�X�̓��C�u�������ŃR�s�[���܂��̂ŁA���������m�ۂ��Ă����K�v�͂���܂���B
+  Description:  パルス振動を開始します。
+                もし以前のパルス振動が終了していない場合は、いったん終了してから始めます。
+                ステータスはライブラリ側でコピーしますので、メモリを確保しておく必要はありません。
 
-  Arguments:    state : �p���X�U���̃X�e�[�^�X
+  Arguments:    state : パルス振動のステータス
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -134,7 +134,7 @@ extern void VIB_StartPulse(const VIBPulseState * state);
 /*---------------------------------------------------------------------------*
   Name:         VIB_StopPulse
 
-  Description:  �p���X�U�����~���܂��B
+  Description:  パルス振動を停止します。
 
   Arguments:    None.
 
@@ -145,24 +145,24 @@ extern void VIB_StopPulse(void);
 /*---------------------------------------------------------------------------*
   Name:         VIB_StopPulse
 
-  Description:  �p���X�U�������s�����ۂ��𔻒肵�܂��B
-                VIB_StartPulse �֐��ŐU��ON�ɂ��Ă��� VIB_StopPulse �֐��ŐU��OFF�ɂ���܂ł̊� TRUE ��Ԃ��܂��B
+  Description:  パルス振動が実行中か否かを判定します。
+                VIB_StartPulse 関数で振動ONにしてから VIB_StopPulse 関数で振動OFFにするまでの間 TRUE を返します。
 
   Arguments:    None.
 
-  Returns:      TRUE  : �p���X�U�����s���Ă�����
-                FALSE : �p���X�U�����s���Ă��Ȃ����
+  Returns:      TRUE  : パルス振動実行している状態
+                FALSE : パルス振動実行していない状態
  *---------------------------------------------------------------------------*/
 extern BOOL VIB_IsExecuting(void);
 
 /*---------------------------------------------------------------------------*
   Name:         VIB_SetCartridgePulloutCallback
 
-  Description:  �J�[�g���b�W�����R�[���o�b�N��o�^���܂��B
-                �J�[�g���b�W�������N�������ꍇ�A���C�u�����͒����Ƀp���X�U�����~���܂��B
-                ���̊֐���p���ăR�[���o�b�N���o�^����Ă����ꍇ�́A���̌�ɃR�[���o�b�N���Ă΂�܂��B 
+  Description:  カートリッジ抜けコールバックを登録します。
+                カートリッジ抜けが起こった場合、ライブラリは直ちにパルス振動を停止します。
+                この関数を用いてコールバックが登録されていた場合は、その後にコールバックが呼ばれます。 
 
-  Arguments:    func : �J�[�g���b�W�����R�[���o�b�N�B
+  Arguments:    func : カートリッジ抜けコールバック。
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -171,12 +171,12 @@ extern void VIB_SetCartridgePulloutCallback(VIBCartridgePulloutCallback func);
 /*---------------------------------------------------------------------------*
   Name:         VIB_IsCartridgeEnabled
 
-  Description:  �U���J�[�g���b�W���������Ă��邩�ǂ����𔻒肵�܂��B
+  Description:  振動カートリッジがささっているかどうかを判定します。
 
   Arguments:    None.
 
-  Returns:      TRUE  : �N�����ɐU���J�[�g���b�W���������Ă����� 
-                FALSE : �N�����ɐU���J�[�g���b�W���������Ă��Ȃ����
+  Returns:      TRUE  : 起動時に振動カートリッジがささっている状態 
+                FALSE : 起動時に振動カートリッジがささっていない状態
  *---------------------------------------------------------------------------*/
 extern BOOL VIB_IsCartridgeEnabled(void);
 

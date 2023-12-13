@@ -2,12 +2,12 @@
   Project:  simple particle library
   File:     spl_version.h
 
-  ‚r‚o‚kƒo[ƒWƒ‡ƒ“ŠÖ˜A
+  ï¼³ï¼°ï¼¬ãƒãƒ¼ã‚¸ãƒ§ãƒ³é–¢é€£
 
   $Id: spl_version.h,v 1.3 2005/11/09 09:53:26 matsuda Exp $
   $Log: spl_version.h,v $
   Revision 1.3  2005/11/09 09:53:26  matsuda
-  SPLƒ‰ƒCƒuƒ‰ƒŠ‚ªXV‚³‚ê‚½‚Ì‚ÅXV
+  SPLãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒæ›´æ–°ã•ã‚ŒãŸã®ã§æ›´æ–°
 
   Revision 1.6  2005/06/15 23:47:36  okane_shinji
   (none)
@@ -19,13 +19,13 @@
   ver.1.20
 
   Revision 1.4  2004/12/02 08:01:32  okane_shinji
-  ver110‘Î‰
+  ver110å¯¾å¿œ
 
   Revision 1.3  2004/08/10 07:27:32  konoh
-  ¡ƒo[ƒWƒ‡ƒ“‚ÌXV
+  â– ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®æ›´æ–°
 
   Revision 1.2  2004/07/02 04:39:39  okane_shinji
-  ƒo[ƒWƒ‡ƒ“‚ğ1.0‚É•ÏX
+  ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’1.0ã«å¤‰æ›´
 
   Revision 1.1  2004/06/02 04:52:30  konoh
   (none)

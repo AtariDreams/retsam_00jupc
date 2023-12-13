@@ -1,72 +1,72 @@
 //==============================================================================
 /**
  * @file	dance_id.h
- * @brief	ƒ_ƒ“ƒX•”–å‚ÅŽg—p‚·‚éƒAƒNƒ^[‚ÌƒLƒƒƒ‰ID“™‚Ì’è‹`
+ * @brief	ãƒ€ãƒ³ã‚¹éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã‚­ãƒ£ãƒ©IDç­‰ã®å®šç¾©
  * @author	matsuda
- * @date	2005.12.12(ŒŽ)
+ * @date	2005.12.12(æœˆ)
  */
 //==============================================================================
 #ifndef __DANCE_ID_H__
 #define __DANCE_ID_H__
 
 
-///ƒtƒHƒ“ƒgOBJ‚ÌID’è‹`‚ÅAŠeIDŠÔ‚Å‹ó‚¯‚éID”
+///ãƒ•ã‚©ãƒ³ãƒˆOBJã®IDå®šç¾©ã§ã€å„IDé–“ã§ç©ºã‘ã‚‹IDæ•°
 #define DCI_FONT_ID_OFFSET		(10)
 
 
 //==============================================================================
-//	ƒLƒƒƒ‰ID
+//	ã‚­ãƒ£ãƒ©ID
 //==============================================================================
 enum{
 	D_CHARID_START = 33000,
 	
-	D_CHARID_MUSIC_BAR8,		///<‹È‚Ìis‚ðŽ¦‚·ƒo[
+	D_CHARID_MUSIC_BAR8,		///<æ›²ã®é€²è¡Œã‚’ç¤ºã™ãƒãƒ¼
 	D_CHARID_MUSIC_BAR32,
-	D_CHARID_ONPU_B,			///<‰¹•„(Â)
-	D_CHARID_ONPU_G,			///<‰¹•„(—Î)
-	D_CHARID_ONPU_R,			///<‰¹•„(Ô)
-	D_CHARID_ONPU_Y,			///<‰¹•„(‰©)
-	D_CHARID_REVIEW,			///<•]‰¿ƒpƒlƒ‹
-	D_CHARID_MY_CURSOR,			///<Ž©•ª‚ðŽw‚·ƒJ[ƒ\ƒ‹
-	D_CHARID_PRIN,				///<ƒvƒŠƒ“
-	D_CHARID_SHADOW,			///<‰e
-	D_CHARID_SPOTLIGHT,			///<ƒXƒ|ƒbƒgƒ‰ƒCƒg
-	D_CHARID_STAR,				///<¯
-	D_CHARID_MUS_LINE,			///<ƒ~ƒ…[ƒWƒbƒNƒ‰ƒCƒ“
+	D_CHARID_ONPU_B,			///<éŸ³ç¬¦(é’)
+	D_CHARID_ONPU_G,			///<éŸ³ç¬¦(ç·‘)
+	D_CHARID_ONPU_R,			///<éŸ³ç¬¦(èµ¤)
+	D_CHARID_ONPU_Y,			///<éŸ³ç¬¦(é»„)
+	D_CHARID_REVIEW,			///<è©•ä¾¡ãƒ‘ãƒãƒ«
+	D_CHARID_MY_CURSOR,			///<è‡ªåˆ†ã‚’æŒ‡ã™ã‚«ãƒ¼ã‚½ãƒ«
+	D_CHARID_PRIN,				///<ãƒ—ãƒªãƒ³
+	D_CHARID_SHADOW,			///<å½±
+	D_CHARID_SPOTLIGHT,			///<ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆ
+	D_CHARID_STAR,				///<æ˜Ÿ
+	D_CHARID_MUS_LINE,			///<ãƒŸãƒ¥ãƒ¼ã‚¸ãƒƒã‚¯ãƒ©ã‚¤ãƒ³
 	
 
-	//-- ƒTƒu‰æ–Ê --//
+	//-- ã‚µãƒ–ç”»é¢ --//
 	
 	
-	//-- ƒtƒHƒ“ƒgOBJ --//
-	D_CHARID_DCI_FONT_FORWARD,		///<‚Ü‚¦
-	D_CHARID_DCI_FONT_BACK = D_CHARID_DCI_FONT_FORWARD + DCI_FONT_ID_OFFSET,	///<‚¤‚µ‚ë
-	D_CHARID_DCI_FONT_LEFT = D_CHARID_DCI_FONT_BACK + DCI_FONT_ID_OFFSET,		///<‚Ð‚¾‚è
-	D_CHARID_DCI_FONT_RIGHT = D_CHARID_DCI_FONT_LEFT + DCI_FONT_ID_OFFSET,		///<‚Ý‚¬
+	//-- ãƒ•ã‚©ãƒ³ãƒˆOBJ --//
+	D_CHARID_DCI_FONT_FORWARD,		///<ã¾ãˆ
+	D_CHARID_DCI_FONT_BACK = D_CHARID_DCI_FONT_FORWARD + DCI_FONT_ID_OFFSET,	///<ã†ã—ã‚
+	D_CHARID_DCI_FONT_LEFT = D_CHARID_DCI_FONT_BACK + DCI_FONT_ID_OFFSET,		///<ã²ã ã‚Š
+	D_CHARID_DCI_FONT_RIGHT = D_CHARID_DCI_FONT_LEFT + DCI_FONT_ID_OFFSET,		///<ã¿ãŽ
 	
-	//ƒtƒHƒ“ƒgOBJID’è‹`I—¹
+	//ãƒ•ã‚©ãƒ³ãƒˆOBJIDå®šç¾©çµ‚äº†
 	D_CHARID_DCI_FONT_ID_END,
 	D_CHARID_DCI_FONT_END = D_CHARID_DCI_FONT_ID_END + DCI_FONT_ID_OFFSET,
 };
 
 //==============================================================================
-//	ƒpƒŒƒbƒgID
+//	ãƒ‘ãƒ¬ãƒƒãƒˆID
 //==============================================================================
 enum{
 	D_PLTTID_START = 33000,
 
-	D_PLTTID_OBJ_COMMON,	///<í’“OBJƒpƒŒƒbƒg
+	D_PLTTID_OBJ_COMMON,	///<å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆ
 	
-	//-- ƒTƒu‰æ–Ê --//
-	D_PLTTID_OBJ_COMMON_SUB,	///<ƒTƒu‰æ–Ê‚Ìí’“OBJƒpƒŒƒbƒg
-	D_PLTTID_SUB_FONTACT,		///<ƒTƒu‰æ–Ê‚ÌƒtƒHƒ“ƒgOBJ—pƒpƒŒƒbƒg
+	//-- ã‚µãƒ–ç”»é¢ --//
+	D_PLTTID_OBJ_COMMON_SUB,	///<ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆ
+	D_PLTTID_SUB_FONTACT,		///<ã‚µãƒ–ç”»é¢ã®ãƒ•ã‚©ãƒ³ãƒˆOBJç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
 };
 
 //--------------------------------------------------------------
-//	í’“OBJƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+//	å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 enum{
-	PALOFS_MUSIC_BAR = 0,		///<2006.03.14(‰Î) Œ»Ý–¢Žg—p
+	PALOFS_MUSIC_BAR = 0,		///<2006.03.14(ç«) ç¾åœ¨æœªä½¿ç”¨
 	PALOFS_ONPU_B = 2,
 	PALOFS_ONPU_G = 2,
 	PALOFS_ONPU_R = 7,
@@ -79,90 +79,90 @@ enum{
 	PALOFS_STAR = 3,
 	PALOFS_MUS_LINE = 2,
 	
-	DANCE_COMMON_PAL_NUM = 8,	///<í’“OBJƒpƒŒƒbƒg‚Ì–{”
+	DANCE_COMMON_PAL_NUM = 8,	///<å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆã®æœ¬æ•°
 };
 
 //--------------------------------------------------------------
-//	ƒTƒu‰æ–Ê‚Ìí’“OBJƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+//	ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 enum{
 	
-	DANCE_SUB_COMMON_PAL_NUM = 2,	///<ƒTƒu‰æ–Ê‚Ìí’“OBJƒpƒŒƒbƒg‚Ì–{”
+	DANCE_SUB_COMMON_PAL_NUM = 2,	///<ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆã®æœ¬æ•°
 };
 
 //==============================================================================
-//	ƒZƒ‹ID
+//	ã‚»ãƒ«ID
 //==============================================================================
 enum{
 	D_CELLID_START = 33000,
 
-	D_CELLID_MUSIC_BAR8,		///<‹È‚Ìis‚ðŽ¦‚·ƒo[
+	D_CELLID_MUSIC_BAR8,		///<æ›²ã®é€²è¡Œã‚’ç¤ºã™ãƒãƒ¼
 	D_CELLID_MUSIC_BAR32,
-	D_CELLID_ONPU,				///<‰¹•„
-	D_CELLID_REVIEW,			///<•]‰¿ƒpƒlƒ‹
-	D_CELLID_MY_CURSOR,			///<Ž©•ª‚ðŽw‚·ƒJ[ƒ\ƒ‹
-	D_CELLID_PRIN,				///<ƒvƒŠƒ“
-	D_CELLID_SHADOW,			///<‰e
-	D_CELLID_SPOTLIGHT,			///<ƒXƒ|ƒbƒgƒ‰ƒCƒg
-	D_CELLID_STAR,				///<¯
-	D_CELLID_MUS_LINE,			///<ƒ~ƒ…[ƒWƒbƒNƒ‰ƒCƒ“
+	D_CELLID_ONPU,				///<éŸ³ç¬¦
+	D_CELLID_REVIEW,			///<è©•ä¾¡ãƒ‘ãƒãƒ«
+	D_CELLID_MY_CURSOR,			///<è‡ªåˆ†ã‚’æŒ‡ã™ã‚«ãƒ¼ã‚½ãƒ«
+	D_CELLID_PRIN,				///<ãƒ—ãƒªãƒ³
+	D_CELLID_SHADOW,			///<å½±
+	D_CELLID_SPOTLIGHT,			///<ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆ
+	D_CELLID_STAR,				///<æ˜Ÿ
+	D_CELLID_MUS_LINE,			///<ãƒŸãƒ¥ãƒ¼ã‚¸ãƒƒã‚¯ãƒ©ã‚¤ãƒ³
 
 
-	//-- ƒTƒu‰æ–Ê --//
+	//-- ã‚µãƒ–ç”»é¢ --//
 	
 	
-	//-- ƒtƒHƒ“ƒgOBJ --//
-	D_CELLID_DCI_FONT_FORWARD,		///<‚Ü‚¦
-	D_CELLID_DCI_FONT_BACK = D_CELLID_DCI_FONT_FORWARD + DCI_FONT_ID_OFFSET,	///<‚¤‚µ‚ë
-	D_CELLID_DCI_FONT_LEFT = D_CELLID_DCI_FONT_BACK + DCI_FONT_ID_OFFSET,		///<‚Ð‚¾‚è
-	D_CELLID_DCI_FONT_RIGHT = D_CELLID_DCI_FONT_LEFT + DCI_FONT_ID_OFFSET,		///<‚Ý‚¬
+	//-- ãƒ•ã‚©ãƒ³ãƒˆOBJ --//
+	D_CELLID_DCI_FONT_FORWARD,		///<ã¾ãˆ
+	D_CELLID_DCI_FONT_BACK = D_CELLID_DCI_FONT_FORWARD + DCI_FONT_ID_OFFSET,	///<ã†ã—ã‚
+	D_CELLID_DCI_FONT_LEFT = D_CELLID_DCI_FONT_BACK + DCI_FONT_ID_OFFSET,		///<ã²ã ã‚Š
+	D_CELLID_DCI_FONT_RIGHT = D_CELLID_DCI_FONT_LEFT + DCI_FONT_ID_OFFSET,		///<ã¿ãŽ
 	
-	//ƒtƒHƒ“ƒgOBJID’è‹`I—¹
+	//ãƒ•ã‚©ãƒ³ãƒˆOBJIDå®šç¾©çµ‚äº†
 	D_CELLID_DCI_FONT_ID_END,
 	D_CELLID_DCI_FONT_END = D_CELLID_DCI_FONT_ID_END + DCI_FONT_ID_OFFSET,
 };
 
 //==============================================================================
-//	ƒZƒ‹ƒAƒjƒID
+//	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID
 //==============================================================================
 enum{
 	D_CELLANMID_START = 33000,
 
-	D_CELLANMID_MUSIC_BAR8,		///<‹È‚Ìis‚ðŽ¦‚·ƒo[
+	D_CELLANMID_MUSIC_BAR8,		///<æ›²ã®é€²è¡Œã‚’ç¤ºã™ãƒãƒ¼
 	D_CELLANMID_MUSIC_BAR32,
-	D_CELLANMID_ONPU,			///<‰¹•„
-	D_CELLANMID_REVIEW,			///<•]‰¿ƒpƒlƒ‹
-	D_CELLANMID_MY_CURSOR,			///<Ž©•ª‚ðŽw‚·ƒJ[ƒ\ƒ‹
-	D_CELLANMID_PRIN,				///<ƒvƒŠƒ“
-	D_CELLANMID_SHADOW,			///<‰e
-	D_CELLANMID_SPOTLIGHT,			///<ƒXƒ|ƒbƒgƒ‰ƒCƒg
-	D_CELLANMID_STAR,				///<¯
-	D_CELLANMID_MUS_LINE,			///<ƒ~ƒ…[ƒWƒbƒNƒ‰ƒCƒ“
+	D_CELLANMID_ONPU,			///<éŸ³ç¬¦
+	D_CELLANMID_REVIEW,			///<è©•ä¾¡ãƒ‘ãƒãƒ«
+	D_CELLANMID_MY_CURSOR,			///<è‡ªåˆ†ã‚’æŒ‡ã™ã‚«ãƒ¼ã‚½ãƒ«
+	D_CELLANMID_PRIN,				///<ãƒ—ãƒªãƒ³
+	D_CELLANMID_SHADOW,			///<å½±
+	D_CELLANMID_SPOTLIGHT,			///<ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆ
+	D_CELLANMID_STAR,				///<æ˜Ÿ
+	D_CELLANMID_MUS_LINE,			///<ãƒŸãƒ¥ãƒ¼ã‚¸ãƒƒã‚¯ãƒ©ã‚¤ãƒ³
 
 
-	//-- ƒTƒu‰æ–Ê --//
+	//-- ã‚µãƒ–ç”»é¢ --//
 	
 	
-	//-- ƒtƒHƒ“ƒgOBJ --//
-	D_CELLANMID_DCI_FONT_FORWARD,		///<‚Ü‚¦
-	D_CELLANMID_DCI_FONT_BACK = D_CELLANMID_DCI_FONT_FORWARD + DCI_FONT_ID_OFFSET,	///<‚¤‚µ‚ë
-	D_CELLANMID_DCI_FONT_LEFT = D_CELLANMID_DCI_FONT_BACK + DCI_FONT_ID_OFFSET,		///<‚Ð‚¾‚è
-	D_CELLANMID_DCI_FONT_RIGHT = D_CELLANMID_DCI_FONT_LEFT + DCI_FONT_ID_OFFSET,		///<‚Ý‚¬
+	//-- ãƒ•ã‚©ãƒ³ãƒˆOBJ --//
+	D_CELLANMID_DCI_FONT_FORWARD,		///<ã¾ãˆ
+	D_CELLANMID_DCI_FONT_BACK = D_CELLANMID_DCI_FONT_FORWARD + DCI_FONT_ID_OFFSET,	///<ã†ã—ã‚
+	D_CELLANMID_DCI_FONT_LEFT = D_CELLANMID_DCI_FONT_BACK + DCI_FONT_ID_OFFSET,		///<ã²ã ã‚Š
+	D_CELLANMID_DCI_FONT_RIGHT = D_CELLANMID_DCI_FONT_LEFT + DCI_FONT_ID_OFFSET,		///<ã¿ãŽ
 	
-	//ƒtƒHƒ“ƒgOBJID’è‹`I—¹
+	//ãƒ•ã‚©ãƒ³ãƒˆOBJIDå®šç¾©çµ‚äº†
 	D_CELLANMID_DCI_FONT_ID_END,
 	D_CELLANMID_DCI_FONT_END = D_CELLANMID_DCI_FONT_ID_END + DCI_FONT_ID_OFFSET,
 };
 
 //==============================================================================
-//	ƒ}ƒ‹ƒ`ƒZƒ‹ID
+//	ãƒžãƒ«ãƒã‚»ãƒ«ID
 //==============================================================================
 enum{
 	D_MCELLID_START = 33000,
 };
 
 //==============================================================================
-//	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒID
+//	ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID
 //==============================================================================
 enum{
 	D_MCELLANMID_START = 33000,

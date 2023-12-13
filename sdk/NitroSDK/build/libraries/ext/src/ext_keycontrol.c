@@ -30,7 +30,7 @@
 /*---------------------------------------------------------------------------*
   Name:         EXT_AutoKeys
 
-  Description:  ƒL[‚Ì“ü—Í.
+  Description:  ã‚­ãƒ¼ã®å…¥åŠ›.
 
   Arguments:    mode        current display mode
   
@@ -39,7 +39,7 @@
  *---------------------------------------------------------------------------*/
 void EXT_AutoKeys(const EXTKeys *sequence, u16 *cont, u16 *trig)
 {
-    // ƒL[ƒV[ƒPƒ“ƒXƒJƒEƒ“ƒ^
+    // ã‚­ãƒ¼ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚«ã‚¦ãƒ³ã‚¿
     static u16 absolute_cnt = 0;
     static u16 last_key = 0;
     u16     cnt;
@@ -47,7 +47,7 @@ void EXT_AutoKeys(const EXTKeys *sequence, u16 *cont, u16 *trig)
     cnt = absolute_cnt;
     while (cnt >= sequence->count)
     {
-        // count’l‚ª0‚ÌƒV[ƒPƒ“ƒX‚ª‚ ‚ê‚ÎI’[‚Æ‚İ‚È‚·
+        // countå€¤ãŒ0ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãŒã‚ã‚Œã°çµ‚ç«¯ã¨ã¿ãªã™
         if (sequence->count == 0)
         {
             return;

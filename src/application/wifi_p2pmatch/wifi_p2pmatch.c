@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	wifi_p2pmatch.c
- * @bfief	WIFIP2Pƒ}ƒbƒ`ƒ“ƒO‰æ–Ê
+ * @bfief	WIFIP2Pãƒãƒƒãƒãƒ³ã‚°ç”»é¢
  * @author	k.ohno
  * @date	06.04.07
  */
@@ -61,7 +61,7 @@
 #include "system/snd_tool.h"  //sndTOOL
 #include "savedata/email_savedata.h"
 
-#include "wifip2pmatch.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "wifip2pmatch.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 
 #include "include/system/pm_debug_wifi.h"
 
@@ -69,17 +69,17 @@
 
 #include "comm_command_wfp2pmf_func.h"
 
-// WIFI2DMAPƒVƒXƒeƒ€ƒI[ƒo[ƒŒƒC
+// WIFI2DMAPã‚·ã‚¹ãƒ†ãƒ ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤
 FS_EXTERN_OVERLAY(wifi_2dmapsys);
 
-// WIFI@‘ÎíAUTOÓ°ÄŞƒfƒoƒbƒN
+// WIFIã€€å¯¾æˆ¦AUTOãƒ¢ãƒ¼ãƒ‰ãƒ‡ãƒãƒƒã‚¯
 #ifdef _WIFI_DEBUG_TUUSHIN
 extern WIFI_DEBUG_BATTLE_WK WIFI_DEBUG_BATTLE_Work;
 #endif	//_WIFI_DEBUG_TUUSHIN
 
 
 //-------------------------------------
-///	ƒ}ƒbƒ`ƒ“ƒO—pŠg’£ƒq[ƒvƒTƒCƒY
+///	ãƒãƒƒãƒãƒ³ã‚°ç”¨æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚º
 //=====================================
 #define WIFI_P2PMATCH_EXHEAP_SIZE	( 0x10000 )
 //#define WIFI_P2PMATCH_EXHEAP_SIZE	( 0x5000 )
@@ -87,71 +87,71 @@ extern WIFI_DEBUG_BATTLE_WK WIFI_DEBUG_BATTLE_Work;
 
 
 
-///	‚a‚fƒpƒŒƒbƒg’è‹` 2005/09/15
+///	ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆå®šç¾© 2005/09/15
 //
-//	0 ` 5  : ƒtƒB[ƒ‹ƒhƒ}ƒbƒv‚a‚f—p
-//  6       : “VŒó
-//  7       : ’n–¼ƒEƒCƒ“ƒhƒE
-//  8       : ŠÅ”ÂƒEƒCƒ“ƒhƒEiƒ}ƒbƒvA•W¯‚È‚Çj
-//  9       : ŠÅ”ÂƒEƒCƒ“ƒhƒEi˜gAƒtƒHƒ“ƒgj
-//  10      : ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE
-//  11      : ƒƒjƒ…[ƒEƒCƒ“ƒhƒE
-//  12      : ƒƒbƒZ[ƒWƒtƒHƒ“ƒg
-//  13      : ƒVƒXƒeƒ€ƒtƒHƒ“ƒg
-//	14		: –¢g—piƒ[ƒJƒ‰ƒCƒY—pj
-//	15		: ƒfƒoƒbƒO—pi»•i”Å‚Å‚Í–¢g—pj
-#define FLD_WEATHER_PAL      (  6 )			//  “VŒó
-#define FLD_PLACENAME_PAL    (  7 )         //  ’n–¼ƒEƒCƒ“ƒhƒE
-#define FLD_BOARD1FRAME_PAL  (  8 )         //  ŠÅ”ÂƒEƒCƒ“ƒhƒEiƒ}ƒbƒvA•W¯‚È‚Çj
-#define FLD_BOARD2FRAME_PAL  (  9 )         //  ŠÅ”ÂƒEƒCƒ“ƒhƒEi˜gAƒtƒHƒ“ƒgj
-#define FLD_MESFRAME_PAL     ( 10 )         //  ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE
-#define FLD_MENUFRAME_PAL    ( 11 )         //  ƒƒjƒ…[ƒEƒCƒ“ƒhƒE
-#define FLD_MESFONT_PAL      ( 12 )         //  ƒƒbƒZ[ƒWƒtƒHƒ“ƒg
-#define FLD_SYSFONT_PAL	     ( 13 )         //  ƒVƒXƒeƒ€ƒtƒHƒ“ƒg
-#define FLD_LOCALIZE_PAL     ( 14 )         //	–¢g—piƒ[ƒJƒ‰ƒCƒY—pj
-#define FLD_DEBUG_PAL        ( 15 )         //	ƒfƒoƒbƒO—pi»•i”Å‚Å‚Í–¢g—pj
+//	0 ã€œ 5  : ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ï¼¢ï¼§ç”¨
+//  6       : å¤©å€™
+//  7       : åœ°åã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+//  8       : çœ‹æ¿ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼ˆãƒãƒƒãƒ—ã€æ¨™è­˜ãªã©ï¼‰
+//  9       : çœ‹æ¿ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼ˆæ ã€ãƒ•ã‚©ãƒ³ãƒˆï¼‰
+//  10      : ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+//  11      : ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+//  12      : ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆ
+//  13      : ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
+//	14		: æœªä½¿ç”¨ï¼ˆãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ï¼‰
+//	15		: ãƒ‡ãƒãƒƒã‚°ç”¨ï¼ˆè£½å“ç‰ˆã§ã¯æœªä½¿ç”¨ï¼‰
+#define FLD_WEATHER_PAL      (  6 )			//  å¤©å€™
+#define FLD_PLACENAME_PAL    (  7 )         //  åœ°åã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define FLD_BOARD1FRAME_PAL  (  8 )         //  çœ‹æ¿ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼ˆãƒãƒƒãƒ—ã€æ¨™è­˜ãªã©ï¼‰
+#define FLD_BOARD2FRAME_PAL  (  9 )         //  çœ‹æ¿ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼ˆæ ã€ãƒ•ã‚©ãƒ³ãƒˆï¼‰
+#define FLD_MESFRAME_PAL     ( 10 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define FLD_MENUFRAME_PAL    ( 11 )         //  ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define FLD_MESFONT_PAL      ( 12 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆ
+#define FLD_SYSFONT_PAL	     ( 13 )         //  ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
+#define FLD_LOCALIZE_PAL     ( 14 )         //	æœªä½¿ç”¨ï¼ˆãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨ï¼‰
+#define FLD_DEBUG_PAL        ( 15 )         //	ãƒ‡ãƒãƒƒã‚°ç”¨ï¼ˆè£½å“ç‰ˆã§ã¯æœªä½¿ç”¨ï¼‰
 
 /*********************************************************************************************
-	ƒƒCƒ“‰æ–Ê‚ÌCGXŠ„‚èU‚è		2006/01/12
+	ãƒ¡ã‚¤ãƒ³ç”»é¢ã®CGXå‰²ã‚ŠæŒ¯ã‚Š		2006/01/12
 
-		ƒEƒBƒ“ƒhƒE˜g	F	409 - 511
-			‰ï˜bAƒƒjƒ…[A’n–¼AŠÅ”Â
+		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ 	ï¼š	409 - 511
+			ä¼šè©±ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€åœ°åã€çœ‹æ¿
 
-		BMPƒEƒBƒ“ƒhƒE‚P	F	297 - 408
-			‰ï˜biÅ‘åjAŠÅ”ÂAc‚èƒ{[ƒ‹”
+		BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼‘	ï¼š	297 - 408
+			ä¼šè©±ï¼ˆæœ€å¤§ï¼‰ã€çœ‹æ¿ã€æ®‹ã‚Šãƒœãƒ¼ãƒ«æ•°
 
-		BMPƒEƒBƒ“ƒhƒE‚Q	F	55 - 296
-			ƒƒjƒ…[iÅ‘åjA‚Í‚¢/‚¢‚¢‚¦A’n–¼
+		BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼’	ï¼š	55 - 296
+			ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ˆæœ€å¤§ï¼‰ã€ã¯ã„/ã„ã„ãˆã€åœ°å
 
 *********************************************************************************************/
 
 /*********************************************************************************************
-	ƒEƒBƒ“ƒhƒE˜g
+	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ 
 *********************************************************************************************/
-// ‰ï˜bƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define	TALK_WIN_CGX_SIZE	( 18+12 )
 #define	TALK_WIN_CGX_NUM	( 512 - TALK_WIN_CGX_SIZE )
 #define	TALK_WIN_PAL		( 10 )
 
-// ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define	MENU_WIN_CGX_SIZE	( 9 )
 #define	MENU_WIN_CGX_NUM	( TALK_WIN_CGX_NUM - MENU_WIN_CGX_SIZE )
 #define	MENU_WIN_PAL		( 11 )
 
-// ’n–¼ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+// åœ°åã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define	PLACE_WIN_CGX_SIZE	( 10 )
 #define	PLACE_WIN_CGX_NUM	( MENU_WIN_CGX_NUM - PLACE_WIN_CGX_SIZE )
 #define	PLACE_WIN_PAL		( 7 )
 
-// ŠÅ”ÂƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+// çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define	BOARD_WIN_CGX_SIZE	( 18+12 + 24 )
 #define	BOARD_WIN_CGX_NUM	( PLACE_WIN_CGX_NUM - BOARD_WIN_CGX_SIZE )
 #define	BOARD_WIN_PAL		( FLD_BOARD2FRAME_PAL )
 
 /*********************************************************************************************
-	BMPƒEƒBƒ“ƒhƒE
+	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 *********************************************************************************************/
-// ‰ï˜bƒEƒBƒ“ƒhƒEiƒƒCƒ“j
+// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆãƒ¡ã‚¤ãƒ³ï¼‰
 #define	FLD_MSG_WIN_PX		( 2 )
 #define	FLD_MSG_WIN_PY		( 19 )
 #define	FLD_MSG_WIN_SX		( 27 )
@@ -159,7 +159,7 @@ extern WIFI_DEBUG_BATTLE_WK WIFI_DEBUG_BATTLE_Work;
 #define	FLD_MSG_WIN_PAL		( FLD_MESFONT_PAL )
 #define	FLD_MSG_WIN_CGX		( BOARD_WIN_CGX_NUM - ( FLD_MSG_WIN_SX * FLD_MSG_WIN_SY ) )
 
-// ŠÅ”ÂƒEƒBƒ“ƒhƒEiƒƒCƒ“ji‰ï˜b‚Æ“¯‚¶ˆÊ’ui‰ï˜b‚æ‚è¬‚³‚¢jj
+// çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆãƒ¡ã‚¤ãƒ³ï¼‰ï¼ˆä¼šè©±ã¨åŒã˜ä½ç½®ï¼ˆä¼šè©±ã‚ˆã‚Šå°ã•ã„ï¼‰ï¼‰
 #define	FLD_BOARD_WIN_PX	( 9 )
 #define	FLD_BOARD_WIN_PY	( 19 )
 #define	FLD_BOARD_WIN_SX	( 20 )
@@ -167,7 +167,7 @@ extern WIFI_DEBUG_BATTLE_WK WIFI_DEBUG_BATTLE_Work;
 #define	FLD_BOARD_WIN_PAL	( FLD_BOARD2FRAME_PAL )
 #define	FLD_BOARD_WIN_CGX	( FLD_MSG_WIN_CGX )
 
-// c‚èƒ{[ƒ‹”i‰ï˜b‚Æ“¯‚¶ˆÊ’ui‰ï˜b‚æ‚è¬‚³‚¢jj
+// æ®‹ã‚Šãƒœãƒ¼ãƒ«æ•°ï¼ˆä¼šè©±ã¨åŒã˜ä½ç½®ï¼ˆä¼šè©±ã‚ˆã‚Šå°ã•ã„ï¼‰ï¼‰
 #define	FLD_BALL_WIN_PX		( 1 )
 #define	FLD_BALL_WIN_PY		( 1 )
 #define	FLD_BALL_WIN_SX		( 12 )
@@ -175,7 +175,7 @@ extern WIFI_DEBUG_BATTLE_WK WIFI_DEBUG_BATTLE_Work;
 #define	FLD_BALL_WIN_PAL	( FLD_SYSFONT_PAL )
 #define	FLD_BALL_WIN_CGX	( FLD_MSG_WIN_CGX )
 
-// ƒƒjƒ…[ƒEƒBƒ“ƒhƒEiƒƒCƒ“j
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆãƒ¡ã‚¤ãƒ³ï¼‰
 #define	FLD_MENU_WIN_PX		( 20 )
 #define	FLD_MENU_WIN_PY		( 1 )
 #define	FLD_MENU_WIN_SX		( 11 )
@@ -183,7 +183,7 @@ extern WIFI_DEBUG_BATTLE_WK WIFI_DEBUG_BATTLE_Work;
 #define	FLD_MENU_WIN_PAL	( FLD_SYSFONT_PAL )
 #define	FLD_MENU_WIN_CGX	( FLD_MSG_WIN_CGX - ( FLD_MENU_WIN_SX * FLD_MENU_WIN_SY ) )
 
-// ‚Í‚¢/‚¢‚¢‚¦ƒEƒBƒ“ƒhƒEiƒƒCƒ“jiƒƒjƒ…[‚Æ“¯‚¶ˆÊ’uiƒƒjƒ…[‚æ‚è¬‚³‚¢jj
+// ã¯ã„/ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆãƒ¡ã‚¤ãƒ³ï¼‰ï¼ˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¨åŒã˜ä½ç½®ï¼ˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚ˆã‚Šå°ã•ã„ï¼‰ï¼‰
 #define	FLD_YESNO_WIN_PX	( 25 )
 #define	FLD_YESNO_WIN_PY	( 13 )
 #define	FLD_YESNO_WIN_SX	( 6 )
@@ -191,7 +191,7 @@ extern WIFI_DEBUG_BATTLE_WK WIFI_DEBUG_BATTLE_Work;
 #define	FLD_YESNO_WIN_PAL	( FLD_SYSFONT_PAL )
 #define	FLD_YESNO_WIN_CGX	( FLD_MSG_WIN_CGX - ( FLD_YESNO_WIN_SX * FLD_YESNO_WIN_SY ) )
 
-// ’n–¼ƒEƒBƒ“ƒhƒEiƒƒjƒ…[‚Æ“¯‚¶ˆÊ’uiƒƒjƒ…[‚æ‚è¬‚³‚¢jj
+// åœ°åã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¨åŒã˜ä½ç½®ï¼ˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚ˆã‚Šå°ã•ã„ï¼‰ï¼‰
 #define FLD_PLACE_WIN_PX	( 0 )
 #define FLD_PLACE_WIN_PY	( 0 )
 #define	FLD_PLACE_WIN_SX	( 32 )
@@ -200,13 +200,13 @@ extern WIFI_DEBUG_BATTLE_WK WIFI_DEBUG_BATTLE_Work;
 
 
 
-// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒEiƒTƒuj
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆã‚µãƒ–ï¼‰
 #define	FLD_MSG_WIN_S_PX	( 2  )
 #define	FLD_MSG_WIN_S_PY	( 19 )
 #define	FLD_MSG_WIN_S_PAL	( FLD_MESFONT_PAL )
 #define	FLD_MSG_WIN_S_CGX	( MENU_WIN_CGX_NUM - ( FLD_MSG_WIN_SX * FLD_MSG_WIN_SY ) )
 
-// ŠÅ”ÂƒEƒBƒ“ƒhƒEiƒTƒuj
+// çœ‹æ¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆã‚µãƒ–ï¼‰
 #define	FLD_BOARD_WIN_S_PX	( 9 )
 #define	FLD_BOARD_WIN_S_PY	( 19 )
 #define	FLD_BOARD_WIN_S_SX	( 21 )
@@ -214,7 +214,7 @@ extern WIFI_DEBUG_BATTLE_WK WIFI_DEBUG_BATTLE_Work;
 #define	FLD_BOARD_WIN_S_PAL	( FLD_BOARD2FRAME_PAL )
 #define	FLD_BOARD_WIN_S_CGX	( FLD_MSG_WIN_S_CGX )
 
-// ƒƒjƒ…[ƒEƒBƒ“ƒhƒEiƒTƒuj
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆã‚µãƒ–ï¼‰
 #define	FLD_MENU_WIN_S_PX	( 25 )
 #define	FLD_MENU_WIN_S_PY	( 1 )
 #define	FLD_MENU_WIN_S_SX	( 6 )
@@ -224,24 +224,24 @@ extern WIFI_DEBUG_BATTLE_WK WIFI_DEBUG_BATTLE_Work;
 
 
 
-///	ƒrƒbƒgƒ}ƒbƒv“]‘—ŠÖ”—p’è‹`
+///	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è»¢é€é–¢æ•°ç”¨å®šç¾©
 //------------------------------------------------------------------
 #define	FBMP_TRANS_OFF	(0)
 #define	FBMP_TRANS_ON	(1)
-///	•¶š•\¦“]‘—ŠÖ”—p’è‹`
+///	æ–‡å­—è¡¨ç¤ºè»¢é€é–¢æ•°ç”¨å®šç¾©
 //------------------------------------------------------------------
 #define	FBMPMSG_WAITON_SKIPOFF	(0)
 #define	FBMPMSG_WAITON_SKIPON	(1)
 #define	FBMPMSG_WAITOFF			(2)
 
 //-------------------------------------------------------------------------
-///	•¶š•\¦F’è‹`(default)	-> gflib/fntsys.h‚ÖˆÚ“®
+///	æ–‡å­—è¡¨ç¤ºè‰²å®šç¾©(default)	-> gflib/fntsys.hã¸ç§»å‹•
 //------------------------------------------------------------------
 
 #define WINCLR_COL(col)	(((col)<<4)|(col))
 
 //-------------------------------------------------------------------------
-///	•¶š•\¦ƒXƒs[ƒh’è‹`(default)
+///	æ–‡å­—è¡¨ç¤ºã‚¹ãƒ”ãƒ¼ãƒ‰å®šç¾©(default)
 //------------------------------------------------------------------
 #define	FBMP_MSG_SPEED_SLOW		(8)
 #define	FBMP_MSG_SPEED_NORMAL	(4)
@@ -250,7 +250,7 @@ extern WIFI_DEBUG_BATTLE_WK WIFI_DEBUG_BATTLE_Work;
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 enum {
     SEQ_IN = 0,
@@ -273,7 +273,7 @@ typedef enum {
     _CLACT_VCT_MOVE,
 } _OAM_ANIM_E;
 
-typedef struct{  // ƒXƒNƒŠ[ƒ“—pRECT\‘¢‘Ì
+typedef struct{  // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç”¨RECTæ§‹é€ ä½“
     u8 lt_x;
     u8 lt_y;
     u8 rb_x;
@@ -285,16 +285,16 @@ typedef struct{  // ƒXƒNƒŠ[ƒ“—pRECT\‘¢‘Ì
 #define WF_FONTOAM_NUM	( 1 )
 
 #define _PRINTTASK_MAX (8)
-#define _TIMING_GAME_CHECK  (13)// ‚Â‚È‚ª‚Á‚½’¼Œã
-#define _TIMING_GAME_CHECK2  (14)// ‚Â‚È‚ª‚Á‚½’¼Œã
-#define _TIMING_GAME_START  (15)// ƒ^ƒCƒ~ƒ“ƒO‚ğ‚»‚ë‚¦‚é
-#define _TIMING_GAME_START2  (18)// ƒ^ƒCƒ~ƒ“ƒO‚ğ‚»‚ë‚¦‚é
-#define _TIMING_BATTLE_END  (16)// ƒ^ƒCƒ~ƒ“ƒO‚ğ‚»‚ë‚¦‚é
+#define _TIMING_GAME_CHECK  (13)// ã¤ãªãŒã£ãŸç›´å¾Œ
+#define _TIMING_GAME_CHECK2  (14)// ã¤ãªãŒã£ãŸç›´å¾Œ
+#define _TIMING_GAME_START  (15)// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ãã‚ãˆã‚‹
+#define _TIMING_GAME_START2  (18)// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ãã‚ãˆã‚‹
+#define _TIMING_BATTLE_END  (16)// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ãã‚ãˆã‚‹
 
-#define _RECONECTING_WAIT_TIME (20)  //ÄÚ‘±ŠÔ
+#define _RECONECTING_WAIT_TIME (20)  //å†æ¥ç¶šæ™‚é–“
 
 
-// ƒ†[ƒU[•\¦–Ê‚Ìİ’è
+// ãƒ¦ãƒ¼ã‚¶ãƒ¼è¡¨ç¤ºé¢ã®è¨­å®š
 #define WIFIP2PMATCH_PLAYER_DISP_X	( 1 )
 #define WIFIP2PMATCH_PLAYER_DISP_Y	( 1 )
 #define WIFIP2PMATCH_PLAYER_DISP_SIZX	( 28 )
@@ -305,14 +305,14 @@ typedef struct{  // ƒXƒNƒŠ[ƒ“—pRECT\‘¢‘Ì
 
 
 //FRAME3
-#define	_CGX_BOTTOM	( 512 )							// ‰ï˜bƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
-#define _CGX_TITLE_BOTTOM	(_CGX_BOTTOM - 18*3)	// ƒ^ƒCƒgƒ‹ƒEƒBƒ“ƒhƒE
-#define _CGX_USER_BOTTOM	(_CGX_TITLE_BOTTOM - WIFIP2PMATCH_PLAYER_DISP_WINSIZ)	// ƒ†[ƒU[ƒEƒBƒ“ƒhƒE
+#define	_CGX_BOTTOM	( 512 )							// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
+#define _CGX_TITLE_BOTTOM	(_CGX_BOTTOM - 18*3)	// ã‚¿ã‚¤ãƒˆãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+#define _CGX_USER_BOTTOM	(_CGX_TITLE_BOTTOM - WIFIP2PMATCH_PLAYER_DISP_WINSIZ)	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
-// FRAME1‚É“]‘—‚·‚éƒ†[ƒU[ƒf[ƒ^”wŒi
+// FRAME1ã«è»¢é€ã™ã‚‹ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿èƒŒæ™¯
 #define _CGX_USET_BACK_BOTTOM	( MENU_WIN_CGX_NUM - WIFIP2PMATCH_PLAYER_DISP_WINSIZ )
 
-// FRAME1‚É“]‘—‚·‚éICONƒf[ƒ^
+// FRAME1ã«è»¢é€ã™ã‚‹ICONãƒ‡ãƒ¼ã‚¿
 #define PLAYER_DISP_ICON_PLTTOFS	(8)
 #define PLAYER_DISP_ICON_PLTTOFS_SUB (13)
 #define PLAYER_DISP_ICON_PLTTNUM	(2)
@@ -342,11 +342,11 @@ enum{
 };
 
 
-// ‰ï˜bƒEƒBƒ“ƒhƒE	FRAME2
-#define COMM_MESFRAME_PAL     ( 10 )         //  ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE
-#define COMM_MENUFRAME_PAL    ( 11 )         //  ƒƒjƒ…[ƒEƒCƒ“ƒhƒE
-#define COMM_MESFONT_PAL      ( 12 )         //  ƒƒbƒZ[ƒWƒtƒHƒ“ƒg
-#define COMM_SYSFONT_PAL	  ( 13 )         //  ƒVƒXƒeƒ€ƒtƒHƒ“ƒg
+// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦	FRAME2
+#define COMM_MESFRAME_PAL     ( 10 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define COMM_MENUFRAME_PAL    ( 11 )         //  ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define COMM_MESFONT_PAL      ( 12 )         //  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆ
+#define COMM_SYSFONT_PAL	  ( 13 )         //  ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
 #define	COMM_TALK_WIN_CGX_SIZE	( 18+12 )
 #define	COMM_TALK_WIN_CGX_NUM	( 512 - COMM_TALK_WIN_CGX_SIZE)
 #define	COMM_MSG_WIN_PX		( 2 )
@@ -361,7 +361,7 @@ enum{
 #define	COMM_SYS_WIN_SX		( 23 )
 #define	COMM_SYS_WIN_SY		( 16 )
 #define	COMM_SYS_WIN_PAL		( COMM_MESFONT_PAL )
-#define	COMM_SYS_WIN_CGX		( MENU_WIN_CGX_NUM - ( COMM_SYS_WIN_SX * COMM_SYS_WIN_SY ) )	// ’ÊMƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE“]‘—æ
+#define	COMM_SYS_WIN_CGX		( MENU_WIN_CGX_NUM - ( COMM_SYS_WIN_SX * COMM_SYS_WIN_SY ) )	// é€šä¿¡ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è»¢é€å…ˆ
 
 
 // YesNoWin
@@ -369,20 +369,20 @@ enum{
 #define FRAME1_YESNO_WIN_CGX	((_CGX_USET_BACK_BOTTOM - (FLD_YESNO_WIN_SX*FLD_YESNO_WIN_SY)))
 
 
-// ƒƒCƒ“ƒƒbƒZ[ƒWƒLƒƒƒ‰
+// ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚­ãƒ£ãƒ©
 #define _NUKI_FONT_PALNO  (13)
-#define	_COL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
-#define	_COL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F”’
-#define	_COL_N_RED	    ( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÂ
-#define	_COL_N_BLUE	    ( GF_PRINTCOLOR_MAKE( 5, 6, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÔ
-#define	_COL_N_GRAY  	( GF_PRINTCOLOR_MAKE( 2, 14, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FŠD
+#define	_COL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
+#define	_COL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šç™½
+#define	_COL_N_RED	    ( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé’
+#define	_COL_N_BLUE	    ( GF_PRINTCOLOR_MAKE( 5, 6, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šèµ¤
+#define	_COL_N_GRAY  	( GF_PRINTCOLOR_MAKE( 2, 14, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šç°
 
-// –¼‘O•\¦BMPiã‰æ–Êj
+// åå‰è¡¨ç¤ºBMPï¼ˆä¸Šç”»é¢ï¼‰
 #define WIFIP2PMATCH_NAME_BMP_W	 ( 16 )
 #define WIFIP2PMATCH_NAME_BMP_H	 (  2 )
 #define WIFIP2PMATCH_NAME_BMP_SIZE (WIFIP2PMATCH_NAME_BMP_W * WIFIP2PMATCH_NAME_BMP_H)
 
-// ‰ï˜bƒEƒCƒ“ƒhƒE•\¦ˆÊ’u’è‹`
+// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä½ç½®å®šç¾©
 #define WIFIP2PMATCH_TALK_X		(  2 )
 #define WIFIP2PMATCH_TALK_Y		(  19 )
 
@@ -398,16 +398,16 @@ enum{
 #define WIFIP2PMATCH_YESNO_WIN_OFFSET		( WIFIP2PMATCH_NAME_WIN_OFFSET  + WIFIP2PMATCH_NAME_BMP_SIZE*5 )
 
 
-// VIEW–Ê
+// VIEWé¢
 enum{
-	MCV_BTTN_FRIEND_TYPE_NONE,	// İ’è‚µ‚Ä‚¢‚È‚¢
-	MCV_BTTN_FRIEND_TYPE_RES,	// —\–ñ
-	MCV_BTTN_FRIEND_TYPE_IN,		// “o˜^Ï‚İ
-	MCV_BTTN_FRIEND_TYPE_MAX,	// ƒ^ƒCƒvÅ‘å’l
+	MCV_BTTN_FRIEND_TYPE_NONE,	// è¨­å®šã—ã¦ã„ãªã„
+	MCV_BTTN_FRIEND_TYPE_RES,	// äºˆç´„
+	MCV_BTTN_FRIEND_TYPE_IN,		// ç™»éŒ²æ¸ˆã¿
+	MCV_BTTN_FRIEND_TYPE_MAX,	// ã‚¿ã‚¤ãƒ—æœ€å¤§å€¤
 };
-#define MCV_PAL_BACK		( 0 )	// ”wŒiƒpƒŒƒbƒg‚ÌŠJnˆÊ’u
-#define MCV_PAL_FRMNO		( 0 )	// ”wŒi‚ÌƒoƒbƒgƒpƒŒƒbƒgŠJnˆÊ’u
-#define MCV_PAL_BTTN		( 4 )	// ƒ{ƒ^ƒ“ƒpƒŒƒbƒg‚ÌŠJnˆÊ’u
+#define MCV_PAL_BACK		( 0 )	// èƒŒæ™¯ãƒ‘ãƒ¬ãƒƒãƒˆã®é–‹å§‹ä½ç½®
+#define MCV_PAL_FRMNO		( 0 )	// èƒŒæ™¯ã®ãƒãƒƒãƒˆãƒ‘ãƒ¬ãƒƒãƒˆé–‹å§‹ä½ç½®
+#define MCV_PAL_BTTN		( 4 )	// ãƒœã‚¿ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆã®é–‹å§‹ä½ç½®
 enum{
 	MCV_PAL_BACK_0 = 0,
 	MCV_PAL_BACK_1,
@@ -420,37 +420,37 @@ enum{
 	MCV_PAL_BTTN_NONE,
 	MCV_PAL_BTTNST_GIRL,
 	MCV_PAL_BTTNST_MAN,
-	MCV_PAL_BTTN_NUM	// ¡‚Ì‚Æ‚±‚ë—]‚è‚Í
-						// MCV_PAL_BTTN+MCV_PAL_BTTN_NUM`(PLAYER_DISP_ICON_PLTTOFS_SUB-1‚Ü‚Å
+	MCV_PAL_BTTN_NUM	// ä»Šã®ã¨ã“ã‚ä½™ã‚Šã¯
+						// MCV_PAL_BTTN+MCV_PAL_BTTN_NUMã€œ(PLAYER_DISP_ICON_PLTTOFS_SUB-1ã¾ã§
 };
-// ƒAƒCƒRƒ“‚Ì“]‘—ˆÊ’u
+// ã‚¢ã‚¤ã‚³ãƒ³ã®è»¢é€ä½ç½®
 #define MCV_ICON_CGX	(0)
 #define MCV_ICON_CGSIZ	(48)
 #define MCV_ICON_PAL		(PLAYER_DISP_ICON_PLTTOFS_SUB)
 
-#define MCV_CGX_BTTN2	(MCV_ICON_CGX+MCV_ICON_CGSIZ)	// FRAME2ƒ†[ƒU[ƒf[ƒ^
-#define MCV_CGX_BACK	(0)// FRAME0”wŒi
-#define MCV_SYSFONT_PAL	( 15 )	// ƒVƒXƒeƒ€ƒtƒHƒ“ƒg
-// WINİ’è
-#define MCV_NAMEWIN_CGX		( 1 )	// –¼‘OƒEƒBƒ“ƒhƒEŠJnˆÊ’u
-#define MCV_NAMEWIN_DEFX	( 4 )	// Šî–{ˆÊ’u
+#define MCV_CGX_BTTN2	(MCV_ICON_CGX+MCV_ICON_CGSIZ)	// FRAME2ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿
+#define MCV_CGX_BACK	(0)// FRAME0èƒŒæ™¯
+#define MCV_SYSFONT_PAL	( 15 )	// ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
+// WINè¨­å®š
+#define MCV_NAMEWIN_CGX		( 1 )	// åå‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹ä½ç½®
+#define MCV_NAMEWIN_DEFX	( 4 )	// åŸºæœ¬ä½ç½®
 #define MCV_NAMEWIN_DEFY	( 1 )
-#define MCV_NAMEWIN_OFSX	( 16 )	// ˆÊ’u‚ÌˆÚ“®’l
+#define MCV_NAMEWIN_OFSX	( 16 )	// ä½ç½®ã®ç§»å‹•å€¤
 #define MCV_NAMEWIN_OFSY	( 6 )
-#define MCV_NAMEWIN_SIZX	( 9 )	// ƒTƒCƒY
+#define MCV_NAMEWIN_SIZX	( 9 )	// ã‚µã‚¤ã‚º
 #define MCV_NAMEWIN_SIZY	( 3 )
-#define MCV_NAMEWIN_CGSIZ	( MCV_NAMEWIN_SIZX*MCV_NAMEWIN_SIZY )	// CGƒTƒCƒY
-#define MCV_NAMEWIN_CGALLSIZ	((MCV_NAMEWIN_CGSIZ*WCR_MAPDATA_1BLOCKOBJNUM)+MCV_NAMEWIN_CGX)// CG‚»‚¤ƒTƒCƒY
+#define MCV_NAMEWIN_CGSIZ	( MCV_NAMEWIN_SIZX*MCV_NAMEWIN_SIZY )	// CGã‚µã‚¤ã‚º
+#define MCV_NAMEWIN_CGALLSIZ	((MCV_NAMEWIN_CGSIZ*WCR_MAPDATA_1BLOCKOBJNUM)+MCV_NAMEWIN_CGX)// CGãã†ã‚µã‚¤ã‚º
 
 #define MCV_STATUSWIN_CGX	( MCV_NAMEWIN_CGALLSIZ+1 )
-#define MCV_STATUSWIN_DEFX	( 1 )	// Šî–{ˆÊ’u
+#define MCV_STATUSWIN_DEFX	( 1 )	// åŸºæœ¬ä½ç½®
 #define MCV_STATUSWIN_DEFY	( 1 )
-#define MCV_STATUSWIN_VCHATX ( 12 )	// VCHATˆÊ’u
-#define MCV_STATUSWIN_OFSX	( 16 )	// ˆÊ’u‚ÌˆÚ“®’l
+#define MCV_STATUSWIN_VCHATX ( 12 )	// VCHATä½ç½®
+#define MCV_STATUSWIN_OFSX	( 16 )	// ä½ç½®ã®ç§»å‹•å€¤
 #define MCV_STATUSWIN_OFSY	( 6 )
-#define MCV_STATUSWIN_SIZX	( 2 )	// ƒTƒCƒY
+#define MCV_STATUSWIN_SIZX	( 2 )	// ã‚µã‚¤ã‚º
 #define MCV_STATUSWIN_SIZY	( 3 )
-#define MCV_STATUSWIN_CGSIZ	( MCV_STATUSWIN_SIZX*MCV_STATUSWIN_SIZY )	// CGƒTƒCƒY
+#define MCV_STATUSWIN_CGSIZ	( MCV_STATUSWIN_SIZX*MCV_STATUSWIN_SIZY )	// CGã‚µã‚¤ã‚º
 
 #define MCV_USERWIN_CGX		( 1 )
 #define MCV_USERWIN_X		( 1 )
@@ -470,7 +470,7 @@ enum{
 #define MCV_BUTTON_VCTICON_OFS_X	( 13 )
 #define MCV_BUTTON_ICON_OFS_Y	( 1 )
 
-#define MCV_BUTTON_FRAME_NUM	(4)	// ƒ{ƒ^ƒ“ƒAƒjƒƒtƒŒ[ƒ€”
+#define MCV_BUTTON_FRAME_NUM	(4)	// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 
 enum{
 	MCV_BUTTON_TYPE_GIRL,
@@ -479,10 +479,10 @@ enum{
 };
 
 enum{
-	MCV_USERDISP_OFF,	// ƒ†[ƒU[•\¦OFF
-	MCV_USERDISP_INIT,	// ƒ†[ƒU[•\¦‰Šú‰»
-	MCV_USERDISP_ON,	// ƒ†[ƒU[•\¦ON
-	MCV_USERDISP_ONEX,	// ƒ†[ƒU[•\¦‹­§ON
+	MCV_USERDISP_OFF,	// ãƒ¦ãƒ¼ã‚¶ãƒ¼è¡¨ç¤ºOFF
+	MCV_USERDISP_INIT,	// ãƒ¦ãƒ¼ã‚¶ãƒ¼è¡¨ç¤ºåˆæœŸåŒ–
+	MCV_USERDISP_ON,	// ãƒ¦ãƒ¼ã‚¶ãƒ¼è¡¨ç¤ºON
+	MCV_USERDISP_ONEX,	// ãƒ¦ãƒ¼ã‚¶ãƒ¼è¡¨ç¤ºå¼·åˆ¶ON
 };
 
 // PAGE 1
@@ -607,26 +607,26 @@ enum{
 // PAGE7
 #define MCV_USERD_MINI_TITLE_X		(8)
 #define MCV_USERD_MINI_TITLE_Y		(0)
-#define MCV_USERD_MINI_BC_X			(8)		// ‚½‚Ü‚¢‚ê
+#define MCV_USERD_MINI_BC_X			(8)		// ãŸã¾ã„ã‚Œ
 #define MCV_USERD_MINI_BC_Y			(24)	
-#define MCV_USERD_MINI_BCNUM_X		(164)	// ‚½‚Ü‚¢‚ê@‚©‚¸ // MatchComment: 136 -> 164
+#define MCV_USERD_MINI_BCNUM_X		(164)	// ãŸã¾ã„ã‚Œã€€ã‹ãš // MatchComment: 136 -> 164
 #define MCV_USERD_MINI_BCNUM_Y		(24)
-#define MCV_USERD_MINI_BB_X			(8)		// ‚½‚Ü‚Ì‚è
+#define MCV_USERD_MINI_BB_X			(8)		// ãŸã¾ã®ã‚Š
 #define MCV_USERD_MINI_BB_Y			(48)	
-#define MCV_USERD_MINI_BBNUM_X		(164)	// ‚½‚Ü‚Ì‚è@‚©‚¸ // MatchComment: 136 -> 164
+#define MCV_USERD_MINI_BBNUM_X		(164)	// ãŸã¾ã®ã‚Šã€€ã‹ãš // MatchComment: 136 -> 164
 #define MCV_USERD_MINI_BBNUM_Y		(48)
-#define MCV_USERD_MINI_BL_X			(8)		// ‚Ó‚¤‚¹‚ñ
+#define MCV_USERD_MINI_BL_X			(8)		// ãµã†ã›ã‚“
 #define MCV_USERD_MINI_BL_Y			(72)	
-#define MCV_USERD_MINI_BLNUM_X		(164)	// ‚Ó‚¤‚¹‚ñ@‚©‚¸ // MatchComment: 136 -> 164
+#define MCV_USERD_MINI_BLNUM_X		(164)	// ãµã†ã›ã‚“ã€€ã‹ãš // MatchComment: 136 -> 164
 #define MCV_USERD_MINI_BLNUM_Y		(72)
 
-// ƒtƒƒ“ƒeƒBƒA”ñ•\¦ƒXƒNƒŠ[ƒ“•`‰æ
+// ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢éè¡¨ç¤ºã‚¹ã‚¯ãƒªãƒ¼ãƒ³æç”»
 #define MCV_USERD_NOFR_SCRN_X		( 0x1a )
 #define MCV_USERD_NOFR_SCRN_Y		( 0 )
 #define MCV_USERD_NOFR_SCRN_SIZX	( 0x1 )
 #define MCV_USERD_NOFR_SCRN_SIZY	( 0x1 )
 
-//  ƒtƒƒ“ƒeƒBƒAƒ^ƒCƒv
+//  ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚¿ã‚¤ãƒ—
 enum{
 	MCV_FRONTIOR_TOWOR,
 	MCV_FRONTIOR_FACTORY,
@@ -637,7 +637,7 @@ enum{
 	MCV_FRONTIOR_NUM,
 } ;
 
-#define VRANTRANSFERMAN_NUM	(32)	// VramTransferManagerƒ^ƒXƒN”
+#define VRANTRANSFERMAN_NUM	(32)	// VramTransferManagerã‚¿ã‚¹ã‚¯æ•°
 
 
 
@@ -663,33 +663,33 @@ enum{
 	MCV_USERD_BTTN_MODE_NOBACK,
 };
 
-#define MCV_USERD_BTTN_RESCONTID	( 30 )	// ƒŠƒ\[ƒXID
-#define MCV_USERD_BTTN_BGPRI		(0)		// BG—Dæ‡ˆÊ
-#define MCV_USERD_BTTN_PRI			(128)		// BG—Dæ‡ˆÊ
-#define MCV_USERD_BTTN_Y			(172)	// ƒ{ƒ^ƒ“YˆÊ’u
-#define MCV_USERD_BTTN_LEFT_X		(40)	// ©
-#define MCV_USERD_BTTN_BACK_X		(128)	// ‚à‚Ç‚é
-#define MCV_USERD_BTTN_RIGHT_X		(224)	// ¨
-#define MCV_USERD_BTTN_FONT_X		( -18 )	// ‚à‚Ç‚é@•¶šˆÊ’u
-#define MCV_USERD_BTTN_FONT_Y		( -8 )	// ‚à‚Ç‚é@•¶šˆÊ’u
-#define MCV_USERD_BTTN_FONT_SIZX	( 8 )	// ‚à‚Ç‚é@•¶š•`‰æ”ÍˆÍ
-#define MCV_USERD_BTTN_FONT_SIZY	( 2 )	// ‚à‚Ç‚é@•¶š•`‰æ”ÍˆÍ
-#define MCV_USERD_BTTN_FONT_CGXOFS	( 0 )	// CGXƒIƒtƒZƒbƒg
-#define MCV_USERD_BTTN_FONT_COL		( 0 )	// ƒJƒ‰[ƒpƒŒƒbƒg
+#define MCV_USERD_BTTN_RESCONTID	( 30 )	// ãƒªã‚½ãƒ¼ã‚¹ID
+#define MCV_USERD_BTTN_BGPRI		(0)		// BGå„ªå…ˆé †ä½
+#define MCV_USERD_BTTN_PRI			(128)		// BGå„ªå…ˆé †ä½
+#define MCV_USERD_BTTN_Y			(172)	// ãƒœã‚¿ãƒ³Yä½ç½®
+#define MCV_USERD_BTTN_LEFT_X		(40)	// â†
+#define MCV_USERD_BTTN_BACK_X		(128)	// ã‚‚ã©ã‚‹
+#define MCV_USERD_BTTN_RIGHT_X		(224)	// â†’
+#define MCV_USERD_BTTN_FONT_X		( -18 )	// ã‚‚ã©ã‚‹ã€€æ–‡å­—ä½ç½®
+#define MCV_USERD_BTTN_FONT_Y		( -8 )	// ã‚‚ã©ã‚‹ã€€æ–‡å­—ä½ç½®
+#define MCV_USERD_BTTN_FONT_SIZX	( 8 )	// ã‚‚ã©ã‚‹ã€€æ–‡å­—æç”»ç¯„å›²
+#define MCV_USERD_BTTN_FONT_SIZY	( 2 )	// ã‚‚ã©ã‚‹ã€€æ–‡å­—æç”»ç¯„å›²
+#define MCV_USERD_BTTN_FONT_CGXOFS	( 0 )	// CGXã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define MCV_USERD_BTTN_FONT_COL		( 0 )	// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define MCV_USERD_BTTN_FONT_OAMPRI	( 0 )
-#define MCV_USERD_BTTN_LEFT_SIZX	( 56 )	// ©ƒTƒCƒY
-#define MCV_USERD_BTTN_BACK_SIZX	( 96 )	// ‚à‚Ç‚éƒTƒCƒY
-#define MCV_USERD_BTTN_RIGHT_SIZX	( 56 )	// ¨‚³‚¢‚¸
-#define MCV_USERD_BTTN_SIZY			( 32 )	// c‚³‚¢‚¸
-#define MCV_USERD_BTTN_LEFT_HIT_X	( 8 )	// ©‚ ‚½‚è”»’è—pX
-#define MCV_USERD_BTTN_BACK_HIT_X	( 80 )	// ©‚ ‚½‚è”»’è—pX
-#define MCV_USERD_BTTN_RIGHT_HIT_X	( 192 )	// ©‚ ‚½‚è”»’è—pX
-#define MCV_USERD_BTTN_RIGHT_HIT_Y	( 160 )	// ©‚ ‚½‚è”»’è—pY
-#define MCV_USERD_BTTN_ANMPUSHOK	( 3 )	// ‰Ÿ‚µ‚½‚Æ”»’f‚·‚éƒ{ƒ^ƒ“‚ÌƒAƒjƒ
-#define MCV_USERD_BTTN_ANMMAX		( 5 )	// ƒAƒjƒ“àƒtƒŒ[ƒ€”
-#define MCV_USERD_BTTN_ANMMAX_0ORG	( MCV_USERD_BTTN_ANMMAX-1 )	// ƒAƒjƒ“àƒtƒŒ[ƒ€”
+#define MCV_USERD_BTTN_LEFT_SIZX	( 56 )	// â†ã‚µã‚¤ã‚º
+#define MCV_USERD_BTTN_BACK_SIZX	( 96 )	// ã‚‚ã©ã‚‹ã‚µã‚¤ã‚º
+#define MCV_USERD_BTTN_RIGHT_SIZX	( 56 )	// â†’ã•ã„ãš
+#define MCV_USERD_BTTN_SIZY			( 32 )	// ç¸¦ã•ã„ãš
+#define MCV_USERD_BTTN_LEFT_HIT_X	( 8 )	// â†ã‚ãŸã‚Šåˆ¤å®šç”¨X
+#define MCV_USERD_BTTN_BACK_HIT_X	( 80 )	// â†ã‚ãŸã‚Šåˆ¤å®šç”¨X
+#define MCV_USERD_BTTN_RIGHT_HIT_X	( 192 )	// â†ã‚ãŸã‚Šåˆ¤å®šç”¨X
+#define MCV_USERD_BTTN_RIGHT_HIT_Y	( 160 )	// â†ã‚ãŸã‚Šåˆ¤å®šç”¨Y
+#define MCV_USERD_BTTN_ANMPUSHOK	( 3 )	// æŠ¼ã—ãŸã¨åˆ¤æ–­ã™ã‚‹ãƒœã‚¿ãƒ³ã®ã‚¢ãƒ‹ãƒ¡
+#define MCV_USERD_BTTN_ANMMAX		( 5 )	// ã‚¢ãƒ‹ãƒ¡å†…ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+#define MCV_USERD_BTTN_ANMMAX_0ORG	( MCV_USERD_BTTN_ANMMAX-1 )	// ã‚¢ãƒ‹ãƒ¡å†…ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 
-// FONTOAMYÀ•WƒAƒjƒƒf[ƒ^
+// FONTOAMYåº§æ¨™ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 static const s8 c_MCV_USER_BTTN_FONT_YANM[ MCV_USERD_BTTN_ANMMAX ] = {
 	MCV_USERD_BTTN_FONT_Y, 
 	MCV_USERD_BTTN_FONT_Y - 1, 
@@ -698,14 +698,14 @@ static const s8 c_MCV_USER_BTTN_FONT_YANM[ MCV_USERD_BTTN_ANMMAX ] = {
 	MCV_USERD_BTTN_FONT_Y - 1, 
 };
 
-// ƒ{ƒ^ƒ“ƒV[ƒPƒ“ƒX@PUSHƒAƒjƒ
+// ãƒœã‚¿ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã€€PUSHã‚¢ãƒ‹ãƒ¡
 static const u8 c_MCV_USER_BTTN_ANM_PUSH[ MCV_USERD_BTTN_NUM ] = {
 	MCV_USERD_BTTN_ANM_LEFT_PUSH,
 	MCV_USERD_BTTN_ANM_BACK_PUSH,
 	MCV_USERD_BTTN_ANM_RIGHT_PUSH,
 };
 
-// ƒ{ƒ^ƒ“ƒV[ƒPƒ“ƒX@RELEASEƒAƒjƒ
+// ãƒœã‚¿ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã€€RELEASEã‚¢ãƒ‹ãƒ¡
 static const u8 c_MCV_USER_BTTN_ANM_RELEASE[ MCV_USERD_BTTN_NUM ] = {
 	MCV_USERD_BTTN_ANM_LEFT_RELEASE,
 	MCV_USERD_BTTN_ANM_BACK_RELEASE,
@@ -713,27 +713,27 @@ static const u8 c_MCV_USER_BTTN_ANM_RELEASE[ MCV_USERD_BTTN_NUM ] = {
 };
  
 static const TP_HIT_TBL	c_MCV_USER_BTTN_OAM_Hit[ MCV_USERD_BTTN_NUM ] = {
-	{	// ©
+	{	// â†
 		MCV_USERD_BTTN_RIGHT_HIT_Y, MCV_USERD_BTTN_RIGHT_HIT_Y+MCV_USERD_BTTN_SIZY,
 		MCV_USERD_BTTN_LEFT_HIT_X, MCV_USERD_BTTN_LEFT_HIT_X+MCV_USERD_BTTN_LEFT_SIZX,
 	},
-	{	// ‚à‚Ç‚é
+	{	// ã‚‚ã©ã‚‹
 		MCV_USERD_BTTN_RIGHT_HIT_Y, MCV_USERD_BTTN_RIGHT_HIT_Y+MCV_USERD_BTTN_SIZY,
 		MCV_USERD_BTTN_BACK_HIT_X, MCV_USERD_BTTN_BACK_HIT_X+MCV_USERD_BTTN_BACK_SIZX,
 	},
-	{	// ¨
+	{	// â†’
 		MCV_USERD_BTTN_RIGHT_HIT_Y, MCV_USERD_BTTN_RIGHT_HIT_Y+MCV_USERD_BTTN_SIZY,
 		MCV_USERD_BTTN_RIGHT_HIT_X, MCV_USERD_BTTN_RIGHT_HIT_X+MCV_USERD_BTTN_RIGHT_SIZX,
 	},
 };
 enum{
-	MCV_USERD_BTTN_RET_NONE,	// ‰½‚Ì”½‰‚à‚È‚µ
-	MCV_USERD_BTTN_RET_LEFT,	// ¶‚ª‚¨‚³‚ê‚½
-	MCV_USERD_BTTN_RET_BACK,	// ‚à‚Ç‚é‚ª‚¨‚³‚ê‚½
-	MCV_USERD_BTTN_RET_RIGHT,	// ‰E‚ª‚¨‚³‚ê‚½
+	MCV_USERD_BTTN_RET_NONE,	// ä½•ã®åå¿œã‚‚ãªã—
+	MCV_USERD_BTTN_RET_LEFT,	// å·¦ãŒãŠã•ã‚ŒãŸ
+	MCV_USERD_BTTN_RET_BACK,	// ã‚‚ã©ã‚‹ãŒãŠã•ã‚ŒãŸ
+	MCV_USERD_BTTN_RET_RIGHT,	// å³ãŒãŠã•ã‚ŒãŸ
 };
 
-#ifdef WFP2P_DEBUG	// l‚ğ‚¢‚Á‚Ï‚¢o‚·
+#ifdef WFP2P_DEBUG	// äººã‚’ã„ã£ã±ã„å‡ºã™
 //#define WFP2PM_MANY_OBJ
 #endif
 
@@ -741,14 +741,14 @@ enum{
 static int _seqBackup;
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static _WIFI_MACH_STATUS* WifiFriendMatchStatusGet( WIFIP2PMATCH_WORK* wk, u32 idx );
 static u8 WifiDwc_getFriendStatus( int idx );
 
 static BOOL WifiP2PMatch_CommWifiBattleStart( WIFIP2PMATCH_WORK* wk, int friendno, int status );
 
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 static void VBlankFunc( void * work );
 static void VramBankSet(void);
 static void BgInit( GF_BGL_INI * ini );
@@ -764,7 +764,7 @@ static void MainMenuMsgInit(WIFIP2PMATCH_WORK *wk);
 static void SetCursor_Pos( CLACT_WORK_PTR act, int x, int y );
 static void WindowSet(void);
 
-// ƒ}ƒbƒ`ƒ“ƒOƒ‹[ƒ€ŠÇ——pŠÖ”
+// ãƒãƒƒãƒãƒ³ã‚°ãƒ«ãƒ¼ãƒ ç®¡ç†ç”¨é–¢æ•°
 static void MCRSYS_SetMoveObjWork( WIFIP2PMATCH_WORK* wk, MCR_MOVEOBJ* p_obj );
 static void MCRSYS_DelMoveObjWork( WIFIP2PMATCH_WORK* wk, MCR_MOVEOBJ* p_obj );
 static void MCRSYS_SetFriendObj( WIFIP2PMATCH_WORK* wk, u32 heapID );
@@ -782,7 +782,7 @@ static int WifiP2PMatchBglFrmIconPalGet( u32 frm );
 
 static int WifiP2PMatchFriendListStart( void );
 
-// —F’Bƒf[ƒ^‚Ì‹­§•\¦ˆ—
+// å‹é”ãƒ‡ãƒ¼ã‚¿ã®å¼·åˆ¶è¡¨ç¤ºå‡¦ç†
 static void WifiP2PMatch_UserDispOn( WIFIP2PMATCH_WORK *wk, u32 friendNo, u32 heapID );
 static void WifiP2PMatch_UserDispOff( WIFIP2PMATCH_WORK *wk, u32 heapID );
 static void WifiP2PMatch_UserDispOff_Target( WIFIP2PMATCH_WORK *wk, u32 target_friend, u32 heapID );
@@ -790,7 +790,7 @@ static void WifiP2PMatch_UserDispOff_Target( WIFIP2PMATCH_WORK *wk, u32 target_f
 static void WifiP2PMatch_UserDispOn_MyAcces( WIFIP2PMATCH_WORK *wk, u32 friendNo, u32 heapID );
 static void WifiP2PMatch_UserDispOff_MyAcces( WIFIP2PMATCH_WORK *wk, u32 heapID );
 
-// —F’Bƒf[ƒ^ƒrƒ…[ƒA[
+// å‹é”ãƒ‡ãƒ¼ã‚¿ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼
 static BOOL MCVSys_MoveCheck( const WIFIP2PMATCH_WORK *wk );
 static void MCVSys_Init( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 heapID );
 static void MCVSys_Exit( WIFIP2PMATCH_WORK *wk );
@@ -868,7 +868,7 @@ static void FriendRequestWaitOff( WIFIP2PMATCH_WORK* wk );
 static BOOL FriendRequestWaitFlagGet( const WIFIP2PMATCH_WORK* cp_wk );
 
 
-// FuncTable‚©‚çƒV[ƒPƒ“ƒX‘JˆÚ‚ÅŒÄ‚Î‚ê‚éŠÖ”
+// FuncTableã‹ã‚‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é·ç§»ã§å‘¼ã°ã‚Œã‚‹é–¢æ•°
 static int WifiP2PMatch_MainInit( WIFIP2PMATCH_WORK *wk, int seq );
 static int _normalConnectYesNo( WIFIP2PMATCH_WORK *wk, int seq );
 static int _normalConnectWait( WIFIP2PMATCH_WORK *wk, int seq );
@@ -951,7 +951,7 @@ static int WifiP2PMatch_FirstSaving2( WIFIP2PMATCH_WORK *wk, int seq );
 
 
 
-// ƒŒƒR[ƒhƒR[ƒi[ƒƒCƒ“ƒV[ƒPƒ“ƒX—pŠÖ””z—ñ’è‹`
+// ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç”¨é–¢æ•°é…åˆ—å®šç¾©
 static int (*FuncTable[])(WIFIP2PMATCH_WORK *wk, int seq)={
     WifiP2PMatch_MainInit,	// WIFIP2PMATCH_MODE_INIT  = 0,
     _normalConnectYesNo,    // WIFIP2PMATCH_NORMALCONNECT_YESNO
@@ -1037,31 +1037,31 @@ static const BMPWIN_DAT _yesNoBmpDat = {
     FLD_YESNO_WIN_SX, FLD_YESNO_WIN_SY, FLD_YESNO_WIN_PAL, FLD_YESNO_WIN_CGX
     };
 
-// ƒtƒƒ“ƒeƒBƒAƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+// ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 static BOOL _frontierInCheck( WIFIP2PMATCH_WORK * wk )
 {
 	return SysFlag_ArriveGet(SaveData_GetEventWork(wk->pSaveData),FLAG_ARRIVE_D32R0101);
 }
 
-// ‚Ü‚º‚Ü‚º—¿—ƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+// ã¾ãœã¾ãœæ–™ç†ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 static BOOL _pofinCaseCheck( WIFIP2PMATCH_WORK * wk )
 {
 
-	// ƒ|ƒ‹ƒgƒP[ƒX‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( !MyItem_GetItemNum( SaveData_GetMyItem(wk->pSaveData),ITEM_POFINKEESU,HEAPID_WIFIP2PMATCH ) ){
 		return FALSE;
 	}
 	return TRUE;
 }
 
-// ƒ~ƒjƒQ[ƒ€ƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 static BOOL _miniGameInCheck( WIFIP2PMATCH_WORK * wk )
 {
 //	return FALSE;
-	return TRUE;	// ƒ~ƒjƒQ[ƒ€‚Íí‚ÉŒ©‚¦‚éó‘Ô‚É‚·‚é
+	return TRUE;	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã¯å¸¸ã«è¦‹ãˆã‚‹çŠ¶æ…‹ã«ã™ã‚‹
 }
 
-// ©•ªƒXƒe[ƒ^ƒX‚ğæ“¾‚·‚é
+// è‡ªåˆ†ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—ã™ã‚‹
 static u32 _WifiMyStatusGet( WIFIP2PMATCH_WORK * p_wk, _WIFI_MACH_STATUS* p_status )
 {
 	u32 status;
@@ -1095,21 +1095,21 @@ static u32 _WifiMyStatusGet( WIFIP2PMATCH_WORK * p_wk, _WIFI_MACH_STATUS* p_stat
 }
 
 
-// 2`4l‚Å‚ ‚»‚×‚é‚©
+// 2ã€œ4äººã§ã‚ãã¹ã‚‹ã‹
 static BOOL _wait2to4Mode( int status )
 {
     switch(status){
-      case WIFI_STATUS_POFIN_WAIT:    // ƒ|ƒtƒBƒ“•åW’†
-      case WIFI_STATUS_POFIN:		 // ƒ|ƒtƒBƒ“’†
+      case WIFI_STATUS_POFIN_WAIT:    // ãƒãƒ•ã‚£ãƒ³å‹Ÿé›†ä¸­
+      case WIFI_STATUS_POFIN:		 // ãƒãƒ•ã‚£ãƒ³ä¸­
 		  
-      case WIFI_STATUS_BUCKET_WAIT:    // ƒoƒPƒbƒg•åW’†
-      case WIFI_STATUS_BUCKET:		 // ƒoƒPƒbƒg’†
+      case WIFI_STATUS_BUCKET_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+      case WIFI_STATUS_BUCKET:		 // ãƒã‚±ãƒƒãƒˆä¸­
 
-      case WIFI_STATUS_BALLOON_WAIT:    // ƒoƒPƒbƒg•åW’†
-      case WIFI_STATUS_BALLOON:		 // ƒoƒPƒbƒg’†
+      case WIFI_STATUS_BALLOON_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+      case WIFI_STATUS_BALLOON:		 // ãƒã‚±ãƒƒãƒˆä¸­
 
-      case WIFI_STATUS_BALANCEBALL_WAIT:    // ƒoƒPƒbƒg•åW’†
-      case WIFI_STATUS_BALANCEBALL:		 // ƒoƒPƒbƒg’†
+      case WIFI_STATUS_BALANCEBALL_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+      case WIFI_STATUS_BALANCEBALL:		 // ãƒã‚±ãƒƒãƒˆä¸­
         return TRUE;
       default:
         return FALSE;
@@ -1119,17 +1119,17 @@ static BOOL _wait2to4Mode( int status )
 static u32 _get2to4ModeEndSeq( int status )
 {
     switch(status){
-      case WIFI_STATUS_POFIN_WAIT:    // ƒ|ƒtƒBƒ“•åW’†
-      case WIFI_STATUS_POFIN:		 // ƒ|ƒtƒBƒ“’†
+      case WIFI_STATUS_POFIN_WAIT:    // ãƒãƒ•ã‚£ãƒ³å‹Ÿé›†ä¸­
+      case WIFI_STATUS_POFIN:		 // ãƒãƒ•ã‚£ãƒ³ä¸­
 		return WIFI_P2PMATCH_POFIN;
-      case WIFI_STATUS_BUCKET_WAIT:    // ƒoƒPƒbƒg•åW’†
-      case WIFI_STATUS_BUCKET:		 // ƒoƒPƒbƒg’†
+      case WIFI_STATUS_BUCKET_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+      case WIFI_STATUS_BUCKET:		 // ãƒã‚±ãƒƒãƒˆä¸­
 		return WIFI_P2PMATCH_BUCKET;
-      case WIFI_STATUS_BALLOON_WAIT:    // ƒoƒPƒbƒg•åW’†
-      case WIFI_STATUS_BALLOON:		 // ƒoƒPƒbƒg’†
+      case WIFI_STATUS_BALLOON_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+      case WIFI_STATUS_BALLOON:		 // ãƒã‚±ãƒƒãƒˆä¸­
 		return WIFI_P2PMATCH_BALLOON;
-      case WIFI_STATUS_BALANCEBALL_WAIT:    // ƒoƒPƒbƒg•åW’†
-      case WIFI_STATUS_BALANCEBALL:		 // ƒoƒPƒbƒg’†
+      case WIFI_STATUS_BALANCEBALL_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+      case WIFI_STATUS_BALANCEBALL:		 // ãƒã‚±ãƒƒãƒˆä¸­
 		return WIFI_P2PMATCH_BALANCEBALL;
       default:
 		break;
@@ -1139,18 +1139,18 @@ static u32 _get2to4ModeEndSeq( int status )
 	return 0;
 }
 
-// ƒXƒe[ƒg‚ªBATTLEWAIT‚©‚Ç‚¤‚©
+// ã‚¹ãƒ†ãƒ¼ãƒˆãŒBATTLEWAITã‹ã©ã†ã‹
 static BOOL _modeBattleWait(int status)
 {
     switch(status){
-      case WIFI_STATUS_SBATTLE50_WAIT:   // ƒVƒ“ƒOƒ‹Lv50‘Îí•åW’†
-      case WIFI_STATUS_SBATTLE100_WAIT:   // ƒVƒ“ƒOƒ‹Lv100‘Îí•åW’†
-      case WIFI_STATUS_SBATTLE_FREE_WAIT:   // ƒVƒ“ƒOƒ‹Lv100‘Îí•åW’†
-      case WIFI_STATUS_DBATTLE50_WAIT:   // ƒ_ƒuƒ‹Lv50‘Îí•åW’†
-      case WIFI_STATUS_DBATTLE100_WAIT:   // ƒ_ƒuƒ‹Lv100‘Îí•åW’†
-      case WIFI_STATUS_DBATTLE_FREE_WAIT:   // ƒ_ƒuƒ‹Lv100‘Îí•åW’†
+      case WIFI_STATUS_SBATTLE50_WAIT:   // ã‚·ãƒ³ã‚°ãƒ«Lv50å¯¾æˆ¦å‹Ÿé›†ä¸­
+      case WIFI_STATUS_SBATTLE100_WAIT:   // ã‚·ãƒ³ã‚°ãƒ«Lv100å¯¾æˆ¦å‹Ÿé›†ä¸­
+      case WIFI_STATUS_SBATTLE_FREE_WAIT:   // ã‚·ãƒ³ã‚°ãƒ«Lv100å¯¾æˆ¦å‹Ÿé›†ä¸­
+      case WIFI_STATUS_DBATTLE50_WAIT:   // ãƒ€ãƒ–ãƒ«Lv50å¯¾æˆ¦å‹Ÿé›†ä¸­
+      case WIFI_STATUS_DBATTLE100_WAIT:   // ãƒ€ãƒ–ãƒ«Lv100å¯¾æˆ¦å‹Ÿé›†ä¸­
+      case WIFI_STATUS_DBATTLE_FREE_WAIT:   // ãƒ€ãƒ–ãƒ«Lv100å¯¾æˆ¦å‹Ÿé›†ä¸­
 #ifdef WFP2P_DEBUG_EXON
-      case WIFI_STATUS_MBATTLE_FREE_WAIT:   // ƒ}ƒ‹ƒ`ƒoƒgƒ‹@ƒtƒŠ[‘Îí•åW’†
+      case WIFI_STATUS_MBATTLE_FREE_WAIT:   // ãƒãƒ«ãƒãƒãƒˆãƒ«ã€€ãƒ•ãƒªãƒ¼å¯¾æˆ¦å‹Ÿé›†ä¸­
 #endif
         return TRUE;
       default:
@@ -1158,40 +1158,40 @@ static BOOL _modeBattleWait(int status)
     }
 }
 
-// ƒXƒe[ƒg‚ªWAIT‚©‚Ç‚¤‚©
+// ã‚¹ãƒ†ãƒ¼ãƒˆãŒWAITã‹ã©ã†ã‹
 static BOOL _modeWait(int status)
 {
     if(_modeBattleWait(status)){
         return TRUE;
     }
     switch(status){
-      case WIFI_STATUS_TRADE_WAIT:    // ŒğŠ·•åW’†
-      case WIFI_STATUS_POFIN_WAIT:    // ƒ|ƒtƒBƒ“•åW’†
-      case WIFI_STATUS_FRONTIER_WAIT:    // ƒtƒƒ“ƒeƒBƒA•åW’†
+      case WIFI_STATUS_TRADE_WAIT:    // äº¤æ›å‹Ÿé›†ä¸­
+      case WIFI_STATUS_POFIN_WAIT:    // ãƒãƒ•ã‚£ãƒ³å‹Ÿé›†ä¸­
+      case WIFI_STATUS_FRONTIER_WAIT:    // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å‹Ÿé›†ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-      case WIFI_STATUS_BATTLEROOM_WAIT:    // ƒoƒgƒ‹ƒ‹[ƒ€•åW’†
+      case WIFI_STATUS_BATTLEROOM_WAIT:    // ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ å‹Ÿé›†ä¸­
 #endif
-      case WIFI_STATUS_BUCKET_WAIT:    // ƒoƒPƒbƒg•åW’†
-      case WIFI_STATUS_BALLOON_WAIT:    // ƒoƒPƒbƒg•åW’†
-      case WIFI_STATUS_BALANCEBALL_WAIT:    // ƒoƒPƒbƒg•åW’†
+      case WIFI_STATUS_BUCKET_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+      case WIFI_STATUS_BALLOON_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+      case WIFI_STATUS_BALANCEBALL_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
         return TRUE;
     }
     return FALSE;
 }
 
-// ƒXƒe[ƒg‚ªBATTLE‚©‚Ç‚¤‚©
+// ã‚¹ãƒ†ãƒ¼ãƒˆãŒBATTLEã‹ã©ã†ã‹
 static BOOL _modeBattle(int status)
 {
     switch(status){
-      case WIFI_STATUS_SBATTLE50:      // ƒVƒ“ƒOƒ‹‘Îí’†
-      case WIFI_STATUS_SBATTLE100:      // ƒVƒ“ƒOƒ‹‘Îí’†
-      case WIFI_STATUS_SBATTLE_FREE:      // ƒVƒ“ƒOƒ‹‘Îí’†
-      case WIFI_STATUS_DBATTLE50:      // ƒ_ƒuƒ‹‘Îí’†
-      case WIFI_STATUS_DBATTLE100:      // ƒ_ƒuƒ‹‘Îí’†
-      case WIFI_STATUS_DBATTLE_FREE:      // ƒ_ƒuƒ‹‘Îí’†
+      case WIFI_STATUS_SBATTLE50:      // ã‚·ãƒ³ã‚°ãƒ«å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_SBATTLE100:      // ã‚·ãƒ³ã‚°ãƒ«å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_SBATTLE_FREE:      // ã‚·ãƒ³ã‚°ãƒ«å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_DBATTLE50:      // ãƒ€ãƒ–ãƒ«å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_DBATTLE100:      // ãƒ€ãƒ–ãƒ«å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_DBATTLE_FREE:      // ãƒ€ãƒ–ãƒ«å¯¾æˆ¦ä¸­
 		  
 #ifdef WFP2P_DEBUG_EXON 
-      case WIFI_STATUS_MBATTLE_FREE:      // ƒ}ƒ‹ƒ`‘Îí’†
+      case WIFI_STATUS_MBATTLE_FREE:      // ãƒãƒ«ãƒå¯¾æˆ¦ä¸­
 #endif
         return TRUE;
       default:
@@ -1199,23 +1199,23 @@ static BOOL _modeBattle(int status)
     }
 }
 
-// ƒXƒe[ƒg‚ªACTIVE‚©‚Ç‚¤‚©
+// ã‚¹ãƒ†ãƒ¼ãƒˆãŒACTIVEã‹ã©ã†ã‹
 static BOOL _modeActive(int status)
 {
     if(_modeBattle(status)){
         return TRUE;
     }
     switch(status){
-      case WIFI_STATUS_TRADE:    // ŒğŠ·’†
-      case WIFI_STATUS_POFIN:    // ƒ|ƒtƒBƒ“’†
-      case WIFI_STATUS_FRONTIER:    // ƒtƒƒ“ƒeƒBƒA’†
+      case WIFI_STATUS_TRADE:    // äº¤æ›ä¸­
+      case WIFI_STATUS_POFIN:    // ãƒãƒ•ã‚£ãƒ³ä¸­
+      case WIFI_STATUS_FRONTIER:    // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-      case WIFI_STATUS_BATTLEROOM:    // ƒoƒgƒ‹ƒ‹[ƒ€’†
+      case WIFI_STATUS_BATTLEROOM:    // ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ä¸­
 #endif
-      case WIFI_STATUS_BUCKET:    // ƒoƒPƒbƒg’†
-      case WIFI_STATUS_BALLOON:    // ƒoƒPƒbƒg’†
-      case WIFI_STATUS_BALANCEBALL:    // ƒoƒPƒbƒg’†
-      case WIFI_STATUS_VCT:    // ŒğŠ·’†
+      case WIFI_STATUS_BUCKET:    // ãƒã‚±ãƒƒãƒˆä¸­
+      case WIFI_STATUS_BALLOON:    // ãƒã‚±ãƒƒãƒˆä¸­
+      case WIFI_STATUS_BALANCEBALL:    // ãƒã‚±ãƒƒãƒˆä¸­
+      case WIFI_STATUS_VCT:    // äº¤æ›ä¸­
         return TRUE;
     }
     return FALSE;
@@ -1363,7 +1363,7 @@ static int _getBattlePokeNum(WIFIP2PMATCH_WORK* wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒe[ƒ^ƒX‚É‚ ‚í‚¹‚Ä’ÊMƒXƒe[ƒg‚à•ÏX‚·‚é
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«ã‚ã‚ã›ã¦é€šä¿¡ã‚¹ãƒ†ãƒ¼ãƒˆã‚‚å¤‰æ›´ã™ã‚‹
  * @param	status
  * @return	none
  */
@@ -1371,14 +1371,14 @@ static int _getBattlePokeNum(WIFIP2PMATCH_WORK* wk)
 
 static void _commStateChange(int status)
 {
-    if( (status == WIFI_STATUS_POFIN_WAIT) || (WIFI_STATUS_POFIN == status) ){    // ƒ|ƒtƒBƒ“•åW’†
+    if( (status == WIFI_STATUS_POFIN_WAIT) || (WIFI_STATUS_POFIN == status) ){    // ãƒãƒ•ã‚£ãƒ³å‹Ÿé›†ä¸­
         CommStateChangeWiFiPofin();
     }
     else if(_wait2to4Mode(status)){
-        CommStateChangeWiFiClub();	// WiFilobbyMinigame‚É‚·‚é‚Æ
-									// ‘Şºˆ—‚ª‚¨‚©‚µ‚­‚È‚é
+        CommStateChangeWiFiClub();	// WiFilobbyMinigameã«ã™ã‚‹ã¨
+									// é€€å®¤å‡¦ç†ãŒãŠã‹ã—ããªã‚‹
 									
-//        CommStateChangeWiFiLogin();‚±‚Á‚¿‚ğ‚ä‚¤‚±‚¤‚É‚·‚é‚ÆƒoƒO‚éB‚Ql‚µ‚©‚Â‚È‚ª‚ç‚È‚¢
+//        CommStateChangeWiFiLogin();ã“ã£ã¡ã‚’ã‚†ã†ã“ã†ã«ã™ã‚‹ã¨ãƒã‚°ã‚‹ã€‚ï¼’äººã—ã‹ã¤ãªãŒã‚‰ãªã„
     }
     else if(status == WIFI_STATUS_LOGIN_WAIT){
         CommStateChangeWiFiLogin();
@@ -1388,7 +1388,7 @@ static void _commStateChange(int status)
 		CommStateChangeWiFiFactory();
     }
     else{
-	    CommSetWifiBothNet(TRUE); // wifi‚Ì’ÊM‚ğ”ñ“¯Šú‚©‚ç“¯Šú‚É
+	    CommSetWifiBothNet(TRUE); // wifiã®é€šä¿¡ã‚’éåŒæœŸã‹ã‚‰åŒæœŸã«
         CommStateChangeWiFiBattle();
     }
 
@@ -1396,15 +1396,15 @@ static void _commStateChange(int status)
 }
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 static void _graphicInit(WIFIP2PMATCH_WORK * wk)
 {
 	ARCHANDLE* p_handle;
 	
-    sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-    sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+    sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+    sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
     GF_Disp_GX_VisibleControlInit();
     GF_Disp_GXS_VisibleControlInit();
@@ -1415,33 +1415,33 @@ static void _graphicInit(WIFIP2PMATCH_WORK * wk)
 	p_handle = ArchiveDataHandleOpen( ARC_WIFIP2PMATCH_GRA, HEAPID_WIFIP2PMATCH );
 
     wk->bgl = GF_BGL_BglIniAlloc( HEAPID_WIFIP2PMATCH );
-    // •¶š—ñƒ}ƒl[ƒWƒƒ[¶¬
+    // æ–‡å­—åˆ—ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”Ÿæˆ
     wk->WordSet    = WORDSET_Create( HEAPID_WIFIP2PMATCH );
     wk->MsgManager = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wifi_lobby_dat, HEAPID_WIFIP2PMATCH );
     wk->SysMsgManager = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_wifi_system_dat, HEAPID_WIFIP2PMATCH );
 
-    // VRAM ƒoƒ“ƒNİ’è
+    // VRAM ãƒãƒ³ã‚¯è¨­å®š
     VramBankSet();
 
-    // BGLƒŒƒWƒXƒ^İ’è
+    // BGLãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®š
     BgInit( wk->bgl );
 
-    //BGƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+    //BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
     BgGraphicSet( wk, p_handle );
 
-	//ƒpƒŒƒbƒgƒAƒjƒƒVƒXƒeƒ€ì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	ConnectBGPalAnm_Init(&wk->cbp, p_handle, NARC_wifip2pmatch_conect_anm_NCLR, HEAPID_WIFIP2PMATCH);
 
-    // VBlankŠÖ”ƒZƒbƒg
+    // VBlanké–¢æ•°ã‚»ãƒƒãƒˆ
     sys_VBlankFuncChange( VBlankFunc, wk );
 
-    // OBJƒLƒƒƒ‰AƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // OBJã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
     char_pltt_manager_init();
 
-    // CellActorƒVƒXƒeƒ€‰Šú‰»
+    // CellActorã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
     InitCellActor(wk, p_handle);
 
-    // CellActro•\¦“o˜^
+    // CellActroè¡¨ç¤ºç™»éŒ²
     SetCellActor(wk);
 
 	ArchiveDataHandleClose( p_handle );
@@ -1450,12 +1450,12 @@ static void _graphicInit(WIFIP2PMATCH_WORK * wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT WifiP2PMatchProc_Init( PROC * proc, int * seq )
@@ -1469,10 +1469,10 @@ PROC_RESULT WifiP2PMatchProc_Init( PROC * proc, int * seq )
 		  
         pParentWork = PROC_GetParentWork(proc);
 
-		// ’ÊMŠg’£ƒq[ƒv‚Ìƒƒ‚ƒŠŠm•Û
-		// 080611	tomoya ’Ç‰Á
-		if(CommStateIsWifiConnect()){       // Ú‘±’†
-			switch( pParentWork->seq ){	// 1‚Â‘O‚Ì—V‚Ñ‚Å’ÊMŠg’£ƒq[ƒv‚ğ”jŠü‚µ‚Ä‚¢‚½‚çÄŠm•Û
+		// é€šä¿¡æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
+		// 080611	tomoya è¿½åŠ 
+		if(CommStateIsWifiConnect()){       // æ¥ç¶šä¸­
+			switch( pParentWork->seq ){	// 1ã¤å‰ã®éŠã³ã§é€šä¿¡æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã‚’ç ´æ£„ã—ã¦ã„ãŸã‚‰å†ç¢ºä¿
 			case WIFI_P2PMATCH_END:
 			case WIFI_P2PMATCH_UTIL:
 			case WIFI_P2PMATCH_DPW_END:
@@ -1484,7 +1484,7 @@ PROC_RESULT WifiP2PMatchProc_Init( PROC * proc, int * seq )
 			case WIFI_P2PMATCH_DBATTLE_FREE:
 			case WIFI_P2PMATCH_FRONTIER:
 			case WIFI_P2PMATCH_TRADE:
-				// ƒoƒgƒ‹‚©‚ç–ß‚Á‚Ä‚«‚½‚È‚çŠg’£ƒq[ƒvì¬
+				// ãƒãƒˆãƒ«ã‹ã‚‰æˆ»ã£ã¦ããŸãªã‚‰æ‹¡å¼µãƒ’ãƒ¼ãƒ—ä½œæˆ
 				sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WIFIP2PMATCHEX, WIFI_P2PMATCH_EXHEAP_SIZE );
 				break;
 
@@ -1492,14 +1492,14 @@ PROC_RESULT WifiP2PMatchProc_Init( PROC * proc, int * seq )
 				break;
 			}
 		}else{
-			// ’ÊM‘O‚È‚çâ‘Î‚ÉŠg’£ƒq[ƒv‚ğŠm•Û
+			// é€šä¿¡å‰ãªã‚‰çµ¶å¯¾ã«æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã‚’ç¢ºä¿
 			sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WIFIP2PMATCHEX, WIFI_P2PMATCH_EXHEAP_SIZE );
 		}
 
-		// wifi_2dmapƒI[ƒo[ƒŒƒC“Ç‚İ
+		// wifi_2dmapã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤èª­è¾¼ã¿
 		Overlay_Load( FS_OVERLAY_ID(wifi_2dmapsys), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 
-        if(pParentWork->seq == WIFI_P2PMATCH_DPW){ // ¢ŠE‘Îí‚È‚ç
+        if(pParentWork->seq == WIFI_P2PMATCH_DPW){ // ä¸–ç•Œå¯¾æˆ¦ãªã‚‰
             sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WIFIP2PMATCH, 0x70000 );
         }
         else{
@@ -1509,13 +1509,13 @@ PROC_RESULT WifiP2PMatchProc_Init( PROC * proc, int * seq )
         wk = PROC_AllocWork( proc, sizeof(WIFIP2PMATCH_WORK), HEAPID_WIFIP2PMATCH );
         MI_CpuFill8( wk, 0, sizeof(WIFIP2PMATCH_WORK) );
 
-		// Vram“]‘—ƒ}ƒl[ƒWƒƒì¬
+		// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 		initVramTransferManagerHeap( VRANTRANSFERMAN_NUM, HEAPID_WIFIP2PMATCH );
 
         wk->MsgIndex = _PRINTTASK_MAX;
         wk->pSaveData = pParentWork->pSaveData;
         wk->pList = SaveData_GetWifiListData(wk->pSaveData);
-        wk->initSeq = pParentWork->seq;    // P2P‚©DPW‚©
+        wk->initSeq = pParentWork->seq;    // P2Pã‹DPWã‹
         wk->endSeq = WIFI_P2PMATCH_END;
         wk->preConnect = -1;
 
@@ -1523,34 +1523,34 @@ PROC_RESULT WifiP2PMatchProc_Init( PROC * proc, int * seq )
         GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0|GX_PLANEMASK_BG1|GX_PLANEMASK_BG2|GX_PLANEMASK_BG3, VISIBLE_OFF );
 
 #if AFTERMASTER_061215_WIFIP2P_FADE_FIX
-        // ƒ[ƒN‰Šú‰»
+        // ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
         InitWork( wk );
-        // ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+        // ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
         _graphicInit(wk);
-        // ƒƒCƒvƒtƒF[ƒhŠJn
+        // ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
         WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK,
                         COMM_BRIGHTNESS_SYNC, 1, HEAPID_WIFIP2PMATCH);
 
 #else
         
-        // ƒ[ƒN‰Šú‰»
+        // ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
         InitWork( wk );
         //        WIPE_ResetBrightness( WIPE_DISP_MAIN );
         WIPE_ResetBrightness( WIPE_DISP_SUB );
         WIPE_ResetWndMask( WIPE_DISP_SUB );
-        // ƒƒCƒvƒtƒF[ƒhŠJn
+        // ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
         WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK,
                         COMM_BRIGHTNESS_SYNC, 1, HEAPID_WIFIP2PMATCH);
         _graphicInit(wk);
 #endif
         if(CommStateIsWifiConnect()){
-			WirelessIconEasy();  // Ú‘±’†‚È‚Ì‚ÅƒAƒCƒRƒ“•\¦
+			WirelessIconEasy();  // æ¥ç¶šä¸­ãªã®ã§ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
         }
         else{
-            DwcOverlayStart();    // WIFIƒI[ƒo[ƒŒƒC
+            DwcOverlayStart();    // WIFIã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤
         }
 		
-		// ƒ^ƒbƒ`ƒpƒlƒ‹ŠJn
+		// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é–‹å§‹
 		result = InitTPNoBuff( 4 );
 		GF_ASSERT( result == TP_OK );
 		
@@ -1570,12 +1570,12 @@ PROC_RESULT WifiP2PMatchProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 
@@ -1586,7 +1586,7 @@ PROC_RESULT WifiP2PMatchProc_Main( PROC * proc, int * seq )
     switch( *seq ){
       case SEQ_IN:
         if( WIPE_SYS_EndCheck() ){
-            // ƒƒCƒvˆ—‘Ò‚¿
+            // ãƒ¯ã‚¤ãƒ—å‡¦ç†å¾…ã¡
             *seq = SEQ_MAIN;
 
 
@@ -1597,7 +1597,7 @@ PROC_RESULT WifiP2PMatchProc_Main( PROC * proc, int * seq )
 
 #ifdef _WIFI_DEBUG_TUUSHIN
 		if( WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_MODE != _WIFI_DEBUG_NONE ){
-			sys.trg |= PAD_KEY_DOWN;	//  ‚µ‚½‚¨‚µ‚Á‚Ï
+			sys.trg |= PAD_KEY_DOWN;	//  ã—ãŸãŠã—ã£ã±
 			sys.cont |= PAD_KEY_DOWN;
 			sys.trg |= PAD_BUTTON_A;
 			sys.cont |= PAD_BUTTON_A;
@@ -1605,9 +1605,9 @@ PROC_RESULT WifiP2PMatchProc_Main( PROC * proc, int * seq )
 #endif
 
 		
-        // ƒJ[ƒ\ƒ‹ˆÚ“®
+        // ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 
-        // ƒV[ƒPƒ“ƒX–ˆ‚Ì“®ì
+        // ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ¯ã®å‹•ä½œ
             if(FuncTable[wk->seq]!=NULL){
             static int seqBk=0;
 
@@ -1630,7 +1630,7 @@ PROC_RESULT WifiP2PMatchProc_Main( PROC * proc, int * seq )
     }
 #if 1
     if(wk->clactSet){
-        CLACT_Draw( wk->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+        CLACT_Draw( wk->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
     }
 #endif
 	if( WIFI_MCR_GetInitFlag( &wk->matchroom ) == TRUE ){
@@ -1644,14 +1644,14 @@ PROC_RESULT WifiP2PMatchProc_Main( PROC * proc, int * seq )
 
 #define DEFAULT_NAME_MAX		18
 
-// ƒ_ƒCƒ„Eƒp[ƒ‹‚Å•Ï‚í‚é‚ñ‚¾‚ë‚¤
+// ãƒ€ã‚¤ãƒ¤ãƒ»ãƒ‘ãƒ¼ãƒ«ã§å¤‰ã‚ã‚‹ã‚“ã ã‚ã†
 #define MALE_NAME_START			0
 #define FEMALE_NAME_START		18
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒN‚É‚©‚©‚í‚é•”•ª‚ÌI—¹ˆ—
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã«ã‹ã‹ã‚ã‚‹éƒ¨åˆ†ã®çµ‚äº†å‡¦ç†
  * @param	wk	WIFIP2PMATCH_WORK
  * @return	none
  */
@@ -1664,74 +1664,74 @@ static void _graphicEnd(WIFIP2PMATCH_WORK* wk)
 
 	ConnectBGPalAnm_End(&wk->cbp);
 
-	// ƒ}ƒbƒ`ƒ“ƒOƒ‹[ƒ€”jŠü
+	// ãƒãƒƒãƒãƒ³ã‚°ãƒ«ãƒ¼ãƒ ç ´æ£„
 	if( WIFI_MCR_GetInitFlag( &wk->matchroom ) == TRUE ){
 		WIFI_MCR_Dest( &wk->matchroom );
 	}
-	// ƒrƒ…[ƒA[”jŠü
+	// ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ç ´æ£„
 	if( MCVSys_MoveCheck( wk ) == TRUE ){
 		MCVSys_Exit( wk );
 	}
 
-	// ƒAƒCƒRƒ“”jŠü
+	// ã‚¢ã‚¤ã‚³ãƒ³ç ´æ£„
 	WifiP2PMatchFriendListIconRelease( &wk->icon );
 
 #if 0
-    // ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+    // ã‚­ãƒ£ãƒ©è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
     CLACT_U_CharManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES]);
 
-    // ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+    // ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
     CLACT_U_PlttManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES]);
 #endif
 
-	// FontOAM”jŠü
+	// FontOAMç ´æ£„
 	FONTOAM_SysDelete( wk->fontoam );
 
-    // ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+    // ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
     for(i=0;i<CLACT_RESOURCE_NUM;i++){
         CLACT_U_ResManagerDelete(wk->resMan[i]);
     }
-    // ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
     CLACT_DestSet(wk->clactSet);
 	
-    //OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+    //OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
     REND_OAM_Delete();
 
-    // ƒŠƒ\[ƒX‰ğ•ú
+    // ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
     DeleteCharManager();
     DeletePlttManager();
 
-    // BMPƒEƒBƒ“ƒhƒEŠJ•ú
+    // BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
     BmpWinDelete( wk );
 
-    // BGLíœ
+    // BGLå‰Šé™¤
     BgExit( wk->bgl );
 
-    // e‚ÌƒvƒƒbƒN‚Ìˆ—
+    // è¦ªã®ãƒ—ãƒ­ãƒƒã‚¯ã®å‡¦ç†
     //    UnionRoomView_ObjInit( (COMM_UNIONROOM_VIEW*)PROC_GetParentWork( proc ) );
 
-    // ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€I—¹
+    // ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
     //	StopTP();
 
 
-    // ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[Eƒ[ƒhƒZƒbƒgƒ}ƒl[ƒWƒƒ[‰ğ•ú
+    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ»ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼è§£æ”¾
     MSGMAN_Delete( wk->SysMsgManager );
     MSGMAN_Delete( wk->MsgManager );
     WORDSET_Delete( wk->WordSet );
 
-	// ƒI[ƒo[ƒŒƒC”jŠü
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ç ´æ£„
 	Overlay_UnloadID( FS_OVERLAY_ID(wifi_2dmapsys) );
 }
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT WifiP2PMatchProc_End( PROC * proc, int * seq )
@@ -1744,22 +1744,22 @@ PROC_RESULT WifiP2PMatchProc_End( PROC * proc, int * seq )
 
     pParentWork = PROC_GetParentWork(proc);
     pParentWork->seq = wk->endSeq;
-    if( (wk->endSeq == WIFI_P2PMATCH_END) || (wk->endSeq == WIFI_P2PMATCH_DPW_END) ){  // ƒI[ƒo[ƒŒƒC‰ğœ
+    if( (wk->endSeq == WIFI_P2PMATCH_END) || (wk->endSeq == WIFI_P2PMATCH_DPW_END) ){  // ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤è§£é™¤
         DwcOverlayEnd();
     }
     else{
         pParentWork->targetID = mydwc_getFriendIndex();
     }
 	
-    // ƒ[ƒN‰ğ•ú
+    // ãƒ¯ãƒ¼ã‚¯è§£æ”¾
     FreeWork( wk );
 
-    PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+    PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	
-	// ƒ^ƒbƒ`ƒpƒlƒ‹’â~
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åœæ­¢
 	StopTP();
 
-	// VramTransferƒ}ƒl[ƒWƒƒ”jŠü
+	// VramTransferãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	DellVramTransferManager();
 
     sys_DeleteHeap( HEAPID_WIFIP2PMATCH );
@@ -1767,9 +1767,9 @@ PROC_RESULT WifiP2PMatchProc_End( PROC * proc, int * seq )
     //  WIPE_ResetBrightness( WIPE_DISP_SUB );
 	
 
-	// Šg’£ƒq[ƒv‚Ì”jŠü
-	// ’ÊM‚ÌI—¹‚ÆAƒoƒgƒ‹‚ÍŠg’£ƒq[ƒv‚ğ”jŠü‚·‚é
-	// ‚»‚êˆÈŠO‚Í”jŠü‚µ‚È‚¢
+	// æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ç ´æ£„
+	// é€šä¿¡ã®çµ‚äº†ã¨ã€ãƒãƒˆãƒ«æ™‚ã¯æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã‚’ç ´æ£„ã™ã‚‹
+	// ãã‚Œä»¥å¤–ã¯ç ´æ£„ã—ãªã„
 	switch( wk->endSeq ){
 	case WIFI_P2PMATCH_END:
 	case WIFI_P2PMATCH_UTIL:
@@ -1791,15 +1791,15 @@ PROC_RESULT WifiP2PMatchProc_End( PROC * proc, int * seq )
 	}
 
 	
-	// BGM‚ªƒ|ƒPƒZƒ“‚Ì‚Ü‚Ü‚È‚çBGM‰¹—Ê‚ğ•ÏX‚·‚é
+	// BGMãŒãƒã‚±ã‚»ãƒ³ã®ã¾ã¾ãªã‚‰BGMéŸ³é‡ã‚’å¤‰æ›´ã™ã‚‹
 	if( WifiP2P_CheckLobbyBgm() == TRUE ){
 		Snd_PlayerSetInitialVolume( SND_HANDLE_FIELD, BGM_POKECEN_VOL );
 	}
 
-#if 0	//ª‚Å‰¹—Êˆ—‚ª“ü‚é‚Ì‚Å‚¢‚ç‚È‚¢
-	// VCHAT’†‚Ì’ÊMƒGƒ‰[‚Ìê‡BGM‚Ì‰¹—Ê‚ğŒ³‚É–ß‚·
-	if( (wk->endSeq == WIFI_P2PMATCH_END) || (wk->endSeq == WIFI_P2PMATCH_DPW_END) ){  // ƒI[ƒo[ƒŒƒC‰ğœ
-		//‰¹—ÊƒZƒbƒg
+#if 0	//â†‘ã§éŸ³é‡å‡¦ç†ãŒå…¥ã‚‹ã®ã§ã„ã‚‰ãªã„
+	// VCHATä¸­ã®é€šä¿¡ã‚¨ãƒ©ãƒ¼ã®å ´åˆBGMã®éŸ³é‡ã‚’å…ƒã«æˆ»ã™
+	if( (wk->endSeq == WIFI_P2PMATCH_END) || (wk->endSeq == WIFI_P2PMATCH_DPW_END) ){  // ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤è§£é™¤
+		//éŸ³é‡ã‚»ãƒƒãƒˆ
 		Snd_PlayerSetInitialVolume( SND_HANDLE_FIELD, BGM_VOL_MAX );
     }
 #endif
@@ -1810,7 +1810,7 @@ PROC_RESULT WifiP2PMatchProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -1821,19 +1821,19 @@ static void VBlankFunc( void * work )
 {
     WIFIP2PMATCH_WORK* wk = work;
 
-    // BG‘‚«Š·‚¦
+    // BGæ›¸ãæ›ãˆ
 	GF_BGL_VBlankFunc( wk->bgl );
-    // ƒZƒ‹ƒAƒNƒ^[
-    // Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+    // Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
     DoVramTransferManager();
 
-    // ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+    // ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
     REND_OAMTrans();
 
 	ConnectBGPalAnm_VBlank(&wk->cbp);
 
-	// _retryŠÖ”“à‚Åƒ}ƒXƒ^[‹P“x‚ğİ’è‚µ‚ÄA
-	// ‚«‚ê‚¢‚É•œ‹A‚Å‚«‚é‚æ‚¤‚É‚·‚é‚½‚ß‚±‚±‚Å•œ‹A
+	// _retryé–¢æ•°å†…ã§ãƒã‚¹ã‚¿ãƒ¼è¼åº¦ã‚’è¨­å®šã—ã¦ã€
+	// ãã‚Œã„ã«å¾©å¸°ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã“ã“ã§å¾©å¸°
 	if( wk->brightness_reset == TRUE ){
 		WIPE_ResetBrightness( WIPE_DISP_MAIN );
 		WIPE_ResetBrightness( WIPE_DISP_SUB );
@@ -1846,7 +1846,7 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMİ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -1856,30 +1856,30 @@ static void VBlankFunc( void * work )
 static void VramBankSet(void)
 {
     GF_BGL_DISPVRAM tbl = {
-        GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-        GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+        GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+        GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-        GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-        GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+        GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+        GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-//        GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-        GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+//        GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+        GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-        GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-        GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+        GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+        GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-        GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-        GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+        GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+        GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
         };
     GF_Disp_SetBank( &tbl );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGİ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1894,7 +1894,7 @@ static void BgInit( GF_BGL_INI * ini )
         GF_BGL_InitBG( &BGsys_data );
     }
 
-    // ”wŒi–Ê
+    // èƒŒæ™¯é¢
     {
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
@@ -1908,7 +1908,7 @@ static void BgInit( GF_BGL_INI * ini )
 
     }
 
-    // ƒƒCƒ“‰æ–Ê1
+    // ãƒ¡ã‚¤ãƒ³ç”»é¢1
     {
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1920,7 +1920,7 @@ static void BgInit( GF_BGL_INI * ini )
         GF_BGL_ScrClear( ini, GF_BGL_FRAME1_M );
     }
 
-    // ƒŠƒXƒg‚È‚Ç
+    // ãƒªã‚¹ãƒˆãªã©
     {
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1933,7 +1933,7 @@ static void BgInit( GF_BGL_INI * ini )
     }
 
 #if 1
-    // ‚¢‚ë‚¢‚ë‚Ég‚¤
+    // ã„ã‚ã„ã‚ã«ä½¿ã†
     {
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1946,7 +1946,7 @@ static void BgInit( GF_BGL_INI * ini )
     }
 #endif
 
-    // ƒTƒu‰æ–ÊƒeƒLƒXƒg–Ê
+    // ã‚µãƒ–ç”»é¢ãƒ†ã‚­ã‚¹ãƒˆé¢
     {
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1956,7 +1956,7 @@ static void BgInit( GF_BGL_INI * ini )
         GF_BGL_BGControlSet( ini, GF_BGL_FRAME0_S, &TextBgCntDat, GF_BGL_MODE_TEXT );
         GF_BGL_ScrClear( ini, GF_BGL_FRAME0_S );
     }
-	// ƒ†[ƒU[ó‘Ô•\¦–Ê
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼çŠ¶æ…‹è¡¨ç¤ºé¢
     {
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1966,7 +1966,7 @@ static void BgInit( GF_BGL_INI * ini )
         GF_BGL_BGControlSet( ini, GF_BGL_FRAME1_S, &TextBgCntDat, GF_BGL_MODE_TEXT );
         GF_BGL_ScrClear( ini, GF_BGL_FRAME1_S );
     }
-	// ƒ{ƒ^ƒ“orƒ†[ƒU[ƒf[ƒ^‚Ì”wŒi
+	// ãƒœã‚¿ãƒ³orãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿æ™‚ã®èƒŒæ™¯
     {
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1976,7 +1976,7 @@ static void BgInit( GF_BGL_INI * ini )
         GF_BGL_BGControlSet( ini, GF_BGL_FRAME2_S, &TextBgCntDat, GF_BGL_MODE_TEXT );
         GF_BGL_ScrClear( ini, GF_BGL_FRAME2_S );
     }
-	// ƒ†[ƒU[ƒf[ƒ^ƒeƒLƒXƒg
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ†ã‚­ã‚¹ãƒˆ
     {
         GF_BGL_BGCNT_HEADER TextBgCntDat = {
             0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -1996,10 +1996,10 @@ static void BgInit( GF_BGL_INI * ini )
     GF_BGL_ClearCharSet( GF_BGL_FRAME2_S, 32, 0, HEAPID_WIFIP2PMATCH );
     GF_BGL_ClearCharSet( GF_BGL_FRAME3_S, 32, 0, HEAPID_WIFIP2PMATCH );
 
-    GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //‚Í‚¢‚¯‚¢
-    GF_BGL_PrioritySet(GF_BGL_FRAME1_M , 1);   // yesno win@ƒ†[ƒU[ƒf[ƒ^‚Ì”wŒi
-    GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ƒƒbƒZ[ƒW
-    GF_BGL_PrioritySet(GF_BGL_FRAME2_M , 0);   // menuƒŠƒXƒg
+    GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //ã¯ã„ã‘ã„
+    GF_BGL_PrioritySet(GF_BGL_FRAME1_M , 1);   // yesno winã€€ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®èƒŒæ™¯
+    GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+    GF_BGL_PrioritySet(GF_BGL_FRAME2_M , 0);   // menuãƒªã‚¹ãƒˆ
 
     G2_BlendNone();
     G2S_BlendNone();
@@ -2024,10 +2024,10 @@ static void WindowSet(void)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¶¬‚µ‚½“®ìƒIƒuƒWƒFƒNƒgƒ[ƒN‚ğİ’è‚·‚é
+ *	@brief	ç”Ÿæˆã—ãŸå‹•ä½œã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	wk		ƒ[ƒN
- *	@param	p_obj	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@param	wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCRSYS_SetMoveObjWork( WIFIP2PMATCH_WORK* wk, MCR_MOVEOBJ* p_obj )
@@ -2044,10 +2044,10 @@ static void MCRSYS_SetMoveObjWork( WIFIP2PMATCH_WORK* wk, MCR_MOVEOBJ* p_obj )
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆø”‚ÌOBJ‚ª“ü‚Á‚Ä‚¢‚éƒ[ƒN‚ğNULL‚É‚·‚é
+ *	@brief	å¼•æ•°ã®OBJãŒå…¥ã£ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’NULLã«ã™ã‚‹
  *
- *	@param	wk		ƒ[ƒN
- *	@param	p_obj	NULL‚ğ“ü‚ê‚Ä‚Ù‚µ‚¢ƒ[ƒN‚É“ü‚Á‚Ä‚¢‚éƒ|ƒCƒ“ƒ^
+ *	@param	wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj	NULLã‚’å…¥ã‚Œã¦ã»ã—ã„ãƒ¯ãƒ¼ã‚¯ã«å…¥ã£ã¦ã„ã‚‹ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void MCRSYS_DelMoveObjWork( WIFIP2PMATCH_WORK* wk, MCR_MOVEOBJ* p_obj )
@@ -2065,12 +2065,12 @@ static void MCRSYS_DelMoveObjWork( WIFIP2PMATCH_WORK* wk, MCR_MOVEOBJ* p_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	friendNO‚ÌƒIƒuƒWƒFƒNƒgƒ[ƒN‚ğæ“¾‚·‚é
+ *	@brief	friendNOã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	wk			ƒ[ƒN
+ *	@param	wk			ãƒ¯ãƒ¼ã‚¯
  *	@param	friendNo	friendNO
  *
- *	@return	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+ *	@return	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static MCR_MOVEOBJ* MCRSYS_GetMoveObjWork( WIFIP2PMATCH_WORK* wk, u32 friendNo )
@@ -2089,17 +2089,17 @@ static MCR_MOVEOBJ* MCRSYS_GetMoveObjWork( WIFIP2PMATCH_WORK* wk, u32 friendNo )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒRƒ“ƒf[ƒ^“Ç‚İ
+ *	@brief	ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿èª­è¾¼ã¿
  *
  *	@param	p_bgl		BGL
- *	@param	p_data		ƒf[ƒ^Ši”[æ
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WifiP2PMatchFriendListIconLoad( GF_BGL_INI* p_bgl, WIFIP2PMATCH_ICON* p_data, ARCHANDLE* p_handle, u32 heapID )
 {
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_HDL_PalSet( p_handle, NARC_wifip2pmatch_wf_match_all_icon_NCLR,
 			PALTYPE_MAIN_BG, PLAYER_DISP_ICON_PLTTOFS*32, 
 			PLAYER_DISP_ICON_PLTTNUM*32, heapID );
@@ -2108,21 +2108,21 @@ static void WifiP2PMatchFriendListIconLoad( GF_BGL_INI* p_bgl, WIFIP2PMATCH_ICON
 			PALTYPE_SUB_BG, PLAYER_DISP_ICON_PLTTOFS_SUB*32, 
 			PLAYER_DISP_ICON_PLTTNUM*32, heapID );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_wf_match_all_icon_NCGR,
 			p_bgl, GF_BGL_FRAME1_M, PLAYER_DISP_ICON_CGX, 0, FALSE, heapID );
 
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_wf_match_all_icon_NCGR,
 			p_bgl, GF_BGL_FRAME2_S, PLAYER_DISP_ICON_CGX, 0, FALSE, heapID );
 
-	// ‚³‚ç‚ÉƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+	// ã•ã‚‰ã«ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã—ã¦ãŠã
 	if( p_data->p_charbuff == NULL ){
 		p_data->p_charbuff = ArcUtil_HDL_CharDataGet( p_handle, NARC_wifip2pmatch_wf_match_all_icon_NCGR, 
 				FALSE, &p_data->p_char, heapID);
 	}
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ	
-	// ƒŠƒgƒ‰ƒC‚ÉƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ª‚ ‚éê‡‚Í“Ç‚İ‚Ü‚È‚¢
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­è¾¼ã¿	
+	// ãƒªãƒˆãƒ©ã‚¤æ™‚ã«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¯èª­ã¿è¾¼ã¾ãªã„
 	if( p_data->p_buff == NULL ){	
 		p_data->p_buff = ArcUtil_HDL_ScrnDataGet( p_handle, NARC_wifip2pmatch_wf_match_all_icon_NSCR, 
 				FALSE, &p_data->p_scrn, heapID);
@@ -2131,9 +2131,9 @@ static void WifiP2PMatchFriendListIconLoad( GF_BGL_INI* p_bgl, WIFIP2PMATCH_ICON
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Iconƒf[ƒ^‚Í‚«
+ *	@brief	Iconãƒ‡ãƒ¼ã‚¿ã¯ã
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WifiP2PMatchFriendListIconRelease( WIFIP2PMATCH_ICON* p_data )
@@ -2150,21 +2150,21 @@ static void WifiP2PMatchFriendListIconRelease( WIFIP2PMATCH_ICON* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒRƒ“‚ğ‘‚«‚Ş
+ *	@brief	ã‚¢ã‚¤ã‚³ãƒ³ã‚’æ›¸ãè¾¼ã‚€
  *
  *	@param	p_bgl		BGL
- *	@param	p_data		ƒf[ƒ^
- *	@param	frm			ƒtƒŒ[ƒ€
- *	@param	cx			ƒLƒƒƒ‰ƒNƒ^‚˜À•W
- *	@param	cy			ƒLƒƒƒ‰ƒNƒ^‚™À•W
- *	@param	icon_type	ƒAƒCƒRƒ“ƒ^ƒCƒv
- *	@param	col			0=ŠD 1=Ô
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	frm			ãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	cx			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ï½˜åº§æ¨™
+ *	@param	cy			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ï½™åº§æ¨™
+ *	@param	icon_type	ã‚¢ã‚¤ã‚³ãƒ³ã‚¿ã‚¤ãƒ—
+ *	@param	col			0=ç° 1=èµ¤
  */
 //-----------------------------------------------------------------------------
 static void WifiP2PMatchFriendListIconWrite(  GF_BGL_INI* p_bgl, WIFIP2PMATCH_ICON* p_data, u32 frm, u8 cx, u8 cy, u32 icon_type, u32 col )
 {
 	int pal;
-	// ‘‚«‚İ
+	// æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWriteExpand( p_bgl, frm, cx, cy,
 			PLAYER_DISP_ICON_SCRN_X, PLAYER_DISP_ICON_SCRN_Y,
 			p_data->p_scrn->rawData, 
@@ -2172,28 +2172,28 @@ static void WifiP2PMatchFriendListIconWrite(  GF_BGL_INI* p_bgl, WIFIP2PMATCH_IC
 			p_data->p_scrn->screenWidth/8, p_data->p_scrn->screenHeight/8 );
 
 	
-	// ƒpƒŒƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆ
 	pal = WifiP2PMatchBglFrmIconPalGet( frm );
 
-	// ƒpƒŒƒbƒgƒiƒ“ƒo[‚ğ‚ ‚í‚¹‚é
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’ã‚ã‚ã›ã‚‹
 	GF_BGL_ScrPalChange( p_bgl, frm, cx, cy,
 			PLAYER_DISP_ICON_SCRN_X, PLAYER_DISP_ICON_SCRN_Y, pal+col );
 
-	// “]‘—
+	// è»¢é€
 	GF_BGL_LoadScreenV_Req( p_bgl, frm );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Icon‘‚«‚İ
+ *	@brief	Iconæ›¸ãè¾¼ã¿
  *
  *	@param	p_bgl		BGL
- *	@param	p_data		ƒf[ƒ^
- *	@param	frm			ƒtƒŒ[ƒ€
- *	@param	cx			ƒLƒƒƒ‰ƒNƒ^‚˜À•W
- *	@param	cy			ƒLƒƒƒ‰ƒNƒ^‚™À•W
- *	@param	status		ó‘Ô
- *	@param	vctIcon		ƒ{ƒCƒXƒ`ƒƒƒbƒgONOFFƒtƒ‰ƒO
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	frm			ãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	cx			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ï½˜åº§æ¨™
+ *	@param	cy			ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ï½™åº§æ¨™
+ *	@param	status		çŠ¶æ…‹
+ *	@param	vctIcon		ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆONOFFãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 static void WifiP2PMatchFriendListStIconWrite( GF_BGL_INI* p_bgl, WIFIP2PMATCH_ICON* p_data, u32 frm, u8 cx, u8 cy, u32 status )
@@ -2202,80 +2202,80 @@ static void WifiP2PMatchFriendListStIconWrite( GF_BGL_INI* p_bgl, WIFIP2PMATCH_I
 	u8 scrn_idx=0;
 
 	switch( status ){
-	  case WIFI_STATUS_VCT:      // VCT’†
+	  case WIFI_STATUS_VCT:      // VCTä¸­
 		  scrn_idx = PLAYER_DISP_ICON_IDX_VCT;
 		  break;
 
-	  case WIFI_STATUS_SBATTLE50_WAIT:   // ƒVƒ“ƒOƒ‹Lv50‘Îí•åW’†
-	  case WIFI_STATUS_SBATTLE100_WAIT:   // ƒVƒ“ƒOƒ‹Lv100‘Îí•åW’†
-	  case WIFI_STATUS_SBATTLE_FREE_WAIT:   // ƒVƒ“ƒOƒ‹Lv100‘Îí•åW’†
-	  case WIFI_STATUS_DBATTLE50_WAIT:   // ƒ_ƒuƒ‹Lv50‘Îí•åW’†
-	  case WIFI_STATUS_DBATTLE100_WAIT:   // ƒ_ƒuƒ‹Lv100‘Îí•åW’†
-	  case WIFI_STATUS_DBATTLE_FREE_WAIT:   // ƒ_ƒuƒ‹Lv100‘Îí•åW’†
+	  case WIFI_STATUS_SBATTLE50_WAIT:   // ã‚·ãƒ³ã‚°ãƒ«Lv50å¯¾æˆ¦å‹Ÿé›†ä¸­
+	  case WIFI_STATUS_SBATTLE100_WAIT:   // ã‚·ãƒ³ã‚°ãƒ«Lv100å¯¾æˆ¦å‹Ÿé›†ä¸­
+	  case WIFI_STATUS_SBATTLE_FREE_WAIT:   // ã‚·ãƒ³ã‚°ãƒ«Lv100å¯¾æˆ¦å‹Ÿé›†ä¸­
+	  case WIFI_STATUS_DBATTLE50_WAIT:   // ãƒ€ãƒ–ãƒ«Lv50å¯¾æˆ¦å‹Ÿé›†ä¸­
+	  case WIFI_STATUS_DBATTLE100_WAIT:   // ãƒ€ãƒ–ãƒ«Lv100å¯¾æˆ¦å‹Ÿé›†ä¸­
+	  case WIFI_STATUS_DBATTLE_FREE_WAIT:   // ãƒ€ãƒ–ãƒ«Lv100å¯¾æˆ¦å‹Ÿé›†ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-	  case WIFI_STATUS_MBATTLE_FREE_WAIT:// ƒ}ƒ‹ƒ`ƒoƒgƒ‹•åW’†
+	  case WIFI_STATUS_MBATTLE_FREE_WAIT:// ãƒãƒ«ãƒãƒãƒˆãƒ«å‹Ÿé›†ä¸­
 #endif
 		  col = 1;
-	  case WIFI_STATUS_SBATTLE50:      // ƒVƒ“ƒOƒ‹‘Îí’†
-	  case WIFI_STATUS_SBATTLE100:      // ƒVƒ“ƒOƒ‹‘Îí’†
-	  case WIFI_STATUS_SBATTLE_FREE:      // ƒVƒ“ƒOƒ‹‘Îí’†
-	  case WIFI_STATUS_DBATTLE50:      // ƒ_ƒuƒ‹‘Îí’†
-	  case WIFI_STATUS_DBATTLE100:      // ƒ_ƒuƒ‹‘Îí’†
-	  case WIFI_STATUS_DBATTLE_FREE:      // ƒ_ƒuƒ‹‘Îí’†
+	  case WIFI_STATUS_SBATTLE50:      // ã‚·ãƒ³ã‚°ãƒ«å¯¾æˆ¦ä¸­
+	  case WIFI_STATUS_SBATTLE100:      // ã‚·ãƒ³ã‚°ãƒ«å¯¾æˆ¦ä¸­
+	  case WIFI_STATUS_SBATTLE_FREE:      // ã‚·ãƒ³ã‚°ãƒ«å¯¾æˆ¦ä¸­
+	  case WIFI_STATUS_DBATTLE50:      // ãƒ€ãƒ–ãƒ«å¯¾æˆ¦ä¸­
+	  case WIFI_STATUS_DBATTLE100:      // ãƒ€ãƒ–ãƒ«å¯¾æˆ¦ä¸­
+	  case WIFI_STATUS_DBATTLE_FREE:      // ãƒ€ãƒ–ãƒ«å¯¾æˆ¦ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-	  case WIFI_STATUS_MBATTLE_FREE:     // ƒ}ƒ‹ƒ`ƒoƒgƒ‹’†
+	  case WIFI_STATUS_MBATTLE_FREE:     // ãƒãƒ«ãƒãƒãƒˆãƒ«ä¸­
 #endif
 		  scrn_idx = PLAYER_DISP_ICON_IDX_FIGHT;
 		  break;
 
 
-	  case WIFI_STATUS_TRADE_WAIT:    // ŒğŠ·•åW’†
+	  case WIFI_STATUS_TRADE_WAIT:    // äº¤æ›å‹Ÿé›†ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-	  case WIFI_STATUS_BATTLEROOM_WAIT:// ƒoƒgƒ‹ƒ‹[ƒ€•åW’†
+	  case WIFI_STATUS_BATTLEROOM_WAIT:// ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ å‹Ÿé›†ä¸­
 #endif
 		  col = 1;
-	  case WIFI_STATUS_TRADE:          // ŒğŠ·’†
+	  case WIFI_STATUS_TRADE:          // äº¤æ›ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-	  case WIFI_STATUS_BATTLEROOM:     // ƒoƒgƒ‹ƒ‹[ƒ€’†
+	  case WIFI_STATUS_BATTLEROOM:     // ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ä¸­
 #endif
 		  scrn_idx = PLAYER_DISP_ICON_IDX_CHANGE;
 		  break;
 
 
-		// ƒ~ƒjƒQ[ƒ€
-	  case WIFI_STATUS_BUCKET_WAIT:// ƒoƒPƒbƒg•åW’†
-	  case WIFI_STATUS_BALANCEBALL_WAIT:// ƒoƒPƒbƒg•åW’†
-	  case WIFI_STATUS_BALLOON_WAIT:// ƒoƒPƒbƒg•åW’†
+		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
+	  case WIFI_STATUS_BUCKET_WAIT:// ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+	  case WIFI_STATUS_BALANCEBALL_WAIT:// ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+	  case WIFI_STATUS_BALLOON_WAIT:// ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
 		  col = 1;
 
-	  case WIFI_STATUS_BUCKET:     // ƒoƒPƒbƒg’†
-	  case WIFI_STATUS_BALANCEBALL:     // ƒoƒPƒbƒg’†
-	  case WIFI_STATUS_BALLOON:     // ƒoƒPƒbƒg’†
+	  case WIFI_STATUS_BUCKET:     // ãƒã‚±ãƒƒãƒˆä¸­
+	  case WIFI_STATUS_BALANCEBALL:     // ãƒã‚±ãƒƒãƒˆä¸­
+	  case WIFI_STATUS_BALLOON:     // ãƒã‚±ãƒƒãƒˆä¸­
 		  scrn_idx = PLAYER_DISP_ICON_IDX_MINIGAME;
 		  break;
      
 
-	  case WIFI_STATUS_POFIN_WAIT:    // ƒ|ƒtƒBƒ“•åW’†
+	  case WIFI_STATUS_POFIN_WAIT:    // ãƒãƒ•ã‚£ãƒ³å‹Ÿé›†ä¸­
 		  col = 1;
-	  case WIFI_STATUS_POFIN:          // ƒ|ƒtƒBƒ“—¿—’†
+	  case WIFI_STATUS_POFIN:          // ãƒãƒ•ã‚£ãƒ³æ–™ç†ä¸­
 		  scrn_idx = PLAYER_DISP_ICON_IDX_POFIN;
 		  break;
 
-	  case WIFI_STATUS_FRONTIER_WAIT:    // ƒtƒƒ“ƒeƒBƒA•åW’†
+	  case WIFI_STATUS_FRONTIER_WAIT:    // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å‹Ÿé›†ä¸­
 		  col = 1;
-	  case WIFI_STATUS_FRONTIER:          // ƒtƒƒ“ƒeƒBƒA’†
+	  case WIFI_STATUS_FRONTIER:          // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ä¸­
 		  scrn_idx = PLAYER_DISP_ICON_IDX_FRONTIER;
 		  break;
 
-	  case WIFI_STATUS_LOGIN_WAIT:    // ‘Ò‹@’†@ƒƒOƒCƒ“’¼Œã‚Í‚±‚ê
+	  case WIFI_STATUS_LOGIN_WAIT:    // å¾…æ©Ÿä¸­ã€€ãƒ­ã‚°ã‚¤ãƒ³ç›´å¾Œã¯ã“ã‚Œ
 		  scrn_idx = PLAYER_DISP_ICON_IDX_NORMAL;
 		  break;
 	  
-	  case WIFI_STATUS_NONE:		// ‰½‚à–³‚¢
+	  case WIFI_STATUS_NONE:		// ä½•ã‚‚ç„¡ã„
 		  scrn_idx = PLAYER_DISP_ICON_IDX_NONE;
 		  break;
 		  
-	  case WIFI_STATUS_UNKNOWN:   // V‚½‚Éì‚Á‚½‚ç‚±‚Ì”Ô†ˆÈã‚É‚È‚é
+	  case WIFI_STATUS_UNKNOWN:   // æ–°ãŸã«ä½œã£ãŸã‚‰ã“ã®ç•ªå·ä»¥ä¸Šã«ãªã‚‹
 	  case WIFI_STATUS_PLAY_OTHER:
 		  scrn_idx = PLAYER_DISP_ICON_IDX_UNK;
 		  break;
@@ -2284,27 +2284,27 @@ static void WifiP2PMatchFriendListStIconWrite( GF_BGL_INI* p_bgl, WIFIP2PMATCH_I
 		  break;
 	}
 
-	// ‘‚«‚İ
+	// æ›¸ãè¾¼ã¿
 	WifiP2PMatchFriendListIconWrite( p_bgl, p_data, frm, cx, cy, scrn_idx, col );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒv‚ÉƒAƒCƒRƒ“ƒf[ƒ^‚ğ‘‚«‚Ş
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã«ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
  *
- *	@param	p_bmp		ƒrƒbƒgƒ}ƒbƒv
- *	@param	p_data		ƒAƒCƒRƒ“ƒf[ƒ^
- *	@param	x			‘‚«‚İ‚˜À•W
- *	@param	y			‘‚«‚İ‚™À•W
- *	@param	icon_type	ƒAƒCƒRƒ“ƒ^ƒCƒv
- *	@param	col			ƒJƒ‰[
+ *	@param	p_bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	p_data		ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	x			æ›¸ãè¾¼ã¿ï½˜åº§æ¨™
+ *	@param	y			æ›¸ãè¾¼ã¿ï½™åº§æ¨™
+ *	@param	icon_type	ã‚¢ã‚¤ã‚³ãƒ³ã‚¿ã‚¤ãƒ—
+ *	@param	col			ã‚«ãƒ©ãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void WifiP2PMatchFriendListBmpIconWrite(  GF_BGL_BMPWIN* p_bmp, WIFIP2PMATCH_ICON* p_data, u16 x, u16 y, u32 icon_type, u32 col )
 {
 	int pal;
 	
-	// ‘‚«‚İ
+	// æ›¸ãè¾¼ã¿
 	GF_BGL_BmpWinPrint( p_bmp,
 			p_data->p_char->pRawData, 
 			(PLAYER_DISP_ICON_SCRN_X*8)*icon_type, 0,
@@ -2313,22 +2313,22 @@ static void WifiP2PMatchFriendListBmpIconWrite(  GF_BGL_BMPWIN* p_bmp, WIFIP2PMA
 			PLAYER_DISP_ICON_SCRN_X*8, PLAYER_DISP_ICON_SCRN_Y*8
 			);
 
-	// ƒpƒŒƒbƒgNoæ“¾
+	// ãƒ‘ãƒ¬ãƒƒãƒˆNoå–å¾—
 	pal = WifiP2PMatchBglFrmIconPalGet( p_bmp->frmnum );
 
-	// ƒpƒŒƒbƒgƒiƒ“ƒo[‚ğ‚ ‚í‚¹‚é
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’ã‚ã‚ã›ã‚‹
 	GF_BGL_BmpWinSet_Pal( p_bmp, pal+col );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒv‚ÉƒAƒCƒRƒ“ƒf[ƒ^‚ğ‘‚«‚Ş
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã«ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
  *
- *	@param	p_bmp		ƒrƒbƒgƒ}ƒbƒv
- *	@param	p_data		ƒAƒCƒRƒ“ƒf[ƒ^
- *	@param	x			‘‚«‚İ‚˜À•W
- *	@param	y			‘‚«‚İ‚™À•W
- *	@param	status		ó‘Ô
+ *	@param	p_bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	p_data		ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	x			æ›¸ãè¾¼ã¿ï½˜åº§æ¨™
+ *	@param	y			æ›¸ãè¾¼ã¿ï½™åº§æ¨™
+ *	@param	status		çŠ¶æ…‹
  */
 //-----------------------------------------------------------------------------
 static void WifiP2PMatchFriendListBmpStIconWrite( GF_BGL_BMPWIN* p_bmp, WIFIP2PMATCH_ICON* p_data, u16 x, u16 y, u32 status )
@@ -2337,80 +2337,80 @@ static void WifiP2PMatchFriendListBmpStIconWrite( GF_BGL_BMPWIN* p_bmp, WIFIP2PM
 	u8 scrn_idx=0;
 
 	switch( status ){
-	  case WIFI_STATUS_VCT:      // VCT’†
+	  case WIFI_STATUS_VCT:      // VCTä¸­
 		  scrn_idx = PLAYER_DISP_ICON_IDX_VCT;
 		  break;
 
-	  case WIFI_STATUS_SBATTLE50_WAIT:   // ƒVƒ“ƒOƒ‹Lv50‘Îí•åW’†
-	  case WIFI_STATUS_SBATTLE100_WAIT:   // ƒVƒ“ƒOƒ‹Lv100‘Îí•åW’†
-	  case WIFI_STATUS_SBATTLE_FREE_WAIT:   // ƒVƒ“ƒOƒ‹Lv100‘Îí•åW’†
-	  case WIFI_STATUS_DBATTLE50_WAIT:   // ƒ_ƒuƒ‹Lv50‘Îí•åW’†
-	  case WIFI_STATUS_DBATTLE100_WAIT:   // ƒ_ƒuƒ‹Lv100‘Îí•åW’†
-	  case WIFI_STATUS_DBATTLE_FREE_WAIT:   // ƒ_ƒuƒ‹Lv100‘Îí•åW’†
+	  case WIFI_STATUS_SBATTLE50_WAIT:   // ã‚·ãƒ³ã‚°ãƒ«Lv50å¯¾æˆ¦å‹Ÿé›†ä¸­
+	  case WIFI_STATUS_SBATTLE100_WAIT:   // ã‚·ãƒ³ã‚°ãƒ«Lv100å¯¾æˆ¦å‹Ÿé›†ä¸­
+	  case WIFI_STATUS_SBATTLE_FREE_WAIT:   // ã‚·ãƒ³ã‚°ãƒ«Lv100å¯¾æˆ¦å‹Ÿé›†ä¸­
+	  case WIFI_STATUS_DBATTLE50_WAIT:   // ãƒ€ãƒ–ãƒ«Lv50å¯¾æˆ¦å‹Ÿé›†ä¸­
+	  case WIFI_STATUS_DBATTLE100_WAIT:   // ãƒ€ãƒ–ãƒ«Lv100å¯¾æˆ¦å‹Ÿé›†ä¸­
+	  case WIFI_STATUS_DBATTLE_FREE_WAIT:   // ãƒ€ãƒ–ãƒ«Lv100å¯¾æˆ¦å‹Ÿé›†ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-	  case WIFI_STATUS_MBATTLE_FREE_WAIT:// ƒ}ƒ‹ƒ`ƒoƒgƒ‹•åW’†
+	  case WIFI_STATUS_MBATTLE_FREE_WAIT:// ãƒãƒ«ãƒãƒãƒˆãƒ«å‹Ÿé›†ä¸­
 #endif
 		  col = 1;
-	  case WIFI_STATUS_SBATTLE50:      // ƒVƒ“ƒOƒ‹‘Îí’†
-	  case WIFI_STATUS_SBATTLE100:      // ƒVƒ“ƒOƒ‹‘Îí’†
-	  case WIFI_STATUS_SBATTLE_FREE:      // ƒVƒ“ƒOƒ‹‘Îí’†
-	  case WIFI_STATUS_DBATTLE50:      // ƒ_ƒuƒ‹‘Îí’†
-	  case WIFI_STATUS_DBATTLE100:      // ƒ_ƒuƒ‹‘Îí’†
-	  case WIFI_STATUS_DBATTLE_FREE:      // ƒ_ƒuƒ‹‘Îí’†
+	  case WIFI_STATUS_SBATTLE50:      // ã‚·ãƒ³ã‚°ãƒ«å¯¾æˆ¦ä¸­
+	  case WIFI_STATUS_SBATTLE100:      // ã‚·ãƒ³ã‚°ãƒ«å¯¾æˆ¦ä¸­
+	  case WIFI_STATUS_SBATTLE_FREE:      // ã‚·ãƒ³ã‚°ãƒ«å¯¾æˆ¦ä¸­
+	  case WIFI_STATUS_DBATTLE50:      // ãƒ€ãƒ–ãƒ«å¯¾æˆ¦ä¸­
+	  case WIFI_STATUS_DBATTLE100:      // ãƒ€ãƒ–ãƒ«å¯¾æˆ¦ä¸­
+	  case WIFI_STATUS_DBATTLE_FREE:      // ãƒ€ãƒ–ãƒ«å¯¾æˆ¦ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-	  case WIFI_STATUS_MBATTLE_FREE:     // ƒ}ƒ‹ƒ`ƒoƒgƒ‹’†
+	  case WIFI_STATUS_MBATTLE_FREE:     // ãƒãƒ«ãƒãƒãƒˆãƒ«ä¸­
 #endif
 		  scrn_idx = PLAYER_DISP_ICON_IDX_FIGHT;
 		  break;
 
 
-	  case WIFI_STATUS_TRADE_WAIT:    // ŒğŠ·•åW’†
+	  case WIFI_STATUS_TRADE_WAIT:    // äº¤æ›å‹Ÿé›†ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-	  case WIFI_STATUS_BATTLEROOM_WAIT:// ƒoƒgƒ‹ƒ‹[ƒ€•åW’†
+	  case WIFI_STATUS_BATTLEROOM_WAIT:// ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ å‹Ÿé›†ä¸­
 #endif
 		  col = 1;
-	  case WIFI_STATUS_TRADE:          // ŒğŠ·’†
+	  case WIFI_STATUS_TRADE:          // äº¤æ›ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-	  case WIFI_STATUS_BATTLEROOM:     // ƒoƒgƒ‹ƒ‹[ƒ€’†
+	  case WIFI_STATUS_BATTLEROOM:     // ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ä¸­
 #endif
 		  scrn_idx = PLAYER_DISP_ICON_IDX_CHANGE;
 		  break;
 
 
-	  case WIFI_STATUS_BUCKET_WAIT:// ƒoƒPƒbƒg•åW’†
-	  case WIFI_STATUS_BALANCEBALL_WAIT:// ƒoƒPƒbƒg•åW’†
-	  case WIFI_STATUS_BALLOON_WAIT:// ƒoƒPƒbƒg•åW’†
+	  case WIFI_STATUS_BUCKET_WAIT:// ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+	  case WIFI_STATUS_BALANCEBALL_WAIT:// ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+	  case WIFI_STATUS_BALLOON_WAIT:// ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
 		  col = 1;
 
-	  case WIFI_STATUS_BUCKET:     // ƒoƒPƒbƒg’†
-	  case WIFI_STATUS_BALANCEBALL:     // ƒoƒPƒbƒg’†
-	  case WIFI_STATUS_BALLOON:     // ƒoƒPƒbƒg’†
+	  case WIFI_STATUS_BUCKET:     // ãƒã‚±ãƒƒãƒˆä¸­
+	  case WIFI_STATUS_BALANCEBALL:     // ãƒã‚±ãƒƒãƒˆä¸­
+	  case WIFI_STATUS_BALLOON:     // ãƒã‚±ãƒƒãƒˆä¸­
 		  scrn_idx = PLAYER_DISP_ICON_IDX_MINIGAME;
 		  break;
 		  
 
-	  case WIFI_STATUS_POFIN_WAIT:    // ƒ|ƒtƒBƒ“•åW’†
+	  case WIFI_STATUS_POFIN_WAIT:    // ãƒãƒ•ã‚£ãƒ³å‹Ÿé›†ä¸­
 		  col = 1;
-	  case WIFI_STATUS_POFIN:          // ƒ|ƒtƒBƒ“—¿—’†
+	  case WIFI_STATUS_POFIN:          // ãƒãƒ•ã‚£ãƒ³æ–™ç†ä¸­
 		  scrn_idx = PLAYER_DISP_ICON_IDX_POFIN;
 		  break;
 
-	  case WIFI_STATUS_FRONTIER_WAIT:    // ƒtƒƒ“ƒeƒBƒA•åW’†
+	  case WIFI_STATUS_FRONTIER_WAIT:    // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å‹Ÿé›†ä¸­
 		  col = 1;
-	  case WIFI_STATUS_FRONTIER:          // ƒtƒƒ“ƒeƒBƒA’†
+	  case WIFI_STATUS_FRONTIER:          // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ä¸­
 		  scrn_idx = PLAYER_DISP_ICON_IDX_FRONTIER;
 		  break;
 
-	  case WIFI_STATUS_LOGIN_WAIT:    // ‘Ò‹@’†@ƒƒOƒCƒ“’¼Œã‚Í‚±‚ê
+	  case WIFI_STATUS_LOGIN_WAIT:    // å¾…æ©Ÿä¸­ã€€ãƒ­ã‚°ã‚¤ãƒ³ç›´å¾Œã¯ã“ã‚Œ
 		  scrn_idx = PLAYER_DISP_ICON_IDX_NORMAL;
 		  break;
 	  
-	  case WIFI_STATUS_NONE:   // ‰½‚à–³‚¢
+	  case WIFI_STATUS_NONE:   // ä½•ã‚‚ç„¡ã„
 		  scrn_idx = PLAYER_DISP_ICON_IDX_NONE;
 		  break;
 		  
-	  case WIFI_STATUS_UNKNOWN:   // V‚½‚Éì‚Á‚½‚ç‚±‚Ì”Ô†ˆÈã‚É‚È‚é
-	  case WIFI_STATUS_PLAY_OTHER:   // V‚½‚Éì‚Á‚½‚ç‚±‚Ì”Ô†ˆÈã‚É‚È‚é
+	  case WIFI_STATUS_UNKNOWN:   // æ–°ãŸã«ä½œã£ãŸã‚‰ã“ã®ç•ªå·ä»¥ä¸Šã«ãªã‚‹
+	  case WIFI_STATUS_PLAY_OTHER:   // æ–°ãŸã«ä½œã£ãŸã‚‰ã“ã®ç•ªå·ä»¥ä¸Šã«ãªã‚‹
 		  scrn_idx = PLAYER_DISP_ICON_IDX_UNK;
 		  break;
 	  default:
@@ -2423,11 +2423,11 @@ static void WifiP2PMatchFriendListBmpStIconWrite( GF_BGL_BMPWIN* p_bmp, WIFIP2PM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	frm‚ÌƒAƒCƒRƒ“ƒpƒŒƒbƒgƒiƒ“ƒo[‚ğ•Ô‚·
+ *	@brief	frmã®ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- *	@param	frm		BGL@FRAME
+ *	@param	frm		BGLã€€FRAME
  *
- *	@return ƒpƒŒƒbƒgNO
+ *	@return ãƒ‘ãƒ¬ãƒƒãƒˆNO
  */
 //-----------------------------------------------------------------------------
 static int WifiP2PMatchBglFrmIconPalGet( u32 frm )
@@ -2440,7 +2440,7 @@ static int WifiP2PMatchBglFrmIconPalGet( u32 frm )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒŒƒ“ƒhƒŠƒXƒgŠJnéŒ¾
+ *	@brief	ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚¹ãƒˆé–‹å§‹å®£è¨€
  */
 //-----------------------------------------------------------------------------
 static int WifiP2PMatchFriendListStart( void )
@@ -2448,7 +2448,7 @@ static int WifiP2PMatchFriendListStart( void )
 	WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK,
 					COMM_BRIGHTNESS_SYNC, 1, HEAPID_WIFIP2PMATCH);
 
-	// •”‰®‚ÌBGMİ’è
+	// éƒ¨å±‹ã®BGMè¨­å®š
 	WifiP2P_SetLobbyBgm();	
 
 	return WIFIP2PMATCH_FRIENDLIST_INIT;
@@ -2459,7 +2459,7 @@ static int WifiP2PMatchFriendListStart( void )
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒN‰Šú‰»
+ * ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   wk		WIFIP2PMATCH_WORK*
  *
@@ -2478,11 +2478,11 @@ static void InitWork( WIFIP2PMATCH_WORK *wk )
     }
 #endif
     wk->TalkString =  STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_WIFIP2PMATCH );
-    wk->pTemp = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_WIFIP2PMATCH );        // “ü—Í“o˜^‚Ìˆêƒoƒbƒtƒ@
+    wk->pTemp = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_WIFIP2PMATCH );        // å…¥åŠ›ç™»éŒ²æ™‚ã®ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡
 
 
 #if 0
-    // •¶š—ñƒoƒbƒtƒ@ì¬
+    // æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
     for(i = 0;i < 4;i++){
         wk->MenuString[i]  = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_WIFIP2PMATCH );
     }
@@ -2496,7 +2496,7 @@ static void InitWork( WIFIP2PMATCH_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ[ƒN‰ğ•ú
+ * $brief   ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
  * @param   wk
  *
@@ -2528,9 +2528,9 @@ static void FreeWork( WIFIP2PMATCH_WORK *wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ğ•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -2553,9 +2553,9 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2572,29 +2572,29 @@ static void BgGraphicSet( WIFIP2PMATCH_WORK * wk, ARCHANDLE* p_handle )
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );
     GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 
-    // ã‰º‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+    // ä¸Šä¸‹ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
     ArcUtil_HDL_PalSet(    p_handle, NARC_wifip2pmatch_conect_NCLR, PALTYPE_MAIN_BG, 0, 0,  HEAPID_WIFIP2PMATCH);
     ArcUtil_HDL_PalSet(    p_handle, NARC_wifip2pmatch_conect_NCLR, PALTYPE_SUB_BG,  0, 0,  HEAPID_WIFIP2PMATCH);
 
-    // ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+    // ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
     TalkFontPaletteLoad( PALTYPE_MAIN_BG, _NUKI_FONT_PALNO*0x20, HEAPID_WIFIP2PMATCH );
     TalkFontPaletteLoad( PALTYPE_MAIN_BG, COMM_MESFONT_PAL*0x20, HEAPID_WIFIP2PMATCH );
     //	TalkFontPaletteLoad( PALTYPE_SUB_BG,  13*0x20, HEAPID_WIFIP2PMATCH );
 
 
-    // ƒƒCƒ“‰æ–ÊBG2ƒLƒƒƒ‰“]‘—
+    // ãƒ¡ã‚¤ãƒ³ç”»é¢BG2ã‚­ãƒ£ãƒ©è»¢é€
     ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_conect_NCGR, bgl,
                        GF_BGL_FRAME0_M, 0, 0, 0, HEAPID_WIFIP2PMATCH);
 
-    // ƒƒCƒ“‰æ–ÊBG2ƒXƒNƒŠ[ƒ““]‘—
+    // ãƒ¡ã‚¤ãƒ³ç”»é¢BG2ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
     ArcUtil_HDL_ScrnSet(   p_handle, NARC_wifip2pmatch_conect_01_NSCR, bgl,
                        GF_BGL_FRAME0_M, 0, 0, 0, HEAPID_WIFIP2PMATCH);
 
 
-    // ƒTƒu‰æ–ÊBG0ƒLƒƒƒ‰“]‘—
+    // ã‚µãƒ–ç”»é¢BG0ã‚­ãƒ£ãƒ©è»¢é€
     ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_conect_sub_NCGR, bgl, GF_BGL_FRAME0_S, 0, 0, 0, HEAPID_WIFIP2PMATCH);
 
-    // ƒTƒu‰æ–ÊBG0ƒXƒNƒŠ[ƒ““]‘—
+    // ã‚µãƒ–ç”»é¢BG0ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
     ArcUtil_HDL_ScrnSet(   p_handle, NARC_wifip2pmatch_conect_sub_NSCR, bgl, GF_BGL_FRAME0_S, 0, 0, 0, HEAPID_WIFIP2PMATCH);
 
     {
@@ -2610,7 +2610,7 @@ static void BgGraphicSet( WIFIP2PMATCH_WORK * wk, ARCHANDLE* p_handle )
 }
 
 
-//** CharManager PlttManager—p **//
+//** CharManager PlttManagerç”¨ **//
 #define WIFIP2PMATCH_CHAR_CONT_NUM				(20)
 #define WIFIP2PMATCH_CHAR_VRAMTRANS_MAIN_SIZE		(128*1024)
 #define WIFIP2PMATCH_CHAR_VRAMTRANS_SUB_SIZE		(16*1024)
@@ -2618,13 +2618,13 @@ static void BgGraphicSet( WIFIP2PMATCH_WORK * wk, ARCHANDLE* p_handle )
 
 //-------------------------------------
 //
-//	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[
-//	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 //
 //=====================================
 static void char_pltt_manager_init(void)
 {
-    // ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
     {
         CHAR_MANAGER_MAKE cm = {
             WIFIP2PMATCH_CHAR_CONT_NUM,
@@ -2634,13 +2634,13 @@ static void char_pltt_manager_init(void)
         };
         InitCharManagerReg(&cm, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_32K );
     }
-    // ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
     InitPlttManager(WIFIP2PMATCH_PLTT_CONT_NUM, HEAPID_WIFIP2PMATCH);
 
-    // “Ç‚İ‚İŠJnˆÊ’u‚ğ‰Šú‰»
+    // èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
     CharLoadStartAll();
     PlttLoadStartAll();
-	//’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_128K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
 }
@@ -2648,9 +2648,9 @@ static void char_pltt_manager_init(void)
 
 //------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param   wk		ƒŒ[ƒ_[\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¬ãƒ¼ãƒ€ãƒ¼æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none
  */
@@ -2660,70 +2660,70 @@ static void InitCellActor(WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle)
     int i;
 
 
-    // OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+    // OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
     NNS_G2dInitOamManagerModule();
 
-    // ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-    // ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-    // ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ğ‚İ‚ñ‚È‚Å‹¤—L‚·‚é
+    // å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+    // ã“ã“ã§ä½œæˆã—ãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
     REND_OAMInit(
-        0, 126,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-        0, 126,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-        0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+        0, 126,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+        0, 126,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+        0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
         HEAPID_WIFIP2PMATCH);
 
 
-    // ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
     wk->clactSet = CLACT_U_SetEasyInit( WF_CLACT_WKNUM, &wk->renddata, HEAPID_WIFIP2PMATCH );
 
     CLACT_U_SetSubSurfaceMatrix( &wk->renddata, 0, NAMEIN_SUB_ACTOR_DISTANCE );
 
 
-    //ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-    for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+    //ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+    for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
         wk->resMan[i] = CLACT_U_ResManagerInit(WF_CLACT_RESNUM, i, HEAPID_WIFIP2PMATCH);
     }
 
-	// FontOAMƒVƒXƒeƒ€ì¬
+	// FontOAMã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	wk->fontoam = FONTOAM_SysInit( WF_FONTOAM_NUM, HEAPID_WIFIP2PMATCH );
 
 	
 #if 0
-    //---------ã‰æ–Ê—p-------------------
+    //---------ä¸Šç”»é¢ç”¨-------------------
 
-    //chara“Ç‚İ‚İ
+    //charaèª­ã¿è¾¼ã¿
     wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] =
         CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[CLACT_U_CHAR_RES],
                                         p_handle,
                                         NARC_wifip2pmatch_conect_obj_NCGR, FALSE, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_WIFIP2PMATCH);
 
-    //pal“Ç‚İ‚İ
+    //palèª­ã¿è¾¼ã¿
     wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] =
         CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[CLACT_U_PLTT_RES],
                                         p_handle,
                                         NARC_wifip2pmatch_conect_obj_NCLR, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAPID_WIFIP2PMATCH);
 
-    //cell“Ç‚İ‚İ
+    //cellèª­ã¿è¾¼ã¿
     wk->resObjTbl[MAIN_LCD][CLACT_U_CELL_RES] =
         CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELL_RES],
                                             p_handle,
                                             NARC_wifip2pmatch_conect_NCER, FALSE, 0, CLACT_U_CELL_RES,HEAPID_WIFIP2PMATCH);
 
-    //“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+    //åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
     wk->resObjTbl[MAIN_LCD][CLACT_U_CELLANM_RES] =
         CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELLANM_RES],
                                             p_handle,
                                             NARC_wifip2pmatch_conect_NANR, FALSE, 0, CLACT_U_CELLANM_RES,HEAPID_WIFIP2PMATCH);
 
 
-    // ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+    // ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 
-    // Chara“]‘—
+    // Charaè»¢é€
     CLACT_U_CharManagerSetAreaCont( wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] );
     //	CLACT_U_CharManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] );
 
-    // ƒpƒŒƒbƒg“]‘—
+    // ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
     CLACT_U_PlttManagerSetCleanArea( wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] );
     //	CLACT_U_PlttManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] );
 
@@ -2741,7 +2741,7 @@ static void InitCellActor(WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle)
 
 //------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   wk			WIFIP2PMATCH_WORK*
  *
@@ -2752,7 +2752,7 @@ static void SetCellActor(WIFIP2PMATCH_WORK *wk)
 {
 #if 0
     int i;
-    // ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+    // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
     CLACT_U_MakeHeader(&wk->clActHeader_m, 0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
                        0, 0,
                        wk->resMan[CLACT_U_CHAR_RES],
@@ -2771,7 +2771,7 @@ static void SetCellActor(WIFIP2PMATCH_WORK *wk)
 	NULL,NULL);
      */
     {
-        //“o˜^î•ñŠi”[
+        //ç™»éŒ²æƒ…å ±æ ¼ç´
         CLACT_ADD add;
 
         add.ClActSet	= wk->clactSet;
@@ -2786,8 +2786,8 @@ static void SetCellActor(WIFIP2PMATCH_WORK *wk)
         add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
         add.heap		= HEAPID_WIFIP2PMATCH;
 
-        //ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
-        // ƒTƒu‰æ–Ê—p(–îˆó‚Ì“o˜^j
+        //ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
+        // ã‚µãƒ–ç”»é¢ç”¨(çŸ¢å°ã®ç™»éŒ²ï¼‰
         for(i=0;i < _OAM_NUM;i++){
             add.mat.x = FX32_ONE *   TRAINER_NAME_POS_X;
             add.mat.y = FX32_ONE * ( TRAINER_NAME_POS_Y + TRAINER_NAME_POS_SPAN*i ) + NAMEIN_SUB_ACTOR_DISTANCE;
@@ -2800,14 +2800,14 @@ static void SetCellActor(WIFIP2PMATCH_WORK *wk)
 
     }
 #endif
-    GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒƒCƒ“‰æ–ÊOBJ–Ê‚n‚m
-    //	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒTƒu‰æ–ÊOBJ–Ê‚n‚m
+    GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ãƒ¡ã‚¤ãƒ³ç”»é¢OBJé¢ï¼¯ï¼®
+    //	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//ã‚µãƒ–ç”»é¢OBJé¢ï¼¯ï¼®
 }
 
 
 //------------------------------------------------------------------
 /**
- * BMPWINˆ—i•¶šƒpƒlƒ‹‚ÉƒtƒHƒ“ƒg•`‰æj
+ * BMPWINå‡¦ç†ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«ã«ãƒ•ã‚©ãƒ³ãƒˆæç”»ï¼‰
  *
  * @param   wk
  *
@@ -2817,7 +2817,7 @@ static void SetCellActor(WIFIP2PMATCH_WORK *wk)
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/17
-// ƒEƒBƒ“ƒhƒE‚Ìƒpƒ‰ƒƒ^‚ğ’è”‚É’u‚«Š·‚¦AƒEƒBƒ“ƒhƒEˆÊ’u‚ğ1‚Â‰E‚Ö
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ‘ãƒ©ãƒ¡ã‚¿ã‚’å®šæ•°ã«ç½®ãæ›ãˆã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®ã‚’1ã¤å³ã¸
 #define TITLE_TEXT_X	(  5 )
 #define TITLE_TEXT_Y	(  1 )
 #define TITLE_TEXT_SX	( 22 )
@@ -2826,7 +2826,7 @@ static void SetCellActor(WIFIP2PMATCH_WORK *wk)
 
 static void MainMenuMsgInit(WIFIP2PMATCH_WORK *wk)
 {
-	//@ƒ^ƒCƒgƒ‹‚Í‚¢‚ç‚È‚­‚È‚è‚Ü‚µ‚½
+	//ã€€ã‚¿ã‚¤ãƒˆãƒ«ã¯ã„ã‚‰ãªããªã‚Šã¾ã—ãŸ
 #if 1	
 	
     int i,col;
@@ -2837,7 +2837,7 @@ static void MainMenuMsgInit(WIFIP2PMATCH_WORK *wk)
     }
     // ----------------------------------------------------------------------------
     // localize_spec_mark(LANG_ALL) imatake 2007/01/17
-    // ƒEƒBƒ“ƒhƒE‚Ìƒpƒ‰ƒƒ^‚ğ’è”‚É’u‚«Š·‚¦AƒEƒBƒ“ƒhƒEˆÊ’u‚ğ1‚Â‰E‚Ö
+    // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ‘ãƒ©ãƒ¡ã‚¿ã‚’å®šæ•°ã«ç½®ãæ›ãˆã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®ã‚’1ã¤å³ã¸
     GF_BGL_BmpWinAdd(wk->bgl, &wk->MyInfoWinBack, GF_BGL_FRAME3_M,
                      TITLE_TEXT_X, TITLE_TEXT_Y, TITLE_TEXT_SX, TITLE_TEXT_SY,
                      _NUKI_FONT_PALNO,  _CGX_BOTTOM - 18*3 );
@@ -2846,7 +2846,7 @@ static void MainMenuMsgInit(WIFIP2PMATCH_WORK *wk)
     MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_018, wk->TitleString );
     // ----------------------------------------------------------------------------
     // localize_spec_mark(LANG_ALL) imatake 2007/01/17
-    // u‚v‚‰?‚e‚‰ƒRƒlƒNƒVƒ‡ƒ“‚É@‚¹‚Â‚¼‚­v‚ğ’†‰›Šñ‚¹
+    // ã€Œï¼·ï½‰?ï¼¦ï½‰ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã«ã€€ã›ã¤ããã€ã‚’ä¸­å¤®å¯„ã›
     {
         // MatchComment: call to FontProc_GetPrintCenteredPositionX uses FONT_SYSTEM instead of FONT_TALK
         u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_SYSTEM, wk->TitleString, 0, TITLE_TEXT_SX * 8);
@@ -2859,7 +2859,7 @@ static void MainMenuMsgInit(WIFIP2PMATCH_WORK *wk)
 }
 
 
-// ‚Í‚¢E‚¢‚¢‚¦BMPi‰º‰æ–Êj
+// ã¯ã„ãƒ»ã„ã„ãˆBMPï¼ˆä¸‹ç”»é¢ï¼‰
 #define YESNO_WIN_FRAME_CHAR	( 1 + TALK_WIN_CGX_SIZ )
 #define YESNO_CHARA_OFFSET		( 1 + TALK_WIN_CGX_SIZ + MENU_WIN_CGX_SIZ + FLD_MSG_WIN_SX*FLD_MSG_WIN_SY )
 #define YESNO_WINDOW_X			( 22 )
@@ -2882,7 +2882,7 @@ static const BMPWIN_DAT TouchYesNoBmpDat[2]={
 
 //------------------------------------------------------------------
 /**
- * $brief   Šm•Û‚µ‚½BMPWIN‚ğ‰ğ•ú
+ * $brief   ç¢ºä¿ã—ãŸBMPWINã‚’è§£æ”¾
  *
  * @param   wk
  *
@@ -2893,7 +2893,7 @@ static void BmpWinDelete( WIFIP2PMATCH_WORK *wk )
 {
     int i;
 
-	// ƒƒbƒZ[ƒW’â~
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åœæ­¢
 	EndMessageWindowOff( wk );
 
     if(GF_BGL_BmpWinAddCheck(&wk->MyInfoWinBack)){
@@ -2927,7 +2927,7 @@ static void BmpWinDelete( WIFIP2PMATCH_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ŠJn‚ÌƒƒbƒZ[ƒW   WIFIP2PMATCH_MODE_INIT
+ * $brief   é–‹å§‹æ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸   WIFIP2PMATCH_MODE_INIT
  * @param   wk
  * @param   seq
  * @retval  none
@@ -2947,16 +2947,16 @@ static int WifiP2PMatch_MainInit( WIFIP2PMATCH_WORK *wk, int seq )
 {
 	u32 status;
 	
-    OHNO_PRINT("ƒTƒEƒ“ƒh‘‚«Š·‚¦\n");
-    if(CommStateIsWifiConnect()){       // Ú‘±’†
+    OHNO_PRINT("ã‚µã‚¦ãƒ³ãƒ‰æ›¸ãæ›ãˆ\n");
+    if(CommStateIsWifiConnect()){       // æ¥ç¶šä¸­
 
-//        WirelessIconEasy();  // Ú‘±’†‚È‚Ì‚ÅƒAƒCƒRƒ“•\¦
+//        WirelessIconEasy();  // æ¥ç¶šä¸­ãªã®ã§ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 		
         _friendNameExpand(wk, mydwc_getFriendIndex());
         wk->pMatch = CommStateGetMatchWork();
         wk->pMatch->myMatchStatus.vchat = wk->pMatch->myMatchStatus.vchat_org;
 
-		// statusæ“¾
+		// statuså–å¾—
 		status = _WifiMyStatusGet( wk, &wk->pMatch->myMatchStatus );
 
         if( (status == WIFI_STATUS_TRADE) ||
@@ -2972,25 +2972,25 @@ static int WifiP2PMatch_MainInit( WIFIP2PMATCH_WORK *wk, int seq )
 			(status == WIFI_STATUS_BALLOON) ||
 			(status == WIFI_STATUS_BALLOON_WAIT) ||
 			(status == WIFI_STATUS_POFIN_WAIT)
-			){	// ŒğŠ·’†orƒ|ƒtƒBƒ“‚È‚ç
+			){	// äº¤æ›ä¸­orãƒãƒ•ã‚£ãƒ³ãªã‚‰
 
-#if 0		//080611	tomoya Šg’£ƒq[ƒv‚ªƒƒ‚ƒŠƒ}ƒbƒv‚Ìˆê”Ôã‚É‚È‚é‚æ‚¤‚Éì¬
-			// ƒtƒƒ“ƒeƒBƒA‚©‚ç–ß‚Á‚Ä‚«‚Ä‚àAŠg’£ƒq[ƒv‚ğì¬
+#if 0		//080611	tomoya æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãŒãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—ã®ä¸€ç•ªä¸Šã«ãªã‚‹ã‚ˆã†ã«ä½œæˆ
+			// ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‹ã‚‰æˆ»ã£ã¦ãã¦ã‚‚ã€æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã‚’ä½œæˆ
 			if( (status == WIFI_STATUS_FRONTIER) ||
 				(status == WIFI_STATUS_TRADE) ){
-				// ƒoƒgƒ‹‚©‚ç–ß‚Á‚Ä‚«‚½‚È‚çŠg’£ƒq[ƒvì¬
+				// ãƒãƒˆãƒ«ã‹ã‚‰æˆ»ã£ã¦ããŸãªã‚‰æ‹¡å¼µãƒ’ãƒ¼ãƒ—ä½œæˆ
 				sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WIFIP2PMATCHEX, WIFI_P2PMATCH_EXHEAP_SIZE );
 			}
 #endif
 
 
-			// 080605 tomoya BTS:249‚Ì‘Îˆ‚Ì‚½‚ß
-			// e‚Ì’ÊMƒŠƒZƒbƒgˆ—Œã’¼‚®‚ÉÚ‘±‚µ‚Ä‚µ‚Ü‚¤‚Ì‚ğ‰ñ”ğ
-			// ƒXƒe[ƒ^ƒX‚ğLOGIN_WAIT‚É•ÏX
+			// 080605 tomoya BTS:249ã®å¯¾å‡¦ã®ãŸã‚
+			// è¦ªã®é€šä¿¡ãƒªã‚»ãƒƒãƒˆå‡¦ç†å¾Œç›´ãã«æ¥ç¶šã—ã¦ã—ã¾ã†ã®ã‚’å›é¿
+			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’LOGIN_WAITã«å¤‰æ›´
 			_myStatusChange(wk, WIFI_STATUS_LOGIN_WAIT);
 			
             CommInfoFinalize();
-            CommStateWifiTradeMatchEnd();	// ƒ}ƒbƒ`ƒ“ƒO‚ğØ‚é
+            CommStateWifiTradeMatchEnd();	// ãƒãƒƒãƒãƒ³ã‚°ã‚’åˆ‡ã‚‹
             wk->pMatch = CommStateGetMatchWork();
             wk->pMatch->myMatchStatus.vchat = wk->pMatch->myMatchStatus.vchat_org;
             wk->timer = _RECONECTING_WAIT_TIME;
@@ -2998,16 +2998,16 @@ static int WifiP2PMatch_MainInit( WIFIP2PMATCH_WORK *wk, int seq )
 
         }
         else{
-			// ƒoƒgƒ‹‚©‚ç–ß‚Á‚Ä‚«‚½‚Æ‚«
+			// ãƒãƒˆãƒ«ã‹ã‚‰æˆ»ã£ã¦ããŸã¨ã
             WifiP2PMatchMessagePrint(wk, msg_wifilobby_044, FALSE);
 
-			// ‚¦‚ç[ƒ`ƒFƒbƒNÄŠJ
+			// ãˆã‚‰ãƒ¼ãƒã‚§ãƒƒã‚¯å†é–‹
 		    CommStateSetErrorCheck(TRUE,TRUE);	
             CommTimingSyncStart(_TIMING_BATTLE_END);
             wk->seq = WIFIP2PMATCH_NEXTBATTLE_YESNO;
 
-#if 0		//080611	tomoya Šg’£ƒq[ƒv‚ªƒƒ‚ƒŠƒ}ƒbƒv‚Ìˆê”Ôã‚É‚È‚é‚æ‚¤‚Éì¬
-			// ƒoƒgƒ‹‚©‚ç–ß‚Á‚Ä‚«‚½‚È‚çŠg’£ƒq[ƒvì¬
+#if 0		//080611	tomoya æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãŒãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—ã®ä¸€ç•ªä¸Šã«ãªã‚‹ã‚ˆã†ã«ä½œæˆ
+			// ãƒãƒˆãƒ«ã‹ã‚‰æˆ»ã£ã¦ããŸãªã‚‰æ‹¡å¼µãƒ’ãƒ¼ãƒ—ä½œæˆ
 			sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WIFIP2PMATCHEX, WIFI_P2PMATCH_EXHEAP_SIZE );
 #endif
         }
@@ -3015,21 +3015,21 @@ static int WifiP2PMatch_MainInit( WIFIP2PMATCH_WORK *wk, int seq )
         wk->pMatch = CommStateGetMatchWork();
         wk->seq = WIFIP2PMATCH_FRIENDLIST_INIT;   */
     }
-    else{        // Ú‘±‚ª‚Ü‚¾
+    else{        // æ¥ç¶šãŒã¾ã 
 
-#if 0	//	080611	tomoya Šg’£ƒq[ƒv‚ªƒƒ‚ƒŠƒ}ƒbƒv‚Ìˆê”Ôã‚É‚È‚é‚æ‚¤‚Éì¬
-		// ’ÊM‘O‚È‚çŠg’£ƒq[ƒvì¬
+#if 0	//	080611	tomoya æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãŒãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—ã®ä¸€ç•ªä¸Šã«ãªã‚‹ã‚ˆã†ã«ä½œæˆ
+		// é€šä¿¡å‰ãªã‚‰æ‹¡å¼µãƒ’ãƒ¼ãƒ—ä½œæˆ
 		sys_CreateHeap( HEAPID_BASE_APP, HEAPID_WIFIP2PMATCHEX, WIFI_P2PMATCH_EXHEAP_SIZE );
 #endif
 
 		//08.07.03
 		Snd_DataSetByScene( SND_SCENE_P2P, SEQ_WIFILOBBY, 1 );
 
-        MainMenuMsgInit(wk);// BMPWIN“o˜^E•`‰æ
+        MainMenuMsgInit(wk);// BMPWINç™»éŒ²ãƒ»æç”»
         if( !DWC_CheckHasProfile( WifiList_GetMyUserInfo(wk->pList) ) ){
-            GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //‚Í‚¢‚¯‚¢
+            GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //ã¯ã„ã‘ã„
             GF_BGL_PrioritySet(GF_BGL_FRAME1_M , 0);   // yesno win
-            GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ƒƒbƒZ[ƒW
+            GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
             GF_BGL_PrioritySet(GF_BGL_FRAME2_M , 1);   // menulist
             _systemMessagePrint(wk, dwc_message_0003);
             wk->pYesNoWork =
@@ -3053,7 +3053,7 @@ static int WifiP2PMatch_MainInit( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ’Êí‚ÌÚ‘±  WIFIP2PMATCH_NORMALCONNECT_YESNO
+ * $brief   é€šå¸¸ã®æ¥ç¶š  WIFIP2PMATCH_NORMALCONNECT_YESNO
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3075,7 +3075,7 @@ static int _normalConnectYesNo( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ’Êí‚ÌÚ‘±  WIFIP2PMATCH_NORMALCONNECT_WAIT
+ * $brief   é€šå¸¸ã®æ¥ç¶š  WIFIP2PMATCH_NORMALCONNECT_WAIT
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3085,13 +3085,13 @@ static int _normalConnectWait( WIFIP2PMATCH_WORK *wk, int seq )
 {
     int i;
     int ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return seq;
     }
     else{
         //BmpTalkWinClear( &wk->SysMsgWin, WINDOW_TRANS_ON );
-        if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
-            //Ú‘±ŠJn
+        if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
+            //æ¥ç¶šé–‹å§‹
             wk->pMatch = CommStateWifiEnterLogin(wk->pSaveData,sizeof(TEST_MATCH_WORK));
 
             WifiP2PMatchMessagePrint(wk, dwc_message_0008, TRUE);
@@ -3099,7 +3099,7 @@ static int _normalConnectWait( WIFIP2PMATCH_WORK *wk, int seq )
             wk->timeWaitWork = TimeWaitIconAdd( &wk->MsgWin, COMM_TALK_WIN_CGX_NUM );
             wk->seq = WIFIP2PMATCH_CONNECTING_INIT;
         }
-        else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+        else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
             wk->seq = WIFIP2PMATCH_MODE_END_WAIT;
         }
     }
@@ -3108,7 +3108,7 @@ static int _normalConnectWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   •Ê‚ÌDS‚¾‚Á‚½ê‡  WIFIP2PMATCH_DIFFER_MACHINE_INIT
+ * $brief   åˆ¥ã®DSã ã£ãŸå ´åˆ  WIFIP2PMATCH_DIFFER_MACHINE_INIT
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3119,15 +3119,15 @@ static int _differMachineInit( WIFIP2PMATCH_WORK *wk, int seq )
 {
     if(sys.trg & (PAD_BUTTON_CANCEL|PAD_BUTTON_DECIDE)){
         _systemMessagePrint(wk,dwc_message_0006);
-        GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ƒƒbƒZ[ƒW
+        GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
         GF_BGL_PrioritySet(GF_BGL_FRAME2_M , 1);   //
         GF_BGL_PrioritySet(GF_BGL_FRAME1_M , 0);   // yesno win
-        GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //‚Í‚¢‚¯‚¢
+        GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //ã¯ã„ã‘ã„
         wk->pYesNoWork =
 				BmpYesNoSelectInitEx( wk->bgl,
                                 &_yesNoBmpDatSys2,
                                 MENU_WIN_CGX_NUM, MENU_WIN_PAL,
-                                1, HEAPID_WIFIP2PMATCH );	// ‚¢‚¢‚¦@‚©‚çn‚Ü‚é
+                                1, HEAPID_WIFIP2PMATCH );	// ã„ã„ãˆã€€ã‹ã‚‰å§‹ã¾ã‚‹
 /*            BmpYesNoSelectInit( wk->bgl,
                                 &_yesNoBmpDatSys2,
                                 MENU_WIN_CGX_NUM, MENU_WIN_PAL,
@@ -3140,7 +3140,7 @@ static int _differMachineInit( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   •Ê‚ÌDS‚¾‚Á‚½ê‡  WIFIP2PMATCH_DIFFER_MACHINE_NEXT
+ * $brief   åˆ¥ã®DSã ã£ãŸå ´åˆ  WIFIP2PMATCH_DIFFER_MACHINE_NEXT
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3151,19 +3151,19 @@ static int _differMachineNext( WIFIP2PMATCH_WORK *wk, int seq )
 {
     int i;
     int ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return seq;
     }
     else{
         BmpTalkWinClear( &wk->SysMsgWin, WINDOW_TRANS_ON );
         GF_BGL_BmpWinDel( &wk->SysMsgWin );
-        if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+        if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
             _systemMessagePrint(wk,dwc_message_0007);
             wk->pYesNoWork =
                 BmpYesNoSelectInitEx( wk->bgl,
                                     &_yesNoBmpDatSys2,
                                     MENU_WIN_CGX_NUM, MENU_WIN_PAL,
-                                    1, HEAPID_WIFIP2PMATCH );	// ‚¢‚¢‚¦@‚©‚çn‚ß‚é
+                                    1, HEAPID_WIFIP2PMATCH );	// ã„ã„ãˆã€€ã‹ã‚‰å§‹ã‚ã‚‹
 /*
                 BmpYesNoSelectInit( wk->bgl,
                                     &_yesNoBmpDatSys2,
@@ -3171,7 +3171,7 @@ static int _differMachineNext( WIFIP2PMATCH_WORK *wk, int seq )
                                     HEAPID_WIFIP2PMATCH );//*/
             wk->seq = WIFIP2PMATCH_DIFFER_MACHINE_ONEMORE;
         }
-        else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+        else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
             wk->seq = WIFIP2PMATCH_MODE_END_WAIT;
         }
     }
@@ -3180,7 +3180,7 @@ static int _differMachineNext( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   •Ê‚ÌDS‚¾‚Á‚½ê‡  WIFIP2PMATCH_DIFFER_MACHINE_ONEMORE
+ * $brief   åˆ¥ã®DSã ã£ãŸå ´åˆ  WIFIP2PMATCH_DIFFER_MACHINE_ONEMORE
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3191,21 +3191,21 @@ static int _differMachineOneMore( WIFIP2PMATCH_WORK *wk, int seq )
 {
     int i;
     int ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return seq;
     }
     else{
 
-		// —Dæ‡ˆÊ‚ğ–ß‚·
-        GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ƒƒbƒZ[ƒW
+		// å„ªå…ˆé †ä½ã‚’æˆ»ã™
+        GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
         GF_BGL_PrioritySet(GF_BGL_FRAME2_M , 0);   //
         GF_BGL_PrioritySet(GF_BGL_FRAME1_M , 1);   // yesno win
-        GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //‚Í‚¢‚¯‚¢
+        GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //ã¯ã„ã‘ã„
 		
         BmpTalkWinClear( &wk->SysMsgWin, WINDOW_TRANS_ON );
         GF_BGL_BmpWinDel( &wk->SysMsgWin );
-        if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
-            //Ú‘±ŠJn
+        if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
+            //æ¥ç¶šé–‹å§‹
             WifiList_Init(wk->pList);
             EMAILSAVE_Init(SaveData_Get(wk->pSaveData, GMDATA_ID_EMAIL));
             FrontierRecord_DataCrear(SaveData_GetFrontier(wk->pSaveData));
@@ -3217,7 +3217,7 @@ static int _differMachineOneMore( WIFIP2PMATCH_WORK *wk, int seq )
             wk->timeWaitWork = TimeWaitIconAdd( &wk->MsgWin, COMM_TALK_WIN_CGX_NUM );
             wk->bInitMessage = TRUE;
         }
-        else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+        else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
             wk->seq = WIFIP2PMATCH_MODE_END_WAIT;
         }
     }
@@ -3227,7 +3227,7 @@ static int _differMachineOneMore( WIFIP2PMATCH_WORK *wk, int seq )
 //WIFIP2PMATCH_FIRST_YESNO
 //------------------------------------------------------------------
 /**
- * $brief   ‰‰ñÚ‘±‚ÌŠm”F  WIFIP2PMATCH_FIRST_YESNO
+ * $brief   åˆå›æ¥ç¶šæ™‚ã®ç¢ºèª  WIFIP2PMATCH_FIRST_YESNO
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3238,21 +3238,21 @@ static int _firstYesNo( WIFIP2PMATCH_WORK *wk, int seq )
 {
     int i;
     int ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return seq;
     }
     else{
 
-		// •\¦—Dæ‡ˆÊ‚ğ–ß‚·
-		GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //‚Í‚¢‚¯‚¢
+		// è¡¨ç¤ºå„ªå…ˆé †ä½ã‚’æˆ»ã™
+		GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //ã¯ã„ã‘ã„
 		GF_BGL_PrioritySet(GF_BGL_FRAME1_M , 1);   // yesno win
-		GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ƒƒbƒZ[ƒW
+		GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		GF_BGL_PrioritySet(GF_BGL_FRAME2_M , 0);   // menulist
 		
         BmpTalkWinClear( &wk->SysMsgWin, WINDOW_TRANS_ON );
         GF_BGL_BmpWinDel( &wk->SysMsgWin );
-        if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
-            //Ú‘±ŠJn
+        if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
+            //æ¥ç¶šé–‹å§‹
             wk->seq = WIFIP2PMATCH_CONNECTING_INIT;
             wk->pMatch = CommStateWifiEnterLogin(wk->pSaveData,sizeof(TEST_MATCH_WORK));
             WifiP2PMatchMessagePrint(wk, dwc_message_0008, TRUE);
@@ -3260,7 +3260,7 @@ static int _firstYesNo( WIFIP2PMATCH_WORK *wk, int seq )
             wk->timeWaitWork = TimeWaitIconAdd( &wk->MsgWin, COMM_TALK_WIN_CGX_NUM );
             wk->bInitMessage = TRUE;
         }
-        else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+        else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
             wk->seq = WIFIP2PMATCH_MODE_END_WAIT;
         }
     }
@@ -3270,7 +3270,7 @@ static int _firstYesNo( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒƒOƒCƒ“Ú‘±’†  WIFIP2PMATCH_CONNECTING_INIT
+ * $brief   ãƒ­ã‚°ã‚¤ãƒ³æ¥ç¶šä¸­  WIFIP2PMATCH_CONNECTING_INIT
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3278,9 +3278,9 @@ static int _firstYesNo( WIFIP2PMATCH_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int WifiP2PMatch_ConnectingInit( WIFIP2PMATCH_WORK *wk, int seq )
 {
-    GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //‚Í‚¢‚¯‚¢
+    GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //ã¯ã„ã‘ã„
     GF_BGL_PrioritySet(GF_BGL_FRAME1_M , 1);   // yesno win
-    GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ƒƒbƒZ[ƒW
+    GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
     GF_BGL_PrioritySet(GF_BGL_FRAME2_M , 0);   //
     wk->seq = WIFIP2PMATCH_CONNECTING;
     return seq;
@@ -3288,7 +3288,7 @@ static int WifiP2PMatch_ConnectingInit( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   MyMatchStatusì¬
+ * $brief   MyMatchStatusä½œæˆ
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3316,7 +3316,7 @@ static void _makeMyMatchStatus(WIFIP2PMATCH_WORK* wk, int status)
     wk->pMatch->myMatchStatus.pokemonZukan = ZukanWork_GetZenkokuZukanFlag(pZukan);
 //    wk->pMatch->myMatchStatus.status = status;
     wk->pMatch->myMatchStatus.status = WIFI_STATUS_UNKNOWN;
-    _myStatusChange_not_send(wk, status);	// BGMó‘Ô‚È‚Ç‚ğ’²®
+    _myStatusChange_not_send(wk, status);	// BGMçŠ¶æ…‹ãªã©ã‚’èª¿æ•´
     wk->pMatch->myMatchStatus.regulation = _REGULATION_BATTLE_TOWER;
     wk->pMatch->myMatchStatus.trainer_view = MyStatus_GetTrainerView(pMyStatus);
     wk->pMatch->myMatchStatus.sex = MyStatus_GetMySex(pMyStatus);
@@ -3332,7 +3332,7 @@ static void _makeMyMatchStatus(WIFIP2PMATCH_WORK* wk, int status)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒtƒŒƒ“ƒh‚Ìstatus“Ç‚İ‚İ
+ * $brief   ãƒ•ãƒ¬ãƒ³ãƒ‰ã®statusèª­ã¿è¾¼ã¿
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3349,10 +3349,10 @@ static int _readFriendMatchStatus(WIFIP2PMATCH_WORK* wk)
     for(i = 0;i < WIFIP2PMATCH_MEMBER_MAX;i++){
         wk->index2No[i] = 0;
 
-		// ‚»‚Ìl‚Í©•ª‚Ì—F’B‚©H
+		// ãã®äººã¯è‡ªåˆ†ã®å‹é”ã‹ï¼Ÿ
 		if( wk->friend_num > i ){
-			// ‚±‚Ìƒ`ƒFƒbƒN‚ğ­‚µi‰»‚³‚¹‚é
-			// ÅVî•ñ‚ğóM‚µ‚Ä‰‚ß‚Ä“o˜^‚³‚ê‚é
+			// ã“ã®ãƒã‚§ãƒƒã‚¯ã‚’å°‘ã—é€²åŒ–ã•ã›ã‚‹
+			// æœ€æ–°æƒ…å ±ã‚’å—ä¿¡ã—ã¦åˆã‚ã¦ç™»éŒ²ã•ã‚Œã‚‹
 			if(DWC_STATUS_OFFLINE != WifiDwc_getFriendStatus(i)){
 				p_status = WifiFriendMatchStatusGet( wk, i );
 
@@ -3366,8 +3366,8 @@ static int _readFriendMatchStatus(WIFIP2PMATCH_WORK* wk)
 				}else{
 
 					if( (status == WIFI_STATUS_PLAY_OTHER) ){
-						// ‚à‚µ‚»‚Ìl‚Ìƒ{ƒ^ƒ“‚ª‰º‚Éo‚Ä‚¢‚½‚çÁ‚·
-						// BTS:’ÊM393‚Ì‘Îˆ
+						// ã‚‚ã—ãã®äººã®ãƒœã‚¿ãƒ³ãŒä¸‹ã«å‡ºã¦ã„ãŸã‚‰æ¶ˆã™
+						// BTS:é€šä¿¡393ã®å¯¾å‡¦
 						if( MCVSys_BttnTypeGet( wk, i+1 ) != MCV_BTTN_FRIEND_TYPE_NONE ){
 							MCVSys_BttnDel( wk, i+1 );
 						}
@@ -3381,7 +3381,7 @@ static int _readFriendMatchStatus(WIFIP2PMATCH_WORK* wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒtƒŒƒ“ƒh‚ÌstatusŒŸ¸@‚±‚¿‚ç‚Ìó‘Ô‚Æ•Ï‚í‚Á‚½‚ç•Ï‚í‚Á‚½”‚ğ•Ô‚·
+ * $brief   ãƒ•ãƒ¬ãƒ³ãƒ‰ã®statusæ¤œæŸ»ã€€ã“ã¡ã‚‰ã®çŠ¶æ…‹ã¨å¤‰ã‚ã£ãŸã‚‰å¤‰ã‚ã£ãŸæ•°ã‚’è¿”ã™
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3404,30 +3404,30 @@ static int _checkUserDataMatchStatus(WIFIP2PMATCH_WORK* wk)
         if((wk->matchStatusBackup[i]  != status) ||
 			(wk->matchVchatBackup[i]  != p_status->vchat) ){
 
-			// ƒIƒuƒWƒFƒNƒgƒ[ƒN
+			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 			p_obj = MCRSYS_GetMoveObjWork( wk, i+1 );
 
-			// ‚»‚ÌƒIƒuƒWƒF‚ª“o˜^‚³‚êAV‚µ‚¢ó‘Ô‚ª•`‰æƒIƒuƒWƒF‚É”½‰f‚³‚ê‚é‚Ü‚Å‚Í
-			// ƒoƒbƒNƒAƒbƒvƒXƒe[ƒ^ƒX‚ğXV‚µ‚È‚¢
+			// ãã®ã‚ªãƒ–ã‚¸ã‚§ãŒç™»éŒ²ã•ã‚Œã€æ–°ã—ã„çŠ¶æ…‹ãŒæç”»ã‚ªãƒ–ã‚¸ã‚§ã«åæ˜ ã•ã‚Œã‚‹ã¾ã§ã¯
+			// ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’æ›´æ–°ã—ãªã„
 			if( p_obj ){
 
-				// ƒXƒe[ƒ^ƒX‚ª‘Ò‚¿ó‘Ô‚É‚È‚Á‚½‚çƒWƒƒƒ“ƒv‚³‚¹‚é
-				// ‘Ò‚¿ó‘Ô‚©‚ç•’Ê‚É–ß‚Á‚½‚ç’Êí‚É–ß‚·
+				// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒå¾…ã¡çŠ¶æ…‹ã«ãªã£ãŸã‚‰ã‚¸ãƒ£ãƒ³ãƒ—ã•ã›ã‚‹
+				// å¾…ã¡çŠ¶æ…‹ã‹ã‚‰æ™®é€šã«æˆ»ã£ãŸã‚‰é€šå¸¸ã«æˆ»ã™
 				back_up_wait = _modeWait( wk->matchStatusBackup[i] );
 				now_wait = _modeWait( status );
 				if( (back_up_wait == TRUE) && (now_wait == FALSE) ){
-					//NPC‚Ì’Êí“®ì‚É–ß‚·
+					//NPCã®é€šå¸¸å‹•ä½œã«æˆ»ã™
 					WIFI_MCR_NpcMoveSet( &wk->matchroom, p_obj,  MCR_NPC_MOVE_NORMAL );
 				}else if( (back_up_wait == FALSE) && (now_wait == TRUE) ){
 					
-					//NPC‚ğƒWƒƒƒ“ƒv“®ì‚É‚·‚é
+					//NPCã‚’ã‚¸ãƒ£ãƒ³ãƒ—å‹•ä½œã«ã™ã‚‹
 					WIFI_MCR_NpcMoveSet( &wk->matchroom, p_obj,  MCR_NPC_MOVE_JUMP );
 				}
 
 				wk->matchStatusBackup[i] = status;
 				wk->matchVchatBackup[i] = p_status->vchat;
-				// ’ÊMæ“¾•ª‚ğ“ü‚ê‚é
-				OHNO_PRINT("’ÊMæ“¾•ª‚ğ“ü‚ê‚é  %d %d\n", i, p_status->trainer_view);
+				// é€šä¿¡å–å¾—åˆ†ã‚’å…¥ã‚Œã‚‹
+				OHNO_PRINT("é€šä¿¡å–å¾—åˆ†ã‚’å…¥ã‚Œã‚‹  %d %d\n", i, p_status->trainer_view);
 				WifiList_SetFriendInfo(wk->pList, i,
 									   WIFILIST_FRIEND_UNION_GRA,
 									   p_status->trainer_view);
@@ -3436,7 +3436,7 @@ static int _checkUserDataMatchStatus(WIFIP2PMATCH_WORK* wk)
 									   p_status->sex);
 				num++;
 			}
-/*            { ƒoƒgƒ‹’†‚ÉˆêŠ‡‚Åˆ—‚µ‚Ä‚ ‚é‚Ì‚ÅA‚±‚±‚©‚ç‚Ííœ
+/*            { ãƒãƒˆãƒ«ä¸­ã«ä¸€æ‹¬ã§å‡¦ç†ã—ã¦ã‚ã‚‹ã®ã§ã€ã“ã“ã‹ã‚‰ã¯å‰Šé™¤
                 WIFI_HISTORY* pHistry = SaveData_GetWifiHistory(wk->pSaveData);
                 int nation = wk->pMatch->friendMatchStatus[i].nation;
                 int area = wk->pMatch->friendMatchStatus[i].area;
@@ -3452,7 +3452,7 @@ static int _checkUserDataMatchStatus(WIFIP2PMATCH_WORK* wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒGƒ‰[•\¦
+ * $brief   ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3480,15 +3480,15 @@ static void _errorDisp(WIFIP2PMATCH_WORK* wk)
 	        msgno = dwc_error_0012;
 		}
     }
-    OHNO_PRINT("ƒGƒ‰[ƒƒbƒZ[ƒW %d \n",msgno);
+    OHNO_PRINT("ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ %d \n",msgno);
     EndMessageWindowOff(wk);
     WORDSET_RegisterNumber(wk->WordSet, 0, no,
                            5, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
 
-	// ƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•\¦‚µ‚Ä‚¨‚­ƒVƒ“ƒN”
+	// ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ã¦ãŠãã‚·ãƒ³ã‚¯æ•°
     wk->timer = 30;
 
-	// ã‰æ–Ê‰º‚Ì©•ªî•ñ•¶š—ñ‚ğƒNƒŠƒA‚·‚é
+	// ä¸Šç”»é¢ä¸‹ã®è‡ªåˆ†æƒ…å ±æ–‡å­—åˆ—ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
     _systemMessagePrint(wk, msgno);
 
     switch(type){
@@ -3496,29 +3496,29 @@ static void _errorDisp(WIFIP2PMATCH_WORK* wk)
       case 4:
       case 5:
       case 11:
-        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // ÄÚ‘±‚©ƒtƒB[ƒ‹ƒh‚©
+        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // å†æ¥ç¶šã‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹
         break;
       case 6:
       case 7:
       case 8:
       case 9:
-        wk->seq = WIFIP2PMATCH_RETRY_INIT;//WIFIP2PMATCH_POWEROFF_INIT;  // “dŒ¹‚ğØ‚é‚©ƒtƒB[ƒ‹ƒh
+        wk->seq = WIFIP2PMATCH_RETRY_INIT;//WIFIP2PMATCH_POWEROFF_INIT;  // é›»æºã‚’åˆ‡ã‚‹ã‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
         break;
       case 10:
-        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // ƒƒjƒ…[ˆê——‚Ö
+        wk->seq = WIFIP2PMATCH_RETRY_INIT;  // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä¸€è¦§ã¸
         break;
       case 0:
       case 2:
       case 3:
       default:
-        wk->seq = WIFIP2PMATCH_MODE_CHECK_AND_END;  // ƒtƒB[ƒ‹ƒh
+        wk->seq = WIFIP2PMATCH_MODE_CHECK_AND_END;  // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
         break;
     }
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   “dŒ¹‚ğØ‚Á‚ÄWIFIİ’è‚Ö  WIFIP2PMATCH_POWEROFF_INIT
+ * $brief   é›»æºã‚’åˆ‡ã£ã¦WIFIè¨­å®šã¸  WIFIP2PMATCH_POWEROFF_INIT
  * @param   wk
  * @retval  none
  */
@@ -3526,7 +3526,7 @@ static void _errorDisp(WIFIP2PMATCH_WORK* wk)
 
 static int _poweroffInit( WIFIP2PMATCH_WORK *wk, int seq )
 {
-// WIFIİ’è‚És‚©‚È‚¢‚æ‚¤‚É
+// WIFIè¨­å®šã«è¡Œã‹ãªã„ã‚ˆã†ã«
 
     if(sys.trg & (PAD_BUTTON_CANCEL|PAD_BUTTON_DECIDE)){
         if(GF_BGL_BmpWinAddCheck(&wk->SysMsgWin)){
@@ -3541,16 +3541,16 @@ static int _poweroffInit( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   “dŒ¹‚ğØ‚Á‚ÄWIFIİ’è‚Ö  WIFIP2PMATCH_POWEROFF_YESNO
+ * $brief   é›»æºã‚’åˆ‡ã£ã¦WIFIè¨­å®šã¸  WIFIP2PMATCH_POWEROFF_YESNO
  * @param   wk
  * @retval  none
  */
 //------------------------------------------------------------------
 static int _poweroffYesNo( WIFIP2PMATCH_WORK *wk, int seq )
 {
-// WIFIİ’è‚És‚©‚È‚¢‚æ‚¤‚É
+// WIFIè¨­å®šã«è¡Œã‹ãªã„ã‚ˆã†ã«
 /*    if( GF_MSG_PrintEndCheck( wk->MsgIndex ) == 0 ){
-        // ‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ğo‚·
+        // ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
         wk->pYesNoWork =
             BmpYesNoSelectInit( wk->bgl,
                                 &_yesNoBmpDat,
@@ -3565,26 +3565,26 @@ static int _poweroffYesNo( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   “dŒ¹‚ğØ‚Á‚ÄWIFIİ’è‚Ö  WIFIP2PMATCH_POWEROFF_WAIT
+ * $brief   é›»æºã‚’åˆ‡ã£ã¦WIFIè¨­å®šã¸  WIFIP2PMATCH_POWEROFF_WAIT
  * @param   wk
  * @retval  none
  */
 //------------------------------------------------------------------
 static int _poweroffWait( WIFIP2PMATCH_WORK *wk, int seq )
 {
-// WIFIİ’è‚És‚©‚È‚¢‚æ‚¤‚É
+// WIFIè¨­å®šã«è¡Œã‹ãªã„ã‚ˆã†ã«
     /*
     int i;
     int ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return seq;
-    }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+    }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
         CommStateWifiLogout();
-        wk->endSeq = WIFI_P2PMATCH_UTIL;   //ƒ\ƒtƒgƒEƒGƒAƒŠƒZƒbƒg
+        wk->endSeq = WIFI_P2PMATCH_UTIL;   //ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒªã‚»ãƒƒãƒˆ
         wk->seq = WIFIP2PMATCH_MODE_END_WAIT;
         EndMessageWindowOff(wk);
     }
-    else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+    else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
         WifiP2PMatchMessagePrint(wk, msg_wifilobby_052, FALSE);
         wk->seq = WIFIP2PMATCH_RETRY_YESNO;
     }
@@ -3595,7 +3595,7 @@ static int _poweroffWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ğƒŠƒgƒ‰ƒC‚·‚é  WIFIP2PMATCH_RETRY_INIT
+ * $brief   æ¥ç¶šã‚’ãƒªãƒˆãƒ©ã‚¤ã™ã‚‹  WIFIP2PMATCH_RETRY_INIT
  * @param   wk
  * @retval  none
  */
@@ -3621,7 +3621,7 @@ static int _retryInit( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ğƒŠƒgƒ‰ƒC‚·‚é  WIFIP2PMATCH_RETRY_YESNO
+ * $brief   æ¥ç¶šã‚’ãƒªãƒˆãƒ©ã‚¤ã™ã‚‹  WIFIP2PMATCH_RETRY_YESNO
  * @param   wk
  * @retval  none
  */
@@ -3629,7 +3629,7 @@ static int _retryInit( WIFIP2PMATCH_WORK *wk, int seq )
 static int _retryYesNo( WIFIP2PMATCH_WORK *wk, int seq )
 {
     if( GF_MSG_PrintEndCheck( wk->MsgIndex ) == 0 ){
-        // ‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ğo‚·
+        // ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
         wk->pYesNoWork =
             BmpYesNoSelectInit( wk->bgl,
                                 &_yesNoBmpDat,
@@ -3642,7 +3642,7 @@ static int _retryYesNo( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ğƒŠƒgƒ‰ƒC‚·‚é  WIFIP2PMATCH_RETRY_WAIT
+ * $brief   æ¥ç¶šã‚’ãƒªãƒˆãƒ©ã‚¤ã™ã‚‹  WIFIP2PMATCH_RETRY_WAIT
  * @param   wk
  * @retval  none
  */
@@ -3651,17 +3651,17 @@ static int _retryWait( WIFIP2PMATCH_WORK *wk, int seq )
 {
     int i;
     int ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return seq;
-    }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+    }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
         CommStateWifiLogout();
         _myStatusChange(wk, WIFI_STATUS_LOGIN_WAIT);
         wk->seq = WIFIP2PMATCH_RETRY;
     }
-    else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
-        _myStatusChange(wk, WIFI_STATUS_LOGIN_WAIT);	// VCHAT‚Ìó‘Ô‚ğŒ³‚É–ß‚·‚½‚ß
+    else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
+        _myStatusChange(wk, WIFI_STATUS_LOGIN_WAIT);	// VCHATã®çŠ¶æ…‹ã‚’å…ƒã«æˆ»ã™ãŸã‚
         CommStateWifiLogout();
-        CommInfoFinalize();   //Info‰Šú‰»
+        CommInfoFinalize();   //InfoåˆæœŸåŒ–
         wk->endSeq = WIFI_P2PMATCH_END;
         wk->seq = WIFIP2PMATCH_MODE_END_WAIT;
     }
@@ -3671,7 +3671,7 @@ static int _retryWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ğƒŠƒgƒ‰ƒC  WIFIP2PMATCH_RETRAY
+ * $brief   æ¥ç¶šã‚’ãƒªãƒˆãƒ©ã‚¤  WIFIP2PMATCH_RETRAY
  * @param   wk
  * @retval  none
  */
@@ -3685,7 +3685,7 @@ static int _retry( WIFIP2PMATCH_WORK *wk, int seq )
 		
 		if( WIFI_MCR_GetInitFlag( &wk->matchroom ) == TRUE ){
 
-			// ƒuƒ‰ƒbƒNƒAƒEƒg
+			// ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 			WIPE_SetBrightness( WIPE_DISP_MAIN, WIPE_FADE_BLACK );
 			WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
 
@@ -3694,18 +3694,18 @@ static int _retry( WIFIP2PMATCH_WORK *wk, int seq )
 				wk->p_matchMoveObj[i] = NULL;
 			}
 
-			// OAMƒoƒbƒtƒ@ƒNƒŠ[ƒ“
+			// OAMãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªãƒ¼ãƒ³
 			REND_OAM_UtilOamRamClear_Main( HEAPID_WIFIP2PMATCH );
 			REND_OAM_UtilOamRamClear_Sub( HEAPID_WIFIP2PMATCH );
 		}
-		// ƒrƒ…[ƒA[”jŠü
+		// ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ç ´æ£„
 		if( MCVSys_MoveCheck( wk ) == TRUE ){
 			MCVSys_Exit( wk );
 
 		}
 		
-		// ƒrƒbƒgƒ}ƒbƒvOFF
-		// ƒ†[ƒU[ƒf[ƒ^
+		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—OFF
+		// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿
 		if(GF_BGL_BmpWinAddCheck(&wk->MyInfoWinBack)){
 			BmpMenuWinClear( &wk->MyInfoWinBack, WINDOW_TRANS_ON );
 			GF_BGL_BmpWinDel(&wk->MyInfoWinBack);
@@ -3714,20 +3714,20 @@ static int _retry( WIFIP2PMATCH_WORK *wk, int seq )
 			GF_BGL_BmpWinDel(&wk->MyInfoWin);
 		}
 		
-        //Ú‘±ŠJn
+        //æ¥ç¶šé–‹å§‹
         GF_BGL_ScrClear(wk->bgl, GF_BGL_FRAME3_M);
 
-		// ƒOƒ‰ƒtƒBƒbƒNƒŠƒZƒbƒg
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒªã‚»ãƒƒãƒˆ
 		p_handle = ArchiveDataHandleOpen( ARC_WIFIP2PMATCH_GRA, HEAPID_WIFIP2PMATCH );
 		BgGraphicSet( wk, p_handle );
 		ArchiveDataHandleClose( p_handle );
 
 
-		// ƒpƒŒƒbƒgƒtƒF[ƒhÄŠJ
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰å†é–‹
 		ConnectBGPalAnm_OccSet(&wk->cbp, TRUE);
 
-		// ƒuƒ‰ƒCƒgƒlƒXó‘ÔƒŠƒZ‚Áƒg
-		// MCR‰æ–Ê”jŠü‚ÉˆÃ‚­‚µ‚½•¨‚ğ‰ğœ
+		// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹çŠ¶æ…‹ãƒªã‚»ã£ãƒˆ
+		// MCRç”»é¢ç ´æ£„æ™‚ã«æš—ãã—ãŸç‰©ã‚’è§£é™¤
 		wk->brightness_reset = TRUE;
 //		WIPE_ResetBrightness( WIPE_DISP_MAIN );
 //		WIPE_ResetBrightness( WIPE_DISP_SUB );
@@ -3763,7 +3763,7 @@ static int _retry( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒƒOƒCƒ“Ú‘±’†  WIFIP2PMATCH_CONNECTING
+ * $brief   ãƒ­ã‚°ã‚¤ãƒ³æ¥ç¶šä¸­  WIFIP2PMATCH_CONNECTING
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3775,7 +3775,7 @@ static int WifiP2PMatch_Connecting( WIFIP2PMATCH_WORK *wk, int seq )
 
     // ----------------------------------------------------------------------------
     // localize_spec_mark(LANG_ALL) imatake 2007/02/15
-    // ƒƒbƒZ[ƒW•\¦’†‚ÉÚ‘±‚ªŠ®—¹‚µ‚½ê‡‚É‘Îˆ
+    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ã«æ¥ç¶šãŒå®Œäº†ã—ãŸå ´åˆã«å¯¾å‡¦
     // MatchComment: actually, the below if statement that was removed from DP JP -> US was readded in platinum
     // ----------------------------------------------------------------------------
 
@@ -3791,10 +3791,10 @@ static int WifiP2PMatch_Connecting( WIFIP2PMATCH_WORK *wk, int seq )
     }
     
     if(CommStateIsWifiLoginState()){
-        OHNO_PRINT("WIFIÚ‘±Š®—¹\n");
+        OHNO_PRINT("WIFIæ¥ç¶šå®Œäº†\n");
         // ----------------------------------------------------------------------------
         // localize_spec_mark(LANG_ALL) imatake 2007/02/15
-        // ƒƒbƒZ[ƒW•\¦’†‚ÉÚ‘±‚ªŠ®—¹‚µ‚½ê‡‚É‘Îˆ
+        // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä¸­ã«æ¥ç¶šãŒå®Œäº†ã—ãŸå ´åˆã«å¯¾å‡¦
     #if 0
         if(wk->MsgIndex != _PRINTTASK_MAX){
             if(GF_MSG_PrintEndCheck(wk->MsgIndex)!=0){
@@ -3804,8 +3804,8 @@ static int WifiP2PMatch_Connecting( WIFIP2PMATCH_WORK *wk, int seq )
         }
     #endif
         // ----------------------------------------------------------------------------
-        if( wk->bInitMessage ){  // ‰‰ñÚ‘±‚É‚ÍƒZ[ƒuƒV[ƒPƒ“ƒX‚Ö
-//            SaveData_SaveParts(wk->pSaveData, SVBLK_ID_NORMAL);  //ƒZ[ƒu’†
+        if( wk->bInitMessage ){  // åˆå›æ¥ç¶šæ™‚ã«ã¯ã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
+//            SaveData_SaveParts(wk->pSaveData, SVBLK_ID_NORMAL);  //ã‚»ãƒ¼ãƒ–ä¸­
             wk->seq = WIFIP2PMATCH_FIRST_ENDMSG;
         }
         else{
@@ -3821,7 +3821,7 @@ static int WifiP2PMatch_Connecting( WIFIP2PMATCH_WORK *wk, int seq )
 }
 //------------------------------------------------------------------
 /**
- * $brief   ‰‰ñƒZ[ƒuˆ—
+ * $brief   åˆå›ã‚»ãƒ¼ãƒ–å‡¦ç†
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3834,13 +3834,13 @@ static int WifiP2PMatch_FirstSaving( WIFIP2PMATCH_WORK *wk, int seq )
         return seq;
     }
     if( mydwc_getSaving()) {
-        ///      SaveData_SaveParts(wk->pSaveData, SVBLK_ID_NORMAL);  //ƒZ[ƒu’†
-        SaveData_DivSave_Init(wk->pSaveData, SVBLK_ID_NORMAL); ///ƒZ[ƒuŠJn
+        ///      SaveData_SaveParts(wk->pSaveData, SVBLK_ID_NORMAL);  //ã‚»ãƒ¼ãƒ–ä¸­
+        SaveData_DivSave_Init(wk->pSaveData, SVBLK_ID_NORMAL); ///ã‚»ãƒ¼ãƒ–é–‹å§‹
         wk->seq = WIFIP2PMATCH_FIRST_SAVING2;
         return seq;
     }
     if(CommStateIsWifiLoginState()){
-        OHNO_PRINT("WIFIÚ‘±Š®—¹\n");
+        OHNO_PRINT("WIFIæ¥ç¶šå®Œäº†\n");
         if( wk->bInitMessage ){
             wk->seq = WIFIP2PMATCH_FIRST_ENDMSG;
         }
@@ -3860,7 +3860,7 @@ static int WifiP2PMatch_FirstSaving( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰‰ñƒZ[ƒuˆ—  WIFIP2PMATCH_FIRST_SAVING2
+ * $brief   åˆå›ã‚»ãƒ¼ãƒ–å‡¦ç†  WIFIP2PMATCH_FIRST_SAVING2
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3878,7 +3878,7 @@ static int WifiP2PMatch_FirstSaving2( WIFIP2PMATCH_WORK *wk, int seq )
         }
     }
     if(CommStateIsWifiLoginState()){
-        OHNO_PRINT("WIFIÚ‘±Š®—¹\n");
+        OHNO_PRINT("WIFIæ¥ç¶šå®Œäº†\n");
         if( wk->bInitMessage ){ 
             wk->seq = WIFIP2PMATCH_FIRST_ENDMSG;
         }
@@ -3898,7 +3898,7 @@ static int WifiP2PMatch_FirstSaving2( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ø’f{VCT‘Ò‚¿‚ÉˆÚs‚·‚é‚Ü‚Å‘Ò‚Â  WIFIP2PMATCH_RECONECTING_WAIT
+ * $brief   åˆ‡æ–­ï¼‹VCTå¾…ã¡ã«ç§»è¡Œã™ã‚‹ã¾ã§å¾…ã¤  WIFIP2PMATCH_RECONECTING_WAIT
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3919,7 +3919,7 @@ static int WifiP2PMatch_ReConnectingWait( WIFIP2PMATCH_WORK *wk, int seq )
     OHNO_PRINT("CommIsConnect %d  \n",CommIsConnect(COMM_PARENT_ID));
 
     if(CommStateIsWifiLoginMatchState()){
-        OHNO_PRINT("WIFIÚ‘±Š®—¹\n");
+        OHNO_PRINT("WIFIæ¥ç¶šå®Œäº†\n");
         wk->seq = WifiP2PMatchFriendListStart();
     }
     else if(CommStateIsWifiError() || (CommWifiIsMatched() == 3)){
@@ -3938,7 +3938,7 @@ static int WifiP2PMatch_ReConnectingWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   Å‰Ú‘±Š®—¹  WIFIP2PMATCH_FIRST_ENDMSG
+ * $brief   æœ€åˆæ¥ç¶šå®Œäº†  WIFIP2PMATCH_FIRST_ENDMSG
  * @param   wk
  * @param   seq
  * @retval  int
@@ -3961,12 +3961,12 @@ static int _firstConnectEndMsg( WIFIP2PMATCH_WORK *wk, int seq )
 static int _firstConnectEndMsgWait( WIFIP2PMATCH_WORK *wk, int seq )
 {
     if(sys.trg & (PAD_BUTTON_CANCEL|PAD_BUTTON_DECIDE)){
-        if(wk->initSeq == WIFI_P2PMATCH_DPW){ // ¢ŠE‘Îí‚È‚ç
-            wk->endSeq = WIFI_P2PMATCH_DPW_END;   // I—¹ˆ—‚Ö
+        if(wk->initSeq == WIFI_P2PMATCH_DPW){ // ä¸–ç•Œå¯¾æˆ¦ãªã‚‰
+            wk->endSeq = WIFI_P2PMATCH_DPW_END;   // çµ‚äº†å‡¦ç†ã¸
             wk->seq = WIFIP2PMATCH_MODE_END_WAIT;
             CommStateWifiLogout();
         }
-        else if( 0==WifiList_GetFriendDataNum(wk->pList) ){  //ƒtƒŒƒ“ƒh‚ª‚¢‚È‚¢
+        else if( 0==WifiList_GetFriendDataNum(wk->pList) ){  //ãƒ•ãƒ¬ãƒ³ãƒ‰ãŒã„ãªã„
             WifiP2PMatchMessagePrint(wk, dwc_message_0011, TRUE);
             wk->seq = WIFIP2PMATCH_MODE_EXITING;
             wk->timer = 1;
@@ -3987,7 +3987,7 @@ static int _firstConnectEndMsgWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ©•ª‚Ìó‘Ô‚ğ•\¦
+ * $brief   è‡ªåˆ†ã®çŠ¶æ…‹ã‚’è¡¨ç¤º
  * @param   wk
  * @retval  none
  */
@@ -4005,7 +4005,7 @@ static void	_userDataInfoDisp(WIFIP2PMATCH_WORK * wk)
         return;
     }
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
     GF_BGL_BmpWinDataFill( &wk->MyInfoWin, 0 );
 
 	sex = MyStatus_GetMySex(pMy);
@@ -4023,9 +4023,9 @@ static void	_userDataInfoDisp(WIFIP2PMATCH_WORK * wk)
 
 	status = _WifiMyStatusGet( wk, &wk->pMatch->myMatchStatus );
 
-	// msg_id‚ÆƒJƒ‰[‚ğæ“¾
+	// msg_idã¨ã‚«ãƒ©ãƒ¼ã‚’å–å¾—
 	msg_id = MCVSys_StatusMsgIdGet( status, &col );
-    if( status == WIFI_STATUS_VCT ){      // VCT’†
+    if( status == WIFI_STATUS_VCT ){      // VCTä¸­
         if(mydwc_getFriendIndex() == -1){
             MSGMAN_GetString(wk->MsgManager, msg_id, wk->pExpStrBuf);
         }
@@ -4046,8 +4046,8 @@ static void	_userDataInfoDisp(WIFIP2PMATCH_WORK * wk)
 					   WIFIP2PMATCH_PLAYER_DISP_ST_X, 0,
 					   MSG_NO_PUT, col, NULL);
 
-	//ó‘ÔƒAƒCƒRƒ“İ’è
-	// Frame1‚Ì‘Î‰‚·‚éˆÊ’u‚ÉƒAƒCƒRƒ“‚ğ“]‘—
+	//çŠ¶æ…‹ã‚¢ã‚¤ã‚³ãƒ³è¨­å®š
+	// Frame1ã®å¯¾å¿œã™ã‚‹ä½ç½®ã«ã‚¢ã‚¤ã‚³ãƒ³ã‚’è»¢é€
 	WifiP2PMatchFriendListStIconWrite( wk->bgl, &wk->icon, GF_BGL_FRAME1_M, 
 			PLAYER_DISP_ICON_POS_X, PLAYER_DISP_ICON_POS_Y,
 			status );
@@ -4066,7 +4066,7 @@ static void	_userDataInfoDisp(WIFIP2PMATCH_WORK * wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ˆêƒ‰ƒCƒ“ƒR[ƒ‹ƒoƒbƒN
+ * $brief   ä¸€ãƒ©ã‚¤ãƒ³ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   wk
  * @retval  none
  */
@@ -4085,69 +4085,69 @@ static void	_lineCallBack(BMPLIST_WORK * lw, u32 param, u8 y)
 	p_status = WifiFriendMatchStatusGet( wk, param );
 	status = _WifiMyStatusGet( wk,  p_status );
     switch(status){
-      case WIFI_STATUS_VCT:      // VCT’†
+      case WIFI_STATUS_VCT:      // VCTä¸­
         gmmNo = msg_wifilobby_027;
         col = _COL_N_GRAY;
         break;
-      case WIFI_STATUS_SBATTLE50:      // ‘Îí’†
-      case WIFI_STATUS_SBATTLE100:      // ‘Îí’†
-      case WIFI_STATUS_SBATTLE_FREE:      // ‘Îí’†
-      case WIFI_STATUS_DBATTLE50:      // ‘Îí’†
-      case WIFI_STATUS_DBATTLE100:      // ‘Îí’†
-      case WIFI_STATUS_DBATTLE_FREE:      // ‘Îí’†
+      case WIFI_STATUS_SBATTLE50:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_SBATTLE100:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_SBATTLE_FREE:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_DBATTLE50:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_DBATTLE100:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_DBATTLE_FREE:      // å¯¾æˆ¦ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-      case WIFI_STATUS_MBATTLE_FREE:      // ‘Îí’†
+      case WIFI_STATUS_MBATTLE_FREE:      // å¯¾æˆ¦ä¸­
 #endif
         gmmNo = msg_wifilobby_024;
         col = _COL_N_GRAY;
         break;
-      case WIFI_STATUS_SBATTLE50_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_SBATTLE50_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
         gmmNo = msg_wifilobby_060;
         break;
-      case WIFI_STATUS_SBATTLE100_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_SBATTLE100_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
         gmmNo = msg_wifilobby_061;
         break;
-      case WIFI_STATUS_SBATTLE_FREE_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_SBATTLE_FREE_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
         gmmNo = msg_wifilobby_059;
         break;
-      case WIFI_STATUS_DBATTLE50_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_DBATTLE50_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
         gmmNo = msg_wifilobby_063;
         break;
-      case WIFI_STATUS_DBATTLE100_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_DBATTLE100_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
         gmmNo = msg_wifilobby_064;
         break;
-      case WIFI_STATUS_DBATTLE_FREE_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_DBATTLE_FREE_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
         gmmNo = msg_wifilobby_062;
         break;
 #ifdef WFP2P_DEBUG_EXON 
-      case WIFI_STATUS_MBATTLE_FREE_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_MBATTLE_FREE_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
         gmmNo = msg_wifilobby_062;
         break;
 #endif
-      case WIFI_STATUS_TRADE:          // ŒğŠ·’†
+      case WIFI_STATUS_TRADE:          // äº¤æ›ä¸­
         gmmNo = msg_wifilobby_026;
         col = _COL_N_GRAY;
         break;
-      case WIFI_STATUS_TRADE_WAIT:    // ŒğŠ·•åW’†
+      case WIFI_STATUS_TRADE_WAIT:    // äº¤æ›å‹Ÿé›†ä¸­
         gmmNo = msg_wifilobby_025;
         break;
-      case WIFI_STATUS_POFIN_WAIT:    // ƒ|ƒtƒBƒ“•åW’†
+      case WIFI_STATUS_POFIN_WAIT:    // ãƒãƒ•ã‚£ãƒ³å‹Ÿé›†ä¸­
         gmmNo = msg_wifilobby_100;
         break;
-      case WIFI_STATUS_FRONTIER_WAIT:    // ƒtƒƒ“ƒeƒBƒA•åW’†
+      case WIFI_STATUS_FRONTIER_WAIT:    // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å‹Ÿé›†ä¸­
         gmmNo = msg_wifilobby_138;
         break;
 #ifdef WFP2P_DEBUG_EXON 
-      case WIFI_STATUS_BATTLEROOM_WAIT:    // ƒoƒgƒ‹ƒ‹[ƒ€•åW’†
+      case WIFI_STATUS_BATTLEROOM_WAIT:    // ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ å‹Ÿé›†ä¸­
         gmmNo = msg_wifilobby_debug_00;
         break;
 #endif
-      case WIFI_STATUS_BUCKET_WAIT:    // ƒoƒPƒbƒg•åW’†
-      case WIFI_STATUS_BALANCEBALL_WAIT:    // ƒoƒPƒbƒg•åW’†
-      case WIFI_STATUS_BALLOON_WAIT:    // ƒoƒPƒbƒg•åW’†
+      case WIFI_STATUS_BUCKET_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+      case WIFI_STATUS_BALANCEBALL_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+      case WIFI_STATUS_BALLOON_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
         gmmNo = msg_wifilobby_147;
         break;
-      case WIFI_STATUS_LOGIN_WAIT:    // ‘Ò‹@’†@ƒƒOƒCƒ“’¼Œã‚Í‚±‚ê
+      case WIFI_STATUS_LOGIN_WAIT:    // å¾…æ©Ÿä¸­ã€€ãƒ­ã‚°ã‚¤ãƒ³ç›´å¾Œã¯ã“ã‚Œ
         gmmNo = msg_wifilobby_046;
         break;
       case WIFI_STATUS_UNKNOWN:
@@ -4155,7 +4155,7 @@ static void	_lineCallBack(BMPLIST_WORK * lw, u32 param, u8 y)
         gmmNo = msg_wifilobby_056;
         break;
     }
-    OHNO_PRINT("•¶šƒR[ƒ‹ƒoƒbƒNŒÄ‚Ñ‚¾‚µ %d %d %d\n",param,y,gmmNo);
+    OHNO_PRINT("æ–‡å­—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³ã ã— %d %d %d\n",param,y,gmmNo);
 
     if(gmmNo != 0){
         MSGMAN_GetString(wk->MsgManager, gmmNo, wk->pExpStrBuf);
@@ -4188,72 +4188,72 @@ static void	_lineCallBack(BMPLIST_WORK * lw, u32 param, u8 y)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒAƒCƒRƒ“•\¦
+ * $brief   ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
  * @param   wk
  * @retval  none
  */
 //------------------------------------------------------------------
 static void	_iconDisp(WIFIP2PMATCH_WORK * wk, int status, int vctIcon, int x,int y,int x2)
 {
-    u16 btl[]={ 0x17,0x18,0xc18,0x20 };  //‚Î‚Æ‚é
-    u16 chg[]={ 0x25,0x26,0x2a,0xc25 };  //‚±‚¤‚©‚ñ
-    u16 wai[]={ 0x2f,0x42f,0x82f,0xc2f };  //‚½‚¢‚«
+    u16 btl[]={ 0x17,0x18,0xc18,0x20 };  //ã°ã¨ã‚‹
+    u16 chg[]={ 0x25,0x26,0x2a,0xc25 };  //ã“ã†ã‹ã‚“
+    u16 wai[]={ 0x2f,0x42f,0x82f,0xc2f };  //ãŸã„ã
     u16 vct[]={ 0x4a,0x4b,0x084a,0x084b };  //VCT
     u16 vctoff[]={ 0x48,0x49,0x0848,0x0849 };  //VCToff
     u16 hate[]={ 0x44,0x45,0x46,0x47 };  //?
     u16 none[]={ 0x6,0x6,0x6,0x6 };  //none
     u16* pData;
-    // 0x06-----------‚È‚µ
+    // 0x06-----------ãªã—
     u16* pScrAddr = GF_BGL_ScreenAdrsGet( wk->bgl, GF_BGL_FRAME0_M );
     int pos,col = 0;
 
     switch(status){
-      case WIFI_STATUS_VCT:      // VCT’†
+      case WIFI_STATUS_VCT:      // VCTä¸­
         pData = vct;
         break;
-      case WIFI_STATUS_SBATTLE50_WAIT:   // ‘Îí•åW’†
-      case WIFI_STATUS_SBATTLE100_WAIT:   // ‘Îí•åW’†
-      case WIFI_STATUS_SBATTLE_FREE_WAIT:   // ‘Îí•åW’†
-      case WIFI_STATUS_DBATTLE50_WAIT:   // ‘Îí•åW’†
-      case WIFI_STATUS_DBATTLE100_WAIT:   // ‘Îí•åW’†
-      case WIFI_STATUS_DBATTLE_FREE_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_SBATTLE50_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
+      case WIFI_STATUS_SBATTLE100_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
+      case WIFI_STATUS_SBATTLE_FREE_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
+      case WIFI_STATUS_DBATTLE50_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
+      case WIFI_STATUS_DBATTLE100_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
+      case WIFI_STATUS_DBATTLE_FREE_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-      case WIFI_STATUS_MBATTLE_FREE_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_MBATTLE_FREE_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
 #endif
         col = 0x1000;
-      case WIFI_STATUS_SBATTLE50:      // ‘Îí’†
-      case WIFI_STATUS_SBATTLE100:      // ‘Îí’†
-      case WIFI_STATUS_SBATTLE_FREE:      // ‘Îí’†
-      case WIFI_STATUS_DBATTLE50:      // ‘Îí’†
-      case WIFI_STATUS_DBATTLE100:      // ‘Îí’†
-      case WIFI_STATUS_DBATTLE_FREE:      // ‘Îí’†
+      case WIFI_STATUS_SBATTLE50:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_SBATTLE100:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_SBATTLE_FREE:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_DBATTLE50:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_DBATTLE100:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_DBATTLE_FREE:      // å¯¾æˆ¦ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-      case WIFI_STATUS_MBATTLE_FREE:      // ‘Îí’†
+      case WIFI_STATUS_MBATTLE_FREE:      // å¯¾æˆ¦ä¸­
 #endif
         pData = btl;
         break;
-      case WIFI_STATUS_TRADE_WAIT:    // ŒğŠ·•åW’†
-      case WIFI_STATUS_POFIN_WAIT:    // —¿—•åW’†
-      case WIFI_STATUS_FRONTIER_WAIT:    // ƒtƒƒ“ƒeƒBƒA•åW’†
+      case WIFI_STATUS_TRADE_WAIT:    // äº¤æ›å‹Ÿé›†ä¸­
+      case WIFI_STATUS_POFIN_WAIT:    // æ–™ç†å‹Ÿé›†ä¸­
+      case WIFI_STATUS_FRONTIER_WAIT:    // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å‹Ÿé›†ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-      case WIFI_STATUS_BATTLEROOM_WAIT:// ŒğŠ·•åW’†
+      case WIFI_STATUS_BATTLEROOM_WAIT:// äº¤æ›å‹Ÿé›†ä¸­
 #endif
-      case WIFI_STATUS_BUCKET_WAIT:// ŒğŠ·•åW’†
-      case WIFI_STATUS_BALANCEBALL_WAIT:// ŒğŠ·•åW’†
-      case WIFI_STATUS_BALLOON_WAIT:// ŒğŠ·•åW’†
+      case WIFI_STATUS_BUCKET_WAIT:// äº¤æ›å‹Ÿé›†ä¸­
+      case WIFI_STATUS_BALANCEBALL_WAIT:// äº¤æ›å‹Ÿé›†ä¸­
+      case WIFI_STATUS_BALLOON_WAIT:// äº¤æ›å‹Ÿé›†ä¸­
         col = 0x1000;
-      case WIFI_STATUS_TRADE:          // ŒğŠ·’†
-      case WIFI_STATUS_POFIN:          // —¿—’†
-      case WIFI_STATUS_FRONTIER:          // ƒtƒƒ“ƒeƒBƒA’†
+      case WIFI_STATUS_TRADE:          // äº¤æ›ä¸­
+      case WIFI_STATUS_POFIN:          // æ–™ç†ä¸­
+      case WIFI_STATUS_FRONTIER:          // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-      case WIFI_STATUS_BATTLEROOM:     // ŒğŠ·’†
+      case WIFI_STATUS_BATTLEROOM:     // äº¤æ›ä¸­
 #endif
-      case WIFI_STATUS_BUCKET:     // ŒğŠ·’†
-      case WIFI_STATUS_BALANCEBALL:     // ŒğŠ·’†
-      case WIFI_STATUS_BALLOON:     // ŒğŠ·’†
+      case WIFI_STATUS_BUCKET:     // äº¤æ›ä¸­
+      case WIFI_STATUS_BALANCEBALL:     // äº¤æ›ä¸­
+      case WIFI_STATUS_BALLOON:     // äº¤æ›ä¸­
         pData = chg;
         break;
-      case WIFI_STATUS_LOGIN_WAIT:    // ‘Ò‹@’†@ƒƒOƒCƒ“’¼Œã‚Í‚±‚ê
+      case WIFI_STATUS_LOGIN_WAIT:    // å¾…æ©Ÿä¸­ã€€ãƒ­ã‚°ã‚¤ãƒ³ç›´å¾Œã¯ã“ã‚Œ
         pData = wai;
         break;
       case WIFI_STATUS_UNKNOWN:
@@ -4285,7 +4285,7 @@ static void	_iconDisp(WIFIP2PMATCH_WORK * wk, int status, int vctIcon, int x,int
 
 //------------------------------------------------------------------
 /**
- * $brief   ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * $brief   ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  * @param   wk
  * @retval  none
  */
@@ -4293,7 +4293,7 @@ static void	_iconDisp(WIFIP2PMATCH_WORK * wk, int status, int vctIcon, int x,int
 static void	_iconMenuDisp(WIFIP2PMATCH_WORK * wk, int toppos)
 {
     u16* pData;
-    // 0x06-----------‚È‚µ
+    // 0x06-----------ãªã—
     u16* pScrAddr = GF_BGL_ScreenAdrsGet( wk->bgl, GF_BGL_FRAME0_M );
     int pos,status,i,vchat;
 	_WIFI_MACH_STATUS* p_status;
@@ -4323,12 +4323,12 @@ static void	_iconMenuDisp(WIFIP2PMATCH_WORK * wk, int toppos)
         status = WIFI_STATUS_NONE;
     }
     _iconDisp(wk, status, vchat, 3, 21, 27);
-    GF_BGL_LoadScreenReq(wk->bgl, GF_BGL_FRAME0_M);  // ƒXƒNƒŠ[ƒ“‚ÉXV
+    GF_BGL_LoadScreenReq(wk->bgl, GF_BGL_FRAME0_M);  // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æ›´æ–°
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒJ[ƒ\ƒ‹ƒR[ƒ‹ƒoƒbƒN
+ * $brief   ã‚«ãƒ¼ã‚½ãƒ«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   wk
  * @retval  none
  */
@@ -4341,26 +4341,26 @@ static void _curCallBack(BMPLIST_WORK * wk,u32 param,u8 mode)
 }
 
 
-///‘I‘ğƒƒjƒ…[‚ÌƒŠƒXƒg
+///é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆ
 static const BMPLIST_HEADER _friendInfoMenuListHeader = {
-    NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    _curCallBack,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    _lineCallBack,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    _curCallBack,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    _lineCallBack,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,                   // GF_BGL_BMPWIN
-    (WIFIP2PMATCH_MEMBER_MAX+2),	// ƒŠƒXƒg€–Ú”
-    WIFIP2PMATCH_DISP_MEMBER_MAX,	// •\¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-    8,						// €–Ú•\¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-    0,						// •\¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶šF
-    0x8000,			// ”wŒiF ‚Ê‚«H
-    FBMP_COL_BLK_SDW,		// •¶š‰eF
-    0,						// •¶šŠÔŠu‚w
-    24,						// •¶šŠÔŠu‚x
-    BMPLIST_LRKEY_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,				// •¶šw’è
-    1,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+    (WIFIP2PMATCH_MEMBER_MAX+2),	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    WIFIP2PMATCH_DISP_MEMBER_MAX,	// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    0x8000,			// èƒŒæ™¯è‰² ã¬ãï¼Ÿ
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    24,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_LRKEY_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,				// æ–‡å­—æŒ‡å®š
+    1,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
     NULL                    // work
     };
 
@@ -4396,7 +4396,7 @@ static void _menuFriendList(WIFIP2PMATCH_WORK* wk)
         BmpTalkWinClear( &wk->ListWin, WINDOW_TRANS_ON );
         GF_BGL_BmpWinDel(&wk->ListWin);
     }
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     GF_BGL_BmpWinAdd(wk->bgl,&wk->ListWin,
                      GF_BGL_FRAME3_M, 6, 5, 21, 14, FLD_SYSFONT_PAL, 1);
 
@@ -4413,7 +4413,7 @@ static void _menuFriendList(WIFIP2PMATCH_WORK* wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒtƒŒƒ“ƒhƒŠƒXƒg•\¦‰Šú‰»   WIFIP2PMATCH_FRIENDLIST_INIT
+ * $brief   ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚¹ãƒˆè¡¨ç¤ºåˆæœŸåŒ–   WIFIP2PMATCH_FRIENDLIST_INIT
  *
  * @param   wk
  *
@@ -4444,17 +4444,17 @@ static void _userDataDisp(WIFIP2PMATCH_WORK* wk)
 					 WIFIP2PMATCH_PLAYER_DISP_SIZX, WIFIP2PMATCH_PLAYER_DISP_SIZY,
                      FLD_SYSFONT_PAL, _CGX_USET_BACK_BOTTOM );
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
     GF_BGL_BmpWinDataFill( &wk->MyInfoWinBack, 15 );
     GF_BGL_BmpWinOnVReq(&wk->MyInfoWinBack);
 	
 
-	// ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒEİ’è
+	// ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 	BmpMenuWinWrite( &wk->MyInfoWinBack, WINDOW_TRANS_ON, MENU_WIN_CGX_NUM, MENU_WIN_PAL );
 
 }
 
-// ƒ_ƒ~[ƒIƒuƒWƒFƒNƒg‚ğ“o˜^‚µ‚Ü‚­‚é
+// ãƒ€ãƒŸãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²ã—ã¾ãã‚‹
 static void DEBUG_DummyObjIn( WIFIP2PMATCH_WORK *wk, int num )
 {
 	int i;
@@ -4495,19 +4495,19 @@ static void DEBUG_DummyObjIn( WIFIP2PMATCH_WORK *wk, int num )
 	};
 
 	for( i=0; i<num; i++ ){
-		// ©•ª‚ğo‚·
+		// è‡ªåˆ†ã‚’å‡ºã™
 		p_moveobj = WIFI_MCR_SetNpc( &wk->matchroom, view_list[i][0], i+1 );
 
-		// ‚İ‚ñ‚È”ò‚Ñ’µ‚Ë‚é
+		// ã¿ã‚“ãªé£›ã³è·³ã­ã‚‹
 		WIFI_MCR_NpcMoveSet( &wk->matchroom, p_moveobj, MCR_NPC_MOVE_JUMP );
-		MCRSYS_SetMoveObjWork( wk, p_moveobj );	// “o˜^‚µ‚½ƒ[ƒN‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+		MCRSYS_SetMoveObjWork( wk, p_moveobj );	// ç™»éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚’ä¿å­˜ã—ã¦ãŠã
 
 	}
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒtƒŒƒ“ƒhƒŠƒXƒg•\¦‰Šú‰»   WIFIP2PMATCH_FRIENDLIST_INIT
+ * $brief   ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚¹ãƒˆè¡¨ç¤ºåˆæœŸåŒ–   WIFIP2PMATCH_FRIENDLIST_INIT
  *
  * @param   wk
  *
@@ -4522,37 +4522,37 @@ static int WifiP2PMatch_FriendListInit( WIFIP2PMATCH_WORK *wk, int seq )
 	MCR_MOVEOBJ* p_moveobj;
 	int obj_code;
 
-	// ƒƒCƒvI—¹‘Ò‚¿
+	// ãƒ¯ã‚¤ãƒ—çµ‚äº†å¾…ã¡
 	if( WIPE_SYS_EndCheck() == FALSE ){
 		return seq;
 	}
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
     if( CommStateIsWifiError() == FALSE ){
 	
-		// Ø’f‚©‚çÄVCHAT•åWó‘Ô‚É•Ï‚í‚Á‚½‚Ì‚©‚ğƒ`ƒFƒbƒN
+		// åˆ‡æ–­ã‹ã‚‰å†VCHATå‹Ÿé›†çŠ¶æ…‹ã«å¤‰ã‚ã£ãŸã®ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 		if(!CommStateIsWifiLoginMatchState()){
 			return seq;
 		}
 	}
 
-	// ƒR[ƒ‹ƒoƒbƒN‚ğİ’è
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®š
 	mydwc_setConnectModeCheckCallback( WIFIP2PModeCheck );
 
-	// ‚±‚±‚©‚çæ‚Í’ÊMƒGƒ‰[‚ğƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE‚Åo‚·
-//	CommStateSetErrorCheck(FALSE,FALSE);	//‚±‚ÌŠÖ”‚Ì‰º‚É‚ ‚é‚Ì‚Åíœ
+	// ã“ã“ã‹ã‚‰å…ˆã¯é€šä¿¡ã‚¨ãƒ©ãƒ¼ã‚’ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§å‡ºã™
+//	CommStateSetErrorCheck(FALSE,FALSE);	//ã“ã®é–¢æ•°ã®ä¸‹ã«ã‚ã‚‹ã®ã§å‰Šé™¤
 	
 	ConnectBGPalAnm_OccSet(&wk->cbp, FALSE);
 
 	p_handle = ArchiveDataHandleOpen( ARC_WIFIP2PMATCH_GRA, HEAPID_WIFIP2PMATCH );
 
 
-	// ƒAƒCƒRƒ“ƒf[ƒ^“Ç‚İ
+	// ã‚¢ã‚¤ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿èª­è¾¼ã¿
 	WifiP2PMatchFriendListIconLoad( wk->bgl, &wk->icon, p_handle, HEAPID_WIFIP2PMATCH );
 
     _myVChatStatusOrgSet(wk);
 	
-//    _timeWaitIconDel(wk);		timeWait“à‚ÅMsgWin‚ğ”jŠü‚µ‚Ä‚¢‚é‚Æ‚¢‚¤‚±‚Æ‚ÍƒƒbƒZ[ƒWI—¹‚Å‚àOK«
+//    _timeWaitIconDel(wk);		timeWaitå†…ã§MsgWinã‚’ç ´æ£„ã—ã¦ã„ã‚‹ã¨ã„ã†ã“ã¨ã¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†ã§ã‚‚OKâ†“
 	EndMessageWindowOff(wk);
 	
     GF_BGL_ScrClear(wk->bgl, GF_BGL_FRAME3_M);
@@ -4578,26 +4578,26 @@ static int WifiP2PMatch_FriendListInit( WIFIP2PMATCH_WORK *wk, int seq )
 			obj_code = HEROINE;
 		}
 		
-		// ƒ}ƒbƒ`ƒ“ƒOƒ‹[ƒ€‰Šú‰»
+		// ãƒãƒƒãƒãƒ³ã‚°ãƒ«ãƒ¼ãƒ åˆæœŸåŒ–
 		wk->friend_num = WifiList_GetFriendDataLastIdx( wk->pList );
 #ifdef WFP2PM_MANY_OBJ
 		wk->friend_num = 32;
 #endif
 		WIFI_MCR_Init( &wk->matchroom, HEAPID_WIFIP2PMATCH, p_handle, wk->bgl, obj_code, wk->friend_num );
 
-		// ©•ª‚ğo‚·
+		// è‡ªåˆ†ã‚’å‡ºã™
 		p_moveobj = WIFI_MCR_SetPlayer( &wk->matchroom, obj_code );
-		MCRSYS_SetMoveObjWork( wk, p_moveobj );	// “o˜^‚µ‚½ƒ[ƒN‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+		MCRSYS_SetMoveObjWork( wk, p_moveobj );	// ç™»éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚’ä¿å­˜ã—ã¦ãŠã
 #ifdef WFP2PM_MANY_OBJ
 	DEBUG_DummyObjIn( wk, wk->friend_num );
 #endif
 	}
-	// ƒrƒ…[ƒA[‰Šú‰»
+	// ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼åˆæœŸåŒ–
 	if( MCVSys_MoveCheck( wk ) == FALSE ){
 		MCVSys_Init( wk, p_handle, HEAPID_WIFIP2PMATCH );
 	}
 
-	// ¡‚Ìó‘Ô‚ğ‘‚«‚Ş
+	// ä»Šã®çŠ¶æ…‹ã‚’æ›¸ãè¾¼ã‚€
 	MCVSys_ReWrite( wk, HEAPID_WIFIP2PMATCH );
 
 #if 0
@@ -4609,14 +4609,14 @@ static int WifiP2PMatch_FriendListInit( WIFIP2PMATCH_WORK *wk, int seq )
     GF_BGL_BmpWinOnVReq(&wk->MyInfoWinBack);
 #endif
 
-	// ƒ†[ƒU[ƒf[ƒ^•\¦
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
     EndMessageWindowOff(wk);
     _readFriendMatchStatus(wk);
 
-	// ƒ†[ƒU[ƒf[ƒ^‚ÌBMPì¬
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®BMPä½œæˆ
 	_userDataDisp(wk);
 
-// WIFI@‘ÎíAUTOÓ°ÄŞƒfƒoƒbƒN
+// WIFIã€€å¯¾æˆ¦AUTOãƒ¢ãƒ¼ãƒ‰ãƒ‡ãƒãƒƒã‚¯
 #ifndef _WIFI_DEBUG_TUUSHIN
     _myStatusChange(wk, WIFI_STATUS_LOGIN_WAIT);
 #else	//_WIFI_DEBUG_TUUSHIN
@@ -4640,22 +4640,22 @@ static int WifiP2PMatch_FriendListInit( WIFIP2PMATCH_WORK *wk, int seq )
 	}
 #endif	//_WIFI_DEBUG_TUUSHIN
 
-	// ’ÊMó‘Ô‚ğŒ³‚É–ß‚·
+	// é€šä¿¡çŠ¶æ…‹ã‚’å…ƒã«æˆ»ã™
 	CommStateChangeWiFiLogin();
 
     wk->preConnect = -1;
 
-	// 080605 tomoya BTS:249‚Ì‘Îˆ‚Ì‚½‚ß
-	// e‚Ì’ÊMƒŠƒZƒbƒgˆ—Œã’¼‚®‚ÉÚ‘±‚µ‚Ä‚µ‚Ü‚¤‚Ì‚ğ‰ñ”ğ
-	// iÚ‘±‚³‚ê‚Ä‚àVCHAT‚Ìó‘Ô‚Ì‚Ü‚ÜAFriendListƒV[ƒPƒ“ƒX‚ÉˆÚs‚³‚¹‚éj
-//	mydwc_ResetNewPlayer();	// ‚¿‚È‚İ‚Émydwc_returnLobby“à‚Å‚à‰Šú‰»‚µ‚Ä‚é
+	// 080605 tomoya BTS:249ã®å¯¾å‡¦ã®ãŸã‚
+	// è¦ªã®é€šä¿¡ãƒªã‚»ãƒƒãƒˆå‡¦ç†å¾Œç›´ãã«æ¥ç¶šã—ã¦ã—ã¾ã†ã®ã‚’å›é¿
+	// ï¼ˆæ¥ç¶šã•ã‚Œã¦ã‚‚VCHATã®çŠ¶æ…‹ã®ã¾ã¾ã€FriendListã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«ç§»è¡Œã•ã›ã‚‹ï¼‰
+//	mydwc_ResetNewPlayer();	// ã¡ãªã¿ã«mydwc_returnLobbyå†…ã§ã‚‚åˆæœŸåŒ–ã—ã¦ã‚‹
 #if 0
     CLACT_SetDrawFlag( wk->MainActWork[_CLACT_LINE_CUR], 1 );
 #endif
 
 	ArchiveDataHandleClose( p_handle );
 
-	// ƒƒCƒvƒCƒ“
+	// ãƒ¯ã‚¤ãƒ—ã‚¤ãƒ³
 	WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK,
 					COMM_BRIGHTNESS_SYNC, 1, HEAPID_WIFIP2PMATCH);
     wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
@@ -4665,7 +4665,7 @@ static int WifiP2PMatch_FriendListInit( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ’N‚©‚ªÚ‘±‚µ‚Ä‚«‚½ê‡
+ * $brief   èª°ã‹ãŒæ¥ç¶šã—ã¦ããŸå ´åˆ
  * @param   wk
  * @retval  none
  */
@@ -4682,9 +4682,9 @@ static int _checkParentConnect(WIFIP2PMATCH_WORK *wk)
 static BOOL _checkParentNewPlayer( WIFIP2PMATCH_WORK *wk )
 {
 	if( (mydwc_IsNewPlayer() != -1) ){
-		// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚ÆBGM‰¹—Ê‚ÌŠÖŒW‚ğ®— tomoya takahashi
-		// ‚±‚±‚ÅVCHAT‚ğON‚É‚µ‚È‚¢‚Æ
-		// DWC_RAP“à‚ÅVCHAT‚ğŠJn‚µ‚È‚µ
+		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã¨BGMéŸ³é‡ã®é–¢ä¿‚ã‚’æ•´ç† tomoya takahashi
+		// ã“ã“ã§VCHATã‚’ONã«ã—ãªã„ã¨
+		// DWC_RAPå†…ã§VCHATã‚’é–‹å§‹ã—ãªã—
 		mydwc_setVChat(wk->pMatch->myMatchStatus.vchat);
 		OS_TPrintf( "Connect VCHAT set\n" );
 		return TRUE;
@@ -4694,7 +4694,7 @@ static BOOL _checkParentNewPlayer( WIFIP2PMATCH_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒƒCƒ“ƒŠƒXƒg‚Ì‘‚«Š·‚¦
+ * $brief   ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆã®æ›¸ãæ›ãˆ
  * @param   wk
  * @retval  none
  */
@@ -4708,8 +4708,8 @@ static void _mainListReWrite(WIFIP2PMATCH_WORK *wk)
     num = _readFriendMatchStatus(wk);
     num2 = _checkUserDataMatchStatus(wk);
     if((wk->friendMatchReadCount != num) || (num2 != 0)){
-        OHNO_PRINT("l”‚ª•Ï‚í‚Á‚½ %d %d\n", num, num2);
-        //_readFriendMatchStatus(wk);  //ÄŒvZ
+        OHNO_PRINT("äººæ•°ãŒå¤‰ã‚ã£ãŸ %d %d\n", num, num2);
+        //_readFriendMatchStatus(wk);  //å†è¨ˆç®—
         BMP_MENULIST_STRBUFDelete(wk->menulist);
         //BMP_MENULIST_Delete(wk->menulist);
         //wk->menulist = BMP_MENULIST_Create( WIFIP2PMATCH_MEMBER_MAX+2, HEAPID_WIFIP2PMATCH );
@@ -4722,7 +4722,7 @@ static void _mainListReWrite(WIFIP2PMATCH_WORK *wk)
         }
         _addListString(wk);
 
-	// u‚¹‚Â‚¾‚ñ@‚·‚év‚Ì‰º‚É‹ó”’s‚ªo—ˆ‚é‚Ì‚ğ—}§
+	// ã€Œã›ã¤ã ã‚“ã€€ã™ã‚‹ã€ã®ä¸‹ã«ç©ºç™½è¡ŒãŒå‡ºæ¥ã‚‹ã®ã‚’æŠ‘åˆ¶
 	BmpListPosGet(wk->lw, &list, &cursor);
 	if(num >= 3 && (num - 3) <= list){
 	  list = num - 3;
@@ -4736,7 +4736,7 @@ static void _mainListReWrite(WIFIP2PMATCH_WORK *wk)
     }
 
     BmpListPosGet(wk->lw, &list, &cursor);
-    // ƒJ[ƒ\ƒ‹ˆÊ’u‚ÌÄ•\¦
+    // ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã®å†è¡¨ç¤º
     if((wk->friendMatchReadCount+2) <= (list+cursor)){
       while((wk->friendMatchReadCount+2) <= (list+cursor)){
         if(list != 0){
@@ -4746,7 +4746,7 @@ static void _mainListReWrite(WIFIP2PMATCH_WORK *wk)
 	  cursor--;
         }
       }
-      OHNO_PRINT("ƒJ[ƒ\ƒ‹ˆÊ’u•ÏX %d %d \n",list,cursor);
+      OHNO_PRINT("ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å¤‰æ›´ %d %d \n",list,cursor);
       BmpListMainOutControl(wk->lw, NULL,list,cursor,0,NULL,NULL);
       BmpListRewrite(wk->lw);
     }
@@ -4755,7 +4755,7 @@ static void _mainListReWrite(WIFIP2PMATCH_WORK *wk)
 #if 0
     SetCursor_Pos(wk->MainActWork[_CLACT_LINE_CUR], 2*8, 8 * (cursor * 3 + 6));
 
-    if(list > 0){    // ãƒJ[ƒ\ƒ‹
+    if(list > 0){    // ä¸Šã‚«ãƒ¼ã‚½ãƒ«
         SetCursor_Pos(wk->MainActWork[_CLACT_UP_CUR], 0x80, 32);
         CLACT_SetDrawFlag( wk->MainActWork[_CLACT_UP_CUR], 1 );
     }
@@ -4774,11 +4774,11 @@ static void _mainListReWrite(WIFIP2PMATCH_WORK *wk)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—F’B‚Ìo“ü‚è‚ğŠÇ—‚·‚é
+ *	@brief	å‹é”ã®å‡ºå…¥ã‚Šã‚’ç®¡ç†ã™ã‚‹
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	¡‚Ì—F’B‚Ì”
+ *	@retval	ä»Šã®å‹é”ã®æ•°
  */
 //-----------------------------------------------------------------------------
 static int MCRSYS_ContFiendInOut( WIFIP2PMATCH_WORK* wk )
@@ -4791,22 +4791,22 @@ static int MCRSYS_ContFiendInOut( WIFIP2PMATCH_WORK* wk )
 	BOOL in_flag;
 	BOOL out_flag;
 
-	// ÅV”Å‚Ì—F’B”‚ÆA—F’Bƒiƒ“ƒo[”z—ñ‚ğì¬
+	// æœ€æ–°ç‰ˆã®å‹é”æ•°ã¨ã€å‹é”ãƒŠãƒ³ãƒãƒ¼é…åˆ—ã‚’ä½œæˆ
 	friend_num = _readFriendMatchStatus( wk );
 //	wk->friendMatchReadCount = friend_num;
 
 	in_flag = FALSE;
 	out_flag = FALSE;
 
-	// ƒoƒbƒNƒAƒbƒv‚Æ”äŠr‚·‚é
+	// ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã¨æ¯”è¼ƒã™ã‚‹
 	if( memcmp( wk->index2No, wk->index2NoBackUp, sizeof(u8)*WIFIP2PMATCH_MEMBER_MAX ) != 0 ){
 
-		// l‚ª•Ï‚í‚Á‚½
-		// ƒoƒbƒNƒAƒbƒv‘¤‚É‚¢‚ÄAÅV”Å‚É‚¢‚È‚¢‚â‚Â‚ÍOUT
-		// ÅV”Å‚É‚¢‚ÄAƒoƒbƒNƒAƒbƒv”Å‚É‚¢‚È‚¢‚â‚Â‚ÍIN
+		// äººãŒå¤‰ã‚ã£ãŸ
+		// ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—å´ã«ã„ã¦ã€æœ€æ–°ç‰ˆã«ã„ãªã„ã‚„ã¤ã¯OUT
+		// æœ€æ–°ç‰ˆã«ã„ã¦ã€ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ç‰ˆã«ã„ãªã„ã‚„ã¤ã¯IN
 		for( i=0; i<WIFIP2PMATCH_MEMBER_MAX; i++ ){
 			
-			// OUTƒ`ƒFƒbƒN
+			// OUTãƒã‚§ãƒƒã‚¯
 			match = FALSE;
 			for( j=0; j<WIFIP2PMATCH_MEMBER_MAX; j++ ){
 				if( wk->index2No[j] == wk->index2NoBackUp[i] ){
@@ -4814,21 +4814,21 @@ static int MCRSYS_ContFiendInOut( WIFIP2PMATCH_WORK* wk )
 					break;
 				}
 			}
-			// ‚¢‚È‚©‚Á‚½‚Ì‚Åíœ
-			// ˆê‹C‚É32l“ü‚Á‚Ä‚«‚½‚Æ‚«0‚ª‚¢‚È‚¢‚Æ‚¢‚¤•—‚É‚È‚Á‚Ä‚µ‚Ü‚¤‚Ì‚Å
-			// ‚O‚¶‚á‚È‚¢‚©‚àƒ`ƒFƒbƒN
+			// ã„ãªã‹ã£ãŸã®ã§å‰Šé™¤
+			// ä¸€æ°—ã«32äººå…¥ã£ã¦ããŸã¨ã0ãŒã„ãªã„ã¨ã„ã†é¢¨ã«ãªã£ã¦ã—ã¾ã†ã®ã§
+			// ï¼ã˜ã‚ƒãªã„ã‹ã‚‚ãƒã‚§ãƒƒã‚¯
 			if( (match == FALSE) && (wk->index2NoBackUp[i] != 0) ){
 				p_obj = MCRSYS_GetMoveObjWork( wk, wk->index2NoBackUp[i] );
 				if( p_obj != NULL ){
 					WIFI_MCR_DelPeopleReq( &wk->matchroom, p_obj );
 					MCRSYS_DelMoveObjWork( wk, p_obj );
 					MCVSys_BttnDel( wk, wk->index2NoBackUp[i] );
-					WifiP2PMatch_UserDispOff_Target( wk, wk->index2NoBackUp[i], HEAPID_WIFIP2PMATCH );	// ‚»‚Ìl‚ª‚µ‚½‰æ–Ê‚ÉÚ×•\¦‚³‚ê‚Ä‚¢‚é‚È‚çÁ‚·
+					WifiP2PMatch_UserDispOff_Target( wk, wk->index2NoBackUp[i], HEAPID_WIFIP2PMATCH );	// ãã®äººãŒã—ãŸç”»é¢ã«è©³ç´°è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãªã‚‰æ¶ˆã™
 					out_flag = TRUE;
 				}
 			}
 
-			// INƒ`ƒFƒbƒN
+			// INãƒã‚§ãƒƒã‚¯
 			match = FALSE;
 			for( j=0; j<WIFIP2PMATCH_MEMBER_MAX; j++ ){
 				if( wk->index2No[i] == wk->index2NoBackUp[j] ){
@@ -4836,7 +4836,7 @@ static int MCRSYS_ContFiendInOut( WIFIP2PMATCH_WORK* wk )
 					break;
 				}
 			}
-			// ‘O‚Í‚¢‚È‚©‚Á‚½‚Ì‚Å’Ç‰Á
+			// å‰ã¯ã„ãªã‹ã£ãŸã®ã§è¿½åŠ 
 			if( (match == FALSE) && (wk->index2No[i] != 0) ){
 				p_status = WifiFriendMatchStatusGet( wk, wk->index2No[i]-1 );
 
@@ -4844,7 +4844,7 @@ static int MCRSYS_ContFiendInOut( WIFIP2PMATCH_WORK* wk )
 						p_status->trainer_view, wk->index2No[i] );
 
 
-				// “o˜^‚Å‚«‚½‚©ƒ`ƒFƒbƒN
+				// ç™»éŒ²ã§ããŸã‹ãƒã‚§ãƒƒã‚¯
 				if( p_obj ){
 
 					MCVSys_BttnSet( wk, wk->index2No[i], MCV_BTTN_FRIEND_TYPE_IN );
@@ -4853,18 +4853,18 @@ static int MCRSYS_ContFiendInOut( WIFIP2PMATCH_WORK* wk )
 					in_flag = TRUE;
 				}else{
 
-					// ƒIƒuƒWƒF‚ª“o˜^‚Å‚«‚È‚©‚Á‚½‚Ì‚Å—\–ñ“o˜^
-					// i‚±‚ê‚¾‚Æƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚±‚Æ‚ªo—ˆ‚È‚¢j
+					// ã‚ªãƒ–ã‚¸ã‚§ãŒç™»éŒ²ã§ããªã‹ã£ãŸã®ã§äºˆç´„ç™»éŒ²
+					// ï¼ˆã“ã‚Œã ã¨ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã“ã¨ãŒå‡ºæ¥ãªã„ï¼‰
 					MCVSys_BttnSet( wk, wk->index2No[i], MCV_BTTN_FRIEND_TYPE_RES );
-					wk->index2No[i] = 0;	// “ü‚Á‚Ä‚«‚½‚Ì‚Í‚È‚©‚Á‚½‚±‚Æ‚É‚·‚é
+					wk->index2No[i] = 0;	// å…¥ã£ã¦ããŸã®ã¯ãªã‹ã£ãŸã“ã¨ã«ã™ã‚‹
 				}
 			}
 		}
 
-		// ÅV”Å‚É•ÏX
+		// æœ€æ–°ç‰ˆã«å¤‰æ›´
 		memcpy( wk->index2NoBackUp, wk->index2No, sizeof(u8)*WIFIP2PMATCH_MEMBER_MAX );
 
-		// ƒ{ƒ^ƒ“‘S•`‰æƒŠƒNƒGƒXƒg
+		// ãƒœã‚¿ãƒ³å…¨æç”»ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		MCVSys_BttnAllWriteReq( wk );
 
 		if( in_flag == TRUE ){
@@ -4880,9 +4880,9 @@ static int MCRSYS_ContFiendInOut( WIFIP2PMATCH_WORK* wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—F’B‚Ìó‘Ô•Ï‰»‚ğ•\¦
+ *	@brief	å‹é”ã®çŠ¶æ…‹å¤‰åŒ–ã‚’è¡¨ç¤º
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCRSYS_ContFriendStatus( WIFIP2PMATCH_WORK* wk, u32 heapID )
@@ -4893,10 +4893,10 @@ static void MCRSYS_ContFriendStatus( WIFIP2PMATCH_WORK* wk, u32 heapID )
 	BOOL vchat;
 	int change_num;
 
-	// ó‘Ô•ÏX”‚ğæ“¾i¡‚Ü‚Å‚Æ“®‚«‚ğˆê‚É‚·‚é‚½‚ß‚É‚±‚¤‚µ‚Ä‚¨‚­j
+	// çŠ¶æ…‹å¤‰æ›´æ•°ã‚’å–å¾—ï¼ˆä»Šã¾ã§ã¨å‹•ãã‚’ä¸€ç·’ã«ã™ã‚‹ãŸã‚ã«ã“ã†ã—ã¦ãŠãï¼‰
     change_num = _checkUserDataMatchStatus( wk );
 
-	// ŠF‚Ìó‘Ô•Ï‰»‚ğ“o˜^‚·‚é
+	// çš†ã®çŠ¶æ…‹å¤‰åŒ–ã‚’ç™»éŒ²ã™ã‚‹
 	if( change_num > 0 ){
 		MCVSys_ReWrite( wk, heapID );
 	}
@@ -4904,24 +4904,24 @@ static void MCRSYS_ContFriendStatus( WIFIP2PMATCH_WORK* wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—F’BƒIƒuƒWƒFƒNƒg‚Ì“o˜^”jŠüŠÇ—
+ *	@brief	å‹é”ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç™»éŒ²ç ´æ£„ç®¡ç†
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCRSYS_SetFriendObj( WIFIP2PMATCH_WORK* wk, u32 heapID )
 {
-	// —F’Bƒiƒ“ƒo[‚ª•Ï‚í‚Á‚Ä‚¢‚½‚ç‚¢‚È‚­‚È‚Á‚½—F’B‚ğÁ‚µA‘‚¦‚½—F’B‚ğ“o˜^
+	// å‹é”ãƒŠãƒ³ãƒãƒ¼ãŒå¤‰ã‚ã£ã¦ã„ãŸã‚‰ã„ãªããªã£ãŸå‹é”ã‚’æ¶ˆã—ã€å¢—ãˆãŸå‹é”ã‚’ç™»éŒ²
 	MCRSYS_ContFiendInOut( wk );
 
-	// ó‘Ô‚ª•Ï‚í‚Á‚½‚ç‰½‚©‚ğ•Ï‚¦‚é
+	// çŠ¶æ…‹ãŒå¤‰ã‚ã£ãŸã‚‰ä½•ã‹ã‚’å¤‰ãˆã‚‹
 	MCRSYS_ContFriendStatus( wk, heapID );
 }
 
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒtƒŒƒ“ƒhƒŠƒXƒg•\¦’†ˆ— WIFIP2PMATCH_MODE_FRIENDLIST
+ * $brief   ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚¹ãƒˆè¡¨ç¤ºä¸­å‡¦ç† WIFIP2PMATCH_MODE_FRIENDLIST
  * @param   wk
  * @retval  none
  */
@@ -4936,23 +4936,23 @@ static int WifiP2PMatch_FriendList( WIFIP2PMATCH_WORK *wk, int seq )
 	u32 status;
 
 
-	// ƒƒCƒvI—¹‘Ò‚¿
+	// ãƒ¯ã‚¤ãƒ—çµ‚äº†å¾…ã¡
 	if( WIPE_SYS_EndCheck() == FALSE ){
 		return seq;
 	}
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
     if( CommStateIsWifiError()){  
 //        wk->localTime=0;
         _errorDisp(wk);
         return seq;
     }
 
-	// ƒ{ƒCƒXƒ`ƒƒƒbƒgONOFFŒJ‚è•Ô‚µ‚Å‚±‚±‚Ì‰æ–Ê‚Å‚Í‚Ü‚éˆ×
-	// ‚¦‚çó‘Ô‚É‚È‚Á‚½‚çDISCONNECTˆ—‚É‘JˆÚ
+	// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆONOFFç¹°ã‚Šè¿”ã—ã§ã“ã“ã®ç”»é¢ã§ã¯ã¾ã‚‹ç‚º
+	// ãˆã‚‰çŠ¶æ…‹ã«ãªã£ãŸã‚‰DISCONNECTå‡¦ç†ã«é·ç§»
 	if( CommWifiIsMatched()==4 ){
-		// ‚±‚Ìˆ—‚ÍA_parentModeCallMenuInit‚©‚ç‚à‚Á‚Ä‚«‚Ü‚µ‚½
-        // “K‡‚µ‚È‚¢=>Ø’fˆ—‚Ö
+		// ã“ã®å‡¦ç†ã¯ã€_parentModeCallMenuInitã‹ã‚‰ã‚‚ã£ã¦ãã¾ã—ãŸ
+        // é©åˆã—ãªã„=>åˆ‡æ–­å‡¦ç†ã¸
         _friendNameExpand(wk, mydwc_getFriendIndex());
         WifiP2PMatchMessagePrint(wk, msg_wifilobby_015, FALSE);
         wk->seq = WIFIP2PMATCH_MODE_DISCONNECT;
@@ -4963,12 +4963,12 @@ static int WifiP2PMatch_FriendList( WIFIP2PMATCH_WORK *wk, int seq )
 
 	/*
 	 * 080607 tomoya
-	 * comm_state.c“à‚ÅAUTO‚É‚·‚é‚Æ‚±‚ë‚ğ‚â‚ß‚ÄA
-	 * ‚·‚×‚ÄAcomm_state‚ÌŠO‘¤iƒAƒvƒŠ‘¤j‚Åİ’è•ÏX‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
+	 * comm_state.cå†…ã§AUTOã«ã™ã‚‹ã¨ã“ã‚ã‚’ã‚„ã‚ã¦ã€
+	 * ã™ã¹ã¦ã€comm_stateã®å¤–å´ï¼ˆã‚¢ãƒ—ãƒªå´ï¼‰ã§è¨­å®šå¤‰æ›´ã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
 	 * 
-	// ‚±‚±‚É—ˆ‚Ä‚¢‚é‚Ì‚ÉACommStateErrorCheck‚ÌWi-Fi‚ªAUTO‚È‚ç
-	// ‚»‚ê‚ğ‰ğœ
-	// 080605 tomoya  comm_state.c _stateWifiMatchEnd“à‚ÅAUTO‚É‚È‚é‚½‚ß
+	// ã“ã“ã«æ¥ã¦ã„ã‚‹ã®ã«ã€CommStateErrorCheckã®Wi-FiãŒAUTOãªã‚‰
+	// ãã‚Œã‚’è§£é™¤
+	// 080605 tomoya  comm_state.c _stateWifiMatchEndå†…ã§AUTOã«ãªã‚‹ãŸã‚
 	if( CommStateGetErrorCheck() == TRUE ){
 		CommStateSetErrorCheck( FALSE, FALSE );
 	}
@@ -4976,17 +4976,17 @@ static int WifiP2PMatch_FriendList( WIFIP2PMATCH_WORK *wk, int seq )
 
  //   _mainListReWrite(wk);
  
-	// —F’B‚ªŒ»‚ê‚½‚ço‚·
+	// å‹é”ãŒç¾ã‚ŒãŸã‚‰å‡ºã™
 	MCRSYS_SetFriendObj( wk, HEAPID_WIFIP2PMATCH );
 	MCVSys_UpdataBttn( wk );
 
 
-	// ƒpƒ\ƒRƒ“ƒAƒjƒ‚ª“®‚¢‚Ä‚¢‚½‚çI—¹
+	// ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãŒå‹•ã„ã¦ã„ãŸã‚‰çµ‚äº†
 	WIFI_MCR_PCAnmOff( &wk->matchroom );	
 
-	// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚ÌONOFF‚ÍƒvƒŒƒCƒ„[‚ª“®‚¯‚é‚Æ‚«‚É‚¾‚¯İ’è‚Å‚«‚é
+	// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã®ONOFFã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒå‹•ã‘ã‚‹ã¨ãã«ã ã‘è¨­å®šã§ãã‚‹
 	if( WIFI_MCR_PlayerMovePauseGet( &wk->matchroom ) == FALSE ){
-		// ƒ{ƒCƒXƒ`ƒƒƒbƒg
+		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆ
 		if(mydwc_IsNewPlayer() == -1){
 			if(PAD_BUTTON_X & sys.trg){
 				if(_myVChatStatusToggleOrg(wk)){
@@ -4998,14 +4998,14 @@ static int WifiP2PMatch_FriendList( WIFIP2PMATCH_WORK *wk, int seq )
 				Snd_SePlay(_SE_DESIDE);
 				_userDataInfoDisp(wk);
 				wk->seq = WIFIP2PMATCH_VCHATWIN_WAIT;
-				WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );	// ‚µ‚½‰æ–Ê‰Šú‰»
+				WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );	// ã—ãŸç”»é¢åˆæœŸåŒ–
 				return seq;
 			}
 		}
 
 
-		// ‚µ‚½‰æ–Ê‚à“®‚©‚È‚¢
-		check_friend = MCVSys_Updata( wk, HEAPID_WIFIP2PMATCH );	// ‚µ‚½‰æ–Ê‚à“®‚©‚·
+		// ã—ãŸç”»é¢ã‚‚å‹•ã‹ãªã„
+		check_friend = MCVSys_Updata( wk, HEAPID_WIFIP2PMATCH );	// ã—ãŸç”»é¢ã‚‚å‹•ã‹ã™
 		p_obj = MCRSYS_GetMoveObjWork( wk, check_friend );
 		if( check_friend != 0 ){
 			if( p_obj ){
@@ -5019,7 +5019,7 @@ static int WifiP2PMatch_FriendList( WIFIP2PMATCH_WORK *wk, int seq )
 
 	}
 
-#ifdef WFP2P_DEBUG   /// ‚u‚b‚g‚`‚s‰¹¿Ø‚è‘Ö‚¦
+#ifdef WFP2P_DEBUG   /// ï¼¶ï¼£ï¼¨ï¼¡ï¼´éŸ³è³ªåˆ‡ã‚Šæ›¿ãˆ
 #if 0
     if(PAD_BUTTON_Y & sys.trg){
         switch(wk->vctEnc){
@@ -5039,35 +5039,35 @@ static int WifiP2PMatch_FriendList( WIFIP2PMATCH_WORK *wk, int seq )
         }
         mydwc_setVchat(wk->vctEnc);
         wk->seq = WIFIP2PMATCH_VCHATWIN_WAIT;
-		WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );	// ‚µ‚½‰æ–Ê‰Šú‰»
+		WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );	// ã—ãŸç”»é¢åˆæœŸåŒ–
         return seq;
     }
 #endif
 #endif
 
-	// —F’B‚©‚ç‚±‚¿‚ç‚ÉÚ‘±‚µ‚Ä‚«‚½‚Æ‚«‚Ìˆ—
+	// å‹é”ã‹ã‚‰ã“ã¡ã‚‰ã«æ¥ç¶šã—ã¦ããŸã¨ãã®å‡¦ç†
     checkMatch = _checkParentConnect(wk);
-    if( (0 !=  checkMatch) && (wk->preConnect != -1) ){ // Ú‘±‚µ‚Ä‚«‚½
-        OHNO_PRINT("Ú‘±‚ğE‚Á‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é-------------\n");
+    if( (0 !=  checkMatch) && (wk->preConnect != -1) ){ // æ¥ç¶šã—ã¦ããŸ
+        OHNO_PRINT("æ¥ç¶šã‚’æ‹¾ã£ã¦ã—ã¾ã£ã¦ã„ã‚‹-------------\n");
         Snd_SePlay(_SE_OFFER);
         wk->seq = WIFIP2PMATCH_MODE_CALL_INIT;
         return seq;
     }
-    if((wk->preConnect == -1) && (mydwc_IsNewPlayer() != -1)){	// ’Êí‚ÌƒRƒlƒNƒgŠJn
+    if((wk->preConnect == -1) && (mydwc_IsNewPlayer() != -1)){	// é€šå¸¸ã®ã‚³ãƒã‚¯ãƒˆé–‹å§‹
         wk->preConnect = mydwc_IsNewPlayer();
         _friendNameExpand(wk, wk->preConnect);
         WifiP2PMatchMessagePrint(wk, msg_wifilobby_043, FALSE);
 
-		// ƒ{ƒCƒXƒ`ƒƒƒbƒgİ’è
-		mydwc_setVChat(wk->pMatch->myMatchStatus.vchat);// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚ÆBGM‰¹—Ê‚ÌŠÖŒW‚ğ®— tomoya takahashi
+		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆè¨­å®š
+		mydwc_setVChat(wk->pMatch->myMatchStatus.vchat);// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã¨BGMéŸ³é‡ã®é–¢ä¿‚ã‚’æ•´ç† tomoya takahashi
 		OS_TPrintf( "Connect VCHAT set\n" );
 
-		// ‚Â‚È‚ª‚Á‚½l‚Ìƒf[ƒ^•\¦
+		// ã¤ãªãŒã£ãŸäººã®ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
 //		WifiP2PMatch_UserDispOn( wk, wk->preConnect+1, HEAPID_WIFIP2PMATCH );
 
         wk->localTime = 0;
     }
-    else if((wk->preConnect != -1) && (mydwc_IsNewPlayer() == -1)){	// ©•ª“I‚É‚ÍV‚µ‚­ƒRƒlƒNƒg‚µ‚Ä‚«‚½‚Ì‚ÉAÀÛ‚ÍƒRƒlƒNƒg‚µ‚Ä‚«‚Ä‚¢‚È‚©‚Á‚½‚Æ‚«H
+    else if((wk->preConnect != -1) && (mydwc_IsNewPlayer() == -1)){	// è‡ªåˆ†çš„ã«ã¯æ–°ã—ãã‚³ãƒã‚¯ãƒˆã—ã¦ããŸã®ã«ã€å®Ÿéš›ã¯ã‚³ãƒã‚¯ãƒˆã—ã¦ãã¦ã„ãªã‹ã£ãŸã¨ãï¼Ÿ
 
 /*
         GF_BGL_BmpWinDel(&wk->ListWin);
@@ -5077,8 +5077,8 @@ static int WifiP2PMatch_FriendList( WIFIP2PMATCH_WORK *wk, int seq )
         wk->menulist = NULL;
 //*/
 
-		// ƒ{ƒCƒXƒ`ƒƒƒbƒgİ’è
-		mydwc_setVChat(FALSE);// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚ÆBGM‰¹—Ê‚ÌŠÖŒW‚ğ®— tomoya takahashi
+		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆè¨­å®š
+		mydwc_setVChat(FALSE);// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã¨BGMéŸ³é‡ã®é–¢ä¿‚ã‚’æ•´ç† tomoya takahashi
         _friendNameExpand(wk, wk->preConnect);
         WifiP2PMatchMessagePrint(wk, msg_wifilobby_015, FALSE);
         CommStateWifiMatchEnd();
@@ -5086,10 +5086,10 @@ static int WifiP2PMatch_FriendList( WIFIP2PMATCH_WORK *wk, int seq )
         return seq;
     }
 
-	// VCHAT@ON@ó‘Ô‚È‚Ì‚ÉAV‚µ‚¢ƒRƒlƒNƒg‚ª-1‚È‚çVCHAT‚ğOFF‚É‚·‚é
+	// VCHATã€€ONã€€çŠ¶æ…‹ãªã®ã«ã€æ–°ã—ã„ã‚³ãƒã‚¯ãƒˆãŒ-1ãªã‚‰VCHATã‚’OFFã«ã™ã‚‹
 	// 080615	tomoya
 	if( (mydwc_IsVChat() == TRUE) && (mydwc_IsNewPlayer() == -1) ){
-		mydwc_setVChat(FALSE);// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚ÆBGM‰¹—Ê‚ÌŠÖŒW‚ğ®— tomoya takahashi
+		mydwc_setVChat(FALSE);// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã¨BGMéŸ³é‡ã®é–¢ä¿‚ã‚’æ•´ç† tomoya takahashi
 	}
 	
 /*    if(wk->localTime){
@@ -5102,24 +5102,24 @@ static int WifiP2PMatch_FriendList( WIFIP2PMATCH_WORK *wk, int seq )
 //    _mainListReWrite(wk);
 
 
-	// ó‘Ô‚ğæ“¾
+	// çŠ¶æ…‹ã‚’å–å¾—
 	status = _WifiMyStatusGet( wk, &wk->pMatch->myMatchStatus );
 
-	// ’N‚à©•ª‚ÉÚ‘±‚µ‚Ä‚«‚Ä‚¢‚È‚¢‚Æ‚«‚¾‚¯ƒŠƒXƒg‚ğ“®‚©‚¹‚é
+	// èª°ã‚‚è‡ªåˆ†ã«æ¥ç¶šã—ã¦ãã¦ã„ãªã„ã¨ãã ã‘ãƒªã‚¹ãƒˆã‚’å‹•ã‹ã›ã‚‹
     if(wk->preConnect == -1){
 
-		// CANCELƒ{ƒ^ƒ“‚Å‚à‘Ò‹@ó‘Ô‚ğƒNƒŠƒA
+		// CANCELãƒœã‚¿ãƒ³ã§ã‚‚å¾…æ©ŸçŠ¶æ…‹ã‚’ã‚¯ãƒªã‚¢
 		if( sys.trg & PAD_BUTTON_CANCEL ){
-			if(_modeWait(status)){	// ‘Ò‚¿ó‘Ô‚Ì‚Æ‚«
+			if(_modeWait(status)){	// å¾…ã¡çŠ¶æ…‹ã®ã¨ã
 				Snd_SePlay(_SE_DESIDE);
-				wk->seq = WIFIP2PMATCH_MODE_SELECT_REL_INIT;  // ‰ğœ
-				WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );	// ‚µ‚½‰æ–Ê‰Šú‰»
+				wk->seq = WIFIP2PMATCH_MODE_SELECT_REL_INIT;  // è§£é™¤
+				WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );	// ã—ãŸç”»é¢åˆæœŸåŒ–
 				return seq;
 			}
 		}
 		
 		ret = WIFI_MCR_Main( &wk->matchroom );
-		WIFI_MCR_PCAnmMain( &wk->matchroom );	// ƒpƒ\ƒRƒ“ƒAƒjƒƒƒCƒ“
+		WIFI_MCR_PCAnmMain( &wk->matchroom );	// ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
 //        ret = BmpListMain(wk->lw);
     }
     switch(ret){
@@ -5127,50 +5127,50 @@ static int WifiP2PMatch_FriendList( WIFIP2PMATCH_WORK *wk, int seq )
         return seq;
       case MCR_RET_CANCEL:
         Snd_SePlay(_SE_DESIDE);
-        if(_modeWait(status)){	// ‘Ò‚¿ó‘Ô‚Ì‚Æ‚«
-            wk->seq = WIFIP2PMATCH_MODE_SELECT_REL_INIT;  // ©•ª‚ª‘Ò‹@‚Ìê‡•K‚¸‰ğœ
+        if(_modeWait(status)){	// å¾…ã¡çŠ¶æ…‹ã®ã¨ã
+            wk->seq = WIFIP2PMATCH_MODE_SELECT_REL_INIT;  // è‡ªåˆ†ãŒå¾…æ©Ÿã®å ´åˆå¿…ãšè§£é™¤
         }
-        else{	// ‚»‚ê‚©I—¹ƒ`ƒFƒbƒN‚Ö
+        else{	// ãã‚Œã‹çµ‚äº†ãƒã‚§ãƒƒã‚¯ã¸
             wk->endSeq = WIFI_P2PMATCH_END;
             wk->seq = WIFIP2PMATCH_MODE_EXIT_YESNO;
             WifiP2PMatchMessagePrint(wk, dwc_message_0010, TRUE);
             //        wk->localTime=0;
             ret = BMPLIST_CANCEL;
         }
-		WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );	// ‚µ‚½‰æ–Ê‰Šú‰»
+		WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );	// ã—ãŸç”»é¢åˆæœŸåŒ–
         return seq;
 
       case MCR_RET_MYSELECT:
 //        wk->localTime=0;
         Snd_SePlay(_SE_DESIDE);
         if(_modeWait(status)){
-			WIFI_MCR_PCAnmStart( &wk->matchroom );	// pcƒAƒjƒŠJn
-            wk->seq = WIFIP2PMATCH_MODE_SELECT_REL_INIT;  // ©•ª‚ª‘Ò‹@‚Ìê‡•K‚¸‰ğœ
+			WIFI_MCR_PCAnmStart( &wk->matchroom );	// pcã‚¢ãƒ‹ãƒ¡é–‹å§‹
+            wk->seq = WIFIP2PMATCH_MODE_SELECT_REL_INIT;  // è‡ªåˆ†ãŒå¾…æ©Ÿã®å ´åˆå¿…ãšè§£é™¤
         }
-        else{  // •åW‚Ìs‚Å‘I‘ğ‚µ‚½‚Æ‚«
+        else{  // å‹Ÿé›†ã®è¡Œã§é¸æŠã—ãŸã¨ã
             if(status == WIFI_STATUS_LOGIN_WAIT){
 
-				// ©•ª‚Ìó‘Ô‚ªAƒ}ƒbƒ`ƒ“ƒO‚Ü‚Å‚¢‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚é
+				// è‡ªåˆ†ã®çŠ¶æ…‹ãŒã€ãƒãƒƒãƒãƒ³ã‚°ã¾ã§ã„ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 				// 080628	tomoya
 				if( CommStateIsWifiLoginMatchState() == TRUE ){
-					WIFI_MCR_PCAnmStart( &wk->matchroom );	// pcƒAƒjƒŠJn
+					WIFI_MCR_PCAnmStart( &wk->matchroom );	// pcã‚¢ãƒ‹ãƒ¡é–‹å§‹
 	                wk->seq = WIFIP2PMATCH_MODE_SELECT_INIT;
 				}
             }
         }
-		WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );	// ‚µ‚½‰æ–Ê‰Šú‰»
+		WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );	// ã—ãŸç”»é¢åˆæœŸåŒ–
         return seq;
         break;
 
 	case MCR_RET_SELECT:
         Snd_SePlay(_SE_DESIDE);
         if(_modeWait(status)){
-            wk->seq = WIFIP2PMATCH_MODE_SELECT_REL_INIT;  // ©•ª‚ª‘Ò‹@‚Ìê‡•K‚¸‰ğœ
+            wk->seq = WIFIP2PMATCH_MODE_SELECT_REL_INIT;  // è‡ªåˆ†ãŒå¾…æ©Ÿã®å ´åˆå¿…ãšè§£é™¤
         }
-        else{  // l‚Ì–¼‘O[„ƒ}ƒbƒ`ƒ“ƒO‚Ö
+        else{  // äººã®åå‰ãƒ¼ï¼ãƒãƒƒãƒãƒ³ã‚°ã¸
             wk->seq = WIFIP2PMATCH_MODE_MATCH_INIT;
         }
-		WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );	// ‚µ‚½‰æ–Ê‰Šú‰»
+		WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );	// ã—ãŸç”»é¢åˆæœŸåŒ–
 		return seq;
 		break;
 
@@ -5190,7 +5190,7 @@ static int WifiP2PMatch_FriendList( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   VCTONOFFƒEƒCƒ“ƒhƒE‚ğ•Â‚¶‚é
+ * $brief   VCTONOFFã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹
  * @param   wk
  * @retval  none
  */
@@ -5198,14 +5198,14 @@ static int WifiP2PMatch_FriendList( WIFIP2PMATCH_WORK *wk, int seq )
 
 static int _vchatToggleWait( WIFIP2PMATCH_WORK *wk, int seq )
 {
-    if( 0 !=  _checkParentNewPlayer(wk)){ // Ú‘±‚µ‚Ä‚«‚½
+    if( 0 !=  _checkParentNewPlayer(wk)){ // æ¥ç¶šã—ã¦ããŸ
         wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
-		// ålŒö‚Ì“®ì‚ğ‹–‰Â
+		// ä¸»äººå…¬ã®å‹•ä½œã‚’è¨±å¯
 		FriendRequestWaitOff( wk );
     }
     else if( GF_MSG_PrintEndCheck( wk->MsgIndex ) == 0 ){
         wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
-		// ålŒö‚Ì“®ì‚ğ‹–‰Â
+		// ä¸»äººå…¬ã®å‹•ä½œã‚’è¨±å¯
 		FriendRequestWaitOff( wk );
         EndMessageWindowOff(wk);
     }
@@ -5214,7 +5214,7 @@ static int _vchatToggleWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   VCTÚ‘±ŠJn
+ * $brief   VCTæ¥ç¶šé–‹å§‹
  * @param   wk
  * @retval  none
  */
@@ -5225,7 +5225,7 @@ static int WifiP2PMatch_VCTConnectInit2( WIFIP2PMATCH_WORK *wk, int seq )       
 	int vchat;
 	int status;
 
-	// VChatƒtƒ‰ƒO‚ğæ“¾
+	// VChatãƒ•ãƒ©ã‚°ã‚’å–å¾—
 	p_status = WifiFriendMatchStatusGet( wk, wk->friendNo - 1 );
 	vchat	= p_status->vchat;
 	status	= _WifiMyStatusGet( wk, p_status );
@@ -5254,25 +5254,25 @@ static int WifiP2PMatch_VCTConnectInit2( WIFIP2PMATCH_WORK *wk, int seq )       
         _errorDisp(wk);
     }
 #if PLFIX_T869
-	// VCHATƒtƒ‰ƒO‚ªOFF‚É‚È‚Á‚Ä‚¢‚½‚ç’ÊMØ’f
+	// VCHATãƒ•ãƒ©ã‚°ãŒOFFã«ãªã£ã¦ã„ãŸã‚‰é€šä¿¡åˆ‡æ–­
     else if(vchat == FALSE){
         _friendNameExpand(wk, mydwc_getFriendIndex());
         WifiP2PMatchMessagePrint(wk, msg_wifilobby_013, FALSE);
         wk->seq = WIFIP2PMATCH_MODE_VCT_DISCONNECT;
 	}
 #endif
-	// ‘Šè‚Ìó‘Ô‚ª’Êíó‘Ô‚Å‚È‚¢ê‡Ø’f
+	// ç›¸æ‰‹ã®çŠ¶æ…‹ãŒé€šå¸¸çŠ¶æ…‹ã§ãªã„å ´åˆåˆ‡æ–­
 	else if( status != WIFI_STATUS_LOGIN_WAIT ){
         _friendNameExpand(wk, mydwc_getFriendIndex());
         WifiP2PMatchMessagePrint(wk, msg_wifilobby_013, FALSE);
         wk->seq = WIFIP2PMATCH_MODE_VCT_DISCONNECT;
 	}
-	else if(CommWifiIsMatched()==1){  // ‚Â‚È‚ª‚Á‚½
-	//    _timeWaitIconDel(wk);		timeWait“à‚ÅMsgWin‚ğ”jŠü‚µ‚Ä‚¢‚é‚Æ‚¢‚¤‚±‚Æ‚ÍƒƒbƒZ[ƒWI—¹‚Å‚àOK«
+	else if(CommWifiIsMatched()==1){  // ã¤ãªãŒã£ãŸ
+	//    _timeWaitIconDel(wk);		timeWaitå†…ã§MsgWinã‚’ç ´æ£„ã—ã¦ã„ã‚‹ã¨ã„ã†ã“ã¨ã¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†ã§ã‚‚OKâ†“
 		EndMessageWindowOff(wk);
-        _myStatusChange(wk, WIFI_STATUS_VCT);  // VCT’†‚É‚È‚é
-        wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT; // Ÿ‚És‚­Û‚ÉŒÄ‚Ô
-		WifiList_SetLastPlayDate( wk->pList, wk->friendNo - 1);	// ÅŒã‚É—V‚ñ‚¾“ú•t‚ÍAVCT‚ª‚Â‚È‚ª‚Á‚½‚Æ‚«‚Éİ’è‚·‚é
+        _myStatusChange(wk, WIFI_STATUS_VCT);  // VCTä¸­ã«ãªã‚‹
+        wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT; // æ¬¡ã«è¡Œãéš›ã«å‘¼ã¶
+		WifiList_SetLastPlayDate( wk->pList, wk->friendNo - 1);	// æœ€å¾Œã«éŠã‚“ã æ—¥ä»˜ã¯ã€VCTãŒã¤ãªãŒã£ãŸã¨ãã«è¨­å®šã™ã‚‹
     }
 
     return seq;
@@ -5280,7 +5280,7 @@ static int WifiP2PMatch_VCTConnectInit2( WIFIP2PMATCH_WORK *wk, int seq )       
 
 //------------------------------------------------------------------
 /**
- * $brief   VCTÚ‘±ŠJn
+ * $brief   VCTæ¥ç¶šé–‹å§‹
  * @param   wk
  * @retval  none
  */
@@ -5289,21 +5289,21 @@ static int WifiP2PMatch_VCTConnectInit( WIFIP2PMATCH_WORK *wk, int seq )        
 {
 
 	// 080703	tomoya takahashi
-	// ‚â‚Í‚è‚Í‚Ü‚é‚Æ‚«‚Í‚ ‚é‚æ‚¤‚È‚Ì‚ÅA
-	//@‚·‚®‚ÉŸ‚É‚¢‚­‚æ‚¤‚ÉC³‚·‚é
+	// ã‚„ã¯ã‚Šã¯ã¾ã‚‹ã¨ãã¯ã‚ã‚‹ã‚ˆã†ãªã®ã§ã€
+	//ã€€ã™ãã«æ¬¡ã«ã„ãã‚ˆã†ã«ä¿®æ­£ã™ã‚‹
 	_friendNameExpand(wk, mydwc_getFriendIndex());
 	WifiP2PMatchMessagePrint(wk, msg_wifilobby_011, FALSE);
-	_myStatusChange(wk, WIFI_STATUS_VCT);  // VCT’†‚É‚È‚é
-	wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT_WAIT; // Ÿ‚És‚­Û‚ÉŒÄ‚Ô
+	_myStatusChange(wk, WIFI_STATUS_VCT);  // VCTä¸­ã«ãªã‚‹
+	wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT_WAIT; // æ¬¡ã«è¡Œãéš›ã«å‘¼ã¶
 
-	WifiList_SetLastPlayDate( wk->pList, mydwc_getFriendIndex());	// ÅŒã‚É—V‚ñ‚¾“ú•t‚ÍAVCT‚ª‚Â‚È‚ª‚Á‚½‚Æ‚«‚Éİ’è‚·‚é
+	WifiList_SetLastPlayDate( wk->pList, mydwc_getFriendIndex());	// æœ€å¾Œã«éŠã‚“ã æ—¥ä»˜ã¯ã€VCTãŒã¤ãªãŒã£ãŸã¨ãã«è¨­å®šã™ã‚‹
 
 #if 0
-    if(CommWifiIsMatched()==1){  // ‚Â‚È‚ª‚Á‚½
+    if(CommWifiIsMatched()==1){  // ã¤ãªãŒã£ãŸ
         _friendNameExpand(wk, mydwc_getFriendIndex());
         WifiP2PMatchMessagePrint(wk, msg_wifilobby_011, FALSE);
-        _myStatusChange(wk, WIFI_STATUS_VCT);  // VCT’†‚É‚È‚é
-        wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT_WAIT; // Ÿ‚És‚­Û‚ÉŒÄ‚Ô
+        _myStatusChange(wk, WIFI_STATUS_VCT);  // VCTä¸­ã«ãªã‚‹
+        wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT_WAIT; // æ¬¡ã«è¡Œãéš›ã«å‘¼ã¶
     }
 #endif
 
@@ -5312,7 +5312,7 @@ static int WifiP2PMatch_VCTConnectInit( WIFIP2PMATCH_WORK *wk, int seq )        
 
 //------------------------------------------------------------------
 /**
- * $brief   VCTÚ‘±‚Ü‚¿
+ * $brief   VCTæ¥ç¶šã¾ã¡
  * @param   wk
  * @retval  none
  */
@@ -5329,17 +5329,17 @@ static int WifiP2PMatch_VCTConnectWait( WIFIP2PMATCH_WORK *wk, int seq )        
 		return seq;
     }
 
-	// 080624@’Ç‰Á
-	// ’ÊMƒŠƒZƒbƒg‚³‚ê‚é‚Æindex‚ª0‚æ‚è¬‚³‚­‚È‚é
-	// ‚»‚µ‚½‚çØ’f
+	// 080624ã€€è¿½åŠ 
+	// é€šä¿¡ãƒªã‚»ãƒƒãƒˆã•ã‚Œã‚‹ã¨indexãŒ0ã‚ˆã‚Šå°ã•ããªã‚‹
+	// ãã—ãŸã‚‰åˆ‡æ–­
 	if( mydwc_getFriendIndex() < 0 ){
         WifiP2PMatchMessagePrint(wk, msg_wifilobby_016, FALSE);
         wk->seq = WIFIP2PMATCH_MODE_VCT_DISCONNECT;
 		return seq;
 	}
 
-	// 080624@’Ç‰Á
-	// status‚ğƒ`ƒFƒbƒN
+	// 080624ã€€è¿½åŠ 
+	// statusã‚’ãƒã‚§ãƒƒã‚¯
 	p_status = WifiFriendMatchStatusGet( wk, mydwc_getFriendIndex() );
 	status	= _WifiMyStatusGet( wk, p_status );
 	if( (status != WIFI_STATUS_LOGIN_WAIT) && (status != WIFI_STATUS_VCT) ){
@@ -5352,7 +5352,7 @@ static int WifiP2PMatch_VCTConnectWait( WIFIP2PMATCH_WORK *wk, int seq )        
     if( GF_MSG_PrintEndCheck( wk->MsgIndex ) == 0 ){
         if(sys.trg & (PAD_BUTTON_CANCEL|PAD_BUTTON_DECIDE)){
             EndMessageWindowOff(wk);
-            wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT; // Ÿ‚És‚­Û‚ÉŒÄ‚Ô
+            wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT; // æ¬¡ã«è¡Œãéš›ã«å‘¼ã¶
         }
         else{
             WifiP2PMatch_VCTConnect(wk,seq);
@@ -5363,7 +5363,7 @@ static int WifiP2PMatch_VCTConnectWait( WIFIP2PMATCH_WORK *wk, int seq )        
 
 //------------------------------------------------------------------
 /**
- * $brief   VCTÚ‘±’†  WIFIP2PMATCH_MODE_VCT_CONNECT
+ * $brief   VCTæ¥ç¶šä¸­  WIFIP2PMATCH_MODE_VCT_CONNECT
  * @param   wk
  * @retval  none
  */
@@ -5374,12 +5374,12 @@ static int WifiP2PMatch_VCTConnect( WIFIP2PMATCH_WORK *wk, int seq )
 	int status;
 
 
-	// 080624@•ÏX
+	// 080624ã€€å¤‰æ›´
 	//if( mydwc_getFriendIndex() < 0 ){
     //    wk->seq = WIFIP2PMATCH_MODE_VCT_DISCONNECT;
 	//}
-	// ’ÊMƒŠƒZƒbƒg‚³‚ê‚é‚Æindex‚ª0‚æ‚è¬‚³‚­‚È‚é
-	// ‚»‚µ‚½‚çØ’f
+	// é€šä¿¡ãƒªã‚»ãƒƒãƒˆã•ã‚Œã‚‹ã¨indexãŒ0ã‚ˆã‚Šå°ã•ããªã‚‹
+	// ãã—ãŸã‚‰åˆ‡æ–­
 	if( mydwc_getFriendIndex() < 0 ){
         WifiP2PMatchMessagePrint(wk, msg_wifilobby_016, FALSE);
         wk->seq = WIFIP2PMATCH_MODE_VCT_DISCONNECT;
@@ -5387,12 +5387,12 @@ static int WifiP2PMatch_VCTConnect( WIFIP2PMATCH_WORK *wk, int seq )
 	}
 
 	
-	// VChatƒtƒ‰ƒO‚ğæ“¾
+	// VChatãƒ•ãƒ©ã‚°ã‚’å–å¾—
 	p_status = WifiFriendMatchStatusGet( wk, mydwc_getFriendIndex() );
 	status	= _WifiMyStatusGet( wk, p_status );
 
 //    _mainListReWrite(wk);
-	// —F’B‚ªŒ»‚ê‚½‚ço‚·
+	// å‹é”ãŒç¾ã‚ŒãŸã‚‰å‡ºã™
 	MCRSYS_SetFriendObj( wk, HEAPID_WIFIP2PMATCH );
 	MCVSys_UpdataBttn( wk );
 
@@ -5418,7 +5418,7 @@ static int WifiP2PMatch_VCTConnect( WIFIP2PMATCH_WORK *wk, int seq )
     else if(CommStateIsWifiError()){
         _errorDisp(wk);
     }
-	// ‘Šè‚Ìó‘Ô‚ª’Êíó‘ÔorVCTó‘Ô‚Å‚È‚¢ê‡Ø’f
+	// ç›¸æ‰‹ã®çŠ¶æ…‹ãŒé€šå¸¸çŠ¶æ…‹orVCTçŠ¶æ…‹ã§ãªã„å ´åˆåˆ‡æ–­
 	else if( (status != WIFI_STATUS_LOGIN_WAIT) && (status != WIFI_STATUS_VCT) ){
         _friendNameExpand(wk, mydwc_getFriendIndex());
         WifiP2PMatchMessagePrint(wk, msg_wifilobby_013, FALSE);
@@ -5429,7 +5429,7 @@ static int WifiP2PMatch_VCTConnect( WIFIP2PMATCH_WORK *wk, int seq )
         wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECTEND_YESNO;
     }
     else{
-		// ƒAƒCƒRƒ“‘‚«Š·‚¦
+		// ã‚¢ã‚¤ã‚³ãƒ³æ›¸ãæ›ãˆ
         if(mydwc_IsSendVoiceAndInc()){
 			WifiP2PMatchFriendListIconWrite( wk->bgl, &wk->icon, GF_BGL_FRAME1_M,
 				PLAYER_DISP_ICON_POS_X, PLAYER_DISP_ICON_POS_Y, PLAYER_DISP_ICON_IDX_VCTBIG, 0 );
@@ -5445,7 +5445,7 @@ static int WifiP2PMatch_VCTConnect( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   VCTÚ‘±Š®—¹
+ * $brief   VCTæ¥ç¶šå®Œäº†
  * @param   wk
  * @retval  none
  */
@@ -5459,8 +5459,8 @@ static int WifiP2PMatch_VCTConnectEndYesNo( WIFIP2PMATCH_WORK *wk, int seq )    
 	
     //Snd_PlayerSetInitialVolume( SND_HANDLE_BGM, PV_VOL_DEFAULT/3 );
     if( GF_MSG_PrintEndCheck( wk->MsgIndex ) == 0 ){
-        WifiList_SetLastPlayDate( wk->pList, mydwc_getFriendIndex());	// ÅŒã‚É—V‚ñ‚¾“ú•t‚ÍAVCT‚ª‚Â‚È‚ª‚Á‚½‚Æ‚«‚Éİ’è‚·‚é
-        // ‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ğo‚·
+        WifiList_SetLastPlayDate( wk->pList, mydwc_getFriendIndex());	// æœ€å¾Œã«éŠã‚“ã æ—¥ä»˜ã¯ã€VCTãŒã¤ãªãŒã£ãŸã¨ãã«è¨­å®šã™ã‚‹
+        // ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
         wk->pYesNoWork =
             BmpYesNoSelectInit( wk->bgl,
                                 &_yesNoBmpDat,
@@ -5473,7 +5473,7 @@ static int WifiP2PMatch_VCTConnectEndYesNo( WIFIP2PMATCH_WORK *wk, int seq )    
 
 //------------------------------------------------------------------
 /**
- * $brief   VCTÚ‘±I—¹  WIFIP2PMATCH_MODE_VCT_CONNECTEND_WAIT
+ * $brief   VCTæ¥ç¶šçµ‚äº†  WIFIP2PMATCH_MODE_VCT_CONNECTEND_WAIT
  * @param   wk
  * @retval  none
  */
@@ -5483,10 +5483,10 @@ static int WifiP2PMatch_VCTConnectEndWait( WIFIP2PMATCH_WORK *wk, int seq )     
     int i;
     int ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
 
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         if((CommWifiIsMatched() >= 4) || CommStateIsWifiDisconnect() || !CommIsConnect(COMM_PARENT_ID)){
 
-			// ƒ†[ƒU[ƒf[ƒ^OFF
+			// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿OFF
 //			WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );
 //
 			EndMessageWindowOff(wk);
@@ -5500,7 +5500,7 @@ static int WifiP2PMatch_VCTConnectEndWait( WIFIP2PMATCH_WORK *wk, int seq )     
 			_errorDisp(wk);
 		}
         return seq;
-    }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+    }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
 
         if(!CommStateIsWifiError()){
             _myStatusChange(wk, WIFI_STATUS_LOGIN_WAIT);
@@ -5512,7 +5512,7 @@ static int WifiP2PMatch_VCTConnectEndWait( WIFIP2PMATCH_WORK *wk, int seq )     
 			_errorDisp(wk);
 		}
     }
-    else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+    else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
         wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT;
     }
     EndMessageWindowOff(wk);
@@ -5532,7 +5532,7 @@ static int WifiP2PMatch_VCTDisconnect(WIFIP2PMATCH_WORK *wk, int seq)
     }
 	
 	
-	// ƒ†[ƒU[ƒf[ƒ^OFF
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿OFF
 //	WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );
 
 	status = _WifiMyStatusGet( wk, &wk->pMatch->myMatchStatus );
@@ -5549,7 +5549,7 @@ static int WifiP2PMatch_VCTDisconnect(WIFIP2PMATCH_WORK *wk, int seq)
         EndMessageWindowOff(wk);
         CommStateWifiMatchEnd();
 
-		// ’ÊMó‘Ô‚ğŒ³‚É–ß‚·
+		// é€šä¿¡çŠ¶æ…‹ã‚’å…ƒã«æˆ»ã™
 		CommStateChangeWiFiLogin();
 		
 //        if(wk->menulist==NULL){
@@ -5559,14 +5559,14 @@ static int WifiP2PMatch_VCTDisconnect(WIFIP2PMATCH_WORK *wk, int seq)
         }
         else{
 
-			// VCHAT‚ğŒ³‚É–ß‚·
+			// VCHATã‚’å…ƒã«æˆ»ã™
 			_myVChatStatusOrgSet( wk );
 			_userDataInfoDisp(wk);
 			
             wk->preConnect = -1;
             wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
 
-			// ålŒö‚Ì“®ì‚ğ‹–‰Â
+			// ä¸»äººå…¬ã®å‹•ä½œã‚’è¨±å¯
 			FriendRequestWaitOff( wk );
         }
     }
@@ -5592,10 +5592,10 @@ static int WifiP2PMatch_BattleDisconnect(WIFIP2PMATCH_WORK *wk, int seq)
 //WIFIP2PMATCH_MODE_DISCONNECT
 static int WifiP2PMatch_Disconnect(WIFIP2PMATCH_WORK *wk, int seq)
 {
-	// ƒ†[ƒU[ƒf[ƒ^OFF
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿OFF
 //	WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );
 //
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
     if( CommStateIsWifiError() ){
         _errorDisp(wk);
         return seq;
@@ -5611,7 +5611,7 @@ static int WifiP2PMatch_Disconnect(WIFIP2PMATCH_WORK *wk, int seq)
         EndMessageWindowOff(wk);
         _myStatusChange(wk, WIFI_STATUS_LOGIN_WAIT);
 
-		// ’ÊMó‘Ô‚ğŒ³‚É–ß‚·
+		// é€šä¿¡çŠ¶æ…‹ã‚’å…ƒã«æˆ»ã™
 		CommStateChangeWiFiLogin();
 //        if(wk->menulist==NULL){
 		if( WIFI_MCR_GetInitFlag( &wk->matchroom ) == FALSE ){
@@ -5619,13 +5619,13 @@ static int WifiP2PMatch_Disconnect(WIFIP2PMATCH_WORK *wk, int seq)
         }
         else{
 
-			// VCHAT‚ğƒIƒŠƒWƒiƒ‹‚É–ß‚·
+			// VCHATã‚’ã‚ªãƒªã‚¸ãƒŠãƒ«ã«æˆ»ã™
 			_myVChatStatusOrgSet( wk );
 			_userDataInfoDisp(wk);
 			
             wk->preConnect = -1;
             wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
-			// ålŒö‚Ì“®ì‚ğ‹–‰Â
+			// ä¸»äººå…¬ã®å‹•ä½œã‚’è¨±å¯
 			FriendRequestWaitOff( wk );
         }
     }
@@ -5650,9 +5650,9 @@ static int WifiP2PMatch_BattleConnect( WIFIP2PMATCH_WORK *wk, int seq )        /
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ•ÏX‚·‚é
+ * $brief   ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
  *
- * @param   act		ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @param   act		ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   x
  * @param   y
  *
@@ -5672,7 +5672,7 @@ static void SetCursor_Pos( CLACT_WORK_PTR act, int x, int y )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚ÆI—¹  WIFIP2PMATCH_MODE_CHECK_AND_END
+ * $brief   ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã¨çµ‚äº†  WIFIP2PMATCH_MODE_CHECK_AND_END
  * @param   wk
  * @retval  none
  */
@@ -5705,7 +5705,7 @@ static int WifiP2PMatch_CheckAndEnd( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   •åW‚Ìæ‚èÁ‚µ WIFIP2PMATCH_MODE_SELECT_REL_INIT
+ * $brief   å‹Ÿé›†ã®å–ã‚Šæ¶ˆã— WIFIP2PMATCH_MODE_SELECT_REL_INIT
  * @param   wk
  * @retval  none
  */
@@ -5713,7 +5713,7 @@ static int WifiP2PMatch_CheckAndEnd( WIFIP2PMATCH_WORK *wk, int seq )
 
 static int _parentModeSelectRelInit( WIFIP2PMATCH_WORK *wk, int seq )
 {
-	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ƒpƒ\ƒRƒ“ƒAƒjƒƒƒCƒ“
+	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
     WifiP2PMatchMessagePrint(wk, msg_wifilobby_007, FALSE);
     wk->seq = WIFIP2PMATCH_MODE_SELECT_REL_YESNO;
     return seq;
@@ -5721,7 +5721,7 @@ static int _parentModeSelectRelInit( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   •åW‚Ìæ‚èÁ‚µ  WIFIP2PMATCH_MODE_SELECT_REL_YESNO
+ * $brief   å‹Ÿé›†ã®å–ã‚Šæ¶ˆã—  WIFIP2PMATCH_MODE_SELECT_REL_YESNO
  * @param   wk
  * @param   seq
  * @retval  int
@@ -5730,9 +5730,9 @@ static int _parentModeSelectRelInit( WIFIP2PMATCH_WORK *wk, int seq )
 
 static int _parentModeSelectRelYesNo( WIFIP2PMATCH_WORK* wk, int seq )
 {
-	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ƒpƒ\ƒRƒ“ƒAƒjƒƒƒCƒ“
+	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
     if( GF_MSG_PrintEndCheck( wk->MsgIndex ) == 0 ){
-        // ‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ğo‚·
+        // ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
         wk->pYesNoWork =
             BmpYesNoSelectInit( wk->bgl,
                                 &_yesNoBmpDat,
@@ -5745,7 +5745,7 @@ static int _parentModeSelectRelYesNo( WIFIP2PMATCH_WORK* wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   •åW‚Ìæ‚èÁ‚µ  WIFIP2PMATCH_MODE_SELECT_REL_WAIT
+ * $brief   å‹Ÿé›†ã®å–ã‚Šæ¶ˆã—  WIFIP2PMATCH_MODE_SELECT_REL_WAIT
  * @param   wk
  * @param   seq
  * @retval  int
@@ -5757,35 +5757,35 @@ static int _parentModeSelectRelWait( WIFIP2PMATCH_WORK* wk, int seq )
     int i;
     int ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
 
-	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ƒpƒ\ƒRƒ“ƒAƒjƒƒƒCƒ“
+	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
 
-    if((wk->preConnect == -1) && (mydwc_IsNewPlayer() != -1)){  // Ú‘±‚ª‚ ‚Á‚½
+    if((wk->preConnect == -1) && (mydwc_IsNewPlayer() != -1)){  // æ¥ç¶šãŒã‚ã£ãŸ
 
-		// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚ÆBGM‰¹—Ê‚ÌŠÖŒW‚ğ®— tomoya takahashi
+		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã¨BGMéŸ³é‡ã®é–¢ä¿‚ã‚’æ•´ç† tomoya takahashi
 		mydwc_setVChat(wk->pMatch->myMatchStatus.vchat);
 		OS_TPrintf( "Connect VCHAT set\n" );
 
-		// ‚·‚Å‚ÉYesNoSelectMain‚Å‰ğ•ú‚³‚ê‚Ä‚È‚¯‚ê‚Î
+		// ã™ã§ã«YesNoSelectMainã§è§£æ”¾ã•ã‚Œã¦ãªã‘ã‚Œã°
 		if( ret == BMPMENU_NULL ){
 			BmpYesNoWinDel( wk->pYesNoWork, HEAPID_WIFIP2PMATCH );
 		}
-        ret = 1;  // ‚¢‚¢‚¦‚É•ÏX
+        ret = 1;  // ã„ã„ãˆã«å¤‰æ›´
     }
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return seq;
-    }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
-        //‘‚«‚İ
+    }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
+        //æ›¸ãè¾¼ã¿
         _myStatusChange(wk, WIFI_STATUS_LOGIN_WAIT);
 
-		// ’ÊMó‘Ô‚ğŒ³‚É–ß‚·
+		// é€šä¿¡çŠ¶æ…‹ã‚’å…ƒã«æˆ»ã™
 		CommStateChangeWiFiLogin();
 
-		// ålŒö‚Ì“®ì‚ğ‹–‰Â
+		// ä¸»äººå…¬ã®å‹•ä½œã‚’è¨±å¯
 		FriendRequestWaitOff( wk );
     }
-    else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+    else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
 
-		// ålŒö“®ì’â~‚ğÄ“x•\¦
+		// ä¸»äººå…¬å‹•ä½œåœæ­¢ã‚’å†åº¦è¡¨ç¤º
 		FriendRequestWaitOff( wk );
 		FriendRequestWaitOn( wk, TRUE );
     }
@@ -5798,12 +5798,12 @@ static int _parentModeSelectRelWait( WIFIP2PMATCH_WORK* wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‘Ò‹@ó‘Ô‚É‚È‚éˆ×‚Ì‘I‘ğƒƒjƒ…[ WIFIP2PMATCH_MODE_SELECT_INIT
+ * $brief   å¾…æ©ŸçŠ¶æ…‹ã«ãªã‚‹ç‚ºã®é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ WIFIP2PMATCH_MODE_SELECT_INIT
  * @param   wk
  * @retval  none
  */
 //------------------------------------------------------------------
-#define WIFI_STSET_SINGLEBATTLE	(WIFI_STATUS_NONE)		// ‘I‘ğˆ‚Ì–³‚¢‚à‚Ì‚ğŠ„‚è“–‚Ä‚é
+#define WIFI_STSET_SINGLEBATTLE	(WIFI_STATUS_NONE)		// é¸æŠè‚¢ã®ç„¡ã„ã‚‚ã®ã‚’å‰²ã‚Šå½“ã¦ã‚‹
 #define WIFI_STSET_DOUBLEBATTLE	(WIFI_STATUS_VCT)
 #define WIFI_STSET_MINIGAME		(WIFI_STATUS_UNKNOWN)
 
@@ -5812,15 +5812,15 @@ typedef struct {
     u32  param;
 } _infoMenu;
 
-//  ƒƒjƒ…[ƒŠƒXƒg
+//  ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆ
 #define WIFI_PARENTINFO_MENULIST_MAX	  ( 10 )
 #ifdef WFP2P_DEBUG_EXON 
-#define WIFI_PARENTINFO_MENULIST_COMMON	  ( 5 )	// •Ï“®‚µ‚È‚¢•”•ª‚Ì”
+#define WIFI_PARENTINFO_MENULIST_COMMON	  ( 5 )	// å¤‰å‹•ã—ãªã„éƒ¨åˆ†ã®æ•°
 #else
-#define WIFI_PARENTINFO_MENULIST_COMMON	  ( 3 )	// •Ï“®‚µ‚È‚¢•”•ª‚Ì”
+#define WIFI_PARENTINFO_MENULIST_COMMON	  ( 3 )	// å¤‰å‹•ã—ãªã„éƒ¨åˆ†ã®æ•°
 #endif
 _infoMenu _parentInfoMenuList[ WIFI_PARENTINFO_MENULIST_MAX ] = {
-	// •Ï“®‚µ‚È‚¢•”•ª
+	// å¤‰å‹•ã—ãªã„éƒ¨åˆ†
     { msg_wifilobby_057, (u32)WIFI_STSET_SINGLEBATTLE },
     { msg_wifilobby_058, (u32)WIFI_STSET_DOUBLEBATTLE },
     { msg_wifilobby_025, (u32)WIFI_STATUS_TRADE_WAIT },
@@ -5830,7 +5830,7 @@ _infoMenu _parentInfoMenuList[ WIFI_PARENTINFO_MENULIST_MAX ] = {
 #endif
 };
 
-// ’Ç‰ÁƒŠƒXƒgƒf[ƒ^
+// è¿½åŠ ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 static _infoMenu _minigameMenu = {
 	msg_wifilobby_147, (u32)WIFI_STSET_MINIGAME
 };
@@ -5845,7 +5845,7 @@ static _infoMenu _endMenu = {
 };
 
 
-// ƒ~ƒjƒQ[ƒ€
+// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
 _infoMenu _parentMiniGameInfoMenuList[] = {
     { msg_wifilobby_mg02, (u32)WIFI_STATUS_BUCKET_WAIT },
     { msg_wifilobby_mg02, (u32)WIFI_STATUS_BALANCEBALL_WAIT },
@@ -5868,72 +5868,72 @@ _infoMenu _parentDoubleInfoMenuList[] = {
 };
 
 
-///‘I‘ğƒƒjƒ…[‚ÌƒŠƒXƒg
+///é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆ
 static BMPLIST_HEADER _parentInfoMenuListHeader = {
-    NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    _curCallBack,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    _curCallBack,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,                   //
-    WIFI_PARENTINFO_MENULIST_COMMON,// ƒŠƒXƒg€–Ú”
-    WIFI_PARENTINFO_MENULIST_COMMON,// •\¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-    8,						// €–Ú•\¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-    0,						// •\¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶šF
-    FBMP_COL_WHITE,			// ”wŒiF
-    FBMP_COL_BLK_SDW,		// •¶š‰eF
-    0,						// •¶šŠÔŠu‚w
-    16,						// •¶šŠÔŠu‚x
-    BMPLIST_NO_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,				// •¶šw’è
-    0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+    WIFI_PARENTINFO_MENULIST_COMMON,// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    WIFI_PARENTINFO_MENULIST_COMMON,// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_NO_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,				// æ–‡å­—æŒ‡å®š
+    0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
     NULL                    // work
 };
 
-///‘I‘ğƒƒjƒ…[‚ÌƒŠƒXƒg
+///é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆ
 static const BMPLIST_HEADER _parentInfoBattleMenuListHeader = {
-    NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    _curCallBack,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    _curCallBack,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,                   //
-    NELEMS(_parentSingleInfoMenuList),	// ƒŠƒXƒg€–Ú”
-    NELEMS(_parentSingleInfoMenuList),	// •\¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-    8,						// €–Ú•\¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-    0,						// •\¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶šF
-    FBMP_COL_WHITE,			// ”wŒiF
-    FBMP_COL_BLK_SDW,		// •¶š‰eF
-    0,						// •¶šŠÔŠu‚w
-    16,						// •¶šŠÔŠu‚x
-    BMPLIST_NO_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,				// •¶šw’è
-    0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+    NELEMS(_parentSingleInfoMenuList),	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    NELEMS(_parentSingleInfoMenuList),	// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_NO_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,				// æ–‡å­—æŒ‡å®š
+    0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
     NULL                    // work
 };
 
-///‘I‘ğƒƒjƒ…[‚ÌƒŠƒXƒg
+///é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆ
 static const BMPLIST_HEADER _parentInfoMiniGameMenuListHeader = {
-    NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    _curCallBack,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    _curCallBack,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,                   //
-    NELEMS(_parentMiniGameInfoMenuList),	// ƒŠƒXƒg€–Ú”
-    NELEMS(_parentMiniGameInfoMenuList),	// •\¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-    8,						// €–Ú•\¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-    0,						// •\¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶šF
-    FBMP_COL_WHITE,			// ”wŒiF
-    FBMP_COL_BLK_SDW,		// •¶š‰eF
-    0,						// •¶šŠÔŠu‚w
-    16,						// •¶šŠÔŠu‚x
-    BMPLIST_NO_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,				// •¶šw’è
-    0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+    NELEMS(_parentMiniGameInfoMenuList),	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    NELEMS(_parentMiniGameInfoMenuList),	// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_NO_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,				// æ–‡å­—æŒ‡å®š
+    0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
     NULL                    // work
 };
 
@@ -5945,43 +5945,43 @@ static int _parentModeSelectMenuInit( WIFIP2PMATCH_WORK *wk, int seq )
     BMPLIST_HEADER list_h;
 	_infoMenu* p_menu;
 
-	// ƒŠƒXƒgŠî–{î•ñİ’è
+	// ãƒªã‚¹ãƒˆåŸºæœ¬æƒ…å ±è¨­å®š
 	length = WIFI_PARENTINFO_MENULIST_COMMON;
 	list_h = _parentInfoMenuListHeader;
 	p_menu = _parentInfoMenuList;
 	
-	// —¿—‚Ì—L–³
+	// æ–™ç†ã®æœ‰ç„¡
 	if( _pofinCaseCheck( wk ) == TRUE ){
-		length ++;			//  €–Ú”’Ç‰Á
-		list_h.count ++;	// ƒŠƒXƒgÅ‘å€–Ú”’Ç‰Á
-		list_h.line ++;		// ƒŠƒXƒg•\¦Å‘å”’Ç‰Á
+		length ++;			//  é …ç›®æ•°è¿½åŠ 
+		list_h.count ++;	// ãƒªã‚¹ãƒˆæœ€å¤§é …ç›®æ•°è¿½åŠ 
+		list_h.line ++;		// ãƒªã‚¹ãƒˆè¡¨ç¤ºæœ€å¤§æ•°è¿½åŠ 
 
 		p_menu[ length-1 ] = _pofinMenu;
 	}
 
-	// ƒtƒƒ“ƒeƒBƒA‚Ì—L–³
+	// ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã®æœ‰ç„¡
 	if( _frontierInCheck( wk ) == TRUE ){
-		length ++;			//  €–Ú”’Ç‰Á
-		list_h.count ++;	// ƒŠƒXƒgÅ‘å€–Ú”’Ç‰Á
-		list_h.line ++;		// ƒŠƒXƒg•\¦Å‘å”’Ç‰Á
+		length ++;			//  é …ç›®æ•°è¿½åŠ 
+		list_h.count ++;	// ãƒªã‚¹ãƒˆæœ€å¤§é …ç›®æ•°è¿½åŠ 
+		list_h.line ++;		// ãƒªã‚¹ãƒˆè¡¨ç¤ºæœ€å¤§æ•°è¿½åŠ 
 
 		p_menu[ length-1 ] = _frontierMenu;
 	}
 
-	// ƒ~ƒjƒQ[ƒ€‚Ì—L–³
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®æœ‰ç„¡
 	if( _miniGameInCheck( wk ) == TRUE ){
-		length ++;			//  €–Ú”’Ç‰Á
-		list_h.count ++;	// ƒŠƒXƒgÅ‘å€–Ú”’Ç‰Á
-		list_h.line ++;		// ƒŠƒXƒg•\¦Å‘å”’Ç‰Á
+		length ++;			//  é …ç›®æ•°è¿½åŠ 
+		list_h.count ++;	// ãƒªã‚¹ãƒˆæœ€å¤§é …ç›®æ•°è¿½åŠ 
+		list_h.line ++;		// ãƒªã‚¹ãƒˆè¡¨ç¤ºæœ€å¤§æ•°è¿½åŠ 
 
 		p_menu[ length-1 ] =_minigameMenu;
 	}
 
-	// I—¹‚Ì’Ç‰Á
+	// çµ‚äº†ã®è¿½åŠ 
 	{
-		length ++;			//  €–Ú”’Ç‰Á
-		list_h.count ++;	// ƒŠƒXƒgÅ‘å€–Ú”’Ç‰Á
-		list_h.line ++;		// ƒŠƒXƒg•\¦Å‘å”’Ç‰Á
+		length ++;			//  é …ç›®æ•°è¿½åŠ 
+		list_h.count ++;	// ãƒªã‚¹ãƒˆæœ€å¤§é …ç›®æ•°è¿½åŠ 
+		list_h.line ++;		// ãƒªã‚¹ãƒˆè¡¨ç¤ºæœ€å¤§æ•°è¿½åŠ 
 
 		p_menu[ length-1 ] =_endMenu;
 	}
@@ -5994,7 +5994,7 @@ static int _parentModeSelectMenuInit( WIFIP2PMATCH_WORK *wk, int seq )
         BmpMenuWinClear(&wk->SubListWin,WINDOW_TRANS_ON);
         GF_BGL_BmpWinDel(&wk->SubListWin);
     }
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     GF_BGL_BmpWinAdd(wk->bgl,&wk->SubListWin,
                      GF_BGL_FRAME2_M, 16, PARENTMENU_Y, 15, length * 2, FLD_SYSFONT_PAL, FLD_MENU_WIN_CGX - length * 2);
     BmpMenuWinWrite(&wk->SubListWin, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL );
@@ -6008,7 +6008,7 @@ static int _parentModeSelectMenuInit( WIFIP2PMATCH_WORK *wk, int seq )
     WifiP2PMatchMessagePrint(wk, msg_wifilobby_006, FALSE);
 
 
-	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ƒpƒ\ƒRƒ“ƒAƒjƒƒƒCƒ“
+	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
 
     wk->seq = WIFIP2PMATCH_MODE_SELECT_WAIT;
     return seq;
@@ -6016,7 +6016,7 @@ static int _parentModeSelectMenuInit( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‘Ò‹@ó‘Ô‚É‚È‚éˆ×‚Ì‘I‘ğƒƒjƒ…[ WIFIP2PMATCH_MODE_SELECT_WAIT
+ * $brief   å¾…æ©ŸçŠ¶æ…‹ã«ãªã‚‹ç‚ºã®é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ WIFIP2PMATCH_MODE_SELECT_WAIT
  * @param   wk
  * @retval  none
  */
@@ -6028,13 +6028,13 @@ static int _parentModeSelectMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
     int num = _getBattlePokeNum(wk);
 	int pofin_ret = _isPofinItemCheck(wk);
 
-	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ƒpƒ\ƒRƒ“ƒAƒjƒƒƒCƒ“
+	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
 
 
     if( GF_MSG_PrintEndCheck( wk->MsgIndex ) != 0 ){
 
-		// ‚±‚±‚ÅÚ‘±‚µ‚Ä‚­‚é‰Â”\«‚à‚ ‚é	080617	tomoya
-		if( 0 !=  _checkParentNewPlayer(wk)){ // Ú‘±‚µ‚Ä‚«‚½
+		// ã“ã“ã§æ¥ç¶šã—ã¦ãã‚‹å¯èƒ½æ€§ã‚‚ã‚ã‚‹	080617	tomoya
+		if( 0 !=  _checkParentNewPlayer(wk)){ // æ¥ç¶šã—ã¦ããŸ
 			wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
 			BmpMenuWinClear(&wk->SubListWin, WINDOW_TRANS_ON );
 			GF_BGL_BmpWinDel(&wk->SubListWin);
@@ -6046,7 +6046,7 @@ static int _parentModeSelectMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
     }
     ret = BmpListMain(wk->sublw);
 
-    if( 0 !=  _checkParentNewPlayer(wk)){ // Ú‘±‚µ‚Ä‚«‚½
+    if( 0 !=  _checkParentNewPlayer(wk)){ // æ¥ç¶šã—ã¦ããŸ
         ret = BMPLIST_CANCEL;
     }
     switch(ret){
@@ -6059,7 +6059,7 @@ static int _parentModeSelectMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
         break;
       default:
         Snd_SePlay(_SE_DESIDE);
-		// ƒ|ƒtƒBƒ“ƒAƒCƒeƒ€ƒ`ƒFƒbƒN
+		// ãƒãƒ•ã‚£ãƒ³ã‚¢ã‚¤ãƒ†ãƒ ãƒã‚§ãƒƒã‚¯
 		if( (ret == WIFI_STATUS_POFIN_WAIT) && (pofin_ret != WFP2P_POFIN_RET_OK) ){
 			if( pofin_ret == WFP2P_POFIN_RET_NUTSNONE ){
 	            WifiP2PMatchMessagePrint(wk, msg_wifilobby_105, FALSE);			
@@ -6070,17 +6070,17 @@ static int _parentModeSelectMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
 			}
             wk->seq = WIFIP2PMATCH_MODE_DISCONNECT;
 		}
-		// ŒğŠ·ƒ`ƒFƒbƒN
+		// äº¤æ›ãƒã‚§ãƒƒã‚¯
 		else if((ret == WIFI_STATUS_TRADE_WAIT) && (2 > num )){
             WifiP2PMatchMessagePrint(wk, msg_wifilobby_053, FALSE);
             wk->seq = WIFIP2PMATCH_MODE_DISCONNECT;
         }
-		// ƒ_ƒuƒ‹ƒoƒgƒ‹ƒ`ƒFƒbƒN
+		// ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ãƒã‚§ãƒƒã‚¯
         else if((ret == WIFI_STSET_DOUBLEBATTLE) && (2 > num)){
             WifiP2PMatchMessagePrint(wk, msg_wifilobby_067, FALSE);
             wk->seq = WIFIP2PMATCH_MODE_DISCONNECT;
         }
-		// ƒTƒuƒŠƒXƒgˆ—‚Ö
+		// ã‚µãƒ–ãƒªã‚¹ãƒˆå‡¦ç†ã¸
         else if((ret == WIFI_STSET_SINGLEBATTLE) || 
 				(ret == WIFI_STSET_DOUBLEBATTLE) || 
 				(ret == WIFI_STSET_MINIGAME) ){
@@ -6099,13 +6099,13 @@ static int _parentModeSelectMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
             wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
             EndMessageWindowOff(wk);
         }
-        // wifipofin‚Ì‚ÍAwifi’ÊM‚ğwifi pofin ƒ‚[ƒh‚É‚µ‚Ä
-		// ƒ|ƒtƒBƒ“‘Ò‡‚µ‚Â‚Ö
+        // wifipofinã®æ™‚ã¯ã€wifié€šä¿¡ã‚’wifi pofin ãƒ¢ãƒ¼ãƒ‰ã«ã—ã¦
+		// ãƒãƒ•ã‚£ãƒ³å¾…åˆã—ã¤ã¸
 		{
 			BOOL  msg_on = TRUE;
 			
             if( _wait2to4Mode(ret) && (wk->seq == WIFIP2PMATCH_MODE_FRIENDLIST) ){
-                wk->seq = WIFIP2PMATCH_PARENT_RESTART;  // Ä‹N“®‚ğ‘Ò‚Â
+                wk->seq = WIFIP2PMATCH_PARENT_RESTART;  // å†èµ·å‹•ã‚’å¾…ã¤
                 WifiP2PMatch_CommWifiBattleStart( wk, -1, ret );
                 _commStateChange( ret );
                 _myStatusChange(wk, ret);
@@ -6113,9 +6113,9 @@ static int _parentModeSelectMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
 				msg_on = FALSE;
 			}
             else{
-				WifiP2PMatch_CommWifiBattleStart( wk, -1, ret );	// ŒğŠ·‚Å‚à’ÊM•û–@‚ğ•ÏX‚·‚é‚½‚ß‚É‚±‚±‚ÉˆÚ“®
+				WifiP2PMatch_CommWifiBattleStart( wk, -1, ret );	// äº¤æ›ã§ã‚‚é€šä¿¡æ–¹æ³•ã‚’å¤‰æ›´ã™ã‚‹ãŸã‚ã«ã“ã“ã«ç§»å‹•
                 _commStateChange( ret );
-/*				ªcommStateChange‚Å‚æ‚¢
+/*				â†‘commStateChangeã§ã‚ˆã„
 				if(ret == WIFI_STATUS_FRONTIER_WAIT){
 //					WifiP2PMatch_CommWifiBattleStart( wk, -1, ret );
 //
@@ -6126,7 +6126,7 @@ static int _parentModeSelectMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
             }
 
 			if( wk->seq == WIFIP2PMATCH_MODE_FRIENDLIST ){
-				// “®ì’â~‚³‚¹‚é
+				// å‹•ä½œåœæ­¢ã•ã›ã‚‹
 				FriendRequestWaitOn( wk, msg_on );
 			}
 		}
@@ -6143,7 +6143,7 @@ static int _parentModeSelectMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒQ[ƒ€‚Ì“à—e‚ªŒˆ‚Ü‚Á‚½‚Ì‚ÅAe‚Æ‚µ‚ÄÄ‰Šú‰»  WIFIP2PMATCH_PARENT_RESTART
+ * $brief   ã‚²ãƒ¼ãƒ ã®å†…å®¹ãŒæ±ºã¾ã£ãŸã®ã§ã€è¦ªã¨ã—ã¦å†åˆæœŸåŒ–  WIFIP2PMATCH_PARENT_RESTART
  * @param   wk
  * @retval  none
  */
@@ -6152,26 +6152,26 @@ static int _parentRestart( WIFIP2PMATCH_WORK *wk, int seq )
 {
     u32	ret;
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
     if( CommStateIsWifiError() ){
         _errorDisp(wk);
         return seq;
     }
 
-	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ƒpƒ\ƒRƒ“ƒAƒjƒƒƒCƒ“
-    if( 0 !=  _checkParentNewPlayer(wk)){ // Ú‘±‚µ‚Ä‚«‚½
+	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
+    if( 0 !=  _checkParentNewPlayer(wk)){ // æ¥ç¶šã—ã¦ããŸ
 
         wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
     }
-    // wifipofin‚Ì‚ÍAwifi’ÊM‚ğwifi pofin ƒ‚[ƒh‚É‚µ‚Ä ƒ|ƒtƒBƒ“‘Ò‡‚µ‚Â‚Ö
+    // wifipofinã®æ™‚ã¯ã€wifié€šä¿¡ã‚’wifi pofin ãƒ¢ãƒ¼ãƒ‰ã«ã—ã¦ ãƒãƒ•ã‚£ãƒ³å¾…åˆã—ã¤ã¸
     if(CommStateIsWifiLoginMatchState()){
 //        CommStateChangeWiFiLogin();
 //        _myStatusChange(wk, ret);
 //
 
-		// ’ÊMƒGƒ‰[ƒ`ƒFƒbƒN
+		// é€šä¿¡ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 		// 080630	tomoya takahashi
-		CommStateSetErrorCheck(FALSE,TRUE);	// Ø’f‚ÍƒGƒ‰[‚¶‚á‚È‚¢
+		CommStateSetErrorCheck(FALSE,TRUE);	// åˆ‡æ–­ã¯ã‚¨ãƒ©ãƒ¼ã˜ã‚ƒãªã„
 
         CommSetWifiBothNet(FALSE);
         WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK,
@@ -6181,12 +6181,12 @@ static int _parentRestart( WIFIP2PMATCH_WORK *wk, int seq )
 
         CommInfoInitialize( wk->pSaveData, NULL );
 
-        // ©•ª‚ğ‹³‚¦‚é
+        // è‡ªåˆ†ã‚’æ•™ãˆã‚‹
         CommInfoSendPokeData();
 
-        // ©•ª‚ÍƒGƒ“ƒgƒŠ[
+        // è‡ªåˆ†ã¯ã‚¨ãƒ³ãƒˆãƒªãƒ¼
         CommInfoSetEntry( CommGetCurrentID() );
-        seq = SEQ_OUT;						//I—¹ƒV[ƒPƒ“ƒX‚Ö
+        seq = SEQ_OUT;						//çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
     }
     return seq;
 
@@ -6196,7 +6196,7 @@ static int _parentRestart( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒoƒgƒ‹‚ÌÚ×•”•ª‚ğŒˆ‚ß‚é WIFIP2PMATCH_MODE_SUBBATTLE_INIT
+ * $brief   ãƒãƒˆãƒ«ã®è©³ç´°éƒ¨åˆ†ã‚’æ±ºã‚ã‚‹ WIFIP2PMATCH_MODE_SUBBATTLE_INIT
  * @param   wk
  * @retval  none
  */
@@ -6236,7 +6236,7 @@ static int _battleSubMenuInit( WIFIP2PMATCH_WORK *wk, int ret )
 		if( pMenu[i].str_id != msg_wifilobby_mg02 ){
 	        BMP_MENULIST_AddArchiveString( wk->submenulist, wk->MsgManager, pMenu[i].str_id, pMenu[i].param );
 		}else{
-			// ƒ~ƒjƒQ[ƒ€‚Íƒ^ƒO‚Å•\¦‚·‚éi‚¿‚å‚Á‚Æ‚Ş‚è‚â‚è‚·‚¬EEEj
+			// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã¯ã‚¿ã‚°ã§è¡¨ç¤ºã™ã‚‹ï¼ˆã¡ã‚‡ã£ã¨ã‚€ã‚Šã‚„ã‚Šã™ããƒ»ãƒ»ãƒ»ï¼‰
 			WORDSET_RegisterWiFiLobbyGameName( wk->WordSet, 0, i );
 			MSGMAN_GetString(  wk->MsgManager, pMenu[i].str_id, wk->pExpStrBuf );
 			WORDSET_ExpandStr( wk->WordSet, wk->TitleString, wk->pExpStrBuf );
@@ -6247,7 +6247,7 @@ static int _battleSubMenuInit( WIFIP2PMATCH_WORK *wk, int ret )
         BmpMenuWinClear(&wk->SubListWin, WINDOW_TRANS_ON );
         GF_BGL_BmpWinDel(&wk->SubListWin);
     }
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
     GF_BGL_BmpWinAdd(wk->bgl,&wk->SubListWin,
                      GF_BGL_FRAME2_M, 16, 9, 15, length * 2, FLD_SYSFONT_PAL, FLD_MENU_WIN_CGX - length * 2);
     BmpMenuWinWrite(&wk->SubListWin, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL );
@@ -6266,7 +6266,7 @@ static int _battleSubMenuInit( WIFIP2PMATCH_WORK *wk, int ret )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‘Ò‹@ó‘Ô‚É‚È‚éˆ×‚Ì‘I‘ğƒƒjƒ…[ WIFIP2PMATCH_MODE_SUBBATTLE_WAIT
+ * $brief   å¾…æ©ŸçŠ¶æ…‹ã«ãªã‚‹ç‚ºã®é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ WIFIP2PMATCH_MODE_SUBBATTLE_WAIT
  * @param   wk
  * @retval  none
  */
@@ -6275,10 +6275,10 @@ static int _parentModeSubSelectMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
 {
     u32	ret;
 
-	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ƒpƒ\ƒRƒ“ƒAƒjƒƒƒCƒ“
+	WIFI_MCR_PCAnmMain( &wk->matchroom );	// ãƒ‘ã‚½ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
 
-	// ‚±‚±‚ÅÚ‘±‚µ‚Ä‚­‚é‰Â”\«‚à‚ ‚é	080617	tomoya
-	if( 0 !=  _checkParentNewPlayer(wk)){ // Ú‘±‚µ‚Ä‚«‚½
+	// ã“ã“ã§æ¥ç¶šã—ã¦ãã‚‹å¯èƒ½æ€§ã‚‚ã‚ã‚‹	080617	tomoya
+	if( 0 !=  _checkParentNewPlayer(wk)){ // æ¥ç¶šã—ã¦ããŸ
 		wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
 		BmpMenuWinClear(&wk->SubListWin, WINDOW_TRANS_ON );
 		GF_BGL_BmpWinDel(&wk->SubListWin);
@@ -6308,13 +6308,13 @@ static int _parentModeSubSelectMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
     }
 
 
-	// wifipofin‚Ì‚ÍAwifi’ÊM‚ğwifi pofin ƒ‚[ƒh‚É‚µ‚Ä
-	// ƒ|ƒtƒBƒ“‘Ò‡‚µ‚Â‚Ö
+	// wifipofinã®æ™‚ã¯ã€wifié€šä¿¡ã‚’wifi pofin ãƒ¢ãƒ¼ãƒ‰ã«ã—ã¦
+	// ãƒãƒ•ã‚£ãƒ³å¾…åˆã—ã¤ã¸
 //	{
-	if( wk->seq == WIFIP2PMATCH_MODE_FRIENDLIST ){	// ‰½‚©‘I‘ğ‚µ‚½‚Æ‚«‚Ì‚İACANCEL‚Í‚¾‚ß
+	if( wk->seq == WIFIP2PMATCH_MODE_FRIENDLIST ){	// ä½•ã‹é¸æŠã—ãŸã¨ãã®ã¿ã€CANCELã¯ã ã‚
 		BOOL msg_on = TRUE;
 		if( _wait2to4Mode(ret) ){
-            wk->seq = WIFIP2PMATCH_PARENT_RESTART;  // Ä‹N“®‚ğ‘Ò‚Â
+            wk->seq = WIFIP2PMATCH_PARENT_RESTART;  // å†èµ·å‹•ã‚’å¾…ã¤
 
 			WifiP2PMatch_CommWifiBattleStart( wk, -1, ret );
 
@@ -6328,7 +6328,7 @@ static int _parentModeSubSelectMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
 			WifiP2PMatch_CommWifiBattleStart( wk, -1, ret );
             CommStateChangeWiFiBattle();
         }
-		// “®ì’â~‚³‚¹‚é
+		// å‹•ä½œåœæ­¢ã•ã›ã‚‹
 		FriendRequestWaitOn( wk, msg_on );
     //    _commStateChange(ret);
 	}
@@ -6345,7 +6345,7 @@ static int _parentModeSubSelectMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ}ƒbƒ`ƒ“ƒO\‚µ‚İ WIFIP2PMATCH_MODE_MATCH_INIT
+ * $brief   ãƒãƒƒãƒãƒ³ã‚°ç”³ã—è¾¼ã¿ WIFIP2PMATCH_MODE_MATCH_INIT
  * @param   wk
  * @retval  none
  */
@@ -6366,26 +6366,26 @@ static const struct {
     { msg_wifilobby_032, (u32)BMPLIST_CANCEL },
 };
 
-///‘I‘ğƒƒjƒ…[‚ÌƒŠƒXƒg
+///é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚¹ãƒˆ
 static const BMPLIST_HEADER _childMatchMenuListHeader = {
-    NULL,			// •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^
-    _curCallBack,					// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
-    NULL,					// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+    NULL,			// è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+    _curCallBack,					// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+    NULL,					// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
     NULL,                   //
-    NELEMS(_childMatchMenuList),	// ƒŠƒXƒg€–Ú”
-    NELEMS(_childMatchMenuList),	// •\¦Å‘å€–Ú”
-    0,						// ƒ‰ƒxƒ‹•\¦‚wÀ•W
-    8,						// €–Ú•\¦‚wÀ•W
-    0,						// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
-    0,						// •\¦‚xÀ•W
-    FBMP_COL_BLACK,			// •¶šF
-    FBMP_COL_WHITE,			// ”wŒiF
-    FBMP_COL_BLK_SDW,		// •¶š‰eF
-    0,						// •¶šŠÔŠu‚w
-    16,						// •¶šŠÔŠu‚x
-    BMPLIST_NO_SKIP,		// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
-    FONT_SYSTEM,				// •¶šw’è
-    0,						// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)
+    NELEMS(_childMatchMenuList),	// ãƒªã‚¹ãƒˆé …ç›®æ•°
+    NELEMS(_childMatchMenuList),	// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
+    0,						// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    8,						// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
+    0,						// è¡¨ç¤ºï¼¹åº§æ¨™
+    FBMP_COL_BLACK,			// æ–‡å­—è‰²
+    FBMP_COL_WHITE,			// èƒŒæ™¯è‰²
+    FBMP_COL_BLK_SDW,		// æ–‡å­—å½±è‰²
+    0,						// æ–‡å­—é–“éš”ï¼¸
+    16,						// æ–‡å­—é–“éš”ï¼¹
+    BMPLIST_NO_SKIP,		// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
+    FONT_SYSTEM,				// æ–‡å­—æŒ‡å®š
+    0,						// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)
     NULL                    // work
     };
 
@@ -6400,14 +6400,14 @@ static int _childModeMatchMenuInit( WIFIP2PMATCH_WORK *wk, int seq )
 	u32 way;
 	
 	friendNo = WIFI_MCR_PlayerSelect( &wk->matchroom );
-	//NPC‚ğ©•ª‚Ì•ûŒü‚ÉŒü‚¯‚é
+	//NPCã‚’è‡ªåˆ†ã®æ–¹å‘ã«å‘ã‘ã‚‹
 	p_player = MCRSYS_GetMoveObjWork( wk, 0 );
 	GF_ASSERT( p_player );
 
 	p_npc = MCRSYS_GetMoveObjWork( wk, friendNo );
-	// ‘Šè‚ª‚¢‚È‚­‚È‚Á‚½‚è
-	// ‘Šè‚ÌƒXƒe[ƒ^ƒX‚ªˆá‚¤‚à‚Ì‚É•Ï‚í‚Á‚½‚çA
-	// •\¦‚ğÁ‚µ‚ÄŒ³‚É–ß‚é
+	// ç›¸æ‰‹ãŒã„ãªããªã£ãŸã‚Š
+	// ç›¸æ‰‹ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒé•ã†ã‚‚ã®ã«å¤‰ã‚ã£ãŸã‚‰ã€
+	// è¡¨ç¤ºã‚’æ¶ˆã—ã¦å…ƒã«æˆ»ã‚‹
 	if( p_npc == NULL ){
 		_friendNameExpand(wk, friendNo - 1);
 		WifiP2PMatchMessagePrint(wk, msg_wifilobby_013, FALSE);
@@ -6419,7 +6419,7 @@ static int _childModeMatchMenuInit( WIFIP2PMATCH_WORK *wk, int seq )
 	WIFI_MCR_NpcPauseOn( &wk->matchroom, p_npc, way );
 
 
-	// ó‘Ô•Û‘¶
+	// çŠ¶æ…‹ä¿å­˜
 	p_status = WifiFriendMatchStatusGet( wk, friendNo - 1 );
 	status = _WifiMyStatusGet( wk, p_status );
 	wk->keepStatus = status;
@@ -6492,7 +6492,7 @@ static int _childModeMatchMenuInit( WIFIP2PMATCH_WORK *wk, int seq )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒbƒZ[ƒW‚ÌI—¹‚ğŒ©‚ÄAƒŠƒXƒg‚ğo‚µ‚Ü‚·
+ *	@brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®çµ‚äº†ã‚’è¦‹ã¦ã€ãƒªã‚¹ãƒˆã‚’å‡ºã—ã¾ã™
  */
 //-----------------------------------------------------------------------------
 static int _childModeMatchMenuInit2( WIFIP2PMATCH_WORK *wk, int seq )
@@ -6503,32 +6503,32 @@ static int _childModeMatchMenuInit2( WIFIP2PMATCH_WORK *wk, int seq )
 	_WIFI_MACH_STATUS* p_status;
 
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
     if( CommStateIsWifiError() ){
 //        wk->localTime=0;
         _errorDisp(wk);
         return seq;
     }
 
-	// ˜b‚µ‚©‚¯‚Ä‚¢‚é—F’Bƒiƒ“ƒo[æ“¾
+	// è©±ã—ã‹ã‘ã¦ã„ã‚‹å‹é”ãƒŠãƒ³ãƒãƒ¼å–å¾—
 	friendNo = WIFI_MCR_PlayerSelect( &wk->matchroom );
 	p_npc = MCRSYS_GetMoveObjWork( wk, friendNo );
 
     checkMatch = _checkParentNewPlayer(wk);
-    if( 0 !=  checkMatch ){ // Ú‘±‚µ‚Ä‚«‚½
-		// NPC‚ğŒ³‚É–ß‚·
+    if( 0 !=  checkMatch ){ // æ¥ç¶šã—ã¦ããŸ
+		// NPCã‚’å…ƒã«æˆ»ã™
 		WIFI_MCR_NpcPauseOff( &wk->matchroom, p_npc );
         EndMessageWindowOff(wk);
 		wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
 		return seq;	
     }
 
-	// ‘Šè‚ª‚¢‚È‚­‚È‚Á‚½‚è
-	// ‘Šè‚ÌƒXƒe[ƒ^ƒX‚ªˆá‚¤‚à‚Ì‚É•Ï‚í‚Á‚½‚çA
-	// •\¦‚ğÁ‚µ‚ÄŒ³‚É–ß‚é
+	// ç›¸æ‰‹ãŒã„ãªããªã£ãŸã‚Š
+	// ç›¸æ‰‹ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒé•ã†ã‚‚ã®ã«å¤‰ã‚ã£ãŸã‚‰ã€
+	// è¡¨ç¤ºã‚’æ¶ˆã—ã¦å…ƒã«æˆ»ã‚‹
 	if( p_npc == NULL ){
 
-		// NPC‚ğŒ³‚É–ß‚·
+		// NPCã‚’å…ƒã«æˆ»ã™
 		WIFI_MCR_NpcPauseOff( &wk->matchroom, p_npc );
 
 		BmpListExit( wk->sublw, NULL, NULL );
@@ -6540,10 +6540,10 @@ static int _childModeMatchMenuInit2( WIFIP2PMATCH_WORK *wk, int seq )
 		p_status = WifiFriendMatchStatusGet( wk, friendNo - 1 );
 		status = _WifiMyStatusGet( wk, p_status );
 
-		// ó‘Ô‚ª‚©‚í‚Á‚½‚è
+		// çŠ¶æ…‹ãŒã‹ã‚ã£ãŸã‚Š
 		if((wk->keepStatus != status)){
 
-			// NPC‚ğŒ³‚É–ß‚·
+			// NPCã‚’å…ƒã«æˆ»ã™
 			WIFI_MCR_NpcPauseOff( &wk->matchroom, p_npc );
 
 			_friendNameExpand(wk, friendNo - 1);
@@ -6573,7 +6573,7 @@ static int _childModeMatchMenuInit2( WIFIP2PMATCH_WORK *wk, int seq )
 		wk->keepVChat = vchat;
 		vchat += wk->pMatch->myMatchStatus.vchat;
 
-		// ‚»‚Ìl‚Ìî•ñ‚ğ•\¦
+		// ãã®äººã®æƒ…å ±ã‚’è¡¨ç¤º
 	//	WifiP2PMatch_UserDispOn_MyAcces( wk, friendNo, HEAPID_WIFIP2PMATCH );
 
 
@@ -6584,7 +6584,7 @@ static int _childModeMatchMenuInit2( WIFIP2PMATCH_WORK *wk, int seq )
 			if(i == 0){
 				if(_modeActive(status) || (status == WIFI_STATUS_NONE) ||
 					(status == WIFI_STATUS_PLAY_OTHER) || 
-				   (status >= WIFI_STATUS_UNKNOWN)){  // ‚à‚¤‚µ‚±‚Ş‚ğo‚³‚È‚¢ğŒ
+				   (status >= WIFI_STATUS_UNKNOWN)){  // ã‚‚ã†ã—ã“ã‚€ã‚’å‡ºã•ãªã„æ¡ä»¶
 					list_h.line -= 1;
 					list_h.count -= 1;
 					length -= 1;
@@ -6613,7 +6613,7 @@ static int _childModeMatchMenuInit2( WIFIP2PMATCH_WORK *wk, int seq )
 											   _childMatchMenuList[i].param );
 			}
 		}
-		//BMPƒEƒBƒ“ƒhƒE¶¬
+		//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
 		GF_BGL_BmpWinAdd(wk->bgl,&wk->SubListWin,
 						 GF_BGL_FRAME2_M, 16, 11+ ((3-length)*2), 15  , length * 2,
 						 FLD_SYSFONT_PAL, FLD_MENU_WIN_CGX);
@@ -6630,7 +6630,7 @@ static int _childModeMatchMenuInit2( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   –¢’m‚ÌƒAƒCƒeƒ€ŒŸ¸
+ * $brief   æœªçŸ¥ã®ã‚¢ã‚¤ãƒ†ãƒ æ¤œæŸ»
  * @param   wk
  * @retval  none
  */
@@ -6657,26 +6657,26 @@ static BOOL _isItemCheck(_WIFI_MACH_STATUS* pTargetStatus)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒtƒBƒ“ƒAƒCƒeƒ€ƒ`ƒFƒbƒN
+ *	@brief	ãƒãƒ•ã‚£ãƒ³ã‚¢ã‚¤ãƒ†ãƒ ãƒã‚§ãƒƒã‚¯
  *
- *	@param	wk		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	wk		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	WFP2P_POFIN_RET_OK,			‘åä•v
- *	@retval	WFP2P_POFIN_RET_NUTSNONE,	–Ø‚ÌÀ‚ª‚È‚¢
- *	@retval	WFP2P_POFIN_RET_POFINMAX,	ƒ|ƒtƒBƒ“ƒP[ƒX‚ª‚¢‚Á‚Ï‚¢
+ *	@retval	WFP2P_POFIN_RET_OK,			å¤§ä¸ˆå¤«
+ *	@retval	WFP2P_POFIN_RET_NUTSNONE,	æœ¨ã®å®ŸãŒãªã„
+ *	@retval	WFP2P_POFIN_RET_POFINMAX,	ãƒãƒ•ã‚£ãƒ³ã‚±ãƒ¼ã‚¹ãŒã„ã£ã±ã„
  */
 //-----------------------------------------------------------------------------
 static u32 _isPofinItemCheck(WIFIP2PMATCH_WORK* wk)
 {
-	//–Ø‚ÌÀ‚ğ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	//æœ¨ã®å®Ÿã‚’æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(!MyItem_CheckItemPocket(SaveData_GetMyItem(wk->pSaveData),BAG_POKE_NUTS)){
 		return WFP2P_POFIN_RET_NUTSNONE;
 	}
-	// ƒ|ƒ‹ƒgƒP[ƒX‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( !MyItem_GetItemNum( SaveData_GetMyItem(wk->pSaveData),ITEM_POFINKEESU,HEAPID_WIFIP2PMATCH ) ){
 		return WFP2P_POFIN_RET_POFINCASENONE;
 	}
-	//ƒ|ƒ‹ƒgƒP[ƒX‚ª‚¢‚Á‚Ï‚¢‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+	//ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ãŒã„ã£ã±ã„ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if(PORUTO_GetDataNum(SaveData_GetPorutoBlock(wk->pSaveData)) >= PORUTO_STOCK_MAX){
 		return WFP2P_POFIN_RET_POFINMAX;
 	}
@@ -6686,38 +6686,38 @@ static u32 _isPofinItemCheck(WIFIP2PMATCH_WORK* wk)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[—p‚ÌBGM‚ğİ’è‚·‚é
+ *	@brief	ãƒ­ãƒ“ãƒ¼ç”¨ã®BGMã‚’è¨­å®šã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 static void WifiP2P_SetLobbyBgm( void )
 {
 	u32 bgm;
 
-	// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚È‚µ‚É‚·‚é
-	mydwc_setVChat(FALSE);		// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚ÆBGM‰¹—Ê‚ÌŠÖŒW‚ğ®— tomoya takahashi
+	// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆãªã—ã«ã™ã‚‹
+	mydwc_setVChat(FALSE);		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã¨BGMéŸ³é‡ã®é–¢ä¿‚ã‚’æ•´ç† tomoya takahashi
 
 	if( WifiP2P_CheckLobbyBgm() == FALSE ){
 
-		if( GF_RTC_IsNightTime() == FALSE ){			//FALSE=’‹ATRUE=–é
+		if( GF_RTC_IsNightTime() == FALSE ){			//FALSE=æ˜¼ã€TRUE=å¤œ
 			bgm = SEQ_PC_01;
 		}else{
 			bgm = SEQ_PC_02;
 		}
 		Snd_SceneSet( SND_SCENE_DUMMY );
-		Snd_DataSetByScene( SND_SCENE_P2P, bgm, 1 );	//wifiƒƒr[Ä¶
+		Snd_DataSetByScene( SND_SCENE_P2P, bgm, 1 );	//wifiãƒ­ãƒ“ãƒ¼å†ç”Ÿ
 	}else{
 
-		// ‚à‚¤‚a‚f‚l—¬‚ê‚Ä‚¢‚Ä‚àA‰¹—Ê‚¾‚¯Œ³‚É–ß‚·
+		// ã‚‚ã†ï¼¢ï¼§ï¼­æµã‚Œã¦ã„ã¦ã‚‚ã€éŸ³é‡ã ã‘å…ƒã«æˆ»ã™
 		Snd_PlayerSetInitialVolumeBySeqNo( Snd_NowBgmNoGet(), BGM_WIFILOBBY_VOL );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[—p‚ÌBGM‚ªÄ¶’†‚©æ“¾‚·‚é
+ *	@brief	ãƒ­ãƒ“ãƒ¼ç”¨ã®BGMãŒå†ç”Ÿä¸­ã‹å–å¾—ã™ã‚‹
  *
- *	@retval	TRUE	Ä¶’†
- *	@retval	FALSE	‘¼‚ÌBGM‚ªÄ¶’†
+ *	@retval	TRUE	å†ç”Ÿä¸­
+ *	@retval	FALSE	ä»–ã®BGMãŒå†ç”Ÿä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WifiP2P_CheckLobbyBgm( void )
@@ -6737,10 +6737,10 @@ static BOOL WifiP2P_CheckLobbyBgm( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒEƒPƒ“ƒm[ƒgƒf[ƒ^İ’è	—F’B‚Æ—V‚ñ‚¾
+ *	@brief	ãƒœã‚¦ã‚±ãƒ³ãƒãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿è¨­å®š	å‹é”ã¨éŠã‚“ã 
  *
- *	@param	wk	ƒ[ƒN
- *	@param	idx	ƒCƒ“ƒfƒbƒNƒX
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WifiP2P_Fnote_Set( WIFIP2PMATCH_WORK* wk, u32 idx )
@@ -6755,7 +6755,7 @@ static void WifiP2P_Fnote_Set( WIFIP2PMATCH_WORK* wk, u32 idx )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚Â‚È‚¬‚És‚­‘I‘ğƒƒjƒ…[ WIFIP2PMATCH_MODE_MATCH_WAIT
+ * $brief   ã¤ãªãã«è¡Œãé¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ WIFIP2PMATCH_MODE_MATCH_WAIT
  * @param   wk
  * @retval  none
  */
@@ -6772,16 +6772,16 @@ static int _childModeMatchMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
     ret = BmpListMain(wk->sublw);
 
     checkMatch = _checkParentNewPlayer(wk);
-    if( 0 !=  checkMatch ){ // Ú‘±‚µ‚Ä‚«‚½
+    if( 0 !=  checkMatch ){ // æ¥ç¶šã—ã¦ããŸ
         ret = BMPLIST_CANCEL;
     }
 
-	// ˜b‚µ‚©‚¯‚Ä‚¢‚é—F’Bƒiƒ“ƒo[æ“¾
+	// è©±ã—ã‹ã‘ã¦ã„ã‚‹å‹é”ãƒŠãƒ³ãƒãƒ¼å–å¾—
 	friendNo = WIFI_MCR_PlayerSelect( &wk->matchroom );
 	p_npc = MCRSYS_GetMoveObjWork( wk, friendNo );
 
 
-	// ƒG[ƒ‰[ƒ`ƒFƒbƒN
+	// ã‚¨ãƒ¼ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
     if(CommStateIsWifiError()){
 		BmpMenuWinClear(&wk->SubListWin, WINDOW_TRANS_ON );
 		GF_BGL_BmpWinDel(&wk->SubListWin);
@@ -6800,9 +6800,9 @@ static int _childModeMatchMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
     switch(ret){
       case BMPLIST_NULL:
 
-		// ‘Šè‚ª‚¢‚È‚­‚È‚Á‚½‚è
-		// ‘Šè‚ÌƒXƒe[ƒ^ƒX‚ªˆá‚¤‚à‚Ì‚É•Ï‚í‚Á‚½‚çA
-		// •\¦‚ğÁ‚µ‚ÄŒ³‚É–ß‚é
+		// ç›¸æ‰‹ãŒã„ãªããªã£ãŸã‚Š
+		// ç›¸æ‰‹ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒé•ã†ã‚‚ã®ã«å¤‰ã‚ã£ãŸã‚‰ã€
+		// è¡¨ç¤ºã‚’æ¶ˆã—ã¦å…ƒã«æˆ»ã‚‹
 		if( p_npc == NULL ){
 			BmpListExit( wk->sublw, NULL, NULL );
 			_friendNameExpand(wk, friendNo - 1);
@@ -6815,13 +6815,13 @@ static int _childModeMatchMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
 			status = _WifiMyStatusGet( wk, p_status );
 			vchat = p_status->vchat;
 
-			// ó‘Ô‚ª‚©‚í‚Á‚½‚è
-			// 4l•åW‚ÌƒQ[ƒ€‚¶‚á‚È‚¢‚Ì‚ÉAVCHATƒtƒ‰ƒO‚ª•Ï‚í‚Á‚½‚çØ’f
+			// çŠ¶æ…‹ãŒã‹ã‚ã£ãŸã‚Š
+			// 4äººå‹Ÿé›†ã®ã‚²ãƒ¼ãƒ ã˜ã‚ƒãªã„ã®ã«ã€VCHATãƒ•ãƒ©ã‚°ãŒå¤‰ã‚ã£ãŸã‚‰åˆ‡æ–­
 			if((wk->keepStatus != status) || 
 				(( _wait2to4Mode(status) == FALSE ) && (wk->keepVChat != vchat)) ){
 
-				// NPC‚ğŒ³‚É–ß‚·
-				// ‚±‚±‚Å‚â‚Á‚Ä‚µ‚Ü‚¤‚ÆPauseOff‚ğ‚Qd‚Å‚æ‚ñ‚Å‚µ‚Ü‚¤
+				// NPCã‚’å…ƒã«æˆ»ã™
+				// ã“ã“ã§ã‚„ã£ã¦ã—ã¾ã†ã¨PauseOffã‚’ï¼’é‡ã§ã‚ˆã‚“ã§ã—ã¾ã†
 //				WIFI_MCR_NpcPauseOff( &wk->matchroom, p_npc );
 
 				_friendNameExpand(wk, friendNo - 1);
@@ -6840,7 +6840,7 @@ static int _childModeMatchMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
         break;
       default:
         Snd_SePlay(_SE_DESIDE);
-        if(ret == _CONNECTING){  // q‹@‚ªe‹@‚ÉÚ‘±
+        if(ret == _CONNECTING){  // å­æ©ŸãŒè¦ªæ©Ÿã«æ¥ç¶š
             wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
 //            BmpListDirectPosGet(wk->lw,&mainCursor);
 //		    friendNo = wk->index2No[mainCursor];
@@ -6854,8 +6854,8 @@ static int _childModeMatchMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
                 vchat = p_status->vchat;
 
 
-				// ó‘Ô‚ª‚©‚í‚Á‚½‚è
-				// 4l•åW‚ÌƒQ[ƒ€‚¶‚á‚È‚¢‚Ì‚ÉAVCHATƒtƒ‰ƒO‚ª•Ï‚í‚Á‚½‚çØ’f
+				// çŠ¶æ…‹ãŒã‹ã‚ã£ãŸã‚Š
+				// 4äººå‹Ÿé›†ã®ã‚²ãƒ¼ãƒ ã˜ã‚ƒãªã„ã®ã«ã€VCHATãƒ•ãƒ©ã‚°ãŒå¤‰ã‚ã£ãŸã‚‰åˆ‡æ–­
 				if((wk->keepStatus != status) || 
 					(( _wait2to4Mode(status) == FALSE ) && (wk->keepVChat != vchat)) ){
                     _friendNameExpand(wk, friendNo - 1);
@@ -6864,7 +6864,7 @@ static int _childModeMatchMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
                     message = 1;
                     break;
                 }
-				// •s³ƒAƒCƒeƒ€ƒ`ƒFƒbƒN
+				// ä¸æ­£ã‚¢ã‚¤ãƒ†ãƒ ãƒã‚§ãƒƒã‚¯
                 if(!_isItemCheck(p_status)){
                     _friendNameExpand(wk, friendNo - 1);
                     WifiP2PMatchMessagePrint(wk, msg_wifilobby_013, FALSE);
@@ -6872,7 +6872,7 @@ static int _childModeMatchMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
                     message = 1;
                     break;
                 }
-				// ƒ‚ƒ“ƒXƒ^[‚Q‘Îƒ`ƒFƒbƒN
+				// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ï¼’å¯¾ãƒã‚§ãƒƒã‚¯
                 if(_is2pokeMode(status) && (2 > num)){
                     if(WIFI_STATUS_TRADE_WAIT==status){
                         WifiP2PMatchMessagePrint(wk, msg_wifilobby_053, FALSE);
@@ -6884,7 +6884,7 @@ static int _childModeMatchMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
                     message = 1;
                     break;
                 }
-				// ƒ|ƒtƒBƒ“ƒP[ƒXƒ`ƒFƒbƒN
+				// ãƒãƒ•ã‚£ãƒ³ã‚±ãƒ¼ã‚¹ãƒã‚§ãƒƒã‚¯
 				if( (status == WIFI_STATUS_POFIN_WAIT) && (pofin_check != WFP2P_POFIN_RET_OK) ){
 					if( pofin_check == WFP2P_POFIN_RET_NUTSNONE ){
                         WifiP2PMatchMessagePrint(wk, msg_wifilobby_105, FALSE);
@@ -6897,11 +6897,11 @@ static int _childModeMatchMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
                     message = 1;
 					break;
 				}
-				// VCTƒ‚[ƒhƒ`ƒFƒbƒN
-				// 2`4lƒ}ƒbƒ`ƒ“ƒO‚Ìê‡VCTƒ‚[ƒh‚ğ‡‚í‚¹‚é•K—v‚Í‚È‚µ
+				// VCTãƒ¢ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
+				// 2ã€œ4äººãƒãƒƒãƒãƒ³ã‚°ã®å ´åˆVCTãƒ¢ãƒ¼ãƒ‰ã‚’åˆã‚ã›ã‚‹å¿…è¦ã¯ãªã—
 				if( _wait2to4Mode( status ) == FALSE ){
 					
-					if(vchat != wk->pMatch->myMatchStatus.vchat){  // ©•ª‚ÌVCHAT‚Æó‘Ô‚ªˆá‚¤ê‡ƒƒbƒZ[ƒW
+					if(vchat != wk->pMatch->myMatchStatus.vchat){  // è‡ªåˆ†ã®VCHATã¨çŠ¶æ…‹ãŒé•ã†å ´åˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 						if(vchat){
 							WifiP2PMatchMessagePrint(wk, msg_wifilobby_069, FALSE);
 						}
@@ -6910,9 +6910,9 @@ static int _childModeMatchMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
 						}
 
 						// 080703	tomoya takahashi
-						// VCHAT‚ÌONEOFF‚ğ•·‚­‰ÓŠ‚É‚¢‚Á‚½‚ç
-						// ‚à‚¤‰•å’†‚Æ‚¢‚¤‚±‚Æ‚É‚µ‚ÄA
-						// ‚RÒ‚Ì‰•å‚ª‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é
+						// VCHATã®ONãƒ»OFFã‚’èãç®‡æ‰€ã«ã„ã£ãŸã‚‰
+						// ã‚‚ã†å¿œå‹Ÿä¸­ã¨ã„ã†ã“ã¨ã«ã—ã¦ã€
+						// ï¼“è€…ã®å¿œå‹ŸãŒã§ããªã„ã‚ˆã†ã«ã™ã‚‹
                         _myStatusChange(wk, _convertState(status));  // 
 						
 						wk->seq = WIFIP2PMATCH_MODE_VCHAT_NEGO;
@@ -6925,22 +6925,22 @@ static int _childModeMatchMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
                     break;
                 }
                 if( WifiDwc_getFriendStatus(friendNo - 1) == DWC_STATUS_MATCH_SC_SV ){
-					TOMOYA_PRINT( "wifiÚ‘±æ %d\n", friendNo - 1 );
+					TOMOYA_PRINT( "wifiæ¥ç¶šå…ˆ %d\n", friendNo - 1 );
 
                     if( WifiP2PMatch_CommWifiBattleStart( wk, friendNo - 1, status ) ){
                         wk->cancelEnableTimer = _CANCELENABLE_TIMER;
 						_commStateChange(status);
-                        _myStatusChange(wk, status);  // Ú‘±’†‚É‚È‚é
+                        _myStatusChange(wk, status);  // æ¥ç¶šä¸­ã«ãªã‚‹
                         _friendNameExpand(wk, friendNo - 1);
                         WifiP2PMatchMessagePrint(wk,msg_wifilobby_014, FALSE);
 						GF_ASSERT( wk->timeWaitWork == NULL );
                         wk->timeWaitWork = TimeWaitIconAdd( &wk->MsgWin, COMM_TALK_WIN_CGX_NUM );
                         if(status != WIFI_STATUS_VCT){
-                            wk->seq = WIFIP2PMATCH_MODE_MATCH_LOOP;  // ƒ}ƒbƒ`ƒ“ƒO‚Ö
+                            wk->seq = WIFIP2PMATCH_MODE_MATCH_LOOP;  // ãƒãƒƒãƒãƒ³ã‚°ã¸
                         }
                         else{
                             wk->cancelEnableTimer = _CANCELENABLE_TIMER;
-                            wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT_INIT2;  //VCTê—p‚Ö
+                            wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT_INIT2;  //VCTå°‚ç”¨ã¸
                         }
                         message = 1;
                     }else{
@@ -6966,7 +6966,7 @@ static int _childModeMatchMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
     }
 
 
-	// Œãn––
+	// å¾Œå§‹æœ«
 	
     if(message==0){
         EndMessageWindowOff(wk);
@@ -6976,20 +6976,20 @@ static int _childModeMatchMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
     BmpListExit(wk->sublw, NULL, NULL);
     BMP_MENULIST_Delete( wk->submenulist );
 
-	// NPC‚ğŒ³‚É–ß‚·
+	// NPCã‚’å…ƒã«æˆ»ã™
 	if( p_npc != NULL ){
 		WIFI_MCR_NpcPauseOff( &wk->matchroom, p_npc );
 	}
 
-	// –ß‚é‚¾‚¯‚È‚çl‚Ìî•ñ‚ğÁ‚·
+	// æˆ»ã‚‹ã ã‘ãªã‚‰äººã®æƒ…å ±ã‚’æ¶ˆã™
 	if( wk->seq == WIFIP2PMATCH_MODE_FRIENDLIST ){
 		
-		// ‚»‚Ìl‚Ìî•ñ‚ğÁ‚·
+		// ãã®äººã®æƒ…å ±ã‚’æ¶ˆã™
 //		WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );
 		
 	}else{
 
-		// Œq‚ª‚è‚É‚¢‚­‚Æ‚«
+		// ç¹‹ãŒã‚Šã«ã„ãã¨ã
 
 	}
 
@@ -7025,45 +7025,45 @@ static int _childModeMatchMenuLoop( WIFIP2PMATCH_WORK *wk, int seq )
     else if(CommStateIsWifiError()){
         _errorDisp(wk);
     }
-    else if(CommWifiIsMatched()==1){  // ‘Šè‚ÉÚ‘±‚µ‚½
+    else if(CommWifiIsMatched()==1){  // ç›¸æ‰‹ã«æ¥ç¶šã—ãŸ
 
-		// ‚Q`‚Sl•åW‚Å‚È‚¢‚Æ‚«
+		// ï¼’ã€œï¼”äººå‹Ÿé›†ã§ãªã„ã¨ã
 		status = _WifiMyStatusGet( wk, &wk->pMatch->myMatchStatus );
 		if( _wait2to4Mode( status ) == FALSE ){
 	        
-			wk->seq = WIFIP2PMATCH_MODE_CALL_YESNO; // q‹@e‹@‹¤’Ê
-		//    _timeWaitIconDel(wk);		timeWait“à‚ÅMsgWin‚ğ”jŠü‚µ‚Ä‚¢‚é‚Æ‚¢‚¤‚±‚Æ‚ÍƒƒbƒZ[ƒWI—¹‚Å‚àOK«
+			wk->seq = WIFIP2PMATCH_MODE_CALL_YESNO; // å­æ©Ÿè¦ªæ©Ÿå…±é€š
+		//    _timeWaitIconDel(wk);		timeWaitå†…ã§MsgWinã‚’ç ´æ£„ã—ã¦ã„ã‚‹ã¨ã„ã†ã“ã¨ã¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†ã§ã‚‚OKâ†“
 			EndMessageWindowOff(wk);
-			CommInfoInitialize(wk->pSaveData,NULL);   //Info‰Šú‰»
+			CommInfoInitialize(wk->pSaveData,NULL);   //InfoåˆæœŸåŒ–
 			wk->timer = 30;
 			
 		}else if( CommIsConnect(COMM_PARENT_ID) == TRUE ){
 
-			// ƒƒbƒZ[ƒW’â~
+			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åœæ­¢
 			EndMessageWindowOff( wk );
 
-			CommInfoInitialize(wk->pSaveData,NULL);   //Info‰Šú‰»
+			CommInfoInitialize(wk->pSaveData,NULL);   //InfoåˆæœŸåŒ–
 
 	
-			// ’ÊMƒGƒ‰[ƒ`ƒFƒbƒN
+			// é€šä¿¡ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 			// 080630 tomoya takahashi
-			CommStateSetErrorCheck(FALSE,TRUE);	// Ø’f‚ÍƒGƒ‰[‚¶‚á‚È‚¢
+			CommStateSetErrorCheck(FALSE,TRUE);	// åˆ‡æ–­ã¯ã‚¨ãƒ©ãƒ¼ã˜ã‚ƒãªã„
 
 
-			// ‚Q`‚Sl•åW‚Ì
-			// ƒ|ƒtƒBƒ“‚È‚ç’ÊM•û®‚ğƒ|ƒtƒBƒ“—p‚É‚·‚é
+			// ï¼’ã€œï¼”äººå‹Ÿé›†ã®æ™‚
+			// ãƒãƒ•ã‚£ãƒ³ãªã‚‰é€šä¿¡æ–¹å¼ã‚’ãƒãƒ•ã‚£ãƒ³ç”¨ã«ã™ã‚‹
             _commStateChange(status);
             wk->endSeq = _get2to4ModeEndSeq( status );
-			CommSetWifiBothNet(FALSE); // wifi‚Ì’ÊM‚ğ“¯Šú‚©‚ç”ñ“¯Šú‚É
+			CommSetWifiBothNet(FALSE); // wifiã®é€šä¿¡ã‚’åŒæœŸã‹ã‚‰éåŒæœŸã«
 			WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK,
 							COMM_BRIGHTNESS_SYNC, 1, HEAPID_WIFIP2PMATCH);
             wk->bRetryBattle = FALSE;
-			seq = SEQ_OUT;						//I—¹ƒV[ƒPƒ“ƒX‚Ö
+			seq = SEQ_OUT;						//çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 		}else{
 
-			// ’ÊMƒoƒO:324	
-			// Matched()‚Í1‚ª‹A‚Á‚Ä‚«‚ÄACommIsConnect‚Å‚ÍFALSE‚ª‹A‚Á‚Ä‚«‚Ä‚¢‚é
-			// WiFiP2P’ÊM‚ª‰Â”\‚Èó‘Ô‚È‚Ì‚Ée‚ÆÚ‘±‚µ‚Ä‚¢‚È‚¢‚È‚çƒGƒ‰[ˆ—‚Ö
+			// é€šä¿¡ãƒã‚°:324	
+			// Matched()ã¯1ãŒå¸°ã£ã¦ãã¦ã€CommIsConnectã§ã¯FALSEãŒå¸°ã£ã¦ãã¦ã„ã‚‹
+			// WiFiP2Pé€šä¿¡ãŒå¯èƒ½ãªçŠ¶æ…‹ãªã®ã«è¦ªã¨æ¥ç¶šã—ã¦ã„ãªã„ãªã‚‰ã‚¨ãƒ©ãƒ¼å‡¦ç†ã¸
 			if( CommGetWifiConnect() == TRUE ){
 				_friendNameExpand(wk, mydwc_getFriendIndex());
 				WifiP2PMatchMessagePrint(wk, msg_wifilobby_015, FALSE);
@@ -7074,12 +7074,12 @@ static int _childModeMatchMenuLoop( WIFIP2PMATCH_WORK *wk, int seq )
     return seq;
 }
 
-//-------------------------------------VCT‚ÌƒLƒƒƒ“ƒZƒ‹‹@”\‚ğ‹}ç¯À‘•
-//-------------------------------------VCT‚ÌƒLƒƒƒ“ƒZƒ‹‹@”\‚ğ‹}ç¯æ‚èŠO‚µ
+//-------------------------------------VCTã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ©Ÿèƒ½ã‚’æ€¥é½å®Ÿè£…
+//-------------------------------------VCTã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ©Ÿèƒ½ã‚’æ€¥é½å–ã‚Šå¤–ã—
 
 //------------------------------------------------------------------
 /**
- * $brief   BƒLƒƒƒ“ƒZƒ‹  WIFIP2PMATCH_MODE_BCANCEL_YESNO_VCT
+ * $brief   Bã‚­ãƒ£ãƒ³ã‚»ãƒ«  WIFIP2PMATCH_MODE_BCANCEL_YESNO_VCT
  * @param   wk
  * @retval  none
  */
@@ -7091,7 +7091,7 @@ static int WifiP2PMatch_BCancelYesNoVCT( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   BƒLƒƒƒ“ƒZƒ‹  WIFIP2PMATCH_MODE_BCANCEL_WAIT_VCT
+ * $brief   Bã‚­ãƒ£ãƒ³ã‚»ãƒ«  WIFIP2PMATCH_MODE_BCANCEL_WAIT_VCT
  * @param   wk
  * @retval  none
  */
@@ -7104,7 +7104,7 @@ static int WifiP2PMatch_BCancelWaitVCT( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   DWCØ’f WIFIP2PMATCH_MODE_CANCEL_ENABLE_WAIT
+ * $brief   DWCåˆ‡æ–­ WIFIP2PMATCH_MODE_CANCEL_ENABLE_WAIT
  * @param   wk
  * @retval  none
  */
@@ -7116,7 +7116,7 @@ static int WifiP2PMatch_CancelEnableWait( WIFIP2PMATCH_WORK *wk, int seq )
     CommStateWifiMatchEnd();
     wk->preConnect = -1;
     wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
-    // ålŒö‚Ì“®ì‚ğ‹–‰Â
+    // ä¸»äººå…¬ã®å‹•ä½œã‚’è¨±å¯
     FriendRequestWaitOff( wk );
     EndMessageWindowOff(wk);
     return seq;
@@ -7127,7 +7127,7 @@ static int WifiP2PMatch_CancelEnableWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   BƒLƒƒƒ“ƒZƒ‹  WIFIP2PMATCH_MODE_BCANCEL_YESNO
+ * $brief   Bã‚­ãƒ£ãƒ³ã‚»ãƒ«  WIFIP2PMATCH_MODE_BCANCEL_YESNO
  * @param   wk
  * @retval  none
  */
@@ -7139,7 +7139,7 @@ static int WifiP2PMatch_BCancelYesNo( WIFIP2PMATCH_WORK *wk, int seq )        //
 
 //------------------------------------------------------------------
 /**
- * $brief   BƒLƒƒƒ“ƒZƒ‹  WIFIP2PMATCH_MODE_BCANCEL_WAIT
+ * $brief   Bã‚­ãƒ£ãƒ³ã‚»ãƒ«  WIFIP2PMATCH_MODE_BCANCEL_WAIT
  * @param   wk
  * @retval  none
  */
@@ -7152,7 +7152,7 @@ static int WifiP2PMatch_BCancelWait( WIFIP2PMATCH_WORK *wk, int seq )        // 
 
 //------------------------------------------------------------------
 /**
- * $brief   e‹@ó•t‚Ü‚¿Bq‹@‚©‚ç‰•å‚ª‚ ‚Á‚½‚±‚Æ‚ğ’m‚ç‚¹‚é
+ * $brief   è¦ªæ©Ÿå—ä»˜ã¾ã¡ã€‚å­æ©Ÿã‹ã‚‰å¿œå‹ŸãŒã‚ã£ãŸã“ã¨ã‚’çŸ¥ã‚‰ã›ã‚‹
  * @param   wk
  * @retval  none
  */
@@ -7216,12 +7216,12 @@ static int _parentModeCallMenuInit( WIFIP2PMATCH_WORK *wk, int seq )
     else if((mySt == WIFI_STATUS_BALLOON_WAIT)&&(targetSt == WIFI_STATUS_BALLOON)){
         wk->seq = WIFIP2PMATCH_MODE_CALL_YESNO;  //ok
     }
-    else if((mySt == WIFI_STATUS_LOGIN_WAIT)&&(targetSt == WIFI_STATUS_VCT)&&(myvchat > 0)){	// 080703 tomoya VCHAT‚ªON‚Å‚ ‚é‚±‚Æ‚ğğŒ‚É’Ç‰Á
+    else if((mySt == WIFI_STATUS_LOGIN_WAIT)&&(targetSt == WIFI_STATUS_VCT)&&(myvchat > 0)){	// 080703 tomoya VCHATãŒONã§ã‚ã‚‹ã“ã¨ã‚’æ¡ä»¶ã«è¿½åŠ 
         wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT_INIT; //o
         return seq;
     }
     else{
-        // “K‡‚µ‚È‚¢=>Ø’fˆ—‚Ö
+        // é©åˆã—ãªã„=>åˆ‡æ–­å‡¦ç†ã¸
         _friendNameExpand(wk, mydwc_getFriendIndex());
         WifiP2PMatchMessagePrint(wk, msg_wifilobby_015, FALSE);
         wk->seq = WIFIP2PMATCH_MODE_DISCONNECT;
@@ -7231,7 +7231,7 @@ static int _parentModeCallMenuInit( WIFIP2PMATCH_WORK *wk, int seq )
     }
     _friendNameExpand(wk, mydwc_getFriendIndex());
     WifiP2PMatchMessagePrint(wk, msg_wifilobby_008, FALSE);
-    CommInfoInitialize(wk->pSaveData,NULL);   //Info‰Šú‰»
+    CommInfoInitialize(wk->pSaveData,NULL);   //InfoåˆæœŸåŒ–
     wk->seq = WIFIP2PMATCH_MODE_CALL_YESNO;
     wk->timer = 30;
     return seq;
@@ -7239,7 +7239,7 @@ static int _parentModeCallMenuInit( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒRƒlƒNƒVƒ‡ƒ“‚Í‚ë‚¤‚Æ‚µ‚Ä‚¢‚éŠúŠÔ’†‚ÌƒGƒ‰[•\¦
+ * $brief   ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã¯ã‚ã†ã¨ã—ã¦ã„ã‚‹æœŸé–“ä¸­ã®ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
  * @param   wk
  * @retval  none
  */
@@ -7258,7 +7258,7 @@ static BOOL _connectingErrFunc(WIFIP2PMATCH_WORK *wk)
     else{
 
 #if PL_T0857_080711_FIX
-		// —F’B‚ÌSTATUS‚ÆVCHAT‚ğƒ`ƒFƒbƒN	ˆá‚Á‚Ä‚¢‚½‚çØ’f
+		// å‹é”ã®STATUSã¨VCHATã‚’ãƒã‚§ãƒƒã‚¯	é•ã£ã¦ã„ãŸã‚‰åˆ‡æ–­
 		{
 			int mySt;
 			int targetSt, targetSt_org;
@@ -7296,7 +7296,7 @@ static BOOL _connectingErrFunc(WIFIP2PMATCH_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚Â‚È‚ª‚é‚×‚«ƒXƒe[ƒgŠm”F  WIFIP2PMATCH_MODE_CALL_YESNO
+ * $brief   ã¤ãªãŒã‚‹ã¹ãã‚¹ãƒ†ãƒ¼ãƒˆç¢ºèª  WIFIP2PMATCH_MODE_CALL_YESNO
  * @param   wk
  * @retval  none
  */
@@ -7342,7 +7342,7 @@ static int _parentModeCallMenuYesNo( WIFIP2PMATCH_WORK *wk, int seq )
 //
 //------------------------------------------------------------------
 /**
- * $brief   ‚Â‚È‚ª‚é‚×‚«ƒXƒe[ƒg‚ğ‘—M  WIFIP2PMATCH_MODE_CALL_SEND
+ * $brief   ã¤ãªãŒã‚‹ã¹ãã‚¹ãƒ†ãƒ¼ãƒˆã‚’é€ä¿¡  WIFIP2PMATCH_MODE_CALL_SEND
  * @param   wk
  * @retval  none
  */
@@ -7366,7 +7366,7 @@ static int _parentModeCallMenuSend( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚Â‚È‚ª‚é‚×‚«ƒXƒe[ƒg‰ğÍ  WIFIP2PMATCH_MODE_CALL_CHECK
+ * $brief   ã¤ãªãŒã‚‹ã¹ãã‚¹ãƒ†ãƒ¼ãƒˆè§£æ  WIFIP2PMATCH_MODE_CALL_CHECK
  * @param   wk
  * @retval  none
  */
@@ -7391,7 +7391,7 @@ static int _parentModeCallMenuCheck( WIFIP2PMATCH_WORK *wk, int seq )
             CommTimingSyncStart(_TIMING_GAME_START);
             wk->seq = WIFIP2PMATCH_MODE_MYSTATUS_WAIT;
         }
-        else{  // ˆÙ‚È‚éƒXƒe[ƒg‚ğ‘I‘ğ‚µ‚½ê‡
+        else{  // ç•°ãªã‚‹ã‚¹ãƒ†ãƒ¼ãƒˆã‚’é¸æŠã—ãŸå ´åˆ
             _friendNameExpand(wk, mydwc_getFriendIndex());
             WifiP2PMatchMessagePrint(wk, msg_wifilobby_013, FALSE);
             wk->seq = WIFIP2PMATCH_MODE_VCT_DISCONNECT;
@@ -7404,7 +7404,7 @@ static int _parentModeCallMenuCheck( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‘Ò‚¿ WIFIP2PMATCH_MODE_MYSTATUS_WAIT
+ * $brief   ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰å¾…ã¡ WIFIP2PMATCH_MODE_MYSTATUS_WAIT
  * @param   wk
  * @retval  none
  */
@@ -7440,7 +7440,7 @@ static BOOL _parent_MsgEndCheck( WIFIP2PMATCH_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‘Ò‚¿ WIFIP2PMATCH_MODE_CALL_WAIT
+ * $brief   ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰å¾…ã¡ WIFIP2PMATCH_MODE_CALL_WAIT
  * @param   wk
  * @retval  none
  */
@@ -7454,7 +7454,7 @@ static int _parentModeCallMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
     if(_connectingErrFunc(wk)){
     }
 //    else if(CommIsTimingSync(_TIMING_GAME_START2)){
-    else if(CommIsTimingSync(_TIMING_GAME_START2) && (_parent_MsgEndCheck( wk ) == TRUE) ){		// ƒƒbƒZ[ƒW‚ÌI—¹‚à‘Ò‚Â‚æ‚¤‚É•ÏX 08.06.01	tomoya
+    else if(CommIsTimingSync(_TIMING_GAME_START2) && (_parent_MsgEndCheck( wk ) == TRUE) ){		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®çµ‚äº†ã‚‚å¾…ã¤ã‚ˆã†ã«å¤‰æ›´ 08.06.01	tomoya
         dwc_friendAutoInputCheck(wk->pSaveData, checkFriend, HEAPID_WIFIP2PMATCH);
         
         EndMessageWindowOff(wk);
@@ -7522,21 +7522,21 @@ static int _parentModeCallMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
         }
 #endif
 
-// WIFI@‘ÎíAUTOÓ°ÄŞƒfƒoƒbƒN
+// WIFIã€€å¯¾æˆ¦AUTOãƒ¢ãƒ¼ãƒ‰ãƒ‡ãƒãƒƒã‚¯
 #ifdef _WIFI_DEBUG_TUUSHIN
 		WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_A_REQ = FALSE;
 		WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_TOUCH_REQ = FALSE;
 #endif	//_WIFI_DEBUG_TUUSHIN
 
-		// ƒ{ƒEƒPƒ“ƒm[ƒg
+		// ãƒœã‚¦ã‚±ãƒ³ãƒãƒ¼ãƒˆ
 		WifiP2P_Fnote_Set( wk, mydwc_getFriendIndex() );
 
-        _myStatusChange(wk, status);  // Ú‘±’†‚É‚È‚é
+        _myStatusChange(wk, status);  // æ¥ç¶šä¸­ã«ãªã‚‹
         WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK,
                         COMM_BRIGHTNESS_SYNC, 1, HEAPID_WIFIP2PMATCH);
 
 		
-        seq = SEQ_OUT;						//I—¹ƒV[ƒPƒ“ƒX‚Ö
+        seq = SEQ_OUT;						//çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
     }
     return seq;
 }
@@ -7544,7 +7544,7 @@ static int _parentModeCallMenuWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒƒCƒ“ƒƒjƒ…[‚Ì–ß‚éÛ‚Ì‰Šú‰»
+ * $brief   ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æˆ»ã‚‹éš›ã®åˆæœŸåŒ–
  *
  * @param   wk
  *
@@ -7561,7 +7561,7 @@ static int WifiP2PMatch_MainReturn( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ŒÂlƒf[ƒ^•\¦‰Šú‰» WIFIP2PMATCH_MODE_PERSONAL_INIT
+ * $brief   å€‹äººãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºåˆæœŸåŒ– WIFIP2PMATCH_MODE_PERSONAL_INIT
  * @param   wk
  * @retval  none
  */
@@ -7596,7 +7596,7 @@ static int _personalDataInit( WIFIP2PMATCH_WORK *wk, int seq )
 //    friendNo = wk->index2No[mainCursor] - 1;
 	friendNo = WIFI_MCR_PlayerSelect( &wk->matchroom );
 	friendNo --;
-    OHNO_PRINT("ƒtƒŒƒ“ƒh”Ô†  %d\n", friendNo);
+    OHNO_PRINT("ãƒ•ãƒ¬ãƒ³ãƒ‰ç•ªå·  %d\n", friendNo);
     _friendNameExpand(wk, friendNo);
     MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_033, wk->pExpStrBuf );
     WORDSET_ExpandStr( wk->WordSet, wk->TitleString, wk->pExpStrBuf );
@@ -7608,7 +7608,7 @@ static int _personalDataInit( WIFIP2PMATCH_WORK *wk, int seq )
 
     // ----------------------------------------------------------------------------
     // localize_spec_mark(LANG_ALL) imatake 2007/01/29
-    // ƒOƒ‹[ƒv–¼‚ğ‰EŠñ‚¹
+    // ã‚°ãƒ«ãƒ¼ãƒ—åã‚’å³å¯„ã›
     MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_034, wk->TitleString );
     GF_STR_PrintColor( &wk->MyWin, FONT_SYSTEM, wk->TitleString, 0, 8*2, MSG_NO_PUT, _COL_N_BLACK, NULL);
     {
@@ -7624,16 +7624,16 @@ static int _personalDataInit( WIFIP2PMATCH_WORK *wk, int seq )
     GF_STR_PrintColor( &wk->MyWin, FONT_SYSTEM, wk->TitleString, x, 8*2, MSG_NO_PUT, _COL_N_BLACK, NULL);
     // ----------------------------------------------------------------------------
 
-    // ‘Îí¬Ñ
+    // å¯¾æˆ¦æˆç¸¾
     MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_035, wk->TitleString );
     GF_STR_PrintColor( &wk->MyWin, FONT_SYSTEM, wk->TitleString, 0, 8*4, MSG_NO_PUT, _COL_N_BLACK, NULL);
-    // ‚©‚¿
+    // ã‹ã¡
     num = WifiList_GetFriendInfo(wk->pList, friendNo, WIFILIST_FRIEND_BATTLE_WIN);
     WORDSET_RegisterNumber(wk->WordSet, 0, num, 4, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
     MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_036, wk->pExpStrBuf );
     WORDSET_ExpandStr( wk->WordSet, wk->TitleString, wk->pExpStrBuf );
     GF_STR_PrintColor( &wk->MyWin, FONT_SYSTEM, wk->TitleString, 30, 8*6, MSG_NO_PUT, _COL_N_BLACK, NULL);
-    // ‚Ü‚¯
+    // ã¾ã‘
     num = WifiList_GetFriendInfo(wk->pList, friendNo, WIFILIST_FRIEND_BATTLE_LOSE);
     WORDSET_RegisterNumber(wk->WordSet, 0, num, 4, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
     MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_037, wk->pExpStrBuf );
@@ -7642,7 +7642,7 @@ static int _personalDataInit( WIFIP2PMATCH_WORK *wk, int seq )
     length = FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->TitleString, 0 );
     x      = width - length;
     GF_STR_PrintColor( &wk->MyWin, FONT_SYSTEM, wk->TitleString, x, 8*6, MSG_NO_PUT, _COL_N_BLACK, NULL);
-    // ƒ|ƒPƒ‚ƒ“ŒğŠ·
+    // ãƒã‚±ãƒ¢ãƒ³äº¤æ›
     MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_038, wk->TitleString );
     GF_STR_PrintColor( &wk->MyWin, FONT_SYSTEM, wk->TitleString, 0,  8*8, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
@@ -7650,7 +7650,7 @@ static int _personalDataInit( WIFIP2PMATCH_WORK *wk, int seq )
     WORDSET_RegisterNumber(wk->WordSet, 0, num, 4, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
     // ----------------------------------------------------------------------------
     // localize_spec_mark(LANG_ALL) imatake 2007/01/25
-    // ‰ñ”‚É‚æ‚Á‚Ä’PˆÊ‚Ì’P•¡‚ğo‚µ•ª‚¯
+    // å›æ•°ã«ã‚ˆã£ã¦å˜ä½ã®å˜è¤‡ã‚’å‡ºã—åˆ†ã‘
     if (num == 1) {
         MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_039, wk->pExpStrBuf );
     } else {
@@ -7662,7 +7662,7 @@ static int _personalDataInit( WIFIP2PMATCH_WORK *wk, int seq )
     length = FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->TitleString, 0 );
     x      = width - length;
     GF_STR_PrintColor( &wk->MyWin, FONT_SYSTEM, wk->TitleString, x, 8*8, MSG_NO_PUT, _COL_N_BLACK, NULL);
-    //ÅŒã‚Ì“ú•t
+    //æœ€å¾Œã®æ—¥ä»˜
     MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_040, wk->TitleString );
     GF_STR_PrintColor( &wk->MyWin, FONT_SYSTEM, wk->TitleString, 0, 8*10, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
@@ -7674,7 +7674,7 @@ static int _personalDataInit( WIFIP2PMATCH_WORK *wk, int seq )
         num = WifiList_GetFriendInfo(wk->pList, friendNo, WIFILIST_FRIEND_LASTBT_MONTH);
         // ----------------------------------------------------------------------------
         // localize_spec_mark(LANG_ALL) imatake 2007/01/29
-        // Œ‚Ì•\¦‚ğ’PŒê•\‹L‚É•ÏX
+        // æœˆã®è¡¨ç¤ºã‚’å˜èªè¡¨è¨˜ã«å¤‰æ›´
         WORDSET_RegisterMonthName( wk->WordSet, 1, num );
         // ----------------------------------------------------------------------------
         MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_041, wk->pExpStrBuf );
@@ -7692,7 +7692,7 @@ static int _personalDataInit( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ŒÂlƒf[ƒ^•\¦ WIFIP2PMATCH_MODE_PERSONAL_WAIT
+ * $brief   å€‹äººãƒ‡ãƒ¼ã‚¿è¡¨ç¤º WIFIP2PMATCH_MODE_PERSONAL_WAIT
  * @param   wk
  * @retval  none
  */
@@ -7703,7 +7703,7 @@ static int _personalDataWait( WIFIP2PMATCH_WORK *wk, int seq )
     if( GF_MSG_PrintEndCheck( wk->MsgIndex ) != 0 ){
         return seq;
     }
-    if( 0 !=  _checkParentConnect(wk)){ // Ú‘±‚µ‚Ä‚«‚½
+    if( 0 !=  _checkParentConnect(wk)){ // æ¥ç¶šã—ã¦ããŸ
         wk->seq = WIFIP2PMATCH_MODE_PERSONAL_END;
     }
     if(sys.trg & (PAD_BUTTON_CANCEL|PAD_BUTTON_DECIDE)){
@@ -7714,7 +7714,7 @@ static int _personalDataWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ŒÂlƒf[ƒ^•\¦‚¨‚í‚è WIFIP2PMATCH_MODE_PERSONAL_END
+ * $brief   å€‹äººãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºãŠã‚ã‚Š WIFIP2PMATCH_MODE_PERSONAL_END
  * @param   wk
  * @retval  none
  */
@@ -7750,7 +7750,7 @@ static int _personalDataEnd( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   I—¹Šm”FƒƒbƒZ[ƒW  WIFIP2PMATCH_MODE_EXIT_YESNO
+ * $brief   çµ‚äº†ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸  WIFIP2PMATCH_MODE_EXIT_YESNO
  * @param   wk
  * @retval  none
  */
@@ -7759,7 +7759,7 @@ static int _personalDataEnd( WIFIP2PMATCH_WORK *wk, int seq )
 static int _exitYesNo( WIFIP2PMATCH_WORK *wk, int seq )
 {
     if( GF_MSG_PrintEndCheck( wk->MsgIndex ) == 0 ){
-        // ‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ğo‚·
+        // ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
         wk->pYesNoWork =
             BmpYesNoSelectInit( wk->bgl,
                                 &_yesNoBmpDat,
@@ -7768,7 +7768,7 @@ static int _exitYesNo( WIFIP2PMATCH_WORK *wk, int seq )
         wk->seq = WIFIP2PMATCH_MODE_EXIT_WAIT;
     }
 	
-// WIFI@‘ÎíAUTOÓ°ÄŞƒfƒoƒbƒN
+// WIFIã€€å¯¾æˆ¦AUTOãƒ¢ãƒ¼ãƒ‰ãƒ‡ãƒãƒƒã‚¯
 #ifdef _WIFI_DEBUG_TUUSHIN
 	WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_A_REQ = TRUE;
 	WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_B_REQ = FALSE;
@@ -7779,7 +7779,7 @@ static int _exitYesNo( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   I—¹Šm”FƒƒbƒZ[ƒW  WIFIP2PMATCH_MODE_EXIT_WAIT
+ * $brief   çµ‚äº†ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸  WIFIP2PMATCH_MODE_EXIT_WAIT
  * @param   wk
  * @retval  none
  */
@@ -7794,26 +7794,26 @@ static int _exitWait( WIFIP2PMATCH_WORK *wk, int seq )
         return seq;
     }
 
-	//  Ú‘±ƒ`ƒFƒbƒN
-    if( 0 !=  _checkParentNewPlayer(wk)){ // Ú‘±‚µ‚Ä‚«‚½
+	//  æ¥ç¶šãƒã‚§ãƒƒã‚¯
+    if( 0 !=  _checkParentNewPlayer(wk)){ // æ¥ç¶šã—ã¦ããŸ
 		if(ret == BMPMENU_NULL){
 			BmpYesNoWinDel( wk->pYesNoWork, HEAPID_WIFIP2PMATCH );
 		}
 		ret = BMPMENU_CANCEL;	// CANCEL
 	}
 	
-    if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+    if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
         return seq;
-    }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+    }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
         WifiP2PMatchMessagePrint(wk, dwc_message_0011, TRUE);
         wk->seq = WIFIP2PMATCH_MODE_EXITING;
         wk->timer = 1;
     }
-    else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+    else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
         EndMessageWindowOff(wk);
         wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
 
-		// ålŒö‚Ì“®ì‚ğ‹–‰Â
+		// ä¸»äººå…¬ã®å‹•ä½œã‚’è¨±å¯
 		FriendRequestWaitOff( wk );
     }
     return seq;
@@ -7821,7 +7821,7 @@ static int _exitWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   I—¹Šm”FƒƒbƒZ[ƒW  WIFIP2PMATCH_MODE_EXIT_WAIT
+ * $brief   çµ‚äº†ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸  WIFIP2PMATCH_MODE_EXIT_WAIT
  * @param   wk
  * @retval  none
  */
@@ -7834,12 +7834,12 @@ static int _exitExiting( WIFIP2PMATCH_WORK *wk, int seq )
     }
     if(wk->timer == 1){
         wk->timer = 0;
-        CommStateWifiLogout();  // I—¹
+        CommStateWifiLogout();  // çµ‚äº†
     }
     if(!CommStateIsInitialize()){
-        OHNO_PRINT("Ø’f‚µ‚½‚ÉƒtƒŒƒ“ƒhƒR[ƒh‚ğ‹l‚ß‚é\n");
-        WifiList_FormUpData(wk->pList);  // Ø’f‚µ‚½‚ÉƒtƒŒƒ“ƒhƒR[ƒh‚ğ‹l‚ß‚é
-        //SaveData_SaveParts(wk->pSaveData, SVBLK_ID_NORMAL);  //ƒZ[ƒu’†
+        OHNO_PRINT("åˆ‡æ–­ã—ãŸæ™‚ã«ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰ã‚’è©°ã‚ã‚‹\n");
+        WifiList_FormUpData(wk->pList);  // åˆ‡æ–­ã—ãŸæ™‚ã«ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰ã‚’è©°ã‚ã‚‹
+        //SaveData_SaveParts(wk->pSaveData, SVBLK_ID_NORMAL);  //ã‚»ãƒ¼ãƒ–ä¸­
         WifiP2PMatchMessagePrint(wk, dwc_message_0012, TRUE);
         wk->seq = WIFIP2PMATCH_MODE_EXIT_END;
         wk->timer = 30;
@@ -7849,7 +7849,7 @@ static int _exitExiting( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   I—¹Š®—¹  WIFIP2PMATCH_MODE_EXIT_END
+ * $brief   çµ‚äº†å®Œäº†  WIFIP2PMATCH_MODE_EXIT_END
  * @param   wk
  * @retval  none
  */
@@ -7868,7 +7868,7 @@ static int _exitEnd( WIFIP2PMATCH_WORK *wk, int seq )
         EndMessageWindowOff(wk);
     }
 
-// WIFI@‘ÎíAUTOÓ°ÄŞƒfƒoƒbƒN
+// WIFIã€€å¯¾æˆ¦AUTOãƒ¢ãƒ¼ãƒ‰ãƒ‡ãƒãƒƒã‚¯
 #ifdef _WIFI_DEBUG_TUUSHIN
 	WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_A_REQ = FALSE;
 	WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_B_REQ = FALSE;
@@ -7880,7 +7880,7 @@ static int _exitEnd( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚à‚¤ˆê“x‘Îí‚·‚é‚©•·‚­ WIFIP2PMATCH_NEXTBATTLE_YESNO
+ * $brief   ã‚‚ã†ä¸€åº¦å¯¾æˆ¦ã™ã‚‹ã‹èã WIFIP2PMATCH_NEXTBATTLE_YESNO
  * @param   wk
  * @retval  none
  */
@@ -7892,11 +7892,11 @@ static int _nextBattleYesNo( WIFIP2PMATCH_WORK *wk, int seq )
     if(CommIsTimingSync(_TIMING_BATTLE_END)==FALSE){
         return seq;
     }
-	// ’ÊM“¯Šú’†‚É“dŒ¹‚ğØ‚ç‚ê‚½‚çA‚¸‚Á‚Æ“¯Šú‘Ò‚¿‚µ‚Ä‚µ‚Ü‚¤‚Ì‚ÅA’ÊM“¯ŠúŒã‚ÉƒI[ƒgƒGƒ‰[ƒ`ƒFƒbƒN‚ğ
-	// ‚Í‚¸‚·
+	// é€šä¿¡åŒæœŸä¸­ã«é›»æºã‚’åˆ‡ã‚‰ã‚ŒãŸã‚‰ã€ãšã£ã¨åŒæœŸå¾…ã¡ã—ã¦ã—ã¾ã†ã®ã§ã€é€šä¿¡åŒæœŸå¾Œã«ã‚ªãƒ¼ãƒˆã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã‚’
+	// ã¯ãšã™
     CommStateSetErrorCheck(FALSE,TRUE);	
     if( GF_MSG_PrintEndCheck( wk->MsgIndex ) == 0 ){
-        // ‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ğo‚·
+        // ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
         wk->pYesNoWork =
             BmpYesNoSelectInit( wk->bgl,
                                 &_yesNoBmpDat,
@@ -7905,7 +7905,7 @@ static int _nextBattleYesNo( WIFIP2PMATCH_WORK *wk, int seq )
         wk->seq = WIFIP2PMATCH_NEXTBATTLE_WAIT;
     }
 	
-// WIFI@‘ÎíAUTOÓ°ÄŞƒfƒoƒbƒN
+// WIFIã€€å¯¾æˆ¦AUTOãƒ¢ãƒ¼ãƒ‰ãƒ‡ãƒãƒƒã‚¯
 #ifdef _WIFI_DEBUG_TUUSHIN
 	WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_A_REQ = FALSE;
 	WIFI_DEBUG_BATTLE_Work.DEBUG_WIFI_TOUCH_REQ = FALSE;
@@ -7917,7 +7917,7 @@ static int _nextBattleYesNo( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚à‚¤ˆê“x‘Îí‚·‚é‚©•·‚­ WIFIP2PMATCH_NEXTBATTLE_WAIT
+ * $brief   ã‚‚ã†ä¸€åº¦å¯¾æˆ¦ã™ã‚‹ã‹èã WIFIP2PMATCH_NEXTBATTLE_WAIT
  * @param   wk
  * @retval  none
  */
@@ -7932,7 +7932,7 @@ static int _nextBattleWait( WIFIP2PMATCH_WORK *wk, int seq )
         return seq;
     }
 
-    if(CommStateIsWifiLoginState() || CommStateIsWifiDisconnect() || (CommWifiIsMatched() >= 3)){  // Ø’f‚µ‚½ˆµ‚¢‚Æ‚È
+    if(CommStateIsWifiLoginState() || CommStateIsWifiDisconnect() || (CommWifiIsMatched() >= 3)){  // åˆ‡æ–­ã—ãŸæ‰±ã„ã¨ãª
         BmpYesNoWinDel(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
         WifiP2PMatchMessagePrint(wk, msg_wifilobby_065, FALSE);
         wk->seq = WIFIP2PMATCH_MODE_BATTLE_DISCONNECT;
@@ -7943,9 +7943,9 @@ static int _nextBattleWait( WIFIP2PMATCH_WORK *wk, int seq )
     }
     else{
         ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
-        if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+        if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
             return seq;
-        }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
+        }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
             //EndMessageWindowOff(wk);
             WifiP2PMatchMessagePrint(wk, msg_wifilobby_073, FALSE);
 			GF_ASSERT( wk->timeWaitWork == NULL );
@@ -7954,7 +7954,7 @@ static int _nextBattleWait( WIFIP2PMATCH_WORK *wk, int seq )
             wk->seq = WIFIP2PMATCH_MODE_CALL_YESNO;
             wk->timer = 30;
         }
-        else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+        else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
             EndMessageWindowOff(wk);
             CommInfoFinalize();
             CommStateWifiBattleMatchEnd();
@@ -7970,7 +7970,7 @@ static int _nextBattleWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   VCAHT‚ğ•ÏX‚µ‚Ä‚à‚¢‚¢‚©‚Ç‚¤‚©•·‚­ WIFIP2PMATCH_MODE_VCHAT_NEGO
+ * $brief   VCAHTã‚’å¤‰æ›´ã—ã¦ã‚‚ã„ã„ã‹ã©ã†ã‹èã WIFIP2PMATCH_MODE_VCHAT_NEGO
  * @param   wk
  * @retval  none
  */
@@ -7978,19 +7978,19 @@ static int _nextBattleWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 static int _vchatNegoCheck( WIFIP2PMATCH_WORK *wk, int seq )
 {
-	// ‘Šè‚Ìó‘Ô‚ª‚©‚í‚Á‚½‚è‚µ‚½‚çI‚í‚é
+	// ç›¸æ‰‹ã®çŠ¶æ…‹ãŒã‹ã‚ã£ãŸã‚Šã—ãŸã‚‰çµ‚ã‚ã‚‹
 	{
 		int status,friendNo,vchat;
 		MCR_MOVEOBJ* p_npc;
 		_WIFI_MACH_STATUS* p_status;
 
-		// ˜b‚µ‚©‚¯‚Ä‚¢‚é—F’Bƒiƒ“ƒo[æ“¾
+		// è©±ã—ã‹ã‘ã¦ã„ã‚‹å‹é”ãƒŠãƒ³ãƒãƒ¼å–å¾—
 		friendNo = WIFI_MCR_PlayerSelect( &wk->matchroom );
 		p_npc = MCRSYS_GetMoveObjWork( wk, friendNo );
 
-		// ‘Šè‚ª‚¢‚È‚­‚È‚Á‚½‚è
-		// ‘Šè‚ÌƒXƒe[ƒ^ƒX‚ªˆá‚¤‚à‚Ì‚É•Ï‚í‚Á‚½‚çA
-		// •\¦‚ğÁ‚µ‚ÄŒ³‚É–ß‚é
+		// ç›¸æ‰‹ãŒã„ãªããªã£ãŸã‚Š
+		// ç›¸æ‰‹ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒé•ã†ã‚‚ã®ã«å¤‰ã‚ã£ãŸã‚‰ã€
+		// è¡¨ç¤ºã‚’æ¶ˆã—ã¦å…ƒã«æˆ»ã‚‹
 		if( p_npc == NULL ){
 			_friendNameExpand(wk, friendNo - 1);
 			WifiP2PMatchMessagePrint(wk, msg_wifilobby_013, FALSE);
@@ -8001,7 +8001,7 @@ static int _vchatNegoCheck( WIFIP2PMATCH_WORK *wk, int seq )
 			status = _WifiMyStatusGet( wk, p_status );
 			vchat = p_status->vchat;
 
-			// ó‘Ô‚ª‚©‚í‚Á‚½‚è
+			// çŠ¶æ…‹ãŒã‹ã‚ã£ãŸã‚Š
 			if((wk->keepStatus != status) || (wk->keepVChat != vchat)){
 				_friendNameExpand(wk, friendNo - 1);
 				WifiP2PMatchMessagePrint(wk, msg_wifilobby_013, FALSE);
@@ -8012,7 +8012,7 @@ static int _vchatNegoCheck( WIFIP2PMATCH_WORK *wk, int seq )
 	}	
 	
     if( GF_MSG_PrintEndCheck( wk->MsgIndex ) == 0 ){
-        // ‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ğo‚·
+        // ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
         wk->pYesNoWork =
             BmpYesNoSelectInit( wk->bgl,
                                 &_yesNoBmpDat,
@@ -8025,7 +8025,7 @@ static int _vchatNegoCheck( WIFIP2PMATCH_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   VCAHT‚ğ•ÏX‚µ‚Ä‚à‚¢‚¢‚©‚Ç‚¤‚©•·‚­
+ * $brief   VCAHTã‚’å¤‰æ›´ã—ã¦ã‚‚ã„ã„ã‹ã©ã†ã‹èã
  * @param   wk
  * @retval  none
  */
@@ -8036,19 +8036,19 @@ static int _vchatNegoWait( WIFIP2PMATCH_WORK *wk, int seq )
     int i;
     int ret,status;
 
-	// ‘Šè‚Ìó‘Ô‚ª‚©‚í‚Á‚½‚è‚µ‚½‚çI‚í‚é
+	// ç›¸æ‰‹ã®çŠ¶æ…‹ãŒã‹ã‚ã£ãŸã‚Šã—ãŸã‚‰çµ‚ã‚ã‚‹
 	{
 		int friendNo,vchat;
 		MCR_MOVEOBJ* p_npc;
 		_WIFI_MACH_STATUS* p_status;
 
-		// ˜b‚µ‚©‚¯‚Ä‚¢‚é—F’Bƒiƒ“ƒo[æ“¾
+		// è©±ã—ã‹ã‘ã¦ã„ã‚‹å‹é”ãƒŠãƒ³ãƒãƒ¼å–å¾—
 		friendNo = WIFI_MCR_PlayerSelect( &wk->matchroom );
 		p_npc = MCRSYS_GetMoveObjWork( wk, friendNo );
 
-		// ‘Šè‚ª‚¢‚È‚­‚È‚Á‚½‚è
-		// ‘Šè‚ÌƒXƒe[ƒ^ƒX‚ªˆá‚¤‚à‚Ì‚É•Ï‚í‚Á‚½‚çA
-		// •\¦‚ğÁ‚µ‚ÄŒ³‚É–ß‚é
+		// ç›¸æ‰‹ãŒã„ãªããªã£ãŸã‚Š
+		// ç›¸æ‰‹ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒé•ã†ã‚‚ã®ã«å¤‰ã‚ã£ãŸã‚‰ã€
+		// è¡¨ç¤ºã‚’æ¶ˆã—ã¦å…ƒã«æˆ»ã‚‹
 		if( p_npc == NULL ){
 			BmpYesNoWinDel(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
 			_friendNameExpand(wk, friendNo - 1);
@@ -8060,7 +8060,7 @@ static int _vchatNegoWait( WIFIP2PMATCH_WORK *wk, int seq )
 			status = _WifiMyStatusGet( wk, p_status );
 			vchat = p_status->vchat;
 
-			// ó‘Ô‚ª‚©‚í‚Á‚½‚è
+			// çŠ¶æ…‹ãŒã‹ã‚ã£ãŸã‚Š
 			if((wk->keepStatus != status) || (wk->keepVChat != vchat)){
 				BmpYesNoWinDel(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
 				_friendNameExpand(wk, friendNo - 1);
@@ -8074,7 +8074,7 @@ static int _vchatNegoWait( WIFIP2PMATCH_WORK *wk, int seq )
 
     if(CommWifiIsMatched() >= 3){
         BmpYesNoWinDel(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
-		WifiP2PMatchMessagePrint(wk, msg_wifilobby_015, FALSE);	// ”½‰‚ª‚È‚¢EEE
+		WifiP2PMatchMessagePrint(wk, msg_wifilobby_015, FALSE);	// åå¿œãŒãªã„ãƒ»ãƒ»ãƒ»
         CommStateWifiMatchEnd();
         wk->seq = WIFIP2PMATCH_MODE_DISCONNECT;
 		return seq;
@@ -8085,48 +8085,48 @@ static int _vchatNegoWait( WIFIP2PMATCH_WORK *wk, int seq )
     }
     else{
         ret = BmpYesNoSelectMain(wk->pYesNoWork, HEAPID_WIFIP2PMATCH);
-        if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+        if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
             return seq;
-        }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
-            // Ú‘±ŠJn
+        }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
+            // æ¥ç¶šé–‹å§‹
             status = _convertState(wk->keepStatus);
-            if(WIFI_STATUS_UNKNOWN == status){   // –¢’m‚ÌƒXƒe[ƒg‚Ìê‡‰½‚à–³‚¢‚æ‚¤‚É–ß‚é
+            if(WIFI_STATUS_UNKNOWN == status){   // æœªçŸ¥ã®ã‚¹ãƒ†ãƒ¼ãƒˆã®å ´åˆä½•ã‚‚ç„¡ã„ã‚ˆã†ã«æˆ»ã‚‹
             }
             else if( WifiDwc_getFriendStatus(wk->friendNo - 1) == DWC_STATUS_MATCH_SC_SV ){
-				_myVChatStatusToggle(wk); // ©•ª‚ÌVCHAT‚ğ”½“]
+				_myVChatStatusToggle(wk); // è‡ªåˆ†ã®VCHATã‚’åè»¢
                 if( WifiP2PMatch_CommWifiBattleStart( wk, wk->friendNo - 1, status ) ){
                     wk->cancelEnableTimer = _CANCELENABLE_TIMER;
 					_commStateChange(status);
-                    CommSetWifiBothNet(FALSE);  // VCT’†‚Í“¯Šú‘—M‚Ì•K—v‚È‚¢
-                    _myStatusChange(wk, status);  // Ú‘±’†‚É‚È‚é
+                    CommSetWifiBothNet(FALSE);  // VCTä¸­ã¯åŒæœŸé€ä¿¡ã®å¿…è¦ãªã„
+                    _myStatusChange(wk, status);  // æ¥ç¶šä¸­ã«ãªã‚‹
                     _friendNameExpand(wk, wk->friendNo - 1);
                     WifiP2PMatchMessagePrint(wk,msg_wifilobby_014, FALSE);
 					GF_ASSERT( wk->timeWaitWork == NULL );
                     wk->timeWaitWork = TimeWaitIconAdd( &wk->MsgWin, COMM_TALK_WIN_CGX_NUM );
                     if(status != WIFI_STATUS_VCT){
-                        wk->seq = WIFIP2PMATCH_MODE_MATCH_LOOP;  // ƒ}ƒbƒ`ƒ“ƒO‚Ö
+                        wk->seq = WIFIP2PMATCH_MODE_MATCH_LOOP;  // ãƒãƒƒãƒãƒ³ã‚°ã¸
                         return seq;
                     }
                     else{
                         wk->cancelEnableTimer = _CANCELENABLE_TIMER;
-                        wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT_INIT2;  //VCTê—p‚Ö
+                        wk->seq = WIFIP2PMATCH_MODE_VCT_CONNECT_INIT2;  //VCTå°‚ç”¨ã¸
                         return seq;
                     }
                 }
             }
         }
-        // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡  ‚à‚µ‚­‚Í“K‡‚µ‚È‚¢ê‡
+        // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ  ã‚‚ã—ãã¯é©åˆã—ãªã„å ´åˆ
         EndMessageWindowOff(wk);
 
 
-		// ‚»‚Ìl‚Ìî•ñ‚ğÁ‚·
+		// ãã®äººã®æƒ…å ±ã‚’æ¶ˆã™
 //		WifiP2PMatch_UserDispOff( wk, HEAPID_WIFIP2PMATCH );
 
-		// ƒXƒe[ƒ^ƒX‚ğ‚à‚Ç‚·
+		// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚‚ã©ã™
 		// 080703	tomoya takahashi
         _myStatusChange(wk, WIFI_STATUS_LOGIN_WAIT);
 
-		// VCHATŒ³‚É–ß‚·
+		// VCHATå…ƒã«æˆ»ã™
 		_myVChatStatusOrgSet( wk );
 		_userDataInfoDisp(wk);
         wk->seq = WIFIP2PMATCH_MODE_FRIENDLIST;
@@ -8145,7 +8145,7 @@ static int _vchatNegoWait( WIFIP2PMATCH_WORK *wk, int seq )
 // WIFIP2PMATCH_MODE_END_WAIT
 //------------------------------------------------------------------
 /**
- * $brief   I—¹
+ * $brief   çµ‚äº†
  *
  * @param   wk
  * @param   seq
@@ -8158,14 +8158,14 @@ static int 	WifiP2PMatch_EndWait( WIFIP2PMATCH_WORK *wk, int seq )
     if(!CommStateIsInitialize()){
         WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK,
                         COMM_BRIGHTNESS_SYNC, 1, HEAPID_WIFIP2PMATCH);
-        seq = SEQ_OUT;						//I—¹ƒV[ƒPƒ“ƒX‚Ö
+        seq = SEQ_OUT;						//çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
     }
     return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\¦
+ * $brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   wk
  *
@@ -8176,10 +8176,10 @@ static int 	WifiP2PMatch_EndWait( WIFIP2PMATCH_WORK *wk, int seq )
 
 static void WifiP2PMatchMessagePrint( WIFIP2PMATCH_WORK *wk, int msgno, BOOL bSystem )
 {
-    // •¶š—ñæ“¾
+    // æ–‡å­—åˆ—å–å¾—
     u8 speed = CONFIG_GetMsgPrintSpeed(SaveData_GetConfig(wk->pSaveData));
 
-	// TimeWaitIcon”jŠü
+	// TimeWaitIconç ´æ£„
 	_timeWaitIconDel( wk );
 
     if(GF_BGL_BmpWinAddCheck(&wk->SysMsgWin)){
@@ -8209,12 +8209,12 @@ static void WifiP2PMatchMessagePrint( WIFIP2PMATCH_WORK *wk, int msgno, BOOL bSy
         MSGMAN_GetString(  wk->MsgManager, msgno, wk->pExpStrBuf );
     }
     WORDSET_ExpandStr( wk->WordSet, wk->TalkString, wk->pExpStrBuf );
-    // ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+    // ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ æç”»
     GF_BGL_BmpWinDataFill(&wk->MsgWin, 15 );
     BmpTalkWinWrite(&wk->MsgWin, WINDOW_TRANS_OFF,COMM_TALK_WIN_CGX_NUM, COMM_MESFRAME_PAL );
-    // •¶š—ñ•`‰æŠJn
-	MsgPrintSkipFlagSet( MSG_SKIP_ON );		// ƒƒbƒZ[ƒWƒXƒLƒbƒvON
-	MsgPrintAutoFlagSet( MSG_AUTO_OFF );	// ƒƒbƒZ[ƒW©“®‘—‚èOFF
+    // æ–‡å­—åˆ—æç”»é–‹å§‹
+	MsgPrintSkipFlagSet( MSG_SKIP_ON );		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ON
+	MsgPrintAutoFlagSet( MSG_AUTO_OFF );	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è‡ªå‹•é€ã‚ŠOFF
     wk->MsgIndex = GF_STR_PrintSimple( &wk->MsgWin, FONT_TALK, wk->TalkString,
                                        0, 0, speed, NULL);
     GF_BGL_BmpWinOnVReq(&wk->MsgWin);
@@ -8222,7 +8222,7 @@ static void WifiP2PMatchMessagePrint( WIFIP2PMATCH_WORK *wk, int msgno, BOOL bSy
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒVƒXƒeƒ€ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE•\¦
+ * $brief   ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   wk
  *
@@ -8242,8 +8242,8 @@ static void _systemMessagePrint( WIFIP2PMATCH_WORK *wk, int msgno )
         GF_BGL_BmpWinDel(&wk->MsgWin);
     }
 /*	
-// @ƒvƒ‰ƒ`ƒi‚Å‚ÍA©•ª‚ÌƒXƒe[ƒ^ƒX‚ªí‚Éã‚É•\¦‚³‚ê‚Ä‚¢‚é‚æ‚¤‚Éd—l•ÏX‚³‚ê‚½‚½‚ßA
-// @Á‚µ‚Ä‚µ‚Ü‚¤‚Æ¢‚é‚Ì‚ÅA–³Œø
+// ã€€ãƒ—ãƒ©ãƒãƒŠã§ã¯ã€è‡ªåˆ†ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒå¸¸ã«ä¸Šã«è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã‚ˆã†ã«ä»•æ§˜å¤‰æ›´ã•ã‚ŒãŸãŸã‚ã€
+// ã€€æ¶ˆã—ã¦ã—ã¾ã†ã¨å›°ã‚‹ã®ã§ã€ç„¡åŠ¹
 #if AFTER_MASTER_070410_WIFIAPP_N20_EUR_FIX
     if(GF_BGL_BmpWinAddCheck(&wk->MyInfoWin)){
         BmpTalkWinClear( &wk->MyInfoWin, WINDOW_TRANS_ON );
@@ -8265,10 +8265,10 @@ static void _systemMessagePrint( WIFIP2PMATCH_WORK *wk, int msgno )
                      COMM_MESFONT_PAL, COMM_SYS_WIN_CGX);
     MSGMAN_GetString(  wk->SysMsgManager, msgno, wk->pExpStrBuf );
     WORDSET_ExpandStr( wk->WordSet, wk->TalkString, wk->pExpStrBuf );
-    // ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+    // ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ æç”»
     GF_BGL_BmpWinDataFill(&wk->SysMsgWin, 15 );
     BmpMenuWinWrite(&wk->SysMsgWin, WINDOW_TRANS_OFF, MENU_WIN_CGX_NUM, MENU_WIN_PAL );
-    // •¶š—ñ•`‰æŠJn
+    // æ–‡å­—åˆ—æç”»é–‹å§‹
     wk->MsgIndex = GF_STR_PrintSimple( &wk->SysMsgWin, FONT_TALK,
                                        wk->TalkString, 0, 0, MSG_NO_PUT, NULL);
     GF_BGL_BmpWinOnVReq(&wk->SysMsgWin);
@@ -8276,7 +8276,7 @@ static void _systemMessagePrint( WIFIP2PMATCH_WORK *wk, int msgno )
 
 //------------------------------------------------------------------
 /**
- * $brief   —Fl”Ô†‚Ì–¼‘O‚ğexpand‚·‚é
+ * $brief   å‹äººç•ªå·ã®åå‰ã‚’expandã™ã‚‹
  * @param   msg_index
  * @retval  int		    int friend = mydwc_getFriendIndex();
 
@@ -8333,7 +8333,7 @@ static void _myStatusChange(WIFIP2PMATCH_WORK *wk, int status)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚ÌƒXƒe[ƒ^ƒXİ’è		‚½‚¾‘—M‚Í‚µ‚È‚¢
+ *	@brief	è‡ªåˆ†ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¨­å®š		ãŸã é€ä¿¡ã¯ã—ãªã„
  *
  *	@param	wk
  *	@param	status
@@ -8363,21 +8363,21 @@ static void _myStatusChange_not_send(WIFIP2PMATCH_WORK *wk, int status)
             //     Snd_BgmFadeOut( 24, BGM_FADE_VCHAT_TIME);
 		} 
         else if(status == WIFI_STATUS_VCT){
-            Snd_BgmFadeOut( 0, BGM_FADE_VCHAT_TIME); // VCTó‘Ô‚Ö
+            Snd_BgmFadeOut( 0, BGM_FADE_VCHAT_TIME); // VCTçŠ¶æ…‹ã¸
 			
         }
-        else if(status == WIFI_STATUS_LOGIN_WAIT){    // ‘Ò‹@’†@ƒƒOƒCƒ“’¼Œã‚Í‚±‚ê
+        else if(status == WIFI_STATUS_LOGIN_WAIT){    // å¾…æ©Ÿä¸­ã€€ãƒ­ã‚°ã‚¤ãƒ³ç›´å¾Œã¯ã“ã‚Œ
 
-			// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚È‚µ‚É‚·‚é
-			mydwc_setVChat(FALSE);		// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚ÆBGM‰¹—Ê‚ÌŠÖŒW‚ğ®— tomoya takahashi
+			// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆãªã—ã«ã™ã‚‹
+			mydwc_setVChat(FALSE);		// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã¨BGMéŸ³é‡ã®é–¢ä¿‚ã‚’æ•´ç† tomoya takahashi
 
 			if( WifiP2P_CheckLobbyBgm() == TRUE ){
-				// WiFiLê‚É—ˆ‚½‚Æ‚«‚Í‚Ç‚ñ‚Èƒ{ƒŠƒ…[ƒ€‚Å‚à’Êíƒ{ƒŠƒ…[ƒ€‚É‚·‚é
+				// WiFiåºƒå ´ã«æ¥ãŸã¨ãã¯ã©ã‚“ãªãƒœãƒªãƒ¥ãƒ¼ãƒ ã§ã‚‚é€šå¸¸ãƒœãƒªãƒ¥ãƒ¼ãƒ ã«ã™ã‚‹
 		        Snd_BgmFadeIn( BGM_WIFILOBBY_VOL, BGM_FADE_VCHAT_TIME, BGM_FADEIN_START_VOL_NOW);
 			}
 #if 0
-			//ƒ{ƒCƒXƒ`ƒƒƒbƒg‚ªI—¹‚µ‚Ä‚¢‚é‚Ì‚ÅAİ’è‰¹—Ê‚ğ‰Šú’l‚É–ß‚·I
-			//–{“–‚Íİ’è‚µ‚Ä‚ ‚é‰Šú‰¹—Ê‚É–ß‚³‚È‚¢‚Æ‚¢‚¯‚È‚¢‚ªBB‚Æ‚è‚ ‚¦‚¸‚±‚ê‚Å‘ÎˆI
+			//ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆãŒçµ‚äº†ã—ã¦ã„ã‚‹ã®ã§ã€è¨­å®šéŸ³é‡ã‚’åˆæœŸå€¤ã«æˆ»ã™ï¼
+			//æœ¬å½“ã¯è¨­å®šã—ã¦ã‚ã‚‹åˆæœŸéŸ³é‡ã«æˆ»ã•ãªã„ã¨ã„ã‘ãªã„ãŒã€‚ã€‚ã¨ã‚Šã‚ãˆãšã“ã‚Œã§å¯¾å‡¦ï¼
 			Snd_PlayerSetInitialVolumeBySeqNo( _BGM_MAIN, BGM_WIFILOBBY_VOL );
 			Snd_PlayerMoveVolume( SND_HANDLE_BGM, BGM_WIFILOBBY_START_VOL, 0 );
             Snd_BgmFadeIn( BGM_VOL_MAX, BGM_FADE_VCHAT_TIME, BGM_FADEIN_START_VOL_NOW);
@@ -8390,7 +8390,7 @@ static void _myStatusChange_not_send(WIFIP2PMATCH_WORK *wk, int status)
 
 //------------------------------------------------------------------
 /**
- * $brief   VCHATƒtƒ‰ƒO‚ÌØ‚è‘Ö‚¦
+ * $brief   VCHATãƒ•ãƒ©ã‚°ã®åˆ‡ã‚Šæ›¿ãˆ
  * @param   wk
  * @retval  none
  */
@@ -8399,14 +8399,14 @@ static void _myStatusChange_not_send(WIFIP2PMATCH_WORK *wk, int status)
 static BOOL _myVChatStatusToggle(WIFIP2PMATCH_WORK *wk)
 {
     wk->pMatch->myMatchStatus.vchat = 1 - wk->pMatch->myMatchStatus.vchat;
-//    mydwc_setVChat(wk->pMatch->myMatchStatus.vchat);	// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚ÆBGM‰¹—Ê‚ÌŠÖŒW‚ğ®— tomoya takahashi
+//    mydwc_setVChat(wk->pMatch->myMatchStatus.vchat);	// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã¨BGMéŸ³é‡ã®é–¢ä¿‚ã‚’æ•´ç† tomoya takahashi
     mydwc_setMyInfo( &(wk->pMatch->myMatchStatus), sizeof(_WIFI_MACH_STATUS) );
     return wk->pMatch->myMatchStatus.vchat;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   VCHATƒtƒ‰ƒO‚ÌØ‚è‘Ö‚¦
+ * $brief   VCHATãƒ•ãƒ©ã‚°ã®åˆ‡ã‚Šæ›¿ãˆ
  * @param   wk
  * @retval  none
  */
@@ -8416,14 +8416,14 @@ static BOOL _myVChatStatusToggleOrg(WIFIP2PMATCH_WORK *wk)
 {
     wk->pMatch->myMatchStatus.vchat_org = 1 - wk->pMatch->myMatchStatus.vchat_org;
     wk->pMatch->myMatchStatus.vchat = wk->pMatch->myMatchStatus.vchat_org;
-//    mydwc_setVChat(wk->pMatch->myMatchStatus.vchat);	// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚ÆBGM‰¹—Ê‚ÌŠÖŒW‚ğ®— tomoya takahashi
+//    mydwc_setVChat(wk->pMatch->myMatchStatus.vchat);	// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã¨BGMéŸ³é‡ã®é–¢ä¿‚ã‚’æ•´ç† tomoya takahashi
     mydwc_setMyInfo( &(wk->pMatch->myMatchStatus), sizeof(_WIFI_MACH_STATUS) );
     return wk->pMatch->myMatchStatus.vchat_org;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   VCHATƒtƒ‰ƒO‚ğƒIƒŠƒWƒiƒ‹‚É‚à‚Ç‚·
+ * $brief   VCHATãƒ•ãƒ©ã‚°ã‚’ã‚ªãƒªã‚¸ãƒŠãƒ«ã«ã‚‚ã©ã™
  * @param   wk
  * @retval  none
  */
@@ -8433,7 +8433,7 @@ static BOOL _myVChatStatusOrgSet(WIFIP2PMATCH_WORK *wk)
 {
 	OS_TPrintf( "change org %d\n", wk->pMatch->myMatchStatus.vchat_org );
     wk->pMatch->myMatchStatus.vchat = wk->pMatch->myMatchStatus.vchat_org;
-//    mydwc_setVChat(wk->pMatch->myMatchStatus.vchat);// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚ÆBGM‰¹—Ê‚ÌŠÖŒW‚ğ®— tomoya takahashi
+//    mydwc_setVChat(wk->pMatch->myMatchStatus.vchat);// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã¨BGMéŸ³é‡ã®é–¢ä¿‚ã‚’æ•´ç† tomoya takahashi
     mydwc_setMyInfo( &(wk->pMatch->myMatchStatus), sizeof(_WIFI_MACH_STATUS) );
     return wk->pMatch->myMatchStatus.vchat_org;
 }
@@ -8449,13 +8449,13 @@ static BOOL _myVChatStatusOrgSet(WIFIP2PMATCH_WORK *wk)
 static void _timeWaitIconDel(WIFIP2PMATCH_WORK *wk)
 {
     if(wk->timeWaitWork){
-        TimeWaitIconTaskDel(wk->timeWaitWork);  // ƒ^ƒCƒ}[~‚ß
+        TimeWaitIconTaskDel(wk->timeWaitWork);  // ã‚¿ã‚¤ãƒãƒ¼æ­¢ã‚
         //TimeWaitIconDel(wk->timeWaitWork);
         //        GF_BGL_ScrClear(wk->bgl, GF_BGL_FRAME2_M);
         wk->timeWaitWork = NULL;
         // ----------------------------------------------------------------------------
         // localize_spec_mark(LANG_ALL) imatake 2007/02/13
-        // ƒEƒBƒ“ƒhƒE‚ğÁ‹‚·‚éÛA‚»‚ÌƒEƒBƒ“ƒhƒE‚É‘‚«‚Şƒ^ƒXƒN‚àˆê‚ÉÁ‹
+        // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆå»ã™ã‚‹éš›ã€ãã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«æ›¸ãè¾¼ã‚€ã‚¿ã‚¹ã‚¯ã‚‚ä¸€ç·’ã«æ¶ˆå»
         // MatchComment: this localization change from DP US didn't make it into platinum
         //if(wk->MsgIndex != _PRINTTASK_MAX){
         //    if(GF_MSG_PrintEndCheck(wk->MsgIndex)!=0){
@@ -8475,10 +8475,10 @@ static void _timeWaitIconDel(WIFIP2PMATCH_WORK *wk)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒU[ƒf[ƒ^‹­§•\¦ˆ—
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿å¼·åˆ¶è¡¨ç¤ºå‡¦ç†
  *
- *	@param	wk			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	friendNo	—F’B”Ô†
+ *	@param	wk			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	friendNo	å‹é”ç•ªå·
  */
 //-----------------------------------------------------------------------------
 static void WifiP2PMatch_UserDispOn( WIFIP2PMATCH_WORK *wk, u32 friendNo, u32 heapID )
@@ -8494,9 +8494,9 @@ static void WifiP2PMatch_UserDispOn( WIFIP2PMATCH_WORK *wk, u32 friendNo, u32 he
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒU[ƒf[ƒ^‹­§•\¦ˆ—I—¹
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿å¼·åˆ¶è¡¨ç¤ºå‡¦ç†çµ‚äº†
  *
- *	@param	wk			ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	wk			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WifiP2PMatch_UserDispOff( WIFIP2PMATCH_WORK *wk, u32 heapID )
@@ -8504,17 +8504,17 @@ static void WifiP2PMatch_UserDispOff( WIFIP2PMATCH_WORK *wk, u32 heapID )
 	MCVSys_UserDispOff( wk );
 	WIFI_MCR_CursorOff( &wk->matchroom );
 
-	// Ä•`‰æ
+	// å†æç”»
 	MCVSys_ReWrite( wk, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\¦’†‚Ìl‚È‚ç‹­§“I‚É•\¦I—¹
+ *	@brief	è¡¨ç¤ºä¸­ã®äººãªã‚‰å¼·åˆ¶çš„ã«è¡¨ç¤ºçµ‚äº†
  *
- *	@param	wk				ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	target_friend	ƒ^[ƒQƒbƒg‚Ìl•¨‚ÌƒCƒ“ƒfƒbƒNƒX
- *	@param	heapID			ƒq[ƒvID
+ *	@param	wk				ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	target_friend	ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®äººç‰©ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WifiP2PMatch_UserDispOff_Target( WIFIP2PMATCH_WORK *wk, u32 target_friend, u32 heapID )
@@ -8526,7 +8526,7 @@ static void WifiP2PMatch_UserDispOff_Target( WIFIP2PMATCH_WORK *wk, u32 target_f
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚ÅƒAƒNƒZƒX‚µ‚½‚Æ‚«‚Ìƒ†[ƒU[ƒf[ƒ^‹­§•\¦ˆ—
+ *	@brief	è‡ªåˆ†ã§ã‚¢ã‚¯ã‚»ã‚¹ã—ãŸã¨ãã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿å¼·åˆ¶è¡¨ç¤ºå‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void WifiP2PMatch_UserDispOn_MyAcces( WIFIP2PMATCH_WORK *wk, u32 friendNo, u32 heapID )
@@ -8536,26 +8536,26 @@ static void WifiP2PMatch_UserDispOn_MyAcces( WIFIP2PMATCH_WORK *wk, u32 friendNo
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚ÅƒAƒNƒZƒX‚µ‚½‚Æ‚«‚Ìƒ†[ƒU[ƒf[ƒ^‹­§•\¦ˆ—I—¹
+ *	@brief	è‡ªåˆ†ã§ã‚¢ã‚¯ã‚»ã‚¹ã—ãŸã¨ãã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿å¼·åˆ¶è¡¨ç¤ºå‡¦ç†çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 static void WifiP2PMatch_UserDispOff_MyAcces( WIFIP2PMATCH_WORK *wk, u32 heapID )
 {
 	MCVSys_UserDispOff( wk );
 
-	// Ä•`‰æ
+	// å†æç”»
 	MCVSys_ReWrite( wk, HEAPID_WIFIP2PMATCH );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ì‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	å‹•ä½œã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	wk	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“®ì’†
- *	@retval	FALSE	”ñ“®ì’†
+ *	@retval	TRUE	å‹•ä½œä¸­
+ *	@retval	FALSE	éå‹•ä½œä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL MCVSys_MoveCheck( const WIFIP2PMATCH_WORK *wk )
@@ -8568,11 +8568,11 @@ static BOOL MCVSys_MoveCheck( const WIFIP2PMATCH_WORK *wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—F’Bƒf[ƒ^ƒrƒ…[ƒA[‰Šú‰»
+ *	@brief	å‹é”ãƒ‡ãƒ¼ã‚¿ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼åˆæœŸåŒ–
  *
- *	@param	wk			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	heapID		ƒq[ƒvID
+ *	@param	wk			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_Init( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 heapID )
@@ -8591,22 +8591,22 @@ static void MCVSys_Init( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 heapID 
 
 	memset( &wk->view, 0, sizeof(WIFIP2PMATCH_VIEW) );
 
-	// •\¦İ’è
+	// è¡¨ç¤ºè¨­å®š
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );	
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );	
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );	
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 	
-	// ƒ{ƒ^ƒ“ƒf[ƒ^‰Šú‰»
+	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	wk->view.p_bttnman = BMN_Create( bttndata, WCR_MAPDATA_1BLOCKOBJNUM, MCVSys_BttnCallBack, wk, heapID );
 
-	// ƒ[ƒhƒZƒbƒg‰Šú‰»
+	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆåˆæœŸåŒ–
 	wk->view.p_wordset = WORDSET_Create( heapID );
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^“Ç‚İ
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿èª­è¾¼ã¿
 	MCVSys_GraphicSet( wk, p_handle, heapID );
 
-	// ‚Æ‚è‚ ‚¦‚¸XV
+	// ã¨ã‚Šã‚ãˆãšæ›´æ–°
 	wk->view.bttn_allchg = TRUE;
 	MCVSys_BackDraw( wk );
 	MCVSys_BttnDraw( wk );
@@ -8614,9 +8614,9 @@ static void MCVSys_Init( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 heapID 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—F’Bƒf[ƒ^ƒrƒ…[ƒA[”jŠü
+ *	@brief	å‹é”ãƒ‡ãƒ¼ã‚¿ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ç ´æ£„
  *
- *	@param	wk			ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	wk			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_Exit( WIFIP2PMATCH_WORK *wk )
@@ -8625,18 +8625,18 @@ static void MCVSys_Exit( WIFIP2PMATCH_WORK *wk )
 		return;  
 	}
 	
-	// ƒOƒ‰ƒtƒBƒbƒN‚Í‚«
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¯ã
 	MCVSys_GraphicDel( wk );
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ”jŠü
+	// ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	BMN_Delete( wk->view.p_bttnman );	
 	wk->view.p_bttnman = NULL;
 
-	// ƒ[ƒhƒZƒbƒg”jŠü
+	// ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆç ´æ£„
 	WORDSET_Delete( wk->view.p_wordset );
 	wk->view.p_wordset = NULL;
 
-	// BG‚QA‚R‚Í”ñ•\¦‚É‚µ‚Ä‚¨‚­
+	// BGï¼’ã€ï¼“ã¯éè¡¨ç¤ºã«ã—ã¦ãŠã
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );	
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
@@ -8645,12 +8645,12 @@ static void MCVSys_Exit( WIFIP2PMATCH_WORK *wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—F’Bƒf[ƒ^ƒrƒ…[ƒA[ƒAƒbƒvƒf[ƒg
+ *	@brief	å‹é”ãƒ‡ãƒ¼ã‚¿ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
  *
- *	@param	wk			ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	wk			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	‰Ÿ‚³‚ê‚Ä‚¢‚é—F’B”Ô†	+ 1
- *	@retval	0	‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢
+ *	@retval	æŠ¼ã•ã‚Œã¦ã„ã‚‹å‹é”ç•ªå·	+ 1
+ *	@retval	0	æŠ¼ã•ã‚Œã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static u32 MCVSys_Updata( WIFIP2PMATCH_WORK *wk, u32 heapID )
@@ -8659,10 +8659,10 @@ static u32 MCVSys_Updata( WIFIP2PMATCH_WORK *wk, u32 heapID )
 	u32 oambttn_ret;
 	BOOL userd_end;
 
-	// Œ»İƒtƒŒ[ƒ€İ’è
+	// ç¾åœ¨ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	map_param = WIFI_MCR_GetPlayerOnMapParam( &wk->matchroom );
 	
-	// ƒIƒuƒWƒFƒNƒg‚ÌˆÊ’u‚¾‚Æ‰º‚ğŒ©‚È‚¢‚Æ‚¿‚á‚ñ‚Æ‚µ‚½ƒtƒŒ[ƒ€‚ÌˆÊ’u‚ğæ“¾‚Å‚«‚È‚¢
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½ç½®ã ã¨ä¸‹ã‚’è¦‹ãªã„ã¨ã¡ã‚ƒã‚“ã¨ã—ãŸãƒ•ãƒ¬ãƒ¼ãƒ ã®ä½ç½®ã‚’å–å¾—ã§ããªã„
 	map_param2 = WIFI_MCR_GetPlayerOnUnderMapParam( &wk->matchroom );
 	if( (map_param2 >= MCR_MAPPM_MAP00) &&
 		(map_param2 <= MCR_MAPPM_MAP03) ){
@@ -8677,65 +8677,65 @@ static u32 MCVSys_Updata( WIFIP2PMATCH_WORK *wk, u32 heapID )
 		
 			Snd_SePlay( _SE_TBLCHANGE );
 
-			// ”wŒiƒJƒ‰[•ÏX	
+			// èƒŒæ™¯ã‚«ãƒ©ãƒ¼å¤‰æ›´	
 			MCVSys_BackDraw( wk );
 
-			// ƒ{ƒ^ƒ“‚à‘‚«Š·‚¦‚é
+			// ãƒœã‚¿ãƒ³ã‚‚æ›¸ãæ›ãˆã‚‹
 			wk->view.button_on = TRUE;
-			wk->view.bttn_allchg = TRUE;	// ƒ{ƒ^ƒ“‹­§•ÏX 
+			wk->view.bttn_allchg = TRUE;	// ãƒœã‚¿ãƒ³å¼·åˆ¶å¤‰æ›´ 
 		}
 	}
 
 
-	// ƒ†[ƒU[ƒf[ƒ^•\¦ˆ—
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºå‡¦ç†
 	if( wk->view.user_disp == MCV_USERDISP_INIT ){
 		wk->view.user_disp = MCV_USERDISP_ON;
 		wk->view.user_dispno = WF_USERDISPTYPE_NRML;
 		MCVSys_UserDispDraw( wk, heapID );
-		MCVSys_OamBttnOn( wk );	// OAMƒ{ƒ^ƒ“•\¦
+		MCVSys_OamBttnOn( wk );	// OAMãƒœã‚¿ãƒ³è¡¨ç¤º
 	}
 
 
 	if( wk->view.user_disp == MCV_USERDISP_OFF ){
 
-		// ƒ{ƒ^ƒ“ƒƒCƒ“
+		// ãƒœã‚¿ãƒ³ãƒ¡ã‚¤ãƒ³
 		BMN_Main( wk->view.p_bttnman );
 
-		// ƒ{ƒ^ƒ“ƒAƒjƒˆ—
+		// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡å‡¦ç†
 		MCVSys_BttnAnmMan( wk );
 
-		// •\¦ƒƒCƒ“
+		// è¡¨ç¤ºãƒ¡ã‚¤ãƒ³
 		if( wk->view.button_on == TRUE ){
 			MCVSys_BttnDraw( wk );
 			wk->view.button_on = FALSE;
 		}
 	}
 
-	// •à‚¢‚½‚èAƒ^ƒbƒ`ƒpƒlƒ‹‚ÉG‚ê‚Ä‚¢‚½‚çƒ†[ƒU[•\¦‚ğOFF‚·‚é
+	// æ­©ã„ãŸã‚Šã€ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã«è§¦ã‚Œã¦ã„ãŸã‚‰ãƒ¦ãƒ¼ã‚¶ãƒ¼è¡¨ç¤ºã‚’OFFã™ã‚‹
 	if( (wk->view.user_disp == MCV_USERDISP_ON) || 
 		(wk->view.user_disp == MCV_USERDISP_ONEX) ){
 
-		// ‚µ‚½‰æ–ÊOAMƒ{ƒ^ƒ“ƒƒCƒ“
+		// ã—ãŸç”»é¢OAMãƒœã‚¿ãƒ³ãƒ¡ã‚¤ãƒ³
 		oambttn_ret = MCVSys_OamBttnMain( wk );
 
-		//  USERDI—¹ƒ`ƒFƒbƒN
+		//  USERDçµ‚äº†ãƒã‚§ãƒƒã‚¯
 		userd_end = MCVSys_UserDispEndCheck( wk, oambttn_ret );
 		
-		// ‚È‚É‚©ƒL[‚ğ‰Ÿ‚·‚©Au‚à‚Ç‚év‚ğ‰Ÿ‚µ‚½‚çI—¹‚·‚é
+		// ãªã«ã‹ã‚­ãƒ¼ã‚’æŠ¼ã™ã‹ã€ã€Œã‚‚ã©ã‚‹ã€ã‚’æŠ¼ã—ãŸã‚‰çµ‚äº†ã™ã‚‹
 		if( userd_end == TRUE ){
-			wk->view.bttn_chg_friendNo = wk->view.touch_friendNo;	// ‚±‚Ì—F’B‚Ìƒ{ƒ^ƒ“‚ğXV‚µ‚Ä‚à‚ç‚¤
+			wk->view.bttn_chg_friendNo = wk->view.touch_friendNo;	// ã“ã®å‹é”ã®ãƒœã‚¿ãƒ³ã‚’æ›´æ–°ã—ã¦ã‚‚ã‚‰ã†
 			wk->view.touch_friendNo = 0;
 			wk->view.touch_frame = 0;
 			wk->view.button_on = TRUE;
 			wk->view.bttn_allchg = TRUE;
 			wk->view.user_disp = MCV_USERDISP_OFF;
-			MCVSys_OamBttnOff( wk );	// ƒ{ƒ^ƒ“OFF
-			Snd_SePlay( _SE_DESIDE );	// ƒLƒƒƒ“ƒZƒ‹‰¹
+			MCVSys_OamBttnOff( wk );	// ãƒœã‚¿ãƒ³OFF
+			Snd_SePlay( _SE_DESIDE );	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«éŸ³
 		}else{
-			// ¶‰E‚Ìƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚½‚çƒy[ƒWØ‚è‘Ö‚¦‚P
+			// å·¦å³ã®ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚Œã¦ã„ãŸã‚‰ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆï¼‘
 			if( oambttn_ret != MCV_USERD_BTTN_RET_NONE ){
-				Snd_SePlay( _SE_DESIDE );						// ƒy[ƒW•ÏX‰¹
-				MCVSys_UserDispPageChange( wk, oambttn_ret );	// •ÏXˆ—
+				Snd_SePlay( _SE_DESIDE );						// ãƒšãƒ¼ã‚¸å¤‰æ›´éŸ³
+				MCVSys_UserDispPageChange( wk, oambttn_ret );	// å¤‰æ›´å‡¦ç†
 				MCVSys_UserDispDraw( wk, heapID );
 			}
 		}
@@ -8746,16 +8746,16 @@ static u32 MCVSys_Updata( WIFIP2PMATCH_WORK *wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—F’Bƒf[ƒ^ƒrƒ…[ƒA[ƒAƒbƒvƒf[ƒg	ƒ{ƒ^ƒ“‚Ì•\¦‚Ì‚İ
+ *	@brief	å‹é”ãƒ‡ãƒ¼ã‚¿ãƒ“ãƒ¥ãƒ¼ã‚¢ãƒ¼ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ	ãƒœã‚¿ãƒ³ã®è¡¨ç¤ºã®ã¿
  *
- *	@param	wk	ƒVƒXƒeƒ€ƒ[ƒN 
+ *	@param	wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ 
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_UpdataBttn( WIFIP2PMATCH_WORK *wk )
 {
 	if( wk->view.user_disp == MCV_USERDISP_OFF ){
 
-		// •\¦ƒƒCƒ“
+		// è¡¨ç¤ºãƒ¡ã‚¤ãƒ³
 		if( wk->view.button_on == TRUE ){
 			MCVSys_BttnDraw( wk );
 			wk->view.button_on = FALSE;
@@ -8765,23 +8765,23 @@ static void MCVSys_UpdataBttn( WIFIP2PMATCH_WORK *wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒU[ƒfƒBƒXƒvƒŒƒC‚ğI—¹‚·‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã‚’çµ‚äº†ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	wk			ƒ[ƒN
- *	@param	oambttn_ret	OAMƒ{ƒ^ƒ“ƒƒCƒ“–ß‚è’l
+ *	@param	wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	oambttn_ret	OAMãƒœã‚¿ãƒ³ãƒ¡ã‚¤ãƒ³æˆ»ã‚Šå€¤
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	‚µ‚È‚¢
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL MCVSys_UserDispEndCheck( WIFIP2PMATCH_WORK *wk, u32 oambttn_ret )
 {
-	// ‹­§•\¦‚µ‚Ä‚¢‚é‚Ì‚ÅI—¹‚µ‚È‚¢
+	// å¼·åˆ¶è¡¨ç¤ºã—ã¦ã„ã‚‹ã®ã§çµ‚äº†ã—ãªã„
 	if( (wk->view.user_disp == MCV_USERDISP_ONEX) ){
 		return FALSE;
 	}
 	
-	//  ˆÚ“®‚Ícontƒ{ƒ^ƒ“‚ÍƒgƒŠƒK[
+	//  ç§»å‹•ã¯contãƒœã‚¿ãƒ³ã¯ãƒˆãƒªã‚¬ãƒ¼
 	if( (sys.cont & (PAD_KEY_LEFT|PAD_KEY_RIGHT|PAD_KEY_UP|PAD_KEY_DOWN)) ||
 		(sys.trg & (PAD_BUTTON_A|PAD_BUTTON_B|PAD_BUTTON_X)) ||
 		(oambttn_ret == MCV_USERD_BTTN_RET_BACK) ){
@@ -8793,11 +8793,11 @@ static BOOL MCVSys_UserDispEndCheck( WIFIP2PMATCH_WORK *wk, u32 oambttn_ret )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡Ú×•\¦‚µ‚Ä‚¢‚él‚Ì—F’BIDX‚ğæ“¾
+ *	@brief	ä»Šè©³ç´°è¡¨ç¤ºã—ã¦ã„ã‚‹äººã®å‹é”IDXã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *		
- *	@return	—F’BƒCƒ“ƒfƒbƒNƒX	(0‚È‚ç•\¦‚µ‚Ä‚È‚¢)
+ *	@return	å‹é”ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹	(0ãªã‚‰è¡¨ç¤ºã—ã¦ãªã„)
  */
 //-----------------------------------------------------------------------------
 static u32	MCVSys_UserDispGetFriend( const WIFIP2PMATCH_WORK* cp_wk )
@@ -8807,10 +8807,10 @@ static u32	MCVSys_UserDispGetFriend( const WIFIP2PMATCH_WORK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒU[ƒf[ƒ^•\¦
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
- *	@param	wk			ƒ[ƒN
- *	@param	friendNo	—F’B”Ô†
+ *	@param	wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	friendNo	å‹é”ç•ªå·
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_UserDispOn( WIFIP2PMATCH_WORK *wk, u32 friendNo, u32 heapID )
@@ -8821,15 +8821,15 @@ static void MCVSys_UserDispOn( WIFIP2PMATCH_WORK *wk, u32 friendNo, u32 heapID )
 		wk->view.user_disp		= MCV_USERDISP_ONEX;
 		wk->view.user_dispno = WF_USERDISPTYPE_NRML;
 		MCVSys_UserDispDraw( wk, heapID );
-		MCVSys_OamBttnOnNoBack( wk );	//  ‹­§•\¦—pƒ{ƒ^ƒ“•\¦
+		MCVSys_OamBttnOnNoBack( wk );	//  å¼·åˆ¶è¡¨ç¤ºç”¨ãƒœã‚¿ãƒ³è¡¨ç¤º
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒU[ƒf[ƒ^OFF
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿OFF
  *
- *	@param	wk			ƒ[ƒN
+ *	@param	wk			ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_UserDispOff( WIFIP2PMATCH_WORK *wk )
@@ -8840,27 +8840,27 @@ static void MCVSys_UserDispOff( WIFIP2PMATCH_WORK *wk )
 		wk->view.user_disp		= MCV_USERDISP_OFF;
 		wk->view.button_on		= TRUE;
 		wk->view.bttn_allchg = TRUE;
-		MCVSys_OamBttnOff( wk );	// ƒ{ƒ^ƒ“OFF
+		MCVSys_OamBttnOff( wk );	// ãƒœã‚¿ãƒ³OFF
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒy[ƒW•ÏXˆ—
+ *	@brief	ãƒšãƒ¼ã‚¸å¤‰æ›´å‡¦ç†
  *	
- *	@param	wk				ƒ[ƒN	
- *	@param	oambttn_ret		ƒ{ƒ^ƒ“–ß‚è’l
+ *	@param	wk				ãƒ¯ãƒ¼ã‚¯	
+ *	@param	oambttn_ret		ãƒœã‚¿ãƒ³æˆ»ã‚Šå€¤
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_UserDispPageChange( WIFIP2PMATCH_WORK *wk, u32 oambttn_ret )
 {
 	u32 typenum;
 
-	// ƒtƒƒ“ƒeƒBƒA—L–³‚ÅA•\¦”‚ğ•Ï‚¦‚é
+	// ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æœ‰ç„¡ã§ã€è¡¨ç¤ºæ•°ã‚’å¤‰ãˆã‚‹
 	if( _frontierInCheck(wk) == TRUE ){
 		typenum = WF_USERDISPTYPE_NUM;
 	}else{
-		typenum = WF_USERDISPTYPE_MINI+1;	// ƒ~ƒjƒQ[ƒ€‚Ü‚Å•\¦
+		typenum = WF_USERDISPTYPE_MINI+1;	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã¾ã§è¡¨ç¤º
 	}
 	
 	if( oambttn_ret == MCV_USERD_BTTN_RET_RIGHT ){
@@ -8875,11 +8875,11 @@ static void MCVSys_UserDispPageChange( WIFIP2PMATCH_WORK *wk, u32 oambttn_ret )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	bttnid		ƒ{ƒ^ƒ“ID
- *	@param	event		ƒCƒxƒ“ƒgí—Ş
- *	@param	p_work		ƒ[ƒN
+ *	@param	bttnid		ãƒœã‚¿ãƒ³ID
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆç¨®é¡
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_BttnCallBack( u32 bttnid, u32 event, void* p_work )
@@ -8887,23 +8887,23 @@ static void MCVSys_BttnCallBack( u32 bttnid, u32 event, void* p_work )
 	WIFIP2PMATCH_WORK *wk = p_work;
 	u32 friendNo;
 
-	// —F’B”Ô†æ“¾
+	// å‹é”ç•ªå·å–å¾—
 	friendNo = (wk->view.frame_no * WCR_MAPDATA_1BLOCKOBJNUM) + bttnid;
-	friendNo ++;	// ©•ª‚ª‚O‚¾‚©‚ç
+	friendNo ++;	// è‡ªåˆ†ãŒï¼ã ã‹ã‚‰
 
-	// “®ì’†‚©ƒ`ƒFƒbƒN
+	// å‹•ä½œä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( wk->view.bttnfriendNo[ friendNo-1 ] != MCV_BTTN_FRIEND_TYPE_IN ){
-		// “®ì‚µ‚Ä‚¢‚È‚¢‚Ì‚Å‰½‚à‚µ‚È‚¢
+		// å‹•ä½œã—ã¦ã„ãªã„ã®ã§ä½•ã‚‚ã—ãªã„
 		return ;
 	}
 
-	// ‚·‚Å‚Éƒ{ƒ^ƒ““®ì’†‚È‚Ì‚Å”½‰‚µ‚È‚¢
+	// ã™ã§ã«ãƒœã‚¿ãƒ³å‹•ä½œä¸­ãªã®ã§åå¿œã—ãªã„
 	if( wk->view.touch_friendNo != 0 ){
 		return ;
 	}
 
 	switch( event ){
-	case BMN_EVENT_TOUCH:		///< G‚ê‚½uŠÔ
+	case BMN_EVENT_TOUCH:		///< è§¦ã‚ŒãŸç¬é–“
 		wk->view.touch_friendNo = friendNo;
 		Snd_SePlay( _SE_DESIDE );
 		break;
@@ -8915,11 +8915,11 @@ static void MCVSys_BttnCallBack( u32 bttnid, u32 event, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^İ’è
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	wk			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_handle	ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- *	@param	heapID		ƒq[ƒvID
+ *	@param	wk			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_GraphicSet( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 heapID )
@@ -8927,47 +8927,47 @@ static void MCVSys_GraphicSet( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 h
 	int i, j;
 	int x, y;
 	
-	// BGİ’è
-	// FRAME0_SƒXƒNƒŠ[ƒ“ƒf[ƒ^ƒNƒŠ[ƒ“
+	// BGè¨­å®š
+	// FRAME0_Sã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªãƒ¼ãƒ³
     GF_BGL_ScrClear( wk->bgl, GF_BGL_FRAME0_S );
-	// ƒpƒŒƒbƒg“]‘—
-	ArcUtil_HDL_PalSet( p_handle, NARC_wifip2pmatch_wf_match_btm_NCLR,	// ”wŒi—p
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
+	ArcUtil_HDL_PalSet( p_handle, NARC_wifip2pmatch_wf_match_btm_NCLR,	// èƒŒæ™¯ç”¨
 			PALTYPE_SUB_BG, MCV_PAL_BACK*32, MCV_PAL_BACK_NUM*32, heapID );
-	ArcUtil_HDL_PalSet( p_handle, NARC_wifip2pmatch_wf_match_btm_button_NCLR,	// ƒ{ƒ^ƒ“—p
+	ArcUtil_HDL_PalSet( p_handle, NARC_wifip2pmatch_wf_match_btm_button_NCLR,	// ãƒœã‚¿ãƒ³ç”¨
 			PALTYPE_SUB_BG, MCV_PAL_BTTN*32, MCV_PAL_BTTN_NUM*32, heapID );
 
-	// ƒLƒƒƒ‰ƒNƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_wf_match_btm_NCGR,
 			wk->bgl, GF_BGL_FRAME0_S, MCV_CGX_BACK, 0, FALSE, heapID );
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_wf_match_btm_button_NCGR,
 			wk->bgl, GF_BGL_FRAME2_S, MCV_CGX_BTTN2, 0, FALSE, heapID );
 
-	// ƒXƒNƒŠ[ƒ““Ç‚İor“]‘—
-	// ”wŒi‚ÍƒLƒƒƒ‰ƒNƒ^ˆÊ’u‚ª‚¸‚ê‚Ä‚¢‚é‚Ì‚ÅƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ğ‘‚«Š·‚¦‚é	
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³èª­è¾¼ã¿orè»¢é€
+	// èƒŒæ™¯ã¯ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ä½ç½®ãŒãšã‚Œã¦ã„ã‚‹ã®ã§ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãæ›ãˆã‚‹	
 	ArcUtil_HDL_ScrnSet( p_handle, NARC_wifip2pmatch_wf_match_btm_NSCR, wk->bgl, GF_BGL_FRAME0_S, 0, 0, FALSE, heapID );
 	
-	// ƒ{ƒ^ƒ“ƒXƒNƒŠ[ƒ““Ç‚İ
+	// ãƒœã‚¿ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³èª­è¾¼ã¿
 	wk->view.p_bttnbuff = ArcUtil_HDL_ScrnDataGet( p_handle, NARC_wifip2pmatch_wf_match_btm_button_NSCR, FALSE, &wk->view.p_bttnscrn, heapID );
 	MCVSys_GraphicScrnCGOfsChange( wk->view.p_bttnscrn, MCV_CGX_BTTN2 );
 
-	// ƒ†[ƒU[ƒXƒNƒŠ[ƒ““Ç‚İ
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³èª­è¾¼ã¿
 	for( i=0; i<WF_USERDISPTYPE_NUM; i++ ){
 		wk->view.p_userbuff[i] = ArcUtil_HDL_ScrnDataGet( p_handle, NARC_wifip2pmatch_wf_match_btm_result00_NSCR+i, FALSE, &wk->view.p_userscrn[i], heapID );
 		MCVSys_GraphicScrnCGOfsChange( wk->view.p_userscrn[i], MCV_CGX_BTTN2 );
 	}
 
-	// ƒ_ƒ~[ƒXƒNƒŠ[ƒ““Ç‚İ‚İ
+	// ãƒ€ãƒŸãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³èª­ã¿è¾¼ã¿
 	wk->view.p_useretcbuff = ArcUtil_HDL_ScrnDataGet( p_handle, NARC_wifip2pmatch_wf_match_btm_etc_NSCR, FALSE, &wk->view.p_useretcscrn, heapID );
 	MCVSys_GraphicScrnCGOfsChange( wk->view.p_useretcscrn, MCV_CGX_BTTN2 );
 	
 	
 
-	// ƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚İ
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­è¾¼ã¿
 	TalkFontPaletteLoad( PALTYPE_SUB_BG, MCV_SYSFONT_PAL*32, heapID );
 
-	// ƒrƒbƒgƒ}ƒbƒvì¬
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ä½œæˆ
 	for( i=0; i<WCR_MAPDATA_1BLOCKOBJNUM; i++ ){
-		x = i/4;	// ”z’u‚Í2*4
+		x = i/4;	// é…ç½®ã¯2*4
 		y = i%4;	
 		GF_BGL_BmpWinInit( &wk->view.nameWin[i] );
 		GF_BGL_BmpWinAdd( wk->bgl, &wk->view.nameWin[i],
@@ -8976,11 +8976,11 @@ static void MCVSys_GraphicSet( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 h
 				MCV_NAMEWIN_DEFY+(MCV_NAMEWIN_OFSY*y),
 				MCV_NAMEWIN_SIZX, MCV_NAMEWIN_SIZY,
 				MCV_SYSFONT_PAL, MCV_NAMEWIN_CGX+(MCV_NAMEWIN_CGSIZ*i) );
-		// “§–¾‚É‚µ‚Ä“WŠJ
+		// é€æ˜ã«ã—ã¦å±•é–‹
 		GF_BGL_BmpWinDataFill( &wk->view.nameWin[i], 0 );
 		GF_BGL_BmpWinOnVReq( &wk->view.nameWin[i] );
 
-		// ó‘Ô–Ê‘‚«‚İæ
+		// çŠ¶æ…‹é¢æ›¸ãè¾¼ã¿å…ˆ
 		for( j=0; j<WF_VIEW_STATUS_NUM; j++ ){
 			GF_BGL_BmpWinInit( &wk->view.statusWin[i][j] );
 			GF_BGL_BmpWinAdd( wk->bgl, &wk->view.statusWin[i][j],
@@ -9000,30 +9000,30 @@ static void MCVSys_GraphicSet( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 h
 			MCV_USERWIN_X, MCV_USERWIN_Y,
 			MCV_USERWIN_SIZX, MCV_USERWIN_SIZY,
 			MCV_SYSFONT_PAL, MCV_USERWIN_CGX );
-	// “§–¾‚É‚µ‚Ä“WŠJ
+	// é€æ˜ã«ã—ã¦å±•é–‹
 	GF_BGL_BmpWinDataFill( &wk->view.userWin, 0 );
 	GF_BGL_BmpWinOnVReq( &wk->view.userWin );
 
 
-	// ƒTƒu‰æ–ÊOAM‰Šú‰»
+	// ã‚µãƒ–ç”»é¢OAMåˆæœŸåŒ–
 	MCVSys_OamBttnInit( wk, p_handle, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^”jŠü
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	wk	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_GraphicDel( WIFIP2PMATCH_WORK *wk )
 {
 	int i, j;
 
-	// ƒTƒu‰æ–ÊOAM”jŠü
+	// ã‚µãƒ–ç”»é¢OAMç ´æ£„
 	MCVSys_OamBttnDelete( wk );
 	
-	// ƒrƒbƒgƒ}ƒbƒv”jŠü
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç ´æ£„
 	for( i=0; i<WCR_MAPDATA_1BLOCKOBJNUM; i++ ){
 		GF_BGL_BmpWinDel( &wk->view.nameWin[i] );
 		for( j=0; j<WF_VIEW_STATUS_NUM; j++ ){
@@ -9032,24 +9032,24 @@ static void MCVSys_GraphicDel( WIFIP2PMATCH_WORK *wk )
 	}
 	GF_BGL_BmpWinDel( &wk->view.userWin );
 	
-	// ƒ{ƒ^ƒ“ƒXƒNƒŠ[ƒ“”jŠü
+	// ãƒœã‚¿ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç ´æ£„
 	sys_FreeMemoryEz( wk->view.p_bttnbuff );
 
-	// ƒ†[ƒU[ƒEƒCƒ“ƒhƒE
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 	for( i=0; i<WF_USERDISPTYPE_NUM; i++ ){
 		sys_FreeMemoryEz( wk->view.p_userbuff[i] );
 	}
 
-	// ƒ_ƒ~[ƒXƒNƒŠ[ƒ“”jŠü
+	// ãƒ€ãƒŸãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç ´æ£„
 	sys_FreeMemoryEz( wk->view.p_useretcbuff );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	SCRN‚ÌƒLƒƒƒ‰ƒNƒ^No‚ğ“]‘—æ‚ÌƒAƒhƒŒƒX•ª‘«‚·
+ *	@brief	SCRNã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿Noã‚’è»¢é€å…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹åˆ†è¶³ã™
  *
- *	@param	p_scrn	ƒXƒNƒŠ[ƒ“ƒf[ƒ^
- *	@param	cgofs	ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒgiƒLƒƒƒ‰ƒNƒ^’PˆÊj
+ *	@param	p_scrn	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	cgofs	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ï¼‰
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_GraphicScrnCGOfsChange( NNSG2dScreenData* p_scrn, u8 cgofs )
@@ -9071,15 +9071,15 @@ static void MCVSys_GraphicScrnCGOfsChange( NNSG2dScreenData* p_scrn, u8 cgofs )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“İ’è
+ *	@brief	ãƒœã‚¿ãƒ³è¨­å®š
  *
- *	@param	wk			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	friendNo	—F’B”Ô†
- *	@param	type		İ’èƒ^ƒCƒv
+ *	@param	wk			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	friendNo	å‹é”ç•ªå·
+ *	@param	type		è¨­å®šã‚¿ã‚¤ãƒ—
  *
  *	type
- *		MCV_BTTN_FRIEND_TYPE_RES,	// —\–ñ
- *		MCV_BTTN_FRIEND_TYPE_IN,	// “o˜^Ï‚İ
+ *		MCV_BTTN_FRIEND_TYPE_RES,	// äºˆç´„
+ *		MCV_BTTN_FRIEND_TYPE_IN,	// ç™»éŒ²æ¸ˆã¿
  *		
  */
 //-----------------------------------------------------------------------------
@@ -9094,10 +9094,10 @@ static void MCVSys_BttnSet( WIFIP2PMATCH_WORK *wk, u32 friendNo, u32 type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“‚©‚ç‚Í‚¸‚·
+ *	@brief	ãƒœã‚¿ãƒ³ã‹ã‚‰ã¯ãšã™
  *
- *	@param	wk			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	friendNo	—F’B”Ô†
+ *	@param	wk			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	friendNo	å‹é”ç•ªå·
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_BttnDel( WIFIP2PMATCH_WORK *wk, u32 friendNo )
@@ -9109,16 +9109,16 @@ static void MCVSys_BttnDel( WIFIP2PMATCH_WORK *wk, u32 friendNo )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“‚Ì•\¦ƒ^ƒCƒv‚ğæ“¾‚·‚é
+ *	@brief	ãƒœã‚¿ãƒ³ã®è¡¨ç¤ºã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	wk			ƒ[ƒN
- *	@param	friendNo	—F’Bnumber
+ *	@param	wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	friendNo	å‹é”number
  *	
- *	@return	•\¦ƒ^ƒCƒv
+ *	@return	è¡¨ç¤ºã‚¿ã‚¤ãƒ—
  *	type
- *		MCV_BTTN_FRIEND_TYPE_RES,	// —\–ñ
- *		MCV_BTTN_FRIEND_TYPE_IN,	// “o˜^Ï‚İ
- *		MCV_BTTN_FRIEND_TYPE_NONE,	// ‚È‚µ
+ *		MCV_BTTN_FRIEND_TYPE_RES,	// äºˆç´„
+ *		MCV_BTTN_FRIEND_TYPE_IN,	// ç™»éŒ²æ¸ˆã¿
+ *		MCV_BTTN_FRIEND_TYPE_NONE,	// ãªã—
  */
 //-----------------------------------------------------------------------------
 static u32 MCVSys_BttnTypeGet( const WIFIP2PMATCH_WORK *wk, u32 friendNo )
@@ -9129,9 +9129,9 @@ static u32 MCVSys_BttnTypeGet( const WIFIP2PMATCH_WORK *wk, u32 friendNo )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹­§‘‚«’¼‚µ
+ *	@brief	å¼·åˆ¶æ›¸ãç›´ã—
  *
- *	@param	wk			ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	wk			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_ReWrite( WIFIP2PMATCH_WORK *wk, u32 heapID )
@@ -9146,7 +9146,7 @@ static void MCVSys_ReWrite( WIFIP2PMATCH_WORK *wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“‚ğ‚·‚×‚Ä‘‚­ƒŠƒNƒGƒXƒg‚ğo‚·
+ *	@brief	ãƒœã‚¿ãƒ³ã‚’ã™ã¹ã¦æ›¸ããƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
  *
  *	@param	wk			
  */
@@ -9159,14 +9159,14 @@ static void MCVSys_BttnAllWriteReq( WIFIP2PMATCH_WORK *wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”wŒi•`‰æ
+ *	@brief	èƒŒæ™¯æç”»
  *
- *	@param	wk	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_BackDraw( WIFIP2PMATCH_WORK *wk )
 {
-	// ”wŒi‚ÌƒJƒ‰[‚ğ•Ï‚¦‚é
+	// èƒŒæ™¯ã®ã‚«ãƒ©ãƒ¼ã‚’å¤‰ãˆã‚‹
 	GF_BGL_ScrPalChange( wk->bgl, GF_BGL_FRAME0_S, 0, 0,
 			32, 24, wk->view.frame_no+MCV_PAL_FRMNO );
 
@@ -9175,9 +9175,9 @@ static void MCVSys_BackDraw( WIFIP2PMATCH_WORK *wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“•\¦
+ *	@brief	ãƒœã‚¿ãƒ³è¡¨ç¤º
  *
- *	@param	wk	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_BttnDraw( WIFIP2PMATCH_WORK *wk )
@@ -9188,15 +9188,15 @@ static void MCVSys_BttnDraw( WIFIP2PMATCH_WORK *wk )
 	int x, y;
 	int friend_no;
 	int frame;
-	BOOL write_change_masterflag;	// ‹­§“I‚É‚·‚×‚Ä‚Ìƒ{ƒ^ƒ“‚ğ‘‚«Š·‚¦‚é
-	BOOL write_change_localflag;	// ‚±‚±‚Ìƒ{ƒ^ƒ“‚²‚Æ‚Ì‘‚«Š·‚¦ƒ`ƒFƒbƒN
+	BOOL write_change_masterflag;	// å¼·åˆ¶çš„ã«ã™ã¹ã¦ã®ãƒœã‚¿ãƒ³ã‚’æ›¸ãæ›ãˆã‚‹
+	BOOL write_change_localflag;	// ã“ã“ã®ãƒœã‚¿ãƒ³ã”ã¨ã®æ›¸ãæ›ãˆãƒã‚§ãƒƒã‚¯
 
-	// ‘S‘‚«Š·‚¦ƒ`ƒFƒbƒN
+	// å…¨æ›¸ãæ›ãˆãƒã‚§ãƒƒã‚¯
 	if( wk->view.bttn_allchg == TRUE ){
 		wk->view.bttn_allchg = FALSE;
 		write_change_masterflag = TRUE;
 
-		// ƒXƒNƒŠ[ƒ“ƒNƒŠƒA
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢
 		GF_BGL_ScrFill( wk->bgl, GF_BGL_FRAME2_S, 0, 0, 0, 32, 24, 0 );
 	}else{
 		write_change_masterflag = FALSE;
@@ -9206,7 +9206,7 @@ static void MCVSys_BttnDraw( WIFIP2PMATCH_WORK *wk )
 	for( i=0; i<WCR_MAPDATA_1BLOCKOBJNUM; i++ ){
 		
 		friend_no = (wk->view.frame_no*WCR_MAPDATA_1BLOCKOBJNUM) + i + 1;
-		// •\¦ƒ^ƒCƒvİ’è
+		// è¡¨ç¤ºã‚¿ã‚¤ãƒ—è¨­å®š
 		if( wk->view.bttnfriendNo[friend_no - 1] != MCV_BTTN_FRIEND_TYPE_NONE ){
 			sex = WifiList_GetFriendInfo( wk->pList, friend_no - 1, WIFILIST_FRIEND_SEX );
 			if(sex == PM_MALE){
@@ -9218,11 +9218,11 @@ static void MCVSys_BttnDraw( WIFIP2PMATCH_WORK *wk )
 			bttn_type = MCV_BUTTON_TYPE_NONE;
 		}
 
-		// ƒ{ƒ^ƒ“•\¦À•W
+		// ãƒœã‚¿ãƒ³è¡¨ç¤ºåº§æ¨™
 		x = i/4;
 		y = i%4;
 
-		// ‰Ÿ‚³‚ê‚Ä‚¢‚éƒ{ƒ^ƒ“‚©ƒ`ƒFƒbƒN
+		// æŠ¼ã•ã‚Œã¦ã„ã‚‹ãƒœã‚¿ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
 		if( friend_no == wk->view.touch_friendNo ){
 			frame = wk->view.touch_frame;
 		}else{
@@ -9230,7 +9230,7 @@ static void MCVSys_BttnDraw( WIFIP2PMATCH_WORK *wk )
 		}
 
 
-		// ƒ{ƒ^ƒ“‚ÌŒ`‚ª•Ï‚í‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		// ãƒœã‚¿ãƒ³ã®å½¢ãŒå¤‰ã‚ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( (friend_no == wk->view.touch_friendNo) || 
 			(friend_no == wk->view.bttn_chg_friendNo) ){
 			write_change_localflag = TRUE;
@@ -9238,24 +9238,24 @@ static void MCVSys_BttnDraw( WIFIP2PMATCH_WORK *wk )
 			write_change_localflag = FALSE;
 		}
 
-		// ‘‚«Š·‚¦‚é‚©ƒ`ƒFƒbƒN
+		// æ›¸ãæ›ãˆã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( (write_change_masterflag == TRUE) ||
 			(write_change_localflag == TRUE) ){
 
-			// ƒ{ƒ^ƒ“
+			// ãƒœã‚¿ãƒ³
 			MCVSys_BttnWrite( wk, 
 					MCV_BUTTON_DEFX+(MCV_BUTTON_OFSX*x), MCV_BUTTON_DEFY+(MCV_BUTTON_OFSY*y),
 					bttn_type, frame );
 			
-			// –¼‘O•\¦
+			// åå‰è¡¨ç¤º
 			if( bttn_type != MCV_BUTTON_TYPE_NONE ){
 
-				// –¼‘O‚Ì•\¦
+				// åå‰ã®è¡¨ç¤º
 				MCVSys_BttnWinDraw( wk, &wk->view.nameWin[i], friend_no, frame, i );	
 				MCVSys_BttnStatusWinDraw( wk, wk->view.statusWin[i], friend_no, frame, i );
 			}else{
 
-				// “§–¾‚É‚·‚é
+				// é€æ˜ã«ã™ã‚‹
 				GF_BGL_BmpWinDataFill( &wk->view.nameWin[i], 0 );
 				GF_BGL_BmpWinOnVReq( &wk->view.nameWin[i] );
 				for( j=0; j<WF_VIEW_STATUS_NUM; j++ ){
@@ -9268,16 +9268,16 @@ static void MCVSys_BttnDraw( WIFIP2PMATCH_WORK *wk )
 
 	GF_BGL_LoadScreenV_Req( wk->bgl, GF_BGL_FRAME2_S );
 
-	// ƒƒbƒZ[ƒW–Ê‚Ì•\¦İ’è
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é¢ã®è¡¨ç¤ºè¨­å®š
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );	
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒU[ƒf[ƒ^•\¦
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
- *	@param	wk	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_UserDispDraw( WIFIP2PMATCH_WORK *wk, u32 heapID )
@@ -9310,30 +9310,30 @@ static void MCVSys_UserDispDraw( WIFIP2PMATCH_WORK *wk, u32 heapID )
 	GF_BGL_ScrPalChange( wk->bgl, GF_BGL_FRAME2_S, 0, 0,
 			32, 24, pal );
 
-	// BG‚R–Ê‚ÌƒXƒNƒŠ[ƒ“‚ğƒNƒŠƒA
+	// BGï¼“é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ã‚¯ãƒªã‚¢
     GF_BGL_ScrClear(wk->bgl, GF_BGL_FRAME3_S);
 
-	// ƒtƒƒ“ƒeƒBƒA”ñ•\¦ƒ‚[ƒhƒ`ƒFƒbƒN
+	// ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢éè¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
 	if( _frontierInCheck( wk ) == FALSE ){
-		MCVSys_UserDispDrawFrontierOffScrn( wk );	// ”ñ•\¦ƒXƒNƒŠ[ƒ“İ’è
+		MCVSys_UserDispDrawFrontierOffScrn( wk );	// éè¡¨ç¤ºã‚¹ã‚¯ãƒªãƒ¼ãƒ³è¨­å®š
 	}
 	
 
-	// ‚»‚Ìl‚Ì‚±‚Æ‚ğ•`‰æ
+	// ãã®äººã®ã“ã¨ã‚’æç”»
     GF_BGL_BmpWinDataFill( &wk->view.userWin, 0x0 );
 
-	// •`‰æ
+	// æç”»
 	writeFunc[ wk->view.user_dispno ]( wk, heapID );
 
 	GF_BGL_LoadScreenV_Req( wk->bgl, GF_BGL_FRAME2_S );
     GF_BGL_BmpWinOnVReq(&wk->view.userWin);
 
-	// ƒƒbƒZ[ƒW–Ê‚Ì•\¦İ’è
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é¢ã®è¡¨ç¤ºè¨­å®š
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );	
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );
 }
 
-// ’Êí
+// é€šå¸¸
 static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 {
 	int sex;
@@ -9349,7 +9349,7 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 
 	sex = WifiList_GetFriendInfo( wk->pList, friendNo, WIFILIST_FRIEND_SEX );
 
-	// ƒgƒŒ[ƒi[–¼
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	if( sex == PM_MALE ){
 		col = _COL_N_BLUE;
 	}else{
@@ -9364,14 +9364,14 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 	p_status = WifiFriendMatchStatusGet( wk, friendNo );
 	status = _WifiMyStatusGet( wk, p_status );
 
-	// ó‘Ô
+	// çŠ¶æ…‹
 	msg_id = MCVSys_StatusMsgIdGet( status, &col );
     MSGMAN_GetString(wk->MsgManager, msg_id, wk->pExpStrBuf);
 	GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->pExpStrBuf,
 					   MCV_USERD_ST_X, MCV_USERD_ST_Y,
 					   MSG_NO_PUT, col, NULL);
 
-	// ƒOƒ‹[ƒv
+	// ã‚°ãƒ«ãƒ¼ãƒ—
     {
         u32 xpos;
         MYSTATUS* pTarget = MyStatus_AllocWork(HEAPID_WIFIP2PMATCH);
@@ -9386,19 +9386,19 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
         GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, xpos, MCV_USERD_GR_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
     }
 
-    // ‘Îí¬Ñ
+    // å¯¾æˆ¦æˆç¸¾
 	{
         u32 xpos;
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_035, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, 
 				MCV_USERD_VS_X, MCV_USERD_VS_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
-		// ‚©‚¿
+		// ã‹ã¡
 		num = WifiList_GetFriendInfo(wk->pList, friendNo, WIFILIST_FRIEND_BATTLE_WIN);
 		WORDSET_RegisterNumber(wk->view.p_wordset, 0, num, 4, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_036, wk->pExpStrBuf );
 		WORDSET_ExpandStr( wk->view.p_wordset, wk->TitleString, wk->pExpStrBuf );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_VS_WIN_X, MCV_USERD_VS_WIN_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
-		// ‚Ü‚¯
+		// ã¾ã‘
 		num = WifiList_GetFriendInfo(wk->pList, friendNo, WIFILIST_FRIEND_BATTLE_LOSE);
 		WORDSET_RegisterNumber(wk->view.p_wordset, 0, num, 4, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_037, wk->pExpStrBuf );
@@ -9407,7 +9407,7 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, 
 				xpos, MCV_USERD_VS_WIN_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 	}
-	// ƒ|ƒPƒ‚ƒ“ŒğŠ·
+	// ãƒã‚±ãƒ¢ãƒ³äº¤æ›
 	{
         u32 xpos;
 
@@ -9423,7 +9423,7 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, xpos, MCV_USERD_TR_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 	}
 
-	// —¿—”
+	// æ–™ç†æ•°
 	if( _pofinCaseCheck( wk ) == TRUE ){
         u32 xpos;
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_102, wk->TitleString );
@@ -9439,7 +9439,7 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 
 	}
 	
-	// ÅŒã‚É—V‚ñ‚¾“ú•t
+	// æœ€å¾Œã«éŠã‚“ã æ—¥ä»˜
 	{
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_040, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, 
@@ -9462,7 +9462,7 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 		}
 	}
 
-	// ƒAƒCƒRƒ“
+	// ã‚¢ã‚¤ã‚³ãƒ³
 	WifiP2PMatchFriendListStIconWrite( wk->bgl, &wk->icon, GF_BGL_FRAME2_S, 
 			MCV_USERD_ICON_X, MCV_USERD_ICON_Y,
 			status );
@@ -9477,20 +9477,20 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 
 }
 
-// ƒoƒgƒ‹ƒ^ƒ[
+// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 static void MCVSys_UserDispDrawType01( WIFIP2PMATCH_WORK *wk, u32 heapID )
 {
 	int friendNo;
 
 	friendNo = wk->view.touch_friendNo - 1;
 
-	// ƒ^ƒCƒgƒ‹
+	// ã‚¿ã‚¤ãƒˆãƒ«
 	{
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf01, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTTW_TITLE_X,  MCV_USERD_BTTW_TITLE_Y, MSG_NO_PUT, _COL_N_WHITE, NULL);
 	}
 
-	// ‘O‰ñ‹L˜^
+	// å‰å›è¨˜éŒ²
 	{
 		
 		MCVSys_UserDispFrontiorTitleStrGet( wk, wk->TitleString, MCV_FRONTIOR_TOWOR, friendNo );
@@ -9501,7 +9501,7 @@ static void MCVSys_UserDispDrawType01( WIFIP2PMATCH_WORK *wk, u32 heapID )
 				MCV_USERD_BTTW_LASTNUM_X, MCV_USERD_BTTW_LASTNUM_Y );
 	}
 
-	// Å‚‹L˜^
+	// æœ€é«˜è¨˜éŒ²
 	{
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf07, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTTW_MAX_X,  MCV_USERD_BTTW_MAX_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
@@ -9512,14 +9512,14 @@ static void MCVSys_UserDispDrawType01( WIFIP2PMATCH_WORK *wk, u32 heapID )
 	}
 }
 
-// ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
+// ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 static void MCVSys_UserDispDrawType02( WIFIP2PMATCH_WORK *wk, u32 heapID )
 {
 	int friendNo;
 
 	friendNo = wk->view.touch_friendNo - 1;
 
-	// ƒ^ƒCƒgƒ‹
+	// ã‚¿ã‚¤ãƒˆãƒ«
 	{
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf02, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTTW_TITLE_X,  MCV_USERD_BTTW_TITLE_Y, MSG_NO_PUT, _COL_N_WHITE, NULL);
@@ -9528,7 +9528,7 @@ static void MCVSys_UserDispDrawType02( WIFIP2PMATCH_WORK *wk, u32 heapID )
 	// LV50
 	{
         u32 xpos;
-		// ƒ^ƒCƒgƒ‹
+		// ã‚¿ã‚¤ãƒˆãƒ«
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf08, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTFC_LV50_X,  MCV_USERD_BTFC_LV50_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
@@ -9536,7 +9536,7 @@ static void MCVSys_UserDispDrawType02( WIFIP2PMATCH_WORK *wk, u32 heapID )
         xpos = MCV_USERD_BTFC_LV50K_X - FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->TitleString, 0 );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, xpos,  MCV_USERD_BTFC_LV50K_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
-		// ‘O‰ñ
+		// å‰å›
 		MCVSys_UserDispFrontiorTitleStrGet( wk, wk->TitleString, MCV_FRONTIOR_FACTORY, friendNo );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTFC_LV50LAST_X,  MCV_USERD_BTFC_LV50LAST_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
@@ -9548,7 +9548,7 @@ static void MCVSys_UserDispDrawType02( WIFIP2PMATCH_WORK *wk, u32 heapID )
 				FRID_FACTORY_MULTI_WIFI_TRADE_CNT, friendNo, 
 				MCV_USERD_BTFC_LV50LASTTRNUM_X, MCV_USERD_BTFC_LV50LASTTRNUM_Y );
 
-		// Å‚
+		// æœ€é«˜
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf07, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTFC_LV50MAX_X,  MCV_USERD_BTFC_LV50MAX_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
@@ -9564,7 +9564,7 @@ static void MCVSys_UserDispDrawType02( WIFIP2PMATCH_WORK *wk, u32 heapID )
 	// OPEN
 	{
         u32 xpos;
-		// ƒ^ƒCƒgƒ‹
+		// ã‚¿ã‚¤ãƒˆãƒ«
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf09, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTFC_OPN_X,  MCV_USERD_BTFC_OPN_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
@@ -9572,7 +9572,7 @@ static void MCVSys_UserDispDrawType02( WIFIP2PMATCH_WORK *wk, u32 heapID )
         xpos = MCV_USERD_BTFC_OPNK_X - FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->TitleString, 0 );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, xpos,  MCV_USERD_BTFC_OPNK_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
-		// ‘O‰ñ
+		// å‰å›
 		MCVSys_UserDispFrontiorTitleStrGet( wk, wk->TitleString, MCV_FRONTIOR_FACTORY100, friendNo );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTFC_OPNLAST_X,  MCV_USERD_BTFC_OPNLAST_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
@@ -9584,7 +9584,7 @@ static void MCVSys_UserDispDrawType02( WIFIP2PMATCH_WORK *wk, u32 heapID )
 				FRID_FACTORY_MULTI_WIFI_TRADE100_CNT, friendNo, 
 				MCV_USERD_BTFC_OPNLASTTRNUM_X, MCV_USERD_BTFC_OPNLASTTRNUM_Y );
 
-		// Å‚
+		// æœ€é«˜
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf07, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTFC_OPNMAX_X,  MCV_USERD_BTFC_OPNMAX_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
@@ -9598,14 +9598,14 @@ static void MCVSys_UserDispDrawType02( WIFIP2PMATCH_WORK *wk, u32 heapID )
 	}
 }
 
-// ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
+// ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 static void MCVSys_UserDispDrawType03( WIFIP2PMATCH_WORK *wk, u32 heapID )
 {
 	int friendNo;
 
 	friendNo = wk->view.touch_friendNo - 1;
 
-	// ƒ^ƒCƒgƒ‹
+	// ã‚¿ã‚¤ãƒˆãƒ«
 	{
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf03, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTKS_TITLE_X,  MCV_USERD_BTKS_TITLE_Y, MSG_NO_PUT, _COL_N_WHITE, NULL);
@@ -9618,7 +9618,7 @@ static void MCVSys_UserDispDrawType03( WIFIP2PMATCH_WORK *wk, u32 heapID )
         }
 	}
 
-	// ‘O‰ñ‹L˜^
+	// å‰å›è¨˜éŒ²
 	{
 		MCVSys_UserDispFrontiorTitleStrGet( wk, wk->TitleString, MCV_FRONTIOR_CASTLE, friendNo );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTKS_LAST_X,  MCV_USERD_BTKS_LAST_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
@@ -9632,7 +9632,7 @@ static void MCVSys_UserDispDrawType03( WIFIP2PMATCH_WORK *wk, u32 heapID )
 				MCV_USERD_BTKS_LASTCPNUM_X, MCV_USERD_BTKS_LASTCPNUM_Y );
 	}
 
-	// Å‚‹L˜^
+	// æœ€é«˜è¨˜éŒ²
 	{
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf07, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTKS_MAX_X,  MCV_USERD_BTKS_MAX_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
@@ -9647,7 +9647,7 @@ static void MCVSys_UserDispDrawType03( WIFIP2PMATCH_WORK *wk, u32 heapID )
 	}
 }
 
-// ƒoƒgƒ‹ƒXƒe[ƒW
+// ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
 static void MCVSys_UserDispDrawType04( WIFIP2PMATCH_WORK *wk, u32 heapID )
 {
 	int friendNo;
@@ -9674,7 +9674,7 @@ static void MCVSys_UserDispDrawType04( WIFIP2PMATCH_WORK *wk, u32 heapID )
 		STRBUF_Delete( p_str );
 	}
 
-	// ‘O‰ñ‹L˜^
+	// å‰å›è¨˜éŒ²
 	{
 		MCVSys_UserDispFrontiorTitleStrGet( wk, wk->TitleString, MCV_FRONTIOR_STAGE, friendNo );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTST_LAST_X,  MCV_USERD_BTST_LAST_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
@@ -9684,7 +9684,7 @@ static void MCVSys_UserDispDrawType04( WIFIP2PMATCH_WORK *wk, u32 heapID )
 				MCV_USERD_BTST_LASTNUM_X, MCV_USERD_BTST_LASTNUM_Y );
 	}
 
-	// Å‚‹L˜^
+	// æœ€é«˜è¨˜éŒ²
 	{
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf07, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTST_MAX_X,  MCV_USERD_BTST_MAX_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
@@ -9695,20 +9695,20 @@ static void MCVSys_UserDispDrawType04( WIFIP2PMATCH_WORK *wk, u32 heapID )
 	}
 }
 
-// ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg
+// ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 static void MCVSys_UserDispDrawType05( WIFIP2PMATCH_WORK *wk, u32 heapID )
 {
 	int friendNo;
 
 	friendNo = wk->view.touch_friendNo - 1;
 
-	// ƒ^ƒCƒgƒ‹
+	// ã‚¿ã‚¤ãƒˆãƒ«
 	{
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf05, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTRT_TITLE_X,  MCV_USERD_BTRT_TITLE_Y, MSG_NO_PUT, _COL_N_WHITE, NULL);
 	}
 
-	// ‘O‰ñ‹L˜^
+	// å‰å›è¨˜éŒ²
 	{
 		MCVSys_UserDispFrontiorTitleStrGet( wk, wk->TitleString, MCV_FRONTIOR_ROULETTE, friendNo );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTRT_LAST_X,  MCV_USERD_BTRT_LAST_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
@@ -9718,7 +9718,7 @@ static void MCVSys_UserDispDrawType05( WIFIP2PMATCH_WORK *wk, u32 heapID )
 				MCV_USERD_BTRT_LASTNUM_X, MCV_USERD_BTRT_LASTNUM_Y );
 	}
 
-	// Å‚‹L˜^
+	// æœ€é«˜è¨˜éŒ²
 	{
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf07, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTRT_MAX_X,  MCV_USERD_BTRT_MAX_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
@@ -9729,7 +9729,7 @@ static void MCVSys_UserDispDrawType05( WIFIP2PMATCH_WORK *wk, u32 heapID )
 	}
 }
 
-// ƒ~ƒjƒQ[ƒ€
+// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
 static void MCVSys_UserDispDrawType06( WIFIP2PMATCH_WORK *wk, u32 heapID )
 {
 	int friendNo;
@@ -9739,13 +9739,13 @@ static void MCVSys_UserDispDrawType06( WIFIP2PMATCH_WORK *wk, u32 heapID )
 
 	friendNo = wk->view.touch_friendNo - 1;
 
-	// ƒ^ƒCƒgƒ‹
+	// ã‚¿ã‚¤ãƒˆãƒ«
 	{
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_mg01, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_MINI_TITLE_X,  MCV_USERD_MINI_TITLE_Y, MSG_NO_PUT, _COL_N_WHITE, NULL);
 	}
 
-	// ‚½‚Ü‚¢‚ê
+	// ãŸã¾ã„ã‚Œ
 	{
 		WORDSET_RegisterWiFiLobbyGameName( wk->view.p_wordset, 0, WFLBY_GAME_BALLSLOW );
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_mg02, wk->pExpStrBuf );
@@ -9757,7 +9757,7 @@ static void MCVSys_UserDispDrawType06( WIFIP2PMATCH_WORK *wk, u32 heapID )
 				MCV_USERD_MINI_BCNUM_X, MCV_USERD_MINI_BCNUM_Y );
 	}
 
-	// ‚½‚Ü‚Ì‚è
+	// ãŸã¾ã®ã‚Š
 	{
 		WORDSET_RegisterWiFiLobbyGameName( wk->view.p_wordset, 0, WFLBY_GAME_BALANCEBALL );
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_mg02, wk->pExpStrBuf );
@@ -9769,7 +9769,7 @@ static void MCVSys_UserDispDrawType06( WIFIP2PMATCH_WORK *wk, u32 heapID )
 				MCV_USERD_MINI_BBNUM_X, MCV_USERD_MINI_BBNUM_Y );
 	}
 
-	// ‚Ó‚¤‚¹‚ñ
+	// ãµã†ã›ã‚“
 	{
 		WORDSET_RegisterWiFiLobbyGameName( wk->view.p_wordset, 0, WFLBY_GAME_BALLOON );
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_mg02, wk->pExpStrBuf );
@@ -9784,9 +9784,9 @@ static void MCVSys_UserDispDrawType06( WIFIP2PMATCH_WORK *wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒƒ“ƒeƒBƒA”ñ•\¦ƒ‚[ƒh‚ÌƒXƒNƒŠ[ƒ“‚É•ÏX
+ *	@brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢éè¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«å¤‰æ›´
  *
- *	@param	wk		ƒ[ƒN
+ *	@param	wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_UserDispDrawFrontierOffScrn( WIFIP2PMATCH_WORK *wk )
@@ -9794,7 +9794,7 @@ static void MCVSys_UserDispDrawFrontierOffScrn( WIFIP2PMATCH_WORK *wk )
 	int i;
 	int roop;
 
-	// ƒtƒƒ“ƒeƒBƒA{İ”æ“¾
+	// ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­æ•°å–å¾—
 	roop = WF_USERDISPTYPE_NUM - WF_USERDISPTYPE_BLTW; 
 
 	for( i=0; i<roop; i++ ){
@@ -9806,7 +9806,7 @@ static void MCVSys_UserDispDrawFrontierOffScrn( WIFIP2PMATCH_WORK *wk )
 				wk->view.p_useretcscrn->screenWidth/8, wk->view.p_useretcscrn->screenHeight/8 );
 	}
 
-	// ƒpƒŒƒbƒg•ÏX
+	// ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
 	GF_BGL_ScrPalChange( wk->bgl, GF_BGL_FRAME2_S, 
 			MCV_USERD_NOFR_SCRN_X, MCV_USERD_NOFR_SCRN_Y,
 			(MCV_USERD_NOFR_SCRN_SIZX*roop), MCV_USERD_NOFR_SCRN_SIZY, 
@@ -9815,14 +9815,14 @@ static void MCVSys_UserDispDrawFrontierOffScrn( WIFIP2PMATCH_WORK *wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ@ƒNƒgƒŠ[ƒf[ƒ^•\¦
+ *	@brief	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
- *	@param	wk			ƒ[ƒN
- *	@param	strid		•¶šID
- *	@param	factoryid	ƒtƒ@ƒNƒgƒŠ[ƒf[ƒ^ID
- *	@param	friendno	—F’B”Ô†
- *	@param	x			•\¦X
- *	@param	y			•\¦Y
+ *	@param	wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	strid		æ–‡å­—ID
+ *	@param	factoryid	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ãƒ‡ãƒ¼ã‚¿ID
+ *	@param	friendno	å‹é”ç•ªå·
+ *	@param	x			è¡¨ç¤ºX
+ *	@param	y			è¡¨ç¤ºY
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_UserDispFrontiorNumDraw( WIFIP2PMATCH_WORK *wk, u32 strid, u32 factoryid, u32 friendno, u32 x, u32 y )
@@ -9839,12 +9839,12 @@ static void MCVSys_UserDispFrontiorNumDraw( WIFIP2PMATCH_WORK *wk, u32 strid, u3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒƒ“ƒeƒBƒA@ƒ^ƒCƒgƒ‹ƒƒbƒZ[ƒWæ“¾
+ *	@brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã€€ã‚¿ã‚¤ãƒˆãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
  *
- *	@param	wk			ƒ[ƒN
- *	@param	p_str		•¶š—ñŠi”[æ
- *	@param	factoryid	ƒtƒ@ƒNƒgƒŠ[@ƒZ[ƒuƒf[ƒ^ID
- *	@param	friendno	—F’Bƒiƒ“ƒo[
+ *	@param	wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_str		æ–‡å­—åˆ—æ ¼ç´å…ˆ
+ *	@param	factoryid	ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ID
+ *	@param	friendno	å‹é”ãƒŠãƒ³ãƒãƒ¼
  *
  *	factoryid
  *		MCV_FRONTIOR_TOWOR,
@@ -9885,13 +9885,13 @@ static void MCVSys_UserDispFrontiorTitleStrGet( WIFIP2PMATCH_WORK *wk, STRBUF* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”š‚ğ•\¦‚·‚éˆ—
+ *	@brief	æ•°å­—ã‚’è¡¨ç¤ºã™ã‚‹å‡¦ç†
  *
- *	@param	wk		ƒ[ƒN
- *	@param	strid	ƒƒbƒZ[ƒWID
- *	@param	num		”š
- *	@param	x		‚˜ƒhƒbƒgÀ•W
- *	@param	y		‚™ƒhƒbƒgÀ•W
+ *	@param	wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	strid	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ *	@param	num		æ•°å­—
+ *	@param	x		ï½˜ãƒ‰ãƒƒãƒˆåº§æ¨™
+ *	@param	y		ï½™ãƒ‰ãƒƒãƒˆåº§æ¨™
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_UserDispNumDraw( WIFIP2PMATCH_WORK *wk, u32 strid, u32 num, u32 x, u32 y )
@@ -9909,13 +9909,13 @@ static void MCVSys_UserDispNumDraw( WIFIP2PMATCH_WORK *wk, u32 strid, u32 num, u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“•`‰æ
+ *	@brief	ãƒœã‚¿ãƒ³æç”»
  *
- *	@param	wk		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cx		‚˜ƒLƒƒƒ‰À•W
- *	@param	cy		‚™ƒLƒƒƒ‰À•W
- *	@param	type	ƒ{ƒ^ƒ“ƒ^ƒCƒv
- *	@param	frame	ƒtƒŒ[ƒ€
+ *	@param	wk		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cx		ï½˜ã‚­ãƒ£ãƒ©åº§æ¨™
+ *	@param	cy		ï½™ã‚­ãƒ£ãƒ©åº§æ¨™
+ *	@param	type	ãƒœã‚¿ãƒ³ã‚¿ã‚¤ãƒ—
+ *	@param	frame	ãƒ•ãƒ¬ãƒ¼ãƒ 
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_BttnWrite( WIFIP2PMATCH_WORK *wk, u8 cx, u8 cy, u8 type, u8 frame )
@@ -9925,7 +9925,7 @@ static void MCVSys_BttnWrite( WIFIP2PMATCH_WORK *wk, u8 cx, u8 cy, u8 type, u8 f
 
 	GF_ASSERT( frame < 4 );
 
-	// frame 3‚Ì‚Æ‚«‚Í1‚ğ•\¦‚·‚é
+	// frame 3ã®ã¨ãã¯1ã‚’è¡¨ç¤ºã™ã‚‹
 	if( frame == 3 ){
 		frame = 1;
 	}
@@ -9951,18 +9951,18 @@ static void MCVSys_BttnWrite( WIFIP2PMATCH_WORK *wk, u8 cx, u8 cy, u8 type, u8 f
 				16, 18 );
 	}
 
-	// ƒpƒŒƒbƒgƒJƒ‰[‚ğ‡‚í‚¹‚é
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼ã‚’åˆã‚ã›ã‚‹
 	GF_BGL_ScrPalChange( wk->bgl, GF_BGL_FRAME2_S, cx, cy,
 			MCV_BUTTON_SIZX, MCV_BUTTON_SIZY, type+MCV_PAL_BTTN );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ó‘Ô‚É‘Î‰‚µ‚½ƒƒbƒZ[ƒWƒf[ƒ^•\¦
+ *	@brief	çŠ¶æ…‹ã«å¯¾å¿œã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
- *	@param	status	ó‘Ô
+ *	@param	status	çŠ¶æ…‹
  *
- *	@return	ƒƒbƒZ[ƒWƒf[ƒ^
+ *	@return	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static u32 MCVSys_StatusMsgIdGet( u32 status, int* col )
@@ -9970,87 +9970,87 @@ static u32 MCVSys_StatusMsgIdGet( u32 status, int* col )
 	u32 msg_id;
 	*col = _COL_N_BLACK;
     switch(status){
-      case WIFI_STATUS_VCT:      // VCT’†
+      case WIFI_STATUS_VCT:      // VCTä¸­
 		msg_id = msg_wifilobby_027;
 		*col = _COL_N_GRAY;
         break;
-      case WIFI_STATUS_SBATTLE50:      // ‘Îí’†
-      case WIFI_STATUS_SBATTLE100:      // ‘Îí’†
-      case WIFI_STATUS_SBATTLE_FREE:      // ‘Îí’†
-      case WIFI_STATUS_DBATTLE50:      // ‘Îí’†
-      case WIFI_STATUS_DBATTLE100:      // ‘Îí’†
-      case WIFI_STATUS_DBATTLE_FREE:      // ‘Îí’†
+      case WIFI_STATUS_SBATTLE50:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_SBATTLE100:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_SBATTLE_FREE:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_DBATTLE50:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_DBATTLE100:      // å¯¾æˆ¦ä¸­
+      case WIFI_STATUS_DBATTLE_FREE:      // å¯¾æˆ¦ä¸­
 #ifdef WFP2P_DEBUG_EXON 
-      case WIFI_STATUS_MBATTLE_FREE:      // ‘Îí’†
+      case WIFI_STATUS_MBATTLE_FREE:      // å¯¾æˆ¦ä¸­
 #endif
 		msg_id = msg_wifilobby_024;
 		*col = _COL_N_GRAY;
         break;
-      case WIFI_STATUS_SBATTLE50_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_SBATTLE50_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
 		msg_id = msg_wifilobby_060;
         break;
-      case WIFI_STATUS_SBATTLE100_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_SBATTLE100_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
 		msg_id = msg_wifilobby_061;
         break;
-      case WIFI_STATUS_SBATTLE_FREE_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_SBATTLE_FREE_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
 		msg_id = msg_wifilobby_059;
         break;
-      case WIFI_STATUS_DBATTLE50_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_DBATTLE50_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
 		msg_id = msg_wifilobby_063;
         break;
-      case WIFI_STATUS_DBATTLE100_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_DBATTLE100_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
 		msg_id = msg_wifilobby_064;
         break;
-      case WIFI_STATUS_DBATTLE_FREE_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_DBATTLE_FREE_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
 		msg_id = msg_wifilobby_062;
         break;
 #ifdef WFP2P_DEBUG_EXON 
-      case WIFI_STATUS_MBATTLE_FREE_WAIT:   // ‘Îí•åW’†
+      case WIFI_STATUS_MBATTLE_FREE_WAIT:   // å¯¾æˆ¦å‹Ÿé›†ä¸­
 		msg_id = msg_wifilobby_062;
         break;
 #endif
-      case WIFI_STATUS_TRADE:          // ŒğŠ·’†
+      case WIFI_STATUS_TRADE:          // äº¤æ›ä¸­
 		msg_id = msg_wifilobby_026;
 		*col = _COL_N_GRAY;
         break;
-      case WIFI_STATUS_TRADE_WAIT:    // ŒğŠ·•åW’†
+      case WIFI_STATUS_TRADE_WAIT:    // äº¤æ›å‹Ÿé›†ä¸­
 		msg_id = msg_wifilobby_025;
         break;
-      case WIFI_STATUS_POFIN:          // ƒ|ƒtƒBƒ“’†
+      case WIFI_STATUS_POFIN:          // ãƒãƒ•ã‚£ãƒ³ä¸­
 		msg_id = msg_wifilobby_101;
 		*col = _COL_N_GRAY;
         break;
-      case WIFI_STATUS_POFIN_WAIT:    // ƒ|ƒtƒBƒ“•åW’†
+      case WIFI_STATUS_POFIN_WAIT:    // ãƒãƒ•ã‚£ãƒ³å‹Ÿé›†ä¸­
 		msg_id = msg_wifilobby_100;
         break;
-      case WIFI_STATUS_FRONTIER:          // ƒtƒƒ“ƒeƒBƒA’†
+      case WIFI_STATUS_FRONTIER:          // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ä¸­
 		msg_id = msg_wifilobby_139;
 		*col = _COL_N_GRAY;
         break;
-      case WIFI_STATUS_FRONTIER_WAIT:    // ƒtƒƒ“ƒeƒBƒA•åW’†
+      case WIFI_STATUS_FRONTIER_WAIT:    // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å‹Ÿé›†ä¸­
 		msg_id = msg_wifilobby_138;
         break;
 #ifdef WFP2P_DEBUG_EXON 
-      case WIFI_STATUS_BATTLEROOM:          // ƒoƒgƒ‹ƒ‹[ƒ€’†
+      case WIFI_STATUS_BATTLEROOM:          // ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ä¸­
 		msg_id = msg_wifilobby_debug_00;
 		*col = _COL_N_GRAY;
         break;
-      case WIFI_STATUS_BATTLEROOM_WAIT:    // ƒoƒgƒ‹ƒ‹[ƒ€•åW’†
+      case WIFI_STATUS_BATTLEROOM_WAIT:    // ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ å‹Ÿé›†ä¸­
 		msg_id = msg_wifilobby_debug_00;
         break;
 #endif
-      case WIFI_STATUS_BUCKET:          // ƒoƒPƒbƒg’†
-      case WIFI_STATUS_BALANCEBALL:          // ƒoƒPƒbƒg’†
-      case WIFI_STATUS_BALLOON:          // ƒoƒPƒbƒg’†
+      case WIFI_STATUS_BUCKET:          // ãƒã‚±ãƒƒãƒˆä¸­
+      case WIFI_STATUS_BALANCEBALL:          // ãƒã‚±ãƒƒãƒˆä¸­
+      case WIFI_STATUS_BALLOON:          // ãƒã‚±ãƒƒãƒˆä¸­
 		msg_id = msg_wifilobby_148;
 		*col = _COL_N_GRAY;
         break;
-      case WIFI_STATUS_BUCKET_WAIT:    // ƒoƒPƒbƒg•åW’†
-      case WIFI_STATUS_BALANCEBALL_WAIT:    // ƒoƒPƒbƒg•åW’†
-      case WIFI_STATUS_BALLOON_WAIT:    // ƒoƒPƒbƒg•åW’†
+      case WIFI_STATUS_BUCKET_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+      case WIFI_STATUS_BALANCEBALL_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
+      case WIFI_STATUS_BALLOON_WAIT:    // ãƒã‚±ãƒƒãƒˆå‹Ÿé›†ä¸­
 		msg_id = msg_wifilobby_147;
         break;
-      case WIFI_STATUS_LOGIN_WAIT:    // ‘Ò‹@’†@ƒƒOƒCƒ“’¼Œã‚Í‚±‚ê
+      case WIFI_STATUS_LOGIN_WAIT:    // å¾…æ©Ÿä¸­ã€€ãƒ­ã‚°ã‚¤ãƒ³ç›´å¾Œã¯ã“ã‚Œ
 		msg_id = msg_wifilobby_046;
         break;
       default:
@@ -10062,13 +10062,13 @@ static u32 MCVSys_StatusMsgIdGet( u32 status, int* col )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ã‚ÌƒgƒŒ[ƒi[–¼‚Ì•\¦
+ *	@brief	ãƒœã‚¿ãƒ³ä¸Šã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã®è¡¨ç¤º
  *
- *	@param	wk			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_bmp		ƒrƒbƒgƒ}ƒbƒv
- *	@param	friendNo	—F’Bƒiƒ“ƒo[
- *	@param	frame		ƒ{ƒ^ƒ“ƒtƒŒ[ƒ€
- *	@param	area_id		”z’uID
+ *	@param	wk			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	friendNo	å‹é”ãƒŠãƒ³ãƒãƒ¼
+ *	@param	frame		ãƒœã‚¿ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	area_id		é…ç½®ID
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_BttnWinDraw( WIFIP2PMATCH_WORK *wk, GF_BGL_BMPWIN* p_bmp, u32 friendNo, u32 frame, u32 area_id )
@@ -10077,14 +10077,14 @@ static void MCVSys_BttnWinDraw( WIFIP2PMATCH_WORK *wk, GF_BGL_BMPWIN* p_bmp, u32
 	int col;
 	int y;
 
-	// ‰æ–ÊƒNƒŠ[ƒ“
+	// ç”»é¢ã‚¯ãƒªãƒ¼ãƒ³
 	GF_BGL_BmpWinDataFill( p_bmp, 0 );
 
-	//yÀ•W‚ğæ“¾
+	//yåº§æ¨™ã‚’å–å¾—
 	y = ViewButtonFrame_y[ frame ];
 
 	sex = WifiList_GetFriendInfo( wk->pList, friendNo-1, WIFILIST_FRIEND_SEX );
-	// ƒgƒŒ[ƒi[–¼
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	if( sex == PM_MALE ){
 		col = _COL_N_BLUE;
 	}else{
@@ -10101,13 +10101,13 @@ static void MCVSys_BttnWinDraw( WIFIP2PMATCH_WORK *wk, GF_BGL_BMPWIN* p_bmp, u32
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ó‘ÔƒEƒBƒ“ƒhƒE‚Ì•`‰æ
+ *	@brief	çŠ¶æ…‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»
  *
- *	@param	wk			‚µ‚·‚Ä‚Şƒ[ƒN
- *	@param	p_stbmp		ó‘Ôƒrƒbƒgƒ}ƒbƒv
- *	@param	friendNo	—F’B”Ô†
- *	@param	frame		ƒ{ƒ^ƒ“ƒtƒŒ[ƒ€
- *	@param	area_id		”z’uID
+ *	@param	wk			ã—ã™ã¦ã‚€ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_stbmp		çŠ¶æ…‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	friendNo	å‹é”ç•ªå·
+ *	@param	frame		ãƒœã‚¿ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	area_id		é…ç½®ID
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_BttnStatusWinDraw( WIFIP2PMATCH_WORK *wk, GF_BGL_BMPWIN* p_stbmp, u32 friendNo, u32 frame, u32 area_id )
@@ -10121,11 +10121,11 @@ static void MCVSys_BttnStatusWinDraw( WIFIP2PMATCH_WORK *wk, GF_BGL_BMPWIN* p_st
 	p_status = WifiFriendMatchStatusGet( wk, friendNo - 1 );
 	status = _WifiMyStatusGet( wk, p_status );
 
-	// ƒAƒCƒRƒ“•\¦
+	// ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º
 	y = ViewButtonFrame_y[ frame ];
 
 	for( i=0; i<WF_VIEW_STATUS_NUM; i++ ){
-		// ‰æ–ÊƒNƒŠ[ƒ“
+		// ç”»é¢ã‚¯ãƒªãƒ¼ãƒ³
 		GF_BGL_BmpWinDataFill( &p_stbmp[i], 0 );
 		if( i==0 ){
 			WifiP2PMatchFriendListBmpStIconWrite( &p_stbmp[i], &wk->icon, 
@@ -10149,9 +10149,9 @@ static void MCVSys_BttnStatusWinDraw( WIFIP2PMATCH_WORK *wk, GF_BGL_BMPWIN* p_st
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒAƒjƒƒƒCƒ“
+ *	@brief	ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	wk		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	wk		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_BttnAnmMan( WIFIP2PMATCH_WORK *wk )
@@ -10160,12 +10160,12 @@ static void MCVSys_BttnAnmMan( WIFIP2PMATCH_WORK *wk )
 		0, 1, 2, 1
 	};
 
-	// “®ì‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// å‹•ä½œã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( wk->view.touch_friendNo == 0 ){
 		return ;
 	}
 
-	// “®ì
+	// å‹•ä½œ
 	wk->view.button_count ++;
 	if( wk->view.button_count >= BttnAnmFrame[ wk->view.touch_frame ] ){
 		wk->view.button_count = 0;
@@ -10173,7 +10173,7 @@ static void MCVSys_BttnAnmMan( WIFIP2PMATCH_WORK *wk )
 
 		wk->view.button_on = TRUE;
 
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if( wk->view.touch_frame >= MCV_BUTTON_FRAME_NUM ){
 			wk->view.button_count = 0;
 			wk->view.touch_frame = 0;
@@ -10185,11 +10185,11 @@ static void MCVSys_BttnAnmMan( WIFIP2PMATCH_WORK *wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–Ê@OAMƒ{ƒ^ƒ“@‰Šú‰»
+ *	@brief	ã‚µãƒ–ç”»é¢ã€€OAMãƒœã‚¿ãƒ³ã€€åˆæœŸåŒ–
  *
- *	@param	wk			ƒ[ƒN
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	heapID		ƒq[ƒvID
+ *	@param	wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_OamBttnInit( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 heapID )
@@ -10228,11 +10228,11 @@ static void MCVSys_OamBttnInit( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 
 	};
 
 	
-	// ˆê‰•\¦‚ğOFF
+	// ä¸€å¿œè¡¨ç¤ºã‚’OFF
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_OFF );
 //	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 	
-	// ƒŠƒ\[ƒX“Ç‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­è¾¼ã¿
 	wk->view.button_res[0] = CLACT_U_ResManagerResAddArcChar_ArcHandle(
 			wk->resMan[0], p_handle, NARC_wifip2pmatch_wf_match_btm_oam_NCGR,
 			FALSE, MCV_USERD_BTTN_RESCONTID,
@@ -10250,7 +10250,7 @@ static void MCVSys_OamBttnInit( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 
 			FALSE, MCV_USERD_BTTN_RESCONTID, CLACT_U_CELLANM_RES,
 			heapID );
 
-	// VRAM“WŠJ
+	// VRAMå±•é–‹
 	result = CLACT_U_CharManagerSetCharModeAdjustAreaCont( wk->view.button_res[0] );
 	GF_ASSERT( result );
 	result = CLACT_U_PlttManagerSetCleanArea( wk->view.button_res[1] );
@@ -10258,7 +10258,7 @@ static void MCVSys_OamBttnInit( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 
 	CLACT_U_ResManagerResOnlyDelete( wk->view.button_res[0] );
 	CLACT_U_ResManagerResOnlyDelete( wk->view.button_res[1] );
 
-	// ƒwƒbƒ_[ì¬
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &head, 
 			MCV_USERD_BTTN_RESCONTID, MCV_USERD_BTTN_RESCONTID,
 			MCV_USERD_BTTN_RESCONTID, MCV_USERD_BTTN_RESCONTID,
@@ -10268,7 +10268,7 @@ static void MCVSys_OamBttnInit( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 
 			NULL, NULL );
 		
 
-	// ƒAƒNƒ^[ì¬
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ä½œæˆ
 	for( i=0; i<MCV_USERD_BTTN_NUM; i++ ){
 		add[i].ClActSet = wk->clactSet;
 		add[i].ClActHeader = &head;
@@ -10277,21 +10277,21 @@ static void MCVSys_OamBttnInit( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 
 		CLACT_AnmChg( wk->view.button_act[i], c_MCV_USER_BTTN_ANM_RELEASE[i] );
 	}
 
-	// ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg“Ç‚İ
+	// ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆèª­è¾¼ã¿
 	FontProc_LoadFont( FONT_BUTTON, heapID );
 
-	// ‚à‚Ç‚é@•`‰æ—p—Ìˆæì¬
+	// ã‚‚ã©ã‚‹ã€€æç”»ç”¨é ˜åŸŸä½œæˆ
 	GF_BGL_BmpWinInit( &bttn_font );
 	GF_BGL_BmpWinObjAdd( wk->bgl, &bttn_font, 
 			MCV_USERD_BTTN_FONT_SIZX, MCV_USERD_BTTN_FONT_SIZY,
 			MCV_USERD_BTTN_FONT_CGXOFS, MCV_USERD_BTTN_FONT_COL );
 
-	// •¶š—ñæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	p_str = STRBUF_Create( 64, heapID );
 	MSGMAN_GetString( wk->MsgManager, msg_wifilobby_143, p_str );
 
     {
-        // •¶š—ñ‚ğ‘‚«‚Ş
+        // æ–‡å­—åˆ—ã‚’æ›¸ãè¾¼ã‚€
         // MatchComment: use FONT_SYSTEM instead of FONT_BUTTON for FontProc_GetPrintStrWidth call
         width = -((FontProc_GetPrintStrWidth(FONT_SYSTEM, wk->TitleString, 0) + 1) / 2);
         GF_STR_PrintColor( &bttn_font, FONT_BUTTON, p_str, 0, 0, MSG_NO_PUT, GF_PRINTCOLOR_MAKE(1,2,0), NULL );
@@ -10299,10 +10299,10 @@ static void MCVSys_OamBttnInit( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 
 
 	STRBUF_Delete( p_str );
 
-	// •¶š—ñOAMƒf[ƒ^ì¬
+	// æ–‡å­—åˆ—OAMãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_fontoam_data = FONTOAM_OAMDATA_Make( &bttn_font, heapID );
 
-	// ƒTƒCƒYæ“¾
+	// ã‚µã‚¤ã‚ºå–å¾—
 	fontoam_cgsize = FONTOAM_OAMDATA_NeedCharSize( p_fontoam_data, NNS_G2D_VRAM_TYPE_2DSUB );
 
 	// CharAreaAlloc
@@ -10310,7 +10310,7 @@ static void MCVSys_OamBttnInit( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 
 			NNS_G2D_VRAM_TYPE_2DSUB, &wk->view.back_fontoam_cg );
 	GF_ASSERT(result);
 
-	// fontoamì¬
+	// fontoamä½œæˆ
 	fontoam_add.fontoam_sys = wk->fontoam;
 	fontoam_add.bmp = &bttn_font;
 	fontoam_add.clact_set = wk->clactSet;
@@ -10325,46 +10325,46 @@ static void MCVSys_OamBttnInit( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 
 	fontoam_add.heap = heapID;
 	wk->view.back_fontoam = FONTOAM_OAMDATA_Init( &fontoam_add, p_fontoam_data );
 
-	// OAM\¬ƒf[ƒ^”jŠü
+	// OAMæ§‹æˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	FONTOAM_OAMDATA_Free( p_fontoam_data );
 
-	// BMP”jŠü
+	// BMPç ´æ£„
 	GF_BGL_BmpWinDel( &bttn_font );
 	
-	// •¶š—ñƒtƒHƒ“ƒg”jŠü
+	// æ–‡å­—åˆ—ãƒ•ã‚©ãƒ³ãƒˆç ´æ£„
 	FontProc_UnloadFont( FONT_BUTTON );
 
-	// ƒ{ƒ^ƒ“‚ ‚½‚è”»’èƒf[ƒ^ì¬
+	// ãƒœã‚¿ãƒ³ã‚ãŸã‚Šåˆ¤å®šãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	wk->view.p_oambttnman = BMN_Create( c_MCV_USER_BTTN_OAM_Hit, MCV_USERD_BTTN_NUM, 
 			MCVSys_OamBttnCallBack, wk, heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒf[ƒ^‚Ì”jŠü
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ç ´æ£„
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_OamBttnDelete( WIFIP2PMATCH_WORK *wk )
 {
 	int i;
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ”jŠü
+	// ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	BMN_Delete( wk->view.p_oambttnman );
 
-	// ƒtƒHƒ“ƒgOAM”jŠü
+	// ãƒ•ã‚©ãƒ³ãƒˆOAMç ´æ£„
 	FONTOAM_OAMDATA_Delete( wk->view.back_fontoam );
 
-	// ƒLƒƒƒ‰—Ìˆæ”jŠü
+	// ã‚­ãƒ£ãƒ©é ˜åŸŸç ´æ£„
 	CharVramAreaFree( &wk->view.back_fontoam_cg );
 	
-	// ƒ[ƒN‚Ì”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ã®ç ´æ£„
 	for( i=0; i<MCV_USERD_BTTN_NUM; i++ ){
 		CLACT_Delete( wk->view.button_act[i] );
 	}
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_CharManagerDelete( wk->view.button_res[0] );
 	CLACT_U_PlttManagerDelete( wk->view.button_res[1] );
 	for( i=0; i<CLACT_RESOURCE_NUM; i++ ){
@@ -10374,25 +10374,25 @@ static void MCVSys_OamBttnDelete( WIFIP2PMATCH_WORK *wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒ{ƒ^ƒ“ON
+ *	@brief	OAMãƒœã‚¿ãƒ³ON
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_OamBttnOn( WIFIP2PMATCH_WORK *wk )
 {
 	int i;
 	
-	// •\¦ó‘Ô‚É‚·‚é
+	// è¡¨ç¤ºçŠ¶æ…‹ã«ã™ã‚‹
 	wk->view.buttonact_on = MCV_USERD_BTTN_MODE_NML;
 
-	// •\¦ON
+	// è¡¨ç¤ºON
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 
-	// ƒpƒ‰ƒ[ƒ^‰Šú‰»
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
 	wk->view.touch_button = 0;
 
-	// ƒAƒjƒ‰Šú‰»
+	// ã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–
 	for( i=0; i<MCV_USERD_BTTN_NUM; i++ ){
 		MCVSys_OamBttnObjAnmStart( &wk->view, i );
 	}
@@ -10400,56 +10400,56 @@ static void MCVSys_OamBttnOn( WIFIP2PMATCH_WORK *wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“•\¦@BACK”ñ•\¦ƒ‚[ƒh	
+ *	@brief	ãƒœã‚¿ãƒ³è¡¨ç¤ºã€€BACKéè¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰	
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_OamBttnOnNoBack( WIFIP2PMATCH_WORK *wk )
 {
 	MCVSys_OamBttnOn( wk );
 
-	// ‚à‚Ç‚é‚¾‚¯”ñ•\¦
+	// ã‚‚ã©ã‚‹ã ã‘éè¡¨ç¤º
 	CLACT_SetDrawFlag( wk->view.button_act[MCV_USERD_BTTN_BACK], FALSE );
 	FONTOAM_SetDrawFlag( wk->view.back_fontoam, FALSE );
 
-	// •\¦ó‘Ô‚É‚·‚é
+	// è¡¨ç¤ºçŠ¶æ…‹ã«ã™ã‚‹
 	wk->view.buttonact_on = MCV_USERD_BTTN_MODE_NOBACK;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“OFF
+ *	@brief	ãƒœã‚¿ãƒ³OFF
  *
  *	@param	wk 
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_OamBttnOff( WIFIP2PMATCH_WORK *wk )
 {
-	// –ß‚é‚ª•\¦OFF‚É‚È‚Á‚Ä‚é‚©‚à‚µ‚ê‚È‚¢‚Ì‚ÅON‚É‚µ‚Ä‚¨‚­
+	// æˆ»ã‚‹ãŒè¡¨ç¤ºOFFã«ãªã£ã¦ã‚‹ã‹ã‚‚ã—ã‚Œãªã„ã®ã§ONã«ã—ã¦ãŠã
 	if( wk->view.buttonact_on == MCV_USERD_BTTN_MODE_NOBACK ){
 		CLACT_SetDrawFlag( wk->view.button_act[MCV_USERD_BTTN_BACK], TRUE );
 		FONTOAM_SetDrawFlag( wk->view.back_fontoam, TRUE );
 	}
 	
-	// ”ñ•\¦ó‘Ô‚É‚·‚é
+	// éè¡¨ç¤ºçŠ¶æ…‹ã«ã™ã‚‹
 	wk->view.buttonact_on = MCV_USERD_BTTN_MODE_WAIT;
 
-	// •\¦‚ğOFF
+	// è¡¨ç¤ºã‚’OFF
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_OFF );
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“”ñ•\¦ˆ—
+ *	@brief	ãƒœã‚¿ãƒ³éè¡¨ç¤ºå‡¦ç†
  *
  *	@param	wk 
  *
- *	@retval	MCV_USERD_BTTN_RET_NONE,	// ‰½‚Ì”½‰‚à‚È‚µ
- *	@retval	MCV_USERD_BTTN_RET_LEFT,	// ¶‚ª‚¨‚³‚ê‚½
- *	@retval	MCV_USERD_BTTN_RET_BACK,	// ‚à‚Ç‚é‚ª‚¨‚³‚ê‚½
- *	@retval	MCV_USERD_BTTN_RET_RIGHT,	// ‰E‚ª‚¨‚³‚ê‚½
+ *	@retval	MCV_USERD_BTTN_RET_NONE,	// ä½•ã®åå¿œã‚‚ãªã—
+ *	@retval	MCV_USERD_BTTN_RET_LEFT,	// å·¦ãŒãŠã•ã‚ŒãŸ
+ *	@retval	MCV_USERD_BTTN_RET_BACK,	// ã‚‚ã©ã‚‹ãŒãŠã•ã‚ŒãŸ
+ *	@retval	MCV_USERD_BTTN_RET_RIGHT,	// å³ãŒãŠã•ã‚ŒãŸ
  */
 //-----------------------------------------------------------------------------
 static u32 MCVSys_OamBttnMain( WIFIP2PMATCH_WORK *wk )
@@ -10457,23 +10457,23 @@ static u32 MCVSys_OamBttnMain( WIFIP2PMATCH_WORK *wk )
 	int i;
 	BOOL result;
 	
-	// •\¦ON‚¶‚å‚¤‚½‚¢‚©ƒ`ƒFƒbƒN
+	// è¡¨ç¤ºONã˜ã‚‡ã†ãŸã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( wk->view.buttonact_on == MCV_USERD_BTTN_MODE_WAIT ){
 		return MCV_USERD_BTTN_RET_NONE;
 	}
 
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒf[ƒ^Á‹
-	wk->view.touch_button = MCV_USERD_BTTN_NUM;	// ‰½‚É‚à”½‰‚µ‚È‚¢‚æ‚¤‚É‚ ‚è‚¦‚È‚¢ƒ{ƒ^ƒ“”Ô†
-	wk->view.touch_button_event = 0xff;	// ‰½‚É‚à”½‰‚µ‚È‚¢‚æ‚¤‚É‚ ‚è‚¦‚È‚¢”š‚ğ‚¢‚ê‚Ä‚¨‚­
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿æ¶ˆå»
+	wk->view.touch_button = MCV_USERD_BTTN_NUM;	// ä½•ã«ã‚‚åå¿œã—ãªã„ã‚ˆã†ã«ã‚ã‚Šãˆãªã„ãƒœã‚¿ãƒ³ç•ªå·
+	wk->view.touch_button_event = 0xff;	// ä½•ã«ã‚‚åå¿œã—ãªã„ã‚ˆã†ã«ã‚ã‚Šãˆãªã„æ•°å­—ã‚’ã„ã‚Œã¦ãŠã
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒÀs
+	// ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿè¡Œ
 	BMN_Main( wk->view.p_oambttnman );
 
-	// ƒ{ƒ^ƒ“ƒAƒjƒƒRƒ“ƒgƒ[ƒ‹
+	// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 	for( i=0; i<MCV_USERD_BTTN_NUM; i++ ){
 
-		// ƒoƒbƒN”ñ•\¦ƒ‚[ƒh‚È‚çƒoƒbƒN‚Ìˆ—‚ğs‚í‚È‚¢
+		// ãƒãƒƒã‚¯éè¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰ãªã‚‰ãƒãƒƒã‚¯ã®å‡¦ç†ã‚’è¡Œã‚ãªã„
 		if( (wk->view.buttonact_on == MCV_USERD_BTTN_MODE_NOBACK) &&
 			(i == MCV_USERD_BTTN_BACK) ){
 			continue;
@@ -10481,7 +10481,7 @@ static u32 MCVSys_OamBttnMain( WIFIP2PMATCH_WORK *wk )
 		
 		result = MCVSys_OamBttnObjAnmMain( &wk->view, i, wk->view.touch_button, wk->view.touch_button_event );
 		if( result == TRUE ){
-			// ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½
+			// ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸ
 			return MCV_USERD_BTTN_RET_LEFT + i;
 		}
 	}
@@ -10491,11 +10491,11 @@ static u32 MCVSys_OamBttnMain( WIFIP2PMATCH_WORK *wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒœã‚¿ãƒ³ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	bttn_no		ƒ{ƒ^ƒ“No
- *	@param	event		ƒCƒxƒ“ƒgNo
- *	@param	p_work		ƒ[ƒN
+ *	@param	bttn_no		ãƒœã‚¿ãƒ³No
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆNo
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_OamBttnCallBack( u32 bttn_no, u32 event, void* p_work )
@@ -10507,19 +10507,19 @@ static void MCVSys_OamBttnCallBack( u32 bttn_no, u32 event, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒAƒjƒŠJn
+ *	@brief	ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡é–‹å§‹
  *
- *	@param	p_view		ƒ[ƒN
- *	@param	bttn_no		ƒ{ƒ^ƒ“ƒiƒ“ƒo[
+ *	@param	p_view		ãƒ¯ãƒ¼ã‚¯
+ *	@param	bttn_no		ãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_OamBttnObjAnmStart( WIFIP2PMATCH_VIEW*  p_view, u32 bttn_no )
 {
-	// ƒAƒjƒ‰Šú‰»	RELEASEƒAƒjƒÅIƒtƒŒ[ƒ€‚Éİ’è
+	// ã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–	RELEASEã‚¢ãƒ‹ãƒ¡æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ã«è¨­å®š
 	CLACT_AnmChg( p_view->button_act[ bttn_no ], c_MCV_USER_BTTN_ANM_RELEASE[bttn_no] );
 	CLACT_AnmFrameSet( p_view->button_act[ bttn_no ], MCV_USERD_BTTN_ANMMAX_0ORG );
 
-	// •¶š—ñ‚ÌÀ•W‰Šú‰»
+	// æ–‡å­—åˆ—ã®åº§æ¨™åˆæœŸåŒ–
 	if( bttn_no == MCV_USERD_BTTN_BACK ){
 		FONTOAM_SetMat( p_view->back_fontoam, MCV_USERD_BTTN_FONT_X, c_MCV_USER_BTTN_FONT_YANM[0] );
 	}
@@ -10527,15 +10527,15 @@ static void MCVSys_OamBttnObjAnmStart( WIFIP2PMATCH_VIEW*  p_view, u32 bttn_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒƒCƒ“
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_view		ƒ[ƒN
- *	@param	bttn_no		ƒ{ƒ^ƒ“ƒiƒ“ƒo[
- *	@param	push_bttn	‰Ÿ‚³‚ê‚Ä‚¢‚éƒ{ƒ^ƒ“
- *	@param	event		ƒCƒxƒ“ƒg
+ *	@param	p_view		ãƒ¯ãƒ¼ã‚¯
+ *	@param	bttn_no		ãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param	push_bttn	æŠ¼ã•ã‚Œã¦ã„ã‚‹ãƒœã‚¿ãƒ³
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆ
  *
- *	@retval	TRUE	‰Ÿ‚µI‚í‚Á‚½
- *	@retval	FALSE	‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢–”‚Í‰Ÿ‚µI‚í‚Á‚Ä‚È‚¢
+ *	@retval	TRUE	æŠ¼ã—çµ‚ã‚ã£ãŸ
+ *	@retval	FALSE	æŠ¼ã•ã‚Œã¦ã„ãªã„åˆã¯æŠ¼ã—çµ‚ã‚ã£ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL MCVSys_OamBttnObjAnmMain( WIFIP2PMATCH_VIEW*  p_view, u32 bttn_no, u32 push_bttn, u32 event )
@@ -10544,50 +10544,50 @@ static BOOL MCVSys_OamBttnObjAnmMain( WIFIP2PMATCH_VIEW*  p_view, u32 bttn_no, u
 	u32 anm_frame;
 	u32 anm_seq;
 	
-	// ’·‚¢ŠÔ‰Ÿ‚µ‚Ä‚¢‚é‚Æ‚«MCV_USERD_BTTN_ANMPUSHOK‚Ü‚Å‚¢‚Á‚½‚çTRUE‚ğ•Ô‚·
-	// ’Z‚¢ŠÔ‰Ÿ‚µ‚Ä‚¢‚é‚Æ‚«—£‚³‚ê‚½‚Æ‚«‚ÉTRUE‚ğ•Ô‚·
+	// é•·ã„æ™‚é–“æŠ¼ã—ã¦ã„ã‚‹ã¨ãï¼MCV_USERD_BTTN_ANMPUSHOKã¾ã§ã„ã£ãŸã‚‰TRUEã‚’è¿”ã™
+	// çŸ­ã„æ™‚é–“æŠ¼ã—ã¦ã„ã‚‹ã¨ãï¼é›¢ã•ã‚ŒãŸã¨ãã«TRUEã‚’è¿”ã™
 	
 	
-	// ©•ª‚ª‚¨‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// è‡ªåˆ†ãŒãŠã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( (push_bttn == bttn_no)  ){
 
 		anm_frame = CLACT_AnmFrameGet( p_view->button_act[bttn_no] );
 
-		// ‰Ÿ‚³‚ê‚Ä‚¢‚é‚Æ‚«
+		// æŠ¼ã•ã‚Œã¦ã„ã‚‹ã¨ã
 		if( (event == BMN_EVENT_TOUCH)  || (event == BMN_EVENT_HOLD) ){
 	 
-			// ƒCƒxƒ“ƒg‚ªÅ‰‚Ìƒ^ƒbƒ`‚¾‚Á‚½‚çƒAƒjƒİ’è
+			// ã‚¤ãƒ™ãƒ³ãƒˆãŒæœ€åˆã®ã‚¿ãƒƒãƒã ã£ãŸã‚‰ã‚¢ãƒ‹ãƒ¡è¨­å®š
 			if( event == BMN_EVENT_TOUCH ){
 				CLACT_AnmChg( p_view->button_act[ bttn_no ], c_MCV_USER_BTTN_ANM_PUSH[bttn_no] );
 			}
 			
-			// ƒAƒjƒ‚ªPUSHOKˆÈ‰º‚Ì‚Ì‚İ“®‚©‚·
+			// ã‚¢ãƒ‹ãƒ¡ãŒPUSHOKä»¥ä¸‹ã®æ™‚ã®ã¿å‹•ã‹ã™
 			if( anm_frame < MCV_USERD_BTTN_ANMPUSHOK ){
 				
 				CLACT_AnmFrameChg( p_view->button_act[bttn_no], FX32_CONST(2) );
 				anm_frame = CLACT_AnmFrameGet( p_view->button_act[bttn_no] );
 
-				// u‚à‚Ç‚év‚È‚çƒtƒHƒ“ƒg‚à“®‚©‚·
+				// ã€Œã‚‚ã©ã‚‹ã€ãªã‚‰ãƒ•ã‚©ãƒ³ãƒˆã‚‚å‹•ã‹ã™
 				if( bttn_no == MCV_USERD_BTTN_BACK ){
 					FONTOAM_SetMat( p_view->back_fontoam, MCV_USERD_BTTN_FONT_X, 
 							c_MCV_USER_BTTN_FONT_YANM[anm_frame] );
 				}
 
-				// ƒ{ƒ^ƒ“‚ª‰º‚Ü‚ÅƒAƒjƒ‚µ‚½‚ç‰Ÿ‚µ‚½‚±‚Æ‚É‚·‚é
-				// ‚±‚ÌŸ‚ÌƒtƒŒ[ƒ€‚©‚ç‚Íã‚Ìanm_frameƒ`ƒFƒbƒN‚Å
-				// ‚Ğ‚Á‚©‚©‚é‚Ì‚Å‚±‚±‚Í‰‚ß‚ÄOK‚É‚«‚½‚Æ‚«‚É‚Ì‚İ
-				// Às‚³‚ê‚é
+				// ãƒœã‚¿ãƒ³ãŒä¸‹ã¾ã§ã‚¢ãƒ‹ãƒ¡ã—ãŸã‚‰æŠ¼ã—ãŸã“ã¨ã«ã™ã‚‹
+				// ã“ã®æ¬¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰ã¯ä¸Šã®anm_frameãƒã‚§ãƒƒã‚¯ã§
+				// ã²ã£ã‹ã‹ã‚‹ã®ã§ã“ã“ã¯åˆã‚ã¦OKã«ããŸã¨ãã«ã®ã¿
+				// å®Ÿè¡Œã•ã‚Œã‚‹
 				if( anm_frame >= MCV_USERD_BTTN_ANMPUSHOK ){
 					ret = TRUE;
 				}
 			}
 			
 		}
-		// —£‚µ‚½‚Æ‚«
+		// é›¢ã—ãŸã¨ã
 		else if( event == BMN_EVENT_RELEASE ){
 			if( anm_frame < MCV_USERD_BTTN_ANMPUSHOK ){
-				// ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚±‚Æ‚É‚È‚éƒtƒŒ[ƒ€‚Ü‚Å‚¢‚Á‚Ä‚¢‚È‚¯‚ê‚Î
-				// ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚±‚Æ‚É‚·‚é
+				// ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã“ã¨ã«ãªã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã¾ã§ã„ã£ã¦ã„ãªã‘ã‚Œã°
+				// ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã“ã¨ã«ã™ã‚‹
 				ret = TRUE;
 			}
 		}
@@ -10596,13 +10596,13 @@ static BOOL MCVSys_OamBttnObjAnmMain( WIFIP2PMATCH_VIEW*  p_view, u32 bttn_no, u
 		anm_seq = CLACT_AnmGet( p_view->button_act[bttn_no] );
 		anm_frame = CLACT_AnmFrameGet( p_view->button_act[bttn_no] );
 	
-		// ƒAƒjƒ‚ªPUSHƒAƒjƒ‚¾‚Á‚½‚çRELEASEƒAƒjƒ‚ÉØ‚è‘Ö‚¦‚é
+		// ã‚¢ãƒ‹ãƒ¡ãŒPUSHã‚¢ãƒ‹ãƒ¡ã ã£ãŸã‚‰RELEASEã‚¢ãƒ‹ãƒ¡ã«åˆ‡ã‚Šæ›¿ãˆã‚‹
 		if( anm_seq == c_MCV_USER_BTTN_ANM_PUSH[bttn_no] ){
 			CLACT_AnmChg( p_view->button_act[bttn_no], c_MCV_USER_BTTN_ANM_RELEASE[bttn_no] );
 			CLACT_AnmFrameSet( p_view->button_act[bttn_no], MCV_USERD_BTTN_ANMMAX_0ORG - anm_frame );
 		}
 
-		// ƒAƒjƒ‚ªI‚í‚é‚Ü‚ÅƒAƒjƒ‚³‚¹‚é
+		// ã‚¢ãƒ‹ãƒ¡ãŒçµ‚ã‚ã‚‹ã¾ã§ã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹
 		CLACT_AnmFrameChg( p_view->button_act[bttn_no], FX32_CONST(2) );
 	}
 
@@ -10611,11 +10611,11 @@ static BOOL MCVSys_OamBttnObjAnmMain( WIFIP2PMATCH_VIEW*  p_view, u32 bttn_no, u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Å‰‚Él‚ª‚¢‚éƒy[ƒW‚ğ•Ô‚·
+ *	@brief	æœ€åˆã«äººãŒã„ã‚‹ãƒšãƒ¼ã‚¸ã‚’è¿”ã™
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒy[ƒW	i’N‚à‚¢‚È‚¢‚È‚ç‚Oƒy[ƒW–Ú‚ğ•Ô‚·j
+ *	@return	ãƒšãƒ¼ã‚¸	ï¼ˆèª°ã‚‚ã„ãªã„ãªã‚‰ï¼ãƒšãƒ¼ã‚¸ç›®ã‚’è¿”ã™ï¼‰
  */
 //-----------------------------------------------------------------------------
 static s32 MCVSys_FirstFriendPageGet( const WIFIP2PMATCH_WORK * cp_wk )
@@ -10623,7 +10623,7 @@ static s32 MCVSys_FirstFriendPageGet( const WIFIP2PMATCH_WORK * cp_wk )
 	int i;
 	s32 friend_no;
 
-	friend_no = 0xffff;	// ‚ ‚è‚¦‚È‚¢Å‘å’l‚Å‰Šú‰»
+	friend_no = 0xffff;	// ã‚ã‚Šãˆãªã„æœ€å¤§å€¤ã§åˆæœŸåŒ–
 
 	for( i=0; i<WIFIP2PMATCH_MEMBER_MAX; i++ ){
 		if( (cp_wk->index2NoBackUp[i] != 0) && (friend_no > cp_wk->index2NoBackUp[i]) ){
@@ -10640,10 +10640,10 @@ static s32 MCVSys_FirstFriendPageGet( const WIFIP2PMATCH_WORK * cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Vier‚Ì‚Ù‚¤‚Ìƒ[ƒhƒZƒbƒg‚Él‚Ì–¼‘O‚ğİ’è
+ *	@brief	Vierã®ã»ã†ã®ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã«äººã®åå‰ã‚’è¨­å®š
  *	
- *	@param	p_wk			ƒ[ƒN
- *	@param	friendno		—F’Bƒiƒ“ƒo[
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	friendno		å‹é”ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void MCVSys_FriendNameSet( WIFIP2PMATCH_WORK* p_wk, int friendno )
@@ -10658,10 +10658,10 @@ static void MCVSys_FriendNameSet( WIFIP2PMATCH_WORK* p_wk, int friendno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—F’Bƒ}ƒbƒ`ƒf[ƒ^‚ÌƒXƒe[ƒ^ƒXæ“¾
+ *	@brief	å‹é”ãƒãƒƒãƒãƒ‡ãƒ¼ã‚¿ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—
  *
- *	@param	wk			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	wk			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static _WIFI_MACH_STATUS* WifiFriendMatchStatusGet( WIFIP2PMATCH_WORK* wk, u32 idx )
@@ -10676,9 +10676,9 @@ static _WIFI_MACH_STATUS* WifiFriendMatchStatusGet( WIFIP2PMATCH_WORK* wk, u32 i
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—F’B‚Ìó‘Ô‚ğæ“¾‚·‚é
+ *	@brief	å‹é”ã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static u8 WifiDwc_getFriendStatus( int idx )
@@ -10691,10 +10691,10 @@ static u8 WifiDwc_getFriendStatus( int idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	P2P’ÊMƒQ[ƒ€‚ğŠJn‚·‚éB
+ *	@brief	P2Pé€šä¿¡ã‚²ãƒ¼ãƒ ã‚’é–‹å§‹ã™ã‚‹ã€‚
  *
- *	@param	friendno	ƒ^[ƒQƒbƒg”Ô†	i-1‚È‚çej
- *	@param	status		ƒXƒe[ƒ^ƒX
+ *	@param	friendno	ã‚¿ãƒ¼ã‚²ãƒƒãƒˆç•ªå·	ï¼ˆ-1ãªã‚‰è¦ªï¼‰
+ *	@param	status		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  *
  *	@return
  */
@@ -10702,22 +10702,22 @@ static u8 WifiDwc_getFriendStatus( int idx )
 static BOOL WifiP2PMatch_CommWifiBattleStart( WIFIP2PMATCH_WORK* wk, int friendno, int status )
 {
 	// 080707	tomoya takahashi
-	// “¯Šú’ÊMƒ[ƒN‚ğ‰Šú‰»
-	CommToolInitialize( HEAPID_COMMUNICATION );// COMMUNICATON‚É‚µ‚Ä‚¢‚é‚Ì‚ÍAcomm_system‚Ì’†‚Å‚àCOMMUNICATION‚Å‚â‚Á‚Ä‚¢‚é‚½‚ß‚Å‚·B
+	// åŒæœŸé€šä¿¡ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
+	CommToolInitialize( HEAPID_COMMUNICATION );// COMMUNICATONã«ã—ã¦ã„ã‚‹ã®ã¯ã€comm_systemã®ä¸­ã§ã‚‚COMMUNICATIONã§ã‚„ã£ã¦ã„ã‚‹ãŸã‚ã§ã™ã€‚
 	
-	// ƒ{ƒCƒXƒ`ƒƒƒbƒgİ’è
-	mydwc_setVChat(wk->pMatch->myMatchStatus.vchat);// ƒ{ƒCƒXƒ`ƒƒƒbƒg‚ÆBGM‰¹—Ê‚ÌŠÖŒW‚ğ®— tomoya takahashi
+	// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆè¨­å®š
+	mydwc_setVChat(wk->pMatch->myMatchStatus.vchat);// ãƒœã‚¤ã‚¹ãƒãƒ£ãƒƒãƒˆã¨BGMéŸ³é‡ã®é–¢ä¿‚ã‚’æ•´ç† tomoya takahashi
 
-	// 4l‚Å—V‚ÔƒQ[ƒ€‚Ì‚Æ‚«‚ÍA’ÊM‚Ìˆê•”‚ğHEAP_WORLD‚©‚çŠm•Û‚·‚é
-	// ‚»‚Ì‘¼‚Í’Êí‚Ì’ÊMƒoƒbƒtƒ@‚©‚ç‚Æ‚é
+	// 4äººã§éŠã¶ã‚²ãƒ¼ãƒ ã®ã¨ãã¯ã€é€šä¿¡ã®ä¸€éƒ¨ã‚’HEAP_WORLDã‹ã‚‰ç¢ºä¿ã™ã‚‹
+	// ãã®ä»–ã¯é€šå¸¸ã®é€šä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ã¨ã‚‹
 	if( _wait2to4Mode( status ) == TRUE ){
 		mydwc_recvHeapChange( TRUE, HEAPID_WIFIP2PMATCHEX );
 	}else{
 		mydwc_recvHeapChange( FALSE, HEAPID_WIFIP2PMATCHEX );
 	}
 
-	// Ú‘±‚·‚é‘O‚É‚Sl•åW‚Å‘—‚ç‚ê‚Ä‚­‚é‰Â”\«‚Ì‚ ‚é
-	// ƒRƒ}ƒ“ƒh‚ğİ’è‚·‚é
+	// æ¥ç¶šã™ã‚‹å‰ã«ï¼”äººå‹Ÿé›†ã§é€ã‚‰ã‚Œã¦ãã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹
+	// ã‚³ãƒãƒ³ãƒ‰ã‚’è¨­å®šã™ã‚‹
 	CommCommandWFP2PMF_MatchStartInitialize();
 	
 	return CommWifiBattleStart( friendno );
@@ -10725,15 +10725,15 @@ static BOOL WifiP2PMatch_CommWifiBattleStart( WIFIP2PMATCH_WORK* wk, int friendn
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—F’B•åW’†@İ’èON
+ *	@brief	å‹é”å‹Ÿé›†ä¸­ã€€è¨­å®šON
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void FriendRequestWaitOn( WIFIP2PMATCH_WORK* wk, BOOL msg_on )
 {
 	if( wk->friend_request_wait == FALSE ){
-		// ƒƒbƒZ[ƒW‚ğ‚¾‚µ‚ÄAƒvƒŒƒCƒ„[“®ì‚ğ’â~‚·‚é
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ã ã—ã¦ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‹•ä½œã‚’åœæ­¢ã™ã‚‹
 		wk->friend_request_wait = TRUE;
 		WIFI_MCR_PlayerMovePause( &wk->matchroom, TRUE );
 
@@ -10745,15 +10745,15 @@ static void FriendRequestWaitOn( WIFIP2PMATCH_WORK* wk, BOOL msg_on )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—F’B•åW’†@İ’èOFF
+ *	@brief	å‹é”å‹Ÿé›†ä¸­ã€€è¨­å®šOFF
  *
- *	@param	wk	ƒ[ƒN
+ *	@param	wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void FriendRequestWaitOff( WIFIP2PMATCH_WORK* wk )
 {
 	if( wk->friend_request_wait == TRUE ){
-		// ƒƒbƒZ[ƒW‚ğÁ‚µ‚ÄAƒvƒŒƒCƒ„[“®ì‚ğŠJn‚·‚é
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ¶ˆã—ã¦ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‹•ä½œã‚’é–‹å§‹ã™ã‚‹
 		wk->friend_request_wait = FALSE;
 		EndMessageWindowOff( wk );
 		WIFI_MCR_PlayerMovePause( &wk->matchroom, FALSE );
@@ -10762,12 +10762,12 @@ static void FriendRequestWaitOff( WIFIP2PMATCH_WORK* wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—F’B•åW’†ƒtƒ‰ƒOæ“¾
+ *	@brief	å‹é”å‹Ÿé›†ä¸­ãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	•åW’†
- *	@retval	FALSE	‚Ú‚µ‚ã‚¤‚µ‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	å‹Ÿé›†ä¸­
+ *	@retval	FALSE	ã¼ã—ã‚…ã†ã—ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL FriendRequestWaitFlagGet( const WIFIP2PMATCH_WORK* cp_wk )

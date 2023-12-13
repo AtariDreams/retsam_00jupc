@@ -1,7 +1,7 @@
 #ifndef _DEBUG_SCR_DEF_H_
 #define _DEBUG_SCR_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_DEBUG_UG_MOUNT_OFF		(9900)
 #define	SCRID_DEBUG_D27R0101_OFF		(9901)
 #define	SCRID_DEBUG_R224_SYEIMI		(9902)
@@ -10,6 +10,6 @@
 #define	SCRID_DEBUG_FACTORY_CALL		(9905)
 #define	SCRID_FACTORY_COUNTER_01		(9906)
 #define	SCRID_FACTORY_COUNTER_02		(9907)
-#define	SCRID_DEBUG_SCR_DATA_MAX		(8)		//最大数
+#define	SCRID_DEBUG_SCR_DATA_MAX		(8)		//譛螟ｧ謨ｰ
 
 #endif //_DEBUG_SCR_DEF_H_

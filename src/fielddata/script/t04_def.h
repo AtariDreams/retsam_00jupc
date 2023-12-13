@@ -1,7 +1,7 @@
 #ifndef _T04_DEF_H_
 #define _T04_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T04_FARMER1		(1)
 #define	SCRID_T04_COWGIRL1		(2)
 #define	SCRID_T04_BABYGIRL1		(3)
@@ -14,6 +14,6 @@
 #define	SCRID_T04_FLAG_CHANGE		(10)
 #define	SCRID_T04_OBJ_CHANGE		(11)
 #define	SCRID_POS_T04_RIVAL		(12)
-#define	SCRID_T04_DATA_MAX		(12)		//最大数
+#define	SCRID_T04_DATA_MAX		(12)		//譛螟ｧ謨ｰ
 
 #endif //_T04_DEF_H_

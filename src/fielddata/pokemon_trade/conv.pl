@@ -1,69 +1,69 @@
 #
-#			ŒğŠ·ƒ|ƒPƒ‚ƒ“ƒf[ƒ^@ƒRƒ“ƒo[ƒ^[
-#			ƒf[ƒ^‚ª‚SŒÂŒÅ’è
+#			äº¤æ›ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã€€ã‚³ãƒ³ãƒãƒ¼ã‚¿ãƒ¼
+#			ãƒ‡ãƒ¼ã‚¿ãŒï¼”å€‹å›ºå®š
 #
-@FLD_TRADE_FILE = undef;	#ƒf[ƒ^ƒtƒ@ƒ‹
-@MONSNO_H_FILE	= undef;	#ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[ƒfƒtƒ@ƒCƒ“
-@TOKUSYU_H_FILE	= undef;	#“Áêƒiƒ“ƒo[ƒfƒtƒ@ƒCƒ“
-@ITEMSYM_H_FILE = undef;	#ƒAƒCƒeƒ€ƒiƒ“ƒo[ƒfƒtƒ@ƒCƒ“
-@PMVER_H_FILE = undef;		#‘ƒR[ƒhƒiƒ“ƒo[ƒfƒtƒ@ƒCƒ“
-@OUTPUT0_FILE = undef;		#‘‚«o‚µƒf[ƒ^
-@OUTPUT1_FILE = undef;		#‘‚«o‚µƒf[ƒ^
-@OUTPUT2_FILE = undef;		#‘‚«o‚µƒf[ƒ^
-@OUTPUT3_FILE = undef;		#‘‚«o‚µƒf[ƒ^
+@FLD_TRADE_FILE = undef;	#ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ãƒ«
+@MONSNO_H_FILE	= undef;	#ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ãƒ‡ãƒ•ã‚¡ã‚¤ãƒ³
+@TOKUSYU_H_FILE	= undef;	#ç‰¹æ®ŠãƒŠãƒ³ãƒãƒ¼ãƒ‡ãƒ•ã‚¡ã‚¤ãƒ³
+@ITEMSYM_H_FILE = undef;	#ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ãƒ‡ãƒ•ã‚¡ã‚¤ãƒ³
+@PMVER_H_FILE = undef;		#å›½ã‚³ãƒ¼ãƒ‰ãƒŠãƒ³ãƒãƒ¼ãƒ‡ãƒ•ã‚¡ã‚¤ãƒ³
+@OUTPUT0_FILE = undef;		#æ›¸ãå‡ºã—ãƒ‡ãƒ¼ã‚¿
+@OUTPUT1_FILE = undef;		#æ›¸ãå‡ºã—ãƒ‡ãƒ¼ã‚¿
+@OUTPUT2_FILE = undef;		#æ›¸ãå‡ºã—ãƒ‡ãƒ¼ã‚¿
+@OUTPUT3_FILE = undef;		#æ›¸ãå‡ºã—ãƒ‡ãƒ¼ã‚¿
 
 #############################################################
 #
-#	ƒƒCƒ““®‚³
+#	ãƒ¡ã‚¤ãƒ³å‹•ã•
 #
 #############################################################
 
-#ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+#ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 &file_open();
 
 $count = 0;
 foreach $one ( @FLD_TRADE_FILE ){
 
-	#0€–Ú‚Íƒ_ƒ~[ƒf[ƒ^
+	#0é …ç›®ã¯ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 	if( $count > 0 ){
 		@line = split( "\t", $one );
 
-		if( $count == 1 ){		#ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+		if( $count == 1 ){		#ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
 			$OUTPUT0_FILE[0] = &get_monsno($line[1] );
 			$OUTPUT1_FILE[0] = &get_monsno($line[4] );
 			$OUTPUT2_FILE[0] = &get_monsno($line[7] );
 			$OUTPUT3_FILE[0] = &get_monsno($line[10] );
-		}elsif( ($count >= 3) && ($count <= 8) ){	#HP—”`“Á–h—”
+		}elsif( ($count >= 3) && ($count <= 8) ){	#HPä¹±æ•°ã€œç‰¹é˜²ä¹±æ•°
 			$OUTPUT0_FILE[ 1+($count - 3) ] = $line[1];
 			$OUTPUT1_FILE[ 1+($count - 3) ] = $line[4];
 			$OUTPUT2_FILE[ 1+($count - 3) ] = $line[7];
 			$OUTPUT3_FILE[ 1+($count - 3) ] = $line[10];
-		}elsif( $count == 9 ){	#“Á«
+		}elsif( $count == 9 ){	#ç‰¹æ€§
 			$OUTPUT0_FILE[ 7 ] = &get_tokusyu($line[1] );
 			$OUTPUT1_FILE[ 7 ] = &get_tokusyu($line[4] );
 			$OUTPUT2_FILE[ 7 ] = &get_tokusyu($line[7] );
 			$OUTPUT3_FILE[ 7 ] = &get_tokusyu($line[10] );
-		}elsif( ($count >= 10) && ($count <= 16) ){	#ID`RND
+		}elsif( ($count >= 10) && ($count <= 16) ){	#IDã€œRND
 			$OUTPUT0_FILE[ 8+($count - 10) ] = $line[1];
 			$OUTPUT1_FILE[ 8+($count - 10) ] = $line[4];
 			$OUTPUT2_FILE[ 8+($count - 10) ] = $line[7];
 			$OUTPUT3_FILE[ 8+($count - 10) ] = $line[10];
-		}elsif( $count == 17 ){	#ƒAƒCƒeƒ€
+		}elsif( $count == 17 ){	#ã‚¢ã‚¤ãƒ†ãƒ 
 			$OUTPUT0_FILE[ 15 ] = &get_item($line[1] );
 			$OUTPUT1_FILE[ 15 ] = &get_item($line[4] );
 			$OUTPUT2_FILE[ 15 ] = &get_item($line[7] );
 			$OUTPUT3_FILE[ 15 ] = &get_item($line[10] );
-		}elsif( ($count >= 19) && ($count <= 20) ){	#e«•Ê@–Ñ
+		}elsif( ($count >= 19) && ($count <= 20) ){	#è¦ªæ€§åˆ¥ã€€æ¯›
 			$OUTPUT0_FILE[ 16+($count - 19) ] = $line[1];
 			$OUTPUT1_FILE[ 16+($count - 19) ] = $line[4];
 			$OUTPUT2_FILE[ 16+($count - 19) ] = $line[7];
 			$OUTPUT3_FILE[ 16+($count - 19) ] = $line[10];
-		}elsif( $count == 21 ){		#‘ƒR[ƒh
+		}elsif( $count == 21 ){		#å›½ã‚³ãƒ¼ãƒ‰
 			$OUTPUT0_FILE[ 18 ] = &get_pmver($line[1] );
 			$OUTPUT1_FILE[ 18 ] = &get_pmver($line[4] );
 			$OUTPUT2_FILE[ 18 ] = &get_pmver($line[7] );
 			$OUTPUT3_FILE[ 18 ] = &get_pmver($line[10] );
-		}elsif( $count == 22 ){		#ŒğŠ·‚·‚éƒ|ƒPƒ‚ƒ“
+		}elsif( $count == 22 ){		#äº¤æ›ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³
 			$OUTPUT0_FILE[ 19 ] = &get_monsno($line[1] );
 			$OUTPUT1_FILE[ 19 ] = &get_monsno($line[4] );
 			$OUTPUT2_FILE[ 19 ] = &get_monsno($line[7] );
@@ -74,7 +74,7 @@ foreach $one ( @FLD_TRADE_FILE ){
 }
 
 
-#‘‚«o‚·
+#æ›¸ãå‡ºã™
 open( FILEOUT_0, ">fld_trade_00.dat" );
 open( FILEOUT_0_T, ">fld_trade_00.txt" );
 binmode( FILEOUT_0 );
@@ -142,7 +142,7 @@ sub get_monsno{
 	foreach $one ( @MONSNO_H_FILE ){
 
 		if( $one =~ /#define\t*$key\t*\(([0-9]*)\)/ ){
-			return $1;	#ƒqƒbƒg‚µ‚½ƒiƒ“ƒo[‚ğ•Ô‚·
+			return $1;	#ãƒ’ãƒƒãƒˆã—ãŸãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
 		}
 	}
 	return 0;
@@ -153,7 +153,7 @@ sub get_tokusyu{
 	foreach $one ( @TOKUSYU_H_FILE ){
 
 		if( $one =~ /#define\t*$key\t*\(([0-9]*)\)/ ){
-			return $1;	#ƒqƒbƒg‚µ‚½ƒiƒ“ƒo[‚ğ•Ô‚·
+			return $1;	#ãƒ’ãƒƒãƒˆã—ãŸãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
 		}
 	}
 	return 0;
@@ -165,7 +165,7 @@ sub get_item{
 	foreach $one ( @ITEMSYM_H_FILE ){
 
 		if( $one =~ /#define $key\t*\( ([0-9]*) \)/ ){
-			return $1;	#ƒqƒbƒg‚µ‚½ƒiƒ“ƒo[‚ğ•Ô‚·
+			return $1;	#ãƒ’ãƒƒãƒˆã—ãŸãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
 		}
 	}
 	return 0;
@@ -176,7 +176,7 @@ sub get_pmver{
 	foreach $one ( @PMVER_H_FILE ){
 
 		if( $one =~ /#define\t*$key\t*([0-9]*)/ ){
-			return $1;	#ƒqƒbƒg‚µ‚½ƒiƒ“ƒo[‚ğ•Ô‚·
+			return $1;	#ãƒ’ãƒƒãƒˆã—ãŸãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
 		}
 	}
 	return 0;

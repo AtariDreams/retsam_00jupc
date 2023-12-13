@@ -13,10 +13,10 @@
 #
 # $Log: sdkindent.copyright-sed,v $
 # Revision 1.4  2007/01/09 05:37:50  kitase_hirotake
-# 2006->2007�Ή�
+# 2006->2007対応
 #
 # Revision 1.3  2006/01/16 00:38:53  kitase_hirotake
-# 2005->2006 �s�K�v�ȃC���f���g���s��Ȃ��悤�ɕύX
+# 2005->2006 不必要なインデントを行わないように変更
 #
 # Revision 1.2  2005/03/01 02:33:49  yosizaki
 # add some filters.

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	boxv_itemicon.c
- * @brief	�{�b�N�X�����ʁ@�`�扺�����i�A�C�e���A�C�R���֘A�j
+ * @brief	ボックス操作画面　描画下請け（アイテムアイコン関連）
  * @author	taya
  * @date	2006.03.23
  */
@@ -30,7 +30,7 @@ enum {
 
 
 enum {
-	ITEMICON_ACTOR_MAX = 3,		// �o�Ă��郄�c�A�����郄�c�A�߂܂�郄�c�łR����΂悢
+	ITEMICON_ACTOR_MAX = 3,		// 出てくるヤツ、消えるヤツ、捕まれるヤツで３個あればよい
 	ITEMICON_INDEX_NULL = -1,
 };
 
@@ -44,7 +44,7 @@ enum {
 
 //--------------------------------------------------------------
 /**
- *  �A�C�R���O���t�B�b�N�]���ʒu�e�[�u��
+ *  アイコングラフィック転送位置テーブル
  */
 //--------------------------------------------------------------
 static const struct {
@@ -148,7 +148,7 @@ BOOL BoxAppView_ItemIconInit( ITEMICON_VIEW_WORK** wk_ptr_adrs, BOXAPP_VIEW_WORK
 /**
  * 
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -238,7 +238,7 @@ static void CleanupIconActors( ITEMICON_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �g���Ă��Ȃ��A�C�R����T���ăC���f�b�N�X��Ԃ�
+ * 使われていないアイコンを探してインデックスを返す
  *
  * @param   wk		
  * @param   next_state		
@@ -262,7 +262,7 @@ static int ReserveIcon( ITEMICON_VIEW_WORK* wk, int next_state )
 }
 //------------------------------------------------------------------
 /**
- * �w�肳�ꂽ��Ԃɂ���A�C�R���̃C���f�b�N�X��Ԃ�
+ * 指定された状態にあるアイコンのインデックスを返す
  *
  * @param   wk		
  * @param   state		
@@ -284,7 +284,7 @@ static int SearchIcon( ITEMICON_VIEW_WORK* wk, int state )
 }
 //------------------------------------------------------------------
 /**
- * ����C���f�b�N�X�̃A�C�R���̏�Ԃ�ύX����
+ * 特定インデックスのアイコンの状態を変更する
  *
  * @param   wk		
  * @param   id		
@@ -376,7 +376,7 @@ static void StartDisp_Caught( ITEMICON_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �|�P�����̏��L�A�C�e���A�C�R����\������ʒu���v�Z�i�J�[�\���ʒu�ˑ��j
+ * ポケモンの所有アイテムアイコンを表示する位置を計算（カーソル位置依存）
  *
  * @param   wk		
  * @param   pos		
@@ -434,9 +434,9 @@ static void SetupAppearIconActor( ITEMICON_VIEW_WORK* wk, int actID, int itemNo 
 
 //------------------------------------------------------------------
 /**
- * �J�[�\������ɍ��킹�ăA�C�R���̕\���E�������J�n
+ * カーソル動作に合わせてアイコンの表示・消去を開始
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -468,11 +468,11 @@ void BoxAppView_ItemIcon_StartAppear( ITEMICON_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �J�[�\������ɍ��킹�ăA�C�R���̕\���E�����̏I���҂�
+ * カーソル動作に合わせてアイコンの表示・消去の終了待ち
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_ItemIcon_WaitAppear( ITEMICON_VIEW_WORK* wk )
@@ -510,7 +510,7 @@ BOOL BoxAppView_ItemIcon_WaitAppear( ITEMICON_VIEW_WORK* wk )
 
 //------------------------------------------------------
 /**
- *	�A�C�R���ړ������֘A�萔
+ *	アイコン移動処理関連定数
  */
 //------------------------------------------------------
 enum {
@@ -519,7 +519,7 @@ enum {
 
 //------------------------------------------------------
 /**
- *	�A�C�R���ړ������^�X�N�p���[�N
+ *	アイコン移動処理タスク用ワーク
  */
 //------------------------------------------------------
 typedef struct {
@@ -537,7 +537,7 @@ typedef struct {
 
 //------------------------------------------------------------------
 /**
- * �A�C�R���ړ������J�n
+ * アイコン移動処理開始
  *
  * @param   wk		
  * @param   actID		
@@ -574,7 +574,7 @@ static void SetupIconMoveTask( ITEMICON_VIEW_WORK* wk, int actID, const VecFx32*
 }
 //------------------------------------------------------------------
 /**
- * �A�C�R���n���������s�^�X�N
+ * アイコン始動処理実行タスク
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -620,7 +620,7 @@ static void ItemIconMoveTask( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * �|�P�����ɂ������Ă�A�C�R�����J�[�\���ɂ��܂�铮��J�n
+ * ポケモンにくっついてるアイコンがカーソルにつかまれる動作開始
  *
  * @param   wk		
  *
@@ -648,7 +648,7 @@ void BoxAppView_ItemIcon_StartCatch( ITEMICON_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �J�[�\���ɂ��܂�铮��I���҂�
+ * カーソルにつかまれる動作終了待ち
  *
  * @param   wk		
  *
@@ -662,7 +662,7 @@ BOOL BoxAppView_ItemIcon_WaitCatch( ITEMICON_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �|�P�����ɂ������Ă�A�C�R���������铮��J�n
+ * ポケモンにくっついてるアイコンが消える動作開始
  *
  * @param   wk		
  *
@@ -683,7 +683,7 @@ void BoxAppView_ItemIcon_StartDisappear( ITEMICON_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�R���������铮��I���҂�
+ * アイコンが消える動作終了待ち
  *
  * @param   wk		
  *
@@ -713,9 +713,9 @@ BOOL BoxAppView_ItemIcon_WaitDisappear( ITEMICON_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ���܂�Ă���A�C�R�����|�P�����ɃZ�b�g����铮��J�n
+ * つかまれているアイコンがポケモンにセットされる動作開始
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -739,11 +739,11 @@ void BoxAppView_ItemIcon_StartSet( ITEMICON_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ���܂�Ă���A�C�R�����|�P�����ɃZ�b�g����铮��̏I���҂�
+ * つかまれているアイコンがポケモンにセットされる動作の終了待ち
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_ItemIcon_WaitSet( ITEMICON_VIEW_WORK* wk )
@@ -755,9 +755,9 @@ BOOL BoxAppView_ItemIcon_WaitSet( ITEMICON_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ���܂�Ă�A�C�R���ƃ|�P�����ɂ������Ă�A�C�R���̓���ւ�����J�n
+ * つかまれてるアイコンとポケモンにくっついてるアイコンの入れ替え動作開始
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -790,11 +790,11 @@ void BoxAppView_ItemIcon_StartSwap( ITEMICON_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ���܂�Ă�A�C�R���ƃ|�P�����ɂ������Ă�A�C�R���̓���ւ�����I���҂�
+ * つかまれてるアイコンとポケモンにくっついてるアイコンの入れ替え動作終了待ち
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_ItemIcon_WaitSwap( ITEMICON_VIEW_WORK* wk )
@@ -805,10 +805,10 @@ BOOL BoxAppView_ItemIcon_WaitSwap( ITEMICON_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ���܂�Ă�A�C�R�����A�|�P�����ɂ������Ă�A�C�R�����o�b�O�ɂ��܂�����
- *�i���܂�Ă�̗D��j
+ * つかまれてるアイコンか、ポケモンにくっついてるアイコンをバッグにしまう動作
+ *（つかまれてるの優先）
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -838,11 +838,11 @@ void BoxAppView_ItemIcon_StartRestore( ITEMICON_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �A�C�R�����o�b�O�ɂ��܂�����̏I���҂�
+ * アイコンをバッグにしまう動作の終了待ち
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_ItemIcon_WaitRestore( ITEMICON_VIEW_WORK* wk )
@@ -869,10 +869,10 @@ BOOL BoxAppView_ItemIcon_WaitRestore( ITEMICON_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �J�[�\���ړ��ɍ��킹�ĕ`��ʒu�X�V
+ * カーソル移動に合わせて描画位置更新
  *
- * @param   wk		���[�N�|�C���^
- * @param   mtx		�J�[�\���̈ʒu
+ * @param   wk		ワークポインタ
+ * @param   mtx		カーソルの位置
  *
  */
 //------------------------------------------------------------------
@@ -892,10 +892,10 @@ void BoxAppView_ItemIcon_MoveCaughtIcon( ITEMICON_VIEW_WORK* wk, const VecFx32* 
 }
 //------------------------------------------------------------------
 /**
- * �J�[�\���ɂ��܂�Ă���A�C�R����BG�v���C�I���e�B�ύX
+ * カーソルにつかまれているアイコンのBGプライオリティ変更
  *
- * @param   wk		���[�N�|�C���^
- * @param   pri		BG�v���C�I���e�B
+ * @param   wk		ワークポインタ
+ * @param   pri		BGプライオリティ
  *
  */
 //------------------------------------------------------------------

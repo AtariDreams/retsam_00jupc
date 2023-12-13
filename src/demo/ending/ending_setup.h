@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	ending_setup.h
- * @brief	ƒGƒ“ƒfƒBƒ“ƒO‚ÌŠeƒV[ƒ“‚Ì‰Šúİ’èA‰ğ•úˆ—‚Ìƒwƒbƒ_
+ * @brief	ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã®å„ã‚·ãƒ¼ãƒ³ã®åˆæœŸè¨­å®šã€è§£æ”¾å‡¦ç†ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2008.04.10(–Ø)
+ * @date	2008.04.10(æœ¨)
  */
 //==============================================================================
 #ifndef __ENDING_SETUP_H__
@@ -11,14 +11,14 @@
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void EndingSceneSetup_Load(ENDING_MAIN_WORK *emw, int scene_no);
 extern void EndingSceneSetup_Unload(ENDING_MAIN_WORK *emw, int scene_no);
 extern BOOL EndingSceneSetup_MainFunc(ENDING_MAIN_WORK *emw, int scene_no);
 
 //--------------------------------------------------------------
-//	ŠeƒV[ƒ“‚ÌƒƒCƒ“ŠÖ”
+//	å„ã‚·ãƒ¼ãƒ³ã®ãƒ¡ã‚¤ãƒ³é–¢æ•°
 //--------------------------------------------------------------
 extern BOOL MapScene1_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw);
 extern BOOL MapScene2_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw);
@@ -30,7 +30,7 @@ extern BOOL MapCopyrightScene_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw)
 
 
 //==============================================================================
-//	ŠO•”ƒf[ƒ^éŒ¾
+//	å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿å®£è¨€
 //==============================================================================
 extern const u16 Scene3MdlSort[];
 

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		d_tomoya_proc_chg.c
- *	@brief		ƒvƒƒbƒN•ÏX‚·‚éƒfƒoƒbƒNƒf[ƒ^
+ *	@brief		ãƒ—ãƒ­ãƒƒã‚¯å¤‰æ›´ã™ã‚‹ãƒ‡ãƒãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
  *	@author		tomoya takahashi
  *	@data		2006.03.27
  *
@@ -56,56 +56,56 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
-// ¬‚º¬‚º‚æ‚¤@ƒOƒ[ƒoƒ‹•Ï”
+// æ··ãœæ··ãœã‚ˆã†ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 u32 D_Tomoya_MazeMaze_TeamWork;
 
-// ƒƒr[ê—p
+// ãƒ­ãƒ“ãƒ¼å°‚ç”¨
 BOOL D_Tomoya_WiFiLobby_DebugStart = FALSE;
 u32 D_Tomoya_WiFiLobby_ChannelPrefix;
 BOOL D_Tomoya_WiFiLobby_ChannelPrefixFlag = FALSE;
 BOOL D_Tomoya_WiFiLobby_ALLVip = FALSE;
 BOOL D_Tomoya_WiFiLobby_LockTime_Long = FALSE;
 
-// ƒvƒƒZƒX•ÏXˆ—
+// ãƒ—ãƒ­ã‚»ã‚¹å¤‰æ›´å‡¦ç†
 void DTomoya_ProcChenge( TCB_PTR tcb, void* work )
 {
 	DT_SPRITE_CHECK* data = work;
 	
 	switch( data->seq ){
-	case 0:		// ƒtƒF[ƒhƒAƒEƒg
+	case 0:		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		WIPE_SYS_Start( 
 				WIPE_PATTERN_FMAS,
 				WIPE_TYPE_FADEOUT,
@@ -117,32 +117,32 @@ void DTomoya_ProcChenge( TCB_PTR tcb, void* work )
 		data->seq++;
 		break;
 
-	case 1:	// ƒtƒF[ƒh‘Ò‚¿	
+	case 1:	// ãƒ•ã‚§ãƒ¼ãƒ‰å¾…ã¡	
 		if( WIPE_SYS_EndCheck() ){
 
 			data->seq = data->tmp_seq;
 		}
 		break;
 
-	case 2:		// ‘I‘ð‰Šú‰»
+	case 2:		// é¸æŠžåˆæœŸåŒ–
 		data->pStartFunc( data );
 		data->seq++;	
 		break;
 
-	case 3:		// ‘I‘ðI—¹‘Ò‚¿
+	case 3:		// é¸æŠžçµ‚äº†å¾…ã¡
 		if( GameSystem_CheckSubProcExists( data->p_fsys ) == FALSE ){
 
-			// ƒtƒB[ƒ‹ƒh•œ‹A
+			// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°
 			GameSystem_CreateFieldProc( data->p_fsys );
 			data->seq++;
 		}
 		break;
 
 	case 4:
-		// ƒtƒB[ƒ‹ƒh•œ‹A‚ªŠ®—¹‚µ‚½‚©ƒ`ƒFƒbƒN
+		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°ãŒå®Œäº†ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
 		if( GameSystem_CheckFieldProcExists(data->p_fsys) ){
-/*		ƒtƒB[ƒ‹ƒh‘¤‚ÍŽ©“®‚ÅƒtƒF[ƒhƒCƒ“‚·‚é‚½‚ß
- *		ƒRƒƒ“ƒgƒAƒEƒg */
+/*		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å´ã¯è‡ªå‹•ã§ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã™ã‚‹ãŸã‚
+ *		ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ */
 			WIPE_SYS_Start( 
 					WIPE_PATTERN_FSAM,
 					WIPE_TYPE_FADEIN,
@@ -150,7 +150,7 @@ void DTomoya_ProcChenge( TCB_PTR tcb, void* work )
 					WIPE_FADE_OUTCOLOR,
 					6,1,
 					HEAPID_FIELD );
-			// ƒtƒF[ƒhƒCƒ“
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 			data->seq = 1;
 			data->tmp_seq = 5;//*/
 /*			WIPE_SYS_Start( 
@@ -160,18 +160,18 @@ void DTomoya_ProcChenge( TCB_PTR tcb, void* work )
 					0,
 					8,2,
 					HEAPID_FIELD );
-			// ƒtƒF[ƒhƒCƒ“
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 			data->seq = 1;
 			data->tmp_seq = 5;//*/
 		}
 		break;
 
-	case 5:		// I—¹
+	case 5:		// çµ‚äº†
 
-		// ƒ[ƒNŠJ•ú
+		// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 		data->pEndFunc( data );
 
-		// ƒ^ƒXƒNI—¹
+		// ã‚¿ã‚¹ã‚¯çµ‚äº†
 		TCB_Delete( tcb );
 		sys_FreeMemoryEz( work );
 		break;
@@ -181,7 +181,7 @@ void DTomoya_ProcChenge( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒðŠ·‚Å‚àƒ\[ƒX
+ *	@brief	äº¤æ›ã§ã‚‚ã‚½ãƒ¼ã‚¹
  */	
 //-----------------------------------------------------------------------------
 BOOL EventScr_D_FldTrade(GMEVENT_CONTROL * event)
@@ -193,7 +193,7 @@ BOOL EventScr_D_FldTrade(GMEVENT_CONTROL * event)
 	POKEMON_PARAM* pp = PokeParty_GetMemberPointer( party, 0 );
 
 	switch( p_work->seq ){
-	case 0:	// ŒðŠ·‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+	case 0:	// äº¤æ›ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		monsno = FLD_TradeChangeMonsno( p_work->p_work );
 		monsno_chg = PokeParaGet( pp, ID_PARA_monsno, NULL );
 		if( monsno == monsno_chg ){
@@ -203,12 +203,12 @@ BOOL EventScr_D_FldTrade(GMEVENT_CONTROL * event)
 		}
 		break;
 
-	case 1:	//ŒðŠ·
+	case 1:	//äº¤æ›
 		EventCmd_FldTrade( event, p_work->p_work, 0, HEAPID_BASE_DEBUG );
 		p_work->seq++;
 		break;
 
-	case 2:	// I—¹
+	case 2:	// çµ‚äº†
 		FLD_TradeDelete( p_work->p_work );
 		sys_FreeMemoryEz( p_work );
 		return TRUE;

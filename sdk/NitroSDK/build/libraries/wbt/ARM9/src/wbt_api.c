@@ -17,25 +17,25 @@
 #include	<nitro/wbt/context.h>
 
 /*---------------------------------------------------------------------------*
-	•Ï”’è‹`
+	å¤‰æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 
 static BOOL wbt_initialize_flag = FALSE;
 
 static WBTContext wbti_command_work[1];
 
-/* 2 ’i‚ÌƒRƒ}ƒ“ƒhƒLƒ…[ */
+/* 2 æ®µã®ã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ */
 static WBTCommandList cmd_q[2];
 
 
 /*---------------------------------------------------------------------------*
-	ŠÖ”’è‹`
+	é–¢æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
   Name:         WBT_PrintBTList
 
-  Description:  ƒuƒƒbƒNî•ñƒŠƒXƒg‚ğOS_Printf‚Å•\¦‚·‚é
+  Description:  ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±ãƒªã‚¹ãƒˆã‚’OS_Printfã§è¡¨ç¤ºã™ã‚‹
 
   Arguments:    none
 
@@ -56,9 +56,9 @@ void WBT_PrintBTList(void)
 /*---------------------------------------------------------------------------*
   Name:         WBT_AidbitmapToAid
 
-  Description:  AIDƒrƒbƒgƒ}ƒbƒv‚ğAID‚É•ÏŠ·‚·‚éiÅ‰ºˆÊƒrƒbƒg‚Ì‚İŒ©‚éj
+  Description:  AIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’AIDã«å¤‰æ›ã™ã‚‹ï¼ˆæœ€ä¸‹ä½ãƒ“ãƒƒãƒˆã®ã¿è¦‹ã‚‹ï¼‰
 
-  Arguments:    abmp - AIDƒrƒbƒgƒ}ƒbƒv
+  Arguments:    abmp - AIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
 
   Returns:      int  - AID
  *---------------------------------------------------------------------------*/
@@ -70,11 +70,11 @@ int WBT_AidbitmapToAid(WBTAidBitmap abmp)
 /*---------------------------------------------------------------------------*
   Name:         WBT_InitParent
 
-  Description:  e‹@—pƒuƒƒbƒN“]‘—‰Šú‰»ŠÖ”
+  Description:  è¦ªæ©Ÿç”¨ãƒ–ãƒ­ãƒƒã‚¯è»¢é€åˆæœŸåŒ–é–¢æ•°
 
-  Arguments:    send_packet_size - ‘—MƒpƒPƒbƒg‚ÌƒTƒCƒY
-                recv_packet_size - óMƒpƒPƒbƒg‚ÌƒTƒCƒY
-                callback  - ‘Šè‹Ç‚©‚ç‚ÌƒŠƒNƒGƒXƒg”­¶‚É‚©‚©‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Arguments:    send_packet_size - é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã®ã‚µã‚¤ã‚º
+                recv_packet_size - å—ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã®ã‚µã‚¤ã‚º
+                callback  - ç›¸æ‰‹å±€ã‹ã‚‰ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºç”Ÿæ™‚ã«ã‹ã‹ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
   Returns:      none.
  *---------------------------------------------------------------------------*/
@@ -86,7 +86,7 @@ void WBT_InitParent(int send_packet_size, int recv_packet_size, WBTCallback call
         wbt_initialize_flag = TRUE;
         WBT_InitContext(wbti_command_work, NULL, NULL);
         wbti_command_work->system_cmd.callback = callback;
-        /* ƒRƒ}ƒ“ƒhƒv[ƒ‹‚ğ‰Šú‰» */
+        /* ã‚³ãƒãƒ³ãƒ‰ãƒ—ãƒ¼ãƒ«ã‚’åˆæœŸåŒ– */
         MI_CpuFill8(cmd_q, 0x00, sizeof(cmd_q));
         WBT_AddCommandPool(wbti_command_work, cmd_q, sizeof(cmd_q) / sizeof(*cmd_q));
         WBT_StartParent(wbti_command_work, send_packet_size, recv_packet_size);
@@ -97,9 +97,9 @@ void WBT_InitParent(int send_packet_size, int recv_packet_size, WBTCallback call
 /*---------------------------------------------------------------------------*
   Name:         WBT_InitChild
 
-  Description:  q‹@—pƒuƒƒbƒN“]‘—‰Šú‰»ŠÖ”
+  Description:  å­æ©Ÿç”¨ãƒ–ãƒ­ãƒƒã‚¯è»¢é€åˆæœŸåŒ–é–¢æ•°
 
-  Arguments:    callback - ‘Šè‹Ç‚©‚ç‚ÌƒŠƒNƒGƒXƒg”­¶‚É‚©‚©‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Arguments:    callback - ç›¸æ‰‹å±€ã‹ã‚‰ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºç”Ÿæ™‚ã«ã‹ã‹ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
   Returns:      none.
  *---------------------------------------------------------------------------*/
@@ -111,7 +111,7 @@ void WBT_InitChild(WBTCallback callback)
         wbt_initialize_flag = TRUE;
         WBT_InitContext(wbti_command_work, NULL, NULL);
         wbti_command_work->system_cmd.callback = callback;
-        /* ƒRƒ}ƒ“ƒhƒv[ƒ‹‚ğ‰Šú‰» */
+        /* ã‚³ãƒãƒ³ãƒ‰ãƒ—ãƒ¼ãƒ«ã‚’åˆæœŸåŒ– */
         MI_CpuFill8(cmd_q, 0x00, sizeof(cmd_q));
         WBT_AddCommandPool(wbti_command_work, cmd_q, sizeof(cmd_q) / sizeof(*cmd_q));
     }
@@ -121,7 +121,7 @@ void WBT_InitChild(WBTCallback callback)
 /*---------------------------------------------------------------------------*
   Name:         WBT_End
 
-  Description:  e‹@q‹@‹¤—pƒuƒƒbƒN“]‘—I—¹ŠÖ”
+  Description:  è¦ªæ©Ÿå­æ©Ÿå…±ç”¨ãƒ–ãƒ­ãƒƒã‚¯è»¢é€çµ‚äº†é–¢æ•°
 
   Arguments:    None.
 
@@ -142,9 +142,9 @@ void WBT_End(void)
 /*---------------------------------------------------------------------------*
   Name:         WBT_SetOwnAid
 
-  Description:  ©‹Ç‚ÌAID‚ğİ’è‚·‚é
+  Description:  è‡ªå±€ã®AIDã‚’è¨­å®šã™ã‚‹
 
-  Arguments:    aid - ©‹Ç‚ÌAID
+  Arguments:    aid - è‡ªå±€ã®AID
 
   Returns:      none.
  *---------------------------------------------------------------------------*/
@@ -160,11 +160,11 @@ void WBT_SetOwnAid(int aid)
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetOwnAid
 
-  Description:  ©‹Ç‚ÌAID‚ğ“¾‚é
+  Description:  è‡ªå±€ã®AIDã‚’å¾—ã‚‹
 
   Arguments:    none.
 
-  Returns:      int - ©‹Ç‚ÌAID
+  Returns:      int - è‡ªå±€ã®AID
  *---------------------------------------------------------------------------*/
 int WBT_GetOwnAid(void)
 {
@@ -175,12 +175,12 @@ int WBT_GetOwnAid(void)
 /*---------------------------------------------------------------------------*
   Name:         WBT_CalcPacketbitmapSize
 
-  Description:  ƒpƒPƒbƒgóM”Ô†‹L˜^—pƒoƒbƒtƒ@‚ÌƒTƒCƒY‚ğŒvZ‚·‚é
-                iq‹@‚Ìê‡‚Íe‹@‚Æ“¯Šú‚ğæ‚Á‚½Œã‚ÉƒR[ƒ‹‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢j
+  Description:  ãƒ‘ã‚±ãƒƒãƒˆå—ä¿¡ç•ªå·è¨˜éŒ²ç”¨ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã™ã‚‹
+                ï¼ˆå­æ©Ÿã®å ´åˆã¯è¦ªæ©Ÿã¨åŒæœŸã‚’å–ã£ãŸå¾Œã«ã‚³ãƒ¼ãƒ«ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ï¼‰
 
-  Arguments:    block_size - óM‚·‚éƒuƒƒbƒN‚ÌƒTƒCƒY
+  Arguments:    block_size - å—ä¿¡ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
 
-  Returns:      int - ƒpƒPƒbƒgóM”Ô†‹L˜^—pƒoƒbƒtƒ@ƒTƒCƒYiƒoƒCƒgj
+  Returns:      int - ãƒ‘ã‚±ãƒƒãƒˆå—ä¿¡ç•ªå·è¨˜éŒ²ç”¨ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆï¼‰
  *---------------------------------------------------------------------------*/
 int WBT_CalcPacketbitmapSize(int block_size)
 {
@@ -190,14 +190,14 @@ int WBT_CalcPacketbitmapSize(int block_size)
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetCurrentDownloadProgress
 
-  Description:  Œ»İƒuƒƒbƒNóM‚Ìis“x‡‚¢‚ğŒ©‚é
+  Description:  ç¾åœ¨ãƒ–ãƒ­ãƒƒã‚¯å—ä¿¡ã®é€²è¡Œåº¦åˆã„ã‚’è¦‹ã‚‹
 
-  Arguments:    block_id       - óM’†‚ÌƒuƒƒbƒNID
-                aid            - ‘—M‘Šè‚ÌAID
-                *current_count - óMŠ®—¹‚µ‚½ƒpƒPƒbƒgƒJƒEƒ“ƒg
-                *total_count   - ‘SƒpƒPƒbƒgƒJƒEƒ“ƒg
+  Arguments:    block_id       - å—ä¿¡ä¸­ã®ãƒ–ãƒ­ãƒƒã‚¯ID
+                aid            - é€ä¿¡ç›¸æ‰‹ã®AID
+                *current_count - å—ä¿¡å®Œäº†ã—ãŸãƒ‘ã‚±ãƒƒãƒˆã‚«ã‚¦ãƒ³ãƒˆ
+                *total_count   - å…¨ãƒ‘ã‚±ãƒƒãƒˆã‚«ã‚¦ãƒ³ãƒˆ
 
-  Returns:      BOOL - ¬Œ÷^¸”s
+  Returns:      BOOL - æˆåŠŸï¼å¤±æ•—
  *---------------------------------------------------------------------------*/
 BOOL WBT_GetCurrentDownloadProgress(u32 block_id, int aid, int *current_count, int *total_count)
 {
@@ -208,13 +208,13 @@ BOOL WBT_GetCurrentDownloadProgress(u32 block_id, int aid, int *current_count, i
 /*---------------------------------------------------------------------------*
   Name:         WBT_SetPacketSize
 
-  Description:  e‹@—p‘—óMƒpƒPƒbƒgƒTƒCƒY•ÏXŠÖ”iWBT_InitParentŒã‚É•ÏX‚·‚éê‡‚Ég—pj
+  Description:  è¦ªæ©Ÿç”¨é€å—ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚ºå¤‰æ›´é–¢æ•°ï¼ˆWBT_InitParentå¾Œã«å¤‰æ›´ã™ã‚‹å ´åˆã«ä½¿ç”¨ï¼‰
 
-  Arguments:    send_packet_size - ‘—MƒpƒPƒbƒgƒTƒCƒY
-                recv_packet_size - óMƒpƒPƒbƒgƒTƒCƒY
+  Arguments:    send_packet_size - é€ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º
+                recv_packet_size - å—ä¿¡ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º
 
-  Returns:      BOOL   - FALSE ƒTƒCƒY•ÏX‚É¸”s
-                         TRUE  ƒTƒCƒY•ÏX‚É¬Œ÷
+  Returns:      BOOL   - FALSE ã‚µã‚¤ã‚ºå¤‰æ›´ã«å¤±æ•—
+                         TRUE  ã‚µã‚¤ã‚ºå¤‰æ›´ã«æˆåŠŸ
  *---------------------------------------------------------------------------*/
 BOOL WBT_SetPacketSize(int send_packet_size, int recv_packet_size)
 {
@@ -224,11 +224,11 @@ BOOL WBT_SetPacketSize(int send_packet_size, int recv_packet_size)
 /*---------------------------------------------------------------------------*
   Name:         WBT_NumOfRegisteredBlock
 
-  Description:  “o˜^Ï‚İ‚ÌƒuƒƒbƒN”‚ğ•Ô‚·
+  Description:  ç™»éŒ²æ¸ˆã¿ã®ãƒ–ãƒ­ãƒƒã‚¯æ•°ã‚’è¿”ã™
 
   Arguments:    none.
 
-  Returns:      WBTBlockNumEntry - ƒuƒƒbƒN”
+  Returns:      WBTBlockNumEntry - ãƒ–ãƒ­ãƒƒã‚¯æ•°
  *---------------------------------------------------------------------------*/
 int WBT_NumOfRegisteredBlock(void)
 {
@@ -238,12 +238,12 @@ int WBT_NumOfRegisteredBlock(void)
 /*---------------------------------------------------------------------------*
   Name:         WBT_MpParentSendHook
 
-  Description:  e‹@—p‚Ì‘—Mƒf[ƒ^‚ğì‚éŠÖ”
+  Description:  è¦ªæ©Ÿç”¨ã®é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ä½œã‚‹é–¢æ•°
 
-  Arguments:    sendbuf   - ‘—Mƒoƒbƒtƒ@
-                send_size - ‘—Mƒoƒbƒtƒ@ƒTƒCƒY
+  Arguments:    sendbuf   - é€ä¿¡ãƒãƒƒãƒ•ã‚¡
+                send_size - é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-  Returns:      int - ƒuƒƒbƒN“]‘—‘—MƒTƒCƒY
+  Returns:      int - ãƒ–ãƒ­ãƒƒã‚¯è»¢é€é€ä¿¡ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 int WBT_MpParentSendHook(void *sendbuf, int send_size)
 {
@@ -254,12 +254,12 @@ int WBT_MpParentSendHook(void *sendbuf, int send_size)
 /*---------------------------------------------------------------------------*
   Name:         WBT_MpChildSendHook
 
-  Description:  q‹@‚Ì‘—Mƒf[ƒ^‚ğì‚éŠÖ”
+  Description:  å­æ©Ÿã®é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ä½œã‚‹é–¢æ•°
 
-  Arguments:    sendbuf   - ‘—Mƒoƒbƒtƒ@
-                send_size - ‘—Mƒoƒbƒtƒ@ƒTƒCƒY
+  Arguments:    sendbuf   - é€ä¿¡ãƒãƒƒãƒ•ã‚¡
+                send_size - é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-  Returns:      int - ƒuƒƒbƒN“]‘—‘—MƒTƒCƒY
+  Returns:      int - ãƒ–ãƒ­ãƒƒã‚¯è»¢é€é€ä¿¡ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 int WBT_MpChildSendHook(void *sendbuf, int send_size)
 {
@@ -270,11 +270,11 @@ int WBT_MpChildSendHook(void *sendbuf, int send_size)
 /*---------------------------------------------------------------------------*
   Name:         WBT_MpParentRecvHook
 
-  Description:  e‹@—p‚ÌóMƒf[ƒ^‚ğ‰ğÍ‚·‚éŠÖ”
+  Description:  è¦ªæ©Ÿç”¨ã®å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’è§£æã™ã‚‹é–¢æ•°
 
-  Arguments:    recv_buf  - óMƒoƒbƒtƒ@
-                recv_size - óMƒoƒbƒtƒ@ƒTƒCƒY
-                aid       - óM‘Šè‹Ç‚ÌAID
+  Arguments:    recv_buf  - å—ä¿¡ãƒãƒƒãƒ•ã‚¡
+                recv_size - å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+                aid       - å—ä¿¡ç›¸æ‰‹å±€ã®AID
 
   Returns:      none.
  *---------------------------------------------------------------------------*/
@@ -287,10 +287,10 @@ void WBT_MpParentRecvHook(const void *buf, int size, int aid)
 /*---------------------------------------------------------------------------*
   Name:         WBT_MpChildRecvHook
 
-  Description:  q‹@—p‚ÌóMƒf[ƒ^‚ğ‰ğÍ‚·‚éŠÖ”
+  Description:  å­æ©Ÿç”¨ã®å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’è§£æã™ã‚‹é–¢æ•°
 
-  Arguments:    recv_buf  - óMƒoƒbƒtƒ@
-                recv_size - óMƒoƒbƒtƒ@ƒTƒCƒY
+  Arguments:    recv_buf  - å—ä¿¡ãƒãƒƒãƒ•ã‚¡
+                recv_size - å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
   Returns:      none.
  *---------------------------------------------------------------------------*/
@@ -303,19 +303,19 @@ void WBT_MpChildRecvHook(const void *buf, int size)
 /*---------------------------------------------------------------------------*
   Name:         WBT_RegisterBlock
 
-  Description:  ‘—Mi”zMj‰Â”\‚ÈƒuƒƒbƒN‚ğ“o˜^‚·‚é
+  Description:  é€ä¿¡ï¼ˆé…ä¿¡ï¼‰å¯èƒ½ãªãƒ–ãƒ­ãƒƒã‚¯ã‚’ç™»éŒ²ã™ã‚‹
 
-  Arguments:    block_info_list - ƒuƒƒbƒNî•ñ“o˜^—p\‘¢‘Ì
-                block_id        - ƒuƒƒbƒNID
-                user_id         - ƒ†[ƒU[’è‹`î•ñ
-                data_ptr        - ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^i‚m‚t‚k‚k‚Ìê‡A‘Šè‹Ç‚©‚ç—v‹‚ª‚­‚é‚½‚Ñ‚É
-                                  ƒ†[ƒU[ƒR[ƒ‹ƒoƒbƒN‚ª‚©‚©‚èAƒ†[ƒU[‚Í‚»‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”“à‚Å
-                                  ƒf[ƒ^ƒ|ƒCƒ“ƒ^‚ğİ’è‚Å‚«‚éj
-                data_size       - ƒf[ƒ^ƒTƒCƒY
-                permission_bmp  - ”zM‹–‰Âƒrƒbƒgƒ}ƒbƒvi‚O‚Å‹–‰Âu—\’èvj
+  Arguments:    block_info_list - ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±ç™»éŒ²ç”¨æ§‹é€ ä½“
+                block_id        - ãƒ–ãƒ­ãƒƒã‚¯ID
+                user_id         - ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©æƒ…å ±
+                data_ptr        - ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ï¼ˆï¼®ï¼µï¼¬ï¼¬ã®å ´åˆã€ç›¸æ‰‹å±€ã‹ã‚‰è¦æ±‚ãŒãã‚‹ãŸã³ã«
+                                  ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒã‹ã‹ã‚Šã€ãƒ¦ãƒ¼ã‚¶ãƒ¼ã¯ãã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…ã§
+                                  ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã‚’è¨­å®šã§ãã‚‹ï¼‰
+                data_size       - ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+                permission_bmp  - é…ä¿¡è¨±å¯ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ï¼ˆï¼ã§è¨±å¯ã€Œäºˆå®šã€ï¼‰
 
-  Returns:      BOOL   - TRUE  “o˜^¬Œ÷
-                         FALSE block_id‚ÍŠù‚É“o˜^Ï‚İ
+  Returns:      BOOL   - TRUE  ç™»éŒ²æˆåŠŸ
+                         FALSE block_idã¯æ—¢ã«ç™»éŒ²æ¸ˆã¿
  *---------------------------------------------------------------------------*/
 BOOL
 WBT_RegisterBlock(WBTBlockInfoList *block_info_list, WBTBlockId block_id, const void *user_id,
@@ -332,11 +332,11 @@ WBT_RegisterBlock(WBTBlockInfoList *block_info_list, WBTBlockId block_id, const 
 /*---------------------------------------------------------------------------*
   Name:         WBT_UnregisterBlock
 
-  Description:  ƒuƒƒbƒN‚Ì”zM“o˜^‚ğ‚Í‚¸‚·
+  Description:  ãƒ–ãƒ­ãƒƒã‚¯ã®é…ä¿¡ç™»éŒ²ã‚’ã¯ãšã™
 
-  Arguments:    block_id - ”zM’â~‚·‚éƒuƒƒbƒNID
+  Arguments:    block_id - é…ä¿¡åœæ­¢ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ID
 
-  Returns:      WBTBlockInfoList - ƒuƒƒbƒNî•ñ“o˜^—p\‘¢‘Ì
+  Returns:      WBTBlockInfoList - ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±ç™»éŒ²ç”¨æ§‹é€ ä½“
  *---------------------------------------------------------------------------*/
 WBTBlockInfoList *WBT_UnregisterBlock(WBTBlockId block_id)
 {
@@ -347,13 +347,13 @@ WBTBlockInfoList *WBT_UnregisterBlock(WBTBlockId block_id)
 /*---------------------------------------------------------------------------*
   Name:         WBT_RequstSync
 
-  Description:  ‘Šè‹Ç‚Æ“¯Šú‚ğæ‚éiƒuƒƒbƒN“]‘—‚ÌŠJn‚É•K‚¸ŒÄ‚Î‚È‚¯‚ê‚Î‚È‚ç‚È‚¢j
+  Description:  ç›¸æ‰‹å±€ã¨åŒæœŸã‚’å–ã‚‹ï¼ˆãƒ–ãƒ­ãƒƒã‚¯è»¢é€ã®é–‹å§‹æ™‚ã«å¿…ãšå‘¼ã°ãªã‘ã‚Œã°ãªã‚‰ãªã„ï¼‰
 
-  Arguments:    target   - “¯Šú‚ğæ‚é‘Šè‹ÇiAIDƒrƒbƒgƒ}ƒbƒv‚Åw’è‚·‚éj
-                callback - “¯Šú‚ğæ‚Á‚½Œã‚É‚©‚©‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Arguments:    target   - åŒæœŸã‚’å–ã‚‹ç›¸æ‰‹å±€ï¼ˆAIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§æŒ‡å®šã™ã‚‹ï¼‰
+                callback - åŒæœŸã‚’å–ã£ãŸå¾Œã«ã‹ã‹ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-  Returns:      BOOL   - FALSE ˆÈ‘O‚ÌƒRƒ}ƒ“ƒh‚ªÀs’†
-                         TRUE  ƒRƒ}ƒ“ƒh”­s¬Œ÷
+  Returns:      BOOL   - FALSE ä»¥å‰ã®ã‚³ãƒãƒ³ãƒ‰ãŒå®Ÿè¡Œä¸­
+                         TRUE  ã‚³ãƒãƒ³ãƒ‰ç™ºè¡ŒæˆåŠŸ
  *---------------------------------------------------------------------------*/
 BOOL WBT_RequestSync(WBTAidBitmap target, WBTCallback callback)
 {
@@ -370,15 +370,15 @@ BOOL WBT_RequestSync(WBTAidBitmap target, WBTCallback callback)
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetBlockInfo
 
-  Description:  ƒuƒƒbƒNî•ñ‚ğæ“¾‚·‚é
+  Description:  ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±ã‚’å–å¾—ã™ã‚‹
 
-  Arguments:    target           - ƒuƒƒbƒNî•ñ‚ğ—v‹‚·‚é‘Šè‹ÇiAIDƒrƒbƒgƒ}ƒbƒv‚Åw’è‚·‚éj
-                block_info_no    - ƒuƒƒbƒNî•ñ”Ô†
-                block_info_table - æ“¾‚µ‚½ƒuƒƒbƒNî•ñ‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^ƒe[ƒuƒ‹
-                callback         - ƒuƒƒbƒNî•ñæ“¾Œã‚É‚©‚©‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Arguments:    target           - ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±ã‚’è¦æ±‚ã™ã‚‹ç›¸æ‰‹å±€ï¼ˆAIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§æŒ‡å®šã™ã‚‹ï¼‰
+                block_info_no    - ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±ç•ªå·
+                block_info_table - å–å¾—ã—ãŸãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+                callback         - ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±å–å¾—å¾Œã«ã‹ã‹ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-  Returns:      BOOL   - FALSE ˆÈ‘O‚ÌƒRƒ}ƒ“ƒh‚ªÀs’†
-                         TRUE  ƒRƒ}ƒ“ƒh”­s¬Œ÷
+  Returns:      BOOL   - FALSE ä»¥å‰ã®ã‚³ãƒãƒ³ãƒ‰ãŒå®Ÿè¡Œä¸­
+                         TRUE  ã‚³ãƒãƒ³ãƒ‰ç™ºè¡ŒæˆåŠŸ
  *---------------------------------------------------------------------------*/
 BOOL
 WBT_GetBlockInfo(WBTAidBitmap target, int block_info_no, WBTBlockInfoTable *block_info_table,
@@ -397,17 +397,17 @@ WBT_GetBlockInfo(WBTAidBitmap target, int block_info_no, WBTBlockInfoTable *bloc
 /*---------------------------------------------------------------------------*
   Name:         WBT_GetBlock
 
-  Description:  ƒuƒƒbƒN‚ğæ“¾‚·‚é
+  Description:  ãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—ã™ã‚‹
                 
-  Arguments:    target         - ƒuƒƒbƒN‚ğ—v‹‚·‚é‘Šè‹ÇiAIDƒrƒbƒgƒ}ƒbƒv‚Åw’è‚·‚éj
-                block_id       - ƒuƒƒbƒNID
-                recv_buf_table - óM‚µ‚½ƒuƒƒbƒN‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^ƒe[ƒuƒ‹
-                recv_size      - óMƒuƒƒbƒNƒTƒCƒY
-                p_bmp_table    - ƒpƒPƒbƒgóM”Ô†‹L˜^—pƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^ƒe[ƒuƒ‹
-                callback       - ƒuƒƒbƒNæ“¾Œã‚É‚©‚©‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Arguments:    target         - ãƒ–ãƒ­ãƒƒã‚¯ã‚’è¦æ±‚ã™ã‚‹ç›¸æ‰‹å±€ï¼ˆAIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§æŒ‡å®šã™ã‚‹ï¼‰
+                block_id       - ãƒ–ãƒ­ãƒƒã‚¯ID
+                recv_buf_table - å—ä¿¡ã—ãŸãƒ–ãƒ­ãƒƒã‚¯ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+                recv_size      - å—ä¿¡ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
+                p_bmp_table    - ãƒ‘ã‚±ãƒƒãƒˆå—ä¿¡ç•ªå·è¨˜éŒ²ç”¨ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+                callback       - ãƒ–ãƒ­ãƒƒã‚¯å–å¾—å¾Œã«ã‹ã‹ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-  Returns:      BOOL   - FALSE ˆÈ‘O‚ÌƒRƒ}ƒ“ƒh‚ªÀs’†
-                         TRUE  ƒRƒ}ƒ“ƒh”­s¬Œ÷
+  Returns:      BOOL   - FALSE ä»¥å‰ã®ã‚³ãƒãƒ³ãƒ‰ãŒå®Ÿè¡Œä¸­
+                         TRUE  ã‚³ãƒãƒ³ãƒ‰ç™ºè¡ŒæˆåŠŸ
  *---------------------------------------------------------------------------*/
 BOOL
 WBT_GetBlock(WBTAidBitmap target, WBTBlockId block_id, WBTRecvBufTable *recv_buf_table,
@@ -426,15 +426,15 @@ WBT_GetBlock(WBTAidBitmap target, WBTBlockId block_id, WBTRecvBufTable *recv_buf
 /*---------------------------------------------------------------------------*
   Name:         WBT_PutUserData
 
-  Description:  ‘Šè‹Ç‚É‚XƒoƒCƒgˆÈ‰º‚Ìƒf[ƒ^‚ğ‘—‚é
+  Description:  ç›¸æ‰‹å±€ã«ï¼™ãƒã‚¤ãƒˆä»¥ä¸‹ã®ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
                 
-  Arguments:    target    - ‘Šè‹ÇiAIDƒrƒbƒgƒ}ƒbƒv‚Åw’è‚·‚éj
-                user_data - ‘—‚è‚½‚¢ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                size      - ƒf[ƒ^ƒTƒCƒY
-                callback  - ƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Arguments:    target    - ç›¸æ‰‹å±€ï¼ˆAIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§æŒ‡å®šã™ã‚‹ï¼‰
+                user_data - é€ã‚ŠãŸã„ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                size      - ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+                callback  - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-  Returns:      BOOL   - FALSE ˆÈ‘O‚ÌƒRƒ}ƒ“ƒh‚ªÀs’†
-                         TRUE  ƒRƒ}ƒ“ƒh”­s¬Œ÷
+  Returns:      BOOL   - FALSE ä»¥å‰ã®ã‚³ãƒãƒ³ãƒ‰ãŒå®Ÿè¡Œä¸­
+                         TRUE  ã‚³ãƒãƒ³ãƒ‰ç™ºè¡ŒæˆåŠŸ
  *---------------------------------------------------------------------------*/
 BOOL WBT_PutUserData(WBTAidBitmap target, const void *user_data, int size, WBTCallback callback)
 {
@@ -451,12 +451,12 @@ BOOL WBT_PutUserData(WBTAidBitmap target, const void *user_data, int size, WBTCa
 /*---------------------------------------------------------------------------*
   Name:         WBT_CancelCurrentCommand
 
-  Description:  Œ»İ”­s’†‚Ì‚v‚a‚sƒRƒ}ƒ“ƒh‚ğ’†’f‚·‚é
+  Description:  ç¾åœ¨ç™ºè¡Œä¸­ã®ï¼·ï¼¢ï¼´ã‚³ãƒãƒ³ãƒ‰ã‚’ä¸­æ–­ã™ã‚‹
                 
-  Arguments:    target    - ‘Šè‹ÇiAIDƒrƒbƒgƒ}ƒbƒv‚Åw’è‚·‚éj
+  Arguments:    target    - ç›¸æ‰‹å±€ï¼ˆAIDãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã§æŒ‡å®šã™ã‚‹ï¼‰
 
-  Returns:      BOOL   - FALSE ƒLƒƒƒ“ƒZƒ‹‚·‚éƒRƒ}ƒ“ƒh‚ª‚È‚¢
-                         TRUE  ƒLƒƒƒ“ƒZƒ‹¬Œ÷
+  Returns:      BOOL   - FALSE ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ãŒãªã„
+                         TRUE  ã‚­ãƒ£ãƒ³ã‚»ãƒ«æˆåŠŸ
  *---------------------------------------------------------------------------*/
 BOOL WBT_CancelCurrentCommand(WBTAidBitmap cancel_target)
 {

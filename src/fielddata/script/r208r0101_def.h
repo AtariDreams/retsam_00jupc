@@ -1,12 +1,12 @@
 #ifndef _R208R0101_DEF_H_
 #define _R208R0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R208R0101_FLAG_CHANGE		(1)
 #define	SCRID_R208R0101_OLDMAN2		(2)
 #define	SCRID_R208R0101_BABYGIRL1		(3)
 #define	SCRID_R208R0101_WOMAN1		(4)
 #define	SCRID_R208R0101_BOOK		(5)
-#define	SCRID_R208R0101_DATA_MAX		(5)		//最大数
+#define	SCRID_R208R0101_DATA_MAX		(5)		//譛螟ｧ謨ｰ
 
 #endif //_R208R0101_DEF_H_

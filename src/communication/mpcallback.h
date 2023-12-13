@@ -4,7 +4,7 @@
  * @version "$Id: mpcallback.h,v 1.1 2006/05/02 03:09:56 mitsuhara Exp $"
  *
  * @file twl_callback.h
- * @brief –³ü’ÊMƒ‰ƒCƒuƒ‰ƒŠ ó‘Ô‘JˆÚƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @brief ç„¡ç·šé€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒª çŠ¶æ…‹é·ç§»ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  * 
  */
 #ifdef __cplusplus
@@ -13,151 +13,151 @@ extern "C" {
 
 
 /**
- * IndicationƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * Indicationã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  */
 extern void MpCallbackIndicate(void *arg);
   
 
 /**
- * MpRequestSetMPDataToPort‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestSetMPDataToPortã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 extern void MpCallbackSetMPDataToPort(void *arg);
 
 
 /**
- * MpRequestEnable‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestEnableã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 extern void MpCallbackEnable(void *arg);
 
   
 /**
- * MpRequestDisable‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestDisableã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 extern void MpCallbackDisable(void *arg);
 
 
 /**
- * MpRequestSearchChannel‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestSearchChannelã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì 
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“ 
  */
 extern void MpCallbackSearchChannel(void *arg);
 
        
 /**
- * MpRequestSetParentParameter‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestSetParentParameterã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì 
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“ 
  */
 extern void MpCallbackSetParentParameter(void *arg);
 
        
 /**
- * MpRequestStartParent‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestStartParentã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì 
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“ 
  */
 extern void MpCallbackStartParent(void *arg);
 
 
 /**
- * MpRequestStartScan‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestStartScanã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì 
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“ 
  */
 extern void MpCallbackStartScan(void *arg);
 
 
 /**
- * MpRequestStartScan2‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestStartScan2ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì 
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“ 
  */
 extern void MpCallbackStartScan2(void *arg);
   
   
 /**
- * MpRequestEndScan‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestEndScanã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 extern void MpCallbackEndScan(void *arg);
 
 
 /**
- * MpRequestStartConnect‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestStartConnectã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 extern void MpCallbackStartConnect(void *arg);
 
   
 /**
- * MpRequestDisConnect‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestDisConnectã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 extern void MpCallbackDisConnect(void *arg);
 
 
 /**
- * MpRequestDisConnectChildren‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestDisConnectChildrenã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 extern void MpCallbackDisConnectChildren(void *arg);
   
        
 /**
- * MpRequestStatMP‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestStatMPã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 extern void MpCallbackStartMP(void *arg);
 
 
 /**
- * WM_SetPortCallback‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * WM_SetPortCallbackã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 extern void MpCallbackReceiveData(void *arg);
 
   
 /**
- * MpRequestPowerOn‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestPowerOnã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 extern void MpCallbackPowerOn(void *arg);
 
 
 /**
- * MpRequestPowerOff‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestPowerOffã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 extern void MpCallbackPowerOff(void *arg);
 
 
 /**
- * MpRequestReset‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestResetã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 extern void MpCallbackReset(void *arg);
   
 
 /**
- * MpRequestEnd‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * MpRequestEndã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param arg WM”ñ“¯Šúˆ—ŠÖ”—p\‘¢‘Ì
+ * @param arg WMéåŒæœŸå‡¦ç†é–¢æ•°ç”¨æ§‹é€ ä½“
  */
 extern void MpCallbackEnd(void *arg);
 

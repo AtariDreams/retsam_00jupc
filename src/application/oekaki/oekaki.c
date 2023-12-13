@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	oekaki.c
- * @bfief	‚¨ŠG‚©‚«ƒ{[ƒh‰æ–Êˆ—
+ * @bfief	ãŠçµµã‹ããƒœãƒ¼ãƒ‰ç”»é¢å‡¦ç†
  * @author	Akito Mori
  * @date	05.10.05
  */
@@ -51,22 +51,22 @@
 //#include "msgdata/msg.naix"
 #include "msgdata/msg_ev_win.h"
 
-// SE—p’è‹`
+// SEç”¨å®šç¾©
 #define OEKAKI_DECIDE_SE	(SEQ_SE_DP_SELECT)
 #define OEKAKI_BS_SE		(SEQ_SE_DP_CUSTOM06)
 
 
-#include "oekaki.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "oekaki.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 static void VBlankFunc( void * work );
 static void VramBankSet(void);
 static void BgInit( GF_BGL_INI * ini );
@@ -172,17 +172,17 @@ static OEKAKI_FUNC_TABLE FuncTable[]={
 
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT OekakiProc_Init( PROC * proc, int * seq )
@@ -192,8 +192,8 @@ PROC_RESULT OekakiProc_Init( PROC * proc, int * seq )
 
 	switch(*seq){
 	case 0:
-		sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-		sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+		sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+		sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 		GF_Disp_GX_VisibleControlInit();
 		GF_Disp_GXS_VisibleControlInit();
@@ -206,70 +206,70 @@ PROC_RESULT OekakiProc_Init( PROC * proc, int * seq )
 		memset( wk, 0, sizeof(OEKAKI_WORK) );
 		wk->bgl = GF_BGL_BglIniAlloc( HEAPID_OEKAKI );
 		
-		// •¶Žš—ñƒ}ƒl[ƒWƒƒ[¶¬
+		// æ–‡å­—åˆ—ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”Ÿæˆ
 		wk->WordSet    = WORDSET_Create( HEAPID_OEKAKI );
 		wk->MsgManager = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_oekaki_dat, HEAPID_OEKAKI );
 
 		sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-		// VRAM ƒoƒ“ƒNÝ’è
+		// VRAM ãƒãƒ³ã‚¯è¨­å®š
 		VramBankSet();
 		
-		// BGLƒŒƒWƒXƒ^Ý’è
+		// BGLãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®š
 		BgInit( wk->bgl );					
 
 		WIPE_SetBrightness( WIPE_DISP_MAIN,WIPE_FADE_BLACK );
 		WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_BLACK );
 
-		// ‹P“x•ÏXƒZƒbƒg
+		// è¼åº¦å¤‰æ›´ã‚»ãƒƒãƒˆ
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_HOLEIN, WIPE_TYPE_HOLEIN, WIPE_FADE_BLACK, 16, 1, HEAPID_OEKAKI );
 		
-		// ƒpƒ‰ƒ[ƒ^Žæ“¾
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 		{
 			OEKAKI_PARAM *param = (OEKAKI_PARAM*)PROC_GetParentWork( proc );
 			wk->param = param;
 		}
 
-		// ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+		// ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 		p_handle = ArchiveDataHandleOpen( ARC_OEKAKI_GRA, HEAPID_OEKAKI );
 
-		//BGƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+		//BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
 		BgGraphicSet( wk, p_handle );
 
-		// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+		// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 		InitTPSystem();						
 		InitTPNoBuff(2);
   
-		// VBlankŠÖ”ƒZƒbƒg
+		// VBlanké–¢æ•°ã‚»ãƒƒãƒˆ
 		sys_VBlankFuncChange( VBlankFunc, wk->bgl );	
   
-		// ƒ[ƒN‰Šú‰»
+		// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		InitWork( wk );
 
-		// OBJƒLƒƒƒ‰AƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+		// OBJã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 		char_pltt_manager_init();
 
-		// CellActorƒVƒXƒeƒ€‰Šú‰»
+		// CellActorã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 		InitCellActor(wk, p_handle);
 		
-		// CellActro•\Ž¦“o˜^
+		// CellActroè¡¨ç¤ºç™»éŒ²
 		SetCellActor(wk);
 
-		// BMPWIN“o˜^E•`‰æ
+		// BMPWINç™»éŒ²ãƒ»æç”»
 		BmpWinInit(wk,proc);
 
-		// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(–¼‘O“ü—Í)(BGMˆøŒp‚¬)
+		// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(åå‰å…¥åŠ›)(BGMå¼•ç¶™ãŽ)
 		Snd_DataSetByScene( SND_SCENE_SUB_NAMEIN, 0, 0 );
 
-		// ‰æ–Êo—Í‚ðã‰º“ü‚ê‘Ö‚¦‚é
+		// ç”»é¢å‡ºåŠ›ã‚’ä¸Šä¸‹å…¥ã‚Œæ›¿ãˆã‚‹
 		GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
-		// ’ÊMƒRƒ}ƒ“ƒh‚ðŒðŠ·ƒŠƒXƒg—p‚É•ÏX
+		// é€šä¿¡ã‚³ãƒžãƒ³ãƒ‰ã‚’äº¤æ›ãƒªã‚¹ãƒˆç”¨ã«å¤‰æ›´
 		CommCommandOekakiBoardInitialize( wk );
-        // ‚¨ŠG‚©‚«Žž‚É‚ÍÚ‘±Ø’f‚ÅƒGƒ‰[ˆµ‚¢‚µ‚È‚¢
+        // ãŠçµµã‹ãæ™‚ã«ã¯æŽ¥ç¶šåˆ‡æ–­ã§ã‚¨ãƒ©ãƒ¼æ‰±ã„ã—ãªã„
         CommStateSetErrorCheck(FALSE,TRUE);
         
-        // 3‘ä‚Ü‚ÅÚ‘±‰Â”\‚É‘‚«Š·‚¦(ŠJŽn‚µ‚½Žž‚Í‚Ql‚Å‚±‚±‚É‚­‚é‚Ì‚Å‚ ‚Æˆêl‚¾‚¯“ü‚ê‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­j
+        // 3å°ã¾ã§æŽ¥ç¶šå¯èƒ½ã«æ›¸ãæ›ãˆ(é–‹å§‹ã—ãŸæ™‚ã¯ï¼’äººã§ã“ã“ã«ãã‚‹ã®ã§ã‚ã¨ä¸€äººã ã‘å…¥ã‚Œã‚‹ã‚ˆã†ã«ã—ã¦ãŠãï¼‰
 		if(CommGetCurrentID()==0){
 	        CommStateSetLimitNum(3);
 		}
@@ -277,13 +277,13 @@ PROC_RESULT OekakiProc_Init( PROC * proc, int * seq )
 		
 		WirelessIconEasy();
 
-		// e‚¾‚Á‚½‚çu‚¨‚¦‚©‚«’ÊM’†v‚Éƒr[ƒRƒ“‘‚«Š·‚¦
+		// è¦ªã ã£ãŸã‚‰ã€ŒãŠãˆã‹ãé€šä¿¡ä¸­ã€ã«ãƒ“ãƒ¼ã‚³ãƒ³æ›¸ãæ›ãˆ
 		if(CommGetCurrentID()==0){
 			Union_BeaconChange( UNION_PARENT_MODE_OEKAKI_FREE );
 			CommMPSetDisconnectOtherError(TRUE);
 		}
 
-		// ƒnƒ“ƒhƒ‹ƒNƒ[ƒY
+		// ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
 		ArchiveDataHandleClose( p_handle );
 		(*seq)++;
 		break;
@@ -301,12 +301,12 @@ PROC_RESULT OekakiProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 
@@ -318,48 +318,48 @@ PROC_RESULT OekakiProc_Main( PROC * proc, int * seq )
 		wk->ridatu_bit &= WH_GetBitmap();
 	}
 	
-	// ƒ[ƒN‚ÉŒ»Ý‚ÌprocƒV[ƒPƒ“ƒX‚ð•Û‘¶
+	// ãƒ¯ãƒ¼ã‚¯ã«ç¾åœ¨ã®procã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ä¿å­˜
 	wk->proc_seq = *seq;
 
-	// ƒTƒuƒV[ƒPƒ“ƒX‘JˆÚ§Œä‚ðs‚¤
+	// ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é·ç§»åˆ¶å¾¡ã‚’è¡Œã†
 	OekakiSequenceControl( wk, *seq );
 	
 	switch( *seq ){
 	case SEQ_IN:
 		if( WIPE_SYS_EndCheck() ){
-			// ƒƒCƒvˆ—‘Ò‚¿
+			// ãƒ¯ã‚¤ãƒ—å‡¦ç†å¾…ã¡
 //			*seq = SEQ_MAIN;
 
-			// Ž©•ª‚ªŽq‹@‚ÅÚ‘±‘ä”‚ª‚Q‘äˆÈã‚¾‚Á‚½ê‡‚Í‚à‚¤ŠG‚ª•`‚©‚ê‚Ä‚¢‚é
+			// è‡ªåˆ†ãŒå­æ©Ÿã§æŽ¥ç¶šå°æ•°ãŒï¼’å°ä»¥ä¸Šã ã£ãŸå ´åˆã¯ã‚‚ã†çµµãŒæã‹ã‚Œã¦ã„ã‚‹
 			if(CommGetCurrentID()!=0){
 				if( (MyStatusGetNum()>=2) ){
-					// Žq‹@—“üƒŠƒNƒGƒXƒg
+					// å­æ©Ÿä¹±å…¥ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 					CommSendData(CO_OEKAKI_CHILD_JOIN, NULL, 0);
-					OS_Printf("—“ü‚µ‚Ü‚·\n");
+					OS_Printf("ä¹±å…¥ã—ã¾ã™\n");
 					*seq = SEQ_MAIN;
 				}
 				break;
 			}else{
-				//e‚ÍƒƒCƒ“‚Ö
+				//è¦ªã¯ãƒ¡ã‚¤ãƒ³ã¸
 				*seq = SEQ_MAIN;
 			}
 		}
 		break;
 
 	case SEQ_MAIN:
-		// ƒJ[ƒ\ƒ‹ˆÚ“®
+		// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 
-		// ƒV[ƒPƒ“ƒX–ˆ‚Ì“®ì
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ¯Žã®å‹•ä½œ
 		if(FuncTable[wk->seq].func!=NULL){
 			*seq = FuncTable[wk->seq].func( wk, *seq );
 		}
-		// Ú‘±l”‚ðŠm”F‚µ‚Äã‰æ–Ê‚É–¼‘O‚ð•`‰æ
+		// æŽ¥ç¶šäººæ•°ã‚’ç¢ºèªã—ã¦ä¸Šç”»é¢ã«åå‰ã‚’æç”»
 		NameCheckPrint( wk->TrainerNameWin, 0, GF_PRINTCOLOR_MAKE(0xe,0xd,0xf),wk);
 
-		if(CommGetCurrentID()==0){				// e‚Í
+		if(CommGetCurrentID()==0){				// è¦ªã¯
 			int temp = ConnectNumControl(wk);
 			if(*seq == SEQ_MAIN){
-				// Šù‚ÉI—¹ƒV[ƒPƒ“ƒX‚È‚Ç‚É“ü‚Á‚Ä‚¢‚éê‡‚Í‘‚«Š·‚¦‚È‚¢
+				// æ—¢ã«çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãªã©ã«å…¥ã£ã¦ã„ã‚‹å ´åˆã¯æ›¸ãæ›ãˆãªã„
 				*seq = temp;
 			}
 		}
@@ -374,30 +374,30 @@ PROC_RESULT OekakiProc_Main( PROC * proc, int * seq )
 
 	case SEQ_OUT:
 		if( WIPE_SYS_EndCheck() ){
-			OS_Printf("ƒƒCƒvI—¹Šm”F\n");
+			OS_Printf("ãƒ¯ã‚¤ãƒ—çµ‚äº†ç¢ºèª\n");
 			return PROC_RES_FINISH;
 		}
 		break;
 	}
-	CLACT_Draw( wk->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+	CLACT_Draw( wk->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 
 	return PROC_RES_CONTINUE;
 }
 
 #define DEFAULT_NAME_MAX		18
 
-// ƒ_ƒCƒ„Eƒp[ƒ‹‚Å•Ï‚í‚é‚ñ‚¾‚ë‚¤
+// ãƒ€ã‚¤ãƒ¤ãƒ»ãƒ‘ãƒ¼ãƒ«ã§å¤‰ã‚ã‚‹ã‚“ã ã‚ã†
 #define MALE_NAME_START			0
 #define FEMALE_NAME_START		18
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT OekakiProc_End( PROC * proc, int * seq )
@@ -409,65 +409,65 @@ PROC_RESULT OekakiProc_End( PROC * proc, int * seq )
 
 	switch(*seq){
 	case 0:
-		OS_Printf("‚¨‚¦‚©‚«ƒ[ƒN‰ð•úˆ—“Ë“ü\n");
-		// –`Œ¯ƒm[ƒg—pˆ—
+		OS_Printf("ãŠãˆã‹ããƒ¯ãƒ¼ã‚¯è§£æ”¾å‡¦ç†çªå…¥\n");
+		// å†’é™ºãƒŽãƒ¼ãƒˆç”¨å‡¦ç†
 		FnoteWork = FNOTE_SioUnionPictureDataMake( HEAPID_OEKAKI );
 		FNOTE_DataSave( param->fnote, FnoteWork, FNOTE_TYPE_SIO );
 
-		// VblankŠúŠÔ’†‚ÌBG“]‘—I—¹
+		// VblankæœŸé–“ä¸­ã®BGè»¢é€çµ‚äº†
 		sys_VBlankFuncChange( NULL, NULL);
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ð•ú
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 
-		// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		// ã‚­ãƒ£ãƒ©è»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		CLACT_U_CharManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES]);
 		CLACT_U_CharManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES]);
 
-		// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		CLACT_U_PlttManagerDelete(wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES]);
 		CLACT_U_PlttManagerDelete(wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES]);
 		
-		// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+		// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		for(i=0;i<CLACT_RESOURCE_NUM;i++){
 			CLACT_U_ResManagerDelete(wk->resMan[i]);
 		}
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 		CLACT_DestSet(wk->clactSet);
 
-		//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+		//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 		REND_OAM_Delete();
 
-		// ƒŠƒ\[ƒX‰ð•ú
+		// ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 		DeleteCharManager();
 		DeletePlttManager();
 
-		// BMPƒEƒBƒ“ƒhƒEŠJ•ú
+		// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹æ”¾
 		BmpWinDelete( wk );
 
-		// BGLíœ
+		// BGLå‰Šé™¤
 		BgExit( wk->bgl );
 
-		// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€I—¹
+		// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
 		StopTP();							
 
 
-		// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[Eƒ[ƒhƒZƒbƒgƒ}ƒl[ƒWƒƒ[‰ð•ú
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ»ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼è§£æ”¾
 		MSGMAN_Delete( wk->MsgManager );
 		WORDSET_Delete( wk->WordSet );
 
 		(*seq)++;
 		break;
 	case 1:
-		// ’ÊMI—¹
+		// é€šä¿¡çµ‚äº†
 	//	CommStateExitUnion();
 		CommStateSetLimitNum(1);
 		CommStateUnionBconCollectionRestart();
 		UnionRoomView_ObjInit( param->view );
 
-		// “ü‚ê‘Ö‚í‚Á‚Ä‚¢‚½ã‰º‰æ–Êo—Í‚ðŒ³‚É–ß‚·
+		// å…¥ã‚Œæ›¿ã‚ã£ã¦ã„ãŸä¸Šä¸‹ç”»é¢å‡ºåŠ›ã‚’å…ƒã«æˆ»ã™
 		GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-		// ƒr[ƒRƒ“‘‚«Š·‚¦
+		// ãƒ“ãƒ¼ã‚³ãƒ³æ›¸ãæ›ãˆ
 		Union_BeaconChange( UNION_PARENT_MODE_FREE );
 
 		CommMPSetDisconnectOtherError(FALSE);
@@ -475,7 +475,7 @@ PROC_RESULT OekakiProc_End( PROC * proc, int * seq )
 		break;
 	case 2:
 		if (wk->ireagalJoin){
-			OS_Printf("e‹@‚¾‚¯‚É‚È‚é‚Ü‚Å‘Ò‹@\n");	
+			OS_Printf("è¦ªæ©Ÿã ã‘ã«ãªã‚‹ã¾ã§å¾…æ©Ÿ\n");	
 			if (WH_GetBitmap() == 1){
 				(*seq)++;
 			}
@@ -485,14 +485,14 @@ PROC_RESULT OekakiProc_End( PROC * proc, int * seq )
 		break;
 	case 3:
 		CommStateSetLimitNum(2);
-		// ƒ[ƒN‰ð•ú
+		// ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 		FreeWork( wk );
 
 		sys_FreeMemoryEz( wk->param );
 
-		PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+		PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-		sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
+		sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
 
 		sys_DeleteHeap( HEAPID_OEKAKI );
 
@@ -505,7 +505,7 @@ PROC_RESULT OekakiProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
  * @param	none
  *
@@ -514,11 +514,11 @@ PROC_RESULT OekakiProc_End( PROC * proc, int * seq )
 //--------------------------------------------------------------------------------------------
 static void VBlankFunc( void * work )
 {
-	// ƒZƒ‹ƒAƒNƒ^[
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	// Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();	
 	
 	GF_BGL_VBlankFunc( (GF_BGL_INI*)work );
@@ -529,7 +529,7 @@ static void VBlankFunc( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMÝ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -539,29 +539,29 @@ static void VBlankFunc( void * work )
 static void VramBankSet(void)
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &tbl );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGÝ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -576,7 +576,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	// ƒƒCƒ“‰æ–Ê•¶Žš”Å0
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢æ–‡å­—ç‰ˆ0
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -589,7 +589,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 	}
 
-	// ƒƒCƒ“‰æ–Êƒ‰ƒNƒKƒL–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ©ã‚¯ã‚¬ã‚­é¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -600,7 +600,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME1_M );
 	}
 
-	// ƒƒCƒ“‰æ–Ê”wŒi
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -612,7 +612,7 @@ static void BgInit( GF_BGL_INI * ini )
 	}
 
 #if 0
-	// ”wŒi (CHAR)
+	// èƒŒæ™¯ (CHAR)
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -623,7 +623,7 @@ static void BgInit( GF_BGL_INI * ini )
 	}
 #endif
 
-	// ƒTƒu‰æ–ÊƒeƒLƒXƒg–Ê
+	// ã‚µãƒ–ç”»é¢ãƒ†ã‚­ã‚¹ãƒˆé¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -634,7 +634,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME0_S );
 	}
 
-	// ƒTƒu‰æ–Ê”wŒi–Ê
+	// ã‚µãƒ–ç”»é¢èƒŒæ™¯é¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -646,7 +646,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 	GF_BGL_ClearCharSet( GF_BGL_FRAME0_M, 32, 0, HEAPID_OEKAKI );
 	GF_BGL_ClearCharSet( GF_BGL_FRAME0_S, 32, 0, HEAPID_OEKAKI );
-	GF_BGL_ClearCharSet( GF_BGL_FRAME1_M, 32, 0, HEAPID_OEKAKI );	///< •¶Žš–ÊˆÈŠO‚àƒLƒƒƒ‰ƒNƒŠƒA‚µ‚½B080422
+	GF_BGL_ClearCharSet( GF_BGL_FRAME1_M, 32, 0, HEAPID_OEKAKI );	///< æ–‡å­—é¢ä»¥å¤–ã‚‚ã‚­ãƒ£ãƒ©ã‚¯ãƒªã‚¢ã—ãŸã€‚080422
 	GF_BGL_ClearCharSet( GF_BGL_FRAME1_S, 32, 0, HEAPID_OEKAKI );
 
 }
@@ -656,7 +656,7 @@ static void BgInit( GF_BGL_INI * ini )
 
 //------------------------------------------------------------------
 /**
- * ‚¨ŠG‚©‚«ƒ[ƒN‰Šú‰»
+ * ãŠçµµã‹ããƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   wk		OEKAKI_WORK*
  *
@@ -675,11 +675,11 @@ static void InitWork( OEKAKI_WORK *wk )
 		wk->TrainerStatus[i][1] = NULL;
 
 	}
-	// u‚â‚ß‚év•¶Žš—ñƒoƒbƒtƒ@ì¬
+	// ã€Œã‚„ã‚ã‚‹ã€æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	wk->EndString  = STRBUF_Create( 10, HEAPID_OEKAKI );
 	wk->TalkString = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_OEKAKI );
 
-	// ƒuƒ‰ƒV‰Šú‰»
+	// ãƒ–ãƒ©ã‚·åˆæœŸåŒ–
 	wk->brush_color  = 0;
 	wk->brush        = MIDDLE_BRUSH;
 	wk->banFlag      = OEKAKI_BAN_OFF;
@@ -692,30 +692,30 @@ static void InitWork( OEKAKI_WORK *wk )
 	wk->bookJoin  = 0;
 	wk->joinBit  = 0;
 
-	// e‚Í’ÊM‚ÅŠG‚ðŽó‚¯Žæ‚é•K—v‚ª–³‚¢
+	// è¦ªã¯é€šä¿¡ã§çµµã‚’å—ã‘å–ã‚‹å¿…è¦ãŒç„¡ã„
 	if( CommGetCurrentID()==0 ){
 		SetNextSequence( wk, OEKAKI_MODE );
 	}else{
-		// ŠG‚ðŽó‚¯Žæ‚ç‚È‚¢‚Æ‚¢‚¯‚È‚¢
+		// çµµã‚’å—ã‘å–ã‚‰ãªã„ã¨ã„ã‘ãªã„
 		SetNextSequence( wk, OEKAKI_MODE );
 	}
 	
-	// u‚â‚ß‚évŽæ“¾
+	// ã€Œã‚„ã‚ã‚‹ã€å–å¾—
 	MSGMAN_GetString( wk->MsgManager, msg_oekaki_08, wk->EndString );
 
-	// ‚¨ŠG‚©‚«‰æ‘œˆ³kƒf[ƒ^—Ìˆæ
+	// ãŠçµµã‹ãç”»åƒåœ§ç¸®ãƒ‡ãƒ¼ã‚¿é ˜åŸŸ
 	wk->lz_buf = sys_AllocMemory( HEAPID_OEKAKI, 30*16*32 );
 
-	// ‰º‰æ–ÊƒEƒCƒ“ƒhƒEƒVƒXƒeƒ€‰Šú‰»
+	// ä¸‹ç”»é¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	wk->TouchSubWindowSys = TOUCH_SW_AllocWork( HEAPID_OEKAKI );
 
-	// Ú‘±l”ŠÄŽ‹—pƒ[ƒN‰Šú‰»
+	// æŽ¥ç¶šäººæ•°ç›£è¦–ç”¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	wk->connectBackup = 0;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ[ƒN‰ð•ú
+ * $brief   ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
  * @param   wk		
  *
@@ -740,9 +740,9 @@ static void FreeWork( OEKAKI_WORK *wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ð•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -763,9 +763,9 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -774,32 +774,32 @@ static void BgGraphicSet( OEKAKI_WORK * wk, ARCHANDLE* p_handle )
 {
 	GF_BGL_INI *bgl = wk->bgl;
 
-	// ã‰º‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+	// ä¸Šä¸‹ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_HDL_PalSet(    p_handle, NARC_oekaki_oekaki_m_nclr, PALTYPE_MAIN_BG, 0, 16*2*2,  HEAPID_OEKAKI);
 	ArcUtil_HDL_PalSet(    p_handle, NARC_oekaki_oekaki_s_nclr, PALTYPE_SUB_BG,  0, 16*2*2,  HEAPID_OEKAKI);
 	
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, 13*0x20, HEAPID_OEKAKI );
 	TalkFontPaletteLoad( PALTYPE_SUB_BG,  13*0x20, HEAPID_OEKAKI );
 
 
 
 
-	// ƒƒCƒ“‰æ–ÊBG2ƒLƒƒƒ‰“]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG2ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_oekaki_mainbg_lz_ncgr, bgl, GF_BGL_FRAME2_M, 0, 32*8*0x20, 1, HEAPID_OEKAKI);
 
-	// ƒƒCƒ“‰æ–ÊBG2ƒXƒNƒŠ[ƒ““]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG2ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_oekaki_mainbg_lz_nscr, bgl, GF_BGL_FRAME2_M, 0, 32*24*2, 1, HEAPID_OEKAKI);
 
 
 
-	// ƒTƒu‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+	// ã‚µãƒ–ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_oekaki_subbg_lz_ncgr, bgl, GF_BGL_FRAME1_S, 0, 32*8*0x20, 1, HEAPID_OEKAKI);
 
-	// ƒTƒu‰æ–ÊBG1ƒXƒNƒŠ[ƒ““]‘—
+	// ã‚µãƒ–ç”»é¢BG1ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_oekaki_subbg_lz_nscr, bgl, GF_BGL_FRAME1_S, 0, 32*24*2, 1, HEAPID_OEKAKI);
 
-	// ƒTƒu‰æ–Ê‰ï˜bƒEƒCƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// ã‚µãƒ–ç”»é¢ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	TalkWinGraphicSet(
 				bgl, GF_BGL_FRAME0_M, 1, FLD_MESFRAME_PAL,  CONFIG_GetWindowType(wk->param->config), HEAPID_OEKAKI );
 
@@ -809,7 +809,7 @@ static void BgGraphicSet( OEKAKI_WORK * wk, ARCHANDLE* p_handle )
 }
 
 
-//** CharManager PlttManager—p **//
+//** CharManager PlttManagerç”¨ **//
 #define OEKAKI_CHAR_CONT_NUM				(20)
 #define OEKAKI_CHAR_VRAMTRANS_MAIN_SIZE		(2048)
 #define OEKAKI_CHAR_VRAMTRANS_SUB_SIZE		(2048)
@@ -817,13 +817,13 @@ static void BgGraphicSet( OEKAKI_WORK * wk, ARCHANDLE* p_handle )
 
 //-------------------------------------
 //
-//	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[
-//	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 //
 //=====================================
 static void char_pltt_manager_init(void)
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			OEKAKI_CHAR_CONT_NUM,
@@ -833,10 +833,10 @@ static void char_pltt_manager_init(void)
 		};
 		InitCharManager(&cm);
 	}
-	// ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(OEKAKI_PLTT_CONT_NUM, HEAPID_OEKAKI);
 
-	// “Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 }
@@ -844,9 +844,9 @@ static void char_pltt_manager_init(void)
 
 //------------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‰æ–Ê—pƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param   wk		ƒŒ[ƒ_[\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¬ãƒ¼ãƒ€ãƒ¼æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -856,79 +856,79 @@ static void InitCellActor(OEKAKI_WORK *wk, ARCHANDLE* p_handle)
 	int i;
 	
 	
-	// OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	// OAMãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	// ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
+	// å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 	REND_OAMInit( 
-			0, 126,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 126,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 126,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 126,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			HEAPID_OEKAKI);
 	
 	
 	
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	wk->clactSet = CLACT_U_SetEasyInit( 50+3, &wk->renddata, HEAPID_OEKAKI );
 	
 	CLACT_U_SetSubSurfaceMatrix( &wk->renddata, 0, NAMEIN_SUB_ACTOR_DISTANCE );
 
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for(i=0;i<CLACT_RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->resMan[i] = CLACT_U_ResManagerInit(2, i, HEAPID_OEKAKI);
 	}
 
 
-	//---------ã‰æ–Ê—p-------------------
+	//---------ä¸Šç”»é¢ç”¨-------------------
 
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[CLACT_U_CHAR_RES], 
 							p_handle, NARC_oekaki_obj_lz_ncgr, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_OEKAKI);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[CLACT_U_PLTT_RES],
 							p_handle, NARC_oekaki_oekaki_m_nclr, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, HEAPID_OEKAKI);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELL_RES],
 							p_handle, NARC_oekaki_obj_lz_ncer, 1, 0, CLACT_U_CELL_RES,HEAPID_OEKAKI);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[MAIN_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELLANM_RES],
 							p_handle, NARC_oekaki_obj_lz_nanr, 1, 0, CLACT_U_CELLANM_RES,HEAPID_OEKAKI);
 
 
-	//---------‰º‰æ–Ê—p-------------------
+	//---------ä¸‹ç”»é¢ç”¨-------------------
 
 
 
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(wk->resMan[CLACT_U_CHAR_RES], 
 							p_handle, NARC_oekaki_obj_lz_ncgr, 1, 1, NNS_G2D_VRAM_TYPE_2DSUB, HEAPID_OEKAKI);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(wk->resMan[CLACT_U_PLTT_RES],
 							p_handle, NARC_oekaki_oekaki_m_nclr, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 3, HEAPID_OEKAKI);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELL_RES],
 							p_handle, NARC_oekaki_obj_lz_ncer, 1, 1, CLACT_U_CELL_RES,HEAPID_OEKAKI);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->resObjTbl[SUB_LCD][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(wk->resMan[CLACT_U_CELLANM_RES],
 							p_handle, NARC_oekaki_obj_lz_nanr, 1, 1, CLACT_U_CELLANM_RES,HEAPID_OEKAKI);
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 
-	// Chara“]‘—
+	// Charaè»¢é€
 	CLACT_U_CharManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_CHAR_RES] );
 	CLACT_U_CharManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_CHAR_RES] );
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	CLACT_U_PlttManagerSet( wk->resObjTbl[MAIN_LCD][CLACT_U_PLTT_RES] );
 	CLACT_U_PlttManagerSet( wk->resObjTbl[SUB_LCD][CLACT_U_PLTT_RES] );
 
@@ -939,25 +939,25 @@ static void InitCellActor(OEKAKI_WORK *wk, ARCHANDLE* p_handle)
 #define TRAINER_NAME_POS_SPAN	( 32 )
 
 static const u16 pal_button_oam_table[][3]={
-	{13     , 171, 5},		// •
-	{13+24*1, 171, 7},		// ”’
-	{13+24*2, 171, 9},		// Ô
-	{13+24*3, 171,11},		// Ž‡
-	{13+24*4, 171,13},		// Â
-	{13+24*5, 171,15},		// …F
-	{13+24*6, 171,17},		// —Î
-	{13+24*7, 171,19},		// ‰©F
-	{13+24*8+20, 171,21},	// u‚â‚ß‚év
+	{13     , 171, 5},		// é»’
+	{13+24*1, 171, 7},		// ç™½
+	{13+24*2, 171, 9},		// èµ¤
+	{13+24*3, 171,11},		// ç´«
+	{13+24*4, 171,13},		// é’
+	{13+24*5, 171,15},		// æ°´è‰²
+	{13+24*6, 171,17},		// ç·‘
+	{13+24*7, 171,19},		// é»„è‰²
+	{13+24*8+20, 171,21},	// ã€Œã‚„ã‚ã‚‹ã€
 
-	// ƒyƒ“æƒAƒCƒRƒ“
+	// ãƒšãƒ³å…ˆã‚¢ã‚¤ã‚³ãƒ³
 	{20,	  9,   29, },
-	{36,      9,   32, },	// ‰Šú’l‚ÅŒˆ’èó‘Ô‚É‚È‚Á‚Ä‚¢‚é
+	{36,      9,   32, },	// åˆæœŸå€¤ã§æ±ºå®šçŠ¶æ…‹ã«ãªã£ã¦ã„ã‚‹
 	{52,      9,   33, },
 };
 
 //------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   wk			OEKAKI_WORK*
  *
@@ -967,7 +967,7 @@ static const u16 pal_button_oam_table[][3]={
 static void SetCellActor(OEKAKI_WORK *wk)
 {
 	int i;
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
 	CLACT_U_MakeHeader(&wk->clActHeader_m, 0, 0, 0, 0, CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
 	0, 0,
 	wk->resMan[CLACT_U_CHAR_RES],
@@ -985,7 +985,7 @@ static void SetCellActor(OEKAKI_WORK *wk)
 	NULL,NULL);
 
 	{
-		//“o˜^î•ñŠi”[
+		//ç™»éŒ²æƒ…å ±æ ¼ç´
 		CLACT_ADD add;
 
 		add.ClActSet	= wk->clactSet;
@@ -1000,9 +1000,9 @@ static void SetCellActor(OEKAKI_WORK *wk)
 		add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 		add.heap		= HEAPID_OEKAKI;
 
-		//ƒZƒ‹ƒAƒNƒ^[•\Ž¦ŠJŽn
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-		// ƒƒCƒ“‰æ–Ê—p(–îˆó‚Ì“o˜^j
+		// ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨(çŸ¢å°ã®ç™»éŒ²ï¼‰
 		for(i=0;i<5;i++){
 			add.ClActHeader	= &wk->clActHeader_s;
 			add.mat.x = FX32_ONE * (  TRAINER_NAME_POS_X + i * 40);
@@ -1015,7 +1015,7 @@ static void SetCellActor(OEKAKI_WORK *wk)
 
 		}
 
-		// ƒƒCƒ“‰æ–ÊƒpƒŒƒbƒgEu‚â‚ß‚évƒ{ƒ^ƒ“‚Ì“o˜^
+		// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã€Œã‚„ã‚ã‚‹ã€ãƒœã‚¿ãƒ³ã®ç™»éŒ²
 		for(i=0;i<9+3;i++){
 			add.ClActHeader	= &wk->clActHeader_s;
 			add.mat.x = FX32_ONE * (  pal_button_oam_table[i][0]);
@@ -1029,47 +1029,47 @@ static void SetCellActor(OEKAKI_WORK *wk)
 //			CLACT_SetDrawFlag( wk->ButtonActWork[i], 0 );
 		}
 
-		// •FƒpƒŒƒbƒg‚Í‚Ö‚±‚Ü‚¹‚Ä‚¨‚­
+		// é»’è‰²ãƒ‘ãƒ¬ãƒƒãƒˆã¯ã¸ã“ã¾ã›ã¦ãŠã
 		CLACT_AnmChg( wk->ButtonActWork[0], 6 );
 
 
-		// ƒTƒu‰æ–Ê—p(–îˆó‚Ì“o˜^j
+		// ã‚µãƒ–ç”»é¢ç”¨(çŸ¢å°ã®ç™»éŒ²ï¼‰
 		for(i=0;i<5;i++){
 			add.mat.x = FX32_ONE *   TRAINER_NAME_POS_X;
 			add.mat.y = FX32_ONE * ( TRAINER_NAME_POS_Y + TRAINER_NAME_POS_SPAN*i ) + NAMEIN_SUB_ACTOR_DISTANCE;
 			wk->SubActWork[i] = CLACT_Add(&add);
 			CLACT_SetAnmFlag(wk->SubActWork[i],1);
 			CLACT_AnmChg( wk->SubActWork[i], i );
-			CLACT_DrawPriorityChg(wk->SubActWork[i], 1);	// ‚»‚ê‚¼‚ê‚ÌƒAƒNƒ^[‚Ìƒvƒ‰ƒCƒIƒŠƒeƒBÝ’è
+			CLACT_DrawPriorityChg(wk->SubActWork[i], 1);	// ãã‚Œãžã‚Œã®ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£è¨­å®š
 			CLACT_SetDrawFlag( wk->SubActWork[i], 0 );
 			
 		}
 		
 	}	
-	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒƒCƒ“‰æ–ÊOBJ–Ê‚n‚m
-	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//ƒTƒu‰æ–ÊOBJ–Ê‚n‚m
+	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_OBJ, VISIBLE_ON );	//ãƒ¡ã‚¤ãƒ³ç”»é¢OBJé¢ï¼¯ï¼®
+	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );	//ã‚µãƒ–ç”»é¢OBJé¢ï¼¯ï¼®
 	
 }
 
-// ‚¨‚¦‚©‚«ƒ{[ƒhBMPi‰º‰æ–Êj
+// ãŠãˆã‹ããƒœãƒ¼ãƒ‰BMPï¼ˆä¸‹ç”»é¢ï¼‰
 #define OEKAKI_BOARD_POSX	 ( 1 )
 #define OEKAKI_BOARD_POSY	 ( 2 )
 #define OEKAKI_BOARD_W	 ( 30 )
 #define OEKAKI_BOARD_H	 ( 15 )
 
 
-// –¼‘O•\Ž¦BMPiã‰æ–Êj
+// åå‰è¡¨ç¤ºBMPï¼ˆä¸Šç”»é¢ï¼‰
 #define OEKAKI_NAME_BMP_W	 ( 10 )
 #define OEKAKI_NAME_BMP_H	 (  2 )
 #define OEKAKI_NAME_BMP_SIZE (OEKAKI_NAME_BMP_W * OEKAKI_NAME_BMP_H)
 
 
-// u‚â‚ß‚év•¶Žš—ñBMPi‰º‰æ–Êj
+// ã€Œã‚„ã‚ã‚‹ã€æ–‡å­—åˆ—BMPï¼ˆä¸‹ç”»é¢ï¼‰
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/17
-// u‚â‚ß‚év‚ð’†‰›Šñ‚¹
+// ã€Œã‚„ã‚ã‚‹ã€ã‚’ä¸­å¤®å¯„ã›
 // localize_spec_mark(LANG_KOREA) imatake 2007/09/20
-// ŠØ‘Œê”Å‚Åu‚â‚ß‚év‚Ì‰E’[‚ªŒ‡‚¯‚é‚Ì‚É‘Îˆ
+// éŸ“å›½èªžç‰ˆã§ã€Œã‚„ã‚ã‚‹ã€ã®å³ç«¯ãŒæ¬ ã‘ã‚‹ã®ã«å¯¾å‡¦
 #define OEKAKI_END_BMP_X	( 25 )
 #define OEKAKI_END_BMP_Y	( 21 )
 #define OEKAKI_END_BMP_W	( 7  )
@@ -1079,12 +1079,12 @@ static void SetCellActor(OEKAKI_WORK *wk)
 // ----------------------------------------------------------------------------
 
 
-// ‰ï˜bƒEƒCƒ“ƒhƒE•\Ž¦ˆÊ’u’è‹`
+// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä½ç½®å®šç¾©
 #define OEKAKI_TALK_X		(  2 )
 #define OEKAKI_TALK_Y		(  1 )
 //------------------------------------------------------------------
 /**
- * BMPWINˆ—i•¶Žšƒpƒlƒ‹‚ÉƒtƒHƒ“ƒg•`‰æj
+ * BMPWINå‡¦ç†ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«ã«ãƒ•ã‚©ãƒ³ãƒˆæç”»ï¼‰
  *
  * @param   wk		
  *
@@ -1093,19 +1093,19 @@ static void SetCellActor(OEKAKI_WORK *wk)
 //------------------------------------------------------------------
 static void BmpWinInit(OEKAKI_WORK *wk, PROC* proc)
 {
-	// ---------- ƒƒCƒ“‰æ–Ê ------------------
+	// ---------- ãƒ¡ã‚¤ãƒ³ç”»é¢ ------------------
 
-	// BG0–ÊBMPi‰ï˜bƒEƒCƒ“ƒhƒEjƒEƒCƒ“ƒhƒEŠm•Û
+	// BG0é¢BMPï¼ˆä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MsgWin, GF_BGL_FRAME0_M,
 		OEKAKI_TALK_X, OEKAKI_TALK_Y, FLD_MSG_WIN_SX, FLD_MSG_WIN_SY, 13,  1 + TALK_WIN_CGX_SIZ + MENU_WIN_CGX_SIZ );
 	GF_BGL_BmpWinDataFill( &wk->MsgWin, 0x0f0f );
 
-	// BG1–Ê—pBMPi‚¨ŠG‚©‚«‰æ‘œjƒEƒCƒ“ƒhƒEŠm•Û
+	// BG1é¢ç”¨BMPï¼ˆãŠçµµã‹ãç”»åƒï¼‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->OekakiBoard, GF_BGL_FRAME1_M,
 		OEKAKI_BOARD_POSX, OEKAKI_BOARD_POSY, OEKAKI_BOARD_W, OEKAKI_BOARD_H, 0,  1 );
 	GF_BGL_BmpWinDataFill( &wk->OekakiBoard, 0x0202 );
 
-	// BG1–ÊBMPi‚â‚ß‚éjƒEƒCƒ“ƒhƒEŠm•ÛE•`‰æ
+	// BG1é¢BMPï¼ˆã‚„ã‚ã‚‹ï¼‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿ãƒ»æç”»
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->EndWin, GF_BGL_FRAME1_M,
 	OEKAKI_END_BMP_X, OEKAKI_END_BMP_Y, OEKAKI_END_BMP_W, OEKAKI_END_BMP_H, 13,  1+OEKAKI_BOARD_W*OEKAKI_BOARD_H );
 
@@ -1113,16 +1113,16 @@ static void BmpWinInit(OEKAKI_WORK *wk, PROC* proc)
 //	GF_STR_PrintSimple( &wk->EndWin, FONT_TALK, wk->EndString, 0, 0, MSG_ALLPUT, NULL);
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/17
-	// u‚â‚ß‚év‚ð’†‰›Šñ‚¹
+	// ã€Œã‚„ã‚ã‚‹ã€ã‚’ä¸­å¤®å¯„ã›
 	// localize_spec_mark(LANG_KOREA) imatake 2007/09/20
-	// ŠØ‘Œê”Å‚Åu‚â‚ß‚év‚Ì‰E’[‚ªŒ‡‚¯‚é‚Ì‚É‘Îˆ
+	// éŸ“å›½èªžç‰ˆã§ã€Œã‚„ã‚ã‚‹ã€ã®å³ç«¯ãŒæ¬ ã‘ã‚‹ã®ã«å¯¾å‡¦
 	{
 		u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_TALK, wk->EndString, 0, (OEKAKI_END_BMP_W-1) * 8) + OEKAKI_END_OFS_X;
 		GF_STR_PrintColor( &wk->EndWin, FONT_TALK, wk->EndString, xofs, 0, MSG_ALLPUT, GF_PRINTCOLOR_MAKE(0x7,0x1,0x0),NULL);
 	}
 	// ----------------------------------------------------------------------------
 
-	// ----------- ƒTƒu‰æ–Ê–¼‘O•\Ž¦BMPŠm•Û ------------------
+	// ----------- ã‚µãƒ–ç”»é¢åå‰è¡¨ç¤ºBMPç¢ºä¿ ------------------
 	{
 		int i;
 		for(i=0;i<OEKAKI_MEMBER_MAX;i++){
@@ -1131,13 +1131,13 @@ static void BmpWinInit(OEKAKI_WORK *wk, PROC* proc)
 			GF_BGL_BmpWinDataFill( &wk->TrainerNameWin[i], 0 );
 		}
 
-		//Å‰‚ÉŒ©‚¦‚Ä‚¢‚é–Ê‚È‚Ì‚Å•¶Žšƒpƒlƒ‹•`‰æ‚Æ“]‘—‚às‚¤
+		//æœ€åˆã«è¦‹ãˆã¦ã„ã‚‹é¢ãªã®ã§æ–‡å­—ãƒ‘ãƒãƒ«æç”»ã¨è»¢é€ã‚‚è¡Œã†
 		NameCheckPrint( wk->TrainerNameWin, 0, GF_PRINTCOLOR_MAKE(0xe,0xd,0xf), wk );
 	}
 
 }	
 
-// ‚Í‚¢E‚¢‚¢‚¦—p’è‹`i‰º‰æ–Êj
+// ã¯ã„ãƒ»ã„ã„ãˆç”¨å®šç¾©ï¼ˆä¸‹ç”»é¢ï¼‰
 #define YESNO_CHARA_OFFSET	(1 + TALK_WIN_CGX_SIZ + MENU_WIN_CGX_SIZ + FLD_MSG_WIN_SX*FLD_MSG_WIN_SY)
 #define YESNO_CHARA_W		( 8 )
 #define YESNO_CHARA_H		( 4 )
@@ -1148,7 +1148,7 @@ static void BmpWinInit(OEKAKI_WORK *wk, PROC* proc)
 
 //------------------------------------------------------------------
 /**
- * $brief   Šm•Û‚µ‚½BMPWIN‚ð‰ð•ú
+ * $brief   ç¢ºä¿ã—ãŸBMPWINã‚’è§£æ”¾
  *
  * @param   wk		
  *
@@ -1178,9 +1178,9 @@ static void BmpWinDelete( OEKAKI_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒJ[ƒ\ƒ‹ˆÊ’u‚ð•ÏX‚·‚é
+ * $brief   ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹
  *
- * @param   act		ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @param   act		ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   x		
  * @param   y		
  *
@@ -1200,7 +1200,7 @@ static void SetCursor_Pos( CLACT_WORK_PTR act, int x, int y )
 
 
 // ---------------------------------------------------------
-// ’ÊíŽžƒ^ƒbƒ`ŒŸoƒe[ƒuƒ‹
+// é€šå¸¸æ™‚ã‚¿ãƒƒãƒæ¤œå‡ºãƒ†ãƒ¼ãƒ–ãƒ«
 // ---------------------------------------------------------
 
 #define PAL_BUTTON_X	(  0  )
@@ -1231,7 +1231,7 @@ static void SetCursor_Pos( CLACT_WORK_PTR act, int x, int y )
 
 static const RECT_HIT_TBL sub_button_hittbl[]={
 
-// ƒpƒŒƒbƒg
+// ãƒ‘ãƒ¬ãƒƒãƒˆ
 {PAL_BUTTON_Y,PAL_BUTTON_Y+PAL_BUTTON_H-1,PAL_BUTTON0_X,PAL_BUTTON0_X+PAL_BUTTON_RECT},
 {PAL_BUTTON_Y,PAL_BUTTON_Y+PAL_BUTTON_H-1,PAL_BUTTON1_X,PAL_BUTTON1_X+PAL_BUTTON_RECT},
 {PAL_BUTTON_Y,PAL_BUTTON_Y+PAL_BUTTON_H-1,PAL_BUTTON2_X,PAL_BUTTON2_X+PAL_BUTTON_RECT},
@@ -1241,20 +1241,20 @@ static const RECT_HIT_TBL sub_button_hittbl[]={
 {PAL_BUTTON_Y,PAL_BUTTON_Y+PAL_BUTTON_H-1,PAL_BUTTON6_X,PAL_BUTTON6_X+PAL_BUTTON_RECT},
 {PAL_BUTTON_Y,PAL_BUTTON_Y+PAL_BUTTON_H-1,PAL_BUTTON7_X,PAL_BUTTON7_X+PAL_BUTTON_RECT},
 
-// I—¹ƒ{ƒ^ƒ“
+// çµ‚äº†ãƒœã‚¿ãƒ³
 {PAL_BUTTON_Y,PAL_BUTTON_Y+PAL_BUTTON_H-1,END_BUTTON_X,END_BUTTON_X+END_BUTTON_RECT},
 
-// ƒyƒ“æƒ{ƒ^ƒ“
+// ãƒšãƒ³å…ˆãƒœã‚¿ãƒ³
 {BRUSH_BUTTON_Y,BRUSH_BUTTON_Y+BRUSH_BUTTON_H, BRUSH_BUTTON0_X,BRUSH_BUTTON0_X+BRUSH_BUTTON_W},
 {BRUSH_BUTTON_Y,BRUSH_BUTTON_Y+BRUSH_BUTTON_H, BRUSH_BUTTON1_X,BRUSH_BUTTON1_X+BRUSH_BUTTON_W},
 {BRUSH_BUTTON_Y,BRUSH_BUTTON_Y+BRUSH_BUTTON_H, BRUSH_BUTTON2_X,BRUSH_BUTTON2_X+BRUSH_BUTTON_W},
 
-{RECT_HIT_END,0,0,0},		// I—¹ƒf[ƒ^
+{RECT_HIT_END,0,0,0},		// çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 };
 
 
 // ---------------------------------------------------------
-// —£’E‘I‘ð‹ÖŽ~’†‚ÌÛ‚ÌYESNOƒ{ƒ^ƒ“ŒŸoƒe[ƒuƒ‹
+// é›¢è„±é¸æŠžç¦æ­¢ä¸­ã®éš›ã®YESNOãƒœã‚¿ãƒ³æ¤œå‡ºãƒ†ãƒ¼ãƒ–ãƒ«
 // ---------------------------------------------------------
 #define OEKAKI_YESNO_BUTTON_X ( 25 )
 #define OEKAKI_YESNO_BUTTON_Y ( 6  )
@@ -1270,7 +1270,7 @@ static const RECT_HIT_TBL fake_yesno_hittbl[]={
 };
 
 // ---------------------------------------------------------
-// •`‰æ—ÌˆæŒŸo—pƒe[ƒuƒ‹
+// æç”»é ˜åŸŸæ¤œå‡ºç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
 // ---------------------------------------------------------
 #define DRAW_AREA_X	(  8  )
 #define DRAW_AREA_Y	( 16  )
@@ -1279,7 +1279,7 @@ static const RECT_HIT_TBL fake_yesno_hittbl[]={
 
 static const RECT_HIT_TBL sub_canvas_touchtbl[]={
 	{DRAW_AREA_Y,DRAW_AREA_Y+DRAW_AREA_H,DRAW_AREA_X,DRAW_AREA_X+DRAW_AREA_W},
-{RECT_HIT_END,0,0,0},		// I—¹ƒf[ƒ^
+{RECT_HIT_END,0,0,0},		// çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 };
 
 
@@ -1287,9 +1287,9 @@ static const RECT_HIT_TBL sub_canvas_touchtbl[]={
 
 //------------------------------------------------------------------
 /**
- * ƒ^ƒbƒ`ƒpƒlƒ‹‚Å‰Ÿ‚µ‚½ƒ{ƒ^ƒ“‚ª‚Ö‚±‚Þ
+ * ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã§æŠ¼ã—ãŸãƒœã‚¿ãƒ³ãŒã¸ã“ã‚€
  *
- * @param   wk		OEKAKI_WORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param   wk		OEKAKI_WORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -1299,14 +1299,14 @@ static void NormalTouchFunc(OEKAKI_WORK *wk)
 	int button=-1,touch;
 	int decide = FALSE;
 	
-	// “ü—Íˆ—
+	// å…¥åŠ›å‡¦ç†
 
-	// ƒJƒ‰[Ø‚è‘Ö‚¦
+	// ã‚«ãƒ©ãƒ¼åˆ‡ã‚Šæ›¿ãˆ
 	button=GF_TP_RectHitTrg( sub_button_hittbl );
 	if( button != RECT_HIT_NONE ){
 		switch(button){
 		case 0:	case 1: case 2: case 3: case 4: case 5: case 6: case 7:
-			// F•ÏX
+			// è‰²å¤‰æ›´
 			if(wk->brush_color!=button){
 				wk->brush_color = button;
 				PalButtonAppearChange( wk->ButtonActWork, button);
@@ -1314,18 +1314,18 @@ static void NormalTouchFunc(OEKAKI_WORK *wk)
 			}
 			break;
 		case 8:
-			// u‚â‚ß‚év‚ð‰Ÿ‚µ‚½‚çƒEƒCƒ“ƒhƒE•`‰æŠJŽn
+			// ã€Œã‚„ã‚ã‚‹ã€ã‚’æŠ¼ã—ãŸã‚‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æç”»é–‹å§‹
 			if(wk->seq==OEKAKI_MODE){
-				// e‹@‚Ìê‡‚ÍÚ‘±‹‘”Û
+				// è¦ªæ©Ÿã®å ´åˆã¯æŽ¥ç¶šæ‹’å¦
 				if(CommGetCurrentID()==0){
-					//ƒRƒlƒNƒg”‚Æ•\Ž¦l”‚ªˆÙ‚È‚éê‡‚ÍA‚â‚ß‚éƒ{ƒ^ƒ“‚ð–³”½‰ž‚É‚·‚é
+					//ã‚³ãƒã‚¯ãƒˆæ•°ã¨è¡¨ç¤ºäººæ•°ãŒç•°ãªã‚‹å ´åˆã¯ã€ã‚„ã‚ã‚‹ãƒœã‚¿ãƒ³ã‚’ç„¡åå¿œã«ã™ã‚‹
 					if (wk->shareBit != WH_GetBitmap()){
 						Snd_SePlay(OEKAKI_BS_SE);
 						break;
 					}
 					CommStateSetLimitNum(CommGetConnectNum());
 					wk->banFlag = OEKAKI_BAN_ON;
-					// u‚¨‚¦‚©‚«‚ð‚â‚ß‚Ü‚·‚©Hv
+					// ã€ŒãŠãˆã‹ãã‚’ã‚„ã‚ã¾ã™ã‹ï¼Ÿã€
 					EndMessagePrint( wk, msg_oekaki_02, 1 );
 					SetNextSequence( wk, OEKAKI_MODE_END_SELECT );
 					EndButtonAppearChange( wk->ButtonActWork, TRUE );
@@ -1333,10 +1333,10 @@ static void NormalTouchFunc(OEKAKI_WORK *wk)
 					Snd_SePlay(OEKAKI_DECIDE_SE);
 				}else{
 					if(wk->AllTouchResult[0].banFlag == OEKAKI_BAN_ON ){
-						// e‹@‚É‹ÖŽ~‚³‚ê‚Ä‚¢‚é‚Æ‚«‚Í‚r‚d‚Ì‚Ý
+						// è¦ªæ©Ÿã«ç¦æ­¢ã•ã‚Œã¦ã„ã‚‹ã¨ãã¯ï¼³ï¼¥ã®ã¿
 						Snd_SePlay(OEKAKI_BS_SE);
 					}else{
-						// u‚¨‚¦‚©‚«‚ð‚â‚ß‚Ü‚·‚©Hv
+						// ã€ŒãŠãˆã‹ãã‚’ã‚„ã‚ã¾ã™ã‹ï¼Ÿã€
 						EndMessagePrint( wk, msg_oekaki_02, 1 );
 						SetNextSequence( wk, OEKAKI_MODE_END_SELECT );
 						EndButtonAppearChange( wk->ButtonActWork, TRUE );
@@ -1348,7 +1348,7 @@ static void NormalTouchFunc(OEKAKI_WORK *wk)
 			}
 			break;
 		case 9:	case 10: case 11:
-			// ƒyƒ“æ•ÏX
+			// ãƒšãƒ³å…ˆå¤‰æ›´
 			{
 				int i;
 				for(i=0;i<3;i++){
@@ -1367,17 +1367,17 @@ static void NormalTouchFunc(OEKAKI_WORK *wk)
 		}
 	}
 
-	// ƒJ[ƒ\ƒ‹ˆÊ’u•ÏX
+	// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®å¤‰æ›´
 	touch = GF_TP_RectHitCont( sub_canvas_touchtbl );
 
 	CLACT_SetDrawFlag( wk->MainActWork[CommGetCurrentID()], 0 );
 	if(touch!=RECT_HIT_NONE){
-		// Ž©•ª‚ÌƒJ[ƒ\ƒ‹‚Íƒ^ƒbƒ`ƒpƒlƒ‹‚ÌÀ•W‚ð”½‰f‚³‚¹‚é
+		// è‡ªåˆ†ã®ã‚«ãƒ¼ã‚½ãƒ«ã¯ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®åº§æ¨™ã‚’åæ˜ ã•ã›ã‚‹
 		SetCursor_Pos( wk->MainActWork[CommGetCurrentID()], sys.tp_x, sys.tp_y );
 		CLACT_SetDrawFlag( wk->MainActWork[CommGetCurrentID()], 1 );
 	}
 
-	// ƒTƒ“ƒvƒŠƒ“ƒOî•ñ‚ðŽæ“¾‚µ‚ÄŠi”[
+	// ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°æƒ…å ±ã‚’å–å¾—ã—ã¦æ ¼ç´
 	{
 		TP_ONE_DATA	tpData;
 		int i;
@@ -1390,7 +1390,7 @@ static void NormalTouchFunc(OEKAKI_WORK *wk)
 		}
 	}
 
-	// Œ©‚½–Ú‚Ìˆ—
+	// è¦‹ãŸç›®ã®å‡¦ç†
 //	button=GF_TP_RectHitCont( sub_button_hittbl );
 
 
@@ -1399,9 +1399,9 @@ static void NormalTouchFunc(OEKAKI_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒpƒŒƒbƒg‚Æ‚â‚ß‚éƒ{ƒ^ƒ“‚ÌƒZƒ‹ƒAƒNƒ^[§Œä
+ * $brief   ãƒ‘ãƒ¬ãƒƒãƒˆã¨ã‚„ã‚ã‚‹ãƒœã‚¿ãƒ³ã®ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆ¶å¾¡
  *
- * @param   act		ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @param   act		ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   button		
  *
  * @retval  none		
@@ -1412,7 +1412,7 @@ static void PalButtonAppearChange( CLACT_WORK_PTR *act, int no )
 	int i;
 	
 	for(i=0;i<8;i++){
-		// ‰Ÿ‚³‚ê‚½ƒ{ƒ^ƒ“‚Í‚Ö‚±‚ÞB‚Ù‚©‚Ìƒ{ƒ^ƒ“‚Í–ß‚é
+		// æŠ¼ã•ã‚ŒãŸãƒœã‚¿ãƒ³ã¯ã¸ã“ã‚€ã€‚ã»ã‹ã®ãƒœã‚¿ãƒ³ã¯æˆ»ã‚‹
 		if(i==no){
 			CLACT_AnmChg( act[i], pal_button_oam_table[i][2]+1 );
 		}else{
@@ -1423,9 +1423,9 @@ static void PalButtonAppearChange( CLACT_WORK_PTR *act, int no )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚â‚ß‚éƒ{ƒ^ƒ“‚ÌƒIƒ“EƒIƒt
+ * $brief   ã‚„ã‚ã‚‹ãƒœã‚¿ãƒ³ã®ã‚ªãƒ³ãƒ»ã‚ªãƒ•
  *
- * @param   act		ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @param   act		ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   flag		
  *
  * @retval  none		
@@ -1442,7 +1442,7 @@ static void EndButtonAppearChange( CLACT_WORK_PTR *act, BOOL flag )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚¨ŠG‚©‚«ƒ{[ƒh’Êíˆ—
+ * $brief   ãŠçµµã‹ããƒœãƒ¼ãƒ‰é€šå¸¸å‡¦ç†
  *
  * @param   wk		
  * @param   seq		
@@ -1452,12 +1452,12 @@ static void EndButtonAppearChange( CLACT_WORK_PTR *act, BOOL flag )
 //------------------------------------------------------------------
 static int Oekaki_MainNormal( OEKAKI_WORK *wk, int seq )
 {
-	NormalTouchFunc(wk);			//  ƒ^ƒbƒ`ƒpƒlƒ‹ˆ—
+	NormalTouchFunc(wk);			//  ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å‡¦ç†
 
 
 	
-	if(CommGetCurrentID()==0){				// e‹@‚ÌŽž
-		if(OnlyParentCheck()!=1){			// ˆêl‚¶‚á‚È‚¢‚©H
+	if(CommGetCurrentID()==0){				// è¦ªæ©Ÿã®æ™‚
+		if(OnlyParentCheck()!=1){			// ä¸€äººã˜ã‚ƒãªã„ã‹ï¼Ÿ
 			LineDataSendRecv( wk );
 		}
 	}else{
@@ -1471,7 +1471,7 @@ static int Oekaki_MainNormal( OEKAKI_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   I—¹‘I‘ðˆ—‚Ì‹¤’Êˆ—ŠÖ”(Œã‚ë‚Å•`‰æ“™j
+ * $brief   çµ‚äº†é¸æŠžå‡¦ç†ã®å…±é€šå‡¦ç†é–¢æ•°(å¾Œã‚ã§æç”»ç­‰ï¼‰
  *
  * @param   wk		
  *
@@ -1488,7 +1488,7 @@ static void EndSequenceCommonFunc( OEKAKI_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   V‚µ‚¢Žq‹@‚ª‚«‚½‚Ì‚Åe‹@‚ª‰æ‘œ‚ð‘—M‚µ‚Í‚¶‚ß‚é
+ * $brief   æ–°ã—ã„å­æ©ŸãŒããŸã®ã§è¦ªæ©ŸãŒç”»åƒã‚’é€ä¿¡ã—ã¯ã˜ã‚ã‚‹
  *
  * @param   wk		
  * @param   seq		
@@ -1498,8 +1498,8 @@ static void EndSequenceCommonFunc( OEKAKI_WORK *wk )
 //------------------------------------------------------------------
 static int Oekaki_NewMember( OEKAKI_WORK *wk, int seq )
 {
-	// œœœ‚³‚ñ‚ª‚Í‚¢‚Á‚Ä‚«‚Ü‚µ‚½
-	OS_Printf("newMember‚Í%d\n",wk->newMemberId);
+	// â—â—â—ã•ã‚“ãŒã¯ã„ã£ã¦ãã¾ã—ãŸ
+	OS_Printf("newMemberã¯%d\n",wk->newMemberId);
 	if(CommGetCurrentID()==wk->newMemberId){
 		EndMessagePrint(wk, msg_oekaki_14, 0);
 	}else{
@@ -1509,14 +1509,14 @@ static int Oekaki_NewMember( OEKAKI_WORK *wk, int seq )
 
 	Snd_SePlay(SEQ_SE_DP_BUTTON9);
 
-	// ‰æ‘œ“]‘—ó‘Ô‚É‚È‚Á‚½‚ç‹P“xƒ_ƒEƒ“
+	// ç”»åƒè»¢é€çŠ¶æ…‹ã«ãªã£ãŸã‚‰è¼åº¦ãƒ€ã‚¦ãƒ³
 	G2_SetBlendBrightness(  GX_BLEND_PLANEMASK_BG1|
 							GX_BLEND_PLANEMASK_BG2|
 							GX_BLEND_PLANEMASK_BG3|
 							GX_BLEND_PLANEMASK_OBJ
 								,  -6);
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	
 	return seq;
 
@@ -1524,7 +1524,7 @@ static int Oekaki_NewMember( OEKAKI_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   V‚µ‚¢Žq‹@—p‚Ì‰æ‘œŽóM‘Ò‚¿
+ * $brief   æ–°ã—ã„å­æ©Ÿç”¨ã®ç”»åƒå—ä¿¡å¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -1535,16 +1535,16 @@ static int Oekaki_NewMember( OEKAKI_WORK *wk, int seq )
 static int Oekaki_NewMemberWait( OEKAKI_WORK *wk, int seq )
 {
 //	if( EndMessageWait( wk->MsgIndex ) ){
-//		// ‰ï˜bƒEƒCƒ“ƒhƒE•\Ž¦‘Ò‚¿‚Ís‚¤‚ªA‰æ‘œƒf[ƒ^ŽóM‚Ì•û‚ª‚¨‚»‚¢‚Í‚¸‚È‚Ì‚Å‚»‚Á‚¿‚ªƒV[ƒPƒ“ƒX‚ð‚«‚è‚©‚¦‚é‚Í‚¸
+//		// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºå¾…ã¡ã¯è¡Œã†ãŒã€ç”»åƒãƒ‡ãƒ¼ã‚¿å—ä¿¡ã®æ–¹ãŒãŠãã„ã¯ãšãªã®ã§ãã£ã¡ãŒã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãã‚Šã‹ãˆã‚‹ã¯ãš
 //	}
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   Žq‹@—“üŽóMI—¹
+ * $brief   å­æ©Ÿä¹±å…¥å—ä¿¡çµ‚äº†
  *
  * @param   wk		
  * @param   seq		
@@ -1554,24 +1554,24 @@ static int Oekaki_NewMemberWait( OEKAKI_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Oekaki_NewMemberEnd( OEKAKI_WORK *wk, int seq )
 {
-	// ‹P“xƒ_ƒEƒ“‰ðœ
+	// è¼åº¦ãƒ€ã‚¦ãƒ³è§£é™¤
 	G2_BlendNone();
 
 	ChangeConnectMax(wk, 1);
 
 	SetNextSequence( wk, OEKAKI_MODE );
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 
-	//—“üÏ‚Ý
+	//ä¹±å…¥æ¸ˆã¿
 	wk->bookJoin = 0;
-	OS_Printf("—“ü¬Œ÷\n");
+	OS_Printf("ä¹±å…¥æˆåŠŸ\n");
 	return seq;
 	
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚¨ŠG‚©‚«ƒ{[ƒhu‚â‚ß‚év‚ð‘I‘ð‚µ‚½Žž
+ * $brief   ãŠçµµã‹ããƒœãƒ¼ãƒ‰ã€Œã‚„ã‚ã‚‹ã€ã‚’é¸æŠžã—ãŸæ™‚
  *
  * @param   wk		
  * @param   seq		
@@ -1585,7 +1585,7 @@ static int Oekaki_EndSelectPutString( OEKAKI_WORK *wk, int seq )
 		TOUCH_SW_PARAM param;
 		BOOL rc;
 
-		// YES NO ƒEƒBƒ“ƒhƒEƒ{ƒ^ƒ“‚Ì•\Ž¦
+		// YES NO ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒœã‚¿ãƒ³ã®è¡¨ç¤º
 		param.p_bgl		= wk->bgl;
 		param.bg_frame	= GF_BGL_FRAME0_M;
 		param.char_offs	= YESNO_CHARA_OFFSET+YESNO_CHARA_W*YESNO_CHARA_H;
@@ -1598,13 +1598,13 @@ static int Oekaki_EndSelectPutString( OEKAKI_WORK *wk, int seq )
 
 		SetNextSequence( wk, OEKAKI_MODE_END_SELECT_WAIT );
 	}
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   u‚â‚ß‚Ü‚·‚©Hv‚Í‚¢E‚¢‚¢‚¦‘I‘ð‘Ò‚¿
+ * $brief   ã€Œã‚„ã‚ã¾ã™ã‹ï¼Ÿã€ã¯ã„ãƒ»ã„ã„ãˆé¸æŠžå¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -1616,14 +1616,14 @@ static int Oekaki_EndSelectWait( OEKAKI_WORK *wk, int seq )
 {
 	int result;
 
-	// Œë‘—M‚ð–h‚®
+	// èª¤é€ä¿¡ã‚’é˜²ã
 	wk->MyTouchResult.size = 0;
 
 	if(wk->AllTouchResult[0].banFlag==OEKAKI_BAN_ON && CommGetCurrentID()!=0){
-		EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+		EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 
 		if(FakeEndYesNoSelect(wk)){
-			// e‹@‚É‹ÖŽ~‚³‚ê‚Ä‚¢‚é‚Æ‚«‚Í‚r‚d‚Ì‚Ý
+			// è¦ªæ©Ÿã«ç¦æ­¢ã•ã‚Œã¦ã„ã‚‹ã¨ãã¯ï¼³ï¼¥ã®ã¿
 			Snd_SePlay(OEKAKI_BS_SE);
 		}
 
@@ -1631,22 +1631,22 @@ static int Oekaki_EndSelectWait( OEKAKI_WORK *wk, int seq )
 	}
 
 	if(CommGetCurrentID() == 0 && wk->ridatu_bit != 0){
-		EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+		EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 		return seq;
 	}
 	
 	if(MyStatusGetNum() != CommGetConnectNum()){
-		//ˆê’v‚µ‚Ä‚¢‚È‚¢‚È‚çu‚â‚ß‚év‹–‰Â‚µ‚È‚¢(Žq‚à’Ê‚é‚±‚±‚Íe‚µ‚©XV‚³‚ê‚È‚¢shareNum‚ÍŒ©‚È‚¢)
-		EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+		//ä¸€è‡´ã—ã¦ã„ãªã„ãªã‚‰ã€Œã‚„ã‚ã‚‹ã€è¨±å¯ã—ãªã„(å­ã‚‚é€šã‚‹ã“ã“ã¯è¦ªã—ã‹æ›´æ–°ã•ã‚Œãªã„shareNumã¯è¦‹ãªã„)
+		EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 		return seq;
 	}
 
 	result = TOUCH_SW_Main( wk->TouchSubWindowSys );
-	switch(result){				//‚â‚ß‚Ü‚·‚©H
-	case TOUCH_SW_RET_YES:						//‚Í‚¢
+	switch(result){				//ã‚„ã‚ã¾ã™ã‹ï¼Ÿ
+	case TOUCH_SW_RET_YES:						//ã¯ã„
 		if(CommGetCurrentID()==0){		
 			SetNextSequence( wk, OEKAKI_MODE_END_SELECT_PARENT );
-			EndMessagePrint( wk, msg_oekaki_05, 1 );		// ƒŠ[ƒ_[‚ª‚â‚ß‚é‚Æc
+			EndMessagePrint( wk, msg_oekaki_05, 1 );		// ãƒªãƒ¼ãƒ€ãƒ¼ãŒã‚„ã‚ã‚‹ã¨â€¦
 		}else{
 			COMM_OEKAKI_END_CHILD_WORK coec;
 			
@@ -1664,20 +1664,20 @@ static int Oekaki_EndSelectWait( OEKAKI_WORK *wk, int seq )
 		}
 		OekakiResetYesNoWin(wk);
 
-		//‚¨‚¦‚©‚«Ä•`‰æ
+		//ãŠãˆã‹ãå†æç”»
 		GF_BGL_BmpWinOn( &wk->OekakiBoard );
 	
 		break;
-	case TOUCH_SW_RET_NO:						//‚¢‚¢‚¦
+	case TOUCH_SW_RET_NO:						//ã„ã„ãˆ
 		SetNextSequence( wk, OEKAKI_MODE );
 		EndButtonAppearChange( wk->ButtonActWork, FALSE );
 		BmpTalkWinClear( &wk->MsgWin, WINDOW_TRANS_OFF );
 		OekakiResetYesNoWin(wk);
 
-		//‚¨‚¦‚©‚«Ä•`‰æ
+		//ãŠãˆã‹ãå†æç”»
 		GF_BGL_BmpWinOn( &wk->OekakiBoard );
 		
-		// e‹@‚ÍÚ‘±‹‘”Û‚ð‰ðœ
+		// è¦ªæ©Ÿã¯æŽ¥ç¶šæ‹’å¦ã‚’è§£é™¤
 		if(CommGetCurrentID()==0){
 //			CommStateSetEntryChildEnable(TRUE);
 			CommStateSetLimitNum(CommGetConnectNum()+1);
@@ -1687,14 +1687,14 @@ static int Oekaki_EndSelectWait( OEKAKI_WORK *wk, int seq )
 		break;
 	}
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   u‚â‚ß‚Ü‚·‚©Hv„u‚Í‚¢vA‚Åe‚©‚ç—£’E‹–‰Â‘Ò‚¿
+ * $brief   ã€Œã‚„ã‚ã¾ã™ã‹ï¼Ÿã€ï¼žã€Œã¯ã„ã€ã€ã§è¦ªã‹ã‚‰é›¢è„±è¨±å¯å¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -1704,18 +1704,18 @@ static int Oekaki_EndSelectWait( OEKAKI_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Oekaki_EndSelectAnswerWait( OEKAKI_WORK *wk, int seq )
 {
-	// Œë‘—M‚ð–h‚®
+	// èª¤é€ä¿¡ã‚’é˜²ã
 	wk->MyTouchResult.size = 0;
 	
 	wk->ridatu_wait = 0;
 	
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   u‚â‚ß‚Ü‚·‚©Hv„u‚Í‚¢vA‚Åe‚©‚ç—£’E‹–‰Â‘Ò‚¿„OK!
+ * $brief   ã€Œã‚„ã‚ã¾ã™ã‹ï¼Ÿã€ï¼žã€Œã¯ã„ã€ã€ã§è¦ªã‹ã‚‰é›¢è„±è¨±å¯å¾…ã¡ï¼žOK!
  *
  * @param   wk		
  * @param   seq		
@@ -1725,7 +1725,7 @@ static int Oekaki_EndSelectAnswerWait( OEKAKI_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Oekaki_EndSelectAnswerOK( OEKAKI_WORK *wk, int seq )
 {
-	// Œë‘—M‚ð–h‚®
+	// èª¤é€ä¿¡ã‚’é˜²ã
 	wk->MyTouchResult.size = 0;
 
 	if((wk->oya_share_num != CommGetConnectNum())
@@ -1733,7 +1733,7 @@ static int Oekaki_EndSelectAnswerOK( OEKAKI_WORK *wk, int seq )
 		OS_TPrintf("share_nuM = %d, Comm = %d, My = %d, Bit = %d\n", wk->oya_share_num, CommGetConnectNum(), MyStatusGetNum(), WH_GetBitmap());
 		wk->ridatu_wait = 0;
 		SetNextSequence( wk, OEKAKI_MODE_END_SELECT_ANSWER_NG );
-		EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+		EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 		return seq;
 	}
 	
@@ -1753,13 +1753,13 @@ static int Oekaki_EndSelectAnswerOK( OEKAKI_WORK *wk, int seq )
 	}
 
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   u‚â‚ß‚Ü‚·‚©Hv„u‚Í‚¢vA‚Åe‚©‚ç—£’E‹–‰Â‘Ò‚¿„NG!
+ * $brief   ã€Œã‚„ã‚ã¾ã™ã‹ï¼Ÿã€ï¼žã€Œã¯ã„ã€ã€ã§è¦ªã‹ã‚‰é›¢è„±è¨±å¯å¾…ã¡ï¼žNG!
  *
  * @param   wk		
  * @param   seq		
@@ -1769,23 +1769,23 @@ static int Oekaki_EndSelectAnswerOK( OEKAKI_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Oekaki_EndSelectAnswerNG( OEKAKI_WORK *wk, int seq )
 {
-	// Œë‘—M‚ð–h‚®
+	// èª¤é€ä¿¡ã‚’é˜²ã
 	wk->MyTouchResult.size = 0;
 
 	wk->status_end = FALSE;
 	SetNextSequence( wk, OEKAKI_MODE );
 	EndButtonAppearChange( wk->ButtonActWork, FALSE );
 	
-	OS_TPrintf("==========—£’E‹­§ƒLƒƒƒ“ƒZƒ‹I===========\n");
+	OS_TPrintf("==========é›¢è„±å¼·åˆ¶ã‚­ãƒ£ãƒ³ã‚»ãƒ«ï¼===========\n");
 	
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 }
 
 // OEKAKI_MODE_END_CHILD
 //------------------------------------------------------------------
 /**
- * $brief   Žq‹@I—¹ƒƒbƒZ[ƒWŠJŽn
+ * $brief   å­æ©Ÿçµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–‹å§‹
  *
  * @param   wk		
  * @param   seq		
@@ -1797,15 +1797,15 @@ static int 	Oekaki_EndChild( OEKAKI_WORK *wk, int seq )
 {
 	u8 temp;
 	
-	// ‚¨‚¦‚©‚«‚ð‚â‚ß‚Ü‚µ‚½
+	// ãŠãˆã‹ãã‚’ã‚„ã‚ã¾ã—ãŸ
 	EndMessagePrint( wk, msg_oekaki_07, 1 );	
 
-	// I—¹’Ê’B
+	// çµ‚äº†é€šé”
 //	CommSendData( CO_OEKAKI_END_CHILD, &temp, 1 );
 
 	SetNextSequence( wk, OEKAKI_MODE_END_CHILD_WAIT );
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 }
 				
@@ -1813,7 +1813,7 @@ static int 	Oekaki_EndChild( OEKAKI_WORK *wk, int seq )
 // OEKAKI_MODE_END_CHILD_WAIT
 //------------------------------------------------------------------
 /**
- * $brief   Žq‹@I—¹ƒƒbƒZ[ƒW•\Ž¦I—¹‘Ò‚¿
+ * $brief   å­æ©Ÿçµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºçµ‚äº†å¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -1829,14 +1829,14 @@ static int 	Oekaki_EndChildWait( OEKAKI_WORK *wk, int seq )
 		SetNextSequence( wk, OEKAKI_MODE_END_CHILD_WAIT2 );
 	}
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒƒbƒZ[ƒW•\Ž¦I—¹Œã­‚µ‘Ò‚Â
+ * $brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºçµ‚äº†å¾Œå°‘ã—å¾…ã¤
  *
  * @param   wk		
  * @param   seq		
@@ -1849,17 +1849,17 @@ static int 	Oekaki_EndChildWait2( OEKAKI_WORK *wk, int seq )
 
 	if( ++wk->wait > OEKAKI_MESSAGE_END_WAIT ){
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_HOLEOUT, WIPE_TYPE_HOLEOUT, WIPE_FADE_BLACK, 16, 1, HEAPID_OEKAKI );
-		seq = SEQ_OUT;						//I—¹ƒV[ƒPƒ“ƒX‚Ö
+		seq = SEQ_OUT;						//çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 	}
 
-	EndSequenceCommonFunc( wk );			//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );			//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   e‹@‚ªI—¹‚·‚é‚Æ‚«‚Í‚à‚¤ˆê“xuƒŠ[ƒ_[‚ª‚â‚ß‚é‚Æcv‚ÆŽ¿–â‚·‚é
+ * $brief   è¦ªæ©ŸãŒçµ‚äº†ã™ã‚‹ã¨ãã¯ã‚‚ã†ä¸€åº¦ã€Œãƒªãƒ¼ãƒ€ãƒ¼ãŒã‚„ã‚ã‚‹ã¨â€¦ã€ã¨è³ªå•ã™ã‚‹
  *
  * @param   wk		
  * @param   seq		
@@ -1873,7 +1873,7 @@ static int Oekaki_EndSelectParent( OEKAKI_WORK *wk, int seq )
 		TOUCH_SW_PARAM param;
 		BOOL rc;
 
-		// YES NO ƒEƒBƒ“ƒhƒEƒ{ƒ^ƒ“‚Ì•\Ž¦
+		// YES NO ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒœã‚¿ãƒ³ã®è¡¨ç¤º
 		param.p_bgl		= wk->bgl;
 		param.bg_frame	= GF_BGL_FRAME0_M;
 		param.char_offs	= YESNO_CHARA_OFFSET+YESNO_CHARA_W*YESNO_CHARA_H;
@@ -1888,14 +1888,14 @@ static int Oekaki_EndSelectParent( OEKAKI_WORK *wk, int seq )
 
 	}
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   e‹@‚Ì‚Q‰ñ–Ú‚Ìu‚Í‚¢E‚¢‚¢‚¦v
+ * $brief   è¦ªæ©Ÿã®ï¼’å›žç›®ã®ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
  *
  * @param   wk		
  * @param   seq		
@@ -1907,28 +1907,28 @@ static int Oekaki_EndSelectParentWait( OEKAKI_WORK *wk, int seq )
 {
 	int result = TOUCH_SW_Main( wk->TouchSubWindowSys );
 
-	if(wk->shareNum != MyStatusGetNum()	//ˆê’v‚µ‚Ä‚¢‚È‚¢‚È‚çu‚â‚ß‚év‹–‰Â‚µ‚È‚¢
-			|| wk->ridatu_bit != 0){	//—£’E‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚éŽq‚ª‚¢‚é‚È‚ç‹–‰Â‚µ‚È‚¢
-		EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	if(wk->shareNum != MyStatusGetNum()	//ä¸€è‡´ã—ã¦ã„ãªã„ãªã‚‰ã€Œã‚„ã‚ã‚‹ã€è¨±å¯ã—ãªã„
+			|| wk->ridatu_bit != 0){	//é›¢è„±ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹å­ãŒã„ã‚‹ãªã‚‰è¨±å¯ã—ãªã„
+		EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 		return seq;
 	}
 
-	switch(result){				//‚â‚ß‚Ü‚·‚©H
-	case TOUCH_SW_RET_YES:						//‚Í‚¢
+	switch(result){				//ã‚„ã‚ã¾ã™ã‹ï¼Ÿ
+	case TOUCH_SW_RET_YES:						//ã¯ã„
 		SetNextSequence( wk, OEKAKI_MODE_FORCE_END );
-		CommSendData_ServerSide( CO_OEKAKI_END, NULL, 0 );	//I—¹’Ê’m
-		WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(0) );	// e‹@iŽ©•ªj‚Ì–¼‘O‚ðWORDSET
+		CommSendData_ServerSide( CO_OEKAKI_END, NULL, 0 );	//çµ‚äº†é€šçŸ¥
+		WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(0) );	// è¦ªæ©Ÿï¼ˆè‡ªåˆ†ï¼‰ã®åå‰ã‚’WORDSET
 		seq = SEQ_LEAVE;
-		OS_Printf("OEKAKI_MODE_FORCE_END‚É‚©‚«‚©‚¦\n");
+		OS_Printf("OEKAKI_MODE_FORCE_ENDã«ã‹ãã‹ãˆ\n");
 		OekakiResetYesNoWin(wk);
 		break;
-	case TOUCH_SW_RET_NO:						//‚¢‚¢‚¦
+	case TOUCH_SW_RET_NO:						//ã„ã„ãˆ
 		SetNextSequence( wk, OEKAKI_MODE );
 		EndButtonAppearChange( wk->ButtonActWork, FALSE );
 		BmpTalkWinClear( &wk->MsgWin, WINDOW_TRANS_OFF );
 		OekakiResetYesNoWin(wk);
 
-		// e‹@‚ÍÚ‘±‹‘”Û‚ð‰ðœ
+		// è¦ªæ©Ÿã¯æŽ¥ç¶šæ‹’å¦ã‚’è§£é™¤
 		if(CommGetCurrentID()==0){
 //			CommStateSetEntryChildEnable(TRUE);
 			CommStateSetLimitNum(CommGetConnectNum()+1);
@@ -1938,14 +1938,14 @@ static int Oekaki_EndSelectParentWait( OEKAKI_WORK *wk, int seq )
 	}
 
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   e‹@‚ªI‚í‚è‚ÆŒ¾‚Á‚½‚Ì‚ÅI‚í‚é
+ * $brief   è¦ªæ©ŸãŒçµ‚ã‚ã‚Šã¨è¨€ã£ãŸã®ã§çµ‚ã‚ã‚‹
  *
  * @param   wk		
  * @param   seq		
@@ -1955,12 +1955,12 @@ static int Oekaki_EndSelectParentWait( OEKAKI_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Oekaki_ForceEnd( OEKAKI_WORK *wk, int seq )
 {
-	WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(0) );	// e‹@iŽ©•ªj‚Ì–¼‘O‚ðWORDSET
+	WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(0) );	// è¦ªæ©Ÿï¼ˆè‡ªåˆ†ï¼‰ã®åå‰ã‚’WORDSET
 	
-	EndMessagePrint( wk, msg_oekaki_04, 1 );				// ƒŠ[ƒ_[‚ª”²‚¯‚½‚Ì‚Å‰ðŽU‚µ‚Ü‚·B
+	EndMessagePrint( wk, msg_oekaki_04, 1 );				// ãƒªãƒ¼ãƒ€ãƒ¼ãŒæŠœã‘ãŸã®ã§è§£æ•£ã—ã¾ã™ã€‚
 	SetNextSequence( wk, OEKAKI_MODE_FORCE_END_WAIT );
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 
 }
@@ -1968,7 +1968,7 @@ static int Oekaki_ForceEnd( OEKAKI_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   e‹@‚ªI‚í‚è‚ÆŒ¾‚Á‚½‚Ì‚ÅI‚í‚é
+ * $brief   è¦ªæ©ŸãŒçµ‚ã‚ã‚Šã¨è¨€ã£ãŸã®ã§çµ‚ã‚ã‚‹
  *
  * @param   wk		
  * @param   seq		
@@ -1981,18 +1981,18 @@ static int Oekaki_ForceEndWait( OEKAKI_WORK *wk, int seq )
 	if( EndMessageWait( wk->MsgIndex ) ){
 		SetNextSequence( wk, OEKAKI_MODE_FORCE_END_SYNCHRONIZE );
 		CommTimingSyncStart(OEKAKI_SYNCHRONIZE_END);
-		OS_Printf("“¯ŠúŠJŽn\n");
+		OS_Printf("åŒæœŸé–‹å§‹\n");
 		
 	}
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ‘Sˆõ‚Ì’ÊM“¯Šú‚ð‘Ò‚Â
+ * $brief   å…¨å“¡ã®é€šä¿¡åŒæœŸã‚’å¾…ã¤
  *
  * @param   wk		
  * @param   seq		
@@ -2003,20 +2003,20 @@ static int Oekaki_ForceEndWait( OEKAKI_WORK *wk, int seq )
 static int Oekaki_ForceEndSynchronize( OEKAKI_WORK *wk, int seq )
 {
 	if(CommIsTimingSync(OEKAKI_SYNCHRONIZE_END) || CommGetConnectNum() == 1){
-		OS_Printf("I—¹Žž“¯Šú¬Œ÷  seq = %d\n", seq);
-		OS_Printf("ƒRƒlƒNƒgl”%d\n",CommGetConnectNum());
+		OS_Printf("çµ‚äº†æ™‚åŒæœŸæˆåŠŸ  seq = %d\n", seq);
+		OS_Printf("ã‚³ãƒã‚¯ãƒˆäººæ•°%d\n",CommGetConnectNum());
 //		wk->seq = OEKAKI_MODE_FORCE_END_WAIT_NOP;
 		WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_HOLEOUT, WIPE_TYPE_HOLEOUT, WIPE_FADE_BLACK, 16, 1, HEAPID_OEKAKI );
-		seq = SEQ_OUT;						//I—¹ƒV[ƒPƒ“ƒX‚Ö
+		seq = SEQ_OUT;						//çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 	}
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
 
 //------------------------------------------------------------------
 /**
- * @brief   ‰½‚à‚µ‚È‚¢
+ * @brief   ä½•ã‚‚ã—ãªã„
  *
  * @param   wk		
  * @param   seq		
@@ -2031,7 +2031,7 @@ static int Oekaki_ForceEndWaitNop( OEKAKI_WORK *wk, int seq )
 
 //------------------------------------------------------------------
 /**
- * $brief   eˆêl‚É‚È‚Á‚½‚Ì‚ÅI—¹
+ * $brief   è¦ªä¸€äººã«ãªã£ãŸã®ã§çµ‚äº†
  *
  * @param   wk		
  * @param   seq		
@@ -2041,17 +2041,17 @@ static int Oekaki_ForceEndWaitNop( OEKAKI_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Oekaki_EndParentOnly( OEKAKI_WORK *wk, int seq )
 {
-	EndMessagePrint( wk, msg_oekaki_06, 1 );				// ƒŠ[ƒ_[‚ª”²‚¯‚½‚Ì‚Å‰ðŽU‚µ‚Ü‚·B
+	EndMessagePrint( wk, msg_oekaki_06, 1 );				// ãƒªãƒ¼ãƒ€ãƒ¼ãŒæŠœã‘ãŸã®ã§è§£æ•£ã—ã¾ã™ã€‚
 	SetNextSequence( wk, OEKAKI_MODE_END_PARENT_ONLY_WAIT );
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ˆêl‚É‚È‚Á‚½•¶Í‚ð•\Ž¦‚µ‚ÄI—¹ƒV[ƒPƒ“ƒX‚Ö
+ * $brief   ä¸€äººã«ãªã£ãŸæ–‡ç« ã‚’è¡¨ç¤ºã—ã¦çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
  *
  * @param   wk		
  * @param   seq		
@@ -2065,14 +2065,14 @@ static int Oekaki_EndParentOnlyWait( OEKAKI_WORK *wk, int seq )
 		SetNextSequence( wk, OEKAKI_MODE_END_CHILD_WAIT2 );
 	}
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   œœœ‚³‚ñ‚ª‚©‚¦‚è‚Ü‚µ‚½
+ * $brief   â—â—â—ã•ã‚“ãŒã‹ãˆã‚Šã¾ã—ãŸ
  *
  * @param   wk		
  * @param   seq		
@@ -2082,9 +2082,9 @@ static int Oekaki_EndParentOnlyWait( OEKAKI_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Oekaki_LogoutChildMes( OEKAKI_WORK *wk, int seq )
 {
-	// œœœ‚³‚ñ‚ª‚©‚¦‚è‚Ü‚µ‚½
+	// â—â—â—ã•ã‚“ãŒã‹ãˆã‚Šã¾ã—ãŸ
 	if( wk->MsgIndex != 0xff && EndMessageWait( wk->MsgIndex ) == 0){
-		//•\Ž¦’†‚ÌƒƒbƒZ[ƒW‚ª‚ ‚éê‡‚Í‹­§’âŽ~
+		//è¡¨ç¤ºä¸­ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆã¯å¼·åˆ¶åœæ­¢
 		GF_STR_PrintForceStop(wk->MsgIndex);
 	}
 
@@ -2092,20 +2092,20 @@ static int Oekaki_LogoutChildMes( OEKAKI_WORK *wk, int seq )
 	SetNextSequence( wk, OEKAKI_MODE_LOGOUT_CHILD_WAIT );
 	Snd_SePlay(SEQ_SE_DP_BUTTON9);
 
-	// Ú‘±‰Â”\l”‚ðˆê’UŒ»Ý‚ÌÚ‘±l”‚É—Ž‚Æ‚·
+	// æŽ¥ç¶šå¯èƒ½äººæ•°ã‚’ä¸€æ—¦ç¾åœ¨ã®æŽ¥ç¶šäººæ•°ã«è½ã¨ã™
 	if(CommGetCurrentID()==0){
 		ChangeConnectMax( wk, 0 );
 	}
 	wk->err_num = CommGetConnectNum();
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 
 	return seq;
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   Žq‹@‚©”²‚¯‚½•¶ÍI—¹‘Ò‚¿
+ * $brief   å­æ©Ÿã‹æŠœã‘ãŸæ–‡ç« çµ‚äº†å¾…ã¡
  *
  * @param   wk		
  * @param   seq		
@@ -2115,7 +2115,7 @@ static int Oekaki_LogoutChildMes( OEKAKI_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int Oekaki_LogoutChildMesWait( OEKAKI_WORK *wk, int seq )
 {
-	// Ú‘±l”‚ª‚PŒ¸‚é‚©ƒ`ƒFƒbƒN
+	// æŽ¥ç¶šäººæ•°ãŒï¼‘æ¸›ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(wk->err_num != 0 && CommGetConnectNum() != wk->err_num){
 		wk->err_num = 0;
 	}
@@ -2125,14 +2125,14 @@ static int Oekaki_LogoutChildMesWait( OEKAKI_WORK *wk, int seq )
 		wk->wait = 0;
 	}
 
-	EndSequenceCommonFunc( wk );		//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );		//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   •\Ž¦I—¹ƒEƒFƒCƒg
+ * $brief   è¡¨ç¤ºçµ‚äº†ã‚¦ã‚§ã‚¤ãƒˆ
  *
  * @param   wk		
  * @param   seq		
@@ -2142,7 +2142,7 @@ static int Oekaki_LogoutChildMesWait( OEKAKI_WORK *wk, int seq )
 //------------------------------------------------------------------
 static int 	Oekaki_LogoutChildClose( OEKAKI_WORK *wk, int seq )
 {			
-	// Ú‘±l”‚ª‚PŒ¸‚é‚Ü‚Å‚Í‘Ò‚Â
+	// æŽ¥ç¶šäººæ•°ãŒï¼‘æ¸›ã‚‹ã¾ã§ã¯å¾…ã¤
 	if(wk->err_num != 0 && CommGetConnectNum() != wk->err_num){
 		wk->err_num = 0;
 	}
@@ -2156,7 +2156,7 @@ static int 	Oekaki_LogoutChildClose( OEKAKI_WORK *wk, int seq )
 		}
 	}
 
-	EndSequenceCommonFunc( wk );			//I—¹‘I‘ðŽž‚Ì‹¤’Êˆ—
+	EndSequenceCommonFunc( wk );			//çµ‚äº†é¸æŠžæ™‚ã®å…±é€šå‡¦ç†
 	return seq;
 	
 }
@@ -2166,7 +2166,7 @@ static int 	Oekaki_LogoutChildClose( OEKAKI_WORK *wk, int seq )
 
 //==============================================================================
 /**
- * $brief   ‚Ç‚ñ‚Èó‘Ô‚Å‚ ‚Á‚Ä‚à‹­§“I‚ÉƒƒCƒ“ƒV[ƒPƒ“ƒXƒ`ƒFƒ“ƒW
+ * $brief   ã©ã‚“ãªçŠ¶æ…‹ã§ã‚ã£ã¦ã‚‚å¼·åˆ¶çš„ã«ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒ³ã‚¸
  *
  * @param   wk		
  * @param   seq		
@@ -2184,22 +2184,22 @@ void OekakiBoard_MainSeqForceChange( OEKAKI_WORK *wk, int seq, u8 id  )
 //			CLACT_AnmChg(wk->ButtonActWork[8], pal_button_oam_table[8][2]);
 		}
 		EndButtonAppearChange( wk->ButtonActWork, FALSE );
-		// Žw’è‚ÌŽq‹@‚Ì–¼‘O‚ðWORDSET‚É“o˜^i—£’EE—“üŽž)
+		// æŒ‡å®šã®å­æ©Ÿã®åå‰ã‚’WORDSETã«ç™»éŒ²ï¼ˆé›¢è„±ãƒ»ä¹±å…¥æ™‚)
 		WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(id) );	
 		wk->newMemberId = id;
 		wk->ridatu_bit = 0;
-		OS_Printf("V‚µ‚¢l‚ÌID %d\n",id);
+		OS_Printf("æ–°ã—ã„äººã®ID %d\n",id);
 		break;
 	case OEKAKI_MODE_NEWMEMBER_END:
 		EndMessageWindowOff( wk );
 		break;
 	case OEKAKI_MODE_LOGOUT_CHILD:
 		if(wk->status_end == TRUE){
-			return;	//Ž©•ªŽ©g‚ª—£’Eˆ—’†
+			return;	//è‡ªåˆ†è‡ªèº«ãŒé›¢è„±å‡¦ç†ä¸­
 		}
 		WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(id) );	
 		if(id==CommGetCurrentID()){
-			// Ž©•ª‚ª—£’E‚·‚éŽq‹@‚¾‚Á‚½ê‡‚ÍuŽq‹@‚ª‚¢‚È‚­‚È‚½‚æv‚Æ‚ÍŒ¾‚í‚È‚¢
+			// è‡ªåˆ†ãŒé›¢è„±ã™ã‚‹å­æ©Ÿã ã£ãŸå ´åˆã¯ã€Œå­æ©ŸãŒã„ãªããªãŸã‚ˆã€ã¨ã¯è¨€ã‚ãªã„
 			return;
 		}
 
@@ -2210,7 +2210,7 @@ void OekakiBoard_MainSeqForceChange( OEKAKI_WORK *wk, int seq, u8 id  )
 			OekakiResetYesNoWin(wk);
 //			CLACT_AnmChg(wk->ButtonActWork[8], pal_button_oam_table[8][2]);
 
-			//‚¨‚¦‚©‚«Ä•`‰æ
+			//ãŠãˆã‹ãå†æç”»
 			GF_BGL_BmpWinOn( &wk->OekakiBoard );
 		}
 		EndButtonAppearChange( wk->ButtonActWork, FALSE );
@@ -2222,7 +2222,7 @@ void OekakiBoard_MainSeqForceChange( OEKAKI_WORK *wk, int seq, u8 id  )
 	case OEKAKI_MODE_END_SELECT_ANSWER_NG:
 		break;
 	default:
-		GF_ASSERT( "Žw’èˆÈŠO‚ÌƒV[ƒPƒ“ƒXƒ`ƒFƒ“ƒW‚ª—ˆ‚½" );
+		GF_ASSERT( "æŒ‡å®šä»¥å¤–ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒ³ã‚¸ãŒæ¥ãŸ" );
 		return;
 	}
 	SetNextSequence( wk, seq );
@@ -2231,24 +2231,24 @@ void OekakiBoard_MainSeqForceChange( OEKAKI_WORK *wk, int seq, u8 id  )
 
 //==============================================================================
 /**
- * $brief   ‰½‚©ˆ—‚ð‚µ‚Ä‚©‚çƒƒCƒ“ƒ‹[ƒv“àƒV[ƒPƒ“ƒXƒ`ƒFƒ“ƒW(’Êíó‘Ô‚Å‚ ‚é‚±‚Æj
+ * $brief   ä½•ã‹å‡¦ç†ã‚’ã—ã¦ã‹ã‚‰ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—å†…ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒ³ã‚¸(é€šå¸¸çŠ¶æ…‹ã§ã‚ã‚‹ã“ã¨ï¼‰
  *
  * @param   wk		
- * @param   seq		‚±‚ÌƒƒCƒ“ƒV[ƒPƒ“ƒX‚Éƒ`ƒFƒ“ƒW‚µ‚½‚¢
+ * @param   seq		ã“ã®ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«ãƒã‚§ãƒ³ã‚¸ã—ãŸã„
  *
  * @retval  none		
  */
 //==============================================================================
 void OekakiBoard_MainSeqCheckChange( OEKAKI_WORK *wk, int seq, u8 id  )
 {
-	// ’Êíó‘Ô‚È‚ç
+	// é€šå¸¸çŠ¶æ…‹ãªã‚‰
 	if(wk->seq == OEKAKI_MODE){
-		OS_Printf("Žq‹@%d‚Ì–¼‘O‚ð“o˜^\n",id);
+		OS_Printf("å­æ©Ÿ%dã®åå‰ã‚’ç™»éŒ²\n",id);
 		switch(seq){
 		case OEKAKI_MODE_LOGOUT_CHILD:
 			WORDSET_RegisterPlayerName( wk->WordSet, 0, CommInfoGetMyStatus(id) );	
 			if(id==CommGetCurrentID()){
-				// Ž©•ª‚ª—£’E‚·‚éŽq‹@‚¾‚Á‚½ê‡‚ÍuŽq‹@‚ª‚¢‚È‚­‚È‚½‚æv‚Æ‚ÍŒ¾‚í‚È‚¢
+				// è‡ªåˆ†ãŒé›¢è„±ã™ã‚‹å­æ©Ÿã ã£ãŸå ´åˆã¯ã€Œå­æ©ŸãŒã„ãªããªãŸã‚ˆã€ã¨ã¯è¨€ã‚ãªã„
 				return;
 			}
 			if(CommGetCurrentID() == 0){
@@ -2258,7 +2258,7 @@ void OekakiBoard_MainSeqCheckChange( OEKAKI_WORK *wk, int seq, u8 id  )
 			break;
 		
 		default:
-			GF_ASSERT( 0&&"Žw’èˆÈŠO‚ÌƒV[ƒPƒ“ƒXƒ`ƒFƒ“ƒW‚ª—ˆ‚½" );
+			GF_ASSERT( 0&&"æŒ‡å®šä»¥å¤–ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒ³ã‚¸ãŒæ¥ãŸ" );
 			return;
 		}
 
@@ -2283,14 +2283,14 @@ void OekakiBoard_MainSeqCheckChange( OEKAKI_WORK *wk, int seq, u8 id  )
 //---------------------------------------------------------------------------------
 //11520
 //---------------------------------------------------------
-// ƒuƒ‰ƒVƒpƒ^[ƒ“
+// ãƒ–ãƒ©ã‚·ãƒ‘ã‚¿ãƒ¼ãƒ³
 //---------------------------------------------------------
 
-// ‚Ç‚¤‚µ‚Ä‚àƒpƒŒƒbƒgƒf[ƒ^‚ð3bit‚Ék‚ß‚Ä‚µ‚Ü‚¢‚½‚¢‚Ì‚ÅA“§–¾F‚ð8‚É‚µ‚Ä
-// FŽw’èŽ©‘Ì‚Í0-7‚É“–‚Ä‚Ä‚¢‚éB0‚Í“§–¾F‚¾‚ªBD–Ê‚ð•‚É‚µ‚Ä•‚­Œ©‚¦‚é‚æ‚¤‚É‚µ‚Ä‚¢‚é
+// ã©ã†ã—ã¦ã‚‚ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’3bitã«ç¸®ã‚ã¦ã—ã¾ã„ãŸã„ã®ã§ã€é€æ˜Žè‰²ã‚’8ã«ã—ã¦
+// è‰²æŒ‡å®šè‡ªä½“ã¯0-7ã«å½“ã¦ã¦ã„ã‚‹ã€‚0ã¯é€æ˜Žè‰²ã ãŒBDé¢ã‚’é»’ã«ã—ã¦é»’ãè¦‹ãˆã‚‹ã‚ˆã†ã«ã—ã¦ã„ã‚‹
 
-// BMPƒf[ƒ^‚ÍÅ’á‰¡8dot•ª•K—v‚È‚Ì‚ÅA4x4‚Ìƒhƒbƒgƒf[ƒ^‚ðì‚è‚½‚¢Žž‚Í
-// ‚QƒoƒCƒg‚²‚Æ‚ÉŽQÆ‚³‚ê‚È‚¢ƒf[ƒ^‚ª‚à‚¤‚QƒoƒCƒg•K—v
+// BMPãƒ‡ãƒ¼ã‚¿ã¯æœ€ä½Žæ¨ª8dotåˆ†å¿…è¦ãªã®ã§ã€4x4ã®ãƒ‰ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ä½œã‚ŠãŸã„æ™‚ã¯
+// ï¼’ãƒã‚¤ãƒˆã”ã¨ã«å‚ç…§ã•ã‚Œãªã„ãƒ‡ãƒ¼ã‚¿ãŒã‚‚ã†ï¼’ãƒã‚¤ãƒˆå¿…è¦
 static const u8 oekaki_brush[3][8][24]={
 
 {	/*  0  */              /*  1  */               /*  2  */              /*  3  */
@@ -2350,7 +2350,7 @@ static const u8 oekaki_brush[3][8][24]={
 
 //==============================================================================
 /**
- * @brief   •`‰æŠJŽnˆÊ’u‚ªƒ}ƒCƒiƒX•ûŒü‚É‚ ‚Á‚Ä‚à•`‰æ‚Å‚«‚éBmpWinPrintƒ‰ƒbƒp[
+ * @brief   æç”»é–‹å§‹ä½ç½®ãŒãƒžã‚¤ãƒŠã‚¹æ–¹å‘ã«ã‚ã£ã¦ã‚‚æç”»ã§ãã‚‹BmpWinPrintãƒ©ãƒƒãƒ‘ãƒ¼
  * @retval  none		
  */
 //==============================================================================
@@ -2359,30 +2359,30 @@ static void _BmpWinPrint_Rap(
 			int src_x, int src_y, int src_dx, int src_dy,
 			int win_x, int win_y, int win_dx, int win_dy )
 {
-	// X•`‰æŠJŽnƒ|ƒCƒ“ƒg‚ªƒ}ƒCƒiƒX‚©
+	// Xæç”»é–‹å§‹ãƒã‚¤ãƒ³ãƒˆãŒãƒžã‚¤ãƒŠã‚¹ã‹
 	if(win_x < 0){
 		int diff;
 		diff = win_x*-1;
-		if(diff>win_dx){	// ‚»‚Ìƒ}ƒCƒiƒX•ª‚Í“]‘—•‚ð’´‚¦‚Ä‚È‚¢‚©
-			diff = win_dx;	// ’´‚¦‚Ä‚½‚ç“]‘—•‚Æ“¯‚¶‚É‚·‚é
+		if(diff>win_dx){	// ãã®ãƒžã‚¤ãƒŠã‚¹åˆ†ã¯è»¢é€å¹…ã‚’è¶…ãˆã¦ãªã„ã‹
+			diff = win_dx;	// è¶…ãˆã¦ãŸã‚‰è»¢é€å¹…ã¨åŒã˜ã«ã™ã‚‹
 		}
 
-		// “]‘—ŽQÆŠJŽnƒ|ƒCƒ“ƒg‚ÆA“]‘—•‚ðˆø‚­
+		// è»¢é€å‚ç…§é–‹å§‹ãƒã‚¤ãƒ³ãƒˆã¨ã€è»¢é€å¹…ã‚’å¼•ã
 		win_x   = 0;
 		src_x  += diff;
 		src_dx -= diff;
 		win_dx -= diff;
 	}
 
-	// Y•`‰æŠJŽnƒ|ƒCƒ“ƒg‚ªƒ}ƒCƒiƒX‚©
+	// Yæç”»é–‹å§‹ãƒã‚¤ãƒ³ãƒˆãŒãƒžã‚¤ãƒŠã‚¹ã‹
 	if(win_y < 0){
 		int diff;
 		diff = win_y*-1;
-		if(diff>win_dy){	// ‚»‚Ìƒ}ƒCƒiƒX•ª‚Í“]‘—•‚ð’´‚¦‚Ä‚È‚¢‚©
-			diff = win_dy;	// ’´‚¦‚Ä‚½‚ç“]‘—•‚Æ“¯‚¶‚É‚·‚é
+		if(diff>win_dy){	// ãã®ãƒžã‚¤ãƒŠã‚¹åˆ†ã¯è»¢é€å¹…ã‚’è¶…ãˆã¦ãªã„ã‹
+			diff = win_dy;	// è¶…ãˆã¦ãŸã‚‰è»¢é€å¹…ã¨åŒã˜ã«ã™ã‚‹
 		}
 
-		// “]‘—ŽQÆŠJŽnƒ|ƒCƒ“ƒg‚ÆA“]‘—•‚ðˆø‚­
+		// è»¢é€å‚ç…§é–‹å§‹ãƒã‚¤ãƒ³ãƒˆã¨ã€è»¢é€å¹…ã‚’å¼•ã
 		win_y   = 0;
 		src_y  += diff;
 		src_dy -= diff;
@@ -2397,7 +2397,7 @@ static void _BmpWinPrint_Rap(
 #define POINT_H	( 6 )
 //------------------------------------------------------------------
 /**
- * $brief   ƒ‰ƒCƒ“•`‰æ
+ * $brief   ãƒ©ã‚¤ãƒ³æç”»
  *
  * @param   win		
  * @param   brush		
@@ -2423,7 +2423,7 @@ static void DrawPoint_to_Line(
 	int x2 = px;
 	int y2 = py;
 
-	// ‰‰ñ‚ÍŒ´“_•Û‘¶‚Ì‚Ý
+	// åˆå›žã¯åŽŸç‚¹ä¿å­˜ã®ã¿
 	if(count==0 && flag == 0){
 		*sx = px;		*sy = py;
 		return;
@@ -2480,11 +2480,11 @@ static void Stock_OldTouch( TOUCH_INFO *all, OLD_TOUCH_INFO *stock )
 static int debug_count;
 //------------------------------------------------------------------
 /**
- * $brief  ’ÊM‚ÅŽóM‚µ‚½ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌŒ‹‰Êƒf[ƒ^‚ð‰º‚É•`‰æ‚·‚é
+ * $brief  é€šä¿¡ã§å—ä¿¡ã—ãŸã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµæžœãƒ‡ãƒ¼ã‚¿ã‚’ä¸‹ã«æç”»ã™ã‚‹
  *
  * @param   win		
  * @param   all		
- * @param   draw	ƒƒ‚ƒŠã‚Ås‚Á‚½CGX•ÏX‚ð“]‘—‚·‚é‚©H(0:‚µ‚È‚¢	1:‚·‚éj
+ * @param   draw	ãƒ¡ãƒ¢ãƒªä¸Šã§è¡Œã£ãŸCGXå¤‰æ›´ã‚’è»¢é€ã™ã‚‹ã‹ï¼Ÿ(0:ã—ãªã„	1:ã™ã‚‹ï¼‰
  *
  * @retval  none		
  */
@@ -2505,7 +2505,7 @@ static void DrawBrushLine( GF_BGL_BMPWIN *win, TOUCH_INFO *all, OLD_TOUCH_INFO *
 			for(r=0;r<all[i].size;r++){
 				px = all[i].x[r] - 9;
 				py = all[i].y[r] - 17;
-				// BG1–Ê—pBMPi‚¨ŠG‚©‚«‰æ‘œjƒEƒCƒ“ƒhƒEŠm•Û
+				// BG1é¢ç”¨BMPï¼ˆãŠçµµã‹ãç”»åƒï¼‰ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 //				GF_BGL_BmpWinPrint( win, (void*)oekaki_brush[all[i].brush],	0, 0, 4, 4, px, py, 4, 4 );
 				DrawPoint_to_Line(win, oekaki_brush[all[i].brush][all[i].color], px, py, &sx, &sy, r, old[i].size);
 				flag = 1;
@@ -2519,17 +2519,17 @@ static void DrawBrushLine( GF_BGL_BMPWIN *win, TOUCH_INFO *all, OLD_TOUCH_INFO *
 		GF_BGL_BmpWinOn( win );
 	}
 	
-	// ¡‰ñ‚ÌÅIÀ•W‚ÌƒoƒbƒNƒAƒbƒv‚ðŽæ‚é   
+	// ä»Šå›žã®æœ€çµ‚åº§æ¨™ã®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚’å–ã‚‹   
     Stock_OldTouch(all, old);
 	for(i=0;i<OEKAKI_MEMBER_MAX;i++){
-		all[i].size = 0;		// ˆê“x•`‰æ‚µ‚½‚çÀ•Wî•ñ‚ÍŽÌ‚Ä‚é
+		all[i].size = 0;		// ä¸€åº¦æç”»ã—ãŸã‚‰åº§æ¨™æƒ…å ±ã¯æ¨ã¦ã‚‹
 	}
 	
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   ’ÊMƒf[ƒ^‚©‚çƒJ[ƒ\ƒ‹ˆÊ’u‚ðˆÚ“®‚³‚¹‚é
+ * $brief   é€šä¿¡ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ç§»å‹•ã•ã›ã‚‹
  *
  * @param   wk		
  *
@@ -2541,9 +2541,9 @@ static void MoveCommCursor( OEKAKI_WORK *wk )
 	int i;
 	TOUCH_INFO *all = wk->AllTouchResult;
 	
-	// À•Wƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚éŽž‚ÍƒJ[ƒ\ƒ‹À•W‚ð”½‰f‚³‚¹‚é
+	// åº§æ¨™ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹æ™‚ã¯ã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™ã‚’åæ˜ ã•ã›ã‚‹
 	for(i=0;i<OEKAKI_MEMBER_MAX;i++){
-		if(i!=CommGetCurrentID()){		// Ž©•ª‚ÌƒJ[ƒ\ƒ‹‚Íƒ^ƒbƒ`ƒpƒlƒ‹‚©‚ç’¼Ú‚Æ‚é
+		if(i!=CommGetCurrentID()){		// è‡ªåˆ†ã®ã‚«ãƒ¼ã‚½ãƒ«ã¯ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‹ã‚‰ç›´æŽ¥ã¨ã‚‹
 			if(all[i].size!=0 && CommInfoGetMyStatus(i)!=NULL){
 				CLACT_SetDrawFlag( wk->MainActWork[i], 1 );
 				SetCursor_Pos( wk->MainActWork[i], all[i].x[all[i].size-1],  all[i].y[all[i].size-1]);
@@ -2556,7 +2556,7 @@ static void MoveCommCursor( OEKAKI_WORK *wk )
 }
 //------------------------------------------------------------------
 /**
- * $brief   ƒfƒoƒbƒO—p‚ÉŽ©•ª‚ÅŽæ“¾‚µ‚½î•ñ‚ðŽóMƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é
+ * $brief   ãƒ‡ãƒãƒƒã‚°ç”¨ã«è‡ªåˆ†ã§å–å¾—ã—ãŸæƒ…å ±ã‚’å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
  *
  * @param   wk		
  *
@@ -2571,9 +2571,9 @@ static void DebugTouchDataTrans( OEKAKI_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹‚ÌƒpƒŒƒbƒg•ÏXi“_–Åj
+ * ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´ï¼ˆç‚¹æ»…ï¼‰
  *
- * @param   CursorCol	sin‚É“n‚·ƒpƒ‰ƒ[ƒ^i360‚Ü‚Åj
+ * @param   CursorCol	sinã«æ¸¡ã™ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆ360ã¾ã§ï¼‰
  *
  * @retval  none		
  */
@@ -2599,7 +2599,7 @@ static void CursorColTrans(u16 *CursorCol)
 
 //------------------------------------------------------------------
 /**
- * $brief   Œ»Ý‰½lÚ‘±‚µ‚Ä‚¢‚é‚©H
+ * $brief   ç¾åœ¨ä½•äººæŽ¥ç¶šã—ã¦ã„ã‚‹ã‹ï¼Ÿ
  *
  * @param   none		
  *
@@ -2625,7 +2625,7 @@ static int OnlyParentCheck( void )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒIƒ“ƒ‰ƒCƒ“ó‹µ‚ðŠm”F‚µ‚Äã‰æ–Ê‚É–¼‘O‚ð•\Ž¦‚·‚é
+ * $brief   ã‚ªãƒ³ãƒ©ã‚¤ãƒ³çŠ¶æ³ã‚’ç¢ºèªã—ã¦ä¸Šç”»é¢ã«åå‰ã‚’è¡¨ç¤ºã™ã‚‹
  *
  * @param   win		
  * @param   frame		
@@ -2640,12 +2640,12 @@ static void NameCheckPrint( GF_BGL_BMPWIN *win, int frame, GF_PRINTCOLOR color, 
 	int i,id = CommGetCurrentID();
 	int num;
 
-	// –¼‘OŽæ“¾‚Ìó‹µ‚É•Ï‰»‚ª–³‚¢ê‡‚Í‘‚«Š·‚¦‚È‚¢
+	// åå‰å–å¾—ã®çŠ¶æ³ã«å¤‰åŒ–ãŒç„¡ã„å ´åˆã¯æ›¸ãæ›ãˆãªã„
 	if(!MyStatusCheck(wk)){
 		return;
 	}
 
-	// ƒƒOƒCƒ“ó‹µ‚É‰ž‚¶‚Äã‰æ–Ê‚Ì–îˆó‚ðONEOFF‚·‚é
+	// ãƒ­ã‚°ã‚¤ãƒ³çŠ¶æ³ã«å¿œã˜ã¦ä¸Šç”»é¢ã®çŸ¢å°ã‚’ONãƒ»OFFã™ã‚‹
 	for(i=0;i<5;i++){
 		if(wk->TrainerStatus[i][0]==NULL){
 			CLACT_SetDrawFlag( wk->SubActWork[i], 0 );
@@ -2654,12 +2654,12 @@ static void NameCheckPrint( GF_BGL_BMPWIN *win, int frame, GF_PRINTCOLOR color, 
 		}
 	}
 
-	// ‚»‚ê‚¼‚ê‚Ì•¶Žšƒpƒlƒ‹‚Ì”wŒiF‚ÅƒNƒŠƒA
+	// ãã‚Œãžã‚Œã®æ–‡å­—ãƒ‘ãƒãƒ«ã®èƒŒæ™¯è‰²ã§ã‚¯ãƒªã‚¢
 	for(i=0;i<5;i++){
 		GF_BGL_BmpWinFill( &win[i], 0, 0, 0, OEKAKI_NAME_BMP_W*8, OEKAKI_NAME_BMP_H*8 );
 	}
 
-	// •`‰æ
+	// æç”»
 	for(i=0;i<OEKAKI_MEMBER_MAX;i++){
 		if(wk->TrainerStatus[i][0]!=NULL){
 			MyStatus_CopyNameString( wk->TrainerStatus[i][0], wk->TrainerName[i] );
@@ -2672,7 +2672,7 @@ static void NameCheckPrint( GF_BGL_BMPWIN *win, int frame, GF_PRINTCOLOR color, 
 		}
 		GF_BGL_BmpWinOn( &win[i] );
 	}
-	OS_Printf("–¼‘O‚©‚«‚©‚¦‚µ‚Ü‚·‚æ\n");
+	OS_Printf("åå‰ã‹ãã‹ãˆã—ã¾ã™ã‚ˆ\n");
 
 }
 
@@ -2704,7 +2704,7 @@ static const u8 plate_chara_no[][5]={
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ªŠm”F‚³‚ê‚½ê‡‚Í–¼‘O‚ðŽæ“¾‚·‚é
+ * $brief   æŽ¥ç¶šãŒç¢ºèªã•ã‚ŒãŸå ´åˆã¯åå‰ã‚’å–å¾—ã™ã‚‹
  *
  * @param   wk		
  *
@@ -2717,7 +2717,7 @@ static int ConnectCheck( OEKAKI_WORK *wk )
 	MYSTATUS *status;
 	STRCODE  *namecode;
 
-	// Ú‘±ƒ`ƒFƒbƒN
+	// æŽ¥ç¶šãƒã‚§ãƒƒã‚¯
 	for(i=0;i<OEKAKI_MEMBER_MAX;i++){
 		wk->ConnectCheck[i][0] = wk->ConnectCheck[i][1];
 
@@ -2725,12 +2725,12 @@ static int ConnectCheck( OEKAKI_WORK *wk )
 
 	}
 
-	// Ú‘±‚ª‚¢‚½‚ç–¼‘O‚ð”½‰f‚³‚¹‚é
+	// æŽ¥ç¶šãŒã„ãŸã‚‰åå‰ã‚’åæ˜ ã•ã›ã‚‹
 	for(i=0;i<OEKAKI_MEMBER_MAX;i++){
-		if(wk->ConnectCheck[i][0]){				// Ú‘±‚µ‚Ä‚¢‚é‚©H
+		if(wk->ConnectCheck[i][0]){				// æŽ¥ç¶šã—ã¦ã„ã‚‹ã‹ï¼Ÿ
 
 			status = CommInfoGetMyStatus(i);
-			if(status!=NULL){					// MYSTATUS‚ÍŽæ“¾‚Å‚«‚Ä‚¢‚é‚©H
+			if(status!=NULL){					// MYSTATUSã¯å–å¾—ã§ãã¦ã„ã‚‹ã‹ï¼Ÿ
 				namecode = (STRCODE*)MyStatus_GetMyName(status);
 				STRBUF_SetStringCode( wk->TrainerName[i], namecode );
 			}
@@ -2743,7 +2743,7 @@ static int ConnectCheck( OEKAKI_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚Ì‘—ŽóM‚ðs‚¤
+ * $brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã®é€å—ä¿¡ã‚’è¡Œã†
  *
  * @param   wk		
  *
@@ -2753,7 +2753,7 @@ static int ConnectCheck( OEKAKI_WORK *wk )
 static void LineDataSendRecv( OEKAKI_WORK *wk )
 {
 	if( CommGetCurrentID()==0 ){
-		// e‹@‚ÍŽ©•ª‚Ìƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ð’Ç‰Á‚µ‚Ä‘—M‚·‚é
+		// è¦ªæ©Ÿã¯è‡ªåˆ†ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã‚’è¿½åŠ ã—ã¦é€ä¿¡ã™ã‚‹
         if(CommIsEmptyQueue_ServerSize()){
 			wk->MyTouchResult.banFlag    = wk->banFlag;
 			wk->ParentTouchResult[0] = wk->MyTouchResult;
@@ -2761,7 +2761,7 @@ static void LineDataSendRecv( OEKAKI_WORK *wk )
 		}
 	}else{
         if(CommIsEmptyQueue()){
-			// Žq‹@‚ÍŽ©•ª‚Ìƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ðe‹@‚É‘—M‚·‚é
+			// å­æ©Ÿã¯è‡ªåˆ†ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã‚’è¦ªæ©Ÿã«é€ä¿¡ã™ã‚‹
 			CommSendData( CO_OEKAKI_LINEPOS, &wk->MyTouchResult, COMM_SEND_5TH_PACKET_MAX );
 		}
 	}
@@ -2770,7 +2770,7 @@ static void LineDataSendRecv( OEKAKI_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Œ»Ý‚ÌƒIƒ“ƒ‰ƒCƒ“”‚ðŽæ“¾
+ * $brief   ç¾åœ¨ã®ã‚ªãƒ³ãƒ©ã‚¤ãƒ³æ•°ã‚’å–å¾—
  *
  * @param   none		
  *
@@ -2790,11 +2790,11 @@ static int MyStatusGetNum( void )
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»Ý‚ÌƒIƒ“ƒ‰ƒCƒ“”‚ðŽæ“¾(ƒOƒ[ƒoƒ‹ŠÖ””Å)
+ * @brief   ç¾åœ¨ã®ã‚ªãƒ³ãƒ©ã‚¤ãƒ³æ•°ã‚’å–å¾—(ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°ç‰ˆ)
  *
  * @param   none		
  *
- * @retval  Ú‘±l”
+ * @retval  æŽ¥ç¶šäººæ•°
  */
 //--------------------------------------------------------------
 int OekakiBoard_MyStatusGetNum(void)
@@ -2804,17 +2804,17 @@ int OekakiBoard_MyStatusGetNum(void)
 
 //------------------------------------------------------------------
 /**
- * $brief   MYSTATUS‚ÌŽæ“¾ó‹µ‚É•Ï‰»‚ª‚ ‚Á‚½‚©H
+ * $brief   MYSTATUSã®å–å¾—çŠ¶æ³ã«å¤‰åŒ–ãŒã‚ã£ãŸã‹ï¼Ÿ
  *
  * @param   wk		
  *
- * @retval  int		‚ ‚Á‚½‚ç1,  –³‚¢ê‡‚Í0
+ * @retval  int		ã‚ã£ãŸã‚‰1,  ç„¡ã„å ´åˆã¯0
  */
 //------------------------------------------------------------------
 static int MyStatusCheck( OEKAKI_WORK *wk )
 {
 	int i,result=0;
-	// Ú‘±‚ª‚¢‚½‚ç–¼‘O‚ð”½‰f‚³‚¹‚é
+	// æŽ¥ç¶šãŒã„ãŸã‚‰åå‰ã‚’åæ˜ ã•ã›ã‚‹
 	for(i=0;i<OEKAKI_MEMBER_MAX;i++){
 		wk->TrainerStatus[i][1] = wk->TrainerStatus[i][0];
 		wk->TrainerStatus[i][0] = CommInfoGetMyStatus(i);
@@ -2832,7 +2832,7 @@ static int MyStatusCheck( OEKAKI_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\Ž¦
+ * $brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -2841,7 +2841,7 @@ static int MyStatusCheck( OEKAKI_WORK *wk )
 //------------------------------------------------------------------
 static void EndMessagePrint( OEKAKI_WORK *wk, int msgno, int wait )
 {
-	// •¶Žš—ñŽæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	STRBUF *tempbuf;
 	
 	tempbuf = STRBUF_Create(TALK_MESSAGE_BUF_NUM,HEAPID_OEKAKI);
@@ -2849,17 +2849,17 @@ static void EndMessagePrint( OEKAKI_WORK *wk, int msgno, int wait )
 	WORDSET_ExpandStr( wk->WordSet, wk->TalkString, tempbuf );
 	STRBUF_Delete(tempbuf);
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æž æç”»
 	GF_BGL_BmpWinDataFill( &wk->MsgWin,  0x0f0f );
 	BmpTalkWinWrite( &wk->MsgWin, WINDOW_TRANS_ON, 1, FLD_MESFRAME_PAL );
 
 
-	// ƒƒbƒZ[ƒWƒXƒs[ƒh‚ðŽw’è
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’æŒ‡å®š
 	if(wait==0){
 		wait = MSG_ALLPUT;
 	}
 
-	// •¶Žš—ñ•`‰æŠJŽn
+	// æ–‡å­—åˆ—æç”»é–‹å§‹
 	wk->MsgIndex = GF_STR_PrintSimple( &wk->MsgWin, FONT_TALK, wk->TalkString, 0, 0, wait, NULL);
 	if(wait == MSG_ALLPUT){
 		wk->MsgIndex = 0xff;
@@ -2869,7 +2869,7 @@ static void EndMessagePrint( OEKAKI_WORK *wk, int msgno, int wait )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜b•\Ž¦ƒEƒCƒ“ƒhƒEI—¹‘Ò‚¿
+ * $brief   ä¼šè©±è¡¨ç¤ºã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦çµ‚äº†å¾…ã¡
  *
  * @param   msg_index		
  *
@@ -2907,7 +2907,7 @@ static void EndMessageWindowOff( OEKAKI_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   Ú‘±l”‚ª‚»‚ÌŽžÚ‘±l”{‚P‚É‚È‚é‚æ‚¤‚ÉÄÝ’è‚·‚é
+ * @brief   æŽ¥ç¶šäººæ•°ãŒãã®æ™‚æŽ¥ç¶šäººæ•°ï¼‹ï¼‘ã«ãªã‚‹ã‚ˆã†ã«å†è¨­å®šã™ã‚‹
  *
  * @param   wk		
  *
@@ -2922,14 +2922,14 @@ static void ChangeConnectMax( OEKAKI_WORK *wk, int plus )
 			num = 5;
 		}
 		CommStateSetLimitNum(num);
-		OS_Printf("Ú‘±l”‚ð %dl‚É•ÏX\n",num);
+		OS_Printf("æŽ¥ç¶šäººæ•°ã‚’ %däººã«å¤‰æ›´\n",num);
 	}
 
 }
 
 //------------------------------------------------------------------
 /**
- * @brief  Ú‘±l”‚ðŠÄŽ‹‚µ‚Ä§Œä‚ð•Ï‚¦‚é 
+ * @brief  æŽ¥ç¶šäººæ•°ã‚’ç›£è¦–ã—ã¦åˆ¶å¾¡ã‚’å¤‰ãˆã‚‹ 
  *
  * @param   wk		
  *
@@ -2939,23 +2939,23 @@ static void ChangeConnectMax( OEKAKI_WORK *wk, int plus )
 static int ConnectNumControl( OEKAKI_WORK *wk )
 {
 	int num;
-	// ƒr[ƒRƒ“‚ð‘‚«Š·‚¦‚é
+	// ãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ›¸ãæ›ãˆã‚‹
 	num = MyStatusGetNum();
 
 	switch(num){
 	case 1:
 		if(wk->seq<=OEKAKI_MODE_END_SELECT_PARENT_WAIT){
 			if (WH_GetBitmap() != 1){
-				OS_Printf("ˆêl‚Å‚Í‚È‚­‚È‚è‚Ü‚µ‚½B\n");
+				OS_Printf("ä¸€äººã§ã¯ãªããªã‚Šã¾ã—ãŸã€‚\n");
 				OS_Printf("bit:%d\n",WH_GetBitmap());
 				wk->ireagalJoin = 1;
 			}
-			OS_Printf("OEKAKI_MODE_END_PARENT_ONLY‚É‚©‚«‚©‚¦\n");
+			OS_Printf("OEKAKI_MODE_END_PARENT_ONLYã«ã‹ãã‹ãˆ\n");
 //			wk->seq = OEKAKI_MODE_END_PARENT_ONLY;
-			wk->next_seq = OEKAKI_MODE_END_PARENT_ONLY;	//—\–ñ
-			OS_Printf("Ú‘±§ŒÀ‚ð‚P‚É‚·‚é");
+			wk->next_seq = OEKAKI_MODE_END_PARENT_ONLY;	//äºˆç´„
+			OS_Printf("æŽ¥ç¶šåˆ¶é™ã‚’ï¼‘ã«ã™ã‚‹");
    	    	CommStateSetLimitNum(1);
-			// ‚â‚ß‚é‘I‘ð’†‚¾‚Á‚½‚ç‹­§ƒŠƒZƒbƒg
+			// ã‚„ã‚ã‚‹é¸æŠžä¸­ã ã£ãŸã‚‰å¼·åˆ¶ãƒªã‚»ãƒƒãƒˆ
 			if(wk->yesno_flag){
 				OekakiResetYesNoWin(wk);
 				CLACT_AnmChg(wk->ButtonActWork[8], pal_button_oam_table[8][2]);
@@ -2964,10 +2964,10 @@ static int ConnectNumControl( OEKAKI_WORK *wk )
 		}
 		break;
 	case 2:case 3:case 4:
-		// ‚Ü‚¾“ü‚ê‚é‚æ
+		// ã¾ã å…¥ã‚Œã‚‹ã‚ˆ
 		Union_BeaconChange( UNION_PARENT_MODE_OEKAKI_FREE );
 
-		// Ú‘±l”‚ªŒ¸‚Á‚½ê‡‚ÍÚ‘±Å‘ål”‚àŒ¸‚ç‚·
+		// æŽ¥ç¶šäººæ•°ãŒæ¸›ã£ãŸå ´åˆã¯æŽ¥ç¶šæœ€å¤§äººæ•°ã‚‚æ¸›ã‚‰ã™
 		if(num<wk->connectBackup){
 			if(wk->banFlag==OEKAKI_BAN_ON){
 				ChangeConnectMax( wk, 0 );
@@ -2977,42 +2977,42 @@ static int ConnectNumControl( OEKAKI_WORK *wk )
 		}
 		break;
 	case 5:
-		// ‚¢‚Á‚Ï‚¢‚Å‚·
+		// ã„ã£ã±ã„ã§ã™
 		Union_BeaconChange( UNION_PARENT_MODE_OEKAKINOW );
 		break;
 	}
 
-	// ‰æ‘œ‹¤—Ll”‚ªŒ¸‚Á‚½‚Æ‚«‚ÍXV
+	// ç”»åƒå…±æœ‰äººæ•°ãŒæ¸›ã£ãŸã¨ãã¯æ›´æ–°
 	if(num<wk->connectBackup){
 		wk->shareNum = CommGetConnectNum();
 		wk->shareBit = WH_GetBitmap();
-		OS_TPrintf("Ú‘±l”‚ªŒ¸‚Á‚½‚Ì‚ÅshareNum‚ð%dl‚É•ÏX\n", CommGetConnectNum());
-		/*—“ü’†ƒtƒ‰ƒO¬—§‚µ‚Ä‚¢‚éó‘Ô‚ÅAl”‚ªŒ¸‚Á‚½*/
-		if(wk->bookJoin){/*—“ü—\’èƒrƒbƒg‚Æ”äŠr‚µA‚»‚ê‚ª—Ž‚¿‚Ä‚¢‚½ê‡‚ÍA—“üŽÒ‚ª“dŒ¹‚ðØ‚Á‚½‚Æ‚Ý‚È‚·*/
+		OS_TPrintf("æŽ¥ç¶šäººæ•°ãŒæ¸›ã£ãŸã®ã§shareNumã‚’%däººã«å¤‰æ›´\n", CommGetConnectNum());
+		/*ä¹±å…¥ä¸­ãƒ•ãƒ©ã‚°æˆç«‹ã—ã¦ã„ã‚‹çŠ¶æ…‹ã§ã€äººæ•°ãŒæ¸›ã£ãŸ*/
+		if(wk->bookJoin){/*ä¹±å…¥äºˆå®šãƒ“ãƒƒãƒˆã¨æ¯”è¼ƒã—ã€ãã‚ŒãŒè½ã¡ã¦ã„ãŸå ´åˆã¯ã€ä¹±å…¥è€…ãŒé›»æºã‚’åˆ‡ã£ãŸã¨ã¿ãªã™*/
 			if (!(wk->shareBit&wk->joinBit)){
-				//ƒŠƒ~ƒbƒg§ŒÀÄÝ’è
+				//ãƒªãƒŸãƒƒãƒˆåˆ¶é™å†è¨­å®š
 				ChangeConnectMax( wk, 1 );
-				//—£’E‰ðœ
+				//é›¢è„±è§£é™¤
 				wk->banFlag = OEKAKI_BAN_OFF;
-				//—“ü—\–ñƒLƒƒƒ“ƒZƒ‹
+				//ä¹±å…¥äºˆç´„ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 				wk->bookJoin = 0;
 				wk->joinBit = 0;
-				OS_Printf("—“üƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ü‚µ‚½\n");
+				OS_Printf("ä¹±å…¥ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¾ã—ãŸ\n");
 			}
 		}
 	}
 
-	// Ú‘±l”‚ð•Û‘¶
+	// æŽ¥ç¶šäººæ•°ã‚’ä¿å­˜
 	wk->connectBackup = MyStatusGetNum();
 
-	// ’ÊMÚ‘±l”‚ª‰æ‘œ‹¤—Ll”‚æ‚è‚à‘½‚­‚È‚Á‚½ê‡‚Í—£’E‹ÖŽ~ƒtƒ‰ƒO‚ð—§‚Ä‚é
+	// é€šä¿¡æŽ¥ç¶šäººæ•°ãŒç”»åƒå…±æœ‰äººæ•°ã‚ˆã‚Šã‚‚å¤šããªã£ãŸå ´åˆã¯é›¢è„±ç¦æ­¢ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 	if(wk->shareNum < CommGetConnectNum()){
 		OS_Printf("ban_flag_on:%d,%d\n",wk->shareNum, CommGetConnectNum());
-		OS_Printf("—“ü—\’è\n");
+		OS_Printf("ä¹±å…¥äºˆå®š\n");
 		wk->banFlag = OEKAKI_BAN_ON;
-		//—“ü‚ðŠú‘Ò‚·‚é
+		//ä¹±å…¥ã‚’æœŸå¾…ã™ã‚‹
 		wk->bookJoin = 1;
-		//—“ü‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚él‚Ìƒrƒbƒg‚ðŽæ“¾
+		//ä¹±å…¥ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹äººã®ãƒ“ãƒƒãƒˆã‚’å–å¾—
 		wk->joinBit = wk->shareBit^WH_GetBitmap();
 		GF_ASSERT( (wk->joinBit == 2)||
 					(wk->joinBit == 4)||
@@ -3027,7 +3027,7 @@ static int ConnectNumControl( OEKAKI_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ŽŸ‚ÉˆÚs‚³‚¹‚½‚¢ƒV[ƒPƒ“ƒX”Ô†‚ð“ü‚ê‚é
+ * @brief   æ¬¡ã«ç§»è¡Œã•ã›ãŸã„ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·ã‚’å…¥ã‚Œã‚‹
  *
  * @param   wk		
  * @param   nextSequence		
@@ -3043,7 +3043,7 @@ static void SetNextSequence( OEKAKI_WORK *wk, int nextSequence )
 
 //------------------------------------------------------------------
 /**
- * @brief   wk->seq‚ÌƒRƒ“ƒgƒ[ƒ‹‚ðs‚¤
+ * @brief   wk->seqã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’è¡Œã†
  *
  * @param   wk		
  *
@@ -3052,16 +3052,16 @@ static void SetNextSequence( OEKAKI_WORK *wk, int nextSequence )
 //------------------------------------------------------------------
 static void OekakiSequenceControl( OEKAKI_WORK *wk, int proc_seq )
 {
-	// ƒV[ƒPƒ“ƒX‚ªˆá‚¤‚È‚ç
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãŒé•ã†ãªã‚‰
 	if(wk->seq!=wk->next_seq){
-		// I—¹ƒV[ƒPƒ“ƒX‚¶‚á‚È‚¢‚±‚Æ‚ðŠm”F‚µ‚Ä
+		// çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã˜ã‚ƒãªã„ã“ã¨ã‚’ç¢ºèªã—ã¦
 		if(proc_seq!=SEQ_LEAVE){ 
 			wk->seq = wk->next_seq;
 		}else{
-			// ˆê•”ŽÀs§ŒÀ‚ÌƒV[ƒPƒ“ƒX‚¶‚á‚È‚¢‚±‚Æ‚ðŠm”F‚µ‚Ä
+			// ä¸€éƒ¨å®Ÿè¡Œåˆ¶é™ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã˜ã‚ƒãªã„ã“ã¨ã‚’ç¢ºèªã—ã¦
 			if(FuncTable[wk->next_seq].execOn_SeqLeave){
 				OS_Printf("now_next:%d,%d\n",wk->seq,wk->next_seq);
-				// ƒV[ƒPƒ“ƒX‘‚«Š·‚¦
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ›¸ãæ›ãˆ
 				wk->seq = wk->next_seq;
 			}
 		}
@@ -3070,11 +3070,11 @@ static void OekakiSequenceControl( OEKAKI_WORK *wk, int proc_seq )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒpƒlƒ‹‚Ì‚Í‚¢E‚¢‚¢‚¦ƒEƒBƒ“ƒhƒE‚Ìì¬ŠÖ”
+ * @brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½œæˆé–¢æ•°
  *
  * @param   wk		
  *
- * @retval  BOOL		TRUEF¬Œ÷	FALSEFŽ¸”s 			
+ * @retval  BOOL		TRUEï¼šæˆåŠŸ	FALSEï¼šå¤±æ•— 			
  */
 //------------------------------------------------------------------
 static BOOL OekakiInitYesNoWin(OEKAKI_WORK *wk, TOUCH_SW_PARAM *param)
@@ -3090,7 +3090,7 @@ static BOOL OekakiInitYesNoWin(OEKAKI_WORK *wk, TOUCH_SW_PARAM *param)
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒpƒlƒ‹‚Ì‚Í‚¢E‚¢‚¢‚¦ƒEƒBƒ“ƒhƒE‚ÌÁ‹ŽŠÖ”
+ * @brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¶ˆåŽ»é–¢æ•°
  *
  * @param   wk		
  *
@@ -3108,7 +3108,7 @@ static void OekakiResetYesNoWin(OEKAKI_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * @brief   YESNOƒ{ƒ^ƒ“‚ð‹ÖŽ~‚µ‚Ä‚¢‚éŠÔA‰R‚ÌŒŸo‚ðs‚¤
+ * @brief   YESNOãƒœã‚¿ãƒ³ã‚’ç¦æ­¢ã—ã¦ã„ã‚‹é–“ã€å˜˜ã®æ¤œå‡ºã‚’è¡Œã†
  *
  * @param   wk		
  *
@@ -3128,7 +3128,7 @@ static int FakeEndYesNoSelect( OEKAKI_WORK  *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒpƒlƒ‹ƒf[ƒ^‚ÌŠi”[ˆ—
+ * @brief   ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å‡¦ç†
  *
  * @param   touchResult		
  * @param   tpData		
@@ -3140,34 +3140,34 @@ static void SetTouchpanelData( TOUCH_INFO *touchResult, TP_ONE_DATA *tpData, int
 {
 	int i,n;
 
-	// Å‰‚ÉƒTƒ“ƒvƒŠƒ“ƒO‚³‚ê‚½“_‚ðŠi”[
+	// æœ€åˆã«ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã•ã‚ŒãŸç‚¹ã‚’æ ¼ç´
 	if(tpData->Size!=0){
 		touchResult->x[0] = tpData->TPDataTbl[0].x;
 		touchResult->y[0] = tpData->TPDataTbl[0].y;
 
-		// ÅŒã‚ÉƒTƒ“ƒvƒŠƒ“ƒO‚³‚ê‚½“_‚ðŠi”[
+		// æœ€å¾Œã«ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã•ã‚ŒãŸç‚¹ã‚’æ ¼ç´
 		n = tpData->Size-1;
 		touchResult->x[1] = tpData->TPDataTbl[n].x;
 		touchResult->y[1] = tpData->TPDataTbl[n].y;
 
 #if PLFIX_T1624
-		// ƒ^ƒbƒ`À•W‚ª0,0‚È‚çÝ’è‚µ‚È‚¢
+		// ã‚¿ãƒƒãƒåº§æ¨™ãŒ0,0ãªã‚‰è¨­å®šã—ãªã„
 		for( i=0; i<2; i++ ){
 			if( (touchResult->x[i] + touchResult->y[i]) == 0 ){
-				tpData->Size = 0;	// ‚È‚©‚Á‚½‚±‚Æ‚É‚·‚é
+				tpData->Size = 0;	// ãªã‹ã£ãŸã“ã¨ã«ã™ã‚‹
 			}
 		}
 #endif
 	}
 
-	// Å‘å‚S‰ñƒTƒ“ƒvƒŠƒ“ƒO‚³‚ê‚é‚Í‚¸‚¾‚ªA‚»‚ê‚Å‚à‘—Mƒf[ƒ^‚Í‚Q‚ÆŠi”[‚·‚é
+	// æœ€å¤§ï¼”å›žã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã•ã‚Œã‚‹ã¯ãšã ãŒã€ãã‚Œã§ã‚‚é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã¯ï¼’ã¨æ ¼ç´ã™ã‚‹
 	if(tpData->Size>=2){
 		touchResult->size  = 2;
 	}else{
 		touchResult->size  = tpData->Size;
 	}
 	
-	// FE‘å‚«‚³Ý’è
+	// è‰²ãƒ»å¤§ãã•è¨­å®š
 	touchResult->color = brush_color;
 	touchResult->brush = brush;
 

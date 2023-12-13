@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	trainercard_data.c
- * @bfief	ƒgƒŒ[ƒi[ƒJ[ƒh—pƒZ[ƒuƒf[ƒ^ƒAƒNƒZƒXŠÖ˜A
+ * @bfief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹é–¢é€£
  * @author	Nozomu Saito
  *
  *
@@ -19,22 +19,22 @@
 
 typedef struct TR_BADGE_SV_DATA_tag
 {
-	int ScruchCount;	//–‚«‹ï‡
+	int ScruchCount;	//ç£¨ãå…·åˆ
 }TR_BADGE_SV_DATA;
 
 typedef struct TR_CARD_SV_DATA_tag
 {
 	TR_BADGE_SV_DATA BadgeData[BADGE_MAX];
-	u8 SighnData[SIGHN_W*SIGHN_H*64/8];	//ƒTƒCƒ“–Êƒf[ƒ^
+	u8 SighnData[SIGHN_W*SIGHN_H*64/8];	//ã‚µã‚¤ãƒ³é¢ãƒ‡ãƒ¼ã‚¿
 }TR_CARD_SV_DATA;
 
 //==============================================================================
 /**
- * ƒZ[ƒuƒf[ƒ^ƒTƒCƒYæ“¾
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
  *
  * @param	none
  *
- * @return	int		ƒTƒCƒY
+ * @return	int		ã‚µã‚¤ã‚º
  */
 //==============================================================================
 int TRCSave_GetSaveDataSize(void)
@@ -44,9 +44,9 @@ int TRCSave_GetSaveDataSize(void)
 
 //==============================================================================
 /**
- * ƒZ[ƒuƒf[ƒ^‰Šú‰»
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- * @param	outTrCard	ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	outTrCard	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -54,7 +54,7 @@ int TRCSave_GetSaveDataSize(void)
 void TRCSave_InitSaveData(TR_CARD_SV_PTR outTrCard)
 {
 	memset( outTrCard, 0, sizeof(TR_CARD_SV_DATA) );
-	//ƒoƒbƒW‚Ì•…H‹ï‡‚ğƒZƒbƒg‚·‚é
+	//ãƒãƒƒã‚¸ã®è…é£Ÿå…·åˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	{
 		int i;
 		TR_BADGE_DATA_PTR badge_ptr;
@@ -70,11 +70,11 @@ void TRCSave_InitSaveData(TR_CARD_SV_PTR outTrCard)
 
 //==============================================================================
 /**
- * ƒZ[ƒuƒf[ƒ^æ“ªƒ|ƒCƒ“ƒ^æ“¾
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å…ˆé ­ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
- * @param	sv		ƒZ[ƒuƒ|ƒCƒ“ƒ^
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	TR_CARD_SV_PTR		ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	TR_CARD_SV_PTR		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 TR_CARD_SV_PTR TRCSave_GetSaveDataPtr(SAVEDATA * sv)
@@ -87,11 +87,11 @@ TR_CARD_SV_PTR TRCSave_GetSaveDataPtr(SAVEDATA * sv)
 
 //==============================================================================
 /**
- * ƒTƒCƒ“ƒf[ƒ^æ“ªƒ|ƒCƒ“ƒ^æ“¾
+ * ã‚µã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿å…ˆé ­ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
- * @param	inTrCard		ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inTrCard		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	u8*				ƒTƒCƒ“ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	u8*				ã‚µã‚¤ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 u8 *TRCSave_GetSighnDataPtr(TR_CARD_SV_PTR inTrCard)
@@ -101,11 +101,11 @@ u8 *TRCSave_GetSighnDataPtr(TR_CARD_SV_PTR inTrCard)
 
 //==============================================================================
 /**
- * ƒoƒbƒWƒf[ƒ^æ“ªƒ|ƒCƒ“ƒ^æ“¾
+ * ãƒãƒƒã‚¸ãƒ‡ãƒ¼ã‚¿å…ˆé ­ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
- * @param	inTrCard		ƒgƒŒ[ƒi[ƒJ[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inTrCard		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	TR_BADGE_DATA_PTR	ƒoƒbƒWƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	TR_BADGE_DATA_PTR	ãƒãƒƒã‚¸ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 TR_BADGE_DATA_PTR TRCSave_GetBadgeDataPtr(TR_CARD_SV_PTR inTrCard)
@@ -115,12 +115,12 @@ TR_BADGE_DATA_PTR TRCSave_GetBadgeDataPtr(TR_CARD_SV_PTR inTrCard)
 
 //==============================================================================
 /**
- * ƒoƒbƒW–‚«‹ï‡‚ğæ“¾
+ * ãƒãƒƒã‚¸ç£¨ãå…·åˆã‚’å–å¾—
  *
- * @param	inBadgePtr		ƒoƒbƒWƒf[ƒ^æ“ªƒ|ƒCƒ“ƒ^
- * @param	inBadgeNo		ƒoƒbƒWƒiƒ“ƒo[
+ * @param	inBadgePtr		ãƒãƒƒã‚¸ãƒ‡ãƒ¼ã‚¿å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
+ * @param	inBadgeNo		ãƒãƒƒã‚¸ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	int				–‚«‹ï‡
+ * @return	int				ç£¨ãå…·åˆ
  */
 //==============================================================================
 int TRCSave_GetBadgeScruchCount(const u8 inBadgeNo, TR_BADGE_DATA_PTR inBadgeDataPtr)
@@ -130,11 +130,11 @@ int TRCSave_GetBadgeScruchCount(const u8 inBadgeNo, TR_BADGE_DATA_PTR inBadgeDat
 
 //==============================================================================
 /**
- * ƒoƒbƒW–‚«‹ï‡‚ğƒZƒbƒg
+ * ãƒãƒƒã‚¸ç£¨ãå…·åˆã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	inBadgeNo		ƒoƒbƒWƒiƒ“ƒo[
- * @param	inCount			//–‚«‰ñ”
- * @param	outBadgePtr		ƒoƒbƒWƒf[ƒ^æ“ªƒ|ƒCƒ“ƒ^
+ * @param	inBadgeNo		ãƒãƒƒã‚¸ãƒŠãƒ³ãƒãƒ¼
+ * @param	inCount			//ç£¨ãå›æ•°
+ * @param	outBadgePtr		ãƒãƒƒã‚¸ãƒ‡ãƒ¼ã‚¿å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
  * 
  *
  * @return	none

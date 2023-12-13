@@ -1,65 +1,65 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
 <TITLE>PRC Demos</TITLE>
 </HEAD>
 <BODY>
-<H1>�}�`�F�� �T���v���f��</H1>
+<H1>図形認識 サンプルデモ</H1>
 
-<H2>�ꏊ</H2>
+<H2>場所</H2>
 <P><CODE>$NitroSDK/build/demos/prc</CODE></P>
 
-<H2>�R���p�C�����@</H2>
-<P><CODE>$NitroSDK/build/demos/prc</CODE> �f�B���N�g���Ɉڂ�A</P>
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSDK/build/demos/prc</CODE> ディレクトリに移り、</P>
 <BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
-<P>�Ɠ��͂��܂��B���s�t�@�C��(<CODE>.nef</CODE>, <CODE>.srl</CODE> �t�@�C��) ���A</P>
-<BLOCKQUOTE><CODE>$NitroSDK/build/demos/prc/(�T���v����)/bin/(�v���b�g�t�H�[��)/(�^�[�Q�b�g)/</CODE></BLOCKQUOTE>
-<P>�̉��ɐ�������܂��B�Ⴆ�΁A</P>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/prc/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
 <BLOCKQUOTE><CODE>$NitroSDK/build/demos/prc/characterRecognition-1/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
-<P>�̂悤�ɂȂ�܂��B</P>
-<H2>���s���@</H2>
-<P><CODE>$NitroSDK/build/demos/prc/(�T���v����)/bin/(�v���b�g�t�H�[��)/(�^�[�Q�b�g)/</CODE> �f�B���N�g���Ɉڂ�A�ȉ��̂����̈���s���܂��B</P>
+<P>のようになります。</P>
+<H2>実行方法</H2>
+<P><CODE>$NitroSDK/build/demos/prc/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE> ディレクトリに移り、以下のうちの一つを行います。</P>
 <UL>
-  <LI>ensata �� <CODE>*.nef</CODE>, <CODE>*.srl</CODE> �����s����B
-  <LI>IS-NITRO-DEBUGGER �� <CODE>*.nlf</CODE> �t�@�C����ǂ݂���Ŏ��s����B
-  <LI>IS-NITRO-DEBUGGER �� <CODE>*.srl</CODE> �����s����B
+  <LI>ensata で <CODE>*.nef</CODE>, <CODE>*.srl</CODE> を実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
 </UL>
 
-<H2>����</H2>
+<H2>説明</H2>
 <br>
 
 <TABLE width="720">
   <TBODY>
     <TR>
       <TD width="187"><EM><STRONG><CODE>characterRecognition-1</CODE></STRONG></EM></TD>
-      <TD width="525">�^�b�`�p�l������̓��͂𕶎��Ƃ��ĔF�����܂��B<BR>
-      ���Ԃ̂�����F�� API ��ʃX���b�h�Ńo�b�N�O���E���h�Ŏ��s�������@�̃T���v���v���O�����ł��B</TD>
+      <TD width="525">タッチパネルからの入力を文字として認識します。<BR>
+      時間のかかる認識 API を別スレッドでバックグラウンドで実行させる手法のサンプルプログラムです。</TD>
     </TR>
     <TR>
       <TD width="187"><EM><STRONG><CODE>characterRecognition-2</CODE></STRONG></EM></TD>
-      <TD width="525">�^�b�`�p�l������̓��͂𕶎��Ƃ��ĔF�����܂��B<BR>
-      �l�X�ȔF���G���W����p�����[�^���r���Ȃ���A�F�����ʂ�v�Z���Ԃ��m�F���邱�Ƃ��ł��܂��B<BR>
-      �܂��A�}�`���{�ꗗ�̊ȈՍ쐬�c�[���Ƃ��Ă̋@�\�������܂��B</TD>
+      <TD width="525">タッチパネルからの入力を文字として認識します。<BR>
+      様々な認識エンジンやパラメータを比較しながら、認識結果や計算時間を確認することができます。<BR>
+      また、図形見本一覧の簡易作成ツールとしての機能も持ちます。</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<H2>����</H2>
-<P><CODE>characterRecognition-1, characterRecognition-2</CODE> �͖{�̓����̕s����������(NVRAM)����^�b�`�p�l���Z���ݒ�l��ǂݏo�����Ǝ��݂܂��B����ɓǂݏo���Ȃ��ꍇ�ُ͈�I�����܂��̂ŁA�{�̂ɓ�������Ă���DS�N�����j���[��p���ăL�����u���[�V�������ʂ� NVRAM �ւ̕ۑ����Ă��������B</P>
-<P><CODE>characterRecognition-2</CODE> ��}�`���{�ꗗ�̊ȈՍ쐬�c�[���Ƃ��ėp����ꍇ�́Ademo �p�c�[���� <A href="../../tools/pdic2c.html">pdic2c.pl</A> ���Q�Ƃ��Ă��������B</P>
-<H2>�Q��</H2>
-<P><A href="../../prc/list_prc.html"><CODE>PRC�֐��ꗗ</CODE></A></P>
+<H2>動作</H2>
+<P><CODE>characterRecognition-1, characterRecognition-2</CODE> は本体内部の不揮発メモリ(NVRAM)からタッチパネル校正設定値を読み出そうと試みます。正常に読み出せない場合は異常終了しますので、本体に内蔵されているDS起動メニューを用いてキャリブレーション結果を NVRAM への保存してください。</P>
+<P><CODE>characterRecognition-2</CODE> を図形見本一覧の簡易作成ツールとして用いる場合は、demo 用ツールの <A href="../../tools/pdic2c.html">pdic2c.pl</A> も参照してください。</P>
+<H2>参照</H2>
+<P><A href="../../prc/list_prc.html"><CODE>PRC関数一覧</CODE></A></P>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/03/02 �L�q���e�����݂̃T�|�[�g���̏󋵂ɍ����悤�C��<BR>
-2004/08/17 IS-NITRO-EMULATOR�ɂ��Ă̕\�L�𓝈�<BR>
-2004/07/10 .bin ���� .srl �֕ύX�B<BR>
-2004/06/30 ����</P>
+2005/03/02 記述内容を現在のサポート環境の状況に合うよう修正<BR>
+2004/08/17 IS-NITRO-EMULATORについての表記を統一<BR>
+2004/07/10 .bin から .srl へ変更。<BR>
+2004/06/30 初版</P>
 
 </BODY>
 </HTML>

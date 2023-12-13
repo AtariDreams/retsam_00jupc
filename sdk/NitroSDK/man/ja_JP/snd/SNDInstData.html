@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SNDInstData</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>SNDInstData</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcsynopsisinfo"><code>typedef struct SNDInstData
@@ -33,7 +33,7 @@
 <dd><pre class="funcprototype"></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDATMWT"></a>
-      <h2>�v�f</h2>
+      <h2>要素</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -41,100 +41,100 @@
 <tbody>
 <tr>
 <td><em><strong><code>type</code></strong></em></td>
-<td>�C���X�g�^�C�v�ł��B</td>
+<td>インストタイプです。</td>
 </tr>
 <tr>
 <td><em><strong><code>wave</code></strong></em></td>
-<td>�g�`�f�[�^���z��ł��B</td>
+<td>波形データ情報配列です。</td>
 </tr>
 <tr>
 <td><em><strong><code>original_key</code></strong></em></td>
-<td>�I���W�i���L�[�ł��B60�������̃h�ł��B</td>
+<td>オリジナルキーです。60が中央のドです。</td>
 </tr>
 <tr>
 <td><em><strong><code>attack</code></strong></em></td>
-<td>�G���x���[�v�̃A�^�b�N�ł��B�l�͈̔͂�0�`127�ŁA�l���傫���قǁA���������オ��܂��B</td>
+<td>エンベロープのアタックです。値の範囲は0〜127で、値が大きいほど、速く立ち上がります。</td>
 </tr>
 <tr>
 <td><em><strong><code>decay</code></strong></em></td>
-<td>�G���x���[�v�̃f�B�P�C�ł��B�l�͈̔͂�0�`127�ŁA�l���傫���قǁA�����������܂��B</td>
+<td>エンベロープのディケイです。値の範囲は0〜127で、値が大きいほど、速く減衰します。</td>
 </tr>
 <tr>
 <td><em><strong><code>sustain</code></strong></em></td>
-<td>�G���x���[�v�̃T�X�e�C���ł��B�l�͈̔͂�0�`127�ŁA�l���傫���قǁA�����Q�C�����ێ����܂��B</td>
+<td>エンベロープのサステインです。値の範囲は0〜127で、値が大きいほど、高いゲインを維持します。</td>
 </tr>
 <tr>
 <td><em><strong><code>release</code></strong></em></td>
-<td>�G���x���[�v�̃����[�X�ł��B�l�͈̔͂�0�`127�ŁA�l���傫���قǁA�����������܂��B
-            �i�������l��SND_BANK_DISABLE_RELEASE(=255)�̎��͓��ʂɁA�m�[�g�I�t���Ă������[�X���Ȃ��悤�ɓ��삵�܂��B�j</td>
+<td>エンベロープのリリースです。値の範囲は0〜127で、値が大きいほど、速く減衰します。
+            （ただし値がSND_BANK_DISABLE_RELEASE(=255)の時は特別に、ノートオフしてもリリースしないように動作します。）</td>
 </tr>
 <tr>
 <td><em><strong><code>pan</code></strong></em></td>
-<td>�p���ł��B�l�͈̔͂́A0(��)�`64(����)�`127(�E)�ł��B</td>
+<td>パンです。値の範囲は、0(左)〜64(中央)〜127(右)です。</td>
 </tr>
 </tbody>
 </table>
 </div>
     </div>
 <div class="refsection" lang="ja"><a name="IDATOWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�C���X�g�f�[�^�\���̂ł��B�o���N�f�[�^���̊e�C���X�g���̃p�����[�^��ێ����Ă��܂��B
+インストデータ構造体です。バンクデータ中の各インスト毎のパラメータを保持しています。
 </p>
       <p>
-���̍\���̂́A
-<tt class="function"><a href="SND_ReadInstData.html">SND_ReadInstData</a></tt>�֐��Ŏ擾���A
-<tt class="function"><a href="SND_WriteInstData.html">SND_WriteInstData</a></tt>�֐���
-�X�V���邱�Ƃ��ł��܂��B
+この構造体は、
+<tt class="function"><a href="SND_ReadInstData.html">SND_ReadInstData</a></tt>関数で取得し、
+<tt class="function"><a href="SND_WriteInstData.html">SND_WriteInstData</a></tt>関数で
+更新することができます。
 </p>
       <p>
-�C���X�g�^�C�v<em><strong><code>type</code></strong></em>�͈ȉ��̒l�����܂��B
+インストタイプ<em><strong><code>type</code></strong></em>は以下の値を取ります。
 </p>
-      <div class="table"><a name="IDALPWT"></a><p class="title"><b>�\ . SNDInstType</b></p>
+      <div class="table"><a name="IDALPWT"></a><p class="title"><b>表 . SNDInstType</b></p>
 <table summary="SNDInstType" border="1">
 <colgroup><col><col></colgroup>
 <thead>
 <tr>
-<th>���x��</th>
-<th>����</th>
+<th>ラベル</th>
+<th>説明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>SND_INST_PCM</td>
-<td>PCM�g�`�f�[�^</td>
+<td>PCM波形データ</td>
 </tr>
 <tr>
 <td>SND_INST_PSG</td>
-<td>PSG��`�g</td>
+<td>PSG矩形波</td>
 </tr>
 <tr>
 <td>SND_INST_NOISE</td>
-<td>�m�C�Y</td>
+<td>ノイズ</td>
 </tr>
 <tr>
 <td>SND_INST_DIRECTPCM</td>
-<td>PCM�g�`�f�[�^�i���ڃA�h���X�w��j</td>
+<td>PCM波形データ（直接アドレス指定）</td>
 </tr>
 <tr>
 <td>SND_INST_NULL</td>
-<td>��̃C���X�g�i�������܂���j</td>
+<td>空のインスト（発音しません）</td>
 </tr>
 </tbody>
 </table>
 </div>
 
       <p>
-�g�`���z��<em><strong><code>wave</code></strong></em>�ɂ́A�g�`�f�[�^�̏��Ȃǂ�����܂����A
-�C���X�g�^�C�v<em><strong><code>type</code></strong></em>���ɈقȂ����Ӗ��������܂��B
+波形情報配列<em><strong><code>wave</code></strong></em>には、波形データの情報などが入りますが、
+インストタイプ<em><strong><code>type</code></strong></em>毎に異なった意味を持ちます。
 </p>
       
-      <div class="table"><a name="IDAORWT"></a><p class="title"><b>�\ . �g�`���z��</b></p>
-<table summary="�g�`���z��" border="1">
+      <div class="table"><a name="IDAORWT"></a><p class="title"><b>表 . 波形情報配列</b></p>
+<table summary="波形情報配列" border="1">
 <colgroup><col><col><col></colgroup>
 <thead>
 <tr>
-<th>�C���X�g�^�C�v</th>
+<th>インストタイプ</th>
 <th>wave[0]</th>
 <th>wave[1]</th>
 </tr>
@@ -142,38 +142,38 @@
 <tbody>
 <tr>
 <td>SND_INST_PCM</td>
-<td>�g�`�A�[�J�C�u���̃C���f�b�N�X�ԍ�</td>
-<td>�o���N���ł̔g�`�A�[�J�C�u�ԍ�</td>
+<td>波形アーカイブ中のインデックス番号</td>
+<td>バンク中での波形アーカイブ番号</td>
 </tr>
 <tr>
 <td>SND_INST_PSG</td>
-<td>�f���[�e�B��</td>
-<td>�i���g�p�j</td>
+<td>デューティ比</td>
+<td>（未使用）</td>
 </tr>
 <tr>
 <td>SND_INST_NOISE</td>
-<td>�i���g�p�j</td>
-<td>�i���g�p�j</td>
+<td>（未使用）</td>
+<td>（未使用）</td>
 </tr>
 <tr>
 <td>SND_INST_DIRECTPCM</td>
-<td><a href="SNDWaveData.html">SNDWaveData</a>�\���̂̃A�h���X�̉���16�r�b�g</td>
-<td>SNDWaveData�\���̂̃A�h���X�̏��16�r�b�g</td>
+<td><a href="SNDWaveData.html">SNDWaveData</a>構造体のアドレスの下位16ビット</td>
+<td>SNDWaveData構造体のアドレスの上位16ビット</td>
 </tr>
 <tr>
 <td>SND_INST_NULL</td>
-<td>�i���g�p�j</td>
-<td>�i���g�p�j</td>
+<td>（未使用）</td>
+<td>（未使用）</td>
 </tr>
 </tbody>
 </table>
 </div>
       
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="SND_ReadInstData.html">SND_ReadInstData</a>, <a href="SND_WriteInstData.html">SND_WriteInstData</a>, <a href="SNDWaveData.html">SNDWaveData</a></p>
-<h2>����</h2>
-<p>2005/05/10 �����[�X255�̎��̓���Ɋւ�������ǉ�<br>2005/03/17 �C���X�g�^�C�vSND_INST_NULL�̒ǉ�<br>2005/01/19 SNDWaveData�ւ̃����N�ǉ�<br>2004/10/21 �K�v�ȃC���N���[�h�t�@�C���̌�����<br>2004/07/20 ����<br></p>
+<h2>履歴</h2>
+<p>2005/05/10 リリース255の時の動作に関する説明追加<br>2005/03/17 インストタイプSND_INST_NULLの追加<br>2005/01/19 SNDWaveDataへのリンク追加<br>2004/10/21 必要なインクルードファイルの誤り訂正<br>2004/07/20 初版<br></p>
 </div>
 </body>
 </html>

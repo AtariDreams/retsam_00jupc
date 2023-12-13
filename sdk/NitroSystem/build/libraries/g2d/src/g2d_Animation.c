@@ -59,8 +59,8 @@ static NNS_G2D_INLINE NNSG2dAnimationPlayMode GetAnimationPlayMode_
     NNS_G2D_NULL_ASSERT( pAnimCtrl->pAnimSequence );
     
     //
-    // ‚à‚µApAnimCtrl->overriddenPlayMode‚ªİ’è‚³‚ê‚Ä‚¢‚ê‚Î
-    // Ä¶ƒ‚[ƒh‚ÍƒI[ƒo[ƒ‰ƒCƒh‚³‚ê‚éB
+    // ã‚‚ã—ã€pAnimCtrl->overriddenPlayModeãŒè¨­å®šã•ã‚Œã¦ã„ã‚Œã°
+    // å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã¯ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã•ã‚Œã‚‹ã€‚
     // 
     if( pAnimCtrl->overriddenPlayMode != NNS_G2D_ANIMATIONPLAYMODE_INVALID )
     {
@@ -147,7 +147,7 @@ static NNS_G2D_INLINE  void CallbackFuncHandling_( const NNSG2dCallBackFunctor* 
 }
 
 //------------------------------------------------------------------------------
-// ŠO•”ŒöŠJ‚Ì‚½‚ß‚Ìƒ‰ƒbƒp[
+// å¤–éƒ¨å…¬é–‹ã®ãŸã‚ã®ãƒ©ãƒƒãƒ‘ãƒ¼
 void NNSi_G2dCallbackFuncHandling( const NNSG2dCallBackFunctor*  pFunctor, u16 currentFrameIdx )
 {
     CallbackFuncHandling_( pFunctor, currentFrameIdx );
@@ -199,8 +199,8 @@ static NNS_G2D_INLINE void SequenceEdgeHandleCommon_( NNSG2dAnimController* pAni
     NNS_G2D_NULL_ASSERT( pAnimCtrl );
     
     //
-    // NNS_G2D_ANMCALLBACKTYPE_LAST_FRM ƒ^ƒCƒv‚Ì
-    // ƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ‚Ìˆ—
+    // NNS_G2D_ANMCALLBACKTYPE_LAST_FRM ã‚¿ã‚¤ãƒ—ã®
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—ã®å‡¦ç†
     // 
     if( pAnimCtrl->callbackFunctor.type == NNS_G2D_ANMCALLBACKTYPE_LAST_FRM )
     {
@@ -209,11 +209,11 @@ static NNS_G2D_INLINE void SequenceEdgeHandleCommon_( NNSG2dAnimController* pAni
     }
     
     // 
-    // ƒŠƒZƒbƒgˆ—
+    // ãƒªã‚»ãƒƒãƒˆå‡¦ç†
     //
     if( !IsLoopAnimSequence_( pAnimCtrl ) )
     {
-        // ƒ‹[ƒvÄ¶‚Å–³‚¯‚ê‚ÎAXV‚ğƒXƒgƒbƒv‚·‚é
+        // ãƒ«ãƒ¼ãƒ—å†ç”Ÿã§ç„¡ã‘ã‚Œã°ã€æ›´æ–°ã‚’ã‚¹ãƒˆãƒƒãƒ—ã™ã‚‹
         NNS_G2dStopAnimCtrl( pAnimCtrl );
     }else{
         NNS_G2dResetAnimCtrlState( pAnimCtrl );
@@ -225,11 +225,11 @@ static NNS_G2D_INLINE void SequenceEdgeHandleReverse_( NNSG2dAnimController* pAn
 {
     NNS_G2D_NULL_ASSERT( pAnimCtrl );
     
-    // Ä¶•ûŒü‚ğ”½“]‚·‚é
+    // å†ç”Ÿæ–¹å‘ã‚’åè»¢ã™ã‚‹
     pAnimCtrl->bReverse = pAnimCtrl->bReverse^TRUE;
     
     //
-    // ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒ^[ƒgƒtƒŒ[ƒ€‚©H
+    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ã‚¿ãƒ¼ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ã‹ï¼Ÿ
     // 
     if( IsReachStartEdge_( pAnimCtrl, pAnimCtrl->pCurrent ) )
     {
@@ -271,10 +271,10 @@ static void SequenceEdgeHandle_( NNSG2dAnimController* pAnimCtrl )
 }
 
 //------------------------------------------------------------------------------
-// SetAnimCtrlCurrentFrame‚ÌÀ‘•‚Å‚·
+// SetAnimCtrlCurrentFrameã®å®Ÿè£…ã§ã™
 // NNS_G2dSetAnimCtrlCurrentFrame()
 // NNS_G2dSetAnimCtrlCurrentFrameNoResetCurrentTime()
-// ‚©‚çŒÄ‚Î‚ê‚Ü‚·B
+// ã‹ã‚‰å‘¼ã°ã‚Œã¾ã™ã€‚
 //
 static BOOL SetAnimCtrlCurrentFrameImpl_
 ( 
@@ -287,7 +287,7 @@ static BOOL SetAnimCtrlCurrentFrameImpl_
     
     
     
-    // —LŒø‚ÈIndex‚©H
+    // æœ‰åŠ¹ãªIndexã‹ï¼Ÿ
     if( index < pAnimCtrl->pAnimSequence->numFrames )
     {
         // set
@@ -306,13 +306,13 @@ static BOOL SetAnimCtrlCurrentFrameImpl_
   Name:         NNS_G2dGetAnimCtrlCurrentElement
                 NNS_G2dGetAnimCtrlNextElement
 
-  Description:  Œ»İiŸ‚Ìj‚ÌƒAƒjƒŒ‹‰Ê‚ğæ“¾‚µ‚Ü‚·B
-                ƒ†[ƒU‚Í –{ŠÖ”‚ÌŒ‹‰Ê‚ğ NNSG2dAnimController À‘Ì‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚éA
-                ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ìí—Ş‚É‰‚¶‚Ä“KØ‚ÈŒ^‚ÉƒLƒƒƒXƒgŒã—˜—p‚µ‚Ü‚·B
+  Description:  ç¾åœ¨ï¼ˆæ¬¡ã®ï¼‰ã®ã‚¢ãƒ‹ãƒ¡çµæœã‚’å–å¾—ã—ã¾ã™ã€‚
+                ãƒ¦ãƒ¼ã‚¶ã¯ æœ¬é–¢æ•°ã®çµæœã‚’ NNSG2dAnimController å®Ÿä½“ã«é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹ã€
+                ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ç¨®é¡ã«å¿œã˜ã¦é©åˆ‡ãªå‹ã«ã‚­ãƒ£ã‚¹ãƒˆå¾Œåˆ©ç”¨ã—ã¾ã™ã€‚
                 
-  Arguments:    pAnimCtrl:           [IN]  NNSG2dAnimController À‘Ì
+  Arguments:    pAnimCtrl:           [IN]  NNSG2dAnimController å®Ÿä½“
                 
-  Returns:      Œ»İ‚ÌƒAƒjƒŒ‹‰Êi‚ğw‚·ƒ|ƒCƒ“ƒ^j
+  Returns:      ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡çµæœï¼ˆã‚’æŒ‡ã™ãƒã‚¤ãƒ³ã‚¿ï¼‰
   
  *---------------------------------------------------------------------------*/
 void* NNS_G2dGetAnimCtrlCurrentElement( NNSG2dAnimController* pAnimCtrl )
@@ -321,7 +321,7 @@ void* NNS_G2dGetAnimCtrlCurrentElement( NNSG2dAnimController* pAnimCtrl )
     NNS_G2D_NULL_ASSERT( pAnimCtrl->pActiveCurrent );
     NNS_G2D_NULL_ASSERT( (void*)pAnimCtrl->pActiveCurrent->pContent );
     
-    // —LŒø‚È•\¦‘ÎÛ‚ğ•Ô‚·‚æ‚¤‚É‚µ‚Ü‚·B(pCurrent‚Í•\¦ƒtƒŒ[ƒ€”‚ªƒ[ƒ‚Ìê‡‚ª‚ ‚è‚Ü‚·)
+    // æœ‰åŠ¹ãªè¡¨ç¤ºå¯¾è±¡ã‚’è¿”ã™ã‚ˆã†ã«ã—ã¾ã™ã€‚(pCurrentã¯è¡¨ç¤ºãƒ•ãƒ¬ãƒ¼ãƒ æ•°ãŒã‚¼ãƒ­ã®å ´åˆãŒã‚ã‚Šã¾ã™)
     return (void*)pAnimCtrl->pActiveCurrent->pContent;
 }
 //------------------------------------------------------------------------------
@@ -348,12 +348,12 @@ void* NNS_G2dGetAnimCtrlNextElement( NNSG2dAnimController* pAnimCtrl )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetAnimCtrlNormalizedTime
 
-  Description:  Œ»İ•\¦’†‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚Ì•\¦Ï‚İŠÔ‚ğ
-                0.0 ‚ğ •\¦ŠJn 1.0 ‚ğ ‚ğ •\¦Š®—¹‚Æ‚µ‚Ä fx32 Œ^‚Åæ“¾‚µ‚Ü‚·B 
+  Description:  ç¾åœ¨è¡¨ç¤ºä¸­ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã®è¡¨ç¤ºæ¸ˆã¿æ™‚é–“ã‚’
+                0.0 ã‚’ è¡¨ç¤ºé–‹å§‹æ™‚ 1.0 ã‚’ ã‚’ è¡¨ç¤ºå®Œäº†æ™‚ã¨ã—ã¦ fx32 å‹ã§å–å¾—ã—ã¾ã™ã€‚ 
                 
-  Arguments:    pAnimCtrl:          [IN]  NNSG2dAnimController À‘Ì
+  Arguments:    pAnimCtrl:          [IN]  NNSG2dAnimController å®Ÿä½“
                 
-  Returns:      ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚Ì•\¦ŠÔ
+  Returns:      ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã®è¡¨ç¤ºæ™‚é–“
   
  *---------------------------------------------------------------------------*/
 fx32 NNS_G2dGetAnimCtrlNormalizedTime(  NNSG2dAnimController* pAnimCtrl )
@@ -367,13 +367,13 @@ fx32 NNS_G2dGetAnimCtrlNormalizedTime(  NNSG2dAnimController* pAnimCtrl )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dTickAnimCtrl
 
-  Description:  NNSG2dAnimController ‚Ì ŠÔ‚ği‚ß‚Ü‚·
+  Description:  NNSG2dAnimController ã® æ™‚é–“ã‚’é€²ã‚ã¾ã™
                 
-  Arguments:    pAnimCtrl:          [OUT]  NNSG2dAnimController À‘Ì
-                frames:             [IN]   i‚ß‚éŠÔiƒtƒŒ[ƒ€j
+  Arguments:    pAnimCtrl:          [OUT]  NNSG2dAnimController å®Ÿä½“
+                frames:             [IN]   é€²ã‚ã‚‹æ™‚é–“ï¼ˆãƒ•ãƒ¬ãƒ¼ãƒ ï¼‰
                 
                 
-  Returns:      Ä¶ƒgƒ‰ƒbƒN‚ª•ÏX‚É‚È‚Á‚½‚©
+  Returns:      å†ç”Ÿãƒˆãƒ©ãƒƒã‚¯ãŒå¤‰æ›´ã«ãªã£ãŸã‹
   
  *---------------------------------------------------------------------------*/
 BOOL NNS_G2dTickAnimCtrl( NNSG2dAnimController* pAnimCtrl, fx32 frames ) 
@@ -401,7 +401,7 @@ BOOL NNS_G2dTickAnimCtrl( NNSG2dAnimController* pAnimCtrl, fx32 frames )
     //
     while( ShouldAnmCtrlMoveNext_( pAnimCtrl ) )
     {
-        bChangeFrame = TRUE; // •ÏX‚ª‚ ‚Á‚½
+        bChangeFrame = TRUE; // å¤‰æ›´ãŒã‚ã£ãŸ
         
         pAnimCtrl->currentTime -= FX32_ONE * (int)pAnimCtrl->pCurrent->frames;    
         MoveNext_( pAnimCtrl );
@@ -412,8 +412,8 @@ BOOL NNS_G2dTickAnimCtrl( NNSG2dAnimController* pAnimCtrl, fx32 frames )
             SequenceEdgeHandle_( pAnimCtrl );
         }
 
-        // •\¦ƒtƒŒ[ƒ€‚ªƒ[ƒ‚Å–³‚¯‚ê‚ÎA
-        // —LŒø‚È•\¦ƒtƒŒ[ƒ€‚Æ‚µ‚Ü‚·B
+        // è¡¨ç¤ºãƒ•ãƒ¬ãƒ¼ãƒ ãŒã‚¼ãƒ­ã§ç„¡ã‘ã‚Œã°ã€
+        // æœ‰åŠ¹ãªè¡¨ç¤ºãƒ•ãƒ¬ãƒ¼ãƒ ã¨ã—ã¾ã™ã€‚
         if( pAnimCtrl->pCurrent->frames != 0 )
         {
            pAnimCtrl->pActiveCurrent = pAnimCtrl->pCurrent;
@@ -433,12 +433,12 @@ BOOL NNS_G2dTickAnimCtrl( NNSG2dAnimController* pAnimCtrl, fx32 frames )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetAnimCtrlCurrentFrame
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰‚ÌÄ¶ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ğİ’è‚µ‚Ü‚·B
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®å†ç”Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®šã—ã¾ã™ã€‚
                 
-  Arguments:    pAnimCtrl:        [OUT]   NNSG2dAnimController À‘Ì
-                index    :        [IN]    ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX”Ô†
+  Arguments:    pAnimCtrl:        [OUT]   NNSG2dAnimController å®Ÿä½“
+                index    :        [IN]    ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
                         
-  Returns:      •ÏX‚ª¬Œ÷‚µ‚½ê‡‚ÍTRUE
+  Returns:      å¤‰æ›´ãŒæˆåŠŸã—ãŸå ´åˆã¯TRUE
   
  *---------------------------------------------------------------------------*/
 BOOL           NNS_G2dSetAnimCtrlCurrentFrame
@@ -454,7 +454,7 @@ BOOL           NNS_G2dSetAnimCtrlCurrentFrame
         
         if( result )
         {
-            // Œ»İ‚ÌƒAƒjƒƒtƒŒ[ƒ€•\¦ŠÔ‚ğƒŠƒZƒbƒg‚·‚é
+            // ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ è¡¨ç¤ºæ™‚é–“ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
             pAnimCtrl->currentTime   = 0;
         }
         return result;
@@ -464,19 +464,19 @@ BOOL           NNS_G2dSetAnimCtrlCurrentFrame
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetAnimCtrlCurrentFrameNoResetCurrentTime
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰‚ÌÄ¶ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ğİ’è‚µ‚Ü‚·B
-                ƒtƒŒ[ƒ€•ÏX‚ÉƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰“à•”‚ÌŒ»İ‚ÌƒtƒŒ[ƒ€•\¦
-                ŠÔƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg‚µ‚Ü‚¹‚ñB
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®å†ç”Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®šã—ã¾ã™ã€‚
+                ãƒ•ãƒ¬ãƒ¼ãƒ å¤‰æ›´æ™‚ã«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©å†…éƒ¨ã®ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ è¡¨ç¤º
+                æ™‚é–“ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¾ã›ã‚“ã€‚
                 
-                ‚»‚Ì‚½‚ßA1ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚Ì•\¦ŠÔ‚æ‚è’Z‚¢ŠÔ‚ÅƒAƒjƒ[ƒV
-                ƒ‡ƒ“ƒtƒŒ[ƒ€‚ğØ‚è‘Ö‚¦‚é‚æ‚¤‚Èê‡‚Å‚àAƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚ğ
-                is‚³‚¹‚é‚±‚Æ‚ª‰Â”\‚Å‚·B
+                ãã®ãŸã‚ã€1ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã®è¡¨ç¤ºæ™‚é–“ã‚ˆã‚ŠçŸ­ã„æ™‚é–“ã§ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·
+                ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã‚ˆã†ãªå ´åˆã§ã‚‚ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’
+                é€²è¡Œã•ã›ã‚‹ã“ã¨ãŒå¯èƒ½ã§ã™ã€‚
 
                 
-  Arguments:    pAnimCtrl:           [OUT] NNSG2dAnimController À‘Ì
-                index    :           [IN]  ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX”Ô†
+  Arguments:    pAnimCtrl:           [OUT] NNSG2dAnimController å®Ÿä½“
+                index    :           [IN]  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
                         
-  Returns:      •ÏX‚ª¬Œ÷‚µ‚½ê‡‚ÍTRUE
+  Returns:      å¤‰æ›´ãŒæˆåŠŸã—ãŸå ´åˆã¯TRUE
   
  *---------------------------------------------------------------------------*/
 BOOL           NNS_G2dSetAnimCtrlCurrentFrameNoResetCurrentTime
@@ -489,7 +489,7 @@ BOOL           NNS_G2dSetAnimCtrlCurrentFrameNoResetCurrentTime
     NNS_G2D_NULL_ASSERT( pAnimCtrl->pAnimSequence );
     
     //
-    // Œ»İ‚ÌƒAƒjƒƒtƒŒ[ƒ€•\¦ŠÔ‚ğƒŠƒZƒbƒg‚µ‚È‚¢
+    // ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ è¡¨ç¤ºæ™‚é–“ã‚’ãƒªã‚»ãƒƒãƒˆã—ãªã„
     //
     return SetAnimCtrlCurrentFrameImpl_( pAnimCtrl, index );
 }
@@ -498,11 +498,11 @@ BOOL           NNS_G2dSetAnimCtrlCurrentFrameNoResetCurrentTime
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetAnimCtrlCurrentFrame
 
-  Description:  NNSG2dAnimController Œ»İ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”Ô†‚ğæ“¾‚µ‚Ü‚·B
+  Description:  NNSG2dAnimController ç¾åœ¨ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·ã‚’å–å¾—ã—ã¾ã™ã€‚
                 
-  Arguments:    pAnimCtrl:          [OUT] NNSG2dAnimController À‘Ì
+  Arguments:    pAnimCtrl:          [OUT] NNSG2dAnimController å®Ÿä½“
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 u16 NNS_G2dGetAnimCtrlCurrentFrame
@@ -516,11 +516,11 @@ u16 NNS_G2dGetAnimCtrlCurrentFrame
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitAnimCtrl
 
-  Description:  NNSG2dAnimController ‚ğ‰Šú‰»‚µ‚Ü‚·
+  Description:  NNSG2dAnimController ã‚’åˆæœŸåŒ–ã—ã¾ã™
                 
-  Arguments:    pAnimCtrl:          [OUT] NNSG2dAnimController À‘Ì
+  Arguments:    pAnimCtrl:          [OUT] NNSG2dAnimController å®Ÿä½“
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dInitAnimCtrl( NNSG2dAnimController* pAnimCtrl )
@@ -546,11 +546,11 @@ void NNS_G2dInitAnimCtrl( NNSG2dAnimController* pAnimCtrl )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitAnimCtrlCallBackFunctor
 
-  Description:  NNSG2dAnimController ’†‚Ì ƒR[ƒ‹ƒoƒbƒN ‚ğ‰Šú‰»‚µ‚Ü‚·
+  Description:  NNSG2dAnimController ä¸­ã® ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ ã‚’åˆæœŸåŒ–ã—ã¾ã™
                 
-  Arguments:    pAnimCtrl:          [OUT] NNSG2dAnimController À‘Ì
+  Arguments:    pAnimCtrl:          [OUT] NNSG2dAnimController å®Ÿä½“
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dInitAnimCtrlCallBackFunctor( NNSG2dAnimController* pAnimCtrl )
@@ -563,11 +563,11 @@ void NNS_G2dInitAnimCtrlCallBackFunctor( NNSG2dAnimController* pAnimCtrl )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitAnimCallBackFunctor
 
-  Description:  ƒR[ƒ‹ƒoƒbƒNƒtƒ@ƒ“ƒNƒ^ ‚ğ‰Šú‰»‚µ‚Ü‚·
+  Description:  ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ•ã‚¡ãƒ³ã‚¯ã‚¿ ã‚’åˆæœŸåŒ–ã—ã¾ã™
                 
-  Arguments:    pCallBack:          [OUT] NNSG2dCallBackFunctor À‘Ì
+  Arguments:    pCallBack:          [OUT] NNSG2dCallBackFunctor å®Ÿä½“
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dInitAnimCallBackFunctor( NNSG2dCallBackFunctor* pCallBack )
@@ -584,12 +584,12 @@ void NNS_G2dInitAnimCallBackFunctor( NNSG2dCallBackFunctor* pCallBack )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dResetAnimCtrlState
 
-  Description:  NNSG2dAnimController ‚Ìó‘Ô‚ğƒŠƒZƒbƒg‚µ‚Ü‚·
+  Description:  NNSG2dAnimController ã®çŠ¶æ…‹ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¾ã™
                 
-  Arguments:    pAnimCtrl:          [OUT] NNSG2dAnimController À‘Ì
+  Arguments:    pAnimCtrl:          [OUT] NNSG2dAnimController å®Ÿä½“
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dResetAnimCtrlState( NNSG2dAnimController* pAnimCtrl )
@@ -602,19 +602,19 @@ void NNS_G2dResetAnimCtrlState( NNSG2dAnimController* pAnimCtrl )
     }else{
         pAnimCtrl->pCurrent      = GetFrameEnd_( pAnimCtrl->pAnimSequence ) - 1;
     }
-    // •\¦ƒtƒŒ[ƒ€‚ªƒ[ƒƒtƒŒ[ƒ€‚Ì‚İ‚©‚ç\¬‚³‚ê‚éƒV[ƒPƒ“ƒX‚Ìê‡
-    // ‚àNULL‚Éİ’è‚³‚ê‚é‚±‚Æ‚Í‚ ‚è‚Ü‚¹‚ñB
+    // è¡¨ç¤ºãƒ•ãƒ¬ãƒ¼ãƒ ãŒã‚¼ãƒ­ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã¿ã‹ã‚‰æ§‹æˆã•ã‚Œã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®å ´åˆ
+    // ã‚‚NULLã«è¨­å®šã•ã‚Œã‚‹ã“ã¨ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
     pAnimCtrl->pActiveCurrent = pAnimCtrl->pCurrent;
     
     //
-    // currentTime ‚ğƒŠƒZƒbƒg‚µ‚Ü‚·
+    // currentTime ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¾ã™
     //
     pAnimCtrl->currentTime   = 0;
     
     //
-    // ƒ[ƒƒtƒŒ[ƒ€ƒJƒEƒ“ƒ^‚ği‚ß‚Ü‚·
-    // •\¦ƒtƒŒ[ƒ€’·ƒ[ƒ‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ªæ“ª‚É‘¶İ‚·‚é
-    // ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚É‘Î‰‚·‚é‚½‚ß‚Ìˆ—‚Å‚·B
+    // ã‚¼ãƒ­ãƒ•ãƒ¬ãƒ¼ãƒ ã‚«ã‚¦ãƒ³ã‚¿ã‚’é€²ã‚ã¾ã™
+    // è¡¨ç¤ºãƒ•ãƒ¬ãƒ¼ãƒ é•·ã‚¼ãƒ­ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ãŒå…ˆé ­ã«å­˜åœ¨ã™ã‚‹
+    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«å¯¾å¿œã™ã‚‹ãŸã‚ã®å‡¦ç†ã§ã™ã€‚
     //
     (void)NNS_G2dTickAnimCtrl( pAnimCtrl, 0 );
 }
@@ -624,12 +624,12 @@ void NNS_G2dResetAnimCtrlState( NNSG2dAnimController* pAnimCtrl )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dBindAnimCtrl
 
-  Description:  NNSG2dAnimController À‘Ì ‚Æ ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğŠÖ˜A•t‚¯‚Ü‚·
+  Description:  NNSG2dAnimController å®Ÿä½“ ã¨ ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’é–¢é€£ä»˜ã‘ã¾ã™
                 
-  Arguments:    pAnimCtrl:           [OUT]  NNSG2dAnimController À‘Ì
-                pAnimSequence:       [IN]   ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+  Arguments:    pAnimCtrl:           [OUT]  NNSG2dAnimController å®Ÿä½“
+                pAnimSequence:       [IN]   ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dBindAnimCtrl( NNSG2dAnimController* pAnimCtrl, const NNSG2dAnimSequence* pAnimSequence )
@@ -645,16 +645,16 @@ void NNS_G2dBindAnimCtrl( NNSG2dAnimController* pAnimCtrl, const NNSG2dAnimSeque
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetAnimCtrlCallBackFunctor
 
-  Description:  ƒR[ƒ‹ƒoƒbƒN‚ğİ’è‚µ‚Ü‚·B
-                w’èƒtƒŒ[ƒ€ŒÄ‚Ño‚µƒ^ƒCƒv‚ÌƒR[ƒ‹ƒoƒbƒNİ’è‚Í
-                NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame()‚ğ—˜—p‚µ‚Ä‚­‚¾‚³‚¢
+  Description:  ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®šã—ã¾ã™ã€‚
+                æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ å‘¼ã³å‡ºã—ã‚¿ã‚¤ãƒ—ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯è¨­å®šã¯
+                NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame()ã‚’åˆ©ç”¨ã—ã¦ãã ã•ã„
                 
-  Arguments:    pAnimCtrl:         [OUT] NNSG2dAnimController À‘Ì
-                type:              [IN]  ƒR[ƒ‹ƒoƒbƒN‚Ìí—Ş
-                param:             [IN]  ƒ†[ƒU’è‹`î•ñ
-                pFunc:             [IN]  ƒR[ƒ‹ƒoƒbƒNŠÖ”ƒ|ƒCƒ“ƒ^
+  Arguments:    pAnimCtrl:         [OUT] NNSG2dAnimController å®Ÿä½“
+                type:              [IN]  ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®ç¨®é¡
+                param:             [IN]  ãƒ¦ãƒ¼ã‚¶å®šç¾©æƒ…å ±
+                pFunc:             [IN]  ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetAnimCtrlCallBackFunctor
@@ -680,16 +680,16 @@ void NNS_G2dSetAnimCtrlCallBackFunctor
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame
 
-  Description:  ƒR[ƒ‹ƒoƒbƒN‚ğİ’è‚µ‚Ü‚·B
-                w’èƒtƒŒ[ƒ€ŒÄ‚Ño‚µƒ^ƒCƒv‚ÌƒR[ƒ‹ƒoƒbƒNİ’è‚Í
-                NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame()‚ğ—˜—p‚µ‚Ä‚­‚¾‚³‚¢
+  Description:  ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®šã—ã¾ã™ã€‚
+                æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ å‘¼ã³å‡ºã—ã‚¿ã‚¤ãƒ—ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯è¨­å®šã¯
+                NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame()ã‚’åˆ©ç”¨ã—ã¦ãã ã•ã„
                 
-  Arguments:    pAnimCtrl:         [OUT]    NNSG2dAnimController À‘Ì
-                param:             [IN]     ƒ†[ƒU’è‹`î•ñ
-                pFunc:             [IN]     ƒR[ƒ‹ƒoƒbƒNŠÖ”ƒ|ƒCƒ“ƒ^
-                frameIdx:          [IN]     ƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ño‚·ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”Ô†
+  Arguments:    pAnimCtrl:         [OUT]    NNSG2dAnimController å®Ÿä½“
+                param:             [IN]     ãƒ¦ãƒ¼ã‚¶å®šç¾©æƒ…å ±
+                pFunc:             [IN]     ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+                frameIdx:          [IN]     ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã³å‡ºã™ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame
@@ -713,14 +713,14 @@ void NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dIsAnimCtrlLoopAnim
 
-  Description:  ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ“ƒgƒ[ƒ‰‚ªƒ‹[ƒvƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶‚µ‚Ä‚¢‚é‚©
-                ’²¸‚µ‚Ü‚·B
+  Description:  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãŒãƒ«ãƒ¼ãƒ—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿã—ã¦ã„ã‚‹ã‹
+                èª¿æŸ»ã—ã¾ã™ã€‚
                 
-                [ƒ‰ƒCƒuƒ‰ƒŠ“à•”ŒöŠJŠÖ”]
+                [ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨å…¬é–‹é–¢æ•°]
                
-  Arguments:    pAnimCtrl:          [IN] NNSG2dAnimController À‘Ì
+  Arguments:    pAnimCtrl:          [IN] NNSG2dAnimController å®Ÿä½“
                 
-  Returns:      ƒ‹[ƒvƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶‚µ‚Ä‚¢‚éê‡‚ÍTRUE‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ«ãƒ¼ãƒ—ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯TRUEã‚’è¿”ã—ã¾ã™ã€‚
   
  *---------------------------------------------------------------------------*/
 BOOL NNSi_G2dIsAnimCtrlLoopAnim( const NNSG2dAnimController* pAnimCtrl )

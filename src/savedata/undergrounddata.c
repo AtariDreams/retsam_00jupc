@@ -1,13 +1,13 @@
 //============================================================================================
 /**
  * @file	undergrounddata.c
- * @brief	’n‰ºƒAƒCƒeƒ€ƒf[ƒ^ƒAƒNƒZƒX—pƒ\[ƒX
+ * @brief	åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ç”¨ã‚½ãƒ¼ã‚¹
  * @author	k.ohno
  * @date	2006.2.21
  */
 //============================================================================================
 
-#include "savedata/savedata_def.h"	//SAVEDATAŽQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
 #include "common.h"
 
@@ -29,55 +29,55 @@
 
 
 u16 _convertList[] = {
-    ITEM_MANMARUISI,         //‚Ü‚ñ‚Ü‚é	KASEKI_SUN
-    ITEM_KANAMEISI,         //‚©‚È‚ß	KASEKI_SUN
-    ITEM_TAIYOUNOISI,        //‚½‚¢‚æ‚¤‚Ì‚¢‚µ	KASEKI_SUN
-    ITEM_HOSINOKAKERA,       //‚Ù‚µ‚Ì‚©‚¯‚ç	KASEKI_STAR
-    ITEM_TUKINOISI,          //‚Â‚«‚Ì‚¢‚µ	KASEKI_MOON
-    ITEM_KATAIISI,           //‚©‚½‚¢‚¢‚µ	KASEKI_HARD
-    ITEM_KAMINARINOISI,      //‚©‚Ý‚È‚è‚Ì‚¢‚µ	KASEKI_KAMINARI
-    ITEM_KAWARAZUNOISI,      //‚©‚í‚ç‚¸‚Ì‚¢‚µ	KASEKI_KAWARAZU
-    ITEM_HONOONOISI,         //‚Ù‚Ì‚¨‚Ì‚¢‚µ	KASEKI_HONOO
-    ITEM_MIZUNOISI,          //‚Ý‚¸‚Ì‚¢‚µ	KASEKI_MIZU
-    ITEM_RIIHUNOISI,         //ƒŠ[ƒt‚Ì‚¢‚µ	KASEKI_REAF
-    ITEM_KINNOTAMA,          //‚«‚ñ‚Ì‚½‚Ü	KASEKI_GOLD
-    ITEM_KAINOKASEKI,        //‚©‚¢‚ÌƒJƒZƒL	KASEKI_KAI
-    ITEM_KOURANOKASEKI,      //‚±‚¤‚ç‚ÌƒJƒZƒL	KASEKI_KOURA
-    ITEM_TUMENOKASEKI,       //ƒcƒ‚ÌƒJƒZƒL	KASEKI_TSUME
-    ITEM_NEKKONOKASEKI,      //‚Ë‚Á‚±‚ÌƒJƒZƒL	KASEKI_NEKKO
-    ITEM_HIMITUNOKOHAKU,     //‚Ð‚Ý‚Â‚ÌƒRƒnƒN	KASEKI_KOHAKU
-    ITEM_KITYOUNAHONE,          //‚«‚¿‚å‚¤‚Èƒzƒl	KASEKI_BONE
-    ITEM_GENKINOKAKERA,   // ‚°‚ñ‚«‚Ì‚©‚¯‚ç
-    ITEM_GENKINOKATAMARI,  // ‚°‚ñ‚«‚Ì‚©‚½‚Ü‚è
-    ITEM_AKAIKAKERA,				// ‚ ‚©‚¢‚©‚¯‚ç
-    ITEM_AOIKAKERA,				// ‚ ‚¨‚¢‚©‚¯‚ç
-    ITEM_KIIROIKAKERA,			// ‚«‚¢‚ë‚¢‚©‚¯‚ç
-    ITEM_MIDORINOKAKERA,				// ‚Ý‚Ç‚è‚Ì‚©‚¯‚ç
-    ITEM_HAATONOUROKO,			// ƒn[ƒg‚ÌƒEƒƒR
-    ITEM_TATENOKASEKI,				// ‚½‚Ä‚ÌƒJƒZƒL
-    ITEM_ZUGAINOKASEKI,				// ‚¸‚ª‚¢‚ÌƒJƒZƒL
-    ITEM_HIKARINONENDO,// ‚Ð‚©‚è‚Ì‚Ë‚ñ‚Ç
-    ITEM_KUROITEKKYUU,				// ‚­‚ë‚¢‚Ä‚Á‚«‚ã‚¤
-    ITEM_TUMETAIIWA,				// ‚Â‚ß‚½‚¢‚¢‚í
-    ITEM_SARASARAIWA,			// ‚³‚ç‚³‚ç‚¢‚í
-    ITEM_ATUIIWA,			// ‚ ‚Â‚¢‚¢‚í
-    ITEM_SIMETTAIWA,				// ‚µ‚ß‚Á‚½‚¢‚í
-    ITEM_HINOTAMAPUREETO,			// ‚Ð‚Ì‚½‚ÜƒvƒŒ[ƒg
-    ITEM_SIZUKUPUREETO,			// ‚µ‚¸‚­ƒvƒŒ[ƒg
-    ITEM_IKAZUTIPUREETO,				// ‚¢‚©‚¸‚¿ƒvƒŒ[ƒg
-    ITEM_MIDORINOPUREETO,				// ‚Ý‚Ç‚è‚ÌƒvƒŒ[ƒg
-    ITEM_TURARANOPUREETO,				// ‚Â‚ç‚ç‚ÌƒvƒŒ[ƒg
-    ITEM_KOBUSINOPUREETO,				// ‚±‚Ô‚µ‚ÌƒvƒŒ[ƒg
-    ITEM_MOUDOKUPUREETO,				// ‚à‚¤‚Ç‚­ƒvƒŒ[ƒg
-    ITEM_DAITINOPUREETO,				// ‚¾‚¢‚¿‚ÌƒvƒŒ[ƒg
-    ITEM_AOZORAPUREETO,				// ‚ ‚¨‚¼‚çƒvƒŒ[ƒg
-    ITEM_HUSIGINOPUREETO,				// ‚Ó‚µ‚¬‚ÌƒvƒŒ[ƒg
-    ITEM_TAMAMUSIPUREETO,				// ‚½‚Ü‚Þ‚µƒvƒŒ[ƒg
-    ITEM_GANSEKIPUREETO,				// ‚ª‚ñ‚¹‚«ƒvƒŒ[ƒg
-    ITEM_MONONOKEPUREETO,				// ‚à‚Ì‚Ì‚¯ƒvƒŒ[ƒg
-    ITEM_RYUUNOPUREETO,				// ‚è‚ã‚¤‚ÌƒvƒŒ[ƒg
-    ITEM_KOWAMOTEPUREETO,				// ‚±‚í‚à‚ÄƒvƒŒ[ƒg
-    ITEM_KOUTETUPUREETO,				// ‚±‚¤‚Ä‚ÂƒvƒŒ[ƒg
+    ITEM_MANMARUISI,         //ã¾ã‚“ã¾ã‚‹	KASEKI_SUN
+    ITEM_KANAMEISI,         //ã‹ãªã‚	KASEKI_SUN
+    ITEM_TAIYOUNOISI,        //ãŸã„ã‚ˆã†ã®ã„ã—	KASEKI_SUN
+    ITEM_HOSINOKAKERA,       //ã»ã—ã®ã‹ã‘ã‚‰	KASEKI_STAR
+    ITEM_TUKINOISI,          //ã¤ãã®ã„ã—	KASEKI_MOON
+    ITEM_KATAIISI,           //ã‹ãŸã„ã„ã—	KASEKI_HARD
+    ITEM_KAMINARINOISI,      //ã‹ã¿ãªã‚Šã®ã„ã—	KASEKI_KAMINARI
+    ITEM_KAWARAZUNOISI,      //ã‹ã‚ã‚‰ãšã®ã„ã—	KASEKI_KAWARAZU
+    ITEM_HONOONOISI,         //ã»ã®ãŠã®ã„ã—	KASEKI_HONOO
+    ITEM_MIZUNOISI,          //ã¿ãšã®ã„ã—	KASEKI_MIZU
+    ITEM_RIIHUNOISI,         //ãƒªãƒ¼ãƒ•ã®ã„ã—	KASEKI_REAF
+    ITEM_KINNOTAMA,          //ãã‚“ã®ãŸã¾	KASEKI_GOLD
+    ITEM_KAINOKASEKI,        //ã‹ã„ã®ã‚«ã‚»ã‚­	KASEKI_KAI
+    ITEM_KOURANOKASEKI,      //ã“ã†ã‚‰ã®ã‚«ã‚»ã‚­	KASEKI_KOURA
+    ITEM_TUMENOKASEKI,       //ãƒ„ãƒ¡ã®ã‚«ã‚»ã‚­	KASEKI_TSUME
+    ITEM_NEKKONOKASEKI,      //ã­ã£ã“ã®ã‚«ã‚»ã‚­	KASEKI_NEKKO
+    ITEM_HIMITUNOKOHAKU,     //ã²ã¿ã¤ã®ã‚³ãƒã‚¯	KASEKI_KOHAKU
+    ITEM_KITYOUNAHONE,          //ãã¡ã‚‡ã†ãªãƒ›ãƒ	KASEKI_BONE
+    ITEM_GENKINOKAKERA,   // ã’ã‚“ãã®ã‹ã‘ã‚‰
+    ITEM_GENKINOKATAMARI,  // ã’ã‚“ãã®ã‹ãŸã¾ã‚Š
+    ITEM_AKAIKAKERA,				// ã‚ã‹ã„ã‹ã‘ã‚‰
+    ITEM_AOIKAKERA,				// ã‚ãŠã„ã‹ã‘ã‚‰
+    ITEM_KIIROIKAKERA,			// ãã„ã‚ã„ã‹ã‘ã‚‰
+    ITEM_MIDORINOKAKERA,				// ã¿ã©ã‚Šã®ã‹ã‘ã‚‰
+    ITEM_HAATONOUROKO,			// ãƒãƒ¼ãƒˆã®ã‚¦ãƒ­ã‚³
+    ITEM_TATENOKASEKI,				// ãŸã¦ã®ã‚«ã‚»ã‚­
+    ITEM_ZUGAINOKASEKI,				// ãšãŒã„ã®ã‚«ã‚»ã‚­
+    ITEM_HIKARINONENDO,// ã²ã‹ã‚Šã®ã­ã‚“ã©
+    ITEM_KUROITEKKYUU,				// ãã‚ã„ã¦ã£ãã‚…ã†
+    ITEM_TUMETAIIWA,				// ã¤ã‚ãŸã„ã„ã‚
+    ITEM_SARASARAIWA,			// ã•ã‚‰ã•ã‚‰ã„ã‚
+    ITEM_ATUIIWA,			// ã‚ã¤ã„ã„ã‚
+    ITEM_SIMETTAIWA,				// ã—ã‚ã£ãŸã„ã‚
+    ITEM_HINOTAMAPUREETO,			// ã²ã®ãŸã¾ãƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_SIZUKUPUREETO,			// ã—ãšããƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_IKAZUTIPUREETO,				// ã„ã‹ãšã¡ãƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_MIDORINOPUREETO,				// ã¿ã©ã‚Šã®ãƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_TURARANOPUREETO,				// ã¤ã‚‰ã‚‰ã®ãƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_KOBUSINOPUREETO,				// ã“ã¶ã—ã®ãƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_MOUDOKUPUREETO,				// ã‚‚ã†ã©ããƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_DAITINOPUREETO,				// ã ã„ã¡ã®ãƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_AOZORAPUREETO,				// ã‚ãŠãžã‚‰ãƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_HUSIGINOPUREETO,				// ãµã—ãŽã®ãƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_TAMAMUSIPUREETO,				// ãŸã¾ã‚€ã—ãƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_GANSEKIPUREETO,				// ãŒã‚“ã›ããƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_MONONOKEPUREETO,				// ã‚‚ã®ã®ã‘ãƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_RYUUNOPUREETO,				// ã‚Šã‚…ã†ã®ãƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_KOWAMOTEPUREETO,				// ã“ã‚ã‚‚ã¦ãƒ—ãƒ¬ãƒ¼ãƒˆ
+    ITEM_KOUTETUPUREETO,				// ã“ã†ã¦ã¤ãƒ—ãƒ¬ãƒ¼ãƒˆ
 };
 
 static void _addEntryGoodsPCItem(UNDERGROUNDDATA* pUGData, int listIndex, int add);
@@ -85,13 +85,13 @@ static void _addEntryGoodsPCItem(UNDERGROUNDDATA* pUGData, int listIndex, int ad
 
 //============================================================================================
 //
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒTƒCƒYŽæ“¾
- * @return	int		ƒTƒCƒYiƒoƒCƒg’PˆÊj
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºå–å¾—
+ * @return	int		ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  */
 //----------------------------------------------------------
 int UnderGroundData_GetWorkSize(void)
@@ -101,9 +101,9 @@ int UnderGroundData_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰ºƒAƒCƒeƒ€ƒ[ƒN‚ÌŠm•Û
- * @param	heapID		ƒƒ‚ƒŠŠm•Û‚ð‚¨‚±‚È‚¤ƒq[ƒvŽw’è
- * @return	UNDERGROUNDDATA*	Žæ“¾‚µ‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿
+ * @param	heapID		ãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚’ãŠã“ãªã†ãƒ’ãƒ¼ãƒ—æŒ‡å®š
+ * @return	UNDERGROUNDDATA*	å–å¾—ã—ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 UNDERGROUNDDATA* UnderGroundData_AllocWork(u32 heapID)
@@ -116,9 +116,9 @@ UNDERGROUNDDATA* UnderGroundData_AllocWork(u32 heapID)
 
 //----------------------------------------------------------
 /**
- * @brief	UNDERGROUNDDATA‚ÌƒRƒs[
- * @param	from	ƒRƒs[Œ³UNDERGROUNDDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	to		ƒRƒs[æUNDERGROUNDDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	UNDERGROUNDDATAã®ã‚³ãƒ”ãƒ¼
+ * @param	from	ã‚³ãƒ”ãƒ¼å…ƒUNDERGROUNDDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	to		ã‚³ãƒ”ãƒ¼å…ˆUNDERGROUNDDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void UnderGroundData_Copy(const UNDERGROUNDDATA *pFrom, UNDERGROUNDDATA* pTo)
@@ -131,8 +131,8 @@ void UnderGroundData_Copy(const UNDERGROUNDDATA *pFrom, UNDERGROUNDDATA* pTo)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒTƒCƒYŽæ“¾
- * @return	int		ƒTƒCƒYiƒoƒCƒg’PˆÊj
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºå–å¾—
+ * @return	int		ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  */
 //----------------------------------------------------------
 int SecretBaseData_GetWorkSize(void)
@@ -142,9 +142,9 @@ int SecretBaseData_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰ºƒXƒe[ƒ^ƒXƒ[ƒN‚ÌŠm•Û
- * @param	heapID		ƒƒ‚ƒŠŠm•Û‚ð‚¨‚±‚È‚¤ƒq[ƒvŽw’è
- * @return	SECRETBASEDATA*	Žæ“¾‚µ‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åœ°ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿
+ * @param	heapID		ãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚’ãŠã“ãªã†ãƒ’ãƒ¼ãƒ—æŒ‡å®š
+ * @return	SECRETBASEDATA*	å–å¾—ã—ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 SECRETBASEDATA* SecretBaseData_AllocWork(u32 heapID)
@@ -157,8 +157,8 @@ SECRETBASEDATA* SecretBaseData_AllocWork(u32 heapID)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒŒƒR[ƒh•”•ª‚Ìƒ[ƒNƒTƒCƒYŽæ“¾
- * @return	int		ƒTƒCƒYiƒoƒCƒg’PˆÊj
+ * @brief	ãƒ¬ã‚³ãƒ¼ãƒ‰éƒ¨åˆ†ã®ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºå–å¾—
+ * @return	int		ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  */
 //----------------------------------------------------------
 int SecretBaseRecord_GetWorkSize(void)
@@ -168,9 +168,9 @@ int SecretBaseRecord_GetWorkSize(void)
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰ºƒXƒe[ƒ^ƒXƒŒƒR[ƒhƒ[ƒN‚ÌŠm•Û
- * @param	heapID		ƒƒ‚ƒŠŠm•Û‚ð‚¨‚±‚È‚¤ƒq[ƒvŽw’è
- * @return	SB_RECORD_DATA*	Žæ“¾‚µ‚½ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åœ°ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿
+ * @param	heapID		ãƒ¡ãƒ¢ãƒªç¢ºä¿ã‚’ãŠã“ãªã†ãƒ’ãƒ¼ãƒ—æŒ‡å®š
+ * @return	SB_RECORD_DATA*	å–å¾—ã—ãŸãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 SB_RECORD_DATA* SecretBaseRecord_AllocWork(u32 heapID)
@@ -183,9 +183,9 @@ SB_RECORD_DATA* SecretBaseRecord_AllocWork(u32 heapID)
 
 //----------------------------------------------------------
 /**
- * @brief	SECRETBASEDATA‚ÌƒRƒs[
- * @param	from	ƒRƒs[Œ³SECRETBASEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	to		ƒRƒs[æSECRETBASEDATA‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	SECRETBASEDATAã®ã‚³ãƒ”ãƒ¼
+ * @param	from	ã‚³ãƒ”ãƒ¼å…ƒSECRETBASEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	to		ã‚³ãƒ”ãƒ¼å…ˆSECRETBASEDATAã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void SecretBaseData_Copy(const SECRETBASEDATA *pFrom, SECRETBASEDATA* pTo)
@@ -199,14 +199,14 @@ void SecretBaseData_Copy(const SECRETBASEDATA *pFrom, SECRETBASEDATA* pTo)
 
 //============================================================================================
 //
-//	UNDERGROUNDDATA‘€ì‚Ì‚½‚ß‚ÌŠÖ”
+//	UNDERGROUNDDATAæ“ä½œã®ãŸã‚ã®é–¢æ•°
 //
 //============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰ºƒXƒe[ƒ^ƒXƒf[ƒ^‚Ì‰Šú‰»
- * @param	pSBData		UNDERGROUNDDATAƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åœ°ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
+ * @param	pSBData		UNDERGROUNDDATAãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void UnderGroundData_Init(UNDERGROUNDDATA* pSBData)
@@ -285,7 +285,7 @@ static int _getFreeBagStoneItemIndex(UNDERGROUNDDATA* pUGData)
     int i;
     
     for(i = 0;i < UG_ITEM_BAG_NUM_MAX; i++){
-        if( pUGData->bagStone[i] == STONE_TYPE_NONE ){ // ‹ó‚«
+        if( pUGData->bagStone[i] == STONE_TYPE_NONE ){ // ç©ºã
             return i;
         }
     }
@@ -323,7 +323,7 @@ static int _getFreeBagTrapItemIndex(UNDERGROUNDDATA* pUGData)
     int i;
     
     for(i = 0;i < UG_ITEM_BAG_NUM_MAX; i++){
-        if( pUGData->bagTrap[i] == UG_TRAPTYPE_NONE ){ // ‹ó‚«
+        if( pUGData->bagTrap[i] == UG_TRAPTYPE_NONE ){ // ç©ºã
             return i;
         }
     }
@@ -347,9 +347,9 @@ static int _getBagTrapItemIndexSearch(UNDERGROUNDDATA* pUGData, int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰ºƒf[ƒ^‚Ì“ú”‚ÉŠÖŒW‚µ‚½ˆ—
- * @param   pSave        ƒZ[ƒuƒf[ƒ^\‘¢‘Ì
- * @param	diff_days    Œo‰ß“ú”
+ * @brief	åœ°ä¸‹ãƒ‡ãƒ¼ã‚¿ã®æ—¥æ•°ã«é–¢ä¿‚ã—ãŸå‡¦ç†
+ * @param   pSave        ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	diff_days    çµŒéŽæ—¥æ•°
  * @return	none
  */
 //----------------------------------------------------------
@@ -362,10 +362,10 @@ void UnderGroundDataDayUpdate(SAVEDATA* pSave, int diff_days)
     u8 add[]={0,1,1,3,3,5};
     int day,dayMax,carat,type,i;
     
-    if(diff_days <= 0){  // •‰‚Ì“ú•tXV‚É‚Ç‚¤‚·‚é‚©‚Í•s–¾
+    if(diff_days <= 0){  // è² ã®æ—¥ä»˜æ›´æ–°ã«ã©ã†ã™ã‚‹ã‹ã¯ä¸æ˜Ž
         return;
     }
-    dayMax = diff_days;   // ‹Ê‚Ì¬’·‚Í‚X‚X‚Ü‚Å‚µ‚©‚È‚¢‚Ì‚Å‚»‚êˆÈã‚ÍƒJƒbƒg
+    dayMax = diff_days;   // çŽ‰ã®æˆé•·ã¯ï¼™ï¼™ã¾ã§ã—ã‹ãªã„ã®ã§ãã‚Œä»¥ä¸Šã¯ã‚«ãƒƒãƒˆ
     if(diff_days > UG_STONE_CARAT_MAX){
         dayMax = UG_STONE_CARAT_MAX;
     }
@@ -397,9 +397,9 @@ void UnderGroundDataDayUpdate(SAVEDATA* pSave, int diff_days)
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰ºƒf[ƒ^‚ÌŽžŠÔ‚ÉŠÖŒW‚µ‚½ˆ—
- * @param   pSave        ƒZ[ƒuƒf[ƒ^\‘¢‘Ì
- * @param	diff_minute    Œo‰ß•ª
+ * @brief	åœ°ä¸‹ãƒ‡ãƒ¼ã‚¿ã®æ™‚é–“ã«é–¢ä¿‚ã—ãŸå‡¦ç†
+ * @param   pSave        ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	diff_minute    çµŒéŽåˆ†
  * @return	none
  */
 //----------------------------------------------------------
@@ -408,7 +408,7 @@ void UnderGroundDataMinUpdate(SAVEDATA* pSave, s32 diff_minute, BOOL bPenaltyMod
 {
     UNDERGROUNDDATA* pUGData = SaveData_GetUnderGroundData(pSave);
 
-    if( (diff_minute < 0)  || (bPenaltyMode) ){  // •‰‚É‚Í‘Î‰ž‚µ‚È‚¢ƒyƒiƒ‹ƒeƒB[Žž‚É‚ÍƒJƒEƒ“ƒg‚µ‚È‚¢
+    if( (diff_minute < 0)  || (bPenaltyMode) ){  // è² ã«ã¯å¯¾å¿œã—ãªã„ãƒšãƒŠãƒ«ãƒ†ã‚£ãƒ¼æ™‚ã«ã¯ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
         return;
     }
     if( pUGData->sendGoodsMinTimer < diff_minute ) {
@@ -424,8 +424,8 @@ void UnderGroundDataMinUpdate(SAVEDATA* pSave, s32 diff_minute, BOOL bPenaltyMod
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰ºƒf[ƒ^‚Ìƒ[ƒh’¼Œã‚ÉŒÄ‚Ôˆ—
- * @param   pSave        ƒZ[ƒuƒf[ƒ^\‘¢‘Ì
+ * @brief	åœ°ä¸‹ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰ç›´å¾Œã«å‘¼ã¶å‡¦ç†
+ * @param   pSave        ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  * @return	none
  */
 //----------------------------------------------------------
@@ -452,8 +452,8 @@ void UnderGroundDataLoadUpdate(SAVEDATA* pSave)
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰º‚És‚­SAVE‘O‚ÉŒÄ‚Ôˆ—
- * @param   pSave        ƒZ[ƒuƒf[ƒ^\‘¢‘Ì
+ * @brief	åœ°ä¸‹ã«è¡ŒãSAVEå‰ã«å‘¼ã¶å‡¦ç†
+ * @param   pSave        ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  * @return	none
  */
 //----------------------------------------------------------
@@ -472,8 +472,8 @@ void UnderGroundDataBeforeUGSave(SAVEDATA* pSave)
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰º‚©‚ç”²‚¯o‚·ê‡‚Ìˆ—
- * @param   pSave        ƒZ[ƒuƒf[ƒ^\‘¢‘Ì
+ * @brief	åœ°ä¸‹ã‹ã‚‰æŠœã‘å‡ºã™å ´åˆã®å‡¦ç†
+ * @param   pSave        ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  * @return	none
  */
 //----------------------------------------------------------
@@ -492,8 +492,8 @@ void UnderGroundDataAfterUG(SAVEDATA* pSave)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒOƒbƒY‚ð‚ ‚°‚ç‚ê‚éó‘Ô‚©‚Ç‚¤‚©
- * @param   pSave        ƒZ[ƒuƒf[ƒ^\‘¢‘Ì
+ * @brief	ã‚°ãƒƒã‚ºã‚’ã‚ã’ã‚‰ã‚Œã‚‹çŠ¶æ…‹ã‹ã©ã†ã‹
+ * @param   pSave        ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  * @return	none
  */
 //----------------------------------------------------------
@@ -511,8 +511,8 @@ BOOL UnderGroundDataIsGoodsSend(SAVEDATA* pSave)
 
 //----------------------------------------------------------
 /**
- * @brief	’nã‚ÅƒfƒBƒAƒ‹ƒK‚©ƒpƒ‹ƒLƒA‚ð“|‚µ‚½Žž‚ÉON‚É‚·‚é
- * @param   pUGData        ’n‰ºƒf[ƒ^\‘¢‘Ì
+ * @brief	åœ°ä¸Šã§ãƒ‡ã‚£ã‚¢ãƒ«ã‚¬ã‹ãƒ‘ãƒ«ã‚­ã‚¢ã‚’å€’ã—ãŸæ™‚ã«ONã«ã™ã‚‹
+ * @param   pUGData        åœ°ä¸‹ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  * @return	none
  */
 //----------------------------------------------------------
@@ -532,11 +532,11 @@ BOOL UnderGroundIsDiamondPearlEvent(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	Šø‚ð’Ç‰Á‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	pMyStatus    ‚Æ‚Á‚½l‚ÌMYSTATUS
- * @return	none   •K‚¸¬Œ÷‚·‚é
- *  AFTERMASTER_070125_UNDERGROUND_PCFLAGLIST_FIX—LŒøŽž‚Íd•¡‚Í“ü‚ê‚È‚¢
+ * @brief	æ——ã‚’è¿½åŠ ã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	pMyStatus    ã¨ã£ãŸäººã®MYSTATUS
+ * @return	none   å¿…ãšæˆåŠŸã™ã‚‹
+ *  AFTERMASTER_070125_UNDERGROUND_PCFLAGLIST_FIXæœ‰åŠ¹æ™‚ã¯é‡è¤‡ã¯å…¥ã‚Œãªã„
  */
 //----------------------------------------------------------
 
@@ -569,11 +569,11 @@ void UnderGroundAddFlag(UNDERGROUNDDATA* pUGData, const MYSTATUS* pMyStatus)
 
 //----------------------------------------------------------
 /**
- * @brief	Šø‚ð“Ç‚Ýž‚Þ
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
+ * @brief	æ——ã‚’èª­ã¿è¾¼ã‚€
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  * @param   heapID       HEAP
- * @param	index        Žæ‚èo‚·‡”Ô
- * @return	MYSTATUS*    ‹ó‚Ìê‡‚ÍNULL
+ * @param	index        å–ã‚Šå‡ºã™é †ç•ª
+ * @return	MYSTATUS*    ç©ºã®å ´åˆã¯NULL
  */
 //----------------------------------------------------------
 
@@ -601,9 +601,9 @@ MYSTATUS* UnderGroundGetFlag(const UNDERGROUNDDATA* pUGData,int heapID,int index
 
 //----------------------------------------------------------
 /**
- * @brief	“ú‚É‚æ‚Á‚Ä•Ï‚í‚é—”ƒV[ƒh‚ð“¾‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @return	“ú‚É‚æ‚Á‚Ä•Ï‚í‚é—”ƒV[ƒh
+ * @brief	æ—¥ã«ã‚ˆã£ã¦å¤‰ã‚ã‚‹ä¹±æ•°ã‚·ãƒ¼ãƒ‰ã‚’å¾—ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @return	æ—¥ã«ã‚ˆã£ã¦å¤‰ã‚ã‚‹ä¹±æ•°ã‚·ãƒ¼ãƒ‰
  */
 //----------------------------------------------------------
 u32 UnderGroundGetDayRandSeed(UNDERGROUNDDATA* pUGData)
@@ -613,10 +613,10 @@ u32 UnderGroundGetDayRandSeed(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	•ó‘Ü‚©‚çƒAƒCƒeƒ€‚ðŽæ‚èo‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	bDelete      ŽÀÛ‚ÉŽæ‚èo‚µ‚Ä‚±‚±‚©‚ç–³‚­‚È‚éê‡TRUE “Ç‚Ý‚¾‚¯‚Ìê‡FALSE
- * @return	ITEM_TYPE ‹ó‚É‚È‚Á‚½‚ç ITEM_DUMMY_DATA
+ * @brief	å®è¢‹ã‹ã‚‰ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–ã‚Šå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	bDelete      å®Ÿéš›ã«å–ã‚Šå‡ºã—ã¦ã“ã“ã‹ã‚‰ç„¡ããªã‚‹å ´åˆTRUE èª­ã¿ã ã‘ã®å ´åˆFALSE
+ * @return	ITEM_TYPE ç©ºã«ãªã£ãŸã‚‰ ITEM_DUMMY_DATA
  */
 //----------------------------------------------------------
 int UnderGroundGetTreasureBagItem(UNDERGROUNDDATA* pUGData, BOOL bDelete)
@@ -632,7 +632,7 @@ int UnderGroundGetTreasureBagItem(UNDERGROUNDDATA* pUGData, BOOL bDelete)
     GF_ASSERT_RETURN(ugitem < DIG_PARTS_TREASURE_MAX, ITEM_HUTOIHONE);
     ugitem -= DIG_PARTS_TREASURE_MIN;
     if(bDelete){
-        pUGData->bagTreasure[i] = DIG_PARTS_NONE;  // Á‚·
+        pUGData->bagTreasure[i] = DIG_PARTS_NONE;  // æ¶ˆã™
     }
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_UNDERGROUNDDATA)
 	SVLD_SetCrc(GMDATA_ID_UNDERGROUNDDATA);
@@ -642,8 +642,8 @@ int UnderGroundGetTreasureBagItem(UNDERGROUNDDATA* pUGData, BOOL bDelete)
 
 //----------------------------------------------------------
 /**
- * @brief	‚¨‚½‚©‚ç„ƒAƒCƒeƒ€•ÏŠ·
- * @return	ITEM_TYPE ‹ó‚É‚È‚Á‚½‚ç ITEM_DUMMY_DATA
+ * @brief	ãŠãŸã‹ã‚‰ï¼žã‚¢ã‚¤ãƒ†ãƒ å¤‰æ›
+ * @return	ITEM_TYPE ç©ºã«ãªã£ãŸã‚‰ ITEM_DUMMY_DATA
  */
 //----------------------------------------------------------
 int UnderGroundTreasureItem2Item(int treasureType)
@@ -656,10 +656,10 @@ int UnderGroundTreasureItem2Item(int treasureType)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒpƒ\ƒRƒ“‚ÌƒOƒbƒY‚Ö’Ç‰Á‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	goodsNo      ƒOƒbƒY”Ô†
- * @return	“ü‚ç‚È‚©‚Á‚½‚çFALSE
+ * @brief	ãƒ‘ã‚½ã‚³ãƒ³ã®ã‚°ãƒƒã‚ºã¸è¿½åŠ ã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	goodsNo      ã‚°ãƒƒã‚ºç•ªå·
+ * @return	å…¥ã‚‰ãªã‹ã£ãŸã‚‰FALSE
  */
 //----------------------------------------------------------
 BOOL UnderGroundAddGoodsPCItem(UNDERGROUNDDATA* pUGData, int goodsNo)
@@ -682,10 +682,10 @@ BOOL UnderGroundAddGoodsPCItem(UNDERGROUNDDATA* pUGData, int goodsNo)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒpƒ\ƒRƒ“‚ÌƒOƒbƒY‚Ö’Ç‰Á‚Å‚«‚é‚©ƒ`ƒFƒbƒN
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	goodsNo      ƒOƒbƒY”Ô†(ƒ_ƒ~[j
- * @return	“ü‚ç‚È‚©‚Á‚½‚çFALSE
+ * @brief	ãƒ‘ã‚½ã‚³ãƒ³ã®ã‚°ãƒƒã‚ºã¸è¿½åŠ ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	goodsNo      ã‚°ãƒƒã‚ºç•ªå·(ãƒ€ãƒŸãƒ¼ï¼‰
+ * @return	å…¥ã‚‰ãªã‹ã£ãŸã‚‰FALSE
  */
 //----------------------------------------------------------
 BOOL UnderGroundAddChkGoodsPCItem(UNDERGROUNDDATA* pUGData, int goodsNo)
@@ -704,9 +704,9 @@ BOOL UnderGroundAddChkGoodsPCItem(UNDERGROUNDDATA* pUGData, int goodsNo)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒpƒ\ƒRƒ“‚ÉƒOƒbƒY‚ª‚¢‚­‚Â“ü‚Á‚Ä‚¢‚é‚©Šm”F‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @return	ƒOƒbƒY”
+ * @brief	ãƒ‘ã‚½ã‚³ãƒ³ã«ã‚°ãƒƒã‚ºãŒã„ãã¤å…¥ã£ã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @return	ã‚°ãƒƒã‚ºæ•°
  */
 //----------------------------------------------------------
 int UnderGroundGetNumGoodsPCItem(UNDERGROUNDDATA* pUGData)
@@ -723,10 +723,10 @@ int UnderGroundGetNumGoodsPCItem(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒpƒ\ƒRƒ“‚ÌƒOƒbƒY‚ðŠm”F‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index      0`‚Ì˜A”Ô  
- * @return	ƒOƒbƒY”Ô† –³‚¢ê‡‚Í GOODS_INVALID
+ * @brief	ãƒ‘ã‚½ã‚³ãƒ³ã®ã‚°ãƒƒã‚ºã‚’ç¢ºèªã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index      0ã€œã®é€£ç•ª  
+ * @return	ã‚°ãƒƒã‚ºç•ªå· ç„¡ã„å ´åˆã¯ GOODS_INVALID
  */
 //----------------------------------------------------------
 int UnderGroundGetGoodsPCItem(UNDERGROUNDDATA* pUGData, int listIndex)
@@ -736,18 +736,18 @@ int UnderGroundGetGoodsPCItem(UNDERGROUNDDATA* pUGData, int listIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒpƒ\ƒRƒ“‚©‚çƒOƒbƒY‚ð‚Æ‚è‚¾‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	listIndex       ƒƒjƒ…[ƒŠƒXƒg‚Ì‡”Ô
- * @param	goodsIndex      ”z’u‚Ì‡”Ô
- * @return	ƒOƒbƒY”Ô† –³‚¢ê‡‚Í GOODS_INVALID
+ * @brief	ãƒ‘ã‚½ã‚³ãƒ³ã‹ã‚‰ã‚°ãƒƒã‚ºã‚’ã¨ã‚Šã ã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	listIndex       ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã®é †ç•ª
+ * @param	goodsIndex      é…ç½®ã®é †ç•ª
+ * @return	ã‚°ãƒƒã‚ºç•ªå· ç„¡ã„å ´åˆã¯ GOODS_INVALID
  */
 //----------------------------------------------------------
 int UnderGroundDelGoodsPCItem(UNDERGROUNDDATA* pUGData, int listIndex)
 {
     int i,ix,type;
 
-    // ü‚Á‚Ä‚¢‚é‚à‚Ì‚ðˆø‚«o‚¹‚È‚¢‚Ì‚Å‚ ‚ç‚©‚¶‚ßŒŸ¸‚·‚é‚±‚Æ
+    // é£¾ã£ã¦ã„ã‚‹ã‚‚ã®ã‚’å¼•ãå‡ºã›ãªã„ã®ã§ã‚ã‚‰ã‹ã˜ã‚æ¤œæŸ»ã™ã‚‹ã“ã¨
     GF_ASSERT_RETURN(!UnderGroundIsEntryGoodsPCItem(pUGData, listIndex),);
 
     ix = listIndex;
@@ -757,7 +757,7 @@ int UnderGroundDelGoodsPCItem(UNDERGROUNDDATA* pUGData, int listIndex)
     }
     pUGData->pcGoods[UG_ITEM_PC_NUM_MAX-1] = GOODS_INVALID;
 
-    _addEntryGoodsPCItem(pUGData, listIndex, -1); //ƒGƒ“ƒgƒŠ[‡”Ô‚ð‰º‚°‚é
+    _addEntryGoodsPCItem(pUGData, listIndex, -1); //ã‚¨ãƒ³ãƒˆãƒªãƒ¼é †ç•ªã‚’ä¸‹ã’ã‚‹
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_UNDERGROUNDDATA)
 	SVLD_SetCrc(GMDATA_ID_UNDERGROUNDDATA);
 #endif //CRC_LOADCHECK
@@ -766,10 +766,10 @@ int UnderGroundDelGoodsPCItem(UNDERGROUNDDATA* pUGData, int listIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒpƒ\ƒRƒ“‚ÌƒOƒbƒY‚ð‡”Ô•ÏX
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	listIndex       ¡‚ÌˆÊ’u
- * @param	nextIndex       ¡“x‚ÌˆÊ’u
+ * @brief	ãƒ‘ã‚½ã‚³ãƒ³ã®ã‚°ãƒƒã‚ºã‚’é †ç•ªå¤‰æ›´
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	listIndex       ä»Šã®ä½ç½®
+ * @param	nextIndex       ä»Šåº¦ã®ä½ç½®
  * @return	none
  */
 //----------------------------------------------------------
@@ -797,8 +797,8 @@ void UnderGroundChangeGoodsPcItem(UNDERGROUNDDATA* pUGData, int listIndex,int ne
         }
     }
 	
-	_addEntryGoodsPCItem(pUGData, nextIndex, 1); //ƒGƒ“ƒgƒŠ[‡”Ô‚ð‚ ‚°‚é
-    _addEntryGoodsPCItem(pUGData, listIndex, -1); //ƒGƒ“ƒgƒŠ[‡”Ô‚ð‰º‚°‚é
+	_addEntryGoodsPCItem(pUGData, nextIndex, 1); //ã‚¨ãƒ³ãƒˆãƒªãƒ¼é †ç•ªã‚’ã‚ã’ã‚‹
+    _addEntryGoodsPCItem(pUGData, listIndex, -1); //ã‚¨ãƒ³ãƒˆãƒªãƒ¼é †ç•ªã‚’ä¸‹ã’ã‚‹
     
     if(change != -1){
         if(listIndex<nextIndex){
@@ -816,12 +816,12 @@ void UnderGroundChangeGoodsPcItem(UNDERGROUNDDATA* pUGData, int listIndex,int ne
 
 //----------------------------------------------------------
 /**
- * @brief	ƒpƒ\ƒRƒ“‚©‚çƒOƒbƒY‚ðü‚éˆ×‚É‚Æ‚è‚¾‚·
- *          ŽÀÛ‚É‚ÍŽæ‚èo‚³‚¸Aƒ}[ƒN‚ð‚Â‚¯‚Ü‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	listIndex       ƒƒjƒ…[ƒŠƒXƒg‚Ì‡”Ô
- * @param	goodsIndex      ”z’u‚Ì‡”Ô
- * @return	ƒOƒbƒY”Ô† –³‚¢ê‡‚Í GOODS_INVALID
+ * @brief	ãƒ‘ã‚½ã‚³ãƒ³ã‹ã‚‰ã‚°ãƒƒã‚ºã‚’é£¾ã‚‹ç‚ºã«ã¨ã‚Šã ã™
+ *          å®Ÿéš›ã«ã¯å–ã‚Šå‡ºã•ãšã€ãƒžãƒ¼ã‚¯ã‚’ã¤ã‘ã¾ã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	listIndex       ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã®é †ç•ª
+ * @param	goodsIndex      é…ç½®ã®é †ç•ª
+ * @return	ã‚°ãƒƒã‚ºç•ªå· ç„¡ã„å ´åˆã¯ GOODS_INVALID
  */
 //----------------------------------------------------------
 int UnderGroundEntryGoodsPCItem(UNDERGROUNDDATA* pUGData, int listIndex, int goodsIndex)
@@ -839,10 +839,10 @@ int UnderGroundEntryGoodsPCItem(UNDERGROUNDDATA* pUGData, int listIndex, int goo
 
 //----------------------------------------------------------
 /**
- * @brief	ƒŠƒXƒg”Ô†‚ÌƒAƒCƒeƒ€‚ªü‚ç‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ð•Ô‚µ‚Ü‚·
- * @param   pUGData       ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	listIndex     ƒƒjƒ…[ƒŠƒXƒg‚Ì‡”Ô UnderGroundEntryGoodsPCItem‚Å“n‚µ‚½‚à‚Ì‚Æ“¯‚¶
- * @return	ü‚Á‚Ä‚¢‚éê‡TRUE
+ * @brief	ãƒªã‚¹ãƒˆç•ªå·ã®ã‚¢ã‚¤ãƒ†ãƒ ãŒé£¾ã‚‰ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã—ã¾ã™
+ * @param   pUGData       åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	listIndex     ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã®é †ç•ª UnderGroundEntryGoodsPCItemã§æ¸¡ã—ãŸã‚‚ã®ã¨åŒã˜
+ * @return	é£¾ã£ã¦ã„ã‚‹å ´åˆTRUE
  */
 //----------------------------------------------------------
 
@@ -859,9 +859,9 @@ BOOL UnderGroundIsEntryGoodsPCItem(UNDERGROUNDDATA* pUGData, int listIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒpƒ\ƒRƒ“‚Öü‚Á‚Ä‚ ‚Á‚½ƒOƒbƒY‚ð‚à‚Ç‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	goodsIndex	ƒOƒbƒY‚Ì‡”Ô 0-SECRETBASE_SETUPOBJ_NUM_MAX
+ * @brief	ãƒ‘ã‚½ã‚³ãƒ³ã¸é£¾ã£ã¦ã‚ã£ãŸã‚°ãƒƒã‚ºã‚’ã‚‚ã©ã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	goodsIndex	ã‚°ãƒƒã‚ºã®é †ç•ª 0-SECRETBASE_SETUPOBJ_NUM_MAX
  * @return	none
  */
 //----------------------------------------------------------
@@ -878,8 +878,8 @@ void UnderGroundTrashGoodsPCItem(UNDERGROUNDDATA* pUGData, int goodsIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒpƒ\ƒRƒ“‚Öü‚Á‚Ä‚ ‚Á‚½ƒOƒbƒY‚ð‘S•”‚à‚Ç‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
+ * @brief	ãƒ‘ã‚½ã‚³ãƒ³ã¸é£¾ã£ã¦ã‚ã£ãŸã‚°ãƒƒã‚ºã‚’å…¨éƒ¨ã‚‚ã©ã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  * @return	none
  */
 //----------------------------------------------------------
@@ -893,9 +893,9 @@ void UnderGroundTrashAllGoodsPCItem(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	‚©‚´‚Á‚Ä‚ ‚éƒf[ƒ^index‚ðadd‚µ‚Ü‚·
- * @param   pUGData       ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	listIndex     ‚±‚ÌƒAƒCƒeƒ€‚ð”²‚«o‚µ‚½‚Ì‚Å@‚±‚êˆÈ~‚Ìindex‚ð•ÏX
+ * @brief	ã‹ã–ã£ã¦ã‚ã‚‹ãƒ‡ãƒ¼ã‚¿indexã‚’addã—ã¾ã™
+ * @param   pUGData       åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	listIndex     ã“ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŠœãå‡ºã—ãŸã®ã§ã€€ã“ã‚Œä»¥é™ã®indexã‚’å¤‰æ›´
  * @return	none
  */
 //----------------------------------------------------------
@@ -915,9 +915,9 @@ static void _addEntryGoodsPCItem(UNDERGROUNDDATA* pUGData, int listIndex, int ad
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚ÉƒOƒbƒY‚ª‚¢‚­‚Â“ü‚Á‚Ä‚¢‚é‚©Šm”F‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @return	ƒOƒbƒY”
+ * @brief	ãƒãƒƒã‚°ã«ã‚°ãƒƒã‚ºãŒã„ãã¤å…¥ã£ã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @return	ã‚°ãƒƒã‚ºæ•°
  */
 //----------------------------------------------------------
 int UnderGroundGetNumGoodsBagItem(UNDERGROUNDDATA* pUGData)
@@ -934,10 +934,10 @@ int UnderGroundGetNumGoodsBagItem(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚ÌƒOƒbƒY‚ðŠm”F‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index      0`‚Ì˜A”Ô  
- * @return	ƒOƒbƒY”Ô† –³‚¢ê‡‚Í UG_TRAPTYPE_NONE
+ * @brief	ãƒãƒƒã‚°ã®ã‚°ãƒƒã‚ºã‚’ç¢ºèªã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index      0ã€œã®é€£ç•ª  
+ * @return	ã‚°ãƒƒã‚ºç•ªå· ç„¡ã„å ´åˆã¯ UG_TRAPTYPE_NONE
  */
 //----------------------------------------------------------
 int UnderGroundGetGoodsBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
@@ -947,10 +947,10 @@ int UnderGroundGetGoodsBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚©‚çƒOƒbƒY‚ð‚Æ‚è‚¾‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	listIndex       ƒƒjƒ…[ƒŠƒXƒg‚Ì‡”Ô
- * @return	ƒOƒbƒY”Ô† –³‚¢ê‡‚Í UG_TRAPTYPE_NONE
+ * @brief	ãƒãƒƒã‚°ã‹ã‚‰ã‚°ãƒƒã‚ºã‚’ã¨ã‚Šã ã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	listIndex       ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã®é †ç•ª
+ * @return	ã‚°ãƒƒã‚ºç•ªå· ç„¡ã„å ´åˆã¯ UG_TRAPTYPE_NONE
  */
 //----------------------------------------------------------
 int UnderGroundDelGoodsBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
@@ -971,10 +971,10 @@ int UnderGroundDelGoodsBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚ÖƒOƒbƒY‚ð’Ç‰Á‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	goodsType    ƒOƒbƒYType
- * @return	“ü‚ç‚È‚©‚Á‚½‚çFALSE
+ * @brief	ãƒãƒƒã‚°ã¸ã‚°ãƒƒã‚ºã‚’è¿½åŠ ã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	goodsType    ã‚°ãƒƒã‚ºType
+ * @return	å…¥ã‚‰ãªã‹ã£ãŸã‚‰FALSE
  */
 //----------------------------------------------------------
 BOOL UnderGroundAddGoodsBagItem(UNDERGROUNDDATA* pUGData, int goodsType)
@@ -995,10 +995,10 @@ BOOL UnderGroundAddGoodsBagItem(UNDERGROUNDDATA* pUGData, int goodsType)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚ÖƒOƒbƒY‚ð’Ç‰Á‰Â”\‚©ƒ`ƒFƒbƒN
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	goodsType    ƒOƒbƒYType
- * @return	“ü‚ç‚È‚©‚Á‚½‚çFALSE
+ * @brief	ãƒãƒƒã‚°ã¸ã‚°ãƒƒã‚ºã‚’è¿½åŠ å¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	goodsType    ã‚°ãƒƒã‚ºType
+ * @return	å…¥ã‚‰ãªã‹ã£ãŸã‚‰FALSE
  */
 //----------------------------------------------------------
 BOOL UnderGroundAddChkGoodsBagItem(UNDERGROUNDDATA* pUGData, int goodsType)
@@ -1014,10 +1014,10 @@ BOOL UnderGroundAddChkGoodsBagItem(UNDERGROUNDDATA* pUGData, int goodsType)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚ÌƒOƒbƒY‚ð‡”Ô•ÏX
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	listIndex       ¡‚ÌˆÊ’u
- * @param	nextIndex       ¡“x‚ÌˆÊ’u
+ * @brief	ãƒãƒƒã‚°ã®ã‚°ãƒƒã‚ºã‚’é †ç•ªå¤‰æ›´
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	listIndex       ä»Šã®ä½ç½®
+ * @param	nextIndex       ä»Šåº¦ã®ä½ç½®
  * @return	none
  */
 //----------------------------------------------------------
@@ -1044,9 +1044,9 @@ void UnderGroundChangeGoodsBagItem(UNDERGROUNDDATA* pUGData, int listIndex,int n
 
 //----------------------------------------------------------
 /**
- * @brief	‚©‚Î‚ñ‚É‚½‚Ü‚ª‚¢‚­‚Â“ü‚Á‚Ä‚¢‚é‚©Šm”F‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @return	‚½‚Ü”
+ * @brief	ã‹ã°ã‚“ã«ãŸã¾ãŒã„ãã¤å…¥ã£ã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @return	ãŸã¾æ•°
  */
 //----------------------------------------------------------
 int UnderGroundGetNumStoneBagItem(UNDERGROUNDDATA* pUGData)
@@ -1063,10 +1063,10 @@ int UnderGroundGetNumStoneBagItem(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	‚©‚Î‚ñ‚Ì‚½‚Ü‚ðŠm”F‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index      0`‚Ì˜A”Ô  
- * @return	‚½‚Ü”Ô† –³‚¢ê‡‚Í STONE_TYPE_NONE
+ * @brief	ã‹ã°ã‚“ã®ãŸã¾ã‚’ç¢ºèªã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index      0ã€œã®é€£ç•ª  
+ * @return	ãŸã¾ç•ªå· ç„¡ã„å ´åˆã¯ STONE_TYPE_NONE
  */
 //----------------------------------------------------------
 int UnderGroundGetStoneBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
@@ -1076,10 +1076,10 @@ int UnderGroundGetStoneBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	‚©‚Î‚ñ‚Ì‚½‚Ü‚Ì‚¨‚¨‚«‚³‚ðŠm”F‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index      0`‚Ì˜A”Ô  
- * @return	‚½‚ÜCarat”Ô† –³‚¢ê‡‚Í1
+ * @brief	ã‹ã°ã‚“ã®ãŸã¾ã®ãŠãŠãã•ã‚’ç¢ºèªã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index      0ã€œã®é€£ç•ª  
+ * @return	ãŸã¾Caratç•ªå· ç„¡ã„å ´åˆã¯1
  */
 //----------------------------------------------------------
 int UnderGroundGetStoneCaratBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
@@ -1089,11 +1089,11 @@ int UnderGroundGetStoneCaratBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	‚©‚Î‚ñ‚©‚ç‚½‚Ü‚ð‚Æ‚è‚¾‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	listIndex       ƒƒjƒ…[ƒŠƒXƒg‚Ì‡”Ô
- * @param	goodsIndex      ”z’u‚Ì‡”Ô
- * @return	‚½‚Ü”Ô† –³‚¢ê‡‚Í STONE_TYPE_NONE
+ * @brief	ã‹ã°ã‚“ã‹ã‚‰ãŸã¾ã‚’ã¨ã‚Šã ã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	listIndex       ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã®é †ç•ª
+ * @param	goodsIndex      é…ç½®ã®é †ç•ª
+ * @return	ãŸã¾ç•ªå· ç„¡ã„å ´åˆã¯ STONE_TYPE_NONE
  */
 //----------------------------------------------------------
 int UnderGroundDelStoneBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
@@ -1115,11 +1115,11 @@ int UnderGroundDelStoneBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	‚©‚Î‚ñ‚½‚Ü‚¢‚ê‚Ö’Ç‰Á‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	stoneType    ƒ^ƒ}Type
- * @param	carat        ƒ^ƒ}‚Ì‘å‚«‚³
- * @return	“ü‚ç‚È‚©‚Á‚½‚çFALSE
+ * @brief	ã‹ã°ã‚“ãŸã¾ã„ã‚Œã¸è¿½åŠ ã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	stoneType    ã‚¿ãƒžType
+ * @param	carat        ã‚¿ãƒžã®å¤§ãã•
+ * @return	å…¥ã‚‰ãªã‹ã£ãŸã‚‰FALSE
  */
 //----------------------------------------------------------
 BOOL UnderGroundAddStoneBagItem(UNDERGROUNDDATA* pUGData, int stoneType, int carat)
@@ -1141,10 +1141,10 @@ BOOL UnderGroundAddStoneBagItem(UNDERGROUNDDATA* pUGData, int stoneType, int car
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚Ì‚½‚Ü‚ð‡”Ô•ÏX
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	listIndex       ¡‚ÌˆÊ’u
- * @param	nextIndex       ¡“x‚ÌˆÊ’u
+ * @brief	ãƒãƒƒã‚°ã®ãŸã¾ã‚’é †ç•ªå¤‰æ›´
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	listIndex       ä»Šã®ä½ç½®
+ * @param	nextIndex       ä»Šåº¦ã®ä½ç½®
  * @return	none
  */
 //----------------------------------------------------------
@@ -1175,9 +1175,9 @@ void UnderGroundChangeStoneBagItem(UNDERGROUNDDATA* pUGData, int listIndex,int n
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚É‚¨‚½‚©‚ç‚ª‚¢‚­‚Â“ü‚Á‚Ä‚¢‚é‚©Šm”F‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @return	‚¨‚½‚©‚ç”
+ * @brief	ãƒãƒƒã‚°ã«ãŠãŸã‹ã‚‰ãŒã„ãã¤å…¥ã£ã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @return	ãŠãŸã‹ã‚‰æ•°
  */
 //----------------------------------------------------------
 int UnderGroundGetNumTreasureBagItem(UNDERGROUNDDATA* pUGData)
@@ -1194,10 +1194,10 @@ int UnderGroundGetNumTreasureBagItem(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚Ì‚¨‚½‚©‚ç‚ðŠm”F‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index      0`‚Ì˜A”Ô  
- * @return	‚¨‚½‚©‚ç”Ô† –³‚¢ê‡‚Í STONE_TYPE_NONE
+ * @brief	ãƒãƒƒã‚°ã®ãŠãŸã‹ã‚‰ã‚’ç¢ºèªã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index      0ã€œã®é€£ç•ª  
+ * @return	ãŠãŸã‹ã‚‰ç•ªå· ç„¡ã„å ´åˆã¯ STONE_TYPE_NONE
  */
 //----------------------------------------------------------
 int UnderGroundGetTreasureBagItem_List(UNDERGROUNDDATA* pUGData, int listIndex)
@@ -1207,11 +1207,11 @@ int UnderGroundGetTreasureBagItem_List(UNDERGROUNDDATA* pUGData, int listIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚©‚ç‚¨‚½‚©‚ç‚ð‚Æ‚è‚¾‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	listIndex       ƒƒjƒ…[ƒŠƒXƒg‚Ì‡”Ô
- * @param	goodsIndex      ”z’u‚Ì‡”Ô
- * @return	‚¨‚½‚©‚ç”Ô† –³‚¢ê‡‚Í STONE_TYPE_NONE
+ * @brief	ãƒãƒƒã‚°ã‹ã‚‰ãŠãŸã‹ã‚‰ã‚’ã¨ã‚Šã ã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	listIndex       ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã®é †ç•ª
+ * @param	goodsIndex      é…ç½®ã®é †ç•ª
+ * @return	ãŠãŸã‹ã‚‰ç•ªå· ç„¡ã„å ´åˆã¯ STONE_TYPE_NONE
  */
 //----------------------------------------------------------
 int UnderGroundDelTreasureBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
@@ -1232,10 +1232,10 @@ int UnderGroundDelTreasureBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚Ö‚¨‚½‚©‚ç‚ð’Ç‰Á‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	treasureType    ‚¨‚½‚©‚çType
- * @return	“ü‚ç‚È‚©‚Á‚½‚çFALSE
+ * @brief	ãƒãƒƒã‚°ã¸ãŠãŸã‹ã‚‰ã‚’è¿½åŠ ã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	treasureType    ãŠãŸã‹ã‚‰Type
+ * @return	å…¥ã‚‰ãªã‹ã£ãŸã‚‰FALSE
  */
 //----------------------------------------------------------
 BOOL UnderGroundAddTreasureBagItem(UNDERGROUNDDATA* pUGData, int treasureType)
@@ -1256,10 +1256,10 @@ BOOL UnderGroundAddTreasureBagItem(UNDERGROUNDDATA* pUGData, int treasureType)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚Ì‚¨‚½‚©‚ç‚ð‡”Ô•ÏX
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	listIndex       ¡‚ÌˆÊ’u
- * @param	nextIndex       ¡“x‚ÌˆÊ’u
+ * @brief	ãƒãƒƒã‚°ã®ãŠãŸã‹ã‚‰ã‚’é †ç•ªå¤‰æ›´
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	listIndex       ä»Šã®ä½ç½®
+ * @param	nextIndex       ä»Šåº¦ã®ä½ç½®
  * @return	none
  */
 //----------------------------------------------------------
@@ -1286,9 +1286,9 @@ void UnderGroundChangeTreasureBagItem(UNDERGROUNDDATA* pUGData, int listIndex,in
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚Éã©‚ª‚¢‚­‚Â“ü‚Á‚Ä‚¢‚é‚©Šm”F‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @return	ã©”
+ * @brief	ãƒãƒƒã‚°ã«ç½ ãŒã„ãã¤å…¥ã£ã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @return	ç½ æ•°
  */
 //----------------------------------------------------------
 int UnderGroundGetNumTrapBagItem(UNDERGROUNDDATA* pUGData)
@@ -1305,10 +1305,10 @@ int UnderGroundGetNumTrapBagItem(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚Ìã©‚ðŠm”F‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index      0`‚Ì˜A”Ô  
- * @return	ã©”Ô† –³‚¢ê‡‚Í UG_TRAPTYPE_NONE
+ * @brief	ãƒãƒƒã‚°ã®ç½ ã‚’ç¢ºèªã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index      0ã€œã®é€£ç•ª  
+ * @return	ç½ ç•ªå· ç„¡ã„å ´åˆã¯ UG_TRAPTYPE_NONE
  */
 //----------------------------------------------------------
 int UnderGroundGetTrapBagItem_List(UNDERGROUNDDATA* pUGData, int listIndex)
@@ -1320,10 +1320,10 @@ int UnderGroundGetTrapBagItem_List(UNDERGROUNDDATA* pUGData, int listIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚©‚çã©‚ð‚Æ‚è‚¾‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	listIndex       ƒƒjƒ…[ƒŠƒXƒg‚Ì‡”Ô
- * @return	ã©”Ô† –³‚¢ê‡‚Í UG_TRAPTYPE_NONE
+ * @brief	ãƒãƒƒã‚°ã‹ã‚‰ç½ ã‚’ã¨ã‚Šã ã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	listIndex       ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆã®é †ç•ª
+ * @return	ç½ ç•ªå· ç„¡ã„å ´åˆã¯ UG_TRAPTYPE_NONE
  */
 //----------------------------------------------------------
 int UnderGroundDelTrapBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
@@ -1344,10 +1344,10 @@ int UnderGroundDelTrapBagItem(UNDERGROUNDDATA* pUGData, int listIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚Öã©‚ð’Ç‰Á‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	treasureType    ã©Type
- * @return	“ü‚ç‚È‚©‚Á‚½‚çFALSE
+ * @brief	ãƒãƒƒã‚°ã¸ç½ ã‚’è¿½åŠ ã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	treasureType    ç½ Type
+ * @return	å…¥ã‚‰ãªã‹ã£ãŸã‚‰FALSE
  */
 //----------------------------------------------------------
 BOOL UnderGroundAddTrapBagItem(UNDERGROUNDDATA* pUGData, int trapType)
@@ -1368,10 +1368,10 @@ BOOL UnderGroundAddTrapBagItem(UNDERGROUNDDATA* pUGData, int trapType)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒbƒO‚Ìã©‚ð‡”Ô•ÏX
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	listIndex       ¡‚ÌˆÊ’u
- * @param	nextIndex       ¡“x‚ÌˆÊ’u
+ * @brief	ãƒãƒƒã‚°ã®ç½ ã‚’é †ç•ªå¤‰æ›´
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	listIndex       ä»Šã®ä½ç½®
+ * @param	nextIndex       ä»Šåº¦ã®ä½ç½®
  * @return	none
  */
 //----------------------------------------------------------
@@ -1397,12 +1397,12 @@ void UnderGroundChangeTrapBagItem(UNDERGROUNDDATA* pUGData, int listIndex,int ne
 }
 
 
-#define UG_TRAP_PLACE_NUM_MAX (16)  // ”z’u‚·‚éã©‚ÌÅ‘å”
+#define UG_TRAP_PLACE_NUM_MAX (16)  // é…ç½®ã™ã‚‹ç½ ã®æœ€å¤§æ•°
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚ÖŽ©‘R‚Ìã©‚ð’Ç‰Á‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	trapType    ã©Type
+ * @brief	åœ°é¢ã¸è‡ªç„¶ã®ç½ ã‚’è¿½åŠ ã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	trapType    ç½ Type
  * @return	none
  */
 //----------------------------------------------------------
@@ -1420,10 +1420,10 @@ void UnderGroundAddNatureTrapGroundItem(UNDERGROUNDDATA* pUGData, int trapType,i
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚Ö‚©‚çã©ƒ^ƒCƒv‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	ã©ƒ^ƒCƒv
+ * @brief	åœ°é¢ã¸ã‹ã‚‰ç½ ã‚¿ã‚¤ãƒ—ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	ç½ ã‚¿ã‚¤ãƒ—
  */
 //----------------------------------------------------------
 
@@ -1435,10 +1435,10 @@ int UnderGroundGetNatureTrapGroundItemType(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚©‚çã©XÀ•W‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	ã©XÀ•W
+ * @brief	åœ°é¢ã‹ã‚‰ç½ Xåº§æ¨™ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	ç½ Xåº§æ¨™
  */
 //----------------------------------------------------------
 
@@ -1453,10 +1453,10 @@ int UnderGroundGetNatureTrapGroundItemX(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚©‚çã©ZÀ•W‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	ã©ZÀ•W
+ * @brief	åœ°é¢ã‹ã‚‰ç½ Zåº§æ¨™ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	ç½ Zåº§æ¨™
  */
 //----------------------------------------------------------
 
@@ -1472,9 +1472,9 @@ int UnderGroundGetNatureTrapGroundItemZ(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	Ž©‘R‚Ìã©‚ðÁ‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	trapType    ã©Type
+ * @brief	è‡ªç„¶ã®ç½ ã‚’æ¶ˆã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	trapType    ç½ Type
  * @return	none
  */
 //----------------------------------------------------------
@@ -1490,9 +1490,9 @@ void UnderGroundDelNatureTrapGroundItem(UNDERGROUNDDATA* pUGData, int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚Öã©‚ð’Ç‰Á‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	trapType    ã©Type
+ * @brief	åœ°é¢ã¸ç½ ã‚’è¿½åŠ ã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	trapType    ç½ Type
  * @return	none
  */
 //----------------------------------------------------------
@@ -1511,10 +1511,10 @@ void UnderGroundAddTrapGroundItem(UNDERGROUNDDATA* pUGData, int trapType,int ind
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚Ö‚©‚çã©ƒ^ƒCƒv‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	ã©ƒ^ƒCƒv
+ * @brief	åœ°é¢ã¸ã‹ã‚‰ç½ ã‚¿ã‚¤ãƒ—ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	ç½ ã‚¿ã‚¤ãƒ—
  */
 //----------------------------------------------------------
 
@@ -1525,10 +1525,10 @@ int UnderGroundGetTrapGroundItemType(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚©‚çã©XÀ•W‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	ã©XÀ•W
+ * @brief	åœ°é¢ã‹ã‚‰ç½ Xåº§æ¨™ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	ç½ Xåº§æ¨™
  */
 //----------------------------------------------------------
 
@@ -1542,10 +1542,10 @@ int UnderGroundGetTrapGroundItemX(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚©‚çã©ZÀ•W‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	ã©ZÀ•W
+ * @brief	åœ°é¢ã‹ã‚‰ç½ Zåº§æ¨™ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	ç½ Zåº§æ¨™
  */
 //----------------------------------------------------------
 
@@ -1559,9 +1559,9 @@ int UnderGroundGetTrapGroundItemZ(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚©‚ç¶¬‡”Ô‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
+ * @brief	åœ°é¢ã‹ã‚‰ç”Ÿæˆé †ç•ªã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
  * @return	order
  */
 //----------------------------------------------------------
@@ -1574,9 +1574,9 @@ int UnderGroundGetTrapGroundItemOrder(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚ÖÎ‚ð‚¤‚ß‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	stoneType    ÎType
+ * @brief	åœ°é¢ã¸çŸ³ã‚’ã†ã‚ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	stoneType    çŸ³Type
  * @return	none
  */
 //----------------------------------------------------------
@@ -1596,9 +1596,9 @@ void UnderGroundAddStoneGroundItem(UNDERGROUNDDATA* pUGData, int stoneType,int i
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚ÖÎ‚ð–„‚ß‚é  –„‚ß‚é‚Æ‚«‚É‚Í¬’·‚ª‚O
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	stoneType    ÎType
+ * @brief	åœ°é¢ã¸çŸ³ã‚’åŸ‹ã‚ã‚‹  åŸ‹ã‚ã‚‹ã¨ãã«ã¯æˆé•·ãŒï¼
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	stoneType    çŸ³Type
  * @return	none
  */
 //----------------------------------------------------------
@@ -1609,10 +1609,10 @@ void UnderGroundBuryStoneGroundItem(UNDERGROUNDDATA* pUGData, int stoneType,int 
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚Ö‚©‚çÎƒ^ƒCƒv‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	ã©ƒ^ƒCƒv
+ * @brief	åœ°é¢ã¸ã‹ã‚‰çŸ³ã‚¿ã‚¤ãƒ—ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	ç½ ã‚¿ã‚¤ãƒ—
  */
 //----------------------------------------------------------
 
@@ -1623,10 +1623,10 @@ int UnderGroundGetStoneGroundItemType(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚©‚çÎXÀ•W‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	ÎXÀ•W
+ * @brief	åœ°é¢ã‹ã‚‰çŸ³Xåº§æ¨™ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	çŸ³Xåº§æ¨™
  */
 //----------------------------------------------------------
 
@@ -1640,10 +1640,10 @@ int UnderGroundGetStoneGroundItemX(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚©‚çÎZÀ•W‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	ÎZÀ•W
+ * @brief	åœ°é¢ã‹ã‚‰çŸ³Zåº§æ¨™ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	çŸ³Zåº§æ¨™
  */
 //----------------------------------------------------------
 
@@ -1657,10 +1657,10 @@ int UnderGroundGetStoneGroundItemZ(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚©‚çÎ‚Ì‘å‚«‚³‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	Î‚Ì‘å‚«‚³
+ * @brief	åœ°é¢ã‹ã‚‰çŸ³ã®å¤§ãã•ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	çŸ³ã®å¤§ãã•
  */
 //----------------------------------------------------------
 
@@ -1676,10 +1676,10 @@ int UnderGroundGetStoneGroundItemCarat(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚©‚çÎ‚ÌƒIƒŠƒWƒiƒ‹‚Ì‘å‚«‚³‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	Î‚Ì‘å‚«‚³
+ * @brief	åœ°é¢ã‹ã‚‰çŸ³ã®ã‚ªãƒªã‚¸ãƒŠãƒ«ã®å¤§ãã•ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	çŸ³ã®å¤§ãã•
  */
 //----------------------------------------------------------
 
@@ -1690,10 +1690,10 @@ int UnderGroundGetStoneGroundItemCaratOrg(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚©‚çÎ‚Ì‘‰Á•ª‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	Î‚Ì‘å‚«‚³
+ * @brief	åœ°é¢ã‹ã‚‰çŸ³ã®å¢—åŠ åˆ†ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	çŸ³ã®å¤§ãã•
  */
 //----------------------------------------------------------
 
@@ -1704,9 +1704,9 @@ int UnderGroundGetStoneGroundItemCaratMul(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚Ö‰»Î‚ð‹L˜^‚·‚é
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	x,z  ˆÊ’u‚¾‚¯‹L‰¯
+ * @brief	åœ°é¢ã¸åŒ–çŸ³ã‚’è¨˜éŒ²ã™ã‚‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	x,z  ä½ç½®ã ã‘è¨˜æ†¶
  * @return	index
  */
 //----------------------------------------------------------
@@ -1735,9 +1735,9 @@ int UnderGroundAddFossilGroundItem(UNDERGROUNDDATA* pUGData, int x,int z)
 
 //----------------------------------------------------------
 /**
- * @brief	‰»Îƒf[ƒ^‚ðÁ‹Ž
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	x,z  ˆÊ’u‚¾‚¯‹L‰¯
+ * @brief	åŒ–çŸ³ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆåŽ»
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	x,z  ä½ç½®ã ã‘è¨˜æ†¶
  * @return	index
  */
 //----------------------------------------------------------
@@ -1752,10 +1752,10 @@ void UnderGroundDelFossilGroundItem(UNDERGROUNDDATA* pUGData, int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚©‚çÎXÀ•W‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	ÎXÀ•W
+ * @brief	åœ°é¢ã‹ã‚‰çŸ³Xåº§æ¨™ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	çŸ³Xåº§æ¨™
  */
 //----------------------------------------------------------
 
@@ -1769,10 +1769,10 @@ int UnderGroundGetFossilGroundItemX(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	’n–Ê‚©‚çÎZÀ•W‚ðˆø‚«o‚·
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param	index  ‹L‰¯ƒoƒbƒtƒ@‚Ì‡”Ô
- * @return	ÎZÀ•W
+ * @brief	åœ°é¢ã‹ã‚‰çŸ³Zåº§æ¨™ã‚’å¼•ãå‡ºã™
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param	index  è¨˜æ†¶ãƒãƒƒãƒ•ã‚¡ã®é †ç•ª
+ * @return	çŸ³Zåº§æ¨™
  */
 //----------------------------------------------------------
 
@@ -1786,9 +1786,9 @@ int UnderGroundGetFossilGroundItemZ(UNDERGROUNDDATA* pUGData,int index)
 
 //----------------------------------------------------------
 /**
- * @brief	‰»Î‚ðŒ@‚é‚Ì‚Í‰‚ß‚Ä‚©‚Ç‚¤‚©
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @return	TRUE‚È‚ç‰»Î”z’u
+ * @brief	åŒ–çŸ³ã‚’æŽ˜ã‚‹ã®ã¯åˆã‚ã¦ã‹ã©ã†ã‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @return	TRUEãªã‚‰åŒ–çŸ³é…ç½®
  */
 //----------------------------------------------------------
 
@@ -1799,9 +1799,9 @@ BOOL UnderGroundIsFirstFossil(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	‰»Î‚ðŒ@‚é‚Ì‚Í‰‚ß‚ÄFLG‚ðON
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @return	TRUE‚È‚ç‰»Î”z’u
+ * @brief	åŒ–çŸ³ã‚’æŽ˜ã‚‹ã®ã¯åˆã‚ã¦FLGã‚’ON
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @return	TRUEãªã‚‰åŒ–çŸ³é…ç½®
  */
 //----------------------------------------------------------
 
@@ -1815,9 +1815,9 @@ void UnderGroundSetFirstFossil(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	‰»Î‚ðV‚µ‚­”z’u‚·‚é‚©‚Ç‚¤‚©
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @return	TRUE‚È‚ç‰»Î”z’u
+ * @brief	åŒ–çŸ³ã‚’æ–°ã—ãé…ç½®ã™ã‚‹ã‹ã©ã†ã‹
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @return	TRUEãªã‚‰åŒ–çŸ³é…ç½®
  */
 //----------------------------------------------------------
 
@@ -1828,8 +1828,8 @@ BOOL UnderGroundIsNewDay(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	‰»Î‚ð”z’u‚µI‚í‚Á‚½‚çƒtƒ‰ƒO‚ðÁ‹Ž
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
+ * @brief	åŒ–çŸ³ã‚’é…ç½®ã—çµ‚ã‚ã£ãŸã‚‰ãƒ•ãƒ©ã‚°ã‚’æ¶ˆåŽ»
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  * @return  none
  */
 //----------------------------------------------------------
@@ -1844,9 +1844,9 @@ void UnderGroundResetNewDay(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	Œ@‚Á‚½‰»Î‚ð‹L˜^ iƒŒƒAƒvƒŒ[ƒg‚¾‚¯‹L‰¯j
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param   type         Œ@‚Á‚½‰»ÎŽí—Þ
+ * @brief	æŽ˜ã£ãŸåŒ–çŸ³ã‚’è¨˜éŒ² ï¼ˆãƒ¬ã‚¢ãƒ—ãƒ¬ãƒ¼ãƒˆã ã‘è¨˜æ†¶ï¼‰
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param   type         æŽ˜ã£ãŸåŒ–çŸ³ç¨®é¡ž
  * @return  none
  */
 //----------------------------------------------------------
@@ -1864,9 +1864,9 @@ void UnderGroundSetFossilDig(UNDERGROUNDDATA* pUGData,int type)
 
 //----------------------------------------------------------
 /**
- * @brief	‚±‚Ì‰»Î‚ðo‚µ‚Ä‚æ‚¢‚Ì‚©ŒŸ¸
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @param   type         Œ@‚Á‚½‰»ÎŽí—Þ
+ * @brief	ã“ã®åŒ–çŸ³ã‚’å‡ºã—ã¦ã‚ˆã„ã®ã‹æ¤œæŸ»
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @param   type         æŽ˜ã£ãŸåŒ–çŸ³ç¨®é¡ž
  * @return  none
  */
 //----------------------------------------------------------
@@ -1884,8 +1884,8 @@ BOOL UnderGroundIsFossilAdvent(UNDERGROUNDDATA* pUGData,int type)
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰º‚ð•à‚¢‚½•à”‚ðƒJƒEƒ“ƒg
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
+ * @brief	åœ°ä¸‹ã‚’æ­©ã„ãŸæ­©æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  * @return	order
  */
 //----------------------------------------------------------
@@ -1905,9 +1905,9 @@ void UnderGroundCountWalk(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰º‚ð•à‚¢‚½•à”‚ðˆø‚«o‚·i‚P‚O‚O•à‚ÅƒŠƒZƒbƒgj
- * @param   pUGData      ’n‰ºƒAƒCƒeƒ€ƒf[ƒ^\‘¢‘Ì
- * @return	•à”
+ * @brief	åœ°ä¸‹ã‚’æ­©ã„ãŸæ­©æ•°ã‚’å¼•ãå‡ºã™ï¼ˆï¼‘ï¼ï¼æ­©ã§ãƒªã‚»ãƒƒãƒˆï¼‰
+ * @param   pUGData      åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ * @return	æ­©æ•°
  */
 //----------------------------------------------------------
 
@@ -1918,8 +1918,8 @@ int UnderGroundGetWalkNum(UNDERGROUNDDATA* pUGData)
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰ºƒXƒe[ƒ^ƒXƒf[ƒ^‚Ì‰Šú‰»
- * @param	pSBData		SECRETBASEDATAƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åœ°ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
+ * @param	pSBData		SECRETBASEDATAãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void SecretBaseData_Init(SECRETBASEDATA* pSBData)
@@ -1932,8 +1932,8 @@ void SecretBaseData_Init(SECRETBASEDATA* pSBData)
 
 //----------------------------------------------------------
 /**
- * @brief	’n‰ºƒXƒe[ƒ^ƒXƒf[ƒ^‚Ì‰Šú‰»(ƒŒƒR[ƒhˆÈŠO)
- * @param	pSBData		SECRETBASEDATAƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åœ°ä¸‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–(ãƒ¬ã‚³ãƒ¼ãƒ‰ä»¥å¤–)
+ * @param	pSBData		SECRETBASEDATAãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 
@@ -1941,10 +1941,10 @@ void SecretBaseData_Reform(SECRETBASEDATA* pSBData)
 {
     MI_CpuClear8(pSBData->goodsPos,SECRETBASE_GOODS_NUM_MAX*sizeof(SB_GOODS));
     MI_CpuClear8(pSBData->rockPos,SECRETBASE_LOCK_NUM_MAX*sizeof(SB_LOCK));
-    pSBData->xpos=0;         // ƒhƒA‚ÌˆÊ’u
+    pSBData->xpos=0;         // ãƒ‰ã‚¢ã®ä½ç½®
     pSBData->zpos=0;
-    pSBData->dir=0;        // ŠO‚Éo‚Ä‚éƒhƒA‚Ì•ûŒü
-    pSBData->bMake=0;     //  ì‚Á‚½‚©‚Ç‚¤‚©
+    pSBData->dir=0;        // å¤–ã«å‡ºã¦ã‚‹ãƒ‰ã‚¢ã®æ–¹å‘
+    pSBData->bMake=0;     //  ä½œã£ãŸã‹ã©ã†ã‹
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_UNDERGROUNDDATA)
 	SVLD_SetCrc(GMDATA_ID_UNDERGROUNDDATA);
 #endif //CRC_LOADCHECK
@@ -1952,14 +1952,14 @@ void SecretBaseData_Reform(SECRETBASEDATA* pSBData)
 
 //----------------------------------------------------------
 /**
- * @brief	”é–§Šî’n‚ðˆêŽž“I‚ÉÁ‚·
- * @param	pSBData	 SECRETBASEDATAƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @brief	ç§˜å¯†åŸºåœ°ã‚’ä¸€æ™‚çš„ã«æ¶ˆã™
+ * @param	pSBData	 SECRETBASEDATAãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 
 void SecretBaseData_SetMakeDown(SECRETBASEDATA* pSBData)
 {
-    pSBData->bMake = FALSE;     //  ì‚Á‚½‚©‚Ç‚¤‚©
+    pSBData->bMake = FALSE;     //  ä½œã£ãŸã‹ã©ã†ã‹
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_UNDERGROUNDDATA)
 	SVLD_SetCrc(GMDATA_ID_UNDERGROUNDDATA);
 #endif //CRC_LOADCHECK
@@ -1967,11 +1967,11 @@ void SecretBaseData_SetMakeDown(SECRETBASEDATA* pSBData)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒOƒbƒY‚ÌˆÊ’u‚ðÝ’è‚·‚é  Á‚·ê‡‚É‚Í‘S•”‚O    ”pŽ~—\’è
- * @param	pSBData	 SECRETBASEDATAƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	goodsIndex	ƒOƒbƒY‚Ì‡”Ô 0-SECRETBASE_SETUPOBJ_NUM_MAX
- * @param   type    ƒOƒbƒYƒ^ƒCƒv
- * @param	x,z      ˆÊ’u
+ * @brief	ã‚°ãƒƒã‚ºã®ä½ç½®ã‚’è¨­å®šã™ã‚‹  æ¶ˆã™å ´åˆã«ã¯å…¨éƒ¨ï¼    å»ƒæ­¢äºˆå®š
+ * @param	pSBData	 SECRETBASEDATAãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	goodsIndex	ã‚°ãƒƒã‚ºã®é †ç•ª 0-SECRETBASE_SETUPOBJ_NUM_MAX
+ * @param   type    ã‚°ãƒƒã‚ºã‚¿ã‚¤ãƒ—
+ * @param	x,z      ä½ç½®
  */
 //----------------------------------------------------------
 void SecretBaseData_SetGoodsPosition(SECRETBASEDATA* pSBData, int goodsIndex, int type, int x, int z)
@@ -1982,14 +1982,14 @@ void SecretBaseData_SetGoodsPosition(SECRETBASEDATA* pSBData, int goodsIndex, in
     GF_ASSERT_RETURN(pSBData,);
 
     if(SECRETBASE_PC_INDEX_NO == goodsIndex){
-        return;  // ƒpƒ\ƒRƒ“‚ÌˆÊ’u‚Í—v‚ç‚È‚¢
+        return;  // ãƒ‘ã‚½ã‚³ãƒ³ã®ä½ç½®ã¯è¦ã‚‰ãªã„
     }
-    else if(goodsIndex < (SECRETBASE_GOODS_NUM_MAX + SECRETBASE_PC_NUM_MAX)) { // ƒOƒbƒY‚ª“ü‚Á‚Ä‚¢‚é
+    else if(goodsIndex < (SECRETBASE_GOODS_NUM_MAX + SECRETBASE_PC_NUM_MAX)) { // ã‚°ãƒƒã‚ºãŒå…¥ã£ã¦ã„ã‚‹
         pSBData->goodsPos[goodsIndex - SECRETBASE_PC_NUM_MAX].x = x;
         pSBData->goodsPos[goodsIndex - SECRETBASE_PC_NUM_MAX].z = z;
         pSBData->goodsPos[goodsIndex - SECRETBASE_PC_NUM_MAX].type = type;
     }
-    else{  // Žc‚è‚ÍŠâ
+    else{  // æ®‹ã‚Šã¯å²©
         pSBData->rockPos[goodsIndex - SECRETBASE_PC_NUM_MAX - SECRETBASE_GOODS_NUM_MAX].x = x;
         pSBData->rockPos[goodsIndex - SECRETBASE_PC_NUM_MAX - SECRETBASE_GOODS_NUM_MAX].z = z;
     }
@@ -2000,10 +2000,10 @@ void SecretBaseData_SetGoodsPosition(SECRETBASEDATA* pSBData, int goodsIndex, in
 
 //----------------------------------------------------------
 /**
- * @brief	ƒOƒbƒY‚ÌˆÊ’u‚ð•ÏX‚·‚é  Á‚·ê‡‚É‚Í‘S•”‚O
- * @param	pSBData	 SECRETBASEDATAƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	goodsIndex	ƒOƒbƒY‚Ì‡”Ô 0-SECRETBASE_SETUPOBJ_NUM_MAX
- * @param	x,z      ˆÊ’u
+ * @brief	ã‚°ãƒƒã‚ºã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹  æ¶ˆã™å ´åˆã«ã¯å…¨éƒ¨ï¼
+ * @param	pSBData	 SECRETBASEDATAãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	goodsIndex	ã‚°ãƒƒã‚ºã®é †ç•ª 0-SECRETBASE_SETUPOBJ_NUM_MAX
+ * @param	x,z      ä½ç½®
  */
 //----------------------------------------------------------
 void SecretBaseData_ChangeGoodsPosition(SECRETBASEDATA* pSBData, int goodsIndex, int x, int z)
@@ -2017,9 +2017,9 @@ void SecretBaseData_ChangeGoodsPosition(SECRETBASEDATA* pSBData, int goodsIndex,
 
 //----------------------------------------------------------
 /**
- * @brief	ƒpƒ\ƒRƒ“‚Ìtype‚ð“¾‚é
- * @param	pSBData	      SECRETBASEDATAƒ[ƒNƒ|ƒCƒ“ƒ^
- * @return 	ƒOƒbƒYƒ^ƒCƒv+ƒpƒ\ƒRƒ“ƒ^ƒCƒv
+ * @brief	ãƒ‘ã‚½ã‚³ãƒ³ã®typeã‚’å¾—ã‚‹
+ * @param	pSBData	      SECRETBASEDATAãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @return 	ã‚°ãƒƒã‚ºã‚¿ã‚¤ãƒ—+ãƒ‘ã‚½ã‚³ãƒ³ã‚¿ã‚¤ãƒ—
  */
 //----------------------------------------------------------
 
@@ -2044,10 +2044,10 @@ static int _getPCType(const SECRETBASEDATA* pSBData)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒOƒbƒYtype‚ð“¾‚é
- * @param	pSBData	      SECRETBASEDATAƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	goodsIndex	  ƒOƒbƒY‚Ì‡”Ô 0-SECRETBASE_SETUPOBJ_NUM_MAX
- * @return 	ƒOƒbƒYƒ^ƒCƒv
+ * @brief	ã‚°ãƒƒã‚ºtypeã‚’å¾—ã‚‹
+ * @param	pSBData	      SECRETBASEDATAãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	goodsIndex	  ã‚°ãƒƒã‚ºã®é †ç•ª 0-SECRETBASE_SETUPOBJ_NUM_MAX
+ * @return 	ã‚°ãƒƒã‚ºã‚¿ã‚¤ãƒ—
  */
 //----------------------------------------------------------
 int SecretBaseData_GetGoodsType(const SECRETBASEDATA* pSBData, int goodsIndex)
@@ -2057,12 +2057,12 @@ int SecretBaseData_GetGoodsType(const SECRETBASEDATA* pSBData, int goodsIndex)
     if(SECRETBASE_PC_INDEX_NO == goodsIndex){
         return _getPCType(pSBData);
     }
-    else if(goodsIndex < (SECRETBASE_GOODS_NUM_MAX + SECRETBASE_PC_NUM_MAX)) { // ƒOƒbƒY‚ª“ü‚Á‚Ä‚¢‚é
+    else if(goodsIndex < (SECRETBASE_GOODS_NUM_MAX + SECRETBASE_PC_NUM_MAX)) { // ã‚°ãƒƒã‚ºãŒå…¥ã£ã¦ã„ã‚‹
         return pSBData->goodsPos[goodsIndex - SECRETBASE_PC_NUM_MAX].type;
     }
     else if( (pSBData->rockPos[goodsIndex - SECRETBASE_PC_NUM_MAX - SECRETBASE_GOODS_NUM_MAX].x != _INVALID_POS)
              && (pSBData->rockPos[goodsIndex - SECRETBASE_PC_NUM_MAX - SECRETBASE_GOODS_NUM_MAX].z != _INVALID_POS) ){
-        // Žc‚è‚ÍŠâ
+        // æ®‹ã‚Šã¯å²©
         return GOODS_BIG_ROCK;
     }
     return GOODS_INVALID;
@@ -2070,10 +2070,10 @@ int SecretBaseData_GetGoodsType(const SECRETBASEDATA* pSBData, int goodsIndex)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒOƒbƒYxˆÊ’u‚ð“¾‚é
- * @param	pSBData	      SECRETBASEDATAƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	goodsIndex	  ƒOƒbƒY‚Ì‡”Ô 0-SECRETBASE_SETUPOBJ_NUM_MAX
- * @return 	ƒOƒbƒYxÀ•W
+ * @brief	ã‚°ãƒƒã‚ºxä½ç½®ã‚’å¾—ã‚‹
+ * @param	pSBData	      SECRETBASEDATAãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	goodsIndex	  ã‚°ãƒƒã‚ºã®é †ç•ª 0-SECRETBASE_SETUPOBJ_NUM_MAX
+ * @return 	ã‚°ãƒƒã‚ºxåº§æ¨™
  */
 //----------------------------------------------------------
 int SecretBaseData_GetGoodsXPos(const SECRETBASEDATA* pSBData, int goodsIndex)
@@ -2083,19 +2083,19 @@ int SecretBaseData_GetGoodsXPos(const SECRETBASEDATA* pSBData, int goodsIndex)
     if(SECRETBASE_PC_INDEX_NO == goodsIndex){
         return _PCPOS_X;
     }
-    else if(goodsIndex < (SECRETBASE_GOODS_NUM_MAX + SECRETBASE_PC_NUM_MAX)) { // ƒOƒbƒY‚ª“ü‚Á‚Ä‚¢‚é
+    else if(goodsIndex < (SECRETBASE_GOODS_NUM_MAX + SECRETBASE_PC_NUM_MAX)) { // ã‚°ãƒƒã‚ºãŒå…¥ã£ã¦ã„ã‚‹
         return pSBData->goodsPos[goodsIndex - SECRETBASE_PC_NUM_MAX].x;
     }
-      // Žc‚è‚ÍŠâ
+      // æ®‹ã‚Šã¯å²©
     return pSBData->rockPos[goodsIndex - SECRETBASE_PC_NUM_MAX - SECRETBASE_GOODS_NUM_MAX].x;
 }
 
 //----------------------------------------------------------
 /**
- * @brief	ƒOƒbƒYzˆÊ’u‚ð“¾‚é
- * @param	pSBData	      SECRETBASEDATAƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	goodsIndex	  ƒOƒbƒY‚Ì‡”Ô 0-SECRETBASE_SETUPOBJ_NUM_MAX
- * @return 	ƒOƒbƒYzÀ•W
+ * @brief	ã‚°ãƒƒã‚ºzä½ç½®ã‚’å¾—ã‚‹
+ * @param	pSBData	      SECRETBASEDATAãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	goodsIndex	  ã‚°ãƒƒã‚ºã®é †ç•ª 0-SECRETBASE_SETUPOBJ_NUM_MAX
+ * @return 	ã‚°ãƒƒã‚ºzåº§æ¨™
  */
 //----------------------------------------------------------
 int SecretBaseData_GetGoodsZPos(const SECRETBASEDATA* pSBData, int goodsIndex)
@@ -2105,18 +2105,18 @@ int SecretBaseData_GetGoodsZPos(const SECRETBASEDATA* pSBData, int goodsIndex)
     if(SECRETBASE_PC_INDEX_NO == goodsIndex){
         return _PCPOS_Z;
     }
-    else if(goodsIndex < (SECRETBASE_GOODS_NUM_MAX + SECRETBASE_PC_NUM_MAX)) { // ƒOƒbƒY‚ª“ü‚Á‚Ä‚¢‚é
+    else if(goodsIndex < (SECRETBASE_GOODS_NUM_MAX + SECRETBASE_PC_NUM_MAX)) { // ã‚°ãƒƒã‚ºãŒå…¥ã£ã¦ã„ã‚‹
         return pSBData->goodsPos[goodsIndex - SECRETBASE_PC_NUM_MAX].z;
     }
-    // Žc‚è‚ÍŠâ
+    // æ®‹ã‚Šã¯å²©
     return pSBData->rockPos[goodsIndex - SECRETBASE_PC_NUM_MAX - SECRETBASE_GOODS_NUM_MAX].z;
 }
 
 //----------------------------------------------------------
 /**
- * @brief	Šâ‚ð‚Ç‚Ì‚­‚ç‚¢•ÛŽ‚µ‚Ä‚¢‚È‚¢‚Æ‚¢‚¯‚È‚¢‚©‚ð•Ô‚·
- * @param	pSBData	      SECRETBASEDATAƒ[ƒNƒ|ƒCƒ“ƒ^
- * @return 	Šâ•ÛŽ”
+ * @brief	å²©ã‚’ã©ã®ãã‚‰ã„ä¿æŒã—ã¦ã„ãªã„ã¨ã„ã‘ãªã„ã‹ã‚’è¿”ã™
+ * @param	pSBData	      SECRETBASEDATAãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @return 	å²©ä¿æŒæ•°
  */
 //----------------------------------------------------------
 int SecretBaseData_GetPlaceRockLimit(const SECRETBASEDATA* pSBData)
@@ -2138,9 +2138,9 @@ int SecretBaseData_GetPlaceRockLimit(const SECRETBASEDATA* pSBData)
 
 //----------------------------------------------------------
 /**
- * @brief	”z’u•¨‚ð‚¢‚­‚Â‚Ü‚Å’u‚¢‚Ä‚¢‚¢‚Ì‚©‚ð•Ô‚·
- * @param	pSBData	      SECRETBASEDATAƒ[ƒNƒ|ƒCƒ“ƒ^
- * @return 	’u‚¢‚Ä‚¢‚¢ƒOƒbƒY‚Ì”
+ * @brief	é…ç½®ç‰©ã‚’ã„ãã¤ã¾ã§ç½®ã„ã¦ã„ã„ã®ã‹ã‚’è¿”ã™
+ * @param	pSBData	      SECRETBASEDATAãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @return 	ç½®ã„ã¦ã„ã„ã‚°ãƒƒã‚ºã®æ•°
  */
 //----------------------------------------------------------
 int SecretBaseData_GetPlaceGoodsLimit(const SECRETBASEDATA* pSBData)
@@ -2162,9 +2162,9 @@ int SecretBaseData_GetPlaceGoodsLimit(const SECRETBASEDATA* pSBData)
 
 //==============================================================================
 /**
- * ‚¿‚©ƒ|ƒCƒ“ƒg	Šø‚ð‚Æ‚Á‚½‚èAã©‚É‚©‚¯‚½‚Æ‚«‚É‚à‚ç‚¦‚éƒ|ƒCƒ“ƒgB
+ * ã¡ã‹ãƒã‚¤ãƒ³ãƒˆ	æ——ã‚’ã¨ã£ãŸã‚Šã€ç½ ã«ã‹ã‘ãŸã¨ãã«ã‚‚ã‚‰ãˆã‚‹ãƒã‚¤ãƒ³ãƒˆã€‚
  * @param   none
- * @retval  ‚¿‚©ƒ|ƒCƒ“ƒg
+ * @retval  ã¡ã‹ãƒã‚¤ãƒ³ãƒˆ
  */
 //==============================================================================
 int SecretBaseRecordGetPoint(const SB_RECORD_DATA* pSBRecord)
@@ -2174,9 +2174,9 @@ int SecretBaseRecordGetPoint(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ’n‰ºÌ†‚ð‚¦‚é
+ * åœ°ä¸‹ç§°å·ã‚’ãˆã‚‹
  * @param   none
- * @retval  ‚¿‚©RANK
+ * @retval  ã¡ã‹RANK
  */
 //==============================================================================
 int SecretBaseRecordGetUGRank(const SB_RECORD_DATA* pSBRecord)
@@ -2191,8 +2191,8 @@ int SecretBaseRecordGetUGRank(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ‚¿‚©ƒ|ƒCƒ“ƒg	Šø‚ð‚Æ‚Á‚½‚èAã©‚É‚©‚¯‚½‚Æ‚«‚É‚à‚ç‚¦‚éƒ|ƒCƒ“ƒg‰ÁŽZ
- * @param   add  ‰ÁŽZ  ‚© Œ¸ŽZƒ|ƒCƒ“ƒg
+ * ã¡ã‹ãƒã‚¤ãƒ³ãƒˆ	æ——ã‚’ã¨ã£ãŸã‚Šã€ç½ ã«ã‹ã‘ãŸã¨ãã«ã‚‚ã‚‰ãˆã‚‹ãƒã‚¤ãƒ³ãƒˆåŠ ç®—
+ * @param   add  åŠ ç®—  ã‹ æ¸›ç®—ãƒã‚¤ãƒ³ãƒˆ
  * @retval  none
  */
 //==============================================================================
@@ -2206,9 +2206,9 @@ void SecretBaseRecordSetPoint(SB_RECORD_DATA* pSBRecord, int add)
 
 //==============================================================================
 /**
- * ‚Å‚ ‚Á‚½l‚Ìl”	’ÊM‘ŠŽè‚Æ˜b‚µ‚½‰ñ”‚Å‚·B“¯‚¶l‚Å‚à‚P‚O‰ñ‚Ü‚ÅƒJƒEƒ“ƒg‚µ‚Ü‚·B
+ * ã§ã‚ã£ãŸäººã®äººæ•°	é€šä¿¡ç›¸æ‰‹ã¨è©±ã—ãŸå›žæ•°ã§ã™ã€‚åŒã˜äººã§ã‚‚ï¼‘ï¼å›žã¾ã§ã‚«ã‚¦ãƒ³ãƒˆã—ã¾ã™ã€‚
  * @param   none
- * @retval  ‚Å‚ ‚Á‚½l‚Ìl”
+ * @retval  ã§ã‚ã£ãŸäººã®äººæ•°
  */
 //==============================================================================
 int SecretBaseRecordGetTalkNum(const SB_RECORD_DATA* pSBRecord)
@@ -2218,7 +2218,7 @@ int SecretBaseRecordGetTalkNum(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ‚Å‚ ‚Á‚½l‚Ìl”	’ÊM‘ŠŽè‚Æ˜b‚µ‚½‰ñ”‚Å‚·B“¯‚¶l‚Å‚à‚P‚O‰ñ‚Ü‚ÅƒJƒEƒ“ƒg‚µ‚Ü‚·B
+ * ã§ã‚ã£ãŸäººã®äººæ•°	é€šä¿¡ç›¸æ‰‹ã¨è©±ã—ãŸå›žæ•°ã§ã™ã€‚åŒã˜äººã§ã‚‚ï¼‘ï¼å›žã¾ã§ã‚«ã‚¦ãƒ³ãƒˆã—ã¾ã™ã€‚
  * @param   
  * @retval  none
  */
@@ -2235,7 +2235,7 @@ void SecretBaseRecordSetTalkNum(SB_RECORD_DATA* pSBRecord, int meetNetID)
 
 //==============================================================================
 /**
- * “¹‹ï‚ð‚ ‚°‚½‰ñ”	’N‚©‚É“¹‹ï‚ðã‚°‚½‰ñ”B“¯‚¶l‚É‚ ‚°‚Ä‚àƒJƒEƒ“ƒg‚µ‚Ü‚·B
+ * é“å…·ã‚’ã‚ã’ãŸå›žæ•°	èª°ã‹ã«é“å…·ã‚’ä¸Šã’ãŸå›žæ•°ã€‚åŒã˜äººã«ã‚ã’ã¦ã‚‚ã‚«ã‚¦ãƒ³ãƒˆã—ã¾ã™ã€‚
  * @param   
  * @retval  none
  */
@@ -2247,7 +2247,7 @@ int SecretBaseRecordGetSendItemNum(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * “¹‹ï‚ð‚ ‚°‚½‰ñ”	’N‚©‚É“¹‹ï‚ðã‚°‚½‰ñ”B“¯‚¶l‚É‚ ‚°‚Ä‚àƒJƒEƒ“ƒg‚µ‚Ü‚·B
+ * é“å…·ã‚’ã‚ã’ãŸå›žæ•°	èª°ã‹ã«é“å…·ã‚’ä¸Šã’ãŸå›žæ•°ã€‚åŒã˜äººã«ã‚ã’ã¦ã‚‚ã‚«ã‚¦ãƒ³ãƒˆã—ã¾ã™ã€‚
  * @param   
  * @retval  none
  */
@@ -2264,9 +2264,9 @@ void SecretBaseRecordSetSendItemNum(SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ƒnƒ^‚ð‚Æ‚Á‚½‰ñ”	‘ŠŽè‚Ìƒnƒ^‚ð‚Æ‚Á‚½‰ñ”‚Å‚·B“¯‚¶l‚Å‚àƒJƒEƒ“ƒg‚µ‚Ü‚·B
+ * ãƒã‚¿ã‚’ã¨ã£ãŸå›žæ•°	ç›¸æ‰‹ã®ãƒã‚¿ã‚’ã¨ã£ãŸå›žæ•°ã§ã™ã€‚åŒã˜äººã§ã‚‚ã‚«ã‚¦ãƒ³ãƒˆã—ã¾ã™ã€‚
  * @param   none
- * @retval  ƒnƒ^‚ð‚Æ‚Á‚½‰ñ”
+ * @retval  ãƒã‚¿ã‚’ã¨ã£ãŸå›žæ•°
  */
 //==============================================================================
 int SecretBaseRecordGetFlagConquerNum(const SB_RECORD_DATA* pSBRecord)
@@ -2276,7 +2276,7 @@ int SecretBaseRecordGetFlagConquerNum(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ƒnƒ^‚ð‚Æ‚Á‚½‰ñ”	‘ŠŽè‚Ìƒnƒ^‚ð‚Æ‚Á‚½‰ñ”‚Å‚·B“¯‚¶l‚Å‚àƒJƒEƒ“ƒg‚µ‚Ü‚·B
+ * ãƒã‚¿ã‚’ã¨ã£ãŸå›žæ•°	ç›¸æ‰‹ã®ãƒã‚¿ã‚’ã¨ã£ãŸå›žæ•°ã§ã™ã€‚åŒã˜äººã§ã‚‚ã‚«ã‚¦ãƒ³ãƒˆã—ã¾ã™ã€‚
  * @param   none
  * @retval  none
  */
@@ -2293,9 +2293,9 @@ void SecretBaseRecordSetFlagConquerNum(SB_RECORD_DATA* pSBRecord)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒpƒ\ƒRƒ“‚ÌŠø‚Ìtype‚ð“¾‚é
- * @param	pSBData	      SECRETBASEDATAƒ[ƒNƒ|ƒCƒ“ƒ^
- * @return 	ƒnƒ^ƒ‰ƒ“ƒN
+ * @brief	ãƒ‘ã‚½ã‚³ãƒ³ã®æ——ã®typeã‚’å¾—ã‚‹
+ * @param	pSBData	      SECRETBASEDATAãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @return 	ãƒã‚¿ãƒ©ãƒ³ã‚¯
  */
 //----------------------------------------------------------
 
@@ -2320,7 +2320,7 @@ int SecretBaseRecordGetFlagType(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ƒnƒ^‚ð”[•i‚µ‚½‰ñ”	‘ŠŽè‚Ìƒnƒ^‚ð”[•i‚µ‚½‰ñ”‚Å‚·B“¯‚¶l‚Å‚àƒJƒEƒ“ƒg‚µ‚Ü‚·B
+ * ãƒã‚¿ã‚’ç´å“ã—ãŸå›žæ•°	ç›¸æ‰‹ã®ãƒã‚¿ã‚’ç´å“ã—ãŸå›žæ•°ã§ã™ã€‚åŒã˜äººã§ã‚‚ã‚«ã‚¦ãƒ³ãƒˆã—ã¾ã™ã€‚
  * @param   none
  * @retval  none
  */
@@ -2332,7 +2332,7 @@ int SecretBaseRecordGetFlagDeliveryNum(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ƒnƒ^‚ð”[•i‚µ‚½‰ñ”	‘ŠŽè‚Ìƒnƒ^‚ð”[•i‚µ‚½‰ñ”‚Å‚·B“¯‚¶l‚Å‚àƒJƒEƒ“ƒg‚µ‚Ü‚·B
+ * ãƒã‚¿ã‚’ç´å“ã—ãŸå›žæ•°	ç›¸æ‰‹ã®ãƒã‚¿ã‚’ç´å“ã—ãŸå›žæ•°ã§ã™ã€‚åŒã˜äººã§ã‚‚ã‚«ã‚¦ãƒ³ãƒˆã—ã¾ã™ã€‚
  * @param   none
  * @retval  none
  */
@@ -2349,7 +2349,7 @@ void SecretBaseRecordSetFlagDeliveryNum(SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ƒnƒ^‚ð”[•i‚µ‚½‰ñ”	‘ŠŽè‚Ìƒnƒ^‚ð”[•i‚µ‚½‰ñ”‚Å‚·B“¯‚¶l‚Å‚àƒJƒEƒ“ƒg‚µ‚Ü‚·B
+ * ãƒã‚¿ã‚’ç´å“ã—ãŸå›žæ•°	ç›¸æ‰‹ã®ãƒã‚¿ã‚’ç´å“ã—ãŸå›žæ•°ã§ã™ã€‚åŒã˜äººã§ã‚‚ã‚«ã‚¦ãƒ³ãƒˆã—ã¾ã™ã€‚
  * @param   none
  * @retval  none
  */
@@ -2366,9 +2366,9 @@ void D_SecretBaseRecordSetFlagDeliveryNum(SB_RECORD_DATA* pSBRecord,int num)
 
 //==============================================================================
 /**
- * ƒ^ƒ}‚ðŒ@‚Á‚½‰ñ”	ƒ~ƒjƒQ[ƒ€‚ÅAƒ^ƒ}‚ðŒ@‚èo‚µ‚½‰ñ”‚Å‚·B–„‚ß‚½ƒ^ƒ}‚ðŒ@‚èo‚µ‚Ä‚àƒJƒEƒ“ƒg‚µ‚Ü‚·B
+ * ã‚¿ãƒžã‚’æŽ˜ã£ãŸå›žæ•°	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã§ã€ã‚¿ãƒžã‚’æŽ˜ã‚Šå‡ºã—ãŸå›žæ•°ã§ã™ã€‚åŸ‹ã‚ãŸã‚¿ãƒžã‚’æŽ˜ã‚Šå‡ºã—ã¦ã‚‚ã‚«ã‚¦ãƒ³ãƒˆã—ã¾ã™ã€‚
  * @param   none
- * @retval  ƒ^ƒ}‚ðŒ@‚Á‚½‰ñ”
+ * @retval  ã‚¿ãƒžã‚’æŽ˜ã£ãŸå›žæ•°
  */
 //==============================================================================
 int SecretBaseRecordGetStoneNum(const SB_RECORD_DATA* pSBRecord)
@@ -2378,8 +2378,8 @@ int SecretBaseRecordGetStoneNum(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ƒ^ƒ}‚ðŒ@‚Á‚½‰ñ”	ƒ~ƒjƒQ[ƒ€‚ÅAƒ^ƒ}‚ðŒ@‚èo‚µ‚½‰ñ”‚Å‚·B–„‚ß‚½ƒ^ƒ}‚ðŒ@‚èo‚µ‚Ä‚àƒJƒEƒ“ƒg‚µ‚Ü‚·B
- * @param   add  ‘‰Á•ª
+ * ã‚¿ãƒžã‚’æŽ˜ã£ãŸå›žæ•°	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã§ã€ã‚¿ãƒžã‚’æŽ˜ã‚Šå‡ºã—ãŸå›žæ•°ã§ã™ã€‚åŸ‹ã‚ãŸã‚¿ãƒžã‚’æŽ˜ã‚Šå‡ºã—ã¦ã‚‚ã‚«ã‚¦ãƒ³ãƒˆã—ã¾ã™ã€‚
+ * @param   add  å¢—åŠ åˆ†
  * @retval  none
  */
 //==============================================================================
@@ -2398,9 +2398,9 @@ void SecretBaseRecordSetStoneNum(SB_RECORD_DATA* pSBRecord, int add)
 
 //==============================================================================
 /**
- * ‰»Î‚ðŒ@‚Á‚½‰ñ”	‰»Î‚ðŒ@‚Á‚½‰ñ”‚Å‚·Bƒ~ƒjƒQ[ƒ€‚ÅŽè‚É“ü‚ê‚½‰»Î‚Ì”‚Å‚·B
+ * åŒ–çŸ³ã‚’æŽ˜ã£ãŸå›žæ•°	åŒ–çŸ³ã‚’æŽ˜ã£ãŸå›žæ•°ã§ã™ã€‚ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã§æ‰‹ã«å…¥ã‚ŒãŸåŒ–çŸ³ã®æ•°ã§ã™ã€‚
  * @param   none
- * @retval  ƒ^ƒ}‚ðŒ@‚Á‚½‰ñ”
+ * @retval  ã‚¿ãƒžã‚’æŽ˜ã£ãŸå›žæ•°
  */
 //==============================================================================
 int SecretBaseRecordGetFossilNum(const SB_RECORD_DATA* pSBRecord)
@@ -2410,8 +2410,8 @@ int SecretBaseRecordGetFossilNum(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ‰»Î‚ðŒ@‚Á‚½‰ñ”	‰»Î‚ðŒ@‚Á‚½‰ñ”‚Å‚·Bƒ~ƒjƒQ[ƒ€‚ÅŽè‚É“ü‚ê‚½‰»Î‚Ì”‚Å‚·B
- * @param   add   ‘‰Á•ª
+ * åŒ–çŸ³ã‚’æŽ˜ã£ãŸå›žæ•°	åŒ–çŸ³ã‚’æŽ˜ã£ãŸå›žæ•°ã§ã™ã€‚ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã§æ‰‹ã«å…¥ã‚ŒãŸåŒ–çŸ³ã®æ•°ã§ã™ã€‚
+ * @param   add   å¢—åŠ åˆ†
  * @retval  none
  */
 //==============================================================================
@@ -2430,9 +2430,9 @@ void SecretBaseRecordSetFossilNum(SB_RECORD_DATA* pSBRecord, int add)
 
 //==============================================================================
 /**
- * •ó‚ðŒ@‚Á‚½‰ñ”	•ó‚ðŒ@‚Á‚½‰ñ”‚Å‚·Bƒ~ƒjƒQ[ƒ€‚ÅŽè‚É“ü‚ê‚½•ó‚Ì”‚Å‚·B
+ * å®ã‚’æŽ˜ã£ãŸå›žæ•°	å®ã‚’æŽ˜ã£ãŸå›žæ•°ã§ã™ã€‚ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã§æ‰‹ã«å…¥ã‚ŒãŸå®ã®æ•°ã§ã™ã€‚
  * @param   none
- * @retval  •ó‚ðŒ@‚Á‚½‰ñ”
+ * @retval  å®ã‚’æŽ˜ã£ãŸå›žæ•°
  */
 //==============================================================================
 
@@ -2443,8 +2443,8 @@ int SecretBaseRecordGetTreasureNum(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * •ó‚ðŒ@‚Á‚½‰ñ”	•ó‚ðŒ@‚Á‚½‰ñ”‚Å‚·Bƒ~ƒjƒQ[ƒ€‚ÅŽè‚É“ü‚ê‚½•ó‚Ì”‚Å‚·B
- * @param   add   ‘‰Á•ª
+ * å®ã‚’æŽ˜ã£ãŸå›žæ•°	å®ã‚’æŽ˜ã£ãŸå›žæ•°ã§ã™ã€‚ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã§æ‰‹ã«å…¥ã‚ŒãŸå®ã®æ•°ã§ã™ã€‚
+ * @param   add   å¢—åŠ åˆ†
  * @retval  none
  */
 //==============================================================================
@@ -2464,9 +2464,9 @@ void SecretBaseRecordSetTreasureNum(SB_RECORD_DATA* pSBRecord, int add)
 
 //==============================================================================
 /**
- * ƒgƒ‰ƒbƒv‚ð‚©‚¯‚½‰ñ”	‘ŠŽè‚ðƒgƒ‰ƒbƒv‚É‚©‚¯‚½‰ñ”‚Å‚·B
+ * ãƒˆãƒ©ãƒƒãƒ—ã‚’ã‹ã‘ãŸå›žæ•°	ç›¸æ‰‹ã‚’ãƒˆãƒ©ãƒƒãƒ—ã«ã‹ã‘ãŸå›žæ•°ã§ã™ã€‚
  * @param   none
- * @retval  ƒgƒ‰ƒbƒv‚ð‚©‚¯‚½‰ñ”
+ * @retval  ãƒˆãƒ©ãƒƒãƒ—ã‚’ã‹ã‘ãŸå›žæ•°
  */
 //==============================================================================
 
@@ -2477,7 +2477,7 @@ int SecretBaseRecordGetTrapConquerNum(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ƒgƒ‰ƒbƒv‚ð‚©‚¯‚½‰ñ”	‘ŠŽè‚ðƒgƒ‰ƒbƒv‚É‚©‚¯‚½‰ñ”‚Å‚·B
+ * ãƒˆãƒ©ãƒƒãƒ—ã‚’ã‹ã‘ãŸå›žæ•°	ç›¸æ‰‹ã‚’ãƒˆãƒ©ãƒƒãƒ—ã«ã‹ã‘ãŸå›žæ•°ã§ã™ã€‚
  * @param   none
  * @retval  none
  */
@@ -2495,9 +2495,9 @@ void SecretBaseRecordSetTrapConquerNum(SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ƒgƒ‰ƒbƒv‚É‚©‚©‚Á‚½‰ñ”	Ž©•ª‚ªƒgƒ‰ƒbƒv‚É‚©‚©‚Á‚½‰ñ”‚Å‚·B
+ * ãƒˆãƒ©ãƒƒãƒ—ã«ã‹ã‹ã£ãŸå›žæ•°	è‡ªåˆ†ãŒãƒˆãƒ©ãƒƒãƒ—ã«ã‹ã‹ã£ãŸå›žæ•°ã§ã™ã€‚
  * @param   none
- * @retval  ƒgƒ‰ƒbƒv‚É‚©‚©‚Á‚½‰ñ”
+ * @retval  ãƒˆãƒ©ãƒƒãƒ—ã«ã‹ã‹ã£ãŸå›žæ•°
  */
 //==============================================================================
 
@@ -2508,7 +2508,7 @@ int SecretBaseRecordGetTrapTumbleNum(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ƒgƒ‰ƒbƒv‚É‚©‚©‚Á‚½‰ñ”	Ž©•ª‚ªƒgƒ‰ƒbƒv‚É‚©‚©‚Á‚½‰ñ”‚Å‚·B
+ * ãƒˆãƒ©ãƒƒãƒ—ã«ã‹ã‹ã£ãŸå›žæ•°	è‡ªåˆ†ãŒãƒˆãƒ©ãƒƒãƒ—ã«ã‹ã‹ã£ãŸå›žæ•°ã§ã™ã€‚
  * @param   none
  * @retval  none
  */
@@ -2526,9 +2526,9 @@ void SecretBaseRecordSetTrapTumbleNum(SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * l‚ð•‚¯‚½‰ñ”	ƒgƒ‰ƒbƒv‚É‚©‚©‚Á‚Ä‚¢‚él‚ð•‚¯‚½‰ñ”‚Å‚·B
+ * äººã‚’åŠ©ã‘ãŸå›žæ•°	ãƒˆãƒ©ãƒƒãƒ—ã«ã‹ã‹ã£ã¦ã„ã‚‹äººã‚’åŠ©ã‘ãŸå›žæ•°ã§ã™ã€‚
  * @param   none
- * @retval  l‚ð•‚¯‚½‰ñ”
+ * @retval  äººã‚’åŠ©ã‘ãŸå›žæ•°
  */
 //==============================================================================
 
@@ -2539,7 +2539,7 @@ int SecretBaseRecordGetTrapRescueNum(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * l‚ð•‚¯‚½‰ñ”	ƒgƒ‰ƒbƒv‚É‚©‚©‚Á‚Ä‚¢‚él‚ð•‚¯‚½‰ñ”‚Å‚·B
+ * äººã‚’åŠ©ã‘ãŸå›žæ•°	ãƒˆãƒ©ãƒƒãƒ—ã«ã‹ã‹ã£ã¦ã„ã‚‹äººã‚’åŠ©ã‘ãŸå›žæ•°ã§ã™ã€‚
  * @param   none
  * @retval  none
  */
@@ -2557,9 +2557,9 @@ void SecretBaseRecordSetTrapRescueNum(SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * “¹‹ï‚ð‚à‚ç‚Á‚½‰ñ”	’N‚©‚É“¹‹ï‚ð‚à‚ç‚Á‚½‰ñ”‚Å‚·B“¯‚¶‚Ð‚Æ‚©‚ç‚à‚ç‚Á‚Ä‚àAƒJƒEƒ“ƒg‚µ‚Ü‚·B
+ * é“å…·ã‚’ã‚‚ã‚‰ã£ãŸå›žæ•°	èª°ã‹ã«é“å…·ã‚’ã‚‚ã‚‰ã£ãŸå›žæ•°ã§ã™ã€‚åŒã˜ã²ã¨ã‹ã‚‰ã‚‚ã‚‰ã£ã¦ã‚‚ã€ã‚«ã‚¦ãƒ³ãƒˆã—ã¾ã™ã€‚
  * @param   none
- * @retval  “¹‹ï‚ð‚à‚ç‚Á‚½‰ñ”
+ * @retval  é“å…·ã‚’ã‚‚ã‚‰ã£ãŸå›žæ•°
  */
 //==============================================================================
 
@@ -2570,7 +2570,7 @@ int SecretBaseRecordGetItemRecvNum(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * “¹‹ï‚ð‚à‚ç‚Á‚½‰ñ”	’N‚©‚É“¹‹ï‚ð‚à‚ç‚Á‚½‰ñ”‚Å‚·B“¯‚¶‚Ð‚Æ‚©‚ç‚à‚ç‚Á‚Ä‚àAƒJƒEƒ“ƒg‚µ‚Ü‚·B
+ * é“å…·ã‚’ã‚‚ã‚‰ã£ãŸå›žæ•°	èª°ã‹ã«é“å…·ã‚’ã‚‚ã‚‰ã£ãŸå›žæ•°ã§ã™ã€‚åŒã˜ã²ã¨ã‹ã‚‰ã‚‚ã‚‰ã£ã¦ã‚‚ã€ã‚«ã‚¦ãƒ³ãƒˆã—ã¾ã™ã€‚
  * @param   none
  * @retval  none
  */
@@ -2588,9 +2588,9 @@ void SecretBaseRecordSetItemRecvNum(SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * Šø‚ð‚Æ‚ç‚ê‚½‰ñ”	’N‚©‚Éƒnƒ^‚ð‚Æ‚ç‚ê‚½‰ñ”‚Å‚·B
+ * æ——ã‚’ã¨ã‚‰ã‚ŒãŸå›žæ•°	èª°ã‹ã«ãƒã‚¿ã‚’ã¨ã‚‰ã‚ŒãŸå›žæ•°ã§ã™ã€‚
  * @param   none
- * @retval  Šø‚ð‚Æ‚ç‚ê‚½‰ñ”
+ * @retval  æ——ã‚’ã¨ã‚‰ã‚ŒãŸå›žæ•°
  */
 //==============================================================================
 
@@ -2601,7 +2601,7 @@ int SecretBaseRecordGetFlagStealNum(const SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * Šø‚ð‚Æ‚ç‚ê‚½‰ñ”	’N‚©‚Éƒnƒ^‚ð‚Æ‚ç‚ê‚½‰ñ”‚Å‚·B
+ * æ——ã‚’ã¨ã‚‰ã‚ŒãŸå›žæ•°	èª°ã‹ã«ãƒã‚¿ã‚’ã¨ã‚‰ã‚ŒãŸå›žæ•°ã§ã™ã€‚
  * @param   none
  * @retval  none
  */
@@ -2619,9 +2619,9 @@ void SecretBaseRecordSetFlagStealNum(SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * Šø‚ðŽæ‚è•Ô‚µ‚½‰ñ”	ƒnƒ^‚ðŽæ‚è•Ô‚µ‚½‰ñ”‚Å‚·B
+ * æ——ã‚’å–ã‚Šè¿”ã—ãŸå›žæ•°	ãƒã‚¿ã‚’å–ã‚Šè¿”ã—ãŸå›žæ•°ã§ã™ã€‚
  * @param   none
- * @retval  Šø‚ð‚Æ‚ç‚ê‚½‰ñ”
+ * @retval  æ——ã‚’ã¨ã‚‰ã‚ŒãŸå›žæ•°
  */
 //==============================================================================
 
@@ -2642,9 +2642,9 @@ void SecretBaseRecordSetFlagReverseNum(SB_RECORD_DATA* pSBRecord)
 
 //==============================================================================
 /**
- * ˆø‚Á‰z‚µ‚µ‚½‰ñ”	ˆø‚Á‰z‚µ‚ð‚µ‚½‰ñ”‚Å‚·B
+ * å¼•ã£è¶Šã—ã—ãŸå›žæ•°	å¼•ã£è¶Šã—ã‚’ã—ãŸå›žæ•°ã§ã™ã€‚
  * @param   none
- * @retval  ˆø‚Á‰z‚µ‚µ‚½‰ñ”
+ * @retval  å¼•ã£è¶Šã—ã—ãŸå›žæ•°
  */
 //==============================================================================
 
@@ -2665,18 +2665,18 @@ void SecretBaseRecordSetRelocateNum(SB_RECORD_DATA* pSBRecord)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”é–§Šî’nˆÊ’u‚ðÝ’è‚·‚é
- * @param	pSec			”é–§Šî’nƒf[ƒ^
- * @param	x,z,dir			oŒû‚ÌêŠ
+ * @brief	ç§˜å¯†åŸºåœ°ä½ç½®ã‚’è¨­å®šã™ã‚‹
+ * @param	pSec			ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿
+ * @param	x,z,dir			å‡ºå£ã®å ´æ‰€
  * @return	none
  */
 //---------------------------------------------------------------------------
 void SecretBaseSetSecretBasePosition(SECRETBASEDATA* pSec,int x,int z,int dir)
 {
-    pSec->xpos = x;         // ƒhƒA‚ÌˆÊ’u
+    pSec->xpos = x;         // ãƒ‰ã‚¢ã®ä½ç½®
     pSec->zpos = z;
-    pSec->dir = dir;        // ŠO‚Éo‚Ä‚éƒhƒA‚Ì•ûŒü
-    pSec->bMake = TRUE;     //  ì‚Á‚½‚©‚Ç‚¤‚©
+    pSec->dir = dir;        // å¤–ã«å‡ºã¦ã‚‹ãƒ‰ã‚¢ã®æ–¹å‘
+    pSec->bMake = TRUE;     //  ä½œã£ãŸã‹ã©ã†ã‹
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_UNDERGROUNDDATA)
 	SVLD_SetCrc(GMDATA_ID_UNDERGROUNDDATA);
 #endif //CRC_LOADCHECK
@@ -2684,22 +2684,22 @@ void SecretBaseSetSecretBasePosition(SECRETBASEDATA* pSec,int x,int z,int dir)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”é–§Šî’nˆÊ’uX‚ð“¾‚é‚·‚é
- * @param	pSec			”é–§Šî’nƒf[ƒ^
- * @param	x,z,dir			oŒû‚ÌêŠ
+ * @brief	ç§˜å¯†åŸºåœ°ä½ç½®Xã‚’å¾—ã‚‹ã™ã‚‹
+ * @param	pSec			ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿
+ * @param	x,z,dir			å‡ºå£ã®å ´æ‰€
  * @return	none
  */
 //---------------------------------------------------------------------------
 int SecretBaseGetSecretBasePositionX(const SECRETBASEDATA* pSec)
 {
-    return pSec->xpos;         // ƒhƒA‚ÌˆÊ’u
+    return pSec->xpos;         // ãƒ‰ã‚¢ã®ä½ç½®
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”é–§Šî’nˆÊ’uZ‚ð“¾‚é‚·‚é
- * @param	pSec			”é–§Šî’nƒf[ƒ^
- * @return	z			oŒû‚ÌêŠ
+ * @brief	ç§˜å¯†åŸºåœ°ä½ç½®Zã‚’å¾—ã‚‹ã™ã‚‹
+ * @param	pSec			ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿
+ * @return	z			å‡ºå£ã®å ´æ‰€
  */
 //---------------------------------------------------------------------------
 int SecretBaseGetSecretBasePositionZ(const SECRETBASEDATA* pSec)
@@ -2709,9 +2709,9 @@ int SecretBaseGetSecretBasePositionZ(const SECRETBASEDATA* pSec)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”é–§Šî’nˆÊ’u•ûŒü‚ð“¾‚é‚·‚é
- * @param	pSec			”é–§Šî’nƒf[ƒ^
- * @return	dir			oŒû‚ÌêŠ
+ * @brief	ç§˜å¯†åŸºåœ°ä½ç½®æ–¹å‘ã‚’å¾—ã‚‹ã™ã‚‹
+ * @param	pSec			ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿
+ * @return	dir			å‡ºå£ã®å ´æ‰€
  */
 //---------------------------------------------------------------------------
 int SecretBaseGetSecretBasePositionDir(const SECRETBASEDATA* pSec)
@@ -2721,21 +2721,21 @@ int SecretBaseGetSecretBasePositionDir(const SECRETBASEDATA* pSec)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”é–§Šî’nì‚Á‚½‚±‚Æ‚ª‚ ‚é‚©‚Ç‚¤‚©
- * @param	pSec			”é–§Šî’nƒf[ƒ^
- * @return	ì‚Á‚Ä‚¢‚½‚çTRUE
+ * @brief	ç§˜å¯†åŸºåœ°ä½œã£ãŸã“ã¨ãŒã‚ã‚‹ã‹ã©ã†ã‹
+ * @param	pSec			ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿
+ * @return	ä½œã£ã¦ã„ãŸã‚‰TRUE
  */
 //---------------------------------------------------------------------------
 BOOL SecretBaseIsSecretBaseMake(const SECRETBASEDATA* pSec)
 {
-    return pSec->bMake;     //  ì‚Á‚½‚©‚Ç‚¤‚©
+    return pSec->bMake;     //  ä½œã£ãŸã‹ã©ã†ã‹
 }
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”é–§Šî’nƒf[ƒ^‚ðŽæ‚èo‚·
- * @param	sv			ƒZ[ƒuƒf[ƒ^•ÛŽƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	SECRETBASEDATA	”é–§Šî’nƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @brief	ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã™
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	SECRETBASEDATA	ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 SECRETBASEDATA* SaveData_GetSecretBaseData(SAVEDATA * sv)
@@ -2750,9 +2750,9 @@ SECRETBASEDATA* SaveData_GetSecretBaseData(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”é–§Šî’nƒŒƒR[ƒhƒf[ƒ^‚ðŽæ‚èo‚·
- * @param	sv			ƒZ[ƒuƒf[ƒ^•ÛŽƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	SB_RECORD_DATA	”é–§Šî’nƒŒƒR[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @brief	ç§˜å¯†åŸºåœ°ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã™
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	SB_RECORD_DATA	ç§˜å¯†åŸºåœ°ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 SB_RECORD_DATA* SaveData_GetSecretBaseRecord(SAVEDATA * sv)
@@ -2767,9 +2767,9 @@ SB_RECORD_DATA* SaveData_GetSecretBaseRecord(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	”é–§Šî’nƒŒƒR[ƒhƒf[ƒ^‚ðŽæ‚èo‚·
- * @param	pSec			”é–§Šî’nƒf[ƒ^
- * @return	SB_RECORD_DATA	”é–§Šî’nƒŒƒR[ƒhƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @brief	ç§˜å¯†åŸºåœ°ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã™
+ * @param	pSec			ç§˜å¯†åŸºåœ°ãƒ‡ãƒ¼ã‚¿
+ * @return	SB_RECORD_DATA	ç§˜å¯†åŸºåœ°ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 SB_RECORD_DATA* SecretBaseGetSecretBaseRecord(SECRETBASEDATA* pSec)
@@ -2782,9 +2782,9 @@ SB_RECORD_DATA* SecretBaseGetSecretBaseRecord(SECRETBASEDATA* pSec)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	’n‰ºƒAƒCƒeƒ€ƒf[ƒ^‚ðƒZ[ƒu‚©‚çŽæ‚èo‚·
- * @param	sv			ƒZ[ƒuƒf[ƒ^•ÛŽƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	UNDERGROUNDDATA	’n‰ºƒAƒCƒeƒ€ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @brief	åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ã‹ã‚‰å–ã‚Šå‡ºã™
+ * @param	sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿æŒãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	UNDERGROUNDDATA	åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 UNDERGROUNDDATA* SaveData_GetUnderGroundData(SAVEDATA * sv)
@@ -2802,9 +2802,9 @@ UNDERGROUNDDATA* SaveData_GetUnderGroundData(SAVEDATA * sv)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒO—pF’n‰º•ó•¨‚ð‚©‚Î‚ñ‚É
- * @param	pSBData	      UNDERGROUNDDATAƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	type     ’n‰ºƒAƒCƒeƒ€ƒ^ƒCƒv
+ * @brief	ãƒ‡ãƒãƒƒã‚°ç”¨ï¼šåœ°ä¸‹å®ç‰©ã‚’ã‹ã°ã‚“ã«
+ * @param	pSBData	      UNDERGROUNDDATAãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	type     åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ã‚¿ã‚¤ãƒ—
  */
 //----------------------------------------------------------
 void Debug_UnderGroundData_AddTreasure(UNDERGROUNDDATA* pUGData, int type)
@@ -2846,10 +2846,10 @@ static SB_GOODS* _getFreeGoodsBuff(SECRETBASEDATA* pSBData)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒfƒoƒbƒO—pFƒOƒbƒYÝ’u  (ƒpƒ\ƒRƒ“‚Ö‚à“o˜^‚µ‚Ü‚·)
- * @param	pSBData	      SECRETBASEDATAƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	name	–¼‘O•¶Žš—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	sex		«•ÊŽw’è
+ * @brief	ãƒ‡ãƒãƒƒã‚°ç”¨ï¼šã‚°ãƒƒã‚ºè¨­ç½®  (ãƒ‘ã‚½ã‚³ãƒ³ã¸ã‚‚ç™»éŒ²ã—ã¾ã™)
+ * @param	pSBData	      SECRETBASEDATAãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	name	åå‰æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sex		æ€§åˆ¥æŒ‡å®š
  */
 //----------------------------------------------------------
 void Debug_SecretBaseData_AddGoods(SECRETBASEDATA* pSBData, int goodsType, int x, int z)
@@ -2861,7 +2861,7 @@ void Debug_SecretBaseData_AddGoods(SECRETBASEDATA* pSBData, int goodsType, int x
             pLock->z = z;
         }
     }
-    else if(goodsType < GOODS_BIG_ROCK){  // ƒpƒ\ƒRƒ“‚ÍŒÅ’èˆÊ’u
+    else if(goodsType < GOODS_BIG_ROCK){  // ãƒ‘ã‚½ã‚³ãƒ³ã¯å›ºå®šä½ç½®
     }
     else{
         SB_GOODS* pGoods = _getFreeGoodsBuff(pSBData);

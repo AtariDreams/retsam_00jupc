@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_world_text_data.h
- *	@brief		}ŠÓ¢ŠEƒeƒLƒXƒgƒf[ƒ^@‚ÆƒQ[ƒ€“à‘ƒR[ƒh‚ðƒŠƒ“ƒN‚³‚¹‚éƒf[ƒ^
+ *	@brief		å›³é‘‘ä¸–ç•Œãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã€€ã¨ã‚²ãƒ¼ãƒ å†…å›½ã‚³ãƒ¼ãƒ‰ã‚’ãƒªãƒ³ã‚¯ã•ã›ã‚‹ãƒ‡ãƒ¼ã‚¿
  *	@author		tomoya takahashi	
  *	@data		2006.03.01
  *
@@ -20,32 +20,32 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ŠO‘ŒêƒeƒLƒXƒg—p‘ƒR[ƒh
+//	å¤–å›½èªžãƒ†ã‚­ã‚¹ãƒˆç”¨å›½ã‚³ãƒ¼ãƒ‰
 //=====================================
 enum{
-	ZKN_WORLD_TEXT_JAPAN,		// “ú–{
-	ZKN_WORLD_TEXT_E,			// ƒAƒƒŠƒJ
-	ZKN_WORLD_TEXT_FRA,			// ƒtƒ‰ƒ“ƒX
-	ZKN_WORLD_TEXT_GER,			// ƒhƒCƒc
-	ZKN_WORLD_TEXT_ITA,			// ƒCƒ^ƒŠƒA
-	ZKN_WORLD_TEXT_SPA,			// ƒXƒyƒCƒ“
+	ZKN_WORLD_TEXT_JAPAN,		// æ—¥æœ¬
+	ZKN_WORLD_TEXT_E,			// ã‚¢ãƒ¡ãƒªã‚«
+	ZKN_WORLD_TEXT_FRA,			// ãƒ•ãƒ©ãƒ³ã‚¹
+	ZKN_WORLD_TEXT_GER,			// ãƒ‰ã‚¤ãƒ„
+	ZKN_WORLD_TEXT_ITA,			// ã‚¤ã‚¿ãƒªã‚¢
+	ZKN_WORLD_TEXT_SPA,			// ã‚¹ãƒšã‚¤ãƒ³
 	ZKN_WORLD_TEXT_NUM
 };
 
-#define ZKN_WORLD_TEXT_OUTWORLD_NUM	( ZKN_WORLD_TEXT_NUM-1  )	// ŠO‘€–Úƒf[ƒ^‚Ì”
+#define ZKN_WORLD_TEXT_OUTWORLD_NUM	( ZKN_WORLD_TEXT_NUM-1  )	// å¤–å›½é …ç›®ãƒ‡ãƒ¼ã‚¿ã®æ•°
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 

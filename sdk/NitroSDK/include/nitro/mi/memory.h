@@ -27,7 +27,7 @@
   add MI_StrNCpy(), MI_StrCpy()
 
   Revision 1.11  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.10  2005/02/28 05:26:02  yosizaki
   do-indent.
@@ -57,7 +57,7 @@
   Add MI_CopyxB, MI_ZeroxB.
 
   Revision 1.1  2004/02/10 01:20:25  yada
-  UTL_ ‚©‚ç‚ÌˆÚs
+  UTL_ ã‹ã‚‰ã®ç§»è¡Œ
 
 
   $NoKeywords: $

@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_001.s
- * @brief	�͂���
+ * @brief	はたく
  * @author	goto
- * @date	2005.07.13(��)
+ * @date	2005.07.13(水)
  *
- * �����ɐF�X�ȉ�����������Ă��悢
+ * ここに色々な解説等を書いてもよい
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	���͂���
+//	■はたく
 //
 //
 // =============================================================================
@@ -35,7 +35,7 @@ WEST_Hataku:
 	
 	SE_L				SEQ_SE_DP_W459
 
-	///< ���΂炭������w�i���炭
+	///< しばらくしたら背景くらく
 	WAIT			20
 	
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 0, 12, WE_PAL_BLACK,
@@ -44,17 +44,17 @@ WEST_Hataku:
 	SE_L				SEQ_SE_DP_W060C
 	WAIT			20
 
-	///< ���̐F�ɖ߂���
+	///< 元の色に戻して
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, -2, 12, 0, WE_PAL_BLACK,
 	WAIT_FLAG
 		
-	///< ��C�ɔ���
+	///< 一気に白く
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, -2, 0, 15, WE_PAL_WHITE,
 	WAIT_FLAG
 
 	SE_R			SEQ_SE_DP_W053
 
-	///< �ڂ���[�[�[�[�[��
+	///< ぼぎゃーーーーーん
 	ADD_PARTICLE		0, W_459_459_BOMB_LINE01,	EMTFUNC_DEFENCE_POS
 	ADD_PARTICLE		0, W_459_459_BOMB_LINE02,	EMTFUNC_DEFENCE_POS
 	

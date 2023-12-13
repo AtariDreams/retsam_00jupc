@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>OS_InitMessageQueue</TITLE>
@@ -9,46 +9,46 @@
 </HEAD>
 <BODY>
 <H1 align="left">OS_InitMessageQueue</H1>
-<H2>\•¶</H2>
+<H2>æ§‹æ–‡</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
   <PRE><CODE>void OS_InitMessageQueue(
      OSMessageQueue*   mq,
      OSMessage*        msgArray,
-     s32               msgCount@);
+     s32               msgCountã€€);
   </CODE></PRE>
 </DL>
-<H2>ˆø”</H2>
+<H2>å¼•æ•°</H2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>mq</STRONG></EM></TD>
-      <TD width="87%">ƒƒbƒZ[ƒWƒLƒ…[‚Ö‚Ìƒ|ƒCƒ“ƒ^</TD>
+      <TD width="87%">ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚­ãƒ¥ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>msgArray</STRONG></EM></TD>
-      <TD width="87%">ƒƒbƒZ[ƒW‚ğ•Û‚·‚é”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^</TD>
+      <TD width="87%">ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä¿æŒã™ã‚‹é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿</TD>
     </TR>
     <TR>
       <TD><EM><STRONG>msgCount</STRONG></EM></TD>
-      <TD>”z—ñ‚ª•Û‚Å‚«‚éƒƒbƒZ[ƒW”
+      <TD>é…åˆ—ãŒä¿æŒã§ãã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ•°
       </TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>•Ô‚è’l</H2>
-<P>‚È‚µB</P>
-<H2>à–¾</H2>
-<P>ƒƒbƒZ[ƒWƒLƒ…[‚Ì\‘¢‘Ì<FONT face="Courier New"><EM><STRONG>mq</STRONG></EM></FONT> ‚ğ‰Šú‰»‚µ‚Ü‚·B<BR>
-ˆø”<FONT face="Courier New"><EM><STRONG>msgArray</STRONG></EM></FONT> 
-‚ÍA‚±‚ÌƒLƒ…[‚Â‚¢‚ÄƒƒbƒZ[ƒW‚ğ•Û‚·‚é”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ÅAˆø”<FONT 
-face="Courier New"><EM><STRONG>msgCount</STRONG></EM></FONT> ‚ÍAƒLƒ…[‚ª•Û‚Å‚«‚éƒƒbƒZ[ƒW” (‚·‚È‚í‚¿A”z—ñ‚ÌƒTƒCƒY) ‚Å‚·B</P>
-<H2>QÆ</H2>
+<H2>è¿”ã‚Šå€¤</H2>
+<P>ãªã—ã€‚</P>
+<H2>èª¬æ˜</H2>
+<P>ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚­ãƒ¥ãƒ¼ã®æ§‹é€ ä½“<FONT face="Courier New"><EM><STRONG>mq</STRONG></EM></FONT> ã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚<BR>
+å¼•æ•°<FONT face="Courier New"><EM><STRONG>msgArray</STRONG></EM></FONT> 
+ã¯ã€ã“ã®ã‚­ãƒ¥ãƒ¼ã¤ã„ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä¿æŒã™ã‚‹é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã§ã€å¼•æ•°<FONT 
+face="Courier New"><EM><STRONG>msgCount</STRONG></EM></FONT> ã¯ã€ã‚­ãƒ¥ãƒ¼ãŒä¿æŒã§ãã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ•° (ã™ãªã‚ã¡ã€é…åˆ—ã®ã‚µã‚¤ã‚º) ã§ã™ã€‚</P>
+<H2>å‚ç…§</H2>
 <P><CODE><A href="OS_JamMessage.html">OS_JamMessage</A>, <A href="OS_SendMessage.html">OS_SendMessage</A>, <A href="OS_ReceiveMessage.html">OS_ReceiveMessage</A>, <A href="OS_ReadMessage.html">OS_ReadMessage</A><BR>
 </CODE></P>
-<H2>—š—ğ</H2>
-<P>2004/03/12 QÆ‚ÉOS_ReadMessage’Ç‰Á<BR>
-2003/12/05 ‰”Å</P>
+<H2>å±¥æ­´</H2>
+<P>2004/03/12 å‚ç…§ã«OS_ReadMessageè¿½åŠ <BR>
+2003/12/05 åˆç‰ˆ</P>
 </BODY>
 </HTML>

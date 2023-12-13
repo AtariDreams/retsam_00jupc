@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_213.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			213@ƒtƒB[ƒ‹ƒhƒ^ƒCƒv‚Æ“¯‚¶ƒ^ƒCƒv‚É‚È‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			213ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¿ã‚¤ãƒ—ã¨åŒã˜ã‚¿ã‚¤ãƒ—ã«ãªã‚‹
  *
  *@author	HisashiSogabe
  *@data		2006.03.02

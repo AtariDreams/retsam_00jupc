@@ -31,7 +31,7 @@
   do-indent
 
   Revision 1.17  2005/03/04 11:09:27  yasu
-  __declspec(weak) ‚ğ SDK_WEAK_SYMBOL ‚É’u‚«Š·‚¦
+  __declspec(weak) ã‚’ SDK_WEAK_SYMBOL ã«ç½®ãæ›ãˆ
 
   Revision 1.16  2005/02/28 05:26:28  yosizaki
   do-indent.

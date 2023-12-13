@@ -1,6 +1,6 @@
 //====================================================================
 //						r205a
-//					ƒtƒB[ƒ‹ƒhEƒ[ƒh205a
+//					ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ»ãƒ­ãƒ¼ãƒ‰205a
 //====================================================================
 	.text
 
@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_r205aevc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r205a_flag_change
 _EVENT_DATA		ev_r205a_boy1
@@ -25,7 +25,7 @@ _EVENT_DATA		pos_r205a_ginga
 _EVENT_DATA		ev_r205a_sign1
 _EVENT_DATA		ev_r205a_sign2
 _EVENT_DATA		ev_r205a_sign3
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
@@ -36,19 +36,19 @@ ev_r205a_flag_change:
 
 
 /********************************************************************/
-//						ƒMƒ“ƒK’c‚ÌƒXƒgƒbƒp[
+//						ã‚®ãƒ³ã‚¬å›£ã®ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
 /********************************************************************/
 ev_r205a_gingam:
 	_TALK_OBJ_START
 
-	//˜b‚µ‚Ä‚¢‚é•û‚ð“®‚©‚·
+	//è©±ã—ã¦ã„ã‚‹æ–¹ã‚’å‹•ã‹ã™
 	_OBJ_ANIME		R205A_GINGAM_A,anm_r205a_gingam_a
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_r205a_gingam_a_01
 	_TALK_CLOSE
 
-	//˜b‚µ‚Ä‚¢‚é•û‚ð“®‚©‚·
+	//è©±ã—ã¦ã„ã‚‹æ–¹ã‚’å‹•ã‹ã™
 	_OBJ_ANIME		R205A_GINGAM_B,anm_r205a_gingam_b
 	_OBJ_ANIME_WAIT
 
@@ -62,7 +62,7 @@ ev_r205a_gingam:
 	_END
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒK’c	˜b‚·
+//ã‚®ãƒ³ã‚¬å›£	è©±ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r205a_gingam_a
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
@@ -74,26 +74,26 @@ _ANIME_LABEL	anm_r205a_gingam_b
 
 
 /********************************************************************/
-//						ƒMƒ“ƒK’c‚ÌƒXƒgƒbƒp[(POS)
+//						ã‚®ãƒ³ã‚¬å›£ã®ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼(POS)
 /********************************************************************/
 pos_r205a_ginga:
 	_EVENT_START
 
-	//˜b‚µ‚Ä‚¢‚é•û‚ð“®‚©‚·
+	//è©±ã—ã¦ã„ã‚‹æ–¹ã‚’å‹•ã‹ã™
 	_OBJ_ANIME		R205A_GINGAM_A,anm_r205a_gingam_c
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_r205a_gingam_a_01
 	_TALK_CLOSE
 
-	//˜b‚µ‚Ä‚¢‚é•û‚ð“®‚©‚·
+	//è©±ã—ã¦ã„ã‚‹æ–¹ã‚’å‹•ã‹ã™
 	_OBJ_ANIME		R205A_GINGAM_B,anm_r205a_gingam_d
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_r205a_gingam_b_01
 	_TALK_CLOSE
 
-	//ŽålŒö‚ð‰Ÿ‚µo‚·
+	//ä¸»äººå…¬ã‚’æŠ¼ã—å‡ºã™
 	_OBJ_ANIME		R205A_GINGAM_A,anm_r205a_gingam_e
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r205a_player_e
 	_OBJ_ANIME_WAIT
@@ -106,13 +106,13 @@ pos_r205a_ginga:
 	_EVENT_END
 	_END
 
-//‹¤’Êƒtƒ‰ƒOƒZƒbƒg
+//å…±é€šãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 r205a_ginga_flag_set:
-	_FLAG_SET		FE_R205A_GINGAM_TALK		//‰ï˜b‚µ‚½
+	_FLAG_SET		FE_R205A_GINGAM_TALK		//ä¼šè©±ã—ãŸ
 	_RET
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒK’c	˜b‚·2
+//ã‚®ãƒ³ã‚¬å›£	è©±ã™2
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r205a_gingam_c
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
@@ -123,7 +123,7 @@ _ANIME_LABEL	anm_r205a_gingam_d
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒK’c	‰Ÿ‚µo‚·
+//ã‚®ãƒ³ã‚¬å›£	æŠ¼ã—å‡ºã™
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r205a_gingam_e
 	_ANIME_DATA	AC_WALK_R_4F,1
@@ -134,14 +134,14 @@ _ANIME_LABEL	anm_r205a_gingam_e
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒMƒ“ƒK’c	Œ³‚ÌŒü‚«‚É‚·‚é
+//ã‚®ãƒ³ã‚¬å›£	å…ƒã®å‘ãã«ã™ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r205a_gingam_100
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	‰Ÿ‚µo‚³‚ê‚é
+//ä¸»äººå…¬	æŠ¼ã—å‡ºã•ã‚Œã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r205a_player_e
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -150,7 +150,7 @@ _ANIME_LABEL	anm_r205a_player_e
 
 
 /********************************************************************/
-/*								­”N 								*/
+/*								å°‘å¹´ 								*/
 /********************************************************************/
 ev_r205a_boy1:
 	_EASY_OBJ_MSG	msg_r205a_boy1_01
@@ -158,7 +158,7 @@ ev_r205a_boy1:
 
 
 /********************************************************************/
-/*								­”N 								*/
+/*								å°‘å¹´ 								*/
 /********************************************************************/
 ev_r205a_boy2:
 	_EASY_OBJ_MSG	msg_r205a_boy2_01
@@ -166,12 +166,12 @@ ev_r205a_boy2:
 
 
 /********************************************************************/
-/*								­— 								*/
+/*								å°‘å¥³ 								*/
 /********************************************************************/
 ev_r205a_babygirl1:
 	_TALK_OBJ_START
 
-	//‰ï˜b‚µ‚Ä‚¢‚½‚ç
+	//ä¼šè©±ã—ã¦ã„ãŸã‚‰
 	_IF_FLAGON_JUMP	FE_R205A_BABYGIRL1_TALK,ev_r205a_babygirl1_02
 
 	_CALL			ev_r205a_babygirl1_flag_set
@@ -182,7 +182,7 @@ ev_r205a_babygirl1:
 	_TALK_OBJ_END
 	_END
 
-//‰ï˜b‚µ‚Ä‚¢‚½‚ç
+//ä¼šè©±ã—ã¦ã„ãŸã‚‰
 ev_r205a_babygirl1_02:
 	_TALKMSG		msg_r205a_babygirl1_02
 	_LAST_KEYWAIT
@@ -190,16 +190,16 @@ ev_r205a_babygirl1_02:
 	_TALK_OBJ_END
 	_END
 
-//ƒtƒ‰ƒOƒZƒbƒg
+//ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 ev_r205a_babygirl1_flag_set:
-	_FLAG_SET		FV_T03_GINGAM				//T03‚ÌƒMƒ“ƒK’c‚ðÁ‚·
-	_FLAG_SET		FE_R205A_BABYGIRL1_TALK		//‰ï˜b‚µ‚½
+	_FLAG_SET		FV_T03_GINGAM				//T03ã®ã‚®ãƒ³ã‚¬å›£ã‚’æ¶ˆã™
+	_FLAG_SET		FE_R205A_BABYGIRL1_TALK		//ä¼šè©±ã—ãŸ
 	_LDVAL			WK_SCENE_R205A,1
 	_RET
 
 
 /********************************************************************/
-/*							­—(POS)								*/
+/*							å°‘å¥³(POS)								*/
 /********************************************************************/
 #define POS_R205A_BABYGIRL_Z1	(659)
 #define POS_R205A_BABYGIRL_Z2	(660)
@@ -210,7 +210,7 @@ ev_r205a_babygirl1_flag_set:
 pos_r205a_babygirl:
 	_EVENT_START
 
-	//ŽålŒö‚ÌˆÊ’uî•ñŽæ“¾
+	//ä¸»äººå…¬ã®ä½ç½®æƒ…å ±å–å¾—
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,POS_R205A_BABYGIRL_Z1,pos_r205a_babygirl_z01
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,POS_R205A_BABYGIRL_Z2,pos_r205a_babygirl_z02
@@ -220,7 +220,7 @@ pos_r205a_babygirl:
 	_END
 
 //--------------------------------------------------------------------
-//­—@‹ß‚Ã‚¢‚Ä‚­‚é
+//å°‘å¥³ã€€è¿‘ã¥ã„ã¦ãã‚‹
 //--------------------------------------------------------------------
 pos_r205a_babygirl_z01:
 	_OBJ_ANIME		R205A_BABYGIRL1,anm_r205a_babygirl1_01
@@ -257,7 +257,7 @@ pos_r205a_babygirl_z05:
 	_OBJ_ANIME_WAIT
 	_JUMP			pos_r205a_babygirl_common
 
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 pos_r205a_babygirl_common:
 	_CALL			ev_r205a_babygirl1_flag_set
 
@@ -268,7 +268,7 @@ pos_r205a_babygirl_common:
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	U‚èŒü‚­
+//ä¸»äººå…¬	æŒ¯ã‚Šå‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r205a_player_01
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
@@ -279,7 +279,7 @@ _ANIME_LABEL	anm_r205a_player_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//­—	ŽålŒö‚É‹ß‚Ã‚«
+//å°‘å¥³	ä¸»äººå…¬ã«è¿‘ã¥ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r205a_babygirl1_01
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
@@ -309,7 +309,7 @@ _ANIME_LABEL	anm_r205a_babygirl1_05
 
 
 /********************************************************************/
-/*							“¹ŠÅ”Â									*/
+/*							é“çœ‹æ¿									*/
 /********************************************************************/
 ev_r205a_sign1:
 	_EASY_BOARD_MSG	msg_r205a_sign1_01,BOARD_TYPE_ROAD,0
@@ -317,7 +317,7 @@ ev_r205a_sign1:
 
 
 /********************************************************************/
-/*							“¹ŠÅ”Â									*/
+/*							é“çœ‹æ¿									*/
 /********************************************************************/
 ev_r205a_sign2:
 	_EASY_BOARD_MSG	msg_r205a_sign2_01,BOARD_TYPE_ROAD,0
@@ -325,7 +325,7 @@ ev_r205a_sign2:
 
 
 /********************************************************************/
-/*							ŒfŽ¦”Â									*/
+/*							æŽ²ç¤ºæ¿									*/
 /********************************************************************/
 ev_r205a_sign3:
 	_EASY_INFOBOARD_MSG	msg_r205a_sign3_01,BOARD_TYPE_INFO,0

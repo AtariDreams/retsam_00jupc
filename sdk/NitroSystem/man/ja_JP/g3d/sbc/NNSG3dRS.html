@@ -1,22 +1,22 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
-	<TITLE>NNSG3dRS�\���̂ƃA�N�Z�T</TITLE>
+	<TITLE>NNSG3dRS構造体とアクセサ</TITLE>
 	<LINK rel="stylesheet" href="../../css/nitro.css"   type="text/css">
 	<LINK rel="stylesheet" href="../../css/apilist.css" type="text/css">
 </HEAD>
 
 <BODY>
 
-<h1 align="left">NNSG3dRS�\���̂ƃA�N�Z�T</h1>
-<H2>����</H2>
-<P><CODE>NNSG3dRS</CODE>�\���̂́A�����_�����O���̏�Ԃ�ێ����邽�߂̍\���̂ł��B���̍\���̂́A�����_�����O��A�j���[�V�����̌v�Z�ɂ����ĎQ�Ƃ��ꂽ��ύX���ꂽ�肷��A������}�V���X�e�[�g�ɑ�������f�[�^��ێ����邽�߂̃f�[�^�\���ł��B���̍\���̂́A�ʏ�<CODE>NNS_G3dDraw</CODE>�֐������ŃX�^�b�N�̈�(DTCM)�Ɋm�ۂ���ASBC���߂���������֐���R�[���o�b�N�֐��Ȃǂ̎��s�̍ۂɂ́A��P�����Ƃ��ă|�C���^���n����Ă��܂��B�܂��A<CODE>NNS_G3dDraw</CODE>�֐��̎��s���ɂ́A�O���[�o���ϐ���<CODE>NNS_G3dRS</CODE>�ɂ��|�C���^���i�[����Ă��܂��B<BR>
+<h1 align="left">NNSG3dRS構造体とアクセサ</h1>
+<H2>説明</H2>
+<P><CODE>NNSG3dRS</CODE>構造体は、レンダリング中の状態を保持するための構造体です。この構造体は、レンダリングやアニメーションの計算において参照されたり変更されたりする、いわゆるマシンステートに相当するデータを保持するためのデータ構造です。この構造体は、通常<CODE>NNS_G3dDraw</CODE>関数内部でスタック領域(DTCM)に確保され、SBC命令を処理する関数やコールバック関数などの実行の際には、第１引数としてポインタが渡されています。また、<CODE>NNS_G3dDraw</CODE>関数の実行中には、グローバル変数の<CODE>NNS_G3dRS</CODE>にもポインタが格納されています。<BR>
 <BR>
-�ʏ�́A���̍\���̂ɂ��Ă̒m���͂Ȃ��Ƃ����͂Ȃ��̂ł����A�R�[���o�b�N�ŕ`�撆�̓�����ׂ����J�X�^�}�C�Y�������ꍇ�ɂ́A���̍\���̂��ێ�����f�[�^���A�Q�ƁE���ς���K�v�������Ă��܂��B�����ł��̍��ł́A<CODE>NNS_G3dRS</CODE>�\���̂̃f�[�^�����o�ւ̃A�N�Z�T�ɂ��Đ����������܂��B</P>
-<H2>�A�N�Z�T�֐�</H2>
+通常は、この構造体についての知識はなくとも問題はないのですが、コールバックで描画中の動作を細かくカスタマイズしたい場合には、この構造体が保持するデータを、参照・改変する必要が生じてきます。そこでこの項では、<CODE>NNS_G3dRS</CODE>構造体のデータメンバへのアクセサについて説明いたします。</P>
+<H2>アクセサ関数</H2>
 <P><A name="NNS_G3dRSSetCallBack"></A></P>
 <TABLE border="1">
   <TBODY>
@@ -26,7 +26,7 @@
       cmd, NNSG3dSbcCallBackTiming timing);</CODE></TD>
     </TR>
     <TR>
-      <TD>SBC����cmd�ɑ΂��ăR�[���o�b�N��ݒ肵�܂��B<CODE>�����ɂ��Ă�<A href="../kernel/NNS_G3dRenderObjSetCallBack.html"><CODE>NNS_G3dRenderObjSetCallBack</CODE></A>�֐����Q�Ƃ��Ă��������B �R�[���o�b�N��cmd�P�ɂ��P�L���ƂȂ�܂��B����cmd�ɑ΂��Ď��s���ꂽ�ꍇ�͐ݒ肪�㏑������܂��B</CODE>�R�[���o�b�N�𕡐��ݒ肵�����ꍇ�́A<CODE><A href="../kernel/NNS_G3dRenderObjSetCallBack.html">NNS_G3dRenderObjSetCallBack</A>�֐��𕡐���Ăяo���̂ł͂Ȃ�������̊֐����g�p���Ă��������B</CODE></TD>
+      <TD>SBC命令cmdに対してコールバックを設定します。<CODE>引数については<A href="../kernel/NNS_G3dRenderObjSetCallBack.html"><CODE>NNS_G3dRenderObjSetCallBack</CODE></A>関数を参照してください。 コールバックはcmd１つにつき１つ有効となります。同じcmdに対して実行された場合は設定が上書きされます。</CODE>コールバックを複数設定したい場合は、<CODE><A href="../kernel/NNS_G3dRenderObjSetCallBack.html">NNS_G3dRenderObjSetCallBack</A>関数を複数回呼び出すのではなくこちらの関数を使用してください。</CODE></TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -38,7 +38,7 @@
       void NNS_G3dRSResetCallBack(NNSG3dRS* rs, u8 cmd);</CODE></TD>
     </TR>
     <TR>
-      <TD>SBC����cmd�ɑ΂��Đݒ肳��Ă���R�[���o�b�N�𖳌��ɂ��܂��B</TD>
+      <TD>SBC命令cmdに対して設定されているコールバックを無効にします。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -50,7 +50,7 @@
       NNSG3dRenderObj* NNS_G3dRSGetRenderObj(NNSG3dRS* rs);</CODE></TD>
     </TR>
     <TR>
-      <TD><CODE>NNSG3dRenderObj</CODE>�\���̂ւ̃|�C���^���擾���܂��B</TD>
+      <TD><CODE>NNSG3dRenderObj</CODE>構造体へのポインタを取得します。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -62,8 +62,8 @@
       NNSG3dMatAnmResult* NNS_G3dRSGetMatAnmResult(NNSG3dRS* rs);</CODE></TD>
     </TR>
     <TR>
-      <TD><CODE>NNSG3dMatAnmResult</CODE>�\���̂ւ̃|�C���^���擾���܂��B<CODE>NNS_G3D_SBC_MAT</CODE>�R�}���h�̃^�C�~���OA,
-      �^�C�~���OB�̃R�[���o�b�N�ɂ����ĎQ�ƁA�ύX�\�B���̑��̏ꍇ��<CODE>NULL</CODE>�ł��B</TD>
+      <TD><CODE>NNSG3dMatAnmResult</CODE>構造体へのポインタを取得します。<CODE>NNS_G3D_SBC_MAT</CODE>コマンドのタイミングA,
+      タイミングBのコールバックにおいて参照、変更可能。その他の場合は<CODE>NULL</CODE>です。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -75,8 +75,8 @@
       NNSG3dJntAnmResult* NNS_G3dRSGetJntAnmResult(NNSG3dRS* rs);</CODE></TD>
     </TR>
     <TR>
-      <TD><CODE>NNSG3dJntAnmResult</CODE>�\���̂ւ̃|�C���^���擾���܂��B<CODE>NNS_G3D_SBC_NODEDESC</CODE>�R�}���h�̃^�C�~���OA,
-      �^�C�~���OB�̃R�[���o�b�N�ɂ����ĎQ�ƁA�ύX�\�B���̑��̏ꍇ��<CODE>NULL</CODE>�ł��B</TD>
+      <TD><CODE>NNSG3dJntAnmResult</CODE>構造体へのポインタを取得します。<CODE>NNS_G3D_SBC_NODEDESC</CODE>コマンドのタイミングA,
+      タイミングBのコールバックにおいて参照、変更可能。その他の場合は<CODE>NULL</CODE>です。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -88,8 +88,8 @@
       NNSG3dVisAnmResult* NNS_G3dRSGetVisAnmResult(NNSG3dRS* rs);</CODE></TD>
     </TR>
     <TR>
-      <TD><CODE>NNSG3dVisAnmResult</CODE>�\���̂ւ̃|�C���^���擾���܂��B<CODE>NNS_G3D_SBC_NODE</CODE>�R�}���h�̃^�C�~���OA,
-      �^�C�~���OB�̃R�[���o�b�N�ɂ����ĎQ�ƁA�ύX�\�B���̑��̏ꍇ��<CODE>NULL</CODE>�ł��B</TD>
+      <TD><CODE>NNSG3dVisAnmResult</CODE>構造体へのポインタを取得します。<CODE>NNS_G3D_SBC_NODE</CODE>コマンドのタイミングA,
+      タイミングBのコールバックにおいて参照、変更可能。その他の場合は<CODE>NULL</CODE>です。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -101,7 +101,7 @@
       u8* NNS_G3dRSGetSbcPtr(NNSG3dRS* rs);</CODE></TD>
     </TR>
     <TR>
-      <TD>���ݎ��s����SBC���߂ւ̃|�C���^���擾���܂��B</TD>
+      <TD>現在実行中のSBC命令へのポインタを取得します。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -113,7 +113,7 @@
       u8* NNS_G3dRSSetFlag(NNSG3dRS* rs, NNSG3dRSFlag flag);</CODE></TD>
     </TR>
     <TR>
-      <TD>sbc.h�Œ�`����Ă���<CODE>NNSG3dRSFlag</CODE>�^�̃t���O���w�肵��ON�ɂ���B</TD>
+      <TD>sbc.hで定義されている<CODE>NNSG3dRSFlag</CODE>型のフラグを指定してONにする。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -125,7 +125,7 @@
       u8* NNS_G3dRSResetFlag(NNSG3dRS* rs, NNSG3dRSFlag flag);</CODE></TD>
     </TR>
     <TR>
-      <TD>sbc.h�Œ�`����Ă���<CODE>NNSG3dRSFlag</CODE>�^�̃t���O���w�肵��OFF�ɂ���B</TD>
+      <TD>sbc.hで定義されている<CODE>NNSG3dRSFlag</CODE>型のフラグを指定してOFFにする。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -137,7 +137,7 @@
       int NNS_G3dRSGetCurrentMatID(const NNSG3dRS* rs);</CODE></TD>
     </TR>
     <TR>
-      <TD>����<CODE>NNS_G3D_SBC_MAT</CODE>�R�}���h�Ōv�Z�������O�Ɏ��s���ꂽ<CODE>NNS_G3D_SBC_MAT</CODE>�R�}���h�Őݒ肳�ꂽ�}�e���A��ID��Ԃ��܂��B�}�e���A��ID��SBC��<CODE>NNS_G3D_SBC_MAT</CODE>�R�}���h�Őݒ肳��A����<CODE>NNS_G3D_SBC_MAT</CODE>�R�}���h���I�[�o�[���C�h���邩�A�R�[���o�b�N�֐������ŕύX�����܂Œl��ێ����Â��܂��B�Ȃ��A<CODE>NNS_G3D_SBC_MAT</CODE>�R�}���h�������s�����O��<CODE>NNS_G3D_SBC_MAT</CODE>�R�}���h�̌��ʂ������Ƃ���Ă���ꍇ��-1��Ԃ��܂��B</TD>
+      <TD>現在<CODE>NNS_G3D_SBC_MAT</CODE>コマンドで計算中か直前に実行された<CODE>NNS_G3D_SBC_MAT</CODE>コマンドで設定されたマテリアルIDを返します。マテリアルIDはSBCの<CODE>NNS_G3D_SBC_MAT</CODE>コマンドで設定され、次の<CODE>NNS_G3D_SBC_MAT</CODE>コマンドがオーバーライドするか、コールバック関数内部で変更されるまで値を保持しつづけます。なお、<CODE>NNS_G3D_SBC_MAT</CODE>コマンドが未実行か直前の<CODE>NNS_G3D_SBC_MAT</CODE>コマンドの結果が無効とされている場合は-1を返します。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -149,7 +149,7 @@
       int NNS_G3dRSGetCurrentNodeID(const NNSG3dRS* rs);</CODE></TD>
     </TR>
     <TR>
-      <TD>���݌v�Z����<CODE>NNS_G3D_SBC_NODE</CODE>�R�}���h�����O�Ɏ��s���ꂽ<CODE>NNS_G3D_SBC_NODE</CODE>�R�}���h�Őݒ肳�ꂽ�m�[�h��ID��Ԃ��܂��B�m�[�hID��SBC��<CODE>NNS_G3D_SBC_NODE</CODE>�R�}���h�Őݒ肳��A����<CODE>NNS_G3D_SBC_NODE</CODE>�R�}���h���I�[�o�[���C�h���邩�A�R�[���o�b�N�֐������ŕύX�����܂Œl��ێ����Â��܂��B�Ȃ��A<CODE>NNS_G3D_SBC_NODE</CODE>�R�}���h�������s�����O��<CODE>NNS_G3D_SBC_NODE</CODE>�R�}���h�̌��ʂ������Ƃ���Ă���ꍇ��-1��Ԃ��܂��B</TD>
+      <TD>現在計算中の<CODE>NNS_G3D_SBC_NODE</CODE>コマンドか直前に実行された<CODE>NNS_G3D_SBC_NODE</CODE>コマンドで設定されたノードのIDを返します。ノードIDはSBCの<CODE>NNS_G3D_SBC_NODE</CODE>コマンドで設定され、次の<CODE>NNS_G3D_SBC_NODE</CODE>コマンドがオーバーライドするか、コールバック関数内部で変更されるまで値を保持しつづけます。なお、<CODE>NNS_G3D_SBC_NODE</CODE>コマンドが未実行か直前の<CODE>NNS_G3D_SBC_NODE</CODE>コマンドの結果が無効とされている場合は-1を返します。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -161,7 +161,7 @@
       int NNS_G3dRSGetCurrentNodeDescID(const NNSG3dRS* rs);</CODE></TD>
     </TR>
     <TR>
-      <TD>���݌v�Z����<CODE>NNS_G3D_SBC_NODEDESC</CODE>�R�}���h�����O�Ɏ��s���ꂽ<CODE>NNS_G3D_SBC_NODEDESC</CODE>�R�}���h�Őݒ肳�ꂽ�m�[�h��ID��Ԃ��܂��B�m�[�hID��SBC��<CODE>NNS_G3D_SBC_NODEDESC</CODE>�R�}���h�Őݒ肳��A����<CODE>NNS_G3D_SBC_NODEDESC</CODE>�R�}���h���I�[�o�[���C�h���邩�A�R�[���o�b�N�֐������ŕύX�����܂Œl��ێ����Â��܂��B�Ȃ��A<CODE>NNS_G3D_SBC_NODEDESC</CODE>�R�}���h�������s�����O��<CODE>NNS_G3D_SBC_NODEDESC</CODE>�R�}���h�̌��ʂ������Ƃ���Ă���ꍇ��-1��Ԃ��܂��B</TD>
+      <TD>現在計算中の<CODE>NNS_G3D_SBC_NODEDESC</CODE>コマンドか直前に実行された<CODE>NNS_G3D_SBC_NODEDESC</CODE>コマンドで設定されたノードのIDを返します。ノードIDはSBCの<CODE>NNS_G3D_SBC_NODEDESC</CODE>コマンドで設定され、次の<CODE>NNS_G3D_SBC_NODEDESC</CODE>コマンドがオーバーライドするか、コールバック関数内部で変更されるまで値を保持しつづけます。なお、<CODE>NNS_G3D_SBC_NODEDESC</CODE>コマンドが未実行か直前の<CODE>NNS_G3D_SBC_NODEDESC</CODE>コマンドの結果が無効とされている場合は-1を返します。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -173,7 +173,7 @@
       fx32 NNS_G3dRSGetPosScale(const NNSG3dRS* rs);</CODE></TD>
     </TR>
     <TR>
-      <TD><CODE>NNSG3dRS</CODE>�\���̂ɃL���b�V������Ă��钸�_���W�ɑ΂���X�P�[���l���擾���܂��B</TD>
+      <TD><CODE>NNSG3dRS</CODE>構造体にキャッシュされている頂点座標に対するスケール値を取得します。</TD>
     </TR>
   </TBODY>
 </TABLE>
@@ -185,49 +185,49 @@
       fx32 NNS_G3dRSGetInvPosScale(const NNSG3dRS* rs);</CODE></TD>
     </TR>
     <TR>
-      <TD><CODE>NNSG3dRS</CODE>�\���̂ɃL���b�V������Ă��钸�_���W�ɑ΂���X�P�[���l�̋t�����擾���܂��B</TD>
+      <TD><CODE>NNSG3dRS</CODE>構造体にキャッシュされている頂点座標に対するスケール値の逆数を取得します。</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
-�ȉ��́A<CODE>NNSG3dRSFlag</CODE>�^�̎�v�Ȓl�ɂ��Ă̐����ł��B</P>
+以下は、<CODE>NNSG3dRSFlag</CODE>型の主要な値についての説明です。</P>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TD width="196"><PRE><CODE>NNS_G3D_RSFLAG_NODE_VISIBLE</CODE></PRE></TD>
-      <TD width="625"><CODE>NNS_G3D_SBC_NODE</CODE>�R�}���h�ŁA�m�[�h�ɑ�����|���S����visible�̂Ƃ��ɃZ�b�g����܂��B</TD>
+      <TD width="625"><CODE>NNS_G3D_SBC_NODE</CODE>コマンドで、ノードに属するポリゴンがvisibleのときにセットされます。</TD>
     </TR>
     <TR>
       <TD width="196">
       <PRE><CODE>NNS_G3D_RSFLAG_MAT_TRANSPARENT</CODE></PRE></TD>
-      <TD width="625"><CODE>NNS_G3D_SBC_MAT</CODE>�R�}���h�ŁA�}�e���A���������̏ꍇ�ɃZ�b�g����܂��B</TD>
+      <TD width="625"><CODE>NNS_G3D_SBC_MAT</CODE>コマンドで、マテリアルが透明の場合にセットされます。</TD>
     </TR>
     <TR>
       <TD width="196">
       <PRE><CODE>NNS_G3D_RSFLAG_CURRENT_NODE_VALID</CODE></PRE></TD>
-      <TD width="625"><EM><STRONG>currentNode</STRONG></EM>�ɗL���Ȓl�������Ă���ꍇ�Z�b�g����Ă��܂��B</TD>
+      <TD width="625"><EM><STRONG>currentNode</STRONG></EM>に有効な値が入っている場合セットされています。</TD>
     </TR>
     <TR>
       <TD width="196">
       <PRE><CODE>NNS_G3D_RSFLAG_CURRENT_MAT_VALID</CODE></PRE></TD>
-      <TD width="625"><EM><STRONG>currentMat</STRONG></EM>�ɗL���Ȓl�������Ă���ꍇ�Z�b�g����Ă��܂��B</TD>
+      <TD width="625"><EM><STRONG>currentMat</STRONG></EM>に有効な値が入っている場合セットされています。</TD>
     </TR>
     <TR>
       <TD><PRE><CODE>NNS_G3D_RSFLAG_RETURN</CODE></PRE></TD>
-      <TD>���̃t���O���Z�b�g����Ă���ƁA���݂�SBC���ߏI�����<CODE>NNS_G3dDraw</CODE>�֐��̎��s���I�����܂��B</TD>
+      <TD>このフラグがセットされていると、現在のSBC命令終了後に<CODE>NNS_G3dDraw</CODE>関数の実行を終了します。</TD>
     </TR>
     <TR>
       <TD><PRE><CODE>NNS_G3D_RSFLAG_SKIP</CODE></PRE></TD>
-      <TD>���̃t���O���Z�b�g����Ă���ƁA���̃R�[���o�b�N�|�C���g�����݂̖��߂��I������܂ŁA�������X�L�b�v���܂��B</TD>
+      <TD>このフラグがセットされていると、次のコールバックポイントか現在の命令が終了するまで、処理をスキップします。</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>�Q��</H2>
+<H2>参照</H2>
 
 
-<H2>����</H2>
-<P>2004/10/11 ������<BR>
-2004/08/02 ����</P>
+<H2>履歴</H2>
+<P>2004/10/11 改訂版<BR>
+2004/08/02 初版</P>
 </BODY>
 
 </HTML>

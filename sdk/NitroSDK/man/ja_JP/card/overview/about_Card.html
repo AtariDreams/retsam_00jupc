@@ -1,39 +1,39 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<TITLE>�J�[�h�A�N�Z�X�S�� (overview)</TITLE>
+<TITLE>カードアクセス全般 (overview)</TITLE>
 <LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </HEAD>
 <BODY>
-<H1 align="left">�J�[�h�A�N�Z�X�S�� (overview)</H1>
-<H2>����</H2>
-<P>CARD���C�u�����̓j���e���h�[DS��p�Q�[���J�[�h�i���́FDS�J�[�h�j�𐧌䂷������Ƃ��ᐅ���̃C���^�t�F�[�X���C�u�����ł���A
-DS�J�[�h���̂̔r�������ROM�A�N�Z�X�A�o�b�N�A�b�v�������A�N�Z�X�A�Ȃ�тɔ������o�̋@�\��񋟂��܂��B
-�t�@�C���V�X�e�����C�u����(FS)�ȂǁADS�J�[�h���g�p�����ʃ��C�u�����͓�����CARD���C�u�������g�p���Ă��܂��B<br>
-������CARD���C�u�����֐��̎g�p�ɐ旧���Ă��炩����<CODE><A href="../common/CARD_Init.html">CARD_Init</A></CODE>�֐����Ăяo���Ă����K�v������܂����A
-<CODE><A href="../../os/init/OS_Init.html">OS_Init</A></CODE>�֐����Ăяo���Ă���ꍇ�͂��̓����ŌĂяo����܂��̂ŁA���ɃA�v���P�[�V�������ŌĂяo���K�v�͂���܂���B<br>
+<H1 align="left">カードアクセス全般 (overview)</H1>
+<H2>説明</H2>
+<P>CARDライブラリはニンテンドーDS専用ゲームカード（略称：DSカード）を制御するもっとも低水準のインタフェースライブラリであり、
+DSカード自体の排他制御とROMアクセス、バックアップメモリアクセス、ならびに抜け検出の機構を提供します。
+ファイルシステムライブラリ(FS)など、DSカードを使用する上位ライブラリは内部でCARDライブラリを使用しています。<br>
+あらゆるCARDライブラリ関数の使用に先立ってあらかじめ<CODE><A href="../common/CARD_Init.html">CARD_Init</A></CODE>関数を呼び出しておく必要がありますが、
+<CODE><A href="../../os/init/OS_Init.html">OS_Init</A></CODE>関数を呼び出している場合はその内部で呼び出されますので、特にアプリケーション側で呼び出す必要はありません。<br>
 </P>
 <HR>
-<P><B>DS�J�[�h�̍\��</B></P>
-<P>DS�J�[�h�̓����n�[�h�E�F�A�\���ɂ��Đ������܂��B</P>
+<P><B>DSカードの構成</B></P>
+<P>DSカードの内部ハードウェア構成について説明します。</P>
 <BLOCKQUOTE><IMG src="image_CardAccess.gif" border="0"></BLOCKQUOTE>
 <P>
-DS�J�[�h�͂��̓����ɓǂݏo����p��ROM�f�o�C�X�𓋍ڂ��A����Ɏw��ɂ���Ă�1��ނ̃o�b�N�A�b�v�������f�o�C�X�𓋍ڂ��邱�Ƃ�����܂��B
-�ǂ���̃f�o�C�X����������Ԃɂ̓}�b�s���O����Ă��Ȃ����߂����̃f�[�^��CPU���璼�ڃA�N�Z�X���邱�Ƃ͂ł����A
-�f�[�^�o�X���o�R���ď���T�C�Y�P�ʂ̓]���R�}���h�𔭍s���ăA�N�Z�X����K�v������܂��B<br>
+DSカードはその内部に読み出し専用のROMデバイスを搭載し、さらに指定によっては1種類のバックアップメモリデバイスを搭載することがあります。
+どちらのデバイスもメモリ空間にはマッピングされていないためこれらのデータへCPUから直接アクセスすることはできず、
+データバスを経由して所定サイズ単位の転送コマンドを発行してアクセスする必要があります。<br>
 <br>
-ROM�ƃo�b�N�A�b�v�͋��ʂ̃f�[�^�o�X���g�p���܂��B�f�[�^�o�X�͓�����1�̃f�o�C�X����̂ݎg�p�\�ŁA�f�o�C�X���R�}���h���������Ă���Ԃ͐�L����܂��B
-��L���̃f�[�^�o�X����������苣�����Ďg�p����ƃf�o�C�X�̓��삪�s��ƂȂ�܂����ACARD���C�u������������\�t�g�E�F�A���x���Ŕr�����䂵�Ă��邽�߁A
-�v���Z�X�Ԃ⃂�W���[���ԂŃJ�[�h�A�N�Z�X�ɋ������N�����Ă����ƂȂ邱�Ƃ͂���܂���B<br>
+ROMとバックアップは共通のデータバスを使用します。データバスは同時に1個のデバイスからのみ使用可能で、デバイスがコマンドを処理している間は占有されます。
+占有中のデータバスを解放したり競合して使用するとデバイスの動作が不定となりますが、CARDライブラリがこれをソフトウェアレベルで排他制御しているため、
+プロセス間やモジュール間でカードアクセスに競合が起こっても問題となることはありません。<br>
 </P>
-<H2>�Q��</H2>
-<P><CODE><A href="../list_card.html">CARD�֐��ꗗ</A><BR>
+<H2>参照</H2>
+<P><CODE><A href="../list_card.html">CARD関数一覧</A><BR>
 </CODE></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2006/01/06 ����</P>
+2006/01/06 初版</P>
 </BODY>
 </HTML>

@@ -19,18 +19,18 @@
 #include "../include/command.h"
 
 
-/* ƒA[ƒJƒCƒu‚ÍŠî–{“I‚É ARM7 ‚ÉŠÜ‚Ü‚È‚¢ */
+/* ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã¯åŸºæœ¬çš„ã« ARM7 ã«å«ã¾ãªã„ */
 #if defined(FS_IMPLEMENT)
 
 
 /*****************************************************************************/
 /* declaration */
 
-/* “¯ŠúŒnƒRƒ}ƒ“ƒh‚ÌƒuƒƒbƒLƒ“ƒO Read \‘¢‘Ì */
+/* åŒæœŸç³»ã‚³ãƒãƒ³ãƒ‰ã®ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚° Read æ§‹é€ ä½“ */
 typedef struct
 {
-    FSArchive *arc;                    /* ‘ÎÛƒA[ƒJƒCƒu */
-    u32     pos;                       /* ŠJnˆÊ’u */
+    FSArchive *arc;                    /* å¯¾è±¡ã‚¢ãƒ¼ã‚«ã‚¤ãƒ– */
+    u32     pos;                       /* é–‹å§‹ä½ç½® */
 }
 FSiSyncReadParam;
 
@@ -65,14 +65,14 @@ FSi_ReadFileCommand,
 /*---------------------------------------------------------------------------*
   Name:         FSi_StrNICmp
 
-  Description:  “à•”ŠÖ”.
-                ‘å¬•¶š‚ğ‹æ•Ê‚¹‚¸‚Éw’èƒoƒCƒg”‚¾‚¯•¶š—ñ”äŠr.
+  Description:  å†…éƒ¨é–¢æ•°.
+                å¤§å°æ–‡å­—ã‚’åŒºåˆ¥ã›ãšã«æŒ‡å®šãƒã‚¤ãƒˆæ•°ã ã‘æ–‡å­—åˆ—æ¯”è¼ƒ.
 
-  Arguments:    str1             ”äŠrŒ³•¶š—ñ.
-                str2             ”äŠræ•¶š—ñ.
-                len              ”äŠrƒoƒCƒg”.
+  Arguments:    str1             æ¯”è¼ƒå…ƒæ–‡å­—åˆ—.
+                str2             æ¯”è¼ƒå…ˆæ–‡å­—åˆ—.
+                len              æ¯”è¼ƒãƒã‚¤ãƒˆæ•°.
 
-  Returns:      (str1 - str2) ‚Ì”äŠrŒ‹‰Ê.
+  Returns:      (str1 - str2) ã®æ¯”è¼ƒçµæœ.
  *---------------------------------------------------------------------------*/
 int FSi_StrNICmp(const char *str1, const char *str2, u32 len)
 {
@@ -94,21 +94,21 @@ int FSi_StrNICmp(const char *str1, const char *str2, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         FSi_ReadTable
 
-  Description:  “à•”ŠÖ”.
-                “¯ŠúŒnƒRƒ}ƒ“ƒh“à‚Å“¯ŠúƒŠ[ƒh‚ğÀs.
+  Description:  å†…éƒ¨é–¢æ•°.
+                åŒæœŸç³»ã‚³ãƒãƒ³ãƒ‰å†…ã§åŒæœŸãƒªãƒ¼ãƒ‰ã‚’å®Ÿè¡Œ.
 
-  Arguments:    p                “¯ŠúƒŠ[ƒh\‘¢‘Ì.
-                dst              “Ç‚İ‚İƒf[ƒ^Ši”[æƒoƒbƒtƒ@.
-                len              “Ç‚İ‚İƒoƒCƒg”.
+  Arguments:    p                åŒæœŸãƒªãƒ¼ãƒ‰æ§‹é€ ä½“.
+                dst              èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆãƒãƒƒãƒ•ã‚¡.
+                len              èª­ã¿è¾¼ã¿ãƒã‚¤ãƒˆæ•°.
 
-  Returns:      “¯ŠúƒŠ[ƒh‚ÌŒ‹‰Ê.
+  Returns:      åŒæœŸãƒªãƒ¼ãƒ‰ã®çµæœ.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_ReadTable(FSiSyncReadParam * p, void *dst, u32 len)
 {
     FSResult result;
     FSArchive *const p_arc = p->arc;
 
-    /* ƒRƒ}ƒ“ƒh‚Ì“¯Šúˆ—ŠJn */
+    /* ã‚³ãƒãƒ³ãƒ‰ã®åŒæœŸå‡¦ç†é–‹å§‹ */
     p_arc->flag |= FS_ARCHIVE_FLAG_IS_SYNC;
     result = (*p_arc->table_func) (p_arc, dst, p->pos, len);
     switch (result)
@@ -120,7 +120,7 @@ static FSResult FSi_ReadTable(FSiSyncReadParam * p, void *dst, u32 len)
     case FS_RESULT_PROC_ASYNC:
 #if !defined(SDK_NO_THREAD)
         {
-            /* ”ñ“¯Šú‚È‚çƒXƒŠ[ƒv */
+            /* éåŒæœŸãªã‚‰ã‚¹ãƒªãƒ¼ãƒ— */
             OSIntrMode bak_psr = OS_DisableInterrupts();
             while (FSi_IsArchiveSync(p_arc))
                 OS_SleepThread(&p_arc->sync_q);
@@ -140,11 +140,11 @@ static FSResult FSi_ReadTable(FSiSyncReadParam * p, void *dst, u32 len)
 /*---------------------------------------------------------------------------*
   Name:         FSi_SeekDirDirect
 
-  Description:  “à•”ŠÖ”.
-                w’èƒfƒBƒŒƒNƒgƒŠ‚Ìæ“ª‚Ö’¼ÚˆÚ“®.
+  Description:  å†…éƒ¨é–¢æ•°.
+                æŒ‡å®šãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å…ˆé ­ã¸ç›´æ¥ç§»å‹•.
 
-  Arguments:    p_dir            ƒfƒBƒŒƒNƒgƒŠƒŠƒXƒg‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^.
-                id               ƒfƒBƒŒƒNƒgƒŠ ID.
+  Arguments:    p_dir            ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒªã‚¹ãƒˆã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿.
+                id               ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª ID.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -161,12 +161,12 @@ static void FSi_SeekDirDirect(FSFile *p_dir, u32 id)
 /*---------------------------------------------------------------------------*
   Name:         FSi_ReadFileCommand
 
-  Description:  “à•”ŠÖ”.
-                READFILE ƒRƒ}ƒ“ƒh‚ÌƒfƒtƒHƒ‹ƒgÀ‘•.
+  Description:  å†…éƒ¨é–¢æ•°.
+                READFILE ã‚³ãƒãƒ³ãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå®Ÿè£….
 
-  Arguments:    p_file           ƒRƒ}ƒ“ƒh‚ğˆ—‚·‚éƒnƒ“ƒhƒ‹.
+  Arguments:    p_file           ã‚³ãƒãƒ³ãƒ‰ã‚’å‡¦ç†ã™ã‚‹ãƒãƒ³ãƒ‰ãƒ«.
 
-  Returns:      ƒRƒ}ƒ“ƒhŒ‹‰Ê’l.
+  Returns:      ã‚³ãƒãƒ³ãƒ‰çµæœå€¤.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_ReadFileCommand(FSFile *p_file)
 {
@@ -181,12 +181,12 @@ static FSResult FSi_ReadFileCommand(FSFile *p_file)
 /*---------------------------------------------------------------------------*
   Name:         FSi_WriteFileCommand
 
-  Description:  “à•”ŠÖ”.
-                WRITEFILE ƒRƒ}ƒ“ƒh‚ÌƒfƒtƒHƒ‹ƒgÀ‘•.
+  Description:  å†…éƒ¨é–¢æ•°.
+                WRITEFILE ã‚³ãƒãƒ³ãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå®Ÿè£….
 
-  Arguments:    p_file           ƒRƒ}ƒ“ƒh‚ğˆ—‚·‚éƒnƒ“ƒhƒ‹.
+  Arguments:    p_file           ã‚³ãƒãƒ³ãƒ‰ã‚’å‡¦ç†ã™ã‚‹ãƒãƒ³ãƒ‰ãƒ«.
 
-  Returns:      ƒRƒ}ƒ“ƒhŒ‹‰Ê’l.
+  Returns:      ã‚³ãƒãƒ³ãƒ‰çµæœå€¤.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_WriteFileCommand(FSFile *p_file)
 {
@@ -201,12 +201,12 @@ static FSResult FSi_WriteFileCommand(FSFile *p_file)
 /*---------------------------------------------------------------------------*
   Name:         FSi_SeekDirCommand
 
-  Description:  “à•”ŠÖ”.
-                SEEKDIR ƒRƒ}ƒ“ƒh‚ÌƒfƒtƒHƒ‹ƒgÀ‘•.
+  Description:  å†…éƒ¨é–¢æ•°.
+                SEEKDIR ã‚³ãƒãƒ³ãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå®Ÿè£….
 
-  Arguments:    p_dir            ƒRƒ}ƒ“ƒh‚ğˆ—‚·‚éƒnƒ“ƒhƒ‹.
+  Arguments:    p_dir            ã‚³ãƒãƒ³ãƒ‰ã‚’å‡¦ç†ã™ã‚‹ãƒãƒ³ãƒ‰ãƒ«.
 
-  Returns:      ƒRƒ}ƒ“ƒhŒ‹‰Ê’l.
+  Returns:      ã‚³ãƒãƒ³ãƒ‰çµæœå€¤.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_SeekDirCommand(FSFile *p_dir)
 {
@@ -237,12 +237,12 @@ static FSResult FSi_SeekDirCommand(FSFile *p_dir)
 /*---------------------------------------------------------------------------*
   Name:         FSi_ReadDirCommand
 
-  Description:  “à•”ŠÖ”.
-                READDIR ƒRƒ}ƒ“ƒh‚ÌƒfƒtƒHƒ‹ƒgÀ‘•.
+  Description:  å†…éƒ¨é–¢æ•°.
+                READDIR ã‚³ãƒãƒ³ãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå®Ÿè£….
 
-  Arguments:    p_dir            ƒRƒ}ƒ“ƒh‚ğˆ—‚·‚éƒnƒ“ƒhƒ‹.
+  Arguments:    p_dir            ã‚³ãƒãƒ³ãƒ‰ã‚’å‡¦ç†ã™ã‚‹ãƒãƒ³ãƒ‰ãƒ«.
 
-  Returns:      ƒRƒ}ƒ“ƒhŒ‹‰Ê’l.
+  Returns:      ã‚³ãƒãƒ³ãƒ‰çµæœå€¤.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_ReadDirCommand(FSFile *p_dir)
 {
@@ -315,13 +315,13 @@ static FSResult FSi_ReadDirCommand(FSFile *p_dir)
 /*---------------------------------------------------------------------------*
   Name:         FSi_FindPathCommand
 
-  Description:  “à•”ŠÖ”.
-                FINDPATH ƒRƒ}ƒ“ƒh‚ÌƒfƒtƒHƒ‹ƒgÀ‘•.
-                (SEEKDIR, READDIR ƒRƒ}ƒ“ƒh‚ğg—p‚·‚é)
+  Description:  å†…éƒ¨é–¢æ•°.
+                FINDPATH ã‚³ãƒãƒ³ãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå®Ÿè£….
+                (SEEKDIR, READDIR ã‚³ãƒãƒ³ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹)
 
-  Arguments:    p_dir            ƒRƒ}ƒ“ƒh‚ğˆ—‚·‚éƒnƒ“ƒhƒ‹.
+  Arguments:    p_dir            ã‚³ãƒãƒ³ãƒ‰ã‚’å‡¦ç†ã™ã‚‹ãƒãƒ³ãƒ‰ãƒ«.
 
-  Returns:      ƒRƒ}ƒ“ƒhŒ‹‰Ê’l.
+  Returns:      ã‚³ãƒãƒ³ãƒ‰çµæœå€¤.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_FindPathCommand(FSFile *p_dir)
 {
@@ -418,13 +418,13 @@ static FSResult FSi_FindPathCommand(FSFile *p_dir)
 /*---------------------------------------------------------------------------*
   Name:         FSi_GetPathCommand
 
-  Description:  “à•”ŠÖ”.
-                GETPATH ƒRƒ}ƒ“ƒh‚ÌƒfƒtƒHƒ‹ƒgÀ‘•.
-                (SEEKDIR, READDIR ƒRƒ}ƒ“ƒh‚ğg—p‚·‚é)
+  Description:  å†…éƒ¨é–¢æ•°.
+                GETPATH ã‚³ãƒãƒ³ãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå®Ÿè£….
+                (SEEKDIR, READDIR ã‚³ãƒãƒ³ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹)
 
-  Arguments:    p_dir            ƒRƒ}ƒ“ƒh‚ğˆ—‚·‚éƒnƒ“ƒhƒ‹.
+  Arguments:    p_dir            ã‚³ãƒãƒ³ãƒ‰ã‚’å‡¦ç†ã™ã‚‹ãƒãƒ³ãƒ‰ãƒ«.
 
-  Returns:      ƒRƒ}ƒ“ƒhŒ‹‰Ê’l.
+  Returns:      ã‚³ãƒãƒ³ãƒ‰çµæœå€¤.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_GetPathCommand(FSFile *p_file)
 {
@@ -447,34 +447,34 @@ static FSResult FSi_GetPathCommand(FSFile *p_file)
 
     if (FS_IsDir(p_file))
     {
-        /* ƒfƒBƒŒƒNƒgƒŠ‚È‚ç“Á‚Éˆ—‚Í–³‚µ */
+        /* ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãªã‚‰ç‰¹ã«å‡¦ç†ã¯ç„¡ã— */
         dir_id = p_file->prop.dir.pos.own_id;
         file_id = INVALID_ID;
     }
     else
     {
-        /* ƒtƒ@ƒCƒ‹‚Ìê‡, ƒfƒBƒŒƒNƒgƒŠ‚ª•s–¾ */
+        /* ãƒ•ã‚¡ã‚¤ãƒ«ã®å ´åˆ, ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒä¸æ˜ */
         file_id = p_file->prop.file.own_id;
         if (p_info->total_len != 0)
         {
-            /* ‚·‚Å‚ÉŒŸõÏ‚İ‚È‚ç“Á‚Éˆ—‚Í–³‚µ */
+            /* ã™ã§ã«æ¤œç´¢æ¸ˆã¿ãªã‚‰ç‰¹ã«å‡¦ç†ã¯ç„¡ã— */
             dir_id = p_info->dir_id;
         }
         else
         {
-            /* –¢ŒŸõ‚È‚ç FNT ‚©‚çƒfƒBƒŒƒNƒgƒŠ‚ğŒŸõ */
+            /* æœªæ¤œç´¢ãªã‚‰ FNT ã‹ã‚‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æ¤œç´¢ */
             u32     pos = 0;
             u32     num_dir = 0;
             dir_id = INVALID_ID;
             do
             {
-                /* ‘SƒfƒBƒŒƒNƒgƒŠ‚ğ‚µ‚ç‚İ‚Â‚Ô‚µ‚ÉŒŸõ */
+                /* å…¨ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ã—ã‚‰ã¿ã¤ã¶ã—ã«æ¤œç´¢ */
                 FSi_SeekDirDirect(&tmp, pos);
                 if (!pos)
                     num_dir = tmp.prop.dir.parent;
                 /*
-                 * ƒJƒXƒ^ƒ€‰»‚³‚ê‚½’áˆÊƒRƒ}ƒ“ƒh‚Å‚à‰ğŒˆ‚Å‚«‚é‚æ‚¤,
-                 * ƒCƒ“ƒfƒbƒNƒX”ÍˆÍ‚É‚æ‚éŒŸõğŒ”»’è‚ğ”p~.
+                 * ã‚«ã‚¹ã‚¿ãƒ åŒ–ã•ã‚ŒãŸä½ä½ã‚³ãƒãƒ³ãƒ‰ã§ã‚‚è§£æ±ºã§ãã‚‹ã‚ˆã†,
+                 * ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç¯„å›²ã«ã‚ˆã‚‹æ¤œç´¢æ¡ä»¶åˆ¤å®šã‚’å»ƒæ­¢.
                  */
                 tmp.arg.readdir.p_entry = &entry;
                 tmp.arg.readdir.skip_string = TRUE;
@@ -490,17 +490,17 @@ static FSResult FSi_GetPathCommand(FSFile *p_file)
             while ((dir_id == INVALID_ID) && (++pos < num_dir));
         }
     }
-    /* ƒfƒBƒŒƒNƒgƒŠ‚ªŒ©‚Â‚©‚ç‚È‚¯‚ê‚Î FALSE */
+    /* ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒè¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã° FALSE */
     if (dir_id == INVALID_ID)
     {
         p_info->total_len = 0;
         return FS_RESULT_FAILURE;
     }
-    /* ƒpƒX’·‚ğ–¢Œv‘ª‚È‚ç¡‰ñˆê“xŒv‘ª */
+    /* ãƒ‘ã‚¹é•·ã‚’æœªè¨ˆæ¸¬ãªã‚‰ä»Šå›ä¸€åº¦è¨ˆæ¸¬ */
     if (p_info->total_len == 0)
     {
         len = 0;
-        /* ‚Ü‚¸, "ƒA[ƒJƒCƒu–¼:/" ‚ğ‰ÁZ */
+        /* ã¾ãš, "ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å:/" ã‚’åŠ ç®— */
         if (p_arc->name.pack <= 0x000000FF)
             len += 1;
         else if (p_arc->name.pack <= 0x0000FF00)
@@ -508,17 +508,17 @@ static FSResult FSi_GetPathCommand(FSFile *p_file)
         else
             len += 3;
         len += 1 + 1;                  /* ":/" */
-        /* •K—v‚È‚çƒtƒ@ƒCƒ‹–¼‚ğ‰ÁZ. (‚·‚Å‚Éæ“¾Ï‚İ) */
+        /* å¿…è¦ãªã‚‰ãƒ•ã‚¡ã‚¤ãƒ«åã‚’åŠ ç®—. (ã™ã§ã«å–å¾—æ¸ˆã¿) */
         if (file_id != INVALID_ID)
             len += entry.name_len;
-        /* Ÿ‚É, ‡Ÿ‚³‚©‚Ì‚Ú‚Á‚Ä©g‚Ì–¼‘O‚ğ‰ÁZ */
+        /* æ¬¡ã«, é †æ¬¡ã•ã‹ã®ã¼ã£ã¦è‡ªèº«ã®åå‰ã‚’åŠ ç®— */
         id = dir_id;
         if (id != 0)
         {
             FSi_SeekDirDirect(&tmp, id);
             do
             {
-                /* e‚ÉˆÚ“®‚µ, ©g‚ğŒŸõ */
+                /* è¦ªã«ç§»å‹•ã—, è‡ªèº«ã‚’æ¤œç´¢ */
                 FSi_SeekDirDirect(&tmp, tmp.prop.dir.parent);
                 tmp.arg.readdir.p_entry = &entry;
                 tmp.arg.readdir.skip_string = TRUE;
@@ -534,23 +534,23 @@ static FSResult FSi_GetPathCommand(FSFile *p_file)
             }
             while (id != 0);
         }
-        /* ¡‰ñŒvZÏ‚İ‚Ìƒf[ƒ^‚Í•Û‘¶‚µ‚Ä‚¨‚­ */
+        /* ä»Šå›è¨ˆç®—æ¸ˆã¿ã®ãƒ‡ãƒ¼ã‚¿ã¯ä¿å­˜ã—ã¦ãŠã */
         p_info->total_len = (u16)(len + 1);
         p_info->dir_id = (u16)dir_id;
     }
-    /* ƒpƒX’·‚ÌŒv‘ª‚ª–Ú“I‚È‚ç¡‰ñ‚Í¬Œ÷ */
+    /* ãƒ‘ã‚¹é•·ã®è¨ˆæ¸¬ãŒç›®çš„ãªã‚‰ä»Šå›ã¯æˆåŠŸ */
     if (!p_info->buf)
         return FS_RESULT_SUCCESS;
-    /* ƒoƒbƒtƒ@’·‚ª•s‘«‚È‚ç¡‰ñ‚Í¸”s */
+    /* ãƒãƒƒãƒ•ã‚¡é•·ãŒä¸è¶³ãªã‚‰ä»Šå›ã¯å¤±æ•— */
     if (p_info->buf_len < p_info->total_len)
         return FS_RESULT_FAILURE;
-    /* •¶š—ñ‚ğI’[‚©‚çŠi”[ */
+    /* æ–‡å­—åˆ—ã‚’çµ‚ç«¯ã‹ã‚‰æ ¼ç´ */
     else
     {
         u8     *dst = p_info->buf;
         u32     total = p_info->total_len;
         u32     pos = 0;
-        /* ‚Ü‚¸, "ƒA[ƒJƒCƒu–¼:/" ‚ğ‰ÁZ */
+        /* ã¾ãš, "ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å:/" ã‚’åŠ ç®— */
         if (p_arc->name.pack <= 0x000000FF)
             len = 1;
         else if (p_arc->name.pack <= 0x0000FF00)
@@ -561,12 +561,12 @@ static FSResult FSi_GetPathCommand(FSFile *p_file)
         pos += len;
         MI_CpuCopy8(":/", dst + pos, 2);
         pos += 2;
-        /* Šî€ƒfƒBƒŒƒNƒgƒŠ‚ğæ“¾ */
+        /* åŸºæº–ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å–å¾— */
         id = dir_id;
         FSi_SeekDirDirect(&tmp, id);
         if (file_id != INVALID_ID)
         {
-            /* •K—v‚È‚çƒtƒ@ƒCƒ‹–¼‚ğ‰ÁZ */
+            /* å¿…è¦ãªã‚‰ãƒ•ã‚¡ã‚¤ãƒ«åã‚’åŠ ç®— */
             tmp.arg.readdir.p_entry = &entry;
             tmp.arg.readdir.skip_string = FALSE;
             while (FSi_TranslateCommand(&tmp, FS_COMMAND_READDIR) == FS_RESULT_SUCCESS)
@@ -580,23 +580,23 @@ static FSResult FSi_GetPathCommand(FSFile *p_file)
         }
         else
         {
-            /* ƒfƒBƒŒƒNƒgƒŠ‚È‚çI’[‚¾‚¯•t‰Á */
+            /* ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãªã‚‰çµ‚ç«¯ã ã‘ä»˜åŠ  */
             MI_WriteByte(dst + total - 1, '\0');
             total -= 1;
         }
-        /* Ÿ‚É, ‡Ÿ‚³‚©‚Ì‚Ú‚Á‚Ä©g‚Ì–¼‘O‚ğ‰ÁZ */
+        /* æ¬¡ã«, é †æ¬¡ã•ã‹ã®ã¼ã£ã¦è‡ªèº«ã®åå‰ã‚’åŠ ç®— */
         if (id != 0)
         {
             do
             {
-                /* e‚ÉˆÚ“® */
+                /* è¦ªã«ç§»å‹• */
                 FSi_SeekDirDirect(&tmp, tmp.prop.dir.parent);
                 tmp.arg.readdir.p_entry = &entry;
                 tmp.arg.readdir.skip_string = FALSE;
-                /* "/" ‚ğ•t‰Á. */
+                /* "/" ã‚’ä»˜åŠ . */
                 MI_WriteByte(dst + total - 1, '/');
                 total -= 1;
-                /* e‚Ìq(ˆÈ‘O‚Ì©g)‚ğŒŸõ */
+                /* è¦ªã®å­(ä»¥å‰ã®è‡ªèº«)ã‚’æ¤œç´¢ */
                 while (FSi_TranslateCommand(&tmp, FS_COMMAND_READDIR) == FS_RESULT_SUCCESS)
                 {
                     if (entry.is_directory && (entry.dir_id.own_id == id))
@@ -620,13 +620,13 @@ static FSResult FSi_GetPathCommand(FSFile *p_file)
 /*---------------------------------------------------------------------------*
   Name:         FSi_OpenFileFastCommand
 
-  Description:  “à•”ŠÖ”.
-                OPENFILEFAST ƒRƒ}ƒ“ƒh‚ÌƒfƒtƒHƒ‹ƒgÀ‘•.
-                (OPENFILEDIRECT ƒRƒ}ƒ“ƒh‚ğg—p‚·‚é)
+  Description:  å†…éƒ¨é–¢æ•°.
+                OPENFILEFAST ã‚³ãƒãƒ³ãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå®Ÿè£….
+                (OPENFILEDIRECT ã‚³ãƒãƒ³ãƒ‰ã‚’ä½¿ç”¨ã™ã‚‹)
 
-  Arguments:    p_file           ƒRƒ}ƒ“ƒh‚ğˆ—‚·‚éƒnƒ“ƒhƒ‹.
+  Arguments:    p_file           ã‚³ãƒãƒ³ãƒ‰ã‚’å‡¦ç†ã™ã‚‹ãƒãƒ³ãƒ‰ãƒ«.
 
-  Returns:      ƒRƒ}ƒ“ƒhŒ‹‰Ê’l.
+  Returns:      ã‚³ãƒãƒ³ãƒ‰çµæœå€¤.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_OpenFileFastCommand(FSFile *p_file)
 {
@@ -636,7 +636,7 @@ static FSResult FSi_OpenFileFastCommand(FSFile *p_file)
     const u32 index = p_id->file_id;
 
     {
-        /* FAT ƒAƒNƒZƒX—Ìˆæ‚Ì³“–«”»’è */
+        /* FAT ã‚¢ã‚¯ã‚»ã‚¹é ˜åŸŸã®æ­£å½“æ€§åˆ¤å®š */
         u32     pos = (u32)(index * sizeof(FSArchiveFAT));
         if (pos >= p_arc->fat_size)
         {
@@ -644,7 +644,7 @@ static FSResult FSi_OpenFileFastCommand(FSFile *p_file)
         }
         else
         {
-            // FAT ‚©‚çw’èƒtƒ@ƒCƒ‹‚ÌƒCƒ[ƒW—Ìˆæ‚ğæ“¾.
+            // FAT ã‹ã‚‰æŒ‡å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ¡ãƒ¼ã‚¸é ˜åŸŸã‚’å–å¾—.
             FSArchiveFAT fat;
             FSiSyncReadParam param;
             param.arc = p_arc;
@@ -652,7 +652,7 @@ static FSResult FSi_OpenFileFastCommand(FSFile *p_file)
             result = FSi_ReadTable(&param, &fat, sizeof(fat));
             if (result == FS_RESULT_SUCCESS)
             {
-                /* ’¼ÚƒI[ƒvƒ“ */
+                /* ç›´æ¥ã‚ªãƒ¼ãƒ—ãƒ³ */
                 p_file->arg.openfiledirect.top = fat.top;
                 p_file->arg.openfiledirect.bottom = fat.bottom;
                 p_file->arg.openfiledirect.index = index;
@@ -666,16 +666,16 @@ static FSResult FSi_OpenFileFastCommand(FSFile *p_file)
 /*---------------------------------------------------------------------------*
   Name:         FSi_OpenFileDirectCommand
 
-  Description:  “à•”ŠÖ”.
-                OPENFILEDIRECT ƒRƒ}ƒ“ƒh‚ÌƒfƒtƒHƒ‹ƒgÀ‘•.
+  Description:  å†…éƒ¨é–¢æ•°.
+                OPENFILEDIRECT ã‚³ãƒãƒ³ãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå®Ÿè£….
 
-  Arguments:    p_file           ƒRƒ}ƒ“ƒh‚ğˆ—‚·‚éƒnƒ“ƒhƒ‹.
+  Arguments:    p_file           ã‚³ãƒãƒ³ãƒ‰ã‚’å‡¦ç†ã™ã‚‹ãƒãƒ³ãƒ‰ãƒ«.
 
-  Returns:      ƒRƒ}ƒ“ƒhŒ‹‰Ê’l.
+  Returns:      ã‚³ãƒãƒ³ãƒ‰çµæœå€¤.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_OpenFileDirectCommand(FSFile *p_file)
 {
-    /* ƒtƒ@ƒCƒ‹î•ñ‚ğ‰Šú‰» */
+    /* ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‚’åˆæœŸåŒ– */
     p_file->prop.file.top = p_file->arg.openfiledirect.top;
     p_file->prop.file.pos = p_file->arg.openfiledirect.top;
     p_file->prop.file.bottom = p_file->arg.openfiledirect.bottom;
@@ -687,12 +687,12 @@ static FSResult FSi_OpenFileDirectCommand(FSFile *p_file)
 /*---------------------------------------------------------------------------*
   Name:         FSi_CloseFileCommand
 
-  Description:  “à•”ŠÖ”.
-                CLOSEFILE ƒRƒ}ƒ“ƒh‚ÌƒfƒtƒHƒ‹ƒgÀ‘•.
+  Description:  å†…éƒ¨é–¢æ•°.
+                CLOSEFILE ã‚³ãƒãƒ³ãƒ‰ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå®Ÿè£….
 
-  Arguments:    p_file           ƒRƒ}ƒ“ƒh‚ğˆ—‚·‚éƒnƒ“ƒhƒ‹.
+  Arguments:    p_file           ã‚³ãƒãƒ³ãƒ‰ã‚’å‡¦ç†ã™ã‚‹ãƒãƒ³ãƒ‰ãƒ«.
 
-  Returns:      ƒRƒ}ƒ“ƒhŒ‹‰Ê’l.
+  Returns:      ã‚³ãƒãƒ³ãƒ‰çµæœå€¤.
  *---------------------------------------------------------------------------*/
 static FSResult FSi_CloseFileCommand(FSFile *p_file)
 {

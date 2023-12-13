@@ -1,13 +1,13 @@
 //============================================================================================
 /**
  * @file	worldtrade_data.c
- * @brief	¢ŠEŒğŠ·ƒZ[ƒuƒf[ƒ^
+ * @brief	ä¸–ç•Œäº¤æ›ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  * @author	mori GAME FREAK inc.
  * @date	2006.04.30
  */
 //============================================================================================
 
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
 #include "common.h"
 
@@ -22,18 +22,18 @@
 //============================================================================================
 
 struct WORLDTRADE_DATA{
-	u8 PokemonData[POKEMON_DATA_SIZE];	// —a‚¯‚½ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
-	u16 		flag;					// —a‚¯‚Ä‚¢‚é‚©ƒtƒ‰ƒO
-	u16 		toBox;					// ƒ{ƒbƒNƒX‚m‚niè‚¿‚Ìê‡‚ÍRETURN_POSITION_TEMOTIj
-	GF_DATE		lastExchangeDate_Deposit;		// ÅIŒğŠ·“ú•t(—a‚¯‚Ä¬—§‚µ‚½“ú•t)
-	GF_DATE		lastExchangeDate_Search;		// ÅIŒğŠ·“ú•t(ŒŸõ‚µ‚Ä¬—§‚µ‚½“ú•t)
+	u8 PokemonData[POKEMON_DATA_SIZE];	// é ã‘ãŸãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
+	u16 		flag;					// é ã‘ã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°
+	u16 		toBox;					// ãƒœãƒƒã‚¯ã‚¹ï¼®ï¼¯ï¼ˆæ‰‹æŒã¡ã®å ´åˆã¯RETURN_POSITION_TEMOTIï¼‰
+	GF_DATE		lastExchangeDate_Deposit;		// æœ€çµ‚äº¤æ›æ—¥ä»˜(é ã‘ã¦æˆç«‹ã—ãŸæ—¥ä»˜)
+	GF_DATE		lastExchangeDate_Search;		// æœ€çµ‚äº¤æ›æ—¥ä»˜(æ¤œç´¢ã—ã¦æˆç«‹ã—ãŸæ—¥ä»˜)
 };
 
 
 
 //============================================================================================
 //
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //
 //============================================================================================
 WORLDTRADE_DATA * SaveData_GetWorldTradeData(SAVEDATA * sv)
@@ -44,8 +44,8 @@ WORLDTRADE_DATA * SaveData_GetWorldTradeData(SAVEDATA * sv)
 
 //----------------------------------------------------------
 /**
- * @brief	©•ªó‘Ô•Ûƒ[ƒN‚ÌƒTƒCƒYæ“¾
- * @return	int		ƒTƒCƒYiƒoƒCƒg’PˆÊj
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚ºå–å¾—
+ * @return	int		ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  */
 //----------------------------------------------------------
 int WorldTradeData_GetWorkSize(void)
@@ -55,7 +55,7 @@ int WorldTradeData_GetWorkSize(void)
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒğŠ·ó‘Ô•Û‘¶ƒf[ƒ^‚ÌŠm•Û
+ * $brief   ä¸–ç•Œäº¤æ›çŠ¶æ…‹ä¿å­˜ãƒ‡ãƒ¼ã‚¿ã®ç¢ºä¿
  *
  * @param   heapID		
  *
@@ -75,7 +75,7 @@ WORLDTRADE_DATA * WorldTradeData_AllocWork(u32 heapID)
 
 //==============================================================================
 /**
- * $brief   ƒf[ƒ^‰Šú‰»
+ * $brief   ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
  * @param   randomgroup		
  *
@@ -92,11 +92,11 @@ void WorldTradeData_Init(WORLDTRADE_DATA * WorldTradeData )
 
 //==============================================================================
 /**
- * $brief   —a‚¯‚Ä‚¢‚é‚©H
+ * $brief   é ã‘ã¦ã„ã‚‹ã‹ï¼Ÿ
  *
  * @param   WorldTradeData		
  *
- * @retval  int		0:—a‚¯‚Ä‚¢‚È‚¢	1:—a‚¯‚Ä‚¢‚é
+ * @retval  int		0:é ã‘ã¦ã„ãªã„	1:é ã‘ã¦ã„ã‚‹
  */
 //==============================================================================
 int  WorldTradeData_GetFlag( WORLDTRADE_DATA* WorldTradeData )
@@ -105,7 +105,7 @@ int  WorldTradeData_GetFlag( WORLDTRADE_DATA* WorldTradeData )
 }
 //==============================================================================
 /**
- * $brief   —a‚¯‚Ä‚¢‚éƒtƒ‰ƒO‚Ì‘€ì
+ * $brief   é ã‘ã¦ã„ã‚‹ãƒ•ãƒ©ã‚°ã®æ“ä½œ
  *
  * @param   WorldTradeData		
  *
@@ -120,7 +120,7 @@ void  WorldTradeData_SetFlag( WORLDTRADE_DATA* WorldTradeData, int flag )
 
 //==============================================================================
 /**
- * $brief   ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğæ‚èo‚·
+ * $brief   ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã™
  *
  * @param   WorldTradeData		
  * @param   poke		
@@ -135,7 +135,7 @@ void  WorldTradeData_GetPokemonData( WORLDTRADE_DATA* WorldTradeData, POKEMON_PA
 
 //==============================================================================
 /**
- * $brief   ƒ|ƒPƒ‚ƒ“‚ğ—a‚¯‚½‚Ì‚ÅAƒRƒs[‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+ * $brief   ãƒã‚±ãƒ¢ãƒ³ã‚’é ã‘ãŸã®ã§ã€ã‚³ãƒ”ãƒ¼ã‚’ä¿å­˜ã—ã¦ãŠã
  *
  * @param   WorldTradeData		
  * @param   poke		
@@ -151,11 +151,11 @@ void  WorldTradeData_SetPokemonData( WORLDTRADE_DATA* WorldTradeData, POKEMON_PA
 
 //==============================================================================
 /**
- * $brief   —a‚¯‚ÄŒğŠ·‚ª¬—§‚µ‚½ÅŒã‚Ì“ú‚ğ“¾‚é
+ * $brief   é ã‘ã¦äº¤æ›ãŒæˆç«‹ã—ãŸæœ€å¾Œã®æ—¥ã‚’å¾—ã‚‹
  *
  * @param   WorldTradeData		
  *
- * @retval  int		0:—a‚¯‚Ä‚¢‚È‚¢	1:—a‚¯‚Ä‚¢‚é
+ * @retval  int		0:é ã‘ã¦ã„ãªã„	1:é ã‘ã¦ã„ã‚‹
  */
 //==============================================================================
 GF_DATE  WorldTradeData_GetLastDate_Deposit( WORLDTRADE_DATA* WorldTradeData )
@@ -164,7 +164,7 @@ GF_DATE  WorldTradeData_GetLastDate_Deposit( WORLDTRADE_DATA* WorldTradeData )
 }
 //==============================================================================
 /**
- * $brief   —a‚¯‚ÄŒğŠ·‚ª¬—§‚µ‚½ÅŒã‚Ì“ú‚ğ‹L˜^‚·‚é
+ * $brief   é ã‘ã¦äº¤æ›ãŒæˆç«‹ã—ãŸæœ€å¾Œã®æ—¥ã‚’è¨˜éŒ²ã™ã‚‹
  *
  * @param   WorldTradeData		
  *
@@ -178,11 +178,11 @@ void  WorldTradeData_SetLastDate_Deposit( WORLDTRADE_DATA* WorldTradeData, GF_DA
 
 //==============================================================================
 /**
- * $brief   ŒŸõ‚µ‚ÄŒğŠ·‚ª¬—§‚µ‚½ÅŒã‚Ì“ú‚ğ“¾‚é
+ * $brief   æ¤œç´¢ã—ã¦äº¤æ›ãŒæˆç«‹ã—ãŸæœ€å¾Œã®æ—¥ã‚’å¾—ã‚‹
  *
  * @param   WorldTradeData		
  *
- * @retval  int		0:—a‚¯‚Ä‚¢‚È‚¢	1:—a‚¯‚Ä‚¢‚é
+ * @retval  int		0:é ã‘ã¦ã„ãªã„	1:é ã‘ã¦ã„ã‚‹
  */
 //==============================================================================
 GF_DATE  WorldTradeData_GetLastDate_Search( WORLDTRADE_DATA* WorldTradeData )
@@ -191,7 +191,7 @@ GF_DATE  WorldTradeData_GetLastDate_Search( WORLDTRADE_DATA* WorldTradeData )
 }
 //==============================================================================
 /**
- * $brief   ŒŸõ‚µ‚ÄŒğŠ·‚ª¬—§‚µ‚½ÅŒã‚Ì“ú‚ğ‹L˜^‚·‚é
+ * $brief   æ¤œç´¢ã—ã¦äº¤æ›ãŒæˆç«‹ã—ãŸæœ€å¾Œã®æ—¥ã‚’è¨˜éŒ²ã™ã‚‹
  *
  * @param   WorldTradeData		
  *
@@ -205,7 +205,7 @@ void  WorldTradeData_SetLastDate_Search( WORLDTRADE_DATA* WorldTradeData, GF_DAT
 
 //==============================================================================
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“‚ª—a‚¯‚ç‚ê‚Ä‚¢‚éBOXNOi‚Ä‚à‚¿‚ÍRETURN_POSITION_TEMOTIjæ“¾
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ãŒé ã‘ã‚‰ã‚Œã¦ã„ã‚‹BOXNOï¼ˆã¦ã‚‚ã¡ã¯RETURN_POSITION_TEMOTIï¼‰å–å¾—
  *
  * @param   WorldTradeData		
  *

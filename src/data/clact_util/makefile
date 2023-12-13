@@ -1,23 +1,23 @@
 ##########################################################
-#	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ—pƒtƒ@ƒCƒ‹
+#	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç”¨ãƒ•ã‚¡ã‚¤ãƒ«
 #	
 ##########################################################
 RESFILES   := $(wildcard *.restxt)
 			 
 ##########################################################
-#	ƒZƒ‹ƒAƒNƒ^[—pƒtƒ@ƒCƒ‹
+#	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç”¨ãƒ•ã‚¡ã‚¤ãƒ«
 #	
 ##########################################################
 CLACTFILES  := $(wildcard *.cltxt)
 
 
 ##########################################################
-#	“®ì•”•ª
+#	å‹•ä½œéƒ¨åˆ†
 ##########################################################
 .SUFFIXES: .resdat .restxt .cldat .cltxt
 
 
-#‘S•”ƒA[ƒJƒCƒu‚³‚¹‚é
+#å…¨éƒ¨ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã•ã›ã‚‹
 clact.narc: $(RESFILES:.restxt=.resdat) $(CLACTFILES:.cltxt=.cldat)
 	nnsarc -c -l -n -i clact_header.narc *.resdat *.cldat
 	cp *.resdat ../
@@ -25,7 +25,7 @@ clact.narc: $(RESFILES:.restxt=.resdat) $(CLACTFILES:.cltxt=.cldat)
 	cp ../../../include/system/arc_tool.dat clact_check/tmp_arc_tool.dat
 
 
-#ƒTƒtƒBƒbƒNƒXƒ‹[ƒ‹
+#ã‚µãƒ•ã‚£ãƒƒã‚¯ã‚¹ãƒ«ãƒ¼ãƒ«
 .restxt.resdat:
 	perl res_header_conv.pl $< $@ \
 	../../../include/system/arc_tool.dat \
@@ -38,7 +38,7 @@ clact.narc: $(RESFILES:.restxt=.resdat) $(CLACTFILES:.cltxt=.cldat)
 
 
 ##########################################################
-#	clean w’è‚³‚ê‚½‚Æ‚«
+#	clean æŒ‡å®šã•ã‚ŒãŸã¨ã
 #	
 ##########################################################
 clean:

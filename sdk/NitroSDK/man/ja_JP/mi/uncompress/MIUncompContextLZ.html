@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>MIUncompContextLZ</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MIUncompContextLZ</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -28,56 +28,56 @@ typedef struct
     u8  length;      // 1B
     u8  lengthFlg;   // 1B
     u8  _padding[1]; // 1B
-                  // �v 16B
+                  // 計 16B
 } MIUncompContextLZ;</PRE>
   </dd>
 </dl>
-<h2>����</h2>
-<P>LZ77���k���ꂽ�f�[�^���J�[�h����ǂݍ��݂Ȃ��珇���X�g���[�~���O�W�J�������Ȃ��ۂɁA<BR>
-�f�[�^�W�J�󋵂�ۑ����Ă������߂̃R���e�L�X�g�\���̂ł��B<BR>
-<A href="MI_InitUncompContextLZ.html">MI_InitUncompContextLZ</A>�֐��ŃR���e�L�X�g�̏������������Ȃ��A<A href="MI_ReadUncompLZ.html">MI_ReadUncompLZ*</A>�֐��ł��̃R���e�L�X�g���g�p���ēW�J�󋵂�ۊǂ��܂��B<BR>
+<h2>説明</h2>
+<P>LZ77圧縮されたデータをカードから読み込みながら順次ストリーミング展開をおこなう際に、<BR>
+データ展開状況を保存しておくためのコンテキスト構造体です。<BR>
+<A href="MI_InitUncompContextLZ.html">MI_InitUncompContextLZ</A>関数でコンテキストの初期化をおこない、<A href="MI_ReadUncompLZ.html">MI_ReadUncompLZ*</A>関数でこのコンテキストを使用して展開状況を保管します。<BR>
 </P>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>destp</STRONG></EM></TD>
-      <TD width="87%">�W�J�����f�[�^�̏������ݐ�̈�ւ̃|�C���^</TD>
+      <TD width="87%">展開したデータの書き込み先領域へのポインタ</TD>
     </TR>
     <TR>
       <TD><EM><STRONG>destCount</STRONG></EM></TD>
-      <TD>�c�菑�����݃T�C�Y </TD>
+      <TD>残り書き込みサイズ </TD>
     </TR>
     <TR>
       <TD><EM><STRONG>destTmp</STRONG></EM></TD>
-      <TD>�������ݓr���̃f�[�^�ޔ�p</TD>
+      <TD>書き込み途中のデータ退避用</TD>
     </TR>
     <TR>
       <TD><EM><STRONG>destTmpCnt</STRONG></EM></TD>
-      <TD>�������ݓr���̃f�[�^�T�C�Y�ޔ�p</TD>
+      <TD>書き込み途中のデータサイズ退避用</TD>
     </TR>
     <TR>
       <TD><EM><STRONG>flags</STRONG></EM></TD>
-      <TD>���k�t���O�f�[�^�ޔ�p</TD>
+      <TD>圧縮フラグデータ退避用</TD>
     </TR>
     <TR>
       <TD><EM><STRONG>flagIndex</STRONG></EM></TD>
-      <TD>�t���O�f�[�^�̃J�����g�C���f�b�N�X�ޔ�p </TD>
+      <TD>フラグデータのカレントインデックス退避用 </TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>length</STRONG></EM></TD>
-      <TD width="87%">�A���������݃T�C�Y�ޔ�p </TD>
+      <TD width="87%">連続書き込みサイズ退避用 </TD>
     </TR>
     <TR>
       <TD><EM><STRONG>lengthFlg</STRONG></EM></TD>
-      <TD>2�o�C�g�ɂ܂�����offset���̃��[�h�r���ł��邩�ǂ����̑ޔ�p</TD>
+      <TD>2バイトにまたがるoffset情報のリード途中であるかどうかの退避用</TD>
     </TR>
   </TBODY>
 </TABLE>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="MI_InitUncompContextLZ.html">MI_InitUncompContextLZ</A>, <A href="MI_ReadUncompLZ.html">MI_ReadUncompLZ*</A>, <A href="MIUncompContextRL.html">MIUncompContextRL</A>,<A href="MIUncompContextHuffman.html">MIUncompContextHuffman</A><br>
 </CODE></p>
 
-<H2>����</H2>
-<P>2004/11/30 ����</P>
+<H2>履歴</H2>
+<P>2004/11/30 初版</P>
 </body>
 </html>

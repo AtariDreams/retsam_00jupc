@@ -38,7 +38,7 @@ NNS_G3dGetResNameByIdx(const NNSG3dResDict* dict, u32 idx)
 {
     NNSG3dResDictEntryHeader* hdr;
     NNS_G3D_NULL_ASSERT(dict);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (dict != NULL && idx < dict->numEntry)
     {
@@ -59,7 +59,7 @@ NNS_G3dGetResDataByIdx(const NNSG3dResDict* dict, u32 idx)
 {
     NNSG3dResDictEntryHeader* hdr;
     NNS_G3D_NULL_ASSERT(dict);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (dict != NULL && idx < dict->numEntry)
     {
@@ -83,7 +83,7 @@ NNS_G3D_RES_INLINE const NNSG3dResName*
 NNS_G3dGetTexNameByIdx(const NNSG3dResTex* tex, u32 idx)
 {
     NNS_G3D_NULL_ASSERT(tex);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (tex)
         return NNS_G3dGetResNameByIdx(&tex->dict, idx);
@@ -95,7 +95,7 @@ NNS_G3D_RES_INLINE int
 NNS_G3dGetTexIdxByName(const NNSG3dResTex* tex, const NNSG3dResName* name)
 {
     NNS_G3D_NULL_ASSERT(tex);
-    // name‚ªNULL‚Ìê‡‚Í-1‚ª•Ô‚éB
+    // nameãŒNULLã®å ´åˆã¯-1ãŒè¿”ã‚‹ã€‚
 
     if (tex)
         return NNS_G3dGetResDictIdxByName(&tex->dict, name);
@@ -109,7 +109,7 @@ NNS_G3dGetPlttNameByIdx(const NNSG3dResTex* tex, u32 idx)
 {
     const NNSG3dResDict* dict;
     NNS_G3D_NULL_ASSERT(tex);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
     NNS_G3D_ASSERT(tex->plttInfo.ofsDict != 0);
 
     if (tex && tex->plttInfo.ofsDict != 0)
@@ -129,7 +129,7 @@ NNS_G3dGetPlttIdxByName(const NNSG3dResTex* tex, const NNSG3dResName* name)
 {
     const NNSG3dResDict* dict;
     NNS_G3D_NULL_ASSERT(tex);
-    // name‚ªNULL‚Ìê‡‚Í-1‚ª•Ô‚éB
+    // nameãŒNULLã®å ´åˆã¯-1ãŒè¿”ã‚‹ã€‚
     NNS_G3D_ASSERT(tex->plttInfo.ofsDict != 0);
     
     if (tex && tex->plttInfo.ofsDict != 0)
@@ -152,7 +152,7 @@ NNS_G3D_RES_INLINE const NNSG3dResName*
 NNS_G3dGetNodeNameByIdx(const NNSG3dResNodeInfo* nodeinfo, u32 idx)
 {
     NNS_G3D_NULL_ASSERT(nodeinfo);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (nodeinfo)
         return NNS_G3dGetResNameByIdx(&nodeinfo->dict, idx);
@@ -165,7 +165,7 @@ NNS_G3D_RES_INLINE int
 NNS_G3dGetNodeIdxByName(const NNSG3dResNodeInfo* nodeinfo, const NNSG3dResName* name)
 {
     NNS_G3D_NULL_ASSERT(nodeinfo);
-    // name‚ªNULL‚Ìê‡‚Í-1‚ª•Ô‚éB
+    // nameãŒNULLã®å ´åˆã¯-1ãŒè¿”ã‚‹ã€‚
 
     if (nodeinfo)
         return NNS_G3dGetResDictIdxByName(&nodeinfo->dict, name);
@@ -182,7 +182,7 @@ NNS_G3D_RES_INLINE const NNSG3dResName*
 NNS_G3dGetMatNameByIdx(const NNSG3dResMat* mat, u32 idx)
 {
     NNS_G3D_NULL_ASSERT(mat);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (mat)
         return NNS_G3dGetResNameByIdx(&mat->dict, idx);
@@ -195,7 +195,7 @@ NNS_G3D_RES_INLINE int
 NNS_G3dGetMatIdxByName(const NNSG3dResMat* mat, const NNSG3dResName* name)
 {
     NNS_G3D_NULL_ASSERT(mat);
-    // name‚ªNULL‚Ìê‡‚Í-1‚ª•Ô‚éB
+    // nameãŒNULLã®å ´åˆã¯-1ãŒè¿”ã‚‹ã€‚
 
     if (mat)
         return NNS_G3dGetResDictIdxByName(&mat->dict, name);
@@ -211,7 +211,7 @@ NNS_G3D_RES_INLINE const NNSG3dResName*
 NNS_G3dGetShpNameByIdx(const NNSG3dResShp* shp, u32 idx)
 {
     NNS_G3D_NULL_ASSERT(shp);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (shp)
         return NNS_G3dGetResNameByIdx(&shp->dict, idx);
@@ -224,7 +224,7 @@ NNS_G3D_RES_INLINE int
 NNS_G3dGetShpIdxByName(const NNSG3dResShp* shp, const NNSG3dResName* name)
 {
     NNS_G3D_NULL_ASSERT(shp);
-    // name‚ªNULL‚Ìê‡‚Í-1‚ª•Ô‚éB
+    // nameãŒNULLã®å ´åˆã¯-1ãŒè¿”ã‚‹ã€‚
 
     if (shp)
         return NNS_G3dGetResDictIdxByName(&shp->dict, name);
@@ -307,7 +307,7 @@ NNS_G3dGetMdlByIdx(const NNSG3dResMdlSet* mdlSet, u32 idx)
 {
     NNSG3dResDictMdlSetData* data;
     NNS_G3D_NULL_ASSERT(mdlSet);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (mdlSet)
     {
@@ -326,7 +326,7 @@ NNS_G3D_RES_INLINE const NNSG3dResName*
 NNS_G3dGetMdlNameByIdx(const NNSG3dResMdlSet* mdlSet, u32 idx)
 {
     NNS_G3D_NULL_ASSERT(mdlSet);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (mdlSet)
         return NNS_G3dGetResNameByIdx(&mdlSet->dict, idx);
@@ -340,7 +340,7 @@ NNS_G3dGetMdlByName(const NNSG3dResMdlSet* mdlSet, const NNSG3dResName* name)
 {
     NNSG3dResDictMdlSetData* data;
     NNS_G3D_NULL_ASSERT(mdlSet);
-    // name‚ªNULL‚Ìê‡‚ÍNULL‚ª•Ô‚éB
+    // nameãŒNULLã®å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (mdlSet)
     {
@@ -360,7 +360,7 @@ NNS_G3D_RES_INLINE int
 NNS_G3dGetMdlIdxByName(const NNSG3dResMdlSet* mdlSet, const NNSG3dResName* name)
 {
     NNS_G3D_NULL_ASSERT(mdlSet);
-    // name‚ªNULL‚Ìê‡‚Í-1‚ª•Ô‚éB
+    // nameãŒNULLã®å ´åˆã¯-1ãŒè¿”ã‚‹ã€‚
 
     if (mdlSet)
         return NNS_G3dGetResDictIdxByName(&mdlSet->dict, name);
@@ -411,7 +411,7 @@ NNS_G3dGetNodeDataByIdx(const NNSG3dResNodeInfo* info, u32 idx)
 {
     NNSG3dResDictNodeData* data;
     NNS_G3D_NULL_ASSERT(info);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (info)
     {
@@ -432,7 +432,7 @@ NNS_G3dGetMatDataByIdx(const NNSG3dResMat* mat, u32 idx)
 {
     NNSG3dResDictMatData* data;
     NNS_G3D_NULL_ASSERT(mat);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (mat)
     {
@@ -453,7 +453,7 @@ NNS_G3dGetShpDataByIdx(const NNSG3dResShp* shp, u32 idx)
 {
     NNSG3dResDictShpData* data;
     NNS_G3D_NULL_ASSERT(shp);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (shp)
     {
@@ -472,7 +472,7 @@ NNS_G3D_RES_INLINE NNSG3dResDictTexData*
 NNS_G3dGetTexDataByName(const NNSG3dResTex* tex, const NNSG3dResName* name)
 {
     NNS_G3D_NULL_ASSERT(tex);
-    // name‚ªNULL‚Ìê‡‚ÍNULL‚ª•Ô‚éB
+    // nameãŒNULLã®å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (tex)
         return (NNSG3dResDictTexData*)NNS_G3dGetResDataByName(&tex->dict, name);
@@ -485,7 +485,7 @@ NNS_G3D_RES_INLINE NNSG3dResDictTexData*
 NNS_G3dGetTexDataByIdx(const NNSG3dResTex* tex, u32 idx)
 {
     NNS_G3D_NULL_ASSERT(tex);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (tex)
         return (NNSG3dResDictTexData*)NNS_G3dGetResDataByIdx(&tex->dict, idx);
@@ -500,7 +500,7 @@ NNS_G3dGetPlttDataByName(const NNSG3dResTex* tex, const NNSG3dResName* name)
     NNSG3dResDict* dict;
     NNS_G3D_NULL_ASSERT(tex);
     NNS_G3D_ASSERT(tex->plttInfo.ofsDict != 0);
-    // name‚ªNULL‚Ìê‡‚ÍNULL‚ª•Ô‚éB
+    // nameãŒNULLã®å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (tex && tex->plttInfo.ofsDict != 0)
     {
@@ -520,7 +520,7 @@ NNS_G3dGetPlttDataByIdx(const NNSG3dResTex* tex, u32 idx)
     NNSG3dResDict* dict;
     NNS_G3D_NULL_ASSERT(tex);
     NNS_G3D_ASSERT(tex->plttInfo.ofsDict != 0);
-    // idx‚ª”ÍˆÍ‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍNULL‚ª•Ô‚éB
+    // idxãŒç¯„å›²ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯NULLãŒè¿”ã‚‹ã€‚
 
     if (tex && tex->plttInfo.ofsDict != 0)
     {

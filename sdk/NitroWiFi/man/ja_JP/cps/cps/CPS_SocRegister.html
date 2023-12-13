@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>CPS_SocRegister</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">CPS_SocRegister</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
@@ -20,32 +20,32 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 
 <table width="100%">
   <tr>
     <td><code><em><strong>soc</strong></em></code></td>
-    <td>�\�P�b�g�\���́B</td>
+    <td>ソケット構造体。</td>
   </tr>
 </table>
 
-<h2>�Ԃ�l</h2>
-<P>�Ȃ��B</P>
+<h2>返り値</h2>
+<P>なし。</P>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p>���X���b�h��CPS���C�u�������g�p����\�P�b�g�\���̂�ݒ肵�܂��B<BR>
-	��̓I�ɂ́AOSThread�\���̂̃G���g����<CODE><A href="CPSSoc.html">CPSSoc</A></CODE>�ւ̃|�C���^��ݒ肵�܂��B<BR>
-	<CODE><A href="CPSSoc.html">CPSSoc</A></CODE>�ɂ́ACPS���C�u�������g�p����o�b�t�@��ݒ肵�Ȃ���΂����܂���B<BR>
-	�u���b�N�͂��܂���B</p>
+<p>現スレッドでCPSライブラリが使用するソケット構造体を設定します。<BR>
+	具体的には、OSThread構造体のエントリに<CODE><A href="CPSSoc.html">CPSSoc</A></CODE>へのポインタを設定します。<BR>
+	<CODE><A href="CPSSoc.html">CPSSoc</A></CODE>には、CPSライブラリが使用するバッファを設定しなければいけません。<BR>
+	ブロックはしません。</p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <P>
 <CODE><A href="CPS_SocUnRegister.html">CPS_SocUnRegister</A></CODE>, 
 <CODE><A href="CPSSoc.html">CPSSoc</A></CODE>
 </P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/10/21 ����</P>
+2005/10/21 初版</P>
 </body>
 </html>

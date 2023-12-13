@@ -27,8 +27,8 @@
 #include <math.h>
 
 //
-// ‚±‚Ìƒtƒ@ƒCƒ‹‚Ì“à—e‚ÍƒfƒoƒbƒNƒrƒ‹ƒh‚Å‚ ‚é‚©AƒRƒ“ƒo[ƒ^‚É‚¨‚¢‚Ä‚Ì‚İ
-// ƒRƒ“ƒpƒCƒ‹‚³‚ê‚é
+// ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã¯ãƒ‡ãƒãƒƒã‚¯ãƒ“ãƒ«ãƒ‰ã§ã‚ã‚‹ã‹ã€ã‚³ãƒ³ãƒãƒ¼ã‚¿ã«ãŠã„ã¦ã®ã¿
+// ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã•ã‚Œã‚‹
 //
 #if defined(SDK_DEBUG) || defined(NNS_FROM_TOOL)
 
@@ -55,7 +55,7 @@ NNS_G3dPrintResName(const NNSG3dResName* resName)
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintFileHeader
 
-    ƒtƒ@ƒCƒ‹ƒTƒCƒYAƒVƒOƒiƒ`ƒƒAƒo[ƒWƒ‡ƒ“‚ğ•\¦‚µ‚Ü‚·B    
+    ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã€ã‚·ã‚°ãƒŠãƒãƒ£ã€ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚    
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintFileHeader(const NNSG3dResFileHeader* header)
@@ -83,8 +83,8 @@ NNS_G3dPrintFileHeader(const NNSG3dResFileHeader* header)
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintDataBlockHeader
 
-    [ƒf[ƒ^ƒuƒƒbƒNí•Ê], ƒf[ƒ^ƒuƒƒbƒN‚ÌƒTƒCƒY
-    ‚ğo—Í‚µ‚Ü‚·
+    [ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ç¨®åˆ¥], ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
+    ã‚’å‡ºåŠ›ã—ã¾ã™
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintDataBlockHeader(const NNSG3dResDataBlockHeader* header)
@@ -104,12 +104,12 @@ NNS_G3dPrintDataBlockHeader(const NNSG3dResDataBlockHeader* header)
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintDictEntryItem_TEX
 
-    ŒÂX‚ÌƒeƒNƒXƒ`ƒƒî•ñ‚ğo—Í‚µ‚Ü‚·Bo—Í‚ÍA
+    å€‹ã€…ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£æƒ…å ±ã‚’å‡ºåŠ›ã—ã¾ã™ã€‚å‡ºåŠ›ã¯ã€
 
-    ƒeƒNƒXƒ`ƒƒ‚ÌƒCƒ“ƒfƒbƒNƒX, ƒeƒNƒXƒ`ƒƒ–¼, ƒIƒtƒZƒbƒg, Width, Height,
-    ƒtƒH[ƒ}ƒbƒg–¼, Pltt0‚Ìˆµ‚¢, Width(ƒIƒŠƒWƒiƒ‹ƒf[ƒ^), Height(ƒIƒŠƒWƒiƒ‹ƒf[ƒ^)
+    ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹, ãƒ†ã‚¯ã‚¹ãƒãƒ£å, ã‚ªãƒ•ã‚»ãƒƒãƒˆ, Width, Height,
+    ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå, Pltt0ã®æ‰±ã„, Width(ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿), Height(ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿)
 
-    ‚Ì‚æ‚¤‚É•À‚Ñ‚Ü‚·
+    ã®ã‚ˆã†ã«ä¸¦ã³ã¾ã™
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintDictEntryItem_TEX(u32 idx,
@@ -130,9 +130,9 @@ NNS_G3dPrintDictEntryItem_TEX(u32 idx,
     RES_PRINTF(", ");
 
     texAddr = (data->texImageParam & 0xffff) << 3;
-    // GX_TEXSIZE_Sx‚Ì’l‚ğ—˜—p
+    // GX_TEXSIZE_Sxã®å€¤ã‚’åˆ©ç”¨
     width = 8 * (int)(pow(2.0, (double)((data->texImageParam >> 20) & 7)));
-    // GX_TEXSIZE_Tx‚Ì’l‚ğ—˜—p
+    // GX_TEXSIZE_Txã®å€¤ã‚’åˆ©ç”¨
     height = 8 * (int)(pow(2.0, (double)((data->texImageParam >> 23) & 7)));
 
     RES_PRINTF("%d, %d, %d, ", texAddr, width, height);
@@ -184,9 +184,9 @@ NNS_G3dPrintDictEntryItem_TEX(u32 idx,
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintDictEntryItem_PLTT
 
-    ŒÂX‚ÌƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgî•ñ‚Ìo—Í
+    å€‹ã€…ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆæƒ…å ±ã®å‡ºåŠ›
 
-    ƒCƒ“ƒfƒbƒNƒX, ƒpƒŒƒbƒg–¼, ƒuƒƒbƒN“àƒIƒtƒZƒbƒg
+    ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹, ãƒ‘ãƒ¬ãƒƒãƒˆå, ãƒ–ãƒ­ãƒƒã‚¯å†…ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintDictEntryItem_PLTT(u32 idx,
@@ -206,8 +206,8 @@ NNS_G3dPrintDictEntryItem_PLTT(u32 idx,
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintTexImage
 
-    ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒuƒƒbƒN‚Ìî•ñ‚ğo—Í‚µ‚Ü‚·B
-    ƒpƒŒƒbƒg‚àŠÜ‚İ‚Ü‚·B
+    ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ–ãƒ­ãƒƒã‚¯ã®æƒ…å ±ã‚’å‡ºåŠ›ã—ã¾ã™ã€‚
+    ãƒ‘ãƒ¬ãƒƒãƒˆã‚‚å«ã¿ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintTex(const NNSG3dResTex* texImage)
@@ -229,7 +229,7 @@ NNS_G3dPrintTex(const NNSG3dResTex* texImage)
     tabPrint_(); RES_PRINTF("# of textures, %d\n", numEntry);
 
     //
-    // 4x4‚Æ‚»‚êˆÈŠO‚ğ•ÊX‚É•ª‚¯‚Ä•\¦
+    // 4x4ã¨ãã‚Œä»¥å¤–ã‚’åˆ¥ã€…ã«åˆ†ã‘ã¦è¡¨ç¤º
     //
     for (idx = 0; idx < numEntry; ++idx)
     {
@@ -247,7 +247,7 @@ NNS_G3dPrintTex(const NNSG3dResTex* texImage)
     }
 
     //
-    // 4x4ˆÈŠO‚ÌƒtƒH[ƒ}ƒbƒg
+    // 4x4ä»¥å¤–ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
     //
     if (0 != numEntryNm)
     {
@@ -265,7 +265,7 @@ NNS_G3dPrintTex(const NNSG3dResTex* texImage)
 
                     if (((data->texImageParam >> 26) & 7) != 5)
                     {
-                        // 4x4COMP‚Å‚È‚¢
+                        // 4x4COMPã§ãªã„
                         NNS_G3dPrintDictEntryItem_TEX(i, name, data);
                     }
                 }
@@ -275,7 +275,7 @@ NNS_G3dPrintTex(const NNSG3dResTex* texImage)
     }
 
     //
-    // 4x4ƒtƒH[ƒ}ƒbƒg
+    // 4x4ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
     //
     if (0 != numEntry4x4)
     {
@@ -334,7 +334,7 @@ NNS_G3dPrintTex(const NNSG3dResTex* texImage)
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintMdlInfo
 
-    NNSG3dResMdlInfo\‘¢‘Ì‚ÌƒTƒ}ƒŠ‚ğ•\¦‚·‚é
+    NNSG3dResMdlInfoæ§‹é€ ä½“ã®ã‚µãƒãƒªã‚’è¡¨ç¤ºã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintMdlInfo(const NNSG3dResMdlInfo* info)
@@ -430,7 +430,7 @@ NNS_G3dPrintMdlInfo(const NNSG3dResMdlInfo* info)
 
 
 //
-// +1/-1—v‘f‚Ì‘¶İ‚É‚æ‚Á‚Ä0‚É‚È‚és—ñ—v‘f‚ÌêŠ‚ğŠi”[‚µ‚Ä‚¢‚é
+// +1/-1è¦ç´ ã®å­˜åœ¨ã«ã‚ˆã£ã¦0ã«ãªã‚‹è¡Œåˆ—è¦ç´ ã®å ´æ‰€ã‚’æ ¼ç´ã—ã¦ã„ã‚‹
 //
 static u8 pivotUtil_[9][4] =
 {
@@ -451,7 +451,7 @@ static u8 pivotUtil_[9][4] =
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintNodeSRTInfo
 
-    ŒÂX‚Ìƒm[ƒh‚ÌSRTî•ñ‚ÌƒTƒ}ƒŠ‚ğo—Í
+    å€‹ã€…ã®ãƒãƒ¼ãƒ‰ã®SRTæƒ…å ±ã®ã‚µãƒãƒªã‚’å‡ºåŠ›
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintNodeSRTInfo(const NNSG3dResNodeInfo* info,
@@ -540,7 +540,7 @@ NNS_G3dPrintNodeSRTInfo(const NNSG3dResNodeInfo* info,
             if (srt->flag & NNS_G3D_SRTFLAG_PIVOT_EXIST)
             {
                 //
-                // ˆ³k‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ğ‰ğß‚µ‚Äo—Í
+                // åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’è§£é‡ˆã—ã¦å‡ºåŠ›
                 //
                 fx16* p = (fx16*)ptr;
                 u32 idxPivot = ((u32)srt->flag & NNS_G3D_SRTFLAG_IDXPIVOT_MASK) >> NNS_G3D_SRTFLAG_IDXPIVOT_SHIFT;
@@ -613,7 +613,7 @@ NNS_G3dPrintNodeSRTInfo(const NNSG3dResNodeInfo* info,
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintNodeInfo
 
-    ’Pˆêƒ‚ƒfƒ‹“à‚Ìƒm[ƒhî•ñ‚ğo—Í
+    å˜ä¸€ãƒ¢ãƒ‡ãƒ«å†…ã®ãƒãƒ¼ãƒ‰æƒ…å ±ã‚’å‡ºåŠ›
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintNodeInfo(const NNSG3dResNodeInfo* info)
@@ -638,7 +638,7 @@ NNS_G3dPrintNodeInfo(const NNSG3dResNodeInfo* info)
 
 
 //
-// NNS_G3dPrintSbc—pƒTƒuŠÖ”ŒQ
+// NNS_G3dPrintSbcç”¨ã‚µãƒ–é–¢æ•°ç¾¤
 //
 static const NNSG3dResName*
 getNodeName_(u32 idx, const NNSG3dResMdl* mdl)
@@ -716,7 +716,7 @@ printOpNodeDescFlag(u32 flag)
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintSbc
 
-    Sbc‚ÌƒR[ƒh‚ğ‹tƒAƒZƒ“ƒuƒ‹(?)‚µ‚Ä•\¦‚·‚é
+    Sbcã®ã‚³ãƒ¼ãƒ‰ã‚’é€†ã‚¢ã‚»ãƒ³ãƒ–ãƒ«(?)ã—ã¦è¡¨ç¤ºã™ã‚‹
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintSbc(const u8* pCode, u32 sizeByte, const NNSG3dResMdl* mdl)
@@ -1286,10 +1286,10 @@ NNS_G3dPrintDL(const u32* dl, u32 szByte)
 
 
 //
-// NNS_G3dPrintMatData—pƒTƒuŠÖ”ŒQ
+// NNS_G3dPrintMatDataç”¨ã‚µãƒ–é–¢æ•°ç¾¤
 //
 
-// ƒ}ƒeƒŠƒAƒ‹ID(idx)‚ÅƒeƒNƒXƒ`ƒƒ‚ªg‚í‚ê‚Ä‚¢‚ê‚ÎƒeƒNƒXƒ`ƒƒ‚Ì–¼‘O‚ğ•Ô‚·
+// ãƒãƒ†ãƒªã‚¢ãƒ«ID(idx)ã§ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒä½¿ã‚ã‚Œã¦ã„ã‚Œã°ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®åå‰ã‚’è¿”ã™
 static const NNSG3dResName*
 getTexNameForMatID_(const NNSG3dResMat* mat, u32 idx)
 {
@@ -1317,7 +1317,7 @@ getTexNameForMatID_(const NNSG3dResMat* mat, u32 idx)
 }
 
 
-// ƒ}ƒeƒŠƒAƒ‹ID(idx)‚ÅƒpƒŒƒbƒg‚ªg‚í‚ê‚Ä‚¢‚ê‚ÎƒpƒŒƒbƒg‚Ì–¼‘O‚ğ•Ô‚·
+// ãƒãƒ†ãƒªã‚¢ãƒ«ID(idx)ã§ãƒ‘ãƒ¬ãƒƒãƒˆãŒä½¿ã‚ã‚Œã¦ã„ã‚Œã°ãƒ‘ãƒ¬ãƒƒãƒˆã®åå‰ã‚’è¿”ã™
 static const NNSG3dResName*
 getPlttNameForMatID_(const NNSG3dResMat* mat, u32 idx)
 {
@@ -1345,7 +1345,7 @@ getPlttNameForMatID_(const NNSG3dResMat* mat, u32 idx)
 }
 
 
-// RGB‚Ì•\¦
+// RGBã®è¡¨ç¤º
 static void
 printRGB_(const char* name, u32 rgb)
 {
@@ -1362,7 +1362,7 @@ printRGB_(const char* name, u32 rgb)
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintMatData
 
-    ŒÂX‚Ìƒ}ƒeƒŠƒAƒ‹‚ÌƒTƒ}ƒŠ‚ğo—Í
+    å€‹ã€…ã®ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚µãƒãƒªã‚’å‡ºåŠ›
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintMatData(const NNSG3dResMat* mat,
@@ -1456,7 +1456,7 @@ NNS_G3dPrintMatData(const NNSG3dResMat* mat,
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintMat
 
-    ’Pˆêƒ‚ƒfƒ‹“à‚Ìƒ}ƒeƒŠƒAƒ‹î•ñ‚ğo—Í
+    å˜ä¸€ãƒ¢ãƒ‡ãƒ«å†…ã®ãƒãƒ†ãƒªã‚¢ãƒ«æƒ…å ±ã‚’å‡ºåŠ›
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintMat(const NNSG3dResMat* mat)
@@ -1481,7 +1481,7 @@ NNS_G3dPrintMat(const NNSG3dResMat* mat)
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintShp
 
-    ’Pˆêƒ‚ƒfƒ‹“à‚ÌƒVƒFƒCƒvî•ñ‚ğo—Í
+    å˜ä¸€ãƒ¢ãƒ‡ãƒ«å†…ã®ã‚·ã‚§ã‚¤ãƒ—æƒ…å ±ã‚’å‡ºåŠ›
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintShp(const NNSG3dResShp* shp)
@@ -1534,7 +1534,7 @@ NNS_G3dPrintShp(const NNSG3dResShp* shp)
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintMdl
 
-    ƒ‚ƒfƒ‹ƒoƒCƒiƒŠ‚ÌƒTƒ}ƒŠ•\¦
+    ãƒ¢ãƒ‡ãƒ«ãƒã‚¤ãƒŠãƒªã®ã‚µãƒãƒªè¡¨ç¤º
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintMdl(const NNSG3dResName* resName,
@@ -1559,7 +1559,7 @@ NNS_G3dPrintMdl(const NNSG3dResName* resName,
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintMdlSet
 
-    ƒ‚ƒfƒ‹ƒZƒbƒgƒoƒCƒiƒŠ‚ÌƒTƒ}ƒŠ•\¦
+    ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆãƒã‚¤ãƒŠãƒªã®ã‚µãƒãƒªè¡¨ç¤º
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintMdlSet(const NNSG3dResMdlSet* mdlSet)
@@ -1587,7 +1587,7 @@ NNS_G3dPrintMdlSet(const NNSG3dResMdlSet* mdlSet)
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintNSBMD
 
-    NSBMDƒoƒCƒiƒŠ‚ÌƒTƒ}ƒŠ•\¦
+    NSBMDãƒã‚¤ãƒŠãƒªã®ã‚µãƒãƒªè¡¨ç¤º
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintNSBMD(const u8* binFile)
@@ -1631,7 +1631,7 @@ NNS_G3dPrintNSBMD(const u8* binFile)
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintNSBTX
 
-    NSBTXƒoƒCƒiƒŠ‚ÌƒTƒ}ƒŠ•\¦
+    NSBTXãƒã‚¤ãƒŠãƒªã®ã‚µãƒãƒªè¡¨ç¤º
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintNSBTX(const u8* binFile)
@@ -1672,7 +1672,7 @@ NNS_G3dPrintNSBTX(const u8* binFile)
 /*---------------------------------------------------------------------------*
     NNS_G3dPrintBinFile
 
-    ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚ÌƒTƒ}ƒŠ‚ğ“KØ‚É•\¦
+    ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µãƒãƒªã‚’é©åˆ‡ã«è¡¨ç¤º
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPrintBinFile(const u8* binFile)
@@ -1763,7 +1763,7 @@ void chkDict_(const NNSG3dResDict* dict,
 }
 
 //
-// ‚»‚Ì‘¼ƒ†[ƒeƒBƒŠƒeƒB(•Ê“rƒtƒ@ƒCƒ‹•ª‚¯‚ğ‚µ‚½‚Ù‚¤‚ª‚æ‚¢‚©H)
+// ãã®ä»–ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£(åˆ¥é€”ãƒ•ã‚¡ã‚¤ãƒ«åˆ†ã‘ã‚’ã—ãŸã»ã†ãŒã‚ˆã„ã‹ï¼Ÿ)
 //
 fx32 CvtrFX_Mul( fx32 v1, fx32 v2 )
 {

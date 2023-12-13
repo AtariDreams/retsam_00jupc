@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  *
- * í“¬˜^‰æ‚ÌƒTƒu\‘¢‘Ì‚â’è”‚Ì’è‹`‚È‚Ç
+ * æˆ¦é—˜éŒ²ç”»ã®ã‚µãƒ–æ§‹é€ ä½“ã‚„å®šæ•°ã®å®šç¾©ãªã©
  *
  */
 //==============================================================================
@@ -13,109 +13,109 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///˜^‰æƒf[ƒ^‚Ì‘¶Ý—L–³
+///éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®å­˜åœ¨æœ‰ç„¡
 #define GT_REC_OCC_MAGIC_KEY		(0xe281)
 
-///˜^‰æƒwƒbƒ_‚ÉŠi”[‚·‚éƒ|ƒPƒ‚ƒ“”Ô†‚ÌÅ‘å—v‘f”
+///éŒ²ç”»ãƒ˜ãƒƒãƒ€ã«æ ¼ç´ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã®æœ€å¤§è¦ç´ æ•°
 #define GT_HEADER_MONSNO_MAX		(12)
 
-#define	GT_WAZA_TEMOTI_MAX		(4)		///<1‘Ì‚Ìƒ|ƒPƒ‚ƒ“‚ª‚à‚Ä‚é‹Z‚ÌÅ‘å’l
+#define	GT_WAZA_TEMOTI_MAX		(4)		///<1ä½“ã®ãƒã‚±ãƒ¢ãƒ³ãŒã‚‚ã¦ã‚‹æŠ€ã®æœ€å¤§å€¤
 
-#define GT_PERSON_NAME_SIZE	7	// l•¨‚Ì–¼‘O‚Ì’·‚³iŽ©•ª‚àŠÜ‚Þj
-#define GT_MONS_NAME_SIZE		10	// ƒ|ƒPƒ‚ƒ“–¼‚Ì’·‚³(ƒoƒbƒtƒ@ƒTƒCƒY EOM_ŠÜ‚Ü‚¸)
-#define	GT_EOM_SIZE			1	// I—¹ƒR[ƒh‚Ì’·‚³
+#define GT_PERSON_NAME_SIZE	7	// äººç‰©ã®åå‰ã®é•·ã•ï¼ˆè‡ªåˆ†ã‚‚å«ã‚€ï¼‰
+#define GT_MONS_NAME_SIZE		10	// ãƒã‚±ãƒ¢ãƒ³åã®é•·ã•(ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º EOM_å«ã¾ãš)
+#define	GT_EOM_SIZE			1	// çµ‚äº†ã‚³ãƒ¼ãƒ‰ã®é•·ã•
 
-#define	GT_CLIENT_MAX			(4)		///<“¯Žž‚É‹N“®‚·‚éƒNƒ‰ƒCƒAƒ“ƒg‚ÌÅ‘å”
+#define	GT_CLIENT_MAX			(4)		///<åŒæ™‚ã«èµ·å‹•ã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®æœ€å¤§æ•°
 
-#define GT_TEMOTI_POKEMAX		6	///< ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“Å‘å”
+#define GT_TEMOTI_POKEMAX		6	///< æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³æœ€å¤§æ•°
 
-#define	GT_REC_BUFFER_SIZE	(0x0400)	///<‘Îí˜^‰æƒoƒbƒtƒ@ƒTƒCƒY
+#define	GT_REC_BUFFER_SIZE	(0x0400)	///<å¯¾æˆ¦éŒ²ç”»ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-#define GT_REGULATION_NAME_SIZE   (11)      // ƒ‹[ƒ‹–¼‚Ì’·‚³ 11•¶Žš22ƒoƒCƒg +EOM2byte
+#define GT_REGULATION_NAME_SIZE   (11)      // ãƒ«ãƒ¼ãƒ«åã®é•·ã• 11æ–‡å­—22ãƒã‚¤ãƒˆ +EOM2byte
 
-///ƒoƒgƒ‹ƒ‚[ƒh
+///ãƒãƒˆãƒ«ãƒ¢ãƒ¼ãƒ‰
 typedef enum{
 	//--------------------------------------------------------------
-	//	ƒRƒƒVƒAƒ€
+	//	ã‚³ãƒ­ã‚·ã‚¢ãƒ 
 	//--------------------------------------------------------------
-	GT_BATTLE_MODE_COLOSSEUM_SINGLE,			//ƒVƒ“ƒOƒ‹ƒoƒgƒ‹(ƒ~ƒbƒNƒXŠÜ‚Þ)F§ŒÀ‚È‚µ
-	GT_BATTLE_MODE_COLOSSEUM_SINGLE_STANDARD,	//ƒVƒ“ƒOƒ‹ƒoƒgƒ‹(ƒ~ƒbƒNƒXŠÜ‚Þ)FƒXƒ^ƒ“ƒ_[ƒhƒJƒbƒv
-	GT_BATTLE_MODE_COLOSSEUM_SINGLE_FANCY,		//ƒVƒ“ƒOƒ‹ƒoƒgƒ‹(ƒ~ƒbƒNƒXŠÜ‚Þ)Fƒtƒ@ƒ“ƒV[ƒJƒbƒv
-	GT_BATTLE_MODE_COLOSSEUM_SINGLE_LITTLE,		//ƒVƒ“ƒOƒ‹ƒoƒgƒ‹(ƒ~ƒbƒNƒXŠÜ‚Þ)FƒŠƒgƒ‹ƒJƒbƒv
-	GT_BATTLE_MODE_COLOSSEUM_SINGLE_LIGHT,		//ƒVƒ“ƒOƒ‹ƒoƒgƒ‹(ƒ~ƒbƒNƒXŠÜ‚Þ)Fƒ‰ƒCƒgƒJƒbƒv
-	GT_BATTLE_MODE_COLOSSEUM_SINGLE_DOUBLE,		//ƒVƒ“ƒOƒ‹ƒoƒgƒ‹(ƒ~ƒbƒNƒXŠÜ‚Þ)Fƒ_ƒuƒ‹ƒJƒbƒv
-	GT_BATTLE_MODE_COLOSSEUM_SINGLE_ETC,		//ƒVƒ“ƒOƒ‹ƒoƒgƒ‹(ƒ~ƒbƒNƒXŠÜ‚Þ)F‚»‚Ì‘¼‚ÌƒJƒbƒv
-	GT_BATTLE_MODE_COLOSSEUM_DOUBLE,			//ƒ_ƒuƒ‹ƒoƒgƒ‹F§ŒÀ‚È‚µ
-	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_STANDARD,	//ƒ_ƒuƒ‹ƒoƒgƒ‹FƒXƒ^ƒ“ƒ_[ƒhƒJƒbƒv
-	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_FANCY,		//ƒ_ƒuƒ‹ƒoƒgƒ‹Fƒtƒ@ƒ“ƒV[ƒJƒbƒv
-	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_LITTLE,		//ƒ_ƒuƒ‹ƒoƒgƒ‹FƒŠƒgƒ‹ƒJƒbƒv
-	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_LIGHT,		//ƒ_ƒuƒ‹ƒoƒgƒ‹Fƒ‰ƒCƒgƒJƒbƒv
-	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_DOUBLE,		//ƒ_ƒuƒ‹ƒoƒgƒ‹Fƒ_ƒuƒ‹ƒJƒbƒv
-	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_ETC,		//ƒ_ƒuƒ‹ƒoƒgƒ‹F‚»‚Ì‘¼‚ÌƒJƒbƒv
-	GT_BATTLE_MODE_COLOSSEUM_MULTI,				//ƒ}ƒ‹ƒ`ƒoƒgƒ‹
+	GT_BATTLE_MODE_COLOSSEUM_SINGLE,			//ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«(ãƒŸãƒƒã‚¯ã‚¹å«ã‚€)ï¼šåˆ¶é™ãªã—
+	GT_BATTLE_MODE_COLOSSEUM_SINGLE_STANDARD,	//ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«(ãƒŸãƒƒã‚¯ã‚¹å«ã‚€)ï¼šã‚¹ã‚¿ãƒ³ãƒ€ãƒ¼ãƒ‰ã‚«ãƒƒãƒ—
+	GT_BATTLE_MODE_COLOSSEUM_SINGLE_FANCY,		//ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«(ãƒŸãƒƒã‚¯ã‚¹å«ã‚€)ï¼šãƒ•ã‚¡ãƒ³ã‚·ãƒ¼ã‚«ãƒƒãƒ—
+	GT_BATTLE_MODE_COLOSSEUM_SINGLE_LITTLE,		//ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«(ãƒŸãƒƒã‚¯ã‚¹å«ã‚€)ï¼šãƒªãƒˆãƒ«ã‚«ãƒƒãƒ—
+	GT_BATTLE_MODE_COLOSSEUM_SINGLE_LIGHT,		//ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«(ãƒŸãƒƒã‚¯ã‚¹å«ã‚€)ï¼šãƒ©ã‚¤ãƒˆã‚«ãƒƒãƒ—
+	GT_BATTLE_MODE_COLOSSEUM_SINGLE_DOUBLE,		//ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«(ãƒŸãƒƒã‚¯ã‚¹å«ã‚€)ï¼šãƒ€ãƒ–ãƒ«ã‚«ãƒƒãƒ—
+	GT_BATTLE_MODE_COLOSSEUM_SINGLE_ETC,		//ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«(ãƒŸãƒƒã‚¯ã‚¹å«ã‚€)ï¼šãã®ä»–ã®ã‚«ãƒƒãƒ—
+	GT_BATTLE_MODE_COLOSSEUM_DOUBLE,			//ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ï¼šåˆ¶é™ãªã—
+	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_STANDARD,	//ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ï¼šã‚¹ã‚¿ãƒ³ãƒ€ãƒ¼ãƒ‰ã‚«ãƒƒãƒ—
+	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_FANCY,		//ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ï¼šãƒ•ã‚¡ãƒ³ã‚·ãƒ¼ã‚«ãƒƒãƒ—
+	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_LITTLE,		//ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ï¼šãƒªãƒˆãƒ«ã‚«ãƒƒãƒ—
+	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_LIGHT,		//ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ï¼šãƒ©ã‚¤ãƒˆã‚«ãƒƒãƒ—
+	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_DOUBLE,		//ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ï¼šãƒ€ãƒ–ãƒ«ã‚«ãƒƒãƒ—
+	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_ETC,		//ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ï¼šãã®ä»–ã®ã‚«ãƒƒãƒ—
+	GT_BATTLE_MODE_COLOSSEUM_MULTI,				//ãƒžãƒ«ãƒãƒãƒˆãƒ«
 
 	//--------------------------------------------------------------
-	//	ƒtƒƒ“ƒeƒBƒA
+	//	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢
 	//--------------------------------------------------------------
-	//ƒ^ƒ[
-	GT_BATTLE_MODE_TOWER_SINGLE,		//WIFI_DLŠÜ‚Þ
+	//ã‚¿ãƒ¯ãƒ¼
+	GT_BATTLE_MODE_TOWER_SINGLE,		//WIFI_DLå«ã‚€
 	GT_BATTLE_MODE_TOWER_DOUBLE,
 	GT_BATTLE_MODE_TOWER_MULTI,		//NPC, COMM, WIFI
-	//ƒtƒ@ƒNƒgƒŠ[—pINDEXŠJŽn
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ç”¨INDEXé–‹å§‹
 	GT_BATTLE_MODE_FACTORY50_SINGLE,
 	GT_BATTLE_MODE_FACTORY50_DOUBLE,
 	GT_BATTLE_MODE_FACTORY50_MULTI,	//COMM, WIFI
 	GT_BATTLE_MODE_FACTORY100_SINGLE,
 	GT_BATTLE_MODE_FACTORY100_DOUBLE,
 	GT_BATTLE_MODE_FACTORY100_MULTI,	//COMM, WIFI
-	//ƒXƒe[ƒW—pINDEXŠJŽn
+	//ã‚¹ãƒ†ãƒ¼ã‚¸ç”¨INDEXé–‹å§‹
 	GT_BATTLE_MODE_STAGE_SINGLE,
 	GT_BATTLE_MODE_STAGE_DOUBLE,
 	GT_BATTLE_MODE_STAGE_MULTI,		//COMM, WIFI
-	//ƒLƒƒƒbƒXƒ‹—pINDEXŠJŽn
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«ç”¨INDEXé–‹å§‹
 	GT_BATTLE_MODE_CASTLE_SINGLE,
 	GT_BATTLE_MODE_CASTLE_DOUBLE,
 	GT_BATTLE_MODE_CASTLE_MULTI,		//COMM, WIFI
-	//ƒ‹[ƒŒƒbƒg—pINDEXŠJŽn
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆç”¨INDEXé–‹å§‹
 	GT_BATTLE_MODE_ROULETTE_SINGLE,
 	GT_BATTLE_MODE_ROULETTE_DOUBLE,
 	GT_BATTLE_MODE_ROULETTE_MULTI,		//COMM, WIFI
 
 	//--------------------------------------------------------------
-	//	Žw’è‚È‚µ
+	//	æŒ‡å®šãªã—
 	//--------------------------------------------------------------
-	GT_BATTLE_MODE_COLOSSEUM_SINGLE_NO_REGULATION = 0xfa,	//ƒRƒƒVƒAƒ€/ƒVƒ“ƒOƒ‹ §ŒÀ‚È‚µ
-	GT_BATTLE_MODE_COLOSSEUM_SINGLE_REGULATION = 0xfb,		//ƒRƒƒVƒAƒ€/ƒVƒ“ƒOƒ‹ ƒJƒbƒví
-	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_NO_REGULATION = 0xfc,	//ƒRƒƒVƒAƒ€/ƒ_ƒuƒ‹ §ŒÀ‚È‚µ
-	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_REGULATION = 0xfd,		//ƒRƒƒVƒAƒ€/ƒ_ƒuƒ‹ ƒJƒbƒví
-	GT_BATTLE_MODE_EXCLUSION_FRONTIER = 0xfe,				//ƒtƒƒ“ƒeƒBƒAŽ{Ý‚ðœŠO
-	GT_BATTLE_MODE_NONE = 0xff,			//Žw’è‚È‚µ
+	GT_BATTLE_MODE_COLOSSEUM_SINGLE_NO_REGULATION = 0xfa,	//ã‚³ãƒ­ã‚·ã‚¢ãƒ /ã‚·ãƒ³ã‚°ãƒ« åˆ¶é™ãªã—
+	GT_BATTLE_MODE_COLOSSEUM_SINGLE_REGULATION = 0xfb,		//ã‚³ãƒ­ã‚·ã‚¢ãƒ /ã‚·ãƒ³ã‚°ãƒ« ã‚«ãƒƒãƒ—æˆ¦
+	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_NO_REGULATION = 0xfc,	//ã‚³ãƒ­ã‚·ã‚¢ãƒ /ãƒ€ãƒ–ãƒ« åˆ¶é™ãªã—
+	GT_BATTLE_MODE_COLOSSEUM_DOUBLE_REGULATION = 0xfd,		//ã‚³ãƒ­ã‚·ã‚¢ãƒ /ãƒ€ãƒ–ãƒ« ã‚«ãƒƒãƒ—æˆ¦
+	GT_BATTLE_MODE_EXCLUSION_FRONTIER = 0xfe,				//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æ–½è¨­ã‚’é™¤å¤–
+	GT_BATTLE_MODE_NONE = 0xff,			//æŒ‡å®šãªã—
 }GT_BATTLE_MODE;
 
 //--------------------------------------------------------------
-//	ŒŸõðŒhŽw’è‚È‚µh‚Ì’è‹`
+//	æ¤œç´¢æ¡ä»¶â€æŒ‡å®šãªã—â€ã®å®šç¾©
 //--------------------------------------------------------------
-///ƒ|ƒPƒ‚ƒ“Žw’è–³‚µ
+///ãƒã‚±ãƒ¢ãƒ³æŒ‡å®šç„¡ã—
 #define GT_BATTLE_REC_SEARCH_MONSNO_NONE			(0xffff)
-///ƒoƒgƒ‹ƒ‚[ƒhŽw’è–³‚µ
+///ãƒãƒˆãƒ«ãƒ¢ãƒ¼ãƒ‰æŒ‡å®šç„¡ã—
 #define GT_BATTLE_REC_SEARCH_BATTLE_MODE_NONE		(0xff)
-///‘ƒR[ƒhŽw’è–³‚µ
+///å›½ã‚³ãƒ¼ãƒ‰æŒ‡å®šç„¡ã—
 #define GT_BATTLE_REC_SEARCH_COUNTRY_CODE_NONE		(0xff)
-///’n•ûƒR[ƒhŽw’è–³‚µ
+///åœ°æ–¹ã‚³ãƒ¼ãƒ‰æŒ‡å®šç„¡ã—
 #define GT_BATTLE_REC_SEARCH_LOCAL_CODE_NONE		(0xff)
 
 //==============================================================================
-//	Œ^’è‹`
+//	åž‹å®šç¾©
 //==============================================================================
-///ƒf[ƒ^ƒiƒ“ƒo[‚ÌŒ^
+///ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ã®åž‹
 typedef u64 GT_DATA_NUMBER;
 
 
 //----------------------------------------------------------
 /**
- * @brief	Ž©•ªó‘Ôƒf[ƒ^Œ^’è‹`
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿åž‹å®šç¾©
  */
 //----------------------------------------------------------
 typedef struct {
@@ -127,11 +127,11 @@ typedef struct {
 	u8 region_code;									//26
 
 	u8 badge;										
-	u8 trainer_view;	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€“à‚Å‚ÌŒ©‚½–Úƒtƒ‰ƒO //28
-	u8 rom_code;		// 0:ƒ_ƒCƒ„  1:ƒp[ƒ‹		// 29
+	u8 trainer_view;	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ å†…ã§ã®è¦‹ãŸç›®ãƒ•ãƒ©ã‚° //28
+	u8 rom_code;		// 0:ãƒ€ã‚¤ãƒ¤  1:ãƒ‘ãƒ¼ãƒ«		// 29
 
-	u8 dp_clear:1;		// DPƒNƒŠƒA‚µ‚Ä‚¢‚é‚©ƒtƒ‰ƒO
-	u8 dp_zenkoku:1;	// DP‘S‘}ŠÓŽè‚É“ü‚ê‚Ä‚¢‚é‚©ƒtƒ‰ƒO
+	u8 dp_clear:1;		// DPã‚¯ãƒªã‚¢ã—ã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°
+	u8 dp_zenkoku:1;	// DPå…¨å›½å›³é‘‘æ‰‹ã«å…¥ã‚Œã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°
 	u8 dummy1:6;									// 30
 	u8 dummy2;										// 31
 	u8 dummy3;
@@ -140,83 +140,83 @@ typedef struct {
 
 //--------------------------------------------------------------
 /**
- * ‘Îí˜^‰æ—p‚ÉƒJƒXƒ^ƒ}ƒCƒY‚³‚ê‚½ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+ * å¯¾æˆ¦éŒ²ç”»ç”¨ã«ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  * 112byte
  */
 //--------------------------------------------------------------
 typedef struct{
-	u32	personal_rnd;							//04h	ŒÂ«—”
-	u16	pp_fast_mode		:1;					//06h	ˆÃ†^•œ†^ƒ`ƒFƒbƒNƒTƒ€¶¬‚ðŒã‰ñ‚µ‚É‚µ‚ÄAˆ—‚ð‚‘¬‰»ƒ‚[ƒh
-	u16	ppp_fast_mode		:1;					//06h	ˆÃ†^•œ†^ƒ`ƒFƒbƒNƒTƒ€¶¬‚ðŒã‰ñ‚µ‚É‚µ‚ÄAˆ—‚ð‚‘¬‰»ƒ‚[ƒh
-	u16	fusei_tamago_flag	:1;					//06h	ƒ_ƒƒ^ƒ}ƒSƒtƒ‰ƒO
+	u32	personal_rnd;							//04h	å€‹æ€§ä¹±æ•°
+	u16	pp_fast_mode		:1;					//06h	æš—å·ï¼å¾©å·ï¼ãƒã‚§ãƒƒã‚¯ã‚µãƒ ç”Ÿæˆã‚’å¾Œå›žã—ã«ã—ã¦ã€å‡¦ç†ã‚’é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰
+	u16	ppp_fast_mode		:1;					//06h	æš—å·ï¼å¾©å·ï¼ãƒã‚§ãƒƒã‚¯ã‚µãƒ ç”Ÿæˆã‚’å¾Œå›žã—ã«ã—ã¦ã€å‡¦ç†ã‚’é«˜é€ŸåŒ–ãƒ¢ãƒ¼ãƒ‰
+	u16	fusei_tamago_flag	:1;					//06h	ãƒ€ãƒ¡ã‚¿ãƒžã‚´ãƒ•ãƒ©ã‚°
 	u16						:13;				//06h
 	
-	u16	monsno;								//02h	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[		
-	u16 item;								//04h	ŠŽƒAƒCƒeƒ€ƒiƒ“ƒo[	
+	u16	monsno;								//02h	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼		
+	u16 item;								//04h	æ‰€æŒã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼	
 	u32	id_no;								//08h	IDNo
-	u32	exp;								//0ch	ŒoŒ±’l
-	u8	friendshipness;						//0dh	‚È‚Â‚«“x
-	u8	speabino;							//0eh	“ÁŽê”\—Í
-	u8	hp_exp;								//11h	HP“w—Í’l
-	u8	pow_exp;							//12h	UŒ‚—Í“w—Í’l
-	u8	def_exp;							//13h	–hŒä—Í“w—Í’l
-	u8	agi_exp;							//14h	‘f‘‚³“w—Í’l
-	u8	spepow_exp;							//15h	“ÁU“w—Í’l
-	u8	spedef_exp;							//16h	“Á–h“w—Í’l
+	u32	exp;								//0ch	çµŒé¨“å€¤
+	u8	friendshipness;						//0dh	ãªã¤ãåº¦
+	u8	speabino;							//0eh	ç‰¹æ®Šèƒ½åŠ›
+	u8	hp_exp;								//11h	HPåŠªåŠ›å€¤
+	u8	pow_exp;							//12h	æ”»æ’ƒåŠ›åŠªåŠ›å€¤
+	u8	def_exp;							//13h	é˜²å¾¡åŠ›åŠªåŠ›å€¤
+	u8	agi_exp;							//14h	ç´ æ—©ã•åŠªåŠ›å€¤
+	u8	spepow_exp;							//15h	ç‰¹æ”»åŠªåŠ›å€¤
+	u8	spedef_exp;							//16h	ç‰¹é˜²åŠªåŠ›å€¤
 
-	u16	waza[GT_WAZA_TEMOTI_MAX];				//08h	ŠŽ‹Z
-	u8	pp[GT_WAZA_TEMOTI_MAX];				//0ch	ŠŽ‹ZPP
-	u8	pp_count[GT_WAZA_TEMOTI_MAX];			//10h	ŠŽ‹ZPP_COUNT
-	u32	hp_rnd			:5;					//		HP—”
-	u32	pow_rnd			:5;					//		UŒ‚—Í—”
-	u32	def_rnd			:5;					//		–hŒä—Í—”
-	u32	agi_rnd			:5;					//		‘f‘‚³—”
-	u32	spepow_rnd		:5;					//		“ÁU—”
-	u32	spedef_rnd		:5;					//		“Á–h—”
-	u32	tamago_flag		:1;					//		ƒ^ƒ}ƒSƒtƒ‰ƒOi0:ƒ^ƒ}ƒS‚¶‚á‚È‚¢@1:ƒ^ƒ}ƒS‚¾‚æj
-	u32	nickname_flag	:1;					//14h	ƒjƒbƒNƒl[ƒ€‚ð‚Â‚¯‚½‚©‚Ç‚¤‚©ƒtƒ‰ƒO
-	u8	event_get_flag	:1;					//		ƒCƒxƒ“ƒg‚Å”z•z‚µ‚½‚±‚Æ‚ðŽ¦‚·ƒtƒ‰ƒO
-	u8	sex				:2;					//   	ƒ|ƒPƒ‚ƒ“‚Ì«•Ê
-	u8	form_no			:5;					//19h	Œ`óƒiƒ“ƒo[
+	u16	waza[GT_WAZA_TEMOTI_MAX];				//08h	æ‰€æŒæŠ€
+	u8	pp[GT_WAZA_TEMOTI_MAX];				//0ch	æ‰€æŒæŠ€PP
+	u8	pp_count[GT_WAZA_TEMOTI_MAX];			//10h	æ‰€æŒæŠ€PP_COUNT
+	u32	hp_rnd			:5;					//		HPä¹±æ•°
+	u32	pow_rnd			:5;					//		æ”»æ’ƒåŠ›ä¹±æ•°
+	u32	def_rnd			:5;					//		é˜²å¾¡åŠ›ä¹±æ•°
+	u32	agi_rnd			:5;					//		ç´ æ—©ã•ä¹±æ•°
+	u32	spepow_rnd		:5;					//		ç‰¹æ”»ä¹±æ•°
+	u32	spedef_rnd		:5;					//		ç‰¹é˜²ä¹±æ•°
+	u32	tamago_flag		:1;					//		ã‚¿ãƒžã‚´ãƒ•ãƒ©ã‚°ï¼ˆ0:ã‚¿ãƒžã‚´ã˜ã‚ƒãªã„ã€€1:ã‚¿ãƒžã‚´ã ã‚ˆï¼‰
+	u32	nickname_flag	:1;					//14h	ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ã¤ã‘ãŸã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
+	u8	event_get_flag	:1;					//		ã‚¤ãƒ™ãƒ³ãƒˆã§é…å¸ƒã—ãŸã“ã¨ã‚’ç¤ºã™ãƒ•ãƒ©ã‚°
+	u8	sex				:2;					//   	ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥
+	u8	form_no			:5;					//19h	å½¢çŠ¶ãƒŠãƒ³ãƒãƒ¼
 	
-	GT_STRCODE	nickname[GT_MONS_NAME_SIZE+GT_EOM_SIZE];	//16h	ƒjƒbƒNƒl[ƒ€
+	GT_STRCODE	nickname[GT_MONS_NAME_SIZE+GT_EOM_SIZE];	//16h	ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
 	
-	GT_STRCODE	oyaname[GT_PERSON_NAME_SIZE+GT_EOM_SIZE];	//10h	e‚Ì–¼‘O
-	u8	get_ball;								//1ch	•ß‚Ü‚¦‚½ƒ{[ƒ‹
-	u8	language;								// Œ¾ŒêƒR[ƒh
+	GT_STRCODE	oyaname[GT_PERSON_NAME_SIZE+GT_EOM_SIZE];	//10h	è¦ªã®åå‰
+	u8	get_ball;								//1ch	æ•ã¾ãˆãŸãƒœãƒ¼ãƒ«
+	u8	language;								// è¨€èªžã‚³ãƒ¼ãƒ‰
 	
-	u32			condition;							//04h	ƒRƒ“ƒfƒBƒVƒ‡ƒ“
-	u8			level;								//05h	ƒŒƒxƒ‹
-	u8			cb_id;								//06h	ƒJƒXƒ^ƒ€ƒ{[ƒ‹ID
+	u32			condition;							//04h	ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³
+	u8			level;								//05h	ãƒ¬ãƒ™ãƒ«
+	u8			cb_id;								//06h	ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ID
 	u16			hp;									//08h	HP
 	u16			hpmax;								//0ah	HPMAX
-	u16			pow;								//0ch	UŒ‚—Í
-	u16			def;								//0eh	–hŒä—Í
-	u16			agi;								//10h	‘f‘‚³
-	u16			spepow;								//12h	“ÁU
-	u16			spedef;								//14h	“Á–h
+	u16			pow;								//0ch	æ”»æ’ƒåŠ›
+	u16			def;								//0eh	é˜²å¾¡åŠ›
+	u16			agi;								//10h	ç´ æ—©ã•
+	u16			spepow;								//12h	ç‰¹æ”»
+	u16			spedef;								//14h	ç‰¹é˜²
 	
 } GT_REC_POKEPARA;
 
 //--------------------------------------------------------------
 /**
- *	í“¬˜^‰æ—p‚ÉƒJƒXƒ^ƒ}ƒCƒY‚³‚ê‚½POKEPARTY
+ *	æˆ¦é—˜éŒ²ç”»ç”¨ã«ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºã•ã‚ŒãŸPOKEPARTY
  *	676 byte
  */
 //--------------------------------------------------------------
 typedef struct{
-	///	•ÛŽ‚Å‚«‚éƒ|ƒPƒ‚ƒ“”‚ÌÅ‘å
+	///	ä¿æŒã§ãã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°ã®æœ€å¤§
 	u16 PokeCountMax;
-	///	Œ»Ý•ÛŽ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“”
+	///	ç¾åœ¨ä¿æŒã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°
 	u16 PokeCount;
-	///	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	///	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 	GT_REC_POKEPARA member[GT_TEMOTI_POKEMAX];
 }GT_REC_POKEPARTY;
 
-///<‘Îí˜^‰æ—pƒf[ƒ^\‘¢‘ÌéŒ¾
+///<å¯¾æˆ¦éŒ²ç”»ç”¨ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef u8 GT_REC_DATA;
 
-///<‘Îí˜^‰æ—pƒ[ƒN\‘¢‘ÌéŒ¾
+///<å¯¾æˆ¦éŒ²ç”»ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“å®£è¨€
 //	4096byte
 typedef struct
 {
@@ -226,79 +226,79 @@ typedef struct
 
 //---------------------------------------------------------------------------
 /**
- * @brief	Ý’èƒf[ƒ^\‘¢‘Ì’è‹`
+ * @brief	è¨­å®šãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“å®šç¾©
  *			2byte
  */
 //---------------------------------------------------------------------------
 typedef struct {
-	u16 msg_speed:4;			///<MSGSPEED		‚l‚r‚f‘—‚è‚Ì‘¬“x
-	u16 sound_mode:2;			///<SOUNDMODE		ƒTƒEƒ“ƒho—Í
-	u16 battle_rule:1;			///<BATTLERULE		í“¬ƒ‹[ƒ‹
-	u16 wazaeff_mode:1;			///<WAZAEFF_MODE	‚í‚´ƒGƒtƒFƒNƒg
-	u16 input_mode:2;			///<INPUTMODE		“ü—Íƒ‚[ƒh
-	u16 window_type:5;			///<WINTYPE			ƒEƒBƒ“ƒhƒEƒ^ƒCƒv
+	u16 msg_speed:4;			///<MSGSPEED		ï¼­ï¼³ï¼§é€ã‚Šã®é€Ÿåº¦
+	u16 sound_mode:2;			///<SOUNDMODE		ã‚µã‚¦ãƒ³ãƒ‰å‡ºåŠ›
+	u16 battle_rule:1;			///<BATTLERULE		æˆ¦é—˜ãƒ«ãƒ¼ãƒ«
+	u16 wazaeff_mode:1;			///<WAZAEFF_MODE	ã‚ã–ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	u16 input_mode:2;			///<INPUTMODE		å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰
+	u16 window_type:5;			///<WINTYPE			ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ—
 	u16 dummy:1;
 }GT_CONFIG;
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒf[ƒ^ƒpƒ‰ƒ[ƒ^
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *			52byte
  */
 //--------------------------------------------------------------
 typedef struct{
-	u8			data_type;					//ƒf[ƒ^ƒ^ƒCƒv
-	u8			tr_type;					//ƒgƒŒ[ƒi[•ª—Þ
-	u8			tr_gra;						//ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒN
-	u8			poke_count;					//ŠŽƒ|ƒPƒ‚ƒ“”
+	u8			data_type;					//ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
+	u8			tr_type;					//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åˆ†é¡ž
+	u8			tr_gra;						//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	u8			poke_count;					//æ‰€æŒãƒã‚±ãƒ¢ãƒ³æ•°
 
-	u16			use_item[4];				//Žg—p“¹‹ï
+	u16			use_item[4];				//ä½¿ç”¨é“å…·
 
-	u32			aibit;						//AIƒpƒ^[ƒ“
-	u32			fight_type;					//í“¬ƒ^ƒCƒvi1vs1or2vs2j
+	u32			aibit;						//AIãƒ‘ã‚¿ãƒ¼ãƒ³
+	u32			fight_type;					//æˆ¦é—˜ã‚¿ã‚¤ãƒ—ï¼ˆ1vs1or2vs2ï¼‰
 
-	GT_STRCODE		name[GT_PERSON_NAME_SIZE+GT_EOM_SIZE];	//ƒgƒŒ[ƒi[–¼
+	GT_STRCODE		name[GT_PERSON_NAME_SIZE+GT_EOM_SIZE];	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	GT_PMS_DATA	win_word;
 	GT_PMS_DATA	lose_word;
 }GT_TRAINER_DATA;
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬ŠJŽnƒpƒ‰ƒ[ƒ^
+ * @brief   æˆ¦é—˜é–‹å§‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *			336 byte
  */
 //--------------------------------------------------------------
 typedef struct{
-	u32					fight_type;					///<í“¬Ží•Êƒtƒ‰ƒO
-	int					win_lose_flag;				///<Ÿ‚¿•‰‚¯ƒtƒ‰ƒO
-	int					trainer_id[GT_CLIENT_MAX];		///<ƒgƒŒ[ƒi[‚ÌID
-	GT_TRAINER_DATA		trainer_data[GT_CLIENT_MAX];	///<ƒgƒŒ[ƒi[ƒf[ƒ^
-	int					bg_id;						///<”wŒiID
-	int					ground_id;					///<’nŒ`ID
-	int					place_id;					///<’nˆæ–¼ID
-	int					zone_id;					///<ƒ][ƒ“ID
-	int					time_zone;					///<ŽžŠÔ‘Ñ’è‹`
-	int					shinka_place_mode;			///<êŠi‰»î•ñiSHINKA_PLACE`j
-	int					contest_see_flag;			///<ƒRƒ“ƒeƒXƒg‚ðŒ©‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int					mizuki_flag;				///<ƒ~ƒYƒL‚É‚ ‚Á‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int					get_pokemon_client;			///<•ßŠl‚µ‚½ƒ|ƒPƒ‚ƒ“‚ÌClientNoiPOKEPARTY_ENEMY‚©POKEPARTY_ENEMY_PAIRj
-	int					weather;					///<“VŒó
-	int					level_up_flag;				///<ƒŒƒxƒ‹ƒAƒbƒv‚µ‚½ƒ|ƒPƒ‚ƒ“ƒtƒ‰ƒOii‰»ƒ`ƒFƒbƒN‚ð‚·‚éj
-	u32					server_version[GT_CLIENT_MAX];	///<í“¬ƒT[ƒoƒvƒƒOƒ‰ƒ€‚Ìƒo[ƒWƒ‡ƒ“i’ÊM‘ÎíŽž‚ÉŽg—pj
-	u32					battle_status_flag;			///<í“¬“à•ªŠò—pƒtƒ‰ƒO
-	int					safari_ball;				///<ƒTƒtƒ@ƒŠƒ{[ƒ‹‚Ì”
-	u32					regulation_flag;			///<ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒtƒ‰ƒO
-	u32					rand;						///<í“¬ê—p—”‚ÌŽí
-	int					comm_stand_no[GT_CLIENT_MAX];	///<’ÊM‘Îí•”‰®‚Å‚ÌŽ©•ª‚Ì—§‚¿ˆÊ’u
-	u16					comm_id;					///<Ž©•ª‚Ì’ÊMID
-	u16					dummy;						///<ƒpƒfƒBƒ“ƒO
-	int					total_turn;					///<í“¬‚É‚©‚©‚Á‚½ƒ^[ƒ“”
-	u8					voice_waza_param[GT_CLIENT_MAX];	///<‚Øƒ‰ƒbƒvƒ{ƒCƒX‚Ì‚¨‚µ‚á‚×‚èŽž‚Ìƒpƒ‰ƒ[ƒ^i˜^‰æƒf[ƒ^Ä¶Žž‚ÉŽg—pj
+	u32					fight_type;					///<æˆ¦é—˜ç¨®åˆ¥ãƒ•ãƒ©ã‚°
+	int					win_lose_flag;				///<å‹ã¡è² ã‘ãƒ•ãƒ©ã‚°
+	int					trainer_id[GT_CLIENT_MAX];		///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ID
+	GT_TRAINER_DATA		trainer_data[GT_CLIENT_MAX];	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	int					bg_id;						///<èƒŒæ™¯ID
+	int					ground_id;					///<åœ°å½¢ID
+	int					place_id;					///<åœ°åŸŸåID
+	int					zone_id;					///<ã‚¾ãƒ¼ãƒ³ID
+	int					time_zone;					///<æ™‚é–“å¸¯å®šç¾©
+	int					shinka_place_mode;			///<å ´æ‰€é€²åŒ–æƒ…å ±ï¼ˆSHINKA_PLACEã€œï¼‰
+	int					contest_see_flag;			///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚’è¦‹ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int					mizuki_flag;				///<ãƒŸã‚ºã‚­ã«ã‚ã£ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int					get_pokemon_client;			///<æ•ç²ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ClientNoï¼ˆPOKEPARTY_ENEMYã‹POKEPARTY_ENEMY_PAIRï¼‰
+	int					weather;					///<å¤©å€™
+	int					level_up_flag;				///<ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒ•ãƒ©ã‚°ï¼ˆé€²åŒ–ãƒã‚§ãƒƒã‚¯ã‚’ã™ã‚‹ï¼‰
+	u32					server_version[GT_CLIENT_MAX];	///<æˆ¦é—˜ã‚µãƒ¼ãƒãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼ˆé€šä¿¡å¯¾æˆ¦æ™‚ã«ä½¿ç”¨ï¼‰
+	u32					battle_status_flag;			///<æˆ¦é—˜å†…åˆ†å²ç”¨ãƒ•ãƒ©ã‚°
+	int					safari_ball;				///<ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã®æ•°
+	u32					regulation_flag;			///<ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°
+	u32					rand;						///<æˆ¦é—˜å°‚ç”¨ä¹±æ•°ã®ç¨®
+	int					comm_stand_no[GT_CLIENT_MAX];	///<é€šä¿¡å¯¾æˆ¦éƒ¨å±‹ã§ã®è‡ªåˆ†ã®ç«‹ã¡ä½ç½®
+	u16					comm_id;					///<è‡ªåˆ†ã®é€šä¿¡ID
+	u16					dummy;						///<ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
+	int					total_turn;					///<æˆ¦é—˜ã«ã‹ã‹ã£ãŸã‚¿ãƒ¼ãƒ³æ•°
+	u8					voice_waza_param[GT_CLIENT_MAX];	///<ãºãƒ©ãƒƒãƒ—ãƒœã‚¤ã‚¹ã®ãŠã—ã‚ƒã¹ã‚Šæ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆéŒ²ç”»ãƒ‡ãƒ¼ã‚¿å†ç”Ÿæ™‚ã«ä½¿ç”¨ï¼‰
 }GT_REC_BATTLE_PARAM;
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^Œ^’è‹`		32byte
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿åž‹å®šç¾©		32byte
  */
 //----------------------------------------------------------
 typedef struct {

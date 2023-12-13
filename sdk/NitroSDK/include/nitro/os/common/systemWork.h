@@ -12,7 +12,7 @@
 
   $Log: systemWork.h,v $
   Revision 1.2  2006/08/10 00:05:54  okubata_ryoma
-  ƒJ[ƒgƒŠƒbƒW‚ÌŠˆü‘}”²‚ÉŠÖ‚·‚é•s‹ï‡C³
+  ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã®æ´»ç·šæŒ¿æŠœã«é–¢ã™ã‚‹ä¸å…·åˆä¿®æ­£
 
   Revision 1.1  2006/07/05 09:16:15  yosizaki
   initial upload. (moved from hw/common/mmap_shared.h)
@@ -50,38 +50,38 @@ typedef struct
     u8      padding5[0x8];             // 024-02c:  (8byte)
     u32     romBaseOffset;             // 02c-02f:    4byte ROM offset of own program
     u8      cartridgeModuleInfo[12];   // 030-03b:   12byte cartridge module info
-    u32     vblankCount;               // 03c-03f:    4byte Vƒuƒ‰ƒ“ƒNƒJƒEƒ“ƒg
-    u8      wmBootBuf[0x40];           // 040-07f:   64byte WM ‚Ìƒ}ƒ‹ƒ`ƒu[ƒg—pƒoƒbƒtƒ@
+    u32     vblankCount;               // 03c-03f:    4byte Vãƒ–ãƒ©ãƒ³ã‚¯ã‚«ã‚¦ãƒ³ãƒˆ
+    u8      wmBootBuf[0x40];           // 040-07f:   64byte WM ã®ãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆç”¨ãƒãƒƒãƒ•ã‚¡
     u8      nvramUserInfo[0x100];      // 080-17f: 256bytes NVRAM user info
-    u8      isd_reserved1[0x20];       // 180-19f:  32bytes ISDebugger —\–ñ
-    u8      arenaInfo[0x48];           // 1a0-1e7:  72bytte ƒAƒŠ[ƒiî•ñ
+    u8      isd_reserved1[0x20];       // 180-19f:  32bytes ISDebugger äºˆç´„
+    u8      arenaInfo[0x48];           // 1a0-1e7:  72bytte ã‚¢ãƒªãƒ¼ãƒŠæƒ…å ±
     u8      real_time_clock[8];        // 1e8-1ef:   8bytes RTC
-    u32     dmaClearBuf[4];            // 1f0-1ff:  16bytes DMA ƒNƒŠƒAî•ñƒoƒbƒtƒ@ (ARM9-TEG—p)
-    u8      rom_header[0x160];         // 200-35f: 352bytes ROM “à“o˜^ƒGƒŠƒAî•ñ‘Ş”ğƒoƒbƒtƒ@
-    u8      isd_reserved2[32];         // 360-37f:  32bytes ISDebugger —\–ñ
+    u32     dmaClearBuf[4];            // 1f0-1ff:  16bytes DMA ã‚¯ãƒªã‚¢æƒ…å ±ãƒãƒƒãƒ•ã‚¡ (ARM9-TEGç”¨)
+    u8      rom_header[0x160];         // 200-35f: 352bytes ROM å†…ç™»éŒ²ã‚¨ãƒªã‚¢æƒ…å ±é€€é¿ãƒãƒƒãƒ•ã‚¡
+    u8      isd_reserved2[32];         // 360-37f:  32bytes ISDebugger äºˆç´„
     u32     pxiSignalParam[2];         // 380-387:   8bytes Param for PXI Signal
     u32     pxiHandleChecker[2];       // 388-38f:   8bytes Flag  for PXI Command Handler Installed
-    u32     mic_last_address;          // 390-393:   4bytes ƒ}ƒCƒN ÅVƒTƒ“ƒvƒŠƒ“ƒOŒ‹‰Ê‚ÌŠi”[ƒAƒhƒŒƒX
-    u16     mic_sampling_data;         // 394-395:   2bytes ƒ}ƒCƒN ’P‘ÌƒTƒ“ƒvƒŠƒ“ƒOŒ‹‰Ê
-    u16     wm_callback_control;       // 396-397:   2bytes WM ƒR[ƒ‹ƒoƒbƒN“¯Šú—pƒpƒ‰ƒ[ƒ^
-    u16     wm_rssi_pool;              // 398-399:   2bytes WM óM‹­“x‚É‚æ‚é—”Œ¹
+    u32     mic_last_address;          // 390-393:   4bytes ãƒã‚¤ã‚¯ æœ€æ–°ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°çµæœã®æ ¼ç´ã‚¢ãƒ‰ãƒ¬ã‚¹
+    u16     mic_sampling_data;         // 394-395:   2bytes ãƒã‚¤ã‚¯ å˜ä½“ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°çµæœ
+    u16     wm_callback_control;       // 396-397:   2bytes WM ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯åŒæœŸç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+    u16     wm_rssi_pool;              // 398-399:   2bytes WM å—ä¿¡å¼·åº¦ã«ã‚ˆã‚‹ä¹±æ•°æº
     u8      ctrdg_SetModuleInfoFlag;   // 39a-39a:   1byte  set ctrdg module info flag
     u8      ctrdg_IsExisting;          // 39b-39b:   1byte  ctrdg exist flag
-    u32     component_param;           // 39c-39f:   4bytes Component “¯Šú—pƒpƒ‰ƒ[ƒ^
-    OSThreadInfo *threadinfo_mainp;    // 3a0-3a3:   4bytes ARM9 ƒXƒŒƒbƒhî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^ ‰Šú’l0‚Å‚ ‚é‚±‚Æ
-    OSThreadInfo *threadinfo_subp;     // 3a4-3a7:   4bytes ARM7 ƒXƒŒƒbƒhî•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^ ‰Šú’l0‚Å‚ ‚é‚±‚Æ
-    u16     button_XY;                 // 3a8-3a9:   2bytes XY ƒ{ƒ^ƒ“î•ñŠi”[ˆÊ’u
-    u8      touch_panel[4];            // 3aa-3ad:   4bytes ƒ^ƒbƒ`ƒpƒlƒ‹î•ñŠi”[ˆÊ’u
+    u32     component_param;           // 39c-39f:   4bytes Component åŒæœŸç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+    OSThreadInfo *threadinfo_mainp;    // 3a0-3a3:   4bytes ARM9 ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿ åˆæœŸå€¤0ã§ã‚ã‚‹ã“ã¨
+    OSThreadInfo *threadinfo_subp;     // 3a4-3a7:   4bytes ARM7 ã‚¹ãƒ¬ãƒƒãƒ‰æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿ åˆæœŸå€¤0ã§ã‚ã‚‹ã“ã¨
+    u16     button_XY;                 // 3a8-3a9:   2bytes XY ãƒœã‚¿ãƒ³æƒ…å ±æ ¼ç´ä½ç½®
+    u8      touch_panel[4];            // 3aa-3ad:   4bytes ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±æ ¼ç´ä½ç½®
     u16     autoloadSync;              // 3ae-3af:   2bytes autoload sync between processors
-    u32     lockIDFlag_mainp[2];       // 3b0-3b7:   8bytes lockIDŠÇ—ƒtƒ‰ƒO(ARM9—p)
-    u32     lockIDFlag_subp[2];        // 3b8-3bf:   8bytes lockIDŠÇ—ƒtƒ‰ƒO(ARM7—p)
-    struct OSLockWord lock_VRAM_C;     // 3c0-3c7:   8bytes           ‚bEƒƒbƒNƒoƒbƒtƒ@
-    struct OSLockWord lock_VRAM_D;     // 3c8-3cf:   8bytes ‚u‚q‚`‚l|‚cEƒƒbƒNƒoƒbƒtƒ@
-    struct OSLockWord lock_WRAM_BLOCK0; // 3d0-3d7:   8bytes   ƒuƒƒbƒN‚OEƒƒbƒNƒoƒbƒtƒ@
-    struct OSLockWord lock_WRAM_BLOCK1; // 3d8-3df:   8bytes ‚b‚o‚t“à•”ƒ[ƒN‚q‚`‚lEƒuƒƒbƒN‚PEƒƒbƒNƒoƒbƒtƒ@
-    struct OSLockWord lock_CARD;       // 3e0-3e7:   8bytes ƒJ[ƒhEƒƒbƒNƒoƒbƒtƒ@
-    struct OSLockWord lock_CARTRIDGE;  // 3e8-3ef:   8bytes ƒJ[ƒgƒŠƒbƒWEƒƒbƒNƒoƒbƒtƒ@
-    struct OSLockWord lock_INIT;       // 3f0-3f7:   8bytes ‰Šú‰»ƒƒbƒNƒoƒbƒtƒ@
+    u32     lockIDFlag_mainp[2];       // 3b0-3b7:   8bytes lockIDç®¡ç†ãƒ•ãƒ©ã‚°(ARM9ç”¨)
+    u32     lockIDFlag_subp[2];        // 3b8-3bf:   8bytes lockIDç®¡ç†ãƒ•ãƒ©ã‚°(ARM7ç”¨)
+    struct OSLockWord lock_VRAM_C;     // 3c0-3c7:   8bytes           ï¼£ãƒ»ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡
+    struct OSLockWord lock_VRAM_D;     // 3c8-3cf:   8bytes ï¼¶ï¼²ï¼¡ï¼­âˆ’ï¼¤ãƒ»ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡
+    struct OSLockWord lock_WRAM_BLOCK0; // 3d0-3d7:   8bytes   ãƒ–ãƒ­ãƒƒã‚¯ï¼ãƒ»ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡
+    struct OSLockWord lock_WRAM_BLOCK1; // 3d8-3df:   8bytes ï¼£ï¼°ï¼µå†…éƒ¨ãƒ¯ãƒ¼ã‚¯ï¼²ï¼¡ï¼­ãƒ»ãƒ–ãƒ­ãƒƒã‚¯ï¼‘ãƒ»ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡
+    struct OSLockWord lock_CARD;       // 3e0-3e7:   8bytes ã‚«ãƒ¼ãƒ‰ãƒ»ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡
+    struct OSLockWord lock_CARTRIDGE;  // 3e8-3ef:   8bytes ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãƒ»ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡
+    struct OSLockWord lock_INIT;       // 3f0-3f7:   8bytes åˆæœŸåŒ–ãƒ­ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡
     u16     mmem_checker_mainp;        // 3f8-3f9:   2bytes MainMomory Size Checker for Main processor
     u16     mmem_checker_subp;         // 3fa-3fb:   2bytes MainMomory Size Checker for Sub processor
     u8      padding4[2];               // 3fc-3fd: (2bytes)

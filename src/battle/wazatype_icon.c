@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	wazatype_icon.c
- * @brief	‹Zƒ^ƒCƒv••ª—ŞƒAƒCƒRƒ“
+ * @brief	æŠ€ã‚¿ã‚¤ãƒ—ï¼†åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³
  * @author	matsuda
- * @date	2005.10.26(…)
+ * @date	2005.10.26(æ°´)
  */
 //==============================================================================
 #include "common.h"
@@ -16,12 +16,12 @@
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //--------------------------------------------------------------
-//	‹Zƒ^ƒCƒv
+//	æŠ€ã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
-///‹Zƒ^ƒCƒv–ˆ‚ÌCGRID
+///æŠ€ã‚¿ã‚¤ãƒ—æ¯ã®CGRID
 ALIGN4 static const u32 WazaTypeCgrNo[] = {
 	P_ST_TYPE_NORMAL_NCGR_BIN,
 	P_ST_TYPE_FIGHT_NCGR_BIN,
@@ -48,7 +48,7 @@ ALIGN4 static const u32 WazaTypeCgrNo[] = {
 	P_ST_TYPE_STRONG_NCGR_BIN,
 };
 
-///‹Zƒ^ƒCƒv–ˆ‚ÌƒpƒŒƒbƒgƒIƒtƒZƒbƒg”Ô†
+///æŠ€ã‚¿ã‚¤ãƒ—æ¯ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆç•ªå·
 ALIGN4 static const u8 WazaTypePlttOffset[] = {
 	0,	//NORMAL_TYPE
 	0,	//BATTLE_TYPE
@@ -76,16 +76,16 @@ ALIGN4 static const u8 WazaTypePlttOffset[] = {
 };
 
 //--------------------------------------------------------------
-//	•ª—Ş
+//	åˆ†é¡
 //--------------------------------------------------------------
-///•ª—Ş–ˆ‚ÌCGRID
+///åˆ†é¡æ¯ã®CGRID
 ALIGN4 static const u32 WazaKindCgrNo[] = {
 	P_ST_BUNRUI_BUTURI_NCGR_BIN,
 	P_ST_BUNRUI_TOKUSYU_NCGR_BIN,
 	P_ST_BUNRUI_HENKA_NCGR_BIN,
 };
 
-///•ª—Ş–ˆ‚ÌƒpƒŒƒbƒgƒIƒtƒZƒbƒg”Ô†
+///åˆ†é¡æ¯ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆç•ªå·
 ALIGN4 static const u8 WazaKindPlttOffset[] = {
 	0,		//KIND_BUTSURI
 	1,		//KIND_TOKUSYU
@@ -96,14 +96,14 @@ ALIGN4 static const u8 WazaKindPlttOffset[] = {
 
 //==============================================================================
 //
-//	‹Zƒ^ƒCƒvƒAƒCƒRƒ“
+//	æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   w’è‹Zƒ^ƒCƒv‚ÌCGRID‚ğæ“¾‚µ‚Ü‚·
- * @param   waza_type		‹Zƒ^ƒCƒv(NORMAL_TYPE, FIRE_TYPE..“™A–”‚Í ICONTYPE_???)
- * @retval  CGRID(ARC‚Ìƒf[ƒ^INDEX)
+ * @brief   æŒ‡å®šæŠ€ã‚¿ã‚¤ãƒ—ã®CGRIDã‚’å–å¾—ã—ã¾ã™
+ * @param   waza_type		æŠ€ã‚¿ã‚¤ãƒ—(NORMAL_TYPE, FIRE_TYPE..ç­‰ã€åˆã¯ ICONTYPE_???)
+ * @retval  CGRID(ARCã®ãƒ‡ãƒ¼ã‚¿INDEX)
  */
 //--------------------------------------------------------------
 u32 WazaTypeIcon_CgrIDGet(int waza_type)
@@ -114,8 +114,8 @@ u32 WazaTypeIcon_CgrIDGet(int waza_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒgID‚ğæ“¾‚µ‚Ü‚·
- * @retval  ƒpƒŒƒbƒgID(ARC‚Ìƒf[ƒ^INDEX)
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆIDã‚’å–å¾—ã—ã¾ã™
+ * @retval  ãƒ‘ãƒ¬ãƒƒãƒˆID(ARCã®ãƒ‡ãƒ¼ã‚¿INDEX)
  */
 //--------------------------------------------------------------
 u32 WazaTypeIcon_PlttIDGet(void)
@@ -125,8 +125,8 @@ u32 WazaTypeIcon_PlttIDGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‹Zƒ^ƒCƒv‚ÌƒZƒ‹ID‚ğæ“¾‚µ‚Ü‚·
- * @retval  ƒZƒ‹ID(ARC‚Ìƒf[ƒ^INDEX)
+ * @brief   æŒ‡å®šæŠ€ã‚¿ã‚¤ãƒ—ã®ã‚»ãƒ«IDã‚’å–å¾—ã—ã¾ã™
+ * @retval  ã‚»ãƒ«ID(ARCã®ãƒ‡ãƒ¼ã‚¿INDEX)
  */
 //--------------------------------------------------------------
 u32 WazaTypeIcon_CellIDGet(void)
@@ -136,8 +136,8 @@ u32 WazaTypeIcon_CellIDGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‹Zƒ^ƒCƒv‚ÌƒZƒ‹ƒAƒjƒID‚ğæ“¾‚µ‚Ü‚·
- * @retval  ƒZƒ‹ƒAƒjƒID(ARC‚Ìƒf[ƒ^INDEX)
+ * @brief   æŒ‡å®šæŠ€ã‚¿ã‚¤ãƒ—ã®ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡IDã‚’å–å¾—ã—ã¾ã™
+ * @retval  ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID(ARCã®ãƒ‡ãƒ¼ã‚¿INDEX)
  */
 //--------------------------------------------------------------
 u32 WazaTypeIcon_CellAnmIDGet(void)
@@ -147,9 +147,9 @@ u32 WazaTypeIcon_CellAnmIDGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‹Zƒ^ƒCƒv‚ÌƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg‚ğæ“¾‚µ‚Ü‚·
- * @param   waza_type		‹Zƒ^ƒCƒv(NORMAL_TYPE, FIRE_TYPE..“™A–”‚Í ICONTYPE_???)
- * @retval  ƒpƒŒƒbƒg”Ô†‚ÌƒIƒtƒZƒbƒg
+ * @brief   æŒ‡å®šæŠ€ã‚¿ã‚¤ãƒ—ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å–å¾—ã—ã¾ã™
+ * @param   waza_type		æŠ€ã‚¿ã‚¤ãƒ—(NORMAL_TYPE, FIRE_TYPE..ç­‰ã€åˆã¯ ICONTYPE_???)
+ * @retval  ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 u8 WazaTypeIcon_PlttOffsetGet(int waza_type)
@@ -160,8 +160,8 @@ u8 WazaTypeIcon_PlttOffsetGet(int waza_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒA[ƒJƒCƒuINDEX‚ğæ“¾‚µ‚Ü‚·
- * @retval  ƒA[ƒJƒCƒuINDEX
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–INDEXã‚’å–å¾—ã—ã¾ã™
+ * @retval  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–INDEX
  */
 //--------------------------------------------------------------
 u32 WazaTypeIcon_ArcIDGet(void)
@@ -174,13 +174,13 @@ u32 WazaTypeIcon_ArcIDGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‹Zƒ^ƒCƒv‚ÌƒLƒƒƒ‰ƒŠƒ\[ƒX‚ğƒ[ƒh‚µ‚Ü‚·
+ * @brief   æŒ‡å®šæŠ€ã‚¿ã‚¤ãƒ—ã®ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   csp				csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp				crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vram_type		NNS_G2D_VRAM_TYPE_2DMAIN“™
- * @param   waza_type		‹Zƒ^ƒCƒv(NORMAL_TYPE, FIRE_TYPE..“™A–”‚Í ICONTYPE_???)
- * @param   char_id			“o˜^‚·‚éƒLƒƒƒ‰ID
+ * @param   csp				cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp				crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vram_type		NNS_G2D_VRAM_TYPE_2DMAINç­‰
+ * @param   waza_type		æŠ€ã‚¿ã‚¤ãƒ—(NORMAL_TYPE, FIRE_TYPE..ç­‰ã€åˆã¯ ICONTYPE_???)
+ * @param   char_id			ç™»éŒ²ã™ã‚‹ã‚­ãƒ£ãƒ©ID
  */
 //--------------------------------------------------------------
 void WazaTypeIcon_CharResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, 
@@ -192,14 +192,14 @@ void WazaTypeIcon_CharResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp,
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒg‚ğƒ[ƒh‚µ‚Ü‚·
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   csp			csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vram_type	NNS_G2D_VRAM_TYPE_2DMAIN“™
- * @param   pltt_id		“o˜^‚·‚éƒpƒŒƒbƒgID
+ * @param   csp			cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vram_type	NNS_G2D_VRAM_TYPE_2DMAINç­‰
+ * @param   pltt_id		ç™»éŒ²ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆID
  *
- * ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚Åg—p‚·‚éƒpƒŒƒbƒg‘S‚Ä‚ğƒZƒbƒg‚µ‚Ü‚·B
+ * æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆå…¨ã¦ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void WazaTypeIcon_PlttResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, 
@@ -211,16 +211,16 @@ void WazaTypeIcon_PlttResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp,
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒg‚ğƒpƒŒƒbƒgƒ[ƒN‚Öƒ[ƒh‚µ‚Ü‚·
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ãƒ‘ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã¸ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   PALETTE_FADE_PTR		ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req						ƒŠƒNƒGƒXƒgƒf[ƒ^”Ô†(FADE_MAIN_BG“™)
- * @param   csp			csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vram_type	NNS_G2D_VRAM_TYPE_2DMAIN“™
- * @param   pltt_id		“o˜^‚·‚éƒpƒŒƒbƒgID
+ * @param   PALETTE_FADE_PTR		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req						ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ç•ªå·(FADE_MAIN_BGç­‰)
+ * @param   csp			cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vram_type	NNS_G2D_VRAM_TYPE_2DMAINç­‰
+ * @param   pltt_id		ç™»éŒ²ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆID
  *
- * ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚Åg—p‚·‚éƒpƒŒƒbƒg‘S‚Ä‚ğƒZƒbƒg‚µ‚Ü‚·B
+ * æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆå…¨ã¦ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void WazaTypeIcon_PlttWorkResourceLoad(PALETTE_FADE_PTR pfd, FADEREQ req, CATS_SYS_PTR csp, 
@@ -233,16 +233,16 @@ void WazaTypeIcon_PlttWorkResourceLoad(PALETTE_FADE_PTR pfd, FADEREQ req, CATS_S
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒZƒ‹‚ÆƒAƒjƒ‚ğƒ[ƒh‚µ‚Ü‚·
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚»ãƒ«ã¨ã‚¢ãƒ‹ãƒ¡ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   csp			csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   cell_id		“o˜^‚·‚éƒZƒ‹ID
- * @param   anm_id		“o˜^‚·‚éƒAƒjƒID
+ * @param   csp			cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   cell_id		ç™»éŒ²ã™ã‚‹ã‚»ãƒ«ID
+ * @param   anm_id		ç™»éŒ²ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ID
  *
- * ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‹¤’Ê‚ÌƒZƒ‹‚ÆƒAƒjƒ‚ğƒ[ƒh‚µ‚Ü‚·B
- * ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚Í‘S‚ÄƒZƒ‹‚ÆƒAƒjƒ‚ª‹¤’Ê‚È‚Ì‚ÅA1‚Â‚¾‚¯“o˜^‚µ‚Ä‚¨‚¯‚ÎOK‚Å‚·B
- * (•¡”‚ÌƒAƒCƒRƒ“‚ğ¶¬‚·‚é‚Å‚àA‘S‚Ä‚±‚±‚Å“o˜^‚µ‚½ƒZƒ‹AƒAƒjƒID‚ğw’è‚·‚é‚æ‚¤‚É‚µ‚Ü‚·)
+ * æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³å…±é€šã®ã‚»ãƒ«ã¨ã‚¢ãƒ‹ãƒ¡ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™ã€‚
+ * æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã¯å…¨ã¦ã‚»ãƒ«ã¨ã‚¢ãƒ‹ãƒ¡ãŒå…±é€šãªã®ã§ã€1ã¤ã ã‘ç™»éŒ²ã—ã¦ãŠã‘ã°OKã§ã™ã€‚
+ * (è¤‡æ•°ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’ç”Ÿæˆã™ã‚‹æ™‚ã§ã‚‚ã€å…¨ã¦ã“ã“ã§ç™»éŒ²ã—ãŸã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡IDã‚’æŒ‡å®šã™ã‚‹ã‚ˆã†ã«ã—ã¾ã™)
  */
 //--------------------------------------------------------------
 void WazaTypeIcon_CellAnmResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, u32 cell_id, u32 anm_id)
@@ -255,9 +255,9 @@ void WazaTypeIcon_CellAnmResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, u32 ce
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒŠƒ\[ƒX‚ğ‰ğ•ú‚µ‚Ü‚·
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   char_id		‰ğ•ú‚·‚éƒLƒƒƒ‰ID
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã—ã¾ã™
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   char_id		è§£æ”¾ã™ã‚‹ã‚­ãƒ£ãƒ©ID
  */
 //--------------------------------------------------------------
 void WazaTypeIcon_CharResourceFree(CATS_RES_PTR crp, u32 char_id)
@@ -267,9 +267,9 @@ void WazaTypeIcon_CharResourceFree(CATS_RES_PTR crp, u32 char_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒgƒŠƒ\[ƒX‚ğ‰ğ•ú‚µ‚Ü‚·
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pltt_id		‰ğ•ú‚·‚éƒpƒŒƒbƒgID
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã—ã¾ã™
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pltt_id		è§£æ”¾ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆID
  */
 //--------------------------------------------------------------
 void WazaTypeIcon_PlttResourceFree(CATS_RES_PTR crp, u32 pltt_id)
@@ -279,10 +279,10 @@ void WazaTypeIcon_PlttResourceFree(CATS_RES_PTR crp, u32 pltt_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ÌƒZƒ‹AƒAƒjƒƒŠƒ\[ƒX‚ğ‰ğ•ú‚µ‚Ü‚·
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   char_id		‰ğ•ú‚·‚éƒZƒ‹ID
- * @param   char_id		‰ğ•ú‚·‚éƒAƒjƒID
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã—ã¾ã™
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   char_id		è§£æ”¾ã™ã‚‹ã‚»ãƒ«ID
+ * @param   char_id		è§£æ”¾ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ID
  */
 //--------------------------------------------------------------
 void WazaTypeIcon_CellAnmResourceFree(CATS_RES_PTR crp, u32 cell_id, u32 anm_id)
@@ -294,14 +294,14 @@ void WazaTypeIcon_CellAnmResourceFree(CATS_RES_PTR crp, u32 cell_id, u32 anm_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒvƒAƒCƒRƒ“ƒAƒNƒ^[‚ğ¶¬‚·‚é
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   csp				csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp				crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   waza_type		‹Zƒ^ƒCƒv(NORMAL_TYPE, FIRE_TYPE..“™A–”‚Í ICONTYPE_???)
- * @param   obj_data		ƒAƒNƒ^[ƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   csp				cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp				crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   waza_type		æŠ€ã‚¿ã‚¤ãƒ—(NORMAL_TYPE, FIRE_TYPE..ç­‰ã€åˆã¯ ICONTYPE_???)
+ * @param   obj_data		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ¶¬‚µ‚½ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 CATS_ACT_PTR WazaTypeIcon_ActorCreate(CATS_SYS_PTR csp, CATS_RES_PTR crp, int waza_type, 
@@ -319,8 +319,8 @@ CATS_ACT_PTR WazaTypeIcon_ActorCreate(CATS_SYS_PTR csp, CATS_RES_PTR crp, int wa
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒ^ƒCƒvƒAƒCƒRƒ“ƒAƒNƒ^[‚ğíœ
- * @param   cap		ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
+ * @brief   æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤
+ * @param   cap		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void WazaTypeIcon_ActorDelete(CATS_ACT_PTR cap)
@@ -339,14 +339,14 @@ void WazaTypeIcon_ActorDelete(CATS_ACT_PTR cap)
 
 //==============================================================================
 //
-//	•ª—ŞƒAƒCƒRƒ“
+//	åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   w’è‹Z•ª—Ş‚ÌCGRID‚ğæ“¾‚µ‚Ü‚·
- * @param   waza_kind		‹Z•ª—Ş(KIND_BUTURI or KIND_TOKUSYU or KIND_HENNKA)
- * @retval  CGRID(ARC‚Ìƒf[ƒ^INDEX)
+ * @brief   æŒ‡å®šæŠ€åˆ†é¡ã®CGRIDã‚’å–å¾—ã—ã¾ã™
+ * @param   waza_kind		æŠ€åˆ†é¡(KIND_BUTURI or KIND_TOKUSYU or KIND_HENNKA)
+ * @retval  CGRID(ARCã®ãƒ‡ãƒ¼ã‚¿INDEX)
  */
 //--------------------------------------------------------------
 u32 WazaKindIcon_CgrIDGet(int waza_kind)
@@ -357,8 +357,8 @@ u32 WazaKindIcon_CgrIDGet(int waza_kind)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z•ª—ŞƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒgID‚ğæ“¾‚µ‚Ü‚·
- * @retval  ƒpƒŒƒbƒgID(ARC‚Ìƒf[ƒ^INDEX)
+ * @brief   æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆIDã‚’å–å¾—ã—ã¾ã™
+ * @retval  ãƒ‘ãƒ¬ãƒƒãƒˆID(ARCã®ãƒ‡ãƒ¼ã‚¿INDEX)
  */
 //--------------------------------------------------------------
 u32 WazaKindIcon_PlttIDGet(void)
@@ -368,8 +368,8 @@ u32 WazaKindIcon_PlttIDGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‹Z•ª—Ş‚ÌƒZƒ‹ID‚ğæ“¾‚µ‚Ü‚·
- * @retval  ƒZƒ‹ID(ARC‚Ìƒf[ƒ^INDEX)
+ * @brief   æŒ‡å®šæŠ€åˆ†é¡ã®ã‚»ãƒ«IDã‚’å–å¾—ã—ã¾ã™
+ * @retval  ã‚»ãƒ«ID(ARCã®ãƒ‡ãƒ¼ã‚¿INDEX)
  */
 //--------------------------------------------------------------
 u32 WazaKindIcon_CellIDGet(void)
@@ -379,8 +379,8 @@ u32 WazaKindIcon_CellIDGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‹Z•ª—Ş‚ÌƒZƒ‹ƒAƒjƒID‚ğæ“¾‚µ‚Ü‚·
- * @retval  ƒZƒ‹ƒAƒjƒID(ARC‚Ìƒf[ƒ^INDEX)
+ * @brief   æŒ‡å®šæŠ€åˆ†é¡ã®ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡IDã‚’å–å¾—ã—ã¾ã™
+ * @retval  ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID(ARCã®ãƒ‡ãƒ¼ã‚¿INDEX)
  */
 //--------------------------------------------------------------
 u32 WazaKindIcon_CellAnmIDGet(void)
@@ -390,9 +390,9 @@ u32 WazaKindIcon_CellAnmIDGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‹Z•ª—Ş‚ÌƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg‚ğæ“¾‚µ‚Ü‚·
- * @param   waza_kind		‹Z•ª—Ş(KIND_BUTURI or KIND_TOKUSYU or KIND_HENNKA)
- * @retval  ƒpƒŒƒbƒg”Ô†‚ÌƒIƒtƒZƒbƒg
+ * @brief   æŒ‡å®šæŠ€åˆ†é¡ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å–å¾—ã—ã¾ã™
+ * @param   waza_kind		æŠ€åˆ†é¡(KIND_BUTURI or KIND_TOKUSYU or KIND_HENNKA)
+ * @retval  ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  */
 //--------------------------------------------------------------
 u8 WazaKindIcon_PlttOffsetGet(int waza_kind)
@@ -403,8 +403,8 @@ u8 WazaKindIcon_PlttOffsetGet(int waza_kind)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z•ª—ŞƒAƒCƒRƒ“‚ÌƒA[ƒJƒCƒuINDEX‚ğæ“¾‚µ‚Ü‚·
- * @retval  ƒA[ƒJƒCƒuINDEX
+ * @brief   æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–INDEXã‚’å–å¾—ã—ã¾ã™
+ * @retval  ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–INDEX
  */
 //--------------------------------------------------------------
 u32 WazaKindIcon_ArcIDGet(void)
@@ -417,13 +417,13 @@ u32 WazaKindIcon_ArcIDGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’è‹Z•ª—Ş‚ÌƒLƒƒƒ‰ƒŠƒ\[ƒX‚ğƒ[ƒh‚µ‚Ü‚·
+ * @brief   æŒ‡å®šæŠ€åˆ†é¡ã®ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   csp				csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp				crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vram_type		NNS_G2D_VRAM_TYPE_2DMAIN“™
- * @param   waza_kind		‹Z•ª—Ş(KIND_BUTURI or KIND_TOKUSYU or KIND_HENNKA)
- * @param   char_id			“o˜^‚·‚éƒLƒƒƒ‰ID
+ * @param   csp				cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp				crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vram_type		NNS_G2D_VRAM_TYPE_2DMAINç­‰
+ * @param   waza_kind		æŠ€åˆ†é¡(KIND_BUTURI or KIND_TOKUSYU or KIND_HENNKA)
+ * @param   char_id			ç™»éŒ²ã™ã‚‹ã‚­ãƒ£ãƒ©ID
  */
 //--------------------------------------------------------------
 void WazaKindIcon_CharResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, 
@@ -435,14 +435,14 @@ void WazaKindIcon_CharResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp,
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z•ª—ŞƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒg‚ğƒ[ƒh‚µ‚Ü‚·
+ * @brief   æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   csp			csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vram_type	NNS_G2D_VRAM_TYPE_2DMAIN“™
- * @param   pltt_id		“o˜^‚·‚éƒpƒŒƒbƒgID
+ * @param   csp			cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vram_type	NNS_G2D_VRAM_TYPE_2DMAINç­‰
+ * @param   pltt_id		ç™»éŒ²ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆID
  *
- * ‹Z•ª—ŞƒAƒCƒRƒ“‚Åg—p‚·‚éƒpƒŒƒbƒg‘S‚Ä‚ğƒZƒbƒg‚µ‚Ü‚·B
+ * æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆå…¨ã¦ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void WazaKindIcon_PlttResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, 
@@ -454,16 +454,16 @@ void WazaKindIcon_PlttResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp,
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z•ª—ŞƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒg‚ğƒpƒŒƒbƒgƒ[ƒN‚Öƒ[ƒh‚µ‚Ü‚·
+ * @brief   æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ãƒ‘ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã¸ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   PALETTE_FADE_PTR		ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req						ƒŠƒNƒGƒXƒgƒf[ƒ^”Ô†(FADE_MAIN_BG“™)
- * @param   csp			csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   vram_type	NNS_G2D_VRAM_TYPE_2DMAIN“™
- * @param   pltt_id		“o˜^‚·‚éƒpƒŒƒbƒgID
+ * @param   PALETTE_FADE_PTR		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req						ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ç•ªå·(FADE_MAIN_BGç­‰)
+ * @param   csp			cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   vram_type	NNS_G2D_VRAM_TYPE_2DMAINç­‰
+ * @param   pltt_id		ç™»éŒ²ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆID
  *
- * ‹Z•ª—ŞƒAƒCƒRƒ“‚Åg—p‚·‚éƒpƒŒƒbƒg‘S‚Ä‚ğƒZƒbƒg‚µ‚Ü‚·B
+ * æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆå…¨ã¦ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void WazaKindIcon_PlttWorkResourceLoad(PALETTE_FADE_PTR pfd, FADEREQ req, CATS_SYS_PTR csp, 
@@ -476,16 +476,16 @@ void WazaKindIcon_PlttWorkResourceLoad(PALETTE_FADE_PTR pfd, FADEREQ req, CATS_S
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z•ª—ŞƒAƒCƒRƒ“‚ÌƒZƒ‹‚ÆƒAƒjƒ‚ğƒ[ƒh‚µ‚Ü‚·
+ * @brief   æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚»ãƒ«ã¨ã‚¢ãƒ‹ãƒ¡ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
  *
- * @param   csp			csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   cell_id		“o˜^‚·‚éƒZƒ‹ID
- * @param   anm_id		“o˜^‚·‚éƒAƒjƒID
+ * @param   csp			cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   cell_id		ç™»éŒ²ã™ã‚‹ã‚»ãƒ«ID
+ * @param   anm_id		ç™»éŒ²ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ID
  *
- * ‹Z•ª—ŞƒAƒCƒRƒ“‹¤’Ê‚ÌƒZƒ‹‚ÆƒAƒjƒ‚ğƒ[ƒh‚µ‚Ü‚·B
- * ‹Z•ª—ŞƒAƒCƒRƒ“‚Í‘S‚ÄƒZƒ‹‚ÆƒAƒjƒ‚ª‹¤’Ê‚È‚Ì‚ÅA1‚Â‚¾‚¯“o˜^‚µ‚Ä‚¨‚¯‚ÎOK‚Å‚·B
- * (•¡”‚ÌƒAƒCƒRƒ“‚ğ¶¬‚·‚é‚Å‚àA‘S‚Ä‚±‚±‚Å“o˜^‚µ‚½ƒZƒ‹AƒAƒjƒID‚ğw’è‚·‚é‚æ‚¤‚É‚µ‚Ü‚·)
+ * æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³å…±é€šã®ã‚»ãƒ«ã¨ã‚¢ãƒ‹ãƒ¡ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™ã€‚
+ * æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³ã¯å…¨ã¦ã‚»ãƒ«ã¨ã‚¢ãƒ‹ãƒ¡ãŒå…±é€šãªã®ã§ã€1ã¤ã ã‘ç™»éŒ²ã—ã¦ãŠã‘ã°OKã§ã™ã€‚
+ * (è¤‡æ•°ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’ç”Ÿæˆã™ã‚‹æ™‚ã§ã‚‚ã€å…¨ã¦ã“ã“ã§ç™»éŒ²ã—ãŸã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡IDã‚’æŒ‡å®šã™ã‚‹ã‚ˆã†ã«ã—ã¾ã™)
  */
 //--------------------------------------------------------------
 void WazaKindIcon_CellAnmResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, u32 cell_id, u32 anm_id)
@@ -498,9 +498,9 @@ void WazaKindIcon_CellAnmResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, u32 ce
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z•ª—ŞƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒŠƒ\[ƒX‚ğ‰ğ•ú‚µ‚Ü‚·
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   char_id		‰ğ•ú‚·‚éƒLƒƒƒ‰ID
+ * @brief   æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã—ã¾ã™
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   char_id		è§£æ”¾ã™ã‚‹ã‚­ãƒ£ãƒ©ID
  */
 //--------------------------------------------------------------
 void WazaKindIcon_CharResourceFree(CATS_RES_PTR crp, u32 char_id)
@@ -510,9 +510,9 @@ void WazaKindIcon_CharResourceFree(CATS_RES_PTR crp, u32 char_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z•ª—ŞƒAƒCƒRƒ“‚ÌƒpƒŒƒbƒgƒŠƒ\[ƒX‚ğ‰ğ•ú‚µ‚Ü‚·
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   pltt_id		‰ğ•ú‚·‚éƒpƒŒƒbƒgID
+ * @brief   æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã—ã¾ã™
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pltt_id		è§£æ”¾ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆID
  */
 //--------------------------------------------------------------
 void WazaKindIcon_PlttResourceFree(CATS_RES_PTR crp, u32 pltt_id)
@@ -522,10 +522,10 @@ void WazaKindIcon_PlttResourceFree(CATS_RES_PTR crp, u32 pltt_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z•ª—ŞƒAƒCƒRƒ“‚ÌƒZƒ‹AƒAƒjƒƒŠƒ\[ƒX‚ğ‰ğ•ú‚µ‚Ü‚·
- * @param   crp			crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   char_id		‰ğ•ú‚·‚éƒZƒ‹ID
- * @param   char_id		‰ğ•ú‚·‚éƒAƒjƒID
+ * @brief   æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚»ãƒ«ã€ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã—ã¾ã™
+ * @param   crp			crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   char_id		è§£æ”¾ã™ã‚‹ã‚»ãƒ«ID
+ * @param   char_id		è§£æ”¾ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ID
  */
 //--------------------------------------------------------------
 void WazaKindIcon_CellAnmResourceFree(CATS_RES_PTR crp, u32 cell_id, u32 anm_id)
@@ -537,14 +537,14 @@ void WazaKindIcon_CellAnmResourceFree(CATS_RES_PTR crp, u32 cell_id, u32 anm_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z•ª—ŞƒAƒCƒRƒ“ƒAƒNƒ^[‚ğ¶¬‚·‚é
+ * @brief   æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   csp				csp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp				crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   waza_kind		‹Z•ª—Ş(KIND_BUTURI or KIND_TOKUSYU or KIND_HENNKA)
- * @param   obj_data		ƒAƒNƒ^[ƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   csp				cspã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp				crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   waza_kind		æŠ€åˆ†é¡(KIND_BUTURI or KIND_TOKUSYU or KIND_HENNKA)
+ * @param   obj_data		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ¶¬‚µ‚½ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 CATS_ACT_PTR WazaKindIcon_ActorCreate(CATS_SYS_PTR csp, CATS_RES_PTR crp, int waza_kind, 
@@ -562,8 +562,8 @@ CATS_ACT_PTR WazaKindIcon_ActorCreate(CATS_SYS_PTR csp, CATS_RES_PTR crp, int wa
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z•ª—ŞƒAƒCƒRƒ“ƒAƒNƒ^[‚ğíœ
- * @param   cap		ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^
+ * @brief   æŠ€åˆ†é¡ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤
+ * @param   cap		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void WazaKindIcon_ActorDelete(CATS_ACT_PTR cap)

@@ -2,7 +2,7 @@
 /**
  *
  *@file		clact_util_vram.h
- *@brief	�Z���A�N�^�[���[�e�B���e�B���\�[�X�}�l�[�W���[���g�p���L�����N�^�f�[�^�p���b�g�f�[�^��Vram�ɓ]������V�X�e��
+ *@brief	セルアクターユーティリティリソースマネージャーを使用しキャラクタデータパレットデータをVramに転送するシステム
  *@author	tomoya takahashi
  *@data		2005.09.02
  *
@@ -22,43 +22,43 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 #define CLACT_U_PLTT_NO_NONE	(NNS_G2D_VRAM_ADDR_NOT_INITIALIZED)
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 
 //////////////////////////////////////////////////////////////////////////////
-// �L�����N�^�f�[�^�]���֐�
-// �G���A�R���g���[���^�C�v
-// vram�G���A���P�L�������ƂɊǗ�����z����쐬���āA
-// �󂫗̈悩��g�p�ł���vram�G���A���������܂��B
+// キャラクタデータ転送関数
+// エリアコントロールタイプ
+// vramエリアを１キャラごとに管理する配列を作成して、
+// 空き領域から使用できるvramエリアを検索します。
 //
-// �������܂��B
+// 推奨します。
 //////////////////////////////////////////////////////////////////////////////
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�L�����N�^�}�l�W���[�Ƀ��\�[�X�I�u�W�F�Ȃ��̃L�����N�^�f�[�^��ݒ�
+ *@brief	キャラクタマネジャーにリソースオブジェないのキャラクタデータを設定
  *
- *@param	resObj	���\�[�X�I�u�W�F
+ *@param	resObj	リソースオブジェ
  *
  *@return	none
  *
- * CLACT_U_RES_OBJ_PTR	���\�[�X�I�u�W�F
- * CLACT_U_ResManagerResAddChar�֐��Ȃǂ̖߂�l
- * �ǂݍ��񂾃��\�[�X�̃f�[�^�@�Ǘ�ID�Ȃǂ��i�[����Ă��܂��B
+ * CLACT_U_RES_OBJ_PTR	リソースオブジェ
+ * CLACT_U_ResManagerResAddChar関数などの戻り値
+ * 読み込んだリソースのデータ　管理IDなどが格納されています。
  *
  */
 //-----------------------------------------------------------------------------
@@ -67,19 +67,19 @@ GLOBAL BOOL CLACT_U_CharManagerSetAreaCont( CONST_CLACT_U_RES_OBJ_PTR resObj );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�L�����N�^�}�l�W���[�Ƀ��\�[�X�I�u�W�F�Ȃ��̃L�����N�^�f�[�^��ݒ�i�����j
+ *@brief	キャラクタマネジャーにリソースオブジェないのキャラクタデータを設定（複数）
  *
- *@param	resTbl		���\�[�X�I�u�W�F�z��̃|�C���^
+ *@param	resTbl		リソースオブジェ配列のポインタ
  *
  *@return	none
  *
- * CLACT_U_RES_OBJ_TBL�@���\�[�X�I�u�W�F�e�[�u��
+ * CLACT_U_RES_OBJ_TBL　リソースオブジェテーブル
 	typedef struct {
-		CLACT_U_RES_OBJ_PTR*	tbl;// �|�C���^���i�[����e�[�u���̃|�C���^
-		int		tbl_num;			// �e�[�u���v�f��
-		int		tbl_now;			// ���݊i�[��
+		CLACT_U_RES_OBJ_PTR*	tbl;// ポインタを格納するテーブルのポインタ
+		int		tbl_num;			// テーブル要素数
+		int		tbl_now;			// 現在格納数
 	} CLACT_U_RES_OBJ_TBL;
-	��̍\���̂����̊֐��ō쐬�ł��܂��B
+	上の構造体を下の関数で作成できます。
 	GLOBAL CLACT_U_RES_OBJ_TBL* CLACT_U_ResManagerResObjTblMake(int inResObjNum, int heap);
  *
  */
@@ -89,20 +89,20 @@ GLOBAL void CLACT_U_CharManagerSetsAreaCont( const CLACT_U_RES_OBJ_TBL* resTbl )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�L�����N�^�}�l�W���[�Ƀ��\�[�X�I�u�W�F�Ȃ��̃L�����N�^�f�[�^��ݒ�
- *				�}�b�s���O���[�h�����̏�ԂɕύX���郂�[�h
+ *@brief	キャラクタマネジャーにリソースオブジェないのキャラクタデータを設定
+ *				マッピングモードを今の状態に変更するモード
  *
- *@param	resObj	���\�[�X�I�u�W�F
+ *@param	resObj	リソースオブジェ
  *
- *@retval	TRUE	����
- *@retval	FALSE	���s
+ *@retval	TRUE	成功
+ *@retval	FALSE	失敗
  *
- * NitroSystem�̓]���֐����ŁA�L�����N�^�n�a�i�}�b�s���O���[�h���W�X�^��ύX���Ă��āA
- * �QD�}�b�s���O���[�h�ŃR���o�[�g�����t�@�C�����PD�}�b�s���O���[�h�œǂݍ��݂����Ȃǂ�
- * �������������Ă��o���Ȃ��悤�ɂȂ��Ă��邽�ߍ쐬���܂����B
+ * NitroSystemの転送関数内で、キャラクタＯＢＪマッピングモードレジスタを変更していて、
+ * ２Dマッピングモードでコンバートしたファイルを１Dマッピングモードで読み込みたいなどの
+ * 処理がしたくても出来ないようになっているため作成しました。
  *
- * ���̊֐����g�p����ƁA���̃}�b�s���O���[�h���擾���A���̃}�b�s���O���[�h�œ]������悤��
- * �L�����N�^�f�[�^�̒��g������������Ƃ����������s���āA�]�����������Ă��܂��B
+ * この関数を使用すると、今のマッピングモードを取得し、そのマッピングモードで転送するように
+ * キャラクタデータの中身を書き換えるという処理を行って、転送処理をしています。
  *
  */
 //-----------------------------------------------------------------------------
@@ -111,19 +111,19 @@ GLOBAL BOOL CLACT_U_CharManagerSetCharModeAdjustAreaCont( CONST_CLACT_U_RES_OBJ_
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�L�����N�^�}�l�W���[�Ƀ��\�[�X�I�u�W�F�Ȃ��̃L�����N�^�f�[�^��ݒ�i�����j
- *				�}�b�s���O���[�h�����̏�ԂɕύX���郂�[�h
+ *@brief	キャラクタマネジャーにリソースオブジェないのキャラクタデータを設定（複数）
+ *				マッピングモードを今の状態に変更するモード
  *
- *@param	resTbl		���\�[�X�I�u�W�F�z��̃|�C���^
+ *@param	resTbl		リソースオブジェ配列のポインタ
  *
  *@return	none
  *
- * NitroSystem�̓]���֐����ŁA�L�����N�^�n�a�i�}�b�s���O���[�h���W�X�^��ύX���Ă��āA
- * �QD�}�b�s���O���[�h�ŃR���o�[�g�����t�@�C�����PD�}�b�s���O���[�h�œǂݍ��݂����Ȃǂ�
- * �������������Ă��o���Ȃ��悤�ɂȂ��Ă��邽�ߍ쐬���܂����B
+ * NitroSystemの転送関数内で、キャラクタＯＢＪマッピングモードレジスタを変更していて、
+ * ２Dマッピングモードでコンバートしたファイルを１Dマッピングモードで読み込みたいなどの
+ * 処理がしたくても出来ないようになっているため作成しました。
  *
- * ���̊֐����g�p����ƁA���̃}�b�s���O���[�h���擾���A���̃}�b�s���O���[�h�œ]������悤��
- * �L�����N�^�f�[�^�̒��g������������Ƃ����������s���āA�]�����������Ă��܂��B
+ * この関数を使用すると、今のマッピングモードを取得し、そのマッピングモードで転送するように
+ * キャラクタデータの中身を書き換えるという処理を行って、転送処理をしています。
  *
  */
 //-----------------------------------------------------------------------------
@@ -131,27 +131,27 @@ GLOBAL void CLACT_U_CharManagerSetsCharModeAdjustAreaCont( const CLACT_U_RES_OBJ
 
 
 //////////////////////////////////////////////////////////////////////////////
-// �L�����N�^�f�[�^�]���֐�
-// �I�t�Z�b�g�^�C�v
-// �ォ�珇�ɋl�߂�Vram�ɓ]�����Ă����܂��B
-// ����������Ȃǂ��Ă���������̈��F�����āA
-// ���̗̈�ɍēx�Ⴄ�L�����N�^��]������Ȃǂ��ł��܂���B
+// キャラクタデータ転送関数
+// オフセットタイプ
+// 上から順に詰めてVramに転送していきます。
+// しかし解放などしても解放した領域を認識して、
+// その領域に再度違うキャラクタを転送するなどができません。
 //
-// ��{�I�ɂ́A���CLACT_U_CharManagerSetAreaCont�n�֐����g�p���Ă�������
+// 基本的には、上のCLACT_U_CharManagerSetAreaCont系関数を使用してください
 //////////////////////////////////////////////////////////////////////////////
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�L�����N�^�}�l�W���[�Ƀ��\�[�X�I�u�W�F�Ȃ��̃L�����N�^�f�[�^��ݒ�
+ *@brief	キャラクタマネジャーにリソースオブジェないのキャラクタデータを設定
  *
- *@param	resObj	���\�[�X�I�u�W�F
+ *@param	resObj	リソースオブジェ
  *
- *@retval	TRUE	����
- *@retval	FALSE	���s
+ *@retval	TRUE	成功
+ *@retval	FALSE	失敗
  *
- * CLACT_U_RES_OBJ_PTR	���\�[�X�I�u�W�F
- * CLACT_U_ResManagerResAddChar�֐��Ȃǂ̖߂�l
- * �ǂݍ��񂾃��\�[�X�̃f�[�^�@�Ǘ�ID�Ȃǂ��i�[����Ă��܂��B
+ * CLACT_U_RES_OBJ_PTR	リソースオブジェ
+ * CLACT_U_ResManagerResAddChar関数などの戻り値
+ * 読み込んだリソースのデータ　管理IDなどが格納されています。
  *
  */
 //-----------------------------------------------------------------------------
@@ -160,19 +160,19 @@ GLOBAL BOOL CLACT_U_CharManagerSet( CONST_CLACT_U_RES_OBJ_PTR resObj );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�L�����N�^�}�l�W���[�Ƀ��\�[�X�I�u�W�F�Ȃ��̃L�����N�^�f�[�^��ݒ�i�����j
+ *@brief	キャラクタマネジャーにリソースオブジェないのキャラクタデータを設定（複数）
  *
- *@param	resTbl		���\�[�X�I�u�W�F�z��̃|�C���^
+ *@param	resTbl		リソースオブジェ配列のポインタ
  *
  *@return	none
  *
- * CLACT_U_RES_OBJ_TBL�@���\�[�X�I�u�W�F�e�[�u��
+ * CLACT_U_RES_OBJ_TBL　リソースオブジェテーブル
 	typedef struct {
-		CLACT_U_RES_OBJ_PTR*	tbl;// �|�C���^���i�[����e�[�u���̃|�C���^
-		int		tbl_num;			// �e�[�u���v�f��
-		int		tbl_now;			// ���݊i�[��
+		CLACT_U_RES_OBJ_PTR*	tbl;// ポインタを格納するテーブルのポインタ
+		int		tbl_num;			// テーブル要素数
+		int		tbl_now;			// 現在格納数
 	} CLACT_U_RES_OBJ_TBL;
-	��̍\���̂����̊֐��ō쐬�ł��܂��B
+	上の構造体を下の関数で作成できます。
 	GLOBAL CLACT_U_RES_OBJ_TBL* CLACT_U_ResManagerResObjTblMake(int inResObjNum, int heap);
  *
  */
@@ -182,20 +182,20 @@ GLOBAL void CLACT_U_CharManagerSets( const CLACT_U_RES_OBJ_TBL* resTbl );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�L�����N�^�}�l�W���[�Ƀ��\�[�X�I�u�W�F�Ȃ��̃L�����N�^�f�[�^��ݒ�
- *				�}�b�s���O���[�h�����̏�ԂɕύX���郂�[�h
+ *@brief	キャラクタマネジャーにリソースオブジェないのキャラクタデータを設定
+ *				マッピングモードを今の状態に変更するモード
  *
- *@param	resObj	���\�[�X�I�u�W�F
+ *@param	resObj	リソースオブジェ
  *
- *@retval	TRUE	����
- *@retval	FALSE	���s
+ *@retval	TRUE	成功
+ *@retval	FALSE	失敗
  *
- * NitroSystem�̓]���֐����ŁA�L�����N�^�n�a�i�}�b�s���O���[�h���W�X�^��ύX���Ă��āA
- * �QD�}�b�s���O���[�h�ŃR���o�[�g�����t�@�C�����PD�}�b�s���O���[�h�œǂݍ��݂����Ȃǂ�
- * �������������Ă��o���Ȃ��悤�ɂȂ��Ă��邽�ߍ쐬���܂����B
+ * NitroSystemの転送関数内で、キャラクタＯＢＪマッピングモードレジスタを変更していて、
+ * ２Dマッピングモードでコンバートしたファイルを１Dマッピングモードで読み込みたいなどの
+ * 処理がしたくても出来ないようになっているため作成しました。
  *
- * ���̊֐����g�p����ƁA���̃}�b�s���O���[�h���擾���A���̃}�b�s���O���[�h�œ]������悤��
- * �L�����N�^�f�[�^�̒��g������������Ƃ����������s���āA�]�����������Ă��܂��B
+ * この関数を使用すると、今のマッピングモードを取得し、そのマッピングモードで転送するように
+ * キャラクタデータの中身を書き換えるという処理を行って、転送処理をしています。
  *
  */
 //-----------------------------------------------------------------------------
@@ -204,19 +204,19 @@ GLOBAL BOOL CLACT_U_CharManagerSetCharModeAdjust(  CONST_CLACT_U_RES_OBJ_PTR res
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�L�����N�^�}�l�W���[�Ƀ��\�[�X�I�u�W�F�Ȃ��̃L�����N�^�f�[�^��ݒ�i�����j
- *				�}�b�s���O���[�h�����̏�ԂɕύX���郂�[�h
+ *@brief	キャラクタマネジャーにリソースオブジェないのキャラクタデータを設定（複数）
+ *				マッピングモードを今の状態に変更するモード
  *
- *@param	resTbl		���\�[�X�I�u�W�F�z��̃|�C���^
+ *@param	resTbl		リソースオブジェ配列のポインタ
  *
  *@return	none
  *
- * NitroSystem�̓]���֐����ŁA�L�����N�^�n�a�i�}�b�s���O���[�h���W�X�^��ύX���Ă��āA
- * �QD�}�b�s���O���[�h�ŃR���o�[�g�����t�@�C�����PD�}�b�s���O���[�h�œǂݍ��݂����Ȃǂ�
- * �������������Ă��o���Ȃ��悤�ɂȂ��Ă��邽�ߍ쐬���܂����B
+ * NitroSystemの転送関数内で、キャラクタＯＢＪマッピングモードレジスタを変更していて、
+ * ２Dマッピングモードでコンバートしたファイルを１Dマッピングモードで読み込みたいなどの
+ * 処理がしたくても出来ないようになっているため作成しました。
  *
- * ���̊֐����g�p����ƁA���̃}�b�s���O���[�h���擾���A���̃}�b�s���O���[�h�œ]������悤��
- * �L�����N�^�f�[�^�̒��g������������Ƃ����������s���āA�]�����������Ă��܂��B
+ * この関数を使用すると、今のマッピングモードを取得し、そのマッピングモードで転送するように
+ * キャラクタデータの中身を書き換えるという処理を行って、転送処理をしています。
  *
  */
 //-----------------------------------------------------------------------------
@@ -228,14 +228,14 @@ GLOBAL void CLACT_U_CharManagerSetsCharModeAdjust( const CLACT_U_RES_OBJ_TBL* re
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�L�����N�^�f�[�^��ύX����
+ *	@brief	キャラクタデータを変更する
  *
- *	@param	nowTbl		���̃L�����N�^�f�[�^
- *	@param	newTbl		�ύX����L�����N�^�f�[�^
+ *	@param	nowTbl		今のキャラクタデータ
+ *	@param	newTbl		変更するキャラクタデータ
  *
  *	@return	none
  *
- * nowTbl�̂���Vram��newTbl�̃L�����N�^�f�[�^��]�����܂��B
+ * nowTblのあるVramにnewTblのキャラクタデータを転送します。
  *
  */
 //-----------------------------------------------------------------------------
@@ -244,9 +244,9 @@ GLOBAL void CLACT_U_CharManagerChg( CONST_CLACT_U_RES_OBJ_PTR nowTbl, CONST_CLAC
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�L�����N�^�f�[�^�̍ē]�����s��
+ *	@brief	キャラクタデータの再転送を行う
  *
- *	@param	resObj	���\�[�X�I�u�W�F
+ *	@param	resObj	リソースオブジェ
  *
  *	@return	none
  *
@@ -257,9 +257,9 @@ GLOBAL void CLACT_U_CharManagerReTrans( CONST_CLACT_U_RES_OBJ_PTR resObj );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�L�����N�^�}�l�W���[���烊�\�[�X�I�u�W�F��ID�̃L�����N�^�f�[�^��j��
+ *@brief	キャラクタマネジャーからリソースオブジェのIDのキャラクタデータを破棄
  *
- *@param	resObj		���\�[�X�I�u�W�F�|�C���^
+ *@param	resObj		リソースオブジェポインタ
  *
  *@return none
  *
@@ -270,9 +270,9 @@ GLOBAL void CLACT_U_CharManagerDelete( CLACT_U_RES_OBJ_PTR resObj );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�L�����N�^�}�l�W���[���烊�\�[�X�I�u�W�F�e�[�u���ɑΉ�����f�[�^��j��
+ *@brief	キャラクタマネジャーからリソースオブジェテーブルに対応するデータを破棄
  *
- *@param	resTbl		���\�[�X�I�u�W�F�e�[�u��
+ *@param	resTbl		リソースオブジェテーブル
  *
  *@return none
  *
@@ -283,11 +283,11 @@ GLOBAL void CLACT_U_CharManagerDeletes( CLACT_U_RES_OBJ_TBL* resTbl );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�C���[�W�v���N�V���擾
+ *@brief	イメージプロクシを取得
  *
- *@param	resObj	���\�[�X�I�u�W�F
+ *@param	resObj	リソースオブジェ
  *
- *@return	NNSG2dImageProxy*	�C���[�W�v���N�V
+ *@return	NNSG2dImageProxy*	イメージプロクシ
  *
  *
  */
@@ -297,11 +297,11 @@ GLOBAL NNSG2dImageProxy* CLACT_U_CharManagerGetProxy( CONST_CLACT_U_RES_OBJ_PTR 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�QD�}�b�s���O���[�h�̃L�����N�^��ǂݍ���
+ *	@brief	２Dマッピングモードのキャラクタを読み込む
  *
- *	@param	resObj		���\�[�X�I�u�W�F
- *	@param	proxy		�]���f�[�^���i�[����v���N�V
- *	@param	base_addr	Vram�x�[�X�A�h���X
+ *	@param	resObj		リソースオブジェ
+ *	@param	proxy		転送データを格納するプロクシ
+ *	@param	base_addr	Vramベースアドレス
  *
  *	@return	none
  *
@@ -313,14 +313,14 @@ GLOBAL void CLACT_U_2DmapCharLoad( CONST_CLACT_U_RES_OBJ_PTR resObj, NNSG2dImage
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Vram�]���p�̃C���[�W�v���N�V���擾
+ *@brief	Vram転送用のイメージプロクシを取得
  *
- *@param	charObj	�L�����N�^���\�[�X�I�u�W�F
- *@param	cellObj	�Z�����\�[�X�I�u�W�F
+ *@param	charObj	キャラクタリソースオブジェ
+ *@param	cellObj	セルリソースオブジェ
  *
- *@return	NNSG2dImageProxy*	�C���[�W�v���N�V
+ *@return	NNSG2dImageProxy*	イメージプロクシ
  *
- *	����Vram�̈���m�ۂ��Ă��܂��B
+ *	中でVram領域を確保しています。
  *
  */
 //-----------------------------------------------------------------------------
@@ -329,37 +329,37 @@ GLOBAL NNSG2dImageProxy* CLACT_U_CharManagerGetVramTransferProxy( CONST_CLACT_U_
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�Z��Vram�]���A�j����Vram�̈���J��
+ *@brief	セルVram転送アニメのVram領域を開放
  *
- *@param	pImage		Vram�]���p�ɍ쐬���ꂽ�C���[�W�v���N�V
+ *@param	pImage		Vram転送用に作成されたイメージプロクシ
  *
  *@return	none
  *
- * ����Vram�̈���J�����Ă��܂��B
+ * 中でVram領域を開放しています。
  *
  */
 //-----------------------------------------------------------------------------
 GLOBAL void CLACT_U_CharManagerDeleteVramTransferProxy( const NNSG2dImageProxy* pImage );
 
-// �󂫗̈���������ē]�����܂�
-// �������A��̓]���֐����g�p���Ă��̌�ɓ]�������
-// �㏑������܂��B
+// 空き領域を検索して転送します
+// ただし、上の転送関数を使用してその後に転送すると
+// 上書きされます。
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�p���b�g�}�l�[�W���[�Ƀ��\�[�X�I�u�W�F���̃p���b�g�f�[�^��ݒ�
+ *@brief	パレットマネージャーにリソースオブジェ内のパレットデータを設定
  *
- *@param	resObj	���\�[�X�I�u�W�F
+ *@param	resObj	リソースオブジェ
  *
- *@retval	TRUE	����
- *@retval	FALSE	���s
+ *@retval	TRUE	成功
+ *@retval	FALSE	失敗
  *
- * CLACT_U_RES_OBJ_PTR	���\�[�X�I�u�W�F
- * CLACT_U_ResManagerResAddPltt�֐��Ȃǂ̖߂�l
- * �ǂݍ��񂾃��\�[�X�̃f�[�^�@�Ǘ�ID�Ȃǂ��i�[����Ă��܂��B
+ * CLACT_U_RES_OBJ_PTR	リソースオブジェ
+ * CLACT_U_ResManagerResAddPltt関数などの戻り値
+ * 読み込んだリソースのデータ　管理IDなどが格納されています。
  *
- * �󂢂Ă����Ԃ��r�b�g����ŊǗ����Ă��܂��B
- * ��{���������g�p���Ă��������B
+ * 空いている空間をビット操作で管理しています。
+ * 基本こっちを使用してください。
  *
  */
 //-----------------------------------------------------------------------------
@@ -368,22 +368,22 @@ GLOBAL BOOL CLACT_U_PlttManagerSetCleanArea( CONST_CLACT_U_RES_OBJ_PTR resObj );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�p���b�g�}�l�W���[�Ƀ��\�[�X�I�u�W�F�Ȃ��̃p���b�g�f�[�^��ݒ�i�����j
+ *@brief	パレットマネジャーにリソースオブジェないのパレットデータを設定（複数）
  *
- *@param	resTbl		���\�[�X�I�u�W�F�e�[�u���|�C���^
+ *@param	resTbl		リソースオブジェテーブルポインタ
  *
  *@return	none
  *
- * �󂢂Ă����Ԃ��r�b�g����ŊǗ����Ă��܂��B
- * ��{���������g�p���Ă��������B
+ * 空いている空間をビット操作で管理しています。
+ * 基本こっちを使用してください。
  * 
- * CLACT_U_RES_OBJ_TBL�@���\�[�X�I�u�W�F�e�[�u��
+ * CLACT_U_RES_OBJ_TBL　リソースオブジェテーブル
 	typedef struct {
-		CLACT_U_RES_OBJ_PTR*	tbl;// �|�C���^���i�[����e�[�u���̃|�C���^
-		int		tbl_num;			// �e�[�u���v�f��
-		int		tbl_now;			// ���݊i�[��
+		CLACT_U_RES_OBJ_PTR*	tbl;// ポインタを格納するテーブルのポインタ
+		int		tbl_num;			// テーブル要素数
+		int		tbl_now;			// 現在格納数
 	} CLACT_U_RES_OBJ_TBL;
-	��̍\���̂����̊֐��ō쐬�ł��܂��B
+	上の構造体を下の関数で作成できます。
 	GLOBAL CLACT_U_RES_OBJ_TBL* CLACT_U_ResManagerResObjTblMake(int inResObjNum, int heap);
  *
  */
@@ -395,19 +395,19 @@ GLOBAL void CLACT_U_PlttManagerSetsCleanArea( const CLACT_U_RES_OBJ_TBL* resTbl 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�p���b�g�}�l�[�W���[�Ƀ��\�[�X�I�u�W�F���̃p���b�g�f�[�^��ݒ�
+ *@brief	パレットマネージャーにリソースオブジェ内のパレットデータを設定
  *
- *@param	resObj	���\�[�X�I�u�W�F
+ *@param	resObj	リソースオブジェ
  *
- *@retval	TRUE	����
- *@retval	FALSE	���s
+ *@retval	TRUE	成功
+ *@retval	FALSE	失敗
  *
- * CLACT_U_RES_OBJ_PTR	���\�[�X�I�u�W�F
- * CLACT_U_ResManagerResAddPltt�֐��Ȃǂ̖߂�l
- * �ǂݍ��񂾃��\�[�X�̃f�[�^�@�Ǘ�ID�Ȃǂ��i�[����Ă��܂��B
+ * CLACT_U_RES_OBJ_PTR	リソースオブジェ
+ * CLACT_U_ResManagerResAddPltt関数などの戻り値
+ * 読み込んだリソースのデータ　管理IDなどが格納されています。
  *
- * �I�t�Z�b�g���炵�Ő擪����p���b�g��ǉ����Ă����܂��B
- * �������A�p���b�g�g�p�֎~�̈�Ȃǂ̊Ǘ����s��Ȃ����߁A�������܂���
+ * オフセットずらしで先頭からパレットを追加していきます。
+ * しかし、パレット使用禁止領域などの管理も行わないため、推奨しません
  */
 //-----------------------------------------------------------------------------
 GLOBAL BOOL CLACT_U_PlttManagerSet( CONST_CLACT_U_RES_OBJ_PTR resObj );
@@ -415,23 +415,23 @@ GLOBAL BOOL CLACT_U_PlttManagerSet( CONST_CLACT_U_RES_OBJ_PTR resObj );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�p���b�g�}�l�W���[�Ƀ��\�[�X�I�u�W�F�Ȃ��̃p���b�g�f�[�^��ݒ�i�����j
+ *@brief	パレットマネジャーにリソースオブジェないのパレットデータを設定（複数）
  *
- *@param	resTbl		���\�[�X�I�u�W�F�e�[�u���|�C���^
+ *@param	resTbl		リソースオブジェテーブルポインタ
  *
  *@return	none
  *
- * CLACT_U_RES_OBJ_TBL�@���\�[�X�I�u�W�F�e�[�u��
+ * CLACT_U_RES_OBJ_TBL　リソースオブジェテーブル
 	typedef struct {
-		CLACT_U_RES_OBJ_PTR*	tbl;// �|�C���^���i�[����e�[�u���̃|�C���^
-		int		tbl_num;			// �e�[�u���v�f��
-		int		tbl_now;			// ���݊i�[��
+		CLACT_U_RES_OBJ_PTR*	tbl;// ポインタを格納するテーブルのポインタ
+		int		tbl_num;			// テーブル要素数
+		int		tbl_now;			// 現在格納数
 	} CLACT_U_RES_OBJ_TBL;
-	��̍\���̂����̊֐��ō쐬�ł��܂��B
+	上の構造体を下の関数で作成できます。
 	GLOBAL CLACT_U_RES_OBJ_TBL* CLACT_U_ResManagerResObjTblMake(int inResObjNum, int heap);
  *
- * �I�t�Z�b�g���炵�Ő擪����p���b�g��ǉ����Ă����܂��B
- * �������A�p���b�g�g�p�֎~�̈�Ȃǂ̊Ǘ����s��Ȃ����߁A�������܂���
+ * オフセットずらしで先頭からパレットを追加していきます。
+ * しかし、パレット使用禁止領域などの管理も行わないため、推奨しません
  *
  */
 //-----------------------------------------------------------------------------
@@ -441,14 +441,14 @@ GLOBAL void CLACT_U_PlttManagerSets( const CLACT_U_RES_OBJ_TBL* resTbl );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�p���b�g�f�[�^�ύX
+ *	@brief	パレットデータ変更
  *
- *	@param	nowObj		���̃p���b�g�f�[�^�̃��\�[�X�I�u�W�F
- *	@param	newObj		�ύX����p���b�g�̃��\�[�X�I�u�W�F
+ *	@param	nowObj		今のパレットデータのリソースオブジェ
+ *	@param	newObj		変更するパレットのリソースオブジェ
  *
  *	@return	none
  *
- * nowTbl�̂���Vram��newTbl�̃p���b�g�f�[�^��]�����܂��B
+ * nowTblのあるVramにnewTblのパレットデータを転送します。
  *
  */
 //-----------------------------------------------------------------------------
@@ -457,9 +457,9 @@ GLOBAL void CLACT_U_PlttManagerChg( CONST_CLACT_U_RES_OBJ_PTR nowObj, CONST_CLAC
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�p���b�g�f�[�^�̍ē]�����s��
+ *	@brief	パレットデータの再転送を行う
  *
- *	@param	resObj	���\�[�X�I�u�W�F
+ *	@param	resObj	リソースオブジェ
  *
  *	@return	none
  *
@@ -471,9 +471,9 @@ GLOBAL void CLACT_U_PlttManagerReTrans( CONST_CLACT_U_RES_OBJ_PTR resObj );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�p���b�g�}�l�W���[���烊�\�[�X�I�u�W�F��ID�̃p���b�g�f�[�^��j��
+ *@brief	パレットマネジャーからリソースオブジェのIDのパレットデータを破棄
  *
- *@param	resObj		���\�[�X�I�u�W�F�|�C���^
+ *@param	resObj		リソースオブジェポインタ
  *
  *@return none
  *
@@ -484,9 +484,9 @@ GLOBAL void CLACT_U_PlttManagerDelete( CLACT_U_RES_OBJ_PTR resObj );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�p���b�g�}�l�W���[���烊�\�[�X�I�u�W�F��ID�̃p���b�g�f�[�^��j��
+ *@brief	パレットマネジャーからリソースオブジェのIDのパレットデータを破棄
  *
- *@param	resTbl		���\�[�X�I�u�W�F�e�[�u���̃|�C���^
+ *@param	resTbl		リソースオブジェテーブルのポインタ
  *
  *@return none
  *
@@ -497,12 +497,12 @@ GLOBAL void CLACT_U_PlttManagerDeletes( CLACT_U_RES_OBJ_TBL* resTbl );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�p���b�g�v���N�V���擾
+ *@brief	パレットプロクシを取得
  *
- *@param	resObj	���\�[�X�I�u�W�F�p�����[�^
- *@param	pImage	�֘A������C���[�W�v���N�V	�g���p���b�g�ȊO�̂Ƃ���NULL
+ *@param	resObj	リソースオブジェパラメータ
+ *@param	pImage	関連ずけるイメージプロクシ	拡張パレット以外のときはNULL
  *
- *@return	�p���b�g�v���N�V
+ *@return	パレットプロクシ
  *
  *
  */
@@ -512,21 +512,21 @@ GLOBAL const NNSG2dImagePaletteProxy* CLACT_U_PlttManagerGetProxy( CONST_CLACT_U
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�o�^����Ă���p���b�g�����Ԃ̃p���b�g�ɓ]������Ă��邩��Ԃ�
+ *	@brief	登録されているパレットが何番のパレットに転送されているかを返す
  *
- *	@param	resObj		���\�[�X�I�u�W�F
- *	@param	vram		vram�^�C�v
+ *	@param	resObj		リソースオブジェ
+ *	@param	vram		vramタイプ
  *
- *	@retval	CLACT_U_PLTT_NO_NONE�ȊO	�]�����ꂽ�p���b�g�ԍ�
- *	@retval	CLACT_U_PLTT_NO_NONE		�p���b�g�]������Ă��Ȃ�
+ *	@retval	CLACT_U_PLTT_NO_NONE以外	転送されたパレット番号
+ *	@retval	CLACT_U_PLTT_NO_NONE		パレット転送されていない
  *
- * vram�^�C�v
- *	NNS_G2D_VRAM_TYPE_2DMAIN    �Q�c�O���t�B�b�N�X�G���W���`�p
- *  NNS_G2D_VRAM_TYPE_2DSUB     �Q�c�O���t�B�b�N�X�G���W���a�p
+ * vramタイプ
+ *	NNS_G2D_VRAM_TYPE_2DMAIN    ２ＤグラフィックスエンジンＡ用
+ *  NNS_G2D_VRAM_TYPE_2DSUB     ２ＤグラフィックスエンジンＢ用
  *
  * resObj
  *	GLOBAL CLACT_U_RES_OBJ_PTR CLACT_U_ResManagerGetIDResObjPtr(CONST_CLACT_U_RES_MANAGER_PTR resm, int id);
- *	�֐��Ŏ擾���Ă��������B
+ *	関数で取得してください。
  *
  *
  */

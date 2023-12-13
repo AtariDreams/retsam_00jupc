@@ -12,10 +12,10 @@
 
   $Log: spec.h,v $
   Revision 1.5  2005/05/26 02:51:08  terui
-  SDK_TS_VERSION �̃f�t�H���g�l�� 200 �ɕύX
+  SDK_TS_VERSION のデフォルト値を 200 に変更
 
   Revision 1.4  2005/04/12 11:35:47  terui
-  SDK_NVRAM_FORMAT �萔�� 300 �ɕύX�B
+  SDK_NVRAM_FORMAT 定数を 300 に変更。
 
   Revision 1.3  2005/02/28 05:26:02  yosizaki
   do-indent.

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wf2dmap_cmdq.c
- *	@brief		ƒRƒ}ƒ“ƒhƒLƒ…[
+ *	@brief		ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼
  *	@author		tomoya takahashi
  *	@data		2007.03.28
  *
@@ -16,49 +16,49 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒoƒbƒtƒ@
- *		i‚ ‚Á‚½‚ç•Ö—˜‚È‚Ì‚Åì¬‚µ‚Ü‚µ‚½j
+ *		ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡
+ *		ï¼ˆã‚ã£ãŸã‚‰ä¾¿åˆ©ãªã®ã§ä½œæˆã—ã¾ã—ãŸï¼‰
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒoƒbƒtƒ@
+///	ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡
 //=====================================
 typedef struct _WF2DMAP_ACTCMDQ {
 	WF2DMAP_ACTCMD* p_buff;
 	u32 num;
-	u16 top;		// æ“ª
-	u16	tail;		// ––”ö
+	u16 top;		// å…ˆé ­
+	u16	tail;		// æœ«å°¾
 }WF2DMAP_ACTCMDQ;
 
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒoƒbƒtƒ@ƒ[ƒNì¬
+ *	@brief	ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *
- *	@param	buffnum		ƒRƒ}ƒ“ƒh”z—ñ”
- *	@param	heapID		ƒq[ƒvID
+ *	@param	buffnum		ã‚³ãƒžãƒ³ãƒ‰é…åˆ—æ•°
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒoƒbƒtƒ@ƒ[ƒN
+ *	@return	ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_ACTCMDQ* WF2DMAP_ACTCMDQSysInit( u32 buffnum, u32 heapID )
@@ -68,7 +68,7 @@ WF2DMAP_ACTCMDQ* WF2DMAP_ACTCMDQSysInit( u32 buffnum, u32 heapID )
 	p_sys = sys_AllocMemory( heapID, sizeof(WF2DMAP_ACTCMDQ) );
 	GF_ASSERT( p_sys );
 
-	p_sys->num = buffnum + 1;	// ƒLƒ…[‚ª‚¢‚Á‚Ï‚¢‚É‚È‚Á‚½‚±‚Æƒ`ƒFƒbƒN—p
+	p_sys->num = buffnum + 1;	// ã‚­ãƒ¥ãƒ¼ãŒã„ã£ã±ã„ã«ãªã£ãŸã“ã¨ãƒã‚§ãƒƒã‚¯ç”¨
 	
 	p_sys->p_buff = sys_AllocMemory( heapID, sizeof(WF2DMAP_ACTCMD)*p_sys->num );
 	memset( p_sys->p_buff, 0, sizeof(WF2DMAP_ACTCMD)*p_sys->num );
@@ -81,9 +81,9 @@ WF2DMAP_ACTCMDQ* WF2DMAP_ACTCMDQSysInit( u32 buffnum, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒbƒtƒ@ƒ[ƒN‚ÌƒNƒŠƒA
+ *	@brief	ãƒãƒƒãƒ•ã‚¡ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢
  *
- *	@param	p_sys		ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒLƒ…[ƒ[ƒN
+ *	@param	p_sys		ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_ACTCMDQSysExit( WF2DMAP_ACTCMDQ* p_sys )
@@ -94,64 +94,64 @@ void WF2DMAP_ACTCMDQSysExit( WF2DMAP_ACTCMDQ* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒbƒtƒ@”‚ÌŽæ“¾
+ *	@brief	ãƒãƒƒãƒ•ã‚¡æ•°ã®å–å¾—
  *
- *	@param	cp_sys		ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒLƒ…[ƒ[ƒN
+ *	@param	cp_sys		ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒoƒbƒtƒ@”
+ *	@return	ãƒãƒƒãƒ•ã‚¡æ•°
  */
 //-----------------------------------------------------------------------------
 u32 WF2DMAP_ACTCMDQSysBuffNumGet( const WF2DMAP_ACTCMDQ* cp_sys )
 {
-	return cp_sys->num - 1;	// ƒLƒ…[‚ª‚¢‚Á‚Ï‚¢‚É‚È‚Á‚½‚±‚Æƒ`ƒFƒbƒN‚·‚é‚½‚ßnum+1‚µ‚Ä‚¢‚é‚Ì‚Å-1‚·‚é
+	return cp_sys->num - 1;	// ã‚­ãƒ¥ãƒ¼ãŒã„ã£ã±ã„ã«ãªã£ãŸã“ã¨ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãŸã‚num+1ã—ã¦ã„ã‚‹ã®ã§-1ã™ã‚‹
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒLƒ…[@ƒRƒ}ƒ“ƒhÝ’è
+ *	@brief	ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ã€€ã‚³ãƒžãƒ³ãƒ‰è¨­å®š
  *
- *	@param	p_sys		ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒLƒ…[ƒ[ƒN
- *	@param	cp_buff		Ý’èƒRƒ}ƒ“ƒh
+ *	@param	p_sys		ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_buff		è¨­å®šã‚³ãƒžãƒ³ãƒ‰
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_ACTCMDQSysCmdPush( WF2DMAP_ACTCMDQ* p_sys, const WF2DMAP_ACTCMD* cp_buff )
 {
-	// ––”ö+1‚ªæ“ª‚ÌŽž–ž”t
+	// æœ«å°¾+1ãŒå…ˆé ­ã®æ™‚æº€æ¯
 	if( ((p_sys->tail + 1)%p_sys->num) == p_sys->top ){
-		WF2DMAP_ACTCMD tmp;	// ŽÌ‚Ä‚éƒRƒ}ƒ“ƒh
-		// –ž”t
-		// 1‚Âƒf[ƒ^‚ðƒ|ƒbƒv‚µ‚Äƒf[ƒ^Ši”[
+		WF2DMAP_ACTCMD tmp;	// æ¨ã¦ã‚‹ã‚³ãƒžãƒ³ãƒ‰
+		// æº€æ¯
+		// 1ã¤ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ—ã—ã¦ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 		WF2DMAP_ACTCMDQSysCmdPop( p_sys, &tmp );
 	}
 
-	// ƒf[ƒ^Ý’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_sys->p_buff[ p_sys->tail ] = *cp_buff;
 
-	// ––”öˆÊ’u‚ð“®‚©‚·
+	// æœ«å°¾ä½ç½®ã‚’å‹•ã‹ã™
 	p_sys->tail = (p_sys->tail + 1)%p_sys->num;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒLƒ…[@ƒRƒ}ƒ“ƒhŽæ“¾
+ *	@brief	ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ã€€ã‚³ãƒžãƒ³ãƒ‰å–å¾—
  *
- *	@param	p_sys		ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒLƒ…[ƒ[ƒN
- *	@param	p_cmd		ƒRƒ}ƒ“ƒhŠi”[æ
+ *	@param	p_sys		ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_cmd		ã‚³ãƒžãƒ³ãƒ‰æ ¼ç´å…ˆ
  *
- *	@retval	TRUE	Žæ“¾¬Œ÷
- *	@retval	FALSE	Žæ“¾Ž¸”s
+ *	@retval	TRUE	å–å¾—æˆåŠŸ
+ *	@retval	FALSE	å–å¾—å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 BOOL WF2DMAP_ACTCMDQSysCmdPop( WF2DMAP_ACTCMDQ* p_sys, WF2DMAP_ACTCMD* p_cmd )
 {
-	// æ“ª=––”ö	ƒf[ƒ^‚ª‚È‚¢
+	// å…ˆé ­=æœ«å°¾	ãƒ‡ãƒ¼ã‚¿ãŒãªã„
 	if( p_sys->tail == p_sys->top ){
 		return FALSE;
 	}
 
 	*p_cmd = p_sys->p_buff[ p_sys->top ];
 
-	// æ“ªˆÊ’u‚ð“®‚©‚·
+	// å…ˆé ­ä½ç½®ã‚’å‹•ã‹ã™
 	p_sys->top = (p_sys->top + 1)%p_sys->num;
 
 	return TRUE;
@@ -163,46 +163,46 @@ BOOL WF2DMAP_ACTCMDQSysCmdPop( WF2DMAP_ACTCMDQ* p_sys, WF2DMAP_ACTCMD* p_cmd )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒLƒ…[
- *		i‚ ‚Á‚½‚ç•Ö—˜‚È‚Ì‚Åì¬‚µ‚Ü‚µ‚½j
+ *		ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼
+ *		ï¼ˆã‚ã£ãŸã‚‰ä¾¿åˆ©ãªã®ã§ä½œæˆã—ã¾ã—ãŸï¼‰
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒLƒ…[
+///	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼
 //=====================================
 typedef struct _WF2DMAP_REQCMDQ{
 	WF2DMAP_REQCMD* p_buff;
 	u32 num;
-	u16 top;		// æ“ª
-	u16	tail;		// ––”ö
+	u16 top;		// å…ˆé ­
+	u16	tail;		// æœ«å°¾
 }WF2DMAP_REQCMDQ;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒoƒbƒtƒ@ƒ[ƒNì¬
+ *	@brief	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *
- *	@param	buffnum		ƒRƒ}ƒ“ƒh”z—ñ”
- *	@param	heapID		ƒq[ƒvID
+ *	@param	buffnum		ã‚³ãƒžãƒ³ãƒ‰é…åˆ—æ•°
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒoƒbƒtƒ@ƒ[ƒN
+ *	@return	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_REQCMDQ* WF2DMAP_REQCMDQSysInit( u32 buffnum, u32 heapID )
@@ -212,7 +212,7 @@ WF2DMAP_REQCMDQ* WF2DMAP_REQCMDQSysInit( u32 buffnum, u32 heapID )
 	p_sys = sys_AllocMemory( heapID, sizeof(WF2DMAP_REQCMDQ) );
 	GF_ASSERT( p_sys );
 
-	p_sys->num = buffnum + 1;	// ƒLƒ…[‚ª‚¢‚Á‚Ï‚¢‚É‚È‚Á‚½‚±‚Æƒ`ƒFƒbƒN—p
+	p_sys->num = buffnum + 1;	// ã‚­ãƒ¥ãƒ¼ãŒã„ã£ã±ã„ã«ãªã£ãŸã“ã¨ãƒã‚§ãƒƒã‚¯ç”¨
 	
 	p_sys->p_buff = sys_AllocMemory( heapID, sizeof(WF2DMAP_REQCMD)*p_sys->num );
 	memset( p_sys->p_buff, 0, sizeof(WF2DMAP_REQCMD)*p_sys->num );
@@ -225,9 +225,9 @@ WF2DMAP_REQCMDQ* WF2DMAP_REQCMDQSysInit( u32 buffnum, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh@ƒLƒ…[@”jŠü
+ *	@brief	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã€€ã‚­ãƒ¥ãƒ¼ã€€ç ´æ£„
  *
- *	@param	p_sys	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh@ƒLƒ…[ƒ[ƒN
+ *	@param	p_sys	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã€€ã‚­ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_REQCMDQSysExit( WF2DMAP_REQCMDQ* p_sys )
@@ -238,50 +238,50 @@ void WF2DMAP_REQCMDQSysExit( WF2DMAP_REQCMDQ* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh@ƒvƒbƒVƒ…
+ *	@brief	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã€€ãƒ—ãƒƒã‚·ãƒ¥
  *
- *	@param	p_sys		ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh@ƒLƒ…[ƒ[ƒN
- *	@param	cp_cmd		Ý’èƒRƒ}ƒ“ƒhƒf[ƒ^
+ *	@param	p_sys		ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã€€ã‚­ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_cmd		è¨­å®šã‚³ãƒžãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WF2DMAP_REQCMDQSysCmdPush( WF2DMAP_REQCMDQ* p_sys, const WF2DMAP_REQCMD* cp_cmd )
 {
-	// ––”ö+1‚ªæ“ª‚ÌŽž–ž”t
+	// æœ«å°¾+1ãŒå…ˆé ­ã®æ™‚æº€æ¯
 	if( ((p_sys->tail + 1)%p_sys->num) == p_sys->top ){
-		WF2DMAP_REQCMD tmp;	// ŽÌ‚Ä‚éƒRƒ}ƒ“ƒh
-		// –ž”t
-		// 1‚Âƒf[ƒ^‚ðƒ|ƒbƒv‚µ‚Äƒf[ƒ^Ši”[
+		WF2DMAP_REQCMD tmp;	// æ¨ã¦ã‚‹ã‚³ãƒžãƒ³ãƒ‰
+		// æº€æ¯
+		// 1ã¤ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ—ã—ã¦ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 		WF2DMAP_REQCMDQSysCmdPop( p_sys, &tmp );
 	}
 
-	// ƒf[ƒ^Ý’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_sys->p_buff[ p_sys->tail ] = *cp_cmd;
 
-	// ––”öˆÊ’u‚ð“®‚©‚·
+	// æœ«å°¾ä½ç½®ã‚’å‹•ã‹ã™
 	p_sys->tail = (p_sys->tail + 1)%p_sys->num;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒLƒ…[@ƒRƒ}ƒ“ƒhŽæ“¾
+ *	@brief	ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ã€€ã‚³ãƒžãƒ³ãƒ‰å–å¾—
  *
- *	@param	p_sys		ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒLƒ…[ƒ[ƒN
- *	@param	p_cmd		ƒRƒ}ƒ“ƒhŠi”[æ
+ *	@param	p_sys		ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_cmd		ã‚³ãƒžãƒ³ãƒ‰æ ¼ç´å…ˆ
  *
- *	@retval	TRUE	Žæ“¾¬Œ÷
- *	@retval	FALSE	Žæ“¾Ž¸”s
+ *	@retval	TRUE	å–å¾—æˆåŠŸ
+ *	@retval	FALSE	å–å¾—å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 BOOL WF2DMAP_REQCMDQSysCmdPop( WF2DMAP_REQCMDQ* p_sys, WF2DMAP_REQCMD* p_cmd )
 {
-	// æ“ª=––”ö	ƒf[ƒ^‚ª‚È‚¢
+	// å…ˆé ­=æœ«å°¾	ãƒ‡ãƒ¼ã‚¿ãŒãªã„
 	if( p_sys->tail == p_sys->top ){
 		return FALSE;
 	}
 
 	*p_cmd = p_sys->p_buff[ p_sys->top ];
 
-	// æ“ªˆÊ’u‚ð“®‚©‚·
+	// å…ˆé ­ä½ç½®ã‚’å‹•ã‹ã™
 	p_sys->top = (p_sys->top + 1)%p_sys->num;
 
 	return TRUE;
@@ -289,14 +289,14 @@ BOOL WF2DMAP_REQCMDQSysCmdPop( WF2DMAP_REQCMDQ* p_sys, WF2DMAP_REQCMD* p_cmd )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒbƒtƒ@”‚ÌŽæ“¾
+ *	@brief	ãƒãƒƒãƒ•ã‚¡æ•°ã®å–å¾—
  *
- *	@param	cp_sys		ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒLƒ…[ƒ[ƒN
+ *	@param	cp_sys		ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒoƒbƒtƒ@”
+ *	@return	ãƒãƒƒãƒ•ã‚¡æ•°
  */
 //-----------------------------------------------------------------------------
 u32 WF2DMAP_REQCMDQSysBuffNumGet( const WF2DMAP_REQCMDQ* cp_sys )
 {
-	return cp_sys->num - 1;	// ƒLƒ…[‚ª‚¢‚Á‚Ï‚¢‚É‚È‚Á‚½‚±‚Æƒ`ƒFƒbƒN‚·‚é‚½‚ßnum+1‚µ‚Ä‚¢‚é‚Ì‚Å-1‚·‚é
+	return cp_sys->num - 1;	// ã‚­ãƒ¥ãƒ¼ãŒã„ã£ã±ã„ã«ãªã£ãŸã“ã¨ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãŸã‚num+1ã—ã¦ã„ã‚‹ã®ã§-1ã™ã‚‹
 }

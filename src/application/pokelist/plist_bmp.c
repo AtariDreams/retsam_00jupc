@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	plist_bmp.c
- * @brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊBMPŠÖ˜A
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢BMPé–¢é€£
  * @author	Hiroyuki Nakamura
  * @date	05.09.29
  */
@@ -41,38 +41,38 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// BMPƒEƒBƒ“ƒhƒE’è‹`
-// ƒjƒbƒNƒl[ƒ€F‚P‘Ì–Ú
+// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å®šç¾©
+// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼šï¼‘ä½“ç›®
 #define	WIN_NAME1_PX	( 6 )
 #define	WIN_NAME1_PY	( 1 )
 #define	WIN_NAME1_SX	( 9 )
 #define	WIN_NAME1_SY	( 2 )
 #define	WIN_NAME1_PAL	( PAL_FONT )
 #define	WIN_NAME1_CGX	( PL_TALK_WIN_CGX + TALK_WIN_CGX_SIZ )
-// ƒŒƒxƒ‹F‚P‘Ì–Ú
+// ãƒ¬ãƒ™ãƒ«ï¼šï¼‘ä½“ç›®
 #define	WIN_LV1_PX		( 0 )
 #define	WIN_LV1_PY		( 4 )
 #define	WIN_LV1_SX		( 6 )
 #define	WIN_LV1_SY		( 2 )
 #define	WIN_LV1_PAL		( PAL_FONT )
 #define	WIN_LV1_CGX		( WIN_NAME1_CGX + WIN_NAME1_SX * WIN_NAME1_SY )
-// HP/MHPF‚P‘Ì–Ú
+// HP/MHPï¼šï¼‘ä½“ç›®
 #define	WIN_HP1_PX		( 7 )
 #define	WIN_HP1_PY		( 4 )
 #define	WIN_HP1_SX		( 8 )
 #define	WIN_HP1_SY		( 2 )
 #define	WIN_HP1_PAL		( PAL_FONT )
 #define	WIN_HP1_CGX		( WIN_LV1_CGX + WIN_LV1_SX * WIN_LV1_SY )
-// HPƒQ[ƒWF‚P‘Ì–Ú
+// HPã‚²ãƒ¼ã‚¸ï¼šï¼‘ä½“ç›®
 #define	WIN_HPBAR1_PX	( 8 )
 #define	WIN_HPBAR1_PY	( 3 )
 #define	WIN_HPBAR1_SX	( 6 )
 #define	WIN_HPBAR1_SY	( 1 )
 #define	WIN_HPBAR1_PAL	( PAL_PANEL_0 )
 #define	WIN_HPBAR1_CGX	( WIN_HP1_CGX + WIN_HP1_SX * WIN_HP1_SY )
-// ƒRƒƒ“ƒgF‚P‘Ì–Ú
+// ã‚³ãƒ¡ãƒ³ãƒˆï¼šï¼‘ä½“ç›®
 #define	WIN_COMM1_PX	( 6 )
 #define	WIN_COMM1_PY	( 4 )
 #define	WIN_COMM1_SX	( 10 )
@@ -80,35 +80,35 @@
 #define	WIN_COMM1_PAL	( PAL_FONT )
 #define	WIN_COMM1_CGX	( WIN_LV1_CGX + WIN_LV1_SX * WIN_LV1_SY )
 
-// ƒjƒbƒNƒl[ƒ€F‚Q‘Ì–Úi’Êíj
+// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼šï¼’ä½“ç›®ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_NAME2_PX	( 22 )
 #define	WIN_NAME2_PY	( 2 )
 #define	WIN_NAME2_SX	( 9 )
 #define	WIN_NAME2_SY	( 2 )
 #define	WIN_NAME2_PAL	( PAL_FONT )
 #define	WIN_NAME2_CGX	( WIN_HPBAR1_CGX + WIN_HPBAR1_SX * WIN_HPBAR1_SY )
-// ƒŒƒxƒ‹F‚Q‘Ì–Úi’Êíj
+// ãƒ¬ãƒ™ãƒ«ï¼šï¼’ä½“ç›®ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_LV2_PX		( 16 )
 #define	WIN_LV2_PY		( 5 )
 #define	WIN_LV2_SX		( 6 )
 #define	WIN_LV2_SY		( 2 )
 #define	WIN_LV2_PAL		( PAL_FONT )
 #define	WIN_LV2_CGX		( WIN_NAME2_CGX + WIN_NAME2_SX * WIN_NAME2_SY )
-// HP/MHPF‚Q‘Ì–Úi’Êíj
+// HP/MHPï¼šï¼’ä½“ç›®ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_HP2_PX		( 23 )
 #define	WIN_HP2_PY		( 5 )
 #define	WIN_HP2_SX		( 8 )
 #define	WIN_HP2_SY		( 2 )
 #define	WIN_HP2_PAL		( PAL_FONT )
 #define	WIN_HP2_CGX		( WIN_LV2_CGX + WIN_LV2_SX * WIN_LV2_SY )
-// HPƒQ[ƒWF‚Q‘Ì–Úi’Êíj
+// HPã‚²ãƒ¼ã‚¸ï¼šï¼’ä½“ç›®ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_HPBAR2_PX	( 24 )
 #define	WIN_HPBAR2_PY	( 4 )
 #define	WIN_HPBAR2_SX	( 6 )
 #define	WIN_HPBAR2_SY	( 1 )
 #define	WIN_HPBAR2_PAL	( PAL_PANEL_1 )
 #define	WIN_HPBAR2_CGX	( WIN_HP2_CGX + WIN_HP2_SX * WIN_HP2_SY )
-// ƒRƒƒ“ƒgF‚Q‘Ì–Ú
+// ã‚³ãƒ¡ãƒ³ãƒˆï¼šï¼’ä½“ç›®
 #define	WIN_COMM2_PX	( 22 )
 #define	WIN_COMM2_PY	( 5 )
 #define	WIN_COMM2_SX	( 10 )
@@ -116,35 +116,35 @@
 #define	WIN_COMM2_PAL	( PAL_FONT )
 #define	WIN_COMM2_CGX	( WIN_LV2_CGX + WIN_LV2_SX * WIN_LV2_SY )
 
-// ƒjƒbƒNƒl[ƒ€F‚R‘Ì–Ú
+// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼šï¼“ä½“ç›®
 #define	WIN_NAME3_PX	( 6 )
 #define	WIN_NAME3_PY	( 7 )
 #define	WIN_NAME3_SX	( 9 )
 #define	WIN_NAME3_SY	( 2 )
 #define	WIN_NAME3_PAL	( PAL_FONT )
 #define	WIN_NAME3_CGX	( WIN_HPBAR2_CGX + WIN_HPBAR2_SX * WIN_HPBAR2_SY )
-// ƒŒƒxƒ‹F‚R‘Ì–Ú
+// ãƒ¬ãƒ™ãƒ«ï¼šï¼“ä½“ç›®
 #define	WIN_LV3_PX		( 0 )
 #define	WIN_LV3_PY		( 10 )
 #define	WIN_LV3_SX		( 6 )
 #define	WIN_LV3_SY		( 2 )
 #define	WIN_LV3_PAL		( PAL_FONT )
 #define	WIN_LV3_CGX		( WIN_NAME3_CGX + WIN_NAME3_SX * WIN_NAME3_SY )
-// HP/MHPF‚R‘Ì–Ú
+// HP/MHPï¼šï¼“ä½“ç›®
 #define	WIN_HP3_PX		( 7 )
 #define	WIN_HP3_PY		( 10 )
 #define	WIN_HP3_SX		( 8 )
 #define	WIN_HP3_SY		( 2 )
 #define	WIN_HP3_PAL		( PAL_FONT )
 #define	WIN_HP3_CGX		( WIN_LV3_CGX + WIN_LV3_SX * WIN_LV3_SY )
-// HPƒQ[ƒWF‚R‘Ì–Ú
+// HPã‚²ãƒ¼ã‚¸ï¼šï¼“ä½“ç›®
 #define	WIN_HPBAR3_PX	( 8 )
 #define	WIN_HPBAR3_PY	( 9 )
 #define	WIN_HPBAR3_SX	( 6 )
 #define	WIN_HPBAR3_SY	( 1 )
 #define	WIN_HPBAR3_PAL	( PAL_PANEL_2 )
 #define	WIN_HPBAR3_CGX	( WIN_HP3_CGX + WIN_HP3_SX * WIN_HP3_SY )
-// ƒRƒƒ“ƒgF‚R‘Ì–Ú
+// ã‚³ãƒ¡ãƒ³ãƒˆï¼šï¼“ä½“ç›®
 #define	WIN_COMM3_PX	( 6 )
 #define	WIN_COMM3_PY	( 10 )
 #define	WIN_COMM3_SX	( 10 )
@@ -152,35 +152,35 @@
 #define	WIN_COMM3_PAL	( PAL_FONT )
 #define	WIN_COMM3_CGX	( WIN_LV3_CGX + WIN_LV3_SX * WIN_LV3_SY )
 
-// ƒjƒbƒNƒl[ƒ€F‚S‘Ì–Úi’Êíj
+// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼šï¼”ä½“ç›®ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_NAME4_PX	( 22 )
 #define	WIN_NAME4_PY	( 8 )
 #define	WIN_NAME4_SX	( 9 )
 #define	WIN_NAME4_SY	( 2 )
 #define	WIN_NAME4_PAL	( PAL_FONT )
 #define	WIN_NAME4_CGX	( WIN_HPBAR3_CGX + WIN_HPBAR3_SX * WIN_HPBAR3_SY )
-// ƒŒƒxƒ‹F‚S‘Ì–Úi’Êíj
+// ãƒ¬ãƒ™ãƒ«ï¼šï¼”ä½“ç›®ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_LV4_PX		( 16 )
 #define	WIN_LV4_PY		( 11 )
 #define	WIN_LV4_SX		( 6 )
 #define	WIN_LV4_SY		( 2 )
 #define	WIN_LV4_PAL		( PAL_FONT )
 #define	WIN_LV4_CGX		( WIN_NAME4_CGX + WIN_NAME4_SX * WIN_NAME4_SY )
-// HP/MHPF‚S‘Ì–Úi’Êíj
+// HP/MHPï¼šï¼”ä½“ç›®ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_HP4_PX		( 23 )
 #define	WIN_HP4_PY		( 11 )
 #define	WIN_HP4_SX		( 8 )
 #define	WIN_HP4_SY		( 2 )
 #define	WIN_HP4_PAL		( PAL_FONT )
 #define	WIN_HP4_CGX		( WIN_LV4_CGX + WIN_LV4_SX * WIN_LV4_SY )
-// HPƒQ[ƒWF‚S‘Ì–Úi’Êíj
+// HPã‚²ãƒ¼ã‚¸ï¼šï¼”ä½“ç›®ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_HPBAR4_PX	( 24 )
 #define	WIN_HPBAR4_PY	( 10 )
 #define	WIN_HPBAR4_SX	( 6 )
 #define	WIN_HPBAR4_SY	( 1 )
 #define	WIN_HPBAR4_PAL	( PAL_PANEL_3 )
 #define	WIN_HPBAR4_CGX	( WIN_HP4_CGX + WIN_HP4_SX * WIN_HP4_SY )
-// ƒRƒƒ“ƒgF‚S‘Ì–Ú
+// ã‚³ãƒ¡ãƒ³ãƒˆï¼šï¼”ä½“ç›®
 #define	WIN_COMM4_PX	( 22 )
 #define	WIN_COMM4_PY	( 11 )
 #define	WIN_COMM4_SX	( 10 )
@@ -188,35 +188,35 @@
 #define	WIN_COMM4_PAL	( PAL_FONT )
 #define	WIN_COMM4_CGX	( WIN_LV4_CGX + WIN_LV4_SX * WIN_LV4_SY )
 
-// ƒjƒbƒNƒl[ƒ€F‚T‘Ì–Ú
+// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼šï¼•ä½“ç›®
 #define	WIN_NAME5_PX	( 6 )
 #define	WIN_NAME5_PY	( 13 )
 #define	WIN_NAME5_SX	( 9 )
 #define	WIN_NAME5_SY	( 2 )
 #define	WIN_NAME5_PAL	( PAL_FONT )
 #define	WIN_NAME5_CGX	( WIN_HPBAR4_CGX + WIN_HPBAR4_SX * WIN_HPBAR4_SY )
-// ƒŒƒxƒ‹F‚T‘Ì–Ú
+// ãƒ¬ãƒ™ãƒ«ï¼šï¼•ä½“ç›®
 #define	WIN_LV5_PX		( 0 )
 #define	WIN_LV5_PY		( 16 )
 #define	WIN_LV5_SX		( 6 )
 #define	WIN_LV5_SY		( 2 )
 #define	WIN_LV5_PAL		( PAL_FONT )
 #define	WIN_LV5_CGX		( WIN_NAME5_CGX + WIN_NAME5_SX * WIN_NAME5_SY )
-// HP/MHPF‚T‘Ì–Ú
+// HP/MHPï¼šï¼•ä½“ç›®
 #define	WIN_HP5_PX		( 7 )
 #define	WIN_HP5_PY		( 16 )
 #define	WIN_HP5_SX		( 8 )
 #define	WIN_HP5_SY		( 2 )
 #define	WIN_HP5_PAL		( PAL_FONT )
 #define	WIN_HP5_CGX		( WIN_LV5_CGX + WIN_LV5_SX * WIN_LV5_SY )
-// HPƒQ[ƒWF‚T‘Ì–Ú
+// HPã‚²ãƒ¼ã‚¸ï¼šï¼•ä½“ç›®
 #define	WIN_HPBAR5_PX	( 8 )
 #define	WIN_HPBAR5_PY	( 15 )
 #define	WIN_HPBAR5_SX	( 6 )
 #define	WIN_HPBAR5_SY	( 1 )
 #define	WIN_HPBAR5_PAL	( PAL_PANEL_4 )
 #define	WIN_HPBAR5_CGX	( WIN_HP5_CGX + WIN_HP5_SX * WIN_HP5_SY )
-// ƒRƒƒ“ƒgF‚T‘Ì–Ú
+// ã‚³ãƒ¡ãƒ³ãƒˆï¼šï¼•ä½“ç›®
 #define	WIN_COMM5_PX	( 6 )
 #define	WIN_COMM5_PY	( 16 )
 #define	WIN_COMM5_SX	( 10 )
@@ -224,35 +224,35 @@
 #define	WIN_COMM5_PAL	( PAL_FONT )
 #define	WIN_COMM5_CGX	( WIN_LV5_CGX + WIN_LV5_SX * WIN_LV5_SY )
 
-// ƒjƒbƒNƒl[ƒ€F‚U‘Ì–Úi’Êíj
+// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼šï¼–ä½“ç›®ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_NAME6_PX	( 22 )
 #define	WIN_NAME6_PY	( 14 )
 #define	WIN_NAME6_SX	( 9 )
 #define	WIN_NAME6_SY	( 2 )
 #define	WIN_NAME6_PAL	( PAL_FONT )
 #define	WIN_NAME6_CGX	( WIN_HPBAR5_CGX + WIN_HPBAR5_SX * WIN_HPBAR5_SY )
-// ƒŒƒxƒ‹F‚U‘Ì–Úi’Êíj
+// ãƒ¬ãƒ™ãƒ«ï¼šï¼–ä½“ç›®ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_LV6_PX		( 16 )
 #define	WIN_LV6_PY		( 17 )
 #define	WIN_LV6_SX		( 6 )
 #define	WIN_LV6_SY		( 2 )
 #define	WIN_LV6_PAL		( PAL_FONT )
 #define	WIN_LV6_CGX		( WIN_NAME6_CGX + WIN_NAME6_SX * WIN_NAME6_SY )
-// HP/MHPF‚U‘Ì–Úi’Êíj
+// HP/MHPï¼šï¼–ä½“ç›®ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_HP6_PX		( 23 )
 #define	WIN_HP6_PY		( 17 )
 #define	WIN_HP6_SX		( 8 )
 #define	WIN_HP6_SY		( 2 )
 #define	WIN_HP6_PAL		( PAL_FONT )
 #define	WIN_HP6_CGX		( WIN_LV6_CGX + WIN_LV6_SX * WIN_LV6_SY )
-// HPƒQ[ƒWF‚U‘Ì–Úi’Êíj
+// HPã‚²ãƒ¼ã‚¸ï¼šï¼–ä½“ç›®ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_HPBAR6_PX	( 24 )
 #define	WIN_HPBAR6_PY	( 16 )
 #define	WIN_HPBAR6_SX	( 6 )
 #define	WIN_HPBAR6_SY	( 1 )
 #define	WIN_HPBAR6_PAL	( PAL_PANEL_5 )
 #define	WIN_HPBAR6_CGX	( WIN_HP6_CGX + WIN_HP6_SX * WIN_HP6_SY )
-// ƒRƒƒ“ƒgF‚U‘Ì–Ú
+// ã‚³ãƒ¡ãƒ³ãƒˆï¼šï¼–ä½“ç›®
 #define	WIN_COMM6_PX	( 22 )
 #define	WIN_COMM6_PY	( 17 )
 #define	WIN_COMM6_SX	( 10 )
@@ -260,28 +260,28 @@
 #define	WIN_COMM6_PAL	( PAL_FONT )
 #define	WIN_COMM6_CGX	( WIN_LV6_CGX + WIN_LV6_SX * WIN_LV6_SY )
 
-// ƒjƒbƒNƒl[ƒ€F‚Q‘Ì–Úiƒ}ƒ‹ƒ`j
+// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼šï¼’ä½“ç›®ï¼ˆãƒãƒ«ãƒï¼‰
 #define	WIN_NAME2_MULTI_PX		( 22 )
 #define	WIN_NAME2_MULTI_PY		( 1 )
 #define	WIN_NAME2_MULTI_SX		( 9 )
 #define	WIN_NAME2_MULTI_SY		( 2 )
 #define	WIN_NAME2_MULTI_PAL		( PAL_FONT )
 #define	WIN_NAME2_MULTI_CGX		( WIN_NAME2_CGX )
-// ƒŒƒxƒ‹F‚Q‘Ì–Úiƒ}ƒ‹ƒ`j
+// ãƒ¬ãƒ™ãƒ«ï¼šï¼’ä½“ç›®ï¼ˆãƒãƒ«ãƒï¼‰
 #define	WIN_LV2_MULTI_PX		( 17 )
 #define	WIN_LV2_MULTI_PY		( 5 )
 #define	WIN_LV2_MULTI_SX		( 5 )
 #define	WIN_LV2_MULTI_SY		( 2 )
 #define	WIN_LV2_MULTI_PAL		( PAL_FONT )
 #define	WIN_LV2_MULTI_CGX		( WIN_LV2_CGX )
-// HP/MHPF‚Q‘Ì–Úiƒ}ƒ‹ƒ`j
+// HP/MHPï¼šï¼’ä½“ç›®ï¼ˆãƒãƒ«ãƒï¼‰
 #define	WIN_HP2_MULTI_PX		( 23 )
 #define	WIN_HP2_MULTI_PY		( 5 )
 #define	WIN_HP2_MULTI_SX		( 8 )
 #define	WIN_HP2_MULTI_SY		( 2 )
 #define	WIN_HP2_MULTI_PAL		( PAL_FONT )
 #define	WIN_HP2_MULTI_CGX		( WIN_HP2_CGX )
-// HPƒQ[ƒWF‚Q‘Ì–Úiƒ}ƒ‹ƒ`j
+// HPã‚²ãƒ¼ã‚¸ï¼šï¼’ä½“ç›®ï¼ˆãƒãƒ«ãƒï¼‰
 #define	WIN_HPBAR2_MULTI_PX		( 24 )
 #define	WIN_HPBAR2_MULTI_PY		( 4 )
 #define	WIN_HPBAR2_MULTI_SX		( 6 )
@@ -289,28 +289,28 @@
 #define	WIN_HPBAR2_MULTI_PAL	( PAL_PANEL_1 )
 #define	WIN_HPBAR2_MULTI_CGX	( WIN_HPBAR2_CGX )
 
-// ƒjƒbƒNƒl[ƒ€F‚S‘Ì–Úiƒ}ƒ‹ƒ`j
+// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼šï¼”ä½“ç›®ï¼ˆãƒãƒ«ãƒï¼‰
 #define	WIN_NAME4_MULTI_PX		( 22 )
 #define	WIN_NAME4_MULTI_PY		( 8 )
 #define	WIN_NAME4_MULTI_SX		( 9 )
 #define	WIN_NAME4_MULTI_SY		( 2 )
 #define	WIN_NAME4_MULTI_PAL		( PAL_FONT )
 #define	WIN_NAME4_MULTI_CGX		( WIN_NAME4_CGX )
-// ƒŒƒxƒ‹F‚S‘Ì–Úiƒ}ƒ‹ƒ`j
+// ãƒ¬ãƒ™ãƒ«ï¼šï¼”ä½“ç›®ï¼ˆãƒãƒ«ãƒï¼‰
 #define	WIN_LV4_MULTI_PX		( 17 )
 #define	WIN_LV4_MULTI_PY		( 11 )
 #define	WIN_LV4_MULTI_SX		( 5 )
 #define	WIN_LV4_MULTI_SY		( 2 )
 #define	WIN_LV4_MULTI_PAL		( PAL_FONT )
 #define	WIN_LV4_MULTI_CGX		( WIN_LV4_CGX )
-// HP/MHPF‚S‘Ì–Úiƒ}ƒ‹ƒ`j
+// HP/MHPï¼šï¼”ä½“ç›®ï¼ˆãƒãƒ«ãƒï¼‰
 #define	WIN_HP4_MULTI_PX		( 23 )
 #define	WIN_HP4_MULTI_PY		( 11 )
 #define	WIN_HP4_MULTI_SX		( 8 )
 #define	WIN_HP4_MULTI_SY		( 2 )
 #define	WIN_HP4_MULTI_PAL		( PAL_FONT )
 #define	WIN_HP4_MULTI_CGX		( WIN_HP4_CGX )
-// HPƒQ[ƒWF‚S‘Ì–Úiƒ}ƒ‹ƒ`j
+// HPã‚²ãƒ¼ã‚¸ï¼šï¼”ä½“ç›®ï¼ˆãƒãƒ«ãƒï¼‰
 #define	WIN_HPBAR4_MULTI_PX		( 24 )
 #define	WIN_HPBAR4_MULTI_PY		( 10 )
 #define	WIN_HPBAR4_MULTI_SX		( 6 )
@@ -318,28 +318,28 @@
 #define	WIN_HPBAR4_MULTI_PAL	( PAL_PANEL_3 )
 #define	WIN_HPBAR4_MULTI_CGX	( WIN_HPBAR4_CGX )
 
-// ƒjƒbƒNƒl[ƒ€F‚U‘Ì–Úiƒ}ƒ‹ƒ`j
+// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼šï¼–ä½“ç›®ï¼ˆãƒãƒ«ãƒï¼‰
 #define	WIN_NAME6_MULTI_PX		( 22 )
 #define	WIN_NAME6_MULTI_PY		( 14 )
 #define	WIN_NAME6_MULTI_SX		( 9 )
 #define	WIN_NAME6_MULTI_SY		( 2 )
 #define	WIN_NAME6_MULTI_PAL		( PAL_FONT )
 #define	WIN_NAME6_MULTI_CGX		( WIN_NAME6_CGX )
-// ƒŒƒxƒ‹F‚U‘Ì–Úiƒ}ƒ‹ƒ`j
+// ãƒ¬ãƒ™ãƒ«ï¼šï¼–ä½“ç›®ï¼ˆãƒãƒ«ãƒï¼‰
 #define	WIN_LV6_MULTI_PX		( 17 )
 #define	WIN_LV6_MULTI_PY		( 17 )
 #define	WIN_LV6_MULTI_SX		( 5 )
 #define	WIN_LV6_MULTI_SY		( 2 )
 #define	WIN_LV6_MULTI_PAL		( PAL_FONT )
 #define	WIN_LV6_MULTI_CGX		( WIN_LV6_CGX )
-// HP/MHPF‚U‘Ì–Úiƒ}ƒ‹ƒ`j
+// HP/MHPï¼šï¼–ä½“ç›®ï¼ˆãƒãƒ«ãƒï¼‰
 #define	WIN_HP6_MULTI_PX		( 23 )
 #define	WIN_HP6_MULTI_PY		( 17 )
 #define	WIN_HP6_MULTI_SX		( 8 )
 #define	WIN_HP6_MULTI_SY		( 2 )
 #define	WIN_HP6_MULTI_PAL		( PAL_FONT )
 #define	WIN_HP6_MULTI_CGX		( WIN_HP6_CGX )
-// HPƒQ[ƒWF‚U‘Ì–Úiƒ}ƒ‹ƒ`j
+// HPã‚²ãƒ¼ã‚¸ï¼šï¼–ä½“ç›®ï¼ˆãƒãƒ«ãƒï¼‰
 #define	WIN_HPBAR6_MULTI_PX		( 24 )
 #define	WIN_HPBAR6_MULTI_PY		( 16 )
 #define	WIN_HPBAR6_MULTI_SX		( 6 )
@@ -347,37 +347,37 @@
 #define	WIN_HPBAR6_MULTI_PAL	( PAL_PANEL_5 )
 #define	WIN_HPBAR6_MULTI_CGX	( WIN_HPBAR6_CGX )
 
-// u‚à‚Ç‚évi’Êíj
+// ã€Œã‚‚ã©ã‚‹ã€ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_EXIT_N_PX		( 26 )
 #define	WIN_EXIT_N_PY		( 21 )
 #define	WIN_EXIT_N_SX		( 5 )
 #define	WIN_EXIT_N_SY		( 2 )
 #define	WIN_EXIT_N_PAL		( PAL_FONT )
 #define	WIN_EXIT_N_CGX		( WIN_HPBAR6_CGX + WIN_HPBAR6_SX * WIN_HPBAR6_SY )
-// u‚à‚Ç‚éviŒˆ’è‚ ‚èj
+// ã€Œã‚‚ã©ã‚‹ã€ï¼ˆæ±ºå®šã‚ã‚Šï¼‰
 #define	WIN_EXIT_E_PY		( 22 )
-// u‚¯‚Á‚Ä‚¢v
+// ã€Œã‘ã£ã¦ã„ã€
 #define	WIN_ENTER_PX		( 25 )
 #define	WIN_ENTER_PY		( 20 )
 #define	WIN_ENTER_SX		( 7 )
 #define	WIN_ENTER_SY		( 2 )
 #define	WIN_ENTER_PAL		( PAL_FONT )
 #define	WIN_ENTER_CGX		( WIN_EXIT_N_CGX + WIN_EXIT_N_SX * WIN_EXIT_N_SY )
-// ‚PsƒƒbƒZ[ƒW
+// ï¼‘è¡Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 #define	WIN_S_MSG_PX		( 2 )
 #define	WIN_S_MSG_PY		( 21 )
 #define	WIN_S_MSG_SX		( 20 )
 #define	WIN_S_MSG_SY		( 2 )
 #define	WIN_S_MSG_PAL		( PAL_TALK_FONT )
 #define	WIN_S_MSG_CGX		( WIN_ENTER_CGX + WIN_ENTER_SX * WIN_ENTER_SY )
-// ‚QsƒƒbƒZ[ƒWiƒƒjƒ…[•\¦j
+// ï¼’è¡Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼ˆãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºæ™‚ï¼‰
 #define	WIN_M_MSG_PX		( 2 )
 #define	WIN_M_MSG_PY		( 19 )
 #define	WIN_M_MSG_SX		( 13 )
 #define	WIN_M_MSG_SY		( 4 )
 #define	WIN_M_MSG_PAL		( PAL_TALK_FONT )
 #define	WIN_M_MSG_CGX		( WIN_S_MSG_CGX + WIN_S_MSG_SX * WIN_S_MSG_SY )
-// ‚QsƒƒbƒZ[ƒWi’Êíj
+// ï¼’è¡Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼ˆé€šå¸¸ï¼‰
 #define	WIN_L_MSG_PX		( 2 )
 #define	WIN_L_MSG_PY		( 19 )
 #define	WIN_L_MSG_SX		( 27 )
@@ -385,7 +385,7 @@
 #define	WIN_L_MSG_PAL		( PAL_TALK_FONT )
 #define	WIN_L_MSG_CGX		( WIN_M_MSG_CGX + WIN_M_MSG_SX * WIN_M_MSG_SY )
 
-// ƒƒjƒ…[i‚à‚¿‚à‚Ì•ƒ[ƒ‹j
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ˆã‚‚ã¡ã‚‚ã®ï¼†ãƒ¡ãƒ¼ãƒ«ï¼‰
 #define	WIN_ITEM_MENU_PX	( 19 )
 #define	WIN_ITEM_MENU_PY	( 17 )
 #define	WIN_ITEM_MENU_SX	( 12 )
@@ -393,7 +393,7 @@
 #define	WIN_ITEM_MENU_PAL	( PAL_FONT )
 #define	WIN_ITEM_MENU_CGX	( WIN_L_MSG_CGX + WIN_L_MSG_SX * WIN_L_MSG_SY )
 
-// ƒƒjƒ…[i‹Z‰ñ•œj
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ˆæŠ€å›å¾©ï¼‰
 #define	WIN_WAZA_MENU_PX	( 19 )
 #define	WIN_WAZA_MENU_PY	( 15 )
 #define	WIN_WAZA_MENU_SX	( 12 )
@@ -401,7 +401,7 @@
 #define	WIN_WAZA_MENU_PAL	( PAL_FONT )
 #define	WIN_WAZA_MENU_CGX	( WIN_ITEM_MENU_CGX )
 
-// ƒƒjƒ…[i’Êíj
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ˆé€šå¸¸ï¼‰
 #define	ADD_WIN_MENU_PX		( 19 )
 #define	ADD_WIN_MENU_PY		( 1 )
 #define	ADD_WIN_MENU_SX		( 12 )
@@ -409,7 +409,7 @@
 #define	ADD_WIN_MENU_PAL	( PAL_FONT )
 #define	ADD_WIN_MENU_CGX	( WIN_ITEM_MENU_CGX )
 
-// ‚Í‚¢E‚¢‚¢‚¦
+// ã¯ã„ãƒ»ã„ã„ãˆ
 #define	BMP_YESNO_PX	( 23 )
 #define	BMP_YESNO_PY	( 13 )
 #define	BMP_YESNO_SX	( 7 )
@@ -417,7 +417,7 @@
 #define	BMP_YESNO_PAL	( PAL_FONT )
 #define	BMP_YESNO_CGX	( ADD_WIN_MENU_CGX )
 
-// ƒŒƒxƒ‹ƒAƒbƒvƒEƒBƒ“ƒhƒE
+// ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	ADD_WIN_LVUP_PX		( 1 )
 #define	ADD_WIN_LVUP_PY		( 1 )
 #define	ADD_WIN_LVUP_SX		( 14 )
@@ -452,15 +452,15 @@
 #define	POKE4M_BMPWIN_DATA_POS	( 35 )
 #define	POKE6M_BMPWIN_DATA_POS	( 40 )
 
-#define	PCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
-#define	PCOL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F”’
-#define	PCOL_N_BLUE		( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÂ
-#define	PCOL_N_RED		( GF_PRINTCOLOR_MAKE( 5, 6, 0 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[FÔ
-#define	PCOL_W_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )		// ƒtƒHƒ“ƒgƒJƒ‰[F•
+#define	PCOL_N_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
+#define	PCOL_N_WHITE	( GF_PRINTCOLOR_MAKE( 15, 14, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šç™½
+#define	PCOL_N_BLUE		( GF_PRINTCOLOR_MAKE( 3, 4, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé’
+#define	PCOL_N_RED		( GF_PRINTCOLOR_MAKE( 5, 6, 0 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šèµ¤
+#define	PCOL_W_BLACK	( GF_PRINTCOLOR_MAKE( 1, 2, 15 ) )		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void PL_PanelCommShinka( PLIST_WORK * wk, u8 pos, u8 type );
 static void PL_PanelCommWazaOboe( PLIST_WORK * wk, u8 pos, u8 type );
@@ -471,13 +471,13 @@ static BOOL PokeList_TalkMsgCallBack( MSG_PRINT_HEADER *mph, u16 value );
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
 
 static const BMPWIN_DAT PokePanelBmpData[] =
 {
-	// ‚P‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼‘ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME1_PX, WIN_NAME1_PY,
 		WIN_NAME1_SX, WIN_NAME1_SY, WIN_NAME1_PAL, WIN_NAME1_CGX
 	},
@@ -489,17 +489,17 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP1_PX, WIN_HP1_PY,
 		WIN_HP1_SX, WIN_HP1_SY, WIN_HP1_PAL, WIN_HP1_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR1_PX, WIN_HPBAR1_PY,
 		WIN_HPBAR1_SX, WIN_HPBAR1_SY, WIN_HPBAR1_PAL, WIN_HPBAR1_CGX
 	},
-	{	// ƒRƒƒ“ƒg
+	{	// ã‚³ãƒ¡ãƒ³ãƒˆ
 		GF_BGL_FRAME1_M, WIN_COMM1_PX, WIN_COMM1_PY,
 		WIN_COMM1_SX, WIN_COMM1_SY, WIN_COMM1_PAL, WIN_COMM1_CGX
 	},
 
-	// ‚Q‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼’ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME2_PX, WIN_NAME2_PY,
 		WIN_NAME2_SX, WIN_NAME2_SY, WIN_NAME2_PAL, WIN_NAME2_CGX
 	},
@@ -511,17 +511,17 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP2_PX, WIN_HP2_PY,
 		WIN_HP2_SX, WIN_HP2_SY, WIN_HP2_PAL, WIN_HP2_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR2_PX, WIN_HPBAR2_PY,
 		WIN_HPBAR2_SX, WIN_HPBAR2_SY, WIN_HPBAR2_PAL, WIN_HPBAR2_CGX
 	},
-	{	// ƒRƒƒ“ƒg
+	{	// ã‚³ãƒ¡ãƒ³ãƒˆ
 		GF_BGL_FRAME1_M, WIN_COMM2_PX, WIN_COMM2_PY,
 		WIN_COMM2_SX, WIN_COMM2_SY, WIN_COMM2_PAL, WIN_COMM2_CGX
 	},
 
-	// ‚R‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼“ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME3_PX, WIN_NAME3_PY,
 		WIN_NAME3_SX, WIN_NAME3_SY, WIN_NAME3_PAL, WIN_NAME3_CGX
 	},
@@ -533,17 +533,17 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP3_PX, WIN_HP3_PY,
 		WIN_HP3_SX, WIN_HP3_SY, WIN_HP3_PAL, WIN_HP3_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR3_PX, WIN_HPBAR3_PY,
 		WIN_HPBAR3_SX, WIN_HPBAR3_SY, WIN_HPBAR3_PAL, WIN_HPBAR3_CGX
 	},
-	{	// ƒRƒƒ“ƒg
+	{	// ã‚³ãƒ¡ãƒ³ãƒˆ
 		GF_BGL_FRAME1_M, WIN_COMM3_PX, WIN_COMM3_PY,
 		WIN_COMM3_SX, WIN_COMM3_SY, WIN_COMM3_PAL, WIN_COMM3_CGX
 	},
 
-	// ‚S‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼”ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME4_PX, WIN_NAME4_PY,
 		WIN_NAME4_SX, WIN_NAME4_SY, WIN_NAME4_PAL, WIN_NAME4_CGX
 	},
@@ -555,17 +555,17 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP4_PX, WIN_HP4_PY,
 		WIN_HP4_SX, WIN_HP4_SY, WIN_HP4_PAL, WIN_HP4_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR4_PX, WIN_HPBAR4_PY,
 		WIN_HPBAR4_SX, WIN_HPBAR4_SY, WIN_HPBAR4_PAL, WIN_HPBAR4_CGX
 	},
-	{	// ƒRƒƒ“ƒg
+	{	// ã‚³ãƒ¡ãƒ³ãƒˆ
 		GF_BGL_FRAME1_M, WIN_COMM4_PX, WIN_COMM4_PY,
 		WIN_COMM4_SX, WIN_COMM4_SY, WIN_COMM4_PAL, WIN_COMM4_CGX
 	},
 
-	// ‚T‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼•ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME5_PX, WIN_NAME5_PY,
 		WIN_NAME5_SX, WIN_NAME5_SY, WIN_NAME5_PAL, WIN_NAME5_CGX
 	},
@@ -577,17 +577,17 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP5_PX, WIN_HP5_PY,
 		WIN_HP5_SX, WIN_HP5_SY, WIN_HP5_PAL, WIN_HP5_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR5_PX, WIN_HPBAR5_PY,
 		WIN_HPBAR5_SX, WIN_HPBAR5_SY, WIN_HPBAR5_PAL, WIN_HPBAR5_CGX
 	},
-	{	// ƒRƒƒ“ƒg
+	{	// ã‚³ãƒ¡ãƒ³ãƒˆ
 		GF_BGL_FRAME1_M, WIN_COMM5_PX, WIN_COMM5_PY,
 		WIN_COMM5_SX, WIN_COMM5_SY, WIN_COMM5_PAL, WIN_COMM5_CGX
 	},
 
-	// ‚U‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼–ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME6_PX, WIN_NAME6_PY,
 		WIN_NAME6_SX, WIN_NAME6_SY, WIN_NAME6_PAL, WIN_NAME6_CGX
 	},
@@ -599,18 +599,18 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP6_PX, WIN_HP6_PY,
 		WIN_HP6_SX, WIN_HP6_SY, WIN_HP6_PAL, WIN_HP6_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR6_PX, WIN_HPBAR6_PY,
 		WIN_HPBAR6_SX, WIN_HPBAR6_SY, WIN_HPBAR6_PAL, WIN_HPBAR6_CGX
 	},
-	{	// ƒRƒƒ“ƒg
+	{	// ã‚³ãƒ¡ãƒ³ãƒˆ
 		GF_BGL_FRAME1_M, WIN_COMM6_PX, WIN_COMM6_PY,
 		WIN_COMM6_SX, WIN_COMM6_SY, WIN_COMM6_PAL, WIN_COMM6_CGX
 	},
 
-	// ƒ}ƒ‹ƒ`—p
-	// ‚Q‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ãƒãƒ«ãƒç”¨
+	// ï¼’ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME2_MULTI_PX, WIN_NAME2_MULTI_PY,
 		WIN_NAME2_MULTI_SX, WIN_NAME2_MULTI_SY, WIN_NAME2_MULTI_PAL, WIN_NAME2_MULTI_CGX
 	},
@@ -622,17 +622,17 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP2_MULTI_PX, WIN_HP2_MULTI_PY,
 		WIN_HP2_MULTI_SX, WIN_HP2_MULTI_SY, WIN_HP2_MULTI_PAL, WIN_HP2_MULTI_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR2_MULTI_PX, WIN_HPBAR2_MULTI_PY,
 		WIN_HPBAR2_MULTI_SX, WIN_HPBAR2_MULTI_SY, WIN_HPBAR2_MULTI_PAL, WIN_HPBAR2_MULTI_CGX
 	},
-	{	// ƒ_ƒ~[
+	{	// ãƒ€ãƒŸãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR2_MULTI_PX, WIN_HPBAR2_MULTI_PY,
 		WIN_HPBAR2_MULTI_SX, WIN_HPBAR2_MULTI_SY, WIN_HPBAR2_MULTI_PAL, WIN_HPBAR2_MULTI_CGX
 	},
 
-	// ‚S‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼”ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME4_MULTI_PX, WIN_NAME4_MULTI_PY,
 		WIN_NAME4_MULTI_SX, WIN_NAME4_MULTI_SY, WIN_NAME4_MULTI_PAL, WIN_NAME4_MULTI_CGX
 	},
@@ -644,17 +644,17 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP4_MULTI_PX, WIN_HP4_MULTI_PY,
 		WIN_HP4_MULTI_SX, WIN_HP4_MULTI_SY, WIN_HP4_MULTI_PAL, WIN_HP4_MULTI_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR4_MULTI_PX, WIN_HPBAR4_MULTI_PY,
 		WIN_HPBAR4_MULTI_SX, WIN_HPBAR4_MULTI_SY, WIN_HPBAR4_MULTI_PAL, WIN_HPBAR4_MULTI_CGX
 	},
-	{	// ƒ_ƒ~[
+	{	// ãƒ€ãƒŸãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR2_MULTI_PX, WIN_HPBAR2_MULTI_PY,
 		WIN_HPBAR2_MULTI_SX, WIN_HPBAR2_MULTI_SY, WIN_HPBAR2_MULTI_PAL, WIN_HPBAR2_MULTI_CGX
 	},
 
-	// ‚U‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼–ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME6_MULTI_PX, WIN_NAME6_MULTI_PY,
 		WIN_NAME6_MULTI_SX, WIN_NAME6_MULTI_SY, WIN_NAME6_MULTI_PAL, WIN_NAME6_MULTI_CGX
 	},
@@ -666,11 +666,11 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP6_MULTI_PX, WIN_HP6_MULTI_PY,
 		WIN_HP6_MULTI_SX, WIN_HP6_MULTI_SY, WIN_HP6_MULTI_PAL, WIN_HP6_MULTI_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR6_MULTI_PX, WIN_HPBAR6_MULTI_PY,
 		WIN_HPBAR6_MULTI_SX, WIN_HPBAR6_MULTI_SY, WIN_HPBAR6_MULTI_PAL, WIN_HPBAR6_MULTI_CGX
 	},
-	{	// ƒ_ƒ~[
+	{	// ãƒ€ãƒŸãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR2_MULTI_PX, WIN_HPBAR2_MULTI_PY,
 		WIN_HPBAR2_MULTI_SX, WIN_HPBAR2_MULTI_SY, WIN_HPBAR2_MULTI_PAL, WIN_HPBAR2_MULTI_CGX
 	},
@@ -679,37 +679,37 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 
 static const BMPWIN_DAT PokeListBmpData[] =
 {
-	{	// u‚à‚Ç‚évi’Êíj
+	{	// ã€Œã‚‚ã©ã‚‹ã€ï¼ˆé€šå¸¸ï¼‰
 		GF_BGL_FRAME1_M, WIN_EXIT_N_PX, WIN_EXIT_N_PY,
 		WIN_EXIT_N_SX, WIN_EXIT_N_SY, WIN_EXIT_N_PAL, WIN_EXIT_N_CGX
 	},
-	{	// u‚¯‚Á‚Ä‚¢v
+	{	// ã€Œã‘ã£ã¦ã„ã€
 		GF_BGL_FRAME1_M, WIN_ENTER_PX, WIN_ENTER_PY,
 		WIN_ENTER_SX, WIN_ENTER_SY, WIN_ENTER_PAL, WIN_ENTER_CGX
 	},
-	{	// ‚PsƒƒbƒZ[ƒW
+	{	// ï¼‘è¡Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		GF_BGL_FRAME0_M, WIN_S_MSG_PX, WIN_S_MSG_PY,
 		WIN_S_MSG_SX, WIN_S_MSG_SY, WIN_S_MSG_PAL, WIN_S_MSG_CGX,
 	},
-	{	// ‚QsƒƒbƒZ[ƒWiƒƒjƒ…[•\¦j
+	{	// ï¼’è¡Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼ˆãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºæ™‚ï¼‰
 		GF_BGL_FRAME0_M, WIN_M_MSG_PX, WIN_M_MSG_PY,
 		WIN_M_MSG_SX, WIN_M_MSG_SY, WIN_M_MSG_PAL, WIN_M_MSG_CGX
 	},
-	{	// ‚QsƒƒbƒZ[ƒWi’Êíj
+	{	// ï¼’è¡Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼ˆé€šå¸¸ï¼‰
 		GF_BGL_FRAME0_M, WIN_L_MSG_PX, WIN_L_MSG_PY,
 		WIN_L_MSG_SX, WIN_L_MSG_SY, WIN_L_MSG_PAL, WIN_L_MSG_CGX
 	},
-	{	// ƒƒjƒ…[i‚à‚¿‚à‚Ì•ƒ[ƒ‹j
+	{	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ˆã‚‚ã¡ã‚‚ã®ï¼†ãƒ¡ãƒ¼ãƒ«ï¼‰
 		GF_BGL_FRAME0_M, WIN_ITEM_MENU_PX, WIN_ITEM_MENU_PY,
 		WIN_ITEM_MENU_SX, WIN_ITEM_MENU_SY, WIN_ITEM_MENU_PAL, WIN_ITEM_MENU_CGX
 	},
-	{	// ƒƒjƒ…[i‹Z‰ñ•œj
+	{	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼ˆæŠ€å›å¾©ï¼‰
 		GF_BGL_FRAME0_M, WIN_WAZA_MENU_PX, WIN_WAZA_MENU_PY,
 		WIN_WAZA_MENU_SX, WIN_WAZA_MENU_SY, WIN_WAZA_MENU_PAL, WIN_WAZA_MENU_CGX
 	}
 };
 
-// ‚Í‚¢E‚¢‚¢‚¦
+// ã¯ã„ãƒ»ã„ã„ãˆ
 static const BMPWIN_DAT YesNoBmpWin = {
 	GF_BGL_FRAME0_M, BMP_YESNO_PX, BMP_YESNO_PY,
 	BMP_YESNO_SX, BMP_YESNO_SY, BMP_YESNO_PAL, BMP_YESNO_CGX
@@ -719,11 +719,11 @@ static const BMPWIN_DAT YesNoBmpWin = {
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒ‰ƒ[ƒ^ŠÖ˜A‚ÌBMP’Ç‰Á
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é–¢é€£ã®BMPè¿½åŠ 
  *
  * @param	ini		BGL
- * @param	win		BMPƒEƒBƒ“ƒhƒE
- * @param	dat		BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+ * @param	win		BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	dat		BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -739,9 +739,9 @@ static void PokeParamBmpAdd( GF_BGL_INI * ini, GF_BGL_BMPWIN * win, const BMPWIN
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMP’Ç‰Á
+ * BMPè¿½åŠ 
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -751,7 +751,7 @@ void PokeListBmpAdd( PLIST_WORK * wk )
 	const BMPWIN_DAT * dat = PokePanelBmpData;
 	u16	i;
 
-	// ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ‰ƒ[ƒ^ŠÖŒW‚ÌBMPƒZƒbƒg
+	// ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é–¢ä¿‚ã®BMPã‚»ãƒƒãƒˆ
 	PokeParamBmpAdd( wk->bgl, &wk->win[WIN_POKE1_NAME], &dat[POKE1_BMPWIN_DATA_POS] );
 	PokeParamBmpAdd( wk->bgl, &wk->win[WIN_POKE3_NAME], &dat[POKE3_BMPWIN_DATA_POS] );
 	PokeParamBmpAdd( wk->bgl, &wk->win[WIN_POKE5_NAME], &dat[POKE5_BMPWIN_DATA_POS] );
@@ -792,9 +792,9 @@ void PokeListBmpAdd( PLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒEƒBƒ“ƒhƒE”jŠü
+ * BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -815,56 +815,56 @@ void PokeListBmpWinExit( PLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[€–Ú•¶š—ñæ“¾
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®æ–‡å­—åˆ—å–å¾—
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 void PokeListMenuStrMake( PLIST_WORK * wk )
 {
-	// ‚È‚ç‚Ñ‚©‚¦
+	// ãªã‚‰ã³ã‹ãˆ
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_01, wk->menu_str[MENU_ROW] );
-	// ‚Â‚æ‚³‚ğ‚İ‚é
+	// ã¤ã‚ˆã•ã‚’ã¿ã‚‹
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_02, wk->menu_str[MENU_STATUS] );
-	// ‚à‚¿‚à‚Ì
+	// ã‚‚ã¡ã‚‚ã®
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_03, wk->menu_str[MENU_ITEM] );
-	// ‚à‚¿‚à‚Ìƒƒjƒ…[F‚à‚½‚¹‚é
+	// ã‚‚ã¡ã‚‚ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼šã‚‚ãŸã›ã‚‹
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_16, wk->menu_str[MENU_ITEM_S] );
-	// ‚à‚¿‚à‚Ìƒƒjƒ…[F‚ ‚¸‚©‚é
+	// ã‚‚ã¡ã‚‚ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼šã‚ãšã‹ã‚‹
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_17, wk->menu_str[MENU_ITEM_G] );
-	// ƒ[ƒ‹
+	// ãƒ¡ãƒ¼ãƒ«
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_04, wk->menu_str[MENU_MAIL] );
-	// ƒ[ƒ‹‚ğ@‚æ‚Ş
+	// ãƒ¡ãƒ¼ãƒ«ã‚’ã€€ã‚ˆã‚€
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_05, wk->menu_str[MENU_MAIL_R] );
-	// ƒ[ƒ‹‚ğ@‚Æ‚é
+	// ãƒ¡ãƒ¼ãƒ«ã‚’ã€€ã¨ã‚‹
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_06, wk->menu_str[MENU_MAIL_G] );
-	// ‚ ‚¸‚¯‚é
+	// ã‚ãšã‘ã‚‹
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_07, wk->menu_str[MENU_AZUKERU] );
-	// ‚â‚ß‚é
+	// ã‚„ã‚ã‚‹
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_08, wk->menu_str[MENU_CANCEL] );
-	// ‚¢‚ê‚©‚¦‚é
+	// ã„ã‚Œã‹ãˆã‚‹
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_09, wk->menu_str[MENU_CHANGE] );
-	// ‚³‚ñ‚©‚·‚éií“¬Q‰Á‘I‘ğj
+	// ã•ã‚“ã‹ã™ã‚‹ï¼ˆæˆ¦é—˜å‚åŠ é¸æŠï¼‰
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_10, wk->menu_str[MENU_BATTLE_IN] );
-	// ‚³‚ñ‚©‚µ‚È‚¢
+	// ã•ã‚“ã‹ã—ãªã„
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_11, wk->menu_str[MENU_OUT] );
-	// ‚³‚ñ‚©‚·‚éiƒRƒ“ƒeƒXƒgQ‰Áj
+	// ã•ã‚“ã‹ã™ã‚‹ï¼ˆã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ ï¼‰
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_10, wk->menu_str[MENU_CONTEST_IN] );
-	// ƒZƒbƒg‚·‚é
+	// ã‚»ãƒƒãƒˆã™ã‚‹
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_05_22, wk->menu_str[MENU_KAPSEL_SET] );
-	// ‚¯‚Á‚Ä‚¢i‚®‚é‚®‚éŒğŠ·j
+	// ã‘ã£ã¦ã„ï¼ˆãã‚‹ãã‚‹äº¤æ›ï¼‰
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_10_04, wk->menu_str[MENU_GURU2_IN] );
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹Zƒƒjƒ…[‚Ì•¶š—ñæ“¾
+ * æŠ€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æ–‡å­—åˆ—å–å¾—
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	waza	‹Z”Ô†
- * @param	pos		ˆÊ’u
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	waza	æŠ€ç•ªå·
+ * @param	pos		ä½ç½®
  *
  * @return	none
  */
@@ -873,7 +873,7 @@ void PokeList_WazaMenuStrGet( PLIST_WORK * wk, u16 waza, u8 pos )
 {
 	STRBUF * mstr;
 
-	// ‹Z
+	// æŠ€
 	mstr = MSGMAN_AllocString( wk->msg_man, mes_pokelist_05_12+pos );
 
 	WORDSET_RegisterWazaName( wk->wset, 0, waza );
@@ -884,11 +884,11 @@ void PokeList_WazaMenuStrGet( PLIST_WORK * wk, u16 waza, u8 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ƒf[ƒ^ì¬
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	prm		ì¬ƒf[ƒ^
- * @param	siz		ƒTƒCƒY
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	prm		ä½œæˆãƒ‡ãƒ¼ã‚¿
+ * @param	siz		ã‚µã‚¤ã‚º
  *
  * @return	none
  */
@@ -936,9 +936,9 @@ void PokeListMenuDataMake( PLIST_WORK * wk, const u8 * prm, u8 siz )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ƒƒbƒZ[ƒWì¬
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ä½œæˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -963,11 +963,11 @@ void PokeListMenuMsgMake( PLIST_WORK * wk )
 
 
 //============================================================================================
-//	ƒpƒ‰ƒ[ƒ^•\¦
+//	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¡¨ç¤º
 //============================================================================================
-// ƒpƒ‰ƒ[ƒ^‚ÌƒƒbƒZ[ƒWIDƒe[ƒuƒ‹
+// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDãƒ†ãƒ¼ãƒ–ãƒ«
 static const u16 ParamStrTbl[6][4] =
-{	// ƒjƒbƒNƒl[ƒ€, Lv, HP, MHP
+{	// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ , Lv, HP, MHP
 	{ mes_pokelist_01_09, mes_pokelist_01_03, mes_pokelist_01_21, mes_pokelist_01_15 },
 	{ mes_pokelist_01_10, mes_pokelist_01_04, mes_pokelist_01_22, mes_pokelist_01_16 },
 	{ mes_pokelist_01_11, mes_pokelist_01_05, mes_pokelist_01_23, mes_pokelist_01_17 },
@@ -977,7 +977,7 @@ static const u16 ParamStrTbl[6][4] =
 };
 
 enum {
-	PRM_STRTBL_NAME = 0,	// –¼‘O
+	PRM_STRTBL_NAME = 0,	// åå‰
 	PRM_STRTBL_LV,			// Lv
 	PRM_STRTBL_HP,			// HP
 	PRM_STRTBL_MHP			// MHP
@@ -986,18 +986,18 @@ enum {
 
 //--------------------------------------------------------------------------------------------
 /**
- * HP‚ÆMHP‚ÌƒXƒ‰ƒbƒVƒ…•\¦
+ * HPã¨MHPã®ã‚¹ãƒ©ãƒƒã‚·ãƒ¥è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void ParamMarkPut( PLIST_WORK * wk, u8 num )
 {
-	// HP‚ÆMHP‚ÌƒXƒ‰ƒbƒVƒ…
-/*	ƒVƒXƒeƒ€ƒtƒHƒ“ƒg”Å
+	// HPã¨MHPã®ã‚¹ãƒ©ãƒƒã‚·ãƒ¥
+/*	ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆç‰ˆ
 	MSGMAN_GetString( wk->msg_man, mes_pokelist_01_27, wk->str_buf );
 	GF_STR_PrintColor(
 		&wk->win[WIN_POKE1_HP+num*5], FONT_SYSTEM,
@@ -1010,11 +1010,11 @@ static void ParamMarkPut( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –¼‘Oì¬
+ * åå‰ä½œæˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
  * @param	pp		POKEMON_PARAM
- * @param	pos		‰½•C–Ú‚©
+ * @param	pos		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1032,10 +1032,10 @@ void PokeListNameMake( PLIST_WORK * wk, POKEMON_PARAM * pp, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –¼‘O•\¦
+ * åå‰è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1057,7 +1057,7 @@ void PokeListNamePut( PLIST_WORK * wk, u8 num )
 		return;
 	}
 
-	// «•Ê
+	// æ€§åˆ¥
 	if( wk->panel[num].sex_put == 0 ){
 		if( wk->panel[num].sex == PARA_MALE ){
 			MSGMAN_GetString( wk->msg_man, mes_pokelist_01_28, wk->str_buf );
@@ -1074,10 +1074,10 @@ void PokeListNamePut( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹•\¦
+ * ãƒ¬ãƒ™ãƒ«è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1098,7 +1098,7 @@ void PokeListLvPut( PLIST_WORK * wk, u8 num )
 	}
 
 	// Lv
-/*	ƒVƒXƒeƒ€ƒtƒHƒ“ƒg”Å
+/*	ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆç‰ˆ
 	NUMFONT_WriteMark(
 		wk->num_font, NUMFONT_MARK_LV, &wk->win[WIN_POKE1_LV+num*5], 0, 5 );
 
@@ -1121,10 +1121,10 @@ void PokeListLvPut( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * HP•\¦
+ * HPè¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1137,7 +1137,7 @@ void PokeListHPPut( PLIST_WORK * wk, u8 num )
 
 	win = &wk->win[WIN_POKE1_HP+num*5];
 
-/*	ƒVƒXƒeƒ€ƒtƒHƒ“ƒg”Å
+/*	ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆç‰ˆ
 	str = MSGMAN_AllocString( wk->msg_man, ParamStrTbl[num][PRM_STRTBL_HP] );
 	WORDSET_RegisterNumber(
 		wk->wset, 0, wk->panel[num].hp, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
@@ -1157,10 +1157,10 @@ void PokeListHPPut( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * HP•\¦ƒNƒŠƒA
+ * HPè¡¨ç¤ºã‚¯ãƒªã‚¢
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1179,10 +1179,10 @@ void PokeListHPClear( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Å‘åHP•\¦
+ * æœ€å¤§HPè¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1194,7 +1194,7 @@ static void PokeListMHPPut( PLIST_WORK * wk, u8 num )
 
 	win = &wk->win[WIN_POKE1_HP+num*5];
 
-/*	ƒVƒXƒeƒ€ƒtƒHƒ“ƒg”Å
+/*	ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆç‰ˆ
 	str = MSGMAN_AllocString( wk->msg_man, ParamStrTbl[num][PRM_STRTBL_MHP] );
 	WORDSET_RegisterNumber(
 		wk->wset, 0, wk->panel[num].mhp, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
@@ -1212,18 +1212,18 @@ static void PokeListMHPPut( PLIST_WORK * wk, u8 num )
 }
 
 
-#define	PL_COL_HPGAUGE1		( 9 )		// HPƒQ[ƒWƒJƒ‰[”Ô†‚P
-#define	PL_COL_HPGAUGE2		( 10 )		// HPƒQ[ƒWƒJƒ‰[”Ô†‚Q
-#define	PL_PALPOS_GREEN		( 9 )		// —Î‚ÌƒpƒŒƒbƒg”Ô†
-#define	PL_PALPOS_YELLOW	( 16+9 )	// ‰©‚ÌƒpƒŒƒbƒg”Ô†
-#define	PL_PALPOS_RED		( 32+9 )	// Ô‚ÌƒpƒŒƒbƒg”Ô†
+#define	PL_COL_HPGAUGE1		( 9 )		// HPã‚²ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼ç•ªå·ï¼‘
+#define	PL_COL_HPGAUGE2		( 10 )		// HPã‚²ãƒ¼ã‚¸ã‚«ãƒ©ãƒ¼ç•ªå·ï¼’
+#define	PL_PALPOS_GREEN		( 9 )		// ç·‘ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+#define	PL_PALPOS_YELLOW	( 16+9 )	// é»„ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+#define	PL_PALPOS_RED		( 32+9 )	// èµ¤ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 
 //--------------------------------------------------------------------------------------------
 /**
- * HPƒQ[ƒW•\¦
+ * HPã‚²ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1241,18 +1241,18 @@ void PokeListHPBerPut( PLIST_WORK * wk, u8 num )
 	case HP_DOTTO_NULL:
 		GF_BGL_BmpWinOnVReq( win );
 		return;
-	case HP_DOTTO_MAX:		// —Î
+	case HP_DOTTO_MAX:		// ç·‘
 	case HP_DOTTO_GREEN:
 		GF_BGL_PaletteSet(
 			GF_BGL_FRAME1_M, &wk->pal[PL_PALPOS_GREEN],
 			2*2, (win->palnum*16+PL_COL_HPGAUGE1)*2 );
 		break;
-	case HP_DOTTO_YELLOW:	// ‰©
+	case HP_DOTTO_YELLOW:	// é»„
 		GF_BGL_PaletteSet(
 			GF_BGL_FRAME1_M, &wk->pal[PL_PALPOS_YELLOW],
 			2*2, (win->palnum*16+PL_COL_HPGAUGE1)*2 );
 		break;
-	case HP_DOTTO_RED:		// Ô
+	case HP_DOTTO_RED:		// èµ¤
 		GF_BGL_PaletteSet(
 			GF_BGL_FRAME1_M, &wk->pal[PL_PALPOS_RED],
 			2*2, (win->palnum*16+PL_COL_HPGAUGE1)*2 );
@@ -1270,10 +1270,10 @@ void PokeListHPBerPut( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒ‰ƒ[ƒ^‘S‘Ì‚ğ•\¦
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å…¨ä½“ã‚’è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1305,10 +1305,10 @@ void PokeListParamPut( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒ‰ƒ[ƒ^‘S‘Ì‚ÌBMP‚ÌCGX‚ğ“]‘—
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å…¨ä½“ã®BMPã®CGXã‚’è»¢é€
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1323,10 +1323,10 @@ void PokeListParamBmpCgxOn( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒ‰ƒ[ƒ^‘S‘Ì‚ğ”ñ•\¦
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å…¨ä½“ã‚’éè¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1341,10 +1341,10 @@ void PokeListParamBmpWinOff( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * i‰»ƒ`ƒFƒbƒNƒRƒƒ“ƒg‚ğ•\¦
+ * é€²åŒ–ãƒã‚§ãƒƒã‚¯ã‚³ãƒ¡ãƒ³ãƒˆã‚’è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1375,10 +1375,10 @@ void PokeList_PanelShinkaCommPut( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹ZŠo‚¦ƒ`ƒFƒbƒNƒRƒƒ“ƒg‚ğ•\¦
+ * æŠ€è¦šãˆãƒã‚§ãƒƒã‚¯ã‚³ãƒ¡ãƒ³ãƒˆã‚’è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1413,10 +1413,10 @@ void PokeList_PanelWazaOboeCommPut( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒRƒ“ƒeƒXƒgQ‰Áƒ`ƒFƒbƒNƒRƒƒ“ƒg‚ğ•\¦
+ * ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå‚åŠ ãƒã‚§ãƒƒã‚¯ã‚³ãƒ¡ãƒ³ãƒˆã‚’è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1440,10 +1440,10 @@ void PokeList_PanelContestCommPut( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –¼‘O•ƒŒƒxƒ‹•\¦ií“¬Q‰Á‘I‘ğ—pj
+ * åå‰ï¼†ãƒ¬ãƒ™ãƒ«è¡¨ç¤ºï¼ˆæˆ¦é—˜å‚åŠ é¸æŠç”¨ï¼‰
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1465,10 +1465,10 @@ void PokeList_PanelBattleInNamePut( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * í“¬Q‰Áƒ`ƒFƒbƒNƒRƒƒ“ƒg‚ğ•\¦
+ * æˆ¦é—˜å‚åŠ ãƒã‚§ãƒƒã‚¯ã‚³ãƒ¡ãƒ³ãƒˆã‚’è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	num		‰½•C–Ú‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	num		ä½•åŒ¹ç›®ã‹
  *
  * @return	none
  */
@@ -1493,7 +1493,7 @@ void PokeList_PanelBattleInCommPut( PLIST_WORK * wk, u8 num )
 			return;
 		}
 
-	}else if( wk->dat->mode == PL_MODE_BATTLE_CASTLE ){			//ƒLƒƒƒbƒXƒ‹Aƒ‹[ƒŒƒbƒg
+	}else if( wk->dat->mode == PL_MODE_BATTLE_CASTLE ){			//ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 		if( PokeList_BattleCastleInCheck( wk, num ) == 0 ){
 			PL_PanelCommBattleIn( wk, num, 8 );
 			return;
@@ -1517,13 +1517,13 @@ void PokeList_PanelBattleInCommPut( PLIST_WORK * wk, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ“ƒ^ƒŠƒ“ƒO•\¦‚·‚é‚½‚ß‚ÌXÀ•W‚ğæ“¾
+ * ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°è¡¨ç¤ºã™ã‚‹ãŸã‚ã®Xåº§æ¨™ã‚’å–å¾—
  *
- * @param	font		ƒtƒHƒ“ƒg
- * @param	str			•¶š—ñ
- * @param	win_sx		ƒEƒBƒ“ƒhƒEXƒTƒCƒY
+ * @param	font		ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param	str			æ–‡å­—åˆ—
+ * @param	win_sx		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦Xã‚µã‚¤ã‚º
  *
- * @return	•\¦XÀ•W
+ * @return	è¡¨ç¤ºXåº§æ¨™
  */
 //--------------------------------------------------------------------------------------------
 static u32 MsgCenterPutPosGet( FONT_TYPE font, const STRBUF * str, u32 win_sx )
@@ -1535,10 +1535,10 @@ static u32 MsgCenterPutPosGet( FONT_TYPE font, const STRBUF * str, u32 win_sx )
 
 //--------------------------------------------------------------------------------------------
 /**
- * u‚¯‚Á‚Ä‚¢vu‚à‚Ç‚év•\¦
+ * ã€Œã‘ã£ã¦ã„ã€ã€Œã‚‚ã©ã‚‹ã€è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	flg		•\¦ƒtƒ‰ƒO
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	flg		è¡¨ç¤ºãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -1571,11 +1571,11 @@ void PokeListSelectMsgPut( PLIST_WORK * wk, u8 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒW•\¦
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk			ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ[ƒN
- * @param	win			BMPƒEƒBƒ“ƒhƒE
- * @param	flg			1 = ˜g‚à•\¦
+ * @param	wk			ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ¯ãƒ¼ã‚¯
+ * @param	win			BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+ * @param	flg			1 = æ ã‚‚è¡¨ç¤º
  *
  * @return	none
  */
@@ -1596,11 +1596,11 @@ static void PokeListMsgPut( PLIST_WORK * wk, GF_BGL_BMPWIN * win, u32 id, u8 flg
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚PsƒƒbƒZ[ƒW•\¦
+ * ï¼‘è¡Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	id		ƒƒbƒZ[ƒWID
- * @param	flg		ƒEƒBƒ“ƒhƒE•\¦ƒtƒ‰ƒO
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	flg		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -1612,11 +1612,11 @@ void PokeListSmallMsgPut( PLIST_WORK * wk, u32 id, u8 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚QsƒƒbƒZ[ƒW•\¦
+ * ï¼’è¡Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	id		ƒƒbƒZ[ƒWID
- * @param	flg		ƒEƒBƒ“ƒhƒE•\¦ƒtƒ‰ƒO
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	flg		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -1628,11 +1628,11 @@ void PokeListMiddleMsgPut( PLIST_WORK * wk, u32 id, u8 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bi•—jƒƒbƒZ[ƒW•\¦
+ * ä¼šè©±ï¼ˆé¢¨ï¼‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	id		ƒƒbƒZ[ƒWID
- * @param	flg		ƒEƒBƒ“ƒhƒE•\¦ƒtƒ‰ƒO
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	flg		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -1654,11 +1654,11 @@ void PokeListLargeMsgPut( PLIST_WORK * wk, u32 id, u8 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bi•—jƒƒbƒZ[ƒWƒXƒ^[ƒg
+ * ä¼šè©±ï¼ˆé¢¨ï¼‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ã‚¿ãƒ¼ãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	id		ƒƒbƒZ[ƒWID
- * @param	flg		ƒEƒBƒ“ƒhƒE•\¦ƒtƒ‰ƒO
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	flg		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºãƒ•ãƒ©ã‚°
  *
  * @return	none
  */
@@ -1674,37 +1674,37 @@ void PokeList_TalkMsgStart( PLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ï˜bi•—jƒƒbƒZ[ƒWƒR[ƒ‹ƒoƒbƒN
+ * ä¼šè©±ï¼ˆé¢¨ï¼‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- * @param	mph		ƒƒbƒZ[ƒW•`‰æƒf[ƒ^
- * @param	value	ƒR[ƒ‹ƒoƒbƒNƒiƒ“ƒo
+ * @param	mph		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»ãƒ‡ãƒ¼ã‚¿
+ * @param	value	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒŠãƒ³ãƒ
  *
- * @retval	"TRUE = ‘Ò‚¿"
- * @retval	"FALSE = Ÿ‚Ìˆ—‚Ö"
+ * @retval	"TRUE = å¾…ã¡"
+ * @retval	"FALSE = æ¬¡ã®å‡¦ç†ã¸"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL PokeList_TalkMsgCallBack( MSG_PRINT_HEADER * mph, u16 value )
 {
 	switch( value ){
-	case 1:		// SEI—¹‘Ò‚¿
+	case 1:		// SEçµ‚äº†å¾…ã¡
 		return Snd_SePlayCheckAll();
 
-	case 2:		// MEI—¹‘Ò‚¿
+	case 2:		// MEçµ‚äº†å¾…ã¡
 		return Snd_MePlayCheckBgmPlay();
 /*
 	case 2:
 		Snd_MePlay( SEQ_FANFA5 );
 		break;
 */
-	case 3:		// "ƒ|ƒJƒ“"
+	case 3:		// "ãƒã‚«ãƒ³"
 		Snd_SePlay( SEQ_SE_DP_KON );
 		break;
 
-	case 4:		// "‚¨‚Ú‚¦‚½"
+	case 4:		// "ãŠã¼ãˆãŸ"
 		Snd_MePlay( SEQ_FANFA1 );
 		break;
 
-	case 5:		// "ƒ|ƒJƒ“"‚ÌSEI—¹‘Ò‚¿
+	case 5:		// "ãƒã‚«ãƒ³"ã®SEçµ‚äº†å¾…ã¡
 		return Snd_SePlayCheck( SEQ_SE_DP_KON );
 	}
 
@@ -1714,9 +1714,9 @@ static BOOL PokeList_TalkMsgCallBack( MSG_PRINT_HEADER * mph, u16 value )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚Í‚¢E‚¢‚¢‚¦•\¦
+ * ã¯ã„ãƒ»ã„ã„ãˆè¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1730,11 +1730,11 @@ void PokeList_YesNoSelectInit( PLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒlƒ‹ƒRƒƒ“ƒgFi‰»‚Å‚«‚é‚©
+ * ãƒ‘ãƒãƒ«ã‚³ãƒ¡ãƒ³ãƒˆï¼šé€²åŒ–ã§ãã‚‹ã‹
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	pos		‰½•C–Ú‚©
- * @param	type	i‰»‰Â”\‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½•åŒ¹ç›®ã‹
+ * @param	type	é€²åŒ–å¯èƒ½ã‹
  *
  * @return	none
  */
@@ -1749,10 +1749,10 @@ static void PL_PanelCommShinka( PLIST_WORK * wk, u8 pos, u8 type )
 	GF_BGL_BmpWinDataFill( win, 0 );
 
 	switch( type ){
-	case 0:		// ‰Â
+	case 0:		// å¯
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_06_10 );
 		break;
-	case 1:		// •s‰Â
+	case 1:		// ä¸å¯
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_06_11 );
 		break;
 	}
@@ -1764,11 +1764,11 @@ static void PL_PanelCommShinka( PLIST_WORK * wk, u8 pos, u8 type )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒlƒ‹ƒRƒƒ“ƒgF‹Z‚ğŠo‚¦‚ç‚ê‚é‚©
+ * ãƒ‘ãƒãƒ«ã‚³ãƒ¡ãƒ³ãƒˆï¼šæŠ€ã‚’è¦šãˆã‚‰ã‚Œã‚‹ã‹
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	pos		‰½•C–Ú‚©
- * @param	type	Šo‚¦‚ç‚ê‚é‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½•åŒ¹ç›®ã‹
+ * @param	type	è¦šãˆã‚‰ã‚Œã‚‹ã‹
  *
  * @return	none
  */
@@ -1783,13 +1783,13 @@ static void PL_PanelCommWazaOboe( PLIST_WORK * wk, u8 pos, u8 type )
 	GF_BGL_BmpWinDataFill( win, 0 );
 
 	switch( type ){
-	case 0:		// Šo‚¦‚ç‚ê‚é
+	case 0:		// è¦šãˆã‚‰ã‚Œã‚‹
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_06_07 );
 		break;
-	case 1:		// Šo‚¦‚ç‚ê‚È‚¢
+	case 1:		// è¦šãˆã‚‰ã‚Œãªã„
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_06_08 );
 		break;
-	case 2:		// Šo‚¦‚¢‚é
+	case 2:		// è¦šãˆã„ã‚‹
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_06_09 );
 		break;
 	}
@@ -1801,11 +1801,11 @@ static void PL_PanelCommWazaOboe( PLIST_WORK * wk, u8 pos, u8 type )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒlƒ‹ƒRƒƒ“ƒgFQ‰Á‚Å‚«‚é‚©
+ * ãƒ‘ãƒãƒ«ã‚³ãƒ¡ãƒ³ãƒˆï¼šå‚åŠ ã§ãã‚‹ã‹
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	pos		‰½•C–Ú‚©
- * @param	type	Q‰Á‰Â”\‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½•åŒ¹ç›®ã‹
+ * @param	type	å‚åŠ å¯èƒ½ã‹
  *
  * @return	none
  */
@@ -1831,11 +1831,11 @@ static void PL_PanelCommEventIn( PLIST_WORK * wk, u8 pos, u8 type )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒlƒ‹ƒRƒƒ“ƒgFQ‰Á‚·‚é‚©
+ * ãƒ‘ãƒãƒ«ã‚³ãƒ¡ãƒ³ãƒˆï¼šå‚åŠ ã™ã‚‹ã‹
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
- * @param	pos		‰½•C–Ú‚©
- * @param	type	Q‰Á‰Â”\‚©
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½•åŒ¹ç›®ã‹
+ * @param	type	å‚åŠ å¯èƒ½ã‹
  *
  * @return	none
  */
@@ -1862,19 +1862,19 @@ static void PL_PanelCommBattleIn( PLIST_WORK * wk, u8 pos, u8 type )
 
 
 //============================================================================================
-//	ƒŒƒxƒ‹ƒAƒbƒvƒEƒBƒ“ƒhƒE
+//	ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //============================================================================================
-#define	LVUP_PLUS_PX	( 80 )		// u{v•\¦XÀ•W
-#define	LVUP_UP_PX		( 94 )		// ƒAƒbƒvƒpƒ‰ƒ[ƒ^•\¦XÀ•W
-#define	LVUP_PRM_PX		( 72 )		// ƒpƒ‰ƒ[ƒ^•\¦XÀ•W
-#define	LVUP_PRM_SX		( 32 )		// ƒpƒ‰ƒ[ƒ^•\¦XƒTƒCƒY
+#define	LVUP_PLUS_PX	( 80 )		// ã€Œï¼‹ã€è¡¨ç¤ºXåº§æ¨™
+#define	LVUP_UP_PX		( 94 )		// ã‚¢ãƒƒãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¡¨ç¤ºXåº§æ¨™
+#define	LVUP_PRM_PX		( 72 )		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¡¨ç¤ºXåº§æ¨™
+#define	LVUP_PRM_SX		( 32 )		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¡¨ç¤ºXã‚µã‚¤ã‚º
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹ƒAƒbƒvƒEƒBƒ“ƒhƒE•\¦
+ * ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1885,7 +1885,7 @@ void PokeList_LvWinPut( PLIST_WORK * wk )
 	STRBUF * str;
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/26
-	// mes_pokelist_08_07 ‚É•Ï”ƒ^ƒO‚ğ’Ç‰Á
+	// mes_pokelist_08_07 ã«å¤‰æ•°ã‚¿ã‚°ã‚’è¿½åŠ 
 	// ----------------------------------------------------------------------------
 	//STRBUF * plus; //MatchComment: change induced by localize spec mark
 	u32	i;
@@ -1910,11 +1910,11 @@ void PokeList_LvWinPut( PLIST_WORK * wk )
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/26
-	// mes_pokelist_08_07 ‚É•Ï”ƒ^ƒO‚ğ’Ç‰Á
+	// mes_pokelist_08_07 ã«å¤‰æ•°ã‚¿ã‚°ã‚’è¿½åŠ 
 	// ----------------------------------------------------------------------------
 	//plus = MSGMAN_AllocString( wk->msg_man, mes_pokelist_08_07 ); //MatchComment: change induced by localize spec mark
 	for( i=0; i<6; i++ ){
-		// €–Ú
+		// é …ç›®
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_08_01+i );
 		GF_STR_PrintSimple(
 			&wk->add_win[ADD_WIN_MENU], FONT_SYSTEM, str, 0, 16*i, MSG_NO_PUT, NULL );
@@ -1922,16 +1922,16 @@ void PokeList_LvWinPut( PLIST_WORK * wk )
 		
         // ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/26
-		// mes_pokelist_08_07 ‚É•Ï”ƒ^ƒO‚ğ’Ç‰Á
+		// mes_pokelist_08_07 ã«å¤‰æ•°ã‚¿ã‚°ã‚’è¿½åŠ 
 		// ----------------------------------------------------------------------------
-		// u{v
+		// ã€Œï¼‹ã€
 		//GF_STR_PrintSimple(
 		//	&wk->add_win[ADD_WIN_MENU], FONT_SYSTEM, plus, LVUP_PLUS_PX, 16*i, MSG_NO_PUT, NULL ); //MatchComment: change induced by localize spec mark
 
-		// ƒpƒ‰ƒ[ƒ^
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/26
-		// mes_pokelist_08_07 ‚É•Ï”ƒ^ƒO‚ğ’Ç‰Á
+		// mes_pokelist_08_07 ã«å¤‰æ•°ã‚¿ã‚°ã‚’è¿½åŠ 
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_08_07 );
         // ----------------------------------------------------------------------------
 		WORDSET_RegisterNumber(
@@ -1940,7 +1940,7 @@ void PokeList_LvWinPut( PLIST_WORK * wk )
 		STRBUF_Delete( str );
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/26
-		// ƒpƒ‰ƒƒ^‘•ª‚Ì•\¦‚ğ©“®‚Å‰EŠñ‚¹
+		// ãƒ‘ãƒ©ãƒ¡ã‚¿å¢—åˆ†ã®è¡¨ç¤ºã‚’è‡ªå‹•ã§å³å¯„ã›
 		{
 			u32 xofs = ADD_WIN_LVUP_SX * 8 - 8 - FontProc_GetPrintStrWidth(FONT_SYSTEM, wk->msg_buf, 0);
 			GF_STR_PrintSimple(
@@ -1953,7 +1953,7 @@ void PokeList_LvWinPut( PLIST_WORK * wk )
 	}
     // ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/26
-	// mes_pokelist_08_07 ‚É•Ï”ƒ^ƒO‚ğ’Ç‰Á
+	// mes_pokelist_08_07 ã«å¤‰æ•°ã‚¿ã‚°ã‚’è¿½åŠ 
 	// ----------------------------------------------------------------------------
 	//STRBUF_Delete( plus ); //MatchComment: change induced by localize spec mark
 
@@ -1962,9 +1962,9 @@ void PokeList_LvWinPut( PLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹ƒAƒbƒvŒã‚Ìƒpƒ‰ƒ[ƒ^•\¦
+ * ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—å¾Œã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¡¨ç¤º
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1995,9 +1995,9 @@ void PokeList_LvUpParamPut( PLIST_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹ƒAƒbƒvƒEƒBƒ“ƒhƒEíœ
+ * ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */

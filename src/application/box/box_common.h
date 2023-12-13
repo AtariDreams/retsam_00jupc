@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	box_common.h
- * @brief	ƒ{ƒbƒNƒX‘€ì‰æ–Ê‹¤—Lƒwƒbƒ_
+ * @brief	ãƒœãƒƒã‚¯ã‚¹æ“ä½œç”»é¢å…±æœ‰ãƒ˜ãƒƒãƒ€
  * @author	taya
  * @date	2005.09.05
  */
@@ -9,7 +9,7 @@
 #ifndef __BOX_COMMON_H__
 #define __BOX_COMMON_H__
 
-#include "gflib/msg_print.h"	// STRCODE‚Ì‚½‚ß
+#include "gflib/msg_print.h"	// STRCODEã®ãŸã‚
 #include "gflib/strbuf.h"
 #include "system/wordset.h"
 #include "system/msgdata.h"
@@ -25,69 +25,69 @@
 
 //----------------------------------------------------------------------
 /**
- *  •`‰æƒRƒ}ƒ“ƒh
+ *  æç”»ã‚³ãƒãƒ³ãƒ‰
  */
 //----------------------------------------------------------------------
 enum {
 	CMD_INIT,
-	CMD_NORMAL_IN,			///< ‰æ–Ê\’zŒã‚ÌƒtƒF[ƒhƒCƒ“ƒGƒtƒFƒNƒgiƒtƒB[ƒ‹ƒh‚©‚ç“ü‚éj
-	CMD_FADEIN,				///< ‘½‰æ–Ê‚©‚ç•œ‹A‚·‚é‚ÌƒtƒF[ƒhƒCƒ“
-	CMD_FADEOUT,			///< ‘¼‰æ–ÊˆÈ~‘O‚ÌƒtƒF[ƒhƒAƒEƒg
+	CMD_NORMAL_IN,			///< ç”»é¢æ§‹ç¯‰å¾Œã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼ˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹ã‚‰å…¥ã‚‹ï¼‰
+	CMD_FADEIN,				///< å¤šç”»é¢ã‹ã‚‰å¾©å¸°ã™ã‚‹æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+	CMD_FADEOUT,			///< ä»–ç”»é¢ä»¥é™å‰ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
-	CMD_TRAY_CHANGE,		///< ƒ{ƒbƒNƒXƒgƒŒƒCØ‚è‘Ö‚¦
-	CMD_CURSOR_MOVE,		///< ƒJ[ƒ\ƒ‹ˆÚ“®
-	CMD_STATUS_UPDATE,		///< ƒXƒe[ƒ^ƒX•\¦ƒ|ƒPƒ‚ƒ“‚ÌØ‚è‘Ö‚¦
-	CMD_STATUS_MARK_UPDATE,	///< ƒXƒe[ƒ^ƒX•\¦ƒ|ƒPƒ‚ƒ“‚Ìƒ}[ƒLƒ“ƒO•\¦‚Ì‚İXV
-	CMD_STATUS_CLEAR,		///< ƒXƒe[ƒ^ƒX•\¦•”‚ğƒNƒŠƒA
+	CMD_TRAY_CHANGE,		///< ãƒœãƒƒã‚¯ã‚¹ãƒˆãƒ¬ã‚¤åˆ‡ã‚Šæ›¿ãˆ
+	CMD_CURSOR_MOVE,		///< ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+	CMD_STATUS_UPDATE,		///< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºãƒã‚±ãƒ¢ãƒ³ã®åˆ‡ã‚Šæ›¿ãˆ
+	CMD_STATUS_MARK_UPDATE,	///< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºãƒã‚±ãƒ¢ãƒ³ã®ãƒãƒ¼ã‚­ãƒ³ã‚°è¡¨ç¤ºã®ã¿æ›´æ–°
+	CMD_STATUS_CLEAR,		///< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºéƒ¨ã‚’ã‚¯ãƒªã‚¢
 
-	CMD_POKE_CATCH,			///< ƒ|ƒPƒ‚ƒ“‚Â‚©‚Ş
-	CMD_POKE_PUT,			///< ƒ|ƒPƒ‚ƒ“‚¨‚­
-	CMD_POKE_CHANGE,		///< ƒ|ƒPƒ‚ƒ“‚¢‚ê‚©‚¦‚é
-	CMD_AZUKERU_CATCHPOKE,	///< ƒ|ƒPƒ‚ƒ“‚ ‚¸‚¯‚éi‚Â‚©‚ñ‚Å‚éƒ|ƒPƒ‚ƒ“j
-	CMD_AZUKERU_POINTPOKE,	///< ƒ|ƒPƒ‚ƒ“‚ ‚¸‚¯‚éiw‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“j
-	CMD_NIGASU_CATCHPOKE,	///< ƒ|ƒPƒ‚ƒ“‚É‚ª‚·i‚Â‚©‚ñ‚Å‚éƒ|ƒPƒ‚ƒ“j
-	CMD_NIGASU_TRAYPOKE,	///< ƒ|ƒPƒ‚ƒ“‚É‚ª‚·iƒ{ƒbƒNƒXƒgƒŒƒC‚Ìƒ|ƒPƒ‚ƒ“j
-	CMD_NIGASU_PARTYPOKE,	///< ƒ|ƒPƒ‚ƒ“‚É‚ª‚·iè‚¿‚Ìƒ|ƒPƒ‚ƒ“j
-	CMD_ITEMINFO_DISP,		///< ƒAƒCƒeƒ€à–¾‚Ì•\¦
-	CMD_ITEMINFO_CLEAR,		///< ƒAƒCƒeƒ€à–¾‚ÌÁ‹
-	CMD_ITEM_WITHDRAW,		///< ƒAƒCƒeƒ€u‚ ‚¸‚©‚év
-	CMD_ITEM_SET,			///< ƒAƒCƒeƒ€u‚à‚½‚¹‚évi‚Â‚©‚ñ‚Å‚¢‚éƒAƒCƒeƒ€‚ğ‚à‚½‚¹‚éj
-	CMD_ITEM_SWAP,			///< ƒAƒCƒeƒ€u‚Æ‚è‚©‚¦‚év
-	CMD_ITEM_POKE_UPDATE,	///< ƒAƒCƒeƒ€Šó‹µ‚É‰‚¶‚Äƒ|ƒPƒ‚ƒ“”¼“§–¾•\¦Ø‚è‘Ö‚¦
-	CMD_ITEMICON_RESTORE,	///< ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚ğƒoƒbƒO‚É–ß‚·ƒGƒtƒFƒNƒg
+	CMD_POKE_CATCH,			///< ãƒã‚±ãƒ¢ãƒ³ã¤ã‹ã‚€
+	CMD_POKE_PUT,			///< ãƒã‚±ãƒ¢ãƒ³ãŠã
+	CMD_POKE_CHANGE,		///< ãƒã‚±ãƒ¢ãƒ³ã„ã‚Œã‹ãˆã‚‹
+	CMD_AZUKERU_CATCHPOKE,	///< ãƒã‚±ãƒ¢ãƒ³ã‚ãšã‘ã‚‹ï¼ˆã¤ã‹ã‚“ã§ã‚‹ãƒã‚±ãƒ¢ãƒ³ï¼‰
+	CMD_AZUKERU_POINTPOKE,	///< ãƒã‚±ãƒ¢ãƒ³ã‚ãšã‘ã‚‹ï¼ˆæŒ‡ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ï¼‰
+	CMD_NIGASU_CATCHPOKE,	///< ãƒã‚±ãƒ¢ãƒ³ã«ãŒã™ï¼ˆã¤ã‹ã‚“ã§ã‚‹ãƒã‚±ãƒ¢ãƒ³ï¼‰
+	CMD_NIGASU_TRAYPOKE,	///< ãƒã‚±ãƒ¢ãƒ³ã«ãŒã™ï¼ˆãƒœãƒƒã‚¯ã‚¹ãƒˆãƒ¬ã‚¤ã®ãƒã‚±ãƒ¢ãƒ³ï¼‰
+	CMD_NIGASU_PARTYPOKE,	///< ãƒã‚±ãƒ¢ãƒ³ã«ãŒã™ï¼ˆæ‰‹æŒã¡ã®ãƒã‚±ãƒ¢ãƒ³ï¼‰
+	CMD_ITEMINFO_DISP,		///< ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜ã®è¡¨ç¤º
+	CMD_ITEMINFO_CLEAR,		///< ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜ã®æ¶ˆå»
+	CMD_ITEM_WITHDRAW,		///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œã‚ãšã‹ã‚‹ã€
+	CMD_ITEM_SET,			///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œã‚‚ãŸã›ã‚‹ã€ï¼ˆã¤ã‹ã‚“ã§ã„ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚‚ãŸã›ã‚‹ï¼‰
+	CMD_ITEM_SWAP,			///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œã¨ã‚Šã‹ãˆã‚‹ã€
+	CMD_ITEM_POKE_UPDATE,	///< ã‚¢ã‚¤ãƒ†ãƒ æ‰€æŒçŠ¶æ³ã«å¿œã˜ã¦ãƒã‚±ãƒ¢ãƒ³åŠé€æ˜è¡¨ç¤ºåˆ‡ã‚Šæ›¿ãˆ
+	CMD_ITEMICON_RESTORE,	///< ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã‚’ãƒãƒƒã‚°ã«æˆ»ã™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
-	CMD_MSG_DISP,			///< ƒƒbƒZ[ƒW‚Ì‚İ
-	CMD_MENU_DISP,			///< ƒƒbƒZ[ƒW•ƒƒjƒ…[
-	CMD_MSG_CLEAR,			///< ƒƒbƒZ[ƒW•ƒƒjƒ…[ƒNƒŠƒA
-	CMD_MENU_CLEAR,			///< ƒƒjƒ…[‚Ì‚İƒNƒŠƒA
+	CMD_MSG_DISP,			///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ã¿
+	CMD_MENU_DISP,			///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼†ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+	CMD_MSG_CLEAR,			///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼†ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¯ãƒªã‚¢
+	CMD_MENU_CLEAR,			///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã¿ã‚¯ãƒªã‚¢
 
-	CMD_MENUCURSOR_UPDATE,	///< ƒƒjƒ…[ƒJ[ƒ\ƒ‹ˆÊ’uXV
-	CMD_MENUMARK_UPDATE,	///< ƒƒjƒ…[ƒ}[ƒNó‘ÔXViƒ}[ƒLƒ“ƒOƒƒjƒ…[‚Ì‚İj
+	CMD_MENUCURSOR_UPDATE,	///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®æ›´æ–°
+	CMD_MENUMARK_UPDATE,	///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã‚¯çŠ¶æ…‹æ›´æ–°ï¼ˆãƒãƒ¼ã‚­ãƒ³ã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã¿ï¼‰
 	CMD_JUMPWIN_DISP,
 	CMD_JUMPWIN_UPDATE,
 	CMD_JUMPWIN_CLEAR,
 
-	CMD_WALLPAPER_CHANGE,	///< ƒJƒŒƒ“ƒg•Ç†•ÏX
-	CMD_BUTTON_PUSH_ACTION,	///< wƒJ[ƒ\ƒ‹‚ª’¼‰º‚Ìƒ{ƒ^ƒ“‚ğ‰Ÿ‚·‚æ‚¤‚È“®ì
-	CMD_PARTYTRAY_OPEN,		///< è‚¿ƒgƒŒƒCŠJ‚­
-	CMD_PARTYTRAY_CLOSE,	///< è‚¿ƒgƒŒƒC•Â‚¶‚é
+	CMD_WALLPAPER_CHANGE,	///< ã‚«ãƒ¬ãƒ³ãƒˆå£ç´™å¤‰æ›´
+	CMD_BUTTON_PUSH_ACTION,	///< æŒ‡ã‚«ãƒ¼ã‚½ãƒ«ãŒç›´ä¸‹ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã‚ˆã†ãªå‹•ä½œ
+	CMD_PARTYTRAY_OPEN,		///< æ‰‹æŒã¡ãƒˆãƒ¬ã‚¤é–‹ã
+	CMD_PARTYTRAY_CLOSE,	///< æ‰‹æŒã¡ãƒˆãƒ¬ã‚¤é–‰ã˜ã‚‹
 
-	CMD_PARTYICON_CLOSEUP,	///< è‚¿ƒgƒŒƒC‚ÌƒAƒCƒRƒ“‹ó‚«‹l‚ßi’Í‚ñ‚¾ŒãE“¦‚ª‚µ‚½Œãj
-	CMD_PARTYLASTICON_CLOSEUP,	///< è‚¿ƒgƒŒƒC‚ÌƒAƒCƒRƒ“‹ó‚«‹l‚ßi’u‚¢‚½Œãj
-	CMD_ICON_LIMITMODE_UPDATE,	///< ƒAƒCƒRƒ“‚Ìi‚è‚İƒ‚[ƒh•\¦XV
+	CMD_PARTYICON_CLOSEUP,	///< æ‰‹æŒã¡ãƒˆãƒ¬ã‚¤ã®ã‚¢ã‚¤ã‚³ãƒ³ç©ºãè©°ã‚ï¼ˆæ´ã‚“ã å¾Œãƒ»é€ƒãŒã—ãŸå¾Œï¼‰
+	CMD_PARTYLASTICON_CLOSEUP,	///< æ‰‹æŒã¡ãƒˆãƒ¬ã‚¤ã®ã‚¢ã‚¤ã‚³ãƒ³ç©ºãè©°ã‚ï¼ˆç½®ã„ãŸå¾Œï¼‰
+	CMD_ICON_LIMITMODE_UPDATE,	///< ã‚¢ã‚¤ã‚³ãƒ³ã®çµã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰è¡¨ç¤ºæ›´æ–°
 
 	CMD_SUBLCD_MODECHANGE,
 	CMD_SUBLCD_MOVEICON,
-	CMD_SUBLCD_MARKICON_UPDATE,	///< i‚è‚İƒAƒCƒRƒ“‚Ì•\¦XV
+	CMD_SUBLCD_MARKICON_UPDATE,	///< çµã‚Šè¾¼ã¿ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºæ›´æ–°
 
-	CMD_CHANGE_EXPERTMODE,		///< Šµ‚ê‚Ä‚élƒ‚[ƒh‚ÌØ‚è‘Ö‚¦
-	CMD_START_AREASELECT,		///< ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì”ÍˆÍ‘I‘ğŠJn
-	CMD_END_AREASELECT,			///< ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì”ÍˆÍ‘I‘ğI—¹
-	CMD_UPDATE_AREASELECT,		///< ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì”ÍˆÍ‘I‘ğXV
-	CMD_CATCH_AREASELECT_POKE,	///< ”ÍˆÍ‘I‘ğ’†‚Ìƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ğ’Í‚Ş
+	CMD_CHANGE_EXPERTMODE,		///< æ…£ã‚Œã¦ã‚‹äººãƒ¢ãƒ¼ãƒ‰ã®åˆ‡ã‚Šæ›¿ãˆ
+	CMD_START_AREASELECT,		///< ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ç¯„å›²é¸æŠé–‹å§‹
+	CMD_END_AREASELECT,			///< ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ç¯„å›²é¸æŠçµ‚äº†
+	CMD_UPDATE_AREASELECT,		///< ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ç¯„å›²é¸æŠæ›´æ–°
+	CMD_CATCH_AREASELECT_POKE,	///< ç¯„å›²é¸æŠä¸­ã®ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚’æ´ã‚€
 
-	CMD_SWITCH_COMPARE_SIDE,			///< ‚Â‚æ‚³‚­‚ç‚×‚ÌXV‚·‚éƒTƒCƒh‚ğ•ÏX
-	CMD_SWITCH_COMPARE_SIDE_BY_BUTTON,	///< ‚Â‚æ‚³‚­‚ç‚×‚ÌXV‚·‚éƒTƒCƒh‚ğ•ÏXiƒ{ƒ^ƒ“‰Ÿ‰ºƒGƒtƒFƒNƒg‚ğ”º‚¤j
+	CMD_SWITCH_COMPARE_SIDE,			///< ã¤ã‚ˆã•ãã‚‰ã¹ã®æ›´æ–°ã™ã‚‹ã‚µã‚¤ãƒ‰ã‚’å¤‰æ›´
+	CMD_SWITCH_COMPARE_SIDE_BY_BUTTON,	///< ã¤ã‚ˆã•ãã‚‰ã¹ã®æ›´æ–°ã™ã‚‹ã‚µã‚¤ãƒ‰ã‚’å¤‰æ›´ï¼ˆãƒœã‚¿ãƒ³æŠ¼ä¸‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ä¼´ã†ï¼‰
 	CMD_CHANGE_COMPARE_PAGE,
 
 	CMD_BOXCLOSE,
@@ -95,7 +95,7 @@ enum {
 
 //----------------------------------------------------------------------
 /**
- *  ƒ^ƒXƒNƒvƒ‰ƒCƒIƒŠƒeƒB
+ *  ã‚¿ã‚¹ã‚¯ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  */
 //----------------------------------------------------------------------
 enum BOXTASK{
@@ -111,66 +111,66 @@ enum BOX_VTASK {
 
 //----------------------------------------------------------------------
 /**
- *  ƒƒjƒ…[‚h‚c
+ *  ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼©ï¼¤
  */
 //----------------------------------------------------------------------
 typedef enum {
-	BOXMENU_TRAY_JUMP,		///< ƒ{ƒbƒNƒX‚ÌØ‚è‘Ö‚¦
-	BOXMENU_TRAY_WALLPAPER,	///< •Ç†•ÏX
-	BOXMENU_TRAY_NAME,		///< ƒ{ƒbƒNƒX–¼•ÏX
-	BOXMENU_TRAYMENU_QUIT,	///< ƒgƒŒƒCƒƒjƒ…[u‚â‚ß‚év
-	BOXMENU_WP_CATEGORY1,	///< •Ç†ƒJƒeƒSƒŠ‚P
-	BOXMENU_WP_CATEGORY2,	///< •Ç†ƒJƒeƒSƒŠ‚Q
-	BOXMENU_WP_CATEGORY3,	///< •Ç†ƒJƒeƒSƒŠ‚R
-	BOXMENU_WP_CATEGORY4,	///< •Ç†ƒJƒeƒSƒŠ‚S
-	BOXMENU_WP_CATEGORY_EX1,///< •Ç†ƒJƒeƒSƒŠ‰B‚µ‚P
-	BOXMENU_WP_CATEGORY_EX2,///< •Ç†ƒJƒeƒSƒŠ‰B‚µ‚Q
-	BOXMENU_WP_NAME1_1,		///< •Ç†–¼‚P-‚P
-	BOXMENU_WP_NAME1_2,		///< •Ç†–¼‚P-‚Q
-	BOXMENU_WP_NAME1_3,		///< •Ç†–¼‚P-‚R
-	BOXMENU_WP_NAME1_4,		///< •Ç†–¼‚P-‚S
-	BOXMENU_WP_NAME2_1,		///< •Ç†–¼‚Q-‚P
-	BOXMENU_WP_NAME2_2,		///< •Ç†–¼‚Q-‚Q
-	BOXMENU_WP_NAME2_3,		///< •Ç†–¼‚Q-‚R
-	BOXMENU_WP_NAME2_4,		///< •Ç†–¼‚Q-‚S
-	BOXMENU_WP_NAME3_1,		///< •Ç†–¼‚R-‚P
-	BOXMENU_WP_NAME3_2,		///< •Ç†–¼‚R-‚Q
-	BOXMENU_WP_NAME3_3,		///< •Ç†–¼‚R-‚R
-	BOXMENU_WP_NAME3_4,		///< •Ç†–¼‚R-‚S
-	BOXMENU_WP_NAME4_1,		///< •Ç†–¼‚S-‚P
-	BOXMENU_WP_NAME4_2,		///< •Ç†–¼‚S-‚Q
-	BOXMENU_WP_NAME4_3,		///< •Ç†–¼‚S-‚R
-	BOXMENU_WP_NAME4_4,		///< •Ç†–¼‚S-‚S
-	BOXMENU_WP_NAME_EX_1,	///< •Ç†–¼‰B‚µ‚P
-	BOXMENU_WP_NAME_EX_2,	///< •Ç†–¼‰B‚µ‚Q
-	BOXMENU_WP_NAME_EX_3,	///< •Ç†–¼‰B‚µ‚R
-	BOXMENU_WP_NAME_EX_4,	///< •Ç†–¼‰B‚µ‚S
-	BOXMENU_WP_NAME_EX_5,	///< •Ç†–¼‰B‚µ‚T
-	BOXMENU_WP_NAME_EX_6,	///< •Ç†–¼‰B‚µ‚U
-	BOXMENU_WP_NAME_EX_7,	///< •Ç†–¼‰B‚µ‚V
-	BOXMENU_WP_NAME_EX_8,	///< •Ç†–¼‰B‚µ‚W
-	BOXMENU_POKE_TUKAMU,	///< ƒ|ƒPƒ‚ƒ“u‚Â‚©‚Şv
-	BOXMENU_POKE_OKU,		///< ƒ|ƒPƒ‚ƒ“u‚±‚±‚É‚¨‚­v
-	BOXMENU_POKE_IREKAERU,	///< ƒ|ƒPƒ‚ƒ“u‚¢‚ê‚©‚¦‚év
-	BOXMENU_POKE_YOUSU,		///< ƒ|ƒPƒ‚ƒ“u‚æ‚¤‚·‚ğ‚İ‚év
-	BOXMENU_POKE_TURETEIKU,	///< ƒ|ƒPƒ‚ƒ“u‚Â‚ê‚Ä‚¢‚­v
-	BOXMENU_POKE_AZUKERU,	///< ƒ|ƒPƒ‚ƒ“u‚ ‚¸‚¯‚év
-	BOXMENU_POKE_MOTIMONO,	///< ƒ|ƒPƒ‚ƒ“u‚à‚¿‚à‚Ìv
-	BOXMENU_POKE_MARKING,	///< ƒ|ƒPƒ‚ƒ“uƒ}[ƒLƒ“ƒOv
-	BOXMENU_POKE_NIGASU,	///< ƒ|ƒPƒ‚ƒ“u‚É‚ª‚·v
-	BOXMENU_POKEMENU_QUIT,	///< ƒ|ƒPƒ‚ƒ“ƒƒjƒ…[u‚â‚ß‚év
-	BOXMENU_MARKING_DECIDE,	///< ƒ}[ƒLƒ“ƒOu‚¯‚Á‚Ä‚¢v
-	BOXMENU_MARKING_CANCEL,	///< ƒ}[ƒLƒ“ƒOu‚â‚ß‚éviƒLƒƒƒ“ƒZƒ‹j
-	BOXMENU_ITEM_SET,		///< ƒAƒCƒeƒ€u‚à‚½‚¹‚év
-	BOXMENU_ITEM_WITHDRAW,	///< ƒAƒCƒeƒ€u‚ ‚¸‚©‚év
-	BOXMENU_ITEM_INFO,		///< ƒAƒCƒeƒ€u‚¹‚Â‚ß‚¢v
-	BOXMENU_ITEM_SWAP,		///< ƒAƒCƒeƒ€u‚Æ‚è‚©‚¦‚év
-	BOXMENU_ITEM_TO_BAG,	///< ƒAƒCƒeƒ€uƒoƒbƒO‚Öv
-	BOXMENU_ITEM_QUIT,		///< ƒAƒCƒeƒ€u‚â‚ß‚év
-	BOXMENU_COMPARE_HOLD_LEFT,	///< ‚Â‚æ‚³‚­‚ç‚×u‚Ğ‚¾‚è‚É‚±‚Ä‚¢v
-	BOXMENU_COMPARE_HOLD_RIGHT,	///< ‚Â‚æ‚³‚­‚ç‚×u‚İ‚¬‚É‚±‚Ä‚¢v
-	BOXMENU_YES,			///< ‚Í‚¢
-	BOXMENU_NO,				///< ‚¢‚¢‚¦
+	BOXMENU_TRAY_JUMP,		///< ãƒœãƒƒã‚¯ã‚¹ã®åˆ‡ã‚Šæ›¿ãˆ
+	BOXMENU_TRAY_WALLPAPER,	///< å£ç´™å¤‰æ›´
+	BOXMENU_TRAY_NAME,		///< ãƒœãƒƒã‚¯ã‚¹åå¤‰æ›´
+	BOXMENU_TRAYMENU_QUIT,	///< ãƒˆãƒ¬ã‚¤ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€Œã‚„ã‚ã‚‹ã€
+	BOXMENU_WP_CATEGORY1,	///< å£ç´™ã‚«ãƒ†ã‚´ãƒªï¼‘
+	BOXMENU_WP_CATEGORY2,	///< å£ç´™ã‚«ãƒ†ã‚´ãƒªï¼’
+	BOXMENU_WP_CATEGORY3,	///< å£ç´™ã‚«ãƒ†ã‚´ãƒªï¼“
+	BOXMENU_WP_CATEGORY4,	///< å£ç´™ã‚«ãƒ†ã‚´ãƒªï¼”
+	BOXMENU_WP_CATEGORY_EX1,///< å£ç´™ã‚«ãƒ†ã‚´ãƒªéš ã—ï¼‘
+	BOXMENU_WP_CATEGORY_EX2,///< å£ç´™ã‚«ãƒ†ã‚´ãƒªéš ã—ï¼’
+	BOXMENU_WP_NAME1_1,		///< å£ç´™åï¼‘-ï¼‘
+	BOXMENU_WP_NAME1_2,		///< å£ç´™åï¼‘-ï¼’
+	BOXMENU_WP_NAME1_3,		///< å£ç´™åï¼‘-ï¼“
+	BOXMENU_WP_NAME1_4,		///< å£ç´™åï¼‘-ï¼”
+	BOXMENU_WP_NAME2_1,		///< å£ç´™åï¼’-ï¼‘
+	BOXMENU_WP_NAME2_2,		///< å£ç´™åï¼’-ï¼’
+	BOXMENU_WP_NAME2_3,		///< å£ç´™åï¼’-ï¼“
+	BOXMENU_WP_NAME2_4,		///< å£ç´™åï¼’-ï¼”
+	BOXMENU_WP_NAME3_1,		///< å£ç´™åï¼“-ï¼‘
+	BOXMENU_WP_NAME3_2,		///< å£ç´™åï¼“-ï¼’
+	BOXMENU_WP_NAME3_3,		///< å£ç´™åï¼“-ï¼“
+	BOXMENU_WP_NAME3_4,		///< å£ç´™åï¼“-ï¼”
+	BOXMENU_WP_NAME4_1,		///< å£ç´™åï¼”-ï¼‘
+	BOXMENU_WP_NAME4_2,		///< å£ç´™åï¼”-ï¼’
+	BOXMENU_WP_NAME4_3,		///< å£ç´™åï¼”-ï¼“
+	BOXMENU_WP_NAME4_4,		///< å£ç´™åï¼”-ï¼”
+	BOXMENU_WP_NAME_EX_1,	///< å£ç´™åéš ã—ï¼‘
+	BOXMENU_WP_NAME_EX_2,	///< å£ç´™åéš ã—ï¼’
+	BOXMENU_WP_NAME_EX_3,	///< å£ç´™åéš ã—ï¼“
+	BOXMENU_WP_NAME_EX_4,	///< å£ç´™åéš ã—ï¼”
+	BOXMENU_WP_NAME_EX_5,	///< å£ç´™åéš ã—ï¼•
+	BOXMENU_WP_NAME_EX_6,	///< å£ç´™åéš ã—ï¼–
+	BOXMENU_WP_NAME_EX_7,	///< å£ç´™åéš ã—ï¼—
+	BOXMENU_WP_NAME_EX_8,	///< å£ç´™åéš ã—ï¼˜
+	BOXMENU_POKE_TUKAMU,	///< ãƒã‚±ãƒ¢ãƒ³ã€Œã¤ã‹ã‚€ã€
+	BOXMENU_POKE_OKU,		///< ãƒã‚±ãƒ¢ãƒ³ã€Œã“ã“ã«ãŠãã€
+	BOXMENU_POKE_IREKAERU,	///< ãƒã‚±ãƒ¢ãƒ³ã€Œã„ã‚Œã‹ãˆã‚‹ã€
+	BOXMENU_POKE_YOUSU,		///< ãƒã‚±ãƒ¢ãƒ³ã€Œã‚ˆã†ã™ã‚’ã¿ã‚‹ã€
+	BOXMENU_POKE_TURETEIKU,	///< ãƒã‚±ãƒ¢ãƒ³ã€Œã¤ã‚Œã¦ã„ãã€
+	BOXMENU_POKE_AZUKERU,	///< ãƒã‚±ãƒ¢ãƒ³ã€Œã‚ãšã‘ã‚‹ã€
+	BOXMENU_POKE_MOTIMONO,	///< ãƒã‚±ãƒ¢ãƒ³ã€Œã‚‚ã¡ã‚‚ã®ã€
+	BOXMENU_POKE_MARKING,	///< ãƒã‚±ãƒ¢ãƒ³ã€Œãƒãƒ¼ã‚­ãƒ³ã‚°ã€
+	BOXMENU_POKE_NIGASU,	///< ãƒã‚±ãƒ¢ãƒ³ã€Œã«ãŒã™ã€
+	BOXMENU_POKEMENU_QUIT,	///< ãƒã‚±ãƒ¢ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€Œã‚„ã‚ã‚‹ã€
+	BOXMENU_MARKING_DECIDE,	///< ãƒãƒ¼ã‚­ãƒ³ã‚°ã€Œã‘ã£ã¦ã„ã€
+	BOXMENU_MARKING_CANCEL,	///< ãƒãƒ¼ã‚­ãƒ³ã‚°ã€Œã‚„ã‚ã‚‹ã€ï¼ˆã‚­ãƒ£ãƒ³ã‚»ãƒ«ï¼‰
+	BOXMENU_ITEM_SET,		///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œã‚‚ãŸã›ã‚‹ã€
+	BOXMENU_ITEM_WITHDRAW,	///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œã‚ãšã‹ã‚‹ã€
+	BOXMENU_ITEM_INFO,		///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œã›ã¤ã‚ã„ã€
+	BOXMENU_ITEM_SWAP,		///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œã¨ã‚Šã‹ãˆã‚‹ã€
+	BOXMENU_ITEM_TO_BAG,	///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œãƒãƒƒã‚°ã¸ã€
+	BOXMENU_ITEM_QUIT,		///< ã‚¢ã‚¤ãƒ†ãƒ ã€Œã‚„ã‚ã‚‹ã€
+	BOXMENU_COMPARE_HOLD_LEFT,	///< ã¤ã‚ˆã•ãã‚‰ã¹ã€Œã²ã ã‚Šã«ã“ã¦ã„ã€
+	BOXMENU_COMPARE_HOLD_RIGHT,	///< ã¤ã‚ˆã•ãã‚‰ã¹ã€Œã¿ãã«ã“ã¦ã„ã€
+	BOXMENU_YES,			///< ã¯ã„
+	BOXMENU_NO,				///< ã„ã„ãˆ
 
 	BOXMENU_MARK1,
 	BOXMENU_MARK2,
@@ -182,39 +182,39 @@ typedef enum {
 
 
 enum {
-	BOX_MARK_MAX = 6,	// BOXMENU_MARK1`6‚Æ”‚ğ‡‚í‚¹‚é
+	BOX_MARK_MAX = 6,	// BOXMENU_MARK1ã€œ6ã¨æ•°ã‚’åˆã‚ã›ã‚‹
 };
 
 //----------------------------------------------------------------------
 /**
- *  ƒƒCƒ“ƒ[ƒNŒ^’è‹`
+ *  ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯å‹å®šç¾©
  */
 //----------------------------------------------------------------------
 typedef struct _BOXAPP_WORK  BOXAPP_WORK;
 
 //----------------------------------------------------------------------
 /**
- *  •`‰æƒ[ƒNŒ^’è‹`
+ *  æç”»ãƒ¯ãƒ¼ã‚¯å‹å®šç¾©
  */
 //----------------------------------------------------------------------
 typedef struct _BOXAPP_VIEW_WORK  BOXAPP_VIEW_WORK;
 
 //----------------------------------------------------------------------
 /**
- *  ƒJ[ƒ\ƒ‹ˆÚ“®ƒGƒŠƒA
+ *  ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã‚¨ãƒªã‚¢
  */
 //----------------------------------------------------------------------
 enum CURSOR_AREA {
-	CURSOR_AREA_TRAY,			///< ƒgƒŒƒC
-	CURSOR_AREA_PARTY,			///< è‚¿ƒEƒBƒ“ƒhƒE
-	CURSOR_AREA_TRAY_TAB,		///< ƒgƒŒƒC‚Ìƒ^ƒu
-	CURSOR_AREA_PARTY_BUTTON,	///< w‚Ä‚à‚¿ƒ|ƒPƒ‚ƒ“x‚Ìƒ{ƒ^ƒ“
-	CURSOR_AREA_EXIT_BUTTON,	///< w‚Æ‚¶‚éxƒ{ƒ^ƒ“
+	CURSOR_AREA_TRAY,			///< ãƒˆãƒ¬ã‚¤
+	CURSOR_AREA_PARTY,			///< æ‰‹æŒã¡ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	CURSOR_AREA_TRAY_TAB,		///< ãƒˆãƒ¬ã‚¤ã®ã‚¿ãƒ–
+	CURSOR_AREA_PARTY_BUTTON,	///< ã€ã¦ã‚‚ã¡ãƒã‚±ãƒ¢ãƒ³ã€ã®ãƒœã‚¿ãƒ³
+	CURSOR_AREA_EXIT_BUTTON,	///< ã€ã¨ã˜ã‚‹ã€ãƒœã‚¿ãƒ³
 };
 
 //----------------------------------------------------------------------
 /**
- *  i‚è‚İƒ‚[ƒhƒAƒCƒRƒ“ID
+ *  çµã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã‚¢ã‚¤ã‚³ãƒ³ID
  */
 //----------------------------------------------------------------------
 enum {
@@ -232,7 +232,7 @@ enum {
 
 //----------------------------------------------------------------------
 /**
- *  i‚è‚İƒ‚[ƒhƒrƒbƒgƒtƒ‰ƒO
+ *  çµã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
  */
 //----------------------------------------------------------------------
 enum {
@@ -248,14 +248,14 @@ enum {
 
 //----------------------------------------------------------------------
 /**
- *  ƒ|ƒPƒ‚ƒ“‚Â‚©‚İó‘Ô
+ *  ãƒã‚±ãƒ¢ãƒ³ã¤ã‹ã¿çŠ¶æ…‹
  */
 //----------------------------------------------------------------------
 enum {
-	CURSOR_CATCH_NONE = 0x01,		///< ‚Â‚©‚ñ‚Å‚¢‚È‚¢
-	CURSOR_CATCH_SINGLE = 0x02,		///< ’P‘Ì‚Å‚Â‚©‚ñ‚Å‚¢‚é
-	CURSOR_CATCH_AREA_POINT = 0x04,	///< ”ÍˆÍ‘I‘ğ‚Å‚Â‚©‚ñ‚Å‚¢‚ÄAƒ|ƒPƒ‚ƒ“‚ªƒJ[ƒ\ƒ‹‚Ì’¼‰º‚É‚ ‚éó‘Ô
-	CURSOR_CATCH_AREA_FREE = 0x08,	///< ”ÍˆÍ‘I‘ğ‚Å‚Â‚©‚ñ‚Å‚¢‚ÄAƒ|ƒPƒ‚ƒ“‚ªƒJ[ƒ\ƒ‹‚Ì’¼‰º‚É‚È‚¢ó‘Ô
+	CURSOR_CATCH_NONE = 0x01,		///< ã¤ã‹ã‚“ã§ã„ãªã„
+	CURSOR_CATCH_SINGLE = 0x02,		///< å˜ä½“ã§ã¤ã‹ã‚“ã§ã„ã‚‹
+	CURSOR_CATCH_AREA_POINT = 0x04,	///< ç¯„å›²é¸æŠã§ã¤ã‹ã‚“ã§ã„ã¦ã€ãƒã‚±ãƒ¢ãƒ³ãŒã‚«ãƒ¼ã‚½ãƒ«ã®ç›´ä¸‹ã«ã‚ã‚‹çŠ¶æ…‹
+	CURSOR_CATCH_AREA_FREE = 0x08,	///< ç¯„å›²é¸æŠã§ã¤ã‹ã‚“ã§ã„ã¦ã€ãƒã‚±ãƒ¢ãƒ³ãŒã‚«ãƒ¼ã‚½ãƒ«ã®ç›´ä¸‹ã«ãªã„çŠ¶æ…‹
 
 	CURSOR_CATCH_AREA_MASK = (CURSOR_CATCH_AREA_POINT | CURSOR_CATCH_AREA_FREE),
 	CUROSR_CATCH_STATUS_HOLD_MASK = (CURSOR_CATCH_SINGLE | CURSOR_CATCH_AREA_POINT ),
@@ -265,18 +265,18 @@ enum {
 
 //----------------------------------------------------------------------
 /**
- *  ƒTƒuLCD•\¦ó‘Ô
+ *  ã‚µãƒ–LCDè¡¨ç¤ºçŠ¶æ…‹
  */
 //----------------------------------------------------------------------
 typedef enum {
-	SUBLCD_STATE_NORMAL,	// ’Êí
-	SUBLCD_STATE_TRAY,		// ƒgƒŒƒC‘I‘ğ
-	SUBLCD_STATE_MARK,		// ƒ}[ƒN‘I‘ğ
+	SUBLCD_STATE_NORMAL,	// é€šå¸¸æ™‚
+	SUBLCD_STATE_TRAY,		// ãƒˆãƒ¬ã‚¤é¸æŠ
+	SUBLCD_STATE_MARK,		// ãƒãƒ¼ã‚¯é¸æŠ
 }DISP_STATE;
 
 //----------------------------------------------------------------------
 /**
- *  ‚»‚Ì‚½’è”
+ *  ãã®ãŸå®šæ•°
  */
 //----------------------------------------------------------------------
 enum {
@@ -288,7 +288,7 @@ enum {
 
 //----------------------------------------------------------------------
 /**
- *  ƒXƒe[ƒ^ƒX•\¦‚·‚é‚½‚ß‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ *  ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºã™ã‚‹ãŸã‚ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  */
 //----------------------------------------------------------------------
 typedef struct {
@@ -298,8 +298,8 @@ typedef struct {
 	u16		zukan_no;
 	u8		level;
 	u8		mark;
-	u8		type1;	// ƒ^ƒCƒv‚Á‚Ä‚Ì‚Íu‚İ‚¸v‚Æ‚©u‚Í‚ª‚Ëv‚Æ‚©B
-	u8		type2;	// ƒAƒCƒRƒ“•\¦‚·‚é‚Ì‚Å•¶š—ñ‚Í•s—vB
+	u8		type1;	// ã‚¿ã‚¤ãƒ—ã£ã¦ã®ã¯ã€Œã¿ãšã€ã¨ã‹ã€Œã¯ãŒã­ã€ã¨ã‹ã€‚
+	u8		type2;	// ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºã™ã‚‹ã®ã§æ–‡å­—åˆ—ã¯ä¸è¦ã€‚
 	u8		sex;
 	u8		tamago_flag;
 	u8		update_flag;
@@ -315,7 +315,7 @@ typedef struct {
 
 //----------------------------------------------------------------------
 /**
- *  ‹­‚³”ä‚×—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ *  å¼·ã•æ¯”ã¹ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  */
 //----------------------------------------------------------------------
 enum {
@@ -336,7 +336,7 @@ typedef struct {
 	u8		tamago_flag;
 	u8		form_number;
 
-	// ‚±‚Ì•À‚Ñ‚Í•Ï‚¦‚¿‚áƒ_ƒ
+	// ã“ã®ä¸¦ã³ã¯å¤‰ãˆã¡ã‚ƒãƒ€ãƒ¡
 	u16		level;
 	u16		hp_max;
 	u16		attack;
@@ -370,109 +370,109 @@ typedef struct {
 
 //----------------------------------------------------------------------
 /**
- *  ƒJ[ƒ\ƒ‹ó‘Ôƒf[ƒ^
+ *  ã‚«ãƒ¼ã‚½ãƒ«çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿
  */
 //----------------------------------------------------------------------
 typedef struct {
-	void*	point_poke;			///< w‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“
+	void*	point_poke;			///< æŒ‡ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³
 
-	u8   area;					///< ƒ{ƒbƒNƒXƒgƒŒƒCAè‚¿ƒgƒŒƒCA‚Æ‚¶‚éƒ{ƒ^ƒ““™
-	s8   tray_xpos;				///< ƒ{ƒbƒNƒXƒgƒŒƒC“à‚Å‚Ì‚wˆÊ’u
-	s8   tray_ypos;				///< ƒ{ƒbƒNƒXƒgƒŒƒC“à‚Å‚Ì‚xˆÊ’u
-	s8   tray_pos;				///< ƒ{ƒbƒNƒXƒgƒŒƒC“à‚Å‚Ìƒf[ƒ^ˆÊ’u
+	u8   area;					///< ãƒœãƒƒã‚¯ã‚¹ãƒˆãƒ¬ã‚¤ã€æ‰‹æŒã¡ãƒˆãƒ¬ã‚¤ã€ã¨ã˜ã‚‹ãƒœã‚¿ãƒ³ç­‰
+	s8   tray_xpos;				///< ãƒœãƒƒã‚¯ã‚¹ãƒˆãƒ¬ã‚¤å†…ã§ã®ï¼¸ä½ç½®
+	s8   tray_ypos;				///< ãƒœãƒƒã‚¯ã‚¹ãƒˆãƒ¬ã‚¤å†…ã§ã®ï¼¹ä½ç½®
+	s8   tray_pos;				///< ãƒœãƒƒã‚¯ã‚¹ãƒˆãƒ¬ã‚¤å†…ã§ã®ãƒ‡ãƒ¼ã‚¿ä½ç½®
 
-	s8   partytray_pos;			///< è‚¿ƒgƒŒƒC“à‚Å‚Ìƒf[ƒ^ˆÊ’u
-	s8   partytray_prev_area;	///< è‚¿ƒgƒŒƒC“à‚ÖˆÈ~‚·‚é‚Ü‚¦‚Ì area 
+	s8   partytray_pos;			///< æ‰‹æŒã¡ãƒˆãƒ¬ã‚¤å†…ã§ã®ãƒ‡ãƒ¼ã‚¿ä½ç½®
+	s8   partytray_prev_area;	///< æ‰‹æŒã¡ãƒˆãƒ¬ã‚¤å†…ã¸ä»¥é™ã™ã‚‹ã¾ãˆã® area 
 
-	u8  poke_point_flag;		///< ƒ|ƒPƒ‚ƒ“‚ğw‚µ‚Ä‚¢‚éƒtƒ‰ƒO
-	u8  poke_catch_flag;		///< ƒ|ƒPƒ‚ƒ“‚ğ’Í‚ñ‚Å‚¢‚éƒtƒ‰ƒO
+	u8  poke_point_flag;		///< ãƒã‚±ãƒ¢ãƒ³ã‚’æŒ‡ã—ã¦ã„ã‚‹ãƒ•ãƒ©ã‚°
+	u8  poke_catch_flag;		///< ãƒã‚±ãƒ¢ãƒ³ã‚’æ´ã‚“ã§ã„ã‚‹ãƒ•ãƒ©ã‚°
 
 }BOXAPP_CURSOR;
 
 //----------------------------------------------------------------------
 /**
- *  ‚Â‚©‚ñ‚Å‚éƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
+ *  ã¤ã‹ã‚“ã§ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
  */
 //----------------------------------------------------------------------
 typedef struct {
-	POKEMON_PASO_PARAM*		ppp;	///< ’Í‚İ’†ƒ|ƒPƒf[ƒ^
-	u8			areaStartX;			///< ”ÍˆÍ‘I‘ğŠJn‚wÀ•WiƒgƒŒƒC“àˆÊ’uj
-	u8			areaStartY;			///< ”ÍˆÍ‘I‘ğŠJn‚xÀ•WiƒgƒŒƒC“àˆÊ’uj
-	u8			areaEndX;			///< ”ÍˆÍ‘I‘ğI—¹‚wÀ•WiƒgƒŒƒC“àˆÊ’uj
-	u8			areaEndY;			///< ”ÍˆÍ‘I‘ğI—¹‚xÀ•WiƒgƒŒƒC“àˆÊ’uj
+	POKEMON_PASO_PARAM*		ppp;	///< æ´ã¿ä¸­ãƒã‚±ãƒ‡ãƒ¼ã‚¿
+	u8			areaStartX;			///< ç¯„å›²é¸æŠé–‹å§‹ï¼¸åº§æ¨™ï¼ˆãƒˆãƒ¬ã‚¤å†…ä½ç½®ï¼‰
+	u8			areaStartY;			///< ç¯„å›²é¸æŠé–‹å§‹ï¼¹åº§æ¨™ï¼ˆãƒˆãƒ¬ã‚¤å†…ä½ç½®ï¼‰
+	u8			areaEndX;			///< ç¯„å›²é¸æŠçµ‚äº†ï¼¸åº§æ¨™ï¼ˆãƒˆãƒ¬ã‚¤å†…ä½ç½®ï¼‰
+	u8			areaEndY;			///< ç¯„å›²é¸æŠçµ‚äº†ï¼¹åº§æ¨™ï¼ˆãƒˆãƒ¬ã‚¤å†…ä½ç½®ï¼‰
 
 	u8			areaPokeCount;
 	u8			areaTopPos;
-	u8			areaSpaceCatchFlag;			///< ”ÍˆÍ‘I‘ğA‹ó”’ˆÊ’u‚ğ’Í‚ñ‚¾
-	u8			fromPartyFlag;				///< è‚¿‚É‚¢‚½ƒ|ƒPƒ‚ƒ“‚ğ’Í‚ñ‚¾
-	s8			areaPokePos[BOX_MAX_POS];	///< ƒgƒŒƒC“à‚Ì‚Ç‚ÌˆÊ’u‚©‚çæ“¾‚µ‚½ƒ|ƒPƒ‚ƒ“‚©‚Á‚Ä‚¨‚­
+	u8			areaSpaceCatchFlag;			///< ç¯„å›²é¸æŠæ™‚ã€ç©ºç™½ä½ç½®ã‚’æ´ã‚“ã 
+	u8			fromPartyFlag;				///< æ‰‹æŒã¡ã«ã„ãŸãƒã‚±ãƒ¢ãƒ³ã‚’æ´ã‚“ã 
+	s8			areaPokePos[BOX_MAX_POS];	///< ãƒˆãƒ¬ã‚¤å†…ã®ã©ã®ä½ç½®ã‹ã‚‰å–å¾—ã—ãŸãƒã‚±ãƒ¢ãƒ³ã‹æŒã£ã¦ãŠã
 
 }BOXAPP_CATCH_POKE;
 
 
 //----------------------------------------------------------------------
 /**
- *  •\¦’†‚ÌƒgƒŒƒCƒf[ƒ^
+ *  è¡¨ç¤ºä¸­ã®ãƒˆãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿
  */
 //----------------------------------------------------------------------
 typedef struct {
-	u8			number;		///< •\¦’†ƒgƒŒƒCƒiƒ“ƒo[
-	u8			wallPaper;	///< ‚»‚Ì•Ç†ƒiƒ“ƒo[
+	u8			number;		///< è¡¨ç¤ºä¸­ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
+	u8			wallPaper;	///< ãã®å£ç´™ãƒŠãƒ³ãƒãƒ¼
 	STRBUF*		name;
 }BOXAPP_TRAY;
 
 //----------------------------------------------------------------------
 /**
- * ƒƒjƒ…[î•ñƒf[ƒ^
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼æƒ…å ±ãƒ‡ãƒ¼ã‚¿
  */
 //----------------------------------------------------------------------
 #define BOXAPP_MENU_ELEMS_MAX	(8)
 typedef struct {
 	BOX_MENU_ID	id[ BOXAPP_MENU_ELEMS_MAX ];
-	u8			pos;		///< ‘I‘ğ‚µ‚Ä‚¢‚éƒƒjƒ…[ˆÊ’u
-	u8			cnt;		///< “o˜^‚³‚ê‚Ä‚¢‚éƒƒjƒ…[”
-	u8			mark;		///< ƒ}[ƒLƒ“ƒOó‘Ô
-	u8			type;		///< •\¦ƒ^ƒCƒviŒ»İ–¢g—pj
+	u8			pos;		///< é¸æŠã—ã¦ã„ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½ç½®
+	u8			cnt;		///< ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ•°
+	u8			mark;		///< ãƒãƒ¼ã‚­ãƒ³ã‚°çŠ¶æ…‹
+	u8			type;		///< è¡¨ç¤ºã‚¿ã‚¤ãƒ—ï¼ˆç¾åœ¨æœªä½¿ç”¨ï¼‰
 }BOXAPP_MENU;
 
 //----------------------------------------------------------------------
 /**
- *  ƒ{ƒbƒNƒX‘I‘ğƒEƒBƒ“ƒhƒEƒf[ƒ^
+ *  ãƒœãƒƒã‚¯ã‚¹é¸æŠã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
  */
 //----------------------------------------------------------------------
 typedef struct {
-	u32		center_trayno;		///< ’†S‚ÌƒgƒŒƒCƒiƒ“ƒo[
+	u32		center_trayno;		///< ä¸­å¿ƒã®ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
 }BOXAPP_JUMPWIN;
 
 //----------------------------------------------------------------------
 /**
- *  ƒTƒuLCD•\¦ƒf[ƒ^
+ *  ã‚µãƒ–LCDè¡¨ç¤ºãƒ‡ãƒ¼ã‚¿
  */
 //----------------------------------------------------------------------
 typedef struct {
-	u8		state;				///< •\¦ó‘Ô
-	u8      limit_pos;			///< i‚è‚±‚İƒ‚[ƒhƒAƒCƒRƒ“ˆÊ’u
-	u8		pos;				///< ƒgƒŒƒCƒ‚[ƒhƒAƒCƒRƒ“ˆÊ’u
-	s16		move;				///< ˆÚ“®—Ê
+	u8		state;				///< è¡¨ç¤ºçŠ¶æ…‹
+	u8      limit_pos;			///< çµã‚Šã“ã¿ãƒ¢ãƒ¼ãƒ‰ã‚¢ã‚¤ã‚³ãƒ³ä½ç½®
+	u8		pos;				///< ãƒˆãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã‚¢ã‚¤ã‚³ãƒ³ä½ç½®
+	s16		move;				///< ç§»å‹•é‡
 }BOXAPP_SUBLCD;
 
 //----------------------------------------------------------------------
 /**
- *  ƒ{ƒbƒNƒXƒVƒXƒeƒ€ƒf[ƒ^
+ *  ãƒœãƒƒã‚¯ã‚¹ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  */
 //----------------------------------------------------------------------
 typedef struct {
-	u8		boxMode;			///< ƒ{ƒbƒNƒX“®ìƒ‚[ƒhi‚ ‚¸‚¯‚éE‚Â‚ê‚Ä‚¢‚­E‚¹‚¢‚èE‚Ç‚¤‚®j
-	u8		expertModeFlag;		///< Šµ‚ê‚Ä‚élƒ‚[ƒhƒtƒ‰ƒO
-	u16		limitModeBitFlag;	///< i‚è‚İƒ‚[ƒhƒrƒbƒgƒtƒ‰ƒO
+	u8		boxMode;			///< ãƒœãƒƒã‚¯ã‚¹å‹•ä½œãƒ¢ãƒ¼ãƒ‰ï¼ˆã‚ãšã‘ã‚‹ãƒ»ã¤ã‚Œã¦ã„ããƒ»ã›ã„ã‚Šãƒ»ã©ã†ãï¼‰
+	u8		expertModeFlag;		///< æ…£ã‚Œã¦ã‚‹äººãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
+	u16		limitModeBitFlag;	///< çµã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
 }BOXAPP_SYSTEM;
 
 
 //----------------------------------------------------------------------
 /**
- *  ƒ{ƒbƒNƒX•`‰æ—pƒpƒ‰ƒ[ƒ^
+ *  ãƒœãƒƒã‚¯ã‚¹æç”»ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- *  ¦‚±‚ê‚ç‚ğ box.c ‚ª‘€ì‚µAboxv.c ˆÈ‰º‚Ì•`‰æŠÖ”ŒQ‚ÍQÆ‚Ì‚İs‚¤B
+ *  â€»ã“ã‚Œã‚‰ã‚’ box.c ãŒæ“ä½œã—ã€boxv.c ä»¥ä¸‹ã®æç”»é–¢æ•°ç¾¤ã¯å‚ç…§ã®ã¿è¡Œã†ã€‚
  */
 //----------------------------------------------------------------------
 typedef struct {
@@ -502,7 +502,7 @@ extern void BoxAppView_Main( BOXAPP_VIEW_WORK* wk );
 extern void BoxAppView_End( BOXAPP_VIEW_WORK* wk );
 
 /*===================================================================================*/
-/*  •`‰æƒpƒ‰ƒ[ƒ^ŠÖ˜A                                                               */
+/*  æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é–¢é€£                                                               */
 /*===================================================================================*/
 extern MSGDATA_MANAGER* BoxApp_GetMsgManager( const BOXAPP_WORK* wk );
 extern const WORDSET* BoxApp_GetWordSet( const BOXAPP_WORK* wk );
@@ -547,7 +547,7 @@ extern BOOL BoxAppVPara_GetStatusPokeTamagoFlag( const BOXAPP_VPARAM* vpara );
 
 
 /*===================================================================================*/
-/*  ƒ|ƒPƒ‚ƒ“‚ğ“¦‚ª‚·‚ÌƒƒUƒ`ƒFƒbƒNŠÖ˜A                                             */
+/*  ãƒã‚±ãƒ¢ãƒ³ã‚’é€ƒãŒã™æ™‚ã®ãƒ¯ã‚¶ãƒã‚§ãƒƒã‚¯é–¢é€£                                             */
 /*===================================================================================*/
 extern BOOL BoxApp_ReleaseWazaCheckDone( const BOXAPP_WORK* mainWk );
 extern BOOL BoxApp_ReleaseWazaCheckOK( const BOXAPP_WORK* mainWk );

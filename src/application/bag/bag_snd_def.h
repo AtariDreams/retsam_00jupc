@@ -1,23 +1,23 @@
 //============================================================================================
 /**
  * @file	bag_snd_def.h
- * @brief	ƒoƒbƒO‰æ–ÊSE’è‹`
+ * @brief	ãƒãƒƒã‚°ç”»é¢SEå®šç¾©
  * @author	Hiroyuki Nakamura
  * @date	2006.02.24
  */
 //============================================================================================
 #include "system/snd_tool.h"
 
-#define	BAG_SE_LIST_MOVE1	( SEQ_SE_DP_GASA01 )	// ƒAƒCƒeƒ€‘I‘ð‚P
-#define	BAG_SE_LIST_MOVE2	( SEQ_SE_DP_GASA02 )	// ƒAƒCƒeƒ€‘I‘ð‚Q
-#define	BAG_SE_LIST_MOVE3	( SEQ_SE_DP_GASA03 )	// ƒAƒCƒeƒ€‘I‘ð‚R
+#define	BAG_SE_LIST_MOVE1	( SEQ_SE_DP_GASA01 )	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžï¼‘
+#define	BAG_SE_LIST_MOVE2	( SEQ_SE_DP_GASA02 )	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžï¼’
+#define	BAG_SE_LIST_MOVE3	( SEQ_SE_DP_GASA03 )	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžï¼“
 
-//#define	BAG_SE_POCKET_MOVE	( SEQ_SE_DP_BAG_006 )	// ƒ|ƒPƒbƒg‘I‘ð
-//#define	BAG_SE_POCKET_MOVE	( SEQ_SE_DP_BAG_020 )	// ƒ|ƒPƒbƒg‘I‘ð
-#define	BAG_SE_POCKET_MOVE	( SEQ_SE_DP_BAG_030 )	// ƒ|ƒPƒbƒg‘I‘ð
-//#define	BAG_SE_POCKET_MOVE	( SEQ_SE_DP_BAG_031 )	// ƒ|ƒPƒbƒg‘I‘ð
+//#define	BAG_SE_POCKET_MOVE	( SEQ_SE_DP_BAG_006 )	// ãƒã‚±ãƒƒãƒˆé¸æŠž
+//#define	BAG_SE_POCKET_MOVE	( SEQ_SE_DP_BAG_020 )	// ãƒã‚±ãƒƒãƒˆé¸æŠž
+#define	BAG_SE_POCKET_MOVE	( SEQ_SE_DP_BAG_030 )	// ãƒã‚±ãƒƒãƒˆé¸æŠž
+//#define	BAG_SE_POCKET_MOVE	( SEQ_SE_DP_BAG_031 )	// ãƒã‚±ãƒƒãƒˆé¸æŠž
 
-//#define	BAG_SE_SUB_BUTTON	( SEQ_SE_DP_BAG_011 )	// ‰º‰æ–Êƒ{ƒ^ƒ“
-#define	BAG_SE_SUB_BUTTON	( SEQ_SE_DP_BUTTON9 )	// ‰º‰æ–Êƒ{ƒ^ƒ“
-#define	BAG_SE_ITEM_SELECT	( SEQ_SE_DP_SELECT )	// ƒAƒCƒeƒ€Œˆ’è
-#define	BAG_SE_ITEM_CANCEL	( SEQ_SE_DP_SELECT )	// ƒAƒCƒeƒ€‘I‘ðƒLƒƒƒ“ƒZƒ‹
+//#define	BAG_SE_SUB_BUTTON	( SEQ_SE_DP_BAG_011 )	// ä¸‹ç”»é¢ãƒœã‚¿ãƒ³
+#define	BAG_SE_SUB_BUTTON	( SEQ_SE_DP_BUTTON9 )	// ä¸‹ç”»é¢ãƒœã‚¿ãƒ³
+#define	BAG_SE_ITEM_SELECT	( SEQ_SE_DP_SELECT )	// ã‚¢ã‚¤ãƒ†ãƒ æ±ºå®š
+#define	BAG_SE_ITEM_CANCEL	( SEQ_SE_DP_SELECT )	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžã‚­ãƒ£ãƒ³ã‚»ãƒ«

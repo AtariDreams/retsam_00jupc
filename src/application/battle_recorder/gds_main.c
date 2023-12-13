@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	gds_main.c
- * @brief	GDSƒ‚[ƒhFPROC§Œä
+ * @brief	GDSãƒ¢ãƒ¼ãƒ‰ï¼šPROCåˆ¶å¾¡
  * @author	matsuda
- * @date	2008.01.17(–Ø)
+ * @date	2008.01.17(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -59,20 +59,20 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 #define MYDWC_HEAPSIZE		0x20000
 
-///GDSƒvƒƒbƒN§Œä‚ªg—p‚·‚éƒq[ƒvƒTƒCƒY
+///GDSãƒ—ãƒ­ãƒƒã‚¯åˆ¶å¾¡ãŒä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚º
 #define GDSPROC_HEAP_SIZE		(MYDWC_HEAPSIZE + 0x8000)
 
 //==============================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //==============================================================================
 static NNSFndHeapHandle _wtHeapHandle;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void GdsMain_CommInitialize(GDSPROC_MAIN_WORK *gmw);
 static void GdsMain_CommFree(GDSPROC_MAIN_WORK *gmw);
@@ -80,9 +80,9 @@ static void *AllocFunc( DWCAllocType name, u32   size, int align );
 static void FreeFunc(DWCAllocType name, void* ptr,  u32 size);
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///WIFIÚ‘±‰æ–ÊƒvƒƒZƒX’è‹`ƒf[ƒ^
+///WIFIæ¥ç¶šç”»é¢ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 static const PROC_DATA GdsConnectProcData = {
 	GdsConnectProc_Init,
 	GdsConnectProc_Main,
@@ -91,7 +91,7 @@ static const PROC_DATA GdsConnectProcData = {
 };
 
 #ifdef PM_DEBUG
-//¦check ƒeƒXƒg—p
+//â€»check ãƒ†ã‚¹ãƒˆç”¨
 extern PROC_RESULT GdsTestProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT GdsTestProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT GdsTestProc_End( PROC * proc, int * seq );
@@ -101,20 +101,20 @@ extern PROC_RESULT GdsTestDressUpProc_Main( PROC * proc, int * seq );
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT GdsMainProc_Init( PROC * proc, int * seq )
 {
 	GDSPROC_MAIN_WORK *gmw;
 	
-	sys_VBlankFuncChange(NULL, NULL);	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -131,7 +131,7 @@ PROC_RESULT GdsMainProc_Init( PROC * proc, int * seq )
 	MI_CpuClear8(gmw, sizeof(GDSPROC_MAIN_WORK));
 	gmw->proc_param = PROC_GetParentWork(proc);
 
-	// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒtƒB[ƒ‹ƒh)
+	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰)
 	Snd_DataSetByScene( SND_SCENE_P2P, SEQ_WIFILOBBY, 1 );
 
 	return PROC_RES_FINISH;
@@ -139,12 +139,12 @@ PROC_RESULT GdsMainProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT GdsMainProc_Main( PROC * proc, int * seq )
@@ -167,7 +167,7 @@ PROC_RESULT GdsMainProc_Main( PROC * proc, int * seq )
 	};
 	
 	switch(*seq){
-	case SEQ_INIT_DPW:	//’ÊMƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»
+	case SEQ_INIT_DPW:	//é€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–
 		GdsMain_CommInitialize(gmw);
 		*seq = SEQ_INIT_DPW_WAIT;
 		break;
@@ -175,7 +175,7 @@ PROC_RESULT GdsMainProc_Main( PROC * proc, int * seq )
 		if(CommIsVRAMDInitialize()){
 			_wtHeapHandle = gmw->heapHandle;
 	
-			// wifiƒƒ‚ƒŠŠÇ—ŠÖ”ŒÄ‚Ño‚µ
+			// wifiãƒ¡ãƒ¢ãƒªç®¡ç†é–¢æ•°å‘¼ã³å‡ºã—
 			DWC_SetMemFunc( AllocFunc, FreeFunc );
 			
 			gmw->comm_initialize_ok = TRUE;
@@ -183,7 +183,7 @@ PROC_RESULT GdsMainProc_Main( PROC * proc, int * seq )
 		}
 		break;
 		
-	case SEQ_WIFI_CONNECT:	//WIFIÚ‘±
+	case SEQ_WIFI_CONNECT:	//WIFIæ¥ç¶š
 		gmw->sub_proc = PROC_Create(&GdsConnectProcData, gmw, HEAPID_GDS_MAIN);
 		(*seq)++;
 		break;
@@ -200,7 +200,7 @@ PROC_RESULT GdsMainProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	
-	case SEQ_BATTLE_RECORDER:	//ƒoƒgƒ‹ƒŒƒR[ƒ_[(GDSƒ‚[ƒh)
+	case SEQ_BATTLE_RECORDER:	//ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼(GDSãƒ¢ãƒ¼ãƒ‰)
 	#ifdef PM_DEBUG
 		{
 			if(gmw->proc_param->gds_mode == 0xff){
@@ -233,7 +233,7 @@ PROC_RESULT GdsMainProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	
-	case SEQ_WIFI_CLEANUP:		//WIFIØ’f
+	case SEQ_WIFI_CLEANUP:		//WIFIåˆ‡æ–­
 		gmw->sub_proc = PROC_Create(&GdsConnectProcData, gmw, HEAPID_GDS_MAIN);
 		(*seq)++;
 		break;
@@ -250,13 +250,13 @@ PROC_RESULT GdsMainProc_Main( PROC * proc, int * seq )
 	}
 
 	if(gmw->comm_initialize_ok == TRUE && gmw->connect_success == TRUE && gmw->ret_connect == TRUE){
-		// óM‹­“xƒŠƒ“ƒN‚ğ”½‰f‚³‚¹‚é
+		// å—ä¿¡å¼·åº¦ãƒªãƒ³ã‚¯ã‚’åæ˜ ã•ã›ã‚‹
 		DWC_UpdateConnection();
 
-		// Dpw_Tr_Main() ‚¾‚¯‚Í—áŠO“I‚É‚¢‚Â‚Å‚àŒÄ‚×‚é
+		// Dpw_Tr_Main() ã ã‘ã¯ä¾‹å¤–çš„ã«ã„ã¤ã§ã‚‚å‘¼ã¹ã‚‹
 	//	Dpw_Tr_Main();
 
-		// ’ÊMó‘Ô‚ğŠm”F‚µ‚ÄƒAƒCƒRƒ“‚Ì•\¦‚ğ•Ï‚¦‚é
+		// é€šä¿¡çŠ¶æ…‹ã‚’ç¢ºèªã—ã¦ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºã‚’å¤‰ãˆã‚‹
 		WirelessIconEasy_SetLevel( WM_LINK_LEVEL_3 - DWC_GetLinkLevel() );
 	}
 
@@ -265,12 +265,12 @@ PROC_RESULT GdsMainProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT GdsMainProc_End( PROC * proc, int * seq )
@@ -279,10 +279,10 @@ PROC_RESULT GdsMainProc_End( PROC * proc, int * seq )
 
 	GdsMain_CommFree(gmw);
 	
-	//GDSƒvƒƒbƒNŒÄ‚Ño‚µƒpƒ‰ƒ[ƒ^‰ğ•ú
+	//GDSãƒ—ãƒ­ãƒƒã‚¯å‘¼ã³å‡ºã—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è§£æ”¾
 	sys_FreeMemoryEz(gmw->proc_param);
 	
-	PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
 	sys_DeleteHeap( HEAPID_GDS_MAIN );
 
@@ -292,7 +292,7 @@ PROC_RESULT GdsMainProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊMƒ‰ƒCƒuƒ‰ƒŠŠÖ˜A‚Ì‰Šú‰»ˆ—
+ * @brief   é€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªé–¢é€£ã®åˆæœŸåŒ–å‡¦ç†
  *
  * @param   gmw		
  */
@@ -300,28 +300,28 @@ PROC_RESULT GdsMainProc_End( PROC * proc, int * seq )
 static void GdsMain_CommInitialize(GDSPROC_MAIN_WORK *gmw)
 {
 	if(gmw->comm_initialize_ok == FALSE){
-		OS_TPrintf("Comm‰Šú‰»ŠJn\n");
+		OS_TPrintf("CommåˆæœŸåŒ–é–‹å§‹\n");
 		
-		//¢ŠEŒğŠ·‚ÌWifi’ÊM–½—ß‚ğg—p‚·‚é‚½‚ßƒI[ƒo[ƒŒƒC‚ğ“Ç‚İo‚·(dpw_tr.c“™)
+		//ä¸–ç•Œäº¤æ›ã®Wifié€šä¿¡å‘½ä»¤ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’èª­ã¿å‡ºã™(dpw_tr.cç­‰)
 //		Overlay_Load(FS_OVERLAY_ID(worldtrade), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 
-		// DWCƒ‰ƒCƒuƒ‰ƒŠiWifij‚É“n‚·‚½‚ß‚Ìƒ[ƒN—Ìˆæ‚ğŠm•Û
+		// DWCãƒ©ã‚¤ãƒ–ãƒ©ãƒªï¼ˆWifiï¼‰ã«æ¸¡ã™ãŸã‚ã®ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’ç¢ºä¿
 		gmw->heapPtr    = sys_AllocMemory(HEAPID_GDS_MAIN, MYDWC_HEAPSIZE + 32);
 		gmw->heapHandle = NNS_FndCreateExpHeap( (void *)( ((u32)gmw->heapPtr + 31) / 32 * 32 ), MYDWC_HEAPSIZE);
 
-		//DWCƒI[ƒo[ƒŒƒC“Ç‚İ‚İ
+		//DWCã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤èª­ã¿è¾¼ã¿
 		DwcOverlayStart();
 		DpwCommonOverlayStart();
-		// ƒCƒNƒjƒ…[ƒ‚ƒ““]‘—
+		// ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³è»¢é€
 		CommVRAMDInitialize();
 
-		OS_TPrintf("Comm‰Šú‰»I—¹\n");
+		OS_TPrintf("CommåˆæœŸåŒ–çµ‚äº†\n");
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊMƒ‰ƒCƒuƒ‰ƒŠŠÖ˜A‚Ì‰ğ•úˆ—
+ * @brief   é€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªé–¢é€£ã®è§£æ”¾å‡¦ç†
  *
  * @param   gmw		
  */
@@ -329,26 +329,26 @@ static void GdsMain_CommInitialize(GDSPROC_MAIN_WORK *gmw)
 static void GdsMain_CommFree(GDSPROC_MAIN_WORK *gmw)
 {
 	if(gmw->comm_initialize_ok == TRUE){
-		OS_TPrintf("Comm‰ğ•úŠJn\n");
+		OS_TPrintf("Commè§£æ”¾é–‹å§‹\n");
 		
 		NNS_FndDestroyExpHeap(gmw->heapHandle);
 		sys_FreeMemoryEz( gmw->heapPtr );
 		DpwCommonOverlayEnd();
 		DwcOverlayEnd();
 
-		// ƒCƒNƒjƒ…[ƒ‚ƒ“‰ğ•ú
+		// ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³è§£æ”¾
 		CommVRAMDFinalize();
 
 //		Overlay_UnloadID(FS_OVERLAY_ID(worldtrade));
 		
 		gmw->comm_initialize_ok = FALSE;
 
-		OS_TPrintf("Comm‰ğ•úŠ®—¹\n");
+		OS_TPrintf("Commè§£æ”¾å®Œäº†\n");
 	}
 }
 
 /*---------------------------------------------------------------------------*
-  ƒƒ‚ƒŠŠm•ÛŠÖ”
+  ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°
  *---------------------------------------------------------------------------*/
 static void *AllocFunc( DWCAllocType name, u32   size, int align )
 {
@@ -365,7 +365,7 @@ static void *AllocFunc( DWCAllocType name, u32   size, int align )
 }
 
 /*---------------------------------------------------------------------------*
-  ƒƒ‚ƒŠŠJ•úŠÖ”
+  ãƒ¡ãƒ¢ãƒªé–‹æ”¾é–¢æ•°
  *---------------------------------------------------------------------------*/
 static void FreeFunc(DWCAllocType name, void* ptr,  u32 size)
 {

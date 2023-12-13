@@ -2,7 +2,7 @@
 /**
  *
  * @file	field_tornworld.c
- * @brief	ƒtƒB[ƒ‹ƒh@‚â‚Ô‚ê‚½‚¹‚©‚¢
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ã‚„ã¶ã‚ŒãŸã›ã‹ã„
  * @author	kagaya
  * @data	05.07.13
  *
@@ -60,39 +60,39 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒO
+//	ãƒ‡ãƒãƒƒã‚°
 //--------------------------------------------------------------
 //----
 #ifdef PM_DEBUG
 //----
-#define TW_DEBUG					//“Á’è‚ÌƒfƒoƒbƒO‹@”\—LŒø
-#define DEBUG_TW_PRINTF_ON			//ƒfƒoƒbƒOo—Í—LŒø
-//#define DEBUG_TW_FOG_OFF			//’è‹`‚ÅƒtƒHƒO–³Œø
+#define TW_DEBUG					//ç‰¹å®šã®ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½æœ‰åŠ¹
+#define DEBUG_TW_PRINTF_ON			//ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›æœ‰åŠ¹
+//#define DEBUG_TW_FOG_OFF			//å®šç¾©ã§ãƒ•ã‚©ã‚°ç„¡åŠ¹
 
 /*---------------- kaga */
 #ifdef DEBUG_ONLY_FOR_kagaya
 
 #ifdef DEBUG_TW_PRINTF_ON
-#define DEBUG_TW_PRINTF					//ƒvƒŠƒ“ƒg—LŒø
+#define DEBUG_TW_PRINTF					//ãƒ—ãƒªãƒ³ãƒˆæœ‰åŠ¹
 #endif
 
-//#define DEBUG_TAKI_EFF				//‘êƒGƒtƒFƒNƒgƒ`ƒFƒbƒN
+//#define DEBUG_TAKI_EFF				//æ»ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒã‚§ãƒƒã‚¯
 #define DEBUG_SPLASH_EFF
-#define DEBUG_TW_OBJ_COUNT				//OBJ”ƒJƒEƒ“ƒg
-#define DEBUG_TW_BUF_OBJ_ASSERT			//OBJƒAƒT[ƒg—LŒø
-#define DEBUG_TAKI_KUDARI_PAUSE			//‘ê‰º‚è ƒ|[ƒY
-//#define DEBUG_GIRAS					//ƒMƒ‰ƒeƒBƒi‰eƒfƒoƒbƒO
-//#define DEBUG_TW_GIRAS_FLAG_OFF		//ƒMƒ‰ƒeƒBƒi‰eoŒ»Ï‚İ‚É
-//#define DEBUG_TW_FALLROCK_FINISH		//Šâ—‚Æ‚µU—ªÏ‚İ‚É
-//#define DEBUG_TW_FALLROCK_7			//Šâ‘S‚Ä‚V‘w‚É—‚Æ‚µÏ‚İ‚É
-//#define DEBUG_TW_FLAG_INIT			//ƒfƒoƒbƒOƒtƒ‰ƒO‰Šú‰»—LŒø
+#define DEBUG_TW_OBJ_COUNT				//OBJæ•°ã‚«ã‚¦ãƒ³ãƒˆ
+#define DEBUG_TW_BUF_OBJ_ASSERT			//OBJã‚¢ã‚µãƒ¼ãƒˆæœ‰åŠ¹
+#define DEBUG_TAKI_KUDARI_PAUSE			//æ»ä¸‹ã‚Š ãƒãƒ¼ã‚º
+//#define DEBUG_GIRAS					//ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ãƒ‡ãƒãƒƒã‚°
+//#define DEBUG_TW_GIRAS_FLAG_OFF		//ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±å‡ºç¾æ¸ˆã¿ã«
+//#define DEBUG_TW_FALLROCK_FINISH		//å²©è½ã¨ã—æ”»ç•¥æ¸ˆã¿ã«
+//#define DEBUG_TW_FALLROCK_7			//å²©å…¨ã¦ï¼—å±¤ã«è½ã¨ã—æ¸ˆã¿ã«
+//#define DEBUG_TW_FLAG_INIT			//ãƒ‡ãƒãƒƒã‚°ãƒ•ãƒ©ã‚°åˆæœŸåŒ–æœ‰åŠ¹
 
 #ifdef DEBUG_TW_FALLROCK_FINISH
-//#define DEBUG_TW_FALLROCK_FINISH_EVENT	//Šâ—‚Æ‚µU—ªŠ®—¹ƒCƒxƒ“ƒg‚ğŒ©‚é
+//#define DEBUG_TW_FALLROCK_FINISH_EVENT	//å²©è½ã¨ã—æ”»ç•¥å®Œäº†ã‚¤ãƒ™ãƒ³ãƒˆã‚’è¦‹ã‚‹
 #endif
 
 #ifdef DEBUG_TW_PRINTF_ON
-#define DEBUG_TW_PRINTF_FORCE		//‘¼‚ÌŠÂ‹«‚Å‚ào‚µ‚½‚¢Printo—Í‚Í‚±‚¿‚ç
+#define DEBUG_TW_PRINTF_FORCE		//ä»–ã®ç’°å¢ƒã§ã‚‚å‡ºã—ãŸã„Printå‡ºåŠ›ã¯ã“ã¡ã‚‰
 #endif
 
 #endif
@@ -100,7 +100,7 @@
 
 /*------------------ nohara */
 #ifdef DEBUG_ONLY_FOR_nohara
-//0110 ƒMƒ‰ƒeƒBƒií’¼‘O
+//0110 ã‚®ãƒ©ãƒ†ã‚£ãƒŠæˆ¦ç›´å‰
 //#define DEBUG_TW_SCENE_NOHARA_CHECK
 #endif
 /*----------------------*/
@@ -109,29 +109,29 @@
 //----
 
 //--------------------------------------------------------------
-///	‚İ‚«‚í‚ß‚¿‚ã‚¤
+///	ã¿ãã‚ã‚ã¡ã‚…ã†
 //--------------------------------------------------------------
-//’è‹`‚Å•ÇƒWƒƒƒ“ƒvŒã‚Ì©‹@‚‚³æ“¾İ’è‚ğƒ^ƒCƒv•Ê‚É•ÏX
+//å®šç¾©ã§å£ã‚¸ãƒ£ãƒ³ãƒ—å¾Œã®è‡ªæ©Ÿé«˜ã•å–å¾—è¨­å®šã‚’ã‚¿ã‚¤ãƒ—åˆ¥ã«å¤‰æ›´
 #define TESTPROC_JIKI_HEIGHT_SWITCH
-//’è‹`‚Å”wŒi‚ÌƒpƒŒƒbƒgƒtƒF[ƒh‚ğƒIƒt
+//å®šç¾©ã§èƒŒæ™¯ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚’ã‚ªãƒ•
 //#define TORNWORLD_PLTT_FADE_OFF
-//’è‹`‚Åƒ}ƒbƒvƒŠƒ\[ƒX“Æ—§‰»
+//å®šç¾©ã§ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ç‹¬ç«‹åŒ–
 //#define TWORLD_MAPRES_INIT
 
-//’è‹`‚Å‘êƒGƒtƒFƒNƒg”­¶
+//å®šç¾©ã§æ»ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºç”Ÿ
 //#define TWTEST_TAKI_EFF
 
 //--------------------------------------------------------------
-///	ƒpƒŒƒbƒgƒtƒF[ƒh
+///	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 //--------------------------------------------------------------
 #define FADE_CHANGE( before, after, evy )					\
 			( before + ( ( after - before ) * evy >> 4 ) )
 
-///ƒMƒ‰ƒeƒBƒi~—Õ‚ÌƒpƒŒƒbƒg‹P“x
+///ã‚®ãƒ©ãƒ†ã‚£ãƒŠé™è‡¨æ™‚ã®ãƒ‘ãƒ¬ãƒƒãƒˆè¼åº¦
 #define TW_PLTT_EVY_GIRAS_APP (12)
 
 //--------------------------------------------------------------
-//	©‹@
+//	è‡ªæ©Ÿ
 //--------------------------------------------------------------
 //#define TWJIKI_RX (292)
 
@@ -142,7 +142,7 @@
 #define TW_BGFRM_BG_PLTT_OFFS (0)
 
 //--------------------------------------------------------------
-///	3DƒGƒbƒW
+///	3Dã‚¨ãƒƒã‚¸
 //--------------------------------------------------------------
 #define TW_EDGE_COLOR_MAX (8)
 #define EDGE_COLOR_R (4)
@@ -155,7 +155,7 @@
 #define GIRAS_EDGE_COLOR_B (7)
 #define GIRAS_POLID (GIRAS_EDGE_NO*8)
 
-/* ƒGƒbƒWQÆˆÊ’u‚ÍIDãˆÊ3bit
+/* ã‚¨ãƒƒã‚¸å‚ç…§ä½ç½®ã¯IDä¸Šä½3bit
  BBB_NNN
  000_000	//no 0, id 0,1
  000_001
@@ -168,12 +168,12 @@
 */
 
 //--------------------------------------------------------------
-//	ƒ}ƒbƒv
+//	ãƒãƒƒãƒ—
 //--------------------------------------------------------------
 #define NARC_MAPIDX_BIN_START (NARC_tw_arc_tw_maptable_idx+1)
 
 //--------------------------------------------------------------
-//	ƒJƒƒ‰
+//	ã‚«ãƒ¡ãƒ©
 //--------------------------------------------------------------
 //#define TWCM_DEF_RX (0xdc62)
 //#define TWCM_DEF_RX (0xce62)
@@ -187,7 +187,7 @@
 #define TWCM_CLIP_NEAR (FX32_ONE*150)
 #define TWCM_CLIP_FAR (FX32_ONE*1700)
 
-//—LŒø‚ÅƒJƒƒ‰¶¬ –³Œø‚Ìê‡‚ÍƒtƒB[ƒ‹ƒh•W€‚ğ‘€ì‚·‚é
+//æœ‰åŠ¹ã§ã‚«ãƒ¡ãƒ©ç”Ÿæˆ ç„¡åŠ¹ã®å ´åˆã¯ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æ¨™æº–ã‚’æ“ä½œã™ã‚‹
 //#define TWCM_CAMERADATA_ALLOC
 
 //--------------------------------------------------------------
@@ -204,13 +204,13 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒAƒNƒ^[
+///	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 //--------------------------------------------------------------
 #define TW_CLACT_MAX (16)
 
 #define TW_BGPRI_CLOUD (3)
 
-#define CLOUD_SET_MAX (9)		//‰_Å‘å”
+#define CLOUD_SET_MAX (9)		//é›²æœ€å¤§æ•°
 
 #define TW_CLOUD_OFFS_Y (32)
 #define TW_CLOUD_OFFS_Y_BIG (12)
@@ -223,7 +223,7 @@ enum
 #define TW_CLACT_SFACE_Y_FX (NUM_FX32(-512))
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒAƒNƒ^[@ƒŠƒ\[ƒXID@ƒLƒƒƒ‰
+///	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒªã‚½ãƒ¼ã‚¹IDã€€ã‚­ãƒ£ãƒ©
 //--------------------------------------------------------------
 enum
 {
@@ -238,7 +238,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒAƒNƒ^[@ƒŠƒ\[ƒXID@ƒpƒŒƒbƒg
+///	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒªã‚½ãƒ¼ã‚¹IDã€€ãƒ‘ãƒ¬ãƒƒãƒˆ
 //--------------------------------------------------------------
 //#define TW_CELL_PLTT_TEST
 
@@ -260,11 +260,11 @@ enum
 };
 #endif
 
-///‰_ƒZƒ‹ƒAƒNƒ^[ƒpƒŒƒbƒg”
+///é›²ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆæ•°
 #define TW_CLACT_RES_PLTT_CLOUD_NUM (5)
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒAƒNƒ^[@ƒŠƒ\[ƒXID@ƒZƒ‹
+///	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒªã‚½ãƒ¼ã‚¹IDã€€ã‚»ãƒ«
 //--------------------------------------------------------------
 enum
 {
@@ -279,7 +279,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒAƒNƒ^[@ƒŠƒ\[ƒXID@ƒAƒjƒ
+///	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ãƒªã‚½ãƒ¼ã‚¹IDã€€ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 enum
 {
@@ -294,7 +294,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	‰_í—Ş
+///	é›²ç¨®é¡
 //--------------------------------------------------------------
 enum
 {
@@ -309,45 +309,45 @@ enum
 };
 
 //--------------------------------------------------------------
-///	‰_‘¬“xí—Ş
+///	é›²é€Ÿåº¦ç¨®é¡
 //--------------------------------------------------------------
 enum
 {
-	CLOUD_SPEED_TYPE_0,	//’†S	
+	CLOUD_SPEED_TYPE_0,	//ä¸­å¿ƒ	
 	CLOUD_SPEED_TYPE_1,	
 	CLOUD_SPEED_TYPE_2,
-	CLOUD_SPEED_TYPE_3,	//ŠOü
+	CLOUD_SPEED_TYPE_3,	//å¤–å‘¨
 	CLOUD_SPEED_TYPE_MAX,
 };
 
 //--------------------------------------------------------------
-///	‰_‘¬“xƒŒƒxƒ‹
+///	é›²é€Ÿåº¦ãƒ¬ãƒ™ãƒ«
 //--------------------------------------------------------------
 enum
 {
-	CLOUD_SPEED_LV_0,	//‰Šú
-	CLOUD_SPEED_LV_1,	//Å‰º‘wƒCƒxƒ“ƒg—p
-	CLOUD_SPEED_LV_2,	//Å‰º‘wƒCƒxƒ“ƒg—p
+	CLOUD_SPEED_LV_0,	//åˆæœŸ
+	CLOUD_SPEED_LV_1,	//æœ€ä¸‹å±¤ã‚¤ãƒ™ãƒ³ãƒˆç”¨
+	CLOUD_SPEED_LV_2,	//æœ€ä¸‹å±¤ã‚¤ãƒ™ãƒ³ãƒˆç”¨
 	CLOUD_SPEED_LV_MAX,
 };
 
 //--------------------------------------------------------------
-///	ƒtƒHƒO
+///	ãƒ•ã‚©ã‚°
 //--------------------------------------------------------------
-#define TW_FOG_SLOPE	(6)		 //Š|‚©‚è‹ï‡ ’á‚¢0`10”Z‚¢
-#define TW_FOG_OFFS		(0x7600) //ƒfƒuƒX’l ƒIƒtƒZƒbƒg ’á‚¢’öFOG“K—pY’l‚ª‚‚­
-#define TW_FOG_COLOR	(GX_RGB(0,0,0))	//ƒtƒHƒOƒJƒ‰[
-#define TW_FOG_ALPHA	(16)	 //“§‰ß—¦ 0(2D–Ê‚Æ—Z‡)`31(2D–Ê‚Æ‚Ì—Z‡–³‚µ)
-//#define TW_FOGTBL_BLDMAX (72) //ƒtƒHƒOƒe[ƒuƒ‹ƒtƒHƒO”Z“xÅ‘å 0-127 ‚‚¢‚Ù‚Ç”Z‚­
-#define TW_FOGTBL_BLDMAX (88) //ƒtƒHƒOƒe[ƒuƒ‹ƒtƒHƒO”Z“xÅ‘å 0-127 ‚‚¢‚Ù‚Ç”Z‚­
+#define TW_FOG_SLOPE	(6)		 //æ›ã‹ã‚Šå…·åˆ ä½ã„0ã€œ10æ¿ƒã„
+#define TW_FOG_OFFS		(0x7600) //ãƒ‡ãƒ–ã‚¹å€¤ ã‚ªãƒ•ã‚»ãƒƒãƒˆ ä½ã„ç¨‹FOGé©ç”¨Yå€¤ãŒé«˜ã
+#define TW_FOG_COLOR	(GX_RGB(0,0,0))	//ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼
+#define TW_FOG_ALPHA	(16)	 //é€éç‡ 0(2Dé¢ã¨èåˆ)ã€œ31(2Dé¢ã¨ã®èåˆç„¡ã—)
+//#define TW_FOGTBL_BLDMAX (72) //ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ•ã‚©ã‚°æ¿ƒåº¦æœ€å¤§ 0-127 é«˜ã„ã»ã©æ¿ƒã
+#define TW_FOGTBL_BLDMAX (88) //ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ•ã‚©ã‚°æ¿ƒåº¦æœ€å¤§ 0-127 é«˜ã„ã»ã©æ¿ƒã
 
 //--------------------------------------------------------------
-///	ƒCƒxƒ“ƒg
+///	ã‚¤ãƒ™ãƒ³ãƒˆ
 //--------------------------------------------------------------
-#define TW_EVENTWORK_SIZE (128)	///<ƒCƒxƒ“ƒg‚Åg—p‚·‚éƒ[ƒNƒTƒCƒY
+#define TW_EVENTWORK_SIZE (128)	///<ã‚¤ãƒ™ãƒ³ãƒˆã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	©‹@ƒWƒƒƒ“ƒvƒIƒtƒZƒbƒg
+///	è‡ªæ©Ÿã‚¸ãƒ£ãƒ³ãƒ—ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 typedef enum
 {
@@ -366,19 +366,19 @@ typedef enum
 }OFFS_VEC_FLIP;
 
 //--------------------------------------------------------------
-///	OBJ‰ñ“]”
+///	OBJå›è»¢æ•°
 //--------------------------------------------------------------
-#define TW_OBJROT_MAX (4+2)	///<OBJ‰ñ“]” +2=‚¯‚Ş‚è
+#define TW_OBJROT_MAX (4+2)	///<OBJå›è»¢æ•° +2=ã‘ã‚€ã‚Š
 
 //--------------------------------------------------------------
-///	ƒ}ƒbƒv
+///	ãƒãƒƒãƒ—
 //--------------------------------------------------------------
-///ƒAƒgƒŠƒrƒ…[ƒgƒf[ƒ^->ƒAƒgƒŠƒrƒ…[ƒg
+///ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿->ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 #define ATRD_ATTR(a) ((a)&0xff)
-///ƒAƒgƒŠƒrƒ…[ƒgƒf[ƒ^->ˆÚ“®ƒtƒ‰ƒO
-#define ATRD_MFLAG(a) (((a)&0x8000)>>15)	//ÅãˆÊ1bit=•Çƒtƒ‰ƒO
+///ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿->ç§»å‹•ãƒ•ãƒ©ã‚°
+#define ATRD_MFLAG(a) (((a)&0x8000)>>15)	//æœ€ä¸Šä½1bit=å£ãƒ•ãƒ©ã‚°
 
-///“Áê’nŒ`@ƒAƒgƒŠƒrƒ…[ƒg
+///ç‰¹æ®Šåœ°å½¢ã€€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 enum
 {
 	TWATTR_NOT = 0xffff,
@@ -386,18 +386,18 @@ enum
 };
 
 //--------------------------------------------------------------
-///	Ú‘±ˆÊ’u@“®ìƒ^ƒCƒv
+///	æ¥ç¶šä½ç½®ã€€å‹•ä½œã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 enum
 {
-	LPOSMOVE_ZONE_UP = 0,		///<ƒ][ƒ“ãˆÚ“®
-	LPOSMOVE_ZONE_DOWN,			///<ƒ][ƒ“‰ºˆÚ“®
-	LPOSMOVE_LIFT,				///<ƒ][ƒ““àƒŠƒtƒg
-	LPOSMOVE_MAX,				///<Å‘å
+	LPOSMOVE_ZONE_UP = 0,		///<ã‚¾ãƒ¼ãƒ³ä¸Šç§»å‹•
+	LPOSMOVE_ZONE_DOWN,			///<ã‚¾ãƒ¼ãƒ³ä¸‹ç§»å‹•
+	LPOSMOVE_LIFT,				///<ã‚¾ãƒ¼ãƒ³å†…ãƒªãƒ•ãƒˆ
+	LPOSMOVE_MAX,				///<æœ€å¤§
 };
 
 //--------------------------------------------------------------
-///	ƒ][ƒ“•ÊƒŠƒ“ƒN”
+///	ã‚¾ãƒ¼ãƒ³åˆ¥ãƒªãƒ³ã‚¯æ•°
 //--------------------------------------------------------------
 enum
 {
@@ -415,7 +415,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ŠK‘w”
+///	éšå±¤æ•°
 //--------------------------------------------------------------
 enum
 {
@@ -435,7 +435,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒ][ƒ“•ÏX“®ìƒe[ƒuƒ‹
+///	ã‚¾ãƒ¼ãƒ³å¤‰æ›´å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 enum
 {
@@ -469,37 +469,37 @@ enum
 //--------------------------------------------------------------
 typedef enum
 {
-	RET_NON,			///<‰½‚à‚µ‚È‚¢
-	RET_CONTINUE,		///<‘±‚¯‚é
-	RET_END,			///<I—¹
+	RET_NON,			///<ä½•ã‚‚ã—ãªã„
+	RET_CONTINUE,		///<ç¶šã‘ã‚‹
+	RET_END,			///<çµ‚äº†
 }PROCRET;
 
 //--------------------------------------------------------------
-///	ƒ][ƒ“Ú‘±ˆÚ“®ƒtƒ‰ƒO
+///	ã‚¾ãƒ¼ãƒ³æ¥ç¶šç§»å‹•ãƒ•ãƒ©ã‚°
 //--------------------------------------------------------------
 enum
 {
-	ZLINKMFLAG_0102 = 0,	//1->2ˆÚ“®ƒtƒ‰ƒO
-	ZLINKMFLAG_0203,		//2->3ˆÚ“®ƒtƒ‰ƒO
-	ZLINKMFLAG_0304,		//3->4ˆÚ“®ƒtƒ‰ƒO
-	ZLINKMFLAG_0405A,		//4->5AˆÚ“®ƒtƒ‰ƒO
-	ZLINKMFLAG_0405B,		//4->5BˆÚ“®ƒtƒ‰ƒO
-	ZLINKMFLAG_0406A,		//4->6AˆÚ“®ƒtƒ‰ƒO
-	ZLINKMFLAG_0504A,		//5->4AˆÚ“®ƒtƒ‰ƒO
-	ZLINKMFLAG_0506B,		//5->6BˆÚ“®ƒtƒ‰ƒO
-	ZLINKMFLAG_06B05,		//6B->5ˆÚ“®ƒtƒ‰ƒO
-	ZLINKMFLAG_0607,		//6->7ˆÚ“®ƒtƒ‰ƒO
-	ZLINKMFLAG_0708,		//7->8ˆÚ“®ƒtƒ‰ƒO
-	ZLINKMFLAG_MAX,			//ƒtƒ‰ƒOÅ‘å
+	ZLINKMFLAG_0102 = 0,	//1->2ç§»å‹•ãƒ•ãƒ©ã‚°
+	ZLINKMFLAG_0203,		//2->3ç§»å‹•ãƒ•ãƒ©ã‚°
+	ZLINKMFLAG_0304,		//3->4ç§»å‹•ãƒ•ãƒ©ã‚°
+	ZLINKMFLAG_0405A,		//4->5Aç§»å‹•ãƒ•ãƒ©ã‚°
+	ZLINKMFLAG_0405B,		//4->5Bç§»å‹•ãƒ•ãƒ©ã‚°
+	ZLINKMFLAG_0406A,		//4->6Aç§»å‹•ãƒ•ãƒ©ã‚°
+	ZLINKMFLAG_0504A,		//5->4Aç§»å‹•ãƒ•ãƒ©ã‚°
+	ZLINKMFLAG_0506B,		//5->6Bç§»å‹•ãƒ•ãƒ©ã‚°
+	ZLINKMFLAG_06B05,		//6B->5ç§»å‹•ãƒ•ãƒ©ã‚°
+	ZLINKMFLAG_0607,		//6->7ç§»å‹•ãƒ•ãƒ©ã‚°
+	ZLINKMFLAG_0708,		//7->8ç§»å‹•ãƒ•ãƒ©ã‚°
+	ZLINKMFLAG_MAX,			//ãƒ•ãƒ©ã‚°æœ€å¤§
 };
 
-///‰Šú‰»‚ÉƒZƒbƒg‚·‚éƒ][ƒ“Ú‘±ˆÚ“®ƒtƒ‰ƒO‚Ü‚Æ‚ß
+///åˆæœŸåŒ–æ™‚ã«ã‚»ãƒƒãƒˆã™ã‚‹ã‚¾ãƒ¼ãƒ³æ¥ç¶šç§»å‹•ãƒ•ãƒ©ã‚°ã¾ã¨ã‚
 #define ZLINKMFLAG_INITFLAG ( \
 		(1<<ZLINKMFLAG_0405A) | \
 		(1<<ZLINKMFLAG_0506B) \
 		)
 
-///”ª‘w‰Šú‰»‚ÉƒZƒbƒg‚·‚éƒ][ƒ“Ú‘±ˆÚ“®ƒtƒ‰ƒO‚Ü‚Æ‚ß
+///å…«å±¤åˆæœŸåŒ–æ™‚ã«ã‚»ãƒƒãƒˆã™ã‚‹ã‚¾ãƒ¼ãƒ³æ¥ç¶šç§»å‹•ãƒ•ãƒ©ã‚°ã¾ã¨ã‚
 #define ZLINKMFLAG_INITFLAG_08 ( \
 		(1<<ZLINKMFLAG_0102) | \
 		(1<<ZLINKMFLAG_0203) | \
@@ -512,41 +512,41 @@ enum
 		)
 
 //==============================================================================
-//	define ƒXƒNƒŠƒvƒg
+//	define ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒ^ƒCƒv
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 typedef enum
 {
-	TWSCRCODE_ACMD = 0,		///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒZƒbƒg
-	TWSCRCODE_LIFT,			///<ƒŠƒtƒgˆÚ“®
-	TWSCRCODE_FLDOBJADD,	///<ƒtƒB[ƒ‹ƒhOBJ’Ç‰Á
-	TWSCRCODE_FLDOBJDEL,	///<ƒtƒB[ƒ‹ƒhOBJíœ
-	TWSCRCODE_TAKINOBORI,	///<‘ê“o‚è
-	TWSCRCODE_SCRCALL,		///<ƒXƒNƒŠƒvƒgƒR[ƒ‹
-	TWSCRCODE_EVSEQSET,		///<TWEVSEQƒZƒbƒg
-	TWSCRCODE_GIRAS,		///<ƒMƒ‰ƒeƒBƒi‰e
-	TWSCRCODE_GIRASFLAGSET,	///<sysflag ƒMƒ‰ƒeƒBƒi‰eƒtƒ‰ƒOƒZƒbƒg
-	TWSCRCODE_TWEVFLAG_SET,	///<TWEVFLAG ƒ[ƒJƒ‹ƒtƒ‰ƒOƒZƒbƒg
-	TWSCRCODE_TAKIKUDARI,	///<‘ê‰º‚è
-	TWSCRCODE_GIRA_APPEAR,	///<ƒMƒ‰ƒeƒBƒi“oê
-	TWSCRCODE_ROCKPOKE_YUKUSHI,	///<Šâƒ†ƒNƒV[
-	TWSCRCODE_ROCKPOKE_AGUNOMU,	///<ŠâƒAƒOƒmƒ€
-	TWSCRCODE_ROCKPOKE_EMURIT,	///<ŠâƒGƒ€ƒŠƒbƒg
-	TWSCRCODE_STONE0110_ON,		///<Å‰º‘w”ò‚ÑÎ•\¦ƒCƒxƒ“ƒg
-	TWSCRCODE_STONE0110_OFF,		///<Å‰º‘w”ò‚ÑÎ”ñ•\¦ƒCƒxƒ“ƒg
-	TWSCRCODE_TWEVFLAG_OFF,	///<TWEVFLAG ƒ[ƒJƒ‹ƒtƒ‰ƒO—‚Æ‚µ
+	TWSCRCODE_ACMD = 0,		///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒƒãƒˆ
+	TWSCRCODE_LIFT,			///<ãƒªãƒ•ãƒˆç§»å‹•
+	TWSCRCODE_FLDOBJADD,	///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¿½åŠ 
+	TWSCRCODE_FLDOBJDEL,	///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå‰Šé™¤
+	TWSCRCODE_TAKINOBORI,	///<æ»ç™»ã‚Š
+	TWSCRCODE_SCRCALL,		///<ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒ¼ãƒ«
+	TWSCRCODE_EVSEQSET,		///<TWEVSEQã‚»ãƒƒãƒˆ
+	TWSCRCODE_GIRAS,		///<ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±
+	TWSCRCODE_GIRASFLAGSET,	///<sysflag ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
+	TWSCRCODE_TWEVFLAG_SET,	///<TWEVFLAG ãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
+	TWSCRCODE_TAKIKUDARI,	///<æ»ä¸‹ã‚Š
+	TWSCRCODE_GIRA_APPEAR,	///<ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´
+	TWSCRCODE_ROCKPOKE_YUKUSHI,	///<å²©ãƒ¦ã‚¯ã‚·ãƒ¼
+	TWSCRCODE_ROCKPOKE_AGUNOMU,	///<å²©ã‚¢ã‚°ãƒãƒ 
+	TWSCRCODE_ROCKPOKE_EMURIT,	///<å²©ã‚¨ãƒ ãƒªãƒƒãƒˆ
+	TWSCRCODE_STONE0110_ON,		///<æœ€ä¸‹å±¤é£›ã³çŸ³è¡¨ç¤ºã‚¤ãƒ™ãƒ³ãƒˆ
+	TWSCRCODE_STONE0110_OFF,		///<æœ€ä¸‹å±¤é£›ã³çŸ³éè¡¨ç¤ºã‚¤ãƒ™ãƒ³ãƒˆ
+	TWSCRCODE_TWEVFLAG_OFF,	///<TWEVFLAG ãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ãƒ©ã‚°è½ã¨ã—
 	TWSCRCODE_MAX,
 }TWSCRCODE;
 
-#define TW_SCRPROCWORK_SIZE (160)	//ƒXƒNƒŠƒvƒgƒ[ƒNƒTƒCƒY
+#define TW_SCRPROCWORK_SIZE (160)	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
 
 //==============================================================================
-//	define	tornworldŠO•”ƒf[ƒ^‚Æ‹¤’Ê
+//	define	tornworldå¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã¨å…±é€š
 //==============================================================================
 //--------------------------------------------------------------
-///	’nŒ`ƒ^ƒCƒv
+///	åœ°å½¢ã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
 enum
 {
@@ -558,7 +558,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	À•W”­“®©‹@ƒCƒxƒ“ƒgí—Ş
+///	åº§æ¨™ç™ºå‹•è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆç¨®é¡
 //--------------------------------------------------------------
 enum
 {
@@ -567,7 +567,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒ‚ƒfƒ‹ID
+///	ãƒ¢ãƒ‡ãƒ«ID
 //--------------------------------------------------------------
 enum
 {
@@ -600,7 +600,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒAƒjƒID
+///	ã‚¢ãƒ‹ãƒ¡ID
 //--------------------------------------------------------------
 enum
 {
@@ -613,7 +613,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	OBJí—Ş
+///	OBJç¨®é¡
 //--------------------------------------------------------------
 typedef enum
 {
@@ -646,7 +646,7 @@ typedef enum
 }TWOBJTYPE;
 
 //--------------------------------------------------------------
-///	OBJ‹¤—p¯•Ê
+///	OBJå…±ç”¨è­˜åˆ¥
 //--------------------------------------------------------------
 enum
 {
@@ -655,65 +655,65 @@ enum
 };
 
 //--------------------------------------------------------------
-///	3DOBJ•\¦”
+///	3DOBJè¡¨ç¤ºæ•°
 //--------------------------------------------------------------
 //#define TW_OBJ_MAX (64)
 #define TW_OBJ_MAX (34)
 
 //--------------------------------------------------------------
-///	”ò‚ÑÎ
+///	é£›ã³çŸ³
 //--------------------------------------------------------------
 #define FSTONE_FLAGNO_MAX (24)
 
 //--------------------------------------------------------------
-///	”z’uOBJ
+///	é…ç½®OBJ
 //--------------------------------------------------------------
 #define TW_PUTOBJ_MAX (8)
 
 //--------------------------------------------------------------
-///	”z’uƒtƒB[ƒ‹ƒhOBJ
+///	é…ç½®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ
 //--------------------------------------------------------------
 //#define TW_FLDOBJ_MAX (10)
-//OBJ‘‰Á‚É”º‚¢Å‘å”‘‰ÁBµ‘wNONDRAWx9‚È‚Ì‚ÅVRAMƒŠƒ\[ƒX‘‰Á‚Í–³‚¢B
+//OBJå¢—åŠ ã«ä¼´ã„æœ€å¤§æ•°å¢—åŠ ã€‚ä¸ƒå±¤NONDRAWx9ãªã®ã§VRAMãƒªã‚½ãƒ¼ã‚¹å¢—åŠ ã¯ç„¡ã„ã€‚
 #define TW_FLDOBJ_MAX (19)
 
 //--------------------------------------------------------------
-///	”j‚ê‚½¢ŠEƒCƒxƒ“ƒgƒtƒ‰ƒO MAX 32 
-///	”j‚ê‚½¢ŠE‚Ì’†‚Å‚Ì‚İ•Û‚³‚ê‚éƒCƒxƒ“ƒgƒtƒ‰ƒOB
-/// ”j‚ê‚½¢ŠE‚©‚ço‚é–‚ÅƒNƒŠƒA‚³‚ê‚éB
+///	ç ´ã‚ŒãŸä¸–ç•Œã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚° MAX 32 
+///	ç ´ã‚ŒãŸä¸–ç•Œã®ä¸­ã§ã®ã¿ä¿æŒã•ã‚Œã‚‹ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã€‚
+/// ç ´ã‚ŒãŸä¸–ç•Œã‹ã‚‰å‡ºã‚‹äº‹ã§ã‚¯ãƒªã‚¢ã•ã‚Œã‚‹ã€‚
 //--------------------------------------------------------------
 enum
 {
-	TWEVFLAGNO_ERROR = -1,				///<ƒGƒ‰[”»’è—p
+	TWEVFLAGNO_ERROR = -1,				///<ã‚¨ãƒ©ãƒ¼åˆ¤å®šç”¨
 	
-	TWEVFLAGNO_FALLROCK0_6 = 0,			///<00 Šâ—‚Æ‚µ0 6‘w‚É‘¶İ
-	TWEVFLAGNO_FALLROCK1_6,				///<01 Šâ—‚Æ‚µ1 6‘w‚É‘¶İ
-	TWEVFLAGNO_FALLROCK2_6,				///<02 Šâ—‚Æ‚µ2 6‘w‚É‘¶İ
-	TWEVFLAGNO_FALLROCK0_7,				///<03 Šâ—‚Æ‚µ0 7‘w‚É‘¶İ
-	TWEVFLAGNO_FALLROCK1_7,				///<04 Šâ—‚Æ‚µ1 7‘w‚É‘¶İ
-	TWEVFLAGNO_FALLROCK2_7,				///<05 Šâ—‚Æ‚µ2 7‘w‚É‘¶İ
-	TWEVFLAGNO_FALLROCK0_OK,			///<06 Šâ—‚Æ‚µ 0 OK
-	TWEVFLAGNO_FALLROCK1_OK,			///<07 Šâ—‚Æ‚µ 1 OK
-	TWEVFLAGNO_FALLROCK2_OK,			///<08 Šâ—‚Æ‚µ 2 OK
-	TWEVFLAGNO_GIRA_BARK,				///<09 ƒMƒ‰ƒeƒBƒi–i‚¦‚é
-	TWEVFLAGNO_0107YUKUSHIEV,		///<10 Šâ—‚Æ‚µƒ†ƒNƒV[“oêƒCƒxƒ“ƒgÏ‚İ
-	TWEVFLAGNO_0107AGUNOMUEV,		///<11 Šâ—‚Æ‚µƒAƒOƒmƒ€“oêƒCƒxƒ“ƒgÏ‚İ
-	TWEVFLAGNO_0107EMURITEV,		///<12 Šâ—‚Æ‚µƒGƒ€ƒŠƒbƒg“oêƒCƒxƒ“ƒgÏ‚İ
-	TWEVFLAGNO_0108YUKUSHI,				///<13 ‚V‘wƒ†ƒNƒV[ON
-	TWEVFLAGNO_0108AGUNOMU,				///<14 ‚V‘wƒAƒOƒmƒ€ON
-	TWEVFLAGNO_0108EMURIT,				///<15 ‚V‘wƒGƒ€ƒŠƒbƒgON
-	TWEVFLAGNO_0110STONEEV_END,			///<16 ”ª‘w[•””ò‚ÑÎoŒ»ƒCƒxƒ“ƒg
+	TWEVFLAGNO_FALLROCK0_6 = 0,			///<00 å²©è½ã¨ã—0 6å±¤ã«å­˜åœ¨
+	TWEVFLAGNO_FALLROCK1_6,				///<01 å²©è½ã¨ã—1 6å±¤ã«å­˜åœ¨
+	TWEVFLAGNO_FALLROCK2_6,				///<02 å²©è½ã¨ã—2 6å±¤ã«å­˜åœ¨
+	TWEVFLAGNO_FALLROCK0_7,				///<03 å²©è½ã¨ã—0 7å±¤ã«å­˜åœ¨
+	TWEVFLAGNO_FALLROCK1_7,				///<04 å²©è½ã¨ã—1 7å±¤ã«å­˜åœ¨
+	TWEVFLAGNO_FALLROCK2_7,				///<05 å²©è½ã¨ã—2 7å±¤ã«å­˜åœ¨
+	TWEVFLAGNO_FALLROCK0_OK,			///<06 å²©è½ã¨ã— 0 OK
+	TWEVFLAGNO_FALLROCK1_OK,			///<07 å²©è½ã¨ã— 1 OK
+	TWEVFLAGNO_FALLROCK2_OK,			///<08 å²©è½ã¨ã— 2 OK
+	TWEVFLAGNO_GIRA_BARK,				///<09 ã‚®ãƒ©ãƒ†ã‚£ãƒŠå ãˆã‚‹
+	TWEVFLAGNO_0107YUKUSHIEV,		///<10 å²©è½ã¨ã—ãƒ¦ã‚¯ã‚·ãƒ¼ç™»å ´ã‚¤ãƒ™ãƒ³ãƒˆæ¸ˆã¿
+	TWEVFLAGNO_0107AGUNOMUEV,		///<11 å²©è½ã¨ã—ã‚¢ã‚°ãƒãƒ ç™»å ´ã‚¤ãƒ™ãƒ³ãƒˆæ¸ˆã¿
+	TWEVFLAGNO_0107EMURITEV,		///<12 å²©è½ã¨ã—ã‚¨ãƒ ãƒªãƒƒãƒˆç™»å ´ã‚¤ãƒ™ãƒ³ãƒˆæ¸ˆã¿
+	TWEVFLAGNO_0108YUKUSHI,				///<13 ï¼—å±¤ãƒ¦ã‚¯ã‚·ãƒ¼ON
+	TWEVFLAGNO_0108AGUNOMU,				///<14 ï¼—å±¤ã‚¢ã‚°ãƒãƒ ON
+	TWEVFLAGNO_0108EMURIT,				///<15 ï¼—å±¤ã‚¨ãƒ ãƒªãƒƒãƒˆON
+	TWEVFLAGNO_0110STONEEV_END,			///<16 å…«å±¤æ·±éƒ¨é£›ã³çŸ³å‡ºç¾ã‚¤ãƒ™ãƒ³ãƒˆ
 	
-	TWEVFLAGNO_MAX,						///<Å‘å,–³Œø”»’è—p
+	TWEVFLAGNO_MAX,						///<æœ€å¤§,ç„¡åŠ¹åˆ¤å®šç”¨
 };
 
-///Šâ—‚Æ‚µ ‰Šú”z’uƒtƒ‰ƒO‚Ü‚Æ‚ß
+///å²©è½ã¨ã— åˆæœŸé…ç½®ãƒ•ãƒ©ã‚°ã¾ã¨ã‚
 #define TWEVFLAG_FALLROCK_6_ALL \
 	( (1<<TWEVFLAGNO_FALLROCK0_6)| \
 	  (1<<TWEVFLAGNO_FALLROCK1_6)| \
 	  (1<<TWEVFLAGNO_FALLROCK2_6) )
 
-///Šâ—‚Æ‚µ@U—ªÏ‚İ
+///å²©è½ã¨ã—ã€€æ”»ç•¥æ¸ˆã¿
 #define TWEVFLAG_FALLROCK_FINISH \
 	( (1<<TWEVFLAGNO_0107YUKUSHIEV) | \
 	  (1<<TWEVFLAGNO_0107AGUNOMUEV) | \
@@ -723,7 +723,7 @@ enum
 	  (1<<TWEVFLAGNO_FALLROCK2_OK) )
 	
 //--------------------------------------------------------------
-//	—‰ºÎID
+//	è½ä¸‹çŸ³ID
 //--------------------------------------------------------------
 enum
 {
@@ -733,7 +733,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒ][ƒ“•ÏXƒ^ƒCƒv@ƒ^ƒXƒN‚É‚Ä¯•Ê
+///	ã‚¾ãƒ¼ãƒ³å¤‰æ›´ã‚¿ã‚¤ãƒ—ã€€ã‚¿ã‚¹ã‚¯ã«ã¦è­˜åˆ¥
 //--------------------------------------------------------------
 enum
 {
@@ -743,38 +743,38 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒMƒ‰ƒeƒBƒi‰eê—p•ûŒü
+///	ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±å°‚ç”¨æ–¹å‘
 //--------------------------------------------------------------
 enum
 {
-	GIRAS_DIR_UP = 0,	//ã
-	GIRAS_DIR_DOWN,		//‰º
-	GIRAS_DIR_LEFT,		//¶
-	GIRAS_DIR_RIGHT,	//‰E
-	GIRAS_DIR_RISE,		//ã¸
+	GIRAS_DIR_UP = 0,	//ä¸Š
+	GIRAS_DIR_DOWN,		//ä¸‹
+	GIRAS_DIR_LEFT,		//å·¦
+	GIRAS_DIR_RIGHT,	//å³
+	GIRAS_DIR_RISE,		//ä¸Šæ˜‡
 	GIRAS_DIR_MAX,
 };
 
 //--------------------------------------------------------------
-///	ƒMƒ‰ƒeƒBƒi‰eSE¯•Ê
+///	ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±SEè­˜åˆ¥
 //--------------------------------------------------------------
 enum
 {
-	GIRAS_SE_OFF,		///<SE–³‚µ
-	GIRAS_SE_VOICE,		///<ƒ|ƒPƒ‚ƒ“ƒ{ƒCƒX
-	GIRAS_SE_FLIGHT,	///<”òs‰¹
+	GIRAS_SE_OFF,		///<SEç„¡ã—
+	GIRAS_SE_VOICE,		///<ãƒã‚±ãƒ¢ãƒ³ãƒœã‚¤ã‚¹
+	GIRAS_SE_FLIGHT,	///<é£›è¡ŒéŸ³
 };
 
 //--------------------------------------------------------------
-///	ƒMƒ‰ƒeƒBƒi‰e‚»‚Ì‘¼
+///	ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ãã®ä»–
 //--------------------------------------------------------------
-#define GIRAS_MOVE_VALUE (FX32_ONE*48)	///<ˆÚ“®‘¬“x
+#define GIRAS_MOVE_VALUE (FX32_ONE*48)	///<ç§»å‹•é€Ÿåº¦
 
 //==============================================================================
-//	Ú‘±Î
+//	æ¥ç¶šçŸ³
 //==============================================================================
 //--------------------------------------------------------------
-///	O‘w@ID
+///	ä¸‰å±¤ã€€ID
 //--------------------------------------------------------------
 enum
 {
@@ -788,7 +788,7 @@ enum
 	LPOSID0103_LIFT05,
 	LPOSID0103_LIFT06,
 	LPOSID0103_LIFT07,
-//	LPOSID0103_LIFT08,	dŠ|‚¯ŠÈˆÕ‰»‚É‚æ‚è”p~
+//	LPOSID0103_LIFT08,	ä»•æ›ã‘ç°¡æ˜“åŒ–ã«ã‚ˆã‚Šå»ƒæ­¢
 	
 	LPOSID0103_LIFT200,
 	LPOSID0103_LIFT201,
@@ -797,7 +797,7 @@ enum
 	LPOSID0103_LIFT204,
 	LPOSID0103_LIFT205,
 	LPOSID0103_LIFT206,
-#if 0					//dŠ|‚¯ŠÈˆÕ‰»‚É‚æ‚è”p~
+#if 0					//ä»•æ›ã‘ç°¡æ˜“åŒ–ã«ã‚ˆã‚Šå»ƒæ­¢
 	LPOSID0103_LIFT207,
 	LPOSID0103_LIFT208,
 #endif
@@ -806,7 +806,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	‚S‘w@ID
+///	ï¼”å±¤ã€€ID
 //--------------------------------------------------------------
 enum
 {
@@ -817,7 +817,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	‚T‘w@ID
+///	ï¼•å±¤ã€€ID
 //--------------------------------------------------------------
 enum
 {
@@ -827,7 +827,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	˜Z‘w@ID
+///	å…­å±¤ã€€ID
 //--------------------------------------------------------------
 enum
 {
@@ -885,7 +885,7 @@ typedef struct
 }TW_CLACT_SETDATA;
 
 //--------------------------------------------------------------
-///	PLTT\‘¢‘Ì
+///	PLTTæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -956,7 +956,7 @@ typedef struct
 }TW_FOG_WORK;
 
 //--------------------------------------------------------------
-///	TW_MDIDX tornworldŠO•”ƒf[ƒ^‚Æ‹¤’Ê tw_maptable
+///	TW_MDIDX tornworldå¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã¨å…±é€š tw_maptable
 //--------------------------------------------------------------
 typedef struct
 {
@@ -978,7 +978,7 @@ typedef struct
 }TW_MDATA_IDX;
 
 //--------------------------------------------------------------
-///	TW_GNDDATA	tornworldŠO•”ƒf[ƒ^‚Æ‹¤’Ê
+///	TW_GNDDATA	tornworldå¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã¨å…±é€š
 //--------------------------------------------------------------
 typedef struct
 {
@@ -990,28 +990,28 @@ typedef struct
 }TW_GNDDATA;
 
 //--------------------------------------------------------------
-///	TW_EVJUMPDATA	tornworldŠO•”ƒf[ƒ^‚Æ‹¤’Ê
+///	TW_EVJUMPDATA	tornworldå¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã¨å…±é€š
 //--------------------------------------------------------------
 typedef struct
 {
-	u16 type;						//ƒCƒxƒ“ƒgƒ^ƒCƒv
-	s16 dir;						//”­“®•ûŒü
-	int param;						//ƒpƒ‰ƒƒ^
-	TW_GRID_RECT_SIZE rect_size;	//ƒCƒxƒ“ƒg”­¶‹éŒ`
-	s16 gx_size;					//ƒOƒŠƒbƒhˆÚ“®—ÊX
-	s16 gy_size;					//ƒOƒŠƒbƒhˆÚ“®—ÊY
-	s16 gz_size;					//ƒOƒŠƒbƒhˆÚ“®—ÊZ
-	s16 rot_val;					//OBJ‰ñ“]—Ê 360
-	s16 frame;						//ƒOƒŠƒbƒhˆÚ“®ƒtƒŒ[ƒ€
-	u16 offs_vec_type;	//ƒIƒtƒZƒbƒg‚ğ‚©‚¯‚éƒxƒNƒgƒ‹ƒ^ƒCƒv
-	u16 offs_vec_flip;	//ƒIƒtƒZƒbƒg‚Ì”½“]
-	s16 dir_after;					//ˆÚ“®Œã‚ÌOBJ•ûŒü
-	s16 gnd_after;					//ˆÚ“®Œã‚Ì’…’n’n–Êƒ^ƒCƒv
-	u16 gndno_after;				//ˆÚ“®Œã‚Ì’…’n’n–Êƒf[ƒ^”Ô†
+	u16 type;						//ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+	s16 dir;						//ç™ºå‹•æ–¹å‘
+	int param;						//ãƒ‘ãƒ©ãƒ¡ã‚¿
+	TW_GRID_RECT_SIZE rect_size;	//ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”ŸçŸ©å½¢
+	s16 gx_size;					//ã‚°ãƒªãƒƒãƒ‰ç§»å‹•é‡X
+	s16 gy_size;					//ã‚°ãƒªãƒƒãƒ‰ç§»å‹•é‡Y
+	s16 gz_size;					//ã‚°ãƒªãƒƒãƒ‰ç§»å‹•é‡Z
+	s16 rot_val;					//OBJå›è»¢é‡ 360
+	s16 frame;						//ã‚°ãƒªãƒƒãƒ‰ç§»å‹•ãƒ•ãƒ¬ãƒ¼ãƒ 
+	u16 offs_vec_type;	//ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ã‹ã‘ã‚‹ãƒ™ã‚¯ãƒˆãƒ«ã‚¿ã‚¤ãƒ—
+	u16 offs_vec_flip;	//ã‚ªãƒ•ã‚»ãƒƒãƒˆã®åè»¢
+	s16 dir_after;					//ç§»å‹•å¾Œã®OBJæ–¹å‘
+	s16 gnd_after;					//ç§»å‹•å¾Œã®ç€åœ°åœ°é¢ã‚¿ã‚¤ãƒ—
+	u16 gndno_after;				//ç§»å‹•å¾Œã®ç€åœ°åœ°é¢ãƒ‡ãƒ¼ã‚¿ç•ªå·
 }TW_EVJUMPDATA;
 
 //--------------------------------------------------------------
-///	TW_CMACTDATA	tornworldŠO•”ƒf[ƒ^‚Æ‹¤’Ê
+///	TW_CMACTDATA	tornworldå¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã¨å…±é€š
 //--------------------------------------------------------------
 typedef struct
 {
@@ -1023,11 +1023,11 @@ typedef struct
 	s32 frame;
 }TW_CMACTDATA;
 
-///TW_CMACTDATA cm_*‚ğ0x10000’PˆÊ‚É•ÏŠ·
+///TW_CMACTDATA cm_*ã‚’0x10000å˜ä½ã«å¤‰æ›
 #define CMAD_V16(a) ((a)*0x100)
 
 //--------------------------------------------------------------
-//	TW_FSTONE_HEADER	tornworldŠO•”ƒf[ƒ^‚Æ‹¤’Ê
+//	TW_FSTONE_HEADER	tornworldå¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã¨å…±é€š
 //--------------------------------------------------------------
 typedef struct
 {
@@ -1037,7 +1037,7 @@ typedef struct
 }TW_FSTONE_HEADER;
 
 //--------------------------------------------------------------
-///	TW_FSTONE_PUTPOS	tornworldŠO•”ƒf[ƒ^‚Æ‹¤’Ê
+///	TW_FSTONE_PUTPOS	tornworldå¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã¨å…±é€š
 //--------------------------------------------------------------
 typedef struct
 {
@@ -1049,7 +1049,7 @@ typedef struct
 }TW_FSTONE_PUTPOS;
 
 //--------------------------------------------------------------
-///	TW_FSTONE_FLAGPOS	tornworldŠO•”ƒf[ƒ^‚Æ‹¤’Ê
+///	TW_FSTONE_FLAGPOS	tornworldå¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã¨å…±é€š
 //--------------------------------------------------------------
 typedef struct
 {
@@ -1158,9 +1158,9 @@ typedef struct
 typedef struct
 {
 	GF_CAMERA_PTR gfc_camera;
-	CAMERA_ANGLE angle;					//ƒJƒƒ‰‚ÌŠî–{ƒAƒ“ƒOƒ‹
-	CAMERA_ANGLE angle_offs;			//ƒAƒ“ƒOƒ‹ƒIƒtƒZƒbƒg
-	CAMERA_ANGLE angle_offs_true;		//ƒAƒ“ƒOƒ‹ƒIƒtƒZƒbƒg‚Ì^
+	CAMERA_ANGLE angle;					//ã‚«ãƒ¡ãƒ©ã®åŸºæœ¬ã‚¢ãƒ³ã‚°ãƒ«
+	CAMERA_ANGLE angle_offs;			//ã‚¢ãƒ³ã‚°ãƒ«ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	CAMERA_ANGLE angle_offs_true;		//ã‚¢ãƒ³ã‚°ãƒ«ã‚ªãƒ•ã‚»ãƒƒãƒˆã®çœŸ
 	
 	TW_CMACT_WORK action_work;
 	TCB_PTR tcb_action;
@@ -1245,8 +1245,8 @@ typedef struct
 	
 	u16 obj_code;
 	u16 obj_id;
-	FIELD_OBJ_PTR fldobj;	//“o˜^‚³‚ê‚Ä‚¢‚éê‡‚ÍŠÄ‹
-	BLACT_WORK_PTR blact;	//“o˜^‚³‚ê‚Ä‚¢‚éê‡‚Í‰ñ“]ˆ—‚ğs‚¤
+	FIELD_OBJ_PTR fldobj;	//ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ç›£è¦–
+	BLACT_WORK_PTR blact;	//ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹å ´åˆã¯å›è»¢å‡¦ç†ã‚’è¡Œã†
 }TW_OBJ_ROT_ACT_WORK;
 
 #if 0
@@ -1394,40 +1394,40 @@ typedef struct
 //--------------------------------------------------------------
 typedef struct
 {
-	u16 id;				//“®ìID
-	u16 next_id;		//Ÿ‚Ì“®ìID
+	u16 id;				//å‹•ä½œID
+	u16 next_id;		//æ¬¡ã®å‹•ä½œID
 	
-	s16 end_gx;			//ˆÚ“®—ÊI’[GX
-	s16 end_gy;			//ˆÚ“®—ÊI’[GY
-	s16 end_gz;			//ˆÚ“®—ÊI’[GZ
-	s16 chg_gx;			//Ø‚è‘Ö‚¦ˆÚ“®—ÊGX
-	s16 chg_gy;			//Ø‚è‘Ö‚¦ˆÚ“®—ÊGY
-	s16 chg_gz;			//Ø‚è‘Ö‚¦ˆÚ“®—ÊGZ
+	s16 end_gx;			//ç§»å‹•é‡çµ‚ç«¯GX
+	s16 end_gy;			//ç§»å‹•é‡çµ‚ç«¯GY
+	s16 end_gz;			//ç§»å‹•é‡çµ‚ç«¯GZ
+	s16 chg_gx;			//åˆ‡ã‚Šæ›¿ãˆç§»å‹•é‡GX
+	s16 chg_gy;			//åˆ‡ã‚Šæ›¿ãˆç§»å‹•é‡GY
+	s16 chg_gz;			//åˆ‡ã‚Šæ›¿ãˆç§»å‹•é‡GZ
 	
-	VecFx32 move_val;	//ˆÚ“®—Ê
+	VecFx32 move_val;	//ç§»å‹•é‡
 	
-	u16 zlink_mflag_on;	//ˆÚ“®ŒãAON‚É‚·‚éƒtƒ‰ƒO
-	u16 zlink_mflag_off;//ˆÚ“®ŒãAOFF‚É‚·‚éƒtƒ‰ƒO
+	u16 zlink_mflag_on;	//ç§»å‹•å¾Œã€ONã«ã™ã‚‹ãƒ•ãƒ©ã‚°
+	u16 zlink_mflag_off;//ç§»å‹•å¾Œã€OFFã«ã™ã‚‹ãƒ•ãƒ©ã‚°
 }LINKPOS_ZONECHGMOVEDATA;
 
 //--------------------------------------------------------------
-///	LINKPOS_DATA ƒ][ƒ“Ú‘±”z’uˆÊ’u
+///	LINKPOS_DATA ã‚¾ãƒ¼ãƒ³æ¥ç¶šé…ç½®ä½ç½®
 //--------------------------------------------------------------
 typedef struct
 {
-	u16 id;				//¯•ÊID
-	s16 gx;				//”z’uGX
-	s16 gy;				//”z’uGY
-	s16 gz;				//”z’uGZ
-	u16 mdata_id;		//“®ìID
-	u16 move_type;		//“®ìƒ^ƒCƒv
-	u32 zone_chg_id;	//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
-	u32 objtype;		//•\¦OBJƒ^ƒCƒv TWOBJTYPE
-	u32 zlink_mflag_off_stop; //—§‚Á‚Ä‚¢‚È‚¢ê‡‚Í’Ç‰Á‚ğ’â~‚·‚éZLINKMFLAG
+	u16 id;				//è­˜åˆ¥ID
+	s16 gx;				//é…ç½®GX
+	s16 gy;				//é…ç½®GY
+	s16 gz;				//é…ç½®GZ
+	u16 mdata_id;		//å‹•ä½œID
+	u16 move_type;		//å‹•ä½œã‚¿ã‚¤ãƒ—
+	u32 zone_chg_id;	//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
+	u32 objtype;		//è¡¨ç¤ºOBJã‚¿ã‚¤ãƒ— TWOBJTYPE
+	u32 zlink_mflag_off_stop; //ç«‹ã£ã¦ã„ãªã„å ´åˆã¯è¿½åŠ ã‚’åœæ­¢ã™ã‚‹ZLINKMFLAG
 }LINKPOS_DATA;
 
 //--------------------------------------------------------------
-///	TW_LINKPOS_ZONEDATA ƒ][ƒ“•ÊƒŠƒ“ƒNƒf[ƒ^
+///	TW_LINKPOS_ZONEDATA ã‚¾ãƒ¼ãƒ³åˆ¥ãƒªãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 typedef struct
 {
@@ -1472,9 +1472,9 @@ typedef struct
 //--------------------------------------------------------------
 typedef struct
 {
-	u32 zone_id;					///<‘ÎÛzone ID
-	u32 upper_zone_id;				///<ã‘wzone id
-	u32 lower_zone_id;				///<‰º‘wzone_id
+	u32 zone_id;					///<å¯¾è±¡zone ID
+	u32 upper_zone_id;				///<ä¸Šå±¤zone id
+	u32 lower_zone_id;				///<ä¸‹å±¤zone_id
 }TW_ZONE_LINKDATA;
 
 //--------------------------------------------------------------
@@ -1483,7 +1483,7 @@ typedef struct
 typedef struct
 {
 	u32 obj_id;
-	u16 obj_type;	//TWOBJTYPE_MAX==I’[
+	u16 obj_type;	//TWOBJTYPE_MAX==çµ‚ç«¯
 	s16 gx;
 	s16 gy;
 	s16 gz;
@@ -1528,7 +1528,7 @@ typedef struct
 }EOA_PUTOBJ_HEAD;
 
 //--------------------------------------------------------------
-///	ƒMƒ‰ƒeƒBƒi‰eƒtƒ‰ƒO
+///	ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ãƒ•ãƒ©ã‚°
 //--------------------------------------------------------------
 enum
 {
@@ -1541,15 +1541,15 @@ enum
 //--------------------------------------------------------------
 enum
 {
-	TWFLAGTYPE_NON,				//“Á‚É–³‚µ
-	TWFLAGTYPE_EV_OFF,			//”j‚ê‚½¢ŠEƒ[ƒJƒ‹ƒtƒ‰ƒO OFF
-	TWFLAGTYPE_EV_ON,			//”j‚ê‚½¢ŠEƒ[ƒJƒ‹ƒtƒ‰ƒO ON
-	TWFLAGTYPE_TWEVSEQ_EQ,		//”j‚ê‚½¢ŠETWEVSEQ ƒCƒR[ƒ‹
-	TWFLAGTYPE_TWEVSEQ_LOW,		//”j‚ê‚½¢ŠETWEVSEQ ’á‚¢
-	TWFLAGTYPE_TWEVSEQ_HI,		//”j‚ê‚½¢ŠETWEVSEQ ‚‚¢
-	TWFLAGTYPE_EVENT,			//ƒXƒNƒŠƒvƒg‚©‚ç‚Ì’Ç‰Á FLDOBJê—p
-	TWFLAGTYPE_GIRASFLAG_OFF,	//sysflag ƒMƒ‰ƒeƒBƒi‰eOFF
-	TWFLAGTYPE_AKAGI_FLAG_EQ,	//SYS_WORK_TW_AKAGI_APPEAR ƒCƒR[ƒ‹
+	TWFLAGTYPE_NON,				//ç‰¹ã«ç„¡ã—
+	TWFLAGTYPE_EV_OFF,			//ç ´ã‚ŒãŸä¸–ç•Œãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ãƒ©ã‚° OFF
+	TWFLAGTYPE_EV_ON,			//ç ´ã‚ŒãŸä¸–ç•Œãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ãƒ©ã‚° ON
+	TWFLAGTYPE_TWEVSEQ_EQ,		//ç ´ã‚ŒãŸä¸–ç•ŒTWEVSEQ ã‚¤ã‚³ãƒ¼ãƒ«
+	TWFLAGTYPE_TWEVSEQ_LOW,		//ç ´ã‚ŒãŸä¸–ç•ŒTWEVSEQ ä½ã„
+	TWFLAGTYPE_TWEVSEQ_HI,		//ç ´ã‚ŒãŸä¸–ç•ŒTWEVSEQ é«˜ã„
+	TWFLAGTYPE_EVENT,			//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ã®è¿½åŠ  FLDOBJå°‚ç”¨
+	TWFLAGTYPE_GIRASFLAG_OFF,	//sysflag ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±OFF
+	TWFLAGTYPE_AKAGI_FLAG_EQ,	//SYS_WORK_TW_AKAGI_APPEAR ã‚¤ã‚³ãƒ¼ãƒ«
 };
 
 enum
@@ -1564,9 +1564,9 @@ enum
 typedef struct
 {
 	u16 check_flag_type;		///<TWFLAGTYPE_NON
-	u16 check_flag;				///<check_flag_typeQÆ’l
-	u16 obj_rotate_flag;		///<OBJRotateİ’è TWFLDOBJ_ROT_OFF“™
-	u16 obj_rotate;				///<OBJRotateİ’è Šp“x0-359
+	u16 check_flag;				///<check_flag_typeå‚ç…§å€¤
+	u16 obj_rotate_flag;		///<OBJRotateè¨­å®š TWFLDOBJ_ROT_OFFç­‰
+	u16 obj_rotate;				///<OBJRotateè¨­å®š è§’åº¦0-359
 	FIELD_OBJ_H head;			///<FIELD_OBJ_H
 }TW_FLDOBJ_HEAD;
 
@@ -1634,8 +1634,8 @@ typedef struct
 //--------------------------------------------------------------
 ///	TW_SCR_PROC
 ///	tw	TORNWORLD_WORK
-///	seq_no	ˆ—ƒV[ƒPƒ“ƒX
-///	data	ˆ—ƒf[ƒ^
+///	seq_no	å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+///	data	å‡¦ç†ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 typedef PROCRET (*TW_SCR_PROC)( TORNWORLD_WORK *tw, GMEVENT_CONTROL *ev, u16 *seq_no, const void *data );
 
@@ -1687,7 +1687,7 @@ typedef struct
 }GIRASACT_WORK;
 
 //--------------------------------------------------------------
-///	TW_ZONECHG	¦‹Œ
+///	TW_ZONECHG	â€»æ—§
 //--------------------------------------------------------------
 typedef struct
 {
@@ -1707,7 +1707,7 @@ typedef struct
 //--------------------------------------------------------------
 typedef struct
 {
-	u32 chg_type;	//TWZONECHGTYPE_NON“™
+	u32 chg_type;	//TWZONECHGTYPE_NONç­‰
 	
 	u16 seq_no;
 	u16 list_count;
@@ -2351,11 +2351,11 @@ const PUTOBJ_ZONEDATA DATA_PutOBJZoneDataTbl[];
 const TW_FLDOBJ_ZONEDATA DATA_FldOBJZoneDataTbl[];
 
 //==============================================================================
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@ŒÄ‚Ño‚µ
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€å‘¼ã³å‡ºã—
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒZƒbƒgƒAƒbƒv
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -2375,25 +2375,25 @@ void FldTornWorld_Setup( FIELDSYS_WORK *fsys )
 	work->gmc_tw = gmc_tw;
 	fsys->fldmap->Work = work;
 	
-	//ƒfƒoƒbƒO•Ï”‰Šú‰»
+	//ãƒ‡ãƒãƒƒã‚°å¤‰æ•°åˆæœŸåŒ–
 	#ifdef DEBUG_TWORLD_CAPTURE
 	DebugTWorldCaptureFlag_StepVanish = FALSE;
 	DebugTWorldCaptureFlag_CloudStop = FALSE;
 	DebugTWorldCaptureFlag_BGVanish = FALSE;
 	#endif
 	
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ŠJ‚­
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«é–‹ã
 	tw_ArcHandleOpen( work );
 	
-	//ƒtƒ‰ƒO‰Šú‰»
+	//ãƒ•ãƒ©ã‚°åˆæœŸåŒ–
 	if( gmc_tw->init_flag == FALSE ){
 		tw_SaveDataEventFlagInit( work );
 	}
 	
-	//ƒ}ƒbƒvƒf[ƒ^‰Šú‰»
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	tw_MapDataInit( work );
 	
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	tw_GraphicInit( work );
 	tw_FldOBJParamInit( work );
 	tw_OBJRotateProc_Init( work, TW_OBJROT_MAX );
@@ -2412,31 +2412,31 @@ void FldTornWorld_Setup( FIELDSYS_WORK *fsys )
 	tw_ScrInit( work );
 	tw_ProcInit( work );
 	
-	//ƒ_ƒ~[ƒ}ƒbƒv‰Šú‰»
+	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—åˆæœŸåŒ–
 	tw_DmyMapInit( work );
 	tw_ZoneChangeTaskInit( work );
 	
-	//ƒŠƒ“ƒNˆÊ’u“Ç‚İ‚İ
+	//ãƒªãƒ³ã‚¯ä½ç½®èª­ã¿è¾¼ã¿
 	tw_LinkPosLoad( work );
 	
-	//‚»‚Ì‘¼
+	//ãã®ä»–
 	tw_EoaCloudSet( work, work->fsys->fes, &work->clact_set );
 	tw_GirasActInit( work );
 	FE_Kemuri_TornWorldON( work->fsys->fes );
 	
-	//Vƒuƒ‰ƒ“ƒNTCB‰Šú‰»
+	//Vãƒ–ãƒ©ãƒ³ã‚¯TCBåˆæœŸåŒ–
 	tw_VIntrTCBInit( work );
 	
-	//ƒZ[ƒuƒf[ƒ^@‰Šú‰»Š®—¹‚ğ¦‚·
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã€€åˆæœŸåŒ–å®Œäº†ã‚’ç¤ºã™
 	gmc_tw->init_flag = TRUE;
 	
-	//ƒfƒoƒbƒOo—Í
+	//ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›
 	DEBUG_twFldHeapPrintf();
 }
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@I—¹ˆ—
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€çµ‚äº†å‡¦ç†
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -2445,17 +2445,17 @@ void FldTornWorld_End( FIELDSYS_WORK *fsys )
 {
 	TORNWORLD_WORK *work = fsys->fldmap->Work;
 	
-	//Vƒuƒ‰ƒ“ƒNTCBíœ
+	//Vãƒ–ãƒ©ãƒ³ã‚¯TCBå‰Šé™¤
 	tw_VIntrTCBDelete( work );
 	
-	//‚»‚Ì‘¼íœ
+	//ãã®ä»–å‰Šé™¤
 	tw_GirasActDelete( work );
 	
-	//ƒ_ƒ~[ƒ}ƒbƒvíœ
+	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—å‰Šé™¤
 	tw_ZoneChangeTaskDelete( work );
 	tw_DmyMapDelete( work );
 	
-	//I—¹ˆ—
+	//çµ‚äº†å‡¦ç†
 	tw_ProcDelete( work );
 	tw_ScrDelete( work );
 	tw_LinkPosDelete( work );
@@ -2474,10 +2474,10 @@ void FldTornWorld_End( FIELDSYS_WORK *fsys )
 	tw_FldOBJParamDelete( work );
 	tw_GraphicDelete( work );
 	
-	//ƒ}ƒbƒvƒf[ƒ^íœ
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
 	tw_MapDataDelete( work );
 	
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹•Â‚¶‚é
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«é–‰ã˜ã‚‹
 	tw_ArcHandleClose( work );
 	
 	sys_FreeMemoryEz( work );
@@ -2486,7 +2486,7 @@ void FldTornWorld_End( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒ][ƒ“Ø‚è‘Ö‚¦
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  * @param	work	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -2494,262 +2494,262 @@ void FldTornWorld_End( FIELDSYS_WORK *fsys )
 #if 0
 static void tw_ZoneChange( TORNWORLD_WORK *work )
 {
-	//”ò‚ÑÎíœ
+	//é£›ã³çŸ³å‰Šé™¤
 	tw_FStoneDelete( work );
 	tw_SaveDataFStoneFlagSet( work, 0 );
 	
-	//Ú‘±Îíœ
+	//æ¥ç¶šçŸ³å‰Šé™¤
 	tw_LinkPosZoneIDDeleteAll( work, ZONE_ID_MAX );
 	
-	//ƒ}ƒbƒvƒf[ƒ^ƒŠƒZƒbƒg
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ãƒªã‚»ãƒƒãƒˆ
 	tw_MapDataReset( work );
 	
-	//”ò‚ÑÎ‰Šú‰»
+	//é£›ã³çŸ³åˆæœŸåŒ–
 	tw_FStoneInit( work );
 	
-	//V‹KÚ‘±Îİ’u
+	//æ–°è¦æ¥ç¶šçŸ³è¨­ç½®
 	tw_LinkPosLoadZoneID( work, ZONE_ID_MAX );
 	
-	//OBJƒŠƒ\[ƒXƒNƒŠ[ƒ“
+	//OBJãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	tw_OBJResDataClean( work );
 	
-	//ƒfƒoƒbƒOo—Í
+	//ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›
 	DEBUG_twFldHeapPrintf();
 }
 #endif
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒ][ƒ“Ø‚è‘Ö‚¦@‰º‘wˆÚ“®
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã€€ä¸‹å±¤ç§»å‹•
  * @param	work	TORNWORLD_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_ZoneChangeDown( TORNWORLD_WORK *work )
 {
-	u32 zone_id = twNowZoneID( work );	//Šù‚ÉˆÚ“®æ
+	u32 zone_id = twNowZoneID( work );	//æ—¢ã«ç§»å‹•å…ˆ
 	const TW_ZONE_LINKDATA *link = tw_ZoneLinkDataGet( zone_id );
 	
-	//”ò‚ÑÎíœ
+	//é£›ã³çŸ³å‰Šé™¤
 	tw_FStoneDeleteNow( work );
 	tw_SaveDataFStoneFlagSet( work, 0 );
 	
-	//PUTOBJíœ *ãˆÊ=‹Œƒ][ƒ“ID
+	//PUTOBJå‰Šé™¤ *ä¸Šä½=æ—§ã‚¾ãƒ¼ãƒ³ID
 	tw_PutOBJDeleteZoneID( work, link->upper_zone_id );
 	
-	//Ú‘±Îíœ *ãˆÊ=‹Œƒ][ƒ“ID
+	//æ¥ç¶šçŸ³å‰Šé™¤ *ä¸Šä½=æ—§ã‚¾ãƒ¼ãƒ³ID
 	tw_LinkPosZoneIDDeleteAll( work, link->upper_zone_id );
 	
-	//ƒtƒB[ƒ‹ƒhOBJíœ *ãˆÊ=‹Œƒ][ƒ“ID
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå‰Šé™¤ *ä¸Šä½=æ—§ã‚¾ãƒ¼ãƒ³ID
 	tw_FldOBJDeleteZoneID( work, link->upper_zone_id );
 	
-	//ƒ}ƒbƒvƒf[ƒ^ ‰º‘wƒ_ƒ~[‚ğŒ»İ‘w‚ÖˆÚs
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ ä¸‹å±¤ãƒ€ãƒŸãƒ¼ã‚’ç¾åœ¨å±¤ã¸ç§»è¡Œ
 	tw_MapDataRemoveLowerNow( work, link->lower_zone_id );
 	
-#if 1	//“]‘—•‰‰×‚ªh‚¢‚ª‚±‚¿‚ç‚ÉˆÚ‚·
-	//OBJƒŠƒ\[ƒXƒNƒŠ[ƒ“
+#if 1	//è»¢é€è² è·ãŒè¾›ã„ãŒã“ã¡ã‚‰ã«ç§»ã™
+	//OBJãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	tw_OBJResDataClean( work );
 #endif
 	
-	//‰º‘w”ò‚ÑÎ‰Šú‰»
+	//ä¸‹å±¤é£›ã³çŸ³åˆæœŸåŒ–
 	tw_FStoneInitLower( work );
 	
-	//PUTOBJİ’u
+	//PUTOBJè¨­ç½®
 	tw_PutOBJLoadZoneID( work, link->lower_zone_id );
 	
-	//V‹KÚ‘±Îİ’u
+	//æ–°è¦æ¥ç¶šçŸ³è¨­ç½®
 	tw_LinkPosLoadZoneID( work, link->lower_zone_id );
 	
-	//V‹KƒtƒB[ƒ‹ƒhOBJİ’u
+	//æ–°è¦ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¨­ç½®
 	tw_FldOBJLoadZoneID( work, link->lower_zone_id );
 	
-#if 0	//–{—ˆ‚±‚¿‚ç‚ª—Ç‚¢‚ªƒTƒCƒY‚ª‘«‚è‚È‚­‚È‚éB
-	//OBJƒŠƒ\[ƒXƒNƒŠ[ƒ“
+#if 0	//æœ¬æ¥ã“ã¡ã‚‰ãŒè‰¯ã„ãŒã‚µã‚¤ã‚ºãŒè¶³ã‚Šãªããªã‚‹ã€‚
+	//OBJãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	tw_OBJResDataClean( work );
 #endif
 	
-	//ƒfƒoƒbƒOo—Í
+	//ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›
 	DEBUG_twFldHeapPrintf();
 }
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒ][ƒ“Ø‚è‘Ö‚¦@ã‘wˆÚ“®
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã€€ä¸Šå±¤ç§»å‹•
  * @param	work	TORNWORLD_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_ZoneChangeUp( TORNWORLD_WORK *work )
 {
-	u32 zone_id = twNowZoneID( work );	//Šù‚ÉˆÚ“®æ
+	u32 zone_id = twNowZoneID( work );	//æ—¢ã«ç§»å‹•å…ˆ
 	const TW_ZONE_LINKDATA *link = tw_ZoneLinkDataGet( zone_id );
-	link = tw_ZoneLinkDataGet( link->lower_zone_id );	//‹ŒŒ»İ‘w
+	link = tw_ZoneLinkDataGet( link->lower_zone_id );	//æ—§ç¾åœ¨å±¤
 	
-	//”ò‚ÑÎíœ
+	//é£›ã³çŸ³å‰Šé™¤
 	tw_FStoneDeleteLower( work );
 	tw_SaveDataFStoneFlagSet( work, 0 );
 	
-	//PUTOBJíœ *‰º‘w=‹Œƒ][ƒ“ID
+	//PUTOBJå‰Šé™¤ *ä¸‹å±¤=æ—§ã‚¾ãƒ¼ãƒ³ID
 	tw_PutOBJDeleteZoneID( work, link->lower_zone_id );
 	
-	//Ú‘±Îíœ *‰º‘w=‹Œƒ][ƒ“ID
+	//æ¥ç¶šçŸ³å‰Šé™¤ *ä¸‹å±¤=æ—§ã‚¾ãƒ¼ãƒ³ID
 	tw_LinkPosZoneIDDeleteAll( work, link->lower_zone_id );
 	
-	//ƒtƒB[ƒ‹ƒhOBJíœ *‰º‘w=‹Œƒ][ƒ“ID
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå‰Šé™¤ *ä¸‹å±¤=æ—§ã‚¾ãƒ¼ãƒ³ID
 	tw_FldOBJDeleteZoneID( work, link->lower_zone_id );
 	
-	//ƒ}ƒbƒvƒf[ƒ^@‹ŒŒ»İ‘w‚ğ‰º‘wƒ_ƒ~[‚ÖˆÚs
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã€€æ—§ç¾åœ¨å±¤ã‚’ä¸‹å±¤ãƒ€ãƒŸãƒ¼ã¸ç§»è¡Œ
 	tw_MapDataRemoveNowLower( work, zone_id );
 	
-#if 1	//“]‘—•‰‰×‚ªh‚¢‚ª‚±‚¿‚ç‚ÉˆÚ‚·
-	//OBJƒŠƒ\[ƒXƒNƒŠ[ƒ“
+#if 1	//è»¢é€è² è·ãŒè¾›ã„ãŒã“ã¡ã‚‰ã«ç§»ã™
+	//OBJãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	tw_OBJResDataClean( work );
 #endif
 	
-	//Œ»İ‘w”ò‚ÑÎİ’u
+	//ç¾åœ¨å±¤é£›ã³çŸ³è¨­ç½®
 	tw_FStoneInitNow( work, TRUE );
 	
-	//V‹KPUTOBJİ’u
+	//æ–°è¦PUTOBJè¨­ç½®
 	tw_PutOBJLoadZoneID( work, zone_id );
 	
-	//V‹KÚ‘±Îİ’u
+	//æ–°è¦æ¥ç¶šçŸ³è¨­ç½®
 	tw_LinkPosLoadZoneID( work, zone_id );
 	
-	//V‹KƒtƒB[ƒ‹ƒhOBJ’Ç‰Á
+	//æ–°è¦ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¿½åŠ 
 	tw_FldOBJLoadZoneID( work, zone_id );
 	
-#if 0	//–{—ˆ‚±‚¿‚ç‚ª—Ç‚¢‚ªƒTƒCƒY‚ª‘«‚è‚È‚­‚È‚éB
-	//OBJƒŠƒ\[ƒXƒNƒŠ[ƒ“
+#if 0	//æœ¬æ¥ã“ã¡ã‚‰ãŒè‰¯ã„ãŒã‚µã‚¤ã‚ºãŒè¶³ã‚Šãªããªã‚‹ã€‚
+	//OBJãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	tw_OBJResDataClean( work );
 #endif
 	
-	//ƒfƒoƒbƒOo—Í
+	//ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›
 	DEBUG_twFldHeapPrintf();
 }
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒ][ƒ“Ø‚è‘Ö‚¦‚Å”­¶‚·‚éíœˆ—@‰º‘wˆÚ“®—p
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã§ç™ºç”Ÿã™ã‚‹å‰Šé™¤å‡¦ç†ã€€ä¸‹å±¤ç§»å‹•ç”¨
  * @param	work	TORNWORLD_WORK
- * @param	zone_id	íœ‚·‚ézone_id
+ * @param	zone_id	å‰Šé™¤ã™ã‚‹zone_id
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_ZoneChangeDeleteProcDown( TORNWORLD_WORK *work, u32 zone_id )
 {
-	//”ò‚ÑÎíœ
+	//é£›ã³çŸ³å‰Šé™¤
 	tw_FStoneDeleteNow( work );
 	tw_SaveDataFStoneFlagSet( work, 0 );
 	
-	//PUTOBJíœ *ãˆÊ=‹Œƒ][ƒ“ID
+	//PUTOBJå‰Šé™¤ *ä¸Šä½=æ—§ã‚¾ãƒ¼ãƒ³ID
 	tw_PutOBJDeleteZoneID( work, zone_id );
 	
-	//Ú‘±Îíœ *ãˆÊ=‹Œƒ][ƒ“ID
+	//æ¥ç¶šçŸ³å‰Šé™¤ *ä¸Šä½=æ—§ã‚¾ãƒ¼ãƒ³ID
 	tw_LinkPosZoneIDDeleteAll( work, zone_id );
 	
-	//ƒtƒB[ƒ‹ƒhOBJíœ *ãˆÊ=‹Œƒ][ƒ“ID
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå‰Šé™¤ *ä¸Šä½=æ—§ã‚¾ãƒ¼ãƒ³ID
 	tw_FldOBJDeleteZoneID( work, zone_id );
 	
-	#if 1	//“]‘—•‰‰×‚ªh‚¢‚ª‚±‚¿‚ç‚ÉˆÚ‚·
-	//OBJƒŠƒ\[ƒXƒNƒŠ[ƒ“
+	#if 1	//è»¢é€è² è·ãŒè¾›ã„ãŒã“ã¡ã‚‰ã«ç§»ã™
+	//OBJãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	tw_OBJResDataClean( work );
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒ][ƒ“Ø‚è‘Ö‚¦‚Å”­¶‚·‚é’Ç‰Áˆ—@‰º‘wˆÚ“®—p
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã§ç™ºç”Ÿã™ã‚‹è¿½åŠ å‡¦ç†ã€€ä¸‹å±¤ç§»å‹•ç”¨
  * @param	work	TORNWORLD_WORK
- * @param	zone_id	’Ç‰Á‚·‚ézone_id(V‹K‰º‘w
+ * @param	zone_id	è¿½åŠ ã™ã‚‹zone_id(æ–°è¦ä¸‹å±¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_ZoneChangeAddProcDown( TORNWORLD_WORK *work, u32 zone_id )
 {
-	//‰º‘w”ò‚ÑÎ‰Šú‰»
+	//ä¸‹å±¤é£›ã³çŸ³åˆæœŸåŒ–
 	tw_FStoneInitLower( work );
 	
-	//PUTOBJİ’u
+	//PUTOBJè¨­ç½®
 	tw_PutOBJLoadZoneID( work, zone_id );
 	
-	//V‹KÚ‘±Îİ’u
+	//æ–°è¦æ¥ç¶šçŸ³è¨­ç½®
 	tw_LinkPosLoadZoneID( work, zone_id );
 	
-	//V‹KƒtƒB[ƒ‹ƒhOBJİ’u
+	//æ–°è¦ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¨­ç½®
 	tw_FldOBJLoadZoneID( work, zone_id );
 	
-	#if 0	//–{—ˆ‚±‚¿‚ç‚ª—Ç‚¢‚ªƒTƒCƒY‚ª‘«‚è‚È‚­‚È‚éB
-	//OBJƒŠƒ\[ƒXƒNƒŠ[ƒ“
+	#if 0	//æœ¬æ¥ã“ã¡ã‚‰ãŒè‰¯ã„ãŒã‚µã‚¤ã‚ºãŒè¶³ã‚Šãªããªã‚‹ã€‚
+	//OBJãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	tw_OBJResDataClean( work );
 	#endif
 	
-	//ƒfƒoƒbƒOo—Í
+	//ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›
 	DEBUG_twFldHeapPrintf();
 }
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒ][ƒ“Ø‚è‘Ö‚¦‚Å”­¶‚·‚éíœˆ—@ã‘wˆÚ“®—p
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã§ç™ºç”Ÿã™ã‚‹å‰Šé™¤å‡¦ç†ã€€ä¸Šå±¤ç§»å‹•ç”¨
  * @param	work	TORNWORLD_WORK
- * @param	zone_id	íœ‚·‚ézone_id(‰º‘w
+ * @param	zone_id	å‰Šé™¤ã™ã‚‹zone_id(ä¸‹å±¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_ZoneChangeDeleteProcUp( TORNWORLD_WORK *work, u32 zone_id )
 {
-	//”ò‚ÑÎíœ
+	//é£›ã³çŸ³å‰Šé™¤
 	tw_FStoneDeleteLower( work );
 	tw_SaveDataFStoneFlagSet( work, 0 );
 	
-	//PUTOBJíœ
+	//PUTOBJå‰Šé™¤
 	tw_PutOBJDeleteZoneID( work, zone_id );
 	
-	//Ú‘±Îíœ *‰º‘w=‹Œƒ][ƒ“ID
+	//æ¥ç¶šçŸ³å‰Šé™¤ *ä¸‹å±¤=æ—§ã‚¾ãƒ¼ãƒ³ID
 	tw_LinkPosZoneIDDeleteAll( work, zone_id );
 	
-	//ƒtƒB[ƒ‹ƒhOBJíœ *‰º‘w=‹Œƒ][ƒ“ID
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå‰Šé™¤ *ä¸‹å±¤=æ—§ã‚¾ãƒ¼ãƒ³ID
 	tw_FldOBJDeleteZoneID( work, zone_id );
 	
-#if 1	//“]‘—•‰‰×‚ªh‚¢‚ª‚±‚¿‚ç‚ÉˆÚ‚·
-	//OBJƒŠƒ\[ƒXƒNƒŠ[ƒ“
+#if 1	//è»¢é€è² è·ãŒè¾›ã„ãŒã“ã¡ã‚‰ã«ç§»ã™
+	//OBJãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	tw_OBJResDataClean( work );
 #endif
 }
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒ][ƒ“Ø‚è‘Ö‚¦‚Å”­¶‚·‚é’Ç‰Áˆ—@ã‘wˆÚ“®—p
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã§ç™ºç”Ÿã™ã‚‹è¿½åŠ å‡¦ç†ã€€ä¸Šå±¤ç§»å‹•ç”¨
  * @param	work	TORNWORLD_WORK
- * @param	zone_id	’Ç‰Á‚·‚ézone_id(V‹Kã‘w
+ * @param	zone_id	è¿½åŠ ã™ã‚‹zone_id(æ–°è¦ä¸Šå±¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_ZoneChangeAddProcUp( TORNWORLD_WORK *work, u32 zone_id )
 {
-	//Œ»İ‘w”ò‚ÑÎİ’u
+	//ç¾åœ¨å±¤é£›ã³çŸ³è¨­ç½®
 	tw_FStoneInitNow( work, TRUE );
 	
-	//V‹KPUTOBJİ’u
+	//æ–°è¦PUTOBJè¨­ç½®
 	tw_PutOBJLoadZoneID( work, zone_id );
 	
-	//V‹KÚ‘±Îİ’u
+	//æ–°è¦æ¥ç¶šçŸ³è¨­ç½®
 	tw_LinkPosLoadZoneID( work, zone_id );
 	
-	//V‹KƒtƒB[ƒ‹ƒhOBJ’Ç‰Á
+	//æ–°è¦ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¿½åŠ 
 	tw_FldOBJLoadZoneID( work, zone_id );
 	
-#if 0	//–{—ˆ‚±‚¿‚ç‚ª—Ç‚¢‚ªƒTƒCƒY‚ª‘«‚è‚È‚­‚È‚éB
-	//OBJƒŠƒ\[ƒXƒNƒŠ[ƒ“
+#if 0	//æœ¬æ¥ã“ã¡ã‚‰ãŒè‰¯ã„ãŒã‚µã‚¤ã‚ºãŒè¶³ã‚Šãªããªã‚‹ã€‚
+	//OBJãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	tw_OBJResDataClean( work );
 #endif
 	
-	//ƒfƒoƒbƒOo—Í
+	//ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›
 	DEBUG_twFldHeapPrintf();
 }
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ŠJ‚­
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«é–‹ã
  * @param	work	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -2766,7 +2766,7 @@ static void tw_ArcHandleOpen( TORNWORLD_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹•Â‚¶‚é
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«é–‰ã˜ã‚‹
  * @param	work	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -2779,11 +2779,11 @@ static void tw_ArcHandleClose( TORNWORLD_WORK *work )
 }
 
 //==============================================================================
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒZ[ƒuƒf[ƒ^
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒtƒ‰ƒO‰Šú‰»@”j‚ê‚½¢ŠE‰‰ñ‰Šú‰»‚Ì‚İˆ—
+ * ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°åˆæœŸåŒ–ã€€ç ´ã‚ŒãŸä¸–ç•Œåˆå›åˆæœŸåŒ–ã®ã¿å‡¦ç†
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -2794,7 +2794,7 @@ static void tw_SaveDataEventFlagInit( TORNWORLD_WORK *tw )
 	EVENTWORK *ev = SaveData_GetEventWork( tw->fsys->savedata );
 	gmc_tw->event_flag = 0;
 	
-	{	//ƒ][ƒ“Ú‘±ˆÚ“®ƒtƒ‰ƒO‰Šú‰»
+	{	//ã‚¾ãƒ¼ãƒ³æ¥ç¶šç§»å‹•ãƒ•ãƒ©ã‚°åˆæœŸåŒ–
 		u32 flag = ZLINKMFLAG_INITFLAG;
 		if( twNowZoneID(tw) == ZONE_ID_D34R0109 ){
 			flag = ZLINKMFLAG_INITFLAG_08;
@@ -2802,14 +2802,14 @@ static void tw_SaveDataEventFlagInit( TORNWORLD_WORK *tw )
 		tw_SaveDataZLinkMoveFlagSet( tw, flag );
 	}
 	
-	#ifdef DEBUG_TW_FALLROCK_FINISH	//Šâ—‚Æ‚µU—ªÏ‚İ‚É
+	#ifdef DEBUG_TW_FALLROCK_FINISH	//å²©è½ã¨ã—æ”»ç•¥æ¸ˆã¿ã«
 	SysFlag_TornWorldRockFinish( ev, SYSFLAG_MODE_SET );
-	 #ifndef DEBUG_TW_FALLROCK_FINISH_EVENT //Šâ—‚Æ‚µU—ªŠ®—¹ƒCƒxƒ“ƒg‚ğŒ©‚é
+	 #ifndef DEBUG_TW_FALLROCK_FINISH_EVENT //å²©è½ã¨ã—æ”»ç•¥å®Œäº†ã‚¤ãƒ™ãƒ³ãƒˆã‚’è¦‹ã‚‹
 	 SysFlag_TornWorldRockLiftFlagSet( ev );
 	 #endif
 	#endif
 	
-	//Šâ—‚Æ‚µƒtƒ‰ƒO‰Šú‰»
+	//å²©è½ã¨ã—ãƒ•ãƒ©ã‚°åˆæœŸåŒ–
 	if( SysFlag_TornWorldRockFinish(ev,SYSFLAG_MODE_CHECK) == FALSE ){
 		gmc_tw->event_flag |= TWEVFLAG_FALLROCK_6_ALL;
 	}else{
@@ -2817,7 +2817,7 @@ static void tw_SaveDataEventFlagInit( TORNWORLD_WORK *tw )
 	}
 	
 	#ifndef DEBUG_TW_FALLROCK_FINISH
-	#ifdef DEBUG_TW_FALLROCK_7		//Šâ‘S‚Ä‚V‘w‚É—‚Æ‚µÏ‚İ
+	#ifdef DEBUG_TW_FALLROCK_7		//å²©å…¨ã¦ï¼—å±¤ã«è½ã¨ã—æ¸ˆã¿
 	gmc_tw->event_flag &= ~TWEVFLAG_FALLROCK_6_ALL;
 	
 	gmc_tw->event_flag |=
@@ -2833,7 +2833,7 @@ static void tw_SaveDataEventFlagInit( TORNWORLD_WORK *tw )
 	#endif
 	#endif
 	
-	#ifdef DEBUG_TW_GIRAS_FLAG_OFF		//ƒMƒ‰ƒeƒBƒi‰eoŒ»Ï‚İ
+	#ifdef DEBUG_TW_GIRAS_FLAG_OFF		//ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±å‡ºç¾æ¸ˆã¿
 	{
 		EVENTWORK *ev = SaveData_GetEventWork( tw->fsys->savedata );
 		SysFlag_TornWorldGirasFlag(ev,SYSFLAG_MODE_SET,GIRASFLAG_0500);
@@ -2841,26 +2841,26 @@ static void tw_SaveDataEventFlagInit( TORNWORLD_WORK *tw )
 	}
 	#endif
 	
-	#ifdef DEBUG_TW_FLAG_INIT			//ƒfƒoƒbƒO—p‰Šú‰»
+	#ifdef DEBUG_TW_FLAG_INIT			//ãƒ‡ãƒãƒƒã‚°ç”¨åˆæœŸåŒ–
 	{
-		//Å‰‚©‚ç
+		//æœ€åˆã‹ã‚‰
 //		SysWork_TornWorldEventSeqNoSet( ev, TWEVSEQ_01_00 );
-		//ƒVƒƒiO‘w‚É‘¶İ
+		//ã‚·ãƒ­ãƒŠä¸‰å±¤ã«å­˜åœ¨
 //		SysWork_TornWorldEventSeqNoSet( ev, TWEVSEQ_03_00 );
-		//‚V‘wŠâ—‚Æ‚µŠJn
+		//ï¼—å±¤å²©è½ã¨ã—é–‹å§‹
 		SysWork_TornWorldEventSeqNoSet( ev, TWEVSEQ_04_00 );
-		//‚S‘wƒAƒJƒMƒCƒxƒ“ƒgŒ©‚ê‚é
+		//ï¼”å±¤ã‚¢ã‚«ã‚®ã‚¤ãƒ™ãƒ³ãƒˆè¦‹ã‚Œã‚‹
 //		SysWork_TornWorldEventSeqNoSet( ev, TWEVSEQ_03_01 );
-		//Šâ—‚Æ‚µU—ªŒã‚ÌƒVƒƒiƒXƒgƒbƒp[‰ğœ–Ú‘O
+		//å²©è½ã¨ã—æ”»ç•¥å¾Œã®ã‚·ãƒ­ãƒŠã‚¹ãƒˆãƒƒãƒ‘ãƒ¼è§£é™¤ç›®å‰
 //		SysWork_TornWorldEventSeqNoSet( ev, TWEVSEQ_07_00 );
-		//Å‰º‘wƒCƒxƒ“ƒg–Ú‘O
+		//æœ€ä¸‹å±¤ã‚¤ãƒ™ãƒ³ãƒˆç›®å‰
 //		SysWork_TornWorldEventSeqNoSet( ev, TWEVSEQ_08_02 );
 	}
 	#endif
 	
 	#ifdef	DEBUG_TW_SCENE_NOHARA_CHECK		//for nohara
 	{
-		//Å‰º‘wƒCƒxƒ“ƒg–Ú‘O
+		//æœ€ä¸‹å±¤ã‚¤ãƒ™ãƒ³ãƒˆç›®å‰
 		SysWork_TornWorldEventSeqNoSet( ev, TWEVSEQ_08_02 );
 	}
 	#endif
@@ -2868,11 +2868,11 @@ static void tw_SaveDataEventFlagInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒƒ‰ƒIƒtƒZƒbƒgŠp“x‚ÌƒZ[ƒu
+ * ã‚«ãƒ¡ãƒ©ã‚ªãƒ•ã‚»ãƒƒãƒˆè§’åº¦ã®ã‚»ãƒ¼ãƒ–
  * @param	tw	TORNWORLD_WORK
- * @param	x	ƒJƒƒ‰Šp“x
- * @param	y	ƒJƒƒ‰Šp“x
- * @param	z	ƒJƒƒ‰Šp“x
+ * @param	x	ã‚«ãƒ¡ãƒ©è§’åº¦
+ * @param	y	ã‚«ãƒ¡ãƒ©è§’åº¦
+ * @param	z	ã‚«ãƒ¡ãƒ©è§’åº¦
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2887,11 +2887,11 @@ static void tw_SaveDataCameraAngleSet(
 
 //--------------------------------------------------------------
 /**
- * ƒJƒƒ‰ƒIƒtƒZƒbƒgŠp“x‚Ìæ“¾
+ * ã‚«ãƒ¡ãƒ©ã‚ªãƒ•ã‚»ãƒƒãƒˆè§’åº¦ã®å–å¾—
  * @param	tw	TORNWORLD_WORK
- * @param	x	ƒJƒƒ‰Šp“x
- * @param	y	ƒJƒƒ‰Šp“x
- * @param	z	ƒJƒƒ‰Šp“x
+ * @param	x	ã‚«ãƒ¡ãƒ©è§’åº¦
+ * @param	y	ã‚«ãƒ¡ãƒ©è§’åº¦
+ * @param	z	ã‚«ãƒ¡ãƒ©è§’åº¦
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2906,9 +2906,9 @@ static void tw_SaveDataCameraAngleGet(
 
 //--------------------------------------------------------------
 /**
- * ‰Šú‰»Ï‚İ‚©‚Ç‚¤‚©
+ * åˆæœŸåŒ–æ¸ˆã¿ã‹ã©ã†ã‹
  * @param	tw	TORNWORLD_WORK
- * @retval	BOOL	TRUE=Ï‚İ
+ * @retval	BOOL	TRUE=æ¸ˆã¿
  */
 //--------------------------------------------------------------
 static BOOL tw_SaveDataInitFinishCheck( TORNWORLD_WORK *tw )
@@ -2919,7 +2919,7 @@ static BOOL tw_SaveDataInitFinishCheck( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒtƒ‰ƒOƒZƒbƒg
+ * é£›ã³çŸ³ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -2936,9 +2936,9 @@ static void tw_SaveDataFStoneFlagSet( TORNWORLD_WORK *tw, u32 flag )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒtƒ‰ƒOæ“¾
+ * é£›ã³çŸ³ãƒ•ãƒ©ã‚°å–å¾—
  * @param	tw	TORNWORLD_WORK
- * @retval	u16	”ò‚ÑÎƒtƒ‰ƒO
+ * @retval	u16	é£›ã³çŸ³ãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static u32 tw_SaveDataFStoneFlagGet( TORNWORLD_WORK *tw )
@@ -2952,9 +2952,9 @@ static u32 tw_SaveDataFStoneFlagGet( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ˆÚ“®ƒtƒ‰ƒO—§‚Ä@ƒrƒbƒgƒZƒbƒg
+ * ã‚¾ãƒ¼ãƒ³ç§»å‹•ãƒ•ãƒ©ã‚°ç«‹ã¦ã€€ãƒ“ãƒƒãƒˆã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
- * @param	flag	ZLINKMFLAG_0102“™(No->ƒtƒ‰ƒO‰»‚³‚ê‚Ä‚¢‚é–
+ * @param	flag	ZLINKMFLAG_0102ç­‰(No->ãƒ•ãƒ©ã‚°åŒ–ã•ã‚Œã¦ã„ã‚‹äº‹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2966,9 +2966,9 @@ static void tw_SaveDataZLinkMoveFlagSet( TORNWORLD_WORK *tw, u32 flag )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ˆÚ“®ƒtƒ‰ƒO—§‚Ä
+ * ã‚¾ãƒ¼ãƒ³ç§»å‹•ãƒ•ãƒ©ã‚°ç«‹ã¦
  * @param	tw	TORNWORLD_WORK
- * @param	flag	ZLINKMFLAG_0102“™
+ * @param	flag	ZLINKMFLAG_0102ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2981,9 +2981,9 @@ static void tw_SaveDataZLinkMoveFlagON( TORNWORLD_WORK *tw, u32 flag )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ˆÚ“®ƒtƒ‰ƒO—‚Æ‚µ
+ * ã‚¾ãƒ¼ãƒ³ç§»å‹•ãƒ•ãƒ©ã‚°è½ã¨ã—
  * @param	tw	TORNWORLD_WORK
- * @param	flag	ZLINKMFLAG_0102“™
+ * @param	flag	ZLINKMFLAG_0102ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2996,10 +2996,10 @@ static void tw_SaveDataZLinkMoveFlagOFF( TORNWORLD_WORK *tw, u32 flag )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ˆÚ“®ƒtƒ‰ƒOƒ`ƒFƒbƒN
+ * ã‚¾ãƒ¼ãƒ³ç§»å‹•ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
- * @param	flag	ZLINKMFLAG_0102“™
- * @retval	BOOL	TRUE=flag—§‚Á‚Ä‚¢‚é
+ * @param	flag	ZLINKMFLAG_0102ç­‰
+ * @retval	BOOL	TRUE=flagç«‹ã£ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_SaveDataZLinkMoveFlagCheck( TORNWORLD_WORK *tw, u32 flag )
@@ -3014,7 +3014,7 @@ static BOOL tw_SaveDataZLinkMoveFlagCheck( TORNWORLD_WORK *tw, u32 flag )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠEƒCƒxƒ“ƒgƒtƒ‰ƒO ON
+ * ç ´ã‚ŒãŸä¸–ç•Œã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚° ON
  * @param	tw		TORNWORLD_WORK
  * @param	flag_no	TWEVFLAGNO_MAX
  * @retval	nothing
@@ -3029,7 +3029,7 @@ static void tw_SaveDataEventFlagON( TORNWORLD_WORK *tw, u32 flag_no )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠEƒCƒxƒ“ƒgƒtƒ‰ƒO OFF
+ * ç ´ã‚ŒãŸä¸–ç•Œã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚° OFF
  * @param	tw		TORNWORLD_WORK
  * @param	flag_no	TWEVFLAGNO_MAX
  * @retval	nothing
@@ -3044,7 +3044,7 @@ static void tw_SaveDataEventFlagOFF( TORNWORLD_WORK *tw, u32 flag_no )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠEƒCƒxƒ“ƒgƒtƒ‰ƒO Check
+ * ç ´ã‚ŒãŸä¸–ç•Œã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚° Check
  * @param	tw		TORNWORLD_WORK
  * @param	flag_no	TWEVFLAGNO_MAX
  * @retval	BOOL	TRUE=hit
@@ -3062,9 +3062,9 @@ static BOOL tw_SaveDataEventFlagCheck( TORNWORLD_WORK *tw, u32 flag_no )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE“Áê’nŒ`”Ô†ƒZƒbƒg
+ * ç ´ã‚ŒãŸä¸–ç•Œç‰¹æ®Šåœ°å½¢ç•ªå·ã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
- * @param	no	“Áê”Ô†
+ * @param	no	ç‰¹æ®Šç•ªå·
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3077,9 +3077,9 @@ static void tw_SaveDataSpGroundNoSet( TORNWORLD_WORK *tw, u32 no )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE“Áê’nŒ`”Ô†æ“¾
+ * ç ´ã‚ŒãŸä¸–ç•Œç‰¹æ®Šåœ°å½¢ç•ªå·å–å¾—
  * @param	tw	TORNWORLD_WORK
- * @retval	u32 “Áê’nŒ`”Ô†
+ * @retval	u32 ç‰¹æ®Šåœ°å½¢ç•ªå·
  */
 //--------------------------------------------------------------
 static u32 tw_SaveDataSpGroundNoGet( TORNWORLD_WORK *tw )
@@ -3091,9 +3091,9 @@ static u32 tw_SaveDataSpGroundNoGet( TORNWORLD_WORK *tw )
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ˆÚ“®@“Á’èŠK‘w“’…‚É‹­§‘€ì‚·‚éƒŠƒtƒgƒtƒ‰ƒO‚Ü‚Æ‚ß
+ * ã‚¾ãƒ¼ãƒ³ç§»å‹•ã€€ç‰¹å®šéšå±¤åˆ°ç€æ™‚ã«å¼·åˆ¶æ“ä½œã™ã‚‹ãƒªãƒ•ãƒˆãƒ•ãƒ©ã‚°ã¾ã¨ã‚
  * @param	tw	TORNWORLD_WORK
- * @param	id	ƒŠƒtƒgˆÚ“®“®ìID ZCHG_MID_Z0101_1_2“™
+ * @param	id	ãƒªãƒ•ãƒˆç§»å‹•å‹•ä½œID ZCHG_MID_Z0101_1_2ç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3110,17 +3110,17 @@ static void tw_SaveDataZLinkMoveFlagZoneForceSet(
 #endif
 
 //==============================================================================
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@“–‚½‚è”»’è
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€å½“ãŸã‚Šåˆ¤å®š
 //==============================================================================
 //---------------------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢ “–‚½‚è”»’è
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inGridX		ƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ		ƒOƒŠƒbƒhZÀ•W
- * @param	inHeight	‚‚³
- * @param	outHit		”»’èŒ‹‰Ê	TRUE:ƒqƒbƒg	FALSE:ƒqƒbƒg‚µ‚Ä‚È‚¢
- * @return	BOOL		TRUE:‚±‚Ì‚ ‚Æ’Êí“–‚½‚è”»’è‚ğs‚í‚È‚¢	FALSE:’Êí“–‚½‚è”»’è‚ğs‚¤
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ å½“ãŸã‚Šåˆ¤å®š
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inGridX		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inHeight	é«˜ã•
+ * @param	outHit		åˆ¤å®šçµæœ	TRUE:ãƒ’ãƒƒãƒˆ	FALSE:ãƒ’ãƒƒãƒˆã—ã¦ãªã„
+ * @return	BOOL		TRUE:ã“ã®ã‚ã¨é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã‚ãªã„	FALSE:é€šå¸¸å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  */
 //---------------------------------------------------------------------------
 BOOL FldTornWorld_HitCheck( FIELDSYS_WORK *fsys,
@@ -3130,12 +3130,12 @@ BOOL FldTornWorld_HitCheck( FIELDSYS_WORK *fsys,
 	TORNWORLD_WORK *tw = fsys->fldmap->Work;
 	u32 zone_id = twNowZoneID( tw );
 	
-	if( zone_id == ZONE_ID_D34R0110 ){			//ƒ][ƒ“‘JˆÚˆÊ’u
+	if( zone_id == ZONE_ID_D34R0110 ){			//ã‚¾ãƒ¼ãƒ³é·ç§»ä½ç½®
 		if( gx == 15 && gz == 26 ){
 			*outHit = TRUE;
 			return( TRUE );
 		}
-	}else if( zone_id == ZONE_ID_D34R0109 ){	//ƒ][ƒ“‘JˆÚˆÊ’u
+	}else if( zone_id == ZONE_ID_D34R0109 ){	//ã‚¾ãƒ¼ãƒ³é·ç§»ä½ç½®
 		if( gx == 89 && gz == 56 ){
 			*outHit = TRUE;
 			return( TRUE );
@@ -3147,11 +3147,11 @@ BOOL FldTornWorld_HitCheck( FIELDSYS_WORK *fsys,
 }
 
 //==============================================================================
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@í’“ˆ—
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€å¸¸é§å‡¦ç†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@í’“ˆ—@‰Šú‰»
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€å¸¸é§å‡¦ç†ã€€åˆæœŸåŒ–
  * @param	work	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -3162,13 +3162,13 @@ static void tw_ProcInit( TORNWORLD_WORK *work )
 	TW_PROC_WORK *pwk = &work->proc_work;
 	memset( pwk, 0, sizeof(TW_PROC_WORK) );
 	pri = FieldOBJSys_TCBStandardPriorityGet( work->fsys->fldobjsys );
-	pri += FLDOBJ_TCBPRI_OFFS_AFTER; //field obj‚æ‚èŒã
+	pri += FLDOBJ_TCBPRI_OFFS_AFTER; //field objã‚ˆã‚Šå¾Œ
 	pwk->tcb_proc = TCB_Add( tw_ProcTcb, work, pri );
 }
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@í’“ˆ—@íœ
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€å¸¸é§å‡¦ç†ã€€å‰Šé™¤
  * @param	work	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -3183,7 +3183,7 @@ static void tw_ProcDelete( TORNWORLD_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@í’“ˆ—@TCB
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€å¸¸é§å‡¦ç†ã€€TCB
  * @param	tcb	TCB_PTR
  * @param	wk	tcb work
  * @retval	nothing
@@ -3194,11 +3194,11 @@ static void tw_ProcTcb( TCB_PTR tcb, void *wk )
 	TORNWORLD_WORK *tw = wk;
 	TW_PROC_WORK *pwk = &tw->proc_work;
 	
-	{	//OBJ‰ñ“]ˆ—
+	{	//OBJå›è»¢å‡¦ç†
 		tw_OBJRotateProcTcbCall( tw );
 	}
 	
-	{	//ƒpƒŒƒbƒg
+	{	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 		#ifndef TORNWORLD_PLTT_FADE_OFF
 		tw_PlttProc( tw );
 		#endif
@@ -3248,7 +3248,7 @@ static void tw_ProcTcb( TCB_PTR tcb, void *wk )
 				int z = FieldOBJ_NowPosGZ_Get( fldobj );
 				int dir = FieldOBJ_DirMoveGet( fldobj );
 				
-				OS_Printf("©‹@Œ»İÀ•W GX=%d,GY=%d,GZ=%d, •ûŒü ",x,y,z);
+				OS_Printf("è‡ªæ©Ÿç¾åœ¨åº§æ¨™ GX=%d,GY=%d,GZ=%d, æ–¹å‘ ",x,y,z);
 				
 				switch( dir ){
 				case DIR_UP: OS_Printf( "UP\n" ); break;
@@ -3258,13 +3258,13 @@ static void tw_ProcTcb( TCB_PTR tcb, void *wk )
 				}
 				
 				FieldOBJ_VecPosGet( fldobj, &pos );
-				OS_Printf( "©‹@ÀÀ•W X=%xH(%d),Y=%xH(%d),Z=%xH(%d)\n",
+				OS_Printf( "è‡ªæ©Ÿå®Ÿåº§æ¨™ X=%xH(%d),Y=%xH(%d),Z=%xH(%d)\n",
 					pos.x, SIZE_GRID_FX32(pos.x),
 					pos.y, SIZE_GRID_FX32(pos.y),
 					pos.z, SIZE_GRID_FX32(pos.z) );
 				
 				Player_TwThinkDirPosGet( jiki, dir, &x, &y, &z );
-				OS_Printf( "‘O•ûÀ•W GX=%d,GY=%d,GZ=%d, ", x, y, z );
+				OS_Printf( "å‰æ–¹åº§æ¨™ GX=%d,GY=%d,GZ=%d, ", x, y, z );
 				
 				attr = Player_TwThinkAttrGet( jiki, x, y, z );
 				OS_Printf( "Attr 0x%02xH\n", attr );
@@ -3277,7 +3277,7 @@ static void tw_ProcTcb( TCB_PTR tcb, void *wk )
 	#endif
 }
 
-#if 0	//‹Œ
+#if 0	//æ—§
 static void tw_ProcTcb( TCB_PTR tcb, void *wk )
 {
 	TORNWORLD_WORK *work = wk;
@@ -3338,11 +3338,11 @@ static void tw_ProcTcb( TCB_PTR tcb, void *wk )
 #endif
 
 //==============================================================================
-//	”j‚ê‚½¢ŠE@Vƒuƒ‰ƒ“ƒNTCB
+//	ç ´ã‚ŒãŸä¸–ç•Œã€€Vãƒ–ãƒ©ãƒ³ã‚¯TCB
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@Vƒuƒ‰ƒ“ƒNTCB‰Šú‰»
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€Vãƒ–ãƒ©ãƒ³ã‚¯TCBåˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -3355,7 +3355,7 @@ static void tw_VIntrTCBInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@Vƒuƒ‰ƒ“ƒNTCBíœ
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€Vãƒ–ãƒ©ãƒ³ã‚¯TCBå‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -3369,7 +3369,7 @@ static void tw_VIntrTCBDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@Vƒuƒ‰ƒ“ƒNTCB
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€Vãƒ–ãƒ©ãƒ³ã‚¯TCB
  * @param	tcb	TCB_PTR
  * @param	wk	tcb work
  * @retval	nothing
@@ -3383,18 +3383,18 @@ static void tw_VIntrTCB( TCB_PTR tcb, void *wk )
 }
 
 //==============================================================================
-//	”j‚ê‚½¢ŠE@ƒOƒ‰ƒtƒBƒbƒN
+//	ç ´ã‚ŒãŸä¸–ç•Œã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_GraphicInit( TORNWORLD_WORK *tw )
 {
-	{	//ƒGƒbƒWƒJƒ‰[‰Šú‰»
+	{	//ã‚¨ãƒƒã‚¸ã‚«ãƒ©ãƒ¼åˆæœŸåŒ–
 		int i;
 		for( i = 0; i < TW_EDGE_COLOR_MAX; i++ ){
 			tw->edge_color_tbl[i] =
@@ -3409,7 +3409,7 @@ static void tw_GraphicInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -3420,7 +3420,7 @@ static void tw_GraphicDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½‚¹‚©‚¢@w’è‚³‚ê‚½ƒGƒbƒW”Ô†‚ÌƒJƒ‰[İ’è
+ * ç ´ã‚ŒãŸã›ã‹ã„ã€€æŒ‡å®šã•ã‚ŒãŸã‚¨ãƒƒã‚¸ç•ªå·ã®ã‚«ãƒ©ãƒ¼è¨­å®š
  * @param	tw	TORNWORLD_WORK
  * @param	no 0-7
  * @param	col	GX_RGB
@@ -3435,7 +3435,7 @@ static void tw_GrapEdgeColorSet( TORNWORLD_WORK *tw, u32 no, u32 col )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½‚¹‚©‚¢@w’èƒ|ƒŠƒSƒ“ID‚É‘Î‰‚µ‚½ƒGƒbƒWƒJƒ‰|æ“¾
+ * ç ´ã‚ŒãŸã›ã‹ã„ã€€æŒ‡å®šãƒãƒªã‚´ãƒ³IDã«å¯¾å¿œã—ãŸã‚¨ãƒƒã‚¸ã‚«ãƒ©âˆ’å–å¾—
  * @param	tw	TORNWORLD_WORK
  * @param	no 0-7
  * @retval	GXRgb GX_RGB
@@ -3447,11 +3447,11 @@ static GXRgb tw_GrapEdgeColorGet( TORNWORLD_WORK *tw, u32 no )
 }
 
 //==============================================================================
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒtƒB[ƒ‹ƒhOBJ
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@ƒtƒB[ƒ‹ƒhOBJ@‰Šú‰»
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -3463,7 +3463,7 @@ static void tw_FldOBJParamInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@ƒtƒB[ƒ‹ƒhOBJ@‰Šú‰»
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -3473,11 +3473,11 @@ static void tw_FldOBJParamDelete( TORNWORLD_WORK *tw )
 }
 
 //==============================================================================
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒJƒƒ‰
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚«ãƒ¡ãƒ©
 //==============================================================================
 //--------------------------------------------------------------
 /*
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒJƒƒ‰”½‰f
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚«ãƒ¡ãƒ©åæ˜ 
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -3503,7 +3503,7 @@ void FldTornWorld_CameraUpdate( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒJƒƒ‰Šp“x‚ğŠî–{‚É–ß‚·
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚«ãƒ¡ãƒ©è§’åº¦ã‚’åŸºæœ¬ã«æˆ»ã™
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -3524,7 +3524,7 @@ void FldTornWorld_CameraDefaultSet( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒJƒƒ‰‰Šú‰»
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -3557,7 +3557,7 @@ static void tw_CameraInit( TORNWORLD_WORK *tw )
 		GFC_SetCameraAngleRev( &cmp.Angle, work->gfc_camera );
 		GFC_SetCameraPerspWay( cmp.PerspWay, work->gfc_camera );
 		GFC_SetCameraView( cmp.View, work->gfc_camera );
-	//	GFC_SetCameraView( 0, work->gfc_camera );	//“§‹Ë‰e
+	//	GFC_SetCameraView( 0, work->gfc_camera );	//é€è¦–å°„å½±
 	}
 	
 	GFC_SetCameraClip( TWCM_CLIP_NEAR, TWCM_CLIP_FAR, work->gfc_camera );
@@ -3584,7 +3584,7 @@ static void tw_CameraInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒJƒƒ‰íœ
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚«ãƒ¡ãƒ©å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -3606,7 +3606,7 @@ static void tw_CameraDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * À•W‹N“®ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“@ƒJƒƒ‰‘€ì TCB
+ * åº§æ¨™èµ·å‹•ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã€€ã‚«ãƒ¡ãƒ©æ“ä½œ TCB
  * @param	tcb	TCB_PTR
  * @param	wk	tcb work TORNWORLD_WORK
  * @retval	nothing
@@ -3640,10 +3640,10 @@ static void tw_CameraActionTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * À•W‹N“®ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“@ƒZƒbƒg
+ * åº§æ¨™èµ·å‹•ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã€€ã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
  * @param	data	TW_CMACTDATA
- * @retval	BOOL	TRUE=ƒZƒbƒg FALSE=ƒZƒbƒg‚·‚é•K—v‚È‚µ
+ * @retval	BOOL	TRUE=ã‚»ãƒƒãƒˆ FALSE=ã‚»ãƒƒãƒˆã™ã‚‹å¿…è¦ãªã—
  */
 //--------------------------------------------------------------
 static BOOL tw_CameraActionSet(
@@ -3653,11 +3653,11 @@ static BOOL tw_CameraActionSet(
 	TW_CMACT_WORK *work = &cm->action_work;
 	
 	tw_SaveDataCameraAngleSet( tw, data->cm_x, data->cm_y, data->cm_z );
-	cm->angle_offs_true.x = CMAD_V16( data->cm_x );	//^‚Æ‚·‚é
+	cm->angle_offs_true.x = CMAD_V16( data->cm_x );	//çœŸã¨ã™ã‚‹
 	cm->angle_offs_true.y = CMAD_V16( data->cm_y );
 	cm->angle_offs_true.z = CMAD_V16( data->cm_z );
 	
-	if( cm->angle_offs.x == cm->angle_offs_true.x &&	//Šù‚Éˆê’v
+	if( cm->angle_offs.x == cm->angle_offs_true.x &&	//æ—¢ã«ä¸€è‡´
 		cm->angle_offs.y == cm->angle_offs_true.y &&
 		cm->angle_offs.z == cm->angle_offs_true.z ){
 		work->act_flag = FALSE;
@@ -3667,7 +3667,7 @@ static BOOL tw_CameraActionSet(
 	work->act_flag = TRUE;
 	work->frame = data->frame;
 	
-	work->offs_fx.x = NUM_FX32( cm->angle_offs.x );	//–Ú•W‚ğ•Û‘¶
+	work->offs_fx.x = NUM_FX32( cm->angle_offs.x );	//ç›®æ¨™ã‚’ä¿å­˜
 	work->offs_fx.y = NUM_FX32( cm->angle_offs.y );
 	work->offs_fx.z = NUM_FX32( cm->angle_offs.z );
 	
@@ -3688,13 +3688,13 @@ static BOOL tw_CameraActionSet(
 }
 
 //==============================================================================
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@OBJƒeƒNƒXƒ`ƒƒ‰ñ“]
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€OBJãƒ†ã‚¯ã‚¹ãƒãƒ£å›è»¢
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@‰Šú‰»
+ * OBJå›è»¢ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	max	‰ñ“]‚³‚¹‚éOBJÅ‘å”
+ * @param	max	å›è»¢ã•ã›ã‚‹OBJæœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3715,7 +3715,7 @@ static void tw_OBJRotateProc_Init( TORNWORLD_WORK *tw, int max )
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@‰ñ“]ƒAƒNƒ^[ƒŠƒ\[ƒXƒZƒbƒg
+ * OBJå›è»¢ã€€å›è»¢ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆ
  * @param	act	TW_OBJ_ROT_ACT_WORK
  * @retval	nothing
  */
@@ -3726,7 +3726,7 @@ static void tw_OBJRotateAct_BlActResSet( TW_OBJ_ROT_PROC_WORK *work,
 	NNSG3dResMdl *pResMdl = BLACT_ResMdlGet( blact );
 	NNSG3dResTex *pResTex = BLACT_ResTexGet( blact );
 	NNSG3dRenderObj *pRndObj = BLACT_RenderObjGet( blact );
-	GF_ASSERT( act->pAnmObj == NULL ); //‰Šú‰»Ï‚İ
+	GF_ASSERT( act->pAnmObj == NULL ); //åˆæœŸåŒ–æ¸ˆã¿
 	
 	act->blact = blact;
 	act->pAnmObj = NNS_G3dAllocAnmObj(
@@ -3742,7 +3742,7 @@ static void tw_OBJRotateAct_BlActResSet( TW_OBJ_ROT_PROC_WORK *work,
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@‰ñ“]ƒAƒNƒ^[ƒŠƒ\[ƒXŠJ•ú@ŠJ•ú‚Ì‚İ
+ * OBJå›è»¢ã€€å›è»¢ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾ã€€é–‹æ”¾ã®ã¿
  * @param	act	TW_OBJ_ROT_ACT_WORK
  * @retval	nothing
  */
@@ -3758,7 +3758,7 @@ static void tw_OBJRotateAct_BlActResFreeOnly(
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@‰ñ“]ƒAƒNƒ^[ƒŠƒ\[ƒXŠJ•ú
+ * OBJå›è»¢ã€€å›è»¢ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
  * @param	act	TW_OBJ_ROT_ACT_WORK
  * @retval	nothing
  */
@@ -3772,7 +3772,7 @@ static void tw_OBJRotateAct_BlActResFree(
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@ƒrƒ‹ƒ{[ƒh‚ª“o˜^‚³‚ê‚½‚çƒŠƒ\[ƒXƒZƒbƒg
+ * OBJå›è»¢ã€€ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãŒç™»éŒ²ã•ã‚ŒãŸã‚‰ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆ
  * @param	act	TW_OBJ_ROT_ACT_WORK
  * @retval	nothing
  */
@@ -3780,12 +3780,12 @@ static void tw_OBJRotateAct_BlActResFree(
 static void tw_OBJRotateAct_ResUpdate(
 		TW_OBJ_ROT_PROC_WORK *work, TW_OBJ_ROT_ACT_WORK *act )
 {
-	if( act->fldobj != NULL ){			//field objŠÄ‹Œ^
-		if( act->pAnmObj == NULL ){		//“o˜^‚ª‚Ü‚¾
+	if( act->fldobj != NULL ){			//field objç›£è¦–å‹
+		if( act->pAnmObj == NULL ){		//ç™»éŒ²ãŒã¾ã 
 			BLACT_WORK_PTR blact =
 				FieldOBJ_DrawBlAct00_BlActPtrGet( act->fldobj );
 			
-			if( blact == NULL ){		//‰Šú‰»‚ª‚Ü‚¾
+			if( blact == NULL ){		//åˆæœŸåŒ–ãŒã¾ã 
 				return;
 			}
 			
@@ -3803,9 +3803,9 @@ typedef enum
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@OBJ¶‘¶ƒ`ƒFƒbƒN
+ * OBJå›è»¢ã€€OBJç”Ÿå­˜ãƒã‚§ãƒƒã‚¯
  * @param	act	TW_OBJ_ROT_ACT_WORK
- * @retval	int TRUE=–â‘è‚È‚µ
+ * @retval	int TRUE=å•é¡Œãªã—
  */
 //--------------------------------------------------------------
 static OBJRTRES tw_OBJRotateAct_UpdateSame( TW_OBJ_ROT_ACT_WORK *act )
@@ -3816,12 +3816,12 @@ static OBJRTRES tw_OBJRotateAct_UpdateSame( TW_OBJ_ROT_ACT_WORK *act )
 		}
 		
 		if( FieldOBJ_OBJIDGet(act->fldobj) != act->obj_id ){
-			return( OBJRTRES_DEL ); //OBJ ID‚ªˆê’v‚µ‚È‚¢
+			return( OBJRTRES_DEL ); //OBJ IDãŒä¸€è‡´ã—ãªã„
 		}
 		
-		if( act->pAnmObj != NULL ){			//ƒŠƒ\[ƒX‰Šú‰»Ï‚İ
+		if( act->pAnmObj != NULL ){			//ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–æ¸ˆã¿
 			if( act->obj_code != FieldOBJ_OBJCodeGet(act->fldobj) ){
-				return( OBJRTRES_INIT );	//Ä‰Šú‰»‚ª•K—v‚Å‚ ‚é
+				return( OBJRTRES_INIT );	//å†åˆæœŸåŒ–ãŒå¿…è¦ã§ã‚ã‚‹
 			}
 		}
 	}else if( BLACT_GetState(act->blact) == BLACT_MOVE_NONE ){ //blact only
@@ -3833,7 +3833,7 @@ static OBJRTRES tw_OBJRotateAct_UpdateSame( TW_OBJ_ROT_ACT_WORK *act )
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@íœ
+ * OBJå›è»¢ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -3859,10 +3859,10 @@ static void tw_OBJRotateProc_Delete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@“o˜^
+ * OBJå›è»¢ã€€ç™»éŒ²
  * @param	act	TW_OBJ_ROT_ACT_WORK
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	rot	‰ŠúŠp“x0-359
+ * @param	rot	åˆæœŸè§’åº¦0-359
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3881,7 +3881,7 @@ static void tw_OBJRotateAct_OBJRegist(
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@w’èOBJ‚É‰ñ“]“®ì‚ğ•t‚¯‚éˆ×‚É“o˜^
+ * OBJå›è»¢ã€€æŒ‡å®šOBJã«å›è»¢å‹•ä½œã‚’ä»˜ã‘ã‚‹ç‚ºã«ç™»éŒ²
  * @param	tw	TORNWORLD_WORK
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	rot	0-359
@@ -3910,7 +3910,7 @@ static void tw_OBJRotate_RegOBJ(
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@w’èOBJ‚É‰ñ“]“®ì‚ğ•t‚¯‚éˆ×‚É“o˜^@ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚Ì‚İ
+ * OBJå›è»¢ã€€æŒ‡å®šOBJã«å›è»¢å‹•ä½œã‚’ä»˜ã‘ã‚‹ç‚ºã«ç™»éŒ²ã€€ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã¿
  * @param	tw	TORNWORLD_WORK
  * @param	blact
  * @param	rot	0-359
@@ -3940,7 +3940,7 @@ static void tw_OBJRotate_RegBlAct(
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@w’è‚³‚ê‚½ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚ªg—p‚µ‚Ä‚¢‚éƒ[ƒN‚ğíœ
+ * OBJå›è»¢ã€€æŒ‡å®šã•ã‚ŒãŸãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @param	blact
  * @retval	nothing
@@ -3963,12 +3963,12 @@ static void tw_OBJRotate_BlActUseWorkFree(
 		act++;
 	}
 	
-	GF_ASSERT( 0 );	//ˆê’v‚È‚µ
+	GF_ASSERT( 0 );	//ä¸€è‡´ãªã—
 }
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@ƒAƒNƒ^[í’“ˆ—
+ * OBJå›è»¢ã€€ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§å‡¦ç†
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -3991,14 +3991,14 @@ static void tw_OBJRotateProc_ActProc( TORNWORLD_WORK *tw,
 	
 	if( ret == OBJRTRES_INIT ){
 		#ifdef DEBUG_TW_PRINTF
-		OS_Printf( "TW OBJRotate Ä‰Šú‰»ŠJn\n" );
+		OS_Printf( "TW OBJRotate å†åˆæœŸåŒ–é–‹å§‹\n" );
 		#endif
 		tw_OBJRotateAct_BlActResFreeOnly( work, act );
 	}
 	
 	tw_OBJRotateAct_ResUpdate( work, act );
 	
-	if( act->add_frame ){		//ƒtƒŒ[ƒ€ˆ—
+	if( act->add_frame ){		//ãƒ•ãƒ¬ãƒ¼ãƒ å‡¦ç†
 		act->add_frame--;
 		twAngleAdd360Fx( &act->rot_fx, act->rot_add_fx );
 		
@@ -4013,7 +4013,7 @@ static void tw_OBJRotateProc_ActProc( TORNWORLD_WORK *tw,
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@í’“ˆ—	TCBí’“ˆ—‚©‚çŒÄ‚Ño‚µ
+ * OBJå›è»¢ã€€å¸¸é§å‡¦ç†	TCBå¸¸é§å‡¦ç†ã‹ã‚‰å‘¼ã³å‡ºã—
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -4031,7 +4031,7 @@ static void tw_OBJRotateProcTcbCall( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚©‚çŒÄ‚Î‚ê‚éOBJ‰ñ“]
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‹ã‚‰å‘¼ã°ã‚Œã‚‹OBJå›è»¢
  * @param	blact	BLACT_WORK_PTR
  * @param	wk		TW_BLACT_ROT_WORK
  * @retval	nothing
@@ -4045,11 +4045,11 @@ static void BlActOBJRotateDraw( BLACT_WORK_PTR blact, void *wk )
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@ƒtƒŒ[ƒ€‰ñ“]ƒAƒjƒ‚ğƒZƒbƒg
+ * OBJå›è»¢ã€€ãƒ•ãƒ¬ãƒ¼ãƒ å›è»¢ã‚¢ãƒ‹ãƒ¡ã‚’ã‚»ãƒƒãƒˆ
  * @param	work	TW_OBJ_ROT_WORK
- * @param	fldobj	‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR
- * @param	rot		‘Œ¸’l
- * @param	frame	ƒtƒŒ[ƒ€
+ * @param	fldobj	å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR
+ * @param	rot		å¢—æ¸›å€¤
+ * @param	frame	ãƒ•ãƒ¬ãƒ¼ãƒ 
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4062,7 +4062,7 @@ static void tw_OBJRotateAnmSet(
 	
 	while( i < work->max ){
 		if( act->fldobj == fldobj ){
-			act->rot_fx = NUM_FX32( act->rot_org );	//ƒIƒŠƒWƒiƒ‹‚Å‰Šú‰»
+			act->rot_fx = NUM_FX32( act->rot_org );	//ã‚ªãƒªã‚¸ãƒŠãƒ«ã§åˆæœŸåŒ–
 			act->rot_add_fx = NUM_FX32(rot) / frame;
 			act->add_frame = frame;
 			twAngleAdd360( &act->rot_org, rot );
@@ -4079,10 +4079,10 @@ static void tw_OBJRotateAnmSet(
 #if 0
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@ŠO•”ŒÄ‚Ño‚µ
+ * OBJå›è»¢ã€€å¤–éƒ¨å‘¼ã³å‡ºã—
  * @param	fsys	FIELDSYS_WORK
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	rot		‰ñ“]Šp“x 0-359
+ * @param	rot		å›è»¢è§’åº¦ 0-359
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4097,10 +4097,10 @@ static void FldTornWorld_OBJRotateRegist(
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@ŠO•”ŒÄo‚µ@w’èOBJ‚Ì‰ñ“]Šp“x‚ğæ“¾
+ * OBJå›è»¢ã€€å¤–éƒ¨å‘¼å‡ºã—ã€€æŒ‡å®šOBJã®å›è»¢è§’åº¦ã‚’å–å¾—
  * @param	fsys	FIELDSYS_WORK
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		‰ñ“]Šp“x 0-359
+ * @retval	int		å›è»¢è§’åº¦ 0-359
  */
 //--------------------------------------------------------------
 int FldTornWorld_OBJRotateGet( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj )
@@ -4120,15 +4120,15 @@ int FldTornWorld_OBJRotateGet( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj )
 		i++;
 	}
 	
-	return( 0 );	//“o˜^–³‚µ
+	return( 0 );	//ç™»éŒ²ç„¡ã—
 }
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@ŠO•”ŒÄo‚µ@w’è‚³‚ê‚½ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚É‰ñ“]‚ğ•t‚¯‚é
+ * OBJå›è»¢ã€€å¤–éƒ¨å‘¼å‡ºã—ã€€æŒ‡å®šã•ã‚ŒãŸãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã«å›è»¢ã‚’ä»˜ã‘ã‚‹
  * @param	fsys	FIELDSYS_WORK
  * @param	blact	BLACT_WORK_PTR
- * @param	rot		‰ñ“]Šp“x
+ * @param	rot		å›è»¢è§’åº¦
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4141,8 +4141,8 @@ void FldTornWorld_BlActRotateAdd(
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@ŠO•”ŒÄo‚µB
- * FldTornWorld_BlActRotateAdd()‚Å’Ç‰Á‚µ‚½‰ñ“]ˆ—‚Ìíœ
+ * OBJå›è»¢ã€€å¤–éƒ¨å‘¼å‡ºã—ã€‚
+ * FldTornWorld_BlActRotateAdd()ã§è¿½åŠ ã—ãŸå›è»¢å‡¦ç†ã®å‰Šé™¤
  * @param	fsys	FIELDSYS_WORK
  * @param	blact	BLACT_WORK_PTR
  * @retval	nothing
@@ -4156,11 +4156,11 @@ void FldTornWorld_BlActRotateDel(
 }
 
 //==============================================================================
-//	‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒCƒxƒ“ƒg
+//	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¤ãƒ™ãƒ³ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒCƒxƒ“ƒg‰Šú‰»
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¤ãƒ™ãƒ³ãƒˆåˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -4172,7 +4172,7 @@ static void tw_EventInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒCƒxƒ“ƒgíœ
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¤ãƒ™ãƒ³ãƒˆå‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -4184,10 +4184,10 @@ static void tw_EventDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@ƒCƒxƒ“ƒg—pƒ[ƒN‰Šú‰»
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	size	g—p‚·‚éƒ[ƒNƒTƒCƒY
- * @retval	void*	ƒ[ƒN*
+ * @param	size	ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
+ * @retval	void*	ãƒ¯ãƒ¼ã‚¯*
  */
 //--------------------------------------------------------------
 static void * tw_EventWorkInit( TORNWORLD_WORK *tw, int size )
@@ -4203,9 +4203,9 @@ static void * tw_EventWorkInit( TORNWORLD_WORK *tw, int size )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@ƒCƒxƒ“ƒg—pƒ[ƒNæ“¾
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€ã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯å–å¾—
  * @param	tw	TORNWORLD_WORK
- * @retval	void*	ƒ[ƒN*
+ * @retval	void*	ãƒ¯ãƒ¼ã‚¯*
  */
 //--------------------------------------------------------------
 static void * tw_EventWorkGet( TORNWORLD_WORK *tw )
@@ -4217,10 +4217,10 @@ static void * tw_EventWorkGet( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@©‹@ˆÚ“®ƒCƒxƒ“ƒgƒ`ƒFƒbƒN@©‹@ˆÚ“®ŠJn‚É”­“®
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€è‡ªæ©Ÿç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ã€€è‡ªæ©Ÿç§»å‹•é–‹å§‹æ™‚ã«ç™ºå‹•
  * @param	fsys	FIELDSYS_WORK
- * @param	dir		DIR_UP“™
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒg‹N“®
+ * @param	dir		DIR_UPç­‰
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•
  */
 //--------------------------------------------------------------
 BOOL FldTornWorld_PlayerMoveEventCheck( FIELDSYS_WORK *fsys, int dir )
@@ -4235,22 +4235,22 @@ BOOL FldTornWorld_PlayerMoveEventCheck( FIELDSYS_WORK *fsys, int dir )
 		val = Player_MoveSelectValueCheck( fsys->player, dir );
 		twJikiGridPosGet( tw, &gx, &gy, &gz );
 		
-		//”ò‚ÑÎoŒ»ƒCƒxƒ“ƒg
+		//é£›ã³çŸ³å‡ºç¾ã‚¤ãƒ™ãƒ³ãƒˆ
 		if( val == OBJ_MOVE_VALUE_WALK ){
 			tw_EventMoveCheck_FStoneAdvent( tw, gx, gy, gz, dir );
 		}
 		
-		//À•W‹N“®ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“
+		//åº§æ¨™èµ·å‹•ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 		if( tw_EventMoveCheck_PosCameraAction(tw,gx,gy,gz,dir) == TRUE ){
-			//‹N“®‚µ‚Ä‚à‰½‚à‚µ‚È‚¢H
+			//èµ·å‹•ã—ã¦ã‚‚ä½•ã‚‚ã—ãªã„ï¼Ÿ
 		}
 		
-		//©‹@À•WƒCƒxƒ“ƒg
+		//è‡ªæ©Ÿåº§æ¨™ã‚¤ãƒ™ãƒ³ãƒˆ
 		if( tw_EventMoveCheck_PosJikiEvent(tw,gx,gy,gz,dir) == TRUE ){
 			return( TRUE );
 		}
 		
-		//‘ê“o‚èƒ`ƒFƒbƒN
+		//æ»ç™»ã‚Šãƒã‚§ãƒƒã‚¯
 		{
 			u32 zone_id = twNowZoneID( tw );
 			
@@ -4269,10 +4269,10 @@ BOOL FldTornWorld_PlayerMoveEventCheck( FIELDSYS_WORK *fsys, int dir )
 			}
 		}
 		
-		//”ª‘w[•”ŒÀ’èƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“
+		//å…«å±¤æ·±éƒ¨é™å®šã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 		
 		#if 0
-		//ƒ}ƒbƒv‘JˆÚƒ`ƒFƒbƒN
+		//ãƒãƒƒãƒ—é·ç§»ãƒã‚§ãƒƒã‚¯
 		{
 			u32 zone_id = twNowZoneID( tw );
 			EVENTWORK *ev = SaveData_GetEventWork( tw->fsys->savedata );
@@ -4296,10 +4296,10 @@ BOOL FldTornWorld_PlayerMoveEventCheck( FIELDSYS_WORK *fsys, int dir )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒCƒxƒ“ƒgƒ`ƒFƒbƒN@ˆê•àˆÚ“®ŠJn‚Ìƒ^ƒCƒ~ƒ“ƒO
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ã€€ä¸€æ­©ç§»å‹•é–‹å§‹ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°
  * @param	fsys	FIELDSYS_WORK
- * @param	dir		ˆÚ“®•ûŒü
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒg‹N“®
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•
  */
 //--------------------------------------------------------------
 BOOL FldTornWorld_StepEventCheck( FIELDSYS_WORK *fsys, int dir )
@@ -4307,10 +4307,10 @@ BOOL FldTornWorld_StepEventCheck( FIELDSYS_WORK *fsys, int dir )
 	TORNWORLD_WORK *tw = fsys->fldmap->Work;
 	u32 zone_id = twNowZoneID( tw );
 	
-	//ƒ][ƒ“•ÊŠeíƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+	//ã‚¾ãƒ¼ãƒ³åˆ¥å„ç¨®ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 	switch( zone_id ){
-	#if 0	//©‹@ƒCƒxƒ“ƒgƒ`ƒFƒbƒN‚ÖˆÚ“®
-	case ZONE_ID_D34R0105:		//‘ê‰º‚èƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+	#if 0	//è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ã¸ç§»å‹•
+	case ZONE_ID_D34R0105:		//æ»ä¸‹ã‚Šã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 		if( dir == DIR_RIGHT ){
 			int gx,gy,gz;
 			twJikiGridPosGet( tw, &gx, &gy, &gz );
@@ -4320,7 +4320,7 @@ BOOL FldTornWorld_StepEventCheck( FIELDSYS_WORK *fsys, int dir )
 			}
 		}
 		break;
-	case ZONE_ID_D34R0107:		//‘ê“o‚èƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+	case ZONE_ID_D34R0107:		//æ»ç™»ã‚Šã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 		if( dir == DIR_RIGHT ){
 			int gx,gy,gz;
 			twJikiGridPosGet( tw, &gx, &gy, &gz );
@@ -4331,7 +4331,7 @@ BOOL FldTornWorld_StepEventCheck( FIELDSYS_WORK *fsys, int dir )
 		}
 		break;
 	#endif
-	case ZONE_ID_D34R0109:		//8->8DƒCƒxƒ“ƒgŒÀ’èƒ][ƒ“‘JˆÚƒ`ƒFƒbƒN
+	case ZONE_ID_D34R0109:		//8->8Dã‚¤ãƒ™ãƒ³ãƒˆé™å®šã‚¾ãƒ¼ãƒ³é·ç§»ãƒã‚§ãƒƒã‚¯
 		if( dir == DIR_UP ){
 			EVENTWORK *ev = SaveData_GetEventWork( tw->fsys->savedata );
 			if( SysWork_TornWorldEventSeqNoGet(ev) >= TWEVSEQ_08_02 ){
@@ -4344,7 +4344,7 @@ BOOL FldTornWorld_StepEventCheck( FIELDSYS_WORK *fsys, int dir )
 			}
 		}
 		break;
-	case ZONE_ID_D34R0110:		//8D->8ƒCƒxƒ“ƒgŒÀ’èƒ][ƒ“‘JˆÚƒ`ƒFƒbƒN
+	case ZONE_ID_D34R0110:		//8D->8ã‚¤ãƒ™ãƒ³ãƒˆé™å®šã‚¾ãƒ¼ãƒ³é·ç§»ãƒã‚§ãƒƒã‚¯
 		if( dir == DIR_DOWN ){
 			int gx,gy,gz;
 			twJikiGridPosGet( tw, &gx, &gy, &gz );
@@ -4367,7 +4367,7 @@ BOOL FldTornWorld_StepEventCheck( FIELDSYS_WORK *fsys, int dir )
 	TORNWORLD_WORK *tw = fsys->fldmap->Work;
 	
 	if( GIMMICKWORK_GetAssignID(gmc) != FLD_GIMMICK_TORNWORLD ){
-		return( FALSE );	//”j‚ê‚½¢ŠE‚Å‚Í‚È‚¢
+		return( FALSE );	//ç ´ã‚ŒãŸä¸–ç•Œã§ã¯ãªã„
 	}
 	
 #if 0
@@ -4376,12 +4376,12 @@ BOOL FldTornWorld_StepEventCheck( FIELDSYS_WORK *fsys, int dir )
 		TORNWORLD_WORK *tw = fsys->fldmap->Work;
 		twJikiGridPosGet( tw, &gx, &gy, &gz );
 		
-		//À•W‹N“®ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“
+		//åº§æ¨™èµ·å‹•ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 		if( tw_EventMoveCheck_PosCameraAction(tw,gx,gy,gz,dir) == TRUE ){
-			//‹N“®‚µ‚Ä‚à‰½‚à‚µ‚È‚¢H
+			//èµ·å‹•ã—ã¦ã‚‚ä½•ã‚‚ã—ãªã„ï¼Ÿ
 		}
 		
-		//©‹@À•WƒCƒxƒ“ƒg
+		//è‡ªæ©Ÿåº§æ¨™ã‚¤ãƒ™ãƒ³ãƒˆ
 		if( tw_EventMoveCheck_PosJikiEvent(tw,gx,gy,gz,dir) == TRUE ){
 			return( TRUE );
 		}
@@ -4396,7 +4396,7 @@ BOOL FldTornWorld_StepEventCheck( FIELDSYS_WORK *fsys, int dir )
 			u32 zone_id = twNowZoneID( tw );
 			EVENTWORK *ev = SaveData_GetEventWork( tw->fsys->savedata );
 			
-			//8<->8DƒCƒxƒ“ƒgŒÀ’èƒ][ƒ“‘JˆÚƒ`ƒFƒbƒN
+			//8<->8Dã‚¤ãƒ™ãƒ³ãƒˆé™å®šã‚¾ãƒ¼ãƒ³é·ç§»ãƒã‚§ãƒƒã‚¯
 			if( zone_id == ZONE_ID_D34R0109 &&
 				SysWork_TornWorldEventSeqNoGet(ev) >= TWEVSEQ_08_02 && 
 				gx == 89 && gy == 65 && gz == 57 && dir == DIR_UP ){
@@ -4416,9 +4416,9 @@ BOOL FldTornWorld_StepEventCheck( FIELDSYS_WORK *fsys, int dir )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒCƒxƒ“ƒgƒ`ƒFƒbƒN@ˆê•àˆÚ“®I—¹‚Ìƒ^ƒCƒ~ƒ“ƒO
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ã€€ä¸€æ­©ç§»å‹•çµ‚äº†ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°
  * @param	fsys	FIELDSYS_WORK
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒg‹N“®
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•
  */
 //--------------------------------------------------------------
 BOOL FldTornWorld_MoveEventCheck( FIELDSYS_WORK *fsys )
@@ -4427,7 +4427,7 @@ BOOL FldTornWorld_MoveEventCheck( FIELDSYS_WORK *fsys )
 	gmc = SaveData_GetGimmickWork( GameSystem_GetSaveData(fsys) );
 	
 	if( GIMMICKWORK_GetAssignID(gmc) != FLD_GIMMICK_TORNWORLD ){
-		return( FALSE );	//”j‚ê‚½¢ŠE‚Å‚Í‚È‚¢
+		return( FALSE );	//ç ´ã‚ŒãŸä¸–ç•Œã§ã¯ãªã„
 	}
 	
 	{
@@ -4436,17 +4436,17 @@ BOOL FldTornWorld_MoveEventCheck( FIELDSYS_WORK *fsys )
 		TORNWORLD_WORK *tw = fsys->fldmap->Work;
 		twJikiGridPosGet( tw, &gx, &gy, &gz );
 		
-		//ƒ][ƒ“Ø‚è‘Ö‚¦ƒCƒxƒ“ƒg
+		//ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã‚¤ãƒ™ãƒ³ãƒˆ
 		if( tw_EventMoveCheck_ZoneChange(tw,gx,gy,gz) == TRUE ){
 			return( TRUE );
 		}
 		
-		//À•WƒXƒNƒŠƒvƒg‹N“®ƒ`ƒFƒbƒN
+		//åº§æ¨™ã‚¹ã‚¯ãƒªãƒ—ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯
 		if( tw_EventPosCheck_Script(tw,gx,gy,gz) == TRUE ){
 			return( TRUE );
 		}
 		
-		//ƒ}ƒbƒv‘JˆÚƒ`ƒFƒbƒN
+		//ãƒãƒƒãƒ—é·ç§»ãƒã‚§ãƒƒã‚¯
 		{
 			u32 zone_id = twNowZoneID( tw );
 			EVENTWORK *ev = SaveData_GetEventWork( tw->fsys->savedata );
@@ -4474,10 +4474,10 @@ BOOL FldTornWorld_MoveEventCheck( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒCƒxƒ“ƒgƒ`ƒFƒbƒN@áŠQ•¨‰Ÿ‚µ‚İ‚Ìƒ^ƒCƒ~ƒ“ƒO
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ã€€éšœå®³ç‰©æŠ¼ã—è¾¼ã¿ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°
  * @param	fsys	FIELDSYS_WORK
- * @param	dir		ˆÚ“®•ûŒü
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒg‹N“®
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•
  */
 //--------------------------------------------------------------
 BOOL FldTornWorld_PushEventCheck( FIELDSYS_WORK *fsys, int dir )
@@ -4485,9 +4485,9 @@ BOOL FldTornWorld_PushEventCheck( FIELDSYS_WORK *fsys, int dir )
 	TORNWORLD_WORK *tw = fsys->fldmap->Work;
 	u32 zone_id = twNowZoneID( tw );
 	
-	//ƒ][ƒ“•ÊŠeíƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+	//ã‚¾ãƒ¼ãƒ³åˆ¥å„ç¨®ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 	switch( zone_id ){
-	case ZONE_ID_D34R0109:		//8->8DƒCƒxƒ“ƒgŒÀ’èƒ][ƒ“‘JˆÚƒ`ƒFƒbƒN
+	case ZONE_ID_D34R0109:		//8->8Dã‚¤ãƒ™ãƒ³ãƒˆé™å®šã‚¾ãƒ¼ãƒ³é·ç§»ãƒã‚§ãƒƒã‚¯
 		if( dir == DIR_UP ){
 			EVENTWORK *ev = SaveData_GetEventWork( tw->fsys->savedata );
 			if( SysWork_TornWorldEventSeqNoGet(ev) >= TWEVSEQ_08_02 ){
@@ -4500,7 +4500,7 @@ BOOL FldTornWorld_PushEventCheck( FIELDSYS_WORK *fsys, int dir )
 			}
 		}
 		break;
-	case ZONE_ID_D34R0110:		//8D->8ƒCƒxƒ“ƒgŒÀ’èƒ][ƒ“‘JˆÚƒ`ƒFƒbƒN
+	case ZONE_ID_D34R0110:		//8D->8ã‚¤ãƒ™ãƒ³ãƒˆé™å®šã‚¾ãƒ¼ãƒ³é·ç§»ãƒã‚§ãƒƒã‚¯
 		if( dir == DIR_DOWN ){
 			int gx,gy,gz;
 			twJikiGridPosGet( tw, &gx, &gy, &gz );
@@ -4516,17 +4516,17 @@ BOOL FldTornWorld_PushEventCheck( FIELDSYS_WORK *fsys, int dir )
 }
 
 //==============================================================================
-//	ƒCƒxƒ“ƒg@À•W‹N“®ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“
+//	ã‚¤ãƒ™ãƒ³ãƒˆã€€åº§æ¨™èµ·å‹•ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * À•W‹N“®ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒ`ƒFƒbƒN
+ * åº§æ¨™èµ·å‹•ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
- * @param	gx	©‹@ƒOƒŠƒbƒhX
- * @param	gy	©‹@ƒOƒŠƒbƒhY
- * @param	gz	©‹@ƒOƒŠƒbƒhZ
- * @param	dir	©‹@is•ûŒü DIR_UP“™
- * @retval	BOOL	TRUE=‹N“®
+ * @param	gx	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰Z
+ * @param	dir	è‡ªæ©Ÿé€²è¡Œæ–¹å‘ DIR_UPç­‰
+ * @retval	BOOL	TRUE=èµ·å‹•
  */
 //--------------------------------------------------------------
 static BOOL tw_EventMoveCheck_PosCameraAction(
@@ -4545,11 +4545,11 @@ static BOOL tw_EventMoveCheck_PosCameraAction(
 }
 
 //==============================================================================
-//	©‹@‘€ì
+//	è‡ªæ©Ÿæ“ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@‚ğ”j‚ê‚½¢ŠEê—p‚É•ÏX
+ * è‡ªæ©Ÿã‚’ç ´ã‚ŒãŸä¸–ç•Œå°‚ç”¨ã«å¤‰æ›´
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -4562,31 +4562,31 @@ static void tw_JikiInit( TORNWORLD_WORK *tw )
 	PLAYER_STATE_PTR jiki = tw->fsys->player;
 	FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( jiki );
 	
-	//‰e‚Ì”ñ•\¦‰»->ƒtƒB[ƒ‹ƒhOBJƒVƒXƒeƒ€‘¤‚Ìİ’è‚Ås‚¤—l‚É‚·‚é
+	//å½±ã®éè¡¨ç¤ºåŒ–->ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚·ã‚¹ãƒ†ãƒ å´ã®è¨­å®šã§è¡Œã†æ§˜ã«ã™ã‚‹
 	//FieldOBJ_StatusBit_ON( fldobj, FLDOBJ_STA_BIT_SHADOW_VANISH );
 	
-	//©‹@Œ»İÀ•W‚Ìæ“¾
+	//è‡ªæ©Ÿç¾åœ¨åº§æ¨™ã®å–å¾—
 	twJikiGridPosGet( tw, &gx, &gy, &gz );
 	
-	//À•W‚©‚ç’nŒ`í—ŞŠ„‚èo‚µ
-	#if 0	//‚±‚ê‚Å‚Í¬‡’nŒ`‚É‘Îˆ‚Å‚«‚È‚¢
+	//åº§æ¨™ã‹ã‚‰åœ°å½¢ç¨®é¡å‰²ã‚Šå‡ºã—
+	#if 0	//ã“ã‚Œã§ã¯æ··åˆåœ°å½¢ã«å¯¾å‡¦ã§ããªã„
 	type = tw_MapDataPosGndTypeGet( tw, gx, gy, gz );
-	#else	//’nŒ`‰Šú‰»‚ÉƒZƒbƒg‚³‚ê‚½î•ñ
+	#else	//åœ°å½¢åˆæœŸåŒ–æ™‚ã«ã‚»ãƒƒãƒˆã•ã‚ŒãŸæƒ…å ±
 	type = tw_MapDataNowGndTypeGet( tw );
 	#endif
 	type = twGndTypeHeroType( type );
 	
-	//’nŒ`•Ê‚É‚‚³æ“¾ƒtƒ‰ƒO‚ğ•ÏX
+	//åœ°å½¢åˆ¥ã«é«˜ã•å–å¾—ãƒ•ãƒ©ã‚°ã‚’å¤‰æ›´
 	if( type == HEROTWTYPE_ON ){
 		FieldOBJ_StatusBitSet_HeightGetOFF( fldobj, FALSE );
 	}else{
 		FieldOBJ_StatusBitSet_HeightGetOFF( fldobj, TRUE );
 	}
 	
-	//’nŒ`•Ê‚É©‹@“®ì•ÏX
+	//åœ°å½¢åˆ¥ã«è‡ªæ©Ÿå‹•ä½œå¤‰æ›´
 	Player_MoveBitSet_TWorld( jiki, type );
 	
-	//©‹@•\¦ƒR[ƒh•ÏX
+	//è‡ªæ©Ÿè¡¨ç¤ºã‚³ãƒ¼ãƒ‰å¤‰æ›´
 	form = HERO_FORM_NORMAL;
 	code = FieldOBJ_OBJCodeGet( fldobj );
 	
@@ -4627,7 +4627,7 @@ static void tw_JikiInit( TORNWORLD_WORK *tw )
 		Player_JointEoaSet( jiki, eoa );
 	}
 	
-	//’nŒ`•Ê‚É•\¦Šp“xƒZƒbƒg
+	//åœ°å½¢åˆ¥ã«è¡¨ç¤ºè§’åº¦ã‚»ãƒƒãƒˆ
 	tw_OBJRotate_RegOBJ( tw, fldobj, rot[type] );
 	
 	#ifdef DEBUG_TW_PRINTF
@@ -4663,7 +4663,7 @@ static void tw_JikiInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE—p‚Ì©‹@‚ğíœ
+ * ç ´ã‚ŒãŸä¸–ç•Œç”¨ã®è‡ªæ©Ÿã‚’å‰Šé™¤
  * @param
  * @retval
  */
@@ -4676,29 +4676,29 @@ static void tw_JikiDelete( TORNWORLD_WORK *tw )
 }	
 
 //==============================================================================
-//	©‹@ƒCƒxƒ“ƒg
+//	è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * À•W‹N“®©‹@ƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+ * åº§æ¨™èµ·å‹•è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
- * @param	gx	©‹@ƒOƒŠƒbƒhX
- * @param	gy	©‹@ƒOƒŠƒbƒhY
- * @param	gz	©‹@ƒOƒŠƒbƒhZ
- * @param	dir	©‹@is•ûŒü DIR_UP“™
- * @retval	BOOL	TRUE=‹N“®
+ * @param	gx	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰Z
+ * @param	dir	è‡ªæ©Ÿé€²è¡Œæ–¹å‘ DIR_UPç­‰
+ * @retval	BOOL	TRUE=èµ·å‹•
  */
 //--------------------------------------------------------------
 static BOOL tw_EventMoveCheck_PosJikiEvent(
 		TORNWORLD_WORK *tw, int gx, int gy, int gz, int dir )
 {
-	{	//•ÇƒWƒƒƒ“ƒvƒCƒxƒ“ƒg
+	{	//å£ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆ
 		const TW_EVJUMPDATA *data;
 		data = tw_MapDataEvJumpDataPosCheck( tw, gx, gy, gz, dir );
 		
 		if( data ){
 			FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( tw->fsys->player );
-	//		ƒCƒxƒ“ƒg‘¤‚ÅƒZƒbƒg‚·‚é
+	//		ã‚¤ãƒ™ãƒ³ãƒˆå´ã§ã‚»ãƒƒãƒˆã™ã‚‹
 	//		tw_OBJRotateAnmSet( tw, fldobj, data->rot_val, data->frame );
 			DATA_JikiPosEventProcWallJumpTbl[data->type]( tw, data );
 			return( TRUE );
@@ -4709,11 +4709,11 @@ static BOOL tw_EventMoveCheck_PosJikiEvent(
 }
 
 //==============================================================================
-//	©‹@ƒCƒxƒ“ƒg@•ÇƒWƒƒƒ“ƒv	
+//	è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆã€€å£ã‚¸ãƒ£ãƒ³ãƒ—	
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ©‹@•½–Ê¨•ÇƒWƒƒƒ“ƒvƒCƒxƒ“ƒgƒZƒbƒg
+ * è‡ªæ©Ÿå¹³é¢â†’å£ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  * @param
  * @retval
  */
@@ -4748,7 +4748,7 @@ static void tw_JikiEventSet_WallJump(
 #if 0
 //--------------------------------------------------------------
 /**
- * ©‹@@•ÇƒWƒƒƒ“ƒv—pƒ[ƒNƒZƒbƒg
+ * è‡ªæ©Ÿã€€å£ã‚¸ãƒ£ãƒ³ãƒ—ç”¨ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
  * @param
  * @param	
  * @param
@@ -4795,9 +4795,9 @@ static void JikiJumpWallParamSet(
 
 //--------------------------------------------------------------
 /**
- * ©‹@@•ÇƒWƒƒƒ“ƒvƒCƒxƒ“ƒg
+ * è‡ªæ©Ÿã€€å£ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆ
  * @param	event GMEVENT_CONTROL
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL tw_GMEVENT_JikiWallJump( GMEVENT_CONTROL *event )
@@ -4810,11 +4810,11 @@ static BOOL tw_GMEVENT_JikiWallJump( GMEVENT_CONTROL *event )
 	
 	switch( work->seq_no ){
 	case 0:
-		{	//div_map.c‚Ì©‹@î•ñXV‘Ò‚¿
+		{	//div_map.cã®è‡ªæ©Ÿæƒ…å ±æ›´æ–°å¾…ã¡
 			work->seq_no++;
 		}
 		break;
-	case 1:	//Œü‚«‚ğ•Ç‚ÖŒü‚¯‚é
+	case 1:	//å‘ãã‚’å£ã¸å‘ã‘ã‚‹
 		if( FieldOBJ_AcmdSetCheck(fldobj) == FALSE ){
 			break;
 		}else{
@@ -4848,7 +4848,7 @@ static BOOL tw_GMEVENT_JikiWallJump( GMEVENT_CONTROL *event )
 			
 			code = FieldOBJ_AcmdCodeDirChange( dir, AC_DIR_U );
 			FieldOBJ_AcmdSet( fldobj, code );
-			FieldOBJ_DirDispCheckSet( fldobj, dir ); //Š®‘S‹­§‚ÅU‚èŒü‚©‚¹‚é
+			FieldOBJ_DirDispCheckSet( fldobj, dir ); //å®Œå…¨å¼·åˆ¶ã§æŒ¯ã‚Šå‘ã‹ã›ã‚‹
 			tw_OBJRotateAnmSet( tw, fldobj,
 				work->data.rot_val, work->data.frame );
 			work->seq_no++;
@@ -4863,7 +4863,7 @@ static BOOL tw_GMEVENT_JikiWallJump( GMEVENT_CONTROL *event )
 			FE_KEMURI_TYPE kemuri = FE_KEMURI_TYPE_FLAT;
 			FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( jiki );
 			
-			//“Áê’nŒ`ƒf[ƒ^‚ÌXV
+			//ç‰¹æ®Šåœ°å½¢ãƒ‡ãƒ¼ã‚¿ã®æ›´æ–°
 			#ifdef DEBUG_TW_PRINTF
 			OS_Printf( "tw ground after %d\n", work->data.gndno_after );
 			#endif
@@ -4874,26 +4874,26 @@ static BOOL tw_GMEVENT_JikiWallJump( GMEVENT_CONTROL *event )
 			
 			#ifdef DEBUG_TW_PRINTF
 			switch( type ){
-			case HEROTWTYPE_ON: OS_Printf("’…’n’n–Ê •½–Ê\n"); break;
-			case HEROTWTYPE_GROUND: OS_Printf("’…’n’n–Ê “Áê•½–Ê\n"); break;
-			case HEROTWTYPE_WLEFT: OS_Printf("’…’n’n–Ê ¶•Ç\n"); break;
-			case HEROTWTYPE_WRIGHT: OS_Printf("’…’n’n–Ê ‰E•Ç\n"); break;
-			case HEROTWTYPE_ROOF: OS_Printf( "’…’n’n–Ê “Vˆä–Ê\n" ); break;
+			case HEROTWTYPE_ON: OS_Printf("ç€åœ°åœ°é¢ å¹³é¢\n"); break;
+			case HEROTWTYPE_GROUND: OS_Printf("ç€åœ°åœ°é¢ ç‰¹æ®Šå¹³é¢\n"); break;
+			case HEROTWTYPE_WLEFT: OS_Printf("ç€åœ°åœ°é¢ å·¦å£\n"); break;
+			case HEROTWTYPE_WRIGHT: OS_Printf("ç€åœ°åœ°é¢ å³å£\n"); break;
+			case HEROTWTYPE_ROOF: OS_Printf( "ç€åœ°åœ°é¢ å¤©äº•é¢\n" ); break;
 			default: GF_ASSERT( 0 );
 			}
 			#endif
 			
 			#ifdef TESTPROC_JIKI_HEIGHT_SWITCH
-			if( work->data.gndno_after < 0 ){	//’…’n’nŒ`”Ô†‚ª–³Œø
-				OS_Printf( "’…’n’n–Ê”Ô† –³Œø@‚‚³æ“¾ON\n" );
+			if( work->data.gndno_after < 0 ){	//ç€åœ°åœ°å½¢ç•ªå·ãŒç„¡åŠ¹
+				OS_Printf( "ç€åœ°åœ°é¢ç•ªå· ç„¡åŠ¹ã€€é«˜ã•å–å¾—ON\n" );
 				FieldOBJ_StatusBitSet_HeightGetOFF( fldobj, FALSE );
 			}else{
-				OS_Printf( "’…’n’n–Ê”Ô† —LŒø@‚‚³æ“¾OFF\n" );
+				OS_Printf( "ç€åœ°åœ°é¢ç•ªå· æœ‰åŠ¹ã€€é«˜ã•å–å¾—OFF\n" );
 				FieldOBJ_StatusBitSet_HeightGetOFF( fldobj, TRUE );
 			}	
 			#endif
 			
-			//’…’n‰ŒƒGƒtƒFƒNƒg
+			//ç€åœ°ç…™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 			switch( work->data.gnd_after ){
 			case TW_GNDTYPE_SIDE_L: kemuri = FE_KEMURI_TYPE_RIGHTG; break;
 			case TW_GNDTYPE_SIDE_R: kemuri = FE_KEMURI_TYPE_LEFTG; break;
@@ -4921,7 +4921,7 @@ static BOOL tw_GMEVENT_JikiWallJump( GMEVENT_CONTROL *event )
 
 //--------------------------------------------------------------
 /**
- * ©‹@@•ÇƒWƒƒƒ“ƒvˆÚ“®
+ * è‡ªæ©Ÿã€€å£ã‚¸ãƒ£ãƒ³ãƒ—ç§»å‹•
  * @param	
  * @param	
  * @param
@@ -5018,11 +5018,11 @@ static BOOL JikiJumpWall(
 }
 
 //==============================================================================
-//	”wŒiBG
+//	èƒŒæ™¯BG
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@”wŒiBG‰Šú‰»
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€èƒŒæ™¯BGåˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -5033,7 +5033,7 @@ static void tw_BGInit( TORNWORLD_WORK *tw )
 	
 	GF_Disp_GX_VisibleControl( TW_BGFRM_BG, VISIBLE_OFF );
 	
-	{	//ƒpƒŒƒbƒg ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒpƒŒƒbƒg‚ğŠ·‚¦‚é
+	{	//ãƒ‘ãƒ¬ãƒƒãƒˆ ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ãƒ‘ãƒ¬ãƒƒãƒˆã‚’æ›ãˆã‚‹
 		char *pltt_buf;
 		NNSG2dPaletteData *pPltt;
 	
@@ -5044,7 +5044,7 @@ static void tw_BGInit( TORNWORLD_WORK *tw )
 		GF_BGL_PaletteSet(
 			TW_BGFRM_BG, pPltt->pRawData, 32, 32*(TW_BGFRM_BG_PLTT_OFFS) );
 		
-		{	//ƒtƒF[ƒh—p‚ÉŒ³‚ÌƒpƒŒƒbƒg‚ğ•Û‘¶
+		{	//ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨ã«å…ƒã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä¿å­˜
 			int i;
 			TW_PLTT_WORK *pltt = &tw->pltt;
 			u16 *base = pPltt->pRawData;
@@ -5059,7 +5059,7 @@ static void tw_BGInit( TORNWORLD_WORK *tw )
 		sys_FreeMemoryEz( pltt_buf );
 	}
 	
-	{	//ƒLƒƒƒ‰
+	{	//ã‚­ãƒ£ãƒ©
 		char *char_buf;
 		NNSG2dCharacterData *pChar;
 		
@@ -5073,7 +5073,7 @@ static void tw_BGInit( TORNWORLD_WORK *tw )
 		sys_FreeMemoryEz( char_buf );
 	}
 	
-	{	//ƒXƒNƒŠ[ƒ“
+	{	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 		char *scr_buf;
 		NNSG2dScreenData *pScr;
 		
@@ -5088,14 +5088,14 @@ static void tw_BGInit( TORNWORLD_WORK *tw )
 		sys_FreeMemoryEz( scr_buf );
 	}
 	
-	{	//ƒvƒ‰ƒCƒIƒŠƒeƒB•ÏX
+	{	//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å¤‰æ›´
 		G2_SetBG0Priority( 2 );	//pol
 		G2_SetBG1Priority( 1 );	//effect
 		G2_SetBG2Priority( 3 );	//effect
 		G2_SetBG3Priority( 0 );	//font
 	}
 	
-	{	//ƒAƒ‹ƒtƒ@•ÏX
+	{	//ã‚¢ãƒ«ãƒ•ã‚¡å¤‰æ›´
 		G2_SetBlendAlpha(
 			GX_BLEND_PLANEMASK_BG0,
 			GX_BLEND_PLANEMASK_BG1|
@@ -5111,16 +5111,16 @@ static void tw_BGInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@”wŒiBGíœ
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€èƒŒæ™¯BGå‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_BGDelete( TORNWORLD_WORK *tw )
 {
-	G2_BlendNone();	//ƒAƒ‹ƒtƒ@–³Œø‚É
+	G2_BlendNone();	//ã‚¢ãƒ«ãƒ•ã‚¡ç„¡åŠ¹ã«
 #if 0
-	//ƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ–ß‚·
+	//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’æˆ»ã™
 	G2_SetBG0Priority( 1 );	//pol
 	G2_SetBG1Priority( 2 );	//effect
 	G2_SetBG2Priority( 3 );	//effect
@@ -5129,11 +5129,11 @@ static void tw_BGDelete( TORNWORLD_WORK *tw )
 }
 
 //==============================================================================
-//	ƒZƒ‹ƒAƒNƒ^[
+//	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‰Šú‰»
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆåˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @param	set	TW_CLACT_SETDATA *
  * @param	hd	ARCHANDLE *
@@ -5148,11 +5148,11 @@ static void tw_ClActInit(
 	set->clact_set = CLACT_U_SetEasyInit(
 			TW_CLACT_MAX, &set->clact_easydata, HEAPID_FIELD );
 	
-	//ƒT[ƒtƒF[ƒX•ÏX
+	//ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹å¤‰æ›´
 	CLACT_U_SetMainSurfaceMatrix(
 		&set->clact_easydata, TW_CLACT_SFACE_X_FX, TW_CLACT_SFACE_Y_FX );
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‰Šú‰»
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
 	set->clact_resm_char = CLACT_U_ResManagerInit(
 			TW_CLACT_RES_CHAR_MAX, CLACT_U_CHAR_RES, HEAPID_FIELD );
 	set->clact_resm_pltt = CLACT_U_ResManagerInit(
@@ -5162,7 +5162,7 @@ static void tw_ClActInit(
 	set->clact_resm_anm = CLACT_U_ResManagerInit(
 			TW_CLACT_RES_ANM_MAX, CLACT_U_CELLANM_RES, HEAPID_FIELD );
 	
-	{	//ƒŠƒ\[ƒXƒZƒbƒg
+	{	//ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆ
 		int i;
 		
 		for( i = 0; i < TW_CLACT_RES_CHAR_MAX; i++ ){
@@ -5220,7 +5220,7 @@ static void tw_ClActInit(
 				TW_CLACT_RES_PLTT_CLOUD_NUM, //pal count
 				HEAPID_FIELD );
 		
-		{	//ƒtƒF[ƒh—p‚ÉŒ³ƒf[ƒ^‚ğŠm•Û
+		{	//ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨ã«å…ƒãƒ‡ãƒ¼ã‚¿ã‚’ç¢ºä¿
 			NNSG2dPaletteData *data;
 			data = CLACT_U_ResManagerGetResObjResPltt(
 					set->clact_resobj_pltt[0] );
@@ -5260,7 +5260,7 @@ static void tw_ClActInit(
 		}
 	}
 	
-	{	//•`‰æ—pTCB
+	{	//æç”»ç”¨TCB
 		set->tcb_clact_draw = TCB_Add(
 			tw_ClActDrawTcb, set, TW_TCBPRI_CLACT_DRAW );
 	}
@@ -5268,7 +5268,7 @@ static void tw_ClActInit(
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgíœ
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆå‰Šé™¤
  * @param		set	TW_CLACT_SETDATA 
  * @retval	nothing
  */
@@ -5318,7 +5318,7 @@ static void tw_ClActDelete( TW_CLACT_SETDATA *set )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒZƒ‹ƒAƒNƒ^[•`‰æ
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æç”»
  * @param	tcb	TCB_PTR
  * @param	wk	TORNWORLD_WORK
  * @retval	mnothing
@@ -5332,7 +5332,7 @@ static void tw_ClActDrawTcb( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒZƒ‹ƒAƒNƒ^[’Ç‰Á
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  * @param	set	TW_CLACT_SETDATA
  * @param	pos	VecFx32
  * @param	char_id
@@ -5375,11 +5375,11 @@ static CLACT_WORK_PTR tw_ClActAdd(
 }
 
 //==============================================================================
-//	EOA	ƒZƒ‹ƒAƒNƒ^[@‰_
+//	EOA	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€é›²
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ‰_ƒZƒbƒg
+ * é›²ã‚»ãƒƒãƒˆ
  * @param	fes	FE_SYS *fes
  * @param	set	TW_CLACT_SETDATA
  * @retval	nothing
@@ -5392,7 +5392,7 @@ static void tw_EoaCloudSet(
 	EOA_CLOUD_H head;
 	EOA_PTR eoa;
 	
-	//‰_‘¬“xŒˆ’è
+	//é›²é€Ÿåº¦æ±ºå®š
 	tw->cloud_speed_lv = CLOUD_SPEED_LV_0;
 	
 	if( twNowZoneID(tw) == ZONE_ID_D34R0110 ){
@@ -5420,10 +5420,10 @@ static void tw_EoaCloudSet(
 
 //--------------------------------------------------------------
 /**
- * EOA ‰_@‰Šú‰»
+ * EOA é›²ã€€åˆæœŸåŒ–
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
- * @retval	int TRUE=‰Šú‰»Š®—¹
+ * @retval	int TRUE=åˆæœŸåŒ–å®Œäº†
  */
 //--------------------------------------------------------------
 static int tw_EoaCloudInit( EOA_PTR eoa, void *wk )
@@ -5451,7 +5451,7 @@ static int tw_EoaCloudInit( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰_@íœ
+ * EOA é›²ã€€å‰Šé™¤
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	nothing
@@ -5465,7 +5465,7 @@ static void tw_EoaCloudDelete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰_@“®ì
+ * EOA é›²ã€€å‹•ä½œ
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	nothing
@@ -5515,7 +5515,7 @@ static void tw_EoaCloudMove( EOA_PTR eoa, void *wk )
 		if( DebugTWorldCaptureFlag_BGVanish ){ flag = FALSE; }
 		CLACT_SetDrawFlag( work->clact, flag );
 	}
-	#else	//³‹K
+	#else	//æ­£è¦
 	speed = work->head.data.speed + work->add_speed;
 	twAngleAdd360Fx( &work->angle, speed );
 	angle = work->angle;
@@ -5534,7 +5534,7 @@ static void tw_EoaCloudMove( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ‰_@•`‰æ
+ * EOA é›²ã€€æç”»
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	nothing
@@ -5545,7 +5545,7 @@ static void tw_EoaCloudDraw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	‰_ EOA_H
+///	é›² EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaCloudHeader =
 {
@@ -5557,11 +5557,11 @@ static const EOA_H_NPP DATA_EoaCloudHeader =
 };
 
 //==============================================================================
-//	ƒtƒHƒO
+//	ãƒ•ã‚©ã‚°
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒHƒO‰Šú‰»
+ * ãƒ•ã‚©ã‚°åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -5571,12 +5571,12 @@ static void tw_FogInit( TORNWORLD_WORK *tw )
 #ifndef DEBUG_TW_FOG_OFF
 	FOG_DATA_PTR fog = tw->fsys->fog_data;
 	
-	SetFogData( fog,				//ƒtƒHƒOƒf[ƒ^ƒZƒbƒg
-		FOG_SYS_ALL,				//‘S‚Ä‚É
-		TRUE,						//FOG—LŒø
-		GX_FOGBLEND_COLOR_ALPHA,	//”¼“§–¾ƒ^ƒCƒv
-		TW_FOG_SLOPE,				//Š|‚©‚è‹ï‡
-		TW_FOG_OFFS );				//Š|‚©‚éˆÊ’u
+	SetFogData( fog,				//ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
+		FOG_SYS_ALL,				//å…¨ã¦ã«
+		TRUE,						//FOGæœ‰åŠ¹
+		GX_FOGBLEND_COLOR_ALPHA,	//åŠé€æ˜ã‚¿ã‚¤ãƒ—
+		TW_FOG_SLOPE,				//æ›ã‹ã‚Šå…·åˆ
+		TW_FOG_OFFS );				//æ›ã‹ã‚‹ä½ç½®
 	
 	SetFogColor( fog, FOG_SYS_ALL, TW_FOG_COLOR, TW_FOG_ALPHA );
 	
@@ -5596,7 +5596,7 @@ static void tw_FogInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒHƒOíœ
+ * ãƒ•ã‚©ã‚°å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -5606,11 +5606,11 @@ static void tw_FogDelete( TORNWORLD_WORK *tw )
 }
 
 //==============================================================================
-//	”ò‚ÑÎ
+//	é£›ã³çŸ³
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@‰Šú‰»@ƒƒCƒ“
+ * é£›ã³çŸ³ã€€åˆæœŸåŒ–ã€€ãƒ¡ã‚¤ãƒ³
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -5646,9 +5646,9 @@ vanish_flag = 11111111011111000000000011111111
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@‰Šú‰»@Œ»İ‘w
+ * é£›ã³çŸ³ã€€åˆæœŸåŒ–ã€€ç¾åœ¨å±¤
  * @param	tw		TORNWORLD_WORK
- * @param	init_vns TRUE=ƒtƒ‰ƒO‰Šú’l‚Å‰Šú‰» FALSE=ƒZ[ƒuƒf[ƒ^ƒ`ƒFƒbƒN
+ * @param	init_vns TRUE=ãƒ•ãƒ©ã‚°åˆæœŸå€¤ã§åˆæœŸåŒ– FALSE=ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -5660,7 +5660,7 @@ static void tw_FStoneInitNow( TORNWORLD_WORK *tw, int init_vns )
 	zone_id = twNowZoneID( tw );
 	link = tw_ZoneLinkDataGet( zone_id );
 	
-	if( tw_ZoneDataBufFStoneDataSizeGet(tw) ){			//ƒƒCƒ“
+	if( tw_ZoneDataBufFStoneDataSizeGet(tw) ){			//ãƒ¡ã‚¤ãƒ³
 		TW_FSTONE_WORK *fstone = &tw->fstone;
 		const TW_FSTONE_HEADER *head = tw_MapDataFStoneHeaderGet( tw );
 		const TW_FSTONE_PUTPOS *put = tw_MapDataFStonePutPosTblGet( tw );
@@ -5708,7 +5708,7 @@ static void tw_FStoneInitNow( TORNWORLD_WORK *tw, int init_vns )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@‰Šú‰»@‰º‘w
+ * é£›ã³çŸ³ã€€åˆæœŸåŒ–ã€€ä¸‹å±¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -5723,7 +5723,7 @@ static void tw_FStoneInitLower( TORNWORLD_WORK *tw )
 	
 	zone_id = link->lower_zone_id;
 	
-	if( tw_ZoneDataBufFStoneDataSizeGetLower(tw) ){		//‰º‘w
+	if( tw_ZoneDataBufFStoneDataSizeGetLower(tw) ){		//ä¸‹å±¤
 		TW_FSTONE_WORK *fstone = &tw->fstone_lower;
 		const TW_FSTONE_HEADER *head = tw_MapDataFStoneHeaderGetLower( tw );
 		const TW_FSTONE_PUTPOS *put = tw_MapDataFStonePutPosTblGetLower( tw );
@@ -5738,7 +5738,7 @@ static void tw_FStoneInitLower( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@‰Šú‰»
+ * é£›ã³çŸ³ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -5758,7 +5758,7 @@ static void tw_FStoneInit( TORNWORLD_WORK *tw )
 	zone_id = twNowZoneID( tw );
 	link = tw_ZoneLinkDataGet( zone_id );
 	
-	if( tw_ZoneDataBufFStoneDataSizeGet(tw) ){			//ƒƒCƒ“
+	if( tw_ZoneDataBufFStoneDataSizeGet(tw) ){			//ãƒ¡ã‚¤ãƒ³
 		TW_FSTONE_WORK *fstone = &tw->fstone;
 		const TW_FSTONE_HEADER *head = tw_MapDataFStoneHeaderGet( tw );
 		const TW_FSTONE_PUTPOS *put = tw_MapDataFStonePutPosTblGet( tw );
@@ -5779,7 +5779,7 @@ static void tw_FStoneInit( TORNWORLD_WORK *tw )
 	
 	zone_id = link->lower_zone_id;
 	
-	if( tw_ZoneDataBufFStoneDataSizeGetLower(tw) ){		//‰º‘w
+	if( tw_ZoneDataBufFStoneDataSizeGetLower(tw) ){		//ä¸‹å±¤
 		TW_FSTONE_WORK *fstone = &tw->fstone_lower;
 		const TW_FSTONE_HEADER *head = tw_MapDataFStoneHeaderGetLower( tw );
 		const TW_FSTONE_PUTPOS *put = tw_MapDataFStonePutPosTblGetLower( tw );
@@ -5796,7 +5796,7 @@ static void tw_FStoneInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@íœ@ƒƒCƒ“
+ * é£›ã³çŸ³ã€€å‰Šé™¤ã€€ãƒ¡ã‚¤ãƒ³
  * @param	fstone	TW_FSTONE_WORK
  * @retval	nothing
  */
@@ -5820,7 +5820,7 @@ static void tw_FStoneDeleteMain( TW_FSTONE_WORK *fstone )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@íœ
+ * é£›ã³çŸ³ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -5833,7 +5833,7 @@ static void tw_FStoneDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@Œ»İ‚Ì‚İíœ
+ * é£›ã³çŸ³ã€€ç¾åœ¨ã®ã¿å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -5848,7 +5848,7 @@ static void tw_FStoneDeleteNow( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@‰º‘w‚Ì‚İíœ
+ * é£›ã³çŸ³ã€€ä¸‹å±¤ã®ã¿å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -5863,7 +5863,7 @@ static void tw_FStoneDeleteLower( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@Œ»İ‘w‚Ì‚İÁ‹
+ * é£›ã³çŸ³ã€€ç¾åœ¨å±¤ã®ã¿æ¶ˆå»
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -5876,7 +5876,7 @@ static void tw_FStoneCleanNow( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@‰º‘w‚Ì‚İÁ‹
+ * é£›ã³çŸ³ã€€ä¸‹å±¤ã®ã¿æ¶ˆå»
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -5889,7 +5889,7 @@ static void tw_FStoneCleanLower( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@Œ»İî•ñ‚ğ‰º‘w‚Ö
+ * é£›ã³çŸ³ã€€ç¾åœ¨æƒ…å ±ã‚’ä¸‹å±¤ã¸
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -5903,7 +5903,7 @@ static void tw_FStoneRemoveNowLower( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@‰º‘wî•ñ‚ğŒ»İ‚É
+ * é£›ã³çŸ³ã€€ä¸‹å±¤æƒ…å ±ã‚’ç¾åœ¨ã«
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -5943,7 +5943,7 @@ static void tw_FStoneDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@ƒoƒjƒbƒVƒ…ƒtƒ‰ƒOƒZƒbƒg
+ * é£›ã³çŸ³ã€€ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
  * @param	no 0-15
  * @retval	nothing
@@ -5959,7 +5959,7 @@ static void tw_FStoneVanishFlagON( TORNWORLD_WORK *tw, u32 no )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@ƒoƒjƒbƒVƒ…ƒtƒ‰ƒOOFF
+ * é£›ã³çŸ³ã€€ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°OFF
  * @param	tw	TORNWORLD_WORK
  * @param	no
  * @retval	nothing
@@ -5977,7 +5977,7 @@ static void tw_FStoneVanishFlagOFF( TORNWORLD_WORK *tw, u32 no )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@ƒoƒjƒbƒVƒ…ƒtƒ‰ƒOƒ`ƒFƒbƒN
+ * é£›ã³çŸ³ã€€ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
  * @param	no
  * @retval	nothing
@@ -5995,7 +5995,7 @@ static BOOL tw_FStoneVanishFlagCheck( TORNWORLD_WORK *tw, u32 no )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@ƒoƒjƒbƒVƒ…ƒtƒ‰ƒOƒ`ƒFƒbƒN@‰º‘w
+ * é£›ã³çŸ³ã€€ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯ã€€ä¸‹å±¤
  * @param	tw	TORNWORLD_WORK
  * @param	no
  * @retval	nothing
@@ -6013,7 +6013,7 @@ static BOOL tw_FStoneVanishFlagCheckLower( TORNWORLD_WORK *tw, u32 no )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@Œ»İ‚ÌƒoƒjƒbƒVƒ…ƒtƒ‰ƒO‚ğƒZ[ƒuƒf[ƒ^‚É”½‰f
+ * é£›ã³çŸ³ã€€ç¾åœ¨ã®ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -6026,7 +6026,7 @@ static void tw_FStoneVanishFlagSaveDataSet( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@”z’u
+ * é£›ã³çŸ³ã€€é…ç½®
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -6041,7 +6041,7 @@ static void tw_FStonePut( TORNWORLD_WORK *tw,
 			{
 				/*
 				u32 free = sys_GetHeapFreeSize( HEAPID_FIELD );
-				OS_Printf( "”òÎNo.%d ”z’uŠJn FldFreeSize %xH\n", i, free );
+				OS_Printf( "é£›çŸ³No.%d é…ç½®é–‹å§‹ FldFreeSize %xH\n", i, free );
 				*/
 			}
 			#endif
@@ -6052,7 +6052,7 @@ static void tw_FStonePut( TORNWORLD_WORK *tw,
 			{
 				/*
 				u32 free = sys_GetHeapFreeSize( HEAPID_FIELD );
-				OS_Printf( "”z’uŠ®—¹ FldFreeSize %xH\n", free );
+				OS_Printf( "é…ç½®å®Œäº† FldFreeSize %xH\n", free );
 				*/
 			}
 			#endif
@@ -6077,14 +6077,14 @@ static void tw_FStonePut( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@’Ç‰Á
+ * é£›ã³çŸ³ã€€è¿½åŠ 
  * @param	tw		TORNWORLD_WORK
- * @param	no		”ò‚ÑÎ”Ô†
- * @param	flag	ƒtƒ‰ƒO
+ * @param	no		é£›ã³çŸ³ç•ªå·
+ * @param	flag	ãƒ•ãƒ©ã‚°
  * @param	type	TWOBJTYPE
- * @param	gx		ƒOƒŠƒbƒhÀ•Wx
- * @param	gy		ƒOƒŠƒbƒhÀ•Wy
- * @param	gz		ƒOƒŠƒbƒhÀ•Wz
+ * @param	gx		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™x
+ * @param	gy		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™y
+ * @param	gz		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™z
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -6124,12 +6124,12 @@ static void tw_FStoneAdd(
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@oŒ»ƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+ * é£›ã³çŸ³ã€€å‡ºç¾ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
- * @param	gx	©‹@ƒOƒŠƒbƒhX
- * @param	gy	©‹@ƒOƒŠƒbƒhY
- * @param	gz	©‹@ƒOƒŠƒbƒhZ
- * @param	dir	©‹@is•ûŒü DIR_UP“™
+ * @param	gx	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰Z
+ * @param	dir	è‡ªæ©Ÿé€²è¡Œæ–¹å‘ DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -6189,10 +6189,10 @@ static void tw_EventMoveCheck_FStoneAdvent(
 #if 0
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@w’èÀ•W‚Å•`‰æ
+ * é£›ã³çŸ³ã€€æŒ‡å®šåº§æ¨™ã§æç”»
  * @param	tw	TORNWORLD_WORK
  * @param	type	FSTONETYPE_MAX
- * @param	pos		À•W
+ * @param	pos		åº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -6205,10 +6205,10 @@ static void tw_FStoneDraw( TORNWORLD_WORK *tw, int type, VecFx32 *pos )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@‘¶İ‚µ‚Ä‚¢‚é”ò‚ÑÎ‚ªg—p‚µ‚Ä‚¢‚éƒ‚ƒfƒ‹ƒŠƒ\[ƒXID‚ğŒŸõ
+ * é£›ã³çŸ³ã€€å­˜åœ¨ã—ã¦ã„ã‚‹é£›ã³çŸ³ãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹IDã‚’æ¤œç´¢
  * @param	tw	TORNWORLD_WORK
  * @param	mdl_id	TW_MDL_MAX
- * @retval	BOOL	TRUE=‘¶İ‚µ‚Ä‚¢‚é
+ * @retval	BOOL	TRUE=å­˜åœ¨ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_FStoneOBJResMdlIDSearch( TORNWORLD_WORK *tw, u32 mdl_id )
@@ -6249,10 +6249,10 @@ static BOOL tw_FStoneOBJResMdlIDSearch( TORNWORLD_WORK *tw, u32 mdl_id )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@‘¶İ‚µ‚Ä‚¢‚é”ò‚ÑÎ‚ªg—p‚µ‚Ä‚¢‚éƒAƒjƒƒŠƒ\[ƒXID‚ğŒŸõ
+ * é£›ã³çŸ³ã€€å­˜åœ¨ã—ã¦ã„ã‚‹é£›ã³çŸ³ãŒä½¿ç”¨ã—ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹IDã‚’æ¤œç´¢
  * @param	tw	TORNWORLD_WORK
  * @param	anm_id	TW_ANM_MAX
- * @retval	BOOL	TRUE=‘¶İ‚µ‚Ä‚¢‚é
+ * @retval	BOOL	TRUE=å­˜åœ¨ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_FStoneOBJResAnmIDSearch( TORNWORLD_WORK *tw, u32 anm_id )
@@ -6293,11 +6293,11 @@ static BOOL tw_FStoneOBJResAnmIDSearch( TORNWORLD_WORK *tw, u32 anm_id )
 #if 0
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@‘¶İ‚µ‚Ä‚¢‚é”ò‚ÑÎ‚ªg—p‚µ‚Ä‚¢‚éƒŠƒ\[ƒXID‚ğŒŸõ
+ * é£›ã³çŸ³ã€€å­˜åœ¨ã—ã¦ã„ã‚‹é£›ã³çŸ³ãŒä½¿ç”¨ã—ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹IDã‚’æ¤œç´¢
  * @param	tw	TORNWORLD_WORK
  * @param	mdl_id	TW_MDL_MAX
  * @param	anm_id	TW_ANM_MAX
- * @retval	BOOL	TRUE=‘¶İ‚µ‚Ä‚¢‚é
+ * @retval	BOOL	TRUE=å­˜åœ¨ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_FStoneOBJResIDSearch(
@@ -6330,10 +6330,10 @@ static BOOL tw_FStoneOBJResIDSearch(
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎ@‘¶İ‚µ‚Ä‚¢‚é”ò‚ÑÎ‚ÌOBJTYPE‚ğŒŸõ
+ * é£›ã³çŸ³ã€€å­˜åœ¨ã—ã¦ã„ã‚‹é£›ã³çŸ³ã®OBJTYPEã‚’æ¤œç´¢
  * @param	tw	TORNWORLD_WORK
- * @param	type	ƒ`ƒFƒbƒN‚·‚éTWOBJTYPE
- * @retval	BOOL	TRUE=‘¶İ
+ * @param	type	ãƒã‚§ãƒƒã‚¯ã™ã‚‹TWOBJTYPE
+ * @retval	BOOL	TRUE=å­˜åœ¨
  */
 //--------------------------------------------------------------
 static BOOL tw_FStoneOBJResTypeSearch( TORNWORLD_WORK *tw, TWOBJTYPE c_type )
@@ -6367,13 +6367,13 @@ static BOOL tw_FStoneOBJResTypeSearch( TORNWORLD_WORK *tw, TWOBJTYPE c_type )
 }
 
 //==============================================================================
-//	”ò‚ÑÎ@EOA ‹¤’Ê
+//	é£›ã³çŸ³ã€€EOA å…±é€š
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOA ”ò‚ÑÎ@í—Ş‚ğæ“¾
+ * EOA é£›ã³çŸ³ã€€ç¨®é¡ã‚’å–å¾—
  * @param	eoa	EOA_PTR
- * @retval	u16 FSTONETYPE_MAX“™
+ * @retval	u16 FSTONETYPE_MAXç­‰
  */
 //--------------------------------------------------------------
 static u16 tw_EoaFStoneTypeGet( EOA_PTR eoa )
@@ -6382,7 +6382,7 @@ static u16 tw_EoaFStoneTypeGet( EOA_PTR eoa )
 }
 
 //==============================================================================
-//	”ò‚ÑÎ@EOA
+//	é£›ã³çŸ³ã€€EOA
 //==============================================================================
 #define FSTONE_OFFS_TBL_MAX (8)
 #define FSTONE_OFFS_TBL_MAX_FX (NUM_FX32(FSTONE_OFFS_TBL_MAX))
@@ -6407,10 +6407,10 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * EOA ”ò‚ÑÎ@‰Šú‰»
+ * EOA é£›ã³çŸ³ã€€åˆæœŸåŒ–
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
- * @retval	int	FALSE=‰Šú‰»¸”s
+ * @retval	int	FALSE=åˆæœŸåŒ–å¤±æ•—
  */
 //--------------------------------------------------------------
 static int tw_EoaFStoneInit( EOA_PTR eoa, void *wk )
@@ -6444,7 +6444,7 @@ static int tw_EoaFStoneInit( EOA_PTR eoa, void *wk )
 		
 		if( ret == TRUE ){
 			work->alpha = 0;
-		}else{	//•\¦
+		}else{	//è¡¨ç¤º
 			work->alpha = 31;
 		}
 	}
@@ -6469,7 +6469,7 @@ static int tw_EoaFStoneInit( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ”ò‚ÑÎ@íœ
+ * EOA é£›ã³çŸ³ã€€å‰Šé™¤
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	void
@@ -6489,7 +6489,7 @@ static void tw_EoaFStoneDelete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ”ò‚ÑÎ@“®ì@‚ä‚ê‚È‚µ
+ * EOA é£›ã³çŸ³ã€€å‹•ä½œã€€ã‚†ã‚Œãªã—
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	void
@@ -6536,7 +6536,7 @@ static void tw_EoaFStoneMove( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	‚ä‚êƒe[ƒuƒ‹
+///	ã‚†ã‚Œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const fx32 DATA_FStoneMoveShakeTbl[FSTONE_OFFS_TBL_MAX] =
 {
@@ -6545,7 +6545,7 @@ static const fx32 DATA_FStoneMoveShakeTbl[FSTONE_OFFS_TBL_MAX] =
 
 //--------------------------------------------------------------
 /**
- * EOA ”ò‚ÑÎ@“®ì@‚ä‚ê‚ ‚è
+ * EOA é£›ã³çŸ³ã€€å‹•ä½œã€€ã‚†ã‚Œã‚ã‚Š
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	void
@@ -6627,7 +6627,7 @@ static void tw_EoaFStoneMoveShake( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ”ò‚ÑÎ@•`‰æ
+ * EOA é£›ã³çŸ³ã€€æç”»
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	void
@@ -6716,7 +6716,7 @@ static void tw_EoaFStoneDraw( EOA_PTR eoa, void *wk )
 #endif
 
 //==============================================================================
-//	”ò‚ÑÎ@EOA ƒAƒjƒ—L‚è@–Ø
+//	é£›ã³çŸ³ã€€EOA ã‚¢ãƒ‹ãƒ¡æœ‰ã‚Šã€€æœ¨
 //==============================================================================
 //--------------------------------------------------------------
 ///	EOA_FSANM_WORK
@@ -6736,10 +6736,10 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * EOA ”ò‚ÑÎ–Ø@‰Šú‰»
+ * EOA é£›ã³çŸ³æœ¨ã€€åˆæœŸåŒ–
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
- * @retval	int	FALSE=‰Šú‰»¸”s
+ * @retval	int	FALSE=åˆæœŸåŒ–å¤±æ•—
  */
 //--------------------------------------------------------------
 static int tw_EoaFStoneTreeInit( EOA_PTR eoa, void *wk )
@@ -6780,7 +6780,7 @@ static int tw_EoaFStoneTreeInit( EOA_PTR eoa, void *wk )
 		
 		if( ret == TRUE ){
 			work->alpha = 0;
-		}else{	//•\¦
+		}else{	//è¡¨ç¤º
 			work->alpha = 31;
 			FRO_ANM_FrameSet( &work->objres_p->ranm,
 				FRO_ANM_MaxFrameGet(&work->objres_p->ranm) );
@@ -6803,7 +6803,7 @@ static int tw_EoaFStoneTreeInit( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ”ò‚ÑÎ–Ø@íœ
+ * EOA é£›ã³çŸ³æœ¨ã€€å‰Šé™¤
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	void
@@ -6823,7 +6823,7 @@ static void tw_EoaFStoneTreeDelete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ”ò‚ÑÎ–Ø@“®ì
+ * EOA é£›ã³çŸ³æœ¨ã€€å‹•ä½œ
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	void
@@ -6914,7 +6914,7 @@ static void tw_EoaFStoneAnimeMove( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ”ò‚ÑÎ–Ø@•`‰æ
+ * EOA é£›ã³çŸ³æœ¨ã€€æç”»
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	void
@@ -6937,11 +6937,11 @@ static void tw_EoaFStoneTreeDraw( EOA_PTR eoa, void *wk )
 }
 
 //==============================================================================
-//	ƒ}ƒbƒvƒf[ƒ^
+//	ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^@‰Šú‰»
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -6951,28 +6951,28 @@ static void tw_MapDataInit( TORNWORLD_WORK *tw )
 	int zone_id;
 	const TW_ZONE_LINKDATA *link;
 	
-	//î•ñæ“¾
+	//æƒ…å ±å–å¾—
 	zone_id = twNowZoneID( tw );
 	link = tw_ZoneLinkDataGet( zone_id );
 	
-	//ƒ}ƒbƒvƒf[ƒ^ƒoƒbƒtƒ@‰Šú‰»
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–
 	tw_MapDataIdxInit( tw );
 	tw_ZoneDataBufInit( tw, zone_id, link->lower_zone_id );
 	
-	//Šeƒ}ƒbƒvƒf[ƒ^‰Šú‰»
+	//å„ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	tw_MapDataGndDataInit( tw );
 	tw_MapDataEvJumpDataInit( tw );
 	tw_MapDataCmActDataInit( tw );
 	tw_MapDataFStoneDataInit( tw );
 	
-	//ƒ}ƒbƒvƒf[ƒ^ƒZƒbƒg
-	if( tw_SaveDataInitFinishCheck(tw) == FALSE ){	//‰Šú‰»‚Ü‚¾
-		//©‹@Œ»’nŒ`ƒf[ƒ^ƒZƒbƒg
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
+	if( tw_SaveDataInitFinishCheck(tw) == FALSE ){	//åˆæœŸåŒ–ã¾ã 
+		//è‡ªæ©Ÿç¾åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 		int gx,gy,gz;
 		twJikiGridPosGet( tw, &gx, &gy, &gz );
 		tw_MapDataGndDataPosDataSet( tw, gx, gy, gz, TW_GNDTYPE_MAX );
-	}else{											//‰Šú‰»Ï‚İ
-		//ƒZ[ƒuƒf[ƒ^‚Ì’nŒ`”Ô†‚Å‰Šú‰»
+	}else{											//åˆæœŸåŒ–æ¸ˆã¿
+		//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®åœ°å½¢ç•ªå·ã§åˆæœŸåŒ–
 		u32 no = tw_SaveDataSpGroundNoGet( tw );
 		tw_MapDataGndDataNoSet( tw, no );
 	}
@@ -6980,33 +6980,33 @@ static void tw_MapDataInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^@ƒŠƒZƒbƒg
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã€€ãƒªã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_MapDataReset( TORNWORLD_WORK *tw )
 {
-	//Šeƒ}ƒbƒvƒf[ƒ^íœ
+	//å„ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
 	tw_MapDataCmActDataDelete( tw );
 	tw_MapDataEvJumpDataDelete( tw );
 	tw_MapDataGndDataDelete( tw );
 	tw_MapDataFStoneDataDelete( tw );
 	
-	//ƒ}ƒbƒvƒf[ƒ^ƒoƒbƒtƒ@íœ
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡å‰Šé™¤
 	tw_ZoneDataBufDelete( tw );
 	
-	//ƒ}ƒbƒvƒf[ƒ^ƒoƒbƒtƒ@‰Šú‰»
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–
 	tw_ZoneDataBufInit( tw, twNowZoneID(tw), ZONE_ID_MAX );
 	
-	//Šeƒ}ƒbƒvƒf[ƒ^‰Šú‰»
+	//å„ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	tw_MapDataGndDataInit( tw );
 	tw_MapDataEvJumpDataInit( tw );
 	tw_MapDataCmActDataInit( tw );
 	tw_MapDataFStoneDataInit( tw );
 	
-	//ƒ}ƒbƒvƒf[ƒ^ƒZƒbƒg
-	{	//©‹@Œ»’nŒ`ƒf[ƒ^ƒZƒbƒg
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
+	{	//è‡ªæ©Ÿç¾åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 		int gx,gy,gz;
 		twJikiGridPosGet( tw, &gx, &gy, &gz );
 		tw_MapDataGndDataPosDataSet( tw, gx, gy, gz, TW_GNDTYPE_MAX );
@@ -7015,47 +7015,47 @@ static void tw_MapDataReset( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^@íœ
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_MapDataDelete( TORNWORLD_WORK *tw )
 {
-	//Šeƒ}ƒbƒvƒf[ƒ^íœ
+	//å„ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
 	tw_MapDataCmActDataDelete( tw );
 	tw_MapDataEvJumpDataDelete( tw );
 	tw_MapDataGndDataDelete( tw );
 	tw_MapDataFStoneDataDelete( tw );
 	
-	//ƒ}ƒbƒvƒf[ƒ^ƒoƒbƒtƒ@íœ
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡å‰Šé™¤
 	tw_ZoneDataBufDelete( tw );
 	tw_MapDataIdxDelete( tw );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^@Œ»İ‘w‚ğ‰º‘w‚ÉˆÚ“®@(ãŠK‘wˆÚ“®
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã€€ç¾åœ¨å±¤ã‚’ä¸‹å±¤ã«ç§»å‹•ã€€(ä¸Šéšå±¤ç§»å‹•
  * @param	tw	TORNWORLD_WORK
- * @param	zone_id	V‹Kƒ][ƒ“ID
+ * @param	zone_id	æ–°è¦ã‚¾ãƒ¼ãƒ³ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_MapDataRemoveNowLower( TORNWORLD_WORK *tw, u32 zone_id )
 {
-	tw_MapDataFStoneDataDeleteLower( tw );	//‰º‘wƒf[ƒ^íœ
-	tw_ZoneDataBufDeleteLower( tw );		//‰º‘wƒoƒbƒtƒ@íœ
+	tw_MapDataFStoneDataDeleteLower( tw );	//ä¸‹å±¤ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
+	tw_ZoneDataBufDeleteLower( tw );		//ä¸‹å±¤ãƒãƒƒãƒ•ã‚¡å‰Šé™¤
 	
-	tw_MapDataCmActDataDelete( tw );		//Œ»İ‘wƒ}ƒbƒvƒf[ƒ^íœ
+	tw_MapDataCmActDataDelete( tw );		//ç¾åœ¨å±¤ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
 	tw_MapDataEvJumpDataDelete( tw );
 	tw_MapDataGndDataDelete( tw );
 	
-	tw_ZoneDataBufRemoveNowLower( tw );		//ƒ][ƒ“ƒoƒbƒtƒ@‚ğ‰º‘wˆÚ“®
+	tw_ZoneDataBufRemoveNowLower( tw );		//ã‚¾ãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’ä¸‹å±¤ç§»å‹•
 	tw_MapDataFStoneDataRemoveNowLower( tw );
 	tw_FStoneRemoveNowLower( tw );
 	tw_FStoneCleanNow( tw );
 	
-	tw_ZoneDataBufInitNow( tw, zone_id );	//V‹KŒ»İ‘w‚Ì“Ç‚İ‚İ
+	tw_ZoneDataBufInitNow( tw, zone_id );	//æ–°è¦ç¾åœ¨å±¤ã®èª­ã¿è¾¼ã¿
 	tw_MapDataGndDataInit( tw );
 	tw_MapDataGndDataNoMaxSet( tw );
 	tw_MapDataEvJumpDataInit( tw );
@@ -7065,33 +7065,33 @@ static void tw_MapDataRemoveNowLower( TORNWORLD_WORK *tw, u32 zone_id )
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^@‰º‘w‚ğŒ»İ‘w‚ÉˆÚ“®@(‰ºŠK‘wˆÚ“®
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã€€ä¸‹å±¤ã‚’ç¾åœ¨å±¤ã«ç§»å‹•ã€€(ä¸‹éšå±¤ç§»å‹•
  * @param	tw		TORNWORLD_WORK
- * @param	zone_id	V‹K‰ºŠK‘wƒ][ƒ“ID
+ * @param	zone_id	æ–°è¦ä¸‹éšå±¤ã‚¾ãƒ¼ãƒ³ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_MapDataRemoveLowerNow( TORNWORLD_WORK *tw, u32 zone_id )
 {
-	tw_MapDataCmActDataDelete( tw );			//Œ»İ‘wƒ}ƒbƒvƒf[ƒ^íœ
+	tw_MapDataCmActDataDelete( tw );			//ç¾åœ¨å±¤ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
 	tw_MapDataEvJumpDataDelete( tw );
 	tw_MapDataGndDataDelete( tw );
 	tw_MapDataFStoneDataDeleteNow( tw );
 	
-	tw_ZoneDataBufDeleteNow( tw );				//Œ»ŠK‘wƒoƒbƒtƒ@íœ
+	tw_ZoneDataBufDeleteNow( tw );				//ç¾éšå±¤ãƒãƒƒãƒ•ã‚¡å‰Šé™¤
 	
-	tw_ZoneDataBufRemoveLowerNow( tw );			//‰º‘wƒoƒbƒtƒ@‚ğŒ»ŠK‘w‚Ö
-	tw_MapDataFStoneDataRemoveLowerNow( tw );	//‰º‘w”ò‚ÑÎ‚ğŒ»ŠK‘w‚Ö
+	tw_ZoneDataBufRemoveLowerNow( tw );			//ä¸‹å±¤ãƒãƒƒãƒ•ã‚¡ã‚’ç¾éšå±¤ã¸
+	tw_MapDataFStoneDataRemoveLowerNow( tw );	//ä¸‹å±¤é£›ã³çŸ³ã‚’ç¾éšå±¤ã¸
 	tw_FStoneRemoveLowerNow( tw );
 	tw_FStoneVanishFlagSaveDataSet( tw );
 	tw_FStoneCleanLower( tw );
 	
-	tw_MapDataGndDataInit( tw );				//ˆø‚«Œp‚¢‚¾ƒoƒbƒtƒ@‚©‚ç‰Šú‰»
+	tw_MapDataGndDataInit( tw );				//å¼•ãç¶™ã„ã ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰åˆæœŸåŒ–
 	tw_MapDataGndDataNoMaxSet( tw );
 	tw_MapDataEvJumpDataInit( tw );
 	tw_MapDataCmActDataInit( tw );
 	
-	if( zone_id != ZONE_ID_MAX ){				//‰º‘w‚Ì“Ç‚İ‚İ
+	if( zone_id != ZONE_ID_MAX ){				//ä¸‹å±¤ã®èª­ã¿è¾¼ã¿
 		tw_ZoneDataBufInitLower( tw, zone_id );
 		tw_MapDataFStoneDataInitLower( tw );
 	}
@@ -7099,7 +7099,7 @@ static void tw_MapDataRemoveLowerNow( TORNWORLD_WORK *tw, u32 zone_id )
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX‰Šú‰»@ƒƒCƒ“
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹åˆæœŸåŒ–ã€€ãƒ¡ã‚¤ãƒ³
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -7122,7 +7122,7 @@ static void tw_MapDataIdxInitMain(
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX‰Šú‰»
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -7135,7 +7135,7 @@ static void tw_MapDataIdxInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXíœ@ƒƒCƒ“
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å‰Šé™¤ã€€ãƒ¡ã‚¤ãƒ³
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -7149,7 +7149,7 @@ static void tw_MapDataIdxDeleteMain( TW_MDATA_IDX *md_idx )
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXíœ
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -7161,7 +7161,7 @@ static void tw_MapDataIdxDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX@w’è‚Ìƒ][ƒ“ID‚É‘Î‰‚µ‚½TW_MDIDXæ“¾@ƒƒCƒ“
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€æŒ‡å®šã®ã‚¾ãƒ¼ãƒ³IDã«å¯¾å¿œã—ãŸTW_MDIDXå–å¾—ã€€ãƒ¡ã‚¤ãƒ³
  * @param	md_idx	TW_MDATA_IDX
  * @param	zone_id		zone id
  * @retval	TW_MDIDX*	TW_MDIDX	
@@ -7185,7 +7185,7 @@ static const TW_MDIDX * tw_MapDataIdxZoneIDMdIdxGetMain(
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX@w’è‚Ìƒ][ƒ“ID‚É‘Î‰‚µ‚½TW_MDIDXæ“¾
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€æŒ‡å®šã®ã‚¾ãƒ¼ãƒ³IDã«å¯¾å¿œã—ãŸTW_MDIDXå–å¾—
  * @param	tw			TORNWORLD_WORK
  * @param	zone_id		zone id
  * @retval	TW_MDIDX*	TW_MDIDX	
@@ -7199,10 +7199,10 @@ static const TW_MDIDX * tw_MapDataIdxZoneIDMdIdxGet(
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX@w’è‚Ìƒ][ƒ“ID‚Ìƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXæ“¾
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€æŒ‡å®šã®ã‚¾ãƒ¼ãƒ³IDã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
  * @param	tw	TORNWORLD_WORK
  * @param	zone	zone id
- * @retval	u32	ƒCƒ“ƒfƒbƒNƒX”Ô†
+ * @retval	u32	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
  */
 //--------------------------------------------------------------
 static u32 tw_MapDataIdxZoneIDIdxGet( TORNWORLD_WORK *tw, int zone_id )
@@ -7213,11 +7213,11 @@ static u32 tw_MapDataIdxZoneIDIdxGet( TORNWORLD_WORK *tw, int zone_id )
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX@w’è‚Ìƒ][ƒ“ID‚Ìn“_ƒOƒŠƒbƒhÀ•W‚ğæ“¾@ƒƒCƒ“
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€æŒ‡å®šã®ã‚¾ãƒ¼ãƒ³IDã®å§‹ç‚¹ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ã‚’å–å¾—ã€€ãƒ¡ã‚¤ãƒ³
  * @param	zone_id	ZONE ID
- * @param	x	XÀ•WŠi”[æ
- * @param	y	XÀ•WŠi”[æ
- * @param	z	XÀ•WŠi”[æ
+ * @param	x	Xåº§æ¨™æ ¼ç´å…ˆ
+ * @param	y	Xåº§æ¨™æ ¼ç´å…ˆ
+ * @param	z	Xåº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -7233,12 +7233,12 @@ static void tw_MapDataIdxZoneIDOriginGridPosGetMain(
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX@w’è‚Ìƒ][ƒ“ID‚Ìn“_ƒOƒŠƒbƒhÀ•W‚ğæ“¾
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€æŒ‡å®šã®ã‚¾ãƒ¼ãƒ³IDã®å§‹ç‚¹ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ã‚’å–å¾—
  * @param	tw	TORNWORLD_WORK
  * @param	zone_id	ZONE ID
- * @param	x	XÀ•WŠi”[æ
- * @param	y	XÀ•WŠi”[æ
- * @param	z	XÀ•WŠi”[æ
+ * @param	x	Xåº§æ¨™æ ¼ç´å…ˆ
+ * @param	y	Xåº§æ¨™æ ¼ç´å…ˆ
+ * @param	z	Xåº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -7251,13 +7251,13 @@ static void tw_MapDataIdxZoneIDOriginGridPosGet(
 
 //--------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX@w’è‚Ìƒ][ƒ“ID‚ÌÀ•W(fx32)‚ğæ“¾
+ * ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€æŒ‡å®šã®ã‚¾ãƒ¼ãƒ³IDã®åº§æ¨™(fx32)ã‚’å–å¾—
  * @param	tw	TORNWORLD_WORK
  * @param	zone_id	ZONE ID
- * @param	pos	À•WŠi”[æ
- * @param	x	XÀ•WŠi”[æ
- * @param	y	XÀ•WŠi”[æ
- * @param	z	XÀ•WŠi”[æ
+ * @param	pos	åº§æ¨™æ ¼ç´å…ˆ
+ * @param	x	Xåº§æ¨™æ ¼ç´å…ˆ
+ * @param	y	Xåº§æ¨™æ ¼ç´å…ˆ
+ * @param	z	Xåº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -7272,7 +7272,7 @@ static void tw_MapDataIdxZoneIDOriginPosGet(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@‰Šú‰»@ƒƒCƒ“
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€åˆæœŸåŒ–ã€€ãƒ¡ã‚¤ãƒ³
  * @param	tw	TORNWORLD_WORK
  * @param	buf	TW_ZONEDATA_BUF
  * @param	zone	zone id
@@ -7346,7 +7346,7 @@ static void tw_ZoneDataBufInitMain(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@‰Šú‰»
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @param	zone	zone id
  * @param	l_zone	lower zone_id
@@ -7362,7 +7362,7 @@ static void tw_ZoneDataBufInit(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@‰Šú‰»@Œ»İ‚Ì‚İ
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€åˆæœŸåŒ–ã€€ç¾åœ¨ã®ã¿
  * @param	tw	TORNWORLD_WORK
  * @param	zone	zone id
  * @param	l_zone	lower zone_id
@@ -7379,7 +7379,7 @@ static void tw_ZoneDataBufInitNow( TORNWORLD_WORK *tw, int zone_id )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@‰Šú‰»@‰º‘w‚Ì‚İ
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€åˆæœŸåŒ–ã€€ä¸‹å±¤ã®ã¿
  * @param	tw	TORNWORLD_WORK
  * @param	zone	zone id
  * @param	l_zone	lower zone_id
@@ -7396,7 +7396,7 @@ static void tw_ZoneDataBufInitLower( TORNWORLD_WORK *tw, int zone_id )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@ƒNƒŠƒA
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€ã‚¯ãƒªã‚¢
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -7409,7 +7409,7 @@ static void tw_ZoneDataBufClean( TW_ZONEDATA_BUF *buf )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@íœ@ƒƒCƒ“
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€å‰Šé™¤ã€€ãƒ¡ã‚¤ãƒ³
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -7424,7 +7424,7 @@ static void tw_ZoneDataBufDeleteMain( TW_ZONEDATA_BUF *buf )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@íœ
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -7437,7 +7437,7 @@ static void tw_ZoneDataBufDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@íœ@Œ»İ‚Ì‚İ
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€å‰Šé™¤ã€€ç¾åœ¨ã®ã¿
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -7449,7 +7449,7 @@ static void tw_ZoneDataBufDeleteNow( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@íœ@‰º‘w‚Ì‚İ
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€å‰Šé™¤ã€€ä¸‹å±¤ã®ã¿
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -7461,7 +7461,7 @@ static void tw_ZoneDataBufDeleteLower( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@Œ»İ‘w‚ğ‰º‘w‚ÉˆÚ“®
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€ç¾åœ¨å±¤ã‚’ä¸‹å±¤ã«ç§»å‹•
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -7476,7 +7476,7 @@ static void tw_ZoneDataBufRemoveNowLower( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@‰º‘w‚ğŒ»İ‘w‚ÉˆÚ“®‚µ‰º‘wƒoƒbƒtƒ@ƒNƒŠƒA
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€ä¸‹å±¤ã‚’ç¾åœ¨å±¤ã«ç§»å‹•ã—ä¸‹å±¤ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -7491,7 +7491,7 @@ static void tw_ZoneDataBufRemoveLowerNow( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@ƒ][ƒ“ƒoƒbƒtƒ@‘¶İƒ`ƒFƒbƒN
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€ã‚¾ãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡å­˜åœ¨ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
  * @retval	u32	size
  */
@@ -7506,7 +7506,7 @@ static BOOL tw_ZoneDataBufValidCheck( TW_ZONEDATA_BUF *buf )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@’nŒ`ƒf[ƒ^ƒTƒCƒYæ“¾
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
  * @param	tw	TORNWORLD_WORK
  * @retval	u32	size
  */
@@ -7519,9 +7519,9 @@ static int tw_ZoneDataBufGndDataSizeGet( TW_ZONEDATA_BUF *buf )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@’nŒ`ƒf[ƒ^”@æ“¾
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€åœ°å½¢ãƒ‡ãƒ¼ã‚¿æ•°ã€€å–å¾—
  * @param	tw	TORNWORLD_WORK
- * @retval	int	ƒf[ƒ^—v‘f”
+ * @retval	int	ãƒ‡ãƒ¼ã‚¿è¦ç´ æ•°
  */
 //--------------------------------------------------------------
 static int tw_ZoneDataBufGndDataCountGet( TW_ZONEDATA_BUF *buf )
@@ -7532,7 +7532,7 @@ static int tw_ZoneDataBufGndDataCountGet( TW_ZONEDATA_BUF *buf )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@’nŒ`ƒf[ƒ^æ“¾
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€åœ°å½¢ãƒ‡ãƒ¼ã‚¿å–å¾—
  * @param	tw	TORNWORLD_WORK
  * @retval	TW_GNDDATA
  */
@@ -7540,13 +7540,13 @@ static int tw_ZoneDataBufGndDataCountGet( TW_ZONEDATA_BUF *buf )
 static TW_GNDDATA * tw_ZoneDataBufGndDataGet( TW_ZONEDATA_BUF *buf )
 {
 	u8 *p = buf->gnd_p;
-	p += 4;				//ƒf[ƒ^””ò‚Î‚µ
+	p += 4;				//ãƒ‡ãƒ¼ã‚¿æ•°é£›ã°ã—
 	return( (TW_GNDDATA*)p );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@ƒWƒƒƒ“ƒvƒCƒxƒ“ƒgƒf[ƒ^ƒTƒCƒYæ“¾
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
  * @param	tw	TORNWORLD_WORK
  * @retval	u32	size
  */
@@ -7559,9 +7559,9 @@ static int tw_ZoneDataBufEvJumpDataSizeGet( TW_ZONEDATA_BUF *buf )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@ƒWƒƒƒ“ƒvƒCƒxƒ“ƒgƒf[ƒ^”@æ“¾
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿æ•°ã€€å–å¾—
  * @param	tw	TORNWORLD_WORK
- * @retval	int	ƒf[ƒ^—v‘f”
+ * @retval	int	ãƒ‡ãƒ¼ã‚¿è¦ç´ æ•°
  */
 //--------------------------------------------------------------
 static int tw_ZoneDataBufEvJumpDataCountGet( TW_ZONEDATA_BUF *buf )
@@ -7572,7 +7572,7 @@ static int tw_ZoneDataBufEvJumpDataCountGet( TW_ZONEDATA_BUF *buf )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@ƒWƒƒƒ“ƒvƒCƒxƒ“ƒgƒf[ƒ^æ“¾
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
  * @param	tw	TORNWORLD_WORK
  * @retval	TW_EVJUMPDATA
  */
@@ -7580,13 +7580,13 @@ static int tw_ZoneDataBufEvJumpDataCountGet( TW_ZONEDATA_BUF *buf )
 static TW_EVJUMPDATA * tw_ZoneDataBufEvJumpDataGet( TW_ZONEDATA_BUF *buf )
 {
 	u8 *p = buf->evj_p;
-	p += 4;				//ƒf[ƒ^””ò‚Î‚µ
+	p += 4;				//ãƒ‡ãƒ¼ã‚¿æ•°é£›ã°ã—
 	return( (TW_EVJUMPDATA*)p );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^ƒTƒCƒYæ“¾
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
  * @param	tw	TORNWORLD_WORK
  * @retval	u32	size
  */
@@ -7599,9 +7599,9 @@ static int tw_ZoneDataBufCmActDataSizeGet( TW_ZONEDATA_BUF *buf )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^”æ“¾
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿æ•°å–å¾—
  * @param	tw	TORNWORLD_WORK
- * @retval	int	ƒf[ƒ^—v‘f”
+ * @retval	int	ãƒ‡ãƒ¼ã‚¿è¦ç´ æ•°
  */
 //--------------------------------------------------------------
 static int tw_ZoneDataBufCmActDataCountGet( TW_ZONEDATA_BUF *buf )
@@ -7612,7 +7612,7 @@ static int tw_ZoneDataBufCmActDataCountGet( TW_ZONEDATA_BUF *buf )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^æ“¾
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
  * @param	tw	TORNWORLD_WORK
  * @retval	TW_EVJUMPDATA
  */
@@ -7620,13 +7620,13 @@ static int tw_ZoneDataBufCmActDataCountGet( TW_ZONEDATA_BUF *buf )
 static TW_CMACTDATA * tw_ZoneDataBufCmActDataGet( TW_ZONEDATA_BUF *buf )
 {
 	u8 *p = buf->cma_p;
-	p += 4;				//ƒf[ƒ^””ò‚Î‚µ
+	p += 4;				//ãƒ‡ãƒ¼ã‚¿æ•°é£›ã°ã—
 	return( (TW_CMACTDATA*)p );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@”ò‚ÑÎƒf[ƒ^ƒTƒCƒYæ“¾
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
  * @param	tw	TORNWORLD_WORK
  * @retval	u32	size
  */
@@ -7640,7 +7640,7 @@ static int tw_ZoneDataBufFStoneDataSizeGet( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@”ò‚ÑÎƒf[ƒ^ƒTƒCƒYæ“¾@‰º‘w
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—ã€€ä¸‹å±¤
  * @param	tw	TORNWORLD_WORK
  * @retval	u32	size
  */
@@ -7660,7 +7660,7 @@ static int tw_ZoneDataBufFStoneDataSizeGetLower( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@”ò‚ÑÎƒwƒbƒ_æ“¾
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€é£›ã³çŸ³ãƒ˜ãƒƒãƒ€å–å¾—
  * @param	buf	TW_ZONEDATA_BUF
  * @retval	nothing
  */
@@ -7674,7 +7674,7 @@ static const TW_FSTONE_HEADER * tw_ZoneDataBufFStoneHeaderGet(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@”ò‚ÑÎ”z’uƒf[ƒ^æ“¾
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€é£›ã³çŸ³é…ç½®ãƒ‡ãƒ¼ã‚¿å–å¾—
  * @param	buf	TW_ZONEDATA_BUF *
  * @retval	TW_FSTONE_PUTPOS *
  */
@@ -7689,7 +7689,7 @@ static const TW_FSTONE_PUTPOS * tw_ZoneDataBufFStonePutPosDataGet(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒf[ƒ^ƒoƒbƒtƒ@@”ò‚ÑÎƒtƒ‰ƒO‘€ìƒf[ƒ^æ“¾
+ * ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã€€é£›ã³çŸ³ãƒ•ãƒ©ã‚°æ“ä½œãƒ‡ãƒ¼ã‚¿å–å¾—
  * @param	tw	TORNWORLD_WORK
  * @retval	TW_FSTONE_FLAGPOS*
  */
@@ -7705,7 +7705,7 @@ static const TW_FSTONE_FLAGPOS * tw_ZoneDataBufFStoneFlagPosDataGet(
 
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒf[ƒ^@‰Šú‰»
+ * åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -7727,7 +7727,7 @@ static void tw_MapDataGndDataInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒf[ƒ^@íœ
+ * åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -7745,11 +7745,11 @@ static void tw_MapDataGndDataDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒf[ƒ^@w’èÀ•W‚É‘¶İ‚·‚é“Áê’nŒ`ƒf[ƒ^‚ğƒ`ƒFƒbƒN
+ * åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€€æŒ‡å®šåº§æ¨™ã«å­˜åœ¨ã™ã‚‹ç‰¹æ®Šåœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚§ãƒƒã‚¯
  * @param	TORNWORLD_WORK
- * @param	gx	ƒOƒŠƒbƒhX
- * @param	gy	ƒOƒŠƒbƒhY
- * @param	gz	ƒOƒŠƒbƒhZ
+ * @param	gx	ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	ã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	ã‚°ãƒªãƒƒãƒ‰Z
  * @param	
  * @retval	nothing
  */
@@ -7761,7 +7761,7 @@ static BOOL tw_MapDataGndDataPosExistCheck(
 	const TW_GNDDATA *data = gnd->gnd_tbl_p;
 	int i = 0, max = gnd->tbl_max;
 	
-	if( max == 0 ){				//“Áê’nŒ`–³‚µ
+	if( max == 0 ){				//ç‰¹æ®Šåœ°å½¢ç„¡ã—
 		return( FALSE );
 	}
 	
@@ -7781,15 +7781,15 @@ static BOOL tw_MapDataGndDataPosExistCheck(
 
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒf[ƒ^@w’èÀ•W‚Éˆê’v‚·‚é’nŒ`ƒf[ƒ^ƒZƒbƒg
- * ‰Šú‰»‚³‚ê‚é‚Ì‚Í Œ»’nŒ`”Ô†AƒAƒgƒŠƒrƒ…[ƒgB
+ * åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€€æŒ‡å®šåº§æ¨™ã«ä¸€è‡´ã™ã‚‹åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
+ * åˆæœŸåŒ–ã•ã‚Œã‚‹ã®ã¯ ç¾åœ°å½¢ç•ªå·ã€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã€‚
  * @param	TORNWORLD_WORK
- * @param	gx	ƒOƒŠƒbƒhX
- * @param	gy	ƒOƒŠƒbƒhY
- * @param	gz	ƒOƒŠƒbƒhZ
- * @param	type TW_GNDTYPE_GROUND“™B
- * MAX‚Ìê‡A”»’è‚ÍÀ•Wˆê’v‚Ì‚İB
- * w’è‚ª‚ ‚éê‡‚ÍÀ•W‚Ætype‚Åİ’è‚³‚ê‚½’nŒ`‚Éˆê’v‚·‚é‚à‚Ì‚ğ‘I‚ÔB
+ * @param	gx	ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	ã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	ã‚°ãƒªãƒƒãƒ‰Z
+ * @param	type TW_GNDTYPE_GROUNDç­‰ã€‚
+ * MAXã®å ´åˆã€åˆ¤å®šã¯åº§æ¨™ä¸€è‡´ã®ã¿ã€‚
+ * æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯åº§æ¨™ã¨typeã§è¨­å®šã•ã‚ŒãŸåœ°å½¢ã«ä¸€è‡´ã™ã‚‹ã‚‚ã®ã‚’é¸ã¶ã€‚
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -7800,7 +7800,7 @@ static void tw_MapDataGndDataPosDataSet(
 	const TW_GNDDATA *data = gnd->gnd_tbl_p;
 	int i = 0, max = gnd->tbl_max;
 	
-	gnd->gnd_num_now = max;		//–³Œøƒiƒ“ƒo[‚Å‰Šú‰»
+	gnd->gnd_num_now = max;		//ç„¡åŠ¹ãƒŠãƒ³ãƒãƒ¼ã§åˆæœŸåŒ–
 	tw_SaveDataSpGroundNoSet( tw, max );
 	
 	if( gnd->attr_buf_p != NULL ){
@@ -7808,7 +7808,7 @@ static void tw_MapDataGndDataPosDataSet(
 		gnd->attr_buf_p = NULL;
 	}
 	
-	if( max == 0 ){				//“Áê’nŒ`–³‚µ
+	if( max == 0 ){				//ç‰¹æ®Šåœ°å½¢ç„¡ã—
 		return;
 	}
 	
@@ -7836,9 +7836,9 @@ static void tw_MapDataGndDataPosDataSet(
 
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒf[ƒ^@w’è”Ô†‚Ì’nŒ`ƒf[ƒ^ƒZƒbƒg
+ * åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€€æŒ‡å®šç•ªå·ã®åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  * @param	TORNWORLD_WORK
- * @param	no	ƒf[ƒ^”Ô†
+ * @param	no	ãƒ‡ãƒ¼ã‚¿ç•ªå·
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -7848,14 +7848,14 @@ static void tw_MapDataGndDataNoSet( TORNWORLD_WORK *tw, u32 no )
 	const TW_GNDDATA *data = gnd->gnd_tbl_p;
 	int i = 0, max = gnd->tbl_max;
 	
-	gnd->gnd_num_now = max;		//–³Œøƒiƒ“ƒo[‚Å‰Šú‰»
+	gnd->gnd_num_now = max;		//ç„¡åŠ¹ãƒŠãƒ³ãƒãƒ¼ã§åˆæœŸåŒ–
 	
 	if( gnd->attr_buf_p != NULL ){
 		sys_FreeMemoryEz( gnd->attr_buf_p );
 		gnd->attr_buf_p = NULL;
 	}
 	
-	if( max == 0 || no >= max || no < 0 ){		//“Áê’nŒ`–³‚µ
+	if( max == 0 || no >= max || no < 0 ){		//ç‰¹æ®Šåœ°å½¢ç„¡ã—
 		tw_SaveDataSpGroundNoSet( tw, max );
 		return;
 	}
@@ -7867,10 +7867,10 @@ static void tw_MapDataGndDataNoSet( TORNWORLD_WORK *tw, u32 no )
 
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒf[ƒ^@’nŒ`”Ô†‚ğ–³Œø‚Å‰Šú‰»B
- * tw_MapDataGndDataInit()Œã‚Å‚ ‚é–‚ª‘O’ñ
+ * åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€€åœ°å½¢ç•ªå·ã‚’ç„¡åŠ¹ã§åˆæœŸåŒ–ã€‚
+ * tw_MapDataGndDataInit()å¾Œã§ã‚ã‚‹äº‹ãŒå‰æ
  * @param	TORNWORLD_WORK
- * @param	no	ƒf[ƒ^”Ô†
+ * @param	no	ãƒ‡ãƒ¼ã‚¿ç•ªå·
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -7888,9 +7888,9 @@ static void tw_MapDataGndDataNoMaxSet( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒf[ƒ^@Œ»İ‚Ì’nŒ`ƒ^ƒCƒv‚ğ•Ô‚·
+ * åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€€ç¾åœ¨ã®åœ°å½¢ã‚¿ã‚¤ãƒ—ã‚’è¿”ã™
  * @param	TORNWORLD_WORK
- * @param	no	ƒf[ƒ^”Ô†
+ * @param	no	ãƒ‡ãƒ¼ã‚¿ç•ªå·
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -7913,9 +7913,9 @@ static u32 tw_MapDataGndDataGndTypeNowGet( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒf[ƒ^@Œ»İ‚Ì’nŒ`‚ª“Áê’nŒ`‚©‚Ç‚¤‚©
+ * åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€€ç¾åœ¨ã®åœ°å½¢ãŒç‰¹æ®Šåœ°å½¢ã‹ã©ã†ã‹
  * @param	TORNWORLD_WORK
- * @retval	BOOL	TRUE=“Áê’nŒ`
+ * @retval	BOOL	TRUE=ç‰¹æ®Šåœ°å½¢
  */
 //--------------------------------------------------------------
 static u32 tw_MapDataGndDataNowGndCheck( TORNWORLD_WORK *tw )
@@ -7932,9 +7932,9 @@ static u32 tw_MapDataGndDataNowGndCheck( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒf[ƒ^@Œ»İ“Ç‚İ‚ñ‚Å‚¢‚é’nŒ`ƒ^ƒCƒv‚ğæ“¾
+ * åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€€ç¾åœ¨èª­ã¿è¾¼ã‚“ã§ã„ã‚‹åœ°å½¢ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  * @param	tw	TORNWORLD_WORK
- * @retval	u32	TW_GNDTYPE_GROUND“™
+ * @retval	u32	TW_GNDTYPE_GROUNDç­‰
  */
 //--------------------------------------------------------------
 static u32 tw_MapDataNowGndTypeGet( TORNWORLD_WORK *tw )
@@ -7955,12 +7955,12 @@ static u32 tw_MapDataNowGndTypeGet( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒf[ƒ^@w’èÀ•W‚Ì’nŒ`ƒ^ƒCƒv‚ğæ“¾
+ * åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€€æŒ‡å®šåº§æ¨™ã®åœ°å½¢ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  * @param	tw	TORNWORLD_WORK
- * @param	gx	ƒOƒŠƒbƒhÀ•WX
- * @param	gy	ƒOƒŠƒbƒhÀ•WY
- * @param	gz	ƒOƒŠƒbƒhÀ•WZ
- * @retval	u32	TW_GNDTYPE_GROUND“™
+ * @param	gx	ã‚°ãƒªãƒƒãƒ‰åº§æ¨™X
+ * @param	gy	ã‚°ãƒªãƒƒãƒ‰åº§æ¨™Y
+ * @param	gz	ã‚°ãƒªãƒƒãƒ‰åº§æ¨™Z
+ * @retval	u32	TW_GNDTYPE_GROUNDç­‰
  */
 //--------------------------------------------------------------
 static u32 tw_MapDataPosGndTypeGet(
@@ -7986,10 +7986,10 @@ static u32 tw_MapDataPosGndTypeGet(
 
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒf[ƒ^@w’è‚ÌƒAƒgƒŠƒrƒ…[ƒg“Ç‚İ‚İB
- * Šù‚É“Ç‚İ‚İÏ‚İ‚Ìê‡AŠJ•ú‚µ‚Ä‚©‚ç“Ç‚İ‚ŞB
+ * åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€€æŒ‡å®šã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆèª­ã¿è¾¼ã¿ã€‚
+ * æ—¢ã«èª­ã¿è¾¼ã¿æ¸ˆã¿ã®å ´åˆã€é–‹æ”¾ã—ã¦ã‹ã‚‰èª­ã¿è¾¼ã‚€ã€‚
  * @param	tw	TORNWORLD_WORK
- * @param	idx	ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+ * @param	idx	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -8008,11 +8008,11 @@ static void tw_MapDataGndDataAttrLoad( TORNWORLD_WORK *tw, u32 idx )
 
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒf[ƒ^@w’èÀ•W‚ÌƒAƒgƒŠƒrƒ…[ƒg‚ğæ“¾@À•W•ÏŠ·–³‚µ
+ * åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€€æŒ‡å®šåº§æ¨™ã®ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’å–å¾—ã€€åº§æ¨™å¤‰æ›ç„¡ã—
  * @param	TORNWORLD_WORK
  * @param	tw	TORNWORLD_WORK
- * @param	gx	ƒOƒŠƒbƒhX
- * @param	gz	ƒOƒŠƒbƒhZ
+ * @param	gx	ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gz	ã‚°ãƒªãƒƒãƒ‰Z
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -8037,7 +8037,7 @@ static u16 tw_MapDataGndDataAttrGetPos(
 	GF_ASSERT( gnd->attr_buf_p != NULL );
 	
 	switch( data->type ){
-	case TW_GNDTYPE_GROUND:				//‚»‚Ì‚Ü‚Ü
+	case TW_GNDTYPE_GROUND:				//ãã®ã¾ã¾
 		attr = gnd->attr_buf_p[gx+(gz*data->attr_gx_size)];
 		break;
 	case TW_GNDTYPE_SIDE_L:
@@ -8057,12 +8057,12 @@ static u16 tw_MapDataGndDataAttrGetPos(
 
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒf[ƒ^@ƒAƒgƒŠƒrƒ…[ƒgæ“¾@’nŒ`•Ê‚ÉÀ•W•ÏŠ·@À•Wƒ`ƒFƒbƒN—L‚è
+ * åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—ã€€åœ°å½¢åˆ¥ã«åº§æ¨™å¤‰æ›ã€€åº§æ¨™ãƒã‚§ãƒƒã‚¯æœ‰ã‚Š
  * @param	tw	TORNWORLD_WORK
- * @param	gx	ƒOƒŠƒbƒhX
- * @param	gy	ƒOƒŠƒbƒhY
- * @param	gz	ƒOƒŠƒbƒhZ
- * @retval	u16	æ“¾‚µ‚½ƒAƒgƒŠƒrƒ…[ƒg TWATTR_NOT“™=ƒGƒ‰[
+ * @param	gx	ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	ã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	ã‚°ãƒªãƒƒãƒ‰Z
+ * @retval	u16	å–å¾—ã—ãŸã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ TWATTR_NOTç­‰=ã‚¨ãƒ©ãƒ¼
  */
 //--------------------------------------------------------------
 static u16 tw_MapDataGndDataAttrGetCheckPos(
@@ -8072,12 +8072,12 @@ static u16 tw_MapDataGndDataAttrGetCheckPos(
 	int c_gx = 0,c_gz = 0;
 	TW_GNDDATA_TBL *gnd = &tw->mdata.gnd_tbl;
 	
-	if( gnd->tbl_max == 0 ||				//“Á’n–³‚µor“Á’n‚É‹‚È‚¢ê‡‚Í 
+	if( gnd->tbl_max == 0 ||				//ç‰¹åœ°ç„¡ã—orç‰¹åœ°ã«å±…ãªã„å ´åˆã¯ 
 		gnd->gnd_num_now >= gnd->tbl_max ){
-		#if 0	//’ÊíƒAƒgƒŠƒrƒ…[ƒgæ“¾
+		#if 0	//é€šå¸¸ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
 		attr = GetAttribute( tw->fsys, gx, gz );
 		return( attr );
-		#else	//’ÊíˆÚ“®‚ÌÛ‚Í‚±‚ÌŠÖ”‚ğŒÄ‚Ô‚±‚Æ‚Í–³‚¢
+		#else	//é€šå¸¸ç§»å‹•ã®éš›ã¯ã“ã®é–¢æ•°ã‚’å‘¼ã¶ã“ã¨ã¯ç„¡ã„
 		return( TWATTR_NOT );
 		#endif
 	}
@@ -8087,14 +8087,14 @@ static u16 tw_MapDataGndDataAttrGetCheckPos(
 		
 		if( twGridRectCheck(gx,gy,gz,&data->rect_size) == FALSE ){
 			#ifdef DEBUG_TW_PRINTF_FORCE
-			OS_Printf( "æ‚Á‚Ä‚¢‚é’nŒ`‚Ì”ÍˆÍŠO\n" );
+			OS_Printf( "ä¹—ã£ã¦ã„ã‚‹åœ°å½¢ã®ç¯„å›²å¤–\n" );
 			#endif
 			return( TWATTR_OVER );
 		}
 		
 		GF_ASSERT( gnd->attr_buf_p != NULL );
 		
-		switch( data->type ){				//’nŒ`•ÊÀ•W•ÏŠ·
+		switch( data->type ){				//åœ°å½¢åˆ¥åº§æ¨™å¤‰æ›
 		case TW_GNDTYPE_GROUND:
 			c_gx = gx - data->rect_size.gx;
 			c_gz = gz - data->rect_size.gz;
@@ -8127,7 +8127,7 @@ static u16 tw_MapDataGndDataAttrGetCheckPos(
 
 //--------------------------------------------------------------
 /**
- * ƒWƒƒƒ“ƒvƒCƒxƒ“ƒgƒf[ƒ^@‰Šú‰»
+ * ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8149,7 +8149,7 @@ static void tw_MapDataEvJumpDataInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒWƒƒƒ“ƒvƒCƒxƒ“ƒgƒf[ƒ^@íœ
+ * ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8162,13 +8162,13 @@ static void tw_MapDataEvJumpDataDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒWƒƒƒ“ƒvƒCƒxƒ“ƒgƒf[ƒ^@À•Wƒ`ƒFƒbƒN
+ * ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã€€åº§æ¨™ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
- * @param	gx	ƒOƒŠƒbƒhX
- * @param	gy	ƒOƒŠƒbƒhY
- * @param	gz	ƒOƒŠƒbƒhZ
- * @param	dir	DIR_UP“™
- * @retval	TW_EVJUMPDATA*	NULL=ŠO‚ê
+ * @param	gx	ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	ã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	ã‚°ãƒªãƒƒãƒ‰Z
+ * @param	dir	DIR_UPç­‰
+ * @retval	TW_EVJUMPDATA*	NULL=å¤–ã‚Œ
  */
 //--------------------------------------------------------------
 static const TW_EVJUMPDATA * tw_MapDataEvJumpDataPosCheck(
@@ -8194,7 +8194,7 @@ static const TW_EVJUMPDATA * tw_MapDataEvJumpDataPosCheck(
 
 //--------------------------------------------------------------
 /**
- * ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^@‰Šú‰»
+ * ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8216,7 +8216,7 @@ static void tw_MapDataCmActDataInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^@íœ
+ * ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8229,13 +8229,13 @@ static void tw_MapDataCmActDataDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^@À•Wƒ`ƒFƒbƒN
+ * ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã€€åº§æ¨™ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
- * @param	gx	ƒOƒŠƒbƒhX
- * @param	gy	ƒOƒŠƒbƒhY
- * @param	gz	ƒOƒŠƒbƒhZ
- * @param	dir	DIR_UP“™
- * @retval	TW_CMACTDATA*	NULL=ŠO‚ê
+ * @param	gx	ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	ã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	ã‚°ãƒªãƒƒãƒ‰Z
+ * @param	dir	DIR_UPç­‰
+ * @retval	TW_CMACTDATA*	NULL=å¤–ã‚Œ
  */
 //--------------------------------------------------------------
 static const TW_CMACTDATA * tw_MapDataCmActDataPosCheck(
@@ -8261,7 +8261,7 @@ static const TW_CMACTDATA * tw_MapDataCmActDataPosCheck(
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@‰Šú‰» ƒƒCƒ“
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€åˆæœŸåŒ– ãƒ¡ã‚¤ãƒ³
  * @param	buf	TW_ZONEDATA_BUF
  * @param	fsdata	TW_FSTONEDATA_TBL
  * @retval	nothing
@@ -8280,14 +8280,14 @@ static void tw_MapDataFStoneDataInitMain(
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@‰Šú‰»@Œ»İ‘w
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€åˆæœŸåŒ–ã€€ç¾åœ¨å±¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_MapDataFStoneDataInitNow( TORNWORLD_WORK *tw )
 {
-	if( tw_ZoneDataBufFStoneDataSizeGet(tw) ){			//ƒƒCƒ“
+	if( tw_ZoneDataBufFStoneDataSizeGet(tw) ){			//ãƒ¡ã‚¤ãƒ³
 		TW_ZONEDATA_BUF *buf = &tw->mdata.zone_buf;
 		TW_FSTONEDATA_TBL *fsdata = &tw->mdata.fstone_tbl;
 		tw_MapDataFStoneDataInitMain( buf, fsdata );
@@ -8304,14 +8304,14 @@ static void tw_MapDataFStoneDataInitNow( TORNWORLD_WORK *tw )
 }
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@‰Šú‰»@‰º‘w
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€åˆæœŸåŒ–ã€€ä¸‹å±¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_MapDataFStoneDataInitLower( TORNWORLD_WORK *tw )
 {
-	if( tw_ZoneDataBufFStoneDataSizeGetLower(tw) ){		//‰º‘w
+	if( tw_ZoneDataBufFStoneDataSizeGetLower(tw) ){		//ä¸‹å±¤
 		TW_ZONEDATA_BUF *buf = &tw->mdata.zone_buf_lower;
 		TW_FSTONEDATA_TBL *fsdata = &tw->mdata.fstone_tbl_lower;
 		tw_MapDataFStoneDataInitMain( buf, fsdata );
@@ -8329,7 +8329,7 @@ static void tw_MapDataFStoneDataInitLower( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@‰Šú‰»
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8342,7 +8342,7 @@ static void tw_MapDataFStoneDataInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@ƒNƒŠƒA
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€ã‚¯ãƒªã‚¢
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8354,7 +8354,7 @@ static void tw_MapDataFStoneDataClean( TW_FSTONEDATA_TBL *fsdata )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@íœ@Œ»İ‘w
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€å‰Šé™¤ã€€ç¾åœ¨å±¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8367,7 +8367,7 @@ static void tw_MapDataFStoneDataDeleteNow( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@íœ@‰º‘w
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€å‰Šé™¤ã€€ä¸‹å±¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8380,7 +8380,7 @@ static void tw_MapDataFStoneDataDeleteLower( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@íœ
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8393,7 +8393,7 @@ static void tw_MapDataFStoneDataDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@Œ»İ‘w‚©‚ç‰º‘w‚Öƒf[ƒ^ˆÚ“®
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€ç¾åœ¨å±¤ã‹ã‚‰ä¸‹å±¤ã¸ãƒ‡ãƒ¼ã‚¿ç§»å‹•
  * @param	buf	TW_ZONEDATA_BUF
  * @param	fsdata	TW_FSTONEDATA_TBL
  * @retval	nothing
@@ -8415,7 +8415,7 @@ static void tw_MapDataFStoneDataRemoveNowLower( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@‰º‘w‚©‚çŒ»İ‘w‚Öƒf[ƒ^ˆÚ“®
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€ä¸‹å±¤ã‹ã‚‰ç¾åœ¨å±¤ã¸ãƒ‡ãƒ¼ã‚¿ç§»å‹•
  * @param	buf	TW_ZONEDATA_BUF
  * @param	fsdata	TW_FSTONEDATA_TBL
  * @retval	nothing
@@ -8437,7 +8437,7 @@ static void tw_MapDataFStoneDataRemoveLowerNow( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@TW_FSTONEDATA_HEADERæ“¾
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€TW_FSTONEDATA_HEADERå–å¾—
  * @param	tw	TORNWORLD_WORK
  * @retval	TW_FSTONEDATA_TBL
  */
@@ -8451,7 +8451,7 @@ static const TW_FSTONE_HEADER * tw_MapDataFStoneHeaderGet(
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@TW_FSTONEDATA_HEADERæ“¾@‰º‘w
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€TW_FSTONEDATA_HEADERå–å¾—ã€€ä¸‹å±¤
  * @param	tw	TORNWORLD_WORK
  * @retval	TW_FSTONEDATA_TBL
  */
@@ -8465,7 +8465,7 @@ static const TW_FSTONE_HEADER * tw_MapDataFStoneHeaderGetLower(
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@TW_FSTONE_PUTPOSæ“¾
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€TW_FSTONE_PUTPOSå–å¾—
  * @param	tw	TORNWORLD_WORK
  * @retval	TW_FSTONE_PUTPOS
  */
@@ -8479,7 +8479,7 @@ static const TW_FSTONE_PUTPOS * tw_MapDataFStonePutPosTblGet(
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@TW_FSTONE_PUTPOSæ“¾@‰º‘w
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€TW_FSTONE_PUTPOSå–å¾—ã€€ä¸‹å±¤
  * @param	tw	TORNWORLD_WORK
  * @retval	TW_FSTONE_PUTPOS
  */
@@ -8493,7 +8493,7 @@ static const TW_FSTONE_PUTPOS * tw_MapDataFStonePutPosTblGetLower(
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@TW_FSTONE_FLAGPOSæ“¾
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€TW_FSTONE_FLAGPOSå–å¾—
  * @param	tw	TORNWORLD_WORK
  * @retval	TW_FSTONE_PUTPOS
  */
@@ -8507,7 +8507,7 @@ static const TW_FSTONE_FLAGPOS * tw_MapDataFStoneFlagPutTblGet(
 
 //--------------------------------------------------------------
 /**
- * ”ò‚ÑÎƒf[ƒ^@TW_FSTONE_FLAGPOSæ“¾@‰º‘w
+ * é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã€€TW_FSTONE_FLAGPOSå–å¾—ã€€ä¸‹å±¤
  * @param	tw	TORNWORLD_WORK
  * @retval	TW_FSTONE_PUTPOS
  */
@@ -8520,14 +8520,14 @@ static const TW_FSTONE_FLAGPOS * tw_MapDataFStoneFlagPutTblGetLower(
 }
 
 //==============================================================================
-//	ƒ_ƒ~[ƒ}ƒbƒv
+//	ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—
 //==============================================================================
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv‰Šú‰»@ƒƒCƒ“
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—åˆæœŸåŒ–ã€€ãƒ¡ã‚¤ãƒ³
  * @param	tw	TORNWORLD_WORK
- * @param	dmy_zone_id	“WŠJ‚·‚éZONE ID
+ * @param	dmy_zone_id	å±•é–‹ã™ã‚‹ZONE ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -8559,12 +8559,12 @@ static void tw_DmyMapInitMain( TORNWORLD_WORK *tw, int dmy_zone_id )
 	#endif
 	*/
 	
-	{	//ƒ[ƒ‹ƒhƒ}ƒbƒv‰Šú‰»
+	{	//ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—åˆæœŸåŒ–
 		dmap->world = WorldMapInitHeap( HEAPID_FIELD );
 		SetUpWorldMatrix( dmy_zone_id, dmap->world );
 	}
 	
-	{	//ƒ}ƒbƒvƒŠƒ\[ƒX‰Šú‰»
+	{	//ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
 #ifdef TWORLD_MAPRES_INIT
 		u16 area_id = ZoneData_GetAreaID( dmy_zone_id );
 		dmap->map_res = AllocMapResource( area_id, fsys->field_3d_anime );
@@ -8574,24 +8574,24 @@ static void tw_DmyMapInitMain( TORNWORLD_WORK *tw, int dmy_zone_id )
 #endif
 	}
 	
-	{	//ƒ}ƒbƒvŠÇ—ƒf[ƒ^‰Šú‰»
+	{	//ãƒãƒƒãƒ—ç®¡ç†ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 		ARCHANDLE *arc = GetDivMapArcHandle( fsys->map_cont_dat );
 		dmap->map_cont = InitDivMapDummy( dmap->world, dmap->map_res, arc );
 		DivMapBindTarget( Player_VecPosPtrGet(fsys->player), dmap->map_cont );
 	}
 	
-	{	//ƒuƒƒbƒNƒ‚[ƒh‚ğ2x2,”z’uƒ‚ƒfƒ‹‚ğOFF‚É
+	{	//ãƒ–ãƒ­ãƒƒã‚¯ãƒ¢ãƒ¼ãƒ‰ã‚’2x2,é…ç½®ãƒ¢ãƒ‡ãƒ«ã‚’OFFã«
 		SetDivMapBlockMode( dmap->map_cont, BLOCKMODE_2x2 );
 		SetDivMapM3dObjSetFlag( dmap->map_cont, DIVM3DO_OFF );
 	}
 	
-	{	//n“_İ’è
+	{	//å§‹ç‚¹è¨­å®š
 		int x,y,z;
 		tw_MapDataIdxZoneIDOriginGridPosGet( tw, dmy_zone_id, &x, &y, &z );
 		SetDivMapOriginGridPos( dmap->map_cont, x, y, z );
 	}
 	
-	{	//ƒ[ƒh
+	{	//ãƒ­ãƒ¼ãƒ‰
 		int gx = Player_NowGPosXGet( fsys->player );
 		int gz = Player_NowGPosZGet( fsys->player );
 		LoadDivMapDummy( dmap->map_cont, gx, gz );
@@ -8609,7 +8609,7 @@ static void tw_DmyMapInitMain( TORNWORLD_WORK *tw, int dmy_zone_id )
 	
 	dmap->init_flag = TRUE;
 	
-	{	//ƒIƒtƒZƒbƒg‚‚³‚ğ©‹@‚Éİ’è
+	{	//ã‚ªãƒ•ã‚»ãƒƒãƒˆé«˜ã•ã‚’è‡ªæ©Ÿã«è¨­å®š
 		VecFx32 org,pos;
 		FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( fsys->player );
 		FieldOBJ_VecPosGet( fldobj, &pos );
@@ -8624,7 +8624,7 @@ static void tw_DmyMapInitMain( TORNWORLD_WORK *tw, int dmy_zone_id )
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv‰Šú‰»
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8649,7 +8649,7 @@ static void tw_DmyMapInit( TORNWORLD_WORK *tw )
 	link = tw_ZoneLinkDataGet( now_zone_id );
 	dmy_zone_id = link->lower_zone_id;
 	
-	if( dmy_zone_id == ZONE_ID_MAX ){	//‰º‘w‚ª‘¶İ‚µ‚È‚¢
+	if( dmy_zone_id == ZONE_ID_MAX ){	//ä¸‹å±¤ãŒå­˜åœ¨ã—ãªã„
 		return;
 	}
 	
@@ -8662,12 +8662,12 @@ static void tw_DmyMapInit( TORNWORLD_WORK *tw )
 	OS_Printf( "dummy zone id = %04xH\n", d_link->zone_id );
 	#endif
 	
-	{	//ƒ[ƒ‹ƒhƒ}ƒbƒv‰Šú‰»
+	{	//ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—åˆæœŸåŒ–
 		dmap->world = WorldMapInitHeap( HEAPID_FIELD );
 		SetUpWorldMatrix( dmy_zone_id, dmap->world );
 	}
 	
-	{	//ƒ}ƒbƒvƒŠƒ\[ƒX‰Šú‰»
+	{	//ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
 #ifdef TWORLD_MAPRES_INIT
 		u16 area_id = ZoneData_GetAreaID( dmy_zone_id );
 		dmap->map_res = AllocMapResource( area_id, fsys->field_3d_anime );
@@ -8677,24 +8677,24 @@ static void tw_DmyMapInit( TORNWORLD_WORK *tw )
 #endif
 	}
 	
-	{	//ƒ}ƒbƒvŠÇ—ƒf[ƒ^‰Šú‰»
+	{	//ãƒãƒƒãƒ—ç®¡ç†ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 		ARCHANDLE *arc = GetDivMapArcHandle( fsys->map_cont_dat );
 		dmap->map_cont = InitDivMapDummy( dmap->world, dmap->map_res, arc );
 		DivMapBindTarget( Player_VecPosPtrGet(fsys->player), dmap->map_cont );
 	}
 	
-	{	//ƒuƒƒbƒNƒ‚[ƒh‚ğ2x2,”z’uƒ‚ƒfƒ‹‚ğOFF‚É
+	{	//ãƒ–ãƒ­ãƒƒã‚¯ãƒ¢ãƒ¼ãƒ‰ã‚’2x2,é…ç½®ãƒ¢ãƒ‡ãƒ«ã‚’OFFã«
 		SetDivMapBlockMode( dmap->map_cont, BLOCKMODE_2x2 );
 		SetDivMapM3dObjSetFlag( dmap->map_cont, DIVM3DO_OFF );
 	}
 	
-	{	//n“_İ’è
+	{	//å§‹ç‚¹è¨­å®š
 		int x,y,z;
 		tw_MapDataIdxZoneIDOriginGridPosGet( tw, dmy_zone_id, &x, &y, &z );
 		SetDivMapOriginGridPos( dmap->map_cont, x, y, z );
 	}
 	
-	{	//ƒ[ƒh
+	{	//ãƒ­ãƒ¼ãƒ‰
 		int gx = Player_NowGPosXGet( fsys->player );
 		int gz = Player_NowGPosZGet( fsys->player );
 		LoadDivMapDummy( dmap->map_cont, gx, gz );
@@ -8712,7 +8712,7 @@ static void tw_DmyMapInit( TORNWORLD_WORK *tw )
 	
 	dmap->init_flag = TRUE;
 	
-	//‰‰ñ‚Ìê‡‚ÍƒIƒtƒZƒbƒg‚‚³‚ğ©‹@‚Éİ’è
+	//åˆå›ã®å ´åˆã¯ã‚ªãƒ•ã‚»ãƒƒãƒˆé«˜ã•ã‚’è‡ªæ©Ÿã«è¨­å®š
 	if( tw_SaveDataInitFinishCheck(tw) == FALSE ){
 		VecFx32 org,pos;
 		FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( fsys->player );
@@ -8727,11 +8727,11 @@ static void tw_DmyMapInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒvíœ
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @param	zone_id	ZONE ID
- * @param	gx	“Ç‚İ‚Ş’†SˆÊ’uGX
- * @param	gz	“Ç‚İ‚Ş’†SˆÊ’uGZ
+ * @param	gx	èª­ã¿è¾¼ã‚€ä¸­å¿ƒä½ç½®GX
+ * @param	gz	èª­ã¿è¾¼ã‚€ä¸­å¿ƒä½ç½®GZ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -8770,7 +8770,7 @@ static void tw_DmyMapDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv•`‰æ
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—æç”»
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8787,7 +8787,7 @@ static void tw_DmyMapDraw( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv•`‰æ
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—æç”»
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8800,7 +8800,7 @@ void FldTornWorld_Draw( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒvXV
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—æ›´æ–°
  * @param
  * @retval
  */
@@ -8826,7 +8826,7 @@ void FldTornWorld_MapUpdate( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv@ƒ][ƒ“ƒ`ƒFƒ“ƒW@‰º~ƒ^ƒCƒv
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã€€ä¸‹é™ã‚¿ã‚¤ãƒ—
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8838,22 +8838,22 @@ static void tw_DmyMapZoneChgDown( TORNWORLD_WORK *tw, TW_LINKPOS_ACTOR *lact )
 	u32 zone_id = twNowZoneID( tw );
 	const TW_ZONE_LINKDATA *link = tw_ZoneLinkDataGet( zone_id );
 	GF_ASSERT( link->lower_zone_id != ZONE_ID_MAX );
-	link = tw_ZoneLinkDataGet( link->lower_zone_id );	//‰º‘w‚Ö
+	link = tw_ZoneLinkDataGet( link->lower_zone_id );	//ä¸‹å±¤ã¸
 	
 	#ifdef DEBUG_TW_PRINTF
-	OS_Printf( "ƒ_ƒ~[ƒ}ƒbƒv ‰º~ƒ][ƒ“ƒ`ƒFƒ“ƒW ŠJn\n" );
+	OS_Printf( "ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ— ä¸‹é™ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ é–‹å§‹\n" );
 	#endif
 	
-	//•`‰æ’â~
+	//æç”»åœæ­¢
 	dmap->draw_flag;
 	
-	//ƒtƒB[ƒ‹ƒhƒ}ƒbƒv@ƒ][ƒ“Ø‚è‘Ö‚¦
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ã€€ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆ
 	FieldMap_TornWorldZoneChange( fsys, link->zone_id );
 	
-	//DMC_PTR “ü‚ê‘Ö‚¦‚Ìˆ×‚ÌƒŠƒZƒbƒg
+	//DMC_PTR å…¥ã‚Œæ›¿ãˆã®ç‚ºã®ãƒªã‚»ãƒƒãƒˆ
 	DivMapLoad_RemoveReset( fsys->map_cont_dat );
 	
-	{	//ƒ_ƒ~[ƒ}ƒbƒv‚©‚çŒ»ƒ}ƒbƒv‚Ö‚Ì“ü‚ê‘Ö‚¦
+	{	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã‹ã‚‰ç¾ãƒãƒƒãƒ—ã¸ã®å…¥ã‚Œæ›¿ãˆ
 		int gx = Player_NowGPosXGet( fsys->player );
 		int gz = Player_NowGPosZGet( fsys->player );
 		
@@ -8864,25 +8864,25 @@ static void tw_DmyMapZoneChgDown( TORNWORLD_WORK *tw, TW_LINKPOS_ACTOR *lact )
 		dmap->draw_flag = FALSE;
 	}
 	
-	//ƒ_ƒ~[WORLD_MAP”jŠü
+	//ãƒ€ãƒŸãƒ¼WORLD_MAPç ´æ£„
 	WorldMapRelease( dmap->world );
 	dmap->world = NULL;
 	
-	//Œ»İ‚Ìƒ}ƒbƒvƒŠƒ\[ƒX‚ğ”jŠü‚µ‚Äƒ_ƒ~[ƒ}ƒbƒv‚©‚ç·‚µ‘Ö‚¦
+	//ç¾åœ¨ã®ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã—ã¦ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã‹ã‚‰å·®ã—æ›¿ãˆ
 	ReleaseMapResource( &fsys->MapResource );
 	fsys->MapResource = dmap->map_res;
 	dmap->map_res = NULL;
 	
-	//‰º‘wƒ}ƒbƒvƒ[ƒh
+	//ä¸‹å±¤ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
 	dmap->zone_id = link->lower_zone_id;
 	
-	if( link->lower_zone_id != ZONE_ID_MAX ){	//‰ºƒ}ƒbƒv“WŠJ
+	if( link->lower_zone_id != ZONE_ID_MAX ){	//ä¸‹ãƒãƒƒãƒ—å±•é–‹
 		link = tw_ZoneLinkDataGet( link->lower_zone_id );
 		dmap->world = WorldMapInitHeap( HEAPID_FIELD );
 		SetUpWorldMatrix( link->zone_id, dmap->world );
 		
 		#ifdef DEBUG_TW_PRINTF
-		OS_Printf( "ƒ_ƒ~[ƒ}ƒbƒv ‰º~ ƒ}ƒbƒvƒŠƒ\[ƒXÄƒZƒbƒg\n" );
+		OS_Printf( "ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ— ä¸‹é™ ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹å†ã‚»ãƒƒãƒˆ\n" );
 		#endif
 		
 		{
@@ -8892,16 +8892,16 @@ static void tw_DmyMapZoneChgDown( TORNWORLD_WORK *tw, TW_LINKPOS_ACTOR *lact )
 		}
 		
 		#ifdef DEBUG_TW_PRINTF
-		OS_Printf( "ƒ_ƒ~[ƒ}ƒbƒv ‰º~ ƒ}ƒbƒvƒŠƒ\[ƒXÄƒZƒbƒgŠ®—¹\n" );
+		OS_Printf( "ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ— ä¸‹é™ ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹å†ã‚»ãƒƒãƒˆå®Œäº†\n" );
 		#endif
 		
-		{	//Ä‰Šú‰»
+		{	//å†åˆæœŸåŒ–
 			ARCHANDLE *arc = GetDivMapArcHandle( fsys->map_cont_dat );
 			InitDivMapDummyContinue(
 				dmap->map_cont, dmap->world, dmap->map_res, arc );
 		}
 		
-		{	//n“_AƒuƒƒbƒNİ’è
+		{	//å§‹ç‚¹ã€ãƒ–ãƒ­ãƒƒã‚¯è¨­å®š
 			int x,y,z;
 			tw_MapDataIdxZoneIDOriginGridPosGet(
 						tw, dmap->zone_id, &x, &y, &z );
@@ -8929,13 +8929,13 @@ static void tw_DmyMapZoneChgDown( TORNWORLD_WORK *tw, TW_LINKPOS_ACTOR *lact )
 	DEBUG_twFldHeapPrintf();
 	
 	#ifdef DEBUG_TW_PRINTF
-	OS_Printf( "ƒ_ƒ~[ƒ}ƒbƒv@‰º~ƒ][ƒ“ƒ`ƒFƒ“ƒW ƒZƒbƒgƒAƒbƒvŠ®—¹\n" );
+	OS_Printf( "ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€ä¸‹é™ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å®Œäº†\n" );
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv@ƒ][ƒ“ƒ`ƒFƒ“ƒW@ã¸ƒ^ƒCƒv
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã€€ä¸Šæ˜‡ã‚¿ã‚¤ãƒ—
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -8948,35 +8948,35 @@ static void tw_DmyMapZoneChgUp(
 	u32 zone_id = twNowZoneID( tw );
 	const TW_ZONE_LINKDATA *link = tw_ZoneLinkDataGet( zone_id );
 	GF_ASSERT( link->upper_zone_id != ZONE_ID_MAX );
-	link = tw_ZoneLinkDataGet( link->upper_zone_id );	//ã‘wƒŠƒ“ƒN
+	link = tw_ZoneLinkDataGet( link->upper_zone_id );	//ä¸Šå±¤ãƒªãƒ³ã‚¯
 	
 	#ifdef DEBUG_TW_PRINTF
-	OS_Printf( "ƒ_ƒ~[ƒ}ƒbƒv@ã¸ƒ][ƒ“ƒ`ƒFƒ“ƒW ƒZƒbƒgƒAƒbƒvŠJn\n" );
+	OS_Printf( "ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€ä¸Šæ˜‡ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—é–‹å§‹\n" );
 	#endif
 	
-	//•`‰æ’â~
+	//æç”»åœæ­¢
 	dmap->draw_flag = FALSE;
 	
-	//ƒtƒB[ƒ‹ƒhƒ}ƒbƒv@ƒ][ƒ“Ø‚è‘Ö‚¦
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ã€€ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆ
 	FieldMap_TornWorldZoneChange( fsys, link->zone_id );
 	
-	{	//ƒ_ƒ~[ƒ}ƒbƒv‰Šú‰»ƒ`ƒFƒbƒN
+	{	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—åˆæœŸåŒ–ãƒã‚§ãƒƒã‚¯
 		if( dmap->init_flag == FALSE ){
-			//‰Šú‰»ˆ—
+			//åˆæœŸåŒ–å‡¦ç†
 		}
 	}
 	
-	{	//ƒ_ƒ~[ƒ}ƒbƒv@”z’uƒ‚ƒfƒ‹ƒNƒŠ[ƒ“
+	{	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€é…ç½®ãƒ¢ãƒ‡ãƒ«ã‚¯ãƒªãƒ¼ãƒ³
 		if( dmap->init_flag == TRUE ){
 			DivMapLoad_CleanM3DObj( dmap->map_cont );
 		}
 	}
 	
-	{	//ƒƒCƒ“ƒ}ƒbƒv@”z’uƒ‚ƒfƒ‹ƒNƒŠ[ƒ“
+	{	//ãƒ¡ã‚¤ãƒ³ãƒãƒƒãƒ—ã€€é…ç½®ãƒ¢ãƒ‡ãƒ«ã‚¯ãƒªãƒ¼ãƒ³
 		DivMapLoad_CleanM3DObj( fsys->map_cont_dat );
 	}
 	
-	{	//ƒ[ƒ‹ƒh¶¬ƒ`ƒFƒbƒN
+	{	//ãƒ¯ãƒ¼ãƒ«ãƒ‰ç”Ÿæˆãƒã‚§ãƒƒã‚¯
 		if( dmap->world == NULL ){
 			dmap->world = WorldMapInitHeap( HEAPID_FIELD );
 		}
@@ -8990,7 +8990,7 @@ static void tw_DmyMapZoneChgUp(
 		}
 	}
 	
-	{	//ƒ_ƒ~[ƒ}ƒbƒvƒŠƒ\[ƒX‚ğ”jŠü‚µ‚ÄƒƒCƒ“‚ğ—˜—p
+	{	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã—ã¦ãƒ¡ã‚¤ãƒ³ã‚’åˆ©ç”¨
 		if( dmap->map_res != NULL ){
 			ReleaseMapResource( &dmap->map_res );
 		}
@@ -8999,18 +8999,18 @@ static void tw_DmyMapZoneChgUp(
 		fsys->MapResource = NULL;
 	}
 	
-	{	//ƒƒCƒ“ƒ}ƒbƒv‚ğƒ_ƒ~[ƒ}ƒbƒv‚ÖˆÚs‚·‚é
+	{	//ãƒ¡ã‚¤ãƒ³ãƒãƒƒãƒ—ã‚’ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã¸ç§»è¡Œã™ã‚‹
 		RemoveDivMapMainDummy( dmap->map_cont, fsys->map_cont_dat );
 	}
 	
-	//ã‘wƒ}ƒbƒv—pWORLD_MAP‰Šú‰»
+	//ä¸Šå±¤ãƒãƒƒãƒ—ç”¨WORLD_MAPåˆæœŸåŒ–
 	SetUpWorldMatrix( link->zone_id, fsys->World );
 	
 	#ifdef DEBUG_TW_PRINTF
-	OS_Printf( "ƒ_ƒ~[ƒ}ƒbƒv ã¸ ƒ}ƒbƒvƒŠƒ\[ƒXÄƒZƒbƒg\n" );
+	OS_Printf( "ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ— ä¸Šæ˜‡ ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹å†ã‚»ãƒƒãƒˆ\n" );
 	#endif
 	
-	//ã‘wƒ}ƒbƒv—pƒŠƒ\[ƒX‰Šú‰»
+	//ä¸Šå±¤ãƒãƒƒãƒ—ç”¨ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
 	{
 		u16 area_id = ZoneData_GetAreaID( link->zone_id );
 		fsys->MapResource = AllocMapResource( area_id, fsys->field_3d_anime );
@@ -9018,10 +9018,10 @@ static void tw_DmyMapZoneChgUp(
 	}
 	
 	#ifdef DEBUG_TW_PRINTF
-	OS_Printf( "ƒ_ƒ~[ƒ}ƒbƒv ã¸ ƒ}ƒbƒvƒŠƒ\[ƒXÄƒZƒbƒgŠ®—¹\n" );
+	OS_Printf( "ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ— ä¸Šæ˜‡ ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹å†ã‚»ãƒƒãƒˆå®Œäº†\n" );
 	#endif
 	
-	//ãˆÊƒ}ƒbƒvƒ[ƒh
+	//ä¸Šä½ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
 	{
 		int x = 0,y = 0,z = 0;
 		ResetDivMap( fsys->map_cont_dat, fsys->World, fsys->MapResource );
@@ -9045,13 +9045,13 @@ static void tw_DmyMapZoneChgUp(
 	DEBUG_twFldHeapPrintf();
 	
 	#ifdef DEBUG_TW_PRINTF
-	OS_Printf( "ƒ_ƒ~[ƒ}ƒbƒv@ã¸ƒ][ƒ“ƒ`ƒFƒ“ƒW ƒZƒbƒgƒAƒbƒvŠ®—¹\n" );
+	OS_Printf( "ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€ä¸Šæ˜‡ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—å®Œäº†\n" );
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv@ƒ][ƒ“ƒ`ƒFƒ“ƒW@‰º@ƒ^ƒXƒNˆ—
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã€€ä¸‹ã€€ã‚¿ã‚¹ã‚¯å‡¦ç†
  * @param
  * @retval
  */
@@ -9064,7 +9064,7 @@ static void tw_DmyMapZoneChangeDownTask( TORNWORLD_WORK *tw )
 	switch( work->seq_no ){
 	case 0:
 		#ifdef DEBUG_TW_PRINTF
-		OS_Printf( "”jŠEƒ][ƒ“ƒ`ƒFƒ“ƒW‰º•ªŠ„ƒ^ƒXƒN@ŠJn\n" );
+		OS_Printf( "ç ´ç•Œã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸‹åˆ†å‰²ã‚¿ã‚¹ã‚¯ã€€é–‹å§‹\n" );
 		#endif
 		
 		LoadBlockListSetUpForDummy(
@@ -9073,14 +9073,14 @@ static void tw_DmyMapZoneChangeDownTask( TORNWORLD_WORK *tw )
 		break;
 	case 1:
 		#ifdef DEBUG_TW_PRINTF
-		OS_Printf("”jŠEƒ][ƒ“ƒ`ƒFƒ“ƒW‰º•ªŠ„ƒ^ƒXƒN No.%d",work->list_count);
+		OS_Printf("ç ´ç•Œã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸‹åˆ†å‰²ã‚¿ã‚¹ã‚¯ No.%d",work->list_count);
 		#endif
 		
 		LoadBlockListNoForDummy( dmap->map_cont,
 			work->list_count, work->block_no_tbl[work->list_count] );
 		
 		#ifdef DEBUG_TW_PRINTF
-		OS_Printf( "Š®—¹\n" );
+		OS_Printf( "å®Œäº†\n" );
 		#endif
 		
 		work->list_count++;
@@ -9102,7 +9102,7 @@ static void tw_DmyMapZoneChangeDownTask( TORNWORLD_WORK *tw )
 		}
 		
 		#ifdef DEBUG_TW_PRINTF
-		OS_Printf( "”j¢ŠEƒ][ƒ“ƒ`ƒFƒ“ƒW‰º•ªŠ„ƒ^ƒXƒN ‘S‚ÄŠ®—¹\n" );
+		OS_Printf( "ç ´ä¸–ç•Œã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸‹åˆ†å‰²ã‚¿ã‚¹ã‚¯ å…¨ã¦å®Œäº†\n" );
 		#endif
 		
 		tw_ZoneChangeDown( tw );
@@ -9118,7 +9118,7 @@ static void tw_DmyMapZoneChangeDownTask( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv@ƒ][ƒ“ƒ`ƒFƒ“ƒW@ã@ƒ^ƒXƒNˆ—
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã€€ä¸Šã€€ã‚¿ã‚¹ã‚¯å‡¦ç†
  * @param
  * @retval
  */
@@ -9169,7 +9169,7 @@ static void tw_DmyMapZoneChangeUpTask( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ãˆÚ“®@ƒ][ƒ“ƒ`ƒFƒ“ƒWƒ^ƒXƒNƒZƒbƒg
+ * ä¸Šç§»å‹•ã€€ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¿ã‚¹ã‚¯ã‚»ãƒƒãƒˆ
  * @param	tw
  * @param	gx
  * @param	gz
@@ -9193,7 +9193,7 @@ static void tw_DmyMapZoneChgUpTaskSet(
 
 //--------------------------------------------------------------
 /**
- * ‰ºˆÚ“®@ƒ][ƒ“ƒ`ƒFƒ“ƒWƒ^ƒXƒNƒZƒbƒg
+ * ä¸‹ç§»å‹•ã€€ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¿ã‚¹ã‚¯ã‚»ãƒƒãƒˆ
  * @param	tw
  * @param	gx
  * @param	gz
@@ -9216,10 +9216,10 @@ static void tw_DmyMapZoneChgDownTaskSet(
 }
 
 //==============================================================================
-//	ƒ][ƒ“ƒ`ƒFƒ“ƒWƒ^ƒXƒN
+//	ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¿ã‚¹ã‚¯
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒ][ƒ“ƒ`ƒFƒ“ƒW‰º~ˆ—”Ô†
+///	ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸‹é™å‡¦ç†ç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -9232,7 +9232,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒ][ƒ“ƒ`ƒFƒ“ƒWã¸ˆ—”Ô†
+///	ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸Šæ˜‡å‡¦ç†ç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -9248,9 +9248,9 @@ static PROCRET (* const DATA_ZoneChangeUpTbl[SEQNO_ZONECHG_UP_MAX])( TORNWORLD_W
 
 //--------------------------------------------------------------
 /**
- * DMC_PTR •`‰æƒtƒ‰ƒO‘S‚ÄƒZƒbƒg
+ * DMC_PTR æç”»ãƒ•ãƒ©ã‚°å…¨ã¦ã‚»ãƒƒãƒˆ
  * @param	dmc		DMC_PTR
- * @param	flag	TRUE=•`‰æ FALSE=”ñ•\¦
+ * @param	flag	TRUE=æç”» FALSE=éè¡¨ç¤º
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -9262,7 +9262,7 @@ static void DmcDrawFlagSetAll( DMC_PTR dmc, BOOL flag )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒWƒ^ƒXƒN@‰Šú‰»
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¿ã‚¹ã‚¯ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -9277,7 +9277,7 @@ static void tw_ZoneChangeTaskInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒWƒ^ƒXƒN@íœ
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¿ã‚¹ã‚¯ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -9290,7 +9290,7 @@ static void tw_ZoneChangeTaskDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒWƒ^ƒXƒN TCB
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¿ã‚¹ã‚¯ TCB
  * @param	tcb	TCB_PTR
  * @param	wk	tcb work
  * @retval	nothing
@@ -9323,7 +9323,7 @@ static void tw_ZoneChangeTaskTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒWƒ^ƒXƒN@VIntrˆ—
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¿ã‚¹ã‚¯ã€€VIntrå‡¦ç†
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -9342,10 +9342,10 @@ static void tw_ZoneChangeTaskVIntr( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒWƒ^ƒXƒN@‹N“®
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¿ã‚¹ã‚¯ã€€èµ·å‹•
  * @param	tw		TORNWORLD_WORK
  * @param	lact	TW_LINKPOS_ACTOR
- * @param	type	TWZONECHGTYPE_DOWN“™
+ * @param	type	TWZONECHGTYPE_DOWNç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -9365,9 +9365,9 @@ static void tw_ZoneChangeTaskSet(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒWƒ^ƒXƒN@‹N“®’†ƒ`ƒFƒbƒN
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¿ã‚¹ã‚¯ã€€èµ·å‹•ä¸­ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
- * @retval	BOOL	TRUE=‹N“®’†
+ * @retval	BOOL	TRUE=èµ·å‹•ä¸­
  */
 //--------------------------------------------------------------
 static BOOL tw_ZoneChangeTaskCheck( TORNWORLD_WORK *tw )
@@ -9382,11 +9382,11 @@ static BOOL tw_ZoneChangeTaskCheck( TORNWORLD_WORK *tw )
 }
 
 //==============================================================================
-//	ƒ][ƒ“ƒ`ƒFƒ“ƒW@‰º~ˆ—
+//	ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã€€ä¸‹é™å‡¦ç†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒW‰º~@ŠJn		0F+1F
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸‹é™ã€€é–‹å§‹		0F+1F
  * @param	tw	TORNWORLD_WORK
  * @param	work	TW_ZONECHG_WORK
  * @retval	PROCRET
@@ -9395,14 +9395,14 @@ static BOOL tw_ZoneChangeTaskCheck( TORNWORLD_WORK *tw )
 static PROCRET tw_ZoneChgDownTask_0(
 	TORNWORLD_WORK *tw, TW_ZONECHG_WORK *work )
 {
-	//Á‚·‘ÎÛ‚ğ”ñ•\¦‚É
+	//æ¶ˆã™å¯¾è±¡ã‚’éè¡¨ç¤ºã«
 	DmcDrawFlagSetAll( tw->fsys->map_cont_dat, FALSE );
 	
-	//ƒ][ƒ“Ø‚è‘Ö‚¦‚É”º‚¤íœˆ—
+	//ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã«ä¼´ã†å‰Šé™¤å‡¦ç†
 	tw_ZoneChangeDeleteProcDown( tw, twNowZoneID(tw) );
 	
 	#ifdef DEBUG_TW_PRINTF
-	OS_Printf( "ƒ][ƒ“ƒ`ƒFƒ“ƒW‰º~ƒ^ƒXƒN ŠJn\n" );
+	OS_Printf( "ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸‹é™ã‚¿ã‚¹ã‚¯ é–‹å§‹\n" );
 	#endif
 	
 	work->seq_no = SEQNO_ZONECHG_DOWN_1;
@@ -9411,7 +9411,7 @@ static PROCRET tw_ZoneChgDownTask_0(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒW‰º~@“ü‚ê‘Ö‚¦		1F+1F
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸‹é™ã€€å…¥ã‚Œæ›¿ãˆ		1F+1F
  * @param	tw	TORNWORLD_WORK
  * @param	work	TW_ZONECHG_WORK
  * @retval	PROCRET
@@ -9424,24 +9424,24 @@ static PROCRET tw_ZoneChgDownTask_1(
 	TW_DMYMAP *dmap = &tw->dmy_map;
 	const TW_ZONE_LINKDATA *link;
 	
-	//ƒŠƒ“ƒNƒf[ƒ^æ“¾
+	//ãƒªãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿å–å¾—
 	link = tw_ZoneLinkDataGet( twNowZoneID(tw) );
 	GF_ASSERT( link->lower_zone_id != ZONE_ID_MAX );
-	link = tw_ZoneLinkDataGet( link->lower_zone_id );	//‰º‘w‚Ö
+	link = tw_ZoneLinkDataGet( link->lower_zone_id );	//ä¸‹å±¤ã¸
 	
-	//ˆÚ“®æ‚ÌZONE ID
+	//ç§»å‹•å…ˆã®ZONE ID
 	work->next_zone_id = link->zone_id;
 	
-	//ƒtƒB[ƒ‹ƒhƒ}ƒbƒv@ƒ][ƒ“Ø‚è‘Ö‚¦
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ã€€ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆ
 	FieldMap_TornWorldZoneChange( tw->fsys, work->next_zone_id );
 	
-	//ƒ}ƒbƒvƒf[ƒ^ ‰º‘wƒ_ƒ~[‚ğŒ»İ‘w‚ÖˆÚs
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ ä¸‹å±¤ãƒ€ãƒŸãƒ¼ã‚’ç¾åœ¨å±¤ã¸ç§»è¡Œ
 	tw_MapDataRemoveLowerNow( tw, link->lower_zone_id );
 	
-	//DMC_PTR “ü‚ê‘Ö‚¦‚Ìˆ×‚ÌƒŠƒZƒbƒg
+	//DMC_PTR å…¥ã‚Œæ›¿ãˆã®ç‚ºã®ãƒªã‚»ãƒƒãƒˆ
 	DivMapLoad_RemoveReset( fsys->map_cont_dat );
 	
-	//ƒ_ƒ~[ƒ}ƒbƒv‚©‚çŒ»ƒ}ƒbƒv‚Ö‚Ì“ü‚ê‘Ö‚¦
+	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã‹ã‚‰ç¾ãƒãƒƒãƒ—ã¸ã®å…¥ã‚Œæ›¿ãˆ
 	work->jiki_gx = Player_NowGPosXGet( fsys->player );
 	work->jiki_gz = Player_NowGPosZGet( fsys->player );
 	
@@ -9449,26 +9449,26 @@ static PROCRET tw_ZoneChgDownTask_1(
 		dmap->map_res, dmap->map_cont, fsys->map_cont_dat,
 		work->jiki_gx, work->jiki_gz );
 	
-	//ƒ_ƒ~[ƒ}ƒbƒv”ñ•\¦‚É
+	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—éè¡¨ç¤ºã«
 	dmap->draw_flag = FALSE;
 	DmcDrawFlagSetAll( dmap->map_cont, FALSE );
 	
-	//ƒ_ƒ~[WORLD_MAP”jŠü
+	//ãƒ€ãƒŸãƒ¼WORLD_MAPç ´æ£„
 	WorldMapRelease( dmap->world );
 	dmap->world = NULL;
 	
-	//ƒ_ƒ~[->ƒƒCƒ““ü‚ê‘Ö‚¦Š®—¹BƒƒCƒ“ƒ}ƒbƒv•\¦
+	//ãƒ€ãƒŸãƒ¼->ãƒ¡ã‚¤ãƒ³å…¥ã‚Œæ›¿ãˆå®Œäº†ã€‚ãƒ¡ã‚¤ãƒ³ãƒãƒƒãƒ—è¡¨ç¤º
 	DmcDrawFlagSetAll( tw->fsys->map_cont_dat, TRUE );
 	
-	//‰º‘wƒ}ƒbƒvƒ[ƒhŠJn
+	//ä¸‹å±¤ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰é–‹å§‹
 	dmap->zone_id = link->lower_zone_id;
 	
-	if( dmap->zone_id != ZONE_ID_MAX ){	//‰ºƒ}ƒbƒv“WŠJ
+	if( dmap->zone_id != ZONE_ID_MAX ){	//ä¸‹ãƒãƒƒãƒ—å±•é–‹
 		link = tw_ZoneLinkDataGet( link->lower_zone_id );
 		dmap->world = WorldMapInitHeap( HEAPID_FIELD );
 		SetUpWorldMatrix( link->zone_id, dmap->world );
 		work->seq_no = SEQNO_ZONECHG_DOWN_2;
-	}else{										//‰ºƒ}ƒbƒv–³‚µ
+	}else{										//ä¸‹ãƒãƒƒãƒ—ç„¡ã—
 	//	tw_DmyMapDelete( tw );
 		work->seq_no = SEQNO_ZONECHG_DOWN_4;
 	}
@@ -9478,7 +9478,7 @@ static PROCRET tw_ZoneChgDownTask_1(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒW‰º~@ƒ[ƒhƒuƒƒbƒNƒŠƒXƒgƒZƒbƒgƒAƒbƒv	2F+0F
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸‹é™ã€€ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—	2F+0F
  * @param	tw	TORNWORLD_WORK
  * @param	work	TW_ZONECHG_WORK
  * @retval	PROCRET
@@ -9492,19 +9492,19 @@ static PROCRET tw_ZoneChgDownTask_2(
 		ARCHANDLE *arc;
 		TW_DMYMAP *dmap = &tw->dmy_map;
 		
-		//Ä‰Šú‰»
+		//å†åˆæœŸåŒ–
 		arc = GetDivMapArcHandle( tw->fsys->map_cont_dat );
 		InitDivMapDummyContinue(
 			dmap->map_cont, dmap->world, dmap->map_res, arc );
 		
-		//n“_AƒuƒƒbƒNİ’è
+		//å§‹ç‚¹ã€ãƒ–ãƒ­ãƒƒã‚¯è¨­å®š
 		tw_MapDataIdxZoneIDOriginGridPosGet(
 					tw, dmap->zone_id, &x, &y, &z );
 		SetDivMapOriginGridPos( dmap->map_cont, x, y, z );
 		SetDivMapBlockMode( dmap->map_cont, BLOCKMODE_2x2 );
 		SetDivMapM3dObjSetFlag( dmap->map_cont, DIVM3DO_OFF );
 		
-		//ƒ[ƒhƒuƒƒbƒNƒŠƒXƒgƒZƒbƒgƒAƒbƒv
+		//ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		LoadBlockListSetUpForDummy( dmap->map_cont,
 			work->jiki_gx, work->jiki_gz, work->block_no_tbl );
 		
@@ -9517,7 +9517,7 @@ static PROCRET tw_ZoneChgDownTask_2(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒW‰º~@ƒ_ƒ~[ƒ}ƒbƒvƒZƒbƒg 2F+4F
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸‹é™ã€€ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã‚»ãƒƒãƒˆ 2F+4F
  * @param	tw	TORNWORLD_WORK
  * @param	work	TW_ZONECHG_WORK
  * @retval	PROCRET
@@ -9542,7 +9542,7 @@ static PROCRET tw_ZoneChgDownTask_3(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒW‰º~@ƒ_ƒ~[ƒ}ƒbƒv“WŠJŠ®—¹ 6F+1F total 7F(‹N“®ŠÜ‚İ8F‚É‚È‚é
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸‹é™ã€€ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—å±•é–‹å®Œäº† 6F+1F total 7F(èµ·å‹•å«ã¿8Fã«ãªã‚‹
  * @param	tw	TORNWORLD_WORK
  * @param	work	TW_ZONECHG_WORK
  * @retval	PROCRET
@@ -9554,18 +9554,18 @@ static PROCRET tw_ZoneChgDownTask_4(
 	const TW_ZONE_LINKDATA *link;
 	TW_DMYMAP *dmap = &tw->dmy_map;
 	
-	//ƒ_ƒ~[ƒ}ƒbƒvÀ•WXV‚Æ•\¦
+	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—åº§æ¨™æ›´æ–°ã¨è¡¨ç¤º
 	if( dmap->zone_id != ZONE_ID_MAX ){
 		dmap->draw_flag = TRUE;
 		DmcDrawFlagSetAll( dmap->map_cont, TRUE );
 		UpdateDivMapNowPos( dmap->map_cont, work->jiki_gx, work->jiki_gz );
 	}
 	
-	//TORNWORLDƒ][ƒ“ƒ`ƒFƒ“ƒW‚É‚æ‚é’Ç‰Áˆ—
+	//TORNWORLDã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã«ã‚ˆã‚‹è¿½åŠ å‡¦ç†
 	link = tw_ZoneLinkDataGet( work->next_zone_id );
 	tw_ZoneChangeAddProcDown( tw, link->lower_zone_id );
 	
-	//ƒŠƒ“ƒNƒAƒNƒ^[@ƒ][ƒ“íœ–³Œøƒtƒ‰ƒO‚ğ—‚Æ‚·
+	//ãƒªãƒ³ã‚¯ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ã‚¾ãƒ¼ãƒ³å‰Šé™¤ç„¡åŠ¹ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 	if( work->lact != NULL ){
 		tw_LinkPosActZoneChgDelNotFlagSet( work->lact, FALSE );
 	}
@@ -9574,7 +9574,7 @@ static PROCRET tw_ZoneChgDownTask_4(
 }
 
 //--------------------------------------------------------------
-///	ƒ][ƒ“ƒ`ƒFƒ“ƒW‰º~ˆ—ƒe[ƒuƒ‹
+///	ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸‹é™å‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static PROCRET (* const DATA_ZoneChangeDownTbl[SEQNO_ZONECHG_DOWN_MAX])( TORNWORLD_WORK *tw, TW_ZONECHG_WORK *work ) =
 {
@@ -9586,11 +9586,11 @@ static PROCRET (* const DATA_ZoneChangeDownTbl[SEQNO_ZONECHG_DOWN_MAX])( TORNWOR
 };
 
 //==============================================================================
-//	ƒ][ƒ“ƒ`ƒFƒ“ƒW@ã¸ˆ—
+//	ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã€€ä¸Šæ˜‡å‡¦ç†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒW@ã¸ŠJn		0F+1F
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã€€ä¸Šæ˜‡é–‹å§‹		0F+1F
  * @param	tw	TORNWORLD_WORK
  * @param	work	TW_ZONECHG_WORK
  * @retval	PROCRET
@@ -9602,19 +9602,19 @@ static PROCRET tw_ZoneChgUpTask_0(
 	const TW_ZONE_LINKDATA *link;
 	TW_DMYMAP *dmap = &tw->dmy_map;
 	
-	//Á‚·‘ÎÛ‚ğ”ñ•\¦‚É
+	//æ¶ˆã™å¯¾è±¡ã‚’éè¡¨ç¤ºã«
 	dmap->draw_flag = FALSE;
 	
 	if( dmap->init_flag == TRUE ){
 		DmcDrawFlagSetAll( dmap->map_cont, FALSE );
 	}
 	
-	//ƒ][ƒ“Ø‚è‘Ö‚¦‚É”º‚¤íœˆ—
+	//ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã«ä¼´ã†å‰Šé™¤å‡¦ç†
 	link = tw_ZoneLinkDataGet( twNowZoneID(tw) );
 	tw_ZoneChangeDeleteProcUp( tw, link->lower_zone_id );
 	
 	#ifdef DEBUG_TW_PRINTF
-	OS_Printf( "ƒ][ƒ“ƒ`ƒFƒ“ƒW‰º~ƒ^ƒXƒN ŠJn\n" );
+	OS_Printf( "ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸‹é™ã‚¿ã‚¹ã‚¯ é–‹å§‹\n" );
 	#endif
 	
 	work->seq_no = SEQNO_ZONECHG_UP_1;
@@ -9623,7 +9623,7 @@ static PROCRET tw_ZoneChgUpTask_0(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒW@“ü‚ê‘Ö‚¦		1F+1F
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã€€å…¥ã‚Œæ›¿ãˆ		1F+1F
  * @param	tw	TORNWORLD_WORK
  * @param	work	TW_ZONECHG_WORK
  * @retval	PROCRET
@@ -9636,49 +9636,49 @@ static PROCRET tw_ZoneChgUpTask_1(
 	TW_DMYMAP *dmap = &tw->dmy_map;
 	const TW_ZONE_LINKDATA *link;
 	
-	//ƒŠƒ“ƒNƒf[ƒ^æ“¾
+	//ãƒªãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿å–å¾—
 	link = tw_ZoneLinkDataGet( twNowZoneID(tw) );
 	GF_ASSERT( link->upper_zone_id != ZONE_ID_MAX );
-	link = tw_ZoneLinkDataGet( link->upper_zone_id );	//ã‘wƒŠƒ“ƒN
+	link = tw_ZoneLinkDataGet( link->upper_zone_id );	//ä¸Šå±¤ãƒªãƒ³ã‚¯
 	
-	//ˆÚ“®æ‚ÌZONE ID
+	//ç§»å‹•å…ˆã®ZONE ID
 	work->next_zone_id = link->zone_id;
 	
-	//ƒtƒB[ƒ‹ƒhƒ}ƒbƒv@ƒ][ƒ“Ø‚è‘Ö‚¦
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ã€€ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆ
 	FieldMap_TornWorldZoneChange( tw->fsys, work->next_zone_id );
 	
-	//ƒ}ƒbƒvƒf[ƒ^@‹ŒŒ»İ‘w‚ğ‰º‘wƒ_ƒ~[‚ÖˆÚs
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã€€æ—§ç¾åœ¨å±¤ã‚’ä¸‹å±¤ãƒ€ãƒŸãƒ¼ã¸ç§»è¡Œ
 	tw_MapDataRemoveNowLower( tw, work->next_zone_id );
 	
-	//ƒ[ƒ‹ƒh¶¬ƒ`ƒFƒbƒN
+	//ãƒ¯ãƒ¼ãƒ«ãƒ‰ç”Ÿæˆãƒã‚§ãƒƒã‚¯
 	if( dmap->world == NULL ){
 		dmap->world = WorldMapInitHeap( HEAPID_FIELD );
 	}
 	
-	//ƒ}ƒbƒvƒŠƒ\[ƒXİ’è
+	//ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
 	if( dmap->map_res == NULL ){
 		dmap->map_res = fsys->MapResource;
 	}
 	
-	//ƒ_ƒ~[ƒ}ƒbƒv‰Šú‰»ƒ`ƒFƒbƒN
+	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—åˆæœŸåŒ–ãƒã‚§ãƒƒã‚¯
 	if( dmap->init_flag == FALSE ){
 		ARCHANDLE *arc = GetDivMapArcHandle( fsys->map_cont_dat );
 		dmap->map_cont = InitDivMapDummy( NULL, dmap->map_res, arc );
 		AllocOnlyDivMapBlockList( dmap->map_cont );
 	}
 	
-	//ƒ_ƒ~[ƒ}ƒbƒv@”z’uƒ‚ƒfƒ‹ƒNƒŠ[ƒ“
+	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€é…ç½®ãƒ¢ãƒ‡ãƒ«ã‚¯ãƒªãƒ¼ãƒ³
 	if( dmap->init_flag == TRUE ){
 		DivMapLoad_CleanM3DObj( dmap->map_cont );
 	}
 	
-	//ƒƒCƒ“ƒ}ƒbƒv@”z’uƒ‚ƒfƒ‹ƒNƒŠ[ƒ“
+	//ãƒ¡ã‚¤ãƒ³ãƒãƒƒãƒ—ã€€é…ç½®ãƒ¢ãƒ‡ãƒ«ã‚¯ãƒªãƒ¼ãƒ³
 	DivMapLoad_CleanM3DObj( fsys->map_cont_dat );
 	
-	//ƒ[ƒ‹ƒhƒ}ƒbƒvƒZƒbƒg
+	//ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ã‚»ãƒƒãƒˆ
 	SetDivMapWorldMap( dmap->map_cont, dmap->world );
 	
-	//ƒ_ƒ~[ƒ}ƒbƒvƒŠƒ\[ƒX‚ğ”jŠü‚µ‚ÄƒƒCƒ“‚ğ—˜—p
+	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã—ã¦ãƒ¡ã‚¤ãƒ³ã‚’åˆ©ç”¨
 	#if 0
 	if( dmap->map_res != NULL ){
 		ReleaseMapResource( &dmap->map_res );
@@ -9688,22 +9688,22 @@ static PROCRET tw_ZoneChgUpTask_1(
 	fsys->MapResource = NULL;
 	#endif
 	
-	//ƒƒCƒ“ƒ}ƒbƒv‚ğƒ_ƒ~[ƒ}ƒbƒv‚ÖˆÚs‚·‚é
+	//ãƒ¡ã‚¤ãƒ³ãƒãƒƒãƒ—ã‚’ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã¸ç§»è¡Œã™ã‚‹
 	RemoveDivMapMainDummy( dmap->map_cont, fsys->map_cont_dat );
 	
-	//“ü‚ê‘Ö‚¦Œã‚Ìƒ_ƒ~[ƒ}ƒbƒv•\¦
+	//å…¥ã‚Œæ›¿ãˆå¾Œã®ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—è¡¨ç¤º
 	dmap->init_flag = TRUE;
 	dmap->draw_flag = TRUE;
 	DmcDrawFlagSetAll( dmap->map_cont, TRUE );
 	
-	//ƒ[ƒh‚·‚éã‘wƒ}ƒbƒv‚ğ”ñ•\¦‚É
+	//ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ä¸Šå±¤ãƒãƒƒãƒ—ã‚’éè¡¨ç¤ºã«
 	DmcDrawFlagSetAll( tw->fsys->map_cont_dat, FALSE );
 	
-	//ã‘wƒ}ƒbƒv—pWORLD_MAP‰Šú‰»
+	//ä¸Šå±¤ãƒãƒƒãƒ—ç”¨WORLD_MAPåˆæœŸåŒ–
 	SetUpWorldMatrix( link->zone_id, fsys->World );
 	
 	#if 0
-	//ã‘wƒ}ƒbƒv—pƒŠƒ\[ƒX‰Šú‰»
+	//ä¸Šå±¤ãƒãƒƒãƒ—ç”¨ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
 	{
 		u16 area_id = ZoneData_GetAreaID( link->zone_id );
 		fsys->MapResource = AllocMapResource( area_id, fsys->field_3d_anime );
@@ -9711,7 +9711,7 @@ static PROCRET tw_ZoneChgUpTask_1(
 	}
 	#endif
 	
-	//ãˆÊƒ}ƒbƒvƒ[ƒhƒZƒbƒgƒAƒbƒv
+	//ä¸Šä½ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	{
 		int x = 0,y = 0,z = 0;
 		ResetDivMap( fsys->map_cont_dat, fsys->World, fsys->MapResource );
@@ -9730,7 +9730,7 @@ static PROCRET tw_ZoneChgUpTask_1(
 	return( RET_NON );
 }
 
-#if 0	//‹Œ@dummy‚ª‘¶İ‚µ‚Ä‚¢‚È‚¢ƒP[ƒX–¢‘Îˆ
+#if 0	//æ—§ã€€dummyãŒå­˜åœ¨ã—ã¦ã„ãªã„ã‚±ãƒ¼ã‚¹æœªå¯¾å‡¦
 static PROCRET tw_ZoneChgUpTask_1(
 		TORNWORLD_WORK *tw, TW_ZONECHG_WORK *work )
 {
@@ -9738,33 +9738,33 @@ static PROCRET tw_ZoneChgUpTask_1(
 	TW_DMYMAP *dmap = &tw->dmy_map;
 	const TW_ZONE_LINKDATA *link;
 	
-	//ƒŠƒ“ƒNƒf[ƒ^æ“¾
+	//ãƒªãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿å–å¾—
 	link = tw_ZoneLinkDataGet( twNowZoneID(tw) );
 	GF_ASSERT( link->upper_zone_id != ZONE_ID_MAX );
-	link = tw_ZoneLinkDataGet( link->upper_zone_id );	//ã‘wƒŠƒ“ƒN
+	link = tw_ZoneLinkDataGet( link->upper_zone_id );	//ä¸Šå±¤ãƒªãƒ³ã‚¯
 	
-	//ˆÚ“®æ‚ÌZONE ID
+	//ç§»å‹•å…ˆã®ZONE ID
 	work->next_zone_id = link->zone_id;
 	
-	//ƒtƒB[ƒ‹ƒhƒ}ƒbƒv@ƒ][ƒ“Ø‚è‘Ö‚¦
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ã€€ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆ
 	FieldMap_TornWorldZoneChange( tw->fsys, work->next_zone_id );
 	
-	//ƒ}ƒbƒvƒf[ƒ^@‹ŒŒ»İ‘w‚ğ‰º‘wƒ_ƒ~[‚ÖˆÚs
+	//ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã€€æ—§ç¾åœ¨å±¤ã‚’ä¸‹å±¤ãƒ€ãƒŸãƒ¼ã¸ç§»è¡Œ
 	tw_MapDataRemoveNowLower( tw, work->next_zone_id );
 	
-	//ƒ_ƒ~[ƒ}ƒbƒv‰Šú‰»ƒ`ƒFƒbƒN
+	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—åˆæœŸåŒ–ãƒã‚§ãƒƒã‚¯
 	if( dmap->init_flag == FALSE ){
 	}
 	
-	//ƒ_ƒ~[ƒ}ƒbƒv@”z’uƒ‚ƒfƒ‹ƒNƒŠ[ƒ“
+	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€é…ç½®ãƒ¢ãƒ‡ãƒ«ã‚¯ãƒªãƒ¼ãƒ³
 	if( dmap->init_flag == TRUE ){
 		DivMapLoad_CleanM3DObj( dmap->map_cont );
 	}
 	
-	//ƒƒCƒ“ƒ}ƒbƒv@”z’uƒ‚ƒfƒ‹ƒNƒŠ[ƒ“
+	//ãƒ¡ã‚¤ãƒ³ãƒãƒƒãƒ—ã€€é…ç½®ãƒ¢ãƒ‡ãƒ«ã‚¯ãƒªãƒ¼ãƒ³
 	DivMapLoad_CleanM3DObj( fsys->map_cont_dat );
 	
-	//ƒ[ƒ‹ƒh¶¬ƒ`ƒFƒbƒN
+	//ãƒ¯ãƒ¼ãƒ«ãƒ‰ç”Ÿæˆãƒã‚§ãƒƒã‚¯
 	if( dmap->world == NULL ){
 		dmap->world = WorldMapInitHeap( HEAPID_FIELD );
 	}
@@ -9782,7 +9782,7 @@ static PROCRET tw_ZoneChgUpTask_1(
 		SetDivMapWorldMap( dmap->map_cont, dmap->world );
 	}
 	
-	//ƒ_ƒ~[ƒ}ƒbƒvƒŠƒ\[ƒX‚ğ”jŠü‚µ‚ÄƒƒCƒ“‚ğ—˜—p
+	//ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã—ã¦ãƒ¡ã‚¤ãƒ³ã‚’åˆ©ç”¨
 	#if 0
 	if( dmap->map_res != NULL ){
 		ReleaseMapResource( &dmap->map_res );
@@ -9792,21 +9792,21 @@ static PROCRET tw_ZoneChgUpTask_1(
 	fsys->MapResource = NULL;
 	#endif
 	
-	//ƒƒCƒ“ƒ}ƒbƒv‚ğƒ_ƒ~[ƒ}ƒbƒv‚ÖˆÚs‚·‚é
+	//ãƒ¡ã‚¤ãƒ³ãƒãƒƒãƒ—ã‚’ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã¸ç§»è¡Œã™ã‚‹
 	RemoveDivMapMainDummy( dmap->map_cont, fsys->map_cont_dat );
 	
-	//“ü‚ê‘Ö‚¦Œã‚Ìƒ_ƒ~[ƒ}ƒbƒv•\¦
+	//å…¥ã‚Œæ›¿ãˆå¾Œã®ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—è¡¨ç¤º
 	dmap->draw_flag = TRUE;
 	DmcDrawFlagSetAll( dmap->map_cont, TRUE );
 	
-	//ƒ[ƒh‚·‚éã‘wƒ}ƒbƒv‚ğ”ñ•\¦‚É
+	//ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ä¸Šå±¤ãƒãƒƒãƒ—ã‚’éè¡¨ç¤ºã«
 	DmcDrawFlagSetAll( tw->fsys->map_cont_dat, FALSE );
 	
-	//ã‘wƒ}ƒbƒv—pWORLD_MAP‰Šú‰»
+	//ä¸Šå±¤ãƒãƒƒãƒ—ç”¨WORLD_MAPåˆæœŸåŒ–
 	SetUpWorldMatrix( link->zone_id, fsys->World );
 	
 	#if 0
-	//ã‘wƒ}ƒbƒv—pƒŠƒ\[ƒX‰Šú‰»
+	//ä¸Šå±¤ãƒãƒƒãƒ—ç”¨ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
 	{
 		u16 area_id = ZoneData_GetAreaID( link->zone_id );
 		fsys->MapResource = AllocMapResource( area_id, fsys->field_3d_anime );
@@ -9814,7 +9814,7 @@ static PROCRET tw_ZoneChgUpTask_1(
 	}
 	#endif
 	
-	//ãˆÊƒ}ƒbƒvƒ[ƒhƒZƒbƒgƒAƒbƒv
+	//ä¸Šä½ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	{
 		int x = 0,y = 0,z = 0;
 		ResetDivMap( fsys->map_cont_dat, fsys->World, fsys->MapResource );
@@ -9836,7 +9836,7 @@ static PROCRET tw_ZoneChgUpTask_1(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒW@ã‘wƒ}ƒbƒv“WŠJ		2F+4F
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã€€ä¸Šå±¤ãƒãƒƒãƒ—å±•é–‹		2F+4F
  * @param	tw	TORNWORLD_WORK
  * @param	work	TW_ZONECHG_WORK
  * @retval	PROCRET
@@ -9861,7 +9861,7 @@ static PROCRET tw_ZoneChgUpTask_2(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒ`ƒFƒ“ƒW@ã‘wƒ}ƒbƒv“WŠJŠ®—¹		6F+1F (‹N“®ŠÜ‚İ‚±‚¿‚ç‚à8F
+ * ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã€€ä¸Šå±¤ãƒãƒƒãƒ—å±•é–‹å®Œäº†		6F+1F (èµ·å‹•å«ã¿ã“ã¡ã‚‰ã‚‚8F
  * @param	tw	TORNWORLD_WORK
  * @param	work	TW_ZONECHG_WORK
  * @retval	PROCRET
@@ -9872,25 +9872,25 @@ static PROCRET tw_ZoneChgUpTask_3(
 {
 	FIELDSYS_WORK *fsys = tw->fsys;
 	
-	//À•WXV
+	//åº§æ¨™æ›´æ–°
 	UpdateDivMapNowPos( fsys->map_cont_dat, work->jiki_gx, work->jiki_gz );
 	
-	//TORNWORLDƒ][ƒ“ƒ`ƒFƒ“ƒW‚É‚æ‚é’Ç‰Áˆ—
+	//TORNWORLDã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã«ã‚ˆã‚‹è¿½åŠ å‡¦ç†
 	tw_ZoneChangeAddProcUp( tw, work->next_zone_id );
 	
-	//ƒŠƒ“ƒNƒAƒNƒ^[@ƒ][ƒ“íœ–³Œøƒtƒ‰ƒO‚ğ—‚Æ‚·
+	//ãƒªãƒ³ã‚¯ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ã‚¾ãƒ¼ãƒ³å‰Šé™¤ç„¡åŠ¹ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 	if( work->lact != NULL ){
 		tw_LinkPosActZoneChgDelNotFlagSet( work->lact, FALSE );
 	}
 	
-	//ã‘wƒ}ƒbƒv‚ğ•\¦
+	//ä¸Šå±¤ãƒãƒƒãƒ—ã‚’è¡¨ç¤º
 	DmcDrawFlagSetAll( tw->fsys->map_cont_dat, TRUE );
 	
 	return( RET_END );
 }
 
 //--------------------------------------------------------------
-///	ƒ][ƒ“ƒ`ƒFƒ“ƒWã¸ˆ—ƒe[ƒuƒ‹
+///	ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ä¸Šæ˜‡å‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static PROCRET (* const DATA_ZoneChangeUpTbl[SEQNO_ZONECHG_UP_MAX])( TORNWORLD_WORK *tw, TW_ZONECHG_WORK *work ) =
 {
@@ -9901,16 +9901,16 @@ static PROCRET (* const DATA_ZoneChangeUpTbl[SEQNO_ZONECHG_UP_MAX])( TORNWORLD_W
 };
 
 //==============================================================================
-//	ƒ][ƒ“Ø‚è‘Ö‚¦ƒCƒxƒ“ƒg
+//	ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã‚¤ãƒ™ãƒ³ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“Ø‚è‘Ö‚¦ƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+ * ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
- * @param	gx	©‹@ƒOƒŠƒbƒhX
- * @param	gy	©‹@ƒOƒŠƒbƒhY
- * @param	gz	©‹@ƒOƒŠƒbƒhZ
- * @retval	BOOL	TRUE=‹N“®
+ * @param	gx	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰Z
+ * @retval	BOOL	TRUE=èµ·å‹•
  */
 //--------------------------------------------------------------
 static BOOL tw_EventMoveCheck_ZoneChange(
@@ -9995,7 +9995,7 @@ static PROCRET (* const DATA_EvZoneChgProcTbl[SEQNO_ZCHG_MAX])(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“Ø‚è‘Ö‚¦ƒCƒxƒ“ƒgƒZƒbƒg
+ * ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
  * @param	lact	TW_LINKPOS_ACTOR
  * @retval	nothing
@@ -10014,9 +10014,9 @@ static void tw_EventSet_ZoneChange(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“Ø‚è‘Ö‚¦@ƒCƒxƒ“ƒg
+ * ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã€€ã‚¤ãƒ™ãƒ³ãƒˆ
  * @param	event GMEVENT_CONTROL
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL tw_GMEVENT_ZoneChange( GMEVENT_CONTROL *event )
@@ -10039,9 +10039,9 @@ static BOOL tw_GMEVENT_ZoneChange( GMEVENT_CONTROL *event )
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“Ø‚è‘Ö‚¦@ƒJƒEƒ“ƒg
+ * ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã€€ã‚«ã‚¦ãƒ³ãƒˆ
  * @param	work	EV_ZONECHG_WORK
- * @retval	int	ƒJƒEƒ“ƒg‚µ‚½ƒOƒŠƒbƒh”
+ * @retval	int	ã‚«ã‚¦ãƒ³ãƒˆã—ãŸã‚°ãƒªãƒƒãƒ‰æ•°
  */
 //--------------------------------------------------------------
 static int tw_ZoneChangeMoveCount( EV_ZONECHG_WORK *work )
@@ -10055,10 +10055,10 @@ static int tw_ZoneChangeMoveCount( EV_ZONECHG_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“Ø‚è‘Ö‚¦@‰Šú‰»
+ * ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @param	work	EV_ZONECHG_WORK
- * @retval	BOOL	TRUE=Ä‹A
+ * @retval	BOOL	TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static PROCRET EvZoneChg_Init( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
@@ -10081,15 +10081,15 @@ static PROCRET EvZoneChg_Init( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 	zone_id = twNowZoneID( tw );
 	link = tw_ZoneLinkDataGet( zone_id );
 	
-	if( work->zone_chg_type == LPOSMOVE_ZONE_DOWN ){	//‰º~
+	if( work->zone_chg_type == LPOSMOVE_ZONE_DOWN ){	//ä¸‹é™
 		work->next_zone_id = link->lower_zone_id;
 		
-		//‰º~ƒCƒxƒ“ƒgŒÀ’èˆ—
+		//ä¸‹é™ã‚¤ãƒ™ãƒ³ãƒˆé™å®šå‡¦ç†
 		{
 			EVENTWORK *ev = SaveData_GetEventWork( tw->fsys->savedata );
 			u16 ev_seq_no = SysWork_TornWorldEventSeqNoGet( ev );
 			
-			//@ƒVƒƒi‚Æ‹¤‚É
+			//ã€€ã‚·ãƒ­ãƒŠã¨å…±ã«
 			if( zone_id == ZONE_ID_D34R0101 && ev_seq_no == TWEVSEQ_01_02 ){
 				work->fldobj_pair = FieldOBJSys_OBJIDSearch(
 						tw->fsys->fldobjsys, TW_OBJID_0101_SIRONA_01 );
@@ -10101,18 +10101,18 @@ static PROCRET EvZoneChg_Init( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 				GF_ASSERT( work->fldobj_pair != NULL );
 			}
 			
-			#if 0	//l‘wƒAƒJƒMƒCƒxƒ“ƒgƒXƒNƒŠƒvƒg‚Å‘Î‰
-			//ƒXƒgƒbƒp[ƒVƒƒi‚Æ‰ï˜b‚¹‚¸‚S‘w‚ÖˆÚ“®‚·‚é
+			#if 0	//å››å±¤ã‚¢ã‚«ã‚®ã‚¤ãƒ™ãƒ³ãƒˆã‚¹ã‚¯ãƒªãƒ—ãƒˆã§å¯¾å¿œ
+			//ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼ã‚·ãƒ­ãƒŠã¨ä¼šè©±ã›ãšï¼”å±¤ã¸ç§»å‹•ã™ã‚‹
 			if( zone_id == ZONE_ID_D34R0103 && ev_seq_no == TWEVSEQ_03_00 ){
-				//ƒXƒgƒbƒp[ƒVƒƒi‰ğœ
+				//ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼ã‚·ãƒ­ãƒŠè§£é™¤
 				SysWork_TornWorldEventSeqNoSet( ev, TWEVSEQ_03_01 );
 			}
 			#endif
 		}
-	}else{											//ã¸
+	}else{											//ä¸Šæ˜‡
 		work->next_zone_id = link->upper_zone_id;
 		
-		//ã¸ŒÀ’è “®ìID•Êƒ][ƒ“ˆÚ“®ƒtƒ‰ƒO‹­§ƒZƒbƒg
+		//ä¸Šæ˜‡æ™‚é™å®š å‹•ä½œIDåˆ¥ã‚¾ãƒ¼ãƒ³ç§»å‹•ãƒ•ãƒ©ã‚°å¼·åˆ¶ã‚»ãƒƒãƒˆ
 		switch( tw, work->zchg_mid ){
 		case ZCHG_MID_Z0107_6_5:	//6->5
 			tw_SaveDataZLinkMoveFlagON( tw, ZLINKMFLAG_0405A );
@@ -10153,7 +10153,7 @@ static PROCRET EvZoneChg_Init( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 	work->move_val = mdata_p->move_val;
 	work->next_move_id = mdata_p->next_id;
 	
-	if( work->shake_finish == FALSE ){		//U“®‚Ü‚¾
+	if( work->shake_finish == FALSE ){		//æŒ¯å‹•ã¾ã 
 		VecFx32 pos,*eoa_pos_p;
 		work->shake_offs_y = NUM_FX32( 6 );
 		
@@ -10172,7 +10172,7 @@ static PROCRET EvZoneChg_Init( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 		work->seq_no = SEQNO_ZCHG_START_SHAKE;
 		
 		Snd_SePlay( SE_YABURETA_MOVE );
-	}else{									//U“®Ï‚İ
+	}else{									//æŒ¯å‹•æ¸ˆã¿
 		work->seq_no = SEQNO_ZCHG_MOVE_START;
 	}
 	
@@ -10203,10 +10203,10 @@ static PROCRET EvZoneChg_Init( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“Ø‚è‘Ö‚¦@‹N“®—h‚ê
+ * ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã€€èµ·å‹•æºã‚Œ
  * @param	tw	TORNWORLD_WORK
  * @param	work	EV_ZONECHG_WORK
- * @retval	BOOL	TRUE=Ä‹A
+ * @retval	BOOL	TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static PROCRET EvZoneChg_StartShake(
@@ -10272,10 +10272,10 @@ static PROCRET EvZoneChg_StartShake(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“Ø‚è‘Ö‚¦@‰ŠúˆÚ“®
+ * ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã€€åˆæœŸç§»å‹•
  * @param	tw	TORNWORLD_WORK
  * @param	work	EV_ZONECHG_WORK
- * @retval	BOOL	TRUE=Ä‹A
+ * @retval	BOOL	TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static PROCRET EvZoneChg_Start( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
@@ -10324,17 +10324,17 @@ static PROCRET EvZoneChg_Start( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“Ø‚è‘Ö‚¦@ƒ][ƒ“ƒ`ƒFƒ“ƒW
+ * ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã€€ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸
  * @param	tw	TORNWORLD_WORK
  * @param	work	EV_ZONECHG_WORK
- * @retval	BOOL	TRUE=Ä‹A
+ * @retval	BOOL	TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static PROCRET EvZoneChg_Change( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 {
 	tw_LinkPosActZoneChgDelNotFlagSet( work->lact, TRUE );
 	
-	//Œ»ƒ^[ƒ“‚ÅI—¹Bs‚«æ‚É’u‚«Š·‚¦
+	//ç¾ã‚¿ãƒ¼ãƒ³ã§çµ‚äº†ã€‚è¡Œãå…ˆã«ç½®ãæ›ãˆ
 	if( work->next_move_id == ZCHG_MID_MAX ){
 		if( work->zlink_mflag_on != ZLINKMFLAG_MAX ){
 			tw_SaveDataZLinkMoveFlagON( tw, work->zlink_mflag_on );
@@ -10347,7 +10347,7 @@ static PROCRET EvZoneChg_Change( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 		tw_LinkPosActZoneChangePerm( tw, work->lact, work->next_zone_id );
 	}
 	
-	if( work->fldobj_pair != NULL ){	//ƒCƒxƒ“ƒgƒVƒƒiŒÀ’è’u‚«Š·‚¦
+	if( work->fldobj_pair != NULL ){	//ã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ­ãƒŠé™å®šç½®ãæ›ãˆ
 		if( work->next_zone_id == ZONE_ID_D34R0102 ){
 			FieldOBJ_OBJIDSet( work->fldobj_pair, TW_OBJID_0102_SIRONA );
 		}else{	//ZONE_ID_D34R0109
@@ -10388,10 +10388,10 @@ static PROCRET EvZoneChg_Change( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“Ø‚è‘Ö‚¦@I“_‚Ü‚ÅˆÚ“®
+ * ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã€€çµ‚ç‚¹ã¾ã§ç§»å‹•
  * @param	tw	TORNWORLD_WORK
  * @param	work	EV_ZONECHG_WORK
- * @retval	BOOL	TRUE=Ä‹A
+ * @retval	BOOL	TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static PROCRET EvZoneChg_Move( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
@@ -10447,7 +10447,7 @@ static PROCRET EvZoneChg_Move( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 				FieldOBJ_GPosUpdate( work->fldobj_pair );
 			}
 			
-			{	//“®ìID•ÏX
+			{	//å‹•ä½œIDå¤‰æ›´
 				TW_LINKPOS_ACTOR *lact = work->lact;
 				lact->ldata.mdata_id = work->next_move_id;
 				FieldOBJ_ParamSet( lact->fldobj,
@@ -10465,10 +10465,10 @@ static PROCRET EvZoneChg_Move( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“Ø‚è‘Ö‚¦@I—¹
+ * ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã€€çµ‚äº†
  * @param	tw	TORNWORLD_WORK
  * @param	work	EV_ZONECHG_WORK
- * @retval	BOOL	TRUE=Ä‹A
+ * @retval	BOOL	TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static PROCRET EvZoneChg_End( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
@@ -10486,7 +10486,7 @@ static PROCRET EvZoneChg_End( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 			FieldOBJ_GPosUpdate( work->fldobj_pair );
 		}
 		
-		//‰º~ŒÀ’è ƒŠƒtƒg‹­§oŒ»ˆ—
+		//ä¸‹é™æ™‚é™å®š ãƒªãƒ•ãƒˆå¼·åˆ¶å‡ºç¾å‡¦ç†
 		if( work->zone_chg_type == LPOSMOVE_ZONE_DOWN ){
 			switch( work->zchg_mid ){
 			case ZCHG_MID_Z0104_4_6_1:	//4->6
@@ -10497,7 +10497,7 @@ static PROCRET EvZoneChg_End( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 			}
 		}
 		
-		//‘æ‚T‘wƒAƒJƒMƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+		//ç¬¬ï¼•å±¤ã‚¢ã‚«ã‚®ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 		if( work->next_zone_id == ZONE_ID_D34R0105 &&
 			work->zone_chg_type == LPOSMOVE_ZONE_DOWN &&
 			work->lact->ldata.id == LPOSID0105_ZUP_5B_4B ){
@@ -10516,7 +10516,7 @@ static PROCRET EvZoneChg_End( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	ƒAƒJƒM@À•W•ÊƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹
+///	ã‚¢ã‚«ã‚®ã€€åº§æ¨™åˆ¥ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const FIELD_OBJ_ACMD_LIST DATA_D0105AkagiAcmdList0[] =
 {
@@ -10547,10 +10547,10 @@ static const FIELD_OBJ_ACMD_LIST * const DATA_D0105AkagiAcmdListTbl[3] =
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“Ø‚è‘Ö‚¦@‘æŒÜ‘wŒÀ’èƒAƒJƒMˆÚ“®ƒCƒxƒ“ƒg ‰Šú‰»
+ * ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã€€ç¬¬äº”å±¤é™å®šã‚¢ã‚«ã‚®ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆ åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @param	work	EV_ZONECHG_WORK
- * @retval	BOOL	TRUE=Ä‹A
+ * @retval	BOOL	TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static PROCRET EvZoneChg_D0105AkagiEvent_Init(
@@ -10579,10 +10579,10 @@ static PROCRET EvZoneChg_D0105AkagiEvent_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“Ø‚è‘Ö‚¦@‘æŒÜ‘wŒÀ’èƒAƒJƒMˆÚ“®ƒCƒxƒ“ƒg I—¹‘Ò‚¿
+ * ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã€€ç¬¬äº”å±¤é™å®šã‚¢ã‚«ã‚®ç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆ çµ‚äº†å¾…ã¡
  * @param	tw	TORNWORLD_WORK
  * @param	work	EV_ZONECHG_WORK
- * @retval	BOOL	TRUE=Ä‹A
+ * @retval	BOOL	TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static PROCRET EvZoneChg_D0105AkagiEvent_Wait(
@@ -10607,7 +10607,7 @@ static PROCRET EvZoneChg_D0105AkagiEvent_Wait(
 }
 
 //--------------------------------------------------------------
-///	ƒ][ƒ“Ø‚è‘Ö‚¦ˆ—ƒe[ƒuƒ‹
+///	ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆå‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static PROCRET (* const DATA_EvZoneChgProcTbl[SEQNO_ZCHG_MAX])( TORNWORLD_WORK *tw, EV_ZONECHG_WORK *work ) =
 {
@@ -10623,13 +10623,13 @@ static PROCRET (* const DATA_EvZoneChgProcTbl[SEQNO_ZCHG_MAX])( TORNWORLD_WORK *
 };
 
 //==============================================================================
-//	ƒ][ƒ“ƒŠƒ“ƒN
+//	ã‚¾ãƒ¼ãƒ³ãƒªãƒ³ã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒ][ƒ“ID‚©‚çZONE_LINK_DATA‚ğ•Ô‚·
+ * æŒ‡å®šã•ã‚ŒãŸã‚¾ãƒ¼ãƒ³IDã‹ã‚‰ZONE_LINK_DATAã‚’è¿”ã™
  * @param	zone_id	zone id
- * @retval	TW_ZONE_LINKDATA NULL=–³‚µ
+ * @retval	TW_ZONE_LINKDATA NULL=ç„¡ã—
  */
 //--------------------------------------------------------------
 static const TW_ZONE_LINKDATA * tw_ZoneLinkDataGet( int zone_id )
@@ -10650,11 +10650,11 @@ static const TW_ZONE_LINKDATA * tw_ZoneLinkDataGet( int zone_id )
 }
 
 //==============================================================================
-//	ƒIƒuƒWƒFƒŠƒ\[ƒXŠÇ—
+//	ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXŠÇ— ‰Šú‰»
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ç®¡ç† åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -10676,7 +10676,7 @@ static void tw_OBJResDataInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXŠÇ—@ƒ‚ƒfƒ‹“o˜^
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ã€€ãƒ¢ãƒ‡ãƒ«ç™»éŒ²
  * @param	tw	TORNWORLD_WORK
  * @param	id	TW_MDL_MAX
  * @retval	nothing
@@ -10704,7 +10704,7 @@ static void tw_OBJResDataMdlRegist( TORNWORLD_WORK *tw, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXŠÇ—@ƒ‚ƒfƒ‹”jŠü
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ã€€ãƒ¢ãƒ‡ãƒ«ç ´æ£„
  * @param	tw	TORNWORLD_WORK
  * @param	id	TW_MDL_MAX
  * @retval	nothing
@@ -10725,7 +10725,7 @@ static void tw_OBJResDataMdlDelete( TORNWORLD_WORK *tw, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXŠÇ—@ƒ‚ƒfƒ‹ŒŸõ
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ã€€ãƒ¢ãƒ‡ãƒ«æ¤œç´¢
  * @param	tw	TORNWORLD_WORK
  * @param	id	TW_MDL_MAX
  * @retval	nothing
@@ -10742,7 +10742,7 @@ static FRO_MDL * tw_OBJResDataMdlSearch( TORNWORLD_WORK *tw, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXŠÇ—@ƒAƒjƒ“o˜^
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ã€€ã‚¢ãƒ‹ãƒ¡ç™»éŒ²
  * @param	tw	TORNWORLD_WORK
  * @param	id	TW_ANM_MAX
  * @retval	nothing
@@ -10766,7 +10766,7 @@ static void tw_OBJResDataAnmRegist( TORNWORLD_WORK *tw, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXŠÇ—@ƒAƒjƒ”jŠü
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ã€€ã‚¢ãƒ‹ãƒ¡ç ´æ£„
  * @param	tw	TORNWORLD_WORK
  * @param	id	TW_Anm_MAX
  * @retval	nothing
@@ -10787,10 +10787,10 @@ static void tw_OBJResDataAnmDelete( TORNWORLD_WORK *tw, u32 id )
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXŠÇ—@OBJƒŠƒ\[ƒXæ“¾
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ã€€OBJãƒªã‚½ãƒ¼ã‚¹å–å¾—
  * @param	tw	TORNWOLRD_WORK
  * @param	type	TWOBJTYPE
- * @param	init_chk TRUE=‰Šú‰»Ï‚İ‚Å‚ ‚é(‘¼‚Å“¯type‚ğg—p’†‚È‚Ì‚Å—¬—p‚·‚é
+ * @param	init_chk TRUE=åˆæœŸåŒ–æ¸ˆã¿ã§ã‚ã‚‹(ä»–ã§åŒtypeã‚’ä½¿ç”¨ä¸­ãªã®ã§æµç”¨ã™ã‚‹
  * @retval	TW_OBJRES TW_OBJRES
  */
 //--------------------------------------------------------------
@@ -10803,7 +10803,7 @@ static TW_OBJRES * tw_OBJResDataOBJResGet(
 	
 	share = tw_OBJResDataTypeShareCheck( type );
 	
-	if( share == TRUE ){	//‹¤—pŒ^
+	if( share == TRUE ){	//å…±ç”¨å‹
 		for( i = 0; i < TW_OBJ_MAX; i++ ){
 			if( ores->obj_tbl[i].use == TRUE ){
 				if( ores->obj_tbl[i].type == type ){
@@ -10832,7 +10832,7 @@ static TW_OBJRES * tw_OBJResDataOBJResGet(
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXŠÇ—@OBJƒŠƒ\[ƒX”jŠü
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ã€€OBJãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  * @param	tw	TORNWOLRD_WORK
  * @param	obj	TW_OBJRES
  * @retval	nothing
@@ -10846,7 +10846,7 @@ static void tw_OBJResDataOBJResRelease( TORNWORLD_WORK *tw, TW_OBJRES *obj )
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXŠÇ—@OBJƒŠƒ\[ƒX”jŠü@‹¤—pŒ^‚Ìê‡‚Ííœ‚µ‚È‚¢
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ã€€OBJãƒªã‚½ãƒ¼ã‚¹ç ´æ£„ã€€å…±ç”¨å‹ã®å ´åˆã¯å‰Šé™¤ã—ãªã„
  * @param	tw	TORNWOLRD_WORK
  * @param	obj	TW_OBJRES
  * @retval	nothing
@@ -10877,7 +10877,7 @@ static void tw_OBJResDataOBJResCheckRelease(
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒŠƒ\[ƒXŠÇ—@OBJƒŠƒ\[ƒX”jŠü@w’èƒ^ƒCƒv‚ğ‘Síœ
+ * ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ã€€OBJãƒªã‚½ãƒ¼ã‚¹ç ´æ£„ã€€æŒ‡å®šã‚¿ã‚¤ãƒ—ã‚’å…¨å‰Šé™¤
  * @param	tw	TORNWOLRD_WORK
  * @param	obj	TW_OBJRES
  * @retval	nothing
@@ -10892,7 +10892,7 @@ static void tw_OBJResDataOBJResReleaseTypeAll(
 	for( i = 0; i < TW_OBJ_MAX; i++ ){
 		if( ores->obj_tbl[i].use && ores->obj_tbl[i].type == type ){
 			#ifdef DEBUG_TW_PRINTF
-			OS_Printf( "OBJƒŠƒ\[ƒX”jŠü type(%d)\n", type );
+			OS_Printf( "OBJãƒªã‚½ãƒ¼ã‚¹ç ´æ£„ type(%d)\n", type );
 			#endif
 			tw_OBJResDataOBJResRelease( tw, &ores->obj_tbl[i] );
 		}
@@ -10901,7 +10901,7 @@ static void tw_OBJResDataOBJResReleaseTypeAll(
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒfƒ‹ƒ}ƒl[ƒWƒƒ@íœ
+ * ãƒ¢ãƒ‡ãƒ«ãƒãƒãƒ¼ã‚¸ãƒ£ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -10922,7 +10922,7 @@ static void tw_OBJResDataDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_ƒIƒuƒWƒF,ƒAƒjƒ‰Šú‰»B“o˜^‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í“o˜^‚·‚é
+ * ãƒ¬ãƒ³ãƒ€ã‚ªãƒ–ã‚¸ã‚§,ã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–ã€‚ç™»éŒ²ã•ã‚Œã¦ã„ãªã„å ´åˆã¯ç™»éŒ²ã™ã‚‹
  * @param	tw	TORNWORLD_WORK
  * @param	id	TW_MDL_MAX
  * @retval	nothing
@@ -10956,7 +10956,7 @@ static void tw_OBJResDataOBJInit( TORNWORLD_WORK *tw,
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_ƒIƒuƒWƒFAƒAƒjƒ‰Šú‰»BTWOBJTYPE_MAXƒ^ƒCƒv
+ * ãƒ¬ãƒ³ãƒ€ã‚ªãƒ–ã‚¸ã‚§ã€ã‚¢ãƒ‹ãƒ¡åˆæœŸåŒ–ã€‚TWOBJTYPE_MAXã‚¿ã‚¤ãƒ—
  * @param	tw	TORNWORLD_WORK
  * @param	id	TWOBJTYPE_MAX
  * @retval	nothing
@@ -10974,11 +10974,11 @@ static void tw_OBJResDataOBJTypeInit(
 
 //--------------------------------------------------------------
 /**
- * w’èƒ^ƒCƒv‚ÌƒAƒ‹ƒtƒ@’l‚ğƒZƒbƒg@ƒƒCƒ“
+ * æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ã‚»ãƒƒãƒˆã€€ãƒ¡ã‚¤ãƒ³
  * @param	tw	TORNWORLD_WORK
  * @param	type	TWOBJTYPE_MAX
- * @param	alpha	”Z“x ”–0-31”Z
- * @param	pid		ƒ|ƒŠƒSƒ“IDİ’è’l -1=ƒfƒtƒHƒ‹ƒg’l
+ * @param	alpha	æ¿ƒåº¦ è–„0-31æ¿ƒ
+ * @param	pid		ãƒãƒªã‚´ãƒ³IDè¨­å®šå€¤ -1=ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -10991,7 +10991,7 @@ static void tw_OBJResDataMdlAlphaSetMain(
 	
 	#ifdef PM_DEBUG
 	if( ores->mdl_tbl[id].id >= TW_MDL_MAX ){
-		OS_Printf( "“o˜^‚³‚ê‚Ä‚¢‚È‚¢MDL ID‚Å‚· type=%d,id=%d\n", type, id );
+		OS_Printf( "ç™»éŒ²ã•ã‚Œã¦ã„ãªã„MDL IDã§ã™ type=%d,id=%d\n", type, id );
 		GF_ASSERT( 0 );
 	}
 	#endif
@@ -10999,7 +10999,7 @@ static void tw_OBJResDataMdlAlphaSetMain(
 	NNS_G3dMdlUseMdlAlpha( ores->mdl_tbl[id].rmdl.pResMdl );
 	NNS_G3dMdlSetMdlAlphaAll( ores->mdl_tbl[id].rmdl.pResMdl, alpha );
 	
-	//ID‚ğ•Ê‚É‚·‚é–‚ÅƒuƒŒƒ“ƒh‚É‚æ‚éƒoƒbƒtƒ@ã‘‚«‚ğ–h‚®
+	//IDã‚’åˆ¥ã«ã™ã‚‹äº‹ã§ãƒ–ãƒ¬ãƒ³ãƒ‰ã«ã‚ˆã‚‹ãƒãƒƒãƒ•ã‚¡ä¸Šæ›¸ãã‚’é˜²ã
 	if( pid != -1 ){
 		#if 1
 		pid &= 0x3f;
@@ -11023,10 +11023,10 @@ static void tw_OBJResDataMdlAlphaSetMain(
 
 //--------------------------------------------------------------
 /**
- * w’èƒ^ƒCƒv‚ÌƒAƒ‹ƒtƒ@’l‚ğƒZƒbƒg
+ * æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ã‚¢ãƒ«ãƒ•ã‚¡å€¤ã‚’ã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
  * @param	type	TWOBJTYPE_MAX
- * @param	alpha	”Z“x ”–0-31”Z
+ * @param	alpha	æ¿ƒåº¦ è–„0-31æ¿ƒ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -11038,10 +11038,10 @@ static void tw_OBJResDataMdlAlphaSet(
 
 //--------------------------------------------------------------
 /**
- * w’èƒ^ƒCƒv‚Ìƒ|ƒŠƒSƒ“ID‚ğƒZƒbƒg
+ * æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ãƒãƒªã‚´ãƒ³IDã‚’ã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
  * @param	type	TWOBJTYPE_MAX
- * @param	pid		ƒ|ƒŠƒSƒ“ID
+ * @param	pid		ãƒãƒªã‚´ãƒ³ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -11058,9 +11058,9 @@ static void tw_OBJResDataMdlPolIDSet(
 
 //--------------------------------------------------------------
 /**
- * w’èƒ^ƒCƒv‚ªƒAƒjƒ—L‚è‚©ƒ`ƒFƒbƒN
+ * æŒ‡å®šã‚¿ã‚¤ãƒ—ãŒã‚¢ãƒ‹ãƒ¡æœ‰ã‚Šã‹ãƒã‚§ãƒƒã‚¯
  * @param	type	TWOBJTYPE
- * @retval	BOOL	TRUE=—L‚è
+ * @retval	BOOL	TRUE=æœ‰ã‚Š
  */
 //--------------------------------------------------------------
 static BOOL tw_OBJResDataTypeAnmCheck( TWOBJTYPE type )
@@ -11072,9 +11072,9 @@ static BOOL tw_OBJResDataTypeAnmCheck( TWOBJTYPE type )
 
 //--------------------------------------------------------------
 /**
- * w’èƒ^ƒCƒv‚ª‹¤—LŒ^‚©ƒ`ƒFƒbƒN
+ * æŒ‡å®šã‚¿ã‚¤ãƒ—ãŒå…±æœ‰å‹ã‹ãƒã‚§ãƒƒã‚¯
  * @param	type	TWOBJTYPE
- * @retval	BOOL	TRUE=—L‚è
+ * @retval	BOOL	TRUE=æœ‰ã‚Š
  */
 //--------------------------------------------------------------
 static BOOL tw_OBJResDataTypeShareCheck( TWOBJTYPE type )
@@ -11086,7 +11086,7 @@ static BOOL tw_OBJResDataTypeShareCheck( TWOBJTYPE type )
 
 //--------------------------------------------------------------
 /**
- * OBJƒŠƒ\[ƒXƒNƒŠ[ƒ“ g‚í‚ê‚Ä‚¢‚È‚¢ƒŠƒ\[ƒX‚ğÁ‹‚·‚éB
+ * OBJãƒªã‚½ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ ä½¿ã‚ã‚Œã¦ã„ãªã„ãƒªã‚½ãƒ¼ã‚¹ã‚’æ¶ˆå»ã™ã‚‹ã€‚
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -11126,7 +11126,7 @@ static void tw_OBJResDataClean( TORNWORLD_WORK *tw )
 #ifdef DEBUG_TW_OBJ_COUNT
 //--------------------------------------------------------------
 /**
- * ƒfƒoƒbƒO@Œ»İ‚ÌOBJƒŠƒ\[ƒX”‚ğo—Í
+ * ãƒ‡ãƒãƒƒã‚°ã€€ç¾åœ¨ã®OBJãƒªã‚½ãƒ¼ã‚¹æ•°ã‚’å‡ºåŠ›
  * @param	TORNWORLD_WORK
  * @retval	
  */
@@ -11157,11 +11157,11 @@ static void DEBUG_tw_OBJResCountPrint( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * w’èƒ^ƒCƒv‚ÌƒJƒŠƒ“ƒOƒ`ƒFƒbƒN
+ * æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ã‚«ãƒªãƒ³ã‚°ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
  * @param	type	TWOBJTYPE_MAX
- * @param	pos		À•W
- * @retval	TRUE	‰æ–Ê“à
+ * @param	pos		åº§æ¨™
+ * @retval	TRUE	ç”»é¢å†…
  */
 //--------------------------------------------------------------
 static BOOL tw_OBJResDataTypeCullingCheck(
@@ -11169,7 +11169,7 @@ static BOOL tw_OBJResDataTypeCullingCheck(
 {
 	const VecFx32 *scale = &DATA_OBJTypeScaleTbl[type];
 	
-	if( scale->x == 0 ){	//ƒ`ƒFƒbƒN–³‚µ
+	if( scale->x == 0 ){	//ãƒã‚§ãƒƒã‚¯ç„¡ã—
 		return( TRUE );
 	}
 	
@@ -11188,11 +11188,11 @@ static BOOL tw_OBJResDataTypeCullingCheck(
 }
 
 //==============================================================================
-//	Ú‘±Î
+//	æ¥ç¶šçŸ³
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@‰Šú‰»
+ * æ¥ç¶šçŸ³ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -11205,7 +11205,7 @@ static void tw_LinkPosInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@íœ
+ * æ¥ç¶šçŸ³ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -11224,9 +11224,9 @@ static void tw_LinkPosDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î	w’èƒ][ƒ“ID‚ğ‚ÂÎ‚ğ‘S‚Äíœ
+ * æ¥ç¶šçŸ³	æŒ‡å®šã‚¾ãƒ¼ãƒ³IDã‚’æŒã¤çŸ³ã‚’å…¨ã¦å‰Šé™¤
  * @param	tw		TORNWORLD_WORK
- * @param	zone_id		íœ‚·‚éƒ][ƒ“ID
+ * @param	zone_id		å‰Šé™¤ã™ã‚‹ã‚¾ãƒ¼ãƒ³ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -11244,7 +11244,7 @@ static void tw_LinkPosZoneIDDeleteAll( TORNWORLD_WORK *tw, u32 zone_id )
 					 TW_LINKPOS_ACTOR *lact = &lpos->act_tbl[i];
 					 DEBUG_twZoneIDPrintf( zone_id );
 					 OS_Printf( "LINKPOSACT ID =%d,",lact->ldata.id );
-					 OS_Printf( "‚ğíœ‚µ‚Ü‚µ‚½\n" );
+					 OS_Printf( "ã‚’å‰Šé™¤ã—ã¾ã—ãŸ\n" );
 					}
 					#endif
 					tw_LinkPosActDeleteAll( tw, &lpos->act_tbl[i] );
@@ -11253,7 +11253,7 @@ static void tw_LinkPosZoneIDDeleteAll( TORNWORLD_WORK *tw, u32 zone_id )
 					TW_LINKPOS_ACTOR *lact = &lpos->act_tbl[i];
 					DEBUG_twZoneIDPrintf( zone_id );
 					OS_Printf( "LINKPOSACT ID =%d,",lact->ldata.id );
-					OS_Printf( "íœ‚µ‚Ü‚¹‚ñ\n" );
+					OS_Printf( "å‰Šé™¤ã—ã¾ã›ã‚“\n" );
 					#endif
 				}
 			}
@@ -11263,14 +11263,14 @@ static void tw_LinkPosZoneIDDeleteAll( TORNWORLD_WORK *tw, u32 zone_id )
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@“WŠJ
+ * æ¥ç¶šçŸ³ã€€å±•é–‹
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_LinkPosLoad( TORNWORLD_WORK *tw )
 {
-	if( tw_SaveDataInitFinishCheck(tw) == TRUE ){	//‰Šú‰»Ï‚İ
+	if( tw_SaveDataInitFinishCheck(tw) == TRUE ){	//åˆæœŸåŒ–æ¸ˆã¿
 		int objno = 0;
 		TW_LINKPOS_ACTOR *lact;
 		FIELD_OBJ_PTR fldobj;
@@ -11293,7 +11293,7 @@ static void tw_LinkPosLoad( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@w’èƒ][ƒ“ID‚Ì‚à‚Ì‚ğ“WŠJ
+ * æ¥ç¶šçŸ³ã€€æŒ‡å®šã‚¾ãƒ¼ãƒ³IDã®ã‚‚ã®ã‚’å±•é–‹
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -11303,14 +11303,14 @@ static void tw_LinkPosLoadZoneID( TORNWORLD_WORK *tw, u32 zone_id )
 	const TW_LINKPOS_ZONEDATA *zlink;
 	zlink = tw_LinkPosZoneDataGet( zone_id );
 	
-	if( zlink != NULL ){	//İ’u—L‚è
+	if( zlink != NULL ){	//è¨­ç½®æœ‰ã‚Š
 		tw_LinkPosZoneDataLoad( tw, zlink, zone_id );
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@w’è‚ÌƒŠƒ“ƒNƒf[ƒ^“WŠJ@Šù‚É‘¶İ‚µ‚Ä‚¢‚é‚à‚Ì‚Í’Ç‰Á‚µ‚È‚¢
+ * æ¥ç¶šçŸ³ã€€æŒ‡å®šã®ãƒªãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿å±•é–‹ã€€æ—¢ã«å­˜åœ¨ã—ã¦ã„ã‚‹ã‚‚ã®ã¯è¿½åŠ ã—ãªã„
  * @param	tw	TORNWORLD_WORK
  * @param	zlink	TW_LINKPOS_ZONEDATA
  * @retval	nothing
@@ -11337,13 +11337,13 @@ static void tw_LinkPosZoneDataLoad(
 				#ifdef DEBUG_TW_PRINTF
 				DEBUG_twZoneIDPrintf( zone_id );
 				OS_Printf( "LINKPOSACT ID =%d,", lact->ldata.id );
-				OS_Printf( "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½\n" );
+				OS_Printf( "ã‚’è¿½åŠ ã—ã¾ã—ãŸ\n" );
 				#endif
 			}else{
 				#ifdef DEBUG_TW_PRINTF
 				DEBUG_twZoneIDPrintf( zone_id );
 				OS_Printf( "LINKPOSACT ID = %d, ", zlink->pos_tbl[i]->id );
-				OS_Printf( "Šù‚É‘¶İ‚µ‚Ä‚¢‚éˆ×A’Ç‰Á‚ğ’†~‚µ‚Ü‚µ‚½\n" );
+				OS_Printf( "æ—¢ã«å­˜åœ¨ã—ã¦ã„ã‚‹ç‚ºã€è¿½åŠ ã‚’ä¸­æ­¢ã—ã¾ã—ãŸ\n" );
 				#endif
 			}
 		}
@@ -11353,12 +11353,12 @@ static void tw_LinkPosZoneDataLoad(
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@w’è‚³‚ê‚½ZONE ID‚Æ”Ô†‚ÌÚ‘±Î‚ğ’Ç‰ÁB
- * ’Ç‰ÁÏ‚İ‚Ìê‡‚Í‰½‚à‚¹‚¸–ß‚éB
+ * æ¥ç¶šçŸ³ã€€æŒ‡å®šã•ã‚ŒãŸZONE IDã¨ç•ªå·ã®æ¥ç¶šçŸ³ã‚’è¿½åŠ ã€‚
+ * è¿½åŠ æ¸ˆã¿ã®å ´åˆã¯ä½•ã‚‚ã›ãšæˆ»ã‚‹ã€‚
  * @param	tw	TORNWORLD_WORK
  * @param	zone_id	zone id
- * @param	no	Ú‘±Î”Ô†
- * @retval	int TRUE=’Ç‰Á‚³‚ê‚½ FALSE=’Ç‰ÁÏ‚İ‚Å‚ ‚éB
+ * @param	no	æ¥ç¶šçŸ³ç•ªå·
+ * @retval	int TRUE=è¿½åŠ ã•ã‚ŒãŸ FALSE=è¿½åŠ æ¸ˆã¿ã§ã‚ã‚‹ã€‚
  */
 //--------------------------------------------------------------
 static void tw_LinkPosAddZoneIDNo( TORNWORLD_WORK *tw, u32 zone_id, int no )
@@ -11387,20 +11387,20 @@ static void tw_LinkPosAddZoneIDNo( TORNWORLD_WORK *tw, u32 zone_id, int no )
 		#ifdef DEBUG_TW_PRINTF
 		DEBUG_twZoneIDPrintf( zone_id );
 		OS_Printf( "LINKPOSACT ID =%d,", lact->ldata.id );
-		OS_Printf( "‚ğ’Ç‰Á‚µ‚Ü‚µ‚½\n" );
+		OS_Printf( "ã‚’è¿½åŠ ã—ã¾ã—ãŸ\n" );
 		#endif
 	}
 	
 	#ifdef DEBUG_TW_PRINTF
 	DEBUG_twZoneIDPrintf( zone_id );
 	OS_Printf( "LINKPOSACT ID = %d, ", zlink->pos_tbl[no]->id );
-	OS_Printf( "Šù‚É‘¶İ‚µ‚Ä‚¢‚éˆ×A’Ç‰Á‚ğ’†~‚µ‚Ü‚µ‚½\n" );
+	OS_Printf( "æ—¢ã«å­˜åœ¨ã—ã¦ã„ã‚‹ç‚ºã€è¿½åŠ ã‚’ä¸­æ­¢ã—ã¾ã—ãŸ\n" );
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@‹óƒAƒNƒ^[ŒŸõ
+ * æ¥ç¶šçŸ³ã€€ç©ºã‚¢ã‚¯ã‚¿ãƒ¼æ¤œç´¢
  * @param	tw	TORNWORLD_WORK
  * @retval	TW_LINKPOS_ACTOR*
  */
@@ -11420,10 +11420,10 @@ static TW_LINKPOS_ACTOR * tw_LinkPosSpaceActGet( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@w’èID‚ÌƒAƒNƒ^[æ“¾
+ * æ¥ç¶šçŸ³ã€€æŒ‡å®šIDã®ã‚¢ã‚¯ã‚¿ãƒ¼å–å¾—
  * @param	tw	TORNWORLD_WORK
  * @param	id	data_no
- * @retval	TW_LINKPOS_ACTOR NULL=ŠY“––³‚µ
+ * @retval	TW_LINKPOS_ACTOR NULL=è©²å½“ç„¡ã—
  */
 //--------------------------------------------------------------
 static TW_LINKPOS_ACTOR * tw_LinkPosActIDGet(
@@ -11446,7 +11446,7 @@ static TW_LINKPOS_ACTOR * tw_LinkPosActIDGet(
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒ][ƒ“‚É‘Î‰‚µ‚½ƒŠƒ“ƒNƒf[ƒ^æ“¾
+ * æŒ‡å®šã•ã‚ŒãŸã‚¾ãƒ¼ãƒ³ã«å¯¾å¿œã—ãŸãƒªãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿å–å¾—
  * @param	zone_id	ZONE_ID
  * @retval	TW_LINKPOS_ZONEDATA
  */
@@ -11464,7 +11464,7 @@ static const TW_LINKPOS_ZONEDATA * tw_LinkPosZoneDataGet( u32 zone_id )
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒ][ƒ“‚ÆID‚É‘Î‰‚µ‚½LINKPOS_DATAæ“¾
+ * æŒ‡å®šã•ã‚ŒãŸã‚¾ãƒ¼ãƒ³ã¨IDã«å¯¾å¿œã—ãŸLINKPOS_DATAå–å¾—
  * @param	zone_id	ZONE_ID
  * @param	id	id
  * @retval	LINKPOS_DATA
@@ -11480,9 +11480,9 @@ static const LINKPOS_DATA * tw_ZoneLinkPosIDDataGet( u32 zone_id, u32 id )
 #if 0
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒ][ƒ“‚Æ”Ô†‚É‘Î‰‚µ‚½LINKPOS_HITDATAæ“¾
+ * æŒ‡å®šã•ã‚ŒãŸã‚¾ãƒ¼ãƒ³ã¨ç•ªå·ã«å¯¾å¿œã—ãŸLINKPOS_HITDATAå–å¾—
  * @param	zone_id	ZONE_ID
- * @param	no	”Ô†
+ * @param	no	ç•ªå·
  * @retval	LINKPOS_MOVEDATA 
  */
 //--------------------------------------------------------------
@@ -11499,9 +11499,9 @@ static const LINKPOS_MOVEDATA * tw_ZoneLinkPosHitDataGet(
 #if 0
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒ][ƒ“‚Æ”Ô†‚É‘Î‰‚µ‚½LINKPOS_ZONECHGDATAæ“¾
+ * æŒ‡å®šã•ã‚ŒãŸã‚¾ãƒ¼ãƒ³ã¨ç•ªå·ã«å¯¾å¿œã—ãŸLINKPOS_ZONECHGDATAå–å¾—
  * @param	zone_id	ZONE_ID
- * @param	no	”Ô†
+ * @param	no	ç•ªå·
  * @retval	LINKPOS_ZONECHGDATA
  */
 //--------------------------------------------------------------
@@ -11517,8 +11517,8 @@ static const LINKPOS_ZONECHGDATA * tw_ZoneLinkPosZoneChgDataGet(
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ID‚É‘Î‰‚µ‚½LINKPOS_ZONECHGMOVEDATAæ“¾
- * @param	id	ZCHG_MID_Z0101_1_2“™
+ * æŒ‡å®šã•ã‚ŒãŸIDã«å¯¾å¿œã—ãŸLINKPOS_ZONECHGMOVEDATAå–å¾—
+ * @param	id	ZCHG_MID_Z0101_1_2ç­‰
  * @retval	LINKPOS_ZONECHGMOVEDATA
  */
 //--------------------------------------------------------------
@@ -11534,13 +11534,13 @@ static const LINKPOS_ZONECHGMOVEDATA * tw_ZoneLinkPosZoneChgMoveDataGet(
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@ƒtƒB[ƒ‹ƒhOBJ’Ç‰Á
+ * æ¥ç¶šçŸ³ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¿½åŠ 
  * @param	tw	TORNWORLD_WORK
- * @param	g	ƒOƒŠƒbƒhÀ•W
- * @param	g	ƒOƒŠƒbƒhÀ•W
- * @param	g	ƒOƒŠƒbƒhÀ•W
- * @param	data_no	ƒf[ƒ^No
- * @param	move_no	“®ìNo
+ * @param	g	ã‚°ãƒªãƒƒãƒ‰åº§æ¨™
+ * @param	g	ã‚°ãƒªãƒƒãƒ‰åº§æ¨™
+ * @param	g	ã‚°ãƒªãƒƒãƒ‰åº§æ¨™
+ * @param	data_no	ãƒ‡ãƒ¼ã‚¿No
+ * @param	move_no	å‹•ä½œNo
  * @retval	FILED_OBJ_PTR	FIELD_OBJ_PTR
  */
 //--------------------------------------------------------------
@@ -11566,7 +11566,7 @@ static FIELD_OBJ_PTR tw_LinkPosActFldOBJAdd(
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@ƒtƒB[ƒ‹ƒhOBJ‚©‚ç•œ‹A eoa’Ç‰Á‚à
+ * æ¥ç¶šçŸ³ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰å¾©å¸° eoaè¿½åŠ ã‚‚
  * @param	zone_id	ZONE_ID
  * @param	lact	TW_LINKPOS_ACTOR
  * @param	fldobj	FIELD_OBJ_PTR
@@ -11602,7 +11602,7 @@ static void tw_LinkPosActFldOBJRecover( TORNWORLD_WORK *tw,
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î EOA’Ç‰Á
+ * æ¥ç¶šçŸ³ EOAè¿½åŠ 
  * @param	tw	TORNWORLD_WORK
  * @param	lact	TW_LINKPOS_ACTOR
  * @retval	EOA_PTR	EOA_PTR
@@ -11622,7 +11622,7 @@ static EOA_PTR tw_LinkPosActEoaAdd(
 	head.flagcheck = FALSE;
 	
 	if( lact->live_zone_id == ZONE_ID_D34R0108 && lact->ldata.id == 1 ){
-		head.flagcheck = TRUE; //ƒCƒxƒ“ƒg‚É‚æ‚éƒtƒ‰ƒOƒ`ƒFƒbƒN—L‚è
+		head.flagcheck = TRUE; //ã‚¤ãƒ™ãƒ³ãƒˆã«ã‚ˆã‚‹ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯æœ‰ã‚Š
 	}
 	
 	eoa = FE_EoaAddNpp( tw->fsys->fes,
@@ -11632,7 +11632,7 @@ static EOA_PTR tw_LinkPosActEoaAdd(
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@ƒAƒNƒ^[@’Ç‰Á
+ * æ¥ç¶šçŸ³ã€€ã‚¢ã‚¯ã‚¿ãƒ¼ã€€è¿½åŠ 
  * @param	tw	TORNWORLD_WORK
  * @param	lact	TW_LINKPOS_ACTOR
  * @param	ldata	LINKPOS_DATA
@@ -11653,7 +11653,7 @@ static void tw_LinkPosActAdd( TORNWORLD_WORK *tw,
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@ƒAƒNƒ^[@íœ ƒtƒB[ƒ‹ƒhOBJ‚Íc‚·
+ * æ¥ç¶šçŸ³ã€€ã‚¢ã‚¯ã‚¿ãƒ¼ã€€å‰Šé™¤ ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã¯æ®‹ã™
  * @param	tw		TORNWORLD_WORK
  * @param	lact	TW_LINKPOS_ACTOR
  * @retval	nothing
@@ -11668,7 +11668,7 @@ static void tw_LinkPosActDelete(
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@ƒAƒNƒ^[@íœ
+ * æ¥ç¶šçŸ³ã€€ã‚¢ã‚¯ã‚¿ãƒ¼ã€€å‰Šé™¤
  * @param	tw		TORNWORLD_WORK
  * @param	lact	TW_LINKPOS_ACTOR
  * @retval	nothing
@@ -11683,10 +11683,10 @@ static void tw_LinkPosActDeleteAll(
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@ƒAƒNƒ^[@ƒ][ƒ“•ÏXŒã‚ÌƒAƒNƒ^[‚É’uŠ·
+ * æ¥ç¶šçŸ³ã€€ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ã‚¾ãƒ¼ãƒ³å¤‰æ›´å¾Œã®ã‚¢ã‚¯ã‚¿ãƒ¼ã«ç½®æ›
  * @param	tw	TORNWORLD_WORK
  * @param	lact	TW_LINKPOS_ACTOR
- * @param	zone_id	•ÏXŒã‚Ìƒ][ƒ“ID
+ * @param	zone_id	å¤‰æ›´å¾Œã®ã‚¾ãƒ¼ãƒ³ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -11714,9 +11714,9 @@ static void tw_LinkPosActZoneChangePerm(
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@ƒAƒNƒ^[@ƒ][ƒ“•ÏXŒã‚Ìíœ–³Œøƒtƒ‰ƒOƒZƒbƒg
+ * æ¥ç¶šçŸ³ã€€ã‚¢ã‚¯ã‚¿ãƒ¼ã€€ã‚¾ãƒ¼ãƒ³å¤‰æ›´å¾Œã®å‰Šé™¤ç„¡åŠ¹ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  * @param	lact	TW_LINKPOS_ACTOR
- * @param	flag	TRUE=–³Œø
+ * @param	flag	TRUE=ç„¡åŠ¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -11728,10 +11728,10 @@ static void tw_LinkPosActZoneChgDelNotFlagSet(
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@ƒ‚ƒfƒ‹ƒŠƒ\[ƒXƒ`ƒFƒbƒN
+ * æ¥ç¶šçŸ³ã€€ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
  * @param	mdl_id	TW_MDL_MAX
- * @retval	BOOL	TRUE=‘¶İ‚µ‚Ä‚¢‚é
+ * @retval	BOOL	TRUE=å­˜åœ¨ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_LinkPosOBJResMdlIDSearch( TORNWORLD_WORK *tw, u32 mdl_id )
@@ -11758,10 +11758,10 @@ static BOOL tw_LinkPosOBJResMdlIDSearch( TORNWORLD_WORK *tw, u32 mdl_id )
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@ƒAƒjƒƒŠƒ\[ƒXƒ`ƒFƒbƒN
+ * æ¥ç¶šçŸ³ã€€ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
  * @param	anm_id	TW_ANM_MAX
- * @retval	BOOL	TRUE=‘¶İ‚µ‚Ä‚¢‚é
+ * @retval	BOOL	TRUE=å­˜åœ¨ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_LinkPosOBJResAnmIDSearch( TORNWORLD_WORK *tw, u32 anm_id )
@@ -11788,10 +11788,10 @@ static BOOL tw_LinkPosOBJResAnmIDSearch( TORNWORLD_WORK *tw, u32 anm_id )
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@OBJƒ^ƒCƒvƒ`ƒFƒbƒN
+ * æ¥ç¶šçŸ³ã€€OBJã‚¿ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
  * @param	type	TWOBJTYPE
- * @retval	BOOL	TRUE=‘¶İ‚µ‚Ä‚¢‚é
+ * @retval	BOOL	TRUE=å­˜åœ¨ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_LinkPosOBJResTypeSearch( TORNWORLD_WORK *tw, TWOBJTYPE type )
@@ -11813,12 +11813,12 @@ static BOOL tw_LinkPosOBJResTypeSearch( TORNWORLD_WORK *tw, TWOBJTYPE type )
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@w’èˆÊ’u‚ÌƒAƒNƒ^[ŒŸõ
+ * æ¥ç¶šçŸ³ã€€æŒ‡å®šä½ç½®ã®ã‚¢ã‚¯ã‚¿ãƒ¼æ¤œç´¢
  * @param	tw	TORNWORLD_WORK
- * @param	gx	ƒOƒŠƒbƒhX
- * @param	gy	ƒOƒŠƒbƒhY
- * @param	gz	ƒOƒŠƒbƒhZ
- * @retval	TW_LINKPOS_ACTOR* NULL=–³‚µ
+ * @param	gx	ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	ã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	ã‚°ãƒªãƒƒãƒ‰Z
+ * @retval	TW_LINKPOS_ACTOR* NULL=ç„¡ã—
  */
 //--------------------------------------------------------------
 static TW_LINKPOS_ACTOR * tw_LinkPosActPosCheck(
@@ -11864,7 +11864,7 @@ static TW_LINKPOS_ACTOR * tw_LinkPosActPosCheck(
 
 //--------------------------------------------------------------
 /**
- * Ú‘±Î@Œ»İî•ñ‚ÅXV
+ * æ¥ç¶šçŸ³ã€€ç¾åœ¨æƒ…å ±ã§æ›´æ–°
  * @param	lact	LINKPOS_ACTOR
  * @retval	nothing
  */
@@ -11880,14 +11880,14 @@ static void tw_LinkPosActUpdate( TW_LINKPOS_ACTOR *lact )
 }
 
 //==============================================================================
-///	Ú‘±Î EOA
+///	æ¥ç¶šçŸ³ EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOA Ú‘±Î@‰Šú‰»
+ * EOA æ¥ç¶šçŸ³ã€€åˆæœŸåŒ–
  * @param	eoa	EOA_PTR
  * @param	wk	eoa	work
- * @retval	int FALSE=‰Šú‰»¸”s
+ * @retval	int FALSE=åˆæœŸåŒ–å¤±æ•—
  */
 //--------------------------------------------------------------
 static int tw_EoaLinkOBJInit( EOA_PTR eoa, void *wk )
@@ -11920,7 +11920,7 @@ static int tw_EoaLinkOBJInit( EOA_PTR eoa, void *wk )
 	work->alpha = 31;
 	work->alpha_on = FALSE;
 	
-	if( head->flagcheck == TRUE ){ //ƒCƒxƒ“ƒgƒtƒ‰ƒO‚É‚æ‚éON,OFF‚ ‚è
+	if( head->flagcheck == TRUE ){ //ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã«ã‚ˆã‚‹ON,OFFã‚ã‚Š
 		EVENTWORK *ev = SaveData_GetEventWork( head->tw->fsys->savedata );
 		if( SysFlag_TornWorldRockLiftFlagCheck(ev) == FALSE ){
 			work->alpha = 0;
@@ -11934,7 +11934,7 @@ static int tw_EoaLinkOBJInit( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Ú‘±Î@íœ
+ * EOA æ¥ç¶šçŸ³ã€€å‰Šé™¤
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	nothing
@@ -11953,7 +11953,7 @@ static void tw_EoaLinkOBJDelete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Ú‘±Î@“®ì
+ * EOA æ¥ç¶šçŸ³ã€€å‹•ä½œ
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	nothing
@@ -11989,7 +11989,7 @@ static void tw_EoaLinkOBJMove( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Ú‘±Î@•`‰æ
+ * EOA æ¥ç¶šçŸ³ã€€æç”»
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	nothing
@@ -12016,7 +12016,7 @@ static void tw_EoaLinkOBJDraw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA Ú‘±Î@ƒwƒbƒ_[
+///	EOA æ¥ç¶šçŸ³ã€€ãƒ˜ãƒƒãƒ€ãƒ¼
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaLinkOBJHead =
 {
@@ -12029,7 +12029,7 @@ static const EOA_H_NPP DATA_EoaLinkOBJHead =
 
 //--------------------------------------------------------------
 /**
- * EOA Ú‘±Î@À•Wƒ|ƒCƒ“ƒ^æ“¾
+ * EOA æ¥ç¶šçŸ³ã€€åº§æ¨™ãƒã‚¤ãƒ³ã‚¿å–å¾—
  * @param	eoa	EOA_PTR
  * @retval	VecFx32*
  */
@@ -12041,17 +12041,17 @@ static VecFx32 * tw_EoaLinkOBJPosPtrGet( EOA_PTR eoa )
 }
 
 //==============================================================================
-//	ƒŠƒtƒg
+//	ãƒªãƒ•ãƒˆ
 //==============================================================================
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒŠƒtƒgˆÚ“®ƒCƒxƒ“ƒgƒ`ƒFƒbƒN
+ * ãƒªãƒ•ãƒˆç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
- * @param	gx	©‹@ƒOƒŠƒbƒhX
- * @param	gy	©‹@ƒOƒŠƒbƒhY
- * @param	gz	©‹@ƒOƒŠƒbƒhZ
- * @retval	BOOL	TRUE=‹N“®
+ * @param	gx	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰Z
+ * @retval	BOOL	TRUE=èµ·å‹•
  */
 //--------------------------------------------------------------
 static BOOL tw_EventMoveCheck_Lift(
@@ -12101,7 +12101,7 @@ static PROCRET (* const DATA_EvLiftMoveProcTbl[SEQNO_LIFTM_MAX])( TORNWORLD_WORK
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒtƒgˆÚ“®@ƒCƒxƒ“ƒgƒZƒbƒg
+ * ãƒªãƒ•ãƒˆç§»å‹•ã€€ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  * @param	
  * @retval
  */
@@ -12117,9 +12117,9 @@ static void tw_EventSet_LiftMove(
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒtƒgˆÚ“®@ƒCƒxƒ“ƒg
+ * ãƒªãƒ•ãƒˆç§»å‹•ã€€ã‚¤ãƒ™ãƒ³ãƒˆ
  * @param	event	GMEVENT_CONTROL
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL tw_GMEVENT_LiftMove( GMEVENT_CONTROL *event )
@@ -12141,7 +12141,7 @@ static BOOL tw_GMEVENT_LiftMove( GMEVENT_CONTROL *event )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒtƒgˆÚ“®ƒCƒxƒ“ƒg@‰Šú‰»
+ * ãƒªãƒ•ãƒˆç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @param	work	TW_LIFTMOVE_WORK
  * @retval	PROCRET PROCRET
@@ -12176,7 +12176,7 @@ static PROCRET EvLiftMove_Init( TORNWORLD_WORK *tw, TW_LIFTMOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒtƒgˆÚ“®ƒCƒxƒ“ƒg	ˆÚ“®
+ * ãƒªãƒ•ãƒˆç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆ	ç§»å‹•
  * @param	tw	TORNWORLD_WORK
  * @param	work	TW_LIFTMOVE_WORK
  * @retval	PROCRET PROCRET
@@ -12221,7 +12221,7 @@ static PROCRET EvLiftMove_Move( TORNWORLD_WORK *tw, TW_LIFTMOVE_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒtƒgˆÚ“®ƒCƒxƒ“ƒg	I—¹
+ * ãƒªãƒ•ãƒˆç§»å‹•ã‚¤ãƒ™ãƒ³ãƒˆ	çµ‚äº†
  * @param	tw	TORNWORLD_WORK
  * @param	work	TW_LIFTMOVE_WORK
  * @retval	PROCRET PROCRET
@@ -12257,7 +12257,7 @@ static PROCRET EvLiftMove_End( TORNWORLD_WORK *tw, TW_LIFTMOVE_WORK *work )
 	type = twGndTypeHeroType( type );
 	Player_MoveBitSet_TWorld( tw->fsys->player, type );
 	
-	if( type != HEROTWTYPE_GROUND ){ //“Áê’nŒ`‚Å‚Í‚È‚¢
+	if( type != HEROTWTYPE_GROUND ){ //ç‰¹æ®Šåœ°å½¢ã§ã¯ãªã„
 		FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( tw->fsys->player );
 		FieldOBJ_StatusBitSet_HeightGetOFF( fldobj, FALSE );
 	}
@@ -12266,7 +12266,7 @@ static PROCRET EvLiftMove_End( TORNWORLD_WORK *tw, TW_LIFTMOVE_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	ƒŠƒtƒgˆÚ“®@ˆ—ƒe[ƒuƒ‹
+///	ãƒªãƒ•ãƒˆç§»å‹•ã€€å‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static PROCRET (* const DATA_EvLiftMoveProcTbl[SEQNO_LIFTM_MAX])( TORNWORLD_WORK *tw, TW_LIFTMOVE_WORK *work ) =
 {
@@ -12277,14 +12277,14 @@ static PROCRET (* const DATA_EvLiftMoveProcTbl[SEQNO_LIFTM_MAX])( TORNWORLD_WORK
 #endif
 
 //==============================================================================
-//	ƒCƒxƒ“ƒgÀ•Wƒf[ƒ^
+//	ã‚¤ãƒ™ãƒ³ãƒˆåº§æ¨™ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“•ÊÀ•WƒCƒxƒ“ƒgƒf[ƒ^‚ğæ“¾
- * @param	zone_id	ƒ][ƒ“ID
- * @retval	TW_EVPOSDATA	NULL=ƒCƒxƒ“ƒg–³‚µ
+ * ã‚¾ãƒ¼ãƒ³åˆ¥åº§æ¨™ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+ * @param	zone_id	ã‚¾ãƒ¼ãƒ³ID
+ * @retval	TW_EVPOSDATA	NULL=ã‚¤ãƒ™ãƒ³ãƒˆç„¡ã—
  */
 //--------------------------------------------------------------
 static const TW_EVPOSDATA * DATA_TwEvPosDataGet( u32 zone_id )
@@ -12294,12 +12294,12 @@ static const TW_EVPOSDATA * DATA_TwEvPosDataGet( u32 zone_id )
 
 //--------------------------------------------------------------
 /**
- * À•WƒCƒxƒ“ƒg”­“®ƒ`ƒFƒbƒN
+ * åº§æ¨™ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
- * @param	gx	ƒOƒŠƒbƒhX
- * @param	gy	ƒOƒŠƒbƒhY
- * @param	gz	ƒOƒŠƒbƒhZ
- * @retval	BOOL TRUE=‹N“®
+ * @param	gx	ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	ã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	ã‚°ãƒªãƒƒãƒ‰Z
+ * @retval	BOOL TRUE=èµ·å‹•
  */
 //--------------------------------------------------------------
 static BOOL tw_EventHitCheck_EvPos(
@@ -12310,7 +12310,7 @@ static BOOL tw_EventHitCheck_EvPos(
 	if( evpos != NULL ){
 		while( evpos->scr_p != NULL ){
 			if( evpos->gy == gy && evpos->gz == gz && evpos->gx == gx ){
-				//ƒXƒNƒŠƒvƒg”­“®
+				//ã‚¹ã‚¯ãƒªãƒ—ãƒˆç™ºå‹•
 				return( TRUE );
 			}
 			evpos++;
@@ -12322,11 +12322,11 @@ static BOOL tw_EventHitCheck_EvPos(
 #endif
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‰Šú‰»
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -12339,7 +12339,7 @@ static void tw_ScrInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@íœ
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -12350,7 +12350,7 @@ static void tw_ScrDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒCƒxƒ“ƒg”­“®
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¤ãƒ™ãƒ³ãƒˆç™ºå‹•
  * @param	tw	TORNWORLD_WORK
  * @param	srdata	TW_SCRDATA
  * @retval	nothing
@@ -12371,10 +12371,10 @@ static void tw_ScrSet( TORNWORLD_WORK *tw, const TW_SCRDATA *scrdata )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒXƒNƒŠƒvƒgƒvƒƒZƒXƒ[ƒNƒNƒŠƒA
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢
  * @param	tw	TORNWORLD_WORK
- * @param	size	ƒNƒŠƒAƒTƒCƒY
- * @retval	work	ƒXƒNƒŠƒvƒgƒ[ƒN
+ * @param	size	ã‚¯ãƒªã‚¢ã‚µã‚¤ã‚º
+ * @retval	work	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 static void * tw_ScrProcWorkInit( TORNWORLD_WORK *tw, u32 size )
@@ -12395,9 +12395,9 @@ static void * tw_ScrProcWorkInit( TORNWORLD_WORK *tw, u32 size )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒXƒNƒŠƒvƒgƒvƒƒZƒXƒ[ƒNæ“¾
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯å–å¾—
  * @param	tw	TORNWORLD_WORK
- * @retval	work	ƒXƒNƒŠƒvƒgƒ[ƒN
+ * @retval	work	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 static void * tw_ScrProcWorkGet( TORNWORLD_WORK *tw )
@@ -12408,9 +12408,9 @@ static void * tw_ScrProcWorkGet( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg	ƒƒCƒ“
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆ	ãƒ¡ã‚¤ãƒ³
  * @param	tw	TORNWORLD_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL tw_ScrMain( TORNWORLD_WORK *tw, GMEVENT_CONTROL *ev )
@@ -12448,13 +12448,13 @@ static BOOL tw_ScrMain( TORNWORLD_WORK *tw, GMEVENT_CONTROL *ev )
 }
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@À•W‹N“®ƒXƒNƒŠƒvƒg
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€åº§æ¨™èµ·å‹•ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“•ÊÀ•W‹N“®ƒXƒNƒŠƒvƒgƒf[ƒ^ƒe[ƒuƒ‹æ“¾
+ * ã‚¾ãƒ¼ãƒ³åˆ¥åº§æ¨™èµ·å‹•ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
  * @param	zone_id	zone id
- * @retval	SCRPOSDATA	NULL=–³‚µ
+ * @retval	SCRPOSDATA	NULL=ç„¡ã—
  */
 //--------------------------------------------------------------
 static const SCRPOSDATA * tw_ScrPosDataZoneGet( u32 zone_id )
@@ -12473,12 +12473,12 @@ static const SCRPOSDATA * tw_ScrPosDataZoneGet( u32 zone_id )
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒg@À•W‹N“®ƒXƒNƒŠƒvƒgƒ`ƒFƒbƒN
+ * ã‚¤ãƒ™ãƒ³ãƒˆã€€åº§æ¨™èµ·å‹•ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
- * @param	gx	©‹@ƒOƒŠƒbƒhX
- * @param	gy	©‹@ƒOƒŠƒbƒhY
- * @param	gz	©‹@ƒOƒŠƒbƒhZ
- * @retval	BOOL	TRUE=‹N“®
+ * @param	gx	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰Z
+ * @retval	BOOL	TRUE=èµ·å‹•
  */
 //--------------------------------------------------------------
 static BOOL tw_EventPosCheck_Script(
@@ -12509,7 +12509,7 @@ static BOOL tw_EventPosCheck_Script(
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒg@À•W‹N“®ƒXƒNƒŠƒvƒgƒZƒbƒg@ƒƒCƒ“
+ * ã‚¤ãƒ™ãƒ³ãƒˆã€€åº§æ¨™èµ·å‹•ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚»ãƒƒãƒˆã€€ãƒ¡ã‚¤ãƒ³
  * @param	tw	TORNWORLD_WORK
  * @param	data	SCRPOSDATA
  * @retval	nothing
@@ -12524,7 +12524,7 @@ static void tw_EventPosScrSetMain(
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒg@À•W‹N“®ƒXƒNƒŠƒvƒgƒZƒbƒg
+ * ã‚¤ãƒ™ãƒ³ãƒˆã€€åº§æ¨™èµ·å‹•ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
  * @param	data	SCRPOSDATA
  * @retval	nothing
@@ -12536,16 +12536,16 @@ static void tw_EventPosScrSet(
 	tw_EventPosScrSetMain( tw, scrpos->scr_p );
 	
 	#ifdef DEBUG_TW_PRINTF
-	OS_Printf( "À•W‹N“®ƒXƒNƒŠƒvƒg”­“® START_SCRIPT_TYPE = " );
+	OS_Printf( "åº§æ¨™èµ·å‹•ã‚¹ã‚¯ãƒªãƒ—ãƒˆç™ºå‹• START_SCRIPT_TYPE = " );
 	OS_Printf( "%d\n", scrpos->scr_p->code );
 	#endif
 }
 
 //--------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒg@À•W‹O“¹ƒXƒNƒŠƒvƒgŠÇ—
+ * ã‚¤ãƒ™ãƒ³ãƒˆã€€åº§æ¨™è»Œé“ã‚¹ã‚¯ãƒªãƒ—ãƒˆç®¡ç†
  * @param	event	GMEVENT_CONTROL
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL tw_GMEVENT_ScrPosWait( GMEVENT_CONTROL *event )
@@ -12560,10 +12560,10 @@ static BOOL tw_GMEVENT_ScrPosWait( GMEVENT_CONTROL *event )
 }
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒZƒbƒg
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒƒãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@ˆ—”Ô†
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€å‡¦ç†ç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -12583,10 +12583,10 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@‰Šú‰»
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -12600,10 +12600,10 @@ static PROCRET ScrAcmdSet_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@ƒZƒbƒg
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€ã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -12627,10 +12627,10 @@ static PROCRET ScrAcmdSet_Set(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh@‘Ò‚¿
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€€å¾…ã¡
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -12652,7 +12652,7 @@ static PROCRET ScrAcmdSet_Wait(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_Acmd[SEQNO_ACMD_MAX] =
 {
@@ -12662,10 +12662,10 @@ static const TW_SCR_PROC DATA_ScrTbl_Acmd[SEQNO_ACMD_MAX] =
 };
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@ƒŠƒtƒg
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒg@ˆ—”Ô†
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆã€€å‡¦ç†ç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -12694,10 +12694,10 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒŠƒtƒg@‰Šú‰»
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -12739,10 +12739,10 @@ static PROCRET ScrLift_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒŠƒtƒg@‹N“®‚ä‚ê
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆã€€èµ·å‹•ã‚†ã‚Œ
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -12805,10 +12805,10 @@ static PROCRET ScrLift_StartShake(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒŠƒtƒg@ˆÚ“®
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆã€€ç§»å‹•
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -12865,10 +12865,10 @@ static PROCRET ScrLift_Move(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒŠƒtƒg@I—¹
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆã€€çµ‚äº†
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -12894,7 +12894,7 @@ static PROCRET ScrLift_End(
 			tw_MapDataGndDataPosDataSet( tw, gx, gy, gz, TW_GNDTYPE_MAX );
 			type = tw_MapDataPosGndTypeGet( tw, gx, gy, gz );
 			type = twGndTypeHeroType( type );
-			Player_MoveBitSet_TWorld( jiki, type );	//’nŒ`•Ê‚É©‹@“®ì•ÏX
+			Player_MoveBitSet_TWorld( jiki, type );	//åœ°å½¢åˆ¥ã«è‡ªæ©Ÿå‹•ä½œå¤‰æ›´
 			
 			if( type == HEROTWTYPE_ON ){
 				FieldOBJ_StatusBitSet_HeightGetOFF( fldobj, FALSE );
@@ -12909,7 +12909,7 @@ static PROCRET ScrLift_End(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@ƒŠƒtƒg
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€ãƒªãƒ•ãƒˆ
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_Lift[SEQNO_LIFT_MAX] =
 {
@@ -12920,7 +12920,7 @@ static const TW_SCR_PROC DATA_ScrTbl_Lift[SEQNO_LIFT_MAX] =
 };
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@ƒtƒB[ƒ‹ƒhOBJ ’Ç‰Á
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ è¿½åŠ 
 //==============================================================================
 //--------------------------------------------------------------
 ///	SCRDATA_FLDOBJADD
@@ -12932,7 +12932,7 @@ typedef struct
 }SCRDATA_FLDOBJADD;
 
 //--------------------------------------------------------------
-//	ƒXƒNƒŠƒvƒg@ƒtƒB[ƒ‹ƒhOBJ’Ç‰Á@ˆ—”Ô†
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¿½åŠ ã€€å‡¦ç†ç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -12942,10 +12942,10 @@ enum
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒtƒB[ƒ‹ƒhOBJ’Ç‰Á@‰Šú‰»
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¿½åŠ ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -12958,7 +12958,7 @@ static PROCRET ScrFldOBJAdd_Init(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@ƒtƒB[ƒ‹ƒhOBJ’Ç‰Á
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¿½åŠ 
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_FldOBJAdd[SEQNO_FLDOBJADD_MAX] =
 {
@@ -12966,7 +12966,7 @@ static const TW_SCR_PROC DATA_ScrTbl_FldOBJAdd[SEQNO_FLDOBJADD_MAX] =
 };
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@ƒtƒB[ƒ‹ƒhOBJ@íœ
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€å‰Šé™¤
 //==============================================================================
 //--------------------------------------------------------------
 ///	SCRDATA_FLDOBJDEL
@@ -12977,7 +12977,7 @@ typedef struct
 }SCRDATA_FLDOBJDEL;
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒtƒB[ƒ‹ƒhOBJíœ@ˆ—”Ô†
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå‰Šé™¤ã€€å‡¦ç†ç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -12987,10 +12987,10 @@ enum
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒtƒB[ƒ‹ƒhOBJíœ@‰Šú‰»
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå‰Šé™¤ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -13003,7 +13003,7 @@ static PROCRET ScrFldOBJDel_Init(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@ƒtƒB[ƒ‹ƒhOBJíœ
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJå‰Šé™¤
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_FldOBJDelete[SEQNO_FLDOBJDEL_MAX] =
 {
@@ -13012,7 +13012,7 @@ static const TW_SCR_PROC DATA_ScrTbl_FldOBJDelete[SEQNO_FLDOBJDEL_MAX] =
 
 #if 0
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@‰ï˜bƒƒbƒZ[ƒW•\¦
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 //==============================================================================
 //--------------------------------------------------------------
 ///	SCRWORK_TALKMSG
@@ -13027,7 +13027,7 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒW•\¦@‰Šú‰»
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã€€åˆæœŸåŒ–
  * @param	
  * @retval
  */
@@ -13047,7 +13047,7 @@ static PROCRET ScrTalkMsg_Init(
 #endif
 
 //==============================================================================
-//	ƒMƒ‰ƒeƒBƒi‰e
+//	ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±
 //==============================================================================
 //--------------------------------------------------------------
 ///	EOA_GIRAS_HEAD
@@ -13090,7 +13090,7 @@ typedef struct
 #endif
 
 //--------------------------------------------------------------
-///	ƒMƒ‰ƒeƒBƒi‰e@ƒXƒNƒŠƒvƒgƒCƒxƒ“ƒg—pƒf[ƒ^
+///	ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¤ãƒ™ãƒ³ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 static const SCRDATA_GIRAS DATA_EvScrGirasTbl[TW_GIRASNO_MAX] =
 {
@@ -13103,9 +13103,9 @@ static const SCRDATA_GIRAS DATA_EvScrGirasTbl[TW_GIRASNO_MAX] =
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‰ƒeƒBƒi@‰e@’Ç‰Á
+ * ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€å½±ã€€è¿½åŠ 
  * @param	fsys	FIELDSYS_WORK
- * @param	no		ƒGƒtƒFƒNƒg”Ô†
+ * @param	no		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç•ªå·
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -13119,7 +13119,7 @@ void FldTornWorld_GirasSet( FIELDSYS_WORK *fsys, u16 no )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‰ƒeƒBƒi@‰e@íœ
+ * ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€å½±ã€€å‰Šé™¤
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -13133,7 +13133,7 @@ void FldTornWorld_GirasDelete( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‰ƒeƒBƒi@‰e@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€å½±ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -13156,7 +13156,7 @@ static void tw_GirasGraphicInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‰ƒeƒBƒi@‰e@ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€å½±ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -13176,7 +13176,7 @@ static void tw_GirasGraphicDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‰ƒeƒBƒi@‰e@EOA’Ç‰Á
+ * ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€å½±ã€€EOAè¿½åŠ 
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -13198,9 +13198,9 @@ static void tw_GirasActAdd( TORNWORLD_WORK *tw, const SCRDATA_GIRAS *data_p )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‰ƒeƒBƒi@‰e@“®ìI—¹ƒ`ƒFƒbƒN
+ * ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€å½±ã€€å‹•ä½œçµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL tw_GirasActMoveWait( TORNWORLD_WORK *tw )
@@ -13215,7 +13215,7 @@ static BOOL tw_GirasActMoveWait( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‰ƒeƒBƒi@‰e@‰Šú‰»
+ * ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€å½±ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -13227,7 +13227,7 @@ static void tw_GirasActInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‰ƒeƒBƒi@‰e@íœ
+ * ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€å½±ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -13245,10 +13245,10 @@ static void tw_GirasActDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‰ƒeƒBƒi@g—pƒ‚ƒfƒ‹IDƒ`ƒFƒbƒN
+ * ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€ä½¿ç”¨ãƒ¢ãƒ‡ãƒ«IDãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
  * @param	id	TW_MDL_MAX
- * @retval	BOOL TRUE=g—p’†‚Ìid‚Å‚ ‚é
+ * @retval	BOOL TRUE=ä½¿ç”¨ä¸­ã®idã§ã‚ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_GirasActOBJResMdlIDSearch( TORNWORLD_WORK *tw, u32 mdl_id )
@@ -13268,10 +13268,10 @@ static BOOL tw_GirasActOBJResMdlIDSearch( TORNWORLD_WORK *tw, u32 mdl_id )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‰ƒeƒBƒi@g—pƒ‚ƒfƒ‹IDƒ`ƒFƒbƒN
+ * ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€ä½¿ç”¨ãƒ¢ãƒ‡ãƒ«IDãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
  * @param	id	TW_MDL_MAX
- * @retval	BOOL TRUE=g—p’†‚Ìid‚Å‚ ‚é
+ * @retval	BOOL TRUE=ä½¿ç”¨ä¸­ã®idã§ã‚ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_GirasActOBJResAnmIDSearch( TORNWORLD_WORK *tw, u32 anm_id )
@@ -13291,10 +13291,10 @@ static BOOL tw_GirasActOBJResAnmIDSearch( TORNWORLD_WORK *tw, u32 anm_id )
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‰ƒeƒBƒi@g—pOBJƒ^ƒCƒvƒ`ƒFƒbƒN
+ * ã‚®ãƒ©ãƒ†ã‚£ãƒŠã€€ä½¿ç”¨OBJã‚¿ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
  * @param	type	TWOBJTYPE
- * @retval	BOOL TRUE=g—p’†‚Ìtype‚Å‚ ‚é
+ * @retval	BOOL TRUE=ä½¿ç”¨ä¸­ã®typeã§ã‚ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_GirasActOBJResTypeSearch( TORNWORLD_WORK *tw, TWOBJTYPE type )
@@ -13311,7 +13311,7 @@ static BOOL tw_GirasActOBJResTypeSearch( TORNWORLD_WORK *tw, TWOBJTYPE type )
 }
 
 //--------------------------------------------------------------
-///	ƒMƒ‰ƒeƒBƒi‰e@•ûŒü•Ê©“]Šp“x
+///	ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ã€€æ–¹å‘åˆ¥è‡ªè»¢è§’åº¦
 //--------------------------------------------------------------
 static const ROTATE DATA_GirasRotateTbl[GIRAS_DIR_MAX] =
 {
@@ -13324,10 +13324,10 @@ static const ROTATE DATA_GirasRotateTbl[GIRAS_DIR_MAX] =
 
 //--------------------------------------------------------------
 /**
- * EOA ƒMƒ‰ƒeƒBƒi‰e@‰Šú‰»
+ * EOA ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @param	wk	eoa work
- * @retval	int	TRUE=‰Šú‰»Š®—¹
+ * @retval	int	TRUE=åˆæœŸåŒ–å®Œäº†
  */
 //--------------------------------------------------------------
 static int tw_EoaGirasActInit( EOA_PTR eoa, void *wk )
@@ -13343,7 +13343,7 @@ static int tw_EoaGirasActInit( EOA_PTR eoa, void *wk )
 	
 //	#ifdef DEBUG_TW_PRINTF
 	#if 0
-	OS_Printf( "ƒMƒ‰ƒeƒBƒi‰e ‰Šú‰» DATA_P=%xH\n", data_p );
+	OS_Printf( "ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½± åˆæœŸåŒ– DATA_P=%xH\n", data_p );
 	#endif
 	
 	work->vanish = TRUE;
@@ -13360,7 +13360,7 @@ static int tw_EoaGirasActInit( EOA_PTR eoa, void *wk )
 	
 //	#ifdef DEBUG_TW_PRINTF
 	#if 0
-	OS_Printf( "ƒMƒ‰ƒeƒBƒi‰e GX=%d,GY=%d,GZ=%d,DIR=%d\n",
+	OS_Printf( "ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½± GX=%d,GY=%d,GZ=%d,DIR=%d\n",
 		data_p->gx,data_p->gy,data_p->gz,data_p->dir );
 	#endif
 	
@@ -13370,7 +13370,7 @@ static int tw_EoaGirasActInit( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒMƒ‰ƒeƒBƒi‰e@íœ
+ * EOA ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @param	wk	eoa work
  * @retval	nothing
@@ -13384,7 +13384,7 @@ static void tw_EoaGirasActDelete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒMƒ‰ƒeƒBƒi‰e@“®ì kari
+ * EOA ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ã€€å‹•ä½œ kari
  * @param	tw	TORNWORLD_WORK
  * @param	wk	eoa work
  * @retval	nothing
@@ -13400,7 +13400,7 @@ static void tw_EoaGirasActMove( EOA_PTR eoa, void *wk )
 	case 0:
 		//#ifdef DEBUG_TW_PRINTF
 		#if 0
-		OS_Printf( "ƒMƒ‰ƒeƒBƒi‰e “®ì DATA_P=%xH\n", data_p );
+		OS_Printf( "ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½± å‹•ä½œ DATA_P=%xH\n", data_p );
 		#endif
 		
 		if( data_p->se_play == GIRAS_SE_VOICE ){
@@ -13445,7 +13445,7 @@ static void tw_EoaGirasActMove( EOA_PTR eoa, void *wk )
 	EOA_GIRAS_WORK *work = wk;
 	
 	switch( work->seq_no ){
-	case 0:								//oŒ»ƒ^ƒCƒ~ƒ“ƒO‰Šú‰»
+	case 0:								//å‡ºç¾ã‚¿ã‚¤ãƒŸãƒ³ã‚°åˆæœŸåŒ–
 		#ifdef DEBUG_GIRAS
 		if( sys.trg & PAD_BUTTON_SELECT ){
 			work->seq_no = 4;
@@ -13463,7 +13463,7 @@ static void tw_EoaGirasActMove( EOA_PTR eoa, void *wk )
 		
 		work->debug_count = 0;
 		work->seq_no++;
-	case 1:								//oŒ»
+	case 1:								//å‡ºç¾
 		{
 			u32 rand;
 			VecFx32 pos;
@@ -13615,7 +13615,7 @@ static void tw_EoaGirasActMove( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒMƒ‰ƒeƒBƒi‰e@•`‰æ
+ * EOA ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ã€€æç”»
  * @param	tw	TORNWORLD_WORK
  * @param	wk	eoa work
  * @retval	nothing
@@ -13641,7 +13641,7 @@ static void tw_EoaGirasActDraw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA ƒMƒ‰ƒeƒBƒi‰e@ƒwƒbƒ_[
+///	EOA ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ã€€ãƒ˜ãƒƒãƒ€ãƒ¼
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaGirasHeader =
 {
@@ -13657,7 +13657,7 @@ static const EOA_H_NPP DATA_EoaGirasHeader =
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * PUTOBJ@‰Šú‰»
+ * PUTOBJã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -13677,7 +13677,7 @@ static void tw_PutOBJInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * PUTOBJ@íœ
+ * PUTOBJã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -13699,7 +13699,7 @@ static void tw_PutOBJDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * PUTOBJ@íœ
+ * PUTOBJã€€å‰Šé™¤
  * @param	poset	TW_PUTOBJ_SET
  * @retval	nothing
  */
@@ -13714,7 +13714,7 @@ static void tw_PutOBJDeleteSet( TW_PUTOBJ_SET *poset )
 
 //--------------------------------------------------------------
 /**
- * PUTOBJ PUTOBJ_DATA‚©‚ç’Ç‰Á
+ * PUTOBJ PUTOBJ_DATAã‹ã‚‰è¿½åŠ 
  * @param	tw	TORNWORLD_WORK
  * @param	poset	TW_PUTOBJ_SET
  * @param	data	PUTOBJ_DATA
@@ -13740,7 +13740,7 @@ static void tw_PutOBJAdd( TORNWORLD_WORK *tw,
 
 //--------------------------------------------------------------
 /**
- * PUTOBJ@ƒe[ƒuƒ‹’Ç‰Á
+ * PUTOBJã€€ãƒ†ãƒ¼ãƒ–ãƒ«è¿½åŠ 
  * @param	tw	TORNWORLD_WORK
  * @param	tbl	PUTOBJ_ZONEDATA
  * @retval	nothing
@@ -13768,7 +13768,7 @@ static void tw_PutOBJAddTbl(
 
 //--------------------------------------------------------------
 /**
- * PUTOBJ@w’èƒ][ƒ“‚ÌPUTOBJ‚ğƒ[ƒh‚·‚é
+ * PUTOBJã€€æŒ‡å®šã‚¾ãƒ¼ãƒ³ã®PUTOBJã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  * @param	tw	TORNWORLD_WORK
  * @param	tbl	PUTOBJ_ZONEDATA
  * @retval	nothing
@@ -13792,7 +13792,7 @@ static void tw_PutOBJLoadZoneID( TORNWORLD_WORK *tw, u32 zone_id )
 
 //--------------------------------------------------------------
 /**
- * PUTOBJ@‹ó‚«’T‚µ
+ * PUTOBJã€€ç©ºãæ¢ã—
  * @param	tw	TORNWORLD_WORK
  * @retval	TW_PUTOBJ_SET
  */
@@ -13815,7 +13815,7 @@ static TW_PUTOBJ_SET * tw_PutOBJSpaceGet( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * PUTOBJ@w’èƒ][ƒ“ID‚ğ‚ÂOBJíœ
+ * PUTOBJã€€æŒ‡å®šã‚¾ãƒ¼ãƒ³IDã‚’æŒã¤OBJå‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	TW_PUTOBJ_SET
  */
@@ -13837,10 +13837,10 @@ static void tw_PutOBJDeleteZoneID( TORNWORLD_WORK *tw, u32 zone_id )
 
 //--------------------------------------------------------------
 /**
- * PUTOBJ OBJƒŠƒ\[ƒXŒŸõ
+ * PUTOBJ OBJãƒªã‚½ãƒ¼ã‚¹æ¤œç´¢
  * @param	tw	TORNWORLD_WORK
  * @param	type	TWOBJTYPE
- * @retval	BOOL	TRUE=g—p‚µ‚Ä‚¢‚é
+ * @retval	BOOL	TRUE=ä½¿ç”¨ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_PutOBJResTypeSearch( TORNWORLD_WORK *tw, TWOBJTYPE type )
@@ -13864,10 +13864,10 @@ static BOOL tw_PutOBJResTypeSearch( TORNWORLD_WORK *tw, TWOBJTYPE type )
 
 //--------------------------------------------------------------
 /**
- * PUTOBJ ƒ‚ƒfƒ‹ƒŠƒ\[ƒXŒŸõ
+ * PUTOBJ ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹æ¤œç´¢
  * @param	tw	TORNWORLD_WORK
  * @param	mdl_id	TW_MLD_MAX
- * @retval	BOOL	TRUE=g—p‚µ‚Ä‚¢‚é
+ * @retval	BOOL	TRUE=ä½¿ç”¨ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_PutOBJResMdlIDSearch( TORNWORLD_WORK *tw, u32 mdl_id )
@@ -13893,10 +13893,10 @@ static BOOL tw_PutOBJResMdlIDSearch( TORNWORLD_WORK *tw, u32 mdl_id )
   
 //--------------------------------------------------------------
 /**
- * PUTOBJ ƒAƒjƒƒŠƒ\[ƒXŒŸõ
+ * PUTOBJ ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹æ¤œç´¢
  * @param	tw	TORNWORLD_WORK
  * @param	anm_id	TW_ANM_MAX
- * @retval	BOOL	TRUE=g—p‚µ‚Ä‚¢‚é
+ * @retval	BOOL	TRUE=ä½¿ç”¨ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_PutOBJResAnmIDSearch( TORNWORLD_WORK *tw, u32 anm_id )
@@ -13938,10 +13938,10 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * EOA PUTOBJ PUTOBJ@‰Šú‰» 
+ * EOA PUTOBJ PUTOBJã€€åˆæœŸåŒ– 
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
- * @retval	int TRUE=‰Šú‰»Š®—¹
+ * @retval	int TRUE=åˆæœŸåŒ–å®Œäº†
  */
 //--------------------------------------------------------------
 static int tw_EoaPutOBJInit( EOA_PTR eoa, void *wk )
@@ -13972,7 +13972,7 @@ static int tw_EoaPutOBJInit( EOA_PTR eoa, void *wk )
 	}
 	
 	#if 0
-	if( data->obj_type == TWOBJTYPE_WATER_FALL ){ //‘êê—p
+	if( data->obj_type == TWOBJTYPE_WATER_FALL ){ //æ»å°‚ç”¨
 		FRO_MDL *rmdl_p;
 		rmdl_p = tw_OBJResDataMdlSearch( head->tw, TW_MDL_WATER_FALL );
 		NNS_G3dMdlUseMdlAlpha( rmdl_p->pResMdl );
@@ -13985,7 +13985,7 @@ static int tw_EoaPutOBJInit( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA PUTOBJ íœ
+ * EOA PUTOBJ å‰Šé™¤
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	nothing
@@ -14006,7 +14006,7 @@ static void tw_EoaPutOBJDelete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA PUTOBJ “®ì
+ * EOA PUTOBJ å‹•ä½œ
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	void
@@ -14027,7 +14027,7 @@ static void tw_EoaPutOBJMove( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA PUTOBJ •`‰æ
+ * EOA PUTOBJ æç”»
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	void
@@ -14055,12 +14055,12 @@ static const EOA_H_NPP DATA_EoaPutOBJHeader =
 };
 
 //==============================================================================
-///	Šeƒ][ƒ“ŠJnŒÀ’è‰Šú‰»ˆ—
+///	å„ã‚¾ãƒ¼ãƒ³é–‹å§‹æ™‚é™å®šåˆæœŸåŒ–å‡¦ç†
 //==============================================================================
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ŠJnˆ—@ŒÄ‚Ño‚µ
+ * ã‚¾ãƒ¼ãƒ³é–‹å§‹å‡¦ç†ã€€å‘¼ã³å‡ºã—
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -14071,11 +14071,11 @@ static void tw_ZoneStartProcCall( TORNWORLD_WORK *tw )
 #endif
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ”z’u
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé…ç½®
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ”z’u@‰Šú‰»
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé…ç½®ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -14095,14 +14095,14 @@ static void tw_FldOBJInit( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ”z’u@íœ
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé…ç½®ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void tw_FldOBJDeleteAll( TORNWORLD_WORK *tw )
 {
-#if 0	//íœ‚ÍãˆÊ‚Ìˆµ‚¢‚ÉˆË‘¶‚·‚é
+#if 0	//å‰Šé™¤ã¯ä¸Šä½ã®æ‰±ã„ã«ä¾å­˜ã™ã‚‹
 	int i = 0;
 	TW_FLDOBJ_WORK *twfldobj = &tw->twfldobj;
 	FIELD_OBJ_PTR *fldobj = twfldobj->fldobj_tbl;
@@ -14118,9 +14118,9 @@ static void tw_FldOBJDeleteAll( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ”z’u@w’èOBJ‚Ìíœ
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé…ç½®ã€€æŒ‡å®šOBJã®å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
- * @param	fldobj	íœFIELD_OBJ_PTR
+ * @param	fldobj	å‰Šé™¤FIELD_OBJ_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -14147,7 +14147,7 @@ static void tw_FldOBJDelete( TORNWORLD_WORK *tw, FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ”z’u@‹ó‚«æ“¾
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé…ç½®ã€€ç©ºãå–å¾—
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -14164,7 +14164,7 @@ static FIELD_OBJ_PTR * tw_FldOBJSpaceGet( TORNWORLD_WORK *tw )
 	}
 	
 	#ifdef DEBUG_TW_PRINTF_FORCE
-	OS_Printf( "tw_FldOBJ()‹ó‚«‚ª–³‚¢\n" );
+	OS_Printf( "tw_FldOBJ()ç©ºããŒç„¡ã„\n" );
 	#endif
 	
 	#ifdef DEBUG_TW_PRINTF
@@ -14177,11 +14177,11 @@ static FIELD_OBJ_PTR * tw_FldOBJSpaceGet( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ w’è‚³‚ê‚½head‚ª‘¶İ‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ æŒ‡å®šã•ã‚ŒãŸheadãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
  * @param	head	FIELD_OBJ_H
  * @param	zone_id	zone id
- * @retval	FIELD_OBJ_PTR NULL=‘¶İ‚µ‚Ä‚¢‚È‚¢
+ * @retval	FIELD_OBJ_PTR NULL=å­˜åœ¨ã—ã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 static FIELD_OBJ_PTR tw_FldOBJHeadSearch(
@@ -14205,11 +14205,11 @@ static FIELD_OBJ_PTR tw_FldOBJHeadSearch(
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ@’Ç‰Á‚Ìƒtƒ‰ƒOƒ`ƒFƒbƒN
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€è¿½åŠ æ™‚ã®ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
  * @param	tw_head	TW_FLDOBJ_HEAD
- * @param	ev	ƒCƒxƒ“ƒg‚©‚ç‚Ì’Ç‰Á‚© TRUE=³
- * @retval	BOOL TRUE=’Ç‰Á‰Â”\ FALSE=’Ç‰Á•s‰Â
+ * @param	ev	ã‚¤ãƒ™ãƒ³ãƒˆã‹ã‚‰ã®è¿½åŠ ã‹ TRUE=æ­£
+ * @retval	BOOL TRUE=è¿½åŠ å¯èƒ½ FALSE=è¿½åŠ ä¸å¯
  */
 //--------------------------------------------------------------
 static BOOL tw_FldOBJAddFlagCheck(
@@ -14219,7 +14219,7 @@ static BOOL tw_FldOBJAddFlagCheck(
 	u16 flag = tw_head->check_flag;
 	EVENTWORK *ev = SaveData_GetEventWork( tw->fsys->savedata );
 	
-	if( type == TWFLAGTYPE_EVENT ){	//ƒCƒxƒ“ƒgƒXƒNƒŠƒvƒg‚©‚ç
+	if( type == TWFLAGTYPE_EVENT ){	//ã‚¤ãƒ™ãƒ³ãƒˆã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰
 		if( ev_flag == FALSE ){
 			return( FALSE );
 		}
@@ -14232,13 +14232,13 @@ static BOOL tw_FldOBJAddFlagCheck(
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ@’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€è¿½åŠ 
  * @param	tw	TORNWORLD_WORK
  * @param	fldobj	FIELD_OBJ_PTR *
  * @param	tw_head	TW_FLDOBJ_HEAD
  * @param	zone_id	ZONE_ID
- * @param	ev_flag	TRUE=ƒCƒxƒ“ƒg(ƒXƒNƒŠƒvƒg)‚©‚ç‚Ì’Ç‰Á‚Å‚ ‚é
- * @retval	BOOL TRUE=’Ç‰Á‚³‚ê‚½ FALSE=’Ç‰Á‚³‚ê‚È‚¢
+ * @param	ev_flag	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆ(ã‚¹ã‚¯ãƒªãƒ—ãƒˆ)ã‹ã‚‰ã®è¿½åŠ ã§ã‚ã‚‹
+ * @retval	BOOL TRUE=è¿½åŠ ã•ã‚ŒãŸ FALSE=è¿½åŠ ã•ã‚Œãªã„
  */
 //--------------------------------------------------------------
 static BOOL tw_FldOBJAdd( TORNWORLD_WORK *tw,
@@ -14248,24 +14248,24 @@ static BOOL tw_FldOBJAdd( TORNWORLD_WORK *tw,
 {
 	FIELD_OBJ_PTR chkobj;
 	
-	//Šù‚É‘¶İ‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	//æ—¢ã«å­˜åœ¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 	chkobj = tw_FldOBJHeadSearch( tw, &tw_head->head, zone_id );
 	
-	if( chkobj != NULL ){	//’Ç‰ÁÏ‚İ
+	if( chkobj != NULL ){	//è¿½åŠ æ¸ˆã¿
 		if( tw_FldOBJRegWorkCheck(tw,chkobj) == TRUE ){
-			return( FALSE );	//“o˜^Ï‚İ
+			return( FALSE );	//ç™»éŒ²æ¸ˆã¿
 		}
 		
 		*fldobj = chkobj;
 		
 		#ifdef DEBUG_TW_PRINTF
-		OS_Printf( "TW Šù‘¶‚ÌFLDOBJ‚Å‚·BOBJ ID=%xH, CODE=%xH,",
+		OS_Printf( "TW æ—¢å­˜ã®FLDOBJã§ã™ã€‚OBJ ID=%xH, CODE=%xH,",
 			FieldOBJ_OBJIDGet(*fldobj),FieldOBJ_OBJCodeGet(*fldobj) );
 		#endif
-	}else{					//V‹K’Ç‰Á
+	}else{					//æ–°è¦è¿½åŠ 
 		if( tw_FldOBJAddFlagCheck(tw,tw_head,ev_flag) == FALSE ||
 			CheckEventFlag(tw->fsys,tw_head->head.event_flag) != FALSE ){
-			return( FALSE );	//’Ç‰Áƒtƒ‰ƒOƒ`ƒFƒbƒN‚Éƒqƒbƒg
+			return( FALSE );	//è¿½åŠ ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯ã«ãƒ’ãƒƒãƒˆ
 		}
 		
 		*fldobj = FieldOBJ_AddH(
@@ -14285,7 +14285,7 @@ static BOOL tw_FldOBJAdd( TORNWORLD_WORK *tw,
 	FieldOBJ_StatusBit_ON( *fldobj, FLDOBJ_STA_BIT_HEIGHT_VANISH_OFF );
 	
 	#if 0
-	//V‹K‚Å‚ ‚éê‡AƒVƒXƒeƒ€ãA‰‰ñ‚‚³‚ğE‚Á‚Ä‚µ‚Ü‚¤ˆ×AÄ“x‰Šú‰»
+	//æ–°è¦ã§ã‚ã‚‹å ´åˆã€ã‚·ã‚¹ãƒ†ãƒ ä¸Šã€åˆå›é«˜ã•ã‚’æ‹¾ã£ã¦ã—ã¾ã†ç‚ºã€å†åº¦åˆæœŸåŒ–
 	if( chkobj == NULL ){
 		FieldOBJ_GPosDirInit(
 			*fldobj,
@@ -14307,7 +14307,7 @@ static BOOL tw_FldOBJAdd( TORNWORLD_WORK *tw,
 		
 		blact = FieldOBJ_DrawBlAct00_BlActPtrGet( *fldobj );
 		
-		if( blact != NULL ){	//•`‰æ‚É‚à”½‰f
+		if( blact != NULL ){	//æç”»ã«ã‚‚åæ˜ 
 			FieldOBJ_BlActPosSet( *fldobj, blact );
 		}
 	}else{
@@ -14320,7 +14320,7 @@ static BOOL tw_FldOBJAdd( TORNWORLD_WORK *tw,
 	return( TRUE );
 }
 
-#if 0	//‹ŒƒoƒO—L‚è”Å
+#if 0	//æ—§ãƒã‚°æœ‰ã‚Šç‰ˆ
 static BOOL tw_FldOBJAdd( TORNWORLD_WORK *tw,
 	FIELD_OBJ_PTR *fldobj,
 	const TW_FLDOBJ_HEAD *tw_head,
@@ -14328,16 +14328,16 @@ static BOOL tw_FldOBJAdd( TORNWORLD_WORK *tw,
 {
 	FIELD_OBJ_PTR chkobj;
 	
-	//Šù‚É‘¶İ‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+	//æ—¢ã«å­˜åœ¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 	chkobj = tw_FldOBJHeadSearch( tw, &tw_head->head, zone_id );
 	
 	if( chkobj != NULL ){
 		*fldobj = chkobj;
 		#ifdef DEBUG_TW_PRINTF
-		OS_Printf( "Šù‘¶‚ÌFLDOBJ‚Å‚·BOBJ ID=%xH, CODE=%xH,",
+		OS_Printf( "æ—¢å­˜ã®FLDOBJã§ã™ã€‚OBJ ID=%xH, CODE=%xH,",
 			FieldOBJ_OBJIDGet(*fldobj),FieldOBJ_OBJCodeGet(*fldobj) );
 		#endif
-	}else{ //’Ç‰Á
+	}else{ //è¿½åŠ 
 		if( tw_FldOBJAddFlagCheck(tw,tw_head,ev_flag) == FALSE ||
 			CheckEventFlag(tw->fsys,tw_head->head.event_flag) != FALSE ){
 			return( FALSE );
@@ -14357,7 +14357,7 @@ static BOOL tw_FldOBJAdd( TORNWORLD_WORK *tw,
 	FieldOBJ_StatusBitSet_HeightGetOFF( *fldobj, TRUE );
 	FieldOBJ_StatusBit_ON( *fldobj, FLDOBJ_STA_BIT_HEIGHT_VANISH_OFF );
 	
-	//V‹K‚Å‚ ‚éê‡AƒVƒXƒeƒ€ãA‰‰ñ‚‚³‚ğE‚Á‚Ä‚µ‚Ü‚¤ˆ×AÄ“x‰Šú‰»
+	//æ–°è¦ã§ã‚ã‚‹å ´åˆã€ã‚·ã‚¹ãƒ†ãƒ ä¸Šã€åˆå›é«˜ã•ã‚’æ‹¾ã£ã¦ã—ã¾ã†ç‚ºã€å†åº¦åˆæœŸåŒ–
 	if( chkobj == NULL ){
 		FieldOBJ_GPosDirInit(
 			*fldobj,
@@ -14373,11 +14373,11 @@ static BOOL tw_FldOBJAdd( TORNWORLD_WORK *tw,
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ@ƒe[ƒuƒ‹’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ãƒ†ãƒ¼ãƒ–ãƒ«è¿½åŠ 
  * @param	tw	TORNWORLD_WORK
  * @param	tw_head	TW_FLDOBJ_HEAD
  * @param	zone_id	ZONE_ID
- * @retval	BOOL TRUE=’Ç‰Á‚³‚ê‚½ FALSE=’Ç‰Á‚³‚ê‚È‚¢
+ * @retval	BOOL TRUE=è¿½åŠ ã•ã‚ŒãŸ FALSE=è¿½åŠ ã•ã‚Œãªã„
  */
 //--------------------------------------------------------------
 static BOOL tw_FldOBJAddTbl( TORNWORLD_WORK *tw,
@@ -14398,7 +14398,7 @@ static BOOL tw_FldOBJAddTbl( TORNWORLD_WORK *tw,
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ@w’èƒ][ƒ“‚ÌƒtƒB[ƒ‹ƒhOBJ‚ğ”z’u‚·‚é
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€æŒ‡å®šã‚¾ãƒ¼ãƒ³ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‚’é…ç½®ã™ã‚‹
  * @param	tw	TORNWORLD_WORK
  * @param	zone_id	zone id
  * @retval	nothing
@@ -14419,7 +14419,7 @@ static void tw_FldOBJLoadZoneID( TORNWORLD_WORK *tw, u32 zone_id )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ”z’u w’èƒ][ƒ“ID‚ğ‚ÂOBJ‚ğíœ
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé…ç½® æŒ‡å®šã‚¾ãƒ¼ãƒ³IDã‚’æŒã¤OBJã‚’å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @param	zone_id	zone id
  * @retval	nothing
@@ -14447,7 +14447,7 @@ static void tw_FldOBJDeleteZoneID( TORNWORLD_WORK *tw, u32 zone_id )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ”z’u@w’èID‚ÌOBJ‚ğ’Ç‰Á@ƒƒCƒ“
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé…ç½®ã€€æŒ‡å®šIDã®OBJã‚’è¿½åŠ ã€€ãƒ¡ã‚¤ãƒ³
  * @param	fsys	FIELDSYS_WORK
  * @param	id		OBJ_ID
  * @retval	FIELD_OBJ_PTR
@@ -14470,7 +14470,7 @@ static FIELD_OBJ_PTR tw_FldOBJEventAdd(
 					DEBUG_twFldOBJTblCheck( tw );
 					#endif
 					
-					if( zone_id == ZONE_ID_D34R0108 ){//‘æµ‘wŠâ—pHit–³Œø‰»
+					if( zone_id == ZONE_ID_D34R0108 ){//ç¬¬ä¸ƒå±¤å²©ç”¨Hitç„¡åŠ¹åŒ–
 						if( id >= TW_OBJID_0108_HOLEMSG0 &&
 							id <= TW_OBJID_0108_HOLEMSG8 ){
 							FieldOBJ_StatusBitSet_FellowHit(
@@ -14482,7 +14482,7 @@ static FIELD_OBJ_PTR tw_FldOBJEventAdd(
 				}
 				tw_head_tbl++;
 			}
-			GF_ASSERT( 0 );	//w’èzone“àIDˆê’v–³‚µ
+			GF_ASSERT( 0 );	//æŒ‡å®šzoneå†…IDä¸€è‡´ç„¡ã—
 		}
 		data++;
 	}
@@ -14493,7 +14493,7 @@ static FIELD_OBJ_PTR tw_FldOBJEventAdd(
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ”z’u@w’èID‚ÌOBJ‚ğ’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé…ç½®ã€€æŒ‡å®šIDã®OBJã‚’è¿½åŠ 
  * @param	fsys	FIELDSYS_WORK
  * @param	id		OBJ_ID
  * @retval	nothing
@@ -14508,7 +14508,7 @@ void FldTornWorld_EvFldOBJAdd( FIELDSYS_WORK *fsys, u16 id )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ”z’u@w’èID‚ÌOBJ‚ğíœ
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé…ç½®ã€€æŒ‡å®šIDã®OBJã‚’å‰Šé™¤
  * @param	fsys	FIELDSYS_WORK
  * @param	id		OBJ_ID
  * @retval	nothing
@@ -14536,10 +14536,10 @@ void FldTornWorld_EvFldOBJDelete( FIELDSYS_WORK *fsys, u16 id )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ”z’u@w’èOBJ‚ª“o˜^Ï‚İ‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé…ç½®ã€€æŒ‡å®šOBJãŒç™»éŒ²æ¸ˆã¿ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  * @param	tw		TORNOWRLD_WORK
- * @param	fldobj	ƒ`ƒFƒbƒN‚·‚éFIELD_OBJ_PTR
- * @retval	BOOL	TRUE==“o˜^Ï‚İ
+ * @param	fldobj	ãƒã‚§ãƒƒã‚¯ã™ã‚‹FIELD_OBJ_PTR
+ * @retval	BOOL	TRUE==ç™»éŒ²æ¸ˆã¿
  */
 //--------------------------------------------------------------
 static BOOL tw_FldOBJRegWorkCheck(
@@ -14564,7 +14564,7 @@ static BOOL tw_FldOBJRegWorkCheck(
 }
 
 //==============================================================================
-//	‰ö—ÍŠâ
+//	æ€ªåŠ›å²©
 //==============================================================================
 //--------------------------------------------------------------
 ///	FALLROCKPOSDATA
@@ -14578,7 +14578,7 @@ typedef struct
 }FALLROCKPOSDATA;
 
 //--------------------------------------------------------------
-///	Šâ—‚Æ‚µƒ|ƒCƒ“ƒg
+///	å²©è½ã¨ã—ãƒã‚¤ãƒ³ãƒˆ
 //--------------------------------------------------------------
 static const FALLROCKPOSDATA DATA_FallRockPosTbl[] =
 {
@@ -14601,16 +14601,16 @@ static const FALLROCKPOSDATA DATA_FallRockPosTbl[] =
 	{ZONE_ID_D34R0108,85,52,TWEVFLAGNO_ERROR},
 	{ZONE_ID_D34R0108,85,53,TWEVFLAGNO_ERROR},
 	
-	{ZONE_ID_MAX,0,0,0},	//I’[
+	{ZONE_ID_MAX,0,0,0},	//çµ‚ç«¯
 };
 
 //--------------------------------------------------------------
 /**
- * w’èÀ•W‚ª—‰ºêŠ‚©‚Ç‚¤‚©
- * @param	gx		À•WGX
- * @param	gy		À•WGZ
- * @param	flag	—‰ºêŠ‚É‘Î‰‚µ‚½TWEVFLAGNO
- * @retval	BOOL	TRUE=—‰ºêŠ
+ * æŒ‡å®šåº§æ¨™ãŒè½ä¸‹å ´æ‰€ã‹ã©ã†ã‹
+ * @param	gx		åº§æ¨™GX
+ * @param	gy		åº§æ¨™GZ
+ * @param	flag	è½ä¸‹å ´æ‰€ã«å¯¾å¿œã—ãŸTWEVFLAGNO
+ * @retval	BOOL	TRUE=è½ä¸‹å ´æ‰€
  */
 //--------------------------------------------------------------
 static BOOL FallRockPosCheck( u32 zone_id, int gx, int gz, u32 *flag )
@@ -14635,7 +14635,7 @@ static BOOL FallRockPosCheck( u32 zone_id, int gx, int gz, u32 *flag )
 		FieldOBJ_ZoneIDGet(fldobj) == ZONE_ID_D34R0107 ){
 		if( (gx == 76 && gz == 68) ||
 			(gx == 97 && gz == 67) ||
-			(gx == 86 && gz == 57) ){	//ˆÚ“®æ‚ª—‚¿‚éêŠ
+			(gx == 86 && gz == 57) ){	//ç§»å‹•å…ˆãŒè½ã¡ã‚‹å ´æ‰€
 			return( TRUE );
 		}
 	}
@@ -14645,10 +14645,10 @@ static BOOL FallRockPosCheck( u32 zone_id, int gx, int gz, u32 *flag )
 
 //--------------------------------------------------------------
 /**
- * ‰ö—Í—‰ºŠâ@‘ÎÛ‚ª‰º‚Ö—‚¿‚éŠâ‚©‚Ç‚¤‚©
+ * æ€ªåŠ›è½ä¸‹å²©ã€€å¯¾è±¡ãŒä¸‹ã¸è½ã¡ã‚‹å²©ã‹ã©ã†ã‹
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir	ˆÚ“®•ûŒü
- * @retval	BOOL	TRUE=—‚¿‚éŠâ‚Å‚ ‚é
+ * @param	dir	ç§»å‹•æ–¹å‘
+ * @retval	BOOL	TRUE=è½ã¡ã‚‹å²©ã§ã‚ã‚‹
  */
 //--------------------------------------------------------------
 BOOL FldTornWorld_FallRockDirCheck( CONST_FIELD_OBJ_PTR fldobj, int dir )
@@ -14669,10 +14669,10 @@ BOOL FldTornWorld_FallRockDirCheck( CONST_FIELD_OBJ_PTR fldobj, int dir )
 
 //--------------------------------------------------------------
 /**
- * ‰ö—Í—‰ºŠâ@‘ÎÛ‚ª‰º‚Ö—‚¿‚éŠâ‚©‚Ç‚¤‚©
+ * æ€ªåŠ›è½ä¸‹å²©ã€€å¯¾è±¡ãŒä¸‹ã¸è½ã¡ã‚‹å²©ã‹ã©ã†ã‹
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	flag	match flag
- * @retval	BOOL	TRUE=—‚¿‚éŠâ‚Å‚ ‚é
+ * @retval	BOOL	TRUE=è½ã¡ã‚‹å²©ã§ã‚ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL tw_FldOBJFallRockCheck( CONST_FIELD_OBJ_PTR fldobj, u32 *flag )
@@ -14690,9 +14690,9 @@ static BOOL tw_FldOBJFallRockCheck( CONST_FIELD_OBJ_PTR fldobj, u32 *flag )
 
 //--------------------------------------------------------------
 /**
- * ‰ö—Í—‰ºŠâ@‘ÎÛ‚ª‰º‚Ö—‚¿‚éŠâ‚©‚Ç‚¤‚©
+ * æ€ªåŠ›è½ä¸‹å²©ã€€å¯¾è±¡ãŒä¸‹ã¸è½ã¡ã‚‹å²©ã‹ã©ã†ã‹
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	BOOL	TRUE=—‚¿‚éŠâ‚Å‚ ‚é
+ * @retval	BOOL	TRUE=è½ã¡ã‚‹å²©ã§ã‚ã‚‹
  */
 //--------------------------------------------------------------
 BOOL FldTornWorld_FallRockCheck( CONST_FIELD_OBJ_PTR fldobj )
@@ -14732,9 +14732,9 @@ enum
 
 //--------------------------------------------------------------
 /**
- * ‰ö—Í—‰ºŠâ —‰ºƒCƒxƒ“ƒg‰Šú‰»
+ * æ€ªåŠ›è½ä¸‹å²© è½ä¸‹ã‚¤ãƒ™ãƒ³ãƒˆåˆæœŸåŒ–
  * @param	fsys	FIELDSYS_WORK
- * @param	fldobj	‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR
+ * @param	fldobj	å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -14775,14 +14775,14 @@ EV_FALLROCK_WORK * FldTornWorld_FallRockEventInit(
 #define FROCK_FALL_START_FRAME (8)
 #define FROCK_FALL_FRAME_OK (4)
 #define FROCK_FALL_FRAME_NG (40)
-#define FROCK_LAND_GY (115)		//8‘w’n–Ê
+#define FROCK_LAND_GY (115)		//8å±¤åœ°é¢
 #define FROCK_LAND_Y_FX (GRID_SIZE_FX32(FROCK_LAND_GY))
 
 //--------------------------------------------------------------
 /**
- * ‰ö—Í—‰ºŠâ —‰ºƒCƒxƒ“ƒg“®ì@µ‘w‚©‚ç”ª‘w‚Ö
+ * æ€ªåŠ›è½ä¸‹å²© è½ä¸‹ã‚¤ãƒ™ãƒ³ãƒˆå‹•ä½œã€€ä¸ƒå±¤ã‹ã‚‰å…«å±¤ã¸
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL FallRockEvent_7_8( EV_FALLROCK_WORK *work )
@@ -14805,9 +14805,9 @@ static BOOL FallRockEvent_7_8( EV_FALLROCK_WORK *work )
 	pos.y = FROCK_LAND_Y_FX;
 	FieldOBJ_VecPosDirInit( fldobj, &pos, FieldOBJ_DirDispGet(fldobj) );
 	
-	FieldOBJ_ZoneIDSet( fldobj, ZONE_ID_D34R0108 );	//OBJ’u‚«Š·‚¦
+	FieldOBJ_ZoneIDSet( fldobj, ZONE_ID_D34R0108 );	//OBJç½®ãæ›ãˆ
 	
-	{	//ƒtƒ‰ƒO—§‚Ä
+	{	//ãƒ•ãƒ©ã‚°ç«‹ã¦
 		u32 flag_on,flag_off;
 		
 		switch( FieldOBJ_OBJIDGet(fldobj) ){
@@ -14834,10 +14834,10 @@ static BOOL FallRockEvent_7_8( EV_FALLROCK_WORK *work )
 
 //--------------------------------------------------------------
 /*
- * ‰ö—Í—‰ºŠâ —‰ºƒCƒxƒ“ƒg“®ì@³‰ğB
- * ‰ö—Í‚Ì‰Ÿ‚µ‚İ‚ÅŠù‚É1ƒOƒŠƒbƒhˆÚ“®Ï‚İ‚Å‚ ‚é
+ * æ€ªåŠ›è½ä¸‹å²© è½ä¸‹ã‚¤ãƒ™ãƒ³ãƒˆå‹•ä½œã€€æ­£è§£ã€‚
+ * æ€ªåŠ›ã®æŠ¼ã—è¾¼ã¿ã§æ—¢ã«1ã‚°ãƒªãƒƒãƒ‰ç§»å‹•æ¸ˆã¿ã§ã‚ã‚‹
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL FallRockEvent_OK( EV_FALLROCK_WORK *work )
@@ -14887,10 +14887,10 @@ static BOOL FallRockEvent_OK( EV_FALLROCK_WORK *work )
 			u32 id = 0, num = 0;
 			FIELD_OBJ_PTR fldobj = work->fldobj;
 			
-			//—‰ºI—¹@³‰ğƒtƒ‰ƒO—§‚Ä
+			//è½ä¸‹çµ‚äº†ã€€æ­£è§£ãƒ•ãƒ©ã‚°ç«‹ã¦
 			tw_SaveDataEventFlagON( work->tw, work->flag_no );
 			
-			//OBJ‘‚«Š·‚¦
+			//OBJæ›¸ãæ›ãˆ
 			switch( FieldOBJ_OBJIDGet(fldobj) ){
 			case TW_OBJID_0108_ROCK_0:
 				id = TW_OBJID_0108_ROCK_OK_0;
@@ -14911,7 +14911,7 @@ static BOOL FallRockEvent_OK( EV_FALLROCK_WORK *work )
 			tw_SaveDataEventFlagOFF( work->tw, num );
 			FieldOBJ_OBJIDSet( fldobj, id );
 			
-			{	//À•WXV
+			{	//åº§æ¨™æ›´æ–°
 				int dir = FieldOBJ_DirMoveGet( fldobj );
 				int gx = FieldOBJ_NowPosGX_Get( fldobj );
 				int gy = FieldOBJ_NowPosGY_Get( fldobj );
@@ -14926,7 +14926,7 @@ static BOOL FallRockEvent_OK( EV_FALLROCK_WORK *work )
 			}
 		}
 		
-		{	//U“®ƒ[ƒN‰Šú‰»
+		{	//æŒ¯å‹•ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 			VecFx32 offs;
 			FieldOBJ_VecDrawOffsOutSideGet( work->fldobj, &offs );
 			work->save_y = offs.y;
@@ -14937,7 +14937,7 @@ static BOOL FallRockEvent_OK( EV_FALLROCK_WORK *work )
 		
 		work->seq_no++;
 		break;
-	case 2:	//U“®
+	case 2:	//æŒ¯å‹•
 		{
 			VecFx32 offs;
 			FIELD_OBJ_PTR fldobj = work->fldobj;
@@ -14962,7 +14962,7 @@ static BOOL FallRockEvent_OK( EV_FALLROCK_WORK *work )
 			u32 num = 0,flag = 0;
 			FIELD_OBJ_PTR fldobj = work->fldobj;
 	
-			//³‰ğ•Êƒtƒ‰ƒO‘€ì‚Æƒ|ƒPƒ‚ƒ“ƒXƒNƒŠƒvƒg‹N“®
+			//æ­£è§£åˆ¥ãƒ•ãƒ©ã‚°æ“ä½œã¨ãƒã‚±ãƒ¢ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆèµ·å‹•
 			switch( work->flag_no ){
 			case TWEVFLAGNO_FALLROCK0_OK:
 				flag = TWEVFLAGNO_0108EMURIT;
@@ -14985,7 +14985,7 @@ static BOOL FallRockEvent_OK( EV_FALLROCK_WORK *work )
 			work->seq_no++;
 			break;
 		}
-	case 3:	//ƒXƒNƒŠƒvƒgI—¹
+	case 3:	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆçµ‚äº†
 		{
 			int count = 0;
 			count += tw_SaveDataEventFlagCheck(
@@ -15009,10 +15009,10 @@ static BOOL FallRockEvent_OK( EV_FALLROCK_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‰ö—Í—‰ºŠâ —‰ºƒCƒxƒ“ƒg“®ì@ƒGƒ‰[B
- * ‰ö—Í‚Ì‰Ÿ‚µ‚İ‚ÅŠù‚É1ƒOƒŠƒbƒhˆÚ“®Ï‚İ‚Å‚ ‚é
+ * æ€ªåŠ›è½ä¸‹å²© è½ä¸‹ã‚¤ãƒ™ãƒ³ãƒˆå‹•ä½œã€€ã‚¨ãƒ©ãƒ¼ã€‚
+ * æ€ªåŠ›ã®æŠ¼ã—è¾¼ã¿ã§æ—¢ã«1ã‚°ãƒªãƒƒãƒ‰ç§»å‹•æ¸ˆã¿ã§ã‚ã‚‹
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL FallRockEvent_Error( EV_FALLROCK_WORK *work )
@@ -15079,7 +15079,7 @@ static BOOL FallRockEvent_Error( EV_FALLROCK_WORK *work )
 			u32 on = 0,off = 0,num = 0,flag = 0;
 			FIELD_OBJ_PTR fldobj = work->fldobj;
 			
-			//OBJÁ‚µ
+			//OBJæ¶ˆã—
 			switch( FieldOBJ_OBJIDGet(fldobj) ){
 			case TW_OBJID_0108_ROCK_0:
 				on = TWEVFLAGNO_FALLROCK0_6;
@@ -15110,9 +15110,9 @@ static BOOL FallRockEvent_Error( EV_FALLROCK_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‰ö—Í—‰ºŠâ —‰ºƒCƒxƒ“ƒg“®ì
+ * æ€ªåŠ›è½ä¸‹å²© è½ä¸‹ã‚¤ãƒ™ãƒ³ãƒˆå‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	BOOL	TRUE=I—¹
+ * @retval	BOOL	TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL FldTornWorld_FallRockEvent( EV_FALLROCK_WORK *work )
@@ -15139,12 +15139,12 @@ BOOL FldTornWorld_FallRockEvent( EV_FALLROCK_WORK *work )
 }
 
 //==============================================================================
-//	ƒpƒŒƒbƒgƒtƒF[ƒh
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒgƒtƒF[ƒh@‰Šú‰»
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -15154,22 +15154,22 @@ static void tw_PlttInit( TORNWORLD_WORK *tw )
 	TW_PLTT_WORK *pltt = &tw->pltt;
 	u32 zone_id = twNowZoneID( tw );
 	
-	if( zone_id == ZONE_ID_D34R0110 ){	//”ª‘w[•”ƒMƒ‰ƒeƒBƒi~—Õ’†ƒ`ƒFƒbƒN
+	if( zone_id == ZONE_ID_D34R0110 ){	//å…«å±¤æ·±éƒ¨ã‚®ãƒ©ãƒ†ã‚£ãƒŠé™è‡¨ä¸­ãƒã‚§ãƒƒã‚¯
 		EVENTWORK *ev = SaveData_GetEventWork( tw->fsys->savedata );
 		
-		//~—Õ’†‚Å‚ ‚ê‚Î~—ÕƒCƒxƒ“ƒgŒã‚Ìó‘Ô‚Æ“¯ˆê‚É
+		//é™è‡¨ä¸­ã§ã‚ã‚Œã°é™è‡¨ã‚¤ãƒ™ãƒ³ãƒˆå¾Œã®çŠ¶æ…‹ã¨åŒä¸€ã«
 		if( SysWork_TornWorldEventSeqNoGet(ev) == TWEVSEQ_08D_02 ){
 			pltt->evy_layer_off = TRUE;
 			pltt->evy = TW_PLTT_EVY_GIRAS_APP;
 		}
 	}
 	
-	pltt->old_evy = -1;		//‘¦XV
+	pltt->old_evy = -1;		//å³æ›´æ–°
 }
 
 //--------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒgƒtƒF[ƒh@íœ
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -15195,7 +15195,7 @@ static void tw_PlttDelete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒgƒtƒF[ƒh@í’“ˆ—‚©‚çŒÄ‚Î‚ê‚éƒƒCƒ“ˆ—
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã€€å¸¸é§å‡¦ç†ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ãƒ¡ã‚¤ãƒ³å‡¦ç†
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -15246,7 +15246,7 @@ static void tw_PlttProc( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒgƒtƒF[ƒh@VIntrˆ—
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã€€VIntrå‡¦ç†
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -15291,9 +15291,9 @@ static void tw_PlttVIntrProc( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒgƒtƒF[ƒhEVYİ’è‚ğ•ÏX
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰EVYè¨­å®šã‚’å¤‰æ›´
  * @param	tw		TORNWORLD_WORK
- * @param	flag	TRUE=è“® FALSE=ŠK‘w
+ * @param	flag	TRUE=æ‰‹å‹• FALSE=éšå±¤
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -15305,7 +15305,7 @@ static void tw_PlttFadeSystemChg( TORNWORLD_WORK *tw, u32 flag )
 
 //--------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒgƒtƒF[ƒhEVYİ’è
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰EVYè¨­å®š
  * @param	tw		TORNWORLD_WORK
  * @param	evy		0-16
  * @retval	nothing
@@ -15319,11 +15319,11 @@ static void tw_PlttFadeEvySet( TORNWORLD_WORK *tw, s16 evy )
 
 //--------------------------------------------------------------
 /**
- * w’èF•ÏX
- * @param	base		Œ³ƒpƒŒƒbƒg
- * @param	target		–Ú•WƒpƒŒƒbƒg
- * @param	evy			0-16  0=Œ³ 8=’†ŠÔ 16=–Ú•W
- * @param	dest		Œ‹‰ÊŠi”[æ
+ * æŒ‡å®šè‰²å¤‰æ›´
+ * @param	base		å…ƒãƒ‘ãƒ¬ãƒƒãƒˆ
+ * @param	target		ç›®æ¨™ãƒ‘ãƒ¬ãƒƒãƒˆ
+ * @param	evy			0-16  0=å…ƒ 8=ä¸­é–“ 16=ç›®æ¨™
+ * @param	dest		çµæœæ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -15342,7 +15342,7 @@ static void ColorTargetFade( u16 base, u16 target, u16 evy, u16 *dest )
 }
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@‘êˆÚ“®“®ì•”•ª
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç§»å‹•å‹•ä½œéƒ¨åˆ†
 //
 //==============================================================================
 //--------------------------------------------------------------
@@ -15350,10 +15350,10 @@ static void ColorTargetFade( u16 base, u16 target, u16 evy, u16 *dest )
 //--------------------------------------------------------------
 typedef enum
 {
-	WFALLRET_NON,			///<“Á‚É–³‚µ
-	WFALLRET_ZONE_CHANGE,	///<ƒ][ƒ“Ø‚è‘Ö‚¦‚ğs‚Á‚½
-	WFALLRET_LAST,			///<ÅŒã‚Ì1ƒOƒŠƒbƒhˆÚ“®‚Å‚ ‚éB
-	WFALLRET_END,			///<I—¹
+	WFALLRET_NON,			///<ç‰¹ã«ç„¡ã—
+	WFALLRET_ZONE_CHANGE,	///<ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã‚’è¡Œã£ãŸ
+	WFALLRET_LAST,			///<æœ€å¾Œã®1ã‚°ãƒªãƒƒãƒ‰ç§»å‹•ã§ã‚ã‚‹ã€‚
+	WFALLRET_END,			///<çµ‚äº†
 }WFALLRET;
 
 //--------------------------------------------------------------
@@ -15371,18 +15371,18 @@ typedef enum
 //--------------------------------------------------------------
 typedef struct
 {
-	u32 check_vec;		//I’[‚ğƒ`ƒFƒbƒN‚·‚éWFALLVEC_X“™
-	u16 zone_chg_type;	//ƒ][ƒ“•ÏXŒ^ LPOSMOVE_ZONE_UP“™
-	s16 move_gx;		//ˆÚ“®—ÊGX
-	s16 move_gy;		//ˆÚ“®—ÊGY(’n–ÊƒOƒŠƒbƒh’PˆÊ
-	s16 move_gz;		//ˆÚ“®—ÊGZ
+	u32 check_vec;		//çµ‚ç«¯ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹WFALLVEC_Xç­‰
+	u16 zone_chg_type;	//ã‚¾ãƒ¼ãƒ³å¤‰æ›´å‹ LPOSMOVE_ZONE_UPç­‰
+	s16 move_gx;		//ç§»å‹•é‡GX
+	s16 move_gy;		//ç§»å‹•é‡GY(åœ°é¢ã‚°ãƒªãƒƒãƒ‰å˜ä½
+	s16 move_gz;		//ç§»å‹•é‡GZ
 	s16 move_gx_size;
 	s16 move_gy_size;
 	s16 move_gz_size;
-	s16 chg_gx;			//ƒ][ƒ“Ø‚è‘Ö‚¦ƒ^ƒCƒ~ƒ“ƒOGX
-	s16 chg_gy;			//ƒ][ƒ“Ø‚è‘Ö‚¦ƒ^ƒCƒ~ƒ“ƒOGY(’n–ÊƒOƒŠƒbƒh’PˆÊ
-	s16 chg_gz;			//ƒ][ƒ“Ø‚è‘Ö‚¦ƒ^ƒCƒ~ƒ“ƒOGZ
-	VecFx32 move_val;	//ˆÚ“®—Ê
+	s16 chg_gx;			//ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã‚¿ã‚¤ãƒŸãƒ³ã‚°GX
+	s16 chg_gy;			//ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã‚¿ã‚¤ãƒŸãƒ³ã‚°GY(åœ°é¢ã‚°ãƒªãƒƒãƒ‰å˜ä½
+	s16 chg_gz;			//ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã‚¿ã‚¤ãƒŸãƒ³ã‚°GZ
+	VecFx32 move_val;	//ç§»å‹•é‡
 }WFALLDATA;
 
 //--------------------------------------------------------------
@@ -15393,7 +15393,7 @@ typedef struct
 	u32 zone_chg_end:1;
 	u32 zone_chg_type:1;	//LPOSMOVE_ZONE_UP or DONW
 	u32 shake_on:1;
-	u32 check_vec:2;		//WFALL_VEC_X“™
+	u32 check_vec:2;		//WFALL_VEC_Xç­‰
 	u32 dmy:27;
 	
 	VecFx32 move_val;
@@ -15411,7 +15411,7 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ‘êˆÚ“®@‰Šú‰»
+ * æ»ç§»å‹•ã€€åˆæœŸåŒ–
  * @param	tw		TORNWORLD_WORK
  * @param	work	WFALLWORK
  * @param	data	WFALLDATA
@@ -15435,10 +15435,10 @@ static void WaterFallMove_Init( TORNWORLD_WORK *tw,
 
 //--------------------------------------------------------------
 /**
- * ‘êˆÚ“®@—h‚ê‰Šú‰»
+ * æ»ç§»å‹•ã€€æºã‚ŒåˆæœŸåŒ–
  * @param	work	WFALLWORK
- * @param	value	‚ä‚ê‘¬“x
- * @param	max		—h‚êÅ‘å
+ * @param	value	ã‚†ã‚Œé€Ÿåº¦
+ * @param	max		æºã‚Œæœ€å¤§
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -15459,7 +15459,7 @@ static void WaterFallMove_ShakeInit(
 
 //--------------------------------------------------------------
 /**
- * ‘êˆÚ“®@ˆÚ“®
+ * æ»ç§»å‹•ã€€ç§»å‹•
  * @param	tw		TORNWORLD_WORK
  * @param	work	WFALLWORK
  * @retval	BOOL	
@@ -15556,7 +15556,7 @@ static BOOL WaterFallMove_Move( TORNWORLD_WORK *tw, WFALLWORK *work )
 			last = -last;
 		}
 		
-		if( (last-GRID_FX32) == 0 ){ 	//ÅŒã‚Ì1Grid
+		if( (last-GRID_FX32) == 0 ){ 	//æœ€å¾Œã®1Grid
 			return( WFALLRET_LAST );
 		}
 	}
@@ -15565,10 +15565,10 @@ static BOOL WaterFallMove_Move( TORNWORLD_WORK *tw, WFALLWORK *work )
 }
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@‘ê‰º‚è 5->6
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ä¸‹ã‚Š 5->6
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@‘ê‰º‚è@ˆ—”Ô†
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ä¸‹ã‚Šã€€å‡¦ç†ç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -15667,7 +15667,7 @@ static const VecFx32 DATA_TakiDownSplashOffsSpeedTbl[3] =	//cm_count
 #endif
 
 //--------------------------------------------------------------
-///	fx·•ª‘Œ¸
+///	fxå·®åˆ†å¢—æ¸›
 //--------------------------------------------------------------
 static void takikudari_offscalc( fx32 *offs, const fx32 tget, fx32 val )
 {
@@ -15688,7 +15688,7 @@ static void takikudari_offscalc( fx32 *offs, const fx32 tget, fx32 val )
 
 //--------------------------------------------------------------
 /**
- * ‘ê‰º‚è@ƒAƒNƒ^[ˆ—
+ * æ»ä¸‹ã‚Šã€€ã‚¢ã‚¯ã‚¿ãƒ¼å‡¦ç†
  * @param	tw		TORNWORLD_WORK
  * @param	work	SCRWORK_TAKIKUDARI
  * @retval	nothing
@@ -15702,8 +15702,8 @@ static void TakiKudari_ActorProc(
 	
 	if( work->cm_count == 0 && grid == -20 ){
 		tw_CameraActionSet( tw, &DATA_TakiDownCmAct00 );
-//		tw_OBJRotateAnmSet( tw, fldobj, -28, 72 );	//‘ê‚ÌŠp“x‚É•¹‚¹‚é
-		tw_OBJRotateAnmSet( tw, fldobj, -32, 72 );	//‘ê‚ÌŠp“x‚É•¹‚¹‚é
+//		tw_OBJRotateAnmSet( tw, fldobj, -28, 72 );	//æ»ã®è§’åº¦ã«ä½µã›ã‚‹
+		tw_OBJRotateAnmSet( tw, fldobj, -32, 72 );	//æ»ã®è§’åº¦ã«ä½µã›ã‚‹
 		work->cm_count++;
 	}else if( work->cm_count == 1 && grid == -36 ){
 		FieldOBJ_DirDispCheckSet( fldobj, DIR_LEFT );
@@ -15713,7 +15713,7 @@ static void TakiKudari_ActorProc(
 		work->cm_count++;
 	}
 	
-	//ƒJƒƒ‰•œ‹A‚Æ•¹‚¹‚ÄŒü‚«‚ğ–ß‚·
+	//ã‚«ãƒ¡ãƒ©å¾©å¸°ã¨ä½µã›ã¦å‘ãã‚’æˆ»ã™
 	if( work->cm_count == 1 && work->cm_frame >= 0 ){
 		work->cm_frame++;
 		if( work->cm_frame >= 32 ){
@@ -15773,10 +15773,10 @@ static void TakiKudari_ActorProc(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê‰º‚è@‰Šú‰»
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ä¸‹ã‚Šã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -15812,7 +15812,7 @@ static PROCRET ScrTakiKudari_Init(
 		FieldOBJ_VecDrawOffsOutSideSet( fldobj, &clear );
 	}
 	
-	{ 	//‚±‚Ì“_‚Å‚Ì”gƒ|ƒPó‘Ô ©“] X180,Y90,Z0, REV90
+	{ 	//ã“ã®æ™‚ç‚¹ã§ã®æ³¢ãƒã‚±çŠ¶æ…‹ è‡ªè»¢ X180,Y90,Z0, REV90
 		VecFx32 *np_offs_p;
 		EOA_PTR eoa = Player_JointEoaGet( jiki );
 		ROTATE *rot = FE_FldOBJNamiPokeR_RotatePtrGet( eoa );
@@ -15852,10 +15852,10 @@ static PROCRET ScrTakiKudari_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê‰º‚è@‰‰ñ“®ì@‰ñ“]‚É•¹‚¹‚Ä‚ä‚Á‚­‚èˆÚ“®
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ä¸‹ã‚Šã€€åˆå›å‹•ä½œã€€å›è»¢ã«ä½µã›ã¦ã‚†ã£ãã‚Šç§»å‹•
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -15911,7 +15911,7 @@ static PROCRET ScrTakiKudari_StartTurn(
 			np_offs_p->x = 0;
 			np_offs_p->y = 0;
 			np_offs_p->z = NUM_FX32( 10 );
-			work->np_frame0 = 70;	//ƒJƒƒ‰0‚ÌƒtƒŒ[ƒ€‚æ‚è‚â‚â‘‚ß
+			work->np_frame0 = 70;	//ã‚«ãƒ¡ãƒ©0ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚ˆã‚Šã‚„ã‚„æ—©ã‚
 			work->np_frame1 = -1;
 			work->np_offs_val.x = 0;
 			work->np_offs_val.y = 0;
@@ -15920,7 +15920,7 @@ static PROCRET ScrTakiKudari_StartTurn(
 		}
 		
 		#ifdef TWTEST_TAKI_EFF
-		{	//…”ò–—ƒGƒtƒFƒNƒg’Ç‰Á
+		{	//æ°´é£›æ²«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¿½åŠ 
 			VecFx32 *offs;
 			work->eoa_splash_p = EoaSplash_Set(
 					tw, Player_VecPosPtrGet(tw->fsys->player) );
@@ -15938,9 +15938,9 @@ static PROCRET ScrTakiKudari_StartTurn(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê‰º‚è@ˆÚ“®0
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ä¸‹ã‚Šã€€ç§»å‹•0
  * @param	tw	TORNWORLD_WORK
- * @retval	BOOL	TRUE=Ä‹A
+ * @retval	BOOL	TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static PROCRET ScrTakiKudari_Move0(
@@ -15978,7 +15978,7 @@ static PROCRET ScrTakiKudari_Move0(
 		VecFx32 *shake = FE_FldOBJNamiPokeR_ShakeOffsetPtrGet( eoa );
 		*shake = wfall->shake_offs;
 		
-		if( work->cm_count == 1 ){	//ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ 0”­¶
+		if( work->cm_count == 1 ){	//ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ 0ç™ºç”Ÿ
 			if( work->np_frame0 > 0 ){
 				work->np_frame0--;
 				offs->x += work->np_offs_val.x;
@@ -15986,9 +15986,9 @@ static PROCRET ScrTakiKudari_Move0(
 				offs->z += work->np_offs_val.z;
 				work->shake_offs_org_x += work->shake_offs_org_x_val;
 			}
-		}else if( work->cm_count == 2 ){	//ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ 1”­¶
-			if( work->np_frame1 < 0 ){		//- == ‰Šú‰»
-				work->np_frame1 = 30;		//ƒJƒƒ‰2‚ÌƒtƒŒ[ƒ€‚æ‚è‚â‚â‘‚ß
+		}else if( work->cm_count == 2 ){	//ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ 1ç™ºç”Ÿ
+			if( work->np_frame1 < 0 ){		//- == åˆæœŸåŒ–
+				work->np_frame1 = 30;		//ã‚«ãƒ¡ãƒ©2ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã‚ˆã‚Šã‚„ã‚„æ—©ã‚
 				work->np_offs_val.x = 0;
 				work->np_offs_val.y = 0;
 				work->np_offs_val.z = NUM_FX32( 6 ) / work->np_frame1;
@@ -16005,7 +16005,7 @@ static PROCRET ScrTakiKudari_Move0(
 		}
 	}
 	
-	if( ret == WFALLRET_LAST ){				//ÅŒã‚Ì1ƒOƒŠƒbƒh
+	if( ret == WFALLRET_LAST ){				//æœ€å¾Œã®1ã‚°ãƒªãƒƒãƒ‰
 		work->frame = 16;	//1grid(16) 1.0
 		tw_OBJRotateAnmSet( tw, fldobj, 90, work->frame );
 		
@@ -16031,10 +16031,10 @@ static PROCRET ScrTakiKudari_Move0(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê‰º‚è@ˆÚ“®1
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ä¸‹ã‚Šã€€ç§»å‹•1
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16097,7 +16097,7 @@ static PROCRET ScrTakiKudari_Move1(
 		Player_MoveBitSet_TWorld( tw->fsys->player, HEROTWTYPE_ON );
 		FieldOBJ_StatusBitSet_HeightGetOFF( fldobj, FALSE );
 		
-		{	//”gæ‚èƒpƒ‰ƒƒ^‰Šú‰»
+		{	//æ³¢ä¹—ã‚Šãƒ‘ãƒ©ãƒ¡ã‚¿åˆæœŸåŒ–
 			{
 				VecFx32 * np_offs_p =
 					FE_FldOBJNamiPokeR_PokeOffsetPtrGet( eoa );
@@ -16124,13 +16124,13 @@ static PROCRET ScrTakiKudari_Move1(
 		*seq_no = SEQNO_TAKIKUDARI_LAST;
 		
 		#ifdef TWTEST_TAKIEFF
-		if( work->eoa_splash_p != NULL ){	//…”ò–—íœ
+		if( work->eoa_splash_p != NULL ){	//æ°´é£›æ²«å‰Šé™¤
 			EOA_Delete( work->eoa_splash_p );
 			work->eoa_splash_p = NULL;
 		}
 		#endif
 		
-		{	//‘ê‰º‚èŒÀ’è@‹­§ƒŠƒtƒgoŒ»ˆ—
+		{	//æ»ä¸‹ã‚Šé™å®šã€€å¼·åˆ¶ãƒªãƒ•ãƒˆå‡ºç¾å‡¦ç†
 			tw_SaveDataZLinkMoveFlagON( tw, ZLINKMFLAG_0506B );
 			tw_LinkPosAddZoneIDNo(
 				tw, ZONE_ID_D34R0107, LPOSID0107_ZUP_06_05 );
@@ -16142,10 +16142,10 @@ static PROCRET ScrTakiKudari_Move1(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê‰º‚è@ÅŒã‚Ì‘Ä«ˆÚ“®
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ä¸‹ã‚Šã€€æœ€å¾Œã®æƒ°æ€§ç§»å‹•
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16170,7 +16170,7 @@ static PROCRET ScrTakiKudari_Last(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@‘ê‰º‚è
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€æ»ä¸‹ã‚Š
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_TakiKudari[SEQNO_TAKIKUDARI_MAX] =
 {
@@ -16182,10 +16182,10 @@ static const TW_SCR_PROC DATA_ScrTbl_TakiKudari[SEQNO_TAKIKUDARI_MAX] =
 };
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@‘ê“o‚è 6->5
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Š 6->5
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@‘ê“o‚è@ˆ—”Ô†
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Šã€€å‡¦ç†ç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -16258,7 +16258,7 @@ static const VecFx32 DATA_TakiUpSplashOffsSpeedTbl[2] =	//cm count
 
 //--------------------------------------------------------------
 /**
- * ‘ê“o‚è@ƒAƒNƒ^[ˆ—
+ * æ»ç™»ã‚Šã€€ã‚¢ã‚¯ã‚¿ãƒ¼å‡¦ç†
  * @param	tw		TORNWORLD_WORK
  * @param	work	SCRWORK_TAKINOBORI
  * @retval	nothing
@@ -16289,10 +16289,10 @@ static void TakiNobori_ActorProc(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê“o‚è@‰Šú‰»
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Šã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16329,7 +16329,7 @@ static PROCRET ScrTakiNobori_Init(
 		FieldOBJ_VecDrawOffsOutSideSet( fldobj, &clear );
 	}
 	
-	{ 	//‚±‚Ì“_‚Å‚Ì”gƒ|ƒPó‘Ô ©“] X0,Y90,Z0, REV270
+	{ 	//ã“ã®æ™‚ç‚¹ã§ã®æ³¢ãƒã‚±çŠ¶æ…‹ è‡ªè»¢ X0,Y90,Z0, REV270
 		VecFx32 *np_offs_p;
 		EOA_PTR eoa = Player_JointEoaGet( jiki );
 		ROTATE *rot = FE_FldOBJNamiPokeR_RotatePtrGet( eoa );
@@ -16369,10 +16369,10 @@ static PROCRET ScrTakiNobori_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê“o‚è@‰‰ñ“®ì@‰ñ“]‚É•¹‚¹‚Ä‚ä‚Á‚­‚èˆÚ“®
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Šã€€åˆå›å‹•ä½œã€€å›è»¢ã«ä½µã›ã¦ã‚†ã£ãã‚Šç§»å‹•
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16430,11 +16430,11 @@ static PROCRET ScrTakiNobori_StartTurn(
 			np_offs_p->z = NUM_FX32( -7 );
 			work->np_offs_val.x = 0;
 			work->np_offs_val.y = 0;
-			work->np_offs_val.z = NUM_FX32( 17 ) / 16; //ƒJƒƒ‰0‚Æ“¯ˆê
+			work->np_offs_val.z = NUM_FX32( 17 ) / 16; //ã‚«ãƒ¡ãƒ©0ã¨åŒä¸€
 		}
 		
 		#ifdef TWTEST_TAKIEFF
-		{	//…”ò–—ŠGƒGƒtƒFƒNƒg’Ç‰Á
+		{	//æ°´é£›æ²«çµµã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¿½åŠ 
 			VecFx32 *offs;
 			work->eoa_splash_p = EoaSplash_Set(
 					tw, Player_VecPosPtrGet(tw->fsys->player) );
@@ -16452,9 +16452,9 @@ static PROCRET ScrTakiNobori_StartTurn(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê“o‚è@ˆÚ“®0
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Šã€€ç§»å‹•0
  * @param	tw	TORNWORLD_WORK
- * @retval	BOOL	TRUE=Ä‹A
+ * @retval	BOOL	TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static PROCRET ScrTakiNobori_Move0(
@@ -16496,7 +16496,7 @@ static PROCRET ScrTakiNobori_Move0(
 		}
 	}
 	
-	if( ret == WFALLRET_LAST ){				//ÅŒã‚Ì1ƒOƒŠƒbƒh
+	if( ret == WFALLRET_LAST ){				//æœ€å¾Œã®1ã‚°ãƒªãƒƒãƒ‰
 		work->frame = 2;	//1grid(16) 8
 		tw_OBJRotateAnmSet( tw, fldobj, -90, work->frame );
 		
@@ -16522,10 +16522,10 @@ static PROCRET ScrTakiNobori_Move0(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê“o‚è@ˆÚ“®1
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Šã€€ç§»å‹•1
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16588,7 +16588,7 @@ static PROCRET ScrTakiNobori_Move1(
 		Player_MoveBitSet_TWorld( tw->fsys->player, HEROTWTYPE_ROOF );
 		FieldOBJ_StatusBitSet_HeightGetOFF( fldobj, TRUE );
 		
-		{	//”gæ‚èƒpƒ‰ƒƒ^‰Šú‰»
+		{	//æ³¢ä¹—ã‚Šãƒ‘ãƒ©ãƒ¡ã‚¿åˆæœŸåŒ–
 			{
 				VecFx32 * np_offs_p =
 					FE_FldOBJNamiPokeR_PokeOffsetPtrGet( eoa );
@@ -16612,7 +16612,7 @@ static PROCRET ScrTakiNobori_Move1(
 		}
 		
 		#ifdef TWTEST_TAKIEFF
-		if( work->eoa_splash_p != NULL ){	//…”ò–—íœ
+		if( work->eoa_splash_p != NULL ){	//æ°´é£›æ²«å‰Šé™¤
 			EOA_Delete( work->eoa_splash_p );
 			work->eoa_splash_p = NULL;
 		}
@@ -16628,10 +16628,10 @@ static PROCRET ScrTakiNobori_Move1(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê“o‚è@ÅŒã‚Ì‘Ä«ˆÚ“®
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Šã€€æœ€å¾Œã®æƒ°æ€§ç§»å‹•
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16656,7 +16656,7 @@ static PROCRET ScrTakiNobori_Last(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@‘ê“o‚è
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€æ»ç™»ã‚Š
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_TakiNobori[SEQNO_TAKINOBORI_MAX] =
 {
@@ -16668,10 +16668,10 @@ static const TW_SCR_PROC DATA_ScrTbl_TakiNobori[SEQNO_TAKINOBORI_MAX] =
 };
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@ƒXƒNƒŠƒvƒgƒR[ƒ‹
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒ¼ãƒ«
 //==============================================================================
 //--------------------------------------------------------------
-///	is”Ô†
+///	é€²è¡Œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -16690,10 +16690,10 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒXƒNƒŠƒvƒgƒR[ƒ‹
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒ¼ãƒ«
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16708,10 +16708,10 @@ static PROCRET ScrScriptCall_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒXƒNƒŠƒvƒgƒR[ƒ‹@ƒEƒFƒCƒg
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒ¼ãƒ«ã€€ã‚¦ã‚§ã‚¤ãƒˆ
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16722,7 +16722,7 @@ static PROCRET ScrScriptCall_Wait(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@ƒXƒNƒŠƒvƒgŒÄ‚Ño‚µ
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‘¼ã³å‡ºã—
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_ScriptCall[SEQNO_SCRCALL_MAX] =
 {
@@ -16731,10 +16731,10 @@ static const TW_SCR_PROC DATA_ScrTbl_ScriptCall[SEQNO_SCRCALL_MAX] =
 };
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@SYSWORKƒZƒbƒg
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€SYSWORKã‚»ãƒƒãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
-///	is”Ô†
+///	é€²è¡Œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -16752,10 +16752,10 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@sysworkƒZƒbƒg
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€sysworkã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16769,7 +16769,7 @@ static PROCRET ScrTwEvSeqSet_Init(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@ƒCƒxƒ“ƒgƒV[ƒPƒ“ƒXƒZƒbƒg
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€ã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_TwEvSeqSet[SEQNO_TWEVSEQ_MAX] =
 {
@@ -16777,10 +16777,10 @@ static const TW_SCR_PROC DATA_ScrTbl_TwEvSeqSet[SEQNO_TWEVSEQ_MAX] =
 };
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@ƒMƒ‰ƒeƒBƒi‰eƒtƒ‰ƒOƒZƒbƒg
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
-///	is”Ô†
+///	é€²è¡Œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -16798,10 +16798,10 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒMƒ‰ƒeƒBƒi‰eƒtƒ‰ƒOƒZƒbƒg
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16815,7 +16815,7 @@ static PROCRET ScrGirasFlagSet_Init(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@ƒMƒ‰ƒeƒBƒi‰eƒtƒ‰ƒOƒZƒbƒg
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_GirasFlagSet[SEQNO_GIRASFLAG_MAX] =
 {
@@ -16823,10 +16823,10 @@ static const TW_SCR_PROC DATA_ScrTbl_GirasFlagSet[SEQNO_GIRASFLAG_MAX] =
 };
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@”j‚ê‚½¢ŠEƒCƒxƒ“ƒgƒtƒ‰ƒOƒZƒbƒg
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ç ´ã‚ŒãŸä¸–ç•Œã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
-///	is”Ô†
+///	é€²è¡Œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -16835,7 +16835,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	is”Ô†
+///	é€²è¡Œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -16853,10 +16853,10 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@”j‚ê‚½¢ŠEƒCƒxƒ“ƒgƒtƒ‰ƒOƒZƒbƒg
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ç ´ã‚ŒãŸä¸–ç•Œã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16869,7 +16869,7 @@ static PROCRET ScrTwEvFlagSet_Init(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@”j‚ê‚½¢ŠEƒCƒxƒ“ƒgƒtƒ‰ƒOƒZƒbƒg
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€ç ´ã‚ŒãŸä¸–ç•Œã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_TwEvFlagSet[SEQNO_TWEVFLAG_SET_MAX] =
 {
@@ -16878,10 +16878,10 @@ static const TW_SCR_PROC DATA_ScrTbl_TwEvFlagSet[SEQNO_TWEVFLAG_SET_MAX] =
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@”j‚ê‚½¢ŠEƒCƒxƒ“ƒgƒtƒ‰ƒO—‚Æ‚µ
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ç ´ã‚ŒãŸä¸–ç•Œã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°è½ã¨ã—
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16894,7 +16894,7 @@ static PROCRET ScrTwEvFlagOFF_Init(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@”j‚ê‚½¢ŠEƒCƒxƒ“ƒgƒtƒ‰ƒOƒZƒbƒg
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€ç ´ã‚ŒãŸä¸–ç•Œã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_TwEvFlagOFF[SEQNO_TWEVFLAG_OFF_MAX] =
 {
@@ -16902,10 +16902,10 @@ static const TW_SCR_PROC DATA_ScrTbl_TwEvFlagOFF[SEQNO_TWEVFLAG_OFF_MAX] =
 };
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg	ƒMƒ‰ƒeƒBƒi‰e
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆ	ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±
 //==============================================================================
 //--------------------------------------------------------------
-///	is”Ô†
+///	é€²è¡Œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -16916,10 +16916,10 @@ enum
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒMƒ‰ƒeƒBƒi‰eƒZƒbƒg
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16934,10 +16934,10 @@ static PROCRET ScrGirasMove_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒMƒ‰ƒeƒBƒi‰eƒZƒbƒg@‘Ò‚¿
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ã‚»ãƒƒãƒˆã€€å¾…ã¡
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -16953,7 +16953,7 @@ static PROCRET ScrGirasMove_Wait(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@ƒMƒ‰ƒeƒBƒi‰eƒZƒbƒg
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_GirasSet[SEQNO_GIRAS_MAX] =
 {
@@ -16962,10 +16962,10 @@ static const TW_SCR_PROC DATA_ScrTbl_GirasSet[SEQNO_GIRAS_MAX] =
 };
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@”ª‘w[•”@ƒMƒ‰ƒeƒBƒi“oê
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å…«å±¤æ·±éƒ¨ã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´
 //==============================================================================
 //--------------------------------------------------------------
-///	is”Ô†
+///	é€²è¡Œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -16991,7 +16991,7 @@ typedef struct
 }SCRWORK_GIRAAPP;
 
 //--------------------------------------------------------------
-///	ƒMƒ‰ƒeƒBƒiƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒg
+///	ã‚®ãƒ©ãƒ†ã‚£ãƒŠãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆ
 //--------------------------------------------------------------
 static const u16 DATA_GiraPlttTbl[16] =
 {
@@ -17001,7 +17001,7 @@ static const u16 DATA_GiraPlttTbl[16] =
 
 //--------------------------------------------------------------
 /**
- * ƒMƒ‰ƒeƒBƒiƒpƒŒƒbƒgƒtƒF[ƒh
+ * ã‚®ãƒ©ãƒ†ã‚£ãƒŠãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
  * @param	work	SCRWORK_GIRAAPP
  * @retval	nothing
  */
@@ -17017,7 +17017,7 @@ static void ScrGiraAppear_PlttFade( SCRWORK_GIRAAPP *work )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@ƒMƒ‰ƒeƒBƒiOBJƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒtƒF[ƒh
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠOBJãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
  * @param	fsys	FIELDSYS_WORK
  * @retval	nothing
  */
@@ -17041,10 +17041,10 @@ void FldTornWorld_GiratinaPlttFade( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒMƒ‰ƒeƒBƒi“oê@‰Šú‰»
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17065,10 +17065,10 @@ static PROCRET ScrGiraAppear_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒMƒ‰ƒeƒBƒi“oê@’Ç‰ÁƒEƒFƒCƒg
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´ã€€è¿½åŠ ã‚¦ã‚§ã‚¤ãƒˆ
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17081,7 +17081,7 @@ static PROCRET ScrGiraAppear_AddWait(
 	work = tw_ScrProcWorkGet( tw );
 	blact = FieldOBJ_DrawBlAct00_BlActPtrGet( work->fldobj );
 	
-	if( blact != NULL ){	//’Ç‰ÁŠ®—¹@ˆÚ“®ŠJn
+	if( blact != NULL ){	//è¿½åŠ å®Œäº†ã€€ç§»å‹•é–‹å§‹
 		work->evy = NUM_FX32( 16 );
 		ScrGiraAppear_PlttFade( work );
 		tw->draw_giratina_fade_flag = TRUE;
@@ -17091,9 +17091,9 @@ static PROCRET ScrGiraAppear_AddWait(
 		
 		tw->cloud_speed_lv = CLOUD_SPEED_LV_2;
 		
-//		Snd_BgmPlay( SEQ_PL_EV_GIRA );      //ƒMƒ‰ƒeƒBƒi“oê
-//		Snd_BgmPlay( SEQ_PL_EV_GIRA2 );      //ƒMƒ‰ƒeƒBƒA”ò‚Ñ—§‚Â
-//		Snd_BgmPlay( SEQ_PL_D_GIRATINA );    //ƒ}ƒbƒv‚Ì‹È
+//		Snd_BgmPlay( SEQ_PL_EV_GIRA );      //ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´
+//		Snd_BgmPlay( SEQ_PL_EV_GIRA2 );      //ã‚®ãƒ©ãƒ†ã‚£ã‚¢é£›ã³ç«‹ã¤æ™‚
+//		Snd_BgmPlay( SEQ_PL_D_GIRATINA );    //ãƒãƒƒãƒ—ã®æ›²
 		Snd_SePlay( SE_YABURETA_GIRATINA_ADVENT	);
 		
 		*seq_no = SEQNO_GIRA_APPEAR_MOVE;
@@ -17105,10 +17105,10 @@ static PROCRET ScrGiraAppear_AddWait(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒMƒ‰ƒeƒBƒi“oê@ˆÚ“®
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´ã€€ç§»å‹•
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17145,10 +17145,10 @@ static PROCRET ScrGiraAppear_Move(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒMƒ‰ƒeƒBƒi“oê@ƒtƒF[ƒhƒCƒ“
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17176,10 +17176,10 @@ static PROCRET ScrGiraAppear_FadeIn(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@ƒMƒ‰ƒeƒBƒi“oê@ÅŒãƒEƒFƒCƒg
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´ã€€æœ€å¾Œã‚¦ã‚§ã‚¤ãƒˆ
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17201,7 +17201,7 @@ static PROCRET ScrGiraAppear_LastWait(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@ƒMƒ‰ƒeƒBƒi“oê
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_GiraAppear[SEQNO_GIRA_APPEAR_MAX] =
 {
@@ -17213,10 +17213,10 @@ static const TW_SCR_PROC DATA_ScrTbl_GiraAppear[SEQNO_GIRA_APPEAR_MAX] =
 };
 
 //==============================================================================
-///	ƒXƒNƒŠƒvƒg	Šâ—‚Æ‚µƒ†ƒNƒV[“oê
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆ	å²©è½ã¨ã—ãƒ¦ã‚¯ã‚·ãƒ¼ç™»å ´
 //==============================================================================
 //--------------------------------------------------------------
-///	is”Ô†
+///	é€²è¡Œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -17245,10 +17245,10 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒ†ƒNƒV[“oê@‰Šú‰»
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ãƒ¦ã‚¯ã‚·ãƒ¼ç™»å ´ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17271,10 +17271,10 @@ static PROCRET ScrRockPokeYukushi_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒ†ƒNƒV[@ã¸
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ãƒ¦ã‚¯ã‚·ãƒ¼ã€€ä¸Šæ˜‡
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17302,10 +17302,10 @@ static PROCRET ScrRockPokeYukushi_Move0(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒ†ƒNƒV[@‘Oi‚µ‚ÄŠâ‚Ìã‚É
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ãƒ¦ã‚¯ã‚·ãƒ¼ã€€å‰é€²ã—ã¦å²©ã®ä¸Šã«
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17328,10 +17328,10 @@ static PROCRET ScrRockPokeYukushi_Move1(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒ†ƒNƒV[@Šâ‚Ìã‚Å‚ä‚ç‚ä‚ç
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ãƒ¦ã‚¯ã‚·ãƒ¼ã€€å²©ã®ä¸Šã§ã‚†ã‚‰ã‚†ã‚‰
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17365,10 +17365,10 @@ static PROCRET ScrRockPokeYukushi_Move2(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒ†ƒNƒV[@‰º‚ª‚é
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ãƒ¦ã‚¯ã‚·ãƒ¼ã€€ä¸‹ãŒã‚‹
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17390,10 +17390,10 @@ static PROCRET ScrRockPokeYukushi_Move3(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒ†ƒNƒV[@~‚è‚é
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ãƒ¦ã‚¯ã‚·ãƒ¼ã€€é™ã‚Šã‚‹
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17424,7 +17424,7 @@ static PROCRET ScrRockPokeYukushi_Move4(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@Šâƒ†ƒNƒV[
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€å²©ãƒ¦ã‚¯ã‚·ãƒ¼
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_RockPokeYukushi[SEQNO_ROCKPOKE_UK_MAX] =
 {
@@ -17437,10 +17437,10 @@ static const TW_SCR_PROC DATA_ScrTbl_RockPokeYukushi[SEQNO_ROCKPOKE_UK_MAX] =
 };
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒAƒOƒmƒ€
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ã‚¢ã‚°ãƒãƒ 
 //==============================================================================
 //--------------------------------------------------------------
-///	is”Ô†
+///	é€²è¡Œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -17463,7 +17463,7 @@ typedef struct
 }SCRWORK_ROCKEV_A;
 
 //--------------------------------------------------------------
-///	ƒAƒOƒmƒ€ƒAƒjƒ
+///	ã‚¢ã‚°ãƒãƒ ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const FIELD_OBJ_ACMD_LIST DATA_RockPokeAgunomuAcmdList[] =
 {
@@ -17478,10 +17478,10 @@ static const FIELD_OBJ_ACMD_LIST DATA_RockPokeAgunomuAcmdList[] =
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒAƒOƒmƒ€“oê@‰Šú‰»
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ã‚¢ã‚°ãƒãƒ ç™»å ´ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17503,10 +17503,10 @@ static PROCRET ScrRockPokeAgunomu_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒAƒOƒmƒ€@ã¸
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ã‚¢ã‚°ãƒãƒ ã€€ä¸Šæ˜‡
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17536,10 +17536,10 @@ static PROCRET ScrRockPokeAgunomu_Move0(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒAƒOƒmƒ€@ƒAƒjƒI—¹‘Ò‚¿
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ã‚¢ã‚°ãƒãƒ ã€€ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17561,10 +17561,10 @@ static PROCRET ScrRockPokeAgunomu_Move1(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒAƒOƒmƒ€@~‚è‚é
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ã‚¢ã‚°ãƒãƒ ã€€é™ã‚Šã‚‹
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17595,7 +17595,7 @@ static PROCRET ScrRockPokeAgunomu_Move2(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@ŠâƒAƒOƒmƒ€
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€å²©ã‚¢ã‚°ãƒãƒ 
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_RockPokeAgunomu[SEQNO_ROCKPOKE_AG_MAX] =
 {
@@ -17606,10 +17606,10 @@ static const TW_SCR_PROC DATA_ScrTbl_RockPokeAgunomu[SEQNO_ROCKPOKE_AG_MAX] =
 };
 
 //==============================================================================
-///	ƒXƒNƒŠƒvƒg	Šâ—‚Æ‚µƒGƒ€ƒŠƒbƒg
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆ	å²©è½ã¨ã—ã‚¨ãƒ ãƒªãƒƒãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
-///	is”Ô†
+///	é€²è¡Œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -17633,7 +17633,7 @@ typedef struct
 }SCRWORK_ROCKEV_E;
 
 //--------------------------------------------------------------
-///	ƒGƒ€ƒŠƒbƒgƒAƒjƒ z 68
+///	ã‚¨ãƒ ãƒªãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ z 68
 //--------------------------------------------------------------
 static const FIELD_OBJ_ACMD_LIST DATA_RockPokeEmuritAcmdListX80Z67[] =
 {
@@ -17689,7 +17689,7 @@ static const FIELD_OBJ_ACMD_LIST DATA_RockPokeEmuritAcmdListX80Z68[] =
 };
 
 //--------------------------------------------------------------
-///	©‹@ƒAƒjƒ
+///	è‡ªæ©Ÿã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const FIELD_OBJ_ACMD_LIST DATA_RockPokeJikiAcmdListX80Z67[] =
 {
@@ -17747,10 +17747,10 @@ static const FIELD_OBJ_ACMD_LIST DATA_RockPokeJikiAcmdListX80Z68[] =
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒGƒ€ƒŠƒbƒg“oê@‰Šú‰»
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ã‚¨ãƒ ãƒªãƒƒãƒˆç™»å ´ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17771,10 +17771,10 @@ static PROCRET ScrRockPokeEmurit_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒGƒ€ƒŠƒbƒg@ã¸
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ã‚¨ãƒ ãƒªãƒƒãƒˆã€€ä¸Šæ˜‡
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17820,10 +17820,10 @@ static PROCRET ScrRockPokeEmurit_Move0(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒGƒ€ƒŠƒbƒg@ƒAƒjƒI—¹‘Ò‚¿
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ã‚¨ãƒ ãƒªãƒƒãƒˆã€€ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17847,10 +17847,10 @@ static PROCRET ScrRockPokeEmurit_Move1(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@Šâ—‚Æ‚µƒGƒ€ƒŠƒbƒg@~‚è‚é
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€å²©è½ã¨ã—ã‚¨ãƒ ãƒªãƒƒãƒˆã€€é™ã‚Šã‚‹
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17881,7 +17881,7 @@ static PROCRET ScrRockPokeEmurit_Move2(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@ŠâƒGƒ€ƒŠƒbƒg
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€å²©ã‚¨ãƒ ãƒªãƒƒãƒˆ
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_RockPokeEmurit[SEQNO_ROCKPOKE_EM_MAX] =
 {
@@ -17892,10 +17892,10 @@ static const TW_SCR_PROC DATA_ScrTbl_RockPokeEmurit[SEQNO_ROCKPOKE_EM_MAX] =
 };
 
 //==============================================================================
-///	ƒXƒNƒŠƒvƒg	”ª‘w[•””ò‚ÑÎ•\¦
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆ	å…«å±¤æ·±éƒ¨é£›ã³çŸ³è¡¨ç¤º
 //==============================================================================
 //--------------------------------------------------------------
-///	is”Ô†
+///	é€²è¡Œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -17907,7 +17907,7 @@ enum
 #define STONE0110WAIT_MAX (48)
 
 //--------------------------------------------------------------
-///	ƒJƒƒ‰ƒf[ƒ^
+///	ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 const TW_CMACTDATA DATA_CmActStone0110ON =
 {
@@ -17928,10 +17928,10 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ”ª‘w[•””ò‚ÑÎ•\¦@‰Šú‰»
+ * å…«å±¤æ·±éƒ¨é£›ã³çŸ³è¡¨ç¤ºã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17951,10 +17951,10 @@ static PROCRET ScrStone0110_ON_0(
 
 //--------------------------------------------------------------
 /**
- * ”ª‘w[•””ò‚ÑÎ•\¦@•\¦
+ * å…«å±¤æ·±éƒ¨é£›ã³çŸ³è¡¨ç¤ºã€€è¡¨ç¤º
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -17967,7 +17967,7 @@ static PROCRET ScrStone0110_ON_1(
 	
 	if( work->frame <= 0 ){
 		work->frame = STONE0110WAIT_MAX;
-		Snd_SeStopBySeqNo( SE_YABURETA_GROUND_APPEAR, 0 ); //ŠmÀ‚ÉSE‚ğ–Â‚ç‚·
+		Snd_SeStopBySeqNo( SE_YABURETA_GROUND_APPEAR, 0 ); //ç¢ºå®Ÿã«SEã‚’é³´ã‚‰ã™
 		tw_FStoneVanishFlagOFF( tw, work->vanish_off_no );
 		work->vanish_off_no++;
 		
@@ -17980,7 +17980,7 @@ static PROCRET ScrStone0110_ON_1(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@”ª‘w[•””ò‚ÑÎ•\¦
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€å…«å±¤æ·±éƒ¨é£›ã³çŸ³è¡¨ç¤º
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_Stone0110_ON[SEQNO_STONE0110_ON_MAX] =
 {
@@ -17989,10 +17989,10 @@ static const TW_SCR_PROC DATA_ScrTbl_Stone0110_ON[SEQNO_STONE0110_ON_MAX] =
 };
 
 //==============================================================================
-///	ƒXƒNƒŠƒvƒg	”ª‘w[•””ò‚ÑÎ”ñ•\¦
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆ	å…«å±¤æ·±éƒ¨é£›ã³çŸ³éè¡¨ç¤º
 //==============================================================================
 //--------------------------------------------------------------
-///	is”Ô†
+///	é€²è¡Œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -18004,7 +18004,7 @@ enum
 
 #if 0
 //--------------------------------------------------------------
-///	ƒJƒƒ‰ƒf[ƒ^
+///	ã‚«ãƒ¡ãƒ©ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 const TW_CMACTDATA DATA_CmActStone0110OFF =
 {
@@ -18026,10 +18026,10 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ”ª‘w[•””ò‚ÑÎ”ñ•\¦@‰Šú‰»
+ * å…«å±¤æ·±éƒ¨é£›ã³çŸ³éè¡¨ç¤ºã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -18049,10 +18049,10 @@ static PROCRET ScrStone0110_OFF_0(
 
 //--------------------------------------------------------------
 /**
- * ”ª‘w[•””ò‚ÑÎ”ñ•\¦@‡”Ô‚ÉÁ‚·
+ * å…«å±¤æ·±éƒ¨é£›ã³çŸ³éè¡¨ç¤ºã€€é †ç•ªã«æ¶ˆã™
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -18064,12 +18064,12 @@ static PROCRET ScrStone0110_OFF_1(
 	work->frame--;
 	
 	if( work->frame <= 0 ){
-		if( work->vanish_off_no >= 1 ){		//”ò‚ÑÎÁ‚µ‚Ä‚éÅ’†
+		if( work->vanish_off_no >= 1 ){		//é£›ã³çŸ³æ¶ˆã—ã¦ã‚‹æœ€ä¸­
 			work->frame = STONE0110WAIT_MAX;
 			Snd_SeStopBySeqNo( SE_YABURETA_GROUND_APPEAR, 0 );
 			tw_FStoneVanishFlagON( tw, work->vanish_off_no );
 			work->vanish_off_no--;
-		}else{								//‘S‚ÄÁ‚µ‚½Œã
+		}else{								//å…¨ã¦æ¶ˆã—ãŸå¾Œ
 			work->frame = 8;	//last wait
 			*seq_no = SEQNO_STONE0110_OFF_2;
 		}
@@ -18080,10 +18080,10 @@ static PROCRET ScrStone0110_OFF_1(
 
 //--------------------------------------------------------------
 /**
- * ”ª‘w[•””ò‚ÑÎ”ñ•\¦@ƒJƒƒ‰ˆÚ“®
+ * å…«å±¤æ·±éƒ¨é£›ã³çŸ³éè¡¨ç¤ºã€€ã‚«ãƒ¡ãƒ©ç§»å‹•
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -18102,7 +18102,7 @@ static PROCRET ScrStone0110_OFF_2(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@”ª‘w[•””ò‚ÑÎ”ñ•\¦
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€å…«å±¤æ·±éƒ¨é£›ã³çŸ³éè¡¨ç¤º
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_Stone0110_OFF[SEQNO_STONE0110_OFF_MAX] =
 {
@@ -18112,7 +18112,7 @@ static const TW_SCR_PROC DATA_ScrTbl_Stone0110_OFF[SEQNO_STONE0110_OFF_MAX] =
 };
 
 //==============================================================================
-//	ƒGƒtƒFƒNƒg@‘ê“o‚è@…‚µ‚Ô‚«
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€æ»ç™»ã‚Šã€€æ°´ã—ã¶ã
 //==============================================================================
 #ifdef TWTEST_TAKIEFF
 //--------------------------------------------------------------
@@ -18152,9 +18152,9 @@ static const EOA_H_NPP DATA_EoaH_Splash;
 
 //--------------------------------------------------------------
 /**
- * EOA …”ò–—@ƒZƒbƒg
+ * EOA æ°´é£›æ²«ã€€ã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
- * @param	pos	’Ç]‚·‚épos
+ * @param	pos	è¿½å¾“ã™ã‚‹pos
  * @retval	EOA_PTR
  */
 //--------------------------------------------------------------
@@ -18174,9 +18174,9 @@ static EOA_PTR EoaSplash_Set( TORNWORLD_WORK *tw, const VecFx32 *pos )
 
 //--------------------------------------------------------------
 /**
- * EOA …”ò–—@ƒIƒtƒZƒbƒgÀ•Wæ“¾
+ * EOA æ°´é£›æ²«ã€€ã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™å–å¾—
  * @param	EOA_PTR eoa
- * @retval	VecFx32* ƒIƒtƒZƒbƒgÀ•W*
+ * @retval	VecFx32* ã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™*
  */
 //--------------------------------------------------------------
 static VecFx32 * EoaSplash_OffsetPosPtrGet( EOA_PTR eoa )
@@ -18189,10 +18189,10 @@ static VecFx32 * EoaSplash_OffsetPosPtrGet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA …”ò–—@‰Šú‰»
+ * EOA æ°´é£›æ²«ã€€åˆæœŸåŒ–
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
- * @retval	int TRUE=‰Šú‰»Š®—¹
+ * @retval	int TRUE=åˆæœŸåŒ–å®Œäº†
  */
 //--------------------------------------------------------------
 static int EoaSplash_Init( EOA_PTR eoa, void *wk )
@@ -18240,7 +18240,7 @@ static int EoaSplash_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA …”ò–—@íœ
+ * EOA æ°´é£›æ²«ã€€å‰Šé™¤
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	nothing
@@ -18258,7 +18258,7 @@ static void EoaSplash_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA …”ò–—@“®ì
+ * EOA æ°´é£›æ²«ã€€å‹•ä½œ
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	nothing
@@ -18277,7 +18277,7 @@ static void EoaSplash_Move( EOA_PTR eoa, void *wk )
 		ROTATE *rot = &work->rotate;
 		
 		if( trg & PAD_BUTTON_SELECT ){
-			OS_Printf( "ƒXƒvƒ‰ƒbƒVƒ…@RX(%d),RY(%d),RZ(%d)\n",
+			OS_Printf( "ã‚¹ãƒ—ãƒ©ãƒƒã‚·ãƒ¥ã€€RX(%d),RY(%d),RZ(%d)\n",
 				rot->x,rot->y,rot->z );
 			OS_Printf( "OX(%d),OY(%d),OZ(%d)\n",
 				FX32_NUM(offs->x), FX32_NUM(offs->y), FX32_NUM(offs->z) );
@@ -18288,13 +18288,13 @@ static void EoaSplash_Move( EOA_PTR eoa, void *wk )
 			
 			switch( work->debug ){
 			#if 0
-			case 0: OS_Printf( "ƒXƒvƒ‰ƒbƒVƒ… RX‘€ì\n" ); break;
-			case 1: OS_Printf( "ƒXƒvƒ‰ƒbƒVƒ… RY‘€ì\n" ); break;
-			case 2: OS_Printf( "ƒXƒvƒ‰ƒbƒVƒ… RZ‘€ì\n" ); break;
+			case 0: OS_Printf( "ã‚¹ãƒ—ãƒ©ãƒƒã‚·ãƒ¥ RXæ“ä½œ\n" ); break;
+			case 1: OS_Printf( "ã‚¹ãƒ—ãƒ©ãƒƒã‚·ãƒ¥ RYæ“ä½œ\n" ); break;
+			case 2: OS_Printf( "ã‚¹ãƒ—ãƒ©ãƒƒã‚·ãƒ¥ RZæ“ä½œ\n" ); break;
 			#endif
-			case 0: OS_Printf( "ƒXƒvƒ‰ƒbƒVƒ… OX‘€ì\n" ); break;
-			case 1: OS_Printf( "ƒXƒvƒ‰ƒbƒVƒ… OY‘€ì\n" ); break;
-			case 2: OS_Printf( "ƒXƒvƒ‰ƒbƒVƒ… OZ‘€ì\n" ); break;
+			case 0: OS_Printf( "ã‚¹ãƒ—ãƒ©ãƒƒã‚·ãƒ¥ OXæ“ä½œ\n" ); break;
+			case 1: OS_Printf( "ã‚¹ãƒ—ãƒ©ãƒƒã‚·ãƒ¥ OYæ“ä½œ\n" ); break;
+			case 2: OS_Printf( "ã‚¹ãƒ—ãƒ©ãƒƒã‚·ãƒ¥ OZæ“ä½œ\n" ); break;
 			}
 		}
 		
@@ -18335,7 +18335,7 @@ static void EoaSplash_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA …”ò–—@•`‰æ
+ * EOA æ°´é£›æ²«ã€€æç”»
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work
  * @retval	nothing
@@ -18350,7 +18350,7 @@ static void EoaSplash_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA …”ò–— ƒwƒbƒ_[
+///	EOA æ°´é£›æ²« ãƒ˜ãƒƒãƒ€ãƒ¼
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Splash =
 {
@@ -18363,16 +18363,16 @@ static const EOA_H_NPP DATA_EoaH_Splash =
 #endif
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * TW_GRID_RECT_SIZE ”ÍˆÍƒ`ƒFƒbƒN
+ * TW_GRID_RECT_SIZE ç¯„å›²ãƒã‚§ãƒƒã‚¯
  * @param	gx	GRID X
  * @param	gy	GRID Y
  * @param	gz	GRID Z
  * @param	rect	TW_GRID_RECT_SIZE
- * @retval	BOOL TRUE=rect‚Ì“à
+ * @retval	BOOL TRUE=rectã®å†…
  */
 //--------------------------------------------------------------
 static BOOL twGridRectCheck(
@@ -18389,12 +18389,12 @@ static BOOL twGridRectCheck(
 
 //--------------------------------------------------------------
 /**
- * TW_GRID_RECT_SIZE ”ÍˆÍƒ`ƒFƒbƒN 0origin
+ * TW_GRID_RECT_SIZE ç¯„å›²ãƒã‚§ãƒƒã‚¯ 0origin
  * @param	gx	GRID X
  * @param	gy	GRID Y
  * @param	gz	GRID Z
  * @param	rect	TW_GRID_RECT_SIZE
- * @retval	BOOL TRUE=rect‚Ì“à
+ * @retval	BOOL TRUE=rectã®å†…
  */
 //--------------------------------------------------------------
 #if 0
@@ -18422,10 +18422,10 @@ static BOOL twGridRectCheckOrg0(
 
 //--------------------------------------------------------------
 /**
- * Œ»Šp“x‚©‚ç–Ú•WŠp“x‚Ö‚Ì‹ß‹——£·•ª‚ğæ“¾@0x10000
- * @param	a	Œ»Šp“x
- * @param	ma	–Ú•WŠp“x
- * @retval	int	m_rot‚Ö‚Ì‹ß‹——£·•ª
+ * ç¾è§’åº¦ã‹ã‚‰ç›®æ¨™è§’åº¦ã¸ã®è¿‘è·é›¢å·®åˆ†ã‚’å–å¾—ã€€0x10000
+ * @param	a	ç¾è§’åº¦
+ * @param	ma	ç›®æ¨™è§’åº¦
+ * @retval	int	m_rotã¸ã®è¿‘è·é›¢å·®åˆ†
  */
 //--------------------------------------------------------------
 static int twAngle16ShortDiffGet( u16 a, u16 ma )
@@ -18452,7 +18452,7 @@ static int twAngle16ShortDiffGet( u16 a, u16 ma )
 
 //--------------------------------------------------------------
 /**
- * Šp“x‘Œ¸@360
+ * è§’åº¦å¢—æ¸›ã€€360
  * @param	rot	fx32
  * @param	val	fx32
  * @retval	nothing
@@ -18467,7 +18467,7 @@ static void twAngleAdd360( s16 *rot, s16 val )
 
 //--------------------------------------------------------------
 /**
- * Šp“x‘Œ¸@360 fx
+ * è§’åº¦å¢—æ¸›ã€€360 fx
  * @param	rot	fx32
  * @param	val	fx32
  * @retval	nothing
@@ -18482,11 +18482,11 @@ static void twAngleAdd360Fx( fx32 *rot, fx32 val )
 
 //--------------------------------------------------------------
 /**
- * ©‹@Œ»ƒOƒŠƒbƒhÀ•W“Ç‚İ‚İ@‘Š‘ÎÀ•WBY‚ÍƒOƒŠƒbƒhƒTƒCƒY‚É•ÏŠ·‚³‚ê‚é
+ * è‡ªæ©Ÿç¾ã‚°ãƒªãƒƒãƒ‰åº§æ¨™èª­ã¿è¾¼ã¿ã€€ç›¸å¯¾åº§æ¨™ã€‚Yã¯ã‚°ãƒªãƒƒãƒ‰ã‚µã‚¤ã‚ºã«å¤‰æ›ã•ã‚Œã‚‹
  * @param	tw	TORNWORLD_WORK
- * @param	gx	ƒOƒŠƒbƒhÀ•Wx
- * @param	gy	ƒOƒŠƒbƒhÀ•Wy
- * @param	gz	ƒOƒŠƒbƒhÀ•Wz
+ * @param	gx	ã‚°ãƒªãƒƒãƒ‰åº§æ¨™x
+ * @param	gy	ã‚°ãƒªãƒƒãƒ‰åº§æ¨™y
+ * @param	gz	ã‚°ãƒªãƒƒãƒ‰åº§æ¨™z
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -18496,15 +18496,15 @@ static void twJikiGridPosGet(
 	FIELD_OBJ_PTR fldobj = Player_FieldOBJGet( tw->fsys->player );
 	*gx = FieldOBJ_NowPosGX_Get( fldobj );
 	*gy = FieldOBJ_NowPosGY_Get( fldobj );
-	*gy = H_GRID_G_GRID( *gy );	//H -> G ƒOƒŠƒbƒh•ÏŠ·
+	*gy = H_GRID_G_GRID( *gy );	//H -> G ã‚°ãƒªãƒƒãƒ‰å¤‰æ›
 	*gz = FieldOBJ_NowPosGZ_Get( fldobj );
 }
 
 //--------------------------------------------------------------
 /**
- * Œ»İA‚â‚Ô‚ê‚½¢ŠE‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚µ‚Ü‚·B
+ * ç¾åœ¨ã€ã‚„ã¶ã‚ŒãŸä¸–ç•Œã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
  * @param	fsys	FIELDSYS_WORK *fsys
- * @retval	BOOL	TRUE=‚â‚Ô‚ê‚½‚¹‚©‚¢
+ * @retval	BOOL	TRUE=ã‚„ã¶ã‚ŒãŸã›ã‹ã„
  */
 //--------------------------------------------------------------
 BOOL FldTornWorld_TornWorldCheck( FIELDSYS_WORK *fsys )
@@ -18513,7 +18513,7 @@ BOOL FldTornWorld_TornWorldCheck( FIELDSYS_WORK *fsys )
 	gmc = SaveData_GetGimmickWork( GameSystem_GetSaveData(fsys) );
 	
 	if( GIMMICKWORK_GetAssignID(gmc) != FLD_GIMMICK_TORNWORLD ){
-		return( FALSE );	//”j‚ê‚½¢ŠE‚Å‚Í‚È‚¢
+		return( FALSE );	//ç ´ã‚ŒãŸä¸–ç•Œã§ã¯ãªã„
 	}
 	
 	return( TRUE );
@@ -18521,9 +18521,9 @@ BOOL FldTornWorld_TornWorldCheck( FIELDSYS_WORK *fsys )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@•Ç”»’è
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€å£åˆ¤å®š
  * @param	fsys	FIELDSYS_WORK *fsys
- * @retval	BOOL	TRUE=•Ç
+ * @retval	BOOL	TRUE=å£
  */
 //--------------------------------------------------------------
 BOOL FldTornWorld_WallCheck( FIELDSYS_WORK *fsys, int gx, int gy, int gz )
@@ -18531,16 +18531,16 @@ BOOL FldTornWorld_WallCheck( FIELDSYS_WORK *fsys, int gx, int gy, int gz )
 	u16 attr;
 	TORNWORLD_WORK *tw = fsys->fldmap->Work;
 	
-	//•ÇA•ûŒü•Ê‚ÉØ‚è‚©‚¦
+	//å£ã€æ–¹å‘åˆ¥ã«åˆ‡ã‚Šã‹ãˆ
 	attr = tw_MapDataGndDataAttrGetCheckPos( tw, gx, gy, gz );
 	
 	if( attr == TWATTR_NOT || attr == TWATTR_OVER ){
 		#ifdef DEBUG_TW_PRINTF
 		{
 		 if( attr == TWATTR_NOT ){
-			OS_Printf("TW ˆÚ“®•ûŒü AttrNot GX=%d,GY=%d,GZ=%d\n",gx,gy,gz);
+			OS_Printf("TW ç§»å‹•æ–¹å‘ AttrNot GX=%d,GY=%d,GZ=%d\n",gx,gy,gz);
 		 }else{
-			OS_Printf("TW ˆÚ“®•ûŒü AttrOver GX=%d,GY=%d,GZ=%d\n",gx,gy,gz);
+			OS_Printf("TW ç§»å‹•æ–¹å‘ AttrOver GX=%d,GY=%d,GZ=%d\n",gx,gy,gz);
 		 }
 		}
 		#endif
@@ -18552,7 +18552,7 @@ BOOL FldTornWorld_WallCheck( FIELDSYS_WORK *fsys, int gx, int gy, int gz )
 	if( attr ){
 		#ifdef DEBUG_TW_PRINTF
 		{
-			OS_Printf("TW ˆÚ“®•ûŒü AttrHit GX=%d,GY=%d,GZ=%d\n",gx,gy,gz);
+			OS_Printf("TW ç§»å‹•æ–¹å‘ AttrHit GX=%d,GY=%d,GZ=%d\n",gx,gy,gz);
 		}
 		#endif
 		return( TRUE );
@@ -18563,9 +18563,9 @@ BOOL FldTornWorld_WallCheck( FIELDSYS_WORK *fsys, int gx, int gy, int gz )
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@“Áê’nŒ`‚Ì”ÍˆÍ“à‚©
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ç‰¹æ®Šåœ°å½¢ã®ç¯„å›²å†…ã‹
  * @param	fsys	FIELDSYS_WORK *fsys
- * @retval	BOOL	FALSE=”ÍˆÍŠO
+ * @retval	BOOL	FALSE=ç¯„å›²å¤–
  */
 //--------------------------------------------------------------
 BOOL FldTornWorld_SpMapDataInsideCheck(
@@ -18574,7 +18574,7 @@ BOOL FldTornWorld_SpMapDataInsideCheck(
 	u16 attr;
 	TORNWORLD_WORK *tw = fsys->fldmap->Work;
 		
-	//•ÇA•ûŒü•Ê‚ÉØ‚è‚©‚¦
+	//å£ã€æ–¹å‘åˆ¥ã«åˆ‡ã‚Šã‹ãˆ
 	attr = tw_MapDataGndDataAttrGetCheckPos( tw, gx, gy, gz );
 	
 	if( attr == TWATTR_NOT || attr == TWATTR_OVER ){
@@ -18586,10 +18586,10 @@ BOOL FldTornWorld_SpMapDataInsideCheck(
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@“Áê’nŒ`‚ª‚ ‚é‚©‚Ç‚¤‚©B
- * Œ»İ’nŒ`‚Æ‡‚í‚È‚¢’nŒ`‚Í–³‹B
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ç‰¹æ®Šåœ°å½¢ãŒã‚ã‚‹ã‹ã©ã†ã‹ã€‚
+ * ç¾åœ¨åœ°å½¢ã¨åˆã‚ãªã„åœ°å½¢ã¯ç„¡è¦–ã€‚
  * @param	fsys	FIELDSYS_WORK *fsys
- * @retval	BOOL	FALSE=”ÍˆÍŠO
+ * @retval	BOOL	FALSE=ç¯„å›²å¤–
  */
 //--------------------------------------------------------------
 BOOL FldTornWorld_SpMapDataExistCheck(
@@ -18602,10 +18602,10 @@ BOOL FldTornWorld_SpMapDataExistCheck(
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@w’èÀ•W‚Ì“Áê’nŒ`‚ğ“Ç‚İ‚ŞB
- * Œ»İ’nŒ`‚Æ‡‚í‚È‚¢’nŒ`‚Í–³‹B
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€æŒ‡å®šåº§æ¨™ã®ç‰¹æ®Šåœ°å½¢ã‚’èª­ã¿è¾¼ã‚€ã€‚
+ * ç¾åœ¨åœ°å½¢ã¨åˆã‚ãªã„åœ°å½¢ã¯ç„¡è¦–ã€‚
  * @param	fsys	FIELDSYS_WORK *fsys
- * @retval	BOOL	FALSE=”ÍˆÍŠO
+ * @retval	BOOL	FALSE=ç¯„å›²å¤–
  */
 //--------------------------------------------------------------
 void FldTornWorld_SpMapDataPosExistLoad(
@@ -18624,13 +18624,13 @@ void FldTornWorld_SpMapDataPosExistLoad(
 
 //--------------------------------------------------------------
 /**
- * ‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒAƒgƒŠƒrƒ…[ƒgæ“¾
+ * ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
  * @param	fsys	FIELDSYS_WORK *fsys
- * @param	gx		ƒOƒŠƒbƒhGX
- * @param	gy		ƒOƒŠƒbƒhGY(’n–ÊƒOƒŠƒbƒh’PˆÊ
- * @param	gz		ƒOƒŠƒbƒhGZ
- * @param	attr	ƒAƒgƒŠƒrƒ…[ƒgŠi”[æ
- * @retval	BOOL	TRUE=“Áê’nŒ`‚Å‚ ‚é FALSE=“Áê’nŒ`‚Å‚Í‚È‚¢
+ * @param	gx		ã‚°ãƒªãƒƒãƒ‰GX
+ * @param	gy		ã‚°ãƒªãƒƒãƒ‰GY(åœ°é¢ã‚°ãƒªãƒƒãƒ‰å˜ä½
+ * @param	gz		ã‚°ãƒªãƒƒãƒ‰GZ
+ * @param	attr	ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæ ¼ç´å…ˆ
+ * @retval	BOOL	TRUE=ç‰¹æ®Šåœ°å½¢ã§ã‚ã‚‹ FALSE=ç‰¹æ®Šåœ°å½¢ã§ã¯ãªã„
  */
 //--------------------------------------------------------------
 BOOL FldTornWorld_SpAttrGet(
@@ -18641,7 +18641,7 @@ BOOL FldTornWorld_SpAttrGet(
 	
 	if( GIMMICKWORK_GetAssignID(gmc) != FLD_GIMMICK_TORNWORLD ){
 		GF_ASSERT( 0 );
-		return( FALSE );	//”j‚ê‚½¢ŠE‚Å‚Í‚È‚¢
+		return( FALSE );	//ç ´ã‚ŒãŸä¸–ç•Œã§ã¯ãªã„
 	}
 	
 	{
@@ -18651,7 +18651,7 @@ BOOL FldTornWorld_SpAttrGet(
 		ret = tw_MapDataGndDataAttrGetCheckPos( tw, gx, gy, gz );
 		
 		if( ret == TWATTR_NOT || ret == TWATTR_OVER ){
-			*attr = MATR_IsNotAttrGet();	//–³ŒøƒAƒgƒŠƒrƒ…[ƒg
+			*attr = MATR_IsNotAttrGet();	//ç„¡åŠ¹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 			return( FALSE );
 		}
 		
@@ -18663,9 +18663,9 @@ BOOL FldTornWorld_SpAttrGet(
 #if 0
 //--------------------------------------------------------------
 /**
- * ƒ][ƒ“ID‚ÌƒIƒtƒZƒbƒgÀ•W‚ğæ“¾
+ * ã‚¾ãƒ¼ãƒ³IDã®ã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™ã‚’å–å¾—
  * @param	zone	zone id
- * @param	offs	ƒIƒtƒZƒbƒgŠi”[æ
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆæ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -18680,14 +18680,14 @@ static void twZoneOffsetPosGet( int zone_id, VecFx32 *offs )
 
 //--------------------------------------------------------------
 /**
- * Šeƒ][ƒ“‚Ìn“_À•W‚ğæ“¾@”j‚ê‚½¢ŠE‚Ì‚İŠe’l‚Én“_‚ğƒZƒbƒgB
- * field_tornworld.c‚Í“WŠJ‚³‚ê‚Ä‚¢‚é‚ªA
- * TORNWORLD_WORK‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢ó‹µ‚ÅŒÄ‚Î‚ê‚éŠÖ”‚Å‚ ‚éB
- * ƒA[ƒJƒCƒuƒf[ƒ^‚ğŠJ‚¢‚ÄÀ•W‚ğæ“¾‚·‚éˆ×‚É’x‚¢B˜A‘±ƒR[ƒ‹‚ÍT‚¦‚é–B
+ * å„ã‚¾ãƒ¼ãƒ³ã®å§‹ç‚¹åº§æ¨™ã‚’å–å¾—ã€€ç ´ã‚ŒãŸä¸–ç•Œã®ã¿å„å€¤ã«å§‹ç‚¹ã‚’ã‚»ãƒƒãƒˆã€‚
+ * field_tornworld.cã¯å±•é–‹ã•ã‚Œã¦ã„ã‚‹ãŒã€
+ * TORNWORLD_WORKãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„çŠ¶æ³ã§å‘¼ã°ã‚Œã‚‹é–¢æ•°ã§ã‚ã‚‹ã€‚
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’é–‹ã„ã¦åº§æ¨™ã‚’å–å¾—ã™ã‚‹ç‚ºã«é…ã„ã€‚é€£ç¶šã‚³ãƒ¼ãƒ«ã¯æ§ãˆã‚‹äº‹ã€‚
  * @param	zone	zone id
- * @param	x		ƒOƒŠƒbƒhXÀ•WŠi”[æ
- * @param	y		ƒOƒŠƒbƒhYÀ•WŠi”[æ
- * @param	z		ƒOƒŠƒbƒhZÀ•WŠi”[æ
+ * @param	x		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™æ ¼ç´å…ˆ
+ * @param	y		ã‚°ãƒªãƒƒãƒ‰Yåº§æ¨™æ ¼ç´å…ˆ
+ * @param	z		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -18704,7 +18704,7 @@ void FldTornWorld_ArcDataMapOriginGridPosGet(
 
 //--------------------------------------------------------------
 /**
- * Œ»İ‚Ìƒ][ƒ“ID‚ğæ“¾
+ * ç¾åœ¨ã®ã‚¾ãƒ¼ãƒ³IDã‚’å–å¾—
  * @param	tw	TORNWORLD_WORK
  * @retval	u32	zone id
  */
@@ -18716,8 +18716,8 @@ static u32 twNowZoneID( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * TW_GNDTYPE‚É‘Î‰‚µ‚½HEROTWTYPE‚ğ•Ô‚·
- * @param	type	TW_GNDTYPE_GROUND“™
+ * TW_GNDTYPEã«å¯¾å¿œã—ãŸHEROTWTYPEã‚’è¿”ã™
+ * @param	type	TW_GNDTYPE_GROUNDç­‰
  * @retval	HEROTWTYPE HEROTWTYPE
  */
 //--------------------------------------------------------------
@@ -18734,11 +18734,11 @@ static HEROTWTYPE twGndTypeHeroType( u32 type )
 
 //--------------------------------------------------------------
 /**
- * TWFLAGTYPEƒ`ƒFƒbƒN
+ * TWFLAGTYPEãƒã‚§ãƒƒã‚¯
  * @param	tw			TORNWORLD_WORK
  * @param	type	TWFLAGTYPE
- * @param	flag	type‚Åƒ`ƒFƒbƒN‚·‚éflag
- * @retval	BOOL	TRUE=type‚ª¬—§‚µ‚Ä‚¢‚é
+ * @param	flag	typeã§ãƒã‚§ãƒƒã‚¯ã™ã‚‹flag
+ * @retval	BOOL	TRUE=typeãŒæˆç«‹ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL twFlagCheck( TORNWORLD_WORK *tw, u32 type, u32 flag )
@@ -18748,12 +18748,12 @@ static BOOL twFlagCheck( TORNWORLD_WORK *tw, u32 type, u32 flag )
 	switch( type ){
 	case TWFLAGTYPE_NON:
 		return( TRUE );
-	case TWFLAGTYPE_EV_OFF:			//ƒ[ƒJƒ‹ƒCƒxƒ“ƒg OFF
+	case TWFLAGTYPE_EV_OFF:			//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ™ãƒ³ãƒˆ OFF
 		if( tw_SaveDataEventFlagCheck(tw,flag) != TRUE ){
 			return( TRUE );
 		}
 		break;
-	case TWFLAGTYPE_EV_ON:			//ƒ[ƒJƒ‹ƒCƒxƒ“ƒg ON
+	case TWFLAGTYPE_EV_ON:			//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ™ãƒ³ãƒˆ ON
 		if( tw_SaveDataEventFlagCheck(tw,flag) == TRUE ){
 			return( TRUE );
 		}
@@ -18794,11 +18794,11 @@ static BOOL twFlagCheck( TORNWORLD_WORK *tw, u32 type, u32 flag )
 
 //--------------------------------------------------------------
 /**
- * 8‘w[•”ŒÀ’è 3GƒWƒƒƒ“ƒvƒAƒgƒŠƒrƒ…[ƒg–³Œøƒ`ƒFƒbƒN
+ * 8å±¤æ·±éƒ¨é™å®š 3Gã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç„¡åŠ¹ãƒã‚§ãƒƒã‚¯
  * @param	fsys	FIELDSYS_WORK
- * @param	gx		ƒ`ƒFƒbƒNXƒOƒŠƒbƒh
- * @param	gz		ƒ`ƒFƒbƒNZƒOƒŠƒbƒh
- * @retval	BOOL	TRUE=3GƒWƒƒƒ“ƒv–³Œø
+ * @param	gx		ãƒã‚§ãƒƒã‚¯Xã‚°ãƒªãƒƒãƒ‰
+ * @param	gz		ãƒã‚§ãƒƒã‚¯Zã‚°ãƒªãƒƒãƒ‰
+ * @retval	BOOL	TRUE=3Gã‚¸ãƒ£ãƒ³ãƒ—ç„¡åŠ¹
  */
 //--------------------------------------------------------------
 BOOL FldTornWorld_NotJumpAttrCheck(
@@ -18821,7 +18821,7 @@ BOOL FldTornWorld_NotJumpAttrCheck(
 
 //--------------------------------------------------------------
 /**
- * SEÄ¶’†ƒ`ƒFƒbƒN‚µÄ¶’†‚Å‚È‚¯‚ê‚ÎSEÄ¶
+ * SEå†ç”Ÿä¸­ãƒã‚§ãƒƒã‚¯ã—å†ç”Ÿä¸­ã§ãªã‘ã‚Œã°SEå†ç”Ÿ
  * @param	no	SEQ_SE...
  * @retval	nothing
  */
@@ -18835,7 +18835,7 @@ static void twSndCheckPlay( u16 no )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚ÌÀ•W‚ğXV@ƒrƒ‹ƒ{[ƒhA•`‰æÀ•W‚àXV
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®åº§æ¨™ã‚’æ›´æ–°ã€€ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã€æç”»åº§æ¨™ã‚‚æ›´æ–°
  * @param	
  * @retval
  */
@@ -18860,7 +18860,7 @@ static void twFldOBJVecPosUpdate( FIELD_OBJ_PTR fldobj, const VecFx32 *pos )
 //	DEBUG_TW_PRINTF_ON
 //--------------------------------------------------------------
 #ifdef DEBUG_TW_PRINTF_ON
-//w’èID‚ğƒvƒŠƒ“ƒg
+//æŒ‡å®šIDã‚’ãƒ—ãƒªãƒ³ãƒˆ
 static void DEBUG_twZoneIDPrintf( u32 zone_id )
 {
 	switch( zone_id ){
@@ -18883,7 +18883,7 @@ static void DEBUG_twZoneIDPrintf( u32 zone_id )
 //	DEBUG_TW_PRINTF
 //--------------------------------------------------------------
 #ifdef DEBUG_TW_PRINTF
-//ƒtƒB[ƒ‹ƒhOBJ’Ç‰Áƒe[ƒuƒ‹‚Ì’†g‚ğƒvƒŠƒ“ƒg
+//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¿½åŠ ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä¸­èº«ã‚’ãƒ—ãƒªãƒ³ãƒˆ
 static void DEBUG_twFldOBJTblPrintf( TORNWORLD_WORK *tw )
 {
 	int i;
@@ -18902,7 +18902,7 @@ static void DEBUG_twFldOBJTblPrintf( TORNWORLD_WORK *tw )
 	}
 }
 
-//ƒtƒB[ƒ‹ƒhOBJ’Ç‰Áƒe[ƒuƒ‹‚Ì’†gƒ`ƒFƒbƒN
+//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJè¿½åŠ ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä¸­èº«ãƒã‚§ãƒƒã‚¯
 static void DEBUG_twFldOBJTblCheck( TORNWORLD_WORK *tw )
 {
 	int i,j,code,zone_id,obj_id;
@@ -18920,7 +18920,7 @@ static void DEBUG_twFldOBJTblCheck( TORNWORLD_WORK *tw )
 					if( code == FieldOBJ_OBJCodeGet(objtbl[j]) &&
 						zone_id == FieldOBJ_ZoneIDGet(objtbl[j]) &&
 						obj_id == FieldOBJ_OBJIDGet(objtbl[j]) ){
-						OS_Printf( "ƒtƒB[ƒ‹ƒhOBJd•¡‚µ‚Ä‚¢‚é\n" );
+						OS_Printf( "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé‡è¤‡ã—ã¦ã„ã‚‹\n" );
 						DEBUG_twFldOBJTblPrintf( tw );
 						GF_ASSERT( 0 );
 					}
@@ -18930,7 +18930,7 @@ static void DEBUG_twFldOBJTblCheck( TORNWORLD_WORK *tw )
 	}
 }
 
-//ƒtƒB[ƒ‹ƒhOBJ‚ÌƒXƒe[ƒ^ƒXo—Í
+//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‡ºåŠ›
 static void DEBUG_twFldOBJStatusPrintf( FIELD_OBJ_PTR fldobj )
 {
 	OS_Printf( "TW FldOBJSt " );
@@ -18942,7 +18942,7 @@ static void DEBUG_twFldOBJStatusPrintf( FIELD_OBJ_PTR fldobj )
 			FieldOBJ_NowPosGZ_Get(fldobj) );
 }
 
-//HEAPID_FIELD‚Ì‹ó‚«ƒTƒCƒYo—Í
+//HEAPID_FIELDã®ç©ºãã‚µã‚¤ã‚ºå‡ºåŠ›
 static void DEBUG_twFldHeapPrintf( void )
 {
 	u32 free = sys_GetHeapFreeSize( HEAPID_FIELD );
@@ -19022,7 +19022,7 @@ void DEBUG_FldTornWorld_CameraReset( FIELDSYS_WORK *fsys )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	AC_JUMPŒn@‚‚³YƒIƒtƒZƒbƒg ‚»‚Ì0
+///	AC_JUMPç³»ã€€é«˜ã•Yã‚ªãƒ•ã‚»ãƒƒãƒˆ ãã®0
 //--------------------------------------------------------------
 static const fx32 DATA_JumpOffsTblType0[OFFS_FRAME_MAX] =			// 12
 {
@@ -19033,7 +19033,7 @@ static const fx32 DATA_JumpOffsTblType0[OFFS_FRAME_MAX] =			// 12
 };
 
 //--------------------------------------------------------------
-///	©‹@ƒCƒxƒ“ƒgƒZƒbƒgŠÖ”‚Ü‚Æ‚ß •ÇƒWƒƒƒ“ƒv
+///	è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆé–¢æ•°ã¾ã¨ã‚ å£ã‚¸ãƒ£ãƒ³ãƒ—
 //--------------------------------------------------------------
 static void (* const DATA_JikiPosEventProcWallJumpTbl[EVPOSTYPE_MAX])(
 		TORNWORLD_WORK *tw, const TW_EVJUMPDATA *data ) =
@@ -19042,7 +19042,7 @@ static void (* const DATA_JikiPosEventProcWallJumpTbl[EVPOSTYPE_MAX])(
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒŠƒ\[ƒX@ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX@ƒLƒƒƒ‰
+///	ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€ã‚­ãƒ£ãƒ©
 //--------------------------------------------------------------
 static const int DATA_TwClActDataArcIdxTbl_Char[TW_CLACT_RES_CHAR_MAX] =
 {
@@ -19056,7 +19056,7 @@ static const int DATA_TwClActDataArcIdxTbl_Char[TW_CLACT_RES_CHAR_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒŠƒ\[ƒX@ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX@ƒZƒ‹
+///	ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€ã‚»ãƒ«
 //--------------------------------------------------------------
 static const int DATA_TwClActDataArcIdxTbl_Cell[TW_CLACT_RES_CELL_MAX] =
 {
@@ -19070,7 +19070,7 @@ static const int DATA_TwClActDataArcIdxTbl_Cell[TW_CLACT_RES_CELL_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒŠƒ\[ƒX@ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX@ƒAƒjƒ
+///	ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€ã‚¢ãƒ‹ãƒ¡
 //--------------------------------------------------------------
 static const int DATA_TwClActDataArcIdxTbl_Anm[TW_CLACT_RES_ANM_MAX] =
 {
@@ -19084,7 +19084,7 @@ static const int DATA_TwClActDataArcIdxTbl_Anm[TW_CLACT_RES_ANM_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒŠƒ\[ƒX@ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX@ƒpƒŒƒbƒg
+///	ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã€€ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€€ãƒ‘ãƒ¬ãƒƒãƒˆ
 //--------------------------------------------------------------
 static const int DATA_TwClActDataArcIdxTbl_Pltt[TW_CLACT_RES_PLTT_MAX] =
 {
@@ -19092,7 +19092,7 @@ static const int DATA_TwClActDataArcIdxTbl_Pltt[TW_CLACT_RES_PLTT_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒZƒ‹ƒŠƒ\[ƒX@‰_í—Ş•ÊID
+///	ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã€€é›²ç¨®é¡åˆ¥ID
 //--------------------------------------------------------------
 #ifdef TW_CELL_PLTT_TEST
 static const CLACT_RESID DATA_CloudResIDTbl[CLOUD_MAX] =
@@ -19133,7 +19133,7 @@ static const CLACT_RESID DATA_CloudResIDTbl[CLOUD_MAX] =
 #endif
 
 //--------------------------------------------------------------
-///	‰_‰Šú‰»ƒf[ƒ^
+///	é›²åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 static const CLOUD_INITDATA DATA_EoaCloudInitDataTbl[CLOUD_SET_MAX] =
 {
@@ -19194,7 +19194,7 @@ static const CLOUD_INITDATA DATA_EoaCloudInitDataTbl[CLOUD_SET_MAX] =
 };
 
 //--------------------------------------------------------------
-///	‰_‘¬“x
+///	é›²é€Ÿåº¦
 //--------------------------------------------------------------
 static const fx32 DATA_CloudAddSpeedTbl[CLOUD_SPEED_LV_MAX][CLOUD_SPEED_TYPE_MAX] =
 {
@@ -19204,11 +19204,11 @@ static const fx32 DATA_CloudAddSpeedTbl[CLOUD_SPEED_LV_MAX][CLOUD_SPEED_TYPE_MAX
 };
 
 //==============================================================================
-//	data	”ò‚ÑÎ
+//	data	é£›ã³çŸ³
 //==============================================================================
 #if 0
 //--------------------------------------------------------------
-///	”ò‚ÑÎí—Ş•ÊƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+///	é£›ã³çŸ³ç¨®é¡åˆ¥ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 //--------------------------------------------------------------
 static const u32 DATA_FStoneArcIdxTbl[FSTONETYPE_MAX] =
 {
@@ -19236,7 +19236,7 @@ static const u32 DATA_FStoneArcIdxTbl[FSTONETYPE_MAX] =
 #endif
 
 //--------------------------------------------------------------
-///	ƒ‚ƒfƒ‹ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+///	ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 //--------------------------------------------------------------
 static const u32 DATA_MdlArcIdxTbl[TW_MDL_MAX] =
 {
@@ -19268,7 +19268,7 @@ static const u32 DATA_MdlArcIdxTbl[TW_MDL_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒAƒjƒƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+///	ã‚¢ãƒ‹ãƒ¡ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 //--------------------------------------------------------------
 static const u32 DATA_AnmArcIdxTbl[TW_ANM_MAX] =
 {
@@ -19280,7 +19280,7 @@ static const u32 DATA_AnmArcIdxTbl[TW_ANM_MAX] =
 };
 
 //--------------------------------------------------------------
-///	“o˜^ID->ƒIƒuƒWƒF\¬
+///	ç™»éŒ²ID->ã‚ªãƒ–ã‚¸ã‚§æ§‹æˆ
 //--------------------------------------------------------------
 static const TW_OBJRES_ID DATA_OBJResIDTbl[TWOBJTYPE_MAX] =
 {
@@ -19312,7 +19312,7 @@ static const TW_OBJRES_ID DATA_OBJResIDTbl[TWOBJTYPE_MAX] =
 };
 
 //--------------------------------------------------------------
-///	”ò‚ÑÎí—Ş•Ê•\¦ƒIƒtƒZƒbƒg
+///	é£›ã³çŸ³ç¨®é¡åˆ¥è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------
 static const VecFx32 DATA_OBJTypePosOffsTbl[TWOBJTYPE_MAX] =
 {
@@ -19345,7 +19345,7 @@ static const VecFx32 DATA_OBJTypePosOffsTbl[TWOBJTYPE_MAX] =
 };
 
 //--------------------------------------------------------------
-///	”ò‚ÑÎí—Ş•ÊƒTƒCƒY
+///	é£›ã³çŸ³ç¨®é¡åˆ¥ã‚µã‚¤ã‚º
 //--------------------------------------------------------------
 #define CINGSIZE_X (FX32_ONE+(0x100*4))
 #define CINGSIZE_Y (FX32_ONE+(0x100*4))
@@ -19381,7 +19381,7 @@ static const VecFx32 DATA_OBJTypeScaleTbl[TWOBJTYPE_MAX] =
 };
 
 //--------------------------------------------------------------
-///	EOA	”ò‚ÑÎ
+///	EOA	é£›ã³çŸ³
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaFStoneHeader =
 {
@@ -19393,7 +19393,7 @@ static const EOA_H_NPP DATA_EoaFStoneHeader =
 };
 
 //--------------------------------------------------------------
-///	EOA	”ò‚ÑÎ@—h‚ê—L‚è
+///	EOA	é£›ã³çŸ³ã€€æºã‚Œæœ‰ã‚Š
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaFStoneHeaderShake =
 {
@@ -19405,7 +19405,7 @@ static const EOA_H_NPP DATA_EoaFStoneHeaderShake =
 };
 
 //--------------------------------------------------------------
-///	EOA	”ò‚ÑÎ@–Ø
+///	EOA	é£›ã³çŸ³ã€€æœ¨
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaFStoneTreeHeader =
 {
@@ -19417,7 +19417,7 @@ static const EOA_H_NPP DATA_EoaFStoneTreeHeader =
 };
 
 //--------------------------------------------------------------
-///	OBJí—Ş•Êƒwƒbƒ_[ƒe[ƒuƒ‹
+///	OBJç¨®é¡åˆ¥ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const EOA_H_NPP * const DATA_EoaOBJTypeHeaderTbl[TWOBJTYPE_MAX] =
 {
@@ -19441,18 +19441,18 @@ static const EOA_H_NPP * const DATA_EoaOBJTypeHeaderTbl[TWOBJTYPE_MAX] =
 	&DATA_EoaFStoneHeaderShake,
 	&DATA_EoaFStoneHeaderShake,
 	&DATA_EoaFStoneHeaderShake,
-	&DATA_EoaGirasHeader,		//20	ƒMƒ‰ƒeƒBƒi‰e
-	&DATA_EoaPutOBJHeader,		//‘ê
+	&DATA_EoaGirasHeader,		//20	ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±
+	&DATA_EoaPutOBJHeader,		//æ»
 	&DATA_EoaFStoneTreeHeader,
 	&DATA_EoaFStoneTreeHeader,
 	&DATA_EoaPutOBJHeader,		//yabu ana
 };
 
 //==============================================================================
-//@data	ƒ][ƒ“Ú‘±
+//ã€€data	ã‚¾ãƒ¼ãƒ³æ¥ç¶š
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒ][ƒ“Ú‘±ƒf[ƒ^ƒe[ƒuƒ‹
+///	ã‚¾ãƒ¼ãƒ³æ¥ç¶šãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const TW_ZONE_LINKDATA DATA_TwZoneLinkDataTbl[TW_ZONECOUNT_MAX] =
 {
@@ -19544,14 +19544,14 @@ static const TW_ZONE_LINKDATA DATA_TwZoneLinkDataTbl[TW_ZONECOUNT_MAX] =
 //	data link pos
 //==============================================================================
 //--------------------------------------------------------------
-///	‚PŠK‘w@Ú‘±ˆÊ’u
+///	ï¼‘éšå±¤ã€€æ¥ç¶šä½ç½®
 //--------------------------------------------------------------
 static const LINKPOS_DATA DATA_LinkPosZ0101_0 =		//->2
 {
 	0,						//id
 	40, 289, 54,			//x,y,z
 	ZCHG_MID_Z0101_1_2, LPOSMOVE_ZONE_DOWN,	//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP3A,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19563,14 +19563,14 @@ static const LINKPOS_DATA * DATA_LinkPosTbl_Z0101[] =
 };
 
 //--------------------------------------------------------------
-///	‚QŠK‘w@Ú‘±ˆÊ’u
+///	ï¼’éšå±¤ã€€æ¥ç¶šä½ç½®
 //--------------------------------------------------------------
 static const LINKPOS_DATA DATA_LinkPosZ0102_0 =		//->1
 {
 	0,						//id
 	40, 257, 54,			//x,y,z
 	ZCHG_MID_Z0102_2_1, LPOSMOVE_ZONE_UP,	//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP3A,		//draw obj
 	ZLINKMFLAG_0102,
 };
@@ -19580,7 +19580,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0102_1 =		//->3
 	1,						//id
 	33, 257, 45,			//x,y,z
 	ZCHG_MID_Z0102_2_3, LPOSMOVE_ZONE_DOWN,	//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP3B,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19593,14 +19593,14 @@ static const LINKPOS_DATA * DATA_LinkPosTbl_Z0102[] =
 };
 
 //--------------------------------------------------------------
-///	‚RŠK‘w@Ú‘±ˆÊ’u
+///	ï¼“éšå±¤ã€€æ¥ç¶šä½ç½®
 //--------------------------------------------------------------
 static const LINKPOS_DATA DATA_LinkPosZ0103_0 =		//->2
 {
 	LPOSID0103_ZUP_3_2,			//id
 	33, 225, 45,			//x,y,z
 	ZCHG_MID_Z0103_3_2, LPOSMOVE_ZONE_UP,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP3B,		//draw obj
 	ZLINKMFLAG_0203,
 };
@@ -19611,7 +19611,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_1 =		//->4
 	LPOSID0103_ZDOWN_3_4,		//id
 	65, 225, 36,			//x,y,z
 	1, LPOSMOVE_ZONE_DOWN,	//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP3A		//draw obj
 };
 #endif
@@ -19621,7 +19621,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_2 =		//lift 0
 	LPOSID0103_LIFT00,						//id
 	33, 225, 38,			//x,y,z
 	0, LPOSMOVE_LIFT,	//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP4,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19631,7 +19631,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_3 =		//lift 1
 	LPOSID0103_LIFT01,		//id
 	33, 225, 23,			//x,y,z
 	0, LPOSMOVE_LIFT,		//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP4,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19641,7 +19641,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_4 =		//lift 2
 	LPOSID0103_LIFT02,		//id
 	33, 225, 8,			//x,y,z
 	0, LPOSMOVE_LIFT,		//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP4,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19651,7 +19651,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_5 =		//lift 3
 	LPOSID0103_LIFT03,		//id
 	49, 225, 8,			//x,y,z
 	0, LPOSMOVE_LIFT,		//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP4,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19661,7 +19661,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_6 =		//lift 4
 	LPOSID0103_LIFT04,		//id
 	56, 225, 8,			//x,y,z
 	0, LPOSMOVE_LIFT,		//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP4,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19671,7 +19671,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_7 =		//lift 5
 	LPOSID0103_LIFT05,		//id
 	49, 225, 31,			//x,y,z
 	0, LPOSMOVE_LIFT,		//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP4,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19681,7 +19681,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_8 =		//lift 6
 	LPOSID0103_LIFT06,		//id
 	65, 225, 31,			//x,y,z
 	ZCHG_MID_Z0103_3_4, LPOSMOVE_ZONE_DOWN,	//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP3C,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19691,18 +19691,18 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_9 =		//lift 7
 	LPOSID0103_LIFT07,		//id
 	56, 225, 52,			//x,y,z
 	0, LPOSMOVE_LIFT,		//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP4,		//draw obj
 	ZLINKMFLAG_MAX,
 };
 
-#if 0	//dŠ|‚¯ŠÈˆÕ‰»‚É‚æ‚è”p~
+#if 0	//ä»•æ›ã‘ç°¡æ˜“åŒ–ã«ã‚ˆã‚Šå»ƒæ­¢
 static const LINKPOS_DATA DATA_LinkPosZ0103_10 =		//lift 8
 {
 	LPOSID0103_LIFT08,			//id
 	33, 225, 52,			//x,y,z
 	0, LPOSMOVE_LIFT,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP4,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19713,7 +19713,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_200 =		//lift 2-0
 	LPOSID0103_LIFT200,		//id
 	33, 233, 15,			//x,y,z
 	0, LPOSMOVE_LIFT,		//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP5,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19723,7 +19723,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_201 =		//lift 2-1
 	LPOSID0103_LIFT201,			//id
 	49, 233, 15,			//x,y,z
 	0, LPOSMOVE_LIFT,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP5,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19733,7 +19733,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_202 =		//lift 2-2
 	LPOSID0103_LIFT202,			//id
 	65, 233, 15,			//x,y,z
 	0, LPOSMOVE_LIFT,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP5,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19743,7 +19743,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_203 =		//lift 2-3
 	LPOSID0103_LIFT203,			//id
 	65, 233, 45,			//x,y,z
 	0, LPOSMOVE_LIFT,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP5,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19753,7 +19753,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_204 =		//lift 2-4
 	LPOSID0103_LIFT204,			//id
 	65, 233, 52,			//x,y,z
 	0, LPOSMOVE_LIFT,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP5,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19763,7 +19763,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_205 =		//lift 2-5
 	LPOSID0103_LIFT205,			//id
 	41, 233, 52,			//x,y,z
 	0, LPOSMOVE_LIFT,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP5,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19773,18 +19773,18 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_206 =		//lift 2-6
 	LPOSID0103_LIFT206,			//id
 	49, 233, 45,			//x,y,z
 	0, LPOSMOVE_LIFT,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP5,		//draw obj
 	ZLINKMFLAG_MAX,
 };
 
-#if 0	//dŠ|‚¯ŠÈˆÕ‰»‚É‚æ‚è”p~
+#if 0	//ä»•æ›ã‘ç°¡æ˜“åŒ–ã«ã‚ˆã‚Šå»ƒæ­¢
 static const LINKPOS_DATA DATA_LinkPosZ0103_207 =		//lift 2-7
 {
 	LPOSID0103_LIFT207,			//id
 	26, 233, 31,			//x,y,z
 	0, LPOSMOVE_LIFT,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP5,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19794,7 +19794,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_208 =		//lift 2-8
 	LPOSID0103_LIFT208,			//id
 	41, 233, 31,			//x,y,z
 	0, LPOSMOVE_LIFT,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP5,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19805,7 +19805,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_209 =		//lift 2-9
 	LPOSID0103_LIFT209,			//id
 	26, 233, 38,			//x,y,z
 	0, LPOSMOVE_LIFT,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP5,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19815,7 +19815,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0103_210 =		//lift 2-10
 	LPOSID0103_LIFT210,			//id
 	49, 233, 38,			//x,y,z
 	0, LPOSMOVE_LIFT,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP5,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19831,7 +19831,7 @@ static const LINKPOS_DATA * DATA_LinkPosTbl_Z0103[] =
 	&DATA_LinkPosZ0103_7,
 	&DATA_LinkPosZ0103_8,
 	&DATA_LinkPosZ0103_9,
-//	&DATA_LinkPosZ0103_10,	dŠ|‚¯ŠÈˆÕ‰»‚É‚æ‚è”p~
+//	&DATA_LinkPosZ0103_10,	ä»•æ›ã‘ç°¡æ˜“åŒ–ã«ã‚ˆã‚Šå»ƒæ­¢
 	&DATA_LinkPosZ0103_200,
 	&DATA_LinkPosZ0103_201,
 	&DATA_LinkPosZ0103_202,
@@ -19839,7 +19839,7 @@ static const LINKPOS_DATA * DATA_LinkPosTbl_Z0103[] =
 	&DATA_LinkPosZ0103_204,
 	&DATA_LinkPosZ0103_205,
 	&DATA_LinkPosZ0103_206,
-#if 0						//dŠ|‚¯ŠÈˆÕ‰»‚É‚æ‚è”p~
+#if 0						//ä»•æ›ã‘ç°¡æ˜“åŒ–ã«ã‚ˆã‚Šå»ƒæ­¢
 	&DATA_LinkPosZ0103_207,
 	&DATA_LinkPosZ0103_208,
 #endif
@@ -19849,14 +19849,14 @@ static const LINKPOS_DATA * DATA_LinkPosTbl_Z0103[] =
 };
 
 //--------------------------------------------------------------
-///	‚SŠK‘w@Ú‘±ˆÊ’u
+///	ï¼”éšå±¤ã€€æ¥ç¶šä½ç½®
 //--------------------------------------------------------------
 static const LINKPOS_DATA DATA_LinkPosZ0104_0 =		//->3
 {
 	LPOSID0104_ZUP_4_3,		//id
 	65, 193, 31,			//x,y,z
 	ZCHG_MID_Z0104_4_3, LPOSMOVE_ZONE_UP,	//move no, move type
-	LPOSID0103_LIFT06,		//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	LPOSID0103_LIFT06,		//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP3C,		//draw obj
 	ZLINKMFLAG_0304,
 };
@@ -19866,7 +19866,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0104_1 =		//4A->5A
 	LPOSID0104_ZDOWN_4A_5A,						//id
 	79, 193, 62,			//x,y,z
 	ZCHG_MID_Z0104_4A_5A, LPOSMOVE_ZONE_DOWN,	//move no, move type
-	LPOSID0105_ZUP_5A_4A,					//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	LPOSID0105_ZUP_5A_4A,					//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP8,		//draw obj
 	ZLINKMFLAG_0504A,
 };
@@ -19876,7 +19876,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0104_2 =		//4B->5B
 	LPOSID0104_ZDOWN_4B_5B,		//id
 	95, 193, 70,			//x,y,z
 	ZCHG_MID_Z0104_4B_5B, LPOSMOVE_ZONE_DOWN,	//move no, move type
-	LPOSID0105_ZUP_5B_4B,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	LPOSID0105_ZUP_5B_4B,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP8,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19886,7 +19886,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0104_3 =		//4A->6A
 	LPOSID0104_ZDOWN_4_6,	//id
 	96, 193, 43,			//x,y,z
 	ZCHG_MID_Z0104_4_6_0, LPOSMOVE_ZONE_DOWN,	//move no, move type
-	2,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	2,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP7,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19901,14 +19901,14 @@ static const LINKPOS_DATA * DATA_LinkPosTbl_Z0104[] =
 };
 
 //--------------------------------------------------------------
-///	5ŠK‘w@Ú‘±ˆÊ’u
+///	5éšå±¤ã€€æ¥ç¶šä½ç½®
 //--------------------------------------------------------------
 static const LINKPOS_DATA DATA_LinkPosZ0105_0 =		//5A->4A
 {
 	LPOSID0105_ZUP_5A_4A,						//id
 	79, 161, 62,			//x,y,z
 	ZCHG_MID_Z0105_5A_4A, LPOSMOVE_ZONE_UP,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP8,		//draw obj
 	ZLINKMFLAG_0405A,
 };
@@ -19918,7 +19918,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0105_1 =		//5B->4A
 	LPOSID0105_ZUP_5B_4B,						//id
 	95, 161, 70,			//x,y,z
 	ZCHG_MID_Z0105_5B_4B, LPOSMOVE_ZONE_UP,	//move no, move type
-	2,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	2,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP8,		//draw obj
 	ZLINKMFLAG_0405B,
 };
@@ -19928,7 +19928,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0105_2 =		//->6
 	LPOSID0105_ZDOWN_5_6,					//id
 	78, 161, 77,			//x,y,z
 	ZCHG_MID_Z0105_5_6, LPOSMOVE_ZONE_DOWN,	//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP15,		//draw obj
 	ZLINKMFLAG_06B05,
 };
@@ -19942,14 +19942,14 @@ static const LINKPOS_DATA * DATA_LinkPosTbl_Z0105[] =
 };
 
 //--------------------------------------------------------------
-///	6ŠK‘w@Ú‘±ˆÊ’u
+///	6éšå±¤ã€€æ¥ç¶šä½ç½®
 //--------------------------------------------------------------
 static const LINKPOS_DATA DATA_LinkPosZ0107_0 =		//->5
 {
 	LPOSID0107_ZUP_06_05,					//id
 	78, 129, 77,			//x,y,z
 	ZCHG_MID_Z0107_6_5, LPOSMOVE_ZONE_UP,	//move no, move type
-	2,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	2,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP15,		//draw obj
 	ZLINKMFLAG_0506B,
 };
@@ -19959,7 +19959,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0107_1 =		//->7
 	LPOSID0107_ZDOWN_06_07,						//id
 	87, 129, 67,			//x,y,z
 	ZCHG_MID_Z0107_6_7, LPOSMOVE_ZONE_DOWN,	//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP17,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -19969,7 +19969,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0107_2 =		//->4
 	LPOSID0107_ZUP_06_04,						//id
 	96, 129, 43,			//x,y,z
 	ZCHG_MID_Z0107_6_4_0, LPOSMOVE_ZONE_UP,	//move no, move type
-	3,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	3,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP7,		//draw obj
 	ZLINKMFLAG_0406A,
 };
@@ -19983,14 +19983,14 @@ static const LINKPOS_DATA * DATA_LinkPosTbl_Z0107[] =
 };
 
 //--------------------------------------------------------------
-///	7ŠK‘w@Ú‘±ˆÊ’u
+///	7éšå±¤ã€€æ¥ç¶šä½ç½®
 //--------------------------------------------------------------
 static const LINKPOS_DATA DATA_LinkPosZ0108_0 =		//->6
 {
 	0,						//id
 	87, 115, 67,			//x,y,z
 	ZCHG_MID_Z0108_7_6, LPOSMOVE_ZONE_UP,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP17,		//draw obj
 	ZLINKMFLAG_0607,
 };
@@ -20000,7 +20000,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0108_1 =		//->8
 	1,						//id
 	85, 115, 86,			//x,y,z
 	ZCHG_MID_Z0108_7_8, LPOSMOVE_ZONE_DOWN,	//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP18,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -20013,14 +20013,14 @@ static const LINKPOS_DATA * DATA_LinkPosTbl_Z0108[] =
 };
 
 //--------------------------------------------------------------
-///	8ŠK‘wA@Ú‘±ˆÊ’u
+///	8éšå±¤Aã€€æ¥ç¶šä½ç½®
 //--------------------------------------------------------------
 static const LINKPOS_DATA DATA_LinkPosZ0109_0 =		//->7
 {
 	0,					//id
 	85, 65, 86,			//x,y,z
 	ZCHG_MID_Z0109_8_7,LPOSMOVE_ZONE_UP,	//move no, move type
-	1,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	1,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP18,		//draw obj
 	ZLINKMFLAG_0708,
 };
@@ -20031,7 +20031,7 @@ static const LINKPOS_DATA DATA_LinkPosZ0109_1 =
 	0,						//id
 	35, 225, 47,			//x,y,z
 	ZCHG_MID_Z0111_1, LPOSMOVE_ZONE_DOWN,	//move no, move type
-	0,						//ƒ][ƒ“ƒ`ƒFƒ“ƒWŒã‚ÌID
+	0,						//ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å¾Œã®ID
 	TWOBJTYPE_STEP3A,		//draw obj
 	ZLINKMFLAG_MAX,
 };
@@ -20044,7 +20044,7 @@ static const LINKPOS_DATA * DATA_LinkPosTbl_Z0109[] =
 };
 
 //--------------------------------------------------------------
-///	ƒ][ƒ“•ÊƒŠƒ“ƒNƒe[ƒuƒ‹
+///	ã‚¾ãƒ¼ãƒ³åˆ¥ãƒªãƒ³ã‚¯ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const TW_LINKPOS_ZONEDATA DATA_TwZoneLinkPosTbl[TW_ZONELINK_MAX] =
 {
@@ -20059,7 +20059,7 @@ static const TW_LINKPOS_ZONEDATA DATA_TwZoneLinkPosTbl[TW_ZONELINK_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒ][ƒ“•ÏX“®ìƒe[ƒuƒ‹
+///	ã‚¾ãƒ¼ãƒ³å¤‰æ›´å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const LINKPOS_ZONECHGMOVEDATA
 	DATA_LinkPosZoneChgMoveTbl[ZCHG_MID_MAX] =
@@ -20155,10 +20155,10 @@ static const LINKPOS_ZONECHGMOVEDATA
 };
 
 //==============================================================================
-///	ƒXƒNƒŠƒvƒg
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgˆ—ƒe[ƒuƒ‹
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const TW_SCR_PROC * DATA_ScrCmdProcTbl[TWSCRCODE_MAX] =
 {
@@ -20183,10 +20183,10 @@ static const TW_SCR_PROC * DATA_ScrCmdProcTbl[TWSCRCODE_MAX] =
 };
 
 //==============================================================================
-///	À•WƒXƒNƒŠƒvƒg@0101
+///	åº§æ¨™ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€0101
 //==============================================================================
 //--------------------------------------------------------------
-///	À•WƒXƒNƒŠƒvƒg@ƒVƒƒi‰ï˜b
+///	åº§æ¨™ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚·ãƒ­ãƒŠä¼šè©±
 //--------------------------------------------------------------
 static const SCRDATA_SCRCALL DataScr0101_00 =
 {SCRID_D34R0101_SIRONA01};
@@ -20206,16 +20206,16 @@ static const SCRPOSDATA DATA_ScrPos0101[] =
 };
 
 //==============================================================================
-//	À•WƒXƒNƒŠƒvƒg	0102
+//	åº§æ¨™ã‚¹ã‚¯ãƒªãƒ—ãƒˆ	0102
 //==============================================================================
 //--------------------------------------------------------------
-///	À•WƒXƒNƒŠƒvƒg@ƒVƒƒiˆÚ“®
+///	åº§æ¨™ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚·ãƒ­ãƒŠç§»å‹•
 //--------------------------------------------------------------
 static const SCRDATA_SCRCALL DataScr0102_00 =
-{SCRID_D34R0102_MES01};							//ƒAƒOƒmƒ€ŒÄ‚Ño‚µ
+{SCRID_D34R0102_MES01};							//ã‚¢ã‚°ãƒãƒ å‘¼ã³å‡ºã—
 static const SCRDATA_EVSEQ DataScr0102_01 =
 {TWEVSEQ_03_00};
-static const SCRDATA_FLDOBJADD DataScr0102_02 =	//3‘w‚ÉƒVƒƒi‚ğ’Ç‰Á
+static const SCRDATA_FLDOBJADD DataScr0102_02 =	//3å±¤ã«ã‚·ãƒ­ãƒŠã‚’è¿½åŠ 
 {ZONE_ID_D34R0103,TW_OBJID_0103_SIRONA};
 static const TW_SCRDATA DATA_Scr0102_00[] =
 {
@@ -20232,10 +20232,10 @@ static const SCRPOSDATA DATA_ScrPos0102[] =
 };
 
 //==============================================================================
-//	À•WƒXƒNƒŠƒvƒg 0103
+//	åº§æ¨™ã‚¹ã‚¯ãƒªãƒ—ãƒˆ 0103
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì00 0-1-0
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®00 0-1-0
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_00 =
 {LPOSID0103_LIFT00,TRUE,HEROTWTYPE_ON,0,0,-8,{0,0,NUM_FX32(-4)}};
@@ -20252,7 +20252,7 @@ static const TW_SCRDATA DATA_Scr0103_Lift00[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì01 1-0-0
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®01 1-0-0
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_03 =
 {LPOSID0103_LIFT00,FALSE,HEROTWTYPE_NON,0,0,-8,{0,0,NUM_FX32(-4)}};
@@ -20269,7 +20269,7 @@ static const TW_SCRDATA DATA_Scr0103_Lift01[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì02 1-2-1
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®02 1-2-1
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_06 =
 {LPOSID0103_LIFT01,TRUE,HEROTWTYPE_ON,0,0,-8,{0,0,NUM_FX32(-4)}};
@@ -20286,7 +20286,7 @@ static const TW_SCRDATA DATA_Scr0103_Lift02[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì03 2-1-1
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®03 2-1-1
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_09 =
 {LPOSID0103_LIFT01,FALSE,HEROTWTYPE_NON,0,0,-8,{0,0,NUM_FX32(-4)}};
@@ -20303,7 +20303,7 @@ static const TW_SCRDATA DATA_Scr0103_Lift03[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì04 2-3-2
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®04 2-3-2
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_12 =
 {LPOSID0103_LIFT02,TRUE,HEROTWTYPE_ON,9,0,0,{NUM_FX32(4),0,0}};
@@ -20320,7 +20320,7 @@ static const TW_SCRDATA DATA_Scr0103_Lift04[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì05 3-2-2
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®05 3-2-2
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_15 =
 {LPOSID0103_LIFT02,FALSE,HEROTWTYPE_NON,9,0,0,{NUM_FX32(4),0,0}};
@@ -20337,7 +20337,7 @@ static const TW_SCRDATA DATA_Scr0103_Lift05[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì06 4-7-4
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®06 4-7-4
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_18 =
 {LPOSID0103_LIFT04,TRUE,HEROTWTYPE_ON,0,0,37,{0,0,NUM_FX32(4)}};
@@ -20354,7 +20354,7 @@ static const TW_SCRDATA DATA_Scr0103_Lift06[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì07 7-4-4
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®07 7-4-4
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_21 =
 {LPOSID0103_LIFT04,FALSE,HEROTWTYPE_NON,0,0,37,{0,0,NUM_FX32(4)}};
@@ -20371,7 +20371,7 @@ static const TW_SCRDATA DATA_Scr0103_Lift07[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì08 5-6-5
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®08 5-6-5
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_0800 =
 {LPOSID0103_LIFT05,TRUE,HEROTWTYPE_ON,9,0,0,{NUM_FX32(4),0,0}};
@@ -20388,7 +20388,7 @@ static const TW_SCRDATA DATA_Scr0103_Lift08[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì09 6-5-5
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®09 6-5-5
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_0901 =
 {LPOSID0103_LIFT05,FALSE,HEROTWTYPE_NON,9,0,0,{NUM_FX32(4),0,0}};
@@ -20405,9 +20405,9 @@ static const TW_SCRDATA DATA_Scr0103_Lift09[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì10 7-8-7
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®10 7-8-7
 //--------------------------------------------------------------
-#if 0	//dŠ|‚¯ŠÈˆÕ‰»‚É‚æ‚è”p~
+#if 0	//ä»•æ›ã‘ç°¡æ˜“åŒ–ã«ã‚ˆã‚Šå»ƒæ­¢
 static const SCRDATA_LIFTMOVE DataScr0103_1000 =
 {LPOSID0103_LIFT07,TRUE,HEROTWTYPE_ON,-16,0,0,{NUM_FX32(-4),0,0}};
 static const SCRDATA_ACMD DataScr0103_1001 =
@@ -20424,9 +20424,9 @@ static const TW_SCRDATA DATA_Scr0103_Lift10[] =
 #endif
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì11 8-7-7
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®11 8-7-7
 //--------------------------------------------------------------
-#if 0	//dŠ|‚¯ŠÈˆÕ‰»‚É‚æ‚è”p~
+#if 0	//ä»•æ›ã‘ç°¡æ˜“åŒ–ã«ã‚ˆã‚Šå»ƒæ­¢
 static const SCRDATA_LIFTMOVE DataScr0103_1100 =
 {LPOSID0103_LIFT07,FALSE,HEROTWTYPE_NON,-16,0,0,{NUM_FX32(-4),0,0}};
 static const SCRDATA_ACMD DataScr0103_1101 =
@@ -20443,7 +20443,7 @@ static const TW_SCRDATA DATA_Scr0103_Lift11[] =
 #endif
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-0 0-1-0
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-0 0-1-0
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_0_0 =
 {LPOSID0103_LIFT200,TRUE,HEROTWTYPE_GROUND,9,0,0,{NUM_FX32(4),0,0}};
@@ -20460,7 +20460,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift00[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-1 1-0-0
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-1 1-0-0
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_1_0 =
 {LPOSID0103_LIFT200,FALSE,HEROTWTYPE_GROUND,9,0,0,{NUM_FX32(4),0,0}};
@@ -20477,7 +20477,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift01[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-2 2-3-2
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-2 2-3-2
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_2_0 =
 {LPOSID0103_LIFT201,TRUE,HEROTWTYPE_GROUND,9,0,0,{NUM_FX32(4),0,0}};
@@ -20494,7 +20494,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift02[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-3 3-2-2
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-3 3-2-2
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_3_0 =
 {LPOSID0103_LIFT201,FALSE,HEROTWTYPE_GROUND,9,0,0,{NUM_FX32(4),0,0}};
@@ -20511,7 +20511,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift03[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-4 3-4-3
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-4 3-4-3
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_4_0 =
 {LPOSID0103_LIFT202,TRUE,HEROTWTYPE_GROUND,0,0,23,{0,0,NUM_FX32(4)}};
@@ -20528,7 +20528,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift04[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-5 4-3-3
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-5 4-3-3
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_5_0 =
 {LPOSID0103_LIFT202,FALSE,HEROTWTYPE_GROUND,0,0,23,{0,0,NUM_FX32(4)}};
@@ -20545,7 +20545,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift05[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-6 4-7-4
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-6 4-7-4
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_6_0 =
 {LPOSID0103_LIFT203,TRUE,HEROTWTYPE_GROUND,-9,0,0,{NUM_FX32(-4),0,0}};
@@ -20562,7 +20562,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift06[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-7 7-4-4
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-7 7-4-4
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_7_0 =
 {LPOSID0103_LIFT203,FALSE,HEROTWTYPE_GROUND,-9,0,0,{NUM_FX32(-4),0,0}};
@@ -20579,7 +20579,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift07[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-8 5-6-5
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-8 5-6-5
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_8_0 =
 {LPOSID0103_LIFT204,TRUE,HEROTWTYPE_GROUND,-17,0,0,{NUM_FX32(-4),0,0}};
@@ -20596,7 +20596,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift08[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-9 6-5-5
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-9 6-5-5
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_9_0 =
 {LPOSID0103_LIFT204,FALSE,HEROTWTYPE_GROUND,-17,0,0,{NUM_FX32(-4),0,0}};
@@ -20613,9 +20613,9 @@ static const TW_SCRDATA Data_Scr0103_2_Lift09[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-10 6-9-6
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-10 6-9-6
 //--------------------------------------------------------------
-#if 0	//dŠ|‚¯ŠÈˆÕ‰»‚É‚æ‚è”p~
+#if 0	//ä»•æ›ã‘ç°¡æ˜“åŒ–ã«ã‚ˆã‚Šå»ƒæ­¢
 static const SCRDATA_LIFTMOVE DataScr0103_2_10_0 =
 {LPOSID0103_LIFT205,TRUE,HEROTWTYPE_GROUND,0,0,-14,{0,0,NUM_FX32(-4)}};
 static const SCRDATA_ACMD DataScr0103_2_10_1 =
@@ -20632,9 +20632,9 @@ static const TW_SCRDATA Data_Scr0103_2_Lift10[] =
 #endif
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-11 9-6-6
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-11 9-6-6
 //--------------------------------------------------------------
-#if 0	//dŠ|‚¯ŠÈˆÕ‰»‚É‚æ‚è”p~
+#if 0	//ä»•æ›ã‘ç°¡æ˜“åŒ–ã«ã‚ˆã‚Šå»ƒæ­¢
 static const SCRDATA_LIFTMOVE DataScr0103_2_11_0 =
 {LPOSID0103_LIFT205,FALSE,HEROTWTYPE_GROUND,0,0,-14,{0,0,NUM_FX32(-4)}};
 static const SCRDATA_ACMD DataScr0103_2_11_1 =
@@ -20651,9 +20651,9 @@ static const TW_SCRDATA Data_Scr0103_2_Lift11[] =
 #endif
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-12 8-9-8
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-12 8-9-8
 //--------------------------------------------------------------
-#if 0	//dŠ|‚¯ŠÈˆÕ‰»‚É‚æ‚è”p~
+#if 0	//ä»•æ›ã‘ç°¡æ˜“åŒ–ã«ã‚ˆã‚Šå»ƒæ­¢
 static const SCRDATA_LIFTMOVE DataScr0103_2_12_0 =
 {LPOSID0103_LIFT207,TRUE,HEROTWTYPE_GROUND,8,0,0,{NUM_FX32(4),0,0}};
 static const SCRDATA_ACMD DataScr0103_2_12_1 =
@@ -20670,9 +20670,9 @@ static const TW_SCRDATA Data_Scr0103_2_Lift12[] =
 #endif
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-13 9-8-8
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-13 9-8-8
 //--------------------------------------------------------------
-#if 0	//dŠ|‚¯ŠÈˆÕ‰»‚É‚æ‚è”p~
+#if 0	//ä»•æ›ã‘ç°¡æ˜“åŒ–ã«ã‚ˆã‚Šå»ƒæ­¢
 static const SCRDATA_LIFTMOVE DataScr0103_2_13_0 =
 {LPOSID0103_LIFT207,FALSE,HEROTWTYPE_GROUND,8,0,0,{NUM_FX32(4),0,0}};
 static const SCRDATA_ACMD DataScr0103_2_13_1 =
@@ -20689,7 +20689,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift13[] =
 #endif
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-14 11‰º~->1ŠK->11ã¸
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-14 11ä¸‹é™->1éš->11ä¸Šæ˜‡
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_14_0 =
 {LPOSID0103_LIFT210,TRUE,HEROTWTYPE_ON,0,-8,0,{0,NUM_FX32(-2),0}};
@@ -20707,7 +20707,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift14[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-15 1ŠK->11‰º~->11ã¸
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-15 1éš->11ä¸‹é™->11ä¸Šæ˜‡
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_15_0 =
 {LPOSID0103_LIFT210,FALSE,HEROTWTYPE_ON,0,-8,0,{0,NUM_FX32(-2),0}};
@@ -20725,7 +20725,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift15[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-16 10‰º~->1ŠK->10ã¸
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-16 10ä¸‹é™->1éš->10ä¸Šæ˜‡
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_16_0 =
 {LPOSID0103_LIFT209,TRUE,HEROTWTYPE_ON,0,-8,0,{0,NUM_FX32(-2),0}};
@@ -20743,7 +20743,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift16[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒŠƒtƒgˆÚ“®‚»‚Ì2-17 1ŠK->10->‰º~->10ã¸
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒªãƒ•ãƒˆç§»å‹•ãã®2-17 1éš->10->ä¸‹é™->10ä¸Šæ˜‡
 //--------------------------------------------------------------
 static const SCRDATA_LIFTMOVE DataScr0103_2_17_0 =
 {LPOSID0103_LIFT209,FALSE,HEROTWTYPE_ON,0,-8,0,{0,NUM_FX32(-2),0}};
@@ -20761,7 +20761,7 @@ static const TW_SCRDATA Data_Scr0103_2_Lift17[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg 0103 lift 1
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆ 0103 lift 1
 //--------------------------------------------------------------
 static const SCRPOSDATA DATA_ScrPos0103[] =
 {
@@ -20789,7 +20789,7 @@ static const SCRPOSDATA DATA_ScrPos0103[] =
 	{63,233,52,TWFLAGTYPE_NON,0,Data_Scr0103_2_Lift08}, //2 5-6-5
 	{43,233,52,TWFLAGTYPE_NON,0,Data_Scr0103_2_Lift09},	//2 6-5-5
 	
-#if 0	//dŠ|‚¯ŠÈˆÕ‰»‚É‚æ‚è”p~
+#if 0	//ä»•æ›ã‘ç°¡æ˜“åŒ–ã«ã‚ˆã‚Šå»ƒæ­¢
 	{41,233,50,TWFLAGTYPE_NON,0,Data_Scr0103_2_Lift10}, //2 6-9-6
 	{41,233,33,TWFLAGTYPE_NON,0,Data_Scr0103_2_Lift11},	//2 9-6-6
 	{28,233,31,TWFLAGTYPE_NON,0,Data_Scr0103_2_Lift12},	//2 8-9-8
@@ -20801,14 +20801,14 @@ static const SCRPOSDATA DATA_ScrPos0103[] =
 	{28,233,38,TWFLAGTYPE_NON,0,Data_Scr0103_2_Lift16},
 	{31,225,38,TWFLAGTYPE_NON,0,Data_Scr0103_2_Lift17},
 	
-	{0,0,0,0,NULL}, //I’[
+	{0,0,0,0,NULL}, //çµ‚ç«¯
 };
 
 //==============================================================================
-//	À•WƒXƒNƒŠƒvƒg 0104
+//	åº§æ¨™ã‚¹ã‚¯ãƒªãƒ—ãƒˆ 0104
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒAƒJƒM“oê
+///	ã‚¢ã‚«ã‚®ç™»å ´
 //--------------------------------------------------------------
 static const SCRDATA_SCRCALL DataScr0104_0 =
 {SCRID_D34R0104_AKAGI00};
@@ -20823,18 +20823,18 @@ static const TW_SCRDATA DATA_Scr0104_0[] =
 
 static const SCRPOSDATA DATA_ScrPos0104[] =
 {
-	//ƒXƒgƒbƒp[ƒVƒƒi‚Æ‰ï˜b‚¹‚¸‚S‘w‚ÖˆÚ“®‚µ‚½ó‘Ô
+	//ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼ã‚·ãƒ­ãƒŠã¨ä¼šè©±ã›ãšï¼”å±¤ã¸ç§»å‹•ã—ãŸçŠ¶æ…‹
 	{65,193,41,TWFLAGTYPE_TWEVSEQ_EQ,TWEVSEQ_03_00,DATA_Scr0104_0},
-	//ƒXƒgƒbƒp[ƒVƒƒi‚Æ‰ï˜b‚µ‚S‘w‚ÖˆÚ“®‚µ‚½ó‘Ô
+	//ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼ã‚·ãƒ­ãƒŠã¨ä¼šè©±ã—ï¼”å±¤ã¸ç§»å‹•ã—ãŸçŠ¶æ…‹
 	{65,193,41,TWFLAGTYPE_TWEVSEQ_EQ,TWEVSEQ_03_01,DATA_Scr0104_0},
 	{0,0,0,0,NULL},
 };
 		
 //==============================================================================
-//	À•WƒXƒNƒŠƒvƒg 0105
+//	åº§æ¨™ã‚¹ã‚¯ãƒªãƒ—ãƒˆ 0105
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@‘ê‰º‚è
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ä¸‹ã‚Š
 //--------------------------------------------------------------
 static const SCRDATA_TAKIKUDARI DataScr0105_Taki0 =
 { 
@@ -20855,7 +20855,7 @@ static const TW_SCRDATA DATA_Scr0105_Taki[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒMƒ‰ƒeƒBƒi‰e00
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±00
 //--------------------------------------------------------------
 static const SCRDATA_GIRAS DataScr0105_Giras00 =
 {
@@ -20873,7 +20873,7 @@ static const TW_SCRDATA DATA_Scr0105_Giras00[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒMƒ‰ƒeƒBƒi‰e01
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±01
 //--------------------------------------------------------------
 static const SCRDATA_GIRAS DataScr0105_Giras01 =
 {
@@ -20891,7 +20891,7 @@ static const TW_SCRDATA DATA_Scr0105_Giras01[] =
 };
 
 //--------------------------------------------------------------
-///@ƒXƒNƒŠƒvƒg 0105
+///ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆ 0105
 //--------------------------------------------------------------
 static const SCRPOSDATA DATA_ScrPos0105[] =
 {
@@ -20906,14 +20906,14 @@ static const SCRPOSDATA DATA_ScrPos0105[] =
 	{65,161,57,TWFLAGTYPE_GIRASFLAG_OFF,GIRASFLAG_0500,DATA_Scr0105_Giras00},
 	{98,161,56,TWFLAGTYPE_GIRASFLAG_OFF,GIRASFLAG_0501,DATA_Scr0105_Giras01},
 	{98,161,57,TWFLAGTYPE_GIRASFLAG_OFF,GIRASFLAG_0501,DATA_Scr0105_Giras01},
-	{0,0,0,0,NULL}, //I’[
+	{0,0,0,0,NULL}, //çµ‚ç«¯
 };
 
 //==============================================================================
-//	À•WƒXƒNƒŠƒvƒg 0107
+//	åº§æ¨™ã‚¹ã‚¯ãƒªãƒ—ãƒˆ 0107
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@‘ê“o‚è
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Š
 //--------------------------------------------------------------
 static const SCRDATA_TAKINOBORI DATAScr0107_0 =
 {
@@ -20934,7 +20934,7 @@ static const TW_SCRDATA Data_Scr0107_Taki[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒ†ƒNƒV[“oê
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ãƒ¦ã‚¯ã‚·ãƒ¼ç™»å ´
 //--------------------------------------------------------------
 static const TW_SCRDATA Data_Scr0107_Yukushi[] =
 {
@@ -20943,7 +20943,7 @@ static const TW_SCRDATA Data_Scr0107_Yukushi[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒAƒOƒmƒ€“oê
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¢ã‚°ãƒãƒ ç™»å ´
 //--------------------------------------------------------------
 static const TW_SCRDATA Data_Scr0107_Agunomu[] =
 {
@@ -20952,7 +20952,7 @@ static const TW_SCRDATA Data_Scr0107_Agunomu[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒGƒ€ƒŠƒbƒg“oê
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¨ãƒ ãƒªãƒƒãƒˆç™»å ´
 //--------------------------------------------------------------
 static const TW_SCRDATA Data_Scr0107_Emurit[] =
 {
@@ -20961,7 +20961,7 @@ static const TW_SCRDATA Data_Scr0107_Emurit[] =
 };
 
 //--------------------------------------------------------------
-///@ƒXƒNƒŠƒvƒg 0107
+///ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆ 0107
 //--------------------------------------------------------------
 static const SCRPOSDATA DATA_ScrPos0107[] =
 {
@@ -20988,14 +20988,14 @@ static const SCRPOSDATA DATA_ScrPos0107[] =
 	{80,129,68,TWFLAGTYPE_EV_OFF,
 	 TWEVFLAGNO_0107EMURITEV,Data_Scr0107_Emurit},
 	 
-	{0,0,0,0,NULL}, //I’[
+	{0,0,0,0,NULL}, //çµ‚ç«¯
 };
 
 //==============================================================================
-//	À•WƒXƒNƒŠƒvƒg 0109
+//	åº§æ¨™ã‚¹ã‚¯ãƒªãƒ—ãƒˆ 0109
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒVƒƒiAƒAƒJƒM‰ï˜b
+///	ã‚·ãƒ­ãƒŠã€ã‚¢ã‚«ã‚®ä¼šè©±
 //--------------------------------------------------------------
 static const SCRDATA_SCRCALL DataScr0109_00 =
 {SCRID_D34R0109_SIROAKA00};
@@ -21009,7 +21009,7 @@ static const TW_SCRDATA DATA_Scr0109_0[] =
 };
 
 //--------------------------------------------------------------
-///	”ª‘wB‚Ö
+///	å…«å±¤Bã¸
 //--------------------------------------------------------------
 #if 0
 static const SCRDATA_SCRCALL DataScr0109_02 =
@@ -21031,10 +21031,10 @@ static const SCRPOSDATA DATA_ScrPos0109[] =
 };
 
 //==============================================================================
-//	À•WƒXƒNƒŠƒvƒg 0110
+//	åº§æ¨™ã‚¹ã‚¯ãƒªãƒ—ãƒˆ 0110
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@”ò‚ÑÎ•\¦
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€é£›ã³çŸ³è¡¨ç¤º
 //--------------------------------------------------------------
 static const SCRDATA_TWEVFLAG DATA_Scr0110_StoneON_00_00 =
 {TWEVFLAGNO_0110STONEEV_END};
@@ -21047,7 +21047,7 @@ static const TW_SCRDATA Data_Scr0110_StoneON_00[] =
 };
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@”ò‚ÑÎ”ñ•\¦
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€é£›ã³çŸ³éè¡¨ç¤º
 //--------------------------------------------------------------
 static const SCRDATA_TWEVFLAG DATA_Scr0110_StoneOFF_00_00 =
 {TWEVFLAGNO_0110STONEEV_END};
@@ -21060,7 +21060,7 @@ static const TW_SCRDATA Data_Scr0110_StoneOFF_00[] =
 };
 
 //--------------------------------------------------------------
-///	ƒMƒ‰ƒeƒBƒi‰e00
+///	ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±00
 //--------------------------------------------------------------
 static const SCRDATA_SCRCALL DataScr0110_Giras00_00 =
 {SCRID_D34R0110_GIRA_BARK};
@@ -21084,7 +21084,7 @@ static const TW_SCRDATA DATA_Scr0110_Giras00[] =
 };
 
 //--------------------------------------------------------------
-///	ƒMƒ‰ƒeƒBƒi‰e01
+///	ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±01
 //--------------------------------------------------------------
 static const SCRDATA_GIRAS DataScr0110_Giras01_00 =
 {
@@ -21103,7 +21103,7 @@ static const TW_SCRDATA DATA_Scr0110_Giras01[] =
 };
 
 //--------------------------------------------------------------
-///	ƒMƒ‰ƒeƒBƒi“oê
+///	ã‚®ãƒ©ãƒ†ã‚£ãƒŠç™»å ´
 //--------------------------------------------------------------
 static const SCRDATA_EVSEQ DataScr0110_GiraApp00 =
 {TWEVSEQ_08D_02};
@@ -21120,7 +21120,7 @@ static const TW_SCRDATA DATA_Scr0110_GiraApp[] =
 };
 
 //--------------------------------------------------------------
-///	À•WƒXƒNƒŠƒvƒg0110 ‚Ü‚Æ‚ß
+///	åº§æ¨™ã‚¹ã‚¯ãƒªãƒ—ãƒˆ0110 ã¾ã¨ã‚
 //--------------------------------------------------------------
 static const SCRPOSDATA DATA_ScrPos0110[] =
 {
@@ -21141,10 +21141,10 @@ static const SCRPOSDATA DATA_ScrPos0110[] =
 };
 
 //==============================================================================
-//	ƒXƒNƒŠƒvƒg@ƒ][ƒ“•ÊÀ•W‹N“®‚Ü‚Æ‚ß
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¾ãƒ¼ãƒ³åˆ¥åº§æ¨™èµ·å‹•ã¾ã¨ã‚
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@ƒ][ƒ“•ÊÀ•W‹N“®
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€ã‚¾ãƒ¼ãƒ³åˆ¥åº§æ¨™èµ·å‹•
 //--------------------------------------------------------------
 static const SCRPOSDATA_ZONE DATA_ScrPosDataZoneTbl[] =
 {
@@ -21214,7 +21214,7 @@ static const PUTOBJ_ZONEDATA DATA_PutOBJZoneDataTbl[] =
 //	TW_FLDOBJ_HEAD
 //==============================================================================
 //--------------------------------------------------------------
-///	‘æˆêŠK‘w
+///	ç¬¬ä¸€éšå±¤
 //--------------------------------------------------------------
 static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0101_0 =
 {
@@ -21262,7 +21262,7 @@ static const TW_FLDOBJ_HEAD *DATA_FldOBJHead_0101[] =
 };
 
 //--------------------------------------------------------------
-//	‘æ‚QŠK‘w
+//	ç¬¬ï¼’éšå±¤
 //--------------------------------------------------------------
 static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0102_0 =
 {
@@ -21291,9 +21291,9 @@ static const TW_FLDOBJ_HEAD *DATA_FldOBJHead_0102[] =
 };
 
 //--------------------------------------------------------------
-///	‘æOŠK‘w
+///	ç¬¬ä¸‰éšå±¤
 //--------------------------------------------------------------
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0103_0 =	//ƒVƒƒi‚»‚Ì1
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0103_0 =	//ã‚·ãƒ­ãƒŠãã®1
 {
 	TWFLAGTYPE_TWEVSEQ_EQ,TWEVSEQ_03_00,
 	TWFLDOBJ_ROT_ON,90,
@@ -21312,8 +21312,8 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0103_0 =	//ƒVƒƒi‚»‚Ì1
 	},
 };
 
-//‚R‘w˜b‚µ‚©‚¯Œã‚Éˆê‘w‚É–ß‚èAÄ“x‚QC‚R‘w‚ÉˆÚ“®Œã
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0103_1 =	//ƒVƒƒi‚»‚Ì2
+//ï¼“å±¤è©±ã—ã‹ã‘å¾Œã«ä¸€å±¤ã«æˆ»ã‚Šã€å†åº¦ï¼’ï¼Œï¼“å±¤ã«ç§»å‹•å¾Œ
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0103_1 =	//ã‚·ãƒ­ãƒŠãã®2
 {
 	TWFLAGTYPE_TWEVSEQ_EQ,TWEVSEQ_03_01,
 	TWFLDOBJ_ROT_ON,90,
@@ -21340,7 +21340,7 @@ static const TW_FLDOBJ_HEAD *DATA_FldOBJHead_0103[] =
 };
 
 //--------------------------------------------------------------
-//	‘æ‚SŠK‘w
+//	ç¬¬ï¼”éšå±¤
 //--------------------------------------------------------------
 static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0104_0 =
 {
@@ -21368,7 +21368,7 @@ static const TW_FLDOBJ_HEAD *DATA_FldOBJHead_0104[] =
 };
 
 //--------------------------------------------------------------
-//	‘æ‚TŠK‘w
+//	ç¬¬ï¼•éšå±¤
 //--------------------------------------------------------------
 static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0105_0 =
 {
@@ -21396,7 +21396,7 @@ static const TW_FLDOBJ_HEAD *DATA_FldOBJHead_0105[] =
 };
 
 //--------------------------------------------------------------
-//	‘æ˜ZŠK‘w
+//	ç¬¬å…­éšå±¤
 //--------------------------------------------------------------
 static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0107_0 =
 {
@@ -21536,9 +21536,9 @@ static const TW_FLDOBJ_HEAD *DATA_FldOBJHead_0107[] =
 };
 
 //--------------------------------------------------------------
-///	‘æµŠK‘w
+///	ç¬¬ä¸ƒéšå±¤
 //--------------------------------------------------------------
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_0 =	//7‘wŠâ0
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_0 =	//7å±¤å²©0
 {
 	TWFLAGTYPE_EV_ON,
 	TWEVFLAGNO_FALLROCK0_7,
@@ -21559,7 +21559,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_0 =	//7‘wŠâ0
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_1 =	//7‘wŠâ1
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_1 =	//7å±¤å²©1
 {
 	TWFLAGTYPE_EV_ON,
 	TWEVFLAGNO_FALLROCK1_7,
@@ -21580,7 +21580,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_1 =	//7‘wŠâ1
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_2 =	//7‘wŠâ2
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_2 =	//7å±¤å²©2
 {
 	TWFLAGTYPE_EV_ON,
 	TWEVFLAGNO_FALLROCK2_7,
@@ -21601,7 +21601,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_2 =	//7‘wŠâ2
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_3 =	//ƒGƒ€ƒŠƒbƒg
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_3 =	//ã‚¨ãƒ ãƒªãƒƒãƒˆ
 {
 	TWFLAGTYPE_EV_ON,
 	TWEVFLAGNO_0108EMURIT,
@@ -21622,7 +21622,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_3 =	//ƒGƒ€ƒŠƒbƒg
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_4 =	//ƒ†ƒNƒV[
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_4 =	//ãƒ¦ã‚¯ã‚·ãƒ¼
 {
 	TWFLAGTYPE_EV_ON,
 	TWEVFLAGNO_0108YUKUSHI,
@@ -21643,7 +21643,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_4 =	//ƒ†ƒNƒV[
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_5 =	//ƒAƒOƒmƒ€
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_5 =	//ã‚¢ã‚°ãƒãƒ 
 {
 	TWFLAGTYPE_EV_ON,
 	TWEVFLAGNO_0108AGUNOMU,
@@ -21664,7 +21664,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_5 =	//ƒAƒOƒmƒ€
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_6 =	//ƒVƒƒi@ƒXƒgƒbƒp[
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_6 =	//ã‚·ãƒ­ãƒŠã€€ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼
 {
 	TWFLAGTYPE_TWEVSEQ_EQ,
 	TWEVSEQ_04_00,
@@ -21685,7 +21685,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_6 =	//ƒVƒƒi@ƒXƒgƒbƒp[
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_7 = //ƒVƒƒi ƒXƒgƒbƒp[‰ğœ
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_7 = //ã‚·ãƒ­ãƒŠ ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼è§£é™¤
 {
 	TWFLAGTYPE_TWEVSEQ_EQ,
 	TWEVSEQ_07_00,
@@ -21706,7 +21706,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_7 = //ƒVƒƒi ƒXƒgƒbƒp[‰ğœ
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_8 = //Šâ—‚Æ‚µŒŠMSG OBJ
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_8 = //å²©è½ã¨ã—ç©´MSG OBJ
 {
 	TWFLAGTYPE_NON,
 	0,
@@ -21727,7 +21727,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_8 = //Šâ—‚Æ‚µŒŠMSG OBJ
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_9 = //Šâ—‚Æ‚µŒŠMSG OBJ
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_9 = //å²©è½ã¨ã—ç©´MSG OBJ
 {
 	TWFLAGTYPE_NON,
 	0,
@@ -21748,7 +21748,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_9 = //Šâ—‚Æ‚µŒŠMSG OBJ
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_10 = //Šâ—‚Æ‚µŒŠMSG OBJ
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_10 = //å²©è½ã¨ã—ç©´MSG OBJ
 {
 	TWFLAGTYPE_NON,
 	0,
@@ -21769,7 +21769,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_10 = //Šâ—‚Æ‚µŒŠMSG OBJ
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_11 = //Šâ—‚Æ‚µŒŠMSG OBJ
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_11 = //å²©è½ã¨ã—ç©´MSG OBJ
 {
 	TWFLAGTYPE_NON,
 	0,
@@ -21790,7 +21790,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_11 = //Šâ—‚Æ‚µŒŠMSG OBJ
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_12 = //Šâ—‚Æ‚µŒŠMSG OBJ
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_12 = //å²©è½ã¨ã—ç©´MSG OBJ
 {
 	TWFLAGTYPE_NON,
 	0,
@@ -21811,7 +21811,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_12 = //Šâ—‚Æ‚µŒŠMSG OBJ
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_13 = //Šâ—‚Æ‚µŒŠMSG OBJ
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_13 = //å²©è½ã¨ã—ç©´MSG OBJ
 {
 	TWFLAGTYPE_NON,
 	0,
@@ -21832,7 +21832,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_13 = //Šâ—‚Æ‚µŒŠMSG OBJ
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_14 = //Šâ—‚Æ‚µŒŠMSG OBJ
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_14 = //å²©è½ã¨ã—ç©´MSG OBJ
 {
 	TWFLAGTYPE_NON,
 	0,
@@ -21853,7 +21853,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_14 = //Šâ—‚Æ‚µŒŠMSG OBJ
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_15 = //Šâ—‚Æ‚µŒŠMSG OBJ
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_15 = //å²©è½ã¨ã—ç©´MSG OBJ
 {
 	TWFLAGTYPE_NON,
 	0,
@@ -21874,7 +21874,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_15 = //Šâ—‚Æ‚µŒŠMSG OBJ
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_16 = //Šâ—‚Æ‚µŒŠMSG OBJ
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_16 = //å²©è½ã¨ã—ç©´MSG OBJ
 {
 	TWFLAGTYPE_NON,
 	0,
@@ -21895,7 +21895,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_16 = //Šâ—‚Æ‚µŒŠMSG OBJ
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_17 =	//7‘wŠâ—‰ºŒã0
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_17 =	//7å±¤å²©è½ä¸‹å¾Œ0
 {
 	TWFLAGTYPE_EV_ON,
 	TWEVFLAGNO_FALLROCK0_OK,
@@ -21916,7 +21916,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_17 =	//7‘wŠâ—‰ºŒã0
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_18 =	//7‘wŠâ—‰ºŒã1
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_18 =	//7å±¤å²©è½ä¸‹å¾Œ1
 {
 	TWFLAGTYPE_EV_ON,
 	TWEVFLAGNO_FALLROCK1_OK,
@@ -21937,7 +21937,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_18 =	//7‘wŠâ—‰ºŒã1
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_19 =	//7‘wŠâ—‰ºŒã2
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0108_19 =	//7å±¤å²©è½ä¸‹å¾Œ2
 {
 	TWFLAGTYPE_EV_ON,
 	TWEVFLAGNO_FALLROCK2_OK,
@@ -21984,9 +21984,9 @@ static const TW_FLDOBJ_HEAD *DATA_FldOBJHead_0108[] =
 };
 
 //--------------------------------------------------------------
-///	‘æ”ªŠK‘w
+///	ç¬¬å…«éšå±¤
 //--------------------------------------------------------------
-//ƒVƒƒi‚»‚Ì‚P@”ª‘w“’B@ƒAƒJƒM‘Î˜b‘O
+//ã‚·ãƒ­ãƒŠãã®ï¼‘ã€€å…«å±¤åˆ°é”æ™‚ã€€ã‚¢ã‚«ã‚®å¯¾è©±å‰
 static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0109_0 =
 {
 	TWFLAGTYPE_TWEVSEQ_EQ,
@@ -22008,7 +22008,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0109_0 =
 	},
 };
 
-//ƒVƒƒi‚»‚Ì‚Q@ƒAƒJƒM‘Î˜bŒã
+//ã‚·ãƒ­ãƒŠãã®ï¼’ã€€ã‚¢ã‚«ã‚®å¯¾è©±å¾Œ
 static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0109_1 =
 {
 	TWFLAGTYPE_TWEVSEQ_EQ,
@@ -22030,7 +22030,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0109_1 =
 	},
 };
 
-//ƒVƒƒi‚»‚Ì‚R@ƒAƒJƒMŒˆ’…Œã‚Ì˜A‚ê•à‚«Œã
+//ã‚·ãƒ­ãƒŠãã®ï¼“ã€€ã‚¢ã‚«ã‚®æ±ºç€å¾Œã®é€£ã‚Œæ­©ãå¾Œ
 static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0109_2 =
 {
 	TWFLAGTYPE_TWEVSEQ_HI,
@@ -22052,7 +22052,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0109_2 =
 	},
 };
 
-//ƒAƒJƒM‚»‚Ì‚P@ƒAƒJƒM‘Î˜b‘O
+//ã‚¢ã‚«ã‚®ãã®ï¼‘ã€€ã‚¢ã‚«ã‚®å¯¾è©±å‰
 static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0109_3 =
 {
 	TWFLAGTYPE_TWEVSEQ_LOW,
@@ -22074,7 +22074,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0109_3 =
 	},
 };
 
-//ƒAƒJƒM‚»‚Ì‚P@ƒAƒJƒM‘Î˜bŒã
+//ã‚¢ã‚«ã‚®ãã®ï¼‘ã€€ã‚¢ã‚«ã‚®å¯¾è©±å¾Œ
 static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0109_4 =
 {
 	TWFLAGTYPE_TWEVSEQ_EQ,
@@ -22107,9 +22107,9 @@ static const TW_FLDOBJ_HEAD *DATA_FldOBJHead_0109[] =
 };
 
 //--------------------------------------------------------------
-///	‘æ”ª‘w[•”
+///	ç¬¬å…«å±¤æ·±éƒ¨
 //--------------------------------------------------------------
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_0 =	//ƒMƒ‰ƒeƒBƒi
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_0 =	//ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
 {
 	TWFLAGTYPE_TWEVSEQ_EQ,
 	TWEVSEQ_08D_02,
@@ -22130,7 +22130,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_0 =	//ƒMƒ‰ƒeƒBƒi
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_1 =	//ƒVƒƒi
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_1 =	//ã‚·ãƒ­ãƒŠ
 {
 	TWFLAGTYPE_EVENT,
 	0,
@@ -22151,7 +22151,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_1 =	//ƒVƒƒi
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_2 =	//ƒAƒJƒM
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_2 =	//ã‚¢ã‚«ã‚®
 {
 	TWFLAGTYPE_EVENT,
 	0,
@@ -22172,7 +22172,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_2 =	//ƒAƒJƒM
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_3 =	//ŒŠ
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_3 =	//ç©´
 {
 	TWFLAGTYPE_TWEVSEQ_EQ,
 	TWEVSEQ_08D_03,
@@ -22193,7 +22193,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_3 =	//ŒŠ
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_4 =	//“§–¾ƒVƒƒi˜b‚µ‚©‚¯
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0110_4 =	//é€æ˜ã‚·ãƒ­ãƒŠè©±ã—ã‹ã‘
 {
 	TWFLAGTYPE_TWEVSEQ_EQ,
 	TWEVSEQ_08D_03,
@@ -22225,9 +22225,9 @@ static const TW_FLDOBJ_HEAD *DATA_FldOBJHead_0110[] =
 };
 
 //--------------------------------------------------------------
-///	‘æ”ª‘w@‚»‚Ì‚Q
+///	ç¬¬å…«å±¤ã€€ãã®ï¼’
 //--------------------------------------------------------------
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0111_0 =	//ŒŠ
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0111_0 =	//ç©´
 {
 	TWFLAGTYPE_NON,
 	0,
@@ -22248,7 +22248,7 @@ static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0111_0 =	//ŒŠ
 	},
 };
 
-static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0111_1 =	//”­‹Ö‹…
+static const TW_FLDOBJ_HEAD DATA_FldOBJHead_0111_1 =	//ç™ºç¦çƒ
 {
 	TWFLAGTYPE_NON,
 	0,
@@ -22278,7 +22278,7 @@ static const TW_FLDOBJ_HEAD *DATA_FldOBJHead_0111[] =
 };
 
 //--------------------------------------------------------------
-///	ƒ][ƒ“•ÊTW_FLDOBJ_HEAD‚Ü‚Æ‚ß
+///	ã‚¾ãƒ¼ãƒ³åˆ¥TW_FLDOBJ_HEADã¾ã¨ã‚
 //--------------------------------------------------------------
 static const TW_FLDOBJ_ZONEDATA DATA_FldOBJZoneDataTbl[] =
 {
@@ -22329,7 +22329,7 @@ static const TW_FLDOBJ_ZONEDATA DATA_FldOBJZoneDataTbl[] =
 };
 
 //==============================================================================
-//	ƒfƒoƒbƒO
+//	ãƒ‡ãƒãƒƒã‚°
 //==============================================================================
 //----
 #ifdef PM_DEBUG
@@ -22340,13 +22340,13 @@ static const TW_FLDOBJ_ZONEDATA DATA_FldOBJZoneDataTbl[] =
 //----
 
 //==============================================================================
-//	g‚í‚È‚­‚È‚Á‚½‚ªQl‚Éc‚·
+//	ä½¿ã‚ãªããªã£ãŸãŒå‚è€ƒã«æ®‹ã™
 //==============================================================================
 //----
 #if 0
 //----
 //--------------------------------------------------------------
-///	À•W”­“®ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒCƒxƒ“ƒg”
+///	åº§æ¨™ç™ºå‹•ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆæ•°
 //--------------------------------------------------------------
 /*
 enum
@@ -22374,7 +22374,7 @@ enum
 */
 
 //--------------------------------------------------------------
-///	À•W”­“®©‹@ƒCƒxƒ“ƒg”
+///	åº§æ¨™ç™ºå‹•è‡ªæ©Ÿã‚¤ãƒ™ãƒ³ãƒˆæ•°
 //--------------------------------------------------------------
 /*
 enum
@@ -22396,13 +22396,13 @@ enum
 */
 
 //--------------------------------------------------------------
-///	l•¨‰ñ“]
+///	äººç‰©å›è»¢
 //--------------------------------------------------------------
 /*
 typedef enum
 {
-	OBJROTDIR_L = 0,	///<¶‰ñ‚è
-	OBJROTDIR_R,		///<‰E‰ñ‚è
+	OBJROTDIR_L = 0,	///<å·¦å›ã‚Š
+	OBJROTDIR_R,		///<å³å›ã‚Š
 }OBJROTDIR;
 */
 
@@ -22412,19 +22412,19 @@ typedef enum
 //--------------------------------------------------------------
 typedef struct
 {
-	u16 type;						//ƒCƒxƒ“ƒgƒ^ƒCƒv
-	s16 dir;						//”­“®•ûŒü
-	int param;						//ƒpƒ‰ƒƒ^
-	TW_GRID_RECT_SIZE rect;			//ƒCƒxƒ“ƒg”­¶‹éŒ`
-	s16 gx_size;					//ƒOƒŠƒbƒhˆÚ“®—ÊX
-	s16 gy_size;					//ƒOƒŠƒbƒhˆÚ“®—ÊY
-	s16 gz_size;					//ƒOƒŠƒbƒhˆÚ“®—ÊZ
-	s16 rot_val;					//OBJ‰ñ“]—Ê 360
-	int frame;						//ƒOƒŠƒbƒhˆÚ“®ƒtƒŒ[ƒ€
-	OFFS_VEC_TYPE offs_vec_type;	//ƒIƒtƒZƒbƒg‚ğ‚©‚¯‚éƒxƒNƒgƒ‹ƒ^ƒCƒv
-	OFFS_VEC_FLIP offs_vec_flip;	//ƒIƒtƒZƒbƒg‚Ì”½“]
-	s16 dir_after;					//ˆÚ“®Œã‚ÌOBJ•ûŒü
-	s16 form_after;					//ˆÚ“®Œã‚Ì©‹@ƒtƒH[ƒ€
+	u16 type;						//ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+	s16 dir;						//ç™ºå‹•æ–¹å‘
+	int param;						//ãƒ‘ãƒ©ãƒ¡ã‚¿
+	TW_GRID_RECT_SIZE rect;			//ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”ŸçŸ©å½¢
+	s16 gx_size;					//ã‚°ãƒªãƒƒãƒ‰ç§»å‹•é‡X
+	s16 gy_size;					//ã‚°ãƒªãƒƒãƒ‰ç§»å‹•é‡Y
+	s16 gz_size;					//ã‚°ãƒªãƒƒãƒ‰ç§»å‹•é‡Z
+	s16 rot_val;					//OBJå›è»¢é‡ 360
+	int frame;						//ã‚°ãƒªãƒƒãƒ‰ç§»å‹•ãƒ•ãƒ¬ãƒ¼ãƒ 
+	OFFS_VEC_TYPE offs_vec_type;	//ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’ã‹ã‘ã‚‹ãƒ™ã‚¯ãƒˆãƒ«ã‚¿ã‚¤ãƒ—
+	OFFS_VEC_FLIP offs_vec_flip;	//ã‚ªãƒ•ã‚»ãƒƒãƒˆã®åè»¢
+	s16 dir_after;					//ç§»å‹•å¾Œã®OBJæ–¹å‘
+	s16 form_after;					//ç§»å‹•å¾Œã®è‡ªæ©Ÿãƒ•ã‚©ãƒ¼ãƒ 
 }EVPOSDATA_WALLJUMP;
 #endif
 
@@ -22462,14 +22462,14 @@ typedef struct
 }CMACT_EVPOS_DATA;
 #endif
 
-#if 0	//–Ú•WŠp“xw’èŒ^
+#if 0	//ç›®æ¨™è§’åº¦æŒ‡å®šå‹
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@ƒtƒŒ[ƒ€‰ñ“]ƒAƒjƒ‚ğƒZƒbƒg
+ * OBJå›è»¢ã€€ãƒ•ãƒ¬ãƒ¼ãƒ å›è»¢ã‚¢ãƒ‹ãƒ¡ã‚’ã‚»ãƒƒãƒˆ
  * @param	work	TW_OBJ_ROT_WORK
- * @param	fldobj	‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR
- * @param	rot		–Ú•WŠp“x0-360
- * @param	frame	–Ú•WƒtƒŒ[ƒ€
+ * @param	fldobj	å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR
+ * @param	rot		ç›®æ¨™è§’åº¦0-360
+ * @param	frame	ç›®æ¨™ãƒ•ãƒ¬ãƒ¼ãƒ 
  * @param	dir		OBJROTDIR
  * @retval	nothing
  */
@@ -22536,7 +22536,7 @@ static void tw_OBJRotateAnmSet( TORNWORLD_WORK *tw, FIELD_OBJ_PTR fldobj,
 #endif
 
 //--------------------------------------------------------------
-///	À•W”­“®ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^
+///	åº§æ¨™ç™ºå‹•ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 #if 0
 static const CMACT_EVPOS_DATA DATA_CameraActionEventPosTbl[] =
@@ -22595,14 +22595,14 @@ static const CMACT_EVPOS_DATA DATA_CameraActionEventPosTbl[] =
 		{0,0,0}
 	},
 	
-	{	//I’[
+	{	//çµ‚ç«¯
 		{0,0,0,0,0,0},DIR_NOT
 	},
 };
 #endif
 
 //--------------------------------------------------------------
-///	À•W”­“®©‹@ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^ •ÇƒWƒƒƒ“ƒv
+///	åº§æ¨™ç™ºå‹•è‡ªæ©Ÿã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ å£ã‚¸ãƒ£ãƒ³ãƒ—
 //--------------------------------------------------------------
 #if 0
 static const EVPOSDATA_WALLJUMP DATA_JikiEventPosWallJumpTbl[] =
@@ -22650,7 +22650,7 @@ static const EVPOSDATA_WALLJUMP DATA_JikiEventPosWallJumpTbl[] =
 		-2,-2,0,90,32,OFFS_VEC_Y,OFFS_VEC_FLIP_NON,
 		DIR_RIGHT,HERO_FORM_NORMAL,
 	},
-	{	//I’[
+	{	//çµ‚ç«¯
 		EVPOSTYPE_MAX,
 	},
 };
@@ -22671,7 +22671,7 @@ static const EVPOSDATA_WALLJUMP DATA_JikiEventPosWallJumpTbl[] =
 #if 0
 //--------------------------------------------------------------
 /**
- * À•W‹N“®ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“@ƒJƒƒ‰‘€ì TCB
+ * åº§æ¨™èµ·å‹•ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã€€ã‚«ãƒ¡ãƒ©æ“ä½œ TCB
  * @param	tcb	TCB_PTR
  * @param	wk	tcb work TORNWORLD_WORK
  * @retval	nothing
@@ -22705,10 +22705,10 @@ static void tw_CameraActionTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * À•W‹N“®ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“@ƒZƒbƒg
+ * åº§æ¨™èµ·å‹•ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã€€ã‚»ãƒƒãƒˆ
  * @param	tw	TORNWORLD_WORK
  * @param	data	TW_CMACTDATA
- * @retval	BOOL	TRUE=ƒZƒbƒg FALSE=ƒZƒbƒg‚·‚é•K—v‚È‚µ
+ * @retval	BOOL	TRUE=ã‚»ãƒƒãƒˆ FALSE=ã‚»ãƒƒãƒˆã™ã‚‹å¿…è¦ãªã—
  */
 //--------------------------------------------------------------
 static BOOL tw_CameraActionSet(
@@ -22717,11 +22717,11 @@ static BOOL tw_CameraActionSet(
 	TW_CAMERA_WORK *cm = &tw->camera;
 	TW_CMACT_WORK *work = &cm->action_work;
 	
-	cm->angle_offs_true.x = data->cm_x;			//^‚Æ‚·‚é
+	cm->angle_offs_true.x = data->cm_x;			//çœŸã¨ã™ã‚‹
 	cm->angle_offs_true.y = data->cm_y;
 	cm->angle_offs_true.z = data->cm_z;
 	
-	if( cm->angle_offs.x == data->cm_x &&		//Šù‚Éˆê’v
+	if( cm->angle_offs.x == data->cm_x &&		//æ—¢ã«ä¸€è‡´
 		cm->angle_offs.y == data->cm_y &&
 		cm->angle_offs.z == data->cm_z ){
 		work->act_flag = FALSE;
@@ -22731,7 +22731,7 @@ static BOOL tw_CameraActionSet(
 	work->act_flag = TRUE;
 	work->frame = data->frame;
 	
-	work->offs_fx.x = NUM_FX32( cm->angle_offs.x );	//–Ú•W‚ğ•Û‘¶
+	work->offs_fx.x = NUM_FX32( cm->angle_offs.x );	//ç›®æ¨™ã‚’ä¿å­˜
 	work->offs_fx.y = NUM_FX32( cm->angle_offs.y );
 	work->offs_fx.z = NUM_FX32( cm->angle_offs.z );
 	
@@ -22751,7 +22751,7 @@ static BOOL tw_CameraActionSet(
 
 #if 0
 //--------------------------------------------------------------
-///	”ò‚ÑÎ
+///	é£›ã³çŸ³
 //--------------------------------------------------------------
 static const STEPSTONE_PUTDATA DATA_FStonePutTbl[STEPSTONE_PUT_MAX] =
 {
@@ -22782,7 +22782,7 @@ static const STEPSTONE_PUTDATA DATA_FStonePutTbl[STEPSTONE_PUT_MAX] =
 };
 
 //--------------------------------------------------------------
-///	”ò‚ÑÎ@ƒCƒxƒ“ƒgƒf[ƒ^
+///	é£›ã³çŸ³ã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 static const TW_STEPSTONE_EVDATA DATA_FStoneEvTbl[STEPSTONE_EVMAX] =
 {
@@ -22850,7 +22850,7 @@ int FldTornWorld_Attr3GJumpCheck(
 	gmc = SaveData_GetGimmickWork( GameSystem_GetSaveData(fsys) );
 	
 	if( GIMMICKWORK_GetAssignID(gmc) != FLD_GIMMICK_TORNWORLD ){
-		return( FALSE );	//”j‚ê‚½¢ŠE‚Å‚Í‚È‚¢
+		return( FALSE );	//ç ´ã‚ŒãŸä¸–ç•Œã§ã¯ãªã„
 	}
 	
 	while( pos->dir != DIR_NOT ){
@@ -22866,11 +22866,11 @@ int FldTornWorld_Attr3GJumpCheck(
 
 #if 0
 //==============================================================================
-//	ƒŠƒ“ƒNÀ•W
+//	ãƒªãƒ³ã‚¯åº§æ¨™
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒ][ƒ“ID‚É‘Î‰‚·‚éƒŠƒ“ƒNÀ•Wƒf[ƒ^‚ğæ“¾
+ * æŒ‡å®šã•ã‚ŒãŸã‚¾ãƒ¼ãƒ³IDã«å¯¾å¿œã™ã‚‹ãƒªãƒ³ã‚¯åº§æ¨™ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  * @param	zone_id
  * @retval	TW_ZONE_LINKPOS
  */
@@ -22888,12 +22888,12 @@ static const TW_ZONE_LINKPOS * tw_LinkPosZoneDataGet( int zone_id )
 
 //--------------------------------------------------------------
 /**
- * Œ»ƒ][ƒ“‚Å‚ÌƒŠƒ“ƒNÀ•WŠY“–ƒ`ƒFƒbƒN
+ * ç¾ã‚¾ãƒ¼ãƒ³ã§ã®ãƒªãƒ³ã‚¯åº§æ¨™è©²å½“ãƒã‚§ãƒƒã‚¯
  * @param	tw	TORNWORLD_WORK
- * @param	gx	ƒOƒŠƒbƒhX
- * @param	gy	ƒOƒŠƒbƒhY
- * @param	gz	ƒOƒŠƒbƒhZ
- * @retval	TW_LINKPOS	NULL=ŠY“––³‚µ
+ * @param	gx	ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gy	ã‚°ãƒªãƒƒãƒ‰Y
+ * @param	gz	ã‚°ãƒªãƒƒãƒ‰Z
+ * @retval	TW_LINKPOS	NULL=è©²å½“ç„¡ã—
  */
 //--------------------------------------------------------------
 static const TW_LINKPOS * tw_ZoneLinkPosDataCheck(
@@ -22911,7 +22911,7 @@ static const TW_LINKPOS * tw_ZoneLinkPosDataCheck(
 		while( tbl[i] != NULL ){
 			link = tbl[i];
 			if( link->gz == gz && link->gx == gx && link->gy == gy ){
-				OS_Printf( "ƒ][ƒ“ƒ`ƒFƒ“ƒWƒCƒxƒ“ƒg‹N“® %d\n", i );
+				OS_Printf( "ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹• %d\n", i );
 				return( link );
 			}
 			i++;
@@ -22942,9 +22942,9 @@ static const TW_LINKPOS * tw_ZoneLinkPosDataCheck(
 					work->debug++;
 					work->debug %= 3;
 					switch( work->debug ){
-					case 0: OS_Printf( "Â•ÏX\n" ); break;
-					case 1: OS_Printf( "Ô•ÏX\n" ); break;
-					case 2: OS_Printf( "—Î•ÏX\n" ); break;
+					case 0: OS_Printf( "é’å¤‰æ›´\n" ); break;
+					case 1: OS_Printf( "èµ¤å¤‰æ›´\n" ); break;
+					case 2: OS_Printf( "ç·‘å¤‰æ›´\n" ); break;
 					}
 				}
 				
@@ -22974,9 +22974,9 @@ static const TW_LINKPOS * tw_ZoneLinkPosDataCheck(
 #if 0
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@‰Šú‰»
+ * OBJå›è»¢ã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	max	‰ñ“]‚³‚¹‚éOBJÅ‘å”
+ * @param	max	å›è»¢ã•ã›ã‚‹OBJæœ€å¤§æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -22996,9 +22996,9 @@ static void tw_OBJRotateProc_Init( TORNWORLD_WORK *tw, int max )
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@‰ñ“]ƒpƒ‰ƒƒ^‰Šú‰»
+ * OBJå›è»¢ã€€å›è»¢ãƒ‘ãƒ©ãƒ¡ã‚¿åˆæœŸåŒ–
  * @param	tw		TORNWORLD_WORK
- * @param	act		‰ñ“]‚³‚¹‚éƒ‚ƒfƒ‹‚ğ‚ÂBLACT_WORK_PTR
+ * @param	act		å›è»¢ã•ã›ã‚‹ãƒ¢ãƒ‡ãƒ«ã‚’æŒã¤BLACT_WORK_PTR
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -23010,7 +23010,7 @@ static void tw_OBJRotateProc_ActMdlInit(
 	NNSG3dResTex *pResTex = BLACT_ResTexGet( act );
 	NNSG3dRenderObj *pRndObj = BLACT_RenderObjGet( act );
 	
-	GF_ASSERT( work->pResAnm == NULL );	//‰Šú‰»Ï‚İ
+	GF_ASSERT( work->pResAnm == NULL );	//åˆæœŸåŒ–æ¸ˆã¿
 	
 	sys_InitAllocator( &work->Allocator, HEAPID_FIELD, 4 );
 	
@@ -23026,7 +23026,7 @@ static void tw_OBJRotateProc_ActMdlInit(
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@íœ
+ * OBJå›è»¢ã€€å‰Šé™¤
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -23049,7 +23049,7 @@ static void tw_OBJRotateProc_Delete( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@w’èOBJ‚É‰ñ“]“®ì‚ğ•t‚¯‚éˆ×‚É“o˜^
+ * OBJå›è»¢ã€€æŒ‡å®šOBJã«å›è»¢å‹•ä½œã‚’ä»˜ã‘ã‚‹ç‚ºã«ç™»éŒ²
  * @param	tw	TORNWORLD_WORK
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	rot	0-359
@@ -23079,7 +23079,7 @@ static void tw_OBJRotate_RegOBJ(
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@w’èOBJ‚É‰ñ“]“®ì‚ğ•t‚¯‚éˆ×‚É“o˜^‚µ‚½‚à‚Ì‚ğˆ—
+ * OBJå›è»¢ã€€æŒ‡å®šOBJã«å›è»¢å‹•ä½œã‚’ä»˜ã‘ã‚‹ç‚ºã«ç™»éŒ²ã—ãŸã‚‚ã®ã‚’å‡¦ç†
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -23106,10 +23106,10 @@ static void tw_OBJRotateProc_RegOBJProc( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@OBJ‚É‰ñ“]“®ì‚ğ•t‚¯‚é
+ * OBJå›è»¢ã€€OBJã«å›è»¢å‹•ä½œã‚’ä»˜ã‘ã‚‹
  * @param	tw	TORNWORLD_WORK
- * @param	fldobj	‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR
- * @param	rot		Šp“x 0-359
+ * @param	fldobj	å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR
+ * @param	rot		è§’åº¦ 0-359
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -23121,7 +23121,7 @@ static void tw_OBJRotate_ModelSet(
 	TW_OBJ_ROT_WORK *tbl = work->rot_tbl;
 	BLACT_WORK_PTR act = FieldOBJ_DrawBlAct00_BlActPtrGet( fldobj );
 	
-	if( work->pResAnm == NULL ){	//‰Šú‰»‚ª‚Ü‚¾‚Å‚ ‚é
+	if( work->pResAnm == NULL ){	//åˆæœŸåŒ–ãŒã¾ã ã§ã‚ã‚‹
 		tw_OBJRotateProc_ActMdlInit( tw, act );
 	}
 	
@@ -23146,7 +23146,7 @@ static void tw_OBJRotate_ModelSet(
 
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[‚©‚çŒÄ‚Î‚ê‚éOBJ‰ñ“]
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ã‹ã‚‰å‘¼ã°ã‚Œã‚‹OBJå›è»¢
  * @param	blact	BLACT_WORK_PTR
  * @param	wk		TW_BLACT_ROT_WORK
  * @retval	nothing
@@ -23160,7 +23160,7 @@ static void BlActOBJRotateDraw( BLACT_WORK_PTR act, void *wk )
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@í’“ˆ—	TCBí’“ˆ—‚©‚çŒÄ‚Ño‚µ
+ * OBJå›è»¢ã€€å¸¸é§å‡¦ç†	TCBå¸¸é§å‡¦ç†ã‹ã‚‰å‘¼ã³å‡ºã—
  * @param	tw	TORNWORLD_WORK
  * @retval	nothing
  */
@@ -23183,7 +23183,7 @@ static void tw_OBJRotateProcTcbCall( TORNWORLD_WORK *tw )
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@ƒtƒŒ[ƒ€‰ñ“]ƒAƒjƒ
+ * OBJå›è»¢ã€€ãƒ•ãƒ¬ãƒ¼ãƒ å›è»¢ã‚¢ãƒ‹ãƒ¡
  * @param	work	TW_OBJ_ROT_WORK
  * @retval	nothing
  */
@@ -23196,7 +23196,7 @@ static void tw_OBJRotateAnm( TW_OBJ_ROT_WORK *work )
 		
 		if( work->add_frame == 0 ){
 			work->rot_fx = NUM_FX32( work->rot_org );
-//			OS_Printf( "UVƒAƒjƒ %dƒtƒŒ[ƒ€\n", FX32_NUM(work->rot_fx) );
+//			OS_Printf( "UVã‚¢ãƒ‹ãƒ¡ %dãƒ•ãƒ¬ãƒ¼ãƒ \n", FX32_NUM(work->rot_fx) );
 		}
 		
 		work->act_rot.frame = work->rot_fx;
@@ -23205,11 +23205,11 @@ static void tw_OBJRotateAnm( TW_OBJ_ROT_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@ƒtƒŒ[ƒ€‰ñ“]ƒAƒjƒ‚ğƒZƒbƒg
+ * OBJå›è»¢ã€€ãƒ•ãƒ¬ãƒ¼ãƒ å›è»¢ã‚¢ãƒ‹ãƒ¡ã‚’ã‚»ãƒƒãƒˆ
  * @param	work	TW_OBJ_ROT_WORK
- * @param	fldobj	‘ÎÛ‚Æ‚È‚éFIELD_OBJ_PTR
- * @param	rot		‘Œ¸’l
- * @param	frame	ƒtƒŒ[ƒ€
+ * @param	fldobj	å¯¾è±¡ã¨ãªã‚‹FIELD_OBJ_PTR
+ * @param	rot		å¢—æ¸›å€¤
+ * @param	frame	ãƒ•ãƒ¬ãƒ¼ãƒ 
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -23222,7 +23222,7 @@ static void tw_OBJRotateAnmSet(
 	
 	while( i < work->max ){
 		if( tbl->fldobj == fldobj ){
-			tbl->rot_fx = NUM_FX32( tbl->rot_org );	//ƒIƒŠƒWƒiƒ‹‚Å‰Šú‰»
+			tbl->rot_fx = NUM_FX32( tbl->rot_org );	//ã‚ªãƒªã‚¸ãƒŠãƒ«ã§åˆæœŸåŒ–
 			tbl->rot_add = NUM_FX32(rot) / frame;
 			tbl->add_frame = frame;
 			twAngleAdd360( &tbl->rot_org, rot );
@@ -23239,10 +23239,10 @@ static void tw_OBJRotateAnmSet(
 #if 0
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@ŠO•”ŒÄ‚Ño‚µ
+ * OBJå›è»¢ã€€å¤–éƒ¨å‘¼ã³å‡ºã—
  * @param	fsys	FIELDSYS_WORK
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	rot		‰ñ“]Šp“x 0-359
+ * @param	rot		å›è»¢è§’åº¦ 0-359
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -23257,10 +23257,10 @@ static void FldTornWorld_OBJRotateRegist(
 
 //--------------------------------------------------------------
 /**
- * OBJ‰ñ“]@ŠO•”ŒÄo‚µ@w’èOBJ‚Ì‰ñ“]Šp“x‚ğæ“¾
+ * OBJå›è»¢ã€€å¤–éƒ¨å‘¼å‡ºã—ã€€æŒ‡å®šOBJã®å›è»¢è§’åº¦ã‚’å–å¾—
  * @param	fsys	FIELDSYS_WORK
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		‰ñ“]Šp“x 0-359
+ * @retval	int		å›è»¢è§’åº¦ 0-359
  */
 //--------------------------------------------------------------
 int FldTornWorld_OBJRotateGet( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj )
@@ -23280,7 +23280,7 @@ int FldTornWorld_OBJRotateGet( FIELDSYS_WORK *fsys, FIELD_OBJ_PTR fldobj )
 		i++;
 	}
 	
-	return( 0 );	//“o˜^–³‚µ
+	return( 0 );	//ç™»éŒ²ç„¡ã—
 }
 #endif
 
@@ -23314,7 +23314,7 @@ ev_d28r0103_init_change_obj_del:
 
 
 /********************************************************************/
-/*								ƒnƒC								*/
+/*								ãƒã‚¤								*/
 /********************************************************************/
 ev_d28r0103_hai:
 	_TALK_OBJ_START
@@ -23330,21 +23330,21 @@ ev_d28r0103_hai:
 	_LOSE_CHECK			SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_d28r0103_legend_lose
 	
-	//4‚¾‚Á‚½‚çAFIGHT_POKE_GET
+	//4ã ã£ãŸã‚‰ã€FIGHT_POKE_GET
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_d28r0103_legend_lose
 
 	//
 	_SEACRET_POKE_RETRY_CHECK	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_d28r0103_legend_capture_ng
 
-//ƒnƒC•ß‚Ü‚¦‚½or“|‚µ‚½
+//ãƒã‚¤æ•ã¾ãˆãŸorå€’ã—ãŸ
 ev_d28r0103_legend_event_clear:
-	//ƒNƒŠƒAƒtƒ‰ƒOon
+	//ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°on
 	_FLAG_SET			FE_D28R0103_LEGEND_CLEAR
 	_TALK_OBJ_END
 	_END
 
-//ƒnƒC•ß‚Ü‚¦‘¹‚Ë‚½
+//ãƒã‚¤æ•ã¾ãˆæã­ãŸ
 ev_d28r0103_legend_capture_ng:
 	_TALKMSG			msg_d28r0103_sppoke3_02
 	_LAST_KEYWAIT
@@ -23352,21 +23352,21 @@ ev_d28r0103_legend_capture_ng:
 	_TALK_OBJ_END
 	_END
 
-//‘S–Å
+//å…¨æ»…
 ev_d28r0103_legend_lose:
 	_NORMAL_LOSE	
 	_TALK_OBJ_END
 	_END
 /********************************************************************/
-/*							ƒMƒ“ƒK’cŠ²•”							*/
+/*							ã‚®ãƒ³ã‚¬å›£å¹¹éƒ¨							*/
 /********************************************************************/
 ev_d28r0103_gkanbu3:
-	_TALK_OBJ_START_TURN_NOT	/*U‚èŒü‚«‚È‚µ*/
+	_TALK_OBJ_START_TURN_NOT	/*æŒ¯ã‚Šå‘ããªã—*/
 
 	_TALK_KEYWAIT	msg_d28r0103_gkanbu3_01
 	_TALK_CLOSE
 
-	/*U‚èŒü‚«@ƒrƒbƒNƒŠ*/
+	/*æŒ¯ã‚Šå‘ãã€€ãƒ“ãƒƒã‚¯ãƒª*/
 	_TURN_HERO_SITE
 	_OBJ_ANIME		D28R0103_GKANBU3,anm_d28r0103_gkanbu3_01
 	_OBJ_ANIME_WAIT
@@ -23376,7 +23376,7 @@ ev_d28r0103_gkanbu3:
 	_TALK_KEYWAIT	msg_d28r0103_gkanbu3_02
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	GINGALEADER3_01,0
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_d28r0103_battle_lose
@@ -23387,11 +23387,11 @@ ev_d28r0103_gkanbu3:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	//ƒMƒ“ƒK’cÁ‚·
+	//ã‚®ãƒ³ã‚¬å›£æ¶ˆã™
 	_OBJ_DEL		D28R0103_GKANBU3
 	_FLAG_SET		FE_L02_GINGA_WIN
 
-	/*L01‚ÌŒÎ*/
+	/*L01ã®æ¹–*/
 	_FLAG_SET		SYS_FLAG_BGM_D28
 
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -23402,7 +23402,7 @@ ev_d28r0103_gkanbu3:
 
 
 /********************************************************************/
-/*							‹¤’Ê”s–kˆ—							*/
+/*							å…±é€šæ•—åŒ—å‡¦ç†							*/
 /********************************************************************/
 ev_d28r0103_battle_lose:
 	_TRAINER_LOSE
@@ -23410,9 +23410,9 @@ ev_d28r0103_battle_lose:
 	_END
 #endif
 
-#if 0 //‹Œ‘ê“o‚è
+#if 0 //æ—§æ»ç™»ã‚Š
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒg@‘ê“o‚è@ˆ—”Ô†
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Šã€€å‡¦ç†ç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -23489,7 +23489,7 @@ static const TW_CMACTDATA DATA_TakiUpCmAct01 =
 
 //--------------------------------------------------------------
 /**
- * ‘êã‚è@©‹@ˆÚ“®
+ * æ»ä¸Šã‚Šã€€è‡ªæ©Ÿç§»å‹•
  * @param	tw	TORNWORLD_WORK
  * @param	work	SCRWORK_TAKINOBORI
  * @retval	nothing
@@ -23536,7 +23536,7 @@ static void ScrTakiNoboriMove( TORNWORLD_WORK *tw, SCRWORK_TAKINOBORI *work )
 
 //--------------------------------------------------------------
 /**
- * ‘êã‚è@ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“
+ * æ»ä¸Šã‚Šã€€ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
  * @param	tw	TORNWORLD_WORK
  * @param	work	SCRWORK_TAKINOBORI
  * @retval	nothing
@@ -23571,7 +23571,7 @@ static void ScrTakiNoboriCamera(
 
 //--------------------------------------------------------------
 /**
- * ‘êã‚è@‚ä‚ê
+ * æ»ä¸Šã‚Šã€€ã‚†ã‚Œ
  * @param	tw	TORNWORLD_WORK
  * @param	work	SCRWORK_TAKINOBORI
  * @retval	nothing
@@ -23596,10 +23596,10 @@ static void ScrTakiNoboriShake(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê“o‚è@‰Šú‰»
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Šã€€åˆæœŸåŒ–
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -23655,7 +23655,7 @@ static PROCRET ScrTakiNobori_Init(
 		t_pos.y = GRID_SIZE_FX32(H_GRID_G_GRID(gy)+2) + GRID_HALF_FX32;
 		t_pos.z = GRID_SIZE_FX32( gz ) + GRID_HALF_FX32;
 		
-		t_pos.y += NUM_FX32( -4 );	//’²®
+		t_pos.y += NUM_FX32( -4 );	//èª¿æ•´
 		
 //		FE_FldOBJNamiPokeRPosGet( eoa, &work->np_pos );
 		work->np_move_val.x = (t_pos.x - work->np_pos.x) / 32;
@@ -23685,10 +23685,10 @@ static PROCRET ScrTakiNobori_Init(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘êã‚è@‰‰ñ“®ì@‰ñ“]‚É•¹‚¹‚Ä‚ä‚Á‚­‚èˆÚ“®
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ä¸Šã‚Šã€€åˆå›å‹•ä½œã€€å›è»¢ã«ä½µã›ã¦ã‚†ã£ãã‚Šç§»å‹•
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -23734,10 +23734,10 @@ static PROCRET ScrTakiNobori_StartTurn(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê“o‚è@ˆÚ“®0
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Šã€€ç§»å‹•0
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -23762,9 +23762,9 @@ static PROCRET ScrTakiNobori_Move0(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê“o‚è@ƒ][ƒ“ƒ`ƒFƒ“ƒW 
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Šã€€ã‚¾ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ 
  * @param	tw	TORNWORLD_WORK
- * @retval	BOOL	TRUE=Ä‹A
+ * @retval	BOOL	TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static PROCRET ScrTakiNobori_ZoneChange(
@@ -23789,10 +23789,10 @@ static PROCRET ScrTakiNobori_ZoneChange(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê“o‚è@ˆÚ“®1
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Šã€€ç§»å‹•1
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -23844,10 +23844,10 @@ static PROCRET ScrTakiNobori_Move1(
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg@‘ê“o‚è@ˆÚ“®Œã‰ñ“]
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã€€æ»ç™»ã‚Šã€€ç§»å‹•å¾Œå›è»¢
  * @param	tw	TORNWORLD_WORK
- * @param	seq_no	ˆ—”Ô†
- * @param	data	ƒRƒ}ƒ“ƒhƒf[ƒ^
+ * @param	seq_no	å‡¦ç†ç•ªå·
+ * @param	data	ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  * @retval	PROCRET	PROCRET
  */
 //--------------------------------------------------------------
@@ -23884,7 +23884,7 @@ static PROCRET ScrTakiNobori_LastTurn(
 		FieldOBJ_DirMoveSet( fldobj, DIR_RIGHT );
 		Player_MoveBitSet_TWorld( jiki, HEROTWTYPE_ROOF );
 		
-		{	//©‹@Œ»’nŒ`ƒf[ƒ^ƒZƒbƒg
+		{	//è‡ªæ©Ÿç¾åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 			int gx,gy,gz;
 			twJikiGridPosGet( tw, &gx, &gy, &gz );
 			tw_MapDataGndDataPosDataSet( tw, gx, gy, gz, TW_GNDTYPE_MAX );
@@ -23904,7 +23904,7 @@ static PROCRET ScrTakiNobori_LastTurn(
 }
 
 //--------------------------------------------------------------
-///	ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹@‘ê“o‚è
+///	ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã€€æ»ç™»ã‚Š
 //--------------------------------------------------------------
 static const TW_SCR_PROC DATA_ScrTbl_TakiNobori[SEQNO_TAKINOBORI_MAX] =
 {

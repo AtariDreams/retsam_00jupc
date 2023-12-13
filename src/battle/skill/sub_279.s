@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_279.s
- *@brief	戦闘シーケンス
- *			AttackClientとDefenceClientの退避
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			AttackClient縺ｨDefenceClient縺ｮ騾驕ｿ
  *@author	HisashiSogabe
  *@data		2006.07.01
  *

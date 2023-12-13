@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_record.c
- * @brief	’n‰º‚Ì‹L˜^‚ğ•Û‘¶‚·‚éƒNƒ‰ƒX
+ * @brief	åœ°ä¸‹ã®è¨˜éŒ²ã‚’ä¿å­˜ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author	k.ohno
  * @date    2006.01.31
  */
@@ -26,15 +26,15 @@
 #include "savedata/undergrounddata.h"
 #include "savedata/record.h"
 
-// ˜b‚µ‚©‚¯ó‹µ\‘¢‘Ì
+// è©±ã—ã‹ã‘çŠ¶æ³æ§‹é€ ä½“
 typedef struct{
     UgRecordEndCallBack pFunc;
     void* pCallBackWork;
-    GF_BGL_BMPWIN  win;		// BMPƒEƒBƒ“ƒhƒEƒ[ƒN
+    GF_BGL_BMPWIN  win;		// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯
 	BMPLIST_DATA*  menulist;
-    BMPLIST_WORK*  lw;		// BMPƒƒjƒ…[ƒ[ƒN
+    BMPLIST_WORK*  lw;		// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
     pEndFunc endfunc;
-    u16 connectIndex;  // ‚Â‚È‚®e‹@‚ÌINDEX
+    u16 connectIndex;  // ã¤ãªãè¦ªæ©Ÿã®INDEX
     int msgIndex;
 } _TALK_WORK;
 
@@ -54,12 +54,12 @@ typedef struct _UNDER_RECORD {
 static UNDER_RECORD* _pUnderRecord = NULL;
 static void _talkDelele(TCB_PTR tcb, void* work);
 
-#define _MAX  (999999)   // ’l‚ÌÅ‘å
+#define _MAX  (999999)   // å€¤ã®æœ€å¤§
 
 
 //==============================================================================
 /**
- * ‰Šú‰»
+ * åˆæœŸåŒ–
  * @param   heapArea
  * @retval  none
  */
@@ -78,7 +78,7 @@ void UnderRecordInitialize(UNDER_RECORD* pRecord, SB_RECORD_DATA* pMyRec, SAVEDA
 
 //==============================================================================
 /**
- * ŠJ•ú
+ * é–‹æ”¾
  * @param   heapArea
  * @retval  none
  */
@@ -93,7 +93,7 @@ void UnderRecordFinalize(void)
 
 //==============================================================================
 /**
- * ƒŒƒR[ƒhƒƒjƒ…[‚ÌƒŠƒZƒbƒg
+ * ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒªã‚»ãƒƒãƒˆ
  * @param   none
  * @retval  none
  */
@@ -108,7 +108,7 @@ void UnderRecordReset(void)
 
 //==============================================================================
 /**
- * ÎŒ@‚è‚Ì•œ‹Aˆ—
+ * çŸ³æ˜ã‚Šã®å¾©å¸°å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -120,7 +120,7 @@ void UnderRecordReboot(void)
 
 //==============================================================================
 /**
- * ƒ[ƒNƒTƒCƒY‚ğ•Ô‚·
+ * ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param   none
  * @retval  size
  */
@@ -138,7 +138,7 @@ int UnderRecordGetWorkSize(void)
 
 //==============================================================================
 /**
- * ƒXƒe[ƒ^ƒX‰æ–Ê   •¶š•\¦
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢   æ–‡å­—è¡¨ç¤º
  * @param   none
  * @retval  none
  */
@@ -155,7 +155,7 @@ static NumGetFunc funcTbl[]={
     SecretBaseRecordGetStoneNum,
     SecretBaseRecordGetFossilNum,
     SecretBaseRecordGetTrapConquerNum,
-// ‚±‚±‚Ü‚Å@ˆê——‚Æ‹¤’Ê
+// ã“ã“ã¾ã§ã€€ä¸€è¦§ã¨å…±é€š
 
     SecretBaseRecordGetTrapTumbleNum,
     SecretBaseRecordGetTrapRescueNum,
@@ -190,18 +190,18 @@ static void _statusListMessage(GF_BGL_BMPWIN* pWin, MSGDATA_MANAGER* msgman,
     pBuf2 = STRBUF_Create( 30, HEAPID_FIELD);
 
 
-    MSGMAN_GetString( msgman, mes_uw_status_01, pBuf1 );   // ‚µ‚å‚¤‚²‚¤
+    MSGMAN_GetString( msgman, mes_uw_status_01, pBuf1 );   // ã—ã‚‡ã†ã”ã†
     GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT, 1, MSG_NO_PUT, NULL);
 
-    MSGMAN_GetString( msgman, mes_uw_status_02, pBuf1 );   // ‚µ‚å‚¤‚²‚¤
+    MSGMAN_GetString( msgman, mes_uw_status_02, pBuf1 );   // ã—ã‚‡ã†ã”ã†
     GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT, _HEAD_UP, MSG_NO_PUT, NULL);
 
     //MatchComment: these messages are not printed in the US release
-//    MSGMAN_GetString( msgman, mes_uw_status_04, pBuf1 );   // F
+//    MSGMAN_GetString( msgman, mes_uw_status_04, pBuf1 );   // ï¼š
 //    GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT + _COLON, 1, MSG_NO_PUT, NULL);
     MSGMAN_GetString( msgman, mes_uw_status_03, pBuf1 );   // id
     GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT + _ID, 1, MSG_NO_PUT, NULL);
-//    MSGMAN_GetString( msgman, mes_uw_status_04, pBuf1 );   // F
+//    MSGMAN_GetString( msgman, mes_uw_status_04, pBuf1 );   // ï¼š
 //    GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT + _COLON, _HEAD_UP, MSG_NO_PUT, NULL);
 
     WORDSET_RegisterNumber(pWordSet, 6,
@@ -214,17 +214,17 @@ static void _statusListMessage(GF_BGL_BMPWIN* pWin, MSGDATA_MANAGER* msgman,
 
 
     WORDSET_RegisterPlayerName( pWordSet, 0, pMyStatus);
-    MSGMAN_GetString( msgman, mes_uw_status_05, pBuf1 );   //‚È‚Ü‚¦
+    MSGMAN_GetString( msgman, mes_uw_status_05, pBuf1 );   //ãªã¾ãˆ
     WORDSET_ExpandStr(pWordSet, pBuf2, pBuf1 );
     GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf2, _HEAD_LEFT + _COLON, 1, MSG_NO_PUT, NULL);
 
     i = SecretBaseRecordGetFlagType(pRecord);
-    MSGMAN_GetString( msgman, mes_uw_status_21+i, pBuf1 );   //‚µ‚å‚¤‚²‚¤
+    MSGMAN_GetString( msgman, mes_uw_status_21+i, pBuf1 );   //ã—ã‚‡ã†ã”ã†
     GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT + _COLON, _HEAD_UP, MSG_NO_PUT, NULL);
 
     
     for(i = 0;i < 7;i++){
-        MSGMAN_GetString( msgman, mes_uw_status_07+i, pBuf1 );   // ‚¿‚©‚Û‚¢‚ñ‚Æ
+        MSGMAN_GetString( msgman, mes_uw_status_07+i, pBuf1 );   // ã¡ã‹ã½ã„ã‚“ã¨
         GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT,
                            _STATE_UP+_HEIGHT*i, MSG_NO_PUT, NULL);
     }
@@ -235,7 +235,7 @@ static void _statusListMessage(GF_BGL_BMPWIN* pWin, MSGDATA_MANAGER* msgman,
         WORDSET_RegisterNumber(pWordSet, 6,
                                ans, 6,
                                NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
-        MSGMAN_GetString( msgman, mes_uw_status_14, pBuf1 );   // ‚¿‚©‚Û‚¢‚ñ‚Æ”
+        MSGMAN_GetString( msgman, mes_uw_status_14, pBuf1 );   // ã¡ã‹ã½ã„ã‚“ã¨æ•°
         WORDSET_ExpandStr(pWordSet, pBuf2, pBuf1 );
         
         GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf2, _HEAD_LEFT+_NUMBER,
@@ -250,9 +250,9 @@ static void _statusListMessage(GF_BGL_BMPWIN* pWin, MSGDATA_MANAGER* msgman,
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜b‚µ‚©‚¯ƒV[ƒPƒ“ƒXƒƒCƒ“
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   è©±ã—ã‹ã‘ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¡ã‚¤ãƒ³
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -287,7 +287,7 @@ static void _talkFunc(TCB_PTR tcb, void* work)
 
 //==============================================================================
 /**
- * ƒXƒe[ƒ^ƒX‰æ–Ê
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢
  * @param   none
  * @retval  none
  */
@@ -305,7 +305,7 @@ void UgRecordStatusListStart(GF_BGL_INI* bgl, MYSTATUS* pMyStatus,
     
     pTalk->pFunc = pFunc;
     pTalk->pCallBackWork = pWork;
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
 //    pTalk->menulist = BMP_MENULIST_Create( 1, HEAPID_FIELD );
     GF_BGL_BmpWinAdd(bgl, &pTalk->win,
                      GF_BGL_FRAME3_M, 4, 2, 24, 19, FLD_SYSFONT_PAL,
@@ -335,8 +335,8 @@ void UgRecordStatusListStart(GF_BGL_INI* bgl, MYSTATUS* pMyStatus,
 
 //==============================================================================
 /**
- * ƒXƒe[ƒ^ƒX‚ğ’ÊM‚Å‘—‚é
- * @param   targetID   ‘—‚èæ
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’é€šä¿¡ã§é€ã‚‹
+ * @param   targetID   é€ã‚Šå…ˆ
  * @retval  none
  */
 //==============================================================================
@@ -358,8 +358,8 @@ void UgRecordSendMyData(int targetID)
 
 //==============================================================================
 /**
- * ƒXƒe[ƒ^ƒX‚ÌƒXƒRƒA‚ğ’nã‚Ì‚à‚Ì‚ğæ‚é
- * @param   targetID   ‘—‚èæ
+ * ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ã‚¹ã‚³ã‚¢ã‚’åœ°ä¸Šã®ã‚‚ã®ã‚’å–ã‚‹
+ * @param   targetID   é€ã‚Šå…ˆ
  * @retval  none
  */
 //==============================================================================
@@ -373,8 +373,8 @@ void UgRecordUpdateMyData(void)
 
 //==============================================================================
 /**
- * ’ÊM‚Å‚à‚ç‚Á‚½ƒXƒe[ƒ^ƒX‚ğ‘Šèæ‚ÉÄ‘—  CF_TARGET_RECORD
- * @param   ƒR[ƒ‹ƒoƒbƒNˆø”
+ * é€šä¿¡ã§ã‚‚ã‚‰ã£ãŸã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ç›¸æ‰‹å…ˆã«å†é€  CF_TARGET_RECORD
+ * @param   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
  * @retval  none
  */
 //==============================================================================
@@ -386,8 +386,8 @@ void UgRecordRecvTargetData(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * ’ÊM‚Å‚à‚ç‚Á‚½ƒXƒe[ƒ^ƒX‚ğŠi”[  CF_TARGET_RECORD_CALL
- * @param   ƒR[ƒ‹ƒoƒbƒNˆø”
+ * é€šä¿¡ã§ã‚‚ã‚‰ã£ãŸã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’æ ¼ç´  CF_TARGET_RECORD_CALL
+ * @param   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
  * @retval  none
  */
 //==============================================================================
@@ -404,9 +404,9 @@ void UgRecordRecvTargetDataCall(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * ’ÊM‚ÅƒXƒe[ƒ^ƒX‚ğó‚¯æ‚Á‚½‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+ * é€šä¿¡ã§ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å—ã‘å–ã£ãŸã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
  * @param   none
- * @retval  ó‚¯æ‚Á‚Ä‚¢‚½‚çTRUE
+ * @retval  å—ã‘å–ã£ã¦ã„ãŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -417,7 +417,7 @@ BOOL UgRecordIsTargetRecord(void)
 
 //==============================================================================
 /**
- * ’ÊM‚ÅƒXƒe[ƒ^ƒX‚ğó‚¯æ‚Á‚½ƒtƒ‰ƒO‚ğƒŠƒZƒbƒg‚·‚é
+ * é€šä¿¡ã§ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å—ã‘å–ã£ãŸãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
  * @param   none
  * @retval  none
  */
@@ -430,7 +430,7 @@ void UgRecordResetTargetRecord(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒW‚ğ©“®•\¦‚µ‚½ê‡‚ÌI—¹ƒR[ƒ‹ƒoƒbƒN
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è‡ªå‹•è¡¨ç¤ºã—ãŸå ´åˆã®çµ‚äº†æ™‚ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -443,7 +443,7 @@ static void _msgEndCallBack(int num)
 
 //==============================================================================
 /**
- * ƒ‰ƒ“ƒ_ƒ€‚ÉƒŒƒR[ƒh“à—e‚ğ•\¦‚·‚é
+ * ãƒ©ãƒ³ãƒ€ãƒ ã«ãƒ¬ã‚³ãƒ¼ãƒ‰å†…å®¹ã‚’è¡¨ç¤ºã™ã‚‹
  * @param   none
  * @retval  none
  */
@@ -461,7 +461,7 @@ void UgRecordGoodsMessage(SB_RECORD_DATA* pRec, int messageNo)
     CommPlayerHold();
     CommMsgChangeMSGMAN(CommUnderGetMsgUnderShop(),NARC_msg_uwstatus_dat, MSGMAN_TYPE_DIRECT);
 
-    pCopyRec = SecretBaseRecord_AllocWork(HEAPID_FIELD);  // ƒAƒ‰ƒCƒƒ“ƒg‚ğ‚»‚ë‚¦‚é‚½‚ß‚Ì‘Îˆ
+    pCopyRec = SecretBaseRecord_AllocWork(HEAPID_FIELD);  // ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã‚’ãã‚ãˆã‚‹ãŸã‚ã®å¯¾å‡¦
     MI_CpuCopy8(pRec,pCopyRec,SecretBaseRecord_GetWorkSize());
     num = func(pCopyRec);
     sys_FreeMemoryEz(pCopyRec);
@@ -494,28 +494,28 @@ static void _flagListMessage(GF_BGL_BMPWIN* pWin, MSGDATA_MANAGER* msgman,
     pBuf2 = STRBUF_Create( 40, HEAPID_FIELD);
 
     WORDSET_RegisterPlayerName( pWordSet, 1, pMyStatus);
-    MSGMAN_GetString( msgman, mes_uw_pers_08, pBuf1 );  // ‚¨‚¨‚¨‚¨‚«‚¿
+    MSGMAN_GetString( msgman, mes_uw_pers_08, pBuf1 );  // ãŠãŠãŠãŠãã¡
     WORDSET_ExpandStr(pWordSet, pBuf2, pBuf1 );
     GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf2, _HEAD_LEFT, 1, MSG_NO_PUT, NULL);
     
-    MSGMAN_GetString( msgman, mes_uw_pers_09, pBuf1 );   //‚Æ‚Á‚½‚Í‚½‚Ì‚©‚¸
+    MSGMAN_GetString( msgman, mes_uw_pers_09, pBuf1 );   //ã¨ã£ãŸã¯ãŸã®ã‹ãš
     GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT , 1+_HEIGHT, MSG_NO_PUT, NULL);
 
     WORDSET_RegisterNumber(pWordSet, 6,
                            SecretBaseRecordGetFlagDeliveryNum(pRecord), 6,
                            NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
-    MSGMAN_GetString( msgman, mes_uw_pers_10, pBuf1 );   // ”
+    MSGMAN_GetString( msgman, mes_uw_pers_10, pBuf1 );   // æ•°
     WORDSET_ExpandStr(pWordSet, pBuf2, pBuf1 );
     GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf2, _HEAD_LEFT+100,1+_HEIGHT, MSG_NO_PUT, NULL);
 
-    MSGMAN_GetString( msgman, mes_uw_pers_11, pBuf1 );   // ‚³‚¢‚«‚ñ@‚Æ‚Á‚½ƒnƒ^
+    MSGMAN_GetString( msgman, mes_uw_pers_11, pBuf1 );   // ã•ã„ãã‚“ã€€ã¨ã£ãŸãƒã‚¿
     GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT, 1+_HEIGHT*3, MSG_NO_PUT, NULL);
 
     for(i = 0;i < 5;i++){
         MYSTATUS* pMyFlag = UnderGroundGetFlag(pUGData, HEAPID_FIELD, i);
         if(pMyFlag){
             WORDSET_RegisterPlayerName( pWordSet, 0, pMyFlag);
-            MSGMAN_GetString( msgman, mes_uw_pers_12, pBuf1 );   //‚È‚Ü‚¦
+            MSGMAN_GetString( msgman, mes_uw_pers_12, pBuf1 );   //ãªã¾ãˆ
             WORDSET_ExpandStr(pWordSet, pBuf2, pBuf1 );
             GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf2, _HEAD_LEFT, 1+_HEIGHT*(4+i), MSG_NO_PUT, NULL);
 
@@ -530,7 +530,7 @@ static void _flagListMessage(GF_BGL_BMPWIN* pWin, MSGDATA_MANAGER* msgman,
             sys_FreeMemoryEz(pMyFlag);
         }
         else{
-            MSGMAN_GetString( msgman, mes_uw_pers_58, pBuf1 );   //‚È‚Ü‚¦
+            MSGMAN_GetString( msgman, mes_uw_pers_58, pBuf1 );   //ãªã¾ãˆ
             GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT, 1+_HEIGHT*(4+i), MSG_NO_PUT, NULL);
             MSGMAN_GetString( msgman, mes_uw_pers_59, pBuf1 );   // ID
             GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT+_NUMBER, 1+_HEIGHT*(4+i), MSG_NO_PUT, NULL);
@@ -544,7 +544,7 @@ static void _flagListMessage(GF_BGL_BMPWIN* pWin, MSGDATA_MANAGER* msgman,
 
 //==============================================================================
 /**
- * Šl‚Á‚½Šø‰æ–Ê
+ * ç²ã£ãŸæ——ç”»é¢
  * @param   none
  * @retval  none
  */
@@ -562,7 +562,7 @@ void* UgRecordFlagListStart(GF_BGL_INI* bgl, MYSTATUS* pMyStatus,UNDERGROUNDDATA
     
     pTalk->pFunc = pFunc;
     pTalk->pCallBackWork = pWork;
-    //BMPƒEƒBƒ“ƒhƒE¶¬
+    //BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”Ÿæˆ
 //    pTalk->menulist = BMP_MENULIST_Create( 1, HEAPID_FIELD );
     GF_BGL_BmpWinAdd(bgl, &pTalk->win,
                      GF_BGL_FRAME3_M, 4, 2, 24, 19, FLD_SYSFONT_PAL,
@@ -588,8 +588,8 @@ void* UgRecordFlagListStart(GF_BGL_INI* bgl, MYSTATUS* pMyStatus,UNDERGROUNDDATA
 
 //--------------------------------------------------------------
 /**
- * @brief   Šø—š—ğ•\¦I—¹
- * @param   work		ƒ[ƒNƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ——å±¥æ­´è¡¨ç¤ºçµ‚äº†
+ * @param   work		ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------

@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief Wi-Fi ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ ƒAƒƒP[ƒ^ƒwƒbƒ_
+ * @brief Wi-Fi ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€
  */
 
 #ifndef DWCi_LOBBY_BASE_H_
@@ -34,30 +34,30 @@ namespace std
 #include <dwc.h>
 #include <functional>
 
-#ifdef max  // std::numeric<T>::max‚ªg‚¦‚È‚­‚È‚é‚Ì‚Åundef
+#ifdef max  // std::numeric<T>::maxãŒä½¿ãˆãªããªã‚‹ã®ã§undef
     #undef max
 #endif
-#ifdef min  // std::numeric<T>::min‚ªg‚¦‚È‚­‚È‚é‚Ì‚Åundef
+#ifdef min  // std::numeric<T>::minãŒä½¿ãˆãªããªã‚‹ã®ã§undef
     #undef min
 #endif
 #include <limits>
 
 
 
-// new, delete, allocator ’è‹`ƒNƒ‰ƒXB‚±‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚Åg‚¤(“®“I‚É¶¬‚·‚é)\‘¢‘ÌAƒNƒ‰ƒX‚Í‘S‚Ä‚±‚ÌƒNƒ‰ƒX‚ğŒp³‚·‚é
-// ƒRƒ“ƒeƒi‚É“ü‚ê‚é‚Æ‚«‚Í•K‚¸ƒAƒƒP[ƒ^‚É DWCi_Allocator<T> ‚ğw’è‚·‚éB‚½‚¾‚µT‚ÍƒRƒ“ƒeƒi‚É“ü‚ê‚éƒNƒ‰ƒXB
-// —á1: std::vector<DWCi_Channel, DWCi_Allocator<DWCi_Channel> > channel;
-// —á2: std::set<DWCi_Channel, std::less<DWCi_Channel>, DWCi_Allocator<DWCi_Channel> > testset;
+// new, delete, allocator å®šç¾©ã‚¯ãƒ©ã‚¹ã€‚ã“ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ä½¿ã†(å‹•çš„ã«ç”Ÿæˆã™ã‚‹)æ§‹é€ ä½“ã€ã‚¯ãƒ©ã‚¹ã¯å…¨ã¦ã“ã®ã‚¯ãƒ©ã‚¹ã‚’ç¶™æ‰¿ã™ã‚‹
+// ã‚³ãƒ³ãƒ†ãƒŠã«å…¥ã‚Œã‚‹ã¨ãã¯å¿…ãšã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã« DWCi_Allocator<T> ã‚’æŒ‡å®šã™ã‚‹ã€‚ãŸã ã—Tã¯ã‚³ãƒ³ãƒ†ãƒŠã«å…¥ã‚Œã‚‹ã‚¯ãƒ©ã‚¹ã€‚
+// ä¾‹1: std::vector<DWCi_Channel, DWCi_Allocator<DWCi_Channel> > channel;
+// ä¾‹2: std::set<DWCi_Channel, std::less<DWCi_Channel>, DWCi_Allocator<DWCi_Channel> > testset;
 class DWCi_Base
 {
 protected:
     DWCi_Base(){}
-    // ‚±‚ÌƒNƒ‰ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğg—p‚µ‚Ä”h¶ƒNƒ‰ƒX‚Ìdelete‚ğs‚í‚È‚¢‚Ì‚Å”ñvirtual‚Ìprotected‚É‚·‚é
+    // ã“ã®ã‚¯ãƒ©ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ä½¿ç”¨ã—ã¦æ´¾ç”Ÿã‚¯ãƒ©ã‚¹ã®deleteã‚’è¡Œã‚ãªã„ã®ã§évirtualã®protectedã«ã™ã‚‹
     ~DWCi_Base(){}
 public:
     static void* operator new(std::size_t size) throw();
     
-    // ”z’unew
+    // é…ç½®new
     static void* operator new (std::size_t size, void* p) throw()
     {
         (void)size;
@@ -91,7 +91,7 @@ public:
         operator delete(rawMemory);
     }
     
-    // “Æ©‚Énew_handler‚ğ’è‹`‚·‚é
+    // ç‹¬è‡ªã«new_handlerã‚’å®šç¾©ã™ã‚‹
 private:
     static std::new_handler s_currentNewHandler;
 public:
@@ -103,7 +103,7 @@ public:
     }
     
 public:
-    // ƒ|ƒCƒ“ƒ^‚Ìw‚µ‚Ä‚¢‚éæ‚ğ”äŠr‚·‚éŠÖ”ƒIƒuƒWƒFƒNƒg
+    // ãƒã‚¤ãƒ³ã‚¿ã®æŒ‡ã—ã¦ã„ã‚‹å…ˆã‚’æ¯”è¼ƒã™ã‚‹é–¢æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     template<class T>
     struct ptr_less : std::binary_function<T*, T*, bool>
     {
@@ -114,8 +114,8 @@ public:
     };
 };
 
-// ƒJƒXƒ^ƒ€ƒAƒƒP[ƒ^
-// DWCi_Base‚Ìnew, delete‚ğg—p‚·‚é
+// ã‚«ã‚¹ã‚¿ãƒ ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
+// DWCi_Baseã®new, deleteã‚’ä½¿ç”¨ã™ã‚‹
 template <class T>
 class DWCi_Allocator
 {
@@ -128,14 +128,14 @@ public:
     typedef std::size_t    size_type;
     typedef std::ptrdiff_t difference_type;
 
-    // Œ^U‚Ö‚Ìrebind
+    // å‹Uã¸ã®rebind
     template <class U>
     struct rebind
     {
         typedef DWCi_Allocator<U> other;
     };
 
-    // ’l‚ÌƒAƒhƒŒƒX‚ğ‚Æ‚é
+    // å€¤ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã¨ã‚‹
     pointer address (reference value) const
     {
         return &value;
@@ -145,8 +145,8 @@ public:
         return &value;
     }
 
-    // ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚ÆƒfƒXƒgƒ‰ƒNƒ^
-    // ƒAƒƒP[ƒ^‚ÍƒXƒe[ƒg‚ğ‚½‚È‚¢‚Ì‚Å‰½‚à‚µ‚È‚¢
+    // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¨ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+    // ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã¯ã‚¹ãƒ†ãƒ¼ãƒˆã‚’æŒãŸãªã„ã®ã§ä½•ã‚‚ã—ãªã„
     DWCi_Allocator() throw()
     {
     }
@@ -161,34 +161,34 @@ public:
     {
     }
 
-    // ƒAƒƒP[ƒg‚Å‚«‚éÅ‘å”‚ğ•Ô‚·
+    // ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã§ãã‚‹æœ€å¤§æ•°ã‚’è¿”ã™
     size_type max_size () const throw()
     {
         return std::numeric_limits<std::size_t>::max() / sizeof(T);
     }
 
-    // ƒAƒƒP[ƒg‚·‚é‚ª‰Šú‰»‚Í‚µ‚È‚¢
+    // ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã™ã‚‹ãŒåˆæœŸåŒ–ã¯ã—ãªã„
     pointer allocate (size_type num, const void* = 0)
     {
-        // DWCi_Base‚Ìnew‚ğg‚¤
+        // DWCi_Baseã®newã‚’ä½¿ã†
         pointer ret = (pointer)(DWCi_Base::operator new(num*sizeof(T)));
         return ret;
     }
 
-    // ”z’unew‚Å‰Šú‰»‚·‚é
+    // é…ç½®newã§åˆæœŸåŒ–ã™ã‚‹
     void construct (pointer p, const T& value)
     {
-        // DWCi_Base‚ğŒp³‚µ‚Ä‚¢‚È‚¢T‚É‘Î‚µ‚Ä‚Ínewƒwƒbƒ_‚Ì”z’unew‚ªg‚í‚ê‚é
+        // DWCi_Baseã‚’ç¶™æ‰¿ã—ã¦ã„ãªã„Tã«å¯¾ã—ã¦ã¯newãƒ˜ãƒƒãƒ€ã®é…ç½®newãŒä½¿ã‚ã‚Œã‚‹
         new((void*)p) T(value);
     }
 
-    // ƒfƒXƒgƒ‰ƒNƒ^‚Å”jŠü‚·‚é
+    // ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã§ç ´æ£„ã™ã‚‹
     void destroy (pointer p)
     {
         p->~T();
     }
 
-    // ”jŠü‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚Ì—Ìˆæ‚ğ‰ğ•ú‚·‚é
+    // ç ´æ£„ã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®é ˜åŸŸã‚’è§£æ”¾ã™ã‚‹
     void deallocate (pointer p, size_type num)
     {
         (void)num;
@@ -196,7 +196,7 @@ public:
     }
 };
 
-// ‚±‚ÌƒAƒƒP[ƒ^‚©‚ç¶¬‚³‚ê‚éŒ^‚Í‘S‚Ä“™‚µ‚¢‚à‚Ì‚Æ‚·‚é
+// ã“ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‹ã‚‰ç”Ÿæˆã•ã‚Œã‚‹å‹ã¯å…¨ã¦ç­‰ã—ã„ã‚‚ã®ã¨ã™ã‚‹
 template <class T1, class T2>
 bool operator== (const DWCi_Allocator<T1>&,
                  const DWCi_Allocator<T2>&) throw()

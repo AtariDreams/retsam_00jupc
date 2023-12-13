@@ -15,19 +15,19 @@
   INDENT SOURCE
 
   Revision 1.5  2005/09/19 15:11:37  yasu
-  Closing ó‘Ô‚ğ’Ç‰Á‚µ‚½•”•ª‚Ì”÷’²®
+  Closing çŠ¶æ…‹ã‚’è¿½åŠ ã—ãŸéƒ¨åˆ†ã®å¾®èª¿æ•´
 
   Revision 1.4  2005/08/24 09:25:13  yasu
-  SOCL_SocketIsInvalid ’Ç‰Á
+  SOCL_SocketIsInvalid è¿½åŠ 
 
   Revision 1.3  2005/08/14 10:58:35  yasu
-  Ú‘±’†ƒtƒ‰ƒO‚ÌŠm”F‚ÌŠÔˆá‚¢‚ğC³
+  æ¥ç¶šä¸­ãƒ•ãƒ©ã‚°ã®ç¢ºèªã®é–“é•ã„ã‚’ä¿®æ­£
 
   Revision 1.2  2005/07/30 15:30:52  yasu
-  ƒRƒ}ƒ“ƒhƒpƒCƒv•ª—£‚É‚Æ‚à‚È‚¤C³
+  ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—åˆ†é›¢ã«ã¨ã‚‚ãªã†ä¿®æ­£
 
   Revision 1.1  2005/07/22 12:44:56  yasu
-  ”ñ“¯Šúˆ—‰¼À‘•
+  éåŒæœŸå‡¦ç†ä»®å®Ÿè£…
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -38,16 +38,16 @@ static int  SOCLi_ShutdownCallBack(void* arg);
 /*---------------------------------------------------------------------------*
   Name:         SOCL_Shutdown
 
-  Description:  ƒ\ƒPƒbƒg‚Ì Shutdown ˆ—‚ğs‚È‚¤D
+  Description:  ã‚½ã‚±ãƒƒãƒˆã® Shutdown å‡¦ç†ã‚’è¡Œãªã†ï¼
   
-  Arguments:    s		ƒ\ƒPƒbƒg
+  Arguments:    s		ã‚½ã‚±ãƒƒãƒˆ
   
-  Returns:      ³or 0: ¬Œ÷
-                •‰    : ƒGƒ‰[
-                  Œ»óƒTƒ|[ƒg‚µ‚Ä‚¢‚éƒGƒ‰[’l‚ÍˆÈ‰º
+  Returns:      æ­£or 0: æˆåŠŸ
+                è²     : ã‚¨ãƒ©ãƒ¼
+                  ç¾çŠ¶ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã‚¨ãƒ©ãƒ¼å€¤ã¯ä»¥ä¸‹
                     - :  
-                  ƒGƒ‰[’l‚Í’Ç‰Á‚³‚ê‚éê‡‚ª‚ ‚é‚½‚ßA‘¼‚Ì•‰‚Ì’l‚à‘S‚Ä”Ä—p
-                  ƒGƒ‰[‚Æ‚µ‚Äˆµ‚¤‚±‚ÆD
+                  ã‚¨ãƒ©ãƒ¼å€¤ã¯è¿½åŠ ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚‹ãŸã‚ã€ä»–ã®è² ã®å€¤ã‚‚å…¨ã¦æ±ç”¨
+                  ã‚¨ãƒ©ãƒ¼ã¨ã—ã¦æ‰±ã†ã“ã¨ï¼
  *---------------------------------------------------------------------------*/
 int SOCL_Shutdown(int s)
 {
@@ -58,27 +58,27 @@ int SOCL_Shutdown(int s)
 
     if (SOCL_SocketIsInvalid(socket))
     {
-        return SOCL_EINVAL;     // ‹K’èŠO‚Ì’l
+        return SOCL_EINVAL;     // è¦å®šå¤–ã®å€¤
     }
 
     if (!SOCL_SocketIsCreated(socket))
     {
-        return SOCL_ENETRESET;  // ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+        return SOCL_ENETRESET;  // åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
     }
 
     if (!SOCL_SocketIsConnected(socket) || SOCL_SocketIsClosing(socket))
     {
-        return SOCL_ENOTCONN;   // Ú‘±‚³‚ê‚Ä‚¢‚È‚¢
+        return SOCL_ENOTCONN;   // æ¥ç¶šã•ã‚Œã¦ã„ãªã„
     }
 
     socket->state |= SOCL_STATUS_CLOSING;
 
-    // ‘—MƒXƒŒƒbƒh‚ÉƒRƒ}ƒ“ƒh‚ğ“Š‚°AƒR[ƒ‹ƒoƒbƒNŠÖ”“à•”‚Å CPS_Shutdown ‚ğ
-    // ‹N“®‚·‚éDƒ\ƒPƒbƒgƒ^ƒCƒv‚ª NOBLOCK ‚É‚È‚Á‚Ä‚¢‚é‚È‚çƒRƒ}ƒ“ƒh‚ğŠm•Û
-    // ‚Å‚«‚È‚¢ê‡‚ÉƒGƒ‰[‚Æ‚È‚é
+    // é€ä¿¡ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚³ãƒãƒ³ãƒ‰ã‚’æŠ•ã’ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…éƒ¨ã§ CPS_Shutdown ã‚’
+    // èµ·å‹•ã™ã‚‹ï¼ã‚½ã‚±ãƒƒãƒˆã‚¿ã‚¤ãƒ—ãŒ NOBLOCK ã«ãªã£ã¦ã„ã‚‹ãªã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’ç¢ºä¿
+    // ã§ããªã„å ´åˆã«ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹
     //
-    // Œ»İ‚ÌÀ‘•‚ÍŠÔ‚Ì–â‘è‚Ì‚½‚ß‚±‚Ì‚æ‚¤‚É‚µ‚Ä‚¢‚é‚ªAdestructor ‚ğg—p‚µ
-    // ‚Ä–³—‚Éƒ\ƒPƒbƒg‚ğØ’f‚·‚é‚Æ‚¢‚¤ˆ—‚É•ÏX‚·‚é•K—v‚ª‚ ‚é‚Æv‚í‚ê‚é
+    // ç¾åœ¨ã®å®Ÿè£…ã¯æ™‚é–“ã®å•é¡Œã®ãŸã‚ã“ã®ã‚ˆã†ã«ã—ã¦ã„ã‚‹ãŒã€destructor ã‚’ä½¿ç”¨ã—
+    // ã¦ç„¡ç†ã«ã‚½ã‚±ãƒƒãƒˆã‚’åˆ‡æ–­ã™ã‚‹ã¨ã„ã†å‡¦ç†ã«å¤‰æ›´ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã¨æ€ã‚ã‚Œã‚‹
     send_pipe = socket->send_pipe;
 
     if (send_pipe && send_pipe->exe_socket)
@@ -89,7 +89,7 @@ int SOCL_Shutdown(int s)
             return SOCL_EMFILE;
         }
 
-        // ƒRƒ}ƒ“ƒhÀs
+        // ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œ
         result = SOCLi_ExecCommandPacketInSendPipe(send_pipe->exe_socket, command);
     }
     else
@@ -103,11 +103,11 @@ int SOCL_Shutdown(int s)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ShutdownCallBack
 
-  Description:  Shutdown ˆ—‚ÌƒR[ƒ‹ƒoƒbƒN
+  Description:  Shutdown å‡¦ç†ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
   
-  Arguments:    arg  ƒRƒ}ƒ“ƒhƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    arg  ã‚³ãƒãƒ³ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
   
-  Returns:      SOCLi_ExecCommand* ‚É“n‚³‚ê‚é’l(BLOCKƒ‚[ƒh‚Ì‚Æ‚«)
+  Returns:      SOCLi_ExecCommand* ã«æ¸¡ã•ã‚Œã‚‹å€¤(BLOCKãƒ¢ãƒ¼ãƒ‰ã®ã¨ã)
  *---------------------------------------------------------------------------*/
 static int SOCLi_ShutdownCallBack(void* arg)
 {
@@ -119,5 +119,5 @@ static int SOCLi_ShutdownCallBack(void* arg)
         CPS_TcpShutdown();
     }
 
-    return SOCL_ESUCCESS;   // ¬Œ÷
+    return SOCL_ESUCCESS;   // æˆåŠŸ
 }

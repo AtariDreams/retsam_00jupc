@@ -1,29 +1,29 @@
 //==============================================================================
 /**
  * @file	wp_callback.h
- * @brief	‹ZƒGƒtƒFƒNƒgƒGƒ~ƒbƒ^¶¬‚ÉŒÄ‚Ño‚³‚ê‚é”Ä—pƒR[ƒ‹ƒoƒbƒNŠÖ”‚È‚Ç‚Ìƒwƒbƒ_
+ * @brief	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¨ãƒŸãƒƒã‚¿ç”Ÿæˆæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹æ±ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãªã©ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2005.08.03(…)
+ * @date	2005.08.03(æ°´)
  */
 //==============================================================================
 #ifndef __WP_CALLBACK_H__
 #define __WP_CALLBACK_H__
 
-#define AXIS_EX_MODE_NONE	 		(0)		///< ‰½‚à‚È‚µ
-#define AXIS_EX_MODE_DEFAULT_CNV	(1)		///< ƒfƒtƒHƒ‹ƒg‚Ì’l‚ÅW‘©
-#define AXIS_EX_MODE_CENTER_CNV		(2)		///< ’†‰›‚ÉW‘©
-#define AXIS_EX_MODE_TP_CNV			(3)		///< ‘ÎÛƒ|ƒPƒ‚ƒ“‚ÉW‘©
-#define AXIS_EX_MODE_PP_CNV			(4)		///< Šî“_ƒ|ƒPƒ‚ƒ“‚ÉW‘©
-#define AXIS_EX_MODE_SET_CNV		(5)		///< w’èˆÊ’u‚ÅW‘©
+#define AXIS_EX_MODE_NONE	 		(0)		///< ä½•ã‚‚ãªã—
+#define AXIS_EX_MODE_DEFAULT_CNV	(1)		///< ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å€¤ã§é›†æŸ
+#define AXIS_EX_MODE_CENTER_CNV		(2)		///< ä¸­å¤®ã«é›†æŸ
+#define AXIS_EX_MODE_TP_CNV			(3)		///< å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ã«é›†æŸ
+#define AXIS_EX_MODE_PP_CNV			(4)		///< åŸºç‚¹ãƒã‚±ãƒ¢ãƒ³ã«é›†æŸ
+#define AXIS_EX_MODE_SET_CNV		(5)		///< æŒ‡å®šä½ç½®ã§é›†æŸ
 
-#define AXIS_EX_MODE_DEFAULT_MAG	(1)		///< ƒfƒtƒHƒ‹ƒg‚Ì’l‚ÅW‘©
-#define AXIS_EX_MODE_CENTER_MAG		(2)		///< ’†‰›‚ÉW‘©
-#define AXIS_EX_MODE_TP_MAG			(3)		///< ‘ÎÛƒ|ƒPƒ‚ƒ“‚ÉW‘©
-#define AXIS_EX_MODE_PP_MAG			(4)		///< Šî“_ƒ|ƒPƒ‚ƒ“‚ÉW‘©
-#define AXIS_EX_MODE_SET_MAG		(5)		///< w’èˆÊ’u‚ÅW‘©
+#define AXIS_EX_MODE_DEFAULT_MAG	(1)		///< ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å€¤ã§é›†æŸ
+#define AXIS_EX_MODE_CENTER_MAG		(2)		///< ä¸­å¤®ã«é›†æŸ
+#define AXIS_EX_MODE_TP_MAG			(3)		///< å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ã«é›†æŸ
+#define AXIS_EX_MODE_PP_MAG			(4)		///< åŸºç‚¹ãƒã‚±ãƒ¢ãƒ³ã«é›†æŸ
+#define AXIS_EX_MODE_SET_MAG		(5)		///< æŒ‡å®šä½ç½®ã§é›†æŸ
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void EmitCall_CameraReverseAttack(EMIT_PTR emit);
 extern void EmitCall_CameraReverseDefence(EMIT_PTR emit);
@@ -36,14 +36,14 @@ extern void EmitCall_DFsidePos(EMIT_PTR emit);
 extern void EmitCall_ATsidePos(EMIT_PTR emit);
 extern void EmitCall_ATPosCR(EMIT_PTR emit);
 
-// ----- W‘©‘€ìŒn -----
+// ----- é›†æŸæ“ä½œç³» -----
 extern void EmitCall_AxisAttack_DefaultCNV(EMIT_PTR emit);
 extern void EmitCall_AxisAttack_CenterCNV(EMIT_PTR emit);
 extern void EmitCall_AxisAttack_TargetPokemonCNV(EMIT_PTR emit);
 extern void EmitCall_AxisAttack_PlayerPokemonCNV(EMIT_PTR emit);
 extern void EmitCall_AxisAttack_PosSetCNV(EMIT_PTR emit);
 
-// ----- ƒ}ƒOƒlƒbƒg‘€ìŒn -----
+// ----- ãƒã‚°ãƒãƒƒãƒˆæ“ä½œç³» -----
 extern void EmitCall_AxisAttack_DefaultMAG(EMIT_PTR emit);
 extern void EmitCall_AxisAttack_CenterMAG(EMIT_PTR emit);
 extern void EmitCall_AxisAttack_TargetPokemonMAG(EMIT_PTR emit);

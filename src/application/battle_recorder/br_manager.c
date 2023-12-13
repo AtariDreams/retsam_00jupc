@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_manager.c
- * @brief	ƒoƒgƒ‹ƒŒƒR[ƒ_[
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
  * @author	goto
- * @date	2007.07.26(–Ø)
+ * @date	2007.07.26(æœ¨)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -40,7 +40,7 @@
 
 
 //--------------------------------------------------------------
-//	ƒI[ƒo[ƒŒƒCID
+//	ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ID
 //--------------------------------------------------------------
 FS_EXTERN_OVERLAY(gds_comm);
 FS_EXTERN_OVERLAY( battle_recorder );
@@ -49,16 +49,16 @@ FS_EXTERN_OVERLAY( battle_recorder );
 typedef struct {
 	
 	int				seq;
-	int				state;			// ó‘Ô
-	PROC*			p_subproc;		// ƒTƒuƒvƒƒZƒX
+	int				state;			// çŠ¶æ…‹
+	PROC*			p_subproc;		// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹
 	
 	SAVEDATA*		save;
 	BATTLE_PARAM*	bp;
 	
 
-	BR_WORK*		br_work;		// ƒoƒgƒ‹ƒŒƒR[ƒ_[—pƒ[ƒN
+	BR_WORK*		br_work;		// ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼ç”¨ãƒ¯ãƒ¼ã‚¯
 	
-	POST_MESSAGE	message;		// ˜A—
+	POST_MESSAGE	message;		// é€£çµ¡
 	
 	FIELDSYS_WORK*	fsys;
 	
@@ -67,8 +67,8 @@ typedef struct {
 
 enum {
 	
-	eBRM_BATTLE_RECORDER	= 0,		///< ƒoƒgƒ‹ƒŒƒR[ƒ_[
-	eBRM_BATTLE_REC_PLAYER,				///< ˜^‰æÄ¶
+	eBRM_BATTLE_RECORDER	= 0,		///< ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
+	eBRM_BATTLE_REC_PLAYER,				///< éŒ²ç”»å†ç”Ÿ
 };
 
 //==============================================================
@@ -93,7 +93,7 @@ static BOOL BR_ExBattleCheck( int type );
 
 //--------------------------------------------------------------
 /**
- * @brief	qƒvƒƒbƒN‚©‚çæ“¾‚³‚ê‚é‚Ì‚ÅAŠÔˆá‚Á‚Ä‚àmanager_proc‚ğ“n‚³‚È‚¢–
+ * @brief	å­ãƒ—ãƒ­ãƒƒã‚¯ã‹ã‚‰å–å¾—ã•ã‚Œã‚‹ã®ã§ã€é–“é•ã£ã¦ã‚‚manager_procã‚’æ¸¡ã•ãªã„äº‹
  *
  * @param	proc	
  *
@@ -113,7 +113,7 @@ BR_WORK* BR_PROC_GetWork( PROC * proc )
 
 //--------------------------------------------------------------
 /**
- * @brief	e‚Ö‚Ì˜A—
+ * @brief	è¦ªã¸ã®é€£çµ¡
  *
  * @param	proc	
  * @param	bFlag	
@@ -131,7 +131,7 @@ void BR_PostMessage( POST_MESSAGE* message, BOOL bFlag, int state )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒm[ƒg‚Ìİ’è
+ * @brief	ãƒãƒ¼ãƒˆã®è¨­å®š
  *
  * @param	save	
  * @param	heap	
@@ -150,7 +150,7 @@ static void GDS_NoteDataSet( SAVEDATA* save, int heap, u32 id )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»‹¤’Ê•”•ª
+ * @brief	åˆæœŸåŒ–å…±é€šéƒ¨åˆ†
  *
  * @param	proc	
  * @param	mode	
@@ -207,7 +207,7 @@ static void ManagerInit_Common( PROC * proc, int mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒbƒN‰Šú‰»
+ * @brief	ãƒ—ãƒ­ãƒƒã‚¯åˆæœŸåŒ–
  *
  * @param	proc	
  * @param	seq	
@@ -315,7 +315,7 @@ static PROC_RESULT BR_Manager_Proc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹
+ * @brief	çµ‚äº†
  *
  * @param	proc	
  * @param	seq	
@@ -328,10 +328,10 @@ static PROC_RESULT BR_Manager_Proc_Exit( PROC * proc, int * seq )
 {
 	BR_MANAGER_SYS* wk = PROC_GetWork( proc );
 
-	///< ˜^‰æƒf[ƒ^‚Ì‰ğ•ú “Á‚É–â‘è‚È‚¯‚ê‚ÎAŠm•Û‚µ‚Á‚Ï‚È‚µ‚Åí“¬ƒ‹[ƒ`ƒ“‚ğ‚Ü‚í‚µ‚½‚è‚·‚é‚½‚ß
+	///< éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾ ç‰¹ã«å•é¡Œãªã‘ã‚Œã°ã€ç¢ºä¿ã—ã£ã±ãªã—ã§æˆ¦é—˜ãƒ«ãƒ¼ãƒãƒ³ã‚’ã¾ã‚ã—ãŸã‚Šã™ã‚‹ãŸã‚
 	if ( BattleRec_DataExistCheck() == TRUE ){
 		BattleRec_Exit();
-		OS_Printf( " --- ƒoƒgƒ‹ƒŒƒR[ƒ_[I—¹‚Ü‚Å brs ‚ªŠJ‚¢‚Ä‚¢‚½\n" );
+		OS_Printf( " --- ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼çµ‚äº†ã¾ã§ brs ãŒé–‹ã„ã¦ã„ãŸ\n" );
 	}
 	
 	sys_FreeMemoryEz( wk->br_work );
@@ -349,7 +349,7 @@ static PROC_RESULT BR_Manager_Proc_Exit( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒŒƒR[ƒ_[‹N“®
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼èµ·å‹•
  *
  * @param	wk	
  * @param	heap	
@@ -385,7 +385,7 @@ static BOOL BRM_BattleRecorder( BR_MANAGER_SYS* wk, int heap )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹˜^‰æƒvƒŒƒC
+ * @brief	ãƒãƒˆãƒ«éŒ²ç”»ãƒ—ãƒ¬ã‚¤
  *
  * @param	wk	
  * @param	heap	
@@ -396,13 +396,13 @@ static BOOL BRM_BattleRecorder( BR_MANAGER_SYS* wk, int heap )
 //--------------------------------------------------------------
 static BOOL BRM_BattleRecPlayer( BR_MANAGER_SYS* wk, int heap )
 {
-//	if ( wk->br_work->mode != BR_MODE_BROWSE ){	DWC_ProcessInet(); }	///< wi-fiÚ‘±ˆÛ‚Ì‚½‚ß(DWC_ProcessInet();)
+//	if ( wk->br_work->mode != BR_MODE_BROWSE ){	DWC_ProcessInet(); }	///< wi-fiæ¥ç¶šç¶­æŒã®ãŸã‚(DWC_ProcessInet();)
 	
 	switch ( wk->seq ){
 	case 0:
 		if ( wk->br_work->mode != BR_MODE_BROWSE ){
-			//í“¬‰æ–Ê‚É“Ë“ü‚·‚éˆ×AƒI[ƒo[ƒŒƒC‚ª”í‚Á‚Ä‚¢‚égds_comm‚Íˆê‰ğ•ú‚·‚é
-			Overlay_UnloadID(FS_OVERLAY_ID(gds_comm));	//2008.02.23(“y) matsuda
+			//æˆ¦é—˜ç”»é¢ã«çªå…¥ã™ã‚‹ç‚ºã€ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãŒè¢«ã£ã¦ã„ã‚‹gds_commã¯ä¸€æ™‚è§£æ”¾ã™ã‚‹
+			Overlay_UnloadID(FS_OVERLAY_ID(gds_comm));	//2008.02.23(åœŸ) matsuda
 			DpwCommonOverlayEnd();
 		}
 		wk->seq++;
@@ -411,7 +411,7 @@ static BOOL BRM_BattleRecPlayer( BR_MANAGER_SYS* wk, int heap )
 	case 1:
 		{
 			LOAD_RESULT ret;
-			//‘Îí˜^‰æƒf[ƒ^‚Ìƒ[ƒh
+			//å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
 			
 			wk->bp = BattleParam_Create( heap, FIGHT_TYPE_1vs1 );
 			
@@ -426,7 +426,7 @@ static BOOL BRM_BattleRecPlayer( BR_MANAGER_SYS* wk, int heap )
 			wk->bp->bag_cursor	= MyItem_BagCursorAlloc( heap );
 			wk->bp->record		= SaveData_GetRecord( wk->save );
 			
-			//•s³•¶šƒ`ƒFƒbƒN
+			//ä¸æ­£æ–‡å­—ãƒã‚§ãƒƒã‚¯
 			if(Overlay_Load(FS_OVERLAY_ID(battle_recorder), OVERLAY_LOAD_NOT_SYNCHRONIZE) == TRUE){
 				BattleRecTool_ErrorStrCheck(BattleRec_WorkAdrsGet(), wk->bp, heap);
 				Overlay_UnloadID(FS_OVERLAY_ID(battle_recorder));
@@ -436,7 +436,7 @@ static BOOL BRM_BattleRecPlayer( BR_MANAGER_SYS* wk, int heap )
 			OS_Printf( "ex_param3 ( rec_stop_flag ) = %d\n", wk->br_work->ex_param3 );
 			if ( ret != LOAD_RESULT_OK ){
 				sys_FreeMemoryEz( wk->bp->bag_cursor );
-				BattleParam_Delete( wk->bp );		//BATTLE_PARAM‚ÌŠJ•ú
+				BattleParam_Delete( wk->bp );		//BATTLE_PARAMã®é–‹æ”¾
 				wk->seq = 0;
 				return TRUE;
 			}
@@ -447,17 +447,17 @@ static BOOL BRM_BattleRecPlayer( BR_MANAGER_SYS* wk, int heap )
 		break;
 		
 	case 2:
-		///< ƒgƒŒ[ƒi[‚h‚c‚Å‹È‚ğ•ª‚¯‚é
+		///< ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤ã§æ›²ã‚’åˆ†ã‘ã‚‹
 		{			
 			Snd_PlayerSetPlayerVolume( PLAYER_FIELD, BGM_VOL_MAX );
 		
-			Snd_BattleRecFlag( 1 );			//˜^‰æÄ¶—p‚ÌƒTƒEƒ“ƒhƒtƒ‰ƒOon
+			Snd_BattleRecFlag( 1 );			//éŒ²ç”»å†ç”Ÿç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ãƒ©ã‚°on
 
 			if ( BR_ExBattleCheck( wk->bp->trainer_data[ 1 ].tr_type ) == TRUE ){
-				Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_PL_BA_BRAIN, 1 );	//ƒoƒgƒ‹‹ÈÄ¶
+				Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_PL_BA_BRAIN, 1 );	//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
 			}
 			else {
-				Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );	//ƒoƒgƒ‹‹ÈÄ¶
+				Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );	//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
 			}
 		}		
 		wk->p_subproc = PROC_Create( &TestBattleProcData, wk->bp, heap );
@@ -471,22 +471,22 @@ static BOOL BRM_BattleRecPlayer( BR_MANAGER_SYS* wk, int heap )
 		wk->br_work->ex_param3 = wk->bp->battle_rec_stop_flag;
 		
 		if(wk->br_work->mode != BR_MODE_BROWSE){
-			///< ƒIƒ“ƒ‰ƒCƒ“Ä¶‚Ìê‡
+			///< ã‚ªãƒ³ãƒ©ã‚¤ãƒ³å†ç”Ÿã®å ´åˆ
 			if ( wk->br_work->ex_param3 == FALSE ){
 				*wk->br_work->secure_addrs = TRUE;
 			}
 		}
 		OS_Printf( "ex_param3 ( rec_stop_flag ) = %d\n", wk->br_work->ex_param3 );
 		sys_FreeMemoryEz( wk->bp->bag_cursor );
-		BattleParam_Delete( wk->bp );		//BATTLE_PARAM‚ÌŠJ•ú
-//		BattleRec_Exit();					//‰ğ•ú‚µ‚È‚¢B“Ç‚İ‚ñ‚¾‚à‚Ì‚ğ‚»‚Ì‚Ü‚Üg‚¢‚½‚¢‚Ì‚ÅB
+		BattleParam_Delete( wk->bp );		//BATTLE_PARAMã®é–‹æ”¾
+//		BattleRec_Exit();					//è§£æ”¾ã—ãªã„ã€‚èª­ã¿è¾¼ã‚“ã ã‚‚ã®ã‚’ãã®ã¾ã¾ä½¿ã„ãŸã„ã®ã§ã€‚
 		PROC_Delete( wk->p_subproc );
 		{
 			u16 bgm_no;
 
-			Snd_BattleRecFlag( 0 );			//˜^‰æÄ¶—p‚ÌƒTƒEƒ“ƒhƒtƒ‰ƒOoff
+			Snd_BattleRecFlag( 0 );			//éŒ²ç”»å†ç”Ÿç”¨ã®ã‚µã‚¦ãƒ³ãƒ‰ãƒ•ãƒ©ã‚°off
 
-			//ƒTƒEƒ“ƒhƒf[ƒ^ƒZƒbƒg(ƒV[ƒ“‚ª•ÏX‚³‚ê‚È‚¢‚Í‰½‚à‚µ‚È‚¢)
+			//ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ(ã‚·ãƒ¼ãƒ³ãŒå¤‰æ›´ã•ã‚Œãªã„æ™‚ã¯ä½•ã‚‚ã—ãªã„)
 			Snd_SceneSet( SND_SCENE_DUMMY );
 			bgm_no = Snd_FieldBgmNoGet( wk->fsys, wk->fsys->location->zone_id );
 			Snd_ZoneBgmSet( Snd_FieldBgmNoGetNonBasicBank( wk->fsys, wk->fsys->location->zone_id ) );//zone set
@@ -496,7 +496,7 @@ static BOOL BRM_BattleRecPlayer( BR_MANAGER_SYS* wk, int heap )
 		wk->seq = 0;
 		
 		if(wk->br_work->mode != BR_MODE_BROWSE){
-			//gds_comm•œ‹A
+			//gds_commå¾©å¸°
 			DpwCommonOverlayStart();
 			Overlay_Load(FS_OVERLAY_ID(gds_comm), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 		}
@@ -509,7 +509,7 @@ static BOOL BRM_BattleRecPlayer( BR_MANAGER_SYS* wk, int heap )
 
 // -----------------------------------------
 //
-//	  ƒvƒƒbƒN
+//	â–¡ ãƒ—ãƒ­ãƒƒã‚¯
 //
 // -----------------------------------------
 const PROC_DATA BattleRecorder_ManagerProcData = {
@@ -562,7 +562,7 @@ const PROC_DATA BattleRecorder_ManagerProcDataGDS_BOX = {
 };
 
 
-///< ƒvƒƒbƒNƒe[ƒuƒ‹
+///< ãƒ—ãƒ­ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ«
 static const PROC_DATA* BR_ProcData_Table[] = {	
 	&BattleRecorder_ManagerProcData,
 	&BattleRecorder_ManagerProcDataGDS,
@@ -575,7 +575,7 @@ static const PROC_DATA* BR_ProcData_Table[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‚[ƒh–ˆ‚ÌƒvƒƒbƒNƒf[ƒ^‚Ìæ“¾
+ * @brief	ãƒ¢ãƒ¼ãƒ‰æ¯ã®ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
  *
  * @param	mode	
  *
@@ -595,11 +595,11 @@ const PROC_DATA* BattleRecoder_ProcDataGet( int mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒNƒŠƒA‚µ‚½‚©H
+ * @brief	ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã—ãŸã‹ï¼Ÿ
  *
  * @param	wk	
  *
- * @retval	BOOL	TRUE = ƒNƒŠƒA
+ * @retval	BOOL	TRUE = ã‚¯ãƒªã‚¢
  *
  */
 //--------------------------------------------------------------

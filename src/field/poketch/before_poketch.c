@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	before_poketch.c
- * @bfief	�|�P�b�`�擾�ȑO���
+ * @bfief	ポケッチ取得以前画面
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -17,7 +17,7 @@
 
 //------------------------------------------------------------------
 /**
- * �|�P�b�`�擾�ȑO�̉�ʍ\�z
+ * ポケッチ取得以前の画面構築
  *
  * @param   none		
  *
@@ -32,10 +32,10 @@ void BeforePoketchInit( GF_BGL_INI* bgl )
 		GX_BG_EXTPLTT_01, 0, 0, 0, FALSE	// pal, pri, areaover, dmy, mosaic
 	};
 
-	// �ٗl�Ƀf�J�����|�P�b�`�̍��v�Ɠ����ɂ��Ă���
+	// 異様にデカいがポケッチの合計と同じにしておく
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_POKETCH_APP,  0x18000 );
 
-// BG �ݒ�
+// BG 設定
 	GXS_SetGraphicsMode(GX_BGMODE_0);
 
 	GX_SetBankForSubBG(GX_VRAM_SUB_BG_32_H);

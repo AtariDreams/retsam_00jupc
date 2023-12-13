@@ -18,10 +18,10 @@
   GetDigest -> GetHash
 
   Revision 1.2  2005/04/13 04:52:54  seiki_masashi
-  Checksum16 ‚ğƒoƒCƒg‹«ŠE‚ÉŠÖŒW‚È‚­g—p‚Å‚«‚é‚æ‚¤•ÏX
+  Checksum16 ã‚’ãƒã‚¤ãƒˆå¢ƒç•Œã«é–¢ä¿‚ãªãä½¿ç”¨ã§ãã‚‹ã‚ˆã†å¤‰æ›´
 
   Revision 1.1  2005/04/12 11:11:43  seiki_masashi
-  checksum.h ‚Ì’Ç‰Á
+  checksum.h ã®è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -58,11 +58,11 @@ typedef MATHChecksum16Context MATHChecksum8Context;
 /*---------------------------------------------------------------------------*
   Name:         MATH_Checksum16Init
 
-  Description:  16bit ‚Ì Checksum ’l‚ğ‹‚ß‚é‚½‚ß‚Ég‚¤
-                MATHChecksum16Context \‘¢‘Ì‚ğ‰Šú‰»‚·‚éB
+  Description:  16bit ã® Checksum å€¤ã‚’æ±‚ã‚ã‚‹ãŸã‚ã«ä½¿ã†
+                MATHChecksum16Context æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
   
-  Arguments:    context MATHChecksum16Context \‘¢‘Ì
-                init    CRC ‚Ì‰Šú’l
+  Arguments:    context MATHChecksum16Context æ§‹é€ ä½“
+                init    CRC ã®åˆæœŸå€¤
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -74,11 +74,11 @@ static inline void MATH_Checksum16Init(MATHChecksum16Context * context)
 /*---------------------------------------------------------------------------*
   Name:         MATH_Checksum16Update
 
-  Description:  16bit ‚Ì Checksum ’l‚ğ—^‚¦‚½ƒf[ƒ^‚ÅXV‚·‚éB
+  Description:  16bit ã® Checksum å€¤ã‚’ä¸ãˆãŸãƒ‡ãƒ¼ã‚¿ã§æ›´æ–°ã™ã‚‹ã€‚
   
-  Arguments:    context MATHChecksum16Context \‘¢‘Ì
-                input   “ü—Íƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                length  “ü—Íƒf[ƒ^’·
+  Arguments:    context MATHChecksum16Context æ§‹é€ ä½“
+                input   å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                length  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -87,11 +87,11 @@ void    MATH_Checksum16Update(MATHChecksum16Context * context, const void *input
 /*---------------------------------------------------------------------------*
   Name:         MATH_Checksum16GetHash
 
-  Description:  ÅI“I‚È Checksum ’l‚ğ“¾‚éB
+  Description:  æœ€çµ‚çš„ãª Checksum å€¤ã‚’å¾—ã‚‹ã€‚
   
-  Arguments:    context MATHChecksum16Context \‘¢‘Ì
+  Arguments:    context MATHChecksum16Context æ§‹é€ ä½“
   
-  Returns:      ŒvZŒ‹‰Ê.
+  Returns:      è¨ˆç®—çµæœ.
  *---------------------------------------------------------------------------*/
 static inline u16 MATH_Checksum16GetHash(MATHChecksum16Context * context)
 {
@@ -101,12 +101,12 @@ static inline u16 MATH_Checksum16GetHash(MATHChecksum16Context * context)
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcChecksum16
 
-  Description:  16bit ‚Ì Checksum ‚ğŒvZ‚·‚éB
+  Description:  16bit ã® Checksum ã‚’è¨ˆç®—ã™ã‚‹ã€‚
   
-  Arguments:    data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                dataLength  “ü—Íƒf[ƒ^’·
+  Arguments:    data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                dataLength  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
-  Returns:      Checksum ’l.
+  Returns:      Checksum å€¤.
  *---------------------------------------------------------------------------*/
 u16     MATH_CalcChecksum16(const void *data, u32 dataLength);
 
@@ -118,11 +118,11 @@ u16     MATH_CalcChecksum16(const void *data, u32 dataLength);
 /*---------------------------------------------------------------------------*
   Name:         MATH_Checksum8Init
 
-  Description:  8bit ‚Ì Checksum ’l‚ğ‹‚ß‚é‚½‚ß‚Ég‚¤
-                MATHChecksum8Context \‘¢‘Ì‚ğ‰Šú‰»‚·‚éB
+  Description:  8bit ã® Checksum å€¤ã‚’æ±‚ã‚ã‚‹ãŸã‚ã«ä½¿ã†
+                MATHChecksum8Context æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
   
-  Arguments:    context MATHChecksum8Context \‘¢‘Ì
-                init    CRC ‚Ì‰Šú’l
+  Arguments:    context MATHChecksum8Context æ§‹é€ ä½“
+                init    CRC ã®åˆæœŸå€¤
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -134,11 +134,11 @@ static inline void MATH_Checksum8Init(MATHChecksum8Context * context)
 /*---------------------------------------------------------------------------*
   Name:         MATH_Checksum8Update
 
-  Description:  8bit ‚Ì Checksum ’l‚ğ—^‚¦‚½ƒf[ƒ^‚ÅXV‚·‚éB
+  Description:  8bit ã® Checksum å€¤ã‚’ä¸ãˆãŸãƒ‡ãƒ¼ã‚¿ã§æ›´æ–°ã™ã‚‹ã€‚
   
-  Arguments:    context MATHChecksum8Context \‘¢‘Ì
-                input   “ü—Íƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                length  “ü—Íƒf[ƒ^’·
+  Arguments:    context MATHChecksum8Context æ§‹é€ ä½“
+                input   å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                length  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -147,11 +147,11 @@ void    MATH_Checksum8Update(MATHChecksum8Context * context, const void *input, 
 /*---------------------------------------------------------------------------*
   Name:         MATH_Checksum8GetHash
 
-  Description:  ÅI“I‚È Checksum ’l‚ğ“¾‚éB
+  Description:  æœ€çµ‚çš„ãª Checksum å€¤ã‚’å¾—ã‚‹ã€‚
   
-  Arguments:    context MATHChecksum8Context \‘¢‘Ì
+  Arguments:    context MATHChecksum8Context æ§‹é€ ä½“
   
-  Returns:      ŒvZŒ‹‰Ê.
+  Returns:      è¨ˆç®—çµæœ.
  *---------------------------------------------------------------------------*/
 static inline u8 MATH_Checksum8GetHash(MATHChecksum8Context * context)
 {
@@ -165,12 +165,12 @@ static inline u8 MATH_Checksum8GetHash(MATHChecksum8Context * context)
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcChecksum8
 
-  Description:  8bit ‚Ì Checksum ‚ğŒvZ‚·‚éB
+  Description:  8bit ã® Checksum ã‚’è¨ˆç®—ã™ã‚‹ã€‚
   
-  Arguments:    data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                dataLength  “ü—Íƒf[ƒ^’·
+  Arguments:    data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                dataLength  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
-  Returns:      Checksum ’l.
+  Returns:      Checksum å€¤.
  *---------------------------------------------------------------------------*/
 u8      MATH_CalcChecksum8(const void *data, u32 dataLength);
 

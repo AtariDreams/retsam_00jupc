@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	strbuf_family.h
- * @brief	�ėp������o�b�t�@�^�I�u�W�F�N�g�i�����ȕ����z����������W���[���̂�include���j
+ * @brief	汎用文字列バッファ型オブジェクト（純粋な文字配列を扱うモジュールのみinclude許可）
  * @author	taya
  * @date	2005.11.14
  */
@@ -14,10 +14,10 @@
 
 //------------------------------------------------------------------
 /**
- * ���̕�����iEOM�I�[�j���o�b�t�@�I�u�W�F�N�g�ɃZ�b�g����
+ * 生の文字列（EOM終端）をバッファオブジェクトにセットする
  *
- * @param   strbuf		[out] �o�b�t�@�I�u�W�F�N�g�ւ̃|�C���^
- * @param   sz			[in]  EOM �ŏI��镶���z��
+ * @param   strbuf		[out] バッファオブジェクトへのポインタ
+ * @param   sz			[in]  EOM で終わる文字配列
  *
  */
 //------------------------------------------------------------------
@@ -26,11 +26,11 @@ extern void STRBUF_SetStringCode( STRBUF* strbuf, const STRCODE* sz );
 
 //------------------------------------------------------------------
 /**
- * ���̕�����i�����w��j���o�b�t�@�I�u�W�F�N�g�ɃZ�b�g����
+ * 生の文字列（長さ指定）をバッファオブジェクトにセットする
  *
- * @param   strbuf		[out] �o�b�t�@�I�u�W�F�N�g�ւ̃|�C���^
- * @param   str			[in]  �����z��̐擪�|�C���^
- * @param   len			[in]  �Z�b�g���镶�����iEOM���܂ށj
+ * @param   strbuf		[out] バッファオブジェクトへのポインタ
+ * @param   str			[in]  文字配列の先頭ポインタ
+ * @param   len			[in]  セットする文字数（EOMを含む）
  *
  */
 //------------------------------------------------------------------
@@ -39,11 +39,11 @@ extern void STRBUF_SetStringCodeOrderLength( STRBUF* strbuf, const STRCODE* str,
 
 //------------------------------------------------------------------
 /**
- * �o�b�t�@���琶�̕����z����R�s�[����
+ * バッファから生の文字配列をコピーする
  *
- * @param   strbuf		[in]  �o�b�t�@�I�u�W�F�N�g�ւ̃|�C���^
- * @param   ary			[out] �R�s�[��z��
- * @param   arysize		[in]  �R�s�[��z��̗v�f��
+ * @param   strbuf		[in]  バッファオブジェクトへのポインタ
+ * @param   ary			[out] コピー先配列
+ * @param   arysize		[in]  コピー先配列の要素数
  *
  */
 //------------------------------------------------------------------
@@ -56,17 +56,17 @@ extern void STRBUF_GetStringCode( const STRBUF* strbuf, STRCODE* ary, u32 arysiz
 
 
 //==============================================================================================
-// �ȉ��̊֐��͋��𓾂��ɌĂяo���Ă͂����܂���I�I
+// 以下の関数は許可を得ずに呼び出してはいけません！！
 //==============================================================================================
 
 //------------------------------------------------------------------
 /**
- * �o�b�t�@�I�u�W�F�N�g������镶���z��̃A�h���X��Ԃ�
- * �����̊֐����Ăяo���ӏ��͒�����B���Ԃ񕶎��o�͌n�̂݁B
+ * バッファオブジェクトが内包する文字配列のアドレスを返す
+ * ※この関数を呼び出す箇所は超限定。たぶん文字出力系のみ。
  *
- * @param   strbuf				[in] �o�b�t�@�I�u�W�F�N�g�ւ̃|�C���^
+ * @param   strbuf				[in] バッファオブジェクトへのポインタ
  *
- * @retval  const STRCODE*		�����z��̃A�h���X
+ * @retval  const STRCODE*		文字配列のアドレス
  */
 //------------------------------------------------------------------
 extern const STRCODE* STRBUF_GetStringCodePointer( const STRBUF* strbuf );
@@ -74,10 +74,10 @@ extern const STRCODE* STRBUF_GetStringCodePointer( const STRBUF* strbuf );
 
 //------------------------------------------------------------------
 /**
-// ������̘A������y�y �����g�p�֎~ �z�z
+// 文字列の連結操作【【 原則使用禁止 】】
  *
- * @param   dst		[out] �A�������o�b�t�@�I�u�W�F�N�g
- * @param   src		[in]  �A�����镶��������o�b�t�@�I�u�W�F�N�g
+ * @param   dst		[out] 連結されるバッファオブジェクト
+ * @param   src		[in]  連結する文字列を持つバッファオブジェクト
  *
  */
 //------------------------------------------------------------------
@@ -86,10 +86,10 @@ extern void STRBUF_AddStr( STRBUF* dst, const STRBUF* src );
 
 //------------------------------------------------------------------
 /**
- * �P�����A���y�y �����g�p�֎~ �z�z
+ * １文字連結【【 原則使用禁止 】】
  *
- * @param   dst			�A�������o�b�t�@�I�u�W�F�N�g
- * @param   code		�A�����镶���R�[�h
+ * @param   dst			連結されるバッファオブジェクト
+ * @param   code		連結する文字コード
  *
  */
 //------------------------------------------------------------------
@@ -98,7 +98,7 @@ extern void STRBUF_AddChar( STRBUF* dst, STRCODE code );
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/07
-// ���k���ꂽ������𔻕ʁE�W�J����֐���ǉ�
+// 圧縮された文字列を判別・展開する関数を追加
 
 BOOL STRBUF_IsCompressed(STRBUF *strbuf);
 void STRBUF_AddCompStr(STRBUF *dst, STRBUF *src);

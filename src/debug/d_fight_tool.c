@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	d_fight_tool.c
- * @brief	ƒfƒoƒbƒOƒtƒ@ƒCƒg
+ * @brief	ãƒ‡ãƒãƒƒã‚°ãƒ•ã‚¡ã‚¤ãƒˆ
  * @author	sogabe
  * @date	2006.01.06
  */
@@ -65,7 +65,7 @@ extern	void	BattleParam_Delete(BATTLE_PARAM * bp);
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 
@@ -179,7 +179,7 @@ static	BOOL	DebugFightSaveAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightVersionAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightMineAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightEnemyAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
-//ƒTƒuFƒy[ƒW‚P
+//ã‚µãƒ–ï¼šãƒšãƒ¼ã‚¸ï¼‘
 static	BOOL	DebugFightKindAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightRareAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightLevelAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
@@ -188,7 +188,7 @@ static	BOOL	DebugFightSexAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightChrAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightStatusRndAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightStatusExpAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
-//ƒTƒuFƒy[ƒW‚Q
+//ã‚µãƒ–ï¼šãƒšãƒ¼ã‚¸ï¼’
 static	BOOL	DebugFightWazaAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightPPAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightPPCountAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
@@ -199,7 +199,7 @@ static	BOOL	DebugFightFriendAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 static	BOOL	DebugFightConditionAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightDefaultHPAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightGetBallAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
-//ƒTƒuFƒy[ƒW‚R
+//ã‚µãƒ–ï¼šãƒšãƒ¼ã‚¸ï¼“
 static	BOOL	DebugFightFormNoAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightEggFlagAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
 static	BOOL	DebugFightOrderAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp);
@@ -219,682 +219,682 @@ extern	BATTLE_PARAM *BattleParam_Create(int heapID,u32 fight_type);
 const	MENU_LIST_PARAM	mlp_m[]={
 	//MS_MINE_POKE_1
 	{
-		MINE_POKE1_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		MINE_POKE1_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_MINE,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE_POKE_2,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY_POKE_1,		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPokeAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		MINE_POKE1_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		MINE_POKE1_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_MINE,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE_POKE_2,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY_POKE_1,		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPokeAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_MINE_POKE_2
 	{
-		MINE_POKE2_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		MINE_POKE2_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_MINE_POKE_1,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE_POKE_3,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY_POKE_2,		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPokeAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		MINE_POKE2_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		MINE_POKE2_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_MINE_POKE_1,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE_POKE_3,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY_POKE_2,		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPokeAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_MINE_POKE_3
 	{
-		MINE_POKE3_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		MINE_POKE3_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_MINE_POKE_2,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE_POKE_4,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY_POKE_3,		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPokeAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		MINE_POKE3_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		MINE_POKE3_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_MINE_POKE_2,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE_POKE_4,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY_POKE_3,		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPokeAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_MINE_POKE_4
 	{
-		MINE_POKE4_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		MINE_POKE4_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_MINE_POKE_3,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE_POKE_5,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY_POKE_4,		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPokeAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		MINE_POKE4_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		MINE_POKE4_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_MINE_POKE_3,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE_POKE_5,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY_POKE_4,		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPokeAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_MINE_POKE_5
 	{
-		MINE_POKE5_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		MINE_POKE5_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_MINE_POKE_4,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE_POKE_6,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY_POKE_5,		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPokeAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		MINE_POKE5_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		MINE_POKE5_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_MINE_POKE_4,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE_POKE_6,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY_POKE_5,		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPokeAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_MINE_POKE_6
 	{
-		MINE_POKE6_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		MINE_POKE6_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_MINE_POKE_5,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_GROUND,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY_POKE_6,		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPokeAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		MINE_POKE6_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		MINE_POKE6_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_MINE_POKE_5,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_GROUND,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY_POKE_6,		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPokeAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_ENEMY_POKE_1
 	{
-		ENEMY_POKE1_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		ENEMY_POKE1_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_ENEMY,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY_POKE_2,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE_POKE_1,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPokeAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		ENEMY_POKE1_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		ENEMY_POKE1_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_ENEMY,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY_POKE_2,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE_POKE_1,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPokeAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_ENEMY_POKE_2
 	{
-		ENEMY_POKE2_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		ENEMY_POKE2_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_ENEMY_POKE_1,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY_POKE_3,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE_POKE_2,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPokeAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		ENEMY_POKE2_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		ENEMY_POKE2_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_ENEMY_POKE_1,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY_POKE_3,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE_POKE_2,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPokeAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_ENEMY_POKE_3
 	{
-		ENEMY_POKE3_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		ENEMY_POKE3_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_ENEMY_POKE_2,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY_POKE_4,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE_POKE_3,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPokeAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		ENEMY_POKE3_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		ENEMY_POKE3_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_ENEMY_POKE_2,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY_POKE_4,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE_POKE_3,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPokeAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_ENEMY_POKE_4
 	{
-		ENEMY_POKE4_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		ENEMY_POKE4_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_ENEMY_POKE_3,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY_POKE_5,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE_POKE_4,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPokeAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		ENEMY_POKE4_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		ENEMY_POKE4_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_ENEMY_POKE_3,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY_POKE_5,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE_POKE_4,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPokeAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_ENEMY_POKE_5
 	{
-		ENEMY_POKE5_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		ENEMY_POKE5_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_ENEMY_POKE_4,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY_POKE_6,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE_POKE_5,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPokeAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		ENEMY_POKE5_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		ENEMY_POKE5_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_ENEMY_POKE_4,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY_POKE_6,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE_POKE_5,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPokeAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_ENEMY_POKE_6
 	{
-		ENEMY_POKE6_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		ENEMY_POKE6_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_ENEMY_POKE_5,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_BG,					//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE_POKE_6,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPokeAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		ENEMY_POKE6_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		ENEMY_POKE6_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_ENEMY_POKE_5,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_BG,					//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE_POKE_6,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPokeAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_GROUND
 	{
-		GROUND_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		GROUND_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_MINE_POKE_6,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_RULE,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_BG,					//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightGroundAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		GROUND_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		GROUND_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_MINE_POKE_6,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_RULE,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_BG,					//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightGroundAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_BG
 	{
-		BG_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		BG_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_ENEMY_POKE_6,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_EFFECT_FLAG,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_GROUND,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_WEATHER,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightBGAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		BG_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		BG_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_ENEMY_POKE_6,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_EFFECT_FLAG,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_GROUND,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_WEATHER,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightBGAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_WEATHER
 	{
-		WEATHER_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		WEATHER_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_ENEMY_POKE_6,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MSG_SPEED,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_BG,					//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightWeatherAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		WEATHER_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		WEATHER_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_ENEMY_POKE_6,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MSG_SPEED,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_BG,					//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightWeatherAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_RULE,
 	{
-		RULE_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		RULE_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_GROUND,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MYSEX,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_EFFECT_FLAG,			//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightRuleAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		RULE_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		RULE_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_GROUND,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MYSEX,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_EFFECT_FLAG,			//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightRuleAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_EFFECT_FLAG,
 	{
-		EFFECT_FLAG_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		EFFECT_FLAG_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_BG,					//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_TIMEZONE,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_RULE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MSG_SPEED,			//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightEffectFlagAct,//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		EFFECT_FLAG_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		EFFECT_FLAG_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_BG,					//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_TIMEZONE,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_RULE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MSG_SPEED,			//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightEffectFlagAct,//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_MSG_SPEED,
 	{
-		MSG_SPEED_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		MSG_SPEED_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_WEATHER,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_FIGHT_TYPE,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_EFFECT_FLAG,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightMsgSpeedAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		MSG_SPEED_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		MSG_SPEED_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_WEATHER,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_FIGHT_TYPE,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_EFFECT_FLAG,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightMsgSpeedAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_MYSEX,
 	{
-		MYSEX_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		MYSEX_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_RULE,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_LOAD,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_TIMEZONE,			//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightMySexAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		MYSEX_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		MYSEX_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_RULE,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_LOAD,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_TIMEZONE,			//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightMySexAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_TIMEZONE,
 	{
-		TIMEZONE_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		TIMEZONE_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_EFFECT_FLAG,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_SAVE,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MYSEX,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_FIGHT_TYPE,			//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightTimeZoneAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		TIMEZONE_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		TIMEZONE_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_EFFECT_FLAG,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_SAVE,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MYSEX,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_FIGHT_TYPE,			//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightTimeZoneAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_FIGHT_TYPE
 	{
-		FIGHT_TYPE_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		FIGHT_TYPE_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_MSG_SPEED,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_BRD_SAVE,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_TIMEZONE,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightFightTypeAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		FIGHT_TYPE_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		FIGHT_TYPE_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_MSG_SPEED,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_BRD_SAVE,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_TIMEZONE,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightFightTypeAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_LOAD
 	{
-		LOAD_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		LOAD_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_MYSEX,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_SAVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightLoadAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		LOAD_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		LOAD_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_MYSEX,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_SAVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightLoadAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_SAVE
 	{
-		SAVE_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		SAVE_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_TIMEZONE,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_LOAD,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_BRD_SAVE,			//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightSaveAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		SAVE_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		SAVE_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_TIMEZONE,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_LOAD,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_BRD_SAVE,			//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightSaveAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_BRD_SAVE
 	{
-		BRD_SAVE_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		BRD_SAVE_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_FIGHT_TYPE,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_SAVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_VERSION,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightBRDSaveAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		BRD_SAVE_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		BRD_SAVE_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_FIGHT_TYPE,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_SAVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_VERSION,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightBRDSaveAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_VERSION,
 	{
-		VERSION_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		VERSION_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_FIGHT_TYPE,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_BRD_SAVE,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightVersionAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		VERSION_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		VERSION_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_FIGHT_TYPE,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_BRD_SAVE,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightVersionAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_MINE,
 	{
-		MINE_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		MINE_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_LOAD,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE_POKE_1,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightMineAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		MINE_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		MINE_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_LOAD,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE_POKE_1,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightMineAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MS_ENEMY,
 	{
-		ENEMY_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		ENEMY_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MS_BRD_SAVE,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_ENEMY_POKE_1,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MS_MINE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightEnemyAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		ENEMY_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		ENEMY_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MS_BRD_SAVE,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_ENEMY_POKE_1,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MS_MINE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightEnemyAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 };
 
 static	const	MENU_LIST_PARAM	mlp_s1[]={
 	//MENU1_KIND
 	{
-		KIND_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		KIND_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_SPEDEF_RND,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_LEVEL,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_RARE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightKindAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		KIND_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		KIND_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_SPEDEF_RND,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_LEVEL,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_RARE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightKindAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_RARE
 	{
-		RARE_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		RARE_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_SPEDEF_EXP,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_EXP,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_KIND,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightRareAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		RARE_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		RARE_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_SPEDEF_EXP,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_EXP,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_KIND,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightRareAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_LEVEL
 	{
-		LEVEL_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		LEVEL_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_KIND,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_SEX,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_EXP,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightLevelAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		LEVEL_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		LEVEL_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_KIND,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_SEX,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_EXP,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightLevelAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_EXP
 	{
-		EXP_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		EXP_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_RARE,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_CHR,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_LEVEL,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightExpAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		EXP_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		EXP_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_RARE,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_CHR,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_LEVEL,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightExpAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_SEX
 	{
-		SEX_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		SEX_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_LEVEL,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_HP_RND,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_CHR,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightSexAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		SEX_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		SEX_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_LEVEL,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_HP_RND,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_CHR,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightSexAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_CHR
 	{
-		CHR_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		CHR_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_EXP,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_HP_EXP,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_SEX,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightChrAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		CHR_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		CHR_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_EXP,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_HP_EXP,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_SEX,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightChrAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_HP_RND
 	{
-		HP_RND_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		HP_RND_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_SEX,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_POW_RND,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_HP_EXP,			//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightStatusRndAct,					//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		HP_RND_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		HP_RND_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_SEX,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_POW_RND,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_HP_EXP,			//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightStatusRndAct,					//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_POW_RND
 	{
-		POW_RND_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		POW_RND_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_HP_RND,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_DEF_RND,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_POW_EXP,			//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightStatusRndAct,					//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		POW_RND_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		POW_RND_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_HP_RND,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_DEF_RND,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_POW_EXP,			//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightStatusRndAct,					//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_DEF_RND
 	{
-		DEF_RND_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		DEF_RND_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_POW_RND,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_AGI_RND,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_DEF_EXP,			//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightStatusRndAct,					//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		DEF_RND_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		DEF_RND_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_POW_RND,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_AGI_RND,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_DEF_EXP,			//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightStatusRndAct,					//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_AGI_RND
 	{
-		AGI_RND_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		AGI_RND_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_DEF_RND,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_SPEPOW_RND,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_AGI_EXP,			//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightStatusRndAct,					//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		AGI_RND_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		AGI_RND_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_DEF_RND,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_SPEPOW_RND,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_AGI_EXP,			//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightStatusRndAct,					//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_SPEPOW_RND
 	{
-		SPEPOW_RND_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		SPEPOW_RND_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_AGI_RND,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_SPEDEF_RND,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_SPEPOW_EXP,		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightStatusRndAct,					//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		SPEPOW_RND_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		SPEPOW_RND_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_AGI_RND,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_SPEDEF_RND,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_SPEPOW_EXP,		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightStatusRndAct,					//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_SPEDEF_RND
 	{
-		SPEDEF_RND_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		SPEDEF_RND_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_SPEPOW_RND,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_KIND,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_SPEDEF_EXP,		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightStatusRndAct,					//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		SPEDEF_RND_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		SPEDEF_RND_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_SPEPOW_RND,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_KIND,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_SPEDEF_EXP,		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightStatusRndAct,					//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_HP_EXP
 	{
-		HP_EXP_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		HP_EXP_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_CHR,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_POW_EXP,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_HP_RND,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightStatusExpAct,					//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		HP_EXP_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		HP_EXP_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_CHR,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_POW_EXP,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_HP_RND,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightStatusExpAct,					//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_POW_EXP
 	{
-		POW_EXP_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		POW_EXP_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_HP_EXP,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_DEF_EXP,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_POW_RND,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightStatusExpAct,					//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		POW_EXP_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		POW_EXP_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_HP_EXP,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_DEF_EXP,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_POW_RND,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightStatusExpAct,					//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_DEF_EXP
 	{
-		DEF_EXP_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		DEF_EXP_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_POW_EXP,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_AGI_EXP,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_DEF_RND,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightStatusExpAct,					//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		DEF_EXP_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		DEF_EXP_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_POW_EXP,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_AGI_EXP,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_DEF_RND,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightStatusExpAct,					//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_AGI_EXP
 	{
-		AGI_EXP_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		AGI_EXP_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_DEF_EXP,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_SPEPOW_EXP,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_AGI_RND,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightStatusExpAct,					//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		AGI_EXP_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		AGI_EXP_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_DEF_EXP,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_SPEPOW_EXP,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_AGI_RND,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightStatusExpAct,					//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_SPEPOW_EXP
 	{
-		SPEPOW_EXP_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		SPEPOW_EXP_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_AGI_EXP,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_SPEDEF_EXP,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_SPEPOW_RND,		//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightStatusExpAct,					//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		SPEPOW_EXP_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		SPEPOW_EXP_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_AGI_EXP,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_SPEDEF_EXP,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_SPEPOW_RND,		//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightStatusExpAct,					//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU1_SPEDEF_EXP
 	{
-		SPEDEF_EXP_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		SPEDEF_EXP_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU1_SPEPOW_EXP,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_RARE,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU1_SPEDEF_RND,		//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightStatusExpAct,					//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		SPEDEF_EXP_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		SPEDEF_EXP_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU1_SPEPOW_EXP,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_RARE,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU1_SPEDEF_RND,		//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightStatusExpAct,					//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 };
 
 static	const	MENU_LIST_PARAM	mlp_s2[]={
 	//MENU2_WAZA1
 	{
-		WAZA1_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		WAZA1_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_GETBALL,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_WAZA2,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP_COUNT1,		//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP1,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightWazaAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		WAZA1_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		WAZA1_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_GETBALL,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_WAZA2,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP_COUNT1,		//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP1,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightWazaAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_WAZA2
 	{
-		WAZA2_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		WAZA2_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_WAZA1,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_WAZA3,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP_COUNT2,		//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP2,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightWazaAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		WAZA2_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		WAZA2_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_WAZA1,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_WAZA3,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP_COUNT2,		//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP2,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightWazaAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_WAZA3
 	{
-		WAZA3_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		WAZA3_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_WAZA2,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_WAZA4,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP_COUNT3,		//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP3,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightWazaAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		WAZA3_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		WAZA3_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_WAZA2,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_WAZA4,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP_COUNT3,		//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP3,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightWazaAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_WAZA4
 	{
-		WAZA4_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		WAZA4_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_WAZA3,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_SPEABI,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP_COUNT4,		//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP4,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightWazaAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		WAZA4_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		WAZA4_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_WAZA3,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_SPEABI,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP_COUNT4,		//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP4,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightWazaAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_PP1
 	{
-		PP1_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		PP1_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_DEFAULT_HP,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP2,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_WAZA1,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP_COUNT1,		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPPAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		PP1_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		PP1_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_DEFAULT_HP,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP2,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_WAZA1,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP_COUNT1,		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPPAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_PP2
 	{
-		PP2_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		PP2_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_PP1,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP3,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_WAZA2,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP_COUNT2,		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPPAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		PP2_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		PP2_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_PP1,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP3,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_WAZA2,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP_COUNT2,		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPPAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_PP3
 	{
-		PP3_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		PP3_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_PP2,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP4,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_WAZA3,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP_COUNT3,		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPPAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		PP3_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		PP3_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_PP2,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP4,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_WAZA3,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP_COUNT3,		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPPAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_PP4
 	{
-		PP4_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		PP4_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_PP3,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_SPEABI,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_WAZA4,			//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP_COUNT4,		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPPAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		PP4_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		PP4_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_PP3,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_SPEABI,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_WAZA4,			//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP_COUNT4,		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPPAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_PP_COUNT_1
 	{
-		PP_COUNT1_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		PP_COUNT1_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_DEFAULT_HP,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP_COUNT2,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP1,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_WAZA1,			//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPPCountAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		PP_COUNT1_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		PP_COUNT1_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_DEFAULT_HP,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP_COUNT2,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP1,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_WAZA1,			//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPPCountAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_PP_COUNT_2
 	{
-		PP_COUNT2_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		PP_COUNT2_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_PP_COUNT1,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP_COUNT3,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP2,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_WAZA2,			//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPPCountAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		PP_COUNT2_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		PP_COUNT2_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_PP_COUNT1,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP_COUNT3,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP2,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_WAZA2,			//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPPCountAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_PP_COUNT_3
 	{
-		PP_COUNT3_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		PP_COUNT3_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_PP_COUNT2,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP_COUNT4,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP3,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_WAZA3,			//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPPCountAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		PP_COUNT3_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		PP_COUNT3_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_PP_COUNT2,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP_COUNT4,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP3,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_WAZA3,			//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPPCountAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_PP_COUNT_4
 	{
-		PP_COUNT4_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		PP_COUNT4_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_PP_COUNT3,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_SPEABI,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_PP4,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_WAZA4,			//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightPPCountAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		PP_COUNT4_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		PP_COUNT4_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_PP_COUNT3,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_SPEABI,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_PP4,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_WAZA4,			//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightPPCountAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_SPEABI
 	{
-		SPEABI_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		SPEABI_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_WAZA4,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_SPEABI_SET,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightSpeAbiAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		SPEABI_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		SPEABI_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_WAZA4,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_SPEABI_SET,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightSpeAbiAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_SPEABI_SET
 	{
-		SPEABI_SET_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		SPEABI_SET_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_SPEABI,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_ITEM,				//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightSpeAbiSetAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		SPEABI_SET_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		SPEABI_SET_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_SPEABI,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_ITEM,				//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightSpeAbiSetAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_ITEM
 	{
-		ITEM_CUR_X,				//ƒJ[ƒ\ƒ‹XˆÊ’u
-		ITEM_CUR_Y,				//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_SPEABI_SET,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_FRIEND,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightItemAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		ITEM_CUR_X,				//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		ITEM_CUR_Y,				//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_SPEABI_SET,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_FRIEND,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightItemAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_FRIEND
 	{
-		FRIEND_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		FRIEND_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_ITEM,				//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_CONDITION,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightFriendAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		FRIEND_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		FRIEND_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_ITEM,				//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_CONDITION,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightFriendAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_CONDITION
 	{
-		CONDITION_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		CONDITION_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_FRIEND,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_DEFAULT_HP,		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightConditionAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		CONDITION_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		CONDITION_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_FRIEND,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_DEFAULT_HP,		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightConditionAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_DEFAULT_HP
 	{
-		DEFAULT_HP_CUR_X,		//ƒJ[ƒ\ƒ‹XˆÊ’u
-		DEFAULT_HP_CUR_Y,		//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_CONDITION,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_GETBALL,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightDefaultHPAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		DEFAULT_HP_CUR_X,		//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		DEFAULT_HP_CUR_Y,		//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_CONDITION,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_GETBALL,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightDefaultHPAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU2_GETBALL
 	{
-		GETBALL_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		GETBALL_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU2_DEFAULT_HP,		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU2_WAZA1,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightGetBallAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		GETBALL_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		GETBALL_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU2_DEFAULT_HP,		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU2_WAZA1,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightGetBallAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 };
 
 static	const	MENU_LIST_PARAM	mlp_s3[]={
 	//MENU3_FORMNO
 	{
-		FORMNO_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		FORMNO_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU3_ORDER,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU3_EGG_FLAG,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightFormNoAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		FORMNO_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		FORMNO_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU3_ORDER,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU3_EGG_FLAG,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightFormNoAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU3_EGG_FLAG
 	{
-		EGG_FLAG_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		EGG_FLAG_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU3_FORMNO,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU3_ORDER,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightEggFlagAct,	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		EGG_FLAG_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		EGG_FLAG_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU3_FORMNO,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU3_ORDER,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightEggFlagAct,	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 	//MENU3_ORDER
 	{
-		ORDER_CUR_X,			//ƒJ[ƒ\ƒ‹XˆÊ’u
-		ORDER_CUR_Y,			//ƒJ[ƒ\ƒ‹YˆÊ’u
-		MENU3_EGG_FLAG,			//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		MENU3_FORMNO,			//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		NO_MOVE,				//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-		DebugFightOrderAct,		//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+		ORDER_CUR_X,			//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+		ORDER_CUR_Y,			//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+		MENU3_EGG_FLAG,			//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		MENU3_FORMNO,			//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		NO_MOVE,				//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+		DebugFightOrderAct,		//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	},
 };
 
@@ -905,12 +905,12 @@ const	MENU_LIST_PARAM	*	const	mlp_s_list[]={
 };
 
 static	const	u16	pal[]={
-		GX_RGB(31,31,31),				//0:”’
-		GX_RGB(13,13,13),				//1:”Z‚¢ŠD
-		GX_RGB(24,24,24),				//2:”–‚¢ŠD
-		GX_RGB(15,31,15),				//3:‚¤‚·‚Ý‚Ç‚è
-		GX_RGB(31,15,15),				//4:‚¤‚·‚ ‚©
-		GX_RGB(15,15,31),				//5:‚¤‚·‚ ‚¨
+		GX_RGB(31,31,31),				//0:ç™½
+		GX_RGB(13,13,13),				//1:æ¿ƒã„ç°
+		GX_RGB(24,24,24),				//2:è–„ã„ç°
+		GX_RGB(15,31,15),				//3:ã†ã™ã¿ã©ã‚Š
+		GX_RGB(31,15,15),				//4:ã†ã™ã‚ã‹
+		GX_RGB(15,15,31),				//5:ã†ã™ã‚ãŠ
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
@@ -920,7 +920,7 @@ static	const	u16	pal[]={
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
-		GX_RGB(31,31,31),				//15:”’
+		GX_RGB(31,31,31),				//15:ç™½
 };
 
 static	const	int	param_mode_tbl[]={
@@ -951,23 +951,23 @@ static	const	u32	fight_type_table[][2]={
 };
 
 static	const	int	weather_table[]={
-	WEATHER_SYS_SUNNY,			// °‚ê
-	WEATHER_SYS_RAIN,			// ‰J
-	WEATHER_SYS_STRAIN,			// ‘å‰J
-	WEATHER_SYS_SPARK,			// ‘å‰J
-	WEATHER_SYS_SNOW,			// á
-	WEATHER_SYS_SNOWSTORM,		// á
-	WEATHER_SYS_SNOWSTORM_H,	// –Òá
-	WEATHER_SYS_SANDSTORM,		// BGŽg—p»—’
-	WEATHER_SYS_MIST1,			// –¶•¥‚¢‚Ì–¶
-	WEATHER_SYS_MIST2,			// –¶•¥‚¢‚Ì–¶
-	WEATHER_SYS_HIGHSUNNY,		// “ú–{°‚ê
-	WEATHER_SYS_TRICKROOM,		// ƒgƒŠƒbƒNƒ‹[ƒ€
+	WEATHER_SYS_SUNNY,			// æ™´ã‚Œ
+	WEATHER_SYS_RAIN,			// é›¨
+	WEATHER_SYS_STRAIN,			// å¤§é›¨
+	WEATHER_SYS_SPARK,			// å¤§é›¨
+	WEATHER_SYS_SNOW,			// é›ª
+	WEATHER_SYS_SNOWSTORM,		// å¹é›ª
+	WEATHER_SYS_SNOWSTORM_H,	// çŒ›å¹é›ª
+	WEATHER_SYS_SANDSTORM,		// BGä½¿ç”¨ç ‚åµ
+	WEATHER_SYS_MIST1,			// éœ§æ‰•ã„ã®éœ§
+	WEATHER_SYS_MIST2,			// éœ§æ‰•ã„ã®éœ§
+	WEATHER_SYS_HIGHSUNNY,		// æ—¥æœ¬æ™´ã‚Œ
+	WEATHER_SYS_TRICKROOM,		// ãƒˆãƒªãƒƒã‚¯ãƒ«ãƒ¼ãƒ 
 };
 
 //============================================================================================
 /**
- *	í“¬”wŒi‰æ–Ê‰Šú‰»•‰æ–Ê¶¬
+ *	æˆ¦é—˜èƒŒæ™¯ç”»é¢åˆæœŸåŒ–ï¼†ç”»é¢ç”Ÿæˆ
  */
 //============================================================================================
 void	DebugFightBGCreate(DEBUG_FIGHT_PARAM *dfp,GF_BGL_INI *bgl)
@@ -975,26 +975,26 @@ void	DebugFightBGCreate(DEBUG_FIGHT_PARAM *dfp,GF_BGL_INI *bgl)
 	sys_VBlankFuncChange(NULL,NULL);
 
 	GF_Disp_GX_VisibleControlInit();
-	WIPE_ResetBrightness(WIPE_DISP_MAIN);		// ƒƒCƒ“–Ê
-	WIPE_ResetBrightness(WIPE_DISP_SUB);		// ƒTƒu–Ê
+	WIPE_ResetBrightness(WIPE_DISP_MAIN);		// ãƒ¡ã‚¤ãƒ³é¢
+	WIPE_ResetBrightness(WIPE_DISP_SUB);		// ã‚µãƒ–é¢
 
-	//VRAMÝ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -1009,7 +1009,7 @@ void	DebugFightBGCreate(DEBUG_FIGHT_PARAM *dfp,GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_M
@@ -1022,7 +1022,7 @@ void	DebugFightBGCreate(DEBUG_FIGHT_PARAM *dfp,GF_BGL_INI *bgl)
 		GF_BGL_BGControlSet(bgl, GF_BGL_FRAME1_M, &TextBgCntDat[0], GF_BGL_MODE_TEXT );
 		GF_BGL_ScrClear(bgl, GF_BGL_FRAME1_M );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_S
@@ -1036,7 +1036,7 @@ void	DebugFightBGCreate(DEBUG_FIGHT_PARAM *dfp,GF_BGL_INI *bgl)
 		GF_BGL_ScrClear(bgl, GF_BGL_FRAME1_S );
 	}
 
-	//”wŒiƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒh
+	//èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	{
 		DC_FlushRange((void *)&pal,sizeof(pal));
 		GX_LoadBGPltt((void *)&pal,0,sizeof(pal));
@@ -1053,7 +1053,7 @@ void	DebugFightBGCreate(DEBUG_FIGHT_PARAM *dfp,GF_BGL_INI *bgl)
 
 //============================================================================================
 /**
- *	ƒfƒoƒbƒOƒtƒ@ƒCƒg—pƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‰Šú‰»
+ *	ãƒ‡ãƒãƒƒã‚°ãƒ•ã‚¡ã‚¤ãƒˆç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ–
  */
 //============================================================================================
 void	DebugFightPokemonParamInit(DEBUG_POKEMON_PARAM *dpp)
@@ -1069,7 +1069,7 @@ void	DebugFightPokemonParamInit(DEBUG_POKEMON_PARAM *dpp)
 
 //============================================================================================
 /**
- *	AIƒXƒNƒŠ[ƒ“¶¬
+ *	AIã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç”Ÿæˆ
  */
 //============================================================================================
 
@@ -1098,7 +1098,7 @@ void	DebugFightAIScreenCreate(DEBUG_FIGHT_PARAM *dfp)
 
 //============================================================================================
 /**
- *	AUTOƒ‚[ƒhƒXƒNƒŠ[ƒ“¶¬
+ *	AUTOãƒ¢ãƒ¼ãƒ‰ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç”Ÿæˆ
  */
 //============================================================================================
 
@@ -1136,7 +1136,7 @@ void	DebugFightAutoScreenCreate(DEBUG_FIGHT_PARAM *dfp)
 
 //============================================================================================
 /**
- *	˜^‰æƒf[ƒ^ƒGƒfƒBƒbƒgƒ‚[ƒhƒXƒNƒŠ[ƒ“¶¬
+ *	éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒ¢ãƒ¼ãƒ‰ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç”Ÿæˆ
  */
 //============================================================================================
 
@@ -1152,7 +1152,7 @@ void	DebugFightRecDataEditScreenCreate(DEBUG_FIGHT_PARAM *dfp)
 
 //============================================================================================
 /**
- *	˜^‰æƒf[ƒ^ƒGƒfƒBƒbƒgƒ‚[ƒhƒXƒNƒŠ[ƒ“¶¬
+ *	éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒ¢ãƒ¼ãƒ‰ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç”Ÿæˆ
  */
 //============================================================================================
 
@@ -1185,7 +1185,7 @@ void	DebugFightRecDataEdit2ScreenCreate(DEBUG_FIGHT_PARAM *dfp,GF_PRINTCOLOR col
 
 //============================================================================================
 /**
- *	ƒRƒ}ƒ“ƒh§ŒäƒGƒfƒBƒbƒgƒ‚[ƒhƒXƒNƒŠ[ƒ“¶¬
+ *	ã‚³ãƒžãƒ³ãƒ‰åˆ¶å¾¡ã‚¨ãƒ‡ã‚£ãƒƒãƒˆãƒ¢ãƒ¼ãƒ‰ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç”Ÿæˆ
  */
 //============================================================================================
 void	DebugFightComSelectEditScreenCreate(DEBUG_FIGHT_PARAM *dfp,GF_PRINTCOLOR col)
@@ -1213,7 +1213,7 @@ void	DebugFightComSelectEditScreenCreate(DEBUG_FIGHT_PARAM *dfp,GF_PRINTCOLOR co
 
 //============================================================================================
 /**
- *	ƒƒCƒ“ƒXƒNƒŠ[ƒ“¶¬
+ *	ãƒ¡ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç”Ÿæˆ
  */
 //============================================================================================
 
@@ -1392,7 +1392,7 @@ static	void	DebugFightMySexDataPut(DEBUG_FIGHT_PARAM *dfp,GF_PRINTCOLOR col)
 
 //============================================================================================
 /**
- *	ƒTƒuƒXƒNƒŠ[ƒ“¶¬
+ *	ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç”Ÿæˆ
  */
 //============================================================================================
 
@@ -1802,7 +1802,7 @@ static	void	DebugFightParamPut(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 		dfp->put_req=1;
 	}
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠÖ˜Aíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£é–¢é€£å‰Šé™¤
 	MSGMAN_Delete(man);
 }
 
@@ -1847,10 +1847,10 @@ static	void	DebugFightWazaDataPut(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dp
 
 	GF_BGL_BmpWinFill(dfp->win_s,0x0f,WAZA_NUM_X,WAZA_NUM_Y+WAZA_NUM_OFS*pos,128,16);
 
-	//‹Zƒiƒ“ƒo[
+	//æŠ€ãƒŠãƒ³ãƒãƒ¼
 	DebugFightNumPut(dfp,WAZA_NUM_X,WAZA_NUM_Y+WAZA_NUM_OFS*pos,dpp->waza[pos],3,dfp->cur_pos_keta,mode);
 
-	//‹Z–¼
+	//æŠ€å
 	MSGMAN_GetString(dfp->man_waza,dpp->waza[pos],dfp->msg_buf);
 	GF_STR_PrintSimple(dfp->win_s,FONT_SYSTEM,dfp->msg_buf,WAZA_DATA_X,WAZA_DATA_Y+WAZA_DATA_OFS*pos,MSG_NO_PUT,NULL);
 
@@ -2219,7 +2219,7 @@ static	void	DebugFightNumPut(DEBUG_FIGHT_PARAM *dfp,int x,int y,int param,int ke
 
 //============================================================================================
 /**
- *	í“¬ŠJŽn
+ *	æˆ¦é—˜é–‹å§‹
  */
 //============================================================================================
 static	u8	TrainerSexTable[]={
@@ -2397,7 +2397,7 @@ BOOL	DebugFightStart(DEBUG_FIGHT_PARAM *dfp)
 		}
 	}
 
-	//ƒGƒ“ƒJƒEƒ“ƒgƒtƒB[ƒ‹ƒhî•ñ
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰æƒ…å ±
 	dfp->param->ground_id=dfp->dsp.ground;
 	dfp->param->bg_id=dfp->dsp.bg;
 	dfp->param->time_zone=dfp->dsp.time_zone;
@@ -2465,7 +2465,7 @@ static	void	DebugFightPokemonParamMake(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARA
 
 //==============================================================================================
 //
-//	ƒƒjƒ…[ƒJ[ƒ\ƒ‹ˆÚ“®
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 //
 //==============================================================================================
 void	CursorMove(DEBUG_FIGHT_PARAM *dfp,int side,int pos,int mode)
@@ -2509,7 +2509,7 @@ void	CursorMove(DEBUG_FIGHT_PARAM *dfp,int side,int pos,int mode)
 
 //==============================================================================================
 //
-//	í“¬ƒ^ƒCƒv•ÒW
+//	æˆ¦é—˜ã‚¿ã‚¤ãƒ—ç·¨é›†
 //
 //==============================================================================================
 enum{
@@ -2570,7 +2570,7 @@ static	BOOL	DebugFightFightTypeAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *d
 
 //==============================================================================================
 //
-//	ƒpƒ‰ƒ[ƒ^ƒ[ƒh
+//	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 //
 //==============================================================================================
 static	BOOL	DebugFightLoadAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2586,7 +2586,7 @@ static	BOOL	DebugFightLoadAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	ƒpƒ‰ƒ[ƒ^ƒZ[ƒu
+//	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 //
 //==============================================================================================
 static	BOOL	DebugFightSaveAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2599,7 +2599,7 @@ static	BOOL	DebugFightSaveAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	‘Îí˜^‰æƒf[ƒ^ƒZ[ƒu
+//	å¯¾æˆ¦éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 //
 //==============================================================================================
 BOOL	DebugFightBRDSaveAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2656,7 +2656,7 @@ void	DebugFightBRDSaveActMain(DEBUG_FIGHT_PARAM *dfp)
 
 //==============================================================================================
 //
-//	ƒT[ƒoƒo[ƒWƒ‡ƒ“‚Ì•ÒW
+//	ã‚µãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightVersionAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2686,7 +2686,7 @@ static	BOOL	DebugFightVersionAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp
 
 //==============================================================================================
 //
-//	‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“Ø‚è‘Ö‚¦
+//	ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³åˆ‡ã‚Šæ›¿ãˆ
 //
 //==============================================================================================
 static	BOOL	DebugFightMineAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2705,7 +2705,7 @@ static	BOOL	DebugFightMineAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“Ø‚è‘Ö‚¦
+//	ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³åˆ‡ã‚Šæ›¿ãˆ
 //
 //==============================================================================================
 static	BOOL	DebugFightEnemyAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2724,7 +2724,7 @@ static	BOOL	DebugFightEnemyAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	’nŒ`‚Ì•ÒW
+//	åœ°å½¢ã®ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightGroundAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2754,7 +2754,7 @@ static	BOOL	DebugFightGroundAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	”wŒi‚Ì•ÒW
+//	èƒŒæ™¯ã®ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightBGAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2784,7 +2784,7 @@ static	BOOL	DebugFightBGAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	“VŒó‚Ì•ÒW
+//	å¤©å€™ã®ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightWeatherAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2814,7 +2814,7 @@ static	BOOL	DebugFightWeatherAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp
 
 //==============================================================================================
 //
-//	ƒ^ƒCƒ€ƒ][ƒ“‚Ì•ÒW
+//	ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã®ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightTimeZoneAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2844,7 +2844,7 @@ static	BOOL	DebugFightTimeZoneAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dp
 
 //==============================================================================================
 //
-//	Ž©•ª‚Ì«•Ê•ÒW
+//	è‡ªåˆ†ã®æ€§åˆ¥ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightMySexAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2874,7 +2874,7 @@ static	BOOL	DebugFightMySexAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	í“¬ƒ‹[ƒ‹•ÒW
+//	æˆ¦é—˜ãƒ«ãƒ¼ãƒ«ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightRuleAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2900,7 +2900,7 @@ static	BOOL	DebugFightRuleAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	‹ZƒGƒtƒFƒNƒg‚n‚m^‚n‚e‚eƒtƒ‰ƒO•ÒW
+//	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼¯ï¼®ï¼ï¼¯ï¼¦ï¼¦ãƒ•ãƒ©ã‚°ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightEffectFlagAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2926,7 +2926,7 @@ static	BOOL	DebugFightEffectFlagAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *
 
 //==============================================================================================
 //
-//	ƒƒbƒZ[ƒWƒXƒs[ƒh•ÒW
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightMsgSpeedAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -2956,7 +2956,7 @@ static	BOOL	DebugFightMsgSpeedAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dp
 
 //==============================================================================================
 //
-//	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^•ÒW
+//	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç·¨é›†
 //
 //==============================================================================================
 enum{
@@ -3043,7 +3043,7 @@ static	BOOL	DebugFightPokeAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	ƒ|ƒPƒ‚ƒ“Ží—Þ•ÒW
+//	ãƒã‚±ãƒ¢ãƒ³ç¨®é¡žç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightKindAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3066,10 +3066,10 @@ static	BOOL	DebugFightKindAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 		case NUM_CALC_NONE:
 			break;
 		case NUM_CALC_CHANGE:
-			//ŒoŒ±’lŽæ“¾
+			//çµŒé¨“å€¤å–å¾—
 			dpp->exp=PokeLevelExpGet(dpp->mons_no,dpp->level);
 			DebugFightExpDataPut(dfp,dpp,MODE_NORMAL);
-			//«•ÊŽæ“¾
+			//æ€§åˆ¥å–å¾—
 			switch(PokePersonalParaGet(dpp->mons_no,ID_PER_sex)){
 			case MONS_MALE:
 			default:
@@ -3083,9 +3083,9 @@ static	BOOL	DebugFightKindAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 				break;
 			}
 			DebugFightSexDataPut(dfp,dpp,COL_NORMAL);
-			//ƒpƒ‰ƒ[ƒ^ŒvŽZ
+			//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨ˆç®—
 			DebugFightParamPut(dfp,dpp);
-			//“Á«No•ÏX
+			//ç‰¹æ€§Noå¤‰æ›´
 			dpp->speabino=PokeFormNoPersonalParaGet(dpp->mons_no,dpp->form_no,ID_PER_speabi1);
 		case NUM_CALC_MOVE:
 			DebugFightKindDataPut(dfp,dpp,MODE_ACTIVE);
@@ -3105,7 +3105,7 @@ static	BOOL	DebugFightKindAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	ƒŒƒA•ÒW
+//	ãƒ¬ã‚¢ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightRareAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3130,7 +3130,7 @@ static	BOOL	DebugFightRareAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	ƒŒƒxƒ‹•ÒW
+//	ãƒ¬ãƒ™ãƒ«ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightLevelAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3164,7 +3164,7 @@ static	BOOL	DebugFightLevelAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	ŒoŒ±’l•ÒW
+//	çµŒé¨“å€¤ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightExpAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3203,12 +3203,12 @@ static	BOOL	DebugFightExpAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	«•Ê•ÒW
+//	æ€§åˆ¥ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightSexAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 {
-	//«•ÊŒÅ’è‚Ìê‡‚ÍA•ÒW‚È‚µ
+	//æ€§åˆ¥å›ºå®šã®å ´åˆã¯ã€ç·¨é›†ãªã—
 	switch(PokePersonalParaGet(dpp->mons_no,ID_PER_sex)){
 	case MONS_MALE:
 	case MONS_FEMALE:
@@ -3241,7 +3241,7 @@ static	BOOL	DebugFightSexAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	«Ši•ÒW
+//	æ€§æ ¼ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightChrAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3272,7 +3272,7 @@ static	BOOL	DebugFightChrAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	ƒpƒ[—”•ÒW
+//	ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightStatusRndAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3307,7 +3307,7 @@ static	BOOL	DebugFightStatusRndAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *d
 
 //==============================================================================================
 //
-//	“w—Í’l•ÒW
+//	åŠªåŠ›å€¤ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightStatusExpAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3359,7 +3359,7 @@ static	BOOL	DebugFightStatusExpAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *d
 
 //==============================================================================================
 //
-//	Ž‚¿‹Z•ÒW
+//	æŒã¡æŠ€ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightWazaAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3399,7 +3399,7 @@ static	BOOL	DebugFightWazaAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	PP•ÒW
+//	PPç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightPPAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3435,7 +3435,7 @@ static	BOOL	DebugFightPPAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	PP_COUNT•ÒW
+//	PP_COUNTç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightPPCountAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3475,7 +3475,7 @@ static	BOOL	DebugFightPPCountAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp
 
 //==============================================================================================
 //
-//	“Á«•ÒW
+//	ç‰¹æ€§ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightSpeAbiAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3500,7 +3500,7 @@ static	BOOL	DebugFightSpeAbiAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	“Á«•ÒWiƒp[ƒ\ƒiƒ‹ƒf[ƒ^‚ÉˆË‘¶‚µ‚È‚¢j
+//	ç‰¹æ€§ç·¨é›†ï¼ˆãƒ‘ãƒ¼ã‚½ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã«ä¾å­˜ã—ãªã„ï¼‰
 //
 //==============================================================================================
 static	BOOL	DebugFightSpeAbiSetAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3533,7 +3533,7 @@ static	BOOL	DebugFightSpeAbiSetAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *d
 
 //==============================================================================================
 //
-//	‘•”õƒAƒCƒeƒ€•ÒW
+//	è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightItemAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3564,7 +3564,7 @@ static	BOOL	DebugFightItemAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	‚È‚Â‚«“x•ÒW
+//	ãªã¤ãåº¦ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightFriendAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3594,7 +3594,7 @@ static	BOOL	DebugFightFriendAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	ó‘ÔˆÙí•ÒW
+//	çŠ¶æ…‹ç•°å¸¸ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightConditionAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3623,7 +3623,7 @@ static	BOOL	DebugFightConditionAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *d
 
 //==============================================================================================
 //
-//	‰Šú‚g‚o•ÒW
+//	åˆæœŸï¼¨ï¼°ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightDefaultHPAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3653,7 +3653,7 @@ static	BOOL	DebugFightDefaultHPAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *d
 
 //==============================================================================================
 //
-//	•ßŠlƒ{[ƒ‹•ÒW
+//	æ•ç²ãƒœãƒ¼ãƒ«ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightGetBallAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3684,7 +3684,7 @@ static	BOOL	DebugFightGetBallAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp
 
 //==============================================================================================
 //
-//	ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[•ÒW
+//	ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightFormNoAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3717,7 +3717,7 @@ static	BOOL	DebugFightFormNoAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	ƒ^ƒ}ƒSƒtƒ‰ƒO•ÒW
+//	ã‚¿ãƒžã‚´ãƒ•ãƒ©ã‚°ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightEggFlagAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3730,7 +3730,7 @@ static	BOOL	DebugFightEggFlagAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp
 
 //==============================================================================================
 //
-//	‚¢‚¤‚±‚Æ‚«‚­^‚«‚©‚È‚¢•ÒW
+//	ã„ã†ã“ã¨ããï¼ãã‹ãªã„ç·¨é›†
 //
 //==============================================================================================
 static	BOOL	DebugFightOrderAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
@@ -3743,7 +3743,7 @@ static	BOOL	DebugFightOrderAct(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //==============================================================================================
 //
-//	”’l•ÒW
+//	æ•°å€¤ç·¨é›†
 //
 //==============================================================================================
 static	int	DebugFightNumCalc(DEBUG_FIGHT_PARAM *dfp,u32 *param,int keta,int min,int max,int mode)
@@ -3824,12 +3824,12 @@ static	int	DebugFightNumCalc(DEBUG_FIGHT_PARAM *dfp,u32 *param,int keta,int min,
 
 //==============================================================================================
 //
-//	ŒÂ«—”Žæ“¾
+//	å€‹æ€§ä¹±æ•°å–å¾—
 //
-//	@param	mons_no		Žæ“¾‚µ‚½‚¢ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-//	@param	sex			Žæ“¾‚µ‚½‚¢«•Ê
-//	@param	chr			Žæ“¾‚µ‚½‚¢«Ši
-//	@param	rare		Žæ“¾‚µ‚½‚¢ƒJƒ‰[
+//	@param	mons_no		å–å¾—ã—ãŸã„ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+//	@param	sex			å–å¾—ã—ãŸã„æ€§åˆ¥
+//	@param	chr			å–å¾—ã—ãŸã„æ€§æ ¼
+//	@param	rare		å–å¾—ã—ãŸã„ã‚«ãƒ©ãƒ¼
 //
 //==============================================================================================
 static u32 PokeRndGet(int mons_no,int sex,int chr,int rare)
@@ -3940,7 +3940,7 @@ static u32 PokeRndGet(int mons_no,int sex,int chr,int rare)
 			return (rnd|0x19000000);
 		}
 	}
-	OS_Printf("ŒÂ«—”‚ª‚Ý‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n");
+	OS_Printf("å€‹æ€§ä¹±æ•°ãŒã¿ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n");
 	return 0;
 }
 
@@ -3962,9 +3962,9 @@ void	DebugFightDefaultPokeSet(DEBUG_FIGHT_PARAM *dfp,DEBUG_POKEMON_PARAM *dpp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ÌÅ‘å’l‚ðŽæ“¾
+ * @brief	ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã®æœ€å¤§å€¤ã‚’å–å¾—
  *
- * @retval	ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ÌÅ‘å’l	
+ * @retval	ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ã®æœ€å¤§å€¤	
  */
 //--------------------------------------------------------------
 static	int	DebugFightFormNoMaxGet(DEBUG_POKEMON_PARAM *dpp)
@@ -3974,26 +3974,26 @@ static	int	DebugFightFormNoMaxGet(DEBUG_POKEMON_PARAM *dpp)
 	switch(dpp->mons_no){
 	case MONSNO_MINOMESU:
 	case MONSNO_MINOMUTTI:
-		max=FORMNO_MINOMUTTI_MAX;	///<ƒ~ƒmƒ€ƒbƒ`‚Ì•ÊƒtƒHƒ‹ƒ€MAX
+		max=FORMNO_MINOMUTTI_MAX;	///<ãƒŸãƒŽãƒ ãƒƒãƒã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ MAX
 		break;
 	case MONSNO_SIIUSI:
 	case MONSNO_SIIDORUGO:
-		max=FORMNO_SII_MAX;			///<ƒV[ƒEƒVEƒV[ƒhƒ‹ƒS‚Ì•ÊƒtƒHƒ‹ƒ€MAX
+		max=FORMNO_SII_MAX;			///<ã‚·ãƒ¼ã‚¦ã‚·ãƒ»ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´ã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ MAX
 		break;
 	case MONSNO_DEOKISISU:
-		max=FORMNO_DEOKISISU_MAX;	///<ƒfƒIƒLƒVƒX‚Ì•ÊƒtƒHƒ‹ƒ€MAX
+		max=FORMNO_DEOKISISU_MAX;	///<ãƒ‡ã‚ªã‚­ã‚·ã‚¹ã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ MAX
 		break;
 	case MONSNO_ANNOON:
-		max=UNK_END-1;				///<ƒAƒ“ƒm[ƒ“‚Ì•ÊƒtƒHƒ‹ƒ€MAX
+		max=UNK_END-1;				///<ã‚¢ãƒ³ãƒŽãƒ¼ãƒ³ã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ MAX
 		break;
 	case MONSNO_EURISU:
-		max=FORMNO_SHEIMI_MAX;		///<ƒVƒFƒCƒ~‚Ì•ÊƒtƒHƒ‹ƒ€MAX
+		max=FORMNO_SHEIMI_MAX;		///<ã‚·ã‚§ã‚¤ãƒŸã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ MAX
 		break;
 	case MONSNO_PURAZUMA:
-		max=FORMNO_ROTOMU_MAX;		///<ƒƒgƒ€‚Ì•ÊƒtƒHƒ‹ƒ€MAX
+		max=FORMNO_ROTOMU_MAX;		///<ãƒ­ãƒˆãƒ ã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ MAX
 		break;
 	case MONSNO_KIMAIRAN:
-		max=FORMNO_GIRATINA_MAX;		///<ƒƒgƒ€‚Ì•ÊƒtƒHƒ‹ƒ€MAX
+		max=FORMNO_GIRATINA_MAX;		///<ãƒ­ãƒˆãƒ ã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ MAX
 		break;
 	default:
 		max=0;
@@ -4005,9 +4005,9 @@ static	int	DebugFightFormNoMaxGet(DEBUG_POKEMON_PARAM *dpp)
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
- * @param	work	VBLank‚É‚Íˆø”‚ª•K—v‚È‚Ì‚Å’è‹`‚µ‚Ä‚ ‚é‚ªŽÀÛ‚É‚ÍNULL‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚ÅAƒAƒNƒZƒX‚Í‹ÖŽ~I
+ * @param	work	VBLankã«ã¯å¼•æ•°ãŒå¿…è¦ãªã®ã§å®šç¾©ã—ã¦ã‚ã‚‹ãŒå®Ÿéš›ã«ã¯NULLãŒå…¥ã£ã¦ã„ã‚‹ã®ã§ã€ã‚¢ã‚¯ã‚»ã‚¹ã¯ç¦æ­¢ï¼
  *
  * @retval	none	
  *

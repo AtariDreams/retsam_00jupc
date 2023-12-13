@@ -2,625 +2,625 @@
 /**
  * @file	bugfix.h
  * @date	2006.08.15
- * @brief	�o�O�Ώ��p��`
+ * @brief	バグ対処用定義
  *
- * ��`�̗L���E�����łȂ���`�l���O�̏ꍇ�͖����A�P�̏ꍇ�͗L���Ƃ��Ē�`���邱��
+ * 定義の有効・無効でなく定義値が０の場合は無効、１の場合は有効として定義すること
  */
 //=============================================================================
 
 #ifndef	__BUGFIX_H__
 #define	__BUGFIX_H__
 
-/* �^�C�v�ω�����Z�������Ɉ����񂹂��Ȃ��s� */
-#define	B1366_060815_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fsever_tool.c
+/* タイプ変化する技が特性に引き寄せられない不具合 */
+#define	B1366_060815_FIX	(1)		//1にすると修正が有効
+									//修正ソース：sever_tool.c
 
-/* �}�W�b�N�K�[�h�{�Ƃ�ڕԂ聨�V���{�݂̂ւ̕s� */
-#define	B1368_060815_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fsever_tool.c
+/* マジックガード＋とんぼ返り→シャボのみへの不具合 */
+#define	B1368_060815_FIX	(1)		//1にすると修正が有効
+									//修正ソース：sever_tool.c
 
-/* �����I���Z���󂯂����̃I�E���������̋����̕s� */
-#define	B1370_060815_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fsever.c
+/* 複数選択技を受けた時のオウムがえしの挙動の不具合 */
+#define	B1370_060815_FIX	(1)		//1にすると修正が有効
+									//修正ソース：sever.c
 
-/* ���킮�̌��ʂ������Ȃ� */
-#define	B1371_060815_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fsever_tool.c
+/* さわぐの効果が消えない */
+#define	B1371_060815_FIX	(1)		//1にすると修正が有効
+									//修正ソース：sever_tool.c
 									//
-/* �^�b�O�o�g���ŁA����g���[�i�[���u�����ӂ��̂�����v�������Ă����ʂ��Ȃ� */
-#define	B1372_060816_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Ffight_tool.c
+/* タッグバトルで、相手トレーナーが「かいふくのくすり」をつかっても効果がない */
+#define	B1372_060816_FIX	(1)		//1にすると修正が有効
+									//修正ソース：fight_tool.c
 
-/* �����A�C�e���u���낢�Ă����イ�v���A�܂��т��n�A���肶�����̌��ʂ������Ȃ� */
-#define	B1373_060816_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fserver_tool.c tr_ai.c src/battle/skill/sub_099.s
+/* 装備アイテム「くろいてっきゅう」が、まきびし系、ありじごくの効果をうけない */
+#define	B1373_060816_FIX	(1)		//1にすると修正が有効
+									//修正ソース：server_tool.c tr_ai.c src/battle/skill/sub_099.s
 
-/* �g���b�N���[�����ɓV��񕜌n�̋Z���g�p����Ɖ񕜗ʂ�1/4�ɂȂ�s� */
-#define	B1374_060817_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fskill_intp.c
+/* トリックルーム中に天候回復系の技を使用すると回復量が1/4になる不具合 */
+#define	B1374_060817_FIX	(1)		//1にすると修正が有効
+									//修正ソース：skill_intp.c
 				
-/* �˂ނ�A������̃^�[�������P�����s� */
-#define	B1375_060817_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fsub_018.s sub_037.s
+/* ねむり、こんらんのターン数が１多い不具合 */
+#define	B1375_060817_FIX	(1)		//1にすると修正が有効
+									//修正ソース：sub_018.s sub_037.s
 				
-/* �����ӂ��ӂ����ŁA�z�����n��h������A�u�����N�ƌ���SE����Ȃ��s� */
-#define	B1376_060818_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fbattle_server.h
+/* かいふくふうじで、吸い取る系を防いだ後、ブリンクと効果SEが鳴らない不具合 */
+#define	B1376_060818_FIX	(1)		//1にすると修正が有効
+									//修正ソース：battle_server.h
 
-/* �����I���Z�ƃ}�W�b�N�R�[�g�̋����̕s� */
-#define	GB001_060815_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fsever_tool.c
+/* 複数選択技とマジックコートの挙動の不具合 */
+#define	GB001_060815_FIX	(1)		//1にすると修正が有効
+									//修正ソース：sever_tool.c
 
-/* �C���̃|�P�����̃e�N�X�`���[2�̋����̕s� */
-#define	GB002_060815_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fsever_tool.c
+/* 気絶後のポケモンのテクスチャー2の挙動の不具合 */
+#define	GB002_060815_FIX	(1)		//1にすると修正が有効
+									//修正ソース：sever_tool.c
 
-/* �C���̃|�P�����̃��g���m�[���̋����̕s� */
-#define	GB003_060815_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fsever_tool.c
+/* 気絶後のポケモンのメトロノームの挙動の不具合 */
+#define	GB003_060815_FIX	(1)		//1にすると修正が有効
+									//修正ソース：sever_tool.c
 
-/* �^�E���}�b�v�@�T�u��ʂ̐������`�����s����� iwasawa*/
-#define	S2410_060815_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Ftmap_nrm.c
+/* タウンマップ　サブ画面の説明文チラつき不具合解消 iwasawa*/
+#define	S2410_060815_FIX	(1)		//1にすると修正が有効
+									//修正ソース：tmap_nrm.c
 
-/* �Ⴄ�N�̓������ɁA�Q�[���J�n���ɖ`���m�[�g���\������Ȃ��s� */
-#define	S2423_060817_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Ffnote_mem.c
+/* 違う年の同じ日に、ゲーム開始時に冒険ノートが表示されない不具合 */
+#define	S2423_060817_FIX	(1)		//1にすると修正が有効
+									//修正ソース：fnote_mem.c
 
-/* �ʐM�G���[���ɖ`���m�[�g�̊J�n�f�[�^���Z�b�g����Ȃ��s� */
-#define	S2424_060818_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fev_mapchange.c
+/* 通信エラー時に冒険ノートの開始データがセットされない不具合 */
+#define	S2424_060818_FIX	(1)		//1にすると修正が有効
+									//修正ソース：ev_mapchange.c
 
-/* �{�b�N�X��ʁF�u�ǂ���������v�łǂ����A�C�R���������Ă��܂��s��̏C�� */
-#define	S2426_060818_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fboxv_itemicon.c
+/* ボックス画面：「どうぐせいり」でどうぐアイコンが化けてしまう不具合の修正 */
+#define	S2426_060818_FIX	(1)		//1にすると修正が有効
+									//修正ソース：boxv_itemicon.c
 
-/* �}�Ӂ@����Ȃ��͂��̑傫����ʂ�����Ă��܂��o�O */
-#define S2418_060817_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fzkn_zukan_common.c
+/* 図鑑　見れないはずの大きさ画面が見れてしまうバグ */
+#define S2418_060817_FIX	(1)		//1にすると修正が有効
+									//修正ソース：zkn_zukan_common.c
 
-/* �ւ񂵂��Ԃ̃|�P�������m���ɂȂ����Ƃ��ɏ������Ă���Z�����̂܂܂ɂȂ��Ă���s� */
-#define AFTER_MASTER_061019_FIX	(1)	//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fscio.c
+/* へんしん状態のポケモンが瀕死になったときに所持している技がそのままになっている不具合 */
+#define AFTER_MASTER_061019_FIX	(1)	//1にすると修正が有効
+									//修正ソース：scio.c
 
-/* �u�ǂ��т��v���u���������X�s���v�Ő�����΂��Ɓu�ǂ�΂�����v�ƕ\�������s� */
-#define AFTER_MASTER_061024_FIX	(1)	//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fskill_intp.c
+/* 「どくびし」を「こうそくスピン」で吹き飛ばすと「どろばくだん」と表示される不具合 */
+#define AFTER_MASTER_061024_FIX	(1)	//1にすると修正が有効
+									//修正ソース：skill_intp.c
 									//
-/*	�_�u���o�g���ɂ����Ăւ񂵂񂵂��|�P��������ǂ�ڂ�����ƃA�C�e�����B�ɂȂ�s��̏C�� */
-#define AFTER_MASTER_061026_FIX	(1)	//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fclient.c
+/*	ダブルバトルにおいてへんしんしたポケモンからどろぼうするとアイテム増殖になる不具合の修正 */
+#define AFTER_MASTER_061026_FIX	(1)	//1にすると修正が有効
+									//修正ソース：client.c
 
-/*	���킮���c��PP�P�ɂ����Ďg�p�����ꍇ�A���^�[���ŁAPP���Ȃ��̂Ŕ������Ȃ��s��̏C�� */
-#define AFTER_MASTER_061113_1_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fserver.c
+/*	さわぐを残りPP１において使用した場合、次ターンで、PPがないので発動しない不具合の修正 */
+#define AFTER_MASTER_061113_1_FIX	(1)	//1にすると修正が有効
+										//修正ソース：server.c
 										//
-/*	�V���N���̋����̕s��̏C�� */
-#define AFTER_MASTER_061113_2_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fserver_tool.c
+/*	シンクロの挙動の不具合の修正 */
+#define AFTER_MASTER_061113_2_FIX	(1)	//1にすると修正が有効
+										//修正ソース：server_tool.c
 
-/*	�Ă������̋����̕s��̏C�� */
-#define AFTER_MASTER_070117_FIX		(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fserver.c
+/*	てだすけの挙動の不具合の修正 */
+#define AFTER_MASTER_070117_FIX		(1)	//1にすると修正が有効
+										//修正ソース：server.c
 
-/*	�Ƃ�ڂ��������ւ��ŏo�Ă����|�P�����̃V���N���̋����̕s��̏C�� */
-#define AFTER_MASTER_070122_BT1_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fsub_175.s
+/*	とんぼがえり入れ替えで出てきたポケモンのシンクロの挙動の不具合の修正 */
+#define AFTER_MASTER_070122_BT1_FIX	(1)	//1にすると修正が有効
+										//修正ソース：sub_175.s
 
-/*	���������������̍ŏI�^�[���Łu�܂���v�u�݂���v���������Ă��܂��s��̏C�� */
-#define AFTER_MASTER_070122_BT2_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fskill_intp.c
+/*	おいうち発動時の最終ターンで「まもる」「みきり」が発動してしまう不具合の修正 */
+#define AFTER_MASTER_070122_BT2_FIX	(1)	//1にすると修正が有効
+										//修正ソース：skill_intp.c
 
-/*	�݂������o���Ă��鑊��ւ̂��������̋����̕s��̏C�� */
-#define AFTER_MASTER_070123_BT1_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fsub_153.s
+/*	みがわりを出している相手へのおいうちの挙動の不具合の修正 */
+#define AFTER_MASTER_070123_BT1_FIX	(1)	//1にすると修正が有効
+										//修正ソース：sub_153.s
 
-/*	������ƂԒ��̃|�P�����ւ̂Ă������̋����̕s��̏C�� */
-#define AFTER_MASTER_070123_BT2_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fbe_176.s
+/*	そらをとぶ中のポケモンへのてだすけの挙動の不具合の修正 */
+#define AFTER_MASTER_070123_BT2_FIX	(1)	//1にすると修正が有効
+										//修正ソース：be_176.s
 
-/*	���������̂������̃^�X�L�ւ̋����̕s��̏C�� */
-#define AFTER_MASTER_070123_BT3_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fsub_153.s
+/*	おいうちのきあいのタスキへの挙動の不具合の修正 */
+#define AFTER_MASTER_070123_BT3_FIX	(1)	//1にすると修正が有効
+										//修正ソース：sub_153.s
 
-/*	�܂���A�݂���̂��т��A�����ނւ̋����̕s��̏C�� */
-#define AFTER_MASTER_070123_BT4_FIX	(0)	//�L���ɂ���̂͋֎~
-										//�C���\�[�X�Fserver.c
+/*	まもる、みきりのいびき、あくむへの挙動の不具合の修正 */
+#define AFTER_MASTER_070123_BT4_FIX	(0)	//有効にするのは禁止
+										//修正ソース：server.c
 
-/*	�Ƃ�ڂ�����A���������̋����̕s��̏C�� */
-#define AFTER_MASTER_070123_BT5_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fsub_175.s
+/*	とんぼがえり、メロメロの挙動の不具合の修正 */
+#define AFTER_MASTER_070123_BT5_FIX	(1)	//1にすると修正が有効
+										//修正ソース：sub_175.s
 
-/*	�\�[���[�r�[���̋����̕s��̏C�� */
-#define AFTER_MASTER_070125_BT1_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fbe_151.s
+/*	ソーラービームの挙動の不具合の修正 */
+#define AFTER_MASTER_070125_BT1_FIX	(1)	//1にすると修正が有効
+										//修正ソース：be_151.s
 
-/*	�_�u���o�g���œ���ւ�����������2�̋��������������ɗ������ɋC�₷���1�̂̂����Ă��܂��s��̏C�� */
-#define AFTER_MASTER_070202_BT1_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fserver.c
+/*	ダブルバトルで入れ替えおいうちを2体共発動させた時に両方共に気絶すると1体のこってしまう不具合の修正 */
+#define AFTER_MASTER_070202_BT1_FIX	(1)	//1にすると修正が有効
+										//修正ソース：server.c
 
-/*	���������̋����̕s��̏C���i��������̂����A�������`�A���̂��̂��܁j*/
-#define AFTER_MASTER_070202_BT2_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fskill_intp.c sub_153.s battle_server.h
+/*	おいうちの挙動の不具合の修正（かいがらのすず、こだわり〜、いのちのたま）*/
+#define AFTER_MASTER_070202_BT2_FIX	(1)	//1にすると修正が有効
+										//修正ソース：skill_intp.c sub_153.s battle_server.h
 
-/*	�܂���A�݂���̂��т��A�����ށA�Ȃ�����A������̂߂��݂ւ̋����̕s��̏C�� */
-#define AFTER_MASTER_070202_BT3_FIX	(0)	//�L���ɂ���̂͋֎~
-										//�C���\�[�X�Fserver.c be_107.s
+/*	まもる、みきりのいびき、あくむ、なげつける、しぜんのめぐみへの挙動の不具合の修正 */
+#define AFTER_MASTER_070202_BT3_FIX	(0)	//有効にするのは禁止
+										//修正ソース：server.c be_107.s
 
-/*	����ւ������������݂����Ŏ󂯂����ɂ݂���肪�����Ă����b�Z�[�W���o�Ȃ��s��̏C�� */
-#define AFTER_MASTER_070202_BT4_FIX	(1)	//1�ɂ���ƏC�����L���iAFTER_MASTER_070202_BT2_FIX���L���ɂ��Ȃ��Ɣ��f����܂���j
-										//�C���\�[�X�Fsub_153.s
+/*	入れ替えおいうちをみがわりで受けた時にみがわりが消えてもメッセージが出ない不具合の修正 */
+#define AFTER_MASTER_070202_BT4_FIX	(1)	//1にすると修正が有効（AFTER_MASTER_070202_BT2_FIXも有効にしないと反映されません）
+										//修正ソース：sub_153.s
 
-/*	�݂��Â�A���������̋����̕s��̏C�� */
-#define AFTER_MASTER_070202_BT5_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fsub_009.s
+/*	みちづれ、おいうちの挙動の不具合の修正 */
+#define AFTER_MASTER_070202_BT5_FIX	(1)	//1にすると修正が有効
+										//修正ソース：sub_009.s
 
-/*	�������`�n�ƂƂ�ڂ�����̋����̕s��̏C�� */
-#define AFTER_MASTER_070213_BT_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fserver.c
+/*	こだわり〜系ととんぼがえりの挙動の不具合の修正 */
+#define AFTER_MASTER_070213_BT_FIX	(1)	//1にすると修正が有効
+										//修正ソース：server.c
 
-/*	�T�t�@���]�[���ő������ʂ��������Ă��܂��s��̏C�� */
-#define AFTER_MASTER_070219_BT_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fserver_tool.c
+/*	サファリゾーンで装備効果が発動してしまう不具合の修正 */
+#define AFTER_MASTER_070219_BT_FIX	(1)	//1にすると修正が有効
+										//修正ソース：server_tool.c
 
-/*	�A���R�[���̃^�[������1�^�[�������s��̏C�� */
-#define AFTER_MASTER_070221_BT_FIX	(0)	//1�ɂ���ƏC�����L��(���k�āA���B�łł͏C�����Ȃ��̂��d�l)
-										//�C���\�[�X�Fskill_intp.c	�v���`�i�ł��C�����Ȃ��̂��d�l
+/*	アンコールのターン数が1ターン多い不具合の修正 */
+#define AFTER_MASTER_070221_BT_FIX	(0)	//1にすると修正が有効(※北米、欧州版では修正しないのが仕様)
+										//修正ソース：skill_intp.c	プラチナでも修正しないのが仕様
 
-/*	�Z�h���n�i��т��ӂ�A�˂��ƂȂǁj�Ŕ��������Z�������ň����񂹂���n�̂Ƃ����ʂ��������Ȃ��s��̏C�� */
-#define AFTER_MASTER_070330_BT_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fskill_intp.c
+/*	技派生系（ゆびをふる、ねごとなど）で発生した技が特性で引き寄せられる系のとき効果が発動しない不具合の修正 */
+#define AFTER_MASTER_070330_BT_FIX	(1)	//1にすると修正が有効
+										//修正ソース：skill_intp.c
 
-/*	�܂���A�݂���̂��т��A�����ށA�Ȃ�����A������̂߂��݂ւ̋����̕s��̏C�� */
-#define AFTER_MASTER_070405_BT_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fbe_107.s sub_007.s
+/*	まもる、みきりのいびき、あくむ、なげつける、しぜんのめぐみへの挙動の不具合の修正 */
+#define AFTER_MASTER_070405_BT_FIX	(1)	//1にすると修正が有効
+										//修正ソース：be_107.s sub_007.s
 
-#if 0	//�͂��ĂȂ����ǔ��f�ς�
-/*	2vs2���ɏ��3�̈ȉ������|�P���������Ȃ��Ƃ��̂��񂹂��̂߂̋����̕s��̏C�� */
-#define AFTER_MASTER_070719_BT1_FIX	(1)	//1�ɂ���ƏC�����L��
-										//�C���\�[�X�Fsub_278.s
+#if 0	//囲ってないけど反映済み
+/*	2vs2時に場に3体以下しかポケモンがいないときのせんせいのつめの挙動の不具合の修正 */
+#define AFTER_MASTER_070719_BT1_FIX	(1)	//1にすると修正が有効
+										//修正ソース：sub_278.s
 
-/*	�܂���A�݂���̂Ƃ��Ă����A�T�C�R�V�t�g�A�˂����܂��ւ̋����̕s��̏C�� */
-#define AFTER_MASTER_070719_BT2_FIX	(1)	//1�ɂ���ƏC�����L���i������AFTER_MASTER_070405_BT_FIX�ň͂�ꂽ���ɂ���̂ŁA
-										//��������L���ɂ��Ȃ��ƃ_���ł��j
-										//�C���\�[�X�Fsub_007.s
+/*	まもる、みきりのとっておき、サイコシフト、ねこだましへの挙動の不具合の修正 */
+#define AFTER_MASTER_070719_BT2_FIX	(1)	//1にすると修正が有効（ただしAFTER_MASTER_070405_BT_FIXで囲われた中にあるので、
+										//そちらも有効にしないとダメです）
+										//修正ソース：sub_007.s
 #endif
 
-//-------------�ʐM�֘A TXXXX �֘A   Txxxx �}���I�N���u  GTxxx �}���I�N���u���� GFTxxxx �Q�[���t���[�N
+//-------------通信関連 TXXXX 関連   Txxxx マリオクラブ  GTxxx マリオクラブ東京 GFTxxxx ゲームフリーク
 
-/* �|�P�X�e�[�^�X�@����Lv�܂ł̌o���l�\���s� */
-#define	T1653_060815_FIX	(1)		//1�ɂ���ƏC�����L��
-									//�C���\�[�X�Fp_status.c, pst_bmp.c, b_plist_main.c, b_plist_bmp.c
+/* ポケステータス　次のLvまでの経験値表示不具合 */
+#define	T1653_060815_FIX	(1)		//1にすると修正が有効
+									//修正ソース：p_status.c, pst_bmp.c, b_plist_main.c, b_plist_bmp.c
 
 
-/* �n���Ńn�^��D��ꂽ�ۂɖ{���Ȃ�Α��肪�E�C���h�E�����܂Řb���������Ȃ��̂�
-   �b���������Ă��܂��s��ւ̑Ώ� */
-// �ꏊ field/comm_player.c
+/* 地下でハタを奪われた際に本来ならば相手がウインドウを閉じるまで話しかけられないのに
+   話しかけられてしまう不具合への対処 */
+// 場所 field/comm_player.c
 #define T1656_060815_FIX (1)
-/* �e�@��SINGLE���[�h�ֈڍs���Ă���ۂɎq�@�Ɛڑ����Ă��܂��Astate�ύX���ł��Ȃ���
-   �~�܂��Ă��܂��A���ʎq�@���������𓾂��Ȃ��܂܎~�܂��Ă��܂��s��ւ̑Ώ�*/
-// �ꏊ field/comm_field_state.c
+/* 親機がSINGLEモードへ移行している際に子機と接続してしまい、state変更ができないで
+   止まってしまい、結果子機も動く許可を得られないまま止まってしまう不具合への対処*/
+// 場所 field/comm_field_state.c
 #define T1645_060815_FIX (1)
-/* �p�\�R���Ƀn�^��o�^�����x���A�b�v����ۂɑ��̐e�Ɛڑ������ꍇ�A
-   �^�X�N�������I�����ꂸ�Ɏc���Ă��܂��s��ւ̑Ώ� */
-/* �p�\�R�����閧��n�ɓ��낤�Ƃ����t�B�[���h�ړ����ɓǂݍ��܂�Ă��܂�
-   �ň��t�@�C���A�N�Z�X�Ɏ��s���Ď~�܂�s��ւ̑Ώ� */
-// �ꏊ field/underground/ug_secretbase.c
+/* パソコンにハタを登録しレベルアップする際に他の親と接続した場合、
+   タスクが強制終了されずに残ってしまう不具合への対処 */
+/* パソコンが秘密基地に入ろうとしたフィールド移動時に読み込まれてしまい
+   最悪ファイルアクセスに失敗して止まる不具合への対処 */
+// 場所 field/underground/ug_secretbase.c
 #define GT384_060815_FIX (1)
-/* �ǂ̒���i�ގ��Ɉړ����W�������ꍇ�i�܂Ȃ��悤�ɂ������肪�A
-   �Ⴄ�߂�l��Ԃ��������߂ɂ��̂܂܂�����ł��܂��o�O�C�� */
-// �ꏊ field/comm_player.c
+/* 壁の中を進む時に移動座標が無い場合進まないようにしたつもりが、
+   違う戻り値を返したがためにそのまますすんでしまうバグ修正 */
+// 場所 field/comm_player.c
 #define T1662_060815_FIX  (1)
-/* wh.c���� ���̏C�������Ȃ��ƁA�ڑ����鑊�肪������Ȃ��ă^�C���A�E�g�����ꍇ�ɁA
-�K�� �֌W�̖����e�ɐڑ����ɍs���Ă��܂��s��ւ̑Ώ� */
-// �ꏊ communication/wh.c
+/* wh.c内で この修正を入れないと、接続する相手が見つからなくてタイムアウトした場合に、
+必ず 関係の無い親に接続しに行ってしまう不具合への対処 */
+// 場所 communication/wh.c
 #define GFT0001_060816_FIX  (1)
-/* �e�@���q�@�Ɛؒf�� ALONE���[�h�ւ̈ڍs�̎��� 㩑��u�������͂��炫
-   �����CLIENT�ړ��␳���ĂԂ̂ŁA���̏�ł�����x���u�ɂ������Ă��܂� */
-// �ꏊ field/comm_field_state.c
+/* 親機が子機と切断し ALONEモードへの移行の時に 罠装置解除がはたらき
+   さらにCLIENT移動補正を呼ぶので、その場でもう一度装置にかかってしまう */
+// 場所 field/comm_field_state.c
 #define T1644_060816_FIX    (1)
-/*  �l�������r�b�g�������ꏊ��LOG�ʒu�ɓ���Ă����ߐl���������Ă��܂��o�O
+/*  人数制限ビットを消す場所をLOG位置に入れていため人数が減ってしまうバグ
 
-    �q�@�Ƀn�^��t�������A��Ȃ��ĉ��x���ċN�����Ă��܂��o�O 
+    子機にハタ受付完了が帰らなくて何度も再起動してしまうバグ 
 
  */
-// �ꏊ field/underground/ug_manager.c
-// �ꏊ field/underground/ug_secretbase.c
+// 場所 field/underground/ug_manager.c
+// 場所 field/underground/ug_secretbase.c
 #define T1665_060816_FIX    (1)
-/*㩑��u�ɂ������Ă���Œ��ɔ閧��n�ɓ���Ƃт�����}�[�N�����\�������Ă��邪
-  ����������g���K�[�������̂� �閧��n�ړ����ɂт�����}�[�N�������悤�ɂ���
+/*罠装置にかかっている最中に秘密基地に入るとびっくりマークだけ表示させているが
+  これを消すトリガーが無いので 秘密基地移動時にびっくりマークを消すようにする
  */
-// �ꏊ field/comm_player.c
+// 場所 field/comm_player.c
 #define T1648_060818_FIX    (1)
-/* �q�@�Ɛe�@���Ȃ���ɂ�����������̂��C��
+/* 子機と親機がつながりにくい時があるのを修正
  */
-// �ꏊ communication/comm_mp.c
-// �ꏊ communication/comm_system.c
-// �ꏊ communication/wh.c
+// 場所 communication/comm_mp.c
+// 場所 communication/comm_system.c
+// 場所 communication/wh.c
 #define T1657_060818_FIX    (1)
-/* ���������Ɖ����̃��b�Z�[�W�������\������Ă��܂�
+/* たすけたと解除のメッセージが両方表示されてしまう
  */
-// �ꏊ field/underground/ug_trap.c
+// 場所 field/underground/ug_trap.c
 #define T1617_060825_FIX    (1)
-/*  �n���ɂ͂����Ă������b�Z�[�W���Q�x�\�������
+/*  地下にはいってきたメッセージが２度表示される
  */
-// �ꏊ comm_info.c
+// 場所 comm_info.c
 #define T1346_060825_FIX    (1)
-/*   ���΃T�[�`�����΂₭�Q�x�s���Ɓ@�Q�x�ڂ̃T�[�`���S���\������Ȃ�
+/*   化石サーチをすばやく２度行うと　２度目のサーチが全部表示されない
   */
 // ug_dig_fossil.c
 // ug_trap.c
 #define T1517_060825_FIX    (1)
-/* �q�@�̐e�����e�@�̐e���ɂȂ��Ă��܂��o�O�Ώ� */
-// �ꏊ contest/contest.c
+/* 子機の親名が親機の親名になってしまうバグ対処 */
+// 場所 contest/contest.c
 #define T1669_060817_FIX	(1)
 
-/* �{�b�N�X�ŉ���ʑ�����s���Ă��疼�O�C�����s���Ɩ��O���͂̏��ʂ������Ă��܂��o�O�Ώ� */
-// �ꏊ application/namein/namein.c
+/* ボックスで下画面操作を行ってから名前修正を行うと名前入力の上画面が消えてしまうバグ対処 */
+// 場所 application/namein/namein.c
 #define S2427_060821_FIX	(1)
 
-/* Wifi�ʐM��ł̌������X�g��ʂŃ\�t�g�E�F�A���Z�b�g�������Ă��܂��o�O�Ώ� */
-// �ꏊ application/tradelist/tradelist.c
+/* Wifi通信上での交換リスト画面でソフトウェアリセットが効いてしまうバグ対処 */
+// 場所 application/tradelist/tradelist.c
 #define T1666_060821_FIX	(1)
 
 
 
 
-//-----------�ȉ��̓}�X�^�[��o�����Ȍ�̒���
+//-----------以下はマスター提出ロム以後の訂正
 
-/* �`�����s�I�����[�O2F�̃��j�I�����[���œd���ؒf���ɐ���ɑ��s�ł��Ȃ��o�O��Ώ�*/
-// �ꏊ field/zonedata.c
+/* チャンピオンリーグ2Fのユニオンルームで電源切断時に正常に続行できないバグを対処*/
+// 場所 field/zonedata.c
 #define	AFTERMASTER_061004_FIX	(1)
 
-/* �f�B�A���K���p���L�A���u�|���v�ƕ������Ȃ��o�O���C��*/
-// �ꏊ src/fielddata/script/d05r0114.ev
+/* ディアルガ＆パルキアを「倒す」と復活しないバグを修正*/
+// 場所 src/fielddata/script/d05r0114.ev
 #define AFTERMASTER_061031_IAEA_EV_FIX	(1)
 
-/* �ӂ����Ȃ�������̂Ń|�P�������󂯎�����ہA�ő̗������̐��ʂ�PPP���̐��ʂ��Ⴄ�o�O�Ώ� */
-// �ꏊ field/scr_postman.c
+/* ふしぎなおくりものでポケモンを受け取った際、固体乱数内の性別とPPP内の性別が違うバグ対処 */
+// 場所 field/scr_postman.c
 #define MYSTERY_POKEMON_SEX_FIX	(1)
 
-/* �n���ɍŏ��ɓ��������Ɏ�l���̖��O���o�Ă��Ȃ��o�O���C��*/
-// �ꏊ src/field/underground/ug_shop.c
+/* 地下に最初に入った時に主人公の名前が出ていないバグを修正*/
+// 場所 src/field/underground/ug_shop.c
 #define AFTERMASTER_061214_UNDERGROUND_OPENING_FIX	(1)
 
-/* WIFIP2P�A�v���ɓ��鎞�ɉ���ʂɐ����o��o�O���C�� */
-// �ꏊ src/application/wifi_p2pmatch/wifi_p2pmatch.c
+/* WIFIP2Pアプリに入る時に下画面に線が出るバグを修正 */
+// 場所 src/application/wifi_p2pmatch/wifi_p2pmatch.c
 #define AFTERMASTER_061215_WIFIP2P_FADE_FIX	(1)
 
-/* GTS�Ŏ����̃|�P�����������Ƃ��ɒʐM�ؒf���s�����Ƃŕ����ł���o�O�̑΍� */
-// �ꏊ application/worldtrade/worldtrade_uploadl.c
+/* GTSで自分のポケモン引き取るときに通信切断を行うことで複製できるバグの対策 */
+// 場所 application/worldtrade/worldtrade_uploadl.c
 #define GTS_DUPLICATE_BUG_FIX	(1)
 
-/* �ʐM�i�����鎞�ɃJ�X�^���{�[�������Ă���ƁA�J�X�^���{�[����񂪊O��Ȃ��o�O�̑Ώ� */
-// �ꏊ application/custom_ball/cb_disp.c
+/* 通信進化する時にカスタムボールがついていると、カスタムボール情報が外れないバグの対処 */
+// 場所 application/custom_ball/cb_disp.c
 //      application/tradelist/tradelist.c
 #define AFTERMASTER_061220_CUSTOMBALL_NODEL_BUG_FIX (1)
 
-/* ����̃Z�[�u�f�[�^�Łu���|�[�g�����Ă���v�|�̌v�悪�o������o�O�̑Ώ� */
-// �ꏊ src/savedata/saveload_system.c
+/* 特定のセーブデータで「レポートが壊れている」旨の計画が出続けるバグの対処 */
+// 場所 src/savedata/saveload_system.c
 #define	AFTERMASTER_070112_REPORT_WARNING_FIX		(1)
 
-/* �ʐM�T�[�`���[���̑��̕\�����|�t�B�������J�E���g�ł��Ă��Ȃ��o�O���C�� */
-// �ꏊ src/communication/comm_mp.c
+/* 通信サーチャーその他の表示がポフィンしかカウントできていないバグを修正 */
+// 場所 src/communication/comm_mp.c
 #define AFTERMASTER_070112_POKETCH_ETC (1)
 
-/* �����p�\�R�����瓾�����ɑ���̖��O���o���悤�ɏC�� */
-// �ꏊ src/field/underground/ug_pc.c
+/* 旗をパソコンから得た時に相手の名前を出すように修正 */
+// 場所 src/field/underground/ug_pc.c
 #define AFTERMASTER_070112_FLAGGET_MESSAGE (1)
 
-/* wifi�o�g���^���[�f�[�^���A�b�v���[�h�ナ���[�h����ƁA�}�b�v���^�����ɂȂ�o�O���C��*/
-// �ꏊ src/field/b_tower_ev.c
+/* wifiバトルタワーデータをアップロード後リロードすると、マップが真っ黒になるバグを修正*/
+// 場所 src/field/b_tower_ev.c
 #define AFTERMASTER_070112_WIFI_MAP_BUG_FIX (1)
 
-/* �������@��I�����ɐe�Ɛؒf����ƁA�^�����ȉ�ʂ̂܂�A�{�^���������Ȃ��Ɛ�ɐi�܂Ȃ��̂�
-   �^�C�}�[���g�p���Đ�ɐi�ނ悤�ɏC�� */
-// �ꏊ src/field/b_tower_ev.c
+/* かせき掘り終了時に親と切断すると、真っ黒な画面のままAボタンを押さないと先に進まないので
+   タイマーを使用して先に進むように修正 */
+// 場所 src/field/b_tower_ev.c
 #define AFTER_MASTER_070122_FOSSILMSG_FIX  (1)
 
-/* �Z�[�u���s���Ȃǂ̌x����ʂŎ��v�A�C�R���̃A�j�����S�~�Ƃ��ĕ\�������s��̏C�� */
-//	�ꏊ src/gflib/system.c
-//	�ꏊ src/communcation/com_dwc_warning.c
-//	�ꏊ src/application/backup/save_error_warning.c
+/* セーブ失敗時などの警告画面で時計アイコンのアニメがゴミとして表示される不具合の修正 */
+//	場所 src/gflib/system.c
+//	場所 src/communcation/com_dwc_warning.c
+//	場所 src/application/backup/save_error_warning.c
 #define	AFTERMASTER_070122_WARNING_DISP_FIX	(1)
 
-/* �O�b�Y�V���b�v�ŃO�b�Y�I������SE����Ȃ��o�O���C�� */
-// �ꏊ src/field/fd_shop.c
+/* グッズショップでグッズ選択時にSEが鳴らないバグを修正 */
+// 場所 src/field/fd_shop.c
 #define	AFTERMASTER_070122_GOODSSHOP_SE		(1)
 
-/* �t�����[�V���b�v�̃E�B���h�E���E�B���h�E�^�C�v�ŕς���Ă��܂��o�O�̑Ώ� */
-// �ꏊ src/field/field_accessory_shop.c
+/* フラワーショップのウィンドウがウィンドウタイプで変わってしまうバグの対処 */
+// 場所 src/field/field_accessory_shop.c
 #define AFTERMASTER_070122_ACCESSORYSHOP_WND_FIX	(1)
 
-/* �A�N�Z�T���̌����V�O�O�𒴂���ƃN���b�v�Ńt���[�Y����o�O�̑Ώ� */
-// �ꏊ src/savedata/imageclip_data.c
+/* アクセサリの個数が７００個を超えるとクリップでフリーズするバグの対処 */
+// 場所 src/savedata/imageclip_data.c
 #define AFTERMASTER_070112_IMAGECLIP_ACCE_BUG_FIX	(1)
 
-/* �|�P������T���ŁA����������Ɂh���񂳂����イ�h����u�o�Ă��܂��o�O�̑Ώ� */
-// �ꏊ src/application/zukanlist/zkn_sortsearch.c
+/* ポケモンを探すで、検索完了後に”けんさくちゅう”が一瞬出てしまうバグの対処 */
+// 場所 src/application/zukanlist/zkn_sortsearch.c
 #define AFTERMASTER_070112_ZUKAN_SORTMSG_BUG_FIX	(1)
 
-/* �X�^�[�g���j���[��AGB�J�[�g���b�W�𔲂��ƃt���[�Y���Ă��܂��o�O�̑Ώ� */
-// �ꏊ src/system/startmenu.c, src/system/main.c
+/* スタートメニューでAGBカートリッジを抜くとフリーズしてしまうバグの対処 */
+// 場所 src/system/startmenu.c, src/system/main.c
 #define AFTERMASTER_070123_GBACARTRIDGE_BUG_FIX		(1)
 
-/* �p�\�R���Ɋ���ǉ������ꍇ�d�����͂�������������Ώ� */
-// �ꏊ src/savedata/undergrounddata.c
+/* パソコンに旗を追加した場合重複をはじく検査を入れる対処 */
+// 場所 src/savedata/undergrounddata.c
 #define AFTERMASTER_070125_UNDERGROUND_PCFLAGLIST_FIX	(1)
 
-/* Wifi�o�g���^���[�Ń����N��I�񂾌�Ƀ��[���i���o�[�����������Ă��Ȃ������ŁA
-   �����N���̃��[�������Ⴄ�ƃ��[���i���o�[�����݂��Ȃ��ꏊ�����Ă��ł��Ă��܂��o�O��Ώ� */
-// �ꏊ application/wifi_b_tower/wbtower_enter.c
+/* Wifiバトルタワーでランクを選んだ後にルームナンバーを初期化していないせいで、
+   ランク毎のルーム数が違うとルームナンバーが存在しない場所をしていできてしまうバグを対処 */
+// 場所 application/wifi_b_tower/wbtower_enter.c
 #define AFTERMASTER_070125_WIFI_BATTLETOWER_BUG_FIX (1)
 
-/* �e�@���ڑ�������A������x�ڑ����Ă����Ƃ��ɁA�q�@�̕��̃��O�ɕs���Ȗ��O������o�O��
- �C������̂ɂ�����A�e�@�Ƃ̐ؒf�̃^�C�~���O�Ń��O�������悤�ɏC�� */
-// �ꏊ field/comm_field_state.c
-// �ꏊ field/underground/ug_dig_fossil.c .h
+/* 親機が接続解除後、もう一度接続してきたときに、子機の方のログに不正な名前が入るバグを
+ 修正するのにあたり、親機との切断のタイミングでログを消すように修正 */
+// 場所 field/comm_field_state.c
+// 場所 field/underground/ug_dig_fossil.c .h
 #define AFTER_MASTER_070202_FOSSILLOG_FIX  (1)
 
-/* ���j�I�����[���łR�O�l�ڂ̃r�[�R���ƂR�P�l�ڂ̃r�[�R�����󂯎�����Ƃ���
-   ����ʂ̃{�^���������Ȃ��Ȃ�o�O���C�� */
-// �ꏊ src/field/union_board.c
+/* ユニオンルームで３０人目のビーコンと３１人目のビーコンを受け取ったときに
+   下画面のボタンが聞かなくなるバグを修正 */
+// 場所 src/field/union_board.c
 #define AFTER_MASTER_070206_UNION_BOARD_FIX (1)
 
-/* �p�\�R���Ɋ���ǉ������ꍇ�d�����͂�������������Ώ�+���܂ł̏d���������͂����Ώ� */
-// �ꏊ src/field/comm_player.c
+/* パソコンに旗を追加した場合重複をはじく検査を入れる対処+今までの重複検査をはずす対処 */
+// 場所 src/field/comm_player.c
 #define AFTERMASTER_070206_UNDERGROUND_PCFLAGLIST2ND_FIX (1)
 
-/* �|�P���������W���[�Ƃ̒ʐM�V�[�P���X�ŁA�ꕔ�L�[���͂�������΂��Ă����ӏ����������̂�Ώ� */
-// �ꏊ src/fushigi/pokemonranger.c
+/* ポケモンレンジャーとの通信シーケンスで、一部キー入力をすっ飛ばしていた箇所があったのを対処 */
+// 場所 src/fushigi/pokemonranger.c
 #define AFTERMASTER_070207_POKEMONRANGER_CONNECTMENU_FIX (1)
 
-/* �n���̋ʂ��������E�ɂȂ�ƁA����ȍ~�̔z��ɓo�^����Ă��邽�܂��������Ȃ� */
-// �ꏊ src/savedata/undergrounddata.c
+/* 地下の玉が成長限界になると、それ以降の配列に登録されているたまが成長しない */
+// 場所 src/savedata/undergrounddata.c
 #define AFTERMASTER_070207_UNDERGROUND_STONEUPDATE_FIX (1)
 
-/* ��������ς��Ŏ󂯎��Ȃ��ꍇ����̏����g���[�i�[���ɂȂ��Ă��镔�����C�� */
-// �ꏊ src/field/scr_postman.c
+/* 道具がいっぱいで受け取れない場合道具名の所がトレーナー名になっている部分を修正 */
+// 場所 src/field/scr_postman.c
 #define AFTERMASTER_070213_POSTMAN_ITEMFULL_FIX (1)
 
-/* �u���C�����X�ł����Ƃ�v���uWi-Fi�ł����Ƃ�v���񂾌�Ɂu�Ƃ��������炤���Ƃ�v��
-   AGB�J�[�g���b�W����ӂ����Ȃ�������̂��󂯎��Ȃ��Ȃ�o�O���C�� */
-// �ꏊ src/fushigi/comm_mystery_gift.c
+/* 「ワイヤレスでうけとる」か「Wi-Fiでうけとる」を撰んだ後に「ともだちからうけとる」で
+   AGBカートリッジからふしぎなおくりものを受け取れなくなるバグを修整 */
+// 場所 src/fushigi/comm_mystery_gift.c
 #define AFTERMASTER_070213_MISTERY_AGBCARTRIDGE_FIX (1)
 
-/* ���[�_�[�̏���������BG�ʂ�ONOFF����Ă���̂� MASTERBRITNESS�ň͂�ŏC�����܂��� */
-// �ꏊ src/field/ug_radar.c
+/* レーダーの初期化時にBG面がONOFFされているので MASTERBRITNESSで囲んで修正しました */
+// 場所 src/field/ug_radar.c
 #define AFTERMASTER_070213_RADARINIT_FIX (1)
 
-/* �f�s�r��Wifi�o�g���^���[�ڑ���ʂ̍ŏ���WIPE_ResetBrightness���Ă�ł��܂��Ă��邽�߂�
-   �o�b�N�h���b�v�ʂ������Ă��܂���������o�O��Ώ� */
-// �ꏊ src/application/wifi_worldtrade/worldtrade.c
-// �ꏊ src/application/wifi_b_tower/wbtower.c
+/* ＧＴＳとWifiバトルタワー接続画面の最初にWIPE_ResetBrightnessを呼んでしまっているために
+   バックドロップ面が見えてしまう事があるバグを対処 */
+// 場所 src/application/wifi_worldtrade/worldtrade.c
+// 場所 src/application/wifi_b_tower/wbtower.c
 #define AFTERMASTER_070215_GTS_WBTOWER_INIT_FIX	(1)
 
-/* �ʐM����������������ɃA�C�R���\�����s���ƁA�A�j�����ڑ������Ă��Ȃ��̂�
-   �A���e�i�R�{�̏�ԂɂȂ��ĕ\������Ă��܂��o�O�̏C�� */
-// �ꏊ src/communication/wm_icon.c
+/* 通信初期化をした直後にアイコン表示を行うと、アニメが接続もしていないのに
+   アンテナ３本の状態になって表示されてしまうバグの修正 */
+// 場所 src/communication/wm_icon.c
 #define AFTERMASTER_070220_WM_ICON_INIT_FIX	(1)
 
-/* Wifi�o�g���^���[���[�_�[�_�E�����[�h��ʂŃ����N���w�肵�Ă�
-   �����̃����N�����擾���Ȃ��Ȃ��Ă���o�O�ɑΏ� */
-// �ꏊ src/wifi_b_tower/wbtower_enter.c
+/* Wifiバトルタワーリーダーダウンロード画面でランクを指定しても
+   自分のランクしか取得しなくなっているバグに対処 */
+// 場所 src/wifi_b_tower/wbtower_enter.c
 #define AFTERMASTER_070222_WIFI_BATTLETOWER_NOWRANK_BUG_FIX	(1)
 
-//-----------�ȉ��͉��B�ł���̏C��
-//AI�}���`�ő���̂��Ȃ���ԂŖ������J��o�����̂낢�̋����̕s�
-//�C���\�[�X�Ftr_ai.c
+//-----------以下は欧州版からの修正
+//AIマルチで相手のいない状態で味方が繰り出したのろいの挙動の不具合
+//修正ソース：tr_ai.c
 #define	AFTER_MASTER_070320_BT1_EUR_FIX	(1)
 
-//����˂�{����ւ����������̋����̕s��i�L���ɂ���̂͋֎~�AAFTER_MASTER_070409_30_EUR_FIX�ł̏C���ɕύX�j
-//�C���\�[�X�Fskill_intp.c
+//おんねん＋入れ替えおいうちの挙動の不具合（有効にするのは禁止、AFTER_MASTER_070409_30_EUR_FIXでの修正に変更）
+//修正ソース：skill_intp.c
 #define	AFTER_MASTER_070320_BT2_EUR_FIX	(0)
 
-//�s�����I�����Ă���̂ɁA�Ă���������������s�
-//�C���\�[�X�Fskill_intp.c
+//行動が終了しているのに、てだすけが発動する不具合
+//修正ソース：skill_intp.c
 #define	AFTER_MASTER_070320_BT3_EUR_FIX	(1)
 
-//���炦��{�����؂̎��̋�������������
-//�C���\�[�X�Fsub_021.s
+//こらえる＋半減木の実の挙動がおかしい
+//修正ソース：sub_021.s
 #define	AFTER_MASTER_070320_BT4_EUR_FIX	(1)
 
-//���炦��{�����؂̎��̋��������������i���炦�鑤��HP1���Ɣ����؂̎��̌��ʂ̂���HP��1�񕜂��Ă��܂��j
-//�C���\�[�X�Fserver_tool.c
+//こらえる＋半減木の実の挙動がおかしい（こらえる側がHP1だと半減木の実の効果のあとHPが1回復してしまう）
+//修正ソース：server_tool.c
 #define	AFTER_MASTER_070320_BT5_EUR_FIX	(1)
 
-//�퓬�|�P�����X�e�[�^�X��ʂ̃R���f�B�V�����̊ȈՂT�p�`�\���ʒu���C��
-//�C���\�[�X�Fb_plist_obj.c
+//戦闘ポケモンステータス画面のコンディションの簡易５角形表示位置を修正
+//修正ソース：b_plist_obj.c
 #define	AFTER_MASTER_070409_59_EUR_FIX	(1)
 
-//��т��ӂ邩��h���ŏo���A���Z�ɑ΂��邨��˂�̋����̕s�
-//�C���\�[�X�Fskill_intp.c
+//ゆびをふるから派生で出た連続技に対するおんねんの挙動の不具合
+//修正ソース：skill_intp.c
 #define	AFTER_MASTER_070409_30_EUR_FIX	(1)
 
-//�݂���蒆�����Ȗ؂̎���H�ׂ��Ƃ��ɂ��������܂����܂�Ȃ������ƕ\�������s�
-//�C���\�[�X�Fsub_037.s
+//みがわり中嫌いな木の実を食べたときにしかしうまく決まらなかったと表示される不具合
+//修正ソース：sub_037.s
 #define	AFTER_MASTER_070409_31_EUR_FIX	(1)
 
-//�_�u���o�g���ŁA���肪1�̂������Ȃ��Ƃ��Ƀg���[�X���������Ȃ��Ƃ�������s�
-//�C���\�[�X�Fserver_tool.c
+//ダブルバトルで、相手が1体しかいないときにトレースが発動しないときがある不具合
+//修正ソース：server_tool.c
 #define	AFTER_MASTER_070409_42_EUR_FIX	(1)
 
-//���킮�̋N����`�F�b�N���C�₵�Ă���|�P�����ɂ��������Ă��܂��s�
-//�C���\�[�X�Fserver.c
+//さわぐの起きるチェックが気絶しているポケモンにも発生してしまう不具合
+//修正ソース：server.c
 #define	AFTER_MASTER_070409_44_EUR_FIX	(1)
 
-//�V���h�[�_�C�u���̃|�P�����ɂĂ�����������ƌ��ʂ͔������邪�O�ꂽ���b�Z�[�W���\�������s�
-//�C���\�[�X�Fserver.c battle_server.h
+//シャドーダイブ中のポケモンにてだすけをすると効果は発動するが外れたメッセージが表示される不具合
+//修正ソース：server.c battle_server.h
 #define	AFTER_MASTER_070409_49_EUR_FIX	(1)
 
-//�|�P������ߊl���Đ퓬���I���������Ƃ��ɂ����񂩂��ӂ��̌��ʂ��������Ȃ��s�
-//�C���\�[�X�Fserver.c sub_011.s
+//ポケモンを捕獲して戦闘を終了させたときにしぜんかいふくの効果が発動しない不具合
+//修正ソース：server.c sub_011.s
 #define	AFTER_MASTER_070409_60_EUR_FIX	(1)
 
-//�~���N�̂݃G�t�F�N�g������肳�ꂽ��
-//�悱�ǂ肵�����ɃG�t�F�N�g���o�Ȃ��s��C��
-#define	AFTER_MASTER_070410_57_EUR_FIX	(1)		//�͂��Ă��Ȃ����ǔ��f�ς� 2008.04.02(��)matsuda
+//ミルクのみエフェクトを横取りされた際
+//よこどりした側にエフェクトが出ない不具合修正
+#define	AFTER_MASTER_070410_57_EUR_FIX	(1)		//囲っていないけど反映済み 2008.04.02(水)matsuda
 
-//�u�������}�j�A�̂��ȁv�̓����t���O�Z�b�g�R��̕s�
-//�C���\�[�X�Fd22r0102.ev d22r0103.ev sp_d22r0102.ev sp_d22r0103.ev d22r0102_def.h d22r0103_def.h
+//「いせきマニアのあな」の到着フラグセット漏れの不具合
+//修正ソース：d22r0102.ev d22r0103.ev sp_d22r0102.ev sp_d22r0103.ev d22r0102_def.h d22r0103_def.h
 #define	AFTER_MASTER_070426_86_EUR_FIX	(1)
 
-//�n����Ȃ̉������@���b�Z�[�W���x���ꍇ�����Ă��܂��̂� �ꊇ�\���ɒu������
-//�ꏊ src/field/underground/ug_trap.c
+//地下わなの解除方法メッセージが遅い場合消えてしまうので 一括表示に置き換え
+//場所 src/field/underground/ug_trap.c
 #define AFTERMASTER_070410_UNDERGROUND_N58_EUR_FIX (1)
 
-//���b�Z�[�W�����폜���ɃL�[�������c���Ă��܂��̂� ���b�Z�[�W����������ɂ��܂�
-// �����d�g�݂��g�p���܂��̂�AFTER_MASTER_070122_FOSSILMSG_FIX�Ɉˑ����܂�
-//�ꏊ src/field/underground/ug_dig_fossil.c
+//メッセージ強制削除時にキーだけが残ってしまうので メッセージを自動送りにします
+// 同じ仕組みを使用しますのでAFTER_MASTER_070122_FOSSILMSG_FIXに依存します
+//場所 src/field/underground/ug_dig_fossil.c
 #define AFTERMASTER_070410_UNDERGROUND_N23_EUR_FIX (1)
 
-// �ړ����Ȃ��ƁA�n�����[�_�[�̈ʒu���𑗐M���Ă��Ȃ������o�O���C��
-//�ꏊ src/field/underground/ug_dig_fossil.c
-//�ꏊ src/field/underground/ug_manager.c
+// 移動しないと、地下レーダーの位置情報を送信していなかったバグを修正
+//場所 src/field/underground/ug_dig_fossil.c
+//場所 src/field/underground/ug_manager.c
 #define AFTER_MASTER_070410_UNDERGROUND_N13_EUR_FIX (1)
 
-// ���[�_�[�͈͂ɉ��������ꍇ�@�Ō�̈���c�����܂܂ɂȂ�s��C��
-// �ꏊ src/field/underground/ug_dig_fossil.c
+// レーダー範囲に何も無い場合　最後の一個が残ったままになる不具合修正
+// 場所 src/field/underground/ug_dig_fossil.c
 #define AFTER_MASTER_070410_UNDERGROUND_N14_EUR_FIX (1)
 
-// �^�b�`��2��A���ŏE���Ă��܂��^�C�~���O���������ӏ����C�����܂���
-// ����̕���ňȑO���touch���x���͂Ȃ�܂��� ���̂܂܂ɂ������܂�
-// �ꏊ src/field/underground/ug_manager.c
+// タッチを2回連続で拾ってしまうタイミングがあった箇所を修正しました
+// 現状の分岐で以前よりtouchが遅くはなりますが このままにいたします
+// 場所 src/field/underground/ug_manager.c
 #define AFTER_MASTER_070410_UNDERGROUND_N15_EUR_FIX (1)
 
-//�Đڑ����Ɏ����̃X�e�[�^�X�������c�����܂܂ɂȂ�s����C��
-// �ꏊ src/application/wifi_p2pmatch.c
+//再接続時に自分のステータス文字が残ったままになる不具合を修正
+// 場所 src/application/wifi_p2pmatch.c
 // 
-// �@�v���`�i�ł́A�����̃X�e�[�^�X����ɏ�ɕ\������Ă���悤�Ɏd�l�ύX���ꂽ���߁A
-// �@�����Ă��܂��ƍ���̂ŁA����
+// 　プラチナでは、自分のステータスが常に上に表示されているように仕様変更されたため、
+// 　消してしまうと困るので、無効
 // #define AFTER_MASTER_070410_WIFIAPP_N20_EUR_FIX (1)
 
-// �ŏ��N���t���O�� �Z�[�u�\�����ON�����܂܂������̂�OFF�ɏC��
-// �ꏊ src/application/wifi_p2pmatch.c
+// 最初起動フラグを セーブ表示後もONしたままだったのでOFFに修正
+// 場所 src/application/wifi_p2pmatch.c
 #define AFTER_MASTER_070410_WIFIAPP_N22_EUR_FIX (1)
 
-// VBlank�֐�������ւ��֐����Ă΂Ȃ��悤�ɏC��
-// �ꏊ src/communication/com_dwc_warning.c
+// VBlank関数が入れ替わる関数を呼ばないように修正
+// 場所 src/communication/com_dwc_warning.c
 #define AFTER_MASTER_070411_COMM_N25_EUR_FIX (1)
 
 
-// �ڑ��̍ŏ��ɂȂ��Ȃ��Ȃ���Ȃ��A�G���[�ɂȂ��Ă��܂��s��ւ̑Ώ�
-//  ->�e�@�ŒʐM���Ă��Ȃ��Ƃ���SendData���ĂԂƐڑ���ɂ��������Ȃ�s����C��
-// �ꏊ src/communication/comm_system.c
+// 接続の最初になかなかつながらなく、エラーになってしまう不具合への対処
+//  ->親機で通信していないときにSendDataを呼ぶと接続後におかしくなる不具合を修正
+// 場所 src/communication/comm_system.c
 //      src/communication/wh.c
 //      src/communication/comm_state.c
 #define AFTER_MASTER_070420_GF_COMM_FIX  (1)
 
-/* ���R�[�h�R�[�i�[��3�l�ȏ�̎��A�O�D�T�b���炢�̃^�C�~���O�Ŏq�@�������Đe����l�ɂ����
- �u���������Ȃ������o�[���c�v�Ƃ������b�Z�[�W���Q�d�ɕ\������ăE�C���h�E����  
-  �\�������Ă��܂��o�O��Ώ� */
-// �ꏊ application/record/record_corner.c
+/* レコードコーナーで3人以上の時、０．５秒ぐらいのタイミングで子機が抜けて親を一人にすると
+ 「つごうがつかないメンバーが…」というメッセージが２重に表示されてウインドウ内で  
+  表示が壊れてしまうバグを対処 */
+// 場所 application/record/record_corner.c
 #define AFTER_MASTER_070424_RECORDCONER_FIX	(1)
 
-// �ӂ����ʐM�ŃG���[�\�����OBJ�ʂ�OFF�ɂȂ��Ă���s����C��
-// �ꏊ src/fushigi/comm_mystery_gift.c
+// ふしぎ通信でエラー表示後にOBJ面がOFFになっている不具合を修正
+// 場所 src/fushigi/comm_mystery_gift.c
 #define AFTER_MASTER_070426_WIFIICON_N81_EUR_FIX (1)
 
-// �ʐM�A�C�R���ɔ�������������̂ŃE�C���h�E�@�\���g�p���ďC��
-// �ꏊ src/field/underground/ug_trap.c
+// 通信アイコンに半透明がかかるのでウインドウ機能を使用して修正
+// 場所 src/field/underground/ug_trap.c
 #define AFTER_MASTER_070426_WMICON_N82_EUR_FIX (1)
 
-// ���x����������ŁA�A�C�e�������炦�Ȃ��Ƃ��̃��b�Z�[�W���Ⴄ�s����C��
-// �ꏊ src/fielddata/script/r221r0201.ev
+// レベルじいさんで、アイテムがもらえないときのメッセージが違う不具合を修正
+// 場所 src/fielddata/script/r221r0201.ev
 #define AFTER_MASTER_070426_LEVEL_JIISAN_FIX (1)
 
-/* ��ĉ��̃^�}�S�t���O�������̎�ł���������Ȃ��������߁A
-   �|�P�b�`�ƃX�N���v�g��u16��u8�Ŏ擾���ĂO���P���Ŕ��肵�Ă��܂��Ă���̂�
-   ��ĉ������̕��ŏC�����邱�Ƃɂ��� */
-// �ꏊ include/savedata/sodateyadata.h
+/* 育て屋のタマゴフラグが乱数の種である説明がなかったため、
+   ポケッチとスクリプトがu16やu8で取得して０か１かで判定してしまっているのを
+   育て屋処理の方で修正することにした */
+// 場所 include/savedata/sodateyadata.h
 //       src/savedata/sodateyadata.c
 //       src/field/sodateya.c
 #define AFTER_MASTER_SODATEYA_EGGFLAG_FIX	(1)
 
-/* GTS�Ŏ����Ń|�P������a���Ă��鎞�ɁA�������猟�����ă|�P����������������
-   �Z�[�u�f�[�^�́u�|�P������GTS�ɗa���Ă���t���O�v�𗎂Ƃ��Ă��܂��Ă���o�O�ɑΏ� */
-// �ꏊ src/application/wifi_worldtrade/worldtrade_upload.c
+/* GTSで自分でポケモンを預けている時に、自分から検索してポケモンを交換した際
+   セーブデータの「ポケモンをGTSに預けているフラグ」を落としてしまっているバグに対処 */
+// 場所 src/application/wifi_worldtrade/worldtrade_upload.c
 #define  AFTER_MASTER_070510_GTS_MENU_FIX	(1)
 
 /*
- * ���B�ŕ񍐁A�ۗ��s��iNo.104)
- * �f�B�A���K�E�p���L�A��œ����ďI�����a�����聨�A���Z�E�X��Ƃ����
- * �f�B�A���K�E�p���L�A��OBJ���\������Ă��邪�퓬���ł��Ȃ��s��ɑΏ�
+ * 欧州版報告、保留不具合（No.104)
+ * ディアルガ・パルキア戦で逃げて終了→殿堂入り→アルセウス戦とすると
+ * ディアルガ・パルキアのOBJが表示されているが戦闘ができない不具合に対処
  */
-// �ꏊ src/fielddata/script/common_scr.ev
+// 場所 src/fielddata/script/common_scr.ev
 #define	AFTER_MASTER_070719_EURO104_FIX		(1)
 
 
 /*
 	2007.07.19
-	�|�P�b�`�A�v���؂�ւ��{�^����A�ł���ƁA
-	�|�P�b�`�t���̉��̃p���b�g������������Ă��܂��o�O�̏C���B
-	�C���\�[�X�Fsrc\field\poketch\poketch_v.c
-	�C���ҁF�c�J
+	ポケッチアプリ切り替えボタンを連打すると、
+	ポケッチ液晶の縁のパレットが書き換わってしまうバグの修正。
+	修正ソース：src\field\poketch\poketch_v.c
+	修正者：田谷
 */
 #define  AFTER_MASTER_070719_POKETCH_APPNUM_PAL	(1)
 
-// ���K�l���Ⴆ�Ȃ��Ƃ����̃��b�Z�[�W���Ⴄ�s���Ώ�
-// �ꏊ src/fielddata/script/t05r0201.ev
+// メガネが貰えないとき時のメッセージが違う不具合を対処
+// 場所 src/fielddata/script/t05r0201.ev
 #define AFTER_MASTER_070720_GLASSES_FIX (1)
 
-/* ���B�łŕ�������ɐ؂��o�O���������̂ŁA�P�h�b�g�����グ��C�����g�ݍ��܂ꂽ */
-// �ꏊ src/field/union_board.c
+/* 欧州版で文字が上に切れるバグがあったので、１ドットだけ上げる修正が組み込まれた */
+// 場所 src/field/union_board.c
 #define AFTERMASTER_070719_UNION_BOARD_FONT_BUG_FIX	(1)
 
 
-// �u������Ƃԁv
-// �ꏊ src/wazaeffect/wsp_tomoya.c
+// 「そらをとぶ」
+// 場所 src/wazaeffect/wsp_tomoya.c
 //		src/wazaeffect/we_180.s
 #define AFTER_MASTER_070426_85_EUR_FIX	(1)
 
 
 
 //
-//	PLFIX	DP�D�揇�ʒ�̃o�O���C����������
+//	PLFIX	DP優先順位低のバグを修正したもの
 //
 /*
- *	�\�����񂾏u�ԂɁA���肪VCHATOFF�ɂ���ƁA�������������Ȃ�
- *	�ꏊ	src/application/wifi_p2pmatch/wifi_p2pmatch.c
+ *	申し込んだ瞬間に、相手がVCHATOFFにすると、音声が聞こえない
+ *	場所	src/application/wifi_p2pmatch/wifi_p2pmatch.c
  */
 #define PLFIX_T869	(1)
 
 /*
- *	�ʐM�G���[�Ŏ�t�ɖ߂����Ƃ��̉�ʐ؂�ւ�����������
- *	�ꏊ	src/system/main.c
+ *	通信エラーで受付に戻されるときの画面切り替えがおかしい
+ *	場所	src/system/main.c
  */
 #define PLFIX_T1238	(1)
 
 /*
- *	T1370�@�R���V�A���ŁA�ΐ��̑ΐ핔���ł̓��삪��������	
- *	�ꏊ	src/field/comm_player.c
+ *	T1370　コロシアムで、対戦後の対戦部屋での動作がおかしい	
+ *	場所	src/field/comm_player.c
  */
 #define PLFIX_T1370 (1)
 
 /*
- *	T1618�@�ʐM�󂯂��ŁA�����o�[�ɓ���̂Ɠ����ɔ��������Ƃ̓��삪��������
- *	�ꏊ	src/field/comm_direct_counter.c
+ *	T1618　通信受けつけで、メンバーに入るのと同時に抜けたあとの動作がおかしい
+ *	場所	src/field/comm_direct_counter.c
  */
 #define PLFIX_T1618	(1)
 
 /*
- *	S2414�@�|�P�b�`�F�f�W�^�����v�̃X���[�v��̎����\���ɂ���
- *	�ꏊ	src/field/poketch/poketch_a00c.c
+ *	S2414　ポケッチ：デジタル時計のスリープ後の時刻表示について
+ *	場所	src/field/poketch/poketch_a00c.c
  */
 #define PLFIX_S2414	(1)
 
 /*
- *	T1624�@���j�I�����������ŁA�p���b�g��A�ł���Ɛ����`�����
- *	�ꏊ	src/application/oekaki/oekaki.c
+ *	T1624　ユニオンおえかきで、パレットを連打すると線が描かれる
+ *	場所	src/application/oekaki/oekaki.c
  */
 #define PLFIX_T1624	(1)
 
 /*
- *	S2407�@�ĕ񍐁F�N���b�v�Ń|�P������g��t�܂ňړ������邱�Ƃ��ł��Ȃ�
- *	�ꏊ	src/application/imageClip/imc_poke_obj.c
+ *	S2407　再報告：クリップでポケモンを枠一杯まで移動させることができない
+ *	場所	src/application/imageClip/imc_poke_obj.c
  *			include/application/imageClip/imc_poke_obj.h
  *
  *	080603 tomoya
- *	BTS:�V�i���I304
- *	�@DP��PL�ŃR���e�X�g�̃|�P�����̕\���ʒu������Ă��܂����߁A
- *	�@�R���e�X�g�̂Ƃ������́A���̏C���͔��f�����Ȃ����ƂɂȂ�܂����B
+ *	BTS:シナリオ304
+ *	　DPとPLでコンテストのポケモンの表示位置がずれてしまうため、
+ *	　コンテストのときだけは、この修正は反映させないことになりました。
  */
 #define PLFIX_S2407	(1)
 

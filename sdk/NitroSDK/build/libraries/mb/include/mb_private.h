@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.37  2005/11/07 01:22:05  okubata_ryoma
-  SDK_STATIC_ASSERT‚©‚çSDK_COMPILER_ASSERT‚É•ÏX
+  SDK_STATIC_ASSERTã‹ã‚‰SDK_COMPILER_ASSERTã«å¤‰æ›´
 
   Revision 1.36  2005/02/28 05:26:25  yosizaki
   do-indent.
@@ -33,10 +33,10 @@
   fix copyright header.
 
   Revision 1.31  2005/01/27 07:03:56  takano_makoto
-  MB_CommPWork\‘¢‘Ì‚ÉuseWvrFlagƒƒ“ƒo‚ğ’Ç‰Á
+  MB_CommPWorkæ§‹é€ ä½“ã«useWvrFlagãƒ¡ãƒ³ãƒã‚’è¿½åŠ 
 
   Revision 1.30  2004/11/22 12:52:13  takano_makoto
-  mb_block mb_gameinfo“à‚Ì\‘¢‘Ì‚É•ªŠ„E‰B•Á‚Å‚«‚éî•ñ‚ğ®—
+  mb_block mb_gameinfoå†…ã®æ§‹é€ ä½“ã«åˆ†å‰²ãƒ»éš è”½ã§ãã‚‹æƒ…å ±ã‚’æ•´ç†
 
   Revision 1.29  2004/11/11 11:52:31  yosizaki
   add structures for task-thread.
@@ -54,84 +54,84 @@
   add start_mp_busy.
 
   Revision 1.24  2004/10/05 10:05:49  sato_masaki
-  BOOT_REQ‚ğó‚¯‚½‚ÌMBI—¹ˆ—‚ğ¯•Ê‚·‚éˆ—‚Ì’Ç‰ÁB
+  BOOT_REQã‚’å—ã‘ãŸæ™‚ã®MBçµ‚äº†å‡¦ç†ã‚’è­˜åˆ¥ã™ã‚‹å‡¦ç†ã®è¿½åŠ ã€‚
 
   Revision 1.23  2004/09/25 09:36:52  sato_masaki
-  MB_CommGetChildUser()‚É‚ÄAq‹@î•ñ‚ğƒoƒbƒtƒ@‚ÉƒRƒs[‚·‚é‚æ‚¤‚É•ÏXB
+  MB_CommGetChildUser()ã«ã¦ã€å­æ©Ÿæƒ…å ±ã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.22  2004/09/25 04:40:34  sato_masaki
-  NitroSDK_IPL_branch 1.14.2.5@‚Æƒ}[ƒW
+  NitroSDK_IPL_branch 1.14.2.5ã€€ã¨ãƒãƒ¼ã‚¸
 
   Revision 1.21  2004/09/24 07:30:57  sato_masaki
   small fix
 
   Revision 1.20  2004/09/24 01:42:39  sato_masaki
-  req_data_buf‚ÌƒTƒCƒY‚ÉŠÖ‚·‚é•s‹ï‡C³B
+  req_data_bufã®ã‚µã‚¤ã‚ºã«é–¢ã™ã‚‹ä¸å…·åˆä¿®æ­£ã€‚
 
   Revision 1.19  2004/09/22 09:42:27  sato_masaki
-  MB_MAX_BLOCK‚Ì’l•ÏXB
+  MB_MAX_BLOCKã®å€¤å¤‰æ›´ã€‚
 
   Revision 1.18  2004/09/20 12:52:54  sato_masaki
-  MB_CommPWork, MB_CommCWork‚Ì•À‚Ñ‚ğ•ÏXB
+  MB_CommPWork, MB_CommCWorkã®ä¸¦ã³ã‚’å¤‰æ›´ã€‚
 
   Revision 1.17  2004/09/17 11:38:10  sato_masaki
-  add 'isMbInitialized'@member to MB_CommCommonWork structure
+  add 'isMbInitialized'ã€€member to MB_CommCommonWork structure
 
   Revision 1.16  2004/09/17 04:03:05  miya
-  •s—v‚È•”•ª‚Ìíœ
+  ä¸è¦ãªéƒ¨åˆ†ã®å‰Šé™¤
 
   Revision 1.15  2004/09/16 08:43:29  miya
-  ƒtƒ@ƒCƒ‹XV—pƒƒ“ƒo’Ç‰Á
+  ãƒ•ã‚¡ã‚¤ãƒ«æ›´æ–°ç”¨ãƒ¡ãƒ³ãƒè¿½åŠ 
 
   Revision 1.14  2004/09/15 06:23:32  sato_masaki
-  MB_CommCommonWork‚É‚¨‚¢‚ÄAMB_COMM_P_SENDLEN, MB_COMM_C_SENDLEN ‚Ì’è‹`‚ÉˆË‘¶‚µ‚Ä‚¢‚½’l‚ğŠi”[‚·‚é•Ï”‚ğ’Ç‰ÁB
+  MB_CommCommonWorkã«ãŠã„ã¦ã€MB_COMM_P_SENDLEN, MB_COMM_C_SENDLEN ã®å®šç¾©ã«ä¾å­˜ã—ã¦ã„ãŸå€¤ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°ã‚’è¿½åŠ ã€‚
     (block_size_max, req_data_piece_size, req_data_piece_num)
 
   Revision 1.13  2004/09/14 13:19:50  sato_masaki
-  ƒŠƒNƒGƒXƒgƒf[ƒ^‚ğ’f•Ğ‰»‚µ‚Ä‘—‚é‚æ‚¤‚É•ÏXB
+  ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ–­ç‰‡åŒ–ã—ã¦é€ã‚‹ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.12  2004/09/13 13:18:10  sato_masaki
   modify pad bytes
 
   Revision 1.11  2004/09/11 12:41:42  yosiokat
-  EƒƒbƒNŠÔAe‹@î•ñõ–½‚ÌƒJƒEƒ“ƒgˆ—C³‚É”º‚¢AMB_SCAN_TIME_NORMALAMB_SCAN_TIME_LOCKING‚ğ’Ç‰ÁB
+  ãƒ»ãƒ­ãƒƒã‚¯æ™‚é–“ã€è¦ªæ©Ÿæƒ…å ±å¯¿å‘½ã®ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†ä¿®æ­£ã«ä¼´ã„ã€MB_SCAN_TIME_NORMALã€MB_SCAN_TIME_LOCKINGã‚’è¿½åŠ ã€‚
 
   Revision 1.10  2004/09/11 11:08:49  sato_masaki
-  MB_CommWork\‘¢‘Ì‚ğMB_CommPWork, MB_CommCWork, MB_CommCommonWork‚É•ª—£B
+  MB_CommWorkæ§‹é€ ä½“ã‚’MB_CommPWork, MB_CommCWork, MB_CommCommonWorkã«åˆ†é›¢ã€‚
 
   Revision 1.9  2004/09/10 07:22:47  sato_masaki
   debug swith off
 
   Revision 1.8  2004/09/10 02:59:10  sato_masaki
-  PRINT_DEBUG, CALLBACK_WM_STATE’è‹`‚ÉŠÖ‚·‚é•ÏXB
+  PRINT_DEBUG, CALLBACK_WM_STATEå®šç¾©ã«é–¢ã™ã‚‹å¤‰æ›´ã€‚
 
   Revision 1.7  2004/09/09 09:17:00  sato_masaki
-  CALLBACK_WM_STATE‚ğ’è‹`
+  CALLBACK_WM_STATEã‚’å®šç¾©
 
   Revision 1.6  2004/09/07 04:48:21  sato_masaki
-  padding’²®B
+  paddingèª¿æ•´ã€‚
 
   Revision 1.5  2004/09/07 04:26:17  sato_masaki
-  rom_header.h‚ğmb_rom_header.h‚ÉƒŠƒl[ƒ€B
+  rom_header.hã‚’mb_rom_header.hã«ãƒªãƒãƒ¼ãƒ ã€‚
 
   Revision 1.4  2004/09/06 11:12:38  sato_masaki
-  ƒ}ƒ‹ƒ`ƒu[ƒgRAMƒAƒhƒŒƒX’è‹`(“à•”g—p)‚ğmb_child.h‚ÖˆÚ“®B
+  ãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆRAMã‚¢ãƒ‰ãƒ¬ã‚¹å®šç¾©(å†…éƒ¨ä½¿ç”¨)ã‚’mb_child.hã¸ç§»å‹•ã€‚
 
   Revision 1.3  2004/09/04 11:03:50  sato_masaki
   small fix
 
   Revision 1.2  2004/09/04 09:59:03  sato_masaki
-  ‹Lq®—B
+  è¨˜è¿°æ•´ç†ã€‚
 
   Revision 1.1  2004/09/03 07:06:28  sato_masaki
-  ƒtƒ@ƒCƒ‹‚ğ‹@”\•Ê‚É•ªŠ„B
+  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ©Ÿèƒ½åˆ¥ã«åˆ†å‰²ã€‚
 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
 
 /*
-    MBƒ‰ƒCƒuƒ‰ƒŠ‚ÌŠeƒ\[ƒXƒtƒ@ƒCƒ‹‚Å‚ÍA‚±‚Ìƒwƒbƒ_ƒtƒ@ƒCƒ‹‚Ì‚İ‚ğƒCƒ“ƒNƒ‹[ƒh‚µ‚Ä‚¢‚Ü‚·B
+    MBãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®å„ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã§ã¯ã€ã“ã®ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã¿ã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã—ã¦ã„ã¾ã™ã€‚
 */
 
 #ifndef _MB_PRIVATE_H_
@@ -160,11 +160,11 @@ extern "C" {
 #include "mb_fileinfo.h"
 #include "mb_child.h"
 
-/* ƒLƒƒƒbƒVƒ…•û®‚Ì‚½‚ß‚ÌV‹@\ */
+/* ã‚­ãƒ£ãƒƒã‚·ãƒ¥æ–¹å¼ã®ãŸã‚ã®æ–°æ©Ÿæ§‹ */
 #include "mb_cache.h"
 #include "mb_task.h"
 
-/* ƒfƒoƒbƒOo—Í */
+/* ãƒ‡ãƒãƒƒã‚°å‡ºåŠ› */
 #ifdef  PRINT_DEBUG
 #define MB_OUTPUT( ... )        OS_TPrintf( __VA_ARGS__ )
 #define MB_DEBUG_OUTPUT( ... )  MBi_DebugPrint(__FILE__, __LINE__, __FUNCTION__, __VA_ARGS__ )
@@ -179,14 +179,14 @@ extern "C" {
 
 /* ----------------------------------------------------------------------------
 
-    ƒuƒƒbƒN“]‘—ŠÖ˜A’è‹`
+    ãƒ–ãƒ­ãƒƒã‚¯è»¢é€é–¢é€£å®šç¾©
 
    ----------------------------------------------------------------------------*/
 
 #define MB_IPL_VERSION                          (0x0001)
 #define MB_MAX_BLOCK                            12288   // max 12288 * 256 = 3.0Mbyte
 
-#define MB_NUM_PARENT_INFORMATIONS              16      /* Å‘åe‹@” */
+#define MB_NUM_PARENT_INFORMATIONS              16      /* æœ€å¤§è¦ªæ©Ÿæ•° */
 
 #define MB_SCAN_TIME_NORMAL                     10
 #define MB_SCAN_TIME_LOCKING                    220
@@ -196,21 +196,21 @@ extern "C" {
 
 /* ----------------------------------------------------------------------------
 
-    “à•”g—pŒ^’è‹`
+    å†…éƒ¨ä½¿ç”¨å‹å®šç¾©
 
    ----------------------------------------------------------------------------*/
 
 /*
- * MB ƒ‰ƒCƒuƒ‰ƒŠ‚Åg—p‚·‚éƒ[ƒN—Ìˆæ.
+ * MB ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ.
  */
 
 typedef struct MB_CommCommonWork
 {
-    //  --- ‹¤’Ê    ---
-    //  ‘—óMƒoƒbƒtƒ@
+    //  --- å…±é€š    ---
+    //  é€å—ä¿¡ãƒãƒƒãƒ•ã‚¡
     u32     sendbuf[MB_MAX_SEND_BUFFER_SIZE / sizeof(u32)] ATTRIBUTE_ALIGN(32);
     u32     recvbuf[MB_MAX_RECV_BUFFER_SIZE * MB_MAX_CHILD * 2 / sizeof(u32)] ATTRIBUTE_ALIGN(32);
-    MBUserInfo user;                   // ©‹@‚Ìƒ†[ƒU[î•ñ
+    MBUserInfo user;                   // è‡ªæ©Ÿã®ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±
     u16     isMbInitialized;
     int     block_size_max;
     BOOL    start_mp_busy;             /* WM_StartMP() is operating */
@@ -223,52 +223,52 @@ typedef struct MB_CommPWork
 {
     MB_CommCommonWork common;
 
-    //  --- e‹@—p  ---
+    //  --- è¦ªæ©Ÿç”¨  ---
     MBUserInfo childUser[MB_MAX_CHILD] ATTRIBUTE_ALIGN(4);
-    u16     childversion[MB_MAX_CHILD]; // q‹@‚Ìƒo[ƒWƒ‡ƒ“î•ñ(q‹@‘ä”•ª)
-    u32     childggid[MB_MAX_CHILD];   // q‹@‚ÌGGID(q‹@‘ä”•ª)
-    MBCommPStateCallback parent_callback;       // e‹@‚Ìó‘ÔƒR[ƒ‹ƒoƒbƒNŠÖ”ƒ|ƒCƒ“ƒ^
-    int     p_comm_state[MB_MAX_CHILD]; // ‚»‚ê‚¼‚ê‚Ìq‹@‚É‘Î‚·‚éstate‚ğ‚Â
-    u8      file_num;                  // “o˜^‚³‚ê‚Ä‚¢‚éƒtƒ@ƒCƒ‹”
-    u8      cur_fileid;                // Œ»İ‘—M‚·‚éFile”Ô†
-    s8      fileid_of_child[MB_MAX_CHILD];      // q‹@‚ÌƒŠƒNƒGƒXƒg‚µ‚Ä‚«‚½File”Ô†(ƒŠƒNƒGƒXƒg–³‚µ‚Ìê‡‚Í-1)
-    u8      child_num;                 // ƒGƒ“ƒgƒŠ[q‹@”
-    u16     child_entry_bmp;           // q‹@‚ÌƒGƒ“ƒgƒŠ[ŠÇ—bitmap
-    MbRequestPieceBuf req_data_buf;    // q‹@‚Ì•ªŠ„ƒŠƒNƒGƒXƒgóM—p‚Ìƒoƒbƒtƒ@
-    u16     req2child[MB_MAX_CHILD];   // q‹@‚Ö‘—M‚·‚éƒŠƒNƒGƒXƒg
-    MBUserInfo childUserBuf;           // ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚É“n‚·‚½‚ß‚ÌAq‹@î•ñƒoƒbƒtƒ@
+    u16     childversion[MB_MAX_CHILD]; // å­æ©Ÿã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±(å­æ©Ÿå°æ•°åˆ†)
+    u32     childggid[MB_MAX_CHILD];   // å­æ©Ÿã®GGID(å­æ©Ÿå°æ•°åˆ†)
+    MBCommPStateCallback parent_callback;       // è¦ªæ©Ÿã®çŠ¶æ…‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+    int     p_comm_state[MB_MAX_CHILD]; // ãã‚Œãã‚Œã®å­æ©Ÿã«å¯¾ã™ã‚‹stateã‚’æŒã¤
+    u8      file_num;                  // ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«æ•°
+    u8      cur_fileid;                // ç¾åœ¨é€ä¿¡ã™ã‚‹Fileç•ªå·
+    s8      fileid_of_child[MB_MAX_CHILD];      // å­æ©Ÿã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã—ã¦ããŸFileç•ªå·(ãƒªã‚¯ã‚¨ã‚¹ãƒˆç„¡ã—ã®å ´åˆã¯-1)
+    u8      child_num;                 // ã‚¨ãƒ³ãƒˆãƒªãƒ¼å­æ©Ÿæ•°
+    u16     child_entry_bmp;           // å­æ©Ÿã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç®¡ç†bitmap
+    MbRequestPieceBuf req_data_buf;    // å­æ©Ÿã®åˆ†å‰²ãƒªã‚¯ã‚¨ã‚¹ãƒˆå—ä¿¡ç”¨ã®ãƒãƒƒãƒ•ã‚¡
+    u16     req2child[MB_MAX_CHILD];   // å­æ©Ÿã¸é€ä¿¡ã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+    MBUserInfo childUserBuf;           // ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã«æ¸¡ã™ãŸã‚ã®ã€å­æ©Ÿæƒ…å ±ãƒãƒƒãƒ•ã‚¡
 
-    //  ƒtƒ@ƒCƒ‹î•ñ
+    //  ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±
     struct
     {
-        // DownloadFileInfo‚Ìƒoƒbƒtƒ@
+        // DownloadFileInfoã®ãƒãƒƒãƒ•ã‚¡
         MBDownloadFileInfo dl_fileinfo;
         MBGameInfo game_info;
         MB_BlockInfoTable blockinfo_table;
         MBGameRegistry *game_reg;
-        void   *src_adr;               //  e‹@ã‚Ìƒu[ƒgƒCƒ[ƒWæ“ªƒAƒhƒŒƒX
-        u16     currentb;              // Œ»İ‚ÌƒuƒƒbƒN
-        u16     nextb;                 // Ÿ‰ñ‘—M‚·‚éƒuƒƒbƒN
-        u16     pollbmp;               // ƒf[ƒ^‘—M—pPollBitmap
-        u16     gameinfo_child_bmp;    // GameInfoXV‚Ì‚½‚ß‚ÌŒ»İ‚Ìƒƒ“ƒobitmap
-        u16     gameinfo_changed_bmp;  // GameInfoXV‚Ì‚½‚ß‚Ì•ÏX‚ª”­¶‚µ‚½ƒƒ“ƒobitmap
+        void   *src_adr;               //  è¦ªæ©Ÿä¸Šã®ãƒ–ãƒ¼ãƒˆã‚¤ãƒ¡ãƒ¼ã‚¸å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+        u16     currentb;              // ç¾åœ¨ã®ãƒ–ãƒ­ãƒƒã‚¯
+        u16     nextb;                 // æ¬¡å›é€ä¿¡ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯
+        u16     pollbmp;               // ãƒ‡ãƒ¼ã‚¿é€ä¿¡ç”¨PollBitmap
+        u16     gameinfo_child_bmp;    // GameInfoæ›´æ–°ã®ãŸã‚ã®ç¾åœ¨ã®ãƒ¡ãƒ³ãƒbitmap
+        u16     gameinfo_changed_bmp;  // GameInfoæ›´æ–°ã®ãŸã‚ã®å¤‰æ›´ãŒç™ºç”Ÿã—ãŸãƒ¡ãƒ³ãƒbitmap
         u8      active;
         u8      update;
 
         /*
-         * ƒLƒƒƒbƒVƒ…•û®ƒŠ[ƒh‚Ì‘Î‰‚Ì‚½‚ß‚É’Ç‰Á.
-         * ‚±‚ê‚ç‚ªw‚·“à—e‚Í src_adr ‚Ì’†.
+         * ã‚­ãƒ£ãƒƒã‚·ãƒ¥æ–¹å¼ãƒªãƒ¼ãƒ‰ã®å¯¾å¿œã®ãŸã‚ã«è¿½åŠ .
+         * ã“ã‚Œã‚‰ãŒæŒ‡ã™å†…å®¹ã¯ src_adr ã®ä¸­.
          */
-        MBiCacheList *cache_list;      /* ƒLƒƒƒbƒVƒ…ƒŠƒXƒg */
-        u32    *card_mapping;          /* ŠeƒZƒOƒƒ“ƒgæ“ª‚Ì CARD ƒAƒhƒŒƒX */
+        MBiCacheList *cache_list;      /* ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆ */
+        u32    *card_mapping;          /* å„ã‚»ã‚°ãƒ¡ãƒ³ãƒˆå…ˆé ­ã® CARD ã‚¢ãƒ‰ãƒ¬ã‚¹ */
 
     }
     fileinfo[MB_MAX_FILE];
 
-    BOOL    useWvrFlag;                // WVR‚ğg—p‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+    BOOL    useWvrFlag;                // WVRã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
     u8      padding2[20];
 
-    /* ƒ^ƒXƒNƒXƒŒƒbƒh‚Ì‚½‚ß‚É’Ç‰Á */
+    /* ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãŸã‚ã«è¿½åŠ  */
     u8      task_work[2 * 1024];
     MBiTaskInfo cur_task;
 
@@ -280,21 +280,21 @@ typedef struct MB_CommCWork
 {
     MB_CommCommonWork common;
 
-    //  --- q‹@—p  ---
-    WMBssDesc bssDescbuf ATTRIBUTE_ALIGN(32);   // WMBssDesc‚ÌƒoƒbƒNƒAƒbƒv
-    MBDownloadFileInfo dl_fileinfo;    // q‹@‚ÌDownloadFileInfoƒoƒbƒtƒ@
-    MBCommCStateCallbackFunc child_callback;    // q‹@‚Ìó‘ÔƒR[ƒ‹ƒoƒbƒNŠÖ”ƒ|ƒCƒ“ƒ^
-    int     c_comm_state;              // q‹@‚Ìstate
-    int     connectTargetNo;           // Ú‘±‘ÎÛ‚ÌMbBeaconRecvStatusƒŠƒXƒgNo.
-    u8      fileid;                    // ƒŠƒNƒGƒXƒg‚µ‚½File”Ô†
+    //  --- å­æ©Ÿç”¨  ---
+    WMBssDesc bssDescbuf ATTRIBUTE_ALIGN(32);   // WMBssDescã®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
+    MBDownloadFileInfo dl_fileinfo;    // å­æ©Ÿã®DownloadFileInfoãƒãƒƒãƒ•ã‚¡
+    MBCommCStateCallbackFunc child_callback;    // å­æ©Ÿã®çŠ¶æ…‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+    int     c_comm_state;              // å­æ©Ÿã®state
+    int     connectTargetNo;           // æ¥ç¶šå¯¾è±¡ã®MbBeaconRecvStatusãƒªã‚¹ãƒˆNo.
+    u8      fileid;                    // ãƒªã‚¯ã‚¨ã‚¹ãƒˆã—ãŸFileç•ªå·
     u8      _padding1[1];
     u16     user_req;
-    u16     got_block;                 // DownloadÏ‚İƒuƒƒbƒN”
-    u16     total_block;               // Downloadƒtƒ@ƒCƒ‹‘ƒuƒƒbƒN
-    u8      recvflag[MB_MAX_BLOCK / 8]; // ƒuƒƒbƒNóMó‘Ô‚ğ•\‚·ƒtƒ‰ƒO
+    u16     got_block;                 // Downloadæ¸ˆã¿ãƒ–ãƒ­ãƒƒã‚¯æ•°
+    u16     total_block;               // Downloadãƒ•ã‚¡ã‚¤ãƒ«ç·ãƒ–ãƒ­ãƒƒã‚¯
+    u8      recvflag[MB_MAX_BLOCK / 8]; // ãƒ–ãƒ­ãƒƒã‚¯å—ä¿¡çŠ¶æ…‹ã‚’è¡¨ã™ãƒ•ãƒ©ã‚°
     MB_BlockInfoTable blockinfo_table;
-    int     last_recv_seq_no;          // ‘O‰ñóM‚µ‚½ƒuƒƒbƒNƒV[ƒPƒ“ƒX”Ô†
-    u8      boot_end_flag;             // BOOT_READY‚É‚æ‚éMBI—¹ˆ—’†‚©”Û‚©‚Ìƒtƒ‰ƒO
+    int     last_recv_seq_no;          // å‰å›å—ä¿¡ã—ãŸãƒ–ãƒ­ãƒƒã‚¯ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+    u8      boot_end_flag;             // BOOT_READYã«ã‚ˆã‚‹MBçµ‚äº†å‡¦ç†ä¸­ã‹å¦ã‹ã®ãƒ•ãƒ©ã‚°
     u8      _padding2[15];
 }
 MB_CommCWork;
@@ -302,14 +302,14 @@ MB_CommCWork;
 
 /* ----------------------------------------------------------------------------
 
-    “à•”g—p•Ï”’è‹`
+    å†…éƒ¨ä½¿ç”¨å¤‰æ•°å®šç¾©
 
    ----------------------------------------------------------------------------*/
 
 extern MB_CommCommonWork *mbc;
-/* e‹@—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^ƒ}ƒNƒ */
+/* è¦ªæ©Ÿç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒã‚¯ãƒ­ */
 #define pPwork                                  ((MB_CommPWork*)mbc)
-/* q‹@—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^ƒ}ƒNƒ */
+/* å­æ©Ÿç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒã‚¯ãƒ­ */
 #define pCwork                                  ((MB_CommCWork*)mbc)
 
 

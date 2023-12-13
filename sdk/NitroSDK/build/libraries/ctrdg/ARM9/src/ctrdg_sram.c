@@ -18,7 +18,7 @@
   small fix
 
   Revision 1.1  2006/04/05 10:48:30  okubata_ryoma
-  AGBƒoƒbƒNƒAƒbƒvƒ‰ƒCƒuƒ‰ƒŠ‚ÌSDKû˜^‚Ì‚½‚ß‚Ì•ÏX
+  AGBãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®SDKåéŒ²ã®ãŸã‚ã®å¤‰æ›´
 
 
   $NoKeywords: $
@@ -31,7 +31,7 @@ u32     CTRDGi_WriteAgbSramCore(CTRDGTaskInfo * arg);
 u32     CTRDGi_VerifyAgbSramCore(CTRDGTaskInfo * arg);
 u32     CTRDGi_WriteAndVerifyAgbSramCore(CTRDGTaskInfo * arg);
 
-/*”r‘¼§Œä*/
+/*æ’ä»–åˆ¶å¾¡*/
 u16     ctrdgi_sram_lock_id;
 // const data-------------------------------------------
 static const u8 AgbLibSram_ver[] = "AGBSRAM_V113";
@@ -51,9 +51,9 @@ u32 CTRDGi_ReadAgbSramCore(CTRDGTaskInfo * arg)
     u32     size = p.size;
     static BOOL flag = FALSE;
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_LockCartridge(ctrdgi_sram_lock_id);
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(MI_CTRDG_RAMCYCLE_18);
 
@@ -64,9 +64,9 @@ u32 CTRDGi_ReadAgbSramCore(CTRDGTaskInfo * arg)
         *dst_pt++ = *src_pt++;
     }
 
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_UnlockCartridge(ctrdgi_sram_lock_id);
 
     return 0;
@@ -81,9 +81,9 @@ u32 CTRDGi_WriteAgbSramCore(CTRDGTaskInfo * arg)
     const void *src = p.data;
     u32     size = p.size;
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_LockCartridge(ctrdgi_sram_lock_id);
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(MI_CTRDG_RAMCYCLE_18);
 
@@ -94,9 +94,9 @@ u32 CTRDGi_WriteAgbSramCore(CTRDGTaskInfo * arg)
         *dst_pt++ = *src_pt++;
     }
 
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_UnlockCartridge(ctrdgi_sram_lock_id);
 
     return 0;
@@ -112,9 +112,9 @@ u32 CTRDGi_VerifyAgbSramCore(CTRDGTaskInfo * arg)
     const void *src = p.data;
     u32     size = p.size;
 
-    /*”r‘¼§ŒäiƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_LockCartridge(ctrdgi_sram_lock_id);
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     ram_cycle = MI_GetCartridgeRamCycle();
     MI_SetCartridgeRamCycle(MI_CTRDG_RAMCYCLE_18);
 
@@ -130,9 +130,9 @@ u32 CTRDGi_VerifyAgbSramCore(CTRDGTaskInfo * arg)
         }
     }
 
-    /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+    /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
     MI_SetCartridgeRamCycle(ram_cycle);
-    /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+    /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
     (void)OS_UnlockCartridge(ctrdgi_sram_lock_id);
 
     return result;

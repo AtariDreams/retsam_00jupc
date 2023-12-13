@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	worldtrade_status.c
- * @bfief	¢ŠEŒğŠ·ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–ÊŒÄ‚Ño‚µE•œ‹A
+ * @bfief	ä¸–ç•Œäº¤æ›ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢å‘¼ã³å‡ºã—ãƒ»å¾©å¸°
  * @author	Akito Mori
  * @date	06.05.10
  */
@@ -44,35 +44,35 @@
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 //static void InitWork( WORLDTRADE_WORK *wk );
 //static void FreeWork( WORLDTRADE_WORK *wk );
 
 
 
-// ƒXƒe[ƒ^ƒX‰æ–Ê‚Å•\¦‚·‚éƒtƒ‰ƒO‚Ì—ñiƒrƒbƒgƒe[ƒuƒ‹‚É‚·‚ê‚Î‚¢‚¢‚Ì‚Écj
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã§è¡¨ç¤ºã™ã‚‹ãƒ•ãƒ©ã‚°ã®åˆ—ï¼ˆãƒ“ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã«ã™ã‚Œã°ã„ã„ã®ã«â€¦ï¼‰
 static const u8 StatusPageTable[]={
-	PST_PAGE_INFO,			// uƒ|ƒPƒ‚ƒ“‚¶‚å‚¤‚Ù‚¤v
-	PST_PAGE_MEMO,			// uƒgƒŒ[ƒi[ƒƒ‚v
-	PST_PAGE_PARAM,			// uƒ|ƒPƒ‚ƒ“‚Ì‚¤‚è‚å‚­v
-	PST_PAGE_CONDITION,		// uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
-	PST_PAGE_B_SKILL,		// u‚½‚½‚©‚¤‚í‚´v
-	PST_PAGE_C_SKILL,		// uƒRƒ“ƒeƒXƒg‚í‚´v
-	PST_PAGE_RIBBON,		// u‚«‚Ë‚ñƒŠƒ{ƒ“v
-	PST_PAGE_RET,			// u‚à‚Ç‚év
+	PST_PAGE_INFO,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã˜ã‚‡ã†ã»ã†ã€
+	PST_PAGE_MEMO,			// ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã€
+	PST_PAGE_PARAM,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã†ã‚Šã‚‡ãã€
+	PST_PAGE_CONDITION,		// ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
+	PST_PAGE_B_SKILL,		// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+	PST_PAGE_C_SKILL,		// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
+	PST_PAGE_RIBBON,		// ã€Œãã­ã‚“ãƒªãƒœãƒ³ã€
+	PST_PAGE_RET,			// ã€Œã‚‚ã©ã‚‹ã€
 	PST_PAGE_MAX
 
 };
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒğŠ·“ü‚èŒû‰æ–Ê‰Šú‰»
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢åˆæœŸåŒ–
  *
  * @param   wk		
  * @param   seq		
@@ -82,7 +82,7 @@ static const u8 StatusPageTable[]={
 //==============================================================================
 int WorldTrade_Status_Init(WORLDTRADE_WORK *wk, int seq)
 {
-	// ƒ[ƒN‰Šú‰»
+	// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 //	InitWork( wk );
 	
 	
@@ -90,7 +90,7 @@ int WorldTrade_Status_Init(WORLDTRADE_WORK *wk, int seq)
 	wk->statusParam.ppt  = PST_PP_TYPE_POKEPASO;
 	wk->statusParam.max  = 1;
 	wk->statusParam.pos  = 0;
-	wk->statusParam.mode = PST_MODE_NO_WAZACHG;	// ‹Z“ü‚ê‘Ö‚¦‹Ö~‚É‚·‚é
+	wk->statusParam.mode = PST_MODE_NO_WAZACHG;	// æŠ€å…¥ã‚Œæ›¿ãˆç¦æ­¢ã«ã™ã‚‹
 	wk->statusParam.waza = 0;
 	wk->statusParam.ev_contest = PokeStatus_ContestFlagGet(wk->param->savedata);
 	wk->statusParam.zukan_mode = wk->param->zukanmode;
@@ -107,7 +107,7 @@ int WorldTrade_Status_Init(WORLDTRADE_WORK *wk, int seq)
 }
 //==============================================================================
 /**
- * $brief   ¢ŠEŒğŠ·“ü‚èŒû‰æ–ÊƒƒCƒ“
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢ãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  * @param   seq		
@@ -134,7 +134,7 @@ int WorldTrade_Status_Main(WORLDTRADE_WORK *wk, int seq)
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒğŠ·“ü‚èŒû‰æ–ÊI—¹
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢çµ‚äº†
  *
  * @param   wk		
  * @param   seq		
@@ -146,7 +146,7 @@ int WorldTrade_Status_End(WORLDTRADE_WORK *wk, int seq)
 {
 //	FreeWork( wk );
 
-	// ƒ{ƒbƒNƒX‰æ–Ê‚É–ß‚é
+	// ãƒœãƒƒã‚¯ã‚¹ç”»é¢ã«æˆ»ã‚‹
 	WorldTrade_SubProcessUpdate( wk );
 
 	return SEQ_INIT;

@@ -1,8 +1,8 @@
 //=============================================================================
 /**
  * @file	comm_mp.c
- * @brief	’ÊM‚ÌÚ‘±‚ğŠÇ—‚µ‚Ä‚¢‚éƒNƒ‰ƒX  comm_system.c ‚©‚ç•ª—£
-            ÅI“I‚É WIFIƒ‰ƒCƒuƒ‰ƒŠ‚Æ•À—ñ‚É‚È‚Á‚Ä‚¢‚­...—\’è
+ * @brief	é€šä¿¡ã®æ¥ç¶šã‚’ç®¡ç†ã—ã¦ã„ã‚‹ã‚¯ãƒ©ã‚¹  comm_system.c ã‹ã‚‰åˆ†é›¢
+            æœ€çµ‚çš„ã« WIFIãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¨ä¸¦åˆ—ã«ãªã£ã¦ã„ã...äºˆå®š
 
             comm_sys    ---   comm_mp         --   comm_local.c
                          |                     |--  wh.c
@@ -34,27 +34,27 @@
 #include "savedata/regulation.h"
 
 //==============================================================================
-// externéŒ¾
+// externå®£è¨€
 //==============================================================================
 
-// ƒRƒ“ƒpƒCƒ‹‚Éƒ[ƒjƒ“ƒO‚ªo‚é‚Ì‚Å’è‹`‚µ‚Ä‚ ‚é
+// ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ™‚ã«ãƒ¯ãƒ¼ãƒ‹ãƒ³ã‚°ãŒå‡ºã‚‹ã®ã§å®šç¾©ã—ã¦ã‚ã‚‹
 #include "communication/comm_system.h"
 
 
 //==============================================================================
-// ’è‹`
+// å®šç¾©
 //==============================================================================
 
 
-#define _PORT_DATA_RETRANSMISSION   (14)    // Ø’f‚·‚é‚Ü‚Å–³ŒÀÄ‘—‚ğs‚¤  ‚±‚¿‚ç‚ğg—p‚µ‚Ä‚¢‚é
+#define _PORT_DATA_RETRANSMISSION   (14)    // åˆ‡æ–­ã™ã‚‹ã¾ã§ç„¡é™å†é€ã‚’è¡Œã†  ã“ã¡ã‚‰ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹
 #define _PORT_DATA_PARENT           _PORT_DATA_RETRANSMISSION
 #define _PORT_DATA_CHILD            _PORT_DATA_RETRANSMISSION
 
 #define _KEEP_CHANNEL_TIME_MAX   (5)
 
-#define _NOT_INIT_BITMAP  (0xffff)   // Ú‘±l”‚ğŒÅ’è‚Éw’è‚È‚¢ê‡‚Ì’l
+#define _NOT_INIT_BITMAP  (0xffff)   // æ¥ç¶šäººæ•°ã‚’å›ºå®šã«æŒ‡å®šãªã„å ´åˆã®å€¤
 
-typedef enum{    // Ø’fó‘Ô
+typedef enum{    // åˆ‡æ–­çŠ¶æ…‹
     _DISCONNECT_NONE,
     _DISCONNECT_END,
     _DISCONNECT_SECRET,
@@ -64,71 +64,71 @@ typedef enum{    // Ø’fó‘Ô
 #define _BEACON_SIZE_MAX   MATH_MAX(sizeof(_GF_BSS_MYSTERY),sizeof(_GF_BSS_DATA_INFO))
 
 
-//ŠÇ—\‘¢‘Ì’è‹`
+//ç®¡ç†æ§‹é€ ä½“å®šç¾©
 typedef struct{
     u8 mysteryData[MYSTERY_BEACON_DATA_SIZE];
-    WMBssDesc sIRQBssDesc;  ///< e‹@‚Ìî•ñ‚ğ‹L‰¯‚µ‚Ä‚¢‚é\‘¢‘Ì Š„‚è‚İƒRƒs[—p
-    WMBssDesc sBssDesc[SCAN_PARENT_COUNT_MAX];  ///< e‹@‚Ìî•ñ‚ğ‹L‰¯‚µ‚Ä‚¢‚é\‘¢‘Ì
-    u8  backupBssid[COMM_MACHINE_MAX][WM_SIZE_BSSID];   // ¡‚Ü‚ÅÚ‘±‚µ‚Ä‚¢‚½
-    u16 bconUnCatchTime[SCAN_PARENT_COUNT_MAX]; ///< e‹@‚Ìƒr[ƒRƒ“‚ğE‚í‚È‚©‚Á‚½ŠÔ+ƒf[ƒ^‚ª‚ ‚é‚©‚Ç‚¤‚©
-    void* _pWHWork;                           ///whƒ‰ƒCƒuƒ‰ƒŠ‚ªg—p‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+    WMBssDesc sIRQBssDesc;  ///< è¦ªæ©Ÿã®æƒ…å ±ã‚’è¨˜æ†¶ã—ã¦ã„ã‚‹æ§‹é€ ä½“ å‰²ã‚Šè¾¼ã¿ã‚³ãƒ”ãƒ¼ç”¨
+    WMBssDesc sBssDesc[SCAN_PARENT_COUNT_MAX];  ///< è¦ªæ©Ÿã®æƒ…å ±ã‚’è¨˜æ†¶ã—ã¦ã„ã‚‹æ§‹é€ ä½“
+    u8  backupBssid[COMM_MACHINE_MAX][WM_SIZE_BSSID];   // ä»Šã¾ã§æ¥ç¶šã—ã¦ã„ãŸ
+    u16 bconUnCatchTime[SCAN_PARENT_COUNT_MAX]; ///< è¦ªæ©Ÿã®ãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ‹¾ã‚ãªã‹ã£ãŸæ™‚é–“+ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ã©ã†ã‹
+    void* _pWHWork;                           ///whãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
     PMS_DATA pmsData;
-    int sBeaconCount;                           ///< ƒr[ƒRƒ“ƒJƒEƒ“ƒ^
-//    MATHRandContext32 sRand;                    ///< wep—p—”ƒL[
-    u8 bScanCallBack;  ///< e‚ÌƒXƒLƒƒƒ“‚ª‚©‚©‚Á‚½ê‡TRUE, ‚¢‚Â‚à‚ÍFALSE
-    u8 regulationNo;   ///< ƒQ[ƒ€ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“
+    int sBeaconCount;                           ///< ãƒ“ãƒ¼ã‚³ãƒ³ã‚«ã‚¦ãƒ³ã‚¿
+//    MATHRandContext32 sRand;                    ///< wepç”¨ä¹±æ•°ã‚­ãƒ¼
+    u8 bScanCallBack;  ///< è¦ªã®ã‚¹ã‚­ãƒ£ãƒ³ãŒã‹ã‹ã£ãŸå ´åˆTRUE, ã„ã¤ã‚‚ã¯FALSE
+    u8 regulationNo;   ///< ã‚²ãƒ¼ãƒ ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³
 #ifdef PM_DEBUG		//DebugROM
     u8 soloDebugNo;
 #endif
-    /// ----------------------------q‹@—p
-    MYSTATUS* pMyStatus;            // ©•ª‚ÌƒXƒe[ƒ^ƒX
-    REGULATION* pRegulation;        // ’T‚·ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ •K—v‚È‚¢ê‡‚ÍNULL
+    /// ----------------------------å­æ©Ÿç”¨
+    MYSTATUS* pMyStatus;            // è‡ªåˆ†ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+    REGULATION* pRegulation;        // æ¢ã™ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ å¿…è¦ãªã„å ´åˆã¯NULL
 //    u32 wepSeed;
     u32 ggid;
     u32 gameInfoOrg;
     u16 *gameInfoBuff;
     u16 keepChannelNo;
-    u16 errCheckBitmap;      ///< ‚±‚ÌBITMAP‚ªH‚¢ˆá‚¤‚ÆƒGƒ‰[‚É‚È‚é
+    u16 errCheckBitmap;      ///< ã“ã®BITMAPãŒé£Ÿã„é•ã†ã¨ã‚¨ãƒ©ãƒ¼ã«ãªã‚‹
     u8 channel;
     u8 keepChannelTime;
-    u8 disconnectType;    ///< Ø’fó‹µ
+    u8 disconnectType;    ///< åˆ‡æ–­çŠ¶æ³
     u8 bSetReceiver;
     u8 bEndScan;  // endscan
-    u8 bErrorState:1;     ///< ƒGƒ‰[‚ğˆø‚«‹N‚±‚µ‚Ä‚¢‚éê‡‚»‚Ìó‘Ô‚ğ‚à‚¿‚Ü‚·
-    u8 bErrorDisconnectOther:1;     ///< ’N‚©‚ª—‚¿‚é‚ÆƒGƒ‰[‚É‚È‚è‚Ü‚·
-    u8 bErrorNoChild:1;  ///< q‹@‚ª–³‚¢ê‡ƒGƒ‰[ˆµ‚¢‚·‚é‚©‚Ç‚¤‚©
+    u8 bErrorState:1;     ///< ã‚¨ãƒ©ãƒ¼ã‚’å¼•ãèµ·ã“ã—ã¦ã„ã‚‹å ´åˆãã®çŠ¶æ…‹ã‚’ã‚‚ã¡ã¾ã™
+    u8 bErrorDisconnectOther:1;     ///< èª°ã‹ãŒè½ã¡ã‚‹ã¨ã‚¨ãƒ©ãƒ¼ã«ãªã‚Šã¾ã™
+    u8 bErrorNoChild:1;  ///< å­æ©ŸãŒç„¡ã„å ´åˆã‚¨ãƒ©ãƒ¼æ‰±ã„ã™ã‚‹ã‹ã©ã†ã‹
     u8 bTGIDChange:1;
     u8 bAutoExit:1;
-    u8 bEntry:1;   // q‹@‚ÌV‹KQ“ü
+    u8 bEntry:1;   // å­æ©Ÿã®æ–°è¦å‚å…¥
     u8 bCatchBeacon:1;
 } _COMM_WORK;
 
 //==============================================================================
-// ƒ[ƒN
+// ãƒ¯ãƒ¼ã‚¯
 //==============================================================================
 
-///< ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+///< ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
 static _COMM_WORK* _pCommMP = NULL;
 
-// e‹@‚É‚È‚éê‡‚ÌTGID \‘¢‘Ì‚É“ü‚ê‚Ä‚¢‚È‚¢‚Ì‚Í
-// ’ÊMƒ‰ƒCƒuƒ‰ƒŠ[‚ğØ‚Á‚½‚Æ‚µ‚Ä‚àƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‚½‚¢‚½‚ß
-/// TGIDŠÇ—
+// è¦ªæ©Ÿã«ãªã‚‹å ´åˆã®TGID æ§‹é€ ä½“ã«å…¥ã‚Œã¦ã„ãªã„ã®ã¯
+// é€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ¼ã‚’åˆ‡ã£ãŸã¨ã—ã¦ã‚‚ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ãŸã„ãŸã‚
+/// TGIDç®¡ç†
 static u16 _sTgid = 0;
 
 
-// WEP Key ì¬—p‚Ì‹¤’ÊŒ®ieq‚Å‹¤’Ê‚ÌŒ®‚ğg—p‚·‚éj
-// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚²‚Æ‚ÉŒÅ—L‚Ì‚à‚Ì‚Æ‚·‚é‚±‚Æ
-// ASCII •¶š—ñ‚Å‚ ‚é•K—v‚Í‚È‚­A”CˆÓ‚Ì’·‚³‚ÌƒoƒCƒiƒŠƒf[ƒ^‚Å‚æ‚¢
+// WEP Key ä½œæˆç”¨ã®å…±é€šéµï¼ˆè¦ªå­ã§å…±é€šã®éµã‚’ä½¿ç”¨ã™ã‚‹ï¼‰
+// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã”ã¨ã«å›ºæœ‰ã®ã‚‚ã®ã¨ã™ã‚‹ã“ã¨
+// ASCII æ–‡å­—åˆ—ã§ã‚ã‚‹å¿…è¦ã¯ãªãã€ä»»æ„ã®é•·ã•ã®ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã§ã‚ˆã„
 //static char* _sSecretKey = " http://www.gamefreak.co.jp/ ";
 
 
 
-// ƒRƒ“ƒ|[ƒlƒ“ƒg“]‘—I—¹‚ÌŠm”F—p
-// ƒCƒNƒjƒ…[ƒ‚ƒ“ƒRƒ“ƒ|[ƒlƒ“ƒgˆ—‚ğˆÚ“®‚³‚¹‚é‚Æ‚«‚Í‚±‚ê‚àˆÚ“®
+// ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆè»¢é€çµ‚äº†ã®ç¢ºèªç”¨
+// ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå‡¦ç†ã‚’ç§»å‹•ã•ã›ã‚‹ã¨ãã¯ã“ã‚Œã‚‚ç§»å‹•
 static volatile int   startCheck;	
 
 //==============================================================================
-// staticéŒ¾
+// staticå®£è¨€
 //==============================================================================
 
 static void _whInitialize(BOOL blink);
@@ -146,9 +146,9 @@ static int _connectNum(void);
 
 //==============================================================================
 /**
- * Ú‘±ƒNƒ‰ƒX‚Ì‰Šú‰»
- * @param   pMyStatus   MYSTATUSƒ|ƒCƒ“ƒ^
- * @param   blink		FALSE:LED‚ğ“_–Å‚³‚¹‚È‚¢(óMê—pƒ‚[ƒh)
+ * æ¥ç¶šã‚¯ãƒ©ã‚¹ã®åˆæœŸåŒ–
+ * @param   pMyStatus   MYSTATUSãƒã‚¤ãƒ³ã‚¿
+ * @param   blink		FALSE:LEDã‚’ç‚¹æ»…ã•ã›ãªã„(å—ä¿¡å°‚ç”¨ãƒ¢ãƒ¼ãƒ‰)
  * @retval  none
  */
 //==============================================================================
@@ -157,7 +157,7 @@ void CommMPInitialize(MYSTATUS* pMyStatus, BOOL blink)
 {
     int i;
     
-    if(_pCommMP!=NULL){  // ‚·‚Å‚É‰Šú‰»‚µ‚Ä‚¢‚éê‡‚Íreturn
+    if(_pCommMP!=NULL){  // ã™ã§ã«åˆæœŸåŒ–ã—ã¦ã„ã‚‹å ´åˆã¯return
         return;
     }
     _pCommMP = (_COMM_WORK*)sys_AllocMemory(HEAPID_COMMUNICATION, sizeof(_COMM_WORK));
@@ -168,13 +168,13 @@ void CommMPInitialize(MYSTATUS* pMyStatus, BOOL blink)
     MI_CpuClear8(_pCommMP->pRegulation, Regulation_GetWorkSize());
 
     _pCommMP->gameInfoOrg = (u32)sys_AllocMemory(HEAPID_COMMUNICATION, WM_SIZE_USER_GAMEINFO+32);
-    _pCommMP->gameInfoBuff = (u16*)(32 - (_pCommMP->gameInfoOrg % 32) + _pCommMP->gameInfoOrg);   //32byteƒAƒ‰ƒCƒƒ“ƒg
+    _pCommMP->gameInfoBuff = (u16*)(32 - (_pCommMP->gameInfoOrg % 32) + _pCommMP->gameInfoOrg);   //32byteã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆ
 
     _pCommMP->ggid = _DP_GGID;
     _pCommMP->pMyStatus = pMyStatus;
-	// ŠÈˆÕ‰ï˜b‰Šú‰»
+	// ç°¡æ˜“ä¼šè©±åˆæœŸåŒ–
 	PMSDAT_Clear( (PMS_DATA*)&_pCommMP->pmsData );
-    // –³üƒ‰ƒCƒuƒ‰ƒŠ‹ì“®ŠJn
+    // ç„¡ç·šãƒ©ã‚¤ãƒ–ãƒ©ãƒªé§†å‹•é–‹å§‹
     _whInitialize(blink);
 }
 
@@ -188,9 +188,9 @@ BOOL CommMPIsConnect(void)
 
 //==============================================================================
 /**
- * ”äŠrŠÖ”
- * @param   pCmp1,pCmp2   ”äŠr‘ÎÛ
- * @retval  ˆê’v‚µ‚½‚çTRUE
+ * æ¯”è¼ƒé–¢æ•°
+ * @param   pCmp1,pCmp2   æ¯”è¼ƒå¯¾è±¡
+ * @retval  ä¸€è‡´ã—ãŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -212,9 +212,9 @@ static BOOL _bmemcmp(const u8* pCmp1,const u8* pCmp2, int size)
 
 //==============================================================================
 /**
- * q‹@‚ªe‹@‚ğ’T‚µo‚µ‚½‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
- * e‹@‚ğE‚¤‚½‚Ñ‚ÉŒÄ‚Î‚ê‚é
- * @param   bssdesc   ƒOƒ‹[ƒvî•ñ
+ * å­æ©ŸãŒè¦ªæ©Ÿã‚’æ¢ã—å‡ºã—ãŸæ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+ * è¦ªæ©Ÿã‚’æ‹¾ã†ãŸã³ã«å‘¼ã°ã‚Œã‚‹
+ * @param   bssdesc   ã‚°ãƒ«ãƒ¼ãƒ—æƒ…å ±
  * @retval  none
  */
 //==============================================================================
@@ -232,40 +232,40 @@ static void _scanCallback(WMBssDesc *bssdesc)
     _GF_BSS_DATA_INFO* pGF;
     int serviceNo = CommStateGetServiceNo();
     int regulationNo = CommStateGetRegulationNo();
-#if 0  //709  ’n‰º‚ÌƒfƒoƒbƒO‚à‚µ‚È‚¢‚Ì‚Å••ˆó
+#if 0  //709  åœ°ä¸‹ã®ãƒ‡ãƒãƒƒã‚°ã‚‚ã—ãªã„ã®ã§å°å°
     int soloDebugNo = CommStateGetSoloDebugNo();
 #endif
 
-    // catch‚µ‚½eƒf[ƒ^
+    // catchã—ãŸè¦ªãƒ‡ãƒ¼ã‚¿
     pGF = (_GF_BSS_DATA_INFO*)bssdesc->gameInfo.userGameInfo;
-    if(serviceNo == COMM_MODE_POKETCH){  // ƒ|ƒPƒbƒ`‚Í‰½‚Å‚àE‚¤
+    if(serviceNo == COMM_MODE_POKETCH){  // ãƒã‚±ãƒƒãƒã¯ä½•ã§ã‚‚æ‹¾ã†
     }
-    else if(CommLocalIsUnionGroup(pGF->serviceNo) && CommLocalIsUnionGroup(serviceNo)){  // ‚¨Œİ‚¢‚ğE‚¤
+    else if(CommLocalIsUnionGroup(pGF->serviceNo) && CommLocalIsUnionGroup(serviceNo)){  // ãŠäº’ã„ã‚’æ‹¾ã†
     }
     else if(pGF->pause && (pGF->serviceNo == COMM_MODE_UNDERGROUND)){
 //        OHNO_PRINT("pGF->pause\n");
-        return;  // ƒ|[ƒY’†‚Ìe‹@‚Í–³‹
+        return;  // ãƒãƒ¼ã‚ºä¸­ã®è¦ªæ©Ÿã¯ç„¡è¦–
     }
     else if(pGF->serviceNo != serviceNo){
-//        DEBUG_MACDISP("ƒT[ƒrƒX‚ªˆÙ‚È‚éê‡‚ÍE‚í‚È‚¢\n",bssdesc);
-        return;   // ƒT[ƒrƒX‚ªˆÙ‚È‚éê‡‚ÍE‚í‚È‚¢
+//        DEBUG_MACDISP("ã‚µãƒ¼ãƒ“ã‚¹ãŒç•°ãªã‚‹å ´åˆã¯æ‹¾ã‚ãªã„\n",bssdesc);
+        return;   // ã‚µãƒ¼ãƒ“ã‚¹ãŒç•°ãªã‚‹å ´åˆã¯æ‹¾ã‚ãªã„
     }
 #if AFTERMASTER_070112_POKETCH_ETC
     if((serviceNo != COMM_MODE_POKETCH)&&(pGF->regulationNo != regulationNo)){
-        return;   // ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ªˆÙ‚È‚éê‡‚ÍE‚í‚È‚¢iƒ|ƒPƒbƒ`ˆÈŠOj
+        return;   // ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãŒç•°ãªã‚‹å ´åˆã¯æ‹¾ã‚ãªã„ï¼ˆãƒã‚±ãƒƒãƒä»¥å¤–ï¼‰
     }
 #else //AFTERMASTER_070112_POKETCH_ETC
     if(pGF->regulationNo != regulationNo){
-//        DEBUG_MACDISP("ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ªˆÙ‚È‚éê‡‚ÍE‚í‚È‚¢\n",bssdesc);
-        return;   // ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ªˆÙ‚È‚éê‡‚ÍE‚í‚È‚¢
+//        DEBUG_MACDISP("ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãŒç•°ãªã‚‹å ´åˆã¯æ‹¾ã‚ãªã„\n",bssdesc);
+        return;   // ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãŒç•°ãªã‚‹å ´åˆã¯æ‹¾ã‚ãªã„
     }
 #endif //AFTERMASTER_070112_POKETCH_ETC
 //#ifdef PM_DEBUG		//DebugROM
-#if 0  //709  ’n‰º‚ÌƒfƒoƒbƒO‚à‚µ‚È‚¢‚Ì‚Å••ˆó
+#if 0  //709  åœ°ä¸‹ã®ãƒ‡ãƒãƒƒã‚°ã‚‚ã—ãªã„ã®ã§å°å°
     if(serviceNo != COMM_MODE_POKETCH){
         if(pGF->soloDebugNo != soloDebugNo){
-//            DEBUG_MACDISP("ƒfƒoƒbƒO‚ªˆÙ‚È‚éê‡‚ÍE‚í‚È‚¢x\n",bssdesc);
-            return;   // ƒfƒoƒbƒO¯•Ê”Ô†‚ªˆÙ‚È‚éê‡‚ÍE‚í‚È‚¢
+//            DEBUG_MACDISP("ãƒ‡ãƒãƒƒã‚°ãŒç•°ãªã‚‹å ´åˆã¯æ‹¾ã‚ãªã„x\n",bssdesc);
+            return;   // ãƒ‡ãƒãƒƒã‚°è­˜åˆ¥ç•ªå·ãŒç•°ãªã‚‹å ´åˆã¯æ‹¾ã‚ãªã„
         }
     }
 #endif
@@ -278,8 +278,8 @@ static void _scanCallback(WMBssDesc *bssdesc)
 
 //==============================================================================
 /**
- * ƒr[ƒRƒ“‚ğˆÚ‚µ•Ï‚¦‚éŠÖ” í‚É‰ñ‚Á‚Ä‚¢‚é
- * @param   bssdesc   ƒOƒ‹[ƒvî•ñ
+ * ãƒ“ãƒ¼ã‚³ãƒ³ã‚’ç§»ã—å¤‰ãˆã‚‹é–¢æ•° å¸¸ã«å›ã£ã¦ã„ã‚‹
+ * @param   bssdesc   ã‚°ãƒ«ãƒ¼ãƒ—æƒ…å ±
  * @retval  none
  */
 //==============================================================================
@@ -294,42 +294,42 @@ static void beaconMainLoop(void)
     }
     _pCommMP->bCatchBeacon = FALSE;
 
-    // ‚±‚Ìƒ‹[ƒv‚Í“¯‚¶‚à‚Ì‚È‚Ì‚©‚Ç‚¤‚©ŒŸ¸
+    // ã“ã®ãƒ«ãƒ¼ãƒ—ã¯åŒã˜ã‚‚ã®ãªã®ã‹ã©ã†ã‹æ¤œæŸ»
     for (i = 0; i < SCAN_PARENT_COUNT_MAX; ++i) {
         if(_pCommMP->bconUnCatchTime[i] == 0 ){
-            // e‹@î•ñ‚ª“ü‚Á‚Ä‚¢‚È‚¢ê‡continue
+            // è¦ªæ©Ÿæƒ…å ±ãŒå…¥ã£ã¦ã„ãªã„å ´åˆcontinue
             continue;
         }
         if (_bmemcmp(_pCommMP->sBssDesc[i].bssid, bssdesc->bssid, WM_SIZE_BSSID)) {
 #ifdef DEBUG_ONLY_FOR_mori
-            OS_TPrintf("ƒr[ƒRƒ“‚ğXV %02x%02x%02x%02x%02x%02x\n",
+            OS_TPrintf("ãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ›´æ–° %02x%02x%02x%02x%02x%02x\n",
                        bssdesc->bssid[0],bssdesc->bssid[1],bssdesc->bssid[2],
                        bssdesc->bssid[3],bssdesc->bssid[4],bssdesc->bssid[5]);
 #endif
-            // ‚à‚¤ˆê“xE‚Á‚½ê‡‚Éƒ^ƒCƒ}[‰ÁZ
+            // ã‚‚ã†ä¸€åº¦æ‹¾ã£ãŸå ´åˆã«ã‚¿ã‚¤ãƒãƒ¼åŠ ç®—
             _pCommMP->bconUnCatchTime[i] = _DEFAULT_TIMEOUT_FRAME;
-            // V‚µ‚¢eî•ñ‚ğ•Û‘¶‚µ‚Ä‚¨‚­B
+            // æ–°ã—ã„è¦ªæƒ…å ±ã‚’ä¿å­˜ã—ã¦ãŠãã€‚
             MI_CpuCopy8( bssdesc, &_pCommMP->sBssDesc[i], sizeof(WMBssDesc));
 
-//            DEBUG_DUMP(pGF->regulationBuff, Regulation_GetWorkSize(),"ó‚¯æ‚Á‚½ƒŒƒMƒ…");
+//            DEBUG_DUMP(pGF->regulationBuff, Regulation_GetWorkSize(),"å—ã‘å–ã£ãŸãƒ¬ã‚®ãƒ¥");
             return;
         }
     }
-    // ‚±‚Ìƒ‹[ƒv‚Í‹ó‚«‚ª‚ ‚é‚©‚Ç‚¤‚©ŒŸ¸
+    // ã“ã®ãƒ«ãƒ¼ãƒ—ã¯ç©ºããŒã‚ã‚‹ã‹ã©ã†ã‹æ¤œæŸ»
     for (i = 0; i < SCAN_PARENT_COUNT_MAX; ++i) {
         if(_pCommMP->bconUnCatchTime[i] == 0 ){
-            // e‹@î•ñ‚ª“ü‚Á‚Ä‚¢‚È‚¢ê‡break;
+            // è¦ªæ©Ÿæƒ…å ±ãŒå…¥ã£ã¦ã„ãªã„å ´åˆbreak;
             break;
         }
     }
     if(i >= SCAN_PARENT_COUNT_MAX){
-        // \‘¢‘Ì‚ª‚¢‚Á‚Ï‚¢‚Ìê‡‚Íe‹@‚ğE‚í‚È‚¢
-        // @@OOe‹@‚ª‘½”‘¶İ‚·‚éê‡AŒŸõ‹@”\‚Æ‚©•K—v‚Æv‚í‚ê‚é
+        // æ§‹é€ ä½“ãŒã„ã£ã±ã„ã®å ´åˆã¯è¦ªæ©Ÿã‚’æ‹¾ã‚ãªã„
+        // @@OOè¦ªæ©ŸãŒå¤šæ•°å­˜åœ¨ã™ã‚‹å ´åˆã€æ¤œç´¢æ©Ÿèƒ½ã¨ã‹å¿…è¦ã¨æ€ã‚ã‚Œã‚‹
         return;
     }
-    // V‚µ‚¢eî•ñ‚ğ•Û‘¶‚µ‚Ä‚¨‚­B
+    // æ–°ã—ã„è¦ªæƒ…å ±ã‚’ä¿å­˜ã—ã¦ãŠãã€‚
 #ifdef DEBUG_ONLY_FOR_mori
-    OS_TPrintf("V‹Ke‹@ƒr[ƒRƒ“‚ğE‚Á‚½ %02x%02x%02x%02x%02x%02x\n",
+    OS_TPrintf("æ–°è¦è¦ªæ©Ÿãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ‹¾ã£ãŸ %02x%02x%02x%02x%02x%02x\n",
                bssdesc->bssid[0],bssdesc->bssid[1],bssdesc->bssid[2],
                bssdesc->bssid[3],bssdesc->bssid[4],bssdesc->bssid[5]);
 #endif
@@ -340,10 +340,10 @@ static void beaconMainLoop(void)
 
 //------------------------------------------------------------------
 /**
- * –³ü‹ì“®§Œäƒ‰ƒCƒuƒ‰ƒŠ‚Ì”ñ“¯Šú“I‚Èˆ—I—¹‚ª’Ê’m‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+ * ç„¡ç·šé§†å‹•åˆ¶å¾¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®éåŒæœŸçš„ãªå‡¦ç†çµ‚äº†ãŒé€šçŸ¥ã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
  *
- * @param   arg		WVR_StartUpAsyncƒR[ƒ‹‚Éw’è‚µ‚½ˆø”B–¢g—pB
- * @param   result	”ñ“¯ŠúŠÖ”‚Ìˆ—Œ‹‰ÊB
+ * @param   arg		WVR_StartUpAsyncã‚³ãƒ¼ãƒ«æ™‚ã«æŒ‡å®šã—ãŸå¼•æ•°ã€‚æœªä½¿ç”¨ã€‚
+ * @param   result	éåŒæœŸé–¢æ•°ã®å‡¦ç†çµæœã€‚
  *
  * @retval  none		
  */
@@ -361,10 +361,10 @@ static void _startUpCallback(void *arg, WVRResult result)
 
 //------------------------------------------------------------------
 /**
- * –³ü‹ì“®§Œäƒ‰ƒCƒuƒ‰ƒŠ‚Ì”ñ“¯Šú“I‚Èˆ—I—¹‚ª’Ê’m‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”B
+ * ç„¡ç·šé§†å‹•åˆ¶å¾¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®éåŒæœŸçš„ãªå‡¦ç†çµ‚äº†ãŒé€šçŸ¥ã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
  *
- * @param   arg		WVR_StartUpAsyncƒR[ƒ‹‚Éw’è‚µ‚½ˆø”B–¢g—pB
- * @param   result	”ñ“¯ŠúŠÖ”‚Ìˆ—Œ‹‰ÊB
+ * @param   arg		WVR_StartUpAsyncã‚³ãƒ¼ãƒ«æ™‚ã«æŒ‡å®šã—ãŸå¼•æ•°ã€‚æœªä½¿ç”¨ã€‚
+ * @param   result	éåŒæœŸé–¢æ•°ã®å‡¦ç†çµæœã€‚
  *
  * @retval  none		
  */
@@ -372,12 +372,12 @@ static void _startUpCallback(void *arg, WVRResult result)
 static void _endCallback(void *arg, WVRResult result)
 {
     startCheck = 0;
-    sys_SleepOK(SLEEPTYPE_COMM);  // ƒXƒŠ[ƒv‚ğ‹–‰Â‚·‚é
+    sys_SleepOK(SLEEPTYPE_COMM);  // ã‚¹ãƒªãƒ¼ãƒ—ã‚’è¨±å¯ã™ã‚‹
 }
 
 //==============================================================================
 /**
- * WVR‚ğVRAMD‚ÉˆÚ“®
+ * WVRã‚’VRAMDã«ç§»å‹•
  * @param   none
  * @retval  none
  */
@@ -386,11 +386,11 @@ static void _endCallback(void *arg, WVRResult result)
 void CommVRAMDInitialize(void)
 {
     //************************************
-//	GX_DisableBankForTex();			// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒW
+//	GX_DisableBankForTex();			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸
 
-    sys_SleepNG(SLEEPTYPE_COMM);  // ƒXƒŠ[ƒv‚ğ‹Ö~
-    // –³üƒ‰ƒCƒuƒ‰ƒŠ‹ì“®ŠJn
-	// ƒCƒNƒjƒ…[ƒ‚ƒ“ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğVRAM-D‚É“]‘—‚·‚é
+    sys_SleepNG(SLEEPTYPE_COMM);  // ã‚¹ãƒªãƒ¼ãƒ—ã‚’ç¦æ­¢
+    // ç„¡ç·šãƒ©ã‚¤ãƒ–ãƒ©ãƒªé§†å‹•é–‹å§‹
+	// ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’VRAM-Dã«è»¢é€ã™ã‚‹
     startCheck = 1;
     if (WVR_RESULT_OPERATING != WVR_StartUpAsync(GX_VRAM_ARM7_128_D, _startUpCallback, NULL)) {
         OS_TPanic("WVR_StartUpAsync failed. \n");
@@ -402,7 +402,7 @@ void CommVRAMDInitialize(void)
 
 //==============================================================================
 /**
- * WVR‚ğVRAMD‚ÉˆÚ“®‚µI‚í‚Á‚½‚ç1
+ * WVRã‚’VRAMDã«ç§»å‹•ã—çµ‚ã‚ã£ãŸã‚‰1
  * @param   none
  * @retval  none
  */
@@ -415,7 +415,7 @@ BOOL CommIsVRAMDInitialize(void)
 
 //==============================================================================
 /**
- * WVR‚ğVRAMD‚ÉˆÚ“®‚µ‚Í‚¶‚ß‚½‚ç‚P
+ * WVRã‚’VRAMDã«ç§»å‹•ã—ã¯ã˜ã‚ãŸã‚‰ï¼‘
  * @param   none
  * @retval  none
  */
@@ -428,7 +428,7 @@ BOOL CommIsVRAMDStart(void)
 
 //==============================================================================
 /**
- * ƒCƒNƒjƒ…[ƒ‚ƒ“ŠJ•ú
+ * ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³é–‹æ”¾
  * @param   none
  * @retval  none
  */
@@ -437,14 +437,14 @@ BOOL CommIsVRAMDStart(void)
 void CommVRAMDFinalize(void)
 {
 //    OHNO_PRINT("VRAMD Finalize\n");
-    WVR_TerminateAsync(_endCallback,NULL);  // ƒCƒNƒjƒ…[ƒ‚ƒ“Ø’f
+    WVR_TerminateAsync(_endCallback,NULL);  // ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³åˆ‡æ–­
 }
 
 
 //==============================================================================
 /**
- * ’ÊMó‘Ô‚ğ’m‚ç‚¹‚é‚ÌƒR[ƒ‹ƒoƒbƒN
- * @param   arg WMIndCallback\‘¢‘Ì
+ * é€šä¿¡çŠ¶æ…‹ã‚’çŸ¥ã‚‰ã›ã‚‹ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ * @param   arg WMIndCallbackæ§‹é€ ä½“
  * @retval  none
  */
 //==============================================================================
@@ -461,10 +461,10 @@ static void _indicateCallback(void *arg)
 
 //==============================================================================
 /**
- * WHƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»
- * @param   bReInit  Ä‰Šú‰»‚©‚Ç‚¤‚©
- * @param   pLocal  ’ÊM‹¤’Ê\‘¢‘Ì
- * @param   blink		FALSE:LED‚ğ“_–Å‚³‚¹‚È‚¢(óMê—pƒ‚[ƒh)
+ * WHãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–
+ * @param   bReInit  å†åˆæœŸåŒ–ã‹ã©ã†ã‹
+ * @param   pLocal  é€šä¿¡å…±é€šæ§‹é€ ä½“
+ * @param   blink		FALSE:LEDã‚’ç‚¹æ»…ã•ã›ãªã„(å—ä¿¡å°‚ç”¨ãƒ¢ãƒ¼ãƒ‰)
  * @retval  none
  */
 //==============================================================================
@@ -475,10 +475,10 @@ static void _whInitialize(BOOL blink)
     _pCommMP->sBeaconCount = 0;
 
     
-    // –³ü‰Šú‰»
+    // ç„¡ç·šåˆæœŸåŒ–
     {
         u32 addr = (u32)_pCommMP->_pWHWork;
-        addr = 32 - (addr % 32) + addr;   //32byteƒAƒ‰ƒCƒƒ“ƒg
+        addr = 32 - (addr % 32) + addr;   //32byteã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆ
         (void)WH_Initialize((void*)addr, blink);
 #if T1657_060818_FIX
 #else //T1657_060818_FIX
@@ -486,17 +486,17 @@ static void _whInitialize(BOOL blink)
 #endif //T1657_060818_FIX
     }
 
-    // WH ‰Šúİ’è
+    // WH åˆæœŸè¨­å®š
     WH_SetGgid(_pCommMP->ggid);
 
-    // WEP Key ‚Ìí—p‚Ì—”¶¬‹@‚Ì‰Šú‰»
+    // WEP Key ã®ç¨®ç”¨ã®ä¹±æ•°ç”Ÿæˆæ©Ÿã®åˆæœŸåŒ–
 //    CommRandSeedInitialize(&_pCommMP->sRand);
 }
 
 //==============================================================================
 /**
- * q‹@‚Ìg—p‚µ‚Ä‚¢‚éƒf[ƒ^‚Ì‰Šú‰»
- * @param   bssdesc   ƒOƒ‹[ƒvî•ñ
+ * å­æ©Ÿã®ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
+ * @param   bssdesc   ã‚°ãƒ«ãƒ¼ãƒ—æƒ…å ±
  * @retval  none
  */
 //==============================================================================
@@ -513,8 +513,8 @@ void ChildBconDataInit(void)
 
 //==============================================================================
 /**
- * e‹@‚Ìg—p‚µ‚Ä‚¢‚éƒf[ƒ^‚Ì‰Šú‰»
- * @param   bTGIDChange  V‹K‚ÌƒQ[ƒ€‚Ì‰Šú‰»‚Ìê‡TRUE ŒÃ‚¢ƒr[ƒRƒ“‚Å‚ÌŒë“®ì‚ğ–h‚®‚½‚ß—p
+ * è¦ªæ©Ÿã®ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
+ * @param   bTGIDChange  æ–°è¦ã®ã‚²ãƒ¼ãƒ ã®åˆæœŸåŒ–ã®å ´åˆTRUE å¤ã„ãƒ“ãƒ¼ã‚³ãƒ³ã§ã®èª¤å‹•ä½œã‚’é˜²ããŸã‚ç”¨
  * @retval  none
  */
 //==============================================================================
@@ -526,10 +526,10 @@ static void _parentDataInit(BOOL bTGIDChange)
 
 //==============================================================================
 /**
- * eq‹¤’ÊA’ÊM‚Ì‰Šú‰»‚ğ‚Ü‚Æ‚ß‚½
- * @param   work_area @ƒVƒXƒeƒ€‚Åg‚¤ƒƒ‚ƒŠ[—Ìˆæ
- *                      NULL‚Ìê‡‚·‚Å‚É‰Šú‰»Ï‚İ‚Æ‚µ‚Ä“®ì
- * @retval  ‰Šú‰»‚É¬Œ÷‚µ‚½‚çTRUE
+ * è¦ªå­å…±é€šã€é€šä¿¡ã®åˆæœŸåŒ–ã‚’ã¾ã¨ã‚ãŸ
+ * @param   work_area ã€€ã‚·ã‚¹ãƒ†ãƒ ã§ä½¿ã†ãƒ¡ãƒ¢ãƒªãƒ¼é ˜åŸŸ
+ *                      NULLã®å ´åˆã™ã§ã«åˆæœŸåŒ–æ¸ˆã¿ã¨ã—ã¦å‹•ä½œ
+ * @retval  åˆæœŸåŒ–ã«æˆåŠŸã—ãŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -551,9 +551,9 @@ static void _commInit(void)
 
 //==============================================================================
 /**
- * ’ÊMƒ‰ƒCƒuƒ‰ƒŠ‚É•K—v‚Èƒ[ƒNƒTƒCƒY‚ğ•Ô‚·
+ * é€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã‚’è¿”ã™
  * @param   none
- * @retval  ƒ[ƒNƒTƒCƒY
+ * @retval  ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
  */
 //==============================================================================
 u32 CommGetWorkSize(void)
@@ -564,14 +564,14 @@ u32 CommGetWorkSize(void)
 
 //==============================================================================
 /**
- * e‹@‚ÌÚ‘±ŠJn‚ğs‚¤
- * @param   work_area @ƒVƒXƒeƒ€‚Åg‚¤ƒƒ‚ƒŠ[—Ìˆæ
- *                      NULL‚Ìê‡‚·‚Å‚É‰Šú‰»Ï‚İ‚Æ‚µ‚Ä“®ì
- * @param   serviceNo     ƒQ[ƒ€‚Ìí—Ş
- * @param   regulationNo  ƒQ[ƒ€‚Ìí—Ş
- * @param   bTGIDChange  V‹K‚ÌƒQ[ƒ€‚Ì‰Šú‰»‚Ìê‡TRUE ŒÃ‚¢ƒr[ƒRƒ“‚Å‚ÌŒë“®ì‚ğ–h‚®‚½‚ß—p
- * @param  q‹@‚ğó‚¯•t‚¯‚é‚©‚Ç‚¤‚©
- * @retval  ‰Šú‰»‚É¬Œ÷‚µ‚½‚çTRUE
+ * è¦ªæ©Ÿã®æ¥ç¶šé–‹å§‹ã‚’è¡Œã†
+ * @param   work_area ã€€ã‚·ã‚¹ãƒ†ãƒ ã§ä½¿ã†ãƒ¡ãƒ¢ãƒªãƒ¼é ˜åŸŸ
+ *                      NULLã®å ´åˆã™ã§ã«åˆæœŸåŒ–æ¸ˆã¿ã¨ã—ã¦å‹•ä½œ
+ * @param   serviceNo     ã‚²ãƒ¼ãƒ ã®ç¨®é¡
+ * @param   regulationNo  ã‚²ãƒ¼ãƒ ã®ç¨®é¡
+ * @param   bTGIDChange  æ–°è¦ã®ã‚²ãƒ¼ãƒ ã®åˆæœŸåŒ–ã®å ´åˆTRUE å¤ã„ãƒ“ãƒ¼ã‚³ãƒ³ã§ã®èª¤å‹•ä½œã‚’é˜²ããŸã‚ç”¨
+ * @param  å­æ©Ÿã‚’å—ã‘ä»˜ã‘ã‚‹ã‹ã©ã†ã‹
+ * @retval  åˆæœŸåŒ–ã«æˆåŠŸã—ãŸã‚‰TRUE
  */
 //==============================================================================
 BOOL CommMPParentInit(BOOL bAlloc, BOOL bTGIDChange, BOOL bEntry)
@@ -586,7 +586,7 @@ BOOL CommMPParentInit(BOOL bAlloc, BOOL bTGIDChange, BOOL bEntry)
     }
     _pCommMP->bEntry = bEntry;
 
-    // “d”gg—p—¦‚©‚çÅ“K‚Èƒ`ƒƒƒ“ƒlƒ‹‚ğæ“¾‚µ‚ÄÚ‘±‚·‚éB”ñ“¯ŠúŠÖ”
+    // é›»æ³¢ä½¿ç”¨ç‡ã‹ã‚‰æœ€é©ãªãƒãƒ£ãƒ³ãƒãƒ«ã‚’å–å¾—ã—ã¦æ¥ç¶šã™ã‚‹ã€‚éåŒæœŸé–¢æ•°
     if(WH_GetSystemState() == WH_SYSSTATE_IDLE){
         if(WH_StartMeasureChannel()){
             return TRUE;
@@ -597,29 +597,29 @@ BOOL CommMPParentInit(BOOL bAlloc, BOOL bTGIDChange, BOOL bEntry)
 
 //==============================================================================
 /**
- * q‹@‚ÌÚ‘±ŠJn‚ğs‚¤
- * @param   work_area @ƒVƒXƒeƒ€‚Åg‚¤ƒƒ‚ƒŠ[—Ìˆæ
- *                      NULL‚Ìê‡‚Í‚·‚Å‚É‰Šú‰»Ï‚İ‚Æ‚µ‚Äˆµ‚¤
- * @param   serviceNo  ƒQ[ƒ€‚Ìí—Ş
- * @param   regulationNo  ƒQ[ƒ€‚Ìí—Ş
- * @param   bBconInit  ƒr[ƒRƒ“ƒf[ƒ^‚ğ‰Šú‰»‚·‚é‚Ì‚©‚Ç‚¤‚©
- * @retval  ‰Šú‰»‚É¬Œ÷‚µ‚½‚çTRUE
+ * å­æ©Ÿã®æ¥ç¶šé–‹å§‹ã‚’è¡Œã†
+ * @param   work_area ã€€ã‚·ã‚¹ãƒ†ãƒ ã§ä½¿ã†ãƒ¡ãƒ¢ãƒªãƒ¼é ˜åŸŸ
+ *                      NULLã®å ´åˆã¯ã™ã§ã«åˆæœŸåŒ–æ¸ˆã¿ã¨ã—ã¦æ‰±ã†
+ * @param   serviceNo  ã‚²ãƒ¼ãƒ ã®ç¨®é¡
+ * @param   regulationNo  ã‚²ãƒ¼ãƒ ã®ç¨®é¡
+ * @param   bBconInit  ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹ã®ã‹ã©ã†ã‹
+ * @retval  åˆæœŸåŒ–ã«æˆåŠŸã—ãŸã‚‰TRUE
  */
 //==============================================================================
 BOOL CommMPChildInit(BOOL bAlloc, BOOL bBconInit)
 {
     _commInit();
     if(bBconInit){
-     //   OHNO_PRINT("ƒr[ƒRƒ“‚Ì‰Šú‰»\n");
-        ChildBconDataInit(); // ƒf[ƒ^‚Ì‰Šú‰»
+     //   OHNO_PRINT("ãƒ“ãƒ¼ã‚³ãƒ³ã®åˆæœŸåŒ–\n");
+        ChildBconDataInit(); // ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
     }
     if(!_pCommMP->bSetReceiver ){
         WH_SetReceiver(CommRecvCallback, _PORT_DATA_PARENT);
         _pCommMP->bSetReceiver = TRUE;
     }
-    // e‹@ŒŸõƒXƒ^[ƒg
+    // è¦ªæ©Ÿæ¤œç´¢ã‚¹ã‚¿ãƒ¼ãƒˆ
     if(WH_GetSystemState() == WH_SYSSTATE_IDLE){
-        // MACƒAƒhƒŒƒXw’è@@‘S•”FF‚Å‘S‚Ä‚ğ’T‚µ‚É‚¢‚­
+        // MACã‚¢ãƒ‰ãƒ¬ã‚¹æŒ‡å®šã€€ã€€å…¨éƒ¨FFã§å…¨ã¦ã‚’æ¢ã—ã«ã„ã
         const u8 sAnyParent[6] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
         if(WH_StartScan(_scanCallback, sAnyParent, _SCAN_ALL_CHANNEL)){
             return TRUE;
@@ -630,9 +630,9 @@ BOOL CommMPChildInit(BOOL bAlloc, BOOL bBconInit)
 
 //==============================================================================
 /**
- * ’ÊMØ‚è‘Ö‚¦‚ğs‚¤ieq”½“]‚É•K—v‚Èˆ—j
+ * é€šä¿¡åˆ‡ã‚Šæ›¿ãˆã‚’è¡Œã†ï¼ˆè¦ªå­åè»¢ã«å¿…è¦ãªå‡¦ç†ï¼‰
  * @param   none
- * @retval  ƒŠƒZƒbƒg‚µ‚½‚çTRUE
+ * @retval  ãƒªã‚»ãƒƒãƒˆã—ãŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -648,7 +648,7 @@ BOOL CommMPSwitchParentChild(void)
             _pCommMP->bEndScan = 1;
             break;
         }
-        else if(WH_IsSysStateBusy()){  //‚µ‚Î‚ç‚­‘Ò‚Â
+        else if(WH_IsSysStateBusy()){  //ã—ã°ã‚‰ãå¾…ã¤
         }
         else{
             WH_Finalize();
@@ -675,10 +675,10 @@ BOOL CommMPSwitchParentChild(void)
 
 //==============================================================================
 /**
- * ’ÊMØ’f‚ğs‚¤  ‚±‚±‚Å‚Í‚ ‚­‚Ü‚Å’ÊMI—¹è‘±‚«‚É“ü‚é‚¾‚¯
- *  ƒzƒ“ƒg‚ÉÁ‚·‚Ì‚Í‰º‚Ì_commEnd
+ * é€šä¿¡åˆ‡æ–­ã‚’è¡Œã†  ã“ã“ã§ã¯ã‚ãã¾ã§é€šä¿¡çµ‚äº†æ‰‹ç¶šãã«å…¥ã‚‹ã ã‘
+ *  ãƒ›ãƒ³ãƒˆã«æ¶ˆã™ã®ã¯ä¸‹ã®_commEnd
  * @param   none
- * @retval  I—¹ˆ—‚ÉˆÚ‚Á‚½ê‡TRUE
+ * @retval  çµ‚äº†å‡¦ç†ã«ç§»ã£ãŸå ´åˆTRUE
  */
 //==============================================================================
 BOOL CommMPFinalize(void)
@@ -695,8 +695,8 @@ BOOL CommMPFinalize(void)
 
 //==============================================================================
 /**
- * ’ÊMØ’f‚ğs‚¤  ‚½‚¾‚µƒƒ‚ƒŠ[ŠJ•ú‚ğs‚í‚È‚¢
- * @param   Ø’f‚Ìê‡TRUE
+ * é€šä¿¡åˆ‡æ–­ã‚’è¡Œã†  ãŸã ã—ãƒ¡ãƒ¢ãƒªãƒ¼é–‹æ”¾ã‚’è¡Œã‚ãªã„
+ * @param   åˆ‡æ–­ã®å ´åˆTRUE
  * @retval  none
  */
 //==============================================================================
@@ -710,13 +710,13 @@ void CommMPStealth(BOOL bStalth)
     }
     else{
         _pCommMP->disconnectType = _DISCONNECT_NONE;
-        _whInitialize(TRUE);  // –³ü‹ì“®ÄŠJ
+        _whInitialize(TRUE);  // ç„¡ç·šé§†å‹•å†é–‹
     }
 }
 
 //==============================================================================
 /**
- * ’ÊM‚Ì‘S‚Ä‚ğÁ‚·
+ * é€šä¿¡ã®å…¨ã¦ã‚’æ¶ˆã™
  * @param   none
  * @retval  none
  */
@@ -732,9 +732,9 @@ static void _commEnd(void)
 
 //==============================================================================
 /**
- * ’T‚·‚±‚Æ‚ª‚Å‚«‚½e‚Ì”‚ğ•Ô‚·
+ * æ¢ã™ã“ã¨ãŒã§ããŸè¦ªã®æ•°ã‚’è¿”ã™
  * @param   none
- * @retval  e‹@‚Ì”
+ * @retval  è¦ªæ©Ÿã®æ•°
  */
 //==============================================================================
 
@@ -757,8 +757,8 @@ int CommMPGetParentCount(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   BmpList‚ÌˆÊ’u‚©‚çBcon‚Ì‘¶İ‚·‚éIndexˆÊ’u‚ğæ“¾‚·‚é
- * @param   index		BmpListˆÊ’u
+ * @brief   BmpListã®ä½ç½®ã‹ã‚‰Bconã®å­˜åœ¨ã™ã‚‹Indexä½ç½®ã‚’å–å¾—ã™ã‚‹
+ * @param   index		BmpListä½ç½®
  * @retval  Index
  */
 //--------------------------------------------------------------
@@ -767,7 +767,7 @@ int CommBmpListPosBconIndexGet(int index)
 	int i, count;
 	
 //	for(i = 0; i < SCAN_PARENT_COUNT_MAX; i++){
-//		OS_TPrintf("List‚Ìƒr[ƒRƒ“ƒ`ƒFƒbƒN %d = %d\n", i, _pCommMP->bconUnCatchTime[i]);
+//		OS_TPrintf("Listã®ãƒ“ãƒ¼ã‚³ãƒ³ãƒã‚§ãƒƒã‚¯ %d = %d\n", i, _pCommMP->bconUnCatchTime[i]);
 //	}
 	
 	count = 0;
@@ -779,15 +779,15 @@ int CommBmpListPosBconIndexGet(int index)
 			count++;
 		}
 	}
-	GF_ASSERT(0 && "‚±‚±‚É‚Í—ˆ‚È‚¢‚Í‚¸");
+	GF_ASSERT(0 && "ã“ã“ã«ã¯æ¥ãªã„ã¯ãš");
 	return 0;
 }
 
 //==============================================================================
 /**
- * e‹@ƒŠƒXƒg‚É•Ï‰»‚ª‚ ‚Á‚½ê‡TRUE
+ * è¦ªæ©Ÿãƒªã‚¹ãƒˆã«å¤‰åŒ–ãŒã‚ã£ãŸå ´åˆTRUE
  * @param   none
- * @retval  e‹@ƒŠƒXƒg‚É•Ï‰»‚ª‚ ‚Á‚½ê‡TRUE ‚È‚¯‚ê‚ÎFALSE
+ * @retval  è¦ªæ©Ÿãƒªã‚¹ãƒˆã«å¤‰åŒ–ãŒã‚ã£ãŸå ´åˆTRUE ãªã‘ã‚Œã°FALSE
  */
 //==============================================================================
 
@@ -798,7 +798,7 @@ BOOL CommMPIsScanListChange(void)
 
 //==============================================================================
 /**
- * e‹@‚Ì•Ï‰»‚ğ’m‚ç‚¹‚éƒtƒ‰ƒO‚ğƒŠƒZƒbƒg‚·‚é
+ * è¦ªæ©Ÿã®å¤‰åŒ–ã‚’çŸ¥ã‚‰ã›ã‚‹ãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
  * @param   none
  * @retval  none
  */
@@ -811,9 +811,9 @@ void CommMPResetScanChangeFlag(void)
 
 //==============================================================================
 /**
- * ‚±‚Ìe‹@‚ª‚¢‚­‚Â‚ÆƒRƒlƒNƒVƒ‡ƒ“‚ğ‚à‚Á‚Ä‚¢‚é‚Ì‚©‚ğ“¾‚é
- * @param   index   e‚ÌƒŠƒXƒg‚Ìindex
- * @retval  ƒRƒlƒNƒVƒ‡ƒ“” 0-16
+ * ã“ã®è¦ªæ©ŸãŒã„ãã¤ã¨ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’ã‚‚ã£ã¦ã„ã‚‹ã®ã‹ã‚’å¾—ã‚‹
+ * @param   index   è¦ªã®ãƒªã‚¹ãƒˆã®index
+ * @retval  ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³æ•° 0-16
  */
 //==============================================================================
 
@@ -835,9 +835,9 @@ int CommMPGetParentConnectionNum(int index)
 
 //==============================================================================
 /**
- * Ú‘±l”‚ÉŠY“–‚·‚ée‚ğ•Ô‚·
+ * æ¥ç¶šäººæ•°ã«è©²å½“ã™ã‚‹è¦ªã‚’è¿”ã™
  * @param   none
- * @retval  e‚Ìindex
+ * @retval  è¦ªã®index
  */
 //==============================================================================
 
@@ -856,9 +856,9 @@ static int _getParentNum(int machNum)
 
 //==============================================================================
 /**
- * ‚·‚®‚ÉÚ‘±‚µ‚Ä‚¢‚¢l‚ªŒ©‚Â‚©‚Á‚½ê‡index‚ğ•Ô‚·
+ * ã™ãã«æ¥ç¶šã—ã¦ã„ã„äººãŒè¦‹ã¤ã‹ã£ãŸå ´åˆindexã‚’è¿”ã™
  * @param   none
- * @retval  ŠY“–‚µ‚½‚çindex‚ğ•Ô‚·
+ * @retval  è©²å½“ã—ãŸã‚‰indexã‚’è¿”ã™
  */
 //==============================================================================
 
@@ -871,9 +871,9 @@ int CommMPGetFastConnectIndex(void)
     }
     for (i = SCAN_PARENT_COUNT_MAX -1; i >= 0; i--) {
         if(_pCommMP->bconUnCatchTime[i] != 0){
-            if(_isMachBackupMacAddress(&_pCommMP->sBssDesc[i].bssid[0])){  // ŒÃ‚¢MAC‚É‡’v
+            if(_isMachBackupMacAddress(&_pCommMP->sBssDesc[i].bssid[0])){  // å¤ã„MACã«åˆè‡´
                 num = CommMPGetParentConnectionNum(i);
-                if(( num > 1) && (num < COMM_MACHINE_MAX)){      // –{e‚ÉŠY“–‚µ‚½ ‚Ü‚¾Q‰Á‰Â”\ 
+                if(( num > 1) && (num < COMM_MACHINE_MAX)){      // æœ¬è¦ªã«è©²å½“ã—ãŸ ã¾ã å‚åŠ å¯èƒ½ 
                     return i;
                 }
             }
@@ -884,9 +884,9 @@ int CommMPGetFastConnectIndex(void)
 
 //==============================================================================
 /**
- * Ÿ‚ÌƒŒƒxƒ‹‚ÅŒq‚¢‚Å‚¢‚¢l‚ª‚¢‚½‚ç‚»‚Ìindex‚ğ•Ô‚µ‚Ü‚·
+ * æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã§ç¹‹ã„ã§ã„ã„äººãŒã„ãŸã‚‰ãã®indexã‚’è¿”ã—ã¾ã™
  * @param   none
- * @retval  ŠY“–‚µ‚½‚çindex‚ğ•Ô‚·
+ * @retval  è©²å½“ã—ãŸã‚‰indexã‚’è¿”ã™
  */
 //==============================================================================
 
@@ -894,25 +894,25 @@ int CommMPGetNextConnectIndex(void)
 {
     int i;
  
-    if(CommMPGetParentCount()==0){  // ƒr[ƒRƒ“‚ª–³‚¢ó‘Ô
+    if(CommMPGetParentCount()==0){  // ãƒ“ãƒ¼ã‚³ãƒ³ãŒç„¡ã„çŠ¶æ…‹
         return -1;
     }
     for (i = SCAN_PARENT_COUNT_MAX-1; i >= 0; i--) {
         if(_pCommMP->bconUnCatchTime[i] != 0){
-            if(_isMachBackupMacAddress(&_pCommMP->sBssDesc[i].bssid[0])){  // ŒÃ‚¢MAC‚É‡’v
-            //    OHNO_PRINT("Ì‚Ìe %d\n",i);
+            if(_isMachBackupMacAddress(&_pCommMP->sBssDesc[i].bssid[0])){  // å¤ã„MACã«åˆè‡´
+            //    OHNO_PRINT("æ˜”ã®è¦ª %d\n",i);
                 return i;
             }
         }
     }
     i = _getParentNum(1);
     if(i != -1 ){
-        //OHNO_PRINT("—š—ğ‚È‚µ–{e %d \n", i);
+        //OHNO_PRINT("å±¥æ­´ãªã—æœ¬è¦ª %d \n", i);
         return i;
     }
     i = _getParentNum(0);
     if(i != -1){
-        //OHNO_PRINT("—š—ğ‚È‚µ‰¼e %d \n", i);
+        //OHNO_PRINT("å±¥æ­´ãªã—ä»®è¦ª %d \n", i);
         return i;
     }
     return i;
@@ -920,9 +920,9 @@ int CommMPGetNextConnectIndex(void)
 
 //==============================================================================
 /**
- * e‹@ƒŠƒXƒg‚ğindex‡‚É•Ô‚·
- * @param   index      e‚ÌƒŠƒXƒg‚Ìindex
- * @param   pMyStatus  Ši”[‚·‚éMYSTATUS‚Ìƒ|ƒCƒ“ƒ^
+ * è¦ªæ©Ÿãƒªã‚¹ãƒˆã‚’indexé †ã«è¿”ã™
+ * @param   index      è¦ªã®ãƒªã‚¹ãƒˆã®index
+ * @param   pMyStatus  æ ¼ç´ã™ã‚‹MYSTATUSã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -942,13 +942,13 @@ void CommMPGetParentName(int index, MYSTATUS* pMyStatus)
             cnt++;
         }
     }
-    //OHNO_PRINT("–¼‘O‚ğæ“¾‚Å‚«‚È‚©‚Á‚½ index = %d\n", index);
+    //OHNO_PRINT("åå‰ã‚’å–å¾—ã§ããªã‹ã£ãŸ index = %d\n", index);
 }
 
 //==============================================================================
 /**
- * e‹@‚Û‚¯ID‚ğindex‡‚É•Ô‚·
- * @param   index   e‚ÌƒŠƒXƒg‚Ìindex
+ * è¦ªæ©Ÿã½ã‘IDã‚’indexé †ã«è¿”ã™
+ * @param   index   è¦ªã®ãƒªã‚¹ãƒˆã®index
  * @retval  pokeID
  */
 //==============================================================================
@@ -973,9 +973,9 @@ u32 CommMPGetPokeID(int index)
 
 //==============================================================================
 /**
- * q‹@@MPó‘Ô‚ÅÚ‘±
- * @param   index   e‚ÌƒŠƒXƒg‚Ìindex
- * @retval  q‹@Ú‘±‚ğe‹@‚É‘—‚Á‚½‚çTRUE
+ * å­æ©Ÿã€€MPçŠ¶æ…‹ã§æ¥ç¶š
+ * @param   index   è¦ªã®ãƒªã‚¹ãƒˆã®index
+ * @retval  å­æ©Ÿæ¥ç¶šã‚’è¦ªæ©Ÿã«é€ã£ãŸã‚‰TRUE
  */
 //==============================================================================
 BOOL CommMPChildIndexConnect(u16 index)
@@ -987,7 +987,7 @@ BOOL CommMPChildIndexConnect(u16 index)
         return FALSE;
     }
     if (WH_GetSystemState() == WH_SYSSTATE_IDLE) {
-        //OHNO_PRINT("q‹@ Ú‘±ŠJn WH_ChildConnect\n");
+        //OHNO_PRINT("å­æ©Ÿ æ¥ç¶šé–‹å§‹ WH_ChildConnect\n");
         serviceNo = CommStateGetServiceNo();
         _pCommMP->channel = _pCommMP->sBssDesc[index].channel;
         if(CommLocalIsUnionGroup(serviceNo)){
@@ -1004,8 +1004,8 @@ BOOL CommMPChildIndexConnect(u16 index)
 
 //==============================================================================
 /**
- * ƒr[ƒRƒ“ƒf[ƒ^‚Ì’èŠúŠm”F
- *  Ú‘±‚ªŠ®—¹‚·‚éŠÔ‚Å‚ÌŠÔA‚±‚ÌŠÖ”‚ğŒÄ‚ÑAƒ^ƒCƒ€ƒAƒEƒgˆ—‚ğs‚¤
+ * ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã®å®šæœŸç¢ºèª
+ *  æ¥ç¶šãŒå®Œäº†ã™ã‚‹é–“ã§ã®é–“ã€ã“ã®é–¢æ•°ã‚’å‘¼ã³ã€ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå‡¦ç†ã‚’è¡Œã†
  * @param   none
  * @retval  none
  */
@@ -1023,8 +1023,8 @@ void CommMPParentBconCheck(void)
         if(_pCommMP->bconUnCatchTime[id] > 0){
             _pCommMP->bconUnCatchTime[id]--;
             if(_pCommMP->bconUnCatchTime[id] == 0){
-                //OHNO_PRINT("e‹@”½‰‚È‚µ %d\n", id);
-                _pCommMP->bScanCallBack = TRUE;   // ƒf[ƒ^‚ğ•ÏX‚µ‚½‚Ì‚ÅTRUE
+                //OHNO_PRINT("è¦ªæ©Ÿåå¿œãªã— %d\n", id);
+                _pCommMP->bScanCallBack = TRUE;   // ãƒ‡ãƒ¼ã‚¿ã‚’å¤‰æ›´ã—ãŸã®ã§TRUE
             }
         }
     }
@@ -1032,10 +1032,10 @@ void CommMPParentBconCheck(void)
 
 //==============================================================================
 /**
- *  ƒ†[ƒU’è‹`‚Ìe‹@î•ñ‚ğİ’è‚µ‚Ü‚·B
- *  _GF_BSS_DATA_INFO\‘¢‘Ì‚Ì’†g‚ğ‘—‚è‚Ü‚·
- *  @param   userGameInfo  ƒ†[ƒU’è‹`‚Ìe‹@î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *  @param   length        ƒ†[ƒU’è‹`‚Ìe‹@î•ñ‚ÌƒTƒCƒY
+ *  ãƒ¦ãƒ¼ã‚¶å®šç¾©ã®è¦ªæ©Ÿæƒ…å ±ã‚’è¨­å®šã—ã¾ã™ã€‚
+ *  _GF_BSS_DATA_INFOæ§‹é€ ä½“ã®ä¸­èº«ã‚’é€ã‚Šã¾ã™
+ *  @param   userGameInfo  ãƒ¦ãƒ¼ã‚¶å®šç¾©ã®è¦ªæ©Ÿæƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *  @param   length        ãƒ¦ãƒ¼ã‚¶å®šç¾©ã®è¦ªæ©Ÿæƒ…å ±ã®ã‚µã‚¤ã‚º
  *  @retval  none
  */
 //==============================================================================
@@ -1051,16 +1051,16 @@ static void _setUserGameInfo( void )
     if(serviceNo != COMM_MODE_MYSTERY){
         pGF = (_GF_BSS_DATA_INFO*)_pCommMP->gameInfoBuff;
 
-        GF_ASSERT(COMM_SEND_REGULATION_SIZE >= Regulation_GetWorkSize());  // regulation‚ª—\’è‚æ‚è‘å‚«‚¢
-        GF_ASSERT(COMM_SEND_MYSTATUS_SIZE == MyStatus_GetWorkSize());  // mystatus‚ª—\’è‚æ‚è‘å‚«‚¢
-        GF_ASSERT(WM_SIZE_USER_GAMEINFO >= _BEACON_SIZE_MAX);  // bconƒTƒCƒY‚æ‚èGFƒr[ƒRƒ“‚ª‘å‚«‚¢
+        GF_ASSERT(COMM_SEND_REGULATION_SIZE >= Regulation_GetWorkSize());  // regulationãŒäºˆå®šã‚ˆã‚Šå¤§ãã„
+        GF_ASSERT(COMM_SEND_MYSTATUS_SIZE == MyStatus_GetWorkSize());  // mystatusãŒäºˆå®šã‚ˆã‚Šå¤§ãã„
+        GF_ASSERT(WM_SIZE_USER_GAMEINFO >= _BEACON_SIZE_MAX);  // bconã‚µã‚¤ã‚ºã‚ˆã‚ŠGFãƒ“ãƒ¼ã‚³ãƒ³ãŒå¤§ãã„
 
         MI_CpuCopy8( pMyStatus, pGF->myStatusBuff, MyStatus_GetWorkSize());
         MI_CpuCopy8( _pCommMP->pRegulation,pGF->regulationBuff, Regulation_GetWorkSize());
         pGF->pokeID = MyStatus_GetID(pMyStatus);
         pGF->serviceNo = CommStateGetServiceNo();
         pGF->regulationNo = CommStateGetRegulationNo();
-        // ŠÈˆÕ‰ï˜b
+        // ç°¡æ˜“ä¼šè©±
         MI_CpuCopy8( &_pCommMP->pmsData, &pGF->pmsData, sizeof(PMS_DATA));
 #ifdef PM_DEBUG		//DebugROM
         pGF->soloDebugNo = CommStateGetSoloDebugNo();
@@ -1085,8 +1085,8 @@ static void _setUserGameInfo( void )
 
 //==============================================================================
 /**
- *  ƒ†[ƒU’è‹`‚Ìe‹@î•ñ‚Ì l”•”•ª‚ğŠÄ‹‚µí‚ÉXV‚·‚é
- *  _GF_BSS_DATA_INFO\‘¢‘Ì‚Ì’†g‚ğ‘—‚è‚Ü‚·
+ *  ãƒ¦ãƒ¼ã‚¶å®šç¾©ã®è¦ªæ©Ÿæƒ…å ±ã® äººæ•°éƒ¨åˆ†ã‚’ç›£è¦–ã—å¸¸ã«æ›´æ–°ã™ã‚‹
+ *  _GF_BSS_DATA_INFOæ§‹é€ ä½“ã®ä¸­èº«ã‚’é€ã‚Šã¾ã™
  *  @param   none
  *  @retval  none
  */
@@ -1106,8 +1106,8 @@ static void _funcBconDataChange( void )
 
 //==============================================================================
 /**
- * ’ÊMƒ‰ƒCƒuƒ‰ƒŠ[“à•”‚Ìó‘Ô‚ğŒ©‚ÄAˆ—‚ğ‚·‚éŠÖ”
- * VBlank‚Æ‚ÍŠÖŒW‚È‚¢‚Ì‚Åprocess‚Ì‚Éˆ—‚·‚ê‚Î‚¢‚¢
+ * é€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ¼å†…éƒ¨ã®çŠ¶æ…‹ã‚’è¦‹ã¦ã€å‡¦ç†ã‚’ã™ã‚‹é–¢æ•°
+ * VBlankã¨ã¯é–¢ä¿‚ãªã„ã®ã§processã®æ™‚ã«å‡¦ç†ã™ã‚Œã°ã„ã„
  * @param   none
  * @retval  none
  */
@@ -1117,37 +1117,37 @@ static void _stateProcess(u16 bitmap)
     int state = WH_GetSystemState();
     int infoRet = CommInfoFunc();
 
-    _funcBconDataChange();      // ƒr[ƒRƒ“‚Ì’†g‚ğ‘‚«Š·‚¦’†
+    _funcBconDataChange();      // ãƒ“ãƒ¼ã‚³ãƒ³ã®ä¸­èº«ã‚’æ›¸ãæ›ãˆä¸­
     if((WH_GetCurrentAid() == COMM_PARENT_ID) && (!CommMPIsChildsConnecting())){
         if(_pCommMP->bErrorNoChild){
-            _pCommMP->bErrorState = TRUE;   ///< ƒGƒ‰[‚ğˆø‚«‹N‚±‚µ‚Ä‚¢‚éê‡‚»‚Ìó‘Ô‚ğ‚à‚¿‚Ü‚·
-//            OHNO_PRINT("ƒGƒ‰[’† NOCHILD \n");
+            _pCommMP->bErrorState = TRUE;   ///< ã‚¨ãƒ©ãƒ¼ã‚’å¼•ãèµ·ã“ã—ã¦ã„ã‚‹å ´åˆãã®çŠ¶æ…‹ã‚’ã‚‚ã¡ã¾ã™
+//            OHNO_PRINT("ã‚¨ãƒ©ãƒ¼ä¸­ NOCHILD \n");
         }
     }
     if(_pCommMP->errCheckBitmap == _NOT_INIT_BITMAP){
-        _pCommMP->errCheckBitmap = bitmap;  // ‚±‚Ì‚Æ‚«‚ÌÚ‘±l”‚ğ•Û
+        _pCommMP->errCheckBitmap = bitmap;  // ã“ã®ã¨ãã®æ¥ç¶šäººæ•°ã‚’ä¿æŒ
     }
-    if(_pCommMP->bErrorDisconnectOther){ // ƒGƒ‰[ŒŸ¸‚ğs‚¤
-        if(_pCommMP->errCheckBitmap > bitmap){  // Ø’f‚µ‚½ê‡•K‚¸”š‚ªŒ¸‚é ‘‚¦‚é•ª‚É‚ÍOK
-            _pCommMP->bErrorState = TRUE;   ///< ƒGƒ‰[‚ğˆø‚«‹N‚±‚µ‚Ä‚¢‚éê‡‚»‚Ìó‘Ô‚ğ‚à‚¿‚Ü‚·
-//            OHNO_PRINT("ƒGƒ‰[’† ’N‚©—‚¿‚½ \n");
+    if(_pCommMP->bErrorDisconnectOther){ // ã‚¨ãƒ©ãƒ¼æ¤œæŸ»ã‚’è¡Œã†
+        if(_pCommMP->errCheckBitmap > bitmap){  // åˆ‡æ–­ã—ãŸå ´åˆå¿…ãšæ•°å­—ãŒæ¸›ã‚‹ å¢—ãˆã‚‹åˆ†ã«ã¯OK
+            _pCommMP->bErrorState = TRUE;   ///< ã‚¨ãƒ©ãƒ¼ã‚’å¼•ãèµ·ã“ã—ã¦ã„ã‚‹å ´åˆãã®çŠ¶æ…‹ã‚’ã‚‚ã¡ã¾ã™
+//            OHNO_PRINT("ã‚¨ãƒ©ãƒ¼ä¸­ èª°ã‹è½ã¡ãŸ \n");
         }
         if(infoRet){
-            _pCommMP->bErrorState = TRUE;   ///< ƒGƒ‰[‚ğˆø‚«‹N‚±‚µ‚Ä‚¢‚éê‡‚»‚Ìó‘Ô‚ğ‚à‚¿‚Ü‚·
+            _pCommMP->bErrorState = TRUE;   ///< ã‚¨ãƒ©ãƒ¼ã‚’å¼•ãèµ·ã“ã—ã¦ã„ã‚‹å ´åˆãã®çŠ¶æ…‹ã‚’ã‚‚ã¡ã¾ã™
         }
     }
     if(WH_ERRCODE_FATAL == WH_GetLastError()){
-        CommFatalErrorFunc(0);  // Š„‚è‚İ’†‚É‰æ–Ê•\¦‚ğ‚Å‚«‚È‚¢‚Ì‚ÅˆÚ“®
+        CommFatalErrorFunc(0);  // å‰²ã‚Šè¾¼ã¿ä¸­ã«ç”»é¢è¡¨ç¤ºã‚’ã§ããªã„ã®ã§ç§»å‹•
     }
     switch (state) {
       case WH_SYSSTATE_STOP:
         if(_pCommMP->disconnectType == _DISCONNECT_END){
-            OHNO_SP_PRINT("WHEnd ‚ğŒÄ‚ñ‚ÅI—¹‚µ‚Ü‚µ‚½\n");
-            _commEnd();  // ƒ[ƒN‚©‚ç‰½‚©‚ç‘S‚ÄŠJ•ú
+            OHNO_SP_PRINT("WHEnd ã‚’å‘¼ã‚“ã§çµ‚äº†ã—ã¾ã—ãŸ\n");
+            _commEnd();  // ãƒ¯ãƒ¼ã‚¯ã‹ã‚‰ä½•ã‹ã‚‰å…¨ã¦é–‹æ”¾
             return;
         }
         if(_pCommMP->disconnectType == _DISCONNECT_SECRET){
-            OHNO_SP_PRINT("WHEnd ‚ğŒÄ‚ñ‚Å€‚ñ‚¾‚Ó‚èŠJn\n");
+            OHNO_SP_PRINT("WHEnd ã‚’å‘¼ã‚“ã§æ­»ã‚“ã ãµã‚Šé–‹å§‹\n");
             _pCommMP->disconnectType = _DISCONNECT_STEALTH;
             return;
         }
@@ -1166,15 +1166,15 @@ static void _stateProcess(u16 bitmap)
         break;
       case WH_SYSSTATE_CONNECT_FAIL:
       case WH_SYSSTATE_ERROR:
-        //OHNO_PRINT("ƒGƒ‰[’† %d \n",WH_GetLastError());
+        //OHNO_PRINT("ã‚¨ãƒ©ãƒ¼ä¸­ %d \n",WH_GetLastError());
         if(_pCommMP){
-            _pCommMP->bErrorState = TRUE;   ///< ƒGƒ‰[‚ğˆø‚«‹N‚±‚µ‚Ä‚¢‚éê‡‚»‚Ìó‘Ô‚ğ‚à‚¿‚Ü‚·
+            _pCommMP->bErrorState = TRUE;   ///< ã‚¨ãƒ©ãƒ¼ã‚’å¼•ãèµ·ã“ã—ã¦ã„ã‚‹å ´åˆãã®çŠ¶æ…‹ã‚’ã‚‚ã¡ã¾ã™
         }
         break;
       case WH_SYSSTATE_MEASURECHANNEL:
         {
             u16 channel;
-            // —˜—p‰Â”\‚È’†‚©‚çˆê”Ôg—p—¦‚Ì’á‚¢ƒ`ƒƒƒ“ƒlƒ‹‚ğ•Ô‚µ‚Ü‚·B
+            // åˆ©ç”¨å¯èƒ½ãªä¸­ã‹ã‚‰ä¸€ç•ªä½¿ç”¨ç‡ã®ä½ã„ãƒãƒ£ãƒ³ãƒãƒ«ã‚’è¿”ã—ã¾ã™ã€‚
             channel = WH_GetMeasureChannel();  //WH_SYSSTATE_MEASURECHANNEL => WH_SYSSTATE_IDLE
             if(_pCommMP->keepChannelTime==0){
                 _pCommMP->keepChannelNo = channel;
@@ -1188,7 +1188,7 @@ static void _stateProcess(u16 bitmap)
                 _sTgid++;
             }
             _setUserGameInfo();
-//            OHNO_PRINT("e‹@Ú‘±ŠJn   tgid=%d channel=%d \n",_sTgid, channel);
+//            OHNO_PRINT("è¦ªæ©Ÿæ¥ç¶šé–‹å§‹   tgid=%d channel=%d \n",_sTgid, channel);
             (void)WH_ParentConnect(WH_CONNECTMODE_MP_PARENT,
                                    _sTgid, channel,
                                    CommLocalGetServiceMaxEntry(CommStateGetServiceNo()),
@@ -1205,9 +1205,9 @@ static void _stateProcess(u16 bitmap)
 
 //==============================================================================
 /**
- * ’ÊMƒ‰ƒCƒuƒ‰ƒŠ[“à•”‚Ìó‘Ô‚ğŒ©‚ÄAˆ—‚ğ‚·‚éŠÖ”
- * VBlank‚Æ‚ÍŠÖŒW‚È‚¢‚Ì‚Åprocess‚Ì‚Éˆ—‚·‚ê‚Î‚¢‚¢
- * q‹@‚Í‚¨Œİ‚¢‚ÌÚ‘±‚ª‚í‚©‚ç‚È‚¢‚Ì‚ÅA’ÊMŒ‹‰Ê‚ğcommsystem‚©‚ç‚à‚ç‚Á‚ÄƒGƒ‰[ŒŸ¸‚·‚é
+ * é€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ¼å†…éƒ¨ã®çŠ¶æ…‹ã‚’è¦‹ã¦ã€å‡¦ç†ã‚’ã™ã‚‹é–¢æ•°
+ * VBlankã¨ã¯é–¢ä¿‚ãªã„ã®ã§processã®æ™‚ã«å‡¦ç†ã™ã‚Œã°ã„ã„
+ * å­æ©Ÿã¯ãŠäº’ã„ã®æ¥ç¶šãŒã‚ã‹ã‚‰ãªã„ã®ã§ã€é€šä¿¡çµæœã‚’commsystemã‹ã‚‰ã‚‚ã‚‰ã£ã¦ã‚¨ãƒ©ãƒ¼æ¤œæŸ»ã™ã‚‹
  * @param   none
  * @retval  none
  */
@@ -1222,9 +1222,9 @@ void CommMpProcess(u16 bitmap)
 
 //==============================================================================
 /**
- * ’ÊM‰Â”\ó‘Ô‚È‚Ì‚©‚Ç‚¤‚©‚ğ•Ô‚·
- * @param   eq‹@‚ÌnetID
- * @retval  TRUE  ’ÊM‰Â”\    FALSE ’ÊMØ’f
+ * é€šä¿¡å¯èƒ½çŠ¶æ…‹ãªã®ã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @param   è¦ªå­æ©Ÿã®netID
+ * @retval  TRUE  é€šä¿¡å¯èƒ½    FALSE é€šä¿¡åˆ‡æ–­
  */
 //==============================================================================
 static BOOL _isConnect(u16 netID)
@@ -1246,9 +1246,9 @@ static BOOL _isConnect(u16 netID)
 
 //==============================================================================
 /**
- * ’ÊM‰Â”\ó‘Ô‚Ìl”‚ğ•Ô‚·
+ * é€šä¿¡å¯èƒ½çŠ¶æ…‹ã®äººæ•°ã‚’è¿”ã™
  * @param   none
- * @retval  Ú‘±l”
+ * @retval  æ¥ç¶šäººæ•°
  */
 //==============================================================================
 static int _connectNum(void)
@@ -1265,9 +1265,9 @@ static int _connectNum(void)
 
 //==============================================================================
 /**
- * ’ÊMØ’fƒ‚[ƒh‚É‚Í‚¢‚Á‚½‚©‚Ç‚¤‚©
+ * é€šä¿¡åˆ‡æ–­ãƒ¢ãƒ¼ãƒ‰ã«ã¯ã„ã£ãŸã‹ã©ã†ã‹
  * @param   none
- * @retval  Ú‘±l”
+ * @retval  æ¥ç¶šäººæ•°
  */
 //==============================================================================
 
@@ -1281,9 +1281,9 @@ BOOL CommMPIsConnectStalth(void)
 
 //==============================================================================
 /**
- * ‰Šú‰»‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ•Ô‚·
+ * åˆæœŸåŒ–ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™
  * @param   none
- * @retval  ‰Šú‚ªI‚í‚Á‚Ä‚¢‚½‚çTRUE
+ * @retval  åˆæœŸãŒçµ‚ã‚ã£ã¦ã„ãŸã‚‰TRUE
  */
 //==============================================================================
 BOOL CommMPIsInitialize(void)
@@ -1293,9 +1293,9 @@ BOOL CommMPIsInitialize(void)
 
 //==============================================================================
 /**
- * WHƒ‰ƒCƒuƒ‰ƒŠ‚Å@ó‘Ô‚ªIDLE‚É‚È‚Á‚Ä‚¢‚é‚©Šm”F‚·‚é
+ * WHãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ã€€çŠ¶æ…‹ãŒIDLEã«ãªã£ã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹
  * @param   none
- * @retval  IDLE‚É‚È‚Á‚Ä‚¢‚é=TRUE
+ * @retval  IDLEã«ãªã£ã¦ã„ã‚‹=TRUE
  */
 //==============================================================================
 
@@ -1310,9 +1310,9 @@ BOOL CommMPIsStateIdle(void)
 
 //==============================================================================
 /**
- * WHƒ‰ƒCƒuƒ‰ƒŠ‚Å@’ÊMó‘Ô‚ÌBIT‚ğŠm”F  q‹@‚ª‚Â‚È‚ª‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+ * WHãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ã€€é€šä¿¡çŠ¶æ…‹ã®BITã‚’ç¢ºèª  å­æ©ŸãŒã¤ãªãŒã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
  * @param   none
- * @retval  ‚Â‚È‚ª‚Á‚½‚çTRUE
+ * @retval  ã¤ãªãŒã£ãŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -1326,9 +1326,9 @@ BOOL CommMPIsChildsConnecting(void)
 
 //==============================================================================
 /**
- * e‹@‚ª—‚¿‚½‚©‚Ç‚¤‚©
+ * è¦ªæ©ŸãŒè½ã¡ãŸã‹ã©ã†ã‹
  * @param   none
- * @retval  —‚¿‚½ê‡TRUE
+ * @retval  è½ã¡ãŸå ´åˆTRUE
  */
 //==============================================================================
 
@@ -1343,9 +1343,9 @@ BOOL CommMPParentDisconnect(void)
 
 //==============================================================================
 /**
- * ƒGƒ‰[ó‘Ô‚©‚Ç‚¤‚©
+ * ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹ã‹ã©ã†ã‹
  * @param   none
- * @retval  ƒGƒ‰[‚ÌTRUE
+ * @retval  ã‚¨ãƒ©ãƒ¼ã®æ™‚TRUE
  */
 //==============================================================================
 
@@ -1361,8 +1361,8 @@ BOOL CommMPIsError(void)
 
 //==============================================================================
 /**
- * q‹@‚ª‚¢‚È‚¢‚Ì‚ğƒGƒ‰[ˆµ‚¢‚É‚·‚é‚©‚Ç‚¤‚©‚ğSET
- * @param   bOn  —LŒø‚ÉTRUE
+ * å­æ©ŸãŒã„ãªã„ã®ã‚’ã‚¨ãƒ©ãƒ¼æ‰±ã„ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’SET
+ * @param   bOn  æœ‰åŠ¹æ™‚ã«TRUE
  * @retval  none
  */
 //==============================================================================
@@ -1376,8 +1376,8 @@ void CommMPSetNoChildError(BOOL bOn)
 
 //==============================================================================
 /**
- * ’N‚©‚ª—‚¿‚½‚Ì‚ğƒGƒ‰[ˆµ‚¢‚É‚·‚é‚©‚Ç‚¤‚©‚ğSET
- * @param   bOn  —LŒø‚ÉTRUE
+ * èª°ã‹ãŒè½ã¡ãŸã®ã‚’ã‚¨ãƒ©ãƒ¼æ‰±ã„ã«ã™ã‚‹ã‹ã©ã†ã‹ã‚’SET
+ * @param   bOn  æœ‰åŠ¹æ™‚ã«TRUE
  * @retval  none
  */
 //==============================================================================
@@ -1392,10 +1392,10 @@ void CommMPSetDisconnectOtherError(BOOL bOn)
 
 //==============================================================================
 /**
- * ƒT[ƒrƒX”Ô†‚É‘Î‰‚µ‚½ƒr[ƒRƒ“ŠÔŠu‚ğ“¾‚Ü‚·
- * ƒT[ƒrƒX”Ô†‚Í include/communication/comm_def.h‚É‚ ‚è‚Ü‚·
- * @param   serviceNo ƒT[ƒrƒX”Ô†
- * @retval  beaconŠÔŠu msec
+ * ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·ã«å¯¾å¿œã—ãŸãƒ“ãƒ¼ã‚³ãƒ³é–“éš”ã‚’å¾—ã¾ã™
+ * ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·ã¯ include/communication/comm_def.hã«ã‚ã‚Šã¾ã™
+ * @param   serviceNo ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·
+ * @retval  beaconé–“éš” msec
  */
 //==============================================================================
 
@@ -1416,9 +1416,9 @@ u16 _getServiceBeaconPeriod(u16 serviceNo)
 
 //==============================================================================
 /**
- * ƒr[ƒRƒ“ƒf[ƒ^‚ğ“¾‚é
- * @param   index ƒr[ƒRƒ“ƒoƒbƒtƒ@‚É‘Î‚·‚éindex
- * @retval   WMBssDesc*  ƒr[ƒRƒ“ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+ * ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹
+ * @param   index ãƒ“ãƒ¼ã‚³ãƒ³ãƒãƒƒãƒ•ã‚¡ã«å¯¾ã™ã‚‹index
+ * @retval   WMBssDesc*  ãƒ“ãƒ¼ã‚³ãƒ³ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 
@@ -1432,9 +1432,9 @@ WMBssDesc* CommMPGetWMBssDesc(int index)
 
 //==============================================================================
 /**
- * GFƒr[ƒRƒ“ƒf[ƒ^‚ğ“¾‚é
- * @param   index ƒr[ƒRƒ“ƒoƒbƒtƒ@‚É‘Î‚·‚éindex
- * @retval   GF_BSS_DATA_INFO*  ƒr[ƒRƒ“ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+ * GFãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹
+ * @param   index ãƒ“ãƒ¼ã‚³ãƒ³ãƒãƒƒãƒ•ã‚¡ã«å¯¾ã™ã‚‹index
+ * @retval   GF_BSS_DATA_INFO*  ãƒ“ãƒ¼ã‚³ãƒ³ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 
@@ -1448,8 +1448,8 @@ _GF_BSS_DATA_INFO* CommMPGetGFBss(int index)
 
 //==============================================================================
 /**
- * ƒr[ƒRƒ“ƒf[ƒ^‚ğÁ‚·
- * @param    index ƒr[ƒRƒ“ƒoƒbƒtƒ@‚É‘Î‚·‚éindex
+ * ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã™
+ * @param    index ãƒ“ãƒ¼ã‚³ãƒ³ãƒãƒƒãƒ•ã‚¡ã«å¯¾ã™ã‚‹index
  * @retval   none
  */
 //==============================================================================
@@ -1463,8 +1463,8 @@ void CommMPResetWMBssDesc(int index)
 
 //==============================================================================
 /**
- * ƒr[ƒRƒ“ƒf[ƒ^‚ğÁ‚·
- * @param    index ƒr[ƒRƒ“ƒoƒbƒtƒ@‚É‘Î‚·‚éindex
+ * ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã™
+ * @param    index ãƒ“ãƒ¼ã‚³ãƒ³ãƒãƒƒãƒ•ã‚¡ã«å¯¾ã™ã‚‹index
  * @retval   none
  */
 //==============================================================================
@@ -1478,7 +1478,7 @@ void CommMPResetGFBss(int index)
 
 //==============================================================================
 /**
- * ’ÊM—p‚É©•ª‚ÌMYSTATUS‚ğ“¾‚é
+ * é€šä¿¡ç”¨ã«è‡ªåˆ†ã®MYSTATUSã‚’å¾—ã‚‹
  * @param    none
  * @retval   MYSTATUS*
  */
@@ -1491,8 +1491,8 @@ MYSTATUS* CommMPGetMyStatus(void)
 
 //==============================================================================
 /**
- * BCON“à‚ÉŠÜ‚Ü‚ê‚éMYSTATUS‚ğ•Ô‚·
- * @param   index   e‚ÌƒŠƒXƒg‚Ìindex
+ * BCONå†…ã«å«ã¾ã‚Œã‚‹MYSTATUSã‚’è¿”ã™
+ * @param   index   è¦ªã®ãƒªã‚¹ãƒˆã®index
  * @retval  MYSTATUS*
  */
 //==============================================================================
@@ -1512,7 +1512,7 @@ MYSTATUS* CommMPGetBconMyStatus(int index)
 
 //==============================================================================
 /**
- * macƒAƒhƒŒƒX‚ğƒoƒbƒNƒAƒbƒv‚·‚é
+ * macã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã™ã‚‹
  * @param   pMac   mac address
  * @retval  none
  */
@@ -1528,7 +1528,7 @@ void CommMPSetBackupMacAddress(u8* pMac, int netID)
 
 //==============================================================================
 /**
- * ƒoƒbƒNƒAƒbƒv‚µ‚½MACƒAƒhƒŒƒX‚ÉŠY“–‚·‚é‚©‚Ç‚¤‚©‚ğ“¾‚é
+ * ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã—ãŸMACã‚¢ãƒ‰ãƒ¬ã‚¹ã«è©²å½“ã™ã‚‹ã‹ã©ã†ã‹ã‚’å¾—ã‚‹
  * @param   pMac   mac address
  * @retval  none
  */
@@ -1549,9 +1549,9 @@ static BOOL _isMachBackupMacAddress(u8* pMac)
 
 //==============================================================================
 /**
- * ©“®Ø’fƒ‚[ƒh‚É“ü‚Á‚½‚©‚Ç‚¤‚©‚ğ•Ô‚·
+ * è‡ªå‹•åˆ‡æ–­ãƒ¢ãƒ¼ãƒ‰ã«å…¥ã£ãŸã‹ã©ã†ã‹ã‚’è¿”ã™
  * @param   none
- * @retval  “ü‚Á‚Ä‚¢‚é‚È‚ç‚ÎTRUE
+ * @retval  å…¥ã£ã¦ã„ã‚‹ãªã‚‰ã°TRUE
  */
 //==============================================================================
 
@@ -1565,7 +1565,7 @@ BOOL CommMPIsAutoExit(void)
 
 //==============================================================================
 /**
- * ©“®Ø’fƒ‚[ƒhON
+ * è‡ªå‹•åˆ‡æ–­ãƒ¢ãƒ¼ãƒ‰ON
  * @param   none
  * @retval  none
  */
@@ -1580,7 +1580,7 @@ void CommMPSetAutoExit(void)
 
 //==============================================================================
 /**
- * ©•ª‚ÌBCON‚ÌPMSƒf[ƒ^‚ğ‘‚«Š·‚¦‚é ‚±‚ÌŠÖ”‚ÍCommMPFlashMyBss‚ğŒÄ‚Ô‚±‚Æ‚Å”½‰f‚³‚ê‚é
+ * è‡ªåˆ†ã®BCONã®PMSãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãæ›ãˆã‚‹ ã“ã®é–¢æ•°ã¯CommMPFlashMyBssã‚’å‘¼ã¶ã“ã¨ã§åæ˜ ã•ã‚Œã‚‹
  * @param   PMS_DATA
  * @retval  none
  */
@@ -1594,8 +1594,8 @@ void CommMPSetMyPMS(PMS_DATA* pPMS)
 
 //==============================================================================
 /**
- * ©•ª‚ÌBCON‚ÌƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğ‘‚«Š·‚¦‚é ‚±‚ÌŠÖ”‚ÍCommMPFlashMyBss‚ğŒÄ‚Ô‚±‚Æ‚Å”½‰f‚³‚ê‚é
- * @param   pRegulation  ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * è‡ªåˆ†ã®BCONã®ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãæ›ãˆã‚‹ ã“ã®é–¢æ•°ã¯CommMPFlashMyBssã‚’å‘¼ã¶ã“ã¨ã§åæ˜ ã•ã‚Œã‚‹
+ * @param   pRegulation  ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1608,9 +1608,9 @@ void CommMPSetMyRegulation(void* pRegulation)
 
 //==============================================================================
 /**
- * ©•ª‚ÌBCON‚ÌƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğ“¾‚é
+ * è‡ªåˆ†ã®BCONã®ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹
  * @param   none
- * @retval  pRegulation  ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  pRegulation  ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 
@@ -1621,7 +1621,7 @@ void* CommMPGetMyRegulation(void)
 
 //==============================================================================
 /**
- * ƒr[ƒRƒ“ƒf[ƒ^‚ÉŒ»İ‚Ìó‹µ‚ğ”½‰f‚³‚¹‚é
+ * ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã«ç¾åœ¨ã®çŠ¶æ³ã‚’åæ˜ ã•ã›ã‚‹
  * @param   none
  * @retval  none
  */
@@ -1636,8 +1636,8 @@ void CommMPFlashMyBss(void)
 
 //==============================================================================
 /**
- * ƒ‰ƒCƒtƒ^ƒCƒ€‚ğ¬‚³‚­‚·‚é ‚Ü‚½‚ÍŒ³‚É–ß‚·
- * @param   bMinimum TRUE‚È‚ç¬‚³‚­‚·‚é
+ * ãƒ©ã‚¤ãƒ•ã‚¿ã‚¤ãƒ ã‚’å°ã•ãã™ã‚‹ ã¾ãŸã¯å…ƒã«æˆ»ã™
+ * @param   bMinimum TRUEãªã‚‰å°ã•ãã™ã‚‹
  * @retval  none
  */
 //==============================================================================
@@ -1649,9 +1649,9 @@ void CommMPSetLifeTime(BOOL bMinimum)
 
 //------------------------------------------------------
 /**
- * @brief   ƒT[ƒrƒX”Ô†‚Ìƒr[ƒRƒ“”‚ğ•Ô‚µ‚Ü‚·
- * @param   serviceNo   comm_def.h‚É‚ ‚éƒT[ƒrƒX”Ô†
- * @retval  —˜—pÒ”
+ * @brief   ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·ã®ãƒ“ãƒ¼ã‚³ãƒ³æ•°ã‚’è¿”ã—ã¾ã™
+ * @param   serviceNo   comm_def.hã«ã‚ã‚‹ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·
+ * @retval  åˆ©ç”¨è€…æ•°
  */
 //------------------------------------------------------
 
@@ -1673,9 +1673,9 @@ int CommMPGetServiceNumber(int serviceNo)
 
 //------------------------------------------------------
 /**
- * @brief   e‹@‚ªˆê‰ñ‚Å‚àƒr[ƒRƒ“‚ğ‘—M‚µI‚í‚Á‚½‚©‚Ç‚¤‚©
+ * @brief   è¦ªæ©ŸãŒä¸€å›ã§ã‚‚ãƒ“ãƒ¼ã‚³ãƒ³ã‚’é€ä¿¡ã—çµ‚ã‚ã£ãŸã‹ã©ã†ã‹
  * @param   none
- * @retval  ‘—MŠ®—¹=TRUE
+ * @retval  é€ä¿¡å®Œäº†=TRUE
  */
 //------------------------------------------------------
 
@@ -1686,9 +1686,9 @@ BOOL CommMPIsParentBeaconSent(void)
 
 //------------------------------------------------------
 /**
- * @brief   ƒXƒLƒƒƒ“ó‘Ô‚©‚Ç‚¤‚©
+ * @brief   ã‚¹ã‚­ãƒ£ãƒ³çŠ¶æ…‹ã‹ã©ã†ã‹
  * @param   none
- * @retval  ‘—MŠ®—¹=TRUE
+ * @retval  é€ä¿¡å®Œäº†=TRUE
  */
 //------------------------------------------------------
 
@@ -1699,8 +1699,8 @@ BOOL CommMPIsChildStateScan(void)
 
 //------------------------------------------------------
 /**
- * @brief   ƒr[ƒRƒ“ƒf[ƒ^‚É©—R‚Éƒf[ƒ^‚ğÚ‚¹‚Ü‚·
- * @param   pData   ƒf[ƒ^   COMM_SEND_REGULATION_SIZE‚Ü‚Å‚Ì‚Á‚©‚è‚Ü‚·
+ * @brief   ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã«è‡ªç”±ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¼‰ã›ã¾ã™
+ * @param   pData   ãƒ‡ãƒ¼ã‚¿   COMM_SEND_REGULATION_SIZEã¾ã§ã®ã£ã‹ã‚Šã¾ã™
  * @retval  none
  */
 //------------------------------------------------------
@@ -1713,9 +1713,9 @@ void CommMPSetBeaconTempData(void* pData)
 
 //------------------------------------------------------
 /**
- * @brief   ƒr[ƒRƒ“ƒf[ƒ^‚©‚çƒf[ƒ^‚ğˆø‚«o‚µ‚Ü‚·
- * @param   index     ‰½”Ô–Ú‚Ìƒr[ƒRƒ“‚È‚Ì‚©
- * @retval  ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å¼•ãå‡ºã—ã¾ã™
+ * @param   index     ä½•ç•ªç›®ã®ãƒ“ãƒ¼ã‚³ãƒ³ãªã®ã‹
+ * @retval  ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------
 
@@ -1731,8 +1731,8 @@ const void* CommMPGetBeaconTempData(int index)
 
 //------------------------------------------------------
 /**
- * @brief   ƒ`ƒƒƒ“ƒlƒ‹‚ğ•Ô‚·
- * @retval  Ú‘±ƒ`ƒƒƒ“ƒlƒ‹
+ * @brief   ãƒãƒ£ãƒ³ãƒãƒ«ã‚’è¿”ã™
+ * @retval  æ¥ç¶šãƒãƒ£ãƒ³ãƒãƒ«
  */
 //------------------------------------------------------
 
@@ -1743,7 +1743,7 @@ int CommMPGetChannel(void)
 
 //==============================================================================
 /**
- * @brief	©‹@ƒr[ƒRƒ“‘—M“à—e‚Ìæ“¾
+ * @brief	è‡ªæ©Ÿãƒ“ãƒ¼ã‚³ãƒ³é€ä¿¡å†…å®¹ã®å–å¾—
  */
 //==============================================================================
 #ifdef PM_DEBUG
@@ -1757,8 +1757,8 @@ void * CommMPGetMyGFBss(void)
 #endif
 //------------------------------------------------------
 /**
- * @brief	ƒr[ƒRƒ“‚ğE‚Á‚Ä‚©‚ç‚ÌƒJƒEƒ“ƒgƒ_ƒEƒ“ƒ^ƒCƒ}æ“¾
- * @param	index	ˆÊ’u
+ * @brief	ãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ‹¾ã£ã¦ã‹ã‚‰ã®ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã‚¿ã‚¤ãƒå–å¾—
+ * @param	index	ä½ç½®
  */
 //------------------------------------------------------
 int CommMPGetBConUncacheTime(int index)

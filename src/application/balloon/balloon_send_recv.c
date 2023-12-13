@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	balloon_send_recv.c
- * @brief	•—‘Dƒ~ƒjƒQ[ƒ€F‘—óMƒf[ƒ^ì¬•‰ğß
+ * @brief	é¢¨èˆ¹ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ï¼šé€å—ä¿¡ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼†è§£é‡ˆ
  * @author	matsuda
- * @date	2007.11.27(‰Î)
+ * @date	2007.11.27(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -40,7 +40,7 @@
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void RecvBalloon_Timing(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK *recv);
 static void RecvBalloon_Air(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK *recv);
@@ -51,11 +51,11 @@ static void RecvBalloon_Finish(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WOR
 static void RecvBalloon_TouchPenDemo(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK *recv);
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //typedef void* ( *pDemoInit_func )( DEMO_TENGAN_WORK* wk );
 	
-///•—‘Dƒ~ƒjƒQ[ƒ€‚ÌóMƒf[ƒ^‰ğß—p‚ÌŠÖ”ƒe[ƒuƒ‹
+///é¢¨èˆ¹ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®å—ä¿¡ãƒ‡ãƒ¼ã‚¿è§£é‡ˆç”¨ã®é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static void (* const BalloonRecvTbl[])(BALLOON_GAME_PTR, const BALLOON_SIO_PLAY_WORK *) = {
 	NULL,					//ORDER_CODE_NULL
 	
@@ -71,7 +71,7 @@ static void (* const BalloonRecvTbl[])(BALLOON_GAME_PTR, const BALLOON_SIO_PLAY_
 };
 
 #ifdef _NITRO
-//óMŠÖ”ƒe[ƒuƒ‹‚ª–½—ßƒR[ƒh‚Æ“¯‚¶•ª‚¾‚¯—pˆÓ‚³‚ê‚Ä‚¢‚é‚©
+//å—ä¿¡é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ãŒå‘½ä»¤ã‚³ãƒ¼ãƒ‰ã¨åŒã˜åˆ†ã ã‘ç”¨æ„ã•ã‚Œã¦ã„ã‚‹ã‹
 SDK_COMPILER_ASSERT(NELEMS(BalloonRecvTbl) == ORDER_CODE_MAX);
 #endif
 
@@ -83,12 +83,12 @@ SDK_COMPILER_ASSERT(NELEMS(BalloonRecvTbl) == ORDER_CODE_MAX);
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   óMƒf[ƒ^ó‚¯æ‚èŠÖ”ŒÄ‚Ño‚µ
+ * @brief   å—ä¿¡ãƒ‡ãƒ¼ã‚¿å—ã‘å–ã‚Šé–¢æ•°å‘¼ã³å‡ºã—
  *
  * @param   game		
- * @param   recv		óMƒf[ƒ^
+ * @param   recv		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  *
- * @retval	TRUE:óM–½—ßÀs‚µ‚½B@FALSE:‰½‚àˆ—‚µ‚È‚©‚Á‚½
+ * @retval	TRUE:å—ä¿¡å‘½ä»¤å®Ÿè¡Œã—ãŸã€‚ã€€FALSE:ä½•ã‚‚å‡¦ç†ã—ãªã‹ã£ãŸ
  */
 //--------------------------------------------------------------
 BOOL RecvBalloon_FuncCall(BALLOON_GAME_PTR game, BALLOON_SIO_PLAY_WORK *recv)
@@ -107,10 +107,10 @@ BOOL RecvBalloon_FuncCall(BALLOON_GAME_PTR game, BALLOON_SIO_PLAY_WORK *recv)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D”j—ôƒƒbƒZ[ƒW‘—M
+ * @brief   é¢¨èˆ¹ç ´è£‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
  *
  * @param   game		
- * @param   balloon_no		•—‘D”Ô†
+ * @param   balloon_no		é¢¨èˆ¹ç•ªå·
  */
 //--------------------------------------------------------------
 void SendBalloon_Air(BALLOON_GAME_PTR game, const BALLOON_AIR_DATA *air_data)
@@ -127,16 +127,16 @@ void SendBalloon_Air(BALLOON_GAME_PTR game, const BALLOON_AIR_DATA *air_data)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ó‹Cƒf[ƒ^óM‰ğß
+ * @brief   ç©ºæ°—ãƒ‡ãƒ¼ã‚¿å—ä¿¡è§£é‡ˆ
  *
  * @param   game		
- * @param   recv		óMƒf[ƒ^
+ * @param   recv		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 static void RecvBalloon_Air(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK *recv)
 {
 	if(recv->air_data.net_id == CommGetCurrentID()){
-		return;	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+		return;	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	}
 	BalloonTool_PlayerAirParamAdd(game, &recv->air_data);
 }
@@ -146,11 +146,11 @@ static void RecvBalloon_Air(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK *
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D”j—ôƒƒbƒZ[ƒW‘—M
+ * @brief   é¢¨èˆ¹ç ´è£‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
  *
  * @param   game		
- * @param   balloon_no		•—‘D”Ô†
- * @param   timing_no		“¯Šú”Ô†
+ * @param   balloon_no		é¢¨èˆ¹ç•ªå·
+ * @param   timing_no		åŒæœŸç•ªå·
  */
 //--------------------------------------------------------------
 void SendBalloon_Exploded(BALLOON_GAME_PTR game, int balloon_no, u8 timing_no)
@@ -169,17 +169,17 @@ void SendBalloon_Exploded(BALLOON_GAME_PTR game, int balloon_no, u8 timing_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D”j—ôƒƒbƒZ[ƒWóM‰ğß
+ * @brief   é¢¨èˆ¹ç ´è£‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡è§£é‡ˆ
  *
  * @param   game		
- * @param   recv		óMƒf[ƒ^
+ * @param   recv		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 static void RecvBalloon_Exploded(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK *recv)
 {
 	game->exploded_count++;
 	
-	//”j—ôƒAƒNƒ^[•\¦
+	//ç ´è£‚ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤º
 	BalloonTool_ExplodedParamAdd(game);
 	
 	Timing_AnswerReqParamSet(game, recv->exploded.timing_req, recv->exploded.timing_no);
@@ -190,12 +190,12 @@ static void RecvBalloon_Exploded(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_W
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D“oêƒƒbƒZ[ƒW‘—M
+ * @brief   é¢¨èˆ¹ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
  *
  * @param   game			
- * @param   balloon_no		•—‘D”Ô†
- * @param   level			•—‘DƒŒƒxƒ‹(BALLOON_LEVEL_???)
- * @param   timing_no		“¯Šú”Ô†
+ * @param   balloon_no		é¢¨èˆ¹ç•ªå·
+ * @param   level			é¢¨èˆ¹ãƒ¬ãƒ™ãƒ«(BALLOON_LEVEL_???)
+ * @param   timing_no		åŒæœŸç•ªå·
  */
 //--------------------------------------------------------------
 void SendBalloon_Appear(BALLOON_GAME_PTR game, int balloon_no, int level, u8 timing_no)
@@ -215,10 +215,10 @@ void SendBalloon_Appear(BALLOON_GAME_PTR game, int balloon_no, int level, u8 tim
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D“oêƒƒbƒZ[ƒWóM‰ğß
+ * @brief   é¢¨èˆ¹ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡è§£é‡ˆ
  *
  * @param   game		
- * @param   recv		óMƒf[ƒ^
+ * @param   recv		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 static void RecvBalloon_Appear(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK *recv)
@@ -235,11 +235,11 @@ static void RecvBalloon_Appear(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WOR
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€ŠJnƒƒbƒZ[ƒW‘—M
+ * @brief   ã‚²ãƒ¼ãƒ é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
  *
  * @param   game			
- * @param   timing_req		“¯Šúæ‚è‚Ìí—Ş
- * @param   timing_no		“¯Šú”Ô†
+ * @param   timing_req		åŒæœŸå–ã‚Šã®ç¨®é¡
+ * @param   timing_no		åŒæœŸç•ªå·
  */
 //--------------------------------------------------------------
 void SendBalloon_Start(BALLOON_GAME_PTR game, u8 timing_no)
@@ -257,10 +257,10 @@ void SendBalloon_Start(BALLOON_GAME_PTR game, u8 timing_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ~ƒjƒQ[ƒ€ŠJnƒƒbƒZ[ƒWóM‰ğß
+ * @brief   ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡è§£é‡ˆ
  *
  * @param   game		
- * @param   recv		óMƒf[ƒ^
+ * @param   recv		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 static void RecvBalloon_Start(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK *recv)
@@ -274,11 +274,11 @@ static void RecvBalloon_Start(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   “¯Šúæ‚èƒƒbƒZ[ƒW‘—M
+ * @brief   åŒæœŸå–ã‚Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
  *
  * @param   game			
- * @param   timing_req		“¯Šúæ‚è‚Ìí—Ş
- * @param   timing_no		“¯Šú”Ô†
+ * @param   timing_req		åŒæœŸå–ã‚Šã®ç¨®é¡
+ * @param   timing_no		åŒæœŸç•ªå·
  */
 //--------------------------------------------------------------
 void SendBalloon_Finish(BALLOON_GAME_PTR game, u8 timing_no)
@@ -296,10 +296,10 @@ void SendBalloon_Finish(BALLOON_GAME_PTR game, u8 timing_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ~ƒjƒQ[ƒ€I—¹ƒƒbƒZ[ƒWóM‰ğß
+ * @brief   ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡è§£é‡ˆ
  *
  * @param   game		
- * @param   recv		óMƒf[ƒ^
+ * @param   recv		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 static void RecvBalloon_Finish(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK *recv)
@@ -314,11 +314,11 @@ static void RecvBalloon_Finish(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WOR
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   “¯Šúæ‚èƒƒbƒZ[ƒW‘—M
+ * @brief   åŒæœŸå–ã‚Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
  *
  * @param   game			
- * @param   timing_req		“¯Šúæ‚è‚Ìí—Ş
- * @param   timing_no		“¯Šú”Ô†
+ * @param   timing_req		åŒæœŸå–ã‚Šã®ç¨®é¡
+ * @param   timing_no		åŒæœŸç•ªå·
  */
 //--------------------------------------------------------------
 void SendBalloon_Timing(BALLOON_GAME_PTR game, int timing_req, u8 timing_no)
@@ -336,10 +336,10 @@ void SendBalloon_Timing(BALLOON_GAME_PTR game, int timing_req, u8 timing_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   “¯Šúæ‚èƒƒbƒZ[ƒWóM‰ğß
+ * @brief   åŒæœŸå–ã‚Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡è§£é‡ˆ
  *
  * @param   game		
- * @param   recv		óMƒf[ƒ^
+ * @param   recv		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 static void RecvBalloon_Timing(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK *recv)
@@ -348,15 +348,15 @@ static void RecvBalloon_Timing(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WOR
 }
 
 //==============================================================================
-//	ƒ^ƒbƒ`ƒyƒ“ƒfƒ‚
+//	ã‚¿ãƒƒãƒãƒšãƒ³ãƒ‡ãƒ¢
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒ€ŠJnƒƒbƒZ[ƒW‘—M
+ * @brief   ã‚²ãƒ¼ãƒ é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡
  *
  * @param   game			
- * @param   timing_req		“¯Šúæ‚è‚Ìí—Ş
- * @param   timing_no		“¯Šú”Ô†
+ * @param   timing_req		åŒæœŸå–ã‚Šã®ç¨®é¡
+ * @param   timing_no		åŒæœŸç•ªå·
  */
 //--------------------------------------------------------------
 void SendBalloon_TouchPenDemo(BALLOON_GAME_PTR game, u8 timing_no)
@@ -374,10 +374,10 @@ void SendBalloon_TouchPenDemo(BALLOON_GAME_PTR game, u8 timing_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ~ƒjƒQ[ƒ€ŠJnƒƒbƒZ[ƒWóM‰ğß
+ * @brief   ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ä¿¡è§£é‡ˆ
  *
  * @param   game		
- * @param   recv		óMƒf[ƒ^
+ * @param   recv		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 static void RecvBalloon_TouchPenDemo(BALLOON_GAME_PTR game, const BALLOON_SIO_PLAY_WORK *recv)

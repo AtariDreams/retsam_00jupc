@@ -15,10 +15,10 @@
   do-indent
 
   Revision 1.2  2005/04/13 04:52:33  seiki_masashi
-  Checksum16 ‚ğƒoƒCƒg‹«ŠE‚ÉŠÖŒW‚È‚­g—p‚Å‚«‚é‚æ‚¤•ÏX
+  Checksum16 ã‚’ãƒã‚¤ãƒˆå¢ƒç•Œã«é–¢ä¿‚ãªãä½¿ç”¨ã§ãã‚‹ã‚ˆã†å¤‰æ›´
 
   Revision 1.1  2005/04/12 11:12:27  seiki_masashi
-  checksum.h ‚Ì’Ç‰Á
+  checksum.h ã®è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -28,12 +28,12 @@
 /*---------------------------------------------------------------------------*
   Name:         MATHi_Checksum16Update
 
-  Description:  16bit ‚Ì Checksum ’l‚ğ‹‚ß‚éB
+  Description:  16bit ã® Checksum å€¤ã‚’æ±‚ã‚ã‚‹ã€‚
 
-  Arguments:    input   “ü—Íƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                length  “ü—Íƒf[ƒ^’·
+  Arguments:    input   å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                length  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
 
-  Returns:      ŒvZŒ‹‰Ê.
+  Returns:      è¨ˆç®—çµæœ.
  *---------------------------------------------------------------------------*/
 static inline u32 MATHi_Checksum16Update(const void *input, u32 length)
 {
@@ -86,11 +86,11 @@ static inline u32 MATHi_Checksum16Update(const void *input, u32 length)
 /*---------------------------------------------------------------------------*
   Name:         MATH_Checksum16Update
 
-  Description:  16bit ‚Ì Checksum ’l‚ğ—^‚¦‚½ƒf[ƒ^‚ÅXV‚·‚éB
+  Description:  16bit ã® Checksum å€¤ã‚’ä¸ãˆãŸãƒ‡ãƒ¼ã‚¿ã§æ›´æ–°ã™ã‚‹ã€‚
 
-  Arguments:    context MATHChecksum16Context \‘¢‘Ì
-                input   “ü—Íƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                length  “ü—Íƒf[ƒ^’·
+  Arguments:    context MATHChecksum16Context æ§‹é€ ä½“
+                input   å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                length  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -109,12 +109,12 @@ void MATH_Checksum16Update(MATHChecksum16Context * context, const void *input, u
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcChecksum16
 
-  Description:  16bit ‚Ì Checksum ‚ğŒvZ‚·‚éB
+  Description:  16bit ã® Checksum ã‚’è¨ˆç®—ã™ã‚‹ã€‚
   
-  Arguments:    data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                dataLength  “ü—Íƒf[ƒ^’·
+  Arguments:    data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                dataLength  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
-  Returns:      Checksum ’l.
+  Returns:      Checksum å€¤.
  *---------------------------------------------------------------------------*/
 u16 MATH_CalcChecksum16(const void *data, u32 dataLength)
 {
@@ -128,12 +128,12 @@ u16 MATH_CalcChecksum16(const void *data, u32 dataLength)
 /*---------------------------------------------------------------------------*
   Name:         MATH_Checksum8Update
 
-  Description:  8bit ‚Ì Checksum ’l‚ğ‹‚ß‚éB
+  Description:  8bit ã® Checksum å€¤ã‚’æ±‚ã‚ã‚‹ã€‚
 
-  Arguments:    input   “ü—Íƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                length  “ü—Íƒf[ƒ^’·
+  Arguments:    input   å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                length  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
 
-  Returns:      ŒvZŒ‹‰Ê.
+  Returns:      è¨ˆç®—çµæœ.
  *---------------------------------------------------------------------------*/
 static inline u32 MATHi_Checksum8Update(const void *input, u32 length)
 {
@@ -179,11 +179,11 @@ static inline u32 MATHi_Checksum8Update(const void *input, u32 length)
 /*---------------------------------------------------------------------------*
   Name:         MATH_Checksum8Update
 
-  Description:  8bit ‚Ì Checksum ’l‚ğ—^‚¦‚½ƒf[ƒ^‚ÅXV‚·‚éB
+  Description:  8bit ã® Checksum å€¤ã‚’ä¸ãˆãŸãƒ‡ãƒ¼ã‚¿ã§æ›´æ–°ã™ã‚‹ã€‚
 
-  Arguments:    context MATHChecksum8Context \‘¢‘Ì
-                input   “ü—Íƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                length  “ü—Íƒf[ƒ^’·
+  Arguments:    context MATHChecksum8Context æ§‹é€ ä½“
+                input   å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                length  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -202,12 +202,12 @@ void MATH_Checksum8Update(MATHChecksum8Context * context, const void *input, u32
 /*---------------------------------------------------------------------------*
   Name:         MATH_CalcChecksum8
 
-  Description:  16bit ‚Ì Checksum ‚ğŒvZ‚·‚éB
+  Description:  16bit ã® Checksum ã‚’è¨ˆç®—ã™ã‚‹ã€‚
   
-  Arguments:    data    “ü—Íƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-                dataLength  “ü—Íƒf[ƒ^’·
+  Arguments:    data    å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+                dataLength  å…¥åŠ›ãƒ‡ãƒ¼ã‚¿é•·
   
-  Returns:      Checksum ’l.
+  Returns:      Checksum å€¤.
  *---------------------------------------------------------------------------*/
 u8 MATH_CalcChecksum8(const void *data, u32 dataLength)
 {

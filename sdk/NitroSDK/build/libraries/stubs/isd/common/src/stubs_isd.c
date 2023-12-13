@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.7  2005/03/04 11:09:27  yasu
-  __declspec(weak) �� SDK_WEAK_SYMBOL �ɒu������
+  __declspec(weak) を SDK_WEAK_SYMBOL に置き換え
 
   Revision 1.6  2005/02/28 05:26:32  yosizaki
   do-indent.
@@ -31,10 +31,10 @@
   change SDK prefix iris -> nitro
 
   Revision 1.2  2003/12/12 05:04:22  yasu
-  _ISDbgLib_* �֐��̒ǉ�
+  _ISDbgLib_* 関数の追加
 
   Revision 1.1  2003/12/10 12:19:03  yasu
-  ISD ���C�u�����̖������̂��߂ɋ�̊֐����_�~�[�ŗp�ӂ��Astubs ���ɒu�����D
+  ISD ライブラリの無い環境のために空の関数をダミーで用意し、stubs 下に置いた．
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

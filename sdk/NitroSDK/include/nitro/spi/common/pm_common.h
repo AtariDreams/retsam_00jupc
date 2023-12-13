@@ -36,7 +36,7 @@
   add LED definition
 
   Revision 1.10  2004/08/24 02:44:08  ooe
-  LED点滅パターンを追加
+  LED轤ｹ貊�繝代ち繝ｼ繝ｳ繧定ｿｽ蜉
 
   Revision 1.9  2004/08/23 08:07:51  yada
   add LED self blink

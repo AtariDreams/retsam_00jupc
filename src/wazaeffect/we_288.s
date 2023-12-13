@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_288.s
- * @brief	‚¨‚ñ‚Ë‚ñ			288
+ * @brief	ãŠã‚“ã­ã‚“			288
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡‚¨‚ñ‚Ë‚ñ			288
+//	â– ãŠã‚“ã­ã‚“			288
 //
 //
 // =============================================================================
@@ -33,14 +33,14 @@ WEST_ONNEN:
 	
 	WAIT_FLAG	
 	
-	///<‰Šú‰»ˆ—@“Ç‚Ýž‚Ýˆ—
+	///<åˆæœŸåŒ–å‡¦ç†ã€€èª­ã¿è¾¼ã¿å‡¦ç†
 	CATS_RES_INIT		ONNEN_RES_NO, ONNEN_ACT_NUM, ONNEN_RES_NUM, ONNEN_RES_NUM, ONNEN_RES_NUM, ONNEN_RES_NUM, 0, 0
 	CATS_CAHR_RES_LOAD	ONNEN_RES_NO, EFFECT_288_NCGR_BIN
 	CATS_PLTT_RES_LOAD	ONNEN_RES_NO, EFFECT_288_NCLR, 1
 	CATS_CELL_RES_LOAD	ONNEN_RES_NO, EFFECT_288_NCER_BIN
 	CATS_CELL_ANM_RES_LOAD	ONNEN_RES_NO, EFFECT_288_NANR_BIN
 	
-	///<“®ì
+	///<å‹•ä½œ
 	SE_REPEAT_L		SEQ_SE_DP_W052,16,3
 	CATS_ACT_ADD		ONNEN_RES_NO, WEST_CSP_WE_288, EFFECT_288_NCGR_BIN, EFFECT_288_NCLR, EFFECT_288_NCER_BIN, EFFECT_288_NANR_BIN, 0, 0, 0,0,
 	//SE WAZA_EFF_SE3
@@ -48,7 +48,7 @@ WEST_ONNEN:
 
 	WAIT_FLAG
 
-	///<”jŠüˆ—
+	///<ç ´æ£„å‡¦ç†
 	CATS_RES_FREE		ONNEN_RES_NO
 
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 12, 0, WE_PAL_BLACK,

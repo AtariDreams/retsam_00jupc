@@ -24,20 +24,20 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dDmaCopy16
 
-  Description:  Dma�R�s�[���s���܂��B
+  Description:  Dmaコピーを行います。
 
-  Arguments:    dmaNo:  Dma�ԍ�
-                        ( GX_DMA_NOT_USE���w�肳�ꂽ�ꍇ��
-                          Dma�R�s�[�̑����Cpu�R�s�[���g�p����܂��B)
-                src:    �]�����A�h���X
-                dest:   �]����A�h���X
-                size:   �]���T�C�Y
+  Arguments:    dmaNo:  Dma番号
+                        ( GX_DMA_NOT_USEが指定された場合は
+                          Dmaコピーの代わりにCpuコピーが使用されます。)
+                src:    転送元アドレス
+                dest:   転送先アドレス
+                size:   転送サイズ
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNSi_G2dDmaCopy16( u32 dmaNo, const void* src, void* dest, u32 size )
 {
-    // dmaNo �� GX_DMA_NOT_USE ���w�肳�ꂽ�ꍇ�́ACpuCopy���g�p���܂��B
+    // dmaNo に GX_DMA_NOT_USE が指定された場合は、CpuCopyを使用します。
     if( dmaNo != GX_DMA_NOT_USE )
     {
         MI_DmaCopy16( dmaNo, src, dest, size );
@@ -50,20 +50,20 @@ NNS_G2D_INLINE void NNSi_G2dDmaCopy16( u32 dmaNo, const void* src, void* dest, u
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dDmaFill32
 
-  Description:  ���������w��̃f�[�^�Ŗ��߂܂��B
+  Description:  メモリを指定のデータで埋めます。
 
-  Arguments:    dmaNo:  Dma�ԍ�
-                        ( GX_DMA_NOT_USE���w�肳�ꂽ�ꍇ��
-                          DmaFill�̑����CpuFill���g�p����܂��B)
-                dest:   �]����A�h���X
-                data:   �]���f�[�^
-                size:   �]���T�C�Y
+  Arguments:    dmaNo:  Dma番号
+                        ( GX_DMA_NOT_USEが指定された場合は
+                          DmaFillの代わりにCpuFillが使用されます。)
+                dest:   転送先アドレス
+                data:   転送データ
+                size:   転送サイズ
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNSi_G2dDmaFill32( u32 dmaNo, void* dest, u32 data, u32 size )
 {
-    // dmaNo �� GX_DMA_NOT_USE ���w�肳�ꂽ�ꍇ�́ACpuFill���g�p���܂��B
+    // dmaNo に GX_DMA_NOT_USE が指定された場合は、CpuFillを使用します。
     if( dmaNo != GX_DMA_NOT_USE )
     {
         MI_DmaFill32( dmaNo, dest, data, size );

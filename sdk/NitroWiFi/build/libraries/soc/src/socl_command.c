@@ -12,43 +12,43 @@
 
   $Log: socl_command.c,v $
   Revision 1.10  2006/05/17 08:37:11  yasu
-  SOCLi_CommandPacketHandler ���łɂ�����X���b�h�̍ăX�P�W���[���������폜�B
-  �X���b�h�؂�ւ��� OS_ReadMessage ���ň�̉��B
+  SOCLi_CommandPacketHandler 内でにおけるスレッドの再スケジュール処理を削除。
+  スレッド切り替えは OS_ReadMessage 内で一体化。
 
   Revision 1.9  2006/03/10 09:22:19  kitase_hirotake
   INDENT SOURCE
 
   Revision 1.8  2005/12/06 11:53:13  yasu
-  TCP BLOCK Write �ɂ�����s��̏C��
-  BLOCK ���[�h����p�̃}�N���̓���
+  TCP BLOCK Write における不具合の修正
+  BLOCK モード判定用のマクロの導入
 
   Revision 1.7  2005/10/14 06:51:35  yasu
-  �R�}���h�p�P�b�g�쐬���� response �����o�ɏ����l��ݒ肵�Ă��Ȃ������̂��C��
+  コマンドパケット作成時に response メンバに初期値を設定していなかったのを修正
 
   Revision 1.6  2005/10/14 01:56:53  yasu
-  �R�}���h�L���[����t�������Ƃ��� Close �������s���S�ȏ�ԂɂȂ邱�Ƃ��C��
+  コマンドキューが一杯だったときに Close 処理が不完全な状態になることを修正
 
   Revision 1.5  2005/09/27 14:18:09  yasu
-  SOC_Close �̔񓯊�����T�|�[�g
+  SOC_Close の非同期動作サポート
 
   Revision 1.4  2005/08/11 07:02:00  yasu
-  �O��̏C����������
+  前回の修正を取り消し
 
   Revision 1.3  2005/08/11 05:08:21  yasu
-  �Ԓl���s��ƂȂ�֐��̏C��
+  返値が不定となる関数の修正
 
   Revision 1.2  2005/07/30 22:30:14  yasu
-  �f���������悤�ɏC��
+  デモが動くように修正
 
   Revision 1.1  2005/07/30 15:29:33  yasu
-  �R�}���h�p�C�v�Ɋւ���ϐ����\���̂ɕ���
+  コマンドパイプに関する変数を構造体に分離
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
 #include <nitroWiFi/soc.h>
 
 //---------------------------------------------------------------------------*
-// �R�}���h�p�P�b�g�L���[
+// コマンドパケットキュー
 //---------------------------------------------------------------------------*
 static OSMessage*       SOCLiCommandPackets;
 static OSMessageQueue   SOCLiCommandPacketQueue;
@@ -56,12 +56,12 @@ static OSMessageQueue   SOCLiCommandPacketQueue;
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_StartupCommandPacketQueue
 
-  Description:  �R�}���h�p�P�b�g�L���[������
+  Description:  コマンドパケットキュー初期化
 
-  Arguments:    cp_max_count �p�P�b�g�̐�
+  Arguments:    cp_max_count パケットの数
   
-  Returns:       0 ����
-                -1 �������m�ێ��s
+  Returns:       0 成功
+                -1 メモリ確保失敗
  *---------------------------------------------------------------------------*/
 int SOCLi_StartupCommandPacketQueue(s32 cp_max_count)
 {
@@ -81,8 +81,8 @@ int SOCLi_StartupCommandPacketQueue(s32 cp_max_count)
         return -1;
     }
 
-    // MessageQueue �쐬�����
-    // Message �Ƃ��ăR�}���h�p�P�b�g�̃A�h���X�� Queue �ɓo�^
+    // MessageQueue 作成および
+    // Message としてコマンドパケットのアドレスを Queue に登録
     OS_InitMessageQueue(&SOCLiCommandPacketQueue, cp_message_array, cp_max_count);
 
     cp_array = (SOCLiCommandPacket *) ((u32) cp_message_array + cp_message_size);
@@ -102,16 +102,16 @@ int SOCLi_StartupCommandPacketQueue(s32 cp_max_count)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_CleanupCommandPacketQueue
 
-  Description:  �R�}���h�p�P�b�g�L���[�J��
+  Description:  コマンドパケットキュー開放
 
-  Arguments:    �Ȃ�
+  Arguments:    なし
 
-  Returns:       0 ����I��
-                -1 �S�ẴR�}���h�p�P�b�g�̈悪�������Ă��Ȃ�
+  Returns:       0 正常終了
+                -1 全てのコマンドパケット領域が回収されていない
  *---------------------------------------------------------------------------*/
 int SOCLi_CleanupCommandPacketQueue(void)
 {
-    // �L���[���t���ɂȂ��Ă��Ȃ��Ȃ疢����̃p�P�b�g������
+    // キューがフルになっていないなら未回収のパケットがある
     if (!OS_IsMessageQueueFull(&SOCLiCommandPacketQueue))
     {
         return -1;
@@ -125,15 +125,15 @@ int SOCLi_CleanupCommandPacketQueue(void)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_AllocCommandPacket
 
-  Description:  �R�}���h�p�P�b�g�̊m��
+  Description:  コマンドパケットの確保
 
-  Arguments:    flag  �R�}���h����̃u���b�N���[�h
+  Arguments:    flag  コマンド動作のブロックモード
                       OS_MESSAGE_NOBLOCK or OS_MESSAGE_BLOCK
 
-  Returns:      �R�}���h�p�P�b�g�ւ̃|�C���^
-                �u���b�N���[�h�� NOBLOCK �ŃR�}���h�p�P�b�g�̈悪�Ȃ��Ȃ� NULL
-                �u���b�N���[�h�� BLOCK   �ŃR�}���h�p�P�b�g�̈悪�Ȃ��Ȃ�
-                �󂫗̈悪�ł���܂Ńu���b�N���܂��D
+  Returns:      コマンドパケットへのポインタ
+                ブロックモードが NOBLOCK でコマンドパケット領域がないなら NULL
+                ブロックモードが BLOCK   でコマンドパケット領域がないなら
+                空き領域ができるまでブロックします．
  *---------------------------------------------------------------------------*/
 SOCLiCommandPacket* SOCLi_AllocCommandPacket(s32 flag)
 {
@@ -145,19 +145,19 @@ SOCLiCommandPacket* SOCLi_AllocCommandPacket(s32 flag)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_CreateCommandPacket
 
-  Description:  �R�}���h�p�P�b�g�̍쐬
+  Description:  コマンドパケットの作成
 
-  Arguments:    handler   �R�}���h�̃n���h��
-                socket    �Ώۃ\�P�b�g
-                flag      �R�}���h����̃u���b�N���[�h
+  Arguments:    handler   コマンドのハンドラ
+                socket    対象ソケット
+                flag      コマンド動作のブロックモード
                           OS_MESSAGE_NOBLOCK or OS_MESSAGE_BLOCK
-                          �\�P�b�g�ɐݒ肳��Ă郂�[�h�����̂܂܎g����Ƃ�
-                          ����Ȃ��D�����܂ō���̃R�}���h�̓��샂�[�h�D
+                          ソケットに設定されてるモードがそのまま使われるとは
+                          限らない．あくまで今回のコマンドの動作モード．
    
-  Returns:      �R�}���h�p�P�b�g�ւ̃|�C���^
-                �u���b�N���[�h�� NOBLOCK �ŃR�}���h�p�P�b�g�̈悪�Ȃ��Ȃ� NULL
-                �u���b�N���[�h�� BLOCK   �ŃR�}���h�p�P�b�g�̈悪�Ȃ��Ȃ�
-                �󂫗̈悪�ł���܂Ńu���b�N���܂��D
+  Returns:      コマンドパケットへのポインタ
+                ブロックモードが NOBLOCK でコマンドパケット領域がないなら NULL
+                ブロックモードが BLOCK   でコマンドパケット領域がないなら
+                空き領域ができるまでブロックします．
  *---------------------------------------------------------------------------*/
 SOCLiCommandPacket* SOCLi_CreateCommandPacket(SOCLiCommandHandler handler, SOCLSocket* socket, s32 flag)
 {
@@ -180,11 +180,11 @@ SOCLiCommandPacket* SOCLi_CreateCommandPacket(SOCLiCommandHandler handler, SOCLS
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_FreeCommandPacket
 
-  Description:  �R�}���h�p�P�b�g�̊J��
+  Description:  コマンドパケットの開放
 
-  Arguments:    command   �R�}���h�p�P�b�g�ւ̃|�C���^
+  Arguments:    command   コマンドパケットへのポインタ
 
-  Returns:      �Ȃ�
+  Returns:      なし
  *---------------------------------------------------------------------------*/
 void SOCLi_FreeCommandPacket(SOCLiCommandPacket* command)
 {
@@ -197,33 +197,33 @@ void SOCLi_FreeCommandPacket(SOCLiCommandPacket* command)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_GetCtrlPipe
   
-  Description:  �R�}���h����p�C�v�̎擾
+  Description:  コマンド制御パイプの取得
 
-  Arguments:    socket		�\�P�b�g
+  Arguments:    socket		ソケット
   
-  Returns:      �\�P�b�g����p�̃R�}���h�p�C�v�ւ̃|�C���^
+  Returns:      ソケット制御用のコマンドパイプへのポインタ
  *---------------------------------------------------------------------------*/
 SOCLiSocketCommandPipe* SOCLi_GetCtrlPipe(SOCLSocket* socket)
 {
-    // �ʏ�� Recv Pipe �����}�X�^�[�Ƃ���
-    // UDPSend �̂Ƃ��͗�O�� Send Pipe ���}�X�^�[�ƂȂ�f�[�^���󂯂�.
+    // 通常は Recv Pipe 側をマスターとする
+    // UDPSend のときは例外で Send Pipe がマスターとなりデータを受ける.
     return(socket->recv_pipe) ? &socket->recv_pipe->h : &socket->send_pipe->h;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_SendCommandPacket
   
-  Description:  �R�}���h�p�P�b�g�̑��M
+  Description:  コマンドパケットの送信
 
-  Arguments:    pipe		���M��̃R�}���h�p�C�v
-                command         �R�}���h�̃p�P�b�g
+  Arguments:    pipe		送信先のコマンドパイプ
+                command         コマンドのパケット
   
-  Returns:      command->flag_block �� NOBLOCK �̂Ƃ�
-                     ���M�����Ȃ� SOCL_ESUCCESS=0
-                         ���s�Ȃ� SOCL_ENOBUFS<0
-                         ���s������R�}���h���������
-                command->flag_block �� BLOCK �̂Ƃ�
-                     ��� 0
+  Returns:      command->flag_block が NOBLOCK のとき
+                     送信成功なら SOCL_ESUCCESS=0
+                         失敗なら SOCL_ENOBUFS<0
+                         失敗したらコマンドを回収する
+                command->flag_block が BLOCK のとき
+                     常に 0
  *---------------------------------------------------------------------------*/
 int SOCLi_SendCommandPacket(SOCLiSocketCommandPipe* pipe, SOCLiCommandPacket* command)
 {
@@ -254,17 +254,17 @@ int SOCLi_SendCommandPacketToCtrlPipe(SOCLSocket* socket, SOCLiCommandPacket* co
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ExecCommandPacket
   
-  Description:  �R�}���h�p�P�b�g�̎��s(���M�������҂�)
+  Description:  コマンドパケットの実行(送信＆処理待ち)
 
-  Arguments:    pipe		���M��̃R�}���h�p�C�v
-                command         �R�}���h�̃p�P�b�g
+  Arguments:    pipe		送信先のコマンドパイプ
+                command         コマンドのパケット
   
-  Returns:      command->flag_block �� NOBLOCK �̂Ƃ�
-                     ���M�����Ȃ� SOCL_ESUCCESS=0
-                         ���s�Ȃ� SOCL_ENOBUFS<0
-                         ���s������R�}���h���������
-                command->flag_block �� BLOCK �̂Ƃ�
-                     �R�}���h�̃��^�[���R�[�h���Ԃ�
+  Returns:      command->flag_block が NOBLOCK のとき
+                     送信成功なら SOCL_ESUCCESS=0
+                         失敗なら SOCL_ENOBUFS<0
+                         失敗したらコマンドを回収する
+                command->flag_block が BLOCK のとき
+                     コマンドのリターンコードが返る
  *---------------------------------------------------------------------------*/
 int SOCLi_ExecCommandPacket(SOCLiSocketCommandPipe* pipe, SOCLiCommandPacket* command)
 {
@@ -299,17 +299,17 @@ int SOCLi_ExecCommandPacket(SOCLiSocketCommandPipe* pipe, SOCLiCommandPacket* co
                 SOCLi_ExecCommandPacketInSendPipe
                 SOCLi_ExecCommandPacketInCtrlPipe
   
-  Description:  �R�}���h�p�P�b�g�� RecvPipe/SendPipe �Ŏ��s(���M�������҂�)
+  Description:  コマンドパケットを RecvPipe/SendPipe で実行(送信＆処理待ち)
 
-  Arguments:    socket          �\�P�b�g
-                command         �R�}���h�̃p�P�b�g
+  Arguments:    socket          ソケット
+                command         コマンドのパケット
   
-  Returns:      command->flag_block �� NOBLOCK �̂Ƃ�
-                     ���M�����Ȃ� SOCL_ESUCCESS=0
-                         ���s�Ȃ� SOCL_ENOBUFS<0
-                         ���s������R�}���h���������
-                command->flag_block �� BLOCK �̂Ƃ�
-                     ��� 0
+  Returns:      command->flag_block が NOBLOCK のとき
+                     送信成功なら SOCL_ESUCCESS=0
+                         失敗なら SOCL_ENOBUFS<0
+                         失敗したらコマンドを回収する
+                command->flag_block が BLOCK のとき
+                     常に 0
  *---------------------------------------------------------------------------*/
 int SOCLi_ExecCommandPacketInRecvPipe(SOCLSocket* socket, SOCLiCommandPacket* command)
 {
@@ -338,18 +338,18 @@ int SOCLi_ExecCommandPacketInCtrlPipe(SOCLSocket* socket, SOCLiCommandPacket* co
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_CommandPacketHandler
   
-  Description:  �R�}���h�p�P�b�g���������邽�߂̃X���b�h�̃G���g��
-                �\�P�b�g�\���̂̃����o�[�͊��Ɏ��� SOCL_* �֐��ɂ���ĕύX����
-                �Ă���\�������邽�߁A���̃X���b�h����\�P�b�g�\���̓�����
-                �l�������I�ɂ͎Q�Ƃ��Ă͂Ȃ�Ȃ��D�K�v�Ȓl�̓R�}���h���b�Z�[�W
-                �ɐς�œn�����ƁD�������A���̓�����l�����č��ꂽ�����̏ꍇ
-                ���̌���ł͂Ȃ��D
-                �܂����̃X���b�h�̗D�揇�ʂ� SOCL �֐����Ăяo������������
-                �Ȃ���΂Ȃ�Ȃ��D
+  Description:  コマンドパケットを処理するためのスレッドのエントリ
+                ソケット構造体のメンバーは既に次の SOCL_* 関数によって変更され
+                ている可能性があるため、このスレッドからソケット構造体内部の
+                値を原則的には参照してはならない．必要な値はコマンドメッセージ
+                に積んで渡すこと．ただし、この動作を考慮して作られた処理の場合
+                この限りではない．
+                またこのスレッドの優先順位は SOCL 関数を呼び出す側よりも高く
+                なければならない．
   
-  Arguments:    arg             �҂��󂯃L���[
+  Arguments:    arg             待ち受けキュー
   
-  Returns:      �Ȃ�
+  Returns:      なし
  *---------------------------------------------------------------------------*/
 void SOCLi_CommandPacketHandler(void* arg)
 {
@@ -359,28 +359,28 @@ void SOCLi_CommandPacketHandler(void* arg)
     s32         result;
 
     //
-    //  �R�}���h�����b�Z�[�W�Ƃ��Ď擾���A�w�肳�ꂽ�R�}���h�����s����
-    //  ���b�Z�[�W�Ƃ��� NULL ��������ƏI��
+    //  コマンドをメッセージとして取得し、指定されたコマンドを実行する
+    //  メッセージとして NULL が送られると終了
     //
     while (1)
     {
-        // �����̓r���� OS_KillThread �ŏ����X���b�h����~����\�������邽��
-        // �������b�Z�[�W�𑗂�܂ŃR�}���h�����b�Z�[�W�L���[����O���Ȃ��D
+        // 処理の途中で OS_KillThread で処理スレッドが停止する可能性があるため
+        // 完了メッセージを送るまでコマンドをメッセージキューから外さない．
         (void)OS_ReadMessage(&cpipe->queue, (void*) &command, OS_MESSAGE_BLOCK);
 
         if (command)
         {
-            // �R�[���o�b�N�Ăяo���D
+            // コールバック呼び出し．
             result = command->h.handler(command);
 
-            // �����I���ɂƂ��Ȃ����b�Z�[�W�̕��z�D
-            //   - �L���[����R�}���h����폜
-            //   - ���ʂ��\�P�b�g�\���̂֏����߂�
-            //   - �K�v�Ȃ犮�����b�Z�[�W�𓊂���
-            //   - �R�}���h�p�P�b�g�L���[�փR�}���h��ԋp����
-            // ���̊֘A�����S�Ă��܂Ƃ߂ăA�g�~�b�N�ɂ��Ă���D
-            // �����̃��b�Z�[�W�֘A�����S�Ă� NOBLOCK �łȂ��ƃn���O����\��
-            // ������̂Œ��ӁD
+            // 処理終了にともなうメッセージの分配．
+            //   - キューからコマンドを一つ削除
+            //   - 結果をソケット構造体へ書き戻す
+            //   - 必要なら完了メッセージを投げる
+            //   - コマンドパケットキューへコマンドを返却する
+            // この関連処理全てをまとめてアトミックにしている．
+            // 内部のメッセージ関連処理全てが NOBLOCK でないとハングする可能性
+            // があるので注意．
             enable = OS_DisableInterrupts();
             (void)OS_DisableScheduler();
             (void)OS_ReceiveMessage(&cpipe->queue, (void*)NULL, OS_MESSAGE_NOBLOCK);
@@ -399,8 +399,8 @@ void SOCLi_CommandPacketHandler(void* arg)
             (void)OS_EnableScheduler();
             (void)OS_RestoreInterrupts(enable);
 
-            // ����� OS_ReadMessage() ���ŏ�L�̃��b�Z�[�W���M�����ɂ����
-            // �N���������̗D��x�̍����X���b�h�Ɏ��s�����Ϗ������
+            // 次回の OS_ReadMessage() 内で上記のメッセージ送信処理によって
+            // 起動した他の優先度の高いスレッドに実行権が委譲される
         }
         else
         {

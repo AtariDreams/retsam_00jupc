@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SOC_Close</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">SOC_Close</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
@@ -20,57 +20,57 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 
 <table width="100%">
   <tr>
     <td><code><em><strong>s</strong></em></code></td>
-    <td>�N���[�Y����\�P�b�g�L�q�q�B</td>
+    <td>クローズするソケット記述子。</td>
   </tr>
 </table>
 
-<h2>�Ԃ�l</h2>
+<h2>返り値</h2>
 
 <table width="100%">
   <tr>
     <td>0</td>
-    <td>�����B</td>
+    <td>成功。</td>
   </tr>
   <tr>
     <td><code>SOC_EINPROGRESS</code></td>
-    <td>�N���[�Y�������p�����ł��B</td>
+    <td>クローズ処理が継続中です。</td>
   </tr>
   <tr>
     <td><code>SOC_EINVAL</code></td>
-    <td>�����ȏ����B</td>
+    <td>無効な処理。</td>
   </tr>
   <tr>
     <td><code>SOC_ENETRESET</code></td>
-    <td>�\�P�b�g���C�u����������������Ă��܂���B</td>
+    <td>ソケットライブラリが初期化されていません。</td>
   </tr>
 </table>
 
-<p><strong><em>����</em></strong>�F�ǉ��̃G���[������̃��C�u���������[�X�Ő�������Ԃ���邱�Ƃ�����܂��B���ׂĂ̕��̕Ԃ�l�͔ėp�̃G���[�Ƃ��Ĉ����Ă��������B</p>
+<p><strong><em>注意</em></strong>：追加のエラーが今後のライブラリリリースで生じたり返されることがあります。すべての負の返り値は汎用のエラーとして扱ってください。</p>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p>�\�P�b�g�L�q�q���N���[�Y���܂��B</p>
+<p>ソケット記述子をクローズします。</p>
 
-<p>����ł�<code>SOC_O_NONBLOCK</code>�t���O���ݒ肳��Ă��Ă��A�ݒ肳��Ă��Ȃ��Ă�<code>SOC_Close()</code> �͔񓯊��̃N���[�Y�������s���܂��B</p>
-<p>�\�P�b�g�����S�ɃN���[�Y����A�������̈悪�J�����ꂽ���ǂ������肵�����ꍇ�́A�ēx <code>SOC_Close(s)</code> ���Ăяo���Ă��������B<code>SOC_Close(s)</code> �͍ŏ��ɌĂяo���ꂽ�Ƃ��ɁA�\�P�b�g���N���[�Y������ԂɑJ�ڂ����܂��B���̑J�ڂ����������Ƃ��� 0 ��Ԃ��܂��B�����āA�ēx <code>SOC_Close(s)</code> �̌Ăяo�����Ƃ��ɂ́A���݂̃N���[�Y�����̐i�s��Ԃ�Ԃ��܂��B���̂Ƃ� <code>SOC_EINPROGRESS</code> ���Ԃ�Ȃ�\�P�b�g�̃N���[�Y�������p������\���A�܂� 0 ���Ԃ�Ȃ�N���[�Y�������I�����̈悪�J������Ă��邱�Ƃ��Ӗ����܂��B</p>
-<p>�R�}���h�L���[�ɋ󂫂��Ȃ��ꍇ�̓u���b�N���܂��B</p>
-<p>SOC_SOCK_STREAM(TCP)�̏ꍇ�́A�S�Ẵf�[�^�𑗐M��A���M�X���b�h���I�������܂��B</p>
+<p>現状では<code>SOC_O_NONBLOCK</code>フラグが設定されていても、設定されていなくても<code>SOC_Close()</code> は非同期のクローズ処理を行います。</p>
+<p>ソケットが完全にクローズされ、メモリ領域が開放されたかどうか判定したい場合は、再度 <code>SOC_Close(s)</code> を呼び出してください。<code>SOC_Close(s)</code> は最初に呼び出されたときに、ソケットをクローズ処理状態に遷移させます。この遷移が成功したときに 0 を返します。そして、再度 <code>SOC_Close(s)</code> の呼び出したときには、現在のクローズ処理の進行状態を返します。このとき <code>SOC_EINPROGRESS</code> が返るならソケットのクローズ処理を継続中を表し、また 0 が返るならクローズ処理が終了し領域が開放されていることを意味します。</p>
+<p>コマンドキューに空きがない場合はブロックします。</p>
+<p>SOC_SOCK_STREAM(TCP)の場合は、全てのデータを送信後、送信スレッドを終了させます。</p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 
 <p>
 <code><a href="SOC_Shutdown.html">SOC_Shutdown</a></code>,
 <code><a href="SOC_Fcntl.html">SOC_Fcntl</a></code>
 </p>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2006/05/18 �N���[�Y�����̏I���̊m�F���@<BR>
-2005/12/12 �Ԃ�l�̕ύX<BR>
-2005/09/13 ����</P>
+2006/05/18 クローズ処理の終了の確認方法<BR>
+2005/12/12 返り値の変更<BR>
+2005/09/13 初版</P>
 </body>
 </html>

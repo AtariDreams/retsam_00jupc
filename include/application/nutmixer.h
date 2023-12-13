@@ -1,6 +1,6 @@
 /**
  *	@file	nutmixer.h
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[@ŠO•”ŒöŠJƒwƒbƒ_
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã€€å¤–éƒ¨å…¬é–‹ãƒ˜ãƒƒãƒ€
  *	@author	Miyuki Iwasawa
  *	@date	06.04.06
  */
@@ -18,25 +18,25 @@
 #include "application/pokelist.h"
 #include "savedata/fnote_mem.h"
 
-//ƒ[ƒJƒ‹ƒf[ƒ^ˆøŒp‚¬\‘¢‘Ì
+//ãƒ­ãƒ¼ã‚«ãƒ«ãƒ‡ãƒ¼ã‚¿å¼•ç¶™ãæ§‹é€ ä½“
 typedef struct _NUTMIXER_PARAM{
-	int	ret_val;	///<•Ô‚è’l
-	int	sys_mode;	///<ƒVƒXƒeƒ€“®ìƒ‚[ƒh	’ÊM‚©‚Pl—p‚©
+	int	ret_val;	///<è¿”ã‚Šå€¤
+	int	sys_mode;	///<ã‚·ã‚¹ãƒ†ãƒ å‹•ä½œãƒ¢ãƒ¼ãƒ‰	é€šä¿¡ã‹ï¼‘äººç”¨ã‹
 
-	PORUTO_BLOCK* poruSave;	///<ƒ|ƒ‹ƒgƒZ[ƒuƒf[ƒ^
+	PORUTO_BLOCK* poruSave;	///<ãƒãƒ«ãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 	
-	SAVEDATA*	SaveData;	///<ƒZ[ƒuƒf[ƒ^
+	SAVEDATA*	SaveData;	///<ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 	
-	MYSTATUS	*mySave;	///<ƒXƒe[ƒ^ƒX
-	MYITEM		*itemSave;	///<ƒAƒCƒeƒ€
-	CONFIG		*configSave;	///<ƒRƒ“ƒtƒBƒO
-	FNOTE_DATA * fnote;		///<–`Œ¯ƒm[ƒg
+	MYSTATUS	*mySave;	///<ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	MYITEM		*itemSave;	///<ã‚¢ã‚¤ãƒ†ãƒ 
+	CONFIG		*configSave;	///<ã‚³ãƒ³ãƒ•ã‚£ã‚°
+	FNOTE_DATA * fnote;		///<å†’é™ºãƒãƒ¼ãƒˆ
 
-	BOOL wifi_pofin;	///< wifiƒ|ƒtƒBƒ“‚©
-	BOOL wifi_vchat;	///< wifiVCHATƒtƒ‰ƒO
+	BOOL wifi_pofin;	///< wifiãƒãƒ•ã‚£ãƒ³ã‹
+	BOOL wifi_vchat;	///< wifiVCHATãƒ•ãƒ©ã‚°
 }NUTMIXER_PARAM;
 
-///ƒI[ƒo[ƒŒƒCƒvƒƒZƒX
+///ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚»ã‚¹
 extern PROC_RESULT NutMixerProc_Init( PROC *proc,int *seq);
 extern PROC_RESULT NutMixerProc_Main( PROC *proc,int *seq);
 extern PROC_RESULT NutMixerProc_End( PROC *proc,int *seq);

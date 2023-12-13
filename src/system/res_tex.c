@@ -5,7 +5,7 @@
 #include "vram_transfer_manager.h"
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 u32 GetTexPaletteSize(const NNSG3dResTex* inResTex, const NNSG3dResName *inResName);
 u32 GetTexSize(const NNSG3dResTex* inResTex, const NNSG3dResName *inResName);
@@ -14,12 +14,12 @@ u32 GetResTexAdr(const NNSG3dResTex* inResTex, const char *inName, void *outAdr)
 
 //==============================================================================
 /**
- * ƒpƒŒƒbƒgƒŠƒ\[ƒX–¼”äŠr
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹åæ¯”è¼ƒ
  *
  * @param   const NNSG3dResName* inName
  * @oaram	const char * inTargetName
  *
- * @retval  BOOL		TRUE:ˆê’v@FALSE:•sˆê’v
+ * @retval  BOOL		TRUE:ä¸€è‡´ã€€FALSE:ä¸ä¸€è‡´
  */
 //==============================================================================
 BOOL CmpPaletteName(const NNSG3dResName* inName,const char * inTargetName)
@@ -39,7 +39,7 @@ BOOL CmpPaletteName(const NNSG3dResName* inName,const char * inTargetName)
 
 //==============================================================================
 /**
- * w’èƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒTƒCƒY‚Ìæ“¾
+ * æŒ‡å®šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚ºã®å–å¾—
  *
  * @param   const NNSG3dResTex* inResTex
  * @oaram	const NNSG3dResName *inResName
@@ -57,30 +57,30 @@ u32 GetTexPaletteSize(const NNSG3dResTex* inResTex, const NNSG3dResName *inResNa
 	size = 0;
 	
 	if (plttData){
-		//ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX“à‚ÌƒpƒŒƒbƒgƒGƒ“ƒgƒŠ”‚ğæ“¾
+		//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¨ãƒ³ãƒˆãƒªæ•°ã‚’å–å¾—
 		dict = (NNSG3dResDict*)((u8*)inResTex + inResTex->plttInfo.ofsDict);
 
-		//ƒpƒŒƒbƒg–¼‚©‚çƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+		//ãƒ‘ãƒ¬ãƒƒãƒˆåã‹ã‚‰ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 		idx = NNS_G3dGetPlttIdxByName(inResTex, inResName);
 		
-		//“]‘—ƒTƒCƒY‚ğŒvZ(if•ªŠò‚Å‚Ìsize‚ÍAÀÛ‚ÌƒTƒCƒY‚ğ3ƒrƒbƒg‰EƒVƒtƒg‚µ‚½’l)
-		//4colors‚È‚ç“]‘—ƒTƒCƒY‚Í4F•ªi8ƒoƒCƒgj‚Å‚¢‚¢
+		//è»¢é€ã‚µã‚¤ã‚ºã‚’è¨ˆç®—(ifåˆ†å²ã§ã®sizeã¯ã€å®Ÿéš›ã®ã‚µã‚¤ã‚ºã‚’3ãƒ“ãƒƒãƒˆå³ã‚·ãƒ•ãƒˆã—ãŸå€¤)
+		//4colorsãªã‚‰è»¢é€ã‚µã‚¤ã‚ºã¯4è‰²åˆ†ï¼ˆ8ãƒã‚¤ãƒˆï¼‰ã§ã„ã„
 		if (plttData->flag & 1){
 			size = 1;
 		}
-		//Œ»İƒGƒ“ƒgƒŠ‚ªÅŒã‚Ìê‡‚ÍƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXî•ñ‚ª‚Â
-		//‘ƒpƒŒƒbƒgƒTƒCƒY‚ÆŒ»İ‚ÌŠJnƒAƒhƒŒƒX‚Æ‚Ì·•ª‚ÅZo
+		//ç¾åœ¨ã‚¨ãƒ³ãƒˆãƒªãŒæœ€å¾Œã®å ´åˆã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹æƒ…å ±ãŒæŒã¤
+		//ç·ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚ºã¨ç¾åœ¨ã®é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã®å·®åˆ†ã§ç®—å‡º
 		else if (idx == dict->numEntry-1){
 			size = inResTex->plttInfo.sizePltt - plttData->offset;
 		}
 		else{
-			//Ÿ‚ÌƒpƒŒƒbƒgƒGƒ“ƒgƒŠ‚ÌŠJnƒAƒhƒŒƒX‚ğæ“¾
+			//æ¬¡ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¨ãƒ³ãƒˆãƒªã®é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 			const NNSG3dResDictPlttData* next_plttData = NNS_G3dGetPlttDataByIdx(inResTex, idx+1);
-			// ƒeƒNƒXƒ`ƒƒƒuƒƒbƒN‚©‚çƒpƒŒƒbƒg–¼‚É‘Î‰‚·‚éƒf[ƒ^ƒtƒB[ƒ‹ƒh‚ğ“¾‚é
-			//·•ª‚©‚çƒTƒCƒY‚ğŒvZ
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ–ãƒ­ãƒƒã‚¯ã‹ã‚‰ãƒ‘ãƒ¬ãƒƒãƒˆåã«å¯¾å¿œã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’å¾—ã‚‹
+			//å·®åˆ†ã‹ã‚‰ã‚µã‚¤ã‚ºã‚’è¨ˆç®—
 			size = next_plttData->offset - plttData->offset;
 		}
-		//3ƒrƒbƒg¶ƒVƒtƒg‚µ‚½’l‚ªÀÛ‚ÌƒTƒCƒY‚É‚È‚é
+		//3ãƒ“ãƒƒãƒˆå·¦ã‚·ãƒ•ãƒˆã—ãŸå€¤ãŒå®Ÿéš›ã®ã‚µã‚¤ã‚ºã«ãªã‚‹
 		size = (size<<3);
 	}
 	return size;
@@ -88,7 +88,7 @@ u32 GetTexPaletteSize(const NNSG3dResTex* inResTex, const NNSG3dResName *inResNa
 
 //==============================================================================
 /**
- * w’èƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒg‚Ì•ÏX
+ * æŒ‡å®šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã®å¤‰æ›´
  *
  * @param	const NNSG3dResTex* inResTex
  * @param   const char * inStr
@@ -105,34 +105,34 @@ void ChangeTexPalette(const NNSG3dResTex* inResTex, const char * inStr, u16* inP
     u32 i;
     BOOL result = TRUE;
 	
-	//–¼‘OƒZƒbƒg
+	//åå‰ã‚»ãƒƒãƒˆ
 	SetResName(&res_name,inStr);
     
-	//ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX“à‚ÌƒpƒŒƒbƒgƒGƒ“ƒgƒŠ”‚ğæ“¾
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¨ãƒ³ãƒˆãƒªæ•°ã‚’å–å¾—
     dict = (NNSG3dResDict*)((u8*)inResTex + inResTex->plttInfo.ofsDict);
 	
     for (i = 0; i < dict->numEntry; ++i)
     {
-	    // ƒeƒNƒXƒ`ƒƒƒuƒƒbƒN‚©‚çƒpƒŒƒbƒg–¼‚É‘Î‰‚·‚éƒf[ƒ^ƒtƒB[ƒ‹ƒh‚ğ“¾‚é
+	    // ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ–ãƒ­ãƒƒã‚¯ã‹ã‚‰ãƒ‘ãƒ¬ãƒƒãƒˆåã«å¯¾å¿œã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’å¾—ã‚‹
 	    const NNSG3dResDictPlttData* plttData = NNS_G3dGetPlttDataByName(inResTex, &res_name);
 		if (plttData){
-			//ƒpƒŒƒbƒg–¼‚ª‘¶İ
-			if (inResTex->plttInfo.flag & NNS_G3D_RESPLTT_LOADED){//VRAM‚Éƒ[ƒh‚³‚ê‚Ä‚¢‚½‚ç“]‘—‚ğÀs
+			//ãƒ‘ãƒ¬ãƒƒãƒˆåãŒå­˜åœ¨
+			if (inResTex->plttInfo.flag & NNS_G3D_RESPLTT_LOADED){//VRAMã«ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¦ã„ãŸã‚‰è»¢é€ã‚’å®Ÿè¡Œ
 	        
 				u16 plttBase = plttData->offset;
 				u16 vramOffset = (u16)(inResTex->plttInfo.vramKey & 0xffff);
 			
 				adr = (u16)(plttBase + vramOffset);
 			
-				//“]‘—ƒTƒCƒY‚ğŒvZ
+				//è»¢é€ã‚µã‚¤ã‚ºã‚’è¨ˆç®—
 				size = GetTexPaletteSize(inResTex, &res_name);
 			
-				//VRAM“]‘—ƒŠƒNƒGƒXƒg
+				//VRAMè»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 				AddVramTransferManager(
-						NNS_GFD_DST_3D_TEX_PLTT,									// ƒpƒŒƒbƒg‚ğ“]‘—
-						NNS_GfdGetPlttKeyAddr( adr ),	// “]‘—æ
-						(void*)inPalette,														// “]‘—ƒf[ƒ^
-						size	// “]‘—ƒTƒCƒY
+						NNS_GFD_DST_3D_TEX_PLTT,									// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’è»¢é€
+						NNS_GfdGetPlttKeyAddr( adr ),	// è»¢é€å…ˆ
+						(void*)inPalette,														// è»¢é€ãƒ‡ãƒ¼ã‚¿
+						size	// è»¢é€ã‚µã‚¤ã‚º
 						);
 				return;
 			}
@@ -143,7 +143,7 @@ void ChangeTexPalette(const NNSG3dResTex* inResTex, const char * inStr, u16* inP
 
 //==============================================================================
 /**
- * w’èƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒg‚Ìæ“¾@“à•”‚Åƒƒ‚ƒŠŠm•Û‚µ‚Ä‚¢‚é
+ * æŒ‡å®šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã®å–å¾—ã€€å†…éƒ¨ã§ãƒ¡ãƒ¢ãƒªç¢ºä¿ã—ã¦ã„ã‚‹
  *
  * @param   const NNSG3dResTex* inResTex
  *
@@ -164,25 +164,25 @@ u16* GetTexPalette(const NNSG3dResTex* inResTex, const char *inName, const int i
 	NNSG3dResDict* dict;
     NNS_G3D_NULL_ASSERT(inResTex);
 
-	//–¼‘OƒZƒbƒg
+	//åå‰ã‚»ãƒƒãƒˆ
 	SetResName(&res_name,inName);
-	//ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX“à‚ÌƒpƒŒƒbƒgƒGƒ“ƒgƒŠ”‚ğæ“¾
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¨ãƒ³ãƒˆãƒªæ•°ã‚’å–å¾—
     dict = (NNSG3dResDict*)((u8*)inResTex + inResTex->plttInfo.ofsDict);
 	entry = dict->numEntry;
 
-	// ƒeƒNƒXƒ`ƒƒƒuƒƒbƒN‚©‚çƒpƒŒƒbƒg–¼‚É‘Î‰‚·‚éƒf[ƒ^ƒtƒB[ƒ‹ƒh‚ğ“¾‚é
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ–ãƒ­ãƒƒã‚¯ã‹ã‚‰ãƒ‘ãƒ¬ãƒƒãƒˆåã«å¯¾å¿œã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’å¾—ã‚‹
 	plttData = NNS_G3dGetPlttDataByName(inResTex, &res_name);
 	if (plttData){
-		//ƒpƒŒƒbƒg–¼‚©‚çƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+		//ãƒ‘ãƒ¬ãƒƒãƒˆåã‹ã‚‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 		idx = NNS_G3dGetPlttIdxByName(inResTex,&res_name);
 		if (idx < entry){
-			//ƒTƒCƒYæ“¾
+			//ã‚µã‚¤ã‚ºå–å¾—
 			size = GetTexPaletteSize(inResTex,&res_name);
-			//size•ªƒƒ‚ƒŠŠm•Û
+			//sizeåˆ†ãƒ¡ãƒ¢ãƒªç¢ºä¿
 			palette = sys_AllocMemory( inHeapID, size );
-			//ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒf[ƒ^
+			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 			data = (u8*)inResTex + inResTex->plttInfo.ofsPlttData;
-			//ƒf[ƒ^‚ğƒRƒs[
+			//ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 			MI_CpuCopy16(data,palette,size);
 			return palette;
 		}
@@ -192,15 +192,15 @@ u16* GetTexPalette(const NNSG3dResTex* inResTex, const char *inName, const int i
 
 //==============================================================================
 /**
- * w’èƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒg‚ÌVRAMƒAƒhƒŒƒX‚ÆƒTƒCƒY‚ğæ“¾
+ * æŒ‡å®šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã®VRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
  * @param   const NNSG3dResTex* inResTex
  *
  * @param   const char *inName
  *
- * @param	void *outAdr				æ“¾‚µ‚½‚u‚q‚`‚lƒAƒhƒŒƒX
+ * @param	void *outAdr				å–å¾—ã—ãŸï¼¶ï¼²ï¼¡ï¼­ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * @retval  u32							ƒpƒŒƒbƒgƒTƒCƒY
+ * @retval  u32							ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚º
  */
 //==============================================================================
 u32 GetTexPaletteAdr(const NNSG3dResTex* inResTex, const char *inName, void *outAdr)
@@ -213,26 +213,26 @@ u32 GetTexPaletteAdr(const NNSG3dResTex* inResTex, const char *inName, void *out
     BOOL result = TRUE;
 	
 	size = 0;
-	//–¼‘OƒZƒbƒg
+	//åå‰ã‚»ãƒƒãƒˆ
 	SetResName(&res_name,inName);
     
-	//ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX“à‚ÌƒpƒŒƒbƒgƒGƒ“ƒgƒŠ”‚ğæ“¾
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¨ãƒ³ãƒˆãƒªæ•°ã‚’å–å¾—
     dict = (NNSG3dResDict*)((u8*)inResTex + inResTex->plttInfo.ofsDict);
 	
     for (i = 0; i < dict->numEntry; ++i)
     {
-	    // ƒeƒNƒXƒ`ƒƒƒuƒƒbƒN‚©‚çƒpƒŒƒbƒg–¼‚É‘Î‰‚·‚éƒf[ƒ^ƒtƒB[ƒ‹ƒh‚ğ“¾‚é
+	    // ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ–ãƒ­ãƒƒã‚¯ã‹ã‚‰ãƒ‘ãƒ¬ãƒƒãƒˆåã«å¯¾å¿œã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’å¾—ã‚‹
 	    const NNSG3dResDictPlttData* plttData = NNS_G3dGetPlttDataByName(inResTex, &res_name);
 		if (plttData){
-			//ƒpƒŒƒbƒg–¼‚ª‘¶İ
-			if (inResTex->plttInfo.flag & NNS_G3D_RESPLTT_LOADED){//VRAM‚Éƒ[ƒh‚³‚ê‚Ä‚¢‚½‚çæ“¾
+			//ãƒ‘ãƒ¬ãƒƒãƒˆåãŒå­˜åœ¨
+			if (inResTex->plttInfo.flag & NNS_G3D_RESPLTT_LOADED){//VRAMã«ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¦ã„ãŸã‚‰å–å¾—
 	        
 				u16 plttBase = plttData->offset;
 				u16 vramOffset = (u16)(inResTex->plttInfo.vramKey & 0xffff);
 			
 				adr = (u16)(plttBase + vramOffset);
 			
-				//ƒTƒCƒY‚ğŒvZ
+				//ã‚µã‚¤ã‚ºã‚’è¨ˆç®—
 				size = GetTexPaletteSize(inResTex, &res_name);
 			
 				outAdr = (void*)adr;
@@ -246,7 +246,7 @@ u32 GetTexPaletteAdr(const NNSG3dResTex* inResTex, const char *inName, void *out
 
 //==============================================================================
 /**
- * w’èƒeƒNƒXƒ`ƒƒƒTƒCƒY‚Ìæ“¾
+ * æŒ‡å®šãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚ºã®å–å¾—
  *
  * @param   const NNSG3dResTex* inResTex
  * @oaram	const NNSG3dResName *inResName
@@ -264,33 +264,33 @@ u32 GetTexSize(const NNSG3dResTex* inResTex, const NNSG3dResName *inResName)
 	size = 0;
 	
 	if (texData){
-		//ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX“à‚ÌƒeƒNƒXƒ`ƒƒƒGƒ“ƒgƒŠ”‚ğæ“¾
+		//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¨ãƒ³ãƒˆãƒªæ•°ã‚’å–å¾—
 		dict = (NNSG3dResDict*)((u8*)inResTex + inResTex->texInfo.ofsDict);
 
-		//ƒpƒŒƒbƒg–¼‚©‚çƒpƒŒƒbƒgƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+		//ãƒ‘ãƒ¬ãƒƒãƒˆåã‹ã‚‰ãƒ‘ãƒ¬ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 		idx = NNS_G3dGetTexIdxByName(inResTex, inResName);
 		
-		//“]‘—ƒTƒCƒY‚ğŒvZ(if•ªŠò‚Å‚Ìsize‚ÍAÀÛ‚ÌƒTƒCƒY‚ğ3ƒrƒbƒg‰EƒVƒtƒg‚µ‚½’l)
-		//Œ»İƒGƒ“ƒgƒŠ‚ªÅŒã‚Ìê‡‚ÍƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXî•ñ‚ª‚Â
-		//‘ƒpƒŒƒbƒgƒTƒCƒY‚ÆŒ»İ‚ÌŠJnƒAƒhƒŒƒX‚Æ‚Ì·•ª‚ÅZo
+		//è»¢é€ã‚µã‚¤ã‚ºã‚’è¨ˆç®—(ifåˆ†å²ã§ã®sizeã¯ã€å®Ÿéš›ã®ã‚µã‚¤ã‚ºã‚’3ãƒ“ãƒƒãƒˆå³ã‚·ãƒ•ãƒˆã—ãŸå€¤)
+		//ç¾åœ¨ã‚¨ãƒ³ãƒˆãƒªãŒæœ€å¾Œã®å ´åˆã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹æƒ…å ±ãŒæŒã¤
+		//ç·ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚ºã¨ç¾åœ¨ã®é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã®å·®åˆ†ã§ç®—å‡º
 		if (idx == dict->numEntry-1){
 			size = inResTex->texInfo.sizeTex - (texData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK);
 		}
 		else{
-			//Ÿ‚ÌƒpƒŒƒbƒgƒGƒ“ƒgƒŠ‚ÌŠJnƒAƒhƒŒƒX‚ğæ“¾
+			//æ¬¡ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¨ãƒ³ãƒˆãƒªã®é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 			const NNSG3dResDictTexData* next_texData = NNS_G3dGetTexDataByIdx(inResTex, idx+1);
-			// ƒeƒNƒXƒ`ƒƒƒuƒƒbƒN‚©‚çƒpƒŒƒbƒg–¼‚É‘Î‰‚·‚éƒf[ƒ^ƒtƒB[ƒ‹ƒh‚ğ“¾‚é
-			//·•ª‚©‚çƒTƒCƒY‚ğŒvZ
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ–ãƒ­ãƒƒã‚¯ã‹ã‚‰ãƒ‘ãƒ¬ãƒƒãƒˆåã«å¯¾å¿œã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’å¾—ã‚‹
+			//å·®åˆ†ã‹ã‚‰ã‚µã‚¤ã‚ºã‚’è¨ˆç®—
 			size = (next_texData->texImageParam&NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK) - (texData->texImageParam&NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK);
 		}
-		//3ƒrƒbƒg¶ƒVƒtƒg‚µ‚½’l‚ªÀÛ‚ÌƒTƒCƒY‚É‚È‚é
+		//3ãƒ“ãƒƒãƒˆå·¦ã‚·ãƒ•ãƒˆã—ãŸå€¤ãŒå®Ÿéš›ã®ã‚µã‚¤ã‚ºã«ãªã‚‹
 		size = (size<<3);
 	}
 	return size;
 }
 
 
-//ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚©‚çw’èƒeƒNƒXƒ`ƒƒ–¼‚ÌƒeƒNƒXƒ`ƒƒ‚Ì‚u‚q‚`‚lƒAƒhƒŒƒX‚ÆƒTƒCƒY‚ğæ“¾
+//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰æŒ‡å®šãƒ†ã‚¯ã‚¹ãƒãƒ£åã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ï¼¶ï¼²ï¼¡ï¼­ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã‚µã‚¤ã‚ºã‚’å–å¾—
 u32 GetResTexAdr(const NNSG3dResTex* inResTex, const char *inName, void *outAdr)
 {
 	NNSG3dResName res_name;
@@ -301,26 +301,26 @@ u32 GetResTexAdr(const NNSG3dResTex* inResTex, const char *inName, void *outAdr)
     BOOL result = TRUE;
 	
 	size = 0;
-	//–¼‘OƒZƒbƒg
+	//åå‰ã‚»ãƒƒãƒˆ
 	SetResName(&res_name,inName);
     
-	//ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX“à‚ÌƒpƒŒƒbƒgƒGƒ“ƒgƒŠ”‚ğæ“¾
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹å†…ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚¨ãƒ³ãƒˆãƒªæ•°ã‚’å–å¾—
     dict = (NNSG3dResDict*)((u8*)inResTex + inResTex->texInfo.ofsDict);
 	
     for (i = 0; i < dict->numEntry; ++i)
     {
-	    // ƒeƒNƒXƒ`ƒƒƒuƒƒbƒN‚©‚çƒpƒŒƒbƒg–¼‚É‘Î‰‚·‚éƒf[ƒ^ƒtƒB[ƒ‹ƒh‚ğ“¾‚é
+	    // ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ–ãƒ­ãƒƒã‚¯ã‹ã‚‰ãƒ‘ãƒ¬ãƒƒãƒˆåã«å¯¾å¿œã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’å¾—ã‚‹
 	    const NNSG3dResDictTexData* texData = NNS_G3dGetTexDataByName(inResTex, &res_name);
 		if (texData){
-			//ƒeƒNƒXƒ`ƒƒ–¼‚ª‘¶İ
-			if (inResTex->texInfo.flag & NNS_G3D_RESTEX_LOADED){//VRAM‚Éƒ[ƒh‚³‚ê‚Ä‚¢‚½‚çæ“¾
+			//ãƒ†ã‚¯ã‚¹ãƒãƒ£åãŒå­˜åœ¨
+			if (inResTex->texInfo.flag & NNS_G3D_RESTEX_LOADED){//VRAMã«ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¦ã„ãŸã‚‰å–å¾—
 	        
 				u16 texBase = (texData->texImageParam & NNS_G3D_TEXIMAGE_PARAM_TEX_ADDR_MASK);
 				u16 vramOffset = (u16)(inResTex->texInfo.vramKey & 0xffff);
 			
 				adr = (u16)(texBase + vramOffset);
 			
-				//ƒTƒCƒY‚ğŒvZ
+				//ã‚µã‚¤ã‚ºã‚’è¨ˆç®—
 				size = GetTexSize(inResTex, &res_name);
 			
 				outAdr = (void*)adr;

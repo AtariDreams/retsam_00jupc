@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FS_LoadTable</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FS_LoadTable</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,53 +22,53 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>p_mem</STRONG></EM></TD>
-      <TD width="87%">�e�[�u���̂��߂Ƀ��[�U���p�ӂ��郁�����ւ̃|�C���^</TD>
+      <TD width="87%">テーブルのためにユーザが用意するメモリへのポインタ</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>size</STRONG></EM></TD>
-      <TD width="87%">�������̃o�C�g�T�C�Y</TD>
+      <TD width="87%">メモリのバイトサイズ</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�e�[�u���̃��[�h�ɐ�������� TRUE ���A�����łȂ��Ȃ� FALSE ��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>テーブルのロードに成功すれば TRUE を、そうでないなら FALSE を返します。</p>
 
-<H2>����</H2>
-<P>�t�@�C���V�X�e�������ŕp�ɂɃA�N�Z�X�����e��e�[�u���̃f�[�^��<BR>
-�O�����ă������ɂ��ׂă��[�h���A�A�N�Z�X�����̌����}��܂��B<BR>
+<H2>説明</H2>
+<P>ファイルシステム内部で頻繁にアクセスされる各種テーブルのデータを<BR>
+前もってメモリにすべてロードし、アクセス効率の向上を図ります。<BR>
 
 <BR>
-�w�肵���������T�C�Y���e�[�u�����i�[����̂ɏ[���ł���΁A<BR>
-�e��e�[�u���̃f�[�^���������ɓǂݍ��݂܂��B<BR>
-���̃������͈ȍ~�̃t�@�C���A�N�Z�X�œ����I�Ɏg�p�����̂ŁA<BR>
-���[�U�͂�����g�p���邱�Ƃ��ł��Ȃ��Ȃ�܂��B<BR>
+指定したメモリサイズがテーブルを格納するのに充分であれば、<BR>
+各種テーブルのデータをメモリに読み込みます。<BR>
+このメモリは以降のファイルアクセスで内部的に使用されるので、<BR>
+ユーザはこれを使用することができなくなります。<BR>
 <BR>
-�w�肵���������T�C�Y���[���łȂ��ꍇ�́A�����s���܂���B<BR>
-���̏ꍇ�A�w�肵���������͎g��ꂸ�Ƀ��[�U�֕Ԃ���܂��B<BR>
+指定したメモリサイズが充分でない場合は、何も行いません。<BR>
+この場合、指定したメモリは使われずにユーザへ返されます。<BR>
 <BR>
-�e�[�u���ɑ΂��ď[���ȃ������T�C�Y�́A<A href="FS_GetTableSize.html">FS_GetTableSize</A>�֐��Ŏ擾���邱�Ƃ��ł��܂��B<BR>
+テーブルに対して充分なメモリサイズは、<A href="FS_GetTableSize.html">FS_GetTableSize</A>関数で取得することができます。<BR>
 <BR>
 </P>
-<H2>����</H2>
+<H2>注意</H2>
 <p><font color="#800000">
-���̊֐������荞�݃n���h��(IRQ���[�h)����Ăяo�����Ƃ͂ł��܂���B<br>
-�܂��A���荞�݂��֎~�����܂܂̏�Ԃɂ���Ə������������Ȃ��ꍇ������_�ɒ��ӂ��ĉ������B<br>
+この関数を割り込みハンドラ(IRQモード)から呼び出すことはできません。<br>
+また、割り込みを禁止したままの状態にあると処理が完了しない場合がある点に注意して下さい。<br>
 </font></p>
-<BR><h2>�Q��</h2>
+<BR><h2>参照</h2>
 <p><CODE>
 <A href="FS_GetTableSize.html">FS_GetTableSize</A> 
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/09/24 �Ăяo��������ъ����̏����ɂ��Ă̒��ӂ��L�q�ǉ�<br>
-2004/04/22 ����
+2004/09/24 呼び出し時および完了の条件についての注意を記述追加<br>
+2004/04/22 初版
 </P>
 </body>
 </html>

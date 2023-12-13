@@ -26,7 +26,7 @@
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÌSRT‚ª‘S‚Ä0‚âIdentityˆÈŠO‚Éİ’è‚³‚ê‚Ä‚¢‚éê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã®SRTãŒå…¨ã¦0ã‚„Identityä»¥å¤–ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹å ´åˆ
 //
 static void
 texmtxCalc_flag_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -65,7 +65,7 @@ texmtxCalc_flag_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÉScale‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢ê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã«ScaleãŒã‹ã‹ã£ã¦ã„ãªã„å ´åˆ
 //
 static void
 texmtxCalc_flagS_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -94,7 +94,7 @@ texmtxCalc_flagS_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÉRotation‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢ê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã«RotationãŒã‹ã‹ã£ã¦ã„ãªã„å ´åˆ
 //
 static void
 texmtxCalc_flagR_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -117,7 +117,7 @@ texmtxCalc_flagR_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÉRotation‚ÆScale‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢ê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã«Rotationã¨ScaleãŒã‹ã‹ã£ã¦ã„ãªã„å ´åˆ
 //
 static void
 texmtxCalc_flagRS_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -140,7 +140,7 @@ texmtxCalc_flagRS_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÉTranslation‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢ê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã«TranslationãŒã‹ã‹ã£ã¦ã„ãªã„å ´åˆ
 //
 static void
 texmtxCalc_flagT_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -172,7 +172,7 @@ texmtxCalc_flagT_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÉTranslation‚ÆScale‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢ê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã«Translationã¨ScaleãŒã‹ã‹ã£ã¦ã„ãªã„å ´åˆ
 //
 static void
 texmtxCalc_flagTS_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -197,7 +197,7 @@ texmtxCalc_flagTS_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ÉTranslation‚ÆRotation‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢ê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã«Translationã¨RotationãŒã‹ã‹ã£ã¦ã„ãªã„å ´åˆ
 //
 static void
 texmtxCalc_flagTR_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
@@ -215,7 +215,7 @@ texmtxCalc_flagTR_(MtxFx44* m, const NNSG3dMatAnmResult* anm)
 
 
 //
-// ƒeƒNƒXƒ`ƒƒs—ñ‚ª’PˆÊs—ñ‚Ìê‡
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ãŒå˜ä½è¡Œåˆ—ã®å ´åˆ
 //
 static void
 texmtxCalc_flagTRS_(MtxFx44* m, const NNSG3dMatAnmResult*)
@@ -246,7 +246,7 @@ static void
 /*---------------------------------------------------------------------------*
     NNSi_G3dSendTexSRTXsi
 
-    XSI‚Åì¬‚³‚ê‚½ƒ‚ƒfƒ‹ƒf[ƒ^‚ÌƒeƒNƒXƒ`ƒƒs—ñ‚ğİ’è‚µ‚Ü‚·B
+    XSIã§ä½œæˆã•ã‚ŒãŸãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£è¡Œåˆ—ã‚’è¨­å®šã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 void NNSi_G3dSendTexSRTXsi(const NNSG3dMatAnmResult* anm)
 {

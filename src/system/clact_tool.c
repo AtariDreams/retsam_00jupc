@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	clact_tool.c
- * @brief	clactãˆÊŠÖ”ŒQ
+ * @brief	clactä¸Šä½é–¢æ•°ç¾¤
  * @author	goto
- * @date	2005.09.12(Œ)
+ * @date	2005.09.12(æœˆ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -20,35 +20,35 @@
 
 //
 //
-//	ŒŸõ—pƒ[ƒh
+//	æ¤œç´¢ç”¨ãƒ¯ãƒ¼ãƒ‰
 //
-//	[ CATS_SINGLE ]		’P‘Ì“o˜^ŠÖ”ŒS
+//	[ CATS_SINGLE ]		å˜ä½“ç™»éŒ²é–¢æ•°éƒ¡
 //
-//	[ ACTOR_TOOL ]		ƒAƒNƒ^[‘€ìŒnƒc[ƒ‹
+//	[ ACTOR_TOOL ]		ã‚¢ã‚¯ã‚¿ãƒ¼æ“ä½œç³»ãƒ„ãƒ¼ãƒ«
 //
 //
 //
 //
 
 
-//	¡V‚µ‚¢
+//	â– æ–°ã—ã„
 
 // -----------------------------------------
 //
-//	¡CLACT‚ÌƒVƒXƒeƒ€–{‘Ì(ƒAƒvƒŠ‚É‚PŒÂ—pˆÓ‚³‚ê‚é‚à‚Ì)
+//	â– CLACTã®ã‚·ã‚¹ãƒ†ãƒ æœ¬ä½“(ã‚¢ãƒ—ãƒªã«ï¼‘å€‹ç”¨æ„ã•ã‚Œã‚‹ã‚‚ã®)
 //
 // -----------------------------------------
 typedef struct _TCATS_SYSTEM {
 	
-	int							heap_area;			///< ƒq[ƒv—Ìˆæ
+	int							heap_area;			///< ãƒ’ãƒ¼ãƒ—é ˜åŸŸ
 	
-	int							resource_num;		///< ƒVƒXƒeƒ€‚ªŠÇ—‚µ‚Ä‚¢‚éƒŠƒ\[ƒX‚Ì”
+	int							resource_num;		///< ã‚·ã‚¹ãƒ†ãƒ ãŒç®¡ç†ã—ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã®æ•°
 	
-	int							render_use;			///< ƒŒƒ“ƒ_[‚ğg‚¤‚©
+	int							render_use;			///< ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚’ä½¿ã†ã‹
 	
-	NNSG2dCellTransferState*	cellTransArray;		///< ƒZƒ‹Vram“]‘—ƒ}ƒl[ƒWƒƒ[—Ìˆæ
+	NNSG2dCellTransferState*	cellTransArray;		///< ã‚»ãƒ«Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼é ˜åŸŸ
 	
-	CLACT_U_EASYRENDER_DATA		renddata;			///< ƒŒƒ“ƒ_ƒ‰[ƒf[ƒ^
+	CLACT_U_EASYRENDER_DATA		renddata;			///< ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿
 	
 } TCATS_SYSTEM;
 
@@ -56,20 +56,20 @@ typedef struct _TCATS_SYSTEM {
 
 // -----------------------------------------
 //
-//	¡’PˆÊ“o˜^—p\‘¢‘Ì(ƒGƒtƒFƒNƒg‚P‚Â‚É‚PŒÂ—pˆÓ‚³‚ê‚é‚à‚Ì)
+//	â– å˜ä½ç™»éŒ²ç”¨æ§‹é€ ä½“(ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼‘ã¤ã«ï¼‘å€‹ç”¨æ„ã•ã‚Œã‚‹ã‚‚ã®)
 //
 // -----------------------------------------
 typedef struct _TCATS_RESOURCE {
 
-	CLACT_SET_PTR				ca_sp;						///< ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_HEADER_TBL_PTR		ca_htp;						///< ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
-	CLACT_U_RES_HEADER_PTR		resHeader;					///< ƒŠƒ\[ƒXƒwƒbƒ_[
+	CLACT_SET_PTR				ca_sp;						///< ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_HEADER_TBL_PTR		ca_htp;						///< ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_U_RES_HEADER_PTR		resHeader;					///< ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
 
-	CLACT_U_RES_MANAGER_PTR		resManager[CLACT_U_RES_MAX];///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[
-	CLACT_U_RES_OBJ_TBL*		resObjTbl[CLACT_U_RES_MAX];	///< ƒŠƒ\[ƒXƒe[ƒuƒ‹(í—Ş•ª)
+	CLACT_U_RES_MANAGER_PTR		resManager[CLACT_U_RES_MAX];///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	CLACT_U_RES_OBJ_TBL*		resObjTbl[CLACT_U_RES_MAX];	///< ãƒªã‚½ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«(ç¨®é¡åˆ†)
 
-	int							resObjNum[CLACT_U_RES_MAX];	///< ƒŠƒ\[ƒXŠÇ—”
-	int							resTypeNum;					///< ƒŠƒ\[ƒX”(4or6)
+	int							resObjNum[CLACT_U_RES_MAX];	///< ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†æ•°
+	int							resTypeNum;					///< ãƒªã‚½ãƒ¼ã‚¹æ•°(4or6)
 	
 } TCATS_RESOURCE;
 
@@ -77,7 +77,7 @@ typedef struct _TCATS_RESOURCE {
 // =============================================================================
 //
 //
-//	¡ƒvƒƒgƒ^ƒCƒv
+//	â– ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //
 //
 // =============================================================================
@@ -86,24 +86,24 @@ typedef struct _TCATS_RESOURCE {
 // =============================================================================
 //
 //
-//	¡ŠO•”QÆ
+//	â– å¤–éƒ¨å‚ç…§
 //
 //
 // =============================================================================
 // =============================================================================
 //
 //
-//	¡‹¤’ÊŠÖ” ’P‘Ì“o˜^ ƒwƒbƒ_[“o˜^Œ“—p
+//	â– å…±é€šé–¢æ•° å˜ä½“ç™»éŒ² ãƒ˜ãƒƒãƒ€ãƒ¼ç™»éŒ²å…¼ç”¨
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€‚Ìƒƒ‚ƒŠŠm•Û
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
  *
- * @param	heap_area			ƒq[ƒv—Ìˆæw’è
+ * @param	heap_area			ãƒ’ãƒ¼ãƒ—é ˜åŸŸæŒ‡å®š
  *
- * @retval	CATS_SYS_PTR		Šm•Û‚µ‚½ƒƒ‚ƒŠ‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	CATS_SYS_PTR		ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //--------------------------------------------------------------
@@ -129,11 +129,11 @@ CATS_SYS_PTR CATS_AllocMemory(int heap_area)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX—p‚Ìƒƒ‚ƒŠŠm•Û
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ç”¨ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
  *
- * @param	csp					ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	CATS_RES_PTR		Šm•Û‚µ‚½ƒƒ‚ƒŠ‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	CATS_RES_PTR		ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //--------------------------------------------------------------
@@ -163,11 +163,11 @@ CATS_RES_PTR CATS_ResourceCreate(CATS_SYS_PTR csp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX‚Ì”‚ğæ“¾
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ã®æ•°ã‚’å–å¾—
  *
- * @param	csp					ƒVƒXƒeƒ€
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ 
  *
- * @retval	int					”
+ * @retval	int					æ•°
  *
  */
 //--------------------------------------------------------------
@@ -179,11 +179,11 @@ int CATS_ResourceNumGet(CATS_SYS_PTR csp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŒƒ“ƒ_ƒ‰[ƒf[ƒ^‚ğæ“¾
+ * @brief	ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	csp					ƒVƒXƒeƒ€
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ 
  *
- * @retval	int					ƒŒƒ“ƒ_ƒ‰[
+ * @retval	int					ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼
  *
  */
 //--------------------------------------------------------------
@@ -195,26 +195,26 @@ CLACT_U_EASYRENDER_DATA * CATS_EasyRenderGet(CATS_SYS_PTR csp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€‚Ì‰Šú‰»
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
  *
- * @param	csp					ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	coi					OAM‰Šú‰»\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param	ccmm				ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒƒƒCƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param	pal_num				ƒpƒŒƒbƒg‚Ì”
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	coi					OAMåˆæœŸåŒ–æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ccmm				ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¡ã‚¤ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pal_num				ãƒ‘ãƒ¬ãƒƒãƒˆã®æ•°
  *
- * @retval	BOOL				TRUE = ³í
+ * @retval	BOOL				TRUE = æ­£å¸¸
  *
  */
 //--------------------------------------------------------------
 BOOL CATS_SystemInit(CATS_SYS_PTR csp, const TCATS_OAM_INIT* coi, const TCATS_CHAR_MANAGER_MAKE* ccmm, int pal_num)
 {
-	///< ƒVƒXƒeƒ€‚Ìƒƒ‚ƒŠ‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚¢ê‡
+	///< ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¡ãƒ¢ãƒªãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã„å ´åˆ
 	GF_ASSERT(csp != NULL);
 	if (csp == NULL){
 		return FALSE;
 	}
 
-	///< ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	///< ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cmm;
 		cmm.CharDataNum			= ccmm->num;
@@ -227,13 +227,13 @@ BOOL CATS_SystemInit(CATS_SYS_PTR csp, const TCATS_OAM_INIT* coi, const TCATS_CH
 //		InitCharManager(&cmm);
 	}
 	
-	///< ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	///< ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(pal_num, csp->heap_area);
 	
-	///< OAM ƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	///< OAM ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	///< ƒŒƒ“ƒ_ƒ‰‚Ì‰Šú‰»
+	///< ãƒ¬ãƒ³ãƒ€ãƒ©ã®åˆæœŸåŒ–
 #ifdef CATS_RENDER_USE
 
 	if (csp->render_use == CATS_RENDER_USE_ON){
@@ -247,10 +247,10 @@ BOOL CATS_SystemInit(CATS_SYS_PTR csp, const TCATS_OAM_INIT* coi, const TCATS_CH
 	}
 #endif
 
-	///< ƒZƒ‹Vram“]‘—ƒ}ƒl[ƒWƒƒì¬
+	///< ã‚»ãƒ«Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	csp->cellTransArray = InitCellTransfer(32, csp->heap_area);
 	
-	///< “Ç‚İ‚İŠJnƒIƒtƒZƒbƒg‰Šú‰»
+	///< èª­ã¿è¾¼ã¿é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆåˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 	
@@ -260,7 +260,7 @@ BOOL CATS_SystemInit(CATS_SYS_PTR csp, const TCATS_OAM_INIT* coi, const TCATS_CH
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŒƒ“ƒ_[‚ğg‚¤‚©‚Ç‚¤‚©
+ * @brief	ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚’ä½¿ã†ã‹ã©ã†ã‹
  *
  * @param	csp	
  * @param	flag	
@@ -279,24 +279,24 @@ void CATS_RenderUseSet(CATS_SYS_PTR csp, int flag)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚Ìì¬
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®ä½œæˆ
  *
- * @param	csp					ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	crp					ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
- * @param	num					“o˜^OBJ‚Ì”
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
+ * @param	num					ç™»éŒ²OBJã®æ•°
  *
- * @retval	BOOL				TRUE = ³í
+ * @retval	BOOL				TRUE = æ­£å¸¸
  *
  */
 //--------------------------------------------------------------
 BOOL CATS_ClactSetInit(CATS_SYS_PTR csp, CATS_RES_PTR crp, int num)
 {
-	///< ƒVƒXƒeƒ€EƒŠƒ\[ƒX‚Ç‚¿‚ç‚©‚ªƒƒ‚ƒŠŠm•Û‚³‚ê‚Ä‚¢‚È‚¢
+	///< ã‚·ã‚¹ãƒ†ãƒ ãƒ»ãƒªã‚½ãƒ¼ã‚¹ã©ã¡ã‚‰ã‹ãŒãƒ¡ãƒ¢ãƒªç¢ºä¿ã•ã‚Œã¦ã„ãªã„
 	if (csp == NULL || crp == NULL){
 		return FALSE;
 	}
 	
-	///< ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚Ìì¬
+	///< ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®ä½œæˆ
 	crp->ca_sp = CLACT_U_SetEasyInit(num,
 									 &csp->renddata,
 									 csp->heap_area);
@@ -306,7 +306,7 @@ BOOL CATS_ClactSetInit(CATS_SYS_PTR csp, CATS_RES_PTR crp, int num)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚Ìíœ
+ * @brief	OBJã®å‰Šé™¤
  *
  * @param	act					OBJ
  *
@@ -322,9 +322,9 @@ void CATS_ObjectDel(CLACT_WORK_PTR act)
 
 //--------------------------------------------------------------
 /**
- * @brief	•`‰æ
+ * @brief	æç”»
  *
- * @param	crp					ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none	
  *
@@ -340,7 +340,7 @@ void CATS_Draw(CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief	OAM‚Ì“]‘—		¦VBlankŠúŠÔ‚ÉŒÄ‚Ô
+ * @brief	OAMã®è»¢é€		â€»VBlankæœŸé–“ã«å‘¼ã¶
  *
  * @param	none	
  *
@@ -360,7 +360,7 @@ void CATS_RenderOamTrans(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	OAM‚Ì“]‘—		¦VBlankŠúŠÔ‚ÉŒÄ‚Ô
+ * @brief	OAMã®è»¢é€		â€»VBlankæœŸé–“ã«å‘¼ã¶
  *
  * @param	csp	
  *
@@ -378,7 +378,7 @@ void CATS_RenderOamTransEx(CATS_SYS_PTR csp)
 
 //--------------------------------------------------------------
 /**
- * @brief	Vram“]‘—“o˜^
+ * @brief	Vramè»¢é€ç™»éŒ²
  *
  * @param	none	
  *
@@ -394,9 +394,9 @@ void CATS_UpdateTransfer(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
  *
- * @param	crp					ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none	
  *
@@ -410,9 +410,9 @@ void CATS_ClactSetDelete(CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒwƒbƒ_[ƒe[ƒuƒ‹”jŠü
+ * @brief	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„
  *
- * @param	crp					ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none	
  *
@@ -428,9 +428,9 @@ void CATS_HeaderTblDelete(CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX‚Ì”jŠü
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *
- * @param	crp					ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none	
  *
@@ -443,24 +443,24 @@ void CATS_ResourceDelete(CATS_RES_PTR crp)
 	
 	for (i = 0; i < crp->resTypeNum; i++){
 		
-		///< ƒŠƒ\[ƒXƒwƒbƒ_[”jŠü
+		///< ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼ç ´æ£„
 		res_head = CLACT_U_ResManagerGetHeaderNoData(crp->resHeader, i);
 		CLACT_U_ResManagerHeaderFree(res_head);
 
 	}
 	sys_FreeMemoryEz(crp->resHeader);
 	
-	///< ƒf[ƒ^”jŠü
+	///< ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	CLACT_U_CharManagerDeletes(crp->resObjTbl[0]);
 	CLACT_U_PlttManagerDeletes(crp->resObjTbl[1]);
 	
 	
 	for (i = 0; i < crp->resTypeNum; i++){
 		
-		///< ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹”jŠü
+		///< ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„
 		CLACT_U_ResManagerResObjTblDelete(crp->resObjTbl[i]);
 		
-		///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+		///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		CLACT_U_ResManagerDelete(crp->resManager[i]);
 	}	
 }
@@ -468,9 +468,9 @@ void CATS_ResourceDelete(CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ}ƒl[ƒWƒƒ[”jŠü
+ * @brief	ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
  *
- * @param	csp					ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none	
  *
@@ -498,9 +498,9 @@ void CATS_ManagerDelete(CATS_SYS_PTR csp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX‚Ìƒƒ‚ƒŠ‰ğ•ú
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ã®ãƒ¡ãƒ¢ãƒªè§£æ”¾
  *
- * @param	crp					ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none	
  *
@@ -515,10 +515,10 @@ void CATS_ResourceFree(CATS_SYS_PTR csp, CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒXƒgƒ‰ƒNƒ^[ ‰ğ•úˆ—‚ğˆêè‚És‚È‚¢‚Ü‚·
+ * @brief	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ¼ è§£æ”¾å‡¦ç†ã‚’ä¸€æ‰‹ã«è¡Œãªã„ã¾ã™
  *
- * @param	csp					ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	crp					ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none	
  *
@@ -526,20 +526,20 @@ void CATS_ResourceFree(CATS_SYS_PTR csp, CATS_RES_PTR crp)
 //--------------------------------------------------------------
 void CATS_ResourceDestructor(CATS_SYS_PTR csp, CATS_RES_PTR crp)
 {
-	CATS_ClactSetDelete(crp);		///< ƒZƒ‹ƒZƒbƒg”jŠü
-	CATS_HeaderTblDelete(crp);		///< ƒwƒbƒ_[ƒe[ƒuƒ‹”jŠü
-	CATS_ResourceDelete(crp);		///< ƒŠƒ\[ƒX”jŠü
-//	CATS_ManagerDelete(csp);		///< ƒ}ƒl[ƒWƒƒ”jŠü
-	CATS_ResourceFree(csp, crp);	///< ƒŠƒ\[ƒX‚Ìƒƒ‚ƒŠ”jŠü
-//	CATS_FreeMemory(csp);			///< ƒVƒXƒeƒ€–{‘Ì‚Ìƒƒ‚ƒŠ”jŠü
+	CATS_ClactSetDelete(crp);		///< ã‚»ãƒ«ã‚»ãƒƒãƒˆç ´æ£„
+	CATS_HeaderTblDelete(crp);		///< ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„
+	CATS_ResourceDelete(crp);		///< ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
+//	CATS_ManagerDelete(csp);		///< ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
+	CATS_ResourceFree(csp, crp);	///< ãƒªã‚½ãƒ¼ã‚¹ã®ãƒ¡ãƒ¢ãƒªç ´æ£„
+//	CATS_FreeMemory(csp);			///< ã‚·ã‚¹ãƒ†ãƒ æœ¬ä½“ã®ãƒ¡ãƒ¢ãƒªç ´æ£„
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€‚Ìƒƒ‚ƒŠ”jŠü
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¡ãƒ¢ãƒªç ´æ£„
  *
- * @param	csp					ƒVƒXƒeƒ€‚Ìƒƒ‚ƒŠ”jŠü
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¡ãƒ¢ãƒªç ´æ£„
  *
  * @retval	none	
  *
@@ -561,19 +561,19 @@ void CATS_FreeMemory(CATS_SYS_PTR csp)
 // =============================================================================
 //
 //
-//	¡ƒwƒbƒ_[“o˜^—p
+//	â– ãƒ˜ãƒƒãƒ€ãƒ¼ç™»éŒ²ç”¨
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX‚Ì“Ç‚İ‚İ
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ã®èª­ã¿è¾¼ã¿
  *
- * @param	csp					ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	crp					ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
- * @param	res_list			ƒŠƒ\[ƒXƒŠƒXƒg\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
+ * @param	res_list			ãƒªã‚½ãƒ¼ã‚¹ãƒªã‚¹ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	BOOL				TRUE = ³í
+ * @retval	BOOL				TRUE = æ­£å¸¸
  *
  */
 //--------------------------------------------------------------
@@ -584,35 +584,35 @@ BOOL CATS_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_RESOURCE_
 	int size;
 	CLACT_U_RES_HEADER_PTR res_head;
 	
-	///< ƒVƒXƒeƒ€EƒŠƒ\[ƒX‚Ç‚¿‚ç‚©‚ªƒƒ‚ƒŠŠm•Û‚³‚ê‚Ä‚¢‚È‚¢
+	///< ã‚·ã‚¹ãƒ†ãƒ ãƒ»ãƒªã‚½ãƒ¼ã‚¹ã©ã¡ã‚‰ã‹ãŒãƒ¡ãƒ¢ãƒªç¢ºä¿ã•ã‚Œã¦ã„ãªã„
 	if (csp == NULL || crp == NULL){
 		return FALSE;
 	}
 	
-	///< ƒ}ƒ‹ƒ`ƒZƒ‹‚ª–³‚¢ê‡
+	///< ãƒãƒ«ãƒã‚»ãƒ«ãŒç„¡ã„å ´åˆ
 	if (res_list->resource.mcell_path == NULL){
 		num = CLACT_U_RES_MAX - 2;
 	}
 	crp->resTypeNum = num;
 	
-	///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[—pƒwƒbƒ_[—Ìˆæ‚Ìì¬
+	///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”¨ãƒ˜ãƒƒãƒ€ãƒ¼é ˜åŸŸã®ä½œæˆ
 	size = CLACT_U_ResManagerGetHeaderSize();
 	crp->resHeader = sys_AllocMemory(csp->heap_area, size * num);
 	
-	///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[—pƒwƒbƒ_[“Ç‚İ‚İ
+	///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”¨ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿
 	for (i = 0; i < num; i++){
 		res_head = CLACT_U_ResManagerGetHeaderNoData(crp->resHeader, i);
 		CLACT_U_ResManagerHeaderLoad(res_list->res_file[i], res_head, csp->heap_area);
 	}
 
-	///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	for (i = 0; i < num; i++){
 		res_head = CLACT_U_ResManagerGetHeaderNoData(crp->resHeader, i);
 		size    		  = CLACT_U_ResManagerHeaderSetDataNum(res_head);
 		crp->resManager[i] = CLACT_U_ResManagerInit(size, i, csp->heap_area);
 	}
 
-	///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚É“o˜^‚·‚éƒf[ƒ^“Ç‚İ‚İ
+	///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«ç™»éŒ²ã™ã‚‹ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	for (i = 0; i < num; i++){
 		res_head		  = CLACT_U_ResManagerGetHeaderNoData(crp->resHeader, i);
 		size    		  = CLACT_U_ResManagerHeaderSetDataNum(res_head);
@@ -623,11 +623,11 @@ BOOL CATS_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_RESOURCE_
 														csp->heap_area);
 	}
 	
-	///< ƒ}ƒl[ƒWƒƒ‚É“o˜^
+	///< ãƒãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²
 	CLACT_U_CharManagerSets(crp->resObjTbl[0]);
 	CLACT_U_PlttManagerSets(crp->resObjTbl[1]);
 	
-	///< ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[“Ç‚İ‚İ
+	///< ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿
 	crp->ca_htp = CLACT_U_LoadHeaderTbl(res_list->resource.clact_header_path,
 										csp->heap_area,
 										crp->resManager[0], crp->resManager[1],
@@ -645,22 +645,22 @@ BOOL CATS_ResourceLoadBinary(
 	CLACT_U_RES_HEADER_PTR res_head;
 	void * buf;
 	
-	///< ƒVƒXƒeƒ€EƒŠƒ\[ƒX‚Ç‚¿‚ç‚©‚ªƒƒ‚ƒŠŠm•Û‚³‚ê‚Ä‚¢‚È‚¢
+	///< ã‚·ã‚¹ãƒ†ãƒ ãƒ»ãƒªã‚½ãƒ¼ã‚¹ã©ã¡ã‚‰ã‹ãŒãƒ¡ãƒ¢ãƒªç¢ºä¿ã•ã‚Œã¦ã„ãªã„
 	if (csp == NULL || crp == NULL){
 		return FALSE;
 	}
 	
-	///< ƒ}ƒ‹ƒ`ƒZƒ‹‚ª–³‚¢ê‡
+	///< ãƒãƒ«ãƒã‚»ãƒ«ãŒç„¡ã„å ´åˆ
 	if (res_list->resource.mcell_path == NULL){
 		num = CLACT_U_RES_MAX - 2;
 	}
 	crp->resTypeNum = num;
 	
-	///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[—pƒwƒbƒ_[—Ìˆæ‚Ìì¬
+	///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”¨ãƒ˜ãƒƒãƒ€ãƒ¼é ˜åŸŸã®ä½œæˆ
 	size = CLACT_U_ResManagerGetHeaderSize();
 	crp->resHeader = sys_AllocMemory(csp->heap_area, size * num);
 	
-	///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[—pƒwƒbƒ_[“Ç‚İ‚İ
+	///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”¨ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿
 	for (i = 0; i < num; i++){
 		res_head = CLACT_U_ResManagerGetHeaderNoData(crp->resHeader, i);
 //		CLACT_U_ResManagerHeaderLoad(res_list->res_file[i], res_head, csp->heap_area);
@@ -669,14 +669,14 @@ BOOL CATS_ResourceLoadBinary(
 		sys_FreeMemoryEz( buf );
 	}
 
-	///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	for (i = 0; i < num; i++){
 		res_head = CLACT_U_ResManagerGetHeaderNoData(crp->resHeader, i);
 		size    		  = CLACT_U_ResManagerHeaderSetDataNum(res_head);
 		crp->resManager[i] = CLACT_U_ResManagerInit(size, i, csp->heap_area);
 	}
 
-	///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚É“o˜^‚·‚éƒf[ƒ^“Ç‚İ‚İ
+	///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«ç™»éŒ²ã™ã‚‹ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	for (i = 0; i < num; i++){
 		res_head		  = CLACT_U_ResManagerGetHeaderNoData(crp->resHeader, i);
 		size    		  = CLACT_U_ResManagerHeaderSetDataNum(res_head);
@@ -687,11 +687,11 @@ BOOL CATS_ResourceLoadBinary(
 														csp->heap_area);
 	}
 	
-	///< ƒ}ƒl[ƒWƒƒ‚É“o˜^
+	///< ãƒãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²
 	CLACT_U_CharManagerSets(crp->resObjTbl[0]);
 	CLACT_U_PlttManagerSets(crp->resObjTbl[1]);
 	
-	///< ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[“Ç‚İ‚İ
+	///< ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿
 /*
 	crp->ca_htp = CLACT_U_LoadHeaderTbl(res_list->resource.clact_header_path,
 										csp->heap_area,
@@ -725,17 +725,17 @@ GLOBAL CLACT_HEADER_TBL_PTR CLACT_U_MakeHeaderBinary(
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Â•Ïˆø”‚ÅƒŠƒ\[ƒX‚ğ“Ç‚İ‚Ş
+ * @brief	å¯å¤‰å¼•æ•°ã§ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
  *
- * @param	csp					ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	crp					ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
- * @param	...					ƒtƒ@ƒCƒ‹ƒpƒX‰Â•ÏŒÂ Šî–{5-7
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
+ * @param	...					ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹å¯å¤‰å€‹ åŸºæœ¬5-7
  *
  * @retval	BOOL	
  *
  */
 //--------------------------------------------------------------
-#ifdef CATS_CBP_RES_LOAD		///< ‰Â•Ïˆø”
+#ifdef CATS_CBP_RES_LOAD		///< å¯å¤‰å¼•æ•°
 
 BOOL CATS_ResourceLoad_FileName(CATS_SYS_PTR csp, CATS_RES_PTR crp, ...)
 {
@@ -773,18 +773,18 @@ BOOL CATS_ResourceLoad_FileName(CATS_SYS_PTR csp, CATS_RES_PTR crp, ...)
 	return CATS_ResourceLoad(csp, crp, &list);;
 }
 
-#endif	///< ‰Â•Ïˆø”
+#endif	///< å¯å¤‰å¼•æ•°
 
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ“o˜^
+ * @brief	OBJç™»éŒ²
  *
- * @param	csp					ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	crp					ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
- * @param	coap				OBJ“o˜^—p\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
+ * @param	coap				OBJç™»éŒ²ç”¨æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	CLACT_WORK_PTR	“o˜^‚µ‚½OBJ‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	CLACT_WORK_PTR	ç™»éŒ²ã—ãŸOBJã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //--------------------------------------------------------------
@@ -805,22 +805,22 @@ CLACT_WORK_PTR CATS_ObjectAdd(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_OB
 /**
  * @brief	
  *
- * @param	csp					ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	crp					ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
- * @param	no					ƒwƒbƒ_[“à‚Ì“o˜^”Ô†
- * @param	x					À•W x
- * @param	y					À•W y
- * @param	z					À•W z
- * @param	anm					ƒAƒjƒ
- * @param	pri					—Dæ“x
- * @param	pal					ƒpƒŒƒbƒg”Ô†
- * @param	d_area				•`‰æƒGƒŠƒA
- * @param	param1				—\”õ1
- * @param	param2				—\”õ2
- * @param	param3				—\”õ3
- * @param	param4				—\”õ4
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
+ * @param	no					ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã®ç™»éŒ²ç•ªå·
+ * @param	x					åº§æ¨™ x
+ * @param	y					åº§æ¨™ y
+ * @param	z					åº§æ¨™ z
+ * @param	anm					ã‚¢ãƒ‹ãƒ¡
+ * @param	pri					å„ªå…ˆåº¦
+ * @param	pal					ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+ * @param	d_area				æç”»ã‚¨ãƒªã‚¢
+ * @param	param1				äºˆå‚™1
+ * @param	param2				äºˆå‚™2
+ * @param	param3				äºˆå‚™3
+ * @param	param4				äºˆå‚™4
  *
- * @retval	CLACT_WORK_PTR	“o˜^‚µ‚½OBJ‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	CLACT_WORK_PTR	ç™»éŒ²ã—ãŸOBJã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //--------------------------------------------------------------
@@ -831,30 +831,30 @@ CLACT_WORK_PTR CATS_ObjectAdd_EX(CATS_SYS_PTR csp, CATS_RES_PTR crp, int no,
 	CLACT_WORK_PTR act = NULL;
 	CLACT_ADD add;
 	
-	add.ClActSet	= crp->ca_sp;				///< ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	add.ClActHeader = &crp->ca_htp->tbl[no];	///< ƒwƒbƒ_[‚©‚çæ‚èo‚µ
+	add.ClActSet	= crp->ca_sp;				///< ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	add.ClActHeader = &crp->ca_htp->tbl[no];	///< ãƒ˜ãƒƒãƒ€ãƒ¼ã‹ã‚‰å–ã‚Šå‡ºã—
 	
-	add.mat.x		= FX32_CONST(x);			///< À•W
+	add.mat.x		= FX32_CONST(x);			///< åº§æ¨™
 	add.mat.y		= FX32_CONST(y);
 	add.mat.z		= FX32_CONST(z);
 	if(d_area == NNS_G2D_VRAM_TYPE_2DSUB){
 		add.mat.y += SUB_SURFACE_Y;
 	}
 	
-	add.sca.x		= FX32_ONE;					///< Šgk—¦
+	add.sca.x		= FX32_ONE;					///< æ‹¡ç¸®ç‡
 	add.sca.y		= FX32_ONE;
 	add.sca.z		= FX32_ONE;
 	
-	add.rot			= 0;						///< ‰ñ“]Šp
-	add.pri			= pri;						///< —Dæ“x
-	add.DrawArea	= d_area;					///< •`‰æ–Ê
-	add.heap		= csp->heap_area;			///< ƒq[ƒv—Ìˆæ
+	add.rot			= 0;						///< å›è»¢è§’
+	add.pri			= pri;						///< å„ªå…ˆåº¦
+	add.DrawArea	= d_area;					///< æç”»é¢
+	add.heap		= csp->heap_area;			///< ãƒ’ãƒ¼ãƒ—é ˜åŸŸ
 	
-	act = CLACT_Add(&add);					///< “o˜^
+	act = CLACT_Add(&add);					///< ç™»éŒ²
 	
 	if (act != NULL){
-		CLACT_AnmChg(act, anm);				///< ƒAƒjƒ[ƒVƒ‡ƒ“w’è
-		CLACT_PaletteNoChg(act, pal);		///< ƒpƒŒƒbƒgw’è
+		CLACT_AnmChg(act, anm);				///< ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æŒ‡å®š
+		CLACT_PaletteNoChg(act, pal);		///< ãƒ‘ãƒ¬ãƒƒãƒˆæŒ‡å®š
 	}
 	
 	return act;	
@@ -873,14 +873,14 @@ CLACT_WORK_PTR CATS_ObjectAdd_EX(CATS_SYS_PTR csp, CATS_RES_PTR crp, int no,
 //
 //
 //
-//	¡’P‘Ì‚Å”CˆÓ‚ÌƒŠƒ\[ƒX‚ğ“o˜^‚µ‚Ä‚¢‚­ŠÖ”ŒS	[ CATS_SINGLE ]
+//	â– å˜ä½“ã§ä»»æ„ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ç™»éŒ²ã—ã¦ã„ãé–¢æ•°éƒ¡	[ CATS_SINGLE ]
 //
 //
 //
 // =============================================================================
 // ----------------------------------------------------------------------------
 //
-//	’P‘Ì‚Å“Ç‚İ‚Şê‡
+//	å˜ä½“ã§èª­ã¿è¾¼ã‚€å ´åˆ
 //
 static BOOL CATS_LoadResourceCell_Private(CATS_SYS_PTR csp, CATS_RES_PTR crp, const char* path, int type, int id);
 static BOOL CATS_LoadResourceCellArc_Private(CATS_SYS_PTR csp, CATS_RES_PTR crp, int arc_id, int data_id, int comp, int type, int id);
@@ -892,13 +892,13 @@ static BOOL CATS_DeleteResourceData_Private(CLACT_U_RES_MANAGER_PTR resm, CLACT_
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Ì‰Šú‰»
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã®åˆæœŸåŒ–
  *
- * @param	csp					ƒVƒXƒeƒ€
- * @param	crp					ƒŠƒ\[ƒX
- * @param	crnl				ƒŠƒ\[ƒXŠÇ—”ƒe[ƒuƒ‹
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ 
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹
+ * @param	crnl				ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
  *
- * @retval	BOOL				TRUE = ¬Œ÷
+ * @retval	BOOL				TRUE = æˆåŠŸ
  *
  */
 //--------------------------------------------------------------
@@ -910,24 +910,24 @@ BOOL CATS_ResourceManagerInit(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_RE
 	int size;
 	CLACT_U_RES_HEADER_PTR res_head;
 	
-	///< ƒVƒXƒeƒ€EƒŠƒ\[ƒX‚Ç‚¿‚ç‚©‚ªƒƒ‚ƒŠŠm•Û‚³‚ê‚Ä‚¢‚È‚¢
+	///< ã‚·ã‚¹ãƒ†ãƒ ãƒ»ãƒªã‚½ãƒ¼ã‚¹ã©ã¡ã‚‰ã‹ãŒãƒ¡ãƒ¢ãƒªç¢ºä¿ã•ã‚Œã¦ã„ãªã„
 	if (csp == NULL || crp == NULL){
 		return FALSE;
 	}
 	
-	///< ƒ}ƒ‹ƒ`ƒZƒ‹‚ğ—˜—p‚µ‚È‚¢ê‡‚ÍŠÇ—ƒ}ƒl[ƒWƒƒ‚Ì”‚ğŒ¸‚ç‚·
+	///< ãƒãƒ«ãƒã‚»ãƒ«ã‚’åˆ©ç”¨ã—ãªã„å ´åˆã¯ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã®æ•°ã‚’æ¸›ã‚‰ã™
 	if (crnl->resource_num.mcell_num == 0
 	||	crnl->resource_num.mcell_anm_num == 0){
 		num = CLACT_U_RES_MAX - 2;
 	}
 	crp->resTypeNum = num;
 	
-	///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	for (i = 0; i < num; i++){
 		crp->resManager[i] = CLACT_U_ResManagerInit(crnl->res_num[i], i, csp->heap_area);
 	}
 	
-	///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚É“o˜^‚·‚éƒf[ƒ^“Ç‚İ‚İ
+	///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«ç™»éŒ²ã™ã‚‹ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	for (i = 0; i < num; i++){
 		size = crnl->res_num[i];
 		
@@ -947,12 +947,12 @@ BOOL CATS_ResourceManagerInit(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_RE
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒ‰‚Ì“o˜^	ƒpƒX
+ * @brief	ã‚­ãƒ£ãƒ©ã®ç™»éŒ²	ãƒ‘ã‚¹
  *
  * @param	csp	
  * @param	crp	
  * @param	path	
- * @param	id					ŠÇ—ID
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -984,14 +984,14 @@ BOOL CATS_LoadResourceChar(CATS_SYS_PTR csp, CATS_RES_PTR crp, const char* path,
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒ‰‚Ì“o˜^	ƒA[ƒJƒCƒu
+ * @brief	ã‚­ãƒ£ãƒ©ã®ç™»éŒ²	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1022,14 +1022,14 @@ BOOL CATS_LoadResourceCharArc(CATS_SYS_PTR csp, CATS_RES_PTR crp, int arc_id, in
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒ‰‚Ì“o˜^	ƒA[ƒJƒCƒuH
+ * @brief	ã‚­ãƒ£ãƒ©ã®ç™»éŒ²	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–H
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1061,15 +1061,15 @@ BOOL CATS_LoadResourceCharArcH(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE* ar
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒg“o˜^	ƒpƒX
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²	ãƒ‘ã‚¹
  *
  * @param	csp	
  * @param	crp	
- * @param	path				ƒpƒX
- * @param	num					“o˜^”
- * @param	id					ŠÇ—ID
+ * @param	path				ãƒ‘ã‚¹
+ * @param	num					ç™»éŒ²æ•°
+ * @param	id					ç®¡ç†ID
  *
- * @retval	“o˜^‚µ‚½ˆÊ’u‚ÌƒpƒŒƒbƒg”Ô†(¸”s‚ÍASSERT‚Å’â~‚µ‚Ü‚·)
+ * @retval	ç™»éŒ²ã—ãŸä½ç½®ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·(å¤±æ•—æ™‚ã¯ASSERTã§åœæ­¢ã—ã¾ã™)
  *
  */
 //--------------------------------------------------------------
@@ -1087,11 +1087,11 @@ u8 CATS_LoadResourcePltt(CATS_SYS_PTR csp, CATS_RES_PTR crp, const char* path, i
 	if (obj != NULL){
 //		CLACT_U_PlttManagerSet(obj);
 		ret = CLACT_U_PlttManagerSetCleanArea(obj);
-		GF_ASSERT(ret == TRUE && "ƒpƒŒƒbƒg“o˜^¸”s");
+		GF_ASSERT(ret == TRUE && "ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²å¤±æ•—");
 		
 		CATS_LoadResourceTable_Private(crp->resObjTbl[1], obj);	
 		
-		return CLACT_U_PlttManagerGetPlttNo(obj, trans_mode);	//“o˜^Š‚ÌƒpƒŒƒbƒg”Ô†‚ğ•Ô‚·
+		return CLACT_U_PlttManagerGetPlttNo(obj, trans_mode);	//ç™»éŒ²æ‰€ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚’è¿”ã™
 	}
 	
 	GF_ASSERT(0);
@@ -1102,17 +1102,17 @@ u8 CATS_LoadResourcePltt(CATS_SYS_PTR csp, CATS_RES_PTR crp, const char* path, i
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒg“o˜^	ƒA[ƒJƒCƒu
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	num					“o˜^”
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	num					ç™»éŒ²æ•°
+ * @param	id					ç®¡ç†ID
  *
- * @retval	“o˜^‚µ‚½ˆÊ’u‚ÌƒpƒŒƒbƒg”Ô†(¸”s‚ÍASSERT‚Å’â~‚µ‚Ü‚·)
+ * @retval	ç™»éŒ²ã—ãŸä½ç½®ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·(å¤±æ•—æ™‚ã¯ASSERTã§åœæ­¢ã—ã¾ã™)
  *
  */
 //--------------------------------------------------------------
@@ -1130,10 +1130,10 @@ s8 CATS_LoadResourcePlttArc(CATS_SYS_PTR csp, CATS_RES_PTR crp, int arc_id, int 
 	if (obj != NULL){
 		//CLACT_U_PlttManagerSet(obj);
 		ret = CLACT_U_PlttManagerSetCleanArea(obj);
-		GF_ASSERT(ret == TRUE && "ƒpƒŒƒbƒg“o˜^¸”s");
+		GF_ASSERT(ret == TRUE && "ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²å¤±æ•—");
 		
 		CATS_LoadResourceTable_Private(crp->resObjTbl[1], obj);	
-		return CLACT_U_PlttManagerGetPlttNo(obj, trans_mode);	//“o˜^Š‚ÌƒpƒŒƒbƒg”Ô†‚ğ•Ô‚·
+		return CLACT_U_PlttManagerGetPlttNo(obj, trans_mode);	//ç™»éŒ²æ‰€ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚’è¿”ã™
 	}
 	
 	GF_ASSERT(0);
@@ -1143,17 +1143,17 @@ s8 CATS_LoadResourcePlttArc(CATS_SYS_PTR csp, CATS_RES_PTR crp, int arc_id, int 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒg“o˜^	ƒA[ƒJƒCƒu
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	num					“o˜^”
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	num					ç™»éŒ²æ•°
+ * @param	id					ç®¡ç†ID
  *
- * @retval	“o˜^‚µ‚½ˆÊ’u‚ÌƒpƒŒƒbƒg”Ô†(¸”s‚ÍASSERT‚Å’â~‚µ‚Ü‚·)
+ * @retval	ç™»éŒ²ã—ãŸä½ç½®ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·(å¤±æ•—æ™‚ã¯ASSERTã§åœæ­¢ã—ã¾ã™)
  *
  */
 //--------------------------------------------------------------
@@ -1171,10 +1171,10 @@ s8 CATS_LoadResourcePlttArcH(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE* arcH
 	if (obj != NULL){
 		//CLACT_U_PlttManagerSet(obj);
 		ret = CLACT_U_PlttManagerSetCleanArea(obj);
-		GF_ASSERT(ret == TRUE && "ƒpƒŒƒbƒg“o˜^¸”s");
+		GF_ASSERT(ret == TRUE && "ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²å¤±æ•—");
 		
 		CATS_LoadResourceTable_Private(crp->resObjTbl[1], obj);	
-		return CLACT_U_PlttManagerGetPlttNo(obj, trans_mode);	//“o˜^Š‚ÌƒpƒŒƒbƒg”Ô†‚ğ•Ô‚·
+		return CLACT_U_PlttManagerGetPlttNo(obj, trans_mode);	//ç™»éŒ²æ‰€ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚’è¿”ã™
 	}
 	
 	GF_ASSERT(0);
@@ -1184,20 +1184,20 @@ s8 CATS_LoadResourcePlttArcH(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE* arcH
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒŒƒbƒg“o˜^‚µAƒpƒŒƒbƒgƒ[ƒN‚É‚à“WŠJ‚ğs‚¤
+ * @brief   ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²ã—ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã«ã‚‚å±•é–‹ã‚’è¡Œã†
  *
- * @param   PALETTE_FADE_PTR		ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req						ƒŠƒNƒGƒXƒgƒf[ƒ^”Ô†(FADE_MAIN_BG“™)
+ * @param   PALETTE_FADE_PTR		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req						ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ç•ªå·(FADE_MAIN_BGç­‰)
  * @param   csp						
  * @param   crp						
- * @param	arc_id					ƒA[ƒJƒCƒuIndex
- * @param	data_id					ƒf[ƒ^Index
- * @param	comp					ˆ³kƒtƒ‰ƒO
- * @param	num						“o˜^”
- * @param   trans_mode				NNS_G2D_VRAM_TYPE_2DMAIN“™
- * @param	id						ŠÇ—ID
+ * @param	arc_id					ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id					ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp					åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	num						ç™»éŒ²æ•°
+ * @param   trans_mode				NNS_G2D_VRAM_TYPE_2DMAINç­‰
+ * @param	id						ç®¡ç†ID
  *
- * @retval  ƒZƒbƒg‚µ‚½ƒpƒŒƒbƒgˆÊ’u(¸”s‚ÍASSERT‚Å’â~‚µ‚Ü‚·)
+ * @retval  ã‚»ãƒƒãƒˆã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆä½ç½®(å¤±æ•—æ™‚ã¯ASSERTã§åœæ­¢ã—ã¾ã™)
  */
 //--------------------------------------------------------------
 u8 CATS_LoadResourcePlttWork(PALETTE_FADE_PTR pfd, FADEREQ req, CATS_SYS_PTR csp, 
@@ -1212,20 +1212,20 @@ u8 CATS_LoadResourcePlttWork(PALETTE_FADE_PTR pfd, FADEREQ req, CATS_SYS_PTR csp
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒŒƒbƒg“o˜^‚µAƒpƒŒƒbƒgƒ[ƒN‚É‚à“WŠJ‚ğs‚¤
+ * @brief   ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²ã—ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã«ã‚‚å±•é–‹ã‚’è¡Œã†
  *
- * @param   PALETTE_FADE_PTR		ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req						ƒŠƒNƒGƒXƒgƒf[ƒ^”Ô†(FADE_MAIN_BG“™)
+ * @param   PALETTE_FADE_PTR		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req						ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ç•ªå·(FADE_MAIN_BGç­‰)
  * @param   csp						
  * @param   crp						
- * @param	arc_id					ƒA[ƒJƒCƒuIndex
- * @param	data_id					ƒf[ƒ^Index
- * @param	comp					ˆ³kƒtƒ‰ƒO
- * @param	num						“o˜^”
- * @param   trans_mode				NNS_G2D_VRAM_TYPE_2DMAIN“™
- * @param	id						ŠÇ—ID
+ * @param	arc_id					ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id					ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp					åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	num						ç™»éŒ²æ•°
+ * @param   trans_mode				NNS_G2D_VRAM_TYPE_2DMAINç­‰
+ * @param	id						ç®¡ç†ID
  *
- * @retval  ƒZƒbƒg‚µ‚½ƒpƒŒƒbƒgˆÊ’u(¸”s‚ÍASSERT‚Å’â~‚µ‚Ü‚·)
+ * @retval  ã‚»ãƒƒãƒˆã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆä½ç½®(å¤±æ•—æ™‚ã¯ASSERTã§åœæ­¢ã—ã¾ã™)
  */
 //--------------------------------------------------------------
 u8 CATS_LoadResourcePlttWorkArc(PALETTE_FADE_PTR pfd, FADEREQ req, CATS_SYS_PTR csp, 
@@ -1244,20 +1244,20 @@ u8 CATS_LoadResourcePlttWorkArc(PALETTE_FADE_PTR pfd, FADEREQ req, CATS_SYS_PTR 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒŒƒbƒg“o˜^‚µAƒpƒŒƒbƒgƒ[ƒN‚É‚à“WŠJ‚ğs‚¤
+ * @brief   ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²ã—ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã«ã‚‚å±•é–‹ã‚’è¡Œã†
  *
- * @param   PALETTE_FADE_PTR		ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   req						ƒŠƒNƒGƒXƒgƒf[ƒ^”Ô†(FADE_MAIN_BG“™)
+ * @param   PALETTE_FADE_PTR		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   req						ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ç•ªå·(FADE_MAIN_BGç­‰)
  * @param   csp						
  * @param   crp						
- * @param	arc_id					ƒA[ƒJƒCƒuIndex
- * @param	data_id					ƒf[ƒ^Index
- * @param	comp					ˆ³kƒtƒ‰ƒO
- * @param	num						“o˜^”
- * @param   trans_mode				NNS_G2D_VRAM_TYPE_2DMAIN“™
- * @param	id						ŠÇ—ID
+ * @param	arc_id					ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id					ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp					åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	num						ç™»éŒ²æ•°
+ * @param   trans_mode				NNS_G2D_VRAM_TYPE_2DMAINç­‰
+ * @param	id						ç®¡ç†ID
  *
- * @retval  ƒZƒbƒg‚µ‚½ƒpƒŒƒbƒgˆÊ’u(¸”s‚ÍASSERT‚Å’â~‚µ‚Ü‚·)
+ * @retval  ã‚»ãƒƒãƒˆã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆä½ç½®(å¤±æ•—æ™‚ã¯ASSERTã§åœæ­¢ã—ã¾ã™)
  */
 //--------------------------------------------------------------
 u8 CATS_LoadResourcePlttWorkArcH(PALETTE_FADE_PTR pfd, FADEREQ req, CATS_SYS_PTR csp, 
@@ -1276,12 +1276,12 @@ u8 CATS_LoadResourcePlttWorkArcH(PALETTE_FADE_PTR pfd, FADEREQ req, CATS_SYS_PTR
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹“o˜^	ƒpƒX
+ * @brief	ã‚»ãƒ«ç™»éŒ²	ãƒ‘ã‚¹
  *
  * @param	csp	
  * @param	crp	
- * @param	path				ƒpƒX
- * @param	id					ŠÇ—ID
+ * @param	path				ãƒ‘ã‚¹
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1295,14 +1295,14 @@ BOOL CATS_LoadResourceCell(CATS_SYS_PTR csp, CATS_RES_PTR crp, const char* path,
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹“o˜^			ƒA[ƒJƒCƒu
+ * @brief	ã‚»ãƒ«ç™»éŒ²			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1315,14 +1315,14 @@ BOOL CATS_LoadResourceCellArc(CATS_SYS_PTR csp, CATS_RES_PTR crp, int arc_id, in
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹“o˜^			ƒA[ƒJƒCƒu
+ * @brief	ã‚»ãƒ«ç™»éŒ²			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1336,12 +1336,12 @@ BOOL CATS_LoadResourceCellArcH(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE* ar
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒjƒ“o˜^	ƒpƒX
+ * @brief	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²	ãƒ‘ã‚¹
  *
  * @param	csp	
  * @param	crp	
- * @param	path				ƒpƒX
- * @param	id					ŠÇ—ID
+ * @param	path				ãƒ‘ã‚¹
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1355,14 +1355,14 @@ BOOL CATS_LoadResourceCellAnm(CATS_SYS_PTR csp, CATS_RES_PTR crp, const char* pa
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒjƒ“o˜^	ƒA[ƒJƒCƒu
+ * @brief	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1376,14 +1376,14 @@ BOOL CATS_LoadResourceCellAnmArc(CATS_SYS_PTR csp, CATS_RES_PTR crp, int arc_id,
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒjƒ“o˜^	ƒA[ƒJƒCƒu
+ * @brief	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1397,14 +1397,14 @@ BOOL CATS_LoadResourceCellAnmArcH(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE*
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ}ƒ‹ƒ`ƒZƒ‹“o˜^			ƒA[ƒJƒCƒu
+ * @brief	ãƒãƒ«ãƒã‚»ãƒ«ç™»éŒ²			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1418,14 +1418,14 @@ BOOL CATS_LoadResourceMCell(CATS_SYS_PTR csp, CATS_RES_PTR crp, const char* path
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ}ƒ‹ƒ`ƒZƒ‹“o˜^			ƒA[ƒJƒCƒu
+ * @brief	ãƒãƒ«ãƒã‚»ãƒ«ç™»éŒ²			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1439,14 +1439,14 @@ BOOL CATS_LoadResourceMCellArc(CATS_SYS_PTR csp, CATS_RES_PTR crp, int arc_id, i
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ}ƒ‹ƒ`ƒZƒ‹“o˜^			ƒA[ƒJƒCƒu
+ * @brief	ãƒãƒ«ãƒã‚»ãƒ«ç™»éŒ²			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1460,12 +1460,12 @@ BOOL CATS_LoadResourceMCellArcH(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE* a
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ	ƒpƒX
+ * @brief	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡	ãƒ‘ã‚¹
  *
  * @param	csp	
  * @param	crp	
- * @param	path				ƒpƒX
- * @param	id					ŠÇ—ID
+ * @param	path				ãƒ‘ã‚¹
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1479,14 +1479,14 @@ BOOL CATS_LoadResourceMCellAnm(CATS_SYS_PTR csp, CATS_RES_PTR crp, const char* p
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ	ƒA[ƒJƒCƒu
+ * @brief	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1499,14 +1499,14 @@ BOOL CATS_LoadResourceMCellAnmArc(CATS_SYS_PTR csp, CATS_RES_PTR crp, int arc_id
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ	ƒA[ƒJƒCƒu
+ * @brief	ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1520,13 +1520,13 @@ BOOL CATS_LoadResourceMCellAnmArcH(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒNƒ^[“o˜^	ƒŠƒ\[ƒXIDw’è
+ * @brief	ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²	ãƒªã‚½ãƒ¼ã‚¹IDæŒ‡å®š
  *
- * @param	csp					ƒVƒXƒeƒ€
- * @param	crp					ƒŠƒ\[ƒX
- * @param	coap_s				“o˜^ƒpƒ‰ƒ[ƒ^[
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ 
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹
+ * @param	coap_s				ç™»éŒ²ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
  *
- * @retval	CATS_ACT_PTR		ƒAƒNƒ^[ŠÇ—ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @retval	CATS_ACT_PTR		ã‚¢ã‚¯ã‚¿ãƒ¼ç®¡ç†ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //--------------------------------------------------------------
@@ -1546,7 +1546,7 @@ CATS_ACT_PTR CATS_ObjectAdd_S(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_OB
 	
 #if 1
 
-	///< ƒwƒbƒ_[‚Ìƒƒ‚ƒŠŠm•Û
+	///< ãƒ˜ãƒƒãƒ€ãƒ¼ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	cap->act_htp = sys_AllocMemory(csp->heap_area, sizeof(CLACT_HEADER_TBL));
 	
 	if (cap->act_htp == NULL){
@@ -1569,19 +1569,19 @@ CATS_ACT_PTR CATS_ObjectAdd_S(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_OB
 	
 #endif
 
-	///< ƒŠƒ\[ƒXID‚ğ‘‚«Š·‚¦‚é
+	///< ãƒªã‚½ãƒ¼ã‚¹IDã‚’æ›¸ãæ›ãˆã‚‹
 	for (i = 0; i < CLACT_U_RES_MAX; i++){
 		id_list[i] = coap_s->id[i];
 	}
 	
 	if (crp->resManager[4] == NULL
 	||	crp->resManager[5] == NULL){
-		///< ƒ}ƒl[ƒWƒƒ[‚ª–³‚¢ê‡‚ÍAƒf[ƒ^w’è–³‚µ
+		///< ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãŒç„¡ã„å ´åˆã¯ã€ãƒ‡ãƒ¼ã‚¿æŒ‡å®šç„¡ã—
 		id_list[4] = CLACT_U_HEADER_DATA_NONE;
 		id_list[5] = CLACT_U_HEADER_DATA_NONE;
 	}
 	else {	
-		///< ƒf[ƒ^w’è‚³‚ê‚Ä‚¢‚Ä‚àAw’èID‚ÌƒŠƒ\[ƒX‚ª–³‚¢ê‡‚àƒf[ƒ^–³‚µ
+		///< ãƒ‡ãƒ¼ã‚¿æŒ‡å®šã•ã‚Œã¦ã„ã¦ã‚‚ã€æŒ‡å®šIDã®ãƒªã‚½ãƒ¼ã‚¹ãŒç„¡ã„å ´åˆã‚‚ãƒ‡ãƒ¼ã‚¿ç„¡ã—
 		if (id_list[4] != CLACT_U_HEADER_DATA_NONE
 		&&  CLACT_U_ResManagerCheckID(crp->resManager[4], id_list[4]) == FALSE){
 			id_list[4] = CLACT_U_HEADER_DATA_NONE;
@@ -1593,7 +1593,7 @@ CATS_ACT_PTR CATS_ObjectAdd_S(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_OB
 		}	
 	}
 	
-	///< ÀÛ‚Éƒwƒbƒ_[‚ğì¬
+	///< å®Ÿéš›ã«ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’ä½œæˆ
 	CLACT_U_MakeHeader(cap->act_hd,
 					   id_list[0], id_list[1],
 					   id_list[2], id_list[3],
@@ -1604,37 +1604,37 @@ CATS_ACT_PTR CATS_ObjectAdd_S(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_OB
 					   crp->resManager[2], crp->resManager[3],
 					   crp->resManager[4], crp->resManager[5]);
 	
-	///< OBJ ‚Ì“o˜^
-	add.ClActSet	= crp->ca_sp;					///< ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	add.ClActHeader = cap->act_hd;					///< ƒwƒbƒ_[‚©‚çæ‚èo‚µ
+	///< OBJ ã®ç™»éŒ²
+	add.ClActSet	= crp->ca_sp;					///< ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	add.ClActHeader = cap->act_hd;					///< ãƒ˜ãƒƒãƒ€ãƒ¼ã‹ã‚‰å–ã‚Šå‡ºã—
 	
-	add.mat.x		= FX32_CONST(coap_s->x);		///< À•W
+	add.mat.x		= FX32_CONST(coap_s->x);		///< åº§æ¨™
 	add.mat.y		= FX32_CONST(coap_s->y);
 	add.mat.z		= FX32_CONST(coap_s->z);
 	if(coap_s->d_area == NNS_G2D_VRAM_TYPE_2DSUB){
 		add.mat.y += SUB_SURFACE_Y;
 	}
 	
-	add.sca.x		= FX32_ONE;						///< Šgk—¦
+	add.sca.x		= FX32_ONE;						///< æ‹¡ç¸®ç‡
 	add.sca.y		= FX32_ONE;
 	add.sca.z		= FX32_ONE;
 	
-	add.rot			= 0;							///< ‰ñ“]Šp
-	add.pri			= coap_s->pri;					///< —Dæ“x
-	add.DrawArea	= coap_s->d_area;				///< •`‰æ–Ê
-	add.heap		= csp->heap_area;				///< ƒq[ƒv—Ìˆæ
+	add.rot			= 0;							///< å›è»¢è§’
+	add.pri			= coap_s->pri;					///< å„ªå…ˆåº¦
+	add.DrawArea	= coap_s->d_area;				///< æç”»é¢
+	add.heap		= csp->heap_area;				///< ãƒ’ãƒ¼ãƒ—é ˜åŸŸ
 	
-	cap->act = CLACT_Add(&add);						///< “o˜^
+	cap->act = CLACT_Add(&add);						///< ç™»éŒ²
 	
 	cap->vram_trans = coap_s->vram_trans;
 	
 	if (cap->act != NULL){
-		def_palno = CLACT_PaletteNoGet(cap->act);				///< Šî–{ƒpƒŒƒbƒg”Ô†æ“¾
-		CLACT_AnmChg(cap->act, coap_s->anm);					///< ƒAƒjƒ[ƒVƒ‡ƒ“w’è
-		CLACT_PaletteNoChg(cap->act, def_palno + coap_s->pal);	///< ƒpƒŒƒbƒgw’è
+		def_palno = CLACT_PaletteNoGet(cap->act);				///< åŸºæœ¬ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·å–å¾—
+		CLACT_AnmChg(cap->act, coap_s->anm);					///< ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æŒ‡å®š
+		CLACT_PaletteNoChg(cap->act, def_palno + coap_s->pal);	///< ãƒ‘ãƒ¬ãƒƒãƒˆæŒ‡å®š
 	}
 	else{
-		GF_ASSERT(0 && "ƒAƒNƒ^[“o˜^¸”s");
+		GF_ASSERT(0 && "ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²å¤±æ•—");
 	}
 	return cap;		
 }
@@ -1642,7 +1642,7 @@ CATS_ACT_PTR CATS_ObjectAdd_S(CATS_SYS_PTR csp, CATS_RES_PTR crp, const TCATS_OB
 
 //--------------------------------------------------------------
 /**
- * @brief   “o˜^Ï‚İ‚ÌƒpƒŒƒbƒg‚ÌImageProxy‚ğæ“¾
+ * @brief   ç™»éŒ²æ¸ˆã¿ã®ãƒ‘ãƒ¬ãƒƒãƒˆã®ImageProxyã‚’å–å¾—
  *
  * @param   crp			
  * @param   pltt_id		
@@ -1658,13 +1658,13 @@ const NNSG2dImagePaletteProxy* CATS_PlttProxy( CATS_RES_PTR crp, int pltt_id )
 
 //--------------------------------------------------------------
 /**
- * @brief   “o˜^Ï‚İ‚ÌƒpƒŒƒbƒgŠÇ—ID‚©‚çA“]‘—æ‚ÌƒpƒŒƒbƒg”Ô†‚ğ‹tˆø‚«‚·‚é
+ * @brief   ç™»éŒ²æ¸ˆã¿ã®ãƒ‘ãƒ¬ãƒƒãƒˆç®¡ç†IDã‹ã‚‰ã€è»¢é€å…ˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚’é€†å¼•ãã™ã‚‹
  *
  * @param   crp			
- * @param   pltt_id		ƒpƒŒƒbƒgŠÇ—ID
- * @param   vram_type	VRAM“]‘—ƒ^ƒCƒv(NNS_G2D_VRAM_TYPE_2DMAIN or NNS_G2D_VRAM_TYPE_2DSUB)
+ * @param   pltt_id		ãƒ‘ãƒ¬ãƒƒãƒˆç®¡ç†ID
+ * @param   vram_type	VRAMè»¢é€ã‚¿ã‚¤ãƒ—(NNS_G2D_VRAM_TYPE_2DMAIN or NNS_G2D_VRAM_TYPE_2DSUB)
  *
- * @retval  ƒpƒŒƒbƒg”Ô†
+ * @retval  ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------
 u32 CATS_PlttID_NoGet(CATS_RES_PTR crp, int pltt_id, NNS_G2D_VRAM_TYPE vram_type)
@@ -1676,7 +1676,7 @@ u32 CATS_PlttID_NoGet(CATS_RES_PTR crp, int pltt_id, NNS_G2D_VRAM_TYPE vram_type
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX‰ğ•ú
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  *
  * @param	crp	
  * @param	id	
@@ -1693,7 +1693,7 @@ BOOL CATS_FreeResourceChar(CATS_RES_PTR crp, int id)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX‰ğ•ú
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  *
  * @param	crp	
  * @param	id	
@@ -1710,7 +1710,7 @@ BOOL CATS_FreeResourcePltt(CATS_RES_PTR crp, int id)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX‰ğ•ú
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  *
  * @param	crp	
  * @param	id	
@@ -1727,7 +1727,7 @@ BOOL CATS_FreeResourceCell(CATS_RES_PTR crp, int id)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX‰ğ•ú
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  *
  * @param	crp	
  * @param	id	
@@ -1744,7 +1744,7 @@ BOOL CATS_FreeResourceCellAnm(CATS_RES_PTR crp, int id)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX‰ğ•ú
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  *
  * @param	crp	
  * @param	id	
@@ -1761,7 +1761,7 @@ BOOL CATS_FreeResourceMCell(CATS_RES_PTR crp, int id)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX‰ğ•ú
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  *
  * @param	crp	
  * @param	id	
@@ -1778,10 +1778,10 @@ BOOL CATS_FreeResourceMCellAnm(CATS_RES_PTR crp, int id)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX‚Ì”jŠü
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *
- * @param	csp					ƒVƒXƒeƒ€
- * @param	crp					ƒŠƒ\[ƒX
+ * @param	csp					ã‚·ã‚¹ãƒ†ãƒ 
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹
  *
  * @retval	none	
  *
@@ -1791,28 +1791,28 @@ void CATS_ResourceDestructor_S(CATS_SYS_PTR csp, CATS_RES_PTR crp)
 {
 	int i;
 	
-	CATS_ClactSetDelete(crp);		///< ƒZƒ‹ƒZƒbƒg”jŠü
+	CATS_ClactSetDelete(crp);		///< ã‚»ãƒ«ã‚»ãƒƒãƒˆç ´æ£„
 
-	///< ƒf[ƒ^”jŠü
+	///< ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	CLACT_U_CharManagerDeletes(crp->resObjTbl[0]);
 	CLACT_U_PlttManagerDeletes(crp->resObjTbl[1]);
 	
 	for (i = 0; i < crp->resTypeNum; i++){
 		
-		///< ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹”jŠü
+		///< ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„
 		CLACT_U_ResManagerResObjTblDelete(crp->resObjTbl[i]);
 		
-		///< ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+		///< ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		CLACT_U_ResManagerDelete(crp->resManager[i]);
 	}
 
-	CATS_ResourceFree(csp, crp);	///< ƒŠƒ\[ƒX‚Ìƒƒ‚ƒŠ”jŠü
+	CATS_ResourceFree(csp, crp);	///< ãƒªã‚½ãƒ¼ã‚¹ã®ãƒ¡ãƒ¢ãƒªç ´æ£„
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒNƒ^[ƒ|ƒCƒ“ƒ^‚Ìíœ
+ * @brief	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿ã®å‰Šé™¤
  *
  * @param	cap	
  *
@@ -1840,19 +1840,19 @@ void CATS_ActorPointerDelete_S(CATS_ACT_PTR cap)
 // =============================================================================
 //
 //
-//	¡“à•”QÆŠÖ”ŒS
+//	â– å†…éƒ¨å‚ç…§é–¢æ•°éƒ¡
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹‚Ì“o˜^	ƒpƒX
+ * @brief	ã‚»ãƒ«ã®ç™»éŒ²	ãƒ‘ã‚¹
  *
  * @param	csp	
  * @param	crp	
- * @param	path		ƒpƒX
- * @param	type		ƒZƒ‹‚Ìí—Ş
- * @param	id			ŠÇ—ID
+ * @param	path		ãƒ‘ã‚¹
+ * @param	type		ã‚»ãƒ«ã®ç¨®é¡
+ * @param	id			ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1868,7 +1868,7 @@ static BOOL CATS_LoadResourceCell_Private(CATS_SYS_PTR csp, CATS_RES_PTR crp, co
 	if (obj != NULL){		
 		ret = CATS_LoadResourceTable_Private(crp->resObjTbl[type], obj);
 		
-		GF_ASSERT(ret == TRUE && "ƒZƒ‹“o˜^¸”s");
+		GF_ASSERT(ret == TRUE && "ã‚»ãƒ«ç™»éŒ²å¤±æ•—");
 		
 		return ret;
 	}
@@ -1879,15 +1879,15 @@ static BOOL CATS_LoadResourceCell_Private(CATS_SYS_PTR csp, CATS_RES_PTR crp, co
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹‚Ì“o˜^		ƒA[ƒJƒCƒu
+ * @brief	ã‚»ãƒ«ã®ç™»éŒ²		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	type				ƒZƒ‹‚Ìí—Ş
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	type				ã‚»ãƒ«ã®ç¨®é¡
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1907,7 +1907,7 @@ static BOOL CATS_LoadResourceCellArc_Private(CATS_SYS_PTR csp, CATS_RES_PTR crp,
 	if (obj != NULL){
 		ret = CATS_LoadResourceTable_Private(crp->resObjTbl[type], obj);
 		
-		GF_ASSERT(ret == TRUE && "ƒZƒ‹“o˜^¸”s");
+		GF_ASSERT(ret == TRUE && "ã‚»ãƒ«ç™»éŒ²å¤±æ•—");
 		
 		return ret;
 	}
@@ -1920,15 +1920,15 @@ static BOOL CATS_LoadResourceCellArc_Private(CATS_SYS_PTR csp, CATS_RES_PTR crp,
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹‚Ì“o˜^		ƒA[ƒJƒCƒu
+ * @brief	ã‚»ãƒ«ã®ç™»éŒ²		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	type				ƒZƒ‹‚Ìí—Ş
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	type				ã‚»ãƒ«ã®ç¨®é¡
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
@@ -1948,7 +1948,7 @@ static BOOL CATS_LoadResourceCellArcH_Private(CATS_SYS_PTR csp, CATS_RES_PTR crp
 	if (obj != NULL){
 		ret = CATS_LoadResourceTable_Private(crp->resObjTbl[type], obj);
 		
-		GF_ASSERT(ret == TRUE && "ƒZƒ‹“o˜^¸”s");
+		GF_ASSERT(ret == TRUE && "ã‚»ãƒ«ç™»éŒ²å¤±æ•—");
 		
 		return ret;
 	}
@@ -1961,12 +1961,12 @@ static BOOL CATS_LoadResourceCellArcH_Private(CATS_SYS_PTR csp, CATS_RES_PTR crp
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒXƒe[ƒuƒ‹‚ÌŠJ‚¢‚Ä‚¢‚éêŠ‚ÉAƒŠƒ\[ƒXƒIƒuƒWƒF‚Ìƒ[ƒh
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã®é–‹ã„ã¦ã„ã‚‹å ´æ‰€ã«ã€ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã®ãƒ­ãƒ¼ãƒ‰
  *
- * @param	tbl					ƒŠƒ\[ƒXƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
- * @param	obj					ƒŠƒ\[ƒXOBJ‚Ìƒ|ƒCƒ“ƒ^
+ * @param	tbl					ãƒªã‚½ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	obj					ãƒªã‚½ãƒ¼ã‚¹OBJã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	BOOL				TRUE = ¬Œ÷
+ * @retval	BOOL				TRUE = æˆåŠŸ
  *
  */
 //--------------------------------------------------------------
@@ -1990,12 +1990,12 @@ static BOOL CATS_LoadResourceTable_Private(CLACT_U_RES_OBJ_TBL* tbl, CLACT_U_RES
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒXƒe[ƒuƒ‹‚©‚çAƒŠƒ\[ƒXID‚ğŒŸõ‚µ‚Äˆê’v‚µ‚½ƒŠƒ\[ƒX‚ğ”jŠü
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ã€ãƒªã‚½ãƒ¼ã‚¹IDã‚’æ¤œç´¢ã—ã¦ä¸€è‡´ã—ãŸãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„
  *
- * @param	tbl					ƒŠƒ\[ƒXƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
- * @param	id					íœID
+ * @param	tbl					ãƒªã‚½ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id					å‰Šé™¤ID
  *
- * @retval	BOOL				TRUE = ¬Œ÷	
+ * @retval	BOOL				TRUE = æˆåŠŸ	
  *
  */
 //--------------------------------------------------------------
@@ -2025,7 +2025,7 @@ static BOOL CATS_DeleteResourceData_Private(CLACT_U_RES_MANAGER_PTR resm, CLACT_
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒXƒe[ƒuƒ‹‚©‚çAƒŠƒ\[ƒXID‚ğŒŸõ‚µ‚Äˆê’v‚µ‚½ƒŠƒ\[ƒX‚ğ”jŠü
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ã€ãƒªã‚½ãƒ¼ã‚¹IDã‚’æ¤œç´¢ã—ã¦ä¸€è‡´ã—ãŸãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„
  *
  * @param	resm	
  * @param	tbl	
@@ -2062,7 +2062,7 @@ static BOOL CATS_DeleteResourceCharData_Private(CLACT_U_RES_MANAGER_PTR resm, CL
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒXƒe[ƒuƒ‹‚©‚çAƒŠƒ\[ƒXID‚ğŒŸõ‚µ‚Äˆê’v‚µ‚½ƒŠƒ\[ƒX‚ğ”jŠü
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ã€ãƒªã‚½ãƒ¼ã‚¹IDã‚’æ¤œç´¢ã—ã¦ä¸€è‡´ã—ãŸãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„
  *
  * @param	resm	
  * @param	tbl	
@@ -2116,18 +2116,18 @@ static BOOL CATS_DeleteResourcePlttData_Private(CLACT_U_RES_MANAGER_PTR resm, CL
 // =============================================================================
 //
 //
-//	¡OBJ‘€ìŠÖ˜A‚Ü‚Æ‚ß			[ ACTOR_TOOL ]
+//	â– OBJæ“ä½œé–¢é€£ã¾ã¨ã‚			[ ACTOR_TOOL ]
 //
 //
 // =============================================================================
 // =============================================================================
 //
-//	¡•\¦‘€ì
+//	â– è¡¨ç¤ºæ“ä½œ
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌƒAƒjƒXV
+ * @brief	OBJã®ã‚¢ãƒ‹ãƒ¡æ›´æ–°
  *
  * @param	act					OBJ
  *
@@ -2142,7 +2142,7 @@ void CATS_ObjectUpdate(CLACT_WORK_PTR act)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌƒAƒjƒXV
+ * @brief	OBJã®ã‚¢ãƒ‹ãƒ¡æ›´æ–°
  *
  * @param	cap	
  *
@@ -2158,7 +2158,7 @@ void CATS_ObjectUpdateCap(CATS_ACT_PTR cap)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ ‚Ì XV 1/30 l—¶
+ * @brief	OBJ ã® æ›´æ–° 1/30 è€ƒæ…®
  *
  * @param	cap	
  *
@@ -2174,10 +2174,10 @@ void CATS_ObjectUpdateCapEx( CATS_ACT_PTR cap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒtƒŒ[ƒ€‚ği‚ß‚é
+ *	@brief	ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’é€²ã‚ã‚‹
  *
  *	@param	cap
- *	@param	frame	i‚ß‚é’l
+ *	@param	frame	é€²ã‚ã‚‹å€¤
  *
  *	@return	none
  *
@@ -2192,11 +2192,11 @@ void CATS_ObjectUpdateNumCap(CATS_ACT_PTR cap, fx32 frame)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX”‚ğæ“¾‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cap		ƒ[ƒN
+ *	@param	cap		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒV[ƒPƒ“ƒX”
+ *	@return	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°
  */
 //-----------------------------------------------------------------------------
 u32 CATS_ObjectAnimeSeqNumGetCap( CATS_ACT_PTR cap )
@@ -2207,10 +2207,10 @@ u32 CATS_ObjectAnimeSeqNumGetCap( CATS_ACT_PTR cap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒXİ’è@ƒAƒjƒ‚ÌØ‚è‘Ö‚¦
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹è¨­å®šã€€ã‚¢ãƒ‹ãƒ¡ã®åˆ‡ã‚Šæ›¿ãˆ
  *
  *	@param	cap
- *	@param	seq		ƒV[ƒPƒ“ƒX
+ *	@param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  *	@return	none
  *
@@ -2225,7 +2225,7 @@ void CATS_ObjectAnimeSeqSetCap( CATS_ACT_PTR cap, u32 seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒ‚ğ”äŠr‚µ‚Äˆá‚Á‚Ä‚¢‚½‚ç•ÏX
+ * @brief	ã‚¢ãƒ‹ãƒ¡ã‚’æ¯”è¼ƒã—ã¦é•ã£ã¦ã„ãŸã‚‰å¤‰æ›´
  *
  * @param	cap	
  * @param	seq	
@@ -2242,11 +2242,11 @@ void CATS_ObjectAnimeSeqCheckSetCap( CATS_ACT_PTR cap, u32 seq )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒXæ“¾
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å–å¾—
  *
  *	@param	cap 
  *
- *	@return	ƒV[ƒPƒ“ƒX
+ *	@return	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  *
  */
@@ -2259,7 +2259,7 @@ u32 CATS_ObjectAnimeSeqGetCap( CATS_ACT_PTR cap )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒI[ƒgƒAƒjƒİ’è
+ * @brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡è¨­å®š
  *
  * @param	act	
  * @param	flag				CATS_ANM_AUTO_ON / CATS_ANM_AUTO_OFF
@@ -2275,7 +2275,7 @@ void CATS_ObjectAutoAnimeSet(CLACT_WORK_PTR act, int flag)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒI[ƒgƒAƒjƒİ’è
+ * @brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡è¨­å®š
  *
  * @param	cap	
  * @param	flag	
@@ -2292,7 +2292,7 @@ void CATS_ObjectAutoAnimeSetCap(CATS_ACT_PTR cap, int flag)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒI[ƒgƒAƒjƒæ“¾
+ * @brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡å–å¾—
  *
  * @param	act	
  *
@@ -2308,7 +2308,7 @@ int CATS_ObjectAutoAnimeGet(CLACT_WORK_PTR act)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒI[ƒgƒAƒjƒæ“¾
+ * @brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡å–å¾—
  *
  * @param	cap	
  *
@@ -2325,10 +2325,10 @@ int CATS_ObjectAutoAnimeGetCap(CATS_ACT_PTR cap)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒI[ƒgƒAƒjƒƒXƒs[ƒhİ’è
+ *	@brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰è¨­å®š
  *
  *	@param	act			
- *	@param	speed	ƒAƒjƒƒXƒs[ƒh
+ *	@param	speed	ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
  *
  *	@return	none
  *
@@ -2343,10 +2343,10 @@ void CATS_ObjectAutoAnimeSpeedSet(CLACT_WORK_PTR act, fx32 speed)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒI[ƒgƒAƒjƒƒXƒs[ƒhİ’è
+ *	@brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰è¨­å®š
  *
  *	@param	cap
- *	@param	speed	ƒAƒjƒƒXƒs[ƒh
+ *	@param	speed	ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
  *
  *	@return	none
  *
@@ -2361,11 +2361,11 @@ void CATS_ObjectAutoAnimeSpeedSetCap(CATS_ACT_PTR cap, fx32 speed)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒI[ƒgƒAƒjƒƒXƒs[ƒhæ“¾
+ *	@brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰å–å¾—
  *
  *	@param	act	
  *
- *	@return	ƒAƒjƒƒXƒs[ƒh
+ *	@return	ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
  *
  *
  */
@@ -2378,11 +2378,11 @@ fx32 CATS_ObjectAutoAnimeSpeedGet(CLACT_WORK_PTR act)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒI[ƒgƒAƒjƒƒXƒs[ƒhæ“¾
+ *	@brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰å–å¾—
  *
  *	@param	cap
  *
- *	@return	ƒAƒjƒƒXƒs[ƒh
+ *	@return	ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ”ãƒ¼ãƒ‰
  *
  *
  */
@@ -2395,12 +2395,12 @@ fx32 CATS_ObjectAutoAnimeSpeedGetCap(CATS_ACT_PTR cap)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒ“®ìƒ`ƒFƒbƒN
+ * @brief	ã‚¢ãƒ‹ãƒ¡å‹•ä½œãƒã‚§ãƒƒã‚¯
  *
  * @param	act	
  *
- * @retval	TRUE	ƒAƒjƒ[ƒVƒ‡ƒ“’†
- * @retval	FALSE	’â~’†
+ * @retval	TRUE	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä¸­
+ * @retval	FALSE	åœæ­¢ä¸­
  *
  */
 //--------------------------------------------------------------
@@ -2411,12 +2411,12 @@ BOOL CATS_ObjectAnimeActiveCheck(CLACT_WORK_PTR act)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒI[ƒgƒAƒjƒæ“¾
+ * @brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡å–å¾—
  *
  * @param	cap	
  *
- * @retval	TRUE	ƒAƒjƒ[ƒVƒ‡ƒ“’†
- * @retval	FALSE	’â~’†
+ * @retval	TRUE	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä¸­
+ * @retval	FALSE	åœæ­¢ä¸­
  *
  */
 //--------------------------------------------------------------
@@ -2429,10 +2429,10 @@ BOOL CATS_ObjectAnimeActiveCheckCap(CATS_ACT_PTR cap)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€İ’è
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
  *
- *	@param	act		ƒAƒNƒ^[
- *	@param	frame	İ’èƒtƒŒ[ƒ€
+ *	@param	act		ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	frame	è¨­å®šãƒ•ãƒ¬ãƒ¼ãƒ 
  *
  *	@retval	none
  *
@@ -2447,10 +2447,10 @@ void CATS_ObjectAnimeFrameSet(CLACT_WORK_PTR act, u16 frame)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€İ’è@ƒRƒ}‚ği‚ß‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®šã€€ã‚³ãƒã‚’é€²ã‚ã‚‹
  *
  *	@param	cap
- *	@param	frame	İ’èƒtƒŒ[ƒ€
+ *	@param	frame	è¨­å®šãƒ•ãƒ¬ãƒ¼ãƒ 
  *
  *	@retval	none	
  *
@@ -2465,11 +2465,11 @@ void CATS_ObjectAnimeFrameSetCap(CATS_ACT_PTR cap, u16 frame)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ğæ“¾
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–å¾—
  *
- *	@param	act	ƒAƒNƒ^[
+ *	@param	act	ã‚¢ã‚¯ã‚¿ãƒ¼
  *
- *	@return	ƒtƒŒ[ƒ€
+ *	@return	ãƒ•ãƒ¬ãƒ¼ãƒ 
  *
  *
  */
@@ -2482,11 +2482,11 @@ u16 CATS_ObjectAnimeFrameGet(CLACT_WORK_PTR act)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ğæ“¾
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–å¾—
  *
- *	@param	cap	ƒAƒNƒ^[
+ *	@param	cap	ã‚¢ã‚¯ã‚¿ãƒ¼
  *
- *	@return	ƒtƒŒ[ƒ€
+ *	@return	ãƒ•ãƒ¬ãƒ¼ãƒ 
  *
  *
  */
@@ -2499,11 +2499,11 @@ u16 CATS_ObjectAnimeFrameGetCap(CATS_ACT_PTR cap)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚Ì•\¦İ’è
+ * @brief	OBJã®è¡¨ç¤ºè¨­å®š
  *
  * @param	act					OBJ
- * @param	enable				CATS_ENABLE_TRUE	= •\¦
- *								CATS_ENABLE_FALSE	= ”ñ•\¦
+ * @param	enable				CATS_ENABLE_TRUE	= è¡¨ç¤º
+ *								CATS_ENABLE_FALSE	= éè¡¨ç¤º
  *
  * @retval	none	
  *
@@ -2516,7 +2516,7 @@ void CATS_ObjectEnable(CLACT_WORK_PTR act, int enable)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚Ì•\¦İ’è
+ * @brief	OBJã®è¡¨ç¤ºè¨­å®š
  *
  * @param	cap	
  * @param	enable	
@@ -2533,7 +2533,7 @@ void CATS_ObjectEnableCap(CATS_ACT_PTR cap, int enable)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚Ì•\¦İ’èæ“¾
+ * @brief	OBJã®è¡¨ç¤ºè¨­å®šå–å¾—
  *
  * @param	act	
  *
@@ -2549,7 +2549,7 @@ int	CATS_ObjectEnableGet(CLACT_WORK_PTR act)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚Ì•\¦İ’èæ“¾
+ * @brief	OBJã®è¡¨ç¤ºè¨­å®šå–å¾—
  *
  * @param	cap	
  *
@@ -2565,7 +2565,7 @@ int	CATS_ObjectEnableGetCap(CATS_ACT_PTR cap)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒg•ÏX
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
  *
  * @param	act	
  * @param	pal	
@@ -2581,7 +2581,7 @@ void CATS_ObjectPaletteSet(CLACT_WORK_PTR act, int pal)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒg•ÏX
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
  *
  * @param	cap	
  * @param	pal	
@@ -2597,7 +2597,7 @@ void CATS_ObjectPaletteSetCap(CATS_ACT_PTR cap, int pal)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒŒƒbƒgƒIƒtƒZƒbƒg•ÏX
+ * @brief   ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆå¤‰æ›´
  *
  * @param   act			
  * @param   pal_ofs		
@@ -2610,7 +2610,7 @@ void CATS_ObjectPaletteOffsetSet(CLACT_WORK_PTR act, int pal_ofs)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒpƒŒƒbƒgƒIƒtƒZƒbƒg•ÏX
+ * @brief   ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆå¤‰æ›´
  *
  * @param   cap		
  * @param   pal_ofs		
@@ -2628,11 +2628,11 @@ void CATS_ObjectPaletteOffsetSetCap(CATS_ACT_PTR cap, int pal_ofs)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒIƒtƒZƒbƒg‚Ìæ“¾
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆã®å–å¾—
  *
- *	@param	cap		ƒ[ƒN
+ *	@param	cap		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+ *	@return	ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  *
  */
@@ -2645,7 +2645,7 @@ int CATS_ObjectPaletteOffsetGetCap(CATS_ACT_PTR cap)
 
 //--------------------------------------------------------------
 /**
- * @brief	BG‚Æ‚Ì—Dæ“x‚Ì•ÏX
+ * @brief	BGã¨ã®å„ªå…ˆåº¦ã®å¤‰æ›´
  *
  * @param	act	
  * @param	pri	
@@ -2662,7 +2662,7 @@ void CATS_ObjectBGPriSet(CLACT_WORK_PTR act, int pri)
 
 //--------------------------------------------------------------
 /**
- * @brief	BG ‚Æ‚Ì—Dæ“x
+ * @brief	BG ã¨ã®å„ªå…ˆåº¦
  *
  * @param	cap	
  *
@@ -2678,7 +2678,7 @@ int	CATS_ObjectBGPriGetCap(CATS_ACT_PTR cap)
 
 //--------------------------------------------------------------
 /**
- * @brief	BG‚Æ‚Ì—Dæ“x‚Ì•ÏX
+ * @brief	BGã¨ã®å„ªå…ˆåº¦ã®å¤‰æ›´
  *
  * @param	cap	
  * @param	pri	
@@ -2695,7 +2695,7 @@ void CATS_ObjectBGPriSetCap(CATS_ACT_PTR cap, int pri)
 
 //--------------------------------------------------------------
 /**
- * @brief	—Dæ“x‚Ì•ÏX
+ * @brief	å„ªå…ˆåº¦ã®å¤‰æ›´
  *
  * @param	act	
  * @param	pri	
@@ -2711,7 +2711,7 @@ void CATS_ObjectPriSet(CLACT_WORK_PTR act, int pri)
 
 //--------------------------------------------------------------
 /**
- * @brief	—Dæ“x‚Ì•ÏX
+ * @brief	å„ªå…ˆåº¦ã®å¤‰æ›´
  *
  * @param	cap	
  * @param	pri	
@@ -2727,7 +2727,7 @@ void CATS_ObjectPriSetCap(CATS_ACT_PTR cap, int pri)
 
 //--------------------------------------------------------------
 /**
- * @brief	—Dæ“xæ“¾
+ * @brief	å„ªå…ˆåº¦å–å¾—
  *
  * @param	act	
  *
@@ -2742,7 +2742,7 @@ u32 CATS_ObjectPriGet(CLACT_WORK_PTR act)
 
 //--------------------------------------------------------------
 /**
- * @brief	—Dæ“xæ“¾
+ * @brief	å„ªå…ˆåº¦å–å¾—
  *
  * @param	cap	
  *
@@ -2758,12 +2758,12 @@ u32 CATS_ObjectPriGetCap(CATS_ACT_PTR cap)
 
 // =============================================================================
 //
-//	¡À•W‘€ì
+//	â– åº§æ¨™æ“ä½œ
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌÀ•W•ÏX
+ * @brief	OBJã®åº§æ¨™å¤‰æ›´
  *
  * @param	act					OBJ
  * @param	x	
@@ -2789,7 +2789,7 @@ void CATS_ObjectPosSet(CLACT_WORK_PTR act, s16 x, s16 y)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌÀ•W•ÏX
+ * @brief	OBJã®åº§æ¨™å¤‰æ›´
  *
  * @param	cap	
  * @param	x	
@@ -2806,12 +2806,12 @@ void CATS_ObjectPosSetCap(CATS_ACT_PTR cap, s16 x, s16 y)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌÀ•W•ÏX(SUB_SURFACE_Y‚É‘«‚µ‚±‚Ş’l‚ğŠO‘¤‚©‚çw’è)
+ * @brief	OBJã®åº§æ¨™å¤‰æ›´(SUB_SURFACE_Yã«è¶³ã—ã“ã‚€å€¤ã‚’å¤–å´ã‹ã‚‰æŒ‡å®š)
  *
  * @param	act					OBJ
  * @param	x	
  * @param	y	
- * @param   sub_surface_y		ƒTƒu‰æ–Ê‚Éo‚éOBJ‚Ìê‡A‘«‚µ‚±‚ŞSURFACE’l
+ * @param   sub_surface_y		ã‚µãƒ–ç”»é¢ã«å‡ºã‚‹OBJã®å ´åˆã€è¶³ã—ã“ã‚€SURFACEå€¤
  *
  * @retval	none	
  *
@@ -2833,12 +2833,12 @@ void CATS_ObjectPosSet_SubSurface(CLACT_WORK_PTR act, s16 x, s16 y, fx32 sub_sur
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌÀ•W•ÏX(SUB_SURFACE_Y‚É‘«‚µ‚±‚Ş’l‚ğŠO‘¤‚©‚çw’è)
+ * @brief	OBJã®åº§æ¨™å¤‰æ›´(SUB_SURFACE_Yã«è¶³ã—ã“ã‚€å€¤ã‚’å¤–å´ã‹ã‚‰æŒ‡å®š)
  *
  * @param	cap	
  * @param	x	
  * @param	y	
- * @param   sub_surface_y		ƒTƒu‰æ–Ê‚Éo‚éOBJ‚Ìê‡A‘«‚µ‚±‚ŞSURFACE’l
+ * @param   sub_surface_y		ã‚µãƒ–ç”»é¢ã«å‡ºã‚‹OBJã®å ´åˆã€è¶³ã—ã“ã‚€SURFACEå€¤
  *
  * @retval	none	
  *
@@ -2851,11 +2851,11 @@ void CATS_ObjectPosSetCap_SubSurface(CATS_ACT_PTR cap, s16 x, s16 y, fx32 sub_su
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌÀ•Wæ“¾
+ * @brief	OBJã®åº§æ¨™å–å¾—
  *
  * @param	act					OBJ
- * @param	x					æ“¾XÀ•W‘ã“üæ
- * @param	y					æ“¾YÀ•W‘ã“üæ
+ * @param	x					å–å¾—Xåº§æ¨™ä»£å…¥å…ˆ
+ * @param	y					å–å¾—Yåº§æ¨™ä»£å…¥å…ˆ
  *
  * @retval	none	
  *
@@ -2877,7 +2877,7 @@ void CATS_ObjectPosGet(CLACT_WORK_PTR act, s16 *x, s16 *y)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌÀ•Wæ“¾
+ * @brief	OBJã®åº§æ¨™å–å¾—
  *
  * @param	cap	
  * @param	x	
@@ -2894,12 +2894,12 @@ void CATS_ObjectPosGetCap(CATS_ACT_PTR cap, s16 *x, s16 *y)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌÀ•Wæ“¾(SUB_SURFACE_Y‚ğŠO‘¤‚©‚çw’è)
+ * @brief	OBJã®åº§æ¨™å–å¾—(SUB_SURFACE_Yã‚’å¤–å´ã‹ã‚‰æŒ‡å®š)
  *
  * @param	act					OBJ
- * @param	x					æ“¾XÀ•W‘ã“üæ
- * @param	y					æ“¾YÀ•W‘ã“üæ
- * @param   sub_surface_y		ƒTƒu‰æ–Ê‚Éo‚éOBJ‚Ìê‡A‘«‚µ‚±‚ŞSURFACE’l
+ * @param	x					å–å¾—Xåº§æ¨™ä»£å…¥å…ˆ
+ * @param	y					å–å¾—Yåº§æ¨™ä»£å…¥å…ˆ
+ * @param   sub_surface_y		ã‚µãƒ–ç”»é¢ã«å‡ºã‚‹OBJã®å ´åˆã€è¶³ã—ã“ã‚€SURFACEå€¤
  *
  * @retval	none	
  *
@@ -2921,12 +2921,12 @@ void CATS_ObjectPosGet_SubSurface(CLACT_WORK_PTR act, s16 *x, s16 *y, fx32 sub_s
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌÀ•Wæ“¾(SUB_SURFACE_Y‚ğŠO‘¤‚©‚çw’è)
+ * @brief	OBJã®åº§æ¨™å–å¾—(SUB_SURFACE_Yã‚’å¤–å´ã‹ã‚‰æŒ‡å®š)
  *
  * @param	cap	
  * @param	x	
  * @param	y	
- * @param   sub_surface_y		ƒTƒu‰æ–Ê‚Éo‚éOBJ‚Ìê‡A‘«‚µ‚±‚ŞSURFACE’l
+ * @param   sub_surface_y		ã‚µãƒ–ç”»é¢ã«å‡ºã‚‹OBJã®å ´åˆã€è¶³ã—ã“ã‚€SURFACEå€¤
  *
  * @retval	none	
  *
@@ -2940,7 +2940,7 @@ void CATS_ObjectPosGetCap_SubSurface(CATS_ACT_PTR cap, s16 *x, s16 *y, fx32 sub_
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌˆÚ“®
+ * @brief	OBJã®ç§»å‹•
  *
  * @param	act					OBJ
  * @param	x	
@@ -2966,7 +2966,7 @@ void CATS_ObjectPosMove(CLACT_WORK_PTR act, s16 x, s16 y)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌˆÚ“®
+ * @brief	OBJã®ç§»å‹•
  *
  * @param	cap	
  * @param	x	
@@ -2983,7 +2983,7 @@ void CATS_ObjectPosMoveCap(CATS_ACT_PTR cap, s16 x, s16 y)
 
 //--------------------------------------------------------------
 /**
- * @brief	fx32Œ^‚Å“n‚·
+ * @brief	fx32å‹ã§æ¸¡ã™
  *
  * @param	cap	
  * @param	x	
@@ -3104,18 +3104,18 @@ void CATS_ObjectPosGetCapFx32_SubSurface(CATS_ACT_PTR cap, fx32* x, fx32* y, fx3
 
 // =============================================================================
 //
-//	¡ƒAƒtƒBƒ“‘€ì ƒtƒŠƒbƒv‘€ì
+//	â– ã‚¢ãƒ•ã‚£ãƒ³æ“ä½œ ãƒ•ãƒªãƒƒãƒ—æ“ä½œ
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^[İ’è
+ * @brief	OBJã®ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼è¨­å®š
  *
  * @param	act					OBJ
- * @param	affine				ƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^[
- *		CLACT_AFFINE_NONE,		// ƒAƒtƒBƒ“•ÏŠ·‚È‚µ
- *		CLACT_AFFINE_NORMAL,	// ƒAƒtƒBƒ“•ÏŠ·
- *		CLACT_AFFINE_DOUBLE,	// ”{ŠpƒAƒtƒBƒ“•ÏŠ·
+ * @param	affine				ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+ *		CLACT_AFFINE_NONE,		// ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›ãªã—
+ *		CLACT_AFFINE_NORMAL,	// ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›
+ *		CLACT_AFFINE_DOUBLE,	// å€è§’ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›
  *
  * @retval	none	
  *
@@ -3128,7 +3128,7 @@ void CATS_ObjectAffineSet(CLACT_WORK_PTR act, int affine)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^[İ’è
+ * @brief	OBJã®ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼è¨­å®š
  *
  * @param	cap	
  * @param	affine	
@@ -3145,7 +3145,7 @@ void CATS_ObjectAffineSetCap(CATS_ACT_PTR cap, int affine)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^[æ“¾
+ * @brief	OBJã®ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼å–å¾—
  *
  * @param	act					OBJ
  *
@@ -3160,7 +3160,7 @@ int CATS_ObjectAffineGet(CLACT_WORK_PTR act)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌƒAƒtƒBƒ“ƒpƒ‰ƒ[ƒ^[æ“¾
+ * @brief	OBJã®ã‚¢ãƒ•ã‚£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼å–å¾—
  *
  * @param	cap	
  *
@@ -3176,7 +3176,7 @@ int CATS_ObjectAffineGetCap(CATS_ACT_PTR cap)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌŠgk—¦‚Ì•ÏX
+ * @brief	OBJã®æ‹¡ç¸®ç‡ã®å¤‰æ›´
  *
  * @param	act					OBJ
  * @param	sx	
@@ -3203,7 +3203,7 @@ void CATS_ObjectScaleSet(CLACT_WORK_PTR act, f32 sx, f32 sy)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌŠgk—¦‚Ì•ÏX
+ * @brief	OBJã®æ‹¡ç¸®ç‡ã®å¤‰æ›´
  *
  * @param	cap	
  * @param	sx	
@@ -3221,7 +3221,7 @@ void CATS_ObjectScaleSetCap(CATS_ACT_PTR cap, f32 sx, f32 sy)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌŠgk—¦‚Ì‰ÁZ
+ * @brief	OBJã®æ‹¡ç¸®ç‡ã®åŠ ç®—
  *
  * @param	act					OBJ
  * @param	sx	
@@ -3248,7 +3248,7 @@ void CATS_ObjectScaleAdd(CLACT_WORK_PTR act, f32 sx, f32 sy)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌŠgk—¦‚Ì‰ÁZ
+ * @brief	OBJã®æ‹¡ç¸®ç‡ã®åŠ ç®—
  *
  * @param	cap	
  * @param	sx	
@@ -3266,7 +3266,7 @@ void CATS_ObjectScaleAddCap(CATS_ACT_PTR cap, f32 sx, f32 sy)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌŠgk—¦‚ğæ“¾
+ * @brief	OBJã®æ‹¡ç¸®ç‡ã‚’å–å¾—
  *
  * @param	act	
  * @param	sx	
@@ -3289,7 +3289,7 @@ void CATS_ObjectScaleGet(CLACT_WORK_PTR act, f32* sx, f32* sy)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚ÌŠgk—¦‚ğæ“¾
+ * @brief	OBJã®æ‹¡ç¸®ç‡ã‚’å–å¾—
  *
  * @param	cap	
  * @param	sx	
@@ -3307,7 +3307,7 @@ void CATS_ObjectScaleGetCap(CATS_ACT_PTR cap, f32* sx, f32* sy)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚Ì‰ñ“]Šeİ’è
+ * @brief	OBJã®å›è»¢å„è¨­å®š
  *
  * @param	act	
  * @param	rot	
@@ -3323,7 +3323,7 @@ void CATS_ObjectRotationSet(CLACT_WORK_PTR act, u16 rot)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚Ì‰ñ“]Šeİ’è
+ * @brief	OBJã®å›è»¢å„è¨­å®š
  *
  * @param	cap	
  * @param	rot	
@@ -3340,7 +3340,7 @@ void CATS_ObjectRotationSetCap(CATS_ACT_PTR cap, u16 rot)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚Ì‰ñ“]—¦‰ÁŒ¸Z
+ * @brief	OBJã®å›è»¢ç‡åŠ æ¸›ç®—
  *
  * @param	act					OBJ
  * @param	rot	
@@ -3362,7 +3362,7 @@ void CATS_ObjectRotationAdd(CLACT_WORK_PTR act, s32 rot)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJ‚Ì‰ñ“]—¦‰ÁŒ¸Z
+ * @brief	OBJã®å›è»¢ç‡åŠ æ¸›ç®—
  *
  * @param	cap	
  * @param	rot	
@@ -3379,7 +3379,7 @@ void CATS_ObjectRotationAddCap(CATS_ACT_PTR cap, s32 rot)
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ñ“]—¦æ“¾
+ * @brief	å›è»¢ç‡å–å¾—
  *
  * @param	act					OBJ
  *
@@ -3394,7 +3394,7 @@ u16	CATS_ObjectRotationGet(CLACT_WORK_PTR act)
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ñ“]—¦æ“¾
+ * @brief	å›è»¢ç‡å–å¾—
  *
  * @param	cap	
  *
@@ -3410,14 +3410,14 @@ u16	CATS_ObjectRotationGetCap(CATS_ACT_PTR cap)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒŠƒbƒv‘€ì
+ * @brief	ãƒ•ãƒªãƒƒãƒ—æ“ä½œ
  *
  * @param	act					OBJ
- * @param	flip				ƒtƒŠƒbƒv‘€ì
- * 		CLACT_FLIP_NONE,		// ƒtƒŠƒbƒv‚È‚µ
- * 		CLACT_FLIP_H,			// ƒtƒŠƒbƒv…•½•ûŒü
- *		CLACT_FLIP_V,			// ƒtƒŠƒbƒv‚’¼•ûŒü
- *		CLACT_FLIP_HV,			// —¼•ûŒüƒtƒŠƒbƒv
+ * @param	flip				ãƒ•ãƒªãƒƒãƒ—æ“ä½œ
+ * 		CLACT_FLIP_NONE,		// ãƒ•ãƒªãƒƒãƒ—ãªã—
+ * 		CLACT_FLIP_H,			// ãƒ•ãƒªãƒƒãƒ—æ°´å¹³æ–¹å‘
+ *		CLACT_FLIP_V,			// ãƒ•ãƒªãƒƒãƒ—å‚ç›´æ–¹å‘
+ *		CLACT_FLIP_HV,			// ä¸¡æ–¹å‘ãƒ•ãƒªãƒƒãƒ—
  *
  * @retval	none	
  *
@@ -3430,7 +3430,7 @@ void CATS_ObjectFlipSet(CLACT_WORK_PTR act, int flip)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒŠƒbƒv‘€ì
+ * @brief	ãƒ•ãƒªãƒƒãƒ—æ“ä½œ
  *
  * @param	cap	
  * @param	flip	
@@ -3447,11 +3447,11 @@ void CATS_ObjectFlipSetCap(CATS_ACT_PTR cap, int flip)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒŠƒbƒvæ“¾
+ * @brief	ãƒ•ãƒªãƒƒãƒ—å–å¾—
  *
  * @param	act					OBJ
  *
- * @retval	int					ƒtƒŠƒbƒvó‘Ô
+ * @retval	int					ãƒ•ãƒªãƒƒãƒ—çŠ¶æ…‹
  *
  */
 //--------------------------------------------------------------
@@ -3462,7 +3462,7 @@ int CATS_ObjectFlipGet(CLACT_WORK_PTR act)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒŠƒbƒvæ“¾
+ * @brief	ãƒ•ãƒªãƒƒãƒ—å–å¾—
  *
  * @param	cap	
  *
@@ -3479,11 +3479,11 @@ int CATS_ObjectFlipGetCap(CATS_ACT_PTR cap)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒtƒBƒ“À•W‚ğİ’è
+ *	@brief	ã‚¢ãƒ•ã‚£ãƒ³åº§æ¨™ã‚’è¨­å®š
  *
- *	@param	cap		ƒAƒNƒ^[
- *	@param	x		XÀ•W
- *	@param	y		YÀ•W
+ *	@param	cap		ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	x		Xåº§æ¨™
+ *	@param	y		Yåº§æ¨™
  *
  *	@return	none
  *
@@ -3504,11 +3504,11 @@ void CATS_ObjectAffinePosSetCap(CATS_ACT_PTR cap, s16 x, s16 y)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒtƒBƒ“•ÏŠ·À•W‚ğæ“¾
+ *	@brief	ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›åº§æ¨™ã‚’å–å¾—
  *
- *	@param	cap		ƒAƒNƒ^[
- *	@param	x		xÀ•WŠi”[æ
- *	@param	y		yÀ•WŠi”[æ
+ *	@param	cap		ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	x		xåº§æ¨™æ ¼ç´å…ˆ
+ *	@param	y		yåº§æ¨™æ ¼ç´å…ˆ
  *
  *	@return	none
  *
@@ -3527,11 +3527,11 @@ void CATS_ObjectAffinePosGetCap(CATS_ACT_PTR cap, s16 *x, s16 *y)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒtƒBƒ“•ÏŠ·À•W‚ğ“®‚©‚·
+ *	@brief	ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›åº§æ¨™ã‚’å‹•ã‹ã™
  *
- *	@param	cap		ƒAƒNƒ^[
- *	@param	x		“®‚©‚·x’l
- *	@param	y		“®‚©‚·y’l
+ *	@param	cap		ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	x		å‹•ã‹ã™xå€¤
+ *	@param	y		å‹•ã‹ã™yå€¤
  *
  *	@return	none
  *
@@ -3555,7 +3555,7 @@ void CATS_ObjectAffinePosMoveCap(CATS_ACT_PTR cap, s16 x, s16 y)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‚ƒUƒCƒNİ’è
+ * @brief	ãƒ¢ã‚¶ã‚¤ã‚¯è¨­å®š
  *
  * @param	cap	
  * @param	flag	TRUE = ON
@@ -3571,18 +3571,18 @@ void CATS_ObjectMosaicSet(CATS_ACT_PTR cap, BOOL flag)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJƒ‚[ƒhİ’è
+ * @brief	OBJãƒ¢ãƒ¼ãƒ‰è¨­å®š
  *
  * @param	act		OBJ
- * @param	objmode	OBJƒ‚[ƒh
+ * @param	objmode	OBJãƒ¢ãƒ¼ãƒ‰
  *
  * @return	none
  *
  * objmode
- *	GX_OAM_MODE_NORMAL		ƒm[ƒ}ƒ‹OBJ 
- * 	GX_OAM_MODE_XLU			”¼“§–¾OBJ 
- *	GX_OAM_MODE_OBJWND		OBJƒEƒBƒ“ƒhƒE 
- *	GX_OAM_MODE_BITMAPOBJ	ƒrƒbƒgƒ}ƒbƒvOBJ 
+ *	GX_OAM_MODE_NORMAL		ãƒãƒ¼ãƒãƒ«OBJ 
+ * 	GX_OAM_MODE_XLU			åŠé€æ˜OBJ 
+ *	GX_OAM_MODE_OBJWND		OBJã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ 
+ *	GX_OAM_MODE_BITMAPOBJ	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—OBJ 
  *
  */
 //--------------------------------------------------------------
@@ -3593,18 +3593,18 @@ void CATS_ObjectObjModeSet(CLACT_WORK_PTR act, GXOamMode objmode)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJƒ‚[ƒhİ’è
+ * @brief	OBJãƒ¢ãƒ¼ãƒ‰è¨­å®š
  *
  * @param	cap		
- * @param	objmode	OBJƒ‚[ƒh
+ * @param	objmode	OBJãƒ¢ãƒ¼ãƒ‰
  *
  * @return	none
  *
  * objmode
- *	GX_OAM_MODE_NORMAL		ƒm[ƒ}ƒ‹OBJ 
- * 	GX_OAM_MODE_XLU			”¼“§–¾OBJ 
- *	GX_OAM_MODE_OBJWND		OBJƒEƒBƒ“ƒhƒE 
- *	GX_OAM_MODE_BITMAPOBJ	ƒrƒbƒgƒ}ƒbƒvOBJ 
+ *	GX_OAM_MODE_NORMAL		ãƒãƒ¼ãƒãƒ«OBJ 
+ * 	GX_OAM_MODE_XLU			åŠé€æ˜OBJ 
+ *	GX_OAM_MODE_OBJWND		OBJã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ 
+ *	GX_OAM_MODE_BITMAPOBJ	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—OBJ 
  *
  */
 //--------------------------------------------------------------
@@ -3615,17 +3615,17 @@ void CATS_ObjectObjModeSetCap(CATS_ACT_PTR cap, GXOamMode objmode)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJƒ‚[ƒhæ“¾
+ * @brief	OBJãƒ¢ãƒ¼ãƒ‰å–å¾—
  *
  * @param	act					OBJ
  *
- *	@retval	GX_OAM_MODE_NORMAL		ƒm[ƒ}ƒ‹OBJ 
- *	@retval	GX_OAM_MODE_XLU			”¼“§–¾OBJ 
- *	@retval	GX_OAM_MODE_OBJWND		OBJƒEƒBƒ“ƒhƒE 
- *	@retval	GX_OAM_MODE_BITMAPOBJ	ƒrƒbƒgƒ}ƒbƒvOBJ 
+ *	@retval	GX_OAM_MODE_NORMAL		ãƒãƒ¼ãƒãƒ«OBJ 
+ *	@retval	GX_OAM_MODE_XLU			åŠé€æ˜OBJ 
+ *	@retval	GX_OAM_MODE_OBJWND		OBJã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ 
+ *	@retval	GX_OAM_MODE_BITMAPOBJ	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—OBJ 
  *
- *	OBJƒ‚[ƒh‚ªGX_OAM_MODE_NORMAL‚Ì‚ÍNitroCharacter‚Åİ’è‚µ‚½
- *	OBJƒ‚[ƒh‚Å•`‰æ‚³‚ê‚Ü‚·B
+ *	OBJãƒ¢ãƒ¼ãƒ‰ãŒGX_OAM_MODE_NORMALã®æ™‚ã¯NitroCharacterã§è¨­å®šã—ãŸ
+ *	OBJãƒ¢ãƒ¼ãƒ‰ã§æç”»ã•ã‚Œã¾ã™ã€‚
  *
  */
 //--------------------------------------------------------------
@@ -3636,17 +3636,17 @@ GXOamMode CATS_ObjectObjModeGet(CLACT_WORK_PTR act)
 
 //--------------------------------------------------------------
 /**
- * @brief	OBJƒ‚[ƒhæ“¾
+ * @brief	OBJãƒ¢ãƒ¼ãƒ‰å–å¾—
  *
  * @param	cap
  *
- *	@retval	GX_OAM_MODE_NORMAL		ƒm[ƒ}ƒ‹OBJ 
- *	@retval	GX_OAM_MODE_XLU			”¼“§–¾OBJ 
- *	@retval	GX_OAM_MODE_OBJWND		OBJƒEƒBƒ“ƒhƒE 
- *	@retval	GX_OAM_MODE_BITMAPOBJ	ƒrƒbƒgƒ}ƒbƒvOBJ 
+ *	@retval	GX_OAM_MODE_NORMAL		ãƒãƒ¼ãƒãƒ«OBJ 
+ *	@retval	GX_OAM_MODE_XLU			åŠé€æ˜OBJ 
+ *	@retval	GX_OAM_MODE_OBJWND		OBJã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ 
+ *	@retval	GX_OAM_MODE_BITMAPOBJ	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—OBJ 
  *
- *	OBJƒ‚[ƒh‚ªGX_OAM_MODE_NORMAL‚Ì‚ÍNitroCharacter‚Åİ’è‚µ‚½
- *	OBJƒ‚[ƒh‚Å•`‰æ‚³‚ê‚Ü‚·B
+ *	OBJãƒ¢ãƒ¼ãƒ‰ãŒGX_OAM_MODE_NORMALã®æ™‚ã¯NitroCharacterã§è¨­å®šã—ãŸ
+ *	OBJãƒ¢ãƒ¼ãƒ‰ã§æç”»ã•ã‚Œã¾ã™ã€‚
  *
  */
 //--------------------------------------------------------------
@@ -3657,18 +3657,18 @@ GXOamMode CATS_ObjectObjModeGetCap(CATS_ACT_PTR cap)
 
 // =============================================================================
 //
-//	¡Šg’£ƒf[ƒ^æ“¾
+//	â– æ‹¡å¼µãƒ‡ãƒ¼ã‚¿å–å¾—
 //
 // =============================================================================
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒXŠg’£ƒAƒgƒŠƒrƒ…[ƒgæ“¾
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
  *
- *	@param	cap			ƒ[ƒN
- *	@param	seqidx		æ“¾‚·‚éƒV[ƒPƒ“ƒX”
+ *	@param	cap			ãƒ¯ãƒ¼ã‚¯
+ *	@param	seqidx		å–å¾—ã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°
  *
- *	@retval	ƒ†[ƒU[Šg’£ƒAƒgƒŠƒrƒ…[ƒgƒf[ƒ^
- *	@retval	CLACT_USERATTR_NONE		ƒf[ƒ^‚È‚µ
+ *	@retval	ãƒ¦ãƒ¼ã‚¶ãƒ¼æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@retval	CLACT_USERATTR_NONE		ãƒ‡ãƒ¼ã‚¿ãªã—
  */
 //-----------------------------------------------------------------------------
 u32 CATS_ObjectUserAttrAnimSeqGet( CATS_ACT_PTR cap, u32 seqidx )
@@ -3678,12 +3678,12 @@ u32 CATS_ObjectUserAttrAnimSeqGet( CATS_ACT_PTR cap, u32 seqidx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒXŠg’£ƒAƒgƒŠƒrƒ…[ƒgæ“¾
+ *	@brief	ä»Šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
  *
- *	@param	cap			ƒ[ƒN
+ *	@param	cap			ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	ƒ†[ƒU[Šg’£ƒAƒgƒŠƒrƒ…[ƒgƒf[ƒ^
- *	@retval	CLACT_USERATTR_NONE		ƒf[ƒ^‚È‚µ
+ *	@retval	ãƒ¦ãƒ¼ã‚¶ãƒ¼æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@retval	CLACT_USERATTR_NONE		ãƒ‡ãƒ¼ã‚¿ãªã—
  */
 //-----------------------------------------------------------------------------
 u32 CATS_ObjectUserAttrNowAnimSeqGet( CATS_ACT_PTR cap )
@@ -3694,14 +3694,14 @@ u32 CATS_ObjectUserAttrNowAnimSeqGet( CATS_ACT_PTR cap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€Šg’£ƒAƒgƒŠƒrƒ…[ƒgæ“¾
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
  *
- *	@param	cap			ƒ[ƒN
- *	@param	seqidx		æ“¾‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX
- *	@param	frameidx	æ“¾‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€
+ *	@param	cap			ãƒ¯ãƒ¼ã‚¯
+ *	@param	seqidx		å–å¾—ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *	@param	frameidx	å–å¾—ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ 
  *
- *	@retval	ƒ†[ƒU[Šg’£ƒAƒgƒŠƒrƒ…[ƒgƒf[ƒ^
- *	@retval	CLACT_USERATTR_NONE		ƒf[ƒ^‚È‚µ
+ *	@retval	ãƒ¦ãƒ¼ã‚¶ãƒ¼æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@retval	CLACT_USERATTR_NONE		ãƒ‡ãƒ¼ã‚¿ãªã—
  */
 //-----------------------------------------------------------------------------
 u32 CATS_ObjectUserAttrAnimFrameGet( CATS_ACT_PTR cap, u32 seqidx, u32 frameidx )
@@ -3711,12 +3711,12 @@ u32 CATS_ObjectUserAttrAnimFrameGet( CATS_ACT_PTR cap, u32 seqidx, u32 frameidx 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€Šg’£ƒAƒgƒŠƒrƒ…[ƒgæ“¾
+ *	@brief	ä»Šã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
  *
- *	@param	cap		ƒ[ƒN
+ *	@param	cap		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	ƒ†[ƒU[Šg’£ƒAƒgƒŠƒrƒ…[ƒgƒf[ƒ^
- *	@retval	CLACT_USERATTR_NONE		ƒf[ƒ^‚È‚µ
+ *	@retval	ãƒ¦ãƒ¼ã‚¶ãƒ¼æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@retval	CLACT_USERATTR_NONE		ãƒ‡ãƒ¼ã‚¿ãªã—
  */
 //-----------------------------------------------------------------------------
 u32 CATS_ObjectUserAttrNowAnimFrameGet( CATS_ACT_PTR cap )
@@ -3727,13 +3727,13 @@ u32 CATS_ObjectUserAttrNowAnimFrameGet( CATS_ACT_PTR cap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒf[ƒ^Šg’£ƒAƒgƒŠƒrƒ…[ƒgæ“¾
+ *	@brief	ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
  *
- *	@param	cap			ƒ[ƒN
- *	@param	cellidx		ƒZƒ‹ƒf[ƒ^IDX
+ *	@param	cap			ãƒ¯ãƒ¼ã‚¯
+ *	@param	cellidx		ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿IDX
  *
- *	@retval	ƒ†[ƒU[Šg’£ƒAƒgƒŠƒrƒ…[ƒgƒf[ƒ^
- *	@retval	CLACT_USERATTR_NONE		ƒf[ƒ^‚È‚µ
+ *	@retval	ãƒ¦ãƒ¼ã‚¶ãƒ¼æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@retval	CLACT_USERATTR_NONE		ãƒ‡ãƒ¼ã‚¿ãªã—
  */
 //-----------------------------------------------------------------------------
 u32 CATS_ObjectUserAttrCellGet( CATS_ACT_PTR cap, u32 cellidx )
@@ -3745,18 +3745,18 @@ u32 CATS_ObjectUserAttrCellGet( CATS_ACT_PTR cap, u32 cellidx )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒ‰‚Ì“o˜^	ƒA[ƒJƒCƒu
+ * @brief	ã‚­ãƒ£ãƒ©ã®ç™»éŒ²	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  *
- *	ƒ}ƒbƒsƒ“ƒOƒ‚[ƒh‚ğ¡‚Ìó‘Ô‚É•ÏX‚·‚é
+ *	ãƒãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’ä»Šã®çŠ¶æ…‹ã«å¤‰æ›´ã™ã‚‹
  */
 //--------------------------------------------------------------
 BOOL CATS_LoadResourceCharArcModeAdjust(
@@ -3812,7 +3812,7 @@ BOOL CATS_LoadResourceCharArcModeAdjustAreaCont(
 	return obj == NULL ? FALSE : TRUE;
 }
 
-/// ƒnƒ“ƒhƒ‹
+/// ãƒãƒ³ãƒ‰ãƒ«
 BOOL CATS_LoadResourceCharArcModeAdjustAreaCont_Handle(
 		CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE* hdl, int data_id, BOOL comp, int trans_mode, int id)
 {
@@ -3842,14 +3842,14 @@ BOOL CATS_LoadResourceCharArcModeAdjustAreaCont_Handle(
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒ‰‚ÌƒŠ[ƒ\[ƒX‚ğ•ÏX‚·‚é	ƒA[ƒJƒCƒu
+ * @brief	ã‚­ãƒ£ãƒ©ã®ãƒªãƒ¼ã‚½ãƒ¼ã‚¹ã‚’å¤‰æ›´ã™ã‚‹	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  */
@@ -3870,14 +3870,14 @@ void CATS_ChangeResourceCharArc(
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒg‚ÌƒŠ[ƒ\[ƒX‚ğ•ÏX‚·‚é	ƒA[ƒJƒCƒu
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªãƒ¼ã‚½ãƒ¼ã‚¹ã‚’å¤‰æ›´ã™ã‚‹	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	arc_id				ƒA[ƒJƒCƒuIndex
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–Index
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  */
@@ -3897,9 +3897,9 @@ void CATS_ChangeResourcePlttArc(
 
 //--------------------------------------------------------------
 /**
- * @brief	CLACT_SET_PTR‚ğæ“¾‚·‚é
+ * @brief	CLACT_SET_PTRã‚’å–å¾—ã™ã‚‹
  *
- * @param	crp					ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ * @param	crp					ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	CLACT_SET_PTR
  */
@@ -3912,14 +3912,14 @@ CLACT_SET_PTR CATS_GetClactSetPtr(CATS_RES_PTR crp)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒ‰‚ÌƒŠ[ƒ\[ƒX‚ğ•ÏX‚·‚é	ƒA[ƒJƒCƒu
+ * @brief	ã‚­ãƒ£ãƒ©ã®ãƒªãƒ¼ã‚½ãƒ¼ã‚¹ã‚’å¤‰æ›´ã™ã‚‹	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	p_handle			ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	p_handle			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  */
@@ -3940,14 +3940,14 @@ void CATS_ChangeResourceCharArcH(
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒg‚ÌƒŠ[ƒ\[ƒX‚ğ•ÏX‚·‚é	ƒA[ƒJƒCƒu
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªãƒ¼ã‚½ãƒ¼ã‚¹ã‚’å¤‰æ›´ã™ã‚‹	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *
  * @param	csp	
  * @param	crp	
- * @param	p_handle			ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- * @param	data_id				ƒf[ƒ^Index
- * @param	comp				ˆ³kƒtƒ‰ƒO
- * @param	id					ŠÇ—ID
+ * @param	p_handle			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ * @param	data_id				ãƒ‡ãƒ¼ã‚¿Index
+ * @param	comp				åœ§ç¸®ãƒ•ãƒ©ã‚°
+ * @param	id					ç®¡ç†ID
  *
  * @retval	BOOL	
  */
@@ -3993,7 +3993,7 @@ void CATS_ChangeResourcePlttArcH_PlttWork(
 // =============================================================================
 //
 //
-//	¡‰æ‘œ•ÏŠ·
+//	â– ç”»åƒå¤‰æ›
 //
 //
 // =============================================================================
@@ -4003,14 +4003,14 @@ static void CharCopy1(const u8* src, u8* dst, int* ofs, int* bofs, int cs, int l
 
 //--------------------------------------------------------------
 /**
- * @brief	2D¨1D‚É1ƒLƒƒƒ‰•ÏŠ·
+ * @brief	2Dâ†’1Dã«1ã‚­ãƒ£ãƒ©å¤‰æ›
  *
- * @param	src			Œ³ƒf[ƒ^
- * @param	dst			“WŠJæ
- * @param	ofs			Œ³ƒf[ƒ^‚ÌƒRƒs[ŠJnˆÊ’u
- * @param	bofs		“WŠJæƒoƒbƒtƒ@‚Ì‘‚«‚İˆÊ’u
- * @param	cs			ƒRƒs[ƒTƒCƒY
- * @param	len			2Dƒf[ƒ^‚Ì•
+ * @param	src			å…ƒãƒ‡ãƒ¼ã‚¿
+ * @param	dst			å±•é–‹å…ˆ
+ * @param	ofs			å…ƒãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼é–‹å§‹ä½ç½®
+ * @param	bofs		å±•é–‹å…ˆãƒãƒƒãƒ•ã‚¡ã®æ›¸ãè¾¼ã¿ä½ç½®
+ * @param	cs			ã‚³ãƒ”ãƒ¼ã‚µã‚¤ã‚º
+ * @param	len			2Dãƒ‡ãƒ¼ã‚¿ã®å¹…
  *
  * @retval	none	
  *
@@ -4031,16 +4031,16 @@ static void CharCopy1(const u8* src, u8* dst, int* ofs, int* bofs, int cs, int l
 
 //--------------------------------------------------------------
 /**
- * @brief	2D¨1D‚É•ÏŠ·‚·‚é
+ * @brief	2Dâ†’1Dã«å¤‰æ›ã™ã‚‹
  *
- * @param	arc_id				ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
- * @param	index_no			ƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id				ƒq[ƒvID
- * @param	x					•ÏŠ·‘ÎÛ‹éŒ`:x
- * @param	y					•ÏŠ·‘ÎÛ‹éŒ`:y
- * @param	w					•ÏŠ·‘ÎÛ‹éŒ`:w
- * @param	h					•ÏŠ·‘ÎÛ‹éŒ`:h
- * @param	buff				“WŠJæƒoƒbƒtƒ@
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	index_no			ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id				ãƒ’ãƒ¼ãƒ—ID
+ * @param	x					å¤‰æ›å¯¾è±¡çŸ©å½¢:x
+ * @param	y					å¤‰æ›å¯¾è±¡çŸ©å½¢:y
+ * @param	w					å¤‰æ›å¯¾è±¡çŸ©å½¢:w
+ * @param	h					å¤‰æ›å¯¾è±¡çŸ©å½¢:h
+ * @param	buff				å±•é–‹å…ˆãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none	
  *
@@ -4060,37 +4060,37 @@ void ChangesInto_1D_from_2D(int arc_id, int index_no, int heap_id, int x, int y,
 	int len;
 	BOOL res;
 	
-	///< ƒf[ƒ^‚Ì“WŠJ
+	///< ãƒ‡ãƒ¼ã‚¿ã®å±•é–‹
 	aw = ArchiveDataLoadMalloc(arc_id, index_no, heap_id);
 	
 	GF_ASSERT(aw != NULL);
 	
-	///< ƒLƒƒƒ‰ƒf[ƒ^‚Ìæ“¾
+	///< ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
 	res = NNS_G2dGetUnpackedCharacterData(aw, &ch_data);
 	
 	GF_ASSERT(res != FALSE);
 
-	GF_ASSERT(ch_data->W >= (x + w));		///< ƒTƒCƒYƒ`ƒFƒbƒN
+	GF_ASSERT(ch_data->W >= (x + w));		///< ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 	GF_ASSERT(ch_data->H >= (y + h));
 	
-	///< €”õ
-	cs     = (sizeof(u8) * 4);				///< ƒRƒs[ƒTƒCƒY 8dot = 4Byte
-	p_data = ch_data->pRawData;				///< ƒLƒƒƒ‰ƒf[ƒ^
-	p_buff = (u8*)buff;						///< “WŠJƒoƒbƒtƒ@
+	///< æº–å‚™
+	cs     = (sizeof(u8) * 4);				///< ã‚³ãƒ”ãƒ¼ã‚µã‚¤ã‚º 8dot = 4Byte
+	p_data = ch_data->pRawData;				///< ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿
+	p_buff = (u8*)buff;						///< å±•é–‹ãƒãƒƒãƒ•ã‚¡
 	
-	len = (ch_data->W * cs);				///< ’·‚³(Œ³‰æ‘œ‚Ì•)
-	ofs = (x * cs) + (y * len);				///< ŠJnˆÊ’u
-	bofs = 0;								///< ƒoƒbƒtƒ@‚Ì‘‚«‚İˆÊ’u
+	len = (ch_data->W * cs);				///< é•·ã•(å…ƒç”»åƒã®å¹…)
+	ofs = (x * cs) + (y * len);				///< é–‹å§‹ä½ç½®
+	bofs = 0;								///< ãƒãƒƒãƒ•ã‚¡ã®æ›¸ãè¾¼ã¿ä½ç½®
 	
-	//‘S‘ÌºËß°
+	//å…¨ä½“ã‚³ãƒ”ãƒ¼
 	{
 		int i;
 		int j;
 
 		for (j = y; j < (y + h); j++){
 			for (i = x; i < (x + w); i++){
-				ofs = (i * cs) + (j * len * CHAR_DOT_Y);			///< ŠJnˆÊ’u
-				CharCopy1(p_data, p_buff, &ofs, &bofs, cs, len);	///< 1ƒLƒƒƒ‰ƒRƒs[
+				ofs = (i * cs) + (j * len * CHAR_DOT_Y);			///< é–‹å§‹ä½ç½®
+				CharCopy1(p_data, p_buff, &ofs, &bofs, cs, len);	///< 1ã‚­ãƒ£ãƒ©ã‚³ãƒ”ãƒ¼
 			}
 		}
 	}
@@ -4101,13 +4101,13 @@ void ChangesInto_1D_from_2D(int arc_id, int index_no, int heap_id, int x, int y,
 
 //--------------------------------------------------------------
 /**
- * @brief	2D¨1D‚É•ÏŠ·‚·‚é
+ * @brief	2Dâ†’1Dã«å¤‰æ›ã™ã‚‹
  *
- * @param	arc_id				ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
- * @param	index_no			ƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id				ƒq[ƒvID
- * @param	rc					‹éŒ`
- * @param	buff				ƒoƒbƒtƒ@
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	index_no			ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id				ãƒ’ãƒ¼ãƒ—ID
+ * @param	rc					çŸ©å½¢
+ * @param	buff				ãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none	
  *
@@ -4121,17 +4121,17 @@ void  ChangesInto_1D_from_2D_RC(int arc_id, int index_no, int heap_id, CHANGES_I
 
 //--------------------------------------------------------------
 /**
- * @brief	2D¨1D‚É“WŠJƒoƒbƒtƒ@‚ğAlloc‚µ‚Ä•ÏŠ·‚·‚é
+ * @brief	2Dâ†’1Dã«å±•é–‹ãƒãƒƒãƒ•ã‚¡ã‚’Allocã—ã¦å¤‰æ›ã™ã‚‹
  *
- * @param	arc_id				ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
- * @param	index_no			ƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id				ƒq[ƒvID
- * @param	x					•ÏŠ·‘ÎÛ‹éŒ`:x
- * @param	y					•ÏŠ·‘ÎÛ‹éŒ`:y
- * @param	w					•ÏŠ·‘ÎÛ‹éŒ`:w
- * @param	h					•ÏŠ·‘ÎÛ‹éŒ`:h
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	index_no			ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id				ãƒ’ãƒ¼ãƒ—ID
+ * @param	x					å¤‰æ›å¯¾è±¡çŸ©å½¢:x
+ * @param	y					å¤‰æ›å¯¾è±¡çŸ©å½¢:y
+ * @param	w					å¤‰æ›å¯¾è±¡çŸ©å½¢:w
+ * @param	h					å¤‰æ›å¯¾è±¡çŸ©å½¢:h
  *
- * @retval	void*				“WŠJ‚µ‚½ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	void*				å±•é–‹ã—ãŸãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //--------------------------------------------------------------
@@ -4153,14 +4153,14 @@ void* ChangesInto_1D_from_2D_Alloc(int arc_id, int index_no, int heap_id, int x,
 
 //--------------------------------------------------------------
 /**
- * @brief	2D¨1D‚É“WŠJƒoƒbƒtƒ@‚ğAlloc‚µ‚Ä•ÏŠ·‚·‚é
+ * @brief	2Dâ†’1Dã«å±•é–‹ãƒãƒƒãƒ•ã‚¡ã‚’Allocã—ã¦å¤‰æ›ã™ã‚‹
  *
- * @param	arc_id				ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
- * @param	index_no			ƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id				ƒq[ƒvID
- * @param	rc					‹éŒ`
+ * @param	arc_id				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	index_no			ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id				ãƒ’ãƒ¼ãƒ—ID
+ * @param	rc					çŸ©å½¢
  *
- * @retval	void*				“WŠJ‚µ‚½ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	void*				å±•é–‹ã—ãŸãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //--------------------------------------------------------------
@@ -4172,17 +4172,17 @@ void* ChangesInto_1D_from_2D_Alloc_RC(int arc_id, int index_no, int heap_id, CHA
 
 //--------------------------------------------------------------
 /**
- * @brief	1D¨OAMŒ`ó‚É•ÏŠ·
+ * @brief	1Dâ†’OAMå½¢çŠ¶ã«å¤‰æ›
  *
- * @param	sx				•ÏŠ·‘ÎÛƒf[ƒ^‚ÌƒTƒCƒY X	
- * @param	sy				•ÏŠ·‘ÎÛƒf[ƒ^‚ÌƒTƒCƒY Y
- * @param	x				Ø‚è”²‚«ŠJn X
- * @param	y				Ø‚è”²‚«ŠJn Y
- * @param	w				Ø‚è”²‚«ƒTƒCƒY W
- * @param	h				Ø‚è”²‚«ƒTƒCƒY H
- * @param	bofs			ƒIƒtƒZƒbƒg
- * @param	src				Œ³ƒf[ƒ^
- * @param	dst				“WŠJæ
+ * @param	sx				å¤‰æ›å¯¾è±¡ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º X	
+ * @param	sy				å¤‰æ›å¯¾è±¡ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º Y
+ * @param	x				åˆ‡ã‚ŠæŠœãé–‹å§‹ X
+ * @param	y				åˆ‡ã‚ŠæŠœãé–‹å§‹ Y
+ * @param	w				åˆ‡ã‚ŠæŠœãã‚µã‚¤ã‚º W
+ * @param	h				åˆ‡ã‚ŠæŠœãã‚µã‚¤ã‚º H
+ * @param	bofs			ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param	src				å…ƒãƒ‡ãƒ¼ã‚¿
+ * @param	dst				å±•é–‹å…ˆ
  *
  * @retval	none	
  *
@@ -4216,14 +4216,14 @@ void ChangesInto_OAM_from_1D(int sx, int sy, int x, int y, int w, int h, int* bo
 
 //--------------------------------------------------------------
 /**
- * @brief	1D¨OAMŒ`ó‚É•ÏŠ· ‹éŒ`‚ÅƒTƒCƒYw’è
+ * @brief	1Dâ†’OAMå½¢çŠ¶ã«å¤‰æ› çŸ©å½¢ã§ã‚µã‚¤ã‚ºæŒ‡å®š
  *
- * @param	sx				•ÏŠ·‘ÎÛƒf[ƒ^‚ÌƒTƒCƒY X	
- * @param	sy				•ÏŠ·‘ÎÛƒf[ƒ^‚ÌƒTƒCƒY Y
- * @param	rc				‹éŒ`
- * @param	bofs			ƒIƒtƒZƒbƒg
- * @param	src				ƒf[ƒ^
- * @param	dst				“WŠJæ
+ * @param	sx				å¤‰æ›å¯¾è±¡ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º X	
+ * @param	sy				å¤‰æ›å¯¾è±¡ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º Y
+ * @param	rc				çŸ©å½¢
+ * @param	bofs			ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param	src				ãƒ‡ãƒ¼ã‚¿
+ * @param	dst				å±•é–‹å…ˆ
  *
  * @retval	none	
  *
@@ -4237,16 +4237,16 @@ void  ChangesInto_OAM_from_1D_RC(int sx, int sy, CHANGES_INTO_DATA_RECT* rc, int
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^‚ğ2D¨1D¨OAM‚É•ÏŠ·
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚’2Dâ†’1Dâ†’OAMã«å¤‰æ›
  *
- * @param	arc_id			ƒA[ƒJƒCƒuID
- * @param	index_no		ƒCƒ“ƒfƒbƒNƒX”Ô†
- * @param	heap_id			ƒq[ƒvID
+ * @param	arc_id			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	index_no		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
+ * @param	heap_id			ãƒ’ãƒ¼ãƒ—ID
  * @param	x
  * @param	y
  * @param	w
  * @param	h
- * @param	buff			“WŠJæƒoƒbƒtƒ@
+ * @param	buff			å±•é–‹å…ˆãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none	
  *
@@ -4271,7 +4271,7 @@ void ChangesInto_OAM_from_PokeTex(int arc_id, int index_no, int heap_id, int x, 
 	num = NELEMS(rc);
 	ofs = 0;
 	
-	temp = ChangesInto_1D_from_2D_Alloc(arc_id, index_no, heap_id, x, y, w, h);		///< 1D‚©‚ç2D‚Ö•ÏŠ·
+	temp = ChangesInto_1D_from_2D_Alloc(arc_id, index_no, heap_id, x, y, w, h);		///< 1Dã‹ã‚‰2Dã¸å¤‰æ›
 
 	for (i = 0; i < num; i++){
 		ChangesInto_OAM_from_1D_RC(w, h, &rc[i], &ofs, temp, buff);
@@ -4283,13 +4283,13 @@ void ChangesInto_OAM_from_PokeTex(int arc_id, int index_no, int heap_id, int x, 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^‚ğ2D¨1D¨OAM‚É•ÏŠ·
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚’2Dâ†’1Dâ†’OAMã«å¤‰æ›
  *
- * @param	arc_id			ƒA[ƒJƒCƒuID
- * @param	index_no		ƒCƒ“ƒfƒbƒNƒX”Ô†
- * @param	heap_id			ƒq[ƒvID
- * @param	rc				‹éŒ`
- * @param	buff			ƒoƒbƒtƒ@
+ * @param	arc_id			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	index_no		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
+ * @param	heap_id			ãƒ’ãƒ¼ãƒ—ID
+ * @param	rc				çŸ©å½¢
+ * @param	buff			ãƒãƒƒãƒ•ã‚¡
  *
  * @retval	none	
  *
@@ -4303,11 +4303,11 @@ void  ChangesInto_OAM_from_PokeTex_RC(int arc_id, int index_no, int heap_id, CHA
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^‚ğ2D¨1D¨OAM‚É•ÏŠ·
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚’2Dâ†’1Dâ†’OAMã«å¤‰æ›
  *
- * @param	arc_id			ƒA[ƒJƒCƒuID
- * @param	index_no		ƒCƒ“ƒfƒbƒNƒX”Ô†
- * @param	heap_id			ƒq[ƒvID
+ * @param	arc_id			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	index_no		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
+ * @param	heap_id			ãƒ’ãƒ¼ãƒ—ID
  * @param	x
  * @param	y
  * @param	w
@@ -4335,12 +4335,12 @@ void* ChangesInto_OAM_from_PokeTex_Alloc(int arc_id, int index_no, int heap_id, 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^‚ğ2D¨1D¨OAM‚É•ÏŠ·
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‚’2Dâ†’1Dâ†’OAMã«å¤‰æ›
  *
- * @param	arc_id			ƒA[ƒJƒCƒuID
- * @param	index_no		ƒCƒ“ƒfƒbƒNƒX”Ô†
- * @param	heap_id			ƒq[ƒvID
- * @param	rc				‹éŒ`
+ * @param	arc_id			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+ * @param	index_no		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
+ * @param	heap_id			ãƒ’ãƒ¼ãƒ—ID
+ * @param	rc				çŸ©å½¢
  *
  * @retval	void*	
  *
@@ -4354,7 +4354,7 @@ void* ChangesInto_OAM_from_PokeTex_Alloc_RC(int arc_id, int index_no, int heap_i
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğí“¬—p‚É•ÏŠ·
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æˆ¦é—˜ç”¨ã«å¤‰æ›
  *
  * @param	arc_id	
  * @param	index_no	
@@ -4380,7 +4380,7 @@ void  ChangesInto_BattlePokeData(int arc_id, int index_no, int heap_id, void* bu
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğí“¬—p‚É•ÏŠ·
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æˆ¦é—˜ç”¨ã«å¤‰æ›
  *
  * @param	arc_id	
  * @param	index_no	

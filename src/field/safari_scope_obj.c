@@ -1,7 +1,7 @@
 //===========================================================================
 /**
  * @file	safari_scope_obj.c
- * @brief	ƒTƒtƒ@ƒŠ–]‰“‹¾‚n‚a‚i
+ * @brief	ã‚µãƒ•ã‚¡ãƒªæœ›é é¡ï¼¯ï¼¢ï¼ª
  * @author	Nozomu Saito
  * @date	2006.04.24
  * 
@@ -56,21 +56,21 @@ typedef enum{
 	RES_POKE_ANM,
 };
 
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[“o˜^”ƒe[ƒuƒ‹
+//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç™»éŒ²æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 ResEntryNumTbl[] = {
-	1,			//ƒLƒƒƒ‰ƒŠƒ\[ƒX
-	1,			//ƒpƒŒƒbƒgƒŠƒ\[ƒX
-	1,			//ƒZƒ‹ƒŠƒ\[ƒX
-	1,			//ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX
+	1,			//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
+	1,			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
+	1,			//ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	1,			//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
 };
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒ‚ƒŠŠm•Û
+ * ãƒ¡ãƒ¢ãƒªç¢ºä¿
  *
- * @param	inHeapID		ƒq[ƒv‚h‚c
+ * @param	inHeapID		ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- * @return	ptr		–]‰“‹¾—p‚n‚a‚iƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	ptr		æœ›é é¡ç”¨ï¼¯ï¼¢ï¼ªãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 SSO_PTR SSO_AllocMemory(const int inHeapID)
@@ -82,9 +82,9 @@ SSO_PTR SSO_AllocMemory(const int inHeapID)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒ‚ƒŠ‰ð•ú
+ * ãƒ¡ãƒ¢ãƒªè§£æ”¾
  *
- * @param	ptr		–]‰“‹¾—p‚n‚a‚iƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	ptr		æœ›é é¡ç”¨ï¼¯ï¼¢ï¼ªãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
@@ -95,10 +95,10 @@ void SSO_FreeMemory(SSO_PTR ptr)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒbƒgƒAƒbƒv
+ * ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param	ptr			–]‰“‹¾—p‚n‚a‚iƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inMonsNo	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ * @param	ptr			æœ›é é¡ç”¨ï¼¯ï¼¢ï¼ªãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMonsNo	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -110,7 +110,7 @@ void SSO_SetupSafariScopeCLACT(SSO_PTR ptr, const int inMonsNo)
 
 	ptr->DrawValid = FALSE;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒvƒ‰ƒCƒgƒA[ƒJƒCƒuî•ñŽæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æƒ…å ±å–å¾—
 	{
 		int poke_sex;
 		u8 sex;
@@ -133,15 +133,15 @@ void SSO_SetupSafariScopeCLACT(SSO_PTR ptr, const int inMonsNo)
 			}
 		}
 		
-		//ÅŒã‚Ìˆø”‚ÍAFormNo‚ÆŒÂ«—”‚Å‚· by soga 2006.05.01
+		//æœ€å¾Œã®å¼•æ•°ã¯ã€FormNoã¨å€‹æ€§ä¹±æ•°ã§ã™ by soga 2006.05.01
 		PokeGraArcDataGet( &ptr->SpriteArc, inMonsNo, poke_sex, PARA_FRONT, PARA_NORMAL, NULL, NULL );
 	}
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	ptr->ClactSet = CLACT_U_SetEasyInit( SS_ACT_MAX, &ptr->RendData, HEAPID_FIELD );
 	
-	//ƒJƒbƒgƒCƒ“‚ÌƒA[ƒJƒCƒu‚ðŽg—p‚·‚é
+	//ã‚«ãƒƒãƒˆã‚¤ãƒ³ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’ä½¿ç”¨ã™ã‚‹
 	handle = ArchiveDataHandleOpen(ARC_FIELD_CUTIN_GRA, HEAPID_FIELD);
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	for(i=0;i<SS_RESOURCE_NUM;i++){
 		ptr->ResMan[i] = CLACT_U_ResManagerInit(ResEntryNumTbl[i], i, HEAPID_FIELD);
 	}
@@ -177,9 +177,9 @@ void SSO_SetupSafariScopeCLACT(SSO_PTR ptr, const int inMonsNo)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[•`‰æŠJŽn
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æç”»é–‹å§‹
  *
- * @param	ptr		–]‰“‹¾—p‚n‚a‚iƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	ptr		æœ›é é¡ç”¨ï¼¯ï¼¢ï¼ªãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -193,9 +193,9 @@ void SSO_DrawStartCellAct(SSO_PTR ptr)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[•`‰æI—¹
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æç”»çµ‚äº†
  *
- * @param	ptr		–]‰“‹¾—p‚n‚a‚iƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	ptr		æœ›é é¡ç”¨ï¼¯ï¼¢ï¼ªãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -207,9 +207,9 @@ void SSO_DrawEndCellAct(SSO_PTR ptr)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[I—¹‘Ò‚¿
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼çµ‚äº†å¾…ã¡
  *
- * @param	ptr		–]‰“‹¾—p‚n‚a‚iƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	ptr		æœ›é é¡ç”¨ï¼¯ï¼¢ï¼ªãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	BOOL
  */
@@ -221,9 +221,9 @@ BOOL SSO_WaitDrawCellTask(SSO_PTR ptr)
 
 //--------------------------------------------------------------------------------------------
 /**
- * 2DƒZƒ‹ƒIƒuƒWƒFƒNƒg‰ð•ú
+ * 2Dã‚»ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè§£æ”¾
  *
- * @param	ptr		–]‰“‹¾—p‚n‚a‚iƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	ptr		æœ›é é¡ç”¨ï¼¯ï¼¢ï¼ªãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -231,19 +231,19 @@ BOOL SSO_WaitDrawCellTask(SSO_PTR ptr)
 void SSO_RereaseSSCellObject(SSO_PTR ptr)
 {
 	u8 i;
-	// ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ð•ú
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 
-	// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©è»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_CharManagerDelete(ptr->ResObjTbl[CLACT_U_CHAR_RES]);
 
-	// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_PlttManagerDelete(ptr->ResObjTbl[CLACT_U_PLTT_RES]);
 
-	// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for(i=0;i<SS_RESOURCE_NUM;i++){
 		CLACT_U_ResManagerDelete(ptr->ResMan[i]);
 	}
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(ptr->ClactSet);
 
 	sys_FreeMemoryEz( ptr->PokeChar );
@@ -253,10 +253,10 @@ void SSO_RereaseSSCellObject(SSO_PTR ptr)
 
 //--------------------------------------------------------------------------------------------
 /**
- * •`‰æƒ^ƒXƒN
+ * æç”»ã‚¿ã‚¹ã‚¯
  *
- * @param	tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -274,11 +274,11 @@ static void DrawTCB( TCB_PTR tcb, void *work )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒ|ƒPƒ‚ƒ“ƒLƒƒƒ‰VRAM“]‘—
- * @param	man_obj_ptr		‚n‚a‚iƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- * @param	man_pal_ptr		ƒpƒŒƒbƒgƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- * @param	chr_buf			ƒLƒƒƒ‰ƒoƒbƒtƒ@
- * @param	pal_buf			ƒpƒŒƒbƒgƒoƒbƒtƒ@
+ * ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒã‚±ãƒ¢ãƒ³ã‚­ãƒ£ãƒ©VRAMè»¢é€
+ * @param	man_obj_ptr		ï¼¯ï¼¢ï¼ªãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
+ * @param	man_pal_ptr		ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
+ * @param	chr_buf			ã‚­ãƒ£ãƒ©ãƒãƒƒãƒ•ã‚¡
+ * @param	pal_buf			ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡
  * 
  * @return	none
  */
@@ -297,7 +297,7 @@ static void SetPokeGra( CLACT_U_RES_MANAGER_PTR man_obj_ptr,
 	res_obj_ptr = CLACT_U_ResManagerGetIDResObjPtr( man_obj_ptr, SS_CHR_ID_POKE );
 	res_pal_ptr = CLACT_U_ResManagerGetIDResObjPtr( man_pal_ptr, SS_PAL_ID_POKE );
 
-	//‚u‚q‚`‚l“]‘—
+	//ï¼¶ï¼²ï¼¡ï¼­è»¢é€
 	CLACT_U_CharManagerSetAreaCont( res_obj_ptr );
 	CLACT_U_PlttManagerSetCleanArea( res_pal_ptr );
 	
@@ -319,9 +319,9 @@ static void SetPokeGra( CLACT_U_RES_MANAGER_PTR man_obj_ptr,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‚ðƒZƒbƒg
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	ptr		–]‰“‹¾—p‚n‚a‚iƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	ptr		æœ›é é¡ç”¨ï¼¯ï¼¢ï¼ªãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -331,7 +331,7 @@ static void SetActor( SSO_PTR ptr )
 	int i;
 	CLACT_HEADER			cl_act_header;
 	
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬	
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ	
 	CLACT_U_MakeHeader(	&cl_act_header,
 						SS_CHR_ID_POKE, SS_PAL_ID_POKE,
 						SS_CEL_ID_POKE, SS_ANM_ID_POKE,
@@ -345,14 +345,14 @@ static void SetActor( SSO_PTR ptr )
 						NULL,NULL);
 
 	{
-		//“o˜^î•ñŠi”[
+		//ç™»éŒ²æƒ…å ±æ ¼ç´
 		CLACT_ADD add;
 
 		add.ClActSet	= ptr->ClactSet;
 		add.ClActHeader	= &cl_act_header;
 
 		add.mat.x		= 0;//FX32_CONST(32) ;
-		add.mat.y		= 0;//FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚é
+		add.mat.y		= 0;//FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹
 		add.mat.z		= 0;
 		add.sca.x		= FX32_ONE;
 		add.sca.y		= FX32_ONE;
@@ -362,7 +362,7 @@ static void SetActor( SSO_PTR ptr )
 		add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 		add.heap		= HEAPID_FIELD;
 
-		//ƒZƒ‹ƒAƒNƒ^[•\Ž¦ŠJŽn
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
 		add.mat.x = FX32_ONE * (256/2);
 		add.mat.y = FX32_ONE * (192/2);

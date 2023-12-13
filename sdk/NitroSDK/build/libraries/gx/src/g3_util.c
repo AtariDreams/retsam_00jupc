@@ -21,13 +21,13 @@
   do-indent
 
   Revision 1.26  2005/06/01 08:49:50  takano_makoto
-  G3i_FrustumW_, G3i_PerspectiveW_, G3i_OrthoW_‚Ìnear, far‚Ì”ÍˆÍ‚ÉASSERT‚ğİ’è
+  G3i_FrustumW_, G3i_PerspectiveW_, G3i_OrthoW_ã®near, farã®ç¯„å›²ã«ASSERTã‚’è¨­å®š
 
   Revision 1.25  2005/04/20 04:35:06  yosizaki
   fix about G3_FrustumW().
 
   Revision 1.24  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.23  2005/02/28 05:26:13  yosizaki
   do-indent.

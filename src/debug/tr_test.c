@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	tr_test.c
- * @brief	�g���[�i�[�O���t�B�b�N�`�F�b�N
+ * @brief	トレーナーグラフィックチェック
  * @author	sogabe
  * @date	2006.03.29
  */
@@ -33,13 +33,13 @@
 
 //==============================================================================================
 //
-//	msg�f�[�^
+//	msgデータ
 //
 //==============================================================================================
 
 //==============================================================================================
 //
-//	�\����
+//	構造体
 //
 //==============================================================================================
 
@@ -57,7 +57,7 @@ typedef struct{
 
 //==============================================================================================
 //
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //
 //==============================================================================================
 
@@ -70,7 +70,7 @@ static	void	TrGraTestMSG_Print(TR_GRA_TEST *tgt);
 
 //============================================================================================
 /**
- * CL_ACT�p�f�[�^
+ * CL_ACT用データ
  */
 //============================================================================================
 
@@ -100,13 +100,13 @@ static	const TCATS_RESOURCE_NUM_LIST TgtResourceList = {
 
 //==================================================================================================
 //
-//	�f�[�^
+//	データ
 //
 //==================================================================================================
 
 //==================================================================================================
 //
-//	�֐�
+//	関数
 //
 //==================================================================================================
 
@@ -147,16 +147,16 @@ static	void	TrGraInit(TR_GRA_TEST *tgt)
 
 //============================================================================================
 /**
- *	�퓬�w�i��ʏ���������ʐ���
+ *	戦闘背景画面初期化＆画面生成
  */
 //============================================================================================
 static	void	TrGraTestBGCreate(TR_GRA_TEST *tgt,GF_BGL_INI *bgl)
 {
 	Init3DStuff_();
 
-	//�J�����̋��ʐݒ���s���܂��B
+	//カメラの共通設定を行います。
     {
-        // �P�ʍs��Ɠ���
+        // 単位行列と等価
         VecFx32 Eye = { 0, 0, 0 };                  // Eye position
         VecFx32 vUp = { 0, FX32_ONE, 0 };           // Up
         VecFx32 at = { 0, 0, -FX32_ONE };           // Viewpoint
@@ -165,8 +165,8 @@ static	void	TrGraTestBGCreate(TR_GRA_TEST *tgt,GF_BGL_INI *bgl)
         // and the camera matrix is loaded to the current matrix.
         G3_LookAt(&Eye, &vUp, &at, NULL);
     }
-    // �`��̍ۂɗL���ƂȂ�A������ݒ肵�܂��B
-    // �s�K�v�ȁA�����𖳌��ݒ肷�邱�Ƃɂ���āA�p�t�H�[�}���X�����サ�܂��B
+    // 描画の際に有効となる、属性を設定します。
+    // 不必要な、属性を無効設定することによって、パフォーマンスが向上します。
     NNS_G2dSetSpriteAttrEnable(
         NNS_G2D_SPRITEATTR_ALPHA |
         NNS_G2D_SPRITEATTR_UV    |
@@ -177,19 +177,19 @@ static	void	TrGraTestBGCreate(TR_GRA_TEST *tgt,GF_BGL_INI *bgl)
 
 	GF_Disp_GX_VisibleControlInit();
 
-	//VRAM�ݒ�
+	//VRAM設定
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_C,				// ���C��2D�G���W����BG
-			GX_VRAM_BGEXTPLTT_NONE,			// ���C��2D�G���W����BG�g���p���b�g
-			GX_VRAM_SUB_BG_32_H,			// �T�u2D�G���W����BG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// �T�u2D�G���W����BG�g���p���b�g
-			GX_VRAM_OBJ_64_E,				// ���C��2D�G���W����OBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ���C��2D�G���W����OBJ�g���p���b�g
-			GX_VRAM_SUB_OBJ_16_I,			// �T�u2D�G���W����OBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// �T�u2D�G���W����OBJ�g���p���b�g
-			GX_VRAM_TEX_01_AB,				// �e�N�X�`���C���[�W�X���b�g
-			GX_VRAM_TEXPLTT_01_FG			// �e�N�X�`���p���b�g�X���b�g
+			GX_VRAM_BG_128_C,				// メイン2DエンジンのBG
+			GX_VRAM_BGEXTPLTT_NONE,			// メイン2DエンジンのBG拡張パレット
+			GX_VRAM_SUB_BG_32_H,			// サブ2DエンジンのBG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// サブ2DエンジンのBG拡張パレット
+			GX_VRAM_OBJ_64_E,				// メイン2DエンジンのOBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// メイン2DエンジンのOBJ拡張パレット
+			GX_VRAM_SUB_OBJ_16_I,			// サブ2DエンジンのOBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// サブ2DエンジンのOBJ拡張パレット
+			GX_VRAM_TEX_01_AB,				// テクスチャイメージスロット
+			GX_VRAM_TEXPLTT_01_FG			// テクスチャパレットスロット
 		};
 		GF_Disp_SetBank( &vramSetTable );
 	}
@@ -206,7 +206,7 @@ static	void	TrGraTestBGCreate(TR_GRA_TEST *tgt,GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//���C����ʃt���[���ݒ�
+	//メイン画面フレーム設定
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_M
@@ -239,11 +239,11 @@ static	void	TrGraTestBGCreate(TR_GRA_TEST *tgt,GF_BGL_INI *bgl)
 		G2_SetBG0Priority(0x01);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//�T�u��ʃt���[���ݒ�
+	//サブ画面フレーム設定
 	{
 	}
 
-	//�w�i�O���t�B�b�N�f�[�^���[�h
+	//背景グラフィックデータロード
 	{
 		ArcUtil_BgCharSet(ARC_BATT_BG,BATTLE_WBG0A_NCGR_BIN,bgl,GF_BGL_FRAME1_M,0,0,1,HEAPID_BATTLE);
 		ArcUtil_ScrnSet(ARC_BATT_BG,BATTLE_WBG0A_NSCR_BIN,bgl,GF_BGL_FRAME1_M,0,0,1,HEAPID_BATTLE);
@@ -261,7 +261,7 @@ static	void	TrGraTestBGCreate(TR_GRA_TEST *tgt,GF_BGL_INI *bgl)
 
 //============================================================================================
 /**
- *	���C�����[�v�^�X�N
+ *	メインループタスク
  */
 //============================================================================================
 static	void	TrGraTestMain(TR_GRA_TEST * tgt)
@@ -332,7 +332,7 @@ static	void	TrGraTestMain(TR_GRA_TEST * tgt)
 
 //============================================================================================
 /**
- *	���C�����[�v�^�X�N
+ *	メインループタスク
  */
 //============================================================================================
 static	void	TrGraTestDebugPrint(TR_GRA_TEST *tgt)
@@ -351,7 +351,7 @@ static	void	TrGraTestDebugPrint(TR_GRA_TEST *tgt)
 
 //==============================================================================================
 //
-//	�^�C�g���f�o�b�N���j���[����Ă΂��悤�ɒǉ�
+//	タイトルデバックメニューから呼ばれるように追加
 //
 //==============================================================================================
 //--------------------------------------------------------------
@@ -385,11 +385,11 @@ static PROC_RESULT TrGraTestProc_End(PROC * proc, int * seq)
 	PROC_FreeWork(proc);
 	sys_DeleteHeap(HEAPID_BATTLE);
 	Main_SetNextProc(NO_OVERLAY_ID, &TitleProcData);
-	//sys_MainProcChange( TitleMainProc );				//���A��
-	//�\�t�g���Z�b�g
-	//�ڍׂ̓\�[�X�擪�́u�T�E���h�e�X�g�̗�O�����ɂ��āv���Q�Ƃ��ĉ�����
+	//sys_MainProcChange( TitleMainProc );				//復帰先
+	//ソフトリセット
+	//詳細はソース先頭の「サウンドテストの例外処理について」を参照して下さい
 	//OS_InitReset();
-	OS_ResetSystem(0);									//�\�t�g���Z�b�g
+	OS_ResetSystem(0);									//ソフトリセット
 	return PROC_RES_FINISH;
 }
 
@@ -404,9 +404,9 @@ const PROC_DATA TrGraTestProcData = {
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANK�֐�
+ * @brief	VBLANK関数
  *
- * @param	work	VBLank�ɂ͈������K�v�Ȃ̂Œ�`���Ă��邪���ۂɂ�NULL�������Ă���̂ŁA�A�N�Z�X�͋֎~�I
+ * @param	work	VBLankには引数が必要なので定義してあるが実際にはNULLが入っているので、アクセスは禁止！
  *
  * @retval	none	
  *
@@ -425,7 +425,7 @@ static	void	TrGraTestVBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	3D������
+ * @brief	3D初期化
  *
  * @retval	none	
  */
@@ -441,10 +441,10 @@ static void Init3DStuff_(void)
     G3X_AntiAlias(TRUE);
     G3X_AlphaBlend(TRUE);
 
-    // 3D �ʂ͓������OFF�ł�����BG�ʂƃ��u�����f�B���O���s���܂����A
-    // ���̂��߂ɂ̓��u�����f�B���O�Ώۖʂ̎w����s���K�v������܂��B
-    // SDK �ɂ͑Ώۖʂ݂̂�ݒ肷�� API �����݂��Ȃ��̂ŁA����� G2_SetBlendAlpha ���g���܂��B
-    // ���̏ꍇ G2_SetBlendAlpha �̌��2�̈����͖�������܂��B
+    // 3D 面は特殊効果OFFでも他のBG面とαブレンディングが行われますが、
+    // そのためにはαブレンディング対象面の指定を行う必要があります。
+    // SDK には対象面のみを設定する API が存在しないので、代わりに G2_SetBlendAlpha を使います。
+    // この場合 G2_SetBlendAlpha の後ろ2つの引数は無視されます。
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BD, 0, 0);
 
     // clear color
@@ -454,17 +454,17 @@ static void Init3DStuff_(void)
 }
 
 //--------------------------------------------------------------
-//	���b�Z�[�W�\���ʒu��`
+//	メッセージ表示位置定義
 //--------------------------------------------------------------
-#define	TR_NUM_X	(0)		//�����X�^�[�i���o�[�\��X�ʒu
-#define	TR_NUM_Y	(8)		//�����X�^�[�i���o�[�\��Y�ʒu
-#define	TR_TYPE_X	(32)	//�g���[�i�[�^�C�v���\��X�ʒu
-#define	TR_TYPE_Y	(8)	//�g���[�i�[�^�C�v���\��Y�ʒu
+#define	TR_NUM_X	(0)		//モンスターナンバー表示X位置
+#define	TR_NUM_Y	(8)		//モンスターナンバー表示Y位置
+#define	TR_TYPE_X	(32)	//トレーナータイプ名表示X位置
+#define	TR_TYPE_Y	(8)	//トレーナータイプ名表示Y位置
 
 
 //--------------------------------------------------------------
 /**
- * @brief	���b�Z�[�W�\��
+ * @brief	メッセージ表示
  *
  * @retval	none	
  */
@@ -478,11 +478,11 @@ static	void	TrGraTestMSG_Print(TR_GRA_TEST *tgt)
 
 	msg_buf=STRBUF_Create(0x100,HEAPID_BATTLE);
 
-	//�i���o�[
+	//ナンバー
 	STRBUF_SetNumber( msg_buf, tgt->tr_type, 3, NUMBER_DISPTYPE_ZERO,NUMBER_CODETYPE_DEFAULT);
 	GF_STR_PrintSimple(tgt->win,FONT_SYSTEM,msg_buf,TR_NUM_X,TR_NUM_Y,0,NULL);
 
-	//�g���[�i�[�^�C�v��
+	//トレーナータイプ名
 	msg_m=MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_trtype_dat,HEAPID_BATTLE);
 	MSGMAN_GetString(msg_m,tgt->tr_type,msg_buf);
 	MSGMAN_Delete(msg_m);

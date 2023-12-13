@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.15  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.14  2005/02/28 05:26:25  yosizaki
   do-indent.
@@ -71,13 +71,13 @@
 
 
 /********************************************************************/
-/* •Ï” */
+/* å¤‰æ•° */
 
-// ƒJ[ƒh”r‘¼ˆ——p•Ï”.
+// ã‚«ãƒ¼ãƒ‰æ’ä»–å‡¦ç†ç”¨å¤‰æ•°.
 typedef struct
 {
-    BOOL    is_init;                   // ‰Šú‰»Ï‚İ.
-    u16     lock_id;                   //ƒƒbƒN—p ID.
+    BOOL    is_init;                   // åˆæœŸåŒ–æ¸ˆã¿.
+    u16     lock_id;                   //ãƒ­ãƒƒã‚¯ç”¨ ID.
     u16     padding;
     MIDmaCallback dma_callback;
 }
@@ -87,9 +87,9 @@ static MIi_CardParam mii_card_param;
 
 
 /********************************************************************/
-/* ŠÖ” */
+/* é–¢æ•° */
 
-// MI Œo—R CARD ƒAƒNƒZƒX‚Ì‰Šú‰».
+// MI çµŒç”± CARD ã‚¢ã‚¯ã‚»ã‚¹ã®åˆæœŸåŒ–.
 static void MIi_InitCard(void)
 {
     MIi_CardParam *const p = &mii_card_param;
@@ -111,22 +111,22 @@ static void MIi_InitCard(void)
     (void)OS_RestoreInterrupts(bak_psr);
 }
 
-// ƒvƒƒZƒbƒT”r‘¼‚ÅƒfƒoƒCƒX‚ğŠm•Û.
+// ãƒ—ãƒ­ã‚»ãƒƒã‚µæ’ä»–ã§ãƒ‡ãƒã‚¤ã‚¹ã‚’ç¢ºä¿.
 void MIi_LockCard(void)
 {
-    // —˜•Ö«‚ğl‚¦, •K—v‚È‚ç‚±‚±‚Å‰Šú‰».
+    // åˆ©ä¾¿æ€§ã‚’è€ƒãˆ, å¿…è¦ãªã‚‰ã“ã“ã§åˆæœŸåŒ–.
     MIi_InitCard();
     CARD_LockRom(mii_card_param.lock_id);
 }
 
-// ƒvƒƒZƒbƒT”r‘¼‚ÅƒfƒoƒCƒX‚ğ‰ğ•ú.
+// ãƒ—ãƒ­ã‚»ãƒƒã‚µæ’ä»–ã§ãƒ‡ãƒã‚¤ã‚¹ã‚’è§£æ”¾.
 void MIi_UnlockCard(void)
 {
     SDK_ASSERT(mii_card_param.is_init);
     CARD_UnlockRom(mii_card_param.lock_id);
 }
 
-// ƒ†[ƒUƒR[ƒ‹ƒoƒbƒN‚Ì‘O‚É MI ©g‚ÌƒƒbƒN‚ğ‚Í‚¸‚·.
+// ãƒ¦ãƒ¼ã‚¶ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å‰ã« MI è‡ªèº«ã®ãƒ­ãƒƒã‚¯ã‚’ã¯ãšã™.
 static void MIi_OnAsyncEnd(void *arg)
 {
     MIi_UnlockCard();
@@ -138,7 +138,7 @@ static void MIi_OnAsyncEnd(void *arg)
     }
 }
 
-// ƒJ[ƒh“Ç‚İ‚İ. (”ñ“¯Šú)
+// ã‚«ãƒ¼ãƒ‰èª­ã¿è¾¼ã¿. (éåŒæœŸ)
 void MIi_ReadCardAsync(u32 dmaNo, const void *src, void *dst, u32 size,
                        MIDmaCallback callback, void *arg)
 {

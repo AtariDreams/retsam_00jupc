@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_118.s
- * @brief	‚ä‚Ñ‚ð‚Ó‚é			118
+ * @brief	ã‚†ã³ã‚’ãµã‚‹			118
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡‚ä‚Ñ‚ð‚Ó‚é			118
+//	â– ã‚†ã³ã‚’ãµã‚‹			118
 //
 //
 // =============================================================================
@@ -30,7 +30,7 @@
 
 WEST_YUBIWOHURU:
 
-	///<‰Šú‰»ˆ—@“Ç‚Ýž‚Ýˆ—
+	///<åˆæœŸåŒ–å‡¦ç†ã€€èª­ã¿è¾¼ã¿å‡¦ç†
 	CATS_RES_INIT		YUBI_RES_NO, YUBI_ACT_NUM, YUBI_RES_NUM, YUBI_RES_NUM, YUBI_RES_NUM, YUBI_RES_NUM, 0, 0
 	CATS_CAHR_RES_LOAD	YUBI_RES_NO, EFFECT_118_NCGR_BIN
 	CATS_PLTT_RES_LOAD	YUBI_RES_NO, EFFECT_118_NCLR, 1
@@ -39,7 +39,7 @@ WEST_YUBIWOHURU:
 	
 	SE_L				SEQ_SE_DP_W118
 
-	///<“®ì
+	///<å‹•ä½œ
 	CATS_ACT_ADD		YUBI_RES_NO, WEST_CSP_WE_118, EFFECT_118_NCGR_BIN, EFFECT_118_NCLR, EFFECT_118_NCER_BIN, EFFECT_118_NANR_BIN, 0, 0, 0,0,
 
 	WAIT				10
@@ -51,7 +51,7 @@ WEST_YUBIWOHURU:
 
 	WAIT				8
 
-	///<”jŠüˆ—
+	///<ç ´æ£„å‡¦ç†
 	CATS_RES_FREE		YUBI_RES_NO
 
 	SEQEND

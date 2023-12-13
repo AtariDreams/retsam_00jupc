@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	bc_common.h
- * @brief	í“¬EƒRƒ“ƒeƒXƒg‹¤’Ê‚Åg—p‚³‚ê‚éƒ\[ƒX‚Ìƒwƒbƒ_
+ * @brief	æˆ¦é—˜ãƒ»ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå…±é€šã§ä½¿ç”¨ã•ã‚Œã‚‹ã‚½ãƒ¼ã‚¹ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2006.05.26(‹à)
+ * @date	2006.05.26(é‡‘)
  */
 //==============================================================================
 #ifndef __BC_COMMON_H__
@@ -14,7 +14,7 @@
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void	HenshinChrSet(WAZA_POKE_CHANGE_PARAM *wpcp, int heap_id);
 extern void	YokodoriChrSet(WAZA_POKE_CHANGE_PARAM *wpcp, int heap_id);
@@ -22,7 +22,7 @@ extern void	HenshinChrPop(WAZA_POKE_CHANGE_PARAM *wpcp, int heap_id);
 extern void	MigawariChrSet(WAZA_POKE_CHANGE_PARAM *wpcp, int heap_id);
 
 //==============================================================================
-//	ŠO•”ƒf[ƒ^éŒ¾
+//	å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿å®£è¨€
 //==============================================================================
 extern const	s16	EncountPosTable[][3];
 extern const	s16	AppearPosTable[][2];

@@ -18,7 +18,7 @@
   do-indent
 
   Revision 1.25  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.24  2005/02/28 05:26:13  yosizaki
   do-indent.

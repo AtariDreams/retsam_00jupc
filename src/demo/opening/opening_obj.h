@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	opneing_obj.h
- * @brief	ƒI[ƒvƒjƒ“ƒO OBJ
+ * @brief	ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚° OBJ
  * @author	Satoshi Nohara
  * @date	2005.12.08
  */
@@ -14,53 +14,53 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//CellActor‚Éˆ—‚³‚¹‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚ÌŽí—Þ‚Ì”iƒ}ƒ‹ƒ`ƒZƒ‹Eƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ‚ÍŽg—p‚µ‚È‚¢j
+//CellActorã«å‡¦ç†ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ã®ç¨®é¡žã®æ•°ï¼ˆï¼ãƒžãƒ«ãƒã‚»ãƒ«ãƒ»ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã¯ä½¿ç”¨ã—ãªã„ï¼‰
 #define RESOURCE_NUM					(4)
 
 #define OPENING_ACT_MAX					(3)
 
 #define OPENING_ACT_START				(0)
 
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒIƒuƒWƒFƒNƒgƒiƒ“ƒo[
+//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼
 enum{
 	OP_RES_OBJ_HAKASE = 0,
 	OP_RES_OBJ_RIVAL,
 
-	OP_RES_OBJ_MAX,						//Å‘å”
+	OP_RES_OBJ_MAX,						//æœ€å¤§æ•°
 };
 
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
 typedef struct OPENING_OBJ_WORK_tag
 {
-	CLACT_SET_PTR 			ClactSet;						//ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	RendData;						//ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_U_RES_MANAGER_PTR	ResMan[RESOURCE_NUM];			//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+	CLACT_SET_PTR 			ClactSet;						//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	RendData;						//ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_MANAGER_PTR	ResMan[RESOURCE_NUM];			//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
 
-	CLACT_U_RES_OBJ_PTR 	ResObjTbl[2][RESOURCE_NUM];		//ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹(ã‰º‰æ–Ê)
+	CLACT_U_RES_OBJ_PTR 	ResObjTbl[2][RESOURCE_NUM];		//ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«(ä¸Šä¸‹ç”»é¢)
 
-	CLACT_WORK_PTR			ClActWork[OPENING_ACT_MAX];		//ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^”z—ñ
+	CLACT_WORK_PTR			ClActWork[OPENING_ACT_MAX];		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿é…åˆ—
 }OPENING_OBJ_WORK;
 
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk		OPENING_OBJ_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_OBJ_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -69,9 +69,9 @@ extern void OpeningInitCellActor( OPENING_OBJ_WORK *wk );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‚ðƒZƒbƒg
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		OPENING_OBJ_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_OBJ_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -81,9 +81,9 @@ extern void OpeningSetActor( OPENING_OBJ_WORK *wk, u32 index, u32 data_no, u32 a
 
 //--------------------------------------------------------------
 /**
- * @brief	2DƒZƒ‹ƒIƒuƒWƒFƒNƒg‰ð•ú
+ * @brief	2Dã‚»ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè§£æ”¾
  *
- * @param	wk		OPENING_OBJ_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_OBJ_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -92,10 +92,10 @@ extern void OpeningRereaseCellObject(OPENING_OBJ_WORK *wk);
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒjƒbƒVƒ…‘€ì
+ * @brief	ãƒãƒ‹ãƒƒã‚·ãƒ¥æ“ä½œ
  *
- * @param	wk		OPENING_OBJ_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- *@param	flag	•`‰æƒtƒ‰ƒO	0:”ñ•`‰æ	1:ƒŒƒ“ƒ_ƒ‰•`‰æ	
+ * @param	wk		OPENING_OBJ_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ *@param	flag	æç”»ãƒ•ãƒ©ã‚°	0:éžæç”»	1:ãƒ¬ãƒ³ãƒ€ãƒ©æç”»	
  *
  * @return	none
  */
@@ -104,9 +104,9 @@ extern void OpeningClactVanish(OPENING_OBJ_WORK *wk, int no, int flag);
 
 //--------------------------------------------------------------
 /**
- * @brief	ˆÚ“®
+ * @brief	ç§»å‹•
  *
- * @param	wk		OPENING_OBJ_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_OBJ_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -115,9 +115,9 @@ extern VecFx32 OpeningClactMove(OPENING_OBJ_WORK *wk, int no, int spd);
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ŠúÀ•WƒZƒbƒg
+ * @brief	åˆæœŸåº§æ¨™ã‚»ãƒƒãƒˆ
  *
- * @param	wk		OPENING_OBJ_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_OBJ_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -126,9 +126,9 @@ extern void OpeningClactMoveInit(OPENING_OBJ_WORK *wk, int no );
 
 //--------------------------------------------------------------
 /**
- * @brief	À•WƒZƒbƒg
+ * @brief	åº§æ¨™ã‚»ãƒƒãƒˆ
  *
- * @param	wk		OPENING_OBJ_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		OPENING_OBJ_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */

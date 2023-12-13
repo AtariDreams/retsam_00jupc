@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	scratch_clact.c
- * @brief	uƒXƒNƒ‰ƒbƒ`vƒZƒ‹ƒAƒNƒ^[
+ * @brief	ã€Œã‚¹ã‚¯ãƒ©ãƒƒãƒã€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
  * @author	Satoshi Nohara
  * @date	06.12.11
  */
@@ -19,34 +19,34 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒLƒƒƒ‰ƒNƒ^[ƒ}ƒl[ƒWƒƒ[
-//#define CHAR_CONT_NUM						(4)		//ƒLƒƒƒ‰ƒNƒ^§Œä”
-#define CHAR_CONT_NUM						(5)		//ƒLƒƒƒ‰ƒNƒ^§Œä”(08.02.09)
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//#define CHAR_CONT_NUM						(4)		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åˆ¶å¾¡æ•°
+#define CHAR_CONT_NUM						(5)		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åˆ¶å¾¡æ•°(08.02.09)
 
 #if 0
-//.ncg‚ÌƒTƒCƒY(poke.ncg = 160x40 = 6400 / 2 = –ñ3200 )
-//.ncg‚ÌƒTƒCƒY(1‰æ–Ê.ncg = 256x192 = 49152 / 2 = –ñ24576 )
-//#define CHAR_VRAMTRANS_MAIN_SIZE			(68224)				//poke + card + l_oam02ƒTƒCƒY
-//#define CHAR_VRAMTRANS_SUB_SIZE			(4096)				//poke ƒTƒCƒY
+//.ncgã®ã‚µã‚¤ã‚º(poke.ncg = 160x40 = 6400 / 2 = ç´„3200 )
+//.ncgã®ã‚µã‚¤ã‚º(1ç”»é¢.ncg = 256x192 = 49152 / 2 = ç´„24576 )
+//#define CHAR_VRAMTRANS_MAIN_SIZE			(68224)				//poke + card + l_oam02ã‚µã‚¤ã‚º
+//#define CHAR_VRAMTRANS_SUB_SIZE			(4096)				//poke ã‚µã‚¤ã‚º
 #else
-//.ncg‚ÌƒTƒCƒY(poke.ncg = 200x40 = 8000 / 2 = –ñ4000 )
-//.ncg‚ÌƒTƒCƒY(card.ncg = 384x256 = 34048 / 2 = –ñ17024 )
-//.ncg‚ÌƒTƒCƒY(l_oam02.ncg = 224x152 = 98304 / 2 = –ñ49152 )
+//.ncgã®ã‚µã‚¤ã‚º(poke.ncg = 200x40 = 8000 / 2 = ç´„4000 )
+//.ncgã®ã‚µã‚¤ã‚º(card.ncg = 384x256 = 34048 / 2 = ç´„17024 )
+//.ncgã®ã‚µã‚¤ã‚º(l_oam02.ncg = 224x152 = 98304 / 2 = ç´„49152 )
 #endif
 
 //#define CHAR_VRAMTRANS_MAIN_SIZE			(128*1024)
 //#define CHAR_VRAMTRANS_SUB_SIZE			(16*1024)
 
-//#define CHAR_VRAMTRANS_MAIN_SIZE			(43000)				//poke + card + l_oam02ƒTƒCƒY
-#define CHAR_VRAMTRANS_MAIN_SIZE			(3000)				//poke + card + l_oam02ƒTƒCƒY
-#define CHAR_VRAMTRANS_SUB_SIZE				(5120)				//poke ƒTƒCƒY
+//#define CHAR_VRAMTRANS_MAIN_SIZE			(43000)				//poke + card + l_oam02ã‚µã‚¤ã‚º
+#define CHAR_VRAMTRANS_MAIN_SIZE			(3000)				//poke + card + l_oam02ã‚µã‚¤ã‚º
+#define CHAR_VRAMTRANS_SUB_SIZE				(5120)				//poke ã‚µã‚¤ã‚º
 
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 //#define FMAP_CHAR_VRAMSIZE_MAIN			(0x10000)	//(1024 * 0x40)	//64K
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 //#define FMAP_CHAR_VRAMSIZE_SUB			(512 * 0x20)	//32K
 
 enum{
@@ -58,40 +58,40 @@ enum{
 	//DISP_PAL_NUM		= 15,
 	DISP_PAL_NUM		= 14,
 };
-//ƒpƒŒƒbƒg‚ÌŽg‚Á‚Ä‚¢‚é1–{‚¾‚¯‚ÌêŠ‚ÉA
-//ŽŸ‚ÌƒpƒŒƒbƒg1–{•ª‚ðã‘‚«‚Å‚æ‚¢‚ªA
-//ƒŠƒ\[ƒX‚ÌƒpƒŒƒbƒg‚ðƒIƒtƒZƒbƒgŽw’è‚ª‚Ç‚ÌŠÖ”‚ªŒ©‚ ‚½‚ç‚È‚©‚Á‚½‚Ì‚ÅA
-//•ÊƒŠƒ\[ƒX‚É•ª‚¯‚ÄAƒŠƒ\[ƒXØ‚è‘Ö‚¦‚É‚µ‚½
+//ãƒ‘ãƒ¬ãƒƒãƒˆã®ä½¿ã£ã¦ã„ã‚‹1æœ¬ã ã‘ã®å ´æ‰€ã«ã€
+//æ¬¡ã®ãƒ‘ãƒ¬ãƒƒãƒˆ1æœ¬åˆ†ã‚’ä¸Šæ›¸ãã§ã‚ˆã„ãŒã€
+//ãƒªã‚½ãƒ¼ã‚¹ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚ªãƒ•ã‚»ãƒƒãƒˆæŒ‡å®šãŒã©ã®é–¢æ•°ãŒè¦‹ã‚ãŸã‚‰ãªã‹ã£ãŸã®ã§ã€
+//åˆ¥ãƒªã‚½ãƒ¼ã‚¹ã«åˆ†ã‘ã¦ã€ãƒªã‚½ãƒ¼ã‚¹åˆ‡ã‚Šæ›¿ãˆã«ã—ãŸ
 
 
 //==============================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//ƒŠƒ\[ƒXƒ^ƒCƒv—ñ‹“‚É‡‚í‚¹‚é(include/system/clact_util_res.h)
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[“o˜^”ƒe[ƒuƒ‹
+//ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—åˆ—æŒ™ã«åˆã‚ã›ã‚‹(include/system/clact_util_res.h)
+//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç™»éŒ²æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 ResEntryNumTbl[SCRATCH_RESOURCE_NUM] = {
 #if 0
-	2,			//ƒLƒƒƒ‰ƒŠƒ\[ƒX
-	3,			//ƒpƒŒƒbƒgƒŠƒ\[ƒX
-	2,			//ƒZƒ‹ƒŠƒ\[ƒX
-	2,			//ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX
+	2,			//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
+	3,			//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
+	2,			//ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	2,			//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
 #else
-	SCRATCH_RES_OBJ_MAX,		//ƒLƒƒƒ‰ƒŠƒ\[ƒX
-	SCRATCH_RES_OBJ_MAX,		//ƒpƒŒƒbƒgƒŠƒ\[ƒX
-	SCRATCH_RES_OBJ_MAX,		//ƒZƒ‹ƒŠƒ\[ƒX
-	SCRATCH_RES_OBJ_MAX,		//ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX
+	SCRATCH_RES_OBJ_MAX,		//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
+	SCRATCH_RES_OBJ_MAX,		//ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹
+	SCRATCH_RES_OBJ_MAX,		//ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+	SCRATCH_RES_OBJ_MAX,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
 #endif
 };
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
-//ScratchClactŠÖ”
+//ScratchClacté–¢æ•°
 void			ScratchClact_InitCellActor( SCRATCH_CLACT* wk );
 CLACT_WORK_PTR ScratchClact_SetActor( SCRATCH_CLACT* wk, u32 data_no, u32 anm_no, u32 bg_pri, u32 pri, u8 disp );
 void			ScratchClact_DeleteCellObject( SCRATCH_CLACT* wk );
@@ -109,15 +109,15 @@ static void		ScratchClact_DeleteCellObjectOne( SCRATCH_CLACT* wk, int res_id );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk		SCRATCH_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -129,54 +129,54 @@ void ScratchClact_InitCellActor( SCRATCH_CLACT* wk )
 
 	initVramTransferManagerHeap( 32, HEAPID_SCRATCH );
 
-	//ƒLƒƒƒ‰ƒNƒ^[EƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitCharPlttManager();
 
 	//REND_OAM_UtilOamRamClear_Main( HEAPID_SCRATCH );
 	//REND_OAM_UtilOamRamClear_Sub( HEAPID_SCRATCH );	
 
-	//OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	//OAMãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 
-	//‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	//ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	//‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ð‚Ý‚ñ‚È‚Å‹¤—L‚·‚é
-	REND_OAMInit(	0, 128,				//ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-					0, 32,				//ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-					0, 128,				//ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-					0, 32,				//ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+	//å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	//ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	//ã“ã“ã§ä½œæˆã—ãŸOAMãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
+	REND_OAMInit(	0, 128,				//ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+					0, 32,				//ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+					0, 128,				//ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+					0, 32,				//ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 					HEAPID_SCRATCH);
 	
-	//ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚ÌŠÈ’P‰Šú‰»(ì¬‚³‚ê‚½ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚ª•Ô‚é)
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®ç°¡å˜åˆæœŸåŒ–(ä½œæˆã•ã‚ŒãŸã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆãŒè¿”ã‚‹)
 	wk->ClactSet = CLACT_U_SetEasyInit( SCRATCH_CLACT_OBJ_MAX, &wk->RendData, HEAPID_SCRATCH );
 	
-	//CLACT‚Å’è‹`‚µ‚Ä‚¢‚éƒZƒ‹‚ª‘å‚«‚·‚¬‚ÄƒTƒu‰æ–Ê‚É‰e‹¿‚ª‚Å‚Ä‚µ‚Ü‚¤‚Ì‚Å—£‚µ‚Ä‚Ý‚é
+	//CLACTã§å®šç¾©ã—ã¦ã„ã‚‹ã‚»ãƒ«ãŒå¤§ãã™ãŽã¦ã‚µãƒ–ç”»é¢ã«å½±éŸ¿ãŒã§ã¦ã—ã¾ã†ã®ã§é›¢ã—ã¦ã¿ã‚‹
 	CLACT_U_SetSubSurfaceMatrix( &wk->RendData, 0, SCRATCH_SUB_ACTOR_DISTANCE );
 
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for( i=0; i < SCRATCH_RESOURCE_NUM ;i++ ){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for( i=0; i < SCRATCH_RESOURCE_NUM ;i++ ){		//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		wk->ResMan[i] = CLACT_U_ResManagerInit( ResEntryNumTbl[i], i, HEAPID_SCRATCH );
 	}
 
 	/***************/
-	//	‰º‰æ–Ê
+	//	ä¸‹ç”»é¢
 	/***************/
-	ScratchClact_ResCardSet( wk, NNS_G2D_VRAM_TYPE_2DMAIN );					//ƒJ[ƒh
+	ScratchClact_ResCardSet( wk, NNS_G2D_VRAM_TYPE_2DMAIN );					//ã‚«ãƒ¼ãƒ‰
 	ScratchClact_ResPokeSet( wk, SCRATCH_RES_OBJ_D_POKE, 
-							 SCRATCH_ID_OBJ_D_POKE, NNS_G2D_VRAM_TYPE_2DMAIN );	//ƒ|ƒPƒ‚ƒ“ŠG•¿
-	ScratchClact_ResButtonSet( wk, NNS_G2D_VRAM_TYPE_2DMAIN );					//ƒ{ƒ^ƒ“
-	ScratchClact_ResAtariSet( wk, NNS_G2D_VRAM_TYPE_2DMAIN );					//“–‚½‚è
+							 SCRATCH_ID_OBJ_D_POKE, NNS_G2D_VRAM_TYPE_2DMAIN );	//ãƒã‚±ãƒ¢ãƒ³çµµæŸ„
+	ScratchClact_ResButtonSet( wk, NNS_G2D_VRAM_TYPE_2DMAIN );					//ãƒœã‚¿ãƒ³
+	ScratchClact_ResAtariSet( wk, NNS_G2D_VRAM_TYPE_2DMAIN );					//å½“ãŸã‚Š
 	
 	/***************/
-	//	ã‰æ–Ê
+	//	ä¸Šç”»é¢
 	/***************/
 	ScratchClact_ResPokeSet( wk, SCRATCH_RES_OBJ_U_POKE, 
-							 SCRATCH_ID_OBJ_U_POKE, NNS_G2D_VRAM_TYPE_2DSUB );	//ƒ|ƒPƒ‚ƒ“ŠG•¿
+							 SCRATCH_ID_OBJ_U_POKE, NNS_G2D_VRAM_TYPE_2DSUB );	//ãƒã‚±ãƒ¢ãƒ³çµµæŸ„
 
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‚©‚ç“]‘—
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‹ã‚‰è»¢é€
 	for( i=0; i < SCRATCH_RES_OBJ_MAX ;i++ ){
-		CLACT_U_CharManagerSet( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );	//Char“]‘—
-		CLACT_U_PlttManagerSet( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );	//ƒpƒŒƒbƒg“]‘—
+		CLACT_U_CharManagerSet( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );	//Charè»¢é€
+		CLACT_U_PlttManagerSet( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	}
 
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );			//SUB DISP OBJ ON
@@ -188,35 +188,35 @@ void ScratchClact_InitCellActor( SCRATCH_CLACT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒXFƒJ[ƒhƒZƒbƒg
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ï¼šã‚«ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
  *
- * @param	wk		SCRATCH_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void ScratchClact_ResCardSet( SCRATCH_CLACT* wk, int vram )
 {
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[SCRATCH_RES_OBJ_D_CARD][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 					wk->ResMan[CLACT_U_CHAR_RES],
 					ARC_SCRATCH, NARC_scratch_l_oam00_NCGR,
 					FALSE, SCRATCH_ID_OBJ_D_CARD, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_SCRATCH);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[SCRATCH_RES_OBJ_D_CARD][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 					wk->ResMan[CLACT_U_PLTT_RES],
 					ARC_SCRATCH, NARC_scratch_l_oam00_NCLR,
 					FALSE, SCRATCH_ID_OBJ_D_CARD, NNS_G2D_VRAM_TYPE_2DMAIN, 
 					DISP_SUB_CARD_PAL, HEAPID_SCRATCH);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[SCRATCH_RES_OBJ_D_CARD][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELL_RES],
 					ARC_SCRATCH, NARC_scratch_l_oam00_NCER,
 					FALSE, SCRATCH_ID_OBJ_D_CARD, CLACT_U_CELL_RES, HEAPID_SCRATCH);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[SCRATCH_RES_OBJ_D_CARD][CLACT_U_CELLANM_RES]=CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELLANM_RES],
 					ARC_SCRATCH, NARC_scratch_l_oam00_NANR,
@@ -227,35 +227,35 @@ static void ScratchClact_ResCardSet( SCRATCH_CLACT* wk, int vram )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒXFƒ|ƒPƒ‚ƒ“ŠG•¿ƒZƒbƒg
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³çµµæŸ„ã‚»ãƒƒãƒˆ
  *
- * @param	wk		SCRATCH_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void ScratchClact_ResPokeSet( SCRATCH_CLACT* wk, int res_id, int obj_id, int vram )
 {
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[res_id][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 					wk->ResMan[CLACT_U_CHAR_RES],
 					ARC_SCRATCH, NARC_scratch_poke_NCGR,
 					0, obj_id, vram, HEAPID_SCRATCH);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[res_id][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 					wk->ResMan[CLACT_U_PLTT_RES],
 					ARC_SCRATCH, NARC_scratch_poke_NCLR,
 					FALSE, obj_id, vram, 
 					DISP_MAIN_OBJ_PAL,HEAPID_SCRATCH);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[res_id][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELL_RES],
 					ARC_SCRATCH, NARC_scratch_poke_NCER,
 					0, obj_id, CLACT_U_CELL_RES, HEAPID_SCRATCH);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[res_id][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELLANM_RES],
 					ARC_SCRATCH, NARC_scratch_poke_NANR,
@@ -266,54 +266,54 @@ static void ScratchClact_ResPokeSet( SCRATCH_CLACT* wk, int res_id, int obj_id, 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒXØ‚è‘Ö‚¦(ƒJ[ƒh¨ƒ{ƒ^ƒ“)
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹åˆ‡ã‚Šæ›¿ãˆ(ã‚«ãƒ¼ãƒ‰â†’ãƒœã‚¿ãƒ³)
  *
- * @param	wk		SCRATCH_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 void ScratchClact_ResButtonChg( SCRATCH_CLACT* wk )
 {
-	ScratchClact_DeleteCellObjectOne( wk, SCRATCH_RES_OBJ_D_CARD );	//ƒJ[ƒhƒŠƒ\[ƒXíœ
-	ScratchClact_ResButtonSet( wk, NNS_G2D_VRAM_TYPE_2DMAIN );		//ƒ{ƒ^ƒ“ƒŠƒ\[ƒX’Ç‰Á
+	ScratchClact_DeleteCellObjectOne( wk, SCRATCH_RES_OBJ_D_CARD );	//ã‚«ãƒ¼ãƒ‰ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
+	ScratchClact_ResButtonSet( wk, NNS_G2D_VRAM_TYPE_2DMAIN );		//ãƒœã‚¿ãƒ³ãƒªã‚½ãƒ¼ã‚¹è¿½åŠ 
 
-	CLACT_U_CharManagerSet( wk->ResObjTbl[SCRATCH_RES_OBJ_D_BUTTON][CLACT_U_CHAR_RES] );//Char“]‘—
-	CLACT_U_PlttManagerSet( wk->ResObjTbl[SCRATCH_RES_OBJ_D_BUTTON][CLACT_U_PLTT_RES] );//pltt“]‘—
+	CLACT_U_CharManagerSet( wk->ResObjTbl[SCRATCH_RES_OBJ_D_BUTTON][CLACT_U_CHAR_RES] );//Charè»¢é€
+	CLACT_U_PlttManagerSet( wk->ResObjTbl[SCRATCH_RES_OBJ_D_BUTTON][CLACT_U_PLTT_RES] );//plttè»¢é€
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒXFƒ{ƒ^ƒ“ƒZƒbƒg
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ï¼šãƒœã‚¿ãƒ³ã‚»ãƒƒãƒˆ
  *
- * @param	wk		SCRATCH_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void ScratchClact_ResButtonSet( SCRATCH_CLACT* wk, int vram )
 {
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[SCRATCH_RES_OBJ_D_BUTTON][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 					wk->ResMan[CLACT_U_CHAR_RES],
 					ARC_SCRATCH, NARC_scratch_l_oam01_NCGR,
 					FALSE, SCRATCH_ID_OBJ_D_BUTTON, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_SCRATCH);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[SCRATCH_RES_OBJ_D_BUTTON][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 					wk->ResMan[CLACT_U_PLTT_RES],
 					ARC_SCRATCH, NARC_scratch_l_oam01_NCLR,
 					FALSE, SCRATCH_ID_OBJ_D_BUTTON, NNS_G2D_VRAM_TYPE_2DMAIN, 
 					DISP_SUB2_BUTTON_PAL, HEAPID_SCRATCH);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[SCRATCH_RES_OBJ_D_BUTTON][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELL_RES],
 					ARC_SCRATCH, NARC_scratch_l_oam01_NCER,
 					FALSE, SCRATCH_ID_OBJ_D_BUTTON, CLACT_U_CELL_RES, HEAPID_SCRATCH);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[SCRATCH_RES_OBJ_D_BUTTON][CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELLANM_RES],
 					ARC_SCRATCH, NARC_scratch_l_oam01_NANR,
@@ -324,35 +324,35 @@ static void ScratchClact_ResButtonSet( SCRATCH_CLACT* wk, int vram )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒXF“–‚½‚èƒZƒbƒg
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ï¼šå½“ãŸã‚Šã‚»ãƒƒãƒˆ
  *
- * @param	wk		SCRATCH_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
 static void ScratchClact_ResAtariSet( SCRATCH_CLACT* wk, int vram )
 {
-	//chara“Ç‚Ýž‚Ý
+	//charaèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[SCRATCH_RES_OBJ_D_ATARI][CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar(
 					wk->ResMan[CLACT_U_CHAR_RES],
 					ARC_SCRATCH, NARC_scratch_l_oam02_NCGR,
 					FALSE, SCRATCH_ID_OBJ_D_ATARI, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_SCRATCH);
 
-	//pal“Ç‚Ýž‚Ý
+	//palèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[SCRATCH_RES_OBJ_D_ATARI][CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt(
 					wk->ResMan[CLACT_U_PLTT_RES],
 					ARC_SCRATCH, NARC_scratch_l_oam02_NCLR,
 					FALSE, SCRATCH_ID_OBJ_D_ATARI, NNS_G2D_VRAM_TYPE_2DMAIN, 
 					DISP_SUB3_ATARI_PAL, HEAPID_SCRATCH);
 
-	//cell“Ç‚Ýž‚Ý
+	//cellèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[SCRATCH_RES_OBJ_D_ATARI][CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELL_RES],
 					ARC_SCRATCH, NARC_scratch_l_oam02_NCER,
 					FALSE, SCRATCH_ID_OBJ_D_ATARI, CLACT_U_CELL_RES, HEAPID_SCRATCH);
 
-	//“¯‚¶ŠÖ”‚Åanim“Ç‚Ýž‚Ý
+	//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 	wk->ResObjTbl[SCRATCH_RES_OBJ_D_ATARI][CLACT_U_CELLANM_RES]=CLACT_U_ResManagerResAddArcKindCell(
 					wk->ResMan[CLACT_U_CELLANM_RES],
 					ARC_SCRATCH, NARC_scratch_l_oam02_NANR,
@@ -363,9 +363,9 @@ static void ScratchClact_ResAtariSet( SCRATCH_CLACT* wk, int vram )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒZƒ‹ƒAƒNƒ^[‚ðƒZƒbƒg
+ * @brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		SCRATCH_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -376,13 +376,13 @@ CLACT_WORK_PTR ScratchClact_SetActor( SCRATCH_CLACT* wk, u32 data_no, u32 anm_no
 	CLACT_HEADER cl_act_header;
 	CLACT_WORK_PTR act;
 	
-	//ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬	
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ	
 	CLACT_U_MakeHeader(	&cl_act_header,
-						//“o˜^‚µ‚½ƒŠƒ\[ƒX‚ÌID(ResObjTbl[id])
+						//ç™»éŒ²ã—ãŸãƒªã‚½ãƒ¼ã‚¹ã®ID(ResObjTbl[id])
 						data_no, data_no, data_no, data_no,
 						CLACT_U_HEADER_DATA_NONE, CLACT_U_HEADER_DATA_NONE,
-						//0, 0,							//VRAM“]‘—‚©ƒtƒ‰ƒOABG‚Æ‚Ì—Dæ‡ˆÊ
-						0, bg_pri,						//VRAM“]‘—‚©ƒtƒ‰ƒOABG‚Æ‚Ì—Dæ‡ˆÊ(2)
+						//0, 0,							//VRAMè»¢é€ã‹ãƒ•ãƒ©ã‚°ã€BGã¨ã®å„ªå…ˆé †ä½
+						0, bg_pri,						//VRAMè»¢é€ã‹ãƒ•ãƒ©ã‚°ã€BGã¨ã®å„ªå…ˆé †ä½(2)
 						wk->ResMan[CLACT_U_CHAR_RES],
 						wk->ResMan[CLACT_U_PLTT_RES],
 						wk->ResMan[CLACT_U_CELL_RES],
@@ -390,16 +390,16 @@ CLACT_WORK_PTR ScratchClact_SetActor( SCRATCH_CLACT* wk, u32 data_no, u32 anm_no
 						NULL,NULL);
 
 	{
-		//“o˜^î•ñŠi”[
+		//ç™»éŒ²æƒ…å ±æ ¼ç´
 		CLACT_ADD add;
 
 		add.ClActSet	= wk->ClactSet;
 		add.ClActHeader	= &cl_act_header;
 
 		//add.mat.x		= 0;//FX32_CONST(32) ;
-		//add.mat.y		= 0;//FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ªãASUB‚ª‰ºj
+		//add.mat.y		= 0;//FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸Šã€SUBãŒä¸‹ï¼‰
 		add.mat.x		= 0;
-		add.mat.y		= 0;						//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ªãASUB‚ª‰ºj
+		add.mat.y		= 0;						//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸Šã€SUBãŒä¸‹ï¼‰
 		add.mat.z		= 0;
 		add.sca.x		= FX32_ONE;
 		add.sca.y		= FX32_ONE;
@@ -415,25 +415,25 @@ CLACT_WORK_PTR ScratchClact_SetActor( SCRATCH_CLACT* wk, u32 data_no, u32 anm_no
 		}
 
 		//if( disp == DISP_SUB ){
-		//	add.mat.y += SUB_SURFACE_Y;				//À•W‚ð•â³
-		//	add.mat.y += SCRATCH_SUB_ACTOR_DISTANCE;//À•W‚ð•â³
+		//	add.mat.y += SUB_SURFACE_Y;				//åº§æ¨™ã‚’è£œæ­£
+		//	add.mat.y += SCRATCH_SUB_ACTOR_DISTANCE;//åº§æ¨™ã‚’è£œæ­£
 		//}
 
-		//ƒZƒ‹ƒAƒNƒ^[•\Ž¦ŠJŽn
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 		act = CLACT_Add( &add );
 		//if( act == NULL ){
-		//	OS_Printf( "CLACT_AddŽ¸”s\n" );
+		//	OS_Printf( "CLACT_Addå¤±æ•—\n" );
 		//	GF_ASSERT(0);
 		//}
 
 #if 0
-		CLACT_SetAnmFlag( act, 1 );					//ƒI[ƒgƒAƒjƒ
+		CLACT_SetAnmFlag( act, 1 );					//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡
 #else
-		CLACT_SetAnmFlag( act, 0 );					//”ñƒAƒjƒ
+		CLACT_SetAnmFlag( act, 0 );					//éžã‚¢ãƒ‹ãƒ¡
 #endif
 
-		CLACT_SetAnmFrame( act, FX32_ONE );			//ƒI[ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ðÝ’è
-		CLACT_AnmChg( act, anm_no );				//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒV[ƒPƒ“ƒX‚ðƒ`ƒFƒ“ƒW‚·‚é
+		CLACT_SetAnmFrame( act, FX32_ONE );			//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®š
+		CLACT_AnmChg( act, anm_no );				//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒã‚§ãƒ³ã‚¸ã™ã‚‹
 	}	
 
 	return act;
@@ -441,9 +441,9 @@ CLACT_WORK_PTR ScratchClact_SetActor( SCRATCH_CLACT* wk, u32 data_no, u32 anm_no
 
 //--------------------------------------------------------------
 /**
- * @brief	2DƒZƒ‹ƒIƒuƒWƒFƒNƒg‰ð•ú
+ * @brief	2Dã‚»ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè§£æ”¾
  *
- * @param	wk		SCRATCH_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -452,21 +452,21 @@ void ScratchClact_DeleteCellObject(SCRATCH_CLACT* wk)
 {
 	u8 i;
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ð•ú
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	for( i=0; i < SCRATCH_RES_OBJ_MAX ;i++ ){
-		CLACT_U_CharManagerDelete( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );//char“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
-		CLACT_U_PlttManagerDelete( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );//pltt“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		CLACT_U_CharManagerDelete( wk->ResObjTbl[i][CLACT_U_CHAR_RES] );//charè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
+		CLACT_U_PlttManagerDelete( wk->ResObjTbl[i][CLACT_U_PLTT_RES] );//plttè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	}
 		
-	//ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+	//ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	for( i=0; i < SCRATCH_RESOURCE_NUM ;i++ ){
 		CLACT_U_ResManagerDelete( wk->ResMan[i] );
 	}
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(wk->ClactSet);
 
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
 	DeleteCharManager();
@@ -484,7 +484,7 @@ void ScratchClact_DeleteCellObject(SCRATCH_CLACT* wk)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒ‰ƒNƒ^[EƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+ * @brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
  *
  * @param	none
  *
@@ -493,28 +493,28 @@ void ScratchClact_DeleteCellObject(SCRATCH_CLACT* wk)
 //--------------------------------------------------------------
 static void InitCharPlttManager(void)
 {
-	//ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
-			CHAR_CONT_NUM,						//ƒLƒƒƒ‰ƒNƒ^§Œä”
-			CHAR_VRAMTRANS_MAIN_SIZE,			//ƒƒCƒ“‰æ–Ê‚ÌVram“]‘——p‚É—pˆÓ‚·‚éVramƒTƒCƒY
-			CHAR_VRAMTRANS_SUB_SIZE,			//ƒTƒu‰æ–Ê‚ÌVram“]‘——p‚É—pˆÓ‚·‚éVramƒTƒCƒY
-			HEAPID_SCRATCH						//Žg—p‚·‚éƒq[ƒv
+			CHAR_CONT_NUM,						//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åˆ¶å¾¡æ•°
+			CHAR_VRAMTRANS_MAIN_SIZE,			//ãƒ¡ã‚¤ãƒ³ç”»é¢ã®Vramè»¢é€ç”¨ã«ç”¨æ„ã™ã‚‹Vramã‚µã‚¤ã‚º
+			CHAR_VRAMTRANS_SUB_SIZE,			//ã‚µãƒ–ç”»é¢ã®Vramè»¢é€ç”¨ã«ç”¨æ„ã™ã‚‹Vramã‚µã‚¤ã‚º
+			HEAPID_SCRATCH						//ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 		};
-		//InitCharManager( &cm );				//OBJƒ}ƒbƒsƒ“ƒOƒ‚[ƒhÝ’è
+		//InitCharManager( &cm );				//OBJãƒžãƒƒãƒ”ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 		//InitCharManagerReg( &cm, GX_OBJVRAMMODE_CHAR_1D_32K, GX_OBJVRAMMODE_CHAR_1D_32K );
 		//InitCharManagerReg( &cm, GX_OBJVRAMMODE_CHAR_1D_64K, GX_OBJVRAMMODE_CHAR_1D_64K );
 		InitCharManagerReg( &cm, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K );
 	}
 
-	//ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 #if 0
 	InitPlttManager( PLTT_CONT_NUM, HEAPID_SCRATCH );
 #else
 	InitPlttManager( DISP_PAL_NUM, HEAPID_SCRATCH );
 #endif
 
-	//“Ç‚Ýž‚ÝŠJŽnˆÊ’u‚ð‰Šú‰»
+	//èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
 
@@ -523,14 +523,14 @@ static void InitCharPlttManager(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒg•ÏX
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
  *
- * @param	wk		SCRATCH_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------
-//ƒƒN‚ÌƒpƒŒƒbƒgƒŠƒ\[ƒX‚ÌƒCƒ“ƒfƒbƒNƒX
+//ãƒ¯ã‚¯ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 static u8 waku_pal_index_tbl[WAKU_PAL_NUM] = {
 	NARC_scratch_l_oam_waku01_NCLR,
 	NARC_scratch_l_oam_waku02_NCLR,
@@ -553,13 +553,13 @@ void ScratchClact_ButtonResourcePalChg( SCRATCH_CLACT* wk, int no )
 	
 	obj = CLACT_U_ResManagerGetIDResObjPtr(wk->ResMan[CLACT_U_PLTT_RES], SCRATCH_RES_OBJ_D_BUTTON);
 
-	//ƒpƒŒƒbƒgƒf[ƒ^‚ÌƒŠƒ\[ƒX‚ð•ÏX
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’å¤‰æ›´
 	CLACT_U_ResManagerResChgArcPltt(wk->ResMan[CLACT_U_PLTT_RES],
 									obj,
 									ARC_SCRATCH, waku_pal_index_tbl[no],
 									FALSE, HEAPID_SCRATCH );
 
-	//‚±‚ÌŠÖ”‚©‚çACharDataChg¨AddVramTransferManager‚ªŒÄ‚Î‚ê‚é(gflib/vram_transfer_manager.c)
+	//ã“ã®é–¢æ•°ã‹ã‚‰ã€CharDataChgâ†’AddVramTransferManagerãŒå‘¼ã°ã‚Œã‚‹(gflib/vram_transfer_manager.c)
 	CLACT_U_PlttManagerReTrans( obj );
 	return;
 }
@@ -567,9 +567,9 @@ void ScratchClact_ButtonResourcePalChg( SCRATCH_CLACT* wk, int no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒXíœ
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤
  *
- * @param	wk		SCRATCH_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		SCRATCH_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -578,9 +578,9 @@ static void ScratchClact_DeleteCellObjectOne( SCRATCH_CLACT* wk, int res_id )
 {
 	u8 i;
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ð•ú
-	CLACT_U_CharManagerDelete( wk->ResObjTbl[res_id][CLACT_U_CHAR_RES] );//char“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
-	CLACT_U_PlttManagerDelete( wk->ResObjTbl[res_id][CLACT_U_PLTT_RES] );//pltt“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
+	CLACT_U_CharManagerDelete( wk->ResObjTbl[res_id][CLACT_U_CHAR_RES] );//charè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
+	CLACT_U_PlttManagerDelete( wk->ResObjTbl[res_id][CLACT_U_PLTT_RES] );//plttè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		
 	CLACT_U_ResManagerResDelete( wk->ResMan[res_id], wk->ResObjTbl[res_id][CLACT_U_CHAR_RES] );
 	CLACT_U_ResManagerResDelete( wk->ResMan[res_id], wk->ResObjTbl[res_id][CLACT_U_PLTT_RES] );

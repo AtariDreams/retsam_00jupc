@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_pokelot.c
- * @bfief	ƒ|ƒPƒ‚ƒ“ƒNƒW			¦”ñí’†—Ìˆæ‚ÉˆÚ“®‚·‚é‚Æ“®ì‚µ‚Ü‚¹‚ñ
+ * @bfief	ãƒã‚±ãƒ¢ãƒ³ã‚¯ã‚¸			â€»éå¸¸ä¸­é ˜åŸŸã«ç§»å‹•ã™ã‚‹ã¨å‹•ä½œã—ã¾ã›ã‚“
  * @author	Tomomichi Ohta
  */
 //============================================================================================
@@ -23,31 +23,31 @@
 #include "poketool/boxdata.h"
 
 //===========================================
-// ƒ}ƒNƒ
+// ãƒã‚¯ãƒ­
 //===========================================
-#define POKELOT_MAXNUMBER  (65535)  // “–‘Iƒiƒ“ƒo[Å‘å’l
+#define POKELOT_MAXNUMBER  (65535)  // å½“é¸ãƒŠãƒ³ãƒãƒ¼æœ€å¤§å€¤
 
 //===========================================
-// ƒvƒƒgƒ^ƒCƒv
+// ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //===========================================
 static u8 check_hit_keta(u16 val1, u16 val2);
 
 
 //============================================================================================
-//						ƒNƒWŠÖ˜A
+//						ã‚¯ã‚¸é–¢é€£
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒNƒW‚Ì‚ ‚½‚è”Ô†æ“¾
- * @brief   ƒNƒW‚Ì‚ ‚½‚è”Ô†æ“¾
+ * ã‚¯ã‚¸ã®ã‚ãŸã‚Šç•ªå·å–å¾—
+ * @brief   ã‚¯ã‚¸ã®ã‚ãŸã‚Šç•ªå·å–å¾—
  * 
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
 //--------------------------------------------------------------------------------------------
-#define POKELOT_MAXNUMBER  (65535)  /* “–‘Iƒiƒ“ƒo[Å‘å’l*/
+#define POKELOT_MAXNUMBER  (65535)  /* å½“é¸ãƒŠãƒ³ãƒãƒ¼æœ€å¤§å€¤*/
 
 BOOL EvCmdGetKujiAtariNum(VM_MACHINE * core)
 {
@@ -63,10 +63,10 @@ BOOL EvCmdGetKujiAtariNum(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒNƒW‚Ì‚ ‚½‚èƒ`ƒFƒbƒN
- * @brief   ƒNƒW‚Ì‚ ‚½‚èƒ`ƒFƒbƒN
+ * ã‚¯ã‚¸ã®ã‚ãŸã‚Šãƒã‚§ãƒƒã‚¯
+ * @brief   ã‚¯ã‚¸ã®ã‚ãŸã‚Šãƒã‚§ãƒƒã‚¯
  * 
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"1"
  */
@@ -93,13 +93,13 @@ BOOL EvCmdKujiAtariChk(VM_MACHINE * core)
 	for(t_keta=0,t_no=0,i=0;i<max;i++){
 		poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(fsys->savedata), i);
 
-		//ƒ‚ƒ“ƒXƒ^[”Ô†æ“¾(0ˆÈŠO‚È‚çƒ^ƒ}ƒSj
+		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç•ªå·å–å¾—(0ä»¥å¤–ãªã‚‰ã‚¿ãƒã‚´ï¼‰
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) == 0 ){
 
 			id = (PokeParaGet( poke, ID_PARA_id_no, NULL ) & 0xffff);
 
-			keta = check_hit_keta(num, id);	//Œ…”æ“¾
-			if((keta > 0)&&(t_keta < keta)) {		//‰‰ñorã‰ñ‚Á‚½‚Æ‚«
+			keta = check_hit_keta(num, id);	//æ¡æ•°å–å¾—
+			if((keta > 0)&&(t_keta < keta)) {		//åˆå›orä¸Šå›ã£ãŸã¨ã
 				t_keta = keta;
 				t_no = i;
 			}
@@ -116,8 +116,8 @@ BOOL EvCmdKujiAtariChk(VM_MACHINE * core)
 
 					id = (PokePasoParaGet( ppp, ID_PARA_id_no, NULL ) & 0xffff);
 
-					keta = check_hit_keta(num, id);	//Œ…”æ“¾
-					if((keta > 0)&&(pc_keta < keta)) {		//‰‰ñorã‰ñ‚Á‚½‚Æ‚«
+					keta = check_hit_keta(num, id);	//æ¡æ•°å–å¾—
+					if((keta > 0)&&(pc_keta < keta)) {		//åˆå›orä¸Šå›ã£ãŸã¨ã
 						pc_keta = keta;
 						pc_no = trayno * BOX_MAX_POS + pos;
 					}
@@ -126,16 +126,16 @@ BOOL EvCmdKujiAtariChk(VM_MACHINE * core)
 		}
 	}
 
-	if((t_keta == 0)&&(pc_keta==0)){		//‚Ç‚¿‚ç‚àŠO‚ê
+	if((t_keta == 0)&&(pc_keta==0)){		//ã©ã¡ã‚‰ã‚‚å¤–ã‚Œ
 		*ret_wk1 = 0;
 		*ret_wk2 = 0;
 		*ret_wk3 = 0;
 	}else{
-		if(t_keta >= pc_keta){		//è‚¿‚Ì‚Ù‚¤‚ªã‚ğ“–‚½‚Á‚Ä‚¢‚é(or“¯‚¶j
+		if(t_keta >= pc_keta){		//æ‰‹æŒã¡ã®ã»ã†ãŒä¸Šã‚’å½“ãŸã£ã¦ã„ã‚‹(oråŒã˜ï¼‰
 			*ret_wk1 = t_no;
 			*ret_wk2 = t_keta;
 			*ret_wk3 = 0;
-		}else{						//PC‚Ì‚Ù‚¤‚ªã
+		}else{						//PCã®ã»ã†ãŒä¸Š
 			*ret_wk1 = pc_no;
 			*ret_wk2 = pc_keta;
 			*ret_wk3 = 1;
@@ -146,10 +146,10 @@ BOOL EvCmdKujiAtariChk(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒNƒW‚Ì‚ ‚½‚è”Ô†‰Šú‰»
- * @brief   ƒNƒW‚Ì‚ ‚½‚è”Ô†‰Šú‰»
+ * ã‚¯ã‚¸ã®ã‚ãŸã‚Šç•ªå·åˆæœŸåŒ–
+ * @brief   ã‚¯ã‚¸ã®ã‚ãŸã‚Šç•ªå·åˆæœŸåŒ–
  * 
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -168,14 +168,14 @@ BOOL EvCmdKujiAtariInit(VM_MACHINE * core)
 
 #if 0
 /*==============================================================
-==  AnswerWork ‚É“ü‚Á‚Ä‚¢‚éƒiƒ“ƒo[‚Å“–‘Iƒ`ƒFƒbƒN
-==  yŒ‹‰Êz
-==    ScriptParameter0  ... 0(‚Í‚¸‚êj`4i“Á“™j
-==  ¦ScriptParameter1  ... ‚à‚ç‚¦‚éƒAƒCƒeƒ€ƒiƒ“ƒo[
-==  ¦ScriptParameter2  ... “–‘Iƒ|ƒPƒ‚ƒ“‚ªi0:‚Ä‚à‚¿ 1:ƒ{ƒbƒNƒXj
-==  ¦StrTempBuffer0   ... “–‘Iƒ|ƒPƒ‚ƒ“–¼
+==  AnswerWork ã«å…¥ã£ã¦ã„ã‚‹ãƒŠãƒ³ãƒãƒ¼ã§å½“é¸ãƒã‚§ãƒƒã‚¯
+==  ã€çµæœã€‘
+==    ScriptParameter0  ... 0(ã¯ãšã‚Œï¼‰ã€œ4ï¼ˆç‰¹ç­‰ï¼‰
+==  â€»ScriptParameter1  ... ã‚‚ã‚‰ãˆã‚‹ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+==  â€»ScriptParameter2  ... å½“é¸ãƒã‚±ãƒ¢ãƒ³ãŒï¼ˆ0:ã¦ã‚‚ã¡ 1:ãƒœãƒƒã‚¯ã‚¹ï¼‰
+==  â€»StrTempBuffer0   ... å½“é¸ãƒã‚±ãƒ¢ãƒ³å
 ==
-==  ¦“–‘I‚µ‚È‚©‚Á‚½ê‡A‚±‚ê‚ç‚Ì’l‚Í“à—e‚ª•ÛØ‚³‚ê‚Ü‚¹‚ñ
+==  â€»å½“é¸ã—ãªã‹ã£ãŸå ´åˆã€ã“ã‚Œã‚‰ã®å€¤ã¯å†…å®¹ãŒä¿è¨¼ã•ã‚Œã¾ã›ã‚“
 ==============================================================*/
 void CheckPokeLotNumber(void)
 {
@@ -186,7 +186,7 @@ void CheckPokeLotNumber(void)
 	ScriptParameter0 = 0;
 	monsbox = monspos = 0;
 
-	// è‚¿ƒ`ƒFƒbƒN
+	// æ‰‹æŒã¡ãƒã‚§ãƒƒã‚¯
 	for(i = 0; i < TEMOTI_POKEMAX; i++)
 	{
 		if(PokeParaGet(PokeParaMine+i, ID_monsno) != 0)
@@ -207,7 +207,7 @@ void CheckPokeLotNumber(void)
 		}
 	}
 
-	// ƒ{ƒbƒNƒXƒ`ƒFƒbƒN
+	// ãƒœãƒƒã‚¯ã‚¹ãƒã‚§ãƒƒã‚¯
 	for(i = 0; i < BOX_KAZU; i++)
 	{
 		for(j = 0; j < BOX_PM_KAZU; j++)
@@ -229,7 +229,7 @@ void CheckPokeLotNumber(void)
 		}
 	}
 
-	// “–‘I‚µ‚Ä‚¢‚½
+	// å½“é¸ã—ã¦ã„ãŸ
 	if(ScriptParameter0)
 	{
 		ScriptParameter1 = PokeLotPrizeTable[ScriptParameter0-1];
@@ -247,9 +247,9 @@ void CheckPokeLotNumber(void)
 
 
 /*====================================================*/
-/*  ˆê’vŒ…”‚ğŒvZ                                    */
-/*  val1, val2   ”äŠr‚·‚é”’l                         */
-/*  return:  ˆê’vŒ…”i0`5j                         */
+/*  ä¸€è‡´æ¡æ•°ã‚’è¨ˆç®—                                    */
+/*  val1, val2   æ¯”è¼ƒã™ã‚‹æ•°å€¤                         */
+/*  return:  ä¸€è‡´æ¡æ•°ï¼ˆ0ã€œ5ï¼‰                         */
 /*====================================================*/
 static u16 V1 = 0, V2 = 0;
 

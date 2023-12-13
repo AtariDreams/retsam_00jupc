@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wifi_hiroba_save.h
- *	@brief		Wi-Fi‚Ğ‚ë‚Î	ƒZ[ƒuƒf[ƒ^
+ *	@brief		Wi-Fiã²ã‚ã°	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *	@author	
  *	@data		2008.05.22
  *
@@ -13,44 +13,44 @@
 #define __WIFI_HIROBA_SAVE_H__
 
 // savedata
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 #include "savedata/savedata.h"
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define WFLBY_SAVEDATA_QUESTION_NONE	( 0xffffffff )	// –³ŒøƒAƒ“ƒP[ƒg’Ê‚µ”Ô†
+#define WFLBY_SAVEDATA_QUESTION_NONE	( 0xffffffff )	// ç„¡åŠ¹ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆé€šã—ç•ªå·
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒZ[ƒuƒf[ƒ^
+///	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct _WFLBY_SAVEDATA WFLBY_SAVEDATA;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 extern int SAVEDATA_WFLBY_GetWorkSize( void );
 extern void SAVEDATA_WFLBY_InitWork( WFLBY_SAVEDATA* p_wk );
 extern WFLBY_SAVEDATA* SAVEDATA_WFLBY_AllocWork( u32 heapID );
 
-// ƒZ[ƒuƒf[ƒ^ƒ[ƒNæ“¾
+// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯å–å¾—
 extern WFLBY_SAVEDATA* SAVEDATA_WFLBY_GetWork( SAVEDATA* p_sv );
 
-// ƒf[ƒ^æ“¾
+// ãƒ‡ãƒ¼ã‚¿å–å¾—
 extern u32 SAVEDATA_WFLBY_GetQuestionNumber( const WFLBY_SAVEDATA* cp_wk );
 extern u32 SAVEDATA_WFLBY_GetMyAnswer( const WFLBY_SAVEDATA* cp_wk );
 
-// ƒf[ƒ^İ’è
+// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 extern void SAVEDATA_WFLBY_SetQuestionNumber( WFLBY_SAVEDATA* p_wk, u32 number );
 extern void SAVEDATA_WFLBY_SetMyAnswer( WFLBY_SAVEDATA* p_wk, u32 answer );
 

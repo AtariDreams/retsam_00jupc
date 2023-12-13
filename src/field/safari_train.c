@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	safari_train.c
- * @bfief	ƒTƒtƒ@ƒŠ‚ðc’f‚·‚éæ‚è•¨‚Ìˆ—
+ * @bfief	ã‚µãƒ•ã‚¡ãƒªã‚’ç¸¦æ–­ã™ã‚‹ä¹—ã‚Šç‰©ã®å‡¦ç†
  * @author	Nozomu Saito
  *
  */
@@ -52,9 +52,9 @@ typedef struct EVENT_SAFARI_TRAIN_tag
 	u8 SpdTblNo;
 	u8 TblCounter;
 	int Type;
-//	fx32 NowPosZ;	//Œ»ÝÀ•W
-	fx32 DstPosZ;	//–Ú“IÀ•W
-	int DecSpeedPos;	//Œ¸‘¬ˆÊ’u
+//	fx32 NowPosZ;	//ç¾åœ¨åº§æ¨™
+	fx32 DstPosZ;	//ç›®çš„åº§æ¨™
+	int DecSpeedPos;	//æ¸›é€Ÿä½ç½®
 	
 }EVENT_SAFARI_TRAIN;
 
@@ -101,9 +101,9 @@ static const fx32 CallSpeedTbl[] = {
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒZƒbƒgƒAƒbƒv
+ * @brief	ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -113,11 +113,11 @@ void SafariTrain_Setup(FIELDSYS_WORK *fsys)
 	GIMMICKWORK *work;
 	SAFARI_TRAIN_WORK *train_work;
 	VecFx32 vec;
-	//‚±‚±‚ÅƒMƒ~ƒbƒNƒ[ƒN‚Ì’†g‚ðŒ©‚é
+	//ã“ã“ã§ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã®ä¸­èº«ã‚’è¦‹ã‚‹
 	work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
 	train_work = (SAFARI_TRAIN_WORK*)GIMMICKWORK_Get(work, FLD_GIMMICK_SAFARI_TRAIN);
 
-	//ƒTƒtƒ@ƒŠ“dŽÔ‚ÌˆÊ’u‚ðƒMƒ~ƒbƒNƒ[ƒN‚©‚çŽæ“¾
+	//ã‚µãƒ•ã‚¡ãƒªé›»è»Šã®ä½ç½®ã‚’ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã‹ã‚‰å–å¾—
 	vec.x = TRAIN_POS_X;
 	vec.y = TRAIN_HEIGHT;
 	switch(train_work->NowPos){
@@ -132,7 +132,7 @@ void SafariTrain_Setup(FIELDSYS_WORK *fsys)
 		break;
 	}
 	
-	//ƒMƒ~ƒbƒNƒ[ƒN‚Ì’l‚ÅˆÊ’u‚ð•ªŠò
+	//ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã®å€¤ã§ä½ç½®ã‚’åˆ†å²
 	M3DO_SetMap3DObjExp(fsys->Map3DObjExp,
 						fsys->MapResource,
 						BMID_D6_TRAIN,
@@ -142,11 +142,11 @@ void SafariTrain_Setup(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“dŽÔˆÚ“®
+ * @brief	é›»è»Šç§»å‹•
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inDstPos	–Ú“IˆÊ’u
- * @param	inMoveType	ˆÚ“®ƒ^ƒCƒv(MOVE_TYPE_CALL or MOVE_TYPE_RIDE)
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inDstPos	ç›®çš„ä½ç½®
+ * @param	inMoveType	ç§»å‹•ã‚¿ã‚¤ãƒ—(MOVE_TYPE_CALL or MOVE_TYPE_RIDE)
  * 
  * @return	none
  */
@@ -165,45 +165,45 @@ void SafariTrain_Move(FIELDSYS_WORK *fsys, const u16 inDstPos, const u16 inMoveT
 	est->Seq = 0;
 //	est->Type = inMoveType;
 
-	//Œ»Ý’n‚Æ–Ú“I’n‚ðŠm”F‚µ‚Äƒpƒ‰ƒ[ƒ^ì¬
+	//ç¾åœ¨åœ°ã¨ç›®çš„åœ°ã‚’ç¢ºèªã—ã¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½œæˆ
 	
-	switch(train_work->NowPos){		//Œ»Ý’n
+	switch(train_work->NowPos){		//ç¾åœ¨åœ°
 	case TRAIN_POS_1:
-		est->Dir = TRAIN_DIR_DOWN;		//‰º•ûŒüˆÚ“®
-		//–Ú“I’n
+		est->Dir = TRAIN_DIR_DOWN;		//ä¸‹æ–¹å‘ç§»å‹•
+		//ç›®çš„åœ°
 		if (inDstPos == TRAIN_POS_2){
-			est->DstPosZ = TRAINE_STOP_POS_2;		//1-2‹æŠÔ‰ºˆÚ“®
+			est->DstPosZ = TRAINE_STOP_POS_2;		//1-2åŒºé–“ä¸‹ç§»å‹•
 			train_work->NowPos = TRAIN_POS_2;
 			est->DecSpeedPos = DOWN_DEC_SP_POS2;
 		}else{	//inDstPos == TRAIN_POS_3
-			est->DstPosZ = TRAINE_STOP_POS_3;		//‘S‹æŠÔˆÚ“®
+			est->DstPosZ = TRAINE_STOP_POS_3;		//å…¨åŒºé–“ç§»å‹•
 			train_work->NowPos = TRAIN_POS_3;
 			est->DecSpeedPos = DOWN_DEC_SP_POS3;
 		}
 		break;
 	case TRAIN_POS_2:
-		//–Ú“I’n
+		//ç›®çš„åœ°
 		if(inDstPos == TRAIN_POS_1){
-			est->Dir = TRAIN_DIR_UP;	//ã•ûŒüˆÚ“®
-			est->DstPosZ = TRAINE_STOP_POS_1;		//2-1‹æŠÔãˆÚ“®
+			est->Dir = TRAIN_DIR_UP;	//ä¸Šæ–¹å‘ç§»å‹•
+			est->DstPosZ = TRAINE_STOP_POS_1;		//2-1åŒºé–“ä¸Šç§»å‹•
 			train_work->NowPos = TRAIN_POS_1;
 			est->DecSpeedPos = UP_DEC_SP_POS1;
 		}else{	//inDstPos == TRAIN_POS_3
-			est->Dir = TRAIN_DIR_DOWN;	//‰º•ûŒüˆÚ“®
-			est->DstPosZ = TRAINE_STOP_POS_3;		//2-3‹æŠÔ‰ºˆÚ“®
+			est->Dir = TRAIN_DIR_DOWN;	//ä¸‹æ–¹å‘ç§»å‹•
+			est->DstPosZ = TRAINE_STOP_POS_3;		//2-3åŒºé–“ä¸‹ç§»å‹•
 			train_work->NowPos = TRAIN_POS_3;
 			est->DecSpeedPos = DOWN_DEC_SP_POS3;
 		}
 		break;
 	case TRAIN_POS_3:
-		est->Dir = TRAIN_DIR_UP;		//ã•ûŒüˆÚ“®
-		//–Ú“I’n
+		est->Dir = TRAIN_DIR_UP;		//ä¸Šæ–¹å‘ç§»å‹•
+		//ç›®çš„åœ°
 		if(inDstPos == TRAIN_POS_1){
-			est->DstPosZ = TRAINE_STOP_POS_1;		//‘S‹æŠÔˆÚ“®
+			est->DstPosZ = TRAINE_STOP_POS_1;		//å…¨åŒºé–“ç§»å‹•
 			train_work->NowPos = TRAIN_POS_1;
 			est->DecSpeedPos = UP_DEC_SP_POS1;
 		}else{	//inDstPos == TRAIN_POS_2
-			est->DstPosZ = TRAINE_STOP_POS_2;		//3-2‹æŠÔãˆÚ“®
+			est->DstPosZ = TRAINE_STOP_POS_2;		//3-2åŒºé–“ä¸Šç§»å‹•
 			train_work->NowPos = TRAIN_POS_2;
 			est->DecSpeedPos = UP_DEC_SP_POS2;
 		}
@@ -225,12 +225,12 @@ void SafariTrain_Move(FIELDSYS_WORK *fsys, const u16 inDstPos, const u16 inMoveT
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“dŽÔ‚ÌêŠ”äŠr
+ * @brief	é›»è»Šã®å ´æ‰€æ¯”è¼ƒ
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inPos	”äŠrˆÊ’u
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inPos	æ¯”è¼ƒä½ç½®
  * 
- * @return	u32		TRAIN_SAME_POS:“dŽÔ‚Æ“¯‚¶ˆÊ’u@TRAIN_DIF_POS:“dŽÔ‚Æˆá‚¤ˆÊ’u
+ * @return	u32		TRAIN_SAME_POS:é›»è»Šã¨åŒã˜ä½ç½®ã€€TRAIN_DIF_POS:é›»è»Šã¨é•ã†ä½ç½®
  */
 //---------------------------------------------------------------------------
 u32 SafariTrain_CheckPos(FIELDSYS_WORK *fsys, const u16 inPos)
@@ -248,11 +248,11 @@ u32 SafariTrain_CheckPos(FIELDSYS_WORK *fsys, const u16 inPos)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ˆÚ“®
+ * @brief	ç§»å‹•
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL	TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL SafariTrianeMoveEnent(GMEVENT_CONTROL * event)
@@ -262,39 +262,39 @@ static BOOL SafariTrianeMoveEnent(GMEVENT_CONTROL * event)
 
 	switch (est->Seq) {
 	case 0:
-		//“dŽÔƒAƒjƒƒZƒbƒg
+		//é›»è»Šã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 		{
 			NNSG3dResMdl* model;
 			NNSG3dResFileHeader** res_file;
 			M3DO_PTR obj_ptr;
 			NNSG3dRenderObj *render_obj;
 			
-			//“dŽÔOBJ‚ðŽæ“¾
+			//é›»è»ŠOBJã‚’å–å¾—
 			obj_ptr = M3DO_GetMap3DObjDataFromID(fsys->Map3DObjExp, BMID_D6_TRAIN);
 			render_obj = M3DO_GetRenderObj(obj_ptr);	
 			res_file = GetMapResourceModelRes(BMID_D6_TRAIN, fsys->MapResource);
 			model = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*res_file),0);
 
-			//“dŽÔƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgƒAƒbƒv
+			//é›»è»Šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			F3DASub_SetUpAnimation( fsys->field_3d_anime,
 									fsys->AnimeContMng,
-									TRAIN_ANM_CONT_CODE,	//“dŽÔƒAƒjƒŽ¯•ÊƒR[ƒh
+									TRAIN_ANM_CONT_CODE,	//é›»è»Šã‚¢ãƒ‹ãƒ¡è­˜åˆ¥ã‚³ãƒ¼ãƒ‰
 									BMID_D6_TRAIN,
-									render_obj,			//Œã‚ÅŽw’è
+									render_obj,			//å¾Œã§æŒ‡å®š
 									model,
 									GetMapResourceBmTexturePTR(fsys->MapResource),
-									1,				//ƒAƒjƒ”1
-									LOOP_INFINIT,	//–³ŒÀƒ‹[ƒv
-									FALSE			//”½“]‚µ‚È‚¢
+									1,				//ã‚¢ãƒ‹ãƒ¡æ•°1
+									LOOP_INFINIT,	//ç„¡é™ãƒ«ãƒ¼ãƒ—
+									FALSE			//åè»¢ã—ãªã„
 									);
-			//ƒAƒjƒƒXƒ^[ƒg
+			//ã‚¢ãƒ‹ãƒ¡ã‚¹ã‚¿ãƒ¼ãƒˆ
 			F3DASub_StartAnimation(fsys->AnimeContMng, TRAIN_ANM_CONT_CODE, 0);
 		}
 		(est->Seq) ++;
 		break;
 	case 1:
 		if (est->Type == MOVE_TYPE_RIDE){
-			//”­ŽËƒxƒ‹‰¹
+			//ç™ºå°„ãƒ™ãƒ«éŸ³
 			Snd_SePlay( SE_TRAIN_BELL );
 		}
 		(est->Seq) ++;
@@ -304,7 +304,7 @@ static BOOL SafariTrianeMoveEnent(GMEVENT_CONTROL * event)
 		}
 		break;
 	case 3:
-		//“dŽÔˆÚ“®
+		//é›»è»Šç§»å‹•
 		{
 			M3DO_PTR ptr;
 			VecFx32 vec;
@@ -317,7 +317,7 @@ static BOOL SafariTrianeMoveEnent(GMEVENT_CONTROL * event)
 		}
 		break;
 	case 4:
-		//“dŽÔƒAƒjƒI—¹
+		//é›»è»Šã‚¢ãƒ‹ãƒ¡çµ‚äº†
 		F3DASub_RereaseAnimation(fsys->field_3d_anime, fsys->AnimeContMng, TRAIN_ANM_CONT_CODE);
 		(est->Seq) ++;
 		break;
@@ -330,25 +330,25 @@ static BOOL SafariTrianeMoveEnent(GMEVENT_CONTROL * event)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“dŽÔ‚ðŒÄ‚ñ‚¾‚Æ‚«‚Ì“dŽÔ‚ÌˆÚ“®
+ * @brief	é›»è»Šã‚’å‘¼ã‚“ã ã¨ãã®é›»è»Šã®ç§»å‹•
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	est			ƒCƒxƒ“ƒgƒTƒtƒ@ƒŠ“dŽÔƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inDst		–Ú“IˆÊ’u
- * @param	outVec		ˆÊ’uƒxƒNƒgƒ‹	
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	est			ã‚¤ãƒ™ãƒ³ãƒˆã‚µãƒ•ã‚¡ãƒªé›»è»Šãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inDst		ç›®çš„ä½ç½®
+ * @param	outVec		ä½ç½®ãƒ™ã‚¯ãƒˆãƒ«	
  * 
- * @return	BOOL		TRUE:ˆÚ“®I‚í‚è	FALSE:ˆÚ“®Œp‘±
+ * @return	BOOL		TRUE:ç§»å‹•çµ‚ã‚ã‚Š	FALSE:ç§»å‹•ç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GetVecCallTrain(FIELDSYS_WORK *fsys, EVENT_SAFARI_TRAIN * est, const fx32 *inDst, VecFx32 *outVec)
 {
 	if (est->Dir == TRAIN_DIR_UP){
-		//ãˆÚ“®
+		//ä¸Šç§»å‹•
 		outVec->z -= CallSpeedTbl[est->SpdTblNo];
 		if ( (est->SpdTblNo<SPD_TBL_MAX-1)&&((outVec->z-TRAIN_OFS)/(FX32_ONE*16)<=est->DecSpeedPos) ){
 			if ( ++(est->TblCounter) >= CallSpdTblNo[est->SpdTblNo] ){
 				if (est->SpdTblNo == 0){
-					//Œ¸‘¬‰¹
+					//æ¸›é€ŸéŸ³
 					Snd_SePlay( SE_TRAIN_END );
 				}
 				est->SpdTblNo++;
@@ -356,12 +356,12 @@ static BOOL GetVecCallTrain(FIELDSYS_WORK *fsys, EVENT_SAFARI_TRAIN * est, const
 			}
 		}
 	}else{
-		//‰ºˆÚ“®
+		//ä¸‹ç§»å‹•
 		outVec->z += CallSpeedTbl[est->SpdTblNo];
 		if ( (est->SpdTblNo<SPD_TBL_MAX-1)&&((outVec->z-TRAIN_OFS)/(FX32_ONE*16)>=est->DecSpeedPos) ){
 			if ( ++(est->TblCounter) >= CallSpdTblNo[est->SpdTblNo] ){
 				if (est->SpdTblNo == 0){
-					//Œ¸‘¬‰¹
+					//æ¸›é€ŸéŸ³
 					Snd_SePlay( SE_TRAIN_END );
 				}
 				est->SpdTblNo++;
@@ -378,14 +378,14 @@ static BOOL GetVecCallTrain(FIELDSYS_WORK *fsys, EVENT_SAFARI_TRAIN * est, const
 
 //---------------------------------------------------------------------------
 /**
- * @brief	“dŽÔ‚Éæ‚Á‚½‚Æ‚«‚Ì“dŽÔ‚ÌˆÚ“®
+ * @brief	é›»è»Šã«ä¹—ã£ãŸã¨ãã®é›»è»Šã®ç§»å‹•
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	est			ƒCƒxƒ“ƒgƒTƒtƒ@ƒŠ“dŽÔƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inDst		–Ú“IˆÊ’u
- * @param	outVec		ˆÊ’uƒxƒNƒgƒ‹	
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	est			ã‚¤ãƒ™ãƒ³ãƒˆã‚µãƒ•ã‚¡ãƒªé›»è»Šãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inDst		ç›®çš„ä½ç½®
+ * @param	outVec		ä½ç½®ãƒ™ã‚¯ãƒˆãƒ«	
  * 
- * @return	BOOL		TRUE:ˆÚ“®I‚í‚è	FALSE:ˆÚ“®Œp‘±
+ * @return	BOOL		TRUE:ç§»å‹•çµ‚ã‚ã‚Š	FALSE:ç§»å‹•ç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GetVecRideTrain(FIELDSYS_WORK *fsys, EVENT_SAFARI_TRAIN * est, const fx32 *inDst, VecFx32 *outVec)
@@ -395,26 +395,26 @@ static BOOL GetVecRideTrain(FIELDSYS_WORK *fsys, EVENT_SAFARI_TRAIN * est, const
 	fop = Player_FieldOBJGet( fsys->player );
 	Player_VecPosGet( fsys->player, &player_vec );
 			
-	//zÀ•W•ÏXBŽ©‹@‚Æ‚ ‚í‚¹‚é
+	//zåº§æ¨™å¤‰æ›´ã€‚è‡ªæ©Ÿã¨ã‚ã‚ã›ã‚‹
 	outVec->z = player_vec.z+TRAIN_OFS;
 
 	if (outVec->z == (*inDst)){
 		return TRUE;
 	}else{
 		if (est->Dir == TRAIN_DIR_UP){
-			//ãˆÚ“®
-			if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?	
-				FieldOBJ_AcmdSet(fop,SpeedTbl_UP[est->SpdTblNo]);	//Ž©‹@ãˆÚ“®
+			//ä¸Šç§»å‹•
+			if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?	
+				FieldOBJ_AcmdSet(fop,SpeedTbl_UP[est->SpdTblNo]);	//è‡ªæ©Ÿä¸Šç§»å‹•
 				if ( (est->SpdTblNo<SPD_TBL_MAX-1)&&(Player_NowGPosZGet( fsys->player)>est->DecSpeedPos) ){
 					if (est->SpdTblNo == 0){
-						//‰Á‘¬‰¹
+						//åŠ é€ŸéŸ³
 						Snd_SePlay( SE_TRAIN_START );
 					}
 					est->SpdTblNo++;
 				}else if ( Player_NowGPosZGet( fsys->player)<=est->DecSpeedPos ){
 					if (est->SpdTblNo != 0){
 						if (est->SpdTblNo == SPD_TBL_MAX-1){
-							//Œ¸‘¬‰¹
+							//æ¸›é€ŸéŸ³
 							Snd_SePlay( SE_TRAIN_END );
 						}
 						est->SpdTblNo--;
@@ -422,19 +422,19 @@ static BOOL GetVecRideTrain(FIELDSYS_WORK *fsys, EVENT_SAFARI_TRAIN * est, const
 				}
 			}
 		}else{
-			//‰ºˆÚ“®
-			if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?	
-				FieldOBJ_AcmdSet(fop,SpeedTbl_DOWN[est->SpdTblNo]);	//Ž©‹@‰ºˆÚ“®
+			//ä¸‹ç§»å‹•
+			if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?	
+				FieldOBJ_AcmdSet(fop,SpeedTbl_DOWN[est->SpdTblNo]);	//è‡ªæ©Ÿä¸‹ç§»å‹•
 				if ( (est->SpdTblNo<SPD_TBL_MAX-1)&&(Player_NowGPosZGet( fsys->player)<est->DecSpeedPos) ){
 					if (est->SpdTblNo == 0){
-						//‰Á‘¬‰¹
+						//åŠ é€ŸéŸ³
 						Snd_SePlay( SE_TRAIN_START );
 					}
 					est->SpdTblNo++;
 				}else if ( Player_NowGPosZGet( fsys->player)>=est->DecSpeedPos ){
 					if (est->SpdTblNo != 0){
 						if (est->SpdTblNo == SPD_TBL_MAX-1){
-							//Œ¸‘¬‰¹
+							//æ¸›é€ŸéŸ³
 							Snd_SePlay( SE_TRAIN_END );
 						}
 						est->SpdTblNo--;

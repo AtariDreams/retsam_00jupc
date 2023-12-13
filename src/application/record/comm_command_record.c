@@ -1,8 +1,8 @@
 //=============================================================================
 /**
  * @file	comm_command_record.c
- * @brief	ƒf[ƒ^‚ğ‘—‚é‚½‚ß‚ÌƒRƒ}ƒ“ƒh‚ğƒe[ƒuƒ‹‰»‚µ‚Ä‚¢‚Ü‚·
- *          ƒŒƒR[ƒhƒR[ƒi[—p‚Å‚·
+ * @brief	ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹ãŸã‚ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«åŒ–ã—ã¦ã„ã¾ã™
+ *          ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ç”¨ã§ã™
  * @author	Akito Mori
  * @date    2006.03.27
  */
@@ -41,10 +41,10 @@ void CommRecord_RecordData( int netID, int size, void* pBuff, void* pWork );
 void CommRecordBanFlag( int netID, int size, void* pBuff, void* pWork );
 
 
-// ‘Î‰‚·‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+// å¯¾å¿œã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static const CommPacketTbl _CommPacketTbl[] = {
-    { CommDummyCallBack, _getZero, NULL},// comm_command_field.c‚Å“o˜^‚³‚ê‚Ä‚¢‚éƒRƒ}ƒ“ƒhƒe[ƒuƒ‹‚Ì–³Œø‰»‚·‚é‚½‚ß‚É
-    { CommDummyCallBack, _getZero, NULL},// “o˜^‚·‚é
+    { CommDummyCallBack, _getZero, NULL},// comm_command_field.cã§ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç„¡åŠ¹åŒ–ã™ã‚‹ãŸã‚ã«
+    { CommDummyCallBack, _getZero, NULL},// ç™»éŒ²ã™ã‚‹
     { CommDummyCallBack, _getZero, NULL},
     { CommDummyCallBack, _getZero, NULL},
     { CommDummyCallBack, _getZero, NULL},
@@ -127,22 +127,22 @@ static const CommPacketTbl _CommPacketTbl[] = {
     { CommDummyCallBack, _getZero, NULL},
     { CommDummyCallBack, _getZero, NULL},
     { CommDummyCallBack, _getZero, NULL},
-    { CommDummyCallBack, _getZero, NULL},	// comm_command_field.c‚Å“o˜^‚³‚ê‚Ä‚¢‚éƒRƒ}ƒ“ƒhƒe[ƒuƒ‹‚Ì–³Œø‰»‚·‚é‚½‚ß‚É
-    { CommDummyCallBack, _getZero, NULL}, // “o˜^‚·‚é
+    { CommDummyCallBack, _getZero, NULL},	// comm_command_field.cã§ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç„¡åŠ¹åŒ–ã™ã‚‹ãŸã‚ã«
+    { CommDummyCallBack, _getZero, NULL}, // ç™»éŒ²ã™ã‚‹
 
-	// ƒŒƒR[ƒh‚ªg—p‚·‚éƒRƒ}ƒ“ƒh•”•ª
-	{CommRecordCornerYes,   		_getOne},              	// CR_RECORD_YES  		 ‚Í‚¢
-	{CommRecordCornerNo,   	   	 	_getOne},             	// CR_RECORD_NO,		 ‚¢‚¢‚¦
-    {CommRecordCornerStop,			_getOne},             	// CR_RECORD_STOP,		 —“üÒ‚ª—ˆ‚½‚Ì‚Åˆê’UƒXƒgƒbƒv
-    {CommRecordCornerReStart,		_getZero},             	// CR_RECORD_RESTART,	 —“üÒˆ—‚ªI‚í‚Á‚½‚Ì‚ÅÄ‰ï
-    {CommRecordCornerEndChild,		_getCRECW},            	// CR_RECORD_END_CHILD,	 q‹@‚ª—£’E
-    {CommRecordCornerEnd,			_getZero},              // CR_RECORD_END,		 I—¹
-	{CommRecordCornerChildJoin,		_getZero},				// CR_RECORD_CHILD_JOIN, q‹@‚ª—“ü‚ğéŒ¾
-	{CommRecordStart,				_getZero},				// CR_RECORD_START, 	 ƒŒƒR[ƒhŒğŠ·ŠJn‚ğe‚ª’Ê’B
-	{CommRecord_RecordData,			_getRecordSize, _getRecordRecvBuf},// CR_RECORD_DATA, 	 ƒŒƒR[ƒhŒğŠ·ŠJn‚ğe‚ª’Ê’B
-	{CommRecordBanFlag,				_getOne},				// CR_RECORD_BAN		—£’E‹Ö~’Ê’B
+	// ãƒ¬ã‚³ãƒ¼ãƒ‰ãŒä½¿ç”¨ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰éƒ¨åˆ†
+	{CommRecordCornerYes,   		_getOne},              	// CR_RECORD_YES  		 ã¯ã„
+	{CommRecordCornerNo,   	   	 	_getOne},             	// CR_RECORD_NO,		 ã„ã„ãˆ
+    {CommRecordCornerStop,			_getOne},             	// CR_RECORD_STOP,		 ä¹±å…¥è€…ãŒæ¥ãŸã®ã§ä¸€æ—¦ã‚¹ãƒˆãƒƒãƒ—
+    {CommRecordCornerReStart,		_getZero},             	// CR_RECORD_RESTART,	 ä¹±å…¥è€…å‡¦ç†ãŒçµ‚ã‚ã£ãŸã®ã§å†ä¼š
+    {CommRecordCornerEndChild,		_getCRECW},            	// CR_RECORD_END_CHILD,	 å­æ©ŸãŒé›¢è„±
+    {CommRecordCornerEnd,			_getZero},              // CR_RECORD_END,		 çµ‚äº†
+	{CommRecordCornerChildJoin,		_getZero},				// CR_RECORD_CHILD_JOIN, å­æ©ŸãŒä¹±å…¥ã‚’å®£è¨€
+	{CommRecordStart,				_getZero},				// CR_RECORD_START, 	 ãƒ¬ã‚³ãƒ¼ãƒ‰äº¤æ›é–‹å§‹ã‚’è¦ªãŒé€šé”
+	{CommRecord_RecordData,			_getRecordSize, _getRecordRecvBuf},// CR_RECORD_DATA, 	 ãƒ¬ã‚³ãƒ¼ãƒ‰äº¤æ›é–‹å§‹ã‚’è¦ªãŒé€šé”
+	{CommRecordBanFlag,				_getOne},				// CR_RECORD_BAN		é›¢è„±ç¦æ­¢é€šé”
 
-	// ‚¨‚¦‚©‚«‚ÌƒRƒ}ƒ“ƒh‚ğ–³‹‚·‚é‚½‚ß‚Ì•”•ª
+	// ãŠãˆã‹ãã®ã‚³ãƒãƒ³ãƒ‰ã‚’ç„¡è¦–ã™ã‚‹ãŸã‚ã®éƒ¨åˆ†
 	{ CommDummyCallBack, _getZero, NULL},
 	{ CommDummyCallBack, _getZero, NULL},
 	{ CommDummyCallBack, _getZero, NULL},
@@ -156,7 +156,7 @@ static const CommPacketTbl _CommPacketTbl[] = {
 	{ CommDummyCallBack, _getZero, NULL},
 	{ CommDummyCallBack, _getZero, NULL},
 	
-	//‚®‚é‚®‚éŒğŠ·ƒRƒ}ƒ“ƒh‚ğ–³‹‚·‚é‚½‚ß‚Ì•”•ª
+	//ãã‚‹ãã‚‹äº¤æ›ã‚³ãƒãƒ³ãƒ‰ã‚’ç„¡è¦–ã™ã‚‹ãŸã‚ã®éƒ¨åˆ†
 	{ CommDummyCallBack, _getZero, NULL},
 	{ CommDummyCallBack, _getZero, NULL},
 };
@@ -164,7 +164,7 @@ static const CommPacketTbl _CommPacketTbl[] = {
 
 //==============================================================================
 /**
- * ‚¨ŠG‚©‚«ƒ{[ƒh—p’ÊMƒRƒ}ƒ“ƒh“o˜^ˆ—
+ * ãŠçµµã‹ããƒœãƒ¼ãƒ‰ç”¨é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ç™»éŒ²å‡¦ç†
  *
  * @param   pWork		
  *
@@ -177,12 +177,12 @@ void CommCommandRecordInitialize(void* pWork)
 
 	int i;
 	
-	// óMƒR[ƒ‹ƒoƒbƒNİ’è
+	// å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯è¨­å®š
     int length = sizeof(_CommPacketTbl)/sizeof(CommPacketTbl);
     CommCommandInitialize(_CommPacketTbl, length, pWork);
 
 
-	// ‹‘åƒf[ƒ^óMƒoƒbƒtƒ@İ’è
+	// å·¨å¤§ãƒ‡ãƒ¼ã‚¿å—ä¿¡ãƒãƒƒãƒ•ã‚¡è¨­å®š
 	for(i=0;i<RECORD_CORNER_MEMBER_MAX;i++){
 //		CommSetSpritDataRecvBuff( i, &wk->recv_data[i], sizeof(RECORD_DATA) );
 	}
@@ -191,7 +191,7 @@ void CommCommandRecordInitialize(void* pWork)
 
 //==============================================================================
 /**
- * $brief   ƒŒƒR[ƒhƒf[ƒ^óMƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * $brief   ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
  * @param   netID		
  * @param   size		
@@ -207,12 +207,12 @@ void CommRecord_RecordData( int netID, int size, void* pBuff, void* pWork )
 
 	wk->recv_count++;
 
-	OS_Printf("ƒŒƒR[ƒhƒf[ƒ^óMŠ®—¹ id=%d\n",netID);
+	OS_Printf("ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿å—ä¿¡å®Œäº† id=%d\n",netID);
 }
 
 //==============================================================================
 /**
- * @brief   —£’E§Œäƒtƒ‰ƒO“’…
+ * @brief   é›¢è„±åˆ¶å¾¡ãƒ•ãƒ©ã‚°åˆ°ç€
  *
  * @param   netID		
  * @param   size		
@@ -229,7 +229,7 @@ void CommRecordBanFlag( int netID, int size, void* pBuff, void* pWork )
 
 	if(netID==0){
 		if(wk->banFlag != *flag){
-			OS_Printf("e‹@‚©‚ç‚Ì—£’E‹Ö~ƒtƒ‰ƒO banFlag=%d\n",*flag);
+			OS_Printf("è¦ªæ©Ÿã‹ã‚‰ã®é›¢è„±ç¦æ­¢ãƒ•ãƒ©ã‚° banFlag=%d\n",*flag);
 		}
 		wk->banFlag = *flag;
 	}
@@ -239,7 +239,7 @@ void CommRecordBanFlag( int netID, int size, void* pBuff, void* pWork )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒŒƒR[ƒhŒğŠ·ŠJn
+ * $brief   ãƒ¬ã‚³ãƒ¼ãƒ‰äº¤æ›é–‹å§‹
  *
  * @param   netID		
  * @param   size		
@@ -256,17 +256,17 @@ void CommRecordStart(int netID, int size, void* pBuff, void* pWork)
 	wk->recv_count = 0;
 	wk->record_execute = TRUE;
 	
-	// ƒŒƒR[ƒhƒf[ƒ^‘—MŠJn
+	// ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿é€ä¿¡é–‹å§‹
 	RecordCorner_DataSend( wk, CommGetCurrentID());
 
-	// ‰æ–Êã•”‚ğuƒŒƒR[ƒh‚±‚¤‚©‚ñ‚¿‚ã‚¤Iv
+	// ç”»é¢ä¸Šéƒ¨ã‚’ã€Œãƒ¬ã‚³ãƒ¼ãƒ‰ã“ã†ã‹ã‚“ã¡ã‚…ã†ï¼ã€
 	RecordCornerTitleChange( wk );
 
 	RecordCorner_MainSeqForceChange( wk, RECORD_MODE_RECORD_SEND_DATA, netID );
 	
-    CommStateSetErrorCheck(TRUE,TRUE); // ‚±‚±ˆÈ~‚ÍØ’fƒGƒ‰[
+    CommStateSetErrorCheck(TRUE,TRUE); // ã“ã“ä»¥é™ã¯åˆ‡æ–­ï¼ã‚¨ãƒ©ãƒ¼
 
-	// ‚©‚«¬‚ºSE
+	// ã‹ãæ··ãœSE
 	Snd_SePlay(SEQ_SE_DP_F209);
 
 }
@@ -274,7 +274,7 @@ void CommRecordStart(int netID, int size, void* pBuff, void* pWork)
 
 //==============================================================================
 /**
- * ’ÊM‰æ–Ê‚ğŠJn‚·‚é
+ * é€šä¿¡ç”»é¢ã‚’é–‹å§‹ã™ã‚‹
  *
  * @param   netID		
  * @param   size		
@@ -288,19 +288,19 @@ void CommRecordCornerReStart(int netID, int size, void* pBuff, void* pWork)
 {
 	RECORD_WORK *wk = (RECORD_WORK*)pWork;
 
-	OS_Printf("e‹@‚©‚çƒŒƒR[ƒh•åWÄŠJ’Ê’m\n");
+	OS_Printf("è¦ªæ©Ÿã‹ã‚‰ãƒ¬ã‚³ãƒ¼ãƒ‰å‹Ÿé›†å†é–‹é€šçŸ¥\n");
 	RecordCorner_MainSeqForceChange( wk, RECORD_MODE_NEWMEMBER_END, 0 );
 	
 }
 //==============================================================================
 /**
- * $brief   q‹@‚ª—£’E
+ * $brief   å­æ©ŸãŒé›¢è„±
  *
  * @param   netID		
  * @param   size		
- * @param   pBuff		q(—£’EÒ)‚©‚ç‚Ì‘—M0:—£’E‹–‰ÂŠm”FB@1:—£’EÀs
- *						e‚©‚ç‚Ì‘—MãˆÊ4ƒrƒbƒgFe‚ÌshareNum(0xf‚Ìê‡‚Í—£’ENG)
- * 									‰ºˆÊ4ƒrƒbƒgF—£’EÒ‚ÌID
+ * @param   pBuff		å­(é›¢è„±è€…)ã‹ã‚‰ã®é€ä¿¡ï¼0:é›¢è„±è¨±å¯ç¢ºèªã€‚ã€€1:é›¢è„±å®Ÿè¡Œ
+ *						è¦ªã‹ã‚‰ã®é€ä¿¡ï¼ä¸Šä½4ãƒ“ãƒƒãƒˆï¼šè¦ªã®shareNum(0xfã®å ´åˆã¯é›¢è„±NG)
+ * 									ï¼ä¸‹ä½4ãƒ“ãƒƒãƒˆï¼šé›¢è„±è€…ã®ID
  * @param   pWork		RECORD_WORK*
  *
  * @retval  none		
@@ -315,11 +315,11 @@ void CommRecordCornerEndChild(int netID, int size, void* pBuff, void* pWork)
 	recieve_work = pBuff;
 	
 	if(netID != 0){
-		//q‹@(—£’EÒ)‚©‚ç‚Ì‘—M
-		//—£’E‚µ‚Ü‚·’Ê’m
+		//å­æ©Ÿ(é›¢è„±è€…)ã‹ã‚‰ã®é€ä¿¡
+		//é›¢è„±ã—ã¾ã™é€šçŸ¥
 		if(CommGetCurrentID()==0){
-			// q‹@‚©‚ç(e‹@‚ªó‚¯æ‚é)
-			// q‹@‚ª‚¢‚È‚­‚È‚Á‚½–‚ğ‘Sˆõ‚É’Ê’m‚·‚é
+			// å­æ©Ÿã‹ã‚‰(è¦ªæ©ŸãŒå—ã‘å–ã‚‹)
+			// å­æ©ŸãŒã„ãªããªã£ãŸäº‹ã‚’å…¨å“¡ã«é€šçŸ¥ã™ã‚‹
 			trans_work = *recieve_work;
 			trans_work.ridatu_id = netID;
 			trans_work.oya_share_num = wk->shareNum;
@@ -328,12 +328,12 @@ void CommRecordCornerEndChild(int netID, int size, void* pBuff, void* pWork)
 				if(wk->shareNum != CommGetConnectNum() 
 						|| wk->shareNum != RecordCorner_MyStatusGetNum()
 						|| wk->shareNum != MATH_CountPopulation(WH_GetBitmap())){
-					trans_work.ridatu_kyoka = FALSE;	//—£’ENGI
+					trans_work.ridatu_kyoka = FALSE;	//é›¢è„±NGï¼
 				}
 				else{
 					wk->ridatu_bit |= 1 << netID;
 					trans_work.ridatu_kyoka = TRUE;
-					//—£’EOK‚È‚Ì‚ÅQ‰Á§ŒÀ‚ğ‚©‚¯‚é(—“ü‚ª‚ ‚ê‚Î‚»‚¿‚ç‘¤‚Å§ŒÀ‚ª‚Í‚¸‚³‚ê‚é‚Í‚¸)
+					//é›¢è„±OKãªã®ã§å‚åŠ åˆ¶é™ã‚’ã‹ã‘ã‚‹(ä¹±å…¥ãŒã‚ã‚Œã°ãã¡ã‚‰å´ã§åˆ¶é™ãŒã¯ãšã•ã‚Œã‚‹ã¯ãš)
 					CommStateSetLimitNum(CommGetConnectNum());
 				}
 				break;
@@ -342,14 +342,14 @@ void CommRecordCornerEndChild(int netID, int size, void* pBuff, void* pWork)
 			}
 
 			CommSendData( CR_RECORD_END_CHILD, &trans_work, sizeof(COMM_RECORD_END_CHILD_WORK) );
-			OS_Printf("q‹@%d‚©‚ç—£’E‚ğó‚¯æ‚Á‚½¨‘—M\n",netID);
+			OS_Printf("å­æ©Ÿ%dã‹ã‚‰é›¢è„±ã‚’å—ã‘å–ã£ãŸâ†’é€ä¿¡\n",netID);
 		}
 	}
 	else{
-		//e‚©‚ç‚Ì‘—M
+		//è¦ªã‹ã‚‰ã®é€ä¿¡
 		switch(recieve_work->request){
 		case CREC_REQ_RIDATU_CHECK:
-			//—£’EŠm”F‚È‚Ì‚ÅA—£’E‚µ‚æ‚¤‚Æ‚µ‚½q‹@‚É‚Ì‚İŒ‹‰Ê‚ğ‘—‚é
+			//é›¢è„±ç¢ºèªãªã®ã§ã€é›¢è„±ã—ã‚ˆã†ã¨ã—ãŸå­æ©Ÿã«ã®ã¿çµæœã‚’é€ã‚‹
 			if(recieve_work->ridatu_id == CommGetCurrentID()){
 				if(recieve_work->ridatu_kyoka == FALSE){
 					RecordCorner_MainSeqForceChange( wk, RECORD_MODE_END_SELECT_ANSWER_NG, recieve_work->ridatu_id );
@@ -361,7 +361,7 @@ void CommRecordCornerEndChild(int netID, int size, void* pBuff, void* pWork)
 			}
 			break;
 		case CREC_REQ_RIDATU_EXE:
-			OS_Printf("e‹@‚ªq‹@%d‚Ì—£’E’Ê’m‚µ‚½\n", recieve_work->ridatu_id);
+			OS_Printf("è¦ªæ©ŸãŒå­æ©Ÿ%dã®é›¢è„±é€šçŸ¥ã—ãŸ\n", recieve_work->ridatu_id);
 		//	RecordCorner_MainSeqCheckChange( wk, RECORD_MODE_LOGOUT_CHILD, id );
 			RecordCorner_MainSeqForceChange( wk, RECORD_MODE_LOGOUT_CHILD, recieve_work->ridatu_id );
 			break;
@@ -371,8 +371,8 @@ void CommRecordCornerEndChild(int netID, int size, void* pBuff, void* pWork)
 
 //==============================================================================
 /**
- * $brief   uq‹@‚ª—“ü‚µ‚Ä‚«‚½‚Ì‚Åˆê’UŠG‚ğ‘—‚é‚æ~‚Ü‚Á‚Ä‚Ëv
- *			‚Æe‹@‚ª‘—M‚µ‚Ä‚«‚½‚ÌƒR[ƒ‹ƒoƒbƒN
+ * $brief   ã€Œå­æ©ŸãŒä¹±å…¥ã—ã¦ããŸã®ã§ä¸€æ—¦çµµã‚’é€ã‚‹ã‚ˆæ­¢ã¾ã£ã¦ã­ã€
+ *			ã¨è¦ªæ©ŸãŒé€ä¿¡ã—ã¦ããŸæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param   netID		
  * @param   size		
@@ -389,19 +389,19 @@ void CommRecordCornerStop(int netID, int size, void* pBuff, void* pWork)
 	u8 id;
 
 	id = *(u8*)pBuff;
-	// ƒƒCƒ“ƒV[ƒPƒ“ƒX•ÏX
+	// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 	RecordCorner_MainSeqCheckChange( wk, RECORD_MODE_NEWMEMBER, id );
 
-	// e‹@‚ª‰æ‘œƒf[ƒ^‘—M‚ğŠJn‚·‚é
+	// è¦ªæ©ŸãŒç”»åƒãƒ‡ãƒ¼ã‚¿é€ä¿¡ã‚’é–‹å§‹ã™ã‚‹
 	if(CommGetCurrentID()==0){
 		wk->send_num = 0;
 
-		// ‚±‚±‚ÅƒŒƒR[ƒhƒR[ƒi[—pƒf[ƒ^‚ğŠF‚Å‘—MŠJn‚·‚é(‚¾‚ë‚¤)
+		// ã“ã“ã§ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ç”¨ãƒ‡ãƒ¼ã‚¿ã‚’çš†ã§é€ä¿¡é–‹å§‹ã™ã‚‹(ã ã‚ã†)
 		// RECORD_GraphicDataSend(wk, wk->send_num);
 	}
 
 
-	OS_Printf("e‹@‚©‚ç‚Ìuq‹@%d‚ÉŠG‚ğ‘—‚é‚©‚ç~‚Ü‚Á‚Ä‚Ëv’Ê’m\n",id);
+	OS_Printf("è¦ªæ©Ÿã‹ã‚‰ã®ã€Œå­æ©Ÿ%dã«çµµã‚’é€ã‚‹ã‹ã‚‰æ­¢ã¾ã£ã¦ã­ã€é€šçŸ¥\n",id);
 
 }
 
@@ -416,7 +416,7 @@ void CommRecordCornerNo(int netID, int size, void* pBuff, void* pWork)
 
 //==============================================================================
 /**
- * $brief   e‹@‚ª‚â‚ß‚é‚Ì‚Å‹­§I—¹‚³‚¹‚é
+ * $brief   è¦ªæ©ŸãŒã‚„ã‚ã‚‹ã®ã§å¼·åˆ¶çµ‚äº†ã•ã›ã‚‹
  *
  * @param   netID		
  * @param   size		
@@ -429,9 +429,9 @@ void CommRecordCornerNo(int netID, int size, void* pBuff, void* pWork)
 void CommRecordCornerEnd(int netID, int size, void* pBuff, void* pWork)
 {
 	RECORD_WORK *wk = (RECORD_WORK*)pWork;
-	OS_Printf("e‹@‚©‚ç‚ÌI—¹’Ê’m‚ª‚«‚½‚Ì‚Å‚â‚ß‚é\n");
+	OS_Printf("è¦ªæ©Ÿã‹ã‚‰ã®çµ‚äº†é€šçŸ¥ãŒããŸã®ã§ã‚„ã‚ã‚‹\n");
 
-	// e‹@ˆÈŠO‚Í‚±‚ÌƒRƒ}ƒ“ƒh‚Å‹­§‚µ‚ã‚¤‚è‚å‚¤‚·‚é
+	// è¦ªæ©Ÿä»¥å¤–ã¯ã“ã®ã‚³ãƒãƒ³ãƒ‰ã§å¼·åˆ¶ã—ã‚…ã†ã‚Šã‚‡ã†ã™ã‚‹
 	if(CommGetCurrentID() != 0){
 		RecordCorner_MainSeqForceChange( wk, RECORD_MODE_FORCE_END, 0  );
 	}
@@ -439,7 +439,7 @@ void CommRecordCornerEnd(int netID, int size, void* pBuff, void* pWork)
 
 //==============================================================================
 /**
- * $brief   ‚R‘ä–ÚE‚S‘ä–ÚE‚T‘ä–Ú‚Ìq‹@‚ªuŠG‚ğ‚¿‚å[‚¾‚¢v‚ÆŒ¾‚¤
+ * $brief   ï¼“å°ç›®ãƒ»ï¼”å°ç›®ãƒ»ï¼•å°ç›®ã®å­æ©ŸãŒã€Œçµµã‚’ã¡ã‚‡ãƒ¼ã ã„ã€ã¨è¨€ã†
  *
  * @param   netID		
  * @param   size		
@@ -452,15 +452,15 @@ void CommRecordCornerEnd(int netID, int size, void* pBuff, void* pWork)
 void CommRecordCornerChildJoin(int netID, int size, void* pBuff, void* pWork)
 {
 	u8 id;
-//	GF_ASSERT(CommGetCurrentID()==0 && "q‹@‚ª‚¤‚¯‚Æ‚Á‚½");
+//	GF_ASSERT(CommGetCurrentID()==0 && "å­æ©ŸãŒã†ã‘ã¨ã£ãŸ");
 
-	// e‹@‚ªó‚¯æ‚Á‚½‚ç(‚Æ‚¢‚¤‚©e‚µ‚©ó‚¯æ‚ç‚È‚¢‚¯‚Çj
+	// è¦ªæ©ŸãŒå—ã‘å–ã£ãŸã‚‰(ã¨ã„ã†ã‹è¦ªã—ã‹å—ã‘å–ã‚‰ãªã„ã‘ã©ï¼‰
 	if(CommGetCurrentID()==0){
 		id  = netID;
 		
-		// ‘S‘ä‚Éu‚±‚ê‚©‚çŠG‚ğ‘—‚é‚Ì‚Å~‚Ü‚Á‚Ä‚­‚¾‚³‚¢v‚Æ‘—M‚·‚é
+		// å…¨å°ã«ã€Œã“ã‚Œã‹ã‚‰çµµã‚’é€ã‚‹ã®ã§æ­¢ã¾ã£ã¦ãã ã•ã„ã€ã¨é€ä¿¡ã™ã‚‹
 		CommSendData( CR_RECORD_STOP, &id, 1 );
-		OS_Printf("q‹@(%d = %d)‚©‚ç‚Ì—“ü^ŠG‚Ì‚­‚¾‚³‚¢’Ê’m\n",id,netID);
+		OS_Printf("å­æ©Ÿ(%d = %d)ã‹ã‚‰ã®ä¹±å…¥ï¼çµµã®ãã ã•ã„é€šçŸ¥\n",id,netID);
 	}
 	
 }
@@ -471,7 +471,7 @@ void CommRecordCornerChildJoin(int netID, int size, void* pBuff, void* pWork)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚ğ•ªŠ„‘—M
+ * $brief   ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²é€ä¿¡
  *
  * @param   wk		
  * @param   no		
@@ -481,7 +481,7 @@ void CommRecordCornerChildJoin(int netID, int size, void* pBuff, void* pWork)
 //------------------------------------------------------------------
 static void RecordCorner_DataSend( RECORD_WORK *wk, int no)
 {
-	// xoræ“¾EŠi”[
+	// xorå–å¾—ãƒ»æ ¼ç´
 	{
 		int i;
 		u32 *p,result;
@@ -492,27 +492,27 @@ static void RecordCorner_DataSend( RECORD_WORK *wk, int no)
 		wk->send_data._xor        = result;
 	}
 
-	// •ªŠ„”Ô†‚ğ‘‚«‚Ş(e‹@‚Ì’l‚¾‚¯‚ªg—p‚³‚ê‚éj
+	// åˆ†å‰²ç•ªå·ã‚’æ›¸ãè¾¼ã‚€(è¦ªæ©Ÿã®å€¤ã ã‘ãŒä½¿ç”¨ã•ã‚Œã‚‹ï¼‰
 	wk->send_data.seed = gf_rand();
 	
-	// ‘—MŠJn
+	// é€ä¿¡é–‹å§‹
 //	CommSendSpritData( &wk->send_data, sizeof(RECORD_DATA) );
 	CommSendHugeData(CR_RECORD_DATA, &wk->send_data, sizeof(RECORD_DATA) );
 	
 
-	OS_Printf("‘—Mƒf[ƒ^ no=%d, xor = %08x\n",  wk->send_data.seed,  wk->send_data._xor);
+	OS_Printf("é€ä¿¡ãƒ‡ãƒ¼ã‚¿ no=%d, xor = %08x\n",  wk->send_data.seed,  wk->send_data._xor);
 }
 
 
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
-// ƒpƒŒƒbƒgƒTƒCƒY’Ê’mŠÖ”ŒQ
+// ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚ºé€šçŸ¥é–¢æ•°ç¾¤
 //--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
 
 
 //--------------------------------------------------------------------------------
-// 0ƒoƒCƒg‚ğ•\‚·ŠÖ”
+// 0ãƒã‚¤ãƒˆã‚’è¡¨ã™é–¢æ•°
 //--------------------------------------------------------------------------------
 static int _getZero(void)
 {
@@ -520,7 +520,7 @@ static int _getZero(void)
 }
 
 //--------------------------------------------------------------------------------
-// 1ƒoƒCƒg‚ğ•\‚·ŠÖ”
+// 1ãƒã‚¤ãƒˆã‚’è¡¨ã™é–¢æ•°
 //--------------------------------------------------------------------------------
 static int _getOne(void)
 {
@@ -528,7 +528,7 @@ static int _getOne(void)
 }
 
 //--------------------------------------------------------------------------------
-// 1ƒoƒCƒg‚ğ•\‚·ŠÖ”
+// 1ãƒã‚¤ãƒˆã‚’è¡¨ã™é–¢æ•°
 //--------------------------------------------------------------------------------
 static int _getCRECW(void)
 {
@@ -537,7 +537,7 @@ static int _getCRECW(void)
 
 
 //--------------------------------------------------------------------------------
-// ƒŒƒR[ƒhƒf[ƒ^‚ÌóMƒoƒbƒtƒ@‚ğİ’è‚·‚éŠÖ”
+// ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’è¨­å®šã™ã‚‹é–¢æ•°
 //--------------------------------------------------------------------------------
 static u8* _getRecordRecvBuf( int netID, void* pWork, int size )
 {

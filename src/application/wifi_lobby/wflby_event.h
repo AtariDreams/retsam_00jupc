@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_event.h
- *	@brief		�C�x���g�Ǘ��V�X�e��
+ *	@brief		イベント管理システム
  *	@author		tomoya takahashi
  *	@data		2007.11.26
  *
@@ -17,58 +17,58 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	�C�x���g�^�錾
+///	イベント型宣言
 //	
-//	p_wk	���̃C�x���g�̃��[�N
-//	p_rmwk	�����̑S�f�[�^
-//	plno	�ΏۂƂȂ�v���C���[No�iGlobal�C�x���g�͏�ɂO�j
+//	p_wk	このイベントのワーク
+//	p_rmwk	部屋の全データ
+//	plno	対象となるプレイヤーNo（Globalイベントは常に０）
 //
-//	BOOL	TRUE:�I��	FALSE:���s
+//	BOOL	TRUE:終了	FALSE:続行
 //
-//	TRUE��Ԃ��ƁA�ǂ̃^�C�~���O�ŌĂ΂ꂽ�֐��ł���A�C�x���g���ƏI�����܂��B
+//	TRUEを返すと、どのタイミングで呼ばれた関数であれ、イベントごと終了します。
 //=====================================
 typedef BOOL (*pEVENT_FUNC)( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno );
 
 
 //-------------------------------------
-///	�C�x���g�ݒ胏�[�N
-// �g�p���Ȃ��^�C�~���O�̊֐��|�C���^�ϐ��ɂ�NULL������Ă�������
+///	イベント設定ワーク
+// 使用しないタイミングの関数ポインタ変数にはNULLをいれてください
 //=====================================
 typedef struct {
-	pEVENT_FUNC p_before;		// �I�u�W�F���N�G�X�g�ݒ�O
-	pEVENT_FUNC	p_after;		// �I�u�W�F���N�G�X�g�ݒ��
+	pEVENT_FUNC p_before;		// オブジェリクエスト設定前
+	pEVENT_FUNC	p_after;		// オブジェリクエスト設定後
 } WFLBY_EVENT_DATA;
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-// �C�x���g�V�X�e���Ǘ�
+// イベントシステム管理
 //=====================================
 extern WFLBY_EVENT* WFLBY_EVENT_Init( WFLBY_ROOMWK* p_rmwk, u32 heapID );
 extern void WFLBY_EVENT_Exit( WFLBY_EVENT* p_sys );
 
 //-------------------------------------
-// �e���s�֐�
+// 各実行関数
 //=====================================
-extern void WFLBY_EVENT_MainBefore( WFLBY_EVENT* p_sys );	// �I�u�W�F���N�G�X�g�ݒ�O
-extern void WFLBY_EVENT_MainAfter( WFLBY_EVENT* p_sys );	// �I�u�W�F���N�G�X�g�ݒ��
+extern void WFLBY_EVENT_MainBefore( WFLBY_EVENT* p_sys );	// オブジェリクエスト設定前
+extern void WFLBY_EVENT_MainAfter( WFLBY_EVENT* p_sys );	// オブジェリクエスト設定後
 
 //-------------------------------------
-// ���[�N�֐�
+// ワーク関数
 //=====================================
 extern void* WFLBY_EVENTWK_GetParam( WFLBY_EVENTWK* p_wk );
 extern void* WFLBY_EVENTWK_AllocWk( WFLBY_EVENTWK* p_wk, u32 size );
@@ -80,18 +80,18 @@ extern void WFLBY_EVENTWK_AddSeq( WFLBY_EVENTWK* p_wk );
 
 
 //-------------------------------------
-// �ʃC�x���g�Ǘ�
+// 個別イベント管理
 //=====================================
-// �㏑��	��ɂ��̊֐����ĂԂ悤�ɂȂ�܂��B�i�풓�C�x���g�j
+// 上書き	常にこの関数を呼ぶようになります。（常駐イベント）
 extern void WFLBY_EVENT_SetPrivateEvent( WFLBY_EVENT* p_sys, u32 plno, const WFLBY_EVENT_DATA* cp_data, void* p_param );
-// ���荞�݃C�x���g	Wait�֐���TRUE���ς��Ă���܂ł��̊֐��̒��g�����s���܂��B
-// ���s��́A���̑O�ɐݒ肳��Ă����֐��i�풓�C�x���g�j���Ăт܂�
-// ���̊֐���ǂ񂾌�A�V�[�P���X�Ȃǂ͐ݒ肵���C�x���g�̂��̂ɂȂ��Ă��܂��܂��B���ӂ��Ă�������
+// 割り込みイベント	Wait関数にTRUEが変えてくるまでその関数の中身を実行します。
+// 実行後は、その前に設定されていた関数（常駐イベント）を呼びます
+// この関数を読んだ後、シーケンスなどは設定したイベントのものになってしまいます。注意してください
 extern void WFLBY_EVENT_SetPrivateIntrEvent( WFLBY_EVENT* p_sys, u32 plno, const WFLBY_EVENT_DATA* cp_data, void* p_param );
 extern BOOL WFLBY_EVENT_WaitPrivateIntrEvent( const WFLBY_EVENT* cp_sys, u32 plno );
 
 #ifdef PM_DEBUG
-// �f�o�b�N
+// デバック
 extern void WFLBY_EVENT_SetPrivateEvent_DEBUG( WFLBY_EVENT* p_sys, u32 plno, const WFLBY_EVENT_DATA* cp_data, void* p_param, u32 line );
 extern void WFLBY_EVENT_SetPrivateIntrEvent_DEBUG( WFLBY_EVENT* p_sys, u32 plno, const WFLBY_EVENT_DATA* cp_data, void* p_param, u32 line );
 
@@ -100,21 +100,21 @@ extern void WFLBY_EVENT_SetPrivateIntrEvent_DEBUG( WFLBY_EVENT* p_sys, u32 plno,
 
 #else
 
-//�@ �����[�X
+//　 リリース
 #define WFLBY_EVENT_SET_PRIVATE_EVENT( p_sys, plno, cp_data, p_param )		WFLBY_EVENT_SetPrivateEvent( p_sys, plno, cp_data, p_param )
 #define WFLBY_EVENT_SET_PRIVATE_INTR_EVENT( p_sys, plno, cp_data, p_param )		WFLBY_EVENT_SetPrivateIntrEvent( p_sys, plno, cp_data, p_param )
 
 #endif
 
-//  ����ݒ�
-//  �C�x���g���~�������l���ӔC�������āA�Đ������邱�ƁI
+//  動作設定
+//  イベントを停止させた人が責任を持って、再生させること！
 extern void WFLBY_EVENT_SetPrivateEventMove( WFLBY_EVENT* p_sys, u32 plno, BOOL move );
 
 
 
 //-------------------------------------
-// �S�̃C�x���g�Ǘ�
-// ���s��������S�̂̓�����~���āA���̏������s���܂��B
+// 全体イベント管理
+// 実行をしたら全体の動作を停止して、この処理を行います。
 //=====================================
 extern void WFLBY_EVENT_SetGlobalEvent( WFLBY_EVENT* p_sys, const WFLBY_EVENT_DATA* cp_data, void* p_param );
 extern BOOL WFLBY_EVENT_WaitGlobalEvent( const WFLBY_EVENT* cp_sys );

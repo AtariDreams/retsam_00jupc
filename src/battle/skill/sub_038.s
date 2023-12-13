@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_038.s
- *@brief	戦闘シーケンス
- *			こんらんシーケンス
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			縺薙ｓ繧峨ｓ繧ｷ繝ｼ繧ｱ繝ｳ繧ｹ
  *@author	HisashiSogabe
  *@data		2005.12.07
  *

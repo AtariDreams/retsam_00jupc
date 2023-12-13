@@ -16,16 +16,16 @@
 # small fix
 #
 # Revision 1.29  2006/11/21 06:20:57  yasu
-# tools/bin ˆÈ‰º‚Ì bash ƒXƒNƒŠƒvƒg‚Ì‰üs‚ğ LF ‚Ì‚İ‚É©“®•ÏX‚·‚é
+# tools/bin ä»¥ä¸‹ã® bash ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®æ”¹è¡Œã‚’ LF ã®ã¿ã«è‡ªå‹•å¤‰æ›´ã™ã‚‹
 #
 # Revision 1.28  2005/11/30 01:31:48  yasu
-# chscope ‚Ì’Ç‰Á
+# chscope ã®è¿½åŠ 
 #
 # Revision 1.27  2005/10/21 00:04:12  okubata_ryoma
-# xml2env‚Ì’Ç‰Á
+# xml2envã®è¿½åŠ 
 #
 # Revision 1.26  2005/10/20 02:13:58  kitase_hirotake
-# init2env ’Ç‰Á
+# init2env è¿½åŠ 
 #
 # Revision 1.25  2005/08/31 06:38:47  yada
 # add loadrun
@@ -34,19 +34,19 @@
 # add buryarg
 #
 # Revision 1.23  2005/06/21 06:22:33  yasu
-# ‰”Åì¬
+# åˆç‰ˆä½œæˆ
 #
 # Revision 1.22  2005/06/20 07:07:38  yasu
 # add defval
 #
 # Revision 1.21  2005/06/13 23:58:49  yasu
-# Copyright •\¦C³
+# Copyright è¡¨ç¤ºä¿®æ­£
 #
 # Revision 1.20  2005/06/13 02:57:50  yasu
 # add bin2obj
 #
 # Revision 1.19  2004/11/02 11:30:20  takano_makoto
-# emuchild.exe‚ğŒöŠJ
+# emuchild.exeã‚’å…¬é–‹
 #
 # Revision 1.18  2004/10/03 09:03:19  yasu
 # add showversion
@@ -91,17 +91,17 @@
 # fix dir name
 #
 # Revision 1.4  2004/01/19 14:21:42  yasu
-# makerom ‚ğˆê’UŠO‚·
+# makerom ã‚’ä¸€æ—¦å¤–ã™
 #
 # Revision 1.3  2004/01/14 02:11:38  yasu
 # Connect make chain
 #
 # Revision 1.2  2003/10/30 05:51:52  yasu
-# build: ƒ^[ƒQƒbƒg‚Ìíœ
+# build: ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®å‰Šé™¤
 #
 # Revision 1.1  2003/10/29 13:27:27  yasu
-# make ‚Ì“`”d‚ÌƒtƒŒ[ƒ€ƒ[ƒNŠ®¬
-# all/install/clean/clobber ‚ªg‚¦‚é
+# make ã®ä¼æ’­ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯å®Œæˆ
+# all/install/clean/clobber ãŒä½¿ãˆã‚‹
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------
@@ -150,8 +150,8 @@ endif
 endif
 
 #------------------------------------------------------------------
-#  ƒCƒ“ƒXƒg[ƒ‹ŒãAtools/bin ˆÈ‰º‚Ì bash ƒXƒNƒŠƒvƒg‚Ì CRLF ‚ğ LF 
-#  ‚É•ÏŠ·
+#  ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å¾Œã€tools/bin ä»¥ä¸‹ã® bash ã‚¹ã‚¯ãƒªãƒ—ãƒˆã® CRLF ã‚’ LF 
+#  ã«å¤‰æ›
 #------------------------------------------------------------------
 ifeq	($(MAKECMDGOALS),install)
 INSTALL_TARGETS		= TRUE

@@ -11,15 +11,15 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///HDMA‚Ì“]‘—ƒTƒCƒY
+///HDMAã®è»¢é€ã‚µã‚¤ã‚º
 #define HDMA_TRANS_SIZE			(sizeof(ENC_LASTER_BUFFER))
 
 
 //-----------------------------------------------------------------------------
 //
-//	Å‰‚ÌƒsƒJƒsƒJ—pƒ^ƒXƒNŠJnŠÖ”
+//	æœ€åˆã®ãƒ”ã‚«ãƒ”ã‚«ç”¨ã‚¿ã‚¹ã‚¯é–‹å§‹é–¢æ•°
 //
 //-----------------------------------------------------------------------------
 
@@ -30,17 +30,17 @@ typedef struct{
 	int seq;
 	u32 flash_num;
 	int count;
-	int disp;		// ‰æ–Êw’è
+	int disp;		// ç”»é¢æŒ‡å®š
 	u32 end_bright;
 	u32 sub_bright;
 	BR_BRIGHTNESS_FADE br_main;
 	BR_BRIGHTNESS_FADE br_sub;
-	BOOL* end;		// I—¹Áª¯¸—p
+	BOOL* end;		// çµ‚äº†ãƒã‚§ãƒƒã‚¯ç”¨
 } BR_FLASH_TASK;
 #define FLASH_EFF_SYNC_SUB	( 8 )
 #define FLASH_EFF_SYNC_ONE	( 3 )
 
-// ŠJnƒGƒtƒFƒNƒgƒ^ƒXƒNiÅ‰‚ÌŒõ‚é‚à‚Ì‚È‚Ç‚ğ§Œäj
+// é–‹å§‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¹ã‚¯ï¼ˆæœ€åˆã®å…‰ã‚‹ã‚‚ã®ãªã©ã‚’åˆ¶å¾¡ï¼‰
 static void BR_FlashTask(TCB_PTR tcb, void *work);
 
 enum{
@@ -55,14 +55,14 @@ enum{
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Å‰‚Ìƒtƒ‰ƒbƒVƒ…‚Ì•\Œ»‚ğ‚·‚éƒ^ƒXƒN‚ğÀs‚·‚é
+ *@brief	æœ€åˆã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã®è¡¨ç¾ã‚’ã™ã‚‹ã‚¿ã‚¹ã‚¯ã‚’å®Ÿè¡Œã™ã‚‹
  *					
- *@param	disp	ƒƒCƒ“‰æ–Ê‚É‚©‚¯‚é:MASK_MAIN_DISPLAY
- *					ƒTƒu‰æ–Ê‚É‚©‚¯‚é:MASK_SUB_DISPLAY
- *					—¼‰æ–Ê‚É‚©‚¯‚é:MASK_DOUBLE_DISPLAY
+ *@param	disp	ãƒ¡ã‚¤ãƒ³ç”»é¢ã«ã‹ã‘ã‚‹:MASK_MAIN_DISPLAY
+ *					ã‚µãƒ–ç”»é¢ã«ã‹ã‘ã‚‹:MASK_SUB_DISPLAY
+ *					ä¸¡ç”»é¢ã«ã‹ã‘ã‚‹:MASK_DOUBLE_DISPLAY
  *
- *@param	end		I—¹‚µ‚½‚çTRUE‚ğ•Ô‚·ƒtƒ‰ƒO
- *@param	flash_num	ƒtƒ‰ƒbƒVƒ…‰ñ”
+ *@param	end		çµ‚äº†ã—ãŸã‚‰TRUEã‚’è¿”ã™ãƒ•ãƒ©ã‚°
+ *@param	flash_num	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥å›æ•°
  *
  *@return	none
  *
@@ -78,7 +78,7 @@ void FENC_EncountFlashTask(int disp, u32 bright_color, u32 sub_bright_color, BOO
 	memset( eew, 0, sizeof(BR_FLASH_TASK) );
 	TCB_Add( BR_FlashTask, eew, TCB_TSK_PRI );
 	
-	eew->end = end;		// I—¹ƒtƒ‰ƒOİ’è
+	eew->end = end;		// çµ‚äº†ãƒ•ãƒ©ã‚°è¨­å®š
 	if(eew->end != NULL){
 		*(eew->end) = FALSE;
 	}
@@ -91,16 +91,16 @@ void FENC_EncountFlashTask(int disp, u32 bright_color, u32 sub_bright_color, BOO
 //------------------------------------------------------------------
 /**
  * 
- * ƒGƒtƒFƒNƒg
+ * ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * Å‰‚ÌƒsƒJƒsƒJ•\Œ»
+ * æœ€åˆã®ãƒ”ã‚«ãƒ”ã‚«è¡¨ç¾
  * 
- * @param   tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- * @param   work	ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  *
- * ƒsƒJƒsƒJ@20ƒVƒ“ƒNg—p
+ * ãƒ”ã‚«ãƒ”ã‚«ã€€20ã‚·ãƒ³ã‚¯ä½¿ç”¨
  */
 //------------------------------------------------------------------
 static void BR_FlashTask(TCB_PTR tcb, void *work)
@@ -110,12 +110,12 @@ static void BR_FlashTask(TCB_PTR tcb, void *work)
 	switch(eew->seq){
 	case FADE_SUB_EFFECT:
 		if(eew->disp == MASK_MAIN_DISPLAY){
-			//ƒuƒ‰ƒbƒNƒAƒEƒg
+			//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 //			ChangeBrightnessRequest( 40,-16,0, eew->plane, MASK_SUB_DISPLAY);
 			FENC_ChangeMstBrightness( &eew->br_sub, 0, eew->sub_bright, MASK_SUB_DISPLAY, FLASH_EFF_SYNC_SUB );
 		}else{
 			if(eew->disp == MASK_SUB_DISPLAY){
-				//ƒuƒ‰ƒbƒNƒAƒEƒg
+				//ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆ
 //				ChangeBrightnessRequest(40,-16,0, eew->plane, MASK_MAIN_DISPLAY);
 				FENC_ChangeMstBrightness( &eew->br_sub, 0, eew->sub_bright, MASK_MAIN_DISPLAY, FLASH_EFF_SYNC_SUB );
 			}
@@ -124,7 +124,7 @@ static void BR_FlashTask(TCB_PTR tcb, void *work)
 		break;
 
 	case FADE_EFFECT:
-		//ƒzƒƒCƒgƒAƒEƒg
+		//ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
 //		ChangeBrightnessRequest(4,16,0,eew->plane,eew->disp);
 		FENC_ChangeMstBrightness( &eew->br_main, 0, eew->end_bright, eew->disp, FLASH_EFF_SYNC_ONE );
 		eew->seq++;
@@ -136,7 +136,7 @@ static void BR_FlashTask(TCB_PTR tcb, void *work)
 		}
 		break;
 	case FADE_RET_EFFECT:
-		//ƒzƒƒCƒgƒCƒ“
+		//ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³
 //		ChangeBrightnessRequest(4,0,16,eew->plane,eew->disp);
 		FENC_ChangeMstBrightness( &eew->br_main, eew->end_bright, 0, eew->disp, FLASH_EFF_SYNC_ONE );
 		eew->seq++;
@@ -153,37 +153,37 @@ static void BR_FlashTask(TCB_PTR tcb, void *work)
 			}
 		}
 		break;
-	case END_EFFECT:		// ƒƒCƒ“ƒGƒtƒFƒNƒg‚ÉˆÚ“®
+	case END_EFFECT:		// ãƒ¡ã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«ç§»å‹•
 		eew->seq = 0;
 		eew->count = 0;
 
 		if(eew->end != NULL){
-			*(eew->end) = TRUE;		// ƒ^ƒXƒNI—¹‚ğ•ñ
+			*(eew->end) = TRUE;		// ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’å ±å‘Š
 		}
 
-		TCB_Delete(tcb);	//ƒ^ƒXƒNI—¹
+		TCB_Delete(tcb);	//ã‚¿ã‚¹ã‚¯çµ‚äº†
 		sys_FreeMemoryEz( eew );
 		return ;
 	}
 
-	// ƒTƒu–ÊƒtƒF[ƒh
+	// ã‚µãƒ–é¢ãƒ•ã‚§ãƒ¼ãƒ‰
 	FENC_ChangeMstBrightnessMain( &eew->br_sub );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ï½À°ƒuƒ‰ƒCƒgƒlƒXİ’è
+ *	@brief	ãƒã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è¨­å®š
  *
- *	@param	disp	–Ê
- *	@param	no		’l
+ *	@param	disp	é¢
+ *	@param	no		å€¤
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void FENC_SetMstBrightness( int disp, int no )
 {
-	// ƒuƒ‰ƒCƒgƒlƒX‰ğœ
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹è§£é™¤
 	if( disp == MASK_MAIN_DISPLAY ){
 		GX_SetMasterBrightness(no);
 	}else{
@@ -193,13 +193,13 @@ void FENC_SetMstBrightness( int disp, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ï½À°ƒuƒ‰ƒCƒgƒlƒX•ÏX@ƒtƒF[ƒhƒf[ƒ^Ši”[
+ *	@brief	ãƒã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å¤‰æ›´ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿æ ¼ç´
  *
- *	@param	p_data		Ši”[æ
- *	@param	start		ŠJn’l
- *	@param	end			I—¹’l
- *	@param	disp		–Ê
- *	@param	sync		ƒVƒ“ƒN”
+ *	@param	p_data		æ ¼ç´å…ˆ
+ *	@param	start		é–‹å§‹å€¤
+ *	@param	end			çµ‚äº†å€¤
+ *	@param	disp		é¢
+ *	@param	sync		ã‚·ãƒ³ã‚¯æ•°
  *
  *	@return	none
  */
@@ -212,12 +212,12 @@ void FENC_ChangeMstBrightness( BR_BRIGHTNESS_FADE* p_data, int start, int end, i
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Ï½À°ƒuƒ‰ƒCƒgƒlƒX•ÏX@ƒtƒF[ƒhƒƒCƒ“
+ *	@brief	ãƒã‚¹ã‚¿ãƒ¼ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å¤‰æ›´ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_data	ƒ[ƒN
+ *	@param	p_data	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL FENC_ChangeMstBrightnessMain( BR_BRIGHTNESS_FADE* p_data )
@@ -225,20 +225,20 @@ BOOL FENC_ChangeMstBrightnessMain( BR_BRIGHTNESS_FADE* p_data )
 	BOOL result;
 	result = FENC_MoveMain( &p_data->brightness );
 	
-	// Vƒuƒ‰ƒ“ƒNŠúŠÔ’†‚Éİ’è‚µ‚È‚¢‚Æ‚«‚ê‚¢‚ÉƒtƒF[ƒh‚µ‚È‚¢
+	// Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ä¸­ã«è¨­å®šã—ãªã„ã¨ãã‚Œã„ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã—ãªã„
 	VWaitTCB_Add( FENC_BrightnessVset, p_data, TCB_VWAIT_BR_TSK_PRI );
 	return result;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Vƒuƒ‰ƒ“ƒNŠúŠÔ’†‚ÉÌŞ×²ÄÈ½’l‚ğİ’è‚·‚éƒ^ƒXƒN
+ *	@brief	Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ä¸­ã«ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å€¤ã‚’è¨­å®šã™ã‚‹ã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
- *	Vƒuƒ‰ƒ“ƒNŠúŠÔ’†‚Éİ’è‚µ‚È‚¢‚Æ‚«‚ê‚¢‚ÉƒtƒF[ƒh‚µ‚È‚¢
+ *	Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ä¸­ã«è¨­å®šã—ãªã„ã¨ãã‚Œã„ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static void FENC_BrightnessVset( TCB_PTR tcb, void* work )
@@ -253,10 +253,10 @@ static void FENC_BrightnessVset( TCB_PTR tcb, void* work )
 
 //-----------------------------------------------------------------------------
 //
-//	ƒrƒbƒgƒ}ƒbƒv‘€ì
+//	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æ“ä½œ
 //
 //-----------------------------------------------------------------------------
-// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒg
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 typedef struct _FENC_BMP_FILL_OBJ{
 	FENC_MOVE_WORK move_x;
 	FENC_MOVE_WORK move_y;
@@ -267,7 +267,7 @@ typedef struct _FENC_BMP_FILL_OBJ{
 	u8 col;
 } ;
 
-// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒuƒƒbƒNã“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒg
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ–ãƒ­ãƒƒã‚¯ä¸Šå¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 typedef struct _FENC_BMP_FILL_BLOCK{
 	FENC_MOVE_WORK move_x;
 	FENC_MOVE_WORK move_y;
@@ -280,31 +280,31 @@ typedef struct _FENC_BMP_FILL_BLOCK{
 
 static void FENC_BMP_Fill( GF_BGL_BMPWIN* p_bmp, s32 top, s32 bottom, s32 left, s32 right, u8 col );
 
-// ƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒN–„‚ßs‚­‚µƒVƒXƒeƒ€
-#define ENCOUNT_BLOCK_MOVE_WIDTH	( 16 )	// ƒuƒƒbƒNƒTƒCƒY
-#define ENCOUNT_BLOCK_MOVE_HEIGHT	( 32 )	// ƒuƒƒbƒNƒTƒCƒY
-#define ENCOUNT_BLOCK_MOVE_MAT_Y	( 0 )	// ŠJnÀ•W
-#define ENCOUNT_BLOCK_MOVE_MOVE_Y	( 192 + ENCOUNT_BLOCK_MOVE_MAT_Y )	// ˆÚ“®‹——£
-#define ENCOUNT_BLOCK_MOVE_X_NUM	( 256 / ENCOUNT_BLOCK_MOVE_WIDTH )	// ‰¡‚Ì”
-#define ENCOUNT_BLOCK_MOVE_Y_NUM	( 192 / ENCOUNT_BLOCK_MOVE_HEIGHT )	// c‚Ì”
-#define ENCOUNT_BLOCK_MOVE_OBJNUM	( ENCOUNT_BLOCK_MOVE_X_NUM * ENCOUNT_BLOCK_MOVE_Y_NUM )	// xƒuƒƒbƒN‚Å–„‚ß‚é
+// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯åŸ‹ã‚å°½ãã—ã‚·ã‚¹ãƒ†ãƒ 
+#define ENCOUNT_BLOCK_MOVE_WIDTH	( 16 )	// ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
+#define ENCOUNT_BLOCK_MOVE_HEIGHT	( 32 )	// ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
+#define ENCOUNT_BLOCK_MOVE_MAT_Y	( 0 )	// é–‹å§‹åº§æ¨™
+#define ENCOUNT_BLOCK_MOVE_MOVE_Y	( 192 + ENCOUNT_BLOCK_MOVE_MAT_Y )	// ç§»å‹•è·é›¢
+#define ENCOUNT_BLOCK_MOVE_X_NUM	( 256 / ENCOUNT_BLOCK_MOVE_WIDTH )	// æ¨ªã®æ•°
+#define ENCOUNT_BLOCK_MOVE_Y_NUM	( 192 / ENCOUNT_BLOCK_MOVE_HEIGHT )	// ç¸¦ã®æ•°
+#define ENCOUNT_BLOCK_MOVE_OBJNUM	( ENCOUNT_BLOCK_MOVE_X_NUM * ENCOUNT_BLOCK_MOVE_Y_NUM )	// xãƒ–ãƒ­ãƒƒã‚¯ã§åŸ‹ã‚ã‚‹
 
-#define ENCOUNT_BLOCK_MOVE_WIDTH2	( 32 )	// ƒuƒƒbƒNƒTƒCƒY
-#define ENCOUNT_BLOCK_MOVE_HEIGHT2	( 16 )	// ƒuƒƒbƒNƒTƒCƒY
-#define ENCOUNT_BLOCK_MOVE_MAT_Y2	( 0 )	// ŠJnÀ•W
-#define ENCOUNT_BLOCK_MOVE_MOVE_Y2	( 192 + ENCOUNT_BLOCK_MOVE_MAT_Y2 )	// ˆÚ“®‹——£
-#define ENCOUNT_BLOCK_MOVE_X_NUM2	( 256 / ENCOUNT_BLOCK_MOVE_WIDTH2 )	// ‰¡‚Ì”
-#define ENCOUNT_BLOCK_MOVE_Y_NUM2	( 192 / ENCOUNT_BLOCK_MOVE_HEIGHT2 )	// c‚Ì”
-#define ENCOUNT_BLOCK_MOVE_OBJNUM2	( ENCOUNT_BLOCK_MOVE_X_NUM2 * ENCOUNT_BLOCK_MOVE_Y_NUM2 )	// xƒuƒƒbƒN‚Å–„‚ß‚é
+#define ENCOUNT_BLOCK_MOVE_WIDTH2	( 32 )	// ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
+#define ENCOUNT_BLOCK_MOVE_HEIGHT2	( 16 )	// ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
+#define ENCOUNT_BLOCK_MOVE_MAT_Y2	( 0 )	// é–‹å§‹åº§æ¨™
+#define ENCOUNT_BLOCK_MOVE_MOVE_Y2	( 192 + ENCOUNT_BLOCK_MOVE_MAT_Y2 )	// ç§»å‹•è·é›¢
+#define ENCOUNT_BLOCK_MOVE_X_NUM2	( 256 / ENCOUNT_BLOCK_MOVE_WIDTH2 )	// æ¨ªã®æ•°
+#define ENCOUNT_BLOCK_MOVE_Y_NUM2	( 192 / ENCOUNT_BLOCK_MOVE_HEIGHT2 )	// ç¸¦ã®æ•°
+#define ENCOUNT_BLOCK_MOVE_OBJNUM2	( ENCOUNT_BLOCK_MOVE_X_NUM2 * ENCOUNT_BLOCK_MOVE_Y_NUM2 )	// xãƒ–ãƒ­ãƒƒã‚¯ã§åŸ‹ã‚ã‚‹
 
-static const u8 ENCOUNT_BLOCK_MOVE_MoveParam_Random[ ENCOUNT_BLOCK_MOVE_X_NUM ] = {	// o‚Ä‚­‚éxÀ•W‚Ì‡”Ôƒe[ƒuƒ‹
+static const u8 ENCOUNT_BLOCK_MOVE_MoveParam_Random[ ENCOUNT_BLOCK_MOVE_X_NUM ] = {	// å‡ºã¦ãã‚‹xåº§æ¨™ã®é †ç•ªãƒ†ãƒ¼ãƒ–ãƒ«
 //	 0, 2, 5, 7, 1, 6, 3, 4 
 	 0, 2, 5, 7,15,13,
 	 4, 1,11, 9, 2,14,
 	10, 3,12, 8, 
 };
 
-static const u8 ENCOUNT_BLOCK_MOVE_MoveParam_LinesUP[][ ENCOUNT_BLOCK_MOVE_X_NUM ] = {	// o‚Ä‚­‚éxÀ•W‚Ì‡”Ôƒe[ƒuƒ‹
+static const u8 ENCOUNT_BLOCK_MOVE_MoveParam_LinesUP[][ ENCOUNT_BLOCK_MOVE_X_NUM ] = {	// å‡ºã¦ãã‚‹xåº§æ¨™ã®é †ç•ªãƒ†ãƒ¼ãƒ–ãƒ«
 	{ 0, 1, 2, 3, 4, 5, 6, 7, },
 	{ 7, 6, 5, 4, 3, 2, 1, 0, },
 //	{ 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 },
@@ -380,12 +380,12 @@ BOOL FENC_MoveMain( FENC_MOVE_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒNã“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒgz
- *	@brief	ƒ[ƒN‚ÌŠm•Û
+ *		ã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ä¸Šå¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿
  *
- *	@param	heapID	ƒq[ƒvID
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 FENC_BMP_FILL_BLOCK* FENC_BMP_FillBlockAlloc( u32 heapID )
@@ -399,10 +399,10 @@ FENC_BMP_FILL_BLOCK* FENC_BMP_FillBlockAlloc( u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒNã“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒgz
- *	@brief	ƒ[ƒN”jŠü
+ *		ã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ä¸Šå¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void FENC_BMP_FillBlockDelete( FENC_BMP_FILL_BLOCK* p_work )
@@ -412,47 +412,47 @@ void FENC_BMP_FillBlockDelete( FENC_BMP_FILL_BLOCK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *		yƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒNã“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒgz
- *	@brief	“®‚³ŠJn
+ *		ã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ä¸Šå¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘
+ *	@brief	å‹•ã•é–‹å§‹
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	s_x			“h‚è‚Â‚Ô‚µŠJn‚˜À•W
- *	@param	e_x			“h‚è‚Â‚Ô‚µI—¹‚˜À•W
- *	@param	s_y			“h‚è‚Â‚Ô‚µŠJn‚™À•W
- *	@param	e_y			“h‚è‚Â‚Ô‚µI—¹‚™À•W
- *	@param	sync		ƒVƒ“ƒN”
- *	@param	p_bmp		ƒrƒbƒgƒ}ƒbƒv
- *	@param	width		•
- *	@param	height		‚‚³
- *	@param	col			“h‚è‚Â‚Ô‚·ƒpƒŒƒbƒg”Ô†
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x			å¡—ã‚Šã¤ã¶ã—é–‹å§‹ï½˜åº§æ¨™
+ *	@param	e_x			å¡—ã‚Šã¤ã¶ã—çµ‚äº†ï½˜åº§æ¨™
+ *	@param	s_y			å¡—ã‚Šã¤ã¶ã—é–‹å§‹ï½™åº§æ¨™
+ *	@param	e_y			å¡—ã‚Šã¤ã¶ã—çµ‚äº†ï½™åº§æ¨™
+ *	@param	sync		ã‚·ãƒ³ã‚¯æ•°
+ *	@param	p_bmp		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	width		å¹…
+ *	@param	height		é«˜ã•
+ *	@param	col			å¡—ã‚Šã¤ã¶ã™ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //-----------------------------------------------------------------------------
 void FENC_BMP_FillBlockStart( FENC_BMP_FILL_BLOCK* p_work, int s_x, int e_x, int s_y, int e_y, int sync, GF_BGL_BMPWIN* p_bmp, u32 width, u32 height, u8 col )
 {
 	GF_ASSERT( p_work->move_flg == FALSE );
 
-	// “®‚³ƒpƒ‰ƒ[ƒ^
+	// å‹•ã•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	FENC_MoveReq( &p_work->move_x, s_x, e_x, sync );
 	FENC_MoveReq( &p_work->move_y, s_y, e_y, sync );
 
-	// ‚»‚Ì‘¼ƒpƒ‰ƒ[ƒ^
-	p_work->p_bmp	= p_bmp;	// “h‚è‚Â‚Ô‚·ƒrƒbƒgƒ}ƒbƒv
-	p_work->width	= width;	// “h‚è‚Â‚Ô‚µ•
-	p_work->height	= height;	// “h‚è‚Â‚Ô‚µ‚‚³
-	p_work->col		= col;		// “h‚è‚Â‚Ô‚µƒJƒ‰[”Ô†
+	// ãã®ä»–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	p_work->p_bmp	= p_bmp;	// å¡—ã‚Šã¤ã¶ã™ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+	p_work->width	= width;	// å¡—ã‚Šã¤ã¶ã—å¹…
+	p_work->height	= height;	// å¡—ã‚Šã¤ã¶ã—é«˜ã•
+	p_work->col		= col;		// å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼ç•ªå·
 
 	p_work->move_flg = TRUE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *		yƒrƒbƒgƒ}ƒbƒvƒuƒƒbƒNã“h‚è‚Â‚Ô‚µƒIƒuƒWƒFƒNƒgz
- *	@brief	“®‚³ƒƒCƒ“
+ *		ã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ä¸Šå¡—ã‚Šã¤ã¶ã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€‘
+ *	@brief	å‹•ã•ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL FENC_BMP_FillBlockMain( FENC_BMP_FILL_BLOCK* p_work )
@@ -463,7 +463,7 @@ BOOL FENC_BMP_FillBlockMain( FENC_BMP_FILL_BLOCK* p_work )
 		return TRUE;
 	}
 
-	// 1‚Â‘O‚ğÁ‚·
+	// 1ã¤å‰ã‚’æ¶ˆã™
 	left = p_work->move_x.x - (p_work->width/2);
 	top = p_work->move_y.x - (p_work->height/2);
 	right = left + p_work->width;
@@ -485,26 +485,26 @@ BOOL FENC_BMP_FillBlockMain( FENC_BMP_FILL_BLOCK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE“h‚è‚Â‚Ô‚µ@‹éŒ`
+ *	@brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å¡—ã‚Šã¤ã¶ã—ã€€çŸ©å½¢
  *
- *	@param	p_bmp		ƒ[ƒN
- *	@param	top			ã
- *	@param	bottom		‰º
- *	@param	left		¶
- *	@param	right		‰E
- *	@param	col			ƒJƒ‰[”Ô†
+ *	@param	p_bmp		ãƒ¯ãƒ¼ã‚¯
+ *	@param	top			ä¸Š
+ *	@param	bottom		ä¸‹
+ *	@param	left		å·¦
+ *	@param	right		å³
+ *	@param	col			ã‚«ãƒ©ãƒ¼ç•ªå·
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void FENC_BMP_Fill( GF_BGL_BMPWIN* p_bmp, s32 top, s32 bottom, s32 left, s32 right, u8 col )
 {
-	// ‰æ–ÊŠOƒ`ƒFƒbƒN
+	// ç”»é¢å¤–ãƒã‚§ãƒƒã‚¯
 	if( (right <= 0) || (bottom <= 0) ){
 		return ;
 	}
 
-	// ˆê‚È‚ç•`‰æ‚µ‚È‚¢
+	// ä¸€ç·’ãªã‚‰æç”»ã—ãªã„
 	if( (left == right) || (top == bottom) ){
 		return ;
 	}
@@ -522,7 +522,7 @@ static void FENC_BMP_Fill( GF_BGL_BMPWIN* p_bmp, s32 top, s32 bottom, s32 left, 
 		bottom = 256;
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒv“h‚è‚Â‚Ô‚µ
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å¡—ã‚Šã¤ã¶ã—
 	GF_BGL_BmpWinFill( p_bmp, col,
 			left,
 			top,
@@ -533,11 +533,11 @@ static void FENC_BMP_Fill( GF_BGL_BMPWIN* p_bmp, s32 top, s32 bottom, s32 left, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒNŠm•Û
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- *	@param	heapID	ƒq[ƒv
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ƒ[ƒN
+ *	@return	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 FENC_BMP_FILL_BLOCK_MOVE* FENC_BMP_FillBlockMoveAlloc( u32 heapID )
@@ -548,7 +548,7 @@ FENC_BMP_FILL_BLOCK_MOVE* FENC_BMP_FillBlockMoveAlloc( u32 heapID )
 	p_work = sys_AllocMemory( heapID, sizeof(FENC_BMP_FILL_BLOCK_MOVE) );
 	memset( p_work, 0, sizeof(FENC_BMP_FILL_BLOCK_MOVE) );
 
-	// ƒIƒuƒWƒFƒNƒgì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä½œæˆ
 	for( i=0; i<ENCOUNT_BLOCK_MOVE_OBJNUM; i++ ){
 		p_work->p_block[i] = FENC_BMP_FillBlockAlloc( heapID );
 	}
@@ -557,16 +557,16 @@ FENC_BMP_FILL_BLOCK_MOVE* FENC_BMP_FillBlockMoveAlloc( u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN”jŠü
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void FENC_BMP_FillBlockMoveDelete( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 {
 	int i;
 	
-	// ƒuƒƒbƒNƒIƒuƒWƒF”jŠü
+	// ãƒ–ãƒ­ãƒƒã‚¯ã‚ªãƒ–ã‚¸ã‚§ç ´æ£„
 	for( i=0; i<ENCOUNT_BLOCK_MOVE_OBJNUM; i++ ){
 		FENC_BMP_FillBlockDelete( p_work->p_block[i] );
 	}
@@ -575,13 +575,13 @@ void FENC_BMP_FillBlockMoveDelete( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®‚³ŠJn
+ *	@brief	å‹•ã•é–‹å§‹
  *	
- *	@param	p_work	ƒ[ƒN
- *	@param	sync	‚P‚Â‚ÌƒIƒuƒWƒF‚ª“®‚­ƒVƒ“ƒN”
- *	@param	start	‚P‚Â‚ÌƒIƒuƒWƒF”­Ëƒ^ƒCƒ~ƒ“ƒO
- *	@param	p_bmp	ƒrƒbƒgƒ}ƒbƒv
- *	@param	col		ƒJƒ‰[
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	sync	ï¼‘ã¤ã®ã‚ªãƒ–ã‚¸ã‚§ãŒå‹•ãã‚·ãƒ³ã‚¯æ•°
+ *	@param	start	ï¼‘ã¤ã®ã‚ªãƒ–ã‚¸ã‚§ç™ºå°„ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+ *	@param	p_bmp	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+ *	@param	col		ã‚«ãƒ©ãƒ¼
  */
 //-----------------------------------------------------------------------------
 void FENC_BMP_FillBlockMoveStart( FENC_BMP_FILL_BLOCK_MOVE* p_work, u8 sync, u8 start, GF_BGL_BMPWIN* p_bmp, u8 col )
@@ -601,15 +601,15 @@ void FENC_BMP_FillBlockMoveStart( FENC_BMP_FILL_BLOCK_MOVE* p_work, u8 sync, u8 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ŠÖ”
+ *	@brief	ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
-///< ƒ‰ƒ“ƒ_ƒ€‚É•~‚«‹l‚ß‚ç‚ê‚Ä‚¢‚­
+///< ãƒ©ãƒ³ãƒ€ãƒ ã«æ•·ãè©°ã‚ã‚‰ã‚Œã¦ã„ã
 BOOL FENC_BMP_FillBlockMoveMain_Random( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 {
 	int x, s_y, e_y;
@@ -620,7 +620,7 @@ BOOL FENC_BMP_FillBlockMoveMain_Random( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 		return TRUE;
 	}
 	
-	// ”­Ë•”
+	// ç™ºå°„éƒ¨
 	if( p_work->block_count < ENCOUNT_BLOCK_MOVE_OBJNUM ){
 		p_work->wait --;
 		if( p_work->wait <= 0 ){
@@ -630,7 +630,7 @@ BOOL FENC_BMP_FillBlockMoveMain_Random( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 			x = (ENCOUNT_BLOCK_MOVE_WIDTH/2) + (x * ENCOUNT_BLOCK_MOVE_WIDTH);
 			s_y = ENCOUNT_BLOCK_MOVE_MAT_Y - ((p_work->block_count/ENCOUNT_BLOCK_MOVE_X_NUM) * ENCOUNT_BLOCK_MOVE_HEIGHT);
 			e_y = ENCOUNT_BLOCK_MOVE_MOVE_Y - ((p_work->block_count/ENCOUNT_BLOCK_MOVE_X_NUM) * ENCOUNT_BLOCK_MOVE_HEIGHT);
-			// ”­Ë
+			// ç™ºå°„
 			FENC_BMP_FillBlockStart( 
 					p_work->p_block[ p_work->block_count ],
 					x, x,
@@ -644,7 +644,7 @@ BOOL FENC_BMP_FillBlockMoveMain_Random( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 	}
 	
 
-	// “®‚³•”
+	// å‹•ã•éƒ¨
 	for( i=p_work->block_end_count; i<p_work->block_count; i++ ){
 		result = FENC_BMP_FillBlockMain( p_work->p_block[i] );
 		if( result == TRUE ){
@@ -652,7 +652,7 @@ BOOL FENC_BMP_FillBlockMoveMain_Random( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 		}
 	}
 
-	// ‘S“®‚³I—¹ƒ`ƒFƒbƒN
+	// å…¨å‹•ã•çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( (p_work->block_end_count >= ENCOUNT_BLOCK_MOVE_OBJNUM) &&
 		(result == TRUE) ){
 		p_work->init_flg = FALSE;
@@ -666,7 +666,7 @@ static const u8 PlaceTable2[][ ENCOUNT_BLOCK_MOVE_X_NUM ] = {
 	{ 0,1,2,3,4,5,6,7 },	
 	{ 7,6,5,4,3,2,1,0 },
 };
-///< Œİ‚¢ˆá‚¢‚Éƒ‰ƒCƒ“‚ªã‚Éã‚ª‚é
+///< äº’ã„é•ã„ã«ãƒ©ã‚¤ãƒ³ãŒä¸Šã«ä¸ŠãŒã‚‹
 BOOL FENC_BMP_FillBlockMoveMain_LinesUP( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 {
 	int s_x, e_x, s_y, e_y;
@@ -677,13 +677,13 @@ BOOL FENC_BMP_FillBlockMoveMain_LinesUP( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 		return TRUE;
 	}
 	
-	// ”­Ë•”
+	// ç™ºå°„éƒ¨
 	if( p_work->block_count < ENCOUNT_BLOCK_MOVE_OBJNUM ){
 		p_work->wait --;
 		if( p_work->wait <= 0 ){
 			p_work->wait = p_work->start_sync;
 
-			///< ¶‘¤
+			///< å·¦å´
 			s_x	= ENCOUNT_BLOCK_MOVE_WIDTH2 * ( PlaceTable2[ p_work->block_line ][ p_work->line_x ] * 1);
 			e_x	= s_x + ENCOUNT_BLOCK_MOVE_WIDTH2;
 			s_y = p_work->line_y;
@@ -708,7 +708,7 @@ BOOL FENC_BMP_FillBlockMoveMain_LinesUP( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 					ENCOUNT_BLOCK_MOVE_WIDTH2, ENCOUNT_BLOCK_MOVE_HEIGHT2,
 					p_work->col );
 					
-			///< ¶‘¤
+			///< å·¦å´
 			s_x	= ENCOUNT_BLOCK_MOVE_WIDTH2 * ( PlaceTable2[ p_work->block_line ][ p_work->line_x ] * 1);
 			e_x	= s_x + ENCOUNT_BLOCK_MOVE_WIDTH2;
 			s_y = ( ENCOUNT_BLOCK_MOVE_Y_NUM2 / 2 ) + p_work->line_y;
@@ -733,7 +733,7 @@ BOOL FENC_BMP_FillBlockMoveMain_LinesUP( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 					ENCOUNT_BLOCK_MOVE_WIDTH2, ENCOUNT_BLOCK_MOVE_HEIGHT2,
 					p_work->col );
 			
-			///< ¶‰E‚Ô‚ñ‚©‚¤‚ñ‚ÆƒAƒbƒv
+			///< å·¦å³ã¶ã‚“ã‹ã†ã‚“ã¨ã‚¢ãƒƒãƒ—
 			p_work->block_count += 4;
 			p_work->line_x++;
 			
@@ -750,7 +750,7 @@ BOOL FENC_BMP_FillBlockMoveMain_LinesUP( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 	}
 	
 
-	// “®‚³•”
+	// å‹•ã•éƒ¨
 	for( i=p_work->block_end_count; i<p_work->block_count; i++ ){
 		result = FENC_BMP_FillBlockMain( p_work->p_block[i] );
 		if( result == TRUE ){
@@ -758,7 +758,7 @@ BOOL FENC_BMP_FillBlockMoveMain_LinesUP( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 		}
 	}
 
-	// ‘S“®‚³I—¹ƒ`ƒFƒbƒN
+	// å…¨å‹•ã•çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( (p_work->block_end_count >= ENCOUNT_BLOCK_MOVE_OBJNUM) &&
 		(result == TRUE) ){
 		p_work->init_flg = FALSE;
@@ -769,7 +769,7 @@ BOOL FENC_BMP_FillBlockMoveMain_LinesUP( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 }
 
 
-///< ƒuƒƒbƒN—‰º
+///< ãƒ–ãƒ­ãƒƒã‚¯è½ä¸‹
 static const u8 PlaceTable[][ ENCOUNT_BLOCK_MOVE_Y_NUM ] = {
 	{ 0,1,2,3,4,5 },	
 	{ 5,4,3,2,1,0 },
@@ -784,13 +784,13 @@ BOOL FENC_BMP_FillBlockMoveMain_Place( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 		return TRUE;
 	}
 	
-	// ”­Ë•”
+	// ç™ºå°„éƒ¨
 	if( p_work->block_count < ENCOUNT_BLOCK_MOVE_OBJNUM ){
 		p_work->wait --;
 		if( p_work->wait <= 0 ){
 			p_work->wait = p_work->start_sync;
 
-			///< ¶‘¤
+			///< å·¦å´
 			x	= p_work->line_x;
 			x	= ( ENCOUNT_BLOCK_MOVE_WIDTH / 2 ) + ( x * ENCOUNT_BLOCK_MOVE_WIDTH );
 			s_y = ENCOUNT_BLOCK_MOVE_HEIGHT * ( PlaceTable[ p_work->block_line ][ p_work->line_y ] * 1);
@@ -816,7 +816,7 @@ BOOL FENC_BMP_FillBlockMoveMain_Place( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 					p_work->col );
 
 
-			///< ‰E‘¤
+			///< å³å´
 			x	= ( ENCOUNT_BLOCK_MOVE_X_NUM / 2 ) + p_work->line_x;
 			x	= ( ENCOUNT_BLOCK_MOVE_WIDTH / 2 ) + ( x * ENCOUNT_BLOCK_MOVE_WIDTH );
 			s_y = ENCOUNT_BLOCK_MOVE_HEIGHT * ( PlaceTable[ p_work->block_line ][ p_work->line_y ] * 1);
@@ -841,7 +841,7 @@ BOOL FENC_BMP_FillBlockMoveMain_Place( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 					ENCOUNT_BLOCK_MOVE_WIDTH, ENCOUNT_BLOCK_MOVE_HEIGHT,
 					p_work->col );
 			
-			///< ¶‰E‚Ô‚ñ‚©‚¤‚ñ‚ÆƒAƒbƒv
+			///< å·¦å³ã¶ã‚“ã‹ã†ã‚“ã¨ã‚¢ãƒƒãƒ—
 			p_work->block_count += 4;
 			p_work->line_y++;
 			
@@ -854,7 +854,7 @@ BOOL FENC_BMP_FillBlockMoveMain_Place( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 	}
 	
 
-	// “®‚³•”
+	// å‹•ã•éƒ¨
 	for( i=p_work->block_end_count; i<p_work->block_count; i++ ){
 		result = FENC_BMP_FillBlockMain( p_work->p_block[i] );
 		if( result == TRUE ){
@@ -862,7 +862,7 @@ BOOL FENC_BMP_FillBlockMoveMain_Place( FENC_BMP_FILL_BLOCK_MOVE* p_work )
 		}
 	}
 
-	// ‘S“®‚³I—¹ƒ`ƒFƒbƒN
+	// å…¨å‹•ã•çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( (p_work->block_end_count >= ENCOUNT_BLOCK_MOVE_OBJNUM) &&
 		(result == TRUE) ){
 		p_work->init_flg = FALSE;
@@ -889,9 +889,9 @@ static void EncountEffect_LasterScroll_VDmaTCB( TCB_PTR tcb, void* p_work );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒVƒXƒeƒ€@Vƒuƒ‰ƒ“ƒNDMA“]‘—ƒŠƒNƒGƒXƒgƒ^ƒXƒN
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã€€Vãƒ–ãƒ©ãƒ³ã‚¯DMAè»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¿ã‚¹ã‚¯
  *
- *	@param	p_lstscr	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒVƒXƒeƒ€
+ *	@param	p_lstscr	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  */
@@ -904,10 +904,10 @@ static TCB_PTR EncountEffect_LasterScroll_VDmaTaskReq( FENCOUNT_LASTER_SCROLL* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	DMA“]‘—ƒ^ƒXƒN
+ *	@brief	DMAè»¢é€ã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	p_work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return
  */
@@ -928,10 +928,10 @@ static void EncountEffect_LasterScroll_VDmaTCB( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒXƒ^[‰Šú‰»
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- *	@param	p_laster	ƒ‰ƒXƒ^[ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_laster	ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
  *	@return	none
  */
@@ -945,9 +945,9 @@ void FEF_Laster_Init( FENCOUNT_LASTER_SCROLL* p_laster, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒXƒ^[”jŠü
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	p_laster	ƒ‰ƒXƒ^[ƒ[ƒN
+ *	@param	p_laster	ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -961,17 +961,17 @@ void FEF_Laster_Delete( FENCOUNT_LASTER_SCROLL* p_laster )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒXƒ^[ŠJn
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼é–‹å§‹
  *
- *	@param	p_laster	ƒ[ƒN
- *	@param	start		ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹‚³‚¹‚éŠJn‚™À•W
- *	@param	end			ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹‚³‚¹‚éI—¹‚™À•W
- *	@param	add_r		sinƒJ[ƒuƒe[ƒuƒ‹ì¬‚ÌŠp“x‚ğ‘«‚µ‚Ä‚¢‚­’l(0`65535)
- *	@param	r_w			sinƒJ[ƒu‚Ì”¼Œa
- *	@param	scr_sp		ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒXƒs[ƒh	®”*100‚µ‚½’l	ƒ}ƒCƒiƒX—LŒø
- *	@param	bg_no		ƒ‰ƒXƒ^[‚ğ‚©‚¯‚éBG‚Ì”Ô†
- *	@param	init_num	ƒ[ƒN‚ğ‰Šú‰»‚·‚é’l
- *	@param	tsk_pri		ƒ^ƒXƒN—Dæ‡ˆÊ
+ *	@param	p_laster	ãƒ¯ãƒ¼ã‚¯
+ *	@param	start		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹é–‹å§‹ï½™åº§æ¨™
+ *	@param	end			ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹çµ‚äº†ï½™åº§æ¨™
+ *	@param	add_r		sinã‚«ãƒ¼ãƒ–ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆæ™‚ã®è§’åº¦ã‚’è¶³ã—ã¦ã„ãå€¤(0ã€œ65535)
+ *	@param	r_w			sinã‚«ãƒ¼ãƒ–ã®åŠå¾„
+ *	@param	scr_sp		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰	æ•´æ•°*100ã—ãŸå€¤	ãƒã‚¤ãƒŠã‚¹æœ‰åŠ¹
+ *	@param	bg_no		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚’ã‹ã‘ã‚‹BGã®ç•ªå·
+ *	@param	init_num	ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–ã™ã‚‹å€¤
+ *	@param	tsk_pri		ã‚¿ã‚¹ã‚¯å„ªå…ˆé †ä½
  *
  *	@return	none
  *
@@ -997,7 +997,7 @@ void FEF_Laster_Start( FENCOUNT_LASTER_SCROLL* p_laster, u8 start, u8 end, u16 a
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒXƒ^[ŠJnYˆÊ’uİ’è
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼é–‹å§‹Yä½ç½®è¨­å®š
  *
  *	@param	p_laster
  *	@param	start_y 
@@ -1034,10 +1034,10 @@ void FEF_Laster_BuffYSet( FENCOUNT_LASTER_SCROLL* p_laster, s16 start_y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒXƒ^[‚Ì‰¡À•W‚ğdot‚²‚Æ‚É”½“]‚³‚¹‚é
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã®æ¨ªåº§æ¨™ã‚’dotã”ã¨ã«åè»¢ã•ã›ã‚‹
  *
- *	@param	p_laster	ƒ‰ƒXƒ^[ƒ[ƒN
- *	@param	dot			ƒhƒbƒg”
+ *	@param	p_laster	ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ *	@param	dot			ãƒ‰ãƒƒãƒˆæ•°
  */
 //-----------------------------------------------------------------------------
 void FEF_Laster_BuffXFlip( FENCOUNT_LASTER_SCROLL* p_laster, u32 dot )
@@ -1069,34 +1069,34 @@ void FEF_Laster_BuffXFlip( FENCOUNT_LASTER_SCROLL* p_laster, u32 dot )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒ‰ƒXƒ^[—pƒVƒXƒeƒ€		LASTER
+ *		ãƒ©ã‚¹ã‚¿ãƒ¼ç”¨ã‚·ã‚¹ãƒ†ãƒ 		LASTER
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	HDMAƒRƒ“ƒgƒ[ƒ‹
+//	HDMAã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 //	
 //=====================================
 typedef void (*pFEFTool_LSVBCFunc)( void* work );
-// 1/30 ‚ğƒJƒo[‚·‚éƒVƒXƒeƒ€
+// 1/30 ã‚’ã‚«ãƒãƒ¼ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 
 typedef struct _FEFTOOL_LASTER_VBLANK_CONT{
 	TCB_PTR		vdma_tcb;
 	TCB_PTR		vbuff_tcb;
-	BOOL vblank_lst_flg;// VBlank‚Ås‚¤ˆ—‚ğs‚¤‚©‚Ìƒtƒ‰ƒO
-	BOOL dma_set_flg;	//ƒƒCƒ“ƒ‹[ƒv’†‚ÌVƒuƒ‰ƒ“‚©‚ğƒ`ƒFƒbƒN‚·‚éƒtƒ‰ƒO
+	BOOL vblank_lst_flg;// VBlankã§è¡Œã†å‡¦ç†ã‚’è¡Œã†ã‹ã®ãƒ•ãƒ©ã‚°
+	BOOL dma_set_flg;	//ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ä¸­ã®Vãƒ–ãƒ©ãƒ³ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ•ãƒ©ã‚°
 	
-	pFEFTool_LSVBCFunc	vblank1;	// ‚R‚OƒtƒŒ[ƒ€‚Ì’Êí‚ÌVƒuƒ‰ƒ“ƒN—pˆ—
-	pFEFTool_LSVBCFunc	vblank2;	// “r’†‚ÌVƒuƒ‰ƒ“ƒN—pˆ—
+	pFEFTool_LSVBCFunc	vblank1;	// ï¼“ï¼ãƒ•ãƒ¬ãƒ¼ãƒ ã®é€šå¸¸ã®Vãƒ–ãƒ©ãƒ³ã‚¯ç”¨å‡¦ç†
+	pFEFTool_LSVBCFunc	vblank2;	// é€”ä¸­ã®Vãƒ–ãƒ©ãƒ³ã‚¯ç”¨å‡¦ç†
 	void * work;
 } FEFTOOL_LSVBC;
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	’ÊíVƒuƒ‰ƒ“ƒN
+ *	@brief	é€šå¸¸Vãƒ–ãƒ©ãƒ³ã‚¯
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return	none
  *
@@ -1108,12 +1108,12 @@ static void FEFTool_LSVBC_VBlank1( TCB_PTR tcb, void* work )
 	FEFTOOL_LSVBC* wk = work;
 	
 	if( wk->vblank_lst_flg ){
-		// Ÿ‚ÌVƒuƒ‰ƒ“ƒNŠúŠÔ’†‚ÉDMAİ’è‚ğs‚¤
-		// ‚Q‰ñ–Ú‚Í‚±‚±‚Ås‚¤‚Ì‚Å‚P‰ñ–Ú‚¾‚¯ƒƒCƒ“ƒ‹[ƒv
-		// ‚È‚¢‚Å‚­‚éVƒuƒ‰ƒ“ƒNŠúŠÔ’†‚É‚â‚Á‚Ä‚à‚ç‚¤
+		// æ¬¡ã®Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ä¸­ã«DMAè¨­å®šã‚’è¡Œã†
+		// ï¼’å›ç›®ã¯ã“ã“ã§è¡Œã†ã®ã§ï¼‘å›ç›®ã ã‘ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
+		// ãªã„ã§ãã‚‹Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ä¸­ã«ã‚„ã£ã¦ã‚‚ã‚‰ã†
 		wk->dma_set_flg = TRUE;
 
-		// ’Êí‚ÌVƒuƒ‰ƒ“ƒNˆ—
+		// é€šå¸¸ã®Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†
 		wk->vblank1( wk->work );
 
 	}else{
@@ -1123,7 +1123,7 @@ static void FEFTool_LSVBC_VBlank1( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“r’†‚É“ü‚éVƒuƒ‰ƒ“ƒNŠúŠÔ—pŠÖ”
+ *	@brief	é€”ä¸­ã«å…¥ã‚‹Vãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ç”¨é–¢æ•°
  *
  *	@param	tcb
  *	@param	work 
@@ -1139,7 +1139,7 @@ static void FEFTool_LSVBC_VBlank2( TCB_PTR tcb, void* work )
 	
 	if( wk->vblank_lst_flg && wk->dma_set_flg ){
 
-		// “r’†‚ÌVƒuƒ‰ƒ“ƒNˆ—
+		// é€”ä¸­ã®Vãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†
 		wk->vblank2( wk->work );
 		
 		wk->dma_set_flg = FALSE;
@@ -1149,12 +1149,12 @@ static void FEFTool_LSVBC_VBlank2( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[Vƒuƒ‰ƒ“ƒNƒVƒXƒeƒ€
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼Vãƒ–ãƒ©ãƒ³ã‚¯ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@param	p_lsvbc		ƒ‰ƒXƒ^[Vƒuƒ‰ƒ“ƒNƒVƒXƒeƒ€ƒ[ƒN
- *	@param	work		ˆø”‚É“n‚·ƒ[ƒN
- *	@param	pfunc1		’Êí‚ÌVƒuƒ‰ƒ“ƒN
- *	@param	pfunc2		“r’†‚ÌVƒuƒ‰ƒ“ƒN
+ *	@param	p_lsvbc		ãƒ©ã‚¹ã‚¿ãƒ¼Vãƒ–ãƒ©ãƒ³ã‚¯ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	work		å¼•æ•°ã«æ¸¡ã™ãƒ¯ãƒ¼ã‚¯
+ *	@param	pfunc1		é€šå¸¸ã®Vãƒ–ãƒ©ãƒ³ã‚¯
+ *	@param	pfunc2		é€”ä¸­ã®Vãƒ–ãƒ©ãƒ³ã‚¯
  *
  *	@return
  *
@@ -1171,7 +1171,7 @@ static void FEFTool_LSVBC_Init( FEFTOOL_LSVBC* p_lsvbc, void* work, pFEFTool_LSV
 	p_lsvbc->vblank1		= pfunc1;
 	p_lsvbc->vblank2		= pfunc2;
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	p_lsvbc->vbuff_tcb = VWaitTCB_Add( FEFTool_LSVBC_VBlank1, p_lsvbc, 0 );
 	p_lsvbc->vdma_tcb = VIntrTCB_Add( FEFTool_LSVBC_VBlank2, p_lsvbc, 0 );
 }
@@ -1179,9 +1179,9 @@ static void FEFTool_LSVBC_Init( FEFTOOL_LSVBC* p_lsvbc, void* work, pFEFTool_LSV
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[—pVƒuƒ‰ƒ“ƒNŠÇ—ƒVƒXƒeƒ€”jŠü
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ç”¨Vãƒ–ãƒ©ãƒ³ã‚¯ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_lsvbc		”jŠü‚·‚éƒ‰ƒXƒ^[Vƒuƒ‰ƒ“ƒNŠÇ—ƒVƒXƒeƒ€
+ *	@param	p_lsvbc		ç ´æ£„ã™ã‚‹ãƒ©ã‚¹ã‚¿ãƒ¼Vãƒ–ãƒ©ãƒ³ã‚¯ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
@@ -1192,7 +1192,7 @@ static void FEFTool_LSVBC_Delete( FEFTOOL_LSVBC* p_lsvbc )
 {
 	GF_ASSERT( p_lsvbc );
 
-	// VBlankŠÖ””jŠü
+	// VBlanké–¢æ•°ç ´æ£„
 	if( p_lsvbc->vbuff_tcb != NULL ){
 		TCB_Delete( p_lsvbc->vbuff_tcb );
 	}
@@ -1205,9 +1205,9 @@ static void FEFTool_LSVBC_Delete( FEFTOOL_LSVBC* p_lsvbc )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Vƒuƒ‰ƒ“ƒNƒVƒXƒeƒ€‚Ì‚P‚¶’â~
+ *	@brief	Vãƒ–ãƒ©ãƒ³ã‚¯ã‚·ã‚¹ãƒ†ãƒ ã®ï¼‘ã˜åœæ­¢
  *
- *	@param	p_lsvbc		ƒ[ƒN
+ *	@param	p_lsvbc		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1223,9 +1223,9 @@ static void FEFTool_LSVBC_Stop( FEFTOOL_LSVBC* p_lsvbc )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Vƒuƒ‰ƒ“ƒNƒVƒXƒeƒ€‚ÌÄŠJ
+ *	@brief	Vãƒ–ãƒ©ãƒ³ã‚¯ã‚·ã‚¹ãƒ†ãƒ ã®å†é–‹
  *
- *	@param	p_lsvbc		ƒ[ƒN
+ *	@param	p_lsvbc		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1241,26 +1241,26 @@ static void FEFTool_LSVBC_Start( FEFTOOL_LSVBC* p_lsvbc )
 
 //-------------------------------------
 //	
-//	ƒoƒbƒtƒ@“à‚ğ‰½‚à‘€ì‚µ‚È‚¢
+//	ãƒãƒƒãƒ•ã‚¡å†…ã‚’ä½•ã‚‚æ“ä½œã—ãªã„
 //	
 //=====================================
 typedef struct _FEFTOOL_DEFLASTER{
 	FEFTOOL_LSVBC vblank;
 
-	// ƒ‰ƒXƒ^[ƒf[ƒ^
-	LASTER_SYS_PTR lst;	// ƒ‰ƒXƒ^[ƒVƒXƒeƒ€
-	ENC_LASTER_BUFFER	buff1[ FEFTOOL_DEFLASTER_BUFF_SIZE ];	// ƒ_ƒuƒ‹ƒoƒbƒtƒ@
-	ENC_LASTER_BUFFER	buff2[ FEFTOOL_DEFLASTER_BUFF_SIZE ];	// ƒ_ƒuƒ‹ƒoƒbƒtƒ@
-	u32	addr;	// DMA“]‘—æ
+	// ãƒ©ã‚¹ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	LASTER_SYS_PTR lst;	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+	ENC_LASTER_BUFFER	buff1[ FEFTOOL_DEFLASTER_BUFF_SIZE ];	// ãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡
+	ENC_LASTER_BUFFER	buff2[ FEFTOOL_DEFLASTER_BUFF_SIZE ];	// ãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡
+	u32	addr;	// DMAè»¢é€å…ˆ
 	
 } FEFTOOL_DEFLASTER;
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	DMA“]‘—İ’è
+ *	@brief	DMAè»¢é€è¨­å®š
  *
- *	@param	p_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ *	@param	p_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
@@ -1271,21 +1271,21 @@ static void FEFTool_DefLasterDmaTransSet( FEFTOOL_DEFLASTER* wk )
 {
 	const void* buff;
 
-	// QÆ—pƒoƒbƒtƒ@æ“¾
+	// å‚ç…§ç”¨ãƒãƒƒãƒ•ã‚¡å–å¾—
 	buff = LASTER_GetReadBuff( wk->lst );
 
 	LASTER_DmaStop();
 	
-	// HBlankDmaTrans‚Éİ’è
+	// HBlankDmaTransã«è¨­å®š
 	LASTER_DmaSet( buff, (void*)wk->addr, HDMA_TRANS_SIZE, LASTER_DMA_TYPE32 );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[—pVƒuƒ‰ƒ“ƒNŠÇ—ƒVƒXƒeƒ€‚É“n‚·’ÊíVƒuƒ‰ƒ“ƒNŠÖ”
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ç”¨Vãƒ–ãƒ©ãƒ³ã‚¯ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ã«æ¸¡ã™é€šå¸¸Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
  *
- *	@param	work	ƒ[ƒN
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1296,19 +1296,19 @@ static void FEFTool_DefLasterNormVblank( void* work )
 {
 	FEFTOOL_DEFLASTER* wk = work;
 
-	// ƒoƒbƒtƒ@ƒXƒCƒbƒ`
+	// ãƒãƒƒãƒ•ã‚¡ã‚¹ã‚¤ãƒƒãƒ
 	LASTER_VBlank( wk->lst );
 
-	// HDMA“o˜^
+	// HDMAç™»éŒ²
 	FEFTool_DefLasterDmaTransSet( wk );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief ƒ‰ƒXƒ^[—pVƒuƒ‰ƒ“ƒNŠÇ—ƒVƒXƒeƒ€‚É“n‚·“r’†‚ÉŒÄ‚Î‚ê‚éVƒuƒ‰ƒ“ƒN—pˆ—
+ *	@brief ãƒ©ã‚¹ã‚¿ãƒ¼ç”¨Vãƒ–ãƒ©ãƒ³ã‚¯ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ã«æ¸¡ã™é€”ä¸­ã«å‘¼ã°ã‚Œã‚‹Vãƒ–ãƒ©ãƒ³ã‚¯ç”¨å‡¦ç†
  *
- *	@param		work	ƒ[ƒN
+ *	@param		work	ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return		none
  *
@@ -1319,20 +1319,20 @@ static void FEFTool_DefLasterCenterVblank( void* work )
 {
 	FEFTOOL_DEFLASTER* wk = work;
 
-	// HDMA“o˜^
+	// HDMAç™»éŒ²
 	FEFTool_DefLasterDmaTransSet( wk );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ˆ—‰Šú‰»
+ *	@brief	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼å‡¦ç†åˆæœŸåŒ–
  *
- *	@param	addr		“]‘—æƒŒƒWƒXƒ^ƒAƒhƒŒƒX
- *	@param	init_num	ƒoƒbƒtƒ@‚Ì‰Šú’l
- *	@param	heap		ƒq[ƒvID
+ *	@param	addr		è»¢é€å…ˆãƒ¬ã‚¸ã‚¹ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹
+ *	@param	init_num	ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸå€¤
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ì¬‚µ‚½ƒ‰ƒXƒ^[ˆ—ƒf[ƒ^
+ *	@return	ä½œæˆã—ãŸãƒ©ã‚¹ã‚¿ãƒ¼å‡¦ç†ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -1351,13 +1351,13 @@ FEFTOOL_DEFLASTER_PTR FEFTool_InitDefLaster( u32 addr, ENC_LASTER_BUFFER *init_n
 	GF_ASSERT( p_lst->lst );
 	p_lst->addr			= addr;
 
-	// ƒoƒbƒtƒ@‚Ì‰Šú‰»
+	// ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ–
 	for(i = 0; i < FEFTOOL_DEFLASTER_BUFF_SIZE; i++){
 		p_lst->buff1[i] = *init_num;
 		p_lst->buff2[i] = *init_num;
 	}
 
-	// Vƒuƒ‰ƒ“ƒNŠÇ—ƒVƒXƒeƒ€‚ğ‰Šú‰»
+	// Vãƒ–ãƒ©ãƒ³ã‚¯ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–
 	FEFTool_LSVBC_Init( &p_lst->vblank, p_lst, FEFTool_DefLasterNormVblank, FEFTool_DefLasterCenterVblank );
 
 	return p_lst;
@@ -1366,9 +1366,9 @@ FEFTOOL_DEFLASTER_PTR FEFTool_InitDefLaster( u32 addr, ENC_LASTER_BUFFER *init_n
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ˆ—‚ÌI—¹
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼å‡¦ç†ã®çµ‚äº†
  *
- *	@param	p_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1379,10 +1379,10 @@ void FEFTool_DeleteDefLaster( FEFTOOL_DEFLASTER_PTR p_lst )
 {
 	GF_ASSERT( p_lst );
 
-	// VblankŠÇ—ƒVƒXƒeƒ€”jŠü
+	// Vblankç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	FEFTool_LSVBC_Delete( &p_lst->vblank );
 	
-	// ƒ‰ƒXƒ^[ƒVƒXƒeƒ€”jŠü
+	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	if( p_lst->lst != NULL ){
 		LASTER_Delete( p_lst->lst );
 	}
@@ -1393,11 +1393,11 @@ void FEFTool_DeleteDefLaster( FEFTOOL_DEFLASTER_PTR p_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‘‚«‚İ—pƒoƒbƒtƒ@‚Ìæ“¾
+ *	@brief	æ›¸ãè¾¼ã¿ç”¨ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
  *
- *	@param	cp_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ *	@param	cp_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	‘‚«‚İ—pƒoƒbƒtƒ@
+ *	@return	æ›¸ãè¾¼ã¿ç”¨ãƒãƒƒãƒ•ã‚¡
  *
  *
  */
@@ -1412,11 +1412,11 @@ void* FEFTool_GetDefLasterWriteBuff( CONST_FEFTOOL_DEFLASTER_PTR cp_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	QÆ—pƒoƒbƒtƒ@‚ğæ“¾
+ *	@brief	å‚ç…§ç”¨ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—
  *
- *	@param	cp_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ *	@param	cp_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	QÆ—pƒoƒbƒtƒ@
+ *	@return	å‚ç…§ç”¨ãƒãƒƒãƒ•ã‚¡
  *
  *
  */
@@ -1431,14 +1431,14 @@ const void* FEFTool_GetDefLasterReadBuff( CONST_FEFTOOL_DEFLASTER_PTR cp_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ˆ—‚Ì’â~
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼å‡¦ç†ã®åœæ­¢
  *
- *	@param	p_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒ[ƒN
+ *	@param	p_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
- * Vƒuƒ‰ƒ“ƒNŠÖ”‚ª‹@”\‚µ‚È‚­‚È‚é‚Ì‚ÅA
- * ‰æ–Ê‚Éƒ‰ƒXƒ^[‚ª”½‰f‚³‚ê‚È‚­‚È‚è‚Ü‚·B
+ * Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ãŒæ©Ÿèƒ½ã—ãªããªã‚‹ã®ã§ã€
+ * ç”»é¢ã«ãƒ©ã‚¹ã‚¿ãƒ¼ãŒåæ˜ ã•ã‚Œãªããªã‚Šã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -1452,13 +1452,13 @@ void FEFTool_StopDefLaster( FEFTOOL_DEFLASTER_PTR p_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ˆ—ƒXƒ^[ƒg
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼å‡¦ç†ã‚¹ã‚¿ãƒ¼ãƒˆ
  *
- *	@param	p_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ *	@param	p_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
- * ‰æ–Ê‚Éƒ‰ƒXƒ^[‚ª”½‰f‚³‚ê‚é‚æ‚¤‚É‚È‚è‚Ü‚·B
+ * ç”»é¢ã«ãƒ©ã‚¹ã‚¿ãƒ¼ãŒåæ˜ ã•ã‚Œã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -1473,10 +1473,10 @@ void FEFTool_StartDefLaster( FEFTOOL_DEFLASTER* p_lst )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒf[ƒ^“]‘—æƒAƒhƒŒƒX‚ğÄİ’è
+ *	@brief	ãƒ‡ãƒ¼ã‚¿è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å†è¨­å®š
  *
- *	@param	p_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
- *	@param	addr	“]‘—æƒAƒhƒŒƒX
+ *	@param	p_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	addr	è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *	@return	none
  *
@@ -1493,11 +1493,11 @@ void FEFTool_SetDefLasterTransAddr( FEFTOOL_DEFLASTER_PTR p_lst, u32 addr )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒf[ƒ^“]‘—æƒAƒhƒŒƒX‚ğæ“¾
+ * @brief	ãƒ‡ãƒ¼ã‚¿è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- * @param	p_lst	ƒfƒtƒHƒ‹ƒgƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ * @param	p_lst	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
- * @retval	u32		“]‘—æƒAƒhƒŒƒX
+ * @retval	u32		è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //--------------------------------------------------------------
@@ -1530,23 +1530,23 @@ static g_scr2 = 192/2*100;
 void LASTER_ScrollTcb( TCB_PTR tcb, void* work )
 {
 	LASTER_SCROLL_PTR p_lstscr = work;
-	int i;			// ƒ‹[ƒv—p
-	u32* w_buff;	// ‘‚«‚İ—pƒoƒbƒtƒ@
-	u8 write;		// ‘‚«‚İ—v‘f”
-	s16	mat_x;		// xÀ•W
-	u16 mat_y;		// yÀ•W
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	u32* w_buff;	// æ›¸ãè¾¼ã¿ç”¨ãƒãƒƒãƒ•ã‚¡
+	u8 write;		// æ›¸ãè¾¼ã¿è¦ç´ æ•°
+	s16	mat_x;		// xåº§æ¨™
+	u16 mat_y;		// yåº§æ¨™
 
-	// ‘‚«‚İ—pƒoƒbƒtƒ@æ“¾
+	// æ›¸ãè¾¼ã¿ç”¨ãƒãƒƒãƒ•ã‚¡å–å¾—
 	w_buff = LASTER_GetWriteBuff( p_lstscr->p_laster );
 	
-	// ƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğİ’è
+	// ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 	write = p_lstscr->scr_now / 100;
 	for( i=p_lstscr->start; i<=p_lstscr->end; i++ ){
-		// ¡‚Ì’læ“¾
+		// ä»Šã®å€¤å–å¾—
 		mat_x = w_buff[ i ] & 0xffff;
 		mat_y = w_buff[ i ] >> 16;
 		
-		// ƒTƒCƒ“ƒJ[ƒu”½‰f
+		// ã‚µã‚¤ãƒ³ã‚«ãƒ¼ãƒ–åæ˜ 
 		if ( i < ( p_lstscr->end / 2 ) ){
 			write = g_scr1 / 100;
 			mat_y -= p_lstscr->sinTbl[ write ];
@@ -1569,7 +1569,7 @@ void LASTER_ScrollTcb( TCB_PTR tcb, void* work )
 			mat_x -= p_lstscr->sinTbl[ write ];
 		}
 		
-		// ’lİ’è
+		// å€¤è¨­å®š
 		w_buff[ i ] = (mat_y << 16) | (mat_x & 0xffff);
 		
 		write = (write + 1) % LASTER_SCROLL_BUFF_SIZE;
@@ -1590,7 +1590,7 @@ void LASTER_ScrollTcb( TCB_PTR tcb, void* work )
 		if( g_scr2 < 0 ){ g_scr2 += (LASTER_SCROLL_BUFF_SIZE * 100); }
 	}
 
-	// ƒXƒNƒ[ƒ‹ˆÊ’uŒvZ
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ä½ç½®è¨ˆç®—
 	p_lstscr->scr_now += p_lstscr->scr_sp;
 	if( p_lstscr->scr_now >= (LASTER_SCROLL_BUFF_SIZE * 100) ){
 		p_lstscr->scr_now %= (LASTER_SCROLL_BUFF_SIZE * 100);

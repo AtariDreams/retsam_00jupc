@@ -16,7 +16,7 @@
 
 #include "field_fishing.h"
 
-//ƒGƒ‰[‰ñ”ğ‚Ì‚½‚ß‚É‚¨‚¢‚Ä‚¨‚­
+//ã‚¨ãƒ©ãƒ¼å›é¿ã®ãŸã‚ã«ãŠã„ã¦ãŠã
 #include "field_battle.h"
 
 typedef enum  {

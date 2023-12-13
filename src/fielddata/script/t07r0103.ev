@@ -11,11 +11,11 @@
 	.include	"../eventdata/zone_t07r0102evd.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_t07r0103_counterw
 _EVENT_DATA_END
@@ -29,22 +29,22 @@ _EVENT_DATA_END
 
 
 /********************************************************************/
-//						ƒGƒŒƒx[ƒ^[ƒK[ƒ‹
+//						ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ãƒ¼ã‚¬ãƒ¼ãƒ«
 /********************************************************************/
 ev_t07r0103_counterw:
 	_TALK_OBJ_START
 
-	//“ÁŽêÚ‘±æ‚©‚çAŒ»Ý‚ÌƒtƒƒAƒiƒ“ƒo[‚ðŽæ“¾
+	//ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‹ã‚‰ã€ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	_ELEVATOR_FLOOR_GET	WK_ELEVATOR_FLOOR
 
-	//u›‚©‚¢v•¶Žš—ñƒZƒbƒg
+	//ã€Œâ—‹ã‹ã„ã€æ–‡å­—åˆ—ã‚»ãƒƒãƒˆ
 	_SWITCH			WK_ELEVATOR_FLOOR
 	_CASE_JUMP		FLOOR_T07R0103_2F,case12_t07r0103_elevator_01
 	_CASE_JUMP		FLOOR_T07R0103_1F,case13_t07r0103_elevator_01
 	_END
 
 //--------------------------------------------------------------------
-//u›‚©‚¢v•¶Žš—ñƒZƒbƒg
+//ã€Œâ—‹ã‹ã„ã€æ–‡å­—åˆ—ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------------
 case12_t07r0103_elevator_01:
 	_NUMBER_NAME	0,2
@@ -55,15 +55,15 @@ case13_t07r0103_elevator_01:
 	_JUMP			ev_t07r0103_elevator_02
 
 //--------------------------------------------------------------------
-//	Œ»Ý‚ÌƒtƒƒA‚ðo‚·
+//	ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ã‚’å‡ºã™
 //--------------------------------------------------------------------
 ev_t07r0103_elevator_02:
 	_ELEVATOR_FLOOR_WRITE	20,1,WK_ELEVATOR_FLOOR,WK_ELEVATOR_FLOOR
 
-	//u‚È‚ñ‚©‚¢‚Ö‚¢‚«‚Ü‚·‚©Hv
+	//ã€Œãªã‚“ã‹ã„ã¸ã„ãã¾ã™ã‹ï¼Ÿã€
 	_TALKMSG		msg_t07r0103_counterw_01
 	
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 	_BMPMENU_MAKE_LIST	msg_ev_win_114,0
 	_BMPMENU_MAKE_LIST	msg_ev_win_113,1
 	_BMPMENU_MAKE_LIST	msg_ev_win_121,2
@@ -75,13 +75,13 @@ ev_t07r0103_elevator_02:
 	_JUMP			end_t07r0103_elevator_01
 
 //--------------------------------------------------------------------
-//	‘I‚ñ‚¾ƒtƒƒA‚É‚æ‚Á‚Ä•ªŠò
+//	é¸ã‚“ã ãƒ•ãƒ­ã‚¢ã«ã‚ˆã£ã¦åˆ†å²
 //--------------------------------------------------------------------
 case2_t07r0103_elevator_01:
-	//ƒtƒƒAƒEƒBƒ“ƒhƒE‚ðÁ‚·ƒEƒFƒCƒg
+	//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ã‚¦ã‚§ã‚¤ãƒˆ
 	_TIME_WAIT		1,SCWK_ANSWER
 
-	//“ÁŽêÚ‘±æ‚©‚çAŒ»Ý‚ÌƒtƒƒAƒiƒ“ƒo[‚ðŽæ“¾
+	//ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‹ã‚‰ã€ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	_ELEVATOR_FLOOR_GET	WK_ELEVATOR_FLOOR
 
 	//_SP_LOCATION_SET	ZONE_ID_T07R0102,T07R0102_MAT01,18,2,DIR_DOWN
@@ -92,16 +92,16 @@ case2_t07r0103_elevator_01:
 	_LDVAL			SCWK_TEMP0,DIR_UP
 	_CALL			common_01_t07r0103
 
-	//ˆÚ“®‚µ‚½ŠK‚ð‘ã“ü
+	//ç§»å‹•ã—ãŸéšŽã‚’ä»£å…¥
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_T07R0103_2F
 
 	_JUMP			ev_t07r0103_elevator_03
 
 case3_t07r0103_elevator_01:
-	//ƒtƒƒAƒEƒBƒ“ƒhƒE‚ðÁ‚·ƒEƒFƒCƒg
+	//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ã‚¦ã‚§ã‚¤ãƒˆ
 	_TIME_WAIT		1,SCWK_ANSWER
 
-	//“ÁŽêÚ‘±æ‚©‚çAŒ»Ý‚ÌƒtƒƒAƒiƒ“ƒo[‚ðŽæ“¾
+	//ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‹ã‚‰ã€ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	_ELEVATOR_FLOOR_GET	WK_ELEVATOR_FLOOR
 
 	_SP_LOCATION_SET	ZONE_ID_T07R0101,T07R0101_MAT02,18,2,DIR_DOWN
@@ -111,36 +111,36 @@ case3_t07r0103_elevator_01:
 	_LDVAL			SCWK_TEMP0,DIR_DOWN
 	_CALL			common_01_t07r0103
 
-	//ˆÚ“®‚µ‚½ŠK‚ð‘ã“ü
+	//ç§»å‹•ã—ãŸéšŽã‚’ä»£å…¥
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_T07R0103_1F
 
 	_JUMP			ev_t07r0103_elevator_03
 
 //--------------------------------------------------------------------
-//	ƒGƒŒƒx[ƒ^‰‰o
+//	ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿æ¼”å‡º
 //--------------------------------------------------------------------
 common_01_t07r0103:
-	//ˆÚ“®‰‰o‚Ì‘O‚ÉŒ»Ý‚ÌƒtƒƒAƒEƒBƒ“ƒhƒE‚ðíœ
+	//ç§»å‹•æ¼”å‡ºã®å‰ã«ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‰Šé™¤
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_NOTHING
 
-	/*is•ûŒüƒƒbƒZ[ƒW•\Ž¦*/
+	/*é€²è¡Œæ–¹å‘ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º*/
 	_IFVAL_CALL		SCWK_TEMP0,EQ,DIR_DOWN,ev_t07r0103_down_msg
 	_IFVAL_CALL		SCWK_TEMP0,EQ,DIR_UP,ev_t07r0103_up_msg
 
 	_TALK_CLOSE
 
-	//ƒGƒŒƒx[ƒ^ƒK[ƒ‹‚ª‰º‚ðŒü‚­
+	//ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ã‚¬ãƒ¼ãƒ«ãŒä¸‹ã‚’å‘ã
 	_OBJ_ANIME	T07R0103_COUNTERW_01,anm_t07r0103_turn_d
 	_OBJ_ANIME_WAIT
 
-	//‘I‘ð‰¹‚ÌI—¹‘Ò‚¿
+	//é¸æŠžéŸ³ã®çµ‚äº†å¾…ã¡
 	_SE_WAIT		SEQ_SE_DP_SELECT
 	_ELEVATOR_ANM	SCWK_TEMP0,T07R0103_ELEVATOR_LOOP
 
 	_RET
 
 //--------------------------------------------------------------------
-/*is•ûŒüƒƒbƒZ[ƒW•\Ž¦*/
+/*é€²è¡Œæ–¹å‘ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º*/
 //--------------------------------------------------------------------
 ev_t07r0103_down_msg:
 	_TALK_KEYWAIT	msg_t07r0103_counterw_03
@@ -151,7 +151,7 @@ ev_t07r0103_up_msg:
 	_RET
 
 //--------------------------------------------------------------------
-//	ƒGƒŒƒx[ƒ^‰‰oŒãAI—¹
+//	ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿æ¼”å‡ºå¾Œã€çµ‚äº†
 //--------------------------------------------------------------------
 ev_t07r0103_elevator_03:
 	_TALKMSG		msg_t07r0103_counterw_05
@@ -161,25 +161,25 @@ ev_t07r0103_elevator_03:
 	_END
 
 //--------------------------------------------------------------------
-//	ƒLƒƒƒ“ƒZƒ‹I—¹
+//	ã‚­ãƒ£ãƒ³ã‚»ãƒ«çµ‚äº†
 //--------------------------------------------------------------------
 end_t07r0103_elevator_01:
-	//ˆÚ“®‰‰o‚Ì‘O‚ÉŒ»Ý‚ÌƒtƒƒAƒEƒBƒ“ƒhƒE‚ðíœ
+	//ç§»å‹•æ¼”å‡ºã®å‰ã«ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‰Šé™¤
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_NOTHING
 
-	//ƒtƒƒAƒEƒBƒ“ƒhƒE‚ðÁ‚·ƒEƒFƒCƒg
+	//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ã‚¦ã‚§ã‚¤ãƒˆ
 	_TIME_WAIT		1,SCWK_ANSWER
 
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
-/*u‚à‚¤“ž’…‚µ‚Ä‚¨‚è‚Ü‚·v*/
+/*ã€Œã‚‚ã†åˆ°ç€ã—ã¦ãŠã‚Šã¾ã™ã€*/
 end_t07r0103_elevator_02:
-	//ˆÚ“®‰‰o‚Ì‘O‚ÉŒ»Ý‚ÌƒtƒƒAƒEƒBƒ“ƒhƒE‚ðíœ
+	//ç§»å‹•æ¼”å‡ºã®å‰ã«ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‰Šé™¤
 	_LDVAL			WK_ELEVATOR_FLOOR,FLOOR_NOTHING
 
-	//ƒtƒƒAƒEƒBƒ“ƒhƒE‚ðÁ‚·ƒEƒFƒCƒg
+	//ãƒ•ãƒ­ã‚¢ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æ¶ˆã™ã‚¦ã‚§ã‚¤ãƒˆ
 	_TIME_WAIT		1,SCWK_ANSWER
 
 	_TALKMSG		msg_t07r0103_counterw_04
@@ -189,7 +189,7 @@ end_t07r0103_elevator_02:
 	_END
 
 //--------------------------------------------------------------------
-//‰º‚ðŒü‚­
+//ä¸‹ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_t07r0103_turn_d
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1

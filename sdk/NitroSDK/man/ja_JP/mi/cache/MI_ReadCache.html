@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
 <title>MI_ReadCache</title>
@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>MI_ReadCache</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
   <dd>
 <code>#include &lt;nitro/mi.h&gt;<br />
@@ -17,66 +17,66 @@
   BOOL MI_ReadCache(<a href="./MICache.html">MICache</a> *cache, void *buffer, u32 offset, u32 length);</code></dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <table border="1" width="100%">
   <tbody>
     <tr>
       <td width="13%"><em><strong>cache</strong></em></td>
-      <td width="87%">�A�N�Z�X����<a href="./MICache.html">MICache</a>�\���̂ւ̃|�C���^<br />
-      <a href="./MI_InitCache.html">MI_InitCache</a>�֐��ŏ���������Ă���K�v������܂��B</td>
+      <td width="87%">アクセスする<a href="./MICache.html">MICache</a>構造体へのポインタ<br />
+      <a href="./MI_InitCache.html">MI_InitCache</a>関数で初期化されている必要があります。</td>
     </tr>
     <tr>
       <td width="13%"><em><strong>buffer</strong></em></td>
-      <td width="87%">�ǂݍ��񂾃f�[�^���i�[����]���惁����
-      NULL���w�肵���ꍇ�́A�w��͈͂̃L���b�V����ǂ݂��w�����܂��B<br />
-      �ڍׂ͌�q�́u�����v�����Q�Ƃ��������B</td>
+      <td width="87%">読み込んだデータを格納する転送先メモリ
+      NULLを指定した場合は、指定範囲のキャッシュ先読みを指示します。<br />
+      詳細は後述の「説明」をご参照ください。</td>
     </tr>
     <tr>
       <td width="13%"><em><strong>offset</strong></em></td>
-      <td width="87%">�f�[�^��ǂݍ��ނׂ��f�o�C�X��̐擪�A�h���X</td>
+      <td width="87%">データを読み込むべきデバイス上の先頭アドレス</td>
     </tr>
     <tr>
       <td width="13%"><em><strong>length</strong></em></td>
-      <td width="87%">�ǂݍ��ރT�C�Y</td>
+      <td width="87%">読み込むサイズ</td>
     </tr>
   </TBODY>
 </table>
 
-<h2>�Ԃ�l</h2>
-<p>�L���b�V���Ƀq�b�g���ēǂݍ��݂����������TRUE�A�����łȂ����FALSE�B</p>
+<h2>返り値</h2>
+<p>キャッシュにヒットして読み込みが成功すればTRUE、そうでなければFALSE。</p>
 
-<h2>����</h2>
-<p><a href="./MICache.html">MICache</a>�\���̂̃L���b�V���y�[�W���X�g����f�[�^��ǂݍ��݂܂��B<br />
-�w�肳�ꂽ�͈͂̃f�[�^�����ł�<a href="MI_LoadCache.html">MI_LoadCache</a>�֐��ɂ���ă��[�h�ς݂ł���΁A
-�L���b�V���y�[�W���X�g����f�[�^���R�s�[����TRUE��Ԃ��܂��B<br />
-�w�肳�ꂽ�͈͂̈ꕔ�܂��͑S�Ă��L���b�V���y�[�W���X�g�ɑ��݂��Ȃ��ꍇ�́A
-�L���b�V���y�[�W���X�g���̂����Ƃ��g�p����Ă��Ȃ��y�[�W��j�����ă��[�h�҂���Ԃɂ��AFALSE��Ԃ��܂��B<br />
-���[�h�҂���ԂɂȂ����y�[�W�́A�����<a href="MI_LoadCache.html">MI_LoadCache</a>�֐��Ăяo���Ŏ��ۂɃ��[�h����܂��B
+<h2>説明</h2>
+<p><a href="./MICache.html">MICache</a>構造体のキャッシュページリストからデータを読み込みます。<br />
+指定された範囲のデータがすでに<a href="MI_LoadCache.html">MI_LoadCache</a>関数によってロード済みであれば、
+キャッシュページリストからデータをコピーしてTRUEを返します。<br />
+指定された範囲の一部または全てがキャッシュページリストに存在しない場合は、
+キャッシュページリスト内のもっとも使用されていないページを破棄してロード待ち状態にし、FALSEを返します。<br />
+ロード待ち状態になったページは、次回の<a href="MI_LoadCache.html">MI_LoadCache</a>関数呼び出しで実際にロードされます。
 </p>
 <p>
-�]���惁�����ł���buffer��NULL���w�肵���ꍇ�̓L���b�V���Ƀq�b�g���Ă��������܂��񂪁A
-�q�b�g���Ȃ������͈͂̃y�[�W�����[�h�҂���Ԃɂ��鏈���͓��l�ł��B<br />
-����āA�w��͈͂��u��ǂݏ����v����悤�w������ړI�ŗ��p���邱�Ƃ��ł��܂��B
+転送先メモリであるbufferにNULLを指定した場合はキャッシュにヒットしても何もしませんが、
+ヒットしなかった範囲のページをロード待ち状態にする処理は同様です。<br />
+よって、指定範囲を「先読み準備」するよう指示する目的で利用することができます。
 </p>
 <p>
-���̊֐��̓X���b�h�Z�[�t�ł��B
-�ʂ̃X���b�h��<a href="MI_LoadCache.html">MI_LoadCache</a>�֐��Ȃǂ��Ăяo���Ă���Ԃł��g�p���邱�Ƃ��o���܂��B
+この関数はスレッドセーフです。
+別のスレッドが<a href="MI_LoadCache.html">MI_LoadCache</a>関数などを呼び出している間でも使用することが出来ます。
 </p>
 <p>
-���̋@�\�́A�f�o�C�X�ǂݍ��݃A�N�Z�X�������悭�s�����߂̃��[�e�B���e�B�ł��B<br />
-�ڍׂ�<a href="MICache.html">MICache</a>�\���̂̃��t�@�����X�����Q�Ƃ��������B
+この機能は、デバイス読み込みアクセスを効率よく行うためのユーティリティです。<br />
+詳細は<a href="MICache.html">MICache</a>構造体のリファレンスをご参照ください。
 </p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><code>
 <a href="MI_InitCache.html">MI_InitCache</a>
 <a href="MI_LoadCache.html">MI_LoadCache</a>
 <a href="MI_IsCacheLoading.html">MI_IsCacheLoading</a><br />
 <a href="MICache.html">MICache</a>
 </code></p>
-<h2>����</h2>
+<h2>履歴</h2>
 <p>
-2007/05/16 ����<br />
+2007/05/16 初版<br />
 </p>
 </body>
 </html>

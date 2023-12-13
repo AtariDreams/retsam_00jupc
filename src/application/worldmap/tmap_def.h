@@ -1,13 +1,13 @@
 /**
  *	@file	tmap_def.h
- *	@brief	ƒ^ƒEƒ“ƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹@‹¤—L’è”’è‹`ƒtƒ@ƒCƒ‹
+ *	@brief	ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã€€å…±æœ‰å®šæ•°å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«
  *	@author	Miyuki Iwasawa
  *	@date	06.04.01
  */
 #ifndef __H_TMAP_DEF_H__
 #define __H_TMAP_DEF_H__
 
-///‹¤’Êƒ}ƒNƒ’è‹`
+///å…±é€šãƒžã‚¯ãƒ­å®šç¾©
 #ifdef PM_DEBUG
 #define TMAP_HEAP_PRINT(str) {\
  OS_Printf( "\nINFO : townmap.c -> %s\n",(str));	\
@@ -17,7 +17,7 @@
 #define TMAP_HEAP_PRINT
 #endif	//PM_DEBUG
 
-//ƒXƒNƒŠ[ƒ“ƒTƒCƒYŽæ“¾ƒ}ƒNƒ
+//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚ºå–å¾—ãƒžã‚¯ãƒ­
 #define SCWS_GET(p)	((p)->screenWidth/8)
 #define SCHS_GET(p)	((p)->screenHeight/8)
 
@@ -32,7 +32,7 @@
 
 #define FORCUS_CHG_SYNC	(8)
 
-//ƒƒCƒ“‰æ–ÊDotƒIƒtƒZƒbƒg
+//ãƒ¡ã‚¤ãƒ³ç”»é¢Dotã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define TMAP_MDOT_OFSX	(25)
 #define TMAP_MDOT_OFSZ	(-34)
 #define TMAP_MDOT_UNIT	(7)

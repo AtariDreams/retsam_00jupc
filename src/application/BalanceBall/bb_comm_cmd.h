@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	bb_comm_cmd.h
- * @brief	ŠÈ’P‚Èà–¾‚ð‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜Žã‚’æ›¸ã
  * @author	goto
- * @date	2007.09.25(‰Î)
+ * @date	2007.09.25(ç«)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,11 +19,11 @@
 
 enum CommCommandBB {
 	
-	CCMD_BB_START	= CS_COMMAND_MAX,	///< ’ÊMŠJŽn
-	CCMD_BB_END,						///< e > Žq
-	CCMD_BB_STATE,						///< Žq > ‘S
-	CCMD_BB_RESULT,						///< Žq > ‘S
-	CCMD_BB_SCORE,						///< e > ‘S
+	CCMD_BB_START	= CS_COMMAND_MAX,	///< é€šä¿¡é–‹å§‹
+	CCMD_BB_END,						///< è¦ª > å­
+	CCMD_BB_STATE,						///< å­ > å…¨
+	CCMD_BB_RESULT,						///< å­ > å…¨
+	CCMD_BB_SCORE,						///< è¦ª > å…¨
 	
 	CCMD_BB_CONNECT_END,	
 };

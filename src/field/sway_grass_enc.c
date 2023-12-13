@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	sway_grass_enc.c
- * @brief	—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg
+ * @brief	æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
  * @author	saito GAME FREAK inc.
  * @date	2006.02.14
  */
@@ -36,14 +36,14 @@
 #define SEARCH_AROUND		(4)
 #define SEARCH_WIDTH_MAX	(9)
 #define SEARCH_OFFS			(SEARCH_WIDTH_MAX/2)
-#define SERCH_NUM_ROUND1	(32)	//ŠOüŠO‘¤
-#define SERCH_NUM_ROUND2	(24)	//«
-#define SERCH_NUM_ROUND3	(16)	//«
-#define SERCH_NUM_ROUND4	(8)		//ŠOü“à‘¤
+#define SERCH_NUM_ROUND1	(32)	//å¤–å‘¨å¤–å´
+#define SERCH_NUM_ROUND2	(24)	//â†“
+#define SERCH_NUM_ROUND3	(16)	//â†“
+#define SERCH_NUM_ROUND4	(8)		//å¤–å‘¨å†…å´
 
-#define RARE_POKE_PROP_MAX	(8200)	//•ª•êÅ‘å8200
-#define RARE_POKE_PROP_MIN	(200)	//•ª•êÅ¬200
-#define SUB_PROP			(200)	//·‚µˆø‚­Šm—¦
+#define RARE_POKE_PROP_MAX	(8200)	//åˆ†æ¯æœ€å¤§8200
+#define RARE_POKE_PROP_MIN	(200)	//åˆ†æ¯æœ€å°200
+#define SUB_PROP			(200)	//å·®ã—å¼•ãç¢ºç‡
 
 enum {
 	SEQ_SWAY_SEARCH,
@@ -57,25 +57,25 @@ typedef struct SWAY_GRASS_INFO_tag
 {
 	int GridX;
 	int GridZ;
-	int EncTblCode;	//ƒGƒ“ƒJƒEƒ“ƒg‚·‚éƒe[ƒuƒ‹ƒR[ƒh
+	int EncTblCode;	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚³ãƒ¼ãƒ‰
 	BOOL	SwayGrassFlg;
-	BOOL	ChainFlg;	//˜A½ƒtƒ‰ƒO
+	BOOL	ChainFlg;	//é€£é–ãƒ•ãƒ©ã‚°
 	BOOL	IsRare;
 	EOA_PTR	GrassAnime;
 	VecFx32 GrassPos;
 }SWAY_GRASS_INFO;
 
 typedef struct SWAY_GRASS_tag{
-	int EncTblCode;			//ƒGƒ“ƒJƒEƒ“ƒg‚µ‚½ƒe[ƒuƒ‹ƒR[ƒh
-	int Chain;				//˜A½‰ñ”
-	int EncMonsNo;			//—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg‚µ‚½ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
-	int EncMonsLv;				//—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg‚µ‚½ƒ‚ƒ“ƒXƒ^[ƒŒƒxƒ‹
-	BOOL Valid;		//—h‚ê‘’†‚©‚Ç‚¤‚©
-	BOOL FirstEnc;			//‰—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg‚©
-	BOOL SwayEncReturn;	//‚ä‚ê‘í“¬‚Æ‚µ‚Ä•œ‹A‚µ‚½‚©
+	int EncTblCode;			//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸãƒ†ãƒ¼ãƒ–ãƒ«ã‚³ãƒ¼ãƒ‰
+	int Chain;				//é€£é–å›æ•°
+	int EncMonsNo;			//æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+	int EncMonsLv;				//æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ¬ãƒ™ãƒ«
+	BOOL Valid;		//æºã‚Œè‰ä¸­ã‹ã©ã†ã‹
+	BOOL FirstEnc;			//åˆæºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‹
+	BOOL SwayEncReturn;	//ã‚†ã‚Œè‰æˆ¦é—˜ã¨ã—ã¦å¾©å¸°ã—ãŸã‹
 	SWAY_GRASS_INFO GrassInfo[SEARCH_AROUND];
 	BOUNDING_BOX	BoundingBox;
-	u8 RewritePos;			//ƒ`ƒF[ƒ“ƒŒƒR[ƒh‘‚«Š·‚¦ˆÊ’u
+	u8 RewritePos;			//ãƒã‚§ãƒ¼ãƒ³ãƒ¬ã‚³ãƒ¼ãƒ‰æ›¸ãæ›ãˆä½ç½®
 }SWAY_GRASS;
 
 static BOOL SetSwayGrassInfo(	FIELDSYS_WORK * fsys,
@@ -95,10 +95,10 @@ static void IncChain(int *outChain);
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒƒ‚ƒŠŠm•ÛŠÖ”
- * @param	inHeapID	ƒq[ƒvID
+ * @brief	ãƒ¡ãƒ¢ãƒªç¢ºä¿é–¢æ•°
+ * @param	inHeapID	ãƒ’ãƒ¼ãƒ—ID
  * 
- * @retval	ptr			‚ä‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	ptr			ã‚†ã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //-----------------------------------------------------------------------------
@@ -106,15 +106,15 @@ SWAY_GRASS_PTR SwayGrass_AllocSwayGrass(const int inHeapID)
 {
 	SWAY_GRASS_PTR ptr;
 	ptr = sys_AllocMemory(inHeapID, sizeof(SWAY_GRASS) );
-	//ƒoƒEƒ“ƒfƒBƒ“ƒOƒ{ƒbƒNƒXì¬(•‚PƒOƒŠƒbƒh•ªA‚‚³”¼ƒOƒŠƒbƒh•ªA‰œs‚«‚PƒOƒŠƒbƒh•ª)
+	//ãƒã‚¦ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒœãƒƒã‚¯ã‚¹ä½œæˆ(å¹…ï¼‘ã‚°ãƒªãƒƒãƒ‰åˆ†ã€é«˜ã•åŠã‚°ãƒªãƒƒãƒ‰åˆ†ã€å¥¥è¡Œãï¼‘ã‚°ãƒªãƒƒãƒ‰åˆ†)
 	BB_MakeBoundingBox(FX32_ONE*16,FX32_ONE*8,FX32_ONE*16,&ptr->BoundingBox);
 	return ptr;
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒƒ‚ƒŠ‰ğ•úŠÖ”	(ƒQ[ƒ€n‚ß‚ÉŠm•Û‚µ‚ÄA‚»‚Ì‚Ü‚Ü‚È‚Ì‚Å‰ğ•ú‚µ‚È‚¢‚©‚à)
- * @param	outSwayGrass		‚ä‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ¡ãƒ¢ãƒªè§£æ”¾é–¢æ•°	(ã‚²ãƒ¼ãƒ å§‹ã‚ã«ç¢ºä¿ã—ã¦ã€ãã®ã¾ã¾ãªã®ã§è§£æ”¾ã—ãªã„ã‹ã‚‚)
+ * @param	outSwayGrass		ã‚†ã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @retval	
  *
@@ -127,8 +127,8 @@ void SwayGrass_FreeSwayGrass(SWAY_GRASS_PTR outSwayGrass)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
- * @param	outSwayGrass		‚ä‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	åˆæœŸåŒ–
+ * @param	outSwayGrass		ã‚†ã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @retval	none
  *
@@ -154,13 +154,13 @@ void SwayGrass_InitSwayGrass(SWAY_GRASS_PTR outSwayGrass)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	—h‚ê‘‘{õ
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inX				ŒŸõ’†SXÀ•W
- * @param	inZ				ŒŸõ’†SZÀ•W
- * @param	ioSwayGrass	—h‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æºã‚Œè‰æœç´¢
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inX				æ¤œç´¢ä¸­å¿ƒXåº§æ¨™
+ * @param	inZ				æ¤œç´¢ä¸­å¿ƒZåº§æ¨™
+ * @param	ioSwayGrass	æºã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
- * @retval	BOOL		TRUE:—h‚ê‘—LŒø@FALSE:—h‚ê‘–³Œø
+ * @retval	BOOL		TRUE:æºã‚Œè‰æœ‰åŠ¹ã€€FALSE:æºã‚Œè‰ç„¡åŠ¹
  *
  */
 //-----------------------------------------------------------------------------
@@ -168,41 +168,41 @@ BOOL SwayGrass_SearchSwayGrass(	FIELDSYS_WORK * fsys,
 								const int inX, const int inZ,
 								SWAY_GRASS_PTR ioSwayGrass)
 {
-	u8 i;				//ŠOüƒJƒEƒ“ƒ^
-	u8 size_x,size_z;	//ŠOüc‰¡ƒTƒCƒY
-	u8 num;				//Œˆ’è”Ô†
-	u8 t_num;			//ŒvZƒeƒ“ƒ|ƒ‰ƒŠ
-	int x,z;			//À•W
-///	BOOL chain_flg;		//˜A½ƒtƒ‰ƒO
-	u8 valid_num;		//—h‚ê‘”
+	u8 i;				//å¤–å‘¨ã‚«ã‚¦ãƒ³ã‚¿
+	u8 size_x,size_z;	//å¤–å‘¨ç¸¦æ¨ªã‚µã‚¤ã‚º
+	u8 num;				//æ±ºå®šç•ªå·
+	u8 t_num;			//è¨ˆç®—ãƒ†ãƒ³ãƒãƒ©ãƒª
+	int x,z;			//åº§æ¨™
+///	BOOL chain_flg;		//é€£é–ãƒ•ãƒ©ã‚°
+	u8 valid_num;		//æºã‚Œè‰æ•°
 
 	const VecFx32 *player_vec;
 
-	u8	rand_list[SEARCH_AROUND] = {	//ƒ‰ƒ“ƒ_ƒ€ƒe[ƒuƒ‹iŠeŠOü–ˆ‚Ìƒ‰ƒ“ƒ_ƒ€Å‘å’lj
-		SERCH_NUM_ROUND1,	//ˆê”ÔŠO‘¤
+	u8	rand_list[SEARCH_AROUND] = {	//ãƒ©ãƒ³ãƒ€ãƒ ãƒ†ãƒ¼ãƒ–ãƒ«ï¼ˆå„å¤–å‘¨æ¯ã®ãƒ©ãƒ³ãƒ€ãƒ æœ€å¤§å€¤ï¼‰
+		SERCH_NUM_ROUND1,	//ä¸€ç•ªå¤–å´
 		SERCH_NUM_ROUND2,
 		SERCH_NUM_ROUND3,
-		SERCH_NUM_ROUND4	//ˆê”Ô“à‘¤
+		SERCH_NUM_ROUND4	//ä¸€ç•ªå†…å´
 	};
 
-	//©‹@‚‚³æ“¾
+	//è‡ªæ©Ÿé«˜ã•å–å¾—
 	player_vec = Player_VecPosPtrGet( fsys->player );
 
 	valid_num = 0;
 	for(i=0;i<SEARCH_AROUND;i++){
 		BOOL rc;
-		//‘ÎÛÀ•W‚ğƒ‰ƒ“ƒ_ƒ€‚ÅŒˆ’è
+		//å¯¾è±¡åº§æ¨™ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§æ±ºå®š
 		num = gf_p_rand(rand_list[i]);
 		//OS_Printf("num%d\n",num);
-		//‰¡•İ’è
+		//æ¨ªå¹…è¨­å®š
 		size_x = SEARCH_WIDTH_MAX-(i*2);
-		//c•İ’è
+		//ç¸¦å¹…è¨­å®š
 		size_z = SEARCH_WIDTH_MAX-(i*2);
 
-		//Œˆ’è‚µ‚½”Ô†‚ğ•‚ÅŠ„‚é
+		//æ±ºå®šã—ãŸç•ªå·ã‚’å¹…ã§å‰²ã‚‹
 		t_num = num/size_x;
-		//¤‚ª0‚È‚çŠOüãA1‚È‚ç‰º
-		//ãA‰º‚Éƒqƒbƒg‚µ‚½ê‡A—]‚è‚Å‚˜À•W‚ğŒˆ’èi‚š‚Í¤‚Åj
+		//å•†ãŒ0ãªã‚‰å¤–å‘¨ä¸Šã€1ãªã‚‰ä¸‹
+		//ä¸Šã€ä¸‹ã«ãƒ’ãƒƒãƒˆã—ãŸå ´åˆã€ä½™ã‚Šã§ï½˜åº§æ¨™ã‚’æ±ºå®šï¼ˆï½šã¯å•†ã§ï¼‰
 		if (t_num == 0){
 			x = i+num%size_x;
 			z = i;
@@ -210,25 +210,25 @@ BOOL SwayGrass_SearchSwayGrass(	FIELDSYS_WORK * fsys,
 			x = i+num%size_x;
 			z = i+size_z-1;
 		}else{
-			//	//ƒqƒbƒg‚µ‚È‚©‚Á‚½ê‡AŒˆ’è‚µ‚½”Ô†-•*2‚·‚é
+			//	//ãƒ’ãƒƒãƒˆã—ãªã‹ã£ãŸå ´åˆã€æ±ºå®šã—ãŸç•ªå·-å¹…*2ã™ã‚‹
 			GF_ASSERT( num>=(size_x*2) );
 			t_num = num-(size_x*2);
-			//‰ÁH‚µ‚½”Ô†‚ğ2‚ÅŠ„‚é
-			//¤+1‚Åz‚ª•ª‚©‚éi‚˜‚Í¶‘¤‚©A‰E‘¤‚©‚È‚Ì‚ÅA•‚Å”»’fj
+			//åŠ å·¥ã—ãŸç•ªå·ã‚’2ã§å‰²ã‚‹
+			//å•†+1ã§zãŒåˆ†ã‹ã‚‹ï¼ˆï½˜ã¯å·¦å´ã‹ã€å³å´ã‹ãªã®ã§ã€å¹…ã§åˆ¤æ–­ï¼‰
 			z = i+(t_num/2)+1;
-			if (t_num%2 == 0){	//ŠOü¶‘¤–Ê
+			if (t_num%2 == 0){	//å¤–å‘¨å·¦å´é¢
 				x = i;
-			}else{				//ŠOü‰E‘¤–Ê
+			}else{				//å¤–å‘¨å³å´é¢
 				x = i+size_x-1;
 			}
 		}
 #if 0		
-		//˜A½‚·‚é‚©‚Ç‚¤‚©‚ğŒˆ’è
+		//é€£é–ã™ã‚‹ã‹ã©ã†ã‹ã‚’æ±ºå®š
 		chain_flg = GetChainFlg(i,inBattleResult);
 #endif
 		//OS_Printf("grass_anime%d,%d\n",x,z);
 
-		//Œˆ’è‚µ‚½À•W‚Ìî•ñ‚ğƒZƒbƒg
+		//æ±ºå®šã—ãŸåº§æ¨™ã®æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 		rc = SetSwayGrassInfo(	fsys, player_vec->y, inX, inZ, x, z,
 								&ioSwayGrass->GrassInfo[i]);
 		if (rc){
@@ -238,7 +238,7 @@ BOOL SwayGrass_SearchSwayGrass(	FIELDSYS_WORK * fsys,
 
 	if (valid_num == 0){
 		SwayGrass_InitSwayGrass(ioSwayGrass);
-		//‹ÈI‚í‚ç‚¹‚é
+		//æ›²çµ‚ã‚ã‚‰ã›ã‚‹
 		Snd_FadeOutNextPlayCall(fsys,
 								Snd_FieldBgmNoGet(fsys,fsys->location->zone_id),
 								BGM_FADE_FIELD_MODE );
@@ -251,10 +251,10 @@ BOOL SwayGrass_SearchSwayGrass(	FIELDSYS_WORK * fsys,
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	˜A½İ’è
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inBattleResult	í“¬Œ‹‰Ê	 FIGHT_WIN	FIGHT_POKE_GET
- * @param	ioSwayGrass	—h‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	é€£é–è¨­å®š
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inBattleResult	æˆ¦é—˜çµæœ	 FIGHT_WIN	FIGHT_POKE_GET
+ * @param	ioSwayGrass	æºã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @retval	none
  *
@@ -264,24 +264,24 @@ void	SwayGrass_SetChain(	FIELDSYS_WORK * fsys,
 								const int inBattleResult,
 								SWAY_GRASS_PTR ioSwayGrass)
 {
-	u8 i;				//ŠOüƒJƒEƒ“ƒ^
+	u8 i;				//å¤–å‘¨ã‚«ã‚¦ãƒ³ã‚¿
 	for(i=0;i<SEARCH_AROUND;i++){
 		if ( ioSwayGrass->GrassInfo[i].SwayGrassFlg){
-			//˜A½‚·‚é‚©‚Ç‚¤‚©‚ğŒˆ’è
-			ioSwayGrass->GrassInfo[i].ChainFlg = GetChainFlg(i,inBattleResult);//˜A½ƒtƒ‰ƒOƒZƒbƒg
-			//Ÿ‰ñƒGƒ“ƒJƒEƒ“ƒg‚·‚éƒe[ƒuƒ‹‚ğƒZƒbƒg
+			//é€£é–ã™ã‚‹ã‹ã©ã†ã‹ã‚’æ±ºå®š
+			ioSwayGrass->GrassInfo[i].ChainFlg = GetChainFlg(i,inBattleResult);//é€£é–ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
+			//æ¬¡å›ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 			if (!ioSwayGrass->GrassInfo[i].ChainFlg){
-				//˜A½‚µ‚È‚¢‚Ì‚Åƒe[ƒuƒ‹‚Ì’Š‘I(Šm—¦‚Í1/2)
-				if(gf_p_rand(100) < 50){	//ƒm[ƒ}ƒ‹
+				//é€£é–ã—ãªã„ã®ã§ãƒ†ãƒ¼ãƒ–ãƒ«ã®æŠ½é¸(ç¢ºç‡ã¯1/2)
+				if(gf_p_rand(100) < 50){	//ãƒãƒ¼ãƒãƒ«
 					ioSwayGrass->GrassInfo[i].EncTblCode = SWAY_GRASS_ENC_NORMAL;
-				}else{		//ƒe[ƒuƒ‹•ÏX
+				}else{		//ãƒ†ãƒ¼ãƒ–ãƒ«å¤‰æ›´
 					ioSwayGrass->GrassInfo[i].EncTblCode = SWAY_GRASS_ENC_SP;
 				}
 				ioSwayGrass->GrassInfo[i].IsRare = FALSE;
 			}else{
-				//˜A½‚·‚éê‡‚Í‘O‰ñ‚Ìƒe[ƒuƒ‹‚ğˆø‚«Œp‚®
+				//é€£é–ã™ã‚‹å ´åˆã¯å‰å›ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å¼•ãç¶™ã
 				ioSwayGrass->GrassInfo[i].EncTblCode = ioSwayGrass->EncTblCode;
-				//ƒŒƒAƒ|ƒPƒ‚ƒ“’Š‘I
+				//ãƒ¬ã‚¢ãƒã‚±ãƒ¢ãƒ³æŠ½é¸
 				ioSwayGrass->GrassInfo[i].IsRare = CheckRare(fsys->SwayGrass->Chain);
 			}
 		}
@@ -291,9 +291,9 @@ void	SwayGrass_SetChain(	FIELDSYS_WORK * fsys,
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚ä‚ê‘ƒAƒjƒƒZƒbƒg
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	outSwayGrass		‚ä‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚†ã‚Œè‰ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	outSwayGrass		ã‚†ã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @retval	none
  *
@@ -306,19 +306,19 @@ void SwayGrass_SetSwayGrassAnime(FIELDSYS_WORK * fsys, SWAY_GRASS_PTR outSwayGra
 		if (outSwayGrass->GrassInfo[i].SwayGrassFlg){
 			int x = outSwayGrass->GrassInfo[i].GridX;
 			int z = outSwayGrass->GrassInfo[i].GridZ;
-			//ƒŒƒAƒtƒ‰ƒO‚ª¬—§‚µ‚Ä‚¢‚é‚©‚ÅƒAƒjƒ•ªŠò
+			//ãƒ¬ã‚¢ãƒ•ãƒ©ã‚°ãŒæˆç«‹ã—ã¦ã„ã‚‹ã‹ã§ã‚¢ãƒ‹ãƒ¡åˆ†å²
 			if (outSwayGrass->GrassInfo[i].IsRare){
-				//ƒŒƒAƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒ“ƒg—pƒAƒjƒƒZƒbƒg
+				//ãƒ¬ã‚¢ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç”¨ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 				outSwayGrass->GrassInfo[i].GrassAnime =
 					FE_EncGrass_Add( fsys, x, z, FE_GRASS_TYPE_ENCOUNT_KIRAKIRA );
 			}else{
-				//ƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒe[ƒuƒ‹ƒR[ƒh‚ÅƒAƒjƒ‚ğ•ªŠò
+				//ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚³ãƒ¼ãƒ‰ã§ã‚¢ãƒ‹ãƒ¡ã‚’åˆ†å²
 				if (outSwayGrass->GrassInfo[i].EncTblCode == SWAY_GRASS_ENC_NORMAL){
-					//’Êíƒe[ƒuƒ‹
+					//é€šå¸¸ãƒ†ãƒ¼ãƒ–ãƒ«
 					outSwayGrass->GrassInfo[i].GrassAnime =
 						FE_EncGrass_Add( fsys, x, z, FE_GRASS_TYPE_ENCOUNT_SMALL );
 				}else{
-					//—h‚ê‘ê—pƒe[ƒuƒ‹
+					//æºã‚Œè‰å°‚ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«
 					outSwayGrass->GrassInfo[i].GrassAnime =
 						FE_EncGrass_Add( fsys, x, z, FE_GRASS_TYPE_ENCOUNT_BIG );
 				}
@@ -331,10 +331,10 @@ void SwayGrass_SetSwayGrassAnime(FIELDSYS_WORK * fsys, SWAY_GRASS_PTR outSwayGra
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚ä‚ê‘ƒAƒjƒI—¹‘Ò‚¿
- * @param	ioSwayGrass		‚ä‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚†ã‚Œè‰ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
+ * @param	ioSwayGrass		ã‚†ã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
- * @retval	BOOL	TRUE:ƒAƒjƒI—¹	FALSE:ƒAƒjƒŒp‘±
+ * @retval	BOOL	TRUE:ã‚¢ãƒ‹ãƒ¡çµ‚äº†	FALSE:ã‚¢ãƒ‹ãƒ¡ç¶™ç¶š
  *
  */
 //-----------------------------------------------------------------------------
@@ -364,14 +364,14 @@ BOOL SwayGrass_CheckSwayGrassAnimeEnd(SWAY_GRASS_PTR ioSwayGrass)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚ä‚ê‘ƒ`ƒFƒbƒN
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	ioSwayGrass		‚ä‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	outUseEncTable	g—p‚·‚éƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹ƒR[ƒh
- * @param	outMonsDeside	ƒGƒ“ƒJƒEƒ“ƒg‚·‚éƒ|ƒPƒ‚ƒ“‚ªŒˆ’è‚µ‚Ä‚¢‚é‚©‚ğŒ©‚éƒtƒ‰ƒO
- * @param	outRare			ƒŒƒAƒtƒ‰ƒO
+ * @brief	ã‚†ã‚Œè‰ãƒã‚§ãƒƒã‚¯
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	ioSwayGrass		ã‚†ã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	outUseEncTable	ä½¿ç”¨ã™ã‚‹ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã‚³ãƒ¼ãƒ‰
+ * @param	outMonsDeside	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒæ±ºå®šã—ã¦ã„ã‚‹ã‹ã‚’è¦‹ã‚‹ãƒ•ãƒ©ã‚°
+ * @param	outRare			ãƒ¬ã‚¢ãƒ•ãƒ©ã‚°
  * 
- * @retval	BOOL	TRUE:—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg¬—§@FALSE:—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg•s¬—§
+ * @retval	BOOL	TRUE:æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæˆç«‹ã€€FALSE:æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆä¸æˆç«‹
  *
  */
 //-----------------------------------------------------------------------------
@@ -388,55 +388,55 @@ BOOL SwayGrass_CheckSpEncount(	const int inX, const int inZ,
 	
 	*outMonsDeside = FALSE;
 	*outRare = FALSE;
-	//‚ä‚ê‘ƒGƒ“ƒJƒEƒ“ƒg‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+	//ã‚†ã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	if ( !CheckSwayGrass(ioSwayGrass, inX, inZ, &round) ){
-		//“¥‚ñ‚¾À•W‚ª—h‚ê‘‚Å‚Í‚È‚¢
+		//è¸ã‚“ã åº§æ¨™ãŒæºã‚Œè‰ã§ã¯ãªã„
 		return FALSE;//SWAY_GRASS_ENC_NO_ENC;
 	}
 	
-	ioSwayGrass->SwayEncReturn = TRUE;	//í“¬Œã‚Í‚ä‚ê‘
+	ioSwayGrass->SwayEncReturn = TRUE;	//æˆ¦é—˜å¾Œã¯ã‚†ã‚Œè‰
 	
 	chain_flg = ioSwayGrass->GrassInfo[round].ChainFlg;
 	tbl_code = ioSwayGrass->GrassInfo[round].EncTblCode;
-	//‰‚ß‚ÄƒGƒ“ƒJƒEƒ“ƒg‚©‚ğƒ`ƒFƒbƒN	
-	if(ioSwayGrass->FirstEnc == FALSE){ //‰‚ß‚Ä‚Å‚Í‚È‚¢
-		if(chain_flg){			//˜A½¬—§‚È‚çA“¯‚¶ƒ|ƒPƒ‚ƒ“
-			IncChain(&(ioSwayGrass->Chain));		//˜A½‰ñ”+1
-			//*outUseEncTable = ioSwayGrass->EncTblCode;//•Û‘¶‚µ‚Æ‚¢‚½ƒR[ƒh
-			*outUseEncTable = tbl_code;	//SwayGrass‚Ìƒƒ“ƒo‚©‚ç’¼‚Éæ‚é‚±‚Æ‚à‰Â”\‚¾‚¯‚ê‚Ç‚àAInfo‚©‚çæ‚é
+	//åˆã‚ã¦ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‹ã‚’ãƒã‚§ãƒƒã‚¯	
+	if(ioSwayGrass->FirstEnc == FALSE){ //åˆã‚ã¦ã§ã¯ãªã„
+		if(chain_flg){			//é€£é–æˆç«‹ãªã‚‰ã€åŒã˜ãƒã‚±ãƒ¢ãƒ³
+			IncChain(&(ioSwayGrass->Chain));		//é€£é–å›æ•°+1
+			//*outUseEncTable = ioSwayGrass->EncTblCode;//ä¿å­˜ã—ã¨ã„ãŸã‚³ãƒ¼ãƒ‰
+			*outUseEncTable = tbl_code;	//SwayGrassã®ãƒ¡ãƒ³ãƒã‹ã‚‰ç›´ã«å–ã‚‹ã“ã¨ã‚‚å¯èƒ½ã ã‘ã‚Œã©ã‚‚ã€Infoã‹ã‚‰å–ã‚‹
 			*outMonsDeside = TRUE;
-			//—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg—š—ğƒ`ƒFƒbƒN‚ÆXV
+			//æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå±¥æ­´ãƒã‚§ãƒƒã‚¯ã¨æ›´æ–°
 			UpdateSwayGrassHist(fsys, ioSwayGrass);
-			//ioSwayGrass->SwayGrassEnc = TRUE;	//—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg’†ƒtƒ‰ƒOƒIƒ“
+			//ioSwayGrass->SwayGrassEnc = TRUE;	//æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆä¸­ãƒ•ãƒ©ã‚°ã‚ªãƒ³
 			
-			(*outRare) = ioSwayGrass->GrassInfo[round].IsRare;	//ƒŒƒAƒtƒ‰ƒOƒZƒbƒg
+			(*outRare) = ioSwayGrass->GrassInfo[round].IsRare;	//ãƒ¬ã‚¢ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 			
 			return TRUE;//SWAY_GRASS_ENC_KEEP_MONSTER;
-		}else{		//ˆá‚¤ƒ|ƒPƒ‚ƒ“
-			*outUseEncTable = tbl_code;	//ƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹ƒR[ƒhƒZƒbƒg
+		}else{		//é•ã†ãƒã‚±ãƒ¢ãƒ³
+			*outUseEncTable = tbl_code;	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 		}
-	}else{	//‰‚ß‚Ä—h‚ê‘
+	}else{	//åˆã‚ã¦æºã‚Œè‰
 		*outUseEncTable = tbl_code;
 		ioSwayGrass->FirstEnc = FALSE;
-		//‘‚«Š·‚¦‘ÎÛ‚Æ‚È‚é—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg—š—ğ‚ğæ“¾‚·‚é
-		//(3‚Â‚Ì—š—ğ‚Ì’†‚Åˆê”Ô˜A½”‚ª­‚È‚¢ƒŒƒR[ƒh‚ÌêŠ‚ğæ“¾‚·‚é)
+		//æ›¸ãæ›ãˆå¯¾è±¡ã¨ãªã‚‹æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå±¥æ­´ã‚’å–å¾—ã™ã‚‹
+		//(3ã¤ã®å±¥æ­´ã®ä¸­ã§ä¸€ç•ªé€£é–æ•°ãŒå°‘ãªã„ãƒ¬ã‚³ãƒ¼ãƒ‰ã®å ´æ‰€ã‚’å–å¾—ã™ã‚‹)
 		ioSwayGrass->RewritePos = GetSwayGrassMinRecordPos(fsys);
 	}
 	
-	//‚Ç‚Á‚¿‚Ìƒe[ƒuƒ‹‚ğ“K—p‚µ‚½‚©‚ğ•Û‘¶
+	//ã©ã£ã¡ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’é©ç”¨ã—ãŸã‹ã‚’ä¿å­˜
 	ioSwayGrass->EncTblCode = *outUseEncTable;
 
-	//ioSwayGrass->SwayGrassEnc = TRUE;	//—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg’†ƒtƒ‰ƒOƒIƒ“
+	//ioSwayGrass->SwayGrassEnc = TRUE;	//æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆä¸­ãƒ•ãƒ©ã‚°ã‚ªãƒ³
 	
 	return TRUE;//SWAY_GRASS_ENC_START;
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚ä‚ê‘ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“‚ğ‹L‰¯(ƒiƒ“ƒo[AƒŒƒxƒ‹)
- * @param	outSwayGrass		‚ä‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inMonsNo			ƒGƒ“ƒJƒEƒ“ƒgƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param	inMonsLv			ƒGƒ“ƒJƒEƒ“ƒgƒ‚ƒ“ƒXƒ^[ƒŒƒxƒ‹
+ * @brief	ã‚†ã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³ã‚’è¨˜æ†¶(ãƒŠãƒ³ãƒãƒ¼ã€ãƒ¬ãƒ™ãƒ«)
+ * @param	outSwayGrass		ã‚†ã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMonsNo			ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param	inMonsLv			ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ¬ãƒ™ãƒ«
  *
  * @retval	none
  *
@@ -451,10 +451,10 @@ void SwayGrass_SetEncMonsNoLv(SWAY_GRASS_PTR outSwayGrass, const int inMonsNo, c
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚ä‚ê‘ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“‚ğæ“¾iƒiƒ“ƒo[AƒŒƒxƒ‹j
- * @param	inSwayGrass		‚ä‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	outMonsNo		ƒGƒ“ƒJƒEƒ“ƒgƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[Ši”[æ
- * @param	outMonsLv		ƒGƒ“ƒJƒEƒ“ƒgƒ‚ƒ“ƒXƒ^[ƒŒƒxƒ‹Ši”[æ
+ * @brief	ã‚†ã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³ã‚’å–å¾—ï¼ˆãƒŠãƒ³ãƒãƒ¼ã€ãƒ¬ãƒ™ãƒ«ï¼‰
+ * @param	inSwayGrass		ã‚†ã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	outMonsNo		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼æ ¼ç´å…ˆ
+ * @param	outMonsLv		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ¬ãƒ™ãƒ«æ ¼ç´å…ˆ
  *
  * @retval	none
  *
@@ -469,9 +469,9 @@ void SwayGrass_GetEncMonsNoLv(SWAY_GRASS_PTR inSwayGrass,  int *outMonsNo, int *
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚ä‚ê‘ƒGƒ“ƒJƒEƒ“ƒg•œ‹A‚©‚ğ’²‚×‚é
- * @param	inSwayGrass		‚ä‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	BOOL		TRUE:—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg•œ‹A		FALSE:’ÊíƒGƒ“ƒJƒEƒ“ƒg•œ‹A				
+ * @brief	ã‚†ã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå¾©å¸°ã‹ã‚’èª¿ã¹ã‚‹
+ * @param	inSwayGrass		ã‚†ã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	BOOL		TRUE:æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå¾©å¸°		FALSE:é€šå¸¸ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå¾©å¸°				
  *
  */
 //-----------------------------------------------------------------------------
@@ -482,8 +482,8 @@ const BOOL SwayGrass_IsSwayEncRetern(const SWAY_GRASS_PTR inSwayGrass)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‰æ–Ê“àŠOƒ`ƒFƒbƒN
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @brief	ç”»é¢å†…å¤–ãƒã‚§ãƒƒã‚¯
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @retval	none
  *
@@ -500,17 +500,17 @@ void SwayGrass_CheckIO(FIELDSYS_WORK * fsys)
 		return;
 	}
 	
-	//‰æ–Ê“àŠOƒ`ƒFƒbƒN
+	//ç”»é¢å†…å¤–ãƒã‚§ãƒƒã‚¯
 	for(i=0;i<SEARCH_AROUND;i++){
 		info = &(fsys->SwayGrass->GrassInfo[i]);
 		rc = BB_CullingCheck3DModelNonResQuick( &(info->GrassPos),
 											 &(fsys->SwayGrass->BoundingBox) );
 		if ((info->SwayGrassFlg)&&(!rc)){
-			//–³Œø‚É‚·‚é
+			//ç„¡åŠ¹ã«ã™ã‚‹
 			info->SwayGrassFlg = FALSE;
 		}
 	}
-	//‘S•”–³Œø‚©‚ğƒ`ƒFƒbƒN
+	//å…¨éƒ¨ç„¡åŠ¹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	{
 		int count;
 		count = 0;
@@ -521,9 +521,9 @@ void SwayGrass_CheckIO(FIELDSYS_WORK * fsys)
 			}
 		}
 		if (count == SEARCH_AROUND){
-			///OS_Printf("—h‚ê‘‚Í–³Œø‚É‚È‚è‚Ü‚µ‚½\n");
+			///OS_Printf("æºã‚Œè‰ã¯ç„¡åŠ¹ã«ãªã‚Šã¾ã—ãŸ\n");
 			SwayGrass_InitSwayGrass(fsys->SwayGrass);			
-			//‹ÈI‚í‚ç‚¹‚é
+			//æ›²çµ‚ã‚ã‚‰ã›ã‚‹
 			Snd_FadeOutNextPlayCall(fsys,
 									Snd_FieldBgmNoGet(fsys,fsys->location->zone_id),
 									BGM_FADE_FIELD_MODE );
@@ -533,10 +533,10 @@ void SwayGrass_CheckIO(FIELDSYS_WORK * fsys)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚ä‚ê‘—LŒøƒ`ƒFƒbƒN
- * @param	inSwayGrass	—h‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚†ã‚Œè‰æœ‰åŠ¹ãƒã‚§ãƒƒã‚¯
+ * @param	inSwayGrass	æºã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	BOOL	TRUE:—h‚ê‘—LŒø		FALSE:—h‚ê‘–³Œø
+ * @retval	BOOL	TRUE:æºã‚Œè‰æœ‰åŠ¹		FALSE:æºã‚Œè‰ç„¡åŠ¹
  *
  */
 //-----------------------------------------------------------------------------
@@ -548,16 +548,16 @@ BOOL SwayGrass_CheckValid( const SWAY_GRASS_PTR inSwayGrass )
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚ä‚ê‘î•ñƒZƒbƒg
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inPlayerHeight	©‹@‚‚³
- * @param	inX				ŒŸõ’†SXÀ•W
- * @param	inZ				ŒŸõ’†SZÀ•W
- * @param	inSearchX		ŒŸõXÀ•Wi‘Š‘Îj
- * @param	inSearchZ		ŒŸõZÀ•Wi‘Š‘Îj
- * @param	outInfo			‚ä‚ê‘î•ñ\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚†ã‚Œè‰æƒ…å ±ã‚»ãƒƒãƒˆ
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inPlayerHeight	è‡ªæ©Ÿé«˜ã•
+ * @param	inX				æ¤œç´¢ä¸­å¿ƒXåº§æ¨™
+ * @param	inZ				æ¤œç´¢ä¸­å¿ƒZåº§æ¨™
+ * @param	inSearchX		æ¤œç´¢Xåº§æ¨™ï¼ˆç›¸å¯¾ï¼‰
+ * @param	inSearchZ		æ¤œç´¢Zåº§æ¨™ï¼ˆç›¸å¯¾ï¼‰
+ * @param	outInfo			ã‚†ã‚Œè‰æƒ…å ±æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
- * @retval	BOOL			TRUE:—h‚ê‘—LŒø		FALSE:—h‚ê‘–³Œø
+ * @retval	BOOL			TRUE:æºã‚Œè‰æœ‰åŠ¹		FALSE:æºã‚Œè‰ç„¡åŠ¹
  *
  */
 //-----------------------------------------------------------------------------
@@ -571,28 +571,28 @@ static BOOL SetSwayGrassInfo(	FIELDSYS_WORK * fsys,
 	MATR attr;
 	x = (inX-SEARCH_OFFS)+inSearchX;
 	z = (inZ-SEARCH_OFFS)+inSearchZ;
-	//À•W•Û‘¶
+	//åº§æ¨™ä¿å­˜
 	outInfo->GridX = x;
 	outInfo->GridZ = z;
-	//ƒAƒgƒŠƒrƒ…[ƒg‘{¸
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆæœæŸ»
 	attr = GetAttributeLSB(fsys, x, z);
 	
 	if (  MATR_IsGrass(attr) ){
 		HEIGHT_TYPE code;
-		//fx32Œ^‚ÌÀ•W‚ğæ“¾
+		//fx32å‹ã®åº§æ¨™ã‚’å–å¾—
 		outInfo->GrassPos.x = FX32_ONE*16*x;
 		outInfo->GrassPos.z = FX32_ONE*16*z;
 		outInfo->GrassPos.y = GetHeightPack(fsys,
 											0, outInfo->GrassPos.x, outInfo->GrassPos.z,
 											&code);
-		//‚‚³‚ğæ“¾‚µ‚ÄA©‹@‚Ì‚‚³‚Æ”äŠr‚·‚é
+		//é«˜ã•ã‚’å–å¾—ã—ã¦ã€è‡ªæ©Ÿã®é«˜ã•ã¨æ¯”è¼ƒã™ã‚‹
 		if (inPlayerHeight != outInfo->GrassPos.y){
-			//‚‚³‚ª“¯ˆê‚Å‚Í‚È‚¢‚Ì‚ÅA‚Í‚Ë‚é
+			//é«˜ã•ãŒåŒä¸€ã§ã¯ãªã„ã®ã§ã€ã¯ã­ã‚‹
 			outInfo->SwayGrassFlg = 0;
-			OS_Printf("‚‚³‚ªˆá‚¤‚Ì‚ÅA—h‚ê‘‚Æ‚İ‚È‚³‚¢\n");
+			OS_Printf("é«˜ã•ãŒé•ã†ã®ã§ã€æºã‚Œè‰ã¨ã¿ãªã•ã„\n");
 			return FALSE;
 		}
-		//ƒ][ƒ“‚h‚c‚ªˆá‚¤ê‡‚ÍA‚Í‚Ë‚é
+		//ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤ãŒé•ã†å ´åˆã¯ã€ã¯ã­ã‚‹
 		{
 			int zone_id;
 			int block_x,block_z;
@@ -601,18 +601,18 @@ static BOOL SetSwayGrassInfo(	FIELDSYS_WORK * fsys,
 			zone_id = World_GetZoneIDFromMatrixXZ(fsys->World, block_x, block_z);
 			if (fsys->location->zone_id != zone_id){
 				outInfo->SwayGrassFlg = 0;
-				OS_Printf("ƒ][ƒ“‚h‚cˆá‚¤‚Ì‚ÅA—h‚ê‘‚Æ‚İ‚È‚³‚¢\n");
+				OS_Printf("ã‚¾ãƒ¼ãƒ³ï¼©ï¼¤é•ã†ã®ã§ã€æºã‚Œè‰ã¨ã¿ãªã•ã„\n");
 				return FALSE;
 			}
 		}
 		
 
-		//‘‚È‚ç‚ä‚ê‘ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		//è‰ãªã‚‰ã‚†ã‚Œè‰ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		outInfo->SwayGrassFlg = 1;
 		
 		return TRUE;
 	}else{
-		//‘‚Å‚Í‚È‚¢‚Ì‚Åƒtƒ‰ƒOƒIƒt
+		//è‰ã§ã¯ãªã„ã®ã§ãƒ•ãƒ©ã‚°ã‚ªãƒ•
 		outInfo->SwayGrassFlg = 0;
 		return FALSE;
 	}
@@ -620,13 +620,13 @@ static BOOL SetSwayGrassInfo(	FIELDSYS_WORK * fsys,
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚ä‚ê‘ƒ`ƒFƒbƒN
- * @param	inSwayGrass	—h‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inX			XÀ•W
- * @param	inZ			ZÀ•W
- * @param	outRound	ƒqƒbƒg‚µ‚½ü‰ñ
+ * @brief	ã‚†ã‚Œè‰ãƒã‚§ãƒƒã‚¯
+ * @param	inSwayGrass	æºã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inX			Xåº§æ¨™
+ * @param	inZ			Zåº§æ¨™
+ * @param	outRound	ãƒ’ãƒƒãƒˆã—ãŸå‘¨å›
  *
- * @retval	BOOL	TRUE:—h‚ê‘ƒqƒbƒg		FALSE:—h‚ê‘ƒqƒbƒg‚µ‚Ä‚È‚¢
+ * @retval	BOOL	TRUE:æºã‚Œè‰ãƒ’ãƒƒãƒˆ		FALSE:æºã‚Œè‰ãƒ’ãƒƒãƒˆã—ã¦ãªã„
  *
  */
 //-----------------------------------------------------------------------------
@@ -649,9 +649,9 @@ static BOOL CheckSwayGrass(	const SWAY_GRASS_PTR inSwayGrass,
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‚ä‚ê‘—š—ğƒ`ƒFƒbƒN‚ÆXV
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^	
- * @param	inSwayGrass	‚ä‚ê‘\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^	
+ * @brief	ã‚†ã‚Œè‰å±¥æ­´ãƒã‚§ãƒƒã‚¯ã¨æ›´æ–°
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿	
+ * @param	inSwayGrass	ã‚†ã‚Œè‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿	
  *
  * @retval	none
  *
@@ -664,22 +664,22 @@ static void UpdateSwayGrassHist(FIELDSYS_WORK * fsys, SWAY_GRASS_PTR ioSwayGrass
 	int i;
 	hist = EncDataSave_GetSwayGrassHist( EncDataSave_GetSaveDataPtr(fsys->savedata) );
 	chain = hist->SwayGrassRec[ioSwayGrass->RewritePos].Chain;
-	if (chain < ioSwayGrass->Chain){//‹L˜^‚ğã‰ñ‚Á‚½‚©H
-		//XV
+	if (chain < ioSwayGrass->Chain){//è¨˜éŒ²ã‚’ä¸Šå›ã£ãŸã‹ï¼Ÿ
+		//æ›´æ–°
 		hist->SwayGrassRec[ioSwayGrass->RewritePos].Chain = ioSwayGrass->Chain;
 		hist->SwayGrassRec[ioSwayGrass->RewritePos].MonsNo = ioSwayGrass->EncMonsNo;
-		//ƒ\[ƒg
+		//ã‚½ãƒ¼ãƒˆ
 		SwayGrassHist_SortHistData(hist);
-		//‘‚«Š·‚¦ˆÊ’u‚Ì‘{õ
+		//æ›¸ãæ›ãˆä½ç½®ã®æœç´¢
 		if (hist->SwayGrassRec[ioSwayGrass->RewritePos].Chain <= ioSwayGrass->Chain){
-			//‘‚«Š·‚¦ˆÊ’u‚ª‚¸‚ê‚½‚Ì‚Å‘{õ
+			//æ›¸ãæ›ãˆä½ç½®ãŒãšã‚ŒãŸã®ã§æœç´¢
 			for(i=0;i<3;i++){
 				if ( hist->SwayGrassRec[(2-i)].Chain == ioSwayGrass->Chain){
 					ioSwayGrass->RewritePos = (2-i);
 					return;
 				}	
 			}
-			//‚±‚±‚É‚Í‚±‚È‚¢‚Í‚¸B‚«‚Ä‚µ‚Ü‚Á‚½ê‡‚Í]—ˆ‚Ì‘‚«Š·‚¦ˆÊ’u‚ğ‘±‚·‚é(‘‚«Š·‚¦ˆÊ’u•ÏX‚µ‚È‚¢)
+			//ã“ã“ã«ã¯ã“ãªã„ã¯ãšã€‚ãã¦ã—ã¾ã£ãŸå ´åˆã¯å¾“æ¥ã®æ›¸ãæ›ãˆä½ç½®ã‚’æŒç¶šã™ã‚‹(æ›¸ãæ›ãˆä½ç½®å¤‰æ›´ã—ãªã„)
 			GF_ASSERT(0);
 		}
 	}
@@ -687,11 +687,11 @@ static void UpdateSwayGrassHist(FIELDSYS_WORK * fsys, SWAY_GRASS_PTR ioSwayGrass
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	—h‚ê‘ƒŒƒR[ƒh“à‚Ì‘‚«Š·‚¦ˆÊ’u‚ğæ“¾
+ * @brief	æºã‚Œè‰ãƒ¬ã‚³ãƒ¼ãƒ‰å†…ã®æ›¸ãæ›ãˆä½ç½®ã‚’å–å¾—
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^	
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿	
  *
- * @retval	u8		‘‚«Š·‚¦ˆÊ’u
+ * @retval	u8		æ›¸ãæ›ãˆä½ç½®
  *
  */
 //-----------------------------------------------------------------------------
@@ -703,14 +703,14 @@ static u8 GetSwayGrassMinRecordPos(FIELDSYS_WORK *fsys)
 
 	hist = EncDataSave_GetSwayGrassHist( EncDataSave_GetSaveDataPtr(fsys->savedata) );
 
-	//ƒ‰ƒ“ƒLƒ“ƒO‚ª‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚«‚ÌˆÊ’uæ“¾
+	//ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãŒã•ã‚Œã¦ã„ãªã„ã¨ãã®ä½ç½®å–å¾—
 	for(pos=0;pos<3;pos++){
 		if (hist->SwayGrassRec[pos].MonsNo == 0){
 			return pos;
 		}
 	}
 
-	//ƒ‰ƒ“ƒLƒ“ƒO‚ª–„‚Ü‚Á‚Ä‚¢‚é‚Æ‚«‚ÌˆÊ’uæ“¾
+	//ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãŒåŸ‹ã¾ã£ã¦ã„ã‚‹ã¨ãã®ä½ç½®å–å¾—
 	ISMIN(rc,hist->SwayGrassRec[0].Chain,hist->SwayGrassRec[1].Chain);
 	if (rc){
 		pos = 0;
@@ -727,39 +727,39 @@ static u8 GetSwayGrassMinRecordPos(FIELDSYS_WORK *fsys)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	˜A½ƒtƒ‰ƒO‚ÌŒˆ’è
+ * @brief	é€£é–ãƒ•ãƒ©ã‚°ã®æ±ºå®š
  *
- * @param	inRound			ŠOü
- * @param	inBattleResult	í“¬Œ‹‰Ê FIGHT_WIN	FIGHT_POKE_GET
+ * @param	inRound			å¤–å‘¨
+ * @param	inBattleResult	æˆ¦é—˜çµæœ FIGHT_WIN	FIGHT_POKE_GET
  * 
- * @retval	BOOL		˜A½ƒtƒ‰ƒO	TURE:˜A½‚·‚é	FALSE:˜A½‚µ‚È‚¢	
+ * @retval	BOOL		é€£é–ãƒ•ãƒ©ã‚°	TURE:é€£é–ã™ã‚‹	FALSE:é€£é–ã—ãªã„	
  *
  */
 //-----------------------------------------------------------------------------
 static BOOL GetChainFlg(const u8 inRound, const int inBattleResult)
 {
-	//“¯‚¶ƒ|ƒPƒ‚ƒ“‚ğo‚·‚©‚ğŠm—¦‚ÅŒˆ‚ß‚é
+	//åŒã˜ãƒã‚±ãƒ¢ãƒ³ã‚’å‡ºã™ã‹ã‚’ç¢ºç‡ã§æ±ºã‚ã‚‹
 	u8 *tbl;
 	u8 table1[SEARCH_AROUND] = {88,68,48,28};
 	u8 table2[SEARCH_AROUND] = {98,78,58,38};
-	//‘O‰ñA•ßŠl‚µ‚Äí“¬‚ğI—¹‚µ‚½‚©‚Åƒe[ƒuƒ‹‚ğ•ÏX
+	//å‰å›ã€æ•ç²ã—ã¦æˆ¦é—˜ã‚’çµ‚äº†ã—ãŸã‹ã§ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å¤‰æ›´
 	if (inBattleResult == FIGHT_WIN){
 		tbl = table1;
 	}else if(inBattleResult == FIGHT_POKE_GET){
 		tbl = table2;
 	}
-	if(gf_p_rand(100)<tbl[inRound]){			//˜A½‚·‚é
+	if(gf_p_rand(100)<tbl[inRound]){			//é€£é–ã™ã‚‹
 		return TRUE;
-	}else{		//˜A½‚µ‚È‚¢
+	}else{		//é€£é–ã—ãªã„
 		return FALSE;
 	}
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‰‰ñ—h‚ê‘‹N“®
+ * @brief	åˆå›æºã‚Œè‰èµ·å‹•
  *
- * @param	*fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	*fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @retval	none	
  *
@@ -770,17 +770,17 @@ void SwayGrass_Setup(FIELDSYS_WORK * fsys)
 	int *seq;
 	seq = sys_AllocMemoryLo(HEAPID_FIELD,sizeof(int));
 	(*seq) = 0;
-	//ƒCƒxƒ“ƒgƒZƒbƒg
+	//ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
 	FieldEvent_Set(fsys, SwayGrass_SetupEvent, seq);
 }
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‰‰ñ—h‚ê‘ƒZƒbƒgƒCƒxƒ“ƒg
+ * @brief	åˆå›æºã‚Œè‰ã‚»ãƒƒãƒˆã‚¤ãƒ™ãƒ³ãƒˆ
  * 
- * @param	*event		ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	*event		ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @retval	BOOL	TRUE:I—¹	FALSE:Œp‘±
+ * @retval	BOOL	TRUE:çµ‚äº†	FALSE:ç¶™ç¶š
  *
  */
 //-----------------------------------------------------------------------------
@@ -793,10 +793,10 @@ BOOL SwayGrass_SetupEvent(GMEVENT_CONTROL * event)
 	case SEQ_SWAY_SEARCH:
 		{
 			u8 *charge;
-			//‚n‚a‚iƒ|[ƒY
+			//ï¼¯ï¼¢ï¼ªãƒãƒ¼ã‚º
 			FieldOBJSys_MovePauseAll( fsys->fldobjsys );
-			//ƒ|ƒPƒT[ƒ`ƒƒ[g—p‰Â”\ƒ`ƒFƒbƒN([“dŠ®—¹‚µ‚Ä‚¢‚é‚©H)
-			//ƒZ[ƒuƒf[ƒ^æ“¾
+			//ãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼ä½¿ç”¨å¯èƒ½ãƒã‚§ãƒƒã‚¯(å……é›»å®Œäº†ã—ã¦ã„ã‚‹ã‹ï¼Ÿ)
+			//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 			charge = EncDataSave_GetPokeSearcherCharge(EncDataSave_GetSaveDataPtr(fsys->savedata));
 			if ( (*charge)<POKESEARCHER_CHARGE_MAX ){
 				EventCall_Script(event, SCRID_POKE_SEARCHER, NULL, NULL);
@@ -804,16 +804,16 @@ BOOL SwayGrass_SetupEvent(GMEVENT_CONTROL * event)
 				(*seq) = SEQ_SWAY_END;
 			}else{
 				int x,z;
-				//ƒ|ƒPƒT[ƒ`ƒƒ[[“dƒNƒŠƒA
+				//ãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼å……é›»ã‚¯ãƒªã‚¢
 				(*charge) = 0;
-				//©‹@‚ÌˆÊ’uæ“¾
+				//è‡ªæ©Ÿã®ä½ç½®å–å¾—
 				x = Player_NowGPosXGet(fsys->player);
 				z = Player_NowGPosZGet(fsys->player);
-				//‘ƒT[ƒ`
+				//è‰ã‚µãƒ¼ãƒ
 				SwayGrass_SearchSwayGrass(fsys, x, z,fsys->SwayGrass);
 				if (fsys->SwayGrass->Valid){
-					SwayGrass_SetChain(fsys, FIGHT_WIN, fsys->SwayGrass);	//‰‰ñƒe[ƒuƒ‹‚Íí“¬Ÿ—˜‚ÅŒÅ’è
-					//‘ƒAƒjƒƒZƒbƒg
+					SwayGrass_SetChain(fsys, FIGHT_WIN, fsys->SwayGrass);	//åˆå›ãƒ†ãƒ¼ãƒ–ãƒ«ã¯æˆ¦é—˜å‹åˆ©ã§å›ºå®š
+					//è‰ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 					SwayGrass_SetSwayGrassAnime(fsys, fsys->SwayGrass);
 					(*seq) = SEQ_SWAY_BGM_START;
 				}else{
@@ -823,27 +823,27 @@ BOOL SwayGrass_SetupEvent(GMEVENT_CONTROL * event)
 		}
 		break;
 	case SEQ_SWAY_BGM_START:
-		//‹ÈŠJn
+		//æ›²é–‹å§‹
 		//Snd_FadeOutNextPlayCall( fsys, SEQ_KUSAGASA, BGM_FADE_FIELD_MODE );
 		Snd_BgmPlay( SEQ_KUSAGASA );											//06.05.18
 		(*seq) = SEQ_SWAY_WAIT;
 		break;
 	case SEQ_SWAY_WAIT:
-		//ƒAƒjƒI—¹‘Ò‚¿
+		//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 		if (SwayGrass_CheckSwayGrassAnimeEnd(fsys->SwayGrass)){
 			(*seq) = SEQ_SWAY_END;
 		}
 		break;
 	case SEQ_SWAY_END:
-		//I—¹
+		//çµ‚äº†
 		sys_FreeMemoryEz(seq);
-		//OBJƒ|[ƒYƒNƒŠƒA
+		//OBJãƒãƒ¼ã‚ºã‚¯ãƒªã‚¢
 		FieldOBJSys_MovePauseAllClear( fsys->fldobjsys );
 		return TRUE;
 		break;
 		
 	case SEQ_SWAY_NG:
-		// ƒƒbƒZ[ƒW•\¦
+		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		EventCall_Script( event, SCRID_POKE_SEARCHER_NG, NULL, NULL );
 		(*seq) = SEQ_SWAY_END;
 		break;
@@ -853,11 +853,11 @@ BOOL SwayGrass_SetupEvent(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒŒƒAƒ`ƒFƒbƒN
+ * @brief	ãƒ¬ã‚¢ãƒã‚§ãƒƒã‚¯
  * 
- * @param	inChain		˜A½‰ñ”
+ * @param	inChain		é€£é–å›æ•°
  * 
- * @retval	BOOL	TRUE:ƒŒƒA	FALSE:ƒm[ƒ}ƒ‹
+ * @retval	BOOL	TRUE:ãƒ¬ã‚¢	FALSE:ãƒãƒ¼ãƒãƒ«
  *
  */
 //-----------------------------------------------------------------------------
@@ -903,26 +903,26 @@ static BOOL CheckRare(const int inChain)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	˜A½”XViƒnƒYƒŒˆø‚¢‚½‚¯‚Ç“¯‚¶ƒ|ƒPƒ‚ƒ“‚ÆƒGƒ“ƒJƒEƒ“ƒg‚µ‚½‚Æ‚«—pj
+ * @brief	é€£é–æ•°æ›´æ–°ï¼ˆãƒã‚ºãƒ¬å¼•ã„ãŸã‘ã©åŒã˜ãƒã‚±ãƒ¢ãƒ³ã¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸã¨ãç”¨ï¼‰
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  *
  */
 //-----------------------------------------------------------------------------
 void SwayGrass_UpDateChain(FIELDSYS_WORK * fsys)
 {
-	IncChain(&(fsys->SwayGrass->Chain));	//˜A½‰ñ”+1
-	//—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg—š—ğƒ`ƒFƒbƒN‚ÆXV
+	IncChain(&(fsys->SwayGrass->Chain));	//é€£é–å›æ•°+1
+	//æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå±¥æ­´ãƒã‚§ãƒƒã‚¯ã¨æ›´æ–°
 	UpdateSwayGrassHist(fsys, fsys->SwayGrass);
 }
 
 #if 0
 //-----------------------------------------------------------------------------
 /**
- * @brief	—š—ğ‘‚«Š·‚¦ˆÊ’uXV
+ * @brief	å±¥æ­´æ›¸ãæ›ãˆä½ç½®æ›´æ–°
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  *
  */
@@ -935,11 +935,11 @@ void SwayGrass_ChangeHistRewritePos(FIELDSYS_WORK * fsys)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ`ƒF[ƒ“”æ“¾
+ * @brief	ãƒã‚§ãƒ¼ãƒ³æ•°å–å¾—
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
- * @retval	int		ƒ`ƒF[ƒ“”
+ * @retval	int		ãƒã‚§ãƒ¼ãƒ³æ•°
  *
  */
 //-----------------------------------------------------------------------------
@@ -950,9 +950,9 @@ int SwayGrass_GetChain(FIELDSYS_WORK * fsys)
 
 //==============================================================================
 /**
- * ƒ|ƒPƒT[ƒ`ƒƒ[ƒ`ƒƒ[ƒW<<–¼‘O‚ªƒ|ƒPƒgƒŒ‚É‚È‚Á‚½‚ç‚µ‚¢B‚Ü‚¬‚ç‚í‚µ‚¢B
+ * ãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼ãƒãƒ£ãƒ¼ã‚¸<<åå‰ãŒãƒã‚±ãƒˆãƒ¬ã«ãªã£ãŸã‚‰ã—ã„ã€‚ã¾ãã‚‰ã‚ã—ã„ã€‚
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -960,10 +960,10 @@ int SwayGrass_GetChain(FIELDSYS_WORK * fsys)
 void SwayGrass_ChargePokeSearcher(FIELDSYS_WORK *fsys)
 {
 	u8 *charge;
-	//ƒ|ƒPƒT[ƒ`ƒƒ[‚ğ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	//ãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼ã‚’æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( MyItem_CheckItem( SaveData_GetMyItem(fsys->savedata),
 							ITEM_POKETORE,1,HEAPID_FIELD) == TRUE ){
-		//ƒZ[ƒuƒf[ƒ^æ“¾
+		//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 		charge = EncDataSave_GetPokeSearcherCharge(EncDataSave_GetSaveDataPtr(fsys->savedata));
 		if ( (*charge)<POKESEARCHER_CHARGE_MAX ){
 			(*charge)++;
@@ -973,9 +973,9 @@ void SwayGrass_ChargePokeSearcher(FIELDSYS_WORK *fsys)
 
 //==============================================================================
 /**
- * ˜A½”‚Ì‰ÁZ
+ * é€£é–æ•°ã®åŠ ç®—
  *
- * @param	outChain		˜A½”‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	outChain		é€£é–æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -991,10 +991,10 @@ static void IncChain(int *outChain)
 #ifdef PM_DEBUG
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ`ƒF[ƒ“”•ÏX
+ * @brief	ãƒã‚§ãƒ¼ãƒ³æ•°å¤‰æ›´
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	n		”
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	n		æ•°
  *
  * @retval	none
  *
@@ -1011,10 +1011,10 @@ void SwayGrass_DebugIncChain(FIELDSYS_WORK * fsys, int n)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ`ƒF[ƒ“”ƒZƒbƒg
+ * @brief	ãƒã‚§ãƒ¼ãƒ³æ•°ã‚»ãƒƒãƒˆ
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	n		”
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	n		æ•°
  *
  * @retval	none
  *
@@ -1031,10 +1031,10 @@ void SwayGrass_DebugSetChain(FIELDSYS_WORK * fsys, int n)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‘î•ñæ“¾
+ * @brief	è‰æƒ…å ±å–å¾—
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inIdx	î•ñ\‘¢‘ÌƒCƒ“ƒfƒbƒNƒX	0`3
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inIdx	æƒ…å ±æ§‹é€ ä½“ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹	0ã€œ3
  *
  * @retval	none
  *

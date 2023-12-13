@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_direct_counter.h
- * @bfief	’ÊMƒ_ƒCƒŒƒNƒgƒR[ƒi[‚ÌƒJƒEƒ“ƒ^[
+ * @bfief	é€šä¿¡ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆã‚³ãƒ¼ãƒŠãƒ¼ã®ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
  * @author	katsumi ohno
  * @date	05/08/04
  */
@@ -14,14 +14,14 @@
 
 typedef void (StartLineCallBack)(BOOL bStart, const POKEPARTY* party);
 
-/// ’èˆÊ’u‚É‚Â‚¢‚½‚ÌƒCƒxƒ“ƒg
+/// å®šä½ç½®ã«ã¤ã„ãŸæ™‚ã®ã‚¤ãƒ™ãƒ³ãƒˆ
 extern void EventCmd_StartLine(FIELDSYS_WORK* pFSys,StartLineCallBack* pCallBack);
-/// ƒgƒŒ[ƒi[‚Æ‚Ì‰ï˜b
+/// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã¨ã®ä¼šè©±
 extern void EventCmd_VSRoomTrainer(FIELDSYS_WORK* pFSys);
 
 
 
-// ƒ~ƒbƒNƒXƒoƒgƒ‹—pƒf[ƒ^’ÊMŠÖ”ŒQ
+// ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«ç”¨ãƒ‡ãƒ¼ã‚¿é€šä¿¡é–¢æ•°ç¾¤
 extern void CommMixBattleRecv(int netID, int size, void* pBuff, void* pWork);
 extern int  CommMixBattleGetDataSize( void );
 extern u8* CommMixBattleGetBuffer( int netID, void* pWork, int size );

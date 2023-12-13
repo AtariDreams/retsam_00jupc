@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_d06r0206evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d06r0206_man3
 _EVENT_DATA		ev_d06r0206_sign1
@@ -25,18 +25,18 @@ _EVENT_DATA_END
 /********************************************************************/
 
 /********************************************************************/
-/*		ƒgƒŒ[ƒi[ŒZ‚³‚ñ(ÔAÂA‰©A—Î‚Ì‚©‚¯‚ç)					*/
+/*		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å…„ã•ã‚“(èµ¤ã€é’ã€é»„ã€ç·‘ã®ã‹ã‘ã‚‰)					*/
 /********************************************************************/
 ev_d06r0206_man3:
 	_TALK_OBJ_START
 
-	//1“úƒtƒ‰ƒOƒ`ƒFƒbƒN
+	//1æ—¥ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 	_IF_FLAGON_JUMP	TMFLG_D06R0206_ITEM_GET,ev_d06r0206_man3_02
 
 	_TALK_KEYWAIT	msg_d06r0206_man3_01
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
-	_GET_RND		SCWK_TEMP0,4			/*4‘ð‚Åƒ‰ƒ“ƒ_ƒ€*/
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
+	_GET_RND		SCWK_TEMP0,4			/*4æŠžã§ãƒ©ãƒ³ãƒ€ãƒ */
 	_SWITCH			SCWK_TEMP0
 	_CASE_JUMP		0,ev_d06r0206_aka
 	_CASE_JUMP		1,ev_d06r0206_ao
@@ -67,20 +67,20 @@ ev_d06r0206_midori:
 ev_d06r0206_man3_sub:
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d06r0206_man3_item_event_fail
 
-	//1“úƒtƒ‰ƒOƒZƒbƒg
+	//1æ—¥ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 	_FLAG_SET		TMFLG_D06R0206_ITEM_GET
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
-/*ƒAƒCƒeƒ€“üŽè‚µ‚½ŒãƒƒbƒZ[ƒW*/
+/*ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ãŸå¾Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_d06r0206_man3_02:
 	_TALKMSG	msg_d06r0206_man3_02
 	_LAST_KEYWAIT
@@ -89,7 +89,7 @@ ev_d06r0206_man3_02:
 	_END
 
 ev_d06r0206_man3_item_event_fail:
-	//ƒAƒCƒeƒ€Žæ“¾Ž¸”sƒCƒxƒ“ƒg(‹¤’ÊƒƒbƒZ[ƒW‚ðo‚·Aê—p‚ðŽg—p‚·‚é‚Æ‚«‚Í‚¢‚ç‚È‚¢)
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å¤±æ•—ã‚¤ãƒ™ãƒ³ãƒˆ(å…±é€šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™ã€å°‚ç”¨ã‚’ä½¿ç”¨ã™ã‚‹ã¨ãã¯ã„ã‚‰ãªã„)
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
 	_TALK_CLOSE
 	_TALK_OBJ_END
@@ -97,7 +97,7 @@ ev_d06r0206_man3_item_event_fail:
 
 
 /********************************************************************/
-/*		ŠÅ”Â														*/
+/*		çœ‹æ¿														*/
 /********************************************************************/
 ev_d06r0206_sign1:
 	_EASY_BOARD_MSG	msg_d06r0206_sign1_01,BOARD_TYPE_POST,0

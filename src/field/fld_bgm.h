@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	fld_bgm.h
- * @brief	ƒtƒB[ƒ‹ƒhƒTƒEƒ“ƒh‘€ì
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚µã‚¦ãƒ³ãƒ‰æ“ä½œ
  * @author	Satoshi Nohara
  * @date	2005.10.14
  */
@@ -14,13 +14,13 @@
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒI[ƒo[‚É‚·‚éˆ—(field_encount.c‚©‚çŒÄ‚Î‚ê‚é)
+ * @brief	ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼æ™‚ã«ã™ã‚‹å‡¦ç†(field_encount.cã‹ã‚‰å‘¼ã°ã‚Œã‚‹)
  *
  * @param	none
  *
@@ -31,9 +31,9 @@ extern void Snd_GameOverSet();
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒI[ƒo[Œã‚ÉÄŠJ‚·‚é‚Ìˆ—(field_encount.c‚©‚çŒÄ‚Î‚ê‚é)
+ * @brief	ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼å¾Œã«å†é–‹ã™ã‚‹æ™‚ã®å‡¦ç†(field_encount.cã‹ã‚‰å‘¼ã°ã‚Œã‚‹)
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -42,129 +42,129 @@ extern void Snd_RestartSet( FIELDSYS_WORK* fsys );
 
 //--------------------------------------------------------------
 /**
- * @brief	BGMw’èƒZƒbƒg
+ * @brief	BGMæŒ‡å®šã‚»ãƒƒãƒˆ
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	bgm_no	BGMƒiƒ“ƒo[
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	bgm_no	BGMãƒŠãƒ³ãƒãƒ¼
  *
  * @retval	none
  *
- * ƒ}ƒbƒv“àŒÀ’è‚ÌBGMw’è‚ªƒZƒbƒg‚³‚ê‚é
- * ©“]ÔBGM‚Ì§Œä‚È‚Ç‚Ég—p
+ * ãƒãƒƒãƒ—å†…é™å®šã®BGMæŒ‡å®šãŒã‚»ãƒƒãƒˆã•ã‚Œã‚‹
+ * è‡ªè»¢è»ŠBGMã®åˆ¶å¾¡ãªã©ã«ä½¿ç”¨
  */
 //--------------------------------------------------------------
 extern void Snd_FieldBgmSetSpecial( FIELDSYS_WORK* fsys, u16 bgm_no );
 
 //--------------------------------------------------------------
 /**
- * @brief	BGMw’èƒQƒbƒg
+ * @brief	BGMæŒ‡å®šã‚²ãƒƒãƒˆ
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"BGMƒiƒ“ƒo["
+ * @retval	"BGMãƒŠãƒ³ãƒãƒ¼"
  *
- * ƒ}ƒbƒv“àŒÀ’è‚ÌBGMw’è‚ªƒZƒbƒg‚³‚ê‚é
- * ©“]ÔBGM‚Ì§Œä‚È‚Ç‚Ég—p
+ * ãƒãƒƒãƒ—å†…é™å®šã®BGMæŒ‡å®šãŒã‚»ãƒƒãƒˆã•ã‚Œã‚‹
+ * è‡ªè»¢è»ŠBGMã®åˆ¶å¾¡ãªã©ã«ä½¿ç”¨
  */
 //--------------------------------------------------------------
 extern u16 Snd_FieldBgmGetSpecial( FIELDSYS_WORK* fsys );
 
 //--------------------------------------------------------------
 /**
- * @brief	BGMw’èƒNƒŠƒA
+ * @brief	BGMæŒ‡å®šã‚¯ãƒªã‚¢
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  *
- * ƒ}ƒbƒv“àŒÀ’è‚ÌBGMw’è‚ªƒNƒŠƒA‚³‚ê‚é
- * ©“]ÔBGM‚Ì§Œä‚È‚Ç‚Ég—p
+ * ãƒãƒƒãƒ—å†…é™å®šã®BGMæŒ‡å®šãŒã‚¯ãƒªã‚¢ã•ã‚Œã‚‹
+ * è‡ªè»¢è»ŠBGMã®åˆ¶å¾¡ãªã©ã«ä½¿ç”¨
  */
 //--------------------------------------------------------------
 extern void Snd_FieldBgmClearSpecial( FIELDSYS_WORK* fsys );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhBGMƒiƒ“ƒo[æ“¾
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone_id	ƒ][ƒ“ID
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone_id	ã‚¾ãƒ¼ãƒ³ID
  *
- * @retval	"ƒtƒB[ƒ‹ƒhBGMƒiƒ“ƒo["
+ * @retval	"ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒŠãƒ³ãƒãƒ¼"
  */
 //--------------------------------------------------------------
 extern u16 Snd_FieldBgmNoGet( FIELDSYS_WORK* fsys, int zone_id );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhBGMƒiƒ“ƒo[æ“¾(BASIC_BANK‚ğœ‚­)
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒŠãƒ³ãƒãƒ¼å–å¾—(BASIC_BANKã‚’é™¤ã)
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone_id	ƒ][ƒ“ID
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone_id	ã‚¾ãƒ¼ãƒ³ID
  *
- * @retval	"ƒtƒB[ƒ‹ƒhBGMƒiƒ“ƒo["
+ * @retval	"ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰BGMãƒŠãƒ³ãƒãƒ¼"
  *
- * ’Êí‚Íg—p‚µ‚È‚¢I
+ * é€šå¸¸ã¯ä½¿ç”¨ã—ãªã„ï¼
  */
 //--------------------------------------------------------------
 extern u16 Snd_FieldBgmNoGetNonBasicBank( FIELDSYS_WORK* fsys, int zone_id );
 
 //--------------------------------------------------------------
 /**
- * @brief	"ƒ][ƒ“‚ğ‚Ü‚½‚®ê—p"@ƒtƒF[ƒhƒAƒEƒg ¨ BGMÄ¶(ƒtƒB[ƒ‹ƒhê—p)
+ * @brief	"ã‚¾ãƒ¼ãƒ³ã‚’ã¾ãŸãå°‚ç”¨"ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ â†’ BGMå†ç”Ÿ(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å°‚ç”¨)
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq_no	ƒV[ƒPƒ“ƒXƒiƒ“ƒo[
- * @param	mode	ƒ‚[ƒh(fld_bgm.hQÆ)
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq_no	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
+ * @param	mode	ãƒ¢ãƒ¼ãƒ‰(fld_bgm.hå‚ç…§)
  *
- * @retval	"0=‰½‚à‚µ‚È‚¢A1=ŠJn"
+ * @retval	"0=ä½•ã‚‚ã—ãªã„ã€1=é–‹å§‹"
  *
- * ƒtƒB[ƒ‹ƒhˆÈŠO‚ÍA‚±‚ÌŠÖ”‚ğg—p‚µ‚Ä‰º‚³‚¢I
- * œSnd_BgmFadeOutNextPlaySet(...);
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä»¥å¤–ã¯ã€ã“ã®é–¢æ•°ã‚’ä½¿ç”¨ã—ã¦ä¸‹ã•ã„ï¼
+ * â—Snd_BgmFadeOutNextPlaySet(...);
  *
- * ƒ][ƒ“‚ğ‚Ü‚½‚®ê—p‚Å‚·B“¹˜HA’¬‚Ìƒ][ƒ“‚ğ‚Ü‚½‚®‚Ég—p‚µ‚Ü‚·B
- * ƒ}ƒbƒv‘JˆÚ‚É‚Íg—p‚Å‚«‚Ü‚¹‚ñB
+ * ã‚¾ãƒ¼ãƒ³ã‚’ã¾ãŸãå°‚ç”¨ã§ã™ã€‚é“è·¯ã€ç”ºã®ã‚¾ãƒ¼ãƒ³ã‚’ã¾ãŸãæ™‚ã«ä½¿ç”¨ã—ã¾ã™ã€‚
+ * ãƒãƒƒãƒ—é·ç§»ã«ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚
  */
 //--------------------------------------------------------------
 extern BOOL Snd_FadeOutNextPlayCall( FIELDSYS_WORK* fsys, u16 seq_no, int mode );
 
 //--------------------------------------------------------------
 /**
- * @brief	"ƒ}ƒbƒv‘JˆÚê—p"@ƒtƒF[ƒhƒAƒEƒg ¨ BGMÄ¶(ƒtƒB[ƒ‹ƒhê—p)
+ * @brief	"ãƒãƒƒãƒ—é·ç§»å°‚ç”¨"ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ â†’ BGMå†ç”Ÿ(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å°‚ç”¨)
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	seq_no	ƒV[ƒPƒ“ƒXƒiƒ“ƒo[
- * @param	mode	ƒ‚[ƒh(fld_bgm.hQÆ)
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	seq_no	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
+ * @param	mode	ãƒ¢ãƒ¼ãƒ‰(fld_bgm.hå‚ç…§)
  *
- * @retval	"0=‰½‚à‚µ‚È‚¢A1=ŠJn"
+ * @retval	"0=ä½•ã‚‚ã—ãªã„ã€1=é–‹å§‹"
  *
- * ƒ}ƒbƒv‘JˆÚê—p‚Å‚·BŒš•¨Aƒ_ƒ“ƒWƒ‡ƒ“‚É“ü‚é‚Ég—p‚µ‚Ü‚·B
- * “¹˜HA’¬‚Ìƒ][ƒ“‚ğ‚Ü‚½‚®‚É‚Íg—p‚Å‚«‚Ü‚¹‚ñB
+ * ãƒãƒƒãƒ—é·ç§»å°‚ç”¨ã§ã™ã€‚å»ºç‰©ã€ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã«å…¥ã‚‹æ™‚ã«ä½¿ç”¨ã—ã¾ã™ã€‚
+ * é“è·¯ã€ç”ºã®ã‚¾ãƒ¼ãƒ³ã‚’ã¾ãŸãæ™‚ã«ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚
  */
 //--------------------------------------------------------------
 //extern BOOL Snd_MapChangeFadeOutNextPlayCall( FIELDSYS_WORK* fsys, u16 seq_no, int mode );
 
 //--------------------------------------------------------------
 /**
- * @brief	"ƒ}ƒbƒv‘JˆÚê—p"@ev_mapchange.c—p‚ÌŠÖ”
+ * @brief	"ãƒãƒƒãƒ—é·ç§»å°‚ç”¨"ã€€ev_mapchange.cç”¨ã®é–¢æ•°
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone_id	ƒ][ƒ“ID
- * @param	mode	ƒ‚[ƒh(fld_bgm.hQÆ)
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone_id	ã‚¾ãƒ¼ãƒ³ID
+ * @param	mode	ãƒ¢ãƒ¼ãƒ‰(fld_bgm.hå‚ç…§)
  *
- * @retval	"0=‰½‚à‚µ‚È‚¢A1=ŠJn"
+ * @retval	"0=ä½•ã‚‚ã—ãªã„ã€1=é–‹å§‹"
  *
- * ƒ}ƒbƒv‘JˆÚê—p‚Å‚·BŒš•¨Aƒ_ƒ“ƒWƒ‡ƒ“‚É“ü‚é‚Ég—p‚µ‚Ü‚·B
- * “¹˜HA’¬‚Ìƒ][ƒ“‚ğ‚Ü‚½‚®‚É‚Íg—p‚Å‚«‚Ü‚¹‚ñB
+ * ãƒãƒƒãƒ—é·ç§»å°‚ç”¨ã§ã™ã€‚å»ºç‰©ã€ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã«å…¥ã‚‹æ™‚ã«ä½¿ç”¨ã—ã¾ã™ã€‚
+ * é“è·¯ã€ç”ºã®ã‚¾ãƒ¼ãƒ³ã‚’ã¾ãŸãæ™‚ã«ã¯ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚
  */
 //--------------------------------------------------------------
 //extern BOOL Snd_MapChangeFadeOutNextPlaySub( FIELDSYS_WORK* fsys, int zone_id, int mode );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[‹üBGMæ“¾(ƒXƒNƒŠƒvƒg‚©‚çŒÄ‚Î‚ê‚é)
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šBGMå–å¾—(ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰å‘¼ã°ã‚Œã‚‹)
  *
- * @param	tr_id	ƒgƒŒ[ƒi[ID
+ * @param	tr_id	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
  *
  * @retval	none
  */
@@ -173,10 +173,10 @@ extern u16 Snd_EyeBgmGet( int tr_id );
 
 //--------------------------------------------------------------
 /**
- * @brief	í“¬BGMæ“¾
+ * @brief	æˆ¦é—˜BGMå–å¾—
  *
- * @param	fight_type	í“¬í•Êƒtƒ‰ƒO
- * @param	tr_id	ƒgƒŒ[ƒi[ID
+ * @param	fight_type	æˆ¦é—˜ç¨®åˆ¥ãƒ•ãƒ©ã‚°
+ * @param	tr_id	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
  *
  * @retval	none
  */
@@ -185,11 +185,11 @@ extern u16 Snd_BattleBgmGet( u32 fight_type, int tr_id );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ][ƒ“ƒf[ƒ^‚ÌBGMƒiƒ“ƒo[æ“¾
+ * @brief	ã‚¾ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®BGMãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- * @param	zone_id	ƒ][ƒ“ID
+ * @param	zone_id	ã‚¾ãƒ¼ãƒ³ID
  *
- * @retval	"BGMƒiƒ“ƒo["
+ * @retval	"BGMãƒŠãƒ³ãƒãƒ¼"
  */
 //--------------------------------------------------------------
 extern u16 Snd_ZoneDataBgmNoGet( int zone_id );
@@ -197,7 +197,7 @@ extern u16 Snd_ZoneDataBgmNoGet( int zone_id );
 
 //==============================================================================================
 //
-//	ƒ}ƒbƒv‘JˆÚ—p(‚Ü‚½‚®‚Íg—p•s‰ÂI)
+//	ãƒãƒƒãƒ—é·ç§»ç”¨(ã¾ãŸãæ™‚ã¯ä½¿ç”¨ä¸å¯ï¼)
 //
 //	ev_mapchange.c
 //	map_jump.c
@@ -206,10 +206,10 @@ extern u16 Snd_ZoneDataBgmNoGet( int zone_id );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒv‘JˆÚFƒ][ƒ“Ø‚è‘Ö‚¦‚é‚ÉƒtƒF[ƒhƒAƒEƒg
+ * @brief	ãƒãƒƒãƒ—é·ç§»ï¼šã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã‚‹æ™‚ã«ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone_id		ƒ][ƒ“ID
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone_id		ã‚¾ãƒ¼ãƒ³ID
  *
  * @retval	none
  */
@@ -218,10 +218,10 @@ extern void Snd_EvMapChangeBgmFadeCheck( FIELDSYS_WORK* fsys, int zone_id );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒv‘JˆÚFƒ][ƒ“Ø‚è‘Ö‚¦‚é‚ÌBGMÄ¶
+ * @brief	ãƒãƒƒãƒ—é·ç§»ï¼šã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã‚‹æ™‚ã®BGMå†ç”Ÿ
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone_id		ƒ][ƒ“ID
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone_id		ã‚¾ãƒ¼ãƒ³ID
  *
  * @retval	none
  */
@@ -231,7 +231,7 @@ extern void Snd_EvMapChangeBgmPlay( FIELDSYS_WORK* fsys, int zone_id );
 
 //==============================================================================================
 //
-//	ƒtƒB[ƒ‹ƒh‰Šú‰»—p
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆæœŸåŒ–ç”¨
 //
 //	fieldmap.c
 //
@@ -239,10 +239,10 @@ extern void Snd_EvMapChangeBgmPlay( FIELDSYS_WORK* fsys, int zone_id );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒh‰Šú‰»FƒTƒEƒ“ƒhƒf[ƒ^ƒZƒbƒg
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆæœŸåŒ–ï¼šã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	zone_id		ƒ][ƒ“ID
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	zone_id		ã‚¾ãƒ¼ãƒ³ID
  *
  * @retval	none
  */

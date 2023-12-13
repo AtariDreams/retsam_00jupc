@@ -18,14 +18,14 @@
 // =============================================================================
 //
 //
-//	ƒ„ƒWƒƒx[		ƒXƒ[
+//	ãƒ¤ã‚¸ãƒ­ãƒ™ãƒ¼		ã‚¹ãƒ­ãƒ¼
 //
 //
 // =============================================================================
 PAST_ANIME010:
-	//50‰ñ‚Ìˆ—‚Å¶‰E0xccc‚ÌŠp“xŒX‚¯‚é
+	//50å›žã®å‡¦ç†ã§å·¦å³0xcccã®è§’åº¦å‚¾ã‘ã‚‹
 	CALL_MF_CURVE_DIVTIME APPLY_SET,0,CURVE_SIN_MINUS,TARGET_ROT,0xccc,0x10000,0,50
-	//ŒX‚«‚É‚ ‚í‚¹‚Ä­‚µ‰¡ˆÚ“®
+	//å‚¾ãã«ã‚ã‚ã›ã¦å°‘ã—æ¨ªç§»å‹•
 	CALL_MF_CURVE_DIVTIME APPLY_SET,0,CURVE_SIN_MINUS,TARGET_DX,10,0x10000,0,50
 	HOLD_CMD
 

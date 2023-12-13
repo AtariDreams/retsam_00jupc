@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wifi_2dobj.h
- *	@brief		wifi 2dƒVƒXƒeƒ€@“®ìŠÇ—
+ *	@brief		wifi 2dã‚·ã‚¹ãƒ†ãƒ ã€€å‹•ä½œç®¡ç†
  *	@author		tomoya takahashi
  *	@data		2007.03.06
  *
@@ -23,95 +23,95 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ƒ}ƒbƒvƒtƒ‰ƒO
-//	“–‚½‚è”»’è‚ÉŽg—p‚·‚é’è”‚Å‚·B
+///	ãƒžãƒƒãƒ—ãƒ•ãƒ©ã‚°
+//	å½“ãŸã‚Šåˆ¤å®šã«ä½¿ç”¨ã™ã‚‹å®šæ•°ã§ã™ã€‚
 //=====================================
 typedef enum {
 	WF_MAP_NONE = 0,
-	WF_MAP_PLAYER,			// l‚Ì‚¢‚é‚Æ‚±‚ë
-	WF_MAP_PLAYER_NEXT,		// ŽŸl‚ª—ˆ‚é‚Æ‚±‚ë
-	WF_MAP_BLOCK,			// lˆÈŠO‚Ì‚¢‚¯‚È‚¢‚Æ‚±‚ë
+	WF_MAP_PLAYER,			// äººã®ã„ã‚‹ã¨ã“ã‚
+	WF_MAP_PLAYER_NEXT,		// æ¬¡äººãŒæ¥ã‚‹ã¨ã“ã‚
+	WF_MAP_BLOCK,			// äººä»¥å¤–ã®ã„ã‘ãªã„ã¨ã“ã‚
 	WF_MAP_FLAGNUM,
 } WF_MAP_FLAG;
 
 
 //-------------------------------------
-///	“®ìó‘Ô’è”
+///	å‹•ä½œçŠ¶æ…‹å®šæ•°
 //=====================================
 typedef enum {
-	WF_OBJ_STATUS_NONE,	// ‘Ò‹@ó‘Ô
-	WF_OBJ_STATUS_TURN,	// U‚èŒü‚«ó‘Ô	
-	WF_OBJ_STATUS_WALK,	// •à‚«ó‘Ô	
-	WF_OBJ_STATUS_RUN,	// ‘–‚èó‘Ô	
+	WF_OBJ_STATUS_NONE,	// å¾…æ©ŸçŠ¶æ…‹
+	WF_OBJ_STATUS_TURN,	// æŒ¯ã‚Šå‘ãçŠ¶æ…‹	
+	WF_OBJ_STATUS_WALK,	// æ­©ãçŠ¶æ…‹	
+	WF_OBJ_STATUS_RUN,	// èµ°ã‚ŠçŠ¶æ…‹	
 	WF_OBJ_STATUS_NUM,	// 
 } WF_OBJ_STATUS;
 
 //-------------------------------------
-///	ƒpƒ‰ƒ[ƒ^Žw’è’è”
+///	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æŒ‡å®šå®šæ•°
 //=====================================
 typedef enum {
-	WF_OBJ_PARAM_X,			// XÀ•W
-	WF_OBJ_PARAM_Y,			// YÀ•W
-	WF_OBJ_PARAM_PLAYID,	// ƒvƒŒƒCƒ„[Ž¯•ÊID	iAID‚È‚Ç‚ðŽw’èj
-	WF_OBJ_PARAM_STATUS,	// ¡‚Ìó‘Ô
-	WF_OBJ_PARAM_WAY,	// Œü‚¢‚Ä‚¢‚é•ûŒü
+	WF_OBJ_PARAM_X,			// Xåº§æ¨™
+	WF_OBJ_PARAM_Y,			// Yåº§æ¨™
+	WF_OBJ_PARAM_PLAYID,	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è­˜åˆ¥ID	ï¼ˆAIDãªã©ã‚’æŒ‡å®šï¼‰
+	WF_OBJ_PARAM_STATUS,	// ä»Šã®çŠ¶æ…‹
+	WF_OBJ_PARAM_WAY,	// å‘ã„ã¦ã„ã‚‹æ–¹å‘
 	WF_OBJ_PARAM_NUM
 } WF_OBJ_PARAM;
 
 
 //-------------------------------------
-///	À•WŠÖ˜A
+///	åº§æ¨™é–¢é€£
 //=====================================
-#define WF_OBJ_GRID_SIZ	( 16 )	// 1ƒOƒŠƒbƒhƒTƒCƒY
-#define WF_OBJ_GRID_TO_POS(x)	( (x)*WF_OBJ_GRID_SIZ )	// ƒOƒŠƒbƒh‚ðÀ•W‚É•ÏŠ·
-#define WF_OBJ_POS_TO_GRID(x)	( (x)/WF_OBJ_GRID_SIZ )	// À•W‚ðƒOƒŠƒbƒh‚É•ÏŠ·
+#define WF_OBJ_GRID_SIZ	( 16 )	// 1ã‚°ãƒªãƒƒãƒ‰ã‚µã‚¤ã‚º
+#define WF_OBJ_GRID_TO_POS(x)	( (x)*WF_OBJ_GRID_SIZ )	// ã‚°ãƒªãƒƒãƒ‰ã‚’åº§æ¨™ã«å¤‰æ›
+#define WF_OBJ_POS_TO_GRID(x)	( (x)/WF_OBJ_GRID_SIZ )	// åº§æ¨™ã‚’ã‚°ãƒªãƒƒãƒ‰ã«å¤‰æ›
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ŠÇ—ƒVƒXƒeƒ€
+///	ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _WF_OBJ_SYS WF_OBJ_SYS;
 
 //-------------------------------------
-///	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+///	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WF_OBJ_WK WF_OBJ_WK;
 
 //-------------------------------------
-///	ƒIƒuƒWƒFƒNƒgƒ[ƒN‰Šú‰»ƒf[ƒ^
+///	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	s16 x;		// xÀ•W
-	s16 y;		// yÀ•W
-	u16 playid;	// ƒvƒŒƒCƒ„[Ž¯•ÊID	iAID‚È‚Ç‚ðŽw’èj
-	u16 way;	// •ûŒüiWF_COMMON_WAYj
+	s16 x;		// xåº§æ¨™
+	s16 y;		// yåº§æ¨™
+	u16 playid;	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è­˜åˆ¥ID	ï¼ˆAIDãªã©ã‚’æŒ‡å®šï¼‰
+	u16 way;	// æ–¹å‘ï¼ˆWF_COMMON_WAYï¼‰
 } WF_OBJ_WKDATA;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ƒVƒXƒeƒ€ì¬@‚Í‚«
+// ã‚·ã‚¹ãƒ†ãƒ ä½œæˆã€€ã¯ã
 GLOBAL WF_OBJ_SYS* WF_OBJ_SysInit( WF_MAP_SYS* p_mapdata, u32 objnum, u32 heapID );
 GLOBAL void WF_OBJ_SysExit( WF_OBJ_SYS* p_sys );
 
-// ƒIƒuƒWƒFƒNƒg¶¬
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 GLOBAL WF_OBJ_WK* WF_OBJ_WkNew( WF_OBJ_SYS* p_sys, const WF_OBJ_WKDATA* cp_data );
 GLOBAL void WF_OBJ_WkDel( WF_OBJ_SYS* p_sys, WF_OBJ_WK* p_wk );
 
 
-// ƒIƒuƒWƒFƒNƒg‘€ì
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ“ä½œ
 GLOBAL BOOL WF_OBJ_WkMoveReq( WF_OBJ_SYS* p_sys, WF_OBJ_WK* p_wk, WF_OBJ_STATUS req, WF_COMMON_WAY way );
 GLOBAL BOOL WF_OBJ_WkMain( WF_OBJ_SYS* p_sys, WF_OBJ_WK* p_wk );
 GLOBAL s32 WF_OBJ_WkParamGet( const WF_OBJ_WK* cp_wk, WF_OBJ_PARAM param );

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_a00v.c
- * @bfief	ƒ|ƒPƒbƒ`iƒAƒvƒŠNo00 = ƒfƒWƒ^ƒ‹ŽžŒvj@•`‰æ
+ * @bfief	ãƒã‚±ãƒƒãƒï¼ˆã‚¢ãƒ—ãƒªNo00 = ãƒ‡ã‚¸ã‚¿ãƒ«æ™‚è¨ˆï¼‰ã€€æç”»
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -19,7 +19,7 @@
 #define CMD_STORE_MAX	(8)
 #define USE_BG_FRAME	(GF_BGL_FRAME2_S)
 
-#define NUM_SCR_SINGLE_WIDTH	(4)		///< ”Žš‚PŒÂ‚Ì‰¡·¬×”
+#define NUM_SCR_SINGLE_WIDTH	(4)		///< æ•°å­—ï¼‘å€‹ã®æ¨ªã‚­ãƒ£ãƒ©æ•°
 
 #define NUM_SCR_WIDTH	(NUM_SCR_SINGLE_WIDTH*10)
 #define NUM_SCR_HEIGHT	(9)
@@ -67,9 +67,9 @@ static void UpdateTimeScreen( VIEWWORK* vwk );
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNŠm•Û
+ * ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- * @param   wk_ptr		Šm•Û‚µ‚½ƒ[ƒNƒAƒhƒŒƒX‚ð•Û‘¶‚·‚éƒ|ƒCƒ“ƒ^‚ÌƒAƒhƒŒƒX
+ * @param   wk_ptr		ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -104,11 +104,11 @@ BOOL Poketch_A00_SetViewWork( VIEWWORK** wk_ptr, const VIEWPARAM* vpara, GF_BGL_
 }
 //------------------------------------------------------------------
 /**
- * ”ŽšƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ð®Œ`‚µ‚ÄƒRƒs[‚·‚é
- * ¦32ƒLƒƒƒ‰‚ÅÜ‚è•Ô‚³‚ê‚Ä‚µ‚Ü‚¤‚½‚ßA‚»‚Ì‚Ü‚Ü‚Å‚ÍŽg‚¢‚Ã‚ç‚¢B
+ * æ•°å­—ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ•´å½¢ã—ã¦ã‚³ãƒ”ãƒ¼ã™ã‚‹
+ * â€»32ã‚­ãƒ£ãƒ©ã§æŠ˜ã‚Šè¿”ã•ã‚Œã¦ã—ã¾ã†ãŸã‚ã€ãã®ã¾ã¾ã§ã¯ä½¿ã„ã¥ã‚‰ã„ã€‚
  *
- * @param   src		g2dcvtr‚ª“f‚«‚¾‚µ‚½ƒXƒNƒŠ[ƒ“‚Ìæ“ªƒf[ƒ^
- * @param   dst		ƒRƒs[æƒoƒbƒtƒ@
+ * @param   src		g2dcvtrãŒåãã ã—ãŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å…ˆé ­ãƒ‡ãƒ¼ã‚¿
+ * @param   dst		ã‚³ãƒ”ãƒ¼å…ˆãƒãƒƒãƒ•ã‚¡
  *
  */
 //------------------------------------------------------------------
@@ -133,9 +133,9 @@ static void NumScreenDataCopy( const u16* src, u16* dst )
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNíœ
+ * ãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param   wk		Šm•Û‚µ‚½ƒ[ƒNƒAƒhƒŒƒX
+ * @param   wk		ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -149,7 +149,7 @@ void Poketch_A00_DeleteViewWork( VIEWWORK* wk )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹
+ * @brief	ã‚³ãƒžãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //------------------------------------------------------------------
 static const POKETCH_VIEW_CMD CmdTbl[] = {
@@ -163,10 +163,10 @@ static const POKETCH_VIEW_CMD CmdTbl[] = {
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌƒZƒbƒg
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ã®ã‚»ãƒƒãƒˆ
  *
- * @param   cmd		ƒRƒ}ƒ“ƒh
- * @param   view_wk_adrs	ƒ[ƒN—ÌˆæƒAƒhƒŒƒX
+ * @param   cmd		ã‚³ãƒžãƒ³ãƒ‰
+ * @param   view_wk_adrs	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -176,11 +176,11 @@ void Poketch_A00_SetViewCommand(VIEWWORK* wk, u32 cmd)
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌI—¹‘Ò‚¿i’P”­j
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ã®çµ‚äº†å¾…ã¡ï¼ˆå˜ç™ºï¼‰
  *
- * @param   cmd			ƒRƒ}ƒ“ƒh
+ * @param   cmd			ã‚³ãƒžãƒ³ãƒ‰
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL Poketch_A00_WaitViewCommand(VIEWWORK* wk, u32 cmd)
@@ -189,9 +189,9 @@ BOOL Poketch_A00_WaitViewCommand(VIEWWORK* wk, u32 cmd)
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌI—¹‘Ò‚¿i‘S•”j
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ã®çµ‚äº†å¾…ã¡ï¼ˆå…¨éƒ¨ï¼‰
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL Poketch_A00_WaitViewCommandAll(VIEWWORK* wk)
@@ -203,9 +203,9 @@ BOOL Poketch_A00_WaitViewCommandAll(VIEWWORK* wk)
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhíœ
+ * ã‚³ãƒžãƒ³ãƒ‰å‰Šé™¤
  *
- * @param   cwk		ƒRƒ}ƒ“ƒhƒ[ƒN
+ * @param   cwk		ã‚³ãƒžãƒ³ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  */
 //------------------------------------------------------------------
@@ -217,10 +217,10 @@ static void DeleteCommand(POKETCH_CMD_WORK* cwk)
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhF‰æ–Ê\’z
+ * ã‚³ãƒžãƒ³ãƒ‰ï¼šç”»é¢æ§‹ç¯‰
  *
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_ptr		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -258,10 +258,10 @@ static void CmdInit(TCB_PTR tcb, void *wk_ptr)
 }
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhFŽžŠÔXV
+ * ã‚³ãƒžãƒ³ãƒ‰ï¼šæ™‚é–“æ›´æ–°
  *
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_ptr		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -274,10 +274,10 @@ static void CmdTimeUpdate( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhFƒoƒbƒNƒ‰ƒCƒgXV
+ * ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒãƒƒã‚¯ãƒ©ã‚¤ãƒˆæ›´æ–°
  *
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_ptr		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -297,10 +297,10 @@ static void CmdBackLightUpdate(TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhFI—¹ˆ—
+ * ã‚³ãƒžãƒ³ãƒ‰ï¼šçµ‚äº†å‡¦ç†
  *
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_ptr		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -313,9 +313,9 @@ static void CmdQuit(TCB_PTR tcb, void *wk_ptr)
 }
 //------------------------------------------------------------------
 /**
- * ŽžƒXƒNƒŠ[ƒ“‚ðXV
+ * æ™‚åˆ»ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’æ›´æ–°
  *
- * @param   vwk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   vwk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------

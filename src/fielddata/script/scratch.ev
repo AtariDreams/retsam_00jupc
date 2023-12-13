@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_scratchevc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_scratch
 _EVENT_DATA_END
@@ -22,34 +22,34 @@ _EVENT_DATA_END
 /********************************************************************/
 /*						FLAG_CHANGE_LABEL 							*/
 /*
- * ’ˆÓI(06.02.09Œ»Ý)
- * EV_SCRIPT_WORK‚ðŠm•Û‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅA
- * SCWK_ANSWER‚È‚Ç‚Ìƒ[ƒN‚ÍŽg—p‚·‚é‚±‚Æ‚ªo—ˆ‚È‚¢I
- * LOCALWORK0‚È‚Ç‚ðŽg—p‚·‚é‚æ‚¤‚É‚·‚éI
+ * æ³¨æ„ï¼(06.02.09ç¾åœ¨)
+ * EV_SCRIPT_WORKã‚’ç¢ºä¿ã—ã¦ã„ãªã„ã®ã§ã€
+ * SCWK_ANSWERãªã©ã®ãƒ¯ãƒ¼ã‚¯ã¯ä½¿ç”¨ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã„ï¼
+ * LOCALWORK0ãªã©ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼
  *
- * ‹¤’ÊƒXƒNƒŠƒvƒg‚É‚Â‚¢‚Ä‚ÍŒ»óŽg—p•s‰ÂI
- * ‘Î‰ž—\’è‚¾‚ªAƒ][ƒ“‚ð‚Ü‚½‚¢‚¾Žž‚Éˆ——Ž‚¿‚·‚é‚©‚àH
- * ‚ ‚Ü‚è‚Â‚©‚í‚È‚¢‚©‚àH
+ * å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆã«ã¤ã„ã¦ã¯ç¾çŠ¶ä½¿ç”¨ä¸å¯ï¼
+ * å¯¾å¿œäºˆå®šã ãŒã€ã‚¾ãƒ¼ãƒ³ã‚’ã¾ãŸã„ã æ™‚ã«å‡¦ç†è½ã¡ã™ã‚‹ã‹ã‚‚ï¼Ÿ
+ * ã‚ã¾ã‚Šã¤ã‹ã‚ãªã„ã‹ã‚‚ï¼Ÿ
  */
 /********************************************************************/
 //ev_scratch_flag_change:
 //	_END
 
-#define SCRATCH_USE_BP	(1)		/*ƒXƒNƒ‰ƒbƒ`‚É•K—v‚ÈBP‚Ì’l*/
-//#define SCRATCH_USE_BP	(0)		/*ƒXƒNƒ‰ƒbƒ`‚É•K—v‚ÈBP‚Ì’l*/
+#define SCRATCH_USE_BP	(1)		/*ã‚¹ã‚¯ãƒ©ãƒƒãƒã«å¿…è¦ãªBPã®å€¤*/
+//#define SCRATCH_USE_BP	(0)		/*ã‚¹ã‚¯ãƒ©ãƒƒãƒã«å¿…è¦ãªBPã®å€¤*/
 
 /********************************************************************/
-/*							ƒXƒNƒ‰ƒbƒ`								*/
+/*							ã‚¹ã‚¯ãƒ©ãƒƒãƒ								*/
 //
-//	SCWK_PARAM0		“–‚½‚è‚Ì–‡”
+//	SCWK_PARAM0		å½“ãŸã‚Šã®æžšæ•°
 /********************************************************************/
 ev_scratch:
 	_TALK_OBJ_START
 
-	//ƒoƒgƒ‹ƒ|ƒCƒ“ƒgƒEƒBƒ“ƒhƒE•`‰æ
+	//ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 	_BTL_POINT_WIN_WRITE	21,1
 
-	/*‚·‚Å‚É‰ï˜b‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«ä¼šè©±ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_SCRATCH_TALK,ev_scratch_talk
 
 	_FLAG_SET		FE_SCRATCH_TALK
@@ -59,32 +59,32 @@ ev_scratch:
 	_JUMP			ev_scratch_menu
 	_END
 
-/*‚·‚Å‚É‰ï˜b‚µ‚Ä‚¢‚½‚ç*/
+/*ã™ã§ã«ä¼šè©±ã—ã¦ã„ãŸã‚‰*/
 ev_scratch_talk:
 
-	/*u‚¢‚ç‚Á‚µ‚á‚¢‚Ü‚¹Iv*/
+	/*ã€Œã„ã‚‰ã£ã—ã‚ƒã„ã¾ã›ï¼ã€*/
 	_NUMBER_NAME	0,SCRATCH_USE_BP
 	_TALK_KEYWAIT	msg_scratch_counter_01
 	_JUMP			ev_scratch_menu
 	_END
 
 ev_scratch_menu:
-	/*u‚±‚¤‚É‚ã‚¤‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã“ã†ã«ã‚…ã†ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_TALK_KEYWAIT	msg_scratch_counter_01_01
 
-	_BMPMENU_INIT_EX	20,11,0,1,SCWK_ANSWER			/*BƒLƒƒƒ“ƒZƒ‹—LŒø*/
+	_BMPMENU_INIT_EX	20,11,0,1,SCWK_ANSWER			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹*/
 	_BMPMENU_MAKE_LIST	msg_scratch_counter_02,0
 	_BMPMENU_MAKE_LIST	msg_scratch_counter_03,1
 	_BMPMENU_MAKE_LIST	msg_scratch_counter_04,2
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_scratch_case0					/*”ƒ‚¤*/
-	_CASE_JUMP		1,ev_scratch_case1					/*à–¾*/
-	_JUMP			scratch_no_01						/*I—¹‚Ö*/
+	_CASE_JUMP		0,ev_scratch_case0					/*è²·ã†*/
+	_CASE_JUMP		1,ev_scratch_case1					/*èª¬æ˜Ž*/
+	_JUMP			scratch_no_01						/*çµ‚äº†ã¸*/
 	_END
 
-/*”ƒ‚¤*/
+/*è²·ã†*/
 ev_scratch_case0:
 	//_NUMBER_NAME	0,SCRATCH_USE_BP
 	_NUMBER_NAME	2,SCRATCH_USE_BP
@@ -92,17 +92,17 @@ ev_scratch_case0:
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,scratch_no_01
 
-	/*BP‚ª‘«‚è‚È‚¢Žž*/
+	/*BPãŒè¶³ã‚Šãªã„æ™‚*/
 	_COMP_BTL_POINT	SCRATCH_USE_BP,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_scratch_bp_ng	/*BP‘«‚è‚È‚¢*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_scratch_bp_ng	/*BPè¶³ã‚Šãªã„*/
 
-	/*–Ø‚ÌŽÀ‚ª‚¢‚Á‚Ï‚¢‚ÌŽž*/
-	/*‚±‚ê‚Í‘S‚Ä‚Ì–Ø‚ÌŽÀ‚ª999H‚ÌŽž‚ðŠm”F‚·‚éHH*/
+	/*æœ¨ã®å®ŸãŒã„ã£ã±ã„ã®æ™‚*/
+	/*ã“ã‚Œã¯å…¨ã¦ã®æœ¨ã®å®ŸãŒ999ï¼Ÿã®æ™‚ã‚’ç¢ºèªã™ã‚‹ï¼Ÿï¼Ÿ*/
 
-	/*BPŒ¸‚ç‚·*/
+	/*BPæ¸›ã‚‰ã™*/
 	_BTL_POINT_SUB	SCRATCH_USE_BP
 
-	/*BPƒEƒBƒ“ƒhƒEXV*/
+	/*BPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ›´æ–°*/
 	_BTL_POINT_WRITE
 
 	_TALK_KEYWAIT	msg_scratch_counter_10
@@ -110,7 +110,7 @@ ev_scratch_case0:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ƒoƒgƒ‹ƒ|ƒCƒ“ƒgƒEƒBƒ“ƒhƒEíœ*/
+	/*ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤*/
 	_BTL_POINT_WIN_DEL
 
 	_TALK_CLOSE
@@ -118,7 +118,7 @@ ev_scratch_case0:
 	//_FINISH_MAP_PROC
 	_SCRATCH
 
-	/*“–‚½‚èƒAƒCƒeƒ€‚ðŽæ“¾*/
+	/*å½“ãŸã‚Šã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—*/
 	_SCRATCH_ITEM_GET	0,LOCALWORK0,LOCALWORK1
 	_SCRATCH_ITEM_GET	1,LOCALWORK2,LOCALWORK3
 	_SCRATCH_ITEM_GET	2,LOCALWORK4,LOCALWORK5
@@ -129,62 +129,62 @@ ev_scratch_case0:
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*“–‚½‚è‚ª‚ ‚Á‚½‚©‚Å•ªŠò*/
+	/*å½“ãŸã‚ŠãŒã‚ã£ãŸã‹ã§åˆ†å²*/
 	_LDVAL			SCWK_PARAM0,0
 	_CALL			ev_scratch_atari_check
-	_IFVAL_JUMP		SCWK_PARAM0,EQ,0,ev_scratch_atari_not	/*“–‚½‚è‚È‚µ*/
+	_IFVAL_JUMP		SCWK_PARAM0,EQ,0,ev_scratch_atari_not	/*å½“ãŸã‚Šãªã—*/
 
-	/*u‚¨‚ß‚Å‚Æ‚¤‚²‚´‚¢‚Ü‚·I›–‡“–‚½‚è‚Ü‚µ‚½Iv*/
+	/*ã€ŒãŠã‚ã§ã¨ã†ã”ã–ã„ã¾ã™ï¼â—‹æžšå½“ãŸã‚Šã¾ã—ãŸï¼ã€*/
 	_NUMBER_NAME	0,SCWK_PARAM0
 	_TALK_KEYWAIT	msg_scratch_counter_11
 
-	/*ƒAƒCƒeƒ€Žæ“¾*/
+	/*ã‚¢ã‚¤ãƒ†ãƒ å–å¾—*/
 	_IFVAL_CALL		LOCALWORK1,NE,0,ev_scratch_item_get1
 	_IFVAL_CALL		LOCALWORK3,NE,0,ev_scratch_item_get2
 	_IFVAL_CALL		LOCALWORK5,NE,0,ev_scratch_item_get3
 
-	/*u‚»‚ê‚Å‚Í‚Ü‚½‚¨‰z‚µ‚­‚¾‚³‚¢Iv*/
+	/*ã€Œãã‚Œã§ã¯ã¾ãŸãŠè¶Šã—ãã ã•ã„ï¼ã€*/
 	_TALK_KEYWAIT	msg_scratch_counter_05
 	_JUMP			ev_scratch_end
 	_END
 
-/*BP‘«‚è‚È‚¢*/
+/*BPè¶³ã‚Šãªã„*/
 ev_scratch_bp_ng:
 	_TALK_KEYWAIT	msg_scratch_counter_14
 	_JUMP			ev_scratch_end_bp_win_del
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 scratch_no_01:
 	_TALK_KEYWAIT	msg_scratch_counter_05
 	_JUMP			ev_scratch_end_bp_win_del
 	_END
 	
-/*à–¾*/
+/*èª¬æ˜Ž*/
 ev_scratch_case1:
 	_TALK_KEYWAIT	msg_scratch_counter_06
 	_JUMP			ev_scratch_menu
 	_END
 
-/*‹¤’ÊI—¹(win_del)*/
+/*å…±é€šçµ‚äº†(win_del)*/
 ev_scratch_end_bp_win_del:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	/*ƒoƒgƒ‹ƒ|ƒCƒ“ƒgƒEƒBƒ“ƒhƒEíœ*/
+	/*ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤*/
 	_BTL_POINT_WIN_DEL
 
 	_TALK_OBJ_END
 	_END
 
-/*‹¤’ÊI—¹*/
+/*å…±é€šçµ‚äº†*/
 ev_scratch_end:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
-/*“–‚½‚è‚ª‚ ‚Á‚½‚©‚Å•ªŠò*/
+/*å½“ãŸã‚ŠãŒã‚ã£ãŸã‹ã§åˆ†å²*/
 ev_scratch_atari_check:
 	_IFVAL_CALL		LOCALWORK1,NE,0,ev_scratch_atari
 	_IFVAL_CALL		LOCALWORK3,NE,0,ev_scratch_atari
@@ -195,18 +195,18 @@ ev_scratch_atari:
 	_ADD_WK			SCWK_PARAM0,1
 	_RET
 
-/*“–‚½‚è‚ª‚È‚©‚Á‚½*/
+/*å½“ãŸã‚ŠãŒãªã‹ã£ãŸ*/
 ev_scratch_atari_not:
 	_TALK_KEYWAIT	msg_scratch_counter_05
 	_JUMP			ev_scratch_end
 	_END
 
-/*u›‚ð›‚±@Žó‚¯Žæ‚Á‚½Iv*/
+/*ã€Œâ—‹ã‚’â—‹ã“ã€€å—ã‘å–ã£ãŸï¼ã€*/
 ev_scratch_item_get1:
 	_ITEM_NAME		0,LOCALWORK0
 	_NUMBER_NAME	1,LOCALWORK1
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	LOCALWORK0,LOCALWORK1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_scratch_item_fail
 
@@ -220,7 +220,7 @@ ev_scratch_item_get2:
 	_ITEM_NAME		0,LOCALWORK2
 	_NUMBER_NAME	1,LOCALWORK3
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	LOCALWORK2,LOCALWORK3,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_scratch_item_fail
 
@@ -234,7 +234,7 @@ ev_scratch_item_get3:
 	_ITEM_NAME		0,LOCALWORK4
 	_NUMBER_NAME	1,LOCALWORK5
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	LOCALWORK4,LOCALWORK5,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_scratch_item_fail
 
@@ -244,7 +244,7 @@ ev_scratch_item_get3:
 	_ME_WAIT
 	_RET
 
-/*ƒAƒCƒeƒ€‚¢‚Á‚Ï‚¢ƒƒbƒZ[ƒW*/
+/*ã‚¢ã‚¤ãƒ†ãƒ ã„ã£ã±ã„ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_scratch_item_fail:
 	_TALK_KEYWAIT	msg_scratch_counter_12
 	_RET

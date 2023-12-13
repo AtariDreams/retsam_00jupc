@@ -12,75 +12,75 @@
 
   $Log: wm_ds.c,v $
   Revision 1.26  2007/10/18 12:01:33  seiki_masashi
-  WM_GetConnectedAIDs ŠÖ”‚ğg—p‚·‚é‚æ‚¤‚É•ÏX
+  WM_GetConnectedAIDs é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.25  2007/10/16 02:00:38  okubata_ryoma
-  •s—v‚È warning ‚ğíœ
+  ä¸è¦ãª warning ã‚’å‰Šé™¤
 
   Revision 1.24  2006/06/14 01:43:53  okubata_ryoma
-  Reset‚ÉWM_EndDataSharingŠÖ”‚ğŒÄ‚Ôˆ—‚ğ’Ç‰Á‚É”º‚Á‚½•ÏX
+  Resetæ™‚ã«WM_EndDataSharingé–¢æ•°ã‚’å‘¼ã¶å‡¦ç†ã‚’è¿½åŠ ã«ä¼´ã£ãŸå¤‰æ›´
 
   Revision 1.23  2006/01/18 02:12:39  kitase_hirotake
   do-indent
 
   Revision 1.22  2005/11/01 08:56:18  seiki_masashi
-  •s—v‚Èó‘ÔŒŸ¸‚Ìœ‹
+  ä¸è¦ãªçŠ¶æ…‹æ¤œæŸ»ã®é™¤å»
 
   Revision 1.21  2005/10/28 11:57:24  seiki_masashi
   small fix
 
   Revision 1.20  2005/10/28 11:17:33  seiki_masashi
-  e‹@‚©‚ç‚ÌØ’f‚Ö‚Ì‘Î‰
-  port ‚Ìd—l’Ç‰Á‚Ö‚Ì‘Î‰
-  WM ‚Ì“à•”\‘¢‘Ì‚É‚Å‚«‚é‚¾‚¯G‚ç‚È‚¢‚æ‚¤‚ÉC³
+  è¦ªæ©Ÿã‹ã‚‰ã®åˆ‡æ–­ã¸ã®å¯¾å¿œ
+  port ã®ä»•æ§˜è¿½åŠ ã¸ã®å¯¾å¿œ
+  WM ã®å†…éƒ¨æ§‹é€ ä½“ã«ã§ãã‚‹ã ã‘è§¦ã‚‰ãªã„ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.19  2005/02/28 05:26:35  yosizaki
   do-indent.
 
   Revision 1.18  2005/02/23 12:48:14  seiki_masashi
-  ƒfƒoƒbƒO•\¦‚Ì®—
+  ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºã®æ•´ç†
 
   Revision 1.17  2005/02/18 12:27:45  seiki_masashi
-  ƒfƒoƒbƒO—pƒXƒCƒbƒ`‚Ì”»’è•¶‚ğ #if ‚©‚ç #ifdef ‚É•ÏX
+  ãƒ‡ãƒãƒƒã‚°ç”¨ã‚¹ã‚¤ãƒƒãƒã®åˆ¤å®šæ–‡ã‚’ #if ã‹ã‚‰ #ifdef ã«å¤‰æ›´
 
   Revision 1.16  2005/02/18 07:52:31  seiki_masashi
-  warning ‘Îô
+  warning å¯¾ç­–
 
   Revision 1.15  2005/01/14 07:46:55  seiki_masashi
-  q‹@‚ÉA©•ª‚ÆŠÖŒW‚È‚¢ DataSharing ‚ÌƒpƒPƒbƒg‚ğóM‚µ‚Ä‚µ‚Ü‚¤•s‹ï‡‚ğC³
+  å­æ©Ÿæ™‚ã«ã€è‡ªåˆ†ã¨é–¢ä¿‚ãªã„ DataSharing ã®ãƒ‘ã‚±ãƒƒãƒˆã‚’å—ä¿¡ã—ã¦ã—ã¾ã†ä¸å…·åˆã‚’ä¿®æ­£
 
   Revision 1.14  2005/01/14 07:45:12  seiki_masashi
-  WmGetSharedDataAddress ‚Ì®—
+  WmGetSharedDataAddress ã®æ•´ç†
 
   Revision 1.13  2005/01/11 07:46:10  takano_makoto
   fix copyright header.
 
   Revision 1.12  2005/01/07 11:43:41  seiki_masashi
-  ƒfƒoƒbƒOo—Í‚Ì OS_Printf ‚ğ OS_TPrintf ‚É•ÏX
+  ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›ã® OS_Printf ã‚’ OS_TPrintf ã«å¤‰æ›´
 
   Revision 1.11  2005/01/06 06:42:56  seiki_masashi
-  MATH_CountPopulation ‚ğg—p‚·‚é‚æ‚¤‚É•ÏX
+  MATH_CountPopulation ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.10  2005/01/06 01:54:17  seiki_masashi
-  ƒRƒƒ“ƒg‚ÌC³‚ÆƒR[ƒh‚ÌÅ“K‰»
+  ã‚³ãƒ¡ãƒ³ãƒˆã®ä¿®æ­£ã¨ã‚³ãƒ¼ãƒ‰ã®æœ€é©åŒ–
 
   Revision 1.9  2004/10/29 03:36:03  seiki_masashi
-  ƒfƒoƒbƒOƒƒbƒZ[ƒW‚ÌC³
+  ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ä¿®æ­£
 
   Revision 1.8  2004/10/29 01:41:11  seiki_masashi
-  WM_EndDataSharingŒã‚Ì‘—MŠ®—¹ƒR[ƒ‹ƒoƒbƒN‚Ö‚Ì‘Î‰
+  WM_EndDataSharingå¾Œã®é€ä¿¡å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¸ã®å¯¾å¿œ
 
   Revision 1.7  2004/10/22 04:37:28  terui
-  WMErrCode‚Æ‚µ‚ÄintŒ^‚ğ•Ô‚µ‚Ä‚¢‚½ŠÖ”‚É‚Â‚¢‚ÄAWMErrCode—ñ‹“Œ^‚ğ•Ô‚·‚æ‚¤‚É•ÏXB
+  WMErrCodeã¨ã—ã¦intå‹ã‚’è¿”ã—ã¦ã„ãŸé–¢æ•°ã«ã¤ã„ã¦ã€WMErrCodeåˆ—æŒ™å‹ã‚’è¿”ã™ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.6  2004/09/23 10:02:10  seiki_masashi
   small fix.
 
   Revision 1.5  2004/09/23 09:47:31  seiki_masashi
-  DataSharing “à•”‚ÌƒGƒ‰[ˆ—ƒ‹[ƒ`ƒ“‚Ì’Ç‰Á
+  DataSharing å†…éƒ¨ã®ã‚¨ãƒ©ãƒ¼å‡¦ç†ãƒ«ãƒ¼ãƒãƒ³ã®è¿½åŠ 
 
   Revision 1.4  2004/09/22 04:06:43  seiki_masashi
-  DataSharing ‚Ì”r‘¼‚ÉŠÖ‚·‚é•s‹ï‡‚ğC³
+  DataSharing ã®æ’ä»–ã«é–¢ã™ã‚‹ä¸å…·åˆã‚’ä¿®æ­£
 
   Revision 1.3  2004/09/21 10:50:38  takano_makoto
   remove warning in WM_GetSharedDataAddress()
@@ -89,7 +89,7 @@
   Bug fix ( port number check ).
 
   Revision 1.1  2004/09/10 11:03:30  terui
-  wm.c‚Ì•ªŠ„‚É”º‚¢AV‹KuploadB
+  wm.cã®åˆ†å‰²ã«ä¼´ã„ã€æ–°è¦uploadã€‚
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -99,7 +99,7 @@
 
 
 /*---------------------------------------------------------------------------*
-    “à•”ŠÖ”’è‹`
+    å†…éƒ¨é–¢æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 static void WmDataSharingSetDataCallback(void *callback);
 static void WmDataSharingReceiveCallback_Parent(void *callback);
@@ -109,7 +109,7 @@ static void WmDataSharingSendDataSet(WMDataSharingInfo *dsInfo, BOOL delayed);
 static u16 *WmGetSharedDataAddress(WMDataSharingInfo *dsInfo, u32 aidBitmap, u16 *receiveBuf,
                                    u32 aid);
 
-//// data-sharing ‚Åg—p’†‚Ìƒ|[ƒg”Ô†ˆê——
+//// data-sharing ã§ä½¿ç”¨ä¸­ã®ãƒãƒ¼ãƒˆç•ªå·ä¸€è¦§
 //static u16 WmDataSharingPortBitmap = 0;
 
 static inline u16 WmDataSharingGetNextIndex(u32 index)
@@ -126,15 +126,15 @@ static inline u16 WmDataSharingGetPrevIndex(u32 index)
 /*---------------------------------------------------------------------------*
   Name:         WM_StartDataSharing
 
-  Description:  ƒf[ƒ^ƒVƒFƒAƒŠƒ“ƒO‹@”\‚ğ—LŒø‚É‚·‚éB
+  Description:  ãƒ‡ãƒ¼ã‚¿ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°æ©Ÿèƒ½ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã€‚
 
-  Arguments:    dsInfo      -   WMDataSharingInfo \‘¢‘Ì
-                port        -   g—p‚·‚é port ”Ô†
-                aidBitmap   -   ƒf[ƒ^ƒVƒFƒA‚ğs‚¤‘Šè‚Ì AID ‚Ìƒrƒbƒgƒ}ƒbƒv
-                dataLength  -   ‹¤—Lƒƒ‚ƒŠ‚Ìƒf[ƒ^’· (‹ô”ƒoƒCƒg‚ğw’è‚·‚é‚±‚Æ)
-                doubleMode  -   –ˆƒtƒŒ[ƒ€ WM_StepDataSharing ‚·‚éê‡‚Í TRUE ‚ğw’è
+  Arguments:    dsInfo      -   WMDataSharingInfo æ§‹é€ ä½“
+                port        -   ä½¿ç”¨ã™ã‚‹ port ç•ªå·
+                aidBitmap   -   ãƒ‡ãƒ¼ã‚¿ã‚·ã‚§ã‚¢ã‚’è¡Œã†ç›¸æ‰‹ã® AID ã®ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+                dataLength  -   å…±æœ‰ãƒ¡ãƒ¢ãƒªã®ãƒ‡ãƒ¼ã‚¿é•· (å¶æ•°ãƒã‚¤ãƒˆã‚’æŒ‡å®šã™ã‚‹ã“ã¨)
+                doubleMode  -   æ¯ãƒ•ãƒ¬ãƒ¼ãƒ  WM_StepDataSharing ã™ã‚‹å ´åˆã¯ TRUE ã‚’æŒ‡å®š
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode
 WM_StartDataSharing(WMDataSharingInfo *dsInfo, u16 port, u16 aidBitmap, u16 dataLength,
@@ -144,11 +144,11 @@ WM_StartDataSharing(WMDataSharingInfo *dsInfo, u16 port, u16 aidBitmap, u16 data
     int     aid;
     u16     connectedAIDs = 0x0001;
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     result = WMi_CheckStateEx(2, WM_STATE_MP_PARENT, WM_STATE_MP_CHILD);
     WM_CHECK_RESULT(result);
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     if (dsInfo == NULL)
     {
         WM_WARNING("Parameter \"dsInfo\" must not be NULL.\n");
@@ -161,7 +161,7 @@ WM_StartDataSharing(WMDataSharingInfo *dsInfo, u16 port, u16 aidBitmap, u16 data
     }
     if ((u32)dsInfo & 0x01f)
     {
-        // ƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN‚ÍŒx‚Ì‚İ‚ÅƒGƒ‰[‚É‚Í‚µ‚È‚¢
+        // ã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯ã¯è­¦å‘Šã®ã¿ã§ã‚¨ãƒ©ãƒ¼ã«ã¯ã—ãªã„
         WM_WARNING("Parameter \"dsInfo\" is not 32-byte aligned.\n");
     }
     if (aidBitmap == 0)
@@ -170,14 +170,14 @@ WM_StartDataSharing(WMDataSharingInfo *dsInfo, u16 port, u16 aidBitmap, u16 data
         return WM_ERRCODE_INVALID_PARAM;
     }
 
-    // •K—v‚Èî•ñ‚ğæ“¾
+    // å¿…è¦ãªæƒ…å ±ã‚’å–å¾—
     aid = WM_GetAID();
     if (aid == 0)
     {
         connectedAIDs = WM_GetConnectedAIDs();
     }
 
-    // ƒf[ƒ^ƒVƒFƒAƒŠƒ“ƒO§Œä•Ï”‚ğ‰Šú‰»
+    // ãƒ‡ãƒ¼ã‚¿ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°åˆ¶å¾¡å¤‰æ•°ã‚’åˆæœŸåŒ–
     MI_CpuClearFast(dsInfo, sizeof(WMDataSharingInfo));
     dsInfo->writeIndex = 0;
     dsInfo->sendIndex = 0;
@@ -187,7 +187,7 @@ WM_StartDataSharing(WMDataSharingInfo *dsInfo, u16 port, u16 aidBitmap, u16 data
     dsInfo->aidBitmap = 0;
     dsInfo->doubleMode = (u16)((doubleMode) ? TRUE : FALSE);
 
-    aidBitmap |= (1 << aid);           // ©•ª‚Ì•ª‚ğ‘«‚·
+    aidBitmap |= (1 << aid);           // è‡ªåˆ†ã®åˆ†ã‚’è¶³ã™
     dsInfo->aidBitmap = aidBitmap;
 
     {
@@ -197,7 +197,7 @@ WM_StartDataSharing(WMDataSharingInfo *dsInfo, u16 port, u16 aidBitmap, u16 data
 
         if (dsInfo->dataSetLength > WM_DS_DATA_SIZE)
         {
-            // ‡Œv‚Ìƒf[ƒ^—Ê‚ª‹–—e’l‚ğ’´‚¦‚Ä‚¢‚é
+            // åˆè¨ˆã®ãƒ‡ãƒ¼ã‚¿é‡ãŒè¨±å®¹å€¤ã‚’è¶…ãˆã¦ã„ã‚‹
             dsInfo->aidBitmap = 0;
             WM_WARNING("Total size of sharing data must be less than or equal to %d bytes.\n",
                        WM_DS_DATA_SIZE);
@@ -210,7 +210,7 @@ WM_StartDataSharing(WMDataSharingInfo *dsInfo, u16 port, u16 aidBitmap, u16 data
 
     if (aid == 0)
     {
-        // e‹@‚ÌŠJnˆ—
+        // è¦ªæ©Ÿã®é–‹å§‹å‡¦ç†
         int     i;
 
         for (i = 0; i < WM_DS_DATASET_NUM; i++)
@@ -220,7 +220,7 @@ WM_StartDataSharing(WMDataSharingInfo *dsInfo, u16 port, u16 aidBitmap, u16 data
 
         (void)WM_SetPortCallback(port, WmDataSharingReceiveCallback_Parent, (void *)dsInfo);
 
-        // ‹N“®—p‚Ì‹óƒf[ƒ^‚ğ‘—M
+        // èµ·å‹•ç”¨ã®ç©ºãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡
         for (i = 0; i < ((dsInfo->doubleMode == TRUE) ? 2 : 1); i++)
         {
             int     res;
@@ -249,33 +249,33 @@ WM_StartDataSharing(WMDataSharingInfo *dsInfo, u16 port, u16 aidBitmap, u16 data
     }
     else
     {
-        // q‹@‚ÌŠJnˆ—
+        // å­æ©Ÿã®é–‹å§‹å‡¦ç†
         dsInfo->sendIndex = (u16)(WM_DS_DATASET_NUM - 1);
         (void)WM_SetPortCallback(port, WmDataSharingReceiveCallback_Child, (void *)dsInfo);
     }
 
-    return WM_ERRCODE_SUCCESS;         // ¬Œ÷I—¹
+    return WM_ERRCODE_SUCCESS;         // æˆåŠŸçµ‚äº†
 }
 
 /*---------------------------------------------------------------------------*
   Name:         WM_EndDataSharing
 
-  Description:  ƒf[ƒ^ƒVƒFƒAƒŠƒ“ƒO‹@”\‚ğ–³Œø‚É‚·‚éB
+  Description:  ãƒ‡ãƒ¼ã‚¿ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°æ©Ÿèƒ½ã‚’ç„¡åŠ¹ã«ã™ã‚‹ã€‚
 
-  Arguments:    dsInfo      -   WMDataSharingInfo \‘¢‘Ì
+  Arguments:    dsInfo      -   WMDataSharingInfo æ§‹é€ ä½“
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode WM_EndDataSharing(WMDataSharingInfo *dsInfo)
 {
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     if (dsInfo == NULL)
     {
         WM_WARNING("Parameter \"dsInfo\" must not be NULL.\n");
         return WM_ERRCODE_INVALID_PARAM;
     }
 
-    // ƒf[ƒ^ƒVƒFƒAƒŠƒ“ƒOó‘Ôƒ`ƒFƒbƒN
+    // ãƒ‡ãƒ¼ã‚¿ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
     if (dsInfo->aidBitmap == 0)
     {
         WM_WARNING("It is not data-sharing mode now.\n");
@@ -286,21 +286,21 @@ WMErrCode WM_EndDataSharing(WMDataSharingInfo *dsInfo)
     dsInfo->aidBitmap = 0;
     dsInfo->state = WM_DS_STATE_READY;
 
-    return WM_ERRCODE_SUCCESS;         // ¬Œ÷I—¹
+    return WM_ERRCODE_SUCCESS;         // æˆåŠŸçµ‚äº†
 }
 
 /*---------------------------------------------------------------------------*
   Name:         WM_StepDataSharing
 
-  Description:  ƒf[ƒ^ƒVƒFƒAƒŠƒ“ƒO‚Ì“¯Šú‚ğˆê‚Âi‚ß‚é
+  Description:  ãƒ‡ãƒ¼ã‚¿ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°ã®åŒæœŸã‚’ä¸€ã¤é€²ã‚ã‚‹
 
-  Arguments:    dsInfo      -   WMDataSharingInfo \‘¢‘Ì
-                sendData    -   ‹¤—L‚µ‚½‚¢‘—Mƒf[ƒ^
-                receiveData -   óM‚µ‚½‹¤—Lƒf[ƒ^
+  Arguments:    dsInfo      -   WMDataSharingInfo æ§‹é€ ä½“
+                sendData    -   å…±æœ‰ã—ãŸã„é€ä¿¡ãƒ‡ãƒ¼ã‚¿
+                receiveData -   å—ä¿¡ã—ãŸå…±æœ‰ãƒ‡ãƒ¼ã‚¿
 
-  Returns:      WMErrCode   -   ˆ—Œ‹‰Ê‚ğ•Ô‚·B
-                    *_SUCCESS    : ‹¤—Lƒf[ƒ^‘—óM¬Œ÷
-                    *_NO_DATASET : ‚Ü‚¾Ÿ‚Ì‹¤—Lƒf[ƒ^‚ª—ˆ‚Ä‚¢‚È‚¢
+  Returns:      WMErrCode   -   å‡¦ç†çµæœã‚’è¿”ã™ã€‚
+                    *_SUCCESS    : å…±æœ‰ãƒ‡ãƒ¼ã‚¿é€å—ä¿¡æˆåŠŸ
+                    *_NO_DATASET : ã¾ã æ¬¡ã®å…±æœ‰ãƒ‡ãƒ¼ã‚¿ãŒæ¥ã¦ã„ãªã„
  *---------------------------------------------------------------------------*/
 WMErrCode WM_StepDataSharing(WMDataSharingInfo *dsInfo, const u16 *sendData, WMDataSet *receiveData)
 {
@@ -309,11 +309,11 @@ WMErrCode WM_StepDataSharing(WMDataSharingInfo *dsInfo, const u16 *sendData, WMD
     u16     connectedAIDs;
     u16     state;
 
-    // ƒXƒe[ƒgƒ`ƒFƒbƒN
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
     result = WMi_CheckStateEx(2, WM_STATE_MP_PARENT, WM_STATE_MP_CHILD);
     WM_CHECK_RESULT(result);
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     if (dsInfo == NULL)
     {
         WM_WARNING("Parameter \"dsInfo\" must not be NULL.\n");
@@ -330,14 +330,14 @@ WMErrCode WM_StepDataSharing(WMDataSharingInfo *dsInfo, const u16 *sendData, WMD
         return WM_ERRCODE_INVALID_PARAM;
     }
 
-    // •K—v‚Èî•ñ‚ğæ“¾
+    // å¿…è¦ãªæƒ…å ±ã‚’å–å¾—
     aid = WM_GetAID();
     if (aid == 0)
     {
         connectedAIDs = WM_GetConnectedAIDs();
     }
 
-    // ƒf[ƒ^ƒVƒFƒAƒŠƒ“ƒOó‘Ôƒ`ƒFƒbƒN
+    // ãƒ‡ãƒ¼ã‚¿ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
     state = dsInfo->state;
     if (state == WM_DS_STATE_ERROR)
     {
@@ -354,13 +354,13 @@ WMErrCode WM_StepDataSharing(WMDataSharingInfo *dsInfo, const u16 *sendData, WMD
 
     if (aid == 0)
     {
-        // e‹@‚È‚ç
+        // è¦ªæ©Ÿãªã‚‰
         BOOL    sendFlag = FALSE;
         BOOL    delayed = FALSE;
 
         if (state == WM_DS_STATE_RETRY_SEND)
         {
-            // ‘O‰ñ SEND_QUEUE_FULL ‚É‚Â‚«AÄ‘—M
+            // å‰å› SEND_QUEUE_FULL ã«ã¤ãã€å†é€ä¿¡
             int     res;
             int     oldWI;
             dsInfo->state = WM_DS_STATE_START;
@@ -391,15 +391,15 @@ WMErrCode WM_StepDataSharing(WMDataSharingInfo *dsInfo, const u16 *sendData, WMD
             }
         }
 
-        // e‹@‚Í DataSet ‚ğ‘—‚èI‚í‚Á‚½‚çg—p‰Â”\‚É‚È‚é‚Ì‚Å sendIndex ‚ª“Ç‚İo‚¹‚éŒÀŠE‚ğŒˆ‚ß‚é
+        // è¦ªæ©Ÿã¯ DataSet ã‚’é€ã‚Šçµ‚ã‚ã£ãŸã‚‰ä½¿ç”¨å¯èƒ½ã«ãªã‚‹ã®ã§ sendIndex ãŒèª­ã¿å‡ºã›ã‚‹é™ç•Œã‚’æ±ºã‚ã‚‹
         if (dsInfo->readIndex != dsInfo->sendIndex)
         {
-            // “Ç‚İo‚µˆ—
+            // èª­ã¿å‡ºã—å‡¦ç†
             WM_DLOGF_DATASHARING("read ds   : write: %d, read: %d, send: %d, seq#: %d",
                                  dsInfo->writeIndex, dsInfo->readIndex, dsInfo->sendIndex,
                                  dsInfo->seqNum[dsInfo->readIndex]);
 
-            dsInfo->ds[dsInfo->readIndex].aidBitmap |= 0x0001;  // ‘—Mƒf[ƒ^’†‚Ì aidBitmap ‚ÌÅ‰ºˆÊƒrƒbƒg‚Í’x‰„ƒtƒ‰ƒO
+            dsInfo->ds[dsInfo->readIndex].aidBitmap |= 0x0001;  // é€ä¿¡ãƒ‡ãƒ¼ã‚¿ä¸­ã® aidBitmap ã®æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆã¯é…å»¶ãƒ•ãƒ©ã‚°
             MI_CpuCopy16(&dsInfo->ds[dsInfo->readIndex], receiveData, sizeof(WMDataSet));
             dsInfo->currentSeqNum = dsInfo->seqNum[dsInfo->readIndex];
             dsInfo->readIndex = WmDataSharingGetNextIndex(dsInfo->readIndex);
@@ -409,7 +409,7 @@ WMErrCode WM_StepDataSharing(WMDataSharingInfo *dsInfo, const u16 *sendData, WMD
             if (dsInfo->doubleMode == FALSE && connectedAIDs != 0
                 && dsInfo->ds[dsInfo->writeIndex].aidBitmap == 0x0001)
             {
-                // e‹@‚ªƒf[ƒ^‚ğƒZƒbƒg‚·‚ê‚Î‚·‚®‚É‘—M‰Â”\  e‹@‚Ì‚İ‚ªƒtƒŒ[ƒ€‚¸‚ê
+                // è¦ªæ©ŸãŒãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚Œã°ã™ãã«é€ä¿¡å¯èƒ½ ï¼ è¦ªæ©Ÿã®ã¿ãŒãƒ•ãƒ¬ãƒ¼ãƒ ãšã‚Œ
                 delayed = TRUE;
             }
             else
@@ -418,52 +418,52 @@ WMErrCode WM_StepDataSharing(WMDataSharingInfo *dsInfo, const u16 *sendData, WMD
             }
         }
 
-        // ‘—Mƒoƒbƒtƒ@‚É‘S‹@•ª‘µ‚Á‚Ä‚¢‚½‚ç DataSet ‚ğ‘—M
+        // é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«å…¨æ©Ÿåˆ†æƒã£ã¦ã„ãŸã‚‰ DataSet ã‚’é€ä¿¡
         WmDataSharingSendDataSet(dsInfo, FALSE);
 
         if (sendFlag)
         {
-            // e‹@‚Í–³ü‚Å‘—M‚·‚é‘ã‚í‚è‚É©•ª‚Ìƒoƒbƒtƒ@‚É“ü‚ê‚é
+            // è¦ªæ©Ÿã¯ç„¡ç·šã§é€ä¿¡ã™ã‚‹ä»£ã‚ã‚Šã«è‡ªåˆ†ã®ãƒãƒƒãƒ•ã‚¡ã«å…¥ã‚Œã‚‹
             WM_DLOGF_DATASHARING("send data : write: %d, read: %d, send: %d", dsInfo->writeIndex,
                                  dsInfo->readIndex, dsInfo->sendIndex);
 
-            WmDataSharingReceiveData(dsInfo, 0, (u16 *)sendData);       // æ‚Å‚Ì˜A½“I‚È‘‚«Š·‚¦‚ª–Ê“|‚È‚Ì‚Å const ‚ğŠO‚·
+            WmDataSharingReceiveData(dsInfo, 0, (u16 *)sendData);       // å…ˆã§ã®é€£é–çš„ãªæ›¸ãæ›ãˆãŒé¢å€’ãªã®ã§ const ã‚’å¤–ã™
 
             if (dsInfo->doubleMode == FALSE)
             {
-                // –ˆƒtƒŒ[ƒ€‚Ì Step ‚Å‚È‚¢ê‡‚Ì‚İA
-                // ‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚Å¡ GF ‚Å‚Ì‘—M—p‚Ì DataSet ‚ğ—pˆÓ‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚éB
-                // ‘—Mƒoƒbƒtƒ@‚É‘S‹@•ª‘µ‚Á‚Ä‚¢‚½‚ç DataSet ‚ğ‘—M
+                // æ¯ãƒ•ãƒ¬ãƒ¼ãƒ ã® Step ã§ãªã„å ´åˆã®ã¿ã€
+                // ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ä»Š GF ã§ã®é€ä¿¡ç”¨ã® DataSet ã‚’ç”¨æ„ã—ã¦ãŠãå¿…è¦ãŒã‚ã‚‹ã€‚
+                // é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«å…¨æ©Ÿåˆ†æƒã£ã¦ã„ãŸã‚‰ DataSet ã‚’é€ä¿¡
                 WmDataSharingSendDataSet(dsInfo, delayed);
             }
         }
     }
     else
     {
-        // q‹@‚È‚ç
+        // å­æ©Ÿãªã‚‰
         BOOL    sendFlag = FALSE;
 
         if (state == WM_DS_STATE_RETRY_SEND)
         {
-            // ‘O‰ñ SEND_QUEUE_FULL ‚É‚Â‚«AÄ‘—M
+            // å‰å› SEND_QUEUE_FULL ã«ã¤ãã€å†é€ä¿¡
             sendFlag = TRUE;
             dsInfo->state = WM_DS_STATE_START;
             WM_DLOG_DATASHARING("send queue was full. do retry.");
         }
         else
         {
-            // q‹@‚Í DataSet ‚ğóM‚µ‚½‚ç‚·‚®‚Ég—p‰Â”\‚È‚Ì‚Å writeIndex ‚ª“Ç‚İo‚¹‚éŒÀŠE‚ğŒˆ‚ß‚é
+            // å­æ©Ÿã¯ DataSet ã‚’å—ä¿¡ã—ãŸã‚‰ã™ãã«ä½¿ç”¨å¯èƒ½ãªã®ã§ writeIndex ãŒèª­ã¿å‡ºã›ã‚‹é™ç•Œã‚’æ±ºã‚ã‚‹
             if (dsInfo->readIndex != dsInfo->writeIndex)
             {
-                // ’x‰„ƒtƒ‰ƒO‚ªQ‚Ä‚¢‚½‚çA1ƒtƒŒ[ƒ€‹­§“I‚É’x‚ç‚¹‚é
-                // ‘—Mƒf[ƒ^’†‚Ì aidBitmap ‚ÌÅ‰ºˆÊƒrƒbƒg‚Í’x‰„ƒtƒ‰ƒO
+                // é…å»¶ãƒ•ãƒ©ã‚°ãŒå¯ã¦ã„ãŸã‚‰ã€1ãƒ•ãƒ¬ãƒ¼ãƒ å¼·åˆ¶çš„ã«é…ã‚‰ã›ã‚‹
+                // é€ä¿¡ãƒ‡ãƒ¼ã‚¿ä¸­ã® aidBitmap ã®æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆã¯é…å»¶ãƒ•ãƒ©ã‚°
                 if (!(dsInfo->ds[dsInfo->readIndex].aidBitmap & 0x0001))
                 {
                     dsInfo->ds[dsInfo->readIndex].aidBitmap |= 0x0001;
                 }
                 else
                 {
-                    // “Ç‚İo‚µˆ—
+                    // èª­ã¿å‡ºã—å‡¦ç†
                     WM_DLOGF_DATASHARING("read ds   : write: %d, read: %d, send: %d, seq#: %d",
                                          dsInfo->writeIndex, dsInfo->readIndex, dsInfo->sendIndex,
                                          dsInfo->seqNum[dsInfo->readIndex]);
@@ -479,10 +479,10 @@ WMErrCode WM_StepDataSharing(WMDataSharingInfo *dsInfo, const u16 *sendData, WMD
 
         if (sendFlag)
         {
-            // q‹@‚Í‚»‚Ì‚Ü‚Ü‘—M
+            // å­æ©Ÿã¯ãã®ã¾ã¾é€ä¿¡
             int     res;
-            // dsInfo->ds ‚Ìˆê•”‚ğ‘—Mƒoƒbƒtƒ@‚Æ‚µ‚Äg‚í‚¹‚Ä‚à‚ç‚¤
-            u16    *buf = (u16 *)(((u8 *)&dsInfo->ds[dsInfo->sendIndex]) + 32); // 32-byte align ‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚é
+            // dsInfo->ds ã®ä¸€éƒ¨ã‚’é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã¨ã—ã¦ä½¿ã‚ã›ã¦ã‚‚ã‚‰ã†
+            u16    *buf = (u16 *)(((u8 *)&dsInfo->ds[dsInfo->sendIndex]) + 32); // 32-byte align ã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹
 
             WM_DLOGF_DATASHARING("send data : write: %d, read: %d, send: %d", dsInfo->writeIndex,
                                  dsInfo->readIndex, dsInfo->sendIndex);
@@ -507,9 +507,9 @@ WMErrCode WM_StepDataSharing(WMDataSharingInfo *dsInfo, const u16 *sendData, WMD
 /*---------------------------------------------------------------------------*
   Name:         WmDataSharingSetDataCallback
 
-  Description:  ‘—MŠ®—¹ƒR[ƒ‹ƒoƒbƒNB
+  Description:  é€ä¿¡å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã€‚
 
-  Arguments:    callback - ƒR[ƒ‹ƒoƒbƒN\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    callback - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -520,7 +520,7 @@ static void WmDataSharingSetDataCallback(void *callback)
     WMDataSharingInfo *dsInfo;
     u16     aid;
 
-    // WM_EndDataSharing() ‚ğŒÄ‚Î‚êADSInfo ‚ª–³Œø‚Èó‘Ô‚ÅŒÄ‚Ño‚³‚ê‚Ä‚¢‚È‚¢‚©‚ğŠm”F
+    // WM_EndDataSharing() ã‚’å‘¼ã°ã‚Œã€DSInfo ãŒç„¡åŠ¹ãªçŠ¶æ…‹ã§å‘¼ã³å‡ºã•ã‚Œã¦ã„ãªã„ã‹ã‚’ç¢ºèª
     dsInfo = (WMDataSharingInfo *)(p->portCallbackArgument[cb_Port->port]);
     if ((p->portCallbackTable[cb_Port->port] != WmDataSharingReceiveCallback_Parent
          && p->portCallbackTable[cb_Port->port] != WmDataSharingReceiveCallback_Child)
@@ -534,10 +534,10 @@ static void WmDataSharingSetDataCallback(void *callback)
 
     if (cb_Port->errcode == WM_ERRCODE_SUCCESS)
     {
-        // ‘—MŠ®—¹
+        // é€ä¿¡å®Œäº†
         if (aid == 0)
         {
-            // e‹@‘¤ˆ—
+            // è¦ªæ©Ÿå´å‡¦ç†
             WM_DLOGF_DATASHARING("sent ds   : write: %d, read: %d, send: %d", dsInfo->writeIndex,
                                  dsInfo->readIndex, dsInfo->sendIndex);
 
@@ -546,7 +546,7 @@ static void WmDataSharingSetDataCallback(void *callback)
         }
         else
         {
-            // q‹@‘¤ˆ—
+            // å­æ©Ÿå´å‡¦ç†
             WM_DLOGF_DATASHARING("sent data : write: %d, read: %d, send: %d", dsInfo->writeIndex,
                                  dsInfo->readIndex, dsInfo->sendIndex);
         }
@@ -555,10 +555,10 @@ static void WmDataSharingSetDataCallback(void *callback)
     {
         if (cb_Port->errcode == WM_ERRCODE_SEND_QUEUE_FULL)
         {
-            // ‘—MƒLƒ…[‚ª‚¢‚Á‚Ï‚¢‚¾‚Á‚½‚Ì‚ÅÄ‘—‚·‚é
+            // é€ä¿¡ã‚­ãƒ¥ãƒ¼ãŒã„ã£ã±ã„ã ã£ãŸã®ã§å†é€ã™ã‚‹
             if (aid != 0)
             {
-                // q‹@‚Ìê‡AsendIndex ‚ğˆê‚Â–ß‚·
+                // å­æ©Ÿã®å ´åˆã€sendIndex ã‚’ä¸€ã¤æˆ»ã™
                 dsInfo->sendIndex = WmDataSharingGetPrevIndex(dsInfo->sendIndex);
             }
             dsInfo->state = WM_DS_STATE_RETRY_SEND;
@@ -576,9 +576,9 @@ static void WmDataSharingSetDataCallback(void *callback)
 /*---------------------------------------------------------------------------*
   Name:         WmDataSharingReceiveCallback_Parent
 
-  Description:  e‹@‚Ì port óMƒR[ƒ‹ƒoƒbƒNB
+  Description:  è¦ªæ©Ÿã® port å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã€‚
 
-  Arguments:    callback - ƒR[ƒ‹ƒoƒbƒN\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    callback - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -598,13 +598,13 @@ static void WmDataSharingReceiveCallback_Parent(void *callback)
         switch (cb_Port->state)
         {
         case WM_STATECODE_PORT_RECV:
-            // óM‚µ‚½q‹@‚Ìƒf[ƒ^‚ğƒoƒbƒtƒ@‚ÉŠi”[‚·‚é
+            // å—ä¿¡ã—ãŸå­æ©Ÿã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ã™ã‚‹
             WmDataSharingReceiveData(dsInfo, cb_Port->aid, cb_Port->data);
             WmDataSharingSendDataSet(dsInfo, FALSE);
             break;
 
         case WM_STATECODE_CONNECTED:
-            WmDataSharingSendDataSet(dsInfo, FALSE);    // •K—v‚Í‚È‚¢‚Í‚¸
+            WmDataSharingSendDataSet(dsInfo, FALSE);    // å¿…è¦ã¯ãªã„ã¯ãš
             break;
 
         case WM_STATECODE_DISCONNECTED:
@@ -645,9 +645,9 @@ static void WmDataSharingReceiveCallback_Parent(void *callback)
 /*---------------------------------------------------------------------------*
   Name:         WmDataSharingReceiveCallback_Child
 
-  Description:  q‹@‚Ì port óMƒR[ƒ‹ƒoƒbƒNB
+  Description:  å­æ©Ÿã® port å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã€‚
 
-  Arguments:    callback - ƒR[ƒ‹ƒoƒbƒN\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    callback - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -676,7 +676,7 @@ static void WmDataSharingReceiveCallback_Child(void *callback)
                 WM_DLOGF_DATASHARING("recv ds   : write: %d, read: %d, send: %d",
                                      dsInfo->writeIndex, dsInfo->readIndex, dsInfo->sendIndex);
 
-                // DataSet ‚ğ•Û‘¶‚·‚é
+                // DataSet ã‚’ä¿å­˜ã™ã‚‹
                 dataSet = (WMDataSet *)(cb_Port->data);
                 aidBitmap = dataSet->aidBitmap;
                 length = cb_Port->length;
@@ -688,7 +688,7 @@ static void WmDataSharingReceiveCallback_Child(void *callback)
                                length, dsInfo->dataSetLength);
                     if (length > sizeof(WMDataSet))
                     {
-                        // ƒoƒbƒtƒ@‚ğ’´‚¦‚é‚Ù‚Ç’·‚·‚¬‚éƒf[ƒ^‚ğóM‚µ‚½‚çA•â³‚·‚éB
+                        // ãƒãƒƒãƒ•ã‚¡ã‚’è¶…ãˆã‚‹ã»ã©é•·ã™ãã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã‚‰ã€è£œæ­£ã™ã‚‹ã€‚
                         WM_WARNING("received DataSharing data exceeds sizeof(WMDataSet)\n");
                         length = sizeof(WMDataSet);
                     }
@@ -696,7 +696,7 @@ static void WmDataSharingReceiveCallback_Child(void *callback)
 #ifdef SDK_DEBUG
                 if (aidBitmap & ~(dsInfo->aidBitmap))
                 {
-                    // q‹@‘¤‚Å‘z’è‚µ‚Ä‚¢‚½ aidBitmap ‚æ‚è‘½‚¢
+                    // å­æ©Ÿå´ã§æƒ³å®šã—ã¦ã„ãŸ aidBitmap ã‚ˆã‚Šå¤šã„
                     WM_WARNING("received aidBitmap(%x) has too many members.\n", aidBitmap);
                 }
 #endif
@@ -726,11 +726,11 @@ static void WmDataSharingReceiveCallback_Child(void *callback)
 /*---------------------------------------------------------------------------*
   Name:         WmDataSharingReceiveData
 
-  Description:  e‹@‚ªŠe‹@ƒf[ƒ^‚ğóM‚µ‚½‚Ì‚ÅŠi”[‚·‚éB
+  Description:  è¦ªæ©ŸãŒå„æ©Ÿãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸã®ã§æ ¼ç´ã™ã‚‹ã€‚
 
-  Arguments:    dsInfo - WMDataSharingInfo \‘¢‘ÌB
-                aid    - ƒf[ƒ^‚ğóM‚µ‚½’[––‚ÌAIDB
-                data   - óM‚µ‚½ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    dsInfo - WMDataSharingInfo æ§‹é€ ä½“ã€‚
+                aid    - ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã—ãŸç«¯æœ«ã®AIDã€‚
+                data   - å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -741,7 +741,7 @@ static void WmDataSharingReceiveData(WMDataSharingInfo *dsInfo, u16 aid, u16 *da
     WM_DLOGF_DATASHARING("recv data%d: write: %d, read: %d, send: %d", aid, dsInfo->writeIndex,
                          dsInfo->readIndex, dsInfo->sendIndex);
 
-    // ˆ—‘ÎÛ‚©‚ğŠm”F
+    // å‡¦ç†å¯¾è±¡ã‹ã‚’ç¢ºèª
     if (dsInfo->aidBitmap & aidBit)
     {
         u16    *buf;
@@ -757,7 +757,7 @@ static void WmDataSharingReceiveData(WMDataSharingInfo *dsInfo, u16 aid, u16 *da
                 writeIndex = WmDataSharingGetNextIndex(dsInfo->writeIndex);
                 if (!(dsInfo->ds[writeIndex].aidBitmap & aidBit))
                 {
-                    // 2‚Â‚Ü‚Åƒoƒbƒtƒ@‚É’™‚ß‚é‚ªA‚»‚êˆÈã‚ÍÌ‚Ä‚é
+                    // 2ã¤ã¾ã§ãƒãƒƒãƒ•ã‚¡ã«è²¯ã‚ã‚‹ãŒã€ãã‚Œä»¥ä¸Šã¯æ¨ã¦ã‚‹
                     OS_Warning("received too many DataSharing packets from aid %d. discarded.\n",
                                aid);
                     return;
@@ -765,7 +765,7 @@ static void WmDataSharingReceiveData(WMDataSharingInfo *dsInfo, u16 aid, u16 *da
             }
             else
             {
-                // doubleMode ‚Å‚Í‚È‚¯‚ê‚ÎAƒoƒbƒtƒ@‚É’™‚ß‚é‚Ì‚Í1‚Â‚Ü‚Å
+                // doubleMode ã§ã¯ãªã‘ã‚Œã°ã€ãƒãƒƒãƒ•ã‚¡ã«è²¯ã‚ã‚‹ã®ã¯1ã¤ã¾ã§
                 OS_Warning("received too many DataSharing packets from aid %d. discarded.\n", aid);
                 return;
             }
@@ -786,9 +786,9 @@ static void WmDataSharingReceiveData(WMDataSharingInfo *dsInfo, u16 aid, u16 *da
         }
 
         enabled = OS_DisableInterrupts();
-        // –¢óMƒtƒ‰ƒO‚ğQ‚©‚¹‚é
+        // æœªå—ä¿¡ãƒ•ãƒ©ã‚°ã‚’å¯ã‹ã›ã‚‹
         dsInfo->ds[writeIndex].aidBitmap &= ~aidBit;
-        // óMÏ‚İƒtƒ‰ƒO‚ğ—§‚½‚¹‚é
+        // å—ä¿¡æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’ç«‹ãŸã›ã‚‹
         dsInfo->ds[writeIndex].receivedBitmap |= aidBit;
         (void)OS_RestoreInterrupts(enabled);
     }
@@ -797,10 +797,10 @@ static void WmDataSharingReceiveData(WMDataSharingInfo *dsInfo, u16 aid, u16 *da
 /*---------------------------------------------------------------------------*
   Name:         WmDataSharingSendDataSet
 
-  Description:  e‹@‚ªŠe‹@ƒf[ƒ^‚ÌóM‚ğŠm”F‚µ‚½‚Ì‚¿Aƒf[ƒ^ƒZƒbƒg‚ğ‘—M‚·‚éB
+  Description:  è¦ªæ©ŸãŒå„æ©Ÿãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡ã‚’ç¢ºèªã—ãŸã®ã¡ã€ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆã‚’é€ä¿¡ã™ã‚‹ã€‚
 
-  Arguments:    dsInfo - WMDataSharingInfo \‘¢‘ÌB
-                delayed - ƒtƒŒ[ƒ€’x‚êó‘Ô‚É‚È‚Á‚Ä‚¢‚½‚ç TRUE
+  Arguments:    dsInfo - WMDataSharingInfo æ§‹é€ ä½“ã€‚
+                delayed - ãƒ•ãƒ¬ãƒ¼ãƒ é…ã‚ŒçŠ¶æ…‹ã«ãªã£ã¦ã„ãŸã‚‰ TRUE
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -809,8 +809,8 @@ void WmDataSharingSendDataSet(WMDataSharingInfo *dsInfo, BOOL delayed)
     OSIntrMode enabled;
 
     enabled = OS_DisableInterrupts();
-    // ‚à‚µ‚à‘S‹@•ªóM‚ªI‚í‚Á‚½‚ç
-    // ióMƒoƒbƒtƒ@‚Ì ds[].aidBitmap ‚Í–¢óMƒtƒ‰ƒO‚Ì–ğ–Ú‚ğ‰Ê‚½‚·j
+    // ã‚‚ã—ã‚‚å…¨æ©Ÿåˆ†å—ä¿¡ãŒçµ‚ã‚ã£ãŸã‚‰
+    // ï¼ˆå—ä¿¡ãƒãƒƒãƒ•ã‚¡æ™‚ã® ds[].aidBitmap ã¯æœªå—ä¿¡ãƒ•ãƒ©ã‚°ã®å½¹ç›®ã‚’æœãŸã™ï¼‰
     if (dsInfo->ds[dsInfo->writeIndex].aidBitmap == 0)
     {
         u16     newWI, oldWI, resetWI;
@@ -836,10 +836,10 @@ void WmDataSharingSendDataSet(WMDataSharingInfo *dsInfo, BOOL delayed)
         MI_CpuClear16(&dsInfo->ds[resetWI], sizeof(WMDataSet));
         dsInfo->ds[resetWI].aidBitmap = (u16)(dsInfo->aidBitmap & (connectedAIDs | 0x0001));
         dsInfo->writeIndex = newWI;
-        dsInfo->ds[oldWI].aidBitmap = dsInfo->aidBitmap;        // ‘—M‚·‚é‚É‚ ‚½‚Á‚Ä aidBitmap ‚É–{—ˆ‚Ì’l‚ğ“ü‚ê‚é
+        dsInfo->ds[oldWI].aidBitmap = dsInfo->aidBitmap;        // é€ä¿¡ã™ã‚‹ã«ã‚ãŸã£ã¦ aidBitmap ã«æœ¬æ¥ã®å€¤ã‚’å…¥ã‚Œã‚‹
         if (delayed == TRUE)
         {
-            // aidBitmap ‚ÌÅ‰ºˆÊƒrƒbƒg‚Í’x‰„ƒtƒ‰ƒO
+            // aidBitmap ã®æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆã¯é…å»¶ãƒ•ãƒ©ã‚°
             dsInfo->ds[oldWI].aidBitmap &= ~0x0001;
         }
         (void)OS_RestoreInterrupts(enabled);
@@ -873,13 +873,13 @@ void WmDataSharingSendDataSet(WMDataSharingInfo *dsInfo, BOOL delayed)
 /*---------------------------------------------------------------------------*
   Name:         WM_GetSharedDataAddress
 
-  Description:  ƒf[ƒ^ƒVƒFƒAƒŠƒ“ƒO‚ÌóMƒf[ƒ^’†‚Ì“Á’è‚Ì AID ‚ÌƒAƒhƒŒƒX‚ğ“¾‚é
+  Description:  ãƒ‡ãƒ¼ã‚¿ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°ã®å—ä¿¡ãƒ‡ãƒ¼ã‚¿ä¸­ã®ç‰¹å®šã® AID ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å¾—ã‚‹
 
-  Arguments:    dsInfo      -   WMDataSharingInfo \‘¢‘Ì
-                receiveData -   óM‚µ‚½‹¤—Lƒf[ƒ^
-                aid         -   AIDB
+  Arguments:    dsInfo      -   WMDataSharingInfo æ§‹é€ ä½“
+                receiveData -   å—ä¿¡ã—ãŸå…±æœ‰ãƒ‡ãƒ¼ã‚¿
+                aid         -   AIDã€‚
 
-  Returns:      u16*        -   óMƒf[ƒ^‚ÌƒAƒhƒŒƒXB‘¶İ‚µ‚È‚¯‚ê‚Î NULL ‚ğ•Ô‚·B
+  Returns:      u16*        -   å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚å­˜åœ¨ã—ãªã‘ã‚Œã° NULL ã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 u16    *WM_GetSharedDataAddress(WMDataSharingInfo *dsInfo, WMDataSet *receiveData, u16 aid)
 {
@@ -887,7 +887,7 @@ u16    *WM_GetSharedDataAddress(WMDataSharingInfo *dsInfo, WMDataSet *receiveDat
     u32     receivedBitmap = receiveData->receivedBitmap;
     u32     aidBit = (1U << aid);
 
-    // ƒpƒ‰ƒ[ƒ^ƒ`ƒFƒbƒN
+    // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
     if (dsInfo == NULL)
     {
         WM_WARNING("Parameter \"dsInfo\" must not be NULL.\n");
@@ -908,7 +908,7 @@ u16    *WM_GetSharedDataAddress(WMDataSharingInfo *dsInfo, WMDataSet *receiveDat
 
     if (!(receivedBitmap & aidBit))
     {
-        // ƒf[ƒ^‚ğóM‚Å‚«‚Ä‚¢‚È‚¢
+        // ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã§ãã¦ã„ãªã„
         return NULL;
     }
 
@@ -918,15 +918,15 @@ u16    *WM_GetSharedDataAddress(WMDataSharingInfo *dsInfo, WMDataSet *receiveDat
 /*---------------------------------------------------------------------------*
   Name:         WmGetSharedDataAddress
 
-  Description:  óMƒoƒbƒtƒ@’†‚Ì“Á’è‚Ì AID ‚ÌƒAƒhƒŒƒX‚ğ“¾‚é
+  Description:  å—ä¿¡ãƒãƒƒãƒ•ã‚¡ä¸­ã®ç‰¹å®šã® AID ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å¾—ã‚‹
 
-  Arguments:    dsInfo      -   WMDataSharingInfo \‘¢‘Ì
-                aidBitmap   -   ƒf[ƒ^‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é’ÊM‘Šè
-                receiveBuf  -   óMƒoƒbƒtƒ@
-                aid         -   AIDB
-                                aidBitmap & (1<<aid) ‚ÍŒÄ‚Ño‚µ‘O‚ÉŠm”F‚·‚é‚±‚ÆB
+  Arguments:    dsInfo      -   WMDataSharingInfo æ§‹é€ ä½“
+                aidBitmap   -   ãƒ‡ãƒ¼ã‚¿ã«å«ã¾ã‚Œã¦ã„ã‚‹é€šä¿¡ç›¸æ‰‹
+                receiveBuf  -   å—ä¿¡ãƒãƒƒãƒ•ã‚¡
+                aid         -   AIDã€‚
+                                aidBitmap & (1<<aid) ã¯å‘¼ã³å‡ºã—å‰ã«ç¢ºèªã™ã‚‹ã“ã¨ã€‚
 
-  Returns:      u16*        -   óMƒf[ƒ^‚ÌƒAƒhƒŒƒXB
+  Returns:      u16*        -   å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
  *---------------------------------------------------------------------------*/
 u16    *WmGetSharedDataAddress(WMDataSharingInfo *dsInfo, u32 aidBitmap, u16 *receiveBuf, u32 aid)
 {
@@ -934,7 +934,7 @@ u16    *WmGetSharedDataAddress(WMDataSharingInfo *dsInfo, u32 aidBitmap, u16 *re
     u32     count;
     u32     offset;
 
-    // aidBitmap ‚Ì‰º‚©‚ç aid ƒrƒbƒg’†‚Ì 1 ‚ÌŒÂ”‚ğƒJƒEƒ“ƒg‚·‚é
+    // aidBitmap ã®ä¸‹ã‹ã‚‰ aid ãƒ“ãƒƒãƒˆä¸­ã® 1 ã®å€‹æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹
     mask = (0x0001U << aid) - 1U;
     aidBitmap &= mask;
     count = MATH_CountPopulation(aidBitmap);

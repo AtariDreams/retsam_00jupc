@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wifi_2dcharcon.h
- *	@brief		’è”‚Ìdefineƒo[ƒWƒ‡ƒ“
+ *	@brief		å®šæ•°ã®defineãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *	@author		tomoya takahashi
  *	@data		2007.04.12
  *
@@ -12,43 +12,43 @@
 #define __WIFI_2DCHARCON_H__
 
 //-------------------------------------
-///	“®ìƒ^ƒCƒv
-// “à•”“I‚É‚ÍAƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX‚ÌŽí—Þ
+///	å‹•ä½œã‚¿ã‚¤ãƒ—
+// å†…éƒ¨çš„ã«ã¯ã€ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã®ç¨®é¡ž
 //=====================================
-#define	WF2DC_C_MOVERUN	(0)		// •à‚«{U‚èŒü‚«{‘–‚èƒAƒjƒiŽålŒö‚Ì‚Ýj
-#define	WF2DC_C_MOVENORMAL	(1)	// •à‚«{U‚èŒü‚«‚Ì‚ÝƒAƒjƒ
-#define	WF2DC_C_MOVETURN	(2)	// U‚èŒü‚«‚Ì‚ÝƒAƒjƒ
-		// Šg’£ƒAƒjƒ
-		// ƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒv”
+#define	WF2DC_C_MOVERUN	(0)		// æ­©ãï¼‹æŒ¯ã‚Šå‘ãï¼‹èµ°ã‚Šã‚¢ãƒ‹ãƒ¡ï¼ˆä¸»äººå…¬ã®ã¿ï¼‰
+#define	WF2DC_C_MOVENORMAL	(1)	// æ­©ãï¼‹æŒ¯ã‚Šå‘ãã®ã¿ã‚¢ãƒ‹ãƒ¡
+#define	WF2DC_C_MOVETURN	(2)	// æŒ¯ã‚Šå‘ãã®ã¿ã‚¢ãƒ‹ãƒ¡
+		// æ‹¡å¼µã‚¢ãƒ‹ãƒ¡
+		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—æ•°
 #define	WF2DC_C_MOVENUM	(3)
 
 //-------------------------------------
-///	ƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒv
-//@“®ìƒ^ƒCƒv‚ªƒI[ƒ\ƒhƒbƒNƒXƒAƒjƒ‚Ìê‡‚É‚Ì‚Ý
-//@Žg—p‚Å‚«‚éƒtƒ‰ƒO‚Å‚·B
+///	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—
+//ã€€å‹•ä½œã‚¿ã‚¤ãƒ—ãŒã‚ªãƒ¼ã‚½ãƒ‰ãƒƒã‚¯ã‚¹ã‚¢ãƒ‹ãƒ¡ã®å ´åˆã«ã®ã¿
+//ã€€ä½¿ç”¨ã§ãã‚‹ãƒ•ãƒ©ã‚°ã§ã™ã€‚
 //	
 //=====================================
-#define	WF2DC_C_ANMWAY	(0)	// Œü‚«•Ï‚¦ƒAƒjƒ	1ƒtƒŒ[ƒ€‚ÅØ‚è‘Ö‚í‚è‚Ü‚·
-#define	WF2DC_C_ANMROTA	(1)	// ‰ñ“]ƒAƒjƒ		ƒ‹[ƒv
+#define	WF2DC_C_ANMWAY	(0)	// å‘ãå¤‰ãˆã‚¢ãƒ‹ãƒ¡	1ãƒ•ãƒ¬ãƒ¼ãƒ ã§åˆ‡ã‚Šæ›¿ã‚ã‚Šã¾ã™
+#define	WF2DC_C_ANMROTA	(1)	// å›žè»¢ã‚¢ãƒ‹ãƒ¡		ãƒ«ãƒ¼ãƒ—
 
-		// WF2DC_C_MOVETURNƒ‚[ƒh‚Å‚È‚¢‚ÆŽw’è‚Å‚«‚Ü‚¹‚ñ
-#define	WF2DC_C_ANMWALK	(2)	// •à‚«ƒAƒjƒ		1•à8ƒtƒŒ[ƒ€
-#define	WF2DC_C_ANMTURN	(3)	// U‚èŒü‚«ƒAƒjƒ	2ƒtƒŒ[ƒ€
+		// WF2DC_C_MOVETURNãƒ¢ãƒ¼ãƒ‰ã§ãªã„ã¨æŒ‡å®šã§ãã¾ã›ã‚“
+#define	WF2DC_C_ANMWALK	(2)	// æ­©ãã‚¢ãƒ‹ãƒ¡		1æ­©8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define	WF2DC_C_ANMTURN	(3)	// æŒ¯ã‚Šå‘ãã‚¢ãƒ‹ãƒ¡	2ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-		// WF2DC_C_MOVERUNƒ‚[ƒh‚Å‚È‚¢‚ÆŽw’è‚Å‚«‚Ü‚¹‚ñ
-#define	WF2DC_C_ANMRUN	(4)	// ‘–‚èƒAƒjƒ		1•à4ƒtƒŒ[ƒ€
+		// WF2DC_C_MOVERUNãƒ¢ãƒ¼ãƒ‰ã§ãªã„ã¨æŒ‡å®šã§ãã¾ã›ã‚“
+#define	WF2DC_C_ANMRUN	(4)	// èµ°ã‚Šã‚¢ãƒ‹ãƒ¡		1æ­©4ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-		// •Ç•ûŒüƒAƒjƒ
-#define	WF2DC_C_ANMWALLWALK	(5)	// •Ç•à‚«ƒAƒjƒ		1•à16ƒtƒŒ[ƒ€
+		// å£æ–¹å‘ã‚¢ãƒ‹ãƒ¡
+#define	WF2DC_C_ANMWALLWALK	(5)	// å£æ­©ãã‚¢ãƒ‹ãƒ¡		1æ­©16ãƒ•ãƒ¬ãƒ¼ãƒ 
 		
-		// ‚ä‚Á‚­‚è•à‚«
-#define	WF2DC_C_ANMSLOWWALK	(6)	// ‚ä‚Á‚­‚èƒAƒjƒ		1•à16ƒtƒŒ[ƒ€
+		// ã‚†ã£ãã‚Šæ­©ã
+#define	WF2DC_C_ANMSLOWWALK	(6)	// ã‚†ã£ãã‚Šã‚¢ãƒ‹ãƒ¡		1æ­©16ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-		// ‚‘¬•à‚«
-#define	WF2DC_C_ANMHIGHWALK2 (7)	// ‚ä‚Á‚­‚èƒAƒjƒ		1•à2ƒtƒŒ[ƒ€
-#define	WF2DC_C_ANMHIGHWALK4 (8)	// ‚ä‚Á‚­‚èƒAƒjƒ		1•à4ƒtƒŒ[ƒ€
+		// é«˜é€Ÿæ­©ã
+#define	WF2DC_C_ANMHIGHWALK2 (7)	// ã‚†ã£ãã‚Šã‚¢ãƒ‹ãƒ¡		1æ­©2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define	WF2DC_C_ANMHIGHWALK4 (8)	// ã‚†ã£ãã‚Šã‚¢ãƒ‹ãƒ¡		1æ­©4ãƒ•ãƒ¬ãƒ¼ãƒ 
 	
-		// ‰½‚à–³‚¢‚Æ‚«‚Í‚±‚ê
+		// ä½•ã‚‚ç„¡ã„ã¨ãã¯ã“ã‚Œ
 #define	WF2DC_C_ANMNONE	(9)
 #define	WF2DC_C_ANMNUM	(10)
 

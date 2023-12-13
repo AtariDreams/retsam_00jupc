@@ -4,9 +4,9 @@
 #include "pokeparam.h"
 #include "pm_version.h"
 
-#define SOFTTYPE_RS	0	// ���r�[�A�T�t�@�C�A
-#define SOFTTYPE_FL	1	// �t�@�C�A���b�h�A���[�t�O���[��
-#define SOFTTYPE_EM 2	// �G�������h
+#define SOFTTYPE_RS	0	// ルビー、サファイア
+#define SOFTTYPE_FL	1	// ファイアレッド、リーフグリーン
+#define SOFTTYPE_EM 2	// エメラルド
 
 #if 0
 #define LANGTYPE_JP 0
@@ -34,17 +34,17 @@ enum {
 };
 
 
-#define	SVLD_RET_NG			(0xff)		//�Z�[�u���ʁi�������ݏo���Ȃ������j
-#define	SVLD_RET_NULL		(0x0)		//�Z�[�u���ʁi�o�b�N�A�b�v�Ȃ��j
-#define	SVLD_RET_OK			(0x1)		//�Z�[�u���ʁi����ɏI���j
-#define	SVLD_RET_DESTROY	(0x2)		//�Z�[�u���ʁi���S�j��F���A�s�\�j
-#define	SVLD_RET_FULL		(0x3)		//�Z�[�u���ʁi����ȏ㏑�����ݏo���Ȃ��j
-#define	SVLD_RET_HARDERROR	(0x4)		//�n�[�h�G���[�i��ՂȂ��j
-#define	SVLD_RET_ERROR		(0x5)		//�ǂݍ��݂Ɏ��s�@�i�d���������āA�J�[�g���b�W���������肳�����Ƃ𑣂��j
+#define	SVLD_RET_NG			(0xff)		//セーブ結果（書き込み出来なかった）
+#define	SVLD_RET_NULL		(0x0)		//セーブ結果（バックアップなし）
+#define	SVLD_RET_OK			(0x1)		//セーブ結果（正常に終了）
+#define	SVLD_RET_DESTROY	(0x2)		//セーブ結果（完全破壊：復帰不可能）
+#define	SVLD_RET_FULL		(0x3)		//セーブ結果（これ以上書き込み出来ない）
+#define	SVLD_RET_HARDERROR	(0x4)		//ハードエラー（基盤なし）
+#define	SVLD_RET_ERROR		(0x5)		//読み込みに失敗　（電源をきって、カートリッジをしっかりさすことを促す）
 
-#define	SVLD_HEADER_SIZE	(4+2+4+2)	//�w�b�_�T�C�Y
-#define	SVLD_SECTOR_SIZE	(0x1000)	//�Z�N�^�T�C�Y
-#define	SVLD_DATA_SIZE		(SVLD_SECTOR_SIZE - SVLD_HEADER_SIZE)	//���f�[�^�T�C�Y
+#define	SVLD_HEADER_SIZE	(4+2+4+2)	//ヘッダサイズ
+#define	SVLD_SECTOR_SIZE	(0x1000)	//セクタサイズ
+#define	SVLD_DATA_SIZE		(SVLD_SECTOR_SIZE - SVLD_HEADER_SIZE)	//実データサイズ
 
 
 
@@ -79,9 +79,9 @@ enum
 
 //==============================================================================
 /**
- * agbpoke_*���Ăяo�����O�ɁA���̊֐����R�[�����Ă��������B
- * @param   buffer�c�o�b�t�@��n���B�K�v�ȗʂ�AGBPOKE_BUFFERSIZE
- * @retval  �G���[�R�[�h
+ * agbpoke_*が呼び出される前に、この関数をコールしてください。
+ * @param   buffer…バッファを渡す。必要な量はAGBPOKE_BUFFERSIZE
+ * @retval  エラーコード
  */
 //==============================================================================
 extern int agbpoke_init( void *buffer );
@@ -89,75 +89,75 @@ extern void agbpoke_preinit(void);
 
 //==============================================================================
 /**
- * �������Ă���\�t�g�̃C�j�V�����R�[�h���擾���܂��B
- * @retval  TRUE�c�����������@FALSE�c���������s
+ * ささっているソフトのイニシャルコードを取得します。
+ * @retval  TRUE…初期化成功　FALSE…初期化失敗
  */
 //==============================================================================
 extern u32 agbpoke_getInitialCode();
 
 //==============================================================================
 /**
- * �������Ă���\�t�g�̃Q�[����ނ�Ԃ��܂��B
- * @retval  �J�Z�b�g�̃|�P�����^�C�v
+ * ささっているソフトのゲーム種類を返します。
+ * @retval  カセットのポケモンタイプ
  */
 //==============================================================================
 extern int agbpoke_getPokemonType();
 
 //==============================================================================
 /**
- * �������Ă���|�P�����\�t�g�̌����Ԃ��B
- * @retval  �J�Z�b�g�̌���
+ * ささっているポケモンソフトの言語を返す。
+ * @retval  カセットの言語
  */
 //==============================================================================
 extern int agbpoke_getPokemonLanguage();
 
 //==============================================================================
 /**
- * �f�[�^�����[�h����B
- * @param   newsector�c�V�����Z�N�^�[�̔ԍ��������Ă���(0��1)
- * @param   buffer   �cSVLD_SECTOR_SIZE �K�v
- * @retval  ���ʁB
+ * データをロードする。
+ * @param   newsector…新しいセクターの番号が入ってくる(0か1)
+ * @param   buffer   …SVLD_SECTOR_SIZE 必要
+ * @retval  結果。
  */
 //==============================================================================
 extern int agbpoke_LoadDATA();
 
 //==============================================================================
 /**
- * �p�\�R���f�[�^�ւ̃|�C���^���擾����B
- * @param   newsector�c�V�����Z�N�^�[�̔ԍ��������Ă���(0��1)
- * @param   buffer   �cSVLD_SECTOR_SIZE �K�v
- * @retval  ���ʁB
+ * パソコンデータへのポインタを取得する。
+ * @param   newsector…新しいセクターの番号が入ってくる(0か1)
+ * @param   buffer   …SVLD_SECTOR_SIZE 必要
+ * @retval  結果。
  */
 //==============================================================================
 extern POKEBOX_SAVE_DATA *agbpoke_getPCdata();
 
 //==============================================================================
 /**
- * �}�ӂ������Ă��邩����B
- * @retval  ���ʁB
+ * 図鑑をもっているか判定。
+ * @retval  結果。
  */
 //==============================================================================
 extern BOOL gbapoke_hasZukan();
 
 //==============================================================================
 /**
- * �|�P�����Z���^�[���ŃZ�[�u���Ă��邩�ǂ���
- * @retval  ���ʁB
+ * ポケモンセンター内でセーブしているかどうか
+ * @retval  結果。
  */
 //==============================================================================
 extern BOOL gbapoke_inPokemonCenter();
 
 //==============================================================================
 /**
- * �f�[�^��񓯊��ŃZ�[�u����B
- * @retval  ���ʁB
+ * データを非同期でセーブする。
+ * @retval  結果。
  */
 //==============================================================================
 extern BOOL agbpoke_saveEdit_Async();
 //==============================================================================
 /**
- * �f�[�^��񓯊��ŃZ�[�u�����Ƃ��A�I�����������`�F�b�N����֐��B
- * @retval  ���ʁB
+ * データを非同期でセーブしたとき、終了したかをチェックする関数。
+ * @retval  結果。
  */
 //==============================================================================
 extern int agbpoke_saveEdit_check();
@@ -165,8 +165,8 @@ extern int agbpoke_check_status(void);
 
 //==============================================================================
 /**
- * �f�[�^���Z�[�u����BAGBPOKE_ERROR_CONTINUE�ȊO�̒l���Ԃ��܂ŌĂяo���ĉ������B
- * @retval  ���ʁB
+ * データをセーブする。AGBPOKE_ERROR_CONTINUE以外の値が返すまで呼び出して下さい。
+ * @retval  結果。
  */
 //==============================================================================
 extern int agbpoke_saveEdit( );

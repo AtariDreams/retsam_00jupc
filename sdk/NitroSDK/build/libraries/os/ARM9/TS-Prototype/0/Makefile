@@ -13,7 +13,7 @@
 #
 # $Log: Makefile,v $
 # Revision 1.3  2005/05/25 11:42:18  terui
-# Makefile.CORE ‚ğ include ‚·‚é‚æ‚¤‚ÉC³
+# Makefile.CORE ã‚’ include ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 #
 # Revision 1.2  2004/09/13 05:37:28  yasu
 # merged with NitroSDK_2_00pr6_branch

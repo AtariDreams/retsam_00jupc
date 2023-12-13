@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	dendou_pc_view.c
- * @bfief	“a“°“ü‚èƒpƒ\ƒRƒ“‰æ–Êi•`‰æˆ—j
+ * @bfief	æ®¿å ‚å…¥ã‚Šãƒ‘ã‚½ã‚³ãƒ³ç”»é¢ï¼ˆæç”»å‡¦ç†ï¼‰
  * @author	taya GAME FREAK inc.
  *
  * @date	2006.04.21
@@ -34,19 +34,19 @@
  */
 //--------------------------------------------------------------
 enum {
-	STRBUF_SIZE = 256,		// ‚±‚ñ‚¾‚¯‚ ‚è‚á[•ª
-	POKE_ALPHA_SELECT = 31,	// ‘I‘ð‚³‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚Ì“§–¾“x
-	POKE_ALPHA_NOT_SELECT = 16,		// ‘I‘ð‚³‚ê‚Ä‚¢‚È‚¢ƒ|ƒPƒ‚ƒ“‚Ì“§–¾“x
+	STRBUF_SIZE = 256,		// ã“ã‚“ã ã‘ã‚ã‚Šã‚ƒå……åˆ†
+	POKE_ALPHA_SELECT = 31,	// é¸æŠžã•ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®é€æ˜Žåº¦
+	POKE_ALPHA_NOT_SELECT = 16,		// é¸æŠžã•ã‚Œã¦ã„ãªã„ãƒã‚±ãƒ¢ãƒ³ã®é€æ˜Žåº¦
 
 	COLOR_LETTER = 1,
 	COLOR_SHADOW = 2,
 	COLOR_GROUND = 15,
 
-	// ƒ|ƒPƒ‚ƒ“ƒAƒNƒ^[‚P‘Ì•ªƒLƒƒƒ‰”
+	// ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ï¼‘ä½“åˆ†ã‚­ãƒ£ãƒ©æ•°
 	POKE_ACT_CHARS = 100,
 	POKE_ACT_CGX_BYTESIZE = POKE_ACT_CHARS * 0x20,
 
-	// ƒpƒ‰ƒ[ƒ^ƒEƒBƒ“ƒhƒE‚Ì•`‰æƒŒƒCƒAƒEƒg
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æç”»ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
 	PARAM_NICKNAME_X = 0,
 	PARAM_SRASH_X = 72,
 	PARAM_MONSNAME_X = 94,
@@ -136,7 +136,7 @@ static void vanish_poke_actors( DENDOU_PC_VIEW* vwk );
 
 //--------------------------------------------------------
 /**
- *	•`‰æƒRƒ}ƒ“ƒh‘Î‰žŠÖ”ƒe[ƒuƒ‹
+ *	æç”»ã‚³ãƒžãƒ³ãƒ‰å¯¾å¿œé–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //--------------------------------------------------------
 static BOOL (*CommandFuncTable[])(DENDOU_PC_VIEW*, int*) = {
@@ -151,7 +151,7 @@ static BOOL (*CommandFuncTable[])(DENDOU_PC_VIEW*, int*) = {
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒ[ƒNì¬
+ * æç”»ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  *
  * @param   mainWork		
  *
@@ -186,7 +186,7 @@ DENDOU_PC_VIEW*	DendouPCView_CreateWork( DENDOU_PC_WORK* mainWork, const DENDOU_
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒ[ƒN”jŠü
+ * æç”»ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
  * @param   vwk		
  *
@@ -225,7 +225,7 @@ static void DendouPCView_VBlank( void* wk_adrs )
 	DENDOU_PC_VIEW* vwk = wk_adrs;
 
 	CLACT_Draw( vwk->actSet );
-	REND_OAMTrans();		// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	REND_OAMTrans();		// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
 
 }
@@ -234,12 +234,12 @@ static void DendouPCView_VBlank( void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhƒXƒ^[ƒg
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ã‚¹ã‚¿ãƒ¼ãƒˆ
  *
  * @param   vwk			
  * @param   command		
  *
- * @retval  BOOL		TRUE‚È‚ç“®‚«‘Ò‚¿‚Ì•K—v‚ª‚ ‚é
+ * @retval  BOOL		TRUEãªã‚‰å‹•ãå¾…ã¡ã®å¿…è¦ãŒã‚ã‚‹
  */
 //------------------------------------------------------------------
 BOOL DendouPCView_StartCommand( DENDOU_PC_VIEW* vwk, int command )
@@ -250,11 +250,11 @@ BOOL DendouPCView_StartCommand( DENDOU_PC_VIEW* vwk, int command )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhI—¹‘Ò‚¿
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰çµ‚äº†å¾…ã¡
  *
  * @param   vwk		
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL DendouPCView_WaitCommand( DENDOU_PC_VIEW* vwk )
@@ -266,12 +266,12 @@ BOOL DendouPCView_WaitCommand( DENDOU_PC_VIEW* vwk )
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhF‰Šú‰»ˆ—•ƒtƒF[ƒhƒCƒ“
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šåˆæœŸåŒ–å‡¦ç†ï¼†ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  *
  * @param   vwk		
  * @param   seq		
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL Cmd_Init( DENDOU_PC_VIEW* vwk, int* seq )
@@ -296,12 +296,12 @@ static BOOL Cmd_Init( DENDOU_PC_VIEW* vwk, int* seq )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒtƒF[ƒhƒAƒEƒg•I—¹ˆ—
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆï¼†çµ‚äº†å‡¦ç†
  *
  * @param   vwk		
  * @param   seq		
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL Cmd_Quit( DENDOU_PC_VIEW* vwk, int* seq )
@@ -326,12 +326,12 @@ static BOOL Cmd_Quit( DENDOU_PC_VIEW* vwk, int* seq )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhF‘I‘ðƒ|ƒPƒ‚ƒ“Ø‚è‘Ö‚¦
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šé¸æŠžãƒã‚±ãƒ¢ãƒ³åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param   vwk		
  * @param   seq		
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL Cmd_ChangePoke( DENDOU_PC_VIEW* vwk, int* seq )
@@ -365,12 +365,12 @@ static BOOL Cmd_ChangePoke( DENDOU_PC_VIEW* vwk, int* seq )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒŒƒR[ƒhØ‚è‘Ö‚¦
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ¬ã‚³ãƒ¼ãƒ‰åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param   vwk		
  * @param   seq		
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL Cmd_ChangeRecord( DENDOU_PC_VIEW* vwk, int* seq )
@@ -398,12 +398,12 @@ static BOOL Cmd_ChangeRecord( DENDOU_PC_VIEW* vwk, int* seq )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒpƒ‰ƒ[ƒ^•\Ž¦ƒ‚[ƒh•ÏX
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
  *
  * @param   vwk		
  * @param   seq		
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL Cmd_ChangeParamMode( DENDOU_PC_VIEW* vwk, int* seq )
@@ -420,16 +420,16 @@ static BOOL Cmd_ChangeParamMode( DENDOU_PC_VIEW* vwk, int* seq )
 static void setup_bg_params( DENDOU_PC_VIEW* vwk )
 {
 	static const GF_BGL_DISPVRAM SetBankData = {
-		GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 
 	static const GF_BGL_SYS_HEADER BGsys_data = {
@@ -557,7 +557,7 @@ static void update_bmpwin_record( DENDOU_PC_VIEW* vwk )
 	WORDSET_RegisterNumber( vwk->wordset, 1, vpara->date.year+2000, 4, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/29
-	// ŒŽ‚Ì•\Ž¦‚ð’PŒê•\‹L‚É•ÏX
+	// æœˆã®è¡¨ç¤ºã‚’å˜èªžè¡¨è¨˜ã«å¤‰æ›´
 	WORDSET_RegisterMonthName( vwk->wordset, 2, vpara->date.month );
 	// ----------------------------------------------------------------------------
 	WORDSET_RegisterNumber( vwk->wordset, 3, vpara->date.day, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );

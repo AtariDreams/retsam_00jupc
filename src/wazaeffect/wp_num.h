@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	wp_num.h
- * @brief	�Z�G�t�F�N�g�p�[�e�B�N���f�[�^�e�[�u���̃f�[�^�ԍ���`
+ * @brief	技エフェクトパーティクルデータテーブルのデータ番号定義
  * @author	matsuda
- * @date	2005.07.22(��)
+ * @date	2005.07.22(金)
  */
 //==============================================================================
 #ifndef __WP_NUM_H__
@@ -11,7 +11,7 @@
 
 
 //==============================================================================
-//	�G�~�b�^�������̃R�[���o�b�N�֐��̃|�C���^�e�[�u���̒�`�@��EmitterCallbackFunc�̕��тɍ��킹��
+//	エミッタ生成時のコールバック関数のポインタテーブルの定義　※EmitterCallbackFuncの並びに合わせる
 //==============================================================================
 #define EMTFUNC_START			(0)
 
@@ -35,11 +35,11 @@
 #define EMTFUNC_AXIS_PP_MAG				(1 + EMTFUNC_AXIS_TP_MAG)
 #define EMTFUNC_AXIS_SET_MAG			(1 + EMTFUNC_AXIS_PP_MAG)
 
-#define EMTFUNC_FIELD_OPERATOR			(1 + EMTFUNC_AXIS_SET_MAG)			///< operator�֐�
-#define EMTFUNC_SEP_POS					(1 + EMTFUNC_FIELD_OPERATOR)		///< Sep�p �� ���W
-#define EMTFUNC_AT_SIDE					(1 + EMTFUNC_SEP_POS)				///< 2�ΑI��p
-#define EMTFUNC_DF_SIDE					(1 + EMTFUNC_AT_SIDE)				///< 2�ΑI��p
-#define EMTFUNC_ATTACK_POS_CR			(1 + EMTFUNC_DF_SIDE)				///< �J�������]���Ă�Ƃ�
+#define EMTFUNC_FIELD_OPERATOR			(1 + EMTFUNC_AXIS_SET_MAG)			///< operator関数
+#define EMTFUNC_SEP_POS					(1 + EMTFUNC_FIELD_OPERATOR)		///< Sep用 の 座標
+#define EMTFUNC_AT_SIDE					(1 + EMTFUNC_SEP_POS)				///< 2対選択用
+#define EMTFUNC_DF_SIDE					(1 + EMTFUNC_AT_SIDE)				///< 2対選択用
+#define EMTFUNC_ATTACK_POS_CR			(1 + EMTFUNC_DF_SIDE)				///< カメラ反転してるとき
 
 #define EMTFUNC_DEBUG_START				(1 + EMTFUNC_DF_SIDE)
 #define EMTFUNC_DEBUG					(EMTFUNC_DEBUG_START)

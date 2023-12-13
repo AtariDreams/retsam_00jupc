@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_114.s
- *@brief	�퓬�V�[�P���X
- *			�o�g���^�b�`�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			バトンタッチシーケンス
  *@author	HisashiSogabe
  *@data		2006.02.02
  *
@@ -17,7 +17,7 @@
 SUB_114:
 	RESHUFFLE_CHECK		SIDE_ATTACK,POKE_LIST_ON,Umakukimaran
 	GOSUB				SUB_SEQ_WAZA_OUT_EFF
-	//���������񂩂��ӂ��������Ă�����A��Ԉُ�𒼂�
+	//特性しぜんかいふくをもっていたら、状態異常を直す
 	SIZENKAIHUKU_CHECK	SIDE_ATTACK,SUB_114_NEXT
 	PSP_VALUE			VAL_SET,SIDE_ATTACK,ID_PSP_condition,0
 SUB_114_NEXT:

@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.17  2005/11/07 01:21:50  okubata_ryoma
-  SDK_STATIC_ASSERT‚©‚çSDK_COMPILER_ASSERT‚É•ÏX
+  SDK_STATIC_ASSERTã‹ã‚‰SDK_COMPILER_ASSERTã«å¤‰æ›´
 
   Revision 1.16  2005/02/28 05:26:24  yosizaki
   do-indent.
@@ -27,7 +27,7 @@
   fix around hidden warnings.
 
   Revision 1.13  2004/11/22 12:41:18  takano_makoto
-  ƒfƒoƒbƒOƒvƒŠƒ“ƒg‚ÌƒoƒOC³
+  ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒ³ãƒˆã®ãƒã‚°ä¿®æ­£
 
   Revision 1.12  2004/11/09 12:02:50  yosizaki
   fix MB_Get*SystemBufSize().
@@ -36,37 +36,37 @@
   fix TYPE-string.
 
   Revision 1.10  2004/09/16 12:49:40  sato_masaki
-  mb.h‚É‚ÄAMBi_***‚Å’è‹`‚µ‚Ä‚¢‚½ŠÖ”AŒ^‚ğAMB_***‚É•ÏXB
+  mb.hã«ã¦ã€MBi_***ã§å®šç¾©ã—ã¦ã„ãŸé–¢æ•°ã€å‹ã‚’ã€MB_***ã«å¤‰æ›´ã€‚
 
   Revision 1.9  2004/09/15 06:51:20  sato_masaki
-  USE_POLLBMP‚Ì’è‹`‚ğíœ
+  USE_POLLBMPã®å®šç¾©ã‚’å‰Šé™¤
 
   Revision 1.8  2004/09/14 13:19:44  sato_masaki
-  ƒŠƒNƒGƒXƒgƒf[ƒ^‚ğ’f•Ğ‰»‚µ‚Ä‘—‚é‚æ‚¤‚É•ÏXB
+  ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ–­ç‰‡åŒ–ã—ã¦é€ã‚‹ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.7  2004/09/13 13:09:10  sato_masaki
   remove member word from MB_CommBlockHeader
 
   Revision 1.6  2004/09/13 02:59:47  sato_masaki
-  MB_GetParentSystemBufSize ‚ğ MBi_GetParentSystemBufSize
-  MB_GetChildSystemBufSize ‚ğ MBi_GetChildSystemBufSize ‚É‚»‚ê‚¼‚ê•ÏXB
+  MB_GetParentSystemBufSize ã‚’ MBi_GetParentSystemBufSize
+  MB_GetChildSystemBufSize ã‚’ MBi_GetChildSystemBufSize ã«ãã‚Œãã‚Œå¤‰æ›´ã€‚
 
   Revision 1.5  2004/09/11 11:20:05  sato_masaki
-  - MBi_BlockHeaderBegin(), MBi_BlockHeaderEnd()‚Ìˆø”‚Ésendbuf‚ğ’Ç‰ÁB
-  - MB_GetParentSystemBufSize(), MB_GetChildSystemBufSize()’Ç‰ÁB
-  - MBi_DebugPrint()’Ç‰Á(for debug)
+  - MBi_BlockHeaderBegin(), MBi_BlockHeaderEnd()ã®å¼•æ•°ã«sendbufã‚’è¿½åŠ ã€‚
+  - MB_GetParentSystemBufSize(), MB_GetChildSystemBufSize()è¿½åŠ ã€‚
+  - MBi_DebugPrint()è¿½åŠ (for debug)
 
   Revision 1.4  2004/09/10 02:52:50  sato_masaki
-  PRINT_DEBUG’è‹`‚ÉŠÖ‚·‚é•ÏXB
+  PRINT_DEBUGå®šç¾©ã«é–¢ã™ã‚‹å¤‰æ›´ã€‚
 
   Revision 1.3  2004/09/09 02:50:50  sato_masaki
-  ƒfƒoƒbƒOŠÖ”AMBi_comm_type_output()‚Ìˆø”ƒ^ƒCƒv‚ğu16‚É•ÏXB
+  ãƒ‡ãƒãƒƒã‚°é–¢æ•°ã€MBi_comm_type_output()ã®å¼•æ•°ã‚¿ã‚¤ãƒ—ã‚’u16ã«å¤‰æ›´ã€‚
 
   Revision 1.2  2004/09/06 09:52:11  sato_masaki
   small fix
 
   Revision 1.1  2004/09/03 07:04:36  sato_masaki
-  ƒtƒ@ƒCƒ‹‚ğ‹@”\•Ê‚É•ªŠ„B
+  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ©Ÿèƒ½åˆ¥ã«åˆ†å‰²ã€‚
 
 
   $NoKeywords: $
@@ -81,34 +81,34 @@
 #define MB_PARENT_WORK_SIZE_MIN (32 + sizeof(MBiParam) + 32 + sizeof(MB_CommPWork) + 32 + WM_SYSTEM_BUF_SIZE)
 #define MB_CHILD_WORK_SIZE_MIN  (32 + sizeof(MBiParam) + 32 + sizeof(MB_CommCWork) + 32 + WM_SYSTEM_BUF_SIZE)
 /*
- * —v‹‚µ‚Ä‚¢‚éƒTƒCƒY‚Å—e—Ê‚ª³‚µ‚¢‚©”»’è.
+ * è¦æ±‚ã—ã¦ã„ã‚‹ã‚µã‚¤ã‚ºã§å®¹é‡ãŒæ­£ã—ã„ã‹åˆ¤å®š.
  */
 SDK_COMPILER_ASSERT(MB_PARENT_WORK_SIZE_MIN <= MB_SYSTEM_BUF_SIZE);
 SDK_COMPILER_ASSERT(MB_CHILD_WORK_SIZE_MIN <= MB_CHILD_SYSTEM_BUF_SIZE);
 
 
 /*
- * ƒuƒƒbƒNƒwƒbƒ_‚ğ‰Šú‰»‚µ, ƒ^ƒCƒv‚¾‚¯İ’è‚·‚é.
- * ‚±‚Ì‚ ‚Æ MBi_BlockHeaderEnd() ‚Å‘—M‚·‚é‚Ü‚Å‚ÌŠÔ‚É
- * ‚±‚Ü‚²‚Ü‚Æ‚µ‚½ƒtƒB[ƒ‹ƒh‚ğ–„‚ß‚Ä‚¢‚­.
- * ˆø”‚ª‚È‚¯‚ê‚Î‚»‚Ì‚Ü‚Ü‚Å—Ç‚¢.
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ˜ãƒƒãƒ€ã‚’åˆæœŸåŒ–ã—, ã‚¿ã‚¤ãƒ—ã ã‘è¨­å®šã™ã‚‹.
+ * ã“ã®ã‚ã¨ MBi_BlockHeaderEnd() ã§é€ä¿¡ã™ã‚‹ã¾ã§ã®é–“ã«
+ * ã“ã¾ã”ã¾ã¨ã—ãŸãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’åŸ‹ã‚ã¦ã„ã.
+ * å¼•æ•°ãŒãªã‘ã‚Œã°ãã®ã¾ã¾ã§è‰¯ã„.
  */
 void MBi_BlockHeaderBegin(u8 type, u32 *sendbuf)
 {
     u8     *p = (u8 *)sendbuf;
-    p[0] = type;                       /* type‚Íeq‹¤—p */
+    p[0] = type;                       /* typeã¯è¦ªå­å…±ç”¨ */
 }
 
 /*
- * ƒuƒƒbƒNƒwƒbƒ_İ’è‚ğŠ®—¹‚µ, ƒ`ƒFƒbƒNƒTƒ€‚ğŒvZ‚·‚é.
- * ‚»‚ÌŒã, pollbmp ‚Åw’è‚µ‚½‘Šè‚ÖÀÛ‚É‘—M‚·‚é.
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ˜ãƒƒãƒ€è¨­å®šã‚’å®Œäº†ã—, ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’è¨ˆç®—ã™ã‚‹.
+ * ãã®å¾Œ, pollbmp ã§æŒ‡å®šã—ãŸç›¸æ‰‹ã¸å®Ÿéš›ã«é€ä¿¡ã™ã‚‹.
  */
 int MBi_BlockHeaderEnd(int body_len, u16 pollbmp, u32 *sendbuf)
 {
     /*
-     * sendbuf ‚ª 32 ƒAƒ‰ƒCƒ“‚³‚ê‚Ä‚¢‚ê‚Î MY_ROUND ‚Í•s—v‚©‚à.
-     * ‚·‚Å‚É Init() ‚É‚Íƒ`ƒFƒbƒN‚ğ’Ç‰ÁÏ‚İ.
-     * ÅI“I‚É‚Í‘½‚ß‚Éæ‚Á‚Ä“à•”‚ÅƒAƒ‰ƒCƒ“‚·‚é‚æ‚¤‚É‚·‚é.
+     * sendbuf ãŒ 32 ã‚¢ãƒ©ã‚¤ãƒ³ã•ã‚Œã¦ã„ã‚Œã° MY_ROUND ã¯ä¸è¦ã‹ã‚‚.
+     * ã™ã§ã« Init() ã«ã¯ãƒã‚§ãƒƒã‚¯ã‚’è¿½åŠ æ¸ˆã¿.
+     * æœ€çµ‚çš„ã«ã¯å¤šã‚ã«å–ã£ã¦å†…éƒ¨ã§ã‚¢ãƒ©ã‚¤ãƒ³ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹.
      */
     DC_FlushRange(sendbuf, MY_ROUND(body_len, 32));
     DC_WaitWriteBufferEmpty();
@@ -122,11 +122,11 @@ int MBi_BlockHeaderEnd(int body_len, u16 pollbmp, u32 *sendbuf)
 /*---------------------------------------------------------------------------*
   Name:         MB_GetParentSystemBufSize
 
-  Description:  MB‚Åg—p‚·‚éƒ[ƒNƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğæ“¾(e‹@)
+  Description:  MBã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’å–å¾—(è¦ªæ©Ÿ)
 
   Arguments:    None.
   
-  Returns:      MBe‹@‚Åg—p‚·‚éƒ[ƒNƒƒ‚ƒŠ‚ÌƒTƒCƒY
+  Returns:      MBè¦ªæ©Ÿã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 int MB_GetParentSystemBufSize(void)
 {
@@ -136,11 +136,11 @@ int MB_GetParentSystemBufSize(void)
 /*---------------------------------------------------------------------------*
   Name:         MB_GetChildSystemBufSize
 
-  Description:  MB‚Åg—p‚·‚éƒ[ƒNƒƒ‚ƒŠ‚ÌƒTƒCƒY‚ğæ“¾(q‹@)
+  Description:  MBã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚ºã‚’å–å¾—(å­æ©Ÿ)
 
   Arguments:    None.
   
-  Returns:      MBq‹@‚Åg—p‚·‚éƒ[ƒNƒƒ‚ƒŠ‚ÌƒTƒCƒY
+  Returns:      MBå­æ©Ÿã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªã®ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 int MB_GetChildSystemBufSize(void)
 {

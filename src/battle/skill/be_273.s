@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_273.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			273�@�₯�ǂ̒ǉ����ʁ{���܂���B�Ԑڒǉ����ʊm�����݂āA���ꂼ��`�F�b�N����B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			273　やけどの追加効果＋怯ませる。間接追加効果確率をみて、それぞれチェックする。
  *
  *@author	HisashiSogabe
  *@data		2006.05.05

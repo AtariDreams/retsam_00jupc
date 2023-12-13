@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>MB_SetSendVolatCallback</TITLE>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MB_SetSendVolatCallback</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -23,49 +23,49 @@ MB_SetSendVolatCallback( MBSendVolatCallbackFunc callback, u32 timming );<BR>
   <br></PRE>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>callback</STRONG></EM></TD>
-      <TD colspan="2">�e�@�Q�[����񒆂�MBGameInfoVolatile���r�[�R���ő��M����ۂɌĂ΂��R�[���o�b�N�֐���ݒ肵�܂��B</TD>
+      <TD colspan="2">親機ゲーム情報中のMBGameInfoVolatileをビーコンで送信する際に呼ばれるコールバック関数を設定します。</TD>
     </TR>
     <TR>
       <TD width="13%" rowspan="3"><EM><STRONG>timming</STRONG></EM></TD>
-      <TD colspan="2">�R�[���o�b�N�֐����Ă΂��^�C�~���O���w�肵�܂��B</TD>
+      <TD colspan="2">コールバック関数が呼ばれるタイミングを指定します。</TD>
     </TR>
     <TR>
       <TD width="286"><I>MB_SEND_VOLAT_CALLBACK_TIMMING_BEFORE</I></TD>
-      <TD width="245"><A href="MBGameInfo.html">MBGameInfoVolatile</A>�̊i�[���ꂽ�r�[�R�������M�ݒ肳��钼�O�ɃR�[���o�b�N���Ă΂�܂��B</TD>
+      <TD width="245"><A href="MBGameInfo.html">MBGameInfoVolatile</A>の格納されたビーコンが送信設定される直前にコールバックが呼ばれます。</TD>
     </TR>
     <TR>
       <TD width="286"><I>MB_SEND_VOLAT_CALLBACK_TIMMING_AFTER</I></TD>
-      <TD width="245"><A href="MBGameInfo.html">MBGameInfoVolatile</A>�̊i�[���ꂽ�r�[�R�������M�ݒ肳�ꂽ����ɃR�[���o�b�N���Ă΂�܂��B</TD>
+      <TD width="245"><A href="MBGameInfo.html">MBGameInfoVolatile</A>の格納されたビーコンが送信設定された直後にコールバックが呼ばれます。</TD>
     </TR>
   </TBODY>
 </TABLE>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
+<h2>返り値</h2>
+<p>なし。</p>
 
-<H2>����</H2>
-<P>MB�e�@�Q�[�����̂����A�����I�ɕω�����<A href="MBGameInfo.html">MBGameInfoVolatile</A>���r�[�R���ő���ۂ̃R�[���o�b�N��ݒ肷�邱�Ƃ��ł��܂��B<BR>
-�����ɂ́A<CODE><A href="MB_SetUserVolatData.html">MB_SetUserVolatData</A></CODE>�Őݒ肷�郆�[�U�f�[�^���܂܂�Ă���A���̃R�[���o�b�N����<A href="MB_SetUserVolatData.html">MB_SetUserVolatData</A>���R�[�����邱�ƂŁA���ɑ��M����f�[�^��ݒ肷�邱�Ƃ��ł��܂��B<BR>
+<H2>説明</H2>
+<P>MB親機ゲーム情報のうち、流動的に変化する<A href="MBGameInfo.html">MBGameInfoVolatile</A>をビーコンで送る際のコールバックを設定することができます。<BR>
+ここには、<CODE><A href="MB_SetUserVolatData.html">MB_SetUserVolatData</A></CODE>で設定するユーザデータも含まれており、このコールバック中で<A href="MB_SetUserVolatData.html">MB_SetUserVolatData</A>をコールすることで、次に送信するデータを設定することができます。<BR>
 </p>
-<PRE>/* �R�[���o�b�N�֐� */
+<PRE>/* コールバック関数 */
  typedef void (*MBSendVolatCallbackFunc)( u32 ggid );</PRE>
-<PRE>/* �R�[���o�b�N�^�C�~���O */
+<PRE>/* コールバックタイミング */
 enum
 {
     MB_SEND_VOLAT_CALLBACK_TIMMING_BEFORE,
     MB_SEND_VOLAT_CALLBACK_TIMMING_AFTER
 };
 </PRE>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="MB_SetUserVolatData.html">MB_SetUserVolatData</A>, <A href="MBGameInfo.html">MBGameInfo</A><BR>
 </CODE></P>
-<H2>����</H2>
-<P>2005/01/18 ����<BR>
+<H2>履歴</H2>
+<P>2005/01/18 初版<BR>
 </P>
 </body>
 </html>

@@ -18,7 +18,7 @@
   do-indent.
 
   Revision 1.31  2005/02/18 07:29:40  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.30  2004/08/02 07:30:11  takano_makoto
   Add G3*_MultTransMtx33

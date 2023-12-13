@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief アロケータソース
+ * @brief 繧｢繝ｭ繧ｱ繝ｼ繧ｿ繧ｽ繝ｼ繧ｹ
  */
 
 #include "dwci_lobbyBase.h"

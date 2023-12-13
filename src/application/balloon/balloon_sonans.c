@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	balloon_sonans.c
- * @brief	���D����Q�[���̃\�[�i���X���䃋�[�`��
+ * @brief	風船割りゲームのソーナンス制御ルーチン
  * @author	matsuda
- * @date	2007.11.13(��)
+ * @date	2007.11.13(火)
  */
 //==============================================================================
 #include "common.h"
@@ -46,134 +46,134 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///�\�[�i���X��Y�����ɘA�Ȃ�A���l�p�`�|���S���̐�
+///ソーナンスのY方向に連なる連結四角形ポリゴンの数
 #define SONANS_QUAD_STRIP_NUM		(8)
-///�\�[�i���X�ɘA�Ȃ��Ă���A�����܂ł̃|���S�����ϑΏۂɂȂ邩(�c��͓����Ȃ��Ȃ�)
+///ソーナンスに連なっている、いくつまでのポリゴンが可変対象になるか(残りは動かなくなる)
 #define SONANS_VARIABLE_VERTEX_NUM	(SONANS_QUAD_STRIP_NUM - 1)
 
-///�\�[�i���X�̒��_���W���X�g�̒���(fx32)
+///ソーナンスの頂点座標リストの長さ(fx32)
 #define SONANS_VERTEX_LEN			(128 * FX32_ONE)
-///�\�[�i���X�̒��_���W���X�g�̒���(fx32)
+///ソーナンスの頂点座標リストの長さ(fx32)
 #define SONANS_VERTEX_LEN_HALF		(SONANS_VERTEX_LEN/2)
-///�\�[�i���X�̉ϑΏۃ|���S���̒��_���W���X�g��
+///ソーナンスの可変対象ポリゴンの頂点座標リスト長
 #define SONANS_VARIABLE_VERTEX_LEN	(SONANS_VERTEX_LEN / SONANS_QUAD_STRIP_NUM * SONANS_VARIABLE_VERTEX_NUM)
-///�\�[�i���X�ׂ̒�钷��
+///ソーナンスの潰れる長さ
 #define SONANS_VERTEX_PUSH_LEN		(SONANS_VARIABLE_VERTEX_LEN - 12*FX32_ONE)
 
-///�\�[�i���X�̍��[���_���WX
+///ソーナンスの左端頂点座標X
 #define SONANS_VERTEX_LEFT			(0)
-///�\�[�i���X�̉E�[���_���WX
+///ソーナンスの右端頂点座標X
 #define SONANS_VERTEX_RIGHT			(SONANS_VERTEX_LEN)
-///�\�[�i���X�̉��[���_���WX
+///ソーナンスの下端頂点座標X
 #define SONANS_VERTEX_TOP			(0)
-///�\�[�i���X�̏�[���_���WX
+///ソーナンスの上端頂点座標X
 #define SONANS_VERTEX_BOTTOM		(-SONANS_VERTEX_LEN)
 
-///�\�[�i���X�̃e�N�X�`���T�C�Y:X
+///ソーナンスのテクスチャサイズ:X
 #define SONANS_TEX_SIZE_X			(128)
-///�\�[�i���X�̃e�N�X�`���T�C�Y:Y
+///ソーナンスのテクスチャサイズ:Y
 #define SONANS_TEX_SIZE_Y			(128)
 
-///�\�[�i���X�̃X�P�[���T�C�YX�@�����_��fx16�ׁ̈A���_��FX16_ONE�ɂ��Ă����X�P�[���ł��̕��g�傷��
+///ソーナンスのスケールサイズX　※頂点がfx16の為、頂点はFX16_ONEにしておきスケールでその分拡大する
 #define SONANS_SCALE_SIZE_X			(6 * 16*FX32_ONE)	//6grid(1grid=16unit)
-///�\�[�i���X�̃X�P�[���T�C�YY
+///ソーナンスのスケールサイズY
 #define SONANS_SCALE_SIZE_Y			(6 * 16*FX32_ONE)
-///�\�[�i���X�̃X�P�[���T�C�YZ
+///ソーナンスのスケールサイズZ
 #define SONANS_SCALE_SIZE_Z			(FX32_ONE)
 
-///�\�[�i���X�̃X�P�[���T�C�YX(���A�F��)
+///ソーナンスのスケールサイズX(レア：細)
 #define SONANS_SCALE_SIZE_FINE_X		(SONANS_SCALE_SIZE_X - 2*16*FX32_ONE)
-///�\�[�i���X�̃X�P�[���T�C�YY(���A�F��)
+///ソーナンスのスケールサイズY(レア：細)
 #define SONANS_SCALE_SIZE_FINE_Y		(SONANS_SCALE_SIZE_Y + 1*16*FX32_ONE/2)
-///�\�[�i���X�̃X�P�[���T�C�YX(���A�F��)
+///ソーナンスのスケールサイズX(レア：太)
 #define SONANS_SCALE_SIZE_THICK_X		(SONANS_SCALE_SIZE_X + 3*16*FX32_ONE)
-///�\�[�i���X�̃X�P�[���T�C�YY(���A�F��)
+///ソーナンスのスケールサイズY(レア：太)
 #define SONANS_SCALE_SIZE_THICK_Y		(SONANS_SCALE_SIZE_Y + 1*16*FX32_ONE)
 
-///�\�[�i���X�̏Ə��̏������WX(2D�I�ȃh�b�g�ʒu)
+///ソーナンスの照準の初期座標X(2D的なドット位置)
 #define SONANS_AIM_INIT_X		(128)
-///�\�[�i���X�̏Ə��̏������WY(2D�I�ȃh�b�g�ʒu)
+///ソーナンスの照準の初期座標Y(2D的なドット位置)
 #define SONANS_AIM_INIT_Y		(40)
-///�\�[�i���X�̏Ə��̏I�[���WY(2D�I�ȃh�b�g�ʒu)
+///ソーナンスの照準の終端座標Y(2D的なドット位置)
 #define SONANS_AIM_END_Y		(256-48)
 
-///�\�[�i���X�̃e�N�X�`���O���t�B�b�N�̑����̋󔒃T�C�Y(���j�b�g�P��)
+///ソーナンスのテクスチャグラフィックの足元の空白サイズ(ユニット単位)
 #define SONANS_TEX_SPACE_SIZE	(9)
-///����̏c�T�C�Y(���j�b�g�P��)
+///台座の縦サイズ(ユニット単位)
 #define DAIZA_UNIT_SIZE			(10)
 
-///�Ə��̓����蔻��X(���S����̔��a)
+///照準の当たり判定X(中心からの半径)
 #define AIM_RANGE_HALF_X		(56)
-///�Ə��̓����蔻��Y(���S����̔��a)
+///照準の当たり判定Y(中心からの半径)
 #define AIM_RANGE_HALF_Y		(16)
-///�Ə��̒��S�������Ă���A�Ƃ�����������锼�a
+///照準の中心を押している、という判定をする半径
 #define AIM_CENTER_RANGE_HALF_X		(16)	//(AIM_RANGE_HALF_X / 2)
 
-///�Ə��Ƀq�b�g�������̈ʒu
+///照準にヒットした時の位置
 enum{
-	AIM_HIT_CENTER,			///<�Ə��̒��S�Ƀq�b�g
-	AIM_HIT_LEFT,			///<�Ə��̍����Ƀq�b�g
-	AIM_HIT_RIGHT,			///<�Ə��̉E���Ƀq�b�g
+	AIM_HIT_CENTER,			///<照準の中心にヒット
+	AIM_HIT_LEFT,			///<照準の左側にヒット
+	AIM_HIT_RIGHT,			///<照準の右側にヒット
 };
 
-///�\�[�i���X�ő厞�̖ʐ�
+///ソーナンス最大時の面積
 #define SONANS_MAX_AREA		(((((SONANS_VERTEX_RIGHT-SONANS_VERTEX_LEFT) + (SONANS_VERTEX_RIGHT-SONANS_VERTEX_LEFT)) * (fx64)(SONANS_VERTEX_PUSH_LEN)) >> FX32_SHIFT) / 2)
 
-///�{���e�[�W���ő�̎��A�\�[�i���X���ő剽���܂ő傫�����邩(100��2�{):X
+///ボルテージが最大の時、ソーナンスを最大何％まで大きくするか(100で2倍):X
 #define SONANS_VOLTAGE_SCALE_X_MAX	(30)
-///�{���e�[�W���ő�̎��A�\�[�i���X��1�t���[�����Ƃɉ������傫�����邩:X
+///ボルテージが最大の時、ソーナンスを1フレームごとに何％ずつ大きくするか:X
 #define SONANS_VOLTAGE_SCALE_ADD_X	(8)
 
 
-///�{���e�[�W���ő�̎��̓_�ŃA�j���̃E�F�C�g�Ԋu
+///ボルテージが最大の時の点滅アニメのウェイト間隔
 #define VOLTAGE_ANM_FLASH_WAIT			(4)
 
 //==============================================================================
-//	�\���̒�`
+//	構造体定義
 //==============================================================================
-///fx16��POINT�^
+///fx16のPOINT型
 typedef struct{
 	fx16 x;
 	fx16 y;
 }POINT_FX16;
 
-///fx32��POINT�^
+///fx32のPOINT型
 typedef struct{
 	fx32 x;
 	fx32 y;
 }POINT_FX32;
 
-///s32��POINT�^
+///s32のPOINT型
 typedef struct{
 	s32 x;
 	s32 y;
 }POINT_S32;
 
-///���_���W���X�g
+///頂点座標リスト
 typedef struct{
-	POINT_FX32 lu;			///<���_���W�F����
-	POINT_FX32 ld;			///<���_���W�F����
-	POINT_FX32 ru;			///<���_���W�F�E��
-	POINT_FX32 rd;			///<���_���W�F�E��
+	POINT_FX32 lu;			///<頂点座標：左上
+	POINT_FX32 ld;			///<頂点座標：左下
+	POINT_FX32 ru;			///<頂点座標：右上
+	POINT_FX32 rd;			///<頂点座標：右下
 }VERTEX_LIST;
 
-///�e�N�X�`�����_���W���X�g
+///テクスチャ頂点座標リスト
 typedef struct{
-	POINT_FX32 lu;			///<���_���W�F����
-	POINT_FX32 ld;			///<���_���W�F����
-	POINT_FX32 ru;			///<���_���W�F�E��
-	POINT_FX32 rd;			///<���_���W�F�E��
+	POINT_FX32 lu;			///<頂点座標：左上
+	POINT_FX32 ld;			///<頂点座標：左下
+	POINT_FX32 ru;			///<頂点座標：右上
+	POINT_FX32 rd;			///<頂点座標：右下
 }TEX_COORD_LIST;
 
 //--------------------------------------------------------------
 /**
- * @brief   �\�[�i���X���쐧��p�V�X�e�����[�N
+ * @brief   ソーナンス動作制御用システムワーク
  */
 //--------------------------------------------------------------
 typedef struct _SONANS_SYS{
-	NNSG3dResFileHeader *tex_file;			///<�ǂݍ��񂾃e�N�X�`���[�t�@�C���ւ̃|�C���^
+	NNSG3dResFileHeader *tex_file;			///<読み込んだテクスチャーファイルへのポインタ
 	NNSG3dResTex	*texture;
 	u16 rotate;
 	VERTEX_LIST vertex_list[SONANS_QUAD_STRIP_NUM];
@@ -188,58 +188,58 @@ typedef struct _SONANS_SYS{
 	int aim_y;
 	int aim_hit_x;
 	int aim_hit_y;
-	int aim_hit_y_zure;				///<�Ə��̒��S���炢������ă^�b�`��������ێ�(Y���W)
+	int aim_hit_y_zure;				///<照準の中心からいくつずれてタッチしたかを保持(Y座標)
 	fx32 aim_hit_center_y_fx;
-	CATS_ACT_PTR aim_cap;			///<�Ə��A�N�^�[�ւ̃|�C���^
+	CATS_ACT_PTR aim_cap;			///<照準アクターへのポインタ
 	
 	int push_mode;
 	int backup_tp_y;
 	
-	int before_area;				///<�^�b�`�J�n���̖ʐ�
-	int pomp_area;					///<�^�b�`�𗣂������ɓ����A�ŏI�I�ɉ������񂾖ʐ�
+	int before_area;				///<タッチ開始時の面積
+	int pomp_area;					///<タッチを離した時に得た、最終的に押し込んだ面積
 	
-	fx32 return_power;				///<�\�[�i���X��߂����̃p���[�l
+	fx32 return_power;				///<ソーナンスを戻す時のパワー値
 
-	u16 *palette_work_src;			///<�\�[�i���X�̃p���b�g���[�N(���f�[�^)
-	u16 *palette_work_dest;			///<�\�[�i���X�̃p���b�g���[�N(�]���f�[�^)
-	u32 palette_size;				///<�\�[�i���X�̃J���[�p���b�g�T�C�Y(byte)
-	u32 palette_trans_adrs;			///<�p���b�g�]����̃A�h���X
+	u16 *palette_work_src;			///<ソーナンスのパレットワーク(元データ)
+	u16 *palette_work_dest;			///<ソーナンスのパレットワーク(転送データ)
+	u32 palette_size;				///<ソーナンスのカラーパレットサイズ(byte)
+	u32 palette_trans_adrs;			///<パレット転送先のアドレス
 	
-	s32 voltage;					///<�\�[�i���X�̃{���e�[�W�l
+	s32 voltage;					///<ソーナンスのボルテージ値
 	
 	fx32 scale_x;
 	fx32 scale_y;
 	s16 scale_voltage_x;
 	s16 scale_voltage_y;
 	
-	s16 rare_scale_x;				///<���A�Q�[���ɂ��X�P�[���l:X
-	s16 rare_scale_y;				///<���A�Q�[���ɂ��X�P�[���l:Y
+	s16 rare_scale_x;				///<レアゲームによるスケール値:X
+	s16 rare_scale_y;				///<レアゲームによるスケール値:Y
 	
-	MNGM_RAREGAME_TYPE rare_type;	///<���A�^�C�v
+	MNGM_RAREGAME_TYPE rare_type;	///<レアタイプ
 	
-	u8 snd_push_se;					///<TRUE:�\�[�i���X�������Ă���SE�Đ���
-	u8 voltage_anm_wait;			///<�{���e�[�W�ő�̎��̃A�j���E�F�C�g
-	u8 color_trans_req;				///<TRUE:V�u�����N�Ńp���b�g�]�����N�G�X�g
+	u8 snd_push_se;					///<TRUE:ソーナンスを押しているSE再生中
+	u8 voltage_anm_wait;			///<ボルテージ最大の時のアニメウェイト
+	u8 color_trans_req;				///<TRUE:Vブランクでパレット転送リクエスト
 	
 #ifdef PM_DEBUG
-	int debug_aim_on_off;			///<TRUE�F�Ə��\���@�@FALSE:�Ə���\��
+	int debug_aim_on_off;			///<TRUE：照準表示　　FALSE:照準非表示
 #endif
 }SONANS_SYS;
 
 
 //==============================================================================
-//	�^��`
+//	型定義
 //==============================================================================
-///Sonans_VertexCalc�֐��̖߂�l
+///Sonans_VertexCalc関数の戻り値
 typedef enum{
-	VERTEX_CALC_RET_TRUE,			///<����I��
-	VERTEX_CALC_RET_RELEASE,		///<�y���̃^�b�`��Ԃ����������K�v������
-	VERTEX_CALC_RET_CARRY_OVER,		///<����A�����v�Z�ŕ␳����������
+	VERTEX_CALC_RET_TRUE,			///<正常終了
+	VERTEX_CALC_RET_RELEASE,		///<ペンのタッチ状態を解放させる必要がある
+	VERTEX_CALC_RET_CARRY_OVER,		///<上限、下限計算で補正が発生した
 }VERTEX_CALC_RET;
 
 
 //==============================================================================
-//	�f�[�^
+//	データ
 //==============================================================================
 static const fx16	 gCubeGeometryFx[] = {
 	-FX16_HALF, FX16_HALF, 0,
@@ -285,41 +285,41 @@ static const fx32 gCubeTexCoordFx[] = {	//s, t
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///�Ə��̃A�N�^�[�w�b�_(���C����ʗp)
+///照準のアクターヘッダ(メイン画面用)
 static const TCATS_OBJECT_ADD_PARAM_S AimObjParam = {
 	0, 0, 0,		//x, y, z
-	0, BALLOON_SOFTPRI_AIM, 0,	//�A�j���ԍ��A�D�揇�ʁA�p���b�g�ԍ�
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//�`��G���A
-	{	//�g�p���\�[�XID�e�[�u��
-		CHARID_BALLOON_AIM,			//�L����
-		PLTTID_OBJ_AIM,			//�p���b�g
-		CELLID_BALLOON_AIM,			//�Z��
-		CELLANMID_BALLOON_AIM,		//�Z���A�j��
-		CLACT_U_HEADER_DATA_NONE,		//�}���`�Z��
-		CLACT_U_HEADER_DATA_NONE,		//�}���`�Z���A�j��
+	0, BALLOON_SOFTPRI_AIM, 0,	//アニメ番号、優先順位、パレット番号
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//描画エリア
+	{	//使用リソースIDテーブル
+		CHARID_BALLOON_AIM,			//キャラ
+		PLTTID_OBJ_AIM,			//パレット
+		CELLID_BALLOON_AIM,			//セル
+		CELLANMID_BALLOON_AIM,		//セルアニメ
+		CLACT_U_HEADER_DATA_NONE,		//マルチセル
+		CLACT_U_HEADER_DATA_NONE,		//マルチセルアニメ
 	},
-	BALLOON_BGPRI_AIM,				//BG�v���C�I���e�B
-	0,									//Vram�]���t���O
+	BALLOON_BGPRI_AIM,				//BGプライオリティ
+	0,									//Vram転送フラグ
 };
 
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///�\�[�i���X�̂����蔻��
+///ソーナンスのあたり判定
 static const struct{
 	u8 left;
 	u8 right;
 	u8 top;
 	u8 bottom;
-}SonansHitRect[] = {	//�m�[�}���A���A�P�A���A�Q
+}SonansHitRect[] = {	//ノーマル、レア１、レア２
 	{64, 192, 16, 168},		//MNGM_RAREGAME_BALLOON_NORMAL
 	{40, 256-40, 0, 168},		//MNGM_RAREGAME_BALLOON_THICK
 	{84, 256-84, 8, 168},		//MNGM_RAREGAME_BALLOON_FINE
 };
 
 //==============================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //==============================================================================
 static void Sonas_TexLoad(SONANS_SYS *sns);
 static void Sonans_VertexListInit(SONANS_SYS_PTR sns);
@@ -359,14 +359,14 @@ static void Aim_ActorDelete(CATS_ACT_PTR cap);
 
 
 //==============================================================================
-//	�O���f�[�^
+//	外部データ
 //==============================================================================
 extern const s32 AirRareRevision[];
 
 
 //==============================================================================
 //
-//	�C�����C���֐�
+//	インライン関数
 //
 //==============================================================================
 inline void vtx(int idx)
@@ -388,14 +388,14 @@ inline void tex_coord(int idx)
 
 //==============================================================================
 //
-//	���C��
+//	メイン
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	�\�[�i���X�֘A������
+ * @brief	ソーナンス関連初期化
  *
- * @param	sns		�\�[�i���X���[�N�ւ̃|�C���^
+ * @param	sns		ソーナンスワークへのポインタ
  */
 //--------------------------------------------------------------
 SONANS_SYS_PTR Sonas_Init(BALLOON_GAME_PTR game)
@@ -406,24 +406,24 @@ SONANS_SYS_PTR Sonas_Init(BALLOON_GAME_PTR game)
 	MI_CpuClear8(sns, sizeof(SONANS_SYS));
 	sns->rare_type = game->bsw->raregame_type;
 	
-	//�e�N�X�`�����[�h
+	//テクスチャロード
 	Sonas_TexLoad(sns);
 	
-	//���_���W���X�g�̏����l�ݒ�
+	//頂点座標リストの初期値設定
 	Sonans_VertexListInit(sns);
 	Sonans_TexCoordListInit(sns);
 	
 	switch(game->bsw->raregame_type){
 	case MNGM_RAREGAME_BALLOON_FINE:
-		sns->scale_x = SONANS_SCALE_SIZE_FINE_X;		//���A���ǂ����Ńf�t�H���g��ς���
+		sns->scale_x = SONANS_SCALE_SIZE_FINE_X;		//レアかどうかでデフォルトを変える
 		sns->scale_y = SONANS_SCALE_SIZE_FINE_Y;
 		break;
 	case MNGM_RAREGAME_BALLOON_THICK:
-		sns->scale_x = SONANS_SCALE_SIZE_THICK_X;		//���A���ǂ����Ńf�t�H���g��ς���
+		sns->scale_x = SONANS_SCALE_SIZE_THICK_X;		//レアかどうかでデフォルトを変える
 		sns->scale_y = SONANS_SCALE_SIZE_THICK_Y;
 		break;
 	default:
-		sns->scale_x = SONANS_SCALE_SIZE_X;		//���A���ǂ����Ńf�t�H���g��ς���
+		sns->scale_x = SONANS_SCALE_SIZE_X;		//レアかどうかでデフォルトを変える
 		sns->scale_y = SONANS_SCALE_SIZE_Y;
 		break;
 	}
@@ -442,9 +442,9 @@ SONANS_SYS_PTR Sonas_Init(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief	�\�[�i���X�֘A�̏I��
+ * @brief	ソーナンス関連の終了
  *
- * @param	sns		�\�[�i���X���[�N�ւ̃|�C���^
+ * @param	sns		ソーナンスワークへのポインタ
  */
 //--------------------------------------------------------------
 void Sonans_Exit(BALLOON_GAME_PTR game, SONANS_SYS_PTR sns)
@@ -461,9 +461,9 @@ void Sonans_Exit(BALLOON_GAME_PTR game, SONANS_SYS_PTR sns)
 
 //--------------------------------------------------------------
 /**
- * @brief	�\�[�i���X����X�V����
+ * @brief	ソーナンス動作更新処理
  *
- * @param	sns		�\�[�i���X���[�N�ւ̃|�C���^
+ * @param	sns		ソーナンスワークへのポインタ
  */
 //--------------------------------------------------------------
 void Sonans_Update(BALLOON_GAME_PTR game, SONANS_SYS_PTR sns)
@@ -499,7 +499,7 @@ void Sonans_Update(BALLOON_GAME_PTR game, SONANS_SYS_PTR sns)
 	if(sns->tp_cont == 0){
 		Sonans_PushModeReset(sns);
 		
-		//�\�[�i���X�����S�ɉ񕜂����牟������SE���~�߂�
+		//ソーナンスが完全に回復したら押し込んだSEを止める
 		if(sns->vertex_list[0].ru.y == SONANS_VERTEX_TOP 
 				&& sns->vertex_list[0].ru.y == SONANS_VERTEX_TOP){
 			sns->snd_push_se = 0;
@@ -513,7 +513,7 @@ void Sonans_Update(BALLOON_GAME_PTR game, SONANS_SYS_PTR sns)
 	
 	Aim_Update(sns, sns->aim_cap);
 	
-	//�{��MAX��Ԃɂ��g��
+	//怒りMAX状態による拡大
 	if(sns->scale_voltage_x > 0){
 		sns->scale_voltage_x += SONANS_VOLTAGE_SCALE_ADD_X;
 		if(sns->scale_voltage_x > SONANS_VOLTAGE_SCALE_X_MAX){
@@ -522,14 +522,14 @@ void Sonans_Update(BALLOON_GAME_PTR game, SONANS_SYS_PTR sns)
 		Sonans_VoltageMaxAnime(sns);
 	}
 	
-	//�G�A�[���o
+	//エアー放出
 	if(game->game_finish == FALSE && game->game_start == TRUE){
 		if(sns->pomp_area > 0){
 			BALLOON_AIR_DATA air_data;
 			int voltage_max = FALSE, voltage_reset = FALSE;
 			s32 air;
 			
-			//�{���e�[�W
+			//ボルテージ
 			if(sns->voltage < SONANS_VOLTAGE_MAX){
 				voltage_max = Sonans_VoltageAdd(sns, sns->pomp_area);
 				if(voltage_max == TRUE){
@@ -552,7 +552,7 @@ void Sonans_Update(BALLOON_GAME_PTR game, SONANS_SYS_PTR sns)
 			BalloonTool_SendAirPush(game, &air_data);
 			BalloonTool_PlayerAirParamAdd(game, &air_data);
 			
-			//GREAT or GOOD��ԂȂ�߂鑬�x�A�b�v
+			//GREAT or GOOD状態なら戻る速度アップ
 			Sonans_ReturnPowerCalc(sns, sns->pomp_area);
 			Sonans_ParticleSet(game, sns, sns->pomp_area, voltage_reset);
 			
@@ -563,7 +563,7 @@ void Sonans_Update(BALLOON_GAME_PTR game, SONANS_SYS_PTR sns)
 
 //--------------------------------------------------------------
 /**
- * @brief   �\�[�i���X�FV�u�����N�X�V����
+ * @brief   ソーナンス：Vブランク更新処理
  *
  * @param   game		
  * @param   sns			
@@ -579,12 +579,12 @@ void Sonans_VBlank(BALLOON_GAME_PTR game, SONANS_SYS_PTR sns)
 
 //--------------------------------------------------------------
 /**
- * @brief   �������񂾖ʐς���C�͂ɕϊ�
+ * @brief   押し込んだ面積を空気力に変換
  *
- * @param   sns				�\�[�i���X���[�N�ւ̃|�C���^
- * @param   pomp_area		�������񂾖ʐ�(100% MAX)
+ * @param   sns				ソーナンスワークへのポインタ
+ * @param   pomp_area		押し込んだ面積(100% MAX)
  *
- * @retval  ��C��
+ * @retval  空気力
  */
 //--------------------------------------------------------------
 static int Sonans_PompArea_to_AirPower(SONANS_SYS_PTR sns, int pomp_area)
@@ -598,17 +598,17 @@ static int Sonans_PompArea_to_AirPower(SONANS_SYS_PTR sns, int pomp_area)
 		air = pomp_area * 10;	//1% = 10cc
 	}
 	
-	//���A�Q�[���␳
+	//レアゲーム補正
 	air = air * AirRareRevision[sns->rare_type] / 100;
 	return air;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   �\�[�i���X�̖߂�͂��A�������񂾖ʐςɂ���čX�V����
+ * @brief   ソーナンスの戻る力を、押し込んだ面積によって更新する
  *
  * @param   sns		
- * @param   pomp_area		�������񂾖ʐ�(100%MAX)
+ * @param   pomp_area		押し込んだ面積(100%MAX)
  */
 //--------------------------------------------------------------
 static void Sonans_ReturnPowerCalc(SONANS_SYS_PTR sns, int pomp_area)
@@ -619,7 +619,7 @@ static void Sonans_ReturnPowerCalc(SONANS_SYS_PTR sns, int pomp_area)
 	else if(sns->pomp_area >= SONANS_POMP_AREA_GOOD_LINE){
 		sns->return_power += SONANS_RETURN_POWER_ADD_GOOD;
 	}
-	else{	//���s�Ȃ珉���l�ɖ߂�
+	else{	//失敗なら初期値に戻す
 		sns->return_power = SONANS_RETURN_POWER_INIT;
 	}
 	
@@ -630,11 +630,11 @@ static void Sonans_ReturnPowerCalc(SONANS_SYS_PTR sns, int pomp_area)
 
 //--------------------------------------------------------------
 /**
- * @brief   �\�[�i���X���������񂾎��̃p�[�e�B�N�����Z�b�g����
+ * @brief   ソーナンスを押し込んだ時のパーティクルをセットする
  *
  * @param   game
- * @param   pomp_area		�������񂾖ʐ�(100%MAX)
- * @param   voltage_max		TRUE:�{���e�[�W���ő�̎��ɉ�������
+ * @param   pomp_area		押し込んだ面積(100%MAX)
+ * @param   voltage_max		TRUE:ボルテージが最大の時に押し込んだ
  */
 //--------------------------------------------------------------
 static void Sonans_ParticleSet(BALLOON_GAME_PTR game, SONANS_SYS_PTR sns, int pomp_area, int voltage_max)
@@ -646,7 +646,7 @@ static void Sonans_ParticleSet(BALLOON_GAME_PTR game, SONANS_SYS_PTR sns, int po
 	else if(sns->pomp_area >= SONANS_POMP_AREA_GOOD_LINE){
 		;
 	}
-	else{	//���s
+	else{	//失敗
 		if(sns->vertex_list[0].lu.y < sns->vertex_list[0].ru.y){
 			BalloonParticle_EmitAdd(game, BALLOON_PUSYU2);
 			Snd_SePlay(SE_SONANS_AIR);
@@ -660,9 +660,9 @@ static void Sonans_ParticleSet(BALLOON_GAME_PTR game, SONANS_SYS_PTR sns, int po
 
 //--------------------------------------------------------------
 /**
- * @brief   Push��Ԃ����Z�b�g����
+ * @brief   Push状態をリセットする
  *
- * @param   sns		�\�[�i���X���[�N�ւ̃|�C���^
+ * @param   sns		ソーナンスワークへのポインタ
  */
 //--------------------------------------------------------------
 static void Sonans_PushModeReset(SONANS_SYS_PTR sns)
@@ -673,19 +673,19 @@ static void Sonans_PushModeReset(SONANS_SYS_PTR sns)
 	sns->push_mode = FALSE;
 	sns->backup_tp_y = -1;
 	
-	//�^�b�`�𗣂�����̖ʐ�
+	//タッチを離した後の面積
 	{
 		int after_area;
 	
 		after_area = Sonans_NowAreaParcentGet(sns);
 		sns->pomp_area = sns->before_area - after_area;
 	#ifdef OSP_BALLOON_ON
-		OS_TPrintf("�҂����ʐ� = %d, before = %d, after = %d\n", sns->pomp_area, sns->before_area, after_area);
+		OS_TPrintf("稼いだ面積 = %d, before = %d, after = %d\n", sns->pomp_area, sns->before_area, after_area);
 	#endif
 		if(sns->pomp_area < SONANS_POMP_AREA_IGNORE_LINE){
 			sns->pomp_area = 0;
 		#ifdef OSP_BALLOON_ON
-			OS_TPrintf("���Ȃ���C�Ȃ̂Ŗ���\n");
+			OS_TPrintf("少ない空気なので無視\n");
 		#endif
 		}
 	}
@@ -696,11 +696,11 @@ static void Sonans_PushModeReset(SONANS_SYS_PTR sns)
 
 //--------------------------------------------------------------
 /**
- * @brief   �\�[�i���X�̒��_���X�g���쐬���A�|���S���`��
+ * @brief   ソーナンスの頂点リストを作成し、ポリゴン描画
  *
- * @param   sns		�\�[�i���X���[�N�ւ̃|�C���^
+ * @param   sns		ソーナンスワークへのポインタ
  *
- *�@���t���[���ĂԕK�v������܂��B
+ *　毎フレーム呼ぶ必要があります。
  */
 //--------------------------------------------------------------
 static void Sonans_PolygonCreate(SONANS_SYS_PTR sns)
@@ -791,11 +791,11 @@ static void Sonans_PolygonCreate(SONANS_SYS_PTR sns)
 		);
 
 	NNS_G3dGePolygonAttr(
-			GX_LIGHTMASK_0,				// ���C�g�𔽉f���Ȃ�
-			GX_POLYGONMODE_MODULATE,	// ���W�����[�V�������[�h
-			GX_CULL_NONE,//GX_CULL_BACK,				// �J���o�b�N���s��
-			0,							// �|���S���h�c
-			31,							// �A���t�@�l
+			GX_LIGHTMASK_0,				// ライトを反映しない
+			GX_POLYGONMODE_MODULATE,	// モジュレーションモード
+			GX_CULL_NONE,//GX_CULL_BACK,				// カルバックを行う
+			0,							// ポリゴンＩＤ
+			31,							// アルファ値
 			GX_POLYGON_ATTR_MISC_NONE
 			);
 
@@ -812,27 +812,27 @@ static void Sonans_PolygonCreate(SONANS_SYS_PTR sns)
 
 //==============================================================================
 //
-//	���[�J���c�[��
+//	ローカルツール
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	�\�[�i���X�̃e�N�X�`���[���[�h
+ * @brief	ソーナンスのテクスチャーロード
  *
- * @param	sns		�\�[�i���X���[�N�ւ̃|�C���^
+ * @param	sns		ソーナンスワークへのポインタ
  */
 //--------------------------------------------------------------
 static void Sonas_TexLoad(SONANS_SYS *sns)
 {
-	//�e�N�X�`���t�@�C���ǂݍ���
+	//テクスチャファイル読み込み
 	sns->tex_file = ArchiveDataLoadMalloc(
 		ARC_BALLOON_GRA, SONANS_NSBTX, HEAPID_BALLOON);
-	sns->texture = NNS_G3dGetTex(sns->tex_file);	// �e�N�X�`�����\�[�X�擾
+	sns->texture = NNS_G3dGetTex(sns->tex_file);	// テクスチャリソース取得
 	
-	//VRAM�֓W�J
+	//VRAMへ展開
 	LoadVRAMTexture(sns->texture);
 
-	//�p���b�g�����[�N�փR�s�[����(�\�[�i���X��Ԃ����Ă�������)
+	//パレットをワークへコピーする(ソーナンスを赤くしていくため)
 	{
 		u32 sz;
 		void* pData;
@@ -848,19 +848,19 @@ static void Sonas_TexLoad(SONANS_SYS *sns)
 		MI_CpuCopy8(pData, sns->palette_work_src, sz);
 		MI_CpuCopy8(pData, sns->palette_work_dest, sz);
 		DC_FlushRange(sns->palette_work_dest, sz);
-		OS_TPrintf("�\�[�i���X�̃p���b�g�T�C�Y��%d\n", sz);
+		OS_TPrintf("ソーナンスのパレットサイズ＝%d\n", sz);
 		sns->palette_trans_adrs = from;
 		sns->palette_size = sz;
 	}
 	
-	//�e�N�X�`���C���[�W��VRAM�֓W�J���I������̂ŁA���̂�j��
+	//テクスチャイメージをVRAMへ展開し終わったので、実体を破棄
 	{
 		u8* texImgStartAddr;
 		u32 newSize;
 
 		GF_ASSERT(sns->texture->texInfo.ofsTex != 0);
 		texImgStartAddr = (u8*)sns->texture + sns->texture->texInfo.ofsTex;
-		// �q�[�v�̐擪����e�N�X�`���C���[�W�܂ł̃T�C�Y
+		// ヒープの先頭からテクスチャイメージまでのサイズ
 		newSize = (u32)(texImgStartAddr - (u8*)sns->tex_file);
 		sys_CutMemoryBlockSize( sns->tex_file, newSize );
 	}
@@ -868,7 +868,7 @@ static void Sonas_TexLoad(SONANS_SYS *sns)
 
 //--------------------------------------------------------------
 /**
- * @brief   �\�[�i���X�̃p���b�g�]��
+ * @brief   ソーナンスのパレット転送
  *
  * @param   sns		
  */
@@ -884,7 +884,7 @@ static void Sonans_PaletteTrans(SONANS_SYS_PTR sns)
 
 //--------------------------------------------------------------
 /**
- * @brief   �\�[�i���X�̃p���b�g�X�V����
+ * @brief   ソーナンスのパレット更新処理
  *
  * @param   sns		
  */
@@ -894,8 +894,8 @@ static void Sonans_VoltagePaletteUpdate(SONANS_SYS_PTR sns, int voltage)
 	int evy;
 	
 	evy = (SONANS_VOLTAGE_EVY_MAX << 8) * voltage / SONANS_VOLTAGE_MAX;
-	evy = (evy + 0x80) >> 8;	//�l�̌ܓ�
-	if(evy > 16){	//���肦�Ȃ����ǔO�̂���
+	evy = (evy + 0x80) >> 8;	//四捨五入
+	if(evy > 16){	//ありえないけど念のため
 		evy = 16;
 	}
 #ifdef OSP_BALLOON_ON
@@ -905,18 +905,18 @@ static void Sonans_VoltagePaletteUpdate(SONANS_SYS_PTR sns, int voltage)
 		sns->palette_size / 2, evy, SONANS_VOLTAGE_COLOR);
 	
 	DC_FlushRange(sns->palette_work_dest, sns->palette_size);
-//	Sonans_PaletteTrans(sns);	//������悤�Ȃ�V�u�����N�]���ɕς���
+//	Sonans_PaletteTrans(sns);	//ちらつくようならVブランク転送に変える
 	sns->color_trans_req = TRUE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   �\�[�i���X�̃{���e�[�W�����Z����
+ * @brief   ソーナンスのボルテージを加算する
  *
  * @param   sns		
- * @param   pomp_area		�������񂾖ʐ�(100%MAX)
+ * @param   pomp_area		押し込んだ面積(100%MAX)
  *
- * @retval  TRUE:�{���e�[�WMAX
+ * @retval  TRUE:ボルテージMAX
  */
 //--------------------------------------------------------------
 static BOOL Sonans_VoltageAdd(SONANS_SYS_PTR sns, int pomp_area)
@@ -929,7 +929,7 @@ static BOOL Sonans_VoltageAdd(SONANS_SYS_PTR sns, int pomp_area)
 		ret = TRUE;
 	}
 
-	//�{���e�[�W�ɂ���ăJ���[�̉����Z�������Ȃ�
+	//ボルテージによってカラーの加減算をおこなう
 	Sonans_VoltagePaletteUpdate(sns, sns->voltage);
 
 	return ret;
@@ -937,7 +937,7 @@ static BOOL Sonans_VoltageAdd(SONANS_SYS_PTR sns, int pomp_area)
 
 //--------------------------------------------------------------
 /**
- * @brief   �{���e�[�W�����Z�b�g����
+ * @brief   ボルテージをリセットする
  * @param   sns		
  */
 //--------------------------------------------------------------
@@ -949,7 +949,7 @@ static void Sonans_VoltageReset(SONANS_SYS_PTR sns)
 
 //--------------------------------------------------------------
 /**
- * @brief   �{���e�[�W���ő�̎��̓_�ŃA�j��
+ * @brief   ボルテージが最大の時の点滅アニメ
  *
  * @param   sns		
  */
@@ -1040,7 +1040,7 @@ void DEMO_Set3DDefaultShininessTable()
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   �\�[�i���X�̒��_���W���X�g�������l�ɐݒ肷��
+ * @brief   ソーナンスの頂点座標リストを初期値に設定する
  *
  * @param   sns		
  */
@@ -1070,7 +1070,7 @@ static void Sonans_VertexListInit(SONANS_SYS_PTR sns)
 
 //--------------------------------------------------------------
 /**
- * @brief   �\�[�i���X�̃e�N�X�`�����W���X�g�������l�ɐݒ肷��
+ * @brief   ソーナンスのテクスチャ座標リストを初期値に設定する
  *
  * @param   sns		
  */
@@ -1099,7 +1099,7 @@ static void Sonans_TexCoordListInit(SONANS_SYS_PTR sns)
 
 //--------------------------------------------------------------
 /**
- * @brief   ���_���W�ݒ�
+ * @brief   頂点座標設定
  *
  * @param   sns		
  */
@@ -1110,47 +1110,47 @@ static void Sonans_VertexListUpdate(SONANS_SYS_PTR sns)
 {
 	int y;
 	fx64 calc_x, calc_y;
-	fx16 set_x, set_y;	//vertex�͒��_�̌X�����v�Z���₷���悤��fx32�Ńh�b�g���W�Ŏ����Ă���̂�
-						//���_���X�g���Z�b�g����O��SONANS_VERTEX_BASE��MAX�ɂ����l�ɕϊ����Ă��
+	fx16 set_x, set_y;	//vertexは頂点の傾きが計算しやすいようにfx32でドット座標で持っているので
+						//頂点リストをセットする前にSONANS_VERTEX_BASEをMAXにした値に変換してやる
 	
-//	OS_TPrintf("���_�`��J�n\n");
+//	OS_TPrintf("頂点描画開始\n");
 	for(y = 0; y < SONANS_QUAD_STRIP_NUM; y++){
-		// �`��J�n
-//		NNS_G3dGeBegin(GX_BEGIN_QUAD_STRIP);// ���_���X�g�̊J�n(�A���l�p�`�|���S���ł̕`��錾)
-		NNS_G3dGeBegin(GX_BEGIN_QUADS);// ���_���X�g�̊J�n(�A���l�p�`�|���S���ł̕`��錾)
+		// 描画開始
+//		NNS_G3dGeBegin(GX_BEGIN_QUAD_STRIP);// 頂点リストの開始(連結四角形ポリゴンでの描画宣言)
+		NNS_G3dGeBegin(GX_BEGIN_QUADS);// 頂点リストの開始(連結四角形ポリゴンでの描画宣言)
 		
-		//����
+		//左上
 		Sonans_Vertex_FX32_to_Conv(
 			sns->vertex_list[y].lu.x, sns->vertex_list[y].lu.y, &set_x, &set_y);
 		NNS_G3dGeTexCoord(sns->tex_coord_list[y].lu.x, sns->tex_coord_list[y].lu.y);
 		normal(0);
 		NNS_G3dGeVtx(set_x, set_y, 0);
 
-		//����
+		//左下
 		Sonans_Vertex_FX32_to_Conv(
 			sns->vertex_list[y].ld.x, sns->vertex_list[y].ld.y, &set_x, &set_y);
 		NNS_G3dGeTexCoord(sns->tex_coord_list[y].ld.x, sns->tex_coord_list[y].ld.y);
 		normal(0);
 		NNS_G3dGeVtx(set_x, set_y, 0);
 
-		//�E��
+		//右下
 		Sonans_Vertex_FX32_to_Conv(
 			sns->vertex_list[y].rd.x, sns->vertex_list[y].rd.y, &set_x, &set_y);
 		NNS_G3dGeTexCoord(sns->tex_coord_list[y].rd.x, sns->tex_coord_list[y].rd.y);
 		normal(0);
 		NNS_G3dGeVtx(set_x, set_y, 0);
 
-		//�E��
+		//右上
 		Sonans_Vertex_FX32_to_Conv(
 			sns->vertex_list[y].ru.x, sns->vertex_list[y].ru.y, &set_x, &set_y);
 		NNS_G3dGeTexCoord(sns->tex_coord_list[y].ru.x, sns->tex_coord_list[y].ru.y);
 		normal(0);
 		NNS_G3dGeVtx(set_x, set_y, 0);
 
-		//�`��I��
+		//描画終了
 		NNS_G3dGeEnd();
 	}
-//	OS_TPrintf("���_�`��I��\n");
+//	OS_TPrintf("頂点描画終了\n");
 }
 
 static void Sonans_Vertex_FX32_to_Conv(fx32 x, fx32 y, fx16 *ret_x, fx16 *ret_y)
@@ -1166,7 +1166,7 @@ static void Sonans_Vertex_FX32_to_Conv(fx32 x, fx32 y, fx16 *ret_x, fx16 *ret_y)
 
 //	OS_TPrintf("set_x0 = %x, set_y0 = %x, tex_coord_x = %x, tex_coord_y = %x\n", set_x, set_y, sns->tex_coord_list[y].lu.x, sns->tex_coord_list[y].lu.y);
 
-	set_x -= SONANS_VERTEX_BASE_HALF;	//�\�[�i���X�̒��S�����_�ɂ����
+	set_x -= SONANS_VERTEX_BASE_HALF;	//ソーナンスの中心を原点にする為
 	set_y += SONANS_VERTEX_BASE_HALF;
 	GF_ASSERT(set_x <= FX16_MAX);
 	GF_ASSERT(set_x >= FX16_MIN);
@@ -1179,17 +1179,17 @@ static void Sonans_Vertex_FX32_to_Conv(fx32 x, fx32 y, fx16 *ret_x, fx16 *ret_y)
 
 //--------------------------------------------------------------
 /**
- * @brief   �Ə��Ƀ|�C���g�������`�F�b�N
- * @param   sns		�\�[�i���X���[�N�ւ̃|�C���^
- * @retval  TRUE:�q�b�g
+ * @brief   照準にポイントしたかチェック
+ * @param   sns		ソーナンスワークへのポインタ
+ * @retval  TRUE:ヒット
  */
 //--------------------------------------------------------------
 static BOOL Sonans_AimHitCheck(SONANS_SYS_PTR sns)
 {
 	int aim_y;
 	
-	if(sns->push_mode == TRUE || 		//���ɉ�����Ă�����
-			sns->tp_trg == 0){		//�������t���[���łȂ��Ɣ��肵�Ȃ�
+	if(sns->push_mode == TRUE || 		//既に押されている状態
+			sns->tp_trg == 0){		//押したフレームでないと判定しない
 		return FALSE;
 	}
 	
@@ -1200,42 +1200,42 @@ static BOOL Sonans_AimHitCheck(SONANS_SYS_PTR sns)
 			|| sns->tp_x > sns->aim_x + AIM_RANGE_HALF_X
 			|| sns->tp_y < aim_y - AIM_RANGE_HALF_Y 
 			|| sns->tp_y > aim_y + AIM_RANGE_HALF_Y){
-		return FALSE;	//�Ə��͈̔͊O
+		return FALSE;	//照準の範囲外
 	}
 	
 	sns->push_mode = TRUE;
 	sns->aim_hit_x = sns->tp_x;
 	sns->aim_hit_y = sns->tp_y;
-	sns->aim_hit_y_zure = sns->tp_y - aim_y;	//���S���炢������ă^�b�`��������ێ�
+	sns->aim_hit_y_zure = sns->tp_y - aim_y;	//中心からいくつずれてタッチしたかを保持
 	sns->aim_hit_center_y_fx = 
 		-(sns->vertex_list[0].ru.y + (sns->vertex_list[0].lu.y - sns->vertex_list[0].ru.y) / 2);
 	OS_TPrintf("aim hit : x = %d, y = %d, center_y = %d\n", sns->aim_hit_x, sns->aim_hit_y, sns->aim_hit_center_y_fx);
 	
-	//�^�b�`�J�n���̖ʐ�
+	//タッチ開始時の面積
 	sns->before_area = Sonans_NowAreaParcentGet(sns);
-	OS_TPrintf("�^�b�`�J�n���̖ʐ� = %d\n", sns->before_area);
+	OS_TPrintf("タッチ開始時の面積 = %d\n", sns->before_area);
 #else
 	if(sns->tp_x < SonansHitRect[sns->rare_type].left
 			|| sns->tp_x > SonansHitRect[sns->rare_type].right
 			|| sns->tp_y < aim_y	//SonansHitRect[sns->rare_type].top
 			|| sns->tp_y > SonansHitRect[sns->rare_type].bottom){
-		return FALSE;	//�Ə��͈̔͊O
+		return FALSE;	//照準の範囲外
 	}
 	
 	sns->push_mode = TRUE;
 	sns->aim_hit_x = sns->tp_x;
 	sns->aim_hit_y = sns->tp_y;
-	sns->aim_hit_y_zure = sns->tp_y - aim_y;	//���S���炢������ă^�b�`��������ێ�
+	sns->aim_hit_y_zure = sns->tp_y - aim_y;	//中心からいくつずれてタッチしたかを保持
 	sns->aim_hit_center_y_fx = 
 		-(sns->vertex_list[0].ru.y + (sns->vertex_list[0].lu.y - sns->vertex_list[0].ru.y) / 2);
 #ifdef OSP_BALLOON_ON
 	OS_TPrintf("aim hit : x = %d, y = %d, center_y = %d\n", sns->aim_hit_x, sns->aim_hit_y, sns->aim_hit_center_y_fx);
 #endif
 
-	//�^�b�`�J�n���̖ʐ�
+	//タッチ開始時の面積
 	sns->before_area = Sonans_NowAreaParcentGet(sns);
 #ifdef OSP_BALLOON_ON
-	OS_TPrintf("�^�b�`�J�n���̖ʐ� = %d\n", sns->before_area);
+	OS_TPrintf("タッチ開始時の面積 = %d\n", sns->before_area);
 #endif
 #endif
 	return TRUE;
@@ -1243,9 +1243,9 @@ static BOOL Sonans_AimHitCheck(SONANS_SYS_PTR sns)
 
 //--------------------------------------------------------------
 /**
- * @brief   �\�[�i���X�̒��_���W�X�V����
+ * @brief   ソーナンスの頂点座標更新処理
  *
- * @param   sns		�\�[�i���X���[�N�ւ̃|�C���^
+ * @param   sns		ソーナンスワークへのポインタ
  *
  * @retval  
  */
@@ -1259,15 +1259,15 @@ static int Sonans_VertexUpdate(SONANS_SYS_PTR sns)
 	
 	if(sns->push_mode == TRUE){
 		if(sns->tp_y < sns->backup_tp_y){
-		//	Sonans_PushModeReset(sns);	�T�d�Ƀ^�b�`���Ȃ��Ɖ�ʂɂ��Ă����̃u���ŏ�s���̂ł�߂�
+		//	Sonans_PushModeReset(sns);	慎重にタッチしないと画面にあてた時のブレで上行くのでやめた
 		//	Snd_SeStopBySeqNo( SE_SONANS_PUSH, 0 );
 			sns->snd_push_se = 0;
-			return FALSE;	//������փy���𓮂�����
+			return FALSE;	//上方向へペンを動かした
 		}
 		else if(sns->tp_y == sns->backup_tp_y){
 		//	Snd_SeStopBySeqNo( SE_SONANS_PUSH, 0 );
 			sns->snd_push_se = 0;
-			return TRUE;	//�ʒu���ς���Ă��Ȃ��̂Ōv�Z��������K�v�Ȃ�
+			return TRUE;	//位置が変わっていないので計算処理する必要なし
 		}
 		
 		//if(sns->snd_push_se == 0){
@@ -1288,7 +1288,7 @@ static int Sonans_VertexUpdate(SONANS_SYS_PTR sns)
 //		dot_offset = (sns->tp_y - sns->backup_tp_y) << FX32_SHIFT;
 		//dot_offset = tp_y - (sns->aim_hit_y << FX32_SHIFT);
 		
-		//���̂܂܂��ƃy�������炷�̂��������\�[�i���X���ׂ�Ă����̂ł��������ɕ␳��������
+		//このままだとペンをずらすのよりも早くソーナンスが潰れていくのでいい感じに補正をかける
 		//dot_offset = dot_offset * 10 / 100;
 		
 	#ifdef OSP_BALLOON_ON
@@ -1297,7 +1297,7 @@ static int Sonans_VertexUpdate(SONANS_SYS_PTR sns)
 	
 		sns->backup_tp_y = sns->tp_y;
 	}
-	else{	//�^�b�`���Ă��Ȃ����(��C��߂�)
+	else{	//タッチしていない状態(空気を戻す)
 		mode = TRUE;
 		dot_offset = -sns->return_power;
 	}
@@ -1319,14 +1319,14 @@ static int Sonans_VertexUpdate(SONANS_SYS_PTR sns)
 
 //--------------------------------------------------------------
 /**
- * @brief   �^�b�`�ʒu�ɂ�蒸�_���W�̍Čv�Z
+ * @brief   タッチ位置により頂点座標の再計算
  *
- * @param   sns		�\�[�i���X���[�N�ւ̃|�C���^
- * @param   air_back_mode		TRUE:��C�߂胂�[�h�A�@FALSE:�^�b�`�y���ŉ������݃��[�h
- * @param   dot_offset			���_�ɉ��Z���鐔�l
+ * @param   sns		ソーナンスワークへのポインタ
+ * @param   air_back_mode		TRUE:空気戻りモード、　FALSE:タッチペンで押し込みモード
+ * @param   dot_offset			頂点に加算する数値
  *
- * @retval  TRUE:����I��
- * @retval  FALSE:���W�̏���A�����␳�����������B(�^�b�`������ԂȂ�^�b�`����������)
+ * @retval  TRUE:正常終了
+ * @retval  FALSE:座標の上限、下限補正が発生した。(タッチした状態ならタッチ解除させる)
  */
 //--------------------------------------------------------------
 static VERTEX_CALC_RET Sonans_VertexCalc(SONANS_SYS_PTR sns, int air_back_mode, fx32 dot_offset)
@@ -1339,12 +1339,12 @@ static VERTEX_CALC_RET Sonans_VertexCalc(SONANS_SYS_PTR sns, int air_back_mode, 
 	
 //	OS_TPrintf("air_back_mode = %d, dot_offset = %d\n", air_back_mode, dot_offset);
 	if(air_back_mode == FALSE && dot_offset < 0){
-//		return VERTEX_CALC_RET_RELEASE;	//������փy���𓮂����Ă���̂ŏI��
+//		return VERTEX_CALC_RET_RELEASE;	//上方向へペンを動かしているので終了
 	}
 
-	tp_y = sns->tp_y << FX32_SHIFT;				//�Œ菭����
-//	left_y = sns->hit_vertex_lu_y;		//�^�b�`����J�n���̍��㒸�_Y�ʒu
-//	right_y = sns->hit_vertex_ru_y;		//�^�b�`����J�n���̉E�㒸�_Y�ʒu
+	tp_y = sns->tp_y << FX32_SHIFT;				//固定少数化
+//	left_y = sns->hit_vertex_lu_y;		//タッチ判定開始時の左上頂点Y位置
+//	right_y = sns->hit_vertex_ru_y;		//タッチ判定開始時の右上頂点Y位置
 	now_left_y = -sns->vertex_list[0].lu.y;
 	now_right_y = -sns->vertex_list[0].ru.y;
 	now_center_y = now_right_y + (now_left_y - now_right_y) / 2;
@@ -1372,16 +1372,16 @@ static VERTEX_CALC_RET Sonans_VertexCalc(SONANS_SYS_PTR sns, int air_back_mode, 
 	
 	if(now_center_y == new_center_y && now_left_y == new_left_y && now_right_y == new_right_y){
 	#ifdef OSP_BALLOON_ON
-		OS_TPrintf("�v�ZCANCEL\n");
+		OS_TPrintf("計算CANCEL\n");
 	#endif
-		return VERTEX_CALC_RET_TRUE;	//�����l���ς���Ă��Ȃ��̂ł����ŏI��
+		return VERTEX_CALC_RET_TRUE;	//何も値が変わっていないのでここで終了
 	}
 	
-	//�\�[�i���X�̏���A�����`�F�b�N
+	//ソーナンスの上限、下限チェック
 	if(new_center_y < 0){
 		new_center_y = 0;
-//		carry_over = TRUE;	����ɃL�����[�I�[�o�[RETURN�͂���Ȃ�
-		//OS_TPrintf("����␳\n");
+//		carry_over = TRUE;	上限にキャリーオーバーRETURNはいらない
+		//OS_TPrintf("上限補正\n");
 	}
 	if(new_left_y < 0){
 		new_left_y = 0;
@@ -1395,7 +1395,7 @@ static VERTEX_CALC_RET Sonans_VertexCalc(SONANS_SYS_PTR sns, int air_back_mode, 
 	if(new_center_y > SONANS_VERTEX_PUSH_LEN){
 		new_center_y = SONANS_VERTEX_PUSH_LEN;
 		carry_over = TRUE;
-		//OS_TPrintf("�����␳\n");
+		//OS_TPrintf("下限補正\n");
 	}
 	if(new_left_y > SONANS_VERTEX_PUSH_LEN){
 		new_left_y = SONANS_VERTEX_PUSH_LEN;
@@ -1406,18 +1406,18 @@ static VERTEX_CALC_RET Sonans_VertexCalc(SONANS_SYS_PTR sns, int air_back_mode, 
 		carry_over = TRUE;
 	}
 	
-//	sns->aim_hit_center_y_fx = new_center_y;	//�Ə��ʒu�X�V
+//	sns->aim_hit_center_y_fx = new_center_y;	//照準位置更新
 	
-	//�p�x
+	//角度
 	{
 		fx32 rad_x, rad_y;
 		int point_x;
 		
-	#if 0	//aim_hit_x�ł��������X�̈ʒu�Ŋp�x���ς��̂ł�����ۂ��񂾂���
-			//��������ςȈׁA�Œ�l�ɂ���
+	#if 0	//aim_hit_xでやった方がXの位置で角度が変わるのでそれっぽいんだけど
+			//調整が大変な為、固定値にする
 		point_x = sns->aim_hit_x - 128;
 	#else
-		point_x = 64;	//X�p�x�Œ�l(���̐��l������������قǃ\�[�i���X�̓|���p�x���}�ɂȂ�)
+		point_x = 64;	//X角度固定値(この数値を小さくするほどソーナンスの倒れる角度が急になる)
 	#endif
 	
 		switch(Sonans_AimHitPosGet(sns, air_back_mode)){
@@ -1435,25 +1435,25 @@ static VERTEX_CALC_RET Sonans_VertexCalc(SONANS_SYS_PTR sns, int air_back_mode, 
 			rad_x = point_x * FX32_ONE;
 			rad_y = new_right_y - new_center_y;
 			right_rad = FX_Atan2Idx(rad_y, rad_x);
-			left_rad = right_rad + 0x8000;	//180�x���] (u16�ŃI�[�o�[�t���[���N�������O��)
+			left_rad = right_rad + 0x8000;	//180度反転 (u16でオーバーフローを起こす事前提)
 			break;
 		case AIM_HIT_RIGHT:
 			rad_x = point_x * FX32_ONE;//sns->aim_hit_x * FX32_ONE;
 			rad_y = (new_right_y - new_center_y);
 			right_rad = FX_Atan2Idx(rad_y, rad_x);
-			left_rad = right_rad + 0x8000;	//180�x���] (u16�ŃI�[�o�[�t���[���N�������O��)
+			left_rad = right_rad + 0x8000;	//180度反転 (u16でオーバーフローを起こす事前提)
 			break;
 		case AIM_HIT_LEFT:
 			rad_x = -point_x * FX32_ONE;//sns->aim_hit_x * FX32_ONE;
 			rad_y = new_left_y - new_center_y;
 			left_rad = FX_Atan2Idx(rad_y, rad_x);
-			right_rad = left_rad + 0x8000;	//180�x���] (u16�ŃI�[�o�[�t���[���N�������O��)
+			right_rad = left_rad + 0x8000;	//180度反転 (u16でオーバーフローを起こす事前提)
 			break;
 		}
 		//OS_TPrintf("aim_hit_x = %x, dot_offset = %x\n", sns->aim_hit_x, dot_offset);
 		//OS_TPrintf("rad_x = %x, rad_y = %x, left_rad = %x, right_rad = %x, new_right_y = %x, new_center_y = %x, new_left_y = %x\n", rad_x, rad_y, left_rad, right_rad, new_right_y, new_center_y, new_left_y);
 
-		//�e�X�g
+		//テスト
 //		OS_TPrintf("rad 45,45 = %x\n", FX_Atan2Idx(45*FX32_ONE,45*FX32_ONE));
 //		OS_TPrintf("rad -45,-45 = %x\n", FX_Atan2Idx(-45*FX32_ONE,-45*FX32_ONE));
 //		OS_TPrintf("rad -45,45 = %x\n", FX_Atan2Idx(-45*FX32_ONE,45*FX32_ONE));
@@ -1464,7 +1464,7 @@ static VERTEX_CALC_RET Sonans_VertexCalc(SONANS_SYS_PTR sns, int air_back_mode, 
 //		OS_TPrintf("rad -45,0 = %x\n", FX_Atan2Idx(-45*FX32_ONE,0*FX32_ONE));
 	}
 	
-	//���_���W�X�V
+	//頂点座標更新
 	{
 		fx32 furihaba = SONANS_VERTEX_LEN_HALF / FX32_ONE;
 
@@ -1517,9 +1517,9 @@ static VERTEX_CALC_RET Sonans_VertexCalc(SONANS_SYS_PTR sns, int air_back_mode, 
 
 //--------------------------------------------------------------
 /**
- * @brief   �Ə��Ƀq�b�g�������̈ʒu����𓾂�
- * @param   sns		�\�[�i���X���[�N�ւ̃|�C���^
- * @retval  �ʒu�t���O(AIM_HIT_???)
+ * @brief   照準にヒットした時の位置判定を得る
+ * @param   sns		ソーナンスワークへのポインタ
+ * @retval  位置フラグ(AIM_HIT_???)
  */
 //--------------------------------------------------------------
 static int Sonans_AimHitPosGet(SONANS_SYS_PTR sns, int air_back_mode)
@@ -1548,16 +1548,16 @@ static int Sonans_AimHitPosGet(SONANS_SYS_PTR sns, int air_back_mode)
 
 //--------------------------------------------------------------
 /**
- * @brief   �^�b�`�y���̈ʒu�A���E�̌��ݒ��_����A�V�������E���_���W���擾����
+ * @brief   タッチペンの位置、左右の現在頂点から、新しい左右頂点座標を取得する
  *
- * @param   sns				�\�[�i���X���[�N�ւ̃|�C���^
- * @param   tp_y			�^�b�`�y����Y�l
- * @param   now_y			�^�b�`�y���̒l�𔽉f����Ώۂ̒��_���W(���E�ǂ��炩)
- * @param   now_reverse_y	now_y�̋t���̒��_���W
- * @param   new_y			now_y���̒��_�̐V����Y���W
- * @param   new_reverse_y	�t���̒��_�̐V����Y���W
+ * @param   sns				ソーナンスワークへのポインタ
+ * @param   tp_y			タッチペンのY値
+ * @param   now_y			タッチペンの値を反映する対象の頂点座標(左右どちらか)
+ * @param   now_reverse_y	now_yの逆側の頂点座標
+ * @param   new_y			now_y側の頂点の新しいY座標
+ * @param   new_reverse_y	逆側の頂点の新しいY座標
  *
- * @retval  TRUE:����A�����␳�����@FALSE:����I���B
+ * @retval  TRUE:上限、下限補正発生　FALSE:正常終了。
  */
 //--------------------------------------------------------------
 static int VertexCalc_TouchPower(SONANS_SYS_PTR sns, fx32 dot_offset, 
@@ -1568,11 +1568,11 @@ static int VertexCalc_TouchPower(SONANS_SYS_PTR sns, fx32 dot_offset,
 	*new_y = now_y;
 	*new_reverse_y = now_reverse_y;
 	
-	//����A�����𒴂��Ȃ��悤�ɕ␳
+	//上限、下限を超えないように補正
 	if(now_y + dot_offset > SONANS_VERTEX_PUSH_LEN){
 		dot_offset -= (now_y + dot_offset) - SONANS_VERTEX_PUSH_LEN;
 	#ifdef OSP_BALLOON_ON
-		OS_TPrintf("�␳����\n");
+		OS_TPrintf("補正発生\n");
 	#endif
 		ret = TRUE;
 	}
@@ -1581,16 +1581,16 @@ static int VertexCalc_TouchPower(SONANS_SYS_PTR sns, fx32 dot_offset,
 #ifdef OSP_BALLOON_ON
 	OS_TPrintf("ccc now_y = %d, now_reverse_y = %d, new_y = %d, new_reverse_y = %d\n", now_y, now_reverse_y, *new_y, *new_reverse_y);
 #endif
-	if(now_reverse_y <= now_y){	//�ύX�O�̋t���̒��_���������A��̈ʒu�ɂ���Ȃ��25%�㏸
+	if(now_reverse_y <= now_y){	//変更前の逆側の頂点が同じか、上の位置にあるならば25%上昇
 		*new_reverse_y = now_reverse_y - (dot_offset * 25 / 100);
 	#ifdef OSP_BALLOON_ON
 		OS_TPrintf("25\%UP now_reverse_y = %d, new = %d, dot = %d\n", now_reverse_y, new_reverse_y, dot_offset);
 	#endif
 	}
-	else{	//�Ⴂ�ʒu�ɂ���ꍇ�͌���ێ�
+	else{	//低い位置にある場合は現状維持
 		*new_reverse_y = now_reverse_y;
 	#ifdef OSP_BALLOON_ON
-		OS_TPrintf("����ێ� now_reverse_y = %d, new = %d, dot = %d\n", now_reverse_y, new_reverse_y, dot_offset);
+		OS_TPrintf("現状維持 now_reverse_y = %d, new = %d, dot = %d\n", now_reverse_y, new_reverse_y, dot_offset);
 	#endif
 	}
 	
@@ -1599,9 +1599,9 @@ static int VertexCalc_TouchPower(SONANS_SYS_PTR sns, fx32 dot_offset,
 
 //--------------------------------------------------------------
 /**
- * @brief   �\�[�i���X�̖ʐς����߂�
- * @param   sns		�\�[�i���X���[�N�ւ̃|�C���^
- * @retval  �ʐ�
+ * @brief   ソーナンスの面積を求める
+ * @param   sns		ソーナンスワークへのポインタ
+ * @retval  面積
  */
 //--------------------------------------------------------------
 static fx32 Sonans_AreaGet(SONANS_SYS_PTR sns)
@@ -1611,10 +1611,10 @@ static fx32 Sonans_AreaGet(SONANS_SYS_PTR sns)
 	fx32 now_area;
 	int max_pos = SONANS_VARIABLE_VERTEX_NUM - 1;
 	
-	//��ԏ�̒��_�ƁA��ԉ��̒��_�̑�`�̖ʐςŎZ�o����
+	//一番上の頂点と、一番下の頂点の台形の面積で算出する
 	
-	//��`�ʐςŋ��߂���悤�ɏ��̍����͍��E��Y�̒��S�ɂ���B
-	//(���E�̍������o���o�����Ƒ�`�̌����ł͋��߂��Ȃ�)
+	//台形面積で求められるように上底の高さは左右のYの中心にする。
+	//(左右の高さがバラバラだと台形の公式では求められない)
 	jyoutei_y = sns->vertex_list[0].ru.y + (sns->vertex_list[0].lu.y - sns->vertex_list[0].ru.y) / 2;
 	takasa = -(sns->vertex_list[max_pos].ld.y - jyoutei_y);
 	
@@ -1634,11 +1634,11 @@ static fx32 Sonans_AreaGet(SONANS_SYS_PTR sns)
 
 //--------------------------------------------------------------
 /**
- * @brief   ���݂̃\�[�i���X�̖ʐς��ő厞�ɔ�ׂĉ�%�̏�Ԃ��擾����
+ * @brief   現在のソーナンスの面積が最大時に比べて何%の状態か取得する
  *
- * @param   sns		�\�[�i���X���[�N�ւ̃|�C���^
+ * @param   sns		ソーナンスワークへのポインタ
  *
- * @retval  ���݂̖ʐσp�[�Z���e�[�W(100�����ő�)
+ * @retval  現在の面積パーセンテージ(100％が最大)
  */
 //--------------------------------------------------------------
 static int Sonans_NowAreaParcentGet(SONANS_SYS_PTR sns)
@@ -1649,7 +1649,7 @@ static int Sonans_NowAreaParcentGet(SONANS_SYS_PTR sns)
 	now_area = Sonans_AreaGet(sns);
 	now_parcent = 100 * (fx64)now_area / SONANS_MAX_AREA;
 #ifdef OSP_BALLOON_ON
-	OS_TPrintf("���݂̖ʐρ@���@%d��, now_area = %d, max = %d, 16now = %x, 16max = %x\n", now_parcent, now_area, SONANS_MAX_AREA, now_area, SONANS_MAX_AREA);
+	OS_TPrintf("現在の面積　＝　%d％, now_area = %d, max = %d, 16now = %x, 16max = %x\n", now_parcent, now_area, SONANS_MAX_AREA, now_area, SONANS_MAX_AREA);
 #endif
 
 	return now_parcent;
@@ -1658,7 +1658,7 @@ static int Sonans_NowAreaParcentGet(SONANS_SYS_PTR sns)
 
 //--------------------------------------------------------------
 /**
- * @brief   �Ə����\�[�X�o�^
+ * @brief   照準リソース登録
  *
  * @param   game		
  */
@@ -1667,7 +1667,7 @@ static void Aim_ResourceLoad(BALLOON_GAME_PTR game)
 {
 	ARCHANDLE* hdl;
 
-	//�n���h���I�[�v��
+	//ハンドルオープン
 	hdl  = ArchiveDataHandleOpen(ARC_BALLOON_GRA,  HEAPID_BALLOON); 
 
 	CATS_LoadResourcePlttWorkArcH(game->pfd, FADE_MAIN_OBJ, game->csp, game->crp, 
@@ -1680,13 +1680,13 @@ static void Aim_ResourceLoad(BALLOON_GAME_PTR game)
 	CATS_LoadResourceCellAnmArcH(game->csp, game->crp, hdl, AIM_NANR, 
 		0, CELLANMID_BALLOON_AIM);
 
-	//�n���h������
+	//ハンドル閉じる
 	ArchiveDataHandleClose( hdl );
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   �Ə����\�[�X���
+ * @brief   照準リソース解放
  *
  * @param   game		
  */
@@ -1701,11 +1701,11 @@ static void Aim_ResourceFree(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   �Ə��A�N�^�[����
+ * @brief   照準アクター生成
  *
  * @param   game		
  *
- * @retval  ���������Ə��A�N�^�[�ւ̃|�C���^
+ * @retval  生成した照準アクターへのポインタ
  */
 //--------------------------------------------------------------
 static CATS_ACT_PTR Aim_ActorCreate(BALLOON_GAME_PTR game)
@@ -1713,7 +1713,7 @@ static CATS_ACT_PTR Aim_ActorCreate(BALLOON_GAME_PTR game)
 	CATS_ACT_PTR cap;
 	TCATS_OBJECT_ADD_PARAM_S act_head;
 	
-	//-- �A�N�^�[���� --//
+	//-- アクター生成 --//
 	act_head = AimObjParam;
 	cap = CATS_ObjectAdd_S(game->csp, game->crp, &act_head);
 	CATS_ObjectEnableCap(cap, CATS_ENABLE_FALSE);
@@ -1724,12 +1724,12 @@ static CATS_ACT_PTR Aim_ActorCreate(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   �Ə��A�N�^�[�X�V����
+ * @brief   照準アクター更新処理
  *
- * @param   cap		�Ə��A�N�^�[�ւ̃|�C���^
- * @param   x		���WX
- * @param   y		���WY
- * @param   anmseq	�A�j���V�[�P���X�ԍ�
+ * @param   cap		照準アクターへのポインタ
+ * @param   x		座標X
+ * @param   y		座標Y
+ * @param   anmseq	アニメシーケンス番号
  */
 //--------------------------------------------------------------
 static void Aim_Update(SONANS_SYS_PTR sns, CATS_ACT_PTR cap)
@@ -1755,9 +1755,9 @@ static void Aim_Update(SONANS_SYS_PTR sns, CATS_ACT_PTR cap)
 
 //--------------------------------------------------------------
 /**
- * @brief   �Ə��A�N�^�[�폜
+ * @brief   照準アクター削除
  *
- * @param   cap		�Ə��A�N�^�[�ւ̃|�C���^
+ * @param   cap		照準アクターへのポインタ
  */
 //--------------------------------------------------------------
 static void Aim_ActorDelete(CATS_ACT_PTR cap)

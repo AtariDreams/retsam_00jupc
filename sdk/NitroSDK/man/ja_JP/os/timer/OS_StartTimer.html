@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>OS_StartTimer</TITLE>
@@ -9,7 +9,7 @@
 </HEAD>
 <BODY>
 <H1 align="left">OS_StartTimer*</H1>
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD><CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
   <BR>
@@ -22,141 +22,141 @@
   void OS_StartTimer64( u64 count, OS_TimerPrescaler preScale );<BR>
   </CODE>
 </DL>
-<H2>����</H2>
+<H2>引数</H2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>id</STRONG></EM></TD>
-      <TD width="87%">�g�p����^�C�}�̃^�C�}ID(�g�p����^�C�}�̌��ɂ���ĈقȂ�܂�)</TD>
+      <TD width="87%">使用するタイマのタイマID(使用するタイマの個数によって異なります)</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>count</STRONG></EM></TD>
-      <TD width="87%">�^�C�}�J�E���g</TD>
+      <TD width="87%">タイマカウント</TD>
     </TR>
     <TR>
       <TD><EM><STRONG>preScale</STRONG></EM></TD>
-      <TD>�^�C�}�X�P�[��</TD>
+      <TD>タイマスケール</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>�Ԃ�l</H2>
-<P>�Ȃ��B</P>
-<H2>����</H2>
-<P>�����^�C�}��ݒ肵�A�N�����܂��B</P>
-<P>Nintendo DS �ɂ� 16 �r�b�g�J�E���^�̃^�C�}���S����܂��B���ꂼ���Ɨ����Ďg�p���邱�Ƃ��o���܂����A�A������Q�ȏ�̃^�C�}�𕹗p����
-16 �r�b�g���傫���J�E���g�̃^�C�}�Ƃ��ėp���邱�Ƃ��o���܂��B</P>
-<P><CODE>OS_StartTimer()</CODE> �́A16�r�b�g�̃^�C�}���ꂼ����g�p����֐��ł��B</P>
-<P><CODE>OS_StartTimer32()</CODE> �́A�A������Q�̃^�C�}���g���A�ő�32�r�b�g�J�E���g�̃^�C�}�Ƃ��Ďg�p����֐��ł��B</P>
-<P><CODE>OS_StartTimer48()</CODE> �́A�A������3�̃^�C�}�ōő�48�r�b�g�J�E���g�̃^�C�}�Ƃ��Ďg�p����֐��ł��B</P>
-<P><CODE>OS_StartTimer64()</CODE> �́A�S�Ẵ^�C�}�ōő�64�r�b�g�J�E���g�̃^�C�}�Ƃ��Ďg�p����֐��ł��B</P>
-<P><B><I>id</I></B> �͎g�p����^�C�}�̃^�C�} ID �w��ňȉ��̒ʂ�ł��B</P>
-<P>16�r�b�g�^�C�}�̏ꍇ ( <CODE>OS_StartTimer(), OS_StopTimer()</CODE> �ɑ΂��� id �w�� )</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>内部タイマを設定し、起動します。</P>
+<P>Nintendo DS には 16 ビットカウンタのタイマが４つあります。それぞれを独立して使用することも出来ますし、連続する２つ以上のタイマを併用して
+16 ビットより大きいカウントのタイマとして用いることも出来ます。</P>
+<P><CODE>OS_StartTimer()</CODE> は、16ビットのタイマそれぞれを使用する関数です。</P>
+<P><CODE>OS_StartTimer32()</CODE> は、連続する２つのタイマを使い、最大32ビットカウントのタイマとして使用する関数です。</P>
+<P><CODE>OS_StartTimer48()</CODE> は、連続する3つのタイマで最大48ビットカウントのタイマとして使用する関数です。</P>
+<P><CODE>OS_StartTimer64()</CODE> は、全てのタイマで最大64ビットカウントのタイマとして使用する関数です。</P>
+<P><B><I>id</I></B> は使用するタイマのタイマ ID 指定で以下の通りです。</P>
+<P>16ビットタイマの場合 ( <CODE>OS_StartTimer(), OS_StopTimer()</CODE> に対する id 指定 )</P>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TH bgcolor="#ffe0e0" width="170">id</TH>
-      <TH bgcolor="#ffe0e0" width="555">�g�p����^�C�}</TH>
+      <TH bgcolor="#ffe0e0" width="555">使用するタイマ</TH>
     </TR>
     <TR>
       <TD width="174">OS_TIMER_0</TD>
-      <TD width="551">�^�C�}0</TD>
+      <TD width="551">タイマ0</TD>
     </TR>
     <TR>
       <TD width="174">OS_TIMER_1</TD>
-      <TD width="551">�^�C�}1</TD>
+      <TD width="551">タイマ1</TD>
     </TR>
     <TR>
       <TD width="174">OS_TIMER_2</TD>
-      <TD width="551">�^�C�}2</TD>
+      <TD width="551">タイマ2</TD>
     </TR>
     <TR>
       <TD width="174">OS_TIMER_3</TD>
-      <TD width="551">�^�C�}3</TD>
+      <TD width="551">タイマ3</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
-32�r�b�g�^�C�}�̏ꍇ ( <CODE>OS_StartTimer32(), OS_StopTimer32()</CODE> �ɑ΂��� id �w�� )</P>
+32ビットタイマの場合 ( <CODE>OS_StartTimer32(), OS_StopTimer32()</CODE> に対する id 指定 )</P>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TH bgcolor="#ffe0e0" width="174">id</TH>
-      <TH bgcolor="#ffe0e0" width="551">�g�p����^�C�}</TH>
+      <TH bgcolor="#ffe0e0" width="551">使用するタイマ</TH>
     </TR>
     <TR>
       <TD width="174">OS_TIMER32_01</TD>
-      <TD width="551">�^�C�}0, �^�C�}1</TD>
+      <TD width="551">タイマ0, タイマ1</TD>
     </TR>
     <TR>
       <TD width="174">OS_TIMER32_12</TD>
-      <TD width="551">�^�C�}1, �^�C�}2</TD>
+      <TD width="551">タイマ1, タイマ2</TD>
     </TR>
     <TR>
       <TD width="174">OS_TIMER32_23</TD>
-      <TD width="551">�^�C�}2, �^�C�}3</TD>
+      <TD width="551">タイマ2, タイマ3</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
-48�r�b�g�^�C�}�̏ꍇ ( <CODE>OS_StartTimer48(), OS_StopTimer48()</CODE> �ɑ΂��� id �w�� )</P>
+48ビットタイマの場合 ( <CODE>OS_StartTimer48(), OS_StopTimer48()</CODE> に対する id 指定 )</P>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TH bgcolor="#ffe0e0" width="174">id</TH>
-      <TH bgcolor="#ffe0e0" width="551">�g�p����^�C�}</TH>
+      <TH bgcolor="#ffe0e0" width="551">使用するタイマ</TH>
     </TR>
     <TR>
       <TD width="174">OS_TIMER48_012</TD>
-      <TD width="551">�^�C�}0, �^�C�}1, �^�C�}2</TD>
+      <TD width="551">タイマ0, タイマ1, タイマ2</TD>
     </TR>
     <TR>
       <TD width="174">OS_TIMER48_123</TD>
-      <TD width="551">�^�C�}1, �^�C�}2, �^�C�}3</TD>
+      <TD width="551">タイマ1, タイマ2, タイマ3</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
 </P>
-<P><B><I>count</I></B> �̓^�C�}�ɗ^����J�E���g�ŁA16�r�b�g�^�C�}�̏ꍇ0�`0xFFFF�A32�r�b�g�^�C�}�̏ꍇ0�`0xFFFFFFFF�A48�r�b�g�^�C�}�̏ꍇ0�`0xFFFFFFFFFFFF�A64�r�b�g�^�C�}�̏ꍇ0�`0xFFFFFFFFFFFFFFFF �̒l��ݒ�o���܂��B</P>
-<P><B><I>preScale</I></B> �̓^�C�}���J�E���g�A�b�v����Ă����X�P�[����ݒ肷��p�����[�^�ŁA�ȉ��̒ʂ�ł��B</P>
+<P><B><I>count</I></B> はタイマに与えるカウントで、16ビットタイマの場合0〜0xFFFF、32ビットタイマの場合0〜0xFFFFFFFF、48ビットタイマの場合0〜0xFFFFFFFFFFFF、64ビットタイマの場合0〜0xFFFFFFFFFFFFFFFF の値を設定出来ます。</P>
+<P><B><I>preScale</I></B> はタイマがカウントアップされていくスケールを設定するパラメータで、以下の通りです。</P>
 <TABLE border="1">
   <TBODY>
     <TR>
-      <TH bgcolor="#ffe0e0">�ݒ�l</TH>
-      <TH bgcolor="#ffe0e0">�v���X�P�[��(�J�E���g�A�b�v�Ԋu)</TH>
+      <TH bgcolor="#ffe0e0">設定値</TH>
+      <TH bgcolor="#ffe0e0">プリスケーラ(カウントアップ間隔)</TH>
     </TR>
     <TR>
       <TD>OS_TIMER_PRESCALER_1</TD>
-      <TD>�V�X�e���N���b�N</TD>
+      <TD>システムクロック</TD>
     </TR>
     <TR>
       <TD>OS_TIMER_PRESCALER_64</TD>
-      <TD>�V�X�e���N���b�N��64����</TD>
+      <TD>システムクロックの64分周</TD>
     </TR>
     <TR>
       <TD>OS_TIMER_PRESCALER_256</TD>
-      <TD>�V�X�e���N���b�N��256����</TD>
+      <TD>システムクロックの256分周</TD>
     </TR>
     <TR>
       <TD>OS_TIMER_PRESCALER_1024</TD>
-      <TD>�V�X�e���N���b�N��1024����</TD>
+      <TD>システムクロックの1024分周</TD>
 
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
 </P>
-<P>�w��̃J�E���g���̃J�E���g�A�b�v���I���ƃ^�C�}���荞�݂��������܂��B�����̃^�C�}�𕹗p�����^�C�}���g�p����ꍇ�A��������^�C�}���荞�݂͎g�p����^�C�}�̂����ł��ԍ��̑傫�����̂ɑ΂��銄�荞�݂ƂȂ�܂��B</P>
-<P>���ӁF<BR>
-�n�[�h�E�F�A�̃^�C�}�d�l�ł́A�ݒ肵���^�C�}���荞�݂͌J��Ԃ��������܂����AOS�ł͍ŏ��̈�񂪔��������Ƃ��Ƀ^�C�}�̐ݒ���������܂��̂ŁA�^�C�}���荞�݂͈�񂵂��������܂���B�J��Ԃ����������邽�߂ɂ͊��荞�݃n���h�����ōĐݒ肷��Ȃǂ̏������K�v�ł��B</P>
-<H2>�Q��</H2>
+<P>指定のカウント分のカウントアップが終わるとタイマ割り込みが発生します。複数のタイマを併用したタイマを使用する場合、発生するタイマ割り込みは使用するタイマのうち最も番号の大きいものに対する割り込みとなります。</P>
+<P>注意：<BR>
+ハードウェアのタイマ仕様では、設定したタイマ割り込みは繰り返し発生しますが、OSでは最初の一回が発生したときにタイマの設定を解除しますので、タイマ割り込みは一回しか発生しません。繰り返し発生させるためには割り込みハンドラ内で再設定するなどの処理が必要です。</P>
+<H2>参照</H2>
 <P><CODE><A href="OS_StopTimer.html">OS_StopTimer</A><BR>
 </CODE></P>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/03/08 �p�ꓝ�� [������] �� [���荞��]<br>
-2004/11/24 �^�C�} id �̊ԈႢ���C��<BR>
-2004/06/03 �^�C�}���荞�݂ɂ��Ă̒��ӂ�ǉ�<BR>
-2003/12/01 ����</P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/11/24 タイマ id の間違いを修正<BR>
+2004/06/03 タイマ割り込みについての注意を追加<BR>
+2003/12/01 初版</P>
 </BODY>
 </HTML>

@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_293.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			‚ ‚éðŒ‚É‚æ‚Á‚ÄƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‚ð‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒ`ƒFƒbƒN
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ã‚ã‚‹æ¡ä»¶ã«ã‚ˆã£ã¦ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ã‚’ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒã‚§ãƒƒã‚¯
  *@author	HisashiSogabe
  *@data		2007.04.17
  *
@@ -15,15 +15,15 @@
 	.include	"waza_seq_def.h"
 
 SUB_293:
-	//‹Z‚ðŽó‚¯‚½ƒNƒ‰ƒCƒAƒ“ƒg‚ª‘¶Ý‚µ‚È‚¢‚È‚ç–³Ž‹
+	//æŠ€ã‚’å—ã‘ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãŒå­˜åœ¨ã—ãªã„ãªã‚‰ç„¡è¦–
 	IF					IF_FLAG_EQ,BUF_PARA_DEFENCE_CLIENT,NONE_CLIENT_NO,SUB_293_END
-	//‹Z‚ðŽó‚¯‚½ƒ|ƒPƒ‚ƒ“‚ªƒVƒFƒCƒ~‚¶‚á‚È‚¢‚È‚ç–³Ž‹
+	//æŠ€ã‚’å—ã‘ãŸãƒã‚±ãƒ¢ãƒ³ãŒã‚·ã‚§ã‚¤ãƒŸã˜ã‚ƒãªã„ãªã‚‰ç„¡è¦–
 	IF_PSP				IF_FLAG_NE,SIDE_DEFENCE,ID_PSP_monsno,MONSNO_EURISU,SUB_293_END
-	//‚·‚Å‚ÉƒtƒHƒ‹ƒ€ƒiƒ“ƒo[‚ª‚O‚¾‚Á‚½‚ç–³Ž‹
+	//ã™ã§ã«ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼ãŒï¼ã ã£ãŸã‚‰ç„¡è¦–
 	IF_PSP				IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_form_no,0,SUB_293_END
-	//g‘ã‚í‚è‚ªo‚Ä‚¢‚é‚Æ‚«‚Í–³Ž‹
+	//èº«ä»£ã‚ã‚ŠãŒå‡ºã¦ã„ã‚‹ã¨ãã¯ç„¡è¦–
 	IF_PSP				IF_FLAG_BIT,SIDE_DEFENCE,ID_PSP_condition2,CONDITION2_MIGAWARI,SUB_293_END
-	//•Xƒ^ƒCƒv‚Ì‹Z‚ðŽó‚¯‚Ä“€‚Á‚½‚çAƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒWi‚P¨‚Oj
+	//æ°·ã‚¿ã‚¤ãƒ—ã®æŠ€ã‚’å—ã‘ã¦å‡ã£ãŸã‚‰ã€ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ï¼ˆï¼‘â†’ï¼ï¼‰
 	IF_PSP				IF_FLAG_NE,SIDE_DEFENCE,ID_PSP_condition,CONDITION_KOORI,SUB_293_END
 SheimiFormChg:
 	PSP_VALUE			VAL_SET,SIDE_DEFENCE,ID_PSP_form_no,0
@@ -37,7 +37,7 @@ SheimiSpeabi2:
 	IF					IF_FLAG_NE,BUF_PARA_TEMP_WORK,0,SheimiSpeabiSet
 	PERSONAL_DATA_GET	MONSNO_EURISU,BUF_PARA_TEMP_WORK,ID_PER_speabi1
 SheimiSpeabiSet:
-	//ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚ÌÄŒvŽZ‚ðŽwŽ¦
+	//ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å†è¨ˆç®—ã‚’æŒ‡ç¤º
 	VALUE				VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG2,SERVER_STATUS_FLAG2_POKEPARA_CALC
 	PSP_VALUE_WORK		VAL_SET,SIDE_DEFENCE,ID_PSP_speabino,BUF_PARA_CALC_WORK
 	PERSONAL_DATA_GET	MONSNO_EURISU,BUF_PARA_TEMP_WORK,ID_PER_type1
@@ -48,7 +48,7 @@ SheimiSpeabiSet:
 	VALUE_WORK			VAL_SET,BUF_PARA_CLIENT_WORK,BUF_PARA_DEFENCE_CLIENT
 	GOSUB				SUB_SEQ_TENKIYA
 
-	//ÄŒvŽZ‚³‚ê‚½ƒpƒ‰ƒ[ƒ^‚ðƒŠƒ[ƒh
+	//å†è¨ˆç®—ã•ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒªãƒ­ãƒ¼ãƒ‰
 	POKEPARA_RELOAD		SIDE_DEFENCE
 SUB_293_END:
 	SEQ_END

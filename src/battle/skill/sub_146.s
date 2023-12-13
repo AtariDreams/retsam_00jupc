@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_146.s
- *@brief	�퓬�V�[�P���X
- *			�悱�ǂ�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			よこどりシーケンス
 
  *@author	HisashiSogabe
  *@data		2006.02.09
@@ -22,7 +22,7 @@ SUB_146:
 	VALUE_WORK		VAL_SET,BUF_PARA_ATTACK_CLIENT_WORK,BUF_PARA_ATTACK_CLIENT
 	VALUE_WORK		VAL_SET,BUF_PARA_DEFENCE_CLIENT,BUF_PARA_ATTACK_CLIENT
 	VALUE_WORK		VAL_SET,BUF_PARA_ATTACK_CLIENT,BUF_PARA_CLIENT_WORK
-	//�悱�ǂ�G�t�F�N�g���o��
+	//よこどるエフェクトを出す
 	VALUE			VAL_SET,BUF_PARA_WAZA_EFF_CNT,1
 	VALUE			VAL_SET,BUF_PARA_WAZA_WORK,WAZANO_YOKODORI
 	WAZA_EFFECT		SIDE_WORK
@@ -30,9 +30,9 @@ SUB_146:
 	MESSAGE			YokodoriM2MMsg,TAG_NICK_NICK,SIDE_WORK,SIDE_ATTACK_WORK
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//�G�t�F�N�g�J�E���g�����ɖ߂�
+	//エフェクトカウントを元に戻す
 	VALUE			VAL_SET,BUF_PARA_WAZA_EFF_CNT,0
-	//�Z�G�t�F�N�g���N������悤�Ƀt���O�𗎂Ƃ�
+	//技エフェクトを起動するようにフラグを落とす
 	VALUE			VAL_NBIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_WAZA_EFFECT
 	IF				IF_FLAG_EQ,BUF_PARA_WAZA_NO_NOW,WAZANO_TUBOWOTUKU,Tubowotuku
 Normal:

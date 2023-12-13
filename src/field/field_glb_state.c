@@ -2,7 +2,7 @@
 /**
  *
  *@file		field_glb_state.c
- *@brief	ƒtƒB[ƒ‹ƒhƒIƒuƒWƒF‚É‰e‹¿‚ğ—^‚¦‚éƒf[ƒ^ŒS
+ *@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã«å½±éŸ¿ã‚’ä¸ãˆã‚‹ãƒ‡ãƒ¼ã‚¿éƒ¡
  *@author	tomoya takahashi
  *@data		2005.06.07
  *
@@ -14,26 +14,26 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
  */
 //-----------------------------------------------------------------------------
 
 
 //----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 
@@ -41,12 +41,12 @@
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‰ƒCƒgEƒ}ƒeƒŠƒAƒ‹‚ÌƒOƒ[ƒoƒ‹ƒXƒe[ƒgƒf[ƒ^
- *			•Û‘¶—Ìˆæ‚ğì¬
+ *@brief	ãƒ©ã‚¤ãƒˆãƒ»ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *			ä¿å­˜é ˜åŸŸã‚’ä½œæˆ
  *
  *@param	none
  *
- *@return	GLST_DATA*	ì¬‚µ‚ÄA‰Šú‰»‚µ‚½ƒf[ƒ^
+ *@return	GLST_DATA*	ä½œæˆã—ã¦ã€åˆæœŸåŒ–ã—ãŸãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -63,10 +63,10 @@ GLST_DATA_PTR GLST_Init(void)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‰ƒCƒgEƒ}ƒeƒŠƒAƒ‹‚ÌƒOƒ[ƒoƒ‹ƒXƒe[ƒgƒf[ƒ^
- *			•Û‘¶—Ìˆæ‚ğŠJ•ú
+ *@brief	ãƒ©ã‚¤ãƒˆãƒ»ãƒãƒ†ãƒªã‚¢ãƒ«ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *			ä¿å­˜é ˜åŸŸã‚’é–‹æ”¾
  *
- *@param	pGLST_Data		•Û‘¶—Ìˆæ‚Ìƒ|ƒCƒ“ƒ^‚ğŠi”[‚µ‚Ä‚¢‚é•Ï”‚ÌƒAƒhƒŒƒX
+ *@param	pGLST_Data		ä¿å­˜é ˜åŸŸã®ãƒã‚¤ãƒ³ã‚¿ã‚’æ ¼ç´ã—ã¦ã„ã‚‹å¤‰æ•°ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *@return	none
  *
@@ -82,16 +82,16 @@ void GLST_Delete(GLST_DATA_PTR* pGLST_Data)
 
 //-----------------------------------------------------------------------------
 //
-//	ƒf[ƒ^‚Ì”½‰fŠÖ”ŒS
+//	ãƒ‡ãƒ¼ã‚¿ã®åæ˜ é–¢æ•°éƒ¡
 //
 //=============================================================================
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	İ’èî•ñ‚ğƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚Éİ’è
+ *@brief	è¨­å®šæƒ…å ±ã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã«è¨­å®š
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	flag		‰½‚ğ”½‰f‚³‚¹‚é‚Ì‚©
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	flag		ä½•ã‚’åæ˜ ã•ã›ã‚‹ã®ã‹
  *
  *@return	none
  *
@@ -100,22 +100,22 @@ void GLST_Delete(GLST_DATA_PTR* pGLST_Data)
 //-----------------------------------------------------------------------------
 void GLST_Reflect(GLST_DATA_PTR GLST_Data, int flag)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
-	// ƒ‰ƒCƒg
+	// ãƒ©ã‚¤ãƒˆ
 	for(i=0;i<4;i++){
-		if(flag & (1<<i)){		// ƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		if(flag & (1<<i)){		// ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			NNS_G3dGlbLightVector(i,
 					GLST_Data->lightVec[i].x,
 					GLST_Data->lightVec[i].y,
 					GLST_Data->lightVec[i].z);
 		}
-		if(flag & (1<<(i+4))){	// ƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		if(flag & (1<<(i+4))){	// ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			NNS_G3dGlbLightColor(i,
 					GLST_Data->Color[i]);
 		}
 	}
-	// ƒ}ƒeƒŠƒAƒ‹
+	// ãƒãƒ†ãƒªã‚¢ãƒ«
 	if(flag & (GLST_DIFF | GLST_AMB)){
 		NNS_G3dGlbMaterialColorDiffAmb(
 				GLST_Data->Diff,
@@ -128,7 +128,7 @@ void GLST_Reflect(GLST_DATA_PTR GLST_Data, int flag)
 				GLST_Data->Emi,
 				GLST_Data->IsShininess);
 	}
-	// ƒ|ƒŠƒSƒ“ƒAƒgƒŠƒrƒ…[ƒg
+	// ãƒãƒªã‚´ãƒ³ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	if(flag >= GLST_LIGHT_FLAG){
 		NNS_G3dGlbPolygonAttr( GLST_Data->LightFlag,
 				GLST_Data->polyMode,
@@ -142,13 +142,13 @@ void GLST_Reflect(GLST_DATA_PTR GLST_Data, int flag)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	İ’èî•ñ‚ğƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚Éİ’è
+ *@brief	è¨­å®šæƒ…å ±ã‚’ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã«è¨­å®š
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	pMdl	ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
- *@param	flag	‰½‚ğ”½‰f‚³‚¹‚é‚Ì‚©
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	pMdl	ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+ *@param	flag	ä½•ã‚’åæ˜ ã•ã›ã‚‹ã®ã‹
  *
- * –ƒ‰ƒCƒgi‚O`‚Rj‚Ìİ’è‚Ís‚í‚È‚¢‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢B
+ * ï¼Šãƒ©ã‚¤ãƒˆï¼ˆï¼ã€œï¼“ï¼‰ã®è¨­å®šã¯è¡Œã‚ãªã„ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„ã€‚
  * 
  *@return	none
  *
@@ -157,9 +157,9 @@ void GLST_Reflect(GLST_DATA_PTR GLST_Data, int flag)
 //-----------------------------------------------------------------------------
 void GLST_ReflectMdl(GLST_DATA_PTR GLST_Data, NNSG3dResMdl* pMdl, int flag)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
-	// ƒ}ƒeƒŠƒAƒ‹
+	// ãƒãƒ†ãƒªã‚¢ãƒ«
 	if(flag & GLST_DIFF){
 		NNS_G3dMdlSetMdlDiffAll(pMdl, GLST_Data->Diff);
 	}
@@ -172,7 +172,7 @@ void GLST_ReflectMdl(GLST_DATA_PTR GLST_Data, NNSG3dResMdl* pMdl, int flag)
 	if(flag & GLST_EMI){
 		NNS_G3dMdlSetMdlEmiAll(pMdl, GLST_Data->Emi);
 	}
-	// ƒ|ƒŠƒSƒ“ƒAƒgƒŠƒrƒ…[ƒg
+	// ãƒãƒªã‚´ãƒ³ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
 	if(flag & GLST_LIGHT_FLAG){
 		NNS_G3dMdlSetMdlLightEnableFlagAll(pMdl, GLST_Data->LightFlag);
 	}
@@ -207,17 +207,17 @@ void GLST_ReflectMdl(GLST_DATA_PTR GLST_Data, NNSG3dResMdl* pMdl, int flag)
 
 //-----------------------------------------------------------------------------
 //
-//	ƒf[ƒ^‚Ìæ“¾ŠÖ”ŒS
+//	ãƒ‡ãƒ¼ã‚¿ã®å–å¾—é–¢æ•°éƒ¡
 //
 //=============================================================================
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	GXRgb‚ğÔ—ÎÂ‚É•ª‰ğ‚·‚é
+ *@brief	GXRgbã‚’èµ¤ç·‘é’ã«åˆ†è§£ã™ã‚‹
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	rgb			•ª‰ğ‚·‚éƒf[ƒ^
- *@param	r,g,b		F‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	rgb			åˆ†è§£ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ *@param	r,g,b		è‰²ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
  *
  *@return none
  *
@@ -233,12 +233,12 @@ void GLST_GetRGB(GXRgb dat, u8* r, u8* g, u8* b)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‰ƒCƒgƒxƒNƒgƒ‹ƒf[ƒ^æ“¾
+ *@brief	ãƒ©ã‚¤ãƒˆãƒ™ã‚¯ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *@param	GLST_Data	•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
- *@param	lightID		æ“¾‚·‚éƒ‰ƒCƒgID
+ *@param	GLST_Data	ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
+ *@param	lightID		å–å¾—ã™ã‚‹ãƒ©ã‚¤ãƒˆID
  *
- *@return	VecFx16		ƒxƒNƒgƒ‹ƒf[ƒ^
+ *@return	VecFx16		ãƒ™ã‚¯ãƒˆãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -251,12 +251,12 @@ VecFx16 GLST_GetLightVector(GLST_DATA_PTR GLST_Data, int lightID)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‰ƒCƒgƒJƒ‰[ƒf[ƒ^æ“¾
+ *@brief	ãƒ©ã‚¤ãƒˆã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *@param	GLST_Data	•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
- *@param	lightID		æ“¾‚·‚éƒ‰ƒCƒgID
+ *@param	GLST_Data	ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
+ *@param	lightID		å–å¾—ã™ã‚‹ãƒ©ã‚¤ãƒˆID
  *
- *@return	GXRgb	Fƒf[ƒ^
+ *@return	GXRgb	è‰²ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -269,11 +269,11 @@ GXRgb GLST_GetLightColor(GLST_DATA_PTR GLST_Data, int lightID)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒfƒBƒtƒ…[ƒYF‚ğæ“¾
+ *@brief	ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²ã‚’å–å¾—
  *
- *@param	GLST_Data	•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
+ *@param	GLST_Data	ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  *
- *@return	GXRgb	Fƒf[ƒ^	
+ *@return	GXRgb	è‰²ãƒ‡ãƒ¼ã‚¿	
  *
  *
  */
@@ -286,11 +286,11 @@ GXRgb GLST_GetMaterialDiff(GLST_DATA_PTR GLST_Data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒfƒBƒtƒ…[ƒYF‚ğ’¸“_ƒJƒ‰[‚Ég—p‚µ‚Ä‚¢‚é‚©æ“¾
+ *@brief	ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²ã‚’é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã«ä½¿ç”¨ã—ã¦ã„ã‚‹ã‹å–å¾—
  *
- *@param	GLST_Data	•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
+ *@param	GLST_Data	ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  *
- *@return	BOOL		g—p:TRUE	•sg—p:FALSE
+ *@return	BOOL		ä½¿ç”¨:TRUE	ä¸ä½¿ç”¨:FALSE
  *
  *
  */
@@ -303,11 +303,11 @@ BOOL GLST_GetMaterialDiffVtxColor(GLST_DATA_PTR GLST_Data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒAƒ“ƒrƒGƒ“ƒgF‚ğæ“¾
+ *@brief	ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆè‰²ã‚’å–å¾—
  *
- *@param	GLST_Data	•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
+ *@param	GLST_Data	ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  *
- *@return	GXRgb	Fƒf[ƒ^
+ *@return	GXRgb	è‰²ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -320,11 +320,11 @@ GXRgb GLST_GetMaterialAmb(GLST_DATA_PTR GLST_Data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒyƒLƒ…ƒ‰[F‚ğæ“¾
+ *@brief	ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼è‰²ã‚’å–å¾—
  *
- *@param	GLST_Data	•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
+ *@param	GLST_Data	ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  *
- *@return	GXRgb	Fƒf[ƒ^
+ *@return	GXRgb	è‰²ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -337,11 +337,11 @@ GXRgb GLST_GetMaterialSpec(GLST_DATA_PTR GLST_Data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‹¾–Ê”½Ë‹P“xƒe[ƒuƒ‹‚ğg—p‚·‚é‚©
+ *@brief	é¡é¢åå°„è¼åº¦ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹ã‹
  *
- *@param	GLST_Data	•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
+ *@param	GLST_Data	ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  *
- *@return	BOOL		g—p:TRUE	•sg—p:FALSE
+ *@return	BOOL		ä½¿ç”¨:TRUE	ä¸ä½¿ç”¨:FALSE
  *
  *
  */
@@ -354,11 +354,11 @@ BOOL GLST_GetMaterialSpecShininess(GLST_DATA_PTR GLST_Data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒGƒ~ƒbƒVƒ‡ƒ“F‚ğæ“¾
+ *@brief	ã‚¨ãƒŸãƒƒã‚·ãƒ§ãƒ³è‰²ã‚’å–å¾—
  *
- *@param	GLST_Data	•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
+ *@param	GLST_Data	ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  *
- *@return	GXRgb	Fƒf[ƒ^
+ *@return	GXRgb	è‰²ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -371,11 +371,11 @@ GXRgb GLST_GetMaterialEmi(GLST_DATA_PTR GLST_Data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚Ç‚Ìƒ‰ƒCƒg‚ğ”½‰f‚³‚¹‚é‚©”»•Ê‚·‚éƒtƒ‰ƒO‚ğæ“¾
+ *@brief	ã©ã®ãƒ©ã‚¤ãƒˆã‚’åæ˜ ã•ã›ã‚‹ã‹åˆ¤åˆ¥ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- *@param	GLST_Data	•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
+ *@param	GLST_Data	ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  *
- *@return	int	ƒ‰ƒCƒgƒtƒ‰ƒO	(‚P`‚Sƒrƒbƒg‚ÌƒIƒ“/ƒIƒt‚Åƒ`ƒFƒbƒN)
+ *@return	int	ãƒ©ã‚¤ãƒˆãƒ•ãƒ©ã‚°	(ï¼‘ã€œï¼”ãƒ“ãƒƒãƒˆã®ã‚ªãƒ³/ã‚ªãƒ•ã§ãƒã‚§ãƒƒã‚¯)
  *
  *
  */
@@ -388,11 +388,11 @@ int GLST_GetMdlLightFlag(GLST_DATA_PTR GLST_Data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ|ƒŠƒSƒ“ƒ‚[ƒh‚ğæ“¾
+ *@brief	ãƒãƒªã‚´ãƒ³ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—
  *
- *@param	GLST_Data		•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
+ *@param	GLST_Data		ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  *
- *@return	GXPolygonMode	ƒ|ƒŠƒSƒ“ƒ‚[ƒh
+ *@return	GXPolygonMode	ãƒãƒªã‚´ãƒ³ãƒ¢ãƒ¼ãƒ‰
  *
  *
  */
@@ -405,11 +405,11 @@ GXPolygonMode GLST_GetMdlPolyMode(GLST_DATA_PTR GLST_Data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒJƒŠƒ“ƒOƒ‚[ƒh‚ğæ“¾
+ *@brief	ã‚«ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—
  *
- *@param	GLST_Data		•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
+ *@param	GLST_Data		ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  *
- *@return	GXCull			ƒJƒŠƒ“ƒOƒ‚[ƒh
+ *@return	GXCull			ã‚«ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰
  *
  *
  */
@@ -422,11 +422,11 @@ GXCull GLST_GetMdlCullMode(GLST_DATA_PTR GLST_Data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ|ƒŠƒSƒ“ID‚ğæ“¾
+ *@brief	ãƒãƒªã‚´ãƒ³IDã‚’å–å¾—
  *
- *@param	GLST_Data		•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
+ *@param	GLST_Data		ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  *
- *@return	int				ƒ|ƒŠƒSƒ“ID
+ *@return	int				ãƒãƒªã‚´ãƒ³ID
  *
  *
  */
@@ -439,11 +439,11 @@ int GLST_GetMdlPolyID(GLST_DATA_PTR GLST_Data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ¿’l‚ğæ“¾
+ *@brief	Î±å€¤ã‚’å–å¾—
  *
- *@param	GLST_Data		•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
+ *@param	GLST_Data		ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  *
- *@return	int				ƒ¿’l
+ *@return	int				Î±å€¤
  *
  *
  */
@@ -456,11 +456,11 @@ int GLST_GetMdlAlpha(GLST_DATA_PTR GLST_Data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚»‚Ì‘¼ƒtƒ‰ƒO‚ğæ“¾
+ *@brief	ãã®ä»–ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- *@param	GLST_Data		•Û‘¶—Ìˆæƒ|ƒCƒ“ƒ^
+ *@param	GLST_Data		ä¿å­˜é ˜åŸŸãƒã‚¤ãƒ³ã‚¿
  *
- *@return	int				misc	‚»‚Ì‘¼‚Ìƒtƒ‰ƒO
+ *@return	int				misc	ãã®ä»–ã®ãƒ•ãƒ©ã‚°
  *
  *
  */
@@ -471,17 +471,17 @@ int GLST_GetMdlMisc(GLST_DATA_PTR GLST_Data)
 }
 //-----------------------------------------------------------------------------
 //
-//	ƒf[ƒ^‚Ìİ’èŠÖ”ŒS
+//	ãƒ‡ãƒ¼ã‚¿ã®è¨­å®šé–¢æ•°éƒ¡
 //
 //=============================================================================
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‰ƒCƒgƒxƒNƒgƒ‹İ’è	
+ *@brief	ãƒ©ã‚¤ãƒˆãƒ™ã‚¯ãƒˆãƒ«è¨­å®š	
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	lightID		ƒ‰ƒCƒg”Ô†	(0`3)
- *@param	x,y,z		ƒxƒNƒgƒ‹‚Ì’l
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	lightID		ãƒ©ã‚¤ãƒˆç•ªå·	(0ã€œ3)
+ *@param	x,y,z		ãƒ™ã‚¯ãƒˆãƒ«ã®å€¤
  *
  *@return	none
  *
@@ -494,7 +494,7 @@ void GLST_LightVector(GLST_DATA_PTR GLST_Data, int lightID, fx16 x, fx16 y, fx16
 	GLST_Data->lightVec[lightID].y = y;
 	GLST_Data->lightVec[lightID].z = z;
 
-	// ”½‰f
+	// åæ˜ 
 	NNS_G3dGlbLightVector(lightID,
 					GLST_Data->lightVec[lightID].x,
 					GLST_Data->lightVec[lightID].y,
@@ -504,11 +504,11 @@ void GLST_LightVector(GLST_DATA_PTR GLST_Data, int lightID, fx16 x, fx16 y, fx16
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‰ƒCƒgƒJƒ‰[İ’è	
+ *@brief	ãƒ©ã‚¤ãƒˆã‚«ãƒ©ãƒ¼è¨­å®š	
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	lightID		ƒ‰ƒCƒg”Ô†	(0`3)
- *@param	rgb			ƒ‰ƒCƒg‚Ì’l
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	lightID		ãƒ©ã‚¤ãƒˆç•ªå·	(0ã€œ3)
+ *@param	rgb			ãƒ©ã‚¤ãƒˆã®å€¤
  *
  *@return	none
  *
@@ -519,7 +519,7 @@ void GLST_LightColor(GLST_DATA_PTR GLST_Data, int lightID, GXRgb rgb)
 {
 	GLST_Data->Color[lightID] = rgb;
 	
-	// ”½‰f
+	// åæ˜ 
 	NNS_G3dGlbLightColor(lightID,
 			GLST_Data->Color[lightID]);
 			
@@ -528,12 +528,12 @@ void GLST_LightColor(GLST_DATA_PTR GLST_Data, int lightID, GXRgb rgb)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒfƒBƒtƒ…[ƒYİ’è	
+ *@brief	ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè¨­å®š	
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	rgb				F
- *@param	IsSetVtxColor	’¸“_ƒJƒ‰[‚Æ‚µ‚Ä‚µ‚æ‚¤‚·‚é‚©
- *@param	setDiffAmb		”½‰f‚³‚¹‚é‚©	TRUE:”½‰f‚³‚¹‚é
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	rgb				è‰²
+ *@param	IsSetVtxColor	é ‚ç‚¹ã‚«ãƒ©ãƒ¼ã¨ã—ã¦ã—ã‚ˆã†ã™ã‚‹ã‹
+ *@param	setDiffAmb		åæ˜ ã•ã›ã‚‹ã‹	TRUE:åæ˜ ã•ã›ã‚‹
  *
  *@return	none
  *
@@ -553,11 +553,11 @@ void GLST_MaterialDiff(GLST_DATA_PTR GLST_Data, GXRgb rgb, BOOL IsSetVtxColor, B
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒAƒ“ƒrƒGƒ“ƒgİ’è	
+ *@brief	ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆè¨­å®š	
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	rgb				F
- *@param	setDiffAmb		”½‰f‚³‚¹‚é‚©	TRUE:”½‰f‚³‚¹‚é
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	rgb				è‰²
+ *@param	setDiffAmb		åæ˜ ã•ã›ã‚‹ã‹	TRUE:åæ˜ ã•ã›ã‚‹
  *
  *@return	none
  *
@@ -576,12 +576,12 @@ void GLST_MaterialAmb(GLST_DATA_PTR GLST_Data, GXRgb rgb, BOOL setDiffAmb)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒyƒLƒ…ƒ‰[İ’è	
+ *@brief	ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼è¨­å®š	
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	rgb				F
- *@param	IsShininess		‹¾–Ê”½Ë‹P“xƒe[ƒuƒ‹‚ÌƒfƒBƒZ[ƒuƒ‹/ƒCƒl[ƒuƒ‹ƒtƒ‰ƒO
- *@param	setSpecEmi		”½‰f‚³‚¹‚é‚©	TRUE:”½‰f‚³‚¹‚é
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	rgb				è‰²
+ *@param	IsShininess		é¡é¢åå°„è¼åº¦ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ‡ã‚£ã‚»ãƒ¼ãƒ–ãƒ«/ã‚¤ãƒãƒ¼ãƒ–ãƒ«ãƒ•ãƒ©ã‚°
+ *@param	setSpecEmi		åæ˜ ã•ã›ã‚‹ã‹	TRUE:åæ˜ ã•ã›ã‚‹
  *
  *@return	none
  *
@@ -601,11 +601,11 @@ void GLST_MaterialSpec(GLST_DATA_PTR GLST_Data, GXRgb rgb, BOOL IsShininess, BOO
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒGƒ~ƒbƒVƒ‡ƒ“İ’è	
+ *@brief	ã‚¨ãƒŸãƒƒã‚·ãƒ§ãƒ³è¨­å®š	
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	rgb				F
- *@param	setSpecEmi		”½‰f‚³‚¹‚é‚©	TRUE:”½‰f‚³‚¹‚é
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	rgb				è‰²
+ *@param	setSpecEmi		åæ˜ ã•ã›ã‚‹ã‹	TRUE:åæ˜ ã•ã›ã‚‹
  *
  *@return	none
  *
@@ -624,12 +624,12 @@ void GLST_MaterialEmi(GLST_DATA_PTR GLST_Data, GXRgb rgb, BOOL setSpecEmi)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ‰ƒCƒgƒtƒ‰ƒOİ’è	
+ *@brief	ãƒ©ã‚¤ãƒˆãƒ•ãƒ©ã‚°è¨­å®š	
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	light			‚Ç‚Ìƒ‰ƒCƒg‚Ìİ’è‚©
- *@param	on_off			ƒ‰ƒCƒg‚ğ“_“”:TRUE	ƒ‰ƒCƒg‚ğÁ“”:FALSE
- *@param	setPolyAttr		”½‰f‚³‚¹‚é‚©	TRUE:”½‰f‚³‚¹‚é
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	light			ã©ã®ãƒ©ã‚¤ãƒˆã®è¨­å®šã‹
+ *@param	on_off			ãƒ©ã‚¤ãƒˆã‚’ç‚¹ç¯:TRUE	ãƒ©ã‚¤ãƒˆã‚’æ¶ˆç¯:FALSE
+ *@param	setPolyAttr		åæ˜ ã•ã›ã‚‹ã‹	TRUE:åæ˜ ã•ã›ã‚‹
  *
  *@return	none
  *
@@ -658,11 +658,11 @@ void GLST_MdlLightFlag(GLST_DATA_PTR GLST_Data, int light, BOOL on_off, BOOL set
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ|ƒŠƒSƒ“ƒ‚[ƒhİ’è	
+ *@brief	ãƒãƒªã‚´ãƒ³ãƒ¢ãƒ¼ãƒ‰è¨­å®š	
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	polyMode		ƒ|ƒŠƒSƒ“ƒ‚[ƒh
- *@param	setPolyAttr		”½‰f‚³‚¹‚é‚©	TRUE:”½‰f‚³‚¹‚é
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	polyMode		ãƒãƒªã‚´ãƒ³ãƒ¢ãƒ¼ãƒ‰
+ *@param	setPolyAttr		åæ˜ ã•ã›ã‚‹ã‹	TRUE:åæ˜ ã•ã›ã‚‹
  *
  *@return	none
  *
@@ -681,11 +681,11 @@ void GLST_MdlPolyMode(GLST_DATA_PTR GLST_Data, GXPolygonMode polyMode, BOOL setP
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒJƒŠƒ“ƒOƒ‚[ƒhİ’è	
+ *@brief	ã‚«ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰è¨­å®š	
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	cullMode		ƒJƒŠƒ“ƒOƒ‚[ƒh
- *@param	setPolyAttr		”½‰f‚³‚¹‚é‚©	TRUE:”½‰f‚³‚¹‚é
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	cullMode		ã‚«ãƒªãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰
+ *@param	setPolyAttr		åæ˜ ã•ã›ã‚‹ã‹	TRUE:åæ˜ ã•ã›ã‚‹
  *
  *@return	none
  *
@@ -704,11 +704,11 @@ void GLST_MdlCullMode(GLST_DATA_PTR GLST_Data, GXCull cullMode, BOOL setPolyAttr
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒ|ƒŠƒSƒ“IDİ’è	
+ *@brief	ãƒãƒªã‚´ãƒ³IDè¨­å®š	
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	polygonID		ƒ|ƒŠƒSƒ“ID
- *@param	setPolyAttr		”½‰f‚³‚¹‚é‚©	TRUE:”½‰f‚³‚¹‚é
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	polygonID		ãƒãƒªã‚´ãƒ³ID
+ *@param	setPolyAttr		åæ˜ ã•ã›ã‚‹ã‹	TRUE:åæ˜ ã•ã›ã‚‹
  *
  *@return	none
  *
@@ -727,11 +727,11 @@ void GLST_MdlPolyID(GLST_DATA_PTR GLST_Data, int polygonID, BOOL setPolyAttr)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒAƒ‹ƒtƒ@İ’è	
+ *@brief	ã‚¢ãƒ«ãƒ•ã‚¡è¨­å®š	
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	alpha			ƒ¿’l
- *@param	setPolyAttr		”½‰f‚³‚¹‚é‚©	TRUE:”½‰f‚³‚¹‚é
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	alpha			Î±å€¤
+ *@param	setPolyAttr		åæ˜ ã•ã›ã‚‹ã‹	TRUE:åæ˜ ã•ã›ã‚‹
  *
  *@return	none
  *
@@ -750,12 +750,12 @@ void GLST_MdlAlpha(GLST_DATA_PTR GLST_Data, int alpha, BOOL setPolyAttr)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚»‚Ì‘¼‚Ìƒtƒ‰ƒOİ’è	
+ *@brief	ãã®ä»–ã®ãƒ•ãƒ©ã‚°è¨­å®š	
  *
- *@param	GLDT_Data	ƒOƒ[ƒoƒ‹‚Èó‘Ô
- *@param	flag			ƒtƒ‰ƒO‚Ì’liŠeƒtƒ‰ƒO‚Ì˜_—˜aj
- *@param	on_off			ƒtƒ‰ƒO‚ğ—§‚Ä‚é‚Ì‚©(TRUE)A‚¨‚ë‚·‚Ì‚©(FALSE)
- *@param	setPolyAttr		”½‰f‚³‚¹‚é‚©	TRUE:”½‰f‚³‚¹‚é
+ *@param	GLDT_Data	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªçŠ¶æ…‹
+ *@param	flag			ãƒ•ãƒ©ã‚°ã®å€¤ï¼ˆå„ãƒ•ãƒ©ã‚°ã®è«–ç†å’Œï¼‰
+ *@param	on_off			ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹ã®ã‹(TRUE)ã€ãŠã‚ã™ã®ã‹(FALSE)
+ *@param	setPolyAttr		åæ˜ ã•ã›ã‚‹ã‹	TRUE:åæ˜ ã•ã›ã‚‹
  *
  *@return	none
  *

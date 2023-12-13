@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	boxv_cursor.c
- * @brief	ƒ{ƒbƒNƒX‘€ì‰æ–Ê@•`‰æ‰º¿‚¯iƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ŠÖ˜Aj
+ * @brief	ãƒœãƒƒã‚¯ã‚¹æ“ä½œç”»é¢ã€€æç”»ä¸‹è«‹ã‘ï¼ˆãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³é–¢é€£ï¼‰
  * @author	taya
  * @date	2005.09.20
  */
@@ -24,14 +24,14 @@
 
 //------------------------------------------------------------------
 /**
- * ‰Šú‰»
+ * åˆæœŸåŒ–
  *
  * @param   wk		
  * @param   vwk		
  * @param   vpara		
  * @param   actsys		
  *
- * @retval  BOOL		TRUE‚Å¬Œ÷
+ * @retval  BOOL		TRUEã§æˆåŠŸ
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_IconSysInit(BOX_ICON_SYS* wk, BOXAPP_VIEW_WORK* vwk, const BOXAPP_VPARAM* vpara, CLACT_SET_PTR actsys, ARCHANDLE* p_boxgra_handle )
@@ -90,7 +90,7 @@ BOOL BoxAppView_IconSysInit(BOX_ICON_SYS* wk, BOXAPP_VIEW_WORK* vwk, const BOXAP
 }
 //------------------------------------------------------------------
 /**
- * I—¹
+ * çµ‚äº†
  *
  * @param   wk		
  *
@@ -128,7 +128,7 @@ void BoxAppView_IconSysQuit( BOX_ICON_SYS* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒ[ƒN‰Šú‰»ˆ—
+ * ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–å‡¦ç†
  *
  * @param   wk		
  * @param   num		
@@ -147,7 +147,7 @@ void BoxAppView_IconWorkInit( BOX_ICON_SYS* iconSys, BOX_ICON_WORK* wk, u32 num 
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒ[ƒNI—¹ˆ—
+ * ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯çµ‚äº†å‡¦ç†
  *
  * @param   wk		
  * @param   num		
@@ -169,7 +169,7 @@ void BoxAppView_IconWorkQuit( BOX_ICON_SYS* iconSys, BOX_ICON_WORK* wk, u32 num 
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒ[ƒN‚ÌƒRƒs[
+ * ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯ã®ã‚³ãƒ”ãƒ¼
  *
  * @param   src		
  * @param   dst		
@@ -184,16 +184,16 @@ void BoxAppView_IconWorkCopy( const BOX_ICON_WORK* src, BOX_ICON_WORK* dst, u32 
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒAƒNƒ^[’Ç‰ÁiPPPŽw’èj
+ * ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ï¼ˆPPPæŒ‡å®šï¼‰
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @param   ppp			POKEMON
  * @param   x			
  * @param   y			
  * @param   bgpri		
  * @param   actpri		
  * @param   charno		
- * @param   icon		ƒAƒCƒRƒ“ì¬æƒoƒbƒtƒ@
+ * @param   icon		ã‚¢ã‚¤ã‚³ãƒ³ä½œæˆå…ˆãƒãƒƒãƒ•ã‚¡
  *
  */
 //------------------------------------------------------------------
@@ -240,7 +240,7 @@ void BoxAppView_IconAdd( BOX_ICON_SYS* wk, POKEMON_PASO_PARAM* ppp, s32 x, s32 y
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒAƒNƒ^[’Ç‰ÁiƒLƒƒƒ‰ƒf[ƒ^Žw’èj
+ * ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ï¼ˆã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿æŒ‡å®šï¼‰
  *
  * @param   wk			
  * @param   monsno		
@@ -297,7 +297,7 @@ void BoxAppView_IconAddCharSet( BOX_ICON_SYS* wk, POKEMON_PASO_PARAM* ppp, u32 m
 
 //------------------------------------------------------------------
 /**
- * i‚èž‚Ýƒ‚[ƒh‚Ìƒrƒbƒgƒtƒ‰ƒO‚É‰ž‚¶‚ÄƒAƒNƒ^[•\Ž¦ó‘Ô‚ð•Ï‰»‚³‚¹‚é
+ * çµžã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰ã®ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°ã«å¿œã˜ã¦ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºçŠ¶æ…‹ã‚’å¤‰åŒ–ã•ã›ã‚‹
  *
  * @param   iconwk		
  * @param   limitBit		
@@ -351,11 +351,11 @@ void BoxAppView_IconLimitModeSet( BOX_ICON_SYS* wk, BOX_ICON_WORK* icon, u32 lim
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ““à•”ƒXƒe[ƒ^ƒX‚Ìƒ}[ƒLƒ“ƒO—pƒrƒbƒgƒtƒ‰ƒO‚ðƒZƒbƒg
+ * ã‚¢ã‚¤ã‚³ãƒ³å†…éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ãƒžãƒ¼ã‚­ãƒ³ã‚°ç”¨ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   wk			ƒAƒCƒRƒ“ƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   icon		ƒAƒCƒRƒ“ƒ[ƒN
- * @param   markBit		ƒ}[ƒLƒ“ƒO—pƒrƒbƒg
+ * @param   wk			ã‚¢ã‚¤ã‚³ãƒ³ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   icon		ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯
+ * @param   markBit		ãƒžãƒ¼ã‚­ãƒ³ã‚°ç”¨ãƒ“ãƒƒãƒˆ
  *
  */
 //------------------------------------------------------------------
@@ -365,11 +365,11 @@ void BoxAppView_IconMarkBitSet( BOX_ICON_SYS* wk, BOX_ICON_WORK* icon, u32 markB
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ““à•”ƒXƒe[ƒ^ƒX‚ÌƒAƒCƒeƒ€ƒiƒ“ƒo[‚ðƒZƒbƒg
+ * ã‚¢ã‚¤ã‚³ãƒ³å†…éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   wk			ƒAƒCƒRƒ“ƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   icon		ƒAƒCƒRƒ“ƒ[ƒN
- * @param   markBit		ƒAƒCƒeƒ€ƒiƒ“ƒo[
+ * @param   wk			ã‚¢ã‚¤ã‚³ãƒ³ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   icon		ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯
+ * @param   markBit		ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
  *
  */
 //------------------------------------------------------------------
@@ -380,7 +380,7 @@ void BoxAppView_IconItemNumberSet( BOX_ICON_SYS* wk, BOX_ICON_WORK* icon, u32 it
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒAƒCƒRƒ“‚ÌÄ•`‰æ‚ðs‚¤(ŽÀŽ¿ƒMƒ‰ƒeƒBƒi‚©‚çƒnƒbƒLƒ“ƒ_ƒ}‚ðŽæ‚èã‚°‚½Žž‚ÆƒVƒFƒCƒ~‚ð’Í‚ñ‚ÅƒgƒŒƒC‚ÉˆÚ“®‚µ‚Ä—ˆ‚½Žžê—p‚Ìˆ—)
+ * @brief   ã‚¢ã‚¤ã‚³ãƒ³ã®å†æç”»ã‚’è¡Œã†(å®Ÿè³ªã‚®ãƒ©ãƒ†ã‚£ãƒŠã‹ã‚‰ãƒãƒƒã‚­ãƒ³ãƒ€ãƒžã‚’å–ã‚Šä¸Šã’ãŸæ™‚ã¨ã‚·ã‚§ã‚¤ãƒŸã‚’æŽ´ã‚“ã§ãƒˆãƒ¬ã‚¤ã«ç§»å‹•ã—ã¦æ¥ãŸæ™‚å°‚ç”¨ã®å‡¦ç†)
  *
  * @param   iconSys		
  * @param   icon		
@@ -394,13 +394,13 @@ void BoxAppView_PokeIconRewrite_VramTrans(BOX_ICON_SYS* iconSys, BOX_ICON_WORK *
 	
 	OS_TPrintf("itemNo = %d, arc_idx = %d\n", icon->itemNo, icon->imgArcIdx);
 	
-	//ŠŽƒAƒCƒeƒ€‚ÆƒtƒHƒ‹ƒ€‚ªˆê’v‚µ‚È‚¢ê‡‚Ì‚Ý‘‚«Š·‚¦ˆ—‚ðs‚¤
+	//æ‰€æŒã‚¢ã‚¤ãƒ†ãƒ ã¨ãƒ•ã‚©ãƒ«ãƒ ãŒä¸€è‡´ã—ãªã„å ´åˆã®ã¿æ›¸ãæ›ãˆå‡¦ç†ã‚’è¡Œã†
 	if(icon->itemNo == ITEM_HAKKINDAMA && icon->imgArcIdx == PokeIconCgxArcIndexGetByMonsNumber(MONSNO_KIMAIRAN, 0, FORMNO_GIRATINA_NORMAL)){
-		//ƒnƒbƒLƒ“ƒ_ƒ}‚ðŠŽ‚µ‚Ä‚¢‚é‚Ì‚Éƒm[ƒ}ƒ‹ƒtƒHƒ‹ƒ€
+		//ãƒãƒƒã‚­ãƒ³ãƒ€ãƒžã‚’æ‰€æŒã—ã¦ã„ã‚‹ã®ã«ãƒŽãƒ¼ãƒžãƒ«ãƒ•ã‚©ãƒ«ãƒ 
 		icon->imgArcIdx = PokeIconCgxArcIndexGetByMonsNumber(MONSNO_KIMAIRAN, 0, FORMNO_GIRATINA_ORIGIN);
 	}
 	else if(icon->itemNo != ITEM_HAKKINDAMA && icon->imgArcIdx == PokeIconCgxArcIndexGetByMonsNumber(MONSNO_KIMAIRAN, 0, FORMNO_GIRATINA_ORIGIN)){
-		//ƒnƒbƒLƒ“ƒ_ƒ}‚ðŠŽ‚µ‚Ä‚¢‚È‚¢‚Ì‚ÉƒIƒŠƒWƒ“ƒtƒHƒ‹ƒ€
+		//ãƒãƒƒã‚­ãƒ³ãƒ€ãƒžã‚’æ‰€æŒã—ã¦ã„ãªã„ã®ã«ã‚ªãƒªã‚¸ãƒ³ãƒ•ã‚©ãƒ«ãƒ 
 		icon->imgArcIdx = PokeIconCgxArcIndexGetByMonsNumber(MONSNO_KIMAIRAN, 0, FORMNO_GIRATINA_NORMAL);
 	}
 	else if(a2 == TRUE && icon->imgArcIdx == PokeIconCgxArcIndexGetByMonsNumber(MONSNO_EURISU, 0, FORMNO_SHEIMI_FLOWER)){
@@ -420,12 +420,12 @@ void BoxAppView_PokeIconRewrite_VramTrans(BOX_ICON_SYS* iconSys, BOX_ICON_WORK *
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ðƒA[ƒJƒCƒu‚©‚ç“Ç‚Ýž‚Ý
+ * ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰èª­ã¿è¾¼ã¿
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   buf			“Ç‚Ýž‚Ýæƒoƒbƒtƒ@
- * @param   datIdx		ƒA[ƒJƒCƒu“à‚ÌÃÞ°À²ÝÃÞ¯¸½
- * @param   size		“Ç‚Ýž‚Ý»²½Þ
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   buf			èª­ã¿è¾¼ã¿å…ˆãƒãƒƒãƒ•ã‚¡
+ * @param   datIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   size		èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚º
  *
  */
 //------------------------------------------------------------------
@@ -436,11 +436,11 @@ void BoxAppView_IconCharDataLoad( BOX_ICON_SYS* wk, void* buf, u32 datIdx, u32 s
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ð•ÊˆÊ’u‚ÉƒZƒbƒg‚µ’¼‚·
+ * ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’åˆ¥ä½ç½®ã«ã‚»ãƒƒãƒˆã—ç›´ã™
  *
  * @param   sys		
  * @param   icon		
- * @param   charpos		“]‘—ˆÊ’uiƒLƒƒƒ‰ƒCƒ[ƒW—Ìˆææ“ª‚©‚ç‚ÌƒLƒƒƒ‰’PˆÊƒIƒtƒZƒbƒgj
+ * @param   charpos		è»¢é€ä½ç½®ï¼ˆã‚­ãƒ£ãƒ©ã‚¤ãƒ¡ãƒ¼ã‚¸é ˜åŸŸå…ˆé ­ã‹ã‚‰ã®ã‚­ãƒ£ãƒ©å˜ä½ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼‰
  *
  */
 //------------------------------------------------------------------
@@ -466,11 +466,11 @@ void BoxAppView_Icon_ResetImageBank( BOX_ICON_SYS* sys, BOX_ICON_WORK* icon, u32
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒAƒjƒƒXƒ^[ƒg
+ * ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚¹ã‚¿ãƒ¼ãƒˆ
  *
- * @param   iconsys		ƒAƒCƒRƒ“ƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   icon		ƒAƒCƒRƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   anm			ƒAƒjƒƒiƒ“ƒo
+ * @param   iconsys		ã‚¢ã‚¤ã‚³ãƒ³ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   icon		ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   anm			ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒ
  *
  */
 //------------------------------------------------------------------
@@ -490,10 +490,10 @@ void BoxAppView_IconAnmStart( BOX_ICON_SYS* iconsys, BOX_ICON_WORK* icon, u32 an
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒAƒjƒƒXƒ^[ƒg
+ * ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚¹ã‚¿ãƒ¼ãƒˆ
  *
- * @param   iconsys		ƒAƒCƒRƒ“ƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   icon		ƒAƒCƒRƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   iconsys		ã‚¢ã‚¤ã‚³ãƒ³ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   icon		ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -506,11 +506,11 @@ BOOL BoxAppView_IconAnmWait( BOX_ICON_SYS* iconsys, BOX_ICON_WORK* icon )
 
 //------------------------------------------------------------------
 /**
- * ”ÍˆÍ‘I‘ð‘ÎÛ—p‚ÌƒpƒŒƒbƒg‚Æ’ÊíƒpƒŒƒbƒg‚ÌØ‚è‘Ö‚¦
+ * ç¯„å›²é¸æŠžå¯¾è±¡ç”¨ã®ãƒ‘ãƒ¬ãƒƒãƒˆã¨é€šå¸¸ãƒ‘ãƒ¬ãƒƒãƒˆã®åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param   iconsys			ƒAƒCƒRƒ“ƒVƒXƒeƒ€ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   icon			ƒAƒCƒRƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   areaSelFlag		TRUE‚È‚ç”ÍˆÍ‘I‘ð—p‚É‚·‚é^FALSE‚Å’Êí‚É‚·‚é
+ * @param   iconsys			ã‚¢ã‚¤ã‚³ãƒ³ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   icon			ã‚¢ã‚¤ã‚³ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   areaSelFlag		TRUEãªã‚‰ç¯„å›²é¸æŠžç”¨ã«ã™ã‚‹ï¼FALSEã§é€šå¸¸ã«ã™ã‚‹
  *
  */
 //------------------------------------------------------------------

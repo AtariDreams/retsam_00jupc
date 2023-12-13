@@ -1,6 +1,6 @@
 //====================================================================
 //								l02r0101
-//						ƒŒƒXƒgƒ‰ƒ“E‚È‚È‚Â‚Ú‚µ
+//						ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³ãƒ»ãªãªã¤ã¼ã—
 //====================================================================
 
 	.text
@@ -10,11 +10,11 @@
 	.include	"../eventdata/zone_l02r0101evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_l02r0101_waiter
 _EVENT_DATA		ev_l02r0101_flag_change
@@ -49,7 +49,7 @@ ev_l02r0101_obj_change:
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_l02r0101_flag_change:
-	_ARRIVE_FLAG_SET	FLAG_ARRIVE_L02R0101	//“ž’…
+	_ARRIVE_FLAG_SET	FLAG_ARRIVE_L02R0101	//åˆ°ç€
 
 
 	_GET_NOW_HOUR	LOCALWORK0
@@ -115,7 +115,7 @@ l02r0101_restrant_open:
 
 	_LDVAL			WK_SCENE_L02R0101_CLOSE,0
 
-	_GET_RND		LOCALWORK1,1		//ƒ_ƒ~[i_GET_RND_NEXT‚Ìƒ^ƒl‚ðƒZƒbƒg‚·‚é‚½‚ß—¬—pj
+	_GET_RND		LOCALWORK1,1		//ãƒ€ãƒŸãƒ¼ï¼ˆ_GET_RND_NEXTã®ã‚¿ãƒã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãŸã‚æµç”¨ï¼‰
 	_LDVAL			LOCALWORK0,5
 	_LDVAL			LOCALWORK10,10000
 l02r0101_restrant_open_loop:
@@ -131,16 +131,16 @@ l02r0101_restrant_open_loop:
 	_IFVAL_CALL		LOCALWORK1,EQ,8,l02r0101_couple_check_09
 
 	_SUB_WK			LOCALWORK10,1
-	_IFVAL_JUMP		LOCALWORK10,EQ,0,l02r0101_restrant_open_loop_cancel		//¦‰i‹vƒ‹[ƒv‘ÎôB’Êí•K—v‚È‚µ
+	_IFVAL_JUMP		LOCALWORK10,EQ,0,l02r0101_restrant_open_loop_cancel		//â€»æ°¸ä¹…ãƒ«ãƒ¼ãƒ—å¯¾ç­–ã€‚é€šå¸¸å¿…è¦ãªã—
 
 	_IFVAL_JUMP		LOCALWORK0,NE,0,l02r0101_restrant_open_loop
 
 l02r0101_restrant_open_loop_cancel:
 
-	_FLAG_SET		TMFLG_L02R0101_INIT		//ƒZƒbƒgŠ®—¹(—‚“ú‚Ü‚Å‚±‚Ì‚Ü‚Üj
+	_FLAG_SET		TMFLG_L02R0101_INIT		//ã‚»ãƒƒãƒˆå®Œäº†(ç¿Œæ—¥ã¾ã§ã“ã®ã¾ã¾ï¼‰
 	_END
 
-//ƒJƒbƒvƒ‹‚Pƒ`ƒFƒbƒN
+//ã‚«ãƒƒãƒ—ãƒ«ï¼‘ãƒã‚§ãƒƒã‚¯
 l02r0101_couple_check_01:
 	_IF_FLAGOFF_JUMP	FV_L02R0101_COUPLE1,copuple_check_end
 	_FLAG_RESET			FV_L02R0101_COUPLE1
@@ -148,7 +148,7 @@ l02r0101_couple_check_01:
 	_SUB_WK				LOCALWORK0,1
 	_RET
 
-//ƒJƒbƒvƒ‹‚Qƒ`ƒFƒbƒN
+//ã‚«ãƒƒãƒ—ãƒ«ï¼’ãƒã‚§ãƒƒã‚¯
 l02r0101_couple_check_02:
 	_IF_FLAGOFF_JUMP	FV_L02R0101_COUPLE2,copuple_check_end
 	_FLAG_RESET			FV_L02R0101_COUPLE2
@@ -156,7 +156,7 @@ l02r0101_couple_check_02:
 	_SUB_WK				LOCALWORK0,1
 	_RET
 
-//ƒJƒbƒvƒ‹‚Rƒ`ƒFƒbƒN
+//ã‚«ãƒƒãƒ—ãƒ«ï¼“ãƒã‚§ãƒƒã‚¯
 l02r0101_couple_check_03:
 	_IF_FLAGOFF_JUMP	FV_L02R0101_COUPLE3,copuple_check_end
 	_FLAG_RESET			FV_L02R0101_COUPLE3
@@ -164,7 +164,7 @@ l02r0101_couple_check_03:
 	_SUB_WK				LOCALWORK0,1
 	_RET
 
-//ƒJƒbƒvƒ‹‚Sƒ`ƒFƒbƒN
+//ã‚«ãƒƒãƒ—ãƒ«ï¼”ãƒã‚§ãƒƒã‚¯
 l02r0101_couple_check_04:
 	_IF_FLAGOFF_JUMP	FV_L02R0101_COUPLE4,copuple_check_end
 	_FLAG_RESET			FV_L02R0101_COUPLE4
@@ -172,7 +172,7 @@ l02r0101_couple_check_04:
 	_SUB_WK				LOCALWORK0,1
 	_RET
 
-//ƒJƒbƒvƒ‹‚Tƒ`ƒFƒbƒN
+//ã‚«ãƒƒãƒ—ãƒ«ï¼•ãƒã‚§ãƒƒã‚¯
 l02r0101_couple_check_05:
 	_IF_FLAGOFF_JUMP	FV_L02R0101_COUPLE5,copuple_check_end
 	_FLAG_RESET			FV_L02R0101_COUPLE5
@@ -180,7 +180,7 @@ l02r0101_couple_check_05:
 	_SUB_WK				LOCALWORK0,1
 	_RET
 
-//ƒJƒbƒvƒ‹‚Uƒ`ƒFƒbƒN
+//ã‚«ãƒƒãƒ—ãƒ«ï¼–ãƒã‚§ãƒƒã‚¯
 l02r0101_couple_check_06:
 	_IF_FLAGOFF_JUMP	FV_L02R0101_COUPLE6,copuple_check_end
 	_FLAG_RESET			FV_L02R0101_COUPLE6
@@ -188,7 +188,7 @@ l02r0101_couple_check_06:
 	_SUB_WK				LOCALWORK0,1
 	_RET
 
-//ƒJƒbƒvƒ‹‚Vƒ`ƒFƒbƒN
+//ã‚«ãƒƒãƒ—ãƒ«ï¼—ãƒã‚§ãƒƒã‚¯
 l02r0101_couple_check_07:
 	_IF_FLAGOFF_JUMP	FV_L02R0101_COUPLE7,copuple_check_end
 	_FLAG_RESET			FV_L02R0101_COUPLE7
@@ -196,7 +196,7 @@ l02r0101_couple_check_07:
 	_SUB_WK				LOCALWORK0,1
 	_RET
 
-//ƒJƒbƒvƒ‹‚Wƒ`ƒFƒbƒN
+//ã‚«ãƒƒãƒ—ãƒ«ï¼˜ãƒã‚§ãƒƒã‚¯
 l02r0101_couple_check_08:
 	_IF_FLAGOFF_JUMP	FV_L02R0101_COUPLE8,copuple_check_end
 	_FLAG_RESET			FV_L02R0101_COUPLE8
@@ -204,7 +204,7 @@ l02r0101_couple_check_08:
 	_SUB_WK				LOCALWORK0,1
 	_RET
 
-//ƒJƒbƒvƒ‹‚Xƒ`ƒFƒbƒN
+//ã‚«ãƒƒãƒ—ãƒ«ï¼™ãƒã‚§ãƒƒã‚¯
 l02r0101_couple_check_09:
 	_IF_FLAGOFF_JUMP	FV_L02R0101_COUPLE9,copuple_check_end
 	_FLAG_RESET			FV_L02R0101_COUPLE9
@@ -216,7 +216,7 @@ copuple_check_end:
 	_RET
 
 /********************************************************************/
-/*					•Â“XŽž‚ÌƒEƒF[ƒ^[								*/
+/*					é–‰åº—æ™‚ã®ã‚¦ã‚§ãƒ¼ã‚¿ãƒ¼								*/
 /********************************************************************/
 ev_l02r0101_close:
 	_EVENT_START
@@ -238,23 +238,23 @@ ev_l02r0101_close:
 /********************************************************************/
 
 /********************************************************************/
-/*							ƒEƒF[ƒ^[								*/
+/*							ã‚¦ã‚§ãƒ¼ã‚¿ãƒ¼								*/
 /********************************************************************/
 ev_l02r0101_waiter:
 	_EASY_OBJ_MSG		msg_l02r0101_waiter_01
 	_END
 
 /********************************************************************/
-/*							ƒJƒbƒvƒ‹‚P								*/
+/*							ã‚«ãƒƒãƒ—ãƒ«ï¼‘								*/
 /********************************************************************/
-//’j
+//ç”·
 ev_l02r0101_01a:
 	_TALK_START
 	_TRAINER_FLAG_CHECK ARTIST_03
-	_IF_TR_FLAGON_JUMP ARTIST_03,ev_l02r0101_01a_after		//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+	_IF_TR_FLAGON_JUMP ARTIST_03,ev_l02r0101_01a_after		//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_01a_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P01
@@ -264,11 +264,11 @@ ev_l02r0101_01a:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_01a_before_01:
 	_TALKMSG		msg_l02r0101_0101a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0101a_02
@@ -279,7 +279,7 @@ ev_l02r0101_01a_before_01:
 ev_l02r0101_01a_before_02:
 	_TALKMSG		msg_l02r0101_0102a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0102a_02
@@ -291,7 +291,7 @@ ev_l02r0101_01a_before_02:
 ev_l02r0101_01a_before_03:
 	_TALKMSG		msg_l02r0101_0103a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0103a_02
@@ -299,11 +299,11 @@ ev_l02r0101_01a_before_03:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_l02r0101_01a_battle_start
 	_JUMP			ev_l02r0101_01a_cancel
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_01a_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	ARTIST_03,SISTER_11
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -341,7 +341,7 @@ ev_l02r0101_01a_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_01a_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_01a_turn_right
@@ -349,7 +349,7 @@ ev_l02r0101_01a_cancel:
 	_END
 
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_01a_after:
 	_SWITCH			WK_SCENE_L02R0101_P01
 	_CASE_JUMP		0,ev_l02r0101_01a_after_01
@@ -378,10 +378,10 @@ ev_l02r0101_01a_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_01a_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0100a_01
@@ -392,21 +392,21 @@ ev_l02r0101_01a_one_pokemon:
 	_END
 
 anime_l02r0101_01a_turn_right:
-	//Œ³‚ÌŒü‚«i’j‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆç”·ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_ARTIST_03,anm_l02r0101_turn_right
 	_OBJ_ANIME_WAIT
 	_RET
 
 
 
-//—
+//å¥³
 ev_l02r0101_01b:
 	_TALK_START
 	_TRAINER_FLAG_CHECK SISTER_11
-	_IF_TR_FLAGON_JUMP SISTER_11,ev_l02r0101_01b_after		//í“¬Œã
+	_IF_TR_FLAGON_JUMP SISTER_11,ev_l02r0101_01b_after		//æˆ¦é—˜å¾Œ
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_01b_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P01
@@ -416,11 +416,11 @@ ev_l02r0101_01b:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_01b_before_01:
 	_TALKMSG		msg_l02r0101_0101b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0101b_02
@@ -431,7 +431,7 @@ ev_l02r0101_01b_before_01:
 ev_l02r0101_01b_before_02:
 	_TALKMSG		msg_l02r0101_0102b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0102b_02
@@ -443,7 +443,7 @@ ev_l02r0101_01b_before_02:
 ev_l02r0101_01b_before_03:
 	_TALKMSG		msg_l02r0101_0103b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0103b_02
@@ -452,11 +452,11 @@ ev_l02r0101_01b_before_03:
 	_JUMP			ev_l02r0101_01b_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_01b_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	ARTIST_03,SISTER_11
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -494,14 +494,14 @@ ev_l02r0101_01b_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_01b_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_01b_turn_left
 	_TALK_END
 	_END
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_01b_after:
 	_SWITCH			WK_SCENE_L02R0101_P01
 	_CASE_JUMP		0,ev_l02r0101_01b_after_01
@@ -530,10 +530,10 @@ ev_l02r0101_01b_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_01b_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0100b_01
@@ -544,22 +544,22 @@ ev_l02r0101_01b_one_pokemon:
 	_END
 
 anime_l02r0101_01b_turn_left:
-	//Œ³‚ÌŒü‚«i—‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆå¥³ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_SISTER_11,anm_l02r0101_turn_left
 	_OBJ_ANIME_WAIT
 	_RET
 
 /********************************************************************/
-/*							ƒJƒbƒvƒ‹‚Q								*/
+/*							ã‚«ãƒƒãƒ—ãƒ«ï¼’								*/
 /********************************************************************/
-//’j
+//ç”·
 ev_l02r0101_02a:
 	_TALK_START
 	_TRAINER_FLAG_CHECK PRINCE_06
-	_IF_TR_FLAGON_JUMP PRINCE_06,ev_l02r0101_02a_after		//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+	_IF_TR_FLAGON_JUMP PRINCE_06,ev_l02r0101_02a_after		//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_02a_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P02
@@ -569,11 +569,11 @@ ev_l02r0101_02a:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_02a_before_01:
 	_TALKMSG		msg_l02r0101_0201a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0201a_02
@@ -584,7 +584,7 @@ ev_l02r0101_02a_before_01:
 ev_l02r0101_02a_before_02:
 	_TALKMSG		msg_l02r0101_0202a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0202a_02
@@ -596,7 +596,7 @@ ev_l02r0101_02a_before_02:
 ev_l02r0101_02a_before_03:
 	_TALKMSG		msg_l02r0101_0203a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0203a_02
@@ -604,11 +604,11 @@ ev_l02r0101_02a_before_03:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_l02r0101_02a_battle_start
 	_JUMP			ev_l02r0101_02a_cancel
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_02a_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	PRINCE_06,PRINCESS_04
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -646,14 +646,14 @@ ev_l02r0101_02a_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_02a_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_02a_turn_right
 	_TALK_END
 	_END
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_02a_after:
 	_SWITCH			WK_SCENE_L02R0101_P02
 	_CASE_JUMP		0,ev_l02r0101_02a_after_01
@@ -682,10 +682,10 @@ ev_l02r0101_02a_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_02a_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0200a_01
@@ -696,21 +696,21 @@ ev_l02r0101_02a_one_pokemon:
 	_END
 
 anime_l02r0101_02a_turn_right:
-	//Œ³‚ÌŒü‚«i’j‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆç”·ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_PRINCE_06,anm_l02r0101_turn_right
 	_OBJ_ANIME_WAIT
 	_RET
 
 
 
-//—
+//å¥³
 ev_l02r0101_02b:
 	_TALK_START
 	_TRAINER_FLAG_CHECK PRINCESS_04
-	_IF_TR_FLAGON_JUMP PRINCESS_04,ev_l02r0101_02b_after		//í“¬Œã
+	_IF_TR_FLAGON_JUMP PRINCESS_04,ev_l02r0101_02b_after		//æˆ¦é—˜å¾Œ
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_02b_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P02
@@ -720,11 +720,11 @@ ev_l02r0101_02b:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_02b_before_01:
 	_TALKMSG		msg_l02r0101_0201b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0201b_02
@@ -735,7 +735,7 @@ ev_l02r0101_02b_before_01:
 ev_l02r0101_02b_before_02:
 	_TALKMSG		msg_l02r0101_0202b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0202b_02
@@ -747,7 +747,7 @@ ev_l02r0101_02b_before_02:
 ev_l02r0101_02b_before_03:
 	_TALKMSG		msg_l02r0101_0203b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0203b_02
@@ -755,11 +755,11 @@ ev_l02r0101_02b_before_03:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_l02r0101_02b_battle_start
 	_JUMP			ev_l02r0101_02b_cancel
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_02b_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	PRINCE_06,PRINCESS_04
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -797,14 +797,14 @@ ev_l02r0101_02b_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_02b_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_02b_turn_left
 	_TALK_END
 	_END
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_02b_after:
 	_SWITCH			WK_SCENE_L02R0101_P02
 	_CASE_JUMP		0,ev_l02r0101_02b_after_01
@@ -833,10 +833,10 @@ ev_l02r0101_02b_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_02b_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0200b_01
@@ -847,7 +847,7 @@ ev_l02r0101_02b_one_pokemon:
 	_END
 
 anime_l02r0101_02b_turn_left:
-	//Œ³‚ÌŒü‚«i—‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆå¥³ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_PRINCESS_04,anm_l02r0101_turn_left
 	_OBJ_ANIME_WAIT
 	_RET
@@ -855,16 +855,16 @@ anime_l02r0101_02b_turn_left:
 
 
 /********************************************************************/
-/*							ƒJƒbƒvƒ‹‚R								*/
+/*							ã‚«ãƒƒãƒ—ãƒ«ï¼“								*/
 /********************************************************************/
-//’j
+//ç”·
 ev_l02r0101_03a:
 	_TALK_START
 	_TRAINER_FLAG_CHECK GENTLE_03
-	_IF_TR_FLAGON_JUMP GENTLE_03,ev_l02r0101_03a_after		//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+	_IF_TR_FLAGON_JUMP GENTLE_03,ev_l02r0101_03a_after		//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_03a_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P03
@@ -874,11 +874,11 @@ ev_l02r0101_03a:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_03a_before_01:
 	_TALKMSG		msg_l02r0101_0301a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0301a_02
@@ -889,7 +889,7 @@ ev_l02r0101_03a_before_01:
 ev_l02r0101_03a_before_02:
 	_TALKMSG		msg_l02r0101_0302a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0302a_02
@@ -901,7 +901,7 @@ ev_l02r0101_03a_before_02:
 ev_l02r0101_03a_before_03:
 	_TALKMSG		msg_l02r0101_0303a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0303a_02
@@ -910,11 +910,11 @@ ev_l02r0101_03a_before_03:
 	_JUMP			ev_l02r0101_03a_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_03a_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	GENTLE_03,MADAM_03
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -952,7 +952,7 @@ ev_l02r0101_03a_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_03a_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_03a_turn_right
@@ -960,7 +960,7 @@ ev_l02r0101_03a_cancel:
 	_END
 
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_03a_after:
 	_SWITCH			WK_SCENE_L02R0101_P03
 	_CASE_JUMP		0,ev_l02r0101_03a_after_01
@@ -989,10 +989,10 @@ ev_l02r0101_03a_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_03a_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0300a_01
@@ -1003,21 +1003,21 @@ ev_l02r0101_03a_one_pokemon:
 	_END
 
 anime_l02r0101_03a_turn_right:
-	//Œ³‚ÌŒü‚«i’j‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆç”·ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_GENTLE_03,anm_l02r0101_turn_right
 	_OBJ_ANIME_WAIT
 	_RET
 
 
 
-//—
+//å¥³
 ev_l02r0101_03b:
 	_TALK_START
 	_TRAINER_FLAG_CHECK MADAM_03
-	_IF_TR_FLAGON_JUMP MADAM_03,ev_l02r0101_03b_after		//í“¬Œã
+	_IF_TR_FLAGON_JUMP MADAM_03,ev_l02r0101_03b_after		//æˆ¦é—˜å¾Œ
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_03b_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P03
@@ -1027,11 +1027,11 @@ ev_l02r0101_03b:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_03b_before_01:
 	_TALKMSG		msg_l02r0101_0301b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0301b_02
@@ -1042,7 +1042,7 @@ ev_l02r0101_03b_before_01:
 ev_l02r0101_03b_before_02:
 	_TALKMSG		msg_l02r0101_0302b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0302b_02
@@ -1054,7 +1054,7 @@ ev_l02r0101_03b_before_02:
 ev_l02r0101_03b_before_03:
 	_TALKMSG		msg_l02r0101_0303b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0303b_02
@@ -1063,11 +1063,11 @@ ev_l02r0101_03b_before_03:
 	_JUMP			ev_l02r0101_03b_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_03b_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	GENTLE_03,MADAM_03
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -1105,14 +1105,14 @@ ev_l02r0101_03b_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_03b_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_03b_turn_left
 	_TALK_END
 	_END
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_03b_after:
 	_SWITCH			WK_SCENE_L02R0101_P03
 	_CASE_JUMP		0,ev_l02r0101_03b_after_01
@@ -1141,10 +1141,10 @@ ev_l02r0101_03b_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_03b_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0300b_01
@@ -1155,23 +1155,23 @@ ev_l02r0101_03b_one_pokemon:
 	_END
 
 anime_l02r0101_03b_turn_left:
-	//Œ³‚ÌŒü‚«i—‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆå¥³ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_MADAM_03,anm_l02r0101_turn_left
 	_OBJ_ANIME_WAIT
 	_RET
 
 /********************************************************************/
-/*							ƒJƒbƒvƒ‹‚S								*/
+/*							ã‚«ãƒƒãƒ—ãƒ«ï¼”								*/
 /********************************************************************/
 
-//’j
+//ç”·
 ev_l02r0101_04a:
 	_TALK_START
 	_TRAINER_FLAG_CHECK COLLECTOR_10
-	_IF_TR_FLAGON_JUMP COLLECTOR_10,ev_l02r0101_04a_after		//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+	_IF_TR_FLAGON_JUMP COLLECTOR_10,ev_l02r0101_04a_after		//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_04a_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P04
@@ -1181,11 +1181,11 @@ ev_l02r0101_04a:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_04a_before_01:
 	_TALKMSG		msg_l02r0101_0401a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0401a_02
@@ -1196,7 +1196,7 @@ ev_l02r0101_04a_before_01:
 ev_l02r0101_04a_before_02:
 	_TALKMSG		msg_l02r0101_0402a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0402a_02
@@ -1208,7 +1208,7 @@ ev_l02r0101_04a_before_02:
 ev_l02r0101_04a_before_03:
 	_TALKMSG		msg_l02r0101_0403a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0403a_02
@@ -1217,11 +1217,11 @@ ev_l02r0101_04a_before_03:
 	_JUMP			ev_l02r0101_04a_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_04a_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	COLLECTOR_10,AROMA_06
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -1259,7 +1259,7 @@ ev_l02r0101_04a_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_04a_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_04a_turn_right
@@ -1267,7 +1267,7 @@ ev_l02r0101_04a_cancel:
 	_END
 
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_04a_after:
 	_SWITCH			WK_SCENE_L02R0101_P04
 	_CASE_JUMP		0,ev_l02r0101_04a_after_01
@@ -1296,10 +1296,10 @@ ev_l02r0101_04a_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_04a_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0400a_01
@@ -1310,21 +1310,21 @@ ev_l02r0101_04a_one_pokemon:
 	_END
 
 anime_l02r0101_04a_turn_right:
-	//Œ³‚ÌŒü‚«i’j‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆç”·ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_COLLECTOR_10,anm_l02r0101_turn_right
 	_OBJ_ANIME_WAIT
 	_RET
 
 
 
-//—
+//å¥³
 ev_l02r0101_04b:
 	_TALK_START
 	_TRAINER_FLAG_CHECK AROMA_06
-	_IF_TR_FLAGON_JUMP AROMA_06,ev_l02r0101_04b_after		//í“¬Œã
+	_IF_TR_FLAGON_JUMP AROMA_06,ev_l02r0101_04b_after		//æˆ¦é—˜å¾Œ
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_04b_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P04
@@ -1334,11 +1334,11 @@ ev_l02r0101_04b:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_04b_before_01:
 	_TALKMSG		msg_l02r0101_0401b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0401b_02
@@ -1349,7 +1349,7 @@ ev_l02r0101_04b_before_01:
 ev_l02r0101_04b_before_02:
 	_TALKMSG		msg_l02r0101_0402b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0402b_02
@@ -1361,7 +1361,7 @@ ev_l02r0101_04b_before_02:
 ev_l02r0101_04b_before_03:
 	_TALKMSG		msg_l02r0101_0403b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0403b_02
@@ -1370,11 +1370,11 @@ ev_l02r0101_04b_before_03:
 	_JUMP			ev_l02r0101_04b_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_04b_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	COLLECTOR_10,AROMA_06
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -1412,14 +1412,14 @@ ev_l02r0101_04b_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_04b_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_04b_turn_left
 	_TALK_END
 	_END
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_04b_after:
 	_SWITCH			WK_SCENE_L02R0101_P04
 	_CASE_JUMP		0,ev_l02r0101_04b_after_01
@@ -1448,10 +1448,10 @@ ev_l02r0101_04b_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_04b_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0400b_01
@@ -1462,22 +1462,22 @@ ev_l02r0101_04b_one_pokemon:
 	_END
 
 anime_l02r0101_04b_turn_left:
-	//Œ³‚ÌŒü‚«i—‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆå¥³ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_AROMA_06,anm_l02r0101_turn_left
 	_OBJ_ANIME_WAIT
 	_RET
 
 /********************************************************************/
-/*							ƒJƒbƒvƒ‹‚T								*/
+/*							ã‚«ãƒƒãƒ—ãƒ«ï¼•								*/
 /********************************************************************/
-//’j
+//ç”·
 ev_l02r0101_05a:
 	_TALK_START
 	_TRAINER_FLAG_CHECK SCHOOLB_06
-	_IF_TR_FLAGON_JUMP SCHOOLB_06,ev_l02r0101_05a_after		//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+	_IF_TR_FLAGON_JUMP SCHOOLB_06,ev_l02r0101_05a_after		//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_05a_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P05
@@ -1487,11 +1487,11 @@ ev_l02r0101_05a:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_05a_before_01:
 	_TALKMSG		msg_l02r0101_0501a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0501a_02
@@ -1502,7 +1502,7 @@ ev_l02r0101_05a_before_01:
 ev_l02r0101_05a_before_02:
 	_TALKMSG		msg_l02r0101_0502a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0502a_02
@@ -1514,7 +1514,7 @@ ev_l02r0101_05a_before_02:
 ev_l02r0101_05a_before_03:
 	_TALKMSG		msg_l02r0101_0503a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0503a_02
@@ -1523,11 +1523,11 @@ ev_l02r0101_05a_before_03:
 	_JUMP			ev_l02r0101_05a_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_05a_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	SCHOOLB_06,DAISUKIW_05
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -1565,7 +1565,7 @@ ev_l02r0101_05a_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_05a_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_05a_turn_right
@@ -1573,7 +1573,7 @@ ev_l02r0101_05a_cancel:
 	_END
 
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_05a_after:
 	_SWITCH			WK_SCENE_L02R0101_P05
 	_CASE_JUMP		0,ev_l02r0101_05a_after_01
@@ -1602,10 +1602,10 @@ ev_l02r0101_05a_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_05a_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0500a_01
@@ -1616,21 +1616,21 @@ ev_l02r0101_05a_one_pokemon:
 	_END
 
 anime_l02r0101_05a_turn_right:
-	//Œ³‚ÌŒü‚«i’j‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆç”·ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_SCHOOLB_06,anm_l02r0101_turn_right
 	_OBJ_ANIME_WAIT
 	_RET
 
 
 
-//—
+//å¥³
 ev_l02r0101_05b:
 	_TALK_START
 	_TRAINER_FLAG_CHECK DAISUKIW_05
-	_IF_TR_FLAGON_JUMP DAISUKIW_05,ev_l02r0101_05b_after		//í“¬Œã
+	_IF_TR_FLAGON_JUMP DAISUKIW_05,ev_l02r0101_05b_after		//æˆ¦é—˜å¾Œ
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_05b_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P05
@@ -1640,11 +1640,11 @@ ev_l02r0101_05b:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_05b_before_01:
 	_TALKMSG		msg_l02r0101_0501b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0501b_02
@@ -1655,7 +1655,7 @@ ev_l02r0101_05b_before_01:
 ev_l02r0101_05b_before_02:
 	_TALKMSG		msg_l02r0101_0502b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0502b_02
@@ -1667,7 +1667,7 @@ ev_l02r0101_05b_before_02:
 ev_l02r0101_05b_before_03:
 	_TALKMSG		msg_l02r0101_0503b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0503b_02
@@ -1676,11 +1676,11 @@ ev_l02r0101_05b_before_03:
 	_JUMP			ev_l02r0101_05b_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_05b_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	SCHOOLB_06,DAISUKIW_05
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -1718,14 +1718,14 @@ ev_l02r0101_05b_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_05b_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_05b_turn_left
 	_TALK_END
 	_END
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_05b_after:
 	_SWITCH			WK_SCENE_L02R0101_P05
 	_CASE_JUMP		0,ev_l02r0101_05b_after_01
@@ -1754,10 +1754,10 @@ ev_l02r0101_05b_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_05b_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0500b_01
@@ -1768,22 +1768,22 @@ ev_l02r0101_05b_one_pokemon:
 	_END
 
 anime_l02r0101_05b_turn_left:
-	//Œ³‚ÌŒü‚«i—‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆå¥³ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_DAISUKIW_05,anm_l02r0101_turn_left
 	_OBJ_ANIME_WAIT
 	_RET
 
 /********************************************************************/
-/*							ƒJƒbƒvƒ‹‚U								*/
+/*							ã‚«ãƒƒãƒ—ãƒ«ï¼–								*/
 /********************************************************************/
-//’j
+//ç”·
 ev_l02r0101_06a:
 	_TALK_START
 	_TRAINER_FLAG_CHECK VETERAN_11
-	_IF_TR_FLAGON_JUMP VETERAN_11,ev_l02r0101_06a_after		//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+	_IF_TR_FLAGON_JUMP VETERAN_11,ev_l02r0101_06a_after		//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_06a_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P06
@@ -1793,11 +1793,11 @@ ev_l02r0101_06a:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_06a_before_01:
 	_TALKMSG		msg_l02r0101_0601a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0601a_02
@@ -1808,7 +1808,7 @@ ev_l02r0101_06a_before_01:
 ev_l02r0101_06a_before_02:
 	_TALKMSG		msg_l02r0101_0602a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0602a_02
@@ -1820,7 +1820,7 @@ ev_l02r0101_06a_before_02:
 ev_l02r0101_06a_before_03:
 	_TALKMSG		msg_l02r0101_0603a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0603a_02
@@ -1829,11 +1829,11 @@ ev_l02r0101_06a_before_03:
 	_JUMP			ev_l02r0101_06a_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_06a_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	VETERAN_11,MINI_13
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -1871,7 +1871,7 @@ ev_l02r0101_06a_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_06a_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_06a_turn_right
@@ -1879,7 +1879,7 @@ ev_l02r0101_06a_cancel:
 	_END
 
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_06a_after:
 	_SWITCH			WK_SCENE_L02R0101_P06
 	_CASE_JUMP		0,ev_l02r0101_06a_after_01
@@ -1908,10 +1908,10 @@ ev_l02r0101_06a_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_06a_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0600a_01
@@ -1922,21 +1922,21 @@ ev_l02r0101_06a_one_pokemon:
 	_END
 
 anime_l02r0101_06a_turn_right:
-	//Œ³‚ÌŒü‚«i’j‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆç”·ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_VETERAN_11,anm_l02r0101_turn_right
 	_OBJ_ANIME_WAIT
 	_RET
 
 
 
-//—
+//å¥³
 ev_l02r0101_06b:
 	_TALK_START
 	_TRAINER_FLAG_CHECK MINI_13
-	_IF_TR_FLAGON_JUMP MINI_13,ev_l02r0101_06b_after		//í“¬Œã
+	_IF_TR_FLAGON_JUMP MINI_13,ev_l02r0101_06b_after		//æˆ¦é—˜å¾Œ
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_06b_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P06
@@ -1946,11 +1946,11 @@ ev_l02r0101_06b:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_06b_before_01:
 	_TALKMSG		msg_l02r0101_0601b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0601b_02
@@ -1961,7 +1961,7 @@ ev_l02r0101_06b_before_01:
 ev_l02r0101_06b_before_02:
 	_TALKMSG		msg_l02r0101_0602b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0602b_02
@@ -1973,7 +1973,7 @@ ev_l02r0101_06b_before_02:
 ev_l02r0101_06b_before_03:
 	_TALKMSG		msg_l02r0101_0603b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0603b_02
@@ -1982,11 +1982,11 @@ ev_l02r0101_06b_before_03:
 	_JUMP			ev_l02r0101_06b_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_06b_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	VETERAN_11,MINI_13
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -2024,14 +2024,14 @@ ev_l02r0101_06b_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_06b_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_06b_turn_left
 	_TALK_END
 	_END
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_06b_after:
 	_SWITCH			WK_SCENE_L02R0101_P06
 	_CASE_JUMP		0,ev_l02r0101_06b_after_01
@@ -2060,10 +2060,10 @@ ev_l02r0101_06b_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_06b_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0600b_01
@@ -2074,7 +2074,7 @@ ev_l02r0101_06b_one_pokemon:
 	_END
 
 anime_l02r0101_06b_turn_left:
-	//Œ³‚ÌŒü‚«i—‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆå¥³ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_MINI_13,anm_l02r0101_turn_left
 	_OBJ_ANIME_WAIT
 	_RET
@@ -2082,16 +2082,16 @@ anime_l02r0101_06b_turn_left:
 
 
 /********************************************************************/
-/*							ƒJƒbƒvƒ‹‚V								*/
+/*							ã‚«ãƒƒãƒ—ãƒ«ï¼—								*/
 /********************************************************************/
-//’j
+//ç”·
 ev_l02r0101_07a:
 	_TALK_START
 	_TRAINER_FLAG_CHECK CAMERAMAN_03
-	_IF_TR_FLAGON_JUMP CAMERAMAN_03,ev_l02r0101_07a_after		//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+	_IF_TR_FLAGON_JUMP CAMERAMAN_03,ev_l02r0101_07a_after		//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_07a_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P07
@@ -2101,11 +2101,11 @@ ev_l02r0101_07a:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_07a_before_01:
 	_TALKMSG		msg_l02r0101_0701a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0701a_02
@@ -2116,7 +2116,7 @@ ev_l02r0101_07a_before_01:
 ev_l02r0101_07a_before_02:
 	_TALKMSG		msg_l02r0101_0702a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0702a_02
@@ -2128,7 +2128,7 @@ ev_l02r0101_07a_before_02:
 ev_l02r0101_07a_before_03:
 	_TALKMSG		msg_l02r0101_0703a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0703a_02
@@ -2137,11 +2137,11 @@ ev_l02r0101_07a_before_03:
 	_JUMP			ev_l02r0101_07a_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_07a_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	CAMERAMAN_03,REPORTER_02
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -2179,7 +2179,7 @@ ev_l02r0101_07a_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_07a_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_07a_turn_right
@@ -2187,7 +2187,7 @@ ev_l02r0101_07a_cancel:
 	_END
 
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_07a_after:
 	_SWITCH			WK_SCENE_L02R0101_P07
 	_CASE_JUMP		0,ev_l02r0101_07a_after_01
@@ -2216,10 +2216,10 @@ ev_l02r0101_07a_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_07a_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0700a_01
@@ -2230,21 +2230,21 @@ ev_l02r0101_07a_one_pokemon:
 	_END
 
 anime_l02r0101_07a_turn_right:
-	//Œ³‚ÌŒü‚«i’j‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆç”·ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_CAMERAMAN_03,anm_l02r0101_turn_right
 	_OBJ_ANIME_WAIT
 	_RET
 
 
 
-//—
+//å¥³
 ev_l02r0101_07b:
 	_TALK_START
 	_TRAINER_FLAG_CHECK REPORTER_02
-	_IF_TR_FLAGON_JUMP REPORTER_02,ev_l02r0101_07b_after		//í“¬Œã
+	_IF_TR_FLAGON_JUMP REPORTER_02,ev_l02r0101_07b_after		//æˆ¦é—˜å¾Œ
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_07b_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P07
@@ -2254,11 +2254,11 @@ ev_l02r0101_07b:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_07b_before_01:
 	_TALKMSG		msg_l02r0101_0701b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0701b_02
@@ -2269,7 +2269,7 @@ ev_l02r0101_07b_before_01:
 ev_l02r0101_07b_before_02:
 	_TALKMSG		msg_l02r0101_0702b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0702b_02
@@ -2281,7 +2281,7 @@ ev_l02r0101_07b_before_02:
 ev_l02r0101_07b_before_03:
 	_TALKMSG		msg_l02r0101_0703b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0703b_02
@@ -2290,11 +2290,11 @@ ev_l02r0101_07b_before_03:
 	_JUMP			ev_l02r0101_07b_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_07b_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	CAMERAMAN_03,REPORTER_02
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -2332,14 +2332,14 @@ ev_l02r0101_07b_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_07b_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_07b_turn_left
 	_TALK_END
 	_END
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_07b_after:
 	_SWITCH			WK_SCENE_L02R0101_P07
 	_CASE_JUMP		0,ev_l02r0101_07b_after_01
@@ -2368,10 +2368,10 @@ ev_l02r0101_07b_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_07b_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0700b_01
@@ -2382,7 +2382,7 @@ ev_l02r0101_07b_one_pokemon:
 	_END
 
 anime_l02r0101_07b_turn_left:
-	//Œ³‚ÌŒü‚«i—‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆå¥³ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_REPORTER_02,anm_l02r0101_turn_left
 	_OBJ_ANIME_WAIT
 	_RET
@@ -2390,16 +2390,16 @@ anime_l02r0101_07b_turn_left:
 
 
 /********************************************************************/
-/*							ƒJƒbƒvƒ‹‚W								*/
+/*							ã‚«ãƒƒãƒ—ãƒ«ï¼˜								*/
 /********************************************************************/
-//’j
+//ç”·
 ev_l02r0101_08a:
 	_TALK_START
 	_TRAINER_FLAG_CHECK GAMBLER_03
-	_IF_TR_FLAGON_JUMP GAMBLER_03,ev_l02r0101_08a_after		//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+	_IF_TR_FLAGON_JUMP GAMBLER_03,ev_l02r0101_08a_after		//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_08a_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P08
@@ -2409,11 +2409,11 @@ ev_l02r0101_08a:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_08a_before_01:
 	_TALKMSG		msg_l02r0101_0801a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0801a_02
@@ -2424,7 +2424,7 @@ ev_l02r0101_08a_before_01:
 ev_l02r0101_08a_before_02:
 	_TALKMSG		msg_l02r0101_0802a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0802a_02
@@ -2436,7 +2436,7 @@ ev_l02r0101_08a_before_02:
 ev_l02r0101_08a_before_03:
 	_TALKMSG		msg_l02r0101_0803a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0803a_02
@@ -2445,11 +2445,11 @@ ev_l02r0101_08a_before_03:
 	_JUMP			ev_l02r0101_08a_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_08a_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	GAMBLER_03,SISTER_10
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -2487,7 +2487,7 @@ ev_l02r0101_08a_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_08a_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_08a_turn_right
@@ -2495,7 +2495,7 @@ ev_l02r0101_08a_cancel:
 	_END
 
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_08a_after:
 	_SWITCH			WK_SCENE_L02R0101_P08
 	_CASE_JUMP		0,ev_l02r0101_08a_after_01
@@ -2524,10 +2524,10 @@ ev_l02r0101_08a_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_08a_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0800a_01
@@ -2538,21 +2538,21 @@ ev_l02r0101_08a_one_pokemon:
 	_END
 
 anime_l02r0101_08a_turn_right:
-	//Œ³‚ÌŒü‚«i’j‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆç”·ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_GAMBLER_03,anm_l02r0101_turn_right
 	_OBJ_ANIME_WAIT
 	_RET
 
 
 
-//—
+//å¥³
 ev_l02r0101_08b:
 	_TALK_START
 	_TRAINER_FLAG_CHECK SISTER_10
-	_IF_TR_FLAGON_JUMP SISTER_10,ev_l02r0101_08b_after		//í“¬Œã
+	_IF_TR_FLAGON_JUMP SISTER_10,ev_l02r0101_08b_after		//æˆ¦é—˜å¾Œ
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_08b_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P08
@@ -2562,11 +2562,11 @@ ev_l02r0101_08b:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_08b_before_01:
 	_TALKMSG		msg_l02r0101_0801b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0801b_02
@@ -2577,7 +2577,7 @@ ev_l02r0101_08b_before_01:
 ev_l02r0101_08b_before_02:
 	_TALKMSG		msg_l02r0101_0802b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0802b_02
@@ -2589,7 +2589,7 @@ ev_l02r0101_08b_before_02:
 ev_l02r0101_08b_before_03:
 	_TALKMSG		msg_l02r0101_0803b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0803b_02
@@ -2598,11 +2598,11 @@ ev_l02r0101_08b_before_03:
 	_JUMP			ev_l02r0101_08b_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_08b_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	GAMBLER_03,SISTER_10
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -2640,14 +2640,14 @@ ev_l02r0101_08b_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_08b_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_08b_turn_left
 	_TALK_END
 	_END
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_08b_after:
 	_SWITCH			WK_SCENE_L02R0101_P08
 	_CASE_JUMP		0,ev_l02r0101_08b_after_01
@@ -2676,10 +2676,10 @@ ev_l02r0101_08b_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_08b_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0800b_01
@@ -2690,7 +2690,7 @@ ev_l02r0101_08b_one_pokemon:
 	_END
 
 anime_l02r0101_08b_turn_left:
-	//Œ³‚ÌŒü‚«i—‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆå¥³ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_SISTER_10,anm_l02r0101_turn_left
 	_OBJ_ANIME_WAIT
 	_RET
@@ -2698,16 +2698,16 @@ anime_l02r0101_08b_turn_left:
 
 
 /********************************************************************/
-/*							ƒJƒbƒvƒ‹‚X								*/
+/*							ã‚«ãƒƒãƒ—ãƒ«ï¼™								*/
 /********************************************************************/
-//’j
+//ç”·
 ev_l02r0101_09a:
 	_TALK_START
 	_TRAINER_FLAG_CHECK SCIENTIST_08
-	_IF_TR_FLAGON_JUMP SCIENTIST_08,ev_l02r0101_09a_after		//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+	_IF_TR_FLAGON_JUMP SCIENTIST_08,ev_l02r0101_09a_after		//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_09a_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P09
@@ -2717,11 +2717,11 @@ ev_l02r0101_09a:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_09a_before_01:
 	_TALKMSG		msg_l02r0101_0901a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0901a_02
@@ -2732,7 +2732,7 @@ ev_l02r0101_09a_before_01:
 ev_l02r0101_09a_before_02:
 	_TALKMSG		msg_l02r0101_0902a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0902a_02
@@ -2744,7 +2744,7 @@ ev_l02r0101_09a_before_02:
 ev_l02r0101_09a_before_03:
 	_TALKMSG		msg_l02r0101_0903a_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0903a_02
@@ -2753,11 +2753,11 @@ ev_l02r0101_09a_before_03:
 	_JUMP			ev_l02r0101_09a_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_09a_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	SCIENTIST_08,BREEDERW_04
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -2795,7 +2795,7 @@ ev_l02r0101_09a_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_09a_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_09a_turn_right
@@ -2803,7 +2803,7 @@ ev_l02r0101_09a_cancel:
 	_END
 
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_09a_after:
 	_SWITCH			WK_SCENE_L02R0101_P09
 	_CASE_JUMP		0,ev_l02r0101_09a_after_01
@@ -2832,10 +2832,10 @@ ev_l02r0101_09a_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_09a_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0900a_01
@@ -2846,21 +2846,21 @@ ev_l02r0101_09a_one_pokemon:
 	_END
 
 anime_l02r0101_09a_turn_right:
-	//Œ³‚ÌŒü‚«i’j‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆç”·ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_SCIENTIST_08,anm_l02r0101_turn_right
 	_OBJ_ANIME_WAIT
 	_RET
 
 
 
-//—
+//å¥³
 ev_l02r0101_09b:
 	_TALK_START
 	_TRAINER_FLAG_CHECK BREEDERW_04
-	_IF_TR_FLAGON_JUMP BREEDERW_04,ev_l02r0101_09b_after		//í“¬Œã
+	_IF_TR_FLAGON_JUMP BREEDERW_04,ev_l02r0101_09b_after		//æˆ¦é—˜å¾Œ
 
-	//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
-	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 hŽsêƒoƒOFƒŒƒXƒgƒ‰ƒ“h‚ÌC³
+	//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
+	_GET_POKE_COUNT3	SCWK_ANSWER,6						//061024 â€å¸‚å ´ãƒã‚°ï¼šãƒ¬ã‚¹ãƒˆãƒ©ãƒ³â€ã®ä¿®æ­£
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_l02r0101_09b_one_pokemon
 
 	_SWITCH			WK_SCENE_L02R0101_P09
@@ -2870,11 +2870,11 @@ ev_l02r0101_09b:
 	_TALK_END
 	_END
 
-//í“¬‘O
+//æˆ¦é—˜å‰
 ev_l02r0101_09b_before_01:
 	_TALKMSG		msg_l02r0101_0901b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0901b_02
@@ -2885,7 +2885,7 @@ ev_l02r0101_09b_before_01:
 ev_l02r0101_09b_before_02:
 	_TALKMSG		msg_l02r0101_0902b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0902b_02
@@ -2897,7 +2897,7 @@ ev_l02r0101_09b_before_02:
 ev_l02r0101_09b_before_03:
 	_TALKMSG		msg_l02r0101_0903b_01
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0903b_02
@@ -2906,11 +2906,11 @@ ev_l02r0101_09b_before_03:
 	_JUMP			ev_l02r0101_09b_cancel
 
 
-//í“¬ŠJŽn
+//æˆ¦é—˜é–‹å§‹
 ev_l02r0101_09b_battle_start:
 	_TALK_CLOSE
 
-	//í“¬ŒÄ‚Ño‚µ
+	//æˆ¦é—˜å‘¼ã³å‡ºã—
 	_TRAINER_BTL_SET	SCIENTIST_08,BREEDERW_04
 	_TRAINER_LOSE_CHECK SCWK_ANSWER
 	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_l02r0101_common_battle_lose
@@ -2948,14 +2948,14 @@ ev_l02r0101_09b_battle_after_03:
 	_TALK_END
 	_END
 
-//í“¬ƒLƒƒƒ“ƒZƒ‹
+//æˆ¦é—˜ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_l02r0101_09b_cancel:
 	_TALK_CLOSE
 	_CALL			anime_l02r0101_09b_turn_left
 	_TALK_END
 	_END
 
-//í“¬I—¹Œã‚Ì˜b‚µ‚©‚¯
+//æˆ¦é—˜çµ‚äº†å¾Œã®è©±ã—ã‹ã‘
 ev_l02r0101_09b_after:
 	_SWITCH			WK_SCENE_L02R0101_P09
 	_CASE_JUMP		0,ev_l02r0101_09b_after_01
@@ -2984,10 +2984,10 @@ ev_l02r0101_09b_after_03:
 	_TALK_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“‚ªˆê•C‚Ì‚Ý
+//ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹ã®ã¿
 ev_l02r0101_09b_one_pokemon:
 
-	//ŽålŒö‚Ì‚Ù‚¤‚ðŒü‚­
+	//ä¸»äººå…¬ã®ã»ã†ã‚’å‘ã
 	_TURN_HERO_SITE
 
 	_TALKMSG		msg_l02r0101_0900b_01
@@ -2998,14 +2998,14 @@ ev_l02r0101_09b_one_pokemon:
 	_END
 
 anime_l02r0101_09b_turn_left:
-	//Œ³‚ÌŒü‚«i—‚Í•K‚¸‰EŒü‚«j‚Ö
+	//å…ƒã®å‘ãï¼ˆå¥³ã¯å¿…ãšå³å‘ãï¼‰ã¸
 	_OBJ_ANIME		TR_BREEDERW_04,anm_l02r0101_turn_left
 	_OBJ_ANIME_WAIT
 	_RET
 
 
 //--------------------------------------------------------------------
-//”s–kˆ— (‘S‹¤’Êj
+//æ•—åŒ—å‡¦ç† (å…¨å…±é€šï¼‰
 //--------------------------------------------------------------------
 ev_l02r0101_common_battle_lose:
 	_TRAINER_LOSE
@@ -3015,12 +3015,12 @@ ev_l02r0101_common_battle_lose:
 //--------------------------------------------------------------------
 //		ANIME TABLE
 //--------------------------------------------------------------------
-//‰EŒü‚«‚Ö
+//å³å‘ãã¸
 _ANIME_LABEL anm_l02r0101_turn_right
 	_ANIME_DATA	AC_DIR_R,1
 	_ANIME_DATA	ACMD_END,0
 
-//¶Œü‚«‚Ö
+//å·¦å‘ãã¸
 _ANIME_LABEL anm_l02r0101_turn_left
 	_ANIME_DATA	AC_DIR_L,1
 	_ANIME_DATA	ACMD_END,0

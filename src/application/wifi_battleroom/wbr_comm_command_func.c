@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wbr_comm_command_func.c
- *	@brief		wifi ƒoƒgƒ‹ƒ‹[ƒ€@óMƒR[ƒ‹ƒoƒbƒNŠÖ”
+ *	@brief		wifi ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã€€å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *	@author		tomoya takahashi
  *	@data		2007.02.15
  *
@@ -20,48 +20,48 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
-*/
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-/**
- *					\‘¢‘ÌéŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
+*/
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+/**
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	wifi_battleroom@ƒ^ƒXƒNÀsŠJn‚ğqóM
+ *	@brief	wifi_battleroomã€€ã‚¿ã‚¹ã‚¯å®Ÿè¡Œé–‹å§‹ã‚’å­å—ä¿¡
  *
- *	@param	netID		ƒlƒbƒgID
- *	@param	size		ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	p_work		ƒ[ƒN
+ *	@param	netID		ãƒãƒƒãƒˆID
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_CNM_GameSysStart( int netID, int size, void* pBuff, void* p_work )
@@ -69,12 +69,12 @@ void WBR_CNM_GameSysStart( int netID, int size, void* pBuff, void* p_work )
 	WIFI_BATTLEROOM* p_sys = p_work;
 	WBR_ClientSeqSet( p_sys->p_client, WBR_CLIENT_SEQ_COMMDATA_SEND );
 
-	OS_Printf( "‹¤’Êƒf[ƒ^‚Ì‘—MŠJn\n\n" );
+	OS_Printf( "å…±é€šãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡é–‹å§‹\n\n" );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e[„q@ƒQ[ƒ€ˆ—‚ÌŠJn
+ *	@brief	è¦ªãƒ¼ï¼å­ã€€ã‚²ãƒ¼ãƒ å‡¦ç†ã®é–‹å§‹
  *
  *	@param	netID	
  *	@param	size
@@ -86,20 +86,20 @@ void WBR_CNM_GameSysGameStart( int netID, int size, void* pBuff, void* p_work )
 {
 	WIFI_BATTLEROOM* p_sys = p_work;
 
-	// ƒNƒ‰ƒCƒAƒ“ƒgƒVƒXƒeƒ€‚ÍÀÛ‚Ì’ÊMˆ—‚Ö
+	// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ã¯å®Ÿéš›ã®é€šä¿¡å‡¦ç†ã¸
 	WBR_ClientSeqSet( p_sys->p_client, WBR_CLIENT_SEQ_WALK_START );
 
-	OS_Printf( "ƒNƒ‰ƒCƒAƒ“ƒg@ˆ—ŠJn\n" );
+	OS_Printf( "ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã€€å‡¦ç†é–‹å§‹\n" );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€I—¹‚ğqóM
+ *	@brief	ã‚²ãƒ¼ãƒ çµ‚äº†ã‚’å­å—ä¿¡
  *
- *	@param	netID		ƒlƒbƒgID
- *	@param	size		ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	p_work		ƒ[ƒN
+ *	@param	netID		ãƒãƒƒãƒˆID
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_CNM_GameSysEnd( int netID, int size, void* pBuff, void* p_work )
@@ -107,18 +107,18 @@ void WBR_CNM_GameSysEnd( int netID, int size, void* pBuff, void* p_work )
 	WIFI_BATTLEROOM* p_sys = p_work;
 	WBR_ClientGameEndSet( p_sys->p_client );
 
-	OS_Printf( "ƒQ[ƒ€I—¹\n" );
+	OS_Printf( "ã‚²ãƒ¼ãƒ çµ‚äº†\n" );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q‹@‚©‚ç‚Ì‹¤’Êƒf[ƒ^óM
+ *	@brief	å­æ©Ÿã‹ã‚‰ã®å…±é€šãƒ‡ãƒ¼ã‚¿å—ä¿¡
  *
- *	@param	netID	ƒlƒbƒgID
- *	@param	size	ƒTƒCƒY
- *	@param	pBuff	ƒoƒbƒtƒ@
- *	@param	p_work	ƒ[ƒN
+ *	@param	netID	ãƒãƒƒãƒˆID
+ *	@param	size	ã‚µã‚¤ã‚º
+ *	@param	pBuff	ãƒãƒƒãƒ•ã‚¡
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_CNM_KoCommonRecv( int netID, int size, void* pBuff, void* p_work )
@@ -130,7 +130,7 @@ void WBR_CNM_KoCommonRecv( int netID, int size, void* pBuff, void* p_work )
 		result = WBR_SurverKoCommDataRecv( p_sys->p_surver, netID );
 		if( result == TRUE ){
 			WBR_SurverSeqSet( p_sys->p_surver, WBR_SURVER_SEQ_MAIN_START );
-			OS_Printf( "q@‹¤’Êƒf[ƒ^óMŠ®—¹\n" );
+			OS_Printf( "å­ã€€å…±é€šãƒ‡ãƒ¼ã‚¿å—ä¿¡å®Œäº†\n" );
 		}
 	}
 
@@ -138,12 +138,12 @@ void WBR_CNM_KoCommonRecv( int netID, int size, void* pBuff, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q‚©‚çƒQ[ƒ€ƒRƒ}ƒ“ƒhƒf[ƒ^‚ğæ“¾‚·‚é
+ *	@brief	å­ã‹ã‚‰ã‚²ãƒ¼ãƒ ã‚³ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	netID		ƒlƒbƒgID
- *	@param	size		ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	p_work		ƒ[ƒN
+ *	@param	netID		ãƒãƒƒãƒˆID
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_CNM_KoGameDataRecv( int netID, int size, void* pBuff, void* p_work )
@@ -157,12 +157,12 @@ void WBR_CNM_KoGameDataRecv( int netID, int size, void* pBuff, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e‚©‚ç‚ÌƒQ[ƒ€î•ñƒf[ƒ^‚ğæ“¾‚·‚é
+ *	@brief	è¦ªã‹ã‚‰ã®ã‚²ãƒ¼ãƒ æƒ…å ±ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	netID		ƒlƒbƒgID
- *	@param	size		ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	p_work		ƒ[ƒN
+ *	@param	netID		ãƒãƒƒãƒˆID
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_CNM_OyaGameDataRecv( int netID, int size, void* pBuff, void* p_work )
@@ -173,12 +173,12 @@ void WBR_CNM_OyaGameDataRecv( int netID, int size, void* pBuff, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q‚©‚ç‚ÌeƒQ[ƒ€ƒf[ƒ^‹­§óM—v¿
+ *	@brief	å­ã‹ã‚‰ã®è¦ªã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿å¼·åˆ¶å—ä¿¡è¦è«‹
  *
- *	@param	netID		ƒlƒbƒgID
- *	@param	size		ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	p_work		ƒ[ƒN
+ *	@param	netID		ãƒãƒƒãƒˆID
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_CNM_KoOyaDataGetRecv( int netID, int size, void* pBuff, void* p_work )
@@ -193,12 +193,12 @@ void WBR_CNM_KoOyaDataGetRecv( int netID, int size, void* pBuff, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯ƒf[ƒ^óM
+ *	@brief	è©±ã—ã‹ã‘ãƒ‡ãƒ¼ã‚¿å—ä¿¡
  *
- *	@param	netID		ƒlƒbƒgID
- *	@param	size		ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	p_work		ƒ[ƒN
+ *	@param	netID		ãƒãƒƒãƒˆID
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_CNM_KoTalkDataRecv( int netID, int size, void* pBuff, void* p_work )
@@ -209,18 +209,18 @@ void WBR_CNM_KoTalkDataRecv( int netID, int size, void* pBuff, void* p_work )
 		WBR_SurverKoTalkDataSet( p_sys->p_surver, pBuff, netID );
 	}
 
-	// ƒNƒ‰ƒCƒAƒ“ƒg‚É‚à“o˜^
+	// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«ã‚‚ç™»éŒ²
 	WBR_ClientTalkDataSet( p_sys->p_client, pBuff );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯ŠJnƒf[ƒ^óM
+ *	@brief	è©±ã—ã‹ã‘é–‹å§‹ãƒ‡ãƒ¼ã‚¿å—ä¿¡
  *
- *	@param	netID		ƒlƒbƒgID
- *	@param	size		ƒTƒCƒY
- *	@param	pBuff		ƒoƒbƒtƒ@
- *	@param	p_work		ƒ[ƒN
+ *	@param	netID		ãƒãƒƒãƒˆID
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	pBuff		ãƒãƒƒãƒ•ã‚¡
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_CNM_KoTalkReqRecv( int netID, int size, void* pBuff, void* p_work )
@@ -234,13 +234,13 @@ void WBR_CNM_KoTalkReqRecv( int netID, int size, void* pBuff, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q‚Ì‹¤’Êƒf[ƒ^æ“¾æƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ *	@brief	å­ã®å…±é€šãƒ‡ãƒ¼ã‚¿å–å¾—å…ˆãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  *
- *	@param	netID		ƒlƒbƒgID
- *	@param	p_work		ƒ[ƒN
- *	@param	size		ƒTƒCƒY
+ *	@param	netID		ãƒãƒƒãƒˆID
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	size		ã‚µã‚¤ã‚º
  *
- *	@return	ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+ *	@return	ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 u8* WBR_CNM_KoCommRecvBuffGet( int netID, void* p_work, int size )
@@ -252,7 +252,7 @@ u8* WBR_CNM_KoCommRecvBuffGet( int netID, void* p_work, int size )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒCƒY0‚ğ•Ô‚·
+ *	@brief	ã‚µã‚¤ã‚º0ã‚’è¿”ã™
  */
 //-----------------------------------------------------------------------------
 int WBR_CNM_ZeroSizeGet( void )
@@ -262,7 +262,7 @@ int WBR_CNM_ZeroSizeGet( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q‹@‚©‚ç‚Ì‹¤’Êƒf[ƒ^ƒTƒCƒY
+ *	@brief	å­æ©Ÿã‹ã‚‰ã®å…±é€šãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int WBR_CNM_KoCommonSizeGet( void )
@@ -272,7 +272,7 @@ int WBR_CNM_KoCommonSizeGet( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e‹@‚©‚ç‚Ì‹¤’Êƒf[ƒ^ƒTƒCƒY
+ *	@brief	è¦ªæ©Ÿã‹ã‚‰ã®å…±é€šãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int WBR_CNM_OyaCommonSizeGet( void )
@@ -282,7 +282,7 @@ int WBR_CNM_OyaCommonSizeGet( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q‹@‚©‚ç‚ÌƒQ[ƒ€ƒf[ƒ^ƒTƒCƒY
+ *	@brief	å­æ©Ÿã‹ã‚‰ã®ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int WBR_CNM_KoGameDataSizeGet( void )
@@ -292,7 +292,7 @@ int WBR_CNM_KoGameDataSizeGet( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	e‹@‚©‚ç‚ÌƒQ[ƒ€ƒf[ƒ^ƒTƒCƒY
+ *	@brief	è¦ªæ©Ÿã‹ã‚‰ã®ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int WBR_CNM_OyaGameDataSizeGet( void )
@@ -302,7 +302,7 @@ int WBR_CNM_OyaGameDataSizeGet( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	q‹@‚©‚ç‚Ì˜b‚µ‚©‚¯ƒf[ƒ^ƒTƒCƒY
+ *	@brief	å­æ©Ÿã‹ã‚‰ã®è©±ã—ã‹ã‘ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 int WBR_CNM_KoTalkDataSizeGet( void )
@@ -312,7 +312,7 @@ int WBR_CNM_KoTalkDataSizeGet( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯ƒŠƒNƒGƒXƒgƒf[ƒ^ƒTƒCƒYæ“¾
+ *	@brief	è©±ã—ã‹ã‘ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
  */
 //-----------------------------------------------------------------------------
 int WBR_CNM_KoTalkReqSizeGet( void )

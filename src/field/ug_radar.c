@@ -3,7 +3,7 @@
 /**
  *
  *@file		ug_radar.c
- *@brief	’YzƒŒ[ƒ_[ˆ—iƒTƒu‰æ–Êj
+ *@brief	ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼å‡¦ç†ï¼ˆã‚µãƒ–ç”»é¢ï¼‰
  *@author	Akito Mori
  *@data		2005.09.23
  *
@@ -42,14 +42,14 @@
 #include "ug_radar.h"
 
 //========================================================================================
-// ’è”éŒ¾
+// å®šæ•°å®£è¨€
 //========================================================================================
 
-#define UG_RADAR_RESOURCE_ID	(   1000 ) 	// ‰º‰æ–Ê‚ÌƒŠƒ\[ƒX‚h‚c‚ğÕ“Ë‚µ‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚É1000‚Æ‚·‚é
-#define UG_TALK_SPLIT_WORD_MAX	( 20*2*2 )	// ‰üs‚ª“ü‚Á‚Ä‚¢‚éƒƒO‰ï˜b‚ÌÅ‘å•¶š”
-#define UG_MESSAGE_LINE_NUM     (      2 )  // ‰ï˜bƒEƒCƒ“ƒhƒE‚Í‚Qs‚µ‚©‚È‚¢‚æ
+#define UG_RADAR_RESOURCE_ID	(   1000 ) 	// ä¸‹ç”»é¢ã®ãƒªã‚½ãƒ¼ã‚¹ï¼©ï¼¤ã‚’è¡çªã—ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«1000ã¨ã™ã‚‹
+#define UG_TALK_SPLIT_WORD_MAX	( 20*2*2 )	// æ”¹è¡ŒãŒå…¥ã£ã¦ã„ã‚‹ãƒ­ã‚°ä¼šè©±ã®æœ€å¤§æ–‡å­—æ•°
+#define UG_MESSAGE_LINE_NUM     (      2 )  // ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã¯ï¼’è¡Œã—ã‹ãªã„ã‚ˆ
 
-// posEview”z—ñ‚Ì“Y‚¦š’è‹`
+// posãƒ»viewé…åˆ—ã®æ·»ãˆå­—å®šç¾©
 #define POS_XZ 		(2)
 #define POS_XZ_TIME (3)
 #define POS_XZ_INFO	(4)
@@ -60,38 +60,38 @@
 #define POS_OLDINFO (3)
 
 
-// ’YBƒŒ[ƒ_[Å‘åOBJ“o˜^”
-#define UG_RADAR_CLACT_MAX ( COMM_MACHINE_MAX + TRAP_NUM_SINGLE_MAX + 1) //32+1ŒÂ‚Ì‚Í‚¸
+// ç‚­å‘ãƒ¬ãƒ¼ãƒ€ãƒ¼æœ€å¤§OBJç™»éŒ²æ•°
+#define UG_RADAR_CLACT_MAX ( COMM_MACHINE_MAX + TRAP_NUM_SINGLE_MAX + 1) //32+1å€‹ã®ã¯ãš
 
 
-// ƒŒ[ƒ_[•\¦ˆÊ’uw’è—p’è‹`
+// ãƒ¬ãƒ¼ãƒ€ãƒ¼è¡¨ç¤ºä½ç½®æŒ‡å®šç”¨å®šç¾©
 #define RADAR_MIN_X		(7*8+4)
 #define RADAR_MIN_Y		(    8+1)
 #define RADAR_MAX_X		(RADAR_MIN_X+8*17+2)
 #define RADAR_MAX_Y		(RADAR_MIN_Y+8*16)
 
-// ƒ}ƒbƒv‚ªƒuƒƒbƒNƒf[ƒ^‚Ì‰E‰º‚É‚È‚Á‚½‚ç‚µ‚¢‚Ì‚Å‹¸³—pƒf[ƒ^
+// ãƒãƒƒãƒ—ãŒãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®å³ä¸‹ã«ãªã£ãŸã‚‰ã—ã„ã®ã§çŸ¯æ­£ç”¨ãƒ‡ãƒ¼ã‚¿
 
 // +--------------+
 // |              |
 // | +------------+
 // | |            |
-// | |   ‚±‚±     |
+// | |   ã“ã“     |
 // | |            |
 // | |            |
 // +-+------------+
 #define MAP_START_OFFSET_X	( 32 )
 #define MAP_START_OFFSET_Y	( 64 )
 
-// ƒOƒŠƒbƒh”’lÅ‘å’è‹`
+// ã‚°ãƒªãƒƒãƒ‰æ•°å€¤æœ€å¤§å®šç¾©
 #define RADAR_GRID_MAX_X (32*14)
 #define RADAR_GRID_MAX_Z (32*13)
 
 
-// CellActor‚Éˆ—‚³‚¹‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Ì”iƒ}ƒ‹ƒ`ƒZƒ‹Eƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ‚Íg—p‚µ‚È‚¢j
+// CellActorã«å‡¦ç†ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã®æ•°ï¼ˆï¼ãƒãƒ«ãƒã‚»ãƒ«ãƒ»ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã¯ä½¿ç”¨ã—ãªã„ï¼‰
 #define CELL_ANIME_RESOURCE_NUM	(4)
 
-// ’YzƒŒ[ƒ_[‚Ìƒ^ƒXƒN‚Ì—Dæ‡ˆÊi’ÊM‚æ‚è‚Í‰º‚É‚¢‚é•K—v‚Æ‚©‚ ‚é‚Æv‚¤‚Ì‚Åj
+// ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼ã®ã‚¿ã‚¹ã‚¯ã®å„ªå…ˆé †ä½ï¼ˆé€šä¿¡ã‚ˆã‚Šã¯ä¸‹ã«ã„ã‚‹å¿…è¦ã¨ã‹ã‚ã‚‹ã¨æ€ã†ã®ã§ï¼‰
 #define UNDER_GROUND_RADAR_TCB_PRIORITY		(4)
 
 
@@ -103,9 +103,9 @@
 
 #define UG_MES_FIFO_MAX		( 32 )
 
-#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-// -----’YzƒŒ[ƒ_[ˆ—‚ÌƒV[ƒPƒ“ƒX’è‹`---------
+// -----ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼å‡¦ç†ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©---------
 enum{
 	UG_INIT_BG = 0,
 	UG_INIT_ACTOR,
@@ -130,28 +130,28 @@ typedef struct{
 
 
 //========================================================================================
-// \‘¢‘ÌéŒ¾
+// æ§‹é€ ä½“å®£è¨€
 //========================================================================================
 struct UG_RADAR_WORK{
-	int           mode;												// ƒŒ[ƒ_[‘JˆÚ
-	int           pos[COMM_MACHINE_MAX][POS_XZ];					// ‘Sˆõ•ª‚ÌÀ•W
-	int           view[COMM_MACHINE_MAX][POS_XZ_TIME];				// •\¦—p‚ÌÀ•W{¶‘¶ŠÔ(2•b)
+	int           mode;												// ãƒ¬ãƒ¼ãƒ€ãƒ¼é·ç§»
+	int           pos[COMM_MACHINE_MAX][POS_XZ];					// å…¨å“¡åˆ†ã®åº§æ¨™
+	int           view[COMM_MACHINE_MAX][POS_XZ_TIME];				// è¡¨ç¤ºç”¨ã®åº§æ¨™ï¼‹ç”Ÿå­˜æ™‚é–“(2ç§’)
 	int		      trappos[TRAP_NUM_SINGLE_MAX+1][POS_XZ_INFO];		// 
 	
 
-	FIELDSYS_WORK *fsys;											// ƒtƒB[ƒ‹ƒh‚©‚çˆø‚«Œp‚®ƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
-	GF_BGL_INI    *bgl;												// ƒtƒB[ƒ‹ƒh‚©‚çˆø‚«Œp‚®‚a‚fƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+	FIELDSYS_WORK *fsys;											// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹ã‚‰å¼•ãç¶™ãã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+	GF_BGL_INI    *bgl;												// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹ã‚‰å¼•ãç¶™ãï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
 
-	CLACT_SET_PTR clactSet;											// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	renddata;								// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_U_RES_MANAGER_PTR	resMan[CELL_ANIME_RESOURCE_NUM];		// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_PTR 	resObjTbl[CELL_ANIME_RESOURCE_NUM];		// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
-	CLACT_HEADER			clActHeader;							// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
+	CLACT_SET_PTR clactSet;											// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	renddata;								// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_MANAGER_PTR	resMan[CELL_ANIME_RESOURCE_NUM];		// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_PTR 	resObjTbl[CELL_ANIME_RESOURCE_NUM];		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
+	CLACT_HEADER			clActHeader;							// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
 
-	CLACT_WORK_PTR			clActWork[COMM_MACHINE_MAX];			// ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^”z—ñ(ålŒöj
-	CLACT_WORK_PTR			TrapActWork[TRAP_NUM_SINGLE_MAX+1];		// ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^”z—ñiã©j
-	GF_BGL_BMPWIN 			talkWin;								// ƒŒ[ƒ_[‰æ–ÊƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE
-	int						MesIndex;								// ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+	CLACT_WORK_PTR			clActWork[COMM_MACHINE_MAX];			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿é…åˆ—(ä¸»äººå…¬ï¼‰
+	CLACT_WORK_PTR			TrapActWork[TRAP_NUM_SINGLE_MAX+1];		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿é…åˆ—ï¼ˆç½ ï¼‰
+	GF_BGL_BMPWIN 			talkWin;								// ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	int						MesIndex;								// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	int						TalkMode;
 	int						Wait;
 	UG_MESSAGE_FIFO			UgMesFifo;
@@ -164,7 +164,7 @@ int debugpos[COMM_MACHINE_MAX][POS_XZ];
 
 
 //========================================================================================
-// ƒvƒƒgƒ^ƒCƒvéŒ¾
+// ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //========================================================================================
 static void initBG(GF_BGL_INI *bgl,GF_BGL_BMPWIN *talkWin);
 static void InitCellActor(UG_RADAR_WORK *urw);
@@ -193,10 +193,10 @@ static UG_RADAR_WORK *debug_ug_radar;
 
 //------------------------------------------------------------------
 /**
- * ’YzƒŒ[ƒ_[ƒƒCƒ“iƒ^ƒXƒNŠÖ”j
+ * ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼ãƒ¡ã‚¤ãƒ³ï¼ˆã‚¿ã‚¹ã‚¯é–¢æ•°ï¼‰
  *
- * @param   tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^(UG_RADAR_WORK‚Æ‚µ‚ÄƒLƒƒƒXƒg‚µ‚Äg‚¤j
+ * @param   tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿(UG_RADAR_WORKã¨ã—ã¦ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ä½¿ã†ï¼‰
  *
  * @retval  none		
  */
@@ -210,13 +210,13 @@ static void UnderGround_RadarFunc(TCB_PTR tcb, void *wk)
 	debug_ug_radar = urw;
 	switch(urw->mode){
 	case UG_INIT_BG:
-		// BG‰Šú‰»EVRAM“]‘—
+		// BGåˆæœŸåŒ–ãƒ»VRAMè»¢é€
 		OS_Printf("start underground = %ld\n",sys_GetHeapFreeSize(HEAPID_FIELD));
 		OS_Printf("underground  work= %ld\n",sizeof(UG_RADAR_WORK));
 
 		initBG(bgl,&urw->talkWin);
 
-		// ƒŒ[ƒ_[—p”z—ñ‰Šú‰»
+		// ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”¨é…åˆ—åˆæœŸåŒ–
 		InitWork(urw->pos,urw->view);
 		MessageFifoInit(&urw->UgMesFifo);
 		urw->mode++;
@@ -225,7 +225,7 @@ static void UnderGround_RadarFunc(TCB_PTR tcb, void *wk)
 
 		InitCellActor(urw);
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
 		CLACT_U_MakeHeader(&urw->clActHeader, 
 							UG_RADAR_RESOURCE_ID,
 							UG_RADAR_RESOURCE_ID,
@@ -240,14 +240,14 @@ static void UnderGround_RadarFunc(TCB_PTR tcb, void *wk)
 							NULL,NULL);
 
 		{
-			//“o˜^î•ñŠi”[
+			//ç™»éŒ²æƒ…å ±æ ¼ç´
 			CLACT_ADD add;
 
 			add.ClActSet	= urw->clactSet;
 			add.ClActHeader	= &urw->clActHeader;
 
 			add.mat.x		= FX32_CONST(32) ;
-			add.mat.y		= FX32_CONST(96) + SUB_SURFACE_Y;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ªãASUB‚ª‰ºj
+			add.mat.y		= FX32_CONST(96) + SUB_SURFACE_Y;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸Šã€SUBãŒä¸‹ï¼‰
 			add.mat.z		= 0;
 			add.sca.x		= FX32_ONE;
 			add.sca.y		= FX32_ONE;
@@ -257,42 +257,42 @@ static void UnderGround_RadarFunc(TCB_PTR tcb, void *wk)
 			add.DrawArea	= NNS_G2D_VRAM_TYPE_2DSUB;
 			add.heap		= HEAPID_FIELD;
 
-			//ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
+			//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-			// ålŒö“o˜^
+			// ä¸»äººå…¬ç™»éŒ²
 			for(i=0;i<COMM_MACHINE_MAX;i++){
 				urw->clActWork[i] = CLACT_Add(&add);
 				CLACT_SetAnmFlag(urw->clActWork[i],1);
-				CLACT_SetDrawFlag(urw->clActWork[i], 0);	//”ñ•\¦‚É
-				if(i==0){			//ˆê’U©•ª‚Í‚O‚Æ‚¢‚¤‚±‚Æ‚É‚·‚é
-					CLACT_AnmChg( urw->clActWork[i], 1 );		//ÂF‚É
+				CLACT_SetDrawFlag(urw->clActWork[i], 0);	//éè¡¨ç¤ºã«
+				if(i==0){			//ä¸€æ—¦è‡ªåˆ†ã¯ï¼ã¨ã„ã†ã“ã¨ã«ã™ã‚‹
+					CLACT_AnmChg( urw->clActWork[i], 1 );		//é’è‰²ã«
 				}
 			}
 			
-			// ã©“o˜^
+			// ç½ ç™»éŒ²
 			for(i=0;i<TRAP_NUM_SINGLE_MAX+1;i++){
 				urw->TrapActWork[i] = CLACT_Add(&add);
 				CLACT_SetAnmFlag(urw->TrapActWork[i],1);
-				CLACT_SetDrawFlag(urw->TrapActWork[i], 0);	//”ñ•\¦‚É
-				CLACT_AnmChg( urw->TrapActWork[i], 2 );		//ã©ƒAƒjƒ‚Éƒ`ƒFƒ“ƒW
+				CLACT_SetDrawFlag(urw->TrapActWork[i], 0);	//éè¡¨ç¤ºã«
+				CLACT_AnmChg( urw->TrapActWork[i], 2 );		//ç½ ã‚¢ãƒ‹ãƒ¡ã«ãƒã‚§ãƒ³ã‚¸
 			}
 			
 		}	
 		
 
 
-		GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJ–Ê‚n‚m
+		GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 		
 		urw->mode++;
 		break;
 	case UG_START_FADE:
-		// ‹P“xƒtƒF[ƒhŠJn
+		// è¼åº¦ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 //		ChangeBrightnessRequest(30,BRIGHTNESS_NORMAL,BRIGHTNESS_BLACK,
 //			PLANEMASK_BG0|PLANEMASK_BG3|PLANEMASK_OBJ,MASK_SUB_DISPLAY);
 		urw->mode++;
 		break;
 	case UG_LCD_ON:
-		// ƒTƒu‰æ–Ê•\¦‚n‚m
+		// ã‚µãƒ–ç”»é¢è¡¨ç¤ºï¼¯ï¼®
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
@@ -301,55 +301,55 @@ static void UnderGround_RadarFunc(TCB_PTR tcb, void *wk)
 		urw->mode++;
 		break;
 	case UG_WAIT_FADE:
-//		if(IsFinishedBrightnessChg(MASK_SUB_DISPLAY)){		//ƒtƒF[ƒhI—¹‘Ò‚¿
+//		if(IsFinishedBrightnessChg(MASK_SUB_DISPLAY)){		//ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 			urw->mode++;
 //		}
 		break;
 		
-	// ƒƒCƒ“ƒV[ƒPƒ“ƒX
+	// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	case UG_MAIN:
-		HeroPosGet(urw->fsys->player,urw->pos,urw->view);				// ’ÊMŠÖ”‚©‚çålŒö‚ÌˆÊ’u‚ğæ“¾‚·‚é
-		HeroRadarPosSet(urw->view, urw->clActWork);						// ƒŒ[ƒ_[—p‚ÌÀ•W‚É•ÏŠ·‚µ‚Ä“o˜^‚·‚é
-		HeroTrapPosGet( urw->trappos);									// ©•ª‚Åİ’u‚µ‚½ã©‚ÌˆÊ’u‚ğæ“¾‚·‚é
+		HeroPosGet(urw->fsys->player,urw->pos,urw->view);				// é€šä¿¡é–¢æ•°ã‹ã‚‰ä¸»äººå…¬ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹
+		HeroRadarPosSet(urw->view, urw->clActWork);						// ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”¨ã®åº§æ¨™ã«å¤‰æ›ã—ã¦ç™»éŒ²ã™ã‚‹
+		HeroTrapPosGet( urw->trappos);									// è‡ªåˆ†ã§è¨­ç½®ã—ãŸç½ ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹
 		HeroTrapActSet( urw->trappos, urw->TrapActWork);
 		
 
 		RadarActionMessageFunc(urw->bgl,
                                &urw->talkWin,&urw->MesIndex,
-                               &urw->TalkMode,&urw->Wait,&urw->UgMesFifo);	// s“®“à—e‚ğƒƒbƒZ[ƒW‚É”½‰f
+                               &urw->TalkMode,&urw->Wait,&urw->UgMesFifo);	// è¡Œå‹•å†…å®¹ã‚’ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«åæ˜ 
 
-		CLACT_Draw( urw->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+		CLACT_Draw( urw->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
 		break;
 
-	// I—¹ƒV[ƒPƒ“ƒX
+	// çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	case UG_END_READY:
-		if(FldTalkMsgEndCheck( urw->MesIndex )){					//ƒƒbƒZ[ƒW•\¦I—¹‚ğ‘Ò‚½‚È‚¢‚Æ‚Ó‚Á‚Æ‚Ô
+		if(FldTalkMsgEndCheck( urw->MesIndex )){					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºçµ‚äº†ã‚’å¾…ãŸãªã„ã¨ãµã£ã¨ã¶
 			urw->mode++;
 		}
 		break;
 
 	case UG_END:
-		// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		// ã‚­ãƒ£ãƒ©è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		CLACT_U_CharManagerDelete(urw->resObjTbl[CLACT_U_CHAR_RES]);
 
-		// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+		// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		CLACT_U_PlttManagerDelete(urw->resObjTbl[CLACT_U_PLTT_RES]);
 		
-		// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü
+		// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 		for(i=0;i<CELL_ANIME_RESOURCE_NUM;i++){
 			CLACT_U_ResManagerDelete(urw->resMan[i]);
 		}
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 		CLACT_DestSet(urw->clactSet);
 
 		BmpTalkWinClear( &urw->talkWin, WINDOW_TRANS_ON );
-		GF_BGL_BmpWinDel( &urw->talkWin );						//BmpWin‰ğ•ú
+		GF_BGL_BmpWinDel( &urw->talkWin );						//BmpWinè§£æ”¾
 
-		GF_BGL_BGControlExit(bgl, GF_BGL_FRAME3_S);				//‰ï˜bƒEƒCƒ“ƒhƒE—pƒoƒbƒtƒ@‰ğ•ú
-		destBG(bgl);											// BG0,BG1—pƒoƒbƒtƒ@‰ğ•ú
+		GF_BGL_BGControlExit(bgl, GF_BGL_FRAME3_S);				//ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨ãƒãƒƒãƒ•ã‚¡è§£æ”¾
+		destBG(bgl);											// BG0,BG1ç”¨ãƒãƒƒãƒ•ã‚¡è§£æ”¾
         MessageFifoFinalize(&urw->UgMesFifo);
 
-		// ‹P“xƒtƒF[ƒhŠJn
+		// è¼åº¦ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 //		ChangeBrightnessRequest(30,BRIGHTNESS_BLACK,BRIGHTNESS_NORMAL,PLANEMASK_BG0,MASK_SUB_DISPLAY);
 		urw->mode++;
 		break;
@@ -357,7 +357,7 @@ static void UnderGround_RadarFunc(TCB_PTR tcb, void *wk)
 	case UG_END_FADE:
 //		if(IsFinishedBrightnessChg(MASK_SUB_DISPLAY)){
 			urw->fsys->UnderGroundRadar = NULL;
-			PMDS_taskDel(tcb);	//ƒ^ƒXƒNíœ
+			PMDS_taskDel(tcb);	//ã‚¿ã‚¹ã‚¯å‰Šé™¤
 			OS_Printf("end underground = %ld\n",sys_GetHeapFreeSize(HEAPID_FIELD));
 //		}
 
@@ -371,7 +371,7 @@ static void UnderGround_RadarFunc(TCB_PTR tcb, void *wk)
 
 //------------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[•\¦—pÀ•W‰Šú‰»
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼è¡¨ç¤ºç”¨åº§æ¨™åˆæœŸåŒ–
  *
  * @param   pos[][POS_XZ]			
  * @param   view[][POS_XZ_TIME]		
@@ -406,11 +406,11 @@ int debugposmovex(int no, int flag)
 #endif
 //------------------------------------------------------------------
 /**
- * Œ»İ‚ÌålŒö‚ÌÀ•W‚ğæ“¾‚·‚éi’ÊMŠÖ”‚©‚ç‚©AƒtƒB[ƒ‹ƒhŠÖ”‚©‚ç‚©‚Í”»’fj
+ * ç¾åœ¨ã®ä¸»äººå…¬ã®åº§æ¨™ã‚’å–å¾—ã™ã‚‹ï¼ˆé€šä¿¡é–¢æ•°ã‹ã‚‰ã‹ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰é–¢æ•°ã‹ã‚‰ã‹ã¯åˆ¤æ–­ï¼‰
  *
- * @param   jiki					fieldsys‚Ìplayer\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   pos[][POS_XZ]			ålŒö‚ÌÀ•W
- * @param   view[][POS_XZ_TIME]		ƒŒ[ƒ_[•\¦—p‚ÌÀ•W”z—ñ‚Ìƒ|ƒCƒ“ƒ^
+ * @param   jiki					fieldsysã®playeræ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   pos[][POS_XZ]			ä¸»äººå…¬ã®åº§æ¨™
+ * @param   view[][POS_XZ_TIME]		ãƒ¬ãƒ¼ãƒ€ãƒ¼è¡¨ç¤ºç”¨ã®åº§æ¨™é…åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -419,20 +419,20 @@ static void HeroPosGet(const PLAYER_STATE_PTR jiki,int pos[][POS_XZ], int view[]
 {
 	int i;
 	
-	//’ÊMŠÖ”‚©‚çålŒö‚ÌˆÊ’u‚ğæ“¾
+	//é€šä¿¡é–¢æ•°ã‹ã‚‰ä¸»äººå…¬ã®ä½ç½®ã‚’å–å¾—
 	for(i=0;i<COMM_MACHINE_MAX;i++){
 		pos[i][POS_X] = CommPlayerGetPosX(i);
 		pos[i][POS_Z] = CommPlayerGetPosZ(i);
 	}
 
-	//’ÊM‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚ÍƒtƒB[ƒ‹ƒhã‚ÌÀ•W‚ğæ“¾
+	//é€šä¿¡ã—ã¦ã„ãªã„ã¨ãã¯ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¸Šã®åº§æ¨™ã‚’å–å¾—
 
 	if(CommIsInitialize()){
 		if(CommIsConnect(CommGetCurrentID())==0){
 			pos[0][POS_X] = Player_NowGPosXGet( jiki );	
 			pos[0][POS_Z] = Player_NowGPosZGet( jiki );
 		}else{
-            // ©•ª‚ªÂ‚­‚È‚é‚æ‚¤‚ÉˆÊ’u‚ğŒğŠ·
+            // è‡ªåˆ†ãŒé’ããªã‚‹ã‚ˆã†ã«ä½ç½®ã‚’äº¤æ›
             int gx = pos[0][POS_X];
             int gz = pos[0][POS_Z];
 			pos[0][POS_X] = pos[CommGetCurrentID()][POS_X];
@@ -441,7 +441,7 @@ static void HeroPosGet(const PLAYER_STATE_PTR jiki,int pos[][POS_XZ], int view[]
 			pos[CommGetCurrentID()][POS_Z] = gz;
 		}
 	}
-	//æ“¾’l‚ğ•\¦À•W‚ÉŠi”[‚·‚é
+	//å–å¾—å€¤ã‚’è¡¨ç¤ºåº§æ¨™ã«æ ¼ç´ã™ã‚‹
 	for(i=0;i<COMM_MACHINE_MAX;i++){
         if(!UgSecretBaseIsSecretBasePlace(pos[i][POS_X],pos[i][POS_Z])){
             view[i][POS_X]    = pos[i][POS_X] - MAP_START_OFFSET_X;
@@ -450,7 +450,7 @@ static void HeroPosGet(const PLAYER_STATE_PTR jiki,int pos[][POS_XZ], int view[]
 //			OS_Printf("comm= %d, X= %ld,Y= %ld\n",CommIsConnect(CommGetCurrentID()),pos[i][POS_X],pos[i][POS_Z]);
 		}else{
 			if(view[i][POS_TIME]!=0){
-				if(view[i][POS_X]>=0){		//ˆê“x¶‘¶‚µ‚Ä‚¢‚½
+				if(view[i][POS_X]>=0){		//ä¸€åº¦ç”Ÿå­˜ã—ã¦ã„ãŸ
 					view[i][POS_TIME]--;
 				}
 			}
@@ -461,10 +461,10 @@ static void HeroPosGet(const PLAYER_STATE_PTR jiki,int pos[][POS_XZ], int view[]
 
 //------------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[—p‚ÌÀ•W‚É•ÏŠ·‚µ‚Ä“o˜^‚·‚é(•\¦E”ñ•\¦‚Ì§Œä‚às‚¤j
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”¨ã®åº§æ¨™ã«å¤‰æ›ã—ã¦ç™»éŒ²ã™ã‚‹(è¡¨ç¤ºãƒ»éè¡¨ç¤ºã®åˆ¶å¾¡ã‚‚è¡Œã†ï¼‰
  *
- * @param   view[][POS_XZ_TIME]		•\¦—pÀ•WŠi”[”z—ñ
- * @param   clActWork[]				ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^”z—ñ
+ * @param   view[][POS_XZ_TIME]		è¡¨ç¤ºç”¨åº§æ¨™æ ¼ç´é…åˆ—
+ * @param   clActWork[]				ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿é…åˆ—
  *
  * @retval  none		
  */
@@ -481,10 +481,10 @@ static void HeroRadarPosSet(int view[][POS_XZ_TIME], CLACT_WORK_PTR clActWork[])
 			pos.y = (RADAR_MIN_Y + ((RADAR_MAX_Y-RADAR_MIN_Y)*view[i][POS_Z])/RADAR_GRID_MAX_Z)*FX32_ONE+ SUB_SURFACE_Y;
 			pos.z = FX32_ONE;
 			CLACT_SetMatrix(clActWork[i], &pos);
-			CLACT_SetDrawFlag(clActWork[i], 1);	//‘¶İ‚µ‚Ä‚¢‚é‚È‚ç•\¦‚É
+			CLACT_SetDrawFlag(clActWork[i], 1);	//å­˜åœ¨ã—ã¦ã„ã‚‹ãªã‚‰è¡¨ç¤ºã«
 
 		}else{
-			CLACT_SetDrawFlag(clActWork[i], 0);	//‚OˆÈŠO‚Í”ñ•\¦‚É
+			CLACT_SetDrawFlag(clActWork[i], 0);	//ï¼ä»¥å¤–ã¯éè¡¨ç¤ºã«
 		}
 	}
 }
@@ -492,8 +492,8 @@ static void HeroRadarPosSet(int view[][POS_XZ_TIME], CLACT_WORK_PTR clActWork[])
 
 //------------------------------------------------------------------
 /**
- * ©•ª‚Ìã©‚ÌƒOƒŠƒbƒhˆÊ’u‚ğæ“¾i©•ª‚Ì‚È‚Ì‚Å’ÊM‚ÍŠÖŒW‚È‚¢j
- *     Œõ‚ç‚¹‚½‚¢‚à‚Ì‚ğ•Ô‚·‚æ‚¤‚É“à•”ŠÖ”•ÏX‚µ‚Ü‚µ‚½  k.ohno 06.03.22
+ * è‡ªåˆ†ã®ç½ ã®ã‚°ãƒªãƒƒãƒ‰ä½ç½®ã‚’å–å¾—ï¼ˆè‡ªåˆ†ã®ãªã®ã§é€šä¿¡ã¯é–¢ä¿‚ãªã„ï¼‰
+ *     å…‰ã‚‰ã›ãŸã„ã‚‚ã®ã‚’è¿”ã™ã‚ˆã†ã«å†…éƒ¨é–¢æ•°å¤‰æ›´ã—ã¾ã—ãŸ  k.ohno 06.03.22
  * @param   pos[][POS_XZ]		
  *
  * @retval  none		
@@ -525,7 +525,7 @@ static void HeroTrapPosGet( int pos[][POS_XZ_INFO] )
 
 //------------------------------------------------------------------
 /**
- * ©•ª‚Ìã©‚Ì•\¦
+ * è‡ªåˆ†ã®ç½ ã®è¡¨ç¤º
  *
  * @param   pos[][POS_XZ]		
  *
@@ -543,20 +543,20 @@ static void HeroTrapActSet( int pos[][POS_XZ_INFO],  CLACT_WORK_PTR TrapActWork[
 			vec.z = FX32_ONE;
 			CLACT_SetMatrix(TrapActWork[i], &vec);
 
-			// ‘O‰ñ‚Æ•\¦î•ñ‚ª•Ï‚í‚Á‚Ä‚¢‚éê‡‚ÍŒ©‚½–Ú•ÏX
+			// å‰å›ã¨è¡¨ç¤ºæƒ…å ±ãŒå¤‰ã‚ã£ã¦ã„ã‚‹å ´åˆã¯è¦‹ãŸç›®å¤‰æ›´
 			if(pos[i][POS_INFO]!=pos[i][POS_OLDINFO]){
 				if(pos[i][POS_INFO]!=RADAR_TYPE_NONE){
 					CLACT_AnmChg( TrapActWork[i], pos[i][POS_INFO] );
 					CLACT_SetDrawFlag(TrapActWork[i], 1);
 				}else{
-					CLACT_SetDrawFlag(TrapActWork[i], 0);	//‚OˆÈŠO‚Í”ñ•\¦‚É
+					CLACT_SetDrawFlag(TrapActWork[i], 0);	//ï¼ä»¥å¤–ã¯éè¡¨ç¤ºã«
 				}
 			}
 		}else{
-			CLACT_SetDrawFlag(TrapActWork[i], 0);	//‚OˆÈŠO‚Í”ñ•\¦‚É
+			CLACT_SetDrawFlag(TrapActWork[i], 0);	//ï¼ä»¥å¤–ã¯éè¡¨ç¤ºã«
 		}
 
-		// •\¦î•ñ‚ğXV
+		// è¡¨ç¤ºæƒ…å ±ã‚’æ›´æ–°
         pos[i][POS_OLDINFO] = pos[i][POS_INFO];
 
 	}
@@ -564,9 +564,9 @@ static void HeroTrapActSet( int pos[][POS_XZ_INFO],  CLACT_WORK_PTR TrapActWork[
 }
 //==============================================================================
 /**
- * ’YzƒŒ[ƒ_[‰Šú‰»ŠÖ”iƒ^ƒXƒN“o˜^j
+ * ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼åˆæœŸåŒ–é–¢æ•°ï¼ˆã‚¿ã‚¹ã‚¯ç™»éŒ²ï¼‰
  *
- * @param   fsys		FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fsys		FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -576,7 +576,7 @@ UG_RADAR_WORK *UnderGround_RadarInit( FIELDSYS_WORK *fsys )
 	UG_RADAR_WORK *urw;
 	TCB_PTR       tcb;
 
-	//’YzƒŒ[ƒ_[ƒ^ƒXƒN‚ğ’Ç‰Á
+	//ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚¿ã‚¹ã‚¯ã‚’è¿½åŠ 
 	tcb = PMDS_taskAdd(UnderGround_RadarFunc, sizeof(UG_RADAR_WORK), UNDER_GROUND_RADAR_TCB_PRIORITY, HEAPID_FIELD);
 	urw = TCB_GetWork(tcb);
 	urw->fsys = fsys;
@@ -587,29 +587,29 @@ UG_RADAR_WORK *UnderGround_RadarInit( FIELDSYS_WORK *fsys )
 
 //==============================================================================
 /**
- * ƒŒ[ƒ_[‰æ–ÊI—¹‚ğ’Ê’m
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢çµ‚äº†ã‚’é€šçŸ¥
  *
- * @param   fsys		FieldSys‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fsys		FieldSysã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
 //==============================================================================
 void UnderGround_RadarEnd(UG_RADAR_WORK *urw)
 {
-	// ƒŒ[ƒ_[‚ÌƒV[ƒPƒ“ƒX’è‹`‚ğI—¹‚É•ÏX
+	// ãƒ¬ãƒ¼ãƒ€ãƒ¼ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©ã‚’çµ‚äº†ã«å¤‰æ›´
 	if(urw->mode==UG_MAIN){
 		urw->mode = UG_END_READY;
 	}else{
-		GF_ASSERT("ƒŒ[ƒ_[‰Šú‰»‚ªI‚í‚ç‚È‚¢‚¤‚¿‚ÉI—¹ŒÄ‚Ño‚µ‚³‚ê‚Ü‚µ‚½");
+		GF_ASSERT("ãƒ¬ãƒ¼ãƒ€ãƒ¼åˆæœŸåŒ–ãŒçµ‚ã‚ã‚‰ãªã„ã†ã¡ã«çµ‚äº†å‘¼ã³å‡ºã—ã•ã‚Œã¾ã—ãŸ");
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief ’n‰º‰æ–Ê‚É“Ë“ü‚·‚é‚Ü‚Å‚ÌƒTƒu‰æ–Ê‚a‚f‚ÌƒVƒXƒeƒ€‚ğ”jŠü
+ *@brief åœ°ä¸‹ç”»é¢ã«çªå…¥ã™ã‚‹ã¾ã§ã®ã‚µãƒ–ç”»é¢ï¼¢ï¼§ã®ã‚·ã‚¹ãƒ†ãƒ ã‚’ç ´æ£„
  *
- *@param	bgl		BGLƒVƒXƒeƒ€\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ *@param	bgl		BGLã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
@@ -626,9 +626,9 @@ static void destBG(GF_BGL_INI* bgl)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	BGƒRƒ“ƒgƒ[ƒ‹İ’è
+ *@brief	BGã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
  *
- *@param	bgl	BGLƒVƒXƒeƒ€‚Ìƒ|ƒCƒ“ƒ^
+ *@param	bgl	BGLã‚·ã‚¹ãƒ†ãƒ ã®ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
@@ -640,10 +640,10 @@ static void initBG(GF_BGL_INI* bgl, GF_BGL_BMPWIN *talkWin)
 #if AFTERMASTER_070213_RADARINIT_FIX
     WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_BLACK );
 #endif
-	// ¡‚Ü‚Å‚Ì”jŠü
+	// ä»Šã¾ã§ã®ç ´æ£„
 	destBG(bgl);
 
-	// ƒTƒu–ÊBG‚OC‚P,3‚ÌƒRƒ“ƒgƒ[ƒ‹‚ğİ’è
+	// ã‚µãƒ–é¢BGï¼ï¼Œï¼‘,3ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -679,32 +679,32 @@ static void initBG(GF_BGL_INI* bgl, GF_BGL_BMPWIN *talkWin)
 		hdl = ArchiveDataHandleOpen( ARC_UG_RADAR_GRA, HEAPID_FIELD );
 
 
-		// ƒpƒŒƒbƒg“]‘—
+		// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 		ArcUtil_HDL_PalSet(    hdl, NARC_underg_radar_ug_radar_NCLR, PALTYPE_SUB_BG, 0, 0x20*2,  HEAPID_FIELD);
 
 
 
-		// ƒLƒƒƒ‰“]‘—( 32*9*0x20‚Ü‚Å‚Í‚¢‚¯‚éj
+		// ã‚­ãƒ£ãƒ©è»¢é€( 32*9*0x20ã¾ã§ã¯ã„ã‘ã‚‹ï¼‰
 		ArcUtil_HDL_BgCharSet( hdl, NARC_underg_radar_ug_radar_NCGR, bgl, GF_BGL_FRAME0_S, 0, 32*5*0x20, 0, HEAPID_FIELD);
 																						
 
-		// ƒXƒNƒŠ[ƒ““]‘—
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 		ArcUtil_HDL_ScrnSet(   hdl, NARC_underg_radar_ug_radar_NSCR, bgl, GF_BGL_FRAME0_S, 0, 32*24*2, 0, HEAPID_FIELD);
 		
 		ArchiveDataHandleClose( hdl );
 		
 	}
 
-	FieldMsgPrintInit( PALTYPE_SUB_BG, MSG_PRINT_NO_INIT );				// ƒTƒu‰æ–ÊVRAM‚ÉƒtƒHƒ“ƒg‚ÆƒpƒŒƒbƒg‚ğ“]‘—
+	FieldMsgPrintInit( PALTYPE_SUB_BG, MSG_PRINT_NO_INIT );				// ã‚µãƒ–ç”»é¢VRAMã«ãƒ•ã‚©ãƒ³ãƒˆã¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚’è»¢é€
 
 	
 	GF_BGL_ClearCharSet( FLD_SBGFRM_FONT, 32, 0, HEAPID_FIELD );
-    FldTalkBmpAdd( bgl, talkWin, FLD_SBGFRM_FONT);	// ƒTƒu‰æ–ÊƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒEŠm•Û
+    FldTalkBmpAdd( bgl, talkWin, FLD_SBGFRM_FONT);	// ã‚µãƒ–ç”»é¢ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinDataFill( talkWin, 0 );
 
 	ArcUtil_PalSet(ARC_UG_TRAP_GRA, NARC_ug_trap_ug_menu_NCLR, PALTYPE_SUB_BG, FLD_MESFRAME_PAL*0x20, 4*0x20,  HEAPID_FIELD);
 
-//    FldTalkWinPut( talkWin );			// ƒTƒu‰æ–ÊƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE•\¦ŠJn
+//    FldTalkWinPut( talkWin );			// ã‚µãƒ–ç”»é¢ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºé–‹å§‹
 //    _pInfo->msgIndex = FldTalkMsgStart(&_pInfo->talkWin, pMsg, 1);
 
 #if AFTERMASTER_070213_RADARINIT_FIX
@@ -716,9 +716,9 @@ static void initBG(GF_BGL_INI* bgl, GF_BGL_BMPWIN *talkWin)
 
 //------------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[‰æ–Ê—pƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  *
- * @param   urw		ƒŒ[ƒ_[\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   urw		ãƒ¬ãƒ¼ãƒ€ãƒ¼æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -726,11 +726,11 @@ static void initBG(GF_BGL_INI* bgl, GF_BGL_BMPWIN *talkWin)
 static void InitCellActor(UG_RADAR_WORK *urw)
 {
 	int i;
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	urw->clactSet = CLACT_U_SetEasyInit( UG_RADAR_CLACT_MAX, &urw->renddata, HEAPID_FIELD );
 	
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for(i=0;i<CELL_ANIME_RESOURCE_NUM;i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for(i=0;i<CELL_ANIME_RESOURCE_NUM;i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		urw->resMan[i] = CLACT_U_ResManagerInit( 1, i, HEAPID_FIELD );
 	}
 
@@ -739,29 +739,29 @@ static void InitCellActor(UG_RADAR_WORK *urw)
 		
 		hdl = ArchiveDataHandleOpen( ARC_UG_RADAR_GRA, HEAPID_FIELD );
 
-		//chara“Ç‚İ‚İ
+		//charaèª­ã¿è¾¼ã¿
 		urw->resObjTbl[CLACT_U_CHAR_RES] = CLACT_U_ResManagerResAddArcChar_ArcHandle(urw->resMan[CLACT_U_CHAR_RES], 
 				hdl, NARC_underg_radar_ug_radar_obj_NCGR, 0, UG_RADAR_RESOURCE_ID, NNS_G2D_VRAM_TYPE_2DSUB, HEAPID_FIELD);
 
-		//pal“Ç‚İ‚İ
+		//palèª­ã¿è¾¼ã¿
 		urw->resObjTbl[CLACT_U_PLTT_RES] = CLACT_U_ResManagerResAddArcPltt_ArcHandle(urw->resMan[CLACT_U_PLTT_RES],
 				hdl, NARC_underg_radar_ug_radar_obj_NCLR, 0, UG_RADAR_RESOURCE_ID, NNS_G2D_VRAM_TYPE_2DSUB, 2, HEAPID_FIELD);
 
-		//cell“Ç‚İ‚İ
+		//cellèª­ã¿è¾¼ã¿
 		urw->resObjTbl[CLACT_U_CELL_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(urw->resMan[CLACT_U_CELL_RES],
 				hdl, NARC_underg_radar_ug_radar_obj_NCER, 0, UG_RADAR_RESOURCE_ID, CLACT_U_CELL_RES,HEAPID_FIELD);
 
-		//“¯‚¶ŠÖ”‚Åanim“Ç‚İ‚İ
+		//åŒã˜é–¢æ•°ã§animèª­ã¿è¾¼ã¿
 		urw->resObjTbl[CLACT_U_CELLANM_RES] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(urw->resMan[CLACT_U_CELLANM_RES],
 				hdl, NARC_underg_radar_ug_radar_obj_NANR, 0, UG_RADAR_RESOURCE_ID, CLACT_U_CELLANM_RES,HEAPID_FIELD);
 		
 		ArchiveDataHandleClose( hdl );
 	}
 
-	// Chara“]‘—
+	// Charaè»¢é€
 	CLACT_U_CharManagerSetAreaCont( urw->resObjTbl[CLACT_U_CHAR_RES] );
 
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	CLACT_U_PlttManagerSetCleanArea( urw->resObjTbl[CLACT_U_PLTT_RES] );
 
 }
@@ -771,14 +771,14 @@ static void InitCellActor(UG_RADAR_WORK *urw)
 
 //------------------------------------------------------------------
 /**
- * ’YBƒŒ[ƒ_[‰ï˜bƒEƒCƒ“ƒhƒE‰æ–Ê§Œä
+ * ç‚­å‘ãƒ¬ãƒ¼ãƒ€ãƒ¼ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”»é¢åˆ¶å¾¡
  *
  * @param  bgl 		GF_BGL_INI*
  * @param  talkWin	GF_BGL_BMPWIN*
- * @param  MesIndex	•¶š•\¦‘Ò‚¿ƒtƒ‰ƒO
- * @param  talkmode •¶š•\¦ó‘Ôi“®ì‚È‚µA•\¦‘Ò‚¿AƒXƒNƒ[ƒ‹’†j
- * @param  wait		•¶š•\¦“à‚Åg—p‚·‚éƒEƒFƒCƒgƒJƒEƒ“ƒ^
- * @param  MesFifo	’ÊMålŒös“®ƒƒOFIFO
+ * @param  MesIndex	æ–‡å­—è¡¨ç¤ºå¾…ã¡ãƒ•ãƒ©ã‚°
+ * @param  talkmode æ–‡å­—è¡¨ç¤ºçŠ¶æ…‹ï¼ˆå‹•ä½œãªã—ã€è¡¨ç¤ºå¾…ã¡ã€ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ä¸­ï¼‰
+ * @param  wait		æ–‡å­—è¡¨ç¤ºå†…ã§ä½¿ç”¨ã™ã‚‹ã‚¦ã‚§ã‚¤ãƒˆã‚«ã‚¦ãƒ³ã‚¿
+ * @param  MesFifo	é€šä¿¡ä¸»äººå…¬è¡Œå‹•ãƒ­ã‚°FIFO
  *
  * @retval  none		
  */
@@ -793,12 +793,12 @@ static void RadarActionMessageFunc(
 {
     STRBUF* strbuf;
     
-    while(CommUnderGetActionMessage(MesFifo->tempBuf)){  // ¡‚Ìó‹µ‚ğˆø‚«o‚µFIFO‚É‹l‚ß‚é
+    while(CommUnderGetActionMessage(MesFifo->tempBuf)){  // ä»Šã®çŠ¶æ³ã‚’å¼•ãå‡ºã—FIFOã«è©°ã‚ã‚‹
 		MessageFifoIn(MesFifo,MesFifo->tempBuf);
     }
 
 	switch(*talkmode){
-	// •¶Í•\¦ŠJn
+	// æ–‡ç« è¡¨ç¤ºé–‹å§‹
 	case MESSAGE_NONE:
 		if((strbuf=MessageFifoOut(MesFifo))!=NULL){
 			*MesIndex = GF_STR_PrintSimple(
@@ -806,7 +806,7 @@ static void RadarActionMessageFunc(
 	        *talkmode = MESSAGE_WAIT;
 		}
         break;
-	// •\¦I—¹‘Ò‚¿
+	// è¡¨ç¤ºçµ‚äº†å¾…ã¡
 	case MESSAGE_WAIT:
 		if(FldTalkMsgEndCheck( *MesIndex )){
 			*talkmode = MESSAGE_END;
@@ -814,7 +814,7 @@ static void RadarActionMessageFunc(
 		}
 		break;
 
-	// ƒXƒNƒ[ƒ‹
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 	case MESSAGE_END:
 		if(MessageFifoCheck(MesFifo)==0){
 			GF_BGL_BmpWinShift( talkWin, GF_BGL_BMPWIN_SHIFT_U, 2,  0x00);
@@ -832,9 +832,9 @@ static void RadarActionMessageFunc(
 
 //------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWFIFO‰Šú‰»
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸FIFOåˆæœŸåŒ–
  *
- * @param   fifo	UG_MESSAGE_FIFO\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fifo	UG_MESSAGE_FIFOæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none	
  */
@@ -855,9 +855,9 @@ static void MessageFifoInit(UG_MESSAGE_FIFO *fifo)
 
 //------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWFIFOI—¹
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸FIFOçµ‚äº†
  *
- * @param   fifo	UG_MESSAGE_FIFO\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fifo	UG_MESSAGE_FIFOæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none	
  */
@@ -877,7 +877,7 @@ static void MessageFifoFinalize(UG_MESSAGE_FIFO *fifo)
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰üs‚±‚İ‚Ì”z—ñ‚È‚ç•ªŠ„‚µ‚Ä‚Ps‚¸‚Â‚É‚í‚¯‚é
+ * $brief   æ”¹è¡Œã“ã¿ã®é…åˆ—ãªã‚‰åˆ†å‰²ã—ã¦ï¼‘è¡Œãšã¤ã«ã‚ã‘ã‚‹
  *
  * @param   fifo	
  * @param   src		
@@ -888,10 +888,10 @@ static void MessageFifoFinalize(UG_MESSAGE_FIFO *fifo)
 static int UgMessageCheck( UG_MESSAGE_FIFO* fifo, STRBUF *src )
 {
 	int i,num,pos;
-	// STRCODE‚É–ß‚·
+	// STRCODEã«æˆ»ã™
 	STRBUF_GetStringCode( src, fifo->codework, UG_TALK_SPLIT_WORD_MAX );
 
-	// ‰üsƒR[ƒh‚ª‚ ‚é‚©’T‚·
+	// æ”¹è¡Œã‚³ãƒ¼ãƒ‰ãŒã‚ã‚‹ã‹æ¢ã™
 	num = 0;
 	i   = 0;
 	while(fifo->codework[i]!=EOM_){
@@ -901,15 +901,15 @@ static int UgMessageCheck( UG_MESSAGE_FIFO* fifo, STRBUF *src )
 		}
 		i++;
 	}
-	GF_ASSERT(num<2 && "’YBƒŒ[ƒ_[ƒƒbƒZ[ƒW‚É‰üs‚ª‚Q‚Â“ü‚Á‚Ä‚¢‚é");
+	GF_ASSERT(num<2 && "ç‚­å‘ãƒ¬ãƒ¼ãƒ€ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«æ”¹è¡ŒãŒï¼’ã¤å…¥ã£ã¦ã„ã‚‹");
 
-	// ‰üsƒR[ƒh‚Í‚È‚©‚Á‚½
+	// æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã¯ãªã‹ã£ãŸ
 	if(num==0){
-		// •’Ê‚ÉƒRƒs[‚µ‚ÄI—¹
+		// æ™®é€šã«ã‚³ãƒ”ãƒ¼ã—ã¦çµ‚äº†
 		STRBUF_Copy(fifo->splitbuf[0],src);
 		return 1;
 	}else{
-	// ‰üsƒR[ƒh‚ª‚ ‚Á‚½ê‡‚Í‚Q‚Â‚ÌSTRBUF‚É•ª‚¯‚Ä•Û‘¶‚·‚é
+	// æ”¹è¡Œã‚³ãƒ¼ãƒ‰ãŒã‚ã£ãŸå ´åˆã¯ï¼’ã¤ã®STRBUFã«åˆ†ã‘ã¦ä¿å­˜ã™ã‚‹
 		fifo->codework[pos] = EOM_;
 		STRBUF_SetStringCode( fifo->splitbuf[0], fifo->codework );
 		STRBUF_SetStringCode( fifo->splitbuf[1], &fifo->codework[pos+1] );
@@ -919,33 +919,33 @@ static int UgMessageCheck( UG_MESSAGE_FIFO* fifo, STRBUF *src )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWFIFO‚É’Ç‰Á
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸FIFOã«è¿½åŠ 
  *
- * @param   fifo	UG_MESSAGE_FIFO\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
- * @param   src		ƒRƒs[Œ³‚Ì•¶š—ñ
+ * @param   fifo	UG_MESSAGE_FIFOæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   src		ã‚³ãƒ”ãƒ¼å…ƒã®æ–‡å­—åˆ—
  *
- * @retval  int		Ši”[‚µ‚½‚ç1,‚µ‚È‚©‚Á‚½‚ç0
+ * @retval  int		æ ¼ç´ã—ãŸã‚‰1,ã—ãªã‹ã£ãŸã‚‰0
  */
 //------------------------------------------------------------------
 static int MessageFifoIn(UG_MESSAGE_FIFO *fifo, STRBUF *src)
 {
 	int top,i,linenum;
 
-	// ‚Qs‚É‚Ü‚½‚ª‚Á‚½STRBUF‚©ƒ`ƒFƒbƒN
+	// ï¼’è¡Œã«ã¾ãŸãŒã£ãŸSTRBUFã‹ãƒã‚§ãƒƒã‚¯
 	linenum = UgMessageCheck( fifo, src );
 
-	// FIFO“o˜^‘Oƒ`ƒFƒbƒN
+	// FIFOç™»éŒ²å‰ãƒã‚§ãƒƒã‚¯
 	top = fifo->top;
 	for(i=0;i<linenum;i++){
 		if(++top==UG_MES_FIFO_MAX){
 			top = 0;
 		}
-		if(top==fifo->bottom){			// bottom‚É’Ç‚¢‚Â‚¢‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
-			return 0;					// “o˜^‚·‚é‚Æ‚¨‚¢‚Â‚¢‚Ä‚µ‚Ü‚¤ê‡‚ÍI—¹
+		if(top==fifo->bottom){			// bottomã«è¿½ã„ã¤ã„ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
+			return 0;					// ç™»éŒ²ã™ã‚‹ã¨ãŠã„ã¤ã„ã¦ã—ã¾ã†å ´åˆã¯çµ‚äº†
 		}
 	}
 
-	// “o˜^‚Å‚«‚é
+	// ç™»éŒ²ã§ãã‚‹
 	for(i=0;i<linenum;i++){
    		STRBUF_Copy(fifo->TalkBuf[fifo->top],fifo->splitbuf[i]);
 		fifo->top++;
@@ -958,17 +958,17 @@ static int MessageFifoIn(UG_MESSAGE_FIFO *fifo, STRBUF *src)
 
 //------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWFIFO‚©‚çæ‚èo‚µ
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸FIFOã‹ã‚‰å–ã‚Šå‡ºã—
  *
- * @param   fifo		UG_MESSAGE_FIFO\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fifo		UG_MESSAGE_FIFOæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  STRCODE*	æ‚èo‚µ‚½•¶š—ñ‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  STRCODE*	å–ã‚Šå‡ºã—ãŸæ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static STRBUF* MessageFifoOut(UG_MESSAGE_FIFO *fifo)
 {
 	int result;
-	if(fifo->top!=fifo->bottom){	// FIFO‚ğ‰ğÁ‚µ‚«‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+	if(fifo->top!=fifo->bottom){	// FIFOã‚’è§£æ¶ˆã—ãã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		result = fifo->bottom;
 		if(++fifo->bottom==UG_MES_FIFO_MAX){
 			fifo->bottom = 0;
@@ -981,16 +981,16 @@ static STRBUF* MessageFifoOut(UG_MESSAGE_FIFO *fifo)
 
 //------------------------------------------------------------------
 /**
- * FIFO‚ª‰ğÁ‚µ‚«‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * FIFOãŒè§£æ¶ˆã—ãã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   fifo	UG_MESSAGE_FIFO\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fifo	UG_MESSAGE_FIFOæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  int		‰ğÁ‚µ‚«‚Á‚Ä‚¢‚½‚ç1,ˆá‚Á‚½‚ç0
+ * @retval  int		è§£æ¶ˆã—ãã£ã¦ã„ãŸã‚‰1,é•ã£ãŸã‚‰0
  */
 //------------------------------------------------------------------
 static int MessageFifoCheck(UG_MESSAGE_FIFO *fifo)
 {
-	if(fifo->top!=fifo->bottom){	// FIFO‚ğ‰ğÁ‚µ‚«‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+	if(fifo->top!=fifo->bottom){	// FIFOã‚’è§£æ¶ˆã—ãã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		return 0;
 	}
 	return 1;

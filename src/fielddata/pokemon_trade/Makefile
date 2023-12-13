@@ -1,28 +1,28 @@
 #######################################
 ##
-##	ƒQ[ƒ€“àƒ|ƒPƒ‚ƒ“ŒğŠ·
+##	ã‚²ãƒ¼ãƒ å†…ãƒã‚±ãƒ¢ãƒ³äº¤æ›
 ##
 #######################################
 SUBDIRS		=
 
 
-#ƒRƒs[‚µ‚Ä‚­‚éƒfƒBƒŒƒNƒgƒŠ
+#ã‚³ãƒ”ãƒ¼ã—ã¦ãã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 MONSNO_H_DIR		= ..\\..\\..\\include\\poketool\\
 ITEMSYM_H_DIR		= ..\\..\\..\\include\\itemtool\\
 TOKUSYU_H_DIR		= ..\\..\\..\\include\\battle\\
 PM_VER_H_DIR		= ..\\..\\..\\include\\
 
-#ƒRƒs[æ
+#ã‚³ãƒ”ãƒ¼å…ˆ
 CPY_DIR	= .
 
-#ˆË‘¶‚·‚éƒtƒ@ƒCƒ‹
+#ä¾å­˜ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«
 MAKE_FILE	= fld_trade.xls \
 			  monsno.h \
 			  itemsym.h \
 			  tokusyu_def.h \
 			  pm_version.h
 
-#ƒ^[ƒQƒbƒgƒtƒ@ƒCƒ‹
+#ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ•ã‚¡ã‚¤ãƒ«
 MAKE_TARGET = fld_trade_00.dat
 DAT_FILE	= $(wildcard *.dat)
 
@@ -30,7 +30,7 @@ DAT_FILE	= $(wildcard *.dat)
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#Make‚Å¶¬‚³‚ê‚é*.bin/*.narc‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.bin/*.narcã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(wildcard *.narc) \
 			  $(wildcard *.dat) \
 			  $(wildcard *.txt)
@@ -41,18 +41,18 @@ include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 
 do-build:file_cp $(MAKE_TARGET) fld_trade.narc
 
-#ƒtƒ@ƒCƒ‹ƒRƒs[
+#ãƒ•ã‚¡ã‚¤ãƒ«ã‚³ãƒ”ãƒ¼
 file_cp:
 	xcopy /d /y $(MONSNO_H_DIR)monsno.h $(CPY_DIR)
 	xcopy /d /y $(ITEMSYM_H_DIR)itemsym.h $(CPY_DIR)
 	xcopy /d /y $(TOKUSYU_H_DIR)tokusyu_def.h $(CPY_DIR)
 	xcopy /d /y $(PM_VER_H_DIR)pm_version.h $(CPY_DIR)
 
-#ƒf[ƒ^ƒRƒ“ƒo[ƒg
+#ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 $(MAKE_TARGET):$(MAKE_FILE)
 	perl conv.pl
 	
-#ƒA[ƒJƒCƒu
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 fld_trade.narc:$(DAT_FILE) $(MAKE_TARGET)
-	#ƒA[ƒJƒCƒu
+	#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 	nnsarc -c -i -n fld_trade.narc -S fld_trade_list.lst

@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_093.s
- * @brief	‚Ë‚ñ‚è‚«			93
+ * @brief	ã­ã‚“ã‚Šã			93
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,14 +19,14 @@
 // =============================================================================
 //
 //
-//	¡‚Ë‚ñ‚è‚«			93
+//	â– ã­ã‚“ã‚Šã			93
 //
 //
 // =============================================================================
-#define WE093_SHAKE_MOVE	(2)	// ‰¡—h‚ê•
+#define WE093_SHAKE_MOVE	(2)	// æ¨ªæºã‚Œå¹…
 #define WE093_SHAKE_SYNC	(1)	
 #define WE093_SHAKE_ATNUM	(2)
-// Œõ‚é
+// å…‰ã‚‹
 #define WE093_PAL_FADE_AT	(WE_TOOL_M1)
 #define WE093_PAL_FADE_NUM	(1)
 #define WE093_PAL_RGB		(WE_PAL_WHITE)
@@ -38,12 +38,12 @@ WEST_NENRIKI:
 	HAIKEI_CHG_WAIT
 	
 
-	// ƒ|ƒPƒ‚ƒ“OAM€”õ
+	// ãƒã‚±ãƒ¢ãƒ³OAMæº–å‚™
 	POKEOAM_RES_INIT
 
 	POKEOAM_RES_LOAD	0,
 
-	// •`‰æŠJŽn
+	// æç”»é–‹å§‹
 	POKEOAM_DROP		WEDEF_DROP_E1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_0, WEDEF_POKE_RES_0,
 
 
@@ -57,14 +57,14 @@ WEST_NENRIKI:
 	PT_DROP_EX		WEDEF_DROP_E2, WEDEF_DROP_E2,
 	FUNC_CALL		WEST_SP_WE_093, 0,0,0,0,0,0,0,0,0
 
-	WAIT_FLAG	///<TCB‘Ò‚¿
+	WAIT_FLAG	///<TCBå¾…ã¡
 
-	// ƒ|ƒPƒ‚ƒ“OAM”jŠü
+	// ãƒã‚±ãƒ¢ãƒ³OAMç ´æ£„
 	POKEOAM_RES_FREE
 	POKEOAM_DROP_RESET	WEDEF_POKE_CAP_ID_0
 	PT_DROP_RESET_EX
 
-	// BG–ß‚·
+	// BGæˆ»ã™
 	HAIKEI_RECOVER	BG_ID_093, WEDEF_HAIKEI_RC_MODE_FADE | WEDEF_HAIKEI_SBIT_NONE
 	HAIKEI_CHG_WAIT
 

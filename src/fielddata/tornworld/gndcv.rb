@@ -1,10 +1,10 @@
 ##################################################################
 #	gndcv.rb
-#	‚â‚Ô‚ê‚½‚¹‚©‚¢@’nŒ`ƒtƒ@ƒCƒ‹ƒRƒ“ƒo[ƒg
+#	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€åœ°å½¢ãƒ•ã‚¡ã‚¤ãƒ«ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 ##################################################################
 
 #=================================================================
-#	ƒGƒ‰[I—¹
+#	ã‚¨ãƒ©ãƒ¼çµ‚äº†
 #=================================================================
 def	gndcv_error_end( file0, file1, file2, file3, dfile0, dfile1 )
 	file0.close
@@ -16,10 +16,10 @@ def	gndcv_error_end( file0, file1, file2, file3, dfile0, dfile1 )
 end
 
 #=================================================================
-#	ƒAƒgƒŠƒrƒ…[ƒgƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ğŒŸõ
-#	str	ŒŸõ‚·‚éƒAƒgƒŠƒrƒ…[ƒgƒtƒ@ƒCƒ‹–¼
-#	ƒAƒgƒŠƒrƒ…[ƒgƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹
-#	return	ƒCƒ“ƒfƒbƒNƒX”Ô†	-1=ƒGƒ‰[
+#	ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ¤œç´¢
+#	str	æ¤œç´¢ã™ã‚‹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«å
+#	ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
+#	return	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·	-1=ã‚¨ãƒ©ãƒ¼
 #=================================================================
 def gndcv_attrfile_idxget( str, idx )
 	enum = str.sub( /\.dat/, "\_dat" )		# *.dat -> *_dat
@@ -29,9 +29,9 @@ def gndcv_attrfile_idxget( str, idx )
 	end
 	
 	no = 0
-	idx.pos = 0								#æ“ªs
+	idx.pos = 0								#å…ˆé ­è¡Œ
 	
-	loop{									#enums‚Ü‚Åis
+	loop{									#enumè¡Œã¾ã§é€²è¡Œ
 		line = idx.gets
 		
 		if( line == @nil )
@@ -63,25 +63,25 @@ def gndcv_attrfile_idxget( str, idx )
 end
 
 #=================================================================
-#	ˆêsƒRƒ“ƒo[ƒg
-#	line	ˆês•¶š
-#	wfile	‘‚«‚İæƒtƒ@ƒCƒ‹
-#	head	’nŒ`ƒwƒbƒ_[ƒtƒ@ƒCƒ‹
-#	idx		ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹
-#	heads	ƒwƒbƒ_[•¶š
-#	no		‰½”Ô–Ú‚Ìƒf[ƒ^‚©
-#	return	0=³íI—¹ 1=ˆÙíI—¹ 2=I’[ 3=ƒf[ƒ^–³‚µs‚Å‚ ‚é
+#	ä¸€è¡Œã‚³ãƒ³ãƒãƒ¼ãƒˆ
+#	line	ä¸€è¡Œæ–‡å­—
+#	wfile	æ›¸ãè¾¼ã¿å…ˆãƒ•ã‚¡ã‚¤ãƒ«
+#	head	åœ°å½¢ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«
+#	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
+#	heads	ãƒ˜ãƒƒãƒ€ãƒ¼æ–‡å­—
+#	no		ä½•ç•ªç›®ã®ãƒ‡ãƒ¼ã‚¿ã‹
+#	return	0=æ­£å¸¸çµ‚äº† 1=ç•°å¸¸çµ‚äº† 2=çµ‚ç«¯ 3=ãƒ‡ãƒ¼ã‚¿ç„¡ã—è¡Œã§ã‚ã‚‹
 #=================================================================
 def gndcv_conv_line( line, wfile, hfile, ifile, no, heads )
 	num = 0
 	ary = Array.new
-	str = line.split( "," )					#","‹æØ‚è”z—ñ
+	str = line.split( "," )					#","åŒºåˆ‡ã‚Šé…åˆ—
 	
-	if( str == @nil || str[0] =~ /#end/ )	# I—¹ƒ`ƒFƒbƒN
+	if( str == @nil || str[0] =~ /#end/ )	# çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		return 2
 	end
 	
-	#if( str[1] == @nil )					# ‹ósƒ`ƒFƒbƒN
+	#if( str[1] == @nil )					# ç©ºè¡Œãƒã‚§ãƒƒã‚¯
 	#return 3
 	#end
 	
@@ -89,14 +89,14 @@ def gndcv_conv_line( line, wfile, hfile, ifile, no, heads )
 		return 1
 	end
 	
-	hfile.printf( "\t%s_%s = %d,\n", heads, str[0], no-1 );	#”Ô†‚ğƒwƒbƒ_‚É
+	hfile.printf( "\t%s_%s = %d,\n", heads, str[0], no-1 );	#ç•ªå·ã‚’ãƒ˜ãƒƒãƒ€ã«
 	
-	if( str[1] == "NORMAL" )				#’Êí’nŒ`
+	if( str[1] == "NORMAL" )				#é€šå¸¸åœ°å½¢
 		num = 4
 		ary = Array( num.to_i )
 		wfile.write( ary.pack("S*") )
 		
-		num = 0								#c‚è‚ğƒ_ƒ~[‚Å–„‚ß‚é
+		num = 0								#æ®‹ã‚Šã‚’ãƒ€ãƒŸãƒ¼ã§åŸ‹ã‚ã‚‹
 		ary = Array( num.to_i )
 		wfile.write( ary.pack("s*") )
 		
@@ -105,7 +105,7 @@ def gndcv_conv_line( line, wfile, hfile, ifile, no, heads )
 		wfile.write( ary.pack("i*") )
 	end
 	
-	case str[1]								# ’nŒ`ƒ^ƒCƒv s16
+	case str[1]								# åœ°å½¢ã‚¿ã‚¤ãƒ— s16
 	when "GROUND"
 		num = 0
 	when "SIDE_L"
@@ -115,86 +115,86 @@ def gndcv_conv_line( line, wfile, hfile, ifile, no, heads )
 	when "ROOF"
 		num = 3
 	else
-		printf( "’…’n–ÊˆÙí No=%d\n", no )
+		printf( "ç€åœ°é¢ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( num.to_i )
 	wfile.write( ary.pack("s*") )
 	
-	ret = gndcv_attrfile_idxget( str[10], ifile ) #ƒAƒgƒŠƒrƒ…[ƒgindex u16
+	ret = gndcv_attrfile_idxget( str[10], ifile ) #ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆindex u16
 	if( ret == -1 )
-		printf( "ƒAƒgƒŠƒrƒ…[ƒgƒtƒ@ƒCƒ‹–¼ˆÙí No=%d\n", no )
+		printf( "ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«åç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( ret )
 	wfile.write( ary.pack("S*") )
 	
-	if( str[2] == @nil )					# XÀ•W@u16
-		printf( "XÀ•WˆÙí No=%d\n", no )
+	if( str[2] == @nil )					# Xåº§æ¨™ã€€u16
+		printf( "Xåº§æ¨™ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[2].to_i )
 	wfile.write( ary.pack("S*") )
 	
-	if( str[3] == @nil )					# YÀ•W@u16
-		printf( "YÀ•WˆÙí No=%d\n", no )
+	if( str[3] == @nil )					# Yåº§æ¨™ã€€u16
+		printf( "Yåº§æ¨™ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[3].to_i )
 	wfile.write( ary.pack("S*") )
 	
-	if( str[4] == @nil )					# ZÀ•W@u16
-		printf( "ZÀ•WˆÙí No=%d\n", no )
+	if( str[4] == @nil )					# Zåº§æ¨™ã€€u16
+		printf( "Zåº§æ¨™ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[4].to_i )
 	wfile.write( ary.pack("S*") )
 	
 	//
-	if( str[5] == @nil )					# X”ÍˆÍ@u16
-		printf( "’nŒ`ƒTƒCƒYXˆÙí No=%d\n", no )
+	if( str[5] == @nil )					# Xç¯„å›²ã€€u16
+		printf( "åœ°å½¢ã‚µã‚¤ã‚ºXç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[5].to_i )
 	wfile.write( ary.pack("S*") )
 	
-	if( str[6] == @nil )					# Y”ÍˆÍ@u16
-		printf( "’nŒ`ƒTƒCƒYYˆÙí No=%d\n", no )
+	if( str[6] == @nil )					# Yç¯„å›²ã€€u16
+		printf( "åœ°å½¢ã‚µã‚¤ã‚ºYç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[6].to_i )
 	wfile.write( ary.pack("S*") )
 	
-	if( str[7] == @nil )					# Z”ÍˆÍ@u16
-		printf( "’nŒ`ƒTƒCƒYZˆÙí No=%d\n", no )
+	if( str[7] == @nil )					# Zç¯„å›²ã€€u16
+		printf( "åœ°å½¢ã‚µã‚¤ã‚ºZç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[7].to_i )
 	wfile.write( ary.pack("S*") )
 	
 	//
-	if( str[8] == @nil )					# X”ÍˆÍ@u16
-		printf( "XƒAƒgƒŠƒrƒ…[ƒg”ÍˆÍˆÙí No=%d\n", no )
+	if( str[8] == @nil )					# Xç¯„å›²ã€€u16
+		printf( "Xã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç¯„å›²ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[8].to_i )
 	wfile.write( ary.pack("S*") )
 	
-	if( str[9] == @nil )					# Y”ÍˆÍ@u16
-		printf( "YƒAƒgƒŠƒrƒ…[ƒg”ÍˆÍˆÙí No=%d\n", no )
+	if( str[9] == @nil )					# Yç¯„å›²ã€€u16
+		printf( "Yã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç¯„å›²ç•°å¸¸ No=%d\n", no )
 		return 1
 	end
 	ary = Array( str[9].to_i )
 	wfile.write( ary.pack("S*") )
 	
-	return 0								# ³íI—¹
+	return 0								# æ­£å¸¸çµ‚äº†
 end
 
 #=================================================================
-#	evjƒtƒ@ƒCƒ‹ƒRƒ“ƒo[ƒg
-#	txtname		ƒRƒ“ƒo[ƒg‚·‚éƒWƒƒƒ“ƒvƒf[ƒ^ƒeƒLƒXƒgƒtƒ@ƒCƒ‹
-#	idxname		QÆ‚·‚éƒAƒgƒŠƒrƒ…[ƒgƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹–¼
-#	–ß‚è’l@0=³íI—¹ 1=ˆÙíI—¹
+#	evjãƒ•ã‚¡ã‚¤ãƒ«ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+#	txtname		ã‚³ãƒ³ãƒãƒ¼ãƒˆã™ã‚‹ã‚¸ãƒ£ãƒ³ãƒ—ãƒ‡ãƒ¼ã‚¿ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«
+#	idxname		å‚ç…§ã™ã‚‹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«å
+#	æˆ»ã‚Šå€¤ã€€0=æ­£å¸¸çµ‚äº† 1=ç•°å¸¸çµ‚äº†
 #=================================================================
 def gndcv_txtfileconv( txtname, idxname )
 	if( txtname == @nil )
@@ -220,26 +220,26 @@ def gndcv_txtfileconv( txtname, idxname )
 	
 	heads = txtname.sub( /\.txt/, "" )
 	
-	#ƒwƒbƒ_[ num‘‚«‚İ
+	#ãƒ˜ãƒƒãƒ€ãƒ¼ numæ›¸ãè¾¼ã¿
 	hfile.printf( "#ifndef %s_H_FILE_\n#define %s_HFILE_\nenum {\n", File.basename(heads), File.basename(heads) )
 	
-	data_no = 0									#ƒf[ƒ^”Ô†
-	tfile.gets 									#ˆês–Ú‚ğ”ò‚Î‚·
-	ary = Array( data_no.to_i )					#ƒf[ƒ^‘”‚ğ—\‚ß‘‚«‚İ
+	data_no = 0									#ãƒ‡ãƒ¼ã‚¿ç•ªå·
+	tfile.gets 									#ä¸€è¡Œç›®ã‚’é£›ã°ã™
+	ary = Array( data_no.to_i )					#ãƒ‡ãƒ¼ã‚¿ç·æ•°ã‚’äºˆã‚æ›¸ãè¾¼ã¿
 	wfile.write( ary.pack("i*") )
 	
-	loop{										#ƒRƒ“ƒo[ƒg
+	loop{										#ã‚³ãƒ³ãƒãƒ¼ãƒˆ
 		line = tfile.gets
 		ret = gndcv_conv_line(
 			line, wfile, hfile, ifile, data_no+1, File.basename(heads) )
 		
 		case ret
-		when 1		#ƒGƒ‰[
+		when 1		#ã‚¨ãƒ©ãƒ¼
 			gndcv_error_end( tfile, wfile, hfile, ifile, binname, headname )
 			return 1
-		when 2		#I’[
+		when 2		#çµ‚ç«¯
 			break
-		when 3		#‹ós
+		when 3		#ç©ºè¡Œ
 			next
 		end
 	
@@ -248,9 +248,9 @@ def gndcv_txtfileconv( txtname, idxname )
 	
 	hfile.printf( "};\n#endif" )
 	
-	wfile.pos = 0								#æ“ª‚É–ß‚·
+	wfile.pos = 0								#å…ˆé ­ã«æˆ»ã™
 	ary = Array( data_no.to_i )
-	wfile.write( ary.pack("i*") )				#ƒf[ƒ^‘”‚ğ‘‚«‚İ
+	wfile.write( ary.pack("i*") )				#ãƒ‡ãƒ¼ã‚¿ç·æ•°ã‚’æ›¸ãè¾¼ã¿
 	
 	tfile.close
 	wfile.close

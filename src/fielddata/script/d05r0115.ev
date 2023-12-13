@@ -10,11 +10,11 @@
 	.include	"../../field/scr_climaxdemo.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d05r0115_champ
 _EVENT_DATA		ev_d05r0115_champ_exit
@@ -33,11 +33,11 @@ _EVENT_DATA_END
 //ev_d05r0115_flag_change:
 //	_END
 
-//SPPOKE2‚ð”z’uA31,28
-//CHAMP‚ð”z’u@ŒŠ‚Ì‘O
+//SPPOKE2ã‚’é…ç½®ã€31,28
+//CHAMPã‚’é…ç½®ã€€ç©´ã®å‰
 
 /********************************************************************/
-/*						ƒVƒƒi‹­§ƒCƒxƒ“ƒg							*/
+/*						ã‚·ãƒ­ãƒŠå¼·åˆ¶ã‚¤ãƒ™ãƒ³ãƒˆ							*/
 /********************************************************************/
 ev_d05r0115_champ:
 	_EVENT_START
@@ -46,17 +46,17 @@ ev_d05r0115_champ:
 	_OBJ_ADD		D05R0115_SPPOKE2
 	_OBJ_INVISIBLE	D05R0115_SPPOKE2
 
-	/*ƒVƒƒi“oê*/
+	/*ã‚·ãƒ­ãƒŠç™»å ´*/
 	_SXY_POS_CHANGE	D05R0115_CHAMP,32,34
 	_SXY_DIR_CHANGE	D05R0115_CHAMP,DIR_UP
 	_SXY_MV_CHANGE	D05R0115_CHAMP,MV_UP
 	_FLAG_RESET		FV_D05R0115_CHAMP
 	_OBJ_ADD		D05R0115_CHAMP
 
-	//ƒJƒƒ‰ˆÚ“®
+	//ã‚«ãƒ¡ãƒ©ç§»å‹•
 	_VANISH_DUMMY_OBJ_ADD	30,30
 
-	//ƒ_ƒ~[OBJ‚ð“®‚©‚·
+	//ãƒ€ãƒŸãƒ¼OBJã‚’å‹•ã‹ã™
 	_OBJ_ANIME		SCR_OBJID_DUMMY,anm_d05r0115_dummy_01
 	_OBJ_ANIME_WAIT
 
@@ -68,11 +68,11 @@ ev_d05r0115_champ:
 	_OBJ_ANIME		D05R0115_CHAMP,anm_d05r0115_champ_01
 	_OBJ_ANIME_WAIT
 
-	/*u‚È‚ñ‚Ä‚±‚Æv*/
+	/*ã€Œãªã‚“ã¦ã“ã¨ã€*/
 	_TALK_KEYWAIT	msg_d05r0115_champion_01
 	_TALK_CLOSE
 
-	/*3•C‚ª”j‚ê‚½¢ŠE‚É“Ë“ü*/
+	/*3åŒ¹ãŒç ´ã‚ŒãŸä¸–ç•Œã«çªå…¥*/
 	_CLIMAX_DEMO	CLIMAX_DEMO_GINGA_START,SCWK_ANSWER
 	_TIME_WAIT		30,SCWK_ANSWER
 
@@ -85,27 +85,27 @@ demo_loop2:
 	_OBJ_ANIME		SCR_OBJID_DUMMY,anm_d05r0115_dummy_11
 	_OBJ_ANIME_WAIT
 
-	//ƒJƒƒ‰ˆÚ“®
-	//ƒ_ƒ~[OBJíœ
+	//ã‚«ãƒ¡ãƒ©ç§»å‹•
+	//ãƒ€ãƒŸãƒ¼OBJå‰Šé™¤
 	_VANISH_DUMMY_OBJ_DEL
 
-	/*Œü‚«‡‚¤*/
+	/*å‘ãåˆã†*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d05r0115_player_11
 	_OBJ_ANIME		D05R0115_CHAMP,anm_d05r0115_champ_11
 	_OBJ_ANIME_WAIT
 
-	/*u‚²‚ß‚ñ‚È‚³‚¢v*/
+	/*ã€Œã”ã‚ã‚“ãªã•ã„ã€*/
 	_TALK_KEYWAIT	msg_d05r0115_champion_02
 	_TALK_CLOSE
 
-	/*¶‰E‚ðŒ©“n‚·*/
+	/*å·¦å³ã‚’è¦‹æ¸¡ã™*/
 	_OBJ_ANIME		D05R0115_CHAMP,anm_d05r0115_champ_21
 	_OBJ_ANIME_WAIT
 
-	/*u‚Í‚µ‚ç‚ª‚ä‚ª‚ñ‚Å‚¢‚év*/
+	/*ã€Œã¯ã—ã‚‰ãŒã‚†ãŒã‚“ã§ã„ã‚‹ã€*/
 	_TALK_KEYWAIT	msg_d05r0115_champion_03
 
-	/*ƒgƒoƒŠ‚Ìƒvƒ‹[ƒg‚ðíœ*/
+	/*ãƒˆãƒãƒªã®ãƒ—ãƒ«ãƒ¼ãƒˆã‚’å‰Šé™¤*/
 	_FLAG_SET		FV_D26R0107_GKANBU2
 
 	_JUMP			ev_d05r0115_champ_exit_start
@@ -118,7 +118,7 @@ ev_d05r0115_champ_exit_start:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_d05r0115_champ
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 yes_d05r0115_champ:
 	_TALK_KEYWAIT	msg_d05r0115_champion_05
 	_TALK_CLOSE
@@ -126,23 +126,23 @@ yes_d05r0115_champ:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*“Ë“üƒfƒ‚*/
+	/*çªå…¥ãƒ‡ãƒ¢*/
 	_HAKAI_WARP_SET_PROC
 	_SET_MAP_PROC
 
 	//_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	//_WIPE_FADE_END_CHECK
 
-	/*‚â‚Ô‚ê‚½¢ŠE‚Ö*/
+	/*ã‚„ã¶ã‚ŒãŸä¸–ç•Œã¸*/
 	_GIRATHINA_FORM_UPDATE	1
 	_MAP_CHANGE_NONE_FADE	ZONE_ID_D34R0101, 0, 55, 40, DIR_DOWN
 
-	/*‚±‚ÌŒã‚ªƒCƒxƒ“ƒg‚ÌŽž‚ÆA’Êí‚ÌŽž‚ª‚ ‚é*/
+	/*ã“ã®å¾ŒãŒã‚¤ãƒ™ãƒ³ãƒˆã®æ™‚ã¨ã€é€šå¸¸ã®æ™‚ãŒã‚ã‚‹*/
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_d05r0115_champ:
 	_TALK_KEYWAIT	msg_d05r0115_champion_06
 	_LAST_KEYWAIT
@@ -151,28 +151,28 @@ no_d05r0115_champ:
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	Œü‚«‡‚¤
+//ä¸»äººå…¬	å‘ãåˆã†
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d05r0115_player_11
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒVƒƒi	“oê
+//ã‚·ãƒ­ãƒŠ	ç™»å ´
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d05r0115_champ_01
 	_ANIME_DATA	AC_WALK_U_8F,4
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒVƒƒi	Œü‚«‡‚¤
+//ã‚·ãƒ­ãƒŠ	å‘ãåˆã†
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d05r0115_champ_11
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒVƒƒi	¶‰E‚ðŒ©“n‚·
+//ã‚·ãƒ­ãƒŠ	å·¦å³ã‚’è¦‹æ¸¡ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d05r0115_champ_21
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
@@ -183,21 +183,21 @@ _ANIME_LABEL	anm_d05r0115_champ_21
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ƒ_ƒ~[OBJ	ãA‰º
+//ãƒ€ãƒŸãƒ¼OBJ	ä¸Šã€ä¸‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d05r0115_dummy_01
-	_ANIME_DATA	AC_WALK_R_8F,1			/*‚¸‚ç‚·*/
+	_ANIME_DATA	AC_WALK_R_8F,1			/*ãšã‚‰ã™*/
 	_ANIME_DATA	AC_WALK_U_8F,5
 	_ANIME_DATA	ACMD_END,0
 
 _ANIME_LABEL	anm_d05r0115_dummy_11
 	_ANIME_DATA	AC_WALK_D_8F,5
-	_ANIME_DATA	AC_WALK_L_8F,1			/*‚¸‚ç‚·*/
+	_ANIME_DATA	AC_WALK_L_8F,1			/*ãšã‚‰ã™*/
 	_ANIME_DATA	ACMD_END,0
 
 
 /********************************************************************/
-/*						ƒVƒƒi(‚â‚Ô‚ê‚½¢ŠE‚Ö)						*/
+/*						ã‚·ãƒ­ãƒŠ(ã‚„ã¶ã‚ŒãŸä¸–ç•Œã¸)						*/
 /********************************************************************/
 ev_d05r0115_champ_exit:
 	_TALK_OBJ_START
@@ -209,19 +209,19 @@ ev_d05r0115_champ_exit:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_d05r0115_champ_talk
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 #if 0
 yes_d05r0115_champ_talk:
 	_TALK_KEYWAIT	msg_d05r0115_champion_05
 	_TALK_CLOSE
 
-	/*‚â‚Ô‚ê‚½¢ŠE‚Ö*/
+	/*ã‚„ã¶ã‚ŒãŸä¸–ç•Œã¸*/
 	_GIRATHINA_FORM_UPDATE	1
 	_MAP_CHANGE		ZONE_ID_D34R0101, 0, 55, 40, DIR_DOWN
 	_END
 #endif
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_d05r0115_champ_talk:
 	_TALK_KEYWAIT	msg_d05r0115_champion_06
 	_LAST_KEYWAIT
@@ -231,7 +231,7 @@ no_d05r0115_champ_talk:
 
 
 /********************************************************************/
-/*								Š²•”								*/
+/*								å¹¹éƒ¨								*/
 /********************************************************************/
 ev_d05r0115_gkanbu3:
 	_EASY_OBJ_MSG	msg_d05r0115_gkanbu2_04
@@ -239,7 +239,7 @@ ev_d05r0115_gkanbu3:
 
 
 /********************************************************************/
-/*								Š²•”								*/
+/*								å¹¹éƒ¨								*/
 /********************************************************************/
 ev_d05r0115_gkanbu1:
 	_EASY_OBJ_MSG	msg_d05r0115_gkanbu1_02
@@ -247,7 +247,7 @@ ev_d05r0115_gkanbu1:
 
 
 /********************************************************************/
-/*					ƒMƒ“ƒK’c(ƒƒbƒZ[ƒW’j—‹¤’Ê)					*/
+/*					ã‚®ãƒ³ã‚¬å›£(ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”·å¥³å…±é€š)					*/
 /********************************************************************/
 ev_d05r0115_gingam:
 	_EASY_OBJ_MSG	msg_d05r0115_gingam_04
@@ -255,7 +255,7 @@ ev_d05r0115_gingam:
 
 
 /********************************************************************/
-/*					ƒMƒ“ƒK’c(ƒƒbƒZ[ƒW’j—‹¤’Ê)					*/
+/*					ã‚®ãƒ³ã‚¬å›£(ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”·å¥³å…±é€š)					*/
 /********************************************************************/
 ev_d05r0115_gingaw:
 	_EASY_OBJ_MSG	msg_d05r0115_gingam_04
@@ -263,7 +263,7 @@ ev_d05r0115_gingaw:
 
 
 /********************************************************************/
-/*						ƒfƒBƒAƒ‹ƒK—ô‚¯–Ú							*/
+/*						ãƒ‡ã‚£ã‚¢ãƒ«ã‚¬è£‚ã‘ç›®							*/
 /********************************************************************/
 ev_d05r0115_break1:
 	_EASY_MSG	msg_d05r0115_break1_01
@@ -271,7 +271,7 @@ ev_d05r0115_break1:
 
 
 /********************************************************************/
-/*						ƒpƒ‹ƒLƒA—ô‚¯–Ú								*/
+/*						ãƒ‘ãƒ«ã‚­ã‚¢è£‚ã‘ç›®								*/
 /********************************************************************/
 ev_d05r0115_break2:
 	_EASY_MSG	msg_d05r0115_break2_01

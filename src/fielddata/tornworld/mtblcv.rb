@@ -1,26 +1,26 @@
 ##################################################################
 #	mtblcv.rb
-#	‚â‚Ô‚ê‚½‚¹‚©‚¢@ƒ}ƒbƒvƒf[ƒ^ƒRƒ“ƒo[ƒg
-#	“o˜^‚³‚ê‚½ƒ}ƒbƒvƒf[ƒ^‚ğ˜AŒ‹‚µˆê‚Â‚ÌƒoƒCƒiƒŠƒf[ƒ^‚É•ÏŠ·
-#	maptblcv.rb "ƒ}ƒbƒvƒe[ƒuƒ‹ƒtƒ@ƒCƒ‹–¼"
-#	ŠO•” "exec" "system"
+#	ã‚„ã¶ã‚ŒãŸã›ã‹ã„ã€€ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+#	ç™»éŒ²ã•ã‚ŒãŸãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚’é€£çµã—ä¸€ã¤ã®ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›
+#	maptblcv.rb "ãƒãƒƒãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«å"
+#	å¤–éƒ¨ "exec" "system"
 ##################################################################
 
-#ƒ‰ƒCƒuƒ‰ƒŠ
+#ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 require "tempfile.rb"
 
-#’è”
+#å®šæ•°
 $KCODE = "SJIS"
 
 #=================================================================
-#	ƒ][ƒ“IDŒŸõ
-#	str	ŒŸõ‚·‚éƒ][ƒ“ID•¶š—ñ
-#	hfile	ƒ][ƒ“IDƒwƒbƒ_[ƒtƒ@ƒCƒ‹
-#	return	ƒ][ƒ“ID‚Ì”’l -1=ƒGƒ‰[
+#	ã‚¾ãƒ¼ãƒ³IDæ¤œç´¢
+#	str	æ¤œç´¢ã™ã‚‹ã‚¾ãƒ¼ãƒ³IDæ–‡å­—åˆ—
+#	hfile	ã‚¾ãƒ¼ãƒ³IDãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«
+#	return	ã‚¾ãƒ¼ãƒ³IDã®æ•°å€¤ -1=ã‚¨ãƒ©ãƒ¼
 #=================================================================
 def mtbl_zoneid_get( str, hfile )
 	ary = Array.new
-	hfile.pos = 0							#æ“ªs‚É
+	hfile.pos = 0							#å…ˆé ­è¡Œã«
 	
 	loop{
 		line = hfile.gets
@@ -36,7 +36,7 @@ def mtbl_zoneid_get( str, hfile )
 			zone_id = zone[0].delete( "\(\)" )
 			
 			if( zone_id == @nil )
-				printf( "•s³‚Èƒ][ƒ“ID id=%s\n", str )
+				printf( "ä¸æ­£ãªã‚¾ãƒ¼ãƒ³ID id=%s\n", str )
 				return -1
 			end
 			
@@ -48,13 +48,13 @@ def mtbl_zoneid_get( str, hfile )
 end
 
 #=================================================================
-#	ƒ][ƒ“ID->ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXˆê——ƒtƒ@ƒCƒ‹A
-#	ƒ][ƒ“”z’uˆÊ’uƒe[ƒuƒ‹‚ğì¬
+#	ã‚¾ãƒ¼ãƒ³ID->ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ä¸€è¦§ãƒ•ã‚¡ã‚¤ãƒ«ã€
+#	ã‚¾ãƒ¼ãƒ³é…ç½®ä½ç½®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆ
 #
-#	ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXˆê——ƒtƒ@ƒCƒ‹\‘¢
-#	æ“ª4ƒoƒCƒg@ƒCƒ“ƒfƒbƒNƒX‘”
-#	ˆÈ‰º‘”•ª[zone(u32)],[arcive index(u16)][x(s16)][y(s16][z(s16)]‚Æ‘±‚­
-#	0-3 [ƒCƒ“ƒfƒbƒNƒX‘”]
+#	ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ä¸€è¦§ãƒ•ã‚¡ã‚¤ãƒ«æ§‹é€ 
+#	å…ˆé ­4ãƒã‚¤ãƒˆã€€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç·æ•°
+#	ä»¥ä¸‹ç·æ•°åˆ†[zone(u32)],[arcive index(u16)][x(s16)][y(s16][z(s16)]ã¨ç¶šã
+#	0-3 [ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç·æ•°]
 #	4--[ZONE ID][ARC IDX][x][y][z]...
 #=================================================================
 def mtbl_posfile_create( wfile, tfile, hfile )
@@ -65,7 +65,7 @@ def mtbl_posfile_create( wfile, tfile, hfile )
 	ary = Array( count.to_i )
 	wfile.write( ary.pack("i*") )
 	
-	tfile.gets 									#ˆês–Ú‚ğ”ò‚Î‚·
+	tfile.gets 									#ä¸€è¡Œç›®ã‚’é£›ã°ã™
 	
 	loop{
 		line = tfile.gets
@@ -118,21 +118,21 @@ def mtbl_posfile_create( wfile, tfile, hfile )
 end
 
 #=================================================================
-#	ƒfƒoƒbƒOQÆ—pƒ][ƒ“”z’uˆÊ’uƒe[ƒuƒ‹‚Ìì¬
-#	#define DEBUG_DATA_FIELDTORNWORLDZONEBLOCKMAX ([‘”])
+#	ãƒ‡ãƒãƒƒã‚°å‚ç…§ç”¨ã‚¾ãƒ¼ãƒ³é…ç½®ä½ç½®ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
+#	#define DEBUG_DATA_FIELDTORNWORLDZONEBLOCKMAX ([ç·æ•°])
 #	static const int DEBUG_DATA_FieldTornWorldZoneBlockPosTable[][4] =
 #	{
 #		{ zone id, x, y, z },
 #		{ zone id, x, y, z },
 #		{ zone id, x, y, z },
 #		....
-#		{ ZONE_ID_MAX, 0, 0, 0},	//I’[
+#		{ ZONE_ID_MAX, 0, 0, 0},	//çµ‚ç«¯
 #	},
 #=================================================================
 def mtbl_debugfile_create( tfile, hfile, filename )
 	save_pos = tfile.pos
 	tfile.pos = 0
-	tfile.gets 									#ˆês–Ú‚ğ”ò‚Î‚·
+	tfile.gets 									#ä¸€è¡Œç›®ã‚’é£›ã°ã™
 	
 	d_file = File.open( filename, "w" )
 	count = 0
@@ -149,7 +149,7 @@ def mtbl_debugfile_create( tfile, hfile, filename )
 	}
 	
 	d_file.printf( "#ifndef DEBUG_DATA_FIELD_TORNWORLD_ZONE_BLOCK_MAX\n" )
-	d_file.printf( "/*”j‚ê‚½¢ŠE ƒfƒoƒbƒOQÆ—pƒ][ƒ“ƒuƒƒbƒN”z’uÀ•W*/\n" );
+	d_file.printf( "/*ç ´ã‚ŒãŸä¸–ç•Œ ãƒ‡ãƒãƒƒã‚°å‚ç…§ç”¨ã‚¾ãƒ¼ãƒ³ãƒ–ãƒ­ãƒƒã‚¯é…ç½®åº§æ¨™*/\n" );
 	d_file.printf( "/*{ [ZoneID],[X],[Y],[Z] },*/\n" );
 	
 	d_file.printf(
@@ -160,7 +160,7 @@ def mtbl_debugfile_create( tfile, hfile, filename )
 		"[DEBUG_DATA_FIELD_TORNWORLD_ZONE_BLOCK_MAX][4] =\n{\n" );
 	
 	tfile.pos = 0
-	tfile.gets 									#ˆês–Ú‚ğ”ò‚Î‚·
+	tfile.gets 									#ä¸€è¡Œç›®ã‚’é£›ã°ã™
 	
 	loop{
 		line = tfile.gets
@@ -183,21 +183,21 @@ def mtbl_debugfile_create( tfile, hfile, filename )
 end
 
 #=================================================================
-#	‘¼ƒ\[ƒXQÆ—pƒ][ƒ“”z’uˆÊ’uƒe[ƒuƒ‹‚Ìì¬
-#	#define DATA_FIELDTORNWORLDZONEBLOCKMAX ([‘”])
+#	ä»–ã‚½ãƒ¼ã‚¹å‚ç…§ç”¨ã‚¾ãƒ¼ãƒ³é…ç½®ä½ç½®ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
+#	#define DATA_FIELDTORNWORLDZONEBLOCKMAX ([ç·æ•°])
 #	static const int DATA_FieldTornWorldZoneBlockPosTable[][4] =
 #	{
 #		{ zone id, x, y, z },
 #		{ zone id, x, y, z },
 #		{ zone id, x, y, z },
 #		....
-#		{ ZONE_ID_MAX, 0, 0, 0},	//I’[
+#		{ ZONE_ID_MAX, 0, 0, 0},	//çµ‚ç«¯
 #	},
 #=================================================================
 def mtbl_etcsrc_readfile_create( tfile, hfile, filename )
 	save_pos = tfile.pos
 	tfile.pos = 0
-	tfile.gets 									#ˆês–Ú‚ğ”ò‚Î‚·
+	tfile.gets 									#ä¸€è¡Œç›®ã‚’é£›ã°ã™
 	
 	d_file = File.open( filename, "w" )
 	count = 0
@@ -213,7 +213,7 @@ def mtbl_etcsrc_readfile_create( tfile, hfile, filename )
 		count = count + 1
 	}
 	
-	d_file.printf( "/*”j‚ê‚½¢ŠE ƒ][ƒ“•ÊƒuƒƒbƒN”z’uæ“ªÀ•W*/\n" );
+	d_file.printf( "/*ç ´ã‚ŒãŸä¸–ç•Œ ã‚¾ãƒ¼ãƒ³åˆ¥ãƒ–ãƒ­ãƒƒã‚¯é…ç½®å…ˆé ­åº§æ¨™*/\n" );
 	d_file.printf( "/*{ [ZoneID],[X],[Y],[Z] },*/\n" );
 	
 	d_file.printf(
@@ -224,7 +224,7 @@ def mtbl_etcsrc_readfile_create( tfile, hfile, filename )
 		"[DATA_FIELD_TORNWORLD_ZONE_BLOCK_MAX][4] =\n{\n" );
 	
 	tfile.pos = 0
-	tfile.gets 									#ˆês–Ú‚ğ”ò‚Î‚·
+	tfile.gets 									#ä¸€è¡Œç›®ã‚’é£›ã°ã™
 	
 	loop{
 		line = tfile.gets
@@ -246,22 +246,22 @@ def mtbl_etcsrc_readfile_create( tfile, hfile, filename )
 end
 
 #=================================================================
-#	ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹ì¬
-#	no			‘‚«‚İ”Ô†
-#	wpath		‘‚«‚Şƒtƒ@ƒCƒ‹–¼
-#	gndname		’nŒ`ƒtƒ@ƒCƒ‹“Çæ
-#	evjmppath	ƒWƒƒƒ“ƒvƒtƒ@ƒCƒ‹“Çæ
-#	cmapath		ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒtƒ@ƒCƒ‹“Çæ
-#	fstonepath	”ò‚ÑÎƒtƒ@ƒCƒ‹“Çæ
-#	return		0=³íI—¹ 1=ˆÙíI—¹
+#	ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ
+#	no			æ›¸ãè¾¼ã¿ç•ªå·
+#	wpath		æ›¸ãè¾¼ã‚€ãƒ•ã‚¡ã‚¤ãƒ«å
+#	gndname		åœ°å½¢ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼å…ˆ
+#	evjmppath	ã‚¸ãƒ£ãƒ³ãƒ—ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼å…ˆ
+#	cmapath		ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼å…ˆ
+#	fstonepath	é£›ã³çŸ³ãƒ•ã‚¡ã‚¤ãƒ«èª­è¾¼å…ˆ
+#	return		0=æ­£å¸¸çµ‚äº† 1=ç•°å¸¸çµ‚äº†
 #	
-#	ƒoƒCƒiƒŠ\‘¢
-#	0-3		ƒoƒCƒiƒŠ”Ô†
-#	4-7		’nŒ`ƒf[ƒ^ƒTƒCƒY(gnd)
-#	8-11	ƒWƒƒƒ“ƒvƒCƒxƒ“ƒgƒf[ƒ^ƒTƒCƒY(evj)
-#	12-15	ƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^ƒTƒCƒY(cma)
-#	16-19	”ò‚ÑÎƒf[ƒ^ƒTƒCƒY(fstone)
-#	ˆÈ‰ºŠeƒTƒCƒY•ª‚Ì’nŒ`ƒf[ƒ^AƒWƒƒƒ“ƒvƒCƒxƒ“ƒgƒf[ƒ^AƒJƒƒ‰ƒAƒNƒVƒ‡ƒ“ƒf[ƒ^A”ò‚ÑÎƒf[ƒ^‚Æ‘±‚­
+#	ãƒã‚¤ãƒŠãƒªæ§‹é€ 
+#	0-3		ãƒã‚¤ãƒŠãƒªç•ªå·
+#	4-7		åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º(gnd)
+#	8-11	ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º(evj)
+#	12-15	ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º(cma)
+#	16-19	é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º(fstone)
+#	ä»¥ä¸‹å„ã‚µã‚¤ã‚ºåˆ†ã®åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã€ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã€ã‚«ãƒ¡ãƒ©ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã€é£›ã³çŸ³ãƒ‡ãƒ¼ã‚¿ã¨ç¶šã
 #
 #=================================================================
 def mtbl_binfile_create( no, wpath, gndpath, ejmppath, cmapath, fstonepath )
@@ -297,21 +297,21 @@ def mtbl_binfile_create( no, wpath, gndpath, ejmppath, cmapath, fstonepath )
 	
 	
 	num = Array( no.to_i )
-	wfile.write( num.pack("i*") )				#”Ô†‘‚«o‚µ
+	wfile.write( num.pack("i*") )				#ç•ªå·æ›¸ãå‡ºã—
 	
 	size = 0									#gnd size
 	if( gndpath != @nil )
 		size = gndfile.stat.size
 	end
 	ary = Array( size.to_i )
-	wfile.write( ary.pack("i*") )				#evjƒf[ƒ^ˆÊ’u‚Æ‚È‚é
+	wfile.write( ary.pack("i*") )				#evjãƒ‡ãƒ¼ã‚¿ä½ç½®ã¨ãªã‚‹
 	
 	size = 0
 	if( ejmppath != @nil )						#evj size
 		size = ejmpfile.stat.size
 	end
 	ary = Array( size.to_i )
-	wfile.write( ary.pack("i*") )				#cmaƒf[ƒ^ˆÊ’u
+	wfile.write( ary.pack("i*") )				#cmaãƒ‡ãƒ¼ã‚¿ä½ç½®
 	
 	size = 0
 	if( cmapath != @nil )						#cma size
@@ -349,10 +349,10 @@ def mtbl_binfile_create( no, wpath, gndpath, ejmppath, cmapath, fstonepath )
 end
 
 #=================================================================
-#	ƒ}ƒbƒvƒe[ƒuƒ‹ƒRƒ“ƒo[ƒg
-#	argv[0] ƒ}ƒbƒvƒe[ƒuƒ‹.xls
-#	argv[1] ƒf[ƒ^ƒŠƒXƒg‘‚«‚İƒtƒ@ƒCƒ‹–¼
-#	argv[2] ƒ][ƒ“IDƒwƒbƒ_[ƒtƒ@ƒCƒ‹–¼ 
+#	ãƒãƒƒãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+#	argv[0] ãƒãƒƒãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«.xls
+#	argv[1] ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆæ›¸ãè¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«å
+#	argv[2] ã‚¾ãƒ¼ãƒ³IDãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«å 
 #=================================================================
 convert = "../../../convert/exceltool/excelcommaconv"
 
@@ -380,10 +380,10 @@ xtxtname = xlsname.sub( /\.xls/, "\.txt" )		#map xls -> txt
 system( convert, xlsname )
 xtxtfile = File.open( xtxtname, "r" )
 
-#MAPTABLE_LIST‘‚«‚İŠJn
+#MAPTABLE_LISTæ›¸ãè¾¼ã¿é–‹å§‹
 listfile.printf( "MAPTABLE_LIST =" )
 
-#ƒe[ƒuƒ‹ƒCƒ“ƒfƒbƒNƒXƒtƒ@ƒCƒ‹ì¬
+#ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ
 idxname = File.basename( xlsname )
 idxname = idxname.sub( /\.xls/, "_idx" )
 printf( "mtblcv create index file %s\n", idxname )
@@ -395,7 +395,7 @@ listfile.printf( "\t%s", idxname )
 ret = mtbl_posfile_create( idxfile, xtxtfile, zonefile )
 
 if( ret == 1 )
-	printf( "ƒ}ƒbƒvƒe[ƒuƒ‹ƒCƒ“ƒfƒbƒNƒX¶¬ƒGƒ‰[\n" )
+	printf( "ãƒãƒƒãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç”Ÿæˆã‚¨ãƒ©ãƒ¼\n" )
 	listfile.close
 	zonefile.close
 	xtxtfile.close
@@ -406,10 +406,10 @@ if( ret == 1 )
 	exit 1
 end
 
-#ˆêsƒRƒ“ƒo[ƒg
+#ä¸€è¡Œã‚³ãƒ³ãƒãƒ¼ãƒˆ
 count = 0
 xtxtfile.pos = 0
-xtxtfile.gets		#ˆês–Ú‚ğ”ò‚Î‚·
+xtxtfile.gets		#ä¸€è¡Œç›®ã‚’é£›ã°ã™
 
 loop{
 	line = xtxtfile.gets

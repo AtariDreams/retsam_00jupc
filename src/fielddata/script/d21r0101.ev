@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_d21r0101evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d21r0101_flag_change
 _EVENT_DATA		ev_d21r0101_seven2
@@ -26,30 +26,30 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d21r0101_flag_change:
-	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D21R0101	//“ž’…
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D21R0101	//åˆ°ç€
 
-	/*‚TlOƒCƒxƒ“ƒg‚ðƒNƒŠƒA‚µ‚Ä‚¢‚È‚©‚Á‚½‚çƒCƒxƒ“ƒg‚ªÄ“x‹N‚«‚é‚æ‚¤‚É‚·‚éI*/
+	/*ï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚¯ãƒªã‚¢ã—ã¦ã„ãªã‹ã£ãŸã‚‰ã‚¤ãƒ™ãƒ³ãƒˆãŒå†åº¦èµ·ãã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼*/
 	_IF_FLAGOFF_JUMP		FE_SEVEN2_CLEAR,ev_d21r0101_flag_change_retry
 	_END
 
-/*‚TlOƒCƒxƒ“ƒg‚ðƒNƒŠƒA‚µ‚Ä‚¢‚È‚©‚Á‚½‚çƒCƒxƒ“ƒg‚ªÄ“x‹N‚«‚é‚æ‚¤‚É‚·‚éI*/
+/*ï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆã‚’ã‚¯ãƒªã‚¢ã—ã¦ã„ãªã‹ã£ãŸã‚‰ã‚¤ãƒ™ãƒ³ãƒˆãŒå†åº¦èµ·ãã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼*/
 ev_d21r0101_flag_change_retry:
 	_LDVAL			WK_SCENE_D21R0101,0
 	_END
 
 
 /********************************************************************/
-/*							’‡ŠÔ‚É‚È‚é(‰ï˜b)						*/
+/*							ä»²é–“ã«ãªã‚‹(ä¼šè©±)						*/
 /********************************************************************/
 ev_d21r0101_seven2:
 	_TALK_OBJ_START
 
-	_BICYCLE_REQ		0	/*‹­§“I‚ÉŽ©“]ŽÔ‚©‚ç~‚è‚é‚æ‚¤‚É‚·‚é*/
+	_BICYCLE_REQ		0	/*å¼·åˆ¶çš„ã«è‡ªè»¢è»Šã‹ã‚‰é™ã‚Šã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 
-	/*˜A‚ê•à‚«‰ï˜b‚Ö*/
+	/*é€£ã‚Œæ­©ãä¼šè©±ã¸*/
 	_IFVAL_JUMP		WK_SCENE_D21R0101,GE,1,ev_d21r0101_seven2_pair_talk
 
-	/*‰ï˜b‚µ‚Ä‚¢‚é‚©‚Å•ªŠò*/
+	/*ä¼šè©±ã—ã¦ã„ã‚‹ã‹ã§åˆ†å²*/
 	_PLAYER_NAME		0
 	_IF_FLAGOFF_CALL	FE_D21R0101_SEVEN2_TALK,ev_d21r0101_seven2_01_talk_off
 	_IF_FLAGON_CALL		FE_D21R0101_SEVEN2_TALK,ev_d21r0101_seven2_01_talk_on
@@ -66,7 +66,7 @@ ev_d21r0101_seven2:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	/*˜A‚ê•à‚«ŠJŽn*/
+	/*é€£ã‚Œæ­©ãé–‹å§‹*/
 	_LDVAL			SYS_WORK_PAIR_TRAINER_ID,BTFIVE5_01
 	_SYS_FLAG_PAIR_SET
 	_MOVE_CODE_CHANGE	D21R0101_SEVEN5,MV_PAIR
@@ -82,7 +82,7 @@ ev_d21r0101_seven2_01_talk_on:
 	_TALK_KEYWAIT	msg_d21r0101_seven2_02
 	_RET
 
-/*˜A‚ê•à‚«‰ï˜b‚Ö*/
+/*é€£ã‚Œæ­©ãä¼šè©±ã¸*/
 ev_d21r0101_seven2_pair_talk:
 
 	_IFVAL_JUMP		WK_SCENE_PAIR_D21R0101_SEVEN2,GE,2,ev_pair_d21r0101_seven2_02
@@ -97,7 +97,7 @@ ev_pair_d21r0101_seven2_01:
 	_JUMP			ev_pair_d21r0101_seven2_common
 
 ev_pair_d21r0101_seven2_02:
-	//ÅŒã‚È‚Ì‚Åƒ[ƒN‚ðƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‚È‚¢I
+	//æœ€å¾Œãªã®ã§ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ãªã„ï¼
 	_PLAYER_NAME	0
 	_TALKMSG		msg_d21r0101_seven2_10
 	_LAST_KEYWAIT
@@ -105,7 +105,7 @@ ev_pair_d21r0101_seven2_02:
 	_TALK_OBJ_END
 	_END
 
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 ev_pair_d21r0101_seven2_common:
 	_ADD_WK			WK_SCENE_PAIR_D21R0101_SEVEN2,1
 	_LAST_KEYWAIT
@@ -115,28 +115,28 @@ ev_pair_d21r0101_seven2_common:
 
 
 /********************************************************************/
-/*							•Ê‚ê‚é									*/
+/*							åˆ¥ã‚Œã‚‹									*/
 /********************************************************************/
 ev_d21r0101_seven2_03:
 	_END
 
 
 /********************************************************************/
-/*							ƒS[ƒ‹									*/
+/*							ã‚´ãƒ¼ãƒ«									*/
 /********************************************************************/
 ev_d21r0101_seven2_04:
 	_EVENT_START
 
-	/*˜A‚ê•à‚«I—¹*/
+	/*é€£ã‚Œæ­©ãçµ‚äº†*/
 	_SYS_FLAG_PAIR_RESET
 	_MOVE_CODE_CHANGE	D21R0101_SEVEN5,MV_LEFT
 
-	/*ŽålŒö‚Ì•ûŒüŽæ“¾*/
+	/*ä¸»äººå…¬ã®æ–¹å‘å–å¾—*/
 	_PLAYER_DIR_GET	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_LEFT,pos_d21r0101_seven2_dir_left
 	_JUMP			pos_d21r0101_seven2_dir_down
 
-/*oŒû‚Ö‹ì‚¯o‚·*/
+/*å‡ºå£ã¸é§†ã‘å‡ºã™*/
 pos_d21r0101_seven2_dir_left:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d21r0101_player_41
 	_OBJ_ANIME		D21R0101_SEVEN5,anm_d21r0101_seven2_45
@@ -149,18 +149,18 @@ pos_d21r0101_seven2_dir_down:
 	_OBJ_ANIME_WAIT
 	_JUMP			common_d21r0101_seven2_41
 
-/*‹¤’Êˆ—*/
+/*å…±é€šå‡¦ç†*/
 common_d21r0101_seven2_41:
 	_PLAYER_NAME	0
 	_TALK_KEYWAIT	msg_d21r0101_seven2_04
 	_TALK_CLOSE
 
-	/*ŽålŒö‚Ì•ûŒüŽæ“¾*/
+	/*ä¸»äººå…¬ã®æ–¹å‘å–å¾—*/
 	_PLAYER_DIR_GET	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_RIGHT,pos_d21r0101_seven2_dir_right
 	_JUMP			pos_d21r0101_seven2_dir_up
 
-/*‹Ž‚Á‚Ä‚¢‚­*/
+/*åŽ»ã£ã¦ã„ã*/
 pos_d21r0101_seven2_dir_right:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d21r0101_player_51
 	_OBJ_ANIME		D21R0101_SEVEN5,anm_d21r0101_seven2_51
@@ -176,7 +176,7 @@ pos_d21r0101_seven2_dir_up:
 common_d21r0101_seven2_51:
 	_OBJ_DEL		D21R0101_SEVEN5
 
-	/*‚TlOƒCƒxƒ“ƒgƒNƒŠƒA*/
+	/*ï¼•äººè¡†ã‚¤ãƒ™ãƒ³ãƒˆã‚¯ãƒªã‚¢*/
 	_FLAG_SET		FE_SEVEN2_CLEAR
 
 	_LDVAL			WK_SCENE_D21R0101,2
@@ -184,7 +184,7 @@ common_d21r0101_seven2_51:
 	_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	Œü‚«‡‚¤
+//ä¸»äººå…¬	å‘ãåˆã†
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d21r0101_player_41
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
@@ -195,7 +195,7 @@ _ANIME_LABEL	anm_d21r0101_player_42
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	Œ©‘—‚é
+//ä¸»äººå…¬	è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d21r0101_player_51
 	_ANIME_DATA	AC_WALK_U_8F,1
@@ -208,7 +208,7 @@ _ANIME_LABEL	anm_d21r0101_player_52
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚TlO	‹ì‚¯o‚·
+//ï¼•äººè¡†	é§†ã‘å‡ºã™
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d21r0101_seven2_41
 	_ANIME_DATA	AC_WAIT_8F,5
@@ -222,7 +222,7 @@ _ANIME_LABEL	anm_d21r0101_seven2_42
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚TlO	I
+//ï¼•äººè¡†	ï¼
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d21r0101_seven2_45
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
@@ -235,7 +235,7 @@ _ANIME_LABEL	anm_d21r0101_seven2_46
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚TlO	‹Ž‚Á‚Ä‚¢‚­
+//ï¼•äººè¡†	åŽ»ã£ã¦ã„ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d21r0101_seven2_51
 	_ANIME_DATA	AC_WAIT_8F,3

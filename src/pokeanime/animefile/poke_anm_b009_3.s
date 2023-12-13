@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	poke_anm_b009_3.s
- * @brief	ŽOŠpˆÚ“®
+ * @brief	ä¸‰è§’ç§»å‹•
  * @author	
  * @date	
  *
@@ -18,40 +18,40 @@
 // =============================================================================
 //
 //
-//	”w–Ê	ŽOŠpˆÚ“®
+//	èƒŒé¢	ä¸‰è§’ç§»å‹•
 //
 //
 // =============================================================================
 PAST_ANIME_B009_3:
-	//6‰ñ‚Ìˆ—‚Åx,y‚ð+12“®‚©‚·
+	//6å›žã®å‡¦ç†ã§x,yã‚’+12å‹•ã‹ã™
 	CALL_MF_LINE APPLY_SET,0,TARGET_DX,2,0,6
 	CALL_MF_LINE APPLY_SET,0,TARGET_DY,2,0,6
 	HOLD_CMD
 
-	//ƒXƒvƒ‰ƒCƒgˆÊ’u‚ðx=12,y=12‚ÉÝ’è dx,dy‚ð0‚ÉÝ’è
+	//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆä½ç½®ã‚’x=12,y=12ã«è¨­å®š dx,dyã‚’0ã«è¨­å®š
 	SET_ADD_PARAM		PARAM_X,USE_VAL,12,PARAM_SET
 	SET_ADD_PARAM		PARAM_Y,USE_VAL,12,PARAM_SET
 	SET_ADD_PARAM		PARAM_DX,USE_VAL,0,PARAM_SET
 	SET_ADD_PARAM		PARAM_DY,USE_VAL,0,PARAM_SET
 	APPLY_TRANS
 
-	//6‰ñ‚Ìˆ—‚Åx‚ð-24“®‚©‚·
+	//6å›žã®å‡¦ç†ã§xã‚’-24å‹•ã‹ã™
 	CALL_MF_LINE APPLY_SET,0,TARGET_DX,-4,0,6
 	HOLD_CMD
 
-	//ƒXƒvƒ‰ƒCƒgˆÊ’u‚ðx=-12,y=12‚ÉÝ’è dx,dy‚ð0‚ÉÝ’è
+	//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆä½ç½®ã‚’x=-12,y=12ã«è¨­å®š dx,dyã‚’0ã«è¨­å®š
 	SET_ADD_PARAM		PARAM_X,USE_VAL,-12,PARAM_SET
 	SET_ADD_PARAM		PARAM_Y,USE_VAL,12,PARAM_SET
 	SET_ADD_PARAM		PARAM_DX,USE_VAL,0,PARAM_SET
 	SET_ADD_PARAM		PARAM_DY,USE_VAL,0,PARAM_SET
 	APPLY_TRANS
 
-	//6‰ñ‚Ìˆ—‚Åx‚ð+12,y‚ð-12“®‚©‚·
+	//6å›žã®å‡¦ç†ã§xã‚’+12,yã‚’-12å‹•ã‹ã™
 	CALL_MF_LINE APPLY_SET,0,TARGET_DX,2,0,6
 	CALL_MF_LINE APPLY_SET,0,TARGET_DY,-2,0,6
 	HOLD_CMD
 
-	//ƒXƒvƒ‰ƒCƒgˆÊ’u‚ðx=0,y=0‚ÉÝ’è dx,dy‚ð0‚ÉÝ’è
+	//ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆä½ç½®ã‚’x=0,y=0ã«è¨­å®š dx,dyã‚’0ã«è¨­å®š
 	SET_ADD_PARAM		PARAM_X,USE_VAL,0,PARAM_SET
 	SET_ADD_PARAM		PARAM_Y,USE_VAL,0,PARAM_SET
 	SET_ADD_PARAM		PARAM_DX,USE_VAL,0,PARAM_SET

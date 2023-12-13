@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	syoujyou.c
- * @brief	•\²ói}ŠÓƒRƒ“ƒvƒŠ[ƒgj
+ * @brief	è¡¨å½°çŠ¶ï¼ˆå›³é‘‘ã‚³ãƒ³ãƒ—ãƒªãƒ¼ãƒˆï¼‰
  * @author	
  * @date	
  */
@@ -36,9 +36,9 @@
 //
 //================================================================
 //----------------------------------
-//’è”éŒ¾
+//å®šæ•°å®£è¨€
 //----------------------------------
-// ‚o‚q‚n‚bƒƒCƒ“ƒV[ƒPƒ“ƒX
+// ï¼°ï¼²ï¼¯ï¼£ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
 	SYOUJYOU_SEQ_INIT = 0,
 	SYOUJYOU_SEQ_DISPON,
@@ -49,9 +49,9 @@ enum {
 };
 
 //----------------------------------
-//Œ^éŒ¾
+//åž‹å®£è¨€
 //----------------------------------
-///	§Œä—pƒ[ƒN\‘¢‘Ì
+///	åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct SYOUJYOU_WORK_tag
 {
 	int					heapID; 
@@ -59,25 +59,25 @@ typedef struct SYOUJYOU_WORK_tag
 	SAVEDATA*			savedata;
 	MYSTATUS*			my;
 
-	//‚a‚fƒVƒXƒeƒ€ŠÖ˜A
+	//ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ é–¢é€£
 	GF_BGL_INI*			bgl;
 	GF_BGL_BMPWIN		msgwin_m;
 	GF_BGL_BMPWIN		msgwin_s;
 	MSGDATA_MANAGER*	msgman;
 	WORDSET*			wordset;
 
-	//ƒXƒNƒ[ƒ‹
+	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 	s16					scroll;
 	int					wait;
 }SYOUJYOU_WORK;
 
 //----------------------------------
-//ŠO•”ŠÖ”’è‹`
+//å¤–éƒ¨é–¢æ•°å®šç¾©
 //----------------------------------
 extern void	Main_SetNextProc(FSOverlayID ov_id, const PROC_DATA * proc_data);
 
 //----------------------------------
-//ŠÖ”éŒ¾
+//é–¢æ•°å®£è¨€
 //----------------------------------
 PROC_RESULT Syoujyou_Init( PROC * proc, int * seq );
 PROC_RESULT Syoujyou_Main( PROC * proc, int * seq );
@@ -96,7 +96,7 @@ static void Syoujyou_GraphicLoad( SYOUJYOU_WORK* wk );
 static void Syoujyou_MsgPrint( SYOUJYOU_WORK* wk );
 
 //----------------------------------
-//ƒ}ƒNƒéŒ¾
+//ãƒžã‚¯ãƒ­å®£è¨€
 //----------------------------------
 #define KEYTRG( pattern )	( ( sys.trg & ( pattern ) ) == ( pattern ) )
 #define KEYCNT( pattern )	( ( sys.cont & ( pattern ) ) == ( pattern ) )
@@ -119,7 +119,7 @@ static void Syoujyou_MsgPrint( SYOUJYOU_WORK* wk );
 	FRAME_OFF( GF_BGL_FRAME3_S )	\
 }
 
-//‚a‚fƒRƒ“ƒgƒ[ƒ‹’è”
+//ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å®šæ•°
 #define SYOUJYOU_TEXT_M_FRAME	(GF_BGL_FRAME0_M)
 #define SYOUJYOU_SYOU_M_FRAME	(GF_BGL_FRAME1_M)
 #define SYOUJYOU_BACK_M_FRAME	(GF_BGL_FRAME3_M)
@@ -130,7 +130,7 @@ static void Syoujyou_MsgPrint( SYOUJYOU_WORK* wk );
 
 //=================================================================================================
 //
-// ‚o‚q‚n‚b’è‹`ƒe[ƒuƒ‹
+// ï¼°ï¼²ï¼¯ï¼£å®šç¾©ãƒ†ãƒ¼ãƒ–ãƒ«
 //
 //=================================================================================================
 const PROC_DATA SyoujyouProcData = {
@@ -142,7 +142,7 @@ const PROC_DATA SyoujyouProcData = {
 
 //================================================================
 //----------------------------------
-//‚o‚q‚n‚b‰Šú‰»
+//ï¼°ï¼²ï¼¯ï¼£åˆæœŸåŒ–
 //----------------------------------
 PROC_RESULT Syoujyou_Init( PROC* proc, int* seq )
 {
@@ -166,8 +166,8 @@ PROC_RESULT Syoujyou_Init( PROC* proc, int* seq )
 	WIPE_SetBrightness( WIPE_DISP_MAIN,WIPE_FADE_BLACK );
 	WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_BLACK );
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrSet( NULL,NULL );		// HBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrSet( NULL,NULL );		// HBlankã‚»ãƒƒãƒˆ
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -185,7 +185,7 @@ PROC_RESULT Syoujyou_Init( PROC* proc, int* seq )
 }
 
 //----------------------------------
-//‚o‚q‚n‚bƒƒCƒ“
+//ï¼°ï¼²ï¼¯ï¼£ãƒ¡ã‚¤ãƒ³
 //----------------------------------
 PROC_RESULT Syoujyou_Main( PROC* proc, int* seq )
 {
@@ -193,7 +193,7 @@ PROC_RESULT Syoujyou_Main( PROC* proc, int* seq )
 	PROC_RESULT result = PROC_RES_CONTINUE;
 
 	switch( *seq ){
-	// ‰æ–Ê‰Šú‰»
+	// ç”»é¢åˆæœŸåŒ–
 	case SYOUJYOU_SEQ_INIT:
 
 		Syoujyou_ScrollInit( wk );
@@ -210,7 +210,7 @@ PROC_RESULT Syoujyou_Main( PROC* proc, int* seq )
 		*seq = SYOUJYOU_SEQ_DISPON;
 		break;
 
-	// ƒfƒBƒXƒvƒŒƒC”½‰f
+	// ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤åæ˜ 
 	case SYOUJYOU_SEQ_DISPON:
 		if(WIPE_SYS_EndCheck() == TRUE){
 			wk->wait = 0;
@@ -218,7 +218,7 @@ PROC_RESULT Syoujyou_Main( PROC* proc, int* seq )
 		}
 		break;
 	
-	// ŠJŽnƒEƒFƒCƒg
+	// é–‹å§‹ã‚¦ã‚§ã‚¤ãƒˆ
 	case SYOUJYOU_SEQ_WAIT:
 		if( wk->wait < 60 ){
 			wk->wait++;
@@ -227,7 +227,7 @@ PROC_RESULT Syoujyou_Main( PROC* proc, int* seq )
 		}
 		break;
 	
-	// ŠJŽnƒEƒFƒCƒg
+	// é–‹å§‹ã‚¦ã‚§ã‚¤ãƒˆ
 	case SYOUJYOU_SEQ_SCROLL:
 		if( ( wk->scroll > -8*24 )){
 			wk->scroll -= 4;
@@ -239,7 +239,7 @@ PROC_RESULT Syoujyou_Main( PROC* proc, int* seq )
 		}
 		break;
 	
-	// ƒƒCƒ“ƒ‹[ƒv
+	// ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
 	case SYOUJYOU_SEQ_MAIN:
 		if( (KEYTRG( PAD_BUTTON_A ))||(KEYTRG( PAD_BUTTON_B ))||( sys.tp_trg ) ){
 			FADE( WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, wk->heapID )
@@ -257,7 +257,7 @@ PROC_RESULT Syoujyou_Main( PROC* proc, int* seq )
 #endif
 		break;
 
-	// I—¹
+	// çµ‚äº†
 	case SYOUJYOU_SEQ_EXIT:
 		if(WIPE_SYS_EndCheck() == TRUE){
 			result = PROC_RES_FINISH;
@@ -268,7 +268,7 @@ PROC_RESULT Syoujyou_Main( PROC* proc, int* seq )
 }
 
 //----------------------------------
-//‚o‚q‚n‚bI—¹
+//ï¼°ï¼²ï¼¯ï¼£çµ‚äº†
 //----------------------------------
 PROC_RESULT Syoujyou_Exit( PROC* proc, int* seq )
 {
@@ -287,7 +287,7 @@ PROC_RESULT Syoujyou_Exit( PROC* proc, int* seq )
 
 
 //----------------------------------
-//‚u‚a‚k‚`‚m‚jŠÖ”
+//ï¼¶ï¼¢ï¼¬ï¼¡ï¼®ï¼«é–¢æ•°
 //----------------------------------
 static void Syoujyou_VBlank( void* work )
 {
@@ -298,14 +298,14 @@ static void Syoujyou_VBlank( void* work )
 
 
 //----------------------------------
-//‚u‚q‚`‚lÝ’è
+//ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
 //----------------------------------
 #define PALSIZE			( 2*16 )
 
-// ƒpƒŒƒbƒgÝ’è(ƒƒCƒ“ƒTƒu‰æ–Ê‹¤’Ê)
-#define SYOUJYOU_BACKPLT_NUM	( 0 )			//”wŒi
-#define SYOUJYOU_SYOUPLT_NUM	( 1 )			//Üó
-#define SYOUJYOU_TEXTPLT_NUM	( 2 )			//ƒƒbƒZ[ƒW
+// ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š(ãƒ¡ã‚¤ãƒ³ã‚µãƒ–ç”»é¢å…±é€š)
+#define SYOUJYOU_BACKPLT_NUM	( 0 )			//èƒŒæ™¯
+#define SYOUJYOU_SYOUPLT_NUM	( 1 )			//è³žçŠ¶
+#define SYOUJYOU_TEXTPLT_NUM	( 2 )			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
 #define BGCONTSET( frame, scr, cgx, scrsiz, bufsiz ){					\
 	header.screenBase		= scr;										\
@@ -318,54 +318,54 @@ static void Syoujyou_VBlank( void* work )
 
 static void Syoujyou_VramBankSet( SYOUJYOU_WORK* wk )
 {
-	{ //‚u‚q‚`‚lÝ’è
+	{ //ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG(ƒƒCƒ“‚Æ‹¤’Ê)
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_NONE,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG(ãƒ¡ã‚¤ãƒ³ã¨å…±é€š)
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_NONE,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 	}
 
-	{ //‚a‚fƒ‰ƒCƒuƒ‰ƒŠ—pƒƒ‚ƒŠŠm•Û
+	{ //ï¼¢ï¼§ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ãƒ¡ãƒ¢ãƒªç¢ºä¿
 		wk->bgl = GF_BGL_BglIniAlloc(wk->heapID);
 	}
 
-	{ // ‚a‚fƒVƒXƒeƒ€Ý’è
+	{ // ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		GF_BGL_SYS_HEADER BGsys_data = {
 			GX_DISPMODE_GRAPHICS,GX_BGMODE_0,GX_BGMODE_0,GX_BG0_AS_2D
 		};	
 		GF_BGL_InitBG( &BGsys_data );
 	}
-	{ // ‚a‚fƒVƒXƒeƒ€Ý’è
+	{ // ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		GF_BGL_BGCNT_HEADER header = {	0, 0, 0, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 										0, 0, GX_BG_EXTPLTT_01, 0, 0, 0, FALSE };
-		// ƒƒCƒ“‚a‚fƒVƒXƒeƒ€Ý’è
-		// ƒeƒLƒXƒg‚a‚fÝ’è(BG0)
+		// ãƒ¡ã‚¤ãƒ³ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
+		// ãƒ†ã‚­ã‚¹ãƒˆï¼¢ï¼§è¨­å®š(BG0)
 		BGCONTSET(	SYOUJYOU_TEXT_M_FRAME, GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x10000, 
 					GF_BGL_SCRSIZ_256x512, 0x1000 )
-		// Üó‚a‚fÝ’è(BG1)
+		// è³žçŠ¶ï¼¢ï¼§è¨­å®š(BG1)
 		BGCONTSET(	SYOUJYOU_SYOU_M_FRAME, GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x08000,
 					GF_BGL_SCRSIZ_256x512, 0x1000 )
-		// ”wŒi‚a‚fÝ’è(BG3)
+		// èƒŒæ™¯ï¼¢ï¼§è¨­å®š(BG3)
 		BGCONTSET(	SYOUJYOU_BACK_M_FRAME, GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x04000,
 					GF_BGL_SCRSIZ_256x256, 0x0800 )
 
-		// ƒTƒu‚a‚fƒVƒXƒeƒ€Ý’è
-		// ƒeƒLƒXƒg‚a‚fÝ’è(BG0)
+		// ã‚µãƒ–ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
+		// ãƒ†ã‚­ã‚¹ãƒˆï¼¢ï¼§è¨­å®š(BG0)
 		BGCONTSET(	SYOUJYOU_TEXT_S_FRAME, GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x10000,
 					GF_BGL_SCRSIZ_256x512, 0x1000 )
-		// Üó‚a‚fÝ’è(BG1)
+		// è³žçŠ¶ï¼¢ï¼§è¨­å®š(BG1)
 		BGCONTSET(	SYOUJYOU_SYOU_S_FRAME, GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x08000,
 					GF_BGL_SCRSIZ_256x512, 0x1000 )
-		// ”wŒi‚a‚fÝ’è(BG3)
+		// èƒŒæ™¯ï¼¢ï¼§è¨­å®š(BG3)
 		BGCONTSET(	SYOUJYOU_BACK_S_FRAME, GX_BG_SCRBASE_0x2000, GX_BG_CHARBASE_0x04000,
 					GF_BGL_SCRSIZ_256x256, 0x800 )
 	}
@@ -388,7 +388,7 @@ static void Syoujyou_VramBankRelease( SYOUJYOU_WORK* wk )
 
 
 //----------------------------------
-//ƒƒbƒZ[ƒWÝ’è
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¨­å®š
 //----------------------------------
 #define	SYOUJYOU_TEXT_WIN_PX		(0)
 #define	SYOUJYOU_TEXT_WIN_PY		(0)
@@ -404,33 +404,33 @@ static void Syoujyou_MsgDataSet( SYOUJYOU_WORK* wk )
 	BMPWIN_DAT text_windata = { 0,SYOUJYOU_TEXT_WIN_PX,SYOUJYOU_TEXT_WIN_PY,
 		SYOUJYOU_TEXT_WIN_SX,SYOUJYOU_TEXT_WIN_SY,SYOUJYOU_TEXT_WIN_PAL,SYOUJYOU_TEXT_WIN_CGX };
 
-	MSG_PrintInit();											//ƒƒbƒZ[ƒW•\Ž¦ƒVƒXƒeƒ€‰Šú‰»
-	wk->msgman = MSGMAN_Create									//ƒƒbƒZ[ƒWƒf[ƒ^“Ç‚Ýž‚Ý
+	MSG_PrintInit();											//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
+	wk->msgman = MSGMAN_Create									//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		( MSGMAN_TYPE_DIRECT, ARC_MSG,NARC_msg_award_dat, wk->heapID );
-	wk->wordset = WORDSET_Create( wk->heapID );					//ƒ[ƒhƒZƒbƒgì¬
+	wk->wordset = WORDSET_Create( wk->heapID );					//ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆä½œæˆ
 
 	text_windata.frm_num = SYOUJYOU_TEXT_M_FRAME;
-	GF_BGL_BmpWinAddEx( wk->bgl, &wk->msgwin_m, &text_windata );	//ƒrƒbƒgƒ}ƒbƒvì¬
-	GF_BGL_BmpWinFill(&wk->msgwin_m,FBMP_COL_NULL,0,0,			//ƒrƒbƒgƒ}ƒbƒv‰ŠúƒNƒŠƒA
+	GF_BGL_BmpWinAddEx( wk->bgl, &wk->msgwin_m, &text_windata );	//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½œæˆ
+	GF_BGL_BmpWinFill(&wk->msgwin_m,FBMP_COL_NULL,0,0,			//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—åˆæœŸã‚¯ãƒªã‚¢
 			SYOUJYOU_TEXT_WIN_SX * DOTSIZE, SYOUJYOU_TEXT_WIN_SY * DOTSIZE );
 	text_windata.frm_num = SYOUJYOU_TEXT_S_FRAME;
-	GF_BGL_BmpWinAddEx( wk->bgl, &wk->msgwin_s, &text_windata );	//ƒrƒbƒgƒ}ƒbƒvì¬
-	GF_BGL_BmpWinFill(&wk->msgwin_s,FBMP_COL_NULL,0,0,			//ƒrƒbƒgƒ}ƒbƒv‰ŠúƒNƒŠƒA
+	GF_BGL_BmpWinAddEx( wk->bgl, &wk->msgwin_s, &text_windata );	//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½œæˆ
+	GF_BGL_BmpWinFill(&wk->msgwin_s,FBMP_COL_NULL,0,0,			//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—åˆæœŸã‚¯ãƒªã‚¢
 			SYOUJYOU_TEXT_WIN_SX * DOTSIZE, SYOUJYOU_TEXT_WIN_SY * DOTSIZE );
 }
 
 static void Syoujyou_MsgDataRelease( SYOUJYOU_WORK* wk )
 {
-	GF_BGL_BmpWinDel( &wk->msgwin_s );	//ƒrƒbƒgƒ}ƒbƒv”jŠü
-	GF_BGL_BmpWinDel( &wk->msgwin_m );	//ƒrƒbƒgƒ}ƒbƒv”jŠü
+	GF_BGL_BmpWinDel( &wk->msgwin_s );	//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ç ´æ£„
+	GF_BGL_BmpWinDel( &wk->msgwin_m );	//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ç ´æ£„
 
-	WORDSET_Delete( wk->wordset );		//ƒ[ƒhƒZƒbƒg”jŠü
-	MSGMAN_Delete(wk->msgman);			//ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	WORDSET_Delete( wk->wordset );		//ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆç ´æ£„
+	MSGMAN_Delete(wk->msgman);			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 }
 
 
 //----------------------------------
-//ƒXƒNƒ[ƒ‹Ý’è
+//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«è¨­å®š
 //----------------------------------
 #define SUBBG_OFFS ( 8*24 )
 static void Syoujyou_ScrollInit( SYOUJYOU_WORK* wk )
@@ -449,7 +449,7 @@ static void Syoujyou_ScrollSet( SYOUJYOU_WORK* wk )
 
 
 //----------------------------------
-//ƒOƒ‰ƒtƒBƒbƒN“Ç‚Ýž‚Ý
+//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿
 //----------------------------------
 static void Syoujyou_GraphicLoad( SYOUJYOU_WORK* wk )
 {
@@ -457,7 +457,7 @@ static void Syoujyou_GraphicLoad( SYOUJYOU_WORK* wk )
 	int syou_scrID, syou_cgxID, syou_palID;
 
 	if( wk->type == SYOUJYOU_TYPE_SINOU ){
-	//ƒVƒ“ƒIƒE
+	//ã‚·ãƒ³ã‚ªã‚¦
 		back_scrID = NARC_syoujyou_syoujyou_s_bg_NSCR;
 		back_cgxID = NARC_syoujyou_syoujyou_s_bg_NCGR; 
 		back_palID = NARC_syoujyou_syoujyou_s_bg_NCLR;
@@ -465,7 +465,7 @@ static void Syoujyou_GraphicLoad( SYOUJYOU_WORK* wk )
 		syou_cgxID = NARC_syoujyou_dp_syoujyou_s_NCGR;
 		syou_palID = NARC_syoujyou_dp_syoujyou_s_NCLR;
 	} else {
-		//‘S‘
+		//å…¨å›½
 		back_scrID = NARC_syoujyou_syoujyou_z_bg_NSCR;
 		back_cgxID = NARC_syoujyou_syoujyou_z_bg_NCGR; 
 		back_palID = NARC_syoujyou_syoujyou_z_bg_NCLR;
@@ -473,7 +473,7 @@ static void Syoujyou_GraphicLoad( SYOUJYOU_WORK* wk )
 		syou_cgxID = NARC_syoujyou_dp_syoujyou_z_NCGR;
 		syou_palID = NARC_syoujyou_dp_syoujyou_z_NCLR;
 	}
-	//”wŒi
+	//èƒŒæ™¯
 	ArcUtil_ScrnSet(	ARC_SYOUJYOU, back_scrID, wk->bgl, 
 						SYOUJYOU_BACK_M_FRAME, 0, 0, 0, wk->heapID );
 	ArcUtil_BgCharSet(	ARC_SYOUJYOU, back_cgxID, wk->bgl, 
@@ -486,7 +486,7 @@ static void Syoujyou_GraphicLoad( SYOUJYOU_WORK* wk )
 						SYOUJYOU_BACK_S_FRAME, 0, 0, 0, wk->heapID );
 	ArcUtil_PalSet(		ARC_SYOUJYOU, back_palID, PALTYPE_SUB_BG, 
 						SYOUJYOU_BACKPLT_NUM * PALSIZE, PALSIZE, wk->heapID );
-	//Üó
+	//è³žçŠ¶
 	ArcUtil_ScrnSet(	ARC_SYOUJYOU, syou_scrID, wk->bgl, 
 						SYOUJYOU_SYOU_M_FRAME, 0, 0, 0, wk->heapID );
 	GF_BGL_ScrPalChange( wk->bgl, SYOUJYOU_SYOU_M_FRAME, 0, 0, 32, 24, SYOUJYOU_SYOUPLT_NUM );
@@ -503,24 +503,24 @@ static void Syoujyou_GraphicLoad( SYOUJYOU_WORK* wk )
 						SYOUJYOU_SYOU_S_FRAME, 0, 0, 0, wk->heapID );
 	ArcUtil_PalSet(		ARC_SYOUJYOU, syou_palID, PALTYPE_SUB_BG, 
 						SYOUJYOU_SYOUPLT_NUM * PALSIZE, PALSIZE, wk->heapID );
-	//ƒeƒLƒXƒgiNULLƒLƒƒƒ‰Ý’èj
+	//ãƒ†ã‚­ã‚¹ãƒˆï¼ˆNULLã‚­ãƒ£ãƒ©è¨­å®šï¼‰
 	GF_BGL_ClearCharSet( SYOUJYOU_TEXT_M_FRAME, 32, 0, wk->heapID );
 	GF_BGL_ClearCharSet( SYOUJYOU_TEXT_S_FRAME, 32, 0, wk->heapID );
-	//ƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚ÝiƒVƒXƒeƒ€j
+	//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚·ã‚¹ãƒ†ãƒ ï¼‰
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, SYOUJYOU_TEXTPLT_NUM * PALSIZE, wk->heapID );
 	SystemFontPaletteLoad( PALTYPE_SUB_BG, SYOUJYOU_TEXTPLT_NUM * PALSIZE, wk->heapID );
 }
 
 
 //----------------------------------
-//ƒƒbƒZ[ƒW•\Ž¦
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 //----------------------------------
-#define SYOUJYOU_STRBUF_SIZE		(0x200)	//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define SYOUJYOU_STRBUF_SIZE		(0x200)	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
 static void Syoujyou_MsgPrint( SYOUJYOU_WORK* wk )
 {
 	STRBUF* msg_str = STRBUF_Create( SYOUJYOU_STRBUF_SIZE, wk->heapID );
-	{//–¼‘O‚Ì•\Ž¦
+	{//åå‰ã®è¡¨ç¤º
 		STRBUF* msg_tmp = STRBUF_Create( SYOUJYOU_STRBUF_SIZE, wk->heapID );
 
 		MSGMAN_GetString( wk->msgman, msg_l02r0301_award_01, msg_tmp );
@@ -532,7 +532,7 @@ static void Syoujyou_MsgPrint( SYOUJYOU_WORK* wk )
 							GF_PRINTCOLOR_MAKE(1, 2, 0), NULL );
 		STRBUF_Delete( msg_tmp );
 	}
-	{//–{•¶‚Ì•\Ž¦
+	{//æœ¬æ–‡ã®è¡¨ç¤º
 		int		msgID;
 	
 		if( wk->type == SYOUJYOU_TYPE_SINOU ){

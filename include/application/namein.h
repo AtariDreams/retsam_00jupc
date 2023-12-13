@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	namein.h
- * @bfief	���O���͉�ʏ���
+ * @bfief	名前入力画面処理
  * @author	Akito Mori
  * @date	05.10.05
  */
@@ -14,30 +14,30 @@
 #include "savedata/config.h"
 
 //============================================================================================
-//	�萔��`
+//	定数定義
 //============================================================================================
 
-// ���O���̓��[�h
+// 名前入力モード
 enum {
-	NAMEIN_MYNAME = 0,	// �����̖��O
-	NAMEIN_POKEMON,		// �|�P�����̖��O
-	NAMEIN_BOX,			// �{�b�N�X�̖��O
-	NAMEIN_RIVALNAME,	// ���C�o���l�[��
-	NAMEIN_FRIENDCODE,	// �Ƃ������R�[�h
-	NAMEIN_RANDOMGROUP, // �����̎�O���[�v�̖��O
-	NAMEIN_STONE,		// �Δ�(�z�z�j
-	NAMEIN_FRIENDNAME,  // WIFI�Ƃ������蒠�ɏ������ނƂ������̖��O
+	NAMEIN_MYNAME = 0,	// 自分の名前
+	NAMEIN_POKEMON,		// ポケモンの名前
+	NAMEIN_BOX,			// ボックスの名前
+	NAMEIN_RIVALNAME,	// ライバルネーム
+	NAMEIN_FRIENDCODE,	// ともだちコード
+	NAMEIN_RANDOMGROUP, // 乱数の種グループの名前
+	NAMEIN_STONE,		// 石碑(配布）
+	NAMEIN_FRIENDNAME,  // WIFIともだち手帳に書き込むともだちの名前
 };
 
 
-// �|�P�������O���͂̒���
+// ポケモン名前入力の長さ
 #if (PM_LANG==LANG_JAPAN)
 #define NAMEIN_POKEMON_LENGTH	(  5 )
 #else
 #define NAMEIN_POKEMON_LENGTH	( 10 )
 #endif
 
-// �g���[�i�[�����͂̒���
+// トレーナー名入力の長さ
 #if (PM_LANG==LANG_JAPAN)
 #define NAMEIN_PERSON_LENGTH	(  5 )
 #else
@@ -45,7 +45,7 @@ enum {
 #endif
 
 
-// �O���[�v�����͂̒���
+// グループ名入力の長さ
 #if (PM_LANG==LANG_JAPAN)
 #define NAMEIN_GROUP_LENGTH		(  5 )
 #else
@@ -59,60 +59,60 @@ enum {
 #define STRBUF_ENABLE_MAGICNUMBER	(0x12345678)
 
 
-extern const PROC_DATA NameInProcData;	// �v���Z�X��`�f�[�^
+extern const PROC_DATA NameInProcData;	// プロセス定義データ
 
 
-typedef struct NAMEIN_WORK NAMEIN_WORK;	// �|�C���^�Q�Ƃ����ł��閼�O���̓��[�N�\����
+typedef struct NAMEIN_WORK NAMEIN_WORK;	// ポインタ参照だけできる名前入力ワーク構造体
 
-// ���O���͌Ăяo�����ɕK�v�ȃp�����[�^�̍\����
+// 名前入力呼び出し時に必要なパラメータの構造体
 // NAMEIN_PARAM *NameIn_ParamAllocMake(int HeapId, int mode, int info, int wordmax)
-// ���Ăяo���č쐬����B
-// �B������
+// を呼び出して作成する。
+// 隠すかも
 typedef struct{
-	int mode;		// ���̓��[�h(enum�Q�Ɓj
-	int info;		// ���̓��[�h�Ƃ��Ēj��l���E����l���A�|�P�����̊J��NO�Ȃ�
-	int form;		// ���̓��[�h���|�P�����̎��Ɍ`��l���󂯎��
-	int wordmax;	// ���͕����ő吔
-	int sex;		// �|�P�����̐���(PARA_MALE=0...PARA_FEMALE=1...PARA_UNK=2(���ʂȂ�))
+	int mode;		// 入力モード(enum参照）
+	int info;		// 入力モードとして男主人公・女主人公、ポケモンの開発NOなど
+	int form;		// 入力モードがポケモンの時に形状値を受け取る
+	int wordmax;	// 入力文字最大数
+	int sex;		// ポケモンの性別(PARA_MALE=0...PARA_FEMALE=1...PARA_UNK=2(性別なし))
 
 
-	int cancel;		// ���O���͂��I���������ɔ��f�����t���O�B
-					// ���͕������O�����������B�������͍ŏ��Ɠ����������ꍇ�͂��̃t���O�����B
+	int cancel;		// 名前入力が終了した時に反映されるフラグ。
+					// 入力文字が０文字だった。もしくは最初と同じだった場合はこのフラグが立つ。
 
-	STRBUF *strbuf; // ����STRBUF�ɂ͂Q�̈Ӗ������݂���B
-					// �P�͖��O���͉�ʂ���f�[�^���󂯎�郏�[�N�ł��邱�ƁB���O���͂��I������炱������R�s�[����
-					// �����P�́A���O���͂ɍs���Ƃ��ɂ����ɕ�������i�[���Ă�����,
-					// ���O���͉�ʂ͂��̕������\�����Ȃ���J�n����B�����Ƃ��Ă��@�\����
+	STRBUF *strbuf; // このSTRBUFには２つの意味が存在する。
+					// １つは名前入力画面からデータを受け取るワークであること。名前入力が終わったらここからコピーする
+					// もう１つは、名前入力に行くときにここに文字列を格納しておくと,
+					// 名前入力画面はその文字列を表示しながら開始する。引数としても機能する
 
-	u16 str[20];	// ���̔z��ɂ����ʂ͕Ԃ��Ă��܂��B�i20�ɈӖ��͂���܂���j
+	u16 str[20];	// この配列にも結果は返ってきます。（20に意味はありません）
 
 
-	// --------�|�P�����ߊl�Ń{�b�N�X�]���ɂȂ������ɕK�v-------------
+	// --------ポケモン捕獲でボックス転送になった時に必要-------------
 	
-	int get_msg_id; 	// �|�P�����ߊl�̎���BOX�]���������������̃��b�Z�[�WID������
-	BOX_DATA  *boxdata;	// �|�P�����ߊl�̎���BOX�]���������������ɁABOX�̖��O���擾���邽�߂ɕK�v
-	CONFIG    *config;  // �R���t�B�O�\����
+	int get_msg_id; 	// ポケモン捕獲の時にBOX転送が発生した時のメッセージIDが入る
+	BOX_DATA  *boxdata;	// ポケモン捕獲の時にBOX転送が発生した時に、BOXの名前を取得するために必要
+	CONFIG    *config;  // コンフィグ構造体
 
 }NAMEIN_PARAM;
 
 //==============================================================================
 /**
- * �O�����疼�O���͏������p�����[�^�[�����炢�������[�N������ĕԂ�
+ * 外部から名前入力初期化パラメーターをもらい引数ワークを作って返す
  *
- * @param   HeapId		���[�N���쐬����HEAPID���w��i������Free����K�v������܂��j
- * @param   mode		���O���̓��[�h�ienum����I���j
- * @param   info		�j�E��(PM_MALE,PM_FEMALE)�A�|�P�����̊J��NO�Ȃǂ��i�[�ABOX��0�ł悢
- * @param   wordmax		���͕����ő吔
+ * @param   HeapId		ワークを作成するHEAPIDを指定（自分でFreeする必要があります）
+ * @param   mode		名前入力モード（enumから選択）
+ * @param   info		男・女(PM_MALE,PM_FEMALE)、ポケモンの開発NOなどを格納、BOXは0でよい
+ * @param   wordmax		入力文字最大数
  *
- * @retval  NAMEIN_PARAM *	���̃|�C���^��NameInInit�ɓn��
+ * @retval  NAMEIN_PARAM *	このポインタをNameInInitに渡す
  */
 //==============================================================================
 extern NAMEIN_PARAM* NameIn_ParamAllocMake(int HeapId, int mode, int info, int wordmax, CONFIG *config);
 
 //==============================================================================
 /**
- * ���O���̓p�����[�^�[�폜
- * ���O���͏I����ɎQ�Ƃ��I�������ɂ��̊֐����Ăяo���ĉ�����Ă��������B
+ * 名前入力パラメーター削除
+ * 名前入力終了後に参照し終わった後にこの関数を呼び出して解放してください。
  * 
  * @param   param			
  *

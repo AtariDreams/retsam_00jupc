@@ -27,12 +27,12 @@ extern "C" {
 #include <nnsys/inline.h>
 #define NNS_G3D_INLINE NNS_INLINE
 
-// �A�j���[�V�����o�C�i���̏������֐��ւ̃|�C���^�e�[�u���̃T�C�Y
+// アニメーションバイナリの初期化関数へのポインタテーブルのサイズ
 #ifndef NNS_G3D_ANMFMT_MAX
 #define NNS_G3D_ANMFMT_MAX 10
 #endif
 
-// �W���C���g�E�}�e���A���E�V�F�C�v�̍ő吔
+// ジョイント・マテリアル・シェイプの最大数
 #ifndef NNS_G3D_SIZE_JNT_MAX
 #define NNS_G3D_SIZE_JNT_MAX 64
 #endif
@@ -46,17 +46,17 @@ extern "C" {
 #endif
 
 //
-// G3D�����W�I���g���R�}���h�̃o�b�t�@�T�C�Y�i���[�h�j
-// �����A�f�t�H���g�ł͊m�ۂ���Ȃ��B
-// NNS_G3dGeSetBuffer�Ŋm�ۂł���
+// G3Dが持つジオメトリコマンドのバッファサイズ（ワード）
+// ただ、デフォルトでは確保されない。
+// NNS_G3dGeSetBufferで確保できる
 //
 #ifndef NNS_G3D_SIZE_COMBUFFER
 #define NNS_G3D_SIZE_COMBUFFER 192
 #endif
 
 //
-// �R�����g���O���Ƃ��ꂼ��̃R�[���o�b�N�̗L�����`�F�b�N����
-// �R�[�h�������ɂȂ�܂��B
+// コメントを外すとそれぞれのコールバックの有無をチェックする
+// コードが無効になります。
 //
 
 //#define NNS_G3D_SBC_CALLBACK_TIMING_A_DISABLE
@@ -65,7 +65,7 @@ extern "C" {
 
 
 //
-// �R�����g���O���Ƃ��ꂼ���CG�c�[���p�̃R�[�h�������ɂȂ�܂��B
+// コメントを外すとそれぞれのCGツール用のコードが無効になります。
 //
 
 //#define NNS_G3D_MAYA_DISABLE
@@ -74,7 +74,7 @@ extern "C" {
 //#define NNS_G3D_XSI_DISABLE
 
 //
-// �R�����g���O���Ƃ��ꂼ��̃A�j���[�V�����p�̃R�[�h�������ɂȂ�܂��B
+// コメントを外すとそれぞれのアニメーション用のコードが無効になります。
 //
 
 //#define NNS_G3D_NSBMA_DISABLE
@@ -83,33 +83,33 @@ extern "C" {
 //#define NNS_G3D_NSBCA_DISABLE
 //#define NNS_G3D_NSBVA_DISABLE
 
-// SBC��SHP�R�}���h���Q�Ƃ���f�B�X�p�b�`�e�[�u���̃T�C�Y(������ނ�MAT�o�C�i���t�H�[�}�b�g���T�|�[�g���邽��)
+// SBCのSHPコマンドが参照するディスパッチテーブルのサイズ(複数種類のMATバイナリフォーマットをサポートするため)
 #ifndef NNS_G3D_SIZE_SHP_VTBL_NUM
 #define NNS_G3D_SIZE_SHP_VTBL_NUM 4
 #endif
 
-// SBC��MAT�R�}���h���Q�Ƃ���f�B�X�p�b�`�e�[�u���̃T�C�Y(������ނ�SHP�o�C�i���t�H�[�}�b�g���T�|�[�g���邽��)
+// SBCのMATコマンドが参照するディスパッチテーブルのサイズ(複数種類のSHPバイナリフォーマットをサポートするため)
 #ifndef NNS_G3D_SIZE_MAT_VTBL_NUM
 #define NNS_G3D_SIZE_MAT_VTBL_NUM 4
 #endif
 
-// CG�c�[�����̃W���C���g�v�Z���s�����߂̊֐��e�[�u���̃G���g���̐�
+// CGツール毎のジョイント計算を行うための関数テーブルのエントリの数
 #ifndef NNS_G3D_FUNC_SENDJOINTSRT_MAX
 #define NNS_G3D_FUNC_SENDJOINTSRT_MAX 3
 #endif
 
-// CG�c�[�����̃e�N�X�`���s��v�Z���s�����߂̊֐��e�[�u���̃G���g���̐�
+// CGツール毎のテクスチャ行列計算を行うための関数テーブルのエントリの数
 #ifndef NNS_G3D_FUNC_SENDTEXSRT_MAX
 #define NNS_G3D_FUNC_SENDTEXSRT_MAX 4
 #endif
 
-// �R�����g���O���ƁANNS_G3dGeSendDL�ɂ��f�B�X�v���C���X�g�̓]����
-// MI_SendGXCommandAsync�ł͂Ȃ�MI_SendGXCommandAsyncFast���g�p���܂�
+// コメントを外すと、NNS_G3dGeSendDLによるディスプレイリストの転送に
+// MI_SendGXCommandAsyncではなくMI_SendGXCommandAsyncFastを使用します
 //#define NNS_G3D_USE_FASTGXDMA
 
 //
-// �E�F�C�e�b�h�G���x���[�v�g�p���ɃL���b�V�����g�p���Ȃ��ꍇ��0���`���Ă���
-// �ƃ�������ߖ�ł���B
+// ウェイテッドエンベロープ使用時にキャッシュを使用しない場合は0を定義しておく
+// とメモリを節約できる。
 //
 #ifndef NNS_G3D_USE_EVPCACHE
 #define NNS_G3D_USE_EVPCACHE 1

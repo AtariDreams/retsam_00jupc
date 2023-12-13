@@ -4,29 +4,29 @@
  * @version "$Id: mpconfig.h,v 1.1 2006/05/02 03:09:56 mitsuhara Exp $"
  *
  * @file mpconfig.h
- * @brief MP�����ʐM���C�u���� �R���t�B�O���[�V������`
+ * @brief MP無線通信ライブラリ コンフィグレーション定義
  * 
  */
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* MP�ʐM�Ŏg�p����DMA�ԍ� */  
-#define		MP_DMA_NO			(2)	// GX����DMA�ԍ��Əd�Ȃ�Ȃ��悤����
+/* MP通信で使用するDMA番号 */  
+#define		MP_DMA_NO			(2)	// GX等のDMA番号と重ならないよう注意
 
-/* �g�p�|�[�g */ 
-#define		MP_DEFAULT_PORT			(4)	// �|�[�g�ԍ�( 4�`7 )
+/* 使用ポート */ 
+#define		MP_DEFAULT_PORT			(4)	// ポート番号( 4〜7 )
 
-/* �|�[�g�v���C�I���e�B */
-#define		MP_DEFAULT_PORT_PRIO		(2)	// �|�[�g�̗D��x( 0�`3 )
+/* ポートプライオリティ */
+#define		MP_DEFAULT_PORT_PRIO		(2)	// ポートの優先度( 0〜3 )
 
-/* �r�[�R���Ԋu */
+/* ビーコン間隔 */
 #define		MP_DEFAULT_BEACON_PERIOD	(200)
   
-/* MP�ʐM�pGGID */  
+/* MP通信用GGID */  
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/31
-// �C�O�Ń|�P���������W���[�ƒʐM�ł���悤��GGID��ύX�i5���ꋤ�ʁj
+// 海外版ポケモンレンジャーと通信できるようにGGIDを変更（5言語共通）
 #if (PM_LANG == LANG_JAPANESE)
 #define		MP_GGID				(0x00000178)
 #else
@@ -34,22 +34,22 @@ extern "C" {
 #endif
 // ----------------------------------------------------------------------------
 
-/* �ő�ڑ��q�@�� */  
+/* 最大接続子機数 */  
 #define		MP_CONNECT_CHILD_MAX		(9)
 
-/* �e�@���M�f�[�^�T�C�Y */  
+/* 親機送信データサイズ */  
 #define		MP_PARENT_DATA_SIZE		(64)  
 
-/* �q�@���M�f�[�^�T�C�Y */
+/* 子機送信データサイズ */
 #define		MP_CHILD_DATA_SIZE		(64)  
 
   
 #define		MP_SEND_DATA_SIZE		(64)  
   
-/* �q�@�̍ő匟���e�@�� */
+/* 子機の最大検索親機数 */
 #define		MP_SIZE_RECEIVE_MP_PARENT_LIST	(8)
 
-/* �e�@�̍ő�ڑ��q�@�� */
+/* 親機の最大接続子機数 */
 #define		MP_SIZE_RECEIVE_MP_CHILD_LIST	MP_SIZE_RECEIVE_MP_PARENT_LIST
 
   
@@ -57,13 +57,13 @@ extern "C" {
 #define		MP_NUM_RECEIVE_MP_RETRY		(28)
 
 
-/* �d�g�g�p���v�����̌v�����ԁims�j */
+/* 電波使用率計測時の計測時間（ms） */
 #define		MP_MEASURE_TIME			(30)
 
-/* �d�g�g�p���v�����샂�[�h */
-#define		MP_MEASURE_MODE			(3)	/* �L�����A�Z���X��ED�l�̘_���a */
+/* 電波使用率計測動作モード */
+#define		MP_MEASURE_MODE			(3)	/* キャリアセンスとED値の論理和 */
   
-/* �d�g�g�p���v�����̓d�g���x���� */  
+/* 電波使用率計測時の電波強度下限 */  
 #define		MP_MEASURE_ED_THRESHOLD		(17)
 
   

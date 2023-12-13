@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	ending_setup.c
- * @brief	ƒGƒ“ƒfƒBƒ“ƒO‚ÌŠeƒV[ƒ“‚Ì‰Šúİ’èA‰ğ•úˆ—
+ * @brief	ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ã®å„ã‚·ãƒ¼ãƒ³ã®åˆæœŸè¨­å®šã€è§£æ”¾å‡¦ç†
  * @author	matsuda
- * @date	2008.04.10(–Ø)
+ * @date	2008.04.10(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -35,36 +35,36 @@
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ŠeƒV[ƒ“–ˆ‚É“WŠJE‰ğ•ú‚·‚éŠÖ”‚ÌŒ^
+///å„ã‚·ãƒ¼ãƒ³æ¯ã«å±•é–‹ãƒ»è§£æ”¾ã™ã‚‹é–¢æ•°ã®å‹
 typedef void (*ENDING_SCENE_FUNC)(ENDING_MAIN_WORK *emw);
 
-///ŠeƒV[ƒ“–ˆ‚ÌƒƒCƒ“ƒ‹[ƒvŠÖ”‚ÌŒ^
+///å„ã‚·ãƒ¼ãƒ³æ¯ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—é–¢æ•°ã®å‹
 typedef BOOL (*ENDING_SCENE_MAIN_FUNC)(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw);
 
-///ŠeƒV[ƒ“–ˆ‚É“WŠJE‰ğ•ú‚·‚éˆ—ŠÖ”\‘¢‘Ì
+///å„ã‚·ãƒ¼ãƒ³æ¯ã«å±•é–‹ãƒ»è§£æ”¾ã™ã‚‹å‡¦ç†é–¢æ•°æ§‹é€ ä½“
 typedef struct{
-	ENDING_SCENE_FUNC init_bg;					///<BG“WŠJ
-	ENDING_SCENE_FUNC init_3d;					///<3D“WŠJ
-	ENDING_SCENE_FUNC init_mainact_resource;	///<ƒAƒNƒ^[ƒŠƒ\[ƒX“WŠJ(ƒƒCƒ“)
-	ENDING_SCENE_FUNC init_subact_resource;		///<ƒAƒNƒ^[ƒŠƒ\[ƒX“WŠJ(ƒTƒu)
-	ENDING_SCENE_FUNC init_main_act;			///<ƒAƒNƒ^[¶¬(ƒƒCƒ“)
-	ENDING_SCENE_FUNC init_sub_act;				///<ƒAƒNƒ^[‰ğ•ú(ƒTƒu)
+	ENDING_SCENE_FUNC init_bg;					///<BGå±•é–‹
+	ENDING_SCENE_FUNC init_3d;					///<3Då±•é–‹
+	ENDING_SCENE_FUNC init_mainact_resource;	///<ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹å±•é–‹(ãƒ¡ã‚¤ãƒ³)
+	ENDING_SCENE_FUNC init_subact_resource;		///<ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹å±•é–‹(ã‚µãƒ–)
+	ENDING_SCENE_FUNC init_main_act;			///<ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ(ãƒ¡ã‚¤ãƒ³)
+	ENDING_SCENE_FUNC init_sub_act;				///<ã‚¢ã‚¯ã‚¿ãƒ¼è§£æ”¾(ã‚µãƒ–)
 
-	ENDING_SCENE_FUNC free_bg;					///<BG‰ğ•ú
-	ENDING_SCENE_FUNC free_3d;					///<3D‰ğ•ú
-	ENDING_SCENE_FUNC free_mainact_resource;	///<ƒAƒNƒ^[ƒŠƒ\[ƒX‰ğ•ú(ƒƒCƒ“)
-	ENDING_SCENE_FUNC free_subact_resource;		///<ƒAƒNƒ^[ƒŠƒ\[ƒX‰ğ•ú(ƒTƒu)
-	ENDING_SCENE_FUNC free_main_act;			///<ƒAƒNƒ^[íœ(ƒƒCƒ“)
-	ENDING_SCENE_FUNC free_sub_act;				///<ƒAƒNƒ^[íœ(ƒTƒu)
+	ENDING_SCENE_FUNC free_bg;					///<BGè§£æ”¾
+	ENDING_SCENE_FUNC free_3d;					///<3Dè§£æ”¾
+	ENDING_SCENE_FUNC free_mainact_resource;	///<ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾(ãƒ¡ã‚¤ãƒ³)
+	ENDING_SCENE_FUNC free_subact_resource;		///<ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾(ã‚µãƒ–)
+	ENDING_SCENE_FUNC free_main_act;			///<ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤(ãƒ¡ã‚¤ãƒ³)
+	ENDING_SCENE_FUNC free_sub_act;				///<ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤(ã‚µãƒ–)
 	
-	ENDING_SCENE_MAIN_FUNC main_func;			///<ƒV[ƒ“§ŒäƒƒCƒ“ŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	ENDING_SCENE_MAIN_FUNC main_func;			///<ã‚·ãƒ¼ãƒ³åˆ¶å¾¡ãƒ¡ã‚¤ãƒ³é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 }ENDING_SCENE_LOAD_FUNC;
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void HeroResourceSet(ENDING_MAIN_WORK *emw);
 static void HeroResourceFree(ENDING_MAIN_WORK *emw);
@@ -144,9 +144,9 @@ static void Model3DSet_Copyright( ENDING_MAIN_WORK * emw);
 static void Model3DFree_Copyright(ENDING_MAIN_WORK *emw);
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///ŠeƒV[ƒ“–ˆ‚Ìƒ[ƒhŠÖ”ƒe[ƒuƒ‹
+///å„ã‚·ãƒ¼ãƒ³æ¯ã®ãƒ­ãƒ¼ãƒ‰é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const ENDING_SCENE_LOAD_FUNC EndingSceneLoadFunc[] = {
 	{
 		BgGraphicSet_MapScene1,
@@ -193,7 +193,7 @@ static const ENDING_SCENE_LOAD_FUNC EndingSceneLoadFunc[] = {
 		DefaultActorFree_MapScene2_Sub,
 		MapScene2_Main,
 	},
-	{//ƒƒCƒ“ŠÖ”ˆÈŠO‚ÍƒLƒƒƒvƒ`ƒƒƒV[ƒ“1‚Æ‘S‚­“¯‚¶
+	{//ãƒ¡ã‚¤ãƒ³é–¢æ•°ä»¥å¤–ã¯ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚·ãƒ¼ãƒ³1ã¨å…¨ãåŒã˜
 		BgGraphicSet_CapScene1,
 		Model3DSet_CapScene1,
 		DefaultResourceSet_CapScene1_Main,
@@ -223,7 +223,7 @@ static const ENDING_SCENE_LOAD_FUNC EndingSceneLoadFunc[] = {
 		DefaultActorFree_MapScene3_Sub,
 		MapScene3_Main,
 	},
-	{//ƒƒCƒ“ŠÖ”ˆÈŠO‚ÍƒLƒƒƒvƒ`ƒƒƒV[ƒ“1‚Æ‘S‚­“¯‚¶
+	{//ãƒ¡ã‚¤ãƒ³é–¢æ•°ä»¥å¤–ã¯ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚·ãƒ¼ãƒ³1ã¨å…¨ãåŒã˜
 		BgGraphicSet_Field,
 		Model3DSet_Field,
 		DefaultResourceSet_Field_Main,
@@ -238,7 +238,7 @@ static const ENDING_SCENE_LOAD_FUNC EndingSceneLoadFunc[] = {
 		DefaultActorFree_Field_Sub,
 		MapFieldScene1_Main,
 	},
-	{//ƒRƒs[ƒ‰ƒCƒg
+	{//ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆ
 		BgGraphicSet_Copyright,
 		Model3DSet_Copyright,
 		DefaultResourceSet_Copyright_Main,
@@ -257,108 +257,108 @@ static const ENDING_SCENE_LOAD_FUNC EndingSceneLoadFunc[] = {
 
 
 //--------------------------------------------------------------
-//	ƒAƒNƒ^[ƒwƒbƒ_
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 //--------------------------------------------------------------
-///ƒtƒƒ“ƒe ƒAƒNƒ^[ƒwƒbƒ_(ƒTƒu‰æ–Ê)
+///ãƒ•ãƒ¯ãƒ³ãƒ† ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ã‚µãƒ–ç”»é¢)
 static const TCATS_OBJECT_ADD_PARAM_S FuwanteObjParam = {
 	0,0, 0,		//x, y, z
-	0, SOFTPRI_SUB_FUWANTE, PALOFS_SUB_FUWANTE,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_FUWANTE,			//ƒLƒƒƒ‰
-		PLTTID_SUB_FUWANTE,			//ƒpƒŒƒbƒg
-		CELLID_SUB_FUWANTE,			//ƒZƒ‹
-		CELLANMID_SUB_FUWANTE,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_SUB_FUWANTE, PALOFS_SUB_FUWANTE,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_FUWANTE,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_FUWANTE,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_FUWANTE,			//ã‚»ãƒ«
+		CELLANMID_SUB_FUWANTE,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTBGPRI_SUB_FUWANTE,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTBGPRI_SUB_FUWANTE,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒLƒƒƒ‚ƒ ƒAƒNƒ^[ƒwƒbƒ_(ƒTƒu‰æ–Ê)
+///ã‚­ãƒ£ãƒ¢ãƒ¡ ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ã‚µãƒ–ç”»é¢)
 static const TCATS_OBJECT_ADD_PARAM_S KyamomeObjParam = {
 	0,0, 0,		//x, y, z
-	1, SOFTPRI_SUB_KYAMOME, PALOFS_SUB_KYAMOME,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_KYAMOME,			//ƒLƒƒƒ‰
-		PLTTID_SUB_KYAMOME,			//ƒpƒŒƒbƒg
-		CELLID_SUB_KYAMOME,			//ƒZƒ‹
-		CELLANMID_SUB_KYAMOME,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	1, SOFTPRI_SUB_KYAMOME, PALOFS_SUB_KYAMOME,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_KYAMOME,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_KYAMOME,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_KYAMOME,			//ã‚»ãƒ«
+		CELLANMID_SUB_KYAMOME,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTBGPRI_SUB_KYAMOME,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTBGPRI_SUB_KYAMOME,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒWƒoƒRƒCƒ‹ ƒAƒNƒ^[ƒwƒbƒ_(ƒTƒu‰æ–Ê)
+///ã‚¸ãƒã‚³ã‚¤ãƒ« ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ã‚µãƒ–ç”»é¢)
 static const TCATS_OBJECT_ADD_PARAM_S JibaObjParam = {
 	0,0, 0,		//x, y, z
-	2, SOFTPRI_SUB_JIBA, PALOFS_SUB_JIBA,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_JIBA,			//ƒLƒƒƒ‰
-		PLTTID_SUB_JIBA,			//ƒpƒŒƒbƒg
-		CELLID_SUB_JIBA,			//ƒZƒ‹
-		CELLANMID_SUB_JIBA,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	2, SOFTPRI_SUB_JIBA, PALOFS_SUB_JIBA,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_JIBA,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_JIBA,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_JIBA,			//ã‚»ãƒ«
+		CELLANMID_SUB_JIBA,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTBGPRI_SUB_JIBA,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTBGPRI_SUB_JIBA,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒƒCƒ“‰æ–Ê—¬‚ê¯ ƒAƒNƒ^[ƒwƒbƒ_(ƒƒCƒ“‰æ–Ê)
+///ãƒ¡ã‚¤ãƒ³ç”»é¢æµã‚Œæ˜Ÿ ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ãƒ¡ã‚¤ãƒ³ç”»é¢)
 static const TCATS_OBJECT_ADD_PARAM_S StarObjParam = {
 	0,0, 0,		//x, y, z
-	3, SOFTPRI_STAR, PALOFS_STAR,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_STAR,			//ƒLƒƒƒ‰
-		PLTTID_STAR,			//ƒpƒŒƒbƒg
-		CELLID_STAR,			//ƒZƒ‹
-		CELLANMID_STAR,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	3, SOFTPRI_STAR, PALOFS_STAR,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_STAR,			//ã‚­ãƒ£ãƒ©
+		PLTTID_STAR,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_STAR,			//ã‚»ãƒ«
+		CELLANMID_STAR,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTBGPRI_STAR,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTBGPRI_STAR,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒTƒu‰æ–Ê—¬‚ê¯ ƒAƒNƒ^[ƒwƒbƒ_(ƒTƒu‰æ–Ê)
+///ã‚µãƒ–ç”»é¢æµã‚Œæ˜Ÿ ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ã‚µãƒ–ç”»é¢)
 static const TCATS_OBJECT_ADD_PARAM_S StarSubObjParam = {
 	0,0, 0,		//x, y, z
-	3, SOFTPRI_SUB_STAR, PALOFS_SUB_STAR,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_JIBA,			//ƒLƒƒƒ‰
-		PLTTID_SUB_JIBA,			//ƒpƒŒƒbƒg
-		CELLID_SUB_JIBA,			//ƒZƒ‹
-		CELLANMID_SUB_JIBA,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	3, SOFTPRI_SUB_STAR, PALOFS_SUB_STAR,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_JIBA,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_JIBA,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_JIBA,			//ã‚»ãƒ«
+		CELLANMID_SUB_JIBA,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTBGPRI_SUB_STAR,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTBGPRI_SUB_STAR,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ålŒö ƒAƒNƒ^[ƒwƒbƒ_(ƒƒCƒ“‰æ–Ê)
+///ä¸»äººå…¬ ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ãƒ¡ã‚¤ãƒ³ç”»é¢)
 static const TCATS_OBJECT_ADD_PARAM_S HeroObjParam = {
 	128+48+16,192-8*4, 0,		//x, y, z
-	0, SOFTPRI_HERO, 0,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_HERO,			//ƒLƒƒƒ‰
-		PLTTID_HERO,			//ƒpƒŒƒbƒg
-		CELLID_HERO,			//ƒZƒ‹
-		CELLANMID_HERO,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_HERO, 0,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_HERO,			//ã‚­ãƒ£ãƒ©
+		PLTTID_HERO,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_HERO,			//ã‚»ãƒ«
+		CELLANMID_HERO,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	ACTBGPRI_HERO,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	1,			//Vram“]‘—ƒtƒ‰ƒO
+	ACTBGPRI_HERO,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	1,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 
@@ -370,9 +370,9 @@ static const TCATS_OBJECT_ADD_PARAM_S HeroObjParam = {
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ålŒöƒŠƒ\[ƒX“o˜^@@¦ålŒö‚Í•¡”‚ÌƒV[ƒ“‚Åg—p‚·‚é‚Ì‚Å’P“Æ‚ÅŠÖ”‰»
+ * @brief   ä¸»äººå…¬ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²ã€€ã€€â€»ä¸»äººå…¬ã¯è¤‡æ•°ã®ã‚·ãƒ¼ãƒ³ã§ä½¿ç”¨ã™ã‚‹ã®ã§å˜ç‹¬ã§é–¢æ•°åŒ–
  *
- * @param   emw		ƒGƒ“ƒfƒBƒ“ƒOƒƒCƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   emw		ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void HeroResourceSet(ENDING_MAIN_WORK *emw)
@@ -419,9 +419,9 @@ static void HeroResourceSet(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ålŒöƒŠƒ\[ƒX‰ğ•ú@@¦ålŒö‚Í•¡”‚ÌƒV[ƒ“‚Åg—p‚·‚é‚Ì‚Å’P“Æ‚ÅŠÖ”‰»
+ * @brief   ä¸»äººå…¬ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾ã€€ã€€â€»ä¸»äººå…¬ã¯è¤‡æ•°ã®ã‚·ãƒ¼ãƒ³ã§ä½¿ç”¨ã™ã‚‹ã®ã§å˜ç‹¬ã§é–¢æ•°åŒ–
  *
- * @param   emw		ƒGƒ“ƒfƒBƒ“ƒOƒƒCƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   emw		ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void HeroResourceFree(ENDING_MAIN_WORK *emw)
@@ -434,11 +434,11 @@ static void HeroResourceFree(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ålŒöƒAƒNƒ^[¶¬@@¦ålŒö‚Í•¡”‚ÌƒV[ƒ“‚Åg—p‚·‚é‚Ì‚Å’P“Æ‚ÅŠÖ”‰»
+ * @brief   ä¸»äººå…¬ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆã€€ã€€â€»ä¸»äººå…¬ã¯è¤‡æ•°ã®ã‚·ãƒ¼ãƒ³ã§ä½¿ç”¨ã™ã‚‹ã®ã§å˜ç‹¬ã§é–¢æ•°åŒ–
  *
- * @param   emw		ƒGƒ“ƒfƒBƒ“ƒOƒƒCƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   emw		ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ¶¬‚³‚ê‚½ålŒöƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã•ã‚ŒãŸä¸»äººå…¬ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void HeroActorSet(ENDING_MAIN_WORK *emw, CATS_ACT_PTR *cap_hero, CATS_ACT_PTR *cap_scarf)
@@ -453,15 +453,15 @@ static void HeroActorSet(ENDING_MAIN_WORK *emw, CATS_ACT_PTR *cap_hero, CATS_ACT
 	CATS_ObjectUpdate(cap->act);
 	*cap_hero = cap;
 	
-	//ƒ}ƒtƒ‰[
-	act_head.pri = SOFTPRI_HERO_SCARF;	//–{‘Ì‚æ‚è‚àƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ‰º‚°‚é
+	//ãƒãƒ•ãƒ©ãƒ¼
+	act_head.pri = SOFTPRI_HERO_SCARF;	//æœ¬ä½“ã‚ˆã‚Šã‚‚ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’ä¸‹ã’ã‚‹
 	cap_s = CATS_ObjectAdd_S(emw->csp, emw->crp, &act_head);
 	CATS_ObjectAnimeSeqSetCap(cap_s, 2);
 	CATS_ObjectAutoAnimeSetCap(cap_s, CATS_ANM_AUTO_ON);
 	CATS_ObjectUpdate(cap_s->act);
 	*cap_scarf = cap_s;
 	
-	//–Ú‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ğ“Ç‚İ‚İ
+	//ç›®ã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿
 	{
 		void *arc_data;
 		NNSG2dCharacterData *data;
@@ -486,10 +486,10 @@ static void HeroActorSet(ENDING_MAIN_WORK *emw, CATS_ACT_PTR *cap_hero, CATS_ACT
 
 //--------------------------------------------------------------
 /**
- * @brief   ålŒöƒAƒNƒ^[íœ@@¦ålŒö‚Í•¡”‚ÌƒV[ƒ“‚Åg—p‚·‚é‚Ì‚Å’P“Æ‚ÅŠÖ”‰»
+ * @brief   ä¸»äººå…¬ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤ã€€ã€€â€»ä¸»äººå…¬ã¯è¤‡æ•°ã®ã‚·ãƒ¼ãƒ³ã§ä½¿ç”¨ã™ã‚‹ã®ã§å˜ç‹¬ã§é–¢æ•°åŒ–
  *
- * @param   emw		ƒGƒ“ƒfƒBƒ“ƒOƒƒCƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   cap		ålŒöƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   emw		ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   cap		ä¸»äººå…¬ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void HeroActorDel(ENDING_MAIN_WORK *emw, CATS_ACT_PTR cap, CATS_ACT_PTR cap_scraft)
@@ -504,10 +504,10 @@ static void HeroActorDel(ENDING_MAIN_WORK *emw, CATS_ACT_PTR cap, CATS_ACT_PTR c
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒV[ƒ“ƒŠƒ\[ƒX“o˜^
+ * @brief   ã‚·ãƒ¼ãƒ³ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
  *
- * @param   emw				ƒGƒ“ƒfƒBƒ“ƒOƒƒCƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   scene_no		ƒV[ƒ“”Ô†
+ * @param   emw				ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   scene_no		ã‚·ãƒ¼ãƒ³ç•ªå·
  */
 //--------------------------------------------------------------
 void EndingSceneSetup_Load(ENDING_MAIN_WORK *emw, int scene_no)
@@ -526,10 +526,10 @@ void EndingSceneSetup_Load(ENDING_MAIN_WORK *emw, int scene_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒV[ƒ“ƒŠƒ\[ƒX‰ğ•ú
+ * @brief   ã‚·ãƒ¼ãƒ³ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  *
- * @param   emw				ƒGƒ“ƒfƒBƒ“ƒOƒƒCƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   scene_no		ƒV[ƒ“”Ô†
+ * @param   emw				ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   scene_no		ã‚·ãƒ¼ãƒ³ç•ªå·
  */
 //--------------------------------------------------------------
 void EndingSceneSetup_Unload(ENDING_MAIN_WORK *emw, int scene_no)
@@ -548,12 +548,12 @@ void EndingSceneSetup_Unload(ENDING_MAIN_WORK *emw, int scene_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒV[ƒ“–ˆ‚ÌƒƒCƒ“ŠÖ”ŒÄ‚Ño‚µ
+ * @brief   ã‚·ãƒ¼ãƒ³æ¯ã®ãƒ¡ã‚¤ãƒ³é–¢æ•°å‘¼ã³å‡ºã—
  *
- * @param   emw				ƒGƒ“ƒfƒBƒ“ƒOƒƒCƒ“ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   scene_no		ƒV[ƒ“”Ô†
+ * @param   emw				ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   scene_no		ã‚·ãƒ¼ãƒ³ç•ªå·
  *
- * @retval  TRUE:I—¹B@FALSE:Œp‘±’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ç¶™ç¶šä¸­
  */
 //--------------------------------------------------------------
 BOOL EndingSceneSetup_MainFunc(ENDING_MAIN_WORK *emw, int scene_no)
@@ -570,14 +570,14 @@ BOOL EndingSceneSetup_MainFunc(ENDING_MAIN_WORK *emw, int scene_no)
 
 //==============================================================================
 //
-//	ƒ}ƒbƒvƒV[ƒ“‚P
+//	ãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼‘
 //
 //==============================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFƒ}ƒbƒvƒV[ƒ“‚P
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼‘
  *
- * @param	emw		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	emw		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -586,7 +586,7 @@ static void BgGraphicSet_MapScene1( ENDING_MAIN_WORK * emw)
 {
 	GF_BGL_INI *bgl = emw->bgl;
 	
-	//-- ƒƒCƒ“‰æ–Ê --//
+	//-- ãƒ¡ã‚¤ãƒ³ç”»é¢ --//
 	PaletteWorkSet_Arc(emw->pfd, ARC_ENDING, NARC_ending_ed_sora_m01_NCLR, 
 		HEAPID_ENDING_DEMO, FADE_MAIN_BG, 0, 0);
 	ArcUtil_HDL_BgCharSet(emw->ending_hdl, NARC_ending_ed_sora_m01_NCGR, emw->bgl, 
@@ -594,7 +594,7 @@ static void BgGraphicSet_MapScene1( ENDING_MAIN_WORK * emw)
 	ArcUtil_HDL_ScrnSet(emw->ending_hdl, NARC_ending_ed_sora_m01_NSCR, emw->bgl, 
 		FRAME_M_BG, 0, 0, 0, HEAPID_ENDING_DEMO);
 
-	//-- ƒTƒu‰æ–Ê --//
+	//-- ã‚µãƒ–ç”»é¢ --//
 	PaletteWorkSet_Arc(emw->pfd, ARC_ENDING, NARC_ending_ed_sora_s01_NCLR, 
 		HEAPID_ENDING_DEMO, FADE_SUB_BG, 0, 0);
 	ArcUtil_HDL_BgCharSet(emw->ending_hdl, NARC_ending_ed_sora_s01_NCGR, emw->bgl, 
@@ -619,9 +619,9 @@ static void BgGraphicSet_MapScene1( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‰ğ•úFƒ}ƒbƒvƒV[ƒ“‚P
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è§£æ”¾ï¼šãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼‘
  *
- * @param	emw		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	emw		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -636,7 +636,7 @@ static void BgGraphicFree_MapScene1( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒgFƒV[ƒ“‚P
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆï¼šã‚·ãƒ¼ãƒ³ï¼‘
  *
  * @param   emw		
  */
@@ -648,7 +648,7 @@ static void DefaultResourceSet_MapScene1_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚Ì‰ğ•ú
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  *
  * @param   emw		
  */
@@ -660,7 +660,7 @@ static void DefaultResourceFree_MapScene1_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   emw		
  */
@@ -672,7 +672,7 @@ static void DefaultActorSet_MapScene1_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   emw		
  */
@@ -684,14 +684,14 @@ static void DefaultActorFree_MapScene1_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒg
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆ
  *
  * @param   emw		
  */
 //--------------------------------------------------------------
 static void DefaultResourceSet_MapScene1_Sub(ENDING_MAIN_WORK *emw)
 {
-	//ƒtƒƒ“ƒe
+	//ãƒ•ãƒ¯ãƒ³ãƒ†
 	CATS_LoadResourcePlttWorkArcH(emw->pfd, FADE_SUB_OBJ, emw->csp, emw->crp, 
 		emw->ending_hdl, NARC_ending_ed_oam_NCLR, 0, 10, 
 		NNS_G2D_VRAM_TYPE_2DSUB, PLTTID_SUB_FUWANTE);
@@ -706,7 +706,7 @@ static void DefaultResourceSet_MapScene1_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚Ì‰ğ•ú
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  *
  * @param   emw		
  */
@@ -721,7 +721,7 @@ static void DefaultResourceFree_MapScene1_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   emw		
  */
@@ -730,7 +730,7 @@ static void DefaultActorSet_MapScene1_Sub(ENDING_MAIN_WORK *emw)
 {
 	int i;
 	
-	//ƒtƒƒ“ƒe
+	//ãƒ•ãƒ¯ãƒ³ãƒ†
 	for(i = ACT_INDEX_SCENE1_FUWANTE_0; i <= ACT_INDEX_SCENE1_FUWANTE_2; i++){
 		emw->cap[i] = CATS_ObjectAdd_S(emw->csp, emw->crp, &FuwanteObjParam);
 		CATS_ObjectAffineSetCap(emw->cap[i], CLACT_AFFINE_DOUBLE);
@@ -741,7 +741,7 @@ static void DefaultActorSet_MapScene1_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   emw		
  */
@@ -757,7 +757,7 @@ static void DefaultActorFree_MapScene1_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹ƒZƒbƒgFƒ}ƒbƒvƒV[ƒ“‚P
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆï¼šãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼‘
  *
  * @param   emw		
  */
@@ -781,23 +781,23 @@ static void Model3DSet_MapScene1( ENDING_MAIN_WORK * emw)
 	NNS_G3dMdlUseGlbEmi(emw->mdl[ENDING_SCENE1_MDL_TREE_B].pModel);
 
 	for(i = 0; i < ENDING_SCENE_LINE_3DOBJ_MAX; i++){
-		//ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+		//ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 		D3DOBJ_Init( &emw->obj[MODEL_LINE_0][i], &emw->mdl[ENDING_SCENE1_MDL_TREE_A] );
-		//À•Wİ’è
+		//åº§æ¨™è¨­å®š
 		D3DOBJ_SetMatrix( &emw->obj[MODEL_LINE_0][i], 0, 0, 0);
 		D3DOBJ_SetScale(&emw->obj[MODEL_LINE_0][i], FX32_ONE, FX32_ONE, FX32_ONE);
 		D3DOBJ_SetDraw(&emw->obj[MODEL_LINE_0][i], TRUE );
 	}
 	for(i = 0; i < ENDING_SCENE_LINE_3DOBJ_MAX; i++){
-		//ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+		//ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 		D3DOBJ_Init( &emw->obj[MODEL_LINE_1][i], &emw->mdl[ENDING_SCENE1_MDL_TREE_B] );
-		//À•Wİ’è
+		//åº§æ¨™è¨­å®š
 		D3DOBJ_SetMatrix( &emw->obj[MODEL_LINE_1][i], 0, 0, 0);
 		D3DOBJ_SetScale(&emw->obj[MODEL_LINE_1][i], FX32_ONE, FX32_ONE, FX32_ONE);
 		D3DOBJ_SetDraw(&emw->obj[MODEL_LINE_1][i], TRUE );
 	}
 	
-	emw->mdl_line_num = 2;		//ƒ‰ƒCƒ“”2
+	emw->mdl_line_num = 2;		//ãƒ©ã‚¤ãƒ³æ•°2
 	EndingTool_ModelLineArrangeDataInit(emw, 0);
 	EndingTool_ModelLineInit(emw);
 	emw->draw_3d = TRUE;
@@ -805,7 +805,7 @@ static void Model3DSet_MapScene1( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹íœ
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«å‰Šé™¤
  *
  * @param   emw		
  */
@@ -815,7 +815,7 @@ static void Model3DFree_MapScene1(ENDING_MAIN_WORK *emw)
 	int i;
 	
 	for(i = 0; i < ENDING_SCENE_MDL_MAX; i++){
-		// ‘SƒŠƒ\[ƒX”jŠü
+		// å…¨ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 		D3DOBJ_MdlDelete( &emw->mdl[i] ); 
 	}
 
@@ -826,14 +826,14 @@ static void Model3DFree_MapScene1(ENDING_MAIN_WORK *emw)
 
 //==============================================================================
 //
-//	ƒLƒƒƒvƒ`ƒƒƒV[ƒ“‚P
+//	ã‚­ãƒ£ãƒ—ãƒãƒ£ã‚·ãƒ¼ãƒ³ï¼‘
 //
 //==============================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFƒLƒƒƒvƒ`ƒƒƒV[ƒ“‚P
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šã‚­ãƒ£ãƒ—ãƒãƒ£ã‚·ãƒ¼ãƒ³ï¼‘
  *
- * @param	emw		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	emw		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -851,9 +851,9 @@ static void BgGraphicSet_CapScene1( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‰ğ•úFƒLƒƒƒvƒ`ƒƒƒV[ƒ“‚P
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è§£æ”¾ï¼šã‚­ãƒ£ãƒ—ãƒãƒ£ã‚·ãƒ¼ãƒ³ï¼‘
  *
- * @param	emw		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	emw		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -865,7 +865,7 @@ static void BgGraphicFree_CapScene1( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒgFƒV[ƒ“‚P
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆï¼šã‚·ãƒ¼ãƒ³ï¼‘
  *
  * @param   emw		
  */
@@ -877,7 +877,7 @@ static void DefaultResourceSet_CapScene1_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚Ì‰ğ•ú
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  *
  * @param   emw		
  */
@@ -889,7 +889,7 @@ static void DefaultResourceFree_CapScene1_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   emw		
  */
@@ -901,7 +901,7 @@ static void DefaultActorSet_CapScene1_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   emw		
  */
@@ -913,7 +913,7 @@ static void DefaultActorFree_CapScene1_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒg
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆ
  *
  * @param   emw		
  */
@@ -925,7 +925,7 @@ static void DefaultResourceSet_CapScene1_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚Ì‰ğ•ú
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  *
  * @param   emw		
  */
@@ -937,7 +937,7 @@ static void DefaultResourceFree_CapScene1_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   emw		
  */
@@ -949,7 +949,7 @@ static void DefaultActorSet_CapScene1_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   emw		
  */
@@ -961,7 +961,7 @@ static void DefaultActorFree_CapScene1_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹ƒZƒbƒgFƒLƒƒƒvƒ`ƒƒƒV[ƒ“‚P
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆï¼šã‚­ãƒ£ãƒ—ãƒãƒ£ã‚·ãƒ¼ãƒ³ï¼‘
  *
  * @param   emw		
  */
@@ -973,7 +973,7 @@ static void Model3DSet_CapScene1( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹íœ
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«å‰Šé™¤
  *
  * @param   emw		
  */
@@ -986,14 +986,14 @@ static void Model3DFree_CapScene1(ENDING_MAIN_WORK *emw)
 
 //==============================================================================
 //
-//	ƒ}ƒbƒvƒV[ƒ“‚Q
+//	ãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼’
 //
 //==============================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFƒ}ƒbƒvƒV[ƒ“‚Q
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼’
  *
- * @param	emw		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	emw		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1002,7 +1002,7 @@ static void BgGraphicSet_MapScene2( ENDING_MAIN_WORK * emw)
 {
 	GF_BGL_INI *bgl = emw->bgl;
 	
-	//-- ƒƒCƒ“‰æ–Ê --//
+	//-- ãƒ¡ã‚¤ãƒ³ç”»é¢ --//
 	PaletteWorkSet_Arc(emw->pfd, ARC_ENDING, NARC_ending_ed_sora_m02_NCLR, 
 		HEAPID_ENDING_DEMO, FADE_MAIN_BG, 0, 0);
 	ArcUtil_HDL_BgCharSet(emw->ending_hdl, NARC_ending_ed_sora_m02_NCGR, emw->bgl, 
@@ -1010,7 +1010,7 @@ static void BgGraphicSet_MapScene2( ENDING_MAIN_WORK * emw)
 	ArcUtil_HDL_ScrnSet(emw->ending_hdl, NARC_ending_ed_sora_m02_NSCR, emw->bgl, 
 		FRAME_M_BG, 0, 0, 0, HEAPID_ENDING_DEMO);
 
-	//-- ƒTƒu‰æ–Ê --//
+	//-- ã‚µãƒ–ç”»é¢ --//
 	PaletteWorkSet_Arc(emw->pfd, ARC_ENDING, NARC_ending_ed_sora_s02_NCLR, 
 		HEAPID_ENDING_DEMO, FADE_SUB_BG, 0, 0);
 	ArcUtil_HDL_BgCharSet(emw->ending_hdl, NARC_ending_ed_sora_s02_NCGR, emw->bgl, 
@@ -1018,7 +1018,7 @@ static void BgGraphicSet_MapScene2( ENDING_MAIN_WORK * emw)
 	ArcUtil_HDL_ScrnSet(emw->ending_hdl, NARC_ending_ed_sora_s02_NSCR, emw->bgl, 
 		FRAME_S_BG, 0, 0, 0, HEAPID_ENDING_DEMO);
 
-	//-- ƒpƒŒƒbƒgƒAƒjƒ—p‚Éƒoƒbƒtƒ@ƒRƒs[ --//
+	//-- ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ç”¨ã«ãƒãƒƒãƒ•ã‚¡ã‚³ãƒ”ãƒ¼ --//
 	{
 		NNSG2dPaletteData *palData;
 		void *p_work;
@@ -1046,9 +1046,9 @@ static void BgGraphicSet_MapScene2( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‰ğ•úFƒ}ƒbƒvƒV[ƒ“‚Q
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è§£æ”¾ï¼šãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼’
  *
- * @param	emw		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	emw		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1063,7 +1063,7 @@ static void BgGraphicFree_MapScene2( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒgFƒV[ƒ“‚Q
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆï¼šã‚·ãƒ¼ãƒ³ï¼’
  *
  * @param   emw		
  */
@@ -1075,7 +1075,7 @@ static void DefaultResourceSet_MapScene2_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚Ì‰ğ•ú
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  *
  * @param   emw		
  */
@@ -1087,7 +1087,7 @@ static void DefaultResourceFree_MapScene2_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   emw		
  */
@@ -1099,7 +1099,7 @@ static void DefaultActorSet_MapScene2_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   emw		
  */
@@ -1111,14 +1111,14 @@ static void DefaultActorFree_MapScene2_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒg
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆ
  *
  * @param   emw		
  */
 //--------------------------------------------------------------
 static void DefaultResourceSet_MapScene2_Sub(ENDING_MAIN_WORK *emw)
 {
-	//ƒLƒƒƒ‚ƒ
+	//ã‚­ãƒ£ãƒ¢ãƒ¡
 	CATS_LoadResourcePlttWorkArcH(emw->pfd, FADE_SUB_OBJ, emw->csp, emw->crp, 
 		emw->ending_hdl, NARC_ending_ed_oam_NCLR, 0, 10, 
 		NNS_G2D_VRAM_TYPE_2DSUB, PLTTID_SUB_KYAMOME);
@@ -1133,7 +1133,7 @@ static void DefaultResourceSet_MapScene2_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚Ì‰ğ•ú
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  *
  * @param   emw		
  */
@@ -1148,7 +1148,7 @@ static void DefaultResourceFree_MapScene2_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   emw		
  */
@@ -1157,7 +1157,7 @@ static void DefaultActorSet_MapScene2_Sub(ENDING_MAIN_WORK *emw)
 {
 	int i;
 	
-	//ƒLƒƒƒ‚ƒ
+	//ã‚­ãƒ£ãƒ¢ãƒ¡
 	for(i = ACT_INDEX_SCENE2_KYAMOME_0; i <= ACT_INDEX_SCENE2_KYAMOME_1; i++){
 		emw->cap[i] = CATS_ObjectAdd_S(emw->csp, emw->crp, &KyamomeObjParam);
 		CATS_ObjectAutoAnimeSetCap(emw->cap[i], CATS_ANM_AUTO_ON);
@@ -1167,7 +1167,7 @@ static void DefaultActorSet_MapScene2_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   emw		
  */
@@ -1183,7 +1183,7 @@ static void DefaultActorFree_MapScene2_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹ƒZƒbƒgFƒ}ƒbƒvƒV[ƒ“‚Q
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆï¼šãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼’
  *
  * @param   emw		
  */
@@ -1200,9 +1200,9 @@ static void Model3DSet_MapScene2( ENDING_MAIN_WORK * emw)
 	NNS_G3dMdlUseGlbEmi(emw->mdl[ENDING_SCENE2_MDL_LIGHT].pModel);
 
 	for(i = 0; i < ENDING_SCENE_LINE_3DOBJ_MAX; i++){
-		//ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+		//ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 		D3DOBJ_Init( &emw->obj[MODEL_LINE_0][i], &emw->mdl[ENDING_SCENE2_MDL_LIGHT] );
-		//À•Wİ’è
+		//åº§æ¨™è¨­å®š
 		D3DOBJ_SetMatrix( &emw->obj[MODEL_LINE_0][i], 0, 0, 0);
 		D3DOBJ_SetScale(&emw->obj[MODEL_LINE_0][i], FX32_ONE, FX32_ONE, FX32_ONE);
 		D3DOBJ_SetDraw(&emw->obj[MODEL_LINE_0][i], TRUE );
@@ -1211,7 +1211,7 @@ static void Model3DSet_MapScene2( ENDING_MAIN_WORK * emw)
 		D3DOBJ_SetDraw(&emw->obj[MODEL_LINE_1][i], FALSE );
 	}
 	
-	emw->mdl_line_num = 1;		//ƒ‰ƒCƒ“”1
+	emw->mdl_line_num = 1;		//ãƒ©ã‚¤ãƒ³æ•°1
 	EndingTool_ModelLineArrangeDataInit(emw, 1);
 	EndingTool_ModelLineInit(emw);
 	emw->draw_3d = TRUE;
@@ -1219,7 +1219,7 @@ static void Model3DSet_MapScene2( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹íœ
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«å‰Šé™¤
  *
  * @param   emw		
  */
@@ -1229,7 +1229,7 @@ static void Model3DFree_MapScene2(ENDING_MAIN_WORK *emw)
 	int i;
 	
 	for(i = 0; i < ENDING_SCENE_MDL_MAX; i++){
-		// ‘SƒŠƒ\[ƒX”jŠü
+		// å…¨ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 		D3DOBJ_MdlDelete( &emw->mdl[i] ); 
 	}
 
@@ -1240,14 +1240,14 @@ static void Model3DFree_MapScene2(ENDING_MAIN_WORK *emw)
 
 //==============================================================================
 //
-//	ƒ}ƒbƒvƒV[ƒ“‚R
+//	ãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼“
 //
 //==============================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFƒ}ƒbƒvƒV[ƒ“‚R
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼“
  *
- * @param	emw		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	emw		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1256,7 +1256,7 @@ static void BgGraphicSet_MapScene3( ENDING_MAIN_WORK * emw)
 {
 	GF_BGL_INI *bgl = emw->bgl;
 	
-	//-- ƒƒCƒ“‰æ–Ê --//
+	//-- ãƒ¡ã‚¤ãƒ³ç”»é¢ --//
 	PaletteWorkSet_Arc(emw->pfd, ARC_ENDING, NARC_ending_ed_sora_m03_NCLR, 
 		HEAPID_ENDING_DEMO, FADE_MAIN_BG, 0, 0);
 	ArcUtil_HDL_BgCharSet(emw->ending_hdl, NARC_ending_ed_sora_m03_NCGR, emw->bgl, 
@@ -1264,7 +1264,7 @@ static void BgGraphicSet_MapScene3( ENDING_MAIN_WORK * emw)
 	ArcUtil_HDL_ScrnSet(emw->ending_hdl, NARC_ending_ed_sora_m03_NSCR, emw->bgl, 
 		FRAME_M_BG, 0, 0, 0, HEAPID_ENDING_DEMO);
 
-	//-- ƒTƒu‰æ–Ê --//
+	//-- ã‚µãƒ–ç”»é¢ --//
 	PaletteWorkSet_Arc(emw->pfd, ARC_ENDING, NARC_ending_ed_sora_s03_NCLR, 
 		HEAPID_ENDING_DEMO, FADE_SUB_BG, 0, 0);
 	ArcUtil_HDL_BgCharSet(emw->ending_hdl, NARC_ending_ed_sora_s03_NCGR, emw->bgl, 
@@ -1272,7 +1272,7 @@ static void BgGraphicSet_MapScene3( ENDING_MAIN_WORK * emw)
 	ArcUtil_HDL_ScrnSet(emw->ending_hdl, NARC_ending_ed_sora_s03_NSCR, emw->bgl, 
 		FRAME_S_BG, 0, 0, 0, HEAPID_ENDING_DEMO);
 
-	//-- ƒpƒŒƒbƒgƒAƒjƒ—p‚Éƒoƒbƒtƒ@ƒRƒs[ --//
+	//-- ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ç”¨ã«ãƒãƒƒãƒ•ã‚¡ã‚³ãƒ”ãƒ¼ --//
 	{
 		NNSG2dPaletteData *palData;
 		void *p_work;
@@ -1283,7 +1283,7 @@ static void BgGraphicSet_MapScene3( ENDING_MAIN_WORK * emw)
 			emw->scene_work.sw_map3.palanm_buf, 0x20*ENDING_SCENE3_PALANM_NUM);
 		sys_FreeMemoryEz(p_work);
 		
-		//Å‰‚ÌƒpƒŒƒbƒgó‹µ‚ÍƒpƒŒƒbƒgƒAƒjƒ0”Ô‚Ì‚ğ“]‘—
+		//æœ€åˆã®ãƒ‘ãƒ¬ãƒƒãƒˆçŠ¶æ³ã¯ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡0ç•ªã®ã‚’è»¢é€
 		PaletteWorkSet(emw->pfd, emw->scene_work.sw_map3.palanm_buf, FADE_MAIN_BG, 
 			16*ENDING_SCENE3_PALANM_PAL_POS, 0x20);
 		PaletteWorkSet(emw->pfd, emw->scene_work.sw_map3.palanm_buf, FADE_SUB_BG, 
@@ -1307,9 +1307,9 @@ static void BgGraphicSet_MapScene3( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‰ğ•úFƒ}ƒbƒvƒV[ƒ“‚R
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è§£æ”¾ï¼šãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼“
  *
- * @param	emw		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	emw		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1324,7 +1324,7 @@ static void BgGraphicFree_MapScene3( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒgFƒV[ƒ“‚R
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆï¼šã‚·ãƒ¼ãƒ³ï¼“
  *
  * @param   emw		
  */
@@ -1333,7 +1333,7 @@ static void DefaultResourceSet_MapScene3_Main(ENDING_MAIN_WORK *emw)
 {
 	HeroResourceSet(emw);
 
-	//—¬‚ê¯
+	//æµã‚Œæ˜Ÿ
 	CATS_LoadResourcePlttWorkArcH(emw->pfd, FADE_MAIN_OBJ, emw->csp, emw->crp, 
 		emw->ending_hdl, NARC_ending_ed_oam_NCLR, 0, 4, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, PLTTID_STAR);
@@ -1348,7 +1348,7 @@ static void DefaultResourceSet_MapScene3_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚Ì‰ğ•ú
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  *
  * @param   emw		
  */
@@ -1365,7 +1365,7 @@ static void DefaultResourceFree_MapScene3_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   emw		
  */
@@ -1374,16 +1374,16 @@ static void DefaultActorSet_MapScene3_Main(ENDING_MAIN_WORK *emw)
 {
 	HeroActorSet(emw, &emw->cap[ACT_INDEX_SCENE3_HERO], &emw->cap[ACT_INDEX_SCENE3_HERO_SCARF]);
 
-	//—¬‚ê¯
+	//æµã‚Œæ˜Ÿ
 	emw->cap[ACT_INDEX_SCENE3_STAR_MAIN] = CATS_ObjectAdd_S(emw->csp, emw->crp, &StarObjParam);
 	CATS_ObjectAutoAnimeSetCap(emw->cap[ACT_INDEX_SCENE3_STAR_MAIN], CATS_ANM_AUTO_ON);
-	CATS_ObjectEnableCap(emw->cap[ACT_INDEX_SCENE3_STAR_MAIN], CATS_ENABLE_FALSE);	//”ñ•\¦
+	CATS_ObjectEnableCap(emw->cap[ACT_INDEX_SCENE3_STAR_MAIN], CATS_ENABLE_FALSE);	//éè¡¨ç¤º
 	CATS_ObjectUpdate(emw->cap[ACT_INDEX_SCENE3_STAR_MAIN]->act);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   emw		
  */
@@ -1397,14 +1397,14 @@ static void DefaultActorFree_MapScene3_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒg
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆ
  *
  * @param   emw		
  */
 //--------------------------------------------------------------
 static void DefaultResourceSet_MapScene3_Sub(ENDING_MAIN_WORK *emw)
 {
-	//ƒWƒoƒRƒCƒ‹
+	//ã‚¸ãƒã‚³ã‚¤ãƒ«
 	CATS_LoadResourcePlttWorkArcH(emw->pfd, FADE_SUB_OBJ, emw->csp, emw->crp, 
 		emw->ending_hdl, NARC_ending_ed_oam_NCLR, 0, 10, 
 		NNS_G2D_VRAM_TYPE_2DSUB, PLTTID_SUB_JIBA);
@@ -1419,7 +1419,7 @@ static void DefaultResourceSet_MapScene3_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚Ì‰ğ•ú
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  *
  * @param   emw		
  */
@@ -1434,7 +1434,7 @@ static void DefaultResourceFree_MapScene3_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   emw		
  */
@@ -1443,23 +1443,23 @@ static void DefaultActorSet_MapScene3_Sub(ENDING_MAIN_WORK *emw)
 {
 	int i;
 	
-	//ƒWƒoƒRƒCƒ‹
+	//ã‚¸ãƒã‚³ã‚¤ãƒ«
 	for(i = ACT_INDEX_SCENE3_JIBA_0; i <= ACT_INDEX_SCENE3_JIBA_0; i++){
 		emw->cap[i] = CATS_ObjectAdd_S(emw->csp, emw->crp, &JibaObjParam);
 		CATS_ObjectAutoAnimeSetCap(emw->cap[i], CATS_ANM_AUTO_ON);
 		CATS_ObjectUpdate(emw->cap[i]->act);
 	}
 
-	//—¬‚ê¯
+	//æµã‚Œæ˜Ÿ
 	emw->cap[ACT_INDEX_SCENE3_STAR_SUB] = CATS_ObjectAdd_S(emw->csp, emw->crp, &StarSubObjParam);
 	CATS_ObjectAutoAnimeSetCap(emw->cap[ACT_INDEX_SCENE3_STAR_SUB], CATS_ANM_AUTO_ON);
-	CATS_ObjectEnableCap(emw->cap[ACT_INDEX_SCENE3_STAR_SUB], CATS_ENABLE_FALSE);	//”ñ•\¦
+	CATS_ObjectEnableCap(emw->cap[ACT_INDEX_SCENE3_STAR_SUB], CATS_ENABLE_FALSE);	//éè¡¨ç¤º
 	CATS_ObjectUpdate(emw->cap[ACT_INDEX_SCENE3_STAR_SUB]->act);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   emw		
  */
@@ -1476,7 +1476,7 @@ static void DefaultActorFree_MapScene3_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹ƒZƒbƒgFƒ}ƒbƒvƒV[ƒ“‚R
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆï¼šãƒãƒƒãƒ—ã‚·ãƒ¼ãƒ³ï¼“
  *
  * @param   emw		
  */
@@ -1514,23 +1514,23 @@ static void Model3DSet_MapScene3( ENDING_MAIN_WORK * emw)
 //	NNS_G3dMdlUseGlbEmi(emw->mdl[ENDING_SCENE3_MDL_LIGHT].pModel);
 
 	for(i = 0; i < ENDING_SCENE_LINE_3DOBJ_MAX; i++){
-		//ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+		//ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 		D3DOBJ_Init( &emw->obj[MODEL_LINE_0][i], &emw->mdl[ENDING_SCENE3_MDL_TREE_A] );
-		//À•Wİ’è
+		//åº§æ¨™è¨­å®š
 		D3DOBJ_SetMatrix( &emw->obj[MODEL_LINE_0][i], 0, 0, 0);
 		D3DOBJ_SetScale(&emw->obj[MODEL_LINE_0][i], FX32_ONE, FX32_ONE, FX32_ONE);
 		D3DOBJ_SetDraw(&emw->obj[MODEL_LINE_0][i], TRUE );
 	}
 	for(i = 0; i < ENDING_SCENE_LINE_3DOBJ_MAX; i++){
-		//ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+		//ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 		D3DOBJ_Init( &emw->obj[MODEL_LINE_1][i], &emw->mdl[ENDING_SCENE3_MDL_TREE_B] );
-		//À•Wİ’è
+		//åº§æ¨™è¨­å®š
 		D3DOBJ_SetMatrix( &emw->obj[MODEL_LINE_1][i], 0, 0, 0);
 		D3DOBJ_SetScale(&emw->obj[MODEL_LINE_1][i], FX32_ONE, FX32_ONE, FX32_ONE);
 		D3DOBJ_SetDraw(&emw->obj[MODEL_LINE_1][i], TRUE );
 	}
 	
-	emw->mdl_line_num = 2;		//ƒ‰ƒCƒ“”2
+	emw->mdl_line_num = 2;		//ãƒ©ã‚¤ãƒ³æ•°2
 	EndingTool_ModelLineArrangeDataInit(emw, 2);
 	EndingTool_ModelLineInit(emw);
 	emw->draw_3d = TRUE;
@@ -1538,7 +1538,7 @@ static void Model3DSet_MapScene3( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹íœ
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«å‰Šé™¤
  *
  * @param   emw		
  */
@@ -1548,7 +1548,7 @@ static void Model3DFree_MapScene3(ENDING_MAIN_WORK *emw)
 	int i;
 	
 	for(i = 0; i < ENDING_SCENE_MDL_MAX; i++){
-		// ‘SƒŠƒ\[ƒX”jŠü
+		// å…¨ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 		D3DOBJ_MdlDelete( &emw->mdl[i] ); 
 	}
 
@@ -1558,14 +1558,14 @@ static void Model3DFree_MapScene3(ENDING_MAIN_WORK *emw)
 
 //==============================================================================
 //
-//	ƒtƒB[ƒ‹ƒh
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 //
 //==============================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFƒtƒB[ƒ‹ƒh
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
  *
- * @param	emw		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	emw		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1574,7 +1574,7 @@ static void BgGraphicSet_Field( ENDING_MAIN_WORK * emw)
 {
 	GF_BGL_INI *bgl = emw->bgl;
 
-	FinalSceneVramSetup(emw);	//VRAMƒoƒ“ƒNØ‚è‘Ö‚¦
+	FinalSceneVramSetup(emw);	//VRAMãƒãƒ³ã‚¯åˆ‡ã‚Šæ›¿ãˆ
 	
 	emw->cap_no = 0;
 	EndingTool_CaptureGraphicTrans(emw, emw->cap_no, FRAME_FIN_M_CAP_A, CAPTURE_TBL_TYPE_FIELD);
@@ -1586,9 +1586,9 @@ static void BgGraphicSet_Field( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‰ğ•úFƒtƒB[ƒ‹ƒh
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è§£æ”¾ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
  *
- * @param	emw		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	emw		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1601,7 +1601,7 @@ static void BgGraphicFree_Field( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒgFƒtƒB[ƒ‹ƒh
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
  *
  * @param   emw		
  */
@@ -1613,7 +1613,7 @@ static void DefaultResourceSet_Field_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚Ì‰ğ•ú
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  *
  * @param   emw		
  */
@@ -1625,7 +1625,7 @@ static void DefaultResourceFree_Field_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   emw		
  */
@@ -1637,7 +1637,7 @@ static void DefaultActorSet_Field_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   emw		
  */
@@ -1649,7 +1649,7 @@ static void DefaultActorFree_Field_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒg
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆ
  *
  * @param   emw		
  */
@@ -1661,7 +1661,7 @@ static void DefaultResourceSet_Field_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚Ì‰ğ•ú
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  *
  * @param   emw		
  */
@@ -1673,7 +1673,7 @@ static void DefaultResourceFree_Field_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   emw		
  */
@@ -1685,7 +1685,7 @@ static void DefaultActorSet_Field_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   emw		
  */
@@ -1697,7 +1697,7 @@ static void DefaultActorFree_Field_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹ƒZƒbƒgFƒLƒƒƒvƒ`ƒƒƒV[ƒ“‚P
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆï¼šã‚­ãƒ£ãƒ—ãƒãƒ£ã‚·ãƒ¼ãƒ³ï¼‘
  *
  * @param   emw		
  */
@@ -1709,7 +1709,7 @@ static void Model3DSet_Field( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹íœ
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«å‰Šé™¤
  *
  * @param   emw		
  */
@@ -1723,14 +1723,14 @@ static void Model3DFree_Field(ENDING_MAIN_WORK *emw)
 
 //==============================================================================
 //
-//	ƒRƒs[ƒ‰ƒCƒg
+//	ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆ
 //
 //==============================================================================
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒgFƒRƒs[ƒ‰ƒCƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼šã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆ
  *
- * @param	emw		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	emw		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1742,10 +1742,10 @@ static void BgGraphicSet_Copyright( ENDING_MAIN_WORK * emw)
 	sys.disp3DSW = DISP_3D_TO_MAIN;
 	GF_Disp_DispSelect();
 
-	//-- ƒƒCƒ“‰æ–Ê --//
+	//-- ãƒ¡ã‚¤ãƒ³ç”»é¢ --//
 	PaletteWork_Clear(emw->pfd, FADE_MAIN_BG, FADEBUF_ALL, 0x0000, 0, 1);
 
-	//-- ƒTƒu‰æ–ÊFu‚¨‚í‚èv --//
+	//-- ã‚µãƒ–ç”»é¢ï¼šã€ŒãŠã‚ã‚Šã€ --//
 //	PlEnding_ListWork_WriteEndStr( emw->list_work_sub, TRUE );
 	{
 		STRBUF *tempbuf;
@@ -1768,7 +1768,7 @@ static void BgGraphicSet_Copyright( ENDING_MAIN_WORK * emw)
 	GF_BGL_ScrollSet(bgl, FRAME_FIN_S_BG, GF_BGL_SCROLL_X_SET, 0);
 	GF_BGL_ScrollSet(bgl, FRAME_FIN_S_BG, GF_BGL_SCROLL_Y_SET, 0);
 
-	GF_BGL_VisibleSet( FRAME_FIN_S_BG, VISIBLE_ON );	//u‚¨‚í‚èv‚Ì•\¦
+	GF_BGL_VisibleSet( FRAME_FIN_S_BG, VISIBLE_ON );	//ã€ŒãŠã‚ã‚Šã€ã®è¡¨ç¤º
 
 	GX_SetVisibleWnd(GX_WNDMASK_NONE);
 	GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -1782,9 +1782,9 @@ static void BgGraphicSet_Copyright( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‰ğ•úFƒRƒs[ƒ‰ƒCƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è§£æ”¾ï¼šã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆ
  *
- * @param	emw		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	emw		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1802,7 +1802,7 @@ static void BgGraphicFree_Copyright( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒgFƒV[ƒ“
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆï¼šã‚·ãƒ¼ãƒ³
  *
  * @param   emw		
  */
@@ -1814,7 +1814,7 @@ static void DefaultResourceSet_Copyright_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚Ì‰ğ•ú
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  *
  * @param   emw		
  */
@@ -1826,7 +1826,7 @@ static void DefaultResourceFree_Copyright_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   emw		
  */
@@ -1838,7 +1838,7 @@ static void DefaultActorSet_Copyright_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   emw		
  */
@@ -1850,7 +1850,7 @@ static void DefaultActorFree_Copyright_Main(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚ÌƒZƒbƒg
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚»ãƒƒãƒˆ
  *
  * @param   emw		
  */
@@ -1862,7 +1862,7 @@ static void DefaultResourceSet_Copyright_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“OBJ—pƒŠƒ\[ƒX‚Ì‰ğ•ú
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§OBJç”¨ãƒªã‚½ãƒ¼ã‚¹ã®è§£æ”¾
  *
  * @param   emw		
  */
@@ -1874,7 +1874,7 @@ static void DefaultResourceFree_Copyright_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[“o˜^
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
  * @param   emw		
  */
@@ -1886,7 +1886,7 @@ static void DefaultActorSet_Copyright_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–Ê‚Ìí’“ƒAƒNƒ^[‚ğíœ‚·‚é
+ * @brief   ã‚µãƒ–ç”»é¢ã®å¸¸é§ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   emw		
  */
@@ -1898,7 +1898,7 @@ static void DefaultActorFree_Copyright_Sub(ENDING_MAIN_WORK *emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹ƒZƒbƒgFƒRƒs[ƒ‰ƒCƒg
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆï¼šã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆ
  *
  * @param   emw		
  */
@@ -1910,7 +1910,7 @@ static void Model3DSet_Copyright( ENDING_MAIN_WORK * emw)
 
 //--------------------------------------------------------------
 /**
- * @brief   3Dƒ‚ƒfƒ‹íœ
+ * @brief   3Dãƒ¢ãƒ‡ãƒ«å‰Šé™¤
  *
  * @param   emw		
  */

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	tvwork_local.h
- * @brief	ƒeƒŒƒrƒf[ƒ^‚ÌƒŒƒR[ƒhƒR[ƒi[¬‚º‚éˆ—
+ * @brief	ãƒ†ãƒ¬ãƒ“ãƒ‡ãƒ¼ã‚¿ã®ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼æ··ãœã‚‹å‡¦ç†
  * @author	tamada GAME FREAK inc.
  * @date	2006.05.31
  */
@@ -31,78 +31,78 @@ enum {
 
 //----------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒNƒf[ƒ^–{‘Ì
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿æœ¬ä½“
  */
 //----------------------------------------------------------
 struct TVTOPIC{
-	u8 topic_id;			///<ƒgƒsƒbƒNID
-	u8 see_count;			///<‹’®‰ñ”ƒJƒEƒ“ƒ^
-	GF_DATE date;			///<»ì“ú•t
+	u8 topic_id;			///<ãƒˆãƒ”ãƒƒã‚¯ID
+	u8 see_count;			///<è¦–è´å›æ•°ã‚«ã‚¦ãƒ³ã‚¿
+	GF_DATE date;			///<è£½ä½œæ—¥ä»˜
 	u8 data[TOPIC_DATA_SIZE];
 };
 
 //----------------------------------------------------------
 /**
- * @brief	©•ªƒgƒsƒbƒNƒf[ƒ^
+ * @brief	è‡ªåˆ†ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- * ƒgƒsƒbƒNƒf[ƒ^ˆÈŠO‚É•t‘®‚·‚é‚à‚Ì‚Í‚È‚¢
+ * ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ä»¥å¤–ã«ä»˜å±ã™ã‚‹ã‚‚ã®ã¯ãªã„
  */
 //----------------------------------------------------------
 struct MY_TOPIC{
-	TVTOPIC topic;		///<ƒgƒsƒbƒNƒf[ƒ^–{‘Ì
+	TVTOPIC topic;		///<ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿æœ¬ä½“
 };
 
 //----------------------------------------------------------
 /**
- * @brief	‘¼lƒgƒsƒbƒNƒf[ƒ^
+ * @brief	ä»–äººãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- * ƒgƒsƒbƒNƒf[ƒ^{»ìÒî•ñ‚È‚Ç‚ª•t‰Á‚³‚ê‚é
+ * ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ï¼‹è£½ä½œè€…æƒ…å ±ãªã©ãŒä»˜åŠ ã•ã‚Œã‚‹
  */
 //----------------------------------------------------------
 struct OTHER_TOPIC{
-	u32 owner_id;			///<»ìÒID
-	u8 sex;					///<»ìÒ«•Ê
-	u8 rom_ver;				///<»ìROMƒo[ƒWƒ‡ƒ“
-	u8 region_code;			///<»ìROM‘ƒR[ƒh
-	STRCODE owner_name[PERSON_NAME_SIZE + EOM_SIZE];	///<»ìÒ–¼
-	TVTOPIC topic;		///<ƒgƒsƒbƒNƒf[ƒ^–{‘Ì
+	u32 owner_id;			///<è£½ä½œè€…ID
+	u8 sex;					///<è£½ä½œè€…æ€§åˆ¥
+	u8 rom_ver;				///<è£½ä½œROMãƒãƒ¼ã‚¸ãƒ§ãƒ³
+	u8 region_code;			///<è£½ä½œROMå›½ã‚³ãƒ¼ãƒ‰
+	STRCODE owner_name[PERSON_NAME_SIZE + EOM_SIZE];	///<è£½ä½œè€…å
+	TVTOPIC topic;		///<ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿æœ¬ä½“
 };
 
 //----------------------------------------------------------
 /**
- * @brief	ƒeƒŒƒr•ú‘—ƒZ[ƒuƒf[ƒ^
+ * @brief	ãƒ†ãƒ¬ãƒ“æ”¾é€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  */
 //----------------------------------------------------------
 struct TV_WORK {
-	u8 used_index[USED_TOPIC_MAX];				///<•ú‘—Ï‚İƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
-	int minute_count;							///<•ú‘—ŠÔ—pƒJƒEƒ“ƒ^
-	u8 end_flag;								///<•ú‰fI—¹ƒtƒ‰ƒO
+	u8 used_index[USED_TOPIC_MAX];				///<æ”¾é€æ¸ˆã¿ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	int minute_count;							///<æ”¾é€æ™‚é–“ç”¨ã‚«ã‚¦ãƒ³ã‚¿
+	u8 end_flag;								///<æ”¾æ˜ çµ‚äº†ãƒ•ãƒ©ã‚°
 
-	MY_TOPIC MyWatchTopic[MY_WATCH_MAX];		///<©•ªƒgƒsƒbƒNƒf[ƒ^FŠÄ‹Œ^”Ô‘g
-	MY_TOPIC MyRecordTopic[MY_RECORD_MAX];		///<©•ªƒgƒsƒbƒNƒf[ƒ^FƒMƒlƒXŒ^”Ô‘g
-	MY_TOPIC MyQandATopic[MY_QANDA_MAX];		///<©•ªƒgƒsƒbƒNƒf[ƒ^F¿–âŒ^”Ô‘g
+	MY_TOPIC MyWatchTopic[MY_WATCH_MAX];		///<è‡ªåˆ†ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ï¼šç›£è¦–å‹ç•ªçµ„
+	MY_TOPIC MyRecordTopic[MY_RECORD_MAX];		///<è‡ªåˆ†ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ï¼šã‚®ãƒã‚¹å‹ç•ªçµ„
+	MY_TOPIC MyQandATopic[MY_QANDA_MAX];		///<è‡ªåˆ†ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ï¼šè³ªå•å‹ç•ªçµ„
 
-	OTHER_TOPIC OtherWatchTopic[OTHER_WATCH_MAX];	///<‘¼lƒgƒsƒbƒNƒf[ƒ^FŠÄ‹Œ^”Ô‘g
-	OTHER_TOPIC OtherRecordTopic[OTHER_RECORD_MAX];	///<‘¼lƒgƒsƒbƒNƒf[ƒ^FƒMƒlƒXŒ^”Ô‘g
-	OTHER_TOPIC OtherQandATopic[OTHER_QANDA_MAX];	///<‘¼lƒgƒsƒbƒNƒf[ƒ^F¿–âŒ^”Ô‘g
+	OTHER_TOPIC OtherWatchTopic[OTHER_WATCH_MAX];	///<ä»–äººãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ï¼šç›£è¦–å‹ç•ªçµ„
+	OTHER_TOPIC OtherRecordTopic[OTHER_RECORD_MAX];	///<ä»–äººãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ï¼šã‚®ãƒã‚¹å‹ç•ªçµ„
+	OTHER_TOPIC OtherQandATopic[OTHER_QANDA_MAX];	///<ä»–äººãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ï¼šè³ªå•å‹ç•ªçµ„
 
-	TOPICTEMP_CONTEST ContestTemp;			///<¿–âŒ^FƒRƒ“ƒeƒXƒg—pó‹µ•Ûƒ[ƒN
-	TOPICTEMP_PARK ParkTemp;				///<¿–âŒ^F˜A‚ê•à‚«Œö‰€—pó‹µ•Ûƒ[ƒN
-	TOPICTEMP_PORUTO PorutoTemp;			///<¿–âŒ^Fƒ|ƒ‹ƒg—pó‹µ•Ûƒ[ƒN
-	TOPICTEMP_BTOWER BTowerTemp;			///<¿–âŒ^Fƒoƒgƒ‹ƒ^ƒ[—pó‹µ•Ûƒ[ƒN
-	TOPICTEMP_SAFARI SafariTemp;			///<ŠÄ‹Œ^FƒTƒtƒ@ƒŠ—pó‹µ•Ûƒ[ƒN
+	TOPICTEMP_CONTEST ContestTemp;			///<è³ªå•å‹ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯
+	TOPICTEMP_PARK ParkTemp;				///<è³ªå•å‹ï¼šé€£ã‚Œæ­©ãå…¬åœ’ç”¨çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯
+	TOPICTEMP_PORUTO PorutoTemp;			///<è³ªå•å‹ï¼šãƒãƒ«ãƒˆç”¨çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯
+	TOPICTEMP_BTOWER BTowerTemp;			///<è³ªå•å‹ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯
+	TOPICTEMP_SAFARI SafariTemp;			///<ç›£è¦–å‹ï¼šã‚µãƒ•ã‚¡ãƒªç”¨çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯
 
-	//ƒoƒgƒ‹ƒXƒe[ƒW‚Å50˜AŸH‚µ‚½‚Ìƒ|ƒPƒ‚ƒ“‚ğ•Û
-	TOPICTEMP_STAGE StageTemp;				///<¿–âŒ^Fƒoƒgƒ‹ƒXƒe[ƒW—pó‹µ•Ûƒ[ƒNš
+	//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã§50é€£å‹ï¼Ÿã—ãŸæ™‚ã®ãƒã‚±ãƒ¢ãƒ³ã‚’ä¿æŒ
+	TOPICTEMP_STAGE StageTemp;				///<è³ªå•å‹ï¼šãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ç”¨çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯â˜…
 	
-	//—F’B‚Ì–¼‘OA—V‚ñ‚¾{İ‚ğ•Û
-	TOPICTEMP_FRIEND FriendTemp;			///<¿–âŒ^Fƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µ—pó‹µ•Ûƒ[ƒNš
+	//å‹é”ã®åå‰ã€éŠã‚“ã æ–½è¨­ã‚’ä¿æŒ
+	TOPICTEMP_FRIEND FriendTemp;			///<è³ªå•å‹ï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—ç”¨çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯â˜…
 	
-	//ˆê“ú‚É‰Ò‚¢‚¾ƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ğ•Û
-	TOPICTEMP_BP BPTemp;					///<ƒMƒlƒXŒ^Fƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼l—pó‹µ•Ûƒ[ƒNš
+	//ä¸€æ—¥ã«ç¨¼ã„ã ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’ä¿æŒ
+	TOPICTEMP_BP BPTemp;					///<ã‚®ãƒã‚¹å‹ï¼šãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäººç”¨çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯â˜…
 	
-	//ˆê“ú‚ÉŒğŠ·‚µ‚½‰ñ”‚ğ•Û
-	TOPICTEMP_GTS GTSTemp;					///<ƒMƒlƒXŒ^FGTS–¼l—pó‹µ•Ûƒ[ƒNš
+	//ä¸€æ—¥ã«äº¤æ›ã—ãŸå›æ•°ã‚’ä¿æŒ
+	TOPICTEMP_GTS GTSTemp;					///<ã‚®ãƒã‚¹å‹ï¼šGTSåäººç”¨çŠ¶æ³ä¿æŒãƒ¯ãƒ¼ã‚¯â˜…
 };
 
 #endif	//__TVWORK_LOCAL_H__

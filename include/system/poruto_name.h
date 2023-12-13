@@ -1,6 +1,6 @@
 /**
  *	@file	poruto_name.c
- *	@brief	ƒ|ƒ‹ƒg‚ÌŽí—Þ–¼‚ðŽæ“¾‚·‚éƒc[ƒ‹ŒQ
+ *	@brief	ãƒãƒ«ãƒˆã®ç¨®é¡žåã‚’å–å¾—ã™ã‚‹ãƒ„ãƒ¼ãƒ«ç¾¤
  *	@author	Miyuki Iwasawa
  *	@date	06.02.28
  */
@@ -13,107 +13,107 @@
 #include "system/msgdata.h"
 #include "savedata/poruto_def.h"
 
-///ƒ|ƒ‹ƒg–¼Žæ“¾ƒ}ƒl[ƒWƒƒ[Œ^
+///ãƒãƒ«ãƒˆåå–å¾—ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åž‹
 typedef struct _PORUTO_NAME_MAN{
 	MSGDATA_MANAGER* pMsgMan;
 	STRBUF	*name[PORUTO_FLAVOR_MAX];	
 }PORUTO_NAME_MAN;
 
 /**
- *	@brief	ƒ|ƒ‹ƒg–¼Žæ“¾ƒ}ƒl[ƒWƒƒì¬
+ *	@brief	ãƒãƒ«ãƒˆåå–å¾—ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
  *
- *	–—˜—p‚µI‚í‚Á‚½‚ç•K‚¸ PorutoName_ReleaseManager()‚ðŒÄ‚Ño‚µ‚Ä
- *	@—Ìˆæ‚ðŠJ•ú‚µ‚Ä‚­‚¾‚³‚¢
+ *	ï¼Šåˆ©ç”¨ã—çµ‚ã‚ã£ãŸã‚‰å¿…ãš PorutoName_ReleaseManager()ã‚’å‘¼ã³å‡ºã—ã¦
+ *	ã€€é ˜åŸŸã‚’é–‹æ”¾ã—ã¦ãã ã•ã„
  */
 extern PORUTO_NAME_MAN* PorutoName_CreateManager(int heapID);
 
 /**
- *	@brief	ƒ|ƒ‹ƒg–¼Žæ“¾ƒ}ƒl[ƒWƒƒ‰ð•ú
+ *	@brief	ãƒãƒ«ãƒˆåå–å¾—ãƒžãƒãƒ¼ã‚¸ãƒ£è§£æ”¾
  */
 extern void PorutoName_ReleaseManager(PORUTO_NAME_MAN* man);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒtƒŒƒo[ID‚©‚ç–¼‘O•¶Žš—ñ‚ðŽæ“¾(ƒ}ƒl[ƒWƒƒŽw’è”Å)
+ *	@brief	ãƒãƒ«ãƒˆãƒ•ãƒ¬ãƒãƒ¼IDã‹ã‚‰åå‰æ–‡å­—åˆ—ã‚’å–å¾—(ãƒžãƒãƒ¼ã‚¸ãƒ£æŒ‡å®šç‰ˆ)
  *
- *	–PORUTO_NAME_STRLEN (10)+EOM_ƒTƒCƒY•ª‚Ìƒoƒbƒtƒ@‚ðŠm•Û‚·‚é•K—v—L‚è
- *	@BUFLEN_PORUTO_NAME‚ðŽg—p‚µ‚Ä‚à—Ç‚¢
+ *	ï¼ŠPORUTO_NAME_STRLEN (10)+EOM_ã‚µã‚¤ã‚ºåˆ†ã®ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹å¿…è¦æœ‰ã‚Š
+ *	ã€€BUFLEN_PORUTO_NAMEã‚’ä½¿ç”¨ã—ã¦ã‚‚è‰¯ã„
  */
 extern void PorutoName_GetNameStrByMan(PORUTO_NAME_MAN* man,PORUTO_FLAVORID id,STRBUF* buf);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒtƒŒƒo[ID‚©‚ç–¼‘O•¶Žš—ñ‚ðŽæ“¾(ƒ}ƒl[ƒWƒƒ“àSTRBUF*‚ðŽæ“¾)
+ *	@brief	ãƒãƒ«ãƒˆãƒ•ãƒ¬ãƒãƒ¼IDã‹ã‚‰åå‰æ–‡å­—åˆ—ã‚’å–å¾—(ãƒžãƒãƒ¼ã‚¸ãƒ£å†…STRBUF*ã‚’å–å¾—)
  *
- *	–ƒ}ƒl[ƒWƒƒƒ[ƒN“à‚ÉŠm•Û‚³‚ê‚Ä‚¢‚éSTRBUF—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ð•Ô‚·
- *	@ŽQÆ‚Í‰Â‚¾‚ª•ÒW‚Í•s‰ÂI
+ *	ï¼Šãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¯ãƒ¼ã‚¯å†…ã«ç¢ºä¿ã•ã‚Œã¦ã„ã‚‹STRBUFé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
+ *	ã€€å‚ç…§ã¯å¯ã ãŒç·¨é›†ã¯ä¸å¯ï¼
  */
 extern const STRBUF* PorutoName_GetNameAdrByMan(PORUTO_NAME_MAN* man,PORUTO_FLAVORID id);
 
 /**
- *	@brief@ƒ|ƒ‹ƒgƒtƒŒƒo[ID‚©‚ç–¼‘O•¶Žš—ñ‚ðŽæ“¾(Žg‚¢ŽÌ‚Ä)
+ *	@briefã€€ãƒãƒ«ãƒˆãƒ•ãƒ¬ãƒãƒ¼IDã‹ã‚‰åå‰æ–‡å­—åˆ—ã‚’å–å¾—(ä½¿ã„æ¨ã¦)
  */
 extern void PorutoName_GetNameStrInst(PORUTO_FLAVORID id,STRBUF* buf,int heapID);
 
 /**
  *
- *	@brief@ƒ|ƒ‹ƒgƒtƒŒƒo[ID‚©‚ç–¼‘O•¶Žš—ñ‚ðŽæ“¾(Žg‚¢ŽÌ‚Ä/ƒƒ‚ƒŠŽæ“¾”Å)
+ *	@briefã€€ãƒãƒ«ãƒˆãƒ•ãƒ¬ãƒãƒ¼IDã‹ã‚‰åå‰æ–‡å­—åˆ—ã‚’å–å¾—(ä½¿ã„æ¨ã¦/ãƒ¡ãƒ¢ãƒªå–å¾—ç‰ˆ)
  *	
- *	–STRBUF‚Éƒƒ‚ƒŠ‚ðŽæ“¾‚µ‚Ä•Ô‚·‚Ì‚ÅA‰ð•ú‚ÍŽ©•ª‚Ås‚¤‚±‚ÆI
+ *	ï¼ŠSTRBUFã«ãƒ¡ãƒ¢ãƒªã‚’å–å¾—ã—ã¦è¿”ã™ã®ã§ã€è§£æ”¾ã¯è‡ªåˆ†ã§è¡Œã†ã“ã¨ï¼
  */
 extern STRBUF* PorutoName_AllocNameStrInst(PORUTO_FLAVORID id,int heapID);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒtƒŒƒo[ID‚©‚ç–¼‘O•¶Žš—ñ‚ðŽæ“¾(ƒ}ƒl[ƒWƒƒŽw’è/ƒƒ‚ƒŠŽæ“¾”Å)
+ *	@brief	ãƒãƒ«ãƒˆãƒ•ãƒ¬ãƒãƒ¼IDã‹ã‚‰åå‰æ–‡å­—åˆ—ã‚’å–å¾—(ãƒžãƒãƒ¼ã‚¸ãƒ£æŒ‡å®š/ãƒ¡ãƒ¢ãƒªå–å¾—ç‰ˆ)
  *
- *	–STRBUF‚Éƒƒ‚ƒŠ‚ðŠm•Û‚µ‚Ä•Ô‚·‚Ì‚ÅA‰ð•ú‚ÍŽ©•ª‚Å‚â‚é‚±‚ÆI
+ *	ï¼ŠSTRBUFã«ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦è¿”ã™ã®ã§ã€è§£æ”¾ã¯è‡ªåˆ†ã§ã‚„ã‚‹ã“ã¨ï¼
  */
 extern STRBUF* PorutoName_AllocNameStrByMan(PORUTO_NAME_MAN* man,PORUTO_FLAVORID id,int heapID);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒtƒŒƒo[ID‚ðŽw’è‚µ‚Ä–¼‘O•¶Žš—ñ‚ð•`‰æ(ƒ}ƒl[ƒWƒƒŽw’è”Å)
+ *	@brief	ãƒãƒ«ãƒˆãƒ•ãƒ¬ãƒãƒ¼IDã‚’æŒ‡å®šã—ã¦åå‰æ–‡å­—åˆ—ã‚’æç”»(ãƒžãƒãƒ¼ã‚¸ãƒ£æŒ‡å®šç‰ˆ)
  *
- * @param	win			BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- * @param	fnt_index	Žg—p•¶Žšƒwƒbƒ_INDEX(msg_print.h ŽQÆ)
- * @param	x			ƒEƒCƒ“ƒhƒE“à•\Ž¦ŠJŽnXƒIƒtƒZƒbƒg
- * @param	y			ƒEƒCƒ“ƒhƒE“à•\Ž¦ŠJŽnYƒIƒtƒZƒbƒg
- * @param	wait		•¶Žš•`‰æƒEƒFƒCƒg
- * @param	call_back	•¶Žš•`‰æ‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @param	win			BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ * @param	fnt_index	ä½¿ç”¨æ–‡å­—ãƒ˜ãƒƒãƒ€INDEX(msg_print.h å‚ç…§)
+ * @param	x			ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param	y			ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param	wait		æ–‡å­—æç”»ã‚¦ã‚§ã‚¤ãƒˆ
+ * @param	call_back	æ–‡å­—æç”»ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @return	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @return	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * call_back Ý’è‚ÉŠÖ‚µ‚ÄA‚±‚ÌŠÖ”‚©‚ç‚Ìˆø”‚Í 
- *   MSG_PRINT_HEADER \‘¢‘Ì(msg_print.h ‚ðŽQÆ)ƒ|ƒCƒ“ƒ^
- * ‚Æ‚È‚é
+ * call_back è¨­å®šã«é–¢ã—ã¦ã€ã“ã®é–¢æ•°ã‹ã‚‰ã®å¼•æ•°ã¯ 
+ *   MSG_PRINT_HEADER æ§‹é€ ä½“(msg_print.h ã‚’å‚ç…§)ãƒã‚¤ãƒ³ã‚¿
+ * ã¨ãªã‚‹
  *
- * wait Ý’è‚Í
- *   MSG_NOTRANS	ƒfƒBƒXƒvƒŒƒC“]‘—‚È‚µ
- *@ MSG_ALL		ƒfƒBƒXƒvƒŒƒCˆêŠ‡“]‘—
- *   1 `			‚P•¶Žš‚²‚Æ‚Ì“]‘—ƒEƒFƒCƒg’l
- * ‚ÅŽw’è(msg_print.h ’è‹`)
+ * wait è¨­å®šã¯
+ *   MSG_NOTRANS	ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤è»¢é€ãªã—
+ *ã€€ MSG_ALL		ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ä¸€æ‹¬è»¢é€
+ *   1 ã€œ			ï¼‘æ–‡å­—ã”ã¨ã®è»¢é€ã‚¦ã‚§ã‚¤ãƒˆå€¤
+ * ã§æŒ‡å®š(msg_print.h å®šç¾©)
  */
 extern void PorutoName_WriteByMan(PORUTO_NAME_MAN* man,PORUTO_FLAVORID id,
 	GF_BGL_BMPWIN *win,u8 font,u8 ofsx,u8 ofsy,u8 wait,GF_PRINTCOLOR col,void* call_back );
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒtƒŒƒo[ID‚ðŽw’è‚µ‚Ä–¼‘O•¶Žš—ñ‚ð•`‰æ(Žg‚¢ŽÌ‚Ä)
+ *	@brief	ãƒãƒ«ãƒˆãƒ•ãƒ¬ãƒãƒ¼IDã‚’æŒ‡å®šã—ã¦åå‰æ–‡å­—åˆ—ã‚’æç”»(ä½¿ã„æ¨ã¦)
  *
- * @param	win			BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
- * @param	fnt_index	Žg—p•¶Žšƒwƒbƒ_INDEX(msg_print.h ŽQÆ)
- * @param	x			ƒEƒCƒ“ƒhƒE“à•\Ž¦ŠJŽnXƒIƒtƒZƒbƒg
- * @param	y			ƒEƒCƒ“ƒhƒE“à•\Ž¦ŠJŽnYƒIƒtƒZƒbƒg
- * @param	wait		•¶Žš•`‰æƒEƒFƒCƒg
- * @param	call_back	•¶Žš•`‰æ‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * @param	win			BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+ * @param	fnt_index	ä½¿ç”¨æ–‡å­—ãƒ˜ãƒƒãƒ€INDEX(msg_print.h å‚ç…§)
+ * @param	x			ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param	y			ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param	wait		æ–‡å­—æç”»ã‚¦ã‚§ã‚¤ãƒˆ
+ * @param	call_back	æ–‡å­—æç”»ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @return	ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+ * @return	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * call_back Ý’è‚ÉŠÖ‚µ‚ÄA‚±‚ÌŠÖ”‚©‚ç‚Ìˆø”‚Í 
- *   MSG_PRINT_HEADER \‘¢‘Ì(msg_print.h ‚ðŽQÆ)ƒ|ƒCƒ“ƒ^
- * ‚Æ‚È‚é
+ * call_back è¨­å®šã«é–¢ã—ã¦ã€ã“ã®é–¢æ•°ã‹ã‚‰ã®å¼•æ•°ã¯ 
+ *   MSG_PRINT_HEADER æ§‹é€ ä½“(msg_print.h ã‚’å‚ç…§)ãƒã‚¤ãƒ³ã‚¿
+ * ã¨ãªã‚‹
  *
- * wait Ý’è‚Í
- *   MSG_NOTRANS	ƒfƒBƒXƒvƒŒƒC“]‘—‚È‚µ
- *@ MSG_ALL		ƒfƒBƒXƒvƒŒƒCˆêŠ‡“]‘—
- *   1 `			‚P•¶Žš‚²‚Æ‚Ì“]‘—ƒEƒFƒCƒg’l
- * ‚ÅŽw’è(msg_print.h ’è‹`)
+ * wait è¨­å®šã¯
+ *   MSG_NOTRANS	ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤è»¢é€ãªã—
+ *ã€€ MSG_ALL		ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ä¸€æ‹¬è»¢é€
+ *   1 ã€œ			ï¼‘æ–‡å­—ã”ã¨ã®è»¢é€ã‚¦ã‚§ã‚¤ãƒˆå€¤
+ * ã§æŒ‡å®š(msg_print.h å®šç¾©)
  */
 extern void PorutoName_WriteInst(PORUTO_FLAVORID id,int heapID,GF_BGL_BMPWIN *win,
 		u8 font,u8 ofsx,u8 ofsy,u8 wait,GF_PRINTCOLOR col,void* call_back );

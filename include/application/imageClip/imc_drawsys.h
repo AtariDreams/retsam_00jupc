@@ -2,8 +2,8 @@
 /**
  *
  *	@file		imc_drawsys.h
- *	@brief		ƒCƒ[ƒWƒNƒŠƒbƒv•`‰æƒVƒXƒeƒ€ƒf[ƒ^ŠÇ—ƒVƒXƒeƒ€
- *				‚±‚ÌƒVƒXƒeƒ€‚ğg—p‚·‚ê‚ÎA‚·‚×‚Ä•`‰æo—ˆ‚é‚æ‚¤‚É‚µ‚Ü‚·B
+ *	@brief		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *				ã“ã®ã‚·ã‚¹ãƒ†ãƒ ã‚’ä½¿ç”¨ã™ã‚Œã°ã€ã™ã¹ã¦æç”»å‡ºæ¥ã‚‹ã‚ˆã†ã«ã—ã¾ã™ã€‚
  *	@author		tomoya takahashi
  *	@data		2005.09.21
  *
@@ -32,16 +32,16 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define	IMC_DRAW_USE_RES_NUM	(4)		// ƒLƒƒƒ‰ƒNƒ^@ƒpƒŒƒbƒg@ƒZƒ‹@ƒZƒ‹ƒAƒjƒ
+#define	IMC_DRAW_USE_RES_NUM	(4)		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€€ãƒ‘ãƒ¬ãƒƒãƒˆã€€ã‚»ãƒ«ã€€ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 
 //-------------------------------------
 //	
-//	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ìw’èˆÊ’u‚ÉF‚ª
-//	param‚Å–³‚¢‚©ƒ`ƒFƒbƒN
-//	–ß‚è’l—p
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šä½ç½®ã«è‰²ãŒ
+//	paramã§ç„¡ã„ã‹ãƒã‚§ãƒƒã‚¯
+//	æˆ»ã‚Šå€¤ç”¨
 //	
 //=====================================
 enum{
@@ -52,84 +52,84 @@ enum{
 
 
 //-------------------------------------
-//	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ÌƒXƒNƒŠ[ƒ“•\¦À•W
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è¡¨ç¤ºåº§æ¨™
 //=====================================
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	•`‰æƒf[ƒ^‚ğ‚Ü‚Æ‚ß‚½\‘¢‘Ì
+//	æç”»ãƒ‡ãƒ¼ã‚¿ã‚’ã¾ã¨ã‚ãŸæ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
-	// ƒXƒvƒ‰ƒCƒgƒf[ƒ^
-	SWSP_SYS_PTR	SWSP_drawSys;		// ƒXƒvƒ‰ƒCƒg•`‰æƒVƒXƒeƒ€
-	SWSP_CHAR_PTR*	SWSP_charData;		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”z—ñ
-	int					SWSP_charNum;		// “o˜^‰Â”\Å‘å”
-	int					SWSP_charNow;		// ¡‚Ì“o˜^”
-	SWSP_PLTT_PTR*	SWSP_plttData;		// ƒpƒŒƒbƒgƒf[ƒ^”z—ñ
-	int					SWSP_plttNum;		// “o˜^‰Â”\Å‘å”
-	int					SWSP_plttNow;		// ¡‚Ì“o˜^”
-	BOOL			SWSP_DrawFlag;			// •`‰æƒtƒ‰ƒO
+	// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿
+	SWSP_SYS_PTR	SWSP_drawSys;		// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ã‚·ã‚¹ãƒ†ãƒ 
+	SWSP_CHAR_PTR*	SWSP_charData;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿é…åˆ—
+	int					SWSP_charNum;		// ç™»éŒ²å¯èƒ½æœ€å¤§æ•°
+	int					SWSP_charNow;		// ä»Šã®ç™»éŒ²æ•°
+	SWSP_PLTT_PTR*	SWSP_plttData;		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ—
+	int					SWSP_plttNum;		// ç™»éŒ²å¯èƒ½æœ€å¤§æ•°
+	int					SWSP_plttNow;		// ä»Šã®ç™»éŒ²æ•°
+	BOOL			SWSP_DrawFlag;			// æç”»ãƒ•ãƒ©ã‚°
 
-	SOFT_SPRITE_MANAGER* SSM_drawSys;		// ƒ|ƒPƒ‚ƒ“•`‰æ—pƒXƒvƒ‰ƒCƒg
-	NNSGfdTexKey	SSM_texKey;				// ƒ|ƒPƒ‚ƒ“‚ÌTEXKEY
-	NNSGfdPlttKey	SSM_plttKey;			// ƒ|ƒPƒ‚ƒ“‚ÌPLTTKEY
-	BOOL SSM_DrawFlag;						// ƒ|ƒPƒ‚ƒ“•`‰æƒtƒ‰ƒO
+	SOFT_SPRITE_MANAGER* SSM_drawSys;		// ãƒã‚±ãƒ¢ãƒ³æç”»ç”¨ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
+	NNSGfdTexKey	SSM_texKey;				// ãƒã‚±ãƒ¢ãƒ³ã®TEXKEY
+	NNSGfdPlttKey	SSM_plttKey;			// ãƒã‚±ãƒ¢ãƒ³ã®PLTTKEY
+	BOOL SSM_DrawFlag;						// ãƒã‚±ãƒ¢ãƒ³æç”»ãƒ•ãƒ©ã‚°
 
-	// ƒAƒNƒZƒTƒŠ—pƒpƒŒƒbƒgƒIƒtƒZƒbƒgƒe[ƒuƒ‹
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 	u8* accePlttOfsTbl;
 
-	// ƒAƒNƒZƒTƒŠ•ƒ|ƒPƒ‚ƒ“—pƒAƒ“ƒpƒbƒNŒã‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
-	RES_MANAGER_PTR		SWSP_charRes;		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ÌƒŠƒ\[ƒX	
-	NNSG2dCharacterData** SWSP_UPchar;		// ƒAƒ“ƒpƒbƒNŒã‚Ìƒf[ƒ^
-	int					SWSP_UPcharNum;		// ƒAƒ“ƒpƒbƒNŒã‚Ìƒf[ƒ^”
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªï¼†ãƒã‚±ãƒ¢ãƒ³ç”¨ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯å¾Œã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+	RES_MANAGER_PTR		SWSP_charRes;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹	
+	NNSG2dCharacterData** SWSP_UPchar;		// ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯å¾Œã®ãƒ‡ãƒ¼ã‚¿
+	int					SWSP_UPcharNum;		// ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯å¾Œã®ãƒ‡ãƒ¼ã‚¿æ•°
 
-	// BGƒf[ƒ^
+	// BGãƒ‡ãƒ¼ã‚¿
 	GF_BGL_INI*		BG_Ini;
 	
-	// OBJƒf[ƒ^
-	CLACT_SET_PTR		clactSet;			// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_RES_MANAGER_PTR	resMan[IMC_DRAW_USE_RES_NUM];	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_EASYRENDER_DATA		renddata;	// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
+	// OBJãƒ‡ãƒ¼ã‚¿
+	CLACT_SET_PTR		clactSet;			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_RES_MANAGER_PTR	resMan[IMC_DRAW_USE_RES_NUM];	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_EASYRENDER_DATA		renddata;	// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
 
-	// ƒA[ƒJƒCƒuƒf[ƒ^
-	ARCHANDLE* p_handle;	// ƒNƒŠƒbƒv—pƒOƒ‰ƒtƒBƒbƒN‚Ìƒnƒ“ƒhƒ‹
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿
+	ARCHANDLE* p_handle;	// ã‚¯ãƒªãƒƒãƒ—ç”¨ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ãƒãƒ³ãƒ‰ãƒ«
 } IMC_DRAW_DATA;
 
 //-------------------------------------
 //	
-//	ƒŠƒ\[ƒX“o˜^ƒf[ƒ^
+//	ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct {
-	// ƒXƒvƒ‰ƒCƒg
+	// ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 	SWSP_CHARDATA* SWSP_charTbl;
 	int	SWSP_charNum;
 	SWSP_PLTTDATA* SWSP_plttTbl;
 	int	SWSP_plttNum;
 
-	// ‚»‚Ìê‚Å”jŠü‚·‚éƒŠƒ\[ƒX‚ÌŠi”[æ
-	RES_MANAGER_PTR		SWSP_charRes;		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ÌƒŠƒ\[ƒX	
-	RES_MANAGER_PTR		SWSP_plttRes;		// ƒpƒŒƒbƒgƒf[ƒ^‚ÌƒŠƒ\[ƒX	
+	// ãã®å ´ã§ç ´æ£„ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã®æ ¼ç´å…ˆ
+	RES_MANAGER_PTR		SWSP_charRes;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹	
+	RES_MANAGER_PTR		SWSP_plttRes;		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒªã‚½ãƒ¼ã‚¹	
 } IMC_DRAW_LOADRES_DATA;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æƒVƒXƒeƒ€‚ğ•`‰æo—ˆ‚é‚æ‚¤‚ÉŠÂ‹«‚ğİ’è‚µ‚Ü‚·
+ *	@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ ã‚’æç”»å‡ºæ¥ã‚‹ã‚ˆã†ã«ç’°å¢ƒã‚’è¨­å®šã—ã¾ã™
  *
  *	@param	none
  *
@@ -143,7 +143,7 @@ GLOBAL void IMC_DRAW_SetUp( void );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	İ’è‚µ‚½ŠÂ‹«ƒf[ƒ^‚ğ”jŠü‚µ‚Ü‚·
+ *	@brief	è¨­å®šã—ãŸç’°å¢ƒãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã—ã¾ã™
  *
  *	@param	none
  *
@@ -157,9 +157,9 @@ GLOBAL void IMC_DRAW_PutBack( void );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æ—pƒVƒXƒeƒ€‚Ìİ’è‚ğs‚¢‚Ü‚·B
+ *	@brief	æç”»ç”¨ã‚·ã‚¹ãƒ†ãƒ ã®è¨­å®šã‚’è¡Œã„ã¾ã™ã€‚
  *
- *	@param	drawData	•`‰æƒf[ƒ^
+ *	@param	drawData	æç”»ãƒ‡ãƒ¼ã‚¿
  *
  *
  *	@return	none
@@ -172,9 +172,9 @@ GLOBAL void IMC_DRAW_InitSys( IMC_DRAW_DATA* drawData );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æƒVƒXƒeƒ€ƒf[ƒ^‚ğ”jŠü‚·‚é
+ *	@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	drawData	•`‰æƒf[ƒ^
+ *	@param	drawData	æç”»ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -186,9 +186,9 @@ GLOBAL void IMC_DRAW_DeleteSys( IMC_DRAW_DATA* drawData );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æŠÖ”‚Ì‚ ‚é•`‰æƒVƒXƒeƒ€‚Ì•`‰æ
+ *	@brief	æç”»é–¢æ•°ã®ã‚ã‚‹æç”»ã‚·ã‚¹ãƒ†ãƒ ã®æç”»
  *
- *	@param	drawData	•`‰æƒf[ƒ^
+ *	@param	drawData	æç”»ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -200,10 +200,10 @@ GLOBAL void IMC_DRAW_DrawSys( IMC_DRAW_DATA* drawData );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒŠƒ\[ƒX‚Ì“Ç‚İ‚İ‚ğs‚¢‚Ü‚·	ŒÂX‚ÅVramã‚É“WŠJ‚µ‚Ü‚·
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ã®èª­ã¿è¾¼ã¿ã‚’è¡Œã„ã¾ã™	å€‹ã€…ã§Vramä¸Šã«å±•é–‹ã—ã¾ã™
  *
- *	@param	drawData	•`‰æƒf[ƒ^Ši”[—Ìˆæ
- *	@param	loadData	“Ç‚İ‚ŞƒŠƒ\[ƒXƒf[ƒ^
+ *	@param	drawData	æç”»ãƒ‡ãƒ¼ã‚¿æ ¼ç´é ˜åŸŸ
+ *	@param	loadData	èª­ã¿è¾¼ã‚€ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -215,9 +215,9 @@ GLOBAL void IMC_DRAW_LoadResource( IMC_DRAW_DATA* drawData, IMC_DRAW_LOADRES_DAT
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒŠƒ\[ƒX‚Ì”jŠü‚ğs‚¢‚Ü‚·
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„ã‚’è¡Œã„ã¾ã™
  *
- *	@param	drawData	•`‰æƒf[ƒ^Ši”[—Ìˆæ
+ *	@param	drawData	æç”»ãƒ‡ãƒ¼ã‚¿æ ¼ç´é ˜åŸŸ
  *
  *	@return	none
  *
@@ -229,16 +229,16 @@ GLOBAL void IMC_DRAW_DeleteResource( IMC_DRAW_DATA* drawData );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[“o˜^
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	drawData	ƒ[ƒN
- *	@param	contid		ŠÇ—ID
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	pri			—Dæ‡ˆÊ
- *	@param	draw_area	•`‰æƒGƒŠƒA
+ *	@param	drawData	ãƒ¯ãƒ¼ã‚¯
+ *	@param	contid		ç®¡ç†ID
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	pri			å„ªå…ˆé †ä½
+ *	@param	draw_area	æç”»ã‚¨ãƒªã‚¢
  *
- *	@return	ƒAƒNƒ^[ƒ[ƒN
+ *	@return	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 GLOBAL CLACT_WORK_PTR IMC_DRAW_AddClact( IMC_DRAW_DATA* drawData, int contid, int x, int y, int pri, int draw_area );
@@ -246,14 +246,14 @@ GLOBAL CLACT_WORK_PTR IMC_DRAW_AddClact( IMC_DRAW_DATA* drawData, int contid, in
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	drawData		•`‰æƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	fileIdx			ƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- *	@param	dataIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	comp			ˆ³kƒtƒ‰ƒO
- *	@param	vramType		Vramƒ^ƒCƒv
- *	@param	id				ŠÇ—ID
+ *	@param	drawData		æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	fileIdx			ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	dataIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	comp			åœ§ç¸®ãƒ•ãƒ©ã‚°
+ *	@param	vramType		Vramã‚¿ã‚¤ãƒ—
+ *	@param	id				ç®¡ç†ID
  *
  *	@return	none
  *
@@ -265,15 +265,15 @@ GLOBAL void IMC_DRAW_CLACT_LoadCharData( IMC_DRAW_DATA* drawData, ARCHANDLE* p_h
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	drawData		•`‰æƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	p_handle		ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- *	@param	dataIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	comp			ˆ³kƒtƒ‰ƒO
- *	@param	vramType		Vramƒ^ƒCƒv
- *	@param	load_num		ƒpƒŒƒbƒg“Ç‚İ‚İ”
- *	@param	id				ŠÇ—ID
+ *	@param	drawData		æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_handle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	dataIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	comp			åœ§ç¸®ãƒ•ãƒ©ã‚°
+ *	@param	vramType		Vramã‚¿ã‚¤ãƒ—
+ *	@param	load_num		ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿æ•°
+ *	@param	id				ç®¡ç†ID
  *
  *	@return	none
  *
@@ -285,13 +285,13 @@ GLOBAL void IMC_DRAW_CLACT_LoadPlttData( IMC_DRAW_DATA* drawData, ARCHANDLE* p_h
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+ *	@brief	ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	drawData		•`‰æƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	p_handle		ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- *	@param	dataIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	comp			ˆ³kƒtƒ‰ƒO
- *	@param	id				ŠÇ—ID
+ *	@param	drawData		æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_handle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	dataIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	comp			åœ§ç¸®ãƒ•ãƒ©ã‚°
+ *	@param	id				ç®¡ç†ID
  *
  *	@return	none
  *
@@ -303,13 +303,13 @@ GLOBAL void IMC_DRAW_CLACT_LoadCellData( IMC_DRAW_DATA* drawData, ARCHANDLE* p_h
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+ *	@brief	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	drawData		•`‰æƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	p_handle		ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- *	@param	dataIdx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	comp			ˆ³kƒtƒ‰ƒO
- *	@param	id				ŠÇ—ID
+ *	@param	drawData		æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_handle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	dataIdx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	comp			åœ§ç¸®ãƒ•ãƒ©ã‚°
+ *	@param	id				ç®¡ç†ID
  *
  *	@return	none
  *
@@ -321,10 +321,10 @@ GLOBAL void IMC_DRAW_CLACT_LoadCellAnmData( IMC_DRAW_DATA* drawData, ARCHANDLE* 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXƒf[ƒ^‚Ì‚İ‚Ì”jŠü
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ã¿ã®ç ´æ£„
  *
- *	@param	drawData	•`‰æƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	id			ŠÇ—ID
+ *	@param	drawData	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	id			ç®¡ç†ID
  *
  *	@return	none
  *
@@ -336,10 +336,10 @@ GLOBAL void IMC_DRAW_CLACT_DeleteCharRes( IMC_DRAW_DATA* drawData, int id );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒŠƒ\[ƒXƒf[ƒ^‚Ì‚İ‚Ì”jŠü
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ã¿ã®ç ´æ£„
  *
- *	@param	drawData	•`‰æƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	id			ŠÇ—ID
+ *	@param	drawData	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	id			ç®¡ç†ID
  *
  *	@return	none
  *
@@ -351,10 +351,10 @@ GLOBAL void IMC_DRAW_CLACT_DeletePlttRes( IMC_DRAW_DATA* drawData, int id );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒŠƒ\[ƒXƒf[ƒ^‚Ì‚İ‚Ì”jŠü
+ *	@brief	ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ã¿ã®ç ´æ£„
  *
- *	@param	drawData	•`‰æƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	id			ŠÇ—ID
+ *	@param	drawData	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	id			ç®¡ç†ID
  *
  *	@return	none
  *
@@ -366,10 +366,10 @@ GLOBAL void IMC_DRAW_CLACT_DeleteCellRes( IMC_DRAW_DATA* drawData, int id );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒXƒf[ƒ^‚Ì‚İ‚Ì”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ã¿ã®ç ´æ£„
  *
- *	@param	drawData	•`‰æƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	id			ŠÇ—ID
+ *	@param	drawData	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	id			ç®¡ç†ID
  *
  *	@return	none
  *
@@ -382,10 +382,10 @@ GLOBAL void IMC_DRAW_CLACT_DeleteCellAnmRes( IMC_DRAW_DATA* drawData, int id );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg—p‚Ì“Ç‚İ‚Şƒtƒ@ƒCƒ‹‚ğì¬
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ã®èª­ã¿è¾¼ã‚€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆ
  *
- *	@param	drawData	•`‰æƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	loadData	ì¬æ
+ *	@param	drawData	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	loadData	ä½œæˆå…ˆ
  *
  *	@return	none
  *
@@ -397,9 +397,9 @@ GLOBAL void IMC_DRAW_MakeLoadSWSP_samp( IMC_DRAW_DATA* drawData, IMC_DRAW_LOADRE
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒvƒ‰ƒCƒg—p‚Ì“Ç‚İ‚İƒtƒ@ƒCƒ‹‚ğ”jŠü‚·‚é
+ *	@brief	ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”¨ã®èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	loadData	“Ç‚İ‚İƒf[ƒ^
+ *	@param	loadData	èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -411,13 +411,13 @@ GLOBAL void IMC_DRAW_DestLoadSWSP( IMC_DRAW_LOADRES_DATA* loadData );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì“o˜^
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ²
  *
- *	@param	drawData	•`‰æƒf[ƒ^\‘¢‘Ì
- *	@param	buff		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^ƒoƒbƒtƒ@
- *	@param	char_no		“o˜^ƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[iƒAƒNƒZƒTƒŠƒiƒ“ƒo[‚ÆLinkj
+ *	@param	drawData	æç”»ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ *	@param	buff		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
+ *	@param	char_no		ç™»éŒ²ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼ï¼ˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼ã¨Linkï¼‰
  *
- *	@return	ƒAƒ“ƒpƒbƒNŒã‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *	@return	ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯å¾Œã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -427,7 +427,7 @@ GLOBAL NNSG2dCharacterData* IMC_DRAW_SetCharData( IMC_DRAW_DATA* drawData, void*
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	’Êí‚ÌƒEƒBƒ“ƒhƒEƒ}ƒXƒNİ’è
+ *	@brief	é€šå¸¸æ™‚ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯è¨­å®š
  *
  *	@param	none	
  *
@@ -441,7 +441,7 @@ GLOBAL void IMC_DRAW_WndMaskNormalSet( void );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒIƒuƒWƒFƒNƒg‚ğ“®‚©‚µ‚Ä‚¢‚é‚Æ‚«‚ÌƒEƒBƒ“ƒhƒEƒ}ƒXƒN‚ğİ’è
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‹•ã‹ã—ã¦ã„ã‚‹ã¨ãã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯ã‚’è¨­å®š
  *
  *	@param	none	
  *
@@ -455,7 +455,7 @@ GLOBAL void IMC_DRAW_WndMaskObjMoveSet( void );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	I—¹ƒ`ƒFƒbƒN‚Ì•\¦—Dæ‡ˆÊİ’è
+ *	@brief	çµ‚äº†ãƒã‚§ãƒƒã‚¯æ™‚ã®è¡¨ç¤ºå„ªå…ˆé †ä½è¨­å®š
  *
  *	@param	none	
  *
@@ -468,24 +468,24 @@ GLOBAL void IMC_DRAW_EndCheckBGPri( void );
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğŒ©‚ÄA‚Ù‚ñ‚Æ‚É‚»‚ÌˆÊ’u‚É”²‚«FˆÈŠO‚ÌF‚É‚È‚Á‚Ä
-*		‚¢‚é‚©‚ğƒ`ƒFƒbƒN‚·‚é
+*		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è¦‹ã¦ã€ã»ã‚“ã¨ã«ãã®ä½ç½®ã«æŠœãè‰²ä»¥å¤–ã®è‰²ã«ãªã£ã¦
+*		ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 */
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ìw’èˆÊ’u‚ÉF‚ªparam‚Å–³‚¢‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šä½ç½®ã«è‰²ãŒparamã§ç„¡ã„ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	char_data		ƒ`ƒFƒbƒN‚Ég‚¤ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
- *	@param	offs_x			xƒIƒtƒZƒbƒg
- *	@param	offs_y			yƒIƒtƒZƒbƒg
- *	@param	param			ƒ`ƒFƒbƒNFƒiƒ“ƒo[
+ *	@param	char_data		ãƒã‚§ãƒƒã‚¯ã«ä½¿ã†ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+ *	@param	offs_x			xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	offs_y			yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	param			ãƒã‚§ãƒƒã‚¯è‰²ãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	IMC_DRAW_CHAR_CHECK_TRUE	param‚ÌF
- *	@retval	IMC_DRAW_CHAR_CHECK_FALSE	param‚ÌF‚¶‚á‚È‚¢
- *	@retval	IMC_DRAW_CHAR_CHECK_ERR		ƒGƒ‰[
+ *	@retval	IMC_DRAW_CHAR_CHECK_TRUE	paramã®è‰²
+ *	@retval	IMC_DRAW_CHAR_CHECK_FALSE	paramã®è‰²ã˜ã‚ƒãªã„
+ *	@retval	IMC_DRAW_CHAR_CHECK_ERR		ã‚¨ãƒ©ãƒ¼
  *
- * ‚P‚UFŒÀ’è
+ * ï¼‘ï¼–è‰²é™å®š
  *
  */
 //-----------------------------------------------------------------------------
@@ -494,9 +494,9 @@ GLOBAL int IMC_DRAW_CharCheck( NNSG2dCharacterData* char_data, int offs_x, int o
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æƒVƒXƒeƒ€—pVƒuƒ‰ƒ“ƒNŠÖ”
+ *	@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ ç”¨Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
  *
- *	@param	drawData	•`‰æƒVƒXƒeƒ€ƒf[ƒ^
+ *	@param	drawData	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -507,9 +507,9 @@ GLOBAL void IMC_DRAW_VBlank( IMC_DRAW_DATA* drawData );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒZƒTƒŠ—pƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒf[ƒ^ƒƒ‚ƒŠŠm•Û
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªç”¨ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªç¢ºä¿
  *
- *	@param	drawData	“Ç‚İ‚İƒf[ƒ^ƒ[ƒN	
+ *	@param	drawData	èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯	
  *	@param	heap 
  *	
  *	@return	none
@@ -519,17 +519,17 @@ GLOBAL void IMC_DRAW_SWSPResDataAllocMemory( IMC_DRAW_LOADRES_DATA* loadData, in
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒŒƒCƒ„[—pŠÖ”	
- *			ƒCƒ[ƒWƒNƒŠƒbƒvˆÈŠO‚ÌƒVƒXƒeƒ€‚©‚çg—p‚µ‚Ä‚à‚ç‚¤‚Æ‚«‚ÍA‚±‚Á‚¿‚ÌŠÖ”‚Å‰Šú‰»‚È‚Ç‚ğs‚¤B
- *			‚Ü‚½‰EƒpƒŒƒbƒg‚Ì•\¦‚É•K—v‚È•¨‚Ì‚İì¬‚·‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B
+ *		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”¨é–¢æ•°	
+ *			ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ä»¥å¤–ã®ã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ä½¿ç”¨ã—ã¦ã‚‚ã‚‰ã†ã¨ãã¯ã€ã“ã£ã¡ã®é–¢æ•°ã§åˆæœŸåŒ–ãªã©ã‚’è¡Œã†ã€‚
+ *			ã¾ãŸå³ãƒ‘ãƒ¬ãƒƒãƒˆã®è¡¨ç¤ºã«å¿…è¦ãªç‰©ã®ã¿ä½œæˆã™ã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã¾ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒŒƒCƒ„[—p	‰Šú‰»ŠÖ”
- *	@param	drawData	•`‰æƒf[ƒ^
- *	@param	cp_swsp		ƒCƒ[ƒWƒNƒŠƒbƒv—pƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒVƒXƒeƒ€‰Šú‰»ƒf[ƒ^
- *	@param	heap		ƒq[ƒvID
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”¨	åˆæœŸåŒ–é–¢æ•°
+ *	@param	drawData	æç”»ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_swsp		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ç”¨ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
  *	@retval	none
  */
@@ -542,9 +542,9 @@ GLOBAL void IMC_DRAW_InitSysPlayerBG( IMC_DRAW_DATA* drawData, GF_BGL_INI* BG_In
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æƒVƒXƒeƒ€ƒf[ƒ^‚ğ”jŠü‚·‚é
+ *	@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	drawData	•`‰æƒf[ƒ^
+ *	@param	drawData	æç”»ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -558,9 +558,9 @@ GLOBAL void IMC_DRAW_DeleteSysPlayerBG( IMC_DRAW_DATA* drawData );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æƒVƒXƒeƒ€—pVƒuƒ‰ƒ“ƒNŠÖ”
+ *	@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ ç”¨Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
  *
- *	@param	drawData	•`‰æƒVƒXƒeƒ€ƒf[ƒ^
+ *	@param	drawData	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -572,13 +572,13 @@ GLOBAL void IMC_DRAW_VBlankPlayer( IMC_DRAW_DATA* drawData );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æŠÖ”‚Ì‚ ‚é•`‰æƒVƒXƒeƒ€‚Ì•`‰æ
+ *	@brief	æç”»é–¢æ•°ã®ã‚ã‚‹æç”»ã‚·ã‚¹ãƒ†ãƒ ã®æç”»
  *
- *	@param	drawData	•`‰æƒf[ƒ^
- *	@param	center_x	’†S‚˜
- *	@param	center_y	’†S‚™
- *	@param	rota_num	‰ñ“]Šp
- *	@param	p_scale		ƒXƒP[ƒ‹ƒxƒNƒgƒ‹
+ *	@param	drawData	æç”»ãƒ‡ãƒ¼ã‚¿
+ *	@param	center_x	ä¸­å¿ƒï½˜
+ *	@param	center_y	ä¸­å¿ƒï½™
+ *	@param	rota_num	å›è»¢è§’
+ *	@param	p_scale		ã‚¹ã‚±ãƒ¼ãƒ«ãƒ™ã‚¯ãƒˆãƒ«
  *
  *	@return	none
  *
@@ -590,10 +590,10 @@ GLOBAL void IMC_DRAW_DrawSysPlayer( IMC_DRAW_DATA* drawData, int center_x, int c
 
 //-----------------------------------------------------------------------------
 /**
- *		previewƒVƒXƒeƒ€ê—p
+ *		previewã‚·ã‚¹ãƒ†ãƒ å°‚ç”¨
  */
 //-----------------------------------------------------------------------------
-// previewƒVƒXƒeƒ€
+// previewã‚·ã‚¹ãƒ†ãƒ 
 GLOBAL void IMC_DRAW_InitSysPrev( IMC_DRAW_DATA* drawData, int heap );
 GLOBAL void IMC_DRAW_DeleteSysPrev( IMC_DRAW_DATA* drawData );
 GLOBAL void IMC_DRAW_VBlankPrev( IMC_DRAW_DATA* drawData );

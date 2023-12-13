@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_ex.c
- * @brief	ƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒAŠO•”ƒf[ƒ^(is‚ÉŠÖŒW‚È‚¢‹L˜^‚Ì‚İ)
+ * @brief	ãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿(é€²è¡Œã«é–¢ä¿‚ãªã„è¨˜éŒ²ã®ã¿)
  * @author	matsuda
- * @date	2007.07.18(…)
+ * @date	2007.07.18(æ°´)
  */
 //==============================================================================
 #include "common.h"
@@ -20,33 +20,33 @@
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒoƒgƒ‹ƒXƒe[ƒWŠO•”‹L˜^ƒf[ƒ^
+///ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸å¤–éƒ¨è¨˜éŒ²ãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	u16 renshou_single[MONSNO_MAX];		///<ƒVƒ“ƒOƒ‹˜AŸ‹L˜^
-	u16 renshou_double[MONSNO_MAX];		///<ƒ_ƒuƒ‹˜AŸ‹L˜^
-	u16 renshou_multi[MONSNO_MAX];		///<ƒƒCƒ„ƒŒƒX˜AŸ‹L˜^
-//	u16 renshou_wifi[MONSNO_MAX];		///<Wifi˜AŸ‹L˜^
+	u16 renshou_single[MONSNO_MAX];		///<ã‚·ãƒ³ã‚°ãƒ«é€£å‹è¨˜éŒ²
+	u16 renshou_double[MONSNO_MAX];		///<ãƒ€ãƒ–ãƒ«é€£å‹è¨˜éŒ²
+	u16 renshou_multi[MONSNO_MAX];		///<ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€£å‹è¨˜éŒ²
+//	u16 renshou_wifi[MONSNO_MAX];		///<Wifié€£å‹è¨˜éŒ²
 
-	u16 padding;	//4ƒoƒCƒg‹«ŠEƒIƒtƒZƒbƒg
+	u16 padding;	//4ãƒã‚¤ãƒˆå¢ƒç•Œã‚ªãƒ•ã‚»ãƒƒãƒˆ
 }STAGE_EX;
 
 //----------------------------------------------------------
 /**
- *	ƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒAŠO•”ƒf[ƒ^\‘¢‘Ì
+ *	ãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //----------------------------------------------------------
 struct _FRONTIER_EX_SAVEDATA {
-	//“a“°“ü‚èˆÈŠO‚ÌŠO•”ƒZ[ƒu‚Í•K‚¸ˆê”ÔÅ‰‚ÉEX_SAVE_KEY\‘¢‘Ì‚ğ”z’u‚µ‚Ä‚¨‚­‚±‚Æ
-	EX_CERTIFY_SAVE_KEY save_key;			///<”FØƒL[
+	//æ®¿å ‚å…¥ã‚Šä»¥å¤–ã®å¤–éƒ¨ã‚»ãƒ¼ãƒ–ã¯å¿…ãšä¸€ç•ªæœ€åˆã«EX_SAVE_KEYæ§‹é€ ä½“ã‚’é…ç½®ã—ã¦ãŠãã“ã¨
+	EX_CERTIFY_SAVE_KEY save_key;			///<èªè¨¼ã‚­ãƒ¼
 
-	STAGE_EX stage;		//ƒoƒgƒ‹ƒXƒe[ƒWŠO•”‹L˜^ƒf[ƒ^
+	STAGE_EX stage;		//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸å¤–éƒ¨è¨˜éŒ²ãƒ‡ãƒ¼ã‚¿
 };
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static u16 FrontierEx_StageRenshou_Set(FRONTIER_EX_SAVEDATA *fes, int id, int monsno, u16 data);
 static u16 FrontierEx_StageRenshou_SetIfLarge(SAVEDATA *sv, FRONTIER_EX_SAVEDATA *fes, int id, int monsno, u16 data);
@@ -60,20 +60,20 @@ static u16 FrontierEx_StageRenshou_SetIfLarge(SAVEDATA *sv, FRONTIER_EX_SAVEDATA
 
 //------------------------------------------------------------------
 /**
- * ƒZ[ƒuƒf[ƒ^ƒTƒCƒY‚ğ•Ô‚·
+ * ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’è¿”ã™
  *
  * @retval  int		
  */
 //------------------------------------------------------------------
 int FrontierEx_GetWorkSize( void )
 {
-	GF_ASSERT(sizeof(FRONTIER_EX_SAVEDATA) % 4 == 0);	//4ƒoƒCƒg‹«ŠE‚É‚È‚Á‚Ä‚¢‚é‚©Šm”F
+	GF_ASSERT(sizeof(FRONTIER_EX_SAVEDATA) % 4 == 0);	//4ãƒã‚¤ãƒˆå¢ƒç•Œã«ãªã£ã¦ã„ã‚‹ã‹ç¢ºèª
 	return sizeof(FRONTIER_EX_SAVEDATA);
 }
 
 //------------------------------------------------------------------
 /**
- * ƒf[ƒ^‰Šú‰»
+ * ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
  * @param   data		
  *
@@ -87,13 +87,13 @@ void FrontierEx_Init(FRONTIER_EX_SAVEDATA *work)
 
 //------------------------------------------------------------------
 /**
- * ƒtƒƒ“ƒeƒBƒAŠO•”ƒf[ƒ^‚Ìƒ[ƒh
+ * ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	heapID	ƒf[ƒ^‚ğƒ[ƒh‚·‚éƒƒ‚ƒŠ‚ğŠm•Û‚·‚é‚½‚ß‚Ìƒq[ƒvID
- * @param	result	ƒ[ƒhŒ‹‰Ê‚ğŠi”[‚·‚éƒ[ƒN
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	heapID	ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ãŸã‚ã®ãƒ’ãƒ¼ãƒ—ID
+ * @param	result	ãƒ­ãƒ¼ãƒ‰çµæœã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	“Ç‚İ‚ñ‚¾ƒtƒƒ“ƒeƒBƒAŠO•”ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval	èª­ã¿è¾¼ã‚“ã ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 FRONTIER_EX_SAVEDATA * FrontierEx_Load(SAVEDATA *sv,int heapID,LOAD_RESULT *result)
@@ -106,14 +106,14 @@ FRONTIER_EX_SAVEDATA * FrontierEx_Load(SAVEDATA *sv,int heapID,LOAD_RESULT *resu
 
 //------------------------------------------------------------------
 /**
- * ƒtƒƒ“ƒeƒBƒAŠO•”ƒf[ƒ^‚ÌƒZ[ƒu
+ * ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒ¼ãƒ–
  *
- * @param	sv		ƒZ[ƒuƒf[ƒ^\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	data	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^(CHECK_TAIL_DATA\‘¢‘Ì•ª‚ğŠÜ‚ß‚½‚à‚Ì‚Å‚ ‚é
- * 						•K—v‚ª‚ ‚é‚Ì‚ÅFrontierEx_LoadŠÖ”‚Ì–ß‚è’l‚Åè‚É“ü‚ê‚½
- *						ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^‚ğ“n‚·•K—v‚ª‚ ‚éB
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	data	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿(CHECK_TAIL_DATAæ§‹é€ ä½“åˆ†ã‚’å«ã‚ãŸã‚‚ã®ã§ã‚ã‚‹
+ * 						å¿…è¦ãŒã‚ã‚‹ã®ã§FrontierEx_Loadé–¢æ•°ã®æˆ»ã‚Šå€¤ã§æ‰‹ã«å…¥ã‚ŒãŸ
+ *						ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿ã‚’æ¸¡ã™å¿…è¦ãŒã‚ã‚‹ã€‚
  *
- * @retval	ƒZ[ƒuŒ‹‰Ê
+ * @retval	ã‚»ãƒ¼ãƒ–çµæœ
  */
 //------------------------------------------------------------------
 SAVE_RESULT FrontierEx_Save(SAVEDATA *sv, FRONTIER_EX_SAVEDATA *fes)
@@ -121,7 +121,7 @@ SAVE_RESULT FrontierEx_Save(SAVEDATA *sv, FRONTIER_EX_SAVEDATA *fes)
 	SAVE_RESULT result;
 	
 	result = SaveData_Extra_SaveFrontierEx(sv, fes);
-	result |= SaveData_Save(sv);	//ŠO•”‚ÌŒã‚Í’ÊíƒZ[ƒu
+	result |= SaveData_Save(sv);	//å¤–éƒ¨ã®å¾Œã¯é€šå¸¸ã‚»ãƒ¼ãƒ–
 	return result;
 }
 
@@ -131,19 +131,19 @@ SAVE_RESULT FrontierEx_Save(SAVEDATA *sv, FRONTIER_EX_SAVEDATA *fes)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“–ˆ‚ÌƒXƒe[ƒWÅ‘å˜AŸ”æ“¾
+ * @brief   ãƒã‚±ãƒ¢ãƒ³æ¯ã®ã‚¹ãƒ†ãƒ¼ã‚¸æœ€å¤§é€£å‹æ•°å–å¾—
  *
- * @param   fes		ƒtƒƒ“ƒeƒBƒAŠO•”ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fes		ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   id			FREXID_STAGE_RENSHOU_???
- * @param   monsno		ƒ|ƒPƒ‚ƒ“”Ô†
+ * @param   monsno		ãƒã‚±ãƒ¢ãƒ³ç•ªå·
  *
- * @retval  Å‘å˜AŸ”
+ * @retval  æœ€å¤§é€£å‹æ•°
  */
 //--------------------------------------------------------------
 u16 FrontierEx_StageRenshou_Get(SAVEDATA *sv, FRONTIER_EX_SAVEDATA *fes, int id, int monsno)
 {
 	if(SaveData_GetExtraInitFlag(sv) == FALSE){
-		return 0;	//ŠO•”ƒZ[ƒu‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Åƒf[ƒ^–³‚µ‚Æ”»’è‚µAí‚É0‚ğ•Ô‚·
+		return 0;	//å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ã®ã§ãƒ‡ãƒ¼ã‚¿ç„¡ã—ã¨åˆ¤å®šã—ã€å¸¸ã«0ã‚’è¿”ã™
 	}
 	
 	switch(id){
@@ -162,14 +162,14 @@ u16 FrontierEx_StageRenshou_Get(SAVEDATA *sv, FRONTIER_EX_SAVEDATA *fes, int id,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“–ˆ‚ÌƒXƒe[ƒWÅ‘å˜AŸ”ƒZƒbƒg
+ * @brief   ãƒã‚±ãƒ¢ãƒ³æ¯ã®ã‚¹ãƒ†ãƒ¼ã‚¸æœ€å¤§é€£å‹æ•°ã‚»ãƒƒãƒˆ
  *
- * @param   fes		ƒtƒƒ“ƒeƒBƒAŠO•”ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fes		ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   id			FREXID_STAGE_RENSHOU_???
- * @param   monsno		ƒ|ƒPƒ‚ƒ“”Ô†
- * @param   data		ƒZƒbƒg‚·‚é’l
+ * @param   monsno		ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+ * @param   data		ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  *
- * @retval  ƒZƒbƒgŒã‚Ì’l
+ * @retval  ã‚»ãƒƒãƒˆå¾Œã®å€¤
  */
 //--------------------------------------------------------------
 static u16 FrontierEx_StageRenshou_Set(FRONTIER_EX_SAVEDATA *fes, int id, int monsno, u16 data)
@@ -199,7 +199,7 @@ static u16 FrontierEx_StageRenshou_Set(FRONTIER_EX_SAVEDATA *fes, int id, int mo
 	return data;
 }
 
-//ƒfƒoƒbƒN—p
+//ãƒ‡ãƒãƒƒã‚¯ç”¨
 u16 Debug_FrontierEx_StageRenshou_Set(FRONTIER_EX_SAVEDATA *fes, int id, int monsno, u16 data)
 {
 	return FrontierEx_StageRenshou_Set(fes, id, monsno, data);
@@ -207,14 +207,14 @@ u16 Debug_FrontierEx_StageRenshou_Set(FRONTIER_EX_SAVEDATA *fes, int id, int mon
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘å‚«‚¯‚ê‚ÎÅ‘å˜AŸ”‚ğXV‚·‚é
+ * @brief   å¤§ãã‘ã‚Œã°æœ€å¤§é€£å‹æ•°ã‚’æ›´æ–°ã™ã‚‹
  *
- * @param   fes		ƒtƒƒ“ƒeƒBƒAŠO•”ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fes		ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   id			FREXID_STAGE_RENSHOU_???
- * @param   monsno		ƒ|ƒPƒ‚ƒ“”Ô†
- * @param   data		ƒZƒbƒg(”äŠr)‚·‚é’l
+ * @param   monsno		ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+ * @param   data		ã‚»ãƒƒãƒˆ(æ¯”è¼ƒ)ã™ã‚‹å€¤
  *
- * @retval  Œ‹‰Ê‚Ì’l
+ * @retval  çµæœã®å€¤
  */
 //--------------------------------------------------------------
 static u16 FrontierEx_StageRenshou_SetIfLarge(SAVEDATA *sv, FRONTIER_EX_SAVEDATA *fes, int id, int monsno, u16 data)
@@ -222,16 +222,16 @@ static u16 FrontierEx_StageRenshou_SetIfLarge(SAVEDATA *sv, FRONTIER_EX_SAVEDATA
 	u16 now;
 	
 	if(SaveData_GetExtraInitFlag(sv) == FALSE){
-		return 0;	//ŠO•”ƒZ[ƒu‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Åƒf[ƒ^–³‚µ‚Æ”»’è‚µAí‚É0‚ğ•Ô‚·
+		return 0;	//å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ã®ã§ãƒ‡ãƒ¼ã‚¿ç„¡ã—ã¨åˆ¤å®šã—ã€å¸¸ã«0ã‚’è¿”ã™
 	}
 	
 	now = FrontierEx_StageRenshou_Get(sv, fes, id, monsno);
-	OS_Printf( "Œ»İ‚Ìnow = %d\n", now );
+	OS_Printf( "ç¾åœ¨ã®now = %d\n", now );
 	if(now < data){
 		return FrontierEx_StageRenshou_Set(fes, id, monsno, data);
 	}
 	else{
-		if(now > FRONTIER_RECORD_LIMIT){	//Œ»İ’l‚ªƒŠƒ~ƒbƒgƒI[ƒo[‚µ‚Ä‚¢‚½‚Ì’ù³ˆ—
+		if(now > FRONTIER_RECORD_LIMIT){	//ç¾åœ¨å€¤ãŒãƒªãƒŸãƒƒãƒˆã‚ªãƒ¼ãƒãƒ¼ã—ã¦ã„ãŸæ™‚ã®è¨‚æ­£å‡¦ç†
 			return FrontierEx_StageRenshou_Set(fes, id, monsno, FRONTIER_RECORD_LIMIT);
 		}
 		return now;
@@ -240,23 +240,23 @@ static u16 FrontierEx_StageRenshou_SetIfLarge(SAVEDATA *sv, FRONTIER_EX_SAVEDATA
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒXƒe[ƒW‚ÌŠO•”˜AŸ‹L˜^‚ğ‘‚«‚İAƒZ[ƒu‚ğs‚¤
+ * @brief   ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã®å¤–éƒ¨é€£å‹è¨˜éŒ²ã‚’æ›¸ãè¾¼ã¿ã€ã‚»ãƒ¼ãƒ–ã‚’è¡Œã†
  *
- * @param   sv					ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sv					ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   record_id			FRID_STAGE_???
  * @param   record_monsno_id	FRID_STAGE_SINGLE_MONSNO | DOUBLE | MULTI
- * @param   friend_no			—F’Bè’ ”Ô†(—F’Bƒf[ƒ^‚Å‚È‚¢ê‡‚ÍFRONTIER_RECORD_NOT_FRIENDw’è)
+ * @param   friend_no			å‹é”æ‰‹å¸³ç•ªå·(å‹é”ãƒ‡ãƒ¼ã‚¿ã§ãªã„å ´åˆã¯FRONTIER_RECORD_NOT_FRIENDæŒ‡å®š)
  * @param   id					FREXID_STAGE_RENSHOU_???
- * @param   heap_id				ƒeƒ“ƒ|ƒ‰ƒŠ‚Æ‚µ‚Äg—p‚·‚éƒq[ƒvID
- * @param   load_result			ŠO•”ƒZ[ƒu‚Ìƒ[ƒhŒ‹‰Ê
- * @param   save_result			ŠO•”ƒZ[ƒu‚ÌƒZ[ƒuŒ‹‰Ê
+ * @param   heap_id				ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
+ * @param   load_result			å¤–éƒ¨ã‚»ãƒ¼ãƒ–ã®ãƒ­ãƒ¼ãƒ‰çµæœ
+ * @param   save_result			å¤–éƒ¨ã‚»ãƒ¼ãƒ–ã®ã‚»ãƒ¼ãƒ–çµæœ
  *
- * @retval  TRUE:ŠO•”ƒZ[ƒu•’ÊíƒZ[ƒuÀs
- * @retval  FALSE:ŠO•”‚à’Êí‚àƒZ[ƒu‚Í‚µ‚È‚©‚Á‚½
+ * @retval  TRUE:å¤–éƒ¨ã‚»ãƒ¼ãƒ–ï¼†é€šå¸¸ã‚»ãƒ¼ãƒ–å®Ÿè¡Œ
+ * @retval  FALSE:å¤–éƒ¨ã‚‚é€šå¸¸ã‚‚ã‚»ãƒ¼ãƒ–ã¯ã—ãªã‹ã£ãŸ
  *
- * ŠO•”ƒZ[ƒuƒtƒ@ƒCƒ‹‚ğƒ[ƒh@„@í’“‚É”z’u‚³‚ê‚Ä‚¢‚éƒtƒƒ“ƒeƒBƒAƒŒƒR[ƒh‚©‚çƒZƒbƒg‚·‚é’l‚ğæ“¾
- * @„@ŠO•”ƒZ[ƒu‚Ì’l‚Æ”äŠr‚µA‘å‚«‚¯‚ê‚ÎƒZƒbƒg@„@ŠO•”ƒZ[ƒuÀs
- * ˆÈã‚Ìˆ—‚ğs‚¢‚Ü‚·
+ * å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰ã€€ï¼ã€€å¸¸é§ã«é…ç½®ã•ã‚Œã¦ã„ã‚‹ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¬ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ã‚»ãƒƒãƒˆã™ã‚‹å€¤ã‚’å–å¾—
+ * ã€€ï¼ã€€å¤–éƒ¨ã‚»ãƒ¼ãƒ–ã®å€¤ã¨æ¯”è¼ƒã—ã€å¤§ãã‘ã‚Œã°ã‚»ãƒƒãƒˆã€€ï¼ã€€å¤–éƒ¨ã‚»ãƒ¼ãƒ–å®Ÿè¡Œ
+ * ä»¥ä¸Šã®å‡¦ç†ã‚’è¡Œã„ã¾ã™
  */
 //--------------------------------------------------------------
 BOOL FrontierEx_StageRenshou_RenshouCopyExtra(SAVEDATA *sv, int record_id, int record_monsno_id, 
@@ -275,11 +275,11 @@ BOOL FrontierEx_StageRenshou_RenshouCopyExtra(SAVEDATA *sv, int record_id, int r
 	*save_result = SAVE_RESULT_OK;
 	
 	if(friend_no != FRONTIER_RECORD_NOT_FRIEND){
-		return ret;//0;	//Wifi‚Ì‚Í–³‹
+		return ret;//0;	//Wifiã®æ™‚ã¯ç„¡è¦–
 	}
 	
 	if(SaveData_GetExtraInitFlag(sv) == FALSE){
-		return ret;//0;	//ŠO•”ƒZ[ƒu‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Åƒf[ƒ^–³‚µ‚Æ”»’è
+		return ret;//0;	//å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ã®ã§ãƒ‡ãƒ¼ã‚¿ç„¡ã—ã¨åˆ¤å®š
 	}
 
 	fsv = SaveData_GetFrontier(sv);
@@ -290,7 +290,7 @@ BOOL FrontierEx_StageRenshou_RenshouCopyExtra(SAVEDATA *sv, int record_id, int r
 	
 	fes = FrontierEx_Load(sv, heap_id, load_result);
 	if(*load_result != LOAD_RESULT_OK){
-		before = 0;	//ƒZ[ƒu”j‰óorƒL[‚Æˆê’v‚µ‚È‚¢Aê‡‚ÍV‹Kƒf[ƒ^‚Æ‰ğß‚µAƒJƒEƒ“ƒ^0‚Æ‚·‚é
+		before = 0;	//ã‚»ãƒ¼ãƒ–ç ´å£Šorã‚­ãƒ¼ã¨ä¸€è‡´ã—ãªã„ã€å ´åˆã¯æ–°è¦ãƒ‡ãƒ¼ã‚¿ã¨è§£é‡ˆã—ã€ã‚«ã‚¦ãƒ³ã‚¿0ã¨ã™ã‚‹
 	}
 	else{
 		before = FrontierEx_StageRenshou_Get(sv, fes, save_id, monsno);
@@ -300,12 +300,12 @@ BOOL FrontierEx_StageRenshou_RenshouCopyExtra(SAVEDATA *sv, int record_id, int r
 	OS_Printf( "ret_num = %d\n", ret_num );
 	OS_Printf( "now = %d\n", now );
 
-	//07.12.27•ÏX
+	//07.12.27å¤‰æ›´
 	if(now != before){
 	//if(now != ret_num){
-		*save_result = FrontierEx_Save(sv, fes);	//’l‚ªXV‚³‚ê‚½‚Ì‚İƒZ[ƒu
+		*save_result = FrontierEx_Save(sv, fes);	//å€¤ãŒæ›´æ–°ã•ã‚ŒãŸæ™‚ã®ã¿ã‚»ãƒ¼ãƒ–
 		ret = TRUE;
-		OS_Printf( "’l‚ªXV‚³‚ê‚½I = %d\n", now );
+		OS_Printf( "å€¤ãŒæ›´æ–°ã•ã‚ŒãŸï¼ = %d\n", now );
 	}
 	
 	if( fes != NULL ){

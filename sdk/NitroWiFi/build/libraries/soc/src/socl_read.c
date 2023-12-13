@@ -12,130 +12,130 @@
 
   $Log: socl_read.c,v $
   Revision 1.41  2007/06/20 09:04:26  yasu
-  ƒRƒlƒNƒVƒ‡ƒ“‚Ì•sˆÓ‚Ì’fâ‚Ì‘Î‰
+  ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã®ä¸æ„ã®æ–­çµ¶ã®å¯¾å¿œ
 
   Revision 1.40  2006/07/24 01:35:37  adachi_hiroaki
-  UDP ƒoƒbƒtƒ@‚ª‚ ‚Ó‚ê‚Ä‚¢‚Ä‚àAŸ‚ÌƒpƒPƒbƒg‚ÌóM€”õ‚ğ³‚µ‚­s‚¤‚æ‚¤‚ÉC³ [nitro-ip:0170]
+  UDP ãƒãƒƒãƒ•ã‚¡ãŒã‚ãµã‚Œã¦ã„ã¦ã‚‚ã€æ¬¡ã®ãƒ‘ã‚±ãƒƒãƒˆã®å—ä¿¡æº–å‚™ã‚’æ­£ã—ãè¡Œã†ã‚ˆã†ã«ä¿®æ­£ [nitro-ip:0170]
 
   Revision 1.39  2006/03/10 09:22:19  kitase_hirotake
   INDENT SOURCE
 
   Revision 1.38  2005/12/06 11:53:13  yasu
-  TCP BLOCK Write ‚É‚¨‚¯‚é•s‹ï‡‚ÌC³
-  BLOCK ƒ‚[ƒh”»’è—p‚Ìƒ}ƒNƒ‚Ì“±“ü
+  TCP BLOCK Write ã«ãŠã‘ã‚‹ä¸å…·åˆã®ä¿®æ­£
+  BLOCK ãƒ¢ãƒ¼ãƒ‰åˆ¤å®šç”¨ã®ãƒã‚¯ãƒ­ã®å°å…¥
 
   Revision 1.37  2005/09/19 14:08:29  yasu
-  Closing ó‘Ô‚ğ’Ç‰Á‚µ‚½
+  Closing çŠ¶æ…‹ã‚’è¿½åŠ ã—ãŸ
 
   Revision 1.36  2005/09/16 12:13:50  yasu
-  ƒCƒxƒ“ƒgƒJƒEƒ“ƒ^‚ğ FinalRom ‚Å‚à—LŒø‚É‚·‚é
+  ã‚¤ãƒ™ãƒ³ãƒˆã‚«ã‚¦ãƒ³ã‚¿ã‚’ FinalRom ã§ã‚‚æœ‰åŠ¹ã«ã™ã‚‹
 
   Revision 1.35  2005/09/14 06:00:19  yasu
-  SOCLi_CheckCount ‚ÌƒTƒ|[ƒg
+  SOCLi_CheckCount ã®ã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.34  2005/09/09 07:38:57  yasu
-  Block ó‹µ‚Ì”»’è‚ğC³
+  Block çŠ¶æ³ã®åˆ¤å®šã‚’ä¿®æ­£
 
   Revision 1.33  2005/09/08 05:35:34  yasu
-  ƒ\ƒPƒbƒgƒfƒXƒNƒŠƒvƒ^‚ª—LŒø’l‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ì”»’è‚ğ SOCL ‘¤‚Ås‚È‚¤‚±‚Æ‚É‚·‚é
+  ã‚½ã‚±ãƒƒãƒˆãƒ‡ã‚¹ã‚¯ãƒªãƒ—ã‚¿ãŒæœ‰åŠ¹å€¤ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šã‚’ SOCL å´ã§è¡Œãªã†ã“ã¨ã«ã™ã‚‹
 
   Revision 1.32  2005/09/01 06:42:55  yasu
-  ƒ\ƒPƒbƒg‚ª¶‚«‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ì”»’è‚ğˆêŒ³‰»
+  ã‚½ã‚±ãƒƒãƒˆãŒç”Ÿãã¦ã„ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šã‚’ä¸€å…ƒåŒ–
 
   Revision 1.31  2005/08/25 08:27:38  yasu
-  UDP óM‚É‚¨‚¯‚éƒoƒbƒtƒ@ƒŠƒ“ƒOˆ—’Ç‰Á
+  UDP å—ä¿¡ã«ãŠã‘ã‚‹ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°å‡¦ç†è¿½åŠ 
 
   Revision 1.30  2005/08/24 09:25:13  yasu
-  SOCL_SocketIsInvalid ’Ç‰Á
+  SOCL_SocketIsInvalid è¿½åŠ 
 
   Revision 1.29  2005/08/14 10:59:34  yasu
-  consumed_min §Œä‚Ì’Ç‰Á
+  consumed_min åˆ¶å¾¡ã®è¿½åŠ 
 
   Revision 1.28  2005/08/13 08:20:27  yasu
-  consumed_min §Œä‚Ì’Ç‰Á
+  consumed_min åˆ¶å¾¡ã®è¿½åŠ 
 
   Revision 1.27  2005/08/12 09:50:23  yasu
-  EOF ‚É’B‚µ‚½‚Æ‚«‚ÌÚ‘±ƒXƒe[ƒ^ƒX‚Ìİ’è‚ğ’Ç‰Á
+  EOF ã«é”ã—ãŸã¨ãã®æ¥ç¶šã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®è¨­å®šã‚’è¿½åŠ 
 
   Revision 1.26  2005/08/11 12:02:50  yasu
-  consume Œã‚Ì UDP ƒ\ƒPƒbƒg‚ÌÚ‘±ƒŠƒZƒbƒgˆ—‚ÌŠÃ‚¢•”•ª‚ª‚ ‚Á‚½‚Ì‚ğC³
+  consume å¾Œã® UDP ã‚½ã‚±ãƒƒãƒˆã®æ¥ç¶šãƒªã‚»ãƒƒãƒˆå‡¦ç†ã®ç”˜ã„éƒ¨åˆ†ãŒã‚ã£ãŸã®ã‚’ä¿®æ­£
 
   Revision 1.25  2005/08/11 10:07:15  yasu
-  read ‚Ìƒ[ƒJƒ‹ƒ|[ƒg‚Ì UDP ƒoƒCƒ“ƒhŒ‹‰Ê‚ğ•Û‘¶‚·‚é
+  read æ™‚ã®ãƒ­ãƒ¼ã‚«ãƒ«ãƒãƒ¼ãƒˆã® UDP ãƒã‚¤ãƒ³ãƒ‰çµæœã‚’ä¿å­˜ã™ã‚‹
 
   Revision 1.24  2005/08/11 07:02:34  yasu
-  ƒfƒoƒbƒOo—Í‚Ìíœ
+  ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›ã®å‰Šé™¤
 
   Revision 1.23  2005/08/10 12:34:53  yasu
-  ƒoƒbƒtƒ@‚Ì‘€ì•ÏX
+  ãƒãƒƒãƒ•ã‚¡ã®æ“ä½œå¤‰æ›´
 
   Revision 1.22  2005/08/10 09:31:44  seiki_masashi
-  SSL ‚ÌƒTƒ|[ƒg‚ğ’Ç‰Á
+  SSL ã®ã‚µãƒãƒ¼ãƒˆã‚’è¿½åŠ 
 
   Revision 1.21  2005/08/10 04:49:13  yasu
-  óM‚Ì•Ô‚è’l‚ğ•ÏX
+  å—ä¿¡æ™‚ã®è¿”ã‚Šå€¤ã‚’å¤‰æ›´
 
   Revision 1.20  2005/08/09 12:26:33  yasu
-  consume ˆ—‚ÌC³
+  consume å‡¦ç†ã®ä¿®æ­£
 
   Revision 1.19  2005/08/09 03:20:14  yasu
-  TCP/UDP ‚Ì consume ˆµ‚¢‚Ì•ÏX
+  TCP/UDP ã® consume æ‰±ã„ã®å¤‰æ›´
 
   Revision 1.18  2005/08/08 14:15:18  yasu
-  read ‚Ì•Ô’l‚ğ•ÏX
+  read ã®è¿”å€¤ã‚’å¤‰æ›´
 
   Revision 1.17  2005/08/07 13:04:49  yasu
-  Read ‚Ì•Ô’l‚ÌÄC³
+  Read ã®è¿”å€¤ã®å†ä¿®æ­£
 
   Revision 1.16  2005/08/04 04:15:56  yasu
-  ‰Šú‰»ƒoƒOC³
+  åˆæœŸåŒ–ãƒã‚°ä¿®æ­£
 
   Revision 1.15  2005/08/04 04:08:28  yasu
-  UDP read ‚Ì•Ô‚è’l‚ÌC³
+  UDP read ã®è¿”ã‚Šå€¤ã®ä¿®æ­£
 
   Revision 1.14  2005/08/02 13:12:32  seiki_masashi
-  EOF ”»’è—p’è”‚ğ enum ’l‚É’u‚«Š·‚¦
+  EOF åˆ¤å®šç”¨å®šæ•°ã‚’ enum å€¤ã«ç½®ãæ›ãˆ
 
   Revision 1.13  2005/08/02 10:50:09  yasu
-  NoBlock ‚Ì EOF ”»’èˆ—‚Ìb’è‘Î‰
+  NoBlock ã® EOF åˆ¤å®šå‡¦ç†ã®æš«å®šå¯¾å¿œ
 
   Revision 1.12  2005/08/02 09:40:11  yasu
-  BLCOK READ ƒ‚[ƒh‚Ìˆ—C³’Ç‰Á
+  BLCOK READ ãƒ¢ãƒ¼ãƒ‰æ™‚ã®å‡¦ç†ä¿®æ­£è¿½åŠ 
 
   Revision 1.11  2005/08/02 08:13:12  yasu
-  READ ‚Ì EOF ‚Ìb’èÀ‘•D
-  BLCOK READ ƒ‚[ƒh‚Ìˆ—C³
+  READ ã® EOF ã®æš«å®šå®Ÿè£…ï¼
+  BLCOK READ ãƒ¢ãƒ¼ãƒ‰æ™‚ã®å‡¦ç†ä¿®æ­£
 
   Revision 1.10  2005/08/02 07:00:58  yasu
-  NOBLOCK ƒ‚[ƒh‚É‚¨‚¯‚é EOF ‘Î‰
+  NOBLOCK ãƒ¢ãƒ¼ãƒ‰ã«ãŠã‘ã‚‹ EOF å¯¾å¿œ
 
   Revision 1.9  2005/08/01 07:04:27  seiki_masashi
-  non-blocking ‚Éƒf[ƒ^‚ª‚È‚¢ê‡‚É EWOULDBLOCK ‚ğ•Ô‚·‚æ‚¤‚ÉC³
-  blocking ‚Ì SOCLi_ExecReadCommand ‚É—^‚¦‚éˆø”‚ğC³
+  non-blocking æ™‚ã«ãƒ‡ãƒ¼ã‚¿ãŒãªã„å ´åˆã« EWOULDBLOCK ã‚’è¿”ã™ã‚ˆã†ã«ä¿®æ­£
+  blocking æ™‚ã® SOCLi_ExecReadCommand ã«ä¸ãˆã‚‹å¼•æ•°ã‚’ä¿®æ­£
 
   Revision 1.8  2005/08/01 06:26:36  yasu
-  SOCLi_ReadCallBack@‚É‚¨‚¯‚éƒf[ƒ^‚ª‚È‚¢‚Æ‚«‚Ì•Ô’l‚Ì•ÏX
+  SOCLi_ReadCallBackã€€ã«ãŠã‘ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã¨ãã®è¿”å€¤ã®å¤‰æ›´
 
   Revision 1.7  2005/08/01 05:55:26  yasu
-  recv_pipe->consumed ‚ÌŒ¸Zƒ^ƒCƒ~ƒ“ƒO‚ğC³
+  recv_pipe->consumed ã®æ¸›ç®—ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ä¿®æ­£
 
   Revision 1.6  2005/07/30 22:30:14  yasu
-  ƒfƒ‚‚ª“®‚­‚æ‚¤‚ÉC³
+  ãƒ‡ãƒ¢ãŒå‹•ãã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.5  2005/07/30 15:30:29  yasu
-  ƒRƒ}ƒ“ƒhƒpƒCƒv•ª—£‚É‚Æ‚à‚È‚¤C³
+  ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—åˆ†é›¢ã«ã¨ã‚‚ãªã†ä¿®æ­£
 
   Revision 1.4  2005/07/25 10:15:01  yasu
-  SOC ƒ‰ƒCƒuƒ‰ƒŠ‚Ì’Ç‰Á
+  SOC ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®è¿½åŠ 
 
   Revision 1.3  2005/07/22 12:44:56  yasu
-  ”ñ“¯Šúˆ—‰¼À‘•
+  éåŒæœŸå‡¦ç†ä»®å®Ÿè£…
 
   Revision 1.2  2005/07/19 14:06:33  yasu
-  SOCL_Read/Write ’Ç‰Á
+  SOCL_Read/Write è¿½åŠ 
 
   Revision 1.1  2005/07/15 13:33:11  yasu
-  soc ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ\[ƒX’²®
+  soc ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚½ãƒ¼ã‚¹èª¿æ•´
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -157,19 +157,19 @@ u32         SOCLi_CheckCount[SOCL_CHECKCOUNT_MAX] = { 0};
 /*---------------------------------------------------------------------------*
   Name:         SOCL_Read
 
-  Description:  ƒ\ƒPƒbƒg‚©‚çƒf[ƒ^‚ğó‚¯æ‚è‚Ü‚·
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚Šã¾ã™
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer          óMƒf[ƒ^
-                buffer_len      óMƒf[ƒ^‚ğŠi”[ƒoƒbƒtƒ@‚Ì’·‚³
-                remote_port     ‘—MŒ³ƒzƒXƒg port
-                remote_ip       ‘—MŒ³ƒzƒXƒg ip
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer          å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+                buffer_len      å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®é•·ã•
+                remote_port     é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ port
+                remote_ip       é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ ip
 
-                remote_port/remote_ip ‚Í Connect ‚ğs‚È‚Á‚Ä‚¢‚È‚¢ UDP ‚Ìê‡
-                ‚Ì‚İ—LŒø. TCP ‚â Connect ‚ğs‚È‚Á‚½ UDP ‚Ìê‡‚Í’l‚Í–³‹‚³‚ê‚é
+                remote_port/remote_ip ã¯ Connect ã‚’è¡Œãªã£ã¦ã„ãªã„ UDP ã®å ´åˆ
+                ã®ã¿æœ‰åŠ¹. TCP ã‚„ Connect ã‚’è¡Œãªã£ãŸ UDP ã®å ´åˆã¯å€¤ã¯ç„¡è¦–ã•ã‚Œã‚‹
 
-  Returns:      ³‚Ì’l: óM‚µ‚½ƒƒbƒZ[ƒW‚ÌƒoƒCƒg”
-                •‰‚Ì’l: ƒGƒ‰[
+  Returns:      æ­£ã®å€¤: å—ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒã‚¤ãƒˆæ•°
+                è² ã®å€¤: ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 int SOCL_Read(int s, void* buffer, int buffer_len, u16* remote_port, SOCLInAddr* remote_ip)
 {
@@ -179,16 +179,16 @@ int SOCL_Read(int s, void* buffer, int buffer_len, u16* remote_port, SOCLInAddr*
 /*---------------------------------------------------------------------------*
   Name:         SOCL_ReadNoBlock
 
-  Description:  ƒ\ƒPƒbƒg‚©‚ç NOBLOCK ƒ‚[ƒh‚Åƒf[ƒ^‚ğó‚¯æ‚è‚Ü‚·D
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‹ã‚‰ NOBLOCK ãƒ¢ãƒ¼ãƒ‰ã§ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚Šã¾ã™ï¼
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer          óMƒf[ƒ^
-                buffer_len      óMƒf[ƒ^‚Ì’·‚³
-                remote_port     ‘—MŒ³ƒzƒXƒg port (UDP ‚Ì‚İ—LŒø)
-                remote_ip       ‘—MŒ³ƒzƒXƒg ip   (UDP ‚Ì‚İ—LŒø)
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer          å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+                buffer_len      å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                remote_port     é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ port (UDP ã®ã¿æœ‰åŠ¹)
+                remote_ip       é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ ip   (UDP ã®ã¿æœ‰åŠ¹)
 
-  Returns:      ³‚Ì’l: óM‚µ‚½ƒƒbƒZ[ƒW‚ÌƒoƒCƒg”
-                •‰‚Ì’l: ƒGƒ‰[
+  Returns:      æ­£ã®å€¤: å—ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒã‚¤ãƒˆæ•°
+                è² ã®å€¤: ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 int SOCL_ReadNoBlock(int s, void* buffer, int buffer_len, u16* remote_port, SOCLInAddr* remote_ip)
 {
@@ -198,16 +198,16 @@ int SOCL_ReadNoBlock(int s, void* buffer, int buffer_len, u16* remote_port, SOCL
 /*---------------------------------------------------------------------------*
   Name:         SOCL_ReadBlock
 
-  Description:  ƒ\ƒPƒbƒg‚©‚ç BLOCK ƒ‚[ƒh‚Åƒf[ƒ^‚ğó‚¯æ‚è‚Ü‚·D
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‹ã‚‰ BLOCK ãƒ¢ãƒ¼ãƒ‰ã§ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚Šã¾ã™ï¼
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer          óMƒf[ƒ^
-                buffer_len      óMƒf[ƒ^‚Ì’·‚³
-                remote_port     ‘—MŒ³ƒzƒXƒg port (UDP ‚Ì‚İ—LŒø)
-                remote_ip       ‘—MŒ³ƒzƒXƒg ip   (UDP ‚Ì‚İ—LŒø)
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer          å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+                buffer_len      å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                remote_port     é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ port (UDP ã®ã¿æœ‰åŠ¹)
+                remote_ip       é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ ip   (UDP ã®ã¿æœ‰åŠ¹)
 
-  Returns:      ³‚Ì’l: óM‚µ‚½ƒƒbƒZ[ƒW‚ÌƒoƒCƒg”
-                •‰‚Ì’l: ƒGƒ‰[
+  Returns:      æ­£ã®å€¤: å—ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒã‚¤ãƒˆæ•°
+                è² ã®å€¤: ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 int SOCL_ReadBlock(int s, void* buffer, int buffer_len, u16* remote_port, SOCLInAddr* remote_ip)
 {
@@ -217,20 +217,20 @@ int SOCL_ReadBlock(int s, void* buffer, int buffer_len, u16* remote_port, SOCLIn
 /*---------------------------------------------------------------------------*
   Name:         SOCL_ReadFrom
 
-  Description:  ƒ\ƒPƒbƒg‚©‚çƒf[ƒ^‚ğó‚¯æ‚è‚Ü‚·
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚Šã¾ã™
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer          óMƒf[ƒ^
-                buffer_len      óMƒf[ƒ^‚ğŠi”[ƒoƒbƒtƒ@‚Ì’·‚³
-                remote_port     ‘—MŒ³ƒzƒXƒg port
-                remote_ip       ‘—MŒ³ƒzƒXƒg ip
-                flag            óMƒtƒ‰ƒO
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer          å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+                buffer_len      å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®é•·ã•
+                remote_port     é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ port
+                remote_ip       é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ ip
+                flag            å—ä¿¡ãƒ•ãƒ©ã‚°
 
-                remote_port/remote_ip ‚Í Connect ‚ğs‚È‚Á‚Ä‚¢‚È‚¢ UDP ‚Ìê‡
-                ‚Ì‚İ—LŒø. TCP ‚â Connect ‚ğs‚È‚Á‚½ UDP ‚Ìê‡‚Í’l‚Í–³‹‚³‚ê‚é
+                remote_port/remote_ip ã¯ Connect ã‚’è¡Œãªã£ã¦ã„ãªã„ UDP ã®å ´åˆ
+                ã®ã¿æœ‰åŠ¹. TCP ã‚„ Connect ã‚’è¡Œãªã£ãŸ UDP ã®å ´åˆã¯å€¤ã¯ç„¡è¦–ã•ã‚Œã‚‹
 
-  Returns:      ³‚Ì’l: óM‚µ‚½ƒƒbƒZ[ƒW‚ÌƒoƒCƒg”
-                •‰‚Ì’l: ƒGƒ‰[
+  Returns:      æ­£ã®å€¤: å—ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒã‚¤ãƒˆæ•°
+                è² ã®å€¤: ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 int SOCL_ReadFrom(int s, void* buffer, int buffer_len, u16* remote_port, SOCLInAddr* remote_ip, int flags)
 {
@@ -241,14 +241,14 @@ int SOCL_ReadFrom(int s, void* buffer, int buffer_len, u16* remote_port, SOCLInA
 
     if (SOCL_SocketIsInvalid(socket))
     {
-        return SOCL_EINVAL;     // ‹K’èŠO‚Ì’l
+        return SOCL_EINVAL;     // è¦å®šå¤–ã®å€¤
     }
 
     if ((flags & SOCL_MSG_DONTWAIT) || SOCL_SocketIsNoBlock(socket))
     {
         if (SOCL_SocketIsSSL(socket))
         {
-            return SOCL_EINVAL; // SSL ‚ÍƒuƒƒbƒLƒ“ƒOŒÄ‚Ño‚µ‚µ‚©ƒTƒ|[ƒg‚µ‚È‚¢
+            return SOCL_EINVAL; // SSL ã¯ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°å‘¼ã³å‡ºã—ã—ã‹ã‚µãƒãƒ¼ãƒˆã—ãªã„
         }
 
         flag_block = SOCL_FLAGBLOCK_NOBLOCK;
@@ -257,7 +257,7 @@ int SOCL_ReadFrom(int s, void* buffer, int buffer_len, u16* remote_port, SOCLInA
     {
         if (OS_GetProcMode() == OS_PROCMODE_IRQ)
         {
-            return SOCL_EINVAL; // ƒuƒƒbƒLƒ“ƒOŒÄ‚Ño‚µ‚ÍŠ„‚è‚İƒnƒ“ƒhƒ‰“à‚ÅŒÄ‚Ño‚¹‚È‚¢
+            return SOCL_EINVAL; // ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°å‘¼ã³å‡ºã—ã¯å‰²ã‚Šè¾¼ã¿ãƒãƒ³ãƒ‰ãƒ©å†…ã§å‘¼ã³å‡ºã›ãªã„
         }
 
         flag_block = SOCL_FLAGBLOCK_BLOCK;
@@ -265,17 +265,17 @@ int SOCL_ReadFrom(int s, void* buffer, int buffer_len, u16* remote_port, SOCLInA
 
     if (!SOCL_SocketIsCreated(socket))
     {
-        return SOCL_ENETRESET;  // ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+        return SOCL_ENETRESET;  // åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
     }
 
     if (SOCL_SocketIsTCP(socket) && (!SOCL_SocketIsConnected(socket) || SOCL_SocketIsClosing(socket)))
     {
-        return SOCL_ENOTCONN;   // Ú‘±‚µ‚Ä‚¢‚È‚¢
+        return SOCL_ENOTCONN;   // æ¥ç¶šã—ã¦ã„ãªã„
     }
 
     SDK_ASSERT(buffer && buffer_len);
     recv_pipe = socket->recv_pipe;
-    SDK_ASSERT(recv_pipe);      // ‰Šú‰»‚Ì‚³‚ê•û‚ª‚¨‚©‚µ‚¢
+    SDK_ASSERT(recv_pipe);      // åˆæœŸåŒ–ã®ã•ã‚Œæ–¹ãŒãŠã‹ã—ã„
     if (!SOCL_FLAGISBLOCK(flag_block))
     {
         if (!OS_TryLockMutex(&recv_pipe->h.in_use))
@@ -297,17 +297,17 @@ int SOCL_ReadFrom(int s, void* buffer, int buffer_len, u16* remote_port, SOCLInA
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ReadAndConsumeBuffer
 
-  Description:  READ ‚¨‚æ‚Ñ Consume ˆ—‚ğŠJn‚µ‚Ü‚·D
-                ‚½‚¾‚µ”r‘¼§Œä‚Ís‚È‚í‚ê‚Ä‚¢‚Ü‚¹‚ñD
+  Description:  READ ãŠã‚ˆã³ Consume å‡¦ç†ã‚’é–‹å§‹ã—ã¾ã™ï¼
+                ãŸã ã—æ’ä»–åˆ¶å¾¡ã¯è¡Œãªã‚ã‚Œã¦ã„ã¾ã›ã‚“ï¼
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer          ƒRƒs[ƒf[ƒ^
-                buffer_len      ƒRƒs[ƒf[ƒ^‚Ì’·‚³
-                remote_port     ‘—MŒ³ƒzƒXƒg port (UDP ‚Ì‚İ—LŒø)
-                remote_ip       ‘—MŒ³ƒzƒXƒg ip   (UDP ‚Ì‚İ—LŒø)
-                flag_block      BLOCK ‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer          ã‚³ãƒ”ãƒ¼ãƒ‡ãƒ¼ã‚¿
+                buffer_len      ã‚³ãƒ”ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                remote_port     é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ port (UDP ã®ã¿æœ‰åŠ¹)
+                remote_ip       é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ ip   (UDP ã®ã¿æœ‰åŠ¹)
+                flag_block      BLOCK ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
-  Returns:      ƒRƒs[‚Å‚«‚½ƒf[ƒ^’· (0 ‚È‚ç¸”s)
+  Returns:      ã‚³ãƒ”ãƒ¼ã§ããŸãƒ‡ãƒ¼ã‚¿é•· (0 ãªã‚‰å¤±æ•—)
  *---------------------------------------------------------------------------*/
 static int SOCLi_ReadAndConsumeBuffer(SOCLSocket*  socket, void*  buffer, int buffer_len, u16*  remote_port,
                                       SOCLInAddr*  remote_ip, s32 flag_block, s32 flags)
@@ -319,7 +319,7 @@ static int SOCLi_ReadAndConsumeBuffer(SOCLSocket*  socket, void*  buffer, int bu
 
     if (is_noconsumed)
     {
-        // ˆê“I‚É noconsume ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+        // ä¸€æ™‚çš„ã« noconsume ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
         flag_noconsume = recv_pipe->flag_noconsume;
         recv_pipe->flag_noconsume = TRUE;
     }
@@ -340,7 +340,7 @@ static int SOCLi_ReadAndConsumeBuffer(SOCLSocket*  socket, void*  buffer, int bu
 
     if (is_noconsumed)
     {
-        // noconsume ƒtƒ‰ƒO‚ğŒ³‚É–ß‚·
+        // noconsume ãƒ•ãƒ©ã‚°ã‚’å…ƒã«æˆ»ã™
         recv_pipe->flag_noconsume = flag_noconsume;
     }
 
@@ -350,17 +350,17 @@ static int SOCLi_ReadAndConsumeBuffer(SOCLSocket*  socket, void*  buffer, int bu
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ReadBuffer
 
-  Description:  READ ˆ—‚ğŠJn‚µ‚Ü‚·D‚½‚¾‚µ”r‘¼§Œä‚Ís‚È‚í‚ê‚Ä‚¢‚Ü‚¹‚ñD
+  Description:  READ å‡¦ç†ã‚’é–‹å§‹ã—ã¾ã™ï¼ãŸã ã—æ’ä»–åˆ¶å¾¡ã¯è¡Œãªã‚ã‚Œã¦ã„ã¾ã›ã‚“ï¼
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer          ƒRƒs[ƒf[ƒ^
-                buffer_len      ƒRƒs[ƒf[ƒ^‚Ì’·‚³
-                remote_port     ‘—MŒ³ƒzƒXƒg port (UDP ‚Ì‚İ—LŒø)
-                remote_ip       ‘—MŒ³ƒzƒXƒg ip   (UDP ‚Ì‚İ—LŒø)
-                flag_block      BLOCK ‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-                                BLOCK ‚È‚çƒRƒ}ƒ“ƒh‚ğì¬‚µ‚ÄÀs‚µ‚Ü‚·D
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer          ã‚³ãƒ”ãƒ¼ãƒ‡ãƒ¼ã‚¿
+                buffer_len      ã‚³ãƒ”ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                remote_port     é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ port (UDP ã®ã¿æœ‰åŠ¹)
+                remote_ip       é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ ip   (UDP ã®ã¿æœ‰åŠ¹)
+                flag_block      BLOCK ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+                                BLOCK ãªã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’ä½œæˆã—ã¦å®Ÿè¡Œã—ã¾ã™ï¼
 
-  Returns:      ƒRƒs[‚Å‚«‚½ƒf[ƒ^’· (0 ‚È‚ç¸”s)
+  Returns:      ã‚³ãƒ”ãƒ¼ã§ããŸãƒ‡ãƒ¼ã‚¿é•· (0 ãªã‚‰å¤±æ•—)
  *---------------------------------------------------------------------------*/
 static int SOCLi_ReadBuffer(SOCLSocket*  socket, void*  buffer, int buffer_len, u16*  remote_port, SOCLInAddr*  remote_ip,
                             s32 flag_block)
@@ -371,8 +371,8 @@ static int SOCLi_ReadBuffer(SOCLSocket*  socket, void*  buffer, int buffer_len, 
     OS_TPrintf("\n===\nReadBuffer.buffer                 =%d-%d %d\n", buffer, (u32) buffer + buffer_len, buffer_len);
 #endif
 
-    // SSL ‚Ìê‡‚Í CPS ‚ÌóMƒoƒbƒtƒ@‚ğ”`‚«Œ©‚é‚±‚Æ‚ª‚Å‚«‚È‚¢‚½‚ßA
-    // •K‚¸óMƒXƒŒƒbƒh‚ÉƒRƒ}ƒ“ƒh‚ğ”­s‚·‚é
+    // SSL ã®å ´åˆã¯ CPS ã®å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’è¦—ãè¦‹ã‚‹ã“ã¨ãŒã§ããªã„ãŸã‚ã€
+    // å¿…ãšå—ä¿¡ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã™ã‚‹
     if (SOCL_SocketIsSSL(socket))
     {
         result = SOCLi_ExecReadCommand(socket, buffer, buffer_len, remote_port, remote_ip);
@@ -380,9 +380,9 @@ static int SOCLi_ReadBuffer(SOCLSocket*  socket, void*  buffer, int buffer_len, 
     }
 
     //
-    // ‚Ü‚¸ABLOCK/NOBLOCK ‚ÉŠñ‚ç‚¸‚É NOBLOCK ƒŠ[ƒh‚ğ”­s‚·‚éD
-    // ‚à‚µ BLOCK ƒ‚[ƒh‚Ìê‡ EWOULDBLOCK ‚ª•Ô‚Á‚Ä‚«‚½ê‡A‚»‚Ì‚¤‚¿ƒf[ƒ^
-    // ‚ª“’…‚·‚é‚±‚Æ‚ğŠú‘Ò‚µ‚Ä recv_pipe ‚Ö READ ƒRƒ}ƒ“ƒh‚ğ”­s‚·‚é
+    // ã¾ãšã€BLOCK/NOBLOCK ã«å¯„ã‚‰ãšã« NOBLOCK ãƒªãƒ¼ãƒ‰ã‚’ç™ºè¡Œã™ã‚‹ï¼
+    // ã‚‚ã— BLOCK ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆ EWOULDBLOCK ãŒè¿”ã£ã¦ããŸå ´åˆã€ãã®ã†ã¡ãƒ‡ãƒ¼ã‚¿
+    // ãŒåˆ°ç€ã™ã‚‹ã“ã¨ã‚’æœŸå¾…ã—ã¦ recv_pipe ã¸ READ ã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã™ã‚‹
     //
     result = SOCLi_CopyCPSBuffer(socket, buffer, buffer_len, remote_port, remote_ip);
 
@@ -397,21 +397,21 @@ static int SOCLi_ReadBuffer(SOCLSocket*  socket, void*  buffer, int buffer_len, 
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_CopyCPSBuffer
 
-  Description:  CPS ƒ‰ƒCƒuƒ‰ƒŠ‚ÌóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ğƒRƒs[‚·‚é
-                NOBLOCK ƒŠ[ƒh‚ğ‚İ‚é‚Æ‚¢‚¤Œ`®‚É‚È‚Á‚Ä‚¢‚é
+  Description:  CPS ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
+                NOBLOCK ãƒªãƒ¼ãƒ‰ã‚’è©¦ã¿ã‚‹ã¨ã„ã†å½¢å¼ã«ãªã£ã¦ã„ã‚‹
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer          ƒRƒs[æóMƒoƒbƒtƒ@ƒ^
-                buffer_len      ƒRƒs[æóMƒoƒbƒtƒ@‚Ì’·‚³
-                remote_port     óM‘Šè‚Ìƒ|[ƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                remote_ip       óM‘Šè‚Ì IP ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer          ã‚³ãƒ”ãƒ¼å…ˆå—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚¿
+                buffer_len      ã‚³ãƒ”ãƒ¼å…ˆå—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®é•·ã•
+                remote_port     å—ä¿¡ç›¸æ‰‹ã®ãƒãƒ¼ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                remote_ip       å—ä¿¡ç›¸æ‰‹ã® IP ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ³‚Ì’l: TCP ƒoƒbƒtƒ@‚ÖƒRƒs[‚µ‚½ƒTƒCƒY
-                        UDP ƒoƒbƒtƒ@‚Ö‘—‚ç‚ê‚Ä‚«‚Ä‚¢‚½ƒTƒCƒY
+  Returns:      æ­£ã®å€¤: TCP ãƒãƒƒãƒ•ã‚¡ã¸ã‚³ãƒ”ãƒ¼ã—ãŸã‚µã‚¤ã‚º
+                        UDP ãƒãƒƒãƒ•ã‚¡ã¸é€ã‚‰ã‚Œã¦ãã¦ã„ãŸã‚µã‚¤ã‚º
                 0     : EOF
-                •‰‚Ì’l: ƒGƒ‰[
-                        SOCL_EWOULDBLOCK: ƒf[ƒ^‚ª‘—‚ç‚ê‚Ä‚«‚Ä‚¢‚È‚¢
-                        SOCL_EINVAL     : “à•”ó‘Ô‚ª‚¨‚©‚µ‚­‚È‚Á‚Ä‚¢‚é
+                è² ã®å€¤: ã‚¨ãƒ©ãƒ¼
+                        SOCL_EWOULDBLOCK: ãƒ‡ãƒ¼ã‚¿ãŒé€ã‚‰ã‚Œã¦ãã¦ã„ãªã„
+                        SOCL_EINVAL     : å†…éƒ¨çŠ¶æ…‹ãŒãŠã‹ã—ããªã£ã¦ã„ã‚‹
  *---------------------------------------------------------------------------*/
 static int SOCLi_CopyCPSBuffer(SOCLSocket*  socket, void*  buffer, int buffer_len, u16*  remote_port,
                                SOCLInAddr*  remote_ip)
@@ -430,15 +430,15 @@ static int SOCLi_CopyCPSBuffer(SOCLSocket*  socket, void*  buffer, int buffer_le
     SDK_ASSERT(buffer && buffer_len > 0);
 
     //
-    // ƒf[ƒ^‚ÌƒRƒs[’†‚É Consume ‚ªŠ|‚©‚é‚±‚Æ‚ğ–h~‚·‚é
-    // Mutex ‚É‚·‚é•û–@‚à‚ ‚é‚ª‚±‚±‚Å‚ÍŠ„‚è‚İ‚Åˆ—‚ğs‚È‚¤D
+    // ãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼ä¸­ã« Consume ãŒæ›ã‹ã‚‹ã“ã¨ã‚’é˜²æ­¢ã™ã‚‹
+    // Mutex ã«ã™ã‚‹æ–¹æ³•ã‚‚ã‚ã‚‹ãŒã“ã“ã§ã¯å‰²ã‚Šè¾¼ã¿ã§å‡¦ç†ã‚’è¡Œãªã†ï¼
     //
     enable = OS_DisableInterrupts();
     {
         //
-        // óMƒoƒbƒtƒ@‚É’…‚¢‚Ä‚¢‚éƒf[ƒ^‚ğŠm”F‚µAƒf[ƒ^‚ª‚ ‚é‚È‚çƒoƒbƒtƒ@‚É
-        // ƒRƒs[‚·‚éD‚»‚¤‚Å‚È‚­ABLOCK ƒ‚[ƒh‚Å‚ ‚é‚È‚ç READ ƒRƒ}ƒ“ƒh‚ğ”­s‚µ
-        // recv_pipe ‚Å“]‘—‚ğs‚È‚¤
+        // å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ç€ã„ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’ç¢ºèªã—ã€ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ãªã‚‰ãƒãƒƒãƒ•ã‚¡ã«
+        // ã‚³ãƒ”ãƒ¼ã™ã‚‹ï¼ãã†ã§ãªãã€BLOCK ãƒ¢ãƒ¼ãƒ‰ã§ã‚ã‚‹ãªã‚‰ READ ã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã—
+        // recv_pipe ã§è»¢é€ã‚’è¡Œãªã†
         //
         cpsbuffer = SOCLi_ReadCPSBuffer(socket, &cpsbuffer_len, &my_port, &his_port, &his_ip);
 
@@ -446,22 +446,22 @@ static int SOCLi_CopyCPSBuffer(SOCLSocket*  socket, void*  buffer, int buffer_le
         {
             if (cpsbuffer_len == 0)
             {
-                // ƒ|ƒCƒ“ƒ^‚ÍƒZƒbƒg‚³‚ê‚Ä‚¢‚ÄƒTƒCƒY‚ª 0 ‚Ì‚Æ‚«‚Í
-                // ƒf[ƒ^‚ª“Í‚¢‚Ä‚¢‚È‚¢
+                // ãƒã‚¤ãƒ³ã‚¿ã¯ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã¦ã‚µã‚¤ã‚ºãŒ 0 ã®ã¨ãã¯
+                // ãƒ‡ãƒ¼ã‚¿ãŒå±Šã„ã¦ã„ãªã„
                 result = SOCL_EWOULDBLOCK;
             }
             else
             {
-                // ƒf[ƒ^‚ÌƒRƒs[ƒTƒCƒYAÁ”ïƒTƒCƒY‚ğŒvZ‚·‚é
-                //   “’…‚µ‚Ä‚¢‚éƒf[ƒ^ƒTƒCƒY‚ğƒoƒbƒtƒ@ƒTƒCƒY‚Ü‚ÅƒRƒs[‚·‚é
-                //   TCP ‚ÍƒRƒs[‚µ‚½•ª‚ğ UDP ‚Í“’…‚µ‚Ä‚¢‚éƒf[ƒ^‘S‚Ä‚ğ
-                //   Ì‚Ä‚é
+                // ãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼ã‚µã‚¤ã‚ºã€æ¶ˆè²»ã‚µã‚¤ã‚ºã‚’è¨ˆç®—ã™ã‚‹
+                //   åˆ°ç€ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã¾ã§ã‚³ãƒ”ãƒ¼ã™ã‚‹
+                //   TCP ã¯ã‚³ãƒ”ãƒ¼ã—ãŸåˆ†ã‚’ UDP ã¯åˆ°ç€ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿å…¨ã¦ã‚’
+                //   æ¨ã¦ã‚‹
                 copy_len = MATH_MIN(buffer_len, cpsbuffer_len);
                 consume_len = SOCL_SocketIsTCP(socket) ? copy_len : cpsbuffer_len;
 
-                // ƒRƒs[•”pŠü
-                // PEEK “Ç‚İ‚Ìê‡‚Í”pŠü‚µ‚È‚¢
-                MI_CpuCopy8(cpsbuffer, buffer, (u32) copy_len); // ƒRƒs[
+                // ã‚³ãƒ”ãƒ¼ï¼†å»ƒæ£„
+                // PEEK èª­ã¿ã®å ´åˆã¯å»ƒæ£„ã—ãªã„
+                MI_CpuCopy8(cpsbuffer, buffer, (u32) copy_len); // ã‚³ãƒ”ãƒ¼
 #ifdef SDK_MY_DEBUG
                 OS_TPrintf("MI_CPUCOPY    .buffer             =%d-%d %d\n", buffer, (u32) buffer + copy_len, copy_len);
                 OS_TPrintf("              .copy_len           =%d\n", copy_len);
@@ -470,7 +470,7 @@ static int SOCLi_CopyCPSBuffer(SOCLSocket*  socket, void*  buffer, int buffer_le
                 SDK_ASSERT(recv_pipe);
                 if (!recv_pipe->flag_noconsume)
                 {
-                    recv_pipe->consumed += consume_len;         // ”pŠü
+                    recv_pipe->consumed += consume_len;         // å»ƒæ£„
                 }
 
 #ifdef SDK_MY_DEBUG
@@ -481,8 +481,8 @@ static int SOCLi_CopyCPSBuffer(SOCLSocket*  socket, void*  buffer, int buffer_le
         }
         else
         {
-            // cpsbuffer ‚Ìƒ|ƒCƒ“ƒ^‚ª•Ô‚ç‚¸‚ÉƒTƒCƒY‚ª 0 ‚È‚ç EOF
-            // 0 ‚ğ•Ô‚·
+            // cpsbuffer ã®ãƒã‚¤ãƒ³ã‚¿ãŒè¿”ã‚‰ãšã«ã‚µã‚¤ã‚ºãŒ 0 ãªã‚‰ EOF
+            // 0 ã‚’è¿”ã™
             if (cpsbuffer_len == 0)
             {
                 result = 0;
@@ -498,8 +498,8 @@ static int SOCLi_CopyCPSBuffer(SOCLSocket*  socket, void*  buffer, int buffer_le
         if (result >= 0)
         {
             //
-            // ‘Šè IP/Port ‚ÌƒRƒs[
-            // ƒ[ƒJƒ‹ƒ|[ƒg‚ÌŠm’è
+            // ç›¸æ‰‹ IP/Port ã®ã‚³ãƒ”ãƒ¼
+            // ãƒ­ãƒ¼ã‚«ãƒ«ãƒãƒ¼ãƒˆã®ç¢ºå®š
             //
             if (remote_port && remote_ip)
             {
@@ -521,20 +521,20 @@ static int SOCLi_CopyCPSBuffer(SOCLSocket*  socket, void*  buffer, int buffer_le
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ReadCPSBuffer
 
-  Description:  CPS ƒ‰ƒCƒuƒ‰ƒŠ‚ÌóMƒoƒbƒtƒ@‚Ìó‘Ô‚ğ’²‚×‚é
+  Description:  CPS ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®çŠ¶æ…‹ã‚’èª¿ã¹ã‚‹
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer_len      óMƒoƒbƒtƒ@‚Ì’·‚³‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                local_port      ©ƒzƒXƒg‚Ìƒ|[ƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                remote_port     óM‘Šè‚Ìƒ|[ƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                remote_ip       óM‘Šè‚Ì IP ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer_len      å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®é•·ã•ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                local_port      è‡ªãƒ›ã‚¹ãƒˆã®ãƒãƒ¼ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                remote_port     å—ä¿¡ç›¸æ‰‹ã®ãƒãƒ¼ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                remote_ip       å—ä¿¡ç›¸æ‰‹ã® IP ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ”ñ 0: óMƒoƒbƒtƒ@‚Ìæ“ªƒAƒhƒŒƒX
-                        buffer_len ‚ÉƒTƒCƒY‚ª•Ô‚é
-                        0 ‚È‚çƒf[ƒ^‚ª’…‚­‚Ì‚ğ‘Ò‚Á‚Ä‚¢‚éó‘Ô
-                   0: ƒGƒ‰[ or EOF
-                        ‚±‚Ì‚Æ‚« buffer_len ‚ÉƒGƒ‰[ƒR[ƒh‚ª•Ô‚é
-                        0 ‚È‚ç EOF  •‰‚Ì’l‚È‚çƒVƒXƒeƒ€ƒGƒ‰[
+  Returns:      é 0: å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+                        buffer_len ã«ã‚µã‚¤ã‚ºãŒè¿”ã‚‹
+                        0 ãªã‚‰ãƒ‡ãƒ¼ã‚¿ãŒç€ãã®ã‚’å¾…ã£ã¦ã„ã‚‹çŠ¶æ…‹
+                   0: ã‚¨ãƒ©ãƒ¼ or EOF
+                        ã“ã®ã¨ã buffer_len ã«ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ãŒè¿”ã‚‹
+                        0 ãªã‚‰ EOF  è² ã®å€¤ãªã‚‰ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 static u8* SOCLi_ReadCPSBuffer(SOCLSocket*  socket, s32*  buffer_len, u16*  local_port, u16*  remote_port,
                                SOCLInAddr*  remote_ip)
@@ -557,7 +557,7 @@ static u8* SOCLi_ReadCPSBuffer(SOCLSocket*  socket, s32*  buffer_len, u16*  loca
         (*remote_ip) = (SOCLInAddr) cpsoc->remote_ip;
         (*buffer_len) = len;
 
-        // EOF ”»’è
+        // EOF åˆ¤å®š
         if (len == 0 && cpsoc->state != CPS_STT_ESTABLISHED)
         {
             return NULL;
@@ -575,14 +575,14 @@ static u8* SOCLi_ReadCPSBuffer(SOCLSocket*  socket, s32*  buffer_len, u16*  loca
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ExecReadCommand
 
-  Description:  BLOCK READ ”­sƒRƒ}ƒ“ƒh
+  Description:  BLOCK READ ç™ºè¡Œã‚³ãƒãƒ³ãƒ‰
 
-  Arguments:    s                 ƒ\ƒPƒbƒg
-                user_buffer       READ æ
-                user_buffer_len   READ ƒoƒbƒtƒ@ƒTƒCƒY
+  Arguments:    s                 ã‚½ã‚±ãƒƒãƒˆ
+                user_buffer       READ å…ˆ
+                user_buffer_len   READ ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-  Returns:      ³‚Ì’l: óM‚µ‚½ƒƒbƒZ[ƒW‚ÌƒoƒCƒg”
-                •‰‚Ì’l: ƒGƒ‰[
+  Returns:      æ­£ã®å€¤: å—ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒã‚¤ãƒˆæ•°
+                è² ã®å€¤: ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 static int SOCLi_ExecReadCommand(SOCLSocket*  socket, void*  buffer, int buffer_len, u16*  remote_port,
                                  SOCLInAddr*  remote_ip)
@@ -590,9 +590,9 @@ static int SOCLi_ExecReadCommand(SOCLSocket*  socket, void*  buffer, int buffer_
     SOCLiCommandPacket*     command;
     s32 result;
 
-    // recv_pipe ‚ÉƒRƒ}ƒ“ƒh‚ğ“Š‚°AƒR[ƒ‹ƒoƒbƒNŠÖ”“à•”‚Å
-    // CPS_Read/CPS_SocConsume ‚ğ‹N“®‚·‚éD
-    // ‹­§“I‚É BLOCK ƒ‚[ƒh‚È‚Ì‚Å¬Œ÷‚·‚é‚Ü‚Å‘Ò‚Â
+    // recv_pipe ã«ã‚³ãƒãƒ³ãƒ‰ã‚’æŠ•ã’ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…éƒ¨ã§
+    // CPS_Read/CPS_SocConsume ã‚’èµ·å‹•ã™ã‚‹ï¼
+    // å¼·åˆ¶çš„ã« BLOCK ãƒ¢ãƒ¼ãƒ‰ãªã®ã§æˆåŠŸã™ã‚‹ã¾ã§å¾…ã¤
     command = SOCLi_CreateCommandPacket(SOCLi_ReadCallBack, socket, SOCL_FLAGBLOCK_BLOCK);
     SDK_ASSERT(command);
 
@@ -601,7 +601,7 @@ static int SOCLi_ExecReadCommand(SOCLSocket*  socket, void*  buffer, int buffer_
     command->read.remote_port = remote_port;
     command->read.remote_ip = remote_ip;
 
-    // ƒRƒ}ƒ“ƒhÀs
+    // ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œ
     result = SOCLi_ExecCommandPacketInRecvPipe(socket, command);
 
     return result;
@@ -610,14 +610,14 @@ static int SOCLi_ExecReadCommand(SOCLSocket*  socket, void*  buffer, int buffer_
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ReadCallBack
 
-  Description:  READ ˆ—‚ÌƒR[ƒ‹ƒoƒbƒND
-                BLOCK ƒ‚[ƒh‚Ì‚Æ‚«‚Ì‚İ
+  Description:  READ å‡¦ç†ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ï¼
+                BLOCK ãƒ¢ãƒ¼ãƒ‰ã®ã¨ãã®ã¿
 
-  Arguments:    arg   ƒRƒ}ƒ“ƒhƒpƒPƒbƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    arg   ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ³‚Ì’l: óM‚µ‚½ƒƒbƒZ[ƒW‚ÌƒoƒCƒg”
+  Returns:      æ­£ã®å€¤: å—ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒã‚¤ãƒˆæ•°
                      0: EOF
-                •‰‚Ì’l: ƒGƒ‰[
+                è² ã®å€¤: ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 static int SOCLi_ReadCallBack(void* arg)
 {
@@ -633,10 +633,10 @@ static int SOCLi_ReadCallBack(void* arg)
     s32 consumed;
     int result;
 
-    // V‚µ‚¢ƒf[ƒ^‚ª’Ç‰Á‚³‚ê‚é‚Ü‚Å BLOCK ƒ‚[ƒh‚Å‘Ò‚Â.
-    // Œ»ó‚Å‚Í SOCL ƒŒƒCƒ„[‚É‚¨‚¢‚Ä–{‹@”\‚ğÀ‘•‚·‚é‚½‚ß‚É OS_Sleep ‚ğ
-    // g‚Á‚½ƒ|[ƒŠƒ“ƒO‚ğs‚È‚Á‚Ä‚¢‚é‚ªACPS ƒŒƒCƒ„[‚Ì“à•”‚ÌÀ‘•‚ğC³
-    // ‚µ‚ÄV‹Kƒf[ƒ^“’…‚É BLOCK ‰ğœ‚ğs‚È‚¤‚×‚«D
+    // æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ãŒè¿½åŠ ã•ã‚Œã‚‹ã¾ã§ BLOCK ãƒ¢ãƒ¼ãƒ‰ã§å¾…ã¤.
+    // ç¾çŠ¶ã§ã¯ SOCL ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ãŠã„ã¦æœ¬æ©Ÿèƒ½ã‚’å®Ÿè£…ã™ã‚‹ãŸã‚ã« OS_Sleep ã‚’
+    // ä½¿ã£ãŸãƒãƒ¼ãƒªãƒ³ã‚°ã‚’è¡Œãªã£ã¦ã„ã‚‹ãŒã€CPS ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å†…éƒ¨ã®å®Ÿè£…ã‚’ä¿®æ­£
+    // ã—ã¦æ–°è¦ãƒ‡ãƒ¼ã‚¿åˆ°ç€æ™‚ã« BLOCK è§£é™¤ã‚’è¡Œãªã†ã¹ãï¼
     consumed = recv_pipe->consumed;
     for (;;)
     {
@@ -652,18 +652,18 @@ static int SOCLi_ReadCallBack(void* arg)
             break;
         }
 
-        OS_Sleep(10);           // 10msec ‚Ì‘Ò‚¿
+        OS_Sleep(10);           // 10msec ã®å¾…ã¡
     }
 
-    // Ø’f‚³‚ê‚½‚È‚çƒGƒ‰[
+    // åˆ‡æ–­ã•ã‚ŒãŸãªã‚‰ã‚¨ãƒ©ãƒ¼
     if (SOCL_SocketIsReset(socket))
     {
         return SOCL_ECONNRESET;
     }
     
-    // SSL ‚Ìê‡‚ÍóMƒoƒbƒtƒ@‚ğ”`‚«Œ©‚ê‚È‚¢‚½‚ß‚É
-    // ’Pƒ‚É cpsbuffer ‚©‚çóMƒf[ƒ^‚ğƒRƒs[‚·‚é
-    // SSL ‚Í•K‚¸ƒuƒƒbƒLƒ“ƒO‚ÅŒÄ‚Ño‚³‚ê‚é‚½‚ßAˆ—‚Í’Pƒ‚Æ‚È‚é
+    // SSL ã®å ´åˆã¯å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’è¦—ãè¦‹ã‚Œãªã„ãŸã‚ã«
+    // å˜ç´”ã« cpsbuffer ã‹ã‚‰å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹
+    // SSL ã¯å¿…ãšãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ã§å‘¼ã³å‡ºã•ã‚Œã‚‹ãŸã‚ã€å‡¦ç†ã¯å˜ç´”ã¨ãªã‚‹
     if (SOCL_SocketIsSSL(socket))
     {
         u32 len;
@@ -679,8 +679,8 @@ static int SOCLi_ReadCallBack(void* arg)
         return (int)len;
     }
 
-    // CPS_SocRead ‚ÅŠù‚Éƒoƒbƒtƒ@‚Éƒf[ƒ^‚ª’Ç‰Á‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ªŠú‘Ò‚Å‚«‚é
-    // ‚½‚ßA‚±‚ÌŒÄ‚Ño‚µ‚Í’¼‚®‚ÉI—¹‚·‚éDcpsbuffer ‚ª 0 ‚Ì‚Í EOF ‚Æ‚È‚é
+    // CPS_SocRead ã§æ—¢ã«ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ãŒè¿½åŠ ã•ã‚Œã¦ã„ã‚‹ã“ã¨ãŒæœŸå¾…ã§ãã‚‹
+    // ãŸã‚ã€ã“ã®å‘¼ã³å‡ºã—ã¯ç›´ãã«çµ‚äº†ã™ã‚‹ï¼cpsbuffer ãŒ 0 ã®æ™‚ã¯ EOF ã¨ãªã‚‹
     if (cpsbuffer)
     {
         result = SOCLi_CopyCPSBuffer(socket, buffer, buffer_len, remote_port, remote_ip);
@@ -690,14 +690,14 @@ static int SOCLi_ReadCallBack(void* arg)
         result = 0 /*EOF*/ ;
     }
 
-    // ƒGƒ‰[‚Ü‚½‚Í EOF ‚È‚ç‚»‚Ì•Ô’l‚ÅI—¹
+    // ã‚¨ãƒ©ãƒ¼ã¾ãŸã¯ EOF ãªã‚‰ãã®è¿”å€¤ã§çµ‚äº†
     if (result <= 0)
     {
         return result;
     }
 
     //
-    // consumed ‚ª consumed ‚ÌÅ¬’·ˆÈã‚È‚ç Consume ˆ—‚ğs‚È‚¤
+    // consumed ãŒ consumed ã®æœ€å°é•·ä»¥ä¸Šãªã‚‰ Consume å‡¦ç†ã‚’è¡Œãªã†
     //
     SDK_ASSERT(recv_pipe->consumed_min > 0);
     if (recv_pipe->consumed >= (s32) recv_pipe->consumed_min)
@@ -711,12 +711,12 @@ static int SOCLi_ReadCallBack(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ConsumeBuffer
 
-  Description:  Consume ˆ—‚ğs‚È‚¤
+  Description:  Consume å‡¦ç†ã‚’è¡Œãªã†
 
-  Arguments:    s                 ƒ\ƒPƒbƒg
+  Arguments:    s                 ã‚½ã‚±ãƒƒãƒˆ
 
-  Returns:      ³‚Ì’l: óM‚µ‚½ƒƒbƒZ[ƒW‚ÌƒoƒCƒg”
-                •‰‚Ì’l: ƒGƒ‰[
+  Returns:      æ­£ã®å€¤: å—ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒã‚¤ãƒˆæ•°
+                è² ã®å€¤: ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 static int SOCLi_ConsumeBuffer(SOCLSocket* socket)
 {
@@ -725,7 +725,7 @@ static int SOCLi_ConsumeBuffer(SOCLSocket* socket)
     s32 result;
 
     //
-    // consume ‚ª consume ‚ÌÅ¬’·–¢–‚È‚ç‰½‚à‚¹‚¸‚ÉI—¹‚·‚é
+    // consume ãŒ consume ã®æœ€å°é•·æœªæº€ãªã‚‰ä½•ã‚‚ã›ãšã«çµ‚äº†ã™ã‚‹
     //
     SDK_ASSERT(recv_pipe->consumed_min > 0);
     if (recv_pipe->consumed < (s32) recv_pipe->consumed_min)
@@ -733,15 +733,15 @@ static int SOCLi_ConsumeBuffer(SOCLSocket* socket)
         return SOCL_ESUCCESS;
     }
 
-    // recv_pipe ‚ÉƒRƒ}ƒ“ƒh‚ğ“Š‚°AƒR[ƒ‹ƒoƒbƒNŠÖ”“à•”‚Å
-    // CPS_SocConsume ‚ğ‹N“®‚·‚éDNOBLOCK ‚Åˆ—‚·‚é
+    // recv_pipe ã«ã‚³ãƒãƒ³ãƒ‰ã‚’æŠ•ã’ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…éƒ¨ã§
+    // CPS_SocConsume ã‚’èµ·å‹•ã™ã‚‹ï¼NOBLOCK ã§å‡¦ç†ã™ã‚‹
     command = SOCLi_CreateCommandPacket(SOCLi_ConsumeCallBack, socket, SOCL_FLAGBLOCK_NOBLOCK);
     if (NULL == command)
     {
         return SOCL_EMFILE;
     }
 
-    // ƒRƒ}ƒ“ƒhÀs
+    // ã‚³ãƒãƒ³ãƒ‰å®Ÿè¡Œ
     result = SOCLi_ExecCommandPacketInRecvPipe(socket, command);
 
     return result;
@@ -750,11 +750,11 @@ static int SOCLi_ConsumeBuffer(SOCLSocket* socket)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ConsumeCallBack
 
-  Description:  Consume ˆ—‚ÌƒR[ƒ‹ƒoƒbƒND
+  Description:  Consume å‡¦ç†ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ï¼
 
-  Arguments:    arg   ƒRƒ}ƒ“ƒhƒpƒPƒbƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    arg   ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      consume ‚µ‚½ƒf[ƒ^‚ÌƒoƒCƒg”
+  Returns:      consume ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒˆæ•°
  *---------------------------------------------------------------------------*/
 static int SOCLi_ConsumeCallBack(void* arg)
 {
@@ -766,11 +766,11 @@ static int SOCLi_ConsumeCallBack(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ConsumeCPSBuffer
 
-  Description:  Consume ˆ—‚ğs‚È‚¤
+  Description:  Consume å‡¦ç†ã‚’è¡Œãªã†
 
-  Arguments:    recv_pipe óMƒpƒCƒv
+  Arguments:    recv_pipe å—ä¿¡ãƒ‘ã‚¤ãƒ—
 
-  Returns:      consume ‚µ‚½ƒf[ƒ^‚ÌƒoƒCƒg”
+  Returns:      consume ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒˆæ•°
  *---------------------------------------------------------------------------*/
 static int SOCLi_ConsumeCPSBuffer(SOCLSocket* socket)
 {
@@ -780,8 +780,8 @@ static int SOCLi_ConsumeCPSBuffer(SOCLSocket* socket)
 
     SDK_ASSERT(recv_pipe);
 
-    // consumed ƒpƒ‰ƒ[ƒ^‚ğ‘€ì‚·‚é‚Ì‚ÅŠ„‚è‚İ‚ğ’â~‚³‚¹A
-    // consumed ‚Æ CPS_SocConsume “à‚Å‚Ìƒpƒ‰ƒ[ƒ^‚Æ‚Ì§Œä‚ğ“¯’²‚³‚¹‚é
+    // consumed ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ“ä½œã™ã‚‹ã®ã§å‰²ã‚Šè¾¼ã¿ã‚’åœæ­¢ã•ã›ã€
+    // consumed ã¨ CPS_SocConsume å†…ã§ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨ã®åˆ¶å¾¡ã‚’åŒèª¿ã•ã›ã‚‹
     enable = OS_DisableInterrupts();
     consumed = recv_pipe->consumed;
 
@@ -792,14 +792,14 @@ static int SOCLi_ConsumeCPSBuffer(SOCLSocket* socket)
 #endif
 
         //
-        // CPS_SocConsume ‚Ì“à•”‚ÅA“à•”ƒoƒbƒtƒ@‚ªŠJ•ú‚³‚ê‚éƒ^ƒCƒ~ƒ“ƒO‚ª
-        // BLOCKing ‚³‚ê‚é‘O‚©Œã‚©‚Å recv_pipe->consumed ‚ğŒ¸‚¶‚éƒ^ƒCƒ~ƒ“ƒO‚ğ
-        // •ÏX‚·‚é•K—v‚ª‚ ‚éD‚±‚Ì•”•ª‚Í CPS_SocConsume ‚ÌÀ‘•ˆË‘¶‚È‚Ì‚Å’ˆÓ
+        // CPS_SocConsume ã®å†…éƒ¨ã§ã€å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ãŒé–‹æ”¾ã•ã‚Œã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒ
+        // BLOCKing ã•ã‚Œã‚‹å‰ã‹å¾Œã‹ã§ recv_pipe->consumed ã‚’æ¸›ã˜ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’
+        // å¤‰æ›´ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ï¼ã“ã®éƒ¨åˆ†ã¯ CPS_SocConsume ã®å®Ÿè£…ä¾å­˜ãªã®ã§æ³¨æ„
         //
-#if 1   // “à•”ƒoƒbƒtƒ@ŠJ•úŒã BLOCKing ‚·‚éê‡‚Íæ‚É consumed ‚ğŒ¸‚¶‚é(Œ»ó)
+#if 1   // å†…éƒ¨ãƒãƒƒãƒ•ã‚¡é–‹æ”¾å¾Œ BLOCKing ã™ã‚‹å ´åˆã¯å…ˆã« consumed ã‚’æ¸›ã˜ã‚‹(ç¾çŠ¶)
         recv_pipe->consumed = 0;
         CPS_SocConsume((u32) consumed); // BLOCKED
-#else // “à•”ƒoƒbƒtƒ@ŠJ•ú‘O BLOCKing ‚·‚éê‡‚ÍŒã‚Å consumed ‚ğŒ¸‚¶‚é
+#else // å†…éƒ¨ãƒãƒƒãƒ•ã‚¡é–‹æ”¾å‰ BLOCKing ã™ã‚‹å ´åˆã¯å¾Œã§ consumed ã‚’æ¸›ã˜ã‚‹
         CPS_SocConsume((u32) consumed); // BLOCKED
         recv_pipe->consumed -= consumed;
 #endif
@@ -818,17 +818,17 @@ static int SOCLi_ConsumeCPSBuffer(SOCLSocket* socket)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ReadUdpBuffer
 
-  Description:  READ ˆ—‚ğŠJn‚µ‚Ü‚·D‚½‚¾‚µ”r‘¼§Œä‚Ís‚È‚í‚ê‚Ä‚¢‚Ü‚¹‚ñD
+  Description:  READ å‡¦ç†ã‚’é–‹å§‹ã—ã¾ã™ï¼ãŸã ã—æ’ä»–åˆ¶å¾¡ã¯è¡Œãªã‚ã‚Œã¦ã„ã¾ã›ã‚“ï¼
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer          ƒRƒs[ƒf[ƒ^
-                buffer_len      ƒRƒs[ƒf[ƒ^‚Ì’·‚³
-                remote_port     ‘—MŒ³ƒzƒXƒg port (UDP ‚Ì‚İ—LŒø)
-                remote_ip       ‘—MŒ³ƒzƒXƒg ip   (UDP ‚Ì‚İ—LŒø)
-                flag_block      BLOCK ‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-                                BLOCK ‚È‚çƒRƒ}ƒ“ƒh‚ğì¬‚µ‚ÄÀs‚µ‚Ü‚·D
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer          ã‚³ãƒ”ãƒ¼ãƒ‡ãƒ¼ã‚¿
+                buffer_len      ã‚³ãƒ”ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                remote_port     é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ port (UDP ã®ã¿æœ‰åŠ¹)
+                remote_ip       é€ä¿¡å…ƒãƒ›ã‚¹ãƒˆ ip   (UDP ã®ã¿æœ‰åŠ¹)
+                flag_block      BLOCK ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+                                BLOCK ãªã‚‰ã‚³ãƒãƒ³ãƒ‰ã‚’ä½œæˆã—ã¦å®Ÿè¡Œã—ã¾ã™ï¼
 
-  Returns:      ƒRƒs[‚Å‚«‚½ƒf[ƒ^’· (0 ‚È‚ç¸”s)
+  Returns:      ã‚³ãƒ”ãƒ¼ã§ããŸãƒ‡ãƒ¼ã‚¿é•· (0 ãªã‚‰å¤±æ•—)
  *---------------------------------------------------------------------------*/
 static int SOCLi_ReadUdpBuffer(SOCLSocket*  socket, void*  buffer, int buffer_len, u16*  remote_port,
                                SOCLInAddr*  remote_ip, s32 flag_block)
@@ -852,7 +852,7 @@ static int SOCLi_ReadUdpBuffer(SOCLSocket*  socket, void*  buffer, int buffer_le
         if (SOCL_SocketIsInvalid(socket) || !SOCL_SocketIsCreated(socket))
         {
             result = SOCL_ENOTCONN;
-            break;  // Sleep ’†‚Éƒ\ƒPƒbƒg‚ª close ‚³‚ê‚½
+            break;  // Sleep ä¸­ã«ã‚½ã‚±ãƒƒãƒˆãŒ close ã•ã‚ŒãŸ
         }
     }
 
@@ -892,13 +892,13 @@ static int SOCLi_ReadUdpBuffer(SOCLSocket*  socket, void*  buffer, int buffer_le
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_UdpRecvCallback
 
-  Description:  UDP ƒpƒPƒbƒg’…M‚ÌƒR[ƒ‹ƒoƒbƒN
+  Description:  UDP ãƒ‘ã‚±ãƒƒãƒˆç€ä¿¡æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    data  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                len   ƒf[ƒ^’·
-                soc   CPSSoc\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    data  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                len   ãƒ‡ãƒ¼ã‚¿é•·
+                soc   CPSSocæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      1 : ƒoƒbƒtƒ@‚ğ”jŠü‚·‚é
+  Returns:      1 : ãƒãƒƒãƒ•ã‚¡ã‚’ç ´æ£„ã™ã‚‹
  *---------------------------------------------------------------------------*/
 int SOCLi_UdpRecvCallback(u8* data, u32 len, CPSSoc* soc)
 {
@@ -909,7 +909,7 @@ int SOCLi_UdpRecvCallback(u8* data, u32 len, CPSSoc* soc)
 
     if (pipe->udpdata.size_max >= pipe->udpdata.size + len)
     {
-        // óMƒoƒbƒtƒ@‚Ö‚ÌƒRƒs[
+        // å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã¸ã®ã‚³ãƒ”ãƒ¼
         udpheader = SOCLi_Alloc(sizeof(SOCLiSocketUdpData) + len);
 
         if (udpheader)
@@ -943,20 +943,20 @@ int SOCLi_UdpRecvCallback(u8* data, u32 len, CPSSoc* soc)
         SOCLi_CheckCount[SOCL_CHECKCOUNT_UDPRCVCB_2]++;
     }
     
-    // ƒ[ƒJƒ‹ƒ|[ƒgŠm’è
+    // ãƒ­ãƒ¼ã‚«ãƒ«ãƒãƒ¼ãƒˆç¢ºå®š
     if (socket->local_port == 0)
     {
         socket->local_port = soc->local_port;
     }
 
-    // Ÿ‚Ìƒf[ƒ^‚ÌóM€”õ
+    // æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡æº–å‚™
     soc->remote_port = soc->remote_port_bound;
     soc->remote_ip = soc->remote_ip_bound;
 
-    // ‘Ò‚Á‚Ä‚¢‚éƒXƒŒƒbƒh‚ª‚ ‚é‚È‚ç‹N‚±‚·
+    // å¾…ã£ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã‚ã‚‹ãªã‚‰èµ·ã“ã™
     OS_WakeupThread(&pipe->udpdata.waiting);
 
     (void)OS_RestoreInterrupts(enable);
 
-    return 1;   // ƒf[ƒ^”jŠü
+    return 1;   // ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 }

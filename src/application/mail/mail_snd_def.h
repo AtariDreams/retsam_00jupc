@@ -1,6 +1,6 @@
 /**
  *	@file	mail_snd_def.h
- *	@brief	ƒ[ƒ‹‰æ–Ê—p‰¼‰¹’è‹`
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ç”»é¢ç”¨ä»®éŸ³å®šç¾©
  *	@author	Miyuki Iwasawa
  *	@date	06.02.17
  */
@@ -8,10 +8,10 @@
 #ifndef __H_MAIL_SND_DEF_H__
 #define __H_MAIL_SND_DEF_H__
 
-#define SND_MAIL_SELECT	(SEQ_SE_DP_SELECT)	///<‘I‘ğ
-#define SND_MAIL_DECIDE	(SEQ_SE_DP_DECIDE)	///<’Êí‚ÌŒˆ’è
-#define SND_MAIL_CANCEL	(SEQ_SE_DP_DECIDE)	///<ƒLƒƒƒ“ƒZƒ‹
-//#define SND_MAIL_FINISH	(SEQ_SE_DP_PIRORIRO)	///<ƒ[ƒ‹ì¬I—¹
-#define SND_MAIL_FINISH	(SEQ_SE_DP_PIRORIRO2)	///<ƒ[ƒ‹ì¬I—¹
+#define SND_MAIL_SELECT	(SEQ_SE_DP_SELECT)	///<é¸æŠ
+#define SND_MAIL_DECIDE	(SEQ_SE_DP_DECIDE)	///<é€šå¸¸ã®æ±ºå®š
+#define SND_MAIL_CANCEL	(SEQ_SE_DP_DECIDE)	///<ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+//#define SND_MAIL_FINISH	(SEQ_SE_DP_PIRORIRO)	///<ãƒ¡ãƒ¼ãƒ«ä½œæˆçµ‚äº†
+#define SND_MAIL_FINISH	(SEQ_SE_DP_PIRORIRO2)	///<ãƒ¡ãƒ¼ãƒ«ä½œæˆçµ‚äº†
 
 #endif	//__H_MAIL_SND_DEF_H__

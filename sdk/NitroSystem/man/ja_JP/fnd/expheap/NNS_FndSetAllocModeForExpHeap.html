@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_FndSetAllocModeForExpHeap</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">NNS_FndSetAllocModeForExpHeap</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -20,38 +20,38 @@
   <pre><CODE>u16 NNS_FndSetAllocModeForExpHeap(
 	      NNSFndHeapHandle    heap,
 	      u16                 mode);</CODE></pre></dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">heap</font></strong></em></td>
-    <td width="87%">�g���q�[�v�̃n���h��</td>
+    <td width="87%">拡張ヒープのハンドル</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">mode</font></strong></em></td>
-    <td width="87%">�������m�ۃ��[�h(���L�Q��)</td>
+    <td width="87%">メモリ確保モード(下記参照)</td>
   </tr>
 </table>
-<h2>�Ԃ�l</h2>
-<p>�ȑO�̊g���q�[�v�̃������m�ۃ��[�h��Ԃ��܂��B</p>
-<H2>����</H2>
-<P>�g���q�[�v�̃������m�ۃ��[�h���Z�b�g���܂��B</P>
-<P>mode �Ń������m�ۃ��[�h���w�肵�܂��B</P>
+<h2>返り値</h2>
+<p>以前の拡張ヒープのメモリ確保モードを返します。</p>
+<H2>説明</H2>
+<P>拡張ヒープのメモリ確保モードをセットします。</P>
+<P>mode でメモリ確保モードを指定します。</P>
 <table>
 	<tr>
 		<td><em><strong><font face="Courier New">NNS_FND_EXPHEAP_ALLOC_MODE_FIRST</font></strong></em></td>
-		<td>�m�ۂ��悤�Ƃ��Ă��郁�����u���b�N�̃T�C�Y�ȏ�̑傫�������A�ŏ��Ɍ��������󂫗̈悩�烁�����u���b�N���m�ۂ��܂��B</td>
+		<td>確保しようとしているメモリブロックのサイズ以上の大きさを持つ、最初に見つかった空き領域からメモリブロックを確保します。</td>
 	</tr>
 	<tr>
 		<td><em><strong><font face="Courier New">NNS_FND_EXPHEAP_ALLOC_MODE_NEAR</font></strong></em></td>
-		<td>�m�ۂ��悤�Ƃ��Ă��郁�����u���b�N�̃T�C�Y�Ɉ�ԋ߂��T�C�Y�̋󂫗̈��T���A���̋󂫗̈悩�烁�����u���b�N���m�ۂ��܂��B</td>
+		<td>確保しようとしているメモリブロックのサイズに一番近いサイズの空き領域を探し、その空き領域からメモリブロックを確保します。</td>
 	</tr>
 </table>
-<p>�q�[�v�쐬����́ANNS_FND_EXPHEAP_ALLOC_MODE_FIRST �̏�ԂɂȂ��Ă��܂��B</p>
-<h2>�Q��</h2>
+<p>ヒープ作成直後は、NNS_FND_EXPHEAP_ALLOC_MODE_FIRST の状態になっています。</p>
+<h2>参照</h2>
 <p><CODE><A href="NNS_FndGetAllocModeForExpHeap.html">NNS_FndGetAllocModeForExpHeap</A><br>
 </CODE></p>
-<H2>����</H2>
-<P>2004/04/01 ����</P>
+<H2>履歴</H2>
+<P>2004/04/01 初版</P>
 </body>
 </html>

@@ -2,7 +2,7 @@
 /**
  *
  * @file	fieldobj_movedata.c
- * @brief	ÉtÉBÅ[ÉãÉhOBJìÆçÏ
+ * @brief	„Éï„Ç£„Éº„É´„ÉâOBJÂãï‰Ωú
  * @author	kagaya
  * @data	05.07.20
  *
@@ -13,11 +13,11 @@
 #include "fieldobj.h"
 
 //==============================================================================
-//	externÅ@ìÆçÏä÷êî
+//	extern„ÄÄÂãï‰ΩúÈñ¢Êï∞
 //==============================================================================
 
 //==============================================================================
-//	extern	ÉAÉjÉÅÅ[ÉVÉáÉìÉRÉ}ÉìÉh
+//	extern	„Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥„Ç≥„Éû„É≥„Éâ
 //==============================================================================
 //--------------------------------------------------------------
 //	AC_DIR_U,D,L,R
@@ -28,7 +28,7 @@ extern int (* const DATA_AC_DirL_Tbl[])( FIELD_OBJ_PTR  );
 extern int (* const DATA_AC_DirR_Tbl[])( FIELD_OBJ_PTR  );
 
 //--------------------------------------------------------------
-//	AC_WALKån
+//	AC_WALKÁ≥ª
 //--------------------------------------------------------------
 extern int (* const DATA_AC_WalkU_32F_Tbl[])( FIELD_OBJ_PTR  );
 extern int (* const DATA_AC_WalkD_32F_Tbl[])( FIELD_OBJ_PTR  );
@@ -60,7 +60,7 @@ extern int (* const DATA_AC_DashL_4F_Tbl[])( FIELD_OBJ_PTR  );
 extern int (* const DATA_AC_DashR_4F_Tbl[])( FIELD_OBJ_PTR  );
 
 //--------------------------------------------------------------
-//	AC_STAY_WALKån
+//	AC_STAY_WALKÁ≥ª
 //--------------------------------------------------------------
 extern int (* const DATA_AC_StayWalkU_32F_Tbl[])( FIELD_OBJ_PTR  );
 extern int (* const DATA_AC_StayWalkD_32F_Tbl[])( FIELD_OBJ_PTR  );
@@ -84,7 +84,7 @@ extern int (* const DATA_AC_StayWalkL_2F_Tbl[])( FIELD_OBJ_PTR  );
 extern int (* const DATA_AC_StayWalkR_2F_Tbl[])( FIELD_OBJ_PTR  );
 
 //--------------------------------------------------------------
-//	AC_JUMPån	
+//	AC_JUMPÁ≥ª	
 //--------------------------------------------------------------
 extern int (* const DATA_AC_StayJumpU_16F_Tbl[])( FIELD_OBJ_PTR  );
 extern int (* const DATA_AC_StayJumpD_16F_Tbl[])( FIELD_OBJ_PTR  );
@@ -117,7 +117,7 @@ extern int (* const DATA_AC_JumpL_3G_24F_Tbl[])( FIELD_OBJ_PTR  );
 extern int (* const DATA_AC_JumpR_3G_24F_Tbl[])( FIELD_OBJ_PTR  );
 
 //--------------------------------------------------------------
-//	AC_WAITån
+//	AC_WAITÁ≥ª
 //--------------------------------------------------------------
 extern int (* const DATA_AC_Wait_1F_Tbl[])( FIELD_OBJ_PTR  );
 extern int (* const DATA_AC_Wait_2F_Tbl[])( FIELD_OBJ_PTR  );
@@ -128,37 +128,37 @@ extern int (* const DATA_AC_Wait_16F_Tbl[])( FIELD_OBJ_PTR  );
 extern int (* const DATA_AC_Wait_32F_Tbl[])( FIELD_OBJ_PTR  );
 
 //--------------------------------------------------------------
-///	AC_WARPån
+///	AC_WARPÁ≥ª
 //--------------------------------------------------------------
 extern int (* const DATA_AC_WarpUp_Tbl[])( FIELD_OBJ_PTR );
 extern int (* const DATA_AC_WarpDown_Tbl[])( FIELD_OBJ_PTR );
 
 //--------------------------------------------------------------
-///	AC_VANISH_ONån
+///	AC_VANISH_ONÁ≥ª
 //--------------------------------------------------------------
 extern int (* const DATA_AC_VanishON_Tbl[])( FIELD_OBJ_PTR );
 extern int (* const DATA_AC_VanishOFF_Tbl[])( FIELD_OBJ_PTR );
 
 //--------------------------------------------------------------
-///	AC_DIR_PAUSE_ONån
+///	AC_DIR_PAUSE_ONÁ≥ª
 //--------------------------------------------------------------
 extern int (* const DATA_AC_DirPauseON_Tbl[])( FIELD_OBJ_PTR );
 extern int (* const DATA_AC_DirPauseOFF_Tbl[])( FIELD_OBJ_PTR );
 
 //--------------------------------------------------------------
-///	AC_ANM_PAUSE_ONån
+///	AC_ANM_PAUSE_ONÁ≥ª
 //--------------------------------------------------------------
 extern int (* const DATA_AC_AnmPauseON_Tbl[])( FIELD_OBJ_PTR );
 extern int (* const DATA_AC_AnmPauseOFF_Tbl[])( FIELD_OBJ_PTR );
 
 //--------------------------------------------------------------
-///	AC_MARK_GYOEån
+///	AC_MARK_GYOEÁ≥ª
 //--------------------------------------------------------------
 extern int (* const DATA_AC_MarkGyoe_Tbl[])( FIELD_OBJ_PTR );
 extern int (* const DATA_AC_MarkSaisen_Tbl[])( FIELD_OBJ_PTR );
 
 //--------------------------------------------------------------
-///	AC_WALK_6Fån
+///	AC_WALK_6FÁ≥ª
 //--------------------------------------------------------------
 extern int (* const DATA_AC_WalkU6F_Tbl[])( FIELD_OBJ_PTR );
 extern int (* const DATA_AC_WalkD6F_Tbl[])( FIELD_OBJ_PTR );
@@ -192,7 +192,7 @@ extern int (* const DATA_AC_HeroBanzai_Tbl[])( FIELD_OBJ_PTR );
 extern int (* const DATA_AC_HeroBanzaiUke_Tbl[])( FIELD_OBJ_PTR );
 
 //--------------------------------------------------------------
-///	AC_WALKGLån
+///	AC_WALKGLÁ≥ª
 //--------------------------------------------------------------
 extern int (* const DATA_AC_WalkGLU8F_Tbl[])( FIELD_OBJ_PTR );
 extern int (* const DATA_AC_WalkGLD8F_Tbl[])( FIELD_OBJ_PTR );
@@ -233,7 +233,7 @@ extern int (* const DATA_AC_DashGUL4F_Tbl[])( FIELD_OBJ_PTR );
 extern int (* const DATA_AC_DashGUR4F_Tbl[])( FIELD_OBJ_PTR );
 
 //--------------------------------------------------------------
-///	AC_JUMPGLån
+///	AC_JUMPGLÁ≥ª
 //--------------------------------------------------------------
 extern int (* const DATA_AC_JumpGLU1G_8F_Tbl[])( FIELD_OBJ_PTR );
 extern int (* const DATA_AC_JumpGLD1G_8F_Tbl[])( FIELD_OBJ_PTR );
@@ -252,18 +252,18 @@ extern int (* const DATA_AC_JumpGUR1G_8F_Tbl[])( FIELD_OBJ_PTR );
 extern int (* const DATA_AC_MarkGyoeTWait_Tbl[])( FIELD_OBJ_PTR );
 
 //==============================================================================
-//	ÉtÉBÅ[ÉãÉhOBJ ìÆçÏä÷êîíËã`
+//	„Éï„Ç£„Éº„É´„ÉâOBJ Âãï‰ΩúÈñ¢Êï∞ÂÆöÁæ©
 //==============================================================================
 //--------------------------------------------------------------
-///	É_É~Å[
+///	„ÉÄ„Éü„Éº
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Dummy =
 {
-	MV_DMY,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveInitProcDummy,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveProcDummy,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_DMY,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveInitProcDummy,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveProcDummy,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -271,11 +271,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Dummy =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Player =
 {
-	MV_PLAYER,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveInitProcDummy,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveProcDummy,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_PLAYER,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveInitProcDummy,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveProcDummy,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -283,11 +283,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Player =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_DirRnd =
 {
-	MV_DIR_RND,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveDirRnd_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveDirRnd_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDirRnd_Delete,								///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_DIR_RND,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveDirRnd_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Delete,								///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -295,11 +295,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_DirRnd =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Rnd =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRnd_Init,									///<èâä˙âªä÷êî
-	FieldOBJ_MvRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRnd_Init,									///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MvRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -307,11 +307,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Rnd =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndV =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRndV_Init,									///<èâä˙âªä÷êî
-	FieldOBJ_MvRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRndV_Init,									///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MvRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -319,11 +319,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndV =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndH =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRndH_Init,									///<èâä˙âªä÷êî
-	FieldOBJ_MvRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRndH_Init,									///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MvRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -331,11 +331,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndH =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndHLim =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRndHLim_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MvRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRndHLim_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MvRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -343,11 +343,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndHLim =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndUL =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveDirRndUL_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveDirRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDirRnd_Delete,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveDirRndUL_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Delete,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -355,11 +355,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndUL =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndUR =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveDirRndUR_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveDirRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDirRnd_Delete,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveDirRndUR_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Delete,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -367,11 +367,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndUR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndDL =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveDirRndDL_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveDirRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDirRnd_Delete,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveDirRndDL_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Delete,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -379,11 +379,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndDL =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndDR =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveDirRndDR_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveDirRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDirRnd_Delete,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveDirRndDR_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Delete,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -391,11 +391,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndDR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndUDL =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveDirRndUDL_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveDirRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDirRnd_Delete,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveDirRndUDL_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Delete,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -403,11 +403,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndUDL =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndUDR =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveDirRndUDR_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveDirRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDirRnd_Delete,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveDirRndUDR_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Delete,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -415,11 +415,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndUDR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndULR =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveDirRndULR_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveDirRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDirRnd_Delete,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveDirRndULR_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Delete,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -427,11 +427,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndULR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndDLR =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveDirRndDLR_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveDirRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDirRnd_Delete,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveDirRndDLR_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Delete,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -439,11 +439,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndDLR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndUD =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveDirRndUD_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveDirRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDirRnd_Delete,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveDirRndUD_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Delete,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -451,11 +451,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndUD =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndLR =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveDirRndLR_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveDirRnd_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDirRnd_Delete,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveDirRndLR_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDirRnd_Delete,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -463,11 +463,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RndLR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Up =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveUp_Init,									///<èâä˙âªä÷êî
-	FieldOBJ_MoveDir_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveUp_Init,									///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDir_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -475,11 +475,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Up =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Down =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveDown_Init,									///<èâä˙âªä÷êî
-	FieldOBJ_MoveDir_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveDown_Init,									///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDir_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -487,11 +487,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Down =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Left =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveLeft_Init,									///<èâä˙âªä÷êî
-	FieldOBJ_MoveDir_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveLeft_Init,									///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDir_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -499,11 +499,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Left =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Right =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRight_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveDir_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRight_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveDir_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -511,11 +511,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Right =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_SpinLeft =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveSpinLeft_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveSpin_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveSpinLeft_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveSpin_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -523,11 +523,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_SpinLeft =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_SpinRight =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveSpinRight_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveSpin_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveSpinRight_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveSpin_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -535,11 +535,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_SpinRight =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Rewar =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRewar_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveRewar_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRewar_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRewar_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -547,11 +547,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Rewar =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Route2 =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRoute2_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute2_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRoute2_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute2_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -559,11 +559,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Route2 =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteURLD =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteURLD_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteURLD_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -571,11 +571,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteURLD =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteRLDU =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteRLDU_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteRLDU_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -583,11 +583,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteRLDU =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteDURL =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteDURL_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteDURL_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -595,11 +595,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteDURL =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteLDUR =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteLDUR_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteLDUR_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -607,11 +607,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteLDUR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteULRD =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteULRD_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteULRD_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -619,11 +619,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteULRD =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteLRDU =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteLRDU_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteLRDU_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -631,11 +631,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteLRDU =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteDULR =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteDULR_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteDULR_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -643,11 +643,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteDULR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteRDUL =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteRDUL_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteRDUL_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -655,11 +655,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteRDUL =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteLUDR =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteLUDR_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteLUDR_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -667,11 +667,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteLUDR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteUDRL =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteUDRL_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteUDRL_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -679,11 +679,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteUDRL =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteRLUD =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteRLUD_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteRLUD_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -691,11 +691,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteRLUD =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteDRLU =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteDRLU_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteDRLU_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -703,11 +703,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteDRLU =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteRUDL =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteRUDL_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteRUDL_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -715,11 +715,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteRUDL =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteUDLR =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteUDLR_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteUDLR_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -727,11 +727,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteUDLR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteLRUD =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteLRUD_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteLRUD_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -739,11 +739,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteLRUD =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteDLRU =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteDLRU_Init,							///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute3_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteDLRU_Init,							///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute3_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -751,11 +751,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteDLRU =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteUL =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteUL_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute4_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteUL_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute4_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -763,11 +763,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteUL =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteDR =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteDR_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute4_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteDR_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute4_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -775,11 +775,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteDR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteLD =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteLD_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute4_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteLD_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute4_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -787,11 +787,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteLD =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteRU =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteRU_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute4_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteRU_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute4_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -799,11 +799,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteRU =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteUR =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteUR_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute4_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteUR_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute4_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -811,11 +811,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteUR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteDL =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteDL_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute4_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteDL_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute4_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -823,11 +823,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteDL =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteLU =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteLU_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute4_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteLU_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute4_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -835,11 +835,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteLU =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteRD =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveRouteRD_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveRoute4_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveRouteRD_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveRoute4_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -847,11 +847,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_RouteRD =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Seed =
 {
-	MV_SEED,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveSeed_Init,									///<èâä˙âªä÷êî
-	FieldOBJ_MoveSeed_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveSeed_Delete,								///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_SEED,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveSeed_Init,									///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveSeed_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveSeed_Delete,								///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -859,11 +859,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Seed =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Pair =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MovePair_Init,									///<èâä˙âªä÷êî
-	FieldOBJ_MovePair_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MovePair_Delete,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MovePair_Init,									///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MovePair_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MovePair_Delete,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -871,11 +871,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_Pair =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_PairTr =
 {
-	MV_RND,													///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MovePairTr_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MovePairTr_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MovePairTr_Delete,								///<çÌèúä÷êî
-	FieldOBJ_MovePairTr_Return,								///<ïúãAä÷êî
+	MV_RND,													///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MovePairTr_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MovePairTr_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MovePairTr_Delete,								///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MovePairTr_Return,								///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -883,11 +883,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_PairTr =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_HideSnow =
 {
-	MV_HIDE_SNOW,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveHideSnow_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveHide_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveHide_Delete,								///<çÌèúä÷êî
-	FieldOBJ_MoveHide_Return,							///<ïúãAä÷êî
+	MV_HIDE_SNOW,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveHideSnow_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveHide_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveHide_Delete,								///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveHide_Return,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -895,11 +895,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_HideSnow =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_HideSand =
 {
-	MV_HIDE_SAND,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveHideSand_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveHide_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveHide_Delete,								///<çÌèúä÷êî
-	FieldOBJ_MoveHide_Return,							///<ïúãAä÷êî
+	MV_HIDE_SAND,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveHideSand_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveHide_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveHide_Delete,								///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveHide_Return,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -907,11 +907,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_HideSand =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_HideGround =
 {
-	MV_HIDE_GRND,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveHideGround_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveHide_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveHide_Delete,								///<çÌèúä÷êî
-	FieldOBJ_MoveHide_Return,							///<ïúãAä÷êî
+	MV_HIDE_GRND,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveHideGround_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveHide_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveHide_Delete,								///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveHide_Return,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -919,11 +919,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_HideGround =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_HideKusa =
 {
-	MV_HIDE_KUSA,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveHideKusa_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveHide_Move,								///<ìÆçÏä÷êî
-	FieldOBJ_MoveHide_Delete,								///<çÌèúä÷êî
-	FieldOBJ_MoveHide_Return,							///<ïúãAä÷êî
+	MV_HIDE_KUSA,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveHideKusa_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveHide_Move,								///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveHide_Delete,								///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveHide_Return,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -931,11 +931,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_HideKusa =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyU =
 {
-	MV_COPYU,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveCopyU_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveCopy_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_COPYU,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveCopyU_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveCopy_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -943,11 +943,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyU =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyD =
 {
-	MV_COPYD,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveCopyD_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveCopy_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_COPYD,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveCopyD_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveCopy_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -955,11 +955,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyD =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyL =
 {
-	MV_COPYL,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveCopyL_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveCopy_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_COPYL,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveCopyL_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveCopy_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -967,11 +967,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyL =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyR =
 {
-	MV_COPYR,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveCopyR_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveCopy_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_COPYR,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveCopyR_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveCopy_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -979,11 +979,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyLGrassU =
 {
-	MV_COPYLGRASSU,											///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveCopyLGrassU_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveCopy_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_COPYLGRASSU,											///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveCopyLGrassU_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveCopy_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -991,11 +991,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyLGrassU =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyLGrassD =
 {
-	MV_COPYLGRASSD,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveCopyLGrassD_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveCopy_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_COPYLGRASSD,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveCopyLGrassD_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveCopy_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -1003,11 +1003,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyLGrassD =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyLGrassL =
 {
-	MV_COPYLGRASSL,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveCopyLGrassL_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveCopy_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_COPYLGRASSL,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveCopyLGrassL_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveCopy_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -1015,11 +1015,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyLGrassL =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyLGrassR =
 {
-	MV_COPYLGRASSR,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_MoveCopyLGrassR_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_MoveCopy_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_COPYLGRASSR,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_MoveCopyLGrassR_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_MoveCopy_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -1027,11 +1027,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_CopyLGrassR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_AlongWallL =
 {
-	MV_ALONGW_L,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_AlongWallL_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_AlongWall_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_ALONGW_L,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_AlongWallL_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_AlongWall_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -1039,11 +1039,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_AlongWallL =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_AlongWallR =
 {
-	MV_ALONGW_R,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_AlongWallR_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_AlongWall_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_ALONGW_R,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_AlongWallR_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_AlongWall_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -1051,11 +1051,11 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_AlongWallR =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_AlongWallLRL =
 {
-	MV_ALONGW_LRL,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_AlongWallLRL_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_AlongWall_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_ALONGW_LRL,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_AlongWallLRL_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_AlongWall_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //--------------------------------------------------------------
@@ -1063,19 +1063,19 @@ static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_AlongWallLRL =
 //--------------------------------------------------------------
 static const FIELD_OBJ_MOVE_PROC_LIST DATA_FieldOBJMove_AlongWallLRR =
 {
-	MV_ALONGW_LRR,												///<ìÆçÏÉRÅ[Éh
-	FieldOBJ_AlongWallLRR_Init,								///<èâä˙âªä÷êî
-	FieldOBJ_AlongWall_Move,									///<ìÆçÏä÷êî
-	FieldOBJ_MoveDeleteProcDummy,							///<çÌèúä÷êî
-	FieldOBJ_MoveReturnProcDummy,							///<ïúãAä÷êî
+	MV_ALONGW_LRR,												///<Âãï‰Ωú„Ç≥„Éº„Éâ
+	FieldOBJ_AlongWallLRR_Init,								///<ÂàùÊúüÂåñÈñ¢Êï∞
+	FieldOBJ_AlongWall_Move,									///<Âãï‰ΩúÈñ¢Êï∞
+	FieldOBJ_MoveDeleteProcDummy,							///<ÂâäÈô§Èñ¢Êï∞
+	FieldOBJ_MoveReturnProcDummy,							///<Âæ©Â∏∞Èñ¢Êï∞
 };
 
 //==============================================================================
-//	ÉtÉBÅ[ÉãÉhOBJ ìÆçÏä÷êîÇ‹Ç∆Çﬂ
+//	„Éï„Ç£„Éº„É´„ÉâOBJ Âãï‰ΩúÈñ¢Êï∞„Åæ„Å®„ÇÅ
 //==============================================================================
 //--------------------------------------------------------------
-///	ìÆçÏä÷êîÇ‹Ç∆Çﬂ
-///	ï¿Ç—ÇÕfieldobj_code.h MV_DMYìôÇÃÉRÅ[ÉhÇ∆àÍív
+///	Âãï‰ΩúÈñ¢Êï∞„Åæ„Å®„ÇÅ
+///	‰∏¶„Å≥„ÅØfieldobj_code.h MV_DMYÁ≠â„ÅÆ„Ç≥„Éº„Éâ„Å®‰∏ÄËá¥
 //--------------------------------------------------------------
 const FIELD_OBJ_MOVE_PROC_LIST * const DATA_FieldOBJMoveProcListTbl[] =
 {
@@ -1150,11 +1150,11 @@ const FIELD_OBJ_MOVE_PROC_LIST * const DATA_FieldOBJMoveProcListTbl[] =
 };
 
 //==============================================================================
-//	ÉtÉBÅ[ÉãÉhOBJ ÉAÉjÉÅÅ[ÉVÉáÉìÉRÉ}ÉìÉh
+//	„Éï„Ç£„Éº„É´„ÉâOBJ „Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥„Ç≥„Éû„É≥„Éâ
 //==============================================================================
 //--------------------------------------------------------------
-///	ÉAÉjÉÅÅ[ÉVÉáÉìÉRÉ}ÉìÉhÉeÅ[ÉuÉãÅB
-///	ï¿Ç—ÇÕfieldobj_code.h AC_DIR_UìôÇÃÉRÅ[ÉhÇ∆àÍívÅB
+///	„Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥„Ç≥„Éû„É≥„Éâ„ÉÜ„Éº„Éñ„É´„ÄÇ
+///	‰∏¶„Å≥„ÅØfieldobj_code.h AC_DIR_UÁ≠â„ÅÆ„Ç≥„Éº„Éâ„Å®‰∏ÄËá¥„ÄÇ
 //--------------------------------------------------------------
 int (* const * const DATA_AcmdActionTbl[ACMD_MAX])( FIELD_OBJ_PTR  ) =
 {
@@ -1327,11 +1327,11 @@ int (* const * const DATA_AcmdActionTbl[ACMD_MAX])( FIELD_OBJ_PTR  ) =
 };
 
 //==============================================================================
-//	ÉtÉBÅ[ÉãÉhOBJ ÉAÉjÉÅÅ[ÉVÉáÉìÉRÉ}ÉìÉhÉRÅ[ÉhÅ@ï˚å¸Ç‹Ç∆Çﬂ
+//	„Éï„Ç£„Éº„É´„ÉâOBJ „Ç¢„Éã„É°„Éº„Ç∑„Éß„É≥„Ç≥„Éû„É≥„Éâ„Ç≥„Éº„Éâ„ÄÄÊñπÂêë„Åæ„Å®„ÇÅ
 //==============================================================================
 //--------------------------------------------------------------
-///	ÉRÅ[Éhï ëŒâûï˚çsÉeÅ[ÉuÉãçÏê¨ÅB
-/// ï¿Ç—ÇÕDIR_UP,DIR_DOWN,DIR_LEFT,DIR_RIGHT
+///	„Ç≥„Éº„ÉâÂà•ÂØæÂøúÊñπË°å„ÉÜ„Éº„Éñ„É´‰ΩúÊàê„ÄÇ
+/// ‰∏¶„Å≥„ÅØDIR_UP,DIR_DOWN,DIR_LEFT,DIR_RIGHT
 //--------------------------------------------------------------
 static const int DATA_CodeTbl_AC_DIR_U[] =
 {AC_DIR_U,AC_DIR_D,AC_DIR_L,AC_DIR_R};
@@ -1428,8 +1428,8 @@ static const int DATA_CodeTbl_AC_JUMPGU_U_1G_8F[] =
 {AC_JUMPGU_U_1G_8F,AC_JUMPGU_D_1G_8F,AC_JUMPGU_L_1G_8F,AC_JUMPGU_R_1G_8F};
 
 //--------------------------------------------------------------
-///	FieldOBJ_AcmdCodeDirChange()Ç≈ëŒâûÇ∑ÇÈÉRÅ[ÉhÅB
-/// ï¿Ç—ÇÕïsèáÅB
+///	FieldOBJ_AcmdCodeDirChange()„ÅßÂØæÂøú„Åô„Çã„Ç≥„Éº„Éâ„ÄÇ
+/// ‰∏¶„Å≥„ÅØ‰∏çÈ†Ü„ÄÇ
 //--------------------------------------------------------------
 const int * const DATA_AcmdCodeDirChangeTbl[] =
 {
@@ -1467,6 +1467,6 @@ const int * const DATA_AcmdCodeDirChangeTbl[] =
 	DATA_CodeTbl_AC_JUMPGU_U_1G_8F,
 	DATA_CodeTbl_AC_WALKGU_U_4F,
 	DATA_CodeTbl_AC_WALKGU_U_2F,
-	NULL,	//èIí[éØï 
+	NULL,	//ÁµÇÁ´ØË≠òÂà•
 };
 

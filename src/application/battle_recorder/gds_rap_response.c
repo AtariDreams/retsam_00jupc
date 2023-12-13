@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	gds_rap_response.c
- * @brief	gds_rap.c‚©‚çŽóMƒf[ƒ^‚Ì”»’è‚âŽæ“¾•”•ª‚ð“Æ—§‚³‚¹‚½‚à‚Ì
+ * @brief	gds_rap.cã‹ã‚‰å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®åˆ¤å®šã‚„å–å¾—éƒ¨åˆ†ã‚’ç‹¬ç«‹ã•ã›ãŸã‚‚ã®
  * @author	matsuda
- * @date	2008.01.13(“ú)
+ * @date	2008.01.13(æ—¥)
  */
 //==============================================================================
 #include "common.h"
@@ -50,13 +50,13 @@
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^‰ðŽßFƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg ƒAƒbƒvƒ[ƒh
+ * @brief   ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿è§£é‡ˆï¼šãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆ ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
  *
  * @param   gdsrap		
  * @param   res		
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:‰½‚ç‚©‚ÌƒGƒ‰[‚ª”­¶(“à—e‚Íres->ResultŽQÆ)
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:ä½•ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿ(å†…å®¹ã¯res->Resultå‚ç…§)
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_DressupShot_Upload(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res)
@@ -65,37 +65,37 @@ int GDS_RAP_RESPONSE_DressupShot_Upload(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE 
 	int ret = FALSE;
 	
 	switch(res->Result){
-	//!< “o˜^¬Œ÷
+	//!< ç™»éŒ²æˆåŠŸ
 	case POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_SUCCESS:
 		param = (POKE_NET_GDS_RESPONSE_DRESSUPSHOT_REGIST *)(res->Param);
-		OS_TPrintf("ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgƒAƒbƒvƒ[ƒh¬Œ÷B“o˜^ƒR[ƒh = %d\n", param->Code);
+		OS_TPrintf("ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰æˆåŠŸã€‚ç™»éŒ²ã‚³ãƒ¼ãƒ‰ = %d\n", param->Code);
 		ret = TRUE;
 		break;
-	//!< ƒ†[ƒU[”FØƒGƒ‰[
+	//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
 	case POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_AUTH:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg“o˜^ƒGƒ‰[I:ƒ†[ƒU[”FØƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ã‚¨ãƒ©ãƒ¼ï¼:ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	//!< ‚·‚Å‚É“o˜^‚³‚ê‚Ä‚¢‚é
+	//!< ã™ã§ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹
 	case POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_ALREADY:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg“o˜^ƒGƒ‰[I:Šù‚É“o˜^‚³‚ê‚Ä‚¢‚é\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ã‚¨ãƒ©ãƒ¼ï¼:æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹\n");
 		break;
-	//!< •s³‚Èƒf[ƒ^
+	//!< ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿
 	case POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_ILLEGAL:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg“o˜^ƒGƒ‰[I:•s³ƒf[ƒ^\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ã‚¨ãƒ©ãƒ¼ï¼:ä¸æ­£ãƒ‡ãƒ¼ã‚¿\n");
 		break;
-	//!< •s³‚Èƒ†[ƒU[ƒvƒƒtƒB[ƒ‹
+	//!< ä¸æ­£ãªãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
 	case POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_ILLEGALPROFILE:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg“o˜^ƒGƒ‰[I:•s³ƒvƒƒtƒB[ƒ‹\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ã‚¨ãƒ©ãƒ¼ï¼:ä¸æ­£ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«\n");
 		break;
-	//!< ‚»‚Ì‘¼ƒGƒ‰[
+	//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 	case POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_REGIST_ERROR_UNKNOWN:
 	default:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg“o˜^ƒGƒ‰[I:‚»‚Ì‘¼‚ÌƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ã‚¨ãƒ©ãƒ¼ï¼:ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼\n");
 		break;
 	}
 	
@@ -104,13 +104,13 @@ int GDS_RAP_RESPONSE_DressupShot_Upload(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^‰ðŽßFƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg ƒ_ƒEƒ“ƒ[ƒh
+ * @brief   ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿è§£é‡ˆï¼šãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆ ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
  *
  * @param   gdsrap		
  * @param   res		
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:‰½‚ç‚©‚ÌƒGƒ‰[‚ª”­¶(“à—e‚Íres->ResultŽQÆ)
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:ä½•ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿ(å†…å®¹ã¯res->Resultå‚ç…§)
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_DressupShot_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res)
@@ -119,27 +119,27 @@ int GDS_RAP_RESPONSE_DressupShot_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONS
 	int ret = FALSE;
 	
 	switch(res->Result){
-	//!< Žæ“¾¬Œ÷
+	//!< å–å¾—æˆåŠŸ
 	case POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET_SUCCESS:
 		param = (POKE_NET_GDS_RESPONSE_DRESSUPSHOT_GET *)(res->Param);
-		OS_TPrintf("ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgŽóM¬Œ÷BƒqƒbƒgŒ” = %d\n", param->HitCount);
+		OS_TPrintf("ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå—ä¿¡æˆåŠŸã€‚ãƒ’ãƒƒãƒˆä»¶æ•° = %d\n", param->HitCount);
 		ret = TRUE;
 		break;
-	//!< ƒ†[ƒU[”FØƒGƒ‰[
+	//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
 	case POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET_ERROR_AUTH:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgŽóMƒGƒ‰[I:ƒ†[ƒU[”FØƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	//!< ƒ|ƒPƒ‚ƒ“”Ô†ƒGƒ‰[
+	//!< ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã‚¨ãƒ©ãƒ¼
 	case POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET_ERROR_ILLEGALPOKEMON:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgŽóMƒGƒ‰[I:ƒ|ƒPƒ‚ƒ“”Ô†ƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãƒã‚±ãƒ¢ãƒ³ç•ªå·ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	//!< ‚»‚Ì‘¼ƒGƒ‰[
+	//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 	case POKE_NET_GDS_RESPONSE_RESULT_DRESSUPSHOT_GET_ERROR_UNKNOWN:
 	default:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒgŽóMƒGƒ‰[I:‚»‚Ì‘¼‚ÌƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆå—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼\n");
 		break;
 	}
 	
@@ -148,15 +148,15 @@ int GDS_RAP_RESPONSE_DressupShot_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONS
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é•”•ª‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾FƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹éƒ¨åˆ†ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ï¼šãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆ
  *
  * @param   gdsrap		
- * @param   dress_array		ƒ|ƒCƒ“ƒ^‚ðƒZƒbƒg‚·‚é”z—ñƒf[ƒ^
- * @param   array_max		dress_array‚Ì”z—ñ—v‘f”
+ * @param   dress_array		ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹é…åˆ—ãƒ‡ãƒ¼ã‚¿
+ * @param   array_max		dress_arrayã®é…åˆ—è¦ç´ æ•°
  *
- * @retval  ŽóMŒ”
+ * @retval  å—ä¿¡ä»¶æ•°
  *
- * dress_array[0] ` dress_array[x] ‚Ü‚ÅŽóMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ªƒZƒbƒg‚³‚ê‚Ü‚·
+ * dress_array[0] ã€œ dress_array[x] ã¾ã§å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒã‚»ãƒƒãƒˆã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_DressupShot_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, GT_GDS_DRESS_RECV **dress_array, int array_max)
@@ -172,7 +172,7 @@ int GDS_RAP_RESPONSE_DressupShot_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, GT_G
 	hit_count = param->HitCount;
 	if(hit_count > array_max){
 		hit_count = array_max;
-	//	GF_ASSERT(0);	//—pˆÓ‚µ‚Ä‚¢‚éƒoƒbƒtƒ@‚æ‚è‚àŽóMŒ”‚ª‘½‚¢
+	//	GF_ASSERT(0);	//ç”¨æ„ã—ã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚ˆã‚Šã‚‚å—ä¿¡ä»¶æ•°ãŒå¤šã„
 	}
 
 	dress_recv = (POKE_NET_GDS_RESPONSE_DRESSUPSHOT_RECVDATA *)(param->Data);
@@ -188,13 +188,13 @@ int GDS_RAP_RESPONSE_DressupShot_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, GT_G
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^‰ðŽßFƒ{ƒbƒNƒXƒVƒ‡ƒbƒg ƒAƒbƒvƒ[ƒh
+ * @brief   ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿è§£é‡ˆï¼šãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆ ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
  *
  * @param   gdsrap		
  * @param   res		
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:‰½‚ç‚©‚ÌƒGƒ‰[‚ª”­¶(“à—e‚Íres->ResultŽQÆ)
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:ä½•ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿ(å†…å®¹ã¯res->Resultå‚ç…§)
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_Boxshot_Upload(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res)
@@ -203,42 +203,42 @@ int GDS_RAP_RESPONSE_Boxshot_Upload(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res
 	int ret = FALSE;
 	
 	switch(res->Result){
-	//!< “o˜^¬Œ÷
+	//!< ç™»éŒ²æˆåŠŸ
 	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_SUCCESS:
 		param = (POKE_NET_GDS_RESPONSE_BOXSHOT_REGIST *)(res->Param);
-		OS_TPrintf("ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgƒAƒbƒvƒ[ƒh¬Œ÷B“o˜^ƒR[ƒh = %d\n", param->Code);
+		OS_TPrintf("ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰æˆåŠŸã€‚ç™»éŒ²ã‚³ãƒ¼ãƒ‰ = %d\n", param->Code);
 		ret = TRUE;
 		break;
-	//!< ƒ†[ƒU[”FØƒGƒ‰[
+	//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
 	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_AUTH:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg“o˜^ƒGƒ‰[I:ƒ†[ƒU[”FØƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ã‚¨ãƒ©ãƒ¼ï¼:ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	//!< ‚·‚Å‚É“o˜^‚³‚ê‚Ä‚¢‚é
+	//!< ã™ã§ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹
 	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_ALREADY:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg“o˜^ƒGƒ‰[I:Šù‚É“o˜^‚³‚ê‚Ä‚¢‚é\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ã‚¨ãƒ©ãƒ¼ï¼:æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹\n");
 		break;
-	//!< •s³‚Èƒf[ƒ^
+	//!< ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿
 	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_ILLEGAL:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg“o˜^ƒGƒ‰[I:•s³‚Èƒf[ƒ^\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ã‚¨ãƒ©ãƒ¼ï¼:ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿\n");
 		break;
-	//!< •s³‚Èƒ†[ƒU[ƒvƒƒtƒB[ƒ‹
+	//!< ä¸æ­£ãªãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
 	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_ILLEGALPROFILE:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg“o˜^ƒGƒ‰[I:•s³ƒvƒƒtƒB[ƒ‹\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ã‚¨ãƒ©ãƒ¼ï¼:ä¸æ­£ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«\n");
 		break;
-	//!< •s³‚ÈƒOƒ‹[ƒv”Ô†
+	//!< ä¸æ­£ãªã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·
 	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_ILLEGALGROUP:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg“o˜^ƒGƒ‰[I:•s³ƒOƒ‹[ƒv”Ô†\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ã‚¨ãƒ©ãƒ¼ï¼:ä¸æ­£ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·\n");
 		break;
-	//!< ‚»‚Ì‘¼ƒGƒ‰[
+	//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_REGIST_ERROR_UNKNOWN:
 	default:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg“o˜^ƒGƒ‰[I:‚»‚Ì‘¼ƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆç™»éŒ²ã‚¨ãƒ©ãƒ¼ï¼:ãã®ä»–ã‚¨ãƒ©ãƒ¼\n");
 		break;
 	}
 	
@@ -247,13 +247,13 @@ int GDS_RAP_RESPONSE_Boxshot_Upload(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^‰ðŽßFƒ{ƒbƒNƒXƒVƒ‡ƒbƒg ƒ_ƒEƒ“ƒ[ƒh
+ * @brief   ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿è§£é‡ˆï¼šãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆ ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
  *
  * @param   gdsrap		
  * @param   res		
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:‰½‚ç‚©‚ÌƒGƒ‰[‚ª”­¶(“à—e‚Íres->ResultŽQÆ)
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:ä½•ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿ(å†…å®¹ã¯res->Resultå‚ç…§)
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_Boxshot_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res)
@@ -262,23 +262,23 @@ int GDS_RAP_RESPONSE_Boxshot_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *r
 	int ret = FALSE;
 	
 	switch(res->Result){
-	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_SUCCESS:				//!< Žæ“¾¬Œ÷
+	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_SUCCESS:				//!< å–å¾—æˆåŠŸ
 		param = (POKE_NET_GDS_RESPONSE_BOXSHOT_GET *)(res->Param);
-		OS_TPrintf("ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgŽóM¬Œ÷BƒqƒbƒgŒ” = %d\n", param->HitCount);
+		OS_TPrintf("ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå—ä¿¡æˆåŠŸã€‚ãƒ’ãƒƒãƒˆä»¶æ•° = %d\n", param->HitCount);
 		ret = TRUE;
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_ERROR_AUTH:			//!< ƒ†[ƒU[”FØƒGƒ‰[
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgŽóMƒGƒ‰[I:ƒ†[ƒU[”FØƒGƒ‰[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_ERROR_AUTH:			//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_ERROR_ILLEGALGROUP:	//!< ƒOƒ‹[ƒv”Ô†ƒGƒ‰[
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgŽóMƒGƒ‰[IƒOƒ‹[ƒv”Ô†ƒGƒ‰[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_ERROR_ILLEGALGROUP:	//!< ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·ã‚¨ãƒ©ãƒ¼
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_ERROR_UNKNOWN:		//!< ‚»‚Ì‘¼ƒGƒ‰[
+	case POKE_NET_GDS_RESPONSE_RESULT_BOXSHOT_GET_ERROR_UNKNOWN:		//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 	default:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ{ƒbƒNƒXƒVƒ‡ƒbƒgŽóMƒGƒ‰[I:‚»‚Ì‘¼ƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆå—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãã®ä»–ã‚¨ãƒ©ãƒ¼\n");
 		break;
 	}
 	
@@ -287,15 +287,15 @@ int GDS_RAP_RESPONSE_Boxshot_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *r
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é•”•ª‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾Fƒ{ƒbƒNƒXƒVƒ‡ƒbƒg
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹éƒ¨åˆ†ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ï¼šãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆ
  *
  * @param   gdsrap		
- * @param   box_array		ƒ|ƒCƒ“ƒ^‚ðƒZƒbƒg‚·‚é”z—ñƒf[ƒ^
- * @param   array_max		dress_array‚Ì”z—ñ—v‘f”
+ * @param   box_array		ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹é…åˆ—ãƒ‡ãƒ¼ã‚¿
+ * @param   array_max		dress_arrayã®é…åˆ—è¦ç´ æ•°
  *
- * @retval  ŽóMŒ”
+ * @retval  å—ä¿¡ä»¶æ•°
  *
- * box_array[0] ` box_array[x] ‚Ü‚ÅŽóMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ªƒZƒbƒg‚³‚ê‚Ü‚·
+ * box_array[0] ã€œ box_array[x] ã¾ã§å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒã‚»ãƒƒãƒˆã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_Boxshot_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, GT_BOX_SHOT_RECV **box_array, int array_max)
@@ -311,7 +311,7 @@ int GDS_RAP_RESPONSE_Boxshot_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, GT_BOX_S
 	hit_count = param->HitCount;
 	if(hit_count > array_max){
 		hit_count = array_max;
-		GF_ASSERT(0);	//—pˆÓ‚µ‚Ä‚¢‚éƒoƒbƒtƒ@‚æ‚è‚àŽóMŒ”‚ª‘½‚¢
+		GF_ASSERT(0);	//ç”¨æ„ã—ã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚ˆã‚Šã‚‚å—ä¿¡ä»¶æ•°ãŒå¤šã„
 	}
 
 	box_recv = (POKE_NET_GDS_RESPONSE_BOXSHOT_RECVDATA *)(param->Data);
@@ -327,13 +327,13 @@ int GDS_RAP_RESPONSE_Boxshot_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, GT_BOX_S
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^‰ðŽßFƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒv ƒ_ƒEƒ“ƒ[ƒh
+ * @brief   ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿è§£é‡ˆï¼šãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ— ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
  *
  * @param   gdsrap		
  * @param   res		
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:‰½‚ç‚©‚ÌƒGƒ‰[‚ª”­¶(“à—e‚Íres->ResultŽQÆ)
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:ä½•ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿ(å†…å®¹ã¯res->Resultå‚ç…§)
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_RankingType_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res)
@@ -342,28 +342,28 @@ int GDS_RAP_RESPONSE_RankingType_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONS
 	int ret = FALSE;
 	
 	switch(res->Result){
-	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE_SUCCESS:				//!< Žæ“¾¬Œ÷
+	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE_SUCCESS:				//!< å–å¾—æˆåŠŸ
 		param = (POKE_NET_GDS_RESPONSE_RANKING_GETTYPE *)(res->Param);
-		OS_TPrintf("ƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒvŽóM¬Œ÷B\n");
+		OS_TPrintf("ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—å—ä¿¡æˆåŠŸã€‚\n");
 		ret = TRUE;
 	#if 0
 		{
 			int i;
 			GT_RANKING_TYPE_RECV *recv = &param->Data;
 			for(i = 0; i < GT_RANKING_WEEK_NUM; i++){
-				OS_TPrintf("ŠJÃ’†‚Ìƒ^ƒCƒv ‚»‚Ì%d = %d\n", i, recv->ranking_type[i]);
+				OS_TPrintf("é–‹å‚¬ä¸­ã®ã‚¿ã‚¤ãƒ— ãã®%d = %d\n", i, recv->ranking_type[i]);
 			}
 		}
 	#endif
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE_ERROR_AUTH:			//!< ƒ†[ƒU[”FØƒGƒ‰[
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒvŽóMƒGƒ‰[I:ƒ†[ƒU[”FØƒGƒ‰[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE_ERROR_AUTH:			//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE_ERROR_UNKNOWN:		//!< ‚»‚Ì‘¼ƒGƒ‰[
+	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_GETTYPE_ERROR_UNKNOWN:		//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 	default:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒvŽóMƒGƒ‰[I:‚»‚Ì‘¼‚ÌƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼\n");
 		break;
 	}
 	
@@ -372,10 +372,10 @@ int GDS_RAP_RESPONSE_RankingType_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONS
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é•”•ª‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾FŠJÃ’†‚Ìƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒv
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹éƒ¨åˆ†ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ï¼šé–‹å‚¬ä¸­ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—
  *
  * @param   gdsrap		
- * @param   ranking_type_recv		ŽóMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‘ã“üæ
+ * @param   ranking_type_recv		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void GDS_RAP_RESPONSE_RankingType_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, GT_RANKING_TYPE_RECV **ranking_type_recv)
@@ -391,13 +391,13 @@ void GDS_RAP_RESPONSE_RankingType_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, GT_
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^‰ðŽßFƒ‰ƒ“ƒLƒ“ƒOXV ƒ_ƒEƒ“ƒ[ƒh
+ * @brief   ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿è§£é‡ˆï¼šãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–° ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
  *
  * @param   gdsrap		
  * @param   res		
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:‰½‚ç‚©‚ÌƒGƒ‰[‚ª”­¶(“à—e‚Íres->ResultŽQÆ)
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:ä½•ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿ(å†…å®¹ã¯res->Resultå‚ç…§)
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_RankingUpdate_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res)
@@ -406,31 +406,31 @@ int GDS_RAP_RESPONSE_RankingUpdate_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPO
 	int ret = FALSE;
 	
 	switch(res->Result){
-	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_SUCCESS:			//!< XV¬Œ÷
+	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_SUCCESS:			//!< æ›´æ–°æˆåŠŸ
 		param = (POKE_NET_GDS_RESPONSE_RANKING_UPDATE *)(res->Param);
-		OS_TPrintf("ƒ‰ƒ“ƒLƒ“ƒOXVŽóM¬Œ÷\n");
+		OS_TPrintf("ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°å—ä¿¡æˆåŠŸ\n");
 		ret = TRUE;
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_AUTH:		//!< ƒ†[ƒU[”FØƒGƒ‰[
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ‰ƒ“ƒLƒ“ƒOXVŽóMƒGƒ‰[I:ƒ†[ƒU[”FØƒGƒ‰[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_AUTH:		//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_ILLEGALTYPE:	//!< ƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒvƒGƒ‰[
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ‰ƒ“ƒLƒ“ƒOXVŽóMƒGƒ‰[I:ƒ‰ƒ“ƒLƒ“ƒOƒ^ƒCƒvƒGƒ‰[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_ILLEGALTYPE:	//!< ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã‚¨ãƒ©ãƒ¼
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚¿ã‚¤ãƒ—ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_ILLEGALDATA:	//!< •s³‚Èƒf[ƒ^ƒGƒ‰[
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ‰ƒ“ƒLƒ“ƒOXVŽóMƒGƒ‰[I:•s³‚Èƒf[ƒ^\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_ILLEGALDATA:	//!< ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã‚¨ãƒ©ãƒ¼
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_ILLEGALPROFILE:	//!< •s³‚ÈƒvƒƒtƒB[ƒ‹
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ‰ƒ“ƒLƒ“ƒOXVŽóMƒGƒ‰[I:•s³‚ÈƒvƒƒtƒB[ƒ‹\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_ILLEGALPROFILE:	//!< ä¸æ­£ãªãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ä¸æ­£ãªãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_UNKNOWN:			//!< ‚»‚Ì‘¼ƒGƒ‰[
+	case POKE_NET_GDS_RESPONSE_RESULT_RANKING_UPDATE_ERROR_UNKNOWN:			//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 	default:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒ‰ƒ“ƒLƒ“ƒOXVŽóMƒGƒ‰[I:‚»‚Ì‘¼‚ÌƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼\n");
 		break;
 	}
 
@@ -439,11 +439,11 @@ int GDS_RAP_RESPONSE_RankingUpdate_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPO
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é•”•ª‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾Fƒ‰ƒ“ƒLƒ“ƒOXV(æT‚Æ¡T‚ÌŒ‹‰Ê)
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹éƒ¨åˆ†ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ï¼šãƒ©ãƒ³ã‚­ãƒ³ã‚°æ›´æ–°(å…ˆé€±ã¨ä»Šé€±ã®çµæžœ)
  *
  * @param   gdsrap		
- * @param   last_week		æT‚ÌŒ‹‰Ê‚Ö‚Ìƒ|ƒCƒ“ƒ^‘ã“üæ
- * @param   this_week		¡T‚ÌŒ‹‰Ê‚Ö‚Ìƒ|ƒCƒ“ƒ^‘ã“üæ
+ * @param   last_week		å…ˆé€±ã®çµæžœã¸ã®ãƒã‚¤ãƒ³ã‚¿ä»£å…¥å…ˆ
+ * @param   this_week		ä»Šé€±ã®çµæžœã¸ã®ãƒã‚¤ãƒ³ã‚¿ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void GDS_RAP_RESPONSE_RankingUpdate_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, GT_LAST_WEEK_RANKING_ALL_RECV **last_week, GT_THIS_WEEK_RANKING_DATA_ALL_RECV **this_week)
@@ -460,13 +460,13 @@ void GDS_RAP_RESPONSE_RankingUpdate_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, G
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^‰ðŽßFƒoƒgƒ‹ƒrƒfƒI“o˜^
+ * @brief   ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿è§£é‡ˆï¼šãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªç™»éŒ²
  *
  * @param   gdsrap		
  * @param   res		
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:‰½‚ç‚©‚ÌƒGƒ‰[‚ª”­¶(“à—e‚Íres->ResultŽQÆ)
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:ä½•ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿ(å†…å®¹ã¯res->Resultå‚ç…§)
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_BattleVideo_Upload(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res)
@@ -475,37 +475,37 @@ int GDS_RAP_RESPONSE_BattleVideo_Upload(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE 
 	int ret = FALSE;
 	
 	switch(res->Result){
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_SUCCESS:		//!< “o˜^¬Œ÷
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_SUCCESS:		//!< ç™»éŒ²æˆåŠŸ
 		param = (POKE_NET_GDS_RESPONSE_BATTLEDATA_REGIST *)(res->Param);
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒI“o˜^ŽóM¬Œ÷F“o˜^ƒR[ƒh%d\n", param->Code);
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªç™»éŒ²å—ä¿¡æˆåŠŸï¼šç™»éŒ²ã‚³ãƒ¼ãƒ‰%d\n", param->Code);
 		ret = TRUE;
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_AUTH:		//!< ƒ†[ƒU[”FØƒGƒ‰[
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒI“o˜^ŽóMƒGƒ‰[I:ƒ†[ƒU[”FØƒGƒ‰[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_AUTH:		//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªç™»éŒ²å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ALREADY:	//!< ‚·‚Å‚É“o˜^‚³‚ê‚Ä‚¢‚é
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒI“o˜^ŽóMƒGƒ‰[I:Šù‚É“o˜^‚³‚ê‚Ä‚¢‚é\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ALREADY:	//!< ã™ã§ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªç™»éŒ²å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGAL:	//!< •s³‚Èƒf[ƒ^
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒI“o˜^ŽóMƒGƒ‰[I:•s³ƒf[ƒ^\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGAL:	//!< ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªç™»éŒ²å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ä¸æ­£ãƒ‡ãƒ¼ã‚¿\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGALPROFILE:	//!< •s³‚Èƒ†[ƒU[ƒvƒƒtƒB[ƒ‹
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒI“o˜^ŽóMƒGƒ‰[I:•s³‚Èƒ†[ƒU[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGALPROFILE:	//!< ä¸æ­£ãªãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªç™»éŒ²å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ä¸æ­£ãªãƒ¦ãƒ¼ã‚¶ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_UNKNOWN:	//!< ‚»‚Ì‘¼ƒGƒ‰[
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_UNKNOWN:	//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 	default:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒI“o˜^ŽóMƒGƒ‰[I:‚»‚Ì‘¼‚ÌƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªç™»éŒ²å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGALPOKEMON_MINE: //Ž©•ª‚Ìƒ|ƒPƒ‚ƒ“‚ÅƒGƒ‰[
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒI“o˜^ŽóMƒGƒ‰[I:Ž©•ª‚Ìƒ|ƒPƒ‚ƒ“‚ª•s³\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGALPOKEMON_MINE: //è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã§ã‚¨ãƒ©ãƒ¼
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªç™»éŒ²å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ãŒä¸æ­£\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGALPOKEMON_OTHER:	//‘ŠŽè‚Ìƒ|ƒPƒ‚ƒ“‚ÅƒGƒ‰
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒI“o˜^ŽóMƒGƒ‰[I:‚»‚Ì‘¼‚ÌƒGƒ‰[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_REGIST_ERROR_ILLEGALPOKEMON_OTHER:	//ç›¸æ‰‹ã®ãƒã‚±ãƒ¢ãƒ³ã§ã‚¨ãƒ©
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªç™»éŒ²å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼\n");
 		break;
 	}
 
@@ -514,11 +514,11 @@ int GDS_RAP_RESPONSE_BattleVideo_Upload(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE 
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^Žæ“¾Fƒoƒgƒ‹ƒrƒfƒI“o˜^
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿å–å¾—ï¼šãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªç™»éŒ²
  *
  * @param   gdsrap		
  * 
- * @retval	“o˜^ƒR[ƒh
+ * @retval	ç™»éŒ²ã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 u64 GDS_RAP_RESPONSE_BattleVideo_Upload_DataGet(GDS_RAP_WORK *gdsrap)
@@ -533,13 +533,13 @@ u64 GDS_RAP_RESPONSE_BattleVideo_Upload_DataGet(GDS_RAP_WORK *gdsrap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^‰ðŽßFƒoƒgƒ‹ƒrƒfƒIŒŸõ
+ * @brief   ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿è§£é‡ˆï¼šãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªæ¤œç´¢
  *
  * @param   gdsrap		
  * @param   res		
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:‰½‚ç‚©‚ÌƒGƒ‰[‚ª”­¶(“à—e‚Íres->ResultŽQÆ)
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:ä½•ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿ(å†…å®¹ã¯res->Resultå‚ç…§)
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_BattleVideo_Search_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res)
@@ -548,23 +548,23 @@ int GDS_RAP_RESPONSE_BattleVideo_Search_Download(GDS_RAP_WORK *gdsrap, POKE_NET_
 	int ret = FALSE;
 	
 	switch(res->Result){
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_SUCCESS:		//!< Žæ“¾¬Œ÷
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_SUCCESS:		//!< å–å¾—æˆåŠŸ
 		param = (POKE_NET_GDS_RESPONSE_BATTLEDATA_SEARCH *)(res->Param);
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒIŒŸõŽóM¬Œ÷FƒqƒbƒgŒ”=%d\n", param->HitCount);
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªæ¤œç´¢å—ä¿¡æˆåŠŸï¼šãƒ’ãƒƒãƒˆä»¶æ•°=%d\n", param->HitCount);
 		ret = TRUE;
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_ERROR_AUTH:		//!< ƒ†[ƒU[”FØƒGƒ‰[
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒIŒŸõŽóMƒGƒ‰[I:ƒ†[ƒU[”FØƒGƒ‰[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_ERROR_AUTH:		//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªæ¤œç´¢å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_ERROR_ILLEGALPARAM:	//!< ŒŸõƒpƒ‰ƒ[ƒ^ƒGƒ‰[
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒIŒŸõŽóMƒGƒ‰[I:ŒŸõƒpƒ‰ƒ[ƒ^ƒGƒ‰[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_ERROR_ILLEGALPARAM:	//!< æ¤œç´¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¨ãƒ©ãƒ¼
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªæ¤œç´¢å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:æ¤œç´¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_ERROR_UNKNOWN:	//!< ‚»‚Ì‘¼ƒGƒ‰[
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_SEARCH_ERROR_UNKNOWN:	//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 	default:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒIŒŸõŽóMƒGƒ‰[I:‚»‚Ì‘¼‚ÌƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªæ¤œç´¢å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼\n");
 		break;
 	}
 
@@ -573,15 +573,15 @@ int GDS_RAP_RESPONSE_BattleVideo_Search_Download(GDS_RAP_WORK *gdsrap, POKE_NET_
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é•”•ª‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾Fƒoƒgƒ‹ƒrƒfƒIŒŸõ
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹éƒ¨åˆ†ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ï¼šãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªæ¤œç´¢
  *
  * @param   gdsrap		
- * @param   outline_array	ƒ|ƒCƒ“ƒ^‚ðƒZƒbƒg‚·‚é”z—ñƒf[ƒ^
- * @param   array_max		outline_array‚Ì”z—ñ—v‘f”
+ * @param   outline_array	ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹é…åˆ—ãƒ‡ãƒ¼ã‚¿
+ * @param   array_max		outline_arrayã®é…åˆ—è¦ç´ æ•°
  *
- * @retval  ŽóMŒ”
+ * @retval  å—ä¿¡ä»¶æ•°
  *
- * outline_array[0] ` outline_array[x] ‚Ü‚ÅŽóMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ªƒZƒbƒg‚³‚ê‚Ü‚·
+ * outline_array[0] ã€œ outline_array[x] ã¾ã§å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒã‚»ãƒƒãƒˆã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_BattleVideoSearch_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, GT_BATTLE_REC_OUTLINE_RECV **outline_array, int array_max)
@@ -597,16 +597,16 @@ int GDS_RAP_RESPONSE_BattleVideoSearch_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap
 	hit_count = param->HitCount;
 	if(hit_count > array_max){
 		hit_count = array_max;
-		GF_ASSERT(0);	//—pˆÓ‚µ‚Ä‚¢‚éƒoƒbƒtƒ@‚æ‚è‚àŽóMŒ”‚ª‘½‚¢
+		GF_ASSERT(0);	//ç”¨æ„ã—ã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚ˆã‚Šã‚‚å—ä¿¡ä»¶æ•°ãŒå¤šã„
 	}
 
 	outline_recv = (POKE_NET_GDS_RESPONSE_BATTLEDATA_SEARCH_RECVDATA *)(param->Data);
 	for(i = 0; i < hit_count; i++){
 		outline_array[i] = &outline_recv[i].Data;
 		if(outline_recv[i].Code != outline_array[i]->head.data_number){
-			//ƒwƒbƒ_‚Æƒf[ƒ^ƒiƒ“ƒo[‚ªˆá‚¤ê‡‚Íƒwƒbƒ_‚Éƒiƒ“ƒo[‚ð“ü‚ê‚ç‚ê‚Ä‚È‚¢‚Ì‚Å‚±‚Á‚¿‚Å“ü‚ê‚é
+			//ãƒ˜ãƒƒãƒ€ã¨ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ãŒé•ã†å ´åˆã¯ãƒ˜ãƒƒãƒ€ã«ãƒŠãƒ³ãƒãƒ¼ã‚’å…¥ã‚Œã‚‰ã‚Œã¦ãªã„ã®ã§ã“ã£ã¡ã§å…¥ã‚Œã‚‹
 			outline_array[i]->head.data_number = outline_recv[i].Code;
-			//CRCì¬
+			//CRCä½œæˆ
 			outline_array[i]->head.crc.crc16ccitt_hash = SaveData_CalcCRC(gdsrap->savedata, 
 				&outline_array[i]->head, 
 				sizeof(GT_BATTLE_REC_HEADER) - GT_GDS_CRC_SIZE - sizeof(outline_recv[i].Code));
@@ -621,15 +621,15 @@ int GDS_RAP_RESPONSE_BattleVideoSearch_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ðƒRƒs[‚µ‚Ü‚·Fƒoƒgƒ‹ƒrƒfƒIŒŸõ
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã—ã¾ã™ï¼šãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªæ¤œç´¢
  *
  * @param   gdsrap		
- * @param   outline_array	ƒ|ƒCƒ“ƒ^‚ðƒZƒbƒg‚·‚é”z—ñƒf[ƒ^
- * @param   array_max		outline_array‚Ì”z—ñ—v‘f”
+ * @param   outline_array	ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹é…åˆ—ãƒ‡ãƒ¼ã‚¿
+ * @param   array_max		outline_arrayã®é…åˆ—è¦ç´ æ•°
  *
- * @retval  ŽóMŒ”
+ * @retval  å—ä¿¡ä»¶æ•°
  *
- * outline_array[0] ` outline_array[x] ‚Ü‚ÅŽóMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ªƒZƒbƒg‚³‚ê‚Ü‚·
+ * outline_array[0] ã€œ outline_array[x] ã¾ã§å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒã‚»ãƒƒãƒˆã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_BattleVideoSearch_Download_DataCopy(GDS_RAP_WORK *gdsrap, GT_BATTLE_REC_OUTLINE_RECV *outline_array, int array_max)
@@ -645,16 +645,16 @@ int GDS_RAP_RESPONSE_BattleVideoSearch_Download_DataCopy(GDS_RAP_WORK *gdsrap, G
 	hit_count = param->HitCount;
 	if(hit_count > array_max){
 		hit_count = array_max;
-		GF_ASSERT(0);	//—pˆÓ‚µ‚Ä‚¢‚éƒoƒbƒtƒ@‚æ‚è‚àŽóMŒ”‚ª‘½‚¢
+		GF_ASSERT(0);	//ç”¨æ„ã—ã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚ˆã‚Šã‚‚å—ä¿¡ä»¶æ•°ãŒå¤šã„
 	}
 
 	MI_CpuClear8(outline_array, sizeof(GT_BATTLE_REC_OUTLINE_RECV) * array_max);
 	outline_recv = (POKE_NET_GDS_RESPONSE_BATTLEDATA_SEARCH_RECVDATA *)(param->Data);
 	for(i = 0; i < hit_count; i++){
 		if(outline_recv[i].Code != outline_recv[i].Data.head.data_number){
-			//ƒwƒbƒ_‚Æƒf[ƒ^ƒiƒ“ƒo[‚ªˆá‚¤ê‡‚Íƒwƒbƒ_‚Éƒiƒ“ƒo[‚ð“ü‚ê‚ç‚ê‚Ä‚È‚¢‚Ì‚Å‚±‚Á‚¿‚Å“ü‚ê‚é
+			//ãƒ˜ãƒƒãƒ€ã¨ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ãŒé•ã†å ´åˆã¯ãƒ˜ãƒƒãƒ€ã«ãƒŠãƒ³ãƒãƒ¼ã‚’å…¥ã‚Œã‚‰ã‚Œã¦ãªã„ã®ã§ã“ã£ã¡ã§å…¥ã‚Œã‚‹
 			outline_recv[i].Data.head.data_number = outline_recv[i].Code;
-			//CRCì¬
+			//CRCä½œæˆ
 			outline_recv[i].Data.head.crc.crc16ccitt_hash = SaveData_CalcCRC(gdsrap->savedata, 
 				&outline_recv[i].Data.head, 
 				sizeof(GT_BATTLE_REC_HEADER) - GT_GDS_CRC_SIZE - sizeof(outline_recv[i].Code));
@@ -667,13 +667,13 @@ int GDS_RAP_RESPONSE_BattleVideoSearch_Download_DataCopy(GDS_RAP_WORK *gdsrap, G
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^‰ðŽßFƒoƒgƒ‹ƒrƒfƒIƒf[ƒ^Žæ“¾
+ * @brief   ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿è§£é‡ˆï¼šãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãƒ‡ãƒ¼ã‚¿å–å¾—
  *
  * @param   gdsrap		
  * @param   res		
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:‰½‚ç‚©‚ÌƒGƒ‰[‚ª”­¶(“à—e‚Íres->ResultŽQÆ)
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:ä½•ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿ(å†…å®¹ã¯res->Resultå‚ç…§)
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_BattleVideo_Data_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res)
@@ -682,23 +682,23 @@ int GDS_RAP_RESPONSE_BattleVideo_Data_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RE
 	int ret = FALSE;
 	
 	switch(res->Result){
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_SUCCESS:			//!< Žæ“¾¬Œ÷
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_SUCCESS:			//!< å–å¾—æˆåŠŸ
 		param = (POKE_NET_GDS_RESPONSE_BATTLEDATA_GET *)(res->Param);
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒIƒf[ƒ^Žæ“¾ŽóM¬Œ÷\n");
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãƒ‡ãƒ¼ã‚¿å–å¾—å—ä¿¡æˆåŠŸ\n");
 		ret = TRUE;
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_ERROR_AUTH:		//!< ƒ†[ƒU[”FØƒGƒ‰[
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒIƒf[ƒ^Žæ“¾ŽóMƒGƒ‰[I:ƒ†[ƒU[”FØƒGƒ‰[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_ERROR_AUTH:		//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãƒ‡ãƒ¼ã‚¿å–å¾—å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_ERROR_ILLEGALCODE:	//!< ƒR[ƒhƒGƒ‰[
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒIƒf[ƒ^Žæ“¾ŽóMƒGƒ‰[I:ƒR[ƒhƒGƒ‰[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_ERROR_ILLEGALCODE:	//!< ã‚³ãƒ¼ãƒ‰ã‚¨ãƒ©ãƒ¼
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãƒ‡ãƒ¼ã‚¿å–å¾—å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ã‚³ãƒ¼ãƒ‰ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_ERROR_UNKNOWN:		//!< ‚»‚Ì‘¼ƒGƒ‰[
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_GET_ERROR_UNKNOWN:		//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 	default:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒIƒf[ƒ^Žæ“¾ŽóMƒGƒ‰[I:‚»‚Ì‘¼‚ÌƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãƒ‡ãƒ¼ã‚¿å–å¾—å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼\n");
 		break;
 	}
 
@@ -707,12 +707,12 @@ int GDS_RAP_RESPONSE_BattleVideo_Data_Download(GDS_RAP_WORK *gdsrap, POKE_NET_RE
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é•”•ª‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾Fƒoƒgƒ‹ƒrƒfƒIƒf[ƒ^Žæ“¾
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹éƒ¨åˆ†ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ï¼šãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãƒ‡ãƒ¼ã‚¿å–å¾—
  *
  * @param   gdsrap		
- * @param   rec			˜^‰æƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚éƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‘ã“üæ
+ * @param   rec			éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ä»£å…¥å…ˆ
  *
- * @retval  “o˜^ƒR[ƒh
+ * @retval  ç™»éŒ²ã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_BattleVideoData_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, GT_BATTLE_REC_RECV **rec)
@@ -725,9 +725,9 @@ int GDS_RAP_RESPONSE_BattleVideoData_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, 
 	
 	*rec = &param->Data;
 	if(param->Code != param->Data.head.data_number){
-		//ƒwƒbƒ_‚Æƒf[ƒ^ƒiƒ“ƒo[‚ªˆá‚¤ê‡‚Íƒwƒbƒ_‚Éƒiƒ“ƒo[‚ð“ü‚ê‚ç‚ê‚Ä‚È‚¢‚Ì‚Å‚±‚Á‚¿‚Å“ü‚ê‚é
+		//ãƒ˜ãƒƒãƒ€ã¨ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ãŒé•ã†å ´åˆã¯ãƒ˜ãƒƒãƒ€ã«ãƒŠãƒ³ãƒãƒ¼ã‚’å…¥ã‚Œã‚‰ã‚Œã¦ãªã„ã®ã§ã“ã£ã¡ã§å…¥ã‚Œã‚‹
 		param->Data.head.data_number = param->Code;
-		//CRCì¬
+		//CRCä½œæˆ
 		(*rec)->head.crc.crc16ccitt_hash = SaveData_CalcCRC(gdsrap->savedata, &(*rec)->head, 
 			sizeof(GT_BATTLE_REC_HEADER) - GT_GDS_CRC_SIZE - sizeof(param->Code));
 	}
@@ -737,13 +737,13 @@ int GDS_RAP_RESPONSE_BattleVideoData_Download_RecvPtr_Set(GDS_RAP_WORK *gdsrap, 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^‰ðŽßFƒoƒgƒ‹ƒrƒfƒI‚¨‹C‚É“ü‚è“o˜^
+ * @brief   ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿è§£é‡ˆï¼šãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãŠæ°—ã«å…¥ã‚Šç™»éŒ²
  *
  * @param   gdsrap		
  * @param   res		
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:‰½‚ç‚©‚ÌƒGƒ‰[‚ª”­¶(“à—e‚Íres->ResultŽQÆ)
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:ä½•ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿ(å†…å®¹ã¯res->Resultå‚ç…§)
  */
 //--------------------------------------------------------------
 int GDS_RAP_RESPONSE_BattleVideo_Favorite_Upload(GDS_RAP_WORK *gdsrap, POKE_NET_RESPONSE *res)
@@ -752,23 +752,23 @@ int GDS_RAP_RESPONSE_BattleVideo_Favorite_Upload(GDS_RAP_WORK *gdsrap, POKE_NET_
 	int ret = FALSE;
 	
 	switch(res->Result){
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_SUCCESS:			//!< ‚¨‹C‚É“ü‚è“o˜^¬Œ÷
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_SUCCESS:			//!< ãŠæ°—ã«å…¥ã‚Šç™»éŒ²æˆåŠŸ
 //		param = (POKE_NET_GDS_RESPONSE_BATTLEDATA_FAVORITE *)(res->Param);
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒIƒf[ƒ^‚¨‹C‚É“ü‚è“o˜^ŽóM¬Œ÷\n");
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãƒ‡ãƒ¼ã‚¿ãŠæ°—ã«å…¥ã‚Šç™»éŒ²å—ä¿¡æˆåŠŸ\n");
 		ret = TRUE;
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_ERROR_AUTH:		//!< ƒ†[ƒU[”FØƒGƒ‰[
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒI‚¨‹C‚É“ü‚è“o˜^ŽóMƒGƒ‰[I:ƒ†[ƒU[”FØƒGƒ‰[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_ERROR_AUTH:		//!< ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãŠæ°—ã«å…¥ã‚Šç™»éŒ²å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãƒ¦ãƒ¼ã‚¶ãƒ¼èªè¨¼ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_ERROR_ILLEGALCODE:	//!< ƒR[ƒhƒGƒ‰[
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒI‚¨‹C‚É“ü‚è“o˜^ŽóMƒGƒ‰[I:ƒR[ƒhƒGƒ‰[\n");
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_ERROR_ILLEGALCODE:	//!< ã‚³ãƒ¼ãƒ‰ã‚¨ãƒ©ãƒ¼
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãŠæ°—ã«å…¥ã‚Šç™»éŒ²å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ã‚³ãƒ¼ãƒ‰ã‚¨ãƒ©ãƒ¼\n");
 		break;
-	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_ERROR_UNKNOWN:	//!< ‚»‚Ì‘¼ƒGƒ‰[
+	case POKE_NET_GDS_RESPONSE_RESULT_BATTLEDATA_FAVORITE_ERROR_UNKNOWN:	//!< ãã®ä»–ã‚¨ãƒ©ãƒ¼
 	default:
-		//¦check@ƒGƒ‰[‚²‚Æ‚Éê—p‚ÌƒPƒA‚ÆƒƒbƒZ[ƒW‚ð“ü‚ê‚é
-		OS_TPrintf("ƒoƒgƒ‹ƒrƒfƒI‚¨‹C‚É“ü‚è“o˜^ŽóMƒGƒ‰[I:‚»‚Ì‘¼‚ÌƒGƒ‰[\n");
+		//â€»checkã€€ã‚¨ãƒ©ãƒ¼ã”ã¨ã«å°‚ç”¨ã®ã‚±ã‚¢ã¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å…¥ã‚Œã‚‹
+		OS_TPrintf("ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãŠæ°—ã«å…¥ã‚Šç™»éŒ²å—ä¿¡ã‚¨ãƒ©ãƒ¼ï¼:ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼\n");
 		break;
 	}
 
@@ -777,15 +777,15 @@ int GDS_RAP_RESPONSE_BattleVideo_Favorite_Upload(GDS_RAP_WORK *gdsrap, POKE_NET_
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽóMƒoƒbƒtƒ@‚©‚çƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é•”•ª‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾Fƒoƒgƒ‹ƒrƒfƒI‚¨‹C‚É“ü‚è“o˜^
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹éƒ¨åˆ†ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ï¼šãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãŠæ°—ã«å…¥ã‚Šç™»éŒ²
  *
  * @param   gdsrap		
  *
- * @retval  “o˜^ƒR[ƒh
+ * @retval  ç™»éŒ²ã‚³ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------
 void GDS_RAP_RESPONSE_BattleVideoFavorite_Upload_RecvPtr_Set(GDS_RAP_WORK *gdsrap)
 {
-	//Œ»óAŽæ“¾‚·‚é‚à‚Ì‚Í‰½‚à–³‚¢
+	//ç¾çŠ¶ã€å–å¾—ã™ã‚‹ã‚‚ã®ã¯ä½•ã‚‚ç„¡ã„
 	return;
 }

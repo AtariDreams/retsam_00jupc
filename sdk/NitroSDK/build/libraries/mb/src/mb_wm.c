@@ -12,8 +12,8 @@
 
   $Log: mb_wm.c,v $
   Revision 1.8  2005/10/28 11:23:41  seiki_masashi
-  WM_STATECODE_DISCONNECTED_FROM_MYSELF ‚Ì’Ç‰Á‚É‘Î‰
-  WM_STATECODE_PORT_INIT ‚Ì’Ç‰Á‚É‘Î‰
+  WM_STATECODE_DISCONNECTED_FROM_MYSELF ã®è¿½åŠ ã«å¯¾å¿œ
+  WM_STATECODE_PORT_INIT ã®è¿½åŠ ã«å¯¾å¿œ
 
   Revision 1.7  2005/02/28 05:26:24  yosizaki
   do-indent.
@@ -25,13 +25,13 @@
   fix copyright header.
 
   Revision 1.4  2005/01/07 02:56:25  takano_makoto
-  WM_StartMP‚ÌƒR[ƒ‹ƒoƒbƒN‚Å–â‘è‚Ì‚È‚¢ƒGƒ‰[’Ê’m‚ğ–³‹‚·‚é‚æ‚¤‚ÉC³B
+  WM_StartMPã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§å•é¡Œã®ãªã„ã‚¨ãƒ©ãƒ¼é€šçŸ¥ã‚’ç„¡è¦–ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£ã€‚
 
   Revision 1.3  2004/11/24 13:00:02  takano_makoto
-  ƒGƒ‰[ˆ—‚ğ’Ç‰Á
+  ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¿½åŠ 
 
   Revision 1.2  2004/11/23 23:50:54  takano_makoto
-  Warning‚ğœ‹
+  Warningã‚’é™¤å»
 
   Revision 1.1  2004/11/22 12:38:30  takano_makoto
   Initial update.
@@ -47,7 +47,7 @@
 #include "mb_block.h"
 
 //===========================================================================
-// ƒvƒƒgƒ^ƒCƒvéŒ¾
+// ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //===========================================================================
 
 static BOOL IsSendEnabled(void);
@@ -71,33 +71,33 @@ static void MBi_WMApiErrorCallback(u16 apiid, u16 error_code);
 
 
 //===========================================================================
-// •Ï”éŒ¾
+// å¤‰æ•°å®£è¨€
 //===========================================================================
 
 static MBWMWork *wmWork = NULL;
 
 
 //===========================================================================
-// ŠÖ”’è‹`
+// é–¢æ•°å®šç¾©
 //===========================================================================
 
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMSetBuffer
 
-  Description:  MB_WM‚ªMP’ÊM‚Ì‚½‚ß‚Ég—p‚·‚éƒoƒbƒtƒ@‚ğİ’è‚µ‚Ü‚·B
-                MBWMWork‚ÌƒTƒCƒY‚¾‚¯—^‚¦‚é•K—v‚ª‚ ‚è‚Ü‚·B
+  Description:  MB_WMãŒMPé€šä¿¡ã®ãŸã‚ã«ä½¿ç”¨ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’è¨­å®šã—ã¾ã™ã€‚
+                MBWMWorkã®ã‚µã‚¤ã‚ºã ã‘ä¸ãˆã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 
-  Arguments:    buf     ƒ[ƒNƒoƒbƒtƒ@‚Æ‚µ‚Äg—p‚·‚é—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    buf     ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã¨ã—ã¦ä½¿ç”¨ã™ã‚‹é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void MBi_WMSetBuffer(void *buf)
 {
     SDK_NULL_ASSERT(buf);
-    SDK_ASSERT(((u32)buf & 0x1f) == 0); // 32ƒoƒCƒgƒAƒ‰ƒCƒ“‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
+    SDK_ASSERT(((u32)buf & 0x1f) == 0); // 32ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ³ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
 
     wmWork = (MBWMWork *) buf;
-    wmWork->start_mp_busy = 0;         // e‹@‚ÌStartMP‘½dŒÄ‚Ño‚µ–h~
+    wmWork->start_mp_busy = 0;         // è¦ªæ©Ÿã®StartMPå¤šé‡å‘¼ã³å‡ºã—é˜²æ­¢
     wmWork->mpStarted = 0;
     wmWork->child_bitmap = 0;
     wmWork->mpBusy = 0;
@@ -111,9 +111,9 @@ void MBi_WMSetBuffer(void *buf)
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMSetCallback
 
-  Description:  ƒR[ƒ‹ƒoƒbƒN‚ğİ’è‚µ‚Ü‚·B
+  Description:  ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®šã—ã¾ã™ã€‚
 
-  Arguments:    callback    ƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Arguments:    callback    ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -130,9 +130,9 @@ void MBi_WMSetCallback(MBWMCallbackFunc callback)
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMStartConnect
 
-  Description:  e‹@‚Ö‚ÌÚ‘±ŠJn
+  Description:  è¦ªæ©Ÿã¸ã®æ¥ç¶šé–‹å§‹
 
-  Arguments:    bssDesc  Ú‘±‚·‚ée‹@‚ÌBssDesc
+  Arguments:    bssDesc  æ¥ç¶šã™ã‚‹è¦ªæ©Ÿã®BssDesc
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -163,9 +163,9 @@ void MBi_WMStartConnect(WMBssDesc *bssDesc)
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMStateOutStartConnect
 
-  Description:  e‹@‚Ö‚ÌÚ‘±ƒR[ƒ‹ƒoƒbƒN
+  Description:  è¦ªæ©Ÿã¸ã®æ¥ç¶šã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    arg     WM_StartConnect‚ÌƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    arg     WM_StartConnectã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -189,10 +189,10 @@ static void MBi_WMStateOutStartConnect(void *arg)
         MBi_WMSendCallback(MB_CALLBACK_DISCONNECTED_FROM_PARENT, NULL);
         break;
     case WM_STATECODE_DISCONNECTED_FROM_MYSELF:
-        // ©‚çØ’f‚µ‚½ê‡‚Íˆ—‚µ‚È‚¢
+        // è‡ªã‚‰åˆ‡æ–­ã—ãŸå ´åˆã¯å‡¦ç†ã—ãªã„
         break;
     case WM_STATECODE_CONNECTED:
-        // ”FØI—¹B
+        // èªè¨¼çµ‚äº†æ™‚ã€‚
         MBi_WMSendCallback(MB_CALLBACK_CONNECTED_TO_PARENT, arg);
         break;
     }
@@ -202,12 +202,12 @@ static void MBi_WMStateOutStartConnect(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_ChildStartMP
 
-  Description:  MP’ÊMŠJn
+  Description:  MPé€šä¿¡é–‹å§‹
 
-  Arguments:    sendBuf     ‘—Mƒoƒbƒtƒ@‚Æ‚µ‚Äİ’è‚·‚é—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                recvBuf     óMƒoƒbƒtƒ@‚Æ‚µ‚Äİ’è‚·‚é—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    sendBuf     é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã¨ã—ã¦è¨­å®šã™ã‚‹é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                recvBuf     å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã¨ã—ã¦è¨­å®šã™ã‚‹é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ƒGƒ‰[ƒR[ƒhA³í‚ÍWM_ERRCODE_OPERATING.
+  Returns:      ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã€æ­£å¸¸æ™‚ã¯WM_ERRCODE_OPERATING.
  *---------------------------------------------------------------------------*/
 void MBi_ChildStartMP(u16 *sendBuf, u16 *recvBuf)
 {
@@ -239,11 +239,11 @@ void MBi_ChildStartMP(u16 *sendBuf, u16 *recvBuf)
 /*---------------------------------------------------------------------------*
   Name:         ChildStateOutStartMP
 
-  Description:  q‹@ WM_StartMPExƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Description:  å­æ©Ÿ WM_StartMPExã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-  Arguments:    arg     WM_StartMP‚ÌƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    arg     WM_StartMPã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
-  Returns:      ƒGƒ‰[ƒR[ƒhA³í‚ÍWM_ERRCODE_OPERATING.
+  Returns:      ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã€æ­£å¸¸æ™‚ã¯WM_ERRCODE_OPERATING.
  *---------------------------------------------------------------------------*/
 static void ChildStateOutStartMP(void *arg)
 {
@@ -251,7 +251,7 @@ static void ChildStateOutStartMP(void *arg)
 
     if (cb->errcode != WM_ERRCODE_SUCCESS)
     {
-        // ƒGƒ‰[ˆ—‚Ì•K—v‚Ì–³‚¢ƒGƒ‰[’Ê’m‚Ìê‡‚ÍI—¹
+        // ã‚¨ãƒ©ãƒ¼å‡¦ç†ã®å¿…è¦ã®ç„¡ã„ã‚¨ãƒ©ãƒ¼é€šçŸ¥ã®å ´åˆã¯çµ‚äº†
         if (cb->errcode == WM_ERRCODE_SEND_FAILED)
         {
             return;
@@ -272,12 +272,12 @@ static void ChildStateOutStartMP(void *arg)
     switch (cb->state)
     {
     case WM_STATECODE_MP_START:
-        wmWork->mpStarted = 1;         // MPŠJnÏ‚İƒtƒ‰ƒO‚ğƒZƒbƒg
+        wmWork->mpStarted = 1;         // MPé–‹å§‹æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
         wmWork->mpBusy = 0;
         wmWork->child_bitmap = 0;
         MBi_WMSendCallback(MB_CALLBACK_MP_STARTED, NULL);
         {
-            // MP‘—M‹–‰ÂƒR[ƒ‹ƒoƒbƒN
+            // MPé€ä¿¡è¨±å¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
             MBi_WMSendCallback(MB_CALLBACK_MP_SEND_ENABLE, NULL);
         }
         break;
@@ -290,7 +290,7 @@ static void ChildStateOutStartMP(void *arg)
         // None.
         break;
 
-    case WM_STATECODE_MPEND_IND:      // e‹@‚Ì‚İ‚É”­¶
+    case WM_STATECODE_MPEND_IND:      // è¦ªæ©Ÿã®ã¿ã«ç™ºç”Ÿ
     default:
         MBi_WMErrorCallback(cb->apiid, WM_ERRCODE_FAILED);
         break;
@@ -300,7 +300,7 @@ static void ChildStateOutStartMP(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMDisconnect
 
-  Description:  q‹@‚ÌMPØ’fˆ—BWM_EndMPŠ®—¹Œã‚Ée‹@‚©‚çDisconnect‚µ‚Ü‚·B
+  Description:  å­æ©Ÿã®MPåˆ‡æ–­å‡¦ç†ã€‚WM_EndMPå®Œäº†å¾Œã«è¦ªæ©Ÿã‹ã‚‰Disconnectã—ã¾ã™ã€‚
 
   Arguments:    None.
 
@@ -325,9 +325,9 @@ void MBi_WMDisconnect(void)
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMStateOutEndMP
 
-  Description:  WM_EndMP‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Description:  WM_EndMPã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-  Arguments:    arg     WM_EndMP‚ÌƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    arg     WM_EndMPã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -350,7 +350,7 @@ static void MBi_WMStateOutEndMP(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMStateInDisconnect
 
-  Description:  q‹@‚ğe‹@‚©‚çØ’f‚µAIDLEó‘Ô‚Ö‘JˆÚ‚³‚¹‚Ü‚·B
+  Description:  å­æ©Ÿã‚’è¦ªæ©Ÿã‹ã‚‰åˆ‡æ–­ã—ã€IDLEçŠ¶æ…‹ã¸é·ç§»ã•ã›ã¾ã™ã€‚
 
   Arguments:    None.
 
@@ -373,9 +373,9 @@ static void MBi_WMStateInDisconnect(void)
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMStateInDisconnect
 
-  Description:  WM_Disconnect‚ÌƒR[ƒ‹ƒoƒbƒNˆø”
+  Description:  WM_Disconnectã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
-  Arguments:    arg  WM_Disconnect‚ÌƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    arg  WM_Disconnectã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -396,7 +396,7 @@ static void MBi_WMStateOutDisconnect(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMReset
 
-  Description:  q‹@‚Ì‚ğƒŠƒZƒbƒg‚µAIDLEƒXƒe[ƒg‚É‘JˆÚ‚³‚¹‚Ü‚·B
+  Description:  å­æ©Ÿã®ã‚’ãƒªã‚»ãƒƒãƒˆã—ã€IDLEã‚¹ãƒ†ãƒ¼ãƒˆã«é·ç§»ã•ã›ã¾ã™ã€‚
 
   Arguments:    None.
 
@@ -417,7 +417,7 @@ void MBi_WMReset(void)
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMStateOutReset
 
-  Description:  q‹@‚Ì‚ğƒŠƒZƒbƒg‚µAIDLEƒXƒe[ƒg‚É‘JˆÚ‚³‚¹‚Ü‚·B
+  Description:  å­æ©Ÿã®ã‚’ãƒªã‚»ãƒƒãƒˆã—ã€IDLEã‚¹ãƒ†ãƒ¼ãƒˆã«é·ç§»ã•ã›ã¾ã™ã€‚
 
   Arguments:    None.
 
@@ -432,29 +432,29 @@ static void MBi_WMStateOutReset(void *arg)
         MBi_WMErrorCallback(cb->apiid, cb->errcode);
         return;
     }
-    // Reset ‚ÍŸ‚Ìó‘Ô‚ğŠJn‚¹‚¸AƒAƒCƒhƒŠƒ“ƒOi‘Ò‹@’†jó‘Ô‚É‚µ‚Ü‚·B
+    // Reset ã¯æ¬¡ã®çŠ¶æ…‹ã‚’é–‹å§‹ã›ãšã€ã‚¢ã‚¤ãƒ‰ãƒªãƒ³ã‚°ï¼ˆå¾…æ©Ÿä¸­ï¼‰çŠ¶æ…‹ã«ã—ã¾ã™ã€‚
     MBi_WMSendCallback(MB_CALLBACK_DISCONNECT_COMPLETE, NULL);
 }
 
 
 /*
- * MP‘—M‹–‰Âƒ`ƒFƒbƒN
+ * MPé€ä¿¡è¨±å¯ãƒã‚§ãƒƒã‚¯
    
-   SetMPŒãAƒR[ƒ‹ƒoƒbƒN‚ª•Ô‚é‘O‚ÉAÄ‚ÑMP‚ğƒZƒbƒg‚µ‚Ä‚µ‚Ü‚í‚È‚¢‚æ‚¤‚ÉA
-   SetMPÀs‚É—§‚Ä‚éAmpBusy‚Ìƒtƒ‰ƒO‚ğ”»’è—v‘f‚É’Ç‰ÁB
+   SetMPå¾Œã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒè¿”ã‚‹å‰ã«ã€å†ã³MPã‚’ã‚»ãƒƒãƒˆã—ã¦ã—ã¾ã‚ãªã„ã‚ˆã†ã«ã€
+   SetMPå®Ÿè¡Œæ™‚ã«ç«‹ã¦ã‚‹ã€mpBusyã®ãƒ•ãƒ©ã‚°ã‚’åˆ¤å®šè¦ç´ ã«è¿½åŠ ã€‚
  
  */
 /*---------------------------------------------------------------------------*
   Name:         IsSendEnabled
 
-  Description:  Œ»İAV‚µ‚¢MPƒf[ƒ^‚ğƒZƒbƒg‚µ‚Ä‚à—Ç‚¢‚©‚Ç‚¤‚©‚ğ”»’è‚·‚éŠÖ”‚Å‚·B
-                SetMPŒãAƒR[ƒ‹ƒoƒbƒN‚ª•Ô‚é‘O‚ÉAÄ‚ÑMP‚ğƒZƒbƒg‚µ‚Ä‚µ‚Ü‚í‚È‚¢‚æ‚¤‚ÉA
-                SetMPÀs‚É—§‚Ä‚éAmpBusy‚Ìƒtƒ‰ƒO‚ğ”»’è—v‘f‚É’Ç‰Á‚µ‚Ü‚µ‚½B
+  Description:  ç¾åœ¨ã€æ–°ã—ã„MPãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã—ã¦ã‚‚è‰¯ã„ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹é–¢æ•°ã§ã™ã€‚
+                SetMPå¾Œã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒè¿”ã‚‹å‰ã«ã€å†ã³MPã‚’ã‚»ãƒƒãƒˆã—ã¦ã—ã¾ã‚ãªã„ã‚ˆã†ã«ã€
+                SetMPå®Ÿè¡Œæ™‚ã«ç«‹ã¦ã‚‹ã€mpBusyã®ãƒ•ãƒ©ã‚°ã‚’åˆ¤å®šè¦ç´ ã«è¿½åŠ ã—ã¾ã—ãŸã€‚
 
   Arguments:    None.
 
-  Returns:      V‚µ‚¢ƒf[ƒ^‚ğƒZƒbƒg‚µ‚Ä‚à\‚í‚È‚¢‚È‚ç‚Î TRUE
-                ‚»‚¤‚Å‚È‚¢ê‡‚Í FALSE ‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã—ã¦ã‚‚æ§‹ã‚ãªã„ãªã‚‰ã° TRUE
+                ãã†ã§ãªã„å ´åˆã¯ FALSE ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static BOOL IsSendEnabled(void)
 {
@@ -465,9 +465,9 @@ static BOOL IsSendEnabled(void)
 /*---------------------------------------------------------------------------*
   Name:         ChildPortCallback
 
-  Description:  q‹@MPƒ|[ƒgƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Description:  å­æ©ŸMPãƒãƒ¼ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-  Arguments:    arg     MP’ÊM‚Ìƒ|[ƒgƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    arg     MPé€šä¿¡ã®ãƒãƒ¼ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -483,11 +483,11 @@ static void ChildPortCallback(void *arg)
     switch (cb->state)
     {
     case WM_STATECODE_PORT_RECV:
-        // ƒf[ƒ^óM‚ğ’Ê’m
+        // ãƒ‡ãƒ¼ã‚¿å—ä¿¡ã‚’é€šçŸ¥
         MBi_WMSendCallback(MB_CALLBACK_MP_CHILD_RECV, cb);
         break;
     case WM_STATECODE_CONNECTED:
-        // Ú‘±’Ê’m
+        // æ¥ç¶šé€šçŸ¥
         break;
     case WM_STATECODE_PORT_INIT:
     case WM_STATECODE_DISCONNECTED:
@@ -500,19 +500,19 @@ static void ChildPortCallback(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_MPSendToParent
 
-  Description:  ƒoƒbƒtƒ@“à—e‚ğe‹@‚Ö‘—M‚µ‚Ü‚·B
+  Description:  ãƒãƒƒãƒ•ã‚¡å†…å®¹ã‚’è¦ªæ©Ÿã¸é€ä¿¡ã—ã¾ã™ã€‚
 
-  Arguments:    body_len ƒf[ƒ^ƒTƒCƒY
-                pollbmp  ‘—M‘Šè‚Ìƒ|[ƒ‹ƒrƒbƒgƒ}ƒbƒv(q‹@‚Ìê‡‚É‚ÍŠÖŒW‚ ‚è‚Ü‚¹‚ñ)
-                sendbuf  ‘—Mƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-  Returns:      ‘—Mˆ—‚ÌŠJn‚É¬Œ÷‚µ‚½‚È‚ç‚ÎAWM_ERRCODE_OPERATINGA
-                ¸”s‚µ‚½‚ç‚È‚ç‚ÎA‚»‚êˆÈŠO‚ÌƒR[ƒh‚ª•Ô‚Á‚Ä‚«‚Ü‚·B
+  Arguments:    body_len ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+                pollbmp  é€ä¿¡ç›¸æ‰‹ã®ãƒãƒ¼ãƒ«ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—(å­æ©Ÿã®å ´åˆã«ã¯é–¢ä¿‚ã‚ã‚Šã¾ã›ã‚“)
+                sendbuf  é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+  Returns:      é€ä¿¡å‡¦ç†ã®é–‹å§‹ã«æˆåŠŸã—ãŸãªã‚‰ã°ã€WM_ERRCODE_OPERATINGã€
+                å¤±æ•—ã—ãŸã‚‰ãªã‚‰ã°ã€ãã‚Œä»¥å¤–ã®ã‚³ãƒ¼ãƒ‰ãŒè¿”ã£ã¦ãã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 WMErrCode MBi_MPSendToParent(u32 body_len, u16 pollbmp, u32 *sendbuf)
 {
     WMErrCode result;
 
-    // 32ƒoƒCƒgƒAƒ‰ƒCƒ“ƒ`ƒFƒbƒN
+    // 32ãƒã‚¤ãƒˆã‚¢ãƒ©ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯
     SDK_ASSERT(((u32)sendbuf & 0x1F) == 0);
 
     DC_FlushRange(sendbuf, sizeof(body_len));
@@ -539,9 +539,9 @@ WMErrCode MBi_MPSendToParent(u32 body_len, u16 pollbmp, u32 *sendbuf)
 /*---------------------------------------------------------------------------*
   Name:         StateOutMPSendToParent
 
-  Description:  MP‘—MŠ®—¹’Ê’mƒR[ƒ‹ƒoƒbƒN
+  Description:  MPé€ä¿¡å®Œäº†é€šçŸ¥ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    arg     WM_SetMPDataToPort‚ÌƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    arg     WM_SetMPDataToPortã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -562,7 +562,7 @@ static void StateOutMPSendToParent(void *arg)
     {
         MBi_WMSendCallback(MB_CALLBACK_MP_CHILD_SENT_ERR, arg);
     }
-    // Ÿ‚Ì‘—M‚ğ‹–‰Â
+    // æ¬¡ã®é€ä¿¡ã‚’è¨±å¯
     MBi_WMSendCallback(MB_CALLBACK_MP_SEND_ENABLE, NULL);
 }
 
@@ -570,10 +570,10 @@ static void StateOutMPSendToParent(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMSendCallback
 
-  Description:  WMƒŒƒCƒ„[‚Å‚ÌƒR[ƒ‹ƒoƒbƒN’Ê’m‚ğs‚È‚¢‚Ü‚·B
+  Description:  WMãƒ¬ã‚¤ãƒ¤ãƒ¼ã§ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é€šçŸ¥ã‚’è¡Œãªã„ã¾ã™ã€‚
 
-  Arguments:    type        ƒR[ƒ‹ƒoƒbƒNƒ^ƒCƒv
-                arg         ƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    type        ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¿ã‚¤ãƒ—
+                arg         ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -589,10 +589,10 @@ static inline void MBi_WMSendCallback(u16 type, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMErrorCallback
 
-  Description:  WMƒŒƒCƒ„[‚Å‚ÌƒGƒ‰[’Ê’m‚ğs‚È‚¢‚Ü‚·B
+  Description:  WMãƒ¬ã‚¤ãƒ¤ãƒ¼ã§ã®ã‚¨ãƒ©ãƒ¼é€šçŸ¥ã‚’è¡Œãªã„ã¾ã™ã€‚
 
-  Arguments:    apiid       Œ´ˆö‚Æ‚È‚Á‚½WM_APIID
-                error_code  ƒGƒ‰[ƒR[ƒh
+  Arguments:    apiid       åŸå› ã¨ãªã£ãŸWM_APIID
+                error_code  ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -614,10 +614,10 @@ static inline void MBi_WMErrorCallback(u16 apiid, u16 error_code)
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMApiErrorCallback
 
-  Description:  WM‚ÌAPIƒR[ƒ‹‚Ì–ß‚è’l‚ÅƒGƒ‰[‚ª”­¶‚µ‚½ê‡‚Ì’Ê’m‚ğs‚È‚¢‚Ü‚·B
+  Description:  WMã®APIã‚³ãƒ¼ãƒ«ã®æˆ»ã‚Šå€¤ã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã®é€šçŸ¥ã‚’è¡Œãªã„ã¾ã™ã€‚
 
-  Arguments:    apiid       Œ´ˆö‚Æ‚È‚Á‚½WM_APIID
-                error_code  ƒGƒ‰[ƒR[ƒh
+  Arguments:    apiid       åŸå› ã¨ãªã£ãŸWM_APIID
+                error_code  ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -640,10 +640,10 @@ static inline void MBi_WMApiErrorCallback(u16 apiid, u16 error_code)
 /*---------------------------------------------------------------------------*
   Name:         MBi_WMApiErrorCallback
 
-  Description:  WM‚ÌAPIƒR[ƒ‹‚Ì–ß‚è’l‚ÅƒGƒ‰[‚ª”­¶‚µ‚½ê‡‚Ì’Ê’m‚ğs‚È‚¢‚Ü‚·B
+  Description:  WMã®APIã‚³ãƒ¼ãƒ«ã®æˆ»ã‚Šå€¤ã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã®é€šçŸ¥ã‚’è¡Œãªã„ã¾ã™ã€‚
 
-  Arguments:    apiid       Œ´ˆö‚Æ‚È‚Á‚½WM_APIID
-                error_code  ƒGƒ‰[ƒR[ƒh
+  Arguments:    apiid       åŸå› ã¨ãªã£ãŸWM_APIID
+                error_code  ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

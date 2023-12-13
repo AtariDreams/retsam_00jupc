@@ -1,26 +1,26 @@
 #=============================================================================================
 #
-#	ƒtƒB[ƒ‹ƒhƒAƒCƒeƒ€ƒXƒNƒŠƒvƒgƒRƒ“ƒo[ƒ^
+#	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒ³ãƒãƒ¼ã‚¿
 #
-#	_EVENT_DATA‹Lq‚ðfld_item.ev‚Éo—Í‚·‚é
+#	_EVENT_DATAè¨˜è¿°ã‚’fld_item.evã«å‡ºåŠ›ã™ã‚‹
 #
-#	ƒtƒ‰ƒO’è‹`‚ðfld_item_flag.h‚Éo—Í‚·‚é
+#	ãƒ•ãƒ©ã‚°å®šç¾©ã‚’fld_item_flag.hã«å‡ºåŠ›ã™ã‚‹
 #
 #	05.11.04 Satoshi Nohara
 
-#	07.06.04 ƒvƒ‰ƒ`ƒi—p‚ÉƒIƒtƒZƒbƒg‚ð•ÏX
+#	07.06.04 ãƒ—ãƒ©ãƒãƒŠç”¨ã«ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å¤‰æ›´
 #
 #=============================================================================================
 BEGIN{
 	#=================================================================
 	#
-	#ƒAƒCƒeƒ€’è‹`ƒtƒ@ƒCƒ‹“Ç‚Ýž‚Ý
+	#ã‚¢ã‚¤ãƒ†ãƒ å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 	#
 	#=================================================================
 	ITEMSYM_H = "../../../include/itemtool/itemsym.h"
 
-	#getline = ‚Ps“Ç‚Ýž‚Ý
-	#‚P‚Í–ß‚è’l
+	#getline = ï¼‘è¡Œèª­ã¿è¾¼ã¿
+	#ï¼‘ã¯æˆ»ã‚Šå€¤
 	while ( 1 == getline < ITEMSYM_H ) {
 		if ( NF == 7 && $1 =="#define" ) {
 			ItemName[$7] = $2
@@ -28,20 +28,20 @@ BEGIN{
 	}
 	close(ITEMSYM_H)
 
-	#‘‚«ž‚Þƒtƒ@ƒCƒ‹
-	file1 = "fld_item.ev"		#ƒXƒNƒŠƒvƒg
-	#file2 = "fld_item_flag.h"	#ƒtƒ‰ƒO
+	#æ›¸ãè¾¼ã‚€ãƒ•ã‚¡ã‚¤ãƒ«
+	file1 = "fld_item.ev"		#ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+	#file2 = "fld_item_flag.h"	#ãƒ•ãƒ©ã‚°
 
 	print "//====================================================================" > file1
-	print "//						ƒtƒB[ƒ‹ƒhƒAƒCƒeƒ€" >> file1
+	print "//						ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¢ã‚¤ãƒ†ãƒ " >> file1
 	print "//" >> file1
-	print "//	œƒtƒB[ƒ‹ƒhƒAƒCƒeƒ€‚©‚ñ‚è‚Ð‚å‚¤" >> file1
+	print "//	â—ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¢ã‚¤ãƒ†ãƒ ã‹ã‚“ã‚Šã²ã‚‡ã†" >> file1
 	print "//		fld_item.xls" >> file1
 	print "//" >> file1
-	print "//	œƒRƒ“ƒo[ƒgŽÀs" >> file1
+	print "//	â—ã‚³ãƒ³ãƒãƒ¼ãƒˆå®Ÿè¡Œ" >> file1
 	print "//		fld_item(.bat)" >> file1
 	print "//" >> file1
-	print "//	œXV‚³‚ê‚éƒtƒ@ƒCƒ‹" >> file1
+	print "//	â—æ›´æ–°ã•ã‚Œã‚‹ãƒ•ã‚¡ã‚¤ãƒ«" >> file1
 	print "//		fld_item.xls" >> file1
 	print "//		fld_item.ev" >> file1
 	print "//		fld_item_def.h" >> file1
@@ -54,52 +54,52 @@ BEGIN{
 	print "\t.include	\"../../../include/msgdata/msg_fld_item.h\"" >> file1
 	print "" >> file1
 	print "//--------------------------------------------------------------------" >> file1
-	print "//						ƒXƒNƒŠƒvƒg–{‘Ì" >> file1
+	print "//						ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“" >> file1
 	print "//--------------------------------------------------------------------" >> file1
 	print "" >> file1
 	print "//--------------------------------------------------------------------" >> file1
-	print "//						ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹" >> file1
+	print "//						ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«" >> file1
 	print "//--------------------------------------------------------------------" >> file1
 }
 
 NR >= 4{
 
-	#€–Ú”ƒ`ƒFƒbƒN
+	#é …ç›®æ•°ãƒã‚§ãƒƒã‚¯
 	if( NF < 6 ) next
 
 	#-----------------------------------------------------------------
 	#
-	#ƒtƒ‰ƒOƒ}ƒbƒNƒX‚ð’´‚¦‚Ä‚¢‚½‚çƒGƒ‰[(07/06/04 MAX = 328 )
+	#ãƒ•ãƒ©ã‚°ãƒžãƒƒã‚¯ã‚¹ã‚’è¶…ãˆã¦ã„ãŸã‚‰ã‚¨ãƒ©ãƒ¼(07/06/04 MAX = 328 )
 	#
 	#-----------------------------------------------------------------
 	if( $6 > 327 ){
-		printf("ƒtƒ‰ƒO‚ÌÅ‘å”‚ð’´‚¦‚Ä‚¢‚Ü‚·I\n") >> "/dev/stderr"
-		exit				#“r’†‚ÅI—¹
+		printf("ãƒ•ãƒ©ã‚°ã®æœ€å¤§æ•°ã‚’è¶…ãˆã¦ã„ã¾ã™ï¼\n") >> "/dev/stderr"
+		exit				#é€”ä¸­ã§çµ‚äº†
 	}
 
 	#-----------------------------------------------------------------
 	#
-	#“¯‚¶”Ô†(ƒtƒ‰ƒOƒiƒ“ƒo[‚ÌƒIƒtƒZƒbƒg)‚ðŽg—p‚µ‚Ä‚È‚¢‚©ƒ`ƒFƒbƒN
+	#åŒã˜ç•ªå·(ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ)ã‚’ä½¿ç”¨ã—ã¦ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	#
 	#-----------------------------------------------------------------
 	if ( $6 in ID_List ) {
 
-		#“¯‚¶”’l‚ð’è‹`‚µ‚Ä‚¢‚éŒÂŠ‚ª‚ ‚éê‡
-		printf("ERROR! “¯‚¶’l‚Ì’è‹`‚ª‚ ‚è‚Ü‚·\n") >> "/dev/stderr"
-		printf("[%s] [%s] ƒtƒ‰ƒO%s\n",ID_List[$6],$1,$6) >> "/dev/stderr"
+		#åŒã˜æ•°å€¤ã‚’å®šç¾©ã—ã¦ã„ã‚‹å€‹æ‰€ãŒã‚ã‚‹å ´åˆ
+		printf("ERROR! åŒã˜å€¤ã®å®šç¾©ãŒã‚ã‚Šã¾ã™\n") >> "/dev/stderr"
+		printf("[%s] [%s] ãƒ•ãƒ©ã‚°%s\n",ID_List[$6],$1,$6) >> "/dev/stderr"
 
-		exit				#“r’†‚ÅI—¹
+		exit				#é€”ä¸­ã§çµ‚äº†
 	}
 
-	ID_List[$6] = $1		#—v‘f‚Æ‚µ‚Ä“o˜^
+	ID_List[$6] = $1		#è¦ç´ ã¨ã—ã¦ç™»éŒ²
 
 	#-----------------------------------------------------------------
 	#
 	#
 	#
 	#-----------------------------------------------------------------
-	if( $1 == "ƒ}ƒbƒv–¼" )	next
-	if( $1 ~ "ƒAƒCƒeƒ€" )	next
+	if( $1 == "ãƒžãƒƒãƒ—å" )	next
+	if( $1 ~ "ã‚¢ã‚¤ãƒ†ãƒ " )	next
 
 	print "_EVENT_DATA\t\t" "ev_fld_item_" $6 >> file1
 
@@ -109,7 +109,7 @@ NR >= 4{
 
 END{
 	print "_EVENT_DATA\t\t" "ev_fld_item2" >> file1
-	print "_EVENT_DATA_END\t\t\t\t//I—¹" >> file1
+	print "_EVENT_DATA_END\t\t\t\t//çµ‚äº†" >> file1
 	print "" >> file1
 }
 

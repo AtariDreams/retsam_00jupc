@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_event_func.h
- *	@brief		ƒCƒxƒ“ƒgŠÖ”‚Ì‚¨‚«êŠ
+ *	@brief		ã‚¤ãƒ™ãƒ³ãƒˆé–¢æ•°ã®ãŠãå ´æ‰€
  *	@author		tomoya takahashi
  *	@data		2006.01.18
  *
@@ -24,7 +24,7 @@
 /**
  *
  *
- *			‹¤’Ê‚Åg‚¦‚éƒCƒxƒ“ƒgŠÖ”‚ğ‚±‚±‚É‚Ü‚Æ‚ß‚Ü‚µ‚å‚¤B
+ *			å…±é€šã§ä½¿ãˆã‚‹ã‚¤ãƒ™ãƒ³ãƒˆé–¢æ•°ã‚’ã“ã“ã«ã¾ã¨ã‚ã¾ã—ã‚‡ã†ã€‚
  * 
  * 
  */
@@ -32,116 +32,116 @@
 
 //-----------------------------------------------------------------------------
 /**
- *		‰½‚à–³‚µ[„ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒXƒ^[ƒg
+ *		ä½•ã‚‚ç„¡ã—ãƒ¼ï¼ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ã‚¿ãƒ¼ãƒˆ
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒCƒxƒ“ƒgƒf[ƒ^‚ÌZKN_EVENT_DATA.p_data‚É
-//	Ši”[‚µ‚Ä‚¨‚¢‚Ä‚à‚ç‚¤\‘¢‘Ì
+//	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®ZKN_EVENT_DATA.p_dataã«
+//	æ ¼ç´ã—ã¦ãŠã„ã¦ã‚‚ã‚‰ã†æ§‹é€ ä½“
 //=====================================
 typedef struct {
-	ZKN_APL_DATA*		p_apl;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	ZKN_PROC_SYS_PTR	p_proc;		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	ZKN_EVENT_SYS_PTR	p_event;	// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	ZKN_APL_DATA*		p_apl;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	ZKN_PROC_SYS_PTR	p_proc;		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_EVENT_SYS_PTR	p_event;	// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 } ZKN_EVENT_APL_START;
 GLOBAL BOOL ZKN_EVENT_AplStart( ZKN_EVENT_WORK* p_work );
 
 
 //-----------------------------------------------------------------------------
 /**
- *		‘O‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“I—¹[„Ÿ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŠJn
+ *		å‰ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ãƒ¼ï¼æ¬¡ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒCƒxƒ“ƒgƒf[ƒ^‚ÌZKN_EVENT_DATA.p_data‚É
-//	Ši”[‚µ‚Ä‚¨‚¢‚Ä‚à‚ç‚¤\‘¢‘Ì
+//	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®ZKN_EVENT_DATA.p_dataã«
+//	æ ¼ç´ã—ã¦ãŠã„ã¦ã‚‚ã‚‰ã†æ§‹é€ ä½“
 //=====================================
 typedef struct {
-	ZKN_APL_DATA*		p_apl;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	ZKN_PROC_SYS_PTR	p_proc;		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	ZKN_EVENT_SYS_PTR	p_event;	// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	ZKN_APL_DATA*		p_apl;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	ZKN_PROC_SYS_PTR	p_proc;		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_EVENT_SYS_PTR	p_event;	// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 } ZKN_EVENT_APL_CHANGE;
 GLOBAL BOOL ZKN_EVENT_AplChange( ZKN_EVENT_WORK* p_work );
 
 //-----------------------------------------------------------------------------
 /**
- *		¡‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“I—¹[„}ŠÓ”jŠü
+ *		ä»Šã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ãƒ¼ï¼å›³é‘‘ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒCƒxƒ“ƒgƒf[ƒ^‚ÌZKN_EVENT_DATA.p_data‚É
-//	Ši”[‚µ‚Ä‚¨‚¢‚Ä‚à‚ç‚¤\‘¢‘Ì
+//	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®ZKN_EVENT_DATA.p_dataã«
+//	æ ¼ç´ã—ã¦ãŠã„ã¦ã‚‚ã‚‰ã†æ§‹é€ ä½“
 //=====================================
 typedef struct {
-	ZKN_PROC_SYS_PTR	p_proc_m;		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	ZKN_PROC_SYS_PTR	p_proc_s;		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	ZKN_PROC_SYS_PTR	p_proc_mc;		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	ZKN_PROC_SYS_PTR	p_proc_sc;		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	BOOL*				p_delete_flag;	// ”jŠüƒtƒ‰ƒO
+	ZKN_PROC_SYS_PTR	p_proc_m;		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_PROC_SYS_PTR	p_proc_s;		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_PROC_SYS_PTR	p_proc_mc;		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_PROC_SYS_PTR	p_proc_sc;		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	BOOL*				p_delete_flag;	// ç ´æ£„ãƒ•ãƒ©ã‚°
 } ZKN_EVENT_APL_END_ZKN_DELETE;
 GLOBAL BOOL ZKN_EVENT_AplEndZknDelete( ZKN_EVENT_WORK* p_work );
 
 //-----------------------------------------------------------------------------
 /**
- *	¡‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“I—¹
+ *	ä»Šã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒCƒxƒ“ƒgƒf[ƒ^‚ÌZKN_EVENT_DATA.p_data‚É
-//	Ši”[‚µ‚Ä‚¨‚¢‚Ä‚à‚ç‚¤\‘¢‘Ì
+//	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®ZKN_EVENT_DATA.p_dataã«
+//	æ ¼ç´ã—ã¦ãŠã„ã¦ã‚‚ã‚‰ã†æ§‹é€ ä½“
 //=====================================
 typedef struct {
-	// –³‚­‚·
-	ZKN_PROC_SYS_PTR	p_proc;		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	ZKN_EVENT_SYS_PTR	p_event;	// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	// ç„¡ãã™
+	ZKN_PROC_SYS_PTR	p_proc;		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_EVENT_SYS_PTR	p_event;	// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 } ZKN_EVENT_APL_END;
 GLOBAL BOOL ZKN_EVENT_AplEnd( ZKN_EVENT_WORK* p_work );
 
 //-----------------------------------------------------------------------------
 /**
- *		main‰æ–ÊƒTƒu‰æ–Ê‘S•ÏX
+ *		mainç”»é¢ã‚µãƒ–ç”»é¢å…¨å¤‰æ›´
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒCƒxƒ“ƒgƒf[ƒ^‚ÌZKN_EVENT_DATA.p_data‚É
-//	Ši”[‚µ‚Ä‚¨‚¢‚Ä‚à‚ç‚¤\‘¢‘Ì
+//	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®ZKN_EVENT_DATA.p_dataã«
+//	æ ¼ç´ã—ã¦ãŠã„ã¦ã‚‚ã‚‰ã†æ§‹é€ ä½“
 //=====================================
 typedef struct {
-	ZKN_PROC_SYS_PTR	p_proc_m;		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	ZKN_PROC_SYS_PTR	p_proc_s;		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	ZKN_PROC_SYS_PTR	p_proc_mc;		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	ZKN_PROC_SYS_PTR	p_proc_sc;		// ƒvƒƒbƒNƒVƒXƒeƒ€
+	ZKN_PROC_SYS_PTR	p_proc_m;		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_PROC_SYS_PTR	p_proc_s;		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_PROC_SYS_PTR	p_proc_mc;		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_PROC_SYS_PTR	p_proc_sc;		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 	
-	ZKN_EVENT_SYS_PTR	p_event_m;		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	ZKN_EVENT_SYS_PTR	p_event_s;		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	ZKN_EVENT_SYS_PTR	p_event_mc;		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	ZKN_EVENT_SYS_PTR	p_event_sc;		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	ZKN_EVENT_SYS_PTR	p_event_m;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_EVENT_SYS_PTR	p_event_s;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_EVENT_SYS_PTR	p_event_mc;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_EVENT_SYS_PTR	p_event_sc;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	ZKN_APL_DATA*		p_apl_m;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	ZKN_APL_DATA*		p_apl_s;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	ZKN_APL_DATA*		p_apl_mc;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	ZKN_APL_DATA*		p_apl_sc;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	ZKN_APL_DATA*		p_apl_m;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	ZKN_APL_DATA*		p_apl_s;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	ZKN_APL_DATA*		p_apl_mc;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	ZKN_APL_DATA*		p_apl_sc;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 } ZKN_EVENT_APL_AllCHANGE;
 GLOBAL BOOL ZKN_EVENT_AplAllChange( ZKN_EVENT_WORK* p_work );
 
 //-----------------------------------------------------------------------------
 /**
- *		main‰æ–ÊƒTƒu‰æ–Ê	‚Q‚Â•ÏX
+ *		mainç”»é¢ã‚µãƒ–ç”»é¢	ï¼’ã¤å¤‰æ›´
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒCƒxƒ“ƒgƒf[ƒ^‚ÌZKN_EVENT_DATA.p_data‚É
-//	Ši”[‚µ‚Ä‚¨‚¢‚Ä‚à‚ç‚¤\‘¢‘Ì
+//	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®ZKN_EVENT_DATA.p_dataã«
+//	æ ¼ç´ã—ã¦ãŠã„ã¦ã‚‚ã‚‰ã†æ§‹é€ ä½“
 //=====================================
 typedef struct {
-	ZKN_PROC_SYS_PTR	p_proc_m;		// ƒvƒƒbƒNƒVƒXƒeƒ€
-	ZKN_PROC_SYS_PTR	p_proc_s;		// ƒvƒƒbƒNƒVƒXƒeƒ€
+	ZKN_PROC_SYS_PTR	p_proc_m;		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_PROC_SYS_PTR	p_proc_s;		// ãƒ—ãƒ­ãƒƒã‚¯ã‚·ã‚¹ãƒ†ãƒ 
 	
-	ZKN_EVENT_SYS_PTR	p_event_m;		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
-	ZKN_EVENT_SYS_PTR	p_event_s;		// ƒCƒxƒ“ƒgƒVƒXƒeƒ€
+	ZKN_EVENT_SYS_PTR	p_event_m;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
+	ZKN_EVENT_SYS_PTR	p_event_s;		// ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 
-	ZKN_APL_DATA*		p_apl_m;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
-	ZKN_APL_DATA*		p_apl_s;		// n‚ß‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+	ZKN_APL_DATA*		p_apl_m;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	ZKN_APL_DATA*		p_apl_s;		// å§‹ã‚ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 } ZKN_EVENT_APL_DOUBLE_CHANGE;
 GLOBAL BOOL ZKN_EVENT_AplDoubleChange( ZKN_EVENT_WORK* p_work );
 
@@ -149,54 +149,54 @@ GLOBAL BOOL ZKN_EVENT_AplDoubleChange( ZKN_EVENT_WORK* p_work );
 
 //-----------------------------------------------------------------------------
 /**
- *		ŠeƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚É•ÏX‚·‚éƒCƒxƒ“ƒgƒf[ƒ^ì¬ŠÖ”
+ *		å„ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã«å¤‰æ›´ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 GLOBAL void ZKN_EVENT_DeleteData( ZKN_EVENT_DATA* p_event_data );
 
-// ƒ\[ƒg‰æ–Ê
+// ã‚½ãƒ¼ãƒˆç”»é¢
 GLOBAL void ZKN_EVENT_MakeChangeSortSearch( int heap, ZKN_EVENT_DATA* p_event_data, ZKN_SYS_PTR zkn_sys, int event_key );
 
-// }ŠÓƒVƒXƒeƒ€I—¹
+// å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ çµ‚äº†
 GLOBAL void ZKN_EVENT_MakeZukanEnd( int heap, ZKN_EVENT_DATA* p_event_data, ZKN_SYS_PTR zkn_sys, int event_key );
 
-// }ŠÓƒTƒuƒRƒ‚ƒ“
+// å›³é‘‘ã‚µãƒ–ã‚³ãƒ¢ãƒ³
 GLOBAL void ZKN_EVENT_MakeChangeZukanCommonSubOnly( int heap, ZKN_EVENT_DATA* p_event_data, ZKN_SYS_PTR zkn_sys, int event_key );
 
-// }ŠÓ‰æ–Ê
+// å›³é‘‘ç”»é¢
 GLOBAL void ZKN_EVENT_MakeChangeZukan( int heap, ZKN_EVENT_DATA* p_event_data, ZKN_SYS_PTR zkn_sys, int event_key );
 GLOBAL void ZKN_EVENT_MakeChangeZukanOnly(  int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_sys, int event_key  );
 GLOBAL void ZKN_EVENT_MakeChangeZukanNormalMainOnly(  int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_sys, int event_key  );
 GLOBAL void ZKN_EVENT_MakeChangeZukanTextMainOnly(  int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_sys, int event_key  );
 
-// ‚·‚ª‚½‰æ–Ê
+// ã™ãŒãŸç”»é¢
 GLOBAL void ZKN_EVENT_MakeChangeZukanGraphic(  int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_sys, int event_key  );
 
-// •ª•z‰æ–Ê
+// åˆ†å¸ƒç”»é¢
 GLOBAL void ZKN_EVENT_MakeChangeRange( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_sys, int event_key );
 GLOBAL void ZKN_EVENT_MakeChangeRangeMain( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_sys, int event_key );
 
-// ‹ƒ‚«º‰æ–Ê
+// æ³£ãå£°ç”»é¢
 GLOBAL void ZKN_EVENT_MakeChangeSound( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_sys, int event_key );
 GLOBAL void ZKN_EVENT_MakeChangeSoundMain( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_sys, int event_key );
 
-// ‘å‚«‚³”ä‚×‰æ–Ê‚Ö
+// å¤§ãã•æ¯”ã¹ç”»é¢ã¸
 GLOBAL void ZKN_EVENT_MakeChangeBig( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_sys, int event_key );
 GLOBAL void ZKN_EVENT_MakeChangeBigMain( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_sys, int event_key );
 GLOBAL void ZKN_EVENT_MakeChangeBigWeightMain( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_sys, int event_key );
 
-// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê
+// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢
 GLOBAL void ZKN_EVENT_MakeChangePokeList( int heap, ZKN_EVENT_DATA* p_data, ZKN_SYS_PTR zkn_sys, int event_key );
 
-// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìã‰æ–Ê‚Ì‚İ•ÏX
+// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ä¸Šç”»é¢ã®ã¿å¤‰æ›´
 GLOBAL void ZKN_EVENT_MakeStartMainPokeList( ZKN_EVENT_DATA* p_event, ZKN_SYS_PTR zkn_sys, int heap, int event_key );
 
 
 #ifdef PM_DEBUG
-// ‚‚³”ä‚×DEBUGƒAƒvƒŠ‚Ö
+// é«˜ã•æ¯”ã¹DEBUGã‚¢ãƒ—ãƒªã¸
 GLOBAL void ZKN_EVENT_BigHeightDebugApl( ZKN_EVENT_DATA* p_event, ZKN_SYS_PTR zkn_sys, int heap, int event_key );
 
-// ‚‚³”ä‚×DEBUGƒAƒvƒŠ‚©‚ç‚‚³”ä‚×‚É•œ‹A
+// é«˜ã•æ¯”ã¹DEBUGã‚¢ãƒ—ãƒªã‹ã‚‰é«˜ã•æ¯”ã¹ã«å¾©å¸°
 GLOBAL void ZKN_EVENT_BigHeightDebugAplReturn( ZKN_EVENT_DATA* p_event, ZKN_SYS_PTR zkn_sys, int heap, int event_key );
 #endif
 

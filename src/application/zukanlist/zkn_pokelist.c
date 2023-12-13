@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_pokelist.c
- *	@brief		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg
+ *	@brief		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ
  *	@author		tomoya takahashi
  *	@data		2006.01.18
  *
@@ -27,34 +27,34 @@
 #define __ZKN_POKELIST_H_GLOBAL
 #include "include/application/zukanlist/zkn_pokelist.h"
 
-// ƒGƒtƒFƒNƒg‚ÅÀ•W‚ğLink‚³‚¹‚é‚½‚ßAd•û‚È‚­ƒCƒ“ƒNƒ‹[ƒh
+// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã§åº§æ¨™ã‚’Linkã•ã›ã‚‹ãŸã‚ã€ä»•æ–¹ãªãã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 #include "include/application/zukanlist/zkn_zukan.h"
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•`‰æˆ—‰Šú‰»ƒV[ƒPƒ“ƒX
+// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆæç”»å‡¦ç†åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_POKELIST_DRAWINIT_SEQ_GRA_LOAD,
@@ -64,14 +64,14 @@ enum{
 };
 
 //-------------------------------------
-// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•`‰æˆ—ƒƒCƒ“ƒV[ƒPƒ“ƒX
+// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆæç”»å‡¦ç†ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_POKELIST_DRAWMAIN_SEQ_END,
 };
 
 //-------------------------------------
-// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•`‰æˆ—”jŠüƒV[ƒPƒ“ƒX
+// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆæç”»å‡¦ç†ç ´æ£„ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
 	ZKN_POKELIST_DRAWEND_SEQ_FADEOUT,
@@ -83,40 +83,40 @@ enum{
 
 #define EVENT_DATA_NUM		( 5 )
 
-// ƒCƒxƒ“ƒg’è”
+// ã‚¤ãƒ™ãƒ³ãƒˆå®šæ•°
 #define EVENT_MSK_POKELIST_CHENGE_SORTSEARCH	( 1 << 0 )
 #define EVENT_MSK_POKELIST_CHENGE_ZUKAN			( 1 << 1 )
 #define EVENT_MSK_POKELIST_ZUKAN_END			( 1 << 2 )
 #define EVENT_MSK_POKELIST_MAIN_CHANGE			( 1 << 3 )
 #define EVENT_MSK_POKELIST_CHANGE				( 1 << 4 )
 
-// “®ì’è”
-#define ZKN_POKE_LIST_MOVE_CHENGE_NUM		( 4 )	// ƒXƒs[ƒh‚ğ•ÏX‚·‚é‰ñ”
-#define ZKN_POKE_LIST_MOVE_CHENGE_TIMING	( 4 )	// ‚±‚Ì‰ñ”ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒiƒ“ƒo[‚ğ•ÏX‚µ‚½‚çƒXƒs[ƒh‚ğ•ÏX
-#define ZKN_POKE_LIST_MOVE_COUNT_S		( 60 )	// 1=10‚Ì’PˆÊ
-#define ZKN_POKE_LIST_MOVE_COUNT_MUL	( 1.60f )	// ƒJƒEƒ“ƒgƒAƒbƒv”‰ÁZ’l
+// å‹•ä½œå®šæ•°
+#define ZKN_POKE_LIST_MOVE_CHENGE_NUM		( 4 )	// ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹å›æ•°
+#define ZKN_POKE_LIST_MOVE_CHENGE_TIMING	( 4 )	// ã“ã®å›æ•°ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ã‚’å¤‰æ›´ã—ãŸã‚‰ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰æ›´
+#define ZKN_POKE_LIST_MOVE_COUNT_S		( 60 )	// 1=10ã®å˜ä½
+#define ZKN_POKE_LIST_MOVE_COUNT_MUL	( 1.60f )	// ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—æ•°åŠ ç®—å€¤
 
-#define ZKN_POKE_LIST_MOVE_SKIP_NUM	( 5 )		// ƒXƒLƒbƒv”
+#define ZKN_POKE_LIST_MOVE_SKIP_NUM	( 5 )		// ã‚¹ã‚­ãƒƒãƒ—æ•°
 
 
-// ƒtƒF[ƒhƒCƒ“’è”
-#define ZKN_POKELIST_FADEIN_SYNC	( ZKN_FADE_SYNC_LONG_COMMON)		// ƒtƒF[ƒhƒCƒ“ƒVƒ“ƒN”
-// ƒtƒF[ƒhƒAƒEƒg’è”
-#define ZKN_POKELIST_FADEOUT_SYNC	( ZKN_FADE_SYNC_LONG_COMMON)		// ƒtƒF[ƒhƒCƒ“ƒVƒ“ƒN”
+// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å®šæ•°
+#define ZKN_POKELIST_FADEIN_SYNC	( ZKN_FADE_SYNC_LONG_COMMON)		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚·ãƒ³ã‚¯æ•°
+// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå®šæ•°
+#define ZKN_POKELIST_FADEOUT_SYNC	( ZKN_FADE_SYNC_LONG_COMMON)		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚·ãƒ³ã‚¯æ•°
 
-// BGƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh–Ê
-#define ZKN_POKELSIT_BRIGHTNESS_MSK	( GX_BLEND_PLANEMASK_BG0|GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_OBJ|GX_BLEND_PLANEMASK_BD )	// ’Êí
-#define ZKN_POKELSIT_BRIGHTNESS_ZUKAN_MSK	( GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_BD )	// }ŠÓƒtƒF[ƒh—p
+// BGãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰é¢
+#define ZKN_POKELSIT_BRIGHTNESS_MSK	( GX_BLEND_PLANEMASK_BG0|GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_OBJ|GX_BLEND_PLANEMASK_BD )	// é€šå¸¸
+#define ZKN_POKELSIT_BRIGHTNESS_ZUKAN_MSK	( GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_BD )	// å›³é‘‘ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨
 #define ZKN_POKELIST_BRIGHTNESS_ZUKAN_END_MSK	( GX_BLEND_PLANEMASK_BG1|GX_BLEND_PLANEMASK_BG2|GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_BD )
 
 
 
-// ”wŒi
+// èƒŒæ™¯
 #define ZKN_POKELIST_BACK_POKEFRAME_CX	( 1 )
 #define ZKN_POKELIST_BACK_POKEFRAME_CY	( 4 )
 
 
-// •¶š–Ê
+// æ–‡å­—é¢
 #define ZKN_POKELIST_STR_Y			( 152 )
 #define ZKN_POKELIST_SEE_STR_X		( 8 )
 #define ZKN_POKELIST_GET_STR_X		( 128 )
@@ -124,63 +124,63 @@ enum{
 #define ZKN_POKELIST_SEE_NUM_Y		( 170 )
 #define ZKN_POKELIST_GET_NUM_X		( 180 )
 #define ZKN_POKELIST_GET_NUM_Y		( 170 )
-#define ZKN_POKELIST_NUM_STR		( 32 )	// ƒoƒbƒtƒ@ƒTƒCƒY
-#define ZKN_POKELIST_PLACE			( 3 )	// Œ…
+#define ZKN_POKELIST_NUM_STR		( 32 )	// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+#define ZKN_POKELIST_PLACE			( 3 )	// æ¡
 
 
 
 
-// ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX”
+// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹æ•°
 #define ZKN_POKELIST_CELL_CG_NUM	( 2 )
 #define ZKN_POKELIST_CELL_CL_NUM	( 2 )
 #define ZKN_POKELIST_CELL_CE_NUM	( 2 )
 #define ZKN_POKELIST_CELL_AN_NUM	( 2 )
 
 
-// ƒ|ƒPƒ‚ƒ“ƒe[ƒuƒ‹’è”
-#define ZKN_POKELIST_POKETBL_NUM	(9)		// •\¦—pƒ|ƒPƒ‚ƒ“ƒe[ƒuƒ‹”
-#define ZKN_POKELIST_POKETBL_CHECK	(4)		// ‘I‘ğƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u
+// ãƒã‚±ãƒ¢ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«å®šæ•°
+#define ZKN_POKELIST_POKETBL_NUM	(9)		// è¡¨ç¤ºç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+#define ZKN_POKELIST_POKETBL_CHECK	(4)		// é¸æŠãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®
 #define ZKN_POKELIST_POKETBL_TBL_DEFX	( 180 * FX32_ONE )
 #define ZKN_POKELIST_POKETBL_TBL_CHECKX	( ZKN_POKELIST_TBL_MAT_X * FX32_ONE )
-const static ZknPokeListPokeTblMoveX[] = {		// “®ìƒe[ƒuƒ‹
-	ZKN_POKELIST_POKETBL_TBL_DEFX + 9*FX32_ONE,		// T‚¦
-	ZKN_POKELIST_POKETBL_TBL_DEFX + 5*FX32_ONE,		// •`‰æ 
-	ZKN_POKELIST_POKETBL_TBL_DEFX + 1*FX32_ONE,		// •`‰æ 
-	ZKN_POKELIST_POKETBL_TBL_DEFX - 3*FX32_ONE,		// •`‰æ 
-	ZKN_POKELIST_POKETBL_TBL_DEFX - 5*FX32_ONE,		// •`‰æ
-	ZKN_POKELIST_POKETBL_TBL_CHECKX,	// ‘I‘ğ
-	ZKN_POKELIST_POKETBL_TBL_DEFX - 5*FX32_ONE,		// •`‰æ
-	ZKN_POKELIST_POKETBL_TBL_DEFX - 3*FX32_ONE,		// •`‰æ
-	ZKN_POKELIST_POKETBL_TBL_DEFX + 1*FX32_ONE,		// •`‰æ
-	ZKN_POKELIST_POKETBL_TBL_DEFX + 5*FX32_ONE,		// •`‰æ
-	ZKN_POKELIST_POKETBL_TBL_DEFX + 9,		// T‚¦
+const static ZknPokeListPokeTblMoveX[] = {		// å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
+	ZKN_POKELIST_POKETBL_TBL_DEFX + 9*FX32_ONE,		// æ§ãˆ
+	ZKN_POKELIST_POKETBL_TBL_DEFX + 5*FX32_ONE,		// æç”» 
+	ZKN_POKELIST_POKETBL_TBL_DEFX + 1*FX32_ONE,		// æç”» 
+	ZKN_POKELIST_POKETBL_TBL_DEFX - 3*FX32_ONE,		// æç”» 
+	ZKN_POKELIST_POKETBL_TBL_DEFX - 5*FX32_ONE,		// æç”»
+	ZKN_POKELIST_POKETBL_TBL_CHECKX,	// é¸æŠ
+	ZKN_POKELIST_POKETBL_TBL_DEFX - 5*FX32_ONE,		// æç”»
+	ZKN_POKELIST_POKETBL_TBL_DEFX - 3*FX32_ONE,		// æç”»
+	ZKN_POKELIST_POKETBL_TBL_DEFX + 1*FX32_ONE,		// æç”»
+	ZKN_POKELIST_POKETBL_TBL_DEFX + 5*FX32_ONE,		// æç”»
+	ZKN_POKELIST_POKETBL_TBL_DEFX + 9,		// æ§ãˆ
 };
-const static ZknPokeListPokeTblMoveY[] = {		// “®ìƒe[ƒuƒ‹
+const static ZknPokeListPokeTblMoveY[] = {		// å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 	12 * FX32_ONE,
-	22 * FX32_ONE,		// ‚±‚±‚©‚ç•`‰æ
+	22 * FX32_ONE,		// ã“ã“ã‹ã‚‰æç”»
 	26 * FX32_ONE,
 	42 * FX32_ONE, 
 	58 * FX32_ONE,
-	82 * FX32_ONE,		// ‘I‘ğ
+	82 * FX32_ONE,		// é¸æŠ
 	106 * FX32_ONE,
 	122 * FX32_ONE,
 	138 * FX32_ONE,
-	142 * FX32_ONE,		// ‚±‚±‚Ü‚Å
+	142 * FX32_ONE,		// ã“ã“ã¾ã§
 	152 * FX32_ONE,
 };
 #if 0
-const static ZknPokeListPokeTblMoveX[] = {		// “®ìƒe[ƒuƒ‹
-	ZKN_POKELIST_POKETBL_TBL_DEFX,		// —\”õ
-	ZKN_POKELIST_POKETBL_TBL_DEFX,		// T‚¦
-	ZKN_POKELIST_POKETBL_TBL_DEFX,		// •`‰æ 
-	ZKN_POKELIST_POKETBL_TBL_DEFX,		// •`‰æ
-	ZKN_POKELIST_POKETBL_TBL_CHECKX,	// ‘I‘ğ
-	ZKN_POKELIST_POKETBL_TBL_DEFX,		// •`‰æ
-	ZKN_POKELIST_POKETBL_TBL_DEFX,		// •`‰æ
-	ZKN_POKELIST_POKETBL_TBL_DEFX,		// T‚¦
-	ZKN_POKELIST_POKETBL_TBL_DEFX,		// —\”õ
+const static ZknPokeListPokeTblMoveX[] = {		// å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
+	ZKN_POKELIST_POKETBL_TBL_DEFX,		// äºˆå‚™
+	ZKN_POKELIST_POKETBL_TBL_DEFX,		// æ§ãˆ
+	ZKN_POKELIST_POKETBL_TBL_DEFX,		// æç”» 
+	ZKN_POKELIST_POKETBL_TBL_DEFX,		// æç”»
+	ZKN_POKELIST_POKETBL_TBL_CHECKX,	// é¸æŠ
+	ZKN_POKELIST_POKETBL_TBL_DEFX,		// æç”»
+	ZKN_POKELIST_POKETBL_TBL_DEFX,		// æç”»
+	ZKN_POKELIST_POKETBL_TBL_DEFX,		// æ§ãˆ
+	ZKN_POKELIST_POKETBL_TBL_DEFX,		// äºˆå‚™
 };
-const static ZknPokeListPokeTblMoveY[] = {		// “®ìƒe[ƒuƒ‹
+const static ZknPokeListPokeTblMoveY[] = {		// å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 	7 * FX32_ONE,	// 5
 	12 * FX32_ONE,	// 10
 	22 * FX32_ONE,	// 26
@@ -192,21 +192,21 @@ const static ZknPokeListPokeTblMoveY[] = {		// “®ìƒe[ƒuƒ‹
 	157 * FX32_ONE,
 };
 #endif
-#define ZKN_POKELIST_PLTT_SELECT	(0)		// ’†‰›‚ÌƒŠƒXƒg‚ÌƒJƒ‰[
-#define ZKN_POKELIST_PLTT_OTHER0	(7)		// ‚»‚Ì‘¼‚ÌƒŠƒXƒg‚ÌƒJƒ‰[
-#define ZKN_POKELIST_PLTT_OTHER1	(8)		// ‚»‚Ì‘¼‚ÌƒŠƒXƒg‚ÌƒJƒ‰[
-#define ZKN_POKELIST_PLTT_OTHER2	(9)		// ‚»‚Ì‘¼‚ÌƒŠƒXƒg‚ÌƒJƒ‰[
+#define ZKN_POKELIST_PLTT_SELECT	(0)		// ä¸­å¤®ã®ãƒªã‚¹ãƒˆã®ã‚«ãƒ©ãƒ¼
+#define ZKN_POKELIST_PLTT_OTHER0	(7)		// ãã®ä»–ã®ãƒªã‚¹ãƒˆã®ã‚«ãƒ©ãƒ¼
+#define ZKN_POKELIST_PLTT_OTHER1	(8)		// ãã®ä»–ã®ãƒªã‚¹ãƒˆã®ã‚«ãƒ©ãƒ¼
+#define ZKN_POKELIST_PLTT_OTHER2	(9)		// ãã®ä»–ã®ãƒªã‚¹ãƒˆã®ã‚«ãƒ©ãƒ¼
 
 #define ZKN_POKELIST_OAM_BG_PRI	( 2 )
 
 
-// Cursor’è”
-#define ZKN_POKELIST_CURSOR_X		( 248 * FX32_ONE )	// XÀ•W
-#define ZKN_POKELIST_CURSOR_YMIN	( 58 * FX32_ONE )	// Å¬YÀ•W
-#define ZKN_POKELIST_CURSOR_YDIS	( 54 * FX32_ONE )	// YˆÚ“®‹——£
+// Cursorå®šæ•°
+#define ZKN_POKELIST_CURSOR_X		( 248 * FX32_ONE )	// Xåº§æ¨™
+#define ZKN_POKELIST_CURSOR_YMIN	( 58 * FX32_ONE )	// æœ€å°Yåº§æ¨™
+#define ZKN_POKELIST_CURSOR_YDIS	( 54 * FX32_ONE )	// Yç§»å‹•è·é›¢
 
 
-// ƒ|ƒPƒ‚ƒ“OAM’è”
+// ãƒã‚±ãƒ¢ãƒ³OAMå®šæ•°
 #define ZKN_POKELIST_ICON_ANMSEQ	( 1 )
 #define ZKN_POKELIST_ICON_PRI		( 0 )
 #define ZKN_POKELIST_POKETBL_ANMSEQ	( 0 )
@@ -220,79 +220,79 @@ const static ZknPokeListPokeTblMoveY[] = {		// “®ìƒe[ƒuƒ‹
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆæç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	ZKN_GLB_DRAWDATA*	p_drawglb;			// •`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+	ZKN_GLB_DRAWDATA*	p_drawglb;			// æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 } ZKN_POKELIST_GLB_DRAW;
 
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ[ƒN
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	int move_way;			// “®ì•ûŒü•Û‘¶
-	int move_count_add_num;	// ƒOƒ[ƒoƒ‹ƒf[ƒ^‚Ìmove_count‰ÁZ”
-	int move_speed_chg_timing;	// ƒXƒs[ƒh‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO
-	int move_speed_chg_num;	// ƒXƒs[ƒh‚ğ•ÏX‚µ‚½”
+	int move_way;			// å‹•ä½œæ–¹å‘ä¿å­˜
+	int move_count_add_num;	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã®move_countåŠ ç®—æ•°
+	int move_speed_chg_timing;	// ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+	int move_speed_chg_num;	// ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã—ãŸæ•°
 
-	int sub_seq;		// ƒTƒu‚Å“®‚­ˆ——p‚ÌƒV[ƒPƒ“ƒX
+	int sub_seq;		// ã‚µãƒ–ã§å‹•ãå‡¦ç†ç”¨ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	
-	BOOL skip_flag;		// ƒXƒLƒbƒvƒtƒ‰ƒO
-	int skip_count;		// ƒXƒLƒbƒvƒJƒEƒ“ƒ^
-	int skip_add;		// 1‰ñ‚Ì‘«‚µZ’l
-	int skip_way;		// ƒXƒLƒbƒv•ûŒü
+	BOOL skip_flag;		// ã‚¹ã‚­ãƒƒãƒ—ãƒ•ãƒ©ã‚°
+	int skip_count;		// ã‚¹ã‚­ãƒƒãƒ—ã‚«ã‚¦ãƒ³ã‚¿
+	int skip_add;		// 1å›ã®è¶³ã—ç®—å€¤
+	int skip_way;		// ã‚¹ã‚­ãƒƒãƒ—æ–¹å‘
 
 } ZKN_POKELIST_WORK;
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒOƒ‰ƒtƒBƒbƒNƒ[ƒN
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	CLACT_WORK_PTR	poke_tbl[ ZKN_POKELIST_POKETBL_NUM ];// ƒ|ƒPƒ‚ƒ“–¼ƒe[ƒuƒ‹
-	int poke_tbl_start;				// ƒ|ƒPƒ‚ƒ“–¼ƒe[ƒuƒ‹‚ÌÀ•W‚O‚Ì—v‘f”
-	ZKN_FONTOAM_DATA* poke_name[ ZKN_POKELIST_POKETBL_NUM ];// ƒ|ƒPƒ‚ƒ“–¼OAM
-	int poke_name_char_size;		// ƒ|ƒPƒ‚ƒ“–¼‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚ğ“]‘—‚·‚é—Ìˆæ‚ÌƒTƒCƒY
+	CLACT_WORK_PTR	poke_tbl[ ZKN_POKELIST_POKETBL_NUM ];// ãƒã‚±ãƒ¢ãƒ³åãƒ†ãƒ¼ãƒ–ãƒ«
+	int poke_tbl_start;				// ãƒã‚±ãƒ¢ãƒ³åãƒ†ãƒ¼ãƒ–ãƒ«ã®åº§æ¨™ï¼ã®è¦ç´ æ•°
+	ZKN_FONTOAM_DATA* poke_name[ ZKN_POKELIST_POKETBL_NUM ];// ãƒã‚±ãƒ¢ãƒ³åOAM
+	int poke_name_char_size;		// ãƒã‚±ãƒ¢ãƒ³åã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã‚’è»¢é€ã™ã‚‹é ˜åŸŸã®ã‚µã‚¤ã‚º
 
-	CLACT_WORK_PTR	icon[ ZKN_POKELIST_POKETBL_NUM ];// ƒ|ƒPƒ‚ƒ“–¼ƒe[ƒuƒ‹w’èƒAƒCƒRƒ“
-	CLACT_WORK_PTR	cursor;			// ‘S‘Ì‚ÌŒ»İ‚ÌˆÊ’uƒJ[ƒ\ƒ‹
-	fx32	onepoke_move_dis;		// 1‚Â‚Ìƒ|ƒPƒ‚ƒ“‚ª“®‚¢‚½‚ÌCursor‚ÌˆÚ“®’l
+	CLACT_WORK_PTR	icon[ ZKN_POKELIST_POKETBL_NUM ];// ãƒã‚±ãƒ¢ãƒ³åãƒ†ãƒ¼ãƒ–ãƒ«æŒ‡å®šã‚¢ã‚¤ã‚³ãƒ³
+	CLACT_WORK_PTR	cursor;			// å…¨ä½“ã®ç¾åœ¨ã®ä½ç½®ã‚«ãƒ¼ã‚½ãƒ«
+	fx32	onepoke_move_dis;		// 1ã¤ã®ãƒã‚±ãƒ¢ãƒ³ãŒå‹•ã„ãŸæ™‚ã®Cursorã®ç§»å‹•å€¤
 
-	CLACT_WORK_PTR dummy_poke;	// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒ_ƒ~[
+	CLACT_WORK_PTR dummy_poke;	// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ€ãƒŸãƒ¼
 	
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
 	CLACT_U_RES_MANAGER_PTR	res_manager[ ZKN_CLACT_RES_MANAGER_NUM ];	
 	
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^ƒwƒbƒ_
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ãƒ˜ãƒƒãƒ€
 	CLACT_HEADER		clheader;
 	CLACT_HEADER		clheader_dummy_poke;
 
 	void*			p_util_scrn_buff;
-	NNSG2dScreenData* p_util_scrn;	// ƒ†[ƒeƒBƒŠƒeƒB–Ê‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^
-	ZKN_UTIL_BGSHTTER_DADE bg_fade;	// BG–ÊƒtƒF[ƒhƒf[ƒ^
+	NNSG2dScreenData* p_util_scrn;	// ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é¢ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+	ZKN_UTIL_BGSHTTER_DADE bg_fade;	// BGé¢ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
 
-	// }ŠÓƒtƒF[ƒh—p“®ìƒ[ƒN
+	// å›³é‘‘ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨å‹•ä½œãƒ¯ãƒ¼ã‚¯
 	ZKN_UTIL_MOVE_WORK pokegra_move;
 	ZKN_UTIL_MOVE_WORK pokelist_move;
 
 
-	// ¡’†‰›‚É•\¦‚³‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚Ìƒe[ƒuƒ‹—v‘f”iZKN_GLBDATA.ZKN_POKELIST_TBL‚Ì”z—ñ‚Ì—v‘f” j
+	// ä»Šä¸­å¤®ã«è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ†ãƒ¼ãƒ–ãƒ«è¦ç´ æ•°ï¼ˆZKN_GLBDATA.ZKN_POKELIST_TBLã®é…åˆ—ã®è¦ç´ æ•° ï¼‰
 	int draw_poke_name;				
 } ZKN_POKELIST_GRAWORK;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static ZKN_POKELIST_GLB_DATA* MakeGlbData( int heap, ZKN_SYS_PTR zkn_sys );
@@ -301,7 +301,7 @@ static void DeleteGlbData( ZKN_POKELIST_GLB_DATA* p_glb );
 static ZKN_POKELIST_GLB_DRAW* MakeGlbDraw( int heap, ZKN_SYS_PTR zkn_sys );
 static void DeleteGlbDraw( ZKN_POKELIST_GLB_DRAW* p_glb );
 
-// ƒCƒxƒ“ƒgƒf[ƒ^ŠÖŒW
+// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿é–¢ä¿‚
 static ZKN_EVENT_DATA* MakeEventData( int heap, ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys );
 static void DeleteEventData( ZKN_EVENT_DATA* p_event_data );
 static int EventDataNumGet( void );
@@ -309,10 +309,10 @@ static int EventDataNumGet( void );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒXŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
-// ƒvƒƒZƒXŠÖ”
+// ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 static int ZknPokeListProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
 static int ZknPokeListProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
 static int ZknPokeListProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
@@ -336,7 +336,7 @@ static void PokeListPokeListFadeInit( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST
 static BOOL PokeListPokeListFadeMain( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_GLB_DRAW* p_drawglb );
 
 
-// “®ì•”•ª
+// å‹•ä½œéƒ¨åˆ†
 static void PokeListMoveMain( ZKN_POKELIST_GLB_DATA* p_glb, ZKN_POKELIST_WORK* p_work, int heap );
 static BOOL PokeListMoveIf( ZKN_POKELIST_GLB_DATA* p_glb, ZKN_POKELIST_WORK* p_work, int heap );
 static void PokeListMoveIfFlagReset( ZKN_POKELIST_GLB_DATA* p_glb );
@@ -360,10 +360,10 @@ static void PokeListZukanReset( ZKN_POKELIST_GLB_DATA* p_glb, int heap );
 static void PokeListSkipMove( ZKN_POKELIST_WORK* p_work, ZKN_POKELIST_GLB_DATA* p_glb );
 static void PokeListKeyMove( ZKN_POKELIST_WORK* p_work, ZKN_POKELIST_GLB_DATA* p_glb );
 
-// “à•”ƒ[ƒNì¬
+// å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 static void PokeListDrawWorkInit( ZKN_POKELIST_GRAWORK*	p_work, const ZKN_POKELIST_GLB_DATA* cp_dataglb );
 
-// ƒtƒ@ƒCƒ‹“Ç‚İ‚İ•‰æ–Êì¬
+// ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ï¼†ç”»é¢ä½œæˆ
 static void PokeListLoadGraphicFile( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_drawglb, const ZKN_POKELIST_GLB_DATA* cp_glb, int heap );
 static void PokeListReleaseGraphicFile( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_drawglb );
 static void PokeListLoadGraphicFileSortMode( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_drawglb, const ZKN_POKELIST_GLB_DATA* cp_glb, int heap );
@@ -389,7 +389,7 @@ static void PokeGraphicSetUp( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_
 static void PokeListOamFadeInit( ZKN_POKELIST_GRAWORK* p_work );
 static void PokeListOamFadeDelete( ZKN_POKELIST_GRAWORK* p_work );
 
-// CLACT_OBJƒpƒ‰ƒ[ƒ^ŒvZ•İ’èŠÖ”ŒS
+// CLACT_OBJãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨ˆç®—ï¼†è¨­å®šé–¢æ•°éƒ¡
 static void PokeListPokeTblInit( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIST_GLB_DATA* cp_glb );
 static void PokeListPokeTblMove( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIST_GLB_DATA* cp_glb );
 static void PokeListPokeTblDrawFlagSetUp( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIST_GLB_DATA* cp_glb );
@@ -413,11 +413,11 @@ static void PokeListSelectPokeDataGlbSet( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^	ì¬
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿	ä½œæˆ
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		ƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -450,9 +450,9 @@ void ZKN_PokeListAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^”jŠü
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -470,12 +470,12 @@ void ZKN_PokeListAplDelete( ZKN_APL_DATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Îß¹ÓİØ½ÄƒCƒxƒ“ƒg‚ğİ’è‚µ‚Ä‘åä•v‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚¤ãƒ™ãƒ³ãƒˆã‚’è¨­å®šã—ã¦å¤§ä¸ˆå¤«ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	‚æ‚¢
- *	@retval	FALSE	‚¾‚ß
+ *	@retval	TRUE	ã‚ˆã„
+ *	@retval	FALSE	ã ã‚
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_PokeList_SubEventSetOkCheck( const ZKN_POKELIST_GLB_DATA* cp_glb )
@@ -496,23 +496,23 @@ BOOL ZKN_PokeList_SubEventSetOkCheck( const ZKN_POKELIST_GLB_DATA* cp_glb )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv	
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—	
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -521,25 +521,25 @@ static ZKN_POKELIST_GLB_DATA* MakeGlbData( int heap, ZKN_SYS_PTR zkn_sys )
 {
 	ZKN_POKELIST_GLB_DATA*	p_glb;
 
-	// ƒƒ‚ƒŠŠm•Û
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_glb = sys_AllocMemory( heap, sizeof(ZKN_POKELIST_GLB_DATA) );
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_POKELIST_GLB_DATA) );
 	
-	// ƒCƒxƒ“ƒgƒL[ƒ|ƒCƒ“ƒ^æ“¾
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	p_glb->p_event_key = ZKN_SYS_GetEventKeyPtrMain( zkn_sys );
 
-	// }ŠÓ‚ÌŠeƒAƒvƒŠƒP[ƒVƒ‡ƒ“‹¤—Lƒf[ƒ^
+	// å›³é‘‘ã®å„ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å…±æœ‰ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_glb = ZKN_SYS_GetGlbData( zkn_sys );
 
 
-	// ƒtƒF[ƒhƒCƒ“ƒ‚[ƒh•ÏX
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
 	p_glb->fade_mode = ZKN_POKELIST_BG_FADE_NORMAL;
 
-	// }ŠÓƒf[ƒ^‰æ–Ê‚Ö‚ÌƒtƒF[ƒhƒ`ƒFƒbƒNƒtƒ‰ƒO
+	// å›³é‘‘ãƒ‡ãƒ¼ã‚¿ç”»é¢ã¸ã®ãƒ•ã‚§ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°
 	p_glb->fade_zukan_data = FALSE;
 
-	// •`‰æXVƒtƒ‰ƒO
+	// æç”»æ›´æ–°ãƒ•ãƒ©ã‚°
 	p_glb->move_draw = TRUE;
 	
 	return p_glb;
@@ -548,9 +548,9 @@ static ZKN_POKELIST_GLB_DATA* MakeGlbData( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -567,12 +567,12 @@ static void DeleteGlbData( ZKN_POKELIST_GLB_DATA* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ÌƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv	
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—	
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -581,13 +581,13 @@ static ZKN_POKELIST_GLB_DRAW* MakeGlbDraw( int heap, ZKN_SYS_PTR zkn_sys )
 {
 	ZKN_POKELIST_GLB_DRAW*	p_glb;
 
-	// ƒƒ‚ƒŠŠm•Û
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_glb = sys_AllocMemory( heap, sizeof(ZKN_POKELIST_GLB_DRAW) );
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_POKELIST_GLB_DRAW) );
 	
 
-	// }ŠÓ‚ÌŠeƒAƒvƒŠƒP[ƒVƒ‡ƒ“‹¤—LƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+	// å›³é‘‘ã®å„ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å…±æœ‰ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_drawglb = ZKN_SYS_GetGlbDrawData( zkn_sys );
 	
 	return p_glb;
@@ -596,9 +596,9 @@ static ZKN_POKELIST_GLB_DRAW* MakeGlbDraw( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -615,13 +615,13 @@ static void DeleteGlbDraw( ZKN_POKELIST_GLB_DRAW* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒxƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹ì¬
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒCƒxƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *
  */
@@ -643,9 +643,9 @@ static ZKN_EVENT_DATA* MakeEventData( int heap, ZKN_APL_DATA* p_data, ZKN_SYS_PT
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event_data		ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event_data		ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -669,11 +669,11 @@ static void DeleteEventData( ZKN_EVENT_DATA* p_event_data )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒxƒ“ƒg”æ“¾
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *
  *	@param	none
  *
- *	@return	ƒCƒxƒ“ƒg”
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆæ•°
  *
  *
  */
@@ -688,19 +688,19 @@ static int EventDataNumGet( void )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒXŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -709,30 +709,30 @@ static int ZknPokeListProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 {
 	ZKN_POKELIST_GLB_DATA* p_glb = p_glbdata;
 	
-	// “à•”ƒ[ƒN‰Šú‰»
+	// å†…éƒ¨ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	p_dodata->p_work = sys_AllocMemory( p_dodata->heap, sizeof(ZKN_POKELIST_WORK) );
 	GF_ASSERT( p_dodata->p_work );
 	memset( p_dodata->p_work, 0, sizeof(ZKN_POKELIST_WORK) );
 
-	// “®ìƒf[ƒ^İ’è
+	// å‹•ä½œãƒ‡ãƒ¼ã‚¿è¨­å®š
 	PokeListMoveInit( p_glb, p_dodata->p_work );
 
-	// ¡‚Ìƒ|ƒPƒŠƒXƒgˆÊ’u‚É•`‰æˆÊ’u‚à‡‚í‚¹‚é
+	// ä»Šã®ãƒã‚±ãƒªã‚¹ãƒˆä½ç½®ã«æç”»ä½ç½®ã‚‚åˆã‚ã›ã‚‹
 	ZKN_GLBDATA_PokeListDrawTblSetNowTblNo( p_glb->p_glb );
 	
-	// •`‰æXVƒtƒ‰ƒO
+	// æç”»æ›´æ–°ãƒ•ãƒ©ã‚°
 	p_glb->move_draw = TRUE;
 
-	// ƒzƒC[ƒ‹ƒƒbƒNƒtƒ‰ƒO
+	// ãƒ›ã‚¤ãƒ¼ãƒ«ãƒ­ãƒƒã‚¯ãƒ•ãƒ©ã‚°
 	p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NONE;
 
 
-	// ¿°ÄÓ°ÄŞ‚Ì‚Æ‚«‚ÍƒtƒF[ƒhÀ²Ìß‚ğƒVƒƒƒbƒ^[‚É‚·‚é
+	// ã‚½ãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰ã®ã¨ãã¯ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¿ã‚¤ãƒ—ã‚’ã‚·ãƒ£ãƒƒã‚¿ãƒ¼ã«ã™ã‚‹
 	if( p_glb->fade_sort_data == TRUE ){
 		p_glb->fade_mode = ZKN_POKELIST_BG_FADE_SHUTTER;
 	}
 
-	// •ªŠòƒtƒ‰ƒO‚Ì‰Šú‰»
+	// åˆ†å²ãƒ•ãƒ©ã‚°ã®åˆæœŸåŒ–
 	PokeListMoveIfFlagReset( p_glb );
 
 	return ZKN_PROC_TRUE;
@@ -740,14 +740,14 @@ static int ZknPokeListProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -758,17 +758,17 @@ static int ZknPokeListProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 	ZKN_POKELIST_WORK*	p_work = p_dodata->p_work;
 
 
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
 		return ZKN_PROC_TRUE;
 	}
 
-	if( p_dodata->seq == 0 ){		//@‰Šú‰»
+	if( p_dodata->seq == 0 ){		//ã€€åˆæœŸåŒ–
 		p_glb->fade_sort_data = FALSE;
 		p_dodata->seq = 1;
-	}else{		// ƒƒCƒ“
+	}else{		// ãƒ¡ã‚¤ãƒ³
 
-		// ƒƒCƒ“ƒŠƒXƒg“®ì
+		// ãƒ¡ã‚¤ãƒ³ãƒªã‚¹ãƒˆå‹•ä½œ
 		PokeListMoveMain( p_glb, p_work, p_dodata->heap );
 	}
 
@@ -778,21 +778,21 @@ static int ZknPokeListProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
 //-----------------------------------------------------------------------------
 static int ZknPokeListProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata )
 {
-	// “à•”ƒ[ƒN”jŠü
+	// å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_dodata->p_work );
 	p_dodata->p_work = NULL;
 	
@@ -801,17 +801,17 @@ static int ZknPokeListProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbd
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -824,16 +824,16 @@ static int ZknPokeListProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 	ZKN_POKELIST_GRAWORK*		p_work = p_drawdata->p_work;
 	BOOL check;
 
-	// ƒf[ƒ^ƒtƒ@ƒCƒ‹“Ç‚İ‚İˆ—@ƒtƒF[ƒhˆ—
+	// ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å‡¦ç†ã€€ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 	switch( p_drawdata->seq ){
 	case ZKN_POKELIST_DRAWINIT_SEQ_GRA_LOAD:
-		// “à•”ƒ[ƒNì¬
+		// å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 		p_work = sys_AllocMemory( p_drawdata->heap, sizeof(ZKN_POKELIST_GRAWORK) );
 		GF_ASSERT(p_work);
 		p_drawdata->p_work = p_work;
 		PokeListDrawWorkInit( p_work, cp_dataglb );
 
-		// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒZƒbƒgƒAƒbƒv
+		// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		PokeGraphicSetUp( p_work, p_drawglb->p_drawglb, cp_dataglb );
 
 		
@@ -841,17 +841,17 @@ static int ZknPokeListProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 		break;
 
 	case  ZKN_POKELIST_DRAWINIT_SEQ_FADEIN:
-		// ƒ|ƒPƒ‚ƒ“‚ÌƒOƒ‰ƒtƒBƒbƒN‚ª“]‘—‚³‚ê‚é‚Ì‚ğ‚Ü‚Â
-		// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^“Ç‚İ‚İ
+		// ãƒã‚±ãƒ¢ãƒ³ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãŒè»¢é€ã•ã‚Œã‚‹ã®ã‚’ã¾ã¤
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		if( cp_dataglb->p_glb->sort_search_flag == ZKN_SORTSEARCH_NONE ){
-			// ’Êí
+			// é€šå¸¸
 			PokeListLoadGraphicFile( p_work, p_drawglb->p_drawglb, cp_dataglb, p_drawdata->heap );
 		}else{
-			// ¿°ÄÓ°ÄŞ
+			// ã‚½ãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰
 			PokeListLoadGraphicFileSortMode( p_work, p_drawglb->p_drawglb, cp_dataglb, p_drawdata->heap );
 		}
 
-		// }ŠÓ—pƒtƒF[ƒh‚©’ÊíƒtƒF[ƒh‚©ƒ`ƒFƒbƒN
+		// å›³é‘‘ç”¨ãƒ•ã‚§ãƒ¼ãƒ‰ã‹é€šå¸¸ãƒ•ã‚§ãƒ¼ãƒ‰ã‹ãƒã‚§ãƒƒã‚¯
 		if( cp_dataglb->fade_zukan_data ){
 
 			ZknPokeListChZukanFadeReq( p_work, p_drawglb, cp_dataglb, TRUE );
@@ -864,7 +864,7 @@ static int ZknPokeListProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 		
 	case ZKN_POKELIST_DRAWINIT_SEQ_FADEIN_WAIT:
 	
-		// }ŠÓ—pƒtƒF[ƒh‚©’ÊíƒtƒF[ƒh‚©ƒ`ƒFƒbƒN
+		// å›³é‘‘ç”¨ãƒ•ã‚§ãƒ¼ãƒ‰ã‹é€šå¸¸ãƒ•ã‚§ãƒ¼ãƒ‰ã‹ãƒã‚§ãƒƒã‚¯
 		if( cp_dataglb->fade_zukan_data ){
 			check = ZknPokeListChZukanFadeEndCheck( p_work, p_drawglb, cp_dataglb, TRUE );
 		}else{
@@ -876,12 +876,12 @@ static int ZknPokeListProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 		break;
 		
 	case ZKN_POKELIST_DRAWINIT_SEQ_END:
-		// ƒ¿’l‚Ìİ’è
+		// Î±å€¤ã®è¨­å®š
 		G2_SetBlendAlpha( GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG3, 0, 16 );
 		return ZKN_PROC_TRUE;
 
 	default:
-		// ‚±‚±‚É‚­‚é‚Ì‚Í‚¨‚©‚µ‚¢
+		// ã“ã“ã«ãã‚‹ã®ã¯ãŠã‹ã—ã„
 		GF_ASSERT(0);
 		break;
 	}
@@ -891,17 +891,17 @@ static int ZknPokeListProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -914,30 +914,30 @@ static int ZknPokeListProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 	ZKN_POKELIST_GRAWORK*		p_work = p_drawdata->p_work;
 	int tbl_no;
 
-	// •`‰æXVONOFF
+	// æç”»æ›´æ–°ONOFF
 	if( cp_glb->move_draw == FALSE ){
 		return ZKN_PROC_FALSE;
 	}
 
-	// Œ»İ•\¦’†‚Ì‘I‘ğƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ğXV
+	// ç¾åœ¨è¡¨ç¤ºä¸­ã®é¸æŠãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’æ›´æ–°
 	tbl_no = ZKN_GLBDATA_PokeListDrawTblNoGet( cp_glb->p_glb );
 	if( p_work->draw_poke_name != tbl_no ){
-		// ƒZƒ“ƒ^[•\¦ƒe[ƒuƒ‹ƒiƒ“ƒo[İ’è
+		// ã‚»ãƒ³ã‚¿ãƒ¼è¡¨ç¤ºãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼è¨­å®š
 		p_work->draw_poke_name = tbl_no;
 
-		// ƒŠƒXƒg•ÏXˆ—
-		// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹‚Ìæ“ª‚ğ•ÏX‚·‚éˆ—
-		// ƒŠƒXƒg‚Ì•\¦”ñ•\¦‚àŠÇ—
+		// ãƒªã‚¹ãƒˆå¤‰æ›´å‡¦ç†
+		// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®å…ˆé ­ã‚’å¤‰æ›´ã™ã‚‹å‡¦ç†
+		// ãƒªã‚¹ãƒˆã®è¡¨ç¤ºéè¡¨ç¤ºã‚‚ç®¡ç†
 		PokeListPokeTblListStartNumChenge( p_work, cp_glb );
 	
-		// ƒ|ƒPƒ‚ƒ“–¼ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^•ÏXˆ—
+		// ãƒã‚±ãƒ¢ãƒ³åã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å¤‰æ›´å‡¦ç†
 		PokeListPokeNameMoveNameChange( p_work, p_drawglb->p_drawglb, cp_glb, p_drawdata->heap );
 
-		// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ì•ÏXˆ—
+		// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å¤‰æ›´å‡¦ç†
 		PokeGraphicSetUp( p_work, p_drawglb->p_drawglb, cp_glb );
 	}
 	
-	// ƒŠƒXƒg•`‰æÀ•Wİ’è
+	// ãƒªã‚¹ãƒˆæç”»åº§æ¨™è¨­å®š
 	PokeListPokeTblMove( p_work, cp_glb );
 	PokeListIconMove( p_work, cp_glb );
 	PokeListCursorMove( p_work, cp_glb );
@@ -950,17 +950,17 @@ static int ZknPokeListProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -973,17 +973,17 @@ static int ZknPokeListProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 	ZKN_POKELIST_GRAWORK*		p_work = p_drawdata->p_work;
 	BOOL check;
 
-	// ƒf[ƒ^ƒtƒ@ƒCƒ‹“Ç‚İ‚İˆ—@ƒtƒF[ƒhˆ—
+	// ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å‡¦ç†ã€€ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 	switch( p_drawdata->seq ){
 	case ZKN_POKELIST_DRAWEND_SEQ_FADEOUT:
 		G2_BlendNone();
 
-		// }ŠÓ—pƒtƒF[ƒh‚©’ÊíƒtƒF[ƒh‚©ƒ`ƒFƒbƒN
+		// å›³é‘‘ç”¨ãƒ•ã‚§ãƒ¼ãƒ‰ã‹é€šå¸¸ãƒ•ã‚§ãƒ¼ãƒ‰ã‹ãƒã‚§ãƒƒã‚¯
 		if( cp_dataglb->fade_zukan_data ){
-			// ƒOƒ[ƒoƒ‹ƒGƒŠƒA‚Éƒ|ƒPƒ‚ƒ“ƒŠƒXƒgì¬
+			// ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¨ãƒªã‚¢ã«ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆä½œæˆ
 			PokeListSelectPokeDataGlbSet( p_work, p_drawglb->p_drawglb, cp_dataglb, p_drawdata->heap );
 
-			// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒ¿’lƒŠƒZƒbƒg
+			// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯Î±å€¤ãƒªã‚»ãƒƒãƒˆ
 			PokeListPokeGraAlphaInit( p_drawglb->p_drawglb, cp_dataglb );
 
 			ZknPokeListChZukanFadeReq( p_work, p_drawglb, cp_dataglb, FALSE );
@@ -994,7 +994,7 @@ static int ZknPokeListProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 		break;
 		
 	case ZKN_POKELIST_DRAWEND_SEQ_FADEOUT_WAIT:
-		// }ŠÓ—pƒtƒF[ƒh‚©’ÊíƒtƒF[ƒh‚©ƒ`ƒFƒbƒN
+		// å›³é‘‘ç”¨ãƒ•ã‚§ãƒ¼ãƒ‰ã‹é€šå¸¸ãƒ•ã‚§ãƒ¼ãƒ‰ã‹ãƒã‚§ãƒƒã‚¯
 		if( cp_dataglb->fade_zukan_data ){
 			check = ZknPokeListChZukanFadeEndCheck( p_work, p_drawglb, cp_dataglb, FALSE );
 		}else{
@@ -1008,7 +1008,7 @@ static int ZknPokeListProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 	case ZKN_POKELIST_DRAWEND_SEQ_GRA_RELEASE:
 		PokeListReleaseGraphicFile( p_work, p_drawglb->p_drawglb );
 
-		// ”p•”ƒ[ƒN”jŠü
+		// å»ƒéƒ¨ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		sys_FreeMemoryEz( p_work );
 		p_drawdata->seq++;
 		break;
@@ -1018,7 +1018,7 @@ static int ZknPokeListProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 		return ZKN_PROC_TRUE;
 
 	default:
-		// ‚±‚±‚É‚­‚é‚Ì‚Í‚¨‚©‚µ‚¢
+		// ã“ã“ã«ãã‚‹ã®ã¯ãŠã‹ã—ã„
 		GF_ASSERT(0);
 		break;
 	}
@@ -1030,10 +1030,10 @@ static int ZknPokeListProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg“®ì‰Šú‰»
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	p_work	“à•”ƒ[ƒN
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_work	å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return	none
  *
@@ -1051,7 +1051,7 @@ static void PokeListMoveInit( ZKN_POKELIST_GLB_DATA* p_glb, ZKN_POKELIST_WORK* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒLƒbƒv“®ì‰Šú‰»
+ *	@brief	ã‚¹ã‚­ãƒƒãƒ—å‹•ä½œåˆæœŸåŒ–
  *
  *	@param	p_glb
  *	@param	p_work 
@@ -1069,50 +1069,50 @@ static void PokeListSkipMoveInit( ZKN_POKELIST_GLB_DATA* p_glb, ZKN_POKELIST_WOR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒƒCƒ““®ì
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void PokeListMoveMain( ZKN_POKELIST_GLB_DATA* p_glb, ZKN_POKELIST_WORK* p_work, int heap )
 {
-	// •ªŠòˆ—
+	// åˆ†å²å‡¦ç†
 	if( PokeListMoveIf( p_glb, p_work, heap ) == TRUE ){
-		return ;	// ‰æ–ÊØ‚è‘Ö‚¦ˆ—‚ªs‚í‚ê‚½‚Ì‚ÅA‚»‚Ì‚Ü‚Ü”²‚¯‚é
-		// ‚±‚ê‚ğ‚Í‚¸‚µ‚ÄA‰º‚ÌMoveIfFlagReset‚ğÀs‚·‚é‚Æ
-		// pokelist_sub‚ÌƒŠƒXƒgæ“ªAÅIƒWƒƒƒ“ƒv‚ªÀs‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚¿‚á‚¢‚Ü‚·
+		return ;	// ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‡¦ç†ãŒè¡Œã‚ã‚ŒãŸã®ã§ã€ãã®ã¾ã¾æŠœã‘ã‚‹
+		// ã“ã‚Œã‚’ã¯ãšã—ã¦ã€ä¸‹ã®MoveIfFlagResetã‚’å®Ÿè¡Œã™ã‚‹ã¨
+		// pokelist_subã®ãƒªã‚¹ãƒˆå…ˆé ­ã€æœ€çµ‚ã‚¸ãƒ£ãƒ³ãƒ—ãŒå®Ÿè¡Œã§ãã‚‹ã‚ˆã†ã«ãªã£ã¡ã‚ƒã„ã¾ã™
 	}
 
-	// •ªŠòƒtƒ‰ƒO‚Ì‰Šú‰»
+	// åˆ†å²ãƒ•ãƒ©ã‚°ã®åˆæœŸåŒ–
 	PokeListMoveIfFlagReset( p_glb );
 
 
-	// “®ì’â~‚µ‚Ä‚¢‚½‚ç
+	// å‹•ä½œåœæ­¢ã—ã¦ã„ãŸã‚‰
 	if( p_work->move_way == ZKN_POKE_LIST_NO_MOVE ){
 
-		// ƒXƒLƒbƒvˆ—
+		// ã‚¹ã‚­ãƒƒãƒ—å‡¦ç†
 		if( p_work->skip_flag == TRUE ){
 
-			// ƒXƒLƒbƒv“®ì
+			// ã‚¹ã‚­ãƒƒãƒ—å‹•ä½œ
 			PokeListSkipMove( p_work, p_glb );
 		}else{
 
-			// ƒXƒLƒbƒv’†‚Å‚È‚¢‚Æ‚«‚Ìˆ—
+			// ã‚¹ã‚­ãƒƒãƒ—ä¸­ã§ãªã„ã¨ãã®å‡¦ç†
 			PokeListKeyMove( p_work, p_glb );
 		}
 	}
 
 
-	// “®ì
+	// å‹•ä½œ
 	if( p_glb->sub_wheel_lock != ZKN_POKELIST_WHEEL_LOCK_NONE ){
 		PokeListMoveUp( p_glb, p_work );
 	}
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹‚Æ•ªŠòƒ^ƒCƒ~ƒ“ƒO‚ª“¯‚¶‚É‚È‚é‚æ‚¤‚É
-	// ‚±‚ÌˆÊ’u‚Å•ªŠòƒL[‘€ì
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã¨åˆ†å²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒåŒã˜ã«ãªã‚‹ã‚ˆã†ã«
+	// ã“ã®ä½ç½®ã§åˆ†å²ã‚­ãƒ¼æ“ä½œ
 	PokeListMoveIfKey( p_glb );
 	
 }
@@ -1120,7 +1120,7 @@ static void PokeListMoveMain( ZKN_POKELIST_GLB_DATA* p_glb, ZKN_POKELIST_WORK* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ªŠòƒtƒ‰ƒOƒŠƒZƒbƒg
+ *	@brief	åˆ†å²ãƒ•ãƒ©ã‚°ãƒªã‚»ãƒƒãƒˆ
  *
  *	@param	p_glb 
  *
@@ -1129,16 +1129,16 @@ static void PokeListMoveMain( ZKN_POKELIST_GLB_DATA* p_glb, ZKN_POKELIST_WORK* p
 //-----------------------------------------------------------------------------
 static void PokeListMoveIfFlagReset( ZKN_POKELIST_GLB_DATA* p_glb )
 {
-	p_glb->zukan_sort_end = FALSE;			// SORTƒ‚[ƒhI—¹
-	p_glb->zukan_end = FALSE;				// }ŠÓI—¹
-	p_glb->zukan_see = FALSE;				// }ŠÓƒf[ƒ^‚ğŒ©‚é
-	p_glb->zukan_chg = FALSE;				// }ŠÓƒ‚[ƒh•ÏX
-	p_glb->sort_chg = FALSE;				// SORT‰æ–Ê‚Ö•ÏX
+	p_glb->zukan_sort_end = FALSE;			// SORTãƒ¢ãƒ¼ãƒ‰çµ‚äº†
+	p_glb->zukan_end = FALSE;				// å›³é‘‘çµ‚äº†
+	p_glb->zukan_see = FALSE;				// å›³é‘‘ãƒ‡ãƒ¼ã‚¿ã‚’è¦‹ã‚‹
+	p_glb->zukan_chg = FALSE;				// å›³é‘‘ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
+	p_glb->sort_chg = FALSE;				// SORTç”»é¢ã¸å¤‰æ›´
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ª•zƒL[‘€ì
+ *	@brief	åˆ†å¸ƒã‚­ãƒ¼æ“ä½œ
  *
  *	@param	p_glb 
  *
@@ -1175,58 +1175,58 @@ static void PokeListMoveIfKey( ZKN_POKELIST_GLB_DATA* p_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•ªŠòˆ—
+ *	@brief	åˆ†å²å‡¦ç†
  *
  *	@param	p_glb
  *	@param	p_work
  *	@param	heap 
  *
- *	@retval	TRUE	ˆ—‚ª‚ ‚Á‚½
- *	@retval	FALSE	ˆ—‚ª‚È‚©‚Á‚½
+ *	@retval	TRUE	å‡¦ç†ãŒã‚ã£ãŸ
+ *	@retval	FALSE	å‡¦ç†ãŒãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL PokeListMoveIf( ZKN_POKELIST_GLB_DATA* p_glb, ZKN_POKELIST_WORK* p_work, int heap )
 {
-	// }ŠÓ”jŠüƒCƒxƒ“ƒg‚Ö
+	// å›³é‘‘ç ´æ£„ã‚¤ãƒ™ãƒ³ãƒˆã¸
 	if( p_glb->zukan_end ){
 
 		PokeListZukanDel( p_glb );
 		
-		// ƒLƒƒƒ“ƒZƒ‹‰¹
+		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«éŸ³
 		Snd_SePlay( ZKN_SND_CANCEL );
 		return TRUE;
 	}
 
-	// SORTƒ‚[ƒhƒŠƒZƒbƒg
+	// SORTãƒ¢ãƒ¼ãƒ‰ãƒªã‚»ãƒƒãƒˆ
 	if( p_glb->zukan_sort_end ){
 
 		PokeListZukanReset( p_glb, heap );
-		// ƒLƒƒƒ“ƒZƒ‹‰¹
+		// ã‚­ãƒ£ãƒ³ã‚»ãƒ«éŸ³
 		Snd_SePlay( ZKN_SND_CANCEL );
 		return TRUE;
 	}
 
-	// }ŠÓ‰æ–Ê‚Ö
+	// å›³é‘‘ç”»é¢ã¸
 	if( p_glb->zukan_see ){
 		int draw_tbl_no = ZKN_GLBDATA_PokeListDrawTblNoGet( p_glb->p_glb );
-		// ‚¢‚¯‚é‚©ƒ`ƒFƒbƒN
+		// ã„ã‘ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( ZKN_GLBDATA_PokeListDrawTblDataGet( p_glb->p_glb, draw_tbl_no ) != POKEMON_LIST_DRAWTBL_DUMMY ){
 			
 			PokeListZukanChg( p_work, p_glb );
 
-			// ‘I‘ğ‰¹
+			// é¸æŠéŸ³
 			Snd_SePlay( ZKN_SND_SELECT );
 			return TRUE;
 		}
 
 	}//*/
 
-	// SORT‰æ–Ê‚Ö
+	// SORTç”»é¢ã¸
 	if( p_glb->sort_chg ){
 		return PokeListSortChg( p_glb );
 	}
 
-	// }ŠÓ‚ğØ‚è‘Ö‚¦‚é
+	// å›³é‘‘ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	if( p_glb->zukan_chg ){
 		return PokeListZukanModeChg( p_glb, heap );
 	}
@@ -1238,10 +1238,10 @@ static BOOL PokeListMoveIf( ZKN_POKELIST_GLB_DATA* p_glb, ZKN_POKELIST_WORK* p_w
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒs[ƒhƒAƒbƒv§Œä
+ *	@brief	ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚¢ãƒƒãƒ—åˆ¶å¾¡
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	p_work		“à•”ƒ[ƒN
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_work		å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
  *	
  *	@return	none
  *
@@ -1250,29 +1250,29 @@ static BOOL PokeListMoveIf( ZKN_POKELIST_GLB_DATA* p_glb, ZKN_POKELIST_WORK* p_w
 //-----------------------------------------------------------------------------
 static void PokeListMoveUp( ZKN_POKELIST_GLB_DATA* p_glb, ZKN_POKELIST_WORK* p_work )
 {
-	// “®‚¢‚Ä‚¢‚È‚¢‚È‚ç”²‚¯‚é
+	// å‹•ã„ã¦ã„ãªã„ãªã‚‰æŠœã‘ã‚‹
 	if( p_work->move_way == ZKN_POKE_LIST_NO_MOVE ){
 		return;
 	}
 
-	// “®ìƒVƒ“ƒN”•ÏX
+	// å‹•ä½œã‚·ãƒ³ã‚¯æ•°å¤‰æ›´
 	if( (p_glb->move_count - p_work->move_count_add_num) > 0 ){
-		// ƒJƒEƒ“ƒg
+		// ã‚«ã‚¦ãƒ³ãƒˆ
 		p_glb->move_count -= p_work->move_count_add_num;
 	}else{
-		// ƒJƒEƒ“ƒgI—¹
+		// ã‚«ã‚¦ãƒ³ãƒˆçµ‚äº†
 		p_glb->move_count = 0;
 		p_work->move_way = ZKN_POKE_LIST_NO_MOVE;
 
 		if( p_work->move_speed_chg_num > 0 ){
-			// ƒJƒEƒ“ƒgƒAƒbƒvƒXƒs[ƒh‚ğ•ÏX‚·‚é‚©ƒ`ƒFƒbƒN
+			// ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( (p_work->move_speed_chg_timing - 1) > 0 ){
 				p_work->move_speed_chg_timing--;
 			}else{
 				p_work->move_count_add_num *= ZKN_POKE_LIST_MOVE_COUNT_MUL;
 				p_work->move_speed_chg_num --;
 
-				// •ÏX‚·‚é‚½‚Ñ‚ÉƒXƒs[ƒhƒAƒbƒvŠÔŠu‚ğ‘å‚«‚­‚·‚é
+				// å¤‰æ›´ã™ã‚‹ãŸã³ã«ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚¢ãƒƒãƒ—é–“éš”ã‚’å¤§ããã™ã‚‹
 				p_work->move_speed_chg_timing = ZKN_POKE_LIST_MOVE_CHENGE_TIMING * (ZKN_POKE_LIST_MOVE_CHENGE_NUM - p_work->move_speed_chg_num);
 			}
 		}
@@ -1282,16 +1282,16 @@ static void PokeListMoveUp( ZKN_POKELIST_GLB_DATA* p_glb, ZKN_POKELIST_WORK* p_w
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“®ìŠJnƒŠƒNƒGƒXƒg‚ğo‚·
+ *	@brief	å‹•ä½œé–‹å§‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å‡ºã™
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	p_work	“à•”ƒ[ƒN
- *	@param	way		“®ì•ûŒü
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_work	å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
+ *	@param	way		å‹•ä½œæ–¹å‘
  *	
  *	@return	none
  *
-	ZKN_POKE_LIST_UP,			// ã‚ÉˆÚ“®
-	ZKN_POKE_LIST_DOWN,			// ‰º‚ÉˆÚ“®
+	ZKN_POKE_LIST_UP,			// ä¸Šã«ç§»å‹•
+	ZKN_POKE_LIST_DOWN,			// ä¸‹ã«ç§»å‹•
  *
  */
 //-----------------------------------------------------------------------------
@@ -1305,13 +1305,13 @@ static void PokeListMoveReq( ZKN_POKELIST_GLB_DATA* p_glb, ZKN_POKELIST_WORK* p_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	w’èƒ|ƒPƒ‚ƒ“‚ğƒ|ƒPƒ‚ƒ“ˆø”•ªi‚ß‚é
+ *	@brief	æŒ‡å®šãƒã‚±ãƒ¢ãƒ³ã‚’ãƒã‚±ãƒ¢ãƒ³å¼•æ•°åˆ†é€²ã‚ã‚‹
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	num		i‚ß‚é’l
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	num		é€²ã‚ã‚‹å€¤
  *
- *	@retval	TRUE	XV‚³‚ê‚½
- *	@retval	FALSE	’l‚Í•Ï‚í‚ç‚È‚©‚Á‚½
+ *	@retval	TRUE	æ›´æ–°ã•ã‚ŒãŸ
+ *	@retval	FALSE	å€¤ã¯å¤‰ã‚ã‚‰ãªã‹ã£ãŸ
  *
  *
  */
@@ -1327,12 +1327,12 @@ static BOOL PokeListMoveAdd( ZKN_POKELIST_GLB_DATA* p_glb, int num )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•`‰æƒtƒ@ƒCƒ‹“Ç‚İ‚İ•¶¬
+ *	@brief	æç”»ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ï¼†ç”Ÿæˆ
  *
- *	@param	p_work			ƒf[ƒ^Ši”[ƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap			g—pƒq[ƒv
+ *	@param	p_work			ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap			ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -1341,61 +1341,61 @@ static BOOL PokeListMoveAdd( ZKN_POKELIST_GLB_DATA* p_glb, int num )
 //-----------------------------------------------------------------------------
 static void PokeListLoadGraphicFile( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_drawglb, const ZKN_POKELIST_GLB_DATA* cp_glb, int heap )
 {
-	// BG–Ê
-	// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+	// BGé¢
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
 	ZKN_GLBDATA_PalSet( p_drawglb, NARC_zukan_zkn_list_NCLR, PALTYPE_MAIN_BG, 0, 0, heap );
 
-	// ”wŒi–Êİ’è
+	// èƒŒæ™¯é¢è¨­å®š
 	PokeListBackGroundSetUp( p_drawglb, heap );
 
-	// ƒ†[ƒeƒBƒŠƒeƒB–Ê
+	// ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é¢
 	PokeListUtilSetUp( p_work, p_drawglb, heap, ZKN_GLBDATA_PokeZknModeGet( cp_glb->p_glb ) );
 
-	// •¶š—ñ–Ê
+	// æ–‡å­—åˆ—é¢
 	PokeListFontSetUp( p_drawglb, heap, 
 			ZKN_GLBDATA_PokeSeeNumGet( cp_glb->p_glb ),
 			ZKN_GLBDATA_PokeGetNumGet( cp_glb->p_glb ) );
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‰Šú‰»
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
 	PokeListResManagerMake( p_work, heap );
 
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	PokeListClActResLoad( p_work, p_drawglb, heap );
 
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	PokeListClActAdd( p_work, p_drawglb, heap );
 
-	// •¶š—ñOAM“o˜^
-	// ƒ|ƒPƒ‚ƒ“ƒe[ƒuƒ‹‚ğ“]‘—‚·‚é—Ìˆæ‚ÌƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY‚ğ‹‚ß‚é
+	// æ–‡å­—åˆ—OAMç™»éŒ²
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’è»¢é€ã™ã‚‹é ˜åŸŸã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã‚‹
 	p_work->poke_name_char_size = PokeListPokeNameCharTransSizeGet( p_drawglb, heap );
 
-	// —Ìˆæì¬
+	// é ˜åŸŸä½œæˆ
 	PokeListPokeNameSetUp( p_work, p_drawglb, cp_glb, heap );
 
 
-	// ƒAƒNƒ^[À•W‚ÌƒZƒbƒgƒAƒbƒv
+	// ã‚¢ã‚¯ã‚¿ãƒ¼åº§æ¨™ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	PokeListPokeTblInit( p_work, cp_glb );
 	PokeListPokeTblMove( p_work, cp_glb );
 	PokeListIconMove( p_work, cp_glb );
 	PokeListCursorInit( p_work, cp_glb );
 	PokeListCursorMove( p_work, cp_glb );
 
-	// •¶š—ñ“®ì
+	// æ–‡å­—åˆ—å‹•ä½œ
 	PokeListPokeNameMove(p_work, p_drawglb, cp_glb, heap);
 
-	// ƒ|ƒPƒ‚ƒ“‚Ìƒ¿’lƒZƒbƒgƒAƒbƒv
+	// ãƒã‚±ãƒ¢ãƒ³ã®Î±å€¤ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	PokeListPokeGraMove( p_work, p_drawglb, cp_glb );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“Ç‚İ‚İƒf[ƒ^”jŠüˆ—
+ *	@brief	èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ç ´æ£„å‡¦ç†
  *
- *	@param	p_work			ƒ[ƒNƒf[ƒ^
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work			ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	
  *	@return	none
  *
@@ -1404,29 +1404,29 @@ static void PokeListLoadGraphicFile( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWD
 //-----------------------------------------------------------------------------
 static void PokeListReleaseGraphicFile( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_drawglb )
 {
-	// ƒZƒ‹ƒf[ƒ^
-	// ‘SƒZƒ‹ƒAƒNƒ^[‚Ì”jŠü
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
+	// å…¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç ´æ£„
 	PokeListClActDelete( p_work );	
 	
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Ì‚Í‚«
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã®ã¯ã
 	PokeListResManagerDelete( p_work );
 
-	// •¶š—ñOAM”jŠü
+	// æ–‡å­—åˆ—OAMç ´æ£„
 	PokeListPokeNameDelete( p_work );
 
-	// ƒ†[ƒeƒBƒŠƒeƒB–Êƒf[ƒ^”jŠü
+	// ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é¢ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	PokeListUtilDelete( p_work );
 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒ\[ƒX‚Ì“Ç‚İ‚İ¿°Äƒ‚[ƒh
+ *	@brief	ãƒªã‚½ãƒ¼ã‚¹ã®èª­ã¿è¾¼ã¿ã‚½ãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ÃŞ°À
- *	@param	heap		ƒq[ƒv
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1437,67 +1437,67 @@ static void PokeListLoadGraphicFileSortMode( ZKN_POKELIST_GRAWORK* p_work, ZKN_G
 	NNSG2dPaletteData* p_palData;
 	u8* p_pal_data;
 	
-	// BG–Ê
-	// ƒJƒ‰[ƒpƒŒƒbƒg‚ğ“]‘—
+	// BGé¢
+	// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã‚’è»¢é€
 	ZKN_GLBDATA_PalSet( p_drawglb, NARC_zukan_zkn_sort1_NCLR, PALTYPE_MAIN_BG, 0, 32, heap );
-	// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
 	p_palBuff = ZKN_GLBDATA_PalDataGet( p_drawglb, NARC_zukan_zkn_list_NCLR, &p_palData, heap );
 
-	// ŒvZ‚µ‚â‚·‚¢‚Ì‚Åu8*‚ÉƒLƒƒƒXƒg
+	// è¨ˆç®—ã—ã‚„ã™ã„ã®ã§u8*ã«ã‚­ãƒ£ã‚¹ãƒˆ
 	p_pal_data = (u8*)p_palData->pRawData;
 	DC_FlushRange( p_pal_data, 16*32 );
 	GX_LoadBGPltt( p_pal_data + 32, 32, 15*32 );
 	sys_FreeMemoryEz( p_palBuff );
 
-	// ”wŒi–Êİ’è
+	// èƒŒæ™¯é¢è¨­å®š
 	PokeListBackGroundSetUp( p_drawglb, heap );
 
-	// ƒ†[ƒeƒBƒŠƒeƒB–Ê
+	// ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é¢
 	PokeListUtilSetUp( p_work, p_drawglb, heap, ZKN_GLBDATA_PokeZknModeGet( cp_glb->p_glb ) );
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‰Šú‰»
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
 	PokeListResManagerMake( p_work, heap );
 
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	PokeListClActResLoad( p_work, p_drawglb, heap );
 
-	// ƒAƒNƒ^[“o˜^
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	PokeListClActAdd( p_work, p_drawglb, heap );
 
-	// •¶š—ñOAM“o˜^
-	// ƒ|ƒPƒ‚ƒ“ƒe[ƒuƒ‹‚ğ“]‘—‚·‚é—Ìˆæ‚ÌƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY‚ğ‹‚ß‚é
+	// æ–‡å­—åˆ—OAMç™»éŒ²
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’è»¢é€ã™ã‚‹é ˜åŸŸã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã‚‹
 	p_work->poke_name_char_size = PokeListPokeNameCharTransSizeGet( p_drawglb, heap );
 
-	// —Ìˆæì¬
+	// é ˜åŸŸä½œæˆ
 	PokeListPokeNameSetUp( p_work, p_drawglb, cp_glb, heap );
 
-	// •¶š—ñ–Ê
+	// æ–‡å­—åˆ—é¢
 	PokeListSortVerFontSetUp( p_drawglb, heap, 
 			ZKN_GLBDATA_PokeSeeNumGet( cp_glb->p_glb ) );
 
 
-	// ƒAƒNƒ^[À•W‚ÌƒZƒbƒgƒAƒbƒv
+	// ã‚¢ã‚¯ã‚¿ãƒ¼åº§æ¨™ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	PokeListPokeTblInit( p_work, cp_glb );
 	PokeListPokeTblMove( p_work, cp_glb );
 	PokeListIconMove( p_work, cp_glb );
 	PokeListCursorInit( p_work, cp_glb );
 	PokeListCursorMove( p_work, cp_glb );
 
-	// •¶š—ñ“®ì
+	// æ–‡å­—åˆ—å‹•ä½œ
 	PokeListPokeNameMove(p_work, p_drawglb, cp_glb, heap);
 
-	// ƒ|ƒPƒ‚ƒ“‚Ìƒ¿’lƒZƒbƒgƒAƒbƒv
+	// ãƒã‚±ãƒ¢ãƒ³ã®Î±å€¤ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	PokeListPokeGraMove( p_work, p_drawglb, cp_glb );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG–Ê‚ÌƒZƒbƒgƒAƒbƒv
+ *	@brief	BGé¢ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		g—pƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -1509,48 +1509,48 @@ static void PokeListBackGroundSetUp( ZKN_GLB_DRAWDATA* p_drawglb, int heap )
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	ZKN_GLBDATA_BgCharSet( p_drawglb, NARC_zukan_zkn_list_main_lzh_NCGR, p_drawglb->p_bg, ZKN_BG_FRM_BACK_M, 0, 0, TRUE, heap );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb, NARC_zukan_zkn_list_bg_main1_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_bg, ZKN_BG_FRM_BACK_M,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒ|ƒPƒ‚ƒ“‚Ì•\¦˜g‚ğ”wŒi‚É“\‚è•t‚¯	
+	// ãƒã‚±ãƒ¢ãƒ³ã®è¡¨ç¤ºæ ã‚’èƒŒæ™¯ã«è²¼ã‚Šä»˜ã‘	
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb, NARC_zukan_zkn_list_bg_main1a_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_bg, ZKN_BG_FRM_BACK_M, p_scrn->rawData,
 			ZKN_POKELIST_BACK_POKEFRAME_CX, ZKN_POKELIST_BACK_POKEFRAME_CY,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_bg, ZKN_BG_FRM_BACK_M );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ì}ŠÓ–¼•\¦–Êİ’è
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®å›³é‘‘åè¡¨ç¤ºé¢è¨­å®š
  *
- *	@param	p_work			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap			ƒq[ƒv 
- *	@param	zkn_mode		}ŠÓƒ‚[ƒh
+ *	@param	p_work			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap			ãƒ’ãƒ¼ãƒ— 
+ *	@param	zkn_mode		å›³é‘‘ãƒ¢ãƒ¼ãƒ‰
  *
  *	@return	none
  *
  * zkn_mode
-	ZKN_MODE_SHINOH,	// ƒVƒ“ƒIƒE}ŠÓ
-	ZKN_MODE_ZENKOKU,	// ‘S‘}ŠÓ
+	ZKN_MODE_SHINOH,	// ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘
+	ZKN_MODE_ZENKOKU,	// å…¨å›½å›³é‘‘
  *
  */
 //-----------------------------------------------------------------------------
@@ -1558,25 +1558,25 @@ static void PokeListUtilSetUp( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p
 {
 	int dataidx;
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	ZKN_GLBDATA_BgCharSet( p_drawglb, NARC_zukan_zkn_list_main_lzh_NCGR, p_drawglb->p_bg, ZKN_BG_FRM_UTIL_M, 0, 0, TRUE, heap );
 
-	// ‘S‘‚ÆƒVƒ“ƒIƒE‚Åƒf[ƒ^idx‚ğ•ÏX
+	// å…¨å›½ã¨ã‚·ãƒ³ã‚ªã‚¦ã§ãƒ‡ãƒ¼ã‚¿idxã‚’å¤‰æ›´
 	if( zkn_mode == ZKN_MODE_ZENKOKU ){
 		dataidx = NARC_zukan_zkn_list_bg_zen_lzh_NSCR;
 	}else{
 		dataidx = NARC_zukan_zkn_list_bg_sin_lzh_NSCR;
 	}
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_work->p_util_scrn_buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb, dataidx, TRUE, &p_work->p_util_scrn, heap );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒeƒBƒŠƒeƒB–Êƒf[ƒ^”jŠü
+ *	@brief	ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é¢ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1592,12 +1592,12 @@ static void PokeListUtilDelete( ZKN_POKELIST_GRAWORK* p_work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒŠƒXƒgƒtƒHƒ“ƒg–Êİ’è
+ *	@brief	ãƒã‚±ãƒªã‚¹ãƒˆãƒ•ã‚©ãƒ³ãƒˆé¢è¨­å®š
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒvID
- *	@param	see_num		”­Œ©”
- *	@param	get_num		•ßŠl”
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—ID
+ *	@param	see_num		ç™ºè¦‹æ•°
+ *	@param	get_num		æ•ç²æ•°
  *
  *	@return	none
  *
@@ -1609,19 +1609,19 @@ static void PokeListFontSetUp( ZKN_GLB_DRAWDATA* p_drawglb, int heap, int see_nu
 	STRBUF* str = STRBUF_Create(ZKN_POKELIST_NUM_STR, heap);
 	MSGDATA_MANAGER* man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_zkn_dat, heap);
 
-	// ‚İ‚Â‚¯‚½‚©‚¸‚Æ‚¢‚¤•¶š—ñ
+	// ã¿ã¤ã‘ãŸã‹ãšã¨ã„ã†æ–‡å­—åˆ—
 	MSGMAN_GetString( man, ZNK_POKELIST_00, str );
 	GF_STR_PrintColor( &p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_POKELIST_SEE_STR_X, ZKN_POKELIST_STR_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 	
-	// ‚Â‚©‚Ü‚¦‚½‚©‚¸‚Æ‚¢‚¤•¶š—ñ
+	// ã¤ã‹ã¾ãˆãŸã‹ãšã¨ã„ã†æ–‡å­—åˆ—
 	MSGMAN_GetString( man, ZNK_POKELIST_01, str );
 	GF_STR_PrintColor( &p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_POKELIST_GET_STR_X, ZKN_POKELIST_STR_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 
-	// ”­Œ©”
+	// ç™ºè¦‹æ•°
 	STRBUF_SetNumber( str, see_num, ZKN_POKELIST_PLACE, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );
 	GF_STR_PrintColor( &p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_POKELIST_SEE_NUM_X, ZKN_POKELIST_SEE_NUM_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 
-	// •ßŠl”
+	// æ•ç²æ•°
 	STRBUF_SetNumber( str, get_num, ZKN_POKELIST_PLACE, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );
 	GF_STR_PrintColor( &p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_POKELIST_GET_NUM_X, ZKN_POKELIST_GET_NUM_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 	
@@ -1629,17 +1629,17 @@ static void PokeListFontSetUp( ZKN_GLB_DRAWDATA* p_drawglb, int heap, int see_nu
 
 	MSGMAN_Delete(man);
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_bg, ZKN_BG_FRM_FONT_M );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿°Ä‚Ì‚ÍƒŠƒXƒg”‚Ì‚İo‚·
+ *	@brief	ã‚½ãƒ¼ãƒˆã®æ™‚ã¯ãƒªã‚¹ãƒˆæ•°ã®ã¿å‡ºã™
  *
- *	@param	p_drawglb		ƒOƒ[ƒoƒ‹ÃŞ°À
- *	@param	heap			ƒq[ƒv
- *	@param	list_num		•\¦ƒŠƒXƒg” 
+ *	@param	p_drawglb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	list_num		è¡¨ç¤ºãƒªã‚¹ãƒˆæ•° 
  *
  *	@return	none
  */
@@ -1649,11 +1649,11 @@ static void PokeListSortVerFontSetUp( ZKN_GLB_DRAWDATA* p_drawglb, int heap, int
 	STRBUF* str = STRBUF_Create(ZKN_POKELIST_NUM_STR, heap);
 	MSGDATA_MANAGER* man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_zkn_dat, heap);
 
-	// ‚İ‚Â‚¯‚½‚©‚¸‚Æ‚¢‚¤•¶š—ñ
+	// ã¿ã¤ã‘ãŸã‹ãšã¨ã„ã†æ–‡å­—åˆ—
 	MSGMAN_GetString( man, ZNK_SORT_NUM, str );
 	GF_STR_PrintColor( &p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_POKELIST_SEE_STR_X, ZKN_POKELIST_STR_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 	
-	// ”­Œ©”
+	// ç™ºè¦‹æ•°
 	STRBUF_SetNumber( str, list_num, ZKN_POKELIST_PLACE, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );
 	GF_STR_PrintColor( &p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_POKELIST_SEE_NUM_X, ZKN_POKELIST_SEE_NUM_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
 
@@ -1661,7 +1661,7 @@ static void PokeListSortVerFontSetUp( ZKN_GLB_DRAWDATA* p_drawglb, int heap, int
 
 	MSGMAN_Delete(man);
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_bg, ZKN_BG_FRM_FONT_M );
 
 }
@@ -1669,10 +1669,10 @@ static void PokeListSortVerFontSetUp( ZKN_GLB_DRAWDATA* p_drawglb, int heap, int
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Ìì¬
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã®ä½œæˆ
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	heap	ƒq[ƒv
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -1681,7 +1681,7 @@ static void PokeListSortVerFontSetUp( ZKN_GLB_DRAWDATA* p_drawglb, int heap, int
 //-----------------------------------------------------------------------------
 static void PokeListResManagerMake( ZKN_POKELIST_GRAWORK* p_work, int heap )
 {
-	// ƒZƒ‹ƒAƒNƒ^[—pƒŠƒ\[ƒXŠÇ—ƒVƒXƒeƒ€
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç”¨ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 	p_work->res_manager[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerInit( ZKN_POKELIST_CELL_CG_NUM, CLACT_U_CHAR_RES, heap );
 	p_work->res_manager[ CLACT_U_PLTT_RES ] = CLACT_U_ResManagerInit( ZKN_POKELIST_CELL_CL_NUM, CLACT_U_PLTT_RES, heap );
 	p_work->res_manager[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerInit( ZKN_POKELIST_CELL_CE_NUM, CLACT_U_CELL_RES, heap );
@@ -1691,9 +1691,9 @@ static void PokeListResManagerMake( ZKN_POKELIST_GRAWORK* p_work, int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—pƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1703,7 +1703,7 @@ static void PokeListResManagerMake( ZKN_POKELIST_GRAWORK* p_work, int heap )
 static void PokeListResManagerDelete( ZKN_POKELIST_GRAWORK* p_work )
 {
 	CLACT_U_RES_OBJ_PTR res_obj;
-	// ƒpƒŒƒbƒg‚ÆƒLƒƒƒ‰ƒNƒ^‚ÌŠÇ——Ìˆæ‚ğ”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã¨ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ç®¡ç†é ˜åŸŸã‚’ç ´æ£„
 	res_obj = CLACT_U_ResManagerGetIDResObjPtr( p_work->res_manager[ CLACT_U_CHAR_RES ], NARC_zukan_zkn_list_oam_main_lzh_NCGR );
 	CLACT_U_CharManagerDelete( res_obj );
 	
@@ -1716,7 +1716,7 @@ static void PokeListResManagerDelete( ZKN_POKELIST_GRAWORK* p_work )
 	
 
 	
-	// ƒZƒ‹ƒAƒNƒ^[—pƒŠƒ\[ƒXŠÇ—ƒVƒXƒeƒ€
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç”¨ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 	CLACT_U_ResManagerDelete( p_work->res_manager[ CLACT_U_CHAR_RES ] );
 	CLACT_U_ResManagerDelete( p_work->res_manager[ CLACT_U_PLTT_RES ] );
 	CLACT_U_ResManagerDelete( p_work->res_manager[ CLACT_U_CELL_RES ] );
@@ -1726,10 +1726,10 @@ static void PokeListResManagerDelete( ZKN_POKELIST_GRAWORK* p_work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒNƒ^[—pƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç”¨ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	heap	ƒq[ƒv
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *	
  *	@return	none
  *
@@ -1741,43 +1741,43 @@ static void PokeListClActResLoad( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA
 	CLACT_U_RES_OBJ_PTR res_obj;
 	ARCHANDLE* p_handle =ZKN_GLBDATA_ArcHandlGet( p_drawglb ); 
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	res_obj = CLACT_U_ResManagerResAddArcChar_ArcHandle( p_work->res_manager[ CLACT_U_CHAR_RES ], 
 			p_handle, NARC_zukan_zkn_list_oam_main_lzh_NCGR,
 			TRUE, NARC_zukan_zkn_list_oam_main_lzh_NCGR,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( res_obj );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( res_obj );
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	res_obj = CLACT_U_ResManagerResAddArcPltt_ArcHandle( p_work->res_manager[ CLACT_U_PLTT_RES ],
 			p_handle, NARC_zukan_zkn_list_oam_NCLR,
 			FALSE, NARC_zukan_zkn_list_oam_NCLR, NNS_G2D_VRAM_TYPE_2DMAIN, 
 			ZKN_POKELIST_TBL_PLTT_LOAD, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_PlttManagerSetCleanArea( res_obj );	
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( res_obj );
 
 
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_work->res_manager[ CLACT_U_CELL_RES ],
 			p_handle, NARC_zukan_zkn_list_oam_main_lzh_NCER,
 			TRUE, NARC_zukan_zkn_list_oam_main_lzh_NCER,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_work->res_manager[ CLACT_U_CELLANM_RES ],
 			p_handle, NARC_zukan_zkn_list_oam_main_lzh_NANR,
 			TRUE, NARC_zukan_zkn_list_oam_main_lzh_NANR,
 			CLACT_U_CELLANM_RES, heap );
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &p_work->clheader,
 			NARC_zukan_zkn_list_oam_main_lzh_NCGR,
 			NARC_zukan_zkn_list_oam_NCLR,
@@ -1792,31 +1792,31 @@ static void PokeListClActResLoad( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA
 			NULL, NULL );
 
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	res_obj = CLACT_U_ResManagerResAddArcChar_ArcHandle( p_work->res_manager[ CLACT_U_CHAR_RES ], 
 			p_handle, NARC_zukan_zkn_hatena_oam_lzh_NCGR,
 			TRUE, NARC_zukan_zkn_hatena_oam_lzh_NCGR,
 			NNS_G2D_VRAM_TYPE_2DMAIN, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( res_obj );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( res_obj );
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_work->res_manager[ CLACT_U_CELL_RES ],
 			p_handle, NARC_zukan_zkn_hatena_oam_lzh_NCER,
 			TRUE, NARC_zukan_zkn_hatena_oam_lzh_NCER,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_work->res_manager[ CLACT_U_CELLANM_RES ],
 			p_handle, NARC_zukan_zkn_hatena_oam_lzh_NANR,
 			TRUE, NARC_zukan_zkn_hatena_oam_lzh_NANR,
 			CLACT_U_CELLANM_RES, heap );
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &p_work->clheader_dummy_poke,
 			NARC_zukan_zkn_hatena_oam_lzh_NCGR,
 			NARC_zukan_zkn_list_oam_NCLR,
@@ -1834,11 +1834,11 @@ static void PokeListClActResLoad( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒNƒ^[“o˜^
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -1850,7 +1850,7 @@ static void PokeListClActAdd( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_
 	CLACT_ADD_SIMPLE	add;
 	int i;
 
-	// “o˜^ƒf[ƒ^ƒeƒ“ƒvƒŒ[ƒgì¬
+	// ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆä½œæˆ
 	memset( &add, 0, sizeof(CLACT_ADD_SIMPLE) );
 	add.ClActSet		= p_drawglb->clact_set;
 	add.ClActHeader		= &p_work->clheader;
@@ -1858,26 +1858,26 @@ static void PokeListClActAdd( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_
 	add.heap			= heap;
 
 	
-	// ƒŠƒXƒgƒIƒuƒWƒFƒNƒg
+	// ãƒªã‚¹ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	add.pri		= ZKN_POKELIST_POKETBL_PRI;
 	for( i=0; i<ZKN_POKELIST_POKETBL_NUM; i++ ){
 		p_work->poke_tbl[ i ] = CLACT_AddSimple( &add );
 		CLACT_AnmChg( p_work->poke_tbl[ i ], ZKN_POKELIST_POKETBL_ANMSEQ );
 	}
 	
-	// ƒAƒCƒRƒ“
+	// ã‚¢ã‚¤ã‚³ãƒ³
 	add.pri		= ZKN_POKELIST_ICON_PRI;
 	for( i=0; i<ZKN_POKELIST_POKETBL_NUM; i++ ){
 		p_work->icon[ i ] = CLACT_AddSimple( &add );
 		CLACT_AnmChg( p_work->icon[ i ], ZKN_POKELIST_ICON_ANMSEQ );
 	}
 
-	// ƒJ[ƒ\ƒ‹
+	// ã‚«ãƒ¼ã‚½ãƒ«
 	add.pri			= ZKN_POKELIST_CURSOR_PRI;
 	p_work->cursor	= CLACT_AddSimple( &add );
 	CLACT_AnmChg( p_work->cursor, ZKN_POKELIST_CURSOR_ANMSEQ );
 
-	// ƒ_ƒ~[ƒ|ƒPƒ‚ƒ“
+	// ãƒ€ãƒŸãƒ¼ãƒã‚±ãƒ¢ãƒ³
 	add.pri			= 0;
 	add.mat.x		= ZKN_POKELIST_POKEGRA_X << FX32_SHIFT;
 	add.mat.y		= ZKN_POKELIST_POKEGRA_Y << FX32_SHIFT;
@@ -1890,12 +1890,12 @@ static void PokeListClActAdd( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“–¼‘Oƒe[ƒuƒ‹ì¬
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³åå‰ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -1904,16 +1904,16 @@ static void PokeListClActAdd( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_
 //-----------------------------------------------------------------------------
 static void PokeListPokeNameSetUp( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_drawglb, const ZKN_POKELIST_GLB_DATA* cp_glb, int heap )
 {
-	int i;	// ƒ‹[ƒv—p
-	int pokelist_s;	// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ì•\¦—v‘f‚ÌŠJn”Ô†
-	int poketbl_s;	// ƒ|ƒPƒ‚ƒ“ƒe[ƒuƒ‹‚Ì•\¦—v‘f‚ÌŠJn”Ô†
-	int pokelist_tbl_num;	// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹”
+	int i;	// ãƒ«ãƒ¼ãƒ—ç”¨
+	int pokelist_s;	// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®è¡¨ç¤ºè¦ç´ ã®é–‹å§‹ç•ªå·
+	int poketbl_s;	// ãƒã‚±ãƒ¢ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®è¡¨ç¤ºè¦ç´ ã®é–‹å§‹ç•ªå·
+	int pokelist_tbl_num;	// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«æ•°
 	ZKN_FONTOAM_INIT fontoam_init;
-	GF_BGL_BMPWIN* p_bmp;	// ‘‚«‚İ—Ìˆæ
-	const ZKN_POKELIST_DATA* p_poke_data;	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	GF_BGL_BMPWIN* p_bmp;	// æ›¸ãè¾¼ã¿é ˜åŸŸ
+	const ZKN_POKELIST_DATA* p_poke_data;	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 	int poke_listdraw_link_list_idx;
 
-	// ‹¤’Êƒf[ƒ^‘ã“ü
+	// å…±é€šãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	fontoam_init.zkn_fontoam = p_drawglb->fontoam_sys;
 	fontoam_init.pltt		 = p_work->clheader.pPaletteProxy;
 	fontoam_init.parent		 = NULL;
@@ -1925,49 +1925,49 @@ static void PokeListPokeNameSetUp( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDAT
 	fontoam_init.heap		 = heap;
 
 
-	// ƒ|ƒPƒ‚ƒ“–¼ƒe[ƒuƒ‹‚ğZKN_POKELIST_POKETBL_NUM•ªì¬
+	// ãƒã‚±ãƒ¢ãƒ³åãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ZKN_POKELIST_POKETBL_NUMåˆ†ä½œæˆ
 	pokelist_s = ZKN_GLBDATA_PokeListDrawTblNoGet( cp_glb->p_glb ) - ZKN_POKELIST_POKETBL_CHECK;
 	poketbl_s = p_work->poke_tbl_start;
 	pokelist_tbl_num = ZKN_GLBDATA_PokeListDrawTblNumGet( cp_glb->p_glb );
 	for( i=0; i<ZKN_POKELIST_POKETBL_NUM; i++ ){
 
-		// ”jŠü
+		// ç ´æ£„
 		if( p_work->poke_name[ poketbl_s ] ){
 			ZKN_FONTOAM_Delete( p_work->poke_name[ poketbl_s ] );
 			p_work->poke_name[ poketbl_s ] = NULL;
 		}
 		
-		// ’l‚ª—LŒø‚©ƒ`ƒFƒbƒN
+		// å€¤ãŒæœ‰åŠ¹ã‹ãƒã‚§ãƒƒã‚¯
 		if( (pokelist_s >= 0) && (pokelist_s < pokelist_tbl_num) ){
 			
-			// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•`‰æ”z—ñidx‚©‚çƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒf[ƒ^”z—ñidx‚ğæ“¾
+			// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆæç”»é…åˆ—idxã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ—idxã‚’å–å¾—
 			poke_listdraw_link_list_idx = ZKN_GLBDATA_PokeListDrawTblDataGet( cp_glb->p_glb, pokelist_s );
-			// ƒ_ƒ~[‚Å‚È‚¯‚ê‚Îƒ|ƒPƒ‚ƒ“–¼‘‚«‚İ
+			// ãƒ€ãƒŸãƒ¼ã§ãªã‘ã‚Œã°ãƒã‚±ãƒ¢ãƒ³åæ›¸ãè¾¼ã¿
 			if( poke_listdraw_link_list_idx != POKEMON_LIST_DRAWTBL_DUMMY ){
 
 				p_poke_data = ZKN_GLBDATA_PokeListTblGet( cp_glb->p_glb, poke_listdraw_link_list_idx );
 
 #if 0
-				// •¶š—ñ‘‚«‚İ—Ìˆæì¬
+				// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿é ˜åŸŸä½œæˆ
 				p_bmp = ZKN_FONTOAM_GetBmp( p_drawglb->fontoam_sys, ZKN_POKELIST_POKENAME_BMP_SIZE_CX, ZKN_POKELIST_POKENAME_BMP_SIZE_CY );
 
 
-				// ƒrƒbƒgƒ}ƒbƒv—Ìˆæ‚É‘‚«‚İ
+				// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—é ˜åŸŸã«æ›¸ãè¾¼ã¿
 				ZKN_UTIL_PokeListPokeNameBmpMake( p_bmp, p_poke_data->mons_no, heap );
 #endif
-				// ƒrƒbƒgƒ}ƒbƒv—Ìˆæ‚É‘‚«‚İ
+				// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—é ˜åŸŸã«æ›¸ãè¾¼ã¿
 				p_bmp = ZKN_UTIL_PokeListPokeNameTblBmpMake( p_drawglb, cp_glb->p_glb, heap, p_poke_data->mons_no );
 
 				
-				// FONTOAM“o˜^
+				// FONTOAMç™»éŒ²
 				fontoam_init.p_bmp = p_bmp;
 				p_work->poke_name[ poketbl_s ] = ZKN_FONTOAM_MakeCharOfs( &fontoam_init, p_work->poke_name_char_size );
 
-				// BMP—Ìˆæ”jŠü
+				// BMPé ˜åŸŸç ´æ£„
 				ZKN_FONTOAM_DeleteBmp( p_bmp );
 			}else{
 
-				// ƒ_ƒ~[‚Ì–¼‘Oİ’è
+				// ãƒ€ãƒŸãƒ¼ã®åå‰è¨­å®š
 				PokeListPokeNameDummySet( p_work, p_drawglb, heap, poketbl_s, pokelist_s + 1 );
 			}
 		}else{
@@ -1983,11 +1983,11 @@ static void PokeListPokeNameSetUp( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDAT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹İ’è
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«è¨­å®š
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -2003,25 +2003,25 @@ static void PokeGraphicSetUp( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_
 	pokelist_no = ZKN_GLBDATA_PokeListTblNoGet( cp_glb->p_glb );
 	cp_pokedata = ZKN_GLBDATA_PokeListTblGet( cp_glb->p_glb , pokelist_no );
 
-	// •\¦‚·‚é‚©ƒ`ƒFƒbƒN
+	// è¡¨ç¤ºã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_GLBDATA_PokeListDrawTblDataGet( cp_glb->p_glb, drawpokelist_no ) == POKEMON_LIST_DRAWTBL_DUMMY ){
-		// •`‰æOFF
+		// æç”»OFF
 		ZKN_GlbPokemonGraphicDrawFlagSet( p_drawglb,FALSE ); 
 	
-		// ƒ_ƒ~[•`‰æON
+		// ãƒ€ãƒŸãƒ¼æç”»ON
 		if( p_work->dummy_poke ){
 			CLACT_SetDrawFlag( p_work->dummy_poke, TRUE );
 		}
 	}else{
 
-		// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^İ’è
+		// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è¨­å®š
 		ZKN_UTIL_PokemonGraphicSet( p_drawglb, cp_glb->p_glb, cp_pokedata->mons_no,
 				PARA_FRONT, ZKN_POKELIST_POKEGRA_X, ZKN_POKELIST_POKEGRA_Y );
 
-		// •`‰æON
+		// æç”»ON
 		ZKN_GlbPokemonGraphicDrawFlagSet( p_drawglb,TRUE ); 
 
-		// ƒ_ƒ~[•`‰æOFF
+		// ãƒ€ãƒŸãƒ¼æç”»OFF
 		if( p_work->dummy_poke ){
 			CLACT_SetDrawFlag( p_work->dummy_poke, FALSE );
 		}
@@ -2031,9 +2031,9 @@ static void PokeGraphicSetUp( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“–¼‘Oƒe[ƒuƒ‹”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³åå‰ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -2054,9 +2054,9 @@ static void PokeListPokeNameDelete( ZKN_POKELIST_GRAWORK* p_work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -2067,31 +2067,31 @@ static void PokeListClActDelete( ZKN_POKELIST_GRAWORK* p_work )
 {
 	int i;
 
-	// ƒ|ƒPƒ‚ƒ“ƒe[ƒuƒ‹
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
 	for( i=0; i<ZKN_POKELIST_POKETBL_NUM; i++ ){
 		CLACT_Delete( p_work->poke_tbl[ i ] );
 	}
 
-	// ƒAƒCƒRƒ“
+	// ã‚¢ã‚¤ã‚³ãƒ³
 	for( i=0; i<ZKN_POKELIST_POKETBL_NUM; i++ ){
 		CLACT_Delete( p_work->icon[ i ] );
 	}
 
-	// ƒJ[ƒ\ƒ‹
+	// ã‚«ãƒ¼ã‚½ãƒ«
 	CLACT_Delete( p_work->cursor );
 
-	//@ƒ_ƒ~[‚Û‚¯‚à‚ñ 
+	//ã€€ãƒ€ãƒŸãƒ¼ã½ã‘ã‚‚ã‚“ 
 	CLACT_Delete( p_work->dummy_poke );
 }
 
-// CLACT_OBJƒpƒ‰ƒ[ƒ^ŒvZ•İ’èŠÖ”ŒS
+// CLACT_OBJãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨ˆç®—ï¼†è¨­å®šé–¢æ•°éƒ¡
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒŠƒXƒgƒe[ƒuƒ‹“®ì‘O‰Šú‰»
+ *	@brief	ãƒã‚±ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å‹•ä½œå‰åˆæœŸåŒ–
  *
- *	@param	p_work	•`‰æƒ[ƒN
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	
  *	@return	none
  *
@@ -2102,7 +2102,7 @@ static void PokeListPokeTblInit( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIS
 {
 	p_work->poke_tbl_start = 0;
 
-	// •\¦”ñ•\¦İ’è
+	// è¡¨ç¤ºéè¡¨ç¤ºè¨­å®š
 	PokeListPokeTblDrawFlagSetUp( p_work, cp_glb );
 	
 }
@@ -2110,10 +2110,10 @@ static void PokeListPokeTblInit( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIS
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“–¼‘Oƒe[ƒuƒ‹“®ì
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³åå‰ãƒ†ãƒ¼ãƒ–ãƒ«å‹•ä½œ
  *
- *	@param	p_work	•`‰æƒ[ƒN
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return none;
  *
@@ -2125,38 +2125,38 @@ static void PokeListPokeTblMove( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIS
 	VecFx32 mat;
 	int i;
 	int tbl_s, tbl_e;
-	int center_dis;		// ’†‰›‚©‚ç‚Ì‹——£
-	int pri;			// •\¦ƒvƒ‰ƒCƒIƒŠƒeƒB
-	int col;			// ƒJƒ‰[ƒpƒŒƒbƒg
+	int center_dis;		// ä¸­å¤®ã‹ã‚‰ã®è·é›¢
+	int pri;			// è¡¨ç¤ºãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	int col;			// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 
-	// move_count‚É‚æ‚èÀ•W‚ğİ’è
+	// move_countã«ã‚ˆã‚Šåº§æ¨™ã‚’è¨­å®š
 	tbl_count = p_work->poke_tbl_start;
-	// æ“ª‚©‚çÀ•W‚ğİ’è‚·‚é
+	// å…ˆé ­ã‹ã‚‰åº§æ¨™ã‚’è¨­å®šã™ã‚‹
 	for( i=0; i<ZKN_POKELIST_POKETBL_NUM; i++ ){
 
-		// ŠJnƒe[ƒuƒ‹‚ÆI—¹ƒe[ƒuƒ‹ƒiƒ“ƒo[‚ğ“®‚¢‚Ä‚¢‚é•ûŒü‚É‚æ‚Á‚Ä•Ï‰»‚³‚¹‚é
+		// é–‹å§‹ãƒ†ãƒ¼ãƒ–ãƒ«ã¨çµ‚äº†ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼ã‚’å‹•ã„ã¦ã„ã‚‹æ–¹å‘ã«ã‚ˆã£ã¦å¤‰åŒ–ã•ã›ã‚‹
 		if( cp_glb->move_way == ZKN_POKE_LIST_UP ){
-			tbl_s = i + 2;		// ‚Ğ‚Æ‚Â‚µ‚½‚©‚ç©•ª‚ÌÀ•W‚Ö
+			tbl_s = i + 2;		// ã²ã¨ã¤ã—ãŸã‹ã‚‰è‡ªåˆ†ã®åº§æ¨™ã¸
 			tbl_e = i + 1;
 		}else{
-			tbl_s = i;			// ‚Ğ‚Æ‚Â‚¤‚¦‚©‚ç©•ª‚ÌÀ•W‚Ö
+			tbl_s = i;			// ã²ã¨ã¤ã†ãˆã‹ã‚‰è‡ªåˆ†ã®åº§æ¨™ã¸
 			tbl_e = i + 1;
 		}
 		
-		mat.x = PokeListPokeTblMoveCalc( ZknPokeListPokeTblMoveX[ tbl_s ], ZknPokeListPokeTblMoveX[ tbl_e ], ZKN_POKELIST_MOVE_END_COUNT, ZKN_POKELIST_MOVE_END_COUNT - cp_glb->move_count );	// XÀ•WŒvZ
-		mat.y = PokeListPokeTblMoveCalc( ZknPokeListPokeTblMoveY[ tbl_s ], ZknPokeListPokeTblMoveY[ tbl_e ], ZKN_POKELIST_MOVE_END_COUNT, ZKN_POKELIST_MOVE_END_COUNT - cp_glb->move_count );	// YÀ•WŒvZ
+		mat.x = PokeListPokeTblMoveCalc( ZknPokeListPokeTblMoveX[ tbl_s ], ZknPokeListPokeTblMoveX[ tbl_e ], ZKN_POKELIST_MOVE_END_COUNT, ZKN_POKELIST_MOVE_END_COUNT - cp_glb->move_count );	// Xåº§æ¨™è¨ˆç®—
+		mat.y = PokeListPokeTblMoveCalc( ZknPokeListPokeTblMoveY[ tbl_s ], ZknPokeListPokeTblMoveY[ tbl_e ], ZKN_POKELIST_MOVE_END_COUNT, ZKN_POKELIST_MOVE_END_COUNT - cp_glb->move_count );	// Yåº§æ¨™è¨ˆç®—
 
 		
-		// À•Wİ’è
+		// åº§æ¨™è¨­å®š
 		CLACT_SetMatrix( p_work->poke_tbl[ tbl_count ], &mat );
 
-		// ’†S‚©‚ç‚Ì‹——£‚ğ‹‚ß‚é
+		// ä¸­å¿ƒã‹ã‚‰ã®è·é›¢ã‚’æ±‚ã‚ã‚‹
 		center_dis = ZKN_POKELIST_POKETBL_CHECK - i;
 		if( center_dis < 0 ){
 			center_dis = -center_dis;
 		}
 		
-		// •\¦—Dæ‡ˆÊŒvZ
+		// è¡¨ç¤ºå„ªå…ˆé †ä½è¨ˆç®—
 		pri = center_dis * 2;
 		if( pri < 0 ){
 			pri = -pri;
@@ -2164,8 +2164,8 @@ static void PokeListPokeTblMove( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIS
 		pri += ZKN_POKELIST_POKETBL_PRI;
 		CLACT_DrawPriorityChg( p_work->poke_tbl[ tbl_count ], pri );
 
-		// ƒJƒ‰[ƒpƒŒƒbƒg
-		// ’†‰›‚ª‚»‚êˆÈŠO‚ÅƒJƒ‰[ƒpƒŒƒbƒg•ÏX
+		// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
+		// ä¸­å¤®ãŒãã‚Œä»¥å¤–ã§ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
 		if( i == ZKN_POKELIST_POKETBL_CHECK ){
 			CLACT_PaletteOffsetChgAddTransPlttNo( p_work->poke_tbl[ tbl_count ], ZKN_POKELIST_PLTT_SELECT );
 		}else{
@@ -2176,7 +2176,7 @@ static void PokeListPokeTblMove( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIS
 			}
 		}
 		
-		// Ÿ‚Ì”z—ñ‚Ö
+		// æ¬¡ã®é…åˆ—ã¸
 		tbl_count = (tbl_count + 1) % ZKN_POKELIST_POKETBL_NUM;
 	}
 }
@@ -2184,10 +2184,10 @@ static void PokeListPokeTblMove( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIS
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹ŠJnƒiƒ“ƒo[•ÏXˆ—
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«é–‹å§‹ãƒŠãƒ³ãƒãƒ¼å¤‰æ›´å‡¦ç†
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -2203,32 +2203,32 @@ static void PokeListPokeTblListStartNumChenge( ZKN_POKELIST_GRAWORK* p_work, con
 	pokelist_no = ZKN_GLBDATA_PokeListDrawTblNoGet( cp_glb->p_glb );
 	pokelist_num = ZKN_GLBDATA_PokeListDrawTblNumGet( cp_glb->p_glb );
 	
-	// ‚Ç‚Ì•ûŒü‚É“®ì‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ã©ã®æ–¹å‘ã«å‹•ä½œã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( cp_glb->move_way == ZKN_POKE_LIST_UP ){
-		// ã‚ÉˆÚ“®	
-		// •ÏX
+		// ä¸Šã«ç§»å‹•	
+		// å¤‰æ›´
 		if( (p_work->poke_tbl_start + 1) < ZKN_POKELIST_POKETBL_NUM ){
 			p_work->poke_tbl_start ++;
 		}else{
 			p_work->poke_tbl_start = 0;
 		}
 
-		// æ“ª‚©‚çˆê”ÔŒã•û‚És‚Á‚½ƒe[ƒuƒ‹ƒiƒ“ƒo[æ“¾
+		// å…ˆé ­ã‹ã‚‰ä¸€ç•ªå¾Œæ–¹ã«è¡Œã£ãŸãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼å–å¾—
 		poke_last = p_work->poke_tbl_start + (ZKN_POKELIST_POKETBL_NUM - 1);
 		poke_last %= ZKN_POKELIST_POKETBL_NUM;
 
-		// ”ñ•\¦ƒe[ƒuƒ‹ƒ`ƒFƒbƒN
-		// ‰º‚ÉZKN_POKELIST_POKETBL_CHECKŒÂ‚È‚¢‚©ƒ`ƒFƒbƒN
+		// éè¡¨ç¤ºãƒ†ãƒ¼ãƒ–ãƒ«ãƒã‚§ãƒƒã‚¯
+		// ä¸‹ã«ZKN_POKELIST_POKETBL_CHECKå€‹ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		if( (pokelist_no + ZKN_POKELIST_POKETBL_CHECK) >= pokelist_num ){
-			// ˆê”Ô‰º‚Ìƒe[ƒuƒ‹‚ğ”ñ•\¦‚É‚·‚é
+			// ä¸€ç•ªä¸‹ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’éè¡¨ç¤ºã«ã™ã‚‹
 			CLACT_SetDrawFlag( p_work->poke_tbl[ poke_last ], FALSE );
 		}else{
-			// ˆê”Ô‰º‚Ìƒe[ƒuƒ‹‚ğ•\¦‚É‚·‚é
+			// ä¸€ç•ªä¸‹ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’è¡¨ç¤ºã«ã™ã‚‹
 			CLACT_SetDrawFlag( p_work->poke_tbl[ poke_last ], TRUE );
 		}
 	}else{
 		
-		// ‰º‚ÉˆÚ“®
+		// ä¸‹ã«ç§»å‹•
 		if( cp_glb->move_way == ZKN_POKE_LIST_DOWN ){
 			if( (p_work->poke_tbl_start - 1) >= 0 ){
 				p_work->poke_tbl_start --;
@@ -2236,19 +2236,19 @@ static void PokeListPokeTblListStartNumChenge( ZKN_POKELIST_GRAWORK* p_work, con
 				p_work->poke_tbl_start = ZKN_POKELIST_POKETBL_NUM - 1;
 			}
 		
-			// Œã•û‚©‚çˆê”Ôæ“ª‚És‚Á‚½ƒe[ƒuƒ‹ƒiƒ“ƒo[æ“¾
+			// å¾Œæ–¹ã‹ã‚‰ä¸€ç•ªå…ˆé ­ã«è¡Œã£ãŸãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼å–å¾—
 			poke_last = p_work->poke_tbl_start;
 
-			// ã‚ÉZKN_POKELIST_POKETBL_CHECKŒÂ‚È‚¢‚©ƒ`ƒFƒbƒN
+			// ä¸Šã«ZKN_POKELIST_POKETBL_CHECKå€‹ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			if( (pokelist_no - ZKN_POKELIST_POKETBL_CHECK) < 0 ){
-				// ˆê”Ôã‚Ìƒe[ƒuƒ‹‚ğ”ñ•W¦‚É‚·‚é
+				// ä¸€ç•ªä¸Šã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’éæ¨™ç¤ºã«ã™ã‚‹
 				CLACT_SetDrawFlag( p_work->poke_tbl[ poke_last ], FALSE );
 			}else{
-				// ˆê”Ôã‚Ìƒe[ƒuƒ‹‚ğ•\¦‚É‚·‚é
+				// ä¸€ç•ªä¸Šã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’è¡¨ç¤ºã«ã™ã‚‹
 				CLACT_SetDrawFlag( p_work->poke_tbl[ poke_last ], TRUE );
 			}
 		}else{
-			// ã‚Å‚à‰º‚Å‚à‚È‚­’l‚ª•ÏX‚³‚ê‚Ä‚¢‚½‚Æ‚«‚Í•\¦‚ÌONOFFİ’è‚Ì‚İs‚¤
+			// ä¸Šã§ã‚‚ä¸‹ã§ã‚‚ãªãå€¤ãŒå¤‰æ›´ã•ã‚Œã¦ã„ãŸã¨ãã¯è¡¨ç¤ºã®ONOFFè¨­å®šã®ã¿è¡Œã†
 			PokeListPokeTblDrawFlagSetUp( p_work, cp_glb );
 		}
 	}
@@ -2257,10 +2257,10 @@ static void PokeListPokeTblListStartNumChenge( ZKN_POKELIST_GRAWORK* p_work, con
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒCƒRƒ“‚Ì“®ì
+ *	@brief	ã‚¢ã‚¤ã‚³ãƒ³ã®å‹•ä½œ
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -2288,20 +2288,20 @@ static void PokeListIconMove( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIST_G
 	for( i=0; i<ZKN_POKELIST_POKETBL_NUM; i++ ){
 		tbl_no = (p_work->poke_tbl_start + i) % ZKN_POKELIST_POKETBL_NUM;
 
-		// •\¦ONOFFİ’è
+		// è¡¨ç¤ºONOFFè¨­å®š
 		draw_on_off = FALSE;
 		pokelist_no_work = ((pokelist_no - ZKN_POKELIST_POKETBL_CHECK) + i);
-		// ‚»‚Ìƒ|ƒPƒ‚ƒ“‚Í•ß‚Ü‚¦‚½ƒ|ƒPƒ‚ƒ“‚©Œ©‚Â‚¯‚½ƒ|ƒPƒ‚ƒ“‚©
+		// ãã®ãƒã‚±ãƒ¢ãƒ³ã¯æ•ã¾ãˆãŸãƒã‚±ãƒ¢ãƒ³ã‹è¦‹ã¤ã‘ãŸãƒã‚±ãƒ¢ãƒ³ã‹
 		if( (pokelist_no_work >= 0) && (pokelist_no_work < pokelist_num) ){
-			// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•`‰æ”z—ñidx‚©‚çƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒf[ƒ^”z—ñidx‚ğæ“¾
+			// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆæç”»é…åˆ—idxã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ—idxã‚’å–å¾—
 			poke_listdraw_link_list_idx = ZKN_GLBDATA_PokeListDrawTblDataGet( cp_glb->p_glb, pokelist_no_work );
 			
-			// ƒ_ƒ~[ƒf[ƒ^o‚È‚¢‚©ƒ`ƒFƒbƒN
+			// ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿å‡ºãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			if( poke_listdraw_link_list_idx != POKEMON_LIST_DRAWTBL_DUMMY ){
 			
 				cp_poke_data = ZKN_GLBDATA_PokeListTblGet( cp_glb->p_glb, poke_listdraw_link_list_idx );
 
-				// •ß‚Ü‚¦‚½ƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN
+				// æ•ã¾ãˆãŸãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
 				if( cp_poke_data->type == ZKN_POKELIST_TYPE_GET ){
 					draw_on_off = TRUE;
 				}
@@ -2309,13 +2309,13 @@ static void PokeListIconMove( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIST_G
 			
 		}
 
-		// •\¦İ’è
+		// è¡¨ç¤ºè¨­å®š
 		CLACT_SetDrawFlag( p_work->icon[ tbl_no ], draw_on_off );
 
-		// •\¦‚È‚çİ’è		
+		// è¡¨ç¤ºãªã‚‰è¨­å®š		
 		if( draw_on_off ){
 			
-			// ƒ|ƒPƒ‚ƒ“ƒe[ƒuƒ‹‚ÌƒZƒ“ƒ^[ƒe[ƒuƒ‹À•W‚É’Ç]
+			// ãƒã‚±ãƒ¢ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚»ãƒ³ã‚¿ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«åº§æ¨™ã«è¿½å¾“
 			cp_mat = CLACT_GetMatrix( p_work->poke_tbl[ tbl_no ] );
 
 			mat.x = cp_mat->x + ZKN_POKELIST_ICON_X_OFS;
@@ -2323,11 +2323,11 @@ static void PokeListIconMove( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIST_G
 
 			CLACT_SetMatrix( p_work->icon[ tbl_no ], &mat );
 
-			// eƒe[ƒuƒ‹‚Æ“¯‚¶ƒJƒ‰[ƒpƒŒƒbƒgİ’è
+			// è¦ªãƒ†ãƒ¼ãƒ–ãƒ«ã¨åŒã˜ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
 			pltt_no = CLACT_PaletteOffsetGet( p_work->poke_tbl[ tbl_no ] );
 			CLACT_PaletteOffsetChg( p_work->icon[ tbl_no ], pltt_no );
 
-			// •\¦—Dæ‡ˆÊ‚ğİ’è
+			// è¡¨ç¤ºå„ªå…ˆé †ä½ã‚’è¨­å®š
 			pri = CLACT_DrawPriorityGet( p_work->poke_tbl[ tbl_no ] );
 			pri--;
 			CLACT_DrawPriorityChg( p_work->icon[ tbl_no ], pri );
@@ -2338,10 +2338,10 @@ static void PokeListIconMove( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIST_G
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Cursor“®ì‰Šú‰»
+ *	@brief	Cursorå‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -2358,10 +2358,10 @@ static void PokeListCursorInit( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIST
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Cursor“®ì
+ *	@brief	Cursorå‹•ä½œ
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	
  *	@return	none
  *
@@ -2373,7 +2373,7 @@ static void PokeListCursorMove( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIST
 	VecFx32	mat;
 	int pokelist_no = ZKN_GLBDATA_PokeListDrawTblNoGet( cp_glb->p_glb );
 	
-	// ‘S‘Ì‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Å‚Ì¡‚Ì‘I‘ğƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u‚É‚æ‚èÀ•W‚ğ‹‚ß‚é
+	// å…¨ä½“ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã§ã®ä»Šã®é¸æŠãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®ã«ã‚ˆã‚Šåº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	mat.y = FX_Mul( p_work->onepoke_move_dis, pokelist_no  << FX32_SHIFT );
 	mat.y += ZKN_POKELIST_CURSOR_YMIN;
 	mat.x = ZKN_POKELIST_CURSOR_X;
@@ -2386,14 +2386,14 @@ static void PokeListCursorMove( ZKN_POKELIST_GRAWORK* p_work, const ZKN_POKELIST
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgÀ•WŒvZ
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆåº§æ¨™è¨ˆç®—
  *
- *	@param	s				ŠJnÀ•W
- *	@param	e				I“_À•W
- *	@param	max_count		Å‘åƒJƒEƒ“ƒg”
- *	@param	count			¡‚ÌƒJƒEƒ“ƒg’l
+ *	@param	s				é–‹å§‹åº§æ¨™
+ *	@param	e				çµ‚ç‚¹åº§æ¨™
+ *	@param	max_count		æœ€å¤§ã‚«ã‚¦ãƒ³ãƒˆæ•°
+ *	@param	count			ä»Šã®ã‚«ã‚¦ãƒ³ãƒˆå€¤
  *
- *	@return	À•W
+ *	@return	åº§æ¨™
  *
  *
  */
@@ -2405,7 +2405,7 @@ static fx32 PokeListPokeTblMoveCalc( fx32 s, fx32 e, int max_count, int count )
 	work = (e - s);
 
 	work = FX_Mul( work, count << FX32_SHIFT );
-	work = FX_Div( work, max_count << FX32_SHIFT );	// À•W
+	work = FX_Div( work, max_count << FX32_SHIFT );	// åº§æ¨™
 
 	return work + s;
 }
@@ -2413,10 +2413,10 @@ static fx32 PokeListPokeTblMoveCalc( fx32 s, fx32 e, int max_count, int count )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“à•”ƒ[ƒN‚Ì‰Šú‰»
+ *	@brief	å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
  *
- *	@param	p_work			ƒ[ƒN
- *	@param	cp_dataglb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work			ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_dataglb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -2431,17 +2431,17 @@ static void PokeListDrawWorkInit( ZKN_POKELIST_GRAWORK*	p_work, const ZKN_POKELI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“–¼‘Oƒe[ƒuƒ‹“®ì
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³åå‰ãƒ†ãƒ¼ãƒ–ãƒ«å‹•ä½œ
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
  *
- *	æ‚Éƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ğ“®‚©‚µ‚Ä‚­‚¾‚³‚¢
+ *	å…ˆã«ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚’å‹•ã‹ã—ã¦ãã ã•ã„
  */
 //-----------------------------------------------------------------------------
 static void PokeListPokeNameMove( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_drawglb, const ZKN_POKELIST_GLB_DATA* cp_glb, int heap )
@@ -2453,38 +2453,38 @@ static void PokeListPokeNameMove( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA
 	int pri;
 	int col;
 	
-	// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ÌŠeƒe[ƒuƒ‹À•W‚É‚ ‚í‚¹‚é
+	// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®å„ãƒ†ãƒ¼ãƒ–ãƒ«åº§æ¨™ã«ã‚ã‚ã›ã‚‹
 	poke_tbl_no = p_work->poke_tbl_start;
 	for( i=0; i<ZKN_POKELIST_POKETBL_NUM; i++ ){
 		if( p_work->poke_name[ poke_tbl_no ] ){
-			// À•Wæ“¾
+			// åº§æ¨™å–å¾—
 			PokeListPokeNameMoveMatGet( p_work->poke_tbl[ poke_tbl_no ], &x, &y );
-			// À•Wİ’è
+			// åº§æ¨™è¨­å®š
 			FONTOAM_SetMat( p_work->poke_name[ poke_tbl_no ]->p_fontoam, 
 					x, y );
 
-			// •\¦—Dæ‡ˆÊİ’è
+			// è¡¨ç¤ºå„ªå…ˆé †ä½è¨­å®š
 			pri = CLACT_DrawPriorityGet( p_work->poke_tbl[ poke_tbl_no ] );
 			pri--;
 			FONTOAM_SetDrawPriority( p_work->poke_name[ poke_tbl_no ]->p_fontoam, pri );
 
-			// ƒJƒ‰[ƒpƒŒƒbƒg
+			// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
 			col = CLACT_PaletteOffsetGet( p_work->poke_tbl[ poke_tbl_no ] );
 			FONTOAM_SetPaletteOffset( p_work->poke_name[ poke_tbl_no ]->p_fontoam, col );
 		}
 
-		// Ÿ‚Ìƒe[ƒuƒ‹‚Ö
+		// æ¬¡ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã¸
 		poke_tbl_no = (poke_tbl_no + 1) % ZKN_POKELIST_POKETBL_NUM;
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[À•W‚©‚çã‚Éæ‚éƒtƒHƒ“ƒgOAM‚ÌÀ•W‚ğ‹‚ß‚é
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åº§æ¨™ã‹ã‚‰ä¸Šã«ä¹—ã‚‹ãƒ•ã‚©ãƒ³ãƒˆOAMã®åº§æ¨™ã‚’æ±‚ã‚ã‚‹
  *
- *	@param	target_act	ƒ^[ƒQƒbƒgƒAƒNƒ^[
- *	@param	x			XÀ•W
- *	@param	y			YÀ•W
+ *	@param	target_act	ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	x			Xåº§æ¨™
+ *	@param	y			Yåº§æ¨™
  *
  *	@return	none
  */
@@ -2493,23 +2493,23 @@ static void PokeListPokeNameMoveMatGet( CLACT_WORK_PTR target_act, int* x, int* 
 {
 	const VecFx32* p_mat;
 
-	// À•Wæ“¾
+	// åº§æ¨™å–å¾—
 	p_mat = CLACT_GetMatrix( target_act );
 
 	*x = p_mat->x >> FX32_SHIFT;
 	*y = p_mat->y >> FX32_SHIFT;
-	*x -= (ZKN_POKELIST_POKENAME_BMP_SIZE_X / 2);	// ¶ãÀ•W‚É‚·‚é
+	*x -= (ZKN_POKELIST_POKENAME_BMP_SIZE_X / 2);	// å·¦ä¸Šåº§æ¨™ã«ã™ã‚‹
 	*y -= (ZKN_POKELIST_POKENAME_BMP_SIZE_Y / 2);			
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–¼‘O•ÏXƒf[ƒ^•ÏXƒ`ƒFƒbƒN•Àsˆ—
+ *	@brief	åå‰å¤‰æ›´ãƒ‡ãƒ¼ã‚¿å¤‰æ›´ãƒã‚§ãƒƒã‚¯ï¼†å®Ÿè¡Œå‡¦ç†
  *
- *	@param	p_work			ƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹
- *	@param	heap			ƒq[ƒv
+ *	@param	p_work			ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -2518,23 +2518,23 @@ static void PokeListPokeNameMoveNameChange( ZKN_POKELIST_GRAWORK* p_work, ZKN_GL
 {
 	int pokelisttbl_no;
 	int pokelisttbl_num;
-	int chg_name_no;	// •ÏX‚·‚é–¼‘Oƒe[ƒuƒ‹ƒiƒ“ƒo[
-	int poke_list_no;	// •ÏX‚·‚éƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒiƒ“ƒo[
+	int chg_name_no;	// å¤‰æ›´ã™ã‚‹åå‰ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
+	int poke_list_no;	// å¤‰æ›´ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼
 	int poke_listdraw_link_list_idx;
 
 	pokelisttbl_no = ZKN_GLBDATA_PokeListDrawTblNoGet( cp_glb->p_glb );
 	pokelisttbl_num = ZKN_GLBDATA_PokeListDrawTblNumGet( cp_glb->p_glb );
 
-	// ‚Ç‚Ì•ûŒü‚É“®ì‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ã©ã®æ–¹å‘ã«å‹•ä½œã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	switch( cp_glb->move_way ){
 	case ZKN_POKE_LIST_UP:
-		// ˆê”Ô‚µ‚½‚Ìƒe[ƒuƒ‹‚Ìƒ|ƒPƒ‚ƒ“–¼‚ğ‘I‘ğ‚³‚ê‚½ƒ|ƒPƒ‚ƒ“ + ZKN_POKELIST_POKETBL_CHECK‚Ìƒe[ƒuƒ‹ƒ|ƒPƒ‚ƒ“‚Å•ÏX
+		// ä¸€ç•ªã—ãŸã®ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚±ãƒ¢ãƒ³åã‚’é¸æŠã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ + ZKN_POKELIST_POKETBL_CHECKã®ãƒ†ãƒ¼ãƒ–ãƒ«ãƒã‚±ãƒ¢ãƒ³ã§å¤‰æ›´
 		chg_name_no = p_work->poke_tbl_start + ZKN_POKELIST_POKETBL_NUM - 1;
 		poke_list_no = pokelisttbl_no + ZKN_POKELIST_POKETBL_CHECK;
 		break;
 		
 	case ZKN_POKE_LIST_DOWN:
-		// ˆê”Ôæ“ª‚Ìƒe[ƒuƒ‹‚Ìƒ|ƒPƒ‚ƒ“–¼‚ğ‘I‘ğ‚³‚ê‚½ƒ|ƒPƒ‚ƒ“ - ZKN_POKELIST_POKETBL_CHECK‚Ìƒe[ƒuƒ‹ƒ|ƒPƒ‚ƒ“‚Å•ÏX
+		// ä¸€ç•ªå…ˆé ­ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚±ãƒ¢ãƒ³åã‚’é¸æŠã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ - ZKN_POKELIST_POKETBL_CHECKã®ãƒ†ãƒ¼ãƒ–ãƒ«ãƒã‚±ãƒ¢ãƒ³ã§å¤‰æ›´
 		chg_name_no = p_work->poke_tbl_start;
 		poke_list_no = pokelisttbl_no - ZKN_POKELIST_POKETBL_CHECK;
 
@@ -2544,32 +2544,32 @@ static void PokeListPokeNameMoveNameChange( ZKN_POKELIST_GRAWORK* p_work, ZKN_GL
 		break;
 	}
 	
-	// ã‚Å‚à‰º‚Å‚à–³‚¢‚Æ‚«‚Í‘S•”•ÏX(ƒXƒLƒbƒv‚ªƒR[ƒ‹‚³‚ê‚½)
+	// ä¸Šã§ã‚‚ä¸‹ã§ã‚‚ç„¡ã„ã¨ãã¯å…¨éƒ¨å¤‰æ›´(ã‚¹ã‚­ãƒƒãƒ—ãŒã‚³ãƒ¼ãƒ«ã•ã‚ŒãŸ)
 	if( (cp_glb->move_way == ZKN_POKE_LIST_NO_MOVE) ){
-		// ‘S•ÏX
+		// å…¨å¤‰æ›´
 		PokeListPokeNameSetUp( p_work, p_drawglb, cp_glb, heap );
 	}else{
-		// ‚P‚Â‚¾‚¯•ÏX
+		// ï¼‘ã¤ã ã‘å¤‰æ›´
 		chg_name_no %= ZKN_POKELIST_POKETBL_NUM;
 
-		// ”ÍˆÍ“à‚È‚ç•ÏX
+		// ç¯„å›²å†…ãªã‚‰å¤‰æ›´
 		if( (poke_list_no < pokelisttbl_num) &&
 			(poke_list_no >= 0) ){
 			
-			// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•`‰æ”z—ñidx‚©‚çƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒf[ƒ^”z—ñidx‚ğæ“¾
+			// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆæç”»é…åˆ—idxã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ—idxã‚’å–å¾—
 			poke_listdraw_link_list_idx = ZKN_GLBDATA_PokeListDrawTblDataGet( cp_glb->p_glb, poke_list_no );
 			
-			// ƒ_ƒ~[ƒf[ƒ^‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+			// ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			if( poke_listdraw_link_list_idx != POKEMON_LIST_DRAWTBL_DUMMY ){
 			
 				PokeListPokeNameChange( p_work, p_drawglb, cp_glb, heap, chg_name_no, poke_listdraw_link_list_idx );
 			}else{
 
-				// ‚¾‚İ[–¼‘Oİ’è
+				// ã ã¿ãƒ¼åå‰è¨­å®š
 				PokeListPokeNameDummySet( p_work, p_drawglb, heap, chg_name_no, poke_list_no + 1 );
 			}
 		}else{
-			// ”ÍˆÍŠO‚È‚ç”jŠü
+			// ç¯„å›²å¤–ãªã‚‰ç ´æ£„
 			if( p_work->poke_name[ chg_name_no ] ){
 				ZKN_FONTOAM_Delete( p_work->poke_name[ chg_name_no ] );
 				p_work->poke_name[ chg_name_no ] = NULL;
@@ -2580,14 +2580,14 @@ static void PokeListPokeNameMoveNameChange( ZKN_POKELIST_GRAWORK* p_work, ZKN_GL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“–¼ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^•ÏX
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³åã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
- *	@param	p_work				•`‰æƒ[ƒN
- *	@param	p_drawglb			•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_glb				ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap				ƒq[ƒv
- *	@param	pokename_tbl_no		ƒ|ƒPƒ‚ƒ“–¼‘Oƒe[ƒuƒ‹‚Ì‰½”Ô–Ú‚ğ•ÏX‚·‚é‚Ì‚©
- *	@param	pokelist_tbl_no		•ÏX‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^ƒe[ƒuƒ‹ƒiƒ“ƒo[
+ *	@param	p_work				æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb			æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_glb				ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap				ãƒ’ãƒ¼ãƒ—
+ *	@param	pokename_tbl_no		ãƒã‚±ãƒ¢ãƒ³åå‰ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½•ç•ªç›®ã‚’å¤‰æ›´ã™ã‚‹ã®ã‹
+ *	@param	pokelist_tbl_no		å¤‰æ›´ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  */
@@ -2595,14 +2595,14 @@ static void PokeListPokeNameMoveNameChange( ZKN_POKELIST_GRAWORK* p_work, ZKN_GL
 static void PokeListPokeNameChange( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_drawglb, const ZKN_POKELIST_GLB_DATA* cp_glb, int heap, int pokename_tbl_no, int pokelist_tbl_no )
 {
 	ZKN_FONTOAM_INIT fontoam_init;
-	GF_BGL_BMPWIN* p_bmp;	// ‘‚«‚İ—Ìˆæ
+	GF_BGL_BMPWIN* p_bmp;	// æ›¸ãè¾¼ã¿é ˜åŸŸ
 	const ZKN_POKELIST_DATA* cp_pokedata;
 
-	//@ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	//ã€€ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 	cp_pokedata = ZKN_GLBDATA_PokeListTblGet( cp_glb->p_glb, pokelist_tbl_no );
 	GF_ASSERT_MSG( cp_pokedata, " %d\n", pokelist_tbl_no );
 
-	// ‹¤’Êƒf[ƒ^‘ã“ü
+	// å…±é€šãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	fontoam_init.zkn_fontoam = p_drawglb->fontoam_sys;
 	fontoam_init.pltt		 = p_work->clheader.pPaletteProxy;
 	fontoam_init.parent		 = NULL;
@@ -2613,31 +2613,31 @@ static void PokeListPokeNameChange( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDA
 	fontoam_init.draw_area	 = NNS_G2D_VRAM_TYPE_2DMAIN;
 	fontoam_init.heap		 = heap;
 
-	// •¶š—ñ‘‚«‚İ—Ìˆæì¬
+	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿é ˜åŸŸä½œæˆ
 	p_bmp = ZKN_UTIL_PokeListPokeNameTblBmpMake( p_drawglb, cp_glb->p_glb, heap, cp_pokedata->mons_no );
 	
 
-	// ”jŠü
+	// ç ´æ£„
 	if( p_work->poke_name[ pokename_tbl_no ] ){
 		ZKN_FONTOAM_Delete( p_work->poke_name[ pokename_tbl_no ] );
 	}
 	
-	// FONTOAM“o˜^
+	// FONTOAMç™»éŒ²
 	fontoam_init.p_bmp = p_bmp;
 	p_work->poke_name[ pokename_tbl_no ] = ZKN_FONTOAM_MakeCharOfs( &fontoam_init, p_work->poke_name_char_size );
 
-	// BMP—Ìˆæ”jŠü
+	// BMPé ˜åŸŸç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( p_bmp );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ~[ƒf[ƒ^İ’è
+ *	@brief	ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_work			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap			ƒq[ƒv
- *	@param	pokename_tbl_no	ƒl[ƒ€ƒe[ƒuƒ‹ƒiƒ“ƒo[
+ *	@param	p_work			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
+ *	@param	pokename_tbl_no	ãƒãƒ¼ãƒ ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *	@param	pokenum
  *
  *	@return	none
@@ -2646,12 +2646,12 @@ static void PokeListPokeNameChange( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDA
 static void PokeListPokeNameDummySet( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA* p_drawglb, int heap, int pokename_tbl_no, int pokenum )
 {
 	ZKN_FONTOAM_INIT fontoam_init;
-	GF_BGL_BMPWIN* p_bmp;	// ‘‚«‚İ—Ìˆæ
+	GF_BGL_BMPWIN* p_bmp;	// æ›¸ãè¾¼ã¿é ˜åŸŸ
 	STRBUF* str = STRBUF_Create(ZKN_POKELIST_NUM_STR, heap);
 	MSGDATA_MANAGER* man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_zkn_dat, heap);
 
 
-	// ‹¤’Êƒf[ƒ^‘ã“ü
+	// å…±é€šãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	fontoam_init.zkn_fontoam = p_drawglb->fontoam_sys;
 	fontoam_init.pltt		 = p_work->clheader.pPaletteProxy;
 	fontoam_init.parent		 = NULL;
@@ -2662,28 +2662,28 @@ static void PokeListPokeNameDummySet( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAW
 	fontoam_init.draw_area	 = NNS_G2D_VRAM_TYPE_2DMAIN;
 	fontoam_init.heap		 = heap;
 
-	// •¶š—ñ‘‚«‚İ—Ìˆæì¬
+	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿é ˜åŸŸä½œæˆ
 	p_bmp = ZKN_FONTOAM_GetBmp( p_drawglb->fontoam_sys, ZKN_POKELIST_POKENAME_BMP_SIZE_CX, ZKN_POKELIST_POKENAME_BMP_SIZE_CY );
 
-	// ”šì¬
+	// æ•°å­—ä½œæˆ
 	STRBUF_SetNumber( str, pokenum, ZKN_POKELIST_POKENAME_NO_KETA,
 			NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );
 	GF_STR_PrintColor( p_bmp, FONT_BUTTON, str, ZKN_POKELIST_POKENAME_NO_MAT_X, ZKN_POKELIST_POKENAME_MAT_Y, MSG_NO_PUT, ZKN_FOTNOAM_COLOR, NULL );
 
-	// ‚È‚¼ƒ|ƒPƒ‚ƒ“•¶š 
+	// ãªããƒã‚±ãƒ¢ãƒ³æ–‡å­— 
 	MSGMAN_GetString( man, ZNK_UNKNOWN_00, str );
 	GF_STR_PrintColor( p_bmp, FONT_BUTTON, str, ZKN_POKELIST_POKENAME_NAME_MAT_X, ZKN_POKELIST_POKENAME_MAT_Y, MSG_NO_PUT, ZKN_FOTNOAM_COLOR, NULL );
 	
-	// ”jŠü
+	// ç ´æ£„
 	if( p_work->poke_name[ pokename_tbl_no ] ){
 		ZKN_FONTOAM_Delete( p_work->poke_name[ pokename_tbl_no ] );
 	}
 	
-	// FONTOAM“o˜^
+	// FONTOAMç™»éŒ²
 	fontoam_init.p_bmp = p_bmp;
 	p_work->poke_name[ pokename_tbl_no ] = ZKN_FONTOAM_MakeCharOfs( &fontoam_init, p_work->poke_name_char_size );
 
-	// BMP—Ìˆæ”jŠü
+	// BMPé ˜åŸŸç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( p_bmp );
 
 
@@ -2696,10 +2696,10 @@ static void PokeListPokeNameDummySet( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAW
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒe[ƒuƒ‹‚Ì•`‰æƒIƒ“ƒIƒtİ’è	ˆê‹C‚É‘Sƒe[ƒuƒ‹‚ğİ’è‚µ‚Ü‚·B
+ *	@brief	ãƒ†ãƒ¼ãƒ–ãƒ«ã®æç”»ã‚ªãƒ³ã‚ªãƒ•è¨­å®š	ä¸€æ°—ã«å…¨ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’è¨­å®šã—ã¾ã™ã€‚
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^	
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿	
  *
  *	@return	none
  *
@@ -2710,7 +2710,7 @@ static void PokeListPokeTblDrawFlagSetUp( ZKN_POKELIST_GRAWORK* p_work, const ZK
 {
 	int poke_list_no;
 	int poke_tbl_no;
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	int pokelisttbl_no;
 	int pokelisttbl_num;
 
@@ -2737,11 +2737,11 @@ static void PokeListPokeTblDrawFlagSetUp( ZKN_POKELIST_GRAWORK* p_work, const ZK
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN“®ì
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‹•ä½œ
  *
- *	@param	p_work			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹
+ *	@param	p_work			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -2752,8 +2752,8 @@ static void PokeListPokeGraMove( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA*
 	int alpha;
 	SOFT_SPRITE* ssp;
 	
-	// ƒJƒEƒ“ƒg’l‚©‚çƒ¿‚ğ•ÏX
-	// 0`31‚É™X‚É•Ï‚í‚Á‚Ä‚¢‚­
+	// ã‚«ã‚¦ãƒ³ãƒˆå€¤ã‹ã‚‰Î±ã‚’å¤‰æ›´
+	// 0ã€œ31ã«å¾ã€…ã«å¤‰ã‚ã£ã¦ã„ã
 	calc = FX_Mul( 31 << FX32_SHIFT, (ZKN_POKELIST_MOVE_END_COUNT - cp_glb->move_count) << FX32_SHIFT );
 	calc = FX_Div( calc, ZKN_POKELIST_MOVE_END_COUNT << FX32_SHIFT );
 	alpha = calc >> FX32_SHIFT;
@@ -2765,10 +2765,10 @@ static void PokeListPokeGraMove( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_DRAWDATA*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ìƒ¿’lƒŠƒZƒbƒg
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®Î±å€¤ãƒªã‚»ãƒƒãƒˆ
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -2784,9 +2784,9 @@ static void PokeListPokeGraAlphaInit( ZKN_GLB_DRAWDATA* p_drawglb, const ZKN_POK
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ~[ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ì“®ì
+ *	@brief	ãƒ€ãƒŸãƒ¼ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å‹•ä½œ
  *
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -2796,25 +2796,25 @@ static void PokeListDummyPokeGraMove( const ZKN_POKELIST_GLB_DATA* cp_glb )
 	fx32 calc;
 	int alpha;
 	
-	// ƒJƒEƒ“ƒg’l‚©‚çƒ¿‚ğ•ÏX
-	// 0`16‚É™X‚É•Ï‚í‚Á‚Ä‚¢‚­
+	// ã‚«ã‚¦ãƒ³ãƒˆå€¤ã‹ã‚‰Î±ã‚’å¤‰æ›´
+	// 0ã€œ16ã«å¾ã€…ã«å¤‰ã‚ã£ã¦ã„ã
 	calc = FX_Mul( 16 << FX32_SHIFT, (ZKN_POKELIST_MOVE_END_COUNT - cp_glb->move_count) << FX32_SHIFT );
 	calc = FX_Div( calc, ZKN_POKELIST_MOVE_END_COUNT << FX32_SHIFT );
 	alpha = calc >> FX32_SHIFT;
 
-	// OAMƒ¿
+	// OAMÎ±
 	G2_ChangeBlendAlpha( alpha, 16 - alpha );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG–ÊƒtƒF[ƒh‰Šú‰»
+ *	@brief	BGé¢ãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
  *
- *	@param	p_work			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out		ƒtƒF[ƒhƒCƒ“TRUE@ƒAƒEƒgFALSEƒtƒ‰ƒO
+ *	@param	p_work			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out		ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³TRUEã€€ã‚¢ã‚¦ãƒˆFALSEãƒ•ãƒ©ã‚°
  *
  *	@return	none
  */
@@ -2826,17 +2826,17 @@ static void PokeListBgFadeInit( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_GLB_D
 	int fade_sync;
 
 	
-	// ƒVƒƒƒbƒ^[‰¹
+	// ã‚·ãƒ£ãƒƒã‚¿ãƒ¼éŸ³
 	Snd_SePlay( ZKN_SND_SHUTTER );
 
-	// font–Êƒ}ƒXƒN
+	// fonté¢ãƒã‚¹ã‚¯
 /*	GX_SetVisibleWnd( GX_WNDMASK_W0 );
 	G2_SetWnd0InsidePlane( GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE );
 	G2_SetWndOutsidePlane( GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE );
 	G2_SetWnd0Position( 0, 0, 255, 192 );//*/
 
 	
-	// ƒtƒF[ƒhƒf[ƒ^‰Šú‰»ƒf[ƒ^İ’è
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	if( cp_glb->fade_mode == ZKN_POKELIST_BG_FADE_NORMAL ){
 		
 		if( fadein_out ){
@@ -2846,7 +2846,7 @@ static void PokeListBgFadeInit( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_GLB_D
 			bottom_e = ZKN_POKELIST_BGSHUTTER_FADE00_BOTTOM_E;
 			fade_sync = ZKN_POKELIST_FADEIN_SYNC;
 
-			// •¶š–Ê‚Ì•\¦ƒIƒtƒZƒbƒgİ’è
+			// æ–‡å­—é¢ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®š
 			GF_BGL_ScrollSet( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_FONT_M, GF_BGL_SCROLL_Y_SET, 192 );
 
 		}else{
@@ -2875,7 +2875,7 @@ static void PokeListBgFadeInit( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_GLB_D
 	}
 
 
-	// ƒtƒF[ƒhƒf[ƒ^‰Šú‰»
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	ZKN_UTIL_BgShutterFadeInit( &p_work->bg_fade,
 			p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_UTIL_M,
 			p_work->p_util_scrn, 
@@ -2886,13 +2886,13 @@ static void PokeListBgFadeInit( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_GLB_D
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒtƒF[ƒhŠÖ”
+ *	@brief	BGãƒ•ã‚§ãƒ¼ãƒ‰é–¢æ•°
  *
  *	@param	p_work 
  *	@param	p_drawglb
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL PokeListBgFadeMain( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_GLB_DRAW* p_drawglb )
@@ -2902,20 +2902,20 @@ static BOOL PokeListBgFadeMain( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_GLB_D
 	
 	check = ZKN_UTIL_BgShutterFade( &p_work->bg_fade );
 
-	// •¶š—ñ–ÊƒXƒNƒ[ƒ‹
+	// æ–‡å­—åˆ—é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 	if( check == FALSE ){
 		bottom_w_size = (p_work->bg_fade.bottom_dis * (p_work->bg_fade.move_count - 1)) / p_work->bg_fade.move_count_max;
 		bottom_w_size += p_work->bg_fade.bottom_start;
-		bottom_w_size = bottom_w_size;			// ‰º‚©‚ç‚ÌƒLƒƒƒ‰ƒNƒ^ƒTƒCƒY
-		bottom_w_size *= 8;						// ‰º‚©‚ç‚ÌƒsƒNƒZƒ‹ƒTƒCƒY
-		bottom_w_size = bottom_w_size - ZKN_POKELIST_SCR_START_DOWN_YSIZ; // •¶š‚Ì•\¦ˆÊ’u
+		bottom_w_size = bottom_w_size;			// ä¸‹ã‹ã‚‰ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚µã‚¤ã‚º
+		bottom_w_size *= 8;						// ä¸‹ã‹ã‚‰ã®ãƒ”ã‚¯ã‚»ãƒ«ã‚µã‚¤ã‚º
+		bottom_w_size = bottom_w_size - ZKN_POKELIST_SCR_START_DOWN_YSIZ; // æ–‡å­—ã®è¡¨ç¤ºä½ç½®
 
-		// ZKN_POKELIST_BGSHUTTER_FADE_FONTBG_LIMIT‚æ‚è‘å‚«‚¢’l‚É‚³‚¹‚È‚¢
+		// ZKN_POKELIST_BGSHUTTER_FADE_FONTBG_LIMITã‚ˆã‚Šå¤§ãã„å€¤ã«ã•ã›ãªã„
 		if( bottom_w_size < ZKN_POKELIST_BGSHUTTER_FADE_FONTBG_LIMIT ){
 			bottom_w_size = ZKN_POKELIST_BGSHUTTER_FADE_FONTBG_LIMIT;
 		}
 		
-		// ‚±‚ê‚ªBG‚ÌˆÚ“®’l‚É‚È‚é
+		// ã“ã‚ŒãŒBGã®ç§»å‹•å€¤ã«ãªã‚‹
 		GF_BGL_ScrollReq( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_FONT_M, GF_BGL_SCROLL_Y_SET, bottom_w_size );
 
 	}
@@ -2925,12 +2925,12 @@ static BOOL PokeListBgFadeMain( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_GLB_D
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	SHUTTERƒtƒF[ƒhŒãˆ—
+ *	@brief	SHUTTERãƒ•ã‚§ãƒ¼ãƒ‰å¾Œå‡¦ç†
  *
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out		ƒtƒF[ƒhƒCƒ“TRUE@ƒAƒEƒgFALSE
- *	@param	set_blend_msk	İ’èƒuƒ‰ƒCƒgƒlƒXƒ}ƒXƒN
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out		ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³TRUEã€€ã‚¢ã‚¦ãƒˆFALSE
+ *	@param	set_blend_msk	è¨­å®šãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒã‚¹ã‚¯
  *
  *	@return	none
  */
@@ -2941,7 +2941,7 @@ static void PokeListBgFadeDel( ZKN_POKELIST_GLB_DRAW* p_drawglb, const ZKN_POKEL
 		
 		if( fadein_out == FALSE ){
 			
-			// ‘S•”‚Ì–Ê‚Éƒuƒ‰ƒCƒgƒlƒX‚ğ‚©‚¯AƒXƒNƒ[ƒ‹À•W‚ğƒŠƒZƒbƒg
+			// å…¨éƒ¨ã®é¢ã«ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ã‹ã‘ã€ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã‚’ãƒªã‚»ãƒƒãƒˆ
 			GF_BGL_ScrollSet( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_FONT_M, GF_BGL_SCROLL_Y_SET, 0 );
 		}
 	}
@@ -2952,17 +2952,17 @@ static void PokeListBgFadeDel( ZKN_POKELIST_GLB_DRAW* p_drawglb, const ZKN_POKEL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒ|ƒPƒ‚ƒ“–¼‚ğ‘‚­“]‘—ƒTƒCƒY‚ğ‹‚ß‚é
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒã‚±ãƒ¢ãƒ³åã‚’æ›¸ãè»¢é€ã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã‚‹
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
- *	@return	“]‘—ƒTƒCƒY
+ *	@return	è»¢é€ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 static int PokeListPokeNameCharTransSizeGet( ZKN_GLB_DRAWDATA* p_drawglb, int heap )
 {
-	GF_BGL_BMPWIN* p_bmp;	// ‘‚«‚İ—Ìˆæ
+	GF_BGL_BMPWIN* p_bmp;	// æ›¸ãè¾¼ã¿é ˜åŸŸ
 	int char_size;
 
 	p_bmp = ZKN_FONTOAM_GetBmp( p_drawglb->fontoam_sys, ZKN_POKELIST_POKENAME_BMP_SIZE_CX, ZKN_POKELIST_POKENAME_BMP_SIZE_CY );
@@ -2975,9 +2975,9 @@ static int PokeListPokeNameCharTransSizeGet( ZKN_GLB_DRAWDATA* p_drawglb, int he
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM‚ÌƒtƒF[ƒh‰Šú‰»
+ *	@brief	OAMã®ãƒ•ã‚§ãƒ¼ãƒ‰åˆæœŸåŒ–
  *
- *	@param	p_work	•`‰æƒ[ƒN
+ *	@param	p_work	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -3000,9 +3000,9 @@ static void PokeListOamFadeInit( ZKN_POKELIST_GRAWORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM‚ÌƒtƒF[ƒhˆ—”jŠü
+ *	@brief	OAMã®ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ç ´æ£„
  *
- *	@param	p_work	•`‰æƒ[ƒN
+ *	@param	p_work	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return
  */
@@ -3025,12 +3025,12 @@ static void PokeListOamFadeDelete( ZKN_POKELIST_GRAWORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒŒƒNƒgƒ|ƒPƒ‚ƒ“‚ÌƒŠƒXƒgƒf[ƒ^‚ğƒOƒ[ƒoƒ‹‚Ìƒf[ƒ^‚É”½‰f
+ *	@brief	ã‚»ãƒ¬ã‚¯ãƒˆãƒã‚±ãƒ¢ãƒ³ã®ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap		ƒq[ƒv
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -3040,41 +3040,41 @@ static void PokeListSelectPokeDataGlbSet( ZKN_POKELIST_GRAWORK* p_work, ZKN_GLB_
 	const VecFx32* p_mat;
 	int select_work_no;
 	
-	// ‘I‘ğ‚³‚ê‚Ä‚¢‚éƒe[ƒuƒ‹idxæ“¾
+	// é¸æŠã•ã‚Œã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«idxå–å¾—
 	select_work_no = (p_work->poke_tbl_start + ZKN_POKELIST_POKETBL_CHECK) % ZKN_POKELIST_POKETBL_NUM;
 
-	// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹‚ÌÀ•W‚ğİ’è
+	// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®åº§æ¨™ã‚’è¨­å®š
 	p_mat = CLACT_GetMatrix( p_work->poke_tbl[ select_work_no ] );
 
-	// ƒ|ƒPƒ‚ƒ“–¼ƒŠƒXƒgƒf[ƒ^ì¬
+	// ãƒã‚±ãƒ¢ãƒ³åãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	ZKN_UTIL_PokeListPokeNameMakeGlb( p_drawglb, cp_glb->p_glb, heap, ZKN_GLBDATA_PokeListTblNoGet( cp_glb->p_glb ), p_mat->x, p_mat->y );
 	ZKN_GlbPokeNameTblBGPriSet( p_drawglb, 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒm[ƒ}ƒ‹ƒtƒF[ƒhˆ—	•¶š–Ê‚Æƒ†[ƒeƒBƒŠƒeƒB–Ê‚ğSLIDEƒCƒ“@‚»‚Ì‘¼ƒuƒ‰ƒCƒgƒlƒX
+ *	@brief	ãƒãƒ¼ãƒãƒ«ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†	æ–‡å­—é¢ã¨ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£é¢ã‚’SLIDEã‚¤ãƒ³ã€€ãã®ä»–ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹
  *
- *	@param	p_work			•`‰æƒ[ƒN
- *	@param	cp_dataglb		•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_work			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_dataglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return
  */
 //-----------------------------------------------------------------------------
 static void ZknPokeListDefaultFadeReq( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_GLB_DRAW* p_drawglb, const ZKN_POKELIST_GLB_DATA* cp_glb, BOOL fadein_out )
 {
-	// BG–Ê
+	// BGé¢
 	PokeListBgFadeInit( p_work, p_drawglb, cp_glb, fadein_out );
 
-	// BGƒtƒF[ƒhƒ‚[ƒh‚ªZKN_POKELIST_BG_FADE_SHUTTER‚Ì‚Íƒuƒ‰ƒCƒgƒlƒX‚ğg—p‚µ‚È‚¢
+	// BGãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ãŒZKN_POKELIST_BG_FADE_SHUTTERã®æ™‚ã¯ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ç”¨ã—ãªã„
 	if( cp_glb->fade_mode != ZKN_POKELIST_BG_FADE_SHUTTER ){
 	
 		if( fadein_out ){
-			// ƒtƒF[ƒhƒCƒ“
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 			ChangeBrightnessRequest( ZKN_POKELIST_FADEIN_SYNC, 
 					BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, ZKN_POKELSIT_BRIGHTNESS_MSK, MASK_MAIN_DISPLAY );
 		}else{
-			// ƒtƒF[ƒhƒAƒEƒg
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 			ChangeBrightnessRequest( ZKN_POKELIST_FADEIN_SYNC, 
 					BRIGHTNESS_BLACK, BRIGHTNESS_NORMAL, ZKN_POKELSIT_BRIGHTNESS_MSK, MASK_MAIN_DISPLAY );
 		}
@@ -3083,43 +3083,43 @@ static void ZknPokeListDefaultFadeReq( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIS
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhI—¹ƒ`ƒFƒbƒN
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“ƒAƒEƒg
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆ
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknPokeListDefaultFadeEndCheck( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_GLB_DRAW* p_drawglb, const ZKN_POKELIST_GLB_DATA* cp_glb, BOOL fadein_out )
 {
 	BOOL check[2];
 
-	// BG–Ê‚ÌSHUTTERƒtƒF[ƒh
+	// BGé¢ã®SHUTTERãƒ•ã‚§ãƒ¼ãƒ‰
 	check[0] = PokeListBgFadeMain( p_work, p_drawglb );
 	
-	// BGƒtƒF[ƒhƒ‚[ƒh‚ªZKN_POKELIST_BG_FADE_SHUTTER‚Ì‚Íƒuƒ‰ƒCƒgƒlƒX‚ğg—p‚µ‚È‚¢
+	// BGãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ãŒZKN_POKELIST_BG_FADE_SHUTTERã®æ™‚ã¯ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ç”¨ã—ãªã„
 	if( cp_glb->fade_mode != ZKN_POKELIST_BG_FADE_SHUTTER ){
 		check[1] = IsFinishedBrightnessChg( MASK_MAIN_DISPLAY );
 	}else{
 		check[1] = TRUE;
 	}
 
-	// ƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰
 	if( (check[0] == TRUE) &&
 		(check[1] == TRUE) ){
 
-		// BGƒtƒF[ƒhƒ‚[ƒh‚ªZKN_POKELIST_BG_FADE_SHUTTER‚Ì‚Íƒuƒ‰ƒCƒgƒlƒX‚ğg—p‚µ‚È‚¢
+		// BGãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ãŒZKN_POKELIST_BG_FADE_SHUTTERã®æ™‚ã¯ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ç”¨ã—ãªã„
 		if( cp_glb->fade_mode != ZKN_POKELIST_BG_FADE_SHUTTER ){
-			// ^‚ÁˆÃ‚É‚·‚é
+			// çœŸã£æš—ã«ã™ã‚‹
 			if( fadein_out == FALSE ){
 				SetBrightness( BRIGHTNESS_BLACK, PLANEMASK_ALL, MASK_MAIN_DISPLAY );
-				// BG–Ê‚Ì‰Šú‰»
+				// BGé¢ã®åˆæœŸåŒ–
 				GF_BGL_BmpWinDataFill( &p_drawglb->p_drawglb->bmp_mfont, 0 );
-				// •¶š—ñ–Ê‰Šú‰»
+				// æ–‡å­—åˆ—é¢åˆæœŸåŒ–
 				GF_BGL_ScrClear( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_FONT_M );
 			}
 		}
@@ -3135,43 +3135,43 @@ static BOOL ZknPokeListDefaultFadeEndCheck( ZKN_POKELIST_GRAWORK* p_work, ZKN_PO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓ‰æ–Ê‚Æ‚ÌƒtƒF[ƒhˆ—
+ *	@brief	å›³é‘‘ç”»é¢ã¨ã®ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
  *
- *	@param	p_work			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out		ƒtƒF[ƒhƒCƒ“ TRUE ƒAƒEƒg FALSE 
+ *	@param	p_work			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out		ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ TRUE ã‚¢ã‚¦ãƒˆ FALSE 
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknPokeListChZukanFadeReq( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_GLB_DRAW* p_drawglb, const ZKN_POKELIST_GLB_DATA* cp_glb, BOOL fadein_out )
 {
-	// ƒtƒF[ƒh‚·‚éƒIƒuƒWƒFƒ‚[ƒh‚ğ”¼“§–¾‚É
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ãƒ¢ãƒ¼ãƒ‰ã‚’åŠé€æ˜ã«
 	PokeListOamFadeInit( p_work );
 
-	// BG–Ê
+	// BGé¢
 	PokeListBgFadeInit( p_work, p_drawglb, cp_glb, fadein_out );
 
-	// ƒtƒF[ƒhƒAƒEƒg‚Ì‚İ‚Ìˆ—
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®ã¿ã®å‡¦ç†
 	if( fadein_out == FALSE ){
-		// ƒ|ƒPƒOƒ‰ƒtƒF[ƒh
+		// ãƒã‚±ã‚°ãƒ©ãƒ•ã‚§ãƒ¼ãƒ‰
 		PokeListPokeGraFadeInit( p_work, p_drawglb );
 
-		// ƒ|ƒPƒŠƒXƒgƒtƒF[ƒh
+		// ãƒã‚±ãƒªã‚¹ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 		PokeListPokeListFadeInit( p_work, p_drawglb );
 	}
 
-	// BGƒtƒF[ƒhƒ‚[ƒh‚ªZKN_POKELIST_BG_FADE_SHUTTER‚Ì‚Íƒuƒ‰ƒCƒgƒlƒX‚ğg—p‚µ‚È‚¢
+	// BGãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ãŒZKN_POKELIST_BG_FADE_SHUTTERã®æ™‚ã¯ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ç”¨ã—ãªã„
 	if( cp_glb->fade_mode != ZKN_POKELIST_BG_FADE_SHUTTER ){
 
 
 		if( fadein_out ){
-			// ƒtƒF[ƒhƒCƒ“
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_POKELIST_FADEIN_SYNC, 
 					BRIGHTNESS_BLACK, BRIGHTNESS_NORMAL, 0, 16, ZKN_POKELSIT_BRIGHTNESS_ZUKAN_MSK, PLANEMASK_BG3, ZKN_UTIL_FADE_MAIN );
 		}else{
-			// ƒtƒF[ƒhƒAƒEƒg
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade, ZKN_POKELIST_FADEIN_SYNC, 
 					BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, 16, 0, ZKN_POKELSIT_BRIGHTNESS_ZUKAN_MSK, PLANEMASK_BG3, ZKN_UTIL_FADE_MAIN );
 		}
@@ -3180,15 +3180,15 @@ static void ZknPokeListChZukanFadeReq( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIS
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓ‰æ–Ê‚Æ‚ÌƒtƒF[ƒhˆ—I—¹ƒ`ƒFƒbƒN
+ *	@brief	å›³é‘‘ç”»é¢ã¨ã®ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_work			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	fadein_out		ƒtƒF[ƒhƒCƒ“ TRUE@ƒAƒEƒg FALSE
+ *	@param	p_work			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	fadein_out		ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ TRUEã€€ã‚¢ã‚¦ãƒˆ FALSE
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknPokeListChZukanFadeEndCheck( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_GLB_DRAW* p_drawglb, const ZKN_POKELIST_GLB_DATA* cp_glb, BOOL fadein_out )
@@ -3196,23 +3196,23 @@ static BOOL ZknPokeListChZukanFadeEndCheck( ZKN_POKELIST_GRAWORK* p_work, ZKN_PO
 	BOOL check[4];
 	int i;
 
-	// BG–Ê‚ÌSHUTTERƒtƒF[ƒh
+	// BGé¢ã®SHUTTERãƒ•ã‚§ãƒ¼ãƒ‰
 	check[0] = PokeListBgFadeMain( p_work, p_drawglb );
 
 
-	// BGƒtƒF[ƒhƒ‚[ƒh‚ªZKN_POKELIST_BG_FADE_SHUTTER‚Ì‚Íƒuƒ‰ƒCƒgƒlƒX‚ğg—p‚µ‚È‚¢
+	// BGãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ãŒZKN_POKELIST_BG_FADE_SHUTTERã®æ™‚ã¯ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ç”¨ã—ãªã„
 	if( cp_glb->fade_mode != ZKN_POKELIST_BG_FADE_SHUTTER ){
-		// ƒuƒ‰ƒCƒgƒlƒXƒtƒF[ƒh
+		// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ãƒ•ã‚§ãƒ¼ãƒ‰
 		check[1] = ZKN_GLB_ChangeFadeMain( &p_drawglb->p_drawglb->fade );
 	}
 
-	// ƒtƒF[ƒhƒAƒEƒg‚Ì‚İ‚Ìˆ—
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®ã¿ã®å‡¦ç†
 	if( fadein_out == FALSE ){
 
-		// ƒ|ƒPƒOƒ‰
+		// ãƒã‚±ã‚°ãƒ©
 		check[2] = PokeListPokeGraFadeMain( p_work, p_drawglb );
 
-		// ƒ|ƒPƒŠƒXƒg
+		// ãƒã‚±ãƒªã‚¹ãƒˆ
 		check[3] = PokeListPokeListFadeMain( p_work, p_drawglb );
 	}else{
 		check[2] = TRUE;
@@ -3227,30 +3227,30 @@ static BOOL ZknPokeListChZukanFadeEndCheck( ZKN_POKELIST_GRAWORK* p_work, ZKN_PO
 	}
 	
 	if( i == 4 ){
-		// ƒtƒF[ƒhƒAƒEƒg‚Ì‚Æ‚«
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®ã¨ã
 		if( fadein_out == FALSE ){
-			// BGƒtƒF[ƒhƒ‚[ƒh‚ªZKN_POKELIST_BG_FADE_SHUTTER‚Ì‚Íƒuƒ‰ƒCƒgƒlƒX‚ğg—p‚µ‚È‚¢
+			// BGãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ãŒZKN_POKELIST_BG_FADE_SHUTTERã®æ™‚ã¯ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ç”¨ã—ãªã„
 			if( cp_glb->fade_mode != ZKN_POKELIST_BG_FADE_SHUTTER ){
-				// ^‚ÁˆÃ‚É‚·‚é
+				// çœŸã£æš—ã«ã™ã‚‹
 				G2_SetBlendBrightnessExt( ZKN_POKELIST_BRIGHTNESS_ZUKAN_END_MSK, PLANEMASK_BG3, 0, 0, BRIGHTNESS_BLACK );
 
-				// BG–Ê‚Ì‰Šú‰»
+				// BGé¢ã®åˆæœŸåŒ–
 				GF_BGL_BmpWinDataFill( &p_drawglb->p_drawglb->bmp_mfont, 0 );
-				// •¶š—ñ–Ê‰Šú‰»
+				// æ–‡å­—åˆ—é¢åˆæœŸåŒ–
 				GF_BGL_ScrClear( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_FONT_M );
 			}
 			
 		}else{
-			// ƒtƒF[ƒhƒCƒ“‚Ì‚Æ‚«
-			// OAM‚Ì”¼“§–¾ƒ‚[ƒh”jŠü
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®ã¨ã
+			// OAMã®åŠé€æ˜ãƒ¢ãƒ¼ãƒ‰ç ´æ£„
 			PokeListOamFadeDelete( p_work );
 
-			// ƒOƒ[ƒoƒ‹ƒ|ƒPƒŠƒXƒg•\¦OFF
+			// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒã‚±ãƒªã‚¹ãƒˆè¡¨ç¤ºOFF
 			ZKN_GlbPokeNameTblDrawFlagSet( p_drawglb->p_drawglb, FALSE );
 			ZKN_GlbPokeNameTblObjModeSet( p_drawglb->p_drawglb, GX_OAM_MODE_NORMAL );
 		}
 		
-		// BGƒtƒF[ƒhƒŠƒZƒbƒg
+		// BGãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚»ãƒƒãƒˆ
 		PokeListBgFadeDel( p_drawglb, cp_glb, fadein_out );
 		
 		return TRUE;
@@ -3261,11 +3261,11 @@ static BOOL ZknPokeListChZukanFadeEndCheck( ZKN_POKELIST_GRAWORK* p_work, ZKN_PO
 
 //----------------------------------------------------------------------------
 /**
- * [}ŠÓƒtƒF[ƒhƒGƒtƒFƒNƒg]
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN“®ì‰Šú‰»
+ * [å›³é‘‘ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ]
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -3274,20 +3274,20 @@ static void PokeListPokeGraFadeInit( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_
 {
 	ZKN_UTIL_MoveReq( &p_work->pokegra_move, ZKN_POKELIST_POKEGRA_X, ZKN_ZUKAN_POKEGRA_MAT_X, ZKN_POKELIST_POKEGRA_Y, ZKN_ZUKAN_POKEGRA_MAT_Y, ZKN_POKELIST_FADEIN_SYNC );
 
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	ZKN_GlbPokemonGraphicSetMatrix( p_drawglb->p_drawglb, p_work->pokegra_move.x, p_work->pokegra_move.y );
 }
 
 //----------------------------------------------------------------------------
 /**
- * [}ŠÓƒtƒF[ƒhƒGƒtƒFƒNƒg]
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN“®ì
+ * [å›³é‘‘ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ]
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‹•ä½œ
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL PokeListPokeGraFadeMain( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_GLB_DRAW* p_drawglb )
@@ -3296,7 +3296,7 @@ static BOOL PokeListPokeGraFadeMain( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_
 	
 	check = ZKN_UTIL_MoveMain( &p_work->pokegra_move );
 
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	ZKN_GlbPokemonGraphicSetMatrix( p_drawglb->p_drawglb, p_work->pokegra_move.x, p_work->pokegra_move.y );
 
 	return check;
@@ -3304,11 +3304,11 @@ static BOOL PokeListPokeGraFadeMain( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST_
 
 //----------------------------------------------------------------------------
 /**
- * [}ŠÓƒtƒF[ƒhƒGƒtƒFƒNƒg]
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg“®ì‰Šú‰»
+ * [å›³é‘‘ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ]
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *	
  *	@return	none
  */
@@ -3317,17 +3317,17 @@ static void PokeListPokeListFadeInit( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST
 {
 	ZKN_UTIL_MoveReq( &p_work->pokelist_move, ZKN_POKELIST_TBL_MAT_X, ZKN_ZUKAN_POKELIST_MAT_IX, ZKN_POKELIST_TBL_MAT_Y, ZKN_ZUKAN_POKELIST_MAT_IY, ZKN_POKELIST_FADEIN_SYNC );
 
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	ZKN_UTIL_PokeListPokeNameGlbMatrixSet( p_drawglb->p_drawglb, p_work->pokelist_move.x, p_work->pokelist_move.y );
 }
 
 //----------------------------------------------------------------------------
 /**
- * [}ŠÓƒtƒF[ƒhƒGƒtƒFƒNƒg]
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg“®ì‰Šú‰»
+ * [å›³é‘‘ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ]
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_work		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_work		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *	
  *	@return	none
  */
@@ -3338,7 +3338,7 @@ static BOOL PokeListPokeListFadeMain( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST
 	
 	check = ZKN_UTIL_MoveMain( &p_work->pokelist_move );
 
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	ZKN_UTIL_PokeListPokeNameGlbMatrixSet( p_drawglb->p_drawglb, p_work->pokelist_move.x, p_work->pokelist_move.y );
 
 	return check;
@@ -3347,7 +3347,7 @@ static BOOL PokeListPokeListFadeMain( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓ”jŠüˆ—
+ *	@brief	å›³é‘‘ç ´æ£„å‡¦ç†
  *
  *	@param	p_glb 
  *
@@ -3357,7 +3357,7 @@ static BOOL PokeListPokeListFadeMain( ZKN_POKELIST_GRAWORK* p_work, ZKN_POKELIST
 static void PokeListZukanDel( ZKN_POKELIST_GLB_DATA* p_glb )
 {
 	*p_glb->p_event_key	|= EVENT_MSK_POKELIST_ZUKAN_END;
-	// ƒtƒF[ƒhƒCƒ“ƒ‚[ƒh•ÏX
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
 	p_glb->fade_mode = ZKN_POKELIST_BG_FADE_NORMAL;
 	p_glb->fade_zukan_data = FALSE;
 
@@ -3366,7 +3366,7 @@ static void PokeListZukanDel( ZKN_POKELIST_GLB_DATA* p_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒf[ƒ^‰æ–Ê‚ÉˆÚs
+ *	@brief	å›³é‘‘ãƒ‡ãƒ¼ã‚¿ç”»é¢ã«ç§»è¡Œ
  *
  *	@param	p_glb 
  *
@@ -3376,11 +3376,11 @@ static void PokeListZukanDel( ZKN_POKELIST_GLB_DATA* p_glb )
 static void PokeListZukanChg( ZKN_POKELIST_WORK* p_work, ZKN_POKELIST_GLB_DATA* p_glb )
 {
 	*p_glb->p_event_key	|= EVENT_MSK_POKELIST_CHENGE_ZUKAN;
-	// ƒtƒF[ƒhƒCƒ“ƒ‚[ƒh•ÏX
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
 	p_glb->fade_mode = ZKN_POKELIST_BG_FADE_NORMAL;
 	p_glb->fade_zukan_data = TRUE;
 
-	// ƒOƒ[ƒoƒ‹•Ï”‰Šú‰»
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°åˆæœŸåŒ–
 	p_glb->move_count = 0;
 //	PokeListMoveInit( p_glb, p_work );	
 	p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_ALL;
@@ -3388,28 +3388,28 @@ static void PokeListZukanChg( ZKN_POKELIST_WORK* p_work, ZKN_POKELIST_GLB_DATA* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚©‚çSORT‰æ–Ê‚É•ªŠò
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‹ã‚‰SORTç”»é¢ã«åˆ†å²
  *
  *	@param	p_glb 
  *
- *	@retval	TRUE	ˆ—‚ª‚³‚ê‚½
- *	@retval	FALSE	ˆ—‚ª‚È‚³‚ê‚È‚©‚Á‚½
+ *	@retval	TRUE	å‡¦ç†ãŒã•ã‚ŒãŸ
+ *	@retval	FALSE	å‡¦ç†ãŒãªã•ã‚Œãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL PokeListSortChg( ZKN_POKELIST_GLB_DATA* p_glb )
 {
 	if( p_glb->p_glb->sort_search_flag == ZKN_SORTSEARCH_NONE ){
 		
-		// ƒ\[ƒgˆÊ’u‚ÉƒJ[ƒ\ƒ‹ˆÚ“®‚µ‚ÄŒŸõƒ\[ƒg‰æ–ÊŠJn
+		// ã‚½ãƒ¼ãƒˆä½ç½®ã«ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã—ã¦æ¤œç´¢ã‚½ãƒ¼ãƒˆç”»é¢é–‹å§‹
 		*p_glb->p_event_key |= EVENT_MSK_POKELIST_CHENGE_SORTSEARCH;//*/
 
-		// ƒtƒF[ƒhƒ‚[ƒh
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
 		p_glb->fade_mode = ZKN_POKELIST_BG_FADE_NORMAL;
 		p_glb->fade_zukan_data = FALSE;
 
 		p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_ALL;
 
-		// ‘I‘ğ‰¹
+		// é¸æŠéŸ³
 		Snd_SePlay( ZKN_SND_SELECT );
 		return TRUE;
 	}
@@ -3418,25 +3418,25 @@ static BOOL PokeListSortChg( ZKN_POKELIST_GLB_DATA* p_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒ‚[ƒh‚ğØ‚è‘Ö‚¦‚é
+ *	@brief	å›³é‘‘ãƒ¢ãƒ¼ãƒ‰ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	ˆ—‚ª‚³‚ê‚½
- *	@retval	FALSE	ˆ—‚ª‚³‚ê‚È‚©‚Á‚½
+ *	@retval	TRUE	å‡¦ç†ãŒã•ã‚ŒãŸ
+ *	@retval	FALSE	å‡¦ç†ãŒã•ã‚Œãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL PokeListZukanModeChg( ZKN_POKELIST_GLB_DATA* p_glb, int heap )
 {
 	int zkn_mode;
 
-	// ¿°ÄÓ°ÄŞ‚Ì‚Í‚©‚¦‚ç‚ê‚È‚¢
+	// ã‚½ãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯ã‹ãˆã‚‰ã‚Œãªã„
 	if( p_glb->p_glb->sort_search_flag == ZKN_SORTSEARCH_SORT ){
 		return FALSE;
 	}
 		
 
-	// }ŠÓƒ‚[ƒh‚ğ•ÏX‚·‚é
+	// å›³é‘‘ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹
 	zkn_mode = ZKN_GLBDATA_PokeZknModeGet(p_glb->p_glb);
 	if( zkn_mode == ZKN_MODE_SHINOH ){
 		zkn_mode = ZKN_MODE_ZENKOKU;
@@ -3444,15 +3444,15 @@ static BOOL PokeListZukanModeChg( ZKN_POKELIST_GLB_DATA* p_glb, int heap )
 		zkn_mode = ZKN_MODE_SHINOH;
 	}
 	
-	// }ŠÓƒ‚[ƒh‚ğ•ÏX‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+	// å›³é‘‘ãƒ¢ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_GLBDATA_PokeZknModeChengeCheck( p_glb->p_glb, zkn_mode ) ){
-		// •ÏX
+		// å¤‰æ›´
 		ZKN_GLBDATA_PokeZknModeChenge( p_glb->p_glb, zkn_mode );
 
-		// ‘I‘ğ‰¹
+		// é¸æŠéŸ³
 		Snd_SePlay( ZKN_SND_SELECT );
 
-		// ƒŠƒXƒgİ’è
+		// ãƒªã‚¹ãƒˆè¨­å®š
 		ZKN_GLBDATA_PokeListTblMake( p_glb->p_glb, 
 				ZKN_POKELIST_SORT_NORMAL, 
 				ZKN_POKELIST_SEARCH_NAME_NONE,
@@ -3461,21 +3461,21 @@ static BOOL PokeListZukanModeChg( ZKN_POKELIST_GLB_DATA* p_glb, int heap )
 				ZKN_POKELIST_SEARCH_FORM_NONE,
 				zkn_mode, heap );
 
-		// ƒŠƒXƒgƒiƒ“ƒo[‰Šú‰»
+		// ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼åˆæœŸåŒ–
 		ZKN_GLBDATA_PokeListTblNoSet( p_glb->p_glb, 0 );
 
-		// “®ìƒJƒEƒ“ƒ^‚à‰Šú‰»
+		// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿ã‚‚åˆæœŸåŒ–
 		p_glb->move_count = 0;	
 
-		// ƒ|ƒPƒŠƒXƒg‰æ–ÊÄì¬
+		// ãƒã‚±ãƒªã‚¹ãƒˆç”»é¢å†ä½œæˆ
 		*p_glb->p_event_key |= EVENT_MSK_POKELIST_CHANGE;
-		// ƒtƒF[ƒhƒCƒ“ƒ‚[ƒh•ÏX
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
 		p_glb->fade_mode = ZKN_POKELIST_BG_FADE_NORMAL;
 		p_glb->fade_zukan_data = FALSE;
 
 		p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_ALL;
 
-		// •`‰æsiOFF
+		// æç”»è¡Œé€²OFF
 		p_glb->move_draw = FALSE;
 
 		return TRUE;
@@ -3485,19 +3485,19 @@ static BOOL PokeListZukanModeChg( ZKN_POKELIST_GLB_DATA* p_glb, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓ‚ÌSORTİ’èƒŠƒZƒbƒg
+ *	@brief	å›³é‘‘ã®SORTè¨­å®šãƒªã‚»ãƒƒãƒˆ
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void PokeListZukanReset( ZKN_POKELIST_GLB_DATA* p_glb, int heap )
 {
-	// ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[•Û‘¶
+	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ä¿å­˜
 	u32 monsno = ZKN_GLBDATA_PokeMonsNoGet( p_glb->p_glb );
 	
-	// }ŠÓƒŠƒXƒgƒŠƒZƒbƒg
+	// å›³é‘‘ãƒªã‚¹ãƒˆãƒªã‚»ãƒƒãƒˆ
 	ZKN_GLBDATA_PokeListTblMake( p_glb->p_glb, 
 			ZKN_POKELIST_SORT_NORMAL, 
 			ZKN_POKELIST_SEARCH_NAME_NONE,
@@ -3507,24 +3507,24 @@ static void PokeListZukanReset( ZKN_POKELIST_GLB_DATA* p_glb, int heap )
 			ZKN_GLBDATA_PokeZknModeGet( p_glb->p_glb ), heap );
 	(*p_glb->p_event_key) |= EVENT_MSK_POKELIST_CHANGE;
 
-	// ƒŠƒXƒgƒiƒ“ƒo[‰Šú‰»
+	// ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼åˆæœŸåŒ–
 	ZKN_GLBDATA_PokeListTblNoSet_Monsno( p_glb->p_glb, monsno );
 
-	// “®ìƒJƒEƒ“ƒ^‚à‰Šú‰»
+	// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿ã‚‚åˆæœŸåŒ–
 	p_glb->move_count = 0;	
 
-	// ¿°Äƒ‚[ƒh‚à•ÏX
+	// ã‚½ãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰ã‚‚å¤‰æ›´
 	p_glb->p_glb->sort_search_flag = ZKN_SORTSEARCH_NONE;
 
-	// ƒtƒF[ƒhƒCƒ“ƒ‚[ƒh•ÏX
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
 	p_glb->fade_mode = ZKN_POKELIST_BG_FADE_NORMAL;
 	p_glb->fade_zukan_data = FALSE;
-	// •ûŒü‚à‚È‚µ
+	// æ–¹å‘ã‚‚ãªã—
 	p_glb->move_way = ZKN_POKE_LIST_NO_MOVE;
 
 	p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_ALL;
 
-	// •`‰æsiOFF
+	// æç”»è¡Œé€²OFF
 	p_glb->move_draw = FALSE;
 }
 
@@ -3532,7 +3532,7 @@ static void PokeListZukanReset( ZKN_POKELIST_GLB_DATA* p_glb, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒLƒbƒv“®ì
+ *	@brief	ã‚¹ã‚­ãƒƒãƒ—å‹•ä½œ
  *
  *	@param	p_work
  *	@param	p_glb 
@@ -3548,24 +3548,24 @@ static void PokeListSkipMove( ZKN_POKELIST_WORK* p_work, ZKN_POKELIST_GLB_DATA* 
 		if( PokeListMoveAdd( p_glb, p_work->skip_add ) ){
 
 			PokeListMoveReq( p_glb, p_work, p_work->skip_way );
-			p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NORMAL;	// ƒTƒu‰æ–ÊƒzƒC[ƒ‹“®ì’â~
-			// ‘I‘ğˆÚ“®‰¹
+			p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NORMAL;	// ã‚µãƒ–ç”»é¢ãƒ›ã‚¤ãƒ¼ãƒ«å‹•ä½œåœæ­¢
+			// é¸æŠç§»å‹•éŸ³
 			Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 		}else{
-			p_work->skip_count = 0;		// ÅIV€–Ú‚Ü‚Å‚¢‚Á‚½
+			p_work->skip_count = 0;		// æœ€çµ‚æ–°é …ç›®ã¾ã§ã„ã£ãŸ
 		}
 	}else{
 
-		// ƒXƒLƒbƒvI—¹
+		// ã‚¹ã‚­ãƒƒãƒ—çµ‚äº†
 		PokeListMoveInit( p_glb, p_work );	
-		p_work->skip_flag = FALSE;		// ƒXƒLƒbƒvI—¹
-		p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NONE;	// ƒTƒu–ÊƒzƒC[ƒ‹ƒƒbƒN‰ğœ
+		p_work->skip_flag = FALSE;		// ã‚¹ã‚­ãƒƒãƒ—çµ‚äº†
+		p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NONE;	// ã‚µãƒ–é¢ãƒ›ã‚¤ãƒ¼ãƒ«ãƒ­ãƒƒã‚¯è§£é™¤
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒL[“®ì
+ *	@brief	ã‚­ãƒ¼å‹•ä½œ
  *
  *	@param	p_work
  *	@param	p_glb 
@@ -3576,45 +3576,45 @@ static void PokeListSkipMove( ZKN_POKELIST_WORK* p_work, ZKN_POKELIST_GLB_DATA* 
 static void PokeListKeyMove( ZKN_POKELIST_WORK* p_work, ZKN_POKELIST_GLB_DATA* p_glb )
 {
 
-	// ƒJ[ƒ\ƒ‹ƒAƒbƒv
+	// ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒƒãƒ—
 	if( sys.cont & PAD_KEY_UP ){
-		// ’l‚ªXV‚³‚ê‚½‚ç“®‚©‚·
+		// å€¤ãŒæ›´æ–°ã•ã‚ŒãŸã‚‰å‹•ã‹ã™
 		if( PokeListMoveAdd( p_glb, -1 ) ){
 			PokeListMoveReq( p_glb, p_work, ZKN_POKE_LIST_DOWN );
-			p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NORMAL;	// ƒTƒu‰æ–ÊƒzƒC[ƒ‹“®ì’â~
+			p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NORMAL;	// ã‚µãƒ–ç”»é¢ãƒ›ã‚¤ãƒ¼ãƒ«å‹•ä½œåœæ­¢
 			
-			// ‘I‘ğˆÚ“®‰¹
+			// é¸æŠç§»å‹•éŸ³
 			Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 		}else{
 			PokeListMoveInit( p_glb, p_work );	
-			p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NONE;	// ƒTƒu‰æ–ÊƒzƒC[ƒ‹“®ì’â~‰ğœ
+			p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NONE;	// ã‚µãƒ–ç”»é¢ãƒ›ã‚¤ãƒ¼ãƒ«å‹•ä½œåœæ­¢è§£é™¤
 		}
 		return ;
 	}
 
-	// ƒJ[ƒ\ƒ‹
+	// ã‚«ãƒ¼ã‚½ãƒ«
 	if( sys.cont & PAD_KEY_DOWN ){
-		// ’l‚ªXV‚³‚ê‚½‚ç“®‚©‚·
+		// å€¤ãŒæ›´æ–°ã•ã‚ŒãŸã‚‰å‹•ã‹ã™
 		if( PokeListMoveAdd( p_glb, 1 ) ){
 			PokeListMoveReq( p_glb, p_work, ZKN_POKE_LIST_UP );
-			p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NORMAL;	// ƒTƒu‰æ–ÊƒzƒC[ƒ‹“®ì’â~
+			p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NORMAL;	// ã‚µãƒ–ç”»é¢ãƒ›ã‚¤ãƒ¼ãƒ«å‹•ä½œåœæ­¢
 
-			// ‘I‘ğˆÚ“®‰¹
+			// é¸æŠç§»å‹•éŸ³
 			Snd_SePlay( ZKN_SND_SELECT_MOVE_ONE );
 		}else{
 			PokeListMoveInit( p_glb, p_work );	
-			p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NONE;	// ƒTƒu‰æ–ÊƒzƒC[ƒ‹“®ì’â~‰ğœ
+			p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NONE;	// ã‚µãƒ–ç”»é¢ãƒ›ã‚¤ãƒ¼ãƒ«å‹•ä½œåœæ­¢è§£é™¤
 		}
 		return ;
 	}
 
-	//ƒXƒLƒbƒvˆ—
+	//ã‚¹ã‚­ãƒƒãƒ—å‡¦ç†
 	if( sys.trg & PAD_KEY_LEFT ){
 		p_work->skip_flag = TRUE;
 		p_work->skip_count = ZKN_POKE_LIST_MOVE_SKIP_NUM;
 		p_work->skip_add = -1;
 		p_work->skip_way = ZKN_POKE_LIST_DOWN;
-		// ‘¬“x’²®
+		// é€Ÿåº¦èª¿æ•´
 		PokeListSkipMoveInit( p_glb, p_work );
 		return ;
 	}
@@ -3623,17 +3623,17 @@ static void PokeListKeyMove( ZKN_POKELIST_WORK* p_work, ZKN_POKELIST_GLB_DATA* p
 		p_work->skip_count = ZKN_POKE_LIST_MOVE_SKIP_NUM;
 		p_work->skip_add = 1;
 		p_work->skip_way = ZKN_POKE_LIST_UP;
-		// ‘¬“x’²®
+		// é€Ÿåº¦èª¿æ•´
 		PokeListSkipMoveInit( p_glb, p_work );
 		return ;
 	}
 
-	// ‘S‚Ä‚Éˆø‚Á‚©‚©‚ç‚È‚¢‚Æ‚«‚Í‰½‚à‚µ‚È‚¢
-	// ‘½d‚É‰Šú‰»‚·‚é‚ÆƒTƒu‰æ–Ê‚Åƒf[ƒ^XV’†‚É
-	// ‰Šú‰»‚µ‚Ä‚µ‚Ü‚¤
+	// å…¨ã¦ã«å¼•ã£ã‹ã‹ã‚‰ãªã„ã¨ãã¯ä½•ã‚‚ã—ãªã„
+	// å¤šé‡ã«åˆæœŸåŒ–ã™ã‚‹ã¨ã‚µãƒ–ç”»é¢ã§ãƒ‡ãƒ¼ã‚¿æ›´æ–°ä¸­ã«
+	// åˆæœŸåŒ–ã—ã¦ã—ã¾ã†
 	if( p_glb->sub_wheel_lock == ZKN_POKELIST_WHEEL_LOCK_NORMAL ){
 		PokeListMoveInit( p_glb, p_work );	
-		p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NONE;	// ƒTƒu‰æ–ÊƒzƒC[ƒ‹“®ì’â~‰ğœ
+		p_glb->sub_wheel_lock = ZKN_POKELIST_WHEEL_LOCK_NONE;	// ã‚µãƒ–ç”»é¢ãƒ›ã‚¤ãƒ¼ãƒ«å‹•ä½œåœæ­¢è§£é™¤
 	}
 }
 

@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_311.s
- * @brief	ƒEƒFƒU[ƒ{[ƒ‹			311
+ * @brief	ã‚¦ã‚§ã‚¶ãƒ¼ãƒœãƒ¼ãƒ«			311
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡ƒEƒFƒU[ƒ{[ƒ‹			311
+//	â– ã‚¦ã‚§ã‚¶ãƒ¼ãƒœãƒ¼ãƒ«			311
 //
 //
 // =============================================================================
@@ -41,15 +41,15 @@ WEST_WHEZAABOORU:
 	WAIT_FLAG
 	WAIT			10
 	
-	///< “VŒó•ªŠò	’Êí	‰J		»		°		èÅ
+	///< å¤©å€™åˆ†å²	é€šå¸¸	é›¨		ç ‚		æ™´		éœ°
 	TENKI_JP		TYPE_1,	TYPE_3,	TYPE_5,	TYPE_2,	TYPE_4,	
 	
 	SEQEND
 
-#define W311_HIT_WAIT	(20)		///< ƒqƒbƒgƒuƒ‹ƒuƒ‹‚Ü‚Å
-#define W311_PAL_PARAM	(10)		///< ƒtƒF[ƒh‚Ì”Z‚³
+#define W311_HIT_WAIT	(20)		///< ãƒ’ãƒƒãƒˆãƒ–ãƒ«ãƒ–ãƒ«ã¾ã§
+#define W311_PAL_PARAM	(10)		///< ãƒ•ã‚§ãƒ¼ãƒ‰ã®æ¿ƒã•
 
-///< ƒm[ƒ}ƒ‹
+///< ãƒŽãƒ¼ãƒžãƒ«
 TYPE_1:
 
 	SE_REPEAT_R		SEQ_SE_DP_W172,2,7
@@ -68,7 +68,7 @@ TYPE_1:
 	
 	SEQEND
 
-///< °‚ê
+///< æ™´ã‚Œ
 TYPE_2:
 
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 0, W311_PAL_PARAM, WE_PAL_RED_BROWN,
@@ -93,7 +93,7 @@ TYPE_2:
 
 	SEQEND
 
-///< ‰J
+///< é›¨
 TYPE_3:
 
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 0, W311_PAL_PARAM, WE_PAL_BLUE,
@@ -118,7 +118,7 @@ TYPE_3:
 	
 	SEQEND
 	
-///< ‚ ‚ç‚ê
+///< ã‚ã‚‰ã‚Œ
 TYPE_4:
 
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 0, W311_PAL_PARAM, WE_PAL_GRAY,
@@ -143,7 +143,7 @@ TYPE_4:
 		
 	SEQEND
 
-///< ‚·‚È‚ ‚ç‚µ
+///< ã™ãªã‚ã‚‰ã—
 TYPE_5:
 
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 0, W311_PAL_PARAM, WE_PAL_YELLOW_2,

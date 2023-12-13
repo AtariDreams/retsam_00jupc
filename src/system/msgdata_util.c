@@ -1,12 +1,12 @@
 //============================================================================================
 /**
  * @file	msgdata_util.c
- * @brief	���b�Z�[�W�f�[�^�֘A�֗��֐�
+ * @brief	メッセージデータ関連便利関数
  * @author	taya
  * @date	2005.12.05
  *
- * �|�P�������E���U���E�A�C�e�������A
- * �����̃v���O��������Q�Ƃ���A�Ǘ��҂��B���ȕ�����̎擾��������舵��
+ * ポケモン名・ワザ名・アイテム名等、
+ * 多くのプログラムから参照され、管理者が曖昧な文字列の取得処理を取り扱う
  *
  *
  */
@@ -22,21 +22,21 @@
 //=================================================================================
 // 
 //=================================================================================
-#define  EXPAND_BUFFER_SIZE		(1024)		/// �ǂ�ȕ�������W�J�ł���ł��낤�T�C�Y
+#define  EXPAND_BUFFER_SIZE		(1024)		/// どんな文字列も展開できるであろうサイズ
 
 
 //------------------------------------------------------------------
 /**
- * ���b�Z�[�W�f�[�^���^�O�W�J����������o�b�t�@���쐬���ĕԂ��B
- * ���O�Ɍʂ̃^�O�ݒ菈�����s���Ă����K�v������B
- * �쐬���ꂽ������̉�������͊e���ōs���B
+ * メッセージデータをタグ展開した文字列バッファを作成して返す。
+ * 事前に個別のタグ設定処理を行っておく必要がある。
+ * 作成された文字列の解放処理は各自で行う。
  *
- * @param   wordSet		�^�O���ݒ肳�ꂽ�P��Z�b�g���W���[��
- * @param   msgMan		�W�J�O��������Ǘ����Ă��郁�b�Z�[�W�}�l�[�W��
- * @param   strID		�W�J�O�������ID
- * @param   heapID		������o�b�t�@�쐬��̃q�[�vID
+ * @param   wordSet		タグが設定された単語セットモジュール
+ * @param   msgMan		展開前文字列を管理しているメッセージマネージャ
+ * @param   strID		展開前文字列のID
+ * @param   heapID		文字列バッファ作成先のヒープID
  *
- * @retval  STRBUF*		�쐬���ꂽ������o�b�t�@
+ * @retval  STRBUF*		作成された文字列バッファ
  */
 //------------------------------------------------------------------
 STRBUF* MSGDAT_UTIL_AllocExpandString( WORDSET* wordSet, MSGDATA_MANAGER* msgMan, u32 strID, u32 heapID )
@@ -62,13 +62,13 @@ STRBUF* MSGDAT_UTIL_AllocExpandString( WORDSET* wordSet, MSGDATA_MANAGER* msgMan
 
 //------------------------------------------------------------------
 /**
- * ���U����������A�V�K�ɍ쐬����������o�b�t�@�ɃR�s�[���ĕԂ�
- * �i������o�b�t�@�̍폜�͊e���ōs���j
+ * ワザ名文字列を、新規に作成した文字列バッファにコピーして返す
+ * （文字列バッファの削除は各自で行う）
  *
- * @param   wazaID		���U�h�c
- * @param   heapID		�q�[�v�h�c
+ * @param   wazaID		ワザＩＤ
+ * @param   heapID		ヒープＩＤ
  *
- * @retval  STRBUF*		������o�b�t�@�i���s�Ȃ�NULL)
+ * @retval  STRBUF*		文字列バッファ（失敗ならNULL)
  */
 //------------------------------------------------------------------
 STRBUF* MSGDAT_UTIL_GetWazaName( u32 wazaID, u32 heapID )
@@ -91,13 +91,13 @@ STRBUF* MSGDAT_UTIL_GetWazaName( u32 wazaID, u32 heapID )
 
 //------------------------------------------------------------------
 /**
- * �|�P��������������A�V�K�ɍ쐬����������o�b�t�@�ɃR�s�[���ĕԂ�
- * �i������o�b�t�@�̍폜�͊e���ōs���j
+ * ポケモン名文字列を、新規に作成した文字列バッファにコピーして返す
+ * （文字列バッファの削除は各自で行う）
  *
- * @param   monsno		�|�P�����i���o�[
- * @param   heapID		�q�[�v�h�c
+ * @param   monsno		ポケモンナンバー
+ * @param   heapID		ヒープＩＤ
  *
- * @retval  STRBUF*		������o�b�t�@�i���s�Ȃ�NULL)
+ * @retval  STRBUF*		文字列バッファ（失敗ならNULL)
  */
 //------------------------------------------------------------------
 STRBUF* MSGDAT_UTIL_GetMonsName( u32 monsno, u32 heapID )

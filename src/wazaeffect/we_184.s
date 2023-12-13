@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_184.s
- * @brief	‚±‚í‚¢‚©‚¨			184
+ * @brief	ã“ã‚ã„ã‹ãŠ			184
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡‚±‚í‚¢‚©‚¨			184
+//	â– ã“ã‚ã„ã‹ãŠ			184
 //
 //
 // =============================================================================
@@ -32,14 +32,14 @@ WEST_KOWAIKAO:
 	SE_C			SEQ_SE_DP_W060
 	WAIT_FLAG
 
-	///<‰Šú‰»ˆ—@“Ç‚Ýž‚Ýˆ—
+	///<åˆæœŸåŒ–å‡¦ç†ã€€èª­ã¿è¾¼ã¿å‡¦ç†
 	CATS_RES_INIT		FACE_RES_NO, FACE_ACT_NUM, FACE_RES_NUM, FACE_RES_NUM, FACE_RES_NUM, FACE_RES_NUM, 0, 0
 	CATS_CAHR_RES_LOAD	FACE_RES_NO, EFFECT_184_NCGR_BIN
 	CATS_PLTT_RES_LOAD	FACE_RES_NO, EFFECT_184_NCLR, 1
 	CATS_CELL_RES_LOAD	FACE_RES_NO, EFFECT_184_NCER_BIN
 	CATS_CELL_ANM_RES_LOAD	FACE_RES_NO, EFFECT_184_NANR_BIN
 	
-	///<“®ì
+	///<å‹•ä½œ
 	CATS_ACT_ADD		FACE_RES_NO, WEST_CSP_WE_184, EFFECT_184_NCGR_BIN, EFFECT_184_NCLR, EFFECT_184_NCER_BIN, EFFECT_184_NANR_BIN, 0, 0, 0,0,
 
 	WAIT 8
@@ -47,7 +47,7 @@ WEST_KOWAIKAO:
 	
 	WAIT_FLAG
 
-	///<”jŠüˆ—
+	///<ç ´æ£„å‡¦ç†
 	CATS_RES_FREE		FACE_RES_NO
 
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 12, 0, WE_PAL_BLACK,

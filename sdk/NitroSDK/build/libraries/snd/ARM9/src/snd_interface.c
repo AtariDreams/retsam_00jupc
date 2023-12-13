@@ -15,31 +15,31 @@
   indent source
 
   Revision 1.4  2006/03/20 01:57:52  ida
-  SND_SetMuteTrackExŠÖ”’Ç‰Á
+  SND_SetMuteTrackExé–¢æ•°è¿½åŠ 
 
   Revision 1.3  2006/01/18 02:12:29  kitase_hirotake
   do-indent
 
   Revision 1.2  2005/04/14 06:52:44  ida
-  SND_PrepareSeqŠÖ”‚Ì’Ç‰Á
+  SND_PrepareSeqé–¢æ•°ã®è¿½åŠ 
 
   Revision 1.1  2005/04/12 06:16:12  ida
-  SND‚ğNITRO-SDK‚ÖˆÚİ
+  SNDã‚’NITRO-SDKã¸ç§»è¨­
 
   Revision 1.19  2005/03/17 02:11:24  ida
-  SNDi_SkipSeqŠÖ”‚Ì’Ç‰Á
+  SNDi_SkipSeqé–¢æ•°ã®è¿½åŠ 
 
   Revision 1.18  2005/03/01 02:20:53  ida
-  SND_SetTrackPanRangeŠÖ”’Ç‰Á
+  SND_SetTrackPanRangeé–¢æ•°è¿½åŠ 
 
   Revision 1.17  2005/02/16 07:47:40  ida
-  ƒhƒ‰ƒCƒoî•ñæ“¾ŠÖ”’Ç‰Á
+  ãƒ‰ãƒ©ã‚¤ãƒæƒ…å ±å–å¾—é–¢æ•°è¿½åŠ 
 
   Revision 1.16  2005/01/06 02:52:13  ida
-  ’˜ìŒ ”NŸ•\‹L‚ğXV
+  è‘—ä½œæ¨©å¹´æ¬¡è¡¨è¨˜ã‚’æ›´æ–°
 
   Revision 1.15  2005/01/05 06:48:57  ida
-  SND_SetTrackAllocatableChannelŠÖ”’Ç‰Á
+  SND_SetTrackAllocatableChannelé–¢æ•°è¿½åŠ 
 
   Revision 1.14  2004/10/21 02:14:28  ida
   fix argument name
@@ -112,12 +112,12 @@ static void PushCommand_impl(SNDCommandID command, u32 arg0, u32 arg1, u32 arg2,
 /*---------------------------------------------------------------------------*
   Name:         SND_StartSeq
 
-  Description:  ƒV[ƒPƒ“ƒX‚ğƒXƒ^[ƒg‚µ‚Ü‚·
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ã‚¹ã‚¿ãƒ¼ãƒˆã—ã¾ã™
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
-                seqBase  - ƒV[ƒPƒ“ƒXƒf[ƒ^ƒx[ƒXƒAƒhƒŒƒX
-                seqOffset - ƒV[ƒPƒ“ƒXƒf[ƒ^ƒIƒtƒZƒbƒg
-                bank_p - ƒoƒ“ƒNƒ|ƒCƒ“ƒ^
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                seqBase  - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+                seqOffset - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                bank_p - ãƒãƒ³ã‚¯ãƒã‚¤ãƒ³ã‚¿
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -133,9 +133,9 @@ void SND_StartSeq(int playerNo, const void *base, u32 offset, const struct SNDBa
 /*---------------------------------------------------------------------------*
   Name:         SND_StopSeq
 
-  Description:  ƒV[ƒPƒ“ƒX‚ğ~‚ß‚Ü‚·
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’æ­¢ã‚ã¾ã™
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -149,12 +149,12 @@ void SND_StopSeq(int playerNo)
 /*---------------------------------------------------------------------------*
   Name:         SND_PrepareSeq
 
-  Description:  ƒV[ƒPƒ“ƒX‚ÌÄ¶€”õ‚ğs‚¢‚Ü‚·
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®å†ç”Ÿæº–å‚™ã‚’è¡Œã„ã¾ã™
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
-                seqBase  - ƒV[ƒPƒ“ƒXƒf[ƒ^ƒx[ƒXƒAƒhƒŒƒX
-                seqOffset - ƒV[ƒPƒ“ƒXƒf[ƒ^ƒIƒtƒZƒbƒg
-                bank_p - ƒoƒ“ƒNƒ|ƒCƒ“ƒ^
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                seqBase  - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
+                seqOffset - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                bank_p - ãƒãƒ³ã‚¯ãƒã‚¤ãƒ³ã‚¿
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -170,9 +170,9 @@ void SND_PrepareSeq(int playerNo, const void *base, u32 offset, const struct SND
 /*---------------------------------------------------------------------------*
   Name:         SND_StartPreparedSeq
 
-  Description:  €”õŠ®—¹‚µ‚½ƒV[ƒPƒ“ƒX‚ÌÄ¶‚ğŠJn‚µ‚Ü‚·
+  Description:  æº–å‚™å®Œäº†ã—ãŸã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®å†ç”Ÿã‚’é–‹å§‹ã—ã¾ã™
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -186,10 +186,10 @@ void SND_StartPreparedSeq(int playerNo)
 /*---------------------------------------------------------------------------*
   Name:         SND_PauseSeq
 
-  Description:  ƒV[ƒPƒ“ƒX‚ğˆê’â~‚Ü‚½‚ÍÄŠJ‚µ‚Ü‚·
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ä¸€æ™‚åœæ­¢ã¾ãŸã¯å†é–‹ã—ã¾ã™
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
-                flag - TRUE‚Åˆê’â~AFALSE‚ÅÄŠJ‚µ‚Ü‚·
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                flag - TRUEã§ä¸€æ™‚åœæ­¢ã€FALSEã§å†é–‹ã—ã¾ã™
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

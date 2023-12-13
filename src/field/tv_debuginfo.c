@@ -217,20 +217,20 @@ static void PrintOtherTopic(DEBUG_TV_WORK * dtw, TVTOPICTYPE type, int offset)
 //--------------------------------------------------------------------
 static void DEBUGTV_WriteWindow(DEBUG_TV_WORK * dtw)
 {
-	//BMP§Œäƒ[ƒN‚ðŠm•Û
+	//BMPåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿
 	dtw->win = sys_AllocMemory(dtw->heapID, sizeof(GF_BGL_BMPWIN));
-	//bitmap—Ìˆæ‚ð’Ç‰Á
+	//bitmapé ˜åŸŸã‚’è¿½åŠ 
 	GF_BGL_BmpWinAdd(dtw->bgl, dtw->win, dtw->frame_no,
 			DTV_WIN_PX, DTV_WIN_PY, DTV_WIN_SX, DTV_WIN_SY,
 			DTV_MSG_PAL, DTV_MSG_CGX);
-	//ƒEƒBƒ“ƒhƒE˜gƒLƒƒƒ‰AƒpƒŒƒbƒg‚ðƒZƒbƒg
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æž ã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet(
 		dtw->bgl, dtw->frame_no, DTV_WIN_CGX, DTV_WIN_PAL, MENU_TYPE_SYSTEM, dtw->heapID); 
-	//ƒEƒBƒ“ƒhƒE˜g“à‚ð“h‚è‚Â‚Ô‚·
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æž å†…ã‚’å¡—ã‚Šã¤ã¶ã™
 	GF_BGL_BmpWinDataFill(dtw->win, FontHeaderGet(FONT_SYSTEM, FONT_HEADER_B_COLOR));
-	//“à—e‚ð•`‰æ
+	//å†…å®¹ã‚’æç”»
 	//printinfo(dtw);
-	//ƒEƒBƒ“ƒhƒE˜g•`‰æ
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æž æç”»
 	BmpMenuWinWrite(dtw->win, WINDOW_TRANS_ON, DTV_WIN_CGX, DTV_WIN_PAL);
 }
 
@@ -238,11 +238,11 @@ static void DEBUGTV_WriteWindow(DEBUG_TV_WORK * dtw)
 //--------------------------------------------------------------------
 static void DEBUGTV_EraseWindow(DEBUG_TV_WORK * dtw)
 {
-	//ƒEƒBƒ“ƒhƒEÁ‹Ž
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¶ˆåŽ»
 	BmpMenuWinClear(dtw->win, WINDOW_TRANS_ON);
-	//bitmap—Ìˆæ‚ðíœ
+	//bitmapé ˜åŸŸã‚’å‰Šé™¤
 	GF_BGL_BmpWinDel(dtw->win);
-	//BMP§Œäƒ[ƒN‚ðíœ
+	//BMPåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã‚’å‰Šé™¤
 	sys_FreeMemoryEz(dtw->win);
 }
 

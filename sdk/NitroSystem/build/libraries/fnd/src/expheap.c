@@ -21,34 +21,34 @@
 
 
 /* ========================================================================
-    ƒ}ƒNƒ’è”
+    ãƒã‚¯ãƒ­å®šæ•°
    ======================================================================== */
 
-// ƒtƒŠ[ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒVƒOƒlƒ`ƒƒ
+// ãƒ•ãƒªãƒ¼ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚·ã‚°ãƒãƒãƒ£
 #define MBLOCK_FREE_SIGNATURE   ('FR')
 
-// g—pƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒVƒOƒlƒ`ƒƒ
+// ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚·ã‚°ãƒãƒãƒ£
 #define MBLOCK_USED_SIGNATURE   ('UD')
 
-// ƒOƒ‹[ƒvID‚ÌÅ‘å’l
+// ã‚°ãƒ«ãƒ¼ãƒ—IDã®æœ€å¤§å€¤
 #define MAX_GROUPID             0xff
 
-// ƒOƒ‹[ƒvID‚ÌƒfƒtƒHƒ‹ƒg’l
+// ã‚°ãƒ«ãƒ¼ãƒ—IDã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤
 #define DEFAULT_GROUPID         0
 
-// ƒAƒ‰ƒCƒƒ“ƒg‚ÌÅ¬’l
+// ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã®æœ€å°å€¤
 #define MIN_ALIGNMENT           4
 
-// ƒfƒtƒHƒ‹ƒg‚Ìƒƒ‚ƒŠŠm•Ûƒ‚[ƒh
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ãƒ¢ãƒ¼ãƒ‰
 #define DEFAULT_ALLOC_MODE      NNS_FND_EXPHEAP_ALLOC_MODE_FIRST
 
-// ƒtƒŠ[ƒuƒƒbƒN‚Æ‚µ‚Ä“o˜^‚·‚éÅ¬ƒTƒCƒY (ƒwƒbƒ_‚ÍŠÜ‚Ü‚È‚¢ƒTƒCƒY)
+// ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã¨ã—ã¦ç™»éŒ²ã™ã‚‹æœ€å°ã‚µã‚¤ã‚º (ãƒ˜ãƒƒãƒ€ã¯å«ã¾ãªã„ã‚µã‚¤ã‚º)
 #define MIN_FREE_BLOCK_SIZE     4
 // #define MIN_FREE_BLOCK_SIZE 16
 
 
 /* ========================================================================
-    \‘¢‘Ì’è‹`
+    æ§‹é€ ä½“å®šç¾©
    ======================================================================== */
 typedef struct NNSiMemRegion NNSiMemRegion;
 
@@ -60,12 +60,12 @@ struct NNSiMemRegion
 
 
 /* ========================================================================
-    ƒ}ƒNƒŠÖ”
+    ãƒã‚¯ãƒ­é–¢æ•°
    ======================================================================== */
 
 #if ! defined(NNS_FINALROM)
 
-    // ƒq[ƒv‚ÌŒŸ¸‚ÌŒxo—Í—p
+    // ãƒ’ãƒ¼ãƒ—ã®æ¤œæŸ»æ™‚ã®è­¦å‘Šå‡ºåŠ›ç”¨
     #define HEAP_WARNING(exp, ...) \
         (void) ((exp) && (OS_Printf(__VA_ARGS__), 0))
 
@@ -74,11 +74,11 @@ struct NNSiMemRegion
 
 
 /* ========================================================================
-    staticŠÖ”
+    staticé–¢æ•°
    ======================================================================== */
 
 /* ------------------------------------------------------------------------
-    ƒ|ƒCƒ“ƒ^‘€ì
+    ãƒã‚¤ãƒ³ã‚¿æ“ä½œ
    ------------------------------------------------------------------------ */
 
 static NNS_FND_INLINE void*
@@ -104,11 +104,11 @@ IsValidExpHeapHandle(NNSFndHeapHandle handle)
 /*---------------------------------------------------------------------------*
   Name:         GetExpHeapHeadPtrFromHeapHead
 
-  Description:  ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^‚©‚çAŠg’£ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã€æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    pHHead:  ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pHHead:  ãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      Šg’£ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE NNSiFndExpHeapHead*
 GetExpHeapHeadPtrFromHeapHead(NNSiFndHeapHead* pHHead)
@@ -119,11 +119,11 @@ GetExpHeapHeadPtrFromHeapHead(NNSiFndHeapHead* pHHead)
 /*---------------------------------------------------------------------------*
   Name:         GetHeapHeadPtrFromExpHeapHead
 
-  Description:  Šg’£ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^‚©‚çAƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã€ãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    pEHHead:  Šg’£ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pEHHead:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE NNSiFndHeapHead*
 GetHeapHeadPtrFromExpHeapHead(NNSiFndExpHeapHead* pEHHead)
@@ -134,11 +134,11 @@ GetHeapHeadPtrFromExpHeapHead(NNSiFndExpHeapHead* pEHHead)
 /*---------------------------------------------------------------------------*
   Name:         GetExpHeapHeadPtrFromHandle
 
-  Description:  Šg’£ƒq[ƒvƒnƒ“ƒhƒ‹‚©‚çAŠg’£ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«ã‹ã‚‰ã€æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    heap:  Šg’£ƒq[ƒvƒnƒ“ƒhƒ‹B
+  Arguments:    heap:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«ã€‚
 
-  Returns:      Šg’£ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE NNSiFndExpHeapHead*
 GetExpHeapHeadPtrFromHandle(NNSFndHeapHandle heap)
@@ -149,12 +149,12 @@ GetExpHeapHeadPtrFromHandle(NNSFndHeapHandle heap)
 /*---------------------------------------------------------------------------*
   Name:         GetMemPtrForMBlock
 
-  Description:  NNSiFndExpHeapMBlockHead\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^‚©‚çA
-                ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·B
+  Description:  NNSiFndExpHeapMBlockHeadæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã€
+                ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    pMBlkHd:  NNSiFndExpHeapMBlockHead\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pMBlkHd:  NNSiFndExpHeapMBlockHeadæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE void*
 GetMemPtrForMBlock(NNSiFndExpHeapMBlockHead* pMBlkHd)
@@ -171,13 +171,13 @@ GetMemCPtrForMBlock(const NNSiFndExpHeapMBlockHead* pMBlkHd)
 /*---------------------------------------------------------------------------*
   Name:         GetMBlockHeadPtr
 
-  Description:  ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚©‚çA
-                NNSiFndExpHeapMBlockHead\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·B
-                ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã€
+                NNSiFndExpHeapMBlockHeadæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚
+                ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    memBlock:  ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    memBlock:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      NNSiFndExpHeapMBlockHead\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      NNSiFndExpHeapMBlockHeadæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE NNSiFndExpHeapMBlockHead*
 GetMBlockHeadPtr(void* memBlock)
@@ -198,17 +198,17 @@ GetMBlockEndAddr(NNSiFndExpHeapMBlockHead* pMBHead)
 }
 
 /* ------------------------------------------------------------------------
-    NNSiFndExpHeapMBlockHead \‘¢‘ÌƒAƒNƒZƒXŠÖ”
+    NNSiFndExpHeapMBlockHead æ§‹é€ ä½“ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
    ------------------------------------------------------------------------ */
 
 /*---------------------------------------------------------------------------*
   Name:         GetAlignmentForMBlock
 
-  Description:  NNSiFndExpHeapMBlockHead\‘¢‘Ì‚ÌƒAƒ‰ƒCƒƒ“ƒg’l‚ğæ“¾‚µ‚Ü‚·B
+  Description:  NNSiFndExpHeapMBlockHeadæ§‹é€ ä½“ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆå€¤ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    pMBlkHd:  NNSiFndExpHeapMBlockHead\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pMBlkHd:  NNSiFndExpHeapMBlockHeadæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      NNSiFndExpHeapMBlockHead\‘¢‘Ì‚ÌƒAƒ‰ƒCƒƒ“ƒg’l‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      NNSiFndExpHeapMBlockHeadæ§‹é€ ä½“ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆå€¤ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE u16
 GetAlignmentForMBlock(const NNSiFndExpHeapMBlockHead* pMBlkHd)
@@ -219,12 +219,12 @@ GetAlignmentForMBlock(const NNSiFndExpHeapMBlockHead* pMBlkHd)
 /*---------------------------------------------------------------------------*
   Name:         SetAlignmentForMBlock
 
-  Description:  NNSiFndExpHeapMBlockHead\‘¢‘Ì‚ÌƒAƒ‰ƒCƒƒ“ƒg’l‚ğƒZƒbƒg‚µ‚Ü‚·B
+  Description:  NNSiFndExpHeapMBlockHeadæ§‹é€ ä½“ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆå€¤ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
 
-  Arguments:    pMBlkHd:    NNSiFndExpHeapMBlockHead\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                alignment:  ƒZƒbƒg‚·‚éƒAƒ‰ƒCƒƒ“ƒg’l
+  Arguments:    pMBlkHd:    NNSiFndExpHeapMBlockHeadæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                alignment:  ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆå€¤
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE void
 SetAlignmentForMBlock(
@@ -267,17 +267,17 @@ SetAllocDirForMBlock(
 
 
 /* ------------------------------------------------------------------------
-    NNSiFndExpHeapHead \‘¢‘ÌƒAƒNƒZƒXŠÖ”
+    NNSiFndExpHeapHead æ§‹é€ ä½“ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
    ------------------------------------------------------------------------ */
 
 /*---------------------------------------------------------------------------*
   Name:         GetAllocMode
 
-  Description:  Šg’£ƒq[ƒv‚Ìƒƒ‚ƒŠŠm•Ûƒ‚[ƒh‚ğæ“¾‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    pEHHead:  Šg’£ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pEHHead:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      Šg’£ƒq[ƒv‚Ìƒƒ‚ƒŠŠm•Ûƒ‚[ƒh‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ãƒ¢ãƒ¼ãƒ‰ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE u16
 GetAllocMode(NNSiFndExpHeapHead* pEHHead)
@@ -288,12 +288,12 @@ GetAllocMode(NNSiFndExpHeapHead* pEHHead)
 /*---------------------------------------------------------------------------*
   Name:         SetAllocMode
 
-  Description:  Šg’£ƒq[ƒv‚Ìƒƒ‚ƒŠŠm•Ûƒ‚[ƒh‚ğƒZƒbƒg‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
 
-  Arguments:    pEHHead:  Šg’£ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                mode:     ƒƒ‚ƒŠŠm•Ûƒ‚[ƒhB
+  Arguments:    pEHHead:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                mode:     ãƒ¡ãƒ¢ãƒªç¢ºä¿ãƒ¢ãƒ¼ãƒ‰ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE void
 SetAllocMode(
@@ -316,7 +316,7 @@ GetRegionOfMBlock(
 
 
 /* ------------------------------------------------------------------------
-    ƒƒ‚ƒŠƒuƒƒbƒNƒŠƒXƒg‘€ì
+    ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ãƒªã‚¹ãƒˆæ“ä½œ
    ------------------------------------------------------------------------ */
 
 static NNSiFndExpHeapMBlockHead*
@@ -328,7 +328,7 @@ RemoveMBlock(
     NNSiFndExpHeapMBlockHead *const prev = block->pMBHeadPrev;
     NNSiFndExpHeapMBlockHead *const next = block->pMBHeadNext;
 
-    // ‘OQÆƒŠƒ“ƒN
+    // å‰å‚ç…§ãƒªãƒ³ã‚¯
     if (prev)
     {
         prev->pMBHeadNext = next;
@@ -338,7 +338,7 @@ RemoveMBlock(
         list->head = next;
     }
 
-    // ŸQÆƒŠƒ“ƒN
+    // æ¬¡å‚ç…§ãƒªãƒ³ã‚¯
     if (next)
     {
         next->pMBHeadPrev = prev;
@@ -360,7 +360,7 @@ InsertMBlock(
 {
     NNSiFndExpHeapMBlockHead* next;
 
-    // ‘OQÆƒŠƒ“ƒN
+    // å‰å‚ç…§ãƒªãƒ³ã‚¯
     target->pMBHeadPrev = prev;
     if (prev)
     {
@@ -373,7 +373,7 @@ InsertMBlock(
         list->head = target;
     }
 
-    // ŸQÆƒŠƒ“ƒN
+    // æ¬¡å‚ç…§ãƒªãƒ³ã‚¯
     target->pMBHeadNext = next;
     if (next)
     {
@@ -390,12 +390,12 @@ InsertMBlock(
 /*---------------------------------------------------------------------------*
   Name:         AppendMBlock
 
-  Description:  ƒƒ‚ƒŠƒuƒƒbƒN‚ğƒŠƒXƒg‚ÌÅŒã‚É’Ç‰Á‚µ‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’ãƒªã‚¹ãƒˆã®æœ€å¾Œã«è¿½åŠ ã—ã¾ã™ã€‚
 
-  Arguments:    link:   ’Ç‰Á‚·‚éƒŠƒXƒg
-                block:  ’Ç‰Á‚·‚éƒƒ‚ƒŠƒuƒƒbƒN
+  Arguments:    link:   è¿½åŠ ã™ã‚‹ãƒªã‚¹ãƒˆ
+                block:  è¿½åŠ ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE void
 AppendMBlock(
@@ -409,12 +409,12 @@ AppendMBlock(
 /*---------------------------------------------------------------------------*
   Name:         InitMBlock
 
-  Description:  ƒƒ‚ƒŠƒuƒƒbƒN‚Ì‰Šú‰»‚ğs‚¢‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™ã€‚
 
-  Arguments:    pRegion:    ƒƒ‚ƒŠƒuƒƒbƒN‚Æ‚·‚éƒŠ[ƒWƒ‡ƒ“‚ğ•\‚·\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                signature:  ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒVƒOƒlƒ`ƒƒB
+  Arguments:    pRegion:    ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¨ã™ã‚‹ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¡¨ã™æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                signature:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚·ã‚°ãƒãƒãƒ£ã€‚
 
-  Returns:      ‰Šú‰»‚µ‚½ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      åˆæœŸåŒ–ã—ãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static NNSiFndExpHeapMBlockHead*
 InitMBlock(
@@ -436,11 +436,11 @@ InitMBlock(
 /*---------------------------------------------------------------------------*
   Name:         InitFreeMBlock
 
-  Description:  ƒƒ‚ƒŠƒuƒƒbƒN‚ğƒtƒŠ[ƒuƒƒbƒN—p‚É‰Šú‰»‚ğs‚¢‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ç”¨ã«åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™ã€‚
 
-  Arguments:    pRegion:    ƒƒ‚ƒŠƒuƒƒbƒN‚Æ‚·‚éƒŠ[ƒWƒ‡ƒ“‚ğ•\‚·\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pRegion:    ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¨ã™ã‚‹ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¡¨ã™æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‰Šú‰»‚µ‚½ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      åˆæœŸåŒ–ã—ãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static NNS_FND_INLINE NNSiFndExpHeapMBlockHead*
 InitFreeMBlock(
@@ -453,13 +453,13 @@ InitFreeMBlock(
 /*---------------------------------------------------------------------------*
   Name:         InitExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚Ì‰Šú‰»‚ğs‚¢‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®åˆæœŸåŒ–ã‚’è¡Œã„ã¾ã™ã€‚
 
-  Arguments:    startAddress:  Šg’£ƒq[ƒv‚Æ‚·‚éƒƒ‚ƒŠ‚ÌŠJnƒAƒhƒŒƒXB
-                endAddress:    Šg’£ƒq[ƒv‚Æ‚·‚éƒƒ‚ƒŠ‚ÌI—¹ƒAƒhƒŒƒX +1B
-                optFlag:       ƒIƒvƒVƒ‡ƒ“ƒtƒ‰ƒOB
+  Arguments:    startAddress:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
+                endAddress:    æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªã®çµ‚äº†ã‚¢ãƒ‰ãƒ¬ã‚¹ +1ã€‚
+                optFlag:       ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°ã€‚
 
-  Returns:      ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static NNSiFndHeapHead*
 InitExpHeap(
@@ -471,18 +471,18 @@ InitExpHeap(
     NNSiFndHeapHead* pHeapHd = startAddress;
     NNSiFndExpHeapHead* pExpHeapHd = GetExpHeapHeadPtrFromHeapHead(pHeapHd);
 
-    NNSi_FndInitHeapHead(           // ƒq[ƒv‹¤’Ê‰Šú‰»
+    NNSi_FndInitHeapHead(           // ãƒ’ãƒ¼ãƒ—å…±é€šåˆæœŸåŒ–
         pHeapHd,
         NNSI_EXPHEAP_SIGNATURE,
         AddU32ToPtr(pExpHeapHd, sizeof(NNSiFndExpHeapHead)),    // heapStart
         endAddress,                                             // heapEnd
         optFlag);
 
-    pExpHeapHd->groupID = DEFAULT_GROUPID;      // ƒOƒ‹[ƒvID
+    pExpHeapHd->groupID = DEFAULT_GROUPID;      // ã‚°ãƒ«ãƒ¼ãƒ—ID
     pExpHeapHd->feature = 0;
     SetAllocMode(pExpHeapHd, DEFAULT_ALLOC_MODE);
 
-    // ƒtƒŠ[‚ÌƒuƒƒbƒN‚ğì‚é
+    // ãƒ•ãƒªãƒ¼ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’ä½œã‚‹
     {
         NNSiFndExpHeapMBlockHead* pMBHead;
         NNSiMemRegion region;
@@ -490,7 +490,7 @@ InitExpHeap(
         region.end   = pHeapHd->heapEnd;
         pMBHead = InitFreeMBlock(&region);
 
-        // ƒuƒƒbƒNƒŠƒXƒg
+        // ãƒ–ãƒ­ãƒƒã‚¯ãƒªã‚¹ãƒˆ
         pExpHeapHd->mbFreeList.head = pMBHead;
         pExpHeapHd->mbFreeList.tail = pMBHead;
         pExpHeapHd->mbUsedList.head = NULL;
@@ -503,15 +503,15 @@ InitExpHeap(
 /*---------------------------------------------------------------------------*
   Name:         AllocUsedBlockFromFreeBlock
 
-  Description:  ƒtƒŠ[ƒuƒƒbƒN‚Ì’†‚©‚çV‚µ‚¢ƒƒ‚ƒŠƒuƒƒbƒN‚ğŠm•Û‚µ‚Ü‚·B
+  Description:  ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã®ä¸­ã‹ã‚‰æ–°ã—ã„ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’ç¢ºä¿ã—ã¾ã™ã€‚
 
-  Arguments:    pEHHead:      Šg’£ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                pMBHeadFree:  ƒtƒŠ[ƒuƒƒbƒNƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                mblock:       Šm•Û‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒhƒŒƒXB
-                size:         Šm•Û‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒYB
-                direction:    Šm•Û•ûŒüB
+  Arguments:    pEHHead:      æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pMBHeadFree:  ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                mblock:       ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
+                size:         ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºã€‚
+                direction:    ç¢ºä¿æ–¹å‘ã€‚
 
-  Returns:      Šm•Û‚µ‚½ƒƒ‚ƒŠƒuƒƒbƒN‚Ìæ“ª‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®å…ˆé ­ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void*
 AllocUsedBlockFromFreeBlock(
@@ -531,32 +531,32 @@ AllocUsedBlockFromFreeBlock(
     freeRgnB.start = AddU32ToPtr(mblock, size);
     freeRgnT.end   = SubU32ToPtr(mblock, sizeof(NNSiFndExpHeapMBlockHead));
 
-    pMBHeadFreePrev = RemoveMBlock(&pEHHead->mbFreeList, pMBHeadFree);  // ˆê’UƒtƒŠ[ƒuƒƒbƒN‚ğíœ
+    pMBHeadFreePrev = RemoveMBlock(&pEHHead->mbFreeList, pMBHeadFree);  // ä¸€æ—¦ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã‚’å‰Šé™¤
 
-    // ƒtƒŠ[ƒuƒƒbƒNì‚é—]—T‚ª–³‚¢ê‡
+    // ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ä½œã‚‹ä½™è£•ãŒç„¡ã„å ´åˆ
     if (GetOffsetFromPtr(freeRgnT.start, freeRgnT.end) < sizeof(NNSiFndExpHeapMBlockHead) + MIN_FREE_BLOCK_SIZE)
     {
-        freeRgnT.end = freeRgnT.start;  // g—pƒuƒƒbƒN‚ÌƒAƒ‰ƒCƒƒ“ƒg’l‚ÉŠÜ‚ß‚é
+        freeRgnT.end = freeRgnT.start;  // ä½¿ç”¨ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆå€¤ã«å«ã‚ã‚‹
     }
     else
     {
         pMBHeadFreePrev = InsertMBlock(&pEHHead->mbFreeList, InitFreeMBlock(&freeRgnT), pMBHeadFreePrev);
     }
 
-    // ƒtƒŠ[ƒuƒƒbƒNì‚é—]—T‚ª–³‚¢ê‡
+    // ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ä½œã‚‹ä½™è£•ãŒç„¡ã„å ´åˆ
     if (GetOffsetFromPtr(freeRgnB.start, freeRgnB.end) < sizeof(NNSiFndExpHeapMBlockHead) + MIN_FREE_BLOCK_SIZE)
     {
-        freeRgnB.start= freeRgnB.end;   // g—pƒuƒƒbƒN‚ÉŠÜ‚ß‚é
+        freeRgnB.start= freeRgnB.end;   // ä½¿ç”¨ãƒ–ãƒ­ãƒƒã‚¯ã«å«ã‚ã‚‹
     }
     else
     {
         (void)InsertMBlock(&pEHHead->mbFreeList, InitFreeMBlock(&freeRgnB), pMBHeadFreePrev);
     }
 
-    // ƒfƒoƒO—pƒƒ‚ƒŠ[“U
+    // ãƒ‡ãƒã‚°ç”¨ãƒ¡ãƒ¢ãƒªå……å¡«
     FillAllocMemory(GetHeapHeadPtrFromExpHeapHead(pEHHead), freeRgnT.end, GetOffsetFromPtr(freeRgnT.end, freeRgnB.start));
 
-    // V‹KƒuƒƒbƒNì¬
+    // æ–°è¦ãƒ–ãƒ­ãƒƒã‚¯ä½œæˆ
     {
         NNSiFndExpHeapMBlockHead* pMBHeadNewUsed;
         NNSiMemRegion region;
@@ -577,15 +577,15 @@ AllocUsedBlockFromFreeBlock(
 /*---------------------------------------------------------------------------*
   Name:         AllocFromHead
 
-  Description:  ƒq[ƒv‚Ìæ“ª‚©‚çƒƒ‚ƒŠƒuƒƒbƒN‚ğŠm•Û‚µ‚Ü‚·B
+  Description:  ãƒ’ãƒ¼ãƒ—ã®å…ˆé ­ã‹ã‚‰ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’ç¢ºä¿ã—ã¾ã™ã€‚
 
-  Arguments:    pHeapHd:    ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                size:       Šm•Û‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒYB
-                alignment:  ƒAƒ‰ƒCƒƒ“ƒg’lB
+  Arguments:    pHeapHd:    ãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                size:       ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºã€‚
+                alignment:  ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆå€¤ã€‚
 
-  Returns:      ƒƒ‚ƒŠƒuƒƒbƒN‚ÌŠm•Û‚ª¬Œ÷‚µ‚½ê‡AŠm•Û‚µ‚½ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ì
-                ƒ|ƒCƒ“ƒ^‚ª•Ô‚è‚Ü‚·B
-                ¸”s‚µ‚½ê‡ANULL‚ª•Ô‚è‚Ü‚·B
+  Returns:      ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ç¢ºä¿ãŒæˆåŠŸã—ãŸå ´åˆã€ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®
+                ãƒã‚¤ãƒ³ã‚¿ãŒè¿”ã‚Šã¾ã™ã€‚
+                å¤±æ•—ã—ãŸå ´åˆã€NULLãŒè¿”ã‚Šã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void*
 AllocFromHead(
@@ -596,7 +596,7 @@ AllocFromHead(
 {
     NNSiFndExpHeapHead* pExpHeapHd = GetExpHeapHeadPtrFromHeapHead(pHeapHd);
 
-    // Å‰‚É‚İ‚Â‚©‚Á‚½‚à‚Ì‚ğŠ„‚è“–‚Ä‚é‚©
+    // æœ€åˆã«ã¿ã¤ã‹ã£ãŸã‚‚ã®ã‚’å‰²ã‚Šå½“ã¦ã‚‹ã‹
     const BOOL bAllocFirst = GetAllocMode(pExpHeapHd) == NNS_FND_EXPHEAP_ALLOC_MODE_FIRST;
 
     NNSiFndExpHeapMBlockHead* pMBlkHd      = NULL;
@@ -604,12 +604,12 @@ AllocFromHead(
     u32 foundSize = 0xffffffff;
     void* foundMBlock = NULL;
 
-    // ƒtƒŠ[ƒuƒƒbƒNŒŸõ
+    // ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯æ¤œç´¢
     for (pMBlkHd = pExpHeapHd->mbFreeList.head; pMBlkHd; pMBlkHd = pMBlkHd->pMBHeadNext)
     {
         void *const mblock    = GetMemPtrForMBlock(pMBlkHd);
         void *const reqMBlock = NNSi_FndRoundUpPtr(mblock, alignment);
-        const u32 offset      = GetOffsetFromPtr(mblock, reqMBlock);    // ”­¶‚µ‚½‚¸‚ê
+        const u32 offset      = GetOffsetFromPtr(mblock, reqMBlock);    // ç™ºç”Ÿã—ãŸãšã‚Œ
 
         if ( pMBlkHd->blockSize >= size + offset
          &&  foundSize > pMBlkHd->blockSize )
@@ -625,12 +625,12 @@ AllocFromHead(
         }
     }
 
-    if (! pMBlkHdFound) // ğŒ‚É‡‚¤ƒuƒƒbƒN‚ªŒ©‚Â‚©‚ç‚È‚¢
+    if (! pMBlkHdFound) // æ¡ä»¶ã«åˆã†ãƒ–ãƒ­ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚‰ãªã„
     {
         return NULL;
     }
 
-    return AllocUsedBlockFromFreeBlock( // ”­Œ©‚µ‚½ƒtƒŠ[ƒuƒƒbƒN‚©‚ç—ÌˆæŠm•Û
+    return AllocUsedBlockFromFreeBlock( // ç™ºè¦‹ã—ãŸãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã‹ã‚‰é ˜åŸŸç¢ºä¿
             pExpHeapHd,
             pMBlkHdFound,
             foundMBlock,
@@ -641,15 +641,15 @@ AllocFromHead(
 /*---------------------------------------------------------------------------*
   Name:         AllocFromTail
 
-  Description:  ƒq[ƒv‚Ì––”ö‚©‚çƒƒ‚ƒŠƒuƒƒbƒN‚ğŠm•Û‚µ‚Ü‚·B
+  Description:  ãƒ’ãƒ¼ãƒ—ã®æœ«å°¾ã‹ã‚‰ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’ç¢ºä¿ã—ã¾ã™ã€‚
 
-  Arguments:    pHeapHd:    ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                size:       Šm•Û‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒYB
-                alignment:  ƒAƒ‰ƒCƒƒ“ƒg’lB
+  Arguments:    pHeapHd:    ãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                size:       ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºã€‚
+                alignment:  ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆå€¤ã€‚
 
-  Returns:      ƒƒ‚ƒŠƒuƒƒbƒN‚ÌŠm•Û‚ª¬Œ÷‚µ‚½ê‡AŠm•Û‚µ‚½ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ì
-                ƒ|ƒCƒ“ƒ^‚ª•Ô‚è‚Ü‚·B
-                ¸”s‚µ‚½ê‡ANULL‚ª•Ô‚è‚Ü‚·B
+  Returns:      ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ç¢ºä¿ãŒæˆåŠŸã—ãŸå ´åˆã€ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®
+                ãƒã‚¤ãƒ³ã‚¿ãŒè¿”ã‚Šã¾ã™ã€‚
+                å¤±æ•—ã—ãŸå ´åˆã€NULLãŒè¿”ã‚Šã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static void*
 AllocFromTail(
@@ -660,7 +660,7 @@ AllocFromTail(
 {
     NNSiFndExpHeapHead* pExpHeapHd = GetExpHeapHeadPtrFromHeapHead(pHeapHd);
 
-    // Å‰‚É‚İ‚Â‚©‚Á‚½‚à‚Ì‚ğŠ„‚è“–‚Ä‚é‚©
+    // æœ€åˆã«ã¿ã¤ã‹ã£ãŸã‚‚ã®ã‚’å‰²ã‚Šå½“ã¦ã‚‹ã‹
     const BOOL bAllocFirst = GetAllocMode(pExpHeapHd) == NNS_FND_EXPHEAP_ALLOC_MODE_FIRST;
 
     NNSiFndExpHeapMBlockHead* pMBlkHd      = NULL;
@@ -668,12 +668,12 @@ AllocFromTail(
     u32 foundSize = 0xffffffff;
     void* foundMBlock = NULL;
 
-    // ƒtƒŠ[ƒuƒƒbƒNŒŸõ
+    // ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯æ¤œç´¢
     for (pMBlkHd = pExpHeapHd->mbFreeList.tail; pMBlkHd; pMBlkHd = pMBlkHd->pMBHeadPrev)
     {
         void *const mblock    = GetMemPtrForMBlock(pMBlkHd);
         void *const mblockEnd = AddU32ToPtr(mblock, pMBlkHd->blockSize);
-        void *const reqMBlock = NNSi_FndRoundDownPtr(SubU32ToPtr(mblockEnd, size), alignment);  // ƒAƒ‰ƒCƒ“Ï‚İ‚ÌƒAƒhƒŒƒX
+        void *const reqMBlock = NNSi_FndRoundDownPtr(SubU32ToPtr(mblockEnd, size), alignment);  // ã‚¢ãƒ©ã‚¤ãƒ³æ¸ˆã¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 
         if ( ComparePtr(reqMBlock, mblock) >= 0
          &&  foundSize > pMBlkHd->blockSize )
@@ -689,12 +689,12 @@ AllocFromTail(
         }
     }
 
-    if (! pMBlkHdFound) // ğŒ‚É‡‚¤ƒuƒƒbƒN‚ªŒ©‚Â‚©‚ç‚È‚¢
+    if (! pMBlkHdFound) // æ¡ä»¶ã«åˆã†ãƒ–ãƒ­ãƒƒã‚¯ãŒè¦‹ã¤ã‹ã‚‰ãªã„
     {
         return NULL;
     }
 
-    return AllocUsedBlockFromFreeBlock( // ”­Œ©‚µ‚½ƒtƒŠ[ƒuƒƒbƒN‚©‚ç—ÌˆæŠm•Û
+    return AllocUsedBlockFromFreeBlock( // ç™ºè¦‹ã—ãŸãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã‹ã‚‰é ˜åŸŸç¢ºä¿
             pExpHeapHd,
             pMBlkHdFound,
             foundMBlock,
@@ -705,17 +705,17 @@ AllocFromTail(
 /*---------------------------------------------------------------------------*
   Name:         RecycleRegion
 
-  Description:  ‹ó‚«ƒŠ[ƒWƒ‡ƒ“‚ğƒtƒŠ[ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‘g‚İ“ü‚ê‚Ü‚·B
-                ƒtƒŠ[ƒuƒƒbƒN‚Æ—×Ú‚µ‚Ä‚¢‚éê‡‚ÍAƒtƒŠ[ƒuƒƒbƒN‚ğŠg’£‚µ‚Ü‚·B
-                ƒtƒŠ[ƒuƒƒbƒN‚Æ—×Ú‚µ‚Ä‚¨‚ç‚¸A‚©‚ÂƒtƒŠ[ƒuƒƒbƒN‚Æ‚·‚é‚Ù‚Ç‚Ì
-                ƒTƒCƒY‚ª–³‚¢ê‡‚ÍAŒã•û‚É—×Ú‚·‚ég—pÏ‚İƒuƒƒbƒN‚ÌƒAƒ‰ƒCƒƒ“ƒg’l‚Æ‚µ‚Ü‚·B
-                Œã•û‚É—×Ú‚·‚ég—pÏ‚İƒuƒƒbƒN‚ª–³‚¢ê‡‚ÍAŠÖ”‚Í¸”s‚µ‚Ü‚·B
+  Description:  ç©ºããƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ãƒ•ãƒªãƒ¼ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸çµ„ã¿å…¥ã‚Œã¾ã™ã€‚
+                ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã¨éš£æ¥ã—ã¦ã„ã‚‹å ´åˆã¯ã€ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã‚’æ‹¡å¼µã—ã¾ã™ã€‚
+                ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã¨éš£æ¥ã—ã¦ãŠã‚‰ãšã€ã‹ã¤ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã¨ã™ã‚‹ã»ã©ã®
+                ã‚µã‚¤ã‚ºãŒç„¡ã„å ´åˆã¯ã€å¾Œæ–¹ã«éš£æ¥ã™ã‚‹ä½¿ç”¨æ¸ˆã¿ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆå€¤ã¨ã—ã¾ã™ã€‚
+                å¾Œæ–¹ã«éš£æ¥ã™ã‚‹ä½¿ç”¨æ¸ˆã¿ãƒ–ãƒ­ãƒƒã‚¯ãŒç„¡ã„å ´åˆã¯ã€é–¢æ•°ã¯å¤±æ•—ã—ã¾ã™ã€‚
 
-  Arguments:    pEHHead:  Šg’£ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                pRegion:  ‹ó‚«ƒŠ[ƒWƒ‡ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    pEHHead:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pRegion:  ç©ºããƒªãƒ¼ã‚¸ãƒ§ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ŠÖ”‚ª¬Œ÷‚·‚ê‚Î TRUE ‚ğ•Ô‚µ‚Ü‚·B
-                ¸”s‚·‚ê‚Î FALSE ‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      é–¢æ•°ãŒæˆåŠŸã™ã‚Œã° TRUE ã‚’è¿”ã—ã¾ã™ã€‚
+                å¤±æ•—ã™ã‚Œã° FALSE ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 static BOOL
 RecycleRegion(
@@ -723,10 +723,10 @@ RecycleRegion(
     const NNSiMemRegion*    pRegion
 )
 {
-    NNSiFndExpHeapMBlockHead* pBlkPrFree  = NULL;   // ’¼‘OƒtƒŠ[ƒuƒƒbƒN
+    NNSiFndExpHeapMBlockHead* pBlkPrFree  = NULL;   // ç›´å‰ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯
     NNSiMemRegion freeRgn = *pRegion;
 
-    // w’èƒGƒŠƒA‚É—×Ú‚µ‚½ƒtƒŠ[ƒGƒŠƒA‚ğŒŸõ
+    // æŒ‡å®šã‚¨ãƒªã‚¢ã«éš£æ¥ã—ãŸãƒ•ãƒªãƒ¼ã‚¨ãƒªã‚¢ã‚’æ¤œç´¢
     {
         NNSiFndExpHeapMBlockHead* pBlk;
 
@@ -738,38 +738,38 @@ RecycleRegion(
                 continue;
             }
 
-            if (pBlk == pRegion->end)   // Œã•û‚É—×Ú‚·‚éƒuƒƒbƒN‚©?
+            if (pBlk == pRegion->end)   // å¾Œæ–¹ã«éš£æ¥ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã‹?
             {
-                // ‹ó‚«ƒŠ[ƒWƒ‡ƒ“‚ğŒ‹‡
+                // ç©ºããƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚’çµåˆ
                 freeRgn.end = GetMBlockEndAddr(pBlk);
                 (void)RemoveMBlock(&pEHHead->mbFreeList, pBlk);
 
-                // ƒwƒbƒ_•”‚ğNoUse‚Å–„‚ß‚é
+                // ãƒ˜ãƒƒãƒ€éƒ¨ã‚’NoUseã§åŸ‹ã‚ã‚‹
                 FillNoUseMemory(GetHeapHeadPtrFromExpHeapHead(pEHHead), pBlk, sizeof(NNSiFndExpHeapMBlockHead));
             }
             break;
         }
     }
 
-    // ’¼‘O‚ÌƒtƒŠ[ƒuƒƒbƒN‚ª‘O•û‚É—×Ú‚·‚éƒuƒƒbƒN‚©?
+    // ç›´å‰ã®ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ãŒå‰æ–¹ã«éš£æ¥ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã‹?
     if (pBlkPrFree && GetMBlockEndAddr(pBlkPrFree) == pRegion->start)
     {
-        // ‹ó‚«ƒŠ[ƒWƒ‡ƒ“‚ğŒ‹‡
+        // ç©ºããƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚’çµåˆ
         freeRgn.start = pBlkPrFree;
         pBlkPrFree = RemoveMBlock(&pEHHead->mbFreeList, pBlkPrFree);
     }
 
-    if (GetOffsetFromPtr(freeRgn.start, freeRgn.end) < sizeof(NNSiFndExpHeapMBlockHead)) // ƒuƒƒbƒN‚É‚È‚ê‚È‚¢‘å‚«‚³
+    if (GetOffsetFromPtr(freeRgn.start, freeRgn.end) < sizeof(NNSiFndExpHeapMBlockHead)) // ãƒ–ãƒ­ãƒƒã‚¯ã«ãªã‚Œãªã„å¤§ãã•
     {
-        return FALSE;   // NNS_FndResizeForMBlockExpHeap()‚Å¬‚³‚¢ƒTƒCƒY‚ğk¬‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚ÄA
-                        // ‚©‚ÂŒã‚ë‚ÉƒtƒŠ[ƒuƒƒbƒN‚ª–³‚¢ê‡‚É‚±‚±‚É“’B
+        return FALSE;   // NNS_FndResizeForMBlockExpHeap()ã§å°ã•ã„ã‚µã‚¤ã‚ºã‚’ç¸®å°ã—ã‚ˆã†ã¨ã—ã¦ã„ã¦ã€
+                        // ã‹ã¤å¾Œã‚ã«ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ãŒç„¡ã„å ´åˆã«ã“ã“ã«åˆ°é”
     }
 
-    // ƒfƒoƒO—pƒƒ‚ƒŠ[“U
+    // ãƒ‡ãƒã‚°ç”¨ãƒ¡ãƒ¢ãƒªå……å¡«
     FillFreeMemory(GetHeapHeadPtrFromExpHeapHead(pEHHead), pRegion->start, GetOffsetFromPtr(pRegion->start, pRegion->end));
 
     (void)InsertMBlock(&pEHHead->mbFreeList,
-        InitFreeMBlock(&freeRgn),   // ƒtƒŠ[ƒuƒƒbƒNì¬
+        InitFreeMBlock(&freeRgn),   // ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ä½œæˆ
         pBlkPrFree);
 
     return TRUE;
@@ -778,16 +778,16 @@ RecycleRegion(
 /*---------------------------------------------------------------------------*
   Name:         CheckMBlock
 
-  Description:  ƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ì“à—e‚ª‘Ã“–‚Å‚ ‚é‚©ƒ`ƒFƒbƒN‚µ‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã®å†…å®¹ãŒå¦¥å½“ã§ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
 
-  Arguments:    pMBHead:    ƒ`ƒFƒbƒN‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                pHeapHd:    Šg’£ƒq[ƒv‚Ìƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                signature:  ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒVƒOƒlƒ`ƒƒB
-                heapType:   ƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒ^ƒCƒv(g—p or ƒtƒŠ[)
-                flag:       ƒtƒ‰ƒOB
+  Arguments:    pMBHead:    ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pHeapHd:    æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                signature:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚·ã‚°ãƒãƒãƒ£ã€‚
+                heapType:   ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¿ã‚¤ãƒ—(ä½¿ç”¨ or ãƒ•ãƒªãƒ¼)
+                flag:       ãƒ•ãƒ©ã‚°ã€‚
 
-  Returns:      ƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ì“à—e‚ª‘Ã“–‚È‚ç TRUEA
-                ‚»‚¤‚Å‚È‚¢‚È‚ç FALSE ‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã®å†…å®¹ãŒå¦¥å½“ãªã‚‰ TRUEã€
+                ãã†ã§ãªã„ãªã‚‰ FALSE ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 #if ! defined(NNS_FINALROM)
 
@@ -824,14 +824,14 @@ RecycleRegion(
             }
         }
 
-        if (pMBHead->signature != signature)    // ƒVƒOƒlƒ`ƒƒ‚ªˆÙ‚È‚é?
+        if (pMBHead->signature != signature)    // ã‚·ã‚°ãƒãƒãƒ£ãŒç•°ãªã‚‹?
         {
             HEAP_WARNING(bPrint, "[NNS Foundation " "Exp" " Heap]" " Bad %s memory block signature. - address %08X, signature %04X\n",
                 heapType, memBlock, pMBHead->signature);
             return FALSE;
         }
 
-        if (pMBHead->blockSize >= 0x01000000)   // ƒTƒCƒY‚ª‘å‚«‚·‚¬‚é?
+        if (pMBHead->blockSize >= 0x01000000)   // ã‚µã‚¤ã‚ºãŒå¤§ãã™ãã‚‹?
         {
             HEAP_WARNING(bPrint, "[NNS Foundation " "Exp" " Heap]" " Too large %s memory block. - address %08X, block size %08X\n",
                 heapType, memBlock, pMBHead->blockSize);
@@ -857,14 +857,14 @@ RecycleRegion(
 /*---------------------------------------------------------------------------*
   Name:         CheckUsedMBlock
 
-  Description:  g—pƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ì“à—e‚ª‘Ã“–‚Å‚ ‚é‚©ƒ`ƒFƒbƒN‚µ‚Ü‚·B
+  Description:  ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã®å†…å®¹ãŒå¦¥å½“ã§ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
 
-  Arguments:    pMBHead:  ƒ`ƒFƒbƒN‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                pHeapHd:  Šg’£ƒq[ƒv‚Ìƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                flag:     ƒtƒ‰ƒOB
+  Arguments:    pMBHead:  ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pHeapHd:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                flag:     ãƒ•ãƒ©ã‚°ã€‚
 
-  Returns:      ƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ì“à—e‚ª‘Ã“–‚È‚ç TRUEA
-                ‚»‚¤‚Å‚È‚¢‚È‚ç FALSE ‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã®å†…å®¹ãŒå¦¥å½“ãªã‚‰ TRUEã€
+                ãã†ã§ãªã„ãªã‚‰ FALSE ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 #if ! defined(NNS_FINALROM)
 
@@ -884,14 +884,14 @@ RecycleRegion(
 /*---------------------------------------------------------------------------*
   Name:         CheckFreeMBlock
 
-  Description:  ƒtƒŠ[ƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ì“à—e‚ª‘Ã“–‚Å‚ ‚é‚©ƒ`ƒFƒbƒN‚µ‚Ü‚·B
+  Description:  ãƒ•ãƒªãƒ¼ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã®å†…å®¹ãŒå¦¥å½“ã§ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
 
-  Arguments:    pMBHead:  ƒ`ƒFƒbƒN‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                pHeapHd:  Šg’£ƒq[ƒv‚Ìƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                flag:     ƒtƒ‰ƒOB
+  Arguments:    pMBHead:  ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pHeapHd:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                flag:     ãƒ•ãƒ©ã‚°ã€‚
 
-  Returns:      ƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ì“à—e‚ª‘Ã“–‚È‚ç TRUEA
-                ‚»‚¤‚Å‚È‚¢‚È‚ç FALSE ‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã®å†…å®¹ãŒå¦¥å½“ãªã‚‰ TRUEã€
+                ãã†ã§ãªã„ãªã‚‰ FALSE ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 #if ! defined(NNS_FINALROM)
 
@@ -911,14 +911,14 @@ RecycleRegion(
 /*---------------------------------------------------------------------------*
   Name:         CheckMBlockPrevPtr
 
-  Description:  ƒƒ‚ƒŠƒuƒƒbƒN‚Ì‘O‚Ö‚ÌƒŠƒ“ƒN‚ª³‚µ‚¢‚©ƒ`ƒFƒbƒN‚µ‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®å‰ã¸ã®ãƒªãƒ³ã‚¯ãŒæ­£ã—ã„ã‹ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
 
-  Arguments:    pMBHead:      ƒ`ƒFƒbƒN‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                pMBHeadPrev:  ƒ`ƒFƒbƒN‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ì‘O‚Ìƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                flag:         ƒtƒ‰ƒOB
+  Arguments:    pMBHead:      ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pMBHeadPrev:  ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®å‰ã®ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                flag:         ãƒ•ãƒ©ã‚°ã€‚
 
-  Returns:      ƒƒ‚ƒŠƒuƒƒbƒN‚Ì‘O‚Ö‚ÌƒŠƒ“ƒN‚ª³‚µ‚¢‚È‚ç TRUEA
-                ‚»‚¤‚Å‚È‚¢‚È‚ç FALSE ‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®å‰ã¸ã®ãƒªãƒ³ã‚¯ãŒæ­£ã—ã„ãªã‚‰ TRUEã€
+                ãã†ã§ãªã„ãªã‚‰ FALSE ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 #if ! defined(NNS_FINALROM)
 
@@ -947,14 +947,14 @@ RecycleRegion(
 /*---------------------------------------------------------------------------*
   Name:         CheckMBlockNextPtr
 
-  Description:  ƒƒ‚ƒŠƒuƒƒbƒN‚ÌŸ‚Ö‚ÌƒŠƒ“ƒN‚ª³‚µ‚¢‚©ƒ`ƒFƒbƒN‚µ‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®æ¬¡ã¸ã®ãƒªãƒ³ã‚¯ãŒæ­£ã—ã„ã‹ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
 
-  Arguments:    pMBHead:      ƒ`ƒFƒbƒN‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                pMBHeadNext:  ƒ`ƒFƒbƒN‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚ÌŸ‚Ìƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                flag:         ƒtƒ‰ƒOB
+  Arguments:    pMBHead:      ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pMBHeadNext:  ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®æ¬¡ã®ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                flag:         ãƒ•ãƒ©ã‚°ã€‚
 
-  Returns:      ƒƒ‚ƒŠƒuƒƒbƒN‚ÌŸ‚Ö‚ÌƒŠƒ“ƒN‚ª³‚µ‚¢‚È‚ç TRUEA
-                ‚»‚¤‚Å‚È‚¢‚È‚ç FALSE ‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®æ¬¡ã¸ã®ãƒªãƒ³ã‚¯ãŒæ­£ã—ã„ãªã‚‰ TRUEã€
+                ãã†ã§ãªã„ãªã‚‰ FALSE ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 #if ! defined(NNS_FINALROM)
 
@@ -983,15 +983,15 @@ RecycleRegion(
 /*---------------------------------------------------------------------------*
   Name:         CheckMBlockLinkTail
 
-  Description:  ƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒ|ƒCƒ“ƒ^‚ªƒƒ‚ƒŠƒuƒƒbƒNƒŠƒXƒg‚Ìæ“ª/––”ö‚Å‚ ‚é‚©ƒ`ƒFƒbƒN‚µ‚Ü‚·B
+  Description:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒã‚¤ãƒ³ã‚¿ãŒãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ãƒªã‚¹ãƒˆã®å…ˆé ­/æœ«å°¾ã§ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
 
-  Arguments:    pMBHead:      ƒ`ƒFƒbƒN‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                pMBHeadTail:  ƒƒ‚ƒŠƒuƒƒbƒNƒŠƒXƒg‚Ìæ“ª/––”öƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                headType:     æ“ª‚©––”ö‚ğ•\‚·•¶š—ñB
-                flag:         ƒtƒ‰ƒOB
+  Arguments:    pMBHead:      ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                pMBHeadTail:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ãƒªã‚¹ãƒˆã®å…ˆé ­/æœ«å°¾ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                headType:     å…ˆé ­ã‹æœ«å°¾ã‚’è¡¨ã™æ–‡å­—åˆ—ã€‚
+                flag:         ãƒ•ãƒ©ã‚°ã€‚
 
-  Returns:      ƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒ|ƒCƒ“ƒ^‚ªƒƒ‚ƒŠƒuƒƒbƒNƒŠƒXƒg‚Ìæ“ª/––”ö‚Å‚ ‚é‚È‚ç TRUEA
-                ‚»‚¤‚Å‚È‚¢‚È‚ç FALSE ‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒã‚¤ãƒ³ã‚¿ãŒãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ãƒªã‚¹ãƒˆã®å…ˆé ­/æœ«å°¾ã§ã‚ã‚‹ãªã‚‰ TRUEã€
+                ãã†ã§ãªã„ãªã‚‰ FALSE ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 #if ! defined(NNS_FINALROM)
 
@@ -1021,15 +1021,15 @@ RecycleRegion(
 /*---------------------------------------------------------------------------*
   Name:         IsValidUsedMBlock
 
-  Description:  g—pƒƒ‚ƒŠƒuƒƒbƒN‚Ì‘Ã“–«‚ğƒ`ƒFƒbƒN‚µ‚Ü‚·B
+  Description:  ä½¿ç”¨ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®å¦¥å½“æ€§ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
 
-  Arguments:    memBlock:  ƒ`ƒFƒbƒN‚·‚éƒƒ‚ƒŠƒuƒƒbƒNB
-                heap:      ƒƒ‚ƒŠƒuƒƒbƒN‚ğŠÜ—L‚·‚éŠg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
-                           NULL‚ğw’è‚·‚é‚ÆAƒƒ‚ƒŠƒuƒƒbƒN‚ªƒq[ƒv‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚é‚©‚Ì
-                           ƒ`ƒFƒbƒN‚Ís‚¢‚Ü‚¹‚ñB
+  Arguments:    memBlock:  ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã€‚
+                heap:      ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’å«æœ‰ã™ã‚‹æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
+                           NULLã‚’æŒ‡å®šã™ã‚‹ã¨ã€ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ãŒãƒ’ãƒ¼ãƒ—ã«å«ã¾ã‚Œã¦ã„ã‚‹ã‹ã®
+                           ãƒã‚§ãƒƒã‚¯ã¯è¡Œã„ã¾ã›ã‚“ã€‚
 
-  Returns:      w’è‚µ‚½ƒƒ‚ƒŠƒuƒƒbƒN‚ª–â‘è‚È‚¯‚ê‚Î TRUE ‚ğ•Ô‚µ‚Ü‚·B
-                –â‘è‚ª‚ ‚ê‚Î FALSE ‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      æŒ‡å®šã—ãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ãŒå•é¡Œãªã‘ã‚Œã° TRUE ã‚’è¿”ã—ã¾ã™ã€‚
+                å•é¡ŒãŒã‚ã‚Œã° FALSE ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 #if ! defined(NNS_FINALROM)
 
@@ -1053,18 +1053,18 @@ RecycleRegion(
 #endif
 
 /* ========================================================================
-    ŠO•”ŠÖ”(”ñŒöŠJ)
+    å¤–éƒ¨é–¢æ•°(éå…¬é–‹)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:         NNSi_FndDumpExpHeap
 
-  Description:  Šg’£ƒq[ƒv“à•”‚Ìî•ñ‚ğ•\¦‚µ‚Ü‚·B
-                ‚±‚ê‚ÍƒfƒoƒbƒO—p‚ÌŠÖ”‚Å‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—å†…éƒ¨ã®æƒ…å ±ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+                ã“ã‚Œã¯ãƒ‡ãƒãƒƒã‚°ç”¨ã®é–¢æ•°ã§ã™ã€‚
 
-  Arguments:    heap:    Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
+  Arguments:    heap:    æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 #if ! defined(NNS_FINALROM)
 
@@ -1084,9 +1084,9 @@ RecycleRegion(
 
             NNSi_FndDumpHeapHead(pHeapHd);
 
-            OS_Printf("     attr  address:   size    gid aln   prev_ptr next_ptr\n");   // ƒwƒbƒ_[s
+            OS_Printf("     attr  address:   size    gid aln   prev_ptr next_ptr\n");   // ãƒ˜ãƒƒãƒ€ãƒ¼è¡Œ
 
-            // ---------------- UsedBlock ‚Ìƒ_ƒ“ƒv ----------------
+            // ---------------- UsedBlock ã®ãƒ€ãƒ³ãƒ— ----------------
             OS_Printf("    (Used Blocks)\n" );
 
             if (pExpHeapHd->mbUsedList.head == NULL)
@@ -1115,14 +1115,14 @@ RecycleRegion(
                         pMBHead->pMBHeadNext ? GetMemPtrForMBlock(pMBHead->pMBHeadNext): NULL
                     );
 
-                    // ---- g—p—Ê
+                    // ---- ä½¿ç”¨é‡
                     usedSize += sizeof(NNSiFndExpHeapMBlockHead) + pMBHead->blockSize + GetAlignmentForMBlock(pMBHead);
 
                     usedCnt ++;
                 }
             }
 
-            // ---------------- FreeBlock ‚Ìƒ_ƒ“ƒv ----------------
+            // ---------------- FreeBlock ã®ãƒ€ãƒ³ãƒ— ----------------
             OS_Printf("    (Free Blocks)\n" );
 
             if (pExpHeapHd->mbFreeList.head == NULL)
@@ -1158,7 +1158,7 @@ RecycleRegion(
             OS_Printf("\n");
 
             {
-                u32 heapSize  = GetOffsetFromPtr(pHeapHd->heapStart, pHeapHd->heapEnd); // ƒq[ƒvƒTƒCƒY(ƒf[ƒ^—Ìˆæ‚ÌƒTƒCƒY)
+                u32 heapSize  = GetOffsetFromPtr(pHeapHd->heapStart, pHeapHd->heapEnd); // ãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚º(ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã®ã‚µã‚¤ã‚º)
                 OS_Printf("    %d / %d bytes (%6.2f%%) used (U:%d F:%d)\n",
                                    usedSize, heapSize, 100.0 * usedSize / heapSize, usedCnt, freeCnt);
             }
@@ -1172,20 +1172,20 @@ RecycleRegion(
 
 
 /* ========================================================================
-    ŠO•”ŠÖ”(ŒöŠJ)
+    å¤–éƒ¨é–¢æ•°(å…¬é–‹)
    ======================================================================== */
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndCreateExpHeapEx
 
-  Description:  Šg’£ƒq[ƒv‚ğì¬‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã‚’ä½œæˆã—ã¾ã™ã€‚
 
-  Arguments:    startAddress: ƒq[ƒv—Ìˆæ‚Ìæ“ªƒAƒhƒŒƒXB
-                size:         ƒq[ƒv—Ìˆæ‚ÌƒTƒCƒYB
-                optFlag:      ƒIƒvƒVƒ‡ƒ“ƒtƒ‰ƒOB
+  Arguments:    startAddress: ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã€‚
+                size:         ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®ã‚µã‚¤ã‚ºã€‚
+                optFlag:      ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°ã€‚
 
-  Returns:      ŠÖ”‚ª¬Œ÷‚µ‚½ê‡Aì¬‚³‚ê‚½Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹‚ª•Ô‚è‚Ü‚·B
-                ŠÖ”‚ª¸”s‚·‚é‚ÆANNS_FND_HEAP_INVALID_HANDLE ‚ª•Ô‚è‚Ü‚·B
+  Returns:      é–¢æ•°ãŒæˆåŠŸã—ãŸå ´åˆã€ä½œæˆã•ã‚ŒãŸæ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ãŒè¿”ã‚Šã¾ã™ã€‚
+                é–¢æ•°ãŒå¤±æ•—ã™ã‚‹ã¨ã€NNS_FND_HEAP_INVALID_HANDLE ãŒè¿”ã‚Šã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 NNSFndHeapHandle
 NNS_FndCreateExpHeapEx(
@@ -1209,20 +1209,20 @@ NNS_FndCreateExpHeapEx(
         return NNS_FND_HEAP_INVALID_HANDLE;
     }
 
-    {   // Expƒq[ƒvŒü‚¯‰Šú‰»
+    {   // Expãƒ’ãƒ¼ãƒ—å‘ã‘åˆæœŸåŒ–
         NNSiFndHeapHead* pHeapHd = InitExpHeap(startAddress, endAddress, optFlag);
-        return pHeapHd;  // ƒq[ƒvƒwƒbƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ª‚»‚Ì‚Ü‚Üƒnƒ“ƒhƒ‹’l‚Æ‚·‚é
+        return pHeapHd;  // ãƒ’ãƒ¼ãƒ—ãƒ˜ãƒƒãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒãã®ã¾ã¾ãƒãƒ³ãƒ‰ãƒ«å€¤ã¨ã™ã‚‹
     }
 }
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndDestroyExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚ğ”jŠü‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã‚’ç ´æ£„ã—ã¾ã™ã€‚
 
-  Arguments:    heap: Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
+  Arguments:    heap: æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void
 NNS_FndDestroyExpHeap(NNSFndHeapHandle heap)
@@ -1235,18 +1235,18 @@ NNS_FndDestroyExpHeap(NNSFndHeapHandle heap)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndAllocFromExpHeapEx
 
-  Description:  Šg’£ƒq[ƒv‚©‚çƒƒ‚ƒŠƒuƒƒbƒN‚ğŠm•Û‚µ‚Ü‚·B
-                ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒ‰ƒCƒƒ“ƒg‚ğw’è‚Å‚«‚Ü‚·B
-                ƒAƒ‰ƒCƒƒ“ƒg’l‚ğ•‰‚Ì’l‚Åw’è‚·‚é‚ÆAƒq[ƒv‚Ì‹ó‚«—Ìˆæ‚ğŒã•û‚©‚ç’T‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã‹ã‚‰ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’ç¢ºä¿ã—ã¾ã™ã€‚
+                ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã‚’æŒ‡å®šã§ãã¾ã™ã€‚
+                ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆå€¤ã‚’è² ã®å€¤ã§æŒ‡å®šã™ã‚‹ã¨ã€ãƒ’ãƒ¼ãƒ—ã®ç©ºãé ˜åŸŸã‚’å¾Œæ–¹ã‹ã‚‰æ¢ã—ã¾ã™ã€‚
 
-  Arguments:    heap:      Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
-                size:      Šm•Û‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒY(ƒoƒCƒg’PˆÊ)B
-                alignment: Šm•Û‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒ‰ƒCƒƒ“ƒgB
-                           4,8,16,32,-4,-8,-16,-32‚Ì‚¢‚¸‚ê‚©‚Ì’l‚ªw’è‚Å‚«‚Ü‚·B
+  Arguments:    heap:      æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
+                size:      ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º(ãƒã‚¤ãƒˆå˜ä½)ã€‚
+                alignment: ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã€‚
+                           4,8,16,32,-4,-8,-16,-32ã®ã„ãšã‚Œã‹ã®å€¤ãŒæŒ‡å®šã§ãã¾ã™ã€‚
 
-  Returns:      ƒƒ‚ƒŠƒuƒƒbƒN‚ÌŠm•Û‚ª¬Œ÷‚µ‚½ê‡AŠm•Û‚µ‚½ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ì
-                ƒ|ƒCƒ“ƒ^‚ª•Ô‚è‚Ü‚·B
-                ¸”s‚µ‚½ê‡ANULL‚ª•Ô‚è‚Ü‚·B
+  Returns:      ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ç¢ºä¿ãŒæˆåŠŸã—ãŸå ´åˆã€ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®
+                ãƒã‚¤ãƒ³ã‚¿ãŒè¿”ã‚Šã¾ã™ã€‚
+                å¤±æ•—ã—ãŸå ´åˆã€NULLãŒè¿”ã‚Šã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 void*
 NNS_FndAllocFromExpHeapEx(
@@ -1258,7 +1258,7 @@ NNS_FndAllocFromExpHeapEx(
 
     NNS_ASSERT(IsValidExpHeapHandle(heap));
 
-    // alignment ‚Ìƒ`ƒFƒbƒN
+    // alignment ã®ãƒã‚§ãƒƒã‚¯
     NNS_ASSERT(alignment % MIN_ALIGNMENT == 0);
     NNS_ASSERT(MIN_ALIGNMENT <= abs(alignment) && abs(alignment) <= 32);
 
@@ -1267,13 +1267,13 @@ NNS_FndAllocFromExpHeapEx(
         size = 1;
     }
 
-    size = NNSi_FndRoundUp(size, MIN_ALIGNMENT);    // ÀÛ‚ÉŠm•Û‚·‚éƒTƒCƒY
+    size = NNSi_FndRoundUp(size, MIN_ALIGNMENT);    // å®Ÿéš›ã«ç¢ºä¿ã™ã‚‹ã‚µã‚¤ã‚º
 
-    if (alignment >= 0)     // ‘O‚©‚çŠm•Û
+    if (alignment >= 0)     // å‰ã‹ã‚‰ç¢ºä¿
     {
         memory = AllocFromHead(heap, size, alignment);
     }
-    else                    // Œã‚ë‚©‚çŠm•Û
+    else                    // å¾Œã‚ã‹ã‚‰ç¢ºä¿
     {
         memory = AllocFromTail(heap, size, -alignment);
     }
@@ -1284,14 +1284,14 @@ NNS_FndAllocFromExpHeapEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndResizeForMBlockExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚©‚çŠm•Û‚³‚ê‚½ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒY‚ğ•ÏX‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã‹ã‚‰ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã—ã¾ã™ã€‚
 
-  Arguments:    heap:     Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
-                memBlock: ƒTƒCƒY‚ğ•ÏX‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                size:     V‚µ‚­Š„‚è“–‚Ä‚éƒTƒCƒY(ƒoƒCƒg’PˆÊ)B
+  Arguments:    heap:     æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
+                memBlock: ã‚µã‚¤ã‚ºã‚’å¤‰æ›´ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                size:     æ–°ã—ãå‰²ã‚Šå½“ã¦ã‚‹ã‚µã‚¤ã‚º(ãƒã‚¤ãƒˆå˜ä½)ã€‚
 
-  Returns:      ŠÖ”‚ª¬Œ÷‚µ‚½ê‡A•ÏX‚³‚ê‚½ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·(ƒoƒCƒg’PˆÊ)B
-                ŠÖ”‚ª¸”s‚µ‚½ê‡A0 ‚ª•Ô‚è‚Ü‚·B
+  Returns:      é–¢æ•°ãŒæˆåŠŸã—ãŸå ´åˆã€å¤‰æ›´ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™(ãƒã‚¤ãƒˆå˜ä½)ã€‚
+                é–¢æ•°ãŒå¤±æ•—ã—ãŸå ´åˆã€0 ãŒè¿”ã‚Šã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 u32
 NNS_FndResizeForMBlockExpHeap(
@@ -1310,18 +1310,18 @@ NNS_FndResizeForMBlockExpHeap(
     pMBHead = GetMBlockHeadPtr(memBlock);
 
     size = NNSi_FndRoundUp(size, MIN_ALIGNMENT);
-    if (size == pMBHead->blockSize)  // ƒuƒƒbƒNƒTƒCƒY•ÏX‚È‚µ‚Ìê‡
+    if (size == pMBHead->blockSize)  // ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºå¤‰æ›´ãªã—ã®å ´åˆ
     {
         return size;
     }
 
-    // V‚µ‚¢ƒGƒŠƒA‚ªŠg‘å‚·‚é‚Æ‚«
+    // æ–°ã—ã„ã‚¨ãƒªã‚¢ãŒæ‹¡å¤§ã™ã‚‹ã¨ã
     if (size > pMBHead->blockSize)
     {
-        void* crUsedEnd = GetMBlockEndAddr(pMBHead);   // Œ»g—pƒuƒƒbƒN‚Ìend address
+        void* crUsedEnd = GetMBlockEndAddr(pMBHead);   // ç¾ä½¿ç”¨ãƒ–ãƒ­ãƒƒã‚¯ã®end address
         NNSiFndExpHeapMBlockHead* block;
 
-        // Ÿ‚ÌƒtƒŠ[ƒuƒƒbƒN‚ğ’T‚·
+        // æ¬¡ã®ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã‚’æ¢ã™
         for (block = pEHHead->mbFreeList.head; block; block = block->pMBHeadNext)
         {
             if (block == crUsedEnd)
@@ -1330,7 +1330,7 @@ NNS_FndResizeForMBlockExpHeap(
             }
         }
 
-        // Ÿ‚ÌƒtƒŠ[ƒuƒƒbƒN‚ª‚È‚¢‚©AƒTƒCƒY‚ª‘«‚è‚È‚¢ê‡
+        // æ¬¡ã®ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ãŒãªã„ã‹ã€ã‚µã‚¤ã‚ºãŒè¶³ã‚Šãªã„å ´åˆ
         if (! block || size > pMBHead->blockSize + sizeof(NNSiFndExpHeapMBlockHead) + block->blockSize)
         {
             return 0;
@@ -1341,47 +1341,47 @@ NNS_FndResizeForMBlockExpHeap(
             void* oldFreeStart;
             NNSiFndExpHeapMBlockHead* nextBlockPrev;
 
-            // ƒtƒŠ[ƒuƒƒbƒN‚ÌƒŠ[ƒWƒ‡ƒ“‚ğæ“¾‚µAƒtƒŠ[ƒuƒƒbƒN‚ğˆê’UŠO‚·
+            // ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å–å¾—ã—ã€ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã‚’ä¸€æ—¦å¤–ã™
             GetRegionOfMBlock(&rgnNewFree, block);
             nextBlockPrev = RemoveMBlock(&pEHHead->mbFreeList, block);
 
             oldFreeStart = rgnNewFree.start;
-            rgnNewFree.start = AddU32ToPtr(memBlock, size); // V‚µ‚­ƒtƒŠ[‚Æ‚È‚éƒŠ[ƒWƒ‡ƒ“ˆÊ’u
+            rgnNewFree.start = AddU32ToPtr(memBlock, size); // æ–°ã—ããƒ•ãƒªãƒ¼ã¨ãªã‚‹ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ä½ç½®
 
-            // —]‚è‚ªƒƒ‚ƒŠƒuƒƒbƒNƒTƒCƒY–¢–‚È‚ç
+            // ä½™ã‚ŠãŒãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºæœªæº€ãªã‚‰
             if (GetOffsetFromPtr(rgnNewFree.start, rgnNewFree.end) < sizeof(NNSiFndExpHeapMBlockHead))
             {
-                rgnNewFree.start = rgnNewFree.end;  // g—pƒuƒƒbƒN‚É‹zû
+                rgnNewFree.start = rgnNewFree.end;  // ä½¿ç”¨ãƒ–ãƒ­ãƒƒã‚¯ã«å¸å
             }
 
-            pMBHead->blockSize = GetOffsetFromPtr(memBlock, rgnNewFree.start);  // ‘ÎÛƒuƒƒbƒNƒTƒCƒY•ÏX
+            pMBHead->blockSize = GetOffsetFromPtr(memBlock, rgnNewFree.start);  // å¯¾è±¡ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºå¤‰æ›´
 
-            // —]‚è‚ªƒƒ‚ƒŠƒuƒƒbƒNƒTƒCƒYˆÈã‚È‚ç
+            // ä½™ã‚ŠãŒãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºä»¥ä¸Šãªã‚‰
             if (GetOffsetFromPtr(rgnNewFree.start, rgnNewFree.end) >= sizeof(NNSiFndExpHeapMBlockHead))
             {
-                (void)InsertMBlock(&pEHHead->mbFreeList, InitFreeMBlock(&rgnNewFree), nextBlockPrev);   // V‚µ‚­ƒtƒŠ[ƒuƒƒbƒN‚ğì‚é
+                (void)InsertMBlock(&pEHHead->mbFreeList, InitFreeMBlock(&rgnNewFree), nextBlockPrev);   // æ–°ã—ããƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã‚’ä½œã‚‹
             }
 
-            FillAllocMemory(  // Šg’£‚µ‚½•”•ªƒtƒBƒ‹
+            FillAllocMemory(  // æ‹¡å¼µã—ãŸéƒ¨åˆ†ãƒ•ã‚£ãƒ«
                 heap,
                 oldFreeStart,
                 GetOffsetFromPtr(oldFreeStart, rgnNewFree.start));
         }
     }
-    // V‚µ‚¢ƒGƒŠƒA‚ªk¬‚·‚é‚Æ‚«
+    // æ–°ã—ã„ã‚¨ãƒªã‚¢ãŒç¸®å°ã™ã‚‹ã¨ã
     else
     {
         NNSiMemRegion rgnNewFree;
         const u32 oldBlockSize = pMBHead->blockSize;
 
-        rgnNewFree.start = AddU32ToPtr(memBlock, size); // V‚µ‚­ƒtƒŠ[‚Æ‚È‚éƒŠ[ƒWƒ‡ƒ“ˆÊ’u
-        rgnNewFree.end   = GetMBlockEndAddr(pMBHead);   // Œ»g—pƒuƒƒbƒN‚Ìend address
+        rgnNewFree.start = AddU32ToPtr(memBlock, size); // æ–°ã—ããƒ•ãƒªãƒ¼ã¨ãªã‚‹ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ä½ç½®
+        rgnNewFree.end   = GetMBlockEndAddr(pMBHead);   // ç¾ä½¿ç”¨ãƒ–ãƒ­ãƒƒã‚¯ã®end address
 
-        pMBHead->blockSize = size;  // ‘ÎÛƒuƒƒbƒNƒTƒCƒY•ÏX
+        pMBHead->blockSize = size;  // å¯¾è±¡ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºå¤‰æ›´
 
-        if (! RecycleRegion(pEHHead, &rgnNewFree))    // ƒtƒŠ[ƒŠƒXƒg‚É•Ô‚µ‚Ä‚İ‚é
+        if (! RecycleRegion(pEHHead, &rgnNewFree))    // ãƒ•ãƒªãƒ¼ãƒªã‚¹ãƒˆã«è¿”ã—ã¦ã¿ã‚‹
         {
-            pMBHead->blockSize = oldBlockSize;  // ¸”s‚µ‚½‚çAŒ³‚É–ß‚·
+            pMBHead->blockSize = oldBlockSize;  // å¤±æ•—ã—ãŸã‚‰ã€å…ƒã«æˆ»ã™
         }
     }
 
@@ -1391,12 +1391,12 @@ NNS_FndResizeForMBlockExpHeap(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndFreeToExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚Öƒƒ‚ƒŠƒuƒƒbƒN‚ğ•Ô‹p‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã¸ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’è¿”å´ã—ã¾ã™ã€‚
 
-  Arguments:    heap:     Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
-                memBlock: •Ô‹p‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    heap:     æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
+                memBlock: è¿”å´ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void
 NNS_FndFreeToExpHeap(
@@ -1412,23 +1412,23 @@ NNS_FndFreeToExpHeap(
         NNSiFndExpHeapMBlockHead* pMBHead = GetMBlockHeadPtr(memBlock);
         NNSiMemRegion region;
 
-        // ‚±‚Ìƒq[ƒv‚Ì’†‚É“ü‚Á‚Ä‚¢‚é‚©
+        // ã“ã®ãƒ’ãƒ¼ãƒ—ã®ä¸­ã«å…¥ã£ã¦ã„ã‚‹ã‹
         NNS_ASSERT(pHeapHd->heapStart <= memBlock && memBlock < pHeapHd->heapEnd);
 
         GetRegionOfMBlock(&region, pMBHead);
-        (void)RemoveMBlock(&pExpHeapHd->mbUsedList, pMBHead);   // g—pƒŠƒXƒg‚©‚ç‚Í‚¸‚·
-        (void)RecycleRegion(pExpHeapHd, &region);   // w’èƒAƒhƒŒƒX‚©‚çw’èƒTƒCƒY‚ğƒtƒŠ[‚É‰Á‚¦‚é
+        (void)RemoveMBlock(&pExpHeapHd->mbUsedList, pMBHead);   // ä½¿ç”¨ãƒªã‚¹ãƒˆã‹ã‚‰ã¯ãšã™
+        (void)RecycleRegion(pExpHeapHd, &region);   // æŒ‡å®šã‚¢ãƒ‰ãƒ¬ã‚¹ã‹ã‚‰æŒ‡å®šã‚µã‚¤ã‚ºã‚’ãƒ•ãƒªãƒ¼ã«åŠ ãˆã‚‹
     }
 }
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetTotalFreeSizeForExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚Ì‹ó‚«—Ìˆæ‚ÌƒTƒCƒY‚Ì‡Œv‚ğæ“¾‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ç©ºãé ˜åŸŸã®ã‚µã‚¤ã‚ºã®åˆè¨ˆã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    heap:     Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
+  Arguments:    heap:     æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
 
-  Returns:      Šg’£ƒq[ƒv‚Ì‹ó‚«—Ìˆæ‚ÌƒTƒCƒY‚Ì‡Œv‚ğ•Ô‚µ‚Ü‚·(ƒoƒCƒg’PˆÊ)B
+  Returns:      æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ç©ºãé ˜åŸŸã®ã‚µã‚¤ã‚ºã®åˆè¨ˆã‚’è¿”ã—ã¾ã™(ãƒã‚¤ãƒˆå˜ä½)ã€‚
  *---------------------------------------------------------------------------*/
 u32
 NNS_FndGetTotalFreeSizeForExpHeap(NNSFndHeapHandle heap)
@@ -1452,14 +1452,14 @@ NNS_FndGetTotalFreeSizeForExpHeap(NNSFndHeapHandle heap)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetAllocatableSizeForExpHeapEx
 
-  Description:  Šg’£ƒq[ƒv“à‚ÌŠ„‚è“–‚Ä‰Â”\‚ÈÅ‘åƒTƒCƒY‚ğæ“¾‚µ‚Ü‚·B
-                ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒ‰ƒCƒƒ“ƒg‚ğw’è‚Å‚«‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—å†…ã®å‰²ã‚Šå½“ã¦å¯èƒ½ãªæœ€å¤§ã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¾ã™ã€‚
+                ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã‚’æŒ‡å®šã§ãã¾ã™ã€‚
 
-  Arguments:    heap:      Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
-                alignment: Šm•Û‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒ‰ƒCƒƒ“ƒgB
-                           4,8,16,32‚Ì‚¢‚¸‚ê‚©‚Ì’l‚ªw’è‚Å‚«‚Ü‚·B
+  Arguments:    heap:      æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
+                alignment: ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã€‚
+                           4,8,16,32ã®ã„ãšã‚Œã‹ã®å€¤ãŒæŒ‡å®šã§ãã¾ã™ã€‚
 
-  Returns:      Šg’£ƒq[ƒv“à‚ÌŠ„‚è“–‚Ä‰Â”\‚ÈÅ‘åƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·(ƒoƒCƒg’PˆÊ)B
+  Returns:      æ‹¡å¼µãƒ’ãƒ¼ãƒ—å†…ã®å‰²ã‚Šå½“ã¦å¯èƒ½ãªæœ€å¤§ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™(ãƒã‚¤ãƒˆå˜ä½)ã€‚
  *---------------------------------------------------------------------------*/
 u32
 NNS_FndGetAllocatableSizeForExpHeapEx(
@@ -1469,11 +1469,11 @@ NNS_FndGetAllocatableSizeForExpHeapEx(
 {
     NNS_ASSERT(IsValidExpHeapHandle(heap));
 
-    // alignment ‚Ìƒ`ƒFƒbƒN
+    // alignment ã®ãƒã‚§ãƒƒã‚¯
     NNS_ASSERT(alignment % MIN_ALIGNMENT == 0);
     NNS_ASSERT(MIN_ALIGNMENT <= abs(alignment) && abs(alignment) <= 32);
 
-    alignment = abs(alignment); // ”O‚Ì‚½‚ß³”‰»
+    alignment = abs(alignment); // å¿µã®ãŸã‚æ­£æ•°åŒ–
 
     {
         NNSiFndExpHeapHead* pEHHead = GetExpHeapHeadPtrFromHandle(heap);
@@ -1483,18 +1483,18 @@ NNS_FndGetAllocatableSizeForExpHeapEx(
 
         for (pMBlkHd = pEHHead->mbFreeList.head; pMBlkHd; pMBlkHd = pMBlkHd->pMBHeadNext)
         {
-            // ƒAƒ‰ƒCƒƒ“ƒg‚ğl—¶‚µ‚½ƒƒ‚ƒŠƒuƒƒbƒNˆÊ’u
+            // ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã‚’è€ƒæ…®ã—ãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ä½ç½®
             void* baseAddress = NNSi_FndRoundUpPtr(GetMemPtrForMBlock(pMBlkHd), alignment);
 
             if (NNSiGetUIntPtr(baseAddress) < NNSiGetUIntPtr(GetMBlockEndAddr(pMBlkHd)))
             {
                 const u32 blockSize = GetOffsetFromPtr(baseAddress, GetMBlockEndAddr(pMBlkHd));
-                // ƒAƒ‰ƒCƒƒ“ƒg‚É‚æ‚é‹ó‚«ƒGƒŠƒA
+                // ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆã«ã‚ˆã‚‹ç©ºãã‚¨ãƒªã‚¢
                 const u32 offset = GetOffsetFromPtr(GetMemPtrForMBlock(pMBlkHd), baseAddress);
 
                 /*
-                    ƒTƒCƒY‚ª‘å‚«‚¢ê‡A‚ ‚é‚¢‚ÍƒTƒCƒY‚ª“¯‚¶‚Å‚à–³‘Ê‚È‹óŠÔ‚ª‚æ‚è¬‚³‚¢ê‡‚ÍA
-                    ƒƒ‚ƒŠƒuƒƒbƒN‚ğXV
+                    ã‚µã‚¤ã‚ºãŒå¤§ãã„å ´åˆã€ã‚ã‚‹ã„ã¯ã‚µã‚¤ã‚ºãŒåŒã˜ã§ã‚‚ç„¡é§„ãªç©ºé–“ãŒã‚ˆã‚Šå°ã•ã„å ´åˆã¯ã€
+                    ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’æ›´æ–°
                  */
                 if ( maxSize < blockSize
                  ||  (maxSize == blockSize && offsetMin > offset)
@@ -1513,12 +1513,12 @@ NNS_FndGetAllocatableSizeForExpHeapEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndSetAllocModeForExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚Ìƒƒ‚ƒŠŠm•Ûƒ‚[ƒh‚ğƒZƒbƒg‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ãƒ¢ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
 
-  Arguments:    heap:  Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
-                mode:  ƒƒ‚ƒŠŠm•Ûƒ‚[ƒhB
+  Arguments:    heap:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
+                mode:  ãƒ¡ãƒ¢ãƒªç¢ºä¿ãƒ¢ãƒ¼ãƒ‰ã€‚
 
-  Returns:      ˆÈ‘O‚ÌŠg’£ƒq[ƒv‚Ìƒƒ‚ƒŠŠm•Ûƒ‚[ƒh‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ä»¥å‰ã®æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ãƒ¢ãƒ¼ãƒ‰ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 u16
 NNS_FndSetAllocModeForExpHeap(
@@ -1540,11 +1540,11 @@ NNS_FndSetAllocModeForExpHeap(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetAllocModeForExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚Ìƒƒ‚ƒŠŠm•Ûƒ‚[ƒh‚ğæ“¾‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    heap:    Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
+  Arguments:    heap:    æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
 
-  Returns:      Šg’£ƒq[ƒv‚Ìƒƒ‚ƒŠŠm•Ûƒ‚[ƒh‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ãƒ¢ãƒ¼ãƒ‰ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 u16
 NNS_FndGetAllocModeForExpHeap(NNSFndHeapHandle heap)
@@ -1556,12 +1556,12 @@ NNS_FndGetAllocModeForExpHeap(NNSFndHeapHandle heap)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndSetGroupIDForExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚ÌƒOƒ‹[ƒvID‚ğƒZƒbƒg‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ã‚°ãƒ«ãƒ¼ãƒ—IDã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
 
-  Arguments:    heap:    Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
-                groupID: ƒZƒbƒg‚·‚éƒOƒ‹[ƒvID’lB
+  Arguments:    heap:    æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
+                groupID: ã‚»ãƒƒãƒˆã™ã‚‹ã‚°ãƒ«ãƒ¼ãƒ—IDå€¤ã€‚
 
-  Returns:      ˆÈ‘O‚ÌƒOƒ‹[ƒvID’l‚ª•Ô‚è‚Ü‚·B
+  Returns:      ä»¥å‰ã®ã‚°ãƒ«ãƒ¼ãƒ—IDå€¤ãŒè¿”ã‚Šã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 u16
 NNS_FndSetGroupIDForExpHeap(
@@ -1583,11 +1583,11 @@ NNS_FndSetGroupIDForExpHeap(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetGroupIDForExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚ÌƒOƒ‹[ƒvID‚ğæ“¾‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ã‚°ãƒ«ãƒ¼ãƒ—IDã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    heap:    Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
+  Arguments:    heap:    æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
 
-  Returns:      ƒOƒ‹[ƒvID’l‚ª•Ô‚è‚Ü‚·B
+  Returns:      ã‚°ãƒ«ãƒ¼ãƒ—IDå€¤ãŒè¿”ã‚Šã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 u16
 NNS_FndGetGroupIDForExpHeap(NNSFndHeapHandle heap)
@@ -1600,26 +1600,26 @@ NNS_FndGetGroupIDForExpHeap(NNSFndHeapHandle heap)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndVisitAllocatedForExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚©‚çŠ„‚è“–‚Ä‚ç‚ê‚½ƒƒ‚ƒŠƒuƒƒbƒN‘S‚Ä‚É‘Î‚µ‚ÄA
-                ƒ†[ƒU‚ªw’è‚µ‚½ŠÖ”‚ğŒÄ‚Î‚¹‚Ü‚·B
-                visitorŠÖ”‚ÅŒÄ‚Î‚ê‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ì‡”Ô‚ÍAŠm•Û‚µ‚½‡”Ô‚É‚È‚è‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã‹ã‚‰å‰²ã‚Šå½“ã¦ã‚‰ã‚ŒãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯å…¨ã¦ã«å¯¾ã—ã¦ã€
+                ãƒ¦ãƒ¼ã‚¶ãŒæŒ‡å®šã—ãŸé–¢æ•°ã‚’å‘¼ã°ã›ã¾ã™ã€‚
+                visitoré–¢æ•°ã§å‘¼ã°ã‚Œã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®é †ç•ªã¯ã€ç¢ºä¿ã—ãŸé †ç•ªã«ãªã‚Šã¾ã™ã€‚
 
-                visitor ‚ÌŒ^ NNSFndHeapVisitor ‚ÍŸ‚Ì‚æ‚¤‚É’è‹`‚³‚ê‚Ä‚¢‚Ü‚·B
+                visitor ã®å‹ NNSFndHeapVisitor ã¯æ¬¡ã®ã‚ˆã†ã«å®šç¾©ã•ã‚Œã¦ã„ã¾ã™ã€‚
 
                     typedef void (*NNSFndHeapVisitor)(
                                     void*               memBlock,
                                     NNSFndHeapHandle    heap,
                                     u32                 userParam);
 
-                                        memBlock:   ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                                        heap:       ƒƒ‚ƒŠƒuƒƒbƒN‚ğŠÜ—L‚·‚éƒq[ƒvB
-                                        userParam:  ƒ†[ƒU[—pƒpƒ‰ƒ[ƒ^B
+                                        memBlock:   ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                                        heap:       ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’å«æœ‰ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã€‚
+                                        userParam:  ãƒ¦ãƒ¼ã‚¶ãƒ¼ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã€‚
 
-  Arguments:    heap:       Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
-                visitor:    Šeƒƒ‚ƒŠƒuƒƒbƒN‚É‘Î‚µ‚ÄŒÄ‚Î‚¹‚éŠÖ”B
-                userParam:  visitorŠÖ”‚É“n‚·ƒ†[ƒUw’è‚Ìƒpƒ‰ƒ[ƒ^
+  Arguments:    heap:       æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
+                visitor:    å„ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã«å¯¾ã—ã¦å‘¼ã°ã›ã‚‹é–¢æ•°ã€‚
+                userParam:  visitoré–¢æ•°ã«æ¸¡ã™ãƒ¦ãƒ¼ã‚¶æŒ‡å®šã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 void
 NNS_FndVisitAllocatedForExpHeap(
@@ -1646,11 +1646,11 @@ NNS_FndVisitAllocatedForExpHeap(
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetSizeForMBlockExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚©‚çŠm•Û‚³‚ê‚½ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒY‚ğæ“¾‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã‹ã‚‰ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    memBlock:  ƒTƒCƒY‚ğæ“¾‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    memBlock:  ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      w’è‚µ‚½ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·(ƒoƒCƒg’PˆÊ)B
+  Returns:      æŒ‡å®šã—ãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™(ãƒã‚¤ãƒˆå˜ä½)ã€‚
  *---------------------------------------------------------------------------*/
 u32
 NNS_FndGetSizeForMBlockExpHeap(const void* memBlock)
@@ -1663,11 +1663,11 @@ NNS_FndGetSizeForMBlockExpHeap(const void* memBlock)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetGroupIDForMBlockExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚©‚çŠm•Û‚³‚ê‚½ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒOƒ‹[ƒvID‚ğæ“¾‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã‹ã‚‰ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚°ãƒ«ãƒ¼ãƒ—IDã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    memBlock:  ƒOƒ‹[ƒvID‚ğæ“¾‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    memBlock:  ã‚°ãƒ«ãƒ¼ãƒ—IDã‚’å–å¾—ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      w’è‚µ‚½ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒOƒ‹[ƒvID‚ª•Ô‚è‚Ü‚·B
+  Returns:      æŒ‡å®šã—ãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚°ãƒ«ãƒ¼ãƒ—IDãŒè¿”ã‚Šã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 u16
 NNS_FndGetGroupIDForMBlockExpHeap(const void* memBlock)
@@ -1680,11 +1680,11 @@ NNS_FndGetGroupIDForMBlockExpHeap(const void* memBlock)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndGetAllocDirForMBlockExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚©‚çŠm•Û‚³‚ê‚½ƒƒ‚ƒŠƒuƒƒbƒN‚ÌŠm•Û•ûŒü‚ğæ“¾‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã‹ã‚‰ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ç¢ºä¿æ–¹å‘ã‚’å–å¾—ã—ã¾ã™ã€‚
 
-  Arguments:    memBlock:  ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    memBlock:  ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      w’è‚µ‚½ƒƒ‚ƒŠƒuƒƒbƒN‚ÌŠm•Û•ûŒü‚ª•Ô‚è‚Ü‚·B
+  Returns:      æŒ‡å®šã—ãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ç¢ºä¿æ–¹å‘ãŒè¿”ã‚Šã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 u16
 NNS_FndGetAllocDirForMBlockExpHeap(const void* memBlock)
@@ -1697,13 +1697,13 @@ NNS_FndGetAllocDirForMBlockExpHeap(const void* memBlock)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndCheckExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚ª”j‰ó‚³‚ê‚Ä‚¢‚È‚¢‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ãŒç ´å£Šã•ã‚Œã¦ã„ãªã„ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
 
-  Arguments:    heap:     Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
-                optFlag:  ƒtƒ‰ƒOB
+  Arguments:    heap:     æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
+                optFlag:  ãƒ•ãƒ©ã‚°ã€‚
 
-  Returns:      ƒq[ƒv‚ª³í‚¾‚Á‚½ê‡ TRUE ‚ğ•Ô‚µ‚Ü‚·B
-                ƒq[ƒv‚ÉƒGƒ‰[‚ª‚ ‚Á‚½ê‡AFALSE ‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ’ãƒ¼ãƒ—ãŒæ­£å¸¸ã ã£ãŸå ´åˆ TRUE ã‚’è¿”ã—ã¾ã™ã€‚
+                ãƒ’ãƒ¼ãƒ—ã«ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸå ´åˆã€FALSE ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 #if ! defined(NNS_FINALROM)
 
@@ -1728,47 +1728,47 @@ NNS_FndGetAllocDirForMBlockExpHeap(const void* memBlock)
             NNSiFndExpHeapMBlockHead* pMBHead = NULL;
             NNSiFndExpHeapMBlockHead* pMBHeadPrev = NULL;
 
-            // g—pƒuƒƒbƒN
+            // ä½¿ç”¨ãƒ–ãƒ­ãƒƒã‚¯
             for (pMBHead = pExpHeapHd->mbUsedList.head; pMBHead; pMBHeadPrev = pMBHead, pMBHead = pMBHead->pMBHeadNext)
             {
                 if ( ! CheckUsedMBlock(pMBHead, pHeapHd, optFlag)
-                  || ! CheckMBlockPrevPtr(pMBHead, pMBHeadPrev, optFlag)   // ‘OƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ª1ƒ‹[ƒv‘O‚Ìƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒ|ƒCƒ“ƒ^‚Æ“¯‚¶‚Å‚È‚¢?
+                  || ! CheckMBlockPrevPtr(pMBHead, pMBHeadPrev, optFlag)   // å‰ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒ1ãƒ«ãƒ¼ãƒ—å‰ã®ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒã‚¤ãƒ³ã‚¿ã¨åŒã˜ã§ãªã„?
                 )
                 {
                     return FALSE;
                 }
 
-                // è—LƒTƒCƒY‚ğÏZ
+                // å æœ‰ã‚µã‚¤ã‚ºã‚’ç©ç®—
                 totalBytes += sizeof(NNSiFndExpHeapMBlockHead) + pMBHead->blockSize + GetAlignmentForMBlock(pMBHead);
             }
 
-            if (! CheckMBlockLinkTail(pMBHeadPrev, pExpHeapHd->mbUsedList.tail, "tail", optFlag))  // ––”öƒuƒƒbƒN‚ªÅŒã‚ÌƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğw‚µ‚Ä‚¢‚é‚©?
+            if (! CheckMBlockLinkTail(pMBHeadPrev, pExpHeapHd->mbUsedList.tail, "tail", optFlag))  // æœ«å°¾ãƒ–ãƒ­ãƒƒã‚¯ãŒæœ€å¾Œã®ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’æŒ‡ã—ã¦ã„ã‚‹ã‹?
             {
                 return FALSE;
             }
 
-            // ƒtƒŠ[ƒuƒƒbƒN
+            // ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯
             pMBHead = NULL;
             pMBHeadPrev = NULL;
             for (pMBHead = pExpHeapHd->mbFreeList.head; pMBHead; pMBHeadPrev = pMBHead, pMBHead = pMBHead->pMBHeadNext)
             {
                 if ( ! CheckFreeMBlock(pMBHead, pHeapHd, optFlag)
-                  || ! CheckMBlockPrevPtr(pMBHead, pMBHeadPrev, optFlag)   // ‘OƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ª1ƒ‹[ƒv‘O‚Ìƒƒ‚ƒŠƒuƒƒbƒN‚Ìƒ|ƒCƒ“ƒ^‚Æ“¯‚¶‚Å‚È‚¢?
+                  || ! CheckMBlockPrevPtr(pMBHead, pMBHeadPrev, optFlag)   // å‰ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒ1ãƒ«ãƒ¼ãƒ—å‰ã®ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ãƒã‚¤ãƒ³ã‚¿ã¨åŒã˜ã§ãªã„?
                 )
                 {
                     return FALSE;
                 }
 
-                // è—LƒTƒCƒY‚ğÏZ
+                // å æœ‰ã‚µã‚¤ã‚ºã‚’ç©ç®—
                 totalBytes += sizeof(NNSiFndExpHeapMBlockHead) + pMBHead->blockSize;
             }
 
-            if (! CheckMBlockLinkTail(pMBHeadPrev, pExpHeapHd->mbFreeList.tail, "tail", optFlag))  // ––”öƒuƒƒbƒN‚ªÅŒã‚ÌƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğw‚µ‚Ä‚¢‚é‚©?
+            if (! CheckMBlockLinkTail(pMBHeadPrev, pExpHeapHd->mbFreeList.tail, "tail", optFlag))  // æœ«å°¾ãƒ–ãƒ­ãƒƒã‚¯ãŒæœ€å¾Œã®ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’æŒ‡ã—ã¦ã„ã‚‹ã‹?
             {
                 return FALSE;
             }
 
-            // ‘S‘Ì‚ÌŒ‹‰Ê•\¦
+            // å…¨ä½“ã®çµæœè¡¨ç¤º
             if (totalBytes != GetOffsetFromPtr(pHeapHd->heapStart, pHeapHd->heapEnd))
             {
                 HEAP_WARNING(bPrint, "[NNS Foundation " "Exp" " Heap]" " Incorrect total memory block size. - heap size %08X, sum size %08X\n",
@@ -1786,14 +1786,14 @@ NNS_FndGetAllocDirForMBlockExpHeap(const void* memBlock)
 /*---------------------------------------------------------------------------*
   Name:         NNS_FndCheckForMBlockExpHeap
 
-  Description:  Šg’£ƒq[ƒv‚Ìƒƒ‚ƒŠƒuƒƒbƒN‚ª”j‰ó‚³‚ê‚Ä‚¢‚È‚¢‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚µ‚Ü‚·B
+  Description:  æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ãŒç ´å£Šã•ã‚Œã¦ã„ãªã„ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
 
-  Arguments:    memBlock:  ƒ`ƒFƒbƒN‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                heap:      Šg’£ƒq[ƒv‚Ìƒnƒ“ƒhƒ‹B
-                optFlag:   ƒtƒ‰ƒOB
+  Arguments:    memBlock:  ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                heap:      æ‹¡å¼µãƒ’ãƒ¼ãƒ—ã®ãƒãƒ³ãƒ‰ãƒ«ã€‚
+                optFlag:   ãƒ•ãƒ©ã‚°ã€‚
 
-  Returns:      ƒƒ‚ƒŠƒuƒƒbƒN‚ª³í‚¾‚Á‚½ê‡ TRUE ‚ğ•Ô‚µ‚Ü‚·B
-                ƒƒ‚ƒŠƒuƒƒbƒN‚ÉƒGƒ‰[‚ª‚ ‚Á‚½ê‡AFALSE ‚ğ•Ô‚µ‚Ü‚·B
+  Returns:      ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ãŒæ­£å¸¸ã ã£ãŸå ´åˆ TRUE ã‚’è¿”ã—ã¾ã™ã€‚
+                ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã«ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸå ´åˆã€FALSE ã‚’è¿”ã—ã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 #if ! defined(NNS_FINALROM)
 
@@ -1821,8 +1821,8 @@ NNS_FndGetAllocDirForMBlockExpHeap(const void* memBlock)
 
         if (pMBHead->pMBHeadPrev)
         {
-            if ( ! CheckUsedMBlock(pMBHead->pMBHeadPrev, pHeapHd, optFlag)     // ‘OƒuƒƒbƒN‚ÌƒVƒOƒlƒ`ƒƒ‚ÆƒTƒCƒY‚Ìƒ`ƒFƒbƒN
-              || ! CheckMBlockNextPtr(pMBHead->pMBHeadPrev, pMBHead, optFlag)  // ‘OƒuƒƒbƒN‚ÌŸƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ª©•ª‚ğw‚µ‚Ä‚¢‚é‚©?
+            if ( ! CheckUsedMBlock(pMBHead->pMBHeadPrev, pHeapHd, optFlag)     // å‰ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚·ã‚°ãƒãƒãƒ£ã¨ã‚µã‚¤ã‚ºã®ãƒã‚§ãƒƒã‚¯
+              || ! CheckMBlockNextPtr(pMBHead->pMBHeadPrev, pMBHead, optFlag)  // å‰ãƒ–ãƒ­ãƒƒã‚¯ã®æ¬¡ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒè‡ªåˆ†ã‚’æŒ‡ã—ã¦ã„ã‚‹ã‹?
             )
             {
                 return FALSE;
@@ -1832,7 +1832,7 @@ NNS_FndGetAllocDirForMBlockExpHeap(const void* memBlock)
         {
             if (pHeapHd)
             {
-                // prev‚ª NULL ‚Ì‚Æ‚«‚ÍAƒŠƒXƒg‚Ìheadƒ|ƒCƒ“ƒ^‚Í©•ª‚ğw‚µ‚Ä‚¢‚é‚Í‚¸
+                // prevãŒ NULL ã®ã¨ãã¯ã€ãƒªã‚¹ãƒˆã®headãƒã‚¤ãƒ³ã‚¿ã¯è‡ªåˆ†ã‚’æŒ‡ã—ã¦ã„ã‚‹ã¯ãš
                 if (! CheckMBlockLinkTail(pMBHead, GetExpHeapHeadPtrFromHeapHead(pHeapHd)->mbUsedList.head, "head", optFlag))
                 {
                     return FALSE;
@@ -1842,8 +1842,8 @@ NNS_FndGetAllocDirForMBlockExpHeap(const void* memBlock)
 
         if (pMBHead->pMBHeadNext)
         {
-            if ( ! CheckUsedMBlock(pMBHead->pMBHeadNext, pHeapHd, optFlag)     // ŸƒuƒƒbƒN‚ÌƒVƒOƒlƒ`ƒƒ‚ÆƒTƒCƒY‚Ìƒ`ƒFƒbƒN
-              || ! CheckMBlockPrevPtr(pMBHead->pMBHeadNext, pMBHead, optFlag)  // ŸƒuƒƒbƒN‚Ì‘OƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ª©•ª‚ğw‚µ‚Ä‚¢‚é‚©?
+            if ( ! CheckUsedMBlock(pMBHead->pMBHeadNext, pHeapHd, optFlag)     // æ¬¡ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚·ã‚°ãƒãƒãƒ£ã¨ã‚µã‚¤ã‚ºã®ãƒã‚§ãƒƒã‚¯
+              || ! CheckMBlockPrevPtr(pMBHead->pMBHeadNext, pMBHead, optFlag)  // æ¬¡ãƒ–ãƒ­ãƒƒã‚¯ã®å‰ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒè‡ªåˆ†ã‚’æŒ‡ã—ã¦ã„ã‚‹ã‹?
             )
             {
                 return FALSE;
@@ -1853,7 +1853,7 @@ NNS_FndGetAllocDirForMBlockExpHeap(const void* memBlock)
         {
             if (pHeapHd)
             {
-                // next‚ª NULL ‚Ì‚Æ‚«‚ÍAƒŠƒXƒg‚Ìtailƒ|ƒCƒ“ƒ^‚Í©•ª‚ğw‚µ‚Ä‚¢‚é‚Í‚¸
+                // nextãŒ NULL ã®ã¨ãã¯ã€ãƒªã‚¹ãƒˆã®tailãƒã‚¤ãƒ³ã‚¿ã¯è‡ªåˆ†ã‚’æŒ‡ã—ã¦ã„ã‚‹ã¯ãš
                 if (! CheckMBlockLinkTail(pMBHead, GetExpHeapHeadPtrFromHeapHead(pHeapHd)->mbUsedList.tail, "tail", optFlag))
                 {
                     return FALSE;

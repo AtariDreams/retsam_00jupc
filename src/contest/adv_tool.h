@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	adv_tool.h
- * @brief	�R���e�X�g�S���勤�ʃc�[���̃w�b�_
+ * @brief	コンテスト全部門共通ツールのヘッダ
  * @author	matsuda
- * @date	2006.02.02(��)
+ * @date	2006.02.02(木)
  */
 //==============================================================================
 #ifndef __ADV_TOOL_H__
@@ -14,37 +14,37 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///�J�����̃t���b�V���F���[�v����
+///カメラのフラッシュ：ループ無限
 #define ADV_FLASH_EFF_LOOP_ETERNITY		(0xff)
 
 
 //==============================================================================
-//	�\���̒�`
+//	構造体定義
 //==============================================================================
-///�t�H���gOAM�p�̍\���̒�`
+///フォントOAM用の構造体定義
 typedef struct{
-	FONTOAM_OBJ_PTR fontoam;		///<�t�H���gOAM
-	CHAR_MANAGER_ALLOCDATA cma;		///<�t�H���gOAM�L�����̈�f�[�^
-	u16 len;						///<�t�H���g�̃h�b�g��
+	FONTOAM_OBJ_PTR fontoam;		///<フォントOAM
+	CHAR_MANAGER_ALLOCDATA cma;		///<フォントOAMキャラ領域データ
+	u16 len;						///<フォントのドット長
 }ADV_FONTACT;
 
 
-///�t���b�V���G�t�F�N�g���䃏�[�N
+///フラッシュエフェクト制御ワーク
 typedef struct{
-	TCB_PTR tcb;		///<�t���b�V���G�t�F�N�g����^�X�N�̃|�C���^
+	TCB_PTR tcb;		///<フラッシュエフェクト動作タスクのポインタ
 	PALETTE_FADE_PTR pfd;	///<
-	s32 timer;			///<�^�C�}�[�J�E���g
-	const u16 *tbl;		///<�t���b�V���̃E�F�C�g�������Ă���e�[�u���ւ̃|�C���^
-	u8 tbl_num;			///<tbl�̔z��v�f��
-	u8 tbl_pos;			///<���݂̃e�[�u���Q�ƈʒu
-	u8 loop;			///<���[�v��
+	s32 timer;			///<タイマーカウント
+	const u16 *tbl;		///<フラッシュのウェイトが入っているテーブルへのポインタ
+	u8 tbl_num;			///<tblの配列要素数
+	u8 tbl_pos;			///<現在のテーブル参照位置
+	u8 loop;			///<ループ回数
 }ADV_FLASH_EFF_WORK;
 
 
 //==============================================================================
-//	�O���֐��錾
+//	外部関数宣言
 //==============================================================================
 extern void ADV_FontOamCreate(int heap_id, GF_BGL_INI *bgl, CATS_RES_PTR crp, 
 	FONTOAM_SYS_PTR fontoam_sys, ADV_FONTACT *fontact, const STRBUF *str, 

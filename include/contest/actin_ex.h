@@ -1,69 +1,69 @@
 //==============================================================================
 /**
  * @file	actin_ex.h
- * @brief	‰‰‹Z—Í•”–åFŠO•”ŒöŠJƒwƒbƒ_
+ * @brief	æ¼”æŠ€åŠ›éƒ¨é–€ï¼šå¤–éƒ¨å…¬é–‹ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2005.11.29(‰Î)
+ * @date	2005.11.29(ç«)
  *
- * ‰‰‹Z—Í•”–å‚ÅŠO•”‚ÉŒöŠJ‚·‚é•K—v‚Ì‚ ‚é’è‹`“™‚ð‚±‚±‚É‘‚¢‚Ä‚¢‚Ü‚·
+ * æ¼”æŠ€åŠ›éƒ¨é–€ã§å¤–éƒ¨ã«å…¬é–‹ã™ã‚‹å¿…è¦ã®ã‚ã‚‹å®šç¾©ç­‰ã‚’ã“ã“ã«æ›¸ã„ã¦ã„ã¾ã™
  */
 //==============================================================================
 #ifndef __ACTIN_EX_H__
 #define __ACTIN_EX_H__
 
 
-#define ACTIN_3DBG_PRIORITY			(2)		///<3D–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
-///ƒEƒBƒ“ƒhƒE–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+#define ACTIN_3DBG_PRIORITY			(2)		///<3Dé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define ACTIN_BGPRI_WINDOW			(0)
-///ƒGƒtƒFƒNƒg–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define ACTIN_BGPRI_EFFECT			(1)
-///”wŒi–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///èƒŒæ™¯é¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define ACTIN_BGPRI_BACKGROUND		(3)
 
-#define ACTIN_FRAME_WINDOW			(GF_BGL_FRAME1_M)	///<ƒtƒŒ[ƒ€–ÊFƒEƒBƒ“ƒhƒE
-#define ACTIN_FRAME_EFFECT			(GF_BGL_FRAME2_M)	///<ƒtƒŒ[ƒ€–ÊFƒGƒtƒFƒNƒg
-#define ACTIN_FRAME_BACKGROUND		(GF_BGL_FRAME3_M)	///<ƒtƒŒ[ƒ€–ÊF”wŒi
+#define ACTIN_FRAME_WINDOW			(GF_BGL_FRAME1_M)	///<ãƒ•ãƒ¬ãƒ¼ãƒ é¢ï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+#define ACTIN_FRAME_EFFECT			(GF_BGL_FRAME2_M)	///<ãƒ•ãƒ¬ãƒ¼ãƒ é¢ï¼šã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+#define ACTIN_FRAME_BACKGROUND		(GF_BGL_FRAME3_M)	///<ãƒ•ãƒ¬ãƒ¼ãƒ é¢ï¼šèƒŒæ™¯
 
-#define ACTIN_BGNO_WINDOW			(1)					///<BG”Ô†FƒEƒBƒ“ƒhƒE
-#define ACTIN_BGNO_EFFECT			(2)					///<BG”Ô†FƒGƒtƒFƒNƒg
-#define ACTIN_BGNO_BACKGROUND		(3)					///<BG”Ô†F”wŒi
+#define ACTIN_BGNO_WINDOW			(1)					///<BGç•ªå·ï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+#define ACTIN_BGNO_EFFECT			(2)					///<BGç•ªå·ï¼šã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+#define ACTIN_BGNO_BACKGROUND		(3)					///<BGç•ªå·ï¼šèƒŒæ™¯
 
 
 //--------------------------------------------------------------
-//	‹ZƒGƒtƒFƒNƒg
+//	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //--------------------------------------------------------------
-///UŒ‚ƒ|ƒPƒ‚ƒ“‚ÌÀ•WX
+///æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³ã®åº§æ¨™X
 #define CONTEST_ATTACK_POKE_X		(APPEAR_X_TYPE_B)
-///UŒ‚ƒ|ƒPƒ‚ƒ“‚ÌÀ•WY
+///æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³ã®åº§æ¨™Y
 #define CONTEST_ATTACK_POKE_Y		(APPEAR_Y_TYPE_A)
-///UŒ‚ƒ|ƒPƒ‚ƒ“‚ÌÀ•WZ
+///æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³ã®åº§æ¨™Z
 #define CONTEST_ATTACK_POKE_Z		(APPEAR_Z_TYPE_A)
 
-///–hŒäƒ|ƒPƒ‚ƒ“‚ÌÀ•WX
+///é˜²å¾¡ãƒã‚±ãƒ¢ãƒ³ã®åº§æ¨™X
 #define CONTEST_DEFENCE_POKE_X		(APPEAR_X_TYPE_C)
-///–hŒäƒ|ƒPƒ‚ƒ“‚ÌÀ•WY
+///é˜²å¾¡ãƒã‚±ãƒ¢ãƒ³ã®åº§æ¨™Y
 #define CONTEST_DEFENCE_POKE_Y		(APPEAR_Y_TYPE_D)
-///–hŒäƒ|ƒPƒ‚ƒ“‚ÌÀ•WZ
+///é˜²å¾¡ãƒã‚±ãƒ¢ãƒ³ã®åº§æ¨™Z
 #define CONTEST_DEFENCE_POKE_Z		(APPEAR_Z_TYPE_B)
 
 
 //--------------------------------------------------------------
-//	”wŒi‚ÅŽg—p‚µ‚Ä‚¢‚éƒpƒŒƒbƒg‚ÌƒtƒF[ƒhbit
+//	èƒŒæ™¯ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ•ã‚§ãƒ¼ãƒ‰bit
 //--------------------------------------------------------------
-///”wŒi‚ÅŽg—p‚µ‚Ä‚¢‚éƒpƒŒƒbƒgŠJŽnˆÊ’u
+///èƒŒæ™¯ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆé–‹å§‹ä½ç½®
 #define ACTIN_HAIKEI_PAL_START		(0)
-///”wŒi‚ÅŽg—p‚µ‚Ä‚¢‚éƒpƒŒƒbƒg–{”
+///èƒŒæ™¯ã§ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°
 #define ACTIN_HAIKEI_PAL_NUM		(3)
-///”wŒi‚ÌƒtƒF[ƒhbit(‹ZƒGƒtƒFƒNƒg—p)
+///èƒŒæ™¯ã®ãƒ•ã‚§ãƒ¼ãƒ‰bit(æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨)
 #define ACTIN_HAIKEI_FADE_BIT		(0x0007)
-///‹ZƒGƒtƒFƒNƒgBG—pƒpƒŒƒbƒg‚ÌƒtƒF[ƒhbit
+///æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ•ã‚§ãƒ¼ãƒ‰bit
 #define ACTIN_WAZAEFF_FADE_BIT		(0x0300)
-///”wŒi‚ÌƒtƒF[ƒhbit{‹ZƒGƒtƒFƒNƒgBG—pƒpƒŒƒbƒg(‹ZƒGƒtƒFƒNƒg—p)
+///èƒŒæ™¯ã®ãƒ•ã‚§ãƒ¼ãƒ‰bitï¼‹æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ(æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨)
 #define ACTIN_EFFBG_ALL_FADE_BIT	(ACTIN_HAIKEI_FADE_BIT | ACTIN_WAZAEFF_FADE_BIT)
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void ActinExTool_DefaultBlendSet(void);
 

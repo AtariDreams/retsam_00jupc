@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	demo_tengan_s0.c
- * @brief	–ÚŠo‚ß‚éƒV[ƒ“
+ * @brief	ç›®è¦šã‚ã‚‹ã‚·ãƒ¼ãƒ³
  * @author	goto
- * @date	2007.12.05(…)
+ * @date	2007.12.05(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -35,7 +35,7 @@ static void Demo_CameraSet( GF_CAMERA_PTR camera, VecFx32* target );
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	main_wk	
  *
@@ -89,8 +89,8 @@ void* Demo_Tengan_Scene00_Init( DEMO_TENGAN_WORK* main_wk )
 	Demo_MainDispSet( DISP_3D_TO_SUB );	
 
 //	Snd_BgmPlay( SEQ_D_RYAYHY );
-//	Snd_DataSetByScene( SND_SCENE_GIRA, SEQ_D_RYAYHY, 0 );	// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh
-//	Snd_DataSetByScene( SND_SCENE_SUB_CLIMAX, 0, 0 );		// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(BGMˆøŒp‚¬)
+//	Snd_DataSetByScene( SND_SCENE_GIRA, SEQ_D_RYAYHY, 0 );	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
+//	Snd_DataSetByScene( SND_SCENE_SUB_CLIMAX, 0, 0 );		// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(BGMå¼•ç¶™ã)
 	Snd_BgmFadeOut( 0, 10 );
 	return wk;
 }
@@ -135,8 +135,8 @@ BOOL  Demo_Tengan_Scene00_Main( void* work )
 	case UMA_DEMO_IN_FADE_WAIT:
 		if( WIPE_SYS_EndCheck() == FALSE ) { break; }
 		
-		Snd_DataSetByScene( SND_SCENE_GIRA, SEQ_D_RYAYHY, 0 );	// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh
-		Snd_DataSetByScene( SND_SCENE_SUB_CLIMAX, 0, 0 );		// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(BGMˆøŒp‚¬)
+		Snd_DataSetByScene( SND_SCENE_GIRA, SEQ_D_RYAYHY, 0 );	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
+		Snd_DataSetByScene( SND_SCENE_SUB_CLIMAX, 0, 0 );		// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(BGMå¼•ç¶™ã)
 		wk->cut = UMA_ANIME_INIT;
 		break;
 		
@@ -150,7 +150,7 @@ BOOL  Demo_Tengan_Scene00_Main( void* work )
 		break;
 		
 	case UMA_ANIME_WAIT:
-		// ƒ^ƒCƒ~ƒ“ƒOŒ©‚ÄSEÄ¶
+		// ã‚¿ã‚¤ãƒŸãƒ³ã‚°è¦‹ã¦SEå†ç”Ÿ
 		if( wk->wait == se_wait_tbl[ wk->poke_type ] ){
 			Snd_SePlay( DS_APPEAR2 );
 		}
@@ -244,7 +244,7 @@ BOOL  Demo_Tengan_Scene00_Exit( void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJƒƒ‰İ’è
+ * @brief	ã‚«ãƒ¡ãƒ©è¨­å®š
  *
  * @param	camera	
  * @param	target	
@@ -268,7 +268,7 @@ static void Demo_CameraSet( GF_CAMERA_PTR camera, VecFx32* target )
 
 //--------------------------------------------------------------
 /**
- * @brief	•`‰æ•”•ª
+ * @brief	æç”»éƒ¨åˆ†
  *
  * @param	wk	
  *
@@ -295,7 +295,7 @@ static void Demo_3D_Draw( DEMO_SCENE_00_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX“Ç‚İ‚İ
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
  * @param	wk	
  *
@@ -357,7 +357,7 @@ static void demo_scene00_ResourceLoad( DEMO_SCENE_00_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒŠƒ\[ƒX”jŠü
+ * @brief	ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
  * @param	wk	
  *

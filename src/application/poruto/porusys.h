@@ -1,6 +1,6 @@
 /***
  *	@file	porusys.h
- *	@brief	ƒ|ƒ‹ƒgƒ‚ƒWƒ…[ƒ‹“àƒ[ƒJƒ‹ƒwƒbƒ_
+ *	@brief	ãƒãƒ«ãƒˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å†…ãƒ­ãƒ¼ã‚«ãƒ«ãƒ˜ãƒƒãƒ€
  *	@author	Miyuki Iwasawa
  *	@date	06.03.11
  */
@@ -17,7 +17,7 @@
 #include "porucase.dat"
 #include "poru_snd_def.h"
 
-//ƒvƒƒgƒ^ƒCƒv
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 typedef struct _PORU_CASE_WORK PORU_CASE_WORK;
 #include "poru_act.h"
 #include "poru_oam.h"
@@ -50,17 +50,17 @@ typedef enum{
 };
 
 typedef struct _PORUCASE_MSG{
-	WORDSET* wset;		//ƒ[ƒN
-	STRBUF	*tmp;		//”Ä—p
-	STRBUF	*endbuf;	//‚â‚ß‚é
-	STRBUF	*listbuf;	//‚â‚ß‚é
-	STRBUF	*tbuf;		//ŠŠ‚ç‚©‚³
-	STRBUF	*qbuf;		//Ì‚Ä‚Ü‚·‚©H
-	STRBUF	*dbuf;		//Ì‚Ä‚Ü‚µ‚½
-	STRBUF	*sbuf;		//ƒTƒ€ƒlƒCƒ‹
-	STRBUF	*swbuf[PVIEW_MAX];		//‰º‰æ–ÊƒXƒCƒbƒ`
-	STRBUF	*exbuf[PVIEW_ALL];		//‰º‰æ–Êà–¾•¶
-	u8	msg_spd;	///<ƒƒbƒZ[ƒWƒXƒs[ƒh
+	WORDSET* wset;		//ãƒ¯ãƒ¼ã‚¯
+	STRBUF	*tmp;		//æ±ç”¨
+	STRBUF	*endbuf;	//ã‚„ã‚ã‚‹
+	STRBUF	*listbuf;	//ã‚„ã‚ã‚‹
+	STRBUF	*tbuf;		//æ»‘ã‚‰ã‹ã•
+	STRBUF	*qbuf;		//æ¨ã¦ã¾ã™ã‹ï¼Ÿ
+	STRBUF	*dbuf;		//æ¨ã¦ã¾ã—ãŸ
+	STRBUF	*sbuf;		//ã‚µãƒ ãƒã‚¤ãƒ«
+	STRBUF	*swbuf[PVIEW_MAX];		//ä¸‹ç”»é¢ã‚¹ã‚¤ãƒƒãƒ
+	STRBUF	*exbuf[PVIEW_ALL];		//ä¸‹ç”»é¢èª¬æ˜æ–‡
+	u8	msg_spd;	///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰
 	u8	dmy[3];	///<padding
 }PORUCASE_MSG;
 
@@ -71,7 +71,7 @@ typedef struct _PORU_CASE_WORK{
 	int	wipe_f;
 	int ret_mode;
 	u16	tp_f;
-	u16	plist_cb_f;	///<ƒ|ƒ‹ƒgƒŠƒXƒgƒR[ƒ‹ƒoƒbƒNˆ——LŒø
+	u16	plist_cb_f;	///<ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‡¦ç†æœ‰åŠ¹
 	u16	selMode;
 	u8	selectID;
 	u8	viewMode;
@@ -81,15 +81,15 @@ typedef struct _PORU_CASE_WORK{
 	u8	endID;
 
 	u8	msgIdx;
-	PORUTO_PARAM* param;	///<ˆøŒp‚¬ƒpƒ‰ƒ[ƒ^
-	GF_BGL_INI *bgl;	///<BGLƒf[ƒ^
+	PORUTO_PARAM* param;	///<å¼•ç¶™ããƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	GF_BGL_INI *bgl;	///<BGLãƒ‡ãƒ¼ã‚¿
 
-	///ƒ|ƒ‹ƒg–¼æ“¾ƒ}ƒl[ƒWƒƒ
+	///ãƒãƒ«ãƒˆåå–å¾—ãƒãƒãƒ¼ã‚¸ãƒ£
 	PORUTO_NAME_MAN	*nameMan;
 	MSGDATA_MANAGER *msgMan;
 	PORUCASE_MSG	msgDat;
 
-	///ƒ|ƒ‹ƒgƒŠƒXƒgƒRƒ“ƒgƒ[ƒ‰
+	///ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
 	u16		listPos;
 	u16		curPos;
 	BMPLIST_HEADER	plist_h;
@@ -100,26 +100,26 @@ typedef struct _PORU_CASE_WORK{
 	BMPLIST_DATA* mlist; 
 	BMPMENU_WORK* ynmenu_wk; 
 
-	///ƒOƒ‰ƒtƒBƒbƒNƒŠƒ\[ƒX
+	///ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒªã‚½ãƒ¼ã‚¹
 	void*	pScrBuf01;
 	void*	pScrBuf02;
 	NNSG2dScreenData*	pScr01;
 	NNSG2dScreenData*	pScr02;
 	GF_BGL_BMPWIN	win[WIN_MAX];
 	
-	CATS_SYS_PTR	pActSys;	///<ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€
-	CATS_RES_PTR	pActRes;	///<ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX
-	CLACT_WORK_PTR	pAct[NORMAL_ACTMAX];		///<ƒAƒNƒ^[
-	CLACT_WORK_PTR	pActFmk[FMARK_ACTMAX];		///<ƒAƒNƒ^[
-	CLACT_WORK_PTR	pActBtn[BUTTON_ACTMAX];		///<ƒAƒNƒ^[
+	CATS_SYS_PTR	pActSys;	///<ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+	CATS_RES_PTR	pActRes;	///<ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹
+	CLACT_WORK_PTR	pAct[NORMAL_ACTMAX];		///<ã‚¢ã‚¯ã‚¿ãƒ¼
+	CLACT_WORK_PTR	pActFmk[FMARK_ACTMAX];		///<ã‚¢ã‚¯ã‚¿ãƒ¼
+	CLACT_WORK_PTR	pActBtn[BUTTON_ACTMAX];		///<ã‚¢ã‚¯ã‚¿ãƒ¼
 
-	PORUOAM_MAN		*poruMan;	///<ƒ|ƒ‹ƒgOAMƒ}ƒl[ƒWƒƒ
-	PORUTO_OAM		*pOam;		///<ƒ|ƒ‹ƒg	
+	PORUOAM_MAN		*poruMan;	///<ãƒãƒ«ãƒˆOAMãƒãƒãƒ¼ã‚¸ãƒ£
+	PORUTO_OAM		*pOam;		///<ãƒãƒ«ãƒˆ	
 }PORU_CASE_WORK;
 
 #define WINCLR_COL(col)	(((col)<<4)|(col))
 
-///ƒ|ƒ‹ƒgƒ‚ƒWƒ…[ƒ‹“àŠO•”QÆ
+///ãƒãƒ«ãƒˆãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å†…å¤–éƒ¨å‚ç…§
 extern PROC_RESULT PoruCase_Init(PROC* proc,int* seq);
 extern PROC_RESULT PoruCase_Main(PROC* proc,int* seq);
 extern PROC_RESULT PoruCase_End(PROC* proc,int* seq);

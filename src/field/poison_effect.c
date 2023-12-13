@@ -2,7 +2,7 @@
 /**
  *
  *	@file		poison_effect.c
- *	@brief		ì≈¥Ã™∏ƒ
+ *	@brief		ÊØí„Ç®„Éï„Çß„ÇØ„Éà
  *	@author		tomoya takahashi
  *	@data		2006.04.10
  *
@@ -18,43 +18,43 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ÉRÅ[ÉfÉBÉìÉOãKñÒ
- *		Åúä÷êîñº
- *				ÇPï∂éöñ⁄ÇÕëÂï∂éöÇªÇÍà»ç~ÇÕè¨ï∂éöÇ…Ç∑ÇÈ
- *		Åúïœêîñº
- *				ÅEïœêîã§í 
- *						constÇ…ÇÕ c_ ÇïtÇØÇÈ
- *						staticÇ…ÇÕ s_ ÇïtÇØÇÈ
- *						É|ÉCÉìÉ^Ç…ÇÕ p_ ÇïtÇØÇÈ
- *						ëSÇƒçáÇÌÇ≥ÇÈÇ∆ csp_ Ç∆Ç»ÇÈ
- *				ÅEÉOÉçÅ[ÉoÉãïœêî
- *						ÇPï∂éöñ⁄ÇÕëÂï∂éö
- *				ÅEä÷êîì‡ïœêî
- *						è¨ï∂éöÇ∆ÅhÅQÅhÇ∆êîéöÇégópÇ∑ÇÈ ä÷êîÇÃà¯êîÇ‡Ç±ÇÍÇ∆ìØÇ∂
+ *					„Ç≥„Éº„Éá„Ç£„É≥„Ç∞Ë¶èÁ¥Ñ
+ *		‚óèÈñ¢Êï∞Âêç
+ *				ÔºëÊñáÂ≠óÁõÆ„ÅØÂ§ßÊñáÂ≠ó„Åù„Çå‰ª•Èôç„ÅØÂ∞èÊñáÂ≠ó„Å´„Åô„Çã
+ *		‚óèÂ§âÊï∞Âêç
+ *				„ÉªÂ§âÊï∞ÂÖ±ÈÄö
+ *						const„Å´„ÅØ c_ „Çí‰ªò„Åë„Çã
+ *						static„Å´„ÅØ s_ „Çí‰ªò„Åë„Çã
+ *						„Éù„Ç§„É≥„Çø„Å´„ÅØ p_ „Çí‰ªò„Åë„Çã
+ *						ÂÖ®„Å¶Âêà„Çè„Åï„Çã„Å® csp_ „Å®„Å™„Çã
+ *				„Éª„Ç∞„É≠„Éº„Éê„É´Â§âÊï∞
+ *						ÔºëÊñáÂ≠óÁõÆ„ÅØÂ§ßÊñáÂ≠ó
+ *				„ÉªÈñ¢Êï∞ÂÜÖÂ§âÊï∞
+ *						Â∞èÊñáÂ≠ó„Å®‚ÄùÔºø‚Äù„Å®Êï∞Â≠ó„Çí‰ΩøÁî®„Åô„Çã Èñ¢Êï∞„ÅÆÂºïÊï∞„ÇÇ„Åì„Çå„Å®Âêå„Åò
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					íËêîêÈåæ
+ *					ÂÆöÊï∞ÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
-#define POISON_COUNT		( 3 )		// ìÆçÏ∂≥›¿
+#define POISON_COUNT		( 3 )		// Âãï‰Ωú„Ç´„Ç¶„É≥„Çø
 
 #ifdef PM_DEBUG
-static int POISON2_X = (3);	// Ç±ÇÃílï™Ç∏ÇÁÇ∑
-static int POISON2_Y = (10);	// Ç±ÇÍÇ¢ÇPâÒï˚å¸ÇÇ©Ç¶ÇÈ
+static int POISON2_X = (3);	// „Åì„ÅÆÂÄ§ÂàÜ„Åö„Çâ„Åô
+static int POISON2_Y = (10);	// „Åì„Çå„ÅÑÔºëÂõûÊñπÂêë„Çí„Åã„Åà„Çã
 void DEBUG_Poison( void );
 #else
-#define POISON2_X (3)	// Ç±ÇÃílï™Ç∏ÇÁÇ∑
-#define POISON2_Y (10)	// Ç±ÇÍÇ¢ÇPâÒï˚å¸ÇÇ©Ç¶ÇÈ
+#define POISON2_X (3)	// „Åì„ÅÆÂÄ§ÂàÜ„Åö„Çâ„Åô
+#define POISON2_Y (10)	// „Åì„Çå„ÅÑÔºëÂõûÊñπÂêë„Çí„Åã„Åà„Çã
 #endif
 //-----------------------------------------------------------------------------
 /**
- *					ç\ë¢ëÃêÈåæ
+ *					ÊßãÈÄ†‰ΩìÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ÉèÅ[ÉN	
+//	„ÉØ„Éº„ÇØ	
 //=====================================
 typedef struct _POISON_EFFECT_WORK{
 	u32		status;
@@ -65,7 +65,7 @@ typedef struct _POISON_EFFECT_WORK{
 	LASTER_SYS_PTR p_laster;
 	FIELD_HBLANK_SYS* p_hblanksys;
 	FIELD_HBLANK_OBJ* p_hblank;
-	BOOL	HblRef;		// HBLANKÇ≈ílÇê›íËÇ∑ÇÈÇ©
+	BOOL	HblRef;		// HBLANK„ÅßÂÄ§„ÇíË®≠ÂÆö„Åô„Çã„Åã
 	TCB_PTR	do_tcb;
 	TCB_PTR vblank_tcb;
 	TCB_PTR vwaitblank_tcb;
@@ -73,7 +73,7 @@ typedef struct _POISON_EFFECT_WORK{
 
 //-----------------------------------------------------------------------------
 /**
- *					ÉvÉçÉgÉ^ÉCÉvêÈåæ
+ *					„Éó„É≠„Éà„Çø„Ç§„ÉóÂÆ£Ë®Ä
 */
 //-----------------------------------------------------------------------------
 static void PoisonEffTcb( TCB_PTR tcb, void* p_work );
@@ -88,12 +88,12 @@ static void PoisonWorkDoEnd( POISON_EFFECT_WORK* p_poison );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ì≈¥Ã™∏ƒÉèÅ[ÉNçÏê¨
+ *	@brief	ÊØí„Ç®„Éï„Çß„ÇØ„Éà„ÉØ„Éº„ÇØ‰ΩúÊàê
  *
- *	@param	heap	ÉqÅ[Év
- *	@param	p_sys	ÉtÉBÅ[ÉãÉhHÉuÉâÉìÉNä«óùÉVÉXÉeÉÄ
+ *	@param	heap	„Éí„Éº„Éó
+ *	@param	p_sys	„Éï„Ç£„Éº„É´„ÉâH„Éñ„É©„É≥„ÇØÁÆ°ÁêÜ„Ç∑„Çπ„ÉÜ„É†
  *
- *	@return	ÉèÅ[ÉN
+ *	@return	„ÉØ„Éº„ÇØ
  */
 //-----------------------------------------------------------------------------
 POISON_EFFECT_WORK* POISON_EFFE_Init( u32 heap, FIELD_HBLANK_SYS* p_sys )
@@ -103,13 +103,13 @@ POISON_EFFECT_WORK* POISON_EFFE_Init( u32 heap, FIELD_HBLANK_SYS* p_sys )
 	p_poison = sys_AllocMemory( heap, sizeof(POISON_EFFECT_WORK) );
 	memset( p_poison, 0, sizeof(POISON_EFFECT_WORK) );
 
-	// STANDBYèÛë‘
+	// STANDBYÁä∂ÊÖã
 	p_poison->status = POISON_EFFE_STANDBY;
 
-	// ÉâÉXÉ^Å[ÉèÅ[ÉNçÏê¨
+	// „É©„Çπ„Çø„Éº„ÉØ„Éº„ÇØ‰ΩúÊàê
 	p_poison->p_laster = LASTER_Init( heap, p_poison->HblBuff0, p_poison->HblBuff1 );
 
-	// HÉuÉâÉìÉNÉVÉXÉeÉÄÉèÅ[ÉNï€éù
+	// H„Éñ„É©„É≥„ÇØ„Ç∑„Çπ„ÉÜ„É†„ÉØ„Éº„ÇØ‰øùÊåÅ
 	p_poison->p_hblanksys = p_sys;
 
 	return p_poison;
@@ -117,69 +117,69 @@ POISON_EFFECT_WORK* POISON_EFFE_Init( u32 heap, FIELD_HBLANK_SYS* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ì≈¥Ã™∏ƒÉèÅ[ÉNîjä¸
+ *	@brief	ÊØí„Ç®„Éï„Çß„ÇØ„Éà„ÉØ„Éº„ÇØÁ†¥Ê£Ñ
  *
- *	@param	p_poison	ÉèÅ[ÉN
+ *	@param	p_poison	„ÉØ„Éº„ÇØ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void POISON_EFFE_Delete( POISON_EFFECT_WORK* p_poison )
 {
-	// TCBîjä¸
+	// TCBÁ†¥Ê£Ñ
 	if( p_poison->status == POISON_EFFE_DO ){
 		PoisonWorkDoEnd( p_poison );
 	}
 
-	// ÉâÉXÉ^Å[îjä¸
+	// „É©„Çπ„Çø„ÉºÁ†¥Ê£Ñ
 	LASTER_Delete( p_poison->p_laster );
 
-	// ÉÅÉÇÉäîjä¸
+	// „É°„É¢„É™Á†¥Ê£Ñ
 	sys_FreeMemoryEz( p_poison );
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ì≈¥Ã™∏ƒÉXÉ^Å[Ég
+ *	@brief	ÊØí„Ç®„Éï„Çß„ÇØ„Éà„Çπ„Çø„Éº„Éà
  *	
- *	@param	p_poison	ÉèÅ[ÉN
+ *	@param	p_poison	„ÉØ„Éº„ÇØ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void POISON_EFFE_Start( POISON_EFFECT_WORK* p_poison )
 {
-	// ëΩèdåƒÇ—èoÇµÉ`ÉFÉbÉN
+	// Â§öÈáçÂëº„Å≥Âá∫„Åó„ÉÅ„Çß„ÉÉ„ÇØ
 	GF_ASSERT( p_poison->status == POISON_EFFE_STANDBY );
 
-	// HÉuÉâÉìÉN	èâä˙âª
+	// H„Éñ„É©„É≥„ÇØ	ÂàùÊúüÂåñ
 	p_poison->p_hblank = FLDHBLANK_OBJ_Add( p_poison->p_hblanksys, PoisonEffeHBlankCallBack, p_poison );
 	
-	// É^ÉXÉNåƒÇ—èoÇµ
-	// ÉoÉbÉtÉ@Ç»Ç¢ÉfÅ[É^ëÄçÏÉ^ÉXÉN
+	// „Çø„Çπ„ÇØÂëº„Å≥Âá∫„Åó
+	// „Éê„ÉÉ„Éï„Ç°„Å™„ÅÑ„Éá„Éº„ÇøÊìç‰Ωú„Çø„Çπ„ÇØ
 	p_poison->do_tcb = TCB_Add( PoisonEffTcb, p_poison, POISON_TCB_PRI );
-	// ÉoÉbÉtÉ@îΩâfÉXÉCÉbÉ`É^ÉXÉN	VÉuÉâÉìÉNä˙ä‘
+	// „Éê„ÉÉ„Éï„Ç°ÂèçÊò†„Çπ„Ç§„ÉÉ„ÉÅ„Çø„Çπ„ÇØ	V„Éñ„É©„É≥„ÇØÊúüÈñì
 	p_poison->vblank_tcb = VIntrTCB_Add( PoisonEffVblankTcb, p_poison, POISON_TCB_PRI );
-	//	É_ÉuÉãÉoÉbÉtÉ@ÉXÉCÉbÉ`èàóùÉ^ÉXÉN	VÉuÉâÉìÉNä˙ä‘èIóπå„
+	//	„ÉÄ„Éñ„É´„Éê„ÉÉ„Éï„Ç°„Çπ„Ç§„ÉÉ„ÉÅÂá¶ÁêÜ„Çø„Çπ„ÇØ	V„Éñ„É©„É≥„ÇØÊúüÈñìÁµÇ‰∫ÜÂæå
 	p_poison->vwaitblank_tcb = VIntrTCB_Add( PoisonEffVWaitblankTcb, p_poison, POISON_TCB_PRI );
 
-	// èâä˙âª
+	// ÂàùÊúüÂåñ
 	memset( p_poison->HblBuff0, 0, sizeof(u16) * 192 );
 	memset( p_poison->HblBuff1, 0, sizeof(u16) * 192 );
 	p_poison->status = POISON_EFFE_DO;
 	p_poison->seq = 0;
 
-	// âπçƒê∂
+	// Èü≥ÂÜçÁîü
 	Snd_SePlay( SE_POISON );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ì≈¥Ã™∏ƒèÛë‘éÊìæ
+ *	@brief	ÊØí„Ç®„Éï„Çß„ÇØ„ÉàÁä∂ÊÖãÂèñÂæó
  *
- *	@param	cp_poison ÉèÅ[ÉN
+ *	@param	cp_poison „ÉØ„Éº„ÇØ
  *
- *	@retval	POISON_EFFE_STANDBY		äJénë“Çø
- *	@retval	POISON_EFFE_DO			é¿çsíÜ
+ *	@retval	POISON_EFFE_STANDBY		ÈñãÂßãÂæÖ„Å°
+ *	@retval	POISON_EFFE_DO			ÂÆüË°å‰∏≠
  */         
 //-----------------------------------------------------------------------------
 u32 POISON_EFFE_GetStatus( const POISON_EFFECT_WORK* cp_poison )
@@ -190,10 +190,10 @@ u32 POISON_EFFE_GetStatus( const POISON_EFFECT_WORK* cp_poison )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	É^ÉXÉNÉèÅ[ÉN
+ *	@brief	„Çø„Çπ„ÇØ„ÉØ„Éº„ÇØ
  *
- *	@param	tcb		TCBÉfÅ[É^
- *	@param	p_work	ÉèÅ[ÉN
+ *	@param	tcb		TCB„Éá„Éº„Çø
+ *	@param	p_work	„ÉØ„Éº„ÇØ
  *
  *	@return	none
  */
@@ -206,12 +206,12 @@ static void PoisonEffTcb( TCB_PTR tcb, void* p_work )
 
 	
 	switch( data->seq ){
-	case 0:		// èâä˙âª
+	case 0:		// ÂàùÊúüÂåñ
 		data->count = POISON_COUNT;
 		data->seq++;
 		break;
 
-	case 1:		// å∏éZ
+	case 1:		// Ê∏õÁÆó
 		data->count --;
 		buff = LASTER_GetWriteBuff( data->p_laster );
 		PoisonMakeBuff( buff, POISON_COUNT - data->count, POISON_COUNT );
@@ -221,7 +221,7 @@ static void PoisonEffTcb( TCB_PTR tcb, void* p_work )
 		}
 		break;
 	
-	case 2:		// â¡éZ
+	case 2:		// Âä†ÁÆó
 		data->count --;
 		buff = LASTER_GetWriteBuff( data->p_laster );
 		PoisonMakeBuff( buff, data->count, POISON_COUNT );
@@ -230,10 +230,10 @@ static void PoisonEffTcb( TCB_PTR tcb, void* p_work )
 		}
 		break;
 
-	// èIóπ
+	// ÁµÇ‰∫Ü
 	case 3:
 		PoisonWorkDoEnd( data );
-		// BG0ñ ÇÃHï˚å¸ÉXÉNÉçÅ[Éãê›íË
+		// BG0Èù¢„ÅÆHÊñπÂêë„Çπ„ÇØ„É≠„Éº„É´Ë®≠ÂÆö
 		G3X_SetHOffset( 0 );
 		break;
 	}
@@ -241,9 +241,9 @@ static void PoisonEffTcb( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	HBlankèàóù
+ *	@brief	HBlankÂá¶ÁêÜ
  *
- *	@param	p_poison ÉèÅ[ÉN
+ *	@param	p_poison „ÉØ„Éº„ÇØ
  *
  *	@return	none
  */
@@ -255,12 +255,12 @@ static void PoisonEffHBlank( POISON_EFFECT_WORK* p_poison )
 	count = GX_GetVCount();
 	cp_buff = LASTER_GetReadBuff( p_poison->p_laster );
 	if( count < 192 ){
-		count++;	// éüÇÃçÇÇ≥ÇÃÉfÅ[É^Çê›íË
+		count++;	// Ê¨°„ÅÆÈ´ò„Åï„ÅÆ„Éá„Éº„Çø„ÇíË®≠ÂÆö
 		if( count >= 192 ){
 			count -= 192;
 		}
 		
-		// BG0ñ ÇÃHï˚å¸ÉXÉNÉçÅ[Éãê›íË
+		// BG0Èù¢„ÅÆHÊñπÂêë„Çπ„ÇØ„É≠„Éº„É´Ë®≠ÂÆö
 		if( GX_IsHBlank() ){
 			G3X_SetHOffset( cp_buff[ count ] );
 		}
@@ -269,10 +269,10 @@ static void PoisonEffHBlank( POISON_EFFECT_WORK* p_poison )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	keyÇ…ëŒâûÇµÇΩílÇÉoÉbÉtÉ@Ç…í«â¡
+ *	@brief	key„Å´ÂØæÂøú„Åó„ÅüÂÄ§„Çí„Éê„ÉÉ„Éï„Ç°„Å´ËøΩÂä†
  *
- *	@param	buff		ÉoÉbÉtÉ@
- *	@param	key			ÉLÅ[
+ *	@param	buff		„Éê„ÉÉ„Éï„Ç°
+ *	@param	key			„Ç≠„Éº
  *
  *	@return	none
  */
@@ -305,8 +305,8 @@ static void PoisonMakeBuff( u16* buff, int key, int key_max )
 /**
  *	@brief	VBlankTCB
  *
- *	@param	tcb		TCBÉèÅ[ÉN
- *	@param	p_work	ÉèÅ[ÉN
+ *	@param	tcb		TCB„ÉØ„Éº„ÇØ
+ *	@param	p_work	„ÉØ„Éº„ÇØ
  *
  *	@return	none
  */
@@ -315,20 +315,20 @@ static void PoisonEffVblankTcb( TCB_PTR tcb, void* p_work )
 {
 	POISON_EFFECT_WORK* data = p_work;
 
-	// Ç±ÇÃéûì_Ç≈1âÒîΩâfÇ≥ÇπÇΩÇÃÇ≈
-	// éüÇÃ1ÉVÉìÉNÇÕîΩâfÇ≥ÇπÇ»Ç¢
+	// „Åì„ÅÆÊôÇÁÇπ„Åß1ÂõûÂèçÊò†„Åï„Åõ„Åü„ÅÆ„Åß
+	// Ê¨°„ÅÆ1„Ç∑„É≥„ÇØ„ÅØÂèçÊò†„Åï„Åõ„Å™„ÅÑ
 	data->HblRef = FALSE;
 
-	// BG0ñ ÇÃHï˚å¸ÉXÉNÉçÅ[Éãê›íË
+	// BG0Èù¢„ÅÆHÊñπÂêë„Çπ„ÇØ„É≠„Éº„É´Ë®≠ÂÆö
 	G3X_SetHOffset( 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	HÉuÉâÉìÉNèàóù
+ *	@brief	H„Éñ„É©„É≥„ÇØÂá¶ÁêÜ
  *
- *	@param	p_obj		HÉuÉâÉìÉNÉIÉuÉWÉFÉNÉg
- *	@param	p_work		ÉèÅ[ÉN
+ *	@param	p_obj		H„Éñ„É©„É≥„ÇØ„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà
+ *	@param	p_work		„ÉØ„Éº„ÇØ
  *
  *	@return	none
  */
@@ -340,9 +340,9 @@ static void PoisonEffeHBlankCallBack( FIELD_HBLANK_OBJ* p_obj, void* p_work )
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	HÉuÉâÉìÉNä˙ä‘èàóù
+ *	@brief	H„Éñ„É©„É≥„ÇØÊúüÈñìÂá¶ÁêÜ
  *
- *	@param	p_poison ì≈ÉèÅ[ÉN
+ *	@param	p_poison ÊØí„ÉØ„Éº„ÇØ
  *
  *	@return	none
  */
@@ -351,8 +351,8 @@ static void POISON_EFFE_HBlank( POISON_EFFECT_WORK* p_poison )
 {
 	if( p_poison->status == POISON_EFFE_DO ){
 
-		// îΩâfÇ1ÉVÉìÉNÇ∏Ç¬Ç…Ç∑ÇÈ
-		// îºìßñæÇ¡Ç€Ç≠Ç»ÇÈå¯â Çë_Ç§
+		// ÂèçÊò†„Çí1„Ç∑„É≥„ÇØ„Åö„Å§„Å´„Åô„Çã
+		// ÂçäÈÄèÊòé„Å£„ÅΩ„Åè„Å™„ÇãÂäπÊûú„ÇíÁãô„ÅÜ
 		if( p_poison->HblRef == TRUE ){
 			PoisonEffHBlank( p_poison );
 		}
@@ -361,10 +361,10 @@ static void POISON_EFFE_HBlank( POISON_EFFECT_WORK* p_poison )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VÉuÉâÉìÉNë“Çøå„É^ÉXÉNèàóù
+ *	@brief	V„Éñ„É©„É≥„ÇØÂæÖ„Å°Âæå„Çø„Çπ„ÇØÂá¶ÁêÜ
  *
- *	@param	tcb		É^ÉXÉNÉèÅ[ÉN
- *	@param	p_work	ÉèÅ[ÉN
+ *	@param	tcb		„Çø„Çπ„ÇØ„ÉØ„Éº„ÇØ
+ *	@param	p_work	„ÉØ„Éº„ÇØ
  *
  *	@return	none
  */
@@ -376,9 +376,9 @@ static void PoisonEffVWaitblankTcb( TCB_PTR tcb, void* p_work )
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	VÉuÉâÉìÉNä˙ä‘èàóù
+ *	@brief	V„Éñ„É©„É≥„ÇØÊúüÈñìÂá¶ÁêÜ
  *
- *	@param	p_poison	ì≈ÉèÅ[ÉN
+ *	@param	p_poison	ÊØí„ÉØ„Éº„ÇØ
  *
  *	@return	none
  */
@@ -393,16 +393,16 @@ static void POISON_EFFE_VBlank( POISON_EFFECT_WORK* p_poison )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ì≈¥Ã™∏ƒé¿çsèÛë‘ÉNÉäÉA
+ *	@brief	ÊØí„Ç®„Éï„Çß„ÇØ„ÉàÂÆüË°åÁä∂ÊÖã„ÇØ„É™„Ç¢
  *
- *	@param	p_poison	ÉèÅ[ÉN
+ *	@param	p_poison	„ÉØ„Éº„ÇØ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void PoisonWorkDoEnd( POISON_EFFECT_WORK* p_poison )
 {
-	// HÉuÉâÉìÉNèàóùîjä¸
+	// H„Éñ„É©„É≥„ÇØÂá¶ÁêÜÁ†¥Ê£Ñ
 	FLDHBLANK_OBJ_Delete( p_poison->p_hblank );
 	p_poison->p_hblank = NULL;
 	
@@ -423,19 +423,19 @@ void DEBUG_Poison( void )
 	if( sys.cont & PAD_BUTTON_R ){
 		if( sys.trg & PAD_BUTTON_Y ){
 			POISON2_X --;
-			OS_Printf( "xïù %d \n", POISON2_X );
+			OS_Printf( "xÂπÖ %d \n", POISON2_X );
 		}else if( sys.trg & PAD_BUTTON_A ){
 			POISON2_X ++;
-			OS_Printf( "xïù %d \n", POISON2_X );
+			OS_Printf( "xÂπÖ %d \n", POISON2_X );
 		}
 	}
 	if( sys.cont & PAD_BUTTON_L ){
 		if( sys.trg & PAD_BUTTON_Y ){
 			POISON2_Y --;
-			OS_Printf( "yïù %d \n", POISON2_Y );
+			OS_Printf( "yÂπÖ %d \n", POISON2_Y );
 		}else if( sys.trg & PAD_BUTTON_A ){
 			POISON2_Y ++;
-			OS_Printf( "yïù %d \n", POISON2_Y );
+			OS_Printf( "yÂπÖ %d \n", POISON2_Y );
 		}
 	}
 }

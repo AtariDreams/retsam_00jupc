@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_snowball.c
- * @brief	ÉtÉBÅ[ÉãÉhOBJê·ã 
+ * @brief	„Éï„Ç£„Éº„É´„ÉâOBJÈõ™Áéâ
  * @author	kagaya
  * @data	05.07.13
  *
@@ -23,14 +23,14 @@
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_SNOWBALLå^
+///	FE_SNOWBALLÂûã
 //--------------------------------------------------------------
 typedef struct _TAG_FE_SNOWBALL * FE_SNOWBALL_PTR;
 typedef struct _TAG_FE_BOOK * FE_BOOK_PTR;
 typedef struct _TAG_FE_DOOR2 * FE_DOOR2_PTR;
 
 //--------------------------------------------------------------
-///	FE_SNOWBALLç\ë¢ëÃ
+///	FE_SNOWBALLÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct _TAG_FE_SNOWBALL
 {
@@ -39,10 +39,10 @@ typedef struct _TAG_FE_SNOWBALL
 	FRO_ANM m_ranm;
 }FE_SNOWBALL;
 
-#define FE_SNOWBALL_SIZE (sizeof(FE_SNOWBALL)) 					///<FE_SNOWBALLÉTÉCÉY
+#define FE_SNOWBALL_SIZE (sizeof(FE_SNOWBALL)) 					///<FE_SNOWBALL„Çµ„Ç§„Ç∫
 
 //--------------------------------------------------------------
-///	SNOWBALL_ADD_Hç\ë¢ëÃ
+///	SNOWBALL_ADD_HÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct
 {
@@ -52,7 +52,7 @@ typedef struct
 }SNOWBALL_ADD_H;
 
 //--------------------------------------------------------------
-///	EOA_SNOWBALL_WORKç\ë¢ëÃ
+///	EOA_SNOWBALL_WORKÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct
 {
@@ -68,7 +68,7 @@ typedef struct
 #define EOA_SNOWBALL_WORK_SIZE (sizeof(EOA_SNOWBALL_WORK))
 
 //==============================================================================
-//	ÉvÉçÉgÉ^ÉCÉv
+//	„Éó„É≠„Éà„Çø„Ç§„Éó
 //==============================================================================
 static void SnowBall_GraphicInit( FE_SNOWBALL_PTR sball );
 static void SnowBall_GraphicDelete( FE_SNOWBALL_PTR sball );
@@ -76,11 +76,11 @@ static void SnowBall_GraphicDelete( FE_SNOWBALL_PTR sball );
 static const EOA_H_NPP DATA_EoaH_SnowBall;
 
 //==============================================================================
-//	ê·ã Å@ÉVÉXÉeÉÄ
+//	Èõ™Áéâ„ÄÄ„Ç∑„Çπ„ÉÜ„É†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ê·ã èâä˙âª
+ * Èõ™ÁéâÂàùÊúüÂåñ
  * @param	fes		FE_SYS_PTR
  * @retval	FE_SNOWBALL_PTR		FE_FOOTMARK_PTR
  */
@@ -98,7 +98,7 @@ void * FE_SnowBall_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ê·ã çÌèú
+ * Èõ™ÁéâÂâäÈô§
  * @param	sball		FE_SNOWBALL_PTR
  * @retval	nothing
  */
@@ -111,11 +111,11 @@ void FE_SnowBall_Delete( void *work )
 }
 
 //==============================================================================
-//	ê·ã Å@ÉOÉâÉtÉBÉbÉN
+//	Èõ™Áéâ„ÄÄ„Ç∞„É©„Éï„Ç£„ÉÉ„ÇØ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ê·ã  ÉOÉâÉtÉBÉbÉNèâä˙âª
+ * Èõ™Áéâ „Ç∞„É©„Éï„Ç£„ÉÉ„ÇØÂàùÊúüÂåñ
  * @param	sball		FE_SNOWBALL_PTR
  * @retval	nothing
  */
@@ -124,14 +124,14 @@ static void SnowBall_GraphicInit( FE_SNOWBALL_PTR sball )
 {
 	FE_FROMdl_ResSetArcLoadTexTrans(
 		sball->fes, &sball->m_rmdl, 0, NARC_fldeff_gym06_o1_nsbmd, ALLOC_FR );
-	//ÉÅÉCÉìÉäÉ\Å[ÉXÇÃÇ›ÉçÅ[Éh
+	//„É°„Ç§„É≥„É™„ÇΩ„Éº„Çπ„ÅÆ„Åø„É≠„Éº„Éâ
 	FE_FROAnm_AnmResSetArcLoad(
 		sball->fes, &sball->m_ranm, 0, NARC_fldeff_gym06_o1_nsbtp, ALLOC_FR );
 }
 
 //--------------------------------------------------------------
 /**
- * ê·ã Å@ÉOÉâÉtÉBÉbÉNçÌèú
+ * Èõ™Áéâ„ÄÄ„Ç∞„É©„Éï„Ç£„ÉÉ„ÇØÂâäÈô§
  * @param	sball		FE_SNOWBALL_PTR
  * @retval	nothing
  */
@@ -143,11 +143,11 @@ static void SnowBall_GraphicDelete( FE_SNOWBALL_PTR sball )
 }
 
 //==============================================================================
-//	ê·ã Å@EOA
+//	Èõ™Áéâ„ÄÄEOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ÉtÉBÅ[ÉãÉhOBJê·ã í«â¡
+ * „Éï„Ç£„Éº„É´„ÉâOBJÈõ™ÁéâËøΩÂä†
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	eoa		EOA_PTR
  */
@@ -177,7 +177,7 @@ EOA_PTR FE_FldOBJSnowBall_Add( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ê·ãÖÅ@âÛÇÍÇÈÉAÉjÉÅî≠ìÆ
+ * Èõ™ÁêÉ„ÄÄÂ£ä„Çå„Çã„Ç¢„Éã„É°Áô∫Âãï
  * @param	eoa		EOA_PTR
  * @retval	nothing
  */
@@ -190,10 +190,10 @@ void FE_FldOBJSnowBall_BreakAnimeSet( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ê·ã Å@èâä˙âª
+ * EOA Èõ™Áéâ„ÄÄÂàùÊúüÂåñ
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
- * @retval	int TRUE=ê≥èÌèIóπÅBFALSE=àŸèÌèIóπ
+ * @retval	int TRUE=Ê≠£Â∏∏ÁµÇ‰∫Ü„ÄÇFALSE=Áï∞Â∏∏ÁµÇ‰∫Ü
  */
 //--------------------------------------------------------------
 static int EoaSnowBall_Init( EOA_PTR eoa, void *wk )
@@ -231,7 +231,7 @@ static int EoaSnowBall_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ê·ã Å@çÌèú
+ * EOA Èõ™Áéâ„ÄÄÂâäÈô§
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -245,7 +245,7 @@ static void EoaSnowBall_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ê·ã Å@ìÆçÏ
+ * EOA Èõ™Áéâ„ÄÄÂãï‰Ωú
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -258,7 +258,7 @@ static void EoaSnowBall_Move( EOA_PTR eoa, void *wk )
 	
 	if( work->break_flag == FALSE ){
 		if( FieldOBJ_CheckSameID(fldobj,work->obj_id,work->zone_id) == FALSE ){
-			OS_Printf( "ê·ã Å@IDà·Ç¢Ç…ÇÊÇÈçÌèú\n" );
+			OS_Printf( "Èõ™Áéâ„ÄÄIDÈÅï„ÅÑ„Å´„Çà„ÇãÂâäÈô§\n" );
 			FE_EoaDelete( eoa );
 			return;
 		}
@@ -287,7 +287,7 @@ static void EoaSnowBall_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ê·ã Å@ï`âÊ
+ * EOA Èõ™Áéâ„ÄÄÊèèÁîª
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -305,7 +305,7 @@ static void EoaSnowBall_Draw( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	ê·ã EOA_H
+///	Èõ™ÁéâEOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_SnowBall =
 {
@@ -318,14 +318,14 @@ static const EOA_H_NPP DATA_EoaH_SnowBall =
 
 
 ///////////////////////////////////////////////
-//Å@Ç±Ç±Ç©ÇÁâ∫Ç¢ÇÁÇÀ
+//„ÄÄ„Åì„Åì„Åã„Çâ‰∏ã„ÅÑ„Çâ„Å≠
 ///////////////////////////////////////////////
 //----
 #if 0
 //----
 //******************************************************************************
 /**
- * ÉtÉBÅ[ÉãÉhOBJñ{
+ * „Éï„Ç£„Éº„É´„ÉâOBJÊú¨
  */
 //******************************************************************************
 //==============================================================================
@@ -336,7 +336,7 @@ static const EOA_H_NPP DATA_EoaH_SnowBall =
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_BOOKç\ë¢ëÃ
+///	FE_BOOKÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct _TAG_FE_BOOK
 {
@@ -346,10 +346,10 @@ typedef struct _TAG_FE_BOOK
 	NNSG3dResFileHeader *res_file;
 }FE_BOOK;
 
-#define FE_BOOK_SIZE (sizeof(FE_BOOK)) 					///<FE_BOOKÉTÉCÉY
+#define FE_BOOK_SIZE (sizeof(FE_BOOK)) 					///<FE_BOOK„Çµ„Ç§„Ç∫
 
 //--------------------------------------------------------------
-///	BOOK_ADD_Hç\ë¢ëÃ
+///	BOOK_ADD_HÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct
 {
@@ -359,7 +359,7 @@ typedef struct
 }BOOK_ADD_H;
 
 //--------------------------------------------------------------
-///	EOA_BOOK_WORKç\ë¢ëÃ
+///	EOA_BOOK_WORKÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct
 {
@@ -372,7 +372,7 @@ typedef struct
 #define EOA_BOOK_WORK_SIZE (sizeof(EOA_BOOK_WORK))
 
 //==============================================================================
-//	ÉvÉçÉgÉ^ÉCÉv
+//	„Éó„É≠„Éà„Çø„Ç§„Éó
 //==============================================================================
 static void Book_GraphicInit( FE_BOOK_PTR book );
 static void Book_GraphicDelete( FE_BOOK_PTR book );
@@ -380,11 +380,11 @@ static void Book_GraphicDelete( FE_BOOK_PTR book );
 static const EOA_H_NPP DATA_EoaH_Book;
 
 //==============================================================================
-//	ñ{Å@ÉVÉXÉeÉÄ
+//	Êú¨„ÄÄ„Ç∑„Çπ„ÉÜ„É†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ñ{èâä˙âª
+ * Êú¨ÂàùÊúüÂåñ
  * @param	fes		FE_SYS_PTR
  * @retval	FE_BOOK_PTR		FE_FOOTMARK_PTR
  */
@@ -402,7 +402,7 @@ void * FE_Book_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ñ{çÌèú
+ * Êú¨ÂâäÈô§
  * @param	book		FE_BOOK_PTR
  * @retval	nothing
  */
@@ -415,15 +415,15 @@ void FE_Book_Delete( void *work )
 }
 
 //==============================================================================
-//	ñ{	ÉpÅ[Éc
+//	Êú¨	„Éë„Éº„ÉÑ
 //==============================================================================
 
 //==============================================================================
-//	ñ{Å@ÉOÉâÉtÉBÉbÉN
+//	Êú¨„ÄÄ„Ç∞„É©„Éï„Ç£„ÉÉ„ÇØ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ñ{ ÉOÉâÉtÉBÉbÉNèâä˙âª
+ * Êú¨ „Ç∞„É©„Éï„Ç£„ÉÉ„ÇØÂàùÊúüÂåñ
  * @param	book		FE_BOOK_PTR
  * @retval	nothing
  */
@@ -436,7 +436,7 @@ static void Book_GraphicInit( FE_BOOK_PTR book )
 
 //--------------------------------------------------------------
 /**
- * ñ{Å@ÉOÉâÉtÉBÉbÉNçÌèú
+ * Êú¨„ÄÄ„Ç∞„É©„Éï„Ç£„ÉÉ„ÇØÂâäÈô§
  * @param	book		FE_BOOK_PTR
  * @retval	nothing
  */
@@ -447,11 +447,11 @@ static void Book_GraphicDelete( FE_BOOK_PTR book )
 }
 
 //==============================================================================
-//	ñ{Å@EOA
+//	Êú¨„ÄÄEOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ÉtÉBÅ[ÉãÉhOBJñ{í«â¡
+ * „Éï„Ç£„Éº„É´„ÉâOBJÊú¨ËøΩÂä†
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	eoa		EOA_PTR
  */
@@ -481,10 +481,10 @@ EOA_PTR FE_FldOBJBook_Add( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * EOA ñ{Å@èâä˙âª
+ * EOA Êú¨„ÄÄÂàùÊúüÂåñ
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
- * @retval	int TRUE=ê≥èÌèIóπÅBFALSE=àŸèÌèIóπ
+ * @retval	int TRUE=Ê≠£Â∏∏ÁµÇ‰∫Ü„ÄÇFALSE=Áï∞Â∏∏ÁµÇ‰∫Ü
  */
 //--------------------------------------------------------------
 static int EoaBook_Init( EOA_PTR eoa, void *wk )
@@ -504,7 +504,7 @@ static int EoaBook_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ñ{Å@çÌèú
+ * EOA Êú¨„ÄÄÂâäÈô§
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -516,7 +516,7 @@ static void EoaBook_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ñ{Å@ìÆçÏ
+ * EOA Êú¨„ÄÄÂãï‰Ωú
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -551,7 +551,7 @@ static void EoaBook_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ñ{Å@ï`âÊ
+ * EOA Êú¨„ÄÄÊèèÁîª
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -575,7 +575,7 @@ static void EoaBook_Draw( EOA_PTR eoa, void *wk )
 
 //******************************************************************************
 /**
- * ÉtÉBÅ[ÉãÉhOBJÉhÉAÇQ
+ * „Éï„Ç£„Éº„É´„ÉâOBJ„Éâ„Ç¢Ôºí
  */
 //******************************************************************************
 //==============================================================================
@@ -586,7 +586,7 @@ static void EoaBook_Draw( EOA_PTR eoa, void *wk )
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_DOOR2ç\ë¢ëÃ
+///	FE_DOOR2ÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct _TAG_FE_DOOR2
 {
@@ -596,10 +596,10 @@ typedef struct _TAG_FE_DOOR2
 	NNSG3dResFileHeader *res_file;
 }FE_DOOR2;
 
-#define FE_DOOR2_SIZE (sizeof(FE_DOOR2)) 					///<FE_DOOR2ÉTÉCÉY
+#define FE_DOOR2_SIZE (sizeof(FE_DOOR2)) 					///<FE_DOOR2„Çµ„Ç§„Ç∫
 
 //--------------------------------------------------------------
-///	DOOR2_ADD_Hç\ë¢ëÃ
+///	DOOR2_ADD_HÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct
 {
@@ -609,7 +609,7 @@ typedef struct
 }DOOR2_ADD_H;
 
 //--------------------------------------------------------------
-///	EOA_DOOR2_WORKç\ë¢ëÃ
+///	EOA_DOOR2_WORKÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct
 {
@@ -622,7 +622,7 @@ typedef struct
 #define EOA_DOOR2_WORK_SIZE (sizeof(EOA_DOOR2_WORK))
 
 //==============================================================================
-//	ÉvÉçÉgÉ^ÉCÉv
+//	„Éó„É≠„Éà„Çø„Ç§„Éó
 //==============================================================================
 static void Door2_GraphicInit( FE_DOOR2_PTR door2 );
 static void Door2_GraphicDelete( FE_DOOR2_PTR door2 );
@@ -630,11 +630,11 @@ static void Door2_GraphicDelete( FE_DOOR2_PTR door2 );
 static const EOA_H_NPP DATA_EoaH_Door2;
 
 //==============================================================================
-//	ÉhÉAÇQÅ@ÉVÉXÉeÉÄ
+//	„Éâ„Ç¢Ôºí„ÄÄ„Ç∑„Çπ„ÉÜ„É†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ÉhÉAÇQèâä˙âª
+ * „Éâ„Ç¢ÔºíÂàùÊúüÂåñ
  * @param	fes		FE_SYS_PTR
  * @retval	FE_DOOR2_PTR		FE_FOOTMARK_PTR
  */
@@ -652,7 +652,7 @@ void * FE_Door2_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ÉhÉAÇQçÌèú
+ * „Éâ„Ç¢ÔºíÂâäÈô§
  * @param	door2		FE_DOOR2_PTR
  * @retval	nothing
  */
@@ -665,11 +665,11 @@ void FE_Door2_Delete( void *work )
 }
 
 //==============================================================================
-//	ÉhÉAÇQÅ@ÉOÉâÉtÉBÉbÉN
+//	„Éâ„Ç¢Ôºí„ÄÄ„Ç∞„É©„Éï„Ç£„ÉÉ„ÇØ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ÉhÉAÇQ ÉOÉâÉtÉBÉbÉNèâä˙âª
+ * „Éâ„Ç¢Ôºí „Ç∞„É©„Éï„Ç£„ÉÉ„ÇØÂàùÊúüÂåñ
  * @param	door2		FE_DOOR2_PTR
  * @retval	nothing
  */
@@ -682,7 +682,7 @@ static void Door2_GraphicInit( FE_DOOR2_PTR door2 )
 
 //--------------------------------------------------------------
 /**
- * ÉhÉAÇQÅ@ÉOÉâÉtÉBÉbÉNçÌèú
+ * „Éâ„Ç¢Ôºí„ÄÄ„Ç∞„É©„Éï„Ç£„ÉÉ„ÇØÂâäÈô§
  * @param	door2		FE_DOOR2_PTR
  * @retval	nothing
  */
@@ -693,11 +693,11 @@ static void Door2_GraphicDelete( FE_DOOR2_PTR door2 )
 }
 
 //==============================================================================
-//	ÉhÉAÇQÅ@EOA
+//	„Éâ„Ç¢Ôºí„ÄÄEOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ÉtÉBÅ[ÉãÉhOBJÉhÉAÇQí«â¡
+ * „Éï„Ç£„Éº„É´„ÉâOBJ„Éâ„Ç¢ÔºíËøΩÂä†
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	eoa		EOA_PTR
  */
@@ -727,10 +727,10 @@ EOA_PTR FE_FldOBJDoor2_Add( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * EOA ÉhÉAÇQÅ@èâä˙âª
+ * EOA „Éâ„Ç¢Ôºí„ÄÄÂàùÊúüÂåñ
  * @param	eoa	EOA_PTR
  * @param	wk	eoa work *
- * @retval	int TRUE=ê≥èÌèIóπÅBFALSE=àŸèÌèIóπ
+ * @retval	int TRUE=Ê≠£Â∏∏ÁµÇ‰∫Ü„ÄÇFALSE=Áï∞Â∏∏ÁµÇ‰∫Ü
  */
 //--------------------------------------------------------------
 static int EoaDoor2_Init( EOA_PTR eoa, void *wk )
@@ -750,7 +750,7 @@ static int EoaDoor2_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ÉhÉAÇQÅ@çÌèú
+ * EOA „Éâ„Ç¢Ôºí„ÄÄÂâäÈô§
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -762,7 +762,7 @@ static void EoaDoor2_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ÉhÉAÇQÅ@ìÆçÏ
+ * EOA „Éâ„Ç¢Ôºí„ÄÄÂãï‰Ωú
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -797,7 +797,7 @@ static void EoaDoor2_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ÉhÉAÇQÅ@ï`âÊ
+ * EOA „Éâ„Ç¢Ôºí„ÄÄÊèèÁîª
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -823,7 +823,7 @@ static void EoaDoor2_Draw( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	ñ{EOA_H
+///	Êú¨EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Book =
 {
@@ -835,7 +835,7 @@ static const EOA_H_NPP DATA_EoaH_Book =
 };
 
 //--------------------------------------------------------------
-///	ÉhÉAÇQEOA_H
+///	„Éâ„Ç¢ÔºíEOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Door2 =
 {

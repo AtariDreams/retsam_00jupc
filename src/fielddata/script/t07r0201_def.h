@@ -1,7 +1,7 @@
 #ifndef _T07R0201_DEF_H_
 #define _T07R0201_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T07R0201_FLAG_CHANGE		(1)
 #define	SCRID_T07R0201_RIVAL		(2)
 #define	SCRID_T07R0201_SUPPORT		(3)
@@ -46,6 +46,6 @@
 #define	SCRID_T07R0201_KEEPER		(42)
 #define	SCRID_POS_T07R0201_KEEPER		(43)
 #define	SCRID_T07R0201_ORDERNOTE		(44)
-#define	SCRID_T07R0201_DATA_MAX		(44)		//最大数
+#define	SCRID_T07R0201_DATA_MAX		(44)		//譛螟ｧ謨ｰ
 
 #endif //_T07R0201_DEF_H_

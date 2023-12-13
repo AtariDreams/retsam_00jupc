@@ -1,7 +1,7 @@
 /*---------------------------------------------------------------------------*
 	File:    test_msg.h
 
-	ƒƒbƒZ[ƒW’è‹`ƒtƒ@ƒCƒ‹
+	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«
 	 by MessageEditor ver.4.8.5
 
  *---------------------------------------------------------------------------*/
@@ -9,24 +9,24 @@
 #ifndef TEST_MSG_H_
 #define TEST_MSG_H_
 
-/* ƒƒbƒZ[ƒWID */
+/* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID */
 #define JMS_0001             0x00000000         
 #define JMS_0002             0x00000001         
 #define JMS_MISHIRO_001      0x00010000         
 #define JMS_MISHIRO_002      0x00010001         
 #define JMS_MISHIRO_003      0x00010002         
 
-/* ƒNƒGƒŠID */
+/* ã‚¯ã‚¨ãƒªID */
 
-/* ƒtƒ[ƒm[ƒh */
+/* ãƒ•ãƒ­ãƒ¼ãƒãƒ¼ãƒ‰ */
 
-/* ƒ^ƒO“Á«î•ñ */
+/* ã‚¿ã‚°ç‰¹æ€§æƒ…å ± */
 
-/* ƒƒbƒZ[ƒWƒGƒ“ƒgƒŠ\‘¢‘Ì */
+/* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¨ãƒ³ãƒˆãƒªæ§‹é€ ä½“ */
 typedef struct JMSMesgEntry JMSMesgEntry;
 struct JMSMesgEntry
 {
-    u32    mesgOffset;                          /* “ú–{Œê */
+    u32    mesgOffset;                          /* æ—¥æœ¬èª */
 };
 
 

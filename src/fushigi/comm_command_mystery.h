@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_command_mystery.h
- * @brief	�ʐM�̃R�}���h�ꗗ  �ӂ����Ȃ�������̗p
+ * @brief	通信のコマンド一覧  ふしぎなおくりもの用
  * @author	Satoshi Mitsuhara
  * @date	2006.05.16
  */
@@ -13,12 +13,12 @@
 #include "communication/comm_command.h"
 
 
-/// �ӂ����Ȃ�������̐�p�ʐM�R�}���h�̒�`�B
+/// ふしぎなおくりもの専用通信コマンドの定義。
 enum CommCommandField_e {
-  CM_GIFT_DATA = CS_COMMAND_MAX,              	// �v���[���g�̃f�[�^�𑗂�
-  CM_RECV_RESULT,				// �����Ǝ󂯎��܂�����ԓ�
-  //------------------------------------------------�����܂�
-  CM_COMMAND_MAX   // �I�[--------------����͈ړ������Ȃ��ł�������
+  CM_GIFT_DATA = CS_COMMAND_MAX,              	// プレゼントのデータを送る
+  CM_RECV_RESULT,				// ちゃんと受け取りましたよ返答
+  //------------------------------------------------ここまで
+  CM_COMMAND_MAX   // 終端--------------これは移動させないでください
 };
 
 extern void CommCommandMysteryInitialize(void* pWork);

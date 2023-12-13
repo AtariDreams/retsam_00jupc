@@ -5,12 +5,12 @@ inf = File.open(infile, "r")
 outf = File.open(outfile, "w")
 
 puts "\>\>#{outf.path}"
-inf.gets	#ˆês–Ú“Ç‚İ”ò‚Î‚µ
+inf.gets	#ä¸€è¡Œç›®èª­ã¿é£›ã°ã—
 
 while line = inf.gets
 	cl = line.split ","
 
-	#2‚©‚çA7ŒÂˆ—
+	#2ã‹ã‚‰ã€7å€‹å‡¦ç†
 	newcl = cl[2, 7].map{|str| str.to_i}
 
 	#puts "#{newcl}"

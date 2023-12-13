@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_261.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			261@‚Q`‚Tƒ^[ƒ“‚ÌŠÔƒ_ƒ[ƒW‚ð—^‚¦‚éB‚»‚ÌŠÔA‘ŠŽè‚Í“¦‚°‚ç‚ê‚È‚¢{ƒ_ƒCƒrƒ“ƒO’†‚Ì‘ŠŽè‚É2”{ƒ_ƒ[ƒW
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			261ã€€ï¼’ã€œï¼•ã‚¿ãƒ¼ãƒ³ã®é–“ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸Žãˆã‚‹ã€‚ãã®é–“ã€ç›¸æ‰‹ã¯é€ƒã’ã‚‰ã‚Œãªã„ï¼‹ãƒ€ã‚¤ãƒ“ãƒ³ã‚°ä¸­ã®ç›¸æ‰‹ã«2å€ãƒ€ãƒ¡ãƒ¼ã‚¸
  *
  *@author	HisashiSogabe
  *@data		2006.01.19
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_261:
-	//ƒ_ƒCƒrƒ“ƒO‚ð‚µ‚Ä‚¢‚é‘ŠŽè‚É‚Í2”{ƒ_ƒ[ƒW‚ð—^‚¦‚é
+	//ãƒ€ã‚¤ãƒ“ãƒ³ã‚°ã‚’ã—ã¦ã„ã‚‹ç›¸æ‰‹ã«ã¯2å€ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸Žãˆã‚‹
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_DAIBINGU_HIT
 	VALUE			VAL_SET,BUF_PARA_DAMAGE_VALUE,10
 	IF_PSP			IF_FLAG_NBIT,SIDE_DEFENCE,ID_PSP_waza_kouka,WAZAKOUKA_DAIBINGU,BE_261_NEXT

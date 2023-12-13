@@ -13,10 +13,10 @@
 #
 # $Log: modulerules.emtype.ISD,v $
 # Revision 1.20  2005/06/22 00:49:14  yasu
-# ����N�x�C��
+# 著作年度修正
 #
 # Revision 1.19  2005/06/21 06:36:27  yasu
-# �g�p�c�[����؂�ւ��\�ɂ���
+# 使用ツールを切り替え可能にする
 #
 # Revision 1.18  2004/09/10 06:21:03  yasu
 # Fix make run
@@ -28,7 +28,7 @@
 # add TARGET_ROM
 #
 # Revision 1.15  2004/05/27 09:17:53  takano_makoto
-# autotest.log �̐؂�o�����@��ύX
+# autotest.log の切り出し方法を変更
 #
 # Revision 1.14  2004/03/30 07:39:39  yasu
 # set autotest log file limit to 30 lines

@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wldtimer_snd.h
- *	@brief		¢ŠEŽžŒv	‰¹
+ *	@brief		ä¸–ç•Œæ™‚è¨ˆ	éŸ³
  *	@author		tomoya takahashi
  *	@data		2007.09.28
  *
@@ -14,18 +14,18 @@
 
 #include "system/snd_tool.h"
 
-//#define WLDTIMER_SND_ZOMEIN			( SEQ_SE_PL_TIMER01 )		// ƒY[ƒ€ƒCƒ“
-#define WLDTIMER_SND_ZOMEIN				( SEQ_SE_PL_TIMER03 )		// ƒY[ƒ€ƒCƒ“
-//#define WLDTIMER_SND_ZOMEOUT			( SEQ_SE_PL_TIMER01 )		// ƒY[ƒ€ƒAƒEƒg
-#define WLDTIMER_SND_ZOMEOUT			( SEQ_SE_PL_TIMER03 )		// ƒY[ƒ€ƒAƒEƒg
+//#define WLDTIMER_SND_ZOMEIN			( SEQ_SE_PL_TIMER01 )		// ã‚ºãƒ¼ãƒ ã‚¤ãƒ³
+#define WLDTIMER_SND_ZOMEIN				( SEQ_SE_PL_TIMER03 )		// ã‚ºãƒ¼ãƒ ã‚¤ãƒ³
+//#define WLDTIMER_SND_ZOMEOUT			( SEQ_SE_PL_TIMER01 )		// ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ
+#define WLDTIMER_SND_ZOMEOUT			( SEQ_SE_PL_TIMER03 )		// ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ
 
-#define WLDTIMER_SND_XSELECT			( SEQ_SE_PL_TIMER04 )		// xƒZƒŒƒNƒg
+#define WLDTIMER_SND_XSELECT			( SEQ_SE_PL_TIMER04 )		// xã‚»ãƒ¬ã‚¯ãƒˆ
 
-#define WLDTIMER_SND_ENTER				( SEQ_SE_DP_DECIDE )		// ƒGƒ“ƒ^[
+#define WLDTIMER_SND_ENTER				( SEQ_SE_DP_DECIDE )		// ã‚¨ãƒ³ã‚¿ãƒ¼
 
-#define WLDTIMER_SND_BALLOON			( SEQ_SE_PL_TOKEI3 )		// •—‘D‚ª”ò‚ñ‚Å‚¢‚é‰¹(ƒ‹[ƒv‰¹)
+#define WLDTIMER_SND_BALLOON			( SEQ_SE_PL_TOKEI3 )		// é¢¨èˆ¹ãŒé£›ã‚“ã§ã„ã‚‹éŸ³(ãƒ«ãƒ¼ãƒ—éŸ³)
 
-#define WLDTIMER_SND_YAMERU				( SEQ_SE_DP_DECIDE )		// ‚â‚ß‚é‚ðƒ^ƒbƒ`ABƒLƒƒƒ“ƒZƒ‹
+#define WLDTIMER_SND_YAMERU				( SEQ_SE_DP_DECIDE )		// ã‚„ã‚ã‚‹ã‚’ã‚¿ãƒƒãƒã€Bã‚­ãƒ£ãƒ³ã‚»ãƒ«
 
 #endif		// __WLDTIMER_SND_H__
 

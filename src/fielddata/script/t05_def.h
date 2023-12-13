@@ -1,7 +1,7 @@
 #ifndef _T05_DEF_H_
 #define _T05_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T05_FLAG_CHANGE		(1)
 #define	SCRID_T05_OLDWOMAN		(2)
 #define	SCRID_POS_T05_OLDWOMAN		(3)
@@ -14,6 +14,6 @@
 #define	SCRID_T05_SIGN1		(10)
 #define	SCRID_T05_WALL_01		(11)
 #define	SCRID_T05_WALL_02		(12)
-#define	SCRID_T05_DATA_MAX		(12)		//最大数
+#define	SCRID_T05_DATA_MAX		(12)		//譛螟ｧ謨ｰ
 
 #endif //_T05_DEF_H_

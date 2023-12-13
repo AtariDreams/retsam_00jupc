@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_290.s
- *@brief	�퓬�V�[�P���X
- *			���΂ނŃA�C�e�����Ȃ������`�F�b�N�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			ついばむでアイテムをなくすかチェックシーケンス
  *@author	HisashiSogabe
  *@data		2006.07.27
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_290:
-	//���΂ނ���̔����́A�A�C�e�����Ȃ����������΂�
+	//ついばむからの発動は、アイテムをなくす処理を飛ばす
 	IF				IF_FLAG_BIT,BUF_PARA_OSTF_STATUS_FLAG_ATTACK,OSTF_STATUS_FLAG_TSUIBAMU,SUB_290_END
 	KILL_ITEM		SIDE_WORK
 SUB_290_END:

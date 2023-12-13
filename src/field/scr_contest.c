@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_contest.c
- * @bfief	�X�N���v�g�R�}���h�F�R���e�X�g�֘A
+ * @bfief	スクリプトコマンド：コンテスト関連
  * @author	Satoshi Nohara
  * @date	06.06.23
  */
@@ -28,7 +28,7 @@
 
 //============================================================================================
 //
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //
 //============================================================================================
 static BOOL EvWaitConSioTimingCheck(VM_MACHINE * core);
@@ -71,15 +71,15 @@ BOOL EvCmdConAcceNoGet( VM_MACHINE * core );
 
 //============================================================================================
 //
-//	�R�}���h
+//	コマンド
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���M
+ * 送信
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -95,9 +95,9 @@ BOOL EvCmdConSioTimingSend( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �����`�F�b�N
+ * 同期チェック
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -107,14 +107,14 @@ BOOL EvCmdConSioTimingCheck( VM_MACHINE * core )
 	void** pwork	= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_PWORK );
 	u16 timing_no	= VMGetWorkValue(core);
 
-	//���z�}�V���̔ėp���W�X�^�Ƀ��[�N��ID���i�[
+	//仮想マシンの汎用レジスタにワークのIDを格納
 	core->reg[0] = timing_no;
 
 	VM_SetWait( core, EvWaitConSioTimingCheck );
 	return 1;
 }
 
-//return 1 = �I��
+//return 1 = 終了
 static BOOL EvWaitConSioTimingCheck(VM_MACHINE * core)
 {
 	void** pwork		= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_PWORK );
@@ -123,9 +123,9 @@ static BOOL EvWaitConSioTimingCheck(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * �V�X�e�����[�N�쐬
+ * システムワーク作成
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -142,10 +142,10 @@ BOOL EvCmdConSystemCreate( VM_MACHINE * core )
 	u16 pos			= VMGetWorkValue(core);
 	CONTEST_INIT_DATA cid;
 	
-	//�|�P�����ւ̃|�C���^�擾
+	//ポケモンへのポインタ取得
 	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(core->fsys->savedata), pos );
 
-	//�����̖��O�擾
+	//自分の名前取得
 	buf	= MyStatus_CreateNameString( my, HEAPID_FIELD );
 
 	cid.type = type;
@@ -165,13 +165,13 @@ BOOL EvCmdConSystemCreate( VM_MACHINE * core )
 	
 	*pwork = Contest_SystemCreate(&cid);
 
-	//STRBUF�J��
+	//STRBUF開放
 	STRBUF_Delete( buf );
 
 #if 0
-	//�R���e�X�g�́A��t�}�b�v����A�I�[�v�j���O���}�b�v�֐؂�ւ��̂ŁA
-	//�X�N���v�g���I������ƁA�R���e�X�g�V�X�e���̃|�C���^���ێ��ł��Ȃ��̂ŁA
-	//�Z�[�u���[�N�ɕۑ����Ă���(�b��)
+	//コンテストは、受付マップから、オープニング会場マップへ切り替わるので、
+	//スクリプトを終了すると、コンテストシステムのポインタが保持できないので、
+	//セーブワークに保存している(暫定)
 	SysWork_ContestAdrsSet( core->fsys, *pwork );
 #endif
 
@@ -180,9 +180,9 @@ BOOL EvCmdConSystemCreate( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �V�X�e�����[�N�폜
+ * システムワーク削除
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -192,20 +192,20 @@ BOOL EvCmdConSystemExit( VM_MACHINE * core )
 #if 1
 	POKEMON_PARAM * poke;
 	void** pwork	= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_PWORK );
-	u16 pos			= VMGetWorkValue(core);	//�Q�������|�P�������莝���̉��Ԗڂ��擾
+	u16 pos			= VMGetWorkValue(core);	//参加したポケモンが手持ちの何番目か取得
 	u32 place_id = ZoneData_GetPlaceNameID(core->fsys->location->zone_id);
 
-	//�|�P�����ւ̃|�C���^�擾
+	//ポケモンへのポインタ取得
 //	poke = PokeParty_GetMemberPointer( SaveData_GetTemotiPokemon(core->fsys->savedata), pos );
 
-	//�e��p�����[�^�X�V
+	//各種パラメータ更新
 	ConScr_EndParamSet( *pwork, core->fsys->savedata, place_id, core->fsys->fnote );
 
 	Contest_SystemExit( *pwork );
 #else
-	//�R���e�X�g�́A��t�}�b�v����A�I�[�v�j���O���}�b�v�֐؂�ւ��̂ŁA
-	//�X�N���v�g���I������ƁA�R���e�X�g�V�X�e���̃|�C���^���ێ��ł��Ȃ��̂ŁA
-	//�Z�[�u���[�N�ɕۑ����Ă���(�b��)
+	//コンテストは、受付マップから、オープニング会場マップへ切り替わるので、
+	//スクリプトを終了すると、コンテストシステムのポインタが保持できないので、
+	//セーブワークに保存している(暫定)
 	Contest_SystemExit( SysWork_ContestAdrsGet(core->fsys) );
 #endif
 	return 0;
@@ -213,9 +213,9 @@ BOOL EvCmdConSystemExit( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �R�����擾
+ * 審判名取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -237,9 +237,9 @@ BOOL EvCmdConJudgeNameGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �u���[�_�[���擾
+ * ブリーダー名取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -261,9 +261,9 @@ BOOL EvCmdConBreederNameGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �j�b�N�l�[���擾
+ * ニックネーム取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -285,9 +285,9 @@ BOOL EvCmdConNickNameGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���l���^�O�Z�b�g
+ * 数値をタグセット
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -306,9 +306,9 @@ BOOL EvCmdConNumTagSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �ʐM�p�Ƀ��[�N�̏����ݒ�ƍŏ��̒ʐM���s���^�X�N�𐶐�
+ * 通信用にワークの初期設定と最初の通信を行うタスクを生成
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -321,7 +321,7 @@ BOOL EvCmdConSioParamInitSet( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = �I��
+//return 1 = 終了
 static BOOL EvWaitConSioParamInitSet(VM_MACHINE * core)
 {
 	void** pwork		= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_PWORK );
@@ -334,9 +334,9 @@ static BOOL EvWaitConSioParamInitSet(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * �R���e�X�g�Ăяo��
+ * コンテスト呼び出し
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -345,9 +345,9 @@ BOOL EvCmdContestProc( VM_MACHINE * core )
 {
 	void** pwork = GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_PWORK );
 #if 1
-	EventCmd_ContestProc( core->event_work, *pwork );	//�C�x���g�؂�ւ�
+	EventCmd_ContestProc( core->event_work, *pwork );	//イベント切り替え
 #else
-	EventCmd_ContestProc( core->event_work, SysWork_ContestAdrsGet(core->fsys) );//�C�x���g�؂�ւ�
+	EventCmd_ContestProc( core->event_work, SysWork_ContestAdrsGet(core->fsys) );//イベント切り替え
 #endif
 	//VM_SetWait( core, EvCmdWaitSubProcEnd );
 	return 1;
@@ -355,9 +355,9 @@ BOOL EvCmdContestProc( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �����N���擾
+ * ランク名取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -378,9 +378,9 @@ BOOL EvCmdConRankNameGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �^�C�v���擾
+ * タイプ名取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -401,9 +401,9 @@ BOOL EvCmdConTypeNameGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �D���Җ��擾
+ * 優勝者名取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -424,9 +424,9 @@ BOOL EvCmdConVictoryBreederNameGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �D�����i�i���o�[�擾
+ * 優勝商品ナンバー取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -446,9 +446,9 @@ BOOL EvCmdConVictoryItemNoGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �D�������u���[�_�[�̃|�P�����j�b�N�l�[�����擾
+ * 優勝したブリーダーのポケモンニックネームを取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -465,13 +465,13 @@ BOOL EvCmdConVictoryNickNameGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���Q�����Ă����R���e�X�g�Ŏ��������ʂ����������擾
+ * 今参加していたコンテストで自分が何位だったかを取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  *
- * @li	����(0�I���W���ł��B 0=1�ʁA1=2�ʁA2=3�ʁA3=4��)
+ * @li	順位(0オリジンです。 0=1位、1=2位、2=3位、3=4位)
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdConRankingCheck( VM_MACHINE * core )
@@ -485,9 +485,9 @@ BOOL EvCmdConRankingCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �D�������u���[�_�[�̃G���g���[�ԍ����擾����
+ * 優勝したブリーダーのエントリー番号を取得する
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -504,9 +504,9 @@ BOOL EvCmdConVictoryEntryNoGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �����̃G���g���[�ԍ����擾
+ * 自分のエントリー番号を取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -522,9 +522,9 @@ BOOL EvCmdConMyEntryNoGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJ�R�[�h���擾
+ * OBJコードを取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -541,9 +541,9 @@ BOOL EvCmdConObjCodeGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �l�C���擾
+ * 人気を取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -560,9 +560,9 @@ BOOL EvCmdConPopularityGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ��t�i���o�[(�V���O��DESK_SINGLE�A�}���`DESK_MULTI, ���KDESK_PRACTICE)���擾
+ * 受付ナンバー(シングルDESK_SINGLE、マルチDESK_MULTI, 練習DESK_PRACTICE)を取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -578,9 +578,9 @@ BOOL EvCmdConDeskModeGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �R���e�X�g�V�X�e�����[�N���烉���N�⃂�[�h�Ȃǂ��擾����
+ * コンテストシステムワークからランクやモードなどを取得する
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -599,13 +599,13 @@ BOOL EvCmdConEntryParamGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �Q�����Ă���R���e�X�g�ŗD���������ɖႦ�郊�{�������Ɏ����Ă��邩�`�F�b�N
+ * 参加しているコンテストで優勝した時に貰えるリボンを既に持っているかチェック
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  *
- * TRUE:���Ɏ����Ă���(�D���o���ς�)�B�@FALSE:�����Ă��Ȃ�
+ * TRUE:既に持っている(優勝経験済み)。　FALSE:持っていない
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdConHaveRibbonCheck( VM_MACHINE * core )
@@ -619,13 +619,13 @@ BOOL EvCmdConHaveRibbonCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �Q�����Ă���R���e�X�g�ŗD���������ɖႦ�郊�{���̖��O���擾
+ * 参加しているコンテストで優勝した時に貰えるリボンの名前を取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  *
- * TRUE:���Ɏ����Ă���(�D���o���ς�)�B�@FALSE:�����Ă��Ȃ�
+ * TRUE:既に持っている(優勝経験済み)。　FALSE:持っていない
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdConRibbonNameGet( VM_MACHINE * core )
@@ -640,13 +640,13 @@ BOOL EvCmdConRibbonNameGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ��t�ŖႦ��A�N�Z�T���ԍ����擾
+ * 受付で貰えるアクセサリ番号を取得
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  *
- * ret_wk = �A�N�Z�T���ԍ��B���D�����Ă��Ȃ� or ���Ɍ��E���܂ŏ������Ă���ꍇ��0xffff
+ * ret_wk = アクセサリ番号。※優勝していない or 既に限界数まで所持している場合は0xffff
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdConAcceNoGet( VM_MACHINE * core )
@@ -660,9 +660,9 @@ BOOL EvCmdConAcceNoGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �R���e�X�g�̃��b�Z�[�W����ݒ���s��
+ * コンテストのメッセージ送り設定を行う
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -677,9 +677,9 @@ BOOL EvCmdConMsgPrintFlagSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �R���e�X�g�̃��b�Z�[�W����ݒ�����Z�b�g����
+ * コンテストのメッセージ送り設定をリセットする
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -694,9 +694,9 @@ BOOL EvCmdConMsgPrintFlagReset( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �J�����̃t���b�V���G�t�F�N�g�^�X�N�𐶐�����
+ * カメラのフラッシュエフェクトタスクを生成する
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -712,9 +712,9 @@ BOOL EvCmdConCameraFlashSet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �J�����̃t���b�V���G�t�F�N�g���I�����Ă��邩�m�F
+ * カメラのフラッシュエフェクトが終了しているか確認
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */
@@ -727,7 +727,7 @@ BOOL EvCmdConCameraFlashCheck( VM_MACHINE * core )
 	return 1;
 }
 
-//return 1 = �I��
+//return 1 = 終了
 static BOOL EvWaitConCameraFlashCheck(VM_MACHINE * core)
 {
 	void** pwork		= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_PWORK );
@@ -740,9 +740,9 @@ static BOOL EvWaitConCameraFlashCheck(VM_MACHINE * core)
 
 //--------------------------------------------------------------------------------------------
 /**
- * �t�B�[���h��H�u�����N���~����
+ * フィールドのHブランクを停止する
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -755,9 +755,9 @@ BOOL EvCmdConHBlankStop( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * EvCmdConHBlankStop�Œ�~�������t�B�[���h��H�u�����N���ĊJ������
+ * EvCmdConHBlankStopで停止させたフィールドのHブランクを再開させる
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  */
@@ -770,14 +770,14 @@ BOOL EvCmdConHBlankStart( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * CPU���D���������A���͒ʐM�ΐ�̎��̓G���f�B���O�̈ꕔ���X�L�b�v����
+ * CPUが優勝した時、又は通信対戦の時はエンディングの一部をスキップする
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"0"
  *
- * ret_wk�F1�ACPU���D��or�ʐM�ΐ�
- * ret_wk�F0�A�ǂ���̏������������Ȃ�����
+ * ret_wk：1、CPUが優勝or通信対戦
+ * ret_wk：0、どちらの条件も満たさなかった
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdConEndingSkipCheck( VM_MACHINE * core )
@@ -798,9 +798,9 @@ BOOL EvCmdConEndingSkipCheck( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �R���e�X�g�ʐM�ΐ퐬�щ�ʌĂяo��
+ * コンテスト通信対戦成績画面呼び出し
  *
- * @param	core		���z�}�V������\���̂ւ̃|�C���^
+ * @param	core		仮想マシン制御構造体へのポインタ
  *
  * @return	"1"
  */

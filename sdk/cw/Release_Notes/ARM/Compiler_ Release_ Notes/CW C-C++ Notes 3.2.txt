@@ -541,7 +541,7 @@ used for the following feature:
 	-- Wide string literals in the form L"xxx" and wide characters in the
 	form L'xxx' are interpreted in the context of the source text encoding.
 
-		const wchar_t *str = L"Meine Katze ißt Mäuse nachts.";
+		const wchar_t *str = L"Meine Katze iç†¹ Mèˆ«se nachts.";
 
 	The actual bytes emitted into the object file depend upon the
 	width of the string (or character) used in the program.  Narrow
@@ -557,7 +557,7 @@ used for the following feature:
 	
 	The width of a string is determined at the time a C/C++ token is
 	generated, so a wide literal constructed through a macro (#define
-	LSTR(s) L##s / LSTR("ißt")) will use the UCS-2/4 encoding.
+	LSTR(s) L##s / LSTR("iã‚œt")) will use the UCS-2/4 encoding.
 
 	For backwards compatibility, if you want to prevent the compiler
 	from interpreting characters as multibyte sequences, be sure the
@@ -586,7 +586,7 @@ used for the following feature:
 	-- Preprocessed text is always emitted in ASCII.  Wide characters are
 	emitted in the \uXXXX or \UXXXXXXXX format.
 
-		extern string *Wörter[]; 
+		extern string *Wî’šter[]; 
 
 		-->
 
@@ -650,7 +650,7 @@ used for the following feature:
 
 	system US-ASCII ASCII ANSI_X3.4-1968 ANSI_X3.4-1968 ANSI_X3.4
 	UTF-8 UTF8 ISO-2022-JP CSISO2022JP ISO2022JP CSSHIFTJIS SHIFT-JIS
-	SHIFT_JIS SJIS EUC-JP EUCJP UCS-2 UCS-2BE UCS-2LE UCS2 UCS2BE
+	UTF-8 SJIS EUC-JP EUCJP UCS-2 UCS-2BE UCS-2LE UCS2 UCS2BE
 	UCS2LE UTF-16 UTF-16BE UTF-16LE UTF16 UTF16BE UTF16LE UCS-4
 	UCS-4BE UCS-4LE UCS4 UCS4BE UCS4LE 10646-1:1993 ISO-10646-1 ISO-10646
 	unicode

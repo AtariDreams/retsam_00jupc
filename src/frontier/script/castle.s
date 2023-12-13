@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	castle.s
- * @brief	uƒLƒƒƒbƒXƒ‹T‚¦Žºvƒtƒƒ“ƒeƒBƒAƒXƒNƒŠƒvƒg
+ * @brief	ã€Œã‚­ãƒ£ãƒƒã‚¹ãƒ«æŽ§ãˆå®¤ã€ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
  * @author	nohara
  * @date	2007.07.04
  */
@@ -21,54 +21,54 @@
 	.include	"../../particledata/pl_frontier/frontier_particle_lst.h"	//EMIT
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //
-//	FSW_PARAM0	‹L˜^ŒvŽZ—p
-//	FSW_PARAM1	ƒŠƒXƒg—p
-//	FSW_PARAM2	“GƒgƒŒ[ƒi[1‚ÌOBJƒR[ƒh
-//	FSW_PARAM3	“GƒgƒŒ[ƒi[2‚ÌOBJƒR[ƒh
-//	FSW_PARAM4	Žæ“¾‚µ‚½CP‚Ì’l
-//	FSW_PARAM5	‰‰ñ‚©”»•Ê
-//	FSW_PARAM6	—U“±ˆõ‚ÌOBJƒR[ƒh
+//	FSW_PARAM0	è¨˜éŒ²è¨ˆç®—ç”¨
+//	FSW_PARAM1	ãƒªã‚¹ãƒˆç”¨
+//	FSW_PARAM2	æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼1ã®OBJã‚³ãƒ¼ãƒ‰
+//	FSW_PARAM3	æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼2ã®OBJã‚³ãƒ¼ãƒ‰
+//	FSW_PARAM4	å–å¾—ã—ãŸCPã®å€¤
+//	FSW_PARAM5	åˆå›žã‹åˆ¤åˆ¥
+//	FSW_PARAM6	èª˜å°Žå“¡ã®OBJã‚³ãƒ¼ãƒ‰
 //
-//	FSW_LOCAL1	ƒ^ƒCƒv
-//	FSW_LOCAL2	’ÊM’è‹`
-//	FSW_LOCAL3	‹L˜^‚µ‚½‚©
-//	FSW_LOCAL4	•Û‘¶‚È‚µ
-//	FSW_LOCAL5	‘Îí‚©ƒpƒX‚©”»•Ê
-//	FSW_LOCAL6	•Û‘¶‚È‚µ
-//	FSW_LOCAL7	Ž©•ª‚ÌŒ©‚½–Ú
+//	FSW_LOCAL1	ã‚¿ã‚¤ãƒ—
+//	FSW_LOCAL2	é€šä¿¡å®šç¾©
+//	FSW_LOCAL3	è¨˜éŒ²ã—ãŸã‹
+//	FSW_LOCAL4	ä¿å­˜ãªã—
+//	FSW_LOCAL5	å¯¾æˆ¦ã‹ãƒ‘ã‚¹ã‹åˆ¤åˆ¥
+//	FSW_LOCAL6	ä¿å­˜ãªã—
+//	FSW_LOCAL7	è‡ªåˆ†ã®è¦‹ãŸç›®
 //
 //--------------------------------------------------------------------
-_EVENT_DATA		fss_castle_start	//ˆê”Ôã‚ÌEVENT_DATA‚ÍŽ©“®ŽÀs
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA		fss_castle_start	//ä¸€ç•ªä¸Šã®EVENT_DATAã¯è‡ªå‹•å®Ÿè¡Œ
+_EVENT_DATA_END						//çµ‚äº†
 
 //--------------------------------------------------------------------
-//					     ƒfƒoƒbƒN’è‹`
+//					     ãƒ‡ãƒãƒƒã‚¯å®šç¾©
 //--------------------------------------------------------------------
-//#define DEBUG_BTL_OFF				//ƒoƒgƒ‹ƒIƒtƒfƒoƒbƒN
-//#define DEBUG_BTL_LOSE_OFF			//ƒoƒgƒ‹”s–kƒIƒtƒfƒoƒbƒN
-//#define DEBUG_7BTL_OFF				//ƒoƒgƒ‹7‰ñƒIƒtƒfƒoƒbƒN
+//#define DEBUG_BTL_OFF				//ãƒãƒˆãƒ«ã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
+//#define DEBUG_BTL_LOSE_OFF			//ãƒãƒˆãƒ«æ•—åŒ—ã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
+//#define DEBUG_7BTL_OFF				//ãƒãƒˆãƒ«7å›žã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
 
 //--------------------------------------------------------------------
-//							’è‹`
+//							å®šç¾©
 //--------------------------------------------------------------------
-#define CASTLE_PASS_LAP_NUM		(3)	//‚Ê‚¯‚Ý‚¿‚ª“oê‚·‚éŽü‰ñ”
+#define CASTLE_PASS_LAP_NUM		(3)	//ã¬ã‘ã¿ã¡ãŒç™»å ´ã™ã‚‹å‘¨å›žæ•°
 
 
 /********************************************************************/
 //
-//		SCENE_CASTLE:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//		SCENE_CASTLE:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //
 /********************************************************************/
 _RESOURCE_LABEL	default_set_resource
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		BRAINS3,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 _RESOURCE_LABEL	default_set_resource_multi
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
-	_SIO_PLAYER_RESOURCE_DATA	//’ÊMƒvƒŒƒCƒ„[‘Sˆõ‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
+	_SIO_PLAYER_RESOURCE_DATA	//é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¨å“¡ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		BRAINS3,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
@@ -77,7 +77,7 @@ _RESOURCE_LABEL	pcwoman2_set_resource
 	_CHAR_RESOURCE_DATA_END
 
 //====================================================================
-//	SCENE_CASTLE:ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENE_CASTLE:ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //====================================================================
 #define OBJID_PLAYER				(0)
 #define OBJID_SIO_USER_0			(1)
@@ -85,16 +85,16 @@ _RESOURCE_LABEL	pcwoman2_set_resource
 #define OBJID_BRAIN3_INFO			(3)
 #define OBJID_MINE					(4)
 #define OBJID_PRINCESS				(5)
-#define OBJID_BRAIN3_BTL_ROOM		(6)			/*CP‚ð“n‚·‰‰o—p*/
+#define OBJID_BRAIN3_BTL_ROOM		(6)			/*CPã‚’æ¸¡ã™æ¼”å‡ºç”¨*/
 #define OBJID_PCWOMAN2				(7)
 #define OBJID_ETC					(98)
 #define OBJID_ETC2					(99)
 
-//ƒXƒNƒŠƒvƒgID(¡Œã‘Î‰ž—\’è)
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID(ä»Šå¾Œå¯¾å¿œäºˆå®š)
 #define EVENTID_TEST_SCR_OBJ1		(1)
 
 _ACTOR_LABEL	default_set_actor
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_LEFT,8*34,8*14,OFF/*Ž©•ªŽ©g‚ÌƒAƒNƒ^ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_LEFT,8*34,8*14,OFF/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ã‚»ãƒƒãƒˆ*/
 	_ACTOR_DATA				OBJID_BRAIN3_INFO,BRAINS3,WF2DMAP_WAY_C_RIGHT, \
 							8*26,8*14,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_MINE,FSW_LOCAL7,WF2DMAP_WAY_C_LEFT, \
@@ -102,7 +102,7 @@ _ACTOR_LABEL	default_set_actor
 	_ACTOR_DATA_END
 
 _ACTOR_LABEL	default_set_actor_multi
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*34,8*14,OFF	/*Ž©•ªŽ©g‚ÌƒAƒNƒ^ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*34,8*14,OFF	/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ã‚»ãƒƒãƒˆ*/
 	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_LEFT,8*34,8*14,ON
 	_SIO_PLAYER_ACTOR_DATA	1,OBJID_SIO_USER_1,WF2DMAP_WAY_C_LEFT,8*34,8*16,ON
 	_ACTOR_DATA				OBJID_BRAIN3_INFO,BRAINS3,WF2DMAP_WAY_C_RIGHT, \
@@ -114,9 +114,9 @@ _ACTOR_LABEL	pcwoman2_set_actor
 							8*34,8*12,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA_END
 
-//í“¬Œã‚É–ß‚Á‚Ä‚«‚½Žž
+//æˆ¦é—˜å¾Œã«æˆ»ã£ã¦ããŸæ™‚
 _ACTOR_LABEL	btl_after_set_actor
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_LEFT,8*28,8*14,OFF/*Ž©•ªŽ©g‚ÌƒAƒNƒ^ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_LEFT,8*28,8*14,OFF/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ã‚»ãƒƒãƒˆ*/
 	_ACTOR_DATA				OBJID_BRAIN3_INFO,BRAINS3,WF2DMAP_WAY_C_RIGHT, \
 							8*26,8*14,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_MINE,FSW_LOCAL7,WF2DMAP_WAY_C_LEFT, \
@@ -124,7 +124,7 @@ _ACTOR_LABEL	btl_after_set_actor
 	_ACTOR_DATA_END
 
 _ACTOR_LABEL	btl_after_set_actor_multi
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_LEFT,8*28,8*14,OFF/*Ž©•ªŽ©g‚ÌƒAƒNƒ^ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_LEFT,8*28,8*14,OFF/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ã‚»ãƒƒãƒˆ*/
 	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_LEFT,8*28,8*14,ON
 	_SIO_PLAYER_ACTOR_DATA	1,OBJID_SIO_USER_1,WF2DMAP_WAY_C_LEFT,8*28,8*16,ON
 	_ACTOR_DATA				OBJID_BRAIN3_INFO,BRAINS3,WF2DMAP_WAY_C_RIGHT, \
@@ -133,18 +133,18 @@ _ACTOR_LABEL	btl_after_set_actor_multi
 
 /********************************************************************/
 //
-//	SCENE_CASTLE_BTL:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//	SCENE_CASTLE_BTL:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //
 /********************************************************************/
 _RESOURCE_LABEL	default_scene2_resource
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		FSW_LOCAL7, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA		PRINCESS,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 _RESOURCE_LABEL	default_scene2_resource_multi
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
-	_SIO_PLAYER_RESOURCE_DATA	//’ÊMƒvƒŒƒCƒ„[‘Sˆõ‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
+	_SIO_PLAYER_RESOURCE_DATA	//é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¨å“¡ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		FSW_LOCAL7, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA		PRINCESS,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
@@ -154,12 +154,12 @@ _RESOURCE_LABEL	brain_set_resource
 	_CHAR_RESOURCE_DATA_END
 
 //====================================================================
-//	SCENE_CASTLE_BTL:ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENE_CASTLE_BTL:ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //====================================================================
 #define PLAYER_Y					(8*28)
 
 _ACTOR_LABEL	default_scene2_actor
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*18,OFF	//Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*18,OFF	//è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
 	_ACTOR_DATA				OBJID_MINE,FSW_LOCAL7,WF2DMAP_WAY_C_UP, \
 							8*16,PLAYER_Y,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_PRINCESS,PRINCESS,WF2DMAP_WAY_C_DOWN, \
@@ -167,15 +167,15 @@ _ACTOR_LABEL	default_scene2_actor
 	_ACTOR_DATA_END
 
 _ACTOR_LABEL	default_scene2_actor_multi
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*18,OFF	//Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg
-	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_UP,8*16,PLAYER_Y,ON	/*æ“ª*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*18,OFF	//è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_UP,8*16,PLAYER_Y,ON	/*å…ˆé ­*/
 	_SIO_PLAYER_ACTOR_DATA	1,OBJID_SIO_USER_1,WF2DMAP_WAY_C_UP,8*16,PLAYER_Y,ON
 	_ACTOR_DATA				OBJID_PRINCESS,PRINCESS,WF2DMAP_WAY_C_DOWN, \
 							8*16,8*4,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA_END
 
 //--------------------------------------------------------------------
-//	ó‹µ‚É‚æ‚Á‚Ä•Ï‚¦‚éƒŠƒ\[ƒX
+//	çŠ¶æ³ã«ã‚ˆã£ã¦å¤‰ãˆã‚‹ãƒªã‚½ãƒ¼ã‚¹
 // LOCAL0 = OBJCODE
 //--------------------------------------------------------------------
 _RESOURCE_LABEL	etc_set_resource
@@ -187,7 +187,7 @@ _RESOURCE_LABEL	etc_set_resource2
 	_CHAR_RESOURCE_DATA_END
 
 //--------------------------------------------------------------------
-//	ó‹µ‚É‚æ‚Á‚Ä•Ï‚¦‚éƒAƒNƒ^[
+//	çŠ¶æ³ã«ã‚ˆã£ã¦å¤‰ãˆã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
 // LOCAL0 = OBJCODE
 //--------------------------------------------------------------------
 #define ETC_Y		(8*12)		//(8*13+4)
@@ -199,13 +199,13 @@ _ACTOR_LABEL	etc_set_actor
 
 _ACTOR_LABEL	etc_set_actor2
 	_ACTOR_DATA			OBJID_ETC,FSW_PARAM2,WF2DMAP_WAY_C_DOWN, \
-							8*16,ETC_Y,ON,EVENTID_TEST_SCR_OBJ1				//æ“ª
+							8*16,ETC_Y,ON,EVENTID_TEST_SCR_OBJ1				//å…ˆé ­
 	_ACTOR_DATA			OBJID_ETC2,FSW_PARAM3,WF2DMAP_WAY_C_DOWN, \
 							8*16,ETC_Y,OFF,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA_END
 
 //--------------------------------------------------------------------
-//	Œã‚©‚ç’Ç‰Á‚·‚éƒAƒNƒ^[
+//	å¾Œã‹ã‚‰è¿½åŠ ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
 // LOCAL0 = OBJCODE
 //--------------------------------------------------------------------
 #define BRAIN_Y		(8*26)		//(8*24-4)
@@ -218,31 +218,31 @@ _ACTOR_LABEL	brain_set_actor
 
 /********************************************************************/
 //
-//	SCENE_CASTLE_BYPATH:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//	SCENE_CASTLE_BYPATH:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //
 /********************************************************************/
 _RESOURCE_LABEL	default_scene3_resource
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		FSW_LOCAL7, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 _RESOURCE_LABEL	default_scene3_resource_multi
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
-	_SIO_PLAYER_RESOURCE_DATA	//’ÊMƒvƒŒƒCƒ„[‘Sˆõ‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
+	_SIO_PLAYER_RESOURCE_DATA	//é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¨å“¡ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		FSW_LOCAL7, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 //====================================================================
-//	SCENE_CASTLE_BYPATH:ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENE_CASTLE_BYPATH:ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //====================================================================
 _ACTOR_LABEL	default_scene3_actor
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	/*Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	_ACTOR_DATA				OBJID_MINE,FSW_LOCAL7,WF2DMAP_WAY_C_UP, \
 							8*6,8*24,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA_END
 
 _ACTOR_LABEL	default_scene3_actor_multi
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	/*Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*14,OFF	/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_UP,8*6,8*24,ON
 	_SIO_PLAYER_ACTOR_DATA	1,OBJID_SIO_USER_1,WF2DMAP_WAY_C_UP,8*8,8*24,ON
 	_ACTOR_DATA_END
@@ -250,12 +250,12 @@ _ACTOR_LABEL	default_scene3_actor_multi
 
 /********************************************************************/
 //
-//					ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+//					ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 //
 /********************************************************************/
 
 //--------------------------------------------------------------------
-//Ž·Ž–‘O‚Ü‚ÅˆÚ“®
+//åŸ·äº‹å‰ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_center
 	_ANIME_DATA	FC_WALK_L_8F,3
@@ -266,7 +266,7 @@ _ANIME_LABEL anm_player_go_center_multi
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//Œ©‘—‚é
+//è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_pcwoman2_go_center
 	_ANIME_DATA	FC_WAIT_8F,1
@@ -281,7 +281,7 @@ _ANIME_LABEL anm_pcwoman2_go_center
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒoƒgƒ‹ƒ‹[ƒ€‚ÖˆÚ“®
+//ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã¸ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_btl_room
 	_ANIME_DATA	FC_WAIT_8F,2
@@ -296,7 +296,7 @@ _ANIME_LABEL anm_player_go_btl_room_multi
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//”²‚¯“¹‚ÖˆÚ“®
+//æŠœã‘é“ã¸ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_nukemiti_room
 	_ANIME_DATA	FC_WAIT_8F,2
@@ -320,14 +320,14 @@ _ANIME_LABEL anm_man_go_nukemiti_room
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//˜b‚·“®ì
+//è©±ã™å‹•ä½œ
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_stay_walk_left
 	_ANIME_DATA	FC_STAY_WALK_L_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒoƒgƒ‹ƒ‹[ƒ€‚Ì’†‰›‚Ü‚ÅˆÚ“®
+//ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã®ä¸­å¤®ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_scroll_go_btl_center
 	_ANIME_DATA	FC_WALK_U_8F,2
@@ -357,7 +357,7 @@ _ANIME_LABEL anm_player_go_btl_center_multi
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//”²‚¯“¹‚ð”²‚¯‚é
+//æŠœã‘é“ã‚’æŠœã‘ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_nukemiti_center
 	_ANIME_DATA	FC_WALK_U_8F,4
@@ -374,7 +374,7 @@ _ANIME_LABEL anm_player_go_nukemiti_center_multi
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//“GƒgƒŒ[ƒi[‚ªƒoƒgƒ‹ƒ‹[ƒ€‚Ì’†‰›‚Ü‚ÅˆÚ“®
+//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã®ä¸­å¤®ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL etc_anime_room_in
 	_ANIME_DATA	FC_WALK_D_8F,1
@@ -399,7 +399,7 @@ _ANIME_LABEL etc_anime_room_in_multi
 	_ANIME_DATA	FC_STAY_WALK_L_8F,1
 	_ANIME_DATA_END
 
-/*ƒuƒŒ[ƒ“”ñ•\Ž¦‚Å’èˆÊ’u‚Ö*/
+/*ãƒ–ãƒ¬ãƒ¼ãƒ³éžè¡¨ç¤ºã§å®šä½ç½®ã¸*/
 _ANIME_LABEL etc_anime_room_in_brain
 	//_ANIME_DATA	FC_SYSCMD_VISIBLE_OFF,1
 	_ANIME_DATA	FC_WALK_D_8F,1
@@ -408,13 +408,13 @@ _ANIME_LABEL etc_anime_room_in_brain
 	_ANIME_DATA	FC_STAY_WALK_L_8F,1
 	_ANIME_DATA_END
 
-/*ƒuƒŒ[ƒ“•\Ž¦*/
+/*ãƒ–ãƒ¬ãƒ¼ãƒ³è¡¨ç¤º*/
 _ANIME_LABEL etc_anime_room_in_brain_02
 	_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//“GƒgƒŒ[ƒi[‚ªƒoƒgƒ‹ƒ‹[ƒ€‚©‚ço‚Äs‚­
+//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã‹ã‚‰å‡ºã¦è¡Œã
 //--------------------------------------------------------------------
 _ANIME_LABEL etc_anime_go_out
 	_ANIME_DATA	FC_WALK_U_8F,2
@@ -442,7 +442,7 @@ _ANIME_LABEL etc_anime_go_out_brain
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒuƒŒ[ƒ“‚ªƒoƒgƒ‹ƒ‹[ƒ€‚Ì’†‰›‚Ü‚ÅˆÚ“®
+//ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã®ä¸­å¤®ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL brain_anime_room_in
 	_ANIME_DATA	FC_WALK_U_8F,4
@@ -450,7 +450,7 @@ _ANIME_LABEL brain_anime_room_in
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒuƒŒ[ƒ“‚ªƒoƒgƒ‹ƒ‹[ƒ€‚©‚ço‚Äs‚­
+//ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã‹ã‚‰å‡ºã¦è¡Œã
 //--------------------------------------------------------------------
 _ANIME_LABEL brain_anime_go_out
 	_ANIME_DATA	FC_WALK_R_8F,1
@@ -458,7 +458,7 @@ _ANIME_LABEL brain_anime_go_out
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒvƒŠƒ“ƒZƒX	˜b‚·
+//ãƒ—ãƒªãƒ³ã‚»ã‚¹	è©±ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL princess_anime_talk
 	_ANIME_DATA	FC_STAY_WALK_D_8F,1
@@ -467,45 +467,45 @@ _ANIME_LABEL princess_anime_talk
 
 /********************************************************************/
 //
-//						ƒŒƒ“ƒ^ƒ‹`‘Îí`ŒðŠ·
+//						ãƒ¬ãƒ³ã‚¿ãƒ«ã€œå¯¾æˆ¦ã€œäº¤æ›
 //
 /********************************************************************/
 fss_castle_start:
 	//_EVENT_START
 
-	/*lobby‚Å‘I‘ð‚µ‚½ƒ^ƒCƒv‚ÆƒŒƒxƒ‹‚ª•K—v*/
+	/*lobbyã§é¸æŠžã—ãŸã‚¿ã‚¤ãƒ—ã¨ãƒ¬ãƒ™ãƒ«ãŒå¿…è¦*/
 	_SAVE_EVENT_WORK_GET	WK_SCENE_CASTLE_TYPE,FSW_LOCAL1	/*type*/
 	_SAVE_EVENT_WORK_GET	LOCALWORK3,FSW_LOCAL3				/*init*/
 	_SAVE_EVENT_WORK_GET	LOCALWORK2,FSW_LOCAL4				/*pos1*/
 	_SAVE_EVENT_WORK_GET	LOCALWORK5,FSW_LOCAL5				/*pos2*/
 	_SAVE_EVENT_WORK_GET	LOCALWORK6,FSW_LOCAL6				/*pos3*/
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	_GET_MINE_OBJ		FSW_LOCAL7
 
-	/*‰‰ñƒtƒ‰ƒO*/
+	/*åˆå›žãƒ•ãƒ©ã‚°*/
 	_LDVAL				FSW_PARAM5,0
 
-	/*‚±‚±‚Å‚Í‚Ü‚¾ƒ[ƒN‚ªŠm•Û‚³‚ê‚Ä‚¢‚È‚¢*/
+	/*ã“ã“ã§ã¯ã¾ã ãƒ¯ãƒ¼ã‚¯ãŒç¢ºä¿ã•ã‚Œã¦ã„ãªã„*/
 	//_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	//_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_start_multi
 	_IFVAL_JUMP			FSW_LOCAL1,EQ,CASTLE_TYPE_MULTI,ev_castle_start_multi
 	_IFVAL_JUMP			FSW_LOCAL1,EQ,CASTLE_TYPE_WIFI_MULTI,ev_castle_start_multi
 
 	_LDVAL				FSW_PARAM6,BFSM
-	_CHAR_RESOURCE_SET	default_set_resource		/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_set_actor			/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_set_resource		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_set_actor			/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_JUMP				ev_castle_start_data_set
 	_END
 
 ev_castle_start_multi:
 
-	/*Ÿ”s‚ÉŠÖŒW‚È‚­’ÊMƒtƒƒ“ƒeƒBƒA‚É’§í(’ÊM‚Í’†’f‚ª‚È‚¢‚Ì‚Åæ“ª‚Åˆ—‚µ‚Ä‚à‘åä•v)*/
+	/*å‹æ•—ã«é–¢ä¿‚ãªãé€šä¿¡ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã«æŒ‘æˆ¦(é€šä¿¡ã¯ä¸­æ–­ãŒãªã„ã®ã§å…ˆé ­ã§å‡¦ç†ã—ã¦ã‚‚å¤§ä¸ˆå¤«)*/
 	_SCORE_ADD			SCORE_ID_FRONTIER_COMM
 
 	_LDVAL				FSW_PARAM6,BFSW1
-	_CHAR_RESOURCE_SET	default_set_resource_multi	/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_set_actor_multi		/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_set_resource_multi	/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_set_actor_multi		/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_JUMP				ev_castle_start_data_set
 	_END
 
@@ -514,25 +514,25 @@ ev_castle_start_multi:
 //
 /********************************************************************/
 ev_castle_start_data_set:
-	_CHAR_RESOURCE_SET	pcwoman2_set_resource		/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			pcwoman2_set_actor			/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	pcwoman2_set_resource		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			pcwoman2_set_actor			/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ƒ[ƒNŠm•Û*/
+	/*ãƒ¯ãƒ¼ã‚¯ç¢ºä¿*/
 	_BATTLE_REC_INIT
 	_CASTLE_WORK_ALLOC	FSW_LOCAL3,FSW_LOCAL1,FSW_LOCAL4,FSW_LOCAL5,FSW_LOCAL6,FSW_ANSWER
 
-	/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_multi_comm_basic
 
 	_JUMP				ev_castle_start_2
 	_END
 
-/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 ev_castle_multi_comm_basic:
 	_CALL				ev_castle_comm_command_initialize_1
 
@@ -540,7 +540,7 @@ ev_castle_multi_comm_basic:
 //	_END
 	_CALL				ev_castle_multi_comm_basic_call
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_BASIC_AFTER
 	_COMM_RESET
@@ -551,7 +551,7 @@ ev_castle_multi_comm_basic:
 ev_castle_multi_comm_basic_retry:
 	_LDVAL				FSW_LOCAL2,CASTLE_COMM_BASIC
 	_CASTLE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_multi_comm_basic_retry	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_multi_comm_basic_retry	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_CASTLE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
@@ -562,7 +562,7 @@ ev_castle_multi_comm_basic_retry:
 /********************************************************************/
 //
 /********************************************************************/
-/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 ev_castle_multi_comm_basic_call:
 	_JUMP				ev_castle_multi_comm_basic_call_retry
 	_END
@@ -570,7 +570,7 @@ ev_castle_multi_comm_basic_call:
 ev_castle_multi_comm_basic_call_retry:
 	_LDVAL				FSW_LOCAL2,CASTLE_COMM_BASIC
 	_CASTLE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_multi_comm_basic_call_retry/*‘—MŽ¸”s‚ÍÄ‘—M‚Ö*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_multi_comm_basic_call_retry/*é€ä¿¡å¤±æ•—ã¯å†é€ä¿¡ã¸*/
 
 	_CASTLE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
@@ -581,10 +581,10 @@ ev_castle_multi_comm_basic_call_retry:
 //
 /********************************************************************/
 ev_castle_start_2:
-	/*ƒ[ƒN‰Šú‰»*/
+	/*ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–*/
 	_CASTLE_WORK_INIT	FSW_LOCAL3
 
-	/*’ÊMFƒgƒŒ[ƒi[î•ñ‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_multi_comm_tr_2
 
@@ -593,7 +593,7 @@ ev_castle_start_2:
 
 ev_castle_multi_comm_tr_2:
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_TR_BEFORE
 	_COMM_RESET
@@ -601,39 +601,39 @@ ev_castle_multi_comm_tr_2:
 	_JUMP				ev_castle_multi_comm_tr
 	_END
 
-/*’ÊMFƒgƒŒ[ƒi[î•ñ‚â‚è‚Æ‚è*/
+/*é€šä¿¡ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 ev_castle_multi_comm_tr:
 	_LDVAL				FSW_LOCAL2,CASTLE_COMM_TR
 	_CASTLE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_multi_comm_tr	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_multi_comm_tr	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_CASTLE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_POKE_DATA
 	_COMM_RESET
 
-	_COMM_SET_WIFI_BOTH_NET	1										/*‘å—Êƒf[ƒ^ON*/
+	_COMM_SET_WIFI_BOTH_NET	1										/*å¤§é‡ãƒ‡ãƒ¼ã‚¿ON*/
 	_JUMP				ev_castle_multi_comm_poke
 	_END
 
 ev_castle_multi_comm_poke:
-	/*’ÊMFŽèŽ‚¿‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šæ‰‹æŒã¡ã‚„ã‚Šã¨ã‚Š*/
 	_LDVAL				FSW_LOCAL2,CASTLE_COMM_TEMOTI
 	_CASTLE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_multi_comm_poke	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_multi_comm_poke	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_CASTLE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_BOTH_0
 	_COMM_RESET
 
-	_COMM_SET_WIFI_BOTH_NET	0										/*‘å—Êƒf[ƒ^OFF*/
+	_COMM_SET_WIFI_BOTH_NET	0										/*å¤§é‡ãƒ‡ãƒ¼ã‚¿OFF*/
 	_JUMP				ev_castle_start_3
 	_END
 
@@ -642,14 +642,14 @@ ev_castle_multi_comm_poke:
 //
 /********************************************************************/
 ev_castle_start_3:
-	/*u‚«‚ë‚­‚·‚év‚ÅŽg—p‚·‚éƒ[ƒN‚È‚Ì‚ÅƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	/*ã€Œãã‚ãã™ã‚‹ã€ã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ãªã®ã§ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 	_LDVAL				FSW_LOCAL3,0
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_start_3_multi
 
-	/*’†‰›‚Ü‚Å•à‚­*/
+	/*ä¸­å¤®ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_center
 	_OBJ_ANIME			OBJID_MINE,anm_player_go_center
 	_OBJ_ANIME			OBJID_PCWOMAN2,anm_pcwoman2_go_center
@@ -659,7 +659,7 @@ ev_castle_start_3:
 	_END
 
 ev_castle_start_3_multi:
-	/*’†‰›‚Ü‚Å•à‚­*/
+	/*ä¸­å¤®ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_center
 	_OBJ_ANIME			OBJID_SIO_USER_0,anm_player_go_center
 	_OBJ_ANIME			OBJID_SIO_USER_1,anm_player_go_center_multi
@@ -673,25 +673,25 @@ ev_castle_start_3_multi:
 /*																	*/
 /********************************************************************/
 ev_castle_room_start:
-	/*¡‰½l–Ú‚©Žæ“¾*/
+	/*ä»Šä½•äººç›®ã‹å–å¾—*/
 	_CASTLE_TOOL		FC_ID_GET_ROUND,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_room_renshou_0		/*0	*/
 
-	/*‹L˜^‚µ‚½ƒ[ƒN‚Éƒf[ƒ^‚ª‘‚«ž‚Ü‚ê‚Ä‚¢‚È‚¢‚Ì‚Åƒƒjƒ…[•\Ž¦‚µ‚È‚¢*/
+	/*è¨˜éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã«ãƒ‡ãƒ¼ã‚¿ãŒæ›¸ãè¾¼ã¾ã‚Œã¦ã„ãªã„ã®ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºã—ãªã„*/
 	_LDVAL				FSW_LOCAL3,1
 	_JUMP				ev_castle_room_saikai							/*1-7*/
 	_END
 
 
 /********************************************************************/
-/*							0l–Ú									*/
+/*							0äººç›®									*/
 /********************************************************************/
 ev_castle_room_renshou_0:
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL	FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_castle_multi_room_enemy_poke_send2_2
 
-	/*(ƒVƒ“ƒOƒ‹Aƒ}ƒ‹ƒ`e—p)“G‚ÌPOKEPARTYƒZƒbƒg*/
+	/*(ã‚·ãƒ³ã‚°ãƒ«ã€ãƒžãƒ«ãƒè¦ªç”¨)æ•µã®POKEPARTYã‚»ãƒƒãƒˆ*/
 	_CASTLE_BTL_BEFORE_PARTY_SET
 
 	_JUMP			ev_castle_room_go_rental
@@ -699,33 +699,33 @@ ev_castle_room_renshou_0:
 
 
 /********************************************************************/
-/*					“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ð’ÊM							*/
+/*					æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’é€šä¿¡							*/
 /********************************************************************/
 ev_castle_multi_room_enemy_poke_send2_2:
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_ENEMY_BEFORE
-	_COMM_RESET			/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET			/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 
 	_JUMP			ev_castle_multi_room_enemy_poke_send2
 	_END
 
 ev_castle_multi_room_enemy_poke_send2:
-	/*’ÊMF“Gƒ|ƒPƒ‚ƒ“‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šæ•µãƒã‚±ãƒ¢ãƒ³ã‚„ã‚Šã¨ã‚Š*/
 	_LDVAL				FSW_LOCAL2,CASTLE_COMM_ENEMY
 	_CASTLE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_multi_room_enemy_poke_send2/*‘—MŽ¸”s‚ÍÄ‘—M‚Ö*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_multi_room_enemy_poke_send2/*é€ä¿¡å¤±æ•—ã¯å†é€ä¿¡ã¸*/
 
 	_CASTLE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_ENEMY_AFTER
-	_COMM_RESET			/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET			/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 
-	/*“Gƒ|ƒPƒ‚ƒ“¶¬*/
+	/*æ•µãƒã‚±ãƒ¢ãƒ³ç”Ÿæˆ*/
 	_CASTLE_TOOL		FC_ID_ENEMY_POKE_CREATE,0,0,FSW_ANSWER
 	_CASTLE_TOOL		FC_ID_ENEMY_POKE_CREATE_2,0,0,FSW_ANSWER
 	_RET
@@ -741,15 +741,15 @@ ev_castle_room_go_rental:
 	_JUMP				ev_castle_room_go_second
 	_END
 
-/*u‚¨‹q—l‚Ìƒ|ƒPƒ‚ƒ“‚ÌŽ‚Á‚Ä‚¢‚é“¹‹ï‚ð—a‚©‚è‚Ü‚·v*/
+/*ã€ŒãŠå®¢æ§˜ã®ãƒã‚±ãƒ¢ãƒ³ã®æŒã£ã¦ã„ã‚‹é“å…·ã‚’é ã‹ã‚Šã¾ã™ã€*/
 ev_castle_room_go_first:
-	_TALKMSG			msg_castle_room_1			/*‰‰ñ*/
+	_TALKMSG			msg_castle_room_1			/*åˆå›ž*/
 	_JUMP				ev_castle_room_go_sub
 	_END
 
 ev_castle_room_go_second:
 	_PLAYER_NAME		0
-	_TALKMSG			msg_castle_room_1_01		/*2‰ñ–ÚˆÈ~*/
+	_TALKMSG			msg_castle_room_1_01		/*2å›žç›®ä»¥é™*/
 	_JUMP				ev_castle_room_go_sub
 	_END
 
@@ -757,32 +757,32 @@ ev_castle_room_go_sub:
 	//_SE_PLAY			SEQ_SE_DP_SUTYA
 	//_SE_PLAY			SEQ_SE_PL_BAG_030
 
-	/*‚±‚±‚ÅCP‘«‚·‚ÆA’ÊMŽž‚É‚¸‚ê‚ª‚Å‚Ä‚µ‚Ü‚¤‚Ì‚Åƒ_ƒ*/
-	/*Žü‚ÌÅ‰‚ÉCP+10*/
+	/*ã“ã“ã§CPè¶³ã™ã¨ã€é€šä¿¡æ™‚ã«ãšã‚ŒãŒã§ã¦ã—ã¾ã†ã®ã§ãƒ€ãƒ¡*/
+	/*å‘¨ã®æœ€åˆã«CP+10*/
 	//_CASTLE_TOOL		FC_ID_GET_TYPE,0,0,FSW_ANSWER
 	//_CASTLE_ADD_CP		FSW_ANSWER,10
 
-	/*3Žü–Ú‚©Žæ“¾*/
+	/*3å‘¨ç›®ã‹å–å¾—*/
 	_CASTLE_TOOL		FC_ID_GET_LAP,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,CASTLE_PASS_LAP_NUM,ev_castle_room_lap_3
 
-	/*u‚»‚ê‚Å‚Í‰½‚ð‚·‚é‚©‘I‚ñ‚Å‚­‚¾‚³‚¢v*/
+	/*ã€Œãã‚Œã§ã¯ä½•ã‚’ã™ã‚‹ã‹é¸ã‚“ã§ãã ã•ã„ã€*/
 	_TALKMSG			msg_castle_room_20
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_multi_room_go_rental
 
 	_JUMP				ev_castle_room_go_rental_2
 	_END
 
-/*‚Ê‚¯‚Ý‚¿‘I‘ðo—ˆ‚é‚æ‚¤‚É‚È‚Á‚½‚æƒƒbƒZ[ƒW*/
+/*ã¬ã‘ã¿ã¡é¸æŠžå‡ºæ¥ã‚‹ã‚ˆã†ã«ãªã£ãŸã‚ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_castle_room_lap_3:
 	_TALKMSG			msg_castle_room_26
 	_RET
 
 ev_castle_multi_room_go_rental:
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_castle_room_wait
 	_JUMP				ev_castle_multi_room_go_rental_retry
 	_END
@@ -791,16 +791,16 @@ ev_castle_multi_room_go_rental_retry:
 #if 0
 	_LDVAL				FSW_LOCAL2,CASTLE_COMM_RENTAL
 	_CASTLE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_multi_room_go_rental_retry/*‘—MŽ¸”s‚ÍÄ‘—M‚Ö*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_multi_room_go_rental_retry/*é€ä¿¡å¤±æ•—ã¯å†é€ä¿¡ã¸*/
 
 	_CASTLE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 #endif
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_RENTAL
-	_COMM_RESET			/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET			/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 	_JUMP				ev_castle_room_go_rental_2
 	_END
 
@@ -810,27 +810,27 @@ ev_castle_multi_room_go_rental_retry:
 /********************************************************************/
 ev_castle_room_go_rental_2:
 
-	/*u‚»‚ê‚Å‚Í‰½‚ð‚·‚é‚©‘I‚ñ‚Å‚­‚¾‚³‚¢v*/
+	/*ã€Œãã‚Œã§ã¯ä½•ã‚’ã™ã‚‹ã‹é¸ã‚“ã§ãã ã•ã„ã€*/
 	//_TALKMSG			msg_castle_room_20
-	_TALKMSG_ALL_PUT	msg_castle_room_21				/*‚Ä‚à‚¿‚Ìà–¾(‰ï˜bƒEƒBƒ“ƒhƒE‚ð•\Ž¦‚·‚é)*/
+	_TALKMSG_ALL_PUT	msg_castle_room_21				/*ã¦ã‚‚ã¡ã®èª¬æ˜Ž(ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤ºã™ã‚‹)*/
 
-	/*CPƒEƒBƒ“ƒhƒE•\Ž¦*/
+	/*CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º*/
 	_CP_WIN_WRITE
 	_JUMP				ev_castle_room_go_rental_2_sub
 	_END
 
 ev_castle_room_go_rental_2_sub:
-	/*ƒƒjƒ…[ì¬*/
-	/*3Žü–ÚˆÈã‚©Žæ“¾*/
+	/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ*/
+	/*3å‘¨ç›®ä»¥ä¸Šã‹å–å¾—*/
 	_CASTLE_TOOL		FC_ID_GET_LAP,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,LT,CASTLE_PASS_LAP_NUM,ev_castle_room_lap_3_make_list_lt
 	_IFVAL_CALL			FSW_LOCAL6,GE,CASTLE_PASS_LAP_NUM,ev_castle_room_lap_3_make_list_ge
 
-	_BMPLIST_MAKE_LIST	msg_castle_room_choice_10,msg_castle_room_21,1	/*‚Ä‚à‚¿*/
-	_BMPLIST_MAKE_LIST	msg_castle_room_choice_11,msg_castle_room_22,2	/*ƒgƒŒ[ƒi[*/
-	_BMPLIST_MAKE_LIST	msg_castle_room_choice_13,msg_castle_room_24,4	/*‚½‚¢‚¹‚ñ*/
+	_BMPLIST_MAKE_LIST	msg_castle_room_choice_10,msg_castle_room_21,1	/*ã¦ã‚‚ã¡*/
+	_BMPLIST_MAKE_LIST	msg_castle_room_choice_11,msg_castle_room_22,2	/*ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼*/
+	_BMPLIST_MAKE_LIST	msg_castle_room_choice_13,msg_castle_room_24,4	/*ãŸã„ã›ã‚“*/
 
-	/*”²‚¯“¹ì¬*/
+	/*æŠœã‘é“ä½œæˆ*/
 	_CASTLE_TOOL		FC_ID_GET_LAP,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,GE,CASTLE_PASS_LAP_NUM,ev_castle_room_lap_3_make_list_ge_nukemiti
 
@@ -840,140 +840,140 @@ ev_castle_room_go_rental_2_sub:
 	_JUMP				ev_room_choice_24
 #endif	//DEBUG_FRONTIER_LOOP
 
-	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_room_choice_21	/*‚Ä‚à‚¿*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,2,ev_room_choice_22	/*ƒgƒŒ[ƒi[*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,4,ev_room_choice_24	/*‚½‚¢‚¹‚ñ*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,5,ev_room_choice_25	/*‚Ê‚¯‚Ý‚¿*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_room_choice_21	/*ã¦ã‚‚ã¡*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,2,ev_room_choice_22	/*ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,4,ev_room_choice_24	/*ãŸã„ã›ã‚“*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,5,ev_room_choice_25	/*ã¬ã‘ã¿ã¡*/
 
-	/*’ÊM‚Ì‚ÝƒŠƒXƒg‹­§íœ‚Å‚±‚±‚É”²‚¯‚Ä‚­‚é*/
+	/*é€šä¿¡ã®ã¿ãƒªã‚¹ãƒˆå¼·åˆ¶å‰Šé™¤ã§ã“ã“ã«æŠœã‘ã¦ãã‚‹*/
 	//_JUMP			ev_castle_send_sel2
 	_JUMP			ev_castle_send_sel
 
 	/*
-	¡Žq‚ªæ‚ÉŒˆ’è
-	Žq‘—M:		‘I‘ðƒŠƒNƒGƒXƒg
-	eŽóM:		ƒŠƒXƒg”²‚¯‚é@
-	e‘—M:		‚»‚ê‚Å‚¢‚¢‚æ@
-	ŽqŽóM:		e‚ÌŒˆ’è‚ð‚à‚ç‚¤ 
-	eŽq:		e‚ÌŒˆ’èƒtƒ‰ƒO‘Ò‚¿
+	â– å­ãŒå…ˆã«æ±ºå®š
+	å­é€ä¿¡:		é¸æŠžãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	è¦ªå—ä¿¡:		ãƒªã‚¹ãƒˆæŠœã‘ã‚‹ã€€
+	è¦ªé€ä¿¡:		ãã‚Œã§ã„ã„ã‚ˆã€€
+	å­å—ä¿¡:		è¦ªã®æ±ºå®šã‚’ã‚‚ã‚‰ã† 
+	è¦ªå­:		è¦ªã®æ±ºå®šãƒ•ãƒ©ã‚°å¾…ã¡
 
-	¡e‚ªæ‚ÉŒˆ’è
-	e‘—M:		‘I‘ðƒŠƒNƒGƒXƒg‚±‚ê‚Å‚¢‚±‚¤
-	ŽqŽóM:		ƒŠƒXƒg”²‚¯‚é
-	Žq‘—M:		“Á‚Ée‚ªŽóM‚³‚ê‚Ä‚àˆÓ–¡‚Ì‚È‚¢ƒf[ƒ^‚ð‘—‚é
-	eŽóM:		‚·‚Å‚ÉeŒˆ’è‚ª‚³‚ê‚Ä‚¢‚é‚Ì‚ÅƒZƒbƒg‚Í‚³‚ê‚¸‚ÉŽóM
-	eŽq:		e‚ÌŒˆ’èƒtƒ‰ƒO‘Ò‚¿
+	â– è¦ªãŒå…ˆã«æ±ºå®š
+	è¦ªé€ä¿¡:		é¸æŠžãƒªã‚¯ã‚¨ã‚¹ãƒˆã“ã‚Œã§ã„ã“ã†
+	å­å—ä¿¡:		ãƒªã‚¹ãƒˆæŠœã‘ã‚‹
+	å­é€ä¿¡:		ç‰¹ã«è¦ªãŒå—ä¿¡ã•ã‚Œã¦ã‚‚æ„å‘³ã®ãªã„ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
+	è¦ªå—ä¿¡:		ã™ã§ã«è¦ªæ±ºå®šãŒã•ã‚Œã¦ã„ã‚‹ã®ã§ã‚»ãƒƒãƒˆã¯ã•ã‚Œãšã«å—ä¿¡
+	è¦ªå­:		è¦ªã®æ±ºå®šãƒ•ãƒ©ã‚°å¾…ã¡
 
 	*/
 	_END
 
-/*2Žü–Ú‚Ü‚Å‚ÌƒEƒBƒ“ƒhƒEˆÊ’u*/
+/*2å‘¨ç›®ã¾ã§ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®*/
 ev_castle_room_lap_3_make_list_lt:
-	_BMPLIST_INIT_EX	24,11,0,0,FSW_ANSWER									/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	//_BMPLIST_INIT_EX	24,11,0,0,FSW_ANSWER									/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
+	_BMPLIST_INIT_EX	24,11,0,0,FSW_ANSWER									/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	//_BMPLIST_INIT_EX	24,11,0,0,FSW_ANSWER									/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
 	_RET
 
-/*3Žü–ÚˆÈ~‚É‘I‘ðo—ˆ‚é*/
+/*3å‘¨ç›®ä»¥é™ã«é¸æŠžå‡ºæ¥ã‚‹*/
 ev_castle_room_lap_3_make_list_ge:
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_CASTLE_TOOL		FC_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_lap_3_make_list_lt
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_castle_room_lap_3_make_list_lt
 
-	_BMPLIST_INIT_EX	24,9,0,0,FSW_ANSWER										/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	//_BMPLIST_INIT_EX	24,11,0,0,FSW_ANSWER									/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
+	_BMPLIST_INIT_EX	24,9,0,0,FSW_ANSWER										/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	//_BMPLIST_INIT_EX	24,11,0,0,FSW_ANSWER									/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
 	_RET
 
 ////////////////////////////////
-/*‚±‚±‚ÅANSWER‚ÍŽg—p•s‰ÂIII*/
+/*ã“ã“ã§ANSWERã¯ä½¿ç”¨ä¸å¯ï¼ï¼ï¼*/
 ////////////////////////////////
 ev_castle_room_lap_3_make_list_ge_nukemiti:
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_CASTLE_TOOL		FC_ID_CHECK_BRAIN,0,0,FSW_PARAM4
 	_IFVAL_JUMP			FSW_PARAM4,EQ,1,ev_castle_leader_nukemiti_off
 	_IFVAL_JUMP			FSW_PARAM4,EQ,2,ev_castle_leader_nukemiti_off
 
-	_BMPLIST_MAKE_LIST	msg_castle_room_choice_14,msg_castle_room_25,5	/*‚Ê‚¯‚Ý‚¿*/
-	//_BMPLIST_MAKE_LIST	msg_castle_room_choice_14,msg_castle_room_25,5		/*‚Ê‚¯‚Ý‚¿*/
+	_BMPLIST_MAKE_LIST	msg_castle_room_choice_14,msg_castle_room_25,5	/*ã¬ã‘ã¿ã¡*/
+	//_BMPLIST_MAKE_LIST	msg_castle_room_choice_14,msg_castle_room_25,5		/*ã¬ã‘ã¿ã¡*/
 	_RET
 
-/*‚Ê‚¯‚Ý‚¿‚ð•\Ž¦‚³‚¹‚È‚¢*/
+/*ã¬ã‘ã¿ã¡ã‚’è¡¨ç¤ºã•ã›ãªã„*/
 ev_castle_leader_nukemiti_off:
 	_RET
 
 
 /********************************************************************/
-/*							‚Ä‚à‚¿									*/
+/*							ã¦ã‚‚ã¡									*/
 /********************************************************************/
 ev_room_choice_21:
-	/*‘I‘ð‚µ‚½ƒ^ƒCƒv‚ðƒZƒbƒg*/
+	/*é¸æŠžã—ãŸã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ*/
 	_CASTLE_TOOL		FC_ID_SET_SEL_TYPE,CASTLE_SCR_MENU_TEMOTI,0,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_send_sel_temoti
 	_JUMP				ev_castle_temoti_go
 	_END
 
 ev_castle_send_sel_temoti:
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_castle_room_wait
 	_JUMP				ev_castle_send_sel
 	_END
 
 ev_castle_temoti_go:
-	/*‘ŠŽè‚Ì‘I‘ð‚ªÌ—p‚³‚ê‚½‚©ƒ`ƒFƒbƒN*/
+	/*ç›¸æ‰‹ã®é¸æŠžãŒæŽ¡ç”¨ã•ã‚ŒãŸã‹ãƒã‚§ãƒƒã‚¯*/
 	_CASTLE_TOOL		FC_ID_GET_PAIR_DECIDE_CHECK,0,0,FSW_ANSWER
 	//_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_castle_pair_temoti_msg
-	_CASTLE_TOOL		FC_ID_CLEAR_PARENT_CHECK_FLAG,0,0,FSW_ANSWER		/*ƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	_CASTLE_TOOL		FC_ID_CLEAR_PARENT_CHECK_FLAG,0,0,FSW_ANSWER		/*ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*ŽèŽ‚¿‰æ–ÊŒÄ‚Ño‚µ*/
+	/*æ‰‹æŒã¡ç”»é¢å‘¼ã³å‡ºã—*/
 	_TALK_CLOSE
 
-	/*CPƒEƒBƒ“ƒhƒEíœ*/
+	/*CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤*/
 	_CP_WIN_DEL
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_mine_call_sync
 
 	_CASTLE_MINE_CALL
 	//_SET_MAP_PROC
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_comm_command_initialize_2
 
-	/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_multi_comm_basic_call
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	_JUMP				ev_castle_room_go_rental_2
 	_END
 
-/*‘ŠŽè‚Ì‘I‘ð‚ªÌ—p‚³‚ê‚½ƒƒbƒZ[ƒW*/
+/*ç›¸æ‰‹ã®é¸æŠžãŒæŽ¡ç”¨ã•ã‚ŒãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_castle_pair_temoti_msg:
-	/*ƒp[ƒgƒi[–¼‚ð•\Ž¦*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º*/
 	_PAIR_NAME			0
 	_TALKMSG			msg_castle_room_26
 
-	//‚Ü‚½“¯Šú‚ðŽæ‚éH
+	//ã¾ãŸåŒæœŸã‚’å–ã‚‹ï¼Ÿ
 
 	_RET
 
-/*’ÊMƒ}ƒ‹ƒ`*/
+/*é€šä¿¡ãƒžãƒ«ãƒ*/
 ev_castle_mine_call_sync:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_MINE_CALL
 	_COMM_RESET
@@ -981,75 +981,75 @@ ev_castle_mine_call_sync:
 
 
 /********************************************************************/
-/*							ƒgƒŒ[ƒi[								*/
+/*							ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼								*/
 /********************************************************************/
 ev_room_choice_22:
-	/*‘I‘ð‚µ‚½ƒ^ƒCƒv‚ðƒZƒbƒg*/
+	/*é¸æŠžã—ãŸã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ*/
 	_CASTLE_TOOL		FC_ID_SET_SEL_TYPE,CASTLE_SCR_MENU_TRAINER,0,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_send_sel_aite
 	_JUMP				ev_castle_trainer_go
 	_END
 
 ev_castle_send_sel_aite:
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_castle_room_wait
 	_JUMP				ev_castle_send_sel
 	_END
 
 ev_castle_trainer_go:
-	/*‘ŠŽè‚Ì‘I‘ð‚ªÌ—p‚³‚ê‚½‚©ƒ`ƒFƒbƒN*/
+	/*ç›¸æ‰‹ã®é¸æŠžãŒæŽ¡ç”¨ã•ã‚ŒãŸã‹ãƒã‚§ãƒƒã‚¯*/
 	_CASTLE_TOOL		FC_ID_GET_PAIR_DECIDE_CHECK,0,0,FSW_ANSWER
 	//_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_castle_pair_trainer_msg
-	_CASTLE_TOOL		FC_ID_CLEAR_PARENT_CHECK_FLAG,0,0,FSW_ANSWER		/*ƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	_CASTLE_TOOL		FC_ID_CLEAR_PARENT_CHECK_FLAG,0,0,FSW_ANSWER		/*ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*“GƒgƒŒ[ƒi[‰æ–ÊŒÄ‚Ño‚µ*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”»é¢å‘¼ã³å‡ºã—*/
 	_TALK_CLOSE
 
-	/*CPƒEƒBƒ“ƒhƒEíœ*/
+	/*CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤*/
 	_CP_WIN_DEL
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_enemy_call_sync
 
 	_CASTLE_ENEMY_CALL
 	//_SET_MAP_PROC
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_comm_command_initialize_3
 
-	/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_multi_comm_basic_call
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	_JUMP				ev_castle_room_go_rental_2
 	_END
 
-/*‘ŠŽè‚Ì‘I‘ð‚ªÌ—p‚³‚ê‚½ƒƒbƒZ[ƒW*/
+/*ç›¸æ‰‹ã®é¸æŠžãŒæŽ¡ç”¨ã•ã‚ŒãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_castle_pair_trainer_msg:
-	/*ƒp[ƒgƒi[–¼‚ð•\Ž¦*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º*/
 	_PAIR_NAME			0
 	//_TALKMSG			msg_castle_room_27
 
-	//‚Ü‚½“¯Šú‚ðŽæ‚éH
+	//ã¾ãŸåŒæœŸã‚’å–ã‚‹ï¼Ÿ
 
 	_RET
 
-/*’ÊMƒ}ƒ‹ƒ`*/
+/*é€šä¿¡ãƒžãƒ«ãƒ*/
 ev_castle_enemy_call_sync:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_ENEMY_CALL
 	_COMM_RESET
@@ -1057,26 +1057,26 @@ ev_castle_enemy_call_sync:
 
 
 /********************************************************************/
-/*							‚½‚¢‚¹‚ñ								*/
+/*							ãŸã„ã›ã‚“								*/
 /********************************************************************/
 ev_room_choice_24:
-	/*‘I‘ð‚µ‚½ƒ^ƒCƒv‚ðƒZƒbƒg*/
+	/*é¸æŠžã—ãŸã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ*/
 	_CASTLE_TOOL		FC_ID_SET_SEL_TYPE,CASTLE_SCR_MENU_TAISEN,0,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_send_sel_taisen
 	_JUMP				ev_castle_taisen_go
 	_END
 
 ev_castle_taisen_go:
-	_LDVAL				FSW_LOCAL5,0										/*‘Îí‚©ƒpƒX‚©‚Ì”»•Ê—p*/
-	_CASTLE_TOOL		FC_ID_CLEAR_PARENT_CHECK_FLAG,0,0,FSW_ANSWER		/*ƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	_LDVAL				FSW_LOCAL5,0										/*å¯¾æˆ¦ã‹ãƒ‘ã‚¹ã‹ã®åˆ¤åˆ¥ç”¨*/
+	_CASTLE_TOOL		FC_ID_CLEAR_PARENT_CHECK_FLAG,0,0,FSW_ANSWER		/*ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 	_JUMP				ev_castle_room_go
 	_END
 
 ev_castle_send_sel_taisen:
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_castle_room_wait
 	_JUMP				ev_castle_send_sel
 	_END
@@ -1090,7 +1090,7 @@ ev_castle_comm_command_initialize_1:
 	_CASTLE_TOOL		FC_ID_COMM_COMMAND_INITIALIZE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_INIT_1
 	_COMM_RESET
@@ -1101,7 +1101,7 @@ ev_castle_comm_command_initialize_2:
 	_CASTLE_TOOL		FC_ID_COMM_COMMAND_INITIALIZE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_INIT_2
 	_COMM_RESET
@@ -1112,7 +1112,7 @@ ev_castle_comm_command_initialize_3:
 	_CASTLE_TOOL		FC_ID_COMM_COMMAND_INITIALIZE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_INIT_3
 	_COMM_RESET
@@ -1123,7 +1123,7 @@ ev_castle_comm_command_initialize_4:
 	_CASTLE_TOOL		FC_ID_COMM_COMMAND_INITIALIZE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_INIT_4
 	_COMM_RESET
@@ -1131,57 +1131,57 @@ ev_castle_comm_command_initialize_4:
 
 
 /********************************************************************/
-/*							‚Ê‚¯‚Ý‚¿								*/
+/*							ã¬ã‘ã¿ã¡								*/
 /********************************************************************/
 ev_room_choice_25:
-	/*u›‚b‚o‚©‚©‚è‚Ü‚·‚ª‚æ‚ë‚µ‚¢‚Å‚·‚©Hv*/
+	/*ã€Œâ—‹ï¼£ï¼°ã‹ã‹ã‚Šã¾ã™ãŒã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿã€*/
 	_NUMBER_NAME		0,CP_USE_NUKEMITI
 	_TALKMSG			msg_castle_room_29_1
 	_YES_NO_WIN			FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_go_rental_2_sub	/*u‚¢‚¢‚¦v*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_go_rental_2_sub	/*ã€Œã„ã„ãˆã€*/
 
-	/*CP‚ª‘«‚è‚È‚¢‚©ƒ`ƒFƒbƒN*/
+	/*CPãŒè¶³ã‚Šãªã„ã‹ãƒã‚§ãƒƒã‚¯*/
 	_CASTLE_GET_CP		FSW_LOCAL1,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,LT,CP_USE_NUKEMITI,ev_castle_room_go_rental_3
 
-	/*‘I‘ð‚µ‚½ƒ^ƒCƒv‚ðƒZƒbƒg*/
+	/*é¸æŠžã—ãŸã‚¿ã‚¤ãƒ—ã‚’ã‚»ãƒƒãƒˆ*/
 	_CASTLE_TOOL		FC_ID_SET_SEL_TYPE,CASTLE_SCR_MENU_NUKEMITI,0,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_send_sel
 	_JUMP				ev_castle_nukemiti_go
 	_END
 
 ev_castle_room_go_rental_3:
-	/*uCP‚ª‘«‚è‚Ü‚¹‚ñv*/
+	/*ã€ŒCPãŒè¶³ã‚Šã¾ã›ã‚“ã€*/
 	_TALKMSG			msg_castle_room_29_4
 	_JUMP				ev_castle_room_go_rental_2_sub
 	_END
 
 ev_castle_nukemiti_go:
-	_LDVAL				FSW_LOCAL5,1										/*‘Îí‚©ƒpƒX‚©‚Ì”»•Ê—p*/
+	_LDVAL				FSW_LOCAL5,1										/*å¯¾æˆ¦ã‹ãƒ‘ã‚¹ã‹ã®åˆ¤åˆ¥ç”¨*/
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_nukemiti_go_comm
 	_JUMP				ev_castle_nukemiti_go_normal
 	_END
 
 ev_castle_nukemiti_go_comm:
-	/*‘ŠŽè‚Ì‘I‘ð‚ªÌ—p‚³‚ê‚½‚©ƒ`ƒFƒbƒN*/
+	/*ç›¸æ‰‹ã®é¸æŠžãŒæŽ¡ç”¨ã•ã‚ŒãŸã‹ãƒã‚§ãƒƒã‚¯*/
 	_CASTLE_TOOL		FC_ID_GET_PAIR_DECIDE_CHECK,0,0,FSW_ANSWER
 	//_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_castle_pair_nukemiti_msg
 
 	_CASTLE_TOOL		FC_ID_NUKEMITI_CP_SUB,0,0,FSW_ANSWER
-	_CASTLE_TOOL		FC_ID_CLEAR_PARENT_CHECK_FLAG,0,0,FSW_ANSWER		/*ƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	_CASTLE_TOOL		FC_ID_CLEAR_PARENT_CHECK_FLAG,0,0,FSW_ANSWER		/*ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 
-	/*u‚Ê‚¯‚Ý‚¿‚Í‚±‚Á‚¿‚¶‚á‚æIv*/
+	/*ã€Œã¬ã‘ã¿ã¡ã¯ã“ã£ã¡ã˜ã‚ƒã‚ˆï¼ã€*/
 	//_TALKMSG_NOSKIP		msg_castle_room_29_5
 	//_TIME_WAIT			15,FSW_ANSWER
 	//_JUMP				ev_castle_nukemiti_go_2
 
-	/*‘Îí•”‰®‚És‚­—¬‚ê‚É•ÏX(08/01/08)*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã«è¡Œãæµã‚Œã«å¤‰æ›´(08/01/08)*/
 	_JUMP				ev_castle_room_go
 	_END
 
@@ -1189,12 +1189,12 @@ ev_castle_nukemiti_go_normal:
 	_CASTLE_TOOL		FC_ID_GET_TYPE,0,0,FSW_ANSWER
 	_CASTLE_SUB_CP		FSW_ANSWER,CP_USE_NUKEMITI
 
-	/*u‚Ê‚¯‚Ý‚¿‚Í‚±‚Á‚¿‚¶‚á‚æIv*/
+	/*ã€Œã¬ã‘ã¿ã¡ã¯ã“ã£ã¡ã˜ã‚ƒã‚ˆï¼ã€*/
 	//_TALKMSG			msg_castle_room_29_5
 	//_AB_KEYWAIT
 	//_JUMP				ev_castle_nukemiti_go_2
 
-	/*‘Îí•”‰®‚És‚­—¬‚ê‚É•ÏX(08/01/08)*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã«è¡Œãæµã‚Œã«å¤‰æ›´(08/01/08)*/
 	_JUMP				ev_castle_room_go
 	_END
 
@@ -1205,14 +1205,14 @@ ev_castle_nukemiti_go_normal:
 ev_castle_nukemiti_go_2:
 	_TALK_CLOSE
 
-	/*CPƒEƒBƒ“ƒhƒEíœ*/
+	/*CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤*/
 	_CP_WIN_DEL
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_go_nukemiti_multi
 
-	/*ˆÚ“®ƒAƒjƒ*/
+	/*ç§»å‹•ã‚¢ãƒ‹ãƒ¡*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_nukemiti_room
 	_OBJ_ANIME			OBJID_BRAIN3_INFO,anm_man_go_nukemiti_room
 	_OBJ_ANIME			OBJID_MINE,anm_player_go_nukemiti_room
@@ -1221,18 +1221,18 @@ ev_castle_nukemiti_go_2:
 	_JUMP				ev_castle_room_go_nukemiti_2
 	_END
 
-/*‘ŠŽè‚Ì‘I‘ð‚ªÌ—p‚³‚ê‚½ƒƒbƒZ[ƒW*/
+/*ç›¸æ‰‹ã®é¸æŠžãŒæŽ¡ç”¨ã•ã‚ŒãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_castle_pair_nukemiti_msg:
-	/*ƒp[ƒgƒi[–¼‚ð•\Ž¦*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º*/
 	_PAIR_NAME			0
 	//_TALKMSG			msg_castle_room_29
 
-	//‚Ü‚½“¯Šú‚ðŽæ‚éH
+	//ã¾ãŸåŒæœŸã‚’å–ã‚‹ï¼Ÿ
 
 	_RET
 
 ev_castle_room_go_nukemiti_multi:
-	/*ˆÚ“®ƒAƒjƒ*/
+	/*ç§»å‹•ã‚¢ãƒ‹ãƒ¡*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_nukemiti_room
 	_OBJ_ANIME			OBJID_BRAIN3_INFO,anm_man_go_nukemiti_room
 	_OBJ_ANIME			OBJID_SIO_USER_0,anm_player_go_nukemiti_room
@@ -1243,13 +1243,13 @@ ev_castle_room_go_nukemiti_multi:
 	_END
 
 ev_castle_room_go_nukemiti_2:
-	/*”²‚¯“¹•”‰®‚Öƒ}ƒbƒvØ‚è‘Ö‚¦*/
+	/*æŠœã‘é“éƒ¨å±‹ã¸ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆ*/
 	_SE_PLAY			SEQ_SE_DP_KAIDAN2
 	_SE_WAIT			SEQ_SE_DP_KAIDAN2
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_go_nukemiti_2_multi
 
@@ -1260,16 +1260,16 @@ ev_castle_room_go_nukemiti_2:
 
 	_MAP_CHANGE			FSS_SCENEID_CASTLE_BYPATH
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	_GET_MINE_OBJ		FSW_LOCAL7
 
-	_CHAR_RESOURCE_SET	default_scene3_resource		/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_scene3_actor		/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_scene3_resource		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_scene3_actor		/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*”²‚¯“¹‚ð”²‚¯‚é*/
+	/*æŠœã‘é“ã‚’æŠœã‘ã‚‹*/
 	//_OBJ_ANIME			OBJID_PLAYER,anm_player_go_nukemiti_center
 	_OBJ_ANIME			OBJID_MINE,anm_player_go_nukemiti_center
 	_OBJ_ANIME_WAIT
@@ -1278,7 +1278,7 @@ ev_castle_room_go_nukemiti_2:
 	_SE_WAIT			SEQ_SE_DP_KAIDAN2
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
-	_CALL				ev_castle_room_return			/*€”õ•”‰®‚É–ß‚é*/
+	_CALL				ev_castle_room_return			/*æº–å‚™éƒ¨å±‹ã«æˆ»ã‚‹*/
 	_JUMP				ev_castle_room_go_nukemiti_3
 	_END
 
@@ -1290,16 +1290,16 @@ ev_castle_room_go_nukemiti_2_multi:
 
 	_MAP_CHANGE			FSS_SCENEID_CASTLE_BYPATH
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	_GET_MINE_OBJ		FSW_LOCAL7
 
-	_CHAR_RESOURCE_SET	default_scene3_resource_multi	/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_scene3_actor_multi		/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_scene3_resource_multi	/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_scene3_actor_multi		/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*”²‚¯“¹‚ð”²‚¯‚é*/
+	/*æŠœã‘é“ã‚’æŠœã‘ã‚‹*/
 	//_OBJ_ANIME			OBJID_PLAYER,anm_player_go_nukemiti_center
 	_OBJ_ANIME			OBJID_SIO_USER_0,anm_player_go_nukemiti_center
 	_OBJ_ANIME			OBJID_SIO_USER_1,anm_player_go_nukemiti_center_multi
@@ -1309,48 +1309,48 @@ ev_castle_room_go_nukemiti_2_multi:
 	_SE_WAIT			SEQ_SE_DP_KAIDAN2
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
-	_CALL				ev_castle_room_return			/*€”õ•”‰®‚É–ß‚é*/
+	_CALL				ev_castle_room_return			/*æº–å‚™éƒ¨å±‹ã«æˆ»ã‚‹*/
 	_JUMP				ev_castle_room_go_nukemiti_3
 	_END
 
 
 /********************************************************************/
-/*					CP‚Í‚à‚ç‚¦‚È‚¢‚ªæ‚Öi‚ß‚é						*/
+/*					CPã¯ã‚‚ã‚‰ãˆãªã„ãŒå…ˆã¸é€²ã‚ã‚‹						*/
 /********************************************************************/
 ev_castle_room_go_nukemiti_3:
 	_CALL				ev_castle_battle_5
 
-	/*PP‚È‚Ç‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^XV(“G‚Ì³‘Ì‚È‚Ç‚Ìƒtƒ‰ƒOƒNƒŠƒA‚ª•K—v)*/
+	/*PPãªã©ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ›´æ–°(æ•µã®æ­£ä½“ãªã©ã®ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢ãŒå¿…è¦)*/
 	_CASTLE_TOOL		FC_ID_BTL_WIN_POKE_DATA,0,0,FSW_ANSWER
 
 	//_JUMP				ev_castle_battle_7
 
-	/*¡7l–Ú‚Å‚È‚¢Žž‚Í“ª‚É–ß‚é(‰ñ•œ‚µ‚Ü‚·ƒƒbƒZ[ƒW‚Í‚È‚¢I)*/
+	/*ä»Š7äººç›®ã§ãªã„æ™‚ã¯é ­ã«æˆ»ã‚‹(å›žå¾©ã—ã¾ã™ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯ãªã„ï¼)*/
 	_CASTLE_TOOL		FC_ID_GET_ROUND,0,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,NE,7,ev_castle_room_saikai		/*˜AŸ”‚ª1-6‚ÌŽž*/
+	_IFVAL_JUMP			FSW_ANSWER,NE,7,ev_castle_room_saikai		/*é€£å‹æ•°ãŒ1-6ã®æ™‚*/
 
-	/*ƒoƒgƒ‹‹L˜^ƒf[ƒ^‚Í‚È‚¢I*/
-	_JUMP				ev_castle_room_7_win_bp						/*7˜AŸ*/
+	/*ãƒãƒˆãƒ«è¨˜éŒ²ãƒ‡ãƒ¼ã‚¿ã¯ãªã„ï¼*/
+	_JUMP				ev_castle_room_7_win_bp						/*7é€£å‹*/
 	_END
 
 
 /********************************************************************/
-/*						ƒoƒgƒ‹‚ÖŒü‚©‚¤								*/
+/*						ãƒãƒˆãƒ«ã¸å‘ã‹ã†								*/
 /********************************************************************/
 ev_castle_room_go:
-	/*CPƒEƒBƒ“ƒhƒEíœ*/
+	/*CPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‰Šé™¤*/
 	_CP_WIN_DEL
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_go_multi
 
-	/*u‚»‚ê‚Å‚Í@‚¨‚­‚É@‚Ç‚¤‚¼v*/
+	/*ã€Œãã‚Œã§ã¯ã€€ãŠãã«ã€€ã©ã†ãžã€*/
 	_TALKMSG			msg_castle_room_2
 	_AB_KEYWAIT
 	_TALK_CLOSE
 
-	/*ˆÚ“®ƒAƒjƒ*/
+	/*ç§»å‹•ã‚¢ãƒ‹ãƒ¡*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_btl_room
 	_OBJ_ANIME			OBJID_MINE,anm_player_go_btl_room
 	_OBJ_ANIME_WAIT
@@ -1359,12 +1359,12 @@ ev_castle_room_go:
 	_END
 
 ev_castle_room_go_multi:
-	/*u‚»‚ê‚Å‚Í@‚¨‚­‚É@‚Ç‚¤‚¼v*/
+	/*ã€Œãã‚Œã§ã¯ã€€ãŠãã«ã€€ã©ã†ãžã€*/
 	_TALKMSG_NOSKIP		msg_castle_room_2
 	_TIME_WAIT			FRONTIER_COMMON_WAIT,FSW_ANSWER
 	_TALK_CLOSE
 
-	/*ˆÚ“®ƒAƒjƒ*/
+	/*ç§»å‹•ã‚¢ãƒ‹ãƒ¡*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_btl_room
 	_OBJ_ANIME			OBJID_SIO_USER_0,anm_player_go_btl_room
 	_OBJ_ANIME			OBJID_SIO_USER_1,anm_player_go_btl_room_multi
@@ -1377,16 +1377,16 @@ ev_castle_room_go_multi:
 /*																	*/
 /********************************************************************/
 ev_castle_room_go_2:
-	/*‘Îí•”‰®‚Öƒ}ƒbƒvØ‚è‘Ö‚¦*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã¸ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆ*/
 	_SE_PLAY			SEQ_SE_DP_KAIDAN2
 	_SE_WAIT			SEQ_SE_DP_KAIDAN2
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*‰‰ñ‚Ì‚ÝPCWOMAN2‚ðíœ*/
+	/*åˆå›žã®ã¿PCWOMAN2ã‚’å‰Šé™¤*/
 	_IFVAL_CALL			FSW_PARAM5,EQ,0,ev_castle_room_pcwoman2_del
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_go_2_multi
 
@@ -1398,33 +1398,33 @@ ev_castle_room_go_2:
 	_MAP_CHANGE			FSS_SCENEID_CASTLE_BTL
 	_CALL				ev_castle_room_common_01
 
-	_CHAR_RESOURCE_SET	default_scene2_resource		/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_scene2_actor		/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_scene2_resource		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_scene2_actor		/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*’†‰›‚Ü‚Å•à‚­*/
+	/*ä¸­å¤®ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_scroll_go_btl_center
 	_OBJ_ANIME			OBJID_MINE,anm_player_go_btl_center
 	_OBJ_ANIME_WAIT
 
-	/*ƒXƒNƒ[ƒ‹‚ªI‚í‚Á‚½‚çƒLƒ‰ƒLƒ‰‚³‚¹‚é*/
+	/*ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãŒçµ‚ã‚ã£ãŸã‚‰ã‚­ãƒ©ã‚­ãƒ©ã•ã›ã‚‹*/
 	_PARTICLE_ADD_EMITTER	SPAWORK_0,CASTLE_BC_KIRA
 
-	/*ƒpƒX‚ð‘I‘ð‚µ‚Ä‚¢‚½‚ç*/
+	/*ãƒ‘ã‚¹ã‚’é¸æŠžã—ã¦ã„ãŸã‚‰*/
 	_IFVAL_JUMP			FSW_LOCAL5,EQ,1,ev_castle_pass
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_CASTLE_TOOL		FC_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_leader_1st_02
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_castle_leader_2nd_02
 
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_castle_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*“GƒgƒŒ[ƒi[‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_CALL				ev_castle_trainer_set_1
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in
 	_OBJ_ANIME_WAIT
@@ -1434,7 +1434,7 @@ ev_castle_room_go_2:
 	_OBJ_ANIME			OBJID_ETC,anm_stay_walk_left
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí‘O‘äŽŒ*/
+	/*å¯¾æˆ¦å‰å°è©ž*/
 	_CASTLE_TOOL	FC_ID_SET_B_TOWER_PARTNER_DATA,0,0,FSW_ANSWER
 	_TALKMSG_CASTLE_APPEAR	0
 	_AB_KEYWAIT
@@ -1456,25 +1456,25 @@ ev_castle_room_go_2_multi:
 	_MAP_CHANGE			FSS_SCENEID_CASTLE_BTL
 	_CALL				ev_castle_room_common_01
 
-	_CHAR_RESOURCE_SET	default_scene2_resource_multi	/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_scene2_actor_multi		/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_scene2_resource_multi	/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_scene2_actor_multi		/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*’†‰›‚Ü‚Å•à‚­*/
+	/*ä¸­å¤®ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_scroll_go_btl_center
 	_OBJ_ANIME			OBJID_SIO_USER_0,anm_player_go_btl_center_sio
 	_OBJ_ANIME			OBJID_SIO_USER_1,anm_player_go_btl_center_multi
 	_OBJ_ANIME_WAIT
 
-	/*ƒXƒNƒ[ƒ‹‚ªI‚í‚Á‚½‚çƒLƒ‰ƒLƒ‰‚³‚¹‚é*/
+	/*ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãŒçµ‚ã‚ã£ãŸã‚‰ã‚­ãƒ©ã‚­ãƒ©ã•ã›ã‚‹*/
 	_PARTICLE_ADD_EMITTER	SPAWORK_0,CASTLE_BC_KIRA
 
-	/*ƒpƒX‚ð‘I‘ð‚µ‚Ä‚¢‚½‚ç*/
+	/*ãƒ‘ã‚¹ã‚’é¸æŠžã—ã¦ã„ãŸã‚‰*/
 	_IFVAL_JUMP			FSW_LOCAL5,EQ,1,ev_castle_pass
 
-	/*“GƒgƒŒ[ƒi[‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_CALL				ev_castle_trainer_set_2
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_sio
 	_OBJ_ANIME			OBJID_ETC2,etc_anime_room_in_multi
@@ -1485,7 +1485,7 @@ ev_castle_room_go_2_multi:
 	_OBJ_ANIME			OBJID_ETC,anm_stay_walk_left
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí‘O‘äŽŒ*/
+	/*å¯¾æˆ¦å‰å°è©ž*/
 	_CASTLE_TOOL	FC_ID_SET_B_TOWER_PARTNER_DATA,0,0,FSW_ANSWER
 	_TALKMSG_CASTLE_APPEAR	0
 	_TIME_WAIT		30,FSW_ANSWER
@@ -1494,48 +1494,48 @@ ev_castle_room_go_2_multi:
 	_OBJ_ANIME			OBJID_ETC2,anm_stay_walk_left
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí‘O‘äŽŒ*/
+	/*å¯¾æˆ¦å‰å°è©ž*/
 	_CASTLE_TOOL	FC_ID_SET_B_TOWER_PARTNER_DATA,0,0,FSW_ANSWER
 	_TALKMSG_CASTLE_APPEAR	1
 	_TIME_WAIT		30,FSW_ANSWER
 	_TALK_CLOSE
 
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_castle_room_wait
 
 	_JUMP			ev_castle_battle
 	_END
 
-/*‰‰ñ‚Ì‚ÝPCWOMAN2‚ðíœ*/
+/*åˆå›žã®ã¿PCWOMAN2ã‚’å‰Šé™¤*/
 ev_castle_room_pcwoman2_del:
 	_ACTOR_FREE			OBJID_PCWOMAN2
 	_CHAR_RESOURCE_FREE	FSW_PARAM6
 	_LDVAL				FSW_PARAM5,1
 	_RET
 
-/*ƒVƒ“ƒOƒ‹Aƒ}ƒ‹ƒ`‚Ì‹¤’Êˆ—*/
+/*ã‚·ãƒ³ã‚°ãƒ«ã€ãƒžãƒ«ãƒã®å…±é€šå‡¦ç†*/
 ev_castle_room_common_01:
-	/*ƒp[ƒeƒBƒNƒ‹‰‰o*/
+	/*ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æ¼”å‡º*/
 	_PARTICLE_SPA_LOAD	SPAWORK_0,CASTLE_SPA,FSS_CAMERA_ORTHO
 
-	/*Žü‰ñ”‚É‚æ‚Á‚ÄBG‚Ìˆê•”‚ð•ÏX‚·‚é*/
+	/*å‘¨å›žæ•°ã«ã‚ˆã£ã¦BGã®ä¸€éƒ¨ã‚’å¤‰æ›´ã™ã‚‹*/
 	_CASTLE_TOOL		FC_ID_LAP_NUM_WRITE,0,0,FSW_ANSWER
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	_GET_MINE_OBJ		FSW_LOCAL7
 	_RET
 
 
 /********************************************************************/
-/*						ƒpƒX‚ð‘I‘ð‚µ‚Ä‚¢‚½‚ç						*/
+/*						ãƒ‘ã‚¹ã‚’é¸æŠžã—ã¦ã„ãŸã‚‰						*/
 /********************************************************************/
 ev_castle_pass:
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_pass_multi
 
-	/*ƒpƒX‚µ‚½Žž‚Ì‚¨ì—l‚ÌƒƒbƒZ[ƒW*/
+	/*ãƒ‘ã‚¹ã—ãŸæ™‚ã®ãŠå¬¢æ§˜ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 	_TALKMSG			msg_castle_room_35
 	_AB_KEYWAIT
 	_TALK_CLOSE
@@ -1543,7 +1543,7 @@ ev_castle_pass:
 	_END
 
 ev_castle_pass_multi:
-	/*ƒpƒX‚µ‚½Žž‚Ì‚¨ì—l‚ÌƒƒbƒZ[ƒW*/
+	/*ãƒ‘ã‚¹ã—ãŸæ™‚ã®ãŠå¬¢æ§˜ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 	_TALKMSG_NOSKIP		msg_castle_room_35
 	_TIME_WAIT			FRONTIER_COMMON_WAIT,FSW_ANSWER
 	//_TALK_CLOSE
@@ -1553,13 +1553,13 @@ ev_castle_pass_multi:
 	//_JUMP				ev_castle_battle_3_2
 	_CALL				ev_castle_battle_5
 	_CALL				ev_castle_battle_6_2
-	_TALK_CLOSE												/*š*/
+	_TALK_CLOSE												/*â˜…*/
 	_JUMP				ev_castle_battle_3_sub
 	_END
 
 
 /********************************************************************/
-/*					ƒgƒŒ[ƒi[‚ÌŒ©‚½–ÚƒZƒbƒg						*/
+/*					ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®è¦‹ãŸç›®ã‚»ãƒƒãƒˆ						*/
 /********************************************************************/
 ev_castle_trainer_set_1:
 	_CASTLE_TOOL		FC_ID_GET_TR_OBJ_CODE,0,0,FSW_ANSWER
@@ -1580,7 +1580,7 @@ ev_castle_trainer_set_2:
 	_ACTOR_SET			etc_set_actor2
 	_RET
 
-/*ƒuƒŒ[ƒ“ƒZƒbƒg*/
+/*ãƒ–ãƒ¬ãƒ¼ãƒ³ã‚»ãƒƒãƒˆ*/
 ev_castle_trainer_set_brain:
 	_LDVAL				FSW_PARAM2,BRAINS3
 	_CHAR_RESOURCE_SET	etc_set_resource
@@ -1592,18 +1592,18 @@ ev_castle_trainer_set_brain:
 //
 /********************************************************************/
 ev_castle_battle:
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	//_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	//_WIPE_FADE_END_CHECK
 
-	/*ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg‘O‚ÉƒLƒ‰ƒLƒ‰I—¹‚³‚¹‚é*/
+	/*ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‰ã«ã‚­ãƒ©ã‚­ãƒ©çµ‚äº†ã•ã›ã‚‹*/
 	_PARTICLE_SPA_EXIT	SPAWORK_0
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_multi_battle_2
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_CASTLE_TOOL		FC_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_leader_1st_33
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_castle_leader_2nd_33
@@ -1619,9 +1619,9 @@ ev_castle_leader_2nd_33:
 	_JUMP				ev_castle_battle_2
 	_END
 
-/*’ÊMƒ}ƒ‹ƒ`*/
+/*é€šä¿¡ãƒžãƒ«ãƒ*/
 ev_castle_multi_battle_2:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_BATTLE
 	_COMM_RESET
@@ -1636,7 +1636,7 @@ ev_castle_multi_battle_2:
 //
 /********************************************************************/
 ev_castle_battle_2:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_castle_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
@@ -1645,51 +1645,51 @@ ev_castle_battle_2:
 #ifndef DEBUG_FRONTIER_LOOP
 
 #ifndef DEBUG_BTL_OFF	/************************************************/
-	/*í“¬ŒÄ‚Ño‚µ*/
+	/*æˆ¦é—˜å‘¼ã³å‡ºã—*/
 	_CASTLE_BATTLE_CALL
 	_CASTLE_CALL_GET_RESULT
 #endif	/****************************************************************/
 
 #endif	//DEBUG_FRONTIER_LOOP
 
-	/*ƒp[ƒeƒBƒNƒ‹‰‰o*/
+	/*ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æ¼”å‡º*/
 	_PARTICLE_SPA_LOAD	SPAWORK_0,CASTLE_SPA,FSS_CAMERA_ORTHO
 	_PARTICLE_ADD_EMITTER	SPAWORK_0,CASTLE_BC_KIRA
 
-	/*Žü‰ñ”‚É‚æ‚Á‚ÄBG‚Ìˆê•”‚ð•ÏX‚·‚é*/
+	/*å‘¨å›žæ•°ã«ã‚ˆã£ã¦BGã®ä¸€éƒ¨ã‚’å¤‰æ›´ã™ã‚‹*/
 	_CASTLE_TOOL		FC_ID_LAP_NUM_WRITE,0,0,FSW_ANSWER
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 #ifndef DEBUG_FRONTIER_LOOP
 
 #ifndef DEBUG_BTL_LOSE_OFF	/********************************************/
-	/*í“¬Œ‹‰Ê‚Å•ªŠò*/
+	/*æˆ¦é—˜çµæžœã§åˆ†å²*/
 	_CASTLE_LOSE_CHECK	FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_lose		/*”s–k*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_lose		/*æ•—åŒ—*/
 #endif	/****************************************************************/
 
 #endif	//DEBUG_FRONTIER_LOOP
 
-	/*Ÿ—˜*/
+	/*å‹åˆ©*/
 	_RECORD_INC			RECID_CASTLE_WIN
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_battle_2_multi
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_CASTLE_TOOL		FC_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_leader_1st_03
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_castle_leader_2nd_03
 
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_castle_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*“GƒgƒŒ[ƒi[‘Þê*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´*/
 	_OBJ_ANIME			OBJID_ETC,etc_anime_go_out
 	_OBJ_ANIME_WAIT
 	_JUMP				ev_castle_battle_2_sub
@@ -1704,9 +1704,9 @@ ev_castle_battle_2_sub:
 ev_castle_battle_2_multi:
 	_CALL				ev_castle_comm_command_initialize_4
 
-	/*“GƒgƒŒ[ƒi[‘Þê*/
-	_OBJ_ANIME			OBJID_ETC,etc_anime_go_out_sio		/*‰º*/
-	_OBJ_ANIME			OBJID_ETC2,etc_anime_go_out_multi	/*ã*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´*/
+	_OBJ_ANIME			OBJID_ETC,etc_anime_go_out_sio		/*ä¸‹*/
+	_OBJ_ANIME			OBJID_ETC2,etc_anime_go_out_multi	/*ä¸Š*/
 	_OBJ_ANIME_WAIT
 	_ACTOR_FREE			OBJID_ETC
 	_ACTOR_FREE			OBJID_ETC2
@@ -1718,7 +1718,7 @@ ev_castle_battle_2_multi:
 
 
 /********************************************************************/
-/*					€”õ•”‰®‚É–ß‚é‘O‚É‚·‚é‚±‚Æ						*/
+/*					æº–å‚™éƒ¨å±‹ã«æˆ»ã‚‹å‰ã«ã™ã‚‹ã“ã¨						*/
 /********************************************************************/
 ev_castle_battle_3:
 	_CALL				ev_castle_battle_5
@@ -1726,7 +1726,7 @@ ev_castle_battle_3:
 	_JUMP				ev_castle_battle_3_sub
 	_END
 
-/*ƒpƒX‚ÌŽž*/
+/*ãƒ‘ã‚¹ã®æ™‚*/
 ev_castle_battle_3_2:
 	_CALL				ev_castle_battle_5
 	_CALL				ev_castle_battle_6_2
@@ -1742,7 +1742,7 @@ ev_castle_battle_3_sub:
 	_ACTOR_FREE			OBJID_PRINCESS
 	_CHAR_RESOURCE_FREE	PRINCESS
 
-	_CALL				ev_castle_room_return			/*€”õ•”‰®‚É–ß‚é*/
+	_CALL				ev_castle_room_return			/*æº–å‚™éƒ¨å±‹ã«æˆ»ã‚‹*/
 	_JUMP				ev_castle_battle_4
 	_END
 
@@ -1760,18 +1760,18 @@ ev_castle_battle_5:
 	_RET
 #endif	//DEBUG_FRONTIER_LOOP
 
-	/*¡‰½l–Ú+1*/
+	/*ä»Šä½•äººç›®+1*/
 	_CASTLE_TOOL		FC_ID_INC_ROUND,1,0,FSW_ANSWER
 
-	/*˜AŸ”+1*/
+	/*é€£å‹æ•°+1*/
 	_CASTLE_TOOL		FC_ID_INC_RENSYOU,0,0,FSW_ANSWER
 	_RET
 
 ev_castle_battle_6:
 	_PLAYER_NAME		1
 
-	/*CP”z•zŒvŽZ*/
-	_CASTLE_TOOL		FC_ID_BTL_WIN_CP_POINT,0,0,FSW_PARAM4			/*‘Þ”ð*/
+	/*CPé…å¸ƒè¨ˆç®—*/
+	_CASTLE_TOOL		FC_ID_BTL_WIN_CP_POINT,0,0,FSW_PARAM4			/*é€€é¿*/
 	_NUMBER_NAME		0,FSW_PARAM4
 
 	_OBJ_ANIME			OBJID_PRINCESS,princess_anime_talk
@@ -1785,7 +1785,7 @@ ev_castle_battle_6:
 ev_castle_battle_6_sub:
 	_TALK_CLOSE
 
-	/*PP‚È‚Ç‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^XV*/
+	/*PPãªã©ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ›´æ–°*/
 	_CASTLE_TOOL		FC_ID_BTL_WIN_POKE_DATA,0,0,FSW_ANSWER
 
 	_CHAR_RESOURCE_SET	brain_set_resource
@@ -1793,7 +1793,7 @@ ev_castle_battle_6_sub:
 	_OBJ_ANIME			OBJID_BRAIN3_BTL_ROOM,brain_anime_room_in
 	_OBJ_ANIME_WAIT
 
-	/*Žæ“¾CP‚É‚æ‚Á‚ÄƒƒbƒZ[ƒW‚ð‚©‚¦‚é*/
+	/*å–å¾—CPã«ã‚ˆã£ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ã‹ãˆã‚‹*/
 	_PLAYER_NAME		1
 	_IFVAL_JUMP			FSW_PARAM4,GE,40,ev_castle_cp_num_01
 	_IFVAL_JUMP			FSW_PARAM4,GE,25,ev_castle_cp_num_02
@@ -1803,7 +1803,7 @@ ev_castle_battle_6_sub:
 
 
 /********************************************************************/
-/*							CP“n‚·ƒƒbƒZ[ƒW						*/
+/*							CPæ¸¡ã™ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸						*/
 /********************************************************************/
 ev_castle_cp_num_01:
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
@@ -1846,34 +1846,34 @@ ev_castle_cp_num_common_sub:
 	_CHAR_RESOURCE_FREE	BRAINS3
 	////////////////////////////////////////////////////////////////////
 
-	/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_cp_num_multi
 	_RET
 
 
 /********************************************************************/
-/*			CP‚ð“n‚µ‚½Œãu‚µ‚Î‚ç‚­‚¨‚Ü‚¿‚­‚¾‚³‚¢vƒ}ƒ‹ƒ`—p			*/
+/*			CPã‚’æ¸¡ã—ãŸå¾Œã€Œã—ã°ã‚‰ããŠã¾ã¡ãã ã•ã„ã€ãƒžãƒ«ãƒç”¨			*/
 /********************************************************************/
 ev_castle_cp_num_multi:
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_castle_room_wait
 	_CALL				ev_castle_multi_comm_basic_call
-	_TALK_CLOSE												/*š*/
+	_TALK_CLOSE												/*â˜…*/
 	_RET
 
 
 /********************************************************************/
-/*							ƒpƒX—p									*/
+/*							ãƒ‘ã‚¹ç”¨									*/
 /********************************************************************/
 ev_castle_battle_6_2:
-	/*CP”z•zŒvŽZ*/
+	/*CPé…å¸ƒè¨ˆç®—*/
 	//_CASTLE_TOOL		FC_ID_BTL_WIN_CP_POINT,0,0,FSW_ANSWER
 
-	/*PP‚È‚Ç‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^XV*/
+	/*PPãªã©ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ›´æ–°*/
 	_CASTLE_TOOL		FC_ID_BTL_WIN_POKE_DATA,0,0,FSW_ANSWER
 
-	/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_multi_comm_basic_call
 	_RET
@@ -1881,9 +1881,9 @@ ev_castle_battle_6_2:
 ev_castle_battle_7:
 
 #ifndef DEBUG_7BTL_OFF	/********************************************/
-	/*¡7l–Ú‚Å‚È‚¢Žž‚Í“ª‚É–ß‚é*/
+	/*ä»Š7äººç›®ã§ãªã„æ™‚ã¯é ­ã«æˆ»ã‚‹*/
 	_CASTLE_TOOL		FC_ID_GET_ROUND,0,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,NE,7,ev_castle_room_renshou_17		/*˜AŸ”‚ª1-6‚ÌŽž*/
+	_IFVAL_JUMP			FSW_ANSWER,NE,7,ev_castle_room_renshou_17		/*é€£å‹æ•°ãŒ1-6ã®æ™‚*/
 #endif	/************************************************************/
 
 	_JUMP				ev_castle_room_7_win
@@ -1891,22 +1891,22 @@ ev_castle_battle_7:
 
 
 /********************************************************************/
-/*							7˜AŸ‚µ‚½(‹L˜^)							*/
+/*							7é€£å‹ã—ãŸ(è¨˜éŒ²)							*/
 /********************************************************************/
 ev_castle_room_7_win:
-	/*ƒpƒX‚ð‘I‘ð‚µ‚Ä‚¢‚½‚ç*/
+	/*ãƒ‘ã‚¹ã‚’é¸æŠžã—ã¦ã„ãŸã‚‰*/
 	_IFVAL_JUMP			FSW_LOCAL5,EQ,1,ev_castle_room_7_win_bp
 
-	/*Ž©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚Å“®‚¢‚Ä‚¢‚½Žž‚Íu‚«‚ë‚­‚·‚évo‚³‚È‚¢*/
+	/*è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ã„ã¦ã„ãŸæ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€å‡ºã•ãªã„*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_castle_room_7_win_bp_sub
 
-	/*u‚³‚«‚Ù‚Ç‚Ì@í‚¢‚ð@‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã•ãã»ã©ã®ã€€æˆ¦ã„ã‚’ã€€è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_castle_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_castle_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX		FSW_ANSWER										/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
+	_YES_NO_WIN_EX		FSW_ANSWER										/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_7_win_bp
 	_JUMP				ev_castle_room_7_win_rec_yes
 	_END
@@ -1916,36 +1916,36 @@ ev_castle_room_7_win_bp_sub:
 	_JUMP				ev_castle_room_7_win_bp
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_castle_room_7_win_rec_yes:
-	_CALL				ev_castle_room_rec_win		/*Ÿ—˜‚Ì‹L˜^*/
+	_CALL				ev_castle_room_rec_win		/*å‹åˆ©ã®è¨˜éŒ²*/
 	_JUMP				ev_castle_room_7_win_bp
 	_END
 
 
 /********************************************************************/
-/*							7˜AŸ‚µ‚½(BPŽæ“¾)						*/
+/*							7é€£å‹ã—ãŸ(BPå–å¾—)						*/
 /********************************************************************/
 ev_castle_room_7_win_bp:
-	//7˜AŸ(ƒNƒŠƒA)ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//7é€£å‹(ã‚¯ãƒªã‚¢)ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_CASTLE_TOOL		FC_ID_SET_CLEAR,0,0,FSW_ANSWER
 
-	/*7˜AŸ‚µ‚½‚Ì‚ÅI—¹‚Ö*/
-	//_LDVAL			WK_SCENE_CASTLE_LOBBY,1				/*7˜AŸ‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_CASTLE_LOBBY,1			/*7˜AŸ‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	/*7é€£å‹ã—ãŸã®ã§çµ‚äº†ã¸*/
+	//_LDVAL			WK_SCENE_CASTLE_LOBBY,1				/*7é€£å‹ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_CASTLE_LOBBY,1			/*7é€£å‹ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
-	/*u‚V‚¹‚ñ@‚Æ‚Á‚Ï@‚¨‚ß‚Å‚Æ‚¤v*/
+	/*ã€Œï¼—ã›ã‚“ã€€ã¨ã£ã±ã€€ãŠã‚ã§ã¨ã†ã€*/
 	_PLAYER_NAME		0
 	_TALKMSG			msg_castle_room_31
 
-	_PLAYER_NAME		0										/*ƒvƒŒƒCƒ„[–¼ƒZƒbƒg*/
+	_PLAYER_NAME		0										/*ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚»ãƒƒãƒˆ*/
 
-	/*ƒoƒgƒ‹ƒ|ƒCƒ“ƒg’Ç‰Á*/
+	/*ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆè¿½åŠ */
 	_CASTLE_TOOL		FC_ID_GET_BP_POINT,0,0,FSW_ANSWER
-	_NUMBER_NAME		1,FSW_ANSWER							/*”’lƒZƒbƒg*/
+	_NUMBER_NAME		1,FSW_ANSWER							/*æ•°å€¤ã‚»ãƒƒãƒˆ*/
 	_BTL_POINT_ADD		FSW_ANSWER
 
-	/*u‚a‚o‚ð‚à‚ç‚Á‚½v*/
+	/*ã€Œï¼¢ï¼°ã‚’ã‚‚ã‚‰ã£ãŸã€*/
 	_TALKMSG			msg_castle_room_32
 	_ME_PLAY			ME_BP_GET
 	_ME_WAIT
@@ -1955,7 +1955,7 @@ ev_castle_room_7_win_bp:
 
 
 /********************************************************************/
-/*							7˜AŸ‚µ‚½I—¹							*/
+/*							7é€£å‹ã—ãŸçµ‚äº†							*/
 /********************************************************************/
 ev_castle_room_bp_end:
 	_JUMP				ev_castle_lose_timing
@@ -1963,24 +1963,24 @@ ev_castle_room_bp_end:
 
 
 /********************************************************************/
-/*							˜AŸ” 1-7								*/
+/*							é€£å‹æ•° 1-7								*/
 /********************************************************************/
 ev_castle_room_renshou_17:
-	/*ƒpƒX‚ð‘I‘ð‚µ‚Ä‚¢‚½‚ç*/
+	/*ãƒ‘ã‚¹ã‚’é¸æŠžã—ã¦ã„ãŸã‚‰*/
 	_IFVAL_JUMP			FSW_LOCAL5,EQ,1,ev_castle_room_saikai
 
-	/*•mŽ€‚Ìƒ|ƒPƒ‚ƒ“‚ª‚¢‚é‚©Žæ“¾*/
+	/*ç€•æ­»ã®ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ã‹å–å¾—*/
 	_CASTLE_TOOL		FC_ID_GET_HINSI_FLAG,0,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_room_saikai	/*‚¢‚È‚¢*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_room_saikai	/*ã„ãªã„*/
 
-	/*uƒ|ƒPƒ‚ƒ“‚Ìó‘Ô‚ðŽ¡‚µ‚Ü‚·v*/
+	/*ã€Œãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹ã‚’æ²»ã—ã¾ã™ã€*/
 	_TALKMSG			msg_castle_room_3
 	//_ME_PLAY			SEQ_ASA
 	//_ME_WAIT
 	_SE_PLAY			SEQ_SE_DP_UG_020
 	_SE_WAIT			SEQ_SE_DP_UG_020
 
-	/*ƒoƒgƒ‹ŒÄ‚Ño‚µ‚Ìí“¬ƒpƒ‰ƒ[ƒ^‚ð¶¬‚·‚éŽž‚Éó‘ÔˆÙí{‹Câ‰ñ•œˆ—‚ð“ü‚ê‚Ä‚¢‚é*/
+	/*ãƒãƒˆãƒ«å‘¼ã³å‡ºã—ã®æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹æ™‚ã«çŠ¶æ…‹ç•°å¸¸ï¼‹æ°—çµ¶å›žå¾©å‡¦ç†ã‚’å…¥ã‚Œã¦ã„ã‚‹*/
 	//_PC_KAIFUKU
 
 	_JUMP				ev_castle_room_saikai
@@ -1988,10 +1988,10 @@ ev_castle_room_renshou_17:
 
 
 /********************************************************************/
-/*						’†’fƒZ[ƒu‚©‚ç‚ÌÄŠJ						*/
+/*						ä¸­æ–­ã‚»ãƒ¼ãƒ–ã‹ã‚‰ã®å†é–‹						*/
 /********************************************************************/
 ev_castle_room_saikai:
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_CASTLE_TOOL		FC_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_leader_1st_01
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_castle_leader_2nd_01
@@ -2000,15 +2000,15 @@ ev_castle_room_saikai:
 	_END
 
 ev_castle_room_saikai_00:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_castle_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_menu_before_wait
 
-	/*uŽŸ‚Í@›í–Ú‚Å‚·‚æv*/
+	/*ã€Œæ¬¡ã¯ã€€â—‹æˆ¦ç›®ã§ã™ã‚ˆã€*/
 	_CASTLE_TOOL		FC_ID_GET_ROUND,0,0,FSW_ANSWER
 	_ADD_WK				FSW_ANSWER,1
 	_NUMBER_NAME		0,FSW_ANSWER
@@ -2016,21 +2016,21 @@ ev_castle_room_saikai_00:
 	_JUMP				ev_castle_room_saikai_02_sub
 	_END
 
-/*ƒƒjƒ…[•\Ž¦‘O‚Ì“¯Šú*/
+/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºå‰ã®åŒæœŸ*/
 ev_castle_room_menu_before_wait:
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_castle_room_wait
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_MENU_BEFORE
 	_COMM_RESET
 
-	/*˜AŸ”‚ðƒZƒbƒg*/
+	/*é€£å‹æ•°ã‚’ã‚»ãƒƒãƒˆ*/
 	_CALL				ev_castle_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*uŽŸ‚Í@›í–Ú‚Å‚·‚æv*/
+	/*ã€Œæ¬¡ã¯ã€€â—‹æˆ¦ç›®ã§ã™ã‚ˆã€*/
 	_CASTLE_TOOL		FC_ID_GET_ROUND,0,0,FSW_ANSWER
 	_ADD_WK				FSW_ANSWER,1
 	_NUMBER_NAME		0,FSW_ANSWER
@@ -2044,32 +2044,32 @@ ev_castle_room_saikai_02_sub:
 
 
 /********************************************************************/
-/*							ƒƒjƒ…[¶¬							*/
+/*							ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”Ÿæˆ							*/
 /********************************************************************/
 ev_castle_room_menu_make:
 	_CASTLE_TOOL	FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_castle_room_menu_make_comm
 
-	/*ƒpƒX‚ð‘I‘ð‚µ‚Ä‚¢‚½‚çu‚«‚ë‚­‚·‚évƒƒjƒ…[‚È‚µ*/
+	/*ãƒ‘ã‚¹ã‚’é¸æŠžã—ã¦ã„ãŸã‚‰ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãªã—*/
 	_IFVAL_JUMP		FSW_LOCAL5,EQ,1,ev_castle_room_menu_make_03_set
 
-	/*‚Ü‚¾‹L˜^‚µ‚Ä‚¢‚È‚¢A’†’f•œ‹A‚Å‚Í‚È‚¢Žž‚Íu‚«‚ë‚­‚·‚évƒƒjƒ…[’Ç‰Á*/
+	/*ã¾ã è¨˜éŒ²ã—ã¦ã„ãªã„ã€ä¸­æ–­å¾©å¸°ã§ã¯ãªã„æ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ */
 	_IFVAL_JUMP		FSW_LOCAL3,EQ,0,ev_castle_room_menu_make_04_set
 
 	_JUMP			ev_castle_room_menu_make_03_set
 	_END
 
-/*’ÊM‚ÌŽž‚Ìƒƒjƒ…[*/
+/*é€šä¿¡ã®æ™‚ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼*/
 ev_castle_room_menu_make_comm:
 
-	/*Ž©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚Å“®‚¢‚Ä‚¢‚½Žž‚Íu‚«‚ë‚­‚·‚évo‚³‚È‚¢*/
+	/*è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ã„ã¦ã„ãŸæ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€å‡ºã•ãªã„*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_castle_room_menu_make_01_set
 
-	/*ƒpƒX‚ð‘I‘ð‚µ‚Ä‚¢‚½‚çu‚«‚ë‚­‚·‚évƒƒjƒ…[‚È‚µ*/
+	/*ãƒ‘ã‚¹ã‚’é¸æŠžã—ã¦ã„ãŸã‚‰ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãªã—*/
 	_IFVAL_JUMP		FSW_LOCAL5,EQ,1,ev_castle_room_menu_make_01_set
 
-	/*‚Ü‚¾‹L˜^‚µ‚Ä‚¢‚È‚¢A’†’f•œ‹A‚Å‚Í‚È‚¢Žž‚Íu‚«‚ë‚­‚·‚évƒƒjƒ…[’Ç‰Á*/
+	/*ã¾ã è¨˜éŒ²ã—ã¦ã„ãªã„ã€ä¸­æ–­å¾©å¸°ã§ã¯ãªã„æ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ */
 	_IFVAL_JUMP		FSW_LOCAL3,EQ,0,ev_castle_room_menu_make_02_set
 
 	_JUMP			ev_castle_room_menu_make_01_set
@@ -2095,7 +2095,7 @@ ev_castle_room_menu_make_04_set:
 	_JUMP				ev_castle_room_menu_make_sub
 	_END
 
-/*‚Ç‚Ìƒƒjƒ…[Œ`Ž®‚É‚·‚é‚©*/
+/*ã©ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼å½¢å¼ã«ã™ã‚‹ã‹*/
 ev_castle_room_menu_make_sub:
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_menu_make_01
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_castle_room_menu_make_02
@@ -2104,42 +2104,42 @@ ev_castle_room_menu_make_sub:
 	_END
 
 ev_castle_room_menu_make_01:
-	_BMPLIST_INIT_EX	24,13,0,0,FSW_PARAM1			/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_castle_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*‚Â‚Ã‚¯‚é*/
+	_BMPLIST_INIT_EX	24,13,0,0,FSW_PARAM1			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_castle_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*ã¤ã¥ã‘ã‚‹*/
 	_JUMP			ev_castle_room_yasumu_next
 	_END
 
 ev_castle_room_menu_make_02:
-	_BMPLIST_INIT_EX	23,11,0,0,FSW_PARAM1			/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_castle_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*‚Â‚Ã‚¯‚é*/
-	_BMPLIST_MAKE_LIST	msg_castle_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1		/*‚«‚ë‚­‚·‚é*/
+	_BMPLIST_INIT_EX	23,11,0,0,FSW_PARAM1			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_castle_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*ã¤ã¥ã‘ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_castle_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1		/*ãã‚ãã™ã‚‹*/
 	_JUMP			ev_castle_room_yasumu_next
 	_END
 
 ev_castle_room_menu_make_03:
-	_BMPLIST_INIT_EX	24,11,0,0,FSW_PARAM1			/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_castle_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*‚Â‚Ã‚¯‚é*/
-	_BMPLIST_MAKE_LIST	msg_castle_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2		/*‚â‚·‚Þ*/
+	_BMPLIST_INIT_EX	24,11,0,0,FSW_PARAM1			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_castle_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*ã¤ã¥ã‘ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_castle_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2		/*ã‚„ã™ã‚€*/
 	_JUMP			ev_castle_room_yasumu_next
 	_END
 
 ev_castle_room_menu_make_04:
-	_BMPLIST_INIT_EX	23,9,0,0,FSW_PARAM1				/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_castle_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*‚Â‚Ã‚¯‚é*/
-	_BMPLIST_MAKE_LIST	msg_castle_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1		/*‚«‚ë‚­‚·‚é*/
-	_BMPLIST_MAKE_LIST	msg_castle_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2		/*‚â‚·‚Þ*/
+	_BMPLIST_INIT_EX	23,9,0,0,FSW_PARAM1				/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_castle_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0		/*ã¤ã¥ã‘ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_castle_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1		/*ãã‚ãã™ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_castle_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2		/*ã‚„ã™ã‚€*/
 	_JUMP			ev_castle_room_yasumu_next
 	_END
 
 ev_castle_room_yasumu_next:
-	_BMPLIST_MAKE_LIST	msg_castle_room_choice_04,FSEV_WIN_TALK_MSG_NONE,3		/*ƒŠƒ^ƒCƒA*/
+	_BMPLIST_MAKE_LIST	msg_castle_room_choice_04,FSEV_WIN_TALK_MSG_NONE,3		/*ãƒªã‚¿ã‚¤ã‚¢*/
 	_BMPLIST_START
 	_JUMP			ev_castle_room_menu_sel
 	_END
 
 
 /********************************************************************/
-/*							ƒƒjƒ…[Œ‹‰Ê							*/
+/*							ãƒ¡ãƒ‹ãƒ¥ãƒ¼çµæžœ							*/
 /********************************************************************/
 ev_castle_room_menu_sel:
 
@@ -2147,27 +2147,27 @@ ev_castle_room_menu_sel:
 	_JUMP				ev_room_choice_01
 #endif	//DEBUG_FRONTIER_LOOP
 
-	_IFVAL_JUMP			FSW_PARAM1,EQ,0,ev_room_choice_01	/*‚Â‚Ã‚¯‚é*/
-	_IFVAL_JUMP			FSW_PARAM1,EQ,1,ev_room_choice_02	/*‚«‚ë‚­‚·‚é*/
-	_IFVAL_JUMP			FSW_PARAM1,EQ,2,ev_room_choice_03	/*‚â‚·‚Þ*/
-	_IFVAL_JUMP			FSW_PARAM1,EQ,3,ev_room_choice_04	/*ƒŠƒ^ƒCƒA*/
+	_IFVAL_JUMP			FSW_PARAM1,EQ,0,ev_room_choice_01	/*ã¤ã¥ã‘ã‚‹*/
+	_IFVAL_JUMP			FSW_PARAM1,EQ,1,ev_room_choice_02	/*ãã‚ãã™ã‚‹*/
+	_IFVAL_JUMP			FSW_PARAM1,EQ,2,ev_room_choice_03	/*ã‚„ã™ã‚€*/
+	_IFVAL_JUMP			FSW_PARAM1,EQ,3,ev_room_choice_04	/*ãƒªã‚¿ã‚¤ã‚¢*/
 	_JUMP				ev_room_choice_04
 	_END
 
 
 /********************************************************************/
-/*						u‚Â‚Ã‚¯‚év								*/
+/*						ã€Œã¤ã¥ã‘ã‚‹ã€								*/
 /********************************************************************/
 ev_room_choice_01:
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_room_choice_01_multi
 	_JUMP				ev_room_choice_01_2
 	_END
 
-/*’ÊMƒ}ƒ‹ƒ`*/
+/*é€šä¿¡ãƒžãƒ«ãƒ*/
 ev_room_choice_01_multi:
-	/*ƒp[ƒgƒi[–¼‚ð•\Ž¦*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º*/
 	_PAIR_NAME			0
 	_TALKMSG			msg_castle_room_10
 	_JUMP				ev_room_choice_01_multi_retry
@@ -2175,19 +2175,19 @@ ev_room_choice_01_multi:
 
 ev_room_choice_01_multi_retry:
 	_LDVAL				FSW_LOCAL2,CASTLE_COMM_RETIRE
-	_CASTLE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER							/*0=‚Â‚Ã‚¯‚é*/
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_room_choice_01_multi_retry	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_CASTLE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER							/*0=ã¤ã¥ã‘ã‚‹*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_room_choice_01_multi_retry	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_CASTLE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*‘ŠŽè‚ª‘I‚ñ‚¾ƒƒjƒ…[‚ðŽæ“¾*/
+	/*ç›¸æ‰‹ãŒé¸ã‚“ã ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å–å¾—*/
 	_CASTLE_TOOL		FC_ID_GET_RETIRE_FLAG,0,0,FSW_ANSWER
 
-	/*ƒp[ƒgƒi[‚ªƒŠƒ^ƒCƒA‚µ‚½‚ç*/
-	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_giveup_yes_multi	/*ƒŠƒ^ƒCƒA*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒãƒªã‚¿ã‚¤ã‚¢ã—ãŸã‚‰*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_giveup_yes_multi	/*ãƒªã‚¿ã‚¤ã‚¢*/
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_MENU
 	_COMM_RESET
@@ -2195,9 +2195,9 @@ ev_room_choice_01_multi_retry:
 	_JUMP				ev_room_choice_01_2
 	_END
 
-/*ƒp[ƒgƒi[‚ªƒŠƒ^ƒCƒA‚µ‚½‚ç*/
+/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒãƒªã‚¿ã‚¤ã‚¢ã—ãŸã‚‰*/
 ev_castle_room_giveup_yes_multi:
-	/*ƒp[ƒgƒi[–¼‚ð•\Ž¦*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º*/
 	_PAIR_NAME			0
 	_TALKMSG_NOSKIP		msg_castle_room_12
 	_TIME_WAIT			FRONTIER_COMMON_WAIT,FSW_ANSWER
@@ -2209,13 +2209,13 @@ ev_castle_room_giveup_yes_multi:
 /**/
 /********************************************************************/
 ev_room_choice_01_2:
-	/*ƒ[ƒN‚ðƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	/*ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 	_LDVAL				FSW_LOCAL3,0
 
-	/*ŽŸ‚Ì“Gƒ|ƒPƒ‚ƒ“‚ð¶¬*/
-	_CASTLE_BTL_AFTER_PARTY_SET		/*ƒoƒgƒ‹Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg*/
+	/*æ¬¡ã®æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ç”Ÿæˆ*/
+	_CASTLE_BTL_AFTER_PARTY_SET		/*ãƒãƒˆãƒ«å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ*/
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_multi_room_enemy_poke_send2_2
 
@@ -2224,52 +2224,52 @@ ev_room_choice_01_2:
 
 
 /********************************************************************/
-/*							‹L˜^‚·‚é*/
+/*							è¨˜éŒ²ã™ã‚‹*/
 /********************************************************************/
 ev_room_choice_02:
-	/*u‚³‚«‚Ù‚Ç‚Ì@í‚¢‚ð@‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã•ãã»ã©ã®ã€€æˆ¦ã„ã‚’ã€€è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_castle_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_castle_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX		FSW_ANSWER										/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
+	_YES_NO_WIN_EX		FSW_ANSWER										/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_rec_no
 	_JUMP				ev_castle_room_rec_yes
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_castle_room_rec_yes:
-	_CALL				ev_castle_room_rec_win		/*Ÿ—˜‚Ì‹L˜^*/
-	_JUMP				ev_castle_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_CALL				ev_castle_room_rec_win		/*å‹åˆ©ã®è¨˜éŒ²*/
+	_JUMP				ev_castle_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_castle_room_rec_no:
-	_JUMP				ev_castle_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_JUMP				ev_castle_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*							‹¤’Ê‹L˜^*/
+/*							å…±é€šè¨˜éŒ²*/
 /********************************************************************/
-/*Ÿ‚¿*/
+/*å‹ã¡*/
 ev_castle_room_rec_win:
-	_CALL				ev_castle_room_rec_common		/*ANSWER,PARAM0Žg—p’†*/
+	_CALL				ev_castle_room_rec_common		/*ANSWER,PARAM0ä½¿ç”¨ä¸­*/
 	//_ADD_WK			FSW_PARAM0,1
-	//_SUB_WK			FSW_PARAM0,1					/*ƒ‰ƒEƒ“ƒh”‚Å‚Í‚È‚­Ÿ—˜”‚È‚Ì‚Å*/
+	//_SUB_WK			FSW_PARAM0,1					/*ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã§ã¯ãªãå‹åˆ©æ•°ãªã®ã§*/
 	_JUMP				ev_castle_room_rec
 	_END
 
-/*•‰‚¯*/
+/*è² ã‘*/
 ev_castle_room_rec_lose:
-	_CALL				ev_castle_room_rec_common		/*ANSWER,PARAM0Žg—p’†*/
+	_CALL				ev_castle_room_rec_common		/*ANSWER,PARAM0ä½¿ç”¨ä¸­*/
 	_ADD_WK				FSW_PARAM0,1
 	_JUMP				ev_castle_room_rec
 	_END
 
-/*‹¤’Ê•”•ª*/
+/*å…±é€šéƒ¨åˆ†*/
 ev_castle_room_rec_common:
-	/*˜^‰æƒf[ƒ^ƒZ[ƒu*/
+	/*éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–*/
 	_CASTLE_TOOL		FC_ID_GET_RENSYOU,0,0,FSW_PARAM0
 	_RET
 
@@ -2278,10 +2278,10 @@ ev_castle_room_rec:
 	_END
 
 ev_castle_room_rec_sub:
-	/*‹L˜^‚µ‚½ƒ[ƒNƒZƒbƒg*/
+	/*è¨˜éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ*/
 	_LDVAL				FSW_LOCAL3,1
 
-	/*WIFIƒ}ƒ‹ƒ`‘Î‰ž ˜^‰æ‘O‚ÉCPƒŒƒR[ƒh‚ð‘Þ”ð‚µ‚ÄA’§íŽž‚ÌCP‚Éã‘‚«*/
+	/*WIFIãƒžãƒ«ãƒå¯¾å¿œ éŒ²ç”»å‰ã«CPãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’é€€é¿ã—ã¦ã€æŒ‘æˆ¦æ™‚ã®CPã«ä¸Šæ›¸ã*/
 	_CASTLE_TOOL		FC_ID_WIFI_MULTI_CP_TEMP,0,0,FSW_ANSWER
 
 	_TALKMSG_ALL_PUT	msg_castle_room_6_4
@@ -2290,95 +2290,95 @@ ev_castle_room_rec_sub:
 	_BATTLE_REC_SAVE	FRONTIER_NO_CASTLE,FSW_ANSWER,FSW_PARAM0,FSW_PARAM0
 	_DEL_WAITICON
 
-	/*WIFIƒ}ƒ‹ƒ`‘Î‰ž ˜^‰æŒã‚É‘Þ”ð‚µ‚Ä‚¨‚¢‚½Œ»Ý‚ÌCPƒŒƒR[ƒh‚Åã‘‚«*/
+	/*WIFIãƒžãƒ«ãƒå¯¾å¿œ éŒ²ç”»å¾Œã«é€€é¿ã—ã¦ãŠã„ãŸç¾åœ¨ã®CPãƒ¬ã‚³ãƒ¼ãƒ‰ã§ä¸Šæ›¸ã*/
 	_CASTLE_TOOL		FC_ID_WIFI_MULTI_CP_TEMP,1,0,FSW_ANSWER
 
 	//_BATTLE_REC_LOAD
 
 	_IFVAL_JUMP			FSW_PARAM0,EQ,1,ev_castle_room_rec_true
 
-	/*u‹L˜^o—ˆ‚Ü‚¹‚ñ‚Å‚µ‚½v*/
+	/*ã€Œè¨˜éŒ²å‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸã€*/
 	_TALKMSG			msg_castle_room_6_2
 	_RET
 
 ev_castle_room_rec_true:
 	_SE_PLAY			SEQ_SE_DP_SAVE
-	/*u‹L˜^‚³‚ê‚Ü‚µ‚½v*/
+	/*ã€Œè¨˜éŒ²ã•ã‚Œã¾ã—ãŸã€*/
 	_PLAYER_NAME		0
 	_TALKMSG			msg_castle_room_6_1
 	_RET
 	
-/*˜^‰æƒf[ƒ^‚ª‚È‚¢ŽžƒƒbƒZ[ƒW*/
+/*éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒãªã„æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_castle_room_rec_msg1:
 	_TALKMSG			msg_castle_room_6
 	_RET
 
-/*‚·‚Å‚É˜^‰æƒf[ƒ^‚ª‚ ‚éŽžƒƒbƒZ[ƒW*/
+/*ã™ã§ã«éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_castle_room_rec_msg2:
 	_TALKMSG			msg_castle_room_6_3
 	_RET
 
 
 /********************************************************************/
-/*							‚â‚·‚Þ*/
+/*							ã‚„ã™ã‚€*/
 /********************************************************************/
 ev_room_choice_03:
-	/*uƒŒƒ|[ƒg‚ð‚©‚¢‚ÄI—¹‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œãƒ¬ãƒãƒ¼ãƒˆã‚’ã‹ã„ã¦çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_TALKMSG			msg_castle_room_7
 	_YES_NO_WIN			FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_rest_no
 	_JUMP				ev_castle_room_rest_yes
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_castle_room_rest_yes:
-	//_LDVAL			WK_SCENE_CASTLE_LOBBY,2			/*‘±‚«‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_CASTLE_LOBBY,2		/*‘±‚«‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	//_LDVAL			WK_SCENE_CASTLE_LOBBY,2			/*ç¶šãã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_CASTLE_LOBBY,2		/*ç¶šãã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
-	//ƒvƒŒƒCƒf[ƒ^ƒZ[ƒu
+	//ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 	_CASTLE_TOOL		FC_ID_SAVE_REST_PLAY_DATA,0,0,FSW_ANSWER
 
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 	_CASTLE_WORK_FREE
 
-	_CALL				ev_castle_save			/*07.08.24 _CALL‚É’u‚«Š·‚¦‚½*/
+	_CALL				ev_castle_save			/*07.08.24 _CALLã«ç½®ãæ›ãˆãŸ*/
 
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	_TALK_CLOSE
 
-	//ƒŠƒZƒbƒgƒRƒ}ƒ“ƒh
+	//ãƒªã‚»ãƒƒãƒˆã‚³ãƒžãƒ³ãƒ‰
 	_CASTLE_TOOL		FC_ID_SYSTEM_RESET,0,0,FSW_ANSWER
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_castle_room_rest_no:
-	_JUMP				ev_castle_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_JUMP				ev_castle_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*							ƒŠƒ^ƒCƒA*/
+/*							ãƒªã‚¿ã‚¤ã‚¢*/
 /********************************************************************/
 ev_room_choice_04:
-	/*uƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹‚Ì’§í‚ð’†Ž~‚·‚éHv*/
+	/*ã€Œãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã®æŒ‘æˆ¦ã‚’ä¸­æ­¢ã™ã‚‹ï¼Ÿã€*/
 	_TALKMSG			msg_castle_room_8
 	_YES_NO_WIN_EX		FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_giveup_no
 
-	/*’ÊM*/
+	/*é€šä¿¡*/
 	_CASTLE_TOOL		FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_castle_room_giveup_yes_multi_wait_msg
 
-	/*u‚¨—a‚©‚è‚µ‚Ä‚¢‚½“¹‹ï‚ð@‚¨•Ô‚µ‚µ‚Ü‚·v*/
+	/*ã€ŒãŠé ã‹ã‚Šã—ã¦ã„ãŸé“å…·ã‚’ã€€ãŠè¿”ã—ã—ã¾ã™ã€*/
 	_TALKMSG			msg_castle_room_34
 
 	_JUMP				ev_castle_room_giveup_yes
 	_END
 
-/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 ev_castle_room_giveup_yes_multi_wait_msg:
 	_TALKMSG_NOSKIP		msg_castle_room_wait
 	_JUMP				ev_castle_room_giveup_yes_multi_retry
@@ -2386,8 +2386,8 @@ ev_castle_room_giveup_yes_multi_wait_msg:
 
 ev_castle_room_giveup_yes_multi_retry:
 	_LDVAL				FSW_LOCAL2,CASTLE_COMM_RETIRE
-	_CASTLE_SEND_BUF	FSW_LOCAL2,1,FSW_ANSWER									/*1=ƒŠƒ^ƒCƒ„*/
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_room_giveup_yes_multi_retry	/*‘—MŽ¸”s‚ÍÄ‘—M*/
+	_CASTLE_SEND_BUF	FSW_LOCAL2,1,FSW_ANSWER									/*1=ãƒªã‚¿ã‚¤ãƒ¤*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_room_giveup_yes_multi_retry	/*é€ä¿¡å¤±æ•—ã¯å†é€ä¿¡*/
 
 	//_CASTLE_RECV_BUF	FSW_LOCAL2
 	//_COMM_RESET
@@ -2395,13 +2395,13 @@ ev_castle_room_giveup_yes_multi_retry:
 	_END
 
 ev_castle_room_giveup_yes_multi_sync:
-	/*u‚¨—a‚©‚è‚µ‚Ä‚¢‚½“¹‹ï‚ð@‚¨•Ô‚µ‚µ‚Ü‚·v*/
+	/*ã€ŒãŠé ã‹ã‚Šã—ã¦ã„ãŸé“å…·ã‚’ã€€ãŠè¿”ã—ã—ã¾ã™ã€*/
 	_TALKMSG			msg_castle_room_34
 
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_castle_room_wait
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_GIVE
 	//_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_MENU
@@ -2409,25 +2409,25 @@ ev_castle_room_giveup_yes_multi_sync:
 	_JUMP				ev_castle_room_giveup_yes
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_castle_room_giveup_yes:
-	//”síƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//æ•—æˆ¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_CASTLE_TOOL		FC_ID_SET_LOSE,0,0,FSW_ANSWER
 
-	//_LDVAL			WK_SCENE_CASTLE_LOBBY,3			/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_CASTLE_LOBBY,3		/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	//_LDVAL			WK_SCENE_CASTLE_LOBBY,3			/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_CASTLE_LOBBY,3		/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
 	_JUMP				ev_castle_room_end_save
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_castle_room_giveup_no:
-	_JUMP				ev_castle_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_JUMP				ev_castle_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*								”s–k*/
+/*								æ•—åŒ—*/
 /********************************************************************/
 ev_castle_lose:
 	_SE_PLAY			SEQ_SE_DP_KAIDAN2
@@ -2436,20 +2436,20 @@ ev_castle_lose:
 	_WIPE_FADE_END_CHECK
 	_ACTOR_FREE			OBJID_PRINCESS
 	_CHAR_RESOURCE_FREE	PRINCESS
-	_CALL				ev_castle_room_return			/*€”õ•”‰®‚É–ß‚é*/
+	_CALL				ev_castle_room_return			/*æº–å‚™éƒ¨å±‹ã«æˆ»ã‚‹*/
 
-	/*Ž©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚Å“®‚¢‚Ä‚¢‚½Žž‚Íu‚«‚ë‚­‚·‚évo‚³‚È‚¢*/
+	/*è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ã„ã¦ã„ãŸæ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€å‡ºã•ãªã„*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_castle_lose_timing_sub
 
-	/*u‚³‚«‚Ù‚Ç‚Ì@í‚¢‚ð@‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã•ãã»ã©ã®ã€€æˆ¦ã„ã‚’ã€€è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_castle_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_castle_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_castle_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX	FSW_ANSWER								/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_castle_lose_rec_no	/*u‚¢‚¢‚¦v*/
-	_JUMP			ev_castle_lose_rec_yes					/*u‚Í‚¢v*/
+	_YES_NO_WIN_EX	FSW_ANSWER								/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_castle_lose_rec_no	/*ã€Œã„ã„ãˆã€*/
+	_JUMP			ev_castle_lose_rec_yes					/*ã€Œã¯ã„ã€*/
 	_END
 
 ev_castle_lose_timing_sub:
@@ -2457,29 +2457,29 @@ ev_castle_lose_timing_sub:
 	_JUMP			ev_castle_lose_timing_call
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_castle_lose_rec_yes:
-	_CALL			ev_castle_room_rec_lose					/*”s–k‚Ì‹L˜^*/
+	_CALL			ev_castle_room_rec_lose					/*æ•—åŒ—ã®è¨˜éŒ²*/
 	_JUMP			ev_castle_lose_timing_call
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_castle_lose_rec_no:
 	_JUMP			ev_castle_lose_timing_call
 	_END
 
 ev_castle_lose_timing_call:
-	//”síƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//æ•—æˆ¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_CASTLE_TOOL		FC_ID_SET_LOSE,0,0,FSW_ANSWER
 
-	//_LDVAL			WK_SCENE_CASTLE_LOBBY,3			/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_CASTLE_LOBBY,3		/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	//_LDVAL			WK_SCENE_CASTLE_LOBBY,3			/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_CASTLE_LOBBY,3		/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
 	_JUMP			ev_castle_lose_timing
 	_END
 
 ev_castle_lose_timing:
-	/*u‚¨—a‚©‚è‚µ‚Ä‚¢‚½“¹‹ï‚ð@‚¨•Ô‚µ‚µ‚Ü‚·v*/
+	/*ã€ŒãŠé ã‹ã‚Šã—ã¦ã„ãŸé“å…·ã‚’ã€€ãŠè¿”ã—ã—ã¾ã™ã€*/
 	_TALKMSG		msg_castle_room_34
 
 	_CASTLE_TOOL	FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
@@ -2487,9 +2487,9 @@ ev_castle_lose_timing:
 	_JUMP			ev_castle_room_end_save
 	_END
 
-/*’ÊM“¯Šú*/
+/*é€šä¿¡åŒæœŸ*/
 ev_castle_multi_lose_timing:
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_castle_room_wait
 
 	_COMM_RESET
@@ -2499,22 +2499,22 @@ ev_castle_multi_lose_timing:
 	_END
 
 ev_castle_room_end_save:
-	_CALL				ev_castle_save			/*07.08.24 _CALL‚É’u‚«Š·‚¦‚½*/
+	_CALL				ev_castle_save			/*07.08.24 _CALLã«ç½®ãæ›ãˆãŸ*/
 	_TALK_CLOSE
 	_JUMP				ev_castle_room_end
 	_END
 
 
 /********************************************************************/
-/*							‹¤’ÊI—¹								*/
+/*							å…±é€šçµ‚äº†								*/
 /********************************************************************/
 ev_castle_room_end:
 
-	/*ƒZ[ƒuŒã‚É“¯Šú‚³‚¹‚é*/
+	/*ã‚»ãƒ¼ãƒ–å¾Œã«åŒæœŸã•ã›ã‚‹*/
 	_CASTLE_TOOL	FC_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_castle_multi_end_timing
 
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
@@ -2524,43 +2524,43 @@ ev_castle_room_end:
 	_CASTLE_TOOL		FC_ID_GET_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,CASTLE_TYPE_WIFI_MULTI,ev_castle_room_end_wifi
 
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 	_CASTLE_WORK_FREE
 
-	/*2Dƒ}ƒbƒvT‚¦Žº‚Ö*/
+	/*2Dãƒžãƒƒãƒ—æŽ§ãˆå®¤ã¸*/
 	//
 
 	//_END
-	_SCRIPT_FINISH			/*_END‚µ‚Ä2Dƒ}ƒbƒvI—¹*/
+	_SCRIPT_FINISH			/*_ENDã—ã¦2Dãƒžãƒƒãƒ—çµ‚äº†*/
 
-/*ƒ}ƒ‹ƒ`‚Ì‚Ý*/
+/*ãƒžãƒ«ãƒã®ã¿*/
 ev_castle_room_multi_tv:
-	/*TVˆ—*/
+	/*TVå‡¦ç†*/
 	_TV_TEMP_FRIEND_SET	FRONTIER_NO_CASTLE
 	_RET
 
 
 /********************************************************************/
-/*						ƒZ[ƒuŒã‚É“¯Šú‚³‚¹‚é						*/	
+/*						ã‚»ãƒ¼ãƒ–å¾Œã«åŒæœŸã•ã›ã‚‹						*/	
 /********************************************************************/
 ev_castle_multi_end_timing:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_SAVE_AFTER
-	_COMM_RESET			/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET			/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 	_RET
 
 
 /********************************************************************/
-/*						WIFI‚Í‘Ò‚¿‡‚í‚¹‰æ–Ê‚Ö–ß‚é					*/	
+/*						WIFIã¯å¾…ã¡åˆã‚ã›ç”»é¢ã¸æˆ»ã‚‹					*/	
 /********************************************************************/
 ev_castle_room_end_wifi:
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	//_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	//_WIPE_FADE_END_CHECK
 
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 	_CASTLE_WORK_FREE
 
@@ -2569,10 +2569,10 @@ ev_castle_room_end_wifi:
 
 
 /********************************************************************/
-//							‹¤’ÊƒZ[ƒu	
+//							å…±é€šã‚»ãƒ¼ãƒ–	
 /********************************************************************/
 ev_castle_save:
-	/*uƒŒƒ|[ƒg‚É‘‚«ž‚ñ‚Å‚¢‚Ü‚·@“dŒ¹‚ðØ‚ç‚È‚¢‚Å‰º‚³‚¢v*/
+	/*ã€Œãƒ¬ãƒãƒ¼ãƒˆã«æ›¸ãè¾¼ã‚“ã§ã„ã¾ã™ã€€é›»æºã‚’åˆ‡ã‚‰ãªã„ã§ä¸‹ã•ã„ã€*/
 	_TALKMSG_ALL_PUT	msg_castle_room_36
 	_ADD_WAITICON
 	_REPORT_DIV_SAVE	FSW_ANSWER
@@ -2583,39 +2583,39 @@ ev_castle_save:
 
 
 /********************************************************************/
-/*			ƒ‰ƒ“ƒNA‚Ê‚¯‚Ý‚¿‚È‚Ç‚Ì‘I‘ð‚ð’ÊM(‚½‚¢‚¹‚ñˆÈŠO)			*/
+/*			ãƒ©ãƒ³ã‚¯ã€ã¬ã‘ã¿ã¡ãªã©ã®é¸æŠžã‚’é€šä¿¡(ãŸã„ã›ã‚“ä»¥å¤–)			*/
 /********************************************************************/
 ev_castle_send_sel:
 	_LDVAL				FSW_LOCAL2,CASTLE_COMM_SEL
 	_CASTLE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_send_sel	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_castle_send_sel	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_CASTLE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*e‚ÌŒˆ’è‘Ò‚¿*/
+	/*è¦ªã®æ±ºå®šå¾…ã¡*/
 	//_CASTLE_PARENT_WAIT	FSW_ANSWER
 	_JUMP				ev_castle_send_sel2
 	_END
 
 ev_castle_send_sel2:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_CASTLE_CHANGE
-	_COMM_RESET			/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET			/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 
-	/*e‚ÌŒˆ’è‚ðŽæ“¾‚µ‚Äˆ—‚·‚é*/
+	/*è¦ªã®æ±ºå®šã‚’å–å¾—ã—ã¦å‡¦ç†ã™ã‚‹*/
 	_CASTLE_TOOL		FC_ID_GET_PARENT_CHECK_FLAG,0,0,FSW_ANSWER
 	_SWITCH				FSW_ANSWER
-	_CASE_JUMP			CASTLE_SCR_MENU_TEMOTI,ev_castle_temoti_go			/*‚Ä‚à‚¿*/
-	_CASE_JUMP			CASTLE_SCR_MENU_TRAINER,ev_castle_trainer_go		/*ƒgƒŒ[ƒi[*/
-	_CASE_JUMP			CASTLE_SCR_MENU_TAISEN,ev_castle_taisen_go			/*‚½‚¢‚¹‚ñ*/
-	_CASE_JUMP			CASTLE_SCR_MENU_NUKEMITI,ev_castle_nukemiti_go		/*‚Ê‚¯‚Ý‚¿*/
+	_CASE_JUMP			CASTLE_SCR_MENU_TEMOTI,ev_castle_temoti_go			/*ã¦ã‚‚ã¡*/
+	_CASE_JUMP			CASTLE_SCR_MENU_TRAINER,ev_castle_trainer_go		/*ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼*/
+	_CASE_JUMP			CASTLE_SCR_MENU_TAISEN,ev_castle_taisen_go			/*ãŸã„ã›ã‚“*/
+	_CASE_JUMP			CASTLE_SCR_MENU_NUKEMITI,ev_castle_nukemiti_go		/*ã¬ã‘ã¿ã¡*/
 	_END
 
 
 /********************************************************************/
-/*					‹¤’Êˆ—F€”õ•”‰®‚É–ß‚é(CALL)					*/
+/*					å…±é€šå‡¦ç†ï¼šæº–å‚™éƒ¨å±‹ã«æˆ»ã‚‹(CALL)					*/
 /********************************************************************/
 ev_castle_room_return:
 	_PARTICLE_SPA_EXIT	SPAWORK_0
@@ -2630,12 +2630,12 @@ ev_castle_room_return:
 
 	_MAP_CHANGE			FSS_SCENEID_CASTLE_ROOM
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	_GET_MINE_OBJ		FSW_LOCAL7
 
 	_LDVAL				FSW_PARAM6,BFSM
-	_CHAR_RESOURCE_SET	default_set_resource		/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			btl_after_set_actor			/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_set_resource		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			btl_after_set_actor			/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
@@ -2649,12 +2649,12 @@ ev_castle_room_return_multi:
 
 	_MAP_CHANGE			FSS_SCENEID_CASTLE_ROOM
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	_GET_MINE_OBJ		FSW_LOCAL7
 
 	_LDVAL				FSW_PARAM6,BFSW1
-	_CHAR_RESOURCE_SET	default_set_resource_multi	/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			btl_after_set_actor_multi	/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_set_resource_multi	/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			btl_after_set_actor_multi	/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
@@ -2662,38 +2662,38 @@ ev_castle_room_return_multi:
 
 
 /********************************************************************/
-/*						ƒuƒŒ[ƒ“‚Ì—¬‚ê								*/
+/*						ãƒ–ãƒ¬ãƒ¼ãƒ³ã®æµã‚Œ								*/
 /********************************************************************/
 ev_castle_leader_1st_01:
 ev_castle_leader_2nd_01:
 
-	/*‹L˜^‚µ‚½ƒ[ƒN‚Éƒf[ƒ^‚ª‘‚«ž‚Ü‚ê‚Ä‚¢‚È‚¢ = ’†’f•œ‹A‚Æ‚µ‚Äl‚¦‚é*/
-	/*“oê‚µ‚Ü‚·‚æƒƒbƒZ[ƒW‚Í•\Ž¦‚µ‚È‚¢*/
+	/*è¨˜éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã«ãƒ‡ãƒ¼ã‚¿ãŒæ›¸ãè¾¼ã¾ã‚Œã¦ã„ãªã„ = ä¸­æ–­å¾©å¸°ã¨ã—ã¦è€ƒãˆã‚‹*/
+	/*ç™»å ´ã—ã¾ã™ã‚ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯è¡¨ç¤ºã—ãªã„*/
 	_IFVAL_JUMP		FSW_LOCAL3,EQ,1,ev_castle_room_saikai_00
 
-	/*ˆê“xƒuƒŒ[ƒ““oêƒƒbƒZ[ƒW‚ð•\Ž¦‚µ‚½‚©*/
+	/*ä¸€åº¦ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ãŸã‹*/
 	_CASTLE_TOOL	FC_ID_BRAIN_APPEAR_MSG_CHK,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_castle_room_saikai_00
 
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_castle_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*uƒuƒŒ[ƒ“‚Æ‚ÌŸ•‰‚É‚È‚è‚Ü‚·IŠoŒå‚Í‚¢‚¢‚Å‚·‚©Hv*/
+	/*ã€Œãƒ–ãƒ¬ãƒ¼ãƒ³ã¨ã®å‹è² ã«ãªã‚Šã¾ã™ï¼è¦šæ‚Ÿã¯ã„ã„ã§ã™ã‹ï¼Ÿã€*/
 	_PLAYER_NAME		0
 	_TALKMSG			msg_castle_room_boss_01
 	_JUMP				ev_castle_room_saikai_02_sub
 	_END
 
 ev_castle_leader_1st_02:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_castle_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*“oê*/
+	/*ç™»å ´*/
 	_CALL				ev_castle_leader_appear
 
-	/*í“¬‘O‚ÌƒƒbƒZ[ƒW(1Žü–Ú)*/
+	/*æˆ¦é—˜å‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(1å‘¨ç›®)*/
 	_TALKMSG			msg_castle_room_boss_02
 	_TALK_CLOSE
 
@@ -2701,14 +2701,14 @@ ev_castle_leader_1st_02:
 	_END
 
 ev_castle_leader_2nd_02:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_castle_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*“oê*/
+	/*ç™»å ´*/
 	_CALL				ev_castle_leader_appear
 
-	/*í“¬‘O‚ÌƒƒbƒZ[ƒW(2Žü–Ú)*/
+	/*æˆ¦é—˜å‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(2å‘¨ç›®)*/
 	_PLAYER_NAME		0
 	_TALKMSG			msg_castle_room_boss_03
 	_TALK_CLOSE
@@ -2716,67 +2716,67 @@ ev_castle_leader_2nd_02:
 	_JUMP				ev_castle_room_go_2_sub
 	_END
 
-/*“oê*/
+/*ç™»å ´*/
 ev_castle_leader_appear:
-	/*“§–¾‚É‚µ‚ÄƒuƒŒ[ƒ“‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*é€æ˜Žã«ã—ã¦ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_CALL				ev_castle_trainer_set_brain
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_brain
 	_OBJ_ANIME_WAIT
 
-	/*ƒp[ƒeƒBƒNƒ‹‰‰o*/
+	/*ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æ¼”å‡º*/
 	//
 
-	/*•\Ž¦*/
+	/*è¡¨ç¤º*/
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_brain_02
 	_OBJ_ANIME_WAIT
 	_RET
 
 
 /********************************************************************/
-/*						ƒuƒŒ[ƒ“‚ÉŸ—˜Œã‚Ìmsg						*/
+/*						ãƒ–ãƒ¬ãƒ¼ãƒ³ã«å‹åˆ©å¾Œã®msg						*/
 /********************************************************************/
 ev_castle_leader_1st_03:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_castle_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*Œ»Ý‚Ì‹L”OƒvƒŠƒ“ƒgó‘Ô‚ðŽæ“¾*/
+	/*ç¾åœ¨ã®è¨˜å¿µãƒ—ãƒªãƒ³ãƒˆçŠ¶æ…‹ã‚’å–å¾—*/
 	_SAVE_EVENT_WORK_GET	SYS_WORK_MEMORY_PRINT_CASTLE,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,MEMORY_PRINT_NONE,ev_castle_meory_print_put_1st
 
-	/*í“¬Œã‚ÌƒƒbƒZ[ƒW(1Žü–Ú)*/
+	/*æˆ¦é—˜å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(1å‘¨ç›®)*/
 	_PLAYER_NAME		0
 	_TALKMSG			msg_castle_room_boss_04
 	_TALK_CLOSE
 	_JUMP				ev_castle_battle_2_sub_brain
 	_END
 
-/*Žó•t‚Å1st‹L”OƒvƒŠƒ“ƒg‚ð–á‚¦‚é‚æ‚¤‚É‚·‚é*/
+/*å—ä»˜ã§1stè¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’è²°ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 ev_castle_meory_print_put_1st:
 	_SAVE_EVENT_WORK_SET	SYS_WORK_MEMORY_PRINT_CASTLE,MEMORY_PRINT_PUT_1ST
 	_RET
 
 ev_castle_leader_2nd_03:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_castle_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*Œ»Ý‚Ì‹L”OƒvƒŠƒ“ƒgó‘Ô‚ðŽæ“¾*/
+	/*ç¾åœ¨ã®è¨˜å¿µãƒ—ãƒªãƒ³ãƒˆçŠ¶æ…‹ã‚’å–å¾—*/
 	_SAVE_EVENT_WORK_GET	SYS_WORK_MEMORY_PRINT_CASTLE,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,MEMORY_PRINT_PUT_OK_1ST,ev_castle_meory_print_put_2nd
 
-	/*í“¬Œã‚ÌƒƒbƒZ[ƒW(2Žü–Ú)*/
+	/*æˆ¦é—˜å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(2å‘¨ç›®)*/
 	_TALKMSG			msg_castle_room_boss_05
 	_TALK_CLOSE
 	_JUMP				ev_castle_battle_2_sub_brain
 	_END
 
-/*Žó•t‚Å2nd‹L”OƒvƒŠƒ“ƒg‚ð–á‚¦‚é‚æ‚¤‚É‚·‚é*/
+/*å—ä»˜ã§2ndè¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’è²°ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 ev_castle_meory_print_put_2nd:
 	_SAVE_EVENT_WORK_SET	SYS_WORK_MEMORY_PRINT_CASTLE,MEMORY_PRINT_PUT_2ND
 	_RET
 
-/*ƒuƒŒ[ƒ“ê—p‘Þê*/
+/*ãƒ–ãƒ¬ãƒ¼ãƒ³å°‚ç”¨é€€å ´*/
 ev_castle_battle_2_sub_brain:
 	_OBJ_ANIME			OBJID_ETC,etc_anime_go_out_brain
 	_OBJ_ANIME_WAIT
@@ -2785,13 +2785,13 @@ ev_castle_battle_2_sub_brain:
 
 
 /********************************************************************/
-/*					˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)					*/
+/*					é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)					*/
 /********************************************************************/
 ev_castle_rensyou_get:
-	/*˜AŸ”Žæ“¾*/
+	/*é€£å‹æ•°å–å¾—*/
 	_CASTLE_TOOL		FC_ID_GET_RENSYOU,0,0,FSW_ANSWER
 
-	/*‚·‚Å‚É9999‚ÌŽž‚ÍA0 ƒIƒŠƒWƒ“‚Ì•â³‚ð‚©‚¯‚È‚¢*/
+	/*ã™ã§ã«9999ã®æ™‚ã¯ã€0 ã‚ªãƒªã‚¸ãƒ³ã®è£œæ­£ã‚’ã‹ã‘ãªã„*/
 	_IFVAL_JUMP			FSW_ANSWER,GE,CASTLE_RENSYOU_MAX,ev_castle_rensyou_ret
 
 	_ADD_WK				FSW_ANSWER,1
@@ -2802,7 +2802,7 @@ ev_castle_rensyou_ret:
 
 
 /********************************************************************/
-/*		(ƒJƒgƒŒƒA)ƒVƒ“ƒOƒ‹‚©A’ÊM‚©‚ÅƒƒbƒZ[ƒW•\Ž¦•û–@‚ð•ª‚¯‚é	*/
+/*		(ã‚«ãƒˆãƒ¬ã‚¢)ã‚·ãƒ³ã‚°ãƒ«ã‹ã€é€šä¿¡ã‹ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºæ–¹æ³•ã‚’åˆ†ã‘ã‚‹	*/
 /********************************************************************/
 ev_castle_single_msg00:
 	_TALKMSG			msg_castle_room_30
@@ -2818,7 +2818,7 @@ ev_castle_multi_msg00:
 
 
 /********************************************************************/
-/*		(ƒRƒNƒ‰ƒ“01)ƒVƒ“ƒOƒ‹‚©A’ÊM‚©‚ÅƒƒbƒZ[ƒW•\Ž¦•û–@‚ð•ª‚¯‚é	*/
+/*		(ã‚³ã‚¯ãƒ©ãƒ³01)ã‚·ãƒ³ã‚°ãƒ«ã‹ã€é€šä¿¡ã‹ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºæ–¹æ³•ã‚’åˆ†ã‘ã‚‹	*/
 /********************************************************************/
 ev_castle_single_msg01:
 	_TALKMSG			msg_castle_room_30_01_2
@@ -2833,7 +2833,7 @@ ev_castle_multi_msg01:
 
 
 /********************************************************************/
-/*		(ƒRƒNƒ‰ƒ“02)ƒVƒ“ƒOƒ‹‚©A’ÊM‚©‚ÅƒƒbƒZ[ƒW•\Ž¦•û–@‚ð•ª‚¯‚é	*/
+/*		(ã‚³ã‚¯ãƒ©ãƒ³02)ã‚·ãƒ³ã‚°ãƒ«ã‹ã€é€šä¿¡ã‹ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºæ–¹æ³•ã‚’åˆ†ã‘ã‚‹	*/
 /********************************************************************/
 ev_castle_single_msg02:
 	_TALKMSG			msg_castle_room_30_02_2
@@ -2848,7 +2848,7 @@ ev_castle_multi_msg02:
 
 
 /********************************************************************/
-/*		(ƒRƒNƒ‰ƒ“03)ƒVƒ“ƒOƒ‹‚©A’ÊM‚©‚ÅƒƒbƒZ[ƒW•\Ž¦•û–@‚ð•ª‚¯‚é	*/
+/*		(ã‚³ã‚¯ãƒ©ãƒ³03)ã‚·ãƒ³ã‚°ãƒ«ã‹ã€é€šä¿¡ã‹ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºæ–¹æ³•ã‚’åˆ†ã‘ã‚‹	*/
 /********************************************************************/
 ev_castle_single_msg03:
 	_TALKMSG			msg_castle_room_30_03_2
@@ -2863,7 +2863,7 @@ ev_castle_multi_msg03:
 
 
 /********************************************************************/
-/*		(ƒRƒNƒ‰ƒ“04)ƒVƒ“ƒOƒ‹‚©A’ÊM‚©‚ÅƒƒbƒZ[ƒW•\Ž¦•û–@‚ð•ª‚¯‚é	*/
+/*		(ã‚³ã‚¯ãƒ©ãƒ³04)ã‚·ãƒ³ã‚°ãƒ«ã‹ã€é€šä¿¡ã‹ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºæ–¹æ³•ã‚’åˆ†ã‘ã‚‹	*/
 /********************************************************************/
 ev_castle_single_msg04:
 	_TALKMSG			msg_castle_room_30_04_2
@@ -2878,11 +2878,11 @@ ev_castle_multi_msg04:
 
 
 /********************************************************************/
-/*		(ƒRƒNƒ‰ƒ“05)ƒVƒ“ƒOƒ‹‚©A’ÊM‚©‚ÅƒƒbƒZ[ƒW•\Ž¦•û–@‚ð•ª‚¯‚é	*/
+/*		(ã‚³ã‚¯ãƒ©ãƒ³05)ã‚·ãƒ³ã‚°ãƒ«ã‹ã€é€šä¿¡ã‹ã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºæ–¹æ³•ã‚’åˆ†ã‘ã‚‹	*/
 /********************************************************************/
 ev_castle_single_msg05:
 	_TALKMSG			msg_castle_room_30_05
-	/*MEÄ¶‚És‚­‚Ì‚ÅƒL[‘Ò‚¿‚¢‚ç‚È‚¢*/
+	/*MEå†ç”Ÿã«è¡Œãã®ã§ã‚­ãƒ¼å¾…ã¡ã„ã‚‰ãªã„*/
 	_JUMP				ev_castle_cp_num_common_sub
 	_END
 

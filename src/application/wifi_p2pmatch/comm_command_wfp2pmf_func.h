@@ -2,7 +2,7 @@
 /**
  *
  *	@file		comm_command_wfp2pmf_func.h
- *	@brief		‚Q`‚Slê—p‘Ò‡º	’ÊMƒRƒ}ƒ“ƒh
+ *	@brief		ï¼’ã€œï¼”äººå°‚ç”¨å¾…åˆå®¤	é€šä¿¡ã‚³ãƒãƒ³ãƒ‰
  *	@author		tomoya takahashi
  *	@data		2007.05.24
  *
@@ -23,31 +23,31 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ’ÊM‰Šú‰»ŠÖ”
+// é€šä¿¡åˆæœŸåŒ–é–¢æ•°
 extern void CommCommandWFP2PMFInitialize( WFP2P_WK* p_wk );
-extern void CommCommandWFP2PMF_MatchStartInitialize( void );	// wifi_p2pmatch.c“à‚ÅƒRƒ}ƒ“ƒh‚ğİ’è‚·‚é‚Æ‚«‚ÌŠÖ”
+extern void CommCommandWFP2PMF_MatchStartInitialize( void );	// wifi_p2pmatch.cå†…ã§ã‚³ãƒãƒ³ãƒ‰ã‚’è¨­å®šã™ã‚‹ã¨ãã®é–¢æ•°
 
-// ‹¤’ÊƒTƒCƒYæ“¾ŠÖ”
+// å…±é€šã‚µã‚¤ã‚ºå–å¾—é–¢æ•°
 extern int CommWFP2PMFGetZeroSize( void );
 extern int CommWFP2PMFGetWFP2PMF_COMM_RESULTSize( void );
 extern int CommWFP2PMFGetWFP2PMF_COMM_VCHATSize( void );
 
-// e‚©‚ç‚ÌƒŠƒNƒGƒXƒg
+// è¦ªã‹ã‚‰ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 extern void CommWFP2PMFGameResult( int netID, int size, void* pBuff, void* pWork );
 extern void CommWFP2PMFGameStart( int netID, int size, void* pBuff, void* pWork );
 extern void CommWFP2PMFGameVchat( int netID, int size, void* pBuff, void* pWork );

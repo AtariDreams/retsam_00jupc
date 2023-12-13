@@ -13,8 +13,8 @@
 
   $Log: WCM_SearchAsync.html,v $
   Revision 1.2  2005/07/22 13:00:24  terui
-  "�t�F�[�Y"��"���"�ɗp�ꓝ��
-  �����̏��œ��𓝈�
+  "フェーズ"を"状態"に用語統一
+  履歴の初版日を統一
 
   Revision 1.1  2005/07/20 13:11:10  terui
   Initial upload
@@ -23,7 +23,7 @@
  ==========================================================================-->
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>WCM_SearchAsync</TITLE>
 		<LINK rel="stylesheet" href="../../css/nitro.css">
@@ -32,7 +32,7 @@
 	<BODY>
 		<H1>WCM_SearchAsync</H1>
 
-		<H2>�\��</H2>
+		<H2>構文</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>
@@ -43,25 +43,25 @@ s32   WCM_SearchAsync(  void* bssid , void* essid , u32 option  );
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-			�����A�N�Z�X�|�C���g�����T���̊J�n�A�������͒�~�V�[�P���X���J�n����񓯊��֐��ł��B<BR>
-			<EM><STRONG><CODE>bssid</CODE></STRONG></EM> �������� <EM><STRONG><CODE>essid</CODE></STRONG></EM> �� <CODE>NULL</CODE> ���w�肳��Ă����ꍇ�ɂ͈����͖�������A<A href="WCM_EndSearchAsync.html"><CODE>WCM_EndSearchAsync</CODE> �֐�</A>���Ăяo����܂��B<BR>
-			<EM><STRONG><CODE>bssid</CODE></STRONG></EM> �y�� <EM><STRONG><CODE>essid</CODE></STRONG></EM> �ɗL���Ȓl���w�肳��Ă����ꍇ�� <A href="WCM_BeginSearchAsync.html"><CODE>WCM_BeginSearchAsync</CODE> �֐�</A>���Ăяo����܂��B�����͕ύX���������Ɉ����n����܂��B<BR>
+			無線アクセスポイント自動探索の開始、もしくは停止シーケンスを開始する非同期関数です。<BR>
+			<EM><STRONG><CODE>bssid</CODE></STRONG></EM> もしくは <EM><STRONG><CODE>essid</CODE></STRONG></EM> に <CODE>NULL</CODE> が指定されていた場合には引数は無視され、<A href="WCM_EndSearchAsync.html"><CODE>WCM_EndSearchAsync</CODE> 関数</A>が呼び出されます。<BR>
+			<EM><STRONG><CODE>bssid</CODE></STRONG></EM> 及び <EM><STRONG><CODE>essid</CODE></STRONG></EM> に有効な値が指定されていた場合は <A href="WCM_BeginSearchAsync.html"><CODE>WCM_BeginSearchAsync</CODE> 関数</A>が呼び出されます。引数は変更を加えずに引き渡されます。<BR>
 			<BR>
-			�ڂ�������͂��ꂼ��̊֐��̐������Q�Ƃ��ĉ������B
+			詳しい解説はそれぞれの関数の説明を参照して下さい。
 		</P>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 			<CODE>
 				<A href="WCM_BeginSearchAsync.html">WCM_BeginSearchAsync</A>, <A href="WCM_EndSearchAsync.html">WCM_EndSearchAsync</A>
 			</CODE>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2005/07/22 ����<BR>
+			2005/07/22 初版<BR>
 		</P>
 
 	</BODY>

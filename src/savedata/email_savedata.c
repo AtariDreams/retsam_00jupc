@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	email_savedata.c
- * @brief	Eƒ[ƒ‹ƒZ[ƒuƒf[ƒ^‘€ì
+ * @brief	Eãƒ¡ãƒ¼ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ“ä½œ
  * @author	matsuda
- * @date	2007.10.23(‰Î)
+ * @date	2007.10.23(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -20,27 +20,27 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///Eƒ[ƒ‹ƒAƒhƒŒƒX‚Ì•¶š”(I’['\0'‚İ)
+///Eãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ–‡å­—æ•°(çµ‚ç«¯'\0'è¾¼ã¿)
 #define EMAIL_STR_LEN				(50 + 1)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///Eƒ[ƒ‹ƒZ[ƒuƒf[ƒ^\‘¢‘Ì
+///Eãƒ¡ãƒ¼ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 struct _EMAIL_SAVEDATA{
-	char email_ascii[EMAIL_STR_LEN];	///<Eƒ[ƒ‹ƒAƒhƒŒƒX
+	char email_ascii[EMAIL_STR_LEN];	///<Eãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹
 	int recv_flag;
-	u16 auth_code_high;					///<”FØƒR[ƒh(ã3Œ…)
-	u16 auth_code_low;					///<”FØƒR[ƒh(‰º4Œ…)
-	u32 password;						///<ƒpƒXƒ[ƒh
+	u16 auth_code_high;					///<èªè¨¼ã‚³ãƒ¼ãƒ‰(ä¸Š3æ¡)
+	u16 auth_code_low;					///<èªè¨¼ã‚³ãƒ¼ãƒ‰(ä¸‹4æ¡)
+	u32 password;						///<ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰
 };
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void EMAILSAVE_DCProfileCreateCommon(SAVEDATA *sv, Dpw_Common_Profile *dc_profile);
 
@@ -48,7 +48,7 @@ static void EMAILSAVE_DCProfileCreateCommon(SAVEDATA *sv, Dpw_Common_Profile *dc
 
 //--------------------------------------------------------------
 /**
- * @brief	Eƒ[ƒ‹‚ÌƒZ[ƒuƒf[ƒ^ƒTƒCƒY‚ğæ“¾
+ * @brief	Eãƒ¡ãƒ¼ãƒ«ã®ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
  * @param	none	
  *
@@ -63,8 +63,8 @@ int	EMAILSAVE_GetWorkSize(void)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	Eƒ[ƒ‹ƒZ[ƒuƒf[ƒ^‚Ì‰Šú‰»ˆ—
- * @param	emaildata		Eƒ[ƒ‹ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	Eãƒ¡ãƒ¼ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–å‡¦ç†
+ * @param	emaildata		Eãƒ¡ãƒ¼ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //---------------------------------------------------------------------------
 void EMAILSAVE_Init(EMAIL_SAVEDATA * emaildata)
@@ -80,11 +80,11 @@ void EMAILSAVE_Init(EMAIL_SAVEDATA * emaildata)
 
 //--------------------------------------------------------------
 /**
- * @brief   Eƒ[ƒ‹ƒZ[ƒuƒf[ƒ^‚ğ‰Šú‰»ó‘Ô‚É‚·‚é
+ * @brief   Eãƒ¡ãƒ¼ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–çŠ¶æ…‹ã«ã™ã‚‹
  *
- * @param   sv		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒZ[ƒuƒVƒXƒeƒ€ˆÈŠO‚ÌêŠ‚©‚ç‰Šú‰»‚·‚éê‡A‚±‚ÌŠÖ”‚ğg—p‚·‚é
+ * ã‚»ãƒ¼ãƒ–ã‚·ã‚¹ãƒ†ãƒ ä»¥å¤–ã®å ´æ‰€ã‹ã‚‰åˆæœŸåŒ–ã™ã‚‹å ´åˆã€ã“ã®é–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹
  */
 //--------------------------------------------------------------
 void EMAILSAVE_DataInitialize(SAVEDATA *sv)
@@ -94,12 +94,12 @@ void EMAILSAVE_DataInitialize(SAVEDATA *sv)
 
 //--------------------------------------------------------------
 /**
- * @brief   Eƒ[ƒ‹ƒAƒhƒŒƒX‚ªİ’è‚³‚ê‚Ä‚¢‚é‚©’²‚×‚é
+ * @brief   Eãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
  *
- * @param   sv		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:İ’è‚³‚ê‚Ä‚¢‚éB
- * @retval  FALSE:İ’è‚³‚ê‚Ä‚¢‚È‚¢
+ * @retval  TRUE:è¨­å®šã•ã‚Œã¦ã„ã‚‹ã€‚
+ * @retval  FALSE:è¨­å®šã•ã‚Œã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 BOOL EMAILSAVE_UseCheck(SAVEDATA *sv)
@@ -115,10 +115,10 @@ BOOL EMAILSAVE_UseCheck(SAVEDATA *sv)
 
 //--------------------------------------------------------------
 /**
- * @brief   Eƒ[ƒ‹ƒAƒhƒŒƒX‚ğƒZƒbƒg‚·‚é
+ * @brief   Eãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   sv			ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   address		ƒZƒbƒg‚·‚éEƒ[ƒ‹ƒAƒhƒŒƒX(ASCIIƒR[ƒh)
+ * @param   sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   address		ã‚»ãƒƒãƒˆã™ã‚‹Eãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹(ASCIIã‚³ãƒ¼ãƒ‰)
  */
 //--------------------------------------------------------------
 void EMAILSAVE_AddressSet(SAVEDATA *sv, const char *address)
@@ -134,12 +134,12 @@ void EMAILSAVE_AddressSet(SAVEDATA *sv, const char *address)
 
 //--------------------------------------------------------------
 /**
- * @brief   Eƒ[ƒ‹ƒAƒhƒŒƒX‚ğæ“¾‚·‚é(ASCIIƒR[ƒh)
+ * @brief   Eãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹(ASCIIã‚³ãƒ¼ãƒ‰)
  *
- * @param   sv			ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sv			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:Eƒ[ƒ‹ƒAƒhƒŒƒX‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚é
- * @retval  FALSE:Eƒ[ƒ‹ƒAƒhƒŒƒX‚ÍƒZƒbƒg‚³‚ê‚Ä‚¢‚È‚¢
+ * @retval  TRUE:Eãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹
+ * @retval  FALSE:Eãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã¯ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 char * EMAILSAVE_AddressGet(SAVEDATA *sv)
@@ -152,11 +152,11 @@ char * EMAILSAVE_AddressGet(SAVEDATA *sv)
 
 //--------------------------------------------------------------
 /**
- * @brief   Eƒ[ƒ‹ƒZ[ƒuƒf[ƒ^Fƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+ * @brief   Eãƒ¡ãƒ¼ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param   sv				ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   param_id		ƒpƒ‰ƒ[ƒ^ID
- * @param   data			ƒf[ƒ^
+ * @param   sv				ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   param_id		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID
+ * @param   data			ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void EMAILSAVE_ParamSet(SAVEDATA *sv, int param_id, u32 data)
@@ -184,12 +184,12 @@ void EMAILSAVE_ParamSet(SAVEDATA *sv, int param_id, u32 data)
 
 //--------------------------------------------------------------
 /**
- * @brief   Eƒ[ƒ‹ƒZ[ƒuƒf[ƒ^Fƒpƒ‰ƒ[ƒ^æ“¾
+ * @brief   Eãƒ¡ãƒ¼ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ï¼šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
  *
- * @param   sv				ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   param_id		ƒpƒ‰ƒ[ƒ^ID
+ * @param   sv				ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   param_id		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID
  * 
- * @retval	ƒf[ƒ^
+ * @retval	ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 u32 EMAILSAVE_ParamGet(SAVEDATA *sv, int param_id)
@@ -211,10 +211,10 @@ u32 EMAILSAVE_ParamGet(SAVEDATA *sv, int param_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒtƒB[ƒ‹ƒf[ƒ^‹¤’Ê•”•ªì¬
+ * @brief   ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿å…±é€šéƒ¨åˆ†ä½œæˆ
  *
- * @param   sv				ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   dc_profile		ƒvƒƒtƒB[ƒ‹‘ã“üæ
+ * @param   sv				ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   dc_profile		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 static void EMAILSAVE_DCProfileCreateCommon(SAVEDATA *sv, Dpw_Common_Profile *dc_profile)
@@ -233,8 +233,8 @@ static void EMAILSAVE_DCProfileCreateCommon(SAVEDATA *sv, Dpw_Common_Profile *dc
 	
 	PM_strcpy(dc_profile->playerName, MyStatus_GetMyName(my));
 	
-	dc_profile->flag = 0;	//ƒnƒ“ƒOƒ‹•¶š‚ğ•\¦‚Å‚«‚é‚©
-//	dc_profile->macAddr		ƒ‰ƒCƒuƒ‰ƒŠ“à‚ÅŠi”[‚·‚é‚Ì‚ÅƒZƒbƒg‚Ì•K—v‚È‚µ
+	dc_profile->flag = 0;	//ãƒãƒ³ã‚°ãƒ«æ–‡å­—ã‚’è¡¨ç¤ºã§ãã‚‹ã‹
+//	dc_profile->macAddr		ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…ã§æ ¼ç´ã™ã‚‹ã®ã§ã‚»ãƒƒãƒˆã®å¿…è¦ãªã—
 	
 	strcpy(dc_profile->mailAddr, email_address);
 
@@ -246,12 +246,12 @@ static void EMAILSAVE_DCProfileCreateCommon(SAVEDATA *sv, Dpw_Common_Profile *dc
 
 //--------------------------------------------------------------
 /**
- * @brief   ”FØŠJn—pƒvƒƒtƒB[ƒ‹ì¬
+ * @brief   èªè¨¼é–‹å§‹ç”¨ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ä½œæˆ
  *
- * @param   sv				ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   dc_profile		ƒvƒƒtƒB[ƒ‹‘ã“üæ
+ * @param   sv				ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   dc_profile		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ä»£å…¥å…ˆ
  *
- * @retval  ”FØ—p‚Éƒ[ƒJƒ‹‚ÅŒˆ’è‚³‚ê‚½“o˜^ƒR[ƒhã3Œ…‚Ì”Ô†
+ * @retval  èªè¨¼ç”¨ã«ãƒ­ãƒ¼ã‚«ãƒ«ã§æ±ºå®šã•ã‚ŒãŸç™»éŒ²ã‚³ãƒ¼ãƒ‰ä¸Š3æ¡ã®ç•ªå·
  */
 //--------------------------------------------------------------
 u32 EMAILSAVE_DCProfileCreate_AuthStart(SAVEDATA *sv, Dpw_Common_Profile *dc_profile)
@@ -260,7 +260,7 @@ u32 EMAILSAVE_DCProfileCreate_AuthStart(SAVEDATA *sv, Dpw_Common_Profile *dc_pro
 	
 	EMAILSAVE_DCProfileCreateCommon(sv, dc_profile);
 	
-	AuthVerification = gf_rand() % 1000;	//0`999‚Ì’l‚ğƒ‰ƒ“ƒ_ƒ€‚ÅƒZƒbƒg
+	AuthVerification = gf_rand() % 1000;	//0ã€œ999ã®å€¤ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã§ã‚»ãƒƒãƒˆ
 	
 	dc_profile->mailAddrAuthVerification = AuthVerification;
 	dc_profile->mailAddrAuthPass = DPW_MAIL_ADDR_AUTH_START_PASSWORD;
@@ -273,10 +273,10 @@ u32 EMAILSAVE_DCProfileCreate_AuthStart(SAVEDATA *sv, Dpw_Common_Profile *dc_pro
 
 //--------------------------------------------------------------
 /**
- * @brief   ¢ŠEŒğŠ·Aƒoƒgƒ‹ƒ^ƒ[“™‚ÌÚ‘±‚ÌÛ‚ÉÀs‚·‚éŠúŒÀXV—p‚ÌƒvƒƒtƒB[ƒ‹ì¬
+ * @brief   ä¸–ç•Œäº¤æ›ã€ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç­‰ã®æ¥ç¶šã®éš›ã«å®Ÿè¡Œã™ã‚‹æœŸé™æ›´æ–°ç”¨ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ä½œæˆ
  *
- * @param   sv				ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   dc_profile		ƒvƒƒtƒB[ƒ‹‘ã“üæ
+ * @param   sv				ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   dc_profile		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 void EMAILSAVE_DCProfileCreate_Update(SAVEDATA *sv, Dpw_Common_Profile *dc_profile)
@@ -285,7 +285,7 @@ void EMAILSAVE_DCProfileCreate_Update(SAVEDATA *sv, Dpw_Common_Profile *dc_profi
 
 	EMAILSAVE_DCProfileCreateCommon(sv, dc_profile);
 	
-	dc_profile->mailAddrAuthVerification = emaildata->auth_code_high;	//ˆê‰“ü‚ê‚Ä‚¨‚­
+	dc_profile->mailAddrAuthVerification = emaildata->auth_code_high;	//ä¸€å¿œå…¥ã‚Œã¦ãŠã
 	dc_profile->mailAddrAuthPass = emaildata->auth_code_low;
 	OS_TPrintf("mailAddrAuthVerification = %d\n", dc_profile->mailAddrAuthVerification);
 	OS_TPrintf("mailAddrAuthPass = %d\n", dc_profile->mailAddrAuthPass);

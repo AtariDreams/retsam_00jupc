@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_c.c
- * @bfief	ƒ|ƒPƒbƒ`iƒƒCƒ“j@ƒRƒ“ƒgƒ[ƒ‹
+ * @bfief	ãƒã‚±ãƒƒãƒï¼ˆãƒ¡ã‚¤ãƒ³ï¼‰ã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -38,7 +38,7 @@ static void PoketchProcPrintf(const char* fmt, ...)
 
 
 //====================================================
-// ƒAƒvƒŠƒI[ƒo[ƒŒƒCƒ‚ƒWƒ…[ƒ‹éŒ¾
+// ã‚¢ãƒ—ãƒªã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å®£è¨€
 //====================================================
 FS_EXTERN_OVERLAY(poketch_app_dwatch);
 FS_EXTERN_OVERLAY(poketch_app_awatch);
@@ -71,44 +71,44 @@ FS_EXTERN_OVERLAY(poketch_app_pokemon_counter);
 FS_EXTERN_OVERLAY(poketch_app_pokemon_history);
 
 //====================================================
-// ƒAƒvƒŠƒI[ƒo[ƒŒƒC‚h‚cƒe[ƒuƒ‹
+// ã‚¢ãƒ—ãƒªã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ï¼©ï¼¤ãƒ†ãƒ¼ãƒ–ãƒ«
 //====================================================
 static const struct {
 	int          appID;
 	FSOverlayID  overlayID;
 }OverlayID[] = {
 
-	{ POKETCH_APPID_DWATCH,				FS_OVERLAY_ID(poketch_app_dwatch) },			// 00: ƒfƒWƒ^ƒ‹ŽžŒv
-	{ POKETCH_APPID_STOPWATCH,			FS_OVERLAY_ID(poketch_app_stopwatch) },			// 01: ƒXƒgƒbƒvƒEƒHƒbƒ`
-	{ POKETCH_APPID_CALC,				FS_OVERLAY_ID(poketch_app_calc) },				// 02: “d‘ì
-	{ POKETCH_APPID_MEMO,				FS_OVERLAY_ID(poketch_app_memo) }, 				// 03: ƒƒ‚’ 
-	{ POKETCH_APPID_AWATCH,				FS_OVERLAY_ID(poketch_app_awatch) },			// 04: ƒAƒiƒƒOŽžŒv
-	{ POKETCH_APPID_DOTART,				FS_OVERLAY_ID(poketch_app_dotart) },			// 05: ƒhƒbƒgƒA[ƒg
-	{ POKETCH_APPID_POKELIST,			FS_OVERLAY_ID(poketch_app_simple_pokelist) },	// 06: ŠÈˆÕƒ|ƒPƒ‚ƒ“ƒŠƒXƒg
-	{ POKETCH_APPID_NATSUKI_CHECK,		FS_OVERLAY_ID(poketch_app_natsuki_checker) },	// 07: ‚È‚Â‚«“xƒ`ƒFƒbƒJ[
-	{ POKETCH_APPID_DOWSING,			FS_OVERLAY_ID(poketch_app_dowsing) },			// 08: ƒ_ƒEƒWƒ“ƒOƒ}ƒVƒ“
-	{ POKETCH_APPID_COUNTER,			FS_OVERLAY_ID(poketch_app_counter) },			// 09: ƒJƒEƒ“ƒ^[
-	{ POKETCH_APPID_PEDOMETER,			FS_OVERLAY_ID(poketch_app_pedometer) },			// 10: –œ•àŒv
-	{ POKETCH_APPID_SODATEYA_CAMERA,	FS_OVERLAY_ID(poketch_app_sodateya_camera) },	// 15: ‚»‚¾‚Ä‚âƒJƒƒ‰
-	{ POKETCH_APPID_ROULETTE,			FS_OVERLAY_ID(poketch_app_roulette) },			// 16: ƒ‹[ƒŒƒbƒg
-	{ POKETCH_APPID_COINTOSS,			FS_OVERLAY_ID(poketch_app_cointoss) },			// 17: ƒRƒCƒ“ƒgƒX
-	{ POKETCH_APPID_WAZA_EFF_CHECK,		FS_OVERLAY_ID(poketch_app_wazaeff) },			// 18: ‚í‚´Œø‰Êƒ`ƒFƒbƒJ[
-	{ POKETCH_APPID_LOVETESTER,			FS_OVERLAY_ID(poketch_app_love_tester) },		// 19: ƒ‰ƒuƒeƒXƒ^[
-	{ POKETCH_APPID_ALARM_WATCH,		FS_OVERLAY_ID(poketch_app_alarm) },				// 20: ƒAƒ‰[ƒ€ŽžŒv
-	{ POKETCH_APPID_KITCHEN_TIMER,		FS_OVERLAY_ID(poketch_app_kitchen) },			// 21: ƒLƒbƒ`ƒ“ƒ^ƒCƒ}[
-	{ POKETCH_APPID_MAP_MARKING,		FS_OVERLAY_ID(poketch_app_mark_map) },			// 22: ƒ}[ƒLƒ“ƒOƒ}ƒbƒv
-	{ POKETCH_APPID_SEED_SEARCHER,		FS_OVERLAY_ID(poketch_app_seed_map) },			// 23: ‚«‚Ì‚Ýƒ}ƒbƒv
-	{ POKETCH_APPID_COLOR_CHANGER,		FS_OVERLAY_ID(poketch_app_color_changer) },		// 24: ƒJƒ‰[ƒ`ƒFƒ“ƒWƒƒ[
-	{ POKETCH_APPID_CALENDER,			FS_OVERLAY_ID(poketch_app_calendar) },			// 25: ƒJƒŒƒ“ƒ_[
-	{ POKETCH_APPID_COMM_SEARCHER,		FS_OVERLAY_ID(poketch_app_comm_search) },		// 27: ‚Â‚¤‚µ‚ñƒT[ƒ`ƒƒ[
-	{ POKETCH_APPID_POKEMON_COUNTER,	FS_OVERLAY_ID(poketch_app_pokemon_counter) },	// 28: ƒ|ƒPƒ‚ƒ“ƒJƒEƒ“ƒ^[
-	{ POKETCH_APPID_POKEMON_HISTORY,	FS_OVERLAY_ID(poketch_app_pokemon_history) },	// 29: ƒ|ƒPƒ‚ƒ“ƒqƒXƒgƒŠ[
+	{ POKETCH_APPID_DWATCH,				FS_OVERLAY_ID(poketch_app_dwatch) },			// 00: ãƒ‡ã‚¸ã‚¿ãƒ«æ™‚è¨ˆ
+	{ POKETCH_APPID_STOPWATCH,			FS_OVERLAY_ID(poketch_app_stopwatch) },			// 01: ã‚¹ãƒˆãƒƒãƒ—ã‚¦ã‚©ãƒƒãƒ
+	{ POKETCH_APPID_CALC,				FS_OVERLAY_ID(poketch_app_calc) },				// 02: é›»å“
+	{ POKETCH_APPID_MEMO,				FS_OVERLAY_ID(poketch_app_memo) }, 				// 03: ãƒ¡ãƒ¢å¸³
+	{ POKETCH_APPID_AWATCH,				FS_OVERLAY_ID(poketch_app_awatch) },			// 04: ã‚¢ãƒŠãƒ­ã‚°æ™‚è¨ˆ
+	{ POKETCH_APPID_DOTART,				FS_OVERLAY_ID(poketch_app_dotart) },			// 05: ãƒ‰ãƒƒãƒˆã‚¢ãƒ¼ãƒˆ
+	{ POKETCH_APPID_POKELIST,			FS_OVERLAY_ID(poketch_app_simple_pokelist) },	// 06: ç°¡æ˜“ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ
+	{ POKETCH_APPID_NATSUKI_CHECK,		FS_OVERLAY_ID(poketch_app_natsuki_checker) },	// 07: ãªã¤ãåº¦ãƒã‚§ãƒƒã‚«ãƒ¼
+	{ POKETCH_APPID_DOWSING,			FS_OVERLAY_ID(poketch_app_dowsing) },			// 08: ãƒ€ã‚¦ã‚¸ãƒ³ã‚°ãƒžã‚·ãƒ³
+	{ POKETCH_APPID_COUNTER,			FS_OVERLAY_ID(poketch_app_counter) },			// 09: ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+	{ POKETCH_APPID_PEDOMETER,			FS_OVERLAY_ID(poketch_app_pedometer) },			// 10: ä¸‡æ­©è¨ˆ
+	{ POKETCH_APPID_SODATEYA_CAMERA,	FS_OVERLAY_ID(poketch_app_sodateya_camera) },	// 15: ãã ã¦ã‚„ã‚«ãƒ¡ãƒ©
+	{ POKETCH_APPID_ROULETTE,			FS_OVERLAY_ID(poketch_app_roulette) },			// 16: ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
+	{ POKETCH_APPID_COINTOSS,			FS_OVERLAY_ID(poketch_app_cointoss) },			// 17: ã‚³ã‚¤ãƒ³ãƒˆã‚¹
+	{ POKETCH_APPID_WAZA_EFF_CHECK,		FS_OVERLAY_ID(poketch_app_wazaeff) },			// 18: ã‚ã–åŠ¹æžœãƒã‚§ãƒƒã‚«ãƒ¼
+	{ POKETCH_APPID_LOVETESTER,			FS_OVERLAY_ID(poketch_app_love_tester) },		// 19: ãƒ©ãƒ–ãƒ†ã‚¹ã‚¿ãƒ¼
+	{ POKETCH_APPID_ALARM_WATCH,		FS_OVERLAY_ID(poketch_app_alarm) },				// 20: ã‚¢ãƒ©ãƒ¼ãƒ æ™‚è¨ˆ
+	{ POKETCH_APPID_KITCHEN_TIMER,		FS_OVERLAY_ID(poketch_app_kitchen) },			// 21: ã‚­ãƒƒãƒãƒ³ã‚¿ã‚¤ãƒžãƒ¼
+	{ POKETCH_APPID_MAP_MARKING,		FS_OVERLAY_ID(poketch_app_mark_map) },			// 22: ãƒžãƒ¼ã‚­ãƒ³ã‚°ãƒžãƒƒãƒ—
+	{ POKETCH_APPID_SEED_SEARCHER,		FS_OVERLAY_ID(poketch_app_seed_map) },			// 23: ãã®ã¿ãƒžãƒƒãƒ—
+	{ POKETCH_APPID_COLOR_CHANGER,		FS_OVERLAY_ID(poketch_app_color_changer) },		// 24: ã‚«ãƒ©ãƒ¼ãƒã‚§ãƒ³ã‚¸ãƒ£ãƒ¼
+	{ POKETCH_APPID_CALENDER,			FS_OVERLAY_ID(poketch_app_calendar) },			// 25: ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼
+	{ POKETCH_APPID_COMM_SEARCHER,		FS_OVERLAY_ID(poketch_app_comm_search) },		// 27: ã¤ã†ã—ã‚“ã‚µãƒ¼ãƒãƒ£ãƒ¼
+	{ POKETCH_APPID_POKEMON_COUNTER,	FS_OVERLAY_ID(poketch_app_pokemon_counter) },	// 28: ãƒã‚±ãƒ¢ãƒ³ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
+	{ POKETCH_APPID_POKEMON_HISTORY,	FS_OVERLAY_ID(poketch_app_pokemon_history) },	// 29: ãƒã‚±ãƒ¢ãƒ³ãƒ’ã‚¹ãƒˆãƒªãƒ¼
 
 };
 
 
 //====================================================
-// ƒV[ƒPƒ“ƒX
+// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //====================================================
 enum {
 	SEQ_INIT = 0,
@@ -118,31 +118,31 @@ enum {
 	SEQ_QUIT,
 };
 
-// ƒXƒŠ[ƒvˆÈ~Žž‚ÌƒV[ƒPƒ“ƒX
+// ã‚¹ãƒªãƒ¼ãƒ—ä»¥é™æ™‚ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
-	SLEEP_SEQ_NULL,	// ‰½‚à‚È‚¢
-	SLEEP_SEQ_REQ,	// ƒXƒŠ[ƒvƒŠƒNƒGƒXƒg‚ ‚è
-	SLEEP_SEQ_MAIN,	// ƒXƒŠ[ƒv’†‚Å‚·
-	SLEEP_SEQ_WAKE,	// ƒEƒFƒCƒNƒŠƒNƒGƒXƒg‚ ‚è
+	SLEEP_SEQ_NULL,	// ä½•ã‚‚ãªã„
+	SLEEP_SEQ_REQ,	// ã‚¹ãƒªãƒ¼ãƒ—ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚ã‚Š
+	SLEEP_SEQ_MAIN,	// ã‚¹ãƒªãƒ¼ãƒ—ä¸­ã§ã™
+	SLEEP_SEQ_WAKE,	// ã‚¦ã‚§ã‚¤ã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚ã‚Š
 };
 
-// ƒAƒvƒŠó‘Ô
+// ã‚¢ãƒ—ãƒªçŠ¶æ…‹
 enum {
-	APP_STATE_CLEAN = 0,	///< ‰½‚à“®‚¢‚Ä‚¢‚È‚¢ó‘Ô
-	APP_STATE_INIT,			///< ‰Šú‰»ˆ—ŽÀs’†
-	APP_STATE_RUN,			///< “®ì’†
-	APP_STATE_QUIT,			///< I—¹ˆ—ŽÀs’†
+	APP_STATE_CLEAN = 0,	///< ä½•ã‚‚å‹•ã„ã¦ã„ãªã„çŠ¶æ…‹
+	APP_STATE_INIT,			///< åˆæœŸåŒ–å‡¦ç†å®Ÿè¡Œä¸­
+	APP_STATE_RUN,			///< å‹•ä½œä¸­
+	APP_STATE_QUIT,			///< çµ‚äº†å‡¦ç†å®Ÿè¡Œä¸­
 };
 
 //====================================================
-// ƒq[ƒvŽg—pƒTƒCƒY
+// ãƒ’ãƒ¼ãƒ—ä½¿ç”¨ã‚µã‚¤ã‚º
 //====================================================
 enum {
 	HEAPSIZE_MAIN = 0xc000,
 	HEAPSIZE_APP = 0xc000,
 };
 //====================================================
-// ‚»‚Ì‚½’è”
+// ãã®ãŸå®šæ•°
 //====================================================
 enum {
 	APP_SKIP_TIMER = 30,
@@ -155,7 +155,7 @@ enum{
 };
 
 //====================================================
-// ƒƒCƒ“ƒ[ƒN
+// ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 //====================================================
 struct _POKETCH_WORK {
 	u8	main_seq;
@@ -182,10 +182,10 @@ struct _POKETCH_WORK {
 	u32						button_cmd_req;
 	u32						button_prev_cmd;
 
-	struct _POKETCH_WORK**  this_work_adrs;	// Á‹ŽŽž—p‚ÉŽ©•ª‚ÌƒAƒhƒŒƒX‚ðŽ‚Â
+	struct _POKETCH_WORK**  this_work_adrs;	// æ¶ˆåŽ»æ™‚ç”¨ã«è‡ªåˆ†ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒã¤
 	TCB_PTR                 tail_task;
 
-	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ì§ŒäŠÖ”
+	// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®åˆ¶å¾¡é–¢æ•°
 	pAppInitProc	app_init_proc;
 	pAppQuitProc	app_quit_proc;
 	pAppSaveProc	app_save_proc;
@@ -198,8 +198,8 @@ struct _POKETCH_WORK {
 	POKETCH_DATA*   poketch_savedata;
 	FIELDSYS_WORK*  fieldsys;
 	
-	//ƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰Á
-	int button_dir;			///<ã‰º‚Ç‚¿‚ç‚Ìƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚©‚ð”»’è
+	//ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ 
+	int button_dir;			///<ä¸Šä¸‹ã©ã¡ã‚‰ã®ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‹ã‚’åˆ¤å®š
 };
 
 //==============================================================
@@ -236,9 +236,9 @@ extern struct _POKETCH_WORK* GetPoketchMainWorkPtr(void);
 
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^‚ð•Ô‚·
+ * ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  *
- * @retval  POKETCH_WORK*		ƒƒCƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @retval  POKETCH_WORK*		ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static POKETCH_WORK* GetMainWorkPtr(void)
@@ -252,11 +252,11 @@ static POKETCH_WORK* GetMainWorkPtr(void)
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒ`‰Šú‰»ŠJŽniƒtƒB[ƒ‹ƒhŠJŽnŽž‚É‚Ì‚ÝŒÄ‚Î‚ê‚éj
+ * ãƒã‚±ãƒƒãƒåˆæœŸåŒ–é–‹å§‹ï¼ˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰é–‹å§‹æ™‚ã«ã®ã¿å‘¼ã°ã‚Œã‚‹ï¼‰
  *
- * @param   wk_adrs		ƒ[ƒNƒAƒhƒŒƒX‚ð•Û‘¶‚·‚é•Ï”‚Ìƒ|ƒCƒ“ƒ^
- * @param   savedata	ƒ|ƒPƒbƒ`ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   bgl			‰æ–Ê\’z‚ÉŽg‚¤BGLƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param   wk_adrs		ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹å¤‰æ•°ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   savedata	ãƒã‚±ãƒƒãƒã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   bgl			ç”»é¢æ§‹ç¯‰ã«ä½¿ã†BGLã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -281,7 +281,7 @@ void PoketchInit( FIELDSYS_WORK* fsys, POKETCH_WORK **wk_adrs, SAVEDATA* savedat
 
 		if( PoketchWorkSetup( wk ) )
 		{
-			InitTPSystem();			// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+			InitTPSystem();			// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 			InitTPNoBuff(4);
 
 			wk->this_work_adrs = wk_adrs;
@@ -293,15 +293,15 @@ void PoketchInit( FIELDSYS_WORK* fsys, POKETCH_WORK **wk_adrs, SAVEDATA* savedat
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒ`I—¹ˆ—ŠJŽn
+ * ãƒã‚±ãƒƒãƒçµ‚äº†å‡¦ç†é–‹å§‹
  *
- * @param   wk		ƒ|ƒPƒbƒ`ƒ[ƒNƒ|ƒCƒ“ƒ^iPoketchInit‚Å“n‚µ‚½‚à‚Ìj
+ * @param   wk		ãƒã‚±ãƒƒãƒãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ï¼ˆPoketchInitã§æ¸¡ã—ãŸã‚‚ã®ï¼‰
  *
  */
 //------------------------------------------------------------------
 void PoketchQuitReq(POKETCH_WORK *wk)
 {
-	PoketchProcPrintf("ƒ|ƒPƒbƒ`I—¹’Ê’m\n");
+	PoketchProcPrintf("ãƒã‚±ãƒƒãƒçµ‚äº†é€šçŸ¥\n");
 	if( (wk->main_seq != SEQ_CLEANUP) && (wk->main_seq != SEQ_QUIT) )
 	{
 		ChangeSeq( wk, SEQ_CLEANUP );
@@ -309,11 +309,11 @@ void PoketchQuitReq(POKETCH_WORK *wk)
 }
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒ`I—¹‘Ò‚¿
+ * ãƒã‚±ãƒƒãƒçµ‚äº†å¾…ã¡
  *
- * @param   wk		ƒ|ƒPƒbƒ`ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒã‚±ãƒƒãƒãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL PoketchQuitWait( POKETCH_WORK *wk )
@@ -323,13 +323,13 @@ BOOL PoketchQuitWait( POKETCH_WORK *wk )
 
 //==============================================================================================
 //
-// ƒtƒB[ƒ‹ƒh‚Æ‚Ì‚â‚è‚Æ‚è
+// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¨ã®ã‚„ã‚Šã¨ã‚Š
 //
 //==============================================================================================
 
 //------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒh‚©‚çƒ|ƒPƒbƒ`‚ÖŠeŽíó‹µ•Ï‰»‚Ì’Ê’m‚ðŽó‚¯Žæ‚é
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹ã‚‰ãƒã‚±ãƒƒãƒã¸å„ç¨®çŠ¶æ³å¤‰åŒ–ã®é€šçŸ¥ã‚’å—ã‘å–ã‚‹
  *
  * @param   wk		
  * @param   id		
@@ -374,12 +374,12 @@ void Poketch_SendRequest( POKETCH_WORK* wk, FIELD_POKETCH_SEND_ID  id, u32 value
 
 //------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒh‘¤‚©‚çŒÄ‚Ño‚³‚êA
- * ƒ|ƒPƒbƒ`‚Ìƒ{ƒ^ƒ“EƒXƒNƒŠ[ƒ“‚ðƒ^ƒbƒ`‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å´ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã€
+ * ãƒã‚±ãƒƒãƒã®ãƒœã‚¿ãƒ³ãƒ»ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   wk			ƒ|ƒPƒbƒ`ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ãƒã‚±ãƒƒãƒãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚Åƒ^ƒbƒ`‚µ‚Ä‚¢‚é
+ * @retval  BOOL		TRUEã§ã‚¿ãƒƒãƒã—ã¦ã„ã‚‹
  */
 //------------------------------------------------------------------
 BOOL Poketch_CheckTouch( POKETCH_WORK* wk )
@@ -389,11 +389,11 @@ BOOL Poketch_CheckTouch( POKETCH_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒ`‚ÅŒ»Ý‰Ò“­’†‚ÌƒAƒvƒŠƒiƒ“ƒo[‚ð•Ô‚·
+ * ãƒã‚±ãƒƒãƒã§ç¾åœ¨ç¨¼åƒä¸­ã®ã‚¢ãƒ—ãƒªãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param   wk		ƒ|ƒPƒbƒ`ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒã‚±ãƒƒãƒãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  int		ƒAƒvƒŠƒiƒ“ƒo[
+ * @retval  int		ã‚¢ãƒ—ãƒªãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 int Poketch_GetRunningApplication( POKETCH_WORK* wk )
@@ -404,9 +404,9 @@ int Poketch_GetRunningApplication( POKETCH_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒ[ƒNƒZƒbƒgƒAƒbƒv
+ * ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static BOOL PoketchWorkSetup( POKETCH_WORK* wk )
@@ -436,7 +436,7 @@ static BOOL PoketchWorkSetup( POKETCH_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒ[ƒNƒNƒŠ[ƒ“ƒAƒbƒv
+ * ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒƒãƒ—
  *
  * @param   wk		
  *
@@ -452,10 +452,10 @@ static void PoketchWorkCleanup( POKETCH_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒbƒ`ƒƒCƒ“ƒ^ƒXƒN
+ * ãƒã‚±ãƒƒãƒãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
  *8+
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_adrs		ƒ[ƒNƒAƒhƒŒƒX
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_adrs		ãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //------------------------------------------------------------------
 static void PoketchMain(TCB_PTR tcb, void *wk_adrs)
@@ -495,7 +495,7 @@ static void PoketchMain(TCB_PTR tcb, void *wk_adrs)
 
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“A•`‰æ“™A‘S‚Ä‚Ìˆ—‚ªI‚í‚Á‚½Œã‚É‚P‰ñ‰ñ‚Á‚Ä‚­‚éƒ^ƒXƒN
+ * ãƒ¡ã‚¤ãƒ³ã€æç”»ç­‰ã€å…¨ã¦ã®å‡¦ç†ãŒçµ‚ã‚ã£ãŸå¾Œã«ï¼‘å›žå›žã£ã¦ãã‚‹ã‚¿ã‚¹ã‚¯
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -512,10 +512,10 @@ static void PoketchTail( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXØ‚è‘Ö‚¦
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   seq		ŽŸ‚ÌƒV[ƒPƒ“ƒX
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq		æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -528,9 +528,9 @@ static void ChangeSeq( POKETCH_WORK *wk, u32 seq )
 
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXF‰æ–Ê\’z
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šç”»é¢æ§‹ç¯‰
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -569,7 +569,7 @@ static void SeqInit(POKETCH_WORK *wk)
 }
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFƒAƒvƒŠƒƒCƒ“
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚¢ãƒ—ãƒªãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  *
@@ -587,7 +587,7 @@ static void SeqAppMain(POKETCH_WORK *wk)
 		switch( wk->button_action ){
 		case BMN_EVENT_TAP:
 		case BMN_EVENT_TIMER0:
-			PoketchProcPrintf("ƒ^ƒbƒv‚³‚ê‚½\n");
+			PoketchProcPrintf("ã‚¿ãƒƒãƒ—ã•ã‚ŒãŸ\n");
 			wk->app_skip_flag = FALSE;
 			wk->app_changing_flag = TRUE;
 			Poketch_MAIN_SetCommand( wk->view_wk, CMD_MAIN_EFFCLOSE );
@@ -599,7 +599,7 @@ static void SeqAppMain(POKETCH_WORK *wk)
 	case 1:
 		if( wk->button_action == BMN_EVENT_TAP || wk->button_action == BMN_EVENT_TIMER0 )
 		{
-			PoketchProcPrintf("ƒXƒLƒbƒvƒtƒ‰ƒOON\n");
+			PoketchProcPrintf("ã‚¹ã‚­ãƒƒãƒ—ãƒ•ãƒ©ã‚°ON\n");
 			wk->app_skip_flag = TRUE;
 		}
 
@@ -620,7 +620,7 @@ static void SeqAppMain(POKETCH_WORK *wk)
 			}
 			else
 			{
-				PoketchProcPrintf("‚r‚d‚p‚Q‚Ö\n");
+				PoketchProcPrintf("ï¼³ï¼¥ï¼±ï¼’ã¸\n");
 				wk->app_skip_timer = APP_FIRST_SKIP_TIMER;
 				wk->seq = 2;
 			}
@@ -651,14 +651,14 @@ static void SeqAppMain(POKETCH_WORK *wk)
 	case 3:
 		if( WaitQuitApplication(wk) )
 		{
-			PoketchProcPrintf("ƒAƒvƒŠI‚í‚Á‚½‚Ì‚ÅØ‚è‘Ö‚¦ƒV[ƒPƒ“ƒX‚Ö\n");
+			PoketchProcPrintf("ã‚¢ãƒ—ãƒªçµ‚ã‚ã£ãŸã®ã§åˆ‡ã‚Šæ›¿ãˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸\n");
 			UnloadApplication( wk );
 			PoketchWork_Reset();
 			ChangeSeq(wk, SEQ_APPCHANGE_NORMAL);
 		}
 		break;
 
-	// ˜A‘ÅŽó•tŠJŽn
+	// é€£æ‰“å—ä»˜é–‹å§‹
 	case 4:
 		if( wk->button_action == BMN_EVENT_TAP || wk->button_action == BMN_EVENT_TIMER0 )
 		{
@@ -688,7 +688,7 @@ static void SeqAppMain(POKETCH_WORK *wk)
 }
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFƒAƒvƒŠØ‚è‘Ö‚¦
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚¢ãƒ—ãƒªåˆ‡ã‚Šæ›¿ãˆ
  *
  * @param   wk		
  */
@@ -729,7 +729,7 @@ static void SeqAppChange(POKETCH_WORK *wk)
 }
 //------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒXFƒ|ƒPƒbƒ`I—¹
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒƒãƒçµ‚äº†
  *
  * @param   wk		
  *
@@ -791,9 +791,9 @@ static void SeqCleanUp( POKETCH_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒI[ƒo[ƒŒƒCƒ‚ƒWƒ…[ƒ‹‚ðƒ[ƒh
+ * ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰
  *
- * @param   app_no		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒiƒ“ƒo[
+ * @param   app_no		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
  *
  */
 //------------------------------------------------------------------
@@ -804,7 +804,7 @@ static void LoadApplication( POKETCH_WORK* wk, int appID)
 	if( wk->load_app_id == POKETCH_APP_NONE )
 	{
 		int i;
-		PoketchProcPrintf("ƒAƒvƒŠ Load ‚µ‚Ü‚·\n");
+		PoketchProcPrintf("ã‚¢ãƒ—ãƒª Load ã—ã¾ã™\n");
 
 		for(i=0; i<NELEMS(OverlayID); i++)
 		{
@@ -820,7 +820,7 @@ static void LoadApplication( POKETCH_WORK* wk, int appID)
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒI[ƒo[ƒŒƒCƒ‚ƒWƒ…[ƒ‹‚ðƒAƒ“ƒ[ƒh
+ * ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰
  *
  * @param   app_no		
  *
@@ -830,7 +830,7 @@ static void UnloadApplication( POKETCH_WORK* wk )
 {
 	if( wk->load_app_id != POKETCH_APP_NONE )
 	{
-		PoketchProcPrintf("ƒAƒvƒŠ Unload ‚µ‚Ü‚·\n");
+		PoketchProcPrintf("ã‚¢ãƒ—ãƒª Unload ã—ã¾ã™\n");
 		Overlay_UnloadID( wk->load_app_overlay_id );
 		wk->load_app_id = POKETCH_APP_NONE;
 	}
@@ -839,7 +839,7 @@ static void UnloadApplication( POKETCH_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒh‚µ‚½ƒAƒvƒŠ‚Ì‰Šú‰»ŠJŽn
+ * ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚¢ãƒ—ãƒªã®åˆæœŸåŒ–é–‹å§‹
  *
  * @param   wk		
  * @param   app_no		
@@ -849,13 +849,13 @@ static void UnloadApplication( POKETCH_WORK* wk )
 static void InitApplication( POKETCH_WORK* wk, u32 app_no )
 {
 	GF_ASSERT(wk->app_state == APP_STATE_CLEAN);
-	PoketchProcPrintf("ƒAƒvƒŠ‰Šú‰»ŠJŽn‚µ‚Ü‚·\n");
+	PoketchProcPrintf("ã‚¢ãƒ—ãƒªåˆæœŸåŒ–é–‹å§‹ã—ã¾ã™\n");
 	wk->app_init_proc( &(wk->app_work), wk, wk->bgl, wk->load_app_id );
 	wk->app_state = APP_STATE_INIT;
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒh‚µ‚½ƒAƒvƒŠ‚Ì‰Šú‰»I—¹‘Ò‚¿
+ * ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚¢ãƒ—ãƒªã®åˆæœŸåŒ–çµ‚äº†å¾…ã¡
  *
  * @param   wk		
  *
@@ -866,7 +866,7 @@ static BOOL WaitInitApplication( POKETCH_WORK* wk )
 {
 	if( wk->app_state == APP_STATE_RUN )
 	{
-		PoketchProcPrintf("ƒAƒvƒŠ‰Šú‰»Š®—¹‚µ‚Ü‚µ‚½\n");
+		PoketchProcPrintf("ã‚¢ãƒ—ãƒªåˆæœŸåŒ–å®Œäº†ã—ã¾ã—ãŸ\n");
 		return TRUE;
 	}
 	return FALSE;
@@ -874,7 +874,7 @@ static BOOL WaitInitApplication( POKETCH_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒh‚µ‚½ƒAƒvƒŠ‚ÌI—¹ˆ—ŠJŽn
+ * ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚¢ãƒ—ãƒªã®çµ‚äº†å‡¦ç†é–‹å§‹
  *
  * @param   wk		
  *
@@ -883,13 +883,13 @@ static BOOL WaitInitApplication( POKETCH_WORK* wk )
 static void QuitApplication( POKETCH_WORK* wk )
 {
 	GF_ASSERT(wk->app_state == APP_STATE_RUN);
-	PoketchProcPrintf("ƒAƒvƒŠI—¹ˆ—ŠJŽn‚µ‚Ü‚·\n");
+	PoketchProcPrintf("ã‚¢ãƒ—ãƒªçµ‚äº†å‡¦ç†é–‹å§‹ã—ã¾ã™\n");
 	wk->app_quit_proc( wk->app_work );
 	wk->app_state = APP_STATE_QUIT;
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒh‚µ‚½ƒAƒvƒŠ‚ÌI—¹ˆ—‘Ò‚¿
+ * ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚¢ãƒ—ãƒªã®çµ‚äº†å‡¦ç†å¾…ã¡
  *
  * @param   wk		
  *
@@ -900,7 +900,7 @@ static BOOL WaitQuitApplication( POKETCH_WORK* wk )
 {
 	if( wk->app_state == APP_STATE_CLEAN )
 	{
-		PoketchProcPrintf("ƒAƒvƒŠI—¹ˆ—Š®—¹‚µ‚Ü‚µ‚½\n");
+		PoketchProcPrintf("ã‚¢ãƒ—ãƒªçµ‚äº†å‡¦ç†å®Œäº†ã—ã¾ã—ãŸ\n");
 		return TRUE;
 	}
 	return FALSE;
@@ -908,17 +908,17 @@ static BOOL WaitQuitApplication( POKETCH_WORK* wk )
 
 /*====================================================================================*/
 /*                                                                                    */
-/*  ŠeƒAƒvƒŠ‚©‚ç’Ê’m‚ðŽó‚¯Žæ‚éŠÖ”ŒQ                                                  */
+/*  å„ã‚¢ãƒ—ãƒªã‹ã‚‰é€šçŸ¥ã‚’å—ã‘å–ã‚‹é–¢æ•°ç¾¤                                                  */
 /*                                                                                    */
 /*====================================================================================*/
 
 //------------------------------------------------------------------
 /**
- * ŠeƒAƒvƒŠƒ‚ƒWƒ…[ƒ‹‚Ìƒ[ƒhŒãANitroStaticInit‚É‚æ‚èŒÄ‚Ño‚³‚ê‚Ä
- * ƒAƒvƒŠ‚ÌŠeŽí§ŒäŠÖ”ƒAƒhƒŒƒX‚ðŽó‚¯Žæ‚é
+ * å„ã‚¢ãƒ—ãƒªãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ãƒ­ãƒ¼ãƒ‰å¾Œã€NitroStaticInitã«ã‚ˆã‚Šå‘¼ã³å‡ºã•ã‚Œã¦
+ * ã‚¢ãƒ—ãƒªã®å„ç¨®åˆ¶å¾¡é–¢æ•°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å—ã‘å–ã‚‹
  *
- * @param   initproc		‰Šú‰»ŠÖ”
- * @param   quitproc		I—¹ŠÖ”
+ * @param   initproc		åˆæœŸåŒ–é–¢æ•°
+ * @param   quitproc		çµ‚äº†é–¢æ•°
  *
  */
 //------------------------------------------------------------------
@@ -932,24 +932,24 @@ void PoketchSetAppProc( pAppInitProc initproc, pAppQuitProc quitproc)
 }
 //------------------------------------------------------------------
 /**
- * ŠeƒAƒvƒŠ‚©‚ç‚Ì‰Šú‰»Š®—¹’Ê’m‚ðŽó‚¯Žæ‚é
+ * å„ã‚¢ãƒ—ãƒªã‹ã‚‰ã®åˆæœŸåŒ–å®Œäº†é€šçŸ¥ã‚’å—ã‘å–ã‚‹
  */
 //------------------------------------------------------------------
 void PoketchNoticeAppStart(CONTACT_WORK* wk)
 {
-	PoketchProcPrintf("ƒAƒvƒŠŠJŽn’Ê’m‚¤‚¯‚Æ‚è\n");
+	PoketchProcPrintf("ã‚¢ãƒ—ãƒªé–‹å§‹é€šçŸ¥ã†ã‘ã¨ã‚Š\n");
 
 	GF_ASSERT(wk->app_state==APP_STATE_INIT);
 	wk->app_state = APP_STATE_RUN;
 }
 //------------------------------------------------------------------
 /**
- * ŠeƒAƒvƒŠ‚©‚ç‚ÌI—¹’Ê’m‚ðŽó‚¯Žæ‚é
+ * å„ã‚¢ãƒ—ãƒªã‹ã‚‰ã®çµ‚äº†é€šçŸ¥ã‚’å—ã‘å–ã‚‹
  */
 //------------------------------------------------------------------
 void PoketchNoticeAppEnd(CONTACT_WORK* wk)
 {
-	PoketchProcPrintf("ƒAƒvƒŠI—¹’Ê’m‚¤‚¯‚Æ‚è\n");
+	PoketchProcPrintf("ã‚¢ãƒ—ãƒªçµ‚äº†é€šçŸ¥ã†ã‘ã¨ã‚Š\n");
 
 	GF_ASSERT(wk->app_state==APP_STATE_QUIT);
 	wk->app_state = APP_STATE_CLEAN;
@@ -957,11 +957,11 @@ void PoketchNoticeAppEnd(CONTACT_WORK* wk)
 
 //------------------------------------------------------------------
 /**
- * ŠeƒAƒvƒŠ‚Ìƒf[ƒ^ƒZ[ƒu—pŠÖ”ƒAƒhƒŒƒX‚ðŽó‚¯Žæ‚é
- *iƒŒƒ|[ƒgŽž‚ÉƒZ[ƒu‚ª•K—v‚ÈƒAƒvƒŠ‚Ì‚Ý—˜—p‚·‚éj
+ * å„ã‚¢ãƒ—ãƒªã®ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–ç”¨é–¢æ•°ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å—ã‘å–ã‚‹
+ *ï¼ˆãƒ¬ãƒãƒ¼ãƒˆæ™‚ã«ã‚»ãƒ¼ãƒ–ãŒå¿…è¦ãªã‚¢ãƒ—ãƒªã®ã¿åˆ©ç”¨ã™ã‚‹ï¼‰
  *
- * @param   saveproc	ƒZ[ƒuŠÖ”ƒAƒhƒŒƒX
- * @param   arg			ŠÖ”ŒÄ‚Ño‚µ‚É•K—v‚Èˆø”
+ * @param   saveproc	ã‚»ãƒ¼ãƒ–é–¢æ•°ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   arg			é–¢æ•°å‘¼ã³å‡ºã—ã«å¿…è¦ãªå¼•æ•°
  *
  */
 //------------------------------------------------------------------
@@ -976,11 +976,11 @@ void PoketchSetAppSaveProc( pAppSaveProc saveproc, void* arg )
 
 /*====================================================================================*/
 /*                                                                                    */
-/*  ƒ{ƒ^ƒ“ó‘Ôƒ[ƒNˆ—                                                              */
+/*  ãƒœã‚¿ãƒ³çŠ¶æ…‹ãƒ¯ãƒ¼ã‚¯å‡¦ç†                                                              */
 /*                                                                                    */
 /*====================================================================================*/
 
-// enum POKETCH_BUTTON_VIEW ‚Ì•À‚Ñ‚Æ“¯Šú
+// enum POKETCH_BUTTON_VIEW ã®ä¸¦ã³ã¨åŒæœŸ
 static const u32 ButtonViewCmd[] = {
 	CMD_MAIN_BUTTONFREE,
 	CMD_MAIN_BUTTONLOCK,
@@ -993,27 +993,27 @@ static const u32 ButtonViewCmd[] = {
 
 enum {
 	BUTTON_TIMER_TAP = 7,
-	BUTTON_TIMER_DOUBLETAP = 8,		// Å‰‚Ìƒ^ƒbƒv‚©‚çƒ_ƒuƒ‹ƒ^ƒbƒv”»’è‚ðs‚¤ƒtƒŒ[ƒ€”
+	BUTTON_TIMER_DOUBLETAP = 8,		// æœ€åˆã®ã‚¿ãƒƒãƒ—ã‹ã‚‰ãƒ€ãƒ–ãƒ«ã‚¿ãƒƒãƒ—åˆ¤å®šã‚’è¡Œã†ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 };
 
 enum {
-	BUTTON_ID_MAIN_UP,			///< ƒƒCƒ“‚Ìƒ{ƒ^ƒ“(ã)
-	BUTTON_ID_MAIN_DOWN,		///< ƒƒCƒ“‚Ìƒ{ƒ^ƒ“(‰º)
-	BUTTON_ID_SCREEN,	///< ‰æ–Ê‘S‘Ì‚ðƒ{ƒ^ƒ“‚Æ‚µ‚Äˆµ‚¤c
+	BUTTON_ID_MAIN_UP,			///< ãƒ¡ã‚¤ãƒ³ã®ãƒœã‚¿ãƒ³(ä¸Š)
+	BUTTON_ID_MAIN_DOWN,		///< ãƒ¡ã‚¤ãƒ³ã®ãƒœã‚¿ãƒ³(ä¸‹)
+	BUTTON_ID_SCREEN,	///< ç”»é¢å…¨ä½“ã‚’ãƒœã‚¿ãƒ³ã¨ã—ã¦æ‰±ã†â€¦
 };
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒƒZƒbƒgƒAƒbƒv
+ * ãƒœã‚¿ãƒ³ç®¡ç†ãƒžãƒãƒ¼ã‚¸ãƒ£ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param   wk			ƒAƒvƒŠƒ[ƒN
+ * @param   wk			ã‚¢ãƒ—ãƒªãƒ¯ãƒ¼ã‚¯
  *
- * @retval  BOOL		TRUE‚Å¬Œ÷
+ * @retval  BOOL		TRUEã§æˆåŠŸ
  */
 //------------------------------------------------------------------
 static BOOL BmnSetup( POKETCH_WORK* wk )
 {
-	// ƒ{ƒ^ƒ“ˆÊ’uiview‚ÉŽ‚Á‚½•û‚ª—Ç‚¢‚Ì‚©c?j
+	// ãƒœã‚¿ãƒ³ä½ç½®ï¼ˆviewã«æŒã£ãŸæ–¹ãŒè‰¯ã„ã®ã‹â€¦?ï¼‰
 	static const TP_HIT_TBL ButtonRectData[] = {
 		{ 4*8, 12*8, 28*8, 255 },
 		{ 12*8, 20*8, 28*8, 255 },
@@ -1032,7 +1032,7 @@ static BOOL BmnSetup( POKETCH_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒƒNƒŠ[ƒ“ƒAƒbƒv
+ * ãƒœã‚¿ãƒ³ç®¡ç†ãƒžãƒãƒ¼ã‚¸ãƒ£ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒƒãƒ—
  *
  * @param   wk		
  *
@@ -1057,7 +1057,7 @@ static void ButtonUpdate( POKETCH_WORK *wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚©‚ç‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * ãƒœã‚¿ãƒ³ç®¡ç†ãƒžãƒãƒ¼ã‚¸ãƒ£ã‹ã‚‰ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
  * @param   idx		
  * @param   event		
@@ -1070,7 +1070,7 @@ static void BmnCallBack( u32 idx, u32 event, u32 touch_event, void* wk_adrs )
 {
 	POKETCH_WORK *wk = (POKETCH_WORK*)wk_adrs;
 
-	// ƒtƒB[ƒ‹ƒh‘¤‚É’Ê’m‚·‚éuƒ|ƒPƒbƒ`G‚Á‚Ä‚éƒtƒ‰ƒOv‚ÌXV
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å´ã«é€šçŸ¥ã™ã‚‹ã€Œãƒã‚±ãƒƒãƒè§¦ã£ã¦ã‚‹ãƒ•ãƒ©ã‚°ã€ã®æ›´æ–°
 	if( PoketchIsSleepMode(wk) == FALSE )
 	{
 		switch( touch_event ){
@@ -1087,7 +1087,7 @@ static void BmnCallBack( u32 idx, u32 event, u32 touch_event, void* wk_adrs )
 		wk->touch_flag = FALSE;
 	}
 
-	// ƒXƒNƒŠ[ƒ“•”‚ðG‚ç‚ê‚½Žž‚Ìˆ—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³éƒ¨ã‚’è§¦ã‚‰ã‚ŒãŸæ™‚ã®å‡¦ç†
 	if( idx == BUTTON_ID_SCREEN )
 	{
 		if( PoketchIsSleepMode(wk) )
@@ -1098,7 +1098,7 @@ static void BmnCallBack( u32 idx, u32 event, u32 touch_event, void* wk_adrs )
 			}
 		}
 	}
-	// ƒ{ƒ^ƒ“•”‚ðG‚ç‚ê‚½Žž‚Ìˆ—
+	// ãƒœã‚¿ãƒ³éƒ¨ã‚’è§¦ã‚‰ã‚ŒãŸæ™‚ã®å‡¦ç†
 	else
 	{
 		u32 v_cmd = CMD_NULL;
@@ -1149,8 +1149,8 @@ static void BmnCallBack( u32 idx, u32 event, u32 touch_event, void* wk_adrs )
 			PBTN_ResetState( wk->button, 0 );
 			break;
 		case BMN_EVENT_TAP:
-			// ƒXƒŠ[ƒv’†‚É‰Ÿ‰º‚³‚ê‚ÄƒƒbƒN¨ƒ^ƒbƒvŽž‚ÍƒXƒŠ[ƒv‚¶‚á‚È‚¢‚Ì‚Åƒ{ƒ^ƒ“ƒCƒxƒ“ƒg—LŒø
-			// ‚Ý‚½‚¢‚È‚±‚Æ‚ð–h‚®
+			// ã‚¹ãƒªãƒ¼ãƒ—ä¸­ã«æŠ¼ä¸‹ã•ã‚Œã¦ãƒ­ãƒƒã‚¯â†’ã‚¿ãƒƒãƒ—æ™‚ã¯ã‚¹ãƒªãƒ¼ãƒ—ã˜ã‚ƒãªã„ã®ã§ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆæœ‰åŠ¹
+			// ã¿ãŸã„ãªã“ã¨ã‚’é˜²ã
 			if( wk->button_prev_cmd == CMD_MAIN_BUTTONLOCK 
 					|| wk->button_prev_cmd == CMD_MAIN_BUTTONLOCK_DOWN )
 			{
@@ -1158,7 +1158,7 @@ static void BmnCallBack( u32 idx, u32 event, u32 touch_event, void* wk_adrs )
 			}
 			break;
 		case BMN_EVENT_OUT:
-			// ‰Ÿ‚µ‚½‚ñ‚¾‚Á‚½‚çƒXƒ‰ƒCƒhƒAƒEƒg‚Å‚à”½‰ž‚³‚¹‚é
+			// æŠ¼ã—ãŸã‚“ã ã£ãŸã‚‰ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¢ã‚¦ãƒˆã§ã‚‚åå¿œã•ã›ã‚‹
 			if( wk->button_prev_cmd == CMD_MAIN_BUTTONPUSH
 					|| wk->button_prev_cmd == CMD_MAIN_BUTTONPUSH_DOWN )
 			{
@@ -1175,12 +1175,12 @@ static void BmnCallBack( u32 idx, u32 event, u32 touch_event, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“•\Ž¦XVƒRƒ}ƒ“ƒh‚ðview‘¤‚É“`‚¦‚é
+ * ãƒœã‚¿ãƒ³è¡¨ç¤ºæ›´æ–°ã‚³ãƒžãƒ³ãƒ‰ã‚’viewå´ã«ä¼ãˆã‚‹
  *
- * @param   wk		ƒ|ƒPƒbƒ`ƒ[ƒN
- * @param   cmd		ƒRƒ}ƒ“ƒh
+ * @param   wk		ãƒã‚±ãƒƒãƒãƒ¯ãƒ¼ã‚¯
+ * @param   cmd		ã‚³ãƒžãƒ³ãƒ‰
  *
- * @retval  TRUE‚ÅƒRƒ}ƒ“ƒh”­s‚µ‚½^FALSE‚¾‚Æ‘O‚ÌƒRƒ}ƒ“ƒhˆ—’†‚È‚Ì‚Å–³Ž‹‚µ‚½
+ * @retval  TRUEã§ã‚³ãƒžãƒ³ãƒ‰ç™ºè¡Œã—ãŸï¼FALSEã ã¨å‰ã®ã‚³ãƒžãƒ³ãƒ‰å‡¦ç†ä¸­ãªã®ã§ç„¡è¦–ã—ãŸ
  */
 //------------------------------------------------------------------
 static BOOL ButtonViewReq( POKETCH_VIEW_WORK *vwk, u32 cmd )
@@ -1202,7 +1202,7 @@ static BOOL ButtonViewReq( POKETCH_VIEW_WORK *vwk, u32 cmd )
 
 /*====================================================================================*/
 /*                                                                                    */
-/*  •`‰æºÝÄÛ°Ù‘¤‚©‚çŒÄ‚Ño‚³‚ê‚éŠÖ”                                                  */
+/*  æç”»ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å´ã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°                                                  */
 /*                                                                                    */
 /*====================================================================================*/
 
@@ -1279,7 +1279,7 @@ BOOL PoketchGetTPTrg( u32* x, u32 *y )
 
 //------------------------------------------------------------------
 /**
- * ƒXƒŠ[ƒvƒ‚[ƒh‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+ * ã‚¹ãƒªãƒ¼ãƒ—ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param   wk		
  *
@@ -1293,7 +1293,7 @@ BOOL PoketchIsSleepMode( const CONTACT_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒˆ—ŒÄ‚Ño‚µ
+ * ãƒœã‚¿ãƒ³ãƒžãƒãƒ¼ã‚¸ãƒ£å‡¦ç†å‘¼ã³å‡ºã—
  *
  * @param   man
  */
@@ -1309,7 +1309,7 @@ void PoketchButtonMainCall( const CONTACT_WORK* wk, POKETCH_BUTTON_MAN* man )
 
 //------------------------------------------------------------------
 /**
- * ƒvƒŒƒCƒ„[ˆÚ“®ƒtƒ‰ƒO‚ðŽæ“¾
+ * ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç§»å‹•ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
  * @param   wk		
  *
@@ -1322,7 +1322,7 @@ BOOL PoketchGetPlayerMoveTrg( const CONTACT_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * –œ•àŒvXVƒtƒ‰ƒO‚ðŽæ“¾
+ * ä¸‡æ­©è¨ˆæ›´æ–°ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
  * @param   wk		
  *

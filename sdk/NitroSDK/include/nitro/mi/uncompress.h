@@ -15,16 +15,16 @@
   do-indent
 
   Revision 1.11  2005/03/01 01:57:00  yosizaki
-  copyright �̔N���C��.
+  copyright の年を修正.
 
   Revision 1.10  2005/02/28 05:26:02  yosizaki
   do-indent.
 
   Revision 1.9  2004/11/30 07:40:22  takano_makoto
-  MICompressionHeader�\���̂�ǉ�
+  MICompressionHeader構造体を追加
 
   Revision 1.8  2004/11/15 07:53:18  takano_makoto
-  MI_UnfilterDiff8(), MI_UnfilterDiff16()��ǉ�
+  MI_UnfilterDiff8(), MI_UnfilterDiff16()を追加
 
   Revision 1.7  2004/09/04 12:40:36  yasu
   Change interface between compstatic tool
@@ -42,10 +42,10 @@
   fix header comment
 
   Revision 1.2  2004/02/10 06:38:55  yada
-  �֐�����ύX�BUnComp��UnCompress���B
+  関数名を変更。UnComp→UnCompress等。
 
   Revision 1.1  2004/02/10 01:20:25  yada
-  UTL_ ����̈ڍs
+  UTL_ からの移行
 
 
   $NoKeywords: $
@@ -77,7 +77,7 @@ MICompressionType;
 
 
 //----------------------------------------------------------------
-// ���k�f�[�^�w�b�_�[
+// 圧縮データヘッダー
 //
 typedef struct
 {
@@ -91,261 +91,261 @@ MICompressionHeader;
 
 
 //----------------------------------------------------------------
-// Bit���k�f�[�^�W�J�p�p�����[�^
+// Bit圧縮データ展開用パラメータ
 //
 typedef struct
 {
-    u16     srcNum;                    // �\�[�X�f�[�^�E�o�C�g��
-    u16     srcBitNum:8;               // �P�\�[�X�f�[�^�E�r�b�g��
-    u16     destBitNum:8;              // �P�f�X�e�B�l�[�V�����f�[�^�E�r�b�g��
-    u32     destOffset:31;             // �\�[�X�f�[�^�ɉ��Z���鐔
-    u32     destOffset0_on:1;          // �O�̃f�[�^�ɃI�t�Z�b�g�����Z���邩�ۂ��̃t���O
+    u16     srcNum;                    // ソースデータ・バイト数
+    u16     srcBitNum:8;               // １ソースデータ・ビット数
+    u16     destBitNum:8;              // １デスティネーションデータ・ビット数
+    u32     destOffset:31;             // ソースデータに加算する数
+    u32     destOffset0_on:1;          // ０のデータにオフセットを加算するか否かのフラグ
 }
 MIUnpackBitsParam;
 
 
 //======================================================================
-//          ���k�f�[�^�W�J
+//          圧縮データ展開
 //======================================================================
 
 //----------------------------------------------------------------------
-//          �a�������k�f�[�^�W�J
+//          Ｂｉｔ圧縮データ展開
 //
-//�E0�Œ�̃r�b�g���l�߂��f�[�^��W�J���܂��B
-//�E�f�X�e�B�l�[�V�����A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・0固定のビットを詰めたデータを展開します。
+//・デスティネーションアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//             void *srcp     �\�[�X�A�h���X
-//             void *destp    �f�X�e�B�l�[�V�����A�h���X
-//  MIUnpackBitsParam *paramp   MIUnpackBitsParam�\���̂̃A�h���X
+//・引数：
+//             void *srcp     ソースアドレス
+//             void *destp    デスティネーションアドレス
+//  MIUnpackBitsParam *paramp   MIUnpackBitsParam構造体のアドレス
 //
-//�EMIUnpackBitsParam�\����
-//    u16 srcNum              �\�[�X�f�[�^�E�o�C�g��
-//    u8  srcBitNum           �P�\�[�X�f�[�^�E�r�b�g��
-//    u8  destBitNum          �P�f�X�e�B�l�[�V�����f�[�^�E�r�b�g��
-//    u32 destOffset:31       �\�[�X�f�[�^�ɉ��Z����I�t�Z�b�g��
-//        destOffset0_On:1    �O�̃f�[�^�ɃI�t�Z�b�g�����Z���邩�ۂ��̃t���O
+//・MIUnpackBitsParam構造体
+//    u16 srcNum              ソースデータ・バイト数
+//    u8  srcBitNum           １ソースデータ・ビット数
+//    u8  destBitNum          １デスティネーションデータ・ビット数
+//    u32 destOffset:31       ソースデータに加算するオフセット数
+//        destOffset0_On:1    ０のデータにオフセットを加算するか否かのフラグ
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 void    MI_UnpackBits(const void *srcp, void *destp, MIUnpackBitsParam *paramp);
 
 
 //----------------------------------------------------------------------
-//          �k�y�V�V���k�f�[�^�W�������W�J
+//          ＬＺ７７圧縮データ８ｂｉｔ展開
 //
-//�ELZ77���k�f�[�^��W�J���A8bit�P�ʂŏ������݂܂��B
-//�EVRAM�ɒ��ړW�J���邱�Ƃ͂ł��܂���B
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・LZ77圧縮データを展開し、8bit単位で書き込みます。
+//・VRAMに直接展開することはできません。
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 :4                  �\��
-//        compType:4          ���k�^�C�v�i = 1�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 :4                  予約
+//        compType:4          圧縮タイプ（ = 1）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�t���O�f�[�^�t�H�[�}�b�g
-//    u8  flags               ���k�^�����k�t���O
-//                            �i0, 1�j = �i�����k�f�[�^, ���k�f�[�^�j
-//�E�R�[�h�f�[�^�t�H�[�}�b�g�iBig Endian�j
-//    u16 length:4            �W�J�f�[�^�� - 3�i��v��3Byte�ȏ㎞�݈̂��k�j
-//        offset:12           ��v�f�[�^�I�t�Z�b�g - 1
+//・フラグデータフォーマット
+//    u8  flags               圧縮／無圧縮フラグ
+//                            （0, 1） = （無圧縮データ, 圧縮データ）
+//・コードデータフォーマット（Big Endian）
+//    u16 length:4            展開データ長 - 3（一致長3Byte以上時のみ圧縮）
+//        offset:12           一致データオフセット - 1
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 void    MI_UncompressLZ8(const void *srcp, void *destp);
 
 
 //----------------------------------------------------------------------
-//          �k�y�V�V���k�f�[�^�P�U�������W�J
+//          ＬＺ７７圧縮データ１６ｂｉｔ展開
 //
-//�ELZ77���k�f�[�^��W�J���A16bit�P�ʂŏ������݂܂��B
-//�E�f�[�^TCM�⃁�C���������ɂ��W�J�ł��܂����AMI_UncompressLZ778()
-//  ���ᑬ�ł��B
-//�E���k�f�[�^�͈�v�������2Byte�ȑO��茟���������̂ɂ��ĉ������B
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・LZ77圧縮データを展開し、16bit単位で書き込みます。
+//・データTCMやメインメモリにも展開できますが、MI_UncompressLZ778()
+//  より低速です。
+//・圧縮データは一致文字列を2Byte以前より検索したものにして下さい。
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 :4                  �\��
-//        compType:4          ���k�^�C�v�i = 1�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 :4                  予約
+//        compType:4          圧縮タイプ（ = 1）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�t���O�f�[�^�t�H�[�}�b�g
-//    u8  flags               ���k�^�����k�t���O
-//                            �i0, 1�j = �i�����k�f�[�^, ���k�f�[�^�j
-//�E�R�[�h�f�[�^�t�H�[�}�b�g�iBig Endian�j
-//    u16 length:4            �W�J�f�[�^�� - 3�i��v��3Byte�ȏ㎞�݈̂��k�j
-//        offset:12           ��v�f�[�^�I�t�Z�b�g�i >= 2�j - 1
+//・フラグデータフォーマット
+//    u8  flags               圧縮／無圧縮フラグ
+//                            （0, 1） = （無圧縮データ, 圧縮データ）
+//・コードデータフォーマット（Big Endian）
+//    u16 length:4            展開データ長 - 3（一致長3Byte以上時のみ圧縮）
+//        offset:12           一致データオフセット（ >= 2） - 1
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 void    MI_UncompressLZ16(const void *srcp, void *destp);
 
 
 //----------------------------------------------------------------------
-//          �n�t�}�����k�f�[�^�W�J
+//          ハフマン圧縮データ展開
 //
-//�E�n�t�}�����k�f�[�^��W�J���A32bit�P�ʂŏ������݂܂��B
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・ハフマン圧縮データを展開し、32bit単位で書き込みます。
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 bitSize:4           �P�f�[�^�E�r�b�g�T�C�Y�i�ʏ� 4|8�j
-//        compType:4          ���k�^�C�v�i = 2�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 bitSize:4           １データ・ビットサイズ（通常 4|8）
+//        compType:4          圧縮タイプ（ = 2）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�c���[�e�[�u��
-//    u8           treeSize        �c���[�e�[�u���T�C�Y/2 - 1
-//    TreeNodeData nodeRoot        ���[�g�m�[�h
+//・ツリーテーブル
+//    u8           treeSize        ツリーテーブルサイズ/2 - 1
+//    TreeNodeData nodeRoot        ルートノード
 //
-//    TreeNodeData nodeLeft        ���[�g���m�[�h
-//    TreeNodeData nodeRight       ���[�g�E�m�[�h
+//    TreeNodeData nodeLeft        ルート左ノード
+//    TreeNodeData nodeRight       ルート右ノード
 //
-//    TreeNodeData nodeLeftLeft    �����m�[�h
-//    TreeNodeData nodeLeftRight   ���E�m�[�h
+//    TreeNodeData nodeLeftLeft    左左ノード
+//    TreeNodeData nodeLeftRight   左右ノード
 //
-//    TreeNodeData nodeRightLeft   �E���m�[�h
-//    TreeNodeData nodeRightRight  �E�E�m�[�h
+//    TreeNodeData nodeRightLeft   右左ノード
+//    TreeNodeData nodeRightRight  右右ノード
 //
-//            �E
-//            �E
+//            ・
+//            ・
 //
-//  ���̌�Ɉ��k�f�[�^�{��
+//  この後に圧縮データ本体
 //
-//�ETreeNodeData�\����
-//    u8  nodeNextOffset:6    ���m�[�h�f�[�^�ւ̃I�t�Z�b�g - 1�i2Byte�P�ʁj
-//        rightEndFlag:1      �E�m�[�h�I���t���O
-//        leftEndzflag:1       ���m�[�h�I���t���O
-//                            �I���t���O���Z�b�g����Ă���ꍇ
-//                            ���m�[�h�Ƀf�[�^������
+//・TreeNodeData構造体
+//    u8  nodeNextOffset:6    次ノードデータへのオフセット - 1（2Byte単位）
+//        rightEndFlag:1      右ノード終了フラグ
+//        leftEndzflag:1       左ノード終了フラグ
+//                            終了フラグがセットされている場合
+//                            次ノードにデータがある
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 void    MI_UncompressHuffman(const void *srcp, void *destp);
 
 
 //----------------------------------------------------------------------
-//          ���������O�X���k�f�[�^�W�������W�J
+//          ランレングス圧縮データ８ｂｉｔ展開
 //
-//�E���������O�X���k�f�[�^��W�J���A8bit�P�ʂŏ������݂܂��B
-//�EVRAM�ɒ��ړW�J���邱�Ƃ͂ł��܂���B
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・ランレングス圧縮データを展開し、8bit単位で書き込みます。
+//・VRAMに直接展開することはできません。
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 :4                  �\��
-//        compType:4          ���k�^�C�v�i = 3�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 :4                  予約
+//        compType:4          圧縮タイプ（ = 3）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�t���O�f�[�^�t�H�[�}�b�g
-//    u8  length:7            �W�J�f�[�^�� - 1�i�����k���j
-//                            �W�J�f�[�^�� - 3�i�A����3Byte�ȏ㎞�݈̂��k�j
-//        flag:1              �i0, 1�j = �i�����k�f�[�^, ���k�f�[�^�j
+//・フラグデータフォーマット
+//    u8  length:7            展開データ長 - 1（無圧縮時）
+//                            展開データ長 - 3（連続長3Byte以上時のみ圧縮）
+//        flag:1              （0, 1） = （無圧縮データ, 圧縮データ）
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 void    MI_UncompressRL8(const void *srcp, void *destp);
 
 
 //----------------------------------------------------------------------
-//          ���������O�X���k�f�[�^�P�U�������W�J
+//          ランレングス圧縮データ１６ｂｉｔ展開
 //
-//�E���������O�X���k�f�[�^��W�J���A16bit�P�ʂŏ������݂܂��B
-//�E�f�[�^TCM�⃁�C���������ɂ��W�J�ł��܂����AMI_UncompressRL8()
-//  ���ᑬ�ł��B
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・ランレングス圧縮データを展開し、16bit単位で書き込みます。
+//・データTCMやメインメモリにも展開できますが、MI_UncompressRL8()
+//  より低速です。
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 :4                  �\��
-//        compType:4          ���k�^�C�v�i = 3�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 :4                  予約
+//        compType:4          圧縮タイプ（ = 3）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�t���O�f�[�^�t�H�[�}�b�g
-//    u8  length:7            �W�J�f�[�^�� - 1�i�����k���j
-//                            �W�J�f�[�^�� - 3�i�A����3Byte�ȏ㎞�݈̂��k�j
-//        flag:1              �i0, 1�j = �i�����k�f�[�^, ���k�f�[�^�j
+//・フラグデータフォーマット
+//    u8  length:7            展開データ長 - 1（無圧縮時）
+//                            展開データ長 - 3（連続長3Byte以上時のみ圧縮）
+//        flag:1              （0, 1） = （無圧縮データ, 圧縮データ）
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 void    MI_UncompressRL16(const void *srcp, void *destp);
 
 
 //----------------------------------------------------------------------
-//          �����t�B���^�ϊ��̕��� �W�������W�J
+//          差分フィルタ変換の復元 ８ｂｉｔ展開
 //
-//�E�����t�B���^�𕜌����A8bit�P�ʂŏ������݂܂��B
-//�EVRAM�ɒ��ړW�J���邱�Ƃ͂ł��܂���B
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・差分フィルタを復元し、8bit単位で書き込みます。
+//・VRAMに直接展開することはできません。
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 :4                  �P�ʃr�b�g�T�C�Y
-//        compType:4          ���k�^�C�v�i = 3�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 :4                  単位ビットサイズ
+//        compType:4          圧縮タイプ（ = 3）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 void    MI_UnfilterDiff8(const void *srcp, void *destp);
 
 //----------------------------------------------------------------------
-//          �����t�B���^�ϊ��̕��� �P�U�������W�J
+//          差分フィルタ変換の復元 １６ｂｉｔ展開
 //
-//�E�����t�B���^�𕜌����A16bit�P�ʂŏ������݂܂��B
-//�E�f�[�^TCM��VRAM�ɂ��W�J�ł��܂����AMI_Uncompress8()
-//  ���ᑬ�ł��B//---- 
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・差分フィルタを復元し、16bit単位で書き込みます。
+//・データTCMやVRAMにも展開できますが、MI_Uncompress8()
+//  より低速です。//---- 
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 :4                  �P�ʃr�b�g�T�C�Y
-//        compType:4          ���k�^�C�v�i = 3�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 :4                  単位ビットサイズ
+//        compType:4          圧縮タイプ（ = 3）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 void    MI_UnfilterDiff16(const void *srcp, void *destp);

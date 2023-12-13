@@ -1,6 +1,6 @@
 /**
  *	@file	tmap_sub.c
- *	@brief	ƒ^ƒEƒ“ƒ}ƒbƒv@ƒTƒuƒ‚ƒWƒ…[ƒ‹ŒQ
+ *	@brief	ã‚¿ã‚¦ãƒ³ãƒžãƒƒãƒ—ã€€ã‚µãƒ–ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ç¾¤
  *	@author	Miyuki Iwasawa
  *	@date	06.04.01
  */
@@ -17,16 +17,16 @@
 #include "town.dat"
 
 //========================================================
-//ƒ^ƒEƒ“ViewŠÖ˜A
+//ã‚¿ã‚¦ãƒ³Viewé–¢é€£
 //========================================================
 /**
- *	@brief	ƒ^ƒEƒ“ViewƒŠƒ\[ƒXì¬
+ *	@brief	ã‚¿ã‚¦ãƒ³Viewãƒªã‚½ãƒ¼ã‚¹ä½œæˆ
  *
- *	@param	actSys	‰Šú‰»Ï‚ÝƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€
- *	@param	actRes	‰Šú‰»Ï‚ÝƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX
+ *	@param	actSys	åˆæœŸåŒ–æ¸ˆã¿ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	actRes	åˆæœŸåŒ–æ¸ˆã¿ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹
  *
- *	@param	dat_num	ƒf[ƒ^”
- *	@param	heapID	ƒq[ƒvID
+ *	@param	dat_num	ãƒ‡ãƒ¼ã‚¿æ•°
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  */
 TMAP_VIEW_DAT* TownViewDataCreate(CATS_SYS_PTR actSys,CATS_RES_PTR actRes,
 		u8 *arrive,short dat_num,int heapID)
@@ -52,12 +52,12 @@ TMAP_VIEW_DAT* TownViewDataCreate(CATS_SYS_PTR actSys,CATS_RES_PTR actRes,
 	wp->pDat = sys_AllocMemory(heapID,sizeof(TMAP_VIEW_OBJ)*wp->dat_num);
 	memset(wp->pDat,0,sizeof(TMAP_VIEW_OBJ)*wp->dat_num);
 
-	//ƒ^ƒEƒ“ƒrƒ…[ƒf[ƒ^Žæ“¾
+	//ã‚¿ã‚¦ãƒ³ãƒ“ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿å–å¾—
 	pView = TownViewDat;
 	for(i = 0;i < wp->dat_num;i++){
 		pd = &wp->pDat[i];
 
-		//“Ç‚Ýž‚Ýƒpƒ‰ƒ[ƒ^
+		//èª­ã¿è¾¼ã¿ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 		pd->prm.zoneID = pView[i].zoneID;
 		pd->prm.ptn = pView[i].ptn;
 		pd->prm.typ = pView[i].typ;
@@ -65,10 +65,10 @@ TMAP_VIEW_DAT* TownViewDataCreate(CATS_SYS_PTR actSys,CATS_RES_PTR actRes,
 		pd->prm.x = pView[i].x;
 		pd->prm.z = pView[i].z;
 	
-		//“ž’Bƒtƒ‰ƒOƒ`ƒFƒbƒN
+		//åˆ°é”ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 		pd->flag = arrive[i];
 	
-		//ƒZƒ‹’Ç‰Á
+		//ã‚»ãƒ«è¿½åŠ 
 		pd->pAct = CATS_ObjectAdd(actSys,actRes,&ActAddParam);
 		CLACT_SetDrawFlag(pd->pAct, 1);
 
@@ -76,14 +76,14 @@ TMAP_VIEW_DAT* TownViewDataCreate(CATS_SYS_PTR actSys,CATS_RES_PTR actRes,
 		if(pd->flag){
 			CLACT_PaletteNoChg( pd->pAct,TMAP_APAL_NTOWN+pd->prm.typ+pd->flag);
 		}else{
-			//ƒp[ƒN/ƒ`ƒƒƒ“ƒsƒIƒ“ƒ[ƒh‚Í“ž’…‚µ‚Ä‚È‚¢ê‡‰B‚·		
+			//ãƒ‘ãƒ¼ã‚¯/ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ãƒ­ãƒ¼ãƒ‰ã¯åˆ°ç€ã—ã¦ãªã„å ´åˆéš ã™		
 			if(	pd->prm.r == TMAP_VIEW_FLAG_PARK ||
 				pd->prm.r == TMAP_VIEW_FLAG_LOAD){
 				CLACT_SetDrawFlag(pd->pAct, 0);
 			}
 		}
 		
-		//ƒpƒ^[ƒ“Ý’è&ˆÊ’uÝ’è
+		//ãƒ‘ã‚¿ãƒ¼ãƒ³è¨­å®š&ä½ç½®è¨­å®š
 		CLACT_AnmFrameChg(pd->pAct,FX32_CONST(pd->prm.ptn));
 		CATS_ObjectPosSet(pd->pAct,
 				pd->prm.x+TMAP_MDOT_OFSX,
@@ -94,14 +94,14 @@ TMAP_VIEW_DAT* TownViewDataCreate(CATS_SYS_PTR actSys,CATS_RES_PTR actRes,
 }
 
 /**
- *	@brief	ƒ^ƒEƒ“ViewƒŠƒ\[ƒX‰ð•ú
+ *	@brief	ã‚¿ã‚¦ãƒ³Viewãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
  */
 void TownViewDataRelease(TMAP_VIEW_DAT* wp)
 {
 	TMAP_VIEW_OBJ *pd;
 	short i;
 
-	//ƒZƒ‹”jŠü
+	//ã‚»ãƒ«ç ´æ£„
 	for(i = 0;i < wp->dat_num;i++){
 		pd = &wp->pDat[i];
 		CLACT_SetRotationAffine(pd->pAct,0,CLACT_AFFINE_NONE);
@@ -112,7 +112,7 @@ void TownViewDataRelease(TMAP_VIEW_DAT* wp)
 }
 
 /**
- *	ƒ^ƒEƒ“View ƒf[ƒ^’†‚©‚ç“Á’è‚ÌZoneID‚ðŽ‚Â‚à‚Ì‚ð’T‚·
+ *	ã‚¿ã‚¦ãƒ³View ãƒ‡ãƒ¼ã‚¿ä¸­ã‹ã‚‰ç‰¹å®šã®ZoneIDã‚’æŒã¤ã‚‚ã®ã‚’æŽ¢ã™
  */
 TMAP_VIEW_OBJ* TownViewDataSearchPos(TMAP_VIEW_DAT* wp,int zoneID,int x,int z)
 {
@@ -126,18 +126,18 @@ TMAP_VIEW_OBJ* TownViewDataSearchPos(TMAP_VIEW_DAT* wp,int zoneID,int x,int z)
 		}
 		switch(pd->prm.r){
 		case TMAP_VIEW_FLAG_NRM:
-			return pd;	//À•Wƒ`ƒFƒbƒN‚Í—v‚ç‚È‚¢
-		case TMAP_VIEW_FLAG_PARK:	//ƒp[ƒN
+			return pd;	//åº§æ¨™ãƒã‚§ãƒƒã‚¯ã¯è¦ã‚‰ãªã„
+		case TMAP_VIEW_FLAG_PARK:	//ãƒ‘ãƒ¼ã‚¯
 			if(TMAP_VIEW_PARK_X == x && TMAP_VIEW_PARK_Z == z){
 				return pd;
 			}
 			break;
-		case TMAP_VIEW_FLAG_LOAD:	//ƒ`ƒƒƒ“ƒsƒIƒ“ƒ[ƒh
+		case TMAP_VIEW_FLAG_LOAD:	//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ãƒ­ãƒ¼ãƒ‰
 			if(TMAP_VIEW_LOAD_X == x && TMAP_VIEW_LOAD_Z == z){
 				return pd;
 			}
 			break;
-		case TMAP_VIEW_FLAG_LEAG:	//ƒŠ[ƒO(C10)
+		case TMAP_VIEW_FLAG_LEAG:	//ãƒªãƒ¼ã‚°(C10)
 			if(TMAP_VIEW_LEAG_X == x && TMAP_VIEW_LEAG_Z == z){
 				return pd;
 			}
@@ -147,7 +147,7 @@ TMAP_VIEW_OBJ* TownViewDataSearchPos(TMAP_VIEW_DAT* wp,int zoneID,int x,int z)
 	return NULL;
 }
 /**
- *	@brief	ƒ^ƒEƒ“View
+ *	@brief	ã‚¿ã‚¦ãƒ³View
  */
 int TownViewDataSelectPos(TMAP_VIEW_DAT* wp,int zoneID,int x,int z)
 {
@@ -172,8 +172,8 @@ int TownViewDataSelectPos(TMAP_VIEW_DAT* wp,int zoneID,int x,int z)
 		wp->selFrame = 0;
 	}else{
 		/*
-		 * c10‚Æƒ`ƒƒƒ“ƒsƒIƒ“ƒ[ƒh‚Í—×Ú‚µ‚Ä‚¢‚é‚½‚ßAã‚ÌNULLƒ`ƒFƒbƒN‚É‚©‚©‚ç‚È‚¢
-		 * ‚æ‚Á‚ÄAœ“ˆÓ“I‚É‘I‘ðƒAƒjƒ‚ðOff‚µ‚Ä‚â‚é
+		 * c10ã¨ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ãƒ­ãƒ¼ãƒ‰ã¯éš£æŽ¥ã—ã¦ã„ã‚‹ãŸã‚ã€ä¸Šã®NULLãƒã‚§ãƒƒã‚¯ã«ã‹ã‹ã‚‰ãªã„
+		 * ã‚ˆã£ã¦ã€æ£æ„çš„ã«é¸æŠžã‚¢ãƒ‹ãƒ¡ã‚’Offã—ã¦ã‚„ã‚‹
 		 */	
 		if(	pd->prm.r == TMAP_VIEW_FLAG_LOAD ||
 			pd->prm.r == TMAP_VIEW_FLAG_LEAG){
@@ -186,7 +186,7 @@ int TownViewDataSelectPos(TMAP_VIEW_DAT* wp,int zoneID,int x,int z)
 }
 
 /**
- *	@brief	ƒ^ƒEƒ“View Šî–{•`‰æ
+ *	@brief	ã‚¿ã‚¦ãƒ³View åŸºæœ¬æç”»
  */
 void TownViewDataDraw(TMAP_VIEW_DAT* wp,int mode)
 {
@@ -200,7 +200,7 @@ void TownViewDataDraw(TMAP_VIEW_DAT* wp,int mode)
 	if(wp->selFrame == 0){
 		CLACT_PaletteNoChg( wp->selPos->pAct,TMAP_APAL_A1TOWN+wp->selPos->prm.typ);
 	}else{
-		CLACT_PaletteNoChg( wp->selPos->pAct,	//ƒIƒŠƒWƒiƒ‹
+		CLACT_PaletteNoChg( wp->selPos->pAct,	//ã‚ªãƒªã‚¸ãƒŠãƒ«
 				TMAP_APAL_NTOWN+wp->selPos->prm.typ+wp->selPos->flag);
 	}
 	wp->selCount++;
@@ -211,10 +211,10 @@ void TownViewDataDraw(TMAP_VIEW_DAT* wp,int mode)
 }
 
 //============================================================
-//ƒ}ƒbƒvƒuƒƒbƒNƒf[ƒ^ŽQÆŠÖ˜A
+//ãƒžãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å‚ç…§é–¢é€£
 //============================================================
 /**
- *	@brief	ƒ}ƒbƒvƒuƒƒbƒNƒf[ƒ^ƒ[ƒh
+ *	@brief	ãƒžãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
  */
 TMAP_GDAT_LIST* TMapBlockDataLoad(const char* path,int heapID)
 {
@@ -230,17 +230,17 @@ TMAP_GDAT_LIST* TMapBlockDataLoad(const char* path,int heapID)
 		GF_ASSERT(0);
 		return NULL;
 	}
-	//ƒf[ƒ^”Žæ“¾
+	//ãƒ‡ãƒ¼ã‚¿æ•°å–å¾—
 	ret = FS_ReadFile(&fp,&dat_num,4);
 	GF_ASSERT(ret >= 0 && "ERROR:tmap block data num can't read");
 	
-	//ƒƒ‚ƒŠŠm•Û
+	//ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	pWork = sys_AllocMemory(heapID,sizeof(TMAP_GDAT_LIST));
 	memset(pWork,0,sizeof(TMAP_GDAT_LIST));
 	pWork->pDat = sys_AllocMemory(heapID,sizeof(TMAP_GDAT)*dat_num);
 	memset(pWork->pDat,0,sizeof(TMAP_GDAT)*dat_num);
 
-	pWork->num = dat_num;	//”‚ð•Û‘¶
+	pWork->num = dat_num;	//æ•°ã‚’ä¿å­˜
 
 	for(i = 0;i < pWork->num;i++){
 		wp = &(pWork->pDat[i]);
@@ -253,7 +253,7 @@ TMAP_GDAT_LIST* TMapBlockDataLoad(const char* path,int heapID)
 }
 
 /**
- *	@brief	ƒ}ƒbƒvƒuƒƒbƒNƒf[ƒ^‰ð•ú
+ *	@brief	ãƒžãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è§£æ”¾
  */
 void TMapBlockDataRelease(TMAP_GDAT_LIST* pWork)
 {
@@ -262,14 +262,14 @@ void TMapBlockDataRelease(TMAP_GDAT_LIST* pWork)
 }
 
 /**
- *	@brief	ƒ}ƒbƒvƒuƒƒbƒNƒf[ƒ^@ƒuƒƒbƒNƒf[ƒ^Žæ“¾
+ *	@brief	ãƒžãƒƒãƒ—ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã€€ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	pWork	ƒf[ƒ^ƒŠƒXƒg”z—ñ‚Ìæ“ªƒ|ƒCƒ“ƒ^
- *	@param	x		ŒŸõ‚·‚éƒuƒƒbƒN‚ÌXÀ•W
- *	@param	z		ŒŸõ‚·‚éƒuƒƒbƒN‚ÌZÀ•W
- *	@param	mapView	”z•zƒ}ƒbƒv•`‰æƒtƒ‰ƒO
- *	ƒuƒƒbƒN‚Ìx,zÀ•W‚©‚çƒuƒƒbƒNƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾‚·‚é
- *	Œ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡NULL‚ð•Ô‚·
+ *	@param	pWork	ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆé…åˆ—ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿
+ *	@param	x		æ¤œç´¢ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã®Xåº§æ¨™
+ *	@param	z		æ¤œç´¢ã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã®Zåº§æ¨™
+ *	@param	mapView	é…å¸ƒãƒžãƒƒãƒ—æç”»ãƒ•ãƒ©ã‚°
+ *	ãƒ–ãƒ­ãƒƒã‚¯ã®x,zåº§æ¨™ã‹ã‚‰ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
+ *	è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆNULLã‚’è¿”ã™
  */
 TMAP_GDAT* TMapBlockDataGet(TMAP_GDAT_LIST* pWork,int x,int z,u16 mapView)
 {

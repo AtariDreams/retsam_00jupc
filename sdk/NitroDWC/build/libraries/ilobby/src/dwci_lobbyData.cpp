@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief ƒAƒƒP[ƒ^ƒ\[ƒX
+ * @brief ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‚½ãƒ¼ã‚¹
  */
 
 #include "dwci_lobbyData.h"
@@ -26,7 +26,7 @@ inline void DWCi_LOBBY_ASSERT_IF_NOT_MODIFIED_CHANNEL_NAME(const DWCi_String& ch
 }
 
 /** 
- * @brief “à•”ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠƒIƒuƒWƒFƒNƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * @brief å†…éƒ¨ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  * 
  * @param[in] 
  */
@@ -66,7 +66,7 @@ DWCi_Lobby::DWCi_Lobby(const DWCi_String& _gameName, const DWCi_String& _secretK
         "T"     // DWC_LOBBY_CHANNEL_PREFIX_TEST
     };
     
-    // #GSP!gameName!T|R|D_ Œ`®‚Ìƒ`ƒƒƒ“ƒlƒ‹–¼‚ğì‚é
+    // #GSP!gameName!T|R|D_ å½¢å¼ã®ãƒãƒ£ãƒ³ãƒãƒ«åã‚’ä½œã‚‹
     baseChannelName = DWCi_String(DWCi_LOBBY_CHANNEL_NAME_PREFIX) + DWCi_LOBBY_CHANNEL_NAME_SEPARATOR
         + gameName + DWCi_LOBBY_CHANNEL_NAME_SEPARATOR
         + DWCi_String(channelPrefix[_prefix]) + DWCi_LOBBY_CHANNEL_NAME_SEPARATOR;
@@ -74,7 +74,7 @@ DWCi_Lobby::DWCi_Lobby(const DWCi_String& _gameName, const DWCi_String& _secretK
 }
 
 /** 
- * @brief “à•”ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠƒIƒuƒWƒFƒNƒgƒfƒXƒgƒ‰ƒNƒ^
+ * @brief å†…éƒ¨ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 DWCi_Lobby::~DWCi_Lobby()
 {
@@ -82,11 +82,11 @@ DWCi_Lobby::~DWCi_Lobby()
 }
 
 /** 
- * @brief È—ª‚³‚ê‚½ƒ`ƒƒƒ“ƒlƒ‹–¼‚ğƒtƒ‹‚Ì–¼‘O‚É–ß‚µ‚Ü‚·B
+ * @brief çœç•¥ã•ã‚ŒãŸãƒãƒ£ãƒ³ãƒãƒ«åã‚’ãƒ•ãƒ«ã®åå‰ã«æˆ»ã—ã¾ã™ã€‚
  * 
- * @param[in] channelNameSuffix È—ª‚³‚ê‚½ƒ`ƒƒƒ“ƒlƒ‹–¼B
+ * @param[in] channelNameSuffix çœç•¥ã•ã‚ŒãŸãƒãƒ£ãƒ³ãƒãƒ«åã€‚
  * 
- * @retval –ß‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹–¼B
+ * @retval æˆ»ã—ãŸãƒãƒ£ãƒ³ãƒãƒ«åã€‚
  */
 DWCi_String DWCi_Lobby::ModifyChannelName(const DWCi_String& channelNameSuffix) const
 {
@@ -94,11 +94,11 @@ DWCi_String DWCi_Lobby::ModifyChannelName(const DWCi_String& channelNameSuffix) 
 }
 
 /** 
- * @brief ƒ`ƒƒƒ“ƒlƒ‹–¼‚Ì#GSP!<gamename>!‚ğÈ—ª‚µ‚½‚à‚Ì‚É•ÏŠ·‚µ‚Ü‚·B
+ * @brief ãƒãƒ£ãƒ³ãƒãƒ«åã®#GSP!<gamename>!ã‚’çœç•¥ã—ãŸã‚‚ã®ã«å¤‰æ›ã—ã¾ã™ã€‚
  * 
- * @param[in] channelName ƒ`ƒƒƒ“ƒlƒ‹–¼B
+ * @param[in] channelName ãƒãƒ£ãƒ³ãƒãƒ«åã€‚
  * 
- * @retval •ÏŠ·‚³‚ê‚½ƒ`ƒƒƒ“ƒlƒ‹–¼B
+ * @retval å¤‰æ›ã•ã‚ŒãŸãƒãƒ£ãƒ³ãƒãƒ«åã€‚
  */
 DWCi_String DWCi_Lobby::UnmodifyChannelName(const DWCi_String& channelName) const
 {
@@ -107,16 +107,16 @@ DWCi_String DWCi_Lobby::UnmodifyChannelName(const DWCi_String& channelName) cons
 }
 
 /** 
- * @brief •¡”‚Ìƒ`ƒƒƒ“ƒlƒ‹–¼‚Ì#GSP!<gamename>!‚ğÈ—ª‚µ‚½‚à‚Ì‚É•ÏŠ·‚µ‚Ü‚·B
+ * @brief è¤‡æ•°ã®ãƒãƒ£ãƒ³ãƒãƒ«åã®#GSP!<gamename>!ã‚’çœç•¥ã—ãŸã‚‚ã®ã«å¤‰æ›ã—ã¾ã™ã€‚
  * 
- * @param[in] numChannels ƒ`ƒƒƒ“ƒlƒ‹”B
- * @param[in] channelNames ƒ`ƒƒƒ“ƒlƒ‹–¼‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Ì”z—ñB
+ * @param[in] numChannels ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã€‚
+ * @param[in] channelNames ãƒãƒ£ãƒ³ãƒãƒ«åã¸ã®ãƒã‚¤ãƒ³ã‚¿ã®é…åˆ—ã€‚
  * 
- * @retval •ÏŠ·‚³‚ê‚½ƒ`ƒƒƒ“ƒlƒ‹–¼B
+ * @retval å¤‰æ›ã•ã‚ŒãŸãƒãƒ£ãƒ³ãƒãƒ«åã€‚
  */
 std::vector<char*, DWCi_Allocator<char*> > DWCi_Lobby::UnmodifyChannelNames(int numChannels, const char** channelNames) const
 {
-    // channelNames‚Ìƒ|ƒCƒ“ƒ^‚ğbaseChannelName.length()‚¸‚Â‚¸‚ç‚µ‚½‚à‚Ì‚ğvector‚ÉƒRƒs[‚·‚é
+    // channelNamesã®ãƒã‚¤ãƒ³ã‚¿ã‚’baseChannelName.length()ãšã¤ãšã‚‰ã—ãŸã‚‚ã®ã‚’vectorã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
     std::vector<char*, DWCi_Allocator<char*> > result;
 
     for(int i = 0; i<numChannels; i++)
@@ -129,25 +129,25 @@ std::vector<char*, DWCi_Allocator<char*> > DWCi_Lobby::UnmodifyChannelNames(int 
 }
 
 /** 
- * @brief ˆêˆÓ‚Æ‚È‚éƒjƒbƒNƒl[ƒ€‚ğ¶¬‚µ‚Ü‚·B
+ * @brief ä¸€æ„ã¨ãªã‚‹ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’ç”Ÿæˆã—ã¾ã™ã€‚
  * 
- * @param[in] pid ¶¬Œ³‚É‚È‚éPIDB
+ * @param[in] pid ç”Ÿæˆå…ƒã«ãªã‚‹PIDã€‚
  * 
- * @retval ¶¬‚µ‚½ƒjƒbƒNƒl[ƒ€B
+ * @retval ç”Ÿæˆã—ãŸãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã€‚
  */
 DWCi_String DWCi_Lobby::CreateNickName(s32 pid)
 {
-    // ƒjƒbƒNƒl[ƒ€‚ğ"N_(PID(Å‘å10Œ…))_(—”(Å‘å3Œ…))‚É‚·‚é
+    // ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’"N_(PID(æœ€å¤§10æ¡))_(ä¹±æ•°(æœ€å¤§3æ¡))ã«ã™ã‚‹
     return DWCi_SNPrintf<DWCi_String>(DWCi_MAX_CHAT_NICK_SIZE, _T("N_%d_%u"), pid, (unsigned long)current_time() % 1000);
 }
 
 /** 
- * @brief ƒjƒbƒNƒl[ƒ€‚ğPID‚É•ÏŠ·‚µ‚Ü‚·B
+ * @brief ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’PIDã«å¤‰æ›ã—ã¾ã™ã€‚
  * 
- * @param[in] nick ƒjƒbƒNƒl[ƒ€
+ * @param[in] nick ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
  * 
- * @retval pid ¬Œ÷
- * @retval DWC_LOBBY_INVALID_USER_ID ¸”s
+ * @retval pid æˆåŠŸ
+ * @retval DWC_LOBBY_INVALID_USER_ID å¤±æ•—
  */
 s32 DWCi_Lobby::NickNameToPid(const DWCi_String& nick)
 {
@@ -165,13 +165,13 @@ s32 DWCi_Lobby::NickNameToPid(const DWCi_String& nick)
 }
 
 /** 
- * @brief ƒ`ƒƒƒ“ƒlƒ‹‚ğ’Ç‰Á‚µ‚Ü‚·B
+ * @brief ãƒãƒ£ãƒ³ãƒãƒ«ã‚’è¿½åŠ ã—ã¾ã™ã€‚
  * 
- * @param[in] channelName ƒ`ƒƒƒ“ƒlƒ‹–¼
- * @param[in] channelCallbacks ƒ`ƒƒƒ“ƒlƒ‹‚ÉŠÖ˜A‚Ã‚¯‚éƒR[ƒ‹ƒoƒbƒN
+ * @param[in] channelName ãƒãƒ£ãƒ³ãƒãƒ«å
+ * @param[in] channelCallbacks ãƒãƒ£ãƒ³ãƒãƒ«ã«é–¢é€£ã¥ã‘ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * 
- * @retval TRUE ¬Œ÷B
- * @retval FALSE ¸”sB‚·‚Å‚É“o˜^Ï‚İB
+ * @retval TRUE æˆåŠŸã€‚
+ * @retval FALSE å¤±æ•—ã€‚ã™ã§ã«ç™»éŒ²æ¸ˆã¿ã€‚
  */
 BOOL DWCi_Lobby::AddChannel(const DWCi_String channelName, const DWCi_LobbyChannelCallbacks& channelCallbacks, s32 limit)
 {
@@ -182,12 +182,12 @@ BOOL DWCi_Lobby::AddChannel(const DWCi_String channelName, const DWCi_LobbyChann
 }
 
 /** 
- * @brief ƒ`ƒƒƒ“ƒlƒ‹ƒR[ƒ‹ƒoƒbƒN‚ğæ“¾‚µ‚Ü‚·B
+ * @brief ãƒãƒ£ãƒ³ãƒãƒ«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å–å¾—ã—ã¾ã™ã€‚
  * 
- * @param[in] channelName ƒ`ƒƒƒ“ƒlƒ‹–¼
+ * @param[in] channelName ãƒãƒ£ãƒ³ãƒãƒ«å
  * 
- * @retval ƒ`ƒƒƒ“ƒlƒ‹ƒR[ƒ‹ƒoƒbƒNB
- * @retval NULL ¸”sBƒ`ƒƒƒ“ƒlƒ‹‚ªŒ©‚Â‚©‚ç‚È‚¢B
+ * @retval ãƒãƒ£ãƒ³ãƒãƒ«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã€‚
+ * @retval NULL å¤±æ•—ã€‚ãƒãƒ£ãƒ³ãƒãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã„ã€‚
  */
 const DWCi_LobbyChannelCallbacks* DWCi_Lobby::GetChannelCallbacks(const DWCi_String& channelName) const
 {
@@ -201,13 +201,13 @@ const DWCi_LobbyChannelCallbacks* DWCi_Lobby::GetChannelCallbacks(const DWCi_Str
 }
 
 /** 
- * @brief ƒ†[ƒU‚ğ’Ç‰Á‚µ‚Ü‚·B
+ * @brief ãƒ¦ãƒ¼ã‚¶ã‚’è¿½åŠ ã—ã¾ã™ã€‚
  * 
- * @param[in] nick ƒjƒbƒNƒl[ƒ€
- * @param[in] channelName ƒ`ƒƒƒ“ƒlƒ‹–¼
+ * @param[in] nick ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
+ * @param[in] channelName ãƒãƒ£ãƒ³ãƒãƒ«å
  * 
- * @retval ’Ç‰Á‚µ‚½l‚Ìƒ†[ƒUID
- * @retval DWC_LOBBY_INVALID_USER_ID ¸”sB•s³‚ÈnickA‚à‚µ‚­‚Íƒ`ƒƒƒ“ƒlƒ‹‚ªŒ©‚Â‚©‚ç‚È‚¢B
+ * @retval è¿½åŠ ã—ãŸäººã®ãƒ¦ãƒ¼ã‚¶ID
+ * @retval DWC_LOBBY_INVALID_USER_ID å¤±æ•—ã€‚ä¸æ­£ãªnickã€ã‚‚ã—ãã¯ãƒãƒ£ãƒ³ãƒãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã„ã€‚
  */
 s32 DWCi_Lobby::AddUser(const DWCi_String& nick, const DWCi_String& channelName)
 {
@@ -219,7 +219,7 @@ s32 DWCi_Lobby::AddUser(const DWCi_String& nick, const DWCi_String& channelName)
         return DWC_LOBBY_INVALID_USER_ID;
     }
     
-    // ƒ`ƒƒƒ“ƒlƒ‹î•ñ‚É’Ç‰Á‚·‚éB
+    // ãƒãƒ£ãƒ³ãƒãƒ«æƒ…å ±ã«è¿½åŠ ã™ã‚‹ã€‚
     ChannelContainer::iterator it = channels.find(channelName);
     if(it == channels.end())
     {
@@ -228,19 +228,19 @@ s32 DWCi_Lobby::AddUser(const DWCi_String& nick, const DWCi_String& channelName)
     }
     it->second.userIds.insert(userId);
     
-    // ƒ†[ƒUî•ñ‚É’Ç‰Á‚·‚éB‚à‚µ“¯‚¶ID‚ª‚¢‚½ê‡‚Íã‘‚«‚·‚éB(ÄÚ‘±‚µ‚½‚Æ‚«‚ÉÌ‚Ì‚à‚Ì‚ªc‚Á‚Ä‚¢‚é‚±‚Æ‚ª‚ ‚é)
+    // ãƒ¦ãƒ¼ã‚¶æƒ…å ±ã«è¿½åŠ ã™ã‚‹ã€‚ã‚‚ã—åŒã˜IDãŒã„ãŸå ´åˆã¯ä¸Šæ›¸ãã™ã‚‹ã€‚(å†æ¥ç¶šã—ãŸã¨ãã«æ˜”ã®ã‚‚ã®ãŒæ®‹ã£ã¦ã„ã‚‹ã“ã¨ãŒã‚ã‚‹)
     users[userId] = nick;
     return userId;
 }
 
 /** 
- * @brief ƒ†[ƒU‚ğ•¡”l’Ç‰Á‚µ‚Ü‚·B
+ * @brief ãƒ¦ãƒ¼ã‚¶ã‚’è¤‡æ•°äººè¿½åŠ ã—ã¾ã™ã€‚
  * 
- * @param[in] numUsers ƒ†[ƒU”
- * @param[in] users ƒjƒbƒNƒl[ƒ€‚Ì”z—ñ
- * @param[in] channelName ƒ`ƒƒƒ“ƒlƒ‹–¼
+ * @param[in] numUsers ãƒ¦ãƒ¼ã‚¶æ•°
+ * @param[in] users ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã®é…åˆ—
+ * @param[in] channelName ãƒãƒ£ãƒ³ãƒãƒ«å
  * 
- * @retval ’Ç‰Á‚à‚µ‚­‚Íã‘‚«‚µ‚½l‚Ìƒ†[ƒUID‚ÌvectorB’Ç‰Á‚µ‚Ä‚¢‚È‚¢l‚Ívector“à‚ÉŠÜ‚Ü‚ê‚È‚¢B
+ * @retval è¿½åŠ ã‚‚ã—ãã¯ä¸Šæ›¸ãã—ãŸäººã®ãƒ¦ãƒ¼ã‚¶IDã®vectorã€‚è¿½åŠ ã—ã¦ã„ãªã„äººã¯vectorå†…ã«å«ã¾ã‚Œãªã„ã€‚
  */
 std::vector<s32, DWCi_Allocator<s32> > DWCi_Lobby::AddUsers(int numUsers, const char** users, const DWCi_String& channelName)
 {
@@ -249,7 +249,7 @@ std::vector<s32, DWCi_Allocator<s32> > DWCi_Lobby::AddUsers(int numUsers, const 
     userIds.reserve((std::size_t)numUsers);
 	for(int i = 0; i < numUsers; i++)
     {
-        // ‰ß‹‚Ì©•ª‚Í“o˜^‚µ‚È‚¢Bƒ†[ƒUID‚ª“¯‚¶‚ÅƒjƒbƒN‚ªˆá‚¤‚à‚Ì‚ª‰ß‹‚Ì©•ª
+        // éå»ã®è‡ªåˆ†ã¯ç™»éŒ²ã—ãªã„ã€‚ãƒ¦ãƒ¼ã‚¶IDãŒåŒã˜ã§ãƒ‹ãƒƒã‚¯ãŒé•ã†ã‚‚ã®ãŒéå»ã®è‡ªåˆ†
         if(NickNameToPid(users[i]) == GetPid() && GetChatNick() != users[i])
         {
             continue;
@@ -264,16 +264,16 @@ std::vector<s32, DWCi_Allocator<s32> > DWCi_Lobby::AddUsers(int numUsers, const 
 }
 
 /** 
- * @brief ‚à‚µ‘S‚Ä‚Ìƒ`ƒƒƒ“ƒlƒ‹‚Éw’è‚µ‚½ƒ†[ƒU‚ª‚¢‚È‚©‚Á‚½‚çƒ†[ƒUî•ñ‚©‚çƒ†[ƒU‚ğíœ‚µ‚Ü‚·B
+ * @brief ã‚‚ã—å…¨ã¦ã®ãƒãƒ£ãƒ³ãƒãƒ«ã«æŒ‡å®šã—ãŸãƒ¦ãƒ¼ã‚¶ãŒã„ãªã‹ã£ãŸã‚‰ãƒ¦ãƒ¼ã‚¶æƒ…å ±ã‹ã‚‰ãƒ¦ãƒ¼ã‚¶ã‚’å‰Šé™¤ã—ã¾ã™ã€‚
  * 
- * @param[in] userId íœ‚·‚éƒ†[ƒUIDB
+ * @param[in] userId å‰Šé™¤ã™ã‚‹ãƒ¦ãƒ¼ã‚¶IDã€‚
  * 
- * @retval TRUE íœ‚µ‚½B
- * @retval FALSE ‚Ü‚¾ƒ`ƒƒƒ“ƒlƒ‹‚Éc‚Á‚Ä‚¢‚½‚Ì‚Åíœ‚µ‚È‚©‚Á‚½B
+ * @retval TRUE å‰Šé™¤ã—ãŸã€‚
+ * @retval FALSE ã¾ã ãƒãƒ£ãƒ³ãƒãƒ«ã«æ®‹ã£ã¦ã„ãŸã®ã§å‰Šé™¤ã—ãªã‹ã£ãŸã€‚
  */
 BOOL DWCi_Lobby::RemoveIfNoUserInChannels(s32 userId)
 {
-    // ‚à‚µ‘S‚Ä‚Ìƒ`ƒƒƒ“ƒlƒ‹î•ñ‚É‚±‚Ìƒ†[ƒU‚ª‚¢‚È‚¯‚ê‚Îƒ†[ƒUî•ñ‚©‚ç‚àíœ
+    // ã‚‚ã—å…¨ã¦ã®ãƒãƒ£ãƒ³ãƒãƒ«æƒ…å ±ã«ã“ã®ãƒ¦ãƒ¼ã‚¶ãŒã„ãªã‘ã‚Œã°ãƒ¦ãƒ¼ã‚¶æƒ…å ±ã‹ã‚‰ã‚‚å‰Šé™¤
     ChannelContainer::const_iterator it;
     it = std::find_if(channels.begin(), channels.end(), ExistUserInChannelContainer(userId));
     if(it == channels.end())
@@ -285,13 +285,13 @@ BOOL DWCi_Lobby::RemoveIfNoUserInChannels(s32 userId)
 }
 
 /** 
- * @brief w’è‚µ‚½ƒ†[ƒU‚ğƒ`ƒƒƒ“ƒlƒ‹‚©‚çíœ‚µ‚Ü‚·B
+ * @brief æŒ‡å®šã—ãŸãƒ¦ãƒ¼ã‚¶ã‚’ãƒãƒ£ãƒ³ãƒãƒ«ã‹ã‚‰å‰Šé™¤ã—ã¾ã™ã€‚
  * 
- * @param[in] nick íœ‚·‚éƒ†[ƒUIDB
- * @param[in] channelName íœ‚·‚éƒ`ƒƒƒ“ƒlƒ‹–¼B
+ * @param[in] nick å‰Šé™¤ã™ã‚‹ãƒ¦ãƒ¼ã‚¶IDã€‚
+ * @param[in] channelName å‰Šé™¤ã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«åã€‚
  * 
- * @retval TRUE íœ‚µ‚½B
- * @retval FALSE íœ‚µ‚È‚©‚Á‚½BƒjƒbƒNƒl[ƒ€‚ª•s³A‚à‚µ‚­‚Íƒ`ƒƒƒ“ƒlƒ‹‚ªŒ©‚Â‚©‚ç‚È‚¢(internal error)A‚à‚µ‚­‚Íƒ`ƒƒƒ“ƒlƒ‹“à‚É‚»‚Ìƒ†[ƒU‚ª‚¢‚È‚¢B
+ * @retval TRUE å‰Šé™¤ã—ãŸã€‚
+ * @retval FALSE å‰Šé™¤ã—ãªã‹ã£ãŸã€‚ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ãŒä¸æ­£ã€ã‚‚ã—ãã¯ãƒãƒ£ãƒ³ãƒãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã„(internal error)ã€ã‚‚ã—ãã¯ãƒãƒ£ãƒ³ãƒãƒ«å†…ã«ãã®ãƒ¦ãƒ¼ã‚¶ãŒã„ãªã„ã€‚
  */
 BOOL DWCi_Lobby::RemoveUser(const DWCi_String& nick, const DWCi_String& channelName)
 {
@@ -303,7 +303,7 @@ BOOL DWCi_Lobby::RemoveUser(const DWCi_String& nick, const DWCi_String& channelN
         return FALSE;
     }
     
-    // ƒ`ƒƒƒ“ƒlƒ‹î•ñ‚©‚çíœ
+    // ãƒãƒ£ãƒ³ãƒãƒ«æƒ…å ±ã‹ã‚‰å‰Šé™¤
     ChannelContainer::iterator it = channels.find(channelName);
     if(it == channels.end())
     {
@@ -317,20 +317,20 @@ BOOL DWCi_Lobby::RemoveUser(const DWCi_String& nick, const DWCi_String& channelN
         return FALSE;
     }
     
-    // ‚à‚µ‘S‚Ä‚Ìƒ`ƒƒƒ“ƒlƒ‹î•ñ‚É‚±‚Ìƒ†[ƒU‚ª‚¢‚È‚¯‚ê‚Îƒ†[ƒUî•ñ‚©‚ç‚àíœ
+    // ã‚‚ã—å…¨ã¦ã®ãƒãƒ£ãƒ³ãƒãƒ«æƒ…å ±ã«ã“ã®ãƒ¦ãƒ¼ã‚¶ãŒã„ãªã‘ã‚Œã°ãƒ¦ãƒ¼ã‚¶æƒ…å ±ã‹ã‚‰ã‚‚å‰Šé™¤
     RemoveIfNoUserInChannels(userId);
     return TRUE;
 }
 
 /** 
- * @brief w’è‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚É‚¢‚éƒ†[ƒU‚Æƒ`ƒƒƒ“ƒlƒ‹‚Ìî•ñ‚ğíœ‚µ‚Ü‚·B
+ * @brief æŒ‡å®šã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ã«ã„ã‚‹ãƒ¦ãƒ¼ã‚¶ã¨ãƒãƒ£ãƒ³ãƒãƒ«ã®æƒ…å ±ã‚’å‰Šé™¤ã—ã¾ã™ã€‚
  * 
- * n^2‚ÌƒI[ƒ_[‚È‚Ì‚Å’x‚¢
+ * n^2ã®ã‚ªãƒ¼ãƒ€ãƒ¼ãªã®ã§é…ã„
  * 
- * @param[in] channelName íœ‚·‚éƒ`ƒƒƒ“ƒlƒ‹–¼B
+ * @param[in] channelName å‰Šé™¤ã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«åã€‚
  * 
- * @retval TRUE íœ‚µ‚½B
- * @retval FALSE w’è‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚ªŒ©‚Â‚©‚ç‚È‚¢B
+ * @retval TRUE å‰Šé™¤ã—ãŸã€‚
+ * @retval FALSE æŒ‡å®šã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã„ã€‚
  */
 BOOL DWCi_Lobby::RemoveChannel(const DWCi_String& channelName)
 {
@@ -341,24 +341,24 @@ BOOL DWCi_Lobby::RemoveChannel(const DWCi_String& channelName)
         return FALSE;
     }
     
-    // ˆêƒoƒbƒtƒ@‚ÉID‚ğ•Û‘¶
+    // ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡ã«IDã‚’ä¿å­˜
     std::vector<s32, DWCi_Allocator<s32> > tempBuf;
     tempBuf.assign(it->second.userIds.begin(), it->second.userIds.end());
     
     channels.erase(channelName);
     
-    // ‚à‚µ‘S‚Ä‚Ìƒ`ƒƒƒ“ƒlƒ‹î•ñ‚É‚±‚Ìƒ†[ƒU‚ª‚¢‚È‚¯‚ê‚Îƒ†[ƒUî•ñ‚©‚ç‚àíœ
+    // ã‚‚ã—å…¨ã¦ã®ãƒãƒ£ãƒ³ãƒãƒ«æƒ…å ±ã«ã“ã®ãƒ¦ãƒ¼ã‚¶ãŒã„ãªã‘ã‚Œã°ãƒ¦ãƒ¼ã‚¶æƒ…å ±ã‹ã‚‰ã‚‚å‰Šé™¤
     std::for_each(tempBuf.begin(), tempBuf.end(), std::bind1st(std::mem_fun(&DWCi_Lobby::RemoveIfNoUserInChannels), this));
     return TRUE;
 }
 
 /** 
- * @brief w’è‚µ‚½ƒjƒbƒNƒl[ƒ€‚Ìƒ†[ƒU‚ğ‘{‚µ‚Ü‚·(ƒjƒbƒNƒl[ƒ€‚Ìˆê’v‚àŠm”F‚·‚é)
+ * @brief æŒ‡å®šã—ãŸãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã®ãƒ¦ãƒ¼ã‚¶ã‚’æœã—ã¾ã™(ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã®ä¸€è‡´ã‚‚ç¢ºèªã™ã‚‹)
  * 
- * @param[in] nick ƒjƒbƒNƒl[ƒ€B
+ * @param[in] nick ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã€‚
  * 
- * @retval ƒ†[ƒUID
- * @retval DWC_LOBBY_INVALID_USER_ID Œ©‚Â‚©‚ç‚È‚©‚Á‚½B
+ * @retval ãƒ¦ãƒ¼ã‚¶ID
+ * @retval DWC_LOBBY_INVALID_USER_ID è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã€‚
  */
 s32 DWCi_Lobby::FindUser(const DWCi_String& nick) const
 {
@@ -369,13 +369,13 @@ s32 DWCi_Lobby::FindUser(const DWCi_String& nick) const
         return DWC_LOBBY_INVALID_USER_ID;
     }
     
-    // ‘¶İ‚µ‚Ä‚¢‚é‚©Šm”F‚·‚é
+    // å­˜åœ¨ã—ã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹
     UserContainer::const_iterator it = users.find(userId);
     if(it == users.end())
     {
         return DWC_LOBBY_INVALID_USER_ID;
     }
-    // ƒ†[ƒU–¼‚àŠm”F‚·‚éB(ÄÚ‘±‚µ‚½ƒ†[ƒU‚Ínick‚ª•Ï‰»‚·‚é‚Ì‚Å‚»‚ÌŠm”F)
+    // ãƒ¦ãƒ¼ã‚¶åã‚‚ç¢ºèªã™ã‚‹ã€‚(å†æ¥ç¶šã—ãŸãƒ¦ãƒ¼ã‚¶ã¯nickãŒå¤‰åŒ–ã™ã‚‹ã®ã§ãã®ç¢ºèª)
     if(it->second != nick)
     {
         return DWC_LOBBY_INVALID_USER_ID;
@@ -384,12 +384,12 @@ s32 DWCi_Lobby::FindUser(const DWCi_String& nick) const
 }
 
 /** 
- * @brief w’è‚µ‚½ƒ†[ƒUID‚Ìƒ†[ƒU‚ğ‘{‚µ‚Ü‚·B
+ * @brief æŒ‡å®šã—ãŸãƒ¦ãƒ¼ã‚¶IDã®ãƒ¦ãƒ¼ã‚¶ã‚’æœã—ã¾ã™ã€‚
  * 
- * @param[in] userId ƒ†[ƒUIDB
+ * @param[in] userId ãƒ¦ãƒ¼ã‚¶IDã€‚
  * 
- * @retval ƒjƒbƒNƒl[ƒ€B
- * @retval "" Œ©‚Â‚©‚ç‚È‚©‚Á‚½B
+ * @retval ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã€‚
+ * @retval "" è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã€‚
  */
 DWCi_String DWCi_Lobby::FindUser(s32 userId) const
 {
@@ -402,13 +402,13 @@ DWCi_String DWCi_Lobby::FindUser(s32 userId) const
 }
 
 /** 
- * @brief ƒjƒbƒNƒl[ƒ€‚ğ•ÏX‚µ‚Ü‚·B
+ * @brief ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’å¤‰æ›´ã—ã¾ã™ã€‚
  * 
- * @param[in] oldNick ŒÃ‚¢ƒjƒbƒNƒl[ƒ€B 
- * @param[in] newNick V‚µ‚¢ƒjƒbƒNƒl[ƒ€B
+ * @param[in] oldNick å¤ã„ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã€‚ 
+ * @param[in] newNick æ–°ã—ã„ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã€‚
  * 
- * @retval •ÏX‚³‚ê‚½ƒ†[ƒUIDB
- * @retval DWC_LOBBY_INVALID_USER_ID InternalErrorB
+ * @retval å¤‰æ›´ã•ã‚ŒãŸãƒ¦ãƒ¼ã‚¶IDã€‚
+ * @retval DWC_LOBBY_INVALID_USER_ID InternalErrorã€‚
  */
 s32 DWCi_Lobby::RenameUser(const DWCi_String& oldNick, const DWCi_String& newNick)
 {
@@ -426,12 +426,12 @@ s32 DWCi_Lobby::RenameUser(const DWCi_String& oldNick, const DWCi_String& newNic
 }
 
 /** 
- * @brief w’è‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚ÉQ‰Á‚µ‚Ä‚¢‚é‘S‚Ä‚Ìƒ†[ƒUID‚ğ•Ô‚µ‚Ü‚·B
+ * @brief æŒ‡å®šã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ã«å‚åŠ ã—ã¦ã„ã‚‹å…¨ã¦ã®ãƒ¦ãƒ¼ã‚¶IDã‚’è¿”ã—ã¾ã™ã€‚
  * 
- * @param[in] channelName ƒ`ƒƒƒ“ƒlƒ‹–¼B
+ * @param[in] channelName ãƒãƒ£ãƒ³ãƒãƒ«åã€‚
  * 
- * @retval ƒ†[ƒUID‚ÌvectorB
- * @retval ‹ó‚Ìvector w’è‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹‚ÉQ‰Á‚µ‚Ä‚¢‚È‚¢B
+ * @retval ãƒ¦ãƒ¼ã‚¶IDã®vectorã€‚
+ * @retval ç©ºã®vector æŒ‡å®šã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ã«å‚åŠ ã—ã¦ã„ãªã„ã€‚
  */
 std::vector<s32, DWCi_Allocator<s32> > DWCi_Lobby::EnumUsers(const DWCi_String& channelName) const
 {
@@ -439,7 +439,7 @@ std::vector<s32, DWCi_Allocator<s32> > DWCi_Lobby::EnumUsers(const DWCi_String& 
     ChannelContainer::const_iterator it = channels.find(channelName);
     if(it == channels.end())
     {
-        // Œ©‚Â‚©‚ç‚È‚¢‚Æ‚«‚ÍFALSE
+        // è¦‹ã¤ã‹ã‚‰ãªã„ã¨ãã¯FALSE
         return std::vector<s32, DWCi_Allocator<s32> >();
     }
     
@@ -449,12 +449,12 @@ std::vector<s32, DWCi_Allocator<s32> > DWCi_Lobby::EnumUsers(const DWCi_String& 
 }
 
 /** 
- * @brief ƒ`ƒƒƒ“ƒlƒ‹‚ª—LŒø‰»‚³‚ê‚Ä‚¢‚é‚©’²‚×‚Ü‚·B
+ * @brief ãƒãƒ£ãƒ³ãƒãƒ«ãŒæœ‰åŠ¹åŒ–ã•ã‚Œã¦ã„ã‚‹ã‹èª¿ã¹ã¾ã™ã€‚
  * 
- * @param[in] channelName Cü‚³‚ê‚½ƒ`ƒƒƒ“ƒlƒ‹–¼B 
+ * @param[in] channelName ä¿®é£¾ã•ã‚ŒãŸãƒãƒ£ãƒ³ãƒãƒ«åã€‚ 
  * 
- * @retval TRUE —LŒø‰»‚³‚ê‚Ä‚¢‚éB
- * @retval FALSE —LŒø‰»‚³‚ê‚Ä‚¢‚È‚¢‚©ƒ`ƒƒƒ“ƒlƒ‹‚ªŒ©‚Â‚©‚ç‚È‚¢B
+ * @retval TRUE æœ‰åŠ¹åŒ–ã•ã‚Œã¦ã„ã‚‹ã€‚
+ * @retval FALSE æœ‰åŠ¹åŒ–ã•ã‚Œã¦ã„ãªã„ã‹ãƒãƒ£ãƒ³ãƒãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã„ã€‚
  */
 BOOL DWCi_Lobby::IsChannelActivated(const DWCi_String& channelName) const
 {
@@ -462,19 +462,19 @@ BOOL DWCi_Lobby::IsChannelActivated(const DWCi_String& channelName) const
     ChannelContainer::const_iterator it = channels.find(channelName);
     if(it == channels.end())
     {
-        // Œ©‚Â‚©‚ç‚È‚¢‚Æ‚«‚ÍFALSE
+        // è¦‹ã¤ã‹ã‚‰ãªã„ã¨ãã¯FALSE
         return FALSE;
     }
     return it->second.activated;
 }
 
 /** 
- * @brief ƒ`ƒƒƒ“ƒlƒ‹‚ª—LŒø‰»‚µ‚Ü‚·B
+ * @brief ãƒãƒ£ãƒ³ãƒãƒ«ãŒæœ‰åŠ¹åŒ–ã—ã¾ã™ã€‚
  * 
- * @param[in] channelName ƒ`ƒƒƒ“ƒlƒ‹–¼B 
+ * @param[in] channelName ãƒãƒ£ãƒ³ãƒãƒ«åã€‚ 
  * 
- * @retval TRUE ¬Œ÷B
- * @retval FALSE ƒ`ƒƒƒ“ƒlƒ‹‚ªŒ©‚Â‚©‚ç‚È‚¢B
+ * @retval TRUE æˆåŠŸã€‚
+ * @retval FALSE ãƒãƒ£ãƒ³ãƒãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã„ã€‚
  */
 BOOL DWCi_Lobby::ActivateChannel(const DWCi_String& channelName)
 {
@@ -482,7 +482,7 @@ BOOL DWCi_Lobby::ActivateChannel(const DWCi_String& channelName)
     ChannelContainer::iterator it = channels.find(channelName);
     if(it == channels.end())
     {
-        // Œ©‚Â‚©‚ç‚È‚¢‚Æ‚«‚ÍFALSE
+        // è¦‹ã¤ã‹ã‚‰ãªã„ã¨ãã¯FALSE
         return FALSE;
     }
     it->second.activated = TRUE;
@@ -490,12 +490,12 @@ BOOL DWCi_Lobby::ActivateChannel(const DWCi_String& channelName)
 }
 
 /** 
- * @brief ƒ`ƒƒƒ“ƒlƒ‹‚ÌƒfƒtƒHƒ‹ƒg§ŒÀl”(::DWCi_LobbyJoinChannelLimitAsyncŠÖ”‚Åw’è‚µ‚½‚à‚Ì)‚ğæ“¾‚µ‚Ü‚·B
+ * @brief ãƒãƒ£ãƒ³ãƒãƒ«ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåˆ¶é™äººæ•°(::DWCi_LobbyJoinChannelLimitAsyncé–¢æ•°ã§æŒ‡å®šã—ãŸã‚‚ã®)ã‚’å–å¾—ã—ã¾ã™ã€‚
  * 
- * @param[in] channelName ƒ`ƒƒƒ“ƒlƒ‹–¼B 
+ * @param[in] channelName ãƒãƒ£ãƒ³ãƒãƒ«åã€‚ 
  * 
- * @retval 0ˆÈã ¬Œ÷B§ŒÀl”B
- * @retval -1 ƒ`ƒƒƒ“ƒlƒ‹‚ªŒ©‚Â‚©‚ç‚È‚¢B
+ * @retval 0ä»¥ä¸Š æˆåŠŸã€‚åˆ¶é™äººæ•°ã€‚
+ * @retval -1 ãƒãƒ£ãƒ³ãƒãƒ«ãŒè¦‹ã¤ã‹ã‚‰ãªã„ã€‚
  */
 s32 DWCi_Lobby::GetDefaultChannelLimit(const DWCi_String& channelName)
 {

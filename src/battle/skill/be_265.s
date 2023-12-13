@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_265.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			265@ˆÙ«‚Ìê‡A“ÁU‚ğ‚Q’iŠK‰º‚°‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			265ã€€ç•°æ€§ã®å ´åˆã€ç‰¹æ”»ã‚’ï¼’æ®µéšä¸‹ã’ã‚‹
  *
  *@author	HisashiSogabe
  *@data		2006.05.05
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_265:
-	//“Á«‚Ç‚ñ‚©‚ñ‚É‚Í‚«‚©‚È‚¢
+	//ç‰¹æ€§ã©ã‚“ã‹ã‚“ã«ã¯ãã‹ãªã„
 	KATAYABURI_TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_DEFENCE,TOKUSYU_DONKAN,TokuseiUmakukimaran
 	IF_PSP						IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_sex,PARA_UNK,Umakukimaran
 	IF_PSP						IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_sex,PARA_UNK,Umakukimaran

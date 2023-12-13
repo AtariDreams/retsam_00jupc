@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	wazatype_panel.c
- * @brief	�Z�^�C�v���̃p�l���f�[�^�̎�o���Ȃ�
+ * @brief	技タイプ毎のパネルデータの取出しなど
  * @author	matsuda
- * @date	2005.12.02(��)
+ * @date	2005.12.02(金)
  */
 //==============================================================================
 #include "common.h"
@@ -14,22 +14,22 @@
 #include "graphic/pl_batt_bg_def.h"
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///�Z�^�C�v��CGR�f�[�^��X�����ɂ������邩
+///技タイプのCGRデータがX方向にいくつあるか
 #define WAZATYPE_CGR_X_LEN	(18)
-///�Z�^�C�v��CGR�f�[�^�ɓ����Ă���A�j����
+///技タイプのCGRデータに入っているアニメ数
 #define WAZATYPE_CGR_ANM_NUM	(3)
-///�Z�^�C�v��CGR�f�[�^��1�̃A�j����X�����T�C�Y
+///技タイプのCGRデータの1つのアニメのX方向サイズ
 #define WAZATYPE_CGR_X_ONE	(WAZATYPE_CGR_X_LEN / WAZATYPE_CGR_ANM_NUM)
-///�Z�^�C�v��CGR�f�[�^�����i�ɓn���ăf�[�^�����݂��Ă��邩
+///技タイプのCGRデータが何段に渡ってデータが存在しているか
 #define WAZATYPE_CGR_Y_LEN	(9)
 
 
 //==============================================================================
-//	�p���b�g�f�[�^
+//	パレットデータ
 //==============================================================================
-//�������̂��ߑf�f�[�^�Ŏ����Ă��܂��i�p���b�g�����炽�����ėe�ʂȂ����j
+//高速化のため素データで持っています（パレットだからたいして容量ないし）
 #include "graphic/battle_w_type12_ncl_txt.dat"
 #include "graphic/battle_w_type04_ncl_txt.dat"
 #include "graphic/battle_w_type14_ncl_txt.dat"
@@ -52,11 +52,11 @@
 
 
 //==============================================================================
-//	�f�[�^
+//	データ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   �Z�^�C�v����CGR�f�[�^
+ * @brief   技タイプ毎のCGRデータ
  */
 //--------------------------------------------------------------
 ALIGN4 static const u16 WazaTypeCgrID[] = {
@@ -82,7 +82,7 @@ ALIGN4 static const u16 WazaTypeCgrID[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   �Z�^�C�v���̃p���b�g�f�[�^
+ * @brief   技タイプ毎のパレットデータ
  */
 //--------------------------------------------------------------
 ALIGN4 static const u16 * const WazaTypePlttAdrs[] = {
@@ -111,7 +111,7 @@ ALIGN4 static const u16 * const WazaTypePlttAdrs[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   �Z�p�l���̃O���t�B�b�N�������Ă���Arc��ID���擾
+ * @brief   技パネルのグラフィックが入っているArcのIDを取得
  * @retval  ARC_ID
  */
 //--------------------------------------------------------------
@@ -122,9 +122,9 @@ int WazaPanel_ArcIDGet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   �Z�p�l���̃L�����N�^INDEX���擾
- * @param   waza_type		�Z�^�C�v(�莝�������̏ꍇ��-1)
- * @retval  �w�肵���Z�^�C�v�̃L�����N�^INDEX
+ * @brief   技パネルのキャラクタINDEXを取得
+ * @param   waza_type		技タイプ(手持ち無しの場合は-1)
+ * @retval  指定した技タイプのキャラクタINDEX
  */
 //--------------------------------------------------------------
 u32 WazaPanel_CharIndexGet(int waza_type)
@@ -142,9 +142,9 @@ u32 WazaPanel_CharIndexGet(int waza_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   �Z�p�l���̃p���b�g�f�[�^�A�h���X���擾
- * @param   waza_type		�Z�^�C�v(�莝�������̏ꍇ��-1)
- * @retval  �w�肵���Z�^�C�v�̃p���b�g�f�[�^�A�h���X
+ * @brief   技パネルのパレットデータアドレスを取得
+ * @param   waza_type		技タイプ(手持ち無しの場合は-1)
+ * @retval  指定した技タイプのパレットデータアドレス
  */
 //--------------------------------------------------------------
 const u16 * WazaPanel_PalDataAdrsGet(int waza_type)
@@ -162,17 +162,17 @@ const u16 * WazaPanel_PalDataAdrsGet(int waza_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   �Z�^�C�v�p�l���̃O���t�B�b�N�����[�h����
+ * @brief   技タイプパネルのグラフィックをロードする
  *
- * @param   bgl				BGL�ւ̃|�C���^
- * @param   heap_id			�e���|�����Ŏg�p����q�[�v��ID
- * @param   frame_no		���[�h��̃t���[����
- * @param   trans_pos		���[�h��̓]���ʒu(��`�̍���̃L�����N�^�ԍ�)
- * @param   screen_type		GF_BGL_SCRSIZ_256x256 ��
- * @param   charcter		�W�J�ς݂̃L�����f�[�^�ւ̃A�h���X
+ * @param   bgl				BGLへのポインタ
+ * @param   heap_id			テンポラリで使用するヒープのID
+ * @param   frame_no		ロード先のフレーム面
+ * @param   trans_pos		ロード先の転送位置(矩形の左上のキャラクタ番号)
+ * @param   screen_type		GF_BGL_SCRSIZ_256x256 等
+ * @param   charcter		展開済みのキャラデータへのアドレス
  *
- * �]����͋Z�^�C�v�p�l���Ɠ����`��̗̈悪��`�Ŏ���Ă��鎖���O��ł��B
- * trans_pos�͂��̃��[�h��A��`�̍���̃L�����N�^�ʒu���w�肵�܂��B
+ * 転送先は技タイプパネルと同じ形状の領域が矩形で取られている事が前提です。
+ * trans_posはそのロード先、矩形の左上のキャラクタ位置を指定します。
  */
 //--------------------------------------------------------------
 void WazaPanel_CharLoad(GF_BGL_INI *bgl, int heap_id, int frame_no, u32 trans_pos, 
@@ -191,11 +191,11 @@ void WazaPanel_CharLoad(GF_BGL_INI *bgl, int heap_id, int frame_no, u32 trans_po
 		y_len = 64;
 		break;
 	default:
-		GF_ASSERT(0);// && "�Ή����Ă��Ȃ��X�N���[���^�C�v�ł�\n");
+		GF_ASSERT(0);// && "対応していないスクリーンタイプです\n");
 		return;
 	}
 	
-	//�L�����]��
+	//キャラ転送
 	for(y = 0; y < WAZATYPE_CGR_Y_LEN; y++){
 		GF_BGL_LoadCharacter(bgl, frame_no, 
 			&charcter[WAZATYPE_CGR_X_LEN * 0x20 * y], 
@@ -205,14 +205,14 @@ void WazaPanel_CharLoad(GF_BGL_INI *bgl, int heap_id, int frame_no, u32 trans_po
 
 //--------------------------------------------------------------
 /**
- * @brief   �Z�^�C�v�p�l���̃L�����]�����g���₷���悤�ɂ܂Ƃ߂�����
+ * @brief   技タイプパネルのキャラ転送を使いやすいようにまとめたもの
  *
- * @param   bgl				BGL�ւ̃|�C���^
- * @param   waza_type		�Z�^�C�v(�莝�������̏ꍇ��-1)
- * @param   heap_id		�e���|�����Ŏg�p����q�[�vID
- * @param   frame_no		���[�h��̃t���[����
- * @param   trans_pos		���[�h��̓]���ʒu(��`�̍���̃L�����N�^�ԍ�)
- * @param   screen_type		GF_BGL_SCRSIZ_256x256 ��
+ * @param   bgl				BGLへのポインタ
+ * @param   waza_type		技タイプ(手持ち無しの場合は-1)
+ * @param   heap_id		テンポラリで使用するヒープID
+ * @param   frame_no		ロード先のフレーム面
+ * @param   trans_pos		ロード先の転送位置(矩形の左上のキャラクタ番号)
+ * @param   screen_type		GF_BGL_SCRSIZ_256x256 等
  */
 //--------------------------------------------------------------
 void WazaPanel_EasyCharLoad(GF_BGL_INI *bgl, int waza_type, int heap_id, int frame_no, 
@@ -234,17 +234,17 @@ void WazaPanel_EasyCharLoad(GF_BGL_INI *bgl, int waza_type, int heap_id, int fra
 
 //--------------------------------------------------------------
 /**
- * @brief   �Z�^�C�v�p�l���̃L�����]���ŁA�����Z�^�C�v��CGR��A�����ăZ�b�g���܂��B
- * 			(�����Z�^�C�v��W�J����ꍇ�AWazaPanel_EasyCharLoad�ɔ�ׂ�FileOpen��
- *			��x�ōςނ悤�ɂȂ�܂�)
+ * @brief   技タイプパネルのキャラ転送で、同じ技タイプのCGRを連続してセットします。
+ * 			(同じ技タイプを展開する場合、WazaPanel_EasyCharLoadに比べてFileOpenが
+ *			一度で済むようになります)
  *
- * @param   bgl				BGL�ւ̃|�C���^
- * @param   waza_type		�Z�^�C�v(�莝�������̏ꍇ��-1)
- * @param   heap_id			�e���|�����Ŏg�p����q�[�vID
- * @param   frame_no		���[�h��̃t���[����
- * @param   trans_pos		���[�h��̓]���ʒu(��`�̍���̃L�����N�^�ԍ�)(�]���Z����)
- * @param   trans_num		trans_pos�̔z��̐�
- * @param   screen_type		GF_BGL_SCRSIZ_256x256 ��
+ * @param   bgl				BGLへのポインタ
+ * @param   waza_type		技タイプ(手持ち無しの場合は-1)
+ * @param   heap_id			テンポラリで使用するヒープID
+ * @param   frame_no		ロード先のフレーム面
+ * @param   trans_pos		ロード先の転送位置(矩形の左上のキャラクタ番号)(転送技数分)
+ * @param   trans_num		trans_posの配列の数
+ * @param   screen_type		GF_BGL_SCRSIZ_256x256 等
  */
 //--------------------------------------------------------------
 void WazaPanel_EasyCharLoad_ChainSet(GF_BGL_INI *bgl, int waza_type, int heap_id, int frame_no, 
@@ -269,13 +269,13 @@ void WazaPanel_EasyCharLoad_ChainSet(GF_BGL_INI *bgl, int waza_type, int heap_id
 
 //--------------------------------------------------------------
 /**
- * @brief   �Z�^�C�v�p�l���̃p���b�g�]�����g���₷���悤�ɂ܂Ƃ߂�����
+ * @brief   技タイプパネルのパレット転送を使いやすいようにまとめたもの
  *
- * @param   pfd				�p���b�g�t�F�[�h�V�X�e���ւ̃|�C���^
- * @param   waza_type		�Z�^�C�v(�莝�������̏ꍇ��-1)
- * @param   heap_id			�e���|�����Ŏg�p����q�[�vID
- * @param   req				���N�G�X�g�f�[�^�ԍ�
- * @param   palette_pos		�p���b�g�]���ʒu(�p���b�g�ԍ��Ŏw��)
+ * @param   pfd				パレットフェードシステムへのポインタ
+ * @param   waza_type		技タイプ(手持ち無しの場合は-1)
+ * @param   heap_id			テンポラリで使用するヒープID
+ * @param   req				リクエストデータ番号
+ * @param   palette_pos		パレット転送位置(パレット番号で指定)
  */
 //--------------------------------------------------------------
 void WazaPanel_EasyPalLoad(PALETTE_FADE_PTR pfd, int waza_type, int heap_id, 

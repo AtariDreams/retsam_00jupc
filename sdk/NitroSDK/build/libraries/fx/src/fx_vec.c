@@ -12,13 +12,13 @@
 
   $Log: fx_vec.c,v $
   Revision 1.26  2006/04/27 10:42:19  kitase_hirotake
-  tの値が大きすぎる場合のチェック追加
+  t縺ｮ蛟､縺悟､ｧ縺阪☆縺弱ｋ蝣ｴ蜷医�ｮ繝√ぉ繝�繧ｯ霑ｽ蜉
 
   Revision 1.25  2006/01/18 02:11:20  kitase_hirotake
   do-indent
 
   Revision 1.24  2005/03/01 01:57:00  yosizaki
-  copyright の年を修正.
+  copyright 縺ｮ蟷ｴ繧剃ｿｮ豁｣.
 
   Revision 1.23  2005/02/28 05:26:13  yosizaki
   do-indent.

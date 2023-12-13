@@ -242,12 +242,12 @@ static void CancelMemoryStream( NNSSndStrmPlayer* player );
 /*---------------------------------------------------------------------------*
   Name:         DecodeAdpcm
 
-  Description:  ADPCM‚ÌƒfƒR[ƒh
+  Description:  ADPCMã®ãƒ‡ã‚³ãƒ¼ãƒ‰
 
-  Arguments:    code - ƒfƒR[ƒh‚·‚é’l
-                state - ADPCMƒXƒe[ƒg
+  Arguments:    code - ãƒ‡ã‚³ãƒ¼ãƒ‰ã™ã‚‹å€¤
+                state - ADPCMã‚¹ãƒ†ãƒ¼ãƒˆ
 
-  Returns:      ƒfƒR[ƒh‚µ‚½’l
+  Returns:      ãƒ‡ã‚³ãƒ¼ãƒ‰ã—ãŸå€¤
  *---------------------------------------------------------------------------*/
 static NNS_SND_INLINE s16 DecodeAdpcm( int code, AdpcmState* state )
 {
@@ -292,10 +292,10 @@ static NNS_SND_INLINE s16 DecodeAdpcm( int code, AdpcmState* state )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmInit
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–
 
-  Arguments:    threadPrio - ƒXƒgƒŠ[ƒ€ƒXƒŒƒbƒhƒvƒ‰ƒCƒIƒŠƒeƒB
-                heap       - ƒXƒgƒŠ[ƒ€ƒoƒbƒtƒ@Šm•Û—pƒq[ƒv
+  Arguments:    threadPrio - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+                heap       - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ç¢ºä¿ç”¨ãƒ’ãƒ¼ãƒ—
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -309,7 +309,7 @@ void NNS_SndArcStrmInit( u32 threadPrio, NNSSndHeapHandle heap )
     NNS_ASSERT( OS_IsThreadAvailable() );
     
     {
-        // ‚Qd‰Šú‰»ƒ`ƒFƒbƒN
+        // ï¼’é‡åˆæœŸåŒ–ãƒã‚§ãƒƒã‚¯
         static BOOL initialized = FALSE;
         if ( initialized ) {
             result = NNS_SndArcStrmSetupPlayer( heap );
@@ -319,18 +319,18 @@ void NNS_SndArcStrmInit( u32 threadPrio, NNSSndHeapHandle heap )
         initialized = TRUE;
     }
     
-    /* ƒRƒ}ƒ“ƒhƒoƒbƒtƒ@ƒŠƒXƒg‚Ì‰Šú‰» */
+    /* ã‚³ãƒãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãƒªã‚¹ãƒˆã®åˆæœŸåŒ– */
     NNS_FND_INIT_LIST( & sFreeCommandList, LoadCommand, link );    
     for( i = 0 ; i < COMMAND_BUFFER_NUM ; i++ )
     {
         NNS_FndAppendListObject( & sFreeCommandList, & sLoadCommandBuffer[ i ] );
     }
     
-    /* ƒfƒR[ƒhƒoƒbƒtƒ@‚Ì‰Šú‰» */
+    /* ãƒ‡ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ– */
     OS_InitMutex( &sDecodeBufferMutex );
     sDecodeBuffer = sDecodeBufferArea;
     
-    /* ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[‚Ì‰Šú‰» */
+    /* ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åˆæœŸåŒ– */
     for( playerNo = 0; playerNo < NNS_SND_STRM_PLAYER_NUM ; ++playerNo )
     {
         player = &sStrmPlayer[ playerNo ];
@@ -352,18 +352,18 @@ void NNS_SndArcStrmInit( u32 threadPrio, NNSSndHeapHandle heap )
     result = NNS_SndArcStrmSetupPlayer( heap );
     NNS_ASSERT( result );
     
-    /* ƒXƒgƒŠ[ƒ€ƒXƒŒƒbƒh‚Ì‹N“® */
+    /* ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚¹ãƒ¬ãƒƒãƒ‰ã®èµ·å‹• */
     CreateThread( &sStrmThread, threadPrio );
 }
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmSetupPlayer
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[‚ÌƒZƒbƒgƒAƒbƒv
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 
-  Arguments:    heap - ƒXƒgƒŠ[ƒ€ƒoƒbƒtƒ@Šm•Û—p‚Ìƒq[ƒv
+  Arguments:    heap - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ç¢ºä¿ç”¨ã®ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcStrmSetupPlayer( NNSSndHeapHandle heap )
 {
@@ -405,10 +405,10 @@ BOOL NNS_SndArcStrmSetupPlayer( NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmCreatePrepareThread
 
-  Description:  ƒvƒŠƒyƒAˆ——p‚ÌƒXƒŒƒbƒh‚ğì¬‚µ‚Ü‚·
+  Description:  ãƒ—ãƒªãƒšã‚¢å‡¦ç†ç”¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½œæˆã—ã¾ã™
 
-  Arguments:    thread - ƒXƒgƒŠ[ƒ€ƒXƒŒƒbƒh\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                threadPrio - ƒXƒŒƒbƒh—Dæ“x
+  Arguments:    thread - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚¹ãƒ¬ãƒƒãƒ‰æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                threadPrio - ã‚¹ãƒ¬ãƒƒãƒ‰å„ªå…ˆåº¦
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -424,13 +424,13 @@ void NNS_SndArcStrmCreatePrepareThread( NNSSndStrmThread* thread, u32 threadPrio
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmPrepare
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[‚Ì€”õ
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æº–å‚™
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
-                strmNo - ƒXƒgƒŠ[ƒ€”Ô†
-                offset - ŠJnƒIƒtƒZƒbƒgˆÊ’u
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
+                strmNo - ã‚¹ãƒˆãƒªãƒ¼ãƒ ç•ªå·
+                offset - é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcStrmPrepare( struct NNSSndStrmHandle* handle, int strmNo, u32 offset )
 {
@@ -438,11 +438,11 @@ BOOL NNS_SndArcStrmPrepare( struct NNSSndStrmHandle* handle, int strmNo, u32 off
     
     NNS_NULL_ASSERT( handle );
     
-    /* ƒXƒgƒŠ[ƒ€î•ñ‚Ìæ“¾ */
+    /* ã‚¹ãƒˆãƒªãƒ¼ãƒ æƒ…å ±ã®å–å¾— */
     strmInfo = NNS_SndArcGetStrmInfo( strmNo );
     if ( strmInfo == NULL ) return FALSE;
     
-    // ƒXƒgƒŠ[ƒ€‚Ì€”õ
+    // ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®æº–å‚™
     return PrepareStrm(
         handle,
         strmInfo,
@@ -460,15 +460,15 @@ BOOL NNS_SndArcStrmPrepare( struct NNSSndStrmHandle* handle, int strmNo, u32 off
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmPrepareEx
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[‚Ì€”õ
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æº–å‚™
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
-                playerNo - ƒvƒŒƒCƒ„[”Ô†
-                playerPrio - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB
-                strmNo - ƒXƒgƒŠ[ƒ€”Ô†
-                offset - ŠJnƒIƒtƒZƒbƒgˆÊ’u
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
+                playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                playerPrio - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+                strmNo - ã‚¹ãƒˆãƒªãƒ¼ãƒ ç•ªå·
+                offset - é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcStrmPrepareEx(
     struct NNSSndStrmHandle* handle,
@@ -482,11 +482,11 @@ BOOL NNS_SndArcStrmPrepareEx(
 
     NNS_NULL_ASSERT( handle );
     
-    /* ƒXƒgƒŠ[ƒ€î•ñ‚Ìæ“¾ */
+    /* ã‚¹ãƒˆãƒªãƒ¼ãƒ æƒ…å ±ã®å–å¾— */
     strmInfo = NNS_SndArcGetStrmInfo( strmNo );
     if ( strmInfo == NULL ) return FALSE;
     
-    // ƒXƒgƒŠ[ƒ€‚Ì€”õ
+    // ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®æº–å‚™
     return PrepareStrm(
         handle,
         strmInfo,
@@ -504,19 +504,19 @@ BOOL NNS_SndArcStrmPrepareEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmPrepareEx2
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[‚Ì€”õ
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æº–å‚™
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
-                playerNo - ƒvƒŒƒCƒ„[”Ô†
-                playerPrio - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB
-                strmNo - ƒXƒgƒŠ[ƒ€”Ô†
-                offset - ŠJnƒIƒtƒZƒbƒgˆÊ’u
-                strmCallback    - ƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒNŠÖ”
-                strmCallbackArg - ƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒNˆø”
-                strmCallback    - ƒTƒEƒ“ƒh[ƒA[ƒJƒCƒuƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒNŠÖ”
-                strmCallbackArg - ƒTƒEƒ“ƒh[ƒA[ƒJƒCƒuƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
+                playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                playerPrio - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+                strmNo - ã‚¹ãƒˆãƒªãƒ¼ãƒ ç•ªå·
+                offset - é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
+                strmCallback    - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+                strmCallbackArg - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
+                strmCallback    - ã‚µã‚¦ãƒ³ãƒ‰ãƒ¼ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+                strmCallbackArg - ã‚µã‚¦ãƒ³ãƒ‰ãƒ¼ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcStrmPrepareEx2(
     struct NNSSndStrmHandle* handle,
@@ -534,11 +534,11 @@ BOOL NNS_SndArcStrmPrepareEx2(
 
     NNS_NULL_ASSERT( handle );
     
-    /* ƒXƒgƒŠ[ƒ€î•ñ‚Ìæ“¾ */
+    /* ã‚¹ãƒˆãƒªãƒ¼ãƒ æƒ…å ±ã®å–å¾— */
     strmInfo = NNS_SndArcGetStrmInfo( strmNo );
     if ( strmInfo == NULL ) return FALSE;
     
-    // ƒXƒgƒŠ[ƒ€‚Ì€”õ
+    // ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®æº–å‚™
     return PrepareStrm(
         handle,
         strmInfo,
@@ -556,9 +556,9 @@ BOOL NNS_SndArcStrmPrepareEx2(
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmStartPrepared
 
-  Description:  €”õŠ®—¹ƒXƒgƒŠ[ƒ€‚ÌÄ¶‹–‰Â
+  Description:  æº–å‚™å®Œäº†ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®å†ç”Ÿè¨±å¯
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -574,11 +574,11 @@ void NNS_SndArcStrmStartPrepared( NNSSndStrmHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmIsPrepared
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ª€”õŠ®—¹‚µ‚½‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãŒæº–å‚™å®Œäº†ã—ãŸã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
 
-  Returns:      €”õŠ®—¹‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æº–å‚™å®Œäº†ã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcStrmIsPrepared( NNSSndStrmHandle* handle )
 {
@@ -592,13 +592,13 @@ BOOL NNS_SndArcStrmIsPrepared( NNSSndStrmHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmStart
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ÌƒXƒ^[ƒg
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ã‚¹ã‚¿ãƒ¼ãƒˆ
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
-                strmNo - ƒXƒgƒŠ[ƒ€”Ô†
-                offset - ŠJnƒIƒtƒZƒbƒgˆÊ’u
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
+                strmNo - ã‚¹ãƒˆãƒªãƒ¼ãƒ ç•ªå·
+                offset - é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcStrmStart( NNSSndStrmHandle* handle, int strmNo, u32 offset )
 {
@@ -617,15 +617,15 @@ BOOL NNS_SndArcStrmStart( NNSSndStrmHandle* handle, int strmNo, u32 offset )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmStartEx
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ÌƒXƒ^[ƒg
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ã‚¹ã‚¿ãƒ¼ãƒˆ
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
-                playerNo - ƒvƒŒƒCƒ„[”Ô†
-                playerPrio - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB
-                strmNo - ƒXƒgƒŠ[ƒ€”Ô†
-                offset - ŠJnƒIƒtƒZƒbƒgˆÊ’u
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
+                playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                playerPrio - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+                strmNo - ã‚¹ãƒˆãƒªãƒ¼ãƒ ç•ªå·
+                offset - é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcStrmStartEx(
     NNSSndStrmHandle* handle,
@@ -650,19 +650,19 @@ BOOL NNS_SndArcStrmStartEx(
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmStartEx2
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ÌƒXƒ^[ƒg
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ã‚¹ã‚¿ãƒ¼ãƒˆ
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
-                playerNo - ƒvƒŒƒCƒ„[”Ô†
-                playerPrio - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB
-                strmNo - ƒXƒgƒŠ[ƒ€”Ô†
-                offset - ŠJnƒIƒtƒZƒbƒgˆÊ’u
-                strmCallback    - ƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒNŠÖ”
-                strmCallbackArg - ƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒNˆø”
-                strmCallback    - ƒTƒEƒ“ƒh[ƒA[ƒJƒCƒuƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒNŠÖ”
-                strmCallbackArg - ƒTƒEƒ“ƒh[ƒA[ƒJƒCƒuƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
+                playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                playerPrio - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+                strmNo - ã‚¹ãƒˆãƒªãƒ¼ãƒ ç•ªå·
+                offset - é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
+                strmCallback    - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+                strmCallbackArg - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
+                strmCallback    - ã‚µã‚¦ãƒ³ãƒ‰ãƒ¼ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+                strmCallbackArg - ã‚µã‚¦ãƒ³ãƒ‰ãƒ¼ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcStrmStartEx2(
     NNSSndStrmHandle* handle,
@@ -701,10 +701,10 @@ BOOL NNS_SndArcStrmStartEx2(
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmStop
 
-  Description:  ƒXƒgƒŠ[ƒ€‚Ì’â~
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®åœæ­¢
 
-  Arguments:    handle    - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
-                fadeFrame - ƒtƒF[ƒhƒAƒEƒgƒtƒŒ[ƒ€
+  Arguments:    handle    - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
+                fadeFrame - ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -720,9 +720,9 @@ void NNS_SndArcStrmStop( NNSSndStrmHandle* handle, int fadeFrame )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmStopAll
 
-  Description:  ‘SƒXƒgƒŠ[ƒ€‚Ì’â~
+  Description:  å…¨ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®åœæ­¢
 
-  Arguments:    fadeFrame - ƒtƒF[ƒhƒAƒEƒgƒtƒŒ[ƒ€
+  Arguments:    fadeFrame - ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -741,10 +741,10 @@ void NNS_SndArcStrmStopAll( int fadeFrame )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmSetVolume
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒ{ƒŠƒ…[ƒ€‚Ì•ÏX
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒœãƒªãƒ¥ãƒ¼ãƒ ã®å¤‰æ›´
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
-                volume - ƒ{ƒŠƒ…[ƒ€
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
+                volume - ãƒœãƒªãƒ¥ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -761,11 +761,11 @@ void NNS_SndArcStrmSetVolume( struct NNSSndStrmHandle* handle, int volume )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmMoveVolume
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒ{ƒŠƒ…[ƒ€‚ÌŠÔ•Ï‰»
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒœãƒªãƒ¥ãƒ¼ãƒ ã®æ™‚é–“å¤‰åŒ–
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
-                volume - –Ú•Wƒ{ƒŠƒ…[ƒ€
-                frames - ŠÔ•Ï‰»ƒtƒŒ[ƒ€”
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
+                volume - ç›®æ¨™ãƒœãƒªãƒ¥ãƒ¼ãƒ 
+                frames - æ™‚é–“å¤‰åŒ–ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -783,11 +783,11 @@ void NNS_SndArcStrmMoveVolume( struct NNSSndStrmHandle* handle, int volume, int 
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmSetChannelVolume
 
-  Description:  ƒ`ƒƒƒ“ƒlƒ‹ƒ{ƒŠƒ…[ƒ€‚Ì•ÏX
+  Description:  ãƒãƒ£ãƒ³ãƒãƒ«ãƒœãƒªãƒ¥ãƒ¼ãƒ ã®å¤‰æ›´
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
-                chNo   - ƒ`ƒƒƒ“ƒlƒ‹”Ô†
-                volume - ƒ{ƒŠƒ…[ƒ€
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
+                chNo   - ãƒãƒ£ãƒ³ãƒãƒ«ç•ªå·
+                volume - ãƒœãƒªãƒ¥ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -803,11 +803,11 @@ void NNS_SndArcStrmSetChannelVolume( struct NNSSndStrmHandle* handle, int chNo, 
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmSetChannelPan
 
-  Description:  ƒ`ƒƒƒ“ƒlƒ‹ƒpƒ“‚Ì•ÏX
+  Description:  ãƒãƒ£ãƒ³ãƒãƒ«ãƒ‘ãƒ³ã®å¤‰æ›´
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
-                chNo   - ƒ`ƒƒƒ“ƒlƒ‹”Ô†
-                pan    - ƒpƒ“
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
+                chNo   - ãƒãƒ£ãƒ³ãƒãƒ«ç•ªå·
+                pan    - ãƒ‘ãƒ³
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -823,9 +823,9 @@ void NNS_SndArcStrmSetChannelPan( struct NNSSndStrmHandle* handle, int chNo, int
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndStrmHandleInit
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹‚Ì‰Šú‰»
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«ã®åˆæœŸåŒ–
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -839,9 +839,9 @@ void NNS_SndStrmHandleInit( NNSSndStrmHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndStrmHandleRelease
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹‚©‚çƒXƒgƒŠ[ƒ€‚ğ‰ğ•ú
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«ã‹ã‚‰ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’è§£æ”¾
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -860,12 +860,12 @@ void NNS_SndStrmHandleRelease( NNSSndStrmHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmGetCurrentPlayingPos
 
-  Description:  Œ»İ‚ÌÄ¶ˆÊ’u‚Ìæ“¾
+  Description:  ç¾åœ¨ã®å†ç”Ÿä½ç½®ã®å–å¾—
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
 
-  Returns:      Œ»İ‚ÌÄ¶ˆÊ’u‚ğmsec’PˆÊ‚Å•Ô‚·
-                Ä¶‚µ‚Ä‚¢‚È‚¢ê‡‚ÍA0‚ğ•Ô‚·
+  Returns:      ç¾åœ¨ã®å†ç”Ÿä½ç½®ã‚’msecå˜ä½ã§è¿”ã™
+                å†ç”Ÿã—ã¦ã„ãªã„å ´åˆã¯ã€0ã‚’è¿”ã™
  *---------------------------------------------------------------------------*/
 u32 NNS_SndArcStrmGetCurrentPlayingPos( NNSSndStrmHandle* handle )
 {
@@ -888,12 +888,12 @@ u32 NNS_SndArcStrmGetCurrentPlayingPos( NNSSndStrmHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmGetTimeLength
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒf[ƒ^ŠÔ’·‚Ìæ“¾
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿æ™‚é–“é•·ã®å–å¾—
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
 
-  Returns:      Ä¶’†‚ÌƒXƒgƒŠ[ƒ€ƒf[ƒ^‚ÌŠÔ‚ğmsec’PˆÊ‚Å•Ô‚·
-                Ä¶‚µ‚Ä‚¢‚È‚¢ê‡‚ÍA0‚ğ•Ô‚·
+  Returns:      å†ç”Ÿä¸­ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã®æ™‚é–“ã‚’msecå˜ä½ã§è¿”ã™
+                å†ç”Ÿã—ã¦ã„ãªã„å ´åˆã¯ã€0ã‚’è¿”ã™
  *---------------------------------------------------------------------------*/
 u32 NNS_SndArcStrmGetTimeLength( NNSSndStrmHandle* handle )
 {
@@ -916,12 +916,12 @@ u32 NNS_SndArcStrmGetTimeLength( NNSSndStrmHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmGetChannelCount
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒf[ƒ^ƒ`ƒƒƒ“ƒlƒ‹”‚Ìæ“¾
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã®å–å¾—
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
 
-  Returns:      Ä¶’†‚ÌƒXƒgƒŠ[ƒ€ƒf[ƒ^‚Ìƒ`ƒƒƒ“ƒlƒ‹”‚ğ•Ô‚·
-                Ä¶‚µ‚Ä‚¢‚È‚¢ê‡‚ÍA0‚ğ•Ô‚·
+  Returns:      å†ç”Ÿä¸­ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒ£ãƒ³ãƒãƒ«æ•°ã‚’è¿”ã™
+                å†ç”Ÿã—ã¦ã„ãªã„å ´åˆã¯ã€0ã‚’è¿”ã™
  *---------------------------------------------------------------------------*/
 int NNS_SndArcStrmGetChannelCount( NNSSndStrmHandle* handle )
 {
@@ -938,11 +938,11 @@ int NNS_SndArcStrmGetChannelCount( NNSSndStrmHandle* handle )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmAllocChannel
 
-  Description:  ƒXƒgƒŠ[ƒ€—p‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğŠm•Û
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ç”¨ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ç¢ºä¿
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
 
-  Returns:      Šm•Û‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      ç¢ºä¿ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcStrmAllocChannel( int playerNo )
 {
@@ -967,9 +967,9 @@ BOOL NNS_SndArcStrmAllocChannel( int playerNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcStrmFreeChannel
 
-  Description:  ƒXƒgƒŠ[ƒ€—p‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğ‰ğ•ú
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ç”¨ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’è§£æ”¾
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -987,7 +987,7 @@ void NNS_SndArcStrmFreeChannel( int playerNo )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndArcStrmMain
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒ‰ƒCƒuƒ‰ƒŠƒƒCƒ“ƒ‹[ƒ`ƒ“
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
 
   Arguments:    None.
 
@@ -1034,7 +1034,7 @@ void NNSi_SndArcStrmMain( void )
             player->volume = volume;
         }
         
-        // ƒtƒF[ƒhƒAƒEƒgŠ®—¹ƒ`ƒFƒbƒN
+        // ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå®Œäº†ãƒã‚§ãƒƒã‚¯
         if ( player->fadeOutFlag )
         {
             if ( NNSi_SndFaderIsFinished( & player->fader ) )
@@ -1048,11 +1048,11 @@ void NNSi_SndArcStrmMain( void )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndArcStrmSetPlayerBuffer
 
-  Description:  ŠO•”‚ÌƒvƒŒƒCƒ„[ƒoƒbƒtƒ@‚ğ“o˜^
+  Description:  å¤–éƒ¨ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒãƒƒãƒ•ã‚¡ã‚’ç™»éŒ²
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
-                buffer   - ƒoƒbƒtƒ@ƒAƒhƒŒƒX
-                len      - ƒoƒbƒtƒ@’·
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                buffer   - ãƒãƒƒãƒ•ã‚¡ã‚¢ãƒ‰ãƒ¬ã‚¹
+                len      - ãƒãƒƒãƒ•ã‚¡é•·
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1071,10 +1071,10 @@ void NNSi_SndArcStrmSetPlayerBuffer( int playerNo, void* buffer, u32 len )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndArcStrmSetDecodeBuffer
 
-  Description:  ŠO•”‚ÌƒfƒR[ƒhƒoƒbƒtƒ@‚ğ“o˜^
+  Description:  å¤–éƒ¨ã®ãƒ‡ã‚³ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚’ç™»éŒ²
 
-  Arguments:    buffer   - ƒoƒbƒtƒ@ƒAƒhƒŒƒX
-                len      - ƒoƒbƒtƒ@’·
+  Arguments:    buffer   - ãƒãƒƒãƒ•ã‚¡ã‚¢ãƒ‰ãƒ¬ã‚¹
+                len      - ãƒãƒƒãƒ•ã‚¡é•·
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1088,9 +1088,9 @@ void NNSi_SndArcStrmSetDecodeBuffer( void* buffer, u32 /*len*/ )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndArcStrmStopByChannel
 
-  Description:  ƒ`ƒƒƒ“ƒlƒ‹”Ô†‚É‚æ‚éƒXƒgƒŠ[ƒ€‚Ì’â~
+  Description:  ãƒãƒ£ãƒ³ãƒãƒ«ç•ªå·ã«ã‚ˆã‚‹ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®åœæ­¢
 
-  Arguments:    chBitMask - ƒ`ƒƒƒ“ƒlƒ‹ƒrƒbƒgƒtƒ‰ƒO
+  Arguments:    chBitMask - ãƒãƒ£ãƒ³ãƒãƒ«ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1117,11 +1117,11 @@ void NNSi_SndArcStrmStopByChannel( u32 chBitMask )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndArcStrmGetThread
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒXƒŒƒbƒh‚Ìæ“¾
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚¹ãƒ¬ãƒƒãƒ‰ã®å–å¾—
 
   Arguments:    None.
 
-  Returns:      ƒXƒgƒŠ[ƒ€ƒXƒŒƒbƒh‚Ìƒ|ƒCƒ“ƒ^
+  Returns:      ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒã‚¤ãƒ³ã‚¿
  *---------------------------------------------------------------------------*/
 OSThread* NNSi_SndArcStrmGetThread()
 {
@@ -1135,14 +1135,14 @@ OSThread* NNSi_SndArcStrmGetThread()
 /*---------------------------------------------------------------------------*
   Name:         AllocPlayer
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[‚ÌŠm•Û
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¢ºä¿
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
-                playerNo - ƒvƒŒƒCƒ„[”Ô†
-                prio     - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
+                playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                prio     - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
-  Returns:      ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[‚Ìƒ|ƒCƒ“ƒ^
-                Šm•Û‚Å‚«‚È‚©‚Á‚½‚çANULL
+  Returns:      ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
+                ç¢ºä¿ã§ããªã‹ã£ãŸã‚‰ã€NULL
  *---------------------------------------------------------------------------*/
 static NNSSndStrmPlayer* AllocPlayer( NNSSndStrmHandle* handle, int playerNo, int prio )
 {
@@ -1152,7 +1152,7 @@ static NNSSndStrmPlayer* AllocPlayer( NNSSndStrmHandle* handle, int playerNo, in
     NNS_MINMAX_ASSERT( playerNo, 0, NNS_SND_STRM_PLAYER_NUM-1 );
     NNS_MINMAX_ASSERT( prio, NNS_SND_STRM_PLAYER_PRIO_MIN, NNS_SND_STRM_PLAYER_PRIO_MAX );
     
-    /* ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹‚ÌØ’f */
+    /* ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«ã®åˆ‡æ–­ */
     if ( NNS_SndStrmHandleIsValid( handle ) ) {
         NNS_SndStrmHandleRelease( handle );
     }
@@ -1169,7 +1169,7 @@ static NNSSndStrmPlayer* AllocPlayer( NNSSndStrmHandle* handle, int playerNo, in
     player->prio = prio;
     player->activeFlag = TRUE;
     
-    /* ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹‚Æ‚ÌÚ‘± */
+    /* ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«ã¨ã®æ¥ç¶š */
     player->handle = handle;
     handle->player = player;
     
@@ -1179,9 +1179,9 @@ static NNSSndStrmPlayer* AllocPlayer( NNSSndStrmHandle* handle, int playerNo, in
 /*---------------------------------------------------------------------------*
   Name:         FreePlayer
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[‚Ì‰ğ•ú
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è§£æ”¾
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1189,7 +1189,7 @@ static void FreePlayer( NNSSndStrmPlayer* player )
 {
     NNS_NULL_ASSERT( player );
     
-    /* ƒV[ƒPƒ“ƒXƒnƒ“ƒhƒ‹‚ÌØ’f */
+    /* ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒãƒ³ãƒ‰ãƒ«ã®åˆ‡æ–­ */
     if ( player->handle != NULL ) {
         player->handle->player = NULL;
         player->handle = NULL;
@@ -1203,20 +1203,20 @@ static void FreePlayer( NNSSndStrmPlayer* player )
 /*---------------------------------------------------------------------------*
   Name:         PrepareStrm
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[‚Ì€”õ
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æº–å‚™
 
-  Arguments:    handle - ƒXƒgƒŠ[ƒ€ƒnƒ“ƒhƒ‹
-                strmInfo - ƒXƒgƒŠ[ƒ€î•ñ\‘¢‘Ì
-                playerNo - ƒvƒŒƒCƒ„[”Ô†
-                playerPrio - ƒvƒŒƒCƒ„[ƒvƒ‰ƒCƒIƒŠƒeƒB
-                strmNo     - ƒXƒgƒŠ[ƒ€”Ô†
-                offset - ŠJnƒIƒtƒZƒbƒgˆÊ’u
-                strmCallback    - ƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒNŠÖ”
-                strmCallbackArg - ƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒNˆø”
-                strmCallback    - ƒTƒEƒ“ƒh[ƒA[ƒJƒCƒuƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒNŠÖ”
-                strmCallbackArg - ƒTƒEƒ“ƒh[ƒA[ƒJƒCƒuƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒNˆø”
+  Arguments:    handle - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒ³ãƒ‰ãƒ«
+                strmInfo - ã‚¹ãƒˆãƒªãƒ¼ãƒ æƒ…å ±æ§‹é€ ä½“
+                playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+                playerPrio - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+                strmNo     - ã‚¹ãƒˆãƒªãƒ¼ãƒ ç•ªå·
+                offset - é–‹å§‹ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
+                strmCallback    - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+                strmCallbackArg - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
+                strmCallback    - ã‚µã‚¦ãƒ³ãƒ‰ãƒ¼ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+                strmCallbackArg - ã‚µã‚¦ãƒ³ãƒ‰ãƒ¼ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL PrepareStrm(
     struct NNSSndStrmHandle* handle,
@@ -1240,20 +1240,20 @@ BOOL PrepareStrm(
     NNS_NULL_ASSERT( handle );
     NNS_NULL_ASSERT( strmInfo );
     
-    /* ƒvƒŒƒCƒ„[‚ÌŠm•Û */
+    /* ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¢ºä¿ */
     player = AllocPlayer( handle, playerNo, playerPrio );
     if ( player == NULL ) return FALSE;
     
-    /* ƒXƒgƒŠ[ƒ€ŠÖ”‚Ìİ’è */
+    /* ã‚¹ãƒˆãƒªãƒ¼ãƒ é–¢æ•°ã®è¨­å®š */
     SetupStreamFunction( player, strmInfo->fileId );
     
-    /* ƒXƒgƒŠ[ƒ€‚ğŠJ‚­ */
+    /* ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ã */
     if ( ! player->openStreamFunc( player, strmInfo->fileId ) ) {
         FreePlayer( player );
         return FALSE;
     }
     
-    /* ƒpƒ‰ƒ[ƒ^‰Šú‰» */
+    /* ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åˆæœŸåŒ– */
     tmpU64 = player->info.sampleRate;
     tmpU64 *= offset;
     tmpU64 /= 1000;
@@ -1304,7 +1304,7 @@ BOOL PrepareStrm(
     }
     player->monoFlag = ( numChannels == 1 ) ? TRUE : FALSE;
     
-    /* ƒ`ƒƒƒ“ƒlƒ‹Šm•Û */
+    /* ãƒãƒ£ãƒ³ãƒãƒ«ç¢ºä¿ */
     ret = AllocChannel( player, numChannels, player->chNoList );
     if ( ! ret ) {
         player->closeStreamFunc( player );
@@ -1312,7 +1312,7 @@ BOOL PrepareStrm(
         return FALSE;
     }
     
-    /* ƒZƒbƒgƒAƒbƒvŠJn */
+    /* ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—é–‹å§‹ */
 	ret = NNS_SndStrmSetup(
         & player->stream,
         format,
@@ -1330,7 +1330,7 @@ BOOL PrepareStrm(
         return FALSE;
     }
     
-    /* ƒpƒ‰ƒ[ƒ^İ’è */
+    /* ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š */
     if ( numChannels == 2 ) { // stereo
         NNS_SndStrmSetChannelPan( & player->stream, 0, 0 );
         NNS_SndStrmSetChannelPan( & player->stream, 1, 127 );
@@ -1342,10 +1342,10 @@ BOOL PrepareStrm(
 /*---------------------------------------------------------------------------*
   Name:         StopStrm
 
-  Description:  ƒXƒgƒŠ[ƒ€‚Ì’â~
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®åœæ­¢
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
-                fadeFrame - ƒtƒF[ƒhƒAƒEƒgƒtƒŒ[ƒ€
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                fadeFrame - ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ•ãƒ¬ãƒ¼ãƒ 
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1373,9 +1373,9 @@ static void StopStrm( NNSSndStrmPlayer* player, int fadeFrame )
 /*---------------------------------------------------------------------------*
   Name:         ForceStopStrm
 
-  Description:  ƒXƒgƒŠ[ƒ€‚Ì‹­§’â~
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®å¼·åˆ¶åœæ­¢
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1403,9 +1403,9 @@ static void ForceStopStrm( NNSSndStrmPlayer* player )
 /*---------------------------------------------------------------------------*
   Name:         ShutdownPlayer
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[‚ÌƒVƒƒƒbƒgƒ_ƒEƒ“
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1415,30 +1415,30 @@ static void ShutdownPlayer( NNSSndStrmPlayer* player )
     
     if ( ! player->activeFlag ) return;
     
-    /* ƒ`ƒƒƒ“ƒlƒ‹‚Ì‰ğ•ú */
+    /* ãƒãƒ£ãƒ³ãƒãƒ«ã®è§£æ”¾ */
     FreeChannel( player );
     
-    /* ƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚é */
+    /* ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã‚‹ */
     player->closeStreamFunc( player );
     
-    /* ƒRƒ}ƒ“ƒh‚Ì‰ñû */
+    /* ã‚³ãƒãƒ³ãƒ‰ã®å›å */
     RemoveCommandByPlayer( &sStrmThread.commandList, player );
     if ( sPrepareThread ) RemoveCommandByPlayer( &sPrepareThread->commandList, player );
     
-    /* ƒvƒŒƒCƒ„[‚Ì‰ğ•ú */
+    /* ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è§£æ”¾ */
     FreePlayer( player );
 }
 
 /*---------------------------------------------------------------------------*
   Name:         AllocChannel
 
-  Description:  ƒ`ƒƒƒ“ƒlƒ‹‚ÌŠm•Û
+  Description:  ãƒãƒ£ãƒ³ãƒãƒ«ã®ç¢ºä¿
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
-                numChannels - Šm•Û‚·‚éƒ`ƒƒƒ“ƒlƒ‹”
-                chNoList - ƒ`ƒƒƒ“ƒlƒ‹”Ô†ƒŠƒXƒg
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                numChannels - ç¢ºä¿ã™ã‚‹ãƒãƒ£ãƒ³ãƒãƒ«æ•°
+                chNoList - ãƒãƒ£ãƒ³ãƒãƒ«ç•ªå·ãƒªã‚¹ãƒˆ
 
-  Returns:      Šm•Û‚Å‚«‚½‚©‚Ç‚¤‚©
+  Returns:      ç¢ºä¿ã§ããŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 static BOOL AllocChannel( NNSSndStrmPlayer* player, int numChannels, const u8 chNoList[] )
 {
@@ -1458,9 +1458,9 @@ static BOOL AllocChannel( NNSSndStrmPlayer* player, int numChannels, const u8 ch
 /*---------------------------------------------------------------------------*
   Name:         FreeChannel
 
-  Description:  ƒ`ƒƒƒ“ƒlƒ‹‚Ì‰ğ•ú
+  Description:  ãƒãƒ£ãƒ³ãƒãƒ«ã®è§£æ”¾
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1483,10 +1483,10 @@ static void FreeChannel( NNSSndStrmPlayer* player )
 /*---------------------------------------------------------------------------*
   Name:         CreateThread
 
-  Description:  ƒXƒgƒŠ[ƒ€—p‚ÌƒXƒŒƒbƒh‚ğì¬‚µ‚Ü‚·B
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ç”¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½œæˆã—ã¾ã™ã€‚
 
-  Arguments:    thread     - ƒXƒgƒŠ[ƒ€ƒXƒŒƒbƒh\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                threadPrio - ƒXƒŒƒbƒhƒvƒ‰ƒCƒIƒŠƒeƒB
+  Arguments:    thread     - ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚¹ãƒ¬ãƒƒãƒ‰æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                threadPrio - ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1509,11 +1509,11 @@ static void CreateThread( NNSSndStrmThread* thread, u32 threadPrio )
 /*---------------------------------------------------------------------------*
   Name:         RemoveCommandByPlayer
 
-  Description:  ƒRƒ}ƒ“ƒhƒoƒbƒtƒ@‚©‚çŠY“–ƒvƒŒƒCƒ„[‚ÉŠÖ‚·‚éƒRƒ}ƒ“ƒh‚ğ
-                íœ‚µ‚Ü‚·B
+  Description:  ã‚³ãƒãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰è©²å½“ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã‚’
+                å‰Šé™¤ã—ã¾ã™ã€‚
 
-  Arguments:    commandList - ƒRƒ}ƒ“ƒhƒŠƒXƒg
-                player      - ƒvƒŒƒCƒ„[
+  Arguments:    commandList - ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆ
+                player      - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1542,12 +1542,12 @@ static void RemoveCommandByPlayer( NNSFndList* commandList, const NNSSndStrmPlay
 /*---------------------------------------------------------------------------*
   Name:         ReadCommandBuffer
 
-  Description:  ƒRƒ}ƒ“ƒhƒoƒbƒtƒ@ƒŠƒXƒg‚Ìæ“ª‚ğ“Ç‚İo‚·
+  Description:  ã‚³ãƒãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ãƒªã‚¹ãƒˆã®å…ˆé ­ã‚’èª­ã¿å‡ºã™
 
-  Arguments:    commandList - ƒRƒ}ƒ“ƒhƒŠƒXƒg
+  Arguments:    commandList - ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆ
 
-  Returns:      ƒRƒ}ƒ“ƒh‚ğ•Ô‚·B
-                ƒŠƒXƒg‚ª‹ó‚È‚çNULL‚ğ•Ô‚·B
+  Returns:      ã‚³ãƒãƒ³ãƒ‰ã‚’è¿”ã™ã€‚
+                ãƒªã‚¹ãƒˆãŒç©ºãªã‚‰NULLã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static LoadCommand* ReadCommandBuffer( NNSFndList* commandList )
 {
@@ -1571,12 +1571,12 @@ static LoadCommand* ReadCommandBuffer( NNSFndList* commandList )
 /*---------------------------------------------------------------------------*
   Name:         AllocCommandBuffer
 
-  Description:  ƒRƒ}ƒ“ƒhƒoƒbƒtƒ@‚Ìæ“¾
+  Description:  ã‚³ãƒãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 
   Arguments:    None.
 
-  Returns:      ƒRƒ}ƒ“ƒhƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
-                æ“¾‚Å‚«‚È‚¢ê‡‚ÍNULL
+  Returns:      ã‚³ãƒãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
+                å–å¾—ã§ããªã„å ´åˆã¯NULL
  *---------------------------------------------------------------------------*/
 static LoadCommand* AllocCommandBuffer( void )
 {
@@ -1598,9 +1598,9 @@ static LoadCommand* AllocCommandBuffer( void )
 /*---------------------------------------------------------------------------*
   Name:         FreeCommandBuffer
 
-  Description:  ƒRƒ}ƒ“ƒhƒoƒbƒtƒ@‚Ì‰ğ•ú
+  Description:  ã‚³ãƒãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 
-  Arguments:    command - ƒRƒ}ƒ“ƒhƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    command - ã‚³ãƒãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1618,12 +1618,12 @@ static void FreeCommandBuffer( LoadCommand* command )
 /*---------------------------------------------------------------------------*
   Name:         DisposeCallback
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒoƒbƒtƒ@”jŠü‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ç ´æ£„æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    mem  - ƒXƒgƒŠ[ƒ€ƒoƒbƒtƒ@æ“ªƒAƒhƒŒƒX
-                size - ƒXƒgƒŠ[ƒ€ƒoƒbƒtƒ@ƒTƒCƒY
-                data1 - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[‚Ìƒ|ƒCƒ“ƒ^
-                data2 - (–¢g—p)
+  Arguments:    mem  - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+                size - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+                data1 - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
+                data2 - (æœªä½¿ç”¨)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1655,14 +1655,14 @@ static void DisposeCallback( void* mem, u32 /*size*/, u32 data1, u32 /*data2*/ )
 /*---------------------------------------------------------------------------*
   Name:         StrmCallback
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒR[ƒ‹ƒoƒbƒN
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    status      - ƒR[ƒ‹ƒoƒbƒNƒXƒe[ƒ^ƒX
-                numChannels - ƒ`ƒƒƒ“ƒlƒ‹”
-                buffer      - ƒ`ƒƒƒ“ƒlƒ‹–ˆ‚Ì‘‚«Š·‚¦‚é‚×‚«ƒoƒbƒtƒ@ƒAƒhƒŒƒX
-                len         - ƒ`ƒƒƒ“ƒlƒ‹–ˆ‚É•K—v‚Èƒf[ƒ^ƒTƒCƒY
-                format      - ƒf[ƒ^ƒtƒH[ƒ}ƒbƒg
-                arg         - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[ƒ|ƒCƒ“ƒ^
+  Arguments:    status      - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+                numChannels - ãƒãƒ£ãƒ³ãƒãƒ«æ•°
+                buffer      - ãƒãƒ£ãƒ³ãƒãƒ«æ¯ã®æ›¸ãæ›ãˆã‚‹ã¹ããƒãƒƒãƒ•ã‚¡ã‚¢ãƒ‰ãƒ¬ã‚¹
+                len         - ãƒãƒ£ãƒ³ãƒãƒ«æ¯ã«å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+                format      - ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+                arg         - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒã‚¤ãƒ³ã‚¿
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1684,7 +1684,7 @@ static void StrmCallback(
     
     if ( player->commandCount >= BLOCK_NUM - 2 )
     {
-        /* ƒ[ƒh‚ªŠÔ‚É‡‚í‚È‚¢ */
+        /* ãƒ­ãƒ¼ãƒ‰ãŒé–“ã«åˆã‚ãªã„ */
         command = NULL;
         while ( ( command = (LoadCommand*)NNS_FndGetNextListObject( & sStrmThread.commandList, command ) ) != NULL ) {
             if ( command->player == player ) break;
@@ -1724,11 +1724,11 @@ static void StrmCallback(
 /*---------------------------------------------------------------------------*
   Name:         OnDataEnd
 
-  Description:  ƒ‹[ƒv–³‚µƒf[ƒ^‚ÌI’[‚Ü‚Åˆ—‚µ‚½A
-                MakeWaveData‚©‚çŒÄ‚Ñ‚¾‚³‚ê‚éˆ—B
-                Œp‘±Ä¶‚·‚é‚©‚Ç‚¤‚©‚ğˆ—‚·‚éB
+  Description:  ãƒ«ãƒ¼ãƒ—ç„¡ã—ãƒ‡ãƒ¼ã‚¿ã®çµ‚ç«¯ã¾ã§å‡¦ç†ã—ãŸæ™‚ã€
+                MakeWaveDataã‹ã‚‰å‘¼ã³ã ã•ã‚Œã‚‹å‡¦ç†ã€‚
+                ç¶™ç¶šå†ç”Ÿã™ã‚‹ã‹ã©ã†ã‹ã‚’å‡¦ç†ã™ã‚‹ã€‚
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1756,27 +1756,27 @@ static void OnDataEnd( NNSSndStrmPlayer* player )
     );
     if ( ! result ) return;
 
-    /* Ä¶Œp‘±ˆ— */
+    /* å†ç”Ÿç¶™ç¶šå‡¦ç† */
                 
     strmInfo = NNS_SndArcGetStrmInfo( param.strmNo );
     if ( strmInfo == NULL ) return;
     
-    /* ‘O‰ñ‚ÌƒXƒgƒŠ[ƒ€ƒf[ƒ^î•ñ‚Ì•Û‘¶ */
+    /* å‰å›ã®ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿æƒ…å ±ã®ä¿å­˜ */
     old_format = player->info.format;
     old_sampleRate = player->info.sampleRate;
     
-    /* ƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚é */
+    /* ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã‚‹ */
     player->closeStreamFunc( player );
     
-    /* ƒXƒgƒŠ[ƒ€ŠÖ”‚ÌXV */
+    /* ã‚¹ãƒˆãƒªãƒ¼ãƒ é–¢æ•°ã®æ›´æ–° */
     SetupStreamFunction( player, strmInfo->fileId );
     
-    /* ƒXƒgƒŠ[ƒ€‚ğŠJ‚­ */
+    /* ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ã */
     if ( ! player->openStreamFunc( player, strmInfo->fileId ) ) {
         return;
     }
     
-    // ƒf[ƒ^ŒİŠ·«ƒ`ƒFƒbƒN
+    // ãƒ‡ãƒ¼ã‚¿äº’æ›æ€§ãƒã‚§ãƒƒã‚¯
     if ( old_sampleRate != player->info.sampleRate ) {
         OS_Warning(
             "Cannot continue stream because sample rate is different %d != %d.",
@@ -1792,9 +1792,9 @@ static void OnDataEnd( NNSSndStrmPlayer* player )
         return;
     }
 
-    // Œp‘±Šm’è
+    // ç¶™ç¶šç¢ºå®š
     
-    // ƒvƒŒƒCƒ„[ƒƒ“ƒo‚ÌXV
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¡ãƒ³ãƒã®æ›´æ–°
     player->strmNo = param.strmNo;
     tmpU64 = player->info.sampleRate;
     tmpU64 *= param.offset;
@@ -1807,16 +1807,16 @@ static void OnDataEnd( NNSSndStrmPlayer* player )
         player->dirtyFlag = FALSE;
     }
     
-    // Œp‘±‚µ‚ÄÄ¶‚·‚é
+    // ç¶™ç¶šã—ã¦å†ç”Ÿã™ã‚‹
     player->finishFlag = FALSE;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         MakeWaveData
 
-  Description:  ”gŒ`ƒf[ƒ^‚Ì‹Ÿ‹‹
+  Description:  æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ä¾›çµ¦
 
-  Arguments:    command - ƒRƒ}ƒ“ƒh
+  Arguments:    command - ã‚³ãƒãƒ³ãƒ‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1855,10 +1855,10 @@ static void MakeWaveData( LoadCommand* command )
             break;
         }
         
-        /* ƒuƒƒbƒN”Ô† */
+        /* ãƒ–ãƒ­ãƒƒã‚¯ç•ªå· */
         blockNo = player->curSample / player->info.blockSamples;
         
-        /* ƒuƒƒbƒNƒTƒCƒY ‚Æ ƒuƒƒbƒNƒTƒ“ƒvƒ‹” */
+        /* ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º ã¨ ãƒ–ãƒ­ãƒƒã‚¯ã‚µãƒ³ãƒ—ãƒ«æ•° */
         if ( blockNo < player->info.numBlocks - 1 ) {
             blockSize = player->info.blockSize;
             blockSamples = player->info.blockSamples;
@@ -1868,18 +1868,18 @@ static void MakeWaveData( LoadCommand* command )
             blockSamples = player->info.lastBlockSamples;
         }
 
-        /* ƒuƒƒbƒN“àƒIƒtƒZƒbƒgƒTƒ“ƒvƒ‹ˆÊ’u */
+        /* ãƒ–ãƒ­ãƒƒã‚¯å†…ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚µãƒ³ãƒ—ãƒ«ä½ç½® */
         blockOffsetSample = player->curSample;
         blockOffsetSample -= blockNo * player->info.blockSamples;
                 
-        /* •K—vƒTƒ“ƒvƒ‹” */
+        /* å¿…è¦ã‚µãƒ³ãƒ—ãƒ«æ•° */
         samples = restSize;
         if ( player->info.format != STRM_FORMAT_PCM8 ) {
             NNS_ASSERT( ( samples & 0x01 ) == 0 );
             samples >>= 1;
         }
                 
-        /* AdpcmStateŒvZ‚Ì‚½‚ß‚Ì•â³ */
+        /* AdpcmStateè¨ˆç®—ã®ãŸã‚ã®è£œæ­£ */
         if ( player->dirtyFlag )
         {
             if ( blockOffsetSample == 0 ) {
@@ -1891,7 +1891,7 @@ static void MakeWaveData( LoadCommand* command )
             }
         }
                 
-        /* ƒuƒƒbƒNI’[ƒ`ƒFƒbƒN */
+        /* ãƒ–ãƒ­ãƒƒã‚¯çµ‚ç«¯ãƒã‚§ãƒƒã‚¯ */
         loopFlag = FALSE;
         if ( blockOffsetSample + samples >= blockSamples ) {
             samples = blockSamples - blockOffsetSample;
@@ -1907,7 +1907,7 @@ static void MakeWaveData( LoadCommand* command )
             }
         }
                 
-        /* ƒuƒƒbƒN“àƒIƒtƒZƒbƒgˆÊ’u‚Æƒ[ƒhƒTƒCƒY */
+        /* ãƒ–ãƒ­ãƒƒã‚¯å†…ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®ã¨ãƒ­ãƒ¼ãƒ‰ã‚µã‚¤ã‚º */
         blockOffset = blockOffsetSample;
         size = samples;
         switch ( player->info.format ) {
@@ -1920,9 +1920,9 @@ static void MakeWaveData( LoadCommand* command )
             readSize = size;
             break;
         case STRM_FORMAT_ADPCM: {
-            u32 endSample = blockOffsetSample + samples; // I’[ƒTƒ“ƒvƒ‹ˆÊ’u
-            blockOffset >>= 1; // æ“ªˆÊ’u‚ÍØ‚èÌ‚Ä                    
-            endSample++; endSample >>= 1;   // I’[ˆÊ’u‚ÍØ‚èã‚°
+            u32 endSample = blockOffsetSample + samples; // çµ‚ç«¯ã‚µãƒ³ãƒ—ãƒ«ä½ç½®
+            blockOffset >>= 1; // å…ˆé ­ä½ç½®ã¯åˆ‡ã‚Šæ¨ã¦                    
+            endSample++; endSample >>= 1;   // çµ‚ç«¯ä½ç½®ã¯åˆ‡ã‚Šä¸Šã’
             readSize = endSample - blockOffset;
             if ( blockOffsetSample == 0 ) {
                 readSize += sizeof( AdpcmState );
@@ -1936,12 +1936,12 @@ static void MakeWaveData( LoadCommand* command )
         }
         }
         
-        /* ƒtƒ@ƒCƒ‹ƒIƒtƒZƒbƒgˆÊ’u */
+        /* ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½® */
         offset = blockOffset;
         offset += blockNo * player->info.blockSize * player->info.numChannels;
         offset += player->info.dataOffset;
         
-        /* ƒf[ƒ^‚Ìƒ[ƒh */
+        /* ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰ */
         for( ch = 0; ch < command->numChannels; ch++ )
         {
             void* dest;
@@ -1966,7 +1966,7 @@ static void MakeWaveData( LoadCommand* command )
                 );
                 
                 if ( resultSize != readSize ) {
-                    // ƒf[ƒ^“Ç‚İ‚İ¸”sˆ—
+                    // ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å¤±æ•—æ™‚å‡¦ç†
                     size = 0;
                     samples = 0;
                     loopFlag = FALSE;
@@ -1978,7 +1978,7 @@ static void MakeWaveData( LoadCommand* command )
                 }
                 
                 if ( player->info.format == STRM_FORMAT_ADPCM ) {
-                    /* ADPCMƒfƒR[ƒh */
+                    /* ADPCMãƒ‡ã‚³ãƒ¼ãƒ‰ */
                     AdpcmState* state = & player->adpcmState[ ch ];
                     u8* srcp = sDecodeBuffer;
                     s16* destp = dest;
@@ -2023,7 +2023,7 @@ static void MakeWaveData( LoadCommand* command )
             continue;
         }
         
-        /* Œ»İ‚ÌƒTƒ“ƒvƒ‹ˆÊ’u‚ÌXV */
+        /* ç¾åœ¨ã®ã‚µãƒ³ãƒ—ãƒ«ä½ç½®ã®æ›´æ–° */
         if ( loopFlag )
         {
             player->curSample = player->info.loopStart;
@@ -2033,13 +2033,13 @@ static void MakeWaveData( LoadCommand* command )
             player->curSample += samples;
         }
         
-        /* “]‘—æƒIƒtƒZƒbƒgˆÊ’u‚ÌXV */
+        /* è»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®ã®æ›´æ–° */
         destOffset += size;
             
-        /* c‚èƒTƒCƒY‚ÌXV */
+        /* æ®‹ã‚Šã‚µã‚¤ã‚ºã®æ›´æ–° */
         restSize -= size;
         
-        /* ƒf[ƒ^I—¹ƒR[ƒ‹ƒoƒbƒN */
+        /* ãƒ‡ãƒ¼ã‚¿çµ‚äº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ */
         if ( player->finishFlag && player->sndArcStrmCallback )
         {
             OnDataEnd( player );
@@ -2071,11 +2071,11 @@ static void MakeWaveData( LoadCommand* command )
 /*---------------------------------------------------------------------------*
   Name:         SetupStreamFunction
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒf[ƒ^‚ªŠù‚Éƒƒ‚ƒŠã‚É‚ ‚é‚©‚Ç‚¤‚©‚ÅA
-                ƒXƒgƒŠ[ƒ€ŠÖ”‚ğØ‚è‘Ö‚¦‚é
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ãŒæ—¢ã«ãƒ¡ãƒ¢ãƒªä¸Šã«ã‚ã‚‹ã‹ã©ã†ã‹ã§ã€
+                ã‚¹ãƒˆãƒªãƒ¼ãƒ é–¢æ•°ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
-                fileId - ƒtƒ@ƒCƒ‹ID
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                fileId - ãƒ•ã‚¡ã‚¤ãƒ«ID
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -2101,21 +2101,21 @@ static void SetupStreamFunction( NNSSndStrmPlayer* player, u32 fileId )
 /*---------------------------------------------------------------------------*
   Name:         OpenFileStream
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ğŠJ‚­iƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€j
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ãï¼ˆãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
-                fileId - ƒtƒ@ƒCƒ‹ID
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                fileId - ãƒ•ã‚¡ã‚¤ãƒ«ID
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 static BOOL OpenFileStream( NNSSndStrmPlayer* player, u32 fileId )
 {
-    /* ƒwƒbƒ_‚Ìƒ[ƒh */
+    /* ãƒ˜ãƒƒãƒ€ã®ãƒ­ãƒ¼ãƒ‰ */
     if ( NNS_SndArcReadFile( fileId, & player->info, sizeof( player->info ), 0 ) != sizeof( player->info ) ) {
         return FALSE;
     }
     
-    /* ƒtƒ@ƒCƒ‹‚ğŠJ‚­ */
+    /* ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã */
     if ( ! FS_OpenFileFast( & player->file, NNS_SndArcGetFileID() ) ) {
         return FALSE;
     }
@@ -2127,9 +2127,9 @@ static BOOL OpenFileStream( NNSSndStrmPlayer* player, u32 fileId )
 /*---------------------------------------------------------------------------*
   Name:         CloseFileStream
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚éiƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€j
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã‚‹ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -2141,14 +2141,14 @@ static void CloseFileStream( NNSSndStrmPlayer* player )
 /*---------------------------------------------------------------------------*
   Name:         ReadFileStream
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ğ“Ç‚İ‚Şiƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€j
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’èª­ã¿è¾¼ã‚€ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
-                dest   - ƒf[ƒ^‚ÌŠi”[æ
-                size   - “Ç‚İ‚İƒTƒCƒY
-                offset - ƒIƒtƒZƒbƒgˆÊ’u
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                dest   - ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å…ˆ
+                size   - èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚º
+                offset - ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
 
-  Returns:      “Ç‚İ‚ñ‚¾ƒTƒCƒY
+  Returns:      èª­ã¿è¾¼ã‚“ã ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 static s32 ReadFileStream( NNSSndStrmPlayer* player, void* dest, u32 size, u32 offset )
 {
@@ -2170,9 +2170,9 @@ static s32 ReadFileStream( NNSSndStrmPlayer* player, void* dest, u32 size, u32 o
 /*---------------------------------------------------------------------------*
   Name:         CancelFileStream
 
-  Description:  ƒXƒgƒŠ[ƒ€‚Ì“Ç‚İ‚İ‚ğƒLƒƒƒ“ƒZƒ‹‚·‚éiƒtƒ@ƒCƒ‹ƒXƒgƒŠ[ƒ€j
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®èª­ã¿è¾¼ã¿ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«ã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -2184,18 +2184,18 @@ static void CancelFileStream( NNSSndStrmPlayer* player )
 /*---------------------------------------------------------------------------*
   Name:         OpenMemoryStream
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ğŠJ‚­iƒƒ‚ƒŠƒXƒgƒŠ[ƒ€j
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‹ãï¼ˆãƒ¡ãƒ¢ãƒªã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
-                fileId - ƒtƒ@ƒCƒ‹ID
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                fileId - ãƒ•ã‚¡ã‚¤ãƒ«ID
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 static BOOL OpenMemoryStream( NNSSndStrmPlayer* player, u32 fileId )
 {
     player->fileOffset = (u32)NNS_SndArcGetFileAddress( fileId );
     
-    /* ƒwƒbƒ_‚Ìƒ[ƒh */
+    /* ãƒ˜ãƒƒãƒ€ã®ãƒ­ãƒ¼ãƒ‰ */
     MI_CpuCopy8(
         (const void*)( player->fileOffset ),
         & player->info,
@@ -2208,9 +2208,9 @@ static BOOL OpenMemoryStream( NNSSndStrmPlayer* player, u32 fileId )
 /*---------------------------------------------------------------------------*
   Name:         CloseMemoryStream
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ğ•Â‚¶‚éiƒƒ‚ƒŠƒXƒgƒŠ[ƒ€j
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’é–‰ã˜ã‚‹ï¼ˆãƒ¡ãƒ¢ãƒªã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -2222,14 +2222,14 @@ static void CloseMemoryStream( NNSSndStrmPlayer* player )
 /*---------------------------------------------------------------------------*
   Name:         ReadMemoryStream
 
-  Description:  ƒXƒgƒŠ[ƒ€‚ğ“Ç‚İ‚Şiƒƒ‚ƒŠƒXƒgƒŠ[ƒ€j
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’èª­ã¿è¾¼ã‚€ï¼ˆãƒ¡ãƒ¢ãƒªã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
-                dest   - ƒf[ƒ^‚ÌŠi”[æ
-                size   - “Ç‚İ‚İƒTƒCƒY
-                offset - ƒIƒtƒZƒbƒgˆÊ’u
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+                dest   - ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å…ˆ
+                size   - èª­ã¿è¾¼ã¿ã‚µã‚¤ã‚º
+                offset - ã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
 
-  Returns:      “Ç‚İ‚ñ‚¾ƒTƒCƒY
+  Returns:      èª­ã¿è¾¼ã‚“ã ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 static s32 ReadMemoryStream( NNSSndStrmPlayer* player, void* dest, u32 size, u32 offset )
 {
@@ -2245,9 +2245,9 @@ static s32 ReadMemoryStream( NNSSndStrmPlayer* player, void* dest, u32 size, u32
 /*---------------------------------------------------------------------------*
   Name:         CancelMemoryStream
 
-  Description:  ƒXƒgƒŠ[ƒ€‚Ì“Ç‚İ‚İ‚ğƒLƒƒƒ“ƒZƒ‹‚·‚éiƒƒ‚ƒŠƒXƒgƒŠ[ƒ€j
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®èª­ã¿è¾¼ã¿ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹ï¼ˆãƒ¡ãƒ¢ãƒªã‚¹ãƒˆãƒªãƒ¼ãƒ ï¼‰
 
-  Arguments:    player - ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[
+  Arguments:    player - ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -2259,9 +2259,9 @@ static void CancelMemoryStream( NNSSndStrmPlayer* player )
 /*---------------------------------------------------------------------------*
   Name:         StrmThread
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒXƒŒƒbƒh
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚¹ãƒ¬ãƒƒãƒ‰
 
-  Arguments:    arg - ƒXƒŒƒbƒh\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    arg - ã‚¹ãƒ¬ãƒƒãƒ‰æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

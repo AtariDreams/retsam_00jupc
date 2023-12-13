@@ -1,68 +1,68 @@
 //============================================================================================
 /**
- *	•¶Žš—ñƒoƒbƒtƒ@—pƒTƒCƒY’è‹`
+ *	æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ç”¨ã‚µã‚¤ã‚ºå®šç¾©
  */
 //============================================================================================
 #ifndef __BUFLEN_H__
 #define __BUFLEN_H__
 
 
-//	•¶Žš—ñŠÖ˜A‚Ì’·‚³’è‹`
-#define PERSON_NAME_SIZE	7	// l•¨‚Ì–¼‘O‚Ì’·‚³iŽ©•ª‚àŠÜ‚Þj
-#define	TR_NAME_SIZE		5	// ƒgƒŒ[ƒi[‚Ì–¼‘O‚Ì’·‚³	// localspecmark (ƒ_ƒ~[)
-#define MONS_NAME_SIZE		10	// ƒ|ƒPƒ‚ƒ“–¼‚Ì’·‚³(ƒoƒbƒtƒ@ƒTƒCƒY EOM_ŠÜ‚Ü‚¸)
-#define MONS_DISP_SIZE		5	// ƒ|ƒPƒ‚ƒ“–¼‚Ì’·‚³(•\Ž¦ƒTƒCƒY EOM_ŠÜ‚Ü‚¸)
-#define	WAZA_NAME_SIZE		7	// ‚í‚´–¼‚Ì’·‚³
-#define	ITEM_NAME_SIZE		8	// ‚Ç‚¤‚®–¼‚Ì’·‚³
-#define SEED_NAME_SIZE		6	// ƒ^ƒl‚Ì–¼‘O‚Ì’·‚³
-#define SPEABI_NAME_SIZE	7	// “Á«–¼‚Ì’·‚³		// localspecmark 
-#define ZOKUSEI_NAME_SIZE	4	// ‘®«–¼‚Ì’·‚³		// localspecmark 
-#define MAPNAME_WIDTH		10  // ’n–¼•¶Žš—ñ‚Ì•\Ž¦•	// mapname.c, townmap.h ‚©‚çˆÚ“®
-#define MAPNAME_MAX			18  // ’n–¼•¶Žš—ñ‚ÌÅ‘å’·	// mapname.c, townmap.h ‚©‚çˆÚ“®
-#define TRTYPE_NAME_SIZE	10	// ƒgƒŒ[ƒi[ƒ^ƒCƒv–¼‚Ì’·‚³	// localspecmark murakawa
-#define	GOODS_NAME_SIZE		10	// ƒOƒbƒY–¼‚Ì’·‚³
-#define	ZUKAN_TYPE_SIZE		5	// }ŠÓƒ^ƒCƒv–¼‚Ì’·‚³
-#define	EOM_SIZE			1	// I—¹ƒR[ƒh‚Ì’·‚³
-#define	KAIWA_WORK_SIZE		7	// ŠÈˆÕ‰ï˜b‚Ì‚P’PŒê‚ÌÅ’·•¶Žš”iEOM_ŠÜ‚Ü‚¸j
-#define MONUMENT_NAME_SIZE	10	// Î”è‚Ì–¼‘O‚Ì’·‚³
-#define	GROUP_NAME_SIZE		7	// ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒv‚Ì–¼‘O‚Ì’·‚³
-#define	LOBBY_GAME_SIZE		10	// Lêƒ~ƒjƒQ[ƒ€–¼ƒTƒCƒY
-#define LOBBY_EVENT_SIZE	5	// LêƒCƒxƒ“ƒg–¼ƒTƒCƒY
-#define LOBBY_GADGET_SIZE	10	// Lê‚ªƒWƒFƒbƒg–¼ƒTƒCƒY
+//	æ–‡å­—åˆ—é–¢é€£ã®é•·ã•å®šç¾©
+#define PERSON_NAME_SIZE	7	// äººç‰©ã®åå‰ã®é•·ã•ï¼ˆè‡ªåˆ†ã‚‚å«ã‚€ï¼‰
+#define	TR_NAME_SIZE		5	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®åå‰ã®é•·ã•	// localspecmark (ãƒ€ãƒŸãƒ¼)
+#define MONS_NAME_SIZE		10	// ãƒã‚±ãƒ¢ãƒ³åã®é•·ã•(ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º EOM_å«ã¾ãš)
+#define MONS_DISP_SIZE		5	// ãƒã‚±ãƒ¢ãƒ³åã®é•·ã•(è¡¨ç¤ºã‚µã‚¤ã‚º EOM_å«ã¾ãš)
+#define	WAZA_NAME_SIZE		7	// ã‚ã–åã®é•·ã•
+#define	ITEM_NAME_SIZE		8	// ã©ã†ãåã®é•·ã•
+#define SEED_NAME_SIZE		6	// ã‚¿ãƒã®åå‰ã®é•·ã•
+#define SPEABI_NAME_SIZE	7	// ç‰¹æ€§åã®é•·ã•		// localspecmark 
+#define ZOKUSEI_NAME_SIZE	4	// å±žæ€§åã®é•·ã•		// localspecmark 
+#define MAPNAME_WIDTH		10  // åœ°åæ–‡å­—åˆ—ã®è¡¨ç¤ºå¹…	// mapname.c, townmap.h ã‹ã‚‰ç§»å‹•
+#define MAPNAME_MAX			18  // åœ°åæ–‡å­—åˆ—ã®æœ€å¤§é•·	// mapname.c, townmap.h ã‹ã‚‰ç§»å‹•
+#define TRTYPE_NAME_SIZE	10	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—åã®é•·ã•	// localspecmark murakawa
+#define	GOODS_NAME_SIZE		10	// ã‚°ãƒƒã‚ºåã®é•·ã•
+#define	ZUKAN_TYPE_SIZE		5	// å›³é‘‘ã‚¿ã‚¤ãƒ—åã®é•·ã•
+#define	EOM_SIZE			1	// çµ‚äº†ã‚³ãƒ¼ãƒ‰ã®é•·ã•
+#define	KAIWA_WORK_SIZE		7	// ç°¡æ˜“ä¼šè©±ã®ï¼‘å˜èªžã®æœ€é•·æ–‡å­—æ•°ï¼ˆEOM_å«ã¾ãšï¼‰
+#define MONUMENT_NAME_SIZE	10	// çŸ³ç¢‘ã®åå‰ã®é•·ã•
+#define	GROUP_NAME_SIZE		7	// ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—ã®åå‰ã®é•·ã•
+#define	LOBBY_GAME_SIZE		10	// åºƒå ´ãƒŸãƒ‹ã‚²ãƒ¼ãƒ åã‚µã‚¤ã‚º
+#define LOBBY_EVENT_SIZE	5	// åºƒå ´ã‚¤ãƒ™ãƒ³ãƒˆåã‚µã‚¤ã‚º
+#define LOBBY_GADGET_SIZE	10	// åºƒå ´ãŒã‚¸ã‚§ãƒƒãƒˆåã‚µã‚¤ã‚º
 
 
 //-------------------------------------------------------------------------------
 /**
- *  ‚±‚ê‚ç‚Ì’è‹`‚ÍuŠCŠO”Å‚Å‚à‚±‚ê‚¾‚¯Šm•Û‚³‚ê‚Ä‚¢‚ê‚Î[•ªv‚Æ‚¢‚¤ƒoƒbƒtƒ@’·‚Ì’è‹`‚Å‚·B
- *  Še—v‘f‚Ì•¶Žš—ñ‚ðƒRƒs[‚·‚éƒoƒbƒtƒ@‚Ìì¬‚ÉŽg—p‚µ‚Ü‚·B—]—T‚ðŽ‚Á‚Ä’è‹`‚µ‚Ä‰º‚³‚¢B
- *  ƒZ[ƒuƒf[ƒ^‚Ì‚æ‚¤‚ÉAŒµ–§‚ÈÅ‘å’·‚ª•K—v‚È‰ÓŠ‚Å‚ÍŽg—p‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
+ *  ã“ã‚Œã‚‰ã®å®šç¾©ã¯ã€Œæµ·å¤–ç‰ˆã§ã‚‚ã“ã‚Œã ã‘ç¢ºä¿ã•ã‚Œã¦ã„ã‚Œã°å……åˆ†ã€ã¨ã„ã†ãƒãƒƒãƒ•ã‚¡é•·ã®å®šç¾©ã§ã™ã€‚
+ *  å„è¦ç´ ã®æ–‡å­—åˆ—ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã«ä½¿ç”¨ã—ã¾ã™ã€‚ä½™è£•ã‚’æŒã£ã¦å®šç¾©ã—ã¦ä¸‹ã•ã„ã€‚
+ *  ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ã‚ˆã†ã«ã€åŽ³å¯†ãªæœ€å¤§é•·ãŒå¿…è¦ãªç®‡æ‰€ã§ã¯ä½¿ç”¨ã—ãªã„ã§ãã ã•ã„ã€‚
  */
 //-------------------------------------------------------------------------------
 
-// ˆê‰žA‘S•”‹ô”‚Å‚»‚ë‚¦‚Ä‚¢‚Ü‚·
+// ä¸€å¿œã€å…¨éƒ¨å¶æ•°ã§ãã‚ãˆã¦ã„ã¾ã™
 
-#define BUFLEN_EOM_SIZE					(GLOBAL_MSGLEN)		// EOMƒTƒCƒY
-#define BUFLEN_PERSON_NAME				(8)		// l•¨–¼iƒvƒŒƒCƒ„[ŠÜ‚ÞjiŠCŠO‚Å‚à‚V•¶Žš‚Ü‚Å+EOMj
-#define BUFLEN_POKEMON_NAME				(12)	// ƒ|ƒPƒ‚ƒ“–¼iŠCŠO‚Å‚à10•¶Žš{EOMj
-#define BUFLEN_WAZA_NAME				(16)	// ‹Z–¼i“ú–{Œê‚V•¶Žš¨ŠCŠO14•¶Žš‘z’è{EOMj
-#define BUFLEN_ITEM_NAME				(18)	// ƒAƒCƒeƒ€–¼i“ú–{Œê‚W•¶Žš¨ŠCŠO16•¶Žš‘z’è{EOMj
-#define BUFLEN_SEED_NAME				(14)	// ƒ^ƒl–¼i“ú–{Œê‚U•¶Žš¨ŠCŠO12•¶Žš‘z’è{EOMj
-#define BUFLEN_POKEMON_ABILITY_NAME		(16)	// ƒ|ƒPƒ‚ƒ“‚Æ‚­‚¹‚¢–¼i“ú–{Œê‚V•¶Žš¨ŠCŠO14•¶Žš‘z’è{EOMj
-#define BUFLEN_POKEMON_TYPE_NAME		(10)	// ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv–¼i“ú–{Œê‚S•¶Žš¨ŠCŠO‚W•¶Žš‘z’è{EOMj
-#define BUFLEN_POKEMON_CHARACTER_NAME	(12)	// ƒ|ƒPƒ‚ƒ“‚¹‚¢‚©‚­–¼i“ú–{Œê‚T•¶Žš¨ŠCŠO10•¶Žš‘z’è{EOMj
-#define BUFLEN_PLACE_NAME				(22)	// ’n–¼i“ú–{Œê10•¶Žš¨ŠCŠO20•¶Žš‘z’è +EOMj
-#define BUFLEN_TRAINER_TYPE_NAME		(22)	// ƒgƒŒ[ƒi[ƒ^ƒCƒv–¼i“ú–{Œê10•¶Žš¨ŠCŠO20•¶Žš‘z’è +EOMj
-#define BUFLEN_GOODS_NAME				(22)	// ƒOƒbƒY–¼i“ú–{Œê10•¶Žš¨ŠCŠO20•¶Žš‘z’è +EOMj
-#define BUFLEN_ZUKAN_TYPE_NAME			(12)	// }ŠÓƒ^ƒCƒv–¼i“ú–{Œê‚T•¶Žš¨ŠCŠO10•¶Žš‘z’è{EOMj
-#define BUFLEN_SEX						(2)		// «•Ê(‰Š + EOM)
+#define BUFLEN_EOM_SIZE					(GLOBAL_MSGLEN)		// EOMã‚µã‚¤ã‚º
+#define BUFLEN_PERSON_NAME				(8)		// äººç‰©åï¼ˆãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å«ã‚€ï¼‰ï¼ˆæµ·å¤–ã§ã‚‚ï¼—æ–‡å­—ã¾ã§+EOMï¼‰
+#define BUFLEN_POKEMON_NAME				(12)	// ãƒã‚±ãƒ¢ãƒ³åï¼ˆæµ·å¤–ã§ã‚‚10æ–‡å­—ï¼‹EOMï¼‰
+#define BUFLEN_WAZA_NAME				(16)	// æŠ€åï¼ˆæ—¥æœ¬èªžï¼—æ–‡å­—â†’æµ·å¤–14æ–‡å­—æƒ³å®šï¼‹EOMï¼‰
+#define BUFLEN_ITEM_NAME				(18)	// ã‚¢ã‚¤ãƒ†ãƒ åï¼ˆæ—¥æœ¬èªžï¼˜æ–‡å­—â†’æµ·å¤–16æ–‡å­—æƒ³å®šï¼‹EOMï¼‰
+#define BUFLEN_SEED_NAME				(14)	// ã‚¿ãƒåï¼ˆæ—¥æœ¬èªžï¼–æ–‡å­—â†’æµ·å¤–12æ–‡å­—æƒ³å®šï¼‹EOMï¼‰
+#define BUFLEN_POKEMON_ABILITY_NAME		(16)	// ãƒã‚±ãƒ¢ãƒ³ã¨ãã›ã„åï¼ˆæ—¥æœ¬èªžï¼—æ–‡å­—â†’æµ·å¤–14æ–‡å­—æƒ³å®šï¼‹EOMï¼‰
+#define BUFLEN_POKEMON_TYPE_NAME		(10)	// ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—åï¼ˆæ—¥æœ¬èªžï¼”æ–‡å­—â†’æµ·å¤–ï¼˜æ–‡å­—æƒ³å®šï¼‹EOMï¼‰
+#define BUFLEN_POKEMON_CHARACTER_NAME	(12)	// ãƒã‚±ãƒ¢ãƒ³ã›ã„ã‹ãåï¼ˆæ—¥æœ¬èªžï¼•æ–‡å­—â†’æµ·å¤–10æ–‡å­—æƒ³å®šï¼‹EOMï¼‰
+#define BUFLEN_PLACE_NAME				(22)	// åœ°åï¼ˆæ—¥æœ¬èªž10æ–‡å­—â†’æµ·å¤–20æ–‡å­—æƒ³å®š +EOMï¼‰
+#define BUFLEN_TRAINER_TYPE_NAME		(22)	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—åï¼ˆæ—¥æœ¬èªž10æ–‡å­—â†’æµ·å¤–20æ–‡å­—æƒ³å®š +EOMï¼‰
+#define BUFLEN_GOODS_NAME				(22)	// ã‚°ãƒƒã‚ºåï¼ˆæ—¥æœ¬èªž10æ–‡å­—â†’æµ·å¤–20æ–‡å­—æƒ³å®š +EOMï¼‰
+#define BUFLEN_ZUKAN_TYPE_NAME			(12)	// å›³é‘‘ã‚¿ã‚¤ãƒ—åï¼ˆæ—¥æœ¬èªžï¼•æ–‡å­—â†’æµ·å¤–10æ–‡å­—æƒ³å®šï¼‹EOMï¼‰
+#define BUFLEN_SEX						(2)		// æ€§åˆ¥(â™‚â™€ + EOM)
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/05
-// •¶Žš”ƒI[ƒo[‚ð‚·‚éê‡‚ª‚ ‚éŒ‚Ì‘Îˆ
-#define BUFLEN_ITEM_INFO				(130)	// ƒAƒCƒeƒ€à–¾iŠCŠO130•¶ŽšA‚±‚êˆÈã‚Í–|–ó‘¤‚Å‘Îˆ‚µ‚Ä‚à‚ç‚¤—\’èj
+// æ–‡å­—æ•°ã‚ªãƒ¼ãƒãƒ¼ã‚’ã™ã‚‹å ´åˆãŒã‚ã‚‹ä»¶ã®å¯¾å‡¦
+#define BUFLEN_ITEM_INFO				(130)	// ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žï¼ˆæµ·å¤–130æ–‡å­—ã€ã“ã‚Œä»¥ä¸Šã¯ç¿»è¨³å´ã§å¯¾å‡¦ã—ã¦ã‚‚ã‚‰ã†äºˆå®šï¼‰
 // ----------------------------------------------------------------------------
-#define BUFLEN_WAZA_INFO				(110)	// ‹Zà–¾i“ú–{Œê55•¶Žš(‰üsEI—¹ƒR[ƒhŠÜ‚Þ)¨ŠCŠO110•¶Žš‘z’èj
-#define BUFLEN_PMS_WORD					(32)	// ŠÈˆÕ‰ï˜b’PŒêi“ú–{Œê‚Í‚V•¶ŽšB—]—T‚ðŽ‚Á‚Ä‚±‚ê‚­‚ç‚¢j
-#define BUFLEN_PORUTO_NAME				(22)	// ƒ|ƒ‹ƒg–¼(“ú–{Œê10•¶Žš¨ŠCŠO20•¶Žš+EOM_+ƒpƒfƒBƒ“ƒO1)
+#define BUFLEN_WAZA_INFO				(110)	// æŠ€èª¬æ˜Žï¼ˆæ—¥æœ¬èªž55æ–‡å­—(æ”¹è¡Œãƒ»çµ‚äº†ã‚³ãƒ¼ãƒ‰å«ã‚€)â†’æµ·å¤–110æ–‡å­—æƒ³å®šï¼‰
+#define BUFLEN_PMS_WORD					(32)	// ç°¡æ˜“ä¼šè©±å˜èªžï¼ˆæ—¥æœ¬èªžã¯ï¼—æ–‡å­—ã€‚ä½™è£•ã‚’æŒã£ã¦ã“ã‚Œãã‚‰ã„ï¼‰
+#define BUFLEN_PORUTO_NAME				(22)	// ãƒãƒ«ãƒˆå(æ—¥æœ¬èªž10æ–‡å­—â†’æµ·å¤–20æ–‡å­—+EOM_+ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°1)
 
 //==============================================================================
 //==============================================================================
@@ -70,36 +70,36 @@
 
 
 //--------------------------------------------------------------
-//	í“¬“ü—Í‰æ–Ê	battle_input.c
+//	æˆ¦é—˜å…¥åŠ›ç”»é¢	battle_input.c
 //--------------------------------------------------------------
-///í“¬“ü—Í‰æ–ÊFƒ|ƒPƒ‚ƒ“‘I‘ð(‹ZŒø‰Ê)@ƒ|ƒPƒ‚ƒ“–¼{«•Ê@«—ˆ“I‚ÉƒXƒy[ƒX‚ª“ü‚Á‚½Žž‚É”õ‚¦‚Ä—]•ª‚É+5
+///æˆ¦é—˜å…¥åŠ›ç”»é¢ï¼šãƒã‚±ãƒ¢ãƒ³é¸æŠž(æŠ€åŠ¹æžœ)ã€€ãƒã‚±ãƒ¢ãƒ³åï¼‹æ€§åˆ¥ã€€å°†æ¥çš„ã«ã‚¹ãƒšãƒ¼ã‚¹ãŒå…¥ã£ãŸæ™‚ã«å‚™ãˆã¦ä½™åˆ†ã«+5
 #define BUFLEN_BI_POKESELENAME			(BUFLEN_POKEMON_NAME + BUFLEN_SEX + (5*GLOBAL_MSGLEN))
-///í“¬“ü—Í‰æ–ÊFPP + num + / + num
+///æˆ¦é—˜å…¥åŠ›ç”»é¢ï¼šPP + num + / + num
 #define BUFLEN_BI_WAZAPP	((2 + 2 + 1 + 2) * GLOBAL_MSGLEN + BUFLEN_EOM_SIZE)
-///í“¬“ü—Í‰æ–ÊFPP”’l(“ú–{Œê2•¶Žš{EOM)
+///æˆ¦é—˜å…¥åŠ›ç”»é¢ï¼šPPæ•°å€¤(æ—¥æœ¬èªž2æ–‡å­—ï¼‹EOM)
 #define BUFLEN_BI_PP_NUM	(3*GLOBAL_MSGLEN)
-///í“¬“ü—Í‰æ–ÊFu‹Z–¼v‚ð‚í‚·‚ê‚éI
-#define BUFLEN_BI_WASURERU	(100)		//“K“–‚É‘å‚«‚­
-///í“¬“ü—Í‰æ–ÊFu‹Z–¼v‚ð‚í‚·‚ê‚È‚¢I
+///æˆ¦é—˜å…¥åŠ›ç”»é¢ï¼šã€ŒæŠ€åã€ã‚’ã‚ã™ã‚Œã‚‹ï¼
+#define BUFLEN_BI_WASURERU	(100)		//é©å½“ã«å¤§ãã
+///æˆ¦é—˜å…¥åŠ›ç”»é¢ï¼šã€ŒæŠ€åã€ã‚’ã‚ã™ã‚Œãªã„ï¼
 #define BUFLEN_BI_WASURENAI	(100)
-///í“¬“ü—Í‰æ–ÊFu‚Â‚¬‚Ì@ƒ|ƒPƒ‚ƒ“‚ð@‚Â‚©‚¤v
+///æˆ¦é—˜å…¥åŠ›ç”»é¢ï¼šã€Œã¤ãŽã®ã€€ãƒã‚±ãƒ¢ãƒ³ã‚’ã€€ã¤ã‹ã†ã€
 #define BUFLEN_BI_NEXT_POKEMON	(100)
-///í“¬“ü—Í‰æ–ÊFu‚É‚°‚év
+///æˆ¦é—˜å…¥åŠ›ç”»é¢ï¼šã€Œã«ã’ã‚‹ã€
 #define BUFLEN_BI_NEXT_ESCAPE	(100)
-///í“¬“ü—Í‰æ–ÊFuƒ|ƒPƒ‚ƒ“‚ð@‚¢‚ê‚©‚¦‚év
+///æˆ¦é—˜å…¥åŠ›ç”»é¢ï¼šã€Œãƒã‚±ãƒ¢ãƒ³ã‚’ã€€ã„ã‚Œã‹ãˆã‚‹ã€
 #define BUFLEN_BI_CHANGE_POKEMON	(100)
-///í“¬“ü—Í‰æ–ÊFu‚»‚Ì‚Ü‚Ü@‚½‚½‚©‚¤v
+///æˆ¦é—˜å…¥åŠ›ç”»é¢ï¼šã€Œãã®ã¾ã¾ã€€ãŸãŸã‹ã†ã€
 #define BUFLEN_BI_CHANGE_NOT	(100)
 
 //--------------------------------------------------------------
-//	í“¬ƒQ[ƒW
+//	æˆ¦é—˜ã‚²ãƒ¼ã‚¸
 //--------------------------------------------------------------
-///í“¬ƒQ[ƒWFƒjƒbƒNƒl[ƒ€@«—ˆ“I‚ÉƒXƒy[ƒX‚ª“ü‚Á‚½Žž‚É”õ‚¦‚Ä—]•ª‚É+5
+///æˆ¦é—˜ã‚²ãƒ¼ã‚¸ï¼šãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã€€å°†æ¥çš„ã«ã‚¹ãƒšãƒ¼ã‚¹ãŒå…¥ã£ãŸæ™‚ã«å‚™ãˆã¦ä½™åˆ†ã«+5
 #define BUFLEN_GAUGE_POKESELENAME			(BUFLEN_POKEMON_NAME + (5*GLOBAL_MSGLEN))
-///í“¬ƒQ[ƒWFuƒTƒtƒ@ƒŠƒ{[ƒ‹v
-#define BUFLEN_GAUGE_SAFARIBALL				(30)	//“K“–‚É‘å‚«‚­
-///í“¬ƒQ[ƒWFu‚Ì‚±‚è@››‚±v
-#define BUFLEN_GAUGE_SAFARI_NOKORI			(30)	//“K“–‚É‘å‚«‚­
+///æˆ¦é—˜ã‚²ãƒ¼ã‚¸ï¼šã€Œã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã€
+#define BUFLEN_GAUGE_SAFARIBALL				(30)	//é©å½“ã«å¤§ãã
+///æˆ¦é—˜ã‚²ãƒ¼ã‚¸ï¼šã€Œã®ã“ã‚Šã€€â—‹â—‹ã“ã€
+#define BUFLEN_GAUGE_SAFARI_NOKORI			(30)	//é©å½“ã«å¤§ãã
 
 
 

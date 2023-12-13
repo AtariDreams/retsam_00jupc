@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_187.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			187�@�g�p�������̃^�[���I�����A�g�p�����Ώۂ���Ɏc���Ă����Ȃ�΁A���̑Ώۂ͖����ԂɂȂ�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			187　使用した次のターン終了時、使用した対象が場に残っていたならば、その対象は眠り状態になる。
  *
  *@author	HisashiSogabe
  *@data		2006.02.08

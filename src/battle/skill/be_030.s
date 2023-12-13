@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_030.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			030�@�����̂����Ă���Z�̂ǂꂩ�̃^�C�v�Ɏ����̃^�C�v��ς���
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			030　自分のもっている技のどれかのタイプに自分のタイプを変える
  *
  *@author	HisashiSogabe
  *@data		2006.01.17

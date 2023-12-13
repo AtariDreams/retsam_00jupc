@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_001.s
- * @brief	‚Í‚½‚­
+ * @brief	ã¯ãŸã
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡‚Í‚½‚­
+//	â– ã¯ãŸã
 //
 //
 // =============================================================================
@@ -33,7 +33,7 @@ WEST_Hataku:
 	
 	ADD_PARTICLE 	0,W_382_382_SAKIDORI_BALL1, EMTFUNC_DEFENCE_POS
 	
-	///< ƒŒ[ƒU[
+	///< ãƒ¬ãƒ¼ã‚¶ãƒ¼
 	ADD_PARTICLE 	0,W_382_382_SAKIDORI_BALL2, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_AT, OPERATOR_POS_SP, OPERATOR_AXIS_AT, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 
@@ -57,7 +57,7 @@ CONTEST:
 
 	ADD_PARTICLE 	0,W_382_382_SAKIDORI_BALL1, EMTFUNC_DEFENCE_POS
 	
-	///< ƒŒ[ƒU[
+	///< ãƒ¬ãƒ¼ã‚¶ãƒ¼
 	ADD_PARTICLE 	0,W_382_382_SAKIDORI_BALL2, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_AT, OPERATOR_POS_SP, OPERATOR_AXIS_AT, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 

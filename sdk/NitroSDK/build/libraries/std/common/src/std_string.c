@@ -21,13 +21,13 @@
   support some extra format of character-class in Scanf
 
   Revision 1.17  2006/10/17 04:56:45  kitase_hirotake
-  STD_CopyLString, STD_CopyLStringZeroFill ‚Ì•Ô‚è’lC³
+  STD_CopyLString, STD_CopyLStringZeroFill ã®è¿”ã‚Šå€¤ä¿®æ­£
 
   Revision 1.16  2006/09/08 09:46:07  yosizaki
   support character-class.
 
   Revision 1.15  2006/06/06 09:10:31  kitase_hirotake
-  STD_CopyLStringZeroFill ŠÖ”‚Ì•Ô‚è’l•ÏX
+  STD_CopyLStringZeroFill é–¢æ•°ã®è¿”ã‚Šå€¤å¤‰æ›´
 
   Revision 1.13  2006/01/18 02:12:29  kitase_hirotake
   do-indent
@@ -45,16 +45,16 @@
   just arrange src list
 
   Revision 1.8  2005/09/26 08:49:35  okubata_ryoma
-  STD_CompareNStringASTD_CompareLString‚Ì’Ç‰Á
+  STD_CompareNStringã€STD_CompareLStringã®è¿½åŠ 
 
   Revision 1.7  2005/09/26 05:06:40  okubata_ryoma
-  C³
+  ä¿®æ­£
 
   Revision 1.6  2005/09/26 04:54:50  okubata_ryoma
-  STD_CompareLStringŠÖ”‚Ì’Ç‰Á
+  STD_CompareLStringé–¢æ•°ã®è¿½åŠ 
 
   Revision 1.5  2005/09/06 01:25:23  yasu
-  STD_GetStringLength ‚Ì•Ô‚è’l‚ÌŒ^‚ğ int ‚Ö
+  STD_GetStringLength ã®è¿”ã‚Šå€¤ã®å‹ã‚’ int ã¸
 
   Revision 1.4  2005/09/05 01:20:11  yada
   add some functions
@@ -301,14 +301,14 @@ int STD_CompareLString(const char *str1, const char *str2)
 /*---------------------------------------------------------------------------*
   Name:         STD_TSScanf
 
-  Description:  ÈƒTƒCƒY‚ğ–Ú“I‚Æ‚µ‚½ sscanf.
-                Šî–{“I‚È‘®w’è "%(*?)([lh]{,2})([diouxXpn])" ‚É‘Î‰.
+  Description:  çœã‚µã‚¤ã‚ºã‚’ç›®çš„ã¨ã—ãŸ sscanf.
+                åŸºæœ¬çš„ãªæ›¸å¼æŒ‡å®š "%(*?)([lh]{,2})([diouxXpn])" ã«å¯¾å¿œ.
 
-  Arguments:    src           “ü—Í•¶š—ñ
-                fmt           ‘®§Œä•¶š—ñ
+  Arguments:    src           å…¥åŠ›æ–‡å­—åˆ—
+                fmt           æ›¸å¼åˆ¶å¾¡æ–‡å­—åˆ—
 
-  Returns:      ‘ã“ü‚³‚ê‚½’l‚Ì‘”.
-                –¢‘ã“ü‚Å‚ÌI’[‚ ‚é‚¢‚Í•s³‚ğŒŸo‚·‚ê‚Î -1.
+  Returns:      ä»£å…¥ã•ã‚ŒãŸå€¤ã®ç·æ•°.
+                æœªä»£å…¥ã§ã®çµ‚ç«¯ã‚ã‚‹ã„ã¯ä¸æ­£ã‚’æ¤œå‡ºã™ã‚Œã° -1.
  *---------------------------------------------------------------------------*/
 SDK_WEAK_SYMBOL int STD_TSScanf(const char *src, const char *fmt, ...)
 {
@@ -323,11 +323,11 @@ SDK_WEAK_SYMBOL int STD_TSScanf(const char *src, const char *fmt, ...)
 /*---------------------------------------------------------------------------*
   Name:         STDi_IsSpace
 
-  Description:  w’è•¶š‚ª‹ó”’—Ş•¶š‚©”»’è.
+  Description:  æŒ‡å®šæ–‡å­—ãŒç©ºç™½é¡æ–‡å­—ã‹åˆ¤å®š.
 
-  Arguments:    c             ”»’è‚·‚é•¶š
+  Arguments:    c             åˆ¤å®šã™ã‚‹æ–‡å­—
 
-  Returns:      ‹ó”’—Ş•¶š‚Å‚ ‚ê‚Î TRUE.
+  Returns:      ç©ºç™½é¡æ–‡å­—ã§ã‚ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 static BOOL STDi_IsSpace(int c)
 {
@@ -337,12 +337,12 @@ static BOOL STDi_IsSpace(int c)
 /*---------------------------------------------------------------------------*
   Name:         STDi_GetBitset
 
-  Description:  ƒrƒbƒgƒZƒbƒg‚Ìw’èˆÊ’u‚Ì“à—e‚ğæ“¾.
+  Description:  ãƒ“ãƒƒãƒˆã‚»ãƒƒãƒˆã®æŒ‡å®šä½ç½®ã®å†…å®¹ã‚’å–å¾—.
 
-  Arguments:    bitet         ƒrƒbƒgƒZƒbƒg”z—ñ
-                i             î•ñ‚ğæ“¾‚·‚éˆÊ’u
+  Arguments:    bitet         ãƒ“ãƒƒãƒˆã‚»ãƒƒãƒˆé…åˆ—
+                i             æƒ…å ±ã‚’å–å¾—ã™ã‚‹ä½ç½®
 
-  Returns:      ON ‚È‚ç TRUE, OFF ‚È‚ç FALSE.
+  Returns:      ON ãªã‚‰ TRUE, OFF ãªã‚‰ FALSE.
  *---------------------------------------------------------------------------*/
 inline static u32 STDi_GetBitset(const u32 *bitset, u32 i)
 {
@@ -354,10 +354,10 @@ inline static u32 STDi_GetBitset(const u32 *bitset, u32 i)
 /*---------------------------------------------------------------------------*
   Name:         STDi_SetBitset
 
-  Description:  ƒrƒbƒgƒZƒbƒg‚Ìw’èˆÊ’u‚ğON‚Éİ’è.
+  Description:  ãƒ“ãƒƒãƒˆã‚»ãƒƒãƒˆã®æŒ‡å®šä½ç½®ã‚’ONã«è¨­å®š.
 
-  Arguments:    bitet         ƒrƒbƒgƒZƒbƒg”z—ñ
-                i             ON‚É‚·‚éˆÊ’u
+  Arguments:    bitet         ãƒ“ãƒƒãƒˆã‚»ãƒƒãƒˆé…åˆ—
+                i             ONã«ã™ã‚‹ä½ç½®
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -371,11 +371,11 @@ inline static void STDi_SetBitset(u32 *bitset, u32 i)
 /*---------------------------------------------------------------------------*
   Name:         STDi_FillBitset
 
-  Description:  ƒrƒbƒgƒZƒbƒg‚Ìw’è”ÍˆÍ [a,b) ‚ğON‚Éİ’è.
+  Description:  ãƒ“ãƒƒãƒˆã‚»ãƒƒãƒˆã®æŒ‡å®šç¯„å›² [a,b) ã‚’ONã«è¨­å®š.
 
-  Arguments:    bitet         ƒrƒbƒgƒZƒbƒg”z—ñ
-                a             ŠJnˆÊ’u
-                b             I—¹ˆÊ’u
+  Arguments:    bitet         ãƒ“ãƒƒãƒˆã‚»ãƒƒãƒˆé…åˆ—
+                a             é–‹å§‹ä½ç½®
+                b             çµ‚äº†ä½ç½®
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -398,30 +398,30 @@ static void STDi_FillBitset(u32 *bitset, u32 a, u32 b)
 /*---------------------------------------------------------------------------*
   Name:         STD_TVSScanf
 
-  Description:  STD_TSScanf ‚Ì va_list ‘Î‰”Å.
-                Šî–{“I‚È‘®w’è‚É‘Î‰.
+  Description:  STD_TSScanf ã® va_list å¯¾å¿œç‰ˆ.
+                åŸºæœ¬çš„ãªæ›¸å¼æŒ‡å®šã«å¯¾å¿œ.
 
-  Arguments:    src           “ü—Í•¶š—ñ
-                fmt           ‘®§Œä•¶š—ñ
-                vlist         ƒpƒ‰ƒ[ƒ^
+  Arguments:    src           å…¥åŠ›æ–‡å­—åˆ—
+                fmt           æ›¸å¼åˆ¶å¾¡æ–‡å­—åˆ—
+                vlist         ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-  Returns:      ‘ã“ü‚³‚ê‚½’l‚Ì‘”.
-                –¢‘ã“ü‚Å‚ÌI’[‚ ‚é‚¢‚Í•s³‚ğŒŸo‚·‚ê‚Î -1.
+  Returns:      ä»£å…¥ã•ã‚ŒãŸå€¤ã®ç·æ•°.
+                æœªä»£å…¥ã§ã®çµ‚ç«¯ã‚ã‚‹ã„ã¯ä¸æ­£ã‚’æ¤œå‡ºã™ã‚Œã° -1.
  *---------------------------------------------------------------------------*/
 SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist)
 {
-    /* Æ‡•¶š—ñ‚Ì‹N“_ (%n ‚Ì‚½‚ß‚É•K—v) */
+    /* ç…§åˆæ–‡å­—åˆ—ã®èµ·ç‚¹ (%n ã®ãŸã‚ã«å¿…è¦) */
     const char *src_base = src;
-    /* ‘®‚Éˆê“x‚Å‚àƒ}ƒbƒ`‚µ‚½‚©‚Ç‚¤‚©. (•Ô‚è’l -1 ‚Éì—p) */
+    /* æ›¸å¼ã«ä¸€åº¦ã§ã‚‚ãƒãƒƒãƒã—ãŸã‹ã©ã†ã‹. (è¿”ã‚Šå€¤ -1 ã«ä½œç”¨) */
     BOOL    matched = FALSE;
-    /* ‘ã“ü‚ªÀs‚³‚ê‚½‰ñ”. (•Ô‚è’l >= 0 ‚Éì—p) */
+    /* ä»£å…¥ãŒå®Ÿè¡Œã•ã‚ŒãŸå›æ•°. (è¿”ã‚Šå€¤ >= 0 ã«ä½œç”¨) */
     int     stored = 0;
 
-    /* ‘®•¶š—ñ‚ğ 1 •¶š‚¸‚Â‰ğÍ */
+    /* æ›¸å¼æ–‡å­—åˆ—ã‚’ 1 æ–‡å­—ãšã¤è§£æ */
     while (*fmt)
     {
         char    c = *fmt;
-        /* ‹ó”’•¶š‚È‚ç‘®EÆ‡‚Æ‚àƒXƒLƒbƒv */
+        /* ç©ºç™½æ–‡å­—ãªã‚‰æ›¸å¼ãƒ»ç…§åˆã¨ã‚‚ã‚¹ã‚­ãƒƒãƒ— */
         if (STDi_IsSpace(c))
         {
             while (STDi_IsSpace(*fmt))
@@ -434,14 +434,14 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
             }
             continue;
         }
-        /* ’Êí•¶š‚È‚ç‚ÎŒµ–§‚Éˆê’v‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢ */
+        /* é€šå¸¸æ–‡å­—ãªã‚‰ã°å³å¯†ã«ä¸€è‡´ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ */
         else if (c != '%')
         {
             if (c != *src)
             {
                 break;
             }
-            /* SHIFT-JIS‚Ìê‡‚ÍŒã‘±ƒoƒCƒg‚à”»’è  */
+            /* SHIFT-JISã®å ´åˆã¯å¾Œç¶šãƒã‚¤ãƒˆã‚‚åˆ¤å®š  */
             if ((unsigned int)(((unsigned char)c ^ 0x20) - 0xA1) < 0x3C)
             {
                 if (c != *++src)
@@ -452,7 +452,7 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
             ++src;
             ++fmt;
         }
-        /* ƒGƒXƒP[ƒv‚É‚æ‚é '%' ‚Ì”»’è‚È‚ç’P‚É”äŠr */
+        /* ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ã«ã‚ˆã‚‹ '%' ã®åˆ¤å®šãªã‚‰å˜ã«æ¯”è¼ƒ */
         else if (fmt[1] == '%')
         {
             if (c != *src)
@@ -461,7 +461,7 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
             }
             fmt += 2;
         }
-        /* •ÏŠ·w’è‚È‚ç‚Î‘®‰ğÍŠJn */
+        /* å¤‰æ›æŒ‡å®šãªã‚‰ã°æ›¸å¼è§£æé–‹å§‹ */
         else
         {
             enum
@@ -480,20 +480,20 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
             int     flag = 0, width = 0, radix = 10;
             int     digit;
 
-            /* ‘ã“ü—}~ƒtƒ‰ƒO */
+            /* ä»£å…¥æŠ‘æ­¢ãƒ•ãƒ©ã‚° */
             c = *++fmt;
             if (c == '*')
             {
                 flag |= flag_ignored;
                 c = *++fmt;
             }
-            /* •w’è */
+            /* å¹…æŒ‡å®š */
             while ((c >= '0') && (c <= '9'))
             {
                 width = (width * 10) + c - '0';
                 c = *++fmt;
             }
-            /* •ÏŠ·Cü */
+            /* å¤‰æ›ä¿®é£¾ */
             switch (c)
             {
             case 'h':
@@ -513,37 +513,37 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
                     flag |= flag_l2, c = *++fmt;
                 break;
             }
-            /* •ÏŠ·Œ^ */
+            /* å¤‰æ›å‹ */
             switch (c)
             {
-            case 'd':                 /* •„†•t10i” */
+            case 'd':                 /* ç¬¦å·ä»˜10é€²æ•° */
                 radix = 10;
                 goto get_integer;
-            case 'i':                 /* •„†•t8/10/16i” */
+            case 'i':                 /* ç¬¦å·ä»˜8/10/16é€²æ•° */
                 radix = -1;
                 goto get_integer;
-            case 'o':                 /* •„†•t8i” */
+            case 'o':                 /* ç¬¦å·ä»˜8é€²æ•° */
                 radix = 8;
                 goto get_integer;
-            case 'u':                 /* •„†–³10i” */
+            case 'u':                 /* ç¬¦å·ç„¡10é€²æ•° */
                 radix = 10;
                 flag |= flag_unsigned;
                 goto get_integer;
-            case 'X':                 /* •„†–³16i” */
-            case 'x':                 /* •„†–³16i” */
-            case 'p':                 /* ƒ|ƒCƒ“ƒ^•ÏŠ·(•„†–³16i”) */
+            case 'X':                 /* ç¬¦å·ç„¡16é€²æ•° */
+            case 'x':                 /* ç¬¦å·ç„¡16é€²æ•° */
+            case 'p':                 /* ãƒã‚¤ãƒ³ã‚¿å¤‰æ›(ç¬¦å·ç„¡16é€²æ•°) */
                 radix = 16;
                 flag |= flag_unsigned;
                 goto get_integer;
-            case 's':                 /* ”ñ‹ó”’•¶š‚Ü‚Å‚Ì•¶š—ñ */
-            case 'c':                 /* w’è•‚Ì‚İ‚Ì•¶š—ñ */
+            case 's':                 /* éç©ºç™½æ–‡å­—ã¾ã§ã®æ–‡å­—åˆ— */
+            case 'c':                 /* æŒ‡å®šå¹…ã®ã¿ã®æ–‡å­—åˆ— */
                 goto store_string;
 
-            case '[':                 /* •¶šƒNƒ‰ƒX */
+            case '[':                 /* æ–‡å­—ã‚¯ãƒ©ã‚¹ */
                 goto store_char_class;
 
-            case 'n':                 /* ƒ}ƒbƒ`ˆÊ’u‚ÌŠi”[ */
-                /* ‘ã“ü‰ñ”‚É‚ÍŠñ—^‚µ‚È‚¢‚Ì‚Å‚±‚±‚ÅŒ¸‚¶‚Ä‚¨‚­ */
+            case 'n':                 /* ãƒãƒƒãƒä½ç½®ã®æ ¼ç´ */
+                /* ä»£å…¥å›æ•°ã«ã¯å¯„ä¸ã—ãªã„ã®ã§ã“ã“ã§æ¸›ã˜ã¦ãŠã */
                 if (!(flag & flag_ignored))
                 {
                     --stored;
@@ -554,19 +554,19 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
             }
 
           invalid:
-            /* ‰ğÍ‚ªc”O‚ÈŒ‹‰Ê‚ÉI‚í‚Á‚½ */
+            /* è§£æãŒæ®‹å¿µãªçµæœã«çµ‚ã‚ã£ãŸ */
             break;
 
           get_integer:
-            /* ®”‚Ì“ü—Íˆ— */
+            /* æ•´æ•°ã®å…¥åŠ›å‡¦ç† */
             ++fmt;
             c = *src;
-            /* ‹ó”’‚ÌƒXƒLƒbƒv */
+            /* ç©ºç™½ã®ã‚¹ã‚­ãƒƒãƒ— */
             while (STDi_IsSpace(c))
             {
                 c = *++src;
             }
-            /* •„†‚Ìæ“¾ */
+            /* ç¬¦å·ã®å–å¾— */
             for (;; c = *++src)
             {
                 if (c == '+')
@@ -575,13 +575,13 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
                 }
                 else if (c == '-')
                 {
-                    /* –³•„†Œ^‚Å‚Ì '-' ‚Í•s³ */
+                    /* ç„¡ç¬¦å·å‹ã§ã® '-' ã¯ä¸æ­£ */
                     if ((flag & flag_unsigned) != 0)
                     {
                         /*
-                         * ...‚Æ‚İ‚È‚·‚Ì‚ª³‚µ‚¢‚Í‚¸‚¾‚ª,
-                         * gcc ‚â CW ‚Å‚Í‚±‚ê‚ğ–³‹‚µ‚Ä‚¢‚é‚Ì‚Å
-                         * Œ»ó‚Å‚Í SDK ‚à‚»‚ê‚É’Ç.
+                         * ...ã¨ã¿ãªã™ã®ãŒæ­£ã—ã„ã¯ãšã ãŒ,
+                         * gcc ã‚„ CW ã§ã¯ã“ã‚Œã‚’ç„¡è¦–ã—ã¦ã„ã‚‹ã®ã§
+                         * ç¾çŠ¶ã§ã¯ SDK ã‚‚ãã‚Œã«è¿½éš.
                          */
                         //goto invalid;
                     }
@@ -592,7 +592,7 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
                     break;
                 }
             }
-            /* ®”‚Ì©“®”»’è (%i) */
+            /* æ•´æ•°ã®è‡ªå‹•åˆ¤å®š (%i) */
             if (radix == -1)
             {
                 if (c != '0')
@@ -608,13 +608,13 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
                     radix = 8;
                 }
             }
-            /* 16i”‚È‚ç "^(0[xX])?" ‚ğƒXƒLƒbƒv */
+            /* 16é€²æ•°ãªã‚‰ "^(0[xX])?" ã‚’ã‚¹ã‚­ãƒƒãƒ— */
             if ((radix == 16) && (c == '0') && ((src[1] == 'x') || (src[1] == 'X')))
             {
                 src += 2;
                 c = *src;
             }
-            /* ®”æ“¾ */
+            /* æ•´æ•°å–å¾— */
             if (width == 0)
             {
                 width = 0x7FFFFFFF;
@@ -645,20 +645,20 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
                 c = *++src;
                 val = val * radix + d;
             }
-            /* –³“ü—Í‚Í•s³ */
+            /* ç„¡å…¥åŠ›ã¯ä¸æ­£ */
             if (digit == 0)
             {
                 break;
             }
-            /* •„†’²® */
+            /* ç¬¦å·èª¿æ•´ */
             if (flag & flag_minus)
             {
                 val = (u64)(val * -1);
             }
-            /* ­‚È‚­‚Æ‚à•ÏŠ·‚Í¬Œ÷‚µ‚½ */
+            /* å°‘ãªãã¨ã‚‚å¤‰æ›ã¯æˆåŠŸã—ãŸ */
             matched = TRUE;
           store_integer:
-            /* ‘ã“ü */
+            /* ä»£å…¥ */
             if (!(flag & flag_ignored))
             {
                 ++stored;
@@ -682,11 +682,11 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
             continue;
 
           store_string:
-            /* •¶š—ñ‚Ì‘ã“üˆ— */
+            /* æ–‡å­—åˆ—ã®ä»£å…¥å‡¦ç† */
             {
                 char   *dst = NULL;
                 ++fmt;
-                /* ‚±‚Ì“_‚Å­‚È‚­‚Æ‚à•ÏŠ·‚Í¬Œ÷‚µ‚½ */
+                /* ã“ã®æ™‚ç‚¹ã§å°‘ãªãã¨ã‚‚å¤‰æ›ã¯æˆåŠŸã—ãŸ */
                 matched = TRUE;
                 if (!(flag & flag_ignored))
                 {
@@ -694,8 +694,8 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
                     dst = va_arg(vlist, char *);
                 }
                 /*
-                 * s ‚È‚ç‹ó”’‚Ü‚ÅŒŸõ‚µ‚Ä '\0' ‚ğ’Ç‰Á
-                 * c ‚È‚çw’è•‚Ü‚ÅŒŸõ
+                 * s ãªã‚‰ç©ºç™½ã¾ã§æ¤œç´¢ã—ã¦ '\0' ã‚’è¿½åŠ 
+                 * c ãªã‚‰æŒ‡å®šå¹…ã¾ã§æ¤œç´¢
                  */
                 if (c == 's')
                 {
@@ -741,7 +741,7 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
 
           store_char_class:
             ++fmt;
-            /* •¶šƒNƒ‰ƒX‚Ì‘ã“üˆ— */
+            /* æ–‡å­—ã‚¯ãƒ©ã‚¹ã®ä»£å…¥å‡¦ç† */
             {
                 char   *dst = NULL;
 
@@ -755,19 +755,19 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
                     matchcond = 0;
                     ++fmt;
                 }
-                /* s“ªƒGƒXƒP[ƒv */
+                /* è¡Œé ­ã‚¨ã‚¹ã‚±ãƒ¼ãƒ— */
                 if (*fmt == ']')
                 {
                     STDi_SetBitset(bitset, (u8)*fmt);
                     ++fmt;
                 }
-                /* •¶šƒNƒ‰ƒX‚Ì‰ğÍ */
+                /* æ–‡å­—ã‚¯ãƒ©ã‚¹ã®è§£æ */
                 for (;; ++fmt)
                 {
-                    /* I’[‚ÌŒŸo */
+                    /* çµ‚ç«¯ã®æ¤œå‡º */
                     if (!*fmt || (*fmt == ']'))
                     {
-                        /* ”ÍˆÍw’è’†‚ÌI’[‚Í’P‘Ì‚Ì•¶š‚Æ‚µ‚Äˆµ‚¤ */
+                        /* ç¯„å›²æŒ‡å®šä¸­ã®çµ‚ç«¯ã¯å˜ä½“ã®æ–‡å­—ã¨ã—ã¦æ‰±ã† */
                         if (in_range)
                         {
                             STDi_SetBitset(bitset, from);
@@ -779,10 +779,10 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
                         }
                         break;
                     }
-                    /* ’P•¶š‚ ‚é‚¢‚Í”ÍˆÍw’è‚Ìn’[ */
+                    /* å˜æ–‡å­—ã‚ã‚‹ã„ã¯ç¯„å›²æŒ‡å®šã®å§‹ç«¯ */
                     else if (!in_range)
                     {
-                        /* ”ÍˆÍw’è‚ÌŠJn */
+                        /* ç¯„å›²æŒ‡å®šã®é–‹å§‹ */
                         if ((from != 0) && (*fmt == '-'))
                         {
                             in_range = TRUE;
@@ -793,18 +793,18 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
                             from = (u8)*fmt;
                         }
                     }
-                    /* ”ÍˆÍw’è‚ÌI’[ */
+                    /* ç¯„å›²æŒ‡å®šã®çµ‚ç«¯ */
                     else
                     {
                         u32     to = (u8)*fmt;
-                        /* •s³‚È”ÍˆÍw’è‚Í•ÊŒÂ‚Ì•¶šw’è‚Æ‚µ‚Äˆµ‚¤ */
+                        /* ä¸æ­£ãªç¯„å›²æŒ‡å®šã¯åˆ¥å€‹ã®æ–‡å­—æŒ‡å®šã¨ã—ã¦æ‰±ã† */
                         if (from > to)
                         {
                             STDi_SetBitset(bitset, from);
                             STDi_SetBitset(bitset, (u32)'-');
                             STDi_SetBitset(bitset, to);
                         }
-                        /* I’[‚Ì•¶š‚à”ÍˆÍ‚ÉŠÜ‚ñ‚Å‚Ü‚Æ‚ß‚Äİ’è */
+                        /* çµ‚ç«¯ã®æ–‡å­—ã‚‚ç¯„å›²ã«å«ã‚“ã§ã¾ã¨ã‚ã¦è¨­å®š */
                         else
                         {
                             STDi_FillBitset(bitset, from, to + 1UL);
@@ -813,8 +813,8 @@ SDK_WEAK_SYMBOL int STD_TVSScanf(const char *src, const char *fmt, va_list vlist
                         from = 0;
                     }
                 }
-                /* •¶šƒNƒ‰ƒX‚Æ•¶š—ñ‚ÌÆ‡ */
-                /* ‚±‚Ì“_‚Å­‚È‚­‚Æ‚à•ÏŠ·‚Í¬Œ÷‚µ‚½ */
+                /* æ–‡å­—ã‚¯ãƒ©ã‚¹ã¨æ–‡å­—åˆ—ã®ç…§åˆ */
+                /* ã“ã®æ™‚ç‚¹ã§å°‘ãªãã¨ã‚‚å¤‰æ›ã¯æˆåŠŸã—ãŸ */
                 matched = TRUE;
                 if (!(flag & flag_ignored))
                 {

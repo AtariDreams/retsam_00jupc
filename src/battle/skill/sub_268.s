@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_268.s
- *@brief	�퓬�V�[�P���X
- *			��Ԉُ�񕜃A�C�e�����g�p�����V�[�P���X�i�ΐ�g���[�i�[�j
+ *@brief	戦闘シーケンス
+ *			状態異常回復アイテムを使用したシーケンス（対戦トレーナー）
  *@author	HisashiSogabe
  *@data		2006.06.02
  *

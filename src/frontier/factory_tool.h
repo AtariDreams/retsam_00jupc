@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	factory_tool.h
- * @brief	ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[ŠÖ˜Aƒc[ƒ‹—Þ
+ * @brief	ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼é–¢é€£ãƒ„ãƒ¼ãƒ«é¡ž
  * @author	Satoshi Nohara
  * @date	2007.03.27
  *
- * ¼“c‚³‚ñ‚©‚çˆøŒp‚¬
+ * æ¾ç”°ã•ã‚“ã‹ã‚‰å¼•ç¶™ãŽ
  */
 //==============================================================================
 #ifndef __FACTORY_TOOL_H__
@@ -17,25 +17,25 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^‚©‚ç‚Ì’Šo”ÍˆÍ
+///ãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã®æŠ½å‡ºç¯„å›²
 typedef struct{
-	u16 trainer_index;	///<ƒgƒŒ[ƒi[Index(‚±‚ÌIndex–¢–ž‚ÌƒgƒŒ[ƒi[‚ª‘ÎÛ)
-	u16 start;			///<ƒ|ƒPƒ‚ƒ“IndexŠJŽnNo
-	u16 end;			///<ƒ|ƒPƒ‚ƒ“IndexI—¹No
-	u8 pow_rnd;			///<ƒpƒ[—”
-	u8 rankup_flag;		///<ƒ‰ƒ“ƒNƒAƒbƒv‰Â”\‚©
+	u16 trainer_index;	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼Index(ã“ã®Indexæœªæº€ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒå¯¾è±¡)
+	u16 start;			///<ãƒã‚±ãƒ¢ãƒ³Indexé–‹å§‹No
+	u16 end;			///<ãƒã‚±ãƒ¢ãƒ³Indexçµ‚äº†No
+	u8 pow_rnd;			///<ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
+	u8 rankup_flag;		///<ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—å¯èƒ½ã‹
 }FACTORY_POKE_RANGE;
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void Factory_EnemyLapAllTrainerIndexGet( u8 type, int lap, u16 trainer_index[], u8 num );
 extern u32 Factory_PokemonParamCreate(B_TOWER_POKEMON *pwd,
@@ -63,7 +63,7 @@ extern BOOL Factory_PokemonIndexCreate(const u16 check_pokeno[], const u16 check
 /******************************************************************************/
 //==============================================================================
 //
-//	04.07.11’Ç‰Á
+//	04.07.11è¿½åŠ 
 //
 //==============================================================================
 #include "battle/battle_common.h"
@@ -77,81 +77,81 @@ extern BOOL Factory_PokemonIndexCreate(const u16 check_pokeno[], const u16 check
 
 //============================================================================================
 //
-//	ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[@ƒXƒNƒŠƒvƒgƒ[ƒN
+//	ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯
 //
 //============================================================================================
 typedef struct{
 
-	int	heapID;											//ƒq[ƒv
+	int	heapID;											//ãƒ’ãƒ¼ãƒ—
 
-	u8	type;											//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
-	u8	level;											//LV50AƒI[ƒvƒ“
-	u8	round;											//¡‰½l–ÚH
-	u8	mode;											//ƒŒƒ“ƒ^ƒ‹AŒðŠ·
+	u8	type;											//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒžãƒ«ãƒã€wifiãƒžãƒ«ãƒ
+	u8	level;											//LV50ã€ã‚ªãƒ¼ãƒ—ãƒ³
+	u8	round;											//ä»Šä½•äººç›®ï¼Ÿ
+	u8	mode;											//ãƒ¬ãƒ³ã‚¿ãƒ«ã€äº¤æ›
 
-	u16	trade_count;									//ŒðŠ·‰ñ”
-	u8	clear_flag;										//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO(0‚©1)
-	u8	brain_appear_msg_flag;							//ƒuƒŒ[ƒ““oêƒƒbƒZ[ƒW•\Ž¦‚µ‚½‚©
+	u16	trade_count;									//äº¤æ›å›žæ•°
+	u8	clear_flag;										//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°(0ã‹1)
+	u8	brain_appear_msg_flag;							//ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã—ãŸã‹
 
-	u16	rensyou;										//Œ»Ý‚Ì˜AŸ”
-	u16	lap;											//Œ»Ý‚ÌŽü‰ñ”
+	u16	rensyou;										//ç¾åœ¨ã®é€£å‹æ•°
+	u16	lap;											//ç¾åœ¨ã®å‘¨å›žæ•°
 
-	u32	win_cnt;										//Œ»Ý‚Ü‚Å‚Ì‘Ÿ—˜”
-	int winlose_flag;									//Ÿ‚¿•‰‚¯ƒtƒ‰ƒO
+	u32	win_cnt;										//ç¾åœ¨ã¾ã§ã®ç·å‹åˆ©æ•°
+	int winlose_flag;									//å‹ã¡è² ã‘ãƒ•ãƒ©ã‚°
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
-	u16 tr_index[FACTORY_LAP_MULTI_ENEMY_MAX];			//ƒgƒŒ[ƒi[indexƒe[ƒuƒ‹(*2=ƒ_ƒuƒ‹)
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	u16 tr_index[FACTORY_LAP_MULTI_ENEMY_MAX];			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼indexãƒ†ãƒ¼ãƒ–ãƒ«(*2=ãƒ€ãƒ–ãƒ«)
 
-	//‘Îí‘ŠŽèƒf[ƒ^Ši”[êŠ
+	//å¯¾æˆ¦ç›¸æ‰‹ãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
 	B_TOWER_PARTNER_DATA tr_data[2];
 
-	//ƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u16 rental_poke_index[FACTORY_RENTAL_POKE_MAX];		//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
-	u8	rental_pow_rnd[FACTORY_RENTAL_POKE_MAX];		//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
-	u32 rental_personal_rnd[FACTORY_RENTAL_POKE_MAX];	//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”
+	//ãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16 rental_poke_index[FACTORY_RENTAL_POKE_MAX];		//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
+	u8	rental_pow_rnd[FACTORY_RENTAL_POKE_MAX];		//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
+	u32 rental_personal_rnd[FACTORY_RENTAL_POKE_MAX];	//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°
 	B_TOWER_POKEMON rental_poke[FACTORY_RENTAL_POKE_MAX];
-	u16 dummy_rental_eom;								//Žb’èˆ—(EOM‚ª2byte—]Œv‚É‘‚«ž‚Ü‚ê‚é‚½‚ß)
+	u16 dummy_rental_eom;								//æš«å®šå‡¦ç†(EOMãŒ2byteä½™è¨ˆã«æ›¸ãè¾¼ã¾ã‚Œã‚‹ãŸã‚)
 
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u16 enemy_poke_index[FACTORY_ENEMY_POKE_MAX];		//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
-	u8	enemy_pow_rnd[FACTORY_ENEMY_POKE_MAX];			//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
-	u32 enemy_personal_rnd[FACTORY_ENEMY_POKE_MAX];		//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”
-	B_TOWER_POKEMON enemy_poke[FACTORY_ENEMY_POKE_MAX];	//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u16 dummy_enemy_eom;								//Žb’èˆ—(EOM‚ª2byte—]Œv‚É‘‚«ž‚Ü‚ê‚é‚½‚ß)
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16 enemy_poke_index[FACTORY_ENEMY_POKE_MAX];		//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
+	u8	enemy_pow_rnd[FACTORY_ENEMY_POKE_MAX];			//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
+	u32 enemy_personal_rnd[FACTORY_ENEMY_POKE_MAX];		//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°
+	B_TOWER_POKEMON enemy_poke[FACTORY_ENEMY_POKE_MAX];	//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16 dummy_enemy_eom;								//æš«å®šå‡¦ç†(EOMãŒ2byteä½™è¨ˆã«æ›¸ãè¾¼ã¾ã‚Œã‚‹ãŸã‚)
 
-	//ƒtƒ@ƒNƒgƒŠ[ê—p‰æ–Ê‚Ö“n‚·—p‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	POKEPARTY* p_m_party;								//–¡•û
-	POKEPARTY* p_e_party;								//“G
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼å°‚ç”¨ç”»é¢ã¸æ¸¡ã™ç”¨ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	POKEPARTY* p_m_party;								//å‘³æ–¹
+	POKEPARTY* p_e_party;								//æ•µ
 	u16 ret_work[FACTORY_RET_WORK_MAX];
-	u16 temoti_poke_index[FACTORY_PARTY_POKE_MAX];		//ŽèŽ‚¿‚É‚à‚Á‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
+	u16 temoti_poke_index[FACTORY_PARTY_POKE_MAX];		//æ‰‹æŒã¡ã«ã‚‚ã£ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
 
-	FACTORYDATA* factory_savedata;						//ƒtƒ@ƒNƒgƒŠ[ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	FACTORYDATA* factory_savedata;						//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	SAVEDATA* sv;
 	void* p_work;
 
-	TCB_PTR	rail_move_tcb;								//ƒ}ƒbƒv‚ÌƒŒ[ƒ‹“®ìTCB
+	TCB_PTR	rail_move_tcb;								//ãƒžãƒƒãƒ—ã®ãƒ¬ãƒ¼ãƒ«å‹•ä½œTCB
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//’ÊM—pFƒf[ƒ^ƒoƒbƒtƒ@
+	//é€šä¿¡ç”¨ï¼šãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
 	u16	buf[FACTORY_COMM_BUF_LEN];
 
-	//’ÊM—pFŠî–{î•ñ
-	u8	pair_retire_flag;									//ƒŠƒ^ƒCƒ„‚ð‘I‚ñ‚¾‚©=1
-	u8	pair_trade_yesno_flag;								//ŒðŠ·‚µ‚½‚¢‚©(0=‚µ‚½‚¢A1=‚µ‚½‚­‚È‚¢)
-	u16	pair_lap;											//Žü‰ñ”
+	//é€šä¿¡ç”¨ï¼šåŸºæœ¬æƒ…å ±
+	u8	pair_retire_flag;									//ãƒªã‚¿ã‚¤ãƒ¤ã‚’é¸ã‚“ã ã‹=1
+	u8	pair_trade_yesno_flag;								//äº¤æ›ã—ãŸã„ã‹(0=ã—ãŸã„ã€1=ã—ãŸããªã„)
+	u16	pair_lap;											//å‘¨å›žæ•°
 
-	u16	pair_trade_count;									//ŒðŠ·‰ñ”
-	u16	pair_rensyou;										//Œ»Ý‚Ì˜AŸ”(27l–Ú‚Æ‚©‚Ì•\Ž¦‚É•K—v)
+	u16	pair_trade_count;									//äº¤æ›å›žæ•°
+	u16	pair_rensyou;										//ç¾åœ¨ã®é€£å‹æ•°(27äººç›®ã¨ã‹ã®è¡¨ç¤ºã«å¿…è¦)
 
-	//’ÊM—pFƒŒƒ“ƒ^ƒ‹ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u16 pair_rental_poke_index[FACTORY_RENTAL_POKE_MAX];	//ƒ|ƒPƒ‚ƒ“index_tbl
-	u8	pair_rental_pow_rnd[FACTORY_RENTAL_POKE_MAX];		//ƒ|ƒPƒ‚ƒ“‚Ìƒpƒ[—”
-	u32 pair_rental_personal_rnd[FACTORY_RENTAL_POKE_MAX];	//ƒ|ƒPƒ‚ƒ“‚ÌŒÂ«—”
+	//é€šä¿¡ç”¨ï¼šãƒ¬ãƒ³ã‚¿ãƒ«ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16 pair_rental_poke_index[FACTORY_RENTAL_POKE_MAX];	//ãƒã‚±ãƒ¢ãƒ³index_tbl
+	u8	pair_rental_pow_rnd[FACTORY_RENTAL_POKE_MAX];		//ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°
+	u32 pair_rental_personal_rnd[FACTORY_RENTAL_POKE_MAX];	//ãƒã‚±ãƒ¢ãƒ³ã®å€‹æ€§ä¹±æ•°
 	B_TOWER_POKEMON pair_rental_poke[FACTORY_RENTAL_POKE_MAX];
-	u16 dummy_pair_rental_eom;							//Žb’èˆ—(EOM‚ª2byte—]Œv‚É‘‚«ž‚Ü‚ê‚é‚½‚ß)
+	u16 dummy_pair_rental_eom;							//æš«å®šå‡¦ç†(EOMãŒ2byteä½™è¨ˆã«æ›¸ãè¾¼ã¾ã‚Œã‚‹ãŸã‚)
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 	
-	//’ÊM‚Ì‘—ŽóMƒoƒbƒtƒ@
-	u8 recieve_count;										//ŽóMƒf[ƒ^‚ðŽó‚¯Žæ‚Á‚½l”‚ðƒJƒEƒ“ƒg
+	//é€šä¿¡ã®é€å—ä¿¡ãƒãƒƒãƒ•ã‚¡
+	u8 recieve_count;										//å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã£ãŸäººæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 
 	u32 dummy_work;
 }FACTORY_SCRWORK;
@@ -159,7 +159,7 @@ typedef struct{
 
 //============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //============================================================================================
 extern u8 Factory_GetMinePokeNum( u8 type );

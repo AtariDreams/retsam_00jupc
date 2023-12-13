@@ -1,6 +1,6 @@
 /**
  *	@file	fld_tmap.c
- *	@brief	ƒ^ƒEƒ“ƒ}ƒbƒv—p@ƒtƒB[ƒ‹ƒhí’“ŠÖ”ŒQ
+ *	@brief	ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ç”¨ã€€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¸¸é§é–¢æ•°ç¾¤
  *	@author	Miyuki Iwasawa
  *	@date	06.04.05
  */
@@ -21,18 +21,18 @@
 #include "system/mystatus.h"
 #include "application/townmap.h"
 
-//pl ”j‚ê‚½¢ŠEƒ][ƒ“•ÊƒuƒƒbƒN”z’uæ“ªÀ•W
+//pl ç ´ã‚ŒãŸä¸–ç•Œã‚¾ãƒ¼ãƒ³åˆ¥ãƒ–ãƒ­ãƒƒã‚¯é…ç½®å…ˆé ­åº§æ¨™
 #include "../fielddata/tornworld/field_tornworld_pos.dat"
 
-///ƒZ[ƒuƒtƒ‰ƒOˆøŒp‚¬ƒf[ƒ^\‘¢‘Ì
+///ã‚»ãƒ¼ãƒ–ãƒ•ãƒ©ã‚°å¼•ç¶™ããƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct {
-	u8	fk01;	///<ƒtƒ‰ƒOí•Êƒtƒ‰ƒO
-	u8	fidx01;	///<ƒtƒ‰ƒOQÆƒCƒ“ƒfƒbƒNƒX
-	u8	fk02;	///<ƒtƒ‰ƒOí•Êƒtƒ‰ƒO
-	u8	fidx02;	///<ƒtƒ‰ƒOQÆƒCƒ“ƒfƒbƒNƒX
+	u8	fk01;	///<ãƒ•ãƒ©ã‚°ç¨®åˆ¥ãƒ•ãƒ©ã‚°
+	u8	fidx01;	///<ãƒ•ãƒ©ã‚°å‚ç…§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	fk02;	///<ãƒ•ãƒ©ã‚°ç¨®åˆ¥ãƒ•ãƒ©ã‚°
+	u8	fidx02;	///<ãƒ•ãƒ©ã‚°å‚ç…§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 }TMAP_FLAGS_DATA;
 
-///ƒ^ƒEƒ“ƒ}ƒbƒv@“’…ƒtƒ‰ƒOƒ`ƒFƒbƒN
+///ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ã€€åˆ°ç€ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 static const u8 arrive_id[TMAP_ARRIVEDATA_MAX] = {
  FLAG_ARRIVE_T01,
  FLAG_ARRIVE_T02,
@@ -59,11 +59,11 @@ static const u8 arrive_id[TMAP_ARRIVEDATA_MAX] = {
 static void tmap_FlagGet(FIELDSYS_WORK* fsys,TOWNMAP_PARAM *tp,const char* path);
 
 /**
- *	@brief	ƒtƒB[ƒ‹ƒh ƒ^ƒEƒ“ƒ}ƒbƒvƒ‚ƒWƒ…[ƒ‹ƒf[ƒ^ƒZƒbƒg
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
  *	@param	fsys FIELDSYS_WORK *
- *	@param	tp	TOWNMAP_PARAM*:ƒf[ƒ^‚ğŠi”[‚·‚é\‘¢‘ÌŒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	mode	u8:ŒÄ‚Ño‚µƒ‚[ƒh(enum TMAP_MODE)
+ *	@param	tp	TOWNMAP_PARAM*:ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹æ§‹é€ ä½“å‹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	mode	u8:å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰(enum TMAP_MODE)
  */
 void FieldTMap_CallDataSet(FIELDSYS_WORK* fsys,TOWNMAP_PARAM *tp,int mode)
 {
@@ -80,7 +80,7 @@ void FieldTMap_CallDataSet(FIELDSYS_WORK* fsys,TOWNMAP_PARAM *tp,int mode)
 	x = Player_NowGPosXGet( fsys->player );
 	z = Player_NowGPosZGet( fsys->player );
 	
-	{	//pl ”j‚ê‚½¢ŠE‚ğl—¶ 080517 kaga
+	{	//pl ç ´ã‚ŒãŸä¸–ç•Œã‚’è€ƒæ…® 080517 kaga
 		int max = DATA_FIELD_TORNWORLD_ZONE_BLOCK_MAX - 1;
 		LOCATION_WORK *location = Situation_GetNowLocation(sit);
 		zoneID = location->zone_id;
@@ -105,11 +105,11 @@ void FieldTMap_CallDataSet(FIELDSYS_WORK* fsys,TOWNMAP_PARAM *tp,int mode)
 		tp->player_z = escape->grid_z;
 	}
 	
-	//©‹@‚Ì«•Ê
+	//è‡ªæ©Ÿã®æ€§åˆ¥
     pMyStatus = SaveData_GetMyStatus(GameSystem_GetSaveData(fsys));
 	tp->player_sex = MyStatus_GetMySex(pMyStatus); 
 	
-	//©‹@‚ÌˆÚ“®ƒƒOæ“¾
+	//è‡ªæ©Ÿã®ç§»å‹•ãƒ­ã‚°å–å¾—
 	fmark= Situation_GetTMFootMark(SaveData_GetSituation(fsys->savedata));
 	
 	pos = (fmark->NowPoint-2+FOOTMARK_NUM)%FOOTMARK_NUM;
@@ -129,18 +129,18 @@ void FieldTMap_CallDataSet(FIELDSYS_WORK* fsys,TOWNMAP_PARAM *tp,int mode)
 		}
 	}
 
-	//‰B‚µƒ}ƒbƒvoŒ»ƒtƒ‰ƒOæ“¾
+	//éš ã—ãƒãƒƒãƒ—å‡ºç¾ãƒ•ãƒ©ã‚°å–å¾—
 	for(i = 0;i < 4;i++){
 		if(SysWork_HideMapWorkCheck( ev, i)){
 			tp->view_f |= (0x01 << i);
 		}
 	}
-	//“’…ƒtƒ‰ƒOæ“¾
+	//åˆ°ç€ãƒ•ãƒ©ã‚°å–å¾—
 	for(i = 0;i < TMAP_ARRIVEDATA_MAX;i++){
 		tp->arrive[i] = SysFlag_ArriveGet( ev,arrive_id[i]);
 	}
 	
-	//Šeíƒtƒ‰ƒOæ“¾
+	//å„ç¨®ãƒ•ãƒ©ã‚°å–å¾—
 	tmap_FlagGet(fsys,tp,"data/tmap_flags.dat");
 	
 	tp->mode = mode;
@@ -171,11 +171,11 @@ void FieldTMap_CallDataSet(FIELDSYS_WORK* fsys,TOWNMAP_PARAM *tp,int mode)
 	}
 //	tp->zone_id = GetNowZoneID(fsys);
 	
-	//©‹@‚Ì«•Ê
+	//è‡ªæ©Ÿã®æ€§åˆ¥
     pMyStatus = SaveData_GetMyStatus(GameSystem_GetSaveData(fsys));
 	tp->player_sex = MyStatus_GetMySex(pMyStatus); 
 	
-	//©‹@‚ÌˆÚ“®ƒƒOæ“¾
+	//è‡ªæ©Ÿã®ç§»å‹•ãƒ­ã‚°å–å¾—
 	fmark= Situation_GetTMFootMark(SaveData_GetSituation(fsys->savedata));
 	
 	pos = (fmark->NowPoint-2+FOOTMARK_NUM)%FOOTMARK_NUM;
@@ -195,18 +195,18 @@ void FieldTMap_CallDataSet(FIELDSYS_WORK* fsys,TOWNMAP_PARAM *tp,int mode)
 		}
 	}
 
-	//‰B‚µƒ}ƒbƒvoŒ»ƒtƒ‰ƒOæ“¾
+	//éš ã—ãƒãƒƒãƒ—å‡ºç¾ãƒ•ãƒ©ã‚°å–å¾—
 	for(i = 0;i < 4;i++){
 		if(SysWork_HideMapWorkCheck( ev, i)){
 			tp->view_f |= (0x01 << i);
 		}
 	}
-	//“’…ƒtƒ‰ƒOæ“¾
+	//åˆ°ç€ãƒ•ãƒ©ã‚°å–å¾—
 	for(i = 0;i < TMAP_ARRIVEDATA_MAX;i++){
 		tp->arrive[i] = SysFlag_ArriveGet( ev,arrive_id[i]);
 	}
 	
-	//Šeíƒtƒ‰ƒOæ“¾
+	//å„ç¨®ãƒ•ãƒ©ã‚°å–å¾—
 	tmap_FlagGet(fsys,tp,"data/tmap_flags.dat");
 	
 	tp->mode = mode;
@@ -214,11 +214,11 @@ void FieldTMap_CallDataSet(FIELDSYS_WORK* fsys,TOWNMAP_PARAM *tp,int mode)
 #endif
 
 /**
- *	@brief	ƒtƒ‰ƒOæ“¾
+ *	@brief	ãƒ•ãƒ©ã‚°å–å¾—
  *
  *	@param	fsys FIELDSYS_WORK *
- *	@param	tp	TOWNMAP_PARAM*:ƒf[ƒ^‚ğŠi”[‚·‚é\‘¢‘ÌŒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@param	mode	u8:ŒÄ‚Ño‚µƒ‚[ƒh(enum TMAP_MODE)
+ *	@param	tp	TOWNMAP_PARAM*:ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹æ§‹é€ ä½“å‹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@param	mode	u8:å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰(enum TMAP_MODE)
  */
 static void tmap_FlagGet(FIELDSYS_WORK* fsys,TOWNMAP_PARAM *tp,const char* path)
 {
@@ -235,44 +235,44 @@ static void tmap_FlagGet(FIELDSYS_WORK* fsys,TOWNMAP_PARAM *tp,const char* path)
 		GF_ASSERT(0);
 		return;
 	}
-	//ƒf[ƒ^”æ“¾
+	//ãƒ‡ãƒ¼ã‚¿æ•°å–å¾—
 	ret = FS_ReadFile(&fp,&dat_num,4);
 	GF_ASSERT(ret >= 0 && "ERROR:tmap flags data num can't read");
 	
-	//ƒeƒ“ƒ|ƒ‰ƒŠƒƒ‚ƒŠŠm•Û
+	//ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¡ãƒ¢ãƒªç¢ºä¿
 	src = sys_AllocMemoryLo(HEAPID_WORLD,sizeof(TMAP_FLAGS_DATA));
 	MI_CpuClear8(src,sizeof(TMAP_FLAGS_DATA));
 
-	tp->flag_num = dat_num;	//”‚ğ•Û‘¶
+	tp->flag_num = dat_num;	//æ•°ã‚’ä¿å­˜
 
 	for(i = 0;i < dat_num;i++){
 		wp = &(tp->flags[i]);
 		ret = FS_ReadFile(&fp,src,sizeof(TMAP_FLAGS_DATA));
 
-		//ƒtƒ‰ƒOæ“¾
+		//ãƒ•ãƒ©ã‚°å–å¾—
 		switch(src->fk01){
-		case 1:	//“’…ƒtƒ‰ƒO
+		case 1:	//åˆ°ç€ãƒ•ãƒ©ã‚°
 			wp->ex01 = SysFlag_ArriveGet(event,src->fidx01);
 			wp->ex01_f = 1;
 			break;
-		case 2:	//ƒXƒNƒŠƒvƒgƒtƒ‰ƒO
+		case 2:	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ãƒ©ã‚°
 			wp->ex01 = CheckEventFlag(fsys,src->fidx01);
 			wp->ex01_f = 1;
 			break;
 		}
 		switch(src->fk02){
-		case 1:	//“’…ƒtƒ‰ƒO
+		case 1:	//åˆ°ç€ãƒ•ãƒ©ã‚°
 			wp->ex02 = SysFlag_ArriveGet(event,src->fidx02);
 			wp->ex02_f = 1;
 			break;
-		case 2:	//ƒXƒNƒŠƒvƒgƒtƒ‰ƒO
+		case 2:	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ãƒ©ã‚°
 			wp->ex02 = CheckEventFlag(fsys,src->fidx02);
 			wp->ex02_f = 1;
 			break;
 		}
 	}
 	(void)FS_CloseFile(&fp);
-	sys_FreeMemoryEz(src);	//ƒeƒ“ƒ|ƒ‰ƒŠ‰ğ•ú
+	sys_FreeMemoryEz(src);	//ãƒ†ãƒ³ãƒãƒ©ãƒªè§£æ”¾
 	return;
 }
 

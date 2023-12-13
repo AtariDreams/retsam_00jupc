@@ -1,7 +1,7 @@
 #ifndef _D03R0101_DEF_H_
 #define _D03R0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_POS_D03R0101_SEVEN1_START		(1)
 #define	SCRID_POS_D03R0101_SEVEN1_END		(2)
 #define	SCRID_POS_D03R0101_SEVEN1_GOAL		(3)
@@ -14,6 +14,6 @@
 #define	SCRID_D03R0101_STONE		(10)
 #define	SCRID_D03R0101_FLAG_CHANGE		(11)
 #define	SCRID_D03R0101_TREE_TALK		(12)
-#define	SCRID_D03R0101_DATA_MAX		(12)		//最大数
+#define	SCRID_D03R0101_DATA_MAX		(12)		//譛螟ｧ謨ｰ
 
 #endif //_D03R0101_DEF_H_

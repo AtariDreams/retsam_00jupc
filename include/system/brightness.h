@@ -8,25 +8,25 @@
 //#define GLOBAL	extern
 //#endif	//BRIGHTNESS_H_GLOBAL
 
-// ƒtƒF[ƒh‚Éw’è‚·‚é‹P“x
-#define BRIGHTNESS_WHITE	(  16 )		// ^‚Á”’
-#define BRIGHTNESS_NORMAL	(   0 )		// ’ÊíƒpƒŒƒbƒg”½‰fó‘Ô
-#define BRIGHTNESS_BLACK	( -16 )		// ^‚ÁˆÃ
+// ãƒ•ã‚§ãƒ¼ãƒ‰ã«æŒ‡å®šã™ã‚‹è¼åº¦
+#define BRIGHTNESS_WHITE	(  16 )		// çœŸã£ç™½
+#define BRIGHTNESS_NORMAL	(   0 )		// é€šå¸¸ãƒ‘ãƒ¬ãƒƒãƒˆåæ˜ çŠ¶æ…‹
+#define BRIGHTNESS_BLACK	( -16 )		// çœŸã£æš—
 
-#define	COMM_BRIGHTNESS_SYNC	( 6 )	// Šî–{‚Ì‹P“x•ÏXSync”
+#define	COMM_BRIGHTNESS_SYNC	( 6 )	// åŸºæœ¬ã®è¼åº¦å¤‰æ›´Syncæ•°
 
 
-//ƒAƒZƒ“ƒuƒ‰‚Åinclude‚³‚ê‚Ä‚¢‚éê‡‚ÍA‰º‚ÌéŒ¾‚ğ–³‹‚Å‚«‚é‚æ‚¤‚Éifndef‚ÅˆÍ‚ñ‚Å‚ ‚é
+//ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã§includeã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã€ä¸‹ã®å®£è¨€ã‚’ç„¡è¦–ã§ãã‚‹ã‚ˆã†ã«ifndefã§å›²ã‚“ã§ã‚ã‚‹
 #ifndef	__ASM_NO_DEF_
 
-// ƒtƒF[ƒh‚É‚©‚©‚éLCD‚Ìİ’è
+// ãƒ•ã‚§ãƒ¼ãƒ‰ã«ã‹ã‹ã‚‹LCDã®è¨­å®š
 typedef enum{
-	MASK_MAIN_DISPLAY	= 0x1,									// ƒƒCƒ“
-	MASK_SUB_DISPLAY	= 0x02,									// ƒTƒu
-	MASK_DOUBLE_DISPLAY = MASK_MAIN_DISPLAY|MASK_SUB_DISPLAY,	// —¼•û
+	MASK_MAIN_DISPLAY	= 0x1,									// ãƒ¡ã‚¤ãƒ³
+	MASK_SUB_DISPLAY	= 0x02,									// ã‚µãƒ–
+	MASK_DOUBLE_DISPLAY = MASK_MAIN_DISPLAY|MASK_SUB_DISPLAY,	// ä¸¡æ–¹
 }BRIGHT_DISPMASK;
 
-// ƒtƒF[ƒh‚ª‚©‚©‚éBG–Ê‚Ìw’è
+// ãƒ•ã‚§ãƒ¼ãƒ‰ãŒã‹ã‹ã‚‹BGé¢ã®æŒ‡å®š
 typedef enum{
 	PLANEMASK_NONE	= GX_BLEND_PLANEMASK_NONE,
 	PLANEMASK_BG0	= GX_BLEND_PLANEMASK_BG0,
@@ -38,7 +38,7 @@ typedef enum{
 	PLANEMASK_ALL	= GX_BLEND_PLANEMASK_BG0|GX_BLEND_PLANEMASK_BG1|GX_BLEND_PLANEMASK_BG2|GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_OBJ|GX_BLEND_PLANEMASK_BD
 }BRIGHT_PLANEMASK;
 
-//‹P“x•ÏXƒpƒ‰ƒ[ƒ^
+//è¼åº¦å¤‰æ›´ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct BrightParam_tag{
 	BRIGHT_PLANEMASK PlaneMask;
 	BRIGHT_DISPMASK DisplayMask;
@@ -51,18 +51,18 @@ typedef struct BrightParam_tag{
 #if 0
 //--------------------------------------------------------------------------------------------
 /**
- * ‹P“x•ÏXƒpƒ‰ƒ[ƒ^İ’è
+ * è¼åº¦å¤‰æ›´ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
  *
- * @param	mode		ƒƒ‚ƒŠæ“¾ƒ‚[ƒh
- * @param	sync		‰½ƒVƒ“ƒN‚ÅF‚ğ•Ï‚¦‚é‚©
- * @param	dst			•ÏXŒã‚Ì‹P“x
- * @param	src			‰Šú‹P“x
- * @param	plane		‹P“x•ÏX–Êƒ}ƒXƒN
- * @param	display		”½‰f•\¦‰æ–Êƒ}ƒXƒN
+ * @param	mode		ãƒ¡ãƒ¢ãƒªå–å¾—ãƒ¢ãƒ¼ãƒ‰
+ * @param	sync		ä½•ã‚·ãƒ³ã‚¯ã§è‰²ã‚’å¤‰ãˆã‚‹ã‹
+ * @param	dst			å¤‰æ›´å¾Œã®è¼åº¦
+ * @param	src			åˆæœŸè¼åº¦
+ * @param	plane		è¼åº¦å¤‰æ›´é¢ãƒã‚¹ã‚¯
+ * @param	display		åæ˜ è¡¨ç¤ºç”»é¢ãƒã‚¹ã‚¯
  *
- * @return	İ’è‚µ‚½ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @return	è¨­å®šã—ãŸãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @li	AllocMemoryg—p
+ * @li	AllocMemoryä½¿ç”¨
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL BRIGHTNESS_CHG * BrightnessChgParamSet(
@@ -71,16 +71,16 @@ GLOBAL BRIGHTNESS_CHG * BrightnessChgParamSet(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‹P“x•ÏXƒƒCƒ“ˆ—
+ * è¼åº¦å¤‰æ›´ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- * @param	dat		•ÏXƒf[ƒ^
+ * @param	dat		å¤‰æ›´ãƒ‡ãƒ¼ã‚¿
  *
- * @retval	"0 = I—¹"
- * @retval	"1 = ˆ—’†"
+ * @retval	"0 = çµ‚äº†"
+ * @retval	"1 = å‡¦ç†ä¸­"
  *
- * @li	FreeMemory‚Í‚µ‚Ä‚¢‚È‚¢
+ * @li	FreeMemoryã¯ã—ã¦ã„ãªã„
  *
- *	BrightnessChgParamSet()‚ğg—p‚µ‚½ê‡AŠJ•ú‚ğ–Y‚ê‚È‚¢‚æ‚¤‚ÉI
+ *	BrightnessChgParamSet()ã‚’ä½¿ç”¨ã—ãŸå ´åˆã€é–‹æ”¾ã‚’å¿˜ã‚Œãªã„ã‚ˆã†ã«ï¼
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 BrightnessChgMain( BRIGHTNESS_CHG * dat );
@@ -90,16 +90,16 @@ GLOBAL u8 BrightnessChgMain( BRIGHTNESS_CHG * dat );
 
 //==============================================================================
 /**
- * ‹P“x•ÏXƒtƒF[ƒhƒŠƒNƒGƒXƒg
+ * è¼åº¦å¤‰æ›´ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param   inSync			ƒtƒF[ƒh‚·‚é‚Ì‚É‚©‚©‚éSync”
- * @param   inDstBright		ƒtƒF[ƒhI—¹‚Ì‹P“xiã‚Édefine‚ ‚è)	©  ‚±‚Á‚¿‚ªI—¹
- * @param   inSrcBright		ƒtƒF[ƒhŠJn‚Ì‹P“xiã‚Édefine‚ ‚è)
- * @param   inPlaneMask		ƒtƒF[ƒh‚ª”½‰f‚³‚ê‚éBG–Êiã‚Éenum‚ ‚è)
- * @param   inDisplayMask	ƒtƒF[ƒh‚ª”½‰f‚³‚ê‚éLCDiã‚Éenum‚ ‚è)
- * @param   outFnishFlg		ƒ|ƒCƒ“ƒ^‚ğw’è‚·‚é–‚ÅƒtƒF[ƒhI—¹‚ğŒŸ’m‚Å‚«‚é
+ * @param   inSync			ãƒ•ã‚§ãƒ¼ãƒ‰ã™ã‚‹ã®ã«ã‹ã‹ã‚‹Syncæ•°
+ * @param   inDstBright		ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†æ™‚ã®è¼åº¦ï¼ˆä¸Šã«defineã‚ã‚Š)	â†  ã“ã£ã¡ãŒçµ‚äº†æ™‚
+ * @param   inSrcBright		ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹æ™‚ã®è¼åº¦ï¼ˆä¸Šã«defineã‚ã‚Š)
+ * @param   inPlaneMask		ãƒ•ã‚§ãƒ¼ãƒ‰ãŒåæ˜ ã•ã‚Œã‚‹BGé¢ï¼ˆä¸Šã«enumã‚ã‚Š)
+ * @param   inDisplayMask	ãƒ•ã‚§ãƒ¼ãƒ‰ãŒåæ˜ ã•ã‚Œã‚‹LCDï¼ˆä¸Šã«enumã‚ã‚Š)
+ * @param   outFnishFlg		ãƒã‚¤ãƒ³ã‚¿ã‚’æŒ‡å®šã™ã‚‹äº‹ã§ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†ã‚’æ¤œçŸ¥ã§ãã‚‹
  *
- * @retval  ‚È‚µ
+ * @retval  ãªã—
  */
 //==============================================================================
 extern  void ChangeBrightnessRequest(
@@ -108,13 +108,13 @@ extern  void ChangeBrightnessRequest(
 
 //==============================================================================
 /**
- * ‹P“x•ÏX
+ * è¼åº¦å¤‰æ›´
  *
- * @param   inDstBright		‹P“xiã‚Édefine‚ ‚è)
- * @param   inPlaneMask		ƒtƒF[ƒh‚ª”½‰f‚³‚ê‚éBG–Êiã‚Éenum‚ ‚è)
- * @param   inDisplayMask	ƒtƒF[ƒh‚ª”½‰f‚³‚ê‚éLCDiã‚Éenum‚ ‚è)
+ * @param   inDstBright		è¼åº¦ï¼ˆä¸Šã«defineã‚ã‚Š)
+ * @param   inPlaneMask		ãƒ•ã‚§ãƒ¼ãƒ‰ãŒåæ˜ ã•ã‚Œã‚‹BGé¢ï¼ˆä¸Šã«enumã‚ã‚Š)
+ * @param   inDisplayMask	ãƒ•ã‚§ãƒ¼ãƒ‰ãŒåæ˜ ã•ã‚Œã‚‹LCDï¼ˆä¸Šã«enumã‚ã‚Š)
  *
- * @retval  ‚È‚µ
+ * @retval  ãªã—
  */
 //==============================================================================
 extern  void SetBrightness(	const s16 inDstBright,
@@ -123,44 +123,44 @@ extern  void SetBrightness(	const s16 inDstBright,
 
 //==============================================================================
 /**
- * ‹P“x•ÏX\‘¢‘Ì‰Šú‰»
+ * è¼åº¦å¤‰æ›´æ§‹é€ ä½“åˆæœŸåŒ–
  *
- * @param	‚È‚µ
+ * @param	ãªã—
  *
- * @retval  ‚È‚µ
+ * @retval  ãªã—
  */
 //==============================================================================
 extern  void BrightnessChgInit(void);
 
 //==============================================================================
 /**
- * ‹P“x•ÏX\‘¢‘Ì‚ÌƒŠƒZƒbƒg
+ * è¼åº¦å¤‰æ›´æ§‹é€ ä½“ã®ãƒªã‚»ãƒƒãƒˆ
  *
- * @param   inDisplayMask	ƒtƒF[ƒh‚ª”½‰f‚³‚ê‚éLCDiã‚Éenum‚ ‚è)
+ * @param   inDisplayMask	ãƒ•ã‚§ãƒ¼ãƒ‰ãŒåæ˜ ã•ã‚Œã‚‹LCDï¼ˆä¸Šã«enumã‚ã‚Š)
  *
- * @retval  ‚È‚µ
+ * @retval  ãªã—
  */
 //==============================================================================
 extern void BrightnessChgReset(const BRIGHT_DISPMASK inDisplayMask);
 
 //==============================================================================
 /**
- * ‹P“x•ÏXƒƒCƒ“
+ * è¼åº¦å¤‰æ›´ãƒ¡ã‚¤ãƒ³
  *
- * @param	‚È‚µ
+ * @param	ãªã—
  *
- * @retval  ‚È‚µ
+ * @retval  ãªã—
  */
 //==============================================================================
 extern  void BrightnessChgMain(void);
 
 //==============================================================================
 /**
- * ‹P“x•ÏXI—¹I—¹ƒ`ƒFƒbƒN
+ * è¼åº¦å¤‰æ›´çµ‚äº†çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
- * @param	flg ’²‚×‚é‚k‚b‚c‚b
+ * @param	flg èª¿ã¹ã‚‹ï¼¬ï¼£ï¼¤ï¼£
  *
- * @retval  I—¹—L–³
+ * @retval  çµ‚äº†æœ‰ç„¡
  */
 //==============================================================================
 

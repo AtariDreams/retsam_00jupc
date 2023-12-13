@@ -32,7 +32,7 @@ namespace AdminTool
         private const string defaultStatusText = "Ready";
         List<List<string>> keywordIndexes = new List<List<string>>();
         Properties.Settings settings = Properties.Settings.Default;
-        private const string EDIT_SCHEDULE_COLUMN_TEXT = "ƒCƒxƒ“ƒg”";
+        private const string EDIT_SCHEDULE_COLUMN_TEXT = "ã‚¤ãƒ™ãƒ³ãƒˆæ•°";
 
         List<ExtendedDataGridView> freeQuestionDGVs = new List<ExtendedDataGridView>();
 
@@ -47,8 +47,8 @@ namespace AdminTool
             }
             catch (Exception e)
             {
-                MessageBox.Show("‰Šú‰»‚É¸”s‚µ‚Ü‚µ‚½B\n" + e.ToString());
-                throw new Exception("I—¹‚µ‚Ü‚·");
+                MessageBox.Show("åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸã€‚\n" + e.ToString());
+                throw new Exception("çµ‚äº†ã—ã¾ã™");
             }
             toolStripStatusLabel.Text = defaultStatusText;
 
@@ -60,15 +60,15 @@ namespace AdminTool
             }
             else
             {
-                // ŠJ”­—pƒT[ƒo‚ªg‚¦‚é‚Æ‚«‚ÍŠJ”­—pƒT[ƒo‚ÉÚ‘±‚·‚é
+                // é–‹ç™ºç”¨ã‚µãƒ¼ãƒãŒä½¿ãˆã‚‹ã¨ãã¯é–‹ç™ºç”¨ã‚µãƒ¼ãƒã«æ¥ç¶šã™ã‚‹
                 ToolStripMenuItemDevDebugServer_Click(null, null);
             }
 
-            // ƒXƒPƒWƒ…[ƒ‹—pƒf[ƒ^ƒOƒŠƒbƒh‚ÌƒJƒ‰ƒ€‚ğ‰Šú‰»
+            // ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ç”¨ãƒ‡ãƒ¼ã‚¿ã‚°ãƒªãƒƒãƒ‰ã®ã‚«ãƒ©ãƒ ã‚’åˆæœŸåŒ–
             {
                 CalendarColumn text = new CalendarColumn();
                 text.DataPropertyName = "StartDate";
-                text.Name = "ŠJn“ú";
+                text.Name = "é–‹å§‹æ—¥";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 text.MinimumWidth = 90;
                 dataGridViewSchedule.Columns.Add(text);
@@ -76,49 +76,49 @@ namespace AdminTool
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "LockTime";
-                text.Name = "ƒƒbƒNŠÔ";
+                text.Name = "ãƒ­ãƒƒã‚¯æ™‚é–“";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSchedule.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "RoomFlag";
-                text.Name = "ƒtƒ‰ƒO";
+                text.Name = "ãƒ•ãƒ©ã‚°";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSchedule.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "RoomRate1";
-                text.Name = "‰Š‘®«";
+                text.Name = "ç‚å±æ€§";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSchedule.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "RoomRate2";
-                text.Name = "…‘®«";
+                text.Name = "æ°´å±æ€§";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSchedule.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "RoomRate3";
-                text.Name = "—‹‘®«";
+                text.Name = "é›·å±æ€§";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSchedule.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "RoomRate4";
-                text.Name = "‘‘®«";
+                text.Name = "è‰å±æ€§";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSchedule.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "RoomRate5";
-                text.Name = "”é‘®«";
+                text.Name = "ç§˜å±æ€§";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSchedule.Columns.Add(text);
             }
@@ -126,7 +126,7 @@ namespace AdminTool
                 DataGridViewComboBoxColumn text = new DataGridViewComboBoxColumn();
                 text.DataSource = Enum.GetValues(typeof(RequestInterface.PPW_LOBBY_SEASON));
                 text.DataPropertyName = "EnumSeason";
-                text.Name = "‹Gß";
+                text.Name = "å­£ç¯€";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 text.MinimumWidth = 80;
                 dataGridViewSchedule.Columns.Add(text);
@@ -142,7 +142,7 @@ namespace AdminTool
             dataGridViewSchedule.AutoGenerateColumns = false;
             RefreshScheduleRecordDGV(requestInterface.CurrentSchedules);
 
-            // ƒNƒ‰ƒCƒAƒ“ƒgƒf[ƒ^æ“¾—pVIPƒf[ƒ^ƒOƒŠƒbƒh‚ÌƒJƒ‰ƒ€‚ğ‰Šú‰»
+            // ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—ç”¨VIPãƒ‡ãƒ¼ã‚¿ã‚°ãƒªãƒƒãƒ‰ã®ã‚«ãƒ©ãƒ ã‚’åˆæœŸåŒ–
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "ProfileId";
@@ -161,11 +161,11 @@ namespace AdminTool
             RefreshVipRecordDGV(new List<RequestInterface.LobbyVipRecord>());
 
 
-            // VIPİ’è—pƒf[ƒ^ƒOƒŠƒbƒh‚ÌƒJƒ‰ƒ€‚ğ‰Šú‰»
+            // VIPè¨­å®šç”¨ãƒ‡ãƒ¼ã‚¿ã‚°ãƒªãƒƒãƒ‰ã®ã‚«ãƒ©ãƒ ã‚’åˆæœŸåŒ–
             {
                 CalendarColumn text = new CalendarColumn();
                 text.DataPropertyName = "StartDate";
-                text.Name = "ŠJn“ú";
+                text.Name = "é–‹å§‹æ—¥";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 text.MinimumWidth = 90;
                 dataGridViewVipSettingRecord.Columns.Add(text);
@@ -173,7 +173,7 @@ namespace AdminTool
             {
                 CalendarColumn text = new CalendarColumn();
                 text.DataPropertyName = "EndDate";
-                text.Name = "I—¹“ú";
+                text.Name = "çµ‚äº†æ—¥";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 text.MinimumWidth = 90;
                 dataGridViewVipSettingRecord.Columns.Add(text);
@@ -188,7 +188,7 @@ namespace AdminTool
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "EventId";
-                text.Name = "ƒCƒxƒ“ƒgID";
+                text.Name = "ã‚¤ãƒ™ãƒ³ãƒˆID";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewVipSettingRecord.Columns.Add(text);
             }
@@ -197,116 +197,116 @@ namespace AdminTool
 
 
 
-            // ƒXƒyƒVƒƒƒ‹ƒEƒB[ƒNİ’è—pDGV‚ğ‰Šú‰»
+            // ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯è¨­å®šç”¨DGVã‚’åˆæœŸåŒ–
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "QuestionSerialNo";
-                text.Name = "¿–â’Ê‚µ”Ô†";
+                text.Name = "è³ªå•é€šã—ç•ªå·";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "QuestionNoJp";
-                text.Name = "¿–âNo“ú–{";
+                text.Name = "è³ªå•Noæ—¥æœ¬";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "QuestionNoUs";
-                text.Name = "¿–âNo‰pŒê";
+                text.Name = "è³ªå•Noè‹±èª";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "QuestionNoFr";
-                text.Name = "¿–âNoƒtƒ‰ƒ“ƒX";
+                text.Name = "è³ªå•Noãƒ•ãƒ©ãƒ³ã‚¹";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "QuestionNoIt";
-                text.Name = "¿–âNoƒCƒ^ƒŠƒA";
+                text.Name = "è³ªå•Noã‚¤ã‚¿ãƒªã‚¢";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "QuestionNoDe";
-                text.Name = "¿–âNoƒhƒCƒc";
+                text.Name = "è³ªå•Noãƒ‰ã‚¤ãƒ„";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "QuestionNoSp";
-                text.Name = "¿–âNoƒXƒyƒCƒ“";
+                text.Name = "è³ªå•Noã‚¹ãƒšã‚¤ãƒ³";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "QuestionNoKr";
-                text.Name = "¿–âNoŠØ‘";
+                text.Name = "è³ªå•NoéŸ“å›½";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "MultiLanguageSummarizeIdJp";
-                text.Name = "¿–âí—Ş“ú–{";
+                text.Name = "è³ªå•ç¨®é¡æ—¥æœ¬";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "MultiLanguageSummarizeIdUs";
-                text.Name = "¿–âí—Ş‰pŒê";
+                text.Name = "è³ªå•ç¨®é¡è‹±èª";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "MultiLanguageSummarizeIdFr";
-                text.Name = "¿–âí—Şƒtƒ‰ƒ“ƒX";
+                text.Name = "è³ªå•ç¨®é¡ãƒ•ãƒ©ãƒ³ã‚¹";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "MultiLanguageSummarizeIdIt";
-                text.Name = "¿–âí—ŞƒCƒ^ƒŠƒA";
+                text.Name = "è³ªå•ç¨®é¡ã‚¤ã‚¿ãƒªã‚¢";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "MultiLanguageSummarizeIdDe";
-                text.Name = "¿–âí—ŞƒhƒCƒc";
+                text.Name = "è³ªå•ç¨®é¡ãƒ‰ã‚¤ãƒ„";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "MultiLanguageSummarizeIdSp";
-                text.Name = "¿–âí—ŞƒXƒyƒCƒ“";
+                text.Name = "è³ªå•ç¨®é¡ã‚¹ãƒšã‚¤ãƒ³";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "MultiLanguageSummarizeIdKr";
-                text.Name = "¿–âí—ŞŠØ‘";
+                text.Name = "è³ªå•ç¨®é¡éŸ“å›½";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dataGridViewSpecialWeek.Columns.Add(text);
             }
             dataGridViewSpecialWeek.AutoGenerateColumns = false;
             RefreshSpecialWeekRecordDGV(new List<REF_PPW_LobbySpecialWeekRecord>());
 
-            dataGridViewFreeQuestionJp.Tag = Util.Language.JP; // ƒ^ƒO‚É‚ÍŒ¾ŒêƒR[ƒh‚ğƒZƒbƒg
+            dataGridViewFreeQuestionJp.Tag = Util.Language.JP; // ã‚¿ã‚°ã«ã¯è¨€èªã‚³ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
             dataGridViewFreeQuestionEn.Tag = Util.Language.EN;
             dataGridViewFreeQuestionFr.Tag = Util.Language.FR;
             dataGridViewFreeQuestionIt.Tag = Util.Language.IT;
@@ -329,7 +329,7 @@ namespace AdminTool
                 }
             }
 
-            // ‡Œ¾—t—p’PŒêƒf[ƒ^“Ç‚İ‚İ
+            // åˆè¨€è‘‰ç”¨å˜èªãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
             try
             {
                 keywordIndexes.Add(new List<string>(File.ReadAllLines("data/password_jp.txt", System.Text.Encoding.GetEncoding("SJIS"))));
@@ -342,22 +342,22 @@ namespace AdminTool
             }
             catch (Exception exp)
             {
-                MessageBox.Show("‡Œ¾—tƒf[ƒ^‚Ì“Ç‚İ‚İ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B" + exp.Message
-                    + "\nƒfƒoƒbƒO‚·‚é‚É‚ÍdataƒtƒHƒ‹ƒ_‚ª‚ ‚éêŠ‚ğƒvƒƒWƒFƒNƒg‚ÌƒvƒƒpƒeƒB„ƒfƒoƒbƒO‚Ìì‹ÆƒfƒBƒŒƒNƒgƒŠ‚Åâ‘ÎƒpƒXw’è‚µ‚Ä‚­‚¾‚³‚¢B");
-                throw new Exception("I—¹‚µ‚Ü‚·");
+                MessageBox.Show("åˆè¨€è‘‰ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚" + exp.Message
+                    + "\nãƒ‡ãƒãƒƒã‚°ã™ã‚‹ã«ã¯dataãƒ•ã‚©ãƒ«ãƒ€ãŒã‚ã‚‹å ´æ‰€ã‚’ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ï¼ãƒ‡ãƒãƒƒã‚°ã®ä½œæ¥­ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã§çµ¶å¯¾ãƒ‘ã‚¹æŒ‡å®šã—ã¦ãã ã•ã„ã€‚");
+                throw new Exception("çµ‚äº†ã—ã¾ã™");
             }
 
-            // ƒfƒtƒHƒ‹ƒgWŒvƒtƒ‰ƒO‚Ì‰Šú‰»
+            // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé›†è¨ˆãƒ•ãƒ©ã‚°ã®åˆæœŸåŒ–
             checkedListBoxDefaultSummerizeLanguage.SetItemChecked(Util.LanguageCodeToIndex(Util.Language.JP), true);
         }
 
         private void InitializeFreeQuestionDGV(ExtendedDataGridView dgv)
         {
-            // ”CˆÓ¿–âİ’è—pDGV‚ğ‰Šú‰»
+            // ä»»æ„è³ªå•è¨­å®šç”¨DGVã‚’åˆæœŸåŒ–
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "QuestionNo";
-                text.Name = "¿–â”Ô†";
+                text.Name = "è³ªå•ç•ªå·";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 text.ReadOnly = true;
                 dgv.Columns.Add(text);
@@ -365,28 +365,28 @@ namespace AdminTool
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "QuestionSentence";
-                text.Name = "¿–â";
+                text.Name = "è³ªå•";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 dgv.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "Answer1";
-                text.Name = "‰ñ“š1";
+                text.Name = "å›ç­”1";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 dgv.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "Answer2";
-                text.Name = "‰ñ“š2";
+                text.Name = "å›ç­”2";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 dgv.Columns.Add(text);
             }
             {
                 DataGridViewTextBoxColumn text = new DataGridViewTextBoxColumn();
                 text.DataPropertyName = "Answer3";
-                text.Name = "‰ñ“š3";
+                text.Name = "å›ç­”3";
                 text.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 dgv.Columns.Add(text);
             }
@@ -402,20 +402,20 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ”ñ“¯Šúˆ—‹Lq—p
+        /// éåŒæœŸå‡¦ç†è¨˜è¿°ç”¨
         /// </summary>
         private delegate void DelegateProc();
         /// <summary>
-        /// ”ñ“¯Šúˆ——pî•ñŠi”[ƒNƒ‰ƒX
+        /// éåŒæœŸå‡¦ç†ç”¨æƒ…å ±æ ¼ç´ã‚¯ãƒ©ã‚¹
         /// </summary>
         private class CommunicationInfo
         {
-            public DelegateProc asynchronousProc;   // ”ñ“¯Šú‚É‚·‚éˆ—
-            public DelegateProc successedProc;      // ˆ—¬Œ÷Œã‚ÉÀs‚·‚éˆ—
-            public DelegateProc failedProc;         // ˆ—¸”sŒã‚ÉÀs‚·‚éˆ—
-            public DelegateProc finallyProc;        // ˆ—¬Œ÷‚É‚©‚©‚í‚ç‚¸ÅŒã‚ÉÀs‚·‚éˆ—
-            public DelegateProc timerEndProc;       // ˆ—ŠÔŒv‘ªI—¹—pˆ—
-            public Exception exp;                   // ˆ—’†‚É”­¶‚µ‚½—áŠO‚ğŠi”[‚·‚é
+            public DelegateProc asynchronousProc;   // éåŒæœŸã«ã™ã‚‹å‡¦ç†
+            public DelegateProc successedProc;      // å‡¦ç†æˆåŠŸå¾Œã«å®Ÿè¡Œã™ã‚‹å‡¦ç†
+            public DelegateProc failedProc;         // å‡¦ç†å¤±æ•—å¾Œã«å®Ÿè¡Œã™ã‚‹å‡¦ç†
+            public DelegateProc finallyProc;        // å‡¦ç†æˆåŠŸã«ã‹ã‹ã‚ã‚‰ãšæœ€å¾Œã«å®Ÿè¡Œã™ã‚‹å‡¦ç†
+            public DelegateProc timerEndProc;       // å‡¦ç†æ™‚é–“è¨ˆæ¸¬çµ‚äº†ç”¨å‡¦ç†
+            public Exception exp;                   // å‡¦ç†ä¸­ã«ç™ºç”Ÿã—ãŸä¾‹å¤–ã‚’æ ¼ç´ã™ã‚‹
             public CommunicationInfo(DelegateProc _asynchronousProc, DelegateProc _successedProc, DelegateProc _failedProc, DelegateProc _finallyProc)
             {
                 asynchronousProc = _asynchronousProc;
@@ -443,13 +443,13 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ”ñ“¯Šú‚Å’ÊMˆ—‚ğŠJn‚·‚é
+        /// éåŒæœŸã§é€šä¿¡å‡¦ç†ã‚’é–‹å§‹ã™ã‚‹
         /// </summary>
-        /// <param name="asynchronousProc">”ñ“¯Šú‚Ås‚¤’ÊMˆ—</param>
-        /// <param name="successedProc">¬Œ÷‚És‚¤ˆ—</param>
-        /// <param name="failedProc">¸”s‚És‚¤ˆ—</param>
-        /// <param name="finallyProc">•K‚¸ÅŒã‚ÉÀs‚·‚éˆ—</param>
-        /// <returns>True:ŠJn‚³‚ê‚½B False:ŠJn‚³‚ê‚È‚©‚Á‚½B</returns>
+        /// <param name="asynchronousProc">éåŒæœŸã§è¡Œã†é€šä¿¡å‡¦ç†</param>
+        /// <param name="successedProc">æˆåŠŸæ™‚ã«è¡Œã†å‡¦ç†</param>
+        /// <param name="failedProc">å¤±æ•—æ™‚ã«è¡Œã†å‡¦ç†</param>
+        /// <param name="finallyProc">å¿…ãšæœ€å¾Œã«å®Ÿè¡Œã™ã‚‹å‡¦ç†</param>
+        /// <returns>True:é–‹å§‹ã•ã‚ŒãŸã€‚ False:é–‹å§‹ã•ã‚Œãªã‹ã£ãŸã€‚</returns>
         private bool CallAsynchronousProc(DelegateProc asynchronousProc, DelegateProc successedProc, DelegateProc failedProc, DelegateProc finallyProc)
         {
             if (backgroundWorkerThread.IsBusy)
@@ -462,14 +462,14 @@ namespace AdminTool
                 {
                     finallyProc();
                 }
-                MessageBox.Show("‘O‰ñ‚Ìˆ—‚ğÀs’†‚Å‚·B", "ƒGƒ‰[");
+                MessageBox.Show("å‰å›ã®å‡¦ç†ã‚’å®Ÿè¡Œä¸­ã§ã™ã€‚", "ã‚¨ãƒ©ãƒ¼");
                 return false;
             }
 
-            // ƒŠƒŠ[ƒXƒT[ƒo‚ÉƒŠƒNƒGƒXƒg‚ğ‘—‚Á‚Ä‚¢‚¢‚©‚ÌŠm”F
+            // ãƒªãƒªãƒ¼ã‚¹ã‚µãƒ¼ãƒã«ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’é€ã£ã¦ã„ã„ã‹ã®ç¢ºèª
             if (requestInterface.CurrentServer.Kind == RequestInterface.ServerInfo.KIND.RELEASE)
             {
-                if (MessageBox.Show("ƒŠƒŠ[ƒXƒT[ƒo‚ÉƒŠƒNƒGƒXƒg‚ğ‘—‚è‚Ü‚·B–{“–‚É‚æ‚ë‚µ‚¢‚Å‚·‚©H", "Šm”F", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                if (MessageBox.Show("ãƒªãƒªãƒ¼ã‚¹ã‚µãƒ¼ãƒã«ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’é€ã‚Šã¾ã™ã€‚æœ¬å½“ã«ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "ç¢ºèª", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 {
                     if (failedProc != null)
                     {
@@ -485,7 +485,7 @@ namespace AdminTool
 
             CommunicationInfo info = new CommunicationInfo(asynchronousProc, successedProc, failedProc, finallyProc);
             Stopwatch sw = new Stopwatch();
-            toolStripStatusLabel.Text = "’ÊM’†";
+            toolStripStatusLabel.Text = "é€šä¿¡ä¸­";
             Update();
 
             sw.Start();
@@ -549,12 +549,12 @@ namespace AdminTool
             if (info.exp != null)
             {
 #if DEBUG
-                MessageBox.Show("’ÊM’†‚à‚µ‚­‚Í’ÊM€”õ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B\n" + info.exp.ToString(), "ƒGƒ‰[");
+                MessageBox.Show("é€šä¿¡ä¸­ã‚‚ã—ãã¯é€šä¿¡æº–å‚™ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚\n" + info.exp.ToString(), "ã‚¨ãƒ©ãƒ¼");
 #else
-                MessageBox.Show("’ÊM’†‚à‚µ‚­‚Í’ÊM€”õ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B\n" + info.exp.ToString(), "ƒGƒ‰[");
-                //MessageBox.Show("’ÊM’†‚à‚µ‚­‚Í’ÊM€”õ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B\n", "ƒGƒ‰[");
+                MessageBox.Show("é€šä¿¡ä¸­ã‚‚ã—ãã¯é€šä¿¡æº–å‚™ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚\n" + info.exp.ToString(), "ã‚¨ãƒ©ãƒ¼");
+                //MessageBox.Show("é€šä¿¡ä¸­ã‚‚ã—ãã¯é€šä¿¡æº–å‚™ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚\n", "ã‚¨ãƒ©ãƒ¼");
 #endif
-                // ÄÚ‘±‚·‚é
+                // å†æ¥ç¶šã™ã‚‹
                 requestInterface.Reconnect();
             }
         }
@@ -568,7 +568,7 @@ namespace AdminTool
         {
             string appName = global::AdminTool.Properties.Resources.AppName;
             string version = global::AdminTool.Properties.Resources.VersionString;
-            MessageBox.Show(appName + " ver " + version, "ƒo[ƒWƒ‡ƒ“î•ñ");
+            MessageBox.Show(appName + " ver " + version, "ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±");
         }
 
         private void ToolStripMenuItemDebugServer_Click(object sender, EventArgs e)
@@ -618,12 +618,12 @@ namespace AdminTool
 
             CallAsynchronousProc(delegate
             {
-                // Às‚·‚éè‘±‚«
+                // å®Ÿè¡Œã™ã‚‹æ‰‹ç¶šã
                 res = requestInterface.LobbyGetSchedule(out message);
             },
             delegate
             {
-                // ¬Œ÷
+                // æˆåŠŸæ™‚
                 if (res.code == 0)
                 {
                     textBoxAdminResult.Text = "code: " + res.code;
@@ -637,7 +637,7 @@ namespace AdminTool
             },
             delegate
             {
-                // ¸”s
+                // å¤±æ•—æ™‚
             });
         }
 
@@ -653,18 +653,18 @@ namespace AdminTool
             }
             catch (Exception)
             {
-                MessageBox.Show("ƒtƒŒƒ“ƒhƒR[ƒh‚à‚µ‚­‚ÍProfileID‚à‚µ‚­‚Íƒ†[ƒUID‚ª³‚µ‚­“ü—Í‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+                MessageBox.Show("ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰ã‚‚ã—ãã¯ProfileIDã‚‚ã—ãã¯ãƒ¦ãƒ¼ã‚¶IDãŒæ­£ã—ãå…¥åŠ›ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
                 return;
             }
 
             CallAsynchronousProc(delegate
             {
-                // Às‚·‚éè‘±‚«
+                // å®Ÿè¡Œã™ã‚‹æ‰‹ç¶šã
                 res = requestInterface.LobbyGetVip(trainerId, out message);
             },
             delegate
             {
-                // ¬Œ÷
+                // æˆåŠŸæ™‚
                 if (res.code == 0)
                 {
                     textBoxAdminResult.Text = "code: " + res.code;
@@ -677,7 +677,7 @@ namespace AdminTool
             },
             delegate
             {
-                // ¸”s
+                // å¤±æ•—æ™‚
             });
         }
 
@@ -737,7 +737,7 @@ namespace AdminTool
             int newRowIndex = dgv.NewRowIndex;
             if (newRowIndex >= 0 && newRowIndex < list.Count)
             {
-                // V‹Ks‚Íƒ\[ƒg‚µ‚È‚¢‚½‚ß‘Ò”ğ
+                // æ–°è¦è¡Œã¯ã‚½ãƒ¼ãƒˆã—ãªã„ãŸã‚å¾…é¿
                 temp = list[newRowIndex];
                 list.RemoveAt(newRowIndex);
             }
@@ -760,20 +760,20 @@ namespace AdminTool
 
         public int GenerateVipKey(uint clientTrainerId, int vipPid, int eventId)
         {
-            // ƒCƒxƒ“ƒgID‚ª0‚Ì‚Æ‚«‚Í‡Œ¾—t–³‚µ
+            // ã‚¤ãƒ™ãƒ³ãƒˆIDãŒ0ã®ã¨ãã¯åˆè¨€è‘‰ç„¡ã—
             if (eventId == 0)
             {
                 return 0;
             }
             List<byte> bytes = new List<byte>();
-            bytes.AddRange(BitConverter.GetBytes((ushort)clientTrainerId));         // ‰ºˆÊ2byte
-            bytes.AddRange(BitConverter.GetBytes(Util.ProfileIdToUserId(vipPid)));  // ‰ºˆÊ2byte
+            bytes.AddRange(BitConverter.GetBytes((ushort)clientTrainerId));         // ä¸‹ä½2byte
+            bytes.AddRange(BitConverter.GetBytes(Util.ProfileIdToUserId(vipPid)));  // ä¸‹ä½2byte
             bytes.AddRange(BitConverter.GetBytes(eventId));
 
             string base64string = Convert.ToBase64String(bytes.ToArray());
             byte[] byteBase64Array = Encoding.Unicode.GetBytes(base64string);
             List<byte> slimByteBase64Array = new List<byte>();
-            // –³‘Ê‚ÈŒ„ŠÔ‚ª‹ó‚¢‚Ä‚é‚Ì‚Åk‚ß‚é
+            // ç„¡é§„ãªéš™é–“ãŒç©ºã„ã¦ã‚‹ã®ã§ç¸®ã‚ã‚‹
             for (int i = 0; i < byteBase64Array.Length; i++)
             {
                 if (i % 2 != 0)
@@ -786,7 +786,7 @@ namespace AdminTool
             System.Security.Cryptography.SHA1 sha = new System.Security.Cryptography.SHA1CryptoServiceProvider();
             byte[] hash = sha.ComputeHash(slimByteBase64Array.ToArray());
             int key = hash[0] << 24 | hash[5] << 16 | hash[10] << 8 | hash[15];
-            // ƒL[‚ª0‚Ì‚Æ‚«‚Í‡Œ¾—t–³‚µ‚ğˆÓ–¡‚·‚é‚Ì‚Å1‚É’u‚«Š·‚¦‚é
+            // ã‚­ãƒ¼ãŒ0ã®ã¨ãã¯åˆè¨€è‘‰ç„¡ã—ã‚’æ„å‘³ã™ã‚‹ã®ã§1ã«ç½®ãæ›ãˆã‚‹
             if (key == 0)
             {
                 key = 1;
@@ -812,7 +812,7 @@ namespace AdminTool
                 string vipFrinedCodeText = textBoxVipConfirmVipPid.Text.Replace("-", "");
                 if (vipFrinedCodeText.Length > 12)
                 {
-                    throw new Exception("Œ…”‚ª‘å‚«‚·‚¬‚Ü‚·B");
+                    throw new Exception("æ¡æ•°ãŒå¤§ãã™ãã¾ã™ã€‚");
                 }
                 vipPid = Util.FriendCodeToProfileId(UInt64.Parse(vipFrinedCodeText));
                 eventId = Int32.Parse(textBoxVipConfirmEventId.Text);
@@ -854,14 +854,14 @@ namespace AdminTool
         {
             if ((_1 | _2 | _3 | _4) == 0)
             {
-                return "ƒCƒxƒ“ƒgID‚ª0‚Ì‚½‚ß‡Œ¾—t‚Í‚ ‚è‚Ü‚¹‚ñB";
+                return "ã‚¤ãƒ™ãƒ³ãƒˆIDãŒ0ã®ãŸã‚åˆè¨€è‘‰ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚";
             }
             int languageIndex = Util.LanguageCodeToIndex(language);
             int wordNum = keywordIndexes[(int)languageIndex].Count;
 
             if (wordNum == 0)
             {
-                return "’PŒêƒŠƒXƒg‚ª‹ó‚Å‚·B";
+                return "å˜èªãƒªã‚¹ãƒˆãŒç©ºã§ã™ã€‚";
             }
             return keywordIndexes[(int)languageIndex][_1 % wordNum] + "  "
             + keywordIndexes[(int)languageIndex][_2 % wordNum] + "  "
@@ -941,7 +941,7 @@ namespace AdminTool
             }
             catch (Exception)
             {
-                // ‚È‚É‚à‚µ‚È‚¢
+                // ãªã«ã‚‚ã—ãªã„
             }
             ShowPassword();
         }
@@ -977,7 +977,7 @@ namespace AdminTool
 
         private void ToolStripMenuItemProxySetting_Click(object sender, EventArgs e)
         {
-            // ƒqƒXƒgƒŠ‚ª–³‚¯‚ê‚Î¶¬
+            // ãƒ’ã‚¹ãƒˆãƒªãŒç„¡ã‘ã‚Œã°ç”Ÿæˆ
             if (settings.ProxyServerHistory == null)
             {
                 settings.ProxyServerHistory = new System.Collections.Specialized.StringCollection();
@@ -989,7 +989,7 @@ namespace AdminTool
                 settings.ProxyServer = form.ResultProxyServer;
                 requestInterface.ProxyServer = form.ResultProxyServer;
 
-                // ƒqƒXƒgƒŠ‚É’Ç‰Á
+                // ãƒ’ã‚¹ãƒˆãƒªã«è¿½åŠ 
                 if (form.ResultProxyServer != "" && !settings.ProxyServerHistory.Contains(form.ResultProxyServer))
                 {
                     settings.ProxyServerHistory.Add(form.ResultProxyServer);
@@ -1006,22 +1006,22 @@ namespace AdminTool
         {
             DataGridView dgv = (DataGridView)sender;
 
-            // ƒwƒbƒ_‚ÌƒNƒŠƒbƒN‚Í–³‹
+            // ãƒ˜ãƒƒãƒ€ã®ã‚¯ãƒªãƒƒã‚¯ã¯ç„¡è¦–
             if (e.RowIndex < 0)
             {
                 return;
             }
 
-            // "ƒCƒxƒ“ƒg”"—ñ‚È‚ç‚ÎAƒ{ƒ^ƒ“‚ªƒNƒŠƒbƒN‚³‚ê‚½
+            // "ã‚¤ãƒ™ãƒ³ãƒˆæ•°"åˆ—ãªã‚‰ã°ã€ãƒœã‚¿ãƒ³ãŒã‚¯ãƒªãƒƒã‚¯ã•ã‚ŒãŸ
             if (dgv.Columns[e.ColumnIndex].Name == EDIT_SCHEDULE_COLUMN_TEXT)
             {
-                // ƒXƒPƒWƒ…[ƒ‹ƒŒƒR[ƒh•ÒW—pƒtƒH[ƒ€•\¦
+                // ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰ç·¨é›†ç”¨ãƒ•ã‚©ãƒ¼ãƒ è¡¨ç¤º
                 RequestInterface.LobbySchedules schedule = requestInterface.CurrentSchedules;
                 BindingSource src = (BindingSource)dgv.DataSource;
                 bool isNewRow = dataGridViewSchedule.Rows[e.RowIndex].IsNewRow;
                 if (isNewRow)
                 {
-                    // V‹Ks‚Ìó‘Ô‚¾‚Æ•ÒWŒã‚És‚ªÁ‚¦‚Ä‚µ‚Ü‚¤‚Ì‚Åˆê’[ƒfƒ^ƒbƒ`‚µ‚Äè“®‚Ås‚ğ’Ç‰Á‚·‚éB
+                    // æ–°è¦è¡Œã®çŠ¶æ…‹ã ã¨ç·¨é›†å¾Œã«è¡ŒãŒæ¶ˆãˆã¦ã—ã¾ã†ã®ã§ä¸€ç«¯ãƒ‡ã‚¿ãƒƒãƒã—ã¦æ‰‹å‹•ã§è¡Œã‚’è¿½åŠ ã™ã‚‹ã€‚
                     dgv.DataSource = null;
                     schedule.lobbySchedules.Add(new RequestInterface.LobbyAdminSetScheduleRequestPart());
                     RefreshScheduleRecordDGV(schedule);
@@ -1031,7 +1031,7 @@ namespace AdminTool
                 form.ShowDialog();
                 if (!form.EndOk)
                 {
-                    // è“®‚Å’Ç‰Á‚µ‚½ÅŒã‚Ìs‚ğíœ‚·‚éB
+                    // æ‰‹å‹•ã§è¿½åŠ ã—ãŸæœ€å¾Œã®è¡Œã‚’å‰Šé™¤ã™ã‚‹ã€‚
                     if(isNewRow)
                     {
                         dgv.DataSource = null;
@@ -1050,7 +1050,7 @@ namespace AdminTool
         {
             DataGridView dgv = (DataGridView)sender;
             
-            // ƒZƒ‹‚Ì—ñ‚ğŠm”F
+            // ã‚»ãƒ«ã®åˆ—ã‚’ç¢ºèª
             if (e.ColumnIndex >= 0 && e.RowIndex >= 0
                 && dgv.Columns[e.ColumnIndex].Name == EDIT_SCHEDULE_COLUMN_TEXT
                 && (e.PaintParts & DataGridViewPaintParts.ContentForeground) == DataGridViewPaintParts.ContentForeground)
@@ -1060,18 +1060,18 @@ namespace AdminTool
                 {
                     countText = requestInterface.CurrentSchedules.lobbySchedules[e.RowIndex].scheduleRecords.Count.ToString();
                 }
-                string text = countText + ":•ÒW...";
+                string text = countText + ":ç·¨é›†...";
 
-                // ‘OŒiˆÈŠO‚ª•`‰æ‚³‚ê‚é‚æ‚¤‚É‚·‚é
+                // å‰æ™¯ä»¥å¤–ãŒæç”»ã•ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
                 DataGridViewPaintParts paintParts = e.PaintParts & ~DataGridViewPaintParts.ContentForeground;
 
-                // ƒZƒ‹‚ğ•`‰æ‚·‚é
+                // ã‚»ãƒ«ã‚’æç”»ã™ã‚‹
                 e.Paint(e.ClipBounds, paintParts);
 
-                // ƒXƒPƒWƒ…[ƒ‹•ÒW—p‚É•\¦ƒeƒLƒXƒg‚ğ‹­§“I‚É•`‰æ‚·‚éB
+                // ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ç·¨é›†ç”¨ã«è¡¨ç¤ºãƒ†ã‚­ã‚¹ãƒˆã‚’å¼·åˆ¶çš„ã«æç”»ã™ã‚‹ã€‚
                 e.Graphics.DrawString(text, dgv.Font, new SolidBrush(Color.DarkSlateBlue), new Point(e.CellBounds.Left+3, e.CellBounds.Top+4));
 
-                // •`‰æ‚ªŠ®—¹‚µ‚½‚±‚Æ‚ğ’m‚ç‚¹‚é
+                // æç”»ãŒå®Œäº†ã—ãŸã“ã¨ã‚’çŸ¥ã‚‰ã›ã‚‹
                 e.Handled = true;
             }
         }
@@ -1090,7 +1090,7 @@ namespace AdminTool
             int newRowIndex = dataGridViewSchedule.NewRowIndex;
             if (newRowIndex >= 0 && newRowIndex < schedules.lobbySchedules.Count)
             {
-                // V‹Ks‚Íƒ\[ƒg‚µ‚È‚¢‚½‚ß‘Ò”ğ
+                // æ–°è¦è¡Œã¯ã‚½ãƒ¼ãƒˆã—ãªã„ãŸã‚å¾…é¿
                 temp = schedules.lobbySchedules[newRowIndex];
                 schedules.lobbySchedules.RemoveAt(newRowIndex);
             }
@@ -1135,19 +1135,19 @@ namespace AdminTool
         {
             if (dataGridViewSchedule.SelectedRows.Count == 0)
             {
-                MessageBox.Show("ˆê”Ô¶‚Ì•”•ª(ŠJn”N‚Ì¶‘¤‚Ì—ñ)‚ğƒNƒŠƒbƒN‚µ‚Ä•¡»‚µ‚½‚¢s‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B\n"
-                    + "Ctrl‚ğ‰Ÿ‚µ‚È‚ª‚çƒNƒŠƒbƒN‚·‚é‚±‚Æ‚Å•¡”‚ÌƒXƒPƒWƒ…[ƒ‹‚ğ•¡»‚Å‚«‚Ü‚·B");
+                MessageBox.Show("ä¸€ç•ªå·¦ã®éƒ¨åˆ†(é–‹å§‹å¹´ã®å·¦å´ã®åˆ—)ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦è¤‡è£½ã—ãŸã„è¡Œã‚’é¸æŠã—ã¦ãã ã•ã„ã€‚\n"
+                    + "Ctrlã‚’æŠ¼ã—ãªãŒã‚‰ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã“ã¨ã§è¤‡æ•°ã®ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’è¤‡è£½ã§ãã¾ã™ã€‚");
                 return;
             }
 
             List<RequestInterface.LobbyAdminSetScheduleRequestPart> copiedScheudles = new List<RequestInterface.LobbyAdminSetScheduleRequestPart>();
 
-            // ‘I‘ğ‚³‚ê‚Ä‚¢‚és‚ğ’²‚×‚é
+            // é¸æŠã•ã‚Œã¦ã„ã‚‹è¡Œã‚’èª¿ã¹ã‚‹
             foreach (DataGridViewRow row in dataGridViewSchedule.SelectedRows)
             {
                 if (row.IsNewRow)
                 {
-                    MessageBox.Show("V‹Ks(*‚ª‚Â‚¢‚Ä‚¢‚és)‚Í•¡»‚Å‚«‚Ü‚¹‚ñB");
+                    MessageBox.Show("æ–°è¦è¡Œ(*ãŒã¤ã„ã¦ã„ã‚‹è¡Œ)ã¯è¤‡è£½ã§ãã¾ã›ã‚“ã€‚");
                     return;
                 }
                 copiedScheudles.Add((RequestInterface.LobbyAdminSetScheduleRequestPart)requestInterface.CurrentSchedules.lobbySchedules[row.Index].Clone());
@@ -1163,7 +1163,7 @@ namespace AdminTool
         {
             if (requestInterface.CurrentSchedules.lobbySchedules.Count != 0)
             {
-                if (MessageBox.Show("Œ»İ•ÒW’†‚ÌƒXƒPƒWƒ…[ƒ‹‚ğ”jŠü‚µ‚ÄƒT[ƒo‚©‚ç“Ç‚İ‚ñ‚Å‚æ‚ë‚µ‚¢‚Å‚·‚©H", "Šm”F", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                if (MessageBox.Show("ç¾åœ¨ç·¨é›†ä¸­ã®ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ç ´æ£„ã—ã¦ã‚µãƒ¼ãƒã‹ã‚‰èª­ã¿è¾¼ã‚“ã§ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "ç¢ºèª", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 {
                     return;
                 }
@@ -1175,12 +1175,12 @@ namespace AdminTool
 
             CallAsynchronousProc(delegate
             {
-                // Às‚·‚éè‘±‚«
+                // å®Ÿè¡Œã™ã‚‹æ‰‹ç¶šã
                 res = requestInterface.LobbyAdminGetSchedule(out code, out message);
             },
             delegate
             {
-                // ¬Œ÷
+                // æˆåŠŸæ™‚
                 if (code == 0)
                 {
                     textBoxAdminResult.Text = "code: " + code;
@@ -1194,7 +1194,7 @@ namespace AdminTool
             },
             delegate
             {
-                // ¸”s
+                // å¤±æ•—æ™‚
             });
         }
 
@@ -1210,7 +1210,7 @@ namespace AdminTool
             int newRowIndex = dataGridViewSchedule.NewRowIndex;
             if (newRowIndex >= 0 && newRowIndex < clonedSchedules.lobbySchedules.Count)
             {
-                // V‹Ks‚ğíœ
+                // æ–°è¦è¡Œã‚’å‰Šé™¤
                 clonedSchedules.lobbySchedules.RemoveAt(newRowIndex);
             }
 
@@ -1218,46 +1218,46 @@ namespace AdminTool
 
             if (clonedSchedules.lobbySchedules.Count == 0)
             {
-                MessageBox.Show("ƒXƒPƒWƒ…[ƒ‹‚ª‹ó‚Å‚·B");
+                MessageBox.Show("ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãŒç©ºã§ã™ã€‚");
                 return;
             }
 
             if (!clonedSchedules.IsConsistent())
             {
-                MessageBox.Show("•s³‚ÈƒXƒPƒWƒ…[ƒ‹‚ª‚ ‚è‚Ü‚·BÔ‚­‚È‚Á‚Ä‚¢‚éƒXƒPƒWƒ…[ƒ‹‚ğC³‚µ‚Ä‚­‚¾‚³‚¢B\n"
-                              + "E‘®«‚Ì‡Œv‚ª100‚É‚È‚é‚æ‚¤‚É‚µ‚Ä‚­‚¾‚³‚¢B\n"
-                              + "EŠJn“ú‚ğ2000”N‚©‚ç2200”N‚ÌŠÔ‚É‚µ‚Ä‚­‚¾‚³‚¢B\n"
-                              + "Eˆê”Ô–Ú‚ÌƒXƒPƒWƒ…[ƒ‹‚ÌŠJn“ú‚ğŒ»İ‚æ‚è‰ß‹‚É‚µ‚Ä‚­‚¾‚³‚¢B\n"
-                              + "EƒCƒxƒ“ƒg”‚ğ40ˆÈ‰º‚É‚µ‚Ä‚­‚¾‚³‚¢B");
+                MessageBox.Show("ä¸æ­£ãªã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãŒã‚ã‚Šã¾ã™ã€‚èµ¤ããªã£ã¦ã„ã‚‹ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ä¿®æ­£ã—ã¦ãã ã•ã„ã€‚\n"
+                              + "ãƒ»å±æ€§ã®åˆè¨ˆãŒ100ã«ãªã‚‹ã‚ˆã†ã«ã—ã¦ãã ã•ã„ã€‚\n"
+                              + "ãƒ»é–‹å§‹æ—¥ã‚’2000å¹´ã‹ã‚‰2200å¹´ã®é–“ã«ã—ã¦ãã ã•ã„ã€‚\n"
+                              + "ãƒ»ä¸€ç•ªç›®ã®ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã®é–‹å§‹æ—¥ã‚’ç¾åœ¨ã‚ˆã‚Šéå»ã«ã—ã¦ãã ã•ã„ã€‚\n"
+                              + "ãƒ»ã‚¤ãƒ™ãƒ³ãƒˆæ•°ã‚’40ä»¥ä¸‹ã«ã—ã¦ãã ã•ã„ã€‚");
                 return;
             }
 
-            if (MessageBox.Show("‚±‚ÌƒXƒPƒWƒ…[ƒ‹‚ğƒT[ƒo‚Éİ’è‚µ‚Ä‚æ‚ë‚µ‚¢‚Å‚·‚©H", "Šm”F", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            if (MessageBox.Show("ã“ã®ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ã‚µãƒ¼ãƒã«è¨­å®šã—ã¦ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "ç¢ºèª", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
             }
 
             CallAsynchronousProc(delegate
             {
-                // Às‚·‚éè‘±‚«
+                // å®Ÿè¡Œã™ã‚‹æ‰‹ç¶šã
                 requestInterface.LobbyAdminSetSchedule(clonedSchedules, out code, out message);
             },
             delegate
             {
-                // ¬Œ÷
+                // æˆåŠŸæ™‚
                 textBoxAdminResult.Text = "code: " + code + (code == 0 ? "" : ", message:" + message);
                 if (code == 0)
                 {
-                    MessageBox.Show("¬Œ÷‚µ‚Ü‚µ‚½B");
+                    MessageBox.Show("æˆåŠŸã—ã¾ã—ãŸã€‚");
                 }
                 else
                 {
-                    MessageBox.Show("¸”s‚µ‚Ü‚µ‚½B");
+                    MessageBox.Show("å¤±æ•—ã—ã¾ã—ãŸã€‚");
                 }
             },
             delegate
             {
-                // ¸”s
+                // å¤±æ•—æ™‚
             });
         }
 
@@ -1283,7 +1283,7 @@ namespace AdminTool
             saveFileDialogSettingXML.InitialDirectory = Directory.GetCurrentDirectory();
             if (saveFileDialogSettingXML.ShowDialog() == DialogResult.OK)
             {
-                // Œ»İ‚Ìİ’è‚ğƒŠƒNƒGƒXƒg‚Æ‚µ‚Äæ“¾‚µ‚ÄXML‚Ö
+                // ç¾åœ¨ã®è¨­å®šã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¨ã—ã¦å–å¾—ã—ã¦XMLã¸
                 BindingSource src = (BindingSource)dataGridViewVipSettingRecord.DataSource;
                 RequestInterface.LobbyAdminSetVipSettingRequest temp =
                     new RequestInterface.LobbyAdminSetVipSettingRequest(RequestInterface.ADMIN_PROFILE_ID,
@@ -1296,8 +1296,8 @@ namespace AdminTool
         {
             if (dataGridViewVipSettingRecord.SelectedRows.Count == 0)
             {
-                MessageBox.Show("ˆê”Ô¶‚Ì•”•ª(ŠJn”N‚Ì¶‘¤‚Ì—ñ)‚ğƒNƒŠƒbƒN‚µ‚Ä•¡»‚µ‚½‚¢s‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B\n"
-                    + "Ctrl‚ğ‰Ÿ‚µ‚È‚ª‚çƒNƒŠƒbƒN‚·‚é‚±‚Æ‚Å•¡”‚ÌƒXƒPƒWƒ…[ƒ‹‚ğ•¡»‚Å‚«‚Ü‚·B");
+                MessageBox.Show("ä¸€ç•ªå·¦ã®éƒ¨åˆ†(é–‹å§‹å¹´ã®å·¦å´ã®åˆ—)ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦è¤‡è£½ã—ãŸã„è¡Œã‚’é¸æŠã—ã¦ãã ã•ã„ã€‚\n"
+                    + "Ctrlã‚’æŠ¼ã—ãªãŒã‚‰ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã“ã¨ã§è¤‡æ•°ã®ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’è¤‡è£½ã§ãã¾ã™ã€‚");
                 return;
             }
 
@@ -1305,12 +1305,12 @@ namespace AdminTool
             List<RequestInterface.LobbyVipSettingRecord> list = (List<RequestInterface.LobbyVipSettingRecord>)src.DataSource;
             List<RequestInterface.LobbyVipSettingRecord> copiedVips = new List<RequestInterface.LobbyVipSettingRecord>();
 
-            // ‘I‘ğ‚³‚ê‚Ä‚¢‚és‚ğ’²‚×‚é
+            // é¸æŠã•ã‚Œã¦ã„ã‚‹è¡Œã‚’èª¿ã¹ã‚‹
             foreach (DataGridViewRow row in dataGridViewVipSettingRecord.SelectedRows)
             {
                 if (row.IsNewRow)
                 {
-                    MessageBox.Show("V‹Ks(*‚ª‚Â‚¢‚Ä‚¢‚és)‚Í•¡»‚Å‚«‚Ü‚¹‚ñB");
+                    MessageBox.Show("æ–°è¦è¡Œ(*ãŒã¤ã„ã¦ã„ã‚‹è¡Œ)ã¯è¤‡è£½ã§ãã¾ã›ã‚“ã€‚");
                     return;
                 }
                 copiedVips.Add((RequestInterface.LobbyVipSettingRecord)list[row.Index].Clone());
@@ -1328,7 +1328,7 @@ namespace AdminTool
             List<RequestInterface.LobbyVipSettingRecord> list = (List<RequestInterface.LobbyVipSettingRecord>)src.DataSource;
             if (list.Count != 0)
             {
-                if (MessageBox.Show("Œ»İ•ÒW’†‚ÌVIPİ’èƒŠƒXƒg‚ğ”jŠü‚µ‚ÄƒT[ƒo‚©‚ç“Ç‚İ‚ñ‚Å‚æ‚ë‚µ‚¢‚Å‚·‚©H", "Šm”F", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                if (MessageBox.Show("ç¾åœ¨ç·¨é›†ä¸­ã®VIPè¨­å®šãƒªã‚¹ãƒˆã‚’ç ´æ£„ã—ã¦ã‚µãƒ¼ãƒã‹ã‚‰èª­ã¿è¾¼ã‚“ã§ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "ç¢ºèª", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 {
                     return;
                 }
@@ -1339,12 +1339,12 @@ namespace AdminTool
 
             CallAsynchronousProc(delegate
             {
-                // Às‚·‚éè‘±‚«
+                // å®Ÿè¡Œã™ã‚‹æ‰‹ç¶šã
                 res = requestInterface.LobbyAdminGetVipSetting(out message);
             },
             delegate
             {
-                // ¬Œ÷
+                // æˆåŠŸæ™‚
                 if (res.code == 0)
                 {
                     textBoxAdminResult.Text = "code: " + res.code;
@@ -1357,7 +1357,7 @@ namespace AdminTool
             },
             delegate
             {
-                // ¸”s
+                // å¤±æ•—æ™‚
             });
         }
 
@@ -1368,7 +1368,7 @@ namespace AdminTool
             List<RequestInterface.LobbyVipSettingRecord> list = (List<RequestInterface.LobbyVipSettingRecord>)src.DataSource;
             List<RequestInterface.LobbyVipSettingRecord> clonedList = new List<RequestInterface.LobbyVipSettingRecord>(list);
 
-            // V‹Ks‚Ííœ
+            // æ–°è¦è¡Œã¯å‰Šé™¤
             int newRowIndex = dataGridViewVipSettingRecord.NewRowIndex;
             if (newRowIndex >= 0 && newRowIndex < list.Count)
             {
@@ -1383,39 +1383,39 @@ namespace AdminTool
 
             if (!req.IsConsistent())
             {
-                MessageBox.Show("•s³‚ÈVIPƒŒƒR[ƒh‚ª‚ ‚è‚Ü‚·BÔ‚­‚È‚Á‚Ä‚¢‚éVIPƒŒƒR[ƒh‚ğC³‚µ‚Ä‚­‚¾‚³‚¢B\n"
-                              + "EŠJn“ú‚ÆI—¹“ú‚ğ2000”N‚©‚ç2200”N‚ÌŠÔ‚É‚µ‚Ä‚­‚¾‚³‚¢B\n"
-                              + "EŠJn“ú‚ğI—¹“ú‚æ‚è‘O‚É‚µ‚Ä‚­‚¾‚³‚¢B\n"
-                              + "EProfileID‚ğ10–œˆÈã‚É‚µ‚Ä‚­‚¾‚³‚¢B");
+                MessageBox.Show("ä¸æ­£ãªVIPãƒ¬ã‚³ãƒ¼ãƒ‰ãŒã‚ã‚Šã¾ã™ã€‚èµ¤ããªã£ã¦ã„ã‚‹VIPãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’ä¿®æ­£ã—ã¦ãã ã•ã„ã€‚\n"
+                              + "ãƒ»é–‹å§‹æ—¥ã¨çµ‚äº†æ—¥ã‚’2000å¹´ã‹ã‚‰2200å¹´ã®é–“ã«ã—ã¦ãã ã•ã„ã€‚\n"
+                              + "ãƒ»é–‹å§‹æ—¥ã‚’çµ‚äº†æ—¥ã‚ˆã‚Šå‰ã«ã—ã¦ãã ã•ã„ã€‚\n"
+                              + "ãƒ»ProfileIDã‚’10ä¸‡ä»¥ä¸Šã«ã—ã¦ãã ã•ã„ã€‚");
                 return;
             }
 
-            if (MessageBox.Show("‚±‚ÌVIPİ’èƒŠƒXƒg‚ğƒT[ƒo‚Éİ’è‚µ‚Ä‚æ‚ë‚µ‚¢‚Å‚·‚©H", "Šm”F", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            if (MessageBox.Show("ã“ã®VIPè¨­å®šãƒªã‚¹ãƒˆã‚’ã‚µãƒ¼ãƒã«è¨­å®šã—ã¦ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "ç¢ºèª", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
             }
 
             CallAsynchronousProc(delegate
             {
-                // Às‚·‚éè‘±‚«
+                // å®Ÿè¡Œã™ã‚‹æ‰‹ç¶šã
                 requestInterface.LobbyAdminSetVipSettingRecord(req, out code, out message);
             },
             delegate
             {
-                // ¬Œ÷
+                // æˆåŠŸæ™‚
                 textBoxAdminResult.Text = "code: " + code + (code == 0 ? "" : ", message:" + message);
                 if (code == 0)
                 {
-                    MessageBox.Show("¬Œ÷‚µ‚Ü‚µ‚½B");
+                    MessageBox.Show("æˆåŠŸã—ã¾ã—ãŸã€‚");
                 }
                 else
                 {
-                    MessageBox.Show("¸”s‚µ‚Ü‚µ‚½B");
+                    MessageBox.Show("å¤±æ•—ã—ã¾ã—ãŸã€‚");
                 }
             },
             delegate
             {
-                // ¸”s
+                // å¤±æ•—æ™‚
             });
         }
 
@@ -1430,7 +1430,7 @@ namespace AdminTool
 
             if (!requestInterface.CurrentSchedules.lobbySchedules[e.RowIndex].IsConsistent())
             {
-                // ®‡«‚ª‚Æ‚ê‚Ä‚¢‚È‚¢s‚ğÔ‚­‚·‚é
+                // æ•´åˆæ€§ãŒã¨ã‚Œã¦ã„ãªã„è¡Œã‚’èµ¤ãã™ã‚‹
                 e.CellStyle.BackColor = Color.LightPink;
             }
         }
@@ -1448,7 +1448,7 @@ namespace AdminTool
             List<RequestInterface.LobbyVipSettingRecord> list = (List<RequestInterface.LobbyVipSettingRecord>)src.DataSource;
             if (!list[e.RowIndex].IsConsistent())
             {
-                // ®‡«‚ª‚Æ‚ê‚Ä‚¢‚È‚¢s‚ğÔ‚­‚·‚é
+                // æ•´åˆæ€§ãŒã¨ã‚Œã¦ã„ãªã„è¡Œã‚’èµ¤ãã™ã‚‹
                 e.CellStyle.BackColor = Color.LightPink;
             }
         }
@@ -1477,7 +1477,7 @@ namespace AdminTool
                 }
                 catch (Exception)
                 {
-                    throw new Exception("ƒ|ƒPƒ‚ƒ“ƒR[ƒh‚É•ÏŠ·‚Å‚«‚È‚¢•¶š‚ªŒ©‚Â‚©‚è‚Ü‚µ‚½B");
+                    throw new Exception("ãƒã‚±ãƒ¢ãƒ³ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›ã§ããªã„æ–‡å­—ãŒè¦‹ã¤ã‹ã‚Šã¾ã—ãŸã€‚");
                 }
                 sex = byte.Parse(textBoxCheckProfileSex.Text);
                 language = byte.Parse(textBoxCheckProfileLanguage.Text);
@@ -1490,7 +1490,7 @@ namespace AdminTool
             }
             catch (Exception err)
             {
-                MessageBox.Show("“ü—Í‚³‚ê‚½ƒpƒ‰ƒ[ƒ^‚ª•s³‚Å‚·B" + err.Message);
+                MessageBox.Show("å…¥åŠ›ã•ã‚ŒãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒä¸æ­£ã§ã™ã€‚" + err.Message);
                 return;
             }
 
@@ -1503,18 +1503,18 @@ namespace AdminTool
 
             CallAsynchronousProc(delegate
             {
-                // Às‚·‚éè‘±‚«
+                // å®Ÿè¡Œã™ã‚‹æ‰‹ç¶šã
                 res = requestInterface.LobbyAdminCheckProfile(req, out code, out message);
             },
             delegate
             {
-                // ¬Œ÷
+                // æˆåŠŸæ™‚
                 textBoxAdminResult.Text = "code: " + code + (code == 0 ? "" : ", message:" + message);
                 if (code == 0)
                 {
                     if (res == null)
                     {
-                        throw new Exception("ƒT[ƒo‚©‚ç•Ô‚³‚ê‚½ƒf[ƒ^‚ª•s³‚Å‚·B");
+                        throw new Exception("ã‚µãƒ¼ãƒã‹ã‚‰è¿”ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ãŒä¸æ­£ã§ã™ã€‚");
                     }
 
                     REF_WFLBY_USER_PROFILE resultProfile = res.profile;
@@ -1532,12 +1532,12 @@ namespace AdminTool
                 }
                 else
                 {
-                    MessageBox.Show("•s³ƒ`ƒFƒbƒN‚Å•s³‚Èƒpƒ‰ƒ[ƒ^‚ªŒŸo‚³‚ê‚Ü‚µ‚½B");
+                    MessageBox.Show("ä¸æ­£ãƒã‚§ãƒƒã‚¯ã§ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæ¤œå‡ºã•ã‚Œã¾ã—ãŸã€‚");
                 }
             },
             delegate
             {
-                // ¸”s
+                // å¤±æ•—æ™‚
             });
         }
 
@@ -1554,18 +1554,18 @@ namespace AdminTool
             }
             catch (Exception)
             {
-                MessageBox.Show("Œ¾ŒêƒR[ƒh‚ª³‚µ‚­“ü—Í‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+                MessageBox.Show("è¨€èªã‚³ãƒ¼ãƒ‰ãŒæ­£ã—ãå…¥åŠ›ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
                 return;
             }
 
             CallAsynchronousProc(delegate
             {
-                // Às‚·‚éè‘±‚«
+                // å®Ÿè¡Œã™ã‚‹æ‰‹ç¶šã
                 res = requestInterface.LobbyGetQuestionnaire(req, out code, out message);
             },
             delegate
             {
-                // ¬Œ÷
+                // æˆåŠŸæ™‚
                 if (code == 0)
                 {
                     textBoxAdminResult.Text = "code: " + code;
@@ -1579,7 +1579,7 @@ namespace AdminTool
             },
             delegate
             {
-                // ¸”s
+                // å¤±æ•—æ™‚
             });
         }
 
@@ -1589,7 +1589,7 @@ namespace AdminTool
             List<REF_PPW_LobbySpecialWeekRecord> list = (List<REF_PPW_LobbySpecialWeekRecord>)src.DataSource;
             if (list.Count != 0)
             {
-                if (MessageBox.Show("Œ»İ•ÒW’†‚ÌƒXƒyƒVƒƒƒ‹ƒEƒB[ƒNİ’èƒŠƒXƒg‚ğ”jŠü‚µ‚ÄƒT[ƒo‚©‚ç“Ç‚İ‚ñ‚Å‚æ‚ë‚µ‚¢‚Å‚·‚©H", "Šm”F", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                if (MessageBox.Show("ç¾åœ¨ç·¨é›†ä¸­ã®ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯è¨­å®šãƒªã‚¹ãƒˆã‚’ç ´æ£„ã—ã¦ã‚µãƒ¼ãƒã‹ã‚‰èª­ã¿è¾¼ã‚“ã§ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "ç¢ºèª", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 {
                     return;
                 }
@@ -1602,12 +1602,12 @@ namespace AdminTool
 
             CallAsynchronousProc(delegate
             {
-                // Às‚·‚éè‘±‚«
+                // å®Ÿè¡Œã™ã‚‹æ‰‹ç¶šã
                 res = requestInterface.LobbyAdminGetSpecialWeek(req, out code, out message);
             },
             delegate
             {
-                // ¬Œ÷
+                // æˆåŠŸæ™‚
                 if (code == 0)
                 {
                     textBoxAdminResult.Text = "code: " + code;
@@ -1620,7 +1620,7 @@ namespace AdminTool
             },
             delegate
             {
-                // ¸”s
+                // å¤±æ•—æ™‚
             });
         }
 
@@ -1632,7 +1632,7 @@ namespace AdminTool
             List<REF_PPW_LobbySpecialWeekRecord> clonedList = new List<REF_PPW_LobbySpecialWeekRecord>(list);
             RequestInterface.LobbySpecialWeekSetting specialWeek = new RequestInterface.LobbySpecialWeekSetting(clonedList);
 
-            // V‹Ks‚Ííœ
+            // æ–°è¦è¡Œã¯å‰Šé™¤
             int newRowIndex = dataGridViewSpecialWeek.NewRowIndex;
             if (newRowIndex >= 0 && newRowIndex < list.Count)
             {
@@ -1647,37 +1647,37 @@ namespace AdminTool
 
             if (!req.IsConsistent())
             {
-                MessageBox.Show("•s³‚ÈƒXƒyƒVƒƒƒ‹ƒEƒB[ƒNƒŒƒR[ƒh‚ª‚ ‚è‚Ü‚·BÔ‚­‚È‚Á‚Ä‚¢‚éƒXƒyƒVƒƒƒ‹ƒEƒB[ƒNƒŒƒR[ƒh‚ğC³‚µ‚Ä‚­‚¾‚³‚¢B\n"
-                              + "E¿–â”Ô†‚ğ0-59‚à‚µ‚­‚Í1000-1009‚É‚µ‚Ä‚­‚¾‚³‚¢B\n");
+                MessageBox.Show("ä¸æ­£ãªã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯ãƒ¬ã‚³ãƒ¼ãƒ‰ãŒã‚ã‚Šã¾ã™ã€‚èµ¤ããªã£ã¦ã„ã‚‹ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’ä¿®æ­£ã—ã¦ãã ã•ã„ã€‚\n"
+                              + "ãƒ»è³ªå•ç•ªå·ã‚’0-59ã‚‚ã—ãã¯1000-1009ã«ã—ã¦ãã ã•ã„ã€‚\n");
                 return;
             }
 
-            if (MessageBox.Show("‚±‚ÌƒXƒyƒVƒƒƒ‹ƒEƒB[ƒNİ’èƒŠƒXƒg‚ğƒT[ƒo‚Éİ’è‚µ‚Ä‚æ‚ë‚µ‚¢‚Å‚·‚©H", "Šm”F", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            if (MessageBox.Show("ã“ã®ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯è¨­å®šãƒªã‚¹ãƒˆã‚’ã‚µãƒ¼ãƒã«è¨­å®šã—ã¦ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "ç¢ºèª", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
             }
 
             CallAsynchronousProc(delegate
             {
-                // Às‚·‚éè‘±‚«
+                // å®Ÿè¡Œã™ã‚‹æ‰‹ç¶šã
                 requestInterface.LobbyAdminSetSpecialWeek(req, out code, out message);
             },
             delegate
             {
-                // ¬Œ÷
+                // æˆåŠŸæ™‚
                 textBoxAdminResult.Text = "code: " + code + (code == 0 ? "" : ", message:" + message);
                 if (code == 0)
                 {
-                    MessageBox.Show("¬Œ÷‚µ‚Ü‚µ‚½B");
+                    MessageBox.Show("æˆåŠŸã—ã¾ã—ãŸã€‚");
                 }
                 else
                 {
-                    MessageBox.Show("¸”s‚µ‚Ü‚µ‚½B");
+                    MessageBox.Show("å¤±æ•—ã—ã¾ã—ãŸã€‚");
                 }
             },
             delegate
             {
-                // ¸”s
+                // å¤±æ•—æ™‚
             });
         }
 
@@ -1715,8 +1715,8 @@ namespace AdminTool
             
             if (dataGridViewSpecialWeek.SelectedRows.Count == 0)
             {
-                MessageBox.Show("ˆê”Ô¶‚Ì•”•ª(ŠJn”N‚Ì¶‘¤‚Ì—ñ)‚ğƒNƒŠƒbƒN‚µ‚Ä•¡»‚µ‚½‚¢s‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B\n"
-                    + "Ctrl‚ğ‰Ÿ‚µ‚È‚ª‚çƒNƒŠƒbƒN‚·‚é‚±‚Æ‚Å•¡”‚ÌƒXƒPƒWƒ…[ƒ‹‚ğ•¡»‚Å‚«‚Ü‚·B");
+                MessageBox.Show("ä¸€ç•ªå·¦ã®éƒ¨åˆ†(é–‹å§‹å¹´ã®å·¦å´ã®åˆ—)ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦è¤‡è£½ã—ãŸã„è¡Œã‚’é¸æŠã—ã¦ãã ã•ã„ã€‚\n"
+                    + "Ctrlã‚’æŠ¼ã—ãªãŒã‚‰ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã“ã¨ã§è¤‡æ•°ã®ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’è¤‡è£½ã§ãã¾ã™ã€‚");
                 return;
             }
 
@@ -1724,12 +1724,12 @@ namespace AdminTool
             List<REF_PPW_LobbySpecialWeekRecord> list = (List<REF_PPW_LobbySpecialWeekRecord>)src.DataSource;
             List<REF_PPW_LobbySpecialWeekRecord> copiedVips = new List<REF_PPW_LobbySpecialWeekRecord>();
 
-            // ‘I‘ğ‚³‚ê‚Ä‚¢‚és‚ğ’²‚×‚é
+            // é¸æŠã•ã‚Œã¦ã„ã‚‹è¡Œã‚’èª¿ã¹ã‚‹
             foreach (DataGridViewRow row in dataGridViewSpecialWeek.SelectedRows)
             {
                 if (row.IsNewRow)
                 {
-                    MessageBox.Show("V‹Ks(*‚ª‚Â‚¢‚Ä‚¢‚és)‚Í•¡»‚Å‚«‚Ü‚¹‚ñB");
+                    MessageBox.Show("æ–°è¦è¡Œ(*ãŒã¤ã„ã¦ã„ã‚‹è¡Œ)ã¯è¤‡è£½ã§ãã¾ã›ã‚“ã€‚");
                     return;
                 }
                 copiedVips.Add((REF_PPW_LobbySpecialWeekRecord)RequestInterface.DeepCopy(list[row.Index]));
@@ -1752,7 +1752,7 @@ namespace AdminTool
                 List<REF_PPW_LobbyFreeQuestion> clonedList = new List<REF_PPW_LobbyFreeQuestion>(list);
                 RequestInterface.LobbyFreeQuestionSetting freeQuestion = new RequestInterface.LobbyFreeQuestionSetting(clonedList);
 
-                // V‹Ks‚Ííœ
+                // æ–°è¦è¡Œã¯å‰Šé™¤
                 int newRowIndex = dgv.NewRowIndex;
                 if (newRowIndex >= 0 && newRowIndex < list.Count)
                 {
@@ -1764,15 +1764,15 @@ namespace AdminTool
 
                 if (!req.IsConsistent())
                 {
-                    MessageBox.Show("•s³‚È”CˆÓ¿–âƒŒƒR[ƒh‚ª‚ ‚è‚Ü‚·BÔ‚­‚È‚Á‚Ä‚¢‚é”CˆÓ¿–âƒŒƒR[ƒh‚ğC³‚µ‚Ä‚­‚¾‚³‚¢B\n"
-                                  + "¿–â•¶‚Í108•¶šA‰ñ“š‚Í16•¶š‚Ü‚Å‚Å‚·B\n"
-                                  + "(‚½‚¾‚µA“ú–{Œê‚Ìê‡‚Í¿–â•¶36•¶šA‰ñ“š8•¶š‚Ü‚Å‚É‚µ‚Ä‚­‚¾‚³‚¢B)");
+                    MessageBox.Show("ä¸æ­£ãªä»»æ„è³ªå•ãƒ¬ã‚³ãƒ¼ãƒ‰ãŒã‚ã‚Šã¾ã™ã€‚èµ¤ããªã£ã¦ã„ã‚‹ä»»æ„è³ªå•ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’ä¿®æ­£ã—ã¦ãã ã•ã„ã€‚\n"
+                                  + "è³ªå•æ–‡ã¯108æ–‡å­—ã€å›ç­”ã¯16æ–‡å­—ã¾ã§ã§ã™ã€‚\n"
+                                  + "(ãŸã ã—ã€æ—¥æœ¬èªã®å ´åˆã¯è³ªå•æ–‡36æ–‡å­—ã€å›ç­”8æ–‡å­—ã¾ã§ã«ã—ã¦ãã ã•ã„ã€‚)");
                     return;
                 }
                 requests.Add(req);
             }
 
-            if (MessageBox.Show("‚±‚Ì”CˆÓ¿–âİ’èƒŠƒXƒg‚ğƒT[ƒo‚Éİ’è‚µ‚Ä‚æ‚ë‚µ‚¢‚Å‚·‚©H", "Šm”F", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            if (MessageBox.Show("ã“ã®ä»»æ„è³ªå•è¨­å®šãƒªã‚¹ãƒˆã‚’ã‚µãƒ¼ãƒã«è¨­å®šã—ã¦ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "ç¢ºèª", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
             }
@@ -1785,7 +1785,7 @@ namespace AdminTool
                 uint code = 0;
                 foreach (RequestInterface.LobbyAdminSetFreeQuestionRequest req in requests)
                 {
-                    // Às‚·‚éè‘±‚«
+                    // å®Ÿè¡Œã™ã‚‹æ‰‹ç¶šã
                     requestInterface.LobbyAdminSetFreeQuestion(req, out code, out message);
                     messages.Add(message);
                     codes.Add(code);
@@ -1793,23 +1793,23 @@ namespace AdminTool
             },
             delegate
             {
-                // ¬Œ÷
+                // æˆåŠŸæ™‚
                 textBoxAdminResult.Text = "code: " + Util.Join(codes, ", ");
                 if (codes.TrueForAll(delegate(uint code)
                 {
                     return code == 0;
                 }))
                 {
-                    MessageBox.Show("¬Œ÷‚µ‚Ü‚µ‚½B");
+                    MessageBox.Show("æˆåŠŸã—ã¾ã—ãŸã€‚");
                 }
                 else
                 {
-                    MessageBox.Show("¸”s‚µ‚Ü‚µ‚½B");
+                    MessageBox.Show("å¤±æ•—ã—ã¾ã—ãŸã€‚");
                 }
             },
             delegate
             {
-                // ¸”s
+                // å¤±æ•—æ™‚
             });
         }
 
@@ -1824,7 +1824,7 @@ namespace AdminTool
                 requests.Add(req);
             }
 
-            if (MessageBox.Show("Œ»İ•ÒW’†‚Ì”CˆÓ¿–â‚ğ”jŠü‚µ‚ÄƒT[ƒo‚©‚ç“Ç‚İ‚ñ‚Å‚æ‚ë‚µ‚¢‚Å‚·‚©H", "Šm”F", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            if (MessageBox.Show("ç¾åœ¨ç·¨é›†ä¸­ã®ä»»æ„è³ªå•ã‚’ç ´æ£„ã—ã¦ã‚µãƒ¼ãƒã‹ã‚‰èª­ã¿è¾¼ã‚“ã§ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "ç¢ºèª", MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
                 return;
             }
@@ -1838,7 +1838,7 @@ namespace AdminTool
                 uint code = 0;
                 foreach (RequestInterface.LobbyAdminGetFreeQuestionRequest req in requests)
                 {
-                    // Às‚·‚éè‘±‚«
+                    // å®Ÿè¡Œã™ã‚‹æ‰‹ç¶šã
                     responses.Add(requestInterface.LobbyAdminGetFreeQuestion(req, out code, out message));
                     messages.Add(message);
                     codes.Add(code);
@@ -1846,7 +1846,7 @@ namespace AdminTool
             },
             delegate
             {
-                // ¬Œ÷
+                // æˆåŠŸæ™‚
                 textBoxAdminResult.Text = "code: " + Util.Join(codes, ", ");
                 if (codes.TrueForAll(delegate(uint code)
                 {
@@ -1855,27 +1855,27 @@ namespace AdminTool
                 {
                     foreach (RequestInterface.LobbyAdminGetFreeQuestionResponse res in responses)
                     {
-                        // Œ¾ŒêƒR[ƒh‚ªˆê’v‚·‚éDGV‚ğ’T‚·
+                        // è¨€èªã‚³ãƒ¼ãƒ‰ãŒä¸€è‡´ã™ã‚‹DGVã‚’æ¢ã™
                         ExtendedDataGridView matched = freeQuestionDGVs.Find(delegate(ExtendedDataGridView elem)
                         {
                             return (int)elem.Tag == res.freeQuestion.records[0].Language;
                         });
                         if (matched == null)
                         {
-                            throw new Exception("ŠY“–‚·‚éŒ¾ŒêƒR[ƒh‚ÌDGV‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB");
+                            throw new Exception("è©²å½“ã™ã‚‹è¨€èªã‚³ãƒ¼ãƒ‰ã®DGVãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚");
                         }
                         RefreshFreeQuestionDGV(matched, res.freeQuestion);
                     }
-                    MessageBox.Show("¬Œ÷‚µ‚Ü‚µ‚½B");
+                    MessageBox.Show("æˆåŠŸã—ã¾ã—ãŸã€‚");
                 }
                 else
                 {
-                    MessageBox.Show("¸”s‚µ‚Ü‚µ‚½B");
+                    MessageBox.Show("å¤±æ•—ã—ã¾ã—ãŸã€‚");
                 }
             },
             delegate
             {
-                // ¸”s
+                // å¤±æ•—æ™‚
             });
         }
 
@@ -1892,7 +1892,7 @@ namespace AdminTool
             List<REF_PPW_LobbySpecialWeekRecord> list = (List<REF_PPW_LobbySpecialWeekRecord>)src.DataSource;
             if (!list[e.RowIndex].IsConsistent())
             {
-                // ®‡«‚ª‚Æ‚ê‚Ä‚¢‚È‚¢s‚ğÔ‚­‚·‚é
+                // æ•´åˆæ€§ãŒã¨ã‚Œã¦ã„ãªã„è¡Œã‚’èµ¤ãã™ã‚‹
                 e.CellStyle.BackColor = Color.LightPink;
             }
         }
@@ -1910,7 +1910,7 @@ namespace AdminTool
             List<REF_PPW_LobbyFreeQuestion> list = (List<REF_PPW_LobbyFreeQuestion>)src.DataSource;
             if (!list[e.RowIndex].IsConsistent())
             {
-                // ®‡«‚ª‚Æ‚ê‚Ä‚¢‚È‚¢s‚ğÔ‚­‚·‚é
+                // æ•´åˆæ€§ãŒã¨ã‚Œã¦ã„ãªã„è¡Œã‚’èµ¤ãã™ã‚‹
                 e.CellStyle.BackColor = Color.LightPink;
             }
         }
@@ -1949,7 +1949,7 @@ namespace AdminTool
             }
             catch (Exception err)
             {
-                MessageBox.Show("“ü—Í‚³‚ê‚½•¶š—ñ‚ª•s³‚Å‚·B\n" + err.Message);
+                MessageBox.Show("å…¥åŠ›ã•ã‚ŒãŸæ–‡å­—åˆ—ãŒä¸æ­£ã§ã™ã€‚\n" + err.Message);
             }
 
             RequestInterface.LobbySubmitQuestionnaireRequest req = new RequestInterface.LobbySubmitQuestionnaireRequest(profileId, serialNo, language, answerNo);
@@ -1985,7 +1985,7 @@ namespace AdminTool
 
                 if(list.Count != freeQuestionDGVs.Count)
                 {
-                    MessageBox.Show("“Ç‚İ‚ñ‚¾İ’èƒtƒ@ƒCƒ‹‚ÆŒ»İ‚ÌƒvƒƒOƒ‰ƒ€‚ÍŒİŠ·«‚ª‚ ‚è‚Ü‚¹‚ñB");
+                    MessageBox.Show("èª­ã¿è¾¼ã‚“ã è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã¨ç¾åœ¨ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã¯äº’æ›æ€§ãŒã‚ã‚Šã¾ã›ã‚“ã€‚");
                     return;
                 }
 
@@ -2030,7 +2030,7 @@ namespace AdminTool
             }
             catch (Exception err)
             {
-                MessageBox.Show("“ü—Í‚³‚ê‚½•¶š—ñ‚ª•s³‚Å‚·B\n" + err.Message);
+                MessageBox.Show("å…¥åŠ›ã•ã‚ŒãŸæ–‡å­—åˆ—ãŒä¸æ­£ã§ã™ã€‚\n" + err.Message);
             }
 
             RequestInterface.LobbyAdminSetQuestionSerialNoRequest req = new RequestInterface.LobbyAdminSetQuestionSerialNoRequest(RequestInterface.ADMIN_PROFILE_ID, questionSerialNo);
@@ -2057,7 +2057,7 @@ namespace AdminTool
             }
             catch (Exception err)
             {
-                MessageBox.Show("“ü—Í‚³‚ê‚½•¶š—ñ‚ª•s³‚Å‚·B\n" + err.Message);
+                MessageBox.Show("å…¥åŠ›ã•ã‚ŒãŸæ–‡å­—åˆ—ãŒä¸æ­£ã§ã™ã€‚\n" + err.Message);
             }
 
             RequestInterface.LobbyAdminSetNextQuestionNoRequest req = new RequestInterface.LobbyAdminSetNextQuestionNoRequest(RequestInterface.ADMIN_PROFILE_ID, nextQuestionNo);
@@ -2084,7 +2084,7 @@ namespace AdminTool
             }
             catch (Exception err)
             {
-                MessageBox.Show("“ü—Í‚³‚ê‚½•¶š—ñ‚ª•s³‚Å‚·B\n" + err.Message);
+                MessageBox.Show("å…¥åŠ›ã•ã‚ŒãŸæ–‡å­—åˆ—ãŒä¸æ­£ã§ã™ã€‚\n" + err.Message);
             }
 
             RequestInterface.LobbyAdminSetQuestionNoRequest req = new RequestInterface.LobbyAdminSetQuestionNoRequest(RequestInterface.ADMIN_PROFILE_ID, questionNo);
@@ -2128,7 +2128,7 @@ namespace AdminTool
             }
             catch (Exception err)
             {
-                MessageBox.Show("“ü—Í‚³‚ê‚½•¶š—ñ‚ª•s³‚Å‚·B\n" + err.Message);
+                MessageBox.Show("å…¥åŠ›ã•ã‚ŒãŸæ–‡å­—åˆ—ãŒä¸æ­£ã§ã™ã€‚\n" + err.Message);
             }
 
             RequestInterface.LobbyAdminSetSpecialQuestionThresholdRequest req = new RequestInterface.LobbyAdminSetSpecialQuestionThresholdRequest(RequestInterface.ADMIN_PROFILE_ID, questionNo);
@@ -2147,7 +2147,7 @@ namespace AdminTool
         private void buttonSetDefaultSummerizeLanguage_Click(object sender, EventArgs e)
         {
             string message = "";
-            // ‘—M‚·‚é’iŠK‚ÅÅŒã‚ÉI’[‚ª“ü‚é‚ªA‚Ç‚¤‚¹ƒpƒfƒBƒ“ƒO‚È‚Ì‚Å–â‘è‚È‚¢
+            // é€ä¿¡ã™ã‚‹æ®µéšã§æœ€å¾Œã«çµ‚ç«¯ãŒå…¥ã‚‹ãŒã€ã©ã†ã›ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°ãªã®ã§å•é¡Œãªã„
             char[] summarizeFlagArray = { '\u0000', '\u0000', '\u0000', '\u0000', '\u0000', '\u0000', '\u0000', '\u0000', '\u0000', '\u0000', '\u0000', '\u0000'};
 
             CheckedListBox.CheckedIndexCollection list = checkedListBoxDefaultSummerizeLanguage.CheckedIndices;

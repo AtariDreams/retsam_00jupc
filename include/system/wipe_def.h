@@ -2,7 +2,7 @@
 /**
  *
  *@file		wipe_def.h
- *@brief	ƒƒCƒvŠÖ”—pƒwƒbƒ_
+ *@brief	ãƒ¯ã‚¤ãƒ—é–¢æ•°ç”¨ãƒ˜ãƒƒãƒ€
  *@author	tomoya takahashi
  *@data		2005.08.18
  *
@@ -23,30 +23,30 @@
 
 //-------------------------------------
 //	
-//	ƒV[ƒPƒ“ƒXˆ——ñ‹“
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å‡¦ç†åˆ—æŒ™
 //	
 //=====================================
 enum{
-	WIPE_INIT,			// “®ì‰Šú‰»
-	WIPE_MAIN,			// “®ì
-	WIPE_END,			// “®ìI—¹
-	WIPE_END_WAIT,		// I—¹Œã‘Ò‚¿	I—¹‘O‚É1‰ñ‚ÍVƒuƒ‰ƒ“ƒN‚ð’Ê‚·‚½‚ß@ƒ}ƒXƒN‚ÌÝ’è•ÏX‚Ívƒuƒ‰ƒ“ƒN‚Ås‚í‚ê‚Ä‚¢‚éˆ×
+	WIPE_INIT,			// å‹•ä½œåˆæœŸåŒ–
+	WIPE_MAIN,			// å‹•ä½œ
+	WIPE_END,			// å‹•ä½œçµ‚äº†
+	WIPE_END_WAIT,		// çµ‚äº†å¾Œå¾…ã¡	çµ‚äº†å‰ã«1å›žã¯Vãƒ–ãƒ©ãƒ³ã‚¯ã‚’é€šã™ãŸã‚ã€€ãƒžã‚¹ã‚¯ã®è¨­å®šå¤‰æ›´ã¯vãƒ–ãƒ©ãƒ³ã‚¯ã§è¡Œã‚ã‚Œã¦ã„ã‚‹ç‚º
 };
 
 
 typedef void (*pHBFunc)(void* work);
 //-------------------------------------
 //
-//	ƒ[ƒJƒ‹Hƒuƒ‰ƒ“ƒNƒ[ƒN
+//	ãƒ­ãƒ¼ã‚«ãƒ«Hãƒ–ãƒ©ãƒ³ã‚¯ãƒ¯ãƒ¼ã‚¯
 //
-//	Hƒuƒ‰ƒ“ƒN“à‚ÅŽg—p‚µ‚Ü‚·B
-//	flg‚ª‚O‚É‚È‚Á‚½‚çI—¹‚µ‚½‚±‚Æ‚É‚È‚è‚Ü‚·B
+//	Hãƒ–ãƒ©ãƒ³ã‚¯å†…ã§ä½¿ç”¨ã—ã¾ã™ã€‚
+//	flgãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ã—ãŸã“ã¨ã«ãªã‚Šã¾ã™ã€‚
 //
 //=====================================
 typedef struct{
-	void*	work[2];	// 2=MAIN ‚Æ SUB
+	void*	work[2];	// 2=MAIN ã¨ SUB
 	pHBFunc	func[2];
-	int		flg[2];		// “®ìƒtƒ‰ƒO	0:–¢Ý’è	1:ŽÀs’†
+	int		flg[2];		// å‹•ä½œãƒ•ãƒ©ã‚°	0:æœªè¨­å®š	1:å®Ÿè¡Œä¸­
 } WIPE_HBLANK;
 
 enum{
@@ -56,7 +56,7 @@ enum{
 
 //-------------------------------------
 //	
-//	ƒƒCƒvƒ[ƒN	
+//	ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯	
 //	
 //=====================================
 typedef struct {
@@ -64,30 +64,30 @@ typedef struct {
 	int		division;
 	int		piece_sync;
 	int		sequence;
-	int		disp;			// ƒƒCƒ“ƒTƒu‚Ç‚Á‚¿‚©
-	void*	wipe_work;		// ŠeƒƒCƒv—pì‹Æ—Ìˆæ
-	WNDP_SYS_PTR wnd_sys;	// ƒEƒBƒ“ƒhƒEVBlankƒVƒXƒeƒ€‚Ìƒ|ƒCƒ“ƒ^
-	WIPE_HBLANK* p_wipehb;	// ƒƒCƒv—pHBlankƒ[ƒN
-	int		heap;			// Žg—p‚·‚éƒq[ƒv
-	u16		color;			// F
+	int		disp;			// ãƒ¡ã‚¤ãƒ³ã‚µãƒ–ã©ã£ã¡ã‹
+	void*	wipe_work;		// å„ãƒ¯ã‚¤ãƒ—ç”¨ä½œæ¥­é ˜åŸŸ
+	WNDP_SYS_PTR wnd_sys;	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦VBlankã‚·ã‚¹ãƒ†ãƒ ã®ãƒã‚¤ãƒ³ã‚¿
+	WIPE_HBLANK* p_wipehb;	// ãƒ¯ã‚¤ãƒ—ç”¨HBlankãƒ¯ãƒ¼ã‚¯
+	int		heap;			// ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+	u16		color;			// è‰²
 
-	// ‚»‚ê‚¼‚ê‚ÌƒƒCƒv‚É
-	// ‚»‚ÌƒƒCƒv‚Ìó‘Ô‚ðŠi”[‚µ‚Ä‚à‚ç‚¤
-	u32 fade_inout;		// ƒtƒF[ƒhƒCƒ“‚©ƒAƒEƒg‚©
-	u32 wnd_br;			// ÌÞ×²ÄÈ½‚ðŽg—p‚·‚é‚Ì‚©ƒEƒBƒ“ƒhƒE‚ðŽg—p‚·‚é‚Ì‚©
+	// ãã‚Œãžã‚Œã®ãƒ¯ã‚¤ãƒ—ã«
+	// ãã®ãƒ¯ã‚¤ãƒ—ã®çŠ¶æ…‹ã‚’æ ¼ç´ã—ã¦ã‚‚ã‚‰ã†
+	u32 fade_inout;		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‹ã‚¢ã‚¦ãƒˆã‹
+	u32 wnd_br;			// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ã®ã‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½¿ç”¨ã™ã‚‹ã®ã‹
 } WIPE_SYS_WIPE_WORK;
 
-// ‚»‚ê‚¼‚ê‚ÌƒƒCƒv‚É
-// ‚»‚ÌƒƒCƒv‚Ìó‘Ô‚ðŠi”[‚µ‚Ä‚à‚ç‚¤
+// ãã‚Œãžã‚Œã®ãƒ¯ã‚¤ãƒ—ã«
+// ãã®ãƒ¯ã‚¤ãƒ—ã®çŠ¶æ…‹ã‚’æ ¼ç´ã—ã¦ã‚‚ã‚‰ã†
 //-------------------------------------
-//	ƒtƒF[ƒhŽí—Þ—ñ‹“	
+//	ãƒ•ã‚§ãƒ¼ãƒ‰ç¨®é¡žåˆ—æŒ™	
 //=====================================
 enum{
 	WIPE_FADE_IN,
 	WIPE_FADE_OUT
 };
 //-------------------------------------
-//	ƒtƒF[ƒhŽg—pƒVƒXƒeƒ€—ñ‹“	
+//	ãƒ•ã‚§ãƒ¼ãƒ‰ä½¿ç”¨ã‚·ã‚¹ãƒ†ãƒ åˆ—æŒ™	
 //=====================================
 enum{
 	WIPE_USE_WND,
@@ -98,30 +98,30 @@ enum{
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒƒCƒvŠÖ”
+ *@brief	ãƒ¯ã‚¤ãƒ—é–¢æ•°
  *
- *@param	wipe		ƒƒCƒvƒ[ƒN
+ *@param	wipe		ãƒ¯ã‚¤ãƒ—ãƒ¯ãƒ¼ã‚¯
  *
- *@return	BOOL		I—¹FTRUE		‘±sFFALSE
+ *@return	BOOL		çµ‚äº†ï¼šTRUE		ç¶šè¡Œï¼šFALSE
  *
- * •K‚¸I—¹‚µ‚½‚çTRUE‚ð•Ô‚·‚æ‚¤‚É‚·‚éB
- * ì‹Æ—Ìˆæ‚ÍŠeƒƒCƒv“à‚Åì¬‚µAƒƒCƒv“à‚Å”jŠü‚·‚éB
+ * å¿…ãšçµ‚äº†ã—ãŸã‚‰TRUEã‚’è¿”ã™ã‚ˆã†ã«ã™ã‚‹ã€‚
+ * ä½œæ¥­é ˜åŸŸã¯å„ãƒ¯ã‚¤ãƒ—å†…ã§ä½œæˆã—ã€ãƒ¯ã‚¤ãƒ—å†…ã§ç ´æ£„ã™ã‚‹ã€‚
  *
  */
 //-----------------------------------------------------------------------------
 typedef BOOL (*pWIPEFunc)(WIPE_SYS_WIPE_WORK* wipe);
 
-// HBlankŠÖ”
-GLOBAL void WIPE_HBlankInit(WIPE_HBLANK* p_wipehb, void* work, pHBFunc func, int disp);	// Hƒuƒ‰ƒ“ƒNÝ’è
-GLOBAL void WIPE_HBlankDelete(WIPE_HBLANK* p_wipehb, int disp);	// Hƒuƒ‰ƒ“ƒN”jŠü
-GLOBAL void WIPE_V_HBlankInit(WIPE_HBLANK* p_wipehb, void* work, pHBFunc func, int disp, int heap);	// Hƒuƒ‰ƒ“ƒNÝ’è
-GLOBAL void WIPE_V_HBlankDelete(WIPE_HBLANK* p_wipehb, int disp, int heap);	// Hƒuƒ‰ƒ“ƒN”jŠü
+// HBlanké–¢æ•°
+GLOBAL void WIPE_HBlankInit(WIPE_HBLANK* p_wipehb, void* work, pHBFunc func, int disp);	// Hãƒ–ãƒ©ãƒ³ã‚¯è¨­å®š
+GLOBAL void WIPE_HBlankDelete(WIPE_HBLANK* p_wipehb, int disp);	// Hãƒ–ãƒ©ãƒ³ã‚¯ç ´æ£„
+GLOBAL void WIPE_V_HBlankInit(WIPE_HBLANK* p_wipehb, void* work, pHBFunc func, int disp, int heap);	// Hãƒ–ãƒ©ãƒ³ã‚¯è¨­å®š
+GLOBAL void WIPE_V_HBlankDelete(WIPE_HBLANK* p_wipehb, int disp, int heap);	// Hãƒ–ãƒ©ãƒ³ã‚¯ç ´æ£„
 GLOBAL void defaultHFunc( void* work );
 
-// ƒƒCƒvƒJƒ‰[Ý’èŠÖ”
+// ãƒ¯ã‚¤ãƒ—ã‚«ãƒ©ãƒ¼è¨­å®šé–¢æ•°
 GLOBAL void WIPE_SetBackDropColor( u16 color );
 
-// ƒuƒ‰ƒCƒgƒlƒXó‘ÔÝ’èŠÖ”
+// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹çŠ¶æ…‹è¨­å®šé–¢æ•°
 GLOBAL void WIPE_SetMstBrightness( int disp, int no );
 
 #undef	GLOBAL

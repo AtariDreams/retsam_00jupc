@@ -1,5 +1,5 @@
 /* MSL
- * Copyright © 1995-2006 Freescale Corporation.  All rights reserved.
+ * Copyright 1995-2006 Freescale Corporation.  All rights reserved.
  *
  * $Date: 2006/02/08 20:34:02 $
  * $Revision: 1.87.2.3 $
@@ -1782,7 +1782,7 @@ int _MSL_CDECL sscanf_s(const char * _MSL_RESTRICT s, const char * _MSL_RESTRICT
  *            added a support for decimal input (symmetric to printf)
  *            added hh (char) prefix
  * blc 980318 Changed hh to be (signed char) unless explicitly unsigned
- * mm  980331 Modification to allow characters >= 128, e.g. § or É to be matched from format
+ * mm  980331 Modification to allow characters >= 128, e.g. ã‚¡ or ãƒŽ to be matched from format
  *            string correctly. MW06720
  * mm  981104 Inserted missing setting of *format IL9810-2059
  * vss 990203 Added AltiVec changes (contributed)

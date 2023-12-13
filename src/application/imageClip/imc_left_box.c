@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_left_box.c
- *	@brief		¶ƒ{ƒbƒNƒXƒVƒXƒeƒ€
+ *	@brief		å·¦ãƒœãƒƒã‚¯ã‚¹ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2005.09.23
  *
@@ -26,57 +26,57 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒTƒ€ƒlƒCƒ‹ƒf[ƒ^”z’uÀ•W’è”
+//	ã‚µãƒ ãƒã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿é…ç½®åº§æ¨™å®šæ•°
 //	
 //=====================================
-#define IMC_LBOX_THUMB_SIZE_X	(24)		// ƒTƒ€ƒlƒCƒ‹ƒTƒCƒY
-#define IMC_LBOX_THUMB_SIZE_Y	(32)		// ƒTƒ€ƒlƒCƒ‹ƒTƒCƒY
-#define IMC_LBOX_MAT_SPACE_X	(8)			// ”z’u‚·‚é‚Æ‚«‚ÌƒXƒy[ƒX
-#define IMC_LBOX_MAT_SPACE_Y	(8)			// ”z’u‚·‚é‚Æ‚«‚ÌƒXƒy[ƒX
+#define IMC_LBOX_THUMB_SIZE_X	(24)		// ã‚µãƒ ãƒã‚¤ãƒ«ã‚µã‚¤ã‚º
+#define IMC_LBOX_THUMB_SIZE_Y	(32)		// ã‚µãƒ ãƒã‚¤ãƒ«ã‚µã‚¤ã‚º
+#define IMC_LBOX_MAT_SPACE_X	(8)			// é…ç½®ã™ã‚‹ã¨ãã®ã‚¹ãƒšãƒ¼ã‚¹
+#define IMC_LBOX_MAT_SPACE_Y	(8)			// é…ç½®ã™ã‚‹ã¨ãã®ã‚¹ãƒšãƒ¼ã‚¹
 
-#define IMC_LBOX_MAT_LINE_NUM	(3)			// ‚Pƒ‰ƒCƒ“‚É‰½ƒTƒ€ƒlƒCƒ‹‚¨‚­‚©
+#define IMC_LBOX_MAT_LINE_NUM	(3)			// ï¼‘ãƒ©ã‚¤ãƒ³ã«ä½•ã‚µãƒ ãƒã‚¤ãƒ«ãŠãã‹
 
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒpƒŒƒbƒg•ÏX@ÀŒ±ƒf[ƒ^
+*		ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´ã€€å®Ÿé¨“ãƒ‡ãƒ¼ã‚¿
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //	
 //=====================================
 enum{
-	IMC_LBOX_PLTT_CHG_INIT,		// ‰Šú‰»
-	IMC_LBOX_PLTT_CHG_OUT_ACCE_S,// ƒAƒNƒZƒTƒŠ‘ŞêŠJn
-	IMC_LBOX_PLTT_CHG_IN_ACCE_S,	// ƒAƒNƒZƒTƒŠ“üêŠJn
-	IMC_LBOX_PLTT_CHG_WAIT,		// ŠeƒAƒNƒZƒTƒŠƒtƒF[ƒhI—¹‘Ò‚¿
-	IMC_LBOX_PLTT_CHG_END,		// I—¹
+	IMC_LBOX_PLTT_CHG_INIT,		// åˆæœŸåŒ–
+	IMC_LBOX_PLTT_CHG_OUT_ACCE_S,// ã‚¢ã‚¯ã‚»ã‚µãƒªé€€å ´é–‹å§‹
+	IMC_LBOX_PLTT_CHG_IN_ACCE_S,	// ã‚¢ã‚¯ã‚»ã‚µãƒªå…¥å ´é–‹å§‹
+	IMC_LBOX_PLTT_CHG_WAIT,		// å„ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
+	IMC_LBOX_PLTT_CHG_END,		// çµ‚äº†
 };
 
-#define IMC_LBOX_PLTT_CHG_MOVE_Y	(132)		// ˆÚ“®’l
-#define IMC_LBOX_PLTT_CHG_COUNT	(3)			// ˆÚ“®‰ñ”
-#define IMC_LBOX_PLTT_CHG_ADD	(IMC_LBOX_PLTT_CHG_MOVE_Y / IMC_LBOX_PLTT_CHG_COUNT)		// ‚P‰ñ‚ÌˆÚ“®”
-#define IMC_LBOX_PLTT_CHG_OBJ_S_NUM	(2)		// ƒtƒF[ƒhƒCƒ“ƒIƒuƒWƒFƒNƒg‚Ì”‚ğ‰½•ªŠ„‚·‚é‚©
-#define IMC_LBOX_PLTT_CHG_OBJ_E_NUM	(1)		// ƒtƒF[ƒhƒAƒEƒgƒIƒuƒWƒFƒNƒg‚Ì”‚ğ‰½•ªŠ„‚·‚é‚©
-#define IMC_LBOX_PLTT_BG_SYNC	(5)		// BG‚ğ‰½ƒVƒ“ƒN‚Å“®‚©‚·‚©
+#define IMC_LBOX_PLTT_CHG_MOVE_Y	(132)		// ç§»å‹•å€¤
+#define IMC_LBOX_PLTT_CHG_COUNT	(3)			// ç§»å‹•å›æ•°
+#define IMC_LBOX_PLTT_CHG_ADD	(IMC_LBOX_PLTT_CHG_MOVE_Y / IMC_LBOX_PLTT_CHG_COUNT)		// ï¼‘å›ã®ç§»å‹•æ•°
+#define IMC_LBOX_PLTT_CHG_OBJ_S_NUM	(2)		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ•°ã‚’ä½•åˆ†å‰²ã™ã‚‹ã‹
+#define IMC_LBOX_PLTT_CHG_OBJ_E_NUM	(1)		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ•°ã‚’ä½•åˆ†å‰²ã™ã‚‹ã‹
+#define IMC_LBOX_PLTT_BG_SYNC	(5)		// BGã‚’ä½•ã‚·ãƒ³ã‚¯ã§å‹•ã‹ã™ã‹
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒpƒŒƒbƒgƒtƒF[ƒhŒÂX‚ÌƒIƒuƒWƒFƒNƒgˆÚ“®
-//	\‘¢‘Ì
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰å€‹ã€…ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç§»å‹•
+//	æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
@@ -88,33 +88,33 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	ƒpƒŒƒbƒgƒtƒF[ƒhƒ^ƒXƒN
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯
 //	
 //=====================================
 typedef struct {
-	IMC_LEFT_BOX* lbox;	// ¶ƒ{ƒbƒNƒX
+	IMC_LEFT_BOX* lbox;	// å·¦ãƒœãƒƒã‚¯ã‚¹
 
-	int out_mode;		// ƒtƒF[ƒhƒAƒEƒg‚·‚éƒŠƒXƒgmode
-	int out_list;		// ƒtƒF[ƒhƒAƒEƒg‚·‚éƒŠƒXƒgno
-	int in_mode;		// ƒtƒF[ƒhƒCƒ“‚·‚éƒŠƒXƒgmode
-	int in_list;		// ƒtƒF[ƒhƒCƒ“‚·‚éƒŠƒXƒgno
-	BOOL bg_fade;		// BGƒtƒF[ƒhI—¹ƒ`ƒFƒbƒN
-	int count;			// ”Ä—pƒJƒEƒ“ƒ^
+	int out_mode;		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã™ã‚‹ãƒªã‚¹ãƒˆmode
+	int out_list;		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã™ã‚‹ãƒªã‚¹ãƒˆno
+	int in_mode;		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã™ã‚‹ãƒªã‚¹ãƒˆmode
+	int in_list;		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã™ã‚‹ãƒªã‚¹ãƒˆno
+	BOOL bg_fade;		// BGãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†ãƒã‚§ãƒƒã‚¯
+	int count;			// æ±ç”¨ã‚«ã‚¦ãƒ³ã‚¿
 
-	int seq;			// ƒV[ƒPƒ“ƒX	
-	int out_count;		// ƒJƒEƒ“ƒ^
-	int in_count;		// ƒJƒEƒ“ƒ^
+	int seq;			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹	
+	int out_count;		// ã‚«ã‚¦ãƒ³ã‚¿
+	int in_count;		// ã‚«ã‚¦ãƒ³ã‚¿
 
-	IMC_LBOX_PLTT_OBJ_MOVE* move_obj;	// ƒIƒuƒWƒFˆÚ“®ƒf[ƒ^
-	// ªƒe[ƒuƒ‹”out_obj_count + in_obj_count
-	int move_obj_num;		// ƒe[ƒuƒ‹”
+	IMC_LBOX_PLTT_OBJ_MOVE* move_obj;	// ã‚ªãƒ–ã‚¸ã‚§ç§»å‹•ãƒ‡ãƒ¼ã‚¿
+	// â†‘ãƒ†ãƒ¼ãƒ–ãƒ«æ•°ï¼out_obj_count + in_obj_count
+	int move_obj_num;		// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
 } IMC_LBOX_PLTT_TASK;
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void makeAcceList( IMC_LEFT_BOX* lbox, IMC_LEFT_BOX_INIT* init );
@@ -141,10 +141,10 @@ static int movePlttChgGetObjAddNum( int obj_num, int div );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¶ƒ{ƒbƒNƒX—p—Ìˆæì¬
+ *	@brief	å·¦ãƒœãƒƒã‚¯ã‚¹ç”¨é ˜åŸŸä½œæˆ
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒX—pƒf[ƒ^
- *	@param	init		¶ƒ{ƒbƒNƒX‰Šú‰»ƒf[ƒ^
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹ç”¨ãƒ‡ãƒ¼ã‚¿
+ *	@param	init		å·¦ãƒœãƒƒã‚¯ã‚¹åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -153,7 +153,7 @@ static int movePlttChgGetObjAddNum( int obj_num, int div );
 //-----------------------------------------------------------------------------
 void IMC_LBOX_InitSys( IMC_LEFT_BOX* lbox, IMC_LEFT_BOX_INIT* init )
 {
-	// •`‰æƒf[ƒ^İ’è
+	// æç”»ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	lbox->boxDraw.SWSP_drawSys		= init->SWSP_drawSys;
 	lbox->boxDraw.SWSP_charData		= init->SWSP_charData;
 	lbox->boxDraw.SWSP_plttData		= init->SWSP_plttData;
@@ -161,14 +161,14 @@ void IMC_LBOX_InitSys( IMC_LEFT_BOX* lbox, IMC_LEFT_BOX_INIT* init )
 	lbox->boxDraw.BG_Ini			= init->BG_Ini;
 	lbox->boxDraw.acce		= init->acce;
 	
-	// ƒIƒuƒWƒFƒNƒgƒŠƒXƒgƒe[ƒuƒ‹
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 	lbox->boxData.objListTbl = init->objListTbl;
 	lbox->boxData.p_item_buff = init->p_item_buff;
 
-	// ”wŒiƒiƒ“ƒo
+	// èƒŒæ™¯ãƒŠãƒ³ãƒ
 	IMC_LBOX_BGSet( lbox, 0 );
 	
-	// ƒAƒNƒZƒTƒŠƒŠƒXƒgì¬
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆä½œæˆ
 	makeAcceList( lbox, init );
 
 }
@@ -176,9 +176,9 @@ void IMC_LBOX_InitSys( IMC_LEFT_BOX* lbox, IMC_LEFT_BOX_INIT* init )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¶ƒ{ƒbƒN—p—Ìˆæ”jŠü
+ *	@brief	å·¦ãƒœãƒƒã‚¯ç”¨é ˜åŸŸç ´æ£„
  *
- *	@param	lbox		”jŠü‚·‚é¶ƒ{ƒbƒNƒXƒf[ƒ^
+ *	@param	lbox		ç ´æ£„ã™ã‚‹å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -201,12 +201,12 @@ void IMC_LBOX_DeleteSys( IMC_LEFT_BOX* lbox )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ[ƒiƒ“ƒo[‚©‚çƒŠƒXƒgƒiƒ“ƒo[‚ğæ“¾
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- *	@param	mode			ƒ‚[ƒh
- *	@param	accessorie_no	ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
+ *	@param	mode			ãƒ¢ãƒ¼ãƒ‰
+ *	@param	accessorie_no	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	int		ƒAƒNƒZƒTƒŠ[ƒŠƒXƒgƒiƒ“ƒo[
+ *	@return	int		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼
  *
  *
  */
@@ -266,14 +266,14 @@ int IMC_LBOX_GetListNo( int mode, int accessorie_no, IMC_ITEM_BUFF* p_item_buff 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‚[ƒh‚ÆƒAƒNƒZƒTƒŠƒiƒ“ƒo[‚©‚ç“o˜^‚³‚ê‚Ä‚¨‚­‚×‚«À•W‚ğæ“¾
+ *	@brief	ãƒ¢ãƒ¼ãƒ‰ã¨ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ç™»éŒ²ã•ã‚Œã¦ãŠãã¹ãåº§æ¨™ã‚’å–å¾—
  *
- *	@param	mode			ƒ‚[ƒh
- *	@param	accessorie_no	ƒAƒNƒZƒTƒŠƒiƒ“ƒo[
- *	@param	x				‚˜À•WŠi”[æ
- *	@param	y				‚™À•WŠi”[æ
- *	@param	size_x			‚˜ƒTƒCƒY
- *	@param	size_y			‚™ƒTƒCƒY
+ *	@param	mode			ãƒ¢ãƒ¼ãƒ‰
+ *	@param	accessorie_no	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
+ *	@param	x				ï½˜åº§æ¨™æ ¼ç´å…ˆ
+ *	@param	y				ï½™åº§æ¨™æ ¼ç´å…ˆ
+ *	@param	size_x			ï½˜ã‚µã‚¤ã‚º
+ *	@param	size_y			ï½™ã‚µã‚¤ã‚º
  *
  *	@return	none
  *	
@@ -284,7 +284,7 @@ void IMC_LBOX_GetMat( int mode, int accessorie_no, int* x, int* y, int size_x, i
 {
 	switch(mode){
 	case IMC_OBJLIST_ACCE:
-		// ƒAƒNƒZƒTƒŠ‰ŠúÀ•W‚Í—”
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªåˆæœŸåº§æ¨™ã¯ä¹±æ•°
 		*x = IMC_LBOX_AREA_X_MOVEOK;
 		*y = IMC_LBOX_AREA_Y_MOVEOK;
 		*x += ( gf_mtRand() % (IMC_LBOX_AREA_WIDTH_MOVEOK - size_x) );
@@ -302,20 +302,20 @@ void IMC_LBOX_GetMat( int mode, int accessorie_no, int* x, int* y, int size_x, i
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ‚ÌV‹K’Ç‰Á
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã®æ–°è¦è¿½åŠ 
  *
- *	@param	lbox				¶ƒ{ƒbƒNƒX—pƒf[ƒ^
- *	@param	list_num			’Ç‰Á‚·‚éƒAƒNƒZƒTƒŠƒŠƒXƒg”
- *	@param	mode				ƒAƒNƒZƒTƒŠƒ‚[ƒh
- *	@param	accessorie_no		’Ç‰Á‚·‚éƒAƒNƒZƒTƒŠƒiƒ“ƒo[
+ *	@param	lbox				å·¦ãƒœãƒƒã‚¯ã‚¹ç”¨ãƒ‡ãƒ¼ã‚¿
+ *	@param	list_num			è¿½åŠ ã™ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆæ•°
+ *	@param	mode				ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
+ *	@param	accessorie_no		è¿½åŠ ã™ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  *
  * mode
-	IMC_OBJLIST_ACCE,		// ƒAƒNƒZƒTƒŠ•ÏXƒ‚[ƒh
-	IMC_OBJLIST_BG,			// BG•ÏXƒ‚[ƒh
-	IMC_OBJLIST_SND,		// ƒTƒEƒ“ƒh•ÏXƒ‚[ƒh
-	IMC_OBJLIST_ACCE_MAX	// ƒ‚[ƒhÅ‘å”
+	IMC_OBJLIST_ACCE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªå¤‰æ›´ãƒ¢ãƒ¼ãƒ‰
+	IMC_OBJLIST_BG,			// BGå¤‰æ›´ãƒ¢ãƒ¼ãƒ‰
+	IMC_OBJLIST_SND,		// ã‚µã‚¦ãƒ³ãƒ‰å¤‰æ›´ãƒ¢ãƒ¼ãƒ‰
+	IMC_OBJLIST_ACCE_MAX	// ãƒ¢ãƒ¼ãƒ‰æœ€å¤§æ•°
  *
  */
 //-----------------------------------------------------------------------------
@@ -329,15 +329,15 @@ void IMC_LBOX_AddAccessorie( IMC_LEFT_BOX* lbox, int mode, int accessorie_no )
 	int set_x, set_y;
 	int size_x, size_y;
 	
-	// ƒAƒNƒZƒTƒŠ‚ğ“o˜^‚µAƒŠƒXƒg‚É“o˜^
-	// ƒAƒNƒZƒTƒŠ“o˜^ƒf[ƒ^ì¬
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’ç™»éŒ²ã—ã€ãƒªã‚¹ãƒˆã«ç™»éŒ²
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªç™»éŒ²ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	acce_add.objTbl = lbox->boxDraw.acce;
 	acce_add.accessorie_no = accessorie_no;
 	acce_add.SWSPsys	= lbox->boxDraw.SWSP_drawSys;
 	acce_add.m_x	= 0;
 	acce_add.m_y	= 0;
 
-	// mode	‚É‚ ‚í‚¹‚Ä“o˜^‚·‚é
+	// mode	ã«ã‚ã‚ã›ã¦ç™»éŒ²ã™ã‚‹
 	switch( mode ){
 	case IMC_OBJLIST_ACCE:
 		char_no = IMC_ACCE_CHAR_CONT_ID( accessorie_no );
@@ -355,7 +355,7 @@ void IMC_LBOX_AddAccessorie( IMC_LEFT_BOX* lbox, int mode, int accessorie_no )
 		acce_add.pltt_offs = 0;
 		break;
 	default:
-		GF_ASSERT_MSG( 0, "mode‚ª•s³‚È’l‚Å‚·" );
+		GF_ASSERT_MSG( 0, "modeãŒä¸æ­£ãªå€¤ã§ã™" );
 		break;
 	}
 	acce_add.SWSPchar	= lbox->boxDraw.SWSP_charData[ char_no ];
@@ -363,38 +363,38 @@ void IMC_LBOX_AddAccessorie( IMC_LEFT_BOX* lbox, int mode, int accessorie_no )
 	GF_ASSERT( acce_add.SWSPchar );
 	GF_ASSERT_MSG( acce_add.SWSPpltt, "pltt_no %d", pltt_no );
 
-	// ƒŠƒXƒgƒiƒ“ƒo[æ“¾
+	// ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼å–å¾—
 	list_num = IMC_LBOX_GetListNo( mode, accessorie_no, lbox->boxData.p_item_buff );
 
 
-	// “o˜^
+	// ç™»éŒ²
 	acce_obj = IMC_ACCE_ObjAdd( &acce_add );
 
-	// ƒIƒuƒWƒFƒŠƒXƒg‚Ìì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚¹ãƒˆã®ä½œæˆ
 	objList = IMC_OBJLIST_MakeObjList( lbox->boxData.objListTbl, acce_obj, mode );
 	
-	// ƒŠƒXƒg‚ÌŒã‚ë‚É“o˜^
+	// ãƒªã‚¹ãƒˆã®å¾Œã‚ã«ç™»éŒ²
 	IMC_OBJLIST_Set( objList,
 					lbox->boxData.acce_list[ mode ].dummyTbl[ list_num ].prev );
 
-	// À•W‚ğİ’è
+	// åº§æ¨™ã‚’è¨­å®š
 	IMC_OBJLIST_ACCEPOKE_SizeGet( objList, &size_x, &size_y );
 	IMC_LBOX_GetMat( mode, accessorie_no, &set_x, &set_y, size_x, size_y, lbox->boxData.p_item_buff );
 	IMC_OBJLIST_ACCEPOKE_Mat( objList, set_x, set_y );
 
-	// •\¦/”ñ•\¦İ’è
+	// è¡¨ç¤º/éè¡¨ç¤ºè¨­å®š
 	drawFlgSetCheck( lbox, acce_obj, mode, list_num );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ‚ÌˆÚ“®’Ç‰Á
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã®ç§»å‹•è¿½åŠ 
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒX—pƒf[ƒ^
- *	@param	acce_obj	ƒAƒNƒZƒTƒŠƒf[ƒ^
- *	@param	mode		ƒAƒNƒZƒTƒŠƒ‚[ƒh
- *	@param	list_num	“o˜^‚·‚éƒŠƒXƒg
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹ç”¨ãƒ‡ãƒ¼ã‚¿
+ *	@param	acce_obj	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
+ *	@param	mode		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
+ *	@param	list_num	ç™»éŒ²ã™ã‚‹ãƒªã‚¹ãƒˆ
  *
  *	@return	none
  *
@@ -403,20 +403,20 @@ void IMC_LBOX_AddAccessorie( IMC_LEFT_BOX* lbox, int mode, int accessorie_no )
 //-----------------------------------------------------------------------------
 void IMC_LBOX_AddAccessorieMove( IMC_LEFT_BOX* lbox, int mode, int list_num, IMC_OBJLIST* acce_obj )
 {
-	// ƒŠƒXƒg‚Ìæ“ª‚É“o˜^
+	// ãƒªã‚¹ãƒˆã®å…ˆé ­ã«ç™»éŒ²
 	IMC_OBJLIST_Set(acce_obj, lbox->boxData.acce_list[ mode ].dummyTbl + list_num);
 
 
-	// •\¦/”ñ•\¦İ’è
+	// è¡¨ç¤º/éè¡¨ç¤ºè¨­å®š
 	drawFlgSetCheck( lbox, acce_obj->obj_data, mode, list_num );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒIƒuƒWƒF”jŠü
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§ç ´æ£„
  *
- *	@param	acce_obj	”jŠü‚·‚éƒAƒNƒZƒTƒŠ
+ *	@param	acce_obj	ç ´æ£„ã™ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒª
  *
  *	@return	none
  *
@@ -425,22 +425,22 @@ void IMC_LBOX_AddAccessorieMove( IMC_LEFT_BOX* lbox, int mode, int list_num, IMC
 //-----------------------------------------------------------------------------
 void IMC_LBOX_DeleteAccessorie( IMC_OBJLIST* acce_obj )
 {
-	// ƒŠƒXƒg‚©‚ç”jŠü
+	// ãƒªã‚¹ãƒˆã‹ã‚‰ç ´æ£„
 	IMC_OBJLIST_Delete( acce_obj );
 	
-	// ƒAƒNƒZƒTƒŠ”jŠü
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªç ´æ£„
 	IMC_ACCE_ObjDelete( (IMC_ACCESSORIE_OBJ*)acce_obj->obj_data );
 
-	// ƒŠƒXƒg‚ğ”jŠü
+	// ãƒªã‚¹ãƒˆã‚’ç ´æ£„
 	IMC_OBJLIST_DeleteObjList( acce_obj );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ˆÚ“®‚³‚¹‚é‚½‚ß‚ÌƒŠƒXƒg‚©‚ç‚Ìíœ
+ *	@brief	ç§»å‹•ã•ã›ã‚‹ãŸã‚ã®ãƒªã‚¹ãƒˆã‹ã‚‰ã®å‰Šé™¤
  *
- *	@param	acce_obj	ˆÚ“®‚³‚¹‚é‚½‚ß‚ÉƒŠƒXƒg‚©‚çíœ‚·‚éƒAƒNƒZƒTƒŠƒf[ƒ^
+ *	@param	acce_obj	ç§»å‹•ã•ã›ã‚‹ãŸã‚ã«ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤ã™ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -449,16 +449,16 @@ void IMC_LBOX_DeleteAccessorie( IMC_OBJLIST* acce_obj )
 //-----------------------------------------------------------------------------
 void IMC_LBOX_DeleteAccessorieMove( IMC_OBJLIST* acce_obj )
 {
-	// ƒŠƒXƒg‚©‚ç”jŠü
+	// ãƒªã‚¹ãƒˆã‹ã‚‰ç ´æ£„
 	IMC_OBJLIST_Delete( acce_obj );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“o˜^‚³‚ê‚Ä‚¢‚éƒAƒNƒZƒTƒŠ‘S‚Ä‚ğ‚Í‚«
+ *	@brief	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªå…¨ã¦ã‚’ã¯ã
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒX
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹
  *
  *	@return	none
  *
@@ -469,7 +469,7 @@ void IMC_LBOX_DeleteAccessorieAll( IMC_LEFT_BOX* lbox )
 {
 	int i, j;
 	
-	// ƒŠƒXƒg”jŠü
+	// ãƒªã‚¹ãƒˆç ´æ£„
 	for( i=0; i<IMC_OBJLIST_ACCE_MAX; i++ ){
 		for( j=0; j<lbox->boxData.acce_list[ i ].dummyNum; j++ ){
 	
@@ -481,9 +481,9 @@ void IMC_LBOX_DeleteAccessorieAll( IMC_LEFT_BOX* lbox )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¶ƒ{ƒbƒNƒXƒAƒNƒZƒTƒŠ‚Ì•\¦—Dæ‡‚ğİ’è
+ *	@brief	å·¦ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¯ã‚»ã‚µãƒªã®è¡¨ç¤ºå„ªå…ˆé †ã‚’è¨­å®š
  *
- *	@param	lbox	¶ƒuƒƒbƒN
+ *	@param	lbox	å·¦ãƒ–ãƒ­ãƒƒã‚¯
  *
  *	@return	none
  *
@@ -519,29 +519,29 @@ void IMC_LBOX_SetAccessoriePriority( IMC_LEFT_BOX* lbox )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg‚ğ•ÏX
+ *	@brief	ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆã‚’å¤‰æ›´
  *
- *	@param	lbox			¶ƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	mode			ƒAƒNƒZƒTƒŠƒ‚[ƒh
- *	@param	list_num		İ’è‚·‚éƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg
+ *	@param	lbox			å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	mode			ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
+ *	@param	list_num		è¨­å®šã™ã‚‹ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆ
  *
- *	@retval	TRUE			¬Œ÷
- *	@retval	FALSE			¸”s
+ *	@retval	TRUE			æˆåŠŸ
+ *	@retval	FALSE			å¤±æ•—
  *
  * mode
-	IMC_OBJLIST_ACCE,		// ƒAƒNƒZƒTƒŠ•ÏXƒ‚[ƒh
-	IMC_OBJLIST_BG,		// BG•ÏXƒ‚[ƒh
-	IMC_OBJLIST_SND,		// ƒTƒEƒ“ƒh•ÏXƒ‚[ƒh
-	IMC_OBJLIST_ACCE_MAX		// ƒ‚[ƒhÅ‘å”
+	IMC_OBJLIST_ACCE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªå¤‰æ›´ãƒ¢ãƒ¼ãƒ‰
+	IMC_OBJLIST_BG,		// BGå¤‰æ›´ãƒ¢ãƒ¼ãƒ‰
+	IMC_OBJLIST_SND,		// ã‚µã‚¦ãƒ³ãƒ‰å¤‰æ›´ãƒ¢ãƒ¼ãƒ‰
+	IMC_OBJLIST_ACCE_MAX		// ãƒ¢ãƒ¼ãƒ‰æœ€å¤§æ•°
  *
  */
 //-----------------------------------------------------------------------------
 BOOL IMC_LBOX_ChangeCurrentAccessorie( IMC_LEFT_BOX* lbox, int mode, int list_num )
 {
-	// ’Êíó‘Ô‚Ì‚É‚¾‚¯•ÏX‚·‚é
+	// é€šå¸¸çŠ¶æ…‹ã®æ™‚ã«ã ã‘å¤‰æ›´ã™ã‚‹
 	if( lbox->boxData.state == IMC_LBOX_STATE_NORM ){
 		
-		// ƒpƒŒƒbƒg•ÏXƒ^ƒXƒNƒXƒ^[ƒg
+		// ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´ã‚¿ã‚¹ã‚¯ã‚¹ã‚¿ãƒ¼ãƒˆ
 		plttChgTaskStart( lbox,
 				lbox->boxData.mode, 
 				lbox->boxData.acce_list[ lbox->boxData.mode ].dummyCurrent,
@@ -549,11 +549,11 @@ BOOL IMC_LBOX_ChangeCurrentAccessorie( IMC_LEFT_BOX* lbox, int mode, int list_nu
 				list_num );
 
 			
-		// V‚µ‚¢ƒ‚[ƒh‚ÆƒJƒŒƒ“ƒgƒŠƒXƒg”Ô†‚ğİ’è
+		// æ–°ã—ã„ãƒ¢ãƒ¼ãƒ‰ã¨ã‚«ãƒ¬ãƒ³ãƒˆãƒªã‚¹ãƒˆç•ªå·ã‚’è¨­å®š
 		lbox->boxData.mode		= mode;
 		lbox->boxData.acce_list[ mode ].dummyCurrent = list_num;
 
-		// —Dæ‡ˆÊ‚Ìİ’è
+		// å„ªå…ˆé †ä½ã®è¨­å®š
 		IMC_LBOX_SetAccessoriePriority( lbox );
 
 		return TRUE;
@@ -564,22 +564,22 @@ BOOL IMC_LBOX_ChangeCurrentAccessorie( IMC_LEFT_BOX* lbox, int mode, int list_nu
 
 //----------------------------------------------------------------------------
 /**
- * œ©“®‚ÅƒGƒtƒFƒNƒg‚ğs‚¢‚Ü‚·B
+ * â—è‡ªå‹•ã§ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’è¡Œã„ã¾ã™ã€‚
  *
- *	@brief	ƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg‚Ì‘«‚µZ
+ *	@brief	ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆã®è¶³ã—ç®—
  *
- *	@param	lbox			¶ƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	mode			ƒAƒNƒZƒTƒŠƒ‚[ƒh
- *	@param	add_mode		‘«‚·ƒ‚[ƒh
+ *	@param	lbox			å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	mode			ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
+ *	@param	add_mode		è¶³ã™ãƒ¢ãƒ¼ãƒ‰
  *
- *	@retval	TRUE			¬Œ÷
- *	@retval	FALSE			¸”s
+ *	@retval	TRUE			æˆåŠŸ
+ *	@retval	FALSE			å¤±æ•—
  *
  * mode
-	IMC_OBJLIST_ACCE,		// ƒAƒNƒZƒTƒŠƒ^ƒCƒv
-	IMC_OBJLIST_BG,			// BGƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_OBJLIST_SND,		// ƒTƒEƒ“ƒhƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_LBOX_FADELIST_MODE	// ƒtƒF[ƒh—pƒŠƒXƒg	list_num‚Í‚OŒÅ’è
+	IMC_OBJLIST_ACCE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_BG,			// BGã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_SND,		// ã‚µã‚¦ãƒ³ãƒ‰ã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_LBOX_FADELIST_MODE	// ãƒ•ã‚§ãƒ¼ãƒ‰æ™‚ç”¨ãƒªã‚¹ãƒˆ	list_numã¯ï¼å›ºå®š
  */
 //-----------------------------------------------------------------------------
 BOOL IMC_LBOX_AddCurrentAccessorie( IMC_LEFT_BOX* lbox, int mode, int add_mode )
@@ -591,10 +591,10 @@ BOOL IMC_LBOX_AddCurrentAccessorie( IMC_LEFT_BOX* lbox, int mode, int add_mode )
 	int check_list;
 	BOOL ret;
 	
-	// Œ»İ‚ÌƒJƒŒƒ“ƒgƒiƒ“ƒo[
+	// ç¾åœ¨ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
 	currentno = IMC_LBOX_GetCurrentNo( lbox, mode );
 
-	// ƒŠƒXƒg•ª‚Ü‚í‚µ‚ÄA‚Ç‚±‚©AƒAƒNƒZƒTƒŠ‚ª“ü‚Á‚Ä‚¢‚éƒe[ƒuƒ‹‚ğ’T‚·@¡‚Æ“¯‚¶‚à‚Ì‚É‚È‚Á‚½‚ç‰½‚à‚µ‚È‚¢
+	// ãƒªã‚¹ãƒˆåˆ†ã¾ã‚ã—ã¦ã€ã©ã“ã‹ã€ã‚¢ã‚¯ã‚»ã‚µãƒªãŒå…¥ã£ã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ¢ã™ã€€ä»Šã¨åŒã˜ã‚‚ã®ã«ãªã£ãŸã‚‰ä½•ã‚‚ã—ãªã„
 	for( i=1; i<lbox->boxData.acce_list[mode].dummyNum; i++ ){
 
 		if( add_mode == IMC_LBOX_ADD_ONE ){
@@ -606,11 +606,11 @@ BOOL IMC_LBOX_AddCurrentAccessorie( IMC_LEFT_BOX* lbox, int mode, int add_mode )
 			}
 		}
 		
-		// ƒAƒNƒZƒTƒŠ‚ª1‚Â‚Å‚à“ü‚Á‚Ä‚¢‚éƒpƒŒƒbƒg‚ğ‘I‚Ô
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªãŒ1ã¤ã§ã‚‚å…¥ã£ã¦ã„ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆã‚’é¸ã¶
 		dummy = getDummyTbl( lbox, mode, check_list );
 		if( dummy->next != dummy ){
 
-			// ƒŠƒXƒgİ’è‚µ‚Ä”²‚¯‚é
+			// ãƒªã‚¹ãƒˆè¨­å®šã—ã¦æŠœã‘ã‚‹
 			ret = IMC_LBOX_ChangeCurrentAccessorie( lbox, mode, check_list );
 			return ret; 
 		}
@@ -621,32 +621,32 @@ BOOL IMC_LBOX_AddCurrentAccessorie( IMC_LEFT_BOX* lbox, int mode, int add_mode )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg‚ğİ’è
+ *	@brief	ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆã‚’è¨­å®š
  *
- *	@param	lbox			¶ƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	mode			ƒAƒNƒZƒTƒŠƒ‚[ƒh
- *	@param	list_num		İ’è‚·‚éƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg
+ *	@param	lbox			å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	mode			ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
+ *	@param	list_num		è¨­å®šã™ã‚‹ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆ
  *
  *	@return	none
  *
  * mode
-	IMC_OBJLIST_ACCE,		// ƒAƒNƒZƒTƒŠƒ^ƒCƒv
-	IMC_OBJLIST_BG,			// BGƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_OBJLIST_SND,		// ƒTƒEƒ“ƒhƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_OBJLIST_ACCE_MAX	// ƒ‚[ƒhÅ‘å”
+	IMC_OBJLIST_ACCE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_BG,			// BGã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_SND,		// ã‚µã‚¦ãƒ³ãƒ‰ã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_ACCE_MAX	// ãƒ¢ãƒ¼ãƒ‰æœ€å¤§æ•°
  *
  */
 //-----------------------------------------------------------------------------
 void IMC_LBOX_SetCurrentAccessorie( IMC_LEFT_BOX* lbox, int mode, int list_num )
 {
-	// ƒJƒŒƒ“ƒgƒ_ƒ~[ƒŠƒXƒg”ñ•\¦İ’è
+	// ã‚«ãƒ¬ãƒ³ãƒˆãƒ€ãƒŸãƒ¼ãƒªã‚¹ãƒˆéè¡¨ç¤ºè¨­å®š
 	drawFlgCurrentDummy( lbox, FALSE );
 	
-	// V‚µ‚¢ƒ‚[ƒh‚ÆƒJƒŒƒ“ƒgƒŠƒXƒg”Ô†‚ğİ’è
+	// æ–°ã—ã„ãƒ¢ãƒ¼ãƒ‰ã¨ã‚«ãƒ¬ãƒ³ãƒˆãƒªã‚¹ãƒˆç•ªå·ã‚’è¨­å®š
 	lbox->boxData.mode		= mode;
 	lbox->boxData.acce_list[ mode ].dummyCurrent = list_num;
 
-	// ƒJƒŒƒ“ƒgƒ_ƒ~[ƒŠƒXƒg•\¦İ’è
+	// ã‚«ãƒ¬ãƒ³ãƒˆãƒ€ãƒŸãƒ¼ãƒªã‚¹ãƒˆè¡¨ç¤ºè¨­å®š
 	drawFlgCurrentDummy( lbox, TRUE );
 	
 	IMC_LBOX_SetAccessoriePriority( lbox );
@@ -656,22 +656,22 @@ void IMC_LBOX_SetCurrentAccessorie( IMC_LEFT_BOX* lbox, int mode, int list_num )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹‚ª¶ƒ{ƒbƒNƒX‚É“–‚½‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãŒå·¦ãƒœãƒƒã‚¯ã‚¹ã«å½“ãŸã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒXƒf[ƒ^
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE		ƒqƒbƒg
- *	@retval	FALSE		”ñƒqƒbƒg
+ *	@retval	TRUE		ãƒ’ãƒƒãƒˆ
+ *	@retval	FALSE		éãƒ’ãƒƒãƒˆ
  *
  *
  */
 //-----------------------------------------------------------------------------
 BOOL IMC_LBOX_TPHit( IMC_LEFT_BOX* lbox )
 {
-	// “–‚½‚è”»’è‹éŒ`ƒf[ƒ^
+	// å½“ãŸã‚Šåˆ¤å®šçŸ©å½¢ãƒ‡ãƒ¼ã‚¿
 	TP_HIT_TBL	tp_hit;
 	
-	// “–‚½‚è”»’è—pƒf[ƒ^ì¬
+	// å½“ãŸã‚Šåˆ¤å®šç”¨ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	tp_hit.rect.top		= IMC_LBOX_AREA_Y_MOVEOK;
 	tp_hit.rect.bottom	= IMC_LBOX_AREA_Y_MOVEOK + IMC_LBOX_AREA_HEIGHT_MOVEOK;
 	tp_hit.rect.left	= IMC_LBOX_AREA_X_MOVEOK;
@@ -682,24 +682,24 @@ BOOL IMC_LBOX_TPHit( IMC_LEFT_BOX* lbox )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	w’èÀ•W‚ª¶ƒ{ƒbƒNƒX‚É“–‚½‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	æŒ‡å®šåº§æ¨™ãŒå·¦ãƒœãƒƒã‚¯ã‚¹ã«å½“ãŸã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	x			”»’è‚˜À•W
- *	@param	y			”»’è‚™À•W
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	x			åˆ¤å®šï½˜åº§æ¨™
+ *	@param	y			åˆ¤å®šï½™åº§æ¨™
  *
- *	@retval	TRUE		ƒqƒbƒg
- *	@retval	FALSE		”ñƒqƒbƒg
+ *	@retval	TRUE		ãƒ’ãƒƒãƒˆ
+ *	@retval	FALSE		éãƒ’ãƒƒãƒˆ
  *
  *
  */
 //-----------------------------------------------------------------------------
 BOOL IMC_LBOX_TPHitSelf( IMC_LEFT_BOX* lbox, int x, int y )
 {
-	// “–‚½‚è”»’è‹éŒ`ƒf[ƒ^
+	// å½“ãŸã‚Šåˆ¤å®šçŸ©å½¢ãƒ‡ãƒ¼ã‚¿
 	TP_HIT_TBL	tp_hit;
 	
-	// “–‚½‚è”»’è—pƒf[ƒ^ì¬
+	// å½“ãŸã‚Šåˆ¤å®šç”¨ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	tp_hit.rect.top		= IMC_LBOX_AREA_Y_MOVEOK;
 	tp_hit.rect.bottom	= IMC_LBOX_AREA_Y_MOVEOK + IMC_LBOX_AREA_HEIGHT_MOVEOK;
 	tp_hit.rect.left	= IMC_LBOX_AREA_X_MOVEOK;
@@ -710,13 +710,13 @@ BOOL IMC_LBOX_TPHitSelf( IMC_LEFT_BOX* lbox, int x, int y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ‚²‚Æ‚Ì“–‚½‚è”»’è‚ğs‚¤
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã”ã¨ã®å½“ãŸã‚Šåˆ¤å®šã‚’è¡Œã†
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒX
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹
  *
  *	@return	none
  *
- *	ƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg‚ğƒ`ƒFƒbƒN‚µ‚Ü‚·B
+ *	ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -726,7 +726,7 @@ IMC_OBJLIST* IMC_LBOX_TPHitAccessorie( IMC_LEFT_BOX* lbox )
 	IMC_OBJLIST* dummyTbl;
 	BOOL	ret;
 	
-	// ¡‚ÌƒJƒŒƒ“ƒgƒ_ƒ~[ƒe[ƒuƒ‹æ“¾
+	// ä»Šã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 	dummyTbl = getCurrentDummy( lbox );
 	
 	work = dummyTbl->next;
@@ -755,16 +755,16 @@ IMC_OBJLIST* IMC_LBOX_TPHitAccessorie( IMC_LEFT_BOX* lbox )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠ‚²‚Æ‚Ì“–‚½‚è”»’è‚ğ×‚©‚­s‚¤
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªã”ã¨ã®å½“ãŸã‚Šåˆ¤å®šã‚’ç´°ã‹ãè¡Œã†
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒX
- *	@param	offset_x	ƒIƒtƒZƒbƒg‚˜À•W
- *	@param	offset_y	ƒIƒtƒZƒbƒg‚™À•W
- *	@param	SWSP_UPchar	ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒXƒe[ƒuƒ‹
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹
+ *	@param	offset_x	ã‚ªãƒ•ã‚»ãƒƒãƒˆï½˜åº§æ¨™
+ *	@param	offset_y	ã‚ªãƒ•ã‚»ãƒƒãƒˆï½™åº§æ¨™
+ *	@param	SWSP_UPchar	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *	@return	none
  *
- *	ƒJƒŒƒ“ƒgƒAƒNƒZƒTƒŠƒŠƒXƒg‚ğƒ`ƒFƒbƒN‚µ‚Ü‚·B
+ *	ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -774,7 +774,7 @@ IMC_OBJLIST* IMC_LBOX_TPHitAccessorieEx( IMC_LEFT_BOX* lbox, int* offset_x, int*
 	IMC_OBJLIST* dummyTbl;
 	BOOL	ret;
 	
-	// ¡‚ÌƒJƒŒƒ“ƒgƒ_ƒ~[ƒe[ƒuƒ‹æ“¾
+	// ä»Šã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 	dummyTbl = getCurrentDummy( lbox );
 
 	work = dummyTbl->next;
@@ -798,10 +798,10 @@ IMC_OBJLIST* IMC_LBOX_TPHitAccessorieEx( IMC_LEFT_BOX* lbox, int* offset_x, int*
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG‚ğ•\¦
+ *	@brief	BGã‚’è¡¨ç¤º
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒX
- *	@param	bg_num		¶ƒ{ƒbƒNƒXBGƒiƒ“ƒo[
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹
+ *	@param	bg_num		å·¦ãƒœãƒƒã‚¯ã‚¹BGãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  *
@@ -812,7 +812,7 @@ void IMC_LBOX_BGSet( IMC_LEFT_BOX* lbox, int bg_num )
 {
 	IMC_BG_ADD add;
 	
-	// “o˜^ƒf[ƒ^İ’è
+	// ç™»éŒ²ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	add.bg_ini		= lbox->boxDraw.BG_Ini;
 	add.arc_file	= ARC_IMAGECLIP_GRA;
 	add.char_arc	= IMC_BG_LEFT_CG_ARC_GET(bg_num);
@@ -833,15 +833,15 @@ void IMC_LBOX_BGSet( IMC_LEFT_BOX* lbox, int bg_num )
 
 //----------------------------------------------------------------------------
 /**
- * œƒGƒtƒFƒNƒg•t‚«
+ * â—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä»˜ã
  *
- *	@brief	¶ƒ{ƒbƒNƒX”wŒi‚ğ•ÏX
+ *	@brief	å·¦ãƒœãƒƒã‚¯ã‚¹èƒŒæ™¯ã‚’å¤‰æ›´
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒf[ƒ^
- *	@param	bg_num		•ÏXŒã‚ÌBGƒiƒ“ƒo[
- *	@param	fade_way	ƒtƒF[ƒh•ûŒü
- *	@param	sync		‰½ƒVƒ“ƒN‚Ås‚¤‚©
- *	@param	end_flg		I—¹ŒŸ’mƒtƒ‰ƒO
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
+ *	@param	bg_num		å¤‰æ›´å¾Œã®BGãƒŠãƒ³ãƒãƒ¼
+ *	@param	fade_way	ãƒ•ã‚§ãƒ¼ãƒ‰æ–¹å‘
+ *	@param	sync		ä½•ã‚·ãƒ³ã‚¯ã§è¡Œã†ã‹
+ *	@param	end_flg		çµ‚äº†æ¤œçŸ¥ãƒ•ãƒ©ã‚°
  *
  *	@return	none
  *
@@ -853,7 +853,7 @@ void IMC_LBOX_BGChange( IMC_LEFT_BOX* lbox, int bg_num, int fade_way, int sync, 
 	IMC_BG_ADD add;
 	int fade_x, fade_y;
 	
-	// “o˜^ƒf[ƒ^İ’è
+	// ç™»éŒ²ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	add.bg_ini		= lbox->boxDraw.BG_Ini;
 	add.arc_file	= ARC_IMAGECLIP_GRA;
 	add.char_arc	= IMC_BG_LEFT_CG_ARC_GET(bg_num);
@@ -887,9 +887,9 @@ void IMC_LBOX_BGChange( IMC_LEFT_BOX* lbox, int bg_num, int fade_way, int sync, 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG‚ğƒNƒŠ[ƒ“‚·‚é
+ *	@brief	BGã‚’ã‚¯ãƒªãƒ¼ãƒ³ã™ã‚‹
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒX
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹
  *
  *	@return	none
  *
@@ -904,17 +904,17 @@ void IMC_LBOX_BGClean( IMC_LEFT_BOX* lbox )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Œ»İ‚Ìƒ‚[ƒh
+ *	@brief	ç¾åœ¨ã®ãƒ¢ãƒ¼ãƒ‰
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒX
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹
  *
- *	@return	ƒAƒNƒZƒTƒŠƒ‚[ƒh
+ *	@return	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
  *
  * mode
-	IMC_OBJLIST_ACCE,		// ƒAƒNƒZƒTƒŠƒ^ƒCƒv
-	IMC_OBJLIST_BG,			// BGƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_OBJLIST_SND,		// ƒTƒEƒ“ƒhƒTƒ€ƒlƒCƒ‹ƒ^ƒCƒv
-	IMC_OBJLIST_ACCE_MAX	// ƒ‚[ƒhÅ‘å”
+	IMC_OBJLIST_ACCE,		// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_BG,			// BGã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_SND,		// ã‚µã‚¦ãƒ³ãƒ‰ã‚µãƒ ãƒã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
+	IMC_OBJLIST_ACCE_MAX	// ãƒ¢ãƒ¼ãƒ‰æœ€å¤§æ•°
  *
  */
 //-----------------------------------------------------------------------------
@@ -927,12 +927,12 @@ int IMC_LBOX_GetMode( IMC_LEFT_BOX* lbox )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Œ»İ‚ÌƒJƒŒƒ“ƒgƒ_ƒ~[ƒe[ƒuƒ‹ƒiƒ“ƒo[‚ğæ“¾
+ *	@brief	ç¾åœ¨ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	mode	’²‚×‚½‚¢ƒ‚[ƒh
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	mode	èª¿ã¹ãŸã„ãƒ¢ãƒ¼ãƒ‰
  *	
- *	@return	ƒJƒŒƒ“ƒgƒ_ƒ~[ƒe[ƒuƒ‹ƒiƒ“ƒo[
+ *	@return	ã‚«ãƒ¬ãƒ³ãƒˆãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *
  *
  */
@@ -950,12 +950,12 @@ int IMC_LBOX_GetCurrentNo( IMC_LEFT_BOX* lbox, int mode  )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ_ƒ~[ƒe[ƒuƒ‹”‚ğæ“¾
+ *	@brief	ãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«æ•°ã‚’å–å¾—
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒXƒIƒuƒWƒF
- *	@param	mode		ƒAƒNƒZƒTƒŠƒ‚[ƒh
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	mode		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
  *
- *	@return	ƒ_ƒ~[ƒe[ƒuƒ‹”
+ *	@return	ãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
  *
  *
  */
@@ -973,13 +973,13 @@ int IMC_LBOX_GetDummyTblNum( IMC_LEFT_BOX* lbox, int mode )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒŠƒXƒg‘S‚Ä‚ÌÀ•W‚ğ“®‚©‚·
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆå…¨ã¦ã®åº§æ¨™ã‚’å‹•ã‹ã™
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒX
- *	@param	mode		ƒ‚[ƒh
- *	@param	list_no		ƒŠƒXƒgƒiƒ“ƒo[
- *	@param	x			“®‚©‚·‚˜À•W
- *	@param	y			“®‚©‚·‚™À•W
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹
+ *	@param	mode		ãƒ¢ãƒ¼ãƒ‰
+ *	@param	list_no		ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼
+ *	@param	x			å‹•ã‹ã™ï½˜åº§æ¨™
+ *	@param	y			å‹•ã‹ã™ï½™åº§æ¨™
  *
  *	@return	none
  *
@@ -990,7 +990,7 @@ void IMC_LBOX_AccessorieListMove( IMC_LEFT_BOX* lbox, int mode, int list_no, int
 {
 	IMC_OBJLIST* dummyTbl;
 	
-	// mode‚ÆƒŠƒXƒg‚©‚çæ“ªƒ_ƒ~[ƒf[ƒ^æ“¾
+	// modeã¨ãƒªã‚¹ãƒˆã‹ã‚‰å…ˆé ­ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿å–å¾—
 	dummyTbl = getDummyTbl( lbox, mode, list_no );
 	
 	IMC_OBJLIST_ACCEPOKE_ListMove( dummyTbl, x, y );
@@ -999,12 +999,12 @@ void IMC_LBOX_AccessorieListMove( IMC_LEFT_BOX* lbox, int mode, int list_no, int
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¡¶ƒ{ƒbƒN‚ğ‰ó‚µ‚Ä‚æ‚¢ó‘Ô‚È‚Ì‚©‚ğƒ`ƒFƒbƒN
+ *	@brief	ä»Šå·¦ãƒœãƒƒã‚¯ã‚’å£Šã—ã¦ã‚ˆã„çŠ¶æ…‹ãªã®ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒXƒf[ƒ^
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
  *	@retval	TRUE	OK
- *	@retval FALSE	NG		ƒtƒF[ƒh’†‚Å‚·
+ *	@retval FALSE	NG		ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­ã§ã™
  *
  *
  */
@@ -1020,16 +1020,16 @@ BOOL IMC_LBOX_ENDCheck( IMC_LEFT_BOX* lbox )
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+*		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒŠƒXƒgì¬
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆä½œæˆ
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒXƒf[ƒ^
- *	@param	init	‰Šú‰»ƒf[ƒ^
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	init	åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -1038,30 +1038,30 @@ BOOL IMC_LBOX_ENDCheck( IMC_LEFT_BOX* lbox )
 //-----------------------------------------------------------------------------
 static void makeAcceList( IMC_LEFT_BOX* lbox, IMC_LEFT_BOX_INIT* init )
 {
-	// ƒAƒNƒZƒTƒŠƒŠƒXƒgì¬
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆä½œæˆ
 	listDataMake( &lbox->boxData.acce_list[ IMC_OBJLIST_ACCE ], init->accelist_num );
 
-	// ƒJƒŒƒ“ƒg‚Éİ’è
+	// ã‚«ãƒ¬ãƒ³ãƒˆã«è¨­å®š
 	lbox->boxData.mode	= IMC_OBJLIST_ACCE;
 	drawSetList( lbox->boxData.acce_list[ IMC_OBJLIST_ACCE ].dummyTbl, TRUE );
 
-	// BGƒTƒ€ƒlƒCƒ‹ƒŠƒXƒgì¬
+	// BGã‚µãƒ ãƒã‚¤ãƒ«ãƒªã‚¹ãƒˆä½œæˆ
 	listDataMake( &lbox->boxData.acce_list[ IMC_OBJLIST_BG ], init->bglist_num );
 	
-	// ‰¹ºƒTƒ€ƒlƒCƒ‹ƒŠƒXƒgì¬
+	// éŸ³å£°ã‚µãƒ ãƒã‚¤ãƒ«ãƒªã‚¹ãƒˆä½œæˆ
 	listDataMake( &lbox->boxData.acce_list[ IMC_OBJLIST_SND ], init->sndlist_num );
 
-	// ƒtƒF[ƒh—pƒŠƒXƒg
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨ãƒªã‚¹ãƒˆ
 	listDataMake( &lbox->boxData.acce_list[ IMC_LBOX_FADELIST_MODE ], IMC_LBOX_FADELIST_LISTNUM );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒIƒuƒWƒFƒNƒgƒŠƒXƒg‚Ì•\¦”ñ•\¦İ’è
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆã®è¡¨ç¤ºéè¡¨ç¤ºè¨­å®š
  *
- *	@param	dummy		ƒ_ƒ~[ƒf[ƒ^
- *	@param	flag		•\¦”ñ•\¦ƒtƒ‰ƒO
+ *	@param	dummy		ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
+ *	@param	flag		è¡¨ç¤ºéè¡¨ç¤ºãƒ•ãƒ©ã‚°
  *
  *	@return
  *
@@ -1090,12 +1090,12 @@ static void drawSetList( IMC_OBJLIST* dummy, int flag )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•\¦”ñ•\¦İ’èãˆÊŠÖ”
+ *	@brief	è¡¨ç¤ºéè¡¨ç¤ºè¨­å®šä¸Šä½é–¢æ•°
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒX
- *	@param	mode		ƒAƒNƒZƒTƒŠƒ‚[ƒh
- *	@param	list		ƒŠƒXƒg”Ô†
- *	@param	flag		•\¦”ñ•\¦
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹
+ *	@param	mode		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
+ *	@param	list		ãƒªã‚¹ãƒˆç•ªå·
+ *	@param	flag		è¡¨ç¤ºéè¡¨ç¤º
  *
  *	@return	none
  *	
@@ -1113,10 +1113,10 @@ static void drawSetListPack( IMC_LEFT_BOX* lbox, int mode, int list, int flag )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒJƒŒƒ“ƒgƒ_ƒ~[ƒŠƒXƒg‚Ì•\¦”ñ•\¦‚Ìİ’è
+ *	@brief	ã‚«ãƒ¬ãƒ³ãƒˆãƒ€ãƒŸãƒ¼ãƒªã‚¹ãƒˆã®è¡¨ç¤ºéè¡¨ç¤ºã®è¨­å®š
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒXƒIƒuƒWƒF
- *	@param	flag		•\¦/”ñ•\¦ƒtƒ‰ƒO
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	flag		è¡¨ç¤º/éè¡¨ç¤ºãƒ•ãƒ©ã‚°
  *
  *	@return	none
  *
@@ -1127,10 +1127,10 @@ static void drawFlgCurrentDummy( IMC_LEFT_BOX* lbox, int flag )
 {
 	IMC_OBJLIST* dummyTbl;
 	
-	// ƒJƒŒƒ“ƒgƒ_ƒ~[ƒŠƒXƒgæ“¾
+	// ã‚«ãƒ¬ãƒ³ãƒˆãƒ€ãƒŸãƒ¼ãƒªã‚¹ãƒˆå–å¾—
 	dummyTbl = getCurrentDummy( lbox );
 
-	// ‚±‚ê‚©‚ç‚ÌƒJƒŒƒ“ƒg•`‰æON
+	// ã“ã‚Œã‹ã‚‰ã®ã‚«ãƒ¬ãƒ³ãƒˆæç”»ON
 	drawSetList( 
 			dummyTbl,
 			flag );
@@ -1139,10 +1139,10 @@ static void drawFlgCurrentDummy( IMC_LEFT_BOX* lbox, int flag )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ_ƒ~[ƒŠƒXƒgƒe[ƒuƒ‹‚Ìì¬	
+ *	@brief	ãƒ€ãƒŸãƒ¼ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ	
  *
- *	@param	list		ƒ_ƒ~[ƒŠƒXƒgƒe[ƒuƒ‹
- *	@param	dummy_num	ì¬‚·‚éæ“ªƒ_ƒ~[ƒf[ƒ^”
+ *	@param	list		ãƒ€ãƒŸãƒ¼ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	dummy_num	ä½œæˆã™ã‚‹å…ˆé ­ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿æ•°
  *
  *	@return	none
  *
@@ -1170,9 +1170,9 @@ static void listDataMake( IMC_LEFT_LIST_DATA* list, int dummy_num )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒŠƒXƒgƒf[ƒ^”jŠü
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	list	ƒAƒNƒZƒTƒŠƒŠƒXƒg
+ *	@param	list	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆ
  *
  *	@return	none
  *
@@ -1190,11 +1190,11 @@ static void listDataDest( IMC_LEFT_LIST_DATA* list )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¡‚ÌƒJƒŒƒ“ƒgƒ_ƒ~[ƒŠƒXƒg‚ğæ“¾
+ *	@brief	ä»Šã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ€ãƒŸãƒ¼ãƒªã‚¹ãƒˆã‚’å–å¾—
  *
- *	@param	lbox	¶ƒ{ƒbƒNƒXƒIƒuƒWƒF
+ *	@param	lbox	å·¦ãƒœãƒƒã‚¯ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	ƒJƒŒƒ“ƒg‚Ìƒ_ƒ~[ƒŠƒXƒg
+ *	@return	ã‚«ãƒ¬ãƒ³ãƒˆã®ãƒ€ãƒŸãƒ¼ãƒªã‚¹ãƒˆ
  *
  *
  */
@@ -1210,13 +1210,13 @@ static IMC_OBJLIST* getCurrentDummy( IMC_LEFT_BOX* lbox )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ_ƒ~[ƒŠƒXƒg‚ğ‘I‘ğ‚µ‚Äæ“¾
+ *	@brief	ãƒ€ãƒŸãƒ¼ãƒªã‚¹ãƒˆã‚’é¸æŠã—ã¦å–å¾—
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒXƒIƒuƒWƒF
- *	@param	mode		ƒ‚[ƒh
- *	@param	tbl_no		ƒe[ƒuƒ‹”Ô†
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	mode		ãƒ¢ãƒ¼ãƒ‰
+ *	@param	tbl_no		ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·
  *
- *	@return	ƒ_ƒ~[ƒŠƒXƒg
+ *	@return	ãƒ€ãƒŸãƒ¼ãƒªã‚¹ãƒˆ
  *
  *
  */
@@ -1232,13 +1232,13 @@ static IMC_OBJLIST* getDummyTbl( IMC_LEFT_BOX* lbox, int mode, int tbl_no )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒŠƒXƒg‚É“o˜^‚³‚ê‚Ä‚¢‚éƒAƒNƒZƒTƒŠ”‚ğæ“¾‚·‚é
+ *	@brief	ãƒªã‚¹ãƒˆã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒX
- *	@param	mode		ƒŠƒXƒgƒ‚[ƒh
- *	@param	tbl_no		ƒ_ƒ~[ƒf[ƒ^ƒiƒ“ƒo[
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹
+ *	@param	mode		ãƒªã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰
+ *	@param	tbl_no		ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	“o˜^‚³‚ê‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg”
+ *	@return	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
  *
  *
  */
@@ -1249,7 +1249,7 @@ static int getListSetDataNum( IMC_LEFT_BOX* lbox, int mode, int tbl_no )
 	IMC_OBJLIST* work;
 	int count = 0;
 
-	// ƒ_ƒ~[ƒe[ƒuƒ‹
+	// ãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
 	dummy = getDummyTbl( lbox, mode, tbl_no );
 	work = dummy->next;
 
@@ -1265,15 +1265,15 @@ static int getListSetDataNum( IMC_LEFT_BOX* lbox, int mode, int tbl_no )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒIƒuƒWƒFƒNƒgƒŠƒXƒg‚Ìw’è”–Ú‚Ìƒf[ƒ^‚ğæ“¾
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆã®æŒ‡å®šæ•°ç›®ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒX
- *	@param	mode		ƒŠƒXƒgƒ‚[ƒh
- *	@param	tbl_no		ƒŠƒXƒgƒiƒ“ƒo[
- *	@param	no			w’è”
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹
+ *	@param	mode		ãƒªã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰
+ *	@param	tbl_no		ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼
+ *	@param	no			æŒ‡å®šæ•°
  *
- *	@retval	NULL		w’è”‚ª‘½‚¢‚©­‚È‚·‚¬
- *	@retval	‚»‚Ì‘¼		æ“¾¬Œ÷
+ *	@retval	NULL		æŒ‡å®šæ•°ãŒå¤šã„ã‹å°‘ãªã™ã
+ *	@retval	ãã®ä»–		å–å¾—æˆåŠŸ
  *
  *
  */
@@ -1284,7 +1284,7 @@ static IMC_OBJLIST* getNoListObjData( IMC_LEFT_BOX* lbox, int mode, int tbl_no, 
 	IMC_OBJLIST* work;
 	int count = 0;
 
-	// ƒ_ƒ~[ƒe[ƒuƒ‹
+	// ãƒ€ãƒŸãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«
 	dummy = getDummyTbl( lbox, mode, tbl_no );
 	work = dummy->next;
 
@@ -1305,12 +1305,12 @@ static IMC_OBJLIST* getNoListObjData( IMC_LEFT_BOX* lbox, int mode, int tbl_no, 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•\¦/”ñ•\¦”»’f‚ğ”»’è‚µ‚Ä•\¦”ñ•\¦‚ğİ’è‚·‚é
+ *	@brief	è¡¨ç¤º/éè¡¨ç¤ºåˆ¤æ–­ã‚’åˆ¤å®šã—ã¦è¡¨ç¤ºéè¡¨ç¤ºã‚’è¨­å®šã™ã‚‹
  *
- *	@param	lbox		¶ƒ{ƒbƒNƒXƒIƒuƒWƒF
- *	@param	acce_obj	ƒAƒNƒZƒTƒŠƒIƒuƒWƒF
- *	@param	mode		ƒ‚[ƒh
- *	@param	list_num	ƒ_ƒ~[ƒf[ƒ^ƒiƒ“ƒo[
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	acce_obj	ã‚¢ã‚¯ã‚»ã‚µãƒªã‚ªãƒ–ã‚¸ã‚§
+ *	@param	mode		ãƒ¢ãƒ¼ãƒ‰
+ *	@param	list_num	ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  *
@@ -1319,7 +1319,7 @@ static IMC_OBJLIST* getNoListObjData( IMC_LEFT_BOX* lbox, int mode, int tbl_no, 
 //-----------------------------------------------------------------------------
 static void drawFlgSetCheck( IMC_LEFT_BOX* lbox, IMC_ACCESSORIE_OBJ* acce_obj, int mode, int list_num )
 {
-	// ’Ç‰Áæ‚ªƒJƒŒƒ“ƒg‚ÌƒŠƒXƒg‚Å‚È‚¯‚ê‚Î”ñ•\¦‚É‚·‚é
+	// è¿½åŠ å…ˆãŒã‚«ãƒ¬ãƒ³ãƒˆã®ãƒªã‚¹ãƒˆã§ãªã‘ã‚Œã°éè¡¨ç¤ºã«ã™ã‚‹
 	if( (lbox->boxData.mode != mode) || 
 		(lbox->boxData.acce_list[ mode ].dummyCurrent != list_num) ){
 
@@ -1333,11 +1333,11 @@ static void drawFlgSetCheck( IMC_LEFT_BOX* lbox, IMC_ACCESSORIE_OBJ* acce_obj, i
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒTƒ€ƒlƒCƒ‹À•W‚ğæ“¾‚·‚é
+ *	@brief	ã‚µãƒ ãƒã‚¤ãƒ«åº§æ¨™ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	no		ƒAƒNƒZƒTƒŠNo
- *	@param	x		XÀ•WŠi”[æ
- *	@param	y		‚™À•WŠi”[æ
+ *	@param	no		ã‚¢ã‚¯ã‚»ã‚µãƒªNo
+ *	@param	x		Xåº§æ¨™æ ¼ç´å…ˆ
+ *	@param	y		ï½™åº§æ¨™æ ¼ç´å…ˆ
  *
  *	@return	none
  *
@@ -1346,22 +1346,22 @@ static void drawFlgSetCheck( IMC_LEFT_BOX* lbox, IMC_ACCESSORIE_OBJ* acce_obj, i
 //-----------------------------------------------------------------------------
 static void getBgSndThumbMat( int no, int* x, int* y )
 {
-	int step_y;		// c‰½’i–Ú‚©
-	int step_x;		// ‰¡‰½’i–Ú‚©
+	int step_y;		// ç¸¦ä½•æ®µç›®ã‹
+	int step_x;		// æ¨ªä½•æ®µç›®ã‹
 	
-	// ƒŠƒXƒg“àƒiƒ“ƒo[‚É‚·‚é
+	// ãƒªã‚¹ãƒˆå†…ãƒŠãƒ³ãƒãƒ¼ã«ã™ã‚‹
 	no %= IMC_LBOX_BG_ONE_LIST_NUM;
 	
-	// ’i”‚ğŒvZ
+	// æ®µæ•°ã‚’è¨ˆç®—
 	step_y = no / IMC_LBOX_MAT_LINE_NUM;
 	step_x = no % IMC_LBOX_MAT_LINE_NUM;
 
-	// ‚Ü‚¸‚Œˆ’è
+	// ã¾ãšé«˜æ±ºå®š
 	*y = IMC_LBOX_MAT_SPACE_Y * (step_y + 1);
 	*y += IMC_LBOX_THUMB_SIZE_Y * step_y;
 	*y += IMC_LBOX_AREA_Y;
 
-	// •Œˆ’è
+	// å¹…æ±ºå®š
 	*x = IMC_LBOX_MAT_SPACE_X * (step_x + 1);
 	*x += IMC_LBOX_THUMB_SIZE_X * step_x;
 	*x += IMC_LBOX_AREA_X;
@@ -1370,13 +1370,13 @@ static void getBgSndThumbMat( int no, int* x, int* y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒtƒF[ƒhŠJn
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
  *
- *	@param	lbox			¶ƒ{ƒbƒNƒX
- *	@param	out_mode		ƒtƒF[ƒhƒAƒEƒgƒpƒŒƒbƒgmode
- *	@param	out_list		ƒtƒF[ƒhƒAƒEƒgƒpƒŒƒbƒgno
- *	@param	in_mode			ƒtƒF[ƒhƒCƒ“ƒpƒŒƒbƒgmode
- *	@param	in_list			ƒtƒF[ƒhƒCƒ“ƒpƒŒƒbƒgno
+ *	@param	lbox			å·¦ãƒœãƒƒã‚¯ã‚¹
+ *	@param	out_mode		ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆmode
+ *	@param	out_list		ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆno
+ *	@param	in_mode			ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆmode
+ *	@param	in_list			ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆno
  *
  *	@return	none
  *
@@ -1388,13 +1388,13 @@ static void plttChgTaskStart( IMC_LEFT_BOX* lbox, int out_mode, int out_list, in
 	TCB_PTR tcb;
 	IMC_LBOX_PLTT_TASK* pltt_tsk;
 	
-	// ƒ^ƒXƒN¶¬
+	// ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	tcb = PMDS_taskAdd( plttChgTask, sizeof(IMC_LBOX_PLTT_TASK), 0, HEAPID_IMAGECLIP_DATA );
 
-	// ƒ[ƒN‚É’l‚ğİ’è
+	// ãƒ¯ãƒ¼ã‚¯ã«å€¤ã‚’è¨­å®š
 	pltt_tsk = TCB_GetWork( tcb );
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	pltt_tsk->lbox		= lbox;
 	pltt_tsk->out_mode	= out_mode;
 	pltt_tsk->out_list	= out_list;
@@ -1410,17 +1410,17 @@ static void plttChgTaskStart( IMC_LEFT_BOX* lbox, int out_mode, int out_list, in
 	memset( pltt_tsk->move_obj, 0, 
 			sizeof(IMC_LBOX_PLTT_OBJ_MOVE) * pltt_tsk->move_obj_num );
 
-	// ¶ƒpƒŒƒbƒgó‘Ô‚ğƒtƒF[ƒh’†‚É‚·‚é
+	// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆçŠ¶æ…‹ã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­ã«ã™ã‚‹
 	lbox->boxData.state = IMC_LBOX_STATE_FADE;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒtƒF[ƒh
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
  *
- *	@param	tcb		tcbƒ^ƒXƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		tcbã‚¿ã‚¹ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -1436,18 +1436,18 @@ static void plttChgTask( TCB_PTR tcb, void* work )
 	switch( tsk_w->seq ){
 	case IMC_LBOX_PLTT_CHG_INIT:
 		
-		// ƒtƒF[ƒhƒCƒ“‚·‚éƒŠƒXƒg‚ÌÀ•W‚ğİ’è
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã™ã‚‹ãƒªã‚¹ãƒˆã®åº§æ¨™ã‚’è¨­å®š
 		IMC_LBOX_AccessorieListMove( tsk_w->lbox, tsk_w->in_mode, tsk_w->in_list, 0, -IMC_LBOX_PLTT_CHG_MOVE_Y );
 		
-		// ƒtƒF[ƒhƒCƒ“‚·‚éƒŠƒXƒg‚ğ•\¦‚³‚¹‚é
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã™ã‚‹ãƒªã‚¹ãƒˆã‚’è¡¨ç¤ºã•ã›ã‚‹
 		drawSetListPack( tsk_w->lbox, tsk_w->in_mode, tsk_w->in_list, TRUE );
 
-		// BGƒtƒF[ƒhƒAƒEƒgŠJn
+		// BGãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆé–‹å§‹
 		tsk_w->bg_fade = FALSE;
 		bg_no = (tsk_w->lbox->boxData.back_no + 1) % IMC_BG_LEFT_MAX;
 		IMC_LBOX_BGChange( tsk_w->lbox, bg_no, IMC_LBOX_FADE_Y, IMC_LBOX_PLTT_BG_SYNC, &tsk_w->bg_fade );
 
-		// ˆê“x‚É‘«‚·”‚ğ‹‚ß‚é
+		// ä¸€åº¦ã«è¶³ã™æ•°ã‚’æ±‚ã‚ã‚‹
 		tsk_w->count = movePlttChgGetObjAddNum( tsk_w->out_count, IMC_LBOX_PLTT_CHG_OBJ_E_NUM );
 
 		tsk_w->seq++;
@@ -1455,10 +1455,10 @@ static void plttChgTask( TCB_PTR tcb, void* work )
 		
 	case IMC_LBOX_PLTT_CHG_OUT_ACCE_S:
 		
-		// ¡‚¢‚éBG‚ÆƒAƒNƒZƒTƒŠ‚ğ‰æ–ÊŠO‚Ö
+		// ä»Šã„ã‚‹BGã¨ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’ç”»é¢å¤–ã¸
 		for( i=0; i<tsk_w->count; i++ ){
 			
-			// “o˜^
+			// ç™»éŒ²
 			if( (tsk_w->out_count - 1) >= 0 ){
 				IMC_OBJLIST* obj;	
 
@@ -1469,19 +1469,19 @@ static void plttChgTask( TCB_PTR tcb, void* work )
 		}
 		if(tsk_w->out_count == 0){
 
-			// ˆê“x‚É‘«‚·”‚ğ‹‚ß‚é
+			// ä¸€åº¦ã«è¶³ã™æ•°ã‚’æ±‚ã‚ã‚‹
 			tsk_w->count = movePlttChgGetObjAddNum( tsk_w->in_count, IMC_LBOX_PLTT_CHG_OBJ_S_NUM );
 
-			// Ÿ‚Ö
+			// æ¬¡ã¸
 			tsk_w->seq ++;
 		}
 		break;
 
 	case IMC_LBOX_PLTT_CHG_IN_ACCE_S:
-		// VƒAƒNƒZƒTƒŠ‚ğ‰æ–Ê‚Ö
+		// æ–°ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’ç”»é¢ã¸
 		for( i=0; i<tsk_w->count; i++ ){
 			
-			// “o˜^
+			// ç™»éŒ²
 			if( (tsk_w->in_count - 1) >= 0 ){
 				IMC_OBJLIST* obj;	
 
@@ -1491,20 +1491,20 @@ static void plttChgTask( TCB_PTR tcb, void* work )
 			}
 		}
 		if(tsk_w->in_count == 0){
-			// Ÿ‚Ö
+			// æ¬¡ã¸
 			tsk_w->seq ++;
 			tsk_w->count = 0;
 		}
 		break;
 		
 	case IMC_LBOX_PLTT_CHG_WAIT:
-		// ‘S‚Ä‚ª“®‚«I‚í‚é‚Ì‚ğ‘Ò‚Â
+		// å…¨ã¦ãŒå‹•ãçµ‚ã‚ã‚‹ã®ã‚’å¾…ã¤
 		tsk_w->count ++;
 
-		// ƒIƒuƒWƒFƒNƒg‚Ì“®‚«
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‹•ã
 		if( tsk_w->count > IMC_LBOX_PLTT_CHG_COUNT ){
 				
-			// BGƒtƒF[ƒh
+			// BGãƒ•ã‚§ãƒ¼ãƒ‰
 			if( tsk_w->bg_fade ){
 
 				tsk_w->seq ++;
@@ -1513,20 +1513,20 @@ static void plttChgTask( TCB_PTR tcb, void* work )
 		break;
 
 	case IMC_LBOX_PLTT_CHG_END:
-		// À•W‚ğÄİ’è‚µ‚ÄI‚í‚è
-		// ƒtƒF[ƒhƒAƒEƒg‚·‚éƒŠƒXƒg‚ğ”ñ•\¦‚É‚·‚é
+		// åº§æ¨™ã‚’å†è¨­å®šã—ã¦çµ‚ã‚ã‚Š
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã™ã‚‹ãƒªã‚¹ãƒˆã‚’éè¡¨ç¤ºã«ã™ã‚‹
 		drawSetListPack( tsk_w->lbox, tsk_w->out_mode, tsk_w->out_list, FALSE );
 		
-		// ƒtƒF[ƒhƒAƒEƒgƒŠƒXƒg‚ÌÀ•W‚ğİ’è
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãƒªã‚¹ãƒˆã®åº§æ¨™ã‚’è¨­å®š
 		IMC_LBOX_AccessorieListMove( tsk_w->lbox, tsk_w->out_mode, tsk_w->out_list, 0, -IMC_LBOX_PLTT_CHG_MOVE_Y );
 
-		// ¶ƒpƒŒƒbƒgó‘Ô‚ğ’Êí‚É‚·‚é
+		// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆçŠ¶æ…‹ã‚’é€šå¸¸ã«ã™ã‚‹
 		tsk_w->lbox->boxData.state = IMC_LBOX_STATE_NORM;
 
-		// Šm•Û‚µ‚½ƒƒ‚ƒŠ”jŠü
+		// ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªç ´æ£„
 		sys_FreeMemoryEz( tsk_w->move_obj );
 	
-		// ƒ^ƒXƒNI—¹
+		// ã‚¿ã‚¹ã‚¯çµ‚äº†
 		PMDS_taskDel( tcb );
 		
 		return ;
@@ -1536,18 +1536,18 @@ static void plttChgTask( TCB_PTR tcb, void* work )
 		break;
 	}
 
-	// ƒIƒuƒWƒFƒNƒg“®ì
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œ
 	movePlttChgObj( tsk_w->move_obj, tsk_w->move_obj_num );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒtƒF[ƒhƒpƒ^[ƒ“ƒIƒuƒWƒFƒNƒg“®ìƒ^ƒXƒN‚Éİ’è
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œã‚¿ã‚¹ã‚¯ã«è¨­å®š
  *
- *	@param	obj		ƒIƒuƒWƒFƒf[ƒ^
- *	@param	data	“®ìƒf[ƒ^ƒe[ƒuƒ‹
- *	@param	num		ƒe[ƒuƒ‹”
+ *	@param	obj		ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
+ *	@param	data	å‹•ä½œãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	num		ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
  *
  *	@return	none
  *
@@ -1558,7 +1558,7 @@ static void startPlttChgObj( IMC_OBJLIST* obj, IMC_LBOX_PLTT_OBJ_MOVE* data, int
 {
 	IMC_LBOX_PLTT_OBJ_MOVE* obj_move;
 
-	// ‹ó‚ÌƒIƒuƒWƒF“®ìƒe[ƒuƒ‹æ“¾
+	// ç©ºã®ã‚ªãƒ–ã‚¸ã‚§å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 	obj_move = getCleanPlttChgObj( data, num );
 
 
@@ -1570,18 +1570,18 @@ static void startPlttChgObj( IMC_OBJLIST* obj, IMC_LBOX_PLTT_OBJ_MOVE* data, int
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒNƒŠ[ƒ“ó‘Ô‚Ìƒe[ƒuƒ‹‚ğæ“¾
+ *	@brief	ã‚¯ãƒªãƒ¼ãƒ³çŠ¶æ…‹ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
  *
- *	@param	data	ƒe[ƒuƒ‹
+ *	@param	data	ãƒ†ãƒ¼ãƒ–ãƒ«
  *
- *	@return	‰½‚àİ’è‚³‚ê‚Ä‚¢‚È‚¢ƒe[ƒuƒ‹
+ *	@return	ä½•ã‚‚è¨­å®šã•ã‚Œã¦ã„ãªã„ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *
  */
 //-----------------------------------------------------------------------------
 static IMC_LBOX_PLTT_OBJ_MOVE* getCleanPlttChgObj( IMC_LBOX_PLTT_OBJ_MOVE* data, int num )
 {
-	int i;	// ƒ‹[ƒv—p
+	int i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	for( i=0; i<num; i++ ){
 
@@ -1596,10 +1596,10 @@ static IMC_LBOX_PLTT_OBJ_MOVE* getCleanPlttChgObj( IMC_LBOX_PLTT_OBJ_MOVE* data,
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒtƒF[ƒhŒÂXƒIƒuƒWƒF“®ìŠÖ”‚ğÀs
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰å€‹ã€…ã‚ªãƒ–ã‚¸ã‚§å‹•ä½œé–¢æ•°ã‚’å®Ÿè¡Œ
  *
- *	@param	data	“®ìƒe[ƒuƒ‹
- *	@param	num		ƒe[ƒuƒ‹”
+ *	@param	data	å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	num		ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
  *
  *	@return	none
  *
@@ -1608,7 +1608,7 @@ static IMC_LBOX_PLTT_OBJ_MOVE* getCleanPlttChgObj( IMC_LBOX_PLTT_OBJ_MOVE* data,
 //-----------------------------------------------------------------------------
 static void movePlttChgObj( IMC_LBOX_PLTT_OBJ_MOVE* data, int num )
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	for( i=0; i<num; i++ ){
 		if( data[i].obj ){
@@ -1621,9 +1621,9 @@ static void movePlttChgObj( IMC_LBOX_PLTT_OBJ_MOVE* data, int num )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒtƒF[ƒhŒÂXƒIƒuƒWƒF“®ìŠÖ”
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰å€‹ã€…ã‚ªãƒ–ã‚¸ã‚§å‹•ä½œé–¢æ•°
  *
- *	@param	data	“®ìƒe[ƒuƒ‹
+ *	@param	data	å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *	@return none
  *
@@ -1641,7 +1641,7 @@ static void movePlttChgObjCore( IMC_LBOX_PLTT_OBJ_MOVE* data )
 
 	data->count --;
 
-	// I—¹ƒ`ƒFƒbƒN
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( data->count <= 0 ){
 
 		memset( data, 0, sizeof(IMC_LBOX_PLTT_OBJ_MOVE) );
@@ -1651,19 +1651,19 @@ static void movePlttChgObjCore( IMC_LBOX_PLTT_OBJ_MOVE* data )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ˆê“x‚É“®‚©‚·ƒAƒNƒZƒTƒŠ”‚ğæ“¾
+ *	@brief	ä¸€åº¦ã«å‹•ã‹ã™ã‚¢ã‚¯ã‚»ã‚µãƒªæ•°ã‚’å–å¾—
  *
- *	@param	obj_num		ƒAƒNƒZƒTƒŠ‘”
- *	@param	div			‰½ƒVƒ“ƒN‚É•ª‚¯‚é‚©
+ *	@param	obj_num		ã‚¢ã‚¯ã‚»ã‚µãƒªç·æ•°
+ *	@param	div			ä½•ã‚·ãƒ³ã‚¯ã«åˆ†ã‘ã‚‹ã‹
  *
- *	@return	ˆê“x‚É“®‚©‚·”
+ *	@return	ä¸€åº¦ã«å‹•ã‹ã™æ•°
  *
  *
  */
 //-----------------------------------------------------------------------------
 static int movePlttChgGetObjAddNum( int obj_num, int div )
 {
-	// Š„‚èØ‚ê‚é’l‚É‚·‚é
+	// å‰²ã‚Šåˆ‡ã‚Œã‚‹å€¤ã«ã™ã‚‹
 	obj_num += div - (obj_num % div);
 
 	return obj_num / div;

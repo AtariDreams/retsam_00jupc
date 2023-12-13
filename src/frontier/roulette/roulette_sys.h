@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	roulette_sys.h
- * @brief	uƒoƒgƒ‹ƒ‹[ƒŒƒbƒgvƒVƒXƒeƒ€ƒwƒbƒ_[
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã€ã‚·ã‚¹ãƒ†ãƒ ãƒ˜ãƒƒãƒ€ãƒ¼
  * @author	Satoshi Nohara
  * @date	07.09.06
  */
@@ -15,7 +15,7 @@
 
 //==============================================================================================
 //
-//	ƒ^ƒNƒgƒ[ƒN‚Ö‚Ì•sŠ®‘SŒ^ƒ|ƒCƒ“ƒ^
+//	ã‚¿ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ä¸å®Œå…¨åž‹ãƒã‚¤ãƒ³ã‚¿
 //
 //==============================================================================================
 typedef	struct _ROULETTE_WORK ROULETTE_WORK;
@@ -23,112 +23,112 @@ typedef	struct _ROULETTE_WORK ROULETTE_WORK;
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒpƒŒƒbƒg’è‹`
-#define BR_TALKWIN_PAL			(10)				//‰ï˜bƒEƒBƒ“ƒhƒEŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BR_MENU_PAL				(11)				//ƒƒjƒ…[ƒEƒBƒ“ƒhƒEŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BR_MSGFONT_PAL			(12)				//MSGƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BR_FONT_PAL				(13)				//SYSTEMƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
+//ãƒ‘ãƒ¬ãƒƒãƒˆå®šç¾©
+#define BR_TALKWIN_PAL			(10)				//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BR_MENU_PAL				(11)				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BR_MSGFONT_PAL			(12)				//MSGãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BR_FONT_PAL				(13)				//SYSTEMãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 
-#define ROULETTE_VANISH_ON		(0)					//”ñ•\Ž¦
-#define ROULETTE_VANISH_OFF		(1)					//•\Ž¦
+#define ROULETTE_VANISH_ON		(0)					//éžè¡¨ç¤º
+#define ROULETTE_VANISH_OFF		(1)					//è¡¨ç¤º
 
-//ƒpƒlƒ‹‚Ì”
+//ãƒ‘ãƒãƒ«ã®æ•°
 #define ROULETTE_PANEL_H_MAX	(4)
 #define ROULETTE_PANEL_V_MAX	(4)
 #define ROULETTE_PANEL_MAX		(ROULETTE_PANEL_H_MAX * ROULETTE_PANEL_V_MAX)
 
-//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ƒIƒuƒWƒFƒNƒgƒiƒ“ƒo[
+//ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼
 enum{
-	ROULETTE_RES_OBJ_BUTTON = 0,					//ƒ{ƒ^ƒ“
-	ROULETTE_RES_OBJ_CSR,							//ƒJ[ƒ\ƒ‹
-	ROULETTE_RES_OBJ_ITEMKEEP,						//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“
-	ROULETTE_RES_OBJ_ICON1,							//ƒAƒCƒRƒ“1
-	ROULETTE_RES_OBJ_ICON2,							//ƒAƒCƒRƒ“2
-	ROULETTE_RES_OBJ_ICON3,							//ƒAƒCƒRƒ“3
-	ROULETTE_RES_OBJ_ICON4,							//ƒAƒCƒRƒ“4
-	ROULETTE_RES_OBJ_ICON5,							//ƒAƒCƒRƒ“5
-	ROULETTE_RES_OBJ_ICON6,							//ƒAƒCƒRƒ“6
-	ROULETTE_RES_OBJ_ICON7,							//ƒAƒCƒRƒ“7
-	ROULETTE_RES_OBJ_ICON8,							//ƒAƒCƒRƒ“8
-	ROULETTE_RES_OBJ_MAX,							//Å‘å”(ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹‚Í1‚ÂA‚ ‚Æ‚ÍƒAƒCƒRƒ“)
+	ROULETTE_RES_OBJ_BUTTON = 0,					//ãƒœã‚¿ãƒ³
+	ROULETTE_RES_OBJ_CSR,							//ã‚«ãƒ¼ã‚½ãƒ«
+	ROULETTE_RES_OBJ_ITEMKEEP,						//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
+	ROULETTE_RES_OBJ_ICON1,							//ã‚¢ã‚¤ã‚³ãƒ³1
+	ROULETTE_RES_OBJ_ICON2,							//ã‚¢ã‚¤ã‚³ãƒ³2
+	ROULETTE_RES_OBJ_ICON3,							//ã‚¢ã‚¤ã‚³ãƒ³3
+	ROULETTE_RES_OBJ_ICON4,							//ã‚¢ã‚¤ã‚³ãƒ³4
+	ROULETTE_RES_OBJ_ICON5,							//ã‚¢ã‚¤ã‚³ãƒ³5
+	ROULETTE_RES_OBJ_ICON6,							//ã‚¢ã‚¤ã‚³ãƒ³6
+	ROULETTE_RES_OBJ_ICON7,							//ã‚¢ã‚¤ã‚³ãƒ³7
+	ROULETTE_RES_OBJ_ICON8,							//ã‚¢ã‚¤ã‚³ãƒ³8
+	ROULETTE_RES_OBJ_MAX,							//æœ€å¤§æ•°(ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã¯1ã¤ã€ã‚ã¨ã¯ã‚¢ã‚¤ã‚³ãƒ³)
 };
 
-//ŠÇ—CHAR_ID
+//ç®¡ç†CHAR_ID
 enum{
-	ROULETTE_ID_CHAR_BUTTON = 0,					//ƒ{ƒ^ƒ“
-	ROULETTE_ID_CHAR_CSR,							//ƒJ[ƒ\ƒ‹
-	ROULETTE_ID_CHAR_ITEMKEEP,						//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“
-	ROULETTE_ID_CHAR_ICON1,							//ƒAƒCƒRƒ“1
-	ROULETTE_ID_CHAR_ICON2,							//ƒAƒCƒRƒ“2
-	ROULETTE_ID_CHAR_ICON3,							//ƒAƒCƒRƒ“3
-	ROULETTE_ID_CHAR_ICON4,							//ƒAƒCƒRƒ“4
-	ROULETTE_ID_CHAR_ICON5,							//ƒAƒCƒRƒ“5
-	ROULETTE_ID_CHAR_ICON6,							//ƒAƒCƒRƒ“6
-	ROULETTE_ID_CHAR_ICON7,							//ƒAƒCƒRƒ“7
-	ROULETTE_ID_CHAR_ICON8,							//ƒAƒCƒRƒ“8
+	ROULETTE_ID_CHAR_BUTTON = 0,					//ãƒœã‚¿ãƒ³
+	ROULETTE_ID_CHAR_CSR,							//ã‚«ãƒ¼ã‚½ãƒ«
+	ROULETTE_ID_CHAR_ITEMKEEP,						//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
+	ROULETTE_ID_CHAR_ICON1,							//ã‚¢ã‚¤ã‚³ãƒ³1
+	ROULETTE_ID_CHAR_ICON2,							//ã‚¢ã‚¤ã‚³ãƒ³2
+	ROULETTE_ID_CHAR_ICON3,							//ã‚¢ã‚¤ã‚³ãƒ³3
+	ROULETTE_ID_CHAR_ICON4,							//ã‚¢ã‚¤ã‚³ãƒ³4
+	ROULETTE_ID_CHAR_ICON5,							//ã‚¢ã‚¤ã‚³ãƒ³5
+	ROULETTE_ID_CHAR_ICON6,							//ã‚¢ã‚¤ã‚³ãƒ³6
+	ROULETTE_ID_CHAR_ICON7,							//ã‚¢ã‚¤ã‚³ãƒ³7
+	ROULETTE_ID_CHAR_ICON8,							//ã‚¢ã‚¤ã‚³ãƒ³8
 	ROULETTE_ID_CHAR_MAX,							//
 };
 
-//ŠÇ—PLTT_ID
+//ç®¡ç†PLTT_ID
 enum{
-	ROULETTE_ID_PLTT_BUTTON = 0,					//ƒ{ƒ^ƒ“
-	ROULETTE_ID_PLTT_CSR,							//ƒJ[ƒ\ƒ‹
-	ROULETTE_ID_PLTT_ITEMKEEP,						//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“
-	ROULETTE_ID_PLTT_ICON,							//ƒAƒCƒRƒ“
+	ROULETTE_ID_PLTT_BUTTON = 0,					//ãƒœã‚¿ãƒ³
+	ROULETTE_ID_PLTT_CSR,							//ã‚«ãƒ¼ã‚½ãƒ«
+	ROULETTE_ID_PLTT_ITEMKEEP,						//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
+	ROULETTE_ID_PLTT_ICON,							//ã‚¢ã‚¤ã‚³ãƒ³
 	ROULETTE_ID_PLTT_MAX,							//
 };
 
-//ŠÇ—CELL_ID
+//ç®¡ç†CELL_ID
 enum{
-	ROULETTE_ID_CELL_BUTTON = 0,					//ƒ{ƒ^ƒ“
-	ROULETTE_ID_CELL_CSR,							//ƒJ[ƒ\ƒ‹
-	ROULETTE_ID_CELL_ITEMKEEP,						//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“
-	ROULETTE_ID_CELL_ICON,							//ƒAƒCƒRƒ“
+	ROULETTE_ID_CELL_BUTTON = 0,					//ãƒœã‚¿ãƒ³
+	ROULETTE_ID_CELL_CSR,							//ã‚«ãƒ¼ã‚½ãƒ«
+	ROULETTE_ID_CELL_ITEMKEEP,						//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
+	ROULETTE_ID_CELL_ICON,							//ã‚¢ã‚¤ã‚³ãƒ³
 	ROULETTE_ID_CELL_MAX,							//
 };
 
-//ŠÇ—CELLANM_ID
+//ç®¡ç†CELLANM_ID
 enum{
-	ROULETTE_ID_CELLANM_BUTTON = 0,					//ƒ{ƒ^ƒ“
-	ROULETTE_ID_CELLANM_CSR,						//ƒJ[ƒ\ƒ‹
-	ROULETTE_ID_CELLANM_ITEMKEEP,					//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“
-	ROULETTE_ID_CELLANM_ICON,						//ƒAƒCƒRƒ“
+	ROULETTE_ID_CELLANM_BUTTON = 0,					//ãƒœã‚¿ãƒ³
+	ROULETTE_ID_CELLANM_CSR,						//ã‚«ãƒ¼ã‚½ãƒ«
+	ROULETTE_ID_CELLANM_ITEMKEEP,					//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
+	ROULETTE_ID_CELLANM_ICON,						//ã‚¢ã‚¤ã‚³ãƒ³
 	ROULETTE_ID_CELLANM_MAX,						//
 };
 
-//ŠÇ—ID
+//ç®¡ç†ID
 enum{
-	ROULETTE_ID_OBJ_BUTTON = 0,						//ƒ{ƒ^ƒ“
-	ROULETTE_ID_OBJ_CSR,							//ƒJ[ƒ\ƒ‹
-	ROULETTE_ID_OBJ_ITEMKEEP,						//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“
-	//ROULETTE_ID_OBJ_ITEMKEEP1,					//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“1
-	//ROULETTE_ID_OBJ_ITEMKEEP2,					//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“2
-	//ROULETTE_ID_OBJ_ITEMKEEP3,					//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“3
-	//ROULETTE_ID_OBJ_ITEMKEEP4,					//ƒAƒCƒeƒ€Ž‚½‚¹‚Ä‚¢‚éƒAƒCƒRƒ“4
-	ROULETTE_ID_OBJ_ICON1,							//ƒAƒCƒRƒ“1
-	ROULETTE_ID_OBJ_ICON2,							//ƒAƒCƒRƒ“2
-	ROULETTE_ID_OBJ_ICON3,							//ƒAƒCƒRƒ“3
-	ROULETTE_ID_OBJ_ICON4,							//ƒAƒCƒRƒ“4
-	ROULETTE_ID_OBJ_ICON5,							//ƒAƒCƒRƒ“5
-	ROULETTE_ID_OBJ_ICON6,							//ƒAƒCƒRƒ“6
-	ROULETTE_ID_OBJ_ICON7,							//ƒAƒCƒRƒ“7
-	ROULETTE_ID_OBJ_ICON8,							//ƒAƒCƒRƒ“8
+	ROULETTE_ID_OBJ_BUTTON = 0,						//ãƒœã‚¿ãƒ³
+	ROULETTE_ID_OBJ_CSR,							//ã‚«ãƒ¼ã‚½ãƒ«
+	ROULETTE_ID_OBJ_ITEMKEEP,						//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³
+	//ROULETTE_ID_OBJ_ITEMKEEP1,					//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³1
+	//ROULETTE_ID_OBJ_ITEMKEEP2,					//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³2
+	//ROULETTE_ID_OBJ_ITEMKEEP3,					//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³3
+	//ROULETTE_ID_OBJ_ITEMKEEP4,					//ã‚¢ã‚¤ãƒ†ãƒ æŒãŸã›ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³4
+	ROULETTE_ID_OBJ_ICON1,							//ã‚¢ã‚¤ã‚³ãƒ³1
+	ROULETTE_ID_OBJ_ICON2,							//ã‚¢ã‚¤ã‚³ãƒ³2
+	ROULETTE_ID_OBJ_ICON3,							//ã‚¢ã‚¤ã‚³ãƒ³3
+	ROULETTE_ID_OBJ_ICON4,							//ã‚¢ã‚¤ã‚³ãƒ³4
+	ROULETTE_ID_OBJ_ICON5,							//ã‚¢ã‚¤ã‚³ãƒ³5
+	ROULETTE_ID_OBJ_ICON6,							//ã‚¢ã‚¤ã‚³ãƒ³6
+	ROULETTE_ID_OBJ_ICON7,							//ã‚¢ã‚¤ã‚³ãƒ³7
+	ROULETTE_ID_OBJ_ICON8,							//ã‚¢ã‚¤ã‚³ãƒ³8
 	ROULETTE_ID_OBJ_MAX,
 };
 
-#define ROULETTE_POKE_ICON_MAX		(8)				//ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“Å‘å”
-#define ROULETTE_ITEM_KEEP_MAX		(8)				//ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“Å‘å”
+#define ROULETTE_POKE_ICON_MAX		(8)				//ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³æœ€å¤§æ•°
+#define ROULETTE_ITEM_KEEP_MAX		(8)				//ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³æœ€å¤§æ•°
 
-//clact‚ÉÝ’è‚·‚éÅ‘åƒAƒNƒ^[”
-//ƒpƒlƒ‹16AƒJ[ƒ\ƒ‹1Aƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“8AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“8
-//ƒpƒlƒ‹16AƒJ[ƒ\ƒ‹1Aƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“8AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“8Aƒ{ƒ^ƒ“1
+//clactã«è¨­å®šã™ã‚‹æœ€å¤§ã‚¢ã‚¯ã‚¿ãƒ¼æ•°
+//ãƒ‘ãƒãƒ«16ã€ã‚«ãƒ¼ã‚½ãƒ«1ã€ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³8ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³8
+//ãƒ‘ãƒãƒ«16ã€ã‚«ãƒ¼ã‚½ãƒ«1ã€ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³8ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³8ã€ãƒœã‚¿ãƒ³1
 //#define ROULETTE_CLACT_OBJ_MAX	(ROULETTE_PANEL_MAX + 1 + ROULETTE_POKE_ICON_MAX + ROULETTE_ITEM_KEEP_MAX)
 #define ROULETTE_CLACT_OBJ_MAX	(ROULETTE_PANEL_MAX + 1 + ROULETTE_POKE_ICON_MAX + ROULETTE_ITEM_KEEP_MAX + 1)
 
-//ƒAƒjƒƒiƒ“ƒo[(ƒJ[ƒ\ƒ‹Aƒpƒlƒ‹ƒŠƒ\[ƒX)
+//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼(ã‚«ãƒ¼ã‚½ãƒ«ã€ãƒ‘ãƒãƒ«ãƒªã‚½ãƒ¼ã‚¹)
 enum{
 	ROULETTE_ANM_EV_MINE_HP_DOWN = 0,
 	ROULETTE_ANM_EV_MINE_DOKU,
@@ -171,7 +171,7 @@ enum{
 	ROULETTE_ANM_CSR,
 };
 
-//ƒAƒjƒƒiƒ“ƒo[(ƒ{ƒ^ƒ“ƒŠƒ\[ƒX)
+//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼(ãƒœã‚¿ãƒ³ãƒªã‚½ãƒ¼ã‚¹)
 enum{
 	ROULETTE_ANM_BUTTON_STOP = 0,
 	ROULETTE_ANM_BUTTON_PUSH,
@@ -179,7 +179,7 @@ enum{
 };
 
 #if 0
-//ƒZƒ‹ƒiƒ“ƒo[
+//ã‚»ãƒ«ãƒŠãƒ³ãƒãƒ¼
 enum{
 	ROULETTE_CELL_CURSOR_L = 0,
 	ROULETTE_CELL_CURSOR_R, 
@@ -193,9 +193,9 @@ enum{
 
 #define BR_FRAME_WIN	(GF_BGL_FRAME1_M)
 #define BR_FRAME_TYPE	(GF_BGL_FRAME0_M)
-#define BR_FRAME_EFF	(GF_BGL_FRAME2_M)			//ƒpƒlƒ‹ƒGƒtƒFƒNƒg
+#define BR_FRAME_EFF	(GF_BGL_FRAME2_M)			//ãƒ‘ãƒãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 #define BR_FRAME_BG		(GF_BGL_FRAME3_M)			//SINGLE,DOUBLE
-#define BR_FRAME_SUB	(GF_BGL_FRAME0_S)			//ƒ{[ƒ‹
+#define BR_FRAME_SUB	(GF_BGL_FRAME0_S)			//ãƒœãƒ¼ãƒ«
 
 typedef struct{
 	s16  x;
@@ -205,15 +205,15 @@ typedef struct{
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
-extern const PROC_DATA RouletteProcData;				//ƒvƒƒZƒX’è‹`ƒf[ƒ^
+extern const PROC_DATA RouletteProcData;				//ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 extern PROC_RESULT RouletteProc_Init( PROC * proc, int * seq );
 extern PROC_RESULT RouletteProc_Main( PROC * proc, int * seq );
 extern PROC_RESULT RouletteProc_End( PROC * proc, int * seq );
 
-//’ÊM
+//é€šä¿¡
 extern void Roulette_CommRecvBufBasicData(int id_no,int size,void *pData,void *work);
 extern void Roulette_CommRecvBufRankUpType(int id_no,int size,void *pData,void *work);
 extern void Roulette_CommRecvBufCsrPos(int id_no,int size,void *pData,void *work);

@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	poke_test.c
- * @brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒ`ƒFƒbƒN
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒã‚§ãƒƒã‚¯
  * @author	sogabe
  * @date	2005.11.08
  */
@@ -47,7 +47,7 @@ extern	BOOL	PMSVLD_Save(u32 src, void * dst, u32 len);
 #define		HEIGHT_MIN	(-32)
 #define		SHADOW_MAX	(2)
 
-//#define		GO_USE		//—LŒø‚É‚·‚é‚ÆichinoseŽd—l
+//#define		GO_USE		//æœ‰åŠ¹ã«ã™ã‚‹ã¨ichinoseä»•æ§˜
 
 enum{
 	SIDE_MAIN=0,
@@ -77,11 +77,11 @@ enum{
 
 //==============================================================================================
 //
-//	\‘¢‘Ì
+//	æ§‹é€ ä½“
 //
 //==============================================================================================
 
-#define	PGT_POKE_MAX	(600)					//ƒ|ƒPƒ‚ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ÌMAX
+#define	PGT_POKE_MAX	(600)					//ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®MAX
 #define	PGT_END_KEY		(PAD_BUTTON_L|PAD_BUTTON_R|PAD_BUTTON_SELECT)
 
 enum{
@@ -108,10 +108,10 @@ typedef struct{
 }PRG_ANIME;
 
 typedef struct{
-	u8					prg_anm_f;				//ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒiƒ“ƒo[i³–Êj
+	u8					prg_anm_f;				//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ï¼ˆæ­£é¢ï¼‰
 	u8					prg_anm_f_wait;
-	PRG_ANIME			prg_anm_b[3];			//ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒiƒ“ƒo[i”w–Êj
-	SOFT_SPRITE_ANIME	ssanm[SS_ANM_SEQ_MAX];	//ƒpƒ^[ƒ“ƒAƒjƒƒf[ƒ^
+	PRG_ANIME			prg_anm_b[3];			//ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼ï¼ˆèƒŒé¢ï¼‰
+	SOFT_SPRITE_ANIME	ssanm[SS_ANM_SEQ_MAX];	//ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 }POKE_ANM_DATA;
 
 typedef struct{
@@ -145,7 +145,7 @@ typedef struct{
 	int					bg_r;
 	int					bg_g;
 	int					bg_b;
-	//‚±‚±ˆÈ‰º‚ÍAƒZ[ƒu‚µ‚Ä‚¢‚é‚Ì‚ÅAˆÊ’u‚Ì•ÏX‚ÍŒµ‹ÖI
+	//ã“ã“ä»¥ä¸‹ã¯ã€ã‚»ãƒ¼ãƒ–ã—ã¦ã„ã‚‹ã®ã§ã€ä½ç½®ã®å¤‰æ›´ã¯åŽ³ç¦ï¼
 	POKE_ANM_DATA		pad[PGT_POKE_MAX];
 	s8					height[PGT_POKE_MAX];
 	u8					shadow_size[PGT_POKE_MAX];
@@ -154,7 +154,7 @@ typedef struct{
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 
@@ -217,17 +217,17 @@ static	void	PokeGraTestShadowSet(POKE_GRA_TEST *pgt,int height);
 
 //==================================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==================================================================================================
 
 static	const	u16	pal[]={
-		GX_RGB(31,31,31),				//0:”’
-		GX_RGB(13,13,13),				//1:”Z‚¢ŠD
-		GX_RGB(24,24,24),				//2:”–‚¢ŠD
-		GX_RGB(15,31,15),				//3:‚¤‚·‚Ý‚Ç‚è
-		GX_RGB(31,15,15),				//4:‚¤‚·‚ ‚©
-		GX_RGB(19,19,19),				//5:ŠD
+		GX_RGB(31,31,31),				//0:ç™½
+		GX_RGB(13,13,13),				//1:æ¿ƒã„ç°
+		GX_RGB(24,24,24),				//2:è–„ã„ç°
+		GX_RGB(15,31,15),				//3:ã†ã™ã¿ã©ã‚Š
+		GX_RGB(31,15,15),				//4:ã†ã™ã‚ã‹
+		GX_RGB(19,19,19),				//5:ç°
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
@@ -237,10 +237,10 @@ static	const	u16	pal[]={
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
 		GX_RGB( 0, 0, 0),
-		GX_RGB(31,31,31),				//15:”’
+		GX_RGB(31,31,31),				//15:ç™½
 };
 
-//ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN
+//ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯
 enum{
 	POKE_NUM=0,
 	POKE_SEX,
@@ -255,7 +255,7 @@ enum{
 	POKE_BG_COLOR_B
 };
 
-//ƒAƒjƒ[ƒVƒ‡ƒ“Ý’è
+//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š
 enum{
 	MENU_ANM_FRONT=0,
 	MENU_ANM_BACK1,
@@ -291,25 +291,25 @@ typedef BOOL (*PT_FUNC)(POKE_GRA_TEST *);
 
 typedef struct
 {
-	u8		cursor_pos_x;	//ƒJ[ƒ\ƒ‹XˆÊ’u
-	u8		cursor_pos_y;	//ƒJ[ƒ\ƒ‹YˆÊ’u
-	u8		move_up;		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	u8		move_down;		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	u8		move_left;		//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	u8		move_right;		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	PT_FUNC	a_button_act;	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+	u8		cursor_pos_x;	//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+	u8		cursor_pos_y;	//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+	u8		move_up;		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	u8		move_down;		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	u8		move_left;		//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	u8		move_right;		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	PT_FUNC	a_button_act;	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 }MENU_LIST_PARAM;
 
-#define	MONS_NUM_X	(0)		//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[•\Ž¦XˆÊ’u
-#define	MONS_NUM_Y	(8)		//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[•\Ž¦YˆÊ’u
-#define	MONS_NAME_X	(32)	//ƒ‚ƒ“ƒXƒ^[–¼•\Ž¦XˆÊ’u
-#define	MONS_NAME_Y	(8)		//ƒ‚ƒ“ƒXƒ^[–¼•\Ž¦YˆÊ’u
-#define	MONS_SEX_X	(96)	//ƒ‚ƒ“ƒXƒ^[«•Ê•\Ž¦XˆÊ’u
-#define	MONS_SEX_Y	(8)		//ƒ‚ƒ“ƒXƒ^[«•Ê•\Ž¦YˆÊ’u
-#define	MONS_COL_X	(128)	//ƒ‚ƒ“ƒXƒ^[ƒJƒ‰[•\Ž¦XˆÊ’u
-#define	MONS_COL_Y	(8)		//ƒ‚ƒ“ƒXƒ^[ƒJƒ‰[•\Ž¦YˆÊ’u
-#define	MONS_PAT_X	(188)	//ƒ‚ƒ“ƒXƒ^[ƒAƒjƒƒpƒ^[ƒ“ƒiƒ“ƒo[•\Ž¦XˆÊ’u
-#define	MONS_PAT_Y	(8)		//ƒ‚ƒ“ƒXƒ^[ƒAƒjƒƒpƒ^[ƒ“ƒiƒ“ƒo[•\Ž¦YˆÊ’u
+#define	MONS_NUM_X	(0)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤ºXä½ç½®
+#define	MONS_NUM_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤ºYä½ç½®
+#define	MONS_NAME_X	(32)	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åè¡¨ç¤ºXä½ç½®
+#define	MONS_NAME_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åè¡¨ç¤ºYä½ç½®
+#define	MONS_SEX_X	(96)	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ€§åˆ¥è¡¨ç¤ºXä½ç½®
+#define	MONS_SEX_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ€§åˆ¥è¡¨ç¤ºYä½ç½®
+#define	MONS_COL_X	(128)	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚«ãƒ©ãƒ¼è¡¨ç¤ºXä½ç½®
+#define	MONS_COL_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚«ãƒ©ãƒ¼è¡¨ç¤ºYä½ç½®
+#define	MONS_PAT_X	(188)	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤ºXä½ç½®
+#define	MONS_PAT_Y	(8)		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼è¡¨ç¤ºYä½ç½®
 
 #define	POKE_NUM_DATA_X			(12)
 #define	POKE_NUM_DATA_Y			(0)
@@ -787,7 +787,7 @@ static	const	MENU_LIST_PARAM	mlp[]={
 
 //==================================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==================================================================================================
 
@@ -817,7 +817,7 @@ static	void	PokeGraInit(POKE_GRA_TEST *pgt)
 	PokeGraTestBGCreate(pgt,pgt->bgl);
 
 	pgt->ssm=SoftSpriteInit(HEAPID_BATTLE);
-	SoftSpritePaletteTransParamSet(pgt->ssm,0,SOFT_SPRITE_COL_SIZE);	//‰e‚Ì•ª‚à“]‘—‚·‚é‚æ‚¤‚ÉƒTƒCƒY‚ð•ÏX
+	SoftSpritePaletteTransParamSet(pgt->ssm,0,SOFT_SPRITE_COL_SIZE);	//å½±ã®åˆ†ã‚‚è»¢é€ã™ã‚‹ã‚ˆã†ã«ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
 	pgt->pasp=PokeAnm_AllocMemory(HEAPID_BATTLE,2,0);
 
 	pgt->mons_no=1;
@@ -892,26 +892,26 @@ static	void	PokeTestMainScreenCreate(POKE_GRA_TEST *pgt)
 
 //============================================================================================
 /**
- *	í“¬”wŒi‰æ–Ê‰Šú‰»•‰æ–Ê¶¬
+ *	æˆ¦é—˜èƒŒæ™¯ç”»é¢åˆæœŸåŒ–ï¼†ç”»é¢ç”Ÿæˆ
  */
 //============================================================================================
 static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 {
 	GF_Disp_GX_VisibleControlInit();
 
-	//VRAMÝ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
@@ -928,7 +928,7 @@ static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_M
@@ -960,7 +960,7 @@ static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 		G2_SetBG0Priority(0x01);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[]={
 			///<FRAME1_S
@@ -974,7 +974,7 @@ static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 		GF_BGL_ScrClear(bgl, GF_BGL_FRAME1_S );
 	}
 
-	//”wŒiƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒh
+	//èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	{
 		TalkWinGraphicNullSet(bgl, GF_BGL_FRAME1_M,TALK_WIN_CGX_START,TALK_WIN_PAL_NO,0,HEAPID_BATTLE);
 		ArcUtil_BgCharSet(ARC_BATT_BG,BATTLE_BG00_NCGR_BIN,bgl,GF_BGL_FRAME3_M,0,0,1,HEAPID_BATTLE);
@@ -997,7 +997,7 @@ static	void	PokeGraTestBGCreate(POKE_GRA_TEST *pgt,GF_BGL_INI *bgl)
 
 //============================================================================================
 /**
- *	ƒƒCƒ“ƒ‹[ƒvƒ^ƒXƒN
+ *	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¹ã‚¯
  */
 //============================================================================================
 static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
@@ -1025,7 +1025,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 	if((sys.trg == PAD_BUTTON_X)&&(pgt->seq_no<SEQ_LOAD)&&(pgt->seq_no!=SEQ_POKEMON_CHECK_EDIT)){
 #ifdef GO_USE
 		Snd_SceneSet(SND_SCENE_DUMMY);
-		Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_FIGHT0101, 1 );	//ƒoƒgƒ‹‹ÈÄ¶
+		Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_FIGHT0101, 1 );	//ãƒãƒˆãƒ«æ›²å†ç”Ÿ
 #else
 		pgt->seq_no_temp=pgt->seq_no;
 		pgt->seq_no=SEQ_SAVE;
@@ -1165,7 +1165,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 		}
 		pgt->seq_no=SEQ_POKEMON_CHECK;
 		break;
-	//ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN
+	//ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯
 	case SEQ_POKEMON_CHECK:
 		if(sys.trg & PAD_BUTTON_SELECT){
 			pgt->pos=0;
@@ -1261,7 +1261,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			pgt->seq_no=SEQ_POKEMON_CHECK;
 		}
 		break;
-	//ƒ|ƒPƒ‚ƒ“ƒAƒjƒƒZƒbƒg
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 	case SEQ_POKEMON_ANIME:
 		if(sys.trg==PAD_KEY_UP){
 			move=mlp[pgt->pos].move_up;
@@ -1362,7 +1362,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			pgt->seq_no=SEQ_POKEMON_ANIME;
 		}
 		break;
-	//ƒ[ƒh
+	//ãƒ­ãƒ¼ãƒ‰
 	case SEQ_LOAD:
 		if(PokeGraTestLoadAct(pgt)==TRUE){
 			pgt->seq_no=pgt->seq_no_temp;
@@ -1371,7 +1371,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			}
 		}
 		break;
-	//ƒZ[ƒu
+	//ã‚»ãƒ¼ãƒ–
 	case SEQ_SAVE:
 		if(PokeGraTestSaveAct(pgt)==TRUE){
 			pgt->seq_no=pgt->seq_no_temp;
@@ -1380,7 +1380,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			}
 		}
 		break;
-	//ƒAƒjƒI—¹‘Ò‚¿
+	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	case SEQ_POKEMON_ANIME_ACT:
 		if((PokeAnm_IsFinished(pgt->pasp,0)==TRUE)&&
 		   (PokeAnm_IsFinished(pgt->pasp,1)==TRUE)&&
@@ -1391,14 +1391,14 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 			pgt->seq_no=pgt->seq_no_temp;
 		}
 		break;
-	//ƒAƒjƒI—¹‘Ò‚¿
+	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	case SEQ_POKEMON_ANIME_ACT_B:
 		if((PokeAnm_IsFinished(pgt->pasp,0)==TRUE)&&
 		   (SoftSpriteAnimeEndCheck(pgt->ss[0])==FALSE)){
 			pgt->seq_no=pgt->seq_no_temp;
 		}
 		break;
-	//ƒAƒjƒI—¹‘Ò‚¿
+	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	case SEQ_POKEMON_ANIME_ACT_F:
 		if((PokeAnm_IsFinished(pgt->pasp,1)==TRUE)&&
 		   (SoftSpriteAnimeEndCheck(pgt->ss[1])==FALSE)){
@@ -1434,7 +1434,7 @@ static	void	PokeGraTestMain(POKE_GRA_TEST * pgt)
 
 //============================================================================================
 /**
- *	ƒƒCƒ“ƒ‹[ƒvƒ^ƒXƒN
+ *	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã‚¿ã‚¹ã‚¯
  */
 //============================================================================================
 static	void	PokeGraTestDebugPrint(POKE_GRA_TEST *pgt,int mode)
@@ -1490,7 +1490,7 @@ static	void	PokeGraTestShadowSet(POKE_GRA_TEST *pgt,int height)
 
 //==============================================================================================
 //
-//	ƒ^ƒCƒgƒ‹ƒfƒoƒbƒNƒƒjƒ…[‚©‚çŒÄ‚Î‚ê‚é‚æ‚¤‚É’Ç‰Á
+//	ã‚¿ã‚¤ãƒˆãƒ«ãƒ‡ãƒãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã‚ˆã†ã«è¿½åŠ 
 //
 //==============================================================================================
 //--------------------------------------------------------------
@@ -1524,11 +1524,11 @@ static PROC_RESULT PokeGraTestProc_End(PROC * proc, int * seq)
 	PROC_FreeWork(proc);
 	sys_DeleteHeap(HEAPID_BATTLE);
 	Main_SetNextProc(NO_OVERLAY_ID, &TitleProcData);
-	//sys_MainProcChange( TitleMainProc );				//•œ‹Aæ
-	//ƒ\ƒtƒgƒŠƒZƒbƒg
-	//Ú×‚Íƒ\[ƒXæ“ª‚ÌuƒTƒEƒ“ƒhƒeƒXƒg‚Ì—áŠOˆ—‚É‚Â‚¢‚Äv‚ðŽQÆ‚µ‚Ä‰º‚³‚¢
+	//sys_MainProcChange( TitleMainProc );				//å¾©å¸°å…ˆ
+	//ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆ
+	//è©³ç´°ã¯ã‚½ãƒ¼ã‚¹å…ˆé ­ã®ã€Œã‚µã‚¦ãƒ³ãƒ‰ãƒ†ã‚¹ãƒˆã®ä¾‹å¤–å‡¦ç†ã«ã¤ã„ã¦ã€ã‚’å‚ç…§ã—ã¦ä¸‹ã•ã„
 	//OS_InitReset();
-	OS_ResetSystem(0);									//ƒ\ƒtƒgƒŠƒZƒbƒg
+	OS_ResetSystem(0);									//ã‚½ãƒ•ãƒˆãƒªã‚»ãƒƒãƒˆ
 	return PROC_RES_FINISH;
 }
 
@@ -1543,9 +1543,9 @@ const PROC_DATA PokeGraTestProcData = {
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
- * @param	work	VBLank‚É‚Íˆø”‚ª•K—v‚È‚Ì‚Å’è‹`‚µ‚Ä‚ ‚é‚ªŽÀÛ‚É‚ÍNULL‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚ÅAƒAƒNƒZƒX‚Í‹ÖŽ~I
+ * @param	work	VBLankã«ã¯å¼•æ•°ãŒå¿…è¦ãªã®ã§å®šç¾©ã—ã¦ã‚ã‚‹ãŒå®Ÿéš›ã«ã¯NULLãŒå…¥ã£ã¦ã„ã‚‹ã®ã§ã€ã‚¢ã‚¯ã‚»ã‚¹ã¯ç¦æ­¢ï¼
  *
  * @retval	none	
  *
@@ -1567,7 +1567,7 @@ static	void	PokeGraTestVBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	3D‰Šú‰»
+ * @brief	3DåˆæœŸåŒ–
  *
  * @retval	none	
  */
@@ -1583,10 +1583,10 @@ static void Init3DStuff_(void)
     G3X_AntiAlias(TRUE);
     G3X_AlphaBlend(TRUE);
 
-    // 3D –Ê‚Í“ÁŽêŒø‰ÊOFF‚Å‚à‘¼‚ÌBG–Ê‚Æƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒO‚ªs‚í‚ê‚Ü‚·‚ªA
-    // ‚»‚Ì‚½‚ß‚É‚Íƒ¿ƒuƒŒƒ“ƒfƒBƒ“ƒO‘ÎÛ–Ê‚ÌŽw’è‚ðs‚¤•K—v‚ª‚ ‚è‚Ü‚·B
-    // SDK ‚É‚Í‘ÎÛ–Ê‚Ì‚Ý‚ðÝ’è‚·‚é API ‚ª‘¶Ý‚µ‚È‚¢‚Ì‚ÅA‘ã‚í‚è‚É G2_SetBlendAlpha ‚ðŽg‚¢‚Ü‚·B
-    // ‚±‚Ìê‡ G2_SetBlendAlpha ‚ÌŒã‚ë2‚Â‚Ìˆø”‚Í–³Ž‹‚³‚ê‚Ü‚·B
+    // 3D é¢ã¯ç‰¹æ®ŠåŠ¹æžœOFFã§ã‚‚ä»–ã®BGé¢ã¨Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãŒè¡Œã‚ã‚Œã¾ã™ãŒã€
+    // ãã®ãŸã‚ã«ã¯Î±ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°å¯¾è±¡é¢ã®æŒ‡å®šã‚’è¡Œã†å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+    // SDK ã«ã¯å¯¾è±¡é¢ã®ã¿ã‚’è¨­å®šã™ã‚‹ API ãŒå­˜åœ¨ã—ãªã„ã®ã§ã€ä»£ã‚ã‚Šã« G2_SetBlendAlpha ã‚’ä½¿ã„ã¾ã™ã€‚
+    // ã“ã®å ´åˆ G2_SetBlendAlpha ã®å¾Œã‚2ã¤ã®å¼•æ•°ã¯ç„¡è¦–ã•ã‚Œã¾ã™ã€‚
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BD, 0, 0);
 
     // clear color
@@ -1597,7 +1597,7 @@ static void Init3DStuff_(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“«•ÊƒQƒbƒg
+ * @brief	ãƒã‚±ãƒ¢ãƒ³æ€§åˆ¥ã‚²ãƒƒãƒˆ
  *
  * @retval	none	
  */
@@ -1619,27 +1619,27 @@ static	u8	PokeGraTestSexGet(u16 monsno)
 }
 
 //--------------------------------------------------------------
-//	ƒƒbƒZ[ƒW•\Ž¦ˆÊ’u’è‹`
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºä½ç½®å®šç¾©
 //--------------------------------------------------------------
-#define	ANM_FRONT_NUM_X		(16)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_FRONT_X			(48)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_FRONT_WAIT_X	(208)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_FRONT_Y			(0)		//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
+#define	ANM_FRONT_NUM_X		(16)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_FRONT_X			(48)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_FRONT_WAIT_X	(208)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_FRONT_Y			(0)		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
 
-#define	ANM_BACK_NUM_X		(16)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_BACK_X			(48)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_BACK_WAIT_X		(208)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_BACK_Y			(13)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_BACK_OFS_Y		(13)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
+#define	ANM_BACK_NUM_X		(16)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_BACK_X			(48)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_BACK_WAIT_X		(208)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_BACK_Y			(13)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_BACK_OFS_Y		(13)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
 
-#define	ANM_NO_X	(16)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	ANM_NO_Y	(52)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
-#define	PAT_NO_X	(64)	//Patƒiƒ“ƒo[
-#define	PAT_NO_Y	(52)	//Patƒiƒ“ƒo[
-#define	WAIT_X		(112)	//ƒAƒjƒ[ƒVƒ‡ƒ“Wait
-#define	WAIT_Y		(52)	//ƒAƒjƒ[ƒVƒ‡ƒ“Wait
+#define	ANM_NO_X	(16)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	ANM_NO_Y	(52)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
+#define	PAT_NO_X	(64)	//PatãƒŠãƒ³ãƒãƒ¼
+#define	PAT_NO_Y	(52)	//PatãƒŠãƒ³ãƒãƒ¼
+#define	WAIT_X		(112)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³Wait
+#define	WAIT_Y		(52)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³Wait
 
-#define	ANM_NO_OFS_Y	(14)	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒiƒ“ƒo[
+#define	ANM_NO_OFS_Y	(14)	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒŠãƒ³ãƒãƒ¼
 
 #define	SVLD_X		(160)
 #define	SVLD_Y		(80)
@@ -1653,7 +1653,7 @@ static	u8	PokeGraTestSexGet(u16 monsno)
 #if 0
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\Ž¦
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
  * @retval	none	
  */
@@ -1664,28 +1664,28 @@ static	void	PokeGraTestMSG_Print(POKE_GRA_TEST *pgt)
 
 	GF_BGL_BmpWinDataFill(pgt->win_m,0xff);
 
-	//ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
 	STRBUF_SetNumber(pgt->msg_buf, pgt->mons_no, 3, NUMBER_DISPTYPE_ZERO,NUMBER_CODETYPE_DEFAULT);
 	GF_STR_PrintSimple(pgt->win_m,FONT_SYSTEM,pgt->msg_buf,MONS_NUM_X,MONS_NUM_Y,MSG_NO_PUT,NULL);
 
-	//ƒ‚ƒ“ƒXƒ^[–¼
+	//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å
 	msg_m=MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_monsname_dat,HEAPID_BATTLE);
 	MSGMAN_GetString(msg_m,pgt->mons_no,pgt->msg_buf);
 	GF_STR_PrintSimple(pgt->win_m,FONT_SYSTEM,pgt->msg_buf,MONS_NAME_X,MONS_NAME_Y,MSG_NO_PUT,NULL);
 
-	//«•Ê
+	//æ€§åˆ¥
 	MSGMAN_GetString(pgt->man_msg,POKE_TEST_002+pgt->sex,pgt->msg_buf);
 	GF_STR_PrintSimple(pgt->win_m,FONT_SYSTEM,pgt->msg_buf,MONS_SEX_X,MONS_SEX_Y,MSG_NO_PUT,NULL);
 
-	//ƒJƒ‰[
+	//ã‚«ãƒ©ãƒ¼
 	MSGMAN_GetString(pgt->man_msg,POKE_TEST_005+pgt->col,pgt->msg_buf);
 	GF_STR_PrintSimple(pgt->win_m,FONT_SYSTEM,pgt->msg_buf,MONS_COL_X,MONS_COL_Y,MSG_NO_PUT,NULL);
 
-	//ƒAƒjƒƒpƒ^[ƒ“ƒiƒ“ƒo[
+	//ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼
 	STRBUF_SetNumber(pgt->msg_buf, pgt->height[PokeGraNoTable[pgt->mons_no]], 3, NUMBER_DISPTYPE_SPACE,NUMBER_CODETYPE_DEFAULT);
 	GF_STR_PrintSimple(pgt->win_m,FONT_SYSTEM,pgt->msg_buf,MONS_PAT_X,MONS_PAT_Y,MSG_NO_PUT,NULL);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠÖ˜Aíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£é–¢é€£å‰Šé™¤
 	MSGMAN_Delete(msg_m);
 
 	pgt->put_req=1;
@@ -1694,7 +1694,7 @@ static	void	PokeGraTestMSG_Print(POKE_GRA_TEST *pgt)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒXƒNƒŠ[ƒ“•\Ž¦
+ * @brief	ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è¡¨ç¤º
  *
  * @retval	none	
  */
@@ -1714,7 +1714,7 @@ static	void	PokeGraTestSubScreenMake(POKE_GRA_TEST *pgt)
 	}
 
 	for(i=0;i<SS_ANM_SEQ_MAX;i++){
-		//ƒAƒjƒƒiƒ“ƒo[
+		//ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
 		STRBUF_SetNumber(pgt->msg_buf,i+1,2,NUMBER_DISPTYPE_SPACE,NUMBER_CODETYPE_DEFAULT);
 		GF_STR_PrintSimple(pgt->win_s,FONT_SYSTEM,pgt->msg_buf,ANM_NO_X,ANM_NO_Y+i*ANM_NO_OFS_Y,MSG_NO_PUT,NULL);
 		PokeGraTestSubScreenPatDataPut(pgt,i,COL_NORMAL);
@@ -1725,7 +1725,7 @@ static	void	PokeGraTestSubScreenMake(POKE_GRA_TEST *pgt)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒXƒNƒŠ[ƒ“ƒf[ƒ^•\Ž¦
+ * @brief	ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
  * @retval	none	
  */
@@ -1766,7 +1766,7 @@ static	void	PokeTestPokePatDataPut(POKE_GRA_TEST *pgt)
 {
 	GF_BGL_BmpWinFill(pgt->win_m,0x0f,POKE_PAT_DATA_X,POKE_PAT_DATA_Y,12*1,16);
 
-	//ƒAƒjƒƒpƒ^[ƒ“ƒiƒ“ƒo[
+	//ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼
 	STRBUF_SetNumber(pgt->msg_buf, pgt->anm_pat,1,NUMBER_DISPTYPE_SPACE,NUMBER_CODETYPE_DEFAULT);
 	GF_STR_PrintSimple(pgt->win_m,FONT_SYSTEM,pgt->msg_buf,POKE_PAT_DATA_X,POKE_PAT_DATA_Y,MSG_NO_PUT,NULL);
 
@@ -1928,47 +1928,47 @@ static	int	PokeTestPokeFormMaxGet(POKE_GRA_TEST *pgt)
 	int	ret;
 
 	switch(pgt->mons_no){
-	//ƒ~ƒmƒ€ƒbƒ`
-	//ƒ~ƒmƒƒX
+	//ãƒŸãƒŽãƒ ãƒƒãƒ
+	//ãƒŸãƒŽãƒ¡ã‚¹
 	case MONSNO_MINOMUTTI:
 	case MONSNO_MINOMESU:
 		ret=FORMNO_MINOMUTTI_MAX;
 		break;
-	//ƒV[ƒEƒV
-	//ƒV[ƒhƒ‹ƒS
+	//ã‚·ãƒ¼ã‚¦ã‚·
+	//ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´
 	case MONSNO_SIIUSI:
 	case MONSNO_SIIDORUGO:
 		ret=FORMNO_SII_MAX;
 		break;
-	//ƒ`ƒFƒŠƒVƒ…
+	//ãƒã‚§ãƒªã‚·ãƒ¥
 	case MONSNO_THERISYU:
 		ret=FORMNO_THERISYU_MAX;
 		break;
-	//ƒAƒEƒX
+	//ã‚¢ã‚¦ã‚¹
 	case MONSNO_AUSU:
 		ret=POKE_WAZA_TYPE_MAX;
 		break;
-	//ƒ|ƒƒ‹ƒ“
+	//ãƒãƒ¯ãƒ«ãƒ³
 	case MONSNO_POWARUN:
 		ret=FORMNO_POWARUN_MAX;
 		break;
-	//ƒfƒIƒLƒVƒX
+	//ãƒ‡ã‚ªã‚­ã‚·ã‚¹
 	case MONSNO_DEOKISISU:
 		ret=FORMNO_DEOKISISU_MAX;
 		break;
-	//ƒfƒIƒLƒVƒX
+	//ãƒ‡ã‚ªã‚­ã‚·ã‚¹
 	case MONSNO_EURISU:
 		ret=FORMNO_SHEIMI_MAX;
 		break;
-	//ƒAƒ“ƒm[ƒ“
+	//ã‚¢ãƒ³ãƒŽãƒ¼ãƒ³
 	case MONSNO_ANNOON:
 		ret=UNK_QUE;
 		break;
-	//ƒƒgƒ€
+	//ãƒ­ãƒˆãƒ 
 	case MONSNO_PURAZUMA:
-		ret=FORMNO_ROTOMU_MAX;		///<ƒƒgƒ€‚Ì•ÊƒtƒHƒ‹ƒ€MAX
+		ret=FORMNO_ROTOMU_MAX;		///<ãƒ­ãƒˆãƒ ã®åˆ¥ãƒ•ã‚©ãƒ«ãƒ MAX
 		break;
-	//ƒMƒ‰ƒeƒBƒi
+	//ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
 	case MONSNO_KIMAIRAN:
 		ret=FORMNO_GIRATINA_MAX;
 		break;
@@ -1981,7 +1981,7 @@ static	int	PokeTestPokeFormMaxGet(POKE_GRA_TEST *pgt)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒXƒNƒŠ[ƒ“ƒf[ƒ^•\Ž¦
+ * @brief	ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
  * @retval	none	
  */
@@ -2006,7 +2006,7 @@ static	void	PokeGraTestSubScreenAnmFDataPut(POKE_GRA_TEST *pgt,GF_PRINTCOLOR col
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒXƒNƒŠ[ƒ“ƒf[ƒ^•\Ž¦
+ * @brief	ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
  * @retval	none	
  */
@@ -2027,7 +2027,7 @@ static	void	PokeGraTestSubScreenAnmFWaitDataPut(POKE_GRA_TEST *pgt,GF_PRINTCOLOR
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒXƒNƒŠ[ƒ“ƒf[ƒ^•\Ž¦
+ * @brief	ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
  * @retval	none	
  */
@@ -2052,7 +2052,7 @@ static	void	PokeGraTestSubScreenAnmBDataPut(POKE_GRA_TEST *pgt,int num,GF_PRINTC
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒXƒNƒŠ[ƒ“ƒf[ƒ^•\Ž¦
+ * @brief	ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
  * @retval	none	
  */
@@ -2074,7 +2074,7 @@ static	void	PokeGraTestSubScreenAnmBWaitDataPut(POKE_GRA_TEST *pgt,int num,GF_PR
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒXƒNƒŠ[ƒ“ƒf[ƒ^•\Ž¦
+ * @brief	ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
  * @retval	none	
  */
@@ -2089,7 +2089,7 @@ static	void	PokeGraTestSubScreenPatDataPut(POKE_GRA_TEST *pgt,int pos,GF_PRINTCO
 
 	GF_BGL_BmpWinFill(pgt->win_s,0x0f,PAT_NO_X,PAT_NO_Y+pos*ANM_NO_OFS_Y,24,14);
 
-	//Patƒiƒ“ƒo[
+	//PatãƒŠãƒ³ãƒãƒ¼
 	if(pat<0){
 		if(pat==-1){
 			MSGMAN_GetString(pgt->man_msg,POKE_TEST_007,pgt->msg_buf);
@@ -2108,7 +2108,7 @@ static	void	PokeGraTestSubScreenPatDataPut(POKE_GRA_TEST *pgt,int pos,GF_PRINTCO
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒXƒNƒŠ[ƒ“ƒf[ƒ^•\Ž¦
+ * @brief	ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º
  *
  * @retval	none	
  */
@@ -2132,7 +2132,7 @@ static	void	PokeGraTestSubScreenWaitDataPut(POKE_GRA_TEST *pgt,int pos,GF_PRINTC
 
 //==============================================================================================
 //
-//	ƒƒjƒ…[ƒJ[ƒ\ƒ‹ˆÚ“®
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 //
 //==============================================================================================
 static	void	CursorMove(POKE_GRA_TEST *pgt,int side,int pos,int mode)
@@ -2162,7 +2162,7 @@ static	void	CursorMove(POKE_GRA_TEST *pgt,int side,int pos,int mode)
 
 //==============================================================================================
 //
-//	ƒƒjƒ…[ƒJ[ƒ\ƒ‹ˆÚ“®
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 //
 //==============================================================================================
 static	void	YesNoCursorMove(POKE_GRA_TEST *pgt,int pos,int mode)
@@ -2475,7 +2475,7 @@ static	BOOL	PokeBGColorBAct(POKE_GRA_TEST *pgt)
 
 //==============================================================================================
 //
-//	”’l•ÒW
+//	æ•°å€¤ç·¨é›†
 //
 //==============================================================================================
 static	int	PokeTestNumCalc(POKE_GRA_TEST *pgt,int *param,int keta,int min,int max,int mode)
@@ -2557,7 +2557,7 @@ static	int	PokeTestNumCalc(POKE_GRA_TEST *pgt,int *param,int keta,int min,int ma
 
 //--------------------------------------------------------------
 /**
- * @brief	AnmFront•ÒW
+ * @brief	AnmFrontç·¨é›†
  *
  * @retval	none	
  */
@@ -2614,7 +2614,7 @@ static	BOOL	AnmFrontAct(POKE_GRA_TEST *pgt)
 
 //--------------------------------------------------------------
 /**
- * @brief	Wait•ÒW
+ * @brief	Waitç·¨é›†
  *
  * @retval	none	
  */
@@ -2671,7 +2671,7 @@ static	BOOL	AnmFrontWaitAct(POKE_GRA_TEST *pgt)
 
 //--------------------------------------------------------------
 /**
- * @brief	AnmBack•ÒW
+ * @brief	AnmBackç·¨é›†
  *
  * @retval	none	
  */
@@ -2730,7 +2730,7 @@ static	BOOL	AnmBackAct(POKE_GRA_TEST *pgt)
 
 //--------------------------------------------------------------
 /**
- * @brief	Wait•ÒW
+ * @brief	Waitç·¨é›†
  *
  * @retval	none	
  */
@@ -2789,7 +2789,7 @@ static	BOOL	AnmBackWaitAct(POKE_GRA_TEST *pgt)
 
 //--------------------------------------------------------------
 /**
- * @brief	PatNo•ÒW
+ * @brief	PatNoç·¨é›†
  *
  * @retval	none	
  */
@@ -2840,7 +2840,7 @@ static	BOOL	PatDataAct(POKE_GRA_TEST *pgt)
 
 //--------------------------------------------------------------
 /**
- * @brief	Wait•ÒW
+ * @brief	Waitç·¨é›†
  *
  * @retval	none	
  */
@@ -2899,7 +2899,7 @@ static	BOOL	WaitDataAct(POKE_GRA_TEST *pgt)
 
 //==============================================================================================
 //
-//	ƒpƒ‰ƒ[ƒ^ƒ[ƒh
+//	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 //
 //==============================================================================================
 static	BOOL	PokeGraTestLoadAct(POKE_GRA_TEST *pgt)
@@ -2960,7 +2960,7 @@ static	BOOL	PokeGraTestLoadAct(POKE_GRA_TEST *pgt)
 
 //==============================================================================================
 //
-//	ƒpƒ‰ƒ[ƒ^ƒZ[ƒu
+//	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 //
 //==============================================================================================
 static	BOOL	PokeGraTestSaveAct(POKE_GRA_TEST *pgt)
@@ -3023,7 +3023,7 @@ static CATS_ACT_PTR PokeIconCharActorSet(POKE_GRA_TEST *pgt,int mons_no)
 	int monsno, tbl_no;
 	
 	if(client_type >= CLIENT_TYPE_A){
-		tbl_no = client_type - CLIENT_TYPE_A;	//0origin‚ÉC³
+		tbl_no = client_type - CLIENT_TYPE_A;	//0originã«ä¿®æ­£
 	}
 	else{
 		tbl_no = client_type;	//AA or BB
@@ -3031,7 +3031,7 @@ static CATS_ACT_PTR PokeIconCharActorSet(POKE_GRA_TEST *pgt,int mons_no)
 	
 	GF_ASSERT(bip->pokeicon_cap[tbl_no] == NULL);
 	
-	switch(client_type){	//í“¬“ü—Í‰æ–Ê‚Å‚Í“G‚Ì‚Ý•\Ž¦
+	switch(client_type){	//æˆ¦é—˜å…¥åŠ›ç”»é¢ã§ã¯æ•µã®ã¿è¡¨ç¤º
 	case CLIENT_TYPE_AA:
 	case CLIENT_TYPE_A:
 	case CLIENT_TYPE_C:
@@ -3044,24 +3044,24 @@ static CATS_ACT_PTR PokeIconCharActorSet(POKE_GRA_TEST *pgt,int mons_no)
 		char_id = CHARID_POKEICON_D;
 		break;
 	default:
-		GF_ASSERT(0 && "Ý’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+		GF_ASSERT(0 && "è¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“");
 		return NULL;
 	}
 
 	csp = BattleWorkCATS_SYS_PTRGet(bip->bw);
 	crp = BattleWorkCATS_RES_PTRGet(bip->bw);
 	
-	//ƒLƒƒƒ‰ƒŠƒ\[ƒX
+	//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
 	CATS_LoadResourceCharArc(csp, crp, ARC_POKEICON, PokeIconCgxArcIndexGetByPP(pp),
 		0, NNS_G2D_VRAM_TYPE_2DSUB, char_id);
 	
-	//ƒAƒNƒ^[
+	//ã‚¢ã‚¯ã‚¿ãƒ¼
 	obj_param = PokeIconObjParam;
 	obj_param.id[CLACT_U_CHAR_RES] = char_id;
 	obj_param.x = PokeIconPos[tbl_no][0];
 	obj_param.y = PokeIconPos[tbl_no][1];
 	cap = CATS_ObjectAdd_S(csp, crp, &obj_param);
-	//ƒpƒŒƒbƒgØ‚è‘Ö‚¦
+	//ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
 	monsno = PokeParaGet(pp, ID_PARA_monsno, NULL);
 	CLACT_PaletteOffsetChgAddTransPlttNo(cap->act, PokeIconPaletteIDGet(monsno));
 	

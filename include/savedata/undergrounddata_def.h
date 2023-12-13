@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	undergrounddata_def.h
- * @brief	’n‰ºƒAƒCƒeƒ€ƒAƒNƒZƒX—pƒwƒbƒ_  ƒCƒxƒ“ƒgQÆ—p
+ * @brief	åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¯ã‚»ã‚¹ç”¨ãƒ˜ãƒƒãƒ€  ã‚¤ãƒ™ãƒ³ãƒˆå‚ç…§ç”¨
  * @author	k.ohno
  * @date	2006.6.1
  */
@@ -10,14 +10,14 @@
 #define __UNDERGROUNDDATA_DEF_H__
 
 
-// Šø‚ÌƒŒƒxƒ‹‚Ì’è‹`
+// æ——ã®ãƒ¬ãƒ™ãƒ«ã®å®šç¾©
 #define FLAG_LV_NORMAL   (0)
 #define FLAG_LV_BRONZE   (1)
 #define FLAG_LV_SILVER   (2)
 #define FLAG_LV_GOLD     (3)
 #define FLAG_LV_PLATINA  (4)
 
-// ƒŒƒxƒ‹‚Æƒnƒ^‚ğæ‚Á‚½‰ñ”‚Ì’è‹`
+// ãƒ¬ãƒ™ãƒ«ã¨ãƒã‚¿ã‚’å–ã£ãŸå›æ•°ã®å®šç¾©
 #define FLAG_NORMAL_LV_NUM  (0)
 #define FLAG_BRONZE_LV_NUM  (1)
 #define FLAG_SILVER_LV_NUM  (3)

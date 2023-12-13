@@ -15,25 +15,25 @@
 
 //============================================================================================
 //
-//	�A�C�e���g�p���̃e���r�g�s�b�N����
+//	アイテム使用時のテレビトピック生成
 //
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	�g�s�b�N�����F�ǖ�͌��ɋꂵ�I	�|�P�����Ɋ�������������Ƃ�
- * @param	tvwk		�e���r�Z�[�u�f�[�^�ւ̃|�C���^
- * @param	pp			����������|�P�����ւ̃|�C���^
- * @param	itemno		��̃A�C�e���i���o�[
+ * @brief	トピック生成：良薬は口に苦し！	ポケモンに漢方薬をあげたとき
+ * @param	tvwk		テレビセーブデータへのポインタ
+ * @param	pp			薬をあげたポケモンへのポインタ
+ * @param	itemno		薬のアイテムナンバー
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_UseKanpo(TV_WORK * tvwk, POKEMON_PARAM * pp, u16 itemno);
 
 //--------------------------------------------------------------------
 /**
- * @brief	�g�s�b�N�����F�J�X�^���{�[���쐬�I	�J�X�^���J�v�Z�����|�P�����ɃZ�b�g�����Ƃ�
- * @param	tvwk		�e���r�Z�[�u�f�[�^�ւ̃|�C���^
- * @param	pp			�Z�b�g�����|�P�����ւ̃|�C���^
- * @param	seal_no		�V�[���̎�ށi�ǂꂩ��A�K���ł悢�j
+ * @brief	トピック生成：カスタムボール作成！	カスタムカプセルをポケモンにセットしたとき
+ * @param	tvwk		テレビセーブデータへのポインタ
+ * @param	pp			セットしたポケモンへのポインタ
+ * @param	seal_no		シールの種類（どれか一つ、適当でよい）
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_CustomBall(TV_WORK * tvwk, POKEMON_PARAM * pp, u8 seal_no);
@@ -41,20 +41,20 @@ extern void TVTOPIC_Entry_Watch_CustomBall(TV_WORK * tvwk, POKEMON_PARAM * pp, u
 //============================================================================================
 //
 //	
-//	�e���r�g�s�b�N�����p�󋵕ێ��֘A
+//	テレビトピック生成用状況保持関連
 //
 //
 //============================================================================================
 //--------------------------------------------------------------------
 /**
- * @brief	�R���e�X�g�I���󋵂̕ێ�
- * @param	tvwk		�e���r�Z�[�u�f�[�^�ւ̃|�C���^
- * @param	pp			�Q�������|�P������POKEMON_PARAM�ւ̃|�C���^
- * @param	type		�R���e�X�g�̎��
- * @param	rank		�R���e�X�g�����N
- * @param	result		�R���e�X�g����
+ * @brief	コンテスト終了状況の保持
+ * @param	tvwk		テレビセーブデータへのポインタ
+ * @param	pp			参加したポケモンのPOKEMON_PARAMへのポインタ
+ * @param	type		コンテストの種類
+ * @param	rank		コンテストランク
+ * @param	result		コンテスト順位
  *
- * �R���e�X�g���I�������Ƃ��ɂ�т����Ă�������
+ * コンテストが終了したときによびだしてください
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_ContestTemp_Set(TV_WORK * tvwk, POKEMON_PARAM * pp,
@@ -62,58 +62,58 @@ extern void TVTOPIC_ContestTemp_Set(TV_WORK * tvwk, POKEMON_PARAM * pp,
 
 //--------------------------------------------------------------------
 /**
- * @brief	�A����������󋵂̕ێ��F�A��čs���|�P����
- * @param	tvwk		�e���r�Z�[�u�f�[�^�ւ̃|�C���^
- * @param	pp			�A��čs���|�P������POKEMON_PARAM
- * @param	heapID		���p�\�ȃq�[�v�w��ID
+ * @brief	連れ歩き公園状況の保持：連れて行くポケモン
+ * @param	tvwk		テレビセーブデータへのポインタ
+ * @param	pp			連れて行くポケモンのPOKEMON_PARAM
+ * @param	heapID		利用可能なヒープ指定ID
  *
- * �A��čs���|�P���������肵���Ƃ��ɌĂяo���Ă�������
+ * 連れて行くポケモンを決定したときに呼び出してください
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_ParkTemp_Init(TV_WORK * tvwk, POKEMON_PARAM * pp, int heapID);
 
 //--------------------------------------------------------------------
 /**
- * @brief	�A����������󋵂̕ێ��F�A�N�Z�T���擾
- * @param	tvwk		�e���r�Z�[�u�f�[�^�ւ̃|�C���^
- * @param	accessories		�E�����A�N�Z�T����ID
+ * @brief	連れ歩き公園状況の保持：アクセサリ取得
+ * @param	tvwk		テレビセーブデータへのポインタ
+ * @param	accessories		拾ったアクセサリのID
  *
  *
- * �A�N�Z�T�����E�����Ƃ��ɌĂяo���Ă�������
+ * アクセサリを拾ったときに呼び出してください
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_ParkTemp_SetAccessories(TV_WORK * tvwk, int accessories);
 
 //--------------------------------------------------------------------
 /**
- * @brief	�A����������󋵂̕ێ��F�A�C�e���擾
- * @param	tvwk		�e���r�Z�[�u�f�[�^�ւ̃|�C���^
- * @param	item_no		�E�����A�C�e��
+ * @brief	連れ歩き公園状況の保持：アイテム取得
+ * @param	tvwk		テレビセーブデータへのポインタ
+ * @param	item_no		拾ったアイテム
  *
  *
- * �A�C�e�����E�����Ƃ��ɌĂяo���Ă�������
+ * アイテムを拾ったときに呼び出してください
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_ParkTemp_SetKinomi(TV_WORK * tvwk, int item_no);
 
 //--------------------------------------------------------------------
 /**
- * @brief	�|���g�~�j�Q�[���󋵂̕ێ�
- * @param	tvwk		�e���r�Z�[�u�f�[�^�ւ̃|�C���^
- * @param	taste_type	�|���g�̎��
+ * @brief	ポルトミニゲーム状況の保持
+ * @param	tvwk		テレビセーブデータへのポインタ
+ * @param	taste_type	ポルトの種類
  *
- * �|���g���쐬�����Ƃ��ɌĂяo���Ă�������
+ * ポルトを作成したときに呼び出してください
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_PorutoTemp_Set(TV_WORK * tvwk, int taste_type);
 
 //--------------------------------------------------------------------
 /**
- * @brief	�o�g���^���[�󋵂̕ێ�
- * @param	tvwk		�e���r�Z�[�u�f�[�^�ւ̃|�C���^
- * @param	continue_flag		�����������Â��Ă��邩�ǂ���
+ * @brief	バトルタワー状況の保持
+ * @param	tvwk		テレビセーブデータへのポインタ
+ * @param	continue_flag		勝ち抜きがつづいているかどうか
  *
- * �o�g���^���[�̎�t�ɖ߂����Ƃ��ɌĂяo���Ă�������
+ * バトルタワーの受付に戻ったときに呼び出してください
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_BTowerTemp_Set(TV_WORK * tvwk, BOOL continue_flag, u16 win_count);
@@ -128,8 +128,8 @@ extern void TVTOPIC_SafariTemp_Set(TV_WORK * tvwk, POKEMON_PARAM * pp);
 
 //--------------------------------------------------------------------
 /**
- * @brief	�o�g���X�e�[�W�󋵂̕ێ�
- * @param	tvwk		�e���r�Z�[�u�f�[�^�ւ̃|�C���^
+ * @brief	バトルステージ状況の保持
+ * @param	tvwk		テレビセーブデータへのポインタ
  * @param	pp			POKEMON_PARAM
  */
 //--------------------------------------------------------------------
@@ -137,19 +137,19 @@ extern void TVTOPIC_StageTemp_Set(TV_WORK * tvwk, POKEMON_PARAM* pp);
 
 //--------------------------------------------------------------------
 /**
- * @brief	�t�����e�B�A�Œ��ǂ��󋵂̕ێ�
- * @param	tvwk		�e���r�Z�[�u�f�[�^�ւ̃|�C���^
- * @param	bf_no		���킵���{��
- * @param	pair		�V�񂾗F�B
+ * @brief	フロンティアで仲良し状況の保持
+ * @param	tvwk		テレビセーブデータへのポインタ
+ * @param	bf_no		挑戦した施設
+ * @param	pair		遊んだ友達
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_FriendTemp_Set(TV_WORK * tvwk, u8 bf_no, const MYSTATUS* pair);
 
 //--------------------------------------------------------------------
 /**
- * @brief	�o�g���|�C���g���l�󋵂̕ێ�
- * @param	tvwk		�e���r�Z�[�u�f�[�^�ւ̃|�C���^
- * @param	add_bp		�ǉ�����BP
+ * @brief	バトルポイント名人状況の保持
+ * @param	tvwk		テレビセーブデータへのポインタ
+ * @param	add_bp		追加するBP
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_BPTemp_Set(TV_WORK * tvwk, u16 add_bp);
@@ -158,8 +158,8 @@ extern void TVTOPIC_BPTemp_Init(TV_WORK * tvwk);
 
 //--------------------------------------------------------------------
 /**
- * @brief	GTS���l�󋵂̕ێ�
- * @param	tvwk		�e���r�Z�[�u�f�[�^�ւ̃|�C���^
+ * @brief	GTS名人状況の保持
+ * @param	tvwk		テレビセーブデータへのポインタ
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_GTSTemp_Set(TV_WORK * tvwk);

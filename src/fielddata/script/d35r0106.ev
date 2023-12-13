@@ -1,7 +1,7 @@
 //====================================================================
 //							d35r0106
 //
-//	����POS�N��
+//	床のPOS起動
 //	LOCALWORK1
 //	LOCALWORK2
 //	LOCALWORK3
@@ -19,11 +19,11 @@
 	.include	"../eventdata/zone_d35r0106evc.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d35r0106_flag_change
 _EVENT_DATA		ev_d35r0106_legend_01
@@ -40,18 +40,18 @@ _EVENT_DATA_END
 /********************************************************************/
 /*						FLAG_CHANGE_LABEL 							*/
 /*
- * ���ӁI(06.02.09����)
- * EV_SCRIPT_WORK���m�ۂ��Ă��Ȃ��̂ŁA
- * SCWK_ANSWER�Ȃǂ̃��[�N�͎g�p���邱�Ƃ��o���Ȃ��I
- * LOCALWORK0�Ȃǂ��g�p����悤�ɂ���I
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
  *
- * ���ʃX�N���v�g�ɂ��Ă͌���g�p�s�I
- * �Ή��\�肾���A�]�[�����܂��������ɏ����������邩���H
- * ���܂����Ȃ������H
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
  */
 /********************************************************************/
 ev_d35r0106_flag_change:
-	/*�����N���A(�|�����A�߂܂�����ԂłȂ����)*/
+	/*歩数クリア(倒した、捕まえた状態でなければ)*/
 	_IFVAL_JUMP		SYS_WORK_D35R0106_REZI,LT,REZI_WORK_CAPTURE_NG,ev_d35r0106_legend_clear
 	_END
 
@@ -61,35 +61,35 @@ ev_d35r0106_legend_clear:
 
 
 /********************************************************************/
-/*						���W���b�N�C�x���g�J�n						*/
+/*						レジロックイベント開始						*/
 /********************************************************************/
 ev_d35r0106_legend_01:
 	_TALK_OBJ_START
 
-	/*�ߊl����*/
+	/*捕獲成功*/
 	_IFVAL_JUMP		SYS_WORK_D35R0106_REZI,EQ,REZI_WORK_CAPTURE_OK,ev_d35r0106_legend_capture_ok
 
-	/*�ߊl���s*/
+	/*捕獲失敗*/
 	_IFVAL_JUMP		SYS_WORK_D35R0106_REZI,EQ,REZI_WORK_CAPTURE_NG,ev_d35r0106_legend_capture_ng
 
-	/*�Q�[���N���A���Ă��Ȃ�������*/
+	/*ゲームクリアしていなかったら*/
 	_IF_FLAGOFF_JUMP SYS_FLAG_GAME_CLEAR,ev_d35r0106_legend_non_clear
 
-	/*�莝���ɔz�z���W���b�N�����邩�ǂ����`�F�b�N*/
+	/*手持ちに配布レジロックがいるかどうかチェック*/
 	_D35_HAIHU_REZI_CHECK	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d35r0106_legend_none
 
-	/*�퓬��*/
+	/*戦闘へ*/
 	_IFVAL_JUMP		SYS_WORK_D35R0106_REZI,EQ,REZI_WORK_TALK_OK,ev_d35r0106_legend_btl
 
-	/*�܂��S�ē���ł��Ȃ�*/
+	/*まだ全て踏んでいない*/
 	_IFVAL_JUMP		SYS_WORK_D35R0106_REZI,LT,REZI_WORK_POS_OK,ev_d35r0106_legend_none
 
 	////////////////////
-	/*���̉��ɂ͂��Ȃ�*/
+	/*この下にはこない*/
 	////////////////////
 
-	/*�n�k�����I*/
+	/*地震発生！*/
 	_SE_WAIT		SEQ_SE_DP_SELECT
 	_ZISHIN			1
 
@@ -98,14 +98,14 @@ ev_d35r0106_legend_01:
 	_JUMP			ev_d35r0106_legend_end
 	_END
 
-/*�퓬��*/
+/*戦闘へ*/
 ev_d35r0106_legend_btl:
 	_VOICE_PLAY		MONSNO_REZIROKKU,0
 	_TALK_KEYWAIT	msg_d35r0106_statue_03
 	_VOICE_WAIT
 	_TALK_CLOSE
 
-	//�퓬�J�n
+	//戦闘開始
 	_SP_WILD_BTL_SET	MONSNO_REZIROKKU,30
 
 	_LOSE_CHECK		SCWK_ANSWER
@@ -113,7 +113,7 @@ ev_d35r0106_legend_btl:
 	_HAIFU_POKE_RETRY_CHECK	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_d35r0106_legend_capture_ng
 
-/*���W���b�N�߂܂���*/
+/*レジロック捕まえた*/
 ev_d35r0106_legend_event_clear:
 	_LDVAL			SYS_WORK_D35R0106_REZI,REZI_WORK_CAPTURE_OK
 	_TALK_OBJ_END
@@ -124,27 +124,27 @@ ev_d35r0106_legend_capture_ok:
 	_JUMP			ev_d35r0106_legend_end
 	_END
 
-/*���W���b�N�������A�|����*/
+/*レジロック逃した、倒した*/
 ev_d35r0106_legend_capture_ng:
 	_LDVAL			SYS_WORK_D35R0106_REZI,REZI_WORK_CAPTURE_NG
 	_TALKMSG		msg_d35r0106_statue_04
 	_JUMP			ev_d35r0106_legend_end
 	_END
 
-/*�S��*/
+/*全滅*/
 ev_d35r0106_legend_lose:
 	_NORMAL_LOSE	
 	_TALK_OBJ_END
 	_END
 
-/*�N���A���Ă��Ȃ�*/
+/*クリアしていない*/
 ev_d35r0106_legend_non_clear:
 	_TALK_KEYWAIT	msg_d35r0106_statue_05
 	_JUMP			ev_d35r0106_legend_end
 	_END
 
-/*�莝���ɔz�z���W���b�N�����Ȃ�*/
-/*�܂��S�ē���ł��Ȃ�*/
+/*手持ちに配布レジロックがいない*/
+/*まだ全て踏んでいない*/
 ev_d35r0106_legend_none:
 	_TALK_KEYWAIT	msg_d35r0106_statue_01
 	_JUMP			ev_d35r0106_legend_end
@@ -158,12 +158,12 @@ ev_d35r0106_legend_end:
 
 
 /********************************************************************/
-/*								��									*/
+/*								床									*/
 /********************************************************************/
 pos_d35r0106_floor_01:
 	_LDVAL			LOCALWORK1,1
 
-	/*�S�ď�����ł���ȏ�̎�*/
+	/*全て床踏んでいる以上の時*/
 	_IFVAL_JUMP		SYS_WORK_D35R0106_REZI,GE,REZI_WORK_POS_OK,ev_d35r0106_floor_none
 	_JUMP			ev_d35r0106_floor_common
 	_END
@@ -171,7 +171,7 @@ pos_d35r0106_floor_01:
 pos_d35r0106_floor_02:
 	_LDVAL			LOCALWORK2,1
 
-	/*�S�ď�����ł���ȏ�̎�*/
+	/*全て床踏んでいる以上の時*/
 	_IFVAL_JUMP		SYS_WORK_D35R0106_REZI,GE,REZI_WORK_POS_OK,ev_d35r0106_floor_none
 	_JUMP			ev_d35r0106_floor_common
 	_END
@@ -179,7 +179,7 @@ pos_d35r0106_floor_02:
 pos_d35r0106_floor_03:
 	_LDVAL			LOCALWORK3,1
 
-	/*�S�ď�����ł���ȏ�̎�*/
+	/*全て床踏んでいる以上の時*/
 	_IFVAL_JUMP		SYS_WORK_D35R0106_REZI,GE,REZI_WORK_POS_OK,ev_d35r0106_floor_none
 	_JUMP			ev_d35r0106_floor_common
 	_END
@@ -187,7 +187,7 @@ pos_d35r0106_floor_03:
 pos_d35r0106_floor_04:
 	_LDVAL			LOCALWORK4,1
 
-	/*�S�ď�����ł���ȏ�̎�*/
+	/*全て床踏んでいる以上の時*/
 	_IFVAL_JUMP		SYS_WORK_D35R0106_REZI,GE,REZI_WORK_POS_OK,ev_d35r0106_floor_none
 	_JUMP			ev_d35r0106_floor_common
 	_END
@@ -195,7 +195,7 @@ pos_d35r0106_floor_04:
 pos_d35r0106_floor_05:
 	_LDVAL			LOCALWORK5,1
 
-	/*�S�ď�����ł���ȏ�̎�*/
+	/*全て床踏んでいる以上の時*/
 	_IFVAL_JUMP		SYS_WORK_D35R0106_REZI,GE,REZI_WORK_POS_OK,ev_d35r0106_floor_none
 	_JUMP			ev_d35r0106_floor_common
 	_END
@@ -203,7 +203,7 @@ pos_d35r0106_floor_05:
 pos_d35r0106_floor_06:
 	_LDVAL			LOCALWORK6,1
 
-	/*�S�ď�����ł���ȏ�̎�*/
+	/*全て床踏んでいる以上の時*/
 	_IFVAL_JUMP		SYS_WORK_D35R0106_REZI,GE,REZI_WORK_POS_OK,ev_d35r0106_floor_none
 	_JUMP			ev_d35r0106_floor_common
 	_END
@@ -211,35 +211,35 @@ pos_d35r0106_floor_06:
 pos_d35r0106_floor_07:
 	_LDVAL			LOCALWORK7,1
 
-	/*�S�ď�����ł���ȏ�̎�*/
+	/*全て床踏んでいる以上の時*/
 	_IFVAL_JUMP		SYS_WORK_D35R0106_REZI,GE,REZI_WORK_POS_OK,ev_d35r0106_floor_none
 	_JUMP			ev_d35r0106_floor_common
 	_END
 
-/*���ʏ��Z�b�g*/
+/*共通床セット*/
 ev_d35r0106_floor_common:
 	_EVENT_START
 
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 	_D35_FLOOR_SET	SYS_WORK_D35R0106_REZI,ZONE_ID_D35R0106,SCWK_TEMP0,SCWK_TEMP1
 
-	/*�S�ď��𓥂�ł����ԂȂ��ʗh�炷*/
+	/*全て床を踏んでいる状態なら画面揺らす*/
 	_IFVAL_JUMP		SYS_WORK_D35R0106_REZI,GE,REZI_WORK_POS_OK,ev_d35r0106_floor_pos_ok
 
 	_EVENT_END
 	_END
 
-/*�S�ď�����ł���ȏ�̎�*/
+/*全て床踏んでいる以上の時*/
 ev_d35r0106_floor_none:
 	_END
 
-/*�S�ď��𓥂�ł����ԂȂ��ʗh�炷*/
+/*全て床を踏んでいる状態なら画面揺らす*/
 ev_d35r0106_floor_pos_ok:
 
-	/*�Q�[���N���A���Ă��Ȃ�������*/
+	/*ゲームクリアしていなかったら*/
 	_IF_FLAGOFF_JUMP SYS_FLAG_GAME_CLEAR,ev_d35r0106_floor_none
 
-	/*�n�k�����I*/
+	/*地震発生！*/
 	_SE_WAIT		SEQ_SE_DP_SELECT
 	_ZISHIN			1
 

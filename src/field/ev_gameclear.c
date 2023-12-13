@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ev_gameover.c
- * @brief	ƒQ[ƒ€ƒNƒŠƒAˆ—
+ * @brief	ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢å‡¦ç†
  * @date	2006.05.09
  * @author	tamada GAME FREAK inc.
  */
@@ -71,7 +71,7 @@ static BOOL WaitMessage( GAMECLEAR_WORK* gcw );
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	“a“°“ü‚èƒf[ƒ^‚ÌƒZ[ƒu
+ * @brief	æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒ¼ãƒ–
  */
 //-----------------------------------------------------------------------------
 static void SaveDendouData(FIELDSYS_WORK * fsys, BOOL already_clear_flag)
@@ -83,7 +83,7 @@ static void SaveDendouData(FIELDSYS_WORK * fsys, BOOL already_clear_flag)
 
 	dd = SaveData_Extra_LoadDendouData(fsys->savedata, HEAPID_WORLD, &result);
 	if (result != LOAD_RESULT_OK || !already_clear_flag) {
-		//ƒf[ƒ^‚ª‰ó‚ê‚Ä‚¢‚éê‡A‚ ‚é‚¢‚Í‰‰ñƒNƒŠƒA‚Ìê‡‚Í‰Šú‰»‚·‚é
+		//ãƒ‡ãƒ¼ã‚¿ãŒå£Šã‚Œã¦ã„ã‚‹å ´åˆã€ã‚ã‚‹ã„ã¯åˆå›žã‚¯ãƒªã‚¢ã®å ´åˆã¯åˆæœŸåŒ–ã™ã‚‹
 		DendouData_Init(dd);
 	}
 	party = SaveData_GetTemotiPokemon(fsys->savedata);
@@ -97,7 +97,7 @@ static void SaveDendouData(FIELDSYS_WORK * fsys, BOOL already_clear_flag)
 //==============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒNƒŠƒAˆ—
+ * @brief	ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_GameClear(GMEVENT_CONTROL * event)
@@ -111,13 +111,13 @@ static BOOL GMEVENT_GameClear(GMEVENT_CONTROL * event)
 
 	switch (*seq) {
 	case 0:
-		/* “a“°“ü‚èƒfƒ‚ŒÄ‚Ño‚µ */
+		/* æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¢å‘¼ã³å‡ºã— */
 		Field_DendouDemo_SetProc( fsys, ddp );
 		(*seq) ++;
 		break;
 
 	case 1:
-		if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+		if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 			sys_CreateHeap( HEAPID_BASE_APP, HEAPID_FIELD, 0x20000 );
 			SetupMessageResources( fsys, gcw );
 			WIPE_SYS_Start( WIPE_PATTERN_M, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN,
@@ -149,11 +149,11 @@ static BOOL GMEVENT_GameClear(GMEVENT_CONTROL * event)
 		break;
 
 	case 4:
-		/* ƒZ[ƒu */
+		/* ã‚»ãƒ¼ãƒ– */
 		{
 			int result;
 
-			//‹­§“I‚É‘S‘ÌƒZ[ƒu‚Æ‚È‚é‚æ‚¤‚É‚µ‚Ä‚¢‚é
+			//å¼·åˆ¶çš„ã«å…¨ä½“ã‚»ãƒ¼ãƒ–ã¨ãªã‚‹ã‚ˆã†ã«ã—ã¦ã„ã‚‹
 
 			PokeParty_RecoverAll( SaveData_GetTemotiPokemon(fsys->savedata) );
 			SaveData_RequestTotalSave();
@@ -161,7 +161,7 @@ static BOOL GMEVENT_GameClear(GMEVENT_CONTROL * event)
 			result = SaveData_Save(fsys->savedata);
 			SaveDendouData(fsys, gcw->already_clear_flag);
 
-			/* ƒZ[ƒuŠ®—¹‚ÌƒƒbƒZ[ƒW•\Ž¦ */
+			/* ã‚»ãƒ¼ãƒ–å®Œäº†ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º */
 			DeleteReportMessageResources( gcw );
 			StartReportFinishMessage( fsys, gcw, result );
 			(*seq) ++;
@@ -199,7 +199,7 @@ static BOOL GMEVENT_GameClear(GMEVENT_CONTROL * event)
 		{
 			DeleteAllMessageResources( fsys, gcw );
 
-			/* ƒGƒ“ƒfƒBƒ“ƒOƒfƒ‚ŒÄ‚Ño‚µ */
+			/* ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ‡ãƒ¢å‘¼ã³å‡ºã— */
 			Field_EndingDemo_SetProc( fsys, &(gcw->edp) );
 			(*seq) ++;
 		}
@@ -220,8 +220,8 @@ static BOOL GMEVENT_GameClear(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief		ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhŠÖ”FƒQ[ƒ€ƒNƒŠƒA
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief		ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰é–¢æ•°ï¼šã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventCmd_GameClear(GMEVENT_CONTROL * event)
@@ -251,20 +251,20 @@ void EventCmd_GameClear(GMEVENT_CONTROL * event)
 	gcw->edp.zukanWork = SaveData_GetZukanWork(fsys->savedata);
 
 	if (SysFlag_GameClearCheck(ev) == FALSE) {
-		EVTIME_SetGameClearDateTime(fsys);	// ‰‚ß‚Ä‚Ì“a“°“ü‚è‚ÌŽžŠÔ‚ð‹L˜^‚·‚é
+		EVTIME_SetGameClearDateTime(fsys);	// åˆã‚ã¦ã®æ®¿å ‚å…¥ã‚Šã®æ™‚é–“ã‚’è¨˜éŒ²ã™ã‚‹
 	}
 	party = SaveData_GetTemotiPokemon(fsys->savedata);
-	EvPoke_SetChampionRibbon(party);		// ƒ`ƒƒƒ“ƒsƒIƒ“ƒŠƒ{ƒ“‚ðƒZƒbƒg
-	LOCATION_SetFirstPos(sp);				// “ÁŽêÚ‘±æ‚ðŽ©‘î‚Ì2ŠK‚ÉƒZƒbƒg
-	LOCATION_SetFirstEscapePos(ep);			// ƒGƒXƒP[ƒvæ‚ðŽ©‘î‚ÌŠO‚ÉƒZƒbƒg
-	SysFlag_CommCounterSet(ev);				// ƒRƒ“ƒeƒBƒjƒ…[Žž‚É“ÁŽêÚ‘±æ‚©‚çŠJŽn‚·‚éƒtƒ‰ƒO‚ðƒZƒbƒg
-	SysFlag_GameClearSet(ev);				// ƒQ[ƒ€ƒNƒŠƒAƒtƒ‰ƒO‚ðƒZƒbƒg
-	MyStatus_SetDpClearFlag( my );			// MYSTATUS“à‚ÌƒQ[ƒ€ƒNƒŠƒAƒtƒ‰ƒO‚à—§‚Ä‚é
+	EvPoke_SetChampionRibbon(party);		// ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ãƒªãƒœãƒ³ã‚’ã‚»ãƒƒãƒˆ
+	LOCATION_SetFirstPos(sp);				// ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‚’è‡ªå®…ã®2éšŽã«ã‚»ãƒƒãƒˆ
+	LOCATION_SetFirstEscapePos(ep);			// ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—å…ˆã‚’è‡ªå®…ã®å¤–ã«ã‚»ãƒƒãƒˆ
+	SysFlag_CommCounterSet(ev);				// ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼æ™‚ã«ç‰¹æ®ŠæŽ¥ç¶šå…ˆã‹ã‚‰é–‹å§‹ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
+	SysFlag_GameClearSet(ev);				// ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
+	MyStatus_SetDpClearFlag( my );			// MYSTATUSå†…ã®ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚‚ç«‹ã¦ã‚‹
 
 
-//	SysWork_HideMapWorkSet(ev, HIDEMAP_ID_L04);	// L04‚ðoŒ»‚³‚¹‚é‚æ‚¤‚É@ƒXƒNƒŠƒvƒg‚©‚çopen‚É•ÏX 06.07.13 iwasawa
+//	SysWork_HideMapWorkSet(ev, HIDEMAP_ID_L04);	// L04ã‚’å‡ºç¾ã•ã›ã‚‹ã‚ˆã†ã«ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰openã«å¤‰æ›´ 06.07.13 iwasawa
 	rec = SaveData_GetRecord(fsys->savedata);
-	RECORD_Inc(rec, RECID_DENDOU_CNT);		// “a“°“ü‚èƒJƒEƒ“ƒgƒAƒbƒv
+	RECORD_Inc(rec, RECID_DENDOU_CNT);		// æ®¿å ‚å…¥ã‚Šã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 
 	FieldEvent_Call(event, GMEVENT_GameClear, gcw);
 }
@@ -284,16 +284,16 @@ void EventCmd_GameClear(GMEVENT_CONTROL * event)
 static void SetupMessageResources( FIELDSYS_WORK* fsys, GAMECLEAR_WORK* gcw )
 {
 	static const GF_BGL_DISPVRAM SetBankData = {
-		GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 
 	static const GF_BGL_SYS_HEADER BGsys_data = {
@@ -326,7 +326,7 @@ static void SetupMessageResources( FIELDSYS_WORK* fsys, GAMECLEAR_WORK* gcw )
 
 //------------------------------------------------------------------
 /**
- * uƒŒƒ|[ƒg‚É‚©‚«‚±‚ñ‚Å‚¢‚Ü‚·vƒƒbƒZ[ƒW‚Ì•\Ž¦ŠJŽn
+ * ã€Œãƒ¬ãƒãƒ¼ãƒˆã«ã‹ãã“ã‚“ã§ã„ã¾ã™ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤ºé–‹å§‹
  *
  * @param   fsys		
  * @param   gcw		
@@ -348,11 +348,11 @@ static void StartReportMessage( FIELDSYS_WORK* fsys,  GAMECLEAR_WORK* gcw )
 
 //------------------------------------------------------------------
 /**
- * uƒŒƒ|[ƒg‚É‚©‚«‚±‚ñ‚Å‚¢‚Ü‚·vƒƒbƒZ[ƒW‚Ì•\Ž¦I—¹‘Ò‚¿
+ * ã€Œãƒ¬ãƒãƒ¼ãƒˆã«ã‹ãã“ã‚“ã§ã„ã¾ã™ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤ºçµ‚äº†å¾…ã¡
  *
  * @param   gcw		
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL WaitMessage( GAMECLEAR_WORK* gcw )
@@ -362,7 +362,7 @@ static BOOL WaitMessage( GAMECLEAR_WORK* gcw )
 
 //------------------------------------------------------------------
 /**
- * uƒŒƒ|[ƒg‚É‚©‚«‚±‚ñ‚Å‚¢‚Ü‚·vƒƒbƒZ[ƒW•\Ž¦‚Ì‚½‚ß‚ÌƒŠƒ\[ƒX”jŠü
+ * ã€Œãƒ¬ãƒãƒ¼ãƒˆã«ã‹ãã“ã‚“ã§ã„ã¾ã™ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã®ãŸã‚ã®ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
  * @param   gcw		
  *
@@ -373,7 +373,7 @@ static void DeleteReportMessageResources( GAMECLEAR_WORK* gcw )
 	STRBUF_Delete( gcw->str );
 	TimeWaitIconDel( gcw->iconWork );
 
-	// BitmapWindow‚Í“à—e‚ðƒNƒŠƒA‚·‚é‚¾‚¯‚Å”jŠü‚µ‚È‚¢iŽŸ‚ÌƒƒbƒZ[ƒW‚ÅŽg‚¢‰ñ‚·j
+	// BitmapWindowã¯å†…å®¹ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã ã‘ã§ç ´æ£„ã—ãªã„ï¼ˆæ¬¡ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã§ä½¿ã„å›žã™ï¼‰
 	FieldTalkWinClear( &gcw->bmpWin );
 }
 

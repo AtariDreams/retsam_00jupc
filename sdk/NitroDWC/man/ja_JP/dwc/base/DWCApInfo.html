@@ -1,6 +1,6 @@
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>DWCApInfo</TITLE>
 		<LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
 	<BODY>
 		<H1>DWCApInfo</H1>
 
-		<H2>��`</H2>
+		<H2>定義</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>
@@ -27,70 +27,70 @@ typedef struct DWCstApInfo
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-		  �A�N�Z�X�|�C���g�̏����i�[���邽�߂̍\���̂ł��B
+		  アクセスポイントの情報を格納するための構造体です。
 		</P>
 		<TABLE border="1">
 		<TBODY>
 		  <TR>
 			<TD width="25%"><EM><STRONG><CODE>aptype</CODE></STRONG></EM></TD>
-			<TD>�A�N�Z�X�|�C���g�̎��<BR>
+			<TD>アクセスポイントの種類<BR>
 			<BR>
-			DWC_APINFO_TYPE_USER0�@�@�@�@:�@�ڑ���1�̃A�N�Z�X�|�C���g<BR>
-			DWC_APINFO_TYPE_USER1�@�@�@�@:�@�ڑ���2�̃A�N�Z�X�|�C���g<BR>
-			DWC_APINFO_TYPE_USER2�@�@�@�@:�@�ڑ���3�̃A�N�Z�X�|�C���g<BR>
-			DWC_APINFO_TYPE_USB�@�@�@�@�@:�@�j���e���h�[Wi-Fi USB�R�l�N�^<BR>
-			DWC_APINFO_TYPE_SHOP �@�@�@�@:�@�j���e���h�[Wi-Fi�X�e�[�V����<BR>
-			DWC_APINFO_TYPE_FREESPOT �@�@:�@FREESPOT�i�t���[�X�|�b�g�j<BR>
-			DWC_APINFO_TYPE_WAYPORT�@�@�@:�@Wayport(�k�ăz�b�g�X�|�b�g)<BR>
-			DWC_APINFO_TYPE_NINTENDOWFC�@:�@�i�\��j<BR>
-			DWC_APINFO_TYPE_NINTENDOSPOT :�@nintendo spot<BR>
+			DWC_APINFO_TYPE_USER0　　　　:　接続先1のアクセスポイント<BR>
+			DWC_APINFO_TYPE_USER1　　　　:　接続先2のアクセスポイント<BR>
+			DWC_APINFO_TYPE_USER2　　　　:　接続先3のアクセスポイント<BR>
+			DWC_APINFO_TYPE_USB　　　　　:　ニンテンドーWi-Fi USBコネクタ<BR>
+			DWC_APINFO_TYPE_SHOP 　　　　:　ニンテンドーWi-Fiステーション<BR>
+			DWC_APINFO_TYPE_FREESPOT 　　:　FREESPOT（フリースポット）<BR>
+			DWC_APINFO_TYPE_WAYPORT　　　:　Wayport(北米ホットスポット)<BR>
+			DWC_APINFO_TYPE_NINTENDOWFC　:　（予約）<BR>
+			DWC_APINFO_TYPE_NINTENDOSPOT :　nintendo spot<BR>
           </TR>
           <TR>
 			<TD width="25%"><EM><STRONG><CODE>area</CODE></STRONG></EM></TD>
-			<TD>�j���e���h�[Wi-Fi�X�e�[�V����/nintendo spot�̐ݒu�n��<BR>
-			��aptype��DWC_APINFO_TYPE_SHOP/DWC_APINFO_TYPE_NINTENDOSPOT�̎��̂ݗL���ł��B<BR>
-			�����L�̑S�Ă̒n��ɐݒu����Ă���Ƃ͌���܂���B<BR>
+			<TD>ニンテンドーWi-Fiステーション/nintendo spotの設置地域<BR>
+			※aptypeがDWC_APINFO_TYPE_SHOP/DWC_APINFO_TYPE_NINTENDOSPOTの時のみ有効です。<BR>
+			※下記の全ての地域に設置されているとは限りません。<BR>
 			<BR>
-			DWC_APINFO_AREA_JPN�@�@�@:�@���{<BR>
-			DWC_APINFO_AREA_USA�@�@�@:�@�k��<BR>
-			DWC_APINFO_AREA_EUR�@�@�@:�@���B<BR>
-			DWC_APINFO_AREA_AUS�@�@�@:�@���B<BR>
-			DWC_APINFO_AREA_KOR�@�@�@:�@�؍�<BR><BR>
-			DWC_APINFO_AREA_UNKNOWN�@:�@(�j���e���h�[Wi-Fi�X�e�[�V����/nintendo spot�ł͂���܂���)</TD>
+			DWC_APINFO_AREA_JPN　　　:　日本<BR>
+			DWC_APINFO_AREA_USA　　　:　北米<BR>
+			DWC_APINFO_AREA_EUR　　　:　欧州<BR>
+			DWC_APINFO_AREA_AUS　　　:　豪州<BR>
+			DWC_APINFO_AREA_KOR　　　:　韓国<BR><BR>
+			DWC_APINFO_AREA_UNKNOWN　:　(ニンテンドーWi-Fiステーション/nintendo spotではありません)</TD>
           </TR>
 		  <TR>
 			<TD width="25%"><EM><STRONG><CODE>spotinfo</CODE></STRONG></EM></TD>
-			<TD>�j���e���h�[Wi-Fi�X�e�[�V����/nintendo spot�̏ꏊ���<BR>
-			��aptype��DWC_APINFO_TYPE_SHOP/DWC_APINFO_TYPE_NINTENDOSPOT�̎��̂ݗL���ł��B<BR>
+			<TD>ニンテンドーWi-Fiステーション/nintendo spotの場所情報<BR>
+			※aptypeがDWC_APINFO_TYPE_SHOP/DWC_APINFO_TYPE_NINTENDOSPOTの時のみ有効です。<BR>
 			<BR>
-			�e�j���e���h�[Wi-Fi�X�e�[�V����/nintendo spot�Ń��j�[�N��9���̕�����ł��B</TD>
+			各ニンテンドーWi-Fiステーション/nintendo spotでユニークな9桁の文字列です。</TD>
           </TR>
 		  <TR>
 			<TD width="25%"><EM><STRONG><CODE>essid</CODE></STRONG></EM></TD>
-			<TD>�A�N�Z�X�|�C���g��SSID<BR>
-			��aptype��DWC_APINFO_TYPE_USER*�̎��̂ݗL���ł��B</TD>
+			<TD>アクセスポイントのSSID<BR>
+			※aptypeがDWC_APINFO_TYPE_USER*の時のみ有効です。</TD>
           </TR>
 		  <TR>
 			<TD width="25%"><EM><STRONG><CODE>bssid</CODE></STRONG></EM></TD>
-			<TD>�A�N�Z�X�|�C���g��BSSID</TD>
+			<TD>アクセスポイントのBSSID</TD>
           </TR>
 		</TBODY>
 		</TABLE>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 		<code>
 		<a href="DWC_GetApInfo.html">DWC_GetApInfo</a>
 		</code>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2008/05/31 nintendo spot�Ɋւ���L�q��ǉ�<BR>
-			2007/03/02 �؍��Ɋւ���L�q�ƒ��ӂ�ǋL<BR>
-			2006/02/23 ����<BR>
+			2008/05/31 nintendo spotに関する記述を追加<BR>
+			2007/03/02 韓国に関する記述と注意を追記<BR>
+			2006/02/23 初版<BR>
 		</P>
 
 	</BODY>

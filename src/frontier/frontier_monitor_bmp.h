@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	frontier_bmp.h
- * @brief	uƒtƒƒ“ƒeƒBƒAvBMP
+ * @brief	ã€Œãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã€BMP
  * @author	Satoshi Nohara
  * @date	2007.12.6
  */
@@ -14,10 +14,10 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//ƒtƒ@ƒNƒgƒŠ[Fƒrƒbƒgƒ}ƒbƒvID
+//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ï¼šãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ID
 enum{
 	BF_BMPWIN_TITLE = 0,
 	BF_BMPWIN_ENTRY1,
@@ -26,36 +26,36 @@ enum{
 	BF_BMPWIN_ENTRY2,
 	BF_BMPWIN_BEFORE2,
 	BF_BMPWIN_MAX2,
-	FACTORY_MONITOR_BMPWIN_MAX,				//BMPƒEƒBƒ“ƒhƒE‚Ì”
+	FACTORY_MONITOR_BMPWIN_MAX,				//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ•°
 };
 
-//ƒXƒe[ƒWFƒrƒbƒgƒ}ƒbƒvID
+//ã‚¹ãƒ†ãƒ¼ã‚¸ï¼šãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ID
 enum{
 	BS_BMPWIN_TITLE = 0,
 	BS_BMPWIN_ENTRY1,
 	BS_BMPWIN_BEFORE,
 	BS_BMPWIN_MAX,
-	STAGE_MONITOR_BMPWIN_MAX,				//BMPƒEƒBƒ“ƒhƒE‚Ì”
+	STAGE_MONITOR_BMPWIN_MAX,				//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ•°
 };
 
-//ƒLƒƒƒbƒXƒ‹Fƒrƒbƒgƒ}ƒbƒvID
+//ã‚­ãƒ£ãƒƒã‚¹ãƒ«ï¼šãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ID
 enum{
 	BC_BMPWIN_TITLE = 0,
 	BC_BMPWIN_ENTRY1,
 	BC_BMPWIN_BEFORE,
 	BC_BMPWIN_MAX,
-	CASTLE_MONITOR_BMPWIN_MAX,				//BMPƒEƒBƒ“ƒhƒE‚Ì”
+	CASTLE_MONITOR_BMPWIN_MAX,				//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ•°
 };
 
-//ƒ‹[ƒŒƒbƒgFƒrƒbƒgƒ}ƒbƒvID
+//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆï¼šãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ID
 enum{
 	BR_BMPWIN_TITLE = 0,
 	BR_BMPWIN_BEFORE,
 	BR_BMPWIN_MAX,
-	ROULETTE_MONITOR_BMPWIN_MAX,				//BMPƒEƒBƒ“ƒhƒE‚Ì”
+	ROULETTE_MONITOR_BMPWIN_MAX,				//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ•°
 };
 
-//ƒ^ƒ[Fƒrƒbƒgƒ}ƒbƒvID
+//ã‚¿ãƒ¯ãƒ¼ï¼šãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ID
 enum{
 	BT_BMPWIN_TITLE = 0,
 	BT_BMPWIN_ENTRY1,
@@ -66,32 +66,32 @@ enum{
 	BT_BMPWIN_ENTRY2,
 	BT_BMPWIN_BEFORE2,
 	BT_BMPWIN_MAX2,
-	TOWER_MONITOR_BMPWIN_MAX,					//BMPƒEƒBƒ“ƒhƒE‚Ì”
+	TOWER_MONITOR_BMPWIN_MAX,					//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ•°
 };
 
 #define FRONTIER_MONITOR_BMP_MAX		(5)		//
 
-//ƒpƒŒƒbƒg’è‹`
-#define BFM_MSGFONT_PAL			(12)				//MSGƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
-#define BFM_FONT_PAL			(13)				//SYSTEMƒtƒHƒ“ƒgŽg—pƒpƒŒƒbƒgƒiƒ“ƒo[
+//ãƒ‘ãƒ¬ãƒƒãƒˆå®šç¾©
+#define BFM_MSGFONT_PAL			(12)				//MSGãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define BFM_FONT_PAL			(13)				//SYSTEMãƒ•ã‚©ãƒ³ãƒˆä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
 
 #define BFM_FRAME_WIN	(GF_BGL_FRAME0_M)
-#define BFM_FRAME_BG	(GF_BGL_FRAME2_M)			//MULTI‚ÆƒŒƒ“ƒ^ƒ‹Œˆ’èŽž
-#define BFM_FRAME_SUB	(GF_BGL_FRAME2_S)			//ƒ{[ƒ‹
+#define BFM_FRAME_BG	(GF_BGL_FRAME2_M)			//MULTIã¨ãƒ¬ãƒ³ã‚¿ãƒ«æ±ºå®šæ™‚
+#define BFM_FRAME_SUB	(GF_BGL_FRAME2_S)			//ãƒœãƒ¼ãƒ«
 
 
 //==============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—è¿½åŠ 
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -100,9 +100,9 @@ extern void FrontierMonitorAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, u8 bm
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü	
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„	
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -111,9 +111,9 @@ extern void FrontierMonitorExitBmpWin( GF_BGL_BMPWIN* win, u8 bmp_no );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒIƒt
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ•
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */

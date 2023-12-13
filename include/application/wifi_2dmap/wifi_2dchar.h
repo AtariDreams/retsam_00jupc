@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wifi_2dchar.h
- *	@brief		wifi‚QDƒLƒƒƒ‰ƒNƒ^“Ç‚Ýž‚ÝƒVƒXƒeƒ€
+ *	@brief		wifiï¼’Dã‚­ãƒ£ãƒ©ã‚¯ã‚¿èª­ã¿è¾¼ã¿ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahshi
  *	@data		2007.02.07
  *
@@ -26,54 +26,54 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	“®ìƒ^ƒCƒv
-// “à•”“I‚É‚ÍAƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX‚ÌŽí—Þ
+///	å‹•ä½œã‚¿ã‚¤ãƒ—
+// å†…éƒ¨çš„ã«ã¯ã€ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã®ç¨®é¡ž
 //=====================================
 typedef enum {
-	// ƒI[ƒ\ƒhƒbƒNƒXƒAƒjƒ
-	WF_2DC_MOVERUN = WF2DC_C_MOVERUN,		// •à‚«{U‚èŒü‚«{‘–‚èƒAƒjƒiŽålŒö‚Ì‚Ýj
-	WF_2DC_MOVENORMAL = WF2DC_C_MOVENORMAL,	// •à‚«{U‚èŒü‚«‚Ì‚ÝƒAƒjƒ
-	WF_2DC_MOVETURN = WF2DC_C_MOVETURN,	// U‚èŒü‚«‚Ì‚ÝƒAƒjƒ
+	// ã‚ªãƒ¼ã‚½ãƒ‰ãƒƒã‚¯ã‚¹ã‚¢ãƒ‹ãƒ¡
+	WF_2DC_MOVERUN = WF2DC_C_MOVERUN,		// æ­©ãï¼‹æŒ¯ã‚Šå‘ãï¼‹èµ°ã‚Šã‚¢ãƒ‹ãƒ¡ï¼ˆä¸»äººå…¬ã®ã¿ï¼‰
+	WF_2DC_MOVENORMAL = WF2DC_C_MOVENORMAL,	// æ­©ãï¼‹æŒ¯ã‚Šå‘ãã®ã¿ã‚¢ãƒ‹ãƒ¡
+	WF_2DC_MOVETURN = WF2DC_C_MOVETURN,	// æŒ¯ã‚Šå‘ãã®ã¿ã‚¢ãƒ‹ãƒ¡
 	
-	// Šg’£ƒAƒjƒ
+	// æ‹¡å¼µã‚¢ãƒ‹ãƒ¡
 	
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒv”
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—æ•°
 	WF_2DC_MOVENUM = WF2DC_C_MOVENUM,
 	
 } WF_2DC_MOVETYPE;
 
 //-------------------------------------
-///	ƒAƒjƒ[ƒVƒ‡ƒ“ƒ^ƒCƒv
-//@“®ìƒ^ƒCƒv‚ªƒI[ƒ\ƒhƒbƒNƒXƒAƒjƒ‚Ìê‡‚É‚Ì‚Ý
-//@Žg—p‚Å‚«‚éƒtƒ‰ƒO‚Å‚·B
+///	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ—
+//ã€€å‹•ä½œã‚¿ã‚¤ãƒ—ãŒã‚ªãƒ¼ã‚½ãƒ‰ãƒƒã‚¯ã‚¹ã‚¢ãƒ‹ãƒ¡ã®å ´åˆã«ã®ã¿
+//ã€€ä½¿ç”¨ã§ãã‚‹ãƒ•ãƒ©ã‚°ã§ã™ã€‚
 //	
 //=====================================
 typedef enum {
-	WF_2DC_ANMWAY = WF2DC_C_ANMWAY,	// Œü‚«•Ï‚¦ƒAƒjƒ	1ƒtƒŒ[ƒ€‚ÅØ‚è‘Ö‚í‚è‚Ü‚·
-	WF_2DC_ANMROTA = WF2DC_C_ANMROTA,	// ‰ñ“]ƒAƒjƒ		ƒ‹[ƒv
+	WF_2DC_ANMWAY = WF2DC_C_ANMWAY,	// å‘ãå¤‰ãˆã‚¢ãƒ‹ãƒ¡	1ãƒ•ãƒ¬ãƒ¼ãƒ ã§åˆ‡ã‚Šæ›¿ã‚ã‚Šã¾ã™
+	WF_2DC_ANMROTA = WF2DC_C_ANMROTA,	// å›žè»¢ã‚¢ãƒ‹ãƒ¡		ãƒ«ãƒ¼ãƒ—
 
-	// WF_2DC_MOVETURNƒ‚[ƒh‚Å‚È‚¢‚ÆŽw’è‚Å‚«‚Ü‚¹‚ñ
-	WF_2DC_ANMWALK = WF2DC_C_ANMWALK,	// •à‚«ƒAƒjƒ		1•à8ƒtƒŒ[ƒ€
-	WF_2DC_ANMTURN = WF2DC_C_ANMTURN,	// U‚èŒü‚«ƒAƒjƒ	2ƒtƒŒ[ƒ€
+	// WF_2DC_MOVETURNãƒ¢ãƒ¼ãƒ‰ã§ãªã„ã¨æŒ‡å®šã§ãã¾ã›ã‚“
+	WF_2DC_ANMWALK = WF2DC_C_ANMWALK,	// æ­©ãã‚¢ãƒ‹ãƒ¡		1æ­©8ãƒ•ãƒ¬ãƒ¼ãƒ 
+	WF_2DC_ANMTURN = WF2DC_C_ANMTURN,	// æŒ¯ã‚Šå‘ãã‚¢ãƒ‹ãƒ¡	2ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-	// WF_2DC_MOVERUNƒ‚[ƒh‚Å‚È‚¢‚ÆŽw’è‚Å‚«‚Ü‚¹‚ñ
-	WF_2DC_ANMRUN = WF2DC_C_ANMRUN,	// ‘–‚èƒAƒjƒ		1•à4ƒtƒŒ[ƒ€
+	// WF_2DC_MOVERUNãƒ¢ãƒ¼ãƒ‰ã§ãªã„ã¨æŒ‡å®šã§ãã¾ã›ã‚“
+	WF_2DC_ANMRUN = WF2DC_C_ANMRUN,	// èµ°ã‚Šã‚¢ãƒ‹ãƒ¡		1æ­©4ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-	//  •Ç•ûŒüƒAƒjƒ
-	WF_2DC_ANMWALLWALK = WF2DC_C_ANMWALLWALK,	// •Ç•ûŒüƒAƒjƒ	1•à16ƒtƒŒ[ƒ€
+	//  å£æ–¹å‘ã‚¢ãƒ‹ãƒ¡
+	WF_2DC_ANMWALLWALK = WF2DC_C_ANMWALLWALK,	// å£æ–¹å‘ã‚¢ãƒ‹ãƒ¡	1æ­©16ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-	// ‚ä‚Á‚­‚è•à‚«
-	WF_2DC_ANMSLOWWALK = WF2DC_C_ANMSLOWWALK,	// 1•à16ƒtƒŒ[ƒ€
+	// ã‚†ã£ãã‚Šæ­©ã
+	WF_2DC_ANMSLOWWALK = WF2DC_C_ANMSLOWWALK,	// 1æ­©16ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-	// ‚‘¬•à‚«
-	WF_2DC_ANMHIGHWALK2 = WF2DC_C_ANMHIGHWALK2,	// 1•à2ƒtƒŒ[ƒ€
-	WF_2DC_ANMHIGHWALK4 = WF2DC_C_ANMHIGHWALK4,	// 1•à4ƒtƒŒ[ƒ€
+	// é«˜é€Ÿæ­©ã
+	WF_2DC_ANMHIGHWALK2 = WF2DC_C_ANMHIGHWALK2,	// 1æ­©2ãƒ•ãƒ¬ãƒ¼ãƒ 
+	WF_2DC_ANMHIGHWALK4 = WF2DC_C_ANMHIGHWALK4,	// 1æ­©4ãƒ•ãƒ¬ãƒ¼ãƒ 
 	
-	// ‰½‚à–³‚¢‚Æ‚«‚Í‚±‚ê
+	// ä½•ã‚‚ç„¡ã„ã¨ãã¯ã“ã‚Œ
 	WF_2DC_ANMNONE = WF2DC_C_ANMNONE,
 	
 	WF_2DC_ANMNUM = WF2DC_C_ANMNUM,
@@ -81,7 +81,7 @@ typedef enum {
 
 
 //-------------------------------------
-///	À•WŽæ“¾ƒ^ƒCƒv
+///	åº§æ¨™å–å¾—ã‚¿ã‚¤ãƒ—
 typedef enum {
 	WF_2DC_GET_X,
 	WF_2DC_GET_Y
@@ -91,17 +91,17 @@ typedef enum {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
-/// 2DƒLƒƒƒ‰ƒNƒ^ŠÇ—ƒVƒXƒeƒ€
+/// 2Dã‚­ãƒ£ãƒ©ã‚¯ã‚¿ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 typedef struct _WF_2DCSYS	WF_2DCSYS;
 
-/// 2DƒLƒƒƒ‰ƒNƒ^ƒ[ƒN
+/// 2Dã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¯ãƒ¼ã‚¯
 typedef struct _WF_2DCWK	WF_2DCWK;
 
 //-------------------------------------
-///	ƒ[ƒN“o˜^ƒf[ƒ^
+///	ãƒ¯ãƒ¼ã‚¯ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
 typedef struct {
 	s16 x;
 	s16 y;
@@ -112,36 +112,36 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ƒVƒXƒeƒ€‚Ì¶¬
+// ã‚·ã‚¹ãƒ†ãƒ ã®ç”Ÿæˆ
 GLOBAL WF_2DCSYS* WF_2DC_SysInit( CLACT_SET_PTR p_clset, PALETTE_FADE_PTR p_pfd, u32 objnum, u32 heap );
 GLOBAL void WF_2DC_SysExit( WF_2DCSYS* p_sys );
 
-// ƒŠƒ\[ƒX“o˜^
+// ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
 GLOBAL void WF_2DC_ResSet( WF_2DCSYS* p_sys, u32 view_type, u32 draw_type, WF_2DC_MOVETYPE movetype, u32 heap );
 GLOBAL void WF_2DC_ResDel( WF_2DCSYS* p_sys, u32 view_type );
 GLOBAL BOOL WF_2DC_ResCheck( const WF_2DCSYS* cp_sys, u32 view_type );
 GLOBAL void WF_2DC_AllResDel( WF_2DCSYS* p_sys );
 
-// ƒ†ƒjƒIƒ“ƒŠƒ\[ƒX“o˜^
-// ƒ†ƒjƒIƒ“ƒŠƒ\[ƒX‚ÍAboy1 boy3 man3 badman explore fighter gorggeousm mystery girl1 girl2 woman2 woman3 idol lady cowgirl gorggeousw ‚Ì‚P‚U‘Ì
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒªã‚½ãƒ¼ã‚¹ã¯ã€boy1 boy3 man3 badman explore fighter gorggeousm mystery girl1 girl2 woman2 woman3 idol lady cowgirl gorggeousw ã®ï¼‘ï¼–ä½“
 GLOBAL void WF_2DC_UnionResSet( WF_2DCSYS* p_sys, u32 draw_type, WF_2DC_MOVETYPE movetype, u32 heap );
 GLOBAL void WF_2DC_UnionResDel( WF_2DCSYS* p_sys );
 
-// ‰A‚ÌƒŠƒ\[ƒX“Ç‚Ýž‚Ý
-// ‰AƒŠƒ\[ƒX‚ÍŽålŒöi’j—‚Ç‚¿‚ç‚©j‚ÌƒŠƒ\[ƒX‚ð“Ç‚Ýž‚ñ‚¾Œã‚É“o˜^‚µ‚Ä‚­‚¾‚³‚¢B
-// ŽålŒö—p‚ÌƒJƒ‰[ƒpƒŒƒbƒg‚ðŽg—p‚µ‚Ä•\Ž¦‚µ‚Ü‚·B
-// ‚Ü‚½A‰A‚ÌƒŠƒ\[ƒX‚ð”jŠü‚·‚é‘O‚ÉŽålŒö‚ÌƒŠƒ\[ƒX‚ð”jŠü‚µ‚È‚¢‚æ‚¤‚É‚¨Šè‚¢‚¢‚½‚µ‚Ü‚·B
+// é™°ã®ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
+// é™°ãƒªã‚½ãƒ¼ã‚¹ã¯ä¸»äººå…¬ï¼ˆç”·å¥³ã©ã¡ã‚‰ã‹ï¼‰ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚“ã å¾Œã«ç™»éŒ²ã—ã¦ãã ã•ã„ã€‚
+// ä¸»äººå…¬ç”¨ã®ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½¿ç”¨ã—ã¦è¡¨ç¤ºã—ã¾ã™ã€‚
+// ã¾ãŸã€é™°ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã™ã‚‹å‰ã«ä¸»äººå…¬ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã—ãªã„ã‚ˆã†ã«ãŠé¡˜ã„ã„ãŸã—ã¾ã™ã€‚
 GLOBAL void WF_2DC_ShadowResSet( WF_2DCSYS* p_sys, u32 draw_type, u32 shadow_pri, u32 heap );
 GLOBAL void WF_2DC_ShadowResDel( WF_2DCSYS* p_sys );
 
-// ƒAƒNƒ^[ì¬
+// ã‚¢ã‚¯ã‚¿ãƒ¼ä½œæˆ
 GLOBAL WF_2DCWK* WF_2DC_WkAdd( WF_2DCSYS* p_sys, const WF_2DC_WKDATA* cp_data, u32 view_type, u32 heap );
 GLOBAL void WF_2DC_WkDel( WF_2DCWK* p_wk );
 
-// ƒ[ƒN‘€ìŒn
+// ãƒ¯ãƒ¼ã‚¯æ“ä½œç³»
 GLOBAL CLACT_WORK_PTR WF_2DC_WkClWkGet( WF_2DCWK* p_wk );
 GLOBAL CONST_CLACT_WORK_PTR WF_2DC_WkConstClWkGet( const WF_2DCWK* cp_wk );
 GLOBAL void WF_2DC_WkMatrixSet( WF_2DCWK* p_wk, s16 x, s16 y );
@@ -157,12 +157,12 @@ GLOBAL void WF_2DC_WkAnmFrameSet( WF_2DCWK* p_wk, u16 frame );
 GLOBAL u16 WF_2DC_WkAnmFrameGet( const WF_2DCWK* cp_wk );
 GLOBAL void WF_2DC_WkShadowMatrixSet( WF_2DCWK* p_wk, s16 x, s16 y );
 
-// PatternƒAƒjƒi•à‚«AU‚èŒü‚«‚È‚Ç‚ÍŒˆ‚Ü‚Á‚½“®ì‚ð‚·‚é‚Ì‚Åj
-// WF_2DC_ANMWAY‚ÍA1ƒtƒŒ[ƒ€‚ÅI‚í‚è‚Ü‚·B
-// I—¹ƒ`ƒFƒbƒN‚ð‚·‚é•K—v‚Í‚ ‚è‚Ü‚¹‚ñ
+// Patternã‚¢ãƒ‹ãƒ¡ï¼ˆæ­©ãã€æŒ¯ã‚Šå‘ããªã©ã¯æ±ºã¾ã£ãŸå‹•ä½œã‚’ã™ã‚‹ã®ã§ï¼‰
+// WF_2DC_ANMWAYã¯ã€1ãƒ•ãƒ¬ãƒ¼ãƒ ã§çµ‚ã‚ã‚Šã¾ã™ã€‚
+// çµ‚äº†ãƒã‚§ãƒƒã‚¯ã‚’ã™ã‚‹å¿…è¦ã¯ã‚ã‚Šã¾ã›ã‚“
 GLOBAL void WF_2DC_WkPatAnmStart( WF_2DCWK* p_wk, WF_2DC_ANMTYPE anmtype, WF_COMMON_WAY anmway );
 GLOBAL BOOL WF_2DC_WkPatAnmEndCheck( const WF_2DCWK* cp_wk );
-GLOBAL void WF_2DC_WkPatAnmAddFrame( WF_2DCWK* p_wk );// PatternƒAƒjƒXVˆ—
+GLOBAL void WF_2DC_WkPatAnmAddFrame( WF_2DCWK* p_wk );// Patternã‚¢ãƒ‹ãƒ¡æ›´æ–°å‡¦ç†
 
 #undef	GLOBAL
 #endif		// __WIFI_2DCHAR_H__

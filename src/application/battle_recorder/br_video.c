@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_video.c
- * @brief	ÉoÉgÉãÉrÉfÉI
+ * @brief	„Éê„Éà„É´„Éì„Éá„Ç™
  * @author	goto
- * @date	2008.02.16(ìy)
+ * @date	2008.02.16(Âúü)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -35,7 +35,7 @@
 #include "br_codein.h"
 
 /*
-	è„âÊñ ÇÉÅÉCÉìÅEâ∫âÊñ ÇÉTÉuÇ…Å@ì¸ÇÍë÷Ç¶ÇƒégópÇµÇƒÇ¢Ç‹Ç∑ÅB
+	‰∏äÁîªÈù¢„Çí„É°„Ç§„É≥„Éª‰∏ãÁîªÈù¢„Çí„Çµ„Éñ„Å´„ÄÄÂÖ•„ÇåÊõø„Åà„Å¶‰ΩøÁî®„Åó„Å¶„ÅÑ„Åæ„Åô„ÄÇ
 */
 
 //	TAG_CODE_INPUT
@@ -193,23 +193,23 @@ typedef struct {
 	int					color;
 	int					tmp_seq;
 	
-	OAM_BUTTON			obtn[ 4 ];			///< Ç‡Ç«ÇÈÅ@ÇnÇjÅI
+	OAM_BUTTON			obtn[ 4 ];			///< „ÇÇ„Å©„Çã„ÄÄÔºØÔº´ÔºÅ
 
 	GPP_WORK			gpp_work;	
 	VIDEO_WORK			vtr_work;
 
 	int					save_no;
-	int					view_page;			///< 0 = ÉvÉçÉtÉBÅ[Éã 1 = ñﬂÇÈ	
-	GDS_PROFILE_PTR		gds_profile_ptr;	///< ÉvÉçÉtÉBÅ[ÉãÉ|ÉCÉìÉ^
+	int					view_page;			///< 0 = „Éó„É≠„Éï„Ç£„Éº„É´ 1 = Êàª„Çã	
+	GDS_PROFILE_PTR		gds_profile_ptr;	///< „Éó„É≠„Éï„Ç£„Éº„É´„Éù„Ç§„É≥„Çø
 	
-	///< ÉRÅ[ÉhåüçıÇ≈égÇ§
+	///< „Ç≥„Éº„ÉâÊ§úÁ¥¢„Åß‰Ωø„ÅÜ
 	BR_CODEIN_WORK		codein;
 	BR_CODEIN_PARAM*	codein_param;
 	u64					data_number;
 	BOOL				bData;
 	GT_BATTLE_REC_RECV*	rec_data;
 	
-	///< Ç≠ÇÌÇµÇ≠Ç≥Ç™Ç∑Å@Ç≈égÇ§
+	///< „Åè„Çè„Åó„Åè„Åï„Åå„Åô„ÄÄ„Åß‰Ωø„ÅÜ
 	u16					monsno;
 	u8					battle_mode;
 	u8					country_code;
@@ -217,8 +217,8 @@ typedef struct {
 	u8					search_mode;
 	u8					dmy[ 2 ];
 	POKE_SEL_WORK		poke_select;
-	TL_INFO*			tl_poke_list_info;	///< Ç«Å[ÇµÇƒÇ‡â¬ïœÇ…Ç»ÇÈÇÃÇ≈ É|ÉPÉÇÉìÇÃå¬êîAlloc
-	TOUCH_LIST_HEADER	tl_poke_list_head;	///< Ç«Å[ÇµÇƒÇ‡â¬ïœÇ…Ç»ÇÈÇÃÇ≈
+	TL_INFO*			tl_poke_list_info;	///< „Å©„Éº„Åó„Å¶„ÇÇÂèØÂ§â„Å´„Å™„Çã„ÅÆ„Åß „Éù„Ç±„É¢„É≥„ÅÆÂÄãÊï∞Alloc
+	TOUCH_LIST_HEADER	tl_poke_list_head;	///< „Å©„Éº„Åó„Å¶„ÇÇÂèØÂ§â„Å´„Å™„Çã„ÅÆ„Åß
 	
 	POKE_ICON_WORK		icon;
 
@@ -236,15 +236,15 @@ typedef struct {
 
 static void BR_SendVideoNo( VIDEO_SEARCH_WORK* vwk, BR_WORK* wk );
 
-///< ÉvÉçÉtÉBÅ[ÉãâÊñ 
+///< „Éó„É≠„Éï„Ç£„Éº„É´ÁîªÈù¢
 static const RECT_HIT_TBL hit_table_000[] = {
-	{ DTC(  2 ), DTC(  6 ), DTC(  8 ), DTC( 25 ) },	///< ÉoÉgÉãÉrÉfÉI	
-	{ DTC(  8 ), DTC( 14 ), DTC( 11 ), DTC( 21 ) },	///< çƒê∂	
-	{ 152, 152 + 32, 128, 128 + 96 },	///< ñﬂÇÈ
-	{ 152, 152 + 32,  32,  32 + 96 },	///< ï€ë∂
+	{ DTC(  2 ), DTC(  6 ), DTC(  8 ), DTC( 25 ) },	///< „Éê„Éà„É´„Éì„Éá„Ç™	
+	{ DTC(  8 ), DTC( 14 ), DTC( 11 ), DTC( 21 ) },	///< ÂÜçÁîü	
+	{ 152, 152 + 32, 128, 128 + 96 },	///< Êàª„Çã
+	{ 152, 152 + 32,  32,  32 + 96 },	///< ‰øùÂ≠ò
 };
 
-///< ï€ë∂êÊ
+///< ‰øùÂ≠òÂÖà
 static const RECT_HIT_TBL hit_table_001[] = {	
 	{ TAG_HIT_Y( 0 ) - 16, TAG_HIT_Y( 0 ) + 16, TAG_HIT_X, TAG_HIT_X + 160 },
 	{ TAG_HIT_Y( 1 ) - 16, TAG_HIT_Y( 1 ) + 16, TAG_HIT_X, TAG_HIT_X + 160 },
@@ -252,32 +252,32 @@ static const RECT_HIT_TBL hit_table_001[] = {
 	{ TAG_HIT_Y( 3 ) - 16, TAG_HIT_Y( 3 ) + 16, TAG_HIT_X, TAG_HIT_X + 160 },	
 };
 
-///< è„èëÇ´ÇµÇ‹Ç∑Ç©ÅHÇÕÇ¢ÅEÇ¢Ç¢Ç¶ ÉXÉNÉäÅ[Éì
+///< ‰∏äÊõ∏„Åç„Åó„Åæ„Åô„ÅãÔºü„ÅØ„ÅÑ„Éª„ÅÑ„ÅÑ„Åà „Çπ„ÇØ„É™„Éº„É≥
 static const RECT_HIT_TBL hit_table_002[] = {
-	{ DTC(  5 ), DTC( 9 ), DTC(  4 ), DTC( 15 ) },	///< ÇÕÇ¢
-	{ DTC(  5 ), DTC( 9 ), DTC( 18 ), DTC( 29 ) },	///< Ç¢Ç¢Ç¶	
+	{ DTC(  5 ), DTC( 9 ), DTC(  4 ), DTC( 15 ) },	///< „ÅØ„ÅÑ
+	{ DTC(  5 ), DTC( 9 ), DTC( 18 ), DTC( 29 ) },	///< „ÅÑ„ÅÑ„Åà	
 };
 
 static const RECT_HIT_TBL hit_table_back[] = {	
-	{ 152, 184, 80, 176 },	///< ñﬂÇÈ
+	{ 152, 184, 80, 176 },	///< Êàª„Çã
 };
 
 static const RECT_HIT_TBL hit_table_view[] = {
-	{ DTC( 4 ), DTC( 12 ), DTC( 10 ), DTC( 22 ) },	///< ÉrÉfÉIÇå©ÇÈ
+	{ DTC( 4 ), DTC( 12 ), DTC( 10 ), DTC( 22 ) },	///< „Éì„Éá„Ç™„ÇíË¶ã„Çã
 };
 
 // ----------
 
-///< Ç≠ÇÌÇµÇ≠íTÇ∑TOP
+///< „Åè„Çè„Åó„ÅèÊé¢„ÅôTOP
 static const RECT_HIT_TBL hit_table_100[] = {
-	{ DTC(  2 ), DTC(  6 ), DTC(  5 ), DTC( 27 ) },	///< ÇµÇπÇ¬Ç≈Ç≥Ç™Ç∑
-	{ DTC(  7 ), DTC( 11 ), DTC(  5 ), DTC( 27 ) },	///< É|ÉPÉÇÉìÇ≈Ç≥Ç™Ç∑
-	{ DTC( 12 ), DTC( 16 ), DTC(  5 ), DTC( 27 ) },	///< ÉvÉçÉtÉBÅ[ÉãÇ≈Ç≥Ç™Ç∑
+	{ DTC(  2 ), DTC(  6 ), DTC(  5 ), DTC( 27 ) },	///< „Åó„Åõ„Å§„Åß„Åï„Åå„Åô
+	{ DTC(  7 ), DTC( 11 ), DTC(  5 ), DTC( 27 ) },	///< „Éù„Ç±„É¢„É≥„Åß„Åï„Åå„Åô
+	{ DTC( 12 ), DTC( 16 ), DTC(  5 ), DTC( 27 ) },	///< „Éó„É≠„Éï„Ç£„Éº„É´„Åß„Åï„Åå„Åô
 	{ 152, 152 + 32,  32,  32 + 96 },	///< 
-	{ 152, 152 + 32, 128, 128 + 96 },	///< Ç‡Ç«ÇÈ
+	{ 152, 152 + 32, 128, 128 + 96 },	///< „ÇÇ„Å©„Çã
 };
 
-///< É|ÉPÉÇÉìÇ≈íTÇ∑Å@Ç†Ç¢Ç§Ç¶Ç®
+///< „Éù„Ç±„É¢„É≥„ÅßÊé¢„Åô„ÄÄ„ÅÇ„ÅÑ„ÅÜ„Åà„Åä
 // MatchComment: change entries to match US data (also means changing length)
 const RECT_HIT_TBL hit_rect_AIUEO[ 9 ] = {	
 	{  3 * 8,  6 * 8,  5 * 8,  9 * 8},
@@ -327,7 +327,7 @@ static void ListPokeIcon_Add( BR_WORK* wk )
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
 	int tbl[][ 6 ] = {
 		{ 0,1,2,3,4,5 },	///< 1vs1
-		{ 0,1,2,3,4,5 },	///< 2vs2  --ñ°ñ°ìGìG
+		{ 0,1,2,3,4,5 },	///< 2vs2  --Âë≥Âë≥ÊïµÊïµ
 	//	{ 0,1,2,6,7,8 },
 	};
 	int monsno_tbl[ 6 ] = { 0,0,0,0,0,0 };
@@ -350,7 +350,7 @@ static void ListPokeIcon_Add( BR_WORK* wk )
 			tbl_index = 0;
 		}
 		
-		///< ÇΩÇ‹Ç≤Çî≤Ç¢ÇΩÉ\Å[ÉgÇÇ∑ÇÈ 05.14
+		///< „Åü„Åæ„Åî„ÇíÊäú„ÅÑ„Åü„ÇΩ„Éº„Éà„Çí„Åô„Çã 05.14
 		{
 			int n,m;
 			int idx = 0;
@@ -437,13 +437,13 @@ static void ListPokeIcon_ReAdd( BR_WORK* wk )
 
 	CATS_SystemActiveSet( wk, TRUE );
 	
-	///< Ç«Ç¡ÇøÇ÷ÉäÉXÉgÇ™ìÆÇ¢ÇΩÇ©
+	///< „Å©„Å£„Å°„Å∏„É™„Çπ„Éà„ÅåÂãï„ÅÑ„Åü„Åã
 	if ( vwk->icon.view_start > wk->sys.touch_list.now ){
-		///< Å™ = ç≈â∫íiÇÃÉAÉCÉRÉìÇÃîjä¸
+		///< ‚Üë = ÊúÄ‰∏ãÊÆµ„ÅÆ„Ç¢„Ç§„Ç≥„É≥„ÅÆÁ†¥Ê£Ñ
 		index = 4;
 	}
 	
-	///< ç≈è„íiÇ©ÅAç≈â∫íiÇÃÉAÉCÉRÉìÇçÌèú
+	///< ÊúÄ‰∏äÊÆµ„Åã„ÄÅÊúÄ‰∏ãÊÆµ„ÅÆ„Ç¢„Ç§„Ç≥„É≥„ÇíÂâäÈô§
 	for ( i = 0; i < 6; i++ ){
 		if ( vwk->icon.poke[ index ][ i ].cap ){
 			PokemonIcon_DelActor( wk, vwk->icon.poke[ index ][ i ].gra_id, vwk->icon.poke[ index ][ i ].cap );
@@ -453,24 +453,24 @@ static void ListPokeIcon_ReAdd( BR_WORK* wk )
 	}
 
 	if ( index ){
-		///< â∫Ç÷ãlÇﬂÇƒÅAç≈è„íiÇÉtÉäÅ[Ç…Ç∑ÇÈ
+		///< ‰∏ã„Å∏Ë©∞„ÇÅ„Å¶„ÄÅÊúÄ‰∏äÊÆµ„Çí„Éï„É™„Éº„Å´„Åô„Çã
 		for ( i = 4; i >= 1; i-- ){
 			for ( j = 0; j < 6; j++ ){
 				vwk->icon.poke[ i ][ j ].cap	= vwk->icon.poke[ i - 1 ][ j ].cap;
 				vwk->icon.poke[ i ][ j ].gra_id = vwk->icon.poke[ i - 1 ][ j ].gra_id;
 			}
 		}
-		index = 0;	///< index Ç ãÛÇØÇΩâ”èäÇ÷
+		index = 0;	///< index „Çí Á©∫„Åë„ÅüÁÆáÊâÄ„Å∏
 	}
 	else {
-		///< è„Ç÷ãlÇﬂÇƒÅAç≈â∫íiÇÉtÉäÅ[Ç…Ç∑ÇÈ
+		///< ‰∏ä„Å∏Ë©∞„ÇÅ„Å¶„ÄÅÊúÄ‰∏ãÊÆµ„Çí„Éï„É™„Éº„Å´„Åô„Çã
 		for ( i = 1; i < 5; i++ ){
 			for ( j = 0; j < 6; j++ ){
 				vwk->icon.poke[ i - 1 ][ j ].cap	= vwk->icon.poke[ i ][ j ].cap;
 				vwk->icon.poke[ i - 1 ][ j ].gra_id = vwk->icon.poke[ i ][ j ].gra_id;
 			}
 		}
-		index = 4;	///< index Ç ãÛÇØÇΩâ”èäÇ÷
+		index = 4;	///< index „Çí Á©∫„Åë„ÅüÁÆáÊâÄ„Å∏
 	}
 
 	{
@@ -480,7 +480,7 @@ static void ListPokeIcon_ReAdd( BR_WORK* wk )
 		int pos = wk->sys.touch_list.now + index;
 		int tbl[][ 6 ] = {
 			{ 0,1,2,3,4,5 },
-			{ 0,1,2,3,4,5 },	///< 2vs2  --ñ°ñ°ìGìG
+			{ 0,1,2,3,4,5 },	///< 2vs2  --Âë≥Âë≥ÊïµÊïµ
 		//	{ 0,1,2,6,7,8 },
 		};
 		int monsno_tbl[ 6 ] = { 0,0,0,0,0,0 };
@@ -491,7 +491,7 @@ static void ListPokeIcon_ReAdd( BR_WORK* wk )
 			tbl_index = 1;
 		}
 						
-		///< ÇΩÇ‹Ç≤Çî≤Ç¢ÇΩÉ\Å[ÉgÇÇ∑ÇÈ 05.14
+		///< „Åü„Åæ„Åî„ÇíÊäú„ÅÑ„Åü„ÇΩ„Éº„Éà„Çí„Åô„Çã 05.14
 		{
 			int n,m;
 			int idx = 0;
@@ -545,7 +545,7 @@ static void ListPokeIcon_ReAdd( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	åüçıèåèÇì¸ÇÍÇΩÇ©ÅH
+ * @brief	Ê§úÁ¥¢Êù°‰ª∂„ÇíÂÖ•„Çå„Åü„ÅãÔºü
  *
  * @param	wk	
  *
@@ -570,7 +570,7 @@ static BOOL IsSearchParamSet( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉÅÉCÉìï\é¶
+ * @brief	„É°„Ç§„É≥Ë°®Á§∫
  *
  * @param	wk	
  * @param	mode	
@@ -638,7 +638,7 @@ static void BRV_WinAdd_Main( BR_WORK* wk, int mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	é{ê›Å@åüçı
+ * @brief	ÊñΩË®≠„ÄÄÊ§úÁ¥¢
  *
  * @param	wk	
  * @param	no	
@@ -680,7 +680,7 @@ static void BRV_Word_Shisetu( BR_WORK* wk, int no )
 
 //--------------------------------------------------------------
 /**
- * @brief	É|ÉPÉÇÉìÅ@åüçı
+ * @brief	„Éù„Ç±„É¢„É≥„ÄÄÊ§úÁ¥¢
  *
  * @param	wk	
  * @param	no	
@@ -714,7 +714,7 @@ static void BRV_Word_Pokemon( BR_WORK* wk, int no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉvÉçÉtÉBÅ[Éã
+ * @brief	„Éó„É≠„Éï„Ç£„Éº„É´
  *
  * @param	wk	
  * @param	no	
@@ -764,7 +764,7 @@ static void BRV_Word_Profile( BR_WORK* wk, int country, int area )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉTÉuï\é¶
+ * @brief	„Çµ„ÉñË°®Á§∫
  *
  * @param	wk	
  * @param	mode	
@@ -827,7 +827,7 @@ static void BRV_WinAdd_Sub( BR_WORK* wk, int mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉÅÉCÉìçÌèú
+ * @brief	„É°„Ç§„É≥ÂâäÈô§
  *
  * @param	wk	
  *
@@ -849,7 +849,7 @@ static void BRV_WinDel_Main( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉTÉuçÌèú
+ * @brief	„Çµ„ÉñÂâäÈô§
  *
  * @param	wk	
  *
@@ -872,7 +872,7 @@ static void BRV_WinDel_Sub( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉrÉfÉIåüçıåãâ óp
+ * @brief	„Éì„Éá„Ç™Ê§úÁ¥¢ÁµêÊûúÁî®
  *
  * @param	wk	
  *
@@ -890,7 +890,7 @@ static void BRV_WinAdd_VideoList( BR_WORK* wk )
 	STRBUF* str1;
 	GF_BGL_BMPWIN* win;
 	
-	///< å©èoÇµ
+	///< Ë¶ãÂá∫„Åó
 	win = &vwk->win_m[ 0 ];
 	GF_BGL_BmpWinInit( win );
 	GF_BGL_BmpWinAdd( wk->sys.bgl, win, GF_BGL_FRAME2_M, 3, 3, 20, 4, eBG_PAL_FONT, ofs );
@@ -900,7 +900,7 @@ static void BRV_WinAdd_VideoList( BR_WORK* wk )
 	GF_BGL_BmpWinOnVReq( win );
 	STRBUF_Delete( str1 );
 
-	///< ÉrÉfÉIÇå©ÇÈ
+	///< „Éì„Éá„Ç™„ÇíË¶ã„Çã
 	ofs = 256;
 	win = &vwk->win_s[ 0 ];
 	GF_BGL_BmpWinInit( win );
@@ -922,7 +922,7 @@ static void BRV_WinAdd_VideoList( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉäÉXÉgÇÃèâä˙âª
+ * @brief	„É™„Çπ„Éà„ÅÆÂàùÊúüÂåñ
  *
  * @param	wk	
  *
@@ -946,7 +946,7 @@ static BOOL CS_TopView_Init( BR_WORK* wk )
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );
 		FontButton_CreateSub( wk );
 		ButtonOAM_PosSetSub( wk, 0 );
-		vwk->icon.global_gra_id = GLOBAL_POKE_ICON_ID;	///< ãCéùÇøÇ∏ÇÁÇ∑
+		vwk->icon.global_gra_id = GLOBAL_POKE_ICON_ID;	///< Ê∞óÊåÅ„Å°„Åö„Çâ„Åô
 		vwk->btn_man[ 0 ] = BMN_Create( hit_table_100,  NELEMS( hit_table_100 ),  Btn_CallBack_100,   wk, HEAPID_BR );
 		vwk->btn_man[ 1 ] = BMN_Create( hit_rect_AIUEO, NELEMS( hit_rect_AIUEO ), Btn_CallBack_AIUEO, wk, HEAPID_BR );
 //		vwk->btn_man[ 2 ] = BMN_Create( hit_table_102, NELEMS( hit_table_102 ), Btn_CallBack_002, wk, HEAPID_BR );
@@ -956,9 +956,9 @@ static BOOL CS_TopView_Init( BR_WORK* wk )
 	case 1:
 		BR_PaletteFade( &vwk->color, eFADE_MODE_IN );
 		if ( Plate_AlphaFade( &vwk->eva, &vwk->evb, eFADE_MODE_IN, ePLANE_ALL ) ){
-			Tool_InfoMessageMain( wk, msg_721 );	///< ÉÅÉbÉZÅ[ÉWÇ∆ÇÃåìÇÀçáÇ¢Ç™ÉAÉã
-			BRV_WinAdd_Main( wk, 0 );				///< ÉJÉeÉSÉäèoÇ∑
-			BRV_WinAdd_Sub( wk, 0 );				///< ÉJÉeÉSÉäèoÇ∑
+			Tool_InfoMessageMain( wk, msg_721 );	///< „É°„ÉÉ„Çª„Éº„Ç∏„Å®„ÅÆÂÖº„Å≠Âêà„ÅÑ„Åå„Ç¢„É´
+			BRV_WinAdd_Main( wk, 0 );				///< „Ç´„ÉÜ„Ç¥„É™Âá∫„Åô
+			BRV_WinAdd_Sub( wk, 0 );				///< „Ç´„ÉÜ„Ç¥„É™Âá∫„Åô
 			vwk->monsno = GT_BATTLE_REC_SEARCH_MONSNO_NONE;
 			vwk->battle_mode = GT_BATTLE_REC_SEARCH_BATTLE_MODE_NONE;
 			vwk->country_code = GT_BATTLE_REC_SEARCH_COUNTRY_CODE_NONE;
@@ -984,7 +984,7 @@ static BOOL CS_TopView_Init( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉäÉXÉgÇÃÉÅÉCÉìèàóù
+ * @brief	„É™„Çπ„Éà„ÅÆ„É°„Ç§„É≥Âá¶ÁêÜ
  *
  * @param	wk	
  *
@@ -1016,7 +1016,7 @@ static BOOL CS_TopView_Main( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉäÉXÉgÇÃèIóπèàóù
+ * @brief	„É™„Çπ„Éà„ÅÆÁµÇ‰∫ÜÂá¶ÁêÜ
  *
  * @param	wk	
  *
@@ -1030,7 +1030,7 @@ static BOOL CS_TopView_Exit( BR_WORK* wk )
 	
 	switch ( wk->sub_seq ){
 	case 0:
-		///< OAM Ç∆Ç© ï∂éöÇ∆Ç©è¡Ç∑
+		///< OAM „Å®„Åã ÊñáÂ≠ó„Å®„ÅãÊ∂à„Åô
 		BRV_WinDel_Main( wk );
 		BRV_WinDel_Sub( wk );
 		Tool_InfoMessageMainDel( wk );
@@ -1042,7 +1042,7 @@ static BOOL CS_TopView_Exit( BR_WORK* wk )
 		break;
 	
 	case 1:
-		///< ÉtÉFÅ[ÉhÉAÉEÉg
+		///< „Éï„Çß„Éº„Éâ„Ç¢„Ç¶„Éà
 		BR_PaletteFade( &vwk->color, eFADE_MODE_OUT );
 		if ( Plate_AlphaFade( &vwk->eva, &vwk->evb, eFADE_MODE_OUT, ePLANE_ALL ) ){			
 			wk->sub_seq++;
@@ -1051,7 +1051,7 @@ static BOOL CS_TopView_Exit( BR_WORK* wk )
 		break;
 	
 	case 2:
-		///< ïúãA
+		///< Âæ©Â∏∞
 		CATS_SystemActiveSet( wk, TRUE );
 		FontButton_DeleteSub( wk );
 		NormalTag_RecoverAllOp( wk );
@@ -1087,7 +1087,7 @@ static BOOL CS_TopView_Exit( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	äeâÊñ ÇèIóπÇ≥ÇπÇÈ
+ * @brief	ÂêÑÁîªÈù¢„ÇíÁµÇ‰∫Ü„Åï„Åõ„Çã
  *
  * @param	wk	
  *
@@ -1114,7 +1114,7 @@ static BOOL CS_SearchCommonInit( BR_WORK* wk )
 	
 	default:
 	//	BR_Main_SeqChange( wk, eCS_Shisetu + vwk->search_mode );
-		OS_Printf( " åüçıÉÇÅ[Éh = %d\n", vwk->search_mode );
+		OS_Printf( " Ê§úÁ¥¢„É¢„Éº„Éâ = %d\n", vwk->search_mode );
 		switch ( vwk->search_mode ){
 		case 0:	BR_Main_SeqChange( wk, eCS_Shisetu ); break;
 		case 1:	BR_Main_SeqChange( wk, eCS_Pokemon ); break;
@@ -1128,7 +1128,7 @@ static BOOL CS_SearchCommonInit( BR_WORK* wk )
 
 // -----------------------------------------
 //
-//	é{ê›
+//	ÊñΩË®≠
 //
 // -----------------------------------------
 static const TL_INFO tl_info_shisetu_bclear[] = {
@@ -1174,28 +1174,28 @@ static const RECT_HIT_TBL hit_tbl_shisetu[] = {
 static const TOUCH_LIST_HEADER tl_head_shisetu_before = {
 	tl_info_shisetu_bclear,
 	NELEMS( tl_info_shisetu_bclear ),
-	2,					///< 2çsïù
+	2,					///< 2Ë°åÂπÖ
 	
 	7,3,
 	18,12,
 	32,
 	GF_BGL_FRAME2_S,
 	
-	3,					///< ï\é¶åèêî
-	hit_tbl_shisetu,	///< ìñÇΩÇËîªíË
+	3,					///< Ë°®Á§∫‰ª∂Êï∞
+	hit_tbl_shisetu,	///< ÂΩì„Åü„ÇäÂà§ÂÆö
 };
 
 static const TOUCH_LIST_HEADER tl_head_shisetu_after = {
 	tl_info_shisetu_aclear,
 	NELEMS( tl_info_shisetu_aclear ),
-	2,					///< 2çsïù
+	2,					///< 2Ë°åÂπÖ
 	
 	7,3,
 	18,12,
 	32,
 	GF_BGL_FRAME2_S,
 	
-	3,					///< ï\é¶åèêî
+	3,					///< Ë°®Á§∫‰ª∂Êï∞
 	hit_tbl_shisetu,
 };
 
@@ -1217,16 +1217,16 @@ static BOOL CS_Shisetu( BR_WORK* wk )
 		BR_PaletteFade( &vwk->color, eFADE_MODE_IN );
 		if ( Plate_AlphaFade( &vwk->eva, &vwk->evb, eFADE_MODE_IN, ePLANE_SUB ) ){
 			CATS_SystemActiveSet( wk, TRUE );
-			Slider_Init( &wk->sys.slider, wk );										///< ÉXÉâÉCÉ_Å[ÇÃèâä˙âª
+			Slider_Init( &wk->sys.slider, wk );										///< „Çπ„É©„Ç§„ÉÄ„Éº„ÅÆÂàùÊúüÂåñ
 			TouchList_WorkClear( &wk->sys.touch_list );
 			if ( BR_IsGameClear( wk ) == TRUE ){
-				TouchList_Init( &wk->sys.touch_list, wk, &tl_head_shisetu_after );	///< ÉäÉXÉgÇÃèâä˙âª
+				TouchList_Init( &wk->sys.touch_list, wk, &tl_head_shisetu_after );	///< „É™„Çπ„Éà„ÅÆÂàùÊúüÂåñ
 			}
 			else {
-				TouchList_Init( &wk->sys.touch_list, wk, &tl_head_shisetu_before );	///< ÉäÉXÉgÇÃèâä˙âª
+				TouchList_Init( &wk->sys.touch_list, wk, &tl_head_shisetu_before );	///< „É™„Çπ„Éà„ÅÆÂàùÊúüÂåñ
 			}
-			Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< ÉAÉjÉÅÉ`ÉFÉbÉN
-			TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_SUB );		///< ÉäÉXÉgÇÃÉJÅ[É\Éãìoò^
+			Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< „Ç¢„Éã„É°„ÉÅ„Çß„ÉÉ„ÇØ
+			TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_SUB );		///< „É™„Çπ„Éà„ÅÆ„Ç´„Éº„ÇΩ„É´ÁôªÈå≤
 			CATS_SystemActiveSet( wk, FALSE );
 			wk->sub_seq++;
 		}
@@ -1251,11 +1251,11 @@ static BOOL CS_Shisetu( BR_WORK* wk )
 		break;
 	
 	case 3:
-		Slider_Exit( &wk->sys.slider );					///< ÉXÉâÉCÉ_Å[ÇÃîjä¸
-		TouchList_Exit( &wk->sys.touch_list );			///< ÉäÉXÉgÇÃîjä¸
-		TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ÉäÉXÉgÇÃÉJÅ[É\Éãîjä¸
+		Slider_Exit( &wk->sys.slider );					///< „Çπ„É©„Ç§„ÉÄ„Éº„ÅÆÁ†¥Ê£Ñ
+		TouchList_Exit( &wk->sys.touch_list );			///< „É™„Çπ„Éà„ÅÆÁ†¥Ê£Ñ
+		TouchList_CursorDel( &wk->sys.touch_list, wk );	///< „É™„Çπ„Éà„ÅÆ„Ç´„Éº„ÇΩ„É´Á†¥Ê£Ñ
 
-		///< ílÇÃï€éùÇÕÇµÇ»Ç≠ÇƒÇÊÇ¢
+		///< ÂÄ§„ÅÆ‰øùÊåÅ„ÅØ„Åó„Å™„Åè„Å¶„Çà„ÅÑ
 		Slider_WorkClear( &wk->sys.slider );			
 		TouchList_WorkClear( &wk->sys.touch_list );
 		wk->sub_seq++;
@@ -1279,7 +1279,7 @@ static BOOL CS_Shisetu( BR_WORK* wk )
 
 // -----------------------------------------
 //
-//	É|ÉPÉÇÉìéwíË
+//	„Éù„Ç±„É¢„É≥ÊåáÂÆö
 //
 // -----------------------------------------
 static const RECT_HIT_TBL hit_tbl_pokemon[] = {
@@ -1294,15 +1294,15 @@ static const RECT_HIT_TBL hit_tbl_pokemon[] = {
 static const TOUCH_LIST_HEADER tl_head_pokemon_dmy = {
 	NULL,
 	0,
-	1,					///< 2çsïù
+	1,					///< 2Ë°åÂπÖ
 		
 	9,3,
 	14,12,
 	32,
 	GF_BGL_FRAME2_S,
 	
-	6,					///< ï\é¶åèêî
-	hit_tbl_pokemon,	///< ìñÇΩÇËîªíË
+	6,					///< Ë°®Á§∫‰ª∂Êï∞
+	hit_tbl_pokemon,	///< ÂΩì„Åü„ÇäÂà§ÂÆö
 };
 static BOOL CS_Pokemon( BR_WORK* wk )
 {
@@ -1406,7 +1406,7 @@ static BOOL CS_PokemonAIUEO( BR_WORK* wk )
 		break;
 	
 	case 3:
-		WinDel_AIUEO( wk );				///< Ç†Ç¢Ç§Ç¶Ç®Å@è¡Ç∑
+		WinDel_AIUEO( wk );				///< „ÅÇ„ÅÑ„ÅÜ„Åà„Åä„ÄÄÊ∂à„Åô
 		wk->sub_seq++;
 	
 	case 4:
@@ -1453,16 +1453,16 @@ static BOOL CS_PokemonSelect( BR_WORK* wk )
 	//	BR_PaletteFade( &vwk->color, eFADE_MODE_IN );
 		if ( Plate_AlphaFade( &vwk->eva, &vwk->evb, eFADE_MODE_IN, ePLANE_SUB ) ){
 			CATS_SystemActiveSet( wk, TRUE );
-			Slider_Init( &wk->sys.slider, wk );															///< ÉXÉâÉCÉ_Å[ÇÃèâä˙âª
+			Slider_Init( &wk->sys.slider, wk );															///< „Çπ„É©„Ç§„ÉÄ„Éº„ÅÆÂàùÊúüÂåñ
 			
-			vwk->tl_poke_list_head = tl_head_pokemon_dmy;												///< ÉäÉXÉgÉwÉbÉ_Å[ÇÃÉxÅ[ÉXÇÕÉRÉsÅ[Ç∑ÇÈ
-			vwk->tl_poke_list_head.info = vwk->tl_poke_list_info;										///< infoÇÕèëÇ´ä∑Ç¶
-			vwk->tl_poke_list_head.data_max = vwk->poke_select.poke_list_num;							///< ÉfÅ[É^å¬êîÇ‡èëÇ´ä∑Ç¶
+			vwk->tl_poke_list_head = tl_head_pokemon_dmy;												///< „É™„Çπ„Éà„Éò„ÉÉ„ÉÄ„Éº„ÅÆ„Éô„Éº„Çπ„ÅØ„Ç≥„Éî„Éº„Åô„Çã
+			vwk->tl_poke_list_head.info = vwk->tl_poke_list_info;										///< info„ÅØÊõ∏„ÅçÊèõ„Åà
+			vwk->tl_poke_list_head.data_max = vwk->poke_select.poke_list_num;							///< „Éá„Éº„ÇøÂÄãÊï∞„ÇÇÊõ∏„ÅçÊèõ„Åà
 			TouchList_WorkClear( &wk->sys.touch_list );
-			TouchList_InitEx( &wk->sys.touch_list, wk, vwk->poke_select.man, &vwk->tl_poke_list_head );	///< ÉäÉXÉgÇÃèâä˙âª
+			TouchList_InitEx( &wk->sys.touch_list, wk, vwk->poke_select.man, &vwk->tl_poke_list_head );	///< „É™„Çπ„Éà„ÅÆÂàùÊúüÂåñ
 			wk->sys.touch_list.bView = FALSE;
-			Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< ÉAÉjÉÅÉ`ÉFÉbÉN
-			TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_SUB );							///< ÉäÉXÉgÇÃÉJÅ[É\Éãìoò^
+			Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< „Ç¢„Éã„É°„ÉÅ„Çß„ÉÉ„ÇØ
+			TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_SUB );							///< „É™„Çπ„Éà„ÅÆ„Ç´„Éº„ÇΩ„É´ÁôªÈå≤
 			CATS_SystemActiveSet( wk, FALSE );
 			wk->sub_seq++;
 		}
@@ -1488,11 +1488,11 @@ static BOOL CS_PokemonSelect( BR_WORK* wk )
 		break;
 	
 	case 3:
-		Slider_Exit( &wk->sys.slider );					///< ÉXÉâÉCÉ_Å[ÇÃîjä¸
-		TouchList_Exit( &wk->sys.touch_list );			///< ÉäÉXÉgÇÃîjä¸
-		TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ÉäÉXÉgÇÃÉJÅ[É\Éãîjä¸
+		Slider_Exit( &wk->sys.slider );					///< „Çπ„É©„Ç§„ÉÄ„Éº„ÅÆÁ†¥Ê£Ñ
+		TouchList_Exit( &wk->sys.touch_list );			///< „É™„Çπ„Éà„ÅÆÁ†¥Ê£Ñ
+		TouchList_CursorDel( &wk->sys.touch_list, wk );	///< „É™„Çπ„Éà„ÅÆ„Ç´„Éº„ÇΩ„É´Á†¥Ê£Ñ
 		
-		///< ÉJÅ[É\Éãà íuÇÃãLâØÇÕïKóvÇ»Ç¢
+		///< „Ç´„Éº„ÇΩ„É´‰ΩçÁΩÆ„ÅÆË®òÊÜ∂„ÅØÂøÖË¶Å„Å™„ÅÑ
 		Slider_WorkClear( &wk->sys.slider );			
 		TouchList_WorkClear( &wk->sys.touch_list );
 		wk->sub_seq++;
@@ -1659,7 +1659,7 @@ static void PokemonNameList_DataFree( BR_WORK* wk )
 
 // -----------------------------------------
 //
-//	ÉvÉçÉtÉBÅ[Éã
+//	„Éó„É≠„Éï„Ç£„Éº„É´
 //
 // -----------------------------------------
 static const TL_INFO tl_info_profile[] = {
@@ -1675,14 +1675,14 @@ static const RECT_HIT_TBL hit_tbl_profile[] = {
 static const TOUCH_LIST_HEADER tl_head_profile = {
 	tl_info_profile,
 	NELEMS( tl_info_profile ),
-	2,					///< 2çsïù
+	2,					///< 2Ë°åÂπÖ
 	 8, 2,
 	16,12,
 	32,
 	GF_BGL_FRAME2_S,
 	
-	1,					///< ï\é¶åèêî
-	hit_tbl_profile,	///< ìñÇΩÇËîªíË
+	1,					///< Ë°®Á§∫‰ª∂Êï∞
+	hit_tbl_profile,	///< ÂΩì„Åü„ÇäÂà§ÂÆö
 };
 
 static BOOL CS_Profile( BR_WORK* wk )
@@ -1704,10 +1704,10 @@ static BOOL CS_Profile( BR_WORK* wk )
 		BR_PaletteFade( &vwk->color, eFADE_MODE_IN );
 		if ( Plate_AlphaFade( &vwk->eva, &vwk->evb, eFADE_MODE_IN, ePLANE_SUB ) ){
 			CATS_SystemActiveSet( wk, TRUE );
-			Slider_Init( &wk->sys.slider, wk );										///< ÉXÉâÉCÉ_Å[ÇÃèâä˙âª			
-			TouchList_Init( &wk->sys.touch_list, wk, &tl_head_profile );			///< ÉäÉXÉgÇÃèâä˙âª
-			Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< ÉAÉjÉÅÉ`ÉFÉbÉN
-			TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_SUB );		///< ÉäÉXÉgÇÃÉJÅ[É\Éãìoò^
+			Slider_Init( &wk->sys.slider, wk );										///< „Çπ„É©„Ç§„ÉÄ„Éº„ÅÆÂàùÊúüÂåñ			
+			TouchList_Init( &wk->sys.touch_list, wk, &tl_head_profile );			///< „É™„Çπ„Éà„ÅÆÂàùÊúüÂåñ
+			Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< „Ç¢„Éã„É°„ÉÅ„Çß„ÉÉ„ÇØ
+			TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_SUB );		///< „É™„Çπ„Éà„ÅÆ„Ç´„Éº„ÇΩ„É´ÁôªÈå≤
 			CATS_SystemActiveSet( wk, FALSE );
 			wk->sub_seq++;
 		}
@@ -1733,9 +1733,9 @@ static BOOL CS_Profile( BR_WORK* wk )
 		break;
 	
 	case 3:
-		Slider_Exit( &wk->sys.slider );					///< ÉXÉâÉCÉ_Å[ÇÃîjä¸
-		TouchList_Exit( &wk->sys.touch_list );			///< ÉäÉXÉgÇÃîjä¸
-		TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ÉäÉXÉgÇÃÉJÅ[É\Éãîjä¸
+		Slider_Exit( &wk->sys.slider );					///< „Çπ„É©„Ç§„ÉÄ„Éº„ÅÆÁ†¥Ê£Ñ
+		TouchList_Exit( &wk->sys.touch_list );			///< „É™„Çπ„Éà„ÅÆÁ†¥Ê£Ñ
+		TouchList_CursorDel( &wk->sys.touch_list, wk );	///< „É™„Çπ„Éà„ÅÆ„Ç´„Éº„ÇΩ„É´Á†¥Ê£Ñ
 		wk->sub_seq++;
 	
 	case 4:
@@ -1769,8 +1769,8 @@ static BOOL CS_SearchCommonExit( BR_WORK* wk )
 	case 1:
 		BR_PaletteFade( &vwk->color, eFADE_MODE_IN );
 		if ( Plate_AlphaFade( &vwk->eva, &vwk->evb, eFADE_MODE_IN, ePLANE_SUB ) ){
-			Tool_InfoMessageMainSet( wk, msg_721 );	///< ÉÅÉbÉZÅ[ÉWÇ∆ÇÃåìÇÀçáÇ¢Ç™ÉAÉã
-			BRV_WinAdd_Sub( wk, 0 );				///< ÉJÉeÉSÉäèoÇ∑
+			Tool_InfoMessageMainSet( wk, msg_721 );	///< „É°„ÉÉ„Çª„Éº„Ç∏„Å®„ÅÆÂÖº„Å≠Âêà„ÅÑ„Åå„Ç¢„É´
+			BRV_WinAdd_Sub( wk, 0 );				///< „Ç´„ÉÜ„Ç¥„É™Âá∫„Åô
 			wk->sub_seq++;
 		}
 		ColorConceChangePfd( wk->sys.pfd, FADE_SUB_OBJ, LINE_OTHER_SUB_PALETTE, vwk->color, wk->sys.logo_color );
@@ -1802,14 +1802,14 @@ static BOOL CS_Search_Main( BR_WORK* wk )
 
 	switch ( wk->sub_seq ){
 	case 0:
-		///< ÉÅÉbÉZÅ[ÉW
+		///< „É°„ÉÉ„Çª„Éº„Ç∏
 		Tool_InfoMessageMainSet( wk, msg_714 );
 		Snd_SePlay( eBR_SND_SEARCH );
 		wk->sub_seq++;
 		break;
 	
 	case 1:
-		///< åüçıèåèÇëóêM
+		///< Ê§úÁ¥¢Êù°‰ª∂„ÇíÈÄÅ‰ø°
 		{
 			int battle_mode = vwk->battle_mode;
 			
@@ -1824,12 +1824,12 @@ static BOOL CS_Search_Main( BR_WORK* wk )
 			if ( GDSRAP_Tool_Send_BattleVideoSearchDownload( BR_GDSRAP_WorkGet( wk ), vwk->monsno, battle_mode, vwk->country_code, vwk->local_code ) == TRUE ){
 				wk->sub_seq++;
 			}
-			OS_Printf( " ----- åüçıèåè -----\n" );
+			OS_Printf( " ----- Ê§úÁ¥¢Êù°‰ª∂ -----\n" );
 			OS_Printf( " monsno       = %d\n", vwk->monsno );
 			OS_Printf( " battle_mode  = %d\n", vwk->battle_mode );
 			OS_Printf( " country_code = %d\n", vwk->country_code );
 			OS_Printf( " local_code   = %d\n", vwk->local_code );
-			OS_Printf( " ----- Å@Å@Å@Å@ -----\n" );
+			OS_Printf( " ----- „ÄÄ„ÄÄ„ÄÄ„ÄÄ -----\n" );
 		}
 		break;
 	
@@ -1837,7 +1837,7 @@ static BOOL CS_Search_Main( BR_WORK* wk )
 		if( GDSRAP_ErrorInfoGet( BR_GDSRAP_WorkGet( wk ), &error_info ) == TRUE ){			
 			Snd_SeStopBySeqNo( eBR_SND_SEARCH, 0 );
 			BR_ErrorMsgGet( wk, eERR_VIDEO_SEARCH, error_info->result, error_info->type );
-			wk->recv_data.outline_data_num = 0;		///< ÉfÅ[É^Ç™å©Ç¬Ç©ÇÁÇ»Ç©Ç¡ÇΩÇÁÇOå¬Ç…Ç∑ÇÈÅB()
+			wk->recv_data.outline_data_num = 0;		///< „Éá„Éº„Çø„ÅåË¶ã„Å§„Åã„Çâ„Å™„Åã„Å£„Åü„ÇâÔºêÂÄã„Å´„Åô„Çã„ÄÇ()
 			wk->sub_seq++;
 		}
 		else {
@@ -1863,7 +1863,7 @@ static BOOL CS_Search_Main( BR_WORK* wk )
 		TouchList_WorkClear( &wk->sys.touch_list );
 		if ( wk->recv_data.outline_data_num == 0 ){
 //			Tool_InfoMessageMainSet( wk, msg_721 );
-			BR_Main_SeqChange( wk, eCS_TopViewMain );		///< åüçıÇ…ñﬂÇÈ
+			BR_Main_SeqChange( wk, eCS_TopViewMain );		///< Ê§úÁ¥¢„Å´Êàª„Çã
 		}
 		else {
 			BR_Main_SeqChange( wk, eCS_SearchExit );
@@ -1877,7 +1877,7 @@ static BOOL CS_Search_Main( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	åüçıâÊñ èIóπ
+ * @brief	Ê§úÁ¥¢ÁîªÈù¢ÁµÇ‰∫Ü
  *
  * @param	wk	
  *
@@ -1888,15 +1888,15 @@ static BOOL CS_Search_Main( BR_WORK* wk )
 static const TOUCH_LIST_HEADER tl_head_video_list_dmy = {
 	tl_info_shisetu_aclear,
 	6,
-	3,					///< 2çsïù
+	3,					///< 2Ë°åÂπÖ
 
 	2,8,
 	10,15,
 	128,
 	GF_BGL_FRAME2_M,
 
-	5,					///< ï\é¶åèêî
-	NULL,				///< ìñÇΩÇËîªíË
+	5,					///< Ë°®Á§∫‰ª∂Êï∞
+	NULL,				///< ÂΩì„Åü„ÇäÂà§ÂÆö
 };
 
 static BOOL CS_Search_Exit( BR_WORK* wk )
@@ -1914,10 +1914,10 @@ static BOOL CS_Search_Exit( BR_WORK* wk )
 		break;
 	
 	case 1:
-		///< ÉtÉFÅ[ÉhÉAÉEÉg
+		///< „Éï„Çß„Éº„Éâ„Ç¢„Ç¶„Éà
 		BR_PaletteFade( &vwk->color, eFADE_MODE_OUT );
 		if ( Plate_AlphaFade( &vwk->eva, &vwk->evb, eFADE_MODE_OUT, ePLANE_ALL ) ){			
-			ButtonOAM_PosSetSub( wk, 1 );			///< OAMÉ{É^Éì1å¬
+			ButtonOAM_PosSetSub( wk, 1 );			///< OAM„Éú„Çø„É≥1ÂÄã
 			wk->sub_seq++;
 		}
 		ColorConceChangePfd( wk->sys.pfd, FADE_SUB_OBJ, LINE_OTHER_SUB_PALETTE, vwk->color, wk->sys.logo_color );
@@ -1937,44 +1937,44 @@ static BOOL CS_ListInit( BR_WORK* wk )
 	
 	switch ( wk->sub_seq ){
 	case 0:
-		///< ÉfÅ[É^àÍóóÇÃèÄîı
-		if ( BattleRec_DataExistCheck() ){	///< ì«Ç›çûÇÒÇæò^âÊÉfÅ[É^ÇÕÇ¢Ç¡ÇΩÇÒîjä¸
+		///< „Éá„Éº„Çø‰∏ÄË¶ß„ÅÆÊ∫ñÂÇô
+		if ( BattleRec_DataExistCheck() ){	///< Ë™≠„ÅøËæº„Çì„Å†Èå≤Áîª„Éá„Éº„Çø„ÅØ„ÅÑ„Å£„Åü„ÇìÁ†¥Ê£Ñ
 			BattleRec_Exit();
 		}
-		vwk->tl_poke_list_head = tl_head_video_list_dmy;								///< ÉäÉXÉgÉwÉbÉ_Å[ÇÃÉxÅ[ÉXÇÕÉRÉsÅ[Ç∑ÇÈ
-		vwk->tl_poke_list_head.info = NULL;												///< infoÇÕèëÇ´ä∑Ç¶
-		vwk->tl_poke_list_head.data_max = wk->recv_data.outline_data_num;				///< ÉfÅ[É^å¬êîÇ‡èëÇ´ä∑Ç¶
-		PokemonIcon_ResLoad( wk );														///< É|ÉPÉÇÉìÉAÉCÉRÉìÇÃÉäÉ\Å[ÉXì«Ç›çûÇ›
-		vwk->icon.handle = PokemonGraphic_ArcOpen( HEAPID_BR );							///< ÉAÉCÉRÉìÇÃÉAÅ[ÉNÇäJÇ≠
+		vwk->tl_poke_list_head = tl_head_video_list_dmy;								///< „É™„Çπ„Éà„Éò„ÉÉ„ÉÄ„Éº„ÅÆ„Éô„Éº„Çπ„ÅØ„Ç≥„Éî„Éº„Åô„Çã
+		vwk->tl_poke_list_head.info = NULL;												///< info„ÅØÊõ∏„ÅçÊèõ„Åà
+		vwk->tl_poke_list_head.data_max = wk->recv_data.outline_data_num;				///< „Éá„Éº„ÇøÂÄãÊï∞„ÇÇÊõ∏„ÅçÊèõ„Åà
+		PokemonIcon_ResLoad( wk );														///< „Éù„Ç±„É¢„É≥„Ç¢„Ç§„Ç≥„É≥„ÅÆ„É™„ÇΩ„Éº„ÇπË™≠„ÅøËæº„Åø
+		vwk->icon.handle = PokemonGraphic_ArcOpen( HEAPID_BR );							///< „Ç¢„Ç§„Ç≥„É≥„ÅÆ„Ç¢„Éº„ÇØ„ÇíÈñã„Åè
 		BR_ScrSet( wk, NARC_batt_rec_gra_batt_rec_video_u_NSCR,  GF_BGL_FRAME3_M );
 		BR_ScrSet( wk, NARC_batt_rec_gra_batt_rec_video_d1_NSCR, GF_BGL_FRAME3_S );
 		
-		///< êÊì«Ç›îÒï\é¶
+		///< ÂÖàË™≠„ÅøÈùûË°®Á§∫
 		GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG2, VISIBLE_OFF );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );	
 		BRV_WinAdd_VideoList( wk );
 		CATS_SystemActiveSet( wk, TRUE );
-		Slider_Init( &wk->sys.slider, wk );											///< ÉXÉâÉCÉ_Å[ÇÃèâä˙âª			
-		TouchList_InitEx( &wk->sys.touch_list, wk, NULL, &vwk->tl_poke_list_head );	///< ÉäÉXÉgÇÃèâä˙âª
+		Slider_Init( &wk->sys.slider, wk );											///< „Çπ„É©„Ç§„ÉÄ„Éº„ÅÆÂàùÊúüÂåñ			
+		TouchList_InitEx( &wk->sys.touch_list, wk, NULL, &vwk->tl_poke_list_head );	///< „É™„Çπ„Éà„ÅÆÂàùÊúüÂåñ
 		wk->sys.touch_list.bView = TRUE;
-		Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< ÉAÉjÉÅÉ`ÉFÉbÉN
+		Slider_AnimeCheck( &wk->sys.slider, &wk->sys.touch_list );			///< „Ç¢„Éã„É°„ÉÅ„Çß„ÉÉ„ÇØ
 		CATS_SystemActiveSet( wk, FALSE );
 
 		CATS_SystemActiveSet( wk, TRUE );
-		TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_MAIN );			///< ÉäÉXÉgÇÃÉJÅ[É\Éãìoò^
-		TouchList_CursorPosSet( &wk->sys.touch_list, 64, 184 );						///< ÉJÅ[É\ÉãÇÃà íuïœçX
-		TouchList_ViewMode_Main( &wk->sys.touch_list, wk );							///< ÉäÉXÉgçXêVÇåƒÇ‘
+		TouchList_CursorAdd( &wk->sys.touch_list, wk, CATS_D_AREA_MAIN );			///< „É™„Çπ„Éà„ÅÆ„Ç´„Éº„ÇΩ„É´ÁôªÈå≤
+		TouchList_CursorPosSet( &wk->sys.touch_list, 64, 184 );						///< „Ç´„Éº„ÇΩ„É´„ÅÆ‰ΩçÁΩÆÂ§âÊõ¥
+		TouchList_ViewMode_Main( &wk->sys.touch_list, wk );							///< „É™„Çπ„ÉàÊõ¥Êñ∞„ÇíÂëº„Å∂
 		CATS_SystemActiveSet( wk, FALSE );
 		
 		CATS_SystemActiveSet( wk, TRUE );
-		ListPokeIcon_Add( wk );														///< É|ÉPÉÇÉìÉAÉCÉRÉììoò^
+		ListPokeIcon_Add( wk );														///< „Éù„Ç±„É¢„É≥„Ç¢„Ç§„Ç≥„É≥ÁôªÈå≤
 		ListPokeIcon_Enable( wk, FALSE );
 		CATS_SystemActiveSet( wk, FALSE );
 		wk->sub_seq++;
 		break;
 	
 	case 1:
-		///< âÊñ ÇÃï\é¶
+		///< ÁîªÈù¢„ÅÆË°®Á§∫
 		BR_PaletteFade( &vwk->color, eFADE_MODE_IN );
 		if ( Plate_AlphaFade( &vwk->eva, &vwk->evb, eFADE_MODE_IN, ePLANE_ALL ) ){
 			GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG2, VISIBLE_ON );
@@ -1986,7 +1986,7 @@ static BOOL CS_ListInit( BR_WORK* wk )
 			wk->sub_seq++;
 		}
 		ColorConceChangePfd( wk->sys.pfd, FADE_SUB_OBJ,  LINE_OTHER_SUB_PALETTE, vwk->color, wk->sys.logo_color );
-		ColorConceChangePfd( wk->sys.pfd, FADE_MAIN_OBJ, TAG_PALETTE, vwk->color, wk->sys.logo_color );		///< è„â∫ÉJÅ[É\ÉãÇ™É^ÉOÉpÉåÉbÉgÇ»ÇÃÇ≈
+		ColorConceChangePfd( wk->sys.pfd, FADE_MAIN_OBJ, TAG_PALETTE, vwk->color, wk->sys.logo_color );		///< ‰∏ä‰∏ã„Ç´„Éº„ÇΩ„É´„Åå„Çø„Ç∞„Éë„É¨„ÉÉ„Éà„Å™„ÅÆ„Åß
 		break;
 	
 	default:
@@ -2003,19 +2003,19 @@ static BOOL CS_ListMain( BR_WORK* wk )
 	
 	switch ( wk->sub_seq ){
 	case 0:
-		///< ÉäÉXÉgèàóù
+		///< „É™„Çπ„ÉàÂá¶ÁêÜ
 		Slider_HitCheck_Main( &wk->sys.slider );
 		TouchList_ViewMode_ValueSet( &wk->sys.touch_list, wk->sys.slider.value );
 		TouchList_ViewMode_Main( &wk->sys.touch_list, wk );
 		Cursor_PosSet_Check( wk->cur_wk, 16, 76 + ( wk->sys.touch_list.view.l_pos * 24 ) );
-		ListPokeIcon_ReAdd( wk );														///< É|ÉPÉÇÉìÉAÉCÉRÉìçƒìoò^
+		ListPokeIcon_ReAdd( wk );														///< „Éù„Ç±„É¢„É≥„Ç¢„Ç§„Ç≥„É≥ÂÜçÁôªÈå≤
 
-		if ( GF_TP_SingleHitTrg( &hit_table_view[ 0 ] ) ){	///< ÉrÉfÉIÇå©ÇÈ
+		if ( GF_TP_SingleHitTrg( &hit_table_view[ 0 ] ) ){	///< „Éì„Éá„Ç™„ÇíË¶ã„Çã
 			TouchAction( wk );
 			vwk->tmp_seq = eCS_ProfIn;
 			wk->sub_seq++;
 		}
-		if ( GF_TP_SingleHitTrg( &hit_table_back[ 0 ] ) ){	///< èIÇÌÇÈ
+		if ( GF_TP_SingleHitTrg( &hit_table_back[ 0 ] ) ){	///< ÁµÇ„Çè„Çã
 			TouchAction( wk );
 			vwk->tmp_seq = eCS_TopViewRecover;
 			wk->sub_seq++;
@@ -2030,19 +2030,19 @@ static BOOL CS_ListMain( BR_WORK* wk )
 		break;
 		
 	case 1:
-		///< èIóπèàóù
-		Slider_Exit( &wk->sys.slider );					///< ÉXÉâÉCÉ_Å[ÇÃîjä¸
-		TouchList_Exit( &wk->sys.touch_list );			///< ÉäÉXÉgÇÃîjä¸
-		TouchList_CursorDel( &wk->sys.touch_list, wk );	///< ÉäÉXÉgÇÃÉJÅ[É\Éãîjä¸
-		PokemonGraphic_ArcClose( vwk->icon.handle );	///< É|ÉPÉÇÉìÉAÉCÉRÉìÇÃÉAÅ[ÉJÉCÉuï¬Ç∂ÇÈ
-		ListPokeIcon_Del( wk );							///< É|ÉPÉÇÉìÉAÉCÉRÉìîjä¸
-		PokemonIcon_ResFree( wk );						///< ÉäÉ\Å[ÉXâï˙
+		///< ÁµÇ‰∫ÜÂá¶ÁêÜ
+		Slider_Exit( &wk->sys.slider );					///< „Çπ„É©„Ç§„ÉÄ„Éº„ÅÆÁ†¥Ê£Ñ
+		TouchList_Exit( &wk->sys.touch_list );			///< „É™„Çπ„Éà„ÅÆÁ†¥Ê£Ñ
+		TouchList_CursorDel( &wk->sys.touch_list, wk );	///< „É™„Çπ„Éà„ÅÆ„Ç´„Éº„ÇΩ„É´Á†¥Ê£Ñ
+		PokemonGraphic_ArcClose( vwk->icon.handle );	///< „Éù„Ç±„É¢„É≥„Ç¢„Ç§„Ç≥„É≥„ÅÆ„Ç¢„Éº„Ç´„Ç§„ÉñÈñâ„Åò„Çã
+		ListPokeIcon_Del( wk );							///< „Éù„Ç±„É¢„É≥„Ç¢„Ç§„Ç≥„É≥Á†¥Ê£Ñ
+		PokemonIcon_ResFree( wk );						///< „É™„ÇΩ„Éº„ÇπËß£Êîæ
 		BRV_WinDel_Main( wk );
 		BRV_WinDel_Sub( wk );
 		Cursor_Visible( wk->cur_wk, FALSE );
 		Cursor_R_Set( wk->cur_wk, 0, 0 );
 
-		if ( vwk->tmp_seq == eCS_TopViewRecover ){		///< ÉäÉXÉgÇÃà íuÇÕãLâØÇµÇ»Ç≠ÇƒÇ¢Ç¢
+		if ( vwk->tmp_seq == eCS_TopViewRecover ){		///< „É™„Çπ„Éà„ÅÆ‰ΩçÁΩÆ„ÅØË®òÊÜ∂„Åó„Å™„Åè„Å¶„ÅÑ„ÅÑ
 			Slider_WorkClear( &wk->sys.slider );
 			TouchList_WorkClear( &wk->sys.touch_list );
 			vwk->icon.view_start = 0;
@@ -2053,7 +2053,7 @@ static BOOL CS_ListMain( BR_WORK* wk )
 		BR_PaletteFade( &vwk->color, eFADE_MODE_OUT );
 		if ( Plate_AlphaFade( &vwk->eva, &vwk->evb, eFADE_MODE_OUT, ePLANE_ALL ) ){
 			ButtonOAM_PosSetSub( wk, 0 );
-			if ( vwk->tmp_seq == eCS_ProfIn ){	///< ï∂éöÇèëÇ´ä∑Ç¶ÇÈ
+			if ( vwk->tmp_seq == eCS_ProfIn ){	///< ÊñáÂ≠ó„ÇíÊõ∏„ÅçÊèõ„Åà„Çã
 				FontOam_MsgSet( &vwk->obtn[ 0 ], &wk->sys, msg_05 );
 				FontOam_MsgSet( &vwk->obtn[ 1 ], &wk->sys, msg_602 );
 				CATS_ObjectAnimeSeqSetCap( vwk->obtn[ 0 ].cap, eTAG_EX_BACK );
@@ -2062,7 +2062,7 @@ static BOOL CS_ListMain( BR_WORK* wk )
 			wk->sub_seq++;
 		}
 		ColorConceChangePfd( wk->sys.pfd, FADE_SUB_OBJ, LINE_OTHER_SUB_PALETTE, vwk->color, wk->sys.logo_color );	
-		ColorConceChangePfd( wk->sys.pfd, FADE_MAIN_OBJ, TAG_PALETTE, vwk->color, wk->sys.logo_color );		///< è„â∫ÉJÅ[É\ÉãÇ™É^ÉOÉpÉåÉbÉgÇ»ÇÃÇ≈
+		ColorConceChangePfd( wk->sys.pfd, FADE_MAIN_OBJ, TAG_PALETTE, vwk->color, wk->sys.logo_color );		///< ‰∏ä‰∏ã„Ç´„Éº„ÇΩ„É´„Åå„Çø„Ç∞„Éë„É¨„ÉÉ„Éà„Å™„ÅÆ„Åß
 		break;
 	
 	default:
@@ -2085,8 +2085,8 @@ static BOOL CS_TopViewRecover( BR_WORK* wk )
 		vwk->btn_man[ 0 ] = BMN_Create( hit_table_100,  NELEMS( hit_table_100 ),  Btn_CallBack_100,   wk, HEAPID_BR );
 		vwk->btn_man[ 1 ] = BMN_Create( hit_rect_AIUEO, NELEMS( hit_rect_AIUEO ), Btn_CallBack_AIUEO, wk, HEAPID_BR );
 		
-		///< êÊì«Ç›îÒï\é¶
-		BRV_WinAdd_Sub( wk, 0 );				///< ÉJÉeÉSÉäèoÇ∑
+		///< ÂÖàË™≠„ÅøÈùûË°®Á§∫
+		BRV_WinAdd_Sub( wk, 0 );				///< „Ç´„ÉÜ„Ç¥„É™Âá∫„Åô
 		GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG2, VISIBLE_OFF );
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );	
 		wk->sub_seq++;
@@ -2095,8 +2095,8 @@ static BOOL CS_TopViewRecover( BR_WORK* wk )
 	case 1:
 		BR_PaletteFade( &vwk->color, eFADE_MODE_IN );
 		if ( Plate_AlphaFade( &vwk->eva, &vwk->evb, eFADE_MODE_IN, ePLANE_ALL ) ){
-			Tool_InfoMessageMain( wk, msg_721 );	///< ÉÅÉbÉZÅ[ÉWÇ∆ÇÃåìÇÀçáÇ¢Ç™ÉAÉã
-			BRV_WinAdd_Main( wk, 0 );				///< ÉJÉeÉSÉäèoÇ∑
+			Tool_InfoMessageMain( wk, msg_721 );	///< „É°„ÉÉ„Çª„Éº„Ç∏„Å®„ÅÆÂÖº„Å≠Âêà„ÅÑ„Åå„Ç¢„É´
+			BRV_WinAdd_Main( wk, 0 );				///< „Ç´„ÉÜ„Ç¥„É™Âá∫„Åô
 			BRV_Word_Pokemon( wk, vwk->monsno );
 			BRV_Word_Shisetu( wk, vwk->battle_mode );
 			BRV_Word_Profile( wk, vwk->country_code, vwk->local_code );
@@ -2167,7 +2167,7 @@ static BOOL CS_ProfIn( BR_WORK* wk )
 	return FALSE;
 }
 
-///< ÉvÉçÉtÉBÅ[ÉãÉÅÉCÉì
+///< „Éó„É≠„Éï„Ç£„Éº„É´„É°„Ç§„É≥
 static BOOL CS_ProfMain( BR_WORK* wk )
 {
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
@@ -2177,7 +2177,7 @@ static BOOL CS_ProfMain( BR_WORK* wk )
 	return FALSE;
 }
 
-///< ÉvÉçÉtÉBÅ[ÉãêÿÇËë÷Ç¶
+///< „Éó„É≠„Éï„Ç£„Éº„É´Âàá„ÇäÊõø„Åà
 static BOOL CS_ProfChange( BR_WORK* wk )
 {	
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
@@ -2189,20 +2189,20 @@ static BOOL CS_ProfChange( BR_WORK* wk )
 	return FALSE;
 }
 
-///< ò^âÊçƒê∂ÉVÅ[Éì
+///< Èå≤ÁîªÂÜçÁîü„Ç∑„Éº„É≥
 static BOOL CS_ProfPlay( BR_WORK* wk )
 {	
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
 	
 	if ( Common_ProfPlay( wk ) ){		
 		sys_FreeMemoryEz( vwk );
-		OS_Printf( " èIóπÅ`ò^âÊçƒê∂\n" );
+		OS_Printf( " ÁµÇ‰∫Ü„ÄúÈå≤ÁîªÂÜçÁîü\n" );
 		return TRUE;
 	}
 	return FALSE;
 }
 
-///< ÉvÉçÉtÉBÅ[ÉãÇ©ÇÁÉäÉXÉgÇ÷
+///< „Éó„É≠„Éï„Ç£„Éº„É´„Åã„Çâ„É™„Çπ„Éà„Å∏
 static BOOL CS_ProfExit( BR_WORK* wk )
 {	
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
@@ -2249,7 +2249,7 @@ static BOOL CS_ProfExit( BR_WORK* wk )
 	return FALSE;
 }
 
-///< ÉZÅ[Éu
+///< „Çª„Éº„Éñ
 static BOOL CS_SaveIn( BR_WORK* wk )
 {
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
@@ -2259,11 +2259,11 @@ static BOOL CS_SaveIn( BR_WORK* wk )
 		case 0:
 			CATS_SystemActiveSet( wk, TRUE );
 			if ( vwk->view_page == 0 ){
-				///< äTóvçÌèú ÉvÉçÉtÉBÅ[ÉãçÏê¨
+				///< Ê¶ÇË¶ÅÂâäÈô§ „Éó„É≠„Éï„Ç£„Éº„É´‰ΩúÊàê
 				VideoDataFree( &vwk->vtr_work, wk );
 			}
 			else {
-				///< ÉvÉçÉtÉBÅ[ÉãçÌèú äTóvçÏê¨
+				///< „Éó„É≠„Éï„Ç£„Éº„É´ÂâäÈô§ Ê¶ÇË¶Å‰ΩúÊàê
 				GppDataFree( &vwk->gpp_work, wk );						
 			}
 			ProfWin_Del( wk );
@@ -2308,7 +2308,7 @@ static BOOL CS_SaveIn( BR_WORK* wk )
 			CATS_SystemActiveSet( wk, TRUE );
 			FontButton_CreateSub( wk );
 			if ( wk->ex_param1 == BR_EX_DATA_KUWASIKU ){	
-				///< Ç±ÇÃéûì_ÇæÇ∆É{É^ÉìÇÃÉ^ÉOèÓïÒÇ™ïœÇÌÇ¡ÇƒÇÈÇÃÇ≈ì¸ÇÍë÷Ç¶ÇÈ
+				///< „Åì„ÅÆÊôÇÁÇπ„Å†„Å®„Éú„Çø„É≥„ÅÆ„Çø„Ç∞ÊÉÖÂ†±„ÅåÂ§â„Çè„Å£„Å¶„Çã„ÅÆ„ÅßÂÖ•„ÇåÊõø„Åà„Çã
 				FontOam_MsgSet( &vwk->obtn[ 0 ], &wk->sys, msg_05 );
 				FontOam_MsgSet( &vwk->obtn[ 1 ], &wk->sys, msg_602 );
 				CATS_ObjectAnimeSeqSetCap( vwk->obtn[ 0 ].cap, eTAG_EX_BACK );
@@ -2320,14 +2320,14 @@ static BOOL CS_SaveIn( BR_WORK* wk )
 			ArcUtil_HDL_BgCharSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_data_NCGR, wk->sys.bgl, GF_BGL_FRAME3_S, 0, 0, 0, HEAPID_BR );
 			CATS_SystemActiveSet( wk, TRUE );
 			if ( vwk->view_page == 0 ){
-				///< ÉvÉçÉtÉBÅ[ÉãçÌèú äTóvçÏê¨
+				///< „Éó„É≠„Éï„Ç£„Éº„É´ÂâäÈô§ Ê¶ÇË¶Å‰ΩúÊàê
 				VideoDataMake( &vwk->vtr_work, wk );
 				VideoData_IconEnable( &vwk->vtr_work, FALSE );
 			//	ArcUtil_HDL_ScrnSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_bg1ua_data_NSCR, wk->sys.bgl, GF_BGL_FRAME3_M, 0, 0, 0, HEAPID_BR );
 				BR_ScrSet( wk, ProfileBGGet( &vwk->vtr_work ), GF_BGL_FRAME3_M );
 			}
 			else {
-				///< ÉvÉçÉtÉBÅ[ÉãçÏê¨
+				///< „Éó„É≠„Éï„Ç£„Éº„É´‰ΩúÊàê
 				GppDataMake( &vwk->gpp_work, wk );
 				GppData_IconEnable( &vwk->gpp_work, FALSE );
 				ArcUtil_HDL_ScrnSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_bg1uc_data_NSCR, wk->sys.bgl, GF_BGL_FRAME3_M, 0, 0, 0, HEAPID_BR );
@@ -2372,7 +2372,7 @@ static BOOL CS_SaveIn( BR_WORK* wk )
 	return FALSE;
 }
 
-///< ÉZÅ[ÉuÉÅÉCÉì
+///< „Çª„Éº„Éñ„É°„Ç§„É≥
 static BOOL CS_SaveMain( BR_WORK* wk )
 {
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
@@ -2382,7 +2382,7 @@ static BOOL CS_SaveMain( BR_WORK* wk )
 	return FALSE;
 }
 
-///< ÉZÅ[ÉuÉÅÉCÉìÇ©ÇÁÉvÉçÉtÉBÅ[ÉãÇ÷
+///< „Çª„Éº„Éñ„É°„Ç§„É≥„Åã„Çâ„Éó„É≠„Éï„Ç£„Éº„É´„Å∏
 static BOOL CS_SaveExit( BR_WORK* wk )
 {	
 	if ( Common_ProfSaveExit( wk ) ){
@@ -2412,7 +2412,7 @@ static BOOL CS_PlayRecover( BR_WORK* wk )
 	return FALSE;
 }
 
-///< ÉZÅ[Éu
+///< „Çª„Éº„Éñ
 static BOOL CS_CheckIn( BR_WORK* wk )
 {	
 	if ( Common_ProfCheckIn( wk ) ){
@@ -2422,7 +2422,7 @@ static BOOL CS_CheckIn( BR_WORK* wk )
 	return FALSE;
 }
 
-///< ï€ë∂ÇÃämîF
+///< ‰øùÂ≠ò„ÅÆÁ¢∫Ë™ç
 static BOOL CS_CheckMain( BR_WORK* wk )
 {
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
@@ -2432,7 +2432,7 @@ static BOOL CS_CheckMain( BR_WORK* wk )
 	return FALSE;
 }
 
-///< ï€ë∂ÇÃämîFèIóπ
+///< ‰øùÂ≠ò„ÅÆÁ¢∫Ë™çÁµÇ‰∫Ü
 static BOOL CS_CheckExit( BR_WORK* wk )
 {	
 	if ( Common_ProfCheckExit( wk ) ){
@@ -2441,7 +2441,7 @@ static BOOL CS_CheckExit( BR_WORK* wk )
 	return FALSE;
 }
 
-///< Ç®ãCÇ…ì¸ÇËìoò^
+///< „ÅäÊ∞ó„Å´ÂÖ•„ÇäÁôªÈå≤
 static BOOL CS_CheckFinish( BR_WORK* wk )
 {
 	Common_ProfCheckFinish( wk );
@@ -2449,7 +2449,7 @@ static BOOL CS_CheckFinish( BR_WORK* wk )
 	return FALSE;
 }
 
-///< BRSÇ™ñ≥Ç¢èÍçáÇ…ê∂ê¨Ç∑ÇÈ
+///< BRS„ÅåÁÑ°„ÅÑÂ†¥Âêà„Å´ÁîüÊàê„Åô„Çã
 static BOOL CS_BrsDataGet( BR_WORK* wk )
 {
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
@@ -2478,7 +2478,7 @@ static BOOL CS_BrsDataGet( BR_WORK* wk )
 		break;
 		
 	case 2:
-		///< ÉrÉfÉIÇíTÇµÇƒÇ¢Ç‹Ç∑ÅB
+		///< „Éì„Éá„Ç™„ÇíÊé¢„Åó„Å¶„ÅÑ„Åæ„Åô„ÄÇ
 		Tool_InfoMessageMain( wk, msg_714 );
 		HormingCursor_Init( wk, wk->cur_wk, COMM_HORMING_CUR_CX, COMM_HORMING_CUR_CY );
 		Cursor_Visible( wk->cur_wk, TRUE );
@@ -2516,7 +2516,7 @@ static BOOL CS_BrsDataGet( BR_WORK* wk )
 			wk->sub_seq = 0xFF;
 			vwk->bData  = TRUE;
 			wk->secure_addrs  = &wk->recv_data.outline_secure_flag[ wk->sys.touch_list.view.this ];
-			///< ÇªÇÃå„çƒê∂Ç∑ÇÈÇ©Ç‡ÇµÇÍÇ»Ç¢ÇÃÇ≈ÅAÉeÉìÉ|ÉâÉäÇ…ÉRÉsÅ[
+			///< „Åù„ÅÆÂæåÂÜçÁîü„Åô„Çã„Åã„ÇÇ„Åó„Çå„Å™„ÅÑ„ÅÆ„Åß„ÄÅ„ÉÜ„É≥„Éù„É©„É™„Å´„Ç≥„Éî„Éº
 			vwk->rec_data = wk->recv_data.rec_data_tmp;
 			MI_CpuCopy8( vwk->rec_data, &wk->recv_data.rec_data, sizeof( GT_BATTLE_REC_RECV ) );
 		}
@@ -2527,14 +2527,14 @@ static BOOL CS_BrsDataGet( BR_WORK* wk )
 	default:
 	//	vwk->bData = NULL;
 		if ( vwk->bData ){
-			///< ÉrÉfÉIÇ™å©Ç¬Ç©Ç¡ÇΩèÍçáÇÕÅAêÊÇ÷êiÇﬁ
+			///< „Éì„Éá„Ç™„ÅåË¶ã„Å§„Åã„Å£„ÅüÂ†¥Âêà„ÅØ„ÄÅÂÖà„Å∏ÈÄ≤„ÇÄ
 			Snd_SePlay( eBR_SND_RECV_OK );
 			Tool_InfoMessageMainDel( wk );
 			BR_Main_SeqChange( wk, vwk->tmp_seq );
 			RecData_RecStopFlagSet( wk, TRUE );
 		}
 		else {
-			///< å©Ç¬Ç©ÇÁÇ»Ç¢èÍçáÇÕÅAÉvÉçÉtÉBÅ[ÉãÇ÷ïúãAÅ@ÇΩÇ‘ÇÒÉZÅ[ÉuÇ©ÇÁÇÃïúãAÇ≈ñ‚ëËÇ»Ç¢ÇÕÇ∏•••
+			///< Ë¶ã„Å§„Åã„Çâ„Å™„ÅÑÂ†¥Âêà„ÅØ„ÄÅ„Éó„É≠„Éï„Ç£„Éº„É´„Å∏Âæ©Â∏∞„ÄÄ„Åü„Å∂„Çì„Çª„Éº„Éñ„Åã„Çâ„ÅÆÂæ©Â∏∞„ÅßÂïèÈ°å„Å™„ÅÑ„ÅØ„Åö„Éª„Éª„Éª
 		//	if ( !GF_TP_GetTrg() ){ break; }
 			Tool_InfoMessageMainDel( wk );
 			BR_Main_SeqChange( wk, eCS_PlayRecover );
@@ -2577,8 +2577,8 @@ static BOOL CS_RecoverIn( BR_WORK* wk )
 		vwk->battle_mode = GT_BATTLE_REC_SEARCH_BATTLE_MODE_NONE;
 		vwk->country_code = GT_BATTLE_REC_SEARCH_COUNTRY_CODE_NONE;
 		vwk->local_code = GT_BATTLE_REC_SEARCH_LOCAL_CODE_NONE;		
-		vwk->icon.global_gra_id = GLOBAL_POKE_ICON_ID;	///< ãCéùÇøÇ∏ÇÁÇ∑
-		vwk->icon.view_start = wk->sys.touch_list.now;	///< ÉäÉXÉgÇÃÉAÉCÉRÉìÇ∏ÇÍëŒâû
+		vwk->icon.global_gra_id = GLOBAL_POKE_ICON_ID;	///< Ê∞óÊåÅ„Å°„Åö„Çâ„Åô
+		vwk->icon.view_start = wk->sys.touch_list.now;	///< „É™„Çπ„Éà„ÅÆ„Ç¢„Ç§„Ç≥„É≥„Åö„ÇåÂØæÂøú
 		wk->sub_seq++;
 		break;
 	
@@ -2629,7 +2629,7 @@ static BOOL CS_RecoverIn( BR_WORK* wk )
 		break;
 
 	default:
-		wk->tag_man.stack_s += 1;				///< proc init Ç≈ Menu_BackÇ™åƒÇŒÇÍ1íiäKâ∫Ç™Ç¡ÇƒÇµÇ‹Ç§ÇÃÇ≈âûã}èàíu
+		wk->tag_man.stack_s += 1;				///< proc init „Åß Menu_Back„ÅåÂëº„Å∞„Çå1ÊÆµÈöé‰∏ã„Åå„Å£„Å¶„Åó„Åæ„ÅÜ„ÅÆ„ÅßÂøúÊÄ•Âá¶ÁΩÆ
 		BR_RecoverWorkClear( wk );		
 		BR_Main_SeqChange( wk, eCS_ProfMain );
 		break;
@@ -2684,7 +2684,7 @@ BOOL (* const BR_Search_MainTable[])( BR_WORK* wk ) = {
 
 // ---------------------------------
 //
-//	ÉRÅ[Éhåüçı
+//	„Ç≥„Éº„ÉâÊ§úÁ¥¢
 //
 // ---------------------------------
 BOOL (* const BR_Video_MainTable[])( BR_WORK* wk ) = {
@@ -2715,7 +2715,7 @@ BOOL (* const BR_Video_MainTable[])( BR_WORK* wk ) = {
 
 // ---------------------------------
 //
-//	ÉfÅ[É^ëóéÛêM
+//	„Éá„Éº„ÇøÈÄÅÂèó‰ø°
 //
 // ---------------------------------
 BOOL (* const BR_Video_Send_MainTable[])( BR_WORK* wk ) = {
@@ -2729,7 +2729,7 @@ BOOL (* const BR_Video_Send_MainTable[])( BR_WORK* wk ) = {
 
 //--------------------------------------------------------------
 /**
- * @brief	èâä˙âª
+ * @brief	ÂàùÊúüÂåñ
  *
  * @param	wk	
  *
@@ -2759,7 +2759,7 @@ static BOOL Video_Init( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	âÊñ ÉtÉFÅ[ÉhÉAÉEÉg
+ * @brief	ÁîªÈù¢„Éï„Çß„Éº„Éâ„Ç¢„Ç¶„Éà
  *
  * @param	wk	
  *
@@ -2799,7 +2799,7 @@ static BOOL Video_Fade_Out( BR_WORK* wk )
 	default:	
 		switch ( wk->ex_param1 ){
 		case BR_EX_DATA_NEW30:
-			///< ç≈êV30åè
+			///< ÊúÄÊñ∞30‰ª∂
 			BR_ChangeDisplayVIntr( wk, DISP_3D_TO_MAIN );
 			Cursor_Visible( wk->cur_wk, FALSE );
 			if ( BR_RecoverCheck( wk ) == TRUE ){
@@ -2811,7 +2811,7 @@ static BOOL Video_Fade_Out( BR_WORK* wk )
 			break;
 
 		case BR_EX_DATA_KUWASIKU:
-			///< è⁄ÇµÇ≠åüçıÇ∑ÇÈ
+			///< Ë©≥„Åó„ÅèÊ§úÁ¥¢„Åô„Çã
 			BR_ChangeDisplayVIntr( wk, DISP_3D_TO_MAIN );
 			Cursor_Visible( wk->cur_wk, FALSE );
 			if ( BR_RecoverCheck( wk ) == TRUE ){
@@ -2823,7 +2823,7 @@ static BOOL Video_Fade_Out( BR_WORK* wk )
 			break;
 
 		case BR_EX_DATA_NO_SEARCH:
-			///< ÉfÅ[É^ÉiÉìÉoÅ[åüçı
+			///< „Éá„Éº„Çø„Éä„É≥„Éê„ÉºÊ§úÁ¥¢
 			if ( BR_RecoverCheck( wk ) == TRUE ){
 				BR_Main_SeqChange( wk, eVIDEO_CodeIn_RecoveIn );
 			}
@@ -2849,13 +2849,13 @@ static BOOL Video_Fade_Out( BR_WORK* wk )
 // =============================================================================
 //
 //
-//	Å°ÉRÅ[Éhì¸óÕ	TAG_CODE_INPUT
+//	‚ñ†„Ç≥„Éº„ÉâÂÖ•Âäõ	TAG_CODE_INPUT
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ÉRÅ[Éhì¸óÕèâä˙âª
+ * @brief	„Ç≥„Éº„ÉâÂÖ•ÂäõÂàùÊúüÂåñ
  *
  * @param	wk	
  *
@@ -2911,7 +2911,7 @@ static BOOL Video_CodeIn_Init( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉRÅ[Éhì¸óÕ
+ * @brief	„Ç≥„Éº„ÉâÂÖ•Âäõ
  *
  * @param	wk	
  *
@@ -2940,7 +2940,7 @@ static BOOL Video_CodeIn_Main( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉRÅ[Éhì¸óÕèIóπ
+ * @brief	„Ç≥„Éº„ÉâÂÖ•ÂäõÁµÇ‰∫Ü
  *
  * @param	wk	
  *
@@ -2955,7 +2955,7 @@ static BOOL Video_CodeIn_Exit( BR_WORK* wk )
 	
 	switch ( wk->sub_seq ){
 	case 0:	
-		///< çÌèúÇµÇƒçêÇ¨Ç”Ç•Å[Ç«
+		///< ÂâäÈô§„Åó„Å¶Âëä„Åé„Åµ„Åá„Éº„Å©
 	//	BRCI_pv_disp_CodeRes_Delete( ci );
 		Tool_InfoMessageDel( wk );
 		Plate_AlphaSetPlane( &vwk->eva, &vwk->evb, DEF_MP1, DEF_MP2, DEF_SP1, DEF_SP2, ePLANE_ALL );
@@ -2988,7 +2988,7 @@ static BOOL Video_CodeIn_Exit( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	èIóπ
+ * @brief	ÁµÇ‰∫Ü
  *
  * @param	wk	
  *
@@ -3052,7 +3052,7 @@ static BOOL Video_CodeIn_DataSearch( BR_WORK* wk )
 	
 	switch ( wk->sub_seq ){
 	case 0:
-		///< ÉrÉfÉIÇíTÇµÇƒÇ¢Ç‹Ç∑ÅB
+		///< „Éì„Éá„Ç™„ÇíÊé¢„Åó„Å¶„ÅÑ„Åæ„Åô„ÄÇ
 		Tool_InfoMessage( wk, msg_714 );
 		HormingCursor_Init( wk, wk->cur_wk_top, COMM_HORMING_CUR_CX, COMM_HORMING_CUR_CY );
 		Cursor_Visible( wk->cur_wk_top, TRUE );
@@ -3093,7 +3093,7 @@ static BOOL Video_CodeIn_DataSearch( BR_WORK* wk )
 			Snd_SePlay( eBR_SND_RECV_OK );
 			
 			wk->secure_addrs  = &wk->recv_data.rec_secure_flag;
-			///< ÇªÇÃå„çƒê∂Ç∑ÇÈÇ©Ç‡ÇµÇÍÇ»Ç¢ÇÃÇ≈ÅAÉeÉìÉ|ÉâÉäÇ…ÉRÉsÅ[
+			///< „Åù„ÅÆÂæåÂÜçÁîü„Åô„Çã„Åã„ÇÇ„Åó„Çå„Å™„ÅÑ„ÅÆ„Åß„ÄÅ„ÉÜ„É≥„Éù„É©„É™„Å´„Ç≥„Éî„Éº
 			vwk->rec_data = wk->recv_data.rec_data_tmp;
 			MI_CpuCopy8( vwk->rec_data, &wk->recv_data.rec_data, sizeof( GT_BATTLE_REC_RECV ) );
 		}
@@ -3102,7 +3102,7 @@ static BOOL Video_CodeIn_DataSearch( BR_WORK* wk )
 		break;
 	
 	case 3:
-		///< å©Ç¬Ç©ÇÁÇ»Ç©Ç¡ÇΩèÍçá
+		///< Ë¶ã„Å§„Åã„Çâ„Å™„Åã„Å£„ÅüÂ†¥Âêà
 	//	Tool_InfoMessage( wk, msg_715 );
 		BR_ChangeDisplayVIntr( wk, DISP_3D_TO_SUB );
 		wk->sub_seq++;
@@ -3132,7 +3132,7 @@ static BOOL Video_CodeIn_DataSearch( BR_WORK* wk )
 // =============================================================================
 //
 //
-//	Å°ÉvÉçÉtÉBÅ[Éã
+//	‚ñ†„Éó„É≠„Éï„Ç£„Éº„É´
 //
 //
 // =============================================================================
@@ -3140,9 +3140,9 @@ static void Video_GppDataCreate( BR_WORK* wk )
 {
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
 	
-	vwk->gpp_work.gpp	  = GDS_Profile_AllocMemory( HEAPID_BR );						///< ämï€ÇµÇƒ
-	GDS_CONV_GTGDSProfile_to_GDSProfile( &vwk->rec_data->profile, vwk->gpp_work.gpp );	///< É_ÉEÉìÉçÅ[ÉhÉfÅ[É^ÉRÉsÅ[ÇµÇƒ
-	vwk->vtr_work.gpp	  = vwk->gpp_work.gpp;											///< ÉrÉfÉIÉfÅ[É^ÇÃÉvÉçÉtÇ…Ç‡ÇfÇoÇoÇÃÉ|ÉCÉìÉ^ìñÇƒÇÈ
+	vwk->gpp_work.gpp	  = GDS_Profile_AllocMemory( HEAPID_BR );						///< Á¢∫‰øù„Åó„Å¶
+	GDS_CONV_GTGDSProfile_to_GDSProfile( &vwk->rec_data->profile, vwk->gpp_work.gpp );	///< „ÉÄ„Ç¶„É≥„É≠„Éº„Éâ„Éá„Éº„Çø„Ç≥„Éî„Éº„Åó„Å¶
+	vwk->vtr_work.gpp	  = vwk->gpp_work.gpp;											///< „Éì„Éá„Ç™„Éá„Éº„Çø„ÅÆ„Éó„É≠„Éï„Å´„ÇÇÔºßÔº∞Ôº∞„ÅÆ„Éù„Ç§„É≥„ÇøÂΩì„Å¶„Çã
 	
 	vwk->vtr_work.br_head = BattleRec_Header_AllocMemory( HEAPID_BR );
 	MI_CpuCopy8( &vwk->rec_data->head, vwk->vtr_work.br_head, sizeof( GT_BATTLE_REC_HEADER ) );
@@ -3152,9 +3152,9 @@ static void Video_GppDataCreate_from_OutLine( BR_WORK* wk )
 {
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
 	
-	vwk->gpp_work.gpp	  = GDS_Profile_AllocMemory( HEAPID_BR );															///< ämï€ÇµÇƒ
-	GDS_CONV_GTGDSProfile_to_GDSProfile( &wk->recv_data.outline_data_tmp[ wk->sys.touch_list.view.this ]->profile, vwk->gpp_work.gpp );	///< É_ÉEÉìÉçÅ[ÉhÉfÅ[É^ÉRÉsÅ[ÇµÇƒ
-	vwk->vtr_work.gpp	  = vwk->gpp_work.gpp;																				///< ÉrÉfÉIÉfÅ[É^ÇÃÉvÉçÉtÇ…Ç‡ÇfÇoÇoÇÃÉ|ÉCÉìÉ^ìñÇƒÇÈ
+	vwk->gpp_work.gpp	  = GDS_Profile_AllocMemory( HEAPID_BR );															///< Á¢∫‰øù„Åó„Å¶
+	GDS_CONV_GTGDSProfile_to_GDSProfile( &wk->recv_data.outline_data_tmp[ wk->sys.touch_list.view.this ]->profile, vwk->gpp_work.gpp );	///< „ÉÄ„Ç¶„É≥„É≠„Éº„Éâ„Éá„Éº„Çø„Ç≥„Éî„Éº„Åó„Å¶
+	vwk->vtr_work.gpp	  = vwk->gpp_work.gpp;																				///< „Éì„Éá„Ç™„Éá„Éº„Çø„ÅÆ„Éó„É≠„Éï„Å´„ÇÇÔºßÔº∞Ôº∞„ÅÆ„Éù„Ç§„É≥„ÇøÂΩì„Å¶„Çã
 	
 	vwk->vtr_work.br_head = BattleRec_Header_AllocMemory( HEAPID_BR );
 	MI_CpuCopy8( &wk->recv_data.outline_data_tmp[ wk->sys.touch_list.view.this ]->head, vwk->vtr_work.br_head, sizeof( GT_BATTLE_REC_HEADER ) );	
@@ -3607,11 +3607,11 @@ static BOOL Video_ProfileSaveIn( BR_WORK* wk )
 		case 0:
 			CATS_SystemActiveSet( wk, TRUE );
 			if ( vwk->view_page == 0 ){
-				///< äTóvçÌèú ÉvÉçÉtÉBÅ[ÉãçÏê¨
+				///< Ê¶ÇË¶ÅÂâäÈô§ „Éó„É≠„Éï„Ç£„Éº„É´‰ΩúÊàê
 				VideoDataFree( &vwk->vtr_work, wk );
 			}
 			else {
-				///< ÉvÉçÉtÉBÅ[ÉãçÌèú äTóvçÏê¨
+				///< „Éó„É≠„Éï„Ç£„Éº„É´ÂâäÈô§ Ê¶ÇË¶Å‰ΩúÊàê
 				GppDataFree( &vwk->gpp_work, wk );						
 			}
 			CATS_SystemActiveSet( wk, FALSE );
@@ -3777,7 +3777,7 @@ static BOOL Video_ProfileCheckFinish( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ïúãA
+ * @brief	Âæ©Â∏∞
  *
  * @param	wk	
  *
@@ -3794,7 +3794,7 @@ static BOOL Video_ProfileRecoverIn( BR_WORK* wk )
 		if ( BR_IsChangeDisplay( wk ) == FALSE ){ break; }
 
 		Plate_AlphaInit_Default( &vwk->eva, &vwk->evb, ePLANE_ALL );		
-		vwk->secure_flag = wk->recv_data.rec_secure_flag;				///< secure flag ÇæÇØïúãA
+		vwk->secure_flag = wk->recv_data.rec_secure_flag;				///< secure flag „Å†„ÅëÂæ©Â∏∞
 		
 		vwk->rec_data = &wk->recv_data.rec_data;
 		wk->recv_data.rec_data_tmp = vwk->rec_data;
@@ -3836,14 +3836,14 @@ static BOOL Video_ProfileRecoverIn( BR_WORK* wk )
 		ArcUtil_HDL_BgCharSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_data_NCGR, wk->sys.bgl, GF_BGL_FRAME3_S, 0, 0, 0, HEAPID_BR );
 		CATS_SystemActiveSet( wk, TRUE );
 		if ( vwk->view_page == 0 ){
-			///< ÉvÉçÉtÉBÅ[ÉãçÌèú äTóvçÏê¨
+			///< „Éó„É≠„Éï„Ç£„Éº„É´ÂâäÈô§ Ê¶ÇË¶Å‰ΩúÊàê
 			VideoDataMake( &vwk->vtr_work, wk );
 			VideoData_IconEnable( &vwk->vtr_work, FALSE );
 		//	ArcUtil_HDL_ScrnSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_bg1ua_data_NSCR, wk->sys.bgl, GF_BGL_FRAME3_M, 0, 0, 0, HEAPID_BR );
 			BR_ScrSet( wk, ProfileBGGet( &vwk->vtr_work ), GF_BGL_FRAME3_M );
 		}
 		else {
-			///< ÉvÉçÉtÉBÅ[ÉãçÏê¨
+			///< „Éó„É≠„Éï„Ç£„Éº„É´‰ΩúÊàê
 			GppDataMake( &vwk->gpp_work, wk );
 			GppData_IconEnable( &vwk->gpp_work, FALSE );
 			ArcUtil_HDL_ScrnSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_bg1uc_data_NSCR, wk->sys.bgl, GF_BGL_FRAME3_M, 0, 0, 0, HEAPID_BR );
@@ -3885,7 +3885,7 @@ static BOOL Video_ProfileRecoverIn( BR_WORK* wk )
 		break;
 	
 	default:	
-		wk->tag_man.stack_s += 1;				///< proc init Ç≈ Menu_BackÇ™åƒÇŒÇÍ1íiäKâ∫Ç™Ç¡ÇƒÇµÇ‹Ç§ÇÃÇ≈âûã}èàíu
+		wk->tag_man.stack_s += 1;				///< proc init „Åß Menu_Back„ÅåÂëº„Å∞„Çå1ÊÆµÈöé‰∏ã„Åå„Å£„Å¶„Åó„Åæ„ÅÜ„ÅÆ„ÅßÂøúÊÄ•Âá¶ÁΩÆ
 		BR_RecoverWorkClear( wk );
 		BR_Main_SeqChange( wk, eVIDEO_CodeIn_ProfMain );
 		break;
@@ -3899,13 +3899,13 @@ static BOOL Video_ProfileRecoverIn( BR_WORK* wk )
 // =============================================================================
 //
 //
-//	Å°ÉrÉfÉIëóêM	TAG_VIDEO_SEND
+//	‚ñ†„Éì„Éá„Ç™ÈÄÅ‰ø°	TAG_VIDEO_SEND
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ëóêM	èâä˙âª
+ * @brief	ÈÄÅ‰ø°	ÂàùÊúüÂåñ
  *
  * @param	wk	
  *
@@ -3926,7 +3926,7 @@ static BOOL Video_Send_Init( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ëóêM	ÉÅÉCÉì
+ * @brief	ÈÄÅ‰ø°	„É°„Ç§„É≥
  *
  * @param	wk	
  *
@@ -3947,7 +3947,7 @@ static BOOL Video_Send_Main( BR_WORK* wk )
 		break;
 	
 	case 1:
-		///< ò^âÊÉfÅ[É^ëóêM
+		///< Èå≤Áîª„Éá„Éº„ÇøÈÄÅ‰ø°
 		if ( BR_GDSRAP_MoveStatusAllCheck( wk ) == FALSE ){ return FALSE; }		
 		{
 			LOAD_RESULT result;
@@ -3976,7 +3976,7 @@ static BOOL Video_Send_Main( BR_WORK* wk )
 		break;
 	
 	case 2:
-		///< ò^âÊÉfÅ[É^ëóêMäÆóπ
+		///< Èå≤Áîª„Éá„Éº„ÇøÈÄÅ‰ø°ÂÆå‰∫Ü
 		if ( BR_GDSRAP_MoveStatusAllCheck( wk ) == FALSE ){ return FALSE; }
 		
 		BattleRec_Exit();
@@ -3988,9 +3988,9 @@ static BOOL Video_Send_Main( BR_WORK* wk )
 			BR_ErrorSet( wk, eERR_VIDEO_SEND, error_info->result, error_info->type );
 			Cursor_Visible( wk->cur_wk, FALSE );
 			Cursor_R_Set( wk->cur_wk, 0, 0 );
-			//ÉGÉâÅ[î≠ê∂éûÇÃèàóù
-			//ÉGÉâÅ[ÉÅÉbÉZÅ[ÉWÇÃï\é¶ìôÇÕÉRÅ[ÉãÉoÉbÉNÇ≈çsÇÌÇÍÇÈÇÃÇ≈ÅA
-			//Ç±Ç±Ç≈ÇÕï\é¶å„ÇÃèàóùÅB(ÉAÉvÉäèIóπÇ∆Ç©ì¡íËÇÃÉÅÉjÉÖÅ[Ç…ñﬂÇ∑Ç∆Ç©)
+			//„Ç®„É©„ÉºÁô∫ÁîüÊôÇ„ÅÆÂá¶ÁêÜ
+			//„Ç®„É©„Éº„É°„ÉÉ„Çª„Éº„Ç∏„ÅÆË°®Á§∫Á≠â„ÅØ„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ„ÅßË°å„Çè„Çå„Çã„ÅÆ„Åß„ÄÅ
+			//„Åì„Åì„Åß„ÅØË°®Á§∫Âæå„ÅÆÂá¶ÁêÜ„ÄÇ(„Ç¢„Éó„É™ÁµÇ‰∫Ü„Å®„ÅãÁâπÂÆö„ÅÆ„É°„Éã„É•„Éº„Å´Êàª„Åô„Å®„Åã)
 			wk->sub_seq = 0xFF;
 		}
 		else{
@@ -4022,7 +4022,7 @@ static BOOL Video_Send_Main( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ëóêM	èIóπ
+ * @brief	ÈÄÅ‰ø°	ÁµÇ‰∫Ü
  *
  * @param	wk	
  *
@@ -4074,7 +4074,7 @@ static BOOL Video_Send_Exit( BR_WORK* wk )
 // =============================================================================
 //
 //
-//	Å°ÉcÅ[Éã
+//	‚ñ†„ÉÑ„Éº„É´
 //
 //
 // =============================================================================
@@ -4216,7 +4216,7 @@ static void SaveWin_Del( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	É{É^ÉìÉRÅ[ÉãÉoÉbÉN
+ * @brief	„Éú„Çø„É≥„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ
  *
  * @param	button	
  * @param	event	
@@ -4261,7 +4261,7 @@ static void Btn_CallBack_000( u32 button, u32 event, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	É{É^ÉìÉRÅ[ÉãÉoÉbÉN
+ * @brief	„Éú„Çø„É≥„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ
  *
  * @param	button	
  * @param	event	
@@ -4304,7 +4304,7 @@ static void Btn_CallBack_001( u32 button, u32 event, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	É{É^ÉìÉRÅ[ÉãÉoÉbÉN
+ * @brief	„Éú„Çø„É≥„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ
  *
  * @param	button	
  * @param	event	
@@ -4366,7 +4366,7 @@ static void Btn_CallBack_100( u32 button, u32 event, void* work )
 			TouchAction( wk );
 			if ( country == 0 ){
 				Snd_SePlay( eBR_SND_NG );
-				Tool_InfoMessageMainSet( wk, msg_725 );	///< ÉvÉçÉtÉBÅ[ÉãÇ™ñ≥Ç¢
+				Tool_InfoMessageMainSet( wk, msg_725 );	///< „Éó„É≠„Éï„Ç£„Éº„É´„ÅåÁÑ°„ÅÑ
 			}
 			else {
 				vwk->search_mode = button;
@@ -4387,7 +4387,7 @@ static void Btn_CallBack_100( u32 button, u32 event, void* work )
 #endif
 		if ( IsSearchParamSet( wk ) == FALSE ){
 			Snd_SePlay( eBR_SND_NG );
-			Tool_InfoMessageMainSet( wk, msg_713 );	///< èåèÇ™ì¸Ç¡ÇƒÇ‹ÇπÇÒÅI
+			Tool_InfoMessageMainSet( wk, msg_713 );	///< Êù°‰ª∂„ÅåÂÖ•„Å£„Å¶„Åæ„Åõ„ÇìÔºÅ
 		}
 		else {
 			BR_Main_SeqChange( wk, eCS_SearchMain );
@@ -4415,7 +4415,7 @@ static void Btn_CallBack_AIUEO( u32 button, u32 event, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	É{É^ÉìÉRÅ[ÉãÉoÉbÉN
+ * @brief	„Éú„Çø„É≥„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ
  *
  * @param	button	
  * @param	event	
@@ -4472,7 +4472,7 @@ static void Btn_CallBack_200( u32 button, u32 event, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	É{É^ÉìÉRÅ[ÉãÉoÉbÉN
+ * @brief	„Éú„Çø„É≥„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ
  *
  * @param	button	
  * @param	event	
@@ -4515,7 +4515,7 @@ static void Btn_CallBack_201( u32 button, u32 event, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	É{É^ÉìÉRÅ[ÉãÉoÉbÉN
+ * @brief	„Éú„Çø„É≥„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ
  *
  * @param	button	
  * @param	event	
@@ -4564,13 +4564,13 @@ static void ButtonOAM_PosSet( BR_WORK* wk, int mode )
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
 	
 	if ( mode == 0 ){
-		///< 2å¬
+		///< 2ÂÄã
 		CATS_ObjectEnableCap( vwk->obtn[ 0 ].cap, TRUE );
 		FONTOAM_SetDrawFlag( vwk->obtn[ 0 ].font_obj, TRUE );
 		CATS_ObjectPosSetCap( vwk->obtn[ 1 ].cap, 128, 232 - 64 );
 	}
 	else {
-		///< 1å¬
+		///< 1ÂÄã
 		CATS_ObjectEnableCap( vwk->obtn[ 0 ].cap, FALSE );
 		FONTOAM_SetDrawFlag( vwk->obtn[ 0 ].font_obj, FALSE );
 		CATS_ObjectPosSetCap( vwk->obtn[ 1 ].cap,  80, 232 - 64 );
@@ -4582,7 +4582,7 @@ static void ButtonOAM_PosSet( BR_WORK* wk, int mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	Ç‚ÇﬂÇÈÅEÇnÇjÅI
+ * @brief	„ÇÑ„ÇÅ„Çã„ÉªÔºØÔº´ÔºÅ
  *
  * @param	wk	
  *
@@ -4654,13 +4654,13 @@ static void ButtonOAM_PosSetSub( BR_WORK* wk, int mode )
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
 	
 	if ( mode == 0 ){
-		///< 2å¬
+		///< 2ÂÄã
 		CATS_ObjectEnableCap( vwk->obtn[ 1 ].cap, TRUE );
 		FONTOAM_SetDrawFlag( vwk->obtn[ 1 ].font_obj, TRUE );
 		CATS_ObjectPosSetCap( vwk->obtn[ 0 ].cap, 32, 232 );
 	}
 	else {
-		///< 1å¬
+		///< 1ÂÄã
 		CATS_ObjectEnableCap( vwk->obtn[ 1 ].cap, FALSE );
 		FONTOAM_SetDrawFlag( vwk->obtn[ 1 ].font_obj, FALSE );
 		CATS_ObjectPosSetCap( vwk->obtn[ 0 ].cap,  80, 232 );
@@ -4738,7 +4738,7 @@ static void FontButton_DeleteSub( BR_WORK* wk )
 // =============================================================================
 //
 //
-//	Å°ã§í ÇÃÉVÅ[ÉPÉìÉX
+//	‚ñ†ÂÖ±ÈÄö„ÅÆ„Ç∑„Éº„Ç±„É≥„Çπ
 //
 //
 // =============================================================================
@@ -4750,11 +4750,11 @@ static BOOL Common_ProfChange( BR_WORK* wk )
 	case 0:
 		CATS_SystemActiveSet( wk, TRUE );
 		if ( vwk->view_page == 0 ){
-			///< äTóvçÌèú ÉvÉçÉtÉBÅ[ÉãçÏê¨
+			///< Ê¶ÇË¶ÅÂâäÈô§ „Éó„É≠„Éï„Ç£„Éº„É´‰ΩúÊàê
 			VideoDataFree( &vwk->vtr_work, wk );
 		}
 		else {
-			///< ÉvÉçÉtÉBÅ[ÉãçÌèú äTóvçÏê¨
+			///< „Éó„É≠„Éï„Ç£„Éº„É´ÂâäÈô§ Ê¶ÇË¶Å‰ΩúÊàê
 			GppDataFree( &vwk->gpp_work, wk );						
 		}
 		CATS_SystemActiveSet( wk, FALSE );
@@ -4771,13 +4771,13 @@ static BOOL Common_ProfChange( BR_WORK* wk )
 	case 2:
 		CATS_SystemActiveSet( wk, TRUE );
 		if ( vwk->view_page == 0 ){
-			///< ÉvÉçÉtÉBÅ[ÉãçÏê¨
+			///< „Éó„É≠„Éï„Ç£„Éº„É´‰ΩúÊàê
 			GppDataMake( &vwk->gpp_work, wk );
 			GppData_IconEnable( &vwk->gpp_work, FALSE );
 			BR_ScrSet( wk, NARC_batt_rec_gra_batt_rec_bg1uc_data_NSCR, GF_BGL_FRAME3_M );
 		}
 		else {
-			///< ÉvÉçÉtÉBÅ[ÉãçÌèú äTóvçÏê¨
+			///< „Éó„É≠„Éï„Ç£„Éº„É´ÂâäÈô§ Ê¶ÇË¶Å‰ΩúÊàê
 			VideoDataMake( &vwk->vtr_work, wk );
 			VideoData_IconEnable( &vwk->vtr_work, FALSE );
 		//	BR_ScrSet( wk, NARC_batt_rec_gra_batt_rec_bg1ua_data_NSCR, GF_BGL_FRAME3_M );
@@ -4818,11 +4818,11 @@ static BOOL Common_ProfSaveIn( BR_WORK* wk )
 	case 0:
 		CATS_SystemActiveSet( wk, TRUE );
 		if ( vwk->view_page == 0 ){
-			///< äTóvçÌèú ÉvÉçÉtÉBÅ[ÉãçÏê¨
+			///< Ê¶ÇË¶ÅÂâäÈô§ „Éó„É≠„Éï„Ç£„Éº„É´‰ΩúÊàê
 			VideoDataFree( &vwk->vtr_work, wk );
 		}
 		else {
-			///< ÉvÉçÉtÉBÅ[ÉãçÌèú äTóvçÏê¨
+			///< „Éó„É≠„Éï„Ç£„Éº„É´ÂâäÈô§ Ê¶ÇË¶Å‰ΩúÊàê
 			GppDataFree( &vwk->gpp_work, wk );						
 		}
 		CATS_SystemActiveSet( wk, FALSE );
@@ -4987,7 +4987,7 @@ static BOOL Common_ProfCheckFinish( BR_WORK* wk )
 		
 		if ( GDSRAP_ErrorInfoGet( BR_GDSRAP_WorkGet( wk ), &error_info ) == TRUE ){
 			Snd_SeStopBySeqNo( eBR_SND_SEARCH, 0 );
-			//ÉGÉâÅ[ÇÕñ≥éãÇµÇƒÇ‡ñ‚ëËÇ»Ç¢
+			//„Ç®„É©„Éº„ÅØÁÑ°Ë¶ñ„Åó„Å¶„ÇÇÂïèÈ°å„Å™„ÅÑ
 			wk->sub_seq++;
 		}
 		else{
@@ -4999,15 +4999,15 @@ static BOOL Common_ProfCheckFinish( BR_WORK* wk )
 		break;
 	
 	case 6:
-		///< Ç±Ç±Ç©ÇÁèIóπÇ÷å¸Ç©Ç§
+		///< „Åì„Åì„Åã„ÇâÁµÇ‰∫Ü„Å∏Âêë„Åã„ÅÜ
 		if ( !GF_TP_GetTrg() ){ break; }
 		InfoMessageDel( wk );
 		SaveFontButton_Delete( wk );		
 		Cursor_Visible( wk->cur_wk, FALSE );
 		Cursor_R_Set( wk->cur_wk, 0, 0 );
 		
-		BR_SaveData_GppHead_Delete( wk );						///< GPP ÉfÅ[É^îjä¸
-		BR_SaveData_GppHead_Load( wk );							///< GPP ÉfÅ[É^ÇÃçƒì«Ç›çûÇ›					
+		BR_SaveData_GppHead_Delete( wk );						///< GPP „Éá„Éº„ÇøÁ†¥Ê£Ñ
+		BR_SaveData_GppHead_Load( wk );							///< GPP „Éá„Éº„Çø„ÅÆÂÜçË™≠„ÅøËæº„Åø					
 		TouchList_WorkClear( &wk->sys.touch_list );	
 
 		wk->sub_seq++;
@@ -5080,7 +5080,7 @@ static BOOL Common_ProfPlayRecover( BR_WORK* wk )
 	case 2:
 	//	FontButton_CreateSub( wk );
 		if ( wk->ex_param1 == BR_EX_DATA_KUWASIKU ){	
-			///< Ç±ÇÃéûì_ÇæÇ∆É{É^ÉìÇÃÉ^ÉOèÓïÒÇ™ïœÇÌÇ¡ÇƒÇÈÇÃÇ≈ì¸ÇÍë÷Ç¶ÇÈ
+			///< „Åì„ÅÆÊôÇÁÇπ„Å†„Å®„Éú„Çø„É≥„ÅÆ„Çø„Ç∞ÊÉÖÂ†±„ÅåÂ§â„Çè„Å£„Å¶„Çã„ÅÆ„ÅßÂÖ•„ÇåÊõø„Åà„Çã
 			FontOam_MsgSet( &vwk->obtn[ 0 ], &wk->sys, msg_05 );
 			FontOam_MsgSet( &vwk->obtn[ 1 ], &wk->sys, msg_602 );
 			CATS_ObjectAnimeSeqSetCap( vwk->obtn[ 0 ].cap, eTAG_EX_BACK );
@@ -5092,7 +5092,7 @@ static BOOL Common_ProfPlayRecover( BR_WORK* wk )
 		ArcUtil_HDL_BgCharSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_data_NCGR, wk->sys.bgl, GF_BGL_FRAME3_S, 0, 0, 0, HEAPID_BR );
 		CATS_SystemActiveSet( wk, TRUE );
 		if ( vwk->view_page == 0 ){
-			///< ÉvÉçÉtÉBÅ[ÉãçÌèú äTóvçÏê¨
+			///< „Éó„É≠„Éï„Ç£„Éº„É´ÂâäÈô§ Ê¶ÇË¶Å‰ΩúÊàê
 			VideoDataFree( &vwk->vtr_work, wk );
 			VideoDataMake( &vwk->vtr_work, wk );
 			VideoData_IconEnable( &vwk->vtr_work, FALSE );
@@ -5100,7 +5100,7 @@ static BOOL Common_ProfPlayRecover( BR_WORK* wk )
 			BR_ScrSet( wk, ProfileBGGet( &vwk->vtr_work ), GF_BGL_FRAME3_M );
 		}
 		else {
-			///< ÉvÉçÉtÉBÅ[ÉãçÏê¨
+			///< „Éó„É≠„Éï„Ç£„Éº„É´‰ΩúÊàê
 			GppDataFree( &vwk->gpp_work, wk );
 			GppDataMake( &vwk->gpp_work, wk );
 			GppData_IconEnable( &vwk->gpp_work, FALSE );
@@ -5159,7 +5159,7 @@ static BOOL Common_ProfSaveExit( BR_WORK* wk )
 	case 2:
 		FontButton_CreateSub( wk );
 		if ( wk->ex_param1 == BR_EX_DATA_KUWASIKU ){	
-			///< Ç±ÇÃéûì_ÇæÇ∆É{É^ÉìÇÃÉ^ÉOèÓïÒÇ™ïœÇÌÇ¡ÇƒÇÈÇÃÇ≈ì¸ÇÍë÷Ç¶ÇÈ
+			///< „Åì„ÅÆÊôÇÁÇπ„Å†„Å®„Éú„Çø„É≥„ÅÆ„Çø„Ç∞ÊÉÖÂ†±„ÅåÂ§â„Çè„Å£„Å¶„Çã„ÅÆ„ÅßÂÖ•„ÇåÊõø„Åà„Çã
 			FontOam_MsgSet( &vwk->obtn[ 0 ], &wk->sys, msg_05 );
 			FontOam_MsgSet( &vwk->obtn[ 1 ], &wk->sys, msg_602 );
 			CATS_ObjectAnimeSeqSetCap( vwk->obtn[ 0 ].cap, eTAG_EX_BACK );
@@ -5170,14 +5170,14 @@ static BOOL Common_ProfSaveExit( BR_WORK* wk )
 		ArcUtil_HDL_BgCharSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_data_NCGR, wk->sys.bgl, GF_BGL_FRAME3_S, 0, 0, 0, HEAPID_BR );
 		CATS_SystemActiveSet( wk, TRUE );
 		if ( vwk->view_page == 0 ){
-			///< ÉvÉçÉtÉBÅ[ÉãçÌèú äTóvçÏê¨
+			///< „Éó„É≠„Éï„Ç£„Éº„É´ÂâäÈô§ Ê¶ÇË¶Å‰ΩúÊàê
 			VideoDataMake( &vwk->vtr_work, wk );
 			VideoData_IconEnable( &vwk->vtr_work, FALSE );
 		//	ArcUtil_HDL_ScrnSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_bg1ua_data_NSCR, wk->sys.bgl, GF_BGL_FRAME3_M, 0, 0, 0, HEAPID_BR );
 			BR_ScrSet( wk, ProfileBGGet( &vwk->vtr_work ), GF_BGL_FRAME3_M );
 		}
 		else {
-			///< ÉvÉçÉtÉBÅ[ÉãçÏê¨
+			///< „Éó„É≠„Éï„Ç£„Éº„É´‰ΩúÊàê
 			GppDataMake( &vwk->gpp_work, wk );
 			GppData_IconEnable( &vwk->gpp_work, FALSE );
 			ArcUtil_HDL_ScrnSet( wk->sys.p_handle, NARC_batt_rec_gra_batt_rec_bg1uc_data_NSCR, wk->sys.bgl, GF_BGL_FRAME3_M, 0, 0, 0, HEAPID_BR );
@@ -5230,11 +5230,11 @@ static BOOL Common_ProfPlay( BR_WORK* wk )
 	case 2:		
 		CATS_SystemActiveSet( wk, TRUE );
 		if ( vwk->view_page == 0 ){
-			///< äTóvçÌèú
+			///< Ê¶ÇË¶ÅÂâäÈô§
 			VideoDataFree( &vwk->vtr_work, wk );
 		}
 		else {
-			///< ÉvÉçÉtÉBÅ[ÉãçÌèú
+			///< „Éó„É≠„Éï„Ç£„Éº„É´ÂâäÈô§
 			GppDataFree( &vwk->gpp_work, wk );						
 		}
 		CATS_SystemActiveSet( wk, FALSE );
@@ -5263,13 +5263,13 @@ static BOOL Common_ProfPlay( BR_WORK* wk )
 // =============================================================================
 //
 //
-//	Å°ëóéÛêMÉåÉXÉ|ÉìÉXÉRÅ[ÉãÉoÉbÉN
+//	‚ñ†ÈÄÅÂèó‰ø°„É¨„Çπ„Éù„É≥„Çπ„Ç≥„Éº„É´„Éê„ÉÉ„ÇØ
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ÉrÉfÉIëóêM
+ * @brief	„Éì„Éá„Ç™ÈÄÅ‰ø°
  *
  * @param	work	
  * @param	error_info	
@@ -5284,11 +5284,11 @@ void BR_Response_VideoRegist( void *work, const GDS_RAP_ERROR_INFO *error_info )
 	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
 
 	if( error_info->occ == TRUE ){
-		//TRUEÇ»ÇÁÇŒÉGÉâÅ[î≠ê∂ÇµÇƒÇ¢ÇÈÇÃÇ≈ÅAÇ±Ç±Ç≈ÉÅÉjÉÖÅ[ÇñﬂÇ∑Ç∆Ç©ÉAÉvÉäèIóπÉÇÅ[ÉhÇ÷à⁄çsÇ∆Ç©Ç∑ÇÈ
+		//TRUE„Å™„Çâ„Å∞„Ç®„É©„ÉºÁô∫Áîü„Åó„Å¶„ÅÑ„Çã„ÅÆ„Åß„ÄÅ„Åì„Åì„Åß„É°„Éã„É•„Éº„ÇíÊàª„Åô„Å®„Åã„Ç¢„Éó„É™ÁµÇ‰∫Ü„É¢„Éº„Éâ„Å∏ÁßªË°å„Å®„Åã„Åô„Çã
 	}
 	else{
-		//ê≥èÌéûÇ»ÇÁÇŒéÛêMÉoÉbÉtÉ@Ç©ÇÁÉfÅ[É^éÊìæÇ»Ç«ÇçsÇ§
-		//ÉAÉbÉvÉçÅ[ÉhÇÃèÍçáÇÕì¡Ç…ïKóvÇ»Çµ
+		//Ê≠£Â∏∏ÊôÇ„Å™„Çâ„Å∞Âèó‰ø°„Éê„ÉÉ„Éï„Ç°„Åã„Çâ„Éá„Éº„ÇøÂèñÂæó„Å™„Å©„ÇíË°å„ÅÜ
+		//„Ç¢„ÉÉ„Éó„É≠„Éº„Éâ„ÅÆÂ†¥Âêà„ÅØÁâπ„Å´ÂøÖË¶Å„Å™„Åó
 		u64 data_number;
 		data_number = GDS_RAP_RESPONSE_BattleVideo_Upload_DataGet( BR_GDSRAP_WorkGet( wk ) );
 		vwk->data_number = data_number;
@@ -5298,7 +5298,7 @@ void BR_Response_VideoRegist( void *work, const GDS_RAP_ERROR_INFO *error_info )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉrÉfÉIéÛêM
+ * @brief	„Éì„Éá„Ç™Âèó‰ø°
  *
  * @param	work	
  * @param	error_info	
@@ -5312,15 +5312,15 @@ void BR_Response_VideoGet( void *work, const GDS_RAP_ERROR_INFO* error_info )
 	BR_WORK* wk = work;
 //	VIDEO_SEARCH_WORK* vwk = wk->sub_work;
 	
-	OS_TPrintf("ÉoÉgÉãÉrÉfÉIÉfÅ[É^éÊìæÇÃÉ_ÉEÉìÉçÅ[ÉhÉåÉXÉ|ÉìÉXéÊìæ\n");
+	OS_TPrintf("„Éê„Éà„É´„Éì„Éá„Ç™„Éá„Éº„ÇøÂèñÂæó„ÅÆ„ÉÄ„Ç¶„É≥„É≠„Éº„Éâ„É¨„Çπ„Éù„É≥„ÇπÂèñÂæó\n");
 	if( error_info->occ == TRUE ){
-		//TRUEÇ»ÇÁÇŒÉGÉâÅ[î≠ê∂ÇµÇƒÇ¢ÇÈÇÃÇ≈ÅAÇ±Ç±Ç≈ÉÅÉjÉÖÅ[ÇñﬂÇ∑Ç∆Ç©ÉAÉvÉäèIóπÉÇÅ[ÉhÇ÷à⁄çsÇ∆Ç©Ç∑ÇÈ
+		//TRUE„Å™„Çâ„Å∞„Ç®„É©„ÉºÁô∫Áîü„Åó„Å¶„ÅÑ„Çã„ÅÆ„Åß„ÄÅ„Åì„Åì„Åß„É°„Éã„É•„Éº„ÇíÊàª„Åô„Å®„Åã„Ç¢„Éó„É™ÁµÇ‰∫Ü„É¢„Éº„Éâ„Å∏ÁßªË°å„Å®„Åã„Åô„Çã
 	}
 	else{
-		//ê≥èÌéûÇ»ÇÁÇŒéÛêMÉoÉbÉtÉ@Ç©ÇÁÉfÅ[É^éÊìæÇ»Ç«ÇçsÇ§
-		//ÉAÉbÉvÉçÅ[ÉhÇÃèÍçáÇÕì¡Ç…ïKóvÇ»Çµ
+		//Ê≠£Â∏∏ÊôÇ„Å™„Çâ„Å∞Âèó‰ø°„Éê„ÉÉ„Éï„Ç°„Åã„Çâ„Éá„Éº„ÇøÂèñÂæó„Å™„Å©„ÇíË°å„ÅÜ
+		//„Ç¢„ÉÉ„Éó„É≠„Éº„Éâ„ÅÆÂ†¥Âêà„ÅØÁâπ„Å´ÂøÖË¶Å„Å™„Åó
 		
-		OS_Printf( "ÉrÉfÉIÉ_ÉEÉìÉçÅ[Éh\n");
+		OS_Printf( "„Éì„Éá„Ç™„ÉÄ„Ç¶„É≥„É≠„Éº„Éâ\n");
 		GDS_RAP_RESPONSE_BattleVideoData_Download_RecvPtr_Set( BR_GDSRAP_WorkGet( wk ), &wk->recv_data.rec_data_tmp );
 //		GDS_RAP_RESPONSE_BattleVideoData_Download_RecvPtr_Set( BR_GDSRAP_WorkGet( wk ), &vwk->rec_data );
 		RecData_To_brs( wk );
@@ -5334,7 +5334,7 @@ void BR_Response_VideoGet( void *work, const GDS_RAP_ERROR_INFO* error_info )
 
 //--------------------------------------------------------------
 /**
- * @brief	Ç®ãCÇ…ì¸ÇË
+ * @brief	„ÅäÊ∞ó„Å´ÂÖ•„Çä
  *
  * @param	work	
  * @param	error_info	
@@ -5348,11 +5348,11 @@ void BR_Response_VideoDL( void *work, const GDS_RAP_ERROR_INFO* error_info )
 	BR_WORK* wk = work;
 	
 	if( error_info->occ == TRUE ){
-		//TRUEÇ»ÇÁÇŒÉGÉâÅ[î≠ê∂ÇµÇƒÇ¢ÇÈÇÃÇ≈ÅAÇ±Ç±Ç≈ÉÅÉjÉÖÅ[ÇñﬂÇ∑Ç∆Ç©ÉAÉvÉäèIóπÉÇÅ[ÉhÇ÷à⁄çsÇ∆Ç©Ç∑ÇÈ
+		//TRUE„Å™„Çâ„Å∞„Ç®„É©„ÉºÁô∫Áîü„Åó„Å¶„ÅÑ„Çã„ÅÆ„Åß„ÄÅ„Åì„Åì„Åß„É°„Éã„É•„Éº„ÇíÊàª„Åô„Å®„Åã„Ç¢„Éó„É™ÁµÇ‰∫Ü„É¢„Éº„Éâ„Å∏ÁßªË°å„Å®„Åã„Åô„Çã
 	}
 	else{
-		//ê≥èÌéûÇ»ÇÁÇŒéÛêMÉoÉbÉtÉ@Ç©ÇÁÉfÅ[É^éÊìæÇ»Ç«ÇçsÇ§
-		//ÉAÉbÉvÉçÅ[ÉhÇÃèÍçáÇÕì¡Ç…ïKóvÇ»Çµ
+		//Ê≠£Â∏∏ÊôÇ„Å™„Çâ„Å∞Âèó‰ø°„Éê„ÉÉ„Éï„Ç°„Åã„Çâ„Éá„Éº„ÇøÂèñÂæó„Å™„Å©„ÇíË°å„ÅÜ
+		//„Ç¢„ÉÉ„Éó„É≠„Éº„Éâ„ÅÆÂ†¥Âêà„ÅØÁâπ„Å´ÂøÖË¶Å„Å™„Åó
 	}	
 }
 
@@ -5366,7 +5366,7 @@ static void BR_SendVideoNo( VIDEO_SEARCH_WORK* vwk, BR_WORK* wk )
 	
 	wset = BR_WORDSET_Create( HEAPID_BR );
 		
-	///< ÉfÅ[É^ÉiÉìÉoÅ[	
+	///< „Éá„Éº„Çø„Éä„É≥„Éê„Éº	
 	{
 		u64 data = vwk->data_number;
 		u64	dtmp1 = data;
@@ -5385,7 +5385,7 @@ static void BR_SendVideoNo( VIDEO_SEARCH_WORK* vwk, BR_WORK* wk )
 
 
 		str2 = MSGMAN_AllocString( wk->sys.man, msg_info_026 );		///<
-		tmp  = STRBUF_Create( 255, HEAPID_BR );						///< ÉeÉìÉ|ÉâÉä
+		tmp  = STRBUF_Create( 255, HEAPID_BR );						///< „ÉÜ„É≥„Éù„É©„É™
 		
 		STRBUF_SetNumber( num1, dtmp2[ 0 ], 5, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
 		STRBUF_SetNumber( num2, dtmp2[ 1 ], 5, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);

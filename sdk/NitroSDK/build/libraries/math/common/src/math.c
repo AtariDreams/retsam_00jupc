@@ -15,31 +15,31 @@
   Copyright fix
 
   Revision 1.7  2007/10/03 02:34:33  seiki_masashi
-  ARM9 ��ł� thumb ���C�u�����ł���� CLZ ���߂��Ăяo���悤�ɕύX
+  ARM9 上では thumb ライブラリでも常に CLZ 命令を呼び出すように変更
 
   Revision 1.6  2006/01/18 02:11:19  kitase_hirotake
   do-indent
 
   Revision 1.5  2005/11/24 03:09:27  seiki_masashi
-  MATH_CountPopulation �� ARM �A�Z���u���ɂ��Q�l���� (writtten by terui) ���R�����g�Ƃ��Ēǉ�
+  MATH_CountPopulation の ARM アセンブラによる参考実装 (writtten by terui) をコメントとして追加
 
   Revision 1.4  2005/02/28 05:26:24  yosizaki
   do-indent.
 
   Revision 1.3  2005/02/18 07:12:45  seiki_masashi
-  warning �΍�
+  warning 対策
 
   Revision 1.2  2005/01/11 07:40:17  takano_makoto
   fix copyright header.
 
   Revision 1.1  2005/01/06 06:25:50  seiki_masashi
-  ARM7�p���C�u��������������悤�ɕύX
+  ARM7用ライブラリも生成するように変更
 
   Revision 1.2  2004/12/15 09:17:38  seiki_masashi
-  MATH_CountPopulation �̒ǉ�
+  MATH_CountPopulation の追加
 
   Revision 1.1  2004/12/14 10:51:26  seiki_masashi
-  MATH �W��������ǉ�
+  MATH ジャンルを追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -49,21 +49,21 @@
 /*---------------------------------------------------------------------------*
   Name:         MATH_CountLeadingZerosFunc
 
-  Description:  2�i��32�r�b�g�\���ŏ�ʉ��r�b�g��0�������߂�
-                (CLZ ���߂��Ȃ� ARM7 or ARM9 Thumb �p)
+  Description:  2進数32ビット表現で上位何ビットが0かを求める
+                (CLZ 命令がない ARM7 or ARM9 Thumb 用)
 
   Arguments:    x
 
-  Returns:      ��ʂ���A������0�̃r�b�g��
+  Returns:      上位から連続する0のビット数
  *---------------------------------------------------------------------------*/
 #if defined(SDK_ARM9) && (defined(SDK_CW) || defined(__MWERKS__))
 
 #pragma thumb off
 u32 MATH_CountLeadingZerosFunc(u32 x)
 {
-    // ARM9 ��ł́A�Ăяo������ Thumb �������Ƃ��Ă�
-    // ARM ���[�h�ɐ؂�ւ��� CLZ ���߂��Ăяo��������
-    // ���x���T�C�Y���L��
+    // ARM9 上では、呼び出し元が Thumb だったとしても
+    // ARM モードに切り替えて CLZ 命令を呼び出した方が
+    // 速度もサイズも有利
     asm
     {
     clz     x, x}
@@ -78,7 +78,7 @@ u32 MATH_CountLeadingZerosFunc(u32 x)
     u32     y;
     u32     n = 32;
 
-    // �񕪒T���� 0 ���I���ꏊ��T���B
+    // 二分探索で 0 が終わる場所を探す。
     y = x >> 16;
     if (y != 0)
     {
@@ -121,56 +121,56 @@ u32 MATH_CountLeadingZerosFunc(u32 x)
 /*---------------------------------------------------------------------------*
   Name:         MATH_CountPopulation
 
-  Description:  2�i��32�r�b�g�\����1�̃r�b�g�������߂�
+  Description:  2進数32ビット表現で1のビット数を求める
 
   Arguments:    x
 
-  Returns:      2�i�\����1�ƂȂ�r�b�g��
+  Returns:      2進表現で1となるビット数
  *---------------------------------------------------------------------------*/
 u8 MATH_CountPopulation(u32 x)
 {
-    // �ȉ��AARM �R�[�h�ɂ����Ă̓V�t�g�ƎZ�p���Z�͓����ɍs���邱�Ƃɒ��ӁB
-    // Release Build �ȏ�ł̓X�g�[�������� 13 ���� + bx lr �ƂȂ�B
+    // 以下、ARM コードにおいてはシフトと算術演算は同時に行えることに注意。
+    // Release Build 以上ではストール無しの 13 命令 + bx lr となる。
 
-    // 32bit �𒼐ڐ������ɁA�ŏ��͊e 2bit ���� 1 �̐���
-    // �����ʒu�� 2bit �Ɋi�[����B
-    // ���Ȃ킿�A�e 2bit �� 00 -> 00, 01 -> 01, 10 -> 01, 11 -> 10 �̕ϊ��B
-    // x -> x' �Ƃ���ƁA2bit �l�ł� x' = x - (x >> 1)
+    // 32bit を直接数えずに、最初は各 2bit 毎の 1 の数を
+    // 同じ位置の 2bit に格納する。
+    // すなわち、各 2bit で 00 -> 00, 01 -> 01, 10 -> 01, 11 -> 10 の変換。
+    // x -> x' とすると、2bit 値では x' = x - (x >> 1)
     x -= ((x >> 1) & 0x55555555);
 
-    // 4bit �P�ʂōl���A��� 2bit �� 2bit �Ɋi�[����Ă��� 1 �̐��𑫂���
-    // �ŏ��̂��̈ʒu�� 4bit ���ɂ����� 1 �̐��Ƃ��Ċi�[����B
+    // 4bit 単位で考え、上位 2bit と 2bit に格納されている 1 の数を足して
+    // 最初のその位置の 4bit 中にあった 1 の数として格納する。
     x = (x & 0x33333333) + ((x >> 2) & 0x33333333);
 
-    // 8bit �P�ʂœ��l�ɁB
-    // �������A�e���̌��ʂ͍ő�� 8 �ł��邱�Ƃ��� 4bit �Ŏ��܂�̂�
-    // ���O�Ƀ}�X�N����K�v�͂Ȃ��B
+    // 8bit 単位で同様に。
+    // ただし、各桁の結果は最大で 8 であることから 4bit で収まるので
+    // 事前にマスクする必要はない。
     x += (x >> 4);
 
-    // ���̉��Z�ɔ����A�s�v�ȕ������}�X�N����B
+    // 次の演算に備え、不要な部分をマスクする。
     x &= 0x0f0f0f0f;
 
-    // 16bit �P�ʂŏ�� 8bit �Ɖ��� 8bit �̘a�����B
+    // 16bit 単位で上位 8bit と下位 8bit の和を取る。
     x += (x >> 8);
 
-    // 32bit �P�ʂœ��l�ɁB
+    // 32bit 単位で同様に。
     x += (x >> 16);
 
-    // ���� 8bit �̒l�����ʂł���B
+    // 下位 8bit の値が結果である。
     return (u8)x;
 }
 
 #if 0
-// �A�Z���u���ɂ��Q�l����
-// �r�b�g�������Ă��Ȃ����Ƃ̂ق��������ꍇ�͂�����̂ق�������
+// アセンブラによる参考実装
+// ビットが立っていないことのほうが多い場合はこちらのほうが早い
 /*---------------------------------------------------------------------------*
   Name:         MATH_CountPopulation_Asm
 
-  Description:  �l��32�r�b�g�ŕ\�����ꍇ�� 1 �ɂȂ��Ă���r�b�g�̐��𒲂ׂ�B
+  Description:  値を32ビットで表した場合に 1 になっているビットの数を調べる。
 
-  Arguments:    value   -   ��������l�B
+  Arguments:    value   -   調査する値。
 
-  Returns:      u32     -   �r�b�g�̐���Ԃ��B0 �` 32 �̐��l�B
+  Returns:      u32     -   ビットの数を返す。0 〜 32 の数値。
  *---------------------------------------------------------------------------*/
 #include <nitro/code32.h>
 asm u32 MATH_CountPopulation_Asm(u32 value)

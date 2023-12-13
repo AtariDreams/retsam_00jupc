@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>PAD_Read</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">PAD_Read</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -21,81 +21,81 @@
   u16<CODE> PAD_Read( void );</CODE></dd>
 </dl>
 
-<h2>����</h2>
-<P>�Ȃ��B</P>
+<h2>引数</h2>
+<P>なし。</P>
 
-<h2>�Ԃ�l</h2>
-<p>���݂̃L�[���ł��B</p>
+<h2>返り値</h2>
+<p>現在のキー情報です。</p>
 
-<H2>����</H2>
-<P>�L�[��{�^���̉��������擾���܂��B<BR>
-�L�[��{�^���̏��͈ȉ��̒l�̘_���a�ƂȂ�܂��B<BR>
+<H2>説明</H2>
+<P>キーやボタンの押下情報を取得します。<BR>
+キーやボタンの情報は以下の値の論理和となります。<BR>
 
 </P>
 <TABLE>
   <TBODY>
     <TR>
       <TD bgcolor="#eeeeee">PAD_BUTTON_A</TD>
-      <TD bgcolor="#eeeeee">A�{�^���������Ă���</TD>
+      <TD bgcolor="#eeeeee">Aボタンを押している</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">PAD_BUTTON_B</TD>
-      <TD bgcolor="#eeeeee">B�{�^���������Ă���</TD>
+      <TD bgcolor="#eeeeee">Bボタンを押している</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">PAD_BUTTON_SELECT</TD>
-      <TD bgcolor="#eeeeee">SELECT�{�^���������Ă���</TD>
+      <TD bgcolor="#eeeeee">SELECTボタンを押している</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">PAD_BUTTON_START</TD>
-      <TD bgcolor="#eeeeee">START�{�^���������Ă���</TD>
+      <TD bgcolor="#eeeeee">STARTボタンを押している</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">PAD_KEY_RIGHT</TD>
-      <TD bgcolor="#eeeeee">�\���L�[�E�������Ă���</TD>
+      <TD bgcolor="#eeeeee">十字キー右を押している</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">PAD_KEY_LEFT</TD>
-      <TD bgcolor="#eeeeee">�\���L�[���������Ă���</TD>
+      <TD bgcolor="#eeeeee">十字キー左を押している</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">PAD_KEY_UP</TD>
-      <TD bgcolor="#eeeeee">�\���L�[��������Ă���</TD>
+      <TD bgcolor="#eeeeee">十字キー上を押している</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">PAD_KEY_DOWN</TD>
-      <TD bgcolor="#eeeeee">�\���L�[���������Ă���</TD>
+      <TD bgcolor="#eeeeee">十字キー下を押している</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">PAD_BUTTON_R</TD>
-      <TD bgcolor="#eeeeee">R�{�^���������Ă���</TD>
+      <TD bgcolor="#eeeeee">Rボタンを押している</TD>
     </TR>
     <TR>
       <TD bgcolor="#eeeeee">PAD_BUTTON_L</TD>
-      <TD bgcolor="#eeeeee">L�{�^���������Ă���</TD>
+      <TD bgcolor="#eeeeee">Lボタンを押している</TD>
     </TR>
     <TR>
       <TD>PAD_BUTTON_X</TD>
-      <TD>X�{�^���������Ă���</TD>
+      <TD>Xボタンを押している</TD>
     </TR>
     <TR>
       <TD>PAD_BUTTON_Y</TD>
-      <TD>Y�{�^���������Ă���</TD>
+      <TD>Yボタンを押している</TD>
     </TR>
     <TR>
       <TD>PAD_BUTTON_DEBUG</TD>
-      <TD>DEBUG�{�^���������Ă���</TD>
+      <TD>DEBUGボタンを押している</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
-X,Y�{�^���́AARM7���ėp�|�[�g�𒲂ׂ�������L�̈�ɏ������Ƃ�ARM9����ǂނ��Ƃ��o���܂��B�]���āAARM7�̓ǂݍ��݃��W���[�������삵�Ă��Ȃ��ꍇ��X,Y�{�^���͓ǂݍ��߂܂���B<BR>
+X,Yボタンは、ARM7が汎用ポートを調べそれを共有領域に書くことでARM9から読むことが出来ます。従って、ARM7の読み込みモジュールが動作していない場合はX,Yボタンは読み込めません。<BR>
 <BR>
-�{�^��(PAD_BUTTON_�`) �̂��ׂĂ̘a�Ƃ��āAPAD_BUTTON_MASK ���A�L�[(PAD_KEY_�`)�̂��ׂĂ̘a�Ƃ��āAPAD_PLUS_KEY_MASK����`����Ă��܂��B����Ƀ{�^���A�L�[���ׂĂ̘a�Ƃ��āAPAD_ALL_MASK
-����`����Ă��܂��B<BR>
+ボタン(PAD_BUTTON_〜) のすべての和として、PAD_BUTTON_MASK が、キー(PAD_KEY_〜)のすべての和として、PAD_PLUS_KEY_MASKが定義されています。さらにボタン、キーすべての和として、PAD_ALL_MASK
+が定義されています。<BR>
 <BR>
-ARM7���ǂݍ���X,Y�{�^����DEBUG�{�^���̘a��PAD_RCNTPORT_MASK �Ƃ��Ē�`����Ă��܂��B����ȊO�̃{�^���E�L�[�̘a��PAD_KEYPORT_MASK
-�Ƃ��Ē�`����Ă��܂��B</P>
+ARM7が読み込むX,YボタンとDEBUGボタンの和はPAD_RCNTPORT_MASK として定義されています。それ以外のボタン・キーの和はPAD_KEYPORT_MASK
+として定義されています。</P>
 <TABLE border="1">
   <TBODY>
     <TR>
@@ -244,7 +244,7 @@ ARM7���ǂݍ���X,Y�{�^����DEBUG�{�^���̘a��PAD_RCNTPORT_MASK �Ƃ��Ē�`����Ă���
   </TBODY>
 </TABLE>
 <BR>
-<BLOCKQUOTE>(��)<BR>
+<BLOCKQUOTE>(例)<BR>
 <CODE>u16 padData = PAD_Read();<BR>
 <BR>
 if ( padData &amp; PAD_BUTTON_A )<BR>
@@ -256,12 +256,12 @@ if ( padData &amp; PAD_PLUS_KEY_MASK )<BR>
 {<BR>
 OS_Printf( &quot;you're pushing any PLUS-KEY\n&quot; );<BR>
 }</CODE></BLOCKQUOTE>
-<P>�{�֐� <CODE>PAD_Read()</CODE> �́A�����I�ɂ́AIO ���W�X�^�� KEYINPUT ��ǂݍ��݁AARM7����荞�񂾔ėp�|�[�gRCNT ���W�X�^����̒l�����킹�A�L�[�E�{�^���̃}�X�N PAD_ALL_MASK �����������̂�Ԃ��Ă��܂��B</P>
-<h2>�Q��</h2>
-<H2>����</H2>
-<P>2004/08/06 �Q�Ƃ��� PAD_SetIrq, PAD_ClearIrq ���폜<BR>
-2004/04/13 DEBUG�{�^���ǉ�<BR>
-2004/02/19 X,Y �{�^���ǉ�<BR>
-2003/12/01 ����</P>
+<P>本関数 <CODE>PAD_Read()</CODE> は、内部的には、IO レジスタの KEYINPUT を読み込み、ARM7が取り込んだ汎用ポートRCNT レジスタからの値を合わせ、キー・ボタンのマスク PAD_ALL_MASK をかけたものを返しています。</P>
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>2004/08/06 参照から PAD_SetIrq, PAD_ClearIrq を削除<BR>
+2004/04/13 DEBUGボタン追加<BR>
+2004/02/19 X,Y ボタン追加<BR>
+2003/12/01 初版</P>
 </body>
 </html>

@@ -8,11 +8,11 @@
 	.include	"../../../include/msgdata/msg_pair_scr.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_pair_r201_rival
 _EVENT_DATA		ev_pair_l01_rival
@@ -24,15 +24,15 @@ _EVENT_DATA_END
 
 
 /********************************************************************/
-/*						ƒ‰ƒCƒoƒ‹(R201)								*/
+/*						ãƒ©ã‚¤ãƒãƒ«(R201)								*/
 /********************************************************************/
 ev_pair_r201_rival:
 	_TALK_OBJ_START
 
-	/*˜A‚ê•à‚«ó‘Ô*/
+	/*é€£ã‚Œæ­©ãçŠ¶æ…‹*/
 	_IFVAL_JUMP		WK_SCENE_R201,GE,3,ev_pair_r201_rival_2
 
-	/*‰ƒ|ƒPƒ‚ƒ“ƒQƒbƒgƒCƒxƒ“ƒg‚Ìƒ‰ƒCƒoƒ‹‚É˜b‚µ‚©‚¯uæ‚É‘I‚ñ‚Å‚¢‚¢‚ºv*/
+	/*åˆãƒã‚±ãƒ¢ãƒ³ã‚²ãƒƒãƒˆã‚¤ãƒ™ãƒ³ãƒˆæ™‚ã®ãƒ©ã‚¤ãƒãƒ«ã«è©±ã—ã‹ã‘ã€Œå…ˆã«é¸ã‚“ã§ã„ã„ãœã€*/
 	_PLAYER_NAME	1
 	_TALKMSG		msg_r201_rival_a_11
 	_LAST_KEYWAIT
@@ -40,9 +40,9 @@ ev_pair_r201_rival:
 	_TALK_OBJ_END
 	_END
 
-/*˜A‚ê•à‚«ó‘Ô*/
+/*é€£ã‚Œæ­©ãçŠ¶æ…‹*/
 ev_pair_r201_rival_2:
-	//ˆê•àˆÚ“®‚µ‚½‚©ƒ`ƒFƒbƒN
+	//ä¸€æ­©ç§»å‹•ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
 	//_SYS_FLAG_ONE_STEP_GET	SCWK_ANSWER
 	//_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_pair_r201_rival_one_step
 
@@ -58,7 +58,7 @@ ev_pair_r201_rival_2:
 	_JUMP			ev_pair_r201_rival_common
 	_END
 
-//ˆê•àˆÚ“®‚µ‚Ä‚¢‚È‚¢
+//ä¸€æ­©ç§»å‹•ã—ã¦ã„ãªã„
 ev_pair_r201_rival_one_step:
 	_RIVAL_NAME		0
 	_TALKMSG		msg_r201_rival_a_07
@@ -69,7 +69,7 @@ ev_pair_r201_rival_one_step:
 	_END
 
 ev_pair_r201_rival_05:
-	//ÅŒã‚È‚Ì‚Åƒ[ƒN‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‚È‚¢I
+	//æœ€å¾Œãªã®ã§ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ãªã„ï¼
 	_RIVAL_NAME		0
 	_TALKMSG		msg_pair_rival_a_06
 	_LAST_KEYWAIT
@@ -81,14 +81,14 @@ ev_pair_r201_rival_05:
 ev_pair_r201_rival_04:
 	_RIVAL_NAME		0
 	_TALKMSG		msg_pair_rival_a_05
-	_LAST_KEYWAIT									//’ˆÓI
+	_LAST_KEYWAIT									//æ³¨æ„ï¼
 	_JUMP			ev_pair_r201_rival_common
 	_END
 
 ev_pair_r201_rival_03:
 	_RIVAL_NAME		0
 	_TALKMSG		msg_pair_rival_a_04
-	_LAST_KEYWAIT									//’ˆÓI
+	_LAST_KEYWAIT									//æ³¨æ„ï¼
 	_JUMP			ev_pair_r201_rival_common
 	_END
 
@@ -96,18 +96,18 @@ ev_pair_r201_rival_02:
 	_RIVAL_NAME		0
 	_RIVAL_POKEMON_NAME	1
 	_TALKMSG		msg_pair_rival_a_03
-	_LAST_KEYWAIT									//’ˆÓI
+	_LAST_KEYWAIT									//æ³¨æ„ï¼
 	_JUMP			ev_pair_r201_rival_common
 	_END
 
 ev_pair_r201_rival_01:
 	_RIVAL_NAME		0
 	_TALKMSG		msg_pair_rival_a_02
-	_LAST_KEYWAIT									//’ˆÓI
+	_LAST_KEYWAIT									//æ³¨æ„ï¼
 	_JUMP			ev_pair_r201_rival_common
 	_END
 
-//‹¤’ÊI—¹
+//å…±é€šçµ‚äº†
 ev_pair_r201_rival_common:
 	_ADD_WK			WK_SCENE_PAIR_R201_RIVAL,1
 	_TALK_CLOSE
@@ -116,7 +116,7 @@ ev_pair_r201_rival_common:
 
 
 /********************************************************************/
-/*						ƒ‰ƒCƒoƒ‹(L01)								*/
+/*						ãƒ©ã‚¤ãƒãƒ«(L01)								*/
 /********************************************************************/
 ev_pair_l01_rival:
 	_TALK_OBJ_START
@@ -130,7 +130,7 @@ ev_pair_l01_rival:
 	_END
 
 ev_pair_l01_rival_02:
-	//ÅŒã‚È‚Ì‚Åƒ[ƒN‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‚È‚¢I
+	//æœ€å¾Œãªã®ã§ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ãªã„ï¼
 	_RIVAL_NAME		0
 	//_TALKMSG		msg_pair_rival_b_03
 	_LAST_KEYWAIT
@@ -145,7 +145,7 @@ ev_pair_l01_rival_01:
 	_JUMP			ev_pair_l01_rival_common
 	_END
 
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 ev_pair_l01_rival_common:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
@@ -156,7 +156,7 @@ ev_pair_l01_rival_common:
 
 
 /********************************************************************/
-/*						5lO(d03r0101)								*/
+/*						5äººè¡†(d03r0101)								*/
 /********************************************************************/
 ev_pair_d03r0101_seven1:
 	_TALK_OBJ_START
@@ -175,7 +175,7 @@ ev_pair_d03r0101_seven1_01:
 	_END
 
 ev_pair_d03r0101_seven1_02:
-	//ÅŒã‚È‚Ì‚Åƒ[ƒN‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‚È‚¢I
+	//æœ€å¾Œãªã®ã§ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ãªã„ï¼
 	_PLAYER_NAME	0
 	_TALKMSG		msg_pair_seven1_06
 	_LAST_KEYWAIT
@@ -183,7 +183,7 @@ ev_pair_d03r0101_seven1_02:
 	_TALK_OBJ_END
 	_END
 
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 ev_pair_d03r0101_seven1_common:
 	_ADD_WK			WK_SCENE_PAIR_D03R0101_SEVEN1,1
 	_LAST_KEYWAIT
@@ -193,7 +193,7 @@ ev_pair_d03r0101_seven1_common:
 
 
 /********************************************************************/
-/*						‚TlO(d16r0102)							*/
+/*						ï¼•äººè¡†(d16r0102)							*/
 /********************************************************************/
 ev_pair_d16r0102_seven5:
 	_TALK_OBJ_START
@@ -218,14 +218,14 @@ ev_pair_d16r0102_seven5_02:
 	_END
 
 ev_pair_d16r0102_seven5_03:
-	//ÅŒã‚È‚Ì‚Åƒ[ƒN‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‚È‚¢I
+	//æœ€å¾Œãªã®ã§ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ãªã„ï¼
 	_TALKMSG		msg_pair_seven5_06
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 ev_pair_d16r0102_seven5_common:
 	_ADD_WK			WK_SCENE_PAIR_D16R0102_SEVEN5,1
 	_LAST_KEYWAIT
@@ -235,7 +235,7 @@ ev_pair_d16r0102_seven5_common:
 
 
 /********************************************************************/
-/*						‚TlO(d21r0101)							*/
+/*						ï¼•äººè¡†(d21r0101)							*/
 /********************************************************************/
 ev_pair_d21r0101_seven2:
 	_TALK_OBJ_START
@@ -254,7 +254,7 @@ ev_pair_d21r0101_seven2_01:
 	_END
 
 ev_pair_d21r0101_seven2_02:
-	//ÅŒã‚È‚Ì‚Åƒ[ƒN‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‚È‚¢I
+	//æœ€å¾Œãªã®ã§ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ãªã„ï¼
 	_PLAYER_NAME	0
 	_TALKMSG		msg_pair_seven2_06
 	_LAST_KEYWAIT
@@ -262,7 +262,7 @@ ev_pair_d21r0101_seven2_02:
 	_TALK_OBJ_END
 	_END
 
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 ev_pair_d21r0101_seven2_common:
 	_ADD_WK			WK_SCENE_PAIR_D21R0101_SEVEN2,1
 	_LAST_KEYWAIT
@@ -272,11 +272,11 @@ ev_pair_d21r0101_seven2_common:
 
 
 /********************************************************************/
-/*						‚TlO(d24r0105)							*/
+/*						ï¼•äººè¡†(d24r0105)							*/
 /********************************************************************/
 
-/*ƒ|ƒPƒ‚ƒ““üèƒCƒxƒ“ƒg‚ª‚ ‚èAd24r0105.gmm‚©‚çƒƒbƒZ[ƒW‚ğˆø‚Á’£‚é•K—v‚ª‚ ‚é‚Ì‚ÅA*/
-/*d24r0105.ev,gmm‚Éƒf[ƒ^‚Æˆ—‚ğˆÚ“®‚µ‚½*/
+/*ãƒã‚±ãƒ¢ãƒ³å…¥æ‰‹ã‚¤ãƒ™ãƒ³ãƒˆãŒã‚ã‚Šã€d24r0105.gmmã‹ã‚‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å¼•ã£å¼µã‚‹å¿…è¦ãŒã‚ã‚‹ã®ã§ã€*/
+/*d24r0105.ev,gmmã«ãƒ‡ãƒ¼ã‚¿ã¨å‡¦ç†ã‚’ç§»å‹•ã—ãŸ*/
 
 ev_pair_d24r0105_seven3:
 #if 0
@@ -308,14 +308,14 @@ ev_pair_d24r0105_seven3_03:
 	_END
 
 ev_pair_d24r0105_seven3_04:
-	//ÅŒã‚È‚Ì‚Åƒ[ƒN‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‚È‚¢I
+	//æœ€å¾Œãªã®ã§ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ãªã„ï¼
 	_TALKMSG		msg_pair_seven3_07
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 ev_pair_d24r0105_seven3_common:
 	_ADD_WK			WK_SCENE_PAIR_D24R0105_SEVEN3,1
 	_LAST_KEYWAIT
@@ -326,7 +326,7 @@ ev_pair_d24r0105_seven3_common:
 
 
 /********************************************************************/
-/*						‚TlO(d09r0104)							*/
+/*						ï¼•äººè¡†(d09r0104)							*/
 /********************************************************************/
 ev_pair_d09r0104_seven4:
 	_TALK_OBJ_START
@@ -339,14 +339,14 @@ ev_pair_d09r0104_seven4:
 	_END
 
 ev_pair_d09r0104_seven4_01:
-	//ÅŒã‚È‚Ì‚Åƒ[ƒN‚ğƒCƒ“ƒNƒŠƒƒ“ƒg‚µ‚È‚¢I
+	//æœ€å¾Œãªã®ã§ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ãªã„ï¼
 	_TALKMSG		msg_pair_seven4_06
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
-//‹¤’Êˆ—
+//å…±é€šå‡¦ç†
 ev_pair_d09r0104_seven4_common:
 	_ADD_WK			WK_SCENE_PAIR_D09R0104_SEVEN4,1
 	_LAST_KEYWAIT

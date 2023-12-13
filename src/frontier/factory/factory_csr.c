@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	factory_csr.c
- * @brief	uƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[vƒJ[ƒ\ƒ‹
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€ã‚«ãƒ¼ã‚½ãƒ«
  * @author	Satoshi Nohara
  * @date	2007.03.20
  */
@@ -18,25 +18,25 @@
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
-//ƒJ[ƒ\ƒ‹OBJ
+//ã‚«ãƒ¼ã‚½ãƒ«OBJ
 struct _FACTORY_CSR{
-	u8	sel_max;					//‘I‘ð‚ÌÅ‘å”
-	u8	mode;						//‰¡‘I‘ð‚©Ac‘I‘ð‚©
-	u8	csr_pos;					//ƒJ[ƒ\ƒ‹ˆÊ’u
-	u8	pause;						//ƒ|[ƒYƒtƒ‰ƒO
+	u8	sel_max;					//é¸æŠžã®æœ€å¤§æ•°
+	u8	mode;						//æ¨ªé¸æŠžã‹ã€ç¸¦é¸æŠžã‹
+	u8	csr_pos;					//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8	pause;						//ãƒãƒ¼ã‚ºãƒ•ãƒ©ã‚°
 
-	//POS* pos_tbl;					//ƒJ[ƒ\ƒ‹‚ªˆÚ“®‚·‚éÀ•Wƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
-	const FACTORY_POS* pos_tbl;		//ƒJ[ƒ\ƒ‹‚ªˆÚ“®‚·‚éÀ•Wƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
-	const u8* anm_tbl;				//ƒJ[ƒ\ƒ‹ƒAƒjƒƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
-	CLACT_WORK_PTR p_clact;			//ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^
+	//POS* pos_tbl;					//ã‚«ãƒ¼ã‚½ãƒ«ãŒç§»å‹•ã™ã‚‹åº§æ¨™ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+	const FACTORY_POS* pos_tbl;		//ã‚«ãƒ¼ã‚½ãƒ«ãŒç§»å‹•ã™ã‚‹åº§æ¨™ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+	const u8* anm_tbl;				//ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+	CLACT_WORK_PTR p_clact;			//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 
-	u8 sel_h_max;					//‰¡‘I‘ð‚ÌÅ‘å”(sel_max‚Ì’†‚Ì‚¢‚­‚Â‚ª‰¡‘I‘ð‚©)
+	u8 sel_h_max;					//æ¨ªé¸æŠžã®æœ€å¤§æ•°(sel_maxã®ä¸­ã®ã„ãã¤ãŒæ¨ªé¸æŠžã‹)
 };
 
-//ƒJ[ƒ\ƒ‹‚ÌƒpƒŒƒbƒg
+//ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆ
 enum{
 	//PAL_CSR_MOVE = 0,
 	//PAL_CSR_STOP,
@@ -47,7 +47,7 @@ enum{
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 FACTORY_CSR* FactoryCsr_Create( FACTORY_CLACT* factory_clact, u8 sel_max, u8 sel_h_max, u8 mode, u8 csr_pos, const FACTORY_POS* pos_tbl, const u8* anm_tbl );
@@ -61,19 +61,19 @@ void FactoryCsr_SetCsrPos( FACTORY_CSR* wk, u8 csr_pos );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OBJì¬
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OBJä½œæˆ
  *
- * @param	factory_clact	FACTORY_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	data_index		ƒf[ƒ^index
- * @param	heapID			ƒq[ƒvID
+ * @param	factory_clact	FACTORY_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	data_index		ãƒ‡ãƒ¼ã‚¿index
+ * @param	heapID			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	"FACTORY_CSRƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^"
+ * @retval	"FACTORY_CSRãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿"
  */
 //--------------------------------------------------------------
 FACTORY_CSR* FactoryCsr_Create( FACTORY_CLACT* factory_clact, u8 sel_max, u8 sel_h_max, u8 mode, u8 csr_pos, const FACTORY_POS* pos_tbl, const u8* anm_tbl )
@@ -81,22 +81,22 @@ FACTORY_CSR* FactoryCsr_Create( FACTORY_CLACT* factory_clact, u8 sel_max, u8 sel
 	FACTORY_CSR* wk;
 	VecFx32	vec;
 
-	wk = sys_AllocMemory( HEAPID_FACTORY, sizeof(FACTORY_CSR) );		//ƒƒ‚ƒŠŠm•Û
+	wk = sys_AllocMemory( HEAPID_FACTORY, sizeof(FACTORY_CSR) );		//ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	memset( wk, 0, sizeof(FACTORY_CSR) );
 
-	wk->sel_max		= sel_max;				//‘I‘ðÅ‘å”
-	wk->sel_h_max	= sel_h_max;			//‰¡‘I‘ð‚ÌÅ‘å”
-	wk->mode		= mode;					//‰¡‘I‘ð‚©Ac‘I‘ð‚©
-	wk->csr_pos		= csr_pos;				//ƒJ[ƒ\ƒ‹ˆÊ’u
-	wk->pos_tbl		= pos_tbl;				//ƒJ[ƒ\ƒ‹‚ªˆÚ“®‚·‚éÀ•Wƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
-	wk->anm_tbl		= anm_tbl;				//ƒJ[ƒ\ƒ‹‚ÌƒAƒjƒƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
+	wk->sel_max		= sel_max;				//é¸æŠžæœ€å¤§æ•°
+	wk->sel_h_max	= sel_h_max;			//æ¨ªé¸æŠžã®æœ€å¤§æ•°
+	wk->mode		= mode;					//æ¨ªé¸æŠžã‹ã€ç¸¦é¸æŠžã‹
+	wk->csr_pos		= csr_pos;				//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	wk->pos_tbl		= pos_tbl;				//ã‚«ãƒ¼ã‚½ãƒ«ãŒç§»å‹•ã™ã‚‹åº§æ¨™ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+	wk->anm_tbl		= anm_tbl;				//ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
 
-	//ƒAƒjƒƒe[ƒuƒ‹‚ÌŽw’è‚ª‚ ‚éŽž
+	//ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«ã®æŒ‡å®šãŒã‚ã‚‹æ™‚
 	if( anm_tbl != NULL ){
 		wk->p_clact = FactoryClact_SetActor(	factory_clact, 0, 
 												wk->anm_tbl[csr_pos], 0, 0, DISP_MAIN );
 	}else{
-		//Œ»óAƒ^ƒCƒv‚ÍŒÅ’è(data_no,anm_no,pri)
+		//ç¾çŠ¶ã€ã‚¿ã‚¤ãƒ—ã¯å›ºå®š(data_no,anm_no,pri)
 		if( mode == CSR_H_MODE ){
 			wk->p_clact = FactoryClact_SetActor( factory_clact, 0, ANM_BALL_CSR, 0, 0, DISP_MAIN );
 		}else{
@@ -104,7 +104,7 @@ FACTORY_CSR* FactoryCsr_Create( FACTORY_CLACT* factory_clact, u8 sel_max, u8 sel
 		}
 	}
 
-	//‰ŠúƒJ[ƒ\ƒ‹À•W‚ðƒZƒbƒg
+	//åˆæœŸã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	vec.x = (wk->pos_tbl[wk->csr_pos].x * FX32_ONE);
 	vec.y = (wk->pos_tbl[wk->csr_pos].y * FX32_ONE);
 	CLACT_SetMatrix( wk->p_clact, &vec );
@@ -114,9 +114,9 @@ FACTORY_CSR* FactoryCsr_Create( FACTORY_CLACT* factory_clact, u8 sel_max, u8 sel
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OBJƒ[ƒNíœ
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OBJãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param	wk		FACTORY_CSRƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_CSRãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	"NULL"
  */
@@ -125,7 +125,7 @@ void* FactoryCsr_Delete( FACTORY_CSR* wk )
 {
 	CLACT_Delete( wk->p_clact );
 
-	//FACTORY_CSR‚Ìƒƒ“ƒo‚Åƒƒ‚ƒŠŠm•Û‚µ‚½‚à‚Ì‚ª‚ ‚Á‚½‚çŠJ•ú‚·‚é
+	//FACTORY_CSRã®ãƒ¡ãƒ³ãƒã§ãƒ¡ãƒ¢ãƒªç¢ºä¿ã—ãŸã‚‚ã®ãŒã‚ã£ãŸã‚‰é–‹æ”¾ã™ã‚‹
 
 	sys_FreeMemoryEz( wk );
 	return NULL;
@@ -133,10 +133,10 @@ void* FactoryCsr_Delete( FACTORY_CSR* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒjƒbƒVƒ…‘€ì
+ * @brief	ãƒãƒ‹ãƒƒã‚·ãƒ¥æ“ä½œ
  *
- * @param	wk		FACTORY_CSRŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	0:”ñ•`‰æ 1:ƒŒƒ“ƒ_ƒ‰•`‰æ	
+ * @param	wk		FACTORY_CSRåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	0:éžæç”» 1:ãƒ¬ãƒ³ãƒ€ãƒ©æç”»	
  *
  * @return	none
  */
@@ -149,9 +149,9 @@ void FactoryCsr_Vanish( FACTORY_CSR* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ˆÚ“®
+ * @brief	ç§»å‹•
  *
- * @param	wk		FACTORY_CSRŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_CSRåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -161,7 +161,7 @@ void FactoryCsr_Move( FACTORY_CSR* wk )
 	VecFx32	vec;
 	u32	check_key1,check_key2;
 
-	//ƒ|[ƒY’†‚Í‰½‚à‚µ‚È‚¢
+	//ãƒãƒ¼ã‚ºä¸­ã¯ä½•ã‚‚ã—ãªã„
 	if( wk->pause == 1 ){
 		return;
 	}
@@ -170,7 +170,7 @@ void FactoryCsr_Move( FACTORY_CSR* wk )
 		return;
 	}
 
-	//HV‚É‘Î‰ž‚³‚¹‚é“ÁŽê‚Èƒ‚[ƒh
+	//HVã«å¯¾å¿œã•ã›ã‚‹ç‰¹æ®Šãªãƒ¢ãƒ¼ãƒ‰
 	if( wk->mode == CSR_HV_MODE ){
 
 		if( sys.trg & PAD_KEY_LEFT ){
@@ -186,17 +186,17 @@ void FactoryCsr_Move( FACTORY_CSR* wk )
 				wk->csr_pos++;
 			}
 		}else if( sys.trg & PAD_KEY_DOWN ){
-			if( wk->csr_pos < (wk->sel_h_max) ){		//‰º‚ÉƒJ[ƒ\ƒ‹ˆÚ“®
+			if( wk->csr_pos < (wk->sel_h_max) ){		//ä¸‹ã«ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 				wk->csr_pos = wk->sel_h_max;
-			}else if( wk->csr_pos == (wk->sel_max-1) ){	//‚·‚Å‚É‰º‚ÉƒJ[ƒ\ƒ‹‚ª‚ ‚éŽž‚ÍA¶‚É–ß‚é
+			}else if( wk->csr_pos == (wk->sel_max-1) ){	//ã™ã§ã«ä¸‹ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã‚‹æ™‚ã¯ã€å·¦ã«æˆ»ã‚‹
 				wk->csr_pos = 0;
 			}else{
 				wk->csr_pos++;
 			}
 		}else if( sys.trg & PAD_KEY_UP ){
-			if( wk->csr_pos < (wk->sel_h_max) ){		//ã‚ÉƒJ[ƒ\ƒ‹ˆÚ“®
+			if( wk->csr_pos < (wk->sel_h_max) ){		//ä¸Šã«ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 				wk->csr_pos = (wk->sel_max-1);
-			}else{										//‰º‚ÉƒJ[ƒ\ƒ‹ˆÚ“®
+			}else{										//ä¸‹ã«ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 				wk->csr_pos--;
 			}
 		}
@@ -204,7 +204,7 @@ void FactoryCsr_Move( FACTORY_CSR* wk )
 	//------------------------------------------------------------------------------------------
 	}else{
 
-		//ƒ`ƒFƒbƒN‚·‚éƒL[
+		//ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚­ãƒ¼
 		if( wk->mode == CSR_H_MODE ){
 			check_key1 = PAD_KEY_RIGHT;
 			check_key2 = PAD_KEY_LEFT;
@@ -213,7 +213,7 @@ void FactoryCsr_Move( FACTORY_CSR* wk )
 			check_key2 = PAD_KEY_UP;
 		}
 
-		//ƒL[‘Î‰ž‚·‚éˆ—
+		//ã‚­ãƒ¼å¯¾å¿œã™ã‚‹å‡¦ç†
 		if( sys.trg & check_key1 ){
 			wk->csr_pos++;
 			if( wk->csr_pos >= wk->sel_max ){
@@ -227,26 +227,26 @@ void FactoryCsr_Move( FACTORY_CSR* wk )
 		}
 	}
 
-	//ƒAƒjƒ‚ðØ‚è‘Ö‚¦‚é
+	//ã‚¢ãƒ‹ãƒ¡ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	if( wk->anm_tbl != NULL ){
 		CLACT_AnmChgCheck( wk->p_clact, wk->anm_tbl[wk->csr_pos] );
 	}
 
-	//À•W‚ðŽæ“¾
+	//åº§æ¨™ã‚’å–å¾—
 	vec = *( CLACT_GetMatrix(wk->p_clact) );
 	vec.x = (wk->pos_tbl[wk->csr_pos].x * FX32_ONE);
 	vec.y = (wk->pos_tbl[wk->csr_pos].y * FX32_ONE);
 
-	//À•W‚ðÝ’è
+	//åº§æ¨™ã‚’è¨­å®š
 	CLACT_SetMatrix( wk->p_clact, &vec );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹ˆÊ’u‚ðŽæ“¾
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å–å¾—
  *
- * @param	wk		FACTORY_CSRŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_CSRåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -258,10 +258,10 @@ u8 FactoryCsr_GetCsrPos( FACTORY_CSR* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|[ƒY
+ * @brief	ãƒãƒ¼ã‚º
  *
- * @param	wk		FACTORY_CSRŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	0:ƒ|[ƒY‰ðœ 1:ƒ|[ƒY
+ * @param	wk		FACTORY_CSRåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	0:ãƒãƒ¼ã‚ºè§£é™¤ 1:ãƒãƒ¼ã‚º
  *
  * @return	none
  */
@@ -272,10 +272,10 @@ void FactoryCsr_Pause( FACTORY_CSR* wk, int flag )
 
 	if( flag == 0 ){
 		CLACT_AnmChgCheck( wk->p_clact, ANM_BALL_CSR );
-		//CLACT_PaletteNoChg( wk->p_clact, PAL_CSR_MOVE );		//p_csrˆÈŠO“n‚·‚Æƒ_ƒBBB
+		//CLACT_PaletteNoChg( wk->p_clact, PAL_CSR_MOVE );		//p_csrä»¥å¤–æ¸¡ã™ã¨ãƒ€ãƒ¡ã€‚ã€‚ã€‚
 	}else{
 		CLACT_AnmChgCheck( wk->p_clact, ANM_BALL_CSR_STOP );
-		//CLACT_PaletteNoChg( wk->p_clact, PAL_CSR_STOP );		//p_csrˆÈŠO“n‚·‚Æƒ_ƒBBB
+		//CLACT_PaletteNoChg( wk->p_clact, PAL_CSR_STOP );		//p_csrä»¥å¤–æ¸¡ã™ã¨ãƒ€ãƒ¡ã€‚ã€‚ã€‚
 	}
 
 	return;
@@ -283,9 +283,9 @@ void FactoryCsr_Pause( FACTORY_CSR* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹ˆÊ’u‚ðƒZƒbƒg
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FACTORY_CSRŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_CSRåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -296,17 +296,17 @@ void FactoryCsr_SetCsrPos( FACTORY_CSR* wk, u8 csr_pos )
 
 	wk->csr_pos = csr_pos;
 
-	//ƒAƒjƒ‚ðØ‚è‘Ö‚¦‚é
+	//ã‚¢ãƒ‹ãƒ¡ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	if( wk->anm_tbl != NULL ){
 		CLACT_AnmChgCheck( wk->p_clact, wk->anm_tbl[wk->csr_pos] );
 	}
 
-	//À•W‚ðŽæ“¾
+	//åº§æ¨™ã‚’å–å¾—
 	vec = *( CLACT_GetMatrix(wk->p_clact) );
 	vec.x = (wk->pos_tbl[wk->csr_pos].x * FX32_ONE);
 	vec.y = (wk->pos_tbl[wk->csr_pos].y * FX32_ONE);
 
-	//À•W‚ðÝ’è
+	//åº§æ¨™ã‚’è¨­å®š
 	CLACT_SetMatrix( wk->p_clact, &vec );
 	return;
 }

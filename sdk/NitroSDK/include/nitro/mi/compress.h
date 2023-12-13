@@ -15,19 +15,19 @@
   fix copyright header.
 
   Revision 1.6  2007/11/02 00:46:00  takano_makoto
-  LZ77�g�����k�ɑΉ�
+  LZ77拡張圧縮に対応
 
   Revision 1.5  2006/01/18 02:11:19  kitase_hirotake
   do-indent
 
   Revision 1.4  2005/11/29 05:07:22  takano_makoto
-  MI_CompressLZFast��ǉ�
+  MI_CompressLZFastを追加
 
   Revision 1.3  2005/02/28 05:26:02  yosizaki
   do-indent.
 
   Revision 1.2  2005/02/01 02:17:18  takano_makoto
-  �n�t�}�����k�̍ۂɈ����Ń��[�N�o�b�t�@��n���悤�ɕύX
+  ハフマン圧縮の際に引数でワークバッファを渡すように変更
 
   Revision 1.1  2005/01/28 13:12:43  takano_makoto
   Initial update.
@@ -50,17 +50,17 @@ extern "C" {
   Name:         MI_CompressLZ
                 MI_CompressLZFast
 
-  Description:  LZ77���k���s�Ȃ��֐�
-                �����ł�MI_CompressLZFast�ł�MI_LZ_FAST_COMPRESS_WORK_SIZE�o�C�g��
-                ���[�N�o�b�t�@���K�v�ƂȂ�܂��B
+  Description:  LZ77圧縮を行なう関数
+                高速版のMI_CompressLZFastではMI_LZ_FAST_COMPRESS_WORK_SIZEバイトの
+                ワークバッファが必要となります。
 
-  Arguments:    srcp            ���k���f�[�^�ւ̃|�C���^
-                size            ���k���f�[�^�T�C�Y
-                dstp            ���k��f�[�^�ւ̃|�C���^
-                                ���k���f�[�^�����傫���T�C�Y�̃o�b�t�@���K�v�ł��B
+  Arguments:    srcp            圧縮元データへのポインタ
+                size            圧縮元データサイズ
+                dstp            圧縮先データへのポインタ
+                                圧縮元データよりも大きいサイズのバッファが必要です。
 
-  Returns:      ���k��̃f�[�^�T�C�Y�B
-                ���k��̃f�[�^�����k�O�����傫���Ȃ�ꍇ�ɂ͈��k�𒆒f��0��Ԃ��܂��B
+  Returns:      圧縮後のデータサイズ。
+                圧縮後のデータが圧縮前よりも大きくなる場合には圧縮を中断し0を返します。
  *---------------------------------------------------------------------------*/
 u32     MI_CompressLZImpl(const u8 *srcp, u32 size, u8 *dstp, BOOL exFormat);
 u32     MI_CompressLZFastImpl(const u8 *srcp, u32 size, u8 *dstp, u8 *work, BOOL exFormat);
@@ -90,15 +90,15 @@ inline u32 MI_CompressLZExFast(const u8 *srcp, u32 size, u8 *dstp, u8 *work)
 /*---------------------------------------------------------------------------*
   Name:         MI_CompressRL
 
-  Description:  ���������O�X���k���s�Ȃ��֐�
+  Description:  ランレングス圧縮を行なう関数
 
-  Arguments:    srcp            ���k���f�[�^�ւ̃|�C���^
-                size            ���k���f�[�^�T�C�Y
-                dstp            ���k��f�[�^�ւ̃|�C���^
-                                ���k���f�[�^�����傫���T�C�Y�̃o�b�t�@���K�v�ł��B
+  Arguments:    srcp            圧縮元データへのポインタ
+                size            圧縮元データサイズ
+                dstp            圧縮先データへのポインタ
+                                圧縮元データよりも大きいサイズのバッファが必要です。
 
-  Returns:      ���k��̃f�[�^�T�C�Y�B
-                ���k��̃f�[�^�����k�O�����傫���Ȃ�ꍇ�ɂ͈��k�𒆒f��0��Ԃ��܂��B
+  Returns:      圧縮後のデータサイズ。
+                圧縮後のデータが圧縮前よりも大きくなる場合には圧縮を中断し0を返します。
  *---------------------------------------------------------------------------*/
 u32     MI_CompressRL(const u8 *srcp, u32 size, u8 *dstp);
 
@@ -108,17 +108,17 @@ u32     MI_CompressRL(const u8 *srcp, u32 size, u8 *dstp);
 /*---------------------------------------------------------------------------*
   Name:         MI_CompressHuffman
 
-  Description:  �n�t�}�����k���s�Ȃ��֐�
+  Description:  ハフマン圧縮を行なう関数
 
-  Arguments:    srcp            ���k���f�[�^�ւ̃|�C���^
-                size            ���k���f�[�^�T�C�Y
-                dstp            ���k��f�[�^�ւ̃|�C���^
-                                ���k���f�[�^�����傫���T�C�Y�̃o�b�t�@���K�v�ł��B
-                huffBitSize     �������r�b�g��
-                work            ���k�p���[�N�o�b�t�@ MI_HUFFMAN_COMPRESS_WORK_SIZE ���̃T�C�Y���K�v
+  Arguments:    srcp            圧縮元データへのポインタ
+                size            圧縮元データサイズ
+                dstp            圧縮先データへのポインタ
+                                圧縮元データよりも大きいサイズのバッファが必要です。
+                huffBitSize     符号化ビット数
+                work            圧縮用ワークバッファ MI_HUFFMAN_COMPRESS_WORK_SIZE 分のサイズが必要
 
-  Returns:      ���k��̃f�[�^�T�C�Y�B
-                ���k��̃f�[�^�����k�O�����傫���Ȃ�ꍇ�ɂ͈��k�𒆒f��0��Ԃ��܂��B
+  Returns:      圧縮後のデータサイズ。
+                圧縮後のデータが圧縮前よりも大きくなる場合には圧縮を中断し0を返します。
  *---------------------------------------------------------------------------*/
 u32     MI_CompressHuffman(const u8 *srcp, u32 size, u8 *dstp, u8 huffBitSize, u8 *work);
 

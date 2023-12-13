@@ -1,14 +1,14 @@
 //============================================================================================
 /**
  * @file	wo_snd_def.h
- * @brief	‹Z‹³‚¦‰æ–Ê@SE’è‹`
+ * @brief	æŠ€æ•™ãˆç”»é¢ã€€SEå®šç¾©
  * @author	Hiroyuki Nakamura
  * @date	2006.05.12
  */
 //============================================================================================
 #include "system/snd_tool.h"
 
-#define	WO_SE_PAGE_MOVE	( SEQ_SE_DP_DECIDE )	// ƒy[ƒWØ‚è‘Ö‚¦
-#define	WO_SE_LIST_MOVE	( SEQ_SE_DP_DECIDE )	// ‹ZƒŠƒXƒg‘I‘ğ
-#define	WO_SE_DECIDE	( SEQ_SE_DP_DECIDE )	// Œˆ’è
-#define	WO_SE_CANCEL	( SEQ_SE_DP_DECIDE )	// ƒLƒƒƒ“ƒZƒ‹
+#define	WO_SE_PAGE_MOVE	( SEQ_SE_DP_DECIDE )	// ãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆ
+#define	WO_SE_LIST_MOVE	( SEQ_SE_DP_DECIDE )	// æŠ€ãƒªã‚¹ãƒˆé¸æŠ
+#define	WO_SE_DECIDE	( SEQ_SE_DP_DECIDE )	// æ±ºå®š
+#define	WO_SE_CANCEL	( SEQ_SE_DP_DECIDE )	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«

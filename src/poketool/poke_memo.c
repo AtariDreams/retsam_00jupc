@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poke_memo.c
- * @brief	ƒgƒŒ[ƒi[ƒƒ‚ƒf[ƒ^æ“¾
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ãƒ‡ãƒ¼ã‚¿å–å¾—
  * @author	
  * @date	
  */
@@ -46,7 +46,7 @@
 #define PLACEID_SODATEYA			( PLACEID_GEV( MAPNAME_SODATEYA ))
 #define PLACEID_TABI				( PLACEID_GEV( MAPNAME_TABINOOZISAN ))
 #define PLACEID_GEN					( PLACEID_GEV( MAPNAME_GEN ))
-#define PLACEID_SHIRONA				( PLACEID_GEV( MAPNAME_SHIRONA ))		//08.03.04 PL’Ç‰Á
+#define PLACEID_SHIRONA				( PLACEID_GEV( MAPNAME_SHIRONA ))		//08.03.04 PLè¿½åŠ 
 
 #define PLACEID_NAIBUTUUSINKOUKAN	( PLACEID_GEV( MAPNAME_NAIBUTUUSINKOUKAN ))
 #define PLACEID_TUUSINKOUKAN		( PLACEID_GEV( MAPNAME_TUUSINKOUKAN ))
@@ -62,57 +62,57 @@
 #define PLACEID_ANOTHERGAME			( PLACEID_EEV( MAPNAME_ANOTHERGAME ))
 
 //----------------------------------------------------------
-// ƒgƒŒ[ƒi[ƒƒ‚ƒ^ƒCƒv‚h‚c
+// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã‚¿ã‚¤ãƒ—ï¼©ï¼¤
 enum{	
-	// ¬‘Ì‚Åæ“¾Feˆê’vFêŠ‚Pi‚È‚µjêŠ‚Qi•ßŠlêŠj
+	// æˆä½“ã§å–å¾—ï¼šè¦ªä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆæ•ç²å ´æ‰€ï¼‰
 	MEMOID_POKETYPE1 = 0,
-	// ¬‘Ì‚Åæ“¾Fe•sˆê’vFêŠ‚Pi‚È‚µjêŠ‚Qi•ßŠlêŠj
+	// æˆä½“ã§å–å¾—ï¼šè¦ªä¸ä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆæ•ç²å ´æ‰€ï¼‰
 	MEMOID_POKETYPE2,
-	// ¬‘Ì‚Åæ“¾FêŠ‚Pi‚È‚µjêŠ‚QiƒQ[ƒ€“àŒğŠ·j
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆã‚²ãƒ¼ãƒ å†…äº¤æ›ï¼‰
 	MEMOID_POKETYPE3,	
-	// ƒ^ƒ}ƒS‚Åæ“¾FêŠ‚Pi’ÊMŒğŠ·jêŠ‚Qi›z‰»êŠj
+	// ã‚¿ãƒã‚´ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆé€šä¿¡äº¤æ›ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰
 	MEMOID_POKETYPE4,	
-	// ¬‘Ì‚Åæ“¾FêŠ‚Pi’ÊMŒğŠ·jêŠ‚Qi›z‰»êŠj
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆé€šä¿¡äº¤æ›ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰
 	MEMOID_POKETYPE5,	
-	// ƒ^ƒ}ƒS‚Åæ“¾FêŠ‚Piˆç‚Ä‰®jêŠ‚Qi›z‰»êŠj
+	// ã‚¿ãƒã‚´ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆè‚²ã¦å±‹ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰
 	MEMOID_POKETYPE6,	
-	// ¬‘Ì‚Åæ“¾FêŠ‚Piˆç‚Ä‰®jêŠ‚Qi›z‰»êŠj
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆè‚²ã¦å±‹ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰
 	MEMOID_POKETYPE7,
-	// ¬‘Ì‚Åæ“¾Feˆê’vFêŠ‚Pi‚È‚µjêŠ‚QiŠO•””z•zêŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// æˆä½“ã§å–å¾—ï¼šè¦ªä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆå¤–éƒ¨é…å¸ƒå ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	MEMOID_POKETYPE8,
-	// ¬‘Ì‚Åæ“¾Fe•sˆê’vFêŠ‚Pi‚È‚µjêŠ‚QiŠO•””z•zêŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// æˆä½“ã§å–å¾—ï¼šè¦ªä¸ä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆå¤–éƒ¨é…å¸ƒå ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	MEMOID_POKETYPE9,
-	// ƒ^ƒ}ƒS‚Åæ“¾FêŠ‚PiŠO•””z•zêŠjêŠ‚Qi›z‰»êŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// ã‚¿ãƒã‚´ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆå¤–éƒ¨é…å¸ƒå ´æ‰€ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	MEMOID_POKETYPE10,
-	// ¬‘Ì‚Åæ“¾FêŠ‚PiŠO•””z•zêŠjêŠ‚Qi›z‰»êŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆå¤–éƒ¨é…å¸ƒå ´æ‰€ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	MEMOID_POKETYPE11,
-	// ƒ^ƒ}ƒS‚Åæ“¾FêŠ‚Pi‘¼ƒ\ƒtƒgjêŠ‚Qi›z‰»êŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// ã‚¿ãƒã‚´ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆä»–ã‚½ãƒ•ãƒˆï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	MEMOID_POKETYPE12,
-	// ¬‘Ì‚Åæ“¾FêŠ‚Pi‘¼ƒ\ƒtƒgjêŠ‚Qi›z‰»êŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆä»–ã‚½ãƒ•ãƒˆï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	MEMOID_POKETYPE13,
-	// ƒ^ƒ}ƒS‚Åæ“¾FêŠ‚Pi’ÊMŒğŠ·jêŠ‚Qi›z‰»êŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// ã‚¿ãƒã‚´ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆé€šä¿¡äº¤æ›ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	MEMOID_POKETYPE14,
-	// ¬‘Ì‚Åæ“¾FêŠ‚Pi’ÊMŒğŠ·jêŠ‚Qi›z‰»êŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆé€šä¿¡äº¤æ›ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	MEMOID_POKETYPE15,
-	// ¬‘Ì‚Åæ“¾FêŠ‚Pi‚È‚µjêŠ‚Qiƒ|ƒPƒ‚ƒ“‰ß‹ƒJ[ƒgƒŠƒbƒWj
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆãƒã‚±ãƒ¢ãƒ³éå»ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ï¼‰
 	MEMOID_POKETYPE16,
 
-	// ƒ^ƒ}ƒSFeˆê’vFêŠ‚Piˆç‚Ä‰®jêŠ‚Qi‚È‚µj
+	// ã‚¿ãƒã‚´ï¼šè¦ªä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆè‚²ã¦å±‹ï¼‰å ´æ‰€ï¼’ï¼ˆãªã—ï¼‰
 	MEMOID_TAMAGOTYPE1,
-	// ƒ^ƒ}ƒSFe•sˆê’vFêŠ‚Pi‚È‚µjêŠ‚Qi’ÊMŒğŠ·j
+	// ã‚¿ãƒã‚´ï¼šè¦ªä¸ä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆé€šä¿¡äº¤æ›ï¼‰
 	MEMOID_TAMAGOTYPE2,
-	// ƒ^ƒ}ƒSFeˆê’vFêŠ‚PiŠO•””z•zêŠjêŠ‚Qi‚È‚µjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// ã‚¿ãƒã‚´ï¼šè¦ªä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆå¤–éƒ¨é…å¸ƒå ´æ‰€ï¼‰å ´æ‰€ï¼’ï¼ˆãªã—ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	MEMOID_TAMAGOTYPE3,
-	// ƒ^ƒ}ƒSFe•sˆê’vFêŠ‚Pi‚È‚µjêŠ‚Qi’ÊMŒğŠ·jFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// ã‚¿ãƒã‚´ï¼šè¦ªä¸ä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆé€šä¿¡äº¤æ›ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	MEMOID_TAMAGOTYPE4,
-	// ƒ^ƒ}ƒSFeˆê’vFêŠ‚Pi‘¼ƒ\ƒtƒgjêŠ‚Qi‚È‚µjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// ã‚¿ãƒã‚´ï¼šè¦ªä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆä»–ã‚½ãƒ•ãƒˆï¼‰å ´æ‰€ï¼’ï¼ˆãªã—ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	MEMOID_TAMAGOTYPE5,
 };
 
-// ƒf[ƒ^QÆ‘I‘ğ
+// ãƒ‡ãƒ¼ã‚¿å‚ç…§é¸æŠ
 enum{	
-	DATA1 = 0,	//ƒf[ƒ^‚PQÆ
-	DATA2,		//ƒf[ƒ^‚QQÆ
+	DATA1 = 0,	//ãƒ‡ãƒ¼ã‚¿ï¼‘å‚ç…§
+	DATA2,		//ãƒ‡ãƒ¼ã‚¿ï¼’å‚ç…§
 };
 
 static int	TrainerMemoIDGet( POKEMON_PARAM* pp, BOOL mine, int heapID );
@@ -125,20 +125,20 @@ static void character2_msgGet( TRMEMO_DATA* dat );
 static void palate_msgGet( TRMEMO_DATA* dat );
 static void eggstatus_msgGet( TRMEMO_DATA* dat );
 
-// ƒƒbƒZ[ƒW•¶š—ñƒTƒCƒY
-#define MSGLINE_BUFSIZ	( (2*18)*2 ) // ƒ[ƒJƒ‰ƒCƒY‚ğl—¶‚µ18word*2
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ–‡å­—åˆ—ã‚µã‚¤ã‚º
+#define MSGLINE_BUFSIZ	( (2*18)*2 ) // ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºã‚’è€ƒæ…®ã—18word*2
 #define WORDSET_NUM		(9)
 
-// ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^æ“¾
+// ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 #define PARAM_GET( pp, id )			(PokeParaGet( pp, id, NULL)) 
 #define PARAM_GETP( ppp, id )		(PokePasoParaGet( ppp, id, NULL)) 
 
-// ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^İ’è
+// ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 #define PARAM_PUT( pp, id, buf )	(PokeParaPut( pp, id, buf)) 
 #define PARAM_PUTP( ppp, id, buf )	(PokePasoParaPut( ppp, id, buf)) 
 
-//ˆÈ‰ºAƒ|ƒPƒ‚ƒ“ƒf[ƒ^\‘¢‘Ì€–Ú–¼‚Æd—l“à—e‚ªˆê’v‚µ‚È‚¢‚Ì‚Å•ÏŠ·
-// ƒgƒŒ[ƒi[ƒƒ‚—pƒf[ƒ^‚P:êŠ
+//ä»¥ä¸‹ã€ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“é …ç›®åã¨ä»•æ§˜å†…å®¹ãŒä¸€è‡´ã—ãªã„ã®ã§å¤‰æ›
+// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ç”¨ãƒ‡ãƒ¼ã‚¿ï¼‘:å ´æ‰€
 #define	ID_PARA_trMemo1place	( ID_PARA_get_place )	
 #define	ID_PARA_trMemo1year		( ID_PARA_get_year )	
 #define	ID_PARA_trMemo1month	( ID_PARA_get_month )	
@@ -150,56 +150,56 @@ static void eggstatus_msgGet( TRMEMO_DATA* dat );
 
 //----------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒƒ‚•¶š—ñ‚Ìæ“¾
- * @param	pp		æ“¾‘ÎÛƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- * @param	heapID	æ“¾—pƒq[ƒvw’è
- * @return	msgtbl	æ“¾‚³‚ê‚½ƒƒbƒZ[ƒWƒe[ƒuƒ‹ƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢æ–‡å­—åˆ—ã®å–å¾—
+ * @param	pp		å–å¾—å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ * @param	heapID	å–å¾—ç”¨ãƒ’ãƒ¼ãƒ—æŒ‡å®š
+ * @return	msgtbl	å–å¾—ã•ã‚ŒãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ†ãƒ¼ãƒ–ãƒ«ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
-// ƒƒbƒZ[ƒW\‘¢‘Ì‰Šú‰»
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ§‹é€ ä½“åˆæœŸåŒ–
 #define MSGDATA_INIT( msgdata ){		\
 	msgdata.line	= 0;				\
 	msgdata.msg		= NULL;				\
 }
 
-// ƒƒbƒZ[ƒW\‘¢‘ÌŠJ•ú
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ§‹é€ ä½“é–‹æ”¾
 #define MSGDATA_FREE( msgdata ){			\
 	if( msgdata.msg	!= NULL ){				\
 		sys_FreeMemoryEz( msgdata.msg );	\
 	}										\
 }
 
-// «ŠiƒƒbƒZ[ƒWæ“¾
+// æ€§æ ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 #define GET_CHARCTER1( linenum ){		\
 	dat->character1.line = linenum;		\
 	character1_msgGet( dat );			\
 }
 
-// o‰ï‚¢•ûƒƒbƒZ[ƒWæ“¾
+// å‡ºä¼šã„æ–¹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 #define GET_ENCOUNT( linenum, msgID ){	\
 	dat->encount.line = linenum;		\
 	encount_msgGet( dat, msgID );		\
 }
 
-// o‰ï‚¢•ûiƒ^ƒ}ƒSjƒƒbƒZ[ƒWæ“¾
+// å‡ºä¼šã„æ–¹ï¼ˆã‚¿ãƒã‚´ï¼‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 #define GET_ENCOUNTEGG( linenum, msgID, flag ){	\
 	dat->encount.line = linenum;				\
 	encountEgg_msgGet( dat, msgID, flag );		\
 }
 
-// «Ši‚QƒƒbƒZ[ƒWæ“¾
+// æ€§æ ¼ï¼’ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 #define GET_CHARCTER2( linenum ){	\
 	dat->character2.line = linenum;	\
 	character2_msgGet( dat );		\
 }
 
-// –¡ŠoƒƒbƒZ[ƒWæ“¾
+// å‘³è¦šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 #define GET_PALATE( linenum ){		\
 	dat->palate.line = linenum;		\
 	palate_msgGet( dat );			\
 }
 
-// ƒ^ƒ}ƒSó‘ÔƒƒbƒZ[ƒWæ“¾
+// ã‚¿ãƒã‚´çŠ¶æ…‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 #define GET_EGGSTATUS( linenum ){	\
 	dat->eggstatus.line = linenum;	\
 	eggstatus_msgGet( dat );		\
@@ -218,7 +218,7 @@ TRMEMO_DATA*	TrainerMemoGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 	dat->mine = mine;
 
 	{
-		//ƒƒbƒZ[ƒW”z—ñ‚Ì‰Šú‰»
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é…åˆ—ã®åˆæœŸåŒ–
 		MSGDATA_INIT( dat->character1 )
 		MSGDATA_INIT( dat->encount )
 		MSGDATA_INIT( dat->character2 )
@@ -228,7 +228,7 @@ TRMEMO_DATA*	TrainerMemoGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 	
 	switch( TrainerMemoIDGet( dat->pp, dat->mine, dat->heapID ) ){
 
-	// ¬‘Ì‚Åæ“¾Feˆê’vFêŠ‚Pi‚È‚µjêŠ‚Qi•ßŠlêŠj
+	// æˆä½“ã§å–å¾—ï¼šè¦ªä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆæ•ç²å ´æ‰€ï¼‰
 	case MEMOID_POKETYPE1:
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_01_01 )
@@ -236,7 +236,7 @@ TRMEMO_DATA*	TrainerMemoGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 		GET_PALATE( 7 )
 		break;
 	
-	// ¬‘Ì‚Åæ“¾Fe•sˆê’vFêŠ‚Pi‚È‚µjêŠ‚Qi•ßŠlêŠj
+	// æˆä½“ã§å–å¾—ï¼šè¦ªä¸ä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆæ•ç²å ´æ‰€ï¼‰
 	case MEMOID_POKETYPE2:
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_01_02 )
@@ -244,7 +244,7 @@ TRMEMO_DATA*	TrainerMemoGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 		GET_PALATE( 7 )
 		break;
 	
-	// ¬‘Ì‚Åæ“¾FêŠ‚Pi‚È‚µjêŠ‚QiƒQ[ƒ€“àŒğŠ·j
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆã‚²ãƒ¼ãƒ å†…äº¤æ›ï¼‰
 	case MEMOID_POKETYPE3:	
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_02_01 )
@@ -252,7 +252,7 @@ TRMEMO_DATA*	TrainerMemoGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 		GET_PALATE( 7 )
 		break;
 	
-	// ƒ^ƒ}ƒS‚Åæ“¾FêŠ‚Pi’ÊMŒğŠ·jêŠ‚Qi›z‰»êŠj
+	// ã‚¿ãƒã‚´ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆé€šä¿¡äº¤æ›ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰
 	case MEMOID_POKETYPE4:	
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_03_01 )
@@ -260,7 +260,7 @@ TRMEMO_DATA*	TrainerMemoGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 		GET_PALATE( 9 )
 		break;
 	
-	// ¬‘Ì‚Åæ“¾FêŠ‚Pi’ÊMŒğŠ·jêŠ‚Qi›z‰»êŠj
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆé€šä¿¡äº¤æ›ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰
 	case MEMOID_POKETYPE5:	
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_03_02 )
@@ -268,7 +268,7 @@ TRMEMO_DATA*	TrainerMemoGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 		GET_PALATE( 9 )
 		break;
 	
-	// ƒ^ƒ}ƒS‚Åæ“¾FêŠ‚Piˆç‚Ä‰®jêŠ‚Qi›z‰»êŠj
+	// ã‚¿ãƒã‚´ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆè‚²ã¦å±‹ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰
 	case MEMOID_POKETYPE6:	
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_04_01 )
@@ -276,7 +276,7 @@ TRMEMO_DATA*	TrainerMemoGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 		GET_PALATE( 9 )
 		break;
 	
-	// ¬‘Ì‚Åæ“¾FêŠ‚Piˆç‚Ä‰®jêŠ‚Qi›z‰»êŠj
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆè‚²ã¦å±‹ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰
 	case MEMOID_POKETYPE7:
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_04_02 )
@@ -284,7 +284,7 @@ TRMEMO_DATA*	TrainerMemoGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 		GET_PALATE( 9 )
 		break;
 	
-	// ¬‘Ì‚Åæ“¾Feˆê’vFêŠ‚Pi‚È‚µjêŠ‚QiŠO•””z•zêŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// æˆä½“ã§å–å¾—ï¼šè¦ªä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆå¤–éƒ¨é…å¸ƒå ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	case MEMOID_POKETYPE8:
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_05_01 )
@@ -292,7 +292,7 @@ TRMEMO_DATA*	TrainerMemoGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 		GET_PALATE( 8 )
 		break;
 	
-	// ¬‘Ì‚Åæ“¾Fe•sˆê’vFêŠ‚Pi‚È‚µjêŠ‚QiŠO•””z•zêŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// æˆä½“ã§å–å¾—ï¼šè¦ªä¸ä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆå¤–éƒ¨é…å¸ƒå ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	case MEMOID_POKETYPE9:
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_05_02 )
@@ -300,49 +300,49 @@ TRMEMO_DATA*	TrainerMemoGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 		GET_PALATE( 8 )
 		break;
 	
-	// ƒ^ƒ}ƒS‚Åæ“¾FêŠ‚PiŠO•””z•zêŠjêŠ‚Qi›z‰»êŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// ã‚¿ãƒã‚´ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆå¤–éƒ¨é…å¸ƒå ´æ‰€ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	case MEMOID_POKETYPE10:
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_06_01 )
 		GET_CHARCTER2( 9 )
 		break;
 	
-	// ¬‘Ì‚Åæ“¾FêŠ‚PiŠO•””z•zêŠjêŠ‚Qi›z‰»êŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆå¤–éƒ¨é…å¸ƒå ´æ‰€ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	case MEMOID_POKETYPE11:
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_06_02 )
 		GET_CHARCTER2( 9 )
 		break;
 	
-	// ƒ^ƒ}ƒS‚Åæ“¾FêŠ‚Pi‘¼ƒ\ƒtƒgjêŠ‚Qi›z‰»êŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// ã‚¿ãƒã‚´ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆä»–ã‚½ãƒ•ãƒˆï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	case MEMOID_POKETYPE12:
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_07_01 )
 		GET_CHARCTER2( 9 )
 		break;
 	
-	// ¬‘Ì‚Åæ“¾FêŠ‚Pi‘¼ƒ\ƒtƒgjêŠ‚Qi›z‰»êŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆä»–ã‚½ãƒ•ãƒˆï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	case MEMOID_POKETYPE13:
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_07_02 )
 		GET_CHARCTER2( 9 )
 		break;
 	
-	// ƒ^ƒ}ƒS‚Åæ“¾FêŠ‚Pi’ÊMŒğŠ·jêŠ‚Qi›z‰»êŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// ã‚¿ãƒã‚´ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆé€šä¿¡äº¤æ›ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	case MEMOID_POKETYPE14:
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_08_01 )
 		GET_CHARCTER2( 9 )
 		break;
 	
-	// ¬‘Ì‚Åæ“¾FêŠ‚Pi’ÊMŒğŠ·jêŠ‚Qi›z‰»êŠjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆé€šä¿¡äº¤æ›ï¼‰å ´æ‰€ï¼’ï¼ˆå­µåŒ–å ´æ‰€ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	case MEMOID_POKETYPE15:
 		GET_CHARCTER1( 1 )
 		GET_ENCOUNT( 2, mes_status_03_03_08_02 )
 		GET_CHARCTER2( 9 )
 		break;
 	
-	// ¬‘Ì‚Åæ“¾FêŠ‚Pi‚È‚µjêŠ‚Qiƒ|ƒPƒ‚ƒ“‰ß‹ƒJ[ƒgƒŠƒbƒWj
+	// æˆä½“ã§å–å¾—ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆãƒã‚±ãƒ¢ãƒ³éå»ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ï¼‰
 	case MEMOID_POKETYPE16:
 		GET_CHARCTER1( 1 )
 		dat->encount.line = 2;
@@ -351,31 +351,31 @@ TRMEMO_DATA*	TrainerMemoGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 		GET_PALATE( 7 )
 		break;
 	
-	// ƒ^ƒ}ƒSFeˆê’vFêŠ‚Piˆç‚Ä‰®jêŠ‚Qi‚È‚µj
+	// ã‚¿ãƒã‚´ï¼šè¦ªä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆè‚²ã¦å±‹ï¼‰å ´æ‰€ï¼’ï¼ˆãªã—ï¼‰
 	case MEMOID_TAMAGOTYPE1:
 		GET_ENCOUNTEGG( 1, mes_status_03_T_01_01_01, DATA1 )
 		GET_EGGSTATUS( 6 )
 		break;
 
-	// ƒ^ƒ}ƒSFe•sˆê’vFêŠ‚Pi‚È‚µjêŠ‚Qi’ÊMŒğŠ·j
+	// ã‚¿ãƒã‚´ï¼šè¦ªä¸ä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆé€šä¿¡äº¤æ›ï¼‰
 	case MEMOID_TAMAGOTYPE2:
 		GET_ENCOUNTEGG( 1, mes_status_03_T_01_02_01, DATA2 )
 		GET_EGGSTATUS( 6 )
 		break;
 
-	// ƒ^ƒ}ƒSFeˆê’vFêŠ‚PiŠO•””z•zêŠjêŠ‚Qi‚È‚µjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// ã‚¿ãƒã‚´ï¼šè¦ªä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆå¤–éƒ¨é…å¸ƒå ´æ‰€ï¼‰å ´æ‰€ï¼’ï¼ˆãªã—ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	case MEMOID_TAMAGOTYPE3:
 		GET_ENCOUNTEGG( 1, mes_status_03_T_01_03_01, DATA1 )
 		GET_EGGSTATUS( 6 )
 		break;
 
-	// ƒ^ƒ}ƒSFe•sˆê’vFêŠ‚Pi‚È‚µjêŠ‚Qi’ÊMŒğŠ·jFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// ã‚¿ãƒã‚´ï¼šè¦ªä¸ä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆãªã—ï¼‰å ´æ‰€ï¼’ï¼ˆé€šä¿¡äº¤æ›ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	case MEMOID_TAMAGOTYPE4:
 		GET_ENCOUNTEGG( 1, mes_status_03_T_01_03_01, DATA2 )
 		GET_EGGSTATUS( 6 )
 		break;
 
-	// ƒ^ƒ}ƒSFeˆê’vFêŠ‚Pi‘¼ƒ\ƒtƒgjêŠ‚Qi‚È‚µjFŠO•””z•zƒtƒ‰ƒO‚n‚m
+	// ã‚¿ãƒã‚´ï¼šè¦ªä¸€è‡´ï¼šå ´æ‰€ï¼‘ï¼ˆä»–ã‚½ãƒ•ãƒˆï¼‰å ´æ‰€ï¼’ï¼ˆãªã—ï¼‰ï¼šå¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ï¼¯ï¼®
 	case MEMOID_TAMAGOTYPE5:
 		GET_ENCOUNTEGG( 1, mes_status_03_T_01_04_01, DATA1 )
 		GET_EGGSTATUS( 6 )
@@ -386,8 +386,8 @@ TRMEMO_DATA*	TrainerMemoGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒƒ‚•¶š—ñ‚ÌŠJ•ú
- * @param	msgtbl	æ“¾‚³‚ê‚Ä‚¢‚éƒƒbƒZ[ƒWƒe[ƒuƒ‹ƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢æ–‡å­—åˆ—ã®é–‹æ”¾
+ * @param	msgtbl	å–å¾—ã•ã‚Œã¦ã„ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ†ãƒ¼ãƒ–ãƒ«ãƒã‚¤ãƒ³ã‚¿
  */
 //----------------------------------------------------------
 void	TrainerMemoFree( TRMEMO_DATA* dat )
@@ -399,7 +399,7 @@ void	TrainerMemoFree( TRMEMO_DATA* dat )
 	MSGDATA_FREE( dat->eggstatus )
 
 	WORDSET_Delete( dat->word_set );
-	//ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	MSGMAN_Delete( dat->msg_man );
 
 	sys_FreeMemoryEz( dat );
@@ -407,28 +407,28 @@ void	TrainerMemoFree( TRMEMO_DATA* dat )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒƒ‚•¶š—ñ‚Ìì¬
- * @param	pp		æ“¾‘ÎÛƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- * @return	void*	•¶š—ñƒf[ƒ^
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢æ–‡å­—åˆ—ã®ä½œæˆ
+ * @param	pp		å–å¾—å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ * @return	void*	æ–‡å­—åˆ—ãƒ‡ãƒ¼ã‚¿
  */
 //----------------------------------------------------------
 static void character1_msgGet( TRMEMO_DATA* dat )
 {
-	int charID = PokeSeikakuGet( dat->pp );		//«Šiæ“¾
+	int charID = PokeSeikakuGet( dat->pp );		//æ€§æ ¼å–å¾—
 
 	if( charID > CHR_MAX ){
 		return;
 	}
-	//•¶š—ñƒoƒbƒtƒ@‚ÌŠm•Û
+	//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 	dat->character1.msg = STRBUF_Create( MSGLINE_BUFSIZ, dat->heapID );
 
-	//•¶š—ñ‚Ìæ“¾
-	//«Ši‚Ì’l‚Ímsg_status_03_01i‚ª‚ñ‚Î‚è‚âj‚ğ0‚Æ‚µAƒƒbƒZ[ƒW‚h‚c‚Æ“¯ˆê‡‚É‚È‚Á‚Ä‚¢‚é
+	//æ–‡å­—åˆ—ã®å–å¾—
+	//æ€§æ ¼ã®å€¤ã¯msg_status_03_01ï¼ˆãŒã‚“ã°ã‚Šã‚„ï¼‰ã‚’0ã¨ã—ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼©ï¼¤ã¨åŒä¸€é †ã«ãªã£ã¦ã„ã‚‹
 	MSGMAN_GetString( dat->msg_man, (mes_status_03_02_01 + charID), dat->character1.msg );
 }
 
 //----------------------------------------------------------
-// êŠ‚Ìƒ[ƒhİ’è
+// å ´æ‰€ã®ãƒ¯ãƒ¼ãƒ‰è¨­å®š
 #define WSET_PLACE1( buf ){																\
 	WORDSET_RegisterPokeGetPlace														\
 		( dat->word_set, buf, PARAM_GET( dat->pp, ID_PARA_trMemo1place ) );				\
@@ -437,10 +437,10 @@ static void character1_msgGet( TRMEMO_DATA* dat )
 	WORDSET_RegisterPokeGetPlace														\
 		( dat->word_set, buf, PARAM_GET( dat->pp, ID_PARA_trMemo2place ) );				\
 }
-// ”NŒ“ú‚Ìƒ[ƒhİ’è
+// å¹´æœˆæ—¥ã®ãƒ¯ãƒ¼ãƒ‰è¨­å®š
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/26
-// Œ‚Ì•\¦‚ğ’PŒê•\‹L‚É•ÏX
+// æœˆã®è¡¨ç¤ºã‚’å˜èªè¡¨è¨˜ã«å¤‰æ›´
 #define WSET_TIMEDATA1( yearbuf, monthbuf, daybuf ){									\
 	WORDSET_RegisterNumber(	dat->word_set, yearbuf,										\
 							PARAM_GET( dat->pp, ID_PARA_trMemo1year ),					\
@@ -462,20 +462,20 @@ static void character1_msgGet( TRMEMO_DATA* dat )
 							PARAM_GET( dat->pp, ID_PARA_trMemo2day ),					\
 							2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );			\
 }
-// ƒŒƒxƒ‹‚Ìƒ[ƒhİ’è
+// ãƒ¬ãƒ™ãƒ«ã®ãƒ¯ãƒ¼ãƒ‰è¨­å®š
 #define WSET_LEVEL( buf ){																\
 	WORDSET_RegisterNumber(	dat->word_set, buf,											\
 							PARAM_GET( dat->pp, ID_PARA_get_level ),					\
 							3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );			\
 }
 
-#define ENCOUNT_BUFSIZ		( MSGLINE_BUFSIZ * 8 )	//Å‘å‚Wƒ‰ƒCƒ“
+#define ENCOUNT_BUFSIZ		( MSGLINE_BUFSIZ * 8 )	//æœ€å¤§ï¼˜ãƒ©ã‚¤ãƒ³
 
 static void encount_msgGet( TRMEMO_DATA* dat, int msgID )
 {
 	STRBUF*	msg_tmp = STRBUF_Create( ENCOUNT_BUFSIZ, dat->heapID );
 
-	dat->encount.msg = STRBUF_Create( ENCOUNT_BUFSIZ, dat->heapID );//ƒoƒbƒtƒ@‚ÌŠm•Û
+	dat->encount.msg = STRBUF_Create( ENCOUNT_BUFSIZ, dat->heapID );//ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 
 	MSGMAN_GetString( dat->msg_man, msgID, msg_tmp );
 
@@ -489,13 +489,13 @@ static void encount_msgGet( TRMEMO_DATA* dat, int msgID )
 	STRBUF_Delete( msg_tmp );
 }
 
-#define ENCOUNTPARK_BUFSIZ		( MSGLINE_BUFSIZ * 4 )	//‚Sƒ‰ƒCƒ“
+#define ENCOUNTPARK_BUFSIZ		( MSGLINE_BUFSIZ * 4 )	//ï¼”ãƒ©ã‚¤ãƒ³
 
 static void encountPark_msgGet( TRMEMO_DATA* dat, int msgID )
 {
 	STRBUF*	msg_tmp = STRBUF_Create( ENCOUNTPARK_BUFSIZ, dat->heapID );
 
-	dat->encount.msg = STRBUF_Create( ENCOUNTPARK_BUFSIZ, dat->heapID );//ƒoƒbƒtƒ@‚ÌŠm•Û
+	dat->encount.msg = STRBUF_Create( ENCOUNTPARK_BUFSIZ, dat->heapID );//ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 
 	MSGMAN_GetString( dat->msg_man, msgID, msg_tmp );
 
@@ -532,13 +532,13 @@ static void encountPark_msgGet( TRMEMO_DATA* dat, int msgID )
 	STRBUF_Delete( msg_tmp );
 }
 
-#define ENCOUNTEGG_BUFSIZ		( MSGLINE_BUFSIZ * 5 )	//Å‘å‚Tƒ‰ƒCƒ“
+#define ENCOUNTEGG_BUFSIZ		( MSGLINE_BUFSIZ * 5 )	//æœ€å¤§ï¼•ãƒ©ã‚¤ãƒ³
 
 static void encountEgg_msgGet( TRMEMO_DATA* dat, int msgID, int flag )
 {
 	STRBUF*	msg_tmp = STRBUF_Create( ENCOUNTEGG_BUFSIZ, dat->heapID );
 
-	dat->encount.msg = STRBUF_Create( ENCOUNTEGG_BUFSIZ, dat->heapID );//ƒoƒbƒtƒ@‚ÌŠm•Û
+	dat->encount.msg = STRBUF_Create( ENCOUNTEGG_BUFSIZ, dat->heapID );//ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 
 	MSGMAN_GetString( dat->msg_man, msgID, msg_tmp );
 
@@ -595,7 +595,7 @@ static void encountEgg_msgGet( TRMEMO_DATA* dat, int msgID, int flag )
 #define C2_MAKEZU_KIRAI		( mes_status_03_05_06_03 )
 #define C2_GOUJYOU			( mes_status_03_05_06_04 )
 
-// «Ši‚Qƒe[ƒuƒ‹
+// æ€§æ ¼ï¼’ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u16 charcter2_tbl[6][5] = {
 { C2_TABERU_SUKI,	C2_HIRUNE_YOKUSURU, C2_INEMURI_OOI,		C2_MONO_TIRAKASU,	C2_NONBIRI_SUKI },
 { C2_TIKARA_ZIMAN,	C2_ABARE_SUKI,		C2_OKORIPPOI,		C2_KENKA_SUKI,		C2_TINOKE_OOI },
@@ -617,7 +617,7 @@ static void character2_msgGet( TRMEMO_DATA* dat )
 	int param[6],param_ID,param_org;
 	int	i,msgID;
 
-	//•¶š—ñƒoƒbƒtƒ@‚ÌŠm•Û
+	//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 	dat->character2.msg = STRBUF_Create( MSGLINE_BUFSIZ, dat->heapID );
 
 	param[0] = CHR2PARAM0;
@@ -627,7 +627,7 @@ static void character2_msgGet( TRMEMO_DATA* dat )
 	param[4] = CHR2PARAM4;
 	param[5] = CHR2PARAM5;
 
-	//ƒvƒ‰ƒCƒIƒŠƒeƒB[‚É‚æ‚éÅ‘åƒpƒ‰ƒ[ƒ^‚h‚c‚Ìæ“¾@¦ƒxƒ^‚¾‚ª‚Ü‚ ‚¢‚¢‚â
+	//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼ã«ã‚ˆã‚‹æœ€å¤§ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼©ï¼¤ã®å–å¾—ã€€â€»ãƒ™ã‚¿ã ãŒã¾ã‚ã„ã„ã‚„
 	switch( CHR2PARAM_PRI_ID ){
 	default:
 	case 0:
@@ -701,7 +701,7 @@ static void character2_msgGet( TRMEMO_DATA* dat )
 #define PLTTYPE_MAX	(5)
 #define PLT_LIKE	(1)
 
-// –¡Šoƒe[ƒuƒ‹
+// å‘³è¦šãƒ†ãƒ¼ãƒ–ãƒ«
 static const u16 palate_tbl[6] = 
 	{ PLT_ALL, PLT_KARAI, PLT_SIBUI, PLT_AMAI, PLT_NIGAI, PLT_SUPPAI };
 
@@ -709,12 +709,12 @@ static void palate_msgGet( TRMEMO_DATA* dat )
 {
 	int	i,pltID,msgID;
 
-	//•¶š—ñƒoƒbƒtƒ@‚ÌŠm•Û
+	//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 	dat->palate.msg = STRBUF_Create( MSGLINE_BUFSIZ, dat->heapID );
 
 	pltID = 0;
 
-	// –¡ŠoD‚İæ“¾FD‚«(=1)‚Íˆêí‚µ‚©‘¶İ‚µ‚È‚¢
+	// å‘³è¦šå¥½ã¿å–å¾—ï¼šå¥½ã(=1)ã¯ä¸€ç¨®ã—ã‹å­˜åœ¨ã—ãªã„
 	for(i=0;i<PLTTYPE_MAX;i++){
 		if( PokeParaLikeTasteCheck( dat->pp, i ) == PLT_LIKE ){
 			pltID = i+1;
@@ -730,14 +730,14 @@ static void palate_msgGet( TRMEMO_DATA* dat )
 #define EGGSTATUS_LIMIT2	( 10 )
 #define EGGSTATUS_LIMIT3	( 40 )
 
-#define EGGSTATUS_BUFSIZ	( MSGLINE_BUFSIZ * 4 )	//Å‘å‚Sƒ‰ƒCƒ“
+#define EGGSTATUS_BUFSIZ	( MSGLINE_BUFSIZ * 4 )	//æœ€å¤§ï¼”ãƒ©ã‚¤ãƒ³
 
 static void eggstatus_msgGet( TRMEMO_DATA* dat ) 
 {
-	int status = PARAM_GET( dat->pp, ID_PARA_friend );		//‚È‚Â‚«“xæ“¾
+	int status = PARAM_GET( dat->pp, ID_PARA_friend );		//ãªã¤ãåº¦å–å¾—
 	int	msgID;
 
-	//•¶š—ñƒoƒbƒtƒ@‚ÌŠm•Û
+	//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 	dat->eggstatus.msg = STRBUF_Create( EGGSTATUS_BUFSIZ, dat->heapID );
 
 	if( status <= EGGSTATUS_LIMIT1 ){
@@ -756,80 +756,80 @@ static void eggstatus_msgGet( TRMEMO_DATA* dat )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒƒ‚ƒ^ƒCƒv‚Ìæ“¾
- * @param	pp		æ“¾‘ÎÛƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- * @return	memoID	ƒgƒŒ[ƒi[ƒƒ‚ƒ^ƒCƒvID
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã‚¿ã‚¤ãƒ—ã®å–å¾—
+ * @param	pp		å–å¾—å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ * @return	memoID	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã‚¿ã‚¤ãƒ—ID
  */
 //----------------------------------------------------------
 //----------------------------------------------------------
-// ƒ^ƒ}ƒS‚©‚Ç‚¤‚©‚Ì”»’è
+// ã‚¿ãƒã‚´ã‹ã©ã†ã‹ã®åˆ¤å®š
 #define if_MONSNO_neq_TAMAGO_pp( pp )	(PARAM_GET( pp, ID_PARA_tamago_flag) == 0)
 #define if_MONSNO_neq_TAMAGO_ppp( ppp )	(PARAM_GETP( ppp, ID_PARA_tamago_flag) == 0)
 
-// ƒ|ƒPƒ‚ƒ“‚ğƒ^ƒ}ƒSó‘Ô‚Å•ß‚Ü‚¦‚½‚©‚Ç‚¤‚©iêŠƒf[ƒ^‚P‚ª0‚Ì‚Íƒ^ƒ}ƒS‚©‚ç›z‚Á‚Ä‚¢‚È‚¢j
+// ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚¿ãƒã‚´çŠ¶æ…‹ã§æ•ã¾ãˆãŸã‹ã©ã†ã‹ï¼ˆå ´æ‰€ãƒ‡ãƒ¼ã‚¿ï¼‘ãŒ0ã®æ™‚ã¯ã‚¿ãƒã‚´ã‹ã‚‰å­µã£ã¦ã„ãªã„ï¼‰
 #define if_GETSTATUS_neq_TAMAGO	(PARAM_GET(pp, ID_PARA_trMemo1place) == 0)
-// ŠO•””z•zƒtƒ‰ƒO‚ª‚n‚m‚©‚Ç‚¤‚©
+// å¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ãŒï¼¯ï¼®ã‹ã©ã†ã‹
 #define if_POKEHAIFU_equ_ON		(PARAM_GET(pp, ID_PARA_event_get_flag) == 1) 
-// êŠ‚P‚Ìˆê’vŠm”F
+// å ´æ‰€ï¼‘ã®ä¸€è‡´ç¢ºèª
 #define if_POKEGET1ID_equ( placeID )	(PARAM_GET(pp, ID_PARA_trMemo1place) == placeID )
-// êŠ‚Q‚Ìˆê’vŠm”F
+// å ´æ‰€ï¼’ã®ä¸€è‡´ç¢ºèª
 #define if_POKEGET2ID_equ( placeID )	(PARAM_GET(pp, ID_PARA_trMemo2place) == placeID )
 
 static int	TrainerMemoIDGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 {
 	int		ret_code	= 0;
 
-	//ƒ^ƒ}ƒS”»’è
+	//ã‚¿ãƒã‚´åˆ¤å®š
 	if( if_MONSNO_neq_TAMAGO_pp( pp ) ){
-		//ƒ|ƒPƒ‚ƒ“—pˆ—
+		//ãƒã‚±ãƒ¢ãƒ³ç”¨å‡¦ç†
 	
-		//ƒ|ƒPƒ‚ƒ“‚ğƒ^ƒ}ƒSó‘Ô‚Å•ß‚Ü‚¦‚½‚©‚Ç‚¤‚©
+		//ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚¿ãƒã‚´çŠ¶æ…‹ã§æ•ã¾ãˆãŸã‹ã©ã†ã‹
 		if( if_GETSTATUS_neq_TAMAGO ){
-			//¬‘Ì‚Åæ“¾‚µ‚½ƒ|ƒPƒ‚ƒ“iêŠƒf[ƒ^‚QQÆj
+			//æˆä½“ã§å–å¾—ã—ãŸãƒã‚±ãƒ¢ãƒ³ï¼ˆå ´æ‰€ãƒ‡ãƒ¼ã‚¿ï¼’å‚ç…§ï¼‰
 			
 			if( if_POKEGET2ID_equ( PLACEID_POKEPARK ) ){
-				// êŠ‚Q‚ªƒ|ƒPƒp[ƒN‚Ìê‡
+				// å ´æ‰€ï¼’ãŒãƒã‚±ãƒ‘ãƒ¼ã‚¯ã®å ´åˆ
 				ret_code = MEMOID_POKETYPE16;
 			} else if( if_POKEHAIFU_equ_ON ){
-				// ŠO•””z•zƒtƒ‰ƒO‚ª‚n‚m‚Ìê‡
-				if( mine == TRUE ){// e‚Æ‚h‚c‚Ìˆê’v”»’è
+				// å¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ãŒï¼¯ï¼®ã®å ´åˆ
+				if( mine == TRUE ){// è¦ªã¨ï¼©ï¼¤ã®ä¸€è‡´åˆ¤å®š
 					ret_code = MEMOID_POKETYPE8;
 				} else {
 					ret_code = MEMOID_POKETYPE9;
 				}
 			} else if( if_POKEGET2ID_equ( PLACEID_NAIBUTUUSINKOUKAN ) ){
-				// êŠ‚Q‚ªƒQ[ƒ€“àŒğŠ·‚Ìê‡
+				// å ´æ‰€ï¼’ãŒã‚²ãƒ¼ãƒ å†…äº¤æ›ã®å ´åˆ
 				ret_code = MEMOID_POKETYPE3;
 			} else {
-				// ‚»‚Ì‘¼’ÊíF•ßŠl“™
-				if( mine == TRUE ){// e‚Æ‚h‚c‚Ìˆê’v”»’è
+				// ãã®ä»–é€šå¸¸ï¼šæ•ç²ç­‰
+				if( mine == TRUE ){// è¦ªã¨ï¼©ï¼¤ã®ä¸€è‡´åˆ¤å®š
 					ret_code = MEMOID_POKETYPE1;
 				} else {
 					ret_code = MEMOID_POKETYPE2;
 				}
 			}
 		} else {
-			//ƒ^ƒ}ƒS‚©‚ç›z‚Á‚½ƒ|ƒPƒ‚ƒ“iêŠƒf[ƒ^‚PQÆj
+			//ã‚¿ãƒã‚´ã‹ã‚‰å­µã£ãŸãƒã‚±ãƒ¢ãƒ³ï¼ˆå ´æ‰€ãƒ‡ãƒ¼ã‚¿ï¼‘å‚ç…§ï¼‰
 			if( if_POKEHAIFU_equ_ON ){
-				// ŠO•””z•zƒtƒ‰ƒO‚ª‚n‚m‚Ìê‡
+				// å¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ãŒï¼¯ï¼®ã®å ´åˆ
 
 				if( if_POKEGET1ID_equ( PLACEID_TUUSINKOUKAN ) ){
-					// êŠ‚P‚ªƒgƒŒ[ƒh‚Ìİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡
-					if( mine == TRUE ){// e‚Æ‚h‚c‚Ìˆê’v”»’è
+					// å ´æ‰€ï¼‘ãŒãƒˆãƒ¬ãƒ¼ãƒ‰ã®è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆ
+					if( mine == TRUE ){// è¦ªã¨ï¼©ï¼¤ã®ä¸€è‡´åˆ¤å®š
 						ret_code = MEMOID_POKETYPE14;
 					} else {
 						ret_code = MEMOID_POKETYPE15;
 					}
 				} else if( if_POKEGET1ID_equ( PLACEID_RENJA ) ){
-					// êŠ‚P‚ªƒŒƒ“ƒWƒƒ[‚Ìİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡
-					if( mine == TRUE ){// e‚Æ‚h‚c‚Ìˆê’v”»’è
+					// å ´æ‰€ï¼‘ãŒãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã®è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆ
+					if( mine == TRUE ){// è¦ªã¨ï¼©ï¼¤ã®ä¸€è‡´åˆ¤å®š
 						ret_code = MEMOID_POKETYPE12;
 					} else {
 						ret_code = MEMOID_POKETYPE13;
 					}
 				} else {
-					// êŠ‚P‚ª‚»‚Ì‘¼‚Ìİ’è‚ª‚³‚ê‚Ä‚¢‚éê‡FƒCƒxƒ“ƒg“™
-					if( mine == TRUE ){// e‚Æ‚h‚c‚Ìˆê’v”»’è
+					// å ´æ‰€ï¼‘ãŒãã®ä»–ã®è¨­å®šãŒã•ã‚Œã¦ã„ã‚‹å ´åˆï¼šã‚¤ãƒ™ãƒ³ãƒˆç­‰
+					if( mine == TRUE ){// è¦ªã¨ï¼©ï¼¤ã®ä¸€è‡´åˆ¤å®š
 						ret_code = MEMOID_POKETYPE10;
 					} else {
 						ret_code = MEMOID_POKETYPE11;
@@ -840,16 +840,16 @@ static int	TrainerMemoIDGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 					||if_POKEGET1ID_equ( PLACEID_SODATEYA )
 					||if_POKEGET1ID_equ( PLACEID_TABI )
 					||if_POKEGET1ID_equ( PLACEID_GEN )
-					||if_POKEGET1ID_equ( PLACEID_SHIRONA ) ){			//08.03.04 PL’Ç‰Á
-					// êŠ‚P‚ªƒQ[ƒ€“àŒğŠ·‚Ìê‡
-					if( mine == TRUE ){// e‚Æ‚h‚c‚Ìˆê’v”»’è
+					||if_POKEGET1ID_equ( PLACEID_SHIRONA ) ){			//08.03.04 PLè¿½åŠ 
+					// å ´æ‰€ï¼‘ãŒã‚²ãƒ¼ãƒ å†…äº¤æ›ã®å ´åˆ
+					if( mine == TRUE ){// è¦ªã¨ï¼©ï¼¤ã®ä¸€è‡´åˆ¤å®š
 						ret_code = MEMOID_POKETYPE6;
 					} else {
 						ret_code = MEMOID_POKETYPE7;
 					}
 				} else {
-					// ‚»‚Ì‘¼F’ÊMŒğŠ·“™
-					if( mine == TRUE ){// e‚Æ‚h‚c‚Ìˆê’v”»’è
+					// ãã®ä»–ï¼šé€šä¿¡äº¤æ›ç­‰
+					if( mine == TRUE ){// è¦ªã¨ï¼©ï¼¤ã®ä¸€è‡´åˆ¤å®š
 						ret_code = MEMOID_POKETYPE4;
 					} else {
 						ret_code = MEMOID_POKETYPE5;
@@ -859,30 +859,30 @@ static int	TrainerMemoIDGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 		}
 		
 	} else {
-		//ƒ^ƒ}ƒS—pˆ—
+		//ã‚¿ãƒã‚´ç”¨å‡¦ç†
 		
-		// e‚Æ‚h‚c‚Ìˆê’v”»’è
-		if( mine == TRUE ){// e‚Æ‚h‚c‚Ìˆê’v”»’è
-			// ©•ª‚Ìƒ^ƒ}ƒSiêŠƒf[ƒ^‚PQÆj
+		// è¦ªã¨ï¼©ï¼¤ã®ä¸€è‡´åˆ¤å®š
+		if( mine == TRUE ){// è¦ªã¨ï¼©ï¼¤ã®ä¸€è‡´åˆ¤å®š
+			// è‡ªåˆ†ã®ã‚¿ãƒã‚´ï¼ˆå ´æ‰€ãƒ‡ãƒ¼ã‚¿ï¼‘å‚ç…§ï¼‰
 			if( if_POKEHAIFU_equ_ON ){
-				// ŠO•””z•zƒtƒ‰ƒO‚ª‚n‚m‚Ìê‡
+				// å¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ãŒï¼¯ï¼®ã®å ´åˆ
 				if( if_POKEGET1ID_equ( PLACEID_RENJA ) ){
-					//ƒŒƒ“ƒWƒƒ[‚Ìê‡
+					//ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã®å ´åˆ
 					ret_code = MEMOID_TAMAGOTYPE5;
 				} else {
 					ret_code = MEMOID_TAMAGOTYPE3;
 				}
 			} else {
-				//’Êíƒ^ƒ}ƒS
+				//é€šå¸¸ã‚¿ãƒã‚´
 				ret_code = MEMOID_TAMAGOTYPE1;
 			}
 		} else {
-			// ‘¼‚©‚ç–á‚Á‚½iêŠƒf[ƒ^‚QQÆj
+			// ä»–ã‹ã‚‰è²°ã£ãŸï¼ˆå ´æ‰€ãƒ‡ãƒ¼ã‚¿ï¼’å‚ç…§ï¼‰
 			if( if_POKEHAIFU_equ_ON ){
-				//ŠO•””z•zƒ^ƒ}ƒS
+				//å¤–éƒ¨é…å¸ƒã‚¿ãƒã‚´
 				ret_code = MEMOID_TAMAGOTYPE4;
 			} else {
-				//’Êíƒ^ƒ}ƒS
+				//é€šå¸¸ã‚¿ãƒã‚´
 				ret_code = MEMOID_TAMAGOTYPE2;
 			}
 		}
@@ -896,10 +896,10 @@ static int	TrainerMemoIDGet( POKEMON_PARAM* pp, BOOL mine, int heapID )
 
 //----------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒƒ‚‚Ìİ’è
- * @param	pp or ppp	İ’è‘ÎÛƒ|ƒPƒ‚ƒ“ƒf[ƒ^
- * @param	setID		İ’è‚h‚c
- * @param	placeID		İ’è’n–¼‚h‚ci•ßŠl‚Ì‚İHj
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã®è¨­å®š
+ * @param	pp or ppp	è¨­å®šå¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+ * @param	setID		è¨­å®šï¼©ï¼¤
+ * @param	placeID		è¨­å®šåœ°åï¼©ï¼¤ï¼ˆæ•ç²ã®ã¿ï¼Ÿï¼‰
  */
 //----------------------------------------------------------
 static void TrainerMemoOyaSet( POKEMON_PASO_PARAM* ppp, MYSTATUS* my, int heapID );
@@ -920,75 +920,75 @@ void	TrainerMemoSetPPP(	POKEMON_PASO_PARAM* ppp, MYSTATUS* my,
 {
 	switch( setID ){
 
-	//’Êíæ“¾i•ßŠl“™j
+	//é€šå¸¸å–å¾—ï¼ˆæ•ç²ç­‰ï¼‰
 	case TRMEMO_POKE_PLACESET:
 		if( placeID > PLACEID_MAX ){
 			placeID = PLACEID_ANOTHERGAME;
 		}
 		if( if_MONSNO_neq_TAMAGO_ppp( ppp ) ){
-			//ƒ|ƒPƒ‚ƒ“
+			//ãƒã‚±ãƒ¢ãƒ³
 			TrainerMemoPlaceDayClr( ppp, DATA1 );
 			TrainerMemoPlaceDaySet( ppp, placeID, DATA2 );
 			TrainerMemoLvlSet( ppp );
 		} else {
-			//ƒ^ƒ}ƒS
+			//ã‚¿ãƒã‚´
 			TrainerMemoPlaceDaySet( ppp, placeID, DATA1 );
 			TrainerMemoPlaceDayClr( ppp, DATA2 );
 		}
 		TrainerMemoOyaSet( ppp, my, heapID );
 		break;
 
-	//ƒQ[ƒ€“àŒğŠ·
+	//ã‚²ãƒ¼ãƒ å†…äº¤æ›
 	case TRMEMO_OFFTRADE_PLACESET:
 		if( if_MONSNO_neq_TAMAGO_ppp( ppp ) ){
-			//ƒ|ƒPƒ‚ƒ“
+			//ãƒã‚±ãƒ¢ãƒ³
 			TrainerMemoPlaceDayClr( ppp, DATA1 );
 			TrainerMemoPlaceDaySet( ppp, PLACEID_NAIBUTUUSINKOUKAN, DATA2 );
 			TrainerMemoLvlSet( ppp );
 		} else {
-			//ƒ^ƒ}ƒS
+			//ã‚¿ãƒã‚´
 			TrainerMemoPlaceDayClr( ppp, DATA1 );
 			TrainerMemoPlaceDaySet( ppp, PLACEID_NAIBUTUUSINKOUKAN, DATA2 );
 		}
 		break;
 
-	//ƒ|ƒPƒp[ƒN
+	//ãƒã‚±ãƒ‘ãƒ¼ã‚¯
 	case TRMEMO_POKEPARK_PLACESET:
-		//ƒ|ƒPƒ‚ƒ“
+		//ãƒã‚±ãƒ¢ãƒ³
 		TrainerMemoPlaceDayClr( ppp, DATA1 );
 		TrainerMemoPlaceDaySet( ppp, PLACEID_POKEPARK, DATA2 );
 		TrainerMemoLvlSet( ppp );
 		break;
 
-	//ˆç‚Ä‰®iƒ^ƒ}ƒS‚Ì‚İj
+	//è‚²ã¦å±‹ï¼ˆã‚¿ãƒã‚´ã®ã¿ï¼‰
 	case TRMEMO_SODATEYA_PLACESET:
 		TrainerMemoPlaceDaySet( ppp, placeID, DATA1 );
 		TrainerMemoPlaceDayClr( ppp, DATA2 );
 		TrainerMemoOyaSet( ppp, my, heapID );
 		break;
 
-	//ŠO•””z•z
+	//å¤–éƒ¨é…å¸ƒ
 	case TRMEMO_FUSHIGI_PLACESET:
-		//e‚Ì–¼‘OA‚h‚cA«•Ê‚ÍƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ª‘O’ñ
+		//è¦ªã®åå‰ã€ï¼©ï¼¤ã€æ€§åˆ¥ã¯ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã“ã¨ãŒå‰æ
 		if( PokemonOyaCheckPPP( ppp, my, heapID ) == TRUE ){
 			if( if_MONSNO_neq_TAMAGO_ppp( ppp ) ){
-				//ƒ|ƒPƒ‚ƒ“
+				//ãƒã‚±ãƒ¢ãƒ³
 				TrainerMemoPlaceDayClr( ppp, DATA1 );
 				TrainerMemoPlaceDaySet( ppp, placeID, DATA2 );
 				TrainerMemoLvlSet( ppp );
 			} else {
-				//ƒ^ƒ}ƒS
+				//ã‚¿ãƒã‚´
 				TrainerMemoPlaceDaySet( ppp, placeID, DATA1 );
 				TrainerMemoPlaceDayClr( ppp, DATA2 );
 			}
 		} else {
 			if( if_MONSNO_neq_TAMAGO_ppp( ppp ) ){
-				//ƒ|ƒPƒ‚ƒ“
+				//ãƒã‚±ãƒ¢ãƒ³
 				TrainerMemoPlaceDayClr( ppp, DATA1 );
 				TrainerMemoPlaceDaySet( ppp, placeID, DATA2 );
 				TrainerMemoLvlSet( ppp );
 			} else {
-				//ƒ^ƒ}ƒS
+				//ã‚¿ãƒã‚´
 				TrainerMemoPlaceDayClr( ppp, DATA1 );
 				TrainerMemoPlaceDaySet( ppp, placeID, DATA2 );
 			}
@@ -996,24 +996,24 @@ void	TrainerMemoSetPPP(	POKEMON_PASO_PARAM* ppp, MYSTATUS* my,
 		TrainerMemoEvfSet( ppp );
 		break;
 
-	//’ÊMŒğŠ·
+	//é€šä¿¡äº¤æ›
 	case TRMEMO_ONTRADE_PLACESET:
 		if( if_MONSNO_neq_TAMAGO_ppp( ppp ) ){
-			//ƒ|ƒPƒ‚ƒ“iˆ—‚È‚µj
+			//ãƒã‚±ãƒ¢ãƒ³ï¼ˆå‡¦ç†ãªã—ï¼‰
 		} else {
-			//ƒ^ƒ}ƒS
+			//ã‚¿ãƒã‚´
 			TrainerMemoPlaceDaySet( ppp, PLACEID_TUUSINKOUKAN, DATA2 );
 		}
 		break;
 
-	//ƒ^ƒ}ƒS›z‰»
+	//ã‚¿ãƒã‚´å­µåŒ–
 	case TRMEMO_EGGBIRTH_PLACESET:
 		if( placeID > PLACEID_MAX ){
 			placeID = PLACEID_ANOTHERGAME;
 		}
 		if( PokemonOyaCheckPPP( ppp, my, heapID ) == FALSE ){
 			{
-				//–á‚Á‚½ƒ^ƒ}ƒS
+				//è²°ã£ãŸã‚¿ãƒã‚´
 				int data;
 
 				data = PARAM_GETP( ppp, ID_PARA_trMemo2place );
@@ -1033,7 +1033,7 @@ void	TrainerMemoSetPPP(	POKEMON_PASO_PARAM* ppp, MYSTATUS* my,
 }
 
 //----------------------------------------------------------
-// e‚Ìİ’è
+// è¦ªã®è¨­å®š
 static void TrainerMemoOyaSet( POKEMON_PASO_PARAM* ppp, MYSTATUS* my, int heapID )
 {
 	int	myID	= MyStatus_GetID( my );
@@ -1048,14 +1048,14 @@ static void TrainerMemoOyaSet( POKEMON_PASO_PARAM* ppp, MYSTATUS* my, int heapID
 }
 
 //----------------------------------------------------------
-// êŠ‚Æ“ú•t‚Ìİ’è
+// å ´æ‰€ã¨æ—¥ä»˜ã®è¨­å®š
 static void TrainerMemoPlaceDaySet( POKEMON_PASO_PARAM* ppp, int placeID, int datanum )
 {
 	RTCDate	rtc_d;
 
 	GF_RTC_GetDate(&rtc_d);
 
-	//•ßŠlî•ñ‚ğƒZƒbƒg
+	//æ•ç²æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	if( datanum == DATA1 ){
 		PARAM_PUTP( ppp, ID_PARA_trMemo1place,	&placeID );
 		PARAM_PUTP( ppp, ID_PARA_trMemo1year,	&rtc_d.year );
@@ -1070,7 +1070,7 @@ static void TrainerMemoPlaceDaySet( POKEMON_PASO_PARAM* ppp, int placeID, int da
 }
 
 //----------------------------------------------------------
-// êŠ“ú•t‚ÌƒNƒŠƒA
+// å ´æ‰€æ—¥ä»˜ã®ã‚¯ãƒªã‚¢
 static void TrainerMemoPlaceDayClr( POKEMON_PASO_PARAM* ppp, int datanum )
 {
 	int data = 0;
@@ -1088,7 +1088,7 @@ static void TrainerMemoPlaceDayClr( POKEMON_PASO_PARAM* ppp, int datanum )
 	}
 }
 //----------------------------------------------------------
-// ƒŒƒxƒ‹‚Ìİ’è
+// ãƒ¬ãƒ™ãƒ«ã®è¨­å®š
 static void TrainerMemoLvlSet( POKEMON_PASO_PARAM* ppp )
 {
 	int level = PARAM_GETP( ppp, ID_PARA_level );
@@ -1096,7 +1096,7 @@ static void TrainerMemoLvlSet( POKEMON_PASO_PARAM* ppp )
 	PARAM_PUTP( ppp, ID_PARA_get_level, &level );
 }
 //----------------------------------------------------------
-// ŠO•””z•zƒtƒ‰ƒO‚Ìİ’è
+// å¤–éƒ¨é…å¸ƒãƒ•ãƒ©ã‚°ã®è¨­å®š
 static void TrainerMemoEvfSet( POKEMON_PASO_PARAM* ppp )
 {
 	int event_get_flag = 1;

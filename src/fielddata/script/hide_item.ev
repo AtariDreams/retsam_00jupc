@@ -1,5 +1,5 @@
 //====================================================================
-//							‰B‚µƒAƒCƒeƒ€
+//							éš ã—ã‚¢ã‚¤ãƒ†ãƒ 
 //====================================================================
 	.text
 
@@ -7,13 +7,13 @@
 	.include	"../../../include/msgdata/msg_hide_item.h"
 
 //--------------------------------------------------------------------
-//						ƒXƒNƒŠƒvƒg–{‘Ì
+//						ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//						ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//						ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
-//‰B‚µƒAƒCƒeƒ€Å‘å” = 256
+//éš ã—ã‚¢ã‚¤ãƒ†ãƒ æœ€å¤§æ•° = 256
 _EVENT_DATA		ev_hide_item_0
 _EVENT_DATA		ev_hide_item_1
 _EVENT_DATA		ev_hide_item_2
@@ -270,7 +270,7 @@ _EVENT_DATA		ev_hide_item_252
 _EVENT_DATA		ev_hide_item_253
 _EVENT_DATA		ev_hide_item_254
 _EVENT_DATA		ev_hide_item_255
-_EVENT_DATA		ev_hide_item_256			//ƒvƒ‰ƒ`ƒi’Ç‰Á
+_EVENT_DATA		ev_hide_item_256			//ãƒ—ãƒ©ãƒãƒŠè¿½åŠ 
 _EVENT_DATA		ev_hide_item_257
 _EVENT_DATA		ev_hide_item_258
 _EVENT_DATA		ev_hide_item_259
@@ -298,20 +298,20 @@ _EVENT_DATA		ev_hide_item_280
 _EVENT_DATA		ev_hide_item_281
 _EVENT_DATA		ev_hide_item_282
 _EVENT_DATA		ev_hide_item_283
-_EVENT_DATA_END				//I—¹
+_EVENT_DATA_END				//çµ‚äº†
 
 
 /********************************************************************/
-//						‰B‚µƒAƒCƒeƒ€Žæ“¾
+//						éš ã—ã‚¢ã‚¤ãƒ†ãƒ å–å¾—
 //
-//	SCWK_TEMP0	ƒAƒCƒeƒ€ƒiƒ“ƒo[
-//	SCWK_TEMP1	ŒÂ”
-//	SCWK_TEMP2	ƒtƒ‰ƒOƒiƒ“ƒo[
+//	SCWK_TEMP0	ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+//	SCWK_TEMP1	å€‹æ•°
+//	SCWK_TEMP2	ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
 //
-//	ƒXƒNƒŠƒvƒg‚Éƒf[ƒ^‚ð“n‚·Žž‚ÉA
-//	SCWK_PARAM0,1,2‚àŽg—p‚µ‚Ä‚¢‚éI
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«ãƒ‡ãƒ¼ã‚¿ã‚’æ¸¡ã™æ™‚ã«ã€
+//	SCWK_PARAM0,1,2ã‚‚ä½¿ç”¨ã—ã¦ã„ã‚‹ï¼
 /********************************************************************/
-//‰B‚µƒAƒCƒeƒ€Å‘å” = 256
+//éš ã—ã‚¢ã‚¤ãƒ†ãƒ æœ€å¤§æ•° = 256
 ev_hide_item_0:
 ev_hide_item_1:
 ev_hide_item_2:
@@ -599,35 +599,35 @@ ev_hide_item_283:
 
 	//_TALK_START
 
-	_SE_WAIT		SEQ_SE_DP_SELECT							//˜b‚µ‚©‚¯ŠJŽn‰¹‚ÌI—¹‘Ò‚¿
+	_SE_WAIT		SEQ_SE_DP_SELECT							//è©±ã—ã‹ã‘é–‹å§‹éŸ³ã®çµ‚äº†å¾…ã¡
 
-	//ƒpƒ‰ƒ[ƒ^•Û‘¶
-	_LDWK			SCWK_TEMP0,SCWK_PARAM0						//ƒAƒCƒeƒ€ƒiƒ“ƒo[
-	_LDWK			SCWK_TEMP1,SCWK_PARAM1						//ŒÂ”
-	_LDWK			SCWK_TEMP2,SCWK_PARAM2						//ƒtƒ‰ƒOƒiƒ“ƒo[
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¿å­˜
+	_LDWK			SCWK_TEMP0,SCWK_PARAM0						//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+	_LDWK			SCWK_TEMP1,SCWK_PARAM1						//å€‹æ•°
+	_LDWK			SCWK_TEMP2,SCWK_PARAM2						//ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
 
-	//ƒAƒCƒeƒ€ƒiƒ“ƒo[‚ªITEM_COIN‚È‚çƒRƒCƒ“Žæ“¾ˆ—‚Ö
+	//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ãŒITEM_COINãªã‚‰ã‚³ã‚¤ãƒ³å–å¾—å‡¦ç†ã¸
 	//_IFVAL_JUMP	SCWK_TEMP0,EQ,ITEM_COIN,ev_hide_item_coin
 
-	//ƒAƒCƒeƒ€‚ð‰Á‚¦‚ç‚ê‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚’åŠ ãˆã‚‰ã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 
-	//Žæ“¾Œ‹‰Ê‚ÅƒƒbƒZ[ƒW‚ð•ªŠò‚³‚¹‚é
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_itemget_hideitem_true	//¬Œ÷
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_itemget_hideitem_false	//Ž¸”s
+	//å–å¾—çµæžœã§ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’åˆ†å²ã•ã›ã‚‹
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_itemget_hideitem_true	//æˆåŠŸ
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_itemget_hideitem_false	//å¤±æ•—
 	_END
 
 //--------------------------------------------------------------------
-//	I—¹
+//	çµ‚äº†
 //--------------------------------------------------------------------
 ev_hide_item_end:
 	_TALK_CLOSE
 	//_TALK_END
-	//_CHG_LOCAL_SCR											//ƒ[ƒJƒ‹ƒXƒNƒŠƒvƒg‚ÉØ‚è‘Ö‚¦
+	//_CHG_LOCAL_SCR											//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«åˆ‡ã‚Šæ›¿ãˆ
 	_END
 
 //--------------------------------------------------------------------
-//	“üŽè¬Œ÷
+//	å…¥æ‰‹æˆåŠŸ
 //--------------------------------------------------------------------
 ev_itemget_hideitem_true:
 	_CHG_COMMON_SCR SCRID_POCKET_ME_SET
@@ -635,10 +635,10 @@ ev_itemget_hideitem_true:
 	_TV_ENTRY_WATCH_HIDE_ITEM	SCWK_TEMP0
 	_ADD_ITEM		SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 
-	//“üŽè‚µ‚½ƒAƒCƒeƒ€‚ª‹Zƒ}ƒVƒ“‚©ƒ`ƒFƒbƒN
+	//å…¥æ‰‹ã—ãŸã‚¢ã‚¤ãƒ†ãƒ ãŒæŠ€ãƒžã‚·ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
 	_WAZA_ITEM_CHK	SCWK_TEMP0,SCWK_ANSWER
 
-	//ƒƒbƒZ[ƒW•ªŠò
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_itemget_hideitem_yes_wazam
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_itemget_hideitem_no_wazam
 	_END
@@ -647,14 +647,14 @@ ev_itemget_hideitem_true_2:
 	//_TALK_WAIT
 	_ME_WAIT
 
-	//ƒAƒEƒX‚ÌƒvƒŒ[ƒg‚Ìƒ`ƒFƒbƒN‚ð‚µ‚Äê—pƒƒbƒZ[ƒW‚ðo‚·
+	//ã‚¢ã‚¦ã‚¹ã®ãƒ—ãƒ¬ãƒ¼ãƒˆã®ãƒã‚§ãƒƒã‚¯ã‚’ã—ã¦å°‚ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™
 	_AUSU_ITEM_CHECK	SCWK_TEMP0,SCWK_ANSWER
 	_IFVAL_CALL		SCWK_ANSWER,EQ,1,ev_itemget_hide_item_item_ausunopureeto
 
 	_PLAYER_NAME	0
 	_ITEM_NAME		1,SCWK_TEMP0
 
-	//ƒ|ƒPƒbƒgƒiƒ“ƒo[‚ðSCWK_ANSWER‚É‘ã“ü
+	//ãƒã‚±ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’SCWK_ANSWERã«ä»£å…¥
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 
 	_SWITCH			SCWK_ANSWER
@@ -669,56 +669,56 @@ ev_itemget_hideitem_true_2:
 	_END
 
 hideitem_bag_poke_10:
-	//ƒ|ƒPƒbƒgƒiƒ“ƒo[‚ðSCWK_ANSWER‚É‘ã“ü
+	//ãƒã‚±ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’SCWK_ANSWERã«ä»£å…¥
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_itemget_hideitem_common_10
 	_END
 
 hideitem_bag_poke_11:
-	//ƒ|ƒPƒbƒgƒiƒ“ƒo[‚ðSCWK_ANSWER‚É‘ã“ü
+	//ãƒã‚±ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’SCWK_ANSWERã«ä»£å…¥
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_itemget_hideitem_common_10
 	_END
 
 hideitem_bag_poke_12:
-	//ƒ|ƒPƒbƒgƒiƒ“ƒo[‚ðSCWK_ANSWER‚É‘ã“ü
+	//ãƒã‚±ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’SCWK_ANSWERã«ä»£å…¥
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_itemget_hideitem_common_10
 	_END
 
 hideitem_bag_poke_13:
-	//ƒ|ƒPƒbƒgƒiƒ“ƒo[‚ðSCWK_ANSWER‚É‘ã“ü
+	//ãƒã‚±ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’SCWK_ANSWERã«ä»£å…¥
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_itemget_hideitem_common_10
 	_END
 
 hideitem_bag_poke_14:
-	//ƒ|ƒPƒbƒgƒiƒ“ƒo[‚ðSCWK_ANSWER‚É‘ã“ü
+	//ãƒã‚±ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’SCWK_ANSWERã«ä»£å…¥
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_itemget_hideitem_common_10
 	_END
 
 hideitem_bag_poke_15:
-	//ƒ|ƒPƒbƒgƒiƒ“ƒo[‚ðSCWK_ANSWER‚É‘ã“ü
+	//ãƒã‚±ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’SCWK_ANSWERã«ä»£å…¥
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_itemget_hideitem_common_10
 	_END
 
 hideitem_bag_poke_16:
-	//ƒ|ƒPƒbƒgƒiƒ“ƒo[‚ðSCWK_ANSWER‚É‘ã“ü
+	//ãƒã‚±ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’SCWK_ANSWERã«ä»£å…¥
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_itemget_hideitem_common_10
 	_END
 
 hideitem_bag_poke_17:
-	//ƒ|ƒPƒbƒgƒiƒ“ƒo[‚ðSCWK_ANSWER‚É‘ã“ü
+	//ãƒã‚±ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’SCWK_ANSWERã«ä»£å…¥
 	_GET_POCKET_NO	SCWK_TEMP0,SCWK_ANSWER
 	_POCKET_NAME	2,SCWK_ANSWER
 	_JUMP			ev_itemget_hideitem_common_10
@@ -726,25 +726,25 @@ hideitem_bag_poke_17:
 
 //
 ev_itemget_hideitem_common_10:
-	//‰B‚µƒAƒCƒeƒ€Žæ“¾‚s‚u‚ðƒZƒbƒg
+	//éš ã—ã‚¢ã‚¤ãƒ†ãƒ å–å¾—ï¼´ï¼¶ã‚’ã‚»ãƒƒãƒˆ
 	//_PROGRAM		KAKUSHI_ITEM_TV_SET
 
-	//ƒ[ƒN‚Ì’l‚ðƒtƒ‰ƒOƒiƒ“ƒo[‚Æ‚µ‚Äƒtƒ‰ƒOƒZƒbƒg
+	//ãƒ¯ãƒ¼ã‚¯ã®å€¤ã‚’ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼ã¨ã—ã¦ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 	_FLAG_SET_WK	SCWK_TEMP2
 
 	_TALKMSG		msg_hide_item_get_10
 	_LAST_KEYWAIT
 
-	//ÅŒã‚É¬Œ÷‚µ‚½‚±‚Æ‚ðSCWK_ANSWER‚É‘ã“ü‚µ‚Ä‚¨‚­I
+	//æœ€å¾Œã«æˆåŠŸã—ãŸã“ã¨ã‚’SCWK_ANSWERã«ä»£å…¥ã—ã¦ãŠãï¼
 	_LDVAL			SCWK_ANSWER,1
 
 	_JUMP			ev_hide_item_end
 	_END
 
 //--------------------------------------------------------------------
-//	‹Zƒ}ƒVƒ“‚©‚É‚æ‚Á‚ÄƒƒbƒZ[ƒW•ªŠò
+//	æŠ€ãƒžã‚·ãƒ³ã‹ã«ã‚ˆã£ã¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆ†å²
 //--------------------------------------------------------------------
-//u‹Zƒ}ƒVƒ“v
+//ã€ŒæŠ€ãƒžã‚·ãƒ³ã€
 ev_itemget_hideitem_yes_wazam:
 	_PLAYER_NAME	0
 	_ITEM_NAME		1,SCWK_TEMP0
@@ -753,7 +753,7 @@ ev_itemget_hideitem_yes_wazam:
 	_JUMP			ev_itemget_hideitem_true_2
 	_END
 
-//u‹Zƒ}ƒVƒ“vˆÈŠO
+//ã€ŒæŠ€ãƒžã‚·ãƒ³ã€ä»¥å¤–
 ev_itemget_hideitem_no_wazam:
 	_PLAYER_NAME	0
 	_ITEM_NAME		1,SCWK_TEMP0
@@ -762,21 +762,21 @@ ev_itemget_hideitem_no_wazam:
 	_END
 
 //--------------------------------------------------------------------
-//	“üŽèŽ¸”s
+//	å…¥æ‰‹å¤±æ•—
 //--------------------------------------------------------------------
 ev_itemget_hideitem_false:
 	_ITEM_NAME		0,SCWK_TEMP0
 	_TALKMSG		msg_hide_item_get_05
 	_LAST_KEYWAIT
 
-	//ÅŒã‚ÉŽ¸”s‚µ‚½‚±‚Æ‚ðSCWK_ANSWER‚É‘ã“ü‚µ‚Ä‚¨‚­I
+	//æœ€å¾Œã«å¤±æ•—ã—ãŸã“ã¨ã‚’SCWK_ANSWERã«ä»£å…¥ã—ã¦ãŠãï¼
 	_LDVAL			SCWK_ANSWER,0
 
 	_JUMP			ev_hide_item_end
 	_END
 
 //--------------------------------------------------------------------
-//ƒAƒEƒX‚ÌƒvƒŒ[ƒg‚Ìƒ`ƒFƒbƒN‚ð‚µ‚Äê—pƒƒbƒZ[ƒW‚ðo‚·
+//ã‚¢ã‚¦ã‚¹ã®ãƒ—ãƒ¬ãƒ¼ãƒˆã®ãƒã‚§ãƒƒã‚¯ã‚’ã—ã¦å°‚ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™
 //--------------------------------------------------------------------
 ev_itemget_hide_item_item_ausunopureeto:
 	_CHG_COMMON_SCR SCRID_PLATE_MSG

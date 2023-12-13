@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	res_tool.c
- * @brief	Œ‹‰Ê”­•\‰æ–Êƒc[ƒ‹—Þ
+ * @brief	çµæžœç™ºè¡¨ç”»é¢ãƒ„ãƒ¼ãƒ«é¡ž
  * @author	matsuda
- * @date	2006.03.17(‹à)
+ * @date	2006.03.17(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -49,114 +49,114 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒEƒBƒ“ƒhƒE‚ðŠJ‚­Å‘åƒhƒbƒg”
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ãæœ€å¤§ãƒ‰ãƒƒãƒˆæ•°
 #define WNDOPEN_EFF_OPEN_Y_DOT		(12*8)
-///ƒEƒBƒ“ƒhƒE‚ðŠJ‚­‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ãé€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define WNDOPEN_EFF_ADD_Y			(0x0400)
 
-///ƒ|ƒPƒ‚ƒ“ƒXƒ‰ƒCƒhFˆÚ“®‘¬“xX(‰ºˆÊ8ƒrƒbƒg¬”)
+///ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ©ã‚¤ãƒ‰ï¼šç§»å‹•é€Ÿåº¦X(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define POKESLIDE_ADD_X		(0x0800)
 
-///Ž†‚Ó‚Ô‚«‚ÌƒAƒjƒƒpƒ^[ƒ“”
+///ç´™ãµã¶ãã®ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°
 #define CONFETTI_ANM_NUM		(0x9)
 
-///Ž†‚Ó‚Ô‚«‰Šú¶¬”
+///ç´™ãµã¶ãåˆæœŸç”Ÿæˆæ•°
 #define CONFETTI_INIT_CREATE_NUM	(8)
-///Ž†‚Ó‚Ô‚«“¯Žž¶¬Å‘å”
+///ç´™ãµã¶ãåŒæ™‚ç”Ÿæˆæœ€å¤§æ•°
 #define CONFETTI_CREATE_MAX		(48)
-///Ž†‚Ó‚Ô‚«¶¬ŠÔŠu
+///ç´™ãµã¶ãç”Ÿæˆé–“éš”
 #define CONFETTI_CREATE_WAIT	(4)
 
-///Ž†‚Ó‚Ô‚«F¶¬ŠJŽnÀ•WY
+///ç´™ãµã¶ãï¼šç”Ÿæˆé–‹å§‹åº§æ¨™Y
 #define CONFETTI_START_Y		(-16)	//(192/2 - WNDOPEN_EFF_OPEN_Y_DOT/2 - 16)
-///Ž†‚Ó‚Ô‚«F¶¬ŠJŽnÀ•WYƒ‰ƒ“ƒ_ƒ€’l
+///ç´™ãµã¶ãï¼šç”Ÿæˆé–‹å§‹åº§æ¨™Yãƒ©ãƒ³ãƒ€ãƒ å€¤
 #define CONFETTI_START_Y_RND	(96-32 - 16)
-///Ž†‚Ó‚Ô‚«FI—¹À•WY
+///ç´™ãµã¶ãï¼šçµ‚äº†åº§æ¨™Y
 #define CONFETTI_END_Y			(192+16)	//(192/2 + WNDOPEN_EFF_OPEN_Y_DOT/2 + 16)
-///Ž†‚Ó‚Ô‚«FX•ûŒüÅ’áˆÚ“®‘¬“x(‰ºˆÊ8ƒrƒbƒg¬”)
+///ç´™ãµã¶ãï¼šXæ–¹å‘æœ€ä½Žç§»å‹•é€Ÿåº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define CONFETTI_ADD_X			(0x0060)
-///Ž†‚Ó‚Ô‚«FX•ûŒüƒ‰ƒ“ƒ_ƒ€ˆÚ“®‘¬“x
+///ç´™ãµã¶ãï¼šXæ–¹å‘ãƒ©ãƒ³ãƒ€ãƒ ç§»å‹•é€Ÿåº¦
 #define CONFETTI_RND_X			(0x0200)
-///Ž†‚Ó‚Ô‚«FY•ûŒüˆÚ“®‘¬“x
+///ç´™ãµã¶ãï¼šYæ–¹å‘ç§»å‹•é€Ÿåº¦
 #define CONFETTI_ADD_Y			(0x0280)
-///Ž†‚Ó‚Ô‚«FSinƒJ[ƒuÅ’áŠp“x‰ÁŽZ’l(‰ºˆÊ8ƒrƒbƒg¬”)
+///ç´™ãµã¶ãï¼šSinã‚«ãƒ¼ãƒ–æœ€ä½Žè§’åº¦åŠ ç®—å€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 #define CONFETTI_ADD_ANGLE		(0x0100)
-///Ž†‚Ó‚Ô‚«FSinƒJ[ƒuŠp“x‰ÁŽZƒ‰ƒ“ƒ_ƒ€’l
+///ç´™ãµã¶ãï¼šSinã‚«ãƒ¼ãƒ–è§’åº¦åŠ ç®—ãƒ©ãƒ³ãƒ€ãƒ å€¤
 #define CONFETTI_RND_ANGLE		(0x0300)
-///Ž†‚Ó‚Ô‚«FSinƒJ[ƒu‚Ó‚è•
+///ç´™ãµã¶ãï¼šSinã‚«ãƒ¼ãƒ–ãµã‚Šå¹…
 #define CONFETTI_FURIHABA_X		(16)
-///Ž†‚Ó‚Ô‚«FSinƒJ[ƒu‚Ó‚è•ƒ‰ƒ“ƒ_ƒ€’l
+///ç´™ãµã¶ãï¼šSinã‚«ãƒ¼ãƒ–ãµã‚Šå¹…ãƒ©ãƒ³ãƒ€ãƒ å€¤
 #define CONFETTI_FURIHABA_X_RND	(24)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒAƒNƒeƒBƒuƒ‚[ƒhŒvŽZ”ä—¦(®”100”{AˆÈ‰º¬”)FƒrƒWƒ…ƒAƒ‹
+///ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãƒ¢ãƒ¼ãƒ‰è¨ˆç®—æ¯”çŽ‡(æ•´æ•°100å€ã€ä»¥ä¸‹å°æ•°)ï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«
 #define CONRESULT_GAME_PERCENT_ACTIVE_VISUAL	(70 * 100)
-///ƒAƒNƒeƒBƒuƒ‚[ƒhŒvŽZ”ä—¦(®”100”{AˆÈ‰º¬”)Fƒ_ƒ“ƒX
+///ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãƒ¢ãƒ¼ãƒ‰è¨ˆç®—æ¯”çŽ‡(æ•´æ•°100å€ã€ä»¥ä¸‹å°æ•°)ï¼šãƒ€ãƒ³ã‚¹
 #define CONRESULT_GAME_PERCENT_ACTIVE_DANCE		(30 * 100)
 
-///ƒ`ƒƒ[ƒ€ƒ‚[ƒhŒvŽZ”ä—¦(®”100”{AˆÈ‰º¬”)FƒrƒWƒ…ƒAƒ‹
+///ãƒãƒ£ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰è¨ˆç®—æ¯”çŽ‡(æ•´æ•°100å€ã€ä»¥ä¸‹å°æ•°)ï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«
 #define CONRESULT_GAME_PERCENT_CHARM_VISUAL		(60 * 100)
-///ƒ`ƒƒ[ƒ€ƒ‚[ƒhŒvŽZ”ä—¦(®”100”{AˆÈ‰º¬”)F‰‰‹Z
+///ãƒãƒ£ãƒ¼ãƒ ãƒ¢ãƒ¼ãƒ‰è¨ˆç®—æ¯”çŽ‡(æ•´æ•°100å€ã€ä»¥ä¸‹å°æ•°)ï¼šæ¼”æŠ€
 #define CONRESULT_GAME_PERCENT_CHARM_ACTIN		(40 * 100)
 
-///ƒOƒ‰ƒ“ƒhƒ‚[ƒhŒvŽZ”ä—¦(®”100”{AˆÈ‰º¬”)FƒrƒWƒ…ƒAƒ‹
+///ã‚°ãƒ©ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰è¨ˆç®—æ¯”çŽ‡(æ•´æ•°100å€ã€ä»¥ä¸‹å°æ•°)ï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«
 #define CONRESULT_GAME_PERCENT_GRAND_VISUAL		(3333)	//(50 * 100)
-///ƒOƒ‰ƒ“ƒhƒ‚[ƒhŒvŽZ”ä—¦(®”100”{AˆÈ‰º¬”)Fƒ_ƒ“ƒX
+///ã‚°ãƒ©ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰è¨ˆç®—æ¯”çŽ‡(æ•´æ•°100å€ã€ä»¥ä¸‹å°æ•°)ï¼šãƒ€ãƒ³ã‚¹
 #define CONRESULT_GAME_PERCENT_GRAND_DANCE		(3333)	//(20 * 100)
-///ƒOƒ‰ƒ“ƒhƒ‚[ƒhŒvŽZ”ä—¦(®”100”{AˆÈ‰º¬”)F‰‰‹Z
+///ã‚°ãƒ©ãƒ³ãƒ‰ãƒ¢ãƒ¼ãƒ‰è¨ˆç®—æ¯”çŽ‡(æ•´æ•°100å€ã€ä»¥ä¸‹å°æ•°)ï¼šæ¼”æŠ€
 #define CONRESULT_GAME_PERCENT_GRAND_ACTIN		(3333)	//(30 * 100)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒEƒBƒ“ƒhƒE‹@”\‚ÌŠJ‚¯•Â‚¶ƒGƒtƒFƒNƒg—pƒ[ƒN
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ©Ÿèƒ½ã®é–‹ã‘é–‰ã˜ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	CONRES_PROC_WORK *rpw;		///<Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u8 *end_flag;				///<I—¹ƒtƒ‰ƒO‚ðƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	CONRES_PROC_WORK *rpw;		///<çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 *end_flag;				///<çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	s32 y1;						///<ƒEƒBƒ“ƒhƒEÀ•WY(ã‘¤)F‰ºˆÊ8ƒrƒbƒg¬”
-	s32 y2;						///<ƒEƒBƒ“ƒhƒEÀ•WY(‰º‘¤)F‰ºˆÊ8ƒrƒbƒg¬”
+	s32 y1;						///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åº§æ¨™Y(ä¸Šå´)ï¼šä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°
+	s32 y2;						///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åº§æ¨™Y(ä¸‹å´)ï¼šä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°
 	
-	u8 seq;						///<ƒV[ƒPƒ“ƒX”Ô†
+	u8 seq;						///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 }WNDOPEN_EFF_WORK;
 
-///ƒ|ƒPƒ‚ƒ“ƒXƒ‰ƒCƒh“oêƒGƒtƒFƒNƒg—pƒ[ƒN
+///ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ©ã‚¤ãƒ‰ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	SOFT_SPRITE *ss;		///<‘ÎÛ‚Ìƒ|ƒPƒ‚ƒ“ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u8 *end_flag;			///<I—¹ƒtƒ‰ƒO‚ðƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	SOFT_SPRITE *ss;		///<å¯¾è±¡ã®ãƒã‚±ãƒ¢ãƒ³ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 *end_flag;			///<çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	s32 x;					///<À•WX(‰ºˆÊ8ƒrƒbƒg¬”)
-	s32 y;					///<À•WY(‰ºˆÊ8ƒrƒbƒg¬”)
+	s32 x;					///<åº§æ¨™X(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s32 y;					///<åº§æ¨™Y(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 
-	u8 seq;					///<ƒV[ƒPƒ“ƒX”Ô†
+	u8 seq;					///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 }POKESLIDE_EFF_WORK;
 
-///Ž†‚Ó‚Ô‚«¶¬ŠÇ—ƒ^ƒXƒN—pƒ[ƒN
+///ç´™ãµã¶ãç”Ÿæˆç®¡ç†ã‚¿ã‚¹ã‚¯ç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	CONRES_PROC_WORK *rpw;
 	s16 wait;
 }CONFETTI_CREATE_WORK;
 
-///Ž†‚Ó‚Ô‚«ƒAƒNƒ^[“®ì—pƒ[ƒN
+///ç´™ãµã¶ãã‚¢ã‚¯ã‚¿ãƒ¼å‹•ä½œç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	CONRES_PROC_WORK *rpw;		///<Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	CATS_ACT_PTR cap;			///<Ž†‚Ó‚Ô‚«ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	s32 x;						///<•\Ž¦À•WX(‰ºˆÊ8ƒrƒbƒg¬”)
-	s32 y;						///<•\Ž¦À•WY(‰ºˆÊ8ƒrƒbƒg¬”)
-	s16 dx;						///<•\Ž¦ƒIƒtƒZƒbƒgÀ•WX
-	s16 furihaba;				///<SinƒJ[ƒu‚Ó‚è•
-	s32 add_x;					///<À•WX‰ÁŽZ’l(‰ºˆÊ8ƒrƒbƒg¬”)
-	s32 add_angle;				///<Šp“x‰ÁŽZ’l(‰ºˆÊ8ƒrƒbƒg¬”)
-	s32 angle;					///<Œ»ÝŠp“x(‰ºˆÊ8ƒrƒbƒg¬”)
+	CONRES_PROC_WORK *rpw;		///<çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	CATS_ACT_PTR cap;			///<ç´™ãµã¶ãã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	s32 x;						///<è¡¨ç¤ºåº§æ¨™X(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s32 y;						///<è¡¨ç¤ºåº§æ¨™Y(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s16 dx;						///<è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™X
+	s16 furihaba;				///<Sinã‚«ãƒ¼ãƒ–ãµã‚Šå¹…
+	s32 add_x;					///<åº§æ¨™XåŠ ç®—å€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s32 add_angle;				///<è§’åº¦åŠ ç®—å€¤(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
+	s32 angle;					///<ç¾åœ¨è§’åº¦(ä¸‹ä½8ãƒ“ãƒƒãƒˆå°æ•°)
 }CONFETTI_WORK;
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void RT_MessageTagExpand(CONRES_PROC_WORK *rpw, int msg_tag, const CRTAG_PARAM *tagpara);
 static void RT_TalkMessageSet(CONRES_PROC_WORK *rpw, MSGDATA_MANAGER *msg_man, 
@@ -181,9 +181,9 @@ static void RT_ConfettiActorAdd(CONRES_PROC_WORK *rpw);
 static void ConfettiActorMain(TCB_PTR tcb, void *work);
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///ƒ|ƒPƒ‚ƒ“•\Ž¦À•W
+///ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤ºåº§æ¨™
 ALIGN4 static const s16 ConresPokePos[BREEDER_MAX][3] = {	//X, Y, Z
 	{44, 70, CONRES_POKEPOS_Z_MAIN},
 	{44+56, 70, CONRES_POKEPOS_Z_SUB},
@@ -191,7 +191,7 @@ ALIGN4 static const s16 ConresPokePos[BREEDER_MAX][3] = {	//X, Y, Z
 	{44+56*3, 70, CONRES_POKEPOS_Z_SUB},
 };
 
-///ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“•\Ž¦À•W
+///ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºåº§æ¨™
 static const struct{
 	s16 x;
 	s16 y;
@@ -202,7 +202,7 @@ static const struct{
 	{8*3+4, 8*2+4 + 32*3},
 };
 
-///‡ˆÊƒAƒCƒRƒ“•\Ž¦À•W
+///é †ä½ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºåº§æ¨™
 static const struct{
 	s16 x;
 	s16 y;
@@ -217,9 +217,9 @@ static const struct{
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒ_ƒ“ƒX•”–åƒm[ƒ}ƒ‹‰ï˜bƒƒbƒZ[ƒWƒf[ƒ^	¦A_TALK_CONRES_???‚Ì’è‹`‚Æ•À‚Ñ‚ð“¯‚¶‚É‚µ‚Ä‚¨‚­Ž–II
+///ãƒ€ãƒ³ã‚¹éƒ¨é–€ãƒŽãƒ¼ãƒžãƒ«ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿	â€»A_TALK_CONRES_???ã®å®šç¾©ã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãäº‹ï¼ï¼
 static const CONRES_MESSAGE_PARAM ConresTalkMsgData[] = {
-	{0,									CRTAG_NONE},	//ƒ_ƒ~[
+	{0,									CRTAG_NONE},	//ãƒ€ãƒŸãƒ¼
 	{msg_con_tally_host_01,				CRTAG_NONE},
 	{msg_con_tally_host_02,				CRTAG_NONE},
 	{msg_con_tally_host_03,				CRTAG_NONE},
@@ -230,74 +230,74 @@ static const CONRES_MESSAGE_PARAM ConresTalkMsgData[] = {
 
 
 //==============================================================================
-//	ƒAƒNƒ^[ƒwƒbƒ_
+//	ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 //==============================================================================
-///ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“FƒAƒNƒ^[ƒwƒbƒ_
+///ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ï¼šã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S PokeIconObjParam = {
 	0, 0, 0,		//x, y, z
-	0, R_POKEICON_SOFTPRI, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		R_CHARID_POKEICON_0,				//ƒLƒƒƒ‰
-		R_PLTTID_POKEICON,				//ƒpƒŒƒbƒg
-		R_CELLID_POKEICON,				//ƒZƒ‹
-		R_CELLANMID_POKEICON,				//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, R_POKEICON_SOFTPRI, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		R_CHARID_POKEICON_0,				//ã‚­ãƒ£ãƒ©
+		R_PLTTID_POKEICON,				//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		R_CELLID_POKEICON,				//ã‚»ãƒ«
+		R_CELLANMID_POKEICON,				//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	R_POKEICON_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	R_POKEICON_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///Ž†‚Ó‚Ô‚«FƒAƒNƒ^[ƒwƒbƒ_
+///ç´™ãµã¶ãï¼šã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S ConfettiObjParam = {
 	0, 0, 0,		//x, y, z
-	0, R_CONFETTI_SOFTPRI, R_PALOFS_CONFETTI,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		R_CHARID_CONFETTI,				//ƒLƒƒƒ‰
-		R_PLTTID_OBJ_COMMON,				//ƒpƒŒƒbƒg
-		R_CELLID_CONFETTI,				//ƒZƒ‹
-		R_CELLANMID_CONFETTI,				//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, R_CONFETTI_SOFTPRI, R_PALOFS_CONFETTI,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		R_CHARID_CONFETTI,				//ã‚­ãƒ£ãƒ©
+		R_PLTTID_OBJ_COMMON,				//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		R_CELLID_CONFETTI,				//ã‚»ãƒ«
+		R_CELLANMID_CONFETTI,				//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	R_CONFETTI_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	R_CONFETTI_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///‡ˆÊƒAƒCƒRƒ“FƒAƒNƒ^[ƒwƒbƒ_
+///é †ä½ã‚¢ã‚¤ã‚³ãƒ³ï¼šã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S RankingIconObjParam = {
 	0, 0, 0,		//x, y, z
-	0, R_RANKING_SOFTPRI, R_PALOFS_RANKING,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		R_CHARID_RANKING,				//ƒLƒƒƒ‰
-		R_PLTTID_OBJ_COMMON,				//ƒpƒŒƒbƒg
-		R_CELLID_RANKING,				//ƒZƒ‹
-		R_CELLANMID_RANKING,				//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, R_RANKING_SOFTPRI, R_PALOFS_RANKING,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		R_CHARID_RANKING,				//ã‚­ãƒ£ãƒ©
+		R_PLTTID_OBJ_COMMON,				//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		R_CELLID_RANKING,				//ã‚»ãƒ«
+		R_CELLANMID_RANKING,				//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	R_RANKING_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	R_RANKING_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒ[ƒ^[FƒAƒNƒ^[ƒwƒbƒ_
+///ãƒ¡ãƒ¼ã‚¿ãƒ¼ï¼šã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S MeterObjParam = {
 	0, 0, 0,		//x, y, z
-	0, R_METER_SOFTPRI, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		R_CHARID_METER,				//ƒLƒƒƒ‰
-		R_PLTTID_METER,				//ƒpƒŒƒbƒg
-		R_CELLID_METER,				//ƒZƒ‹
-		R_CELLANMID_METER,				//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, R_METER_SOFTPRI, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		R_CHARID_METER,				//ã‚­ãƒ£ãƒ©
+		R_PLTTID_METER,				//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		R_CELLID_METER,				//ã‚»ãƒ«
+		R_CELLANMID_METER,				//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	R_METER_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	R_METER_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 
@@ -305,9 +305,9 @@ static const TCATS_OBJECT_ADD_PARAM_S MeterObjParam = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘S‚Ä‚ÌƒuƒŠ[ƒ_[‚Ìƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg(ƒ|ƒPƒ‚ƒ“)‚ð¶¬‚·‚é
+ * @brief   å…¨ã¦ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ(ãƒã‚±ãƒ¢ãƒ³)ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_SoftSpriteAddAll(CONRES_PROC_WORK *rpw)
@@ -330,8 +330,8 @@ void RT_SoftSpriteAddAll(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‘S‚Ä‚ÌƒuƒŠ[ƒ_[‚Ìƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg(ƒ|ƒPƒ‚ƒ“)‚ðíœ‚·‚é
- * @param   sys		ƒ_ƒ“ƒXƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   å…¨ã¦ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ(ãƒã‚±ãƒ¢ãƒ³)ã‚’å‰Šé™¤ã™ã‚‹
+ * @param   sys		ãƒ€ãƒ³ã‚¹ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_SoftSpriteDelAll(CONRES_SYSTEM_PARAM *sys)
@@ -347,12 +347,12 @@ void RT_SoftSpriteDelAll(CONRES_SYSTEM_PARAM *sys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒbƒZ[ƒWƒ^ƒO“WŠJ
+ * @brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¿ã‚°å±•é–‹
  *
- * @param   rpw			Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   msg_tag		ƒ^ƒOƒR[ƒh
- * @param   tagpara		ƒ^ƒO“WŠJ‚·‚éê‡AŽQÆ‚³‚ê‚éƒpƒ‰ƒ[ƒ^—Þ
- *                      (ƒ^ƒO‚É‚æ‚Á‚Ä‚Í•K—v‚È‚¢‚Ì‚ÅA‚»‚Ìê‡ANULL‚Å‚àOK)
+ * @param   rpw			çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   msg_tag		ã‚¿ã‚°ã‚³ãƒ¼ãƒ‰
+ * @param   tagpara		ã‚¿ã‚°å±•é–‹ã™ã‚‹å ´åˆã€å‚ç…§ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡ž
+ *                      (ã‚¿ã‚°ã«ã‚ˆã£ã¦ã¯å¿…è¦ãªã„ã®ã§ã€ãã®å ´åˆã€NULLã§ã‚‚OK)
  */
 //--------------------------------------------------------------
 static void RT_MessageTagExpand(CONRES_PROC_WORK *rpw, int msg_tag, const CRTAG_PARAM *tagpara)
@@ -390,20 +390,20 @@ static void RT_MessageTagExpand(CONRES_PROC_WORK *rpw, int msg_tag, const CRTAG_
 		break;
 	
 	default:
-		GF_ASSERT(0 && "”FŽ¯‚Å‚«‚È‚¢ƒ^ƒO‚Å‚·\n");
+		GF_ASSERT(0 && "èªè­˜ã§ããªã„ã‚¿ã‚°ã§ã™\n");
 		break;
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒƒbƒZ[ƒWƒZƒbƒg
+ * @brief   ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param   rpw			Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   msg_id		ƒƒbƒZ[ƒWID
- * @param   msg_tag		ƒ^ƒOƒR[ƒh
- * @param   tagpara		ƒ^ƒO“WŠJ‚·‚éê‡AŽQÆ‚³‚ê‚éƒpƒ‰ƒ[ƒ^—Þ
- *                      (ƒ^ƒO‚É‚æ‚Á‚Ä‚Í•K—v‚È‚¢‚Ì‚ÅA‚»‚Ìê‡ANULL‚Å‚àOK)
+ * @param   rpw			çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param   msg_tag		ã‚¿ã‚°ã‚³ãƒ¼ãƒ‰
+ * @param   tagpara		ã‚¿ã‚°å±•é–‹ã™ã‚‹å ´åˆã€å‚ç…§ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡ž
+ *                      (ã‚¿ã‚°ã«ã‚ˆã£ã¦ã¯å¿…è¦ãªã„ã®ã§ã€ãã®å ´åˆã€NULLã§ã‚‚OK)
  */
 //--------------------------------------------------------------
 static void RT_TalkMessageSet(CONRES_PROC_WORK *rpw, MSGDATA_MANAGER *msg_man, 
@@ -434,12 +434,12 @@ static void RT_TalkMessageSet(CONRES_PROC_WORK *rpw, MSGDATA_MANAGER *msg_man,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒm[ƒ}ƒ‹‰ï˜b—p‚ÌƒƒbƒZ[ƒWƒZƒbƒg
+ * @brief   ãƒŽãƒ¼ãƒžãƒ«ä¼šè©±ç”¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚»ãƒƒãƒˆ
  *
- * @param   rpw				Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw				çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   a_talk_id		A_TALK_???
- * @param   tagpara			ƒ^ƒO“WŠJ‚·‚éê‡AŽQÆ‚³‚ê‚éƒpƒ‰ƒ[ƒ^—Þ
- *                  	    (ƒ^ƒO‚É‚æ‚Á‚Ä‚Í•K—v‚È‚¢‚Ì‚ÅA‚»‚Ìê‡ANULL‚Å‚àOK)
+ * @param   tagpara			ã‚¿ã‚°å±•é–‹ã™ã‚‹å ´åˆã€å‚ç…§ã•ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡ž
+ *                  	    (ã‚¿ã‚°ã«ã‚ˆã£ã¦ã¯å¿…è¦ãªã„ã®ã§ã€ãã®å ´åˆã€NULLã§ã‚‚OK)
  */
 //--------------------------------------------------------------
 void RT_A_TalkMessageSet(CONRES_PROC_WORK *rpw, u32 a_talk_id, const CRTAG_PARAM *tagpara)
@@ -455,9 +455,9 @@ void RT_A_TalkMessageSet(CONRES_PROC_WORK *rpw, u32 a_talk_id, const CRTAG_PARAM
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒƒbƒZ[ƒWƒtƒHƒ“ƒg‚ª•\Ž¦‚µ‚«‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  0=I—¹
+ * @brief   ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ³ãƒˆãŒè¡¨ç¤ºã—ãã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  0=çµ‚äº†
  */
 //--------------------------------------------------------------
 int RT_TalkMessageEndCheck(CONRES_PROC_WORK *rpw)
@@ -467,8 +467,8 @@ int RT_TalkMessageEndCheck(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”â˜I‰æ–ÊFŠî–{BGƒf[ƒ^‚ðƒZƒbƒg‚·‚é
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æŠ«éœ²ç”»é¢ï¼šåŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_Announce_BGSet(CONRES_PROC_WORK *rpw)
@@ -478,23 +478,23 @@ void RT_Announce_BGSet(CONRES_PROC_WORK *rpw)
 
 	hdl_bg  = ArchiveDataHandleOpen(ARC_CONTEST_BG,  HEAPID_CONRES); 
 	
-	//ƒLƒƒƒ‰ƒNƒ^
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 	ArcUtil_HDL_BgCharSet(hdl_bg, CON_VISUAL_BG_NCGR_BIN, rpw->sys.bgl, 
 		CONRES_FRAME_BACKGROUND, 0, 0, 1, HEAPID_CONRES);
-	//ƒXƒNƒŠ[ƒ“
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	ArcUtil_HDL_ScrnSet(hdl_bg, CON_VISUAL_BG_NSCR_BIN, rpw->sys.bgl, 
 		CONRES_FRAME_BACKGROUND, 0, 0, 1, HEAPID_CONRES);
 	GF_BGL_ScrClear(rpw->sys.bgl, CONRES_FRAME_WIN);
 
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSet_Arc(rpw->sys.pfd, ARC_CONTEST_BG, CONTEST_VISUAL_BG_NCLR, 
 		HEAPID_CONRES, FADE_MAIN_BG, 0, 0);
-	//ƒtƒHƒ“ƒg—pƒpƒŒƒbƒg
+	//ãƒ•ã‚©ãƒ³ãƒˆç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSet_Arc(rpw->sys.pfd, ARC_CONTEST_BG, CON_BG_FONT_NCLR, 
 		HEAPID_CONRES, FADE_MAIN_BG, 0x20, RES_BMPWIN_TALK_COLOR * 16);
 
 
-	//‰ï˜bƒEƒBƒ“ƒhƒE
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	win_type = CONFIG_GetWindowType(rpw->consys->config);
 	TalkWinGraphicSet(rpw->sys.bgl, CONRES_FRAME_WIN, CONRES_TALKWIN_CGX_OFFSET, 
 		CONRES_TALKWIN_BACK_COLOR, win_type, HEAPID_CONRES);
@@ -502,7 +502,7 @@ void RT_Announce_BGSet(CONRES_PROC_WORK *rpw)
 		HEAPID_CONRES, FADE_MAIN_BG, 0x20, CONRES_TALKWIN_PALNO * 16);
 
 #if 0
-	//‚Ç‚ñ‚¿‚å‚¤
+	//ã©ã‚“ã¡ã‚‡ã†
 	ArcUtil_BgCharSet(ARC_CONTEST_BG, DONTYOU_ANIM_NCGR_BIN, rpw->sys.bgl, 
 		CONRES_FRAME_EFF, 0, 0, 1, HEAPID_CONRES);
 	ArcUtil_ScrnSet(ARC_CONTEST_BG, CON_DANCE_DONCHOU_NSCR_BIN, rpw->sys.bgl, 
@@ -518,8 +518,8 @@ void RT_Announce_BGSet(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”â˜I‰æ–ÊFŠî–{BGƒf[ƒ^‚Ìíœˆ—
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æŠ«éœ²ç”»é¢ï¼šåŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_Announce_BGDel(CONRES_PROC_WORK *rpw)
@@ -529,8 +529,8 @@ void RT_Announce_BGDel(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”â˜I‰æ–ÊFŠî–{BGƒf[ƒ^‚ðƒZƒbƒg‚·‚é
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æŠ«éœ²ç”»é¢ï¼šåŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_Announce_OBJSet(CONRES_PROC_WORK *rpw)
@@ -544,8 +544,8 @@ void RT_Announce_OBJSet(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”â˜I‰æ–ÊFŠî–{BGƒf[ƒ^‚Ìíœˆ—
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æŠ«éœ²ç”»é¢ï¼šåŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_Announce_OBJDel(CONRES_PROC_WORK *rpw)
@@ -557,8 +557,8 @@ void RT_Announce_OBJDel(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\‰æ–ÊFŠî–{BGƒf[ƒ^‚ðƒZƒbƒg‚·‚é
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   çµæžœç™ºè¡¨ç”»é¢ï¼šåŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_Result_BGSet(CONRES_PROC_WORK *rpw)
@@ -568,32 +568,32 @@ void RT_Result_BGSet(CONRES_PROC_WORK *rpw)
 	
 	hdl_bg  = ArchiveDataHandleOpen(ARC_CONTEST_BG,  HEAPID_CONRES); 
 	
-	//ƒLƒƒƒ‰ƒNƒ^
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 	ArcUtil_HDL_BgCharSet(hdl_bg, CON_KEKKA_BG_NCGR_BIN, rpw->sys.bgl, 
 		CONRES_FRAME_BACKGROUND, 0, 0, 1, HEAPID_CONRES);
-	//ƒXƒNƒŠ[ƒ“
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	ArcUtil_HDL_ScrnSet(hdl_bg, CON_KEKKA00_NSCR_BIN, rpw->sys.bgl, 
 		CONRES_FRAME_BACKGROUND, 0, 0, 1, HEAPID_CONRES);
 	ArcUtil_HDL_ScrnSet(hdl_bg, CON_KEKKA01_NSCR_BIN, rpw->sys.bgl, 
 		CONRES_FRAME_EFF, 0, 0, 1, HEAPID_CONRES);
 	GF_BGL_ScrClear(rpw->sys.bgl, CONRES_FRAME_WIN);
 
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSet_Arc(rpw->sys.pfd, ARC_CONTEST_BG, CONTEST_KEKKA_BG_NCLR, 
 		HEAPID_CONRES, FADE_MAIN_BG, 0, 0);
-	//ƒtƒHƒ“ƒg—pƒpƒŒƒbƒg
+	//ãƒ•ã‚©ãƒ³ãƒˆç”¨ãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSet_Arc(rpw->sys.pfd, ARC_CONTEST_BG, CON_BG_FONT_NCLR, 
 		HEAPID_CONRES, FADE_MAIN_BG, 0x20, RES_BMPWIN_TALK_COLOR * 16);
 
 
-	//‰ï˜bƒEƒBƒ“ƒhƒE
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	win_type = CONFIG_GetWindowType(rpw->consys->config);
 	TalkWinGraphicSet(rpw->sys.bgl, CONRES_FRAME_WIN, CONRES_TALKWIN_CGX_OFFSET, 
 		CONRES_TALKWIN_BACK_COLOR, win_type, HEAPID_CONRES);
 	PaletteWorkSet_Arc(rpw->sys.pfd, ARC_WINFRAME, TalkWinPalArcGet(win_type), 
 		HEAPID_CONRES, FADE_MAIN_BG, 0x20, CONRES_TALKWIN_PALNO * 16);
 
-	//ƒjƒbƒNƒl[ƒ€•e–¼ •`‰æ
+	//ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼†è¦ªå æç”»
 	{
 		STRBUF *nickname_buf;
 		int i, breeder_no;
@@ -619,7 +619,7 @@ void RT_Result_BGSet(CONRES_PROC_WORK *rpw)
 		STRBUF_Delete(nickname_buf);
 	}
 
-	//ƒŒƒWƒXƒ^Ý’è
+	//ãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®š
 	GX_SetVisibleWnd(GX_WNDMASK_W0 | GX_WNDMASK_W1);
 	G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | 
 		GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, TRUE);
@@ -636,21 +636,21 @@ void RT_Result_BGSet(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒTƒu‰æ–ÊFŠî–{BGƒf[ƒ^‚ðƒZƒbƒg‚·‚é
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   çµæžœç™ºè¡¨ã‚µãƒ–ç”»é¢ï¼šåŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_Result_BGSet_Sub(CONRES_PROC_WORK *rpw)
 {
-	//F‚ð‘S‚Ä^‚Á•‚É‚µ‚Ä‚¨‚­(‰æ–Ê‚ªŒ©‚¦‚È‚¢‚æ‚¤‚É)
+	//è‰²ã‚’å…¨ã¦çœŸã£é»’ã«ã—ã¦ãŠã(ç”»é¢ãŒè¦‹ãˆãªã„ã‚ˆã†ã«)
 	PaletteWork_Clear(rpw->sys.pfd, FADE_SUB_BG, FADEBUF_ALL, 0x0000, 0, 16*16);
 	PaletteWork_Clear(rpw->sys.pfd, FADE_SUB_OBJ, FADEBUF_ALL, 0x0000, 0, 16*16);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\‰æ–ÊFŠî–{BGƒf[ƒ^‚Ìíœˆ—
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   çµæžœç™ºè¡¨ç”»é¢ï¼šåŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_Result_BGDel(CONRES_PROC_WORK *rpw)
@@ -660,8 +660,8 @@ void RT_Result_BGDel(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\‰æ–ÊFŠî–{BGƒf[ƒ^‚ðƒZƒbƒg‚·‚é
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   çµæžœç™ºè¡¨ç”»é¢ï¼šåŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_Result_OBJSet(CONRES_PROC_WORK *rpw)
@@ -670,7 +670,7 @@ void RT_Result_OBJSet(CONRES_PROC_WORK *rpw)
 	
 	hdl_obj = ArchiveDataHandleOpen(ARC_CONTEST_OBJ, HEAPID_CONRES);
 
-	//í’“OBJƒpƒŒƒbƒgƒ[ƒh
+	//å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆãƒ­ãƒ¼ãƒ‰
 	CATS_LoadResourcePlttWorkArcH(rpw->sys.pfd, FADE_MAIN_OBJ, rpw->sys.csp, rpw->sys.crp, 
 		hdl_obj, CONTEST_KEKKA_OBJ_NCLR, 0, 
 		R_CONRES_COMMON_PAL_NUM, NNS_G2D_VRAM_TYPE_2DMAIN, R_PLTTID_OBJ_COMMON);
@@ -686,8 +686,8 @@ void RT_Result_OBJSet(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\‰æ–ÊFŠî–{BGƒf[ƒ^‚Ìíœˆ—
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   çµæžœç™ºè¡¨ç”»é¢ï¼šåŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_Result_OBJDel(CONRES_PROC_WORK *rpw)
@@ -702,8 +702,8 @@ void RT_Result_OBJDel(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ð‘S‚ÄƒZƒbƒg
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦ã‚»ãƒƒãƒˆ
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_PokeIconSetAll(CONRES_PROC_WORK *rpw)
@@ -714,21 +714,21 @@ void RT_PokeIconSetAll(CONRES_PROC_WORK *rpw)
 
 	hdl_poke = ArchiveDataHandleOpen(ARC_POKEICON, HEAPID_CONRES);
 	
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	CATS_LoadResourcePlttWorkArcH(rpw->sys.pfd, FADE_MAIN_OBJ, rpw->sys.csp, rpw->sys.crp,
 		hdl_poke, PokeIconPalArcIndexGet(), 0, POKEICON_PAL_MAX, 
 		NNS_G2D_VRAM_TYPE_2DMAIN, R_PLTTID_POKEICON);
-	//ƒZƒ‹
+	//ã‚»ãƒ«
 	CATS_LoadResourceCellArcH(rpw->sys.csp, rpw->sys.crp, hdl_poke, 
 		PokeIcon64kCellArcIndexGet(), 0, R_CELLID_POKEICON);
-	//ƒZƒ‹ƒAƒjƒ
+	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	CATS_LoadResourceCellAnmArcH(rpw->sys.csp, rpw->sys.crp, hdl_poke, 
 		PokeIcon64kCellAnmArcIndexGet(), 0, R_CELLANMID_POKEICON);
 	
-	//ƒAƒNƒ^[¶¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
 	obj_param = PokeIconObjParam;
 	for(i = 0; i < BREEDER_MAX; i++){
-		//ƒLƒƒƒ‰ƒŠƒ\[ƒX
+		//ã‚­ãƒ£ãƒ©ãƒªã‚½ãƒ¼ã‚¹
 		CATS_LoadResourceCharArcModeAdjustAreaCont(rpw->sys.csp, rpw->sys.crp, ARC_POKEICON, 
 			PokeIconCgxArcIndexGetByPP(rpw->consys->c_game.pp[i]),
 			0, NNS_G2D_VRAM_TYPE_2DMAIN, R_CHARID_POKEICON_0 + i);
@@ -737,7 +737,7 @@ void RT_PokeIconSetAll(CONRES_PROC_WORK *rpw)
 		rpw->sys.pokeicon_cap[i] = CATS_ObjectAdd_S(rpw->sys.csp, rpw->sys.crp, &obj_param);
 		CATS_ObjectAnimeSeqSetCap(rpw->sys.pokeicon_cap[i], POKEICON_ANM_HPMAX);
 		
-		//ƒpƒŒƒbƒgØ‚è‘Ö‚¦
+		//ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
 	//	monsno = PokeParaGet(rpw->consys->c_game.pp[i], ID_PARA_monsno, NULL);
 	//	egg = PokeParaGet(rpw->consys->c_game.pp[i], ID_PARA_tamago_flag, NULL);
 		CLACT_PaletteOffsetChgAddTransPlttNo(rpw->sys.pokeicon_cap[i]->act, 
@@ -746,14 +746,14 @@ void RT_PokeIconSetAll(CONRES_PROC_WORK *rpw)
 		CATS_ObjectUpdateCap(rpw->sys.pokeicon_cap[i]);
 	}
 	
-	//À•WƒZƒbƒg
+	//åº§æ¨™ã‚»ãƒƒãƒˆ
 	for(i = 0; i < BREEDER_MAX; i++){
 		breeder_no = rpw->r_game.breeder_sort[i];
 		CATS_ObjectPosSetCap(rpw->sys.pokeicon_cap[breeder_no], 
 			PokeIconPos[i].x, PokeIconPos[i].y);
 	}
 	
-	//ƒAƒjƒXV—pƒ^ƒXƒN¶¬
+	//ã‚¢ãƒ‹ãƒ¡æ›´æ–°ç”¨ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 	rpw->sys.pokeicon_tcb = TCB_Add(PokeIconUpdate, rpw, TCBPRI_POKEICON_UPDATE);
 
 	ArchiveDataHandleClose( hdl_poke );
@@ -761,8 +761,8 @@ void RT_PokeIconSetAll(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ð‘S‚Äíœ
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦å‰Šé™¤
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_PokeIconDelAll(CONRES_PROC_WORK *rpw)
@@ -783,9 +783,9 @@ void RT_PokeIconDelAll(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒjƒXVƒ^ƒXƒN
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡æ›´æ–°ã‚¿ã‚¹ã‚¯
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void PokeIconUpdate(TCB_PTR tcb, void *work)
@@ -800,8 +800,8 @@ static void PokeIconUpdate(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   Ž†‚Ó‚Ô‚«‚ÌƒŠƒ\[ƒX‚ðƒZƒbƒg
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç´™ãµã¶ãã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆ
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_ConfettiResouceLoad(CONRES_PROC_WORK *rpw, ARCHANDLE *hdl_obj)
@@ -816,8 +816,8 @@ void RT_ConfettiResouceLoad(CONRES_PROC_WORK *rpw, ARCHANDLE *hdl_obj)
 
 //--------------------------------------------------------------
 /**
- * @brief   Ž†‚Ó‚Ô‚«‚ÌƒŠƒ\[ƒX‰ð•ú
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç´™ãµã¶ãã®ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_ConfettiResouceFree(CONRES_PROC_WORK *rpw)
@@ -829,8 +829,8 @@ void RT_ConfettiResouceFree(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   Ž†‚Ó‚Ô‚«¶¬ŠÇ—ƒ^ƒXƒN‚ð¶¬‚·‚é
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç´™ãµã¶ãç”Ÿæˆç®¡ç†ã‚¿ã‚¹ã‚¯ã‚’ç”Ÿæˆã™ã‚‹
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_ConfettiCreateTaskSet(CONRES_PROC_WORK *rpw)
@@ -851,8 +851,8 @@ void RT_ConfettiCreateTaskSet(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   Ž†‚Ó‚Ô‚«‘SI—¹ƒtƒ‰ƒO‚ðƒZƒbƒg‚·‚é
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç´™ãµã¶ãå…¨çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_ConfettiEndFlagSet(CONRES_PROC_WORK *rpw)
@@ -862,9 +862,9 @@ void RT_ConfettiEndFlagSet(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   Ž†‚Ó‚Ô‚«¶¬ŠÇ—ƒ^ƒXƒNƒƒCƒ““®ì
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		Ž†‚Ó‚Ô‚«¶¬
+ * @brief   ç´™ãµã¶ãç”Ÿæˆç®¡ç†ã‚¿ã‚¹ã‚¯ãƒ¡ã‚¤ãƒ³å‹•ä½œ
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ç´™ãµã¶ãç”Ÿæˆ
  */
 //--------------------------------------------------------------
 static void ConfettiCreateTaskMain(TCB_PTR tcb, void *work)
@@ -888,8 +888,8 @@ static void ConfettiCreateTaskMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   Ž†‚Ó‚Ô‚«ƒAƒNƒ^[¶¬
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç´™ãµã¶ãã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void RT_ConfettiActorAdd(CONRES_PROC_WORK *rpw)
@@ -925,9 +925,9 @@ static void RT_ConfettiActorAdd(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   Ž†‚Ó‚Ô‚«ƒAƒNƒ^[ƒƒCƒ““®ì
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		Ž†‚Ó‚Ô‚«ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ç´™ãµã¶ãã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¡ã‚¤ãƒ³å‹•ä½œ
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ç´™ãµã¶ããƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ConfettiActorMain(TCB_PTR tcb, void *work)
@@ -959,8 +959,8 @@ static void ConfettiActorMain(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‡ˆÊƒAƒCƒRƒ“‚ð‘S‚ÄƒZƒbƒg
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   é †ä½ã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦ã‚»ãƒƒãƒˆ
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_RankingIconSetAll(CONRES_PROC_WORK *rpw, ARCHANDLE *hdl_obj)
@@ -979,10 +979,10 @@ void RT_RankingIconSetAll(CONRES_PROC_WORK *rpw, ARCHANDLE *hdl_obj)
 			rpw->sys.ranking_cap[i] = CATS_ObjectAdd_S(
 				rpw->sys.csp, rpw->sys.crp, &RankingIconObjParam);
 			CATS_ObjectUpdateCap(rpw->sys.ranking_cap[i]);
-			//•\Ž¦OFF
+			//è¡¨ç¤ºOFF
 			CATS_ObjectEnableCap(rpw->sys.ranking_cap[i], CATS_ENABLE_FALSE);
 		}
-		//À•WƒZƒbƒg
+		//åº§æ¨™ã‚»ãƒƒãƒˆ
 		for(i = 0; i < BREEDER_MAX; i++){
 			breeder_no = rpw->r_game.breeder_sort[i];
 			CATS_ObjectPosSetCap(rpw->sys.ranking_cap[breeder_no], 
@@ -993,8 +993,8 @@ void RT_RankingIconSetAll(CONRES_PROC_WORK *rpw, ARCHANDLE *hdl_obj)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‡ˆÊƒAƒCƒRƒ“‚ð‘S‚Äíœ
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   é †ä½ã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦å‰Šé™¤
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_RankingIconDelAll(CONRES_PROC_WORK *rpw)
@@ -1013,11 +1013,11 @@ void RT_RankingIconDelAll(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‡ˆÊƒAƒCƒRƒ“‚ð“oê(•\Ž¦)‚³‚¹‚é
+ * @brief   é †ä½ã‚¢ã‚¤ã‚³ãƒ³ã‚’ç™»å ´(è¡¨ç¤º)ã•ã›ã‚‹
  *
- * @param   rpw				Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   ranking			‡ˆÊ
+ * @param   rpw				çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   ranking			é †ä½
  */
 //--------------------------------------------------------------
 void RT_RankingIconAppearSet(CONRES_PROC_WORK *rpw, int breeder_no, int ranking)
@@ -1029,8 +1029,8 @@ void RT_RankingIconAppearSet(CONRES_PROC_WORK *rpw, int breeder_no, int ranking)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ[ƒ^[‚ÌƒŠƒ\[ƒX‚ðƒZƒbƒg
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆ
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_MeterResouceLoad(CONRES_PROC_WORK *rpw, ARCHANDLE *hdl_obj)
@@ -1048,8 +1048,8 @@ void RT_MeterResouceLoad(CONRES_PROC_WORK *rpw, ARCHANDLE *hdl_obj)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ[ƒ^[‚ÌƒŠƒ\[ƒX‰ð•ú
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_MeterResouceFree(CONRES_PROC_WORK *rpw)
@@ -1060,30 +1060,30 @@ void RT_MeterResouceFree(CONRES_PROC_WORK *rpw)
 	CATS_FreeResourceCellAnm(rpw->sys.crp, R_CELLANMID_METER);
 }
 
-///ƒ[ƒ^[‚ÌŠJŽnÀ•WX
+///ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®é–‹å§‹åº§æ¨™X
 #define RES_METER_START_X		(48)
-///ƒ[ƒ^[‚ÌŠJŽnÀ•WY
+///ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®é–‹å§‹åº§æ¨™Y
 #define RES_METER_START_Y		(32)
-///ƒ[ƒ^[‚ÌÀ•WY‚ÌŽŸ‚ÌƒuƒŠ[ƒ_[‚Ü‚Å‚ÌŠÔŠuƒhƒbƒg”
+///ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®åº§æ¨™Yã®æ¬¡ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã¾ã§ã®é–“éš”ãƒ‰ãƒƒãƒˆæ•°
 #define RES_METER_SPACE_Y		(32)
 
-///Šeƒ[ƒ^[‚ÌŠJŽnƒAƒjƒƒV[ƒPƒ“ƒX”Ô†
+///å„ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®é–‹å§‹ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 enum{
-	RES_METER_START_ANIM_SPACE = 0,		///<‹ó”’
-	RES_METER_START_ANIM_VISUAL = 1,	///<ƒrƒWƒ…ƒAƒ‹—pƒ[ƒ^[ŠJŽnƒV[ƒPƒ“ƒX”Ô†
-	RES_METER_START_ANIM_DANCE = 0x11,	///<ƒ_ƒ“ƒX—pƒ[ƒ^[ŠJŽnƒV[ƒPƒ“ƒX”Ô†
-	RES_METER_START_ANIM_ACTIN = 0x21,	///<‰‰‹Z—pƒ[ƒ^[ŠJŽnƒV[ƒPƒ“ƒX”Ô†
+	RES_METER_START_ANIM_SPACE = 0,		///<ç©ºç™½
+	RES_METER_START_ANIM_VISUAL = 1,	///<ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ç”¨ãƒ¡ãƒ¼ã‚¿ãƒ¼é–‹å§‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	RES_METER_START_ANIM_DANCE = 0x11,	///<ãƒ€ãƒ³ã‚¹ç”¨ãƒ¡ãƒ¼ã‚¿ãƒ¼é–‹å§‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	RES_METER_START_ANIM_ACTIN = 0x21,	///<æ¼”æŠ€ç”¨ãƒ¡ãƒ¼ã‚¿ãƒ¼é–‹å§‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 };
 
 //--------------------------------------------------------------
 /**
- * @brief   Žw’èƒhƒbƒg”•ªƒ[ƒ^[ƒAƒNƒ^[‚ð¶¬‚·‚é
+ * @brief   æŒ‡å®šãƒ‰ãƒƒãƒˆæ•°åˆ†ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param   rpw				Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
+ * @param   rpw				çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  * @param   con_game		CONGAME_???
- * @param   dot				•\Ž¦ƒhƒbƒg”
- * @param   breeder_pos		ƒuƒŠ[ƒ_[•\Ž¦ˆÊ’u
+ * @param   dot				è¡¨ç¤ºãƒ‰ãƒƒãƒˆæ•°
+ * @param   breeder_pos		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼è¡¨ç¤ºä½ç½®
  */
 //--------------------------------------------------------------
 void RT_MeterActorDotCreate(CONRES_PROC_WORK *rpw, int breeder_no, int con_game, int dot, int breeder_pos)
@@ -1114,25 +1114,25 @@ void RT_MeterActorDotCreate(CONRES_PROC_WORK *rpw, int breeder_no, int con_game,
 		return;
 	}
 	
-	//À•WŠJŽnˆÊ’u
+	//åº§æ¨™é–‹å§‹ä½ç½®
 	x = RES_METER_START_X + start_dot;
 	y = RES_METER_START_Y + RES_METER_SPACE_Y * breeder_pos;
 	
-	//•K—v‚ÈƒAƒNƒ^[”‚ðŽZo
+	//å¿…è¦ãªã‚¢ã‚¯ã‚¿ãƒ¼æ•°ã‚’ç®—å‡º
 	act_num = dot / RES_METER_ACT_SIZE_X;
 	if(dot % RES_METER_ACT_SIZE_X != 0){
 		act_num++;
 	}
 	GF_ASSERT(act_num <= RES_METER_CAP_MAX);
 	
-	//‘«‚è‚È‚¢ƒAƒNƒ^[•ª‚ð¶¬
+	//è¶³ã‚Šãªã„ã‚¢ã‚¯ã‚¿ãƒ¼åˆ†ã‚’ç”Ÿæˆ
 	for(i = 0; i < act_num; i++){
 		if(cap_array[i] == NULL){
 			cap_array[i] = CATS_ObjectAdd_S(rpw->sys.csp, rpw->sys.crp, &MeterObjParam);
 		}
 	}
 	
-	//ƒhƒbƒg”‚É‡‚í‚¹‚ÄƒAƒjƒ
+	//ãƒ‰ãƒƒãƒˆæ•°ã«åˆã‚ã›ã¦ã‚¢ãƒ‹ãƒ¡
 	no = 0;
 	for(calc_dot = dot; calc_dot >= RES_METER_ACT_SIZE_X; calc_dot -= RES_METER_ACT_SIZE_X){
 		CATS_ObjectAnimeSeqSetCap(cap_array[no], start_anime + RES_METER_ACT_SIZE_X - 1);
@@ -1151,8 +1151,8 @@ void RT_MeterActorDotCreate(CONRES_PROC_WORK *rpw, int breeder_no, int con_game,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ[ƒ^[ƒAƒNƒ^[‚ð‘S‚Äíœ‚·‚é
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_MeterActorDeleteAll(CONRES_PROC_WORK *rpw)
@@ -1176,10 +1176,10 @@ void RT_MeterActorDeleteAll(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒEƒBƒ“ƒhƒE‹@”\‚ÌŠJ‚¯•Â‚¶ƒGƒtƒFƒNƒgŠJŽn
+ * @brief   ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ©Ÿèƒ½ã®é–‹ã‘é–‰ã˜ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
  * @param   open_close		RT_WNDEFF_OPEN or RT_WNDEFF_CLOSE
- * @param   end_flag		ƒGƒtƒFƒNƒgI—¹ŒãA‚±‚Ìƒ[ƒN‚ÉTRUE‚ªƒZƒbƒg‚³‚ê‚Ü‚·
+ * @param   end_flag		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾Œã€ã“ã®ãƒ¯ãƒ¼ã‚¯ã«TRUEãŒã‚»ãƒƒãƒˆã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------
 void RT_WndOpenEffStart(CONRES_PROC_WORK *rpw, int open_close, u8 *end_flag)
@@ -1208,9 +1208,9 @@ void RT_WndOpenEffStart(CONRES_PROC_WORK *rpw, int open_close, u8 *end_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒEƒBƒ“ƒhƒE‹@”\FƒI[ƒvƒ“ƒGƒtƒFƒNƒgŽÀs
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		WNDOPEN_EFF_WORK\‘¢‘Ì
+ * @brief   ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ©Ÿèƒ½ï¼šã‚ªãƒ¼ãƒ—ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œ
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		WNDOPEN_EFF_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void WndEffOpenTask(TCB_PTR tcb, void *work)
@@ -1226,7 +1226,7 @@ static void WndEffOpenTask(TCB_PTR tcb, void *work)
 			wew->y2 = (192/2 + WNDOPEN_EFF_OPEN_Y_DOT/2) << 8;
 			wew->seq++;
 		}
-		//left=0, right=255‚Å‚â‚é‚Æ‰E’[‚ª1ƒhƒbƒgŽc‚é‚Ì‚Å2–‡Žg‚Á‚Ä–³—–î—ˆÍ‚Þ
+		//left=0, right=255ã§ã‚„ã‚‹ã¨å³ç«¯ãŒ1ãƒ‰ãƒƒãƒˆæ®‹ã‚‹ã®ã§2æžšä½¿ã£ã¦ç„¡ç†çŸ¢ç†å›²ã‚€
 		wew->rpw->wnd0_x1 = 0;
 		wew->rpw->wnd0_y1 = wew->y1 >> 8;
 		wew->rpw->wnd0_x2 = 255;
@@ -1246,9 +1246,9 @@ static void WndEffOpenTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒEƒBƒ“ƒhƒE‹@”\FƒNƒ[ƒYƒGƒtƒFƒNƒgŽÀs
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		WNDOPEN_EFF_WORK\‘¢‘Ì
+ * @brief   ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ©Ÿèƒ½ï¼šã‚¯ãƒ­ãƒ¼ã‚ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®Ÿè¡Œ
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		WNDOPEN_EFF_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void WndEffCloseTask(TCB_PTR tcb, void *work)
@@ -1264,7 +1264,7 @@ static void WndEffCloseTask(TCB_PTR tcb, void *work)
 			wew->y2 = (192/2) << 8;
 			wew->seq++;
 		}
-		//left=0, right=255‚Å‚â‚é‚Æ‰E’[‚ª1ƒhƒbƒgŽc‚é‚Ì‚Å2–‡Žg‚Á‚Ä–³—–î—ˆÍ‚Þ
+		//left=0, right=255ã§ã‚„ã‚‹ã¨å³ç«¯ãŒ1ãƒ‰ãƒƒãƒˆæ®‹ã‚‹ã®ã§2æžšä½¿ã£ã¦ç„¡ç†çŸ¢ç†å›²ã‚€
 		wew->rpw->wnd0_x1 = 0;
 		wew->rpw->wnd0_y1 = wew->y1 >> 8;
 		wew->rpw->wnd0_x2 = 255;
@@ -1284,12 +1284,12 @@ static void WndEffCloseTask(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒXƒ‰ƒCƒh“oêƒGƒtƒFƒNƒgŠJŽn
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ©ã‚¤ãƒ‰ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- * @param   rpw				Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
+ * @param   rpw				çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  * @param   in_out			RT_POKESLIDE_IN or RT_POKESLIDE_OUT
- * @param   end_flag		ƒGƒtƒFƒNƒgI—¹ŒãA‚±‚Ìƒ[ƒN‚ÉTRUE‚ªƒZƒbƒg‚³‚ê‚Ü‚·
+ * @param   end_flag		ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾Œã€ã“ã®ãƒ¯ãƒ¼ã‚¯ã«TRUEãŒã‚»ãƒƒãƒˆã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------
 void PokeSlideEffectStart(CONRES_PROC_WORK *rpw, int breeder_no, int in_out, u8 *end_flag)
@@ -1318,9 +1318,9 @@ void PokeSlideEffectStart(CONRES_PROC_WORK *rpw, int breeder_no, int in_out, u8 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒXƒ‰ƒCƒh“oêF‰æ–ÊŠO‚©‚ç“oê
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		POKESLIDE_EFF_WORK\‘¢‘Ì
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ©ã‚¤ãƒ‰ç™»å ´ï¼šç”»é¢å¤–ã‹ã‚‰ç™»å ´
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		POKESLIDE_EFF_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void PokeSlideEffect_In(TCB_PTR tcb, void *work)
@@ -1351,9 +1351,9 @@ static void PokeSlideEffect_In(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒPƒ‚ƒ“ƒXƒ‰ƒCƒh“oêF‰æ–Ê“à‚©‚ç‰æ–ÊŠO‚Ö
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		POKESLIDE_EFF_WORK\‘¢‘Ì
+ * @brief   ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ©ã‚¤ãƒ‰ç™»å ´ï¼šç”»é¢å†…ã‹ã‚‰ç”»é¢å¤–ã¸
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		POKESLIDE_EFF_WORKæ§‹é€ ä½“
  */
 //--------------------------------------------------------------
 static void PokeSlideEffect_Out(TCB_PTR tcb, void *work)
@@ -1385,12 +1385,12 @@ static void PokeSlideEffect_Out(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽQ‰Á‚µ‚Ä‚¢‚éƒRƒ“ƒeƒXƒgƒ‚[ƒh‚©‚çAŽQ‰Á‚µ‚½‹£‹Z‚ÌŽ‚ÂŒvŽZ”ä—¦‚ðŽæ“¾‚·‚é
+ * @brief   å‚åŠ ã—ã¦ã„ã‚‹ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰ã€å‚åŠ ã—ãŸç«¶æŠ€ã®æŒã¤è¨ˆç®—æ¯”çŽ‡ã‚’å–å¾—ã™ã‚‹
  *
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   con_game	CONGAME_???
  *
- * @retval  ŒvŽZ”ä—¦(®”100”{AˆÈ‰º¬”)
+ * @retval  è¨ˆç®—æ¯”çŽ‡(æ•´æ•°100å€ã€ä»¥ä¸‹å°æ•°)
  */
 //--------------------------------------------------------------
 static int RT_CalcGamePercentGet(CONTEST_SYSTEM *consys, int con_game)
@@ -1403,7 +1403,7 @@ static int RT_CalcGamePercentGet(CONTEST_SYSTEM *consys, int con_game)
 		case CONGAME_ACTIN:
 			return CONRESULT_GAME_PERCENT_CHARM_ACTIN;
 		default:
-			//GF_ASSERT(0 && "—pˆÓ‚³‚ê‚Ä‚¢‚È‚¢ŒvŽZŽ®");
+			//GF_ASSERT(0 && "ç”¨æ„ã•ã‚Œã¦ã„ãªã„è¨ˆç®—å¼");
 			return 0;
 		}
 		break;
@@ -1414,7 +1414,7 @@ static int RT_CalcGamePercentGet(CONTEST_SYSTEM *consys, int con_game)
 		case CONGAME_DANCE:
 			return CONRESULT_GAME_PERCENT_ACTIVE_DANCE;
 		default:
-			//GF_ASSERT(0 && "—pˆÓ‚³‚ê‚Ä‚¢‚È‚¢ŒvŽZŽ®");
+			//GF_ASSERT(0 && "ç”¨æ„ã•ã‚Œã¦ã„ãªã„è¨ˆç®—å¼");
 			return 0;
 		}
 		break;
@@ -1427,7 +1427,7 @@ static int RT_CalcGamePercentGet(CONTEST_SYSTEM *consys, int con_game)
 		case CONGAME_ACTIN:
 			return CONRESULT_GAME_PERCENT_GRAND_ACTIN;
 		default:
-			//GF_ASSERT(0 && "—pˆÓ‚³‚ê‚Ä‚¢‚È‚¢ŒvŽZŽ®");
+			//GF_ASSERT(0 && "ç”¨æ„ã•ã‚Œã¦ã„ãªã„è¨ˆç®—å¼");
 			return 0;
 		}
 		break;
@@ -1436,36 +1436,36 @@ static int RT_CalcGamePercentGet(CONTEST_SYSTEM *consys, int con_game)
 		if(con_game == CONGAME_VISUAL){
 			return 10000;
 		}
-		//GF_ASSERT(0 && "—pˆÓ‚³‚ê‚Ä‚¢‚È‚¢ŒvŽZŽ®");
+		//GF_ASSERT(0 && "ç”¨æ„ã•ã‚Œã¦ã„ãªã„è¨ˆç®—å¼");
 		return 0;
 	case CONMODE_DANCE_PRACTICE:
 	case CONMODE_DANCE_TUTORIAL:
 		if(con_game == CONGAME_DANCE){
 			return 10000;
 		}
-		//GF_ASSERT(0 && "—pˆÓ‚³‚ê‚Ä‚¢‚È‚¢ŒvŽZŽ®");
+		//GF_ASSERT(0 && "ç”¨æ„ã•ã‚Œã¦ã„ãªã„è¨ˆç®—å¼");
 		return 0;
 	case CONMODE_ACTIN_PRACTICE:
 	case CONMODE_ACTIN_TUTORIAL:
 		if(con_game == CONGAME_ACTIN){
 			return 10000;
 		}
-		//GF_ASSERT(0 && "—pˆÓ‚³‚ê‚Ä‚¢‚È‚¢ŒvŽZŽ®");
+		//GF_ASSERT(0 && "ç”¨æ„ã•ã‚Œã¦ã„ãªã„è¨ˆç®—å¼");
 		return 0;
 	default:
-		//GF_ASSERT(0 && "—pˆÓ‚³‚ê‚Ä‚¢‚È‚¢ŒvŽZŽ®");
+		//GF_ASSERT(0 && "ç”¨æ„ã•ã‚Œã¦ã„ãªã„è¨ˆç®—å¼");
 		return 0;
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽQ‰Á‚µ‚Ä‚¢‚éƒRƒ“ƒeƒXƒgƒ‚[ƒh‚©‚çAŽQ‰Á‚µ‚½‹£‹Z‚ÌŽ‚ÂÅ‘åƒhƒbƒg”‚ðŽæ“¾‚·‚é
+ * @brief   å‚åŠ ã—ã¦ã„ã‚‹ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰ã€å‚åŠ ã—ãŸç«¶æŠ€ã®æŒã¤æœ€å¤§ãƒ‰ãƒƒãƒˆæ•°ã‚’å–å¾—ã™ã‚‹
  *
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   con_game	CONGAME_???
  *
- * @retval  Å‘åƒhƒbƒg”
+ * @retval  æœ€å¤§ãƒ‰ãƒƒãƒˆæ•°
  */
 //--------------------------------------------------------------
 static int RT_CalcGameDotGet(CONTEST_SYSTEM *consys, int con_game)
@@ -1474,19 +1474,19 @@ static int RT_CalcGameDotGet(CONTEST_SYSTEM *consys, int con_game)
 	
 	percent = RT_CalcGamePercentGet(consys, con_game);
 	dot = RES_METER_DOT_MAX * percent;
-	dot = (dot + 5000) / 10000;		//ŽlŽÌŒÜ“ü‚µ‚Ä®”‰»
+	dot = (dot + 5000) / 10000;		//å››æ¨äº”å…¥ã—ã¦æ•´æ•°åŒ–
 	return dot;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Še•”–å‚Ì“¾“_C³’l‚ðŽæ“¾
+ * @brief   å„éƒ¨é–€ã®å¾—ç‚¹ä¿®æ­£å€¤ã‚’å–å¾—
  *
- * @param   consys		ƒRƒ“ƒeƒXƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   consys		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   con_game	CONGAME_???
- * @param   ret_revise	“¾“_C³’l‘ã“üæ(BREEDER_MAX•ª‚Ì”z—ñ)
+ * @param   ret_revise	å¾—ç‚¹ä¿®æ­£å€¤ä»£å…¥å…ˆ(BREEDER_MAXåˆ†ã®é…åˆ—)
  *
- * ¦‰‰‹Z•”–å‚Å‚àŽg—p‚µ‚Ü‚·B
+ * â€»æ¼”æŠ€éƒ¨é–€ã§ã‚‚ä½¿ç”¨ã—ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void RT_CalcRevicePoint(CONTEST_SYSTEM *consys, int con_game, s16 ret_revise[])
@@ -1495,7 +1495,7 @@ void RT_CalcRevicePoint(CONTEST_SYSTEM *consys, int con_game, s16 ret_revise[])
 	int revise_point[BREEDER_MAX];
 	int percent, bairitu, i, top_breeder;
 	
-	//‚±‚±‚Ü‚Å‚Ì“¾“_‚ð‹‚ß‚é
+	//ã“ã“ã¾ã§ã®å¾—ç‚¹ã‚’æ±‚ã‚ã‚‹
 	for(i = 0; i < BREEDER_MAX; i++){
 		switch(con_game){
 		case CONGAME_VISUAL:
@@ -1514,7 +1514,7 @@ void RT_CalcRevicePoint(CONTEST_SYSTEM *consys, int con_game, s16 ret_revise[])
 		}
 	}
 	
-	//“¾“_ƒgƒbƒv‚ÌƒuƒŠ[ƒ_[‚ð‹‚ß‚é
+	//å¾—ç‚¹ãƒˆãƒƒãƒ—ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã‚’æ±‚ã‚ã‚‹
 	top_breeder = 0;
 	for(i = 1; i < BREEDER_MAX; i++){
 		if(total_point[top_breeder] < total_point[i]){
@@ -1522,30 +1522,30 @@ void RT_CalcRevicePoint(CONTEST_SYSTEM *consys, int con_game, s16 ret_revise[])
 		}
 	}
 	
-	//”{—¦Žæ“¾
+	//å€çŽ‡å–å¾—
 	percent = RT_CalcGamePercentGet(consys, con_game);
 	bairitu = percent / total_point[top_breeder];
 	
-	//C³’l
+	//ä¿®æ­£å€¤
 	for(i = 0; i < BREEDER_MAX; i++){
 		revise_point[i] = total_point[i] * bairitu;
-		revise_point[i] = (revise_point[i] + 50) / 100;	//ŽlŽÌŒÜ“ü
+		revise_point[i] = (revise_point[i] + 50) / 100;	//å››æ¨äº”å…¥
 	}
 	
-	//Œ‹‰Ê‘ã“ü
+	//çµæžœä»£å…¥
 	for(i = 0; i < BREEDER_MAX; i++){
 		switch(con_game){
 		case CONGAME_VISUAL:
 			ret_revise[i] = revise_point[i];
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ƒrƒWƒ…ƒAƒ‹C³’l%d\n", i, ret_revise[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ä¿®æ­£å€¤ï¼%d\n", i, ret_revise[i]);
 			break;
 		case CONGAME_DANCE:
 			ret_revise[i] = revise_point[i];
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ƒ_ƒ“ƒXC³’l%d\n", i, ret_revise[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d ãƒ€ãƒ³ã‚¹ä¿®æ­£å€¤ï¼%d\n", i, ret_revise[i]);
 			break;
 		case CONGAME_ACTIN:
 			ret_revise[i] = revise_point[i];
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ‰‰‹ZC³’l%d\n", i, ret_revise[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d æ¼”æŠ€ä¿®æ­£å€¤ï¼%d\n", i, ret_revise[i]);
 			break;
 		}
 	}
@@ -1553,15 +1553,15 @@ void RT_CalcRevicePoint(CONTEST_SYSTEM *consys, int con_game, s16 ret_revise[])
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚±‚±‚Ü‚Å‚Ì‘S‚Ä‚ÌƒQ[ƒ€‚Ì“¾“_‚ðŒvŽZAƒ[ƒ^[‚Ìƒhƒbƒg”‚ðŽZo
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã“ã“ã¾ã§ã®å…¨ã¦ã®ã‚²ãƒ¼ãƒ ã®å¾—ç‚¹ã‚’è¨ˆç®—ã€ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®ãƒ‰ãƒƒãƒˆæ•°ã‚’ç®—å‡º
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void RT_CalcPoint(CONRES_PROC_WORK *rpw)
 {
 	int i;
 	
-	//Še•”–å‚ÌC³’lŒvŽZ
+	//å„éƒ¨é–€ã®ä¿®æ­£å€¤è¨ˆç®—
 	switch(rpw->consys->c_game.mode){
 	case CONMODE_CHARM:
 		RT_CalcRevicePoint(rpw->consys, CONGAME_VISUAL, rpw->r_game.visual_revise);
@@ -1590,19 +1590,19 @@ void RT_CalcPoint(CONRES_PROC_WORK *rpw)
 		break;
 	}
 	
-	//‘‡C³’l
+	//ç·åˆä¿®æ­£å€¤
 	for(i = 0; i < BREEDER_MAX; i++){
 		rpw->r_game.total_revise[i] = rpw->r_game.visual_revise[i] 
 			+ rpw->r_game.dance_revise[i] + rpw->r_game.actin_revise[i];
-		OS_TPrintf("ƒuƒŠ[ƒ_[%d ‘‡C³’l%d\n", i, rpw->r_game.total_revise[i]);
+		OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d ç·åˆä¿®æ­£å€¤ï¼%d\n", i, rpw->r_game.total_revise[i]);
 	}
 	
 #if 1
-	//1ˆÊ‚Ì“¾“_‚ðŠî€‚ÉŠeƒuƒŠ[ƒ_[‚ªŽ‚Âƒ[ƒ^[‚ÌŠe•”–å‚Ìƒp[ƒZƒ“ƒe[ƒW‚ðŽæ“¾
+	//1ä½ã®å¾—ç‚¹ã‚’åŸºæº–ã«å„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãŒæŒã¤ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®å„éƒ¨é–€ã®ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸ã‚’å–å¾—
 	{
 		s32 top_breeder_point, top_breeder;
 		
-		//ƒrƒWƒ…ƒAƒ‹
+		//ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«
 		top_breeder = 0;
 		for(i = 1;i < BREEDER_MAX; i++){
 			if(rpw->r_game.visual_revise[top_breeder] < rpw->r_game.visual_revise[i]){
@@ -1614,10 +1614,10 @@ void RT_CalcPoint(CONRES_PROC_WORK *rpw)
 		for(i = 0; i < BREEDER_MAX; i++){
 			rpw->r_game.visual_percent[i] = 
 				RES_METER_PERCENT_MAX * rpw->r_game.visual_revise[i] / top_breeder_point;
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ƒrƒWƒ…ƒAƒ‹ƒ[ƒ^[ŠŽƒp[ƒZƒ“ƒg = %d\n", i, rpw->r_game.visual_percent[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ãƒ¡ãƒ¼ã‚¿ãƒ¼æ‰€æŒãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ = %d\n", i, rpw->r_game.visual_percent[i]);
 		}
 
-		//ƒ_ƒ“ƒX
+		//ãƒ€ãƒ³ã‚¹
 		top_breeder = 0;
 		for(i = 1;i < BREEDER_MAX; i++){
 			if(rpw->r_game.dance_revise[top_breeder] < rpw->r_game.dance_revise[i]){
@@ -1629,10 +1629,10 @@ void RT_CalcPoint(CONRES_PROC_WORK *rpw)
 		for(i = 0; i < BREEDER_MAX; i++){
 			rpw->r_game.dance_percent[i] = 
 				RES_METER_PERCENT_MAX * rpw->r_game.dance_revise[i] / top_breeder_point;
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ƒ_ƒ“ƒXƒ[ƒ^[ŠŽƒp[ƒZƒ“ƒg = %d\n", i, rpw->r_game.dance_percent[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d ãƒ€ãƒ³ã‚¹ãƒ¡ãƒ¼ã‚¿ãƒ¼æ‰€æŒãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ = %d\n", i, rpw->r_game.dance_percent[i]);
 		}
 
-		//‰‰‹Z
+		//æ¼”æŠ€
 		top_breeder = 0;
 		for(i = 1;i < BREEDER_MAX; i++){
 			if(rpw->r_game.actin_revise[top_breeder] < rpw->r_game.actin_revise[i]){
@@ -1644,72 +1644,72 @@ void RT_CalcPoint(CONRES_PROC_WORK *rpw)
 		for(i = 0; i < BREEDER_MAX; i++){
 			rpw->r_game.actin_percent[i] = 
 				RES_METER_PERCENT_MAX * rpw->r_game.actin_revise[i] / top_breeder_point;
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ‰‰‹Zƒ[ƒ^[ŠŽƒp[ƒZƒ“ƒg = %d\n", i, rpw->r_game.actin_percent[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d æ¼”æŠ€ãƒ¡ãƒ¼ã‚¿ãƒ¼æ‰€æŒãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ = %d\n", i, rpw->r_game.actin_percent[i]);
 		}
 	}
 	
-	//Še•”–å‚ÌƒQ[ƒWƒhƒbƒg”‚ðŽæ“¾
+	//å„éƒ¨é–€ã®ã‚²ãƒ¼ã‚¸ãƒ‰ãƒƒãƒˆæ•°ã‚’å–å¾—
 	{
 		int max_dot;
 		
-		//ƒrƒWƒ…ƒAƒ‹
+		//ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«
 		max_dot = RT_CalcGameDotGet(rpw->consys, CONGAME_VISUAL);
 		for(i = 0; i < BREEDER_MAX; i++){
 			rpw->r_game.visual_dot[i] = max_dot * rpw->r_game.visual_percent[i] 
 				/ RES_METER_PERCENT_MAX;
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ƒrƒWƒ…ƒAƒ‹ŠŽƒhƒbƒg” = %d\n", i, rpw->r_game.visual_dot[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«æ‰€æŒãƒ‰ãƒƒãƒˆæ•° = %d\n", i, rpw->r_game.visual_dot[i]);
 		}
 
-		//ƒ_ƒ“ƒX
+		//ãƒ€ãƒ³ã‚¹
 		max_dot = RT_CalcGameDotGet(rpw->consys, CONGAME_DANCE);
 		for(i = 0; i < BREEDER_MAX; i++){
 			rpw->r_game.dance_dot[i] = max_dot * rpw->r_game.dance_percent[i] 
 				/ RES_METER_PERCENT_MAX;
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ƒ_ƒ“ƒXŠŽƒhƒbƒg” = %d\n", i, rpw->r_game.dance_dot[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d ãƒ€ãƒ³ã‚¹æ‰€æŒãƒ‰ãƒƒãƒˆæ•° = %d\n", i, rpw->r_game.dance_dot[i]);
 		}
 
-		//‰‰‹Z
+		//æ¼”æŠ€
 		max_dot = RT_CalcGameDotGet(rpw->consys, CONGAME_ACTIN);
 		for(i = 0; i < BREEDER_MAX; i++){
 			rpw->r_game.actin_dot[i] = max_dot * rpw->r_game.actin_percent[i] 
 				/ RES_METER_PERCENT_MAX;
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ‰‰‹ZŠŽƒhƒbƒg” = %d\n", i, rpw->r_game.actin_dot[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d æ¼”æŠ€æ‰€æŒãƒ‰ãƒƒãƒˆæ•° = %d\n", i, rpw->r_game.actin_dot[i]);
 		}
 		
-		//‘‡
+		//ç·åˆ
 		for(i = 0; i < BREEDER_MAX; i++){
 			rpw->r_game.gauge_dot[i] = rpw->r_game.visual_dot[i] + rpw->r_game.dance_dot[i]
 				+ rpw->r_game.actin_dot[i];
 		}
 	}
 
-	//‘‡ƒhƒbƒg”‚©‚ç‡ˆÊ‚ðŒˆ’è
+	//ç·åˆãƒ‰ãƒƒãƒˆæ•°ã‹ã‚‰é †ä½ã‚’æ±ºå®š
 	{
 		s32 random[BREEDER_MAX];
-		s32 ranking[BREEDER_MAX];	//‡ˆÊ‡‚ÉƒuƒŠ[ƒ_[No‚ª“ü‚è‚Ü‚·
+		s32 ranking[BREEDER_MAX];	//é †ä½é †ã«ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼NoãŒå…¥ã‚Šã¾ã™
 		s32 total[BREEDER_MAX];
 		int i, j, t;
 		
 		for(i = 0; i < BREEDER_MAX; i++){
 			ranking[i] = i;
 			total[i] = rpw->r_game.gauge_dot[i];
-			//“¾“_‚ª“¯‚¶‚¾‚Á‚½ê‡‚Ì”äŠr—p‚ÉŠeƒuƒŠ[ƒ_[–ˆ‚Éƒ‰ƒ“ƒ_ƒ€’l‚ðŽ‚Â
+			//å¾—ç‚¹ãŒåŒã˜ã ã£ãŸå ´åˆã®æ¯”è¼ƒç”¨ã«å„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼æ¯Žã«ãƒ©ãƒ³ãƒ€ãƒ å€¤ã‚’æŒã¤
 			random[i] = contest_rand(rpw->consys);
 		}
 
-		//‘‡C³’l‡‚Éƒ\[ƒgŽÀs
+		//ç·åˆä¿®æ­£å€¤é †ã«ã‚½ãƒ¼ãƒˆå®Ÿè¡Œ
 		for(i = 0; i < BREEDER_MAX - 1; i++){
 			for(j = BREEDER_MAX - 1; j > i; j--){
 				if(total[j-1] < total[j] || (total[j-1]==total[j] && random[j-1] < random[j])){
-					//‘‡C³’l“ü‚ê‘Ö‚¦
+					//ç·åˆä¿®æ­£å€¤å…¥ã‚Œæ›¿ãˆ
 					t = total[j];
 					total[j] = total[j-1];
 					total[j-1] = t;
-					//ƒuƒŠ[ƒ_[”Ô†“ü‚ê‚©‚¦
+					//ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·å…¥ã‚Œã‹ãˆ
 					t = ranking[j];
 					ranking[j] = ranking[j-1];
 					ranking[j-1] = t;
-					//ƒ‰ƒ“ƒ_ƒ€’l“ü‚ê‘Ö‚¦
+					//ãƒ©ãƒ³ãƒ€ãƒ å€¤å…¥ã‚Œæ›¿ãˆ
 					t = random[j];
 					random[j] = random[j-1];
 					random[j-1] = t;
@@ -1717,41 +1717,41 @@ void RT_CalcPoint(CONRES_PROC_WORK *rpw)
 			}
 		}
 		
-		//‡ˆÊŒ‹‰Ê‘ã“ü
+		//é †ä½çµæžœä»£å…¥
 		for(i = 0; i < BREEDER_MAX; i++){
 			rpw->r_game.ranking[i] = ranking[i];
 			rpw->consys->c_game.score[ranking[i]].final_ranking = i;
-			OS_TPrintf("‡ˆÊ %dˆÊ = ƒuƒŠ[ƒ_[”Ô†%d\n", i, ranking[i]);
+			OS_TPrintf("é †ä½ %dä½ = ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·%d\n", i, ranking[i]);
 		}
 	}
 #else
-	//‘‡C³’l‚©‚ç‡ˆÊ‚ðŒˆ’è
+	//ç·åˆä¿®æ­£å€¤ã‹ã‚‰é †ä½ã‚’æ±ºå®š
 	{
 		s32 random[BREEDER_MAX];
-		s32 ranking[BREEDER_MAX];	//‡ˆÊ‡‚ÉƒuƒŠ[ƒ_[No‚ª“ü‚è‚Ü‚·
+		s32 ranking[BREEDER_MAX];	//é †ä½é †ã«ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼NoãŒå…¥ã‚Šã¾ã™
 		s32 total[BREEDER_MAX];
 		int i, j, t;
 		
 		for(i = 0; i < BREEDER_MAX; i++){
 			ranking[i] = i;
 			total[i] = rpw->r_game.total_revise[i];
-			//“¾“_‚ª“¯‚¶‚¾‚Á‚½ê‡‚Ì”äŠr—p‚ÉŠeƒuƒŠ[ƒ_[–ˆ‚Éƒ‰ƒ“ƒ_ƒ€’l‚ðŽ‚Â
+			//å¾—ç‚¹ãŒåŒã˜ã ã£ãŸå ´åˆã®æ¯”è¼ƒç”¨ã«å„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼æ¯Žã«ãƒ©ãƒ³ãƒ€ãƒ å€¤ã‚’æŒã¤
 			random[i] = contest_rand(rpw->consys);
 		}
 
-		//‘‡C³’l‡‚Éƒ\[ƒgŽÀs
+		//ç·åˆä¿®æ­£å€¤é †ã«ã‚½ãƒ¼ãƒˆå®Ÿè¡Œ
 		for(i = 0; i < BREEDER_MAX - 1; i++){
 			for(j = BREEDER_MAX - 1; j > i; j--){
 				if(total[j-1] < total[j] || (total[j-1]==total[j] && random[j-1] < random[j])){
-					//‘‡C³’l“ü‚ê‘Ö‚¦
+					//ç·åˆä¿®æ­£å€¤å…¥ã‚Œæ›¿ãˆ
 					t = total[j];
 					total[j] = total[j-1];
 					total[j-1] = t;
-					//ƒuƒŠ[ƒ_[”Ô†“ü‚ê‚©‚¦
+					//ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·å…¥ã‚Œã‹ãˆ
 					t = ranking[j];
 					ranking[j] = ranking[j-1];
 					ranking[j-1] = t;
-					//ƒ‰ƒ“ƒ_ƒ€’l“ü‚ê‘Ö‚¦
+					//ãƒ©ãƒ³ãƒ€ãƒ å€¤å…¥ã‚Œæ›¿ãˆ
 					t = random[j];
 					random[j] = random[j-1];
 					random[j-1] = t;
@@ -1759,15 +1759,15 @@ void RT_CalcPoint(CONRES_PROC_WORK *rpw)
 			}
 		}
 		
-		//‡ˆÊŒ‹‰Ê‘ã“ü
+		//é †ä½çµæžœä»£å…¥
 		for(i = 0; i < BREEDER_MAX; i++){
 			rpw->r_game.ranking[i] = ranking[i];
 			rpw->consys->c_game.score[ranking[i]].final_ranking = i;
-			OS_TPrintf("‡ˆÊ %dˆÊ = ƒuƒŠ[ƒ_[”Ô†%d\n", i, ranking[i]);
+			OS_TPrintf("é †ä½ %dä½ = ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·%d\n", i, ranking[i]);
 		}
 	}
 
-	//1ˆÊ‚Ì“¾“_‚ðŠî€‚ÉŠeƒuƒŠ[ƒ_[‚ªŽ‚Âƒ[ƒ^[‚Ìƒp[ƒZƒ“ƒe[ƒW‚ðŽæ“¾
+	//1ä½ã®å¾—ç‚¹ã‚’åŸºæº–ã«å„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãŒæŒã¤ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸ã‚’å–å¾—
 	{
 		s32 top_breeder_point;
 		
@@ -1777,23 +1777,23 @@ void RT_CalcPoint(CONRES_PROC_WORK *rpw)
 				RES_METER_PERCENT_MAX * rpw->r_game.total_revise[i] / top_breeder_point;
 			if(rpw->r_game.total_percent[i] == RES_METER_PERCENT_MAX 
 					&& i != rpw->r_game.ranking[0]){
-				//1ˆÊ‚Å‚à‚È‚¢‚Ì‚ÉARES_METER_PERCENT_MAX%‚ÌƒQ[ƒWŠŽ‚È‚ç‚ÎŒ¸ŽZ‚·‚é
+				//1ä½ã§ã‚‚ãªã„ã®ã«ã€RES_METER_PERCENT_MAX%ã®ã‚²ãƒ¼ã‚¸æ‰€æŒãªã‚‰ã°æ¸›ç®—ã™ã‚‹
 				rpw->r_game.total_percent[i]--;
 			}
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ‘‡ƒ[ƒ^[ŠŽƒp[ƒZƒ“ƒg = %d\n", i, rpw->r_game.total_percent[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d ç·åˆãƒ¡ãƒ¼ã‚¿ãƒ¼æ‰€æŒãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ = %d\n", i, rpw->r_game.total_percent[i]);
 		}
 	}
 	
-	//Žæ“¾‚µ‚½ƒQ[ƒW‚Ìƒp[ƒZƒ“ƒe[ƒW‚ðŒ³‚É‘‡ƒQ[ƒWƒhƒbƒg”‚ðŽæ“¾
+	//å–å¾—ã—ãŸã‚²ãƒ¼ã‚¸ã®ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸ã‚’å…ƒã«ç·åˆã‚²ãƒ¼ã‚¸ãƒ‰ãƒƒãƒˆæ•°ã‚’å–å¾—
 	{
 		for(i = 0; i < BREEDER_MAX; i++){
 			rpw->r_game.gauge_dot[i] = RES_METER_DOT_MAX 
 				* rpw->r_game.total_percent[i] / RES_METER_PERCENT_MAX;
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ‘‡ƒ[ƒ^[ƒhƒbƒg” = %d\n", i, rpw->r_game.gauge_dot[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d ç·åˆãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒ‰ãƒƒãƒˆæ•° = %d\n", i, rpw->r_game.gauge_dot[i]);
 		}
 	}
 	
-	//‘‡ƒQ[ƒWƒhƒbƒg”‚©‚çAƒuƒŠ[ƒ_[–ˆ‚É“¾“_”z•ª‚É‰ž‚¶‚½ƒ[ƒ^[‚Ìƒhƒbƒg”‚ðŽæ“¾
+	//ç·åˆã‚²ãƒ¼ã‚¸ãƒ‰ãƒƒãƒˆæ•°ã‹ã‚‰ã€ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼æ¯Žã«å¾—ç‚¹é…åˆ†ã«å¿œã˜ãŸãƒ¡ãƒ¼ã‚¿ãƒ¼ã®ãƒ‰ãƒƒãƒˆæ•°ã‚’å–å¾—
 	{
 		s32 check_total, hosei_dot;
 		
@@ -1805,8 +1805,8 @@ void RT_CalcPoint(CONRES_PROC_WORK *rpw)
 			rpw->r_game.actin_dot[i] = rpw->r_game.gauge_dot[i] 
 				* rpw->r_game.actin_revise[i] / rpw->r_game.total_revise[i];
 			
-			//•”–å–ˆ‚É•ªŠ„‚µ‚½ƒQ[ƒWƒhƒbƒg‚Ì‡Œv‚ª‘‡ƒQ[ƒWƒhƒbƒg”‚É‘«‚è‚È‚¢ê‡‚Í
-			//ˆê”Ô‰Ò‚¢‚Å‚¢‚éŠ‚Å•â³
+			//éƒ¨é–€æ¯Žã«åˆ†å‰²ã—ãŸã‚²ãƒ¼ã‚¸ãƒ‰ãƒƒãƒˆã®åˆè¨ˆãŒç·åˆã‚²ãƒ¼ã‚¸ãƒ‰ãƒƒãƒˆæ•°ã«è¶³ã‚Šãªã„å ´åˆã¯
+			//ä¸€ç•ªç¨¼ã„ã§ã„ã‚‹æ‰€ã§è£œæ­£
 			check_total = rpw->r_game.visual_dot[i] 
 				+ rpw->r_game.dance_dot[i] + rpw->r_game.actin_dot[i];
 			hosei_dot = rpw->r_game.gauge_dot[i] - check_total;
@@ -1815,24 +1815,24 @@ void RT_CalcPoint(CONRES_PROC_WORK *rpw)
 						&& rpw->r_game.visual_dot[i] > rpw->r_game.actin_dot[i]
 						&& rpw->r_game.visual_dot[i] > 0){
 					rpw->r_game.visual_dot[i] += hosei_dot;
-					OS_TPrintf("ƒuƒŠ[ƒ_[%d ƒrƒWƒ…ƒAƒ‹ƒhƒbƒg‚É‘Î‚µ‚Ä•â³%d\n", i, hosei_dot);
+					OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«ãƒ‰ãƒƒãƒˆã«å¯¾ã—ã¦è£œæ­£ï¼%d\n", i, hosei_dot);
 				}
 				else if(rpw->r_game.dance_dot[i] > rpw->r_game.visual_dot[i] 
 						&& rpw->r_game.dance_dot[i] > rpw->r_game.actin_dot[i]
 						&& rpw->r_game.dance_dot[i] > 0){
 					rpw->r_game.dance_dot[i] += hosei_dot;
-					OS_TPrintf("ƒuƒŠ[ƒ_[%d ƒ_ƒ“ƒXƒhƒbƒg‚É‘Î‚µ‚Ä•â³%d\n", i, hosei_dot);
+					OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d ãƒ€ãƒ³ã‚¹ãƒ‰ãƒƒãƒˆã«å¯¾ã—ã¦è£œæ­£ï¼%d\n", i, hosei_dot);
 				}
 				else if(rpw->r_game.actin_dot[i] > rpw->r_game.visual_dot[i] 
 						&& rpw->r_game.actin_dot[i] > rpw->r_game.dance_dot[i]
 						&& rpw->r_game.actin_dot[i] > 0){
 					rpw->r_game.actin_dot[i] += hosei_dot;
-					OS_TPrintf("ƒuƒŠ[ƒ_[%d ‰‰‹Zƒhƒbƒg‚É‘Î‚µ‚Ä•â³%d\n", i, hosei_dot);
+					OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d æ¼”æŠ€ãƒ‰ãƒƒãƒˆã«å¯¾ã—ã¦è£œæ­£ï¼%d\n", i, hosei_dot);
 				}
 			}
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ƒrƒWƒ…ƒAƒ‹ŠŽƒhƒbƒg”=%d\n", i, rpw->r_game.visual_dot[i]);
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ƒ_ƒ“ƒXŠŽƒhƒbƒg”=%d\n", i, rpw->r_game.dance_dot[i]);
-			OS_TPrintf("ƒuƒŠ[ƒ_[%d ‰‰‹ZŠŽƒhƒbƒg”=%d\n", i, rpw->r_game.actin_dot[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«æ‰€æŒãƒ‰ãƒƒãƒˆæ•°=%d\n", i, rpw->r_game.visual_dot[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d ãƒ€ãƒ³ã‚¹æ‰€æŒãƒ‰ãƒƒãƒˆæ•°=%d\n", i, rpw->r_game.dance_dot[i]);
+			OS_TPrintf("ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼%d æ¼”æŠ€æ‰€æŒãƒ‰ãƒƒãƒˆæ•°=%d\n", i, rpw->r_game.actin_dot[i]);
 		}
 	}
 #endif

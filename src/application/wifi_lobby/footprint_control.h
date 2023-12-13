@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	footprint_control.h
- * @brief	���Ճ{�[�h�F�p�ɂɒ����������Ȃ��̂��܂Ƃ߂�
+ * @brief	足跡ボード：頻繁に調整しそうなものをまとめた
  * @author	matsuda
- * @date	2008.01.26(�y)
+ * @date	2008.01.26(土)
  */
 //==============================================================================
 #ifndef __FOOTPRINT_CONTROL_H__
@@ -11,41 +11,41 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///�C���N�̉��n��EVY�l(���̐F����ǂ��܂ŐF�𗎂Ƃ����B0 �` 16)
+///インクの下地のEVY値(元の色からどこまで色を落とすか。0 〜 16)
 #define INK_FOUNDATION_EVY		(12)
-///�C���N�̉��n�̖ڎw���J���[
+///インクの下地の目指すカラー
 #define INK_FOUNDATION_COLOR	(0x0000)
 
-///�C���N�p���b�g�ɒu����Ă��鎩���̑��Ճ}�[�N�̐F�F�z���C�g�{�[�h
+///インクパレットに置かれている自分の足跡マークの色：ホワイトボード
 #define INKPAL_FOOT_COLOR_CODE_WHITE		(0x0000)
-///�C���N�p���b�g�ɒu����Ă��鎩���̑��Ճ}�[�N�̐F�F�u���b�N�{�[�h
+///インクパレットに置かれている自分の足跡マークの色：ブラックボード
 #define INKPAL_FOOT_COLOR_CODE_BLACK		(0x7fff)
 
-///������Ă�C���N�p���b�g��ύX���鎞��EVY
+///押されてるインクパレットを変更する時のEVY
 #define TOUCH_EFF_EVY			(6)
-///������Ă�C���N�p���b�g��ύX���鎞�̃J���[�R�[�h
+///押されてるインクパレットを変更する時のカラーコード
 #define TOUCH_EFF_COLOR			(0x0000)
 
 
 //--------------------------------------------------------------
-//	�C���N�Q�[�W
+//	インクゲージ
 //--------------------------------------------------------------
-///�C���N�Q�[�W�̒���(�h�b�g�P��)
-#define INK_GAUGE_LEN				(32)	//���ҏW�֎~
-///�C���N�Q�[�W�̍ő�e��
-#define INK_GAUGE_TANK_MAX			(INK_GAUGE_LEN << 8)	//���ҏW�֎~
-///MAX�̏�Ԃ��牽��X�^���v��ł�����Q�[�W������ۂɂ��邩
+///インクゲージの長さ(ドット単位)
+#define INK_GAUGE_LEN				(32)	//※編集禁止
+///インクゲージの最大容量
+#define INK_GAUGE_TANK_MAX			(INK_GAUGE_LEN << 8)	//※編集禁止
+///MAXの状態から何回スタンプを打ったらゲージを空っぽにするか
 #define INK_GAUGE_MAX_STAMP			(6)
-///1�X�^���v���������Ƃɏ�����
-#define INK_GAUGE_CONSUME_STAMP	(INK_GAUGE_TANK_MAX / INK_GAUGE_MAX_STAMP)	//���ҏW�֎~
-///�C���N������������A�Q�[�W�����t���[�������āA�����̈ʒu�܂ňړ������邩
+///1つスタンプを押すごとに消費する量
+#define INK_GAUGE_CONSUME_STAMP	(INK_GAUGE_TANK_MAX / INK_GAUGE_MAX_STAMP)	//※編集禁止
+///インクを消費させた時、ゲージを何フレームかけて、消費後の位置まで移動させるか
 #define INK_GAUGE_SUB_FRAME			(4)
-///����ۂ̏�Ԃ��牽�t���[���ŃC���N���ő�܂ŉ񕜂����邩
+///空っぽの状態から何フレームでインクを最大まで回復させるか
 #define INK_GAUGE_RESTORE_FRAME		(60)
-///1�t���[���ŉ񕜂�����C���N��
-#define INK_GAUGE_RESTORE_NUM		(INK_GAUGE_TANK_MAX / INK_GAUGE_RESTORE_FRAME)	//���ҏW�֎~
+///1フレームで回復させるインク量
+#define INK_GAUGE_RESTORE_NUM		(INK_GAUGE_TANK_MAX / INK_GAUGE_RESTORE_FRAME)	//※編集禁止
 
 
 

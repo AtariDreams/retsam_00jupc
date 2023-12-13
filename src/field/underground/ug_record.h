@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_record.h
- * @bfief	‹L^‚рЉЗ—ќ‚·‚йѓNѓ‰ѓX
+ * @bfief	иЁйЊІг‚’з®Ўзђ†гЃ™г‚‹г‚Їгѓ©г‚№
  * @author	k.ohno
  * @date	06/01/31
  */
@@ -19,34 +19,34 @@
 
 /*
 typedef enum{
-  UNDER_FLAG_POINT_DELIVERY = 30,     //ѓnѓ^‚рЉо’n‚Й‚а‚ї‚©‚¦‚й	Ѓ{30
-  UNDER_FLAG_POINT_DELIVERY_SECOND = 15, //Ѓi€к“x‚Ж‚Б‚ЅЋ–‚М‚ ‚йѓnѓ^Ѓj	Ѓ{15
-  UNDER_FLAG_POINT_DIG_FOSSIL = 2, // ‰»ђО‚р”­Њ@‚·‚й	Ѓ{‚Q
-  UNDER_FLAG_POINT_SEND_GOODS = 5,  // “№‹п‚р‚ ‚°‚й
-  UNDER_FLAG_POINT_TALK = 1,       // ‰пb‚·‚й
-  UNDER_FLAG_POINT_QUESTION = 1,     // ‰пb‚МЋї–в‚рЌs‚¤
-  UNDER_FLAG_POINT_RESQUE = 5,     // Џ•‚Ї‚й
-  UNDER_FLAG_POINT_CREATE_BASE = 3,  // Љо’n‚рЌм‚й
-  UNDER_FLAG_POINT_ENTER_UG = 1,   // ’n‰є‚Й“ь‚й
-  UNDER_FLAG_POINT_WALK100 = 1,    // ’n‰є‚р‚P‚O‚O•а‚­
+  UNDER_FLAG_POINT_DELIVERY = 30,     //гѓЏг‚їг‚’еџєењ°гЃ«г‚‚гЃЎгЃ‹гЃ€г‚‹	пј‹30
+  UNDER_FLAG_POINT_DELIVERY_SECOND = 15, //пј€дёЂеє¦гЃЁгЃЈгЃџдє‹гЃ®гЃ‚г‚‹гѓЏг‚їпј‰	пј‹15
+  UNDER_FLAG_POINT_DIG_FOSSIL = 2, // еЊ–зџіг‚’з™єжЋгЃ™г‚‹	пј‹пј’
+  UNDER_FLAG_POINT_SEND_GOODS = 5,  // йЃ“е…·г‚’гЃ‚гЃ’г‚‹
+  UNDER_FLAG_POINT_TALK = 1,       // дјљи©±гЃ™г‚‹
+  UNDER_FLAG_POINT_QUESTION = 1,     // дјљи©±гЃ®иіЄе•Џг‚’иЎЊгЃ†
+  UNDER_FLAG_POINT_RESQUE = 5,     // еЉ©гЃ‘г‚‹
+  UNDER_FLAG_POINT_CREATE_BASE = 3,  // еџєењ°г‚’дЅњг‚‹
+  UNDER_FLAG_POINT_ENTER_UG = 1,   // ењ°дё‹гЃ«е…Ґг‚‹
+  UNDER_FLAG_POINT_WALK100 = 1,    // ењ°дё‹г‚’пј‘пјђпјђж­©гЃЏ
 
 } UnderFlagPoint_e;
 */
 
 typedef enum{
-  UNDER_FLAG_DEL,             // Љш‚рЋМ‚Д‚Ѕ
-  UNDER_FLAG_TARGET_GET,      // ‘ЉЋи‚МЉо’n‚Мѓnѓ^‚р‚Ж‚й	Ѓ{‚P‚O
-  UNDER_FLAG_MYFLAG_LOSE,     // Ћ©•Є‚МЉо’n‚Мѓnѓ^‚р‚Ж‚з‚к‚й	Ѓ[‚P‚O
-  UNDER_FLAG_DELIVERY,        // ѓnѓ^‚рЉо’n‚Й‚а‚ї‚©‚¦‚й	Ѓ{‚T‚O
-  UNDER_FLAG_DELIVERY_SECOND, //Ѓi€к“x‚Ж‚Б‚ЅЋ–‚М‚ ‚йѓnѓ^Ѓj	Ѓ{‚Q‚O
-  UNDER_FLAG_RIP_OFF,    // ђl‚Мѓnѓ^‚р‚¤‚О‚¤	Ѓ{‚P‚O
-  UNDER_FLAG_RECAPTURE,  // ђl‚Мѓnѓ^‚р‚Ж‚и‚©‚¦‚·	Ѓ{‚P‚O
-  UNDER_FLAG_STOLEN,     // ‚а‚Б‚Д‚Ѕѓnѓ^‚р‚Ж‚з‚к‚й	Ѓ[‚P‚O
-  UNDER_FLAG_TRICK,      // ‘ЉЋи‚рг©‚Й‚Н‚Я‚й	Ѓ{‚R
-  UNDER_FLAG_DECOY,      // г©‚Й‚Н‚Я‚з‚к‚й	Ѓ[‚P
-  UNDER_FLAG_DIG_FOSSIL, // ‰»ђО‚р”­Њ@‚·‚й	Ѓ{‚Q
-  UNDER_FLAG_NOTALK,    // b‚µ‚©‚Ї‚з‚к‚И‚ў
-  UNDER_FLAG_NODIG,    // ЏE‚¦‚И‚ў
+  UNDER_FLAG_DEL,             // ж——г‚’жЌЁгЃ¦гЃџ
+  UNDER_FLAG_TARGET_GET,      // з›ёж‰‹гЃ®еџєењ°гЃ®гѓЏг‚їг‚’гЃЁг‚‹	пј‹пј‘пјђ
+  UNDER_FLAG_MYFLAG_LOSE,     // и‡Єе€†гЃ®еџєењ°гЃ®гѓЏг‚їг‚’гЃЁг‚‰г‚Њг‚‹	гѓјпј‘пјђ
+  UNDER_FLAG_DELIVERY,        // гѓЏг‚їг‚’еџєењ°гЃ«г‚‚гЃЎгЃ‹гЃ€г‚‹	пј‹пј•пјђ
+  UNDER_FLAG_DELIVERY_SECOND, //пј€дёЂеє¦гЃЁгЃЈгЃџдє‹гЃ®гЃ‚г‚‹гѓЏг‚їпј‰	пј‹пј’пјђ
+  UNDER_FLAG_RIP_OFF,    // дєєгЃ®гѓЏг‚їг‚’гЃ†гЃ°гЃ†	пј‹пј‘пјђ
+  UNDER_FLAG_RECAPTURE,  // дєєгЃ®гѓЏг‚їг‚’гЃЁг‚ЉгЃ‹гЃ€гЃ™	пј‹пј‘пјђ
+  UNDER_FLAG_STOLEN,     // г‚‚гЃЈгЃ¦гЃџгѓЏг‚їг‚’гЃЁг‚‰г‚Њг‚‹	гѓјпј‘пјђ
+  UNDER_FLAG_TRICK,      // з›ёж‰‹г‚’зЅ гЃ«гЃЇг‚Ѓг‚‹	пј‹пј“
+  UNDER_FLAG_DECOY,      // зЅ гЃ«гЃЇг‚Ѓг‚‰г‚Њг‚‹	гѓјпј‘
+  UNDER_FLAG_DIG_FOSSIL, // еЊ–зџіг‚’з™єжЋгЃ™г‚‹	пј‹пј’
+  UNDER_FLAG_NOTALK,    // и©±гЃ—гЃ‹гЃ‘г‚‰г‚ЊгЃЄгЃ„
+  UNDER_FLAG_NODIG,    // ж‹ѕгЃ€гЃЄгЃ„
 } UnderFlagState_e;
 
 
@@ -73,7 +73,7 @@ extern void UnderRecordReboot(void);
 
 typedef void(*UgRecordEndCallBack)(void* pWork);
 
-// ѓXѓeЃ[ѓ^ѓX‰ж–К
+// г‚№гѓ†гѓјг‚їг‚№з”»йќў
 extern void UgRecordStatusListStart(GF_BGL_INI* bgl, MYSTATUS* pMyStatus,
                                     UgRecordEndCallBack pFunc,void* pWork, BOOL bMyData);
 extern void UgRecordUpdateMyData(void);
@@ -85,7 +85,7 @@ extern void UgRecordRecvTargetDataCall(int netID, int size, void* pData, void* p
 extern BOOL UgRecordIsTargetRecord(void);
 extern void UgRecordResetTargetRecord(void);
 extern void UgRecordGoodsMessage(SB_RECORD_DATA* pRec, int message);
-// Љш‚рЉl‚Б‚Ѕ—љ—р
+// ж——г‚’зЌІгЃЈгЃџе±Ґж­ґ
 extern void* UgRecordFlagListStart(GF_BGL_INI* bgl, MYSTATUS* pMyStatus,UNDERGROUNDDATA* pUGData,
                                   UgRecordEndCallBack pFunc,void* pWork);
 extern void UgRecordFlagListEnd(void* work);

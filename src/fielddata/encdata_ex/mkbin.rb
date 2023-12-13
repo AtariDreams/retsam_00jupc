@@ -1,4 +1,4 @@
-#ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[’è‹`‚ğ”z—ñ‰»
+#ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼å®šç¾©ã‚’é…åˆ—åŒ–
 
 def make_bin(m_ary, op_txt, op_bin, debug_txt, debug_mes)
 	txt = open(op_txt,"r")
@@ -13,8 +13,8 @@ def make_bin(m_ary, op_txt, op_bin, debug_txt, debug_mes)
 		
 		if idx == nil then
 			p name + ":unknown"
-			#ƒfƒoƒbƒOƒeƒLƒXƒg‚É‹Lq
-			debug_txt.printf("%sF%s‚Í‰ğÍ‚Å‚«‚Ü‚¹‚ñ\n",debug_mes,name)
+			#ãƒ‡ãƒãƒƒã‚°ãƒ†ã‚­ã‚¹ãƒˆã«è¨˜è¿°
+			debug_txt.printf("%sï¼š%sã¯è§£æã§ãã¾ã›ã‚“\n",debug_mes,name)
 		else
 			ary = Array(idx+1)
 			pack_str = ary.pack("i*")
@@ -39,39 +39,39 @@ while line = monsno_def.gets
 	end
 end	#while
 
-#ƒfƒoƒbƒO—pƒeƒLƒXƒgì¬
+#ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
 debug = open("debug.txt","wb")
 
-#ƒ_ƒCƒ„–¨–Ø‚Ìƒf[ƒ^ì¬i’Êíj
-make_bin(mons_ary, "honey_dia_nrm.txt", "bin/honey_dia_nrm.bin", debug, "ƒ_ƒCƒ„–¨’Êí")
+#ãƒ€ã‚¤ãƒ¤èœœæœ¨ã®ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼ˆé€šå¸¸ï¼‰
+make_bin(mons_ary, "honey_dia_nrm.txt", "bin/honey_dia_nrm.bin", debug, "ãƒ€ã‚¤ãƒ¤èœœé€šå¸¸")
 
-#ƒ_ƒCƒ„–¨–Ø‚Ìƒf[ƒ^ì¬iƒŒƒAj
-make_bin(mons_ary, "honey_dia_rare.txt", "bin/honey_dia_rare.bin", debug, "ƒ_ƒCƒ„–¨ƒŒƒA")
+#ãƒ€ã‚¤ãƒ¤èœœæœ¨ã®ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼ˆãƒ¬ã‚¢ï¼‰
+make_bin(mons_ary, "honey_dia_rare.txt", "bin/honey_dia_rare.bin", debug, "ãƒ€ã‚¤ãƒ¤èœœãƒ¬ã‚¢")
 
-#ƒ_ƒCƒ„–¨–Ø‚Ìƒf[ƒ^ì¬iŒƒƒŒƒAj
-make_bin(mons_ary, "honey_dia_s_rare.txt", "bin/honey_dia_s_rare.bin", debug, "ƒ_ƒCƒ„–¨ŒƒƒŒƒA")
+#ãƒ€ã‚¤ãƒ¤èœœæœ¨ã®ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼ˆæ¿€ãƒ¬ã‚¢ï¼‰
+make_bin(mons_ary, "honey_dia_s_rare.txt", "bin/honey_dia_s_rare.bin", debug, "ãƒ€ã‚¤ãƒ¤èœœæ¿€ãƒ¬ã‚¢")
 
-#ƒp[ƒ‹–¨–Ø‚Ìƒf[ƒ^ì¬i’Êíj
-make_bin(mons_ary, "honey_perl_nrm.txt", "bin/honey_perl_nrm.bin", debug, "ƒp[ƒ‹–¨’Êí")
+#ãƒ‘ãƒ¼ãƒ«èœœæœ¨ã®ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼ˆé€šå¸¸ï¼‰
+make_bin(mons_ary, "honey_perl_nrm.txt", "bin/honey_perl_nrm.bin", debug, "ãƒ‘ãƒ¼ãƒ«èœœé€šå¸¸")
 
-#ƒp[ƒ‹–¨–Ø‚Ìƒf[ƒ^ì¬iƒŒƒAj
-make_bin(mons_ary, "honey_perl_rare.txt", "bin/honey_perl_rare.bin", debug, "ƒp[ƒ‹–¨ƒŒƒA")
+#ãƒ‘ãƒ¼ãƒ«èœœæœ¨ã®ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼ˆãƒ¬ã‚¢ï¼‰
+make_bin(mons_ary, "honey_perl_rare.txt", "bin/honey_perl_rare.bin", debug, "ãƒ‘ãƒ¼ãƒ«èœœãƒ¬ã‚¢")
 
-#ƒp[ƒ‹–¨–Ø‚Ìƒf[ƒ^ì¬iŒƒƒŒƒAj
-make_bin(mons_ary, "honey_perl_s_rare.txt", "bin/honey_perl_s_rare.bin", debug, "ƒp[ƒ‹–¨ŒƒƒŒƒA")
+#ãƒ‘ãƒ¼ãƒ«èœœæœ¨ã®ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼ˆæ¿€ãƒ¬ã‚¢ï¼‰
+make_bin(mons_ary, "honey_perl_s_rare.txt", "bin/honey_perl_s_rare.bin", debug, "ãƒ‘ãƒ¼ãƒ«èœœæ¿€ãƒ¬ã‚¢")
 
-#ƒTƒtƒ@ƒŠ‚Ìƒf[ƒ^ì¬i‘S‘}ŠÓ‘Oj
-make_bin(mons_ary, "safari_bef.txt", "bin/safari_bef.bin", debug, "ƒTƒtƒ@ƒŠ}ŠÓ‘O")
+#ã‚µãƒ•ã‚¡ãƒªã®ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼ˆå…¨å›½å›³é‘‘å‰ï¼‰
+make_bin(mons_ary, "safari_bef.txt", "bin/safari_bef.bin", debug, "ã‚µãƒ•ã‚¡ãƒªå›³é‘‘å‰")
 
-#ƒTƒtƒ@ƒŠ‚Ìƒf[ƒ^ì¬i‘S‘}ŠÓŒãj
-make_bin(mons_ary, "safari_af.txt", "bin/safari_af.bin", debug, "ƒTƒtƒ@ƒŠ}ŠÓŒã")
+#ã‚µãƒ•ã‚¡ãƒªã®ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼ˆå…¨å›½å›³é‘‘å¾Œï¼‰
+make_bin(mons_ary, "safari_af.txt", "bin/safari_af.bin", debug, "ã‚µãƒ•ã‚¡ãƒªå›³é‘‘å¾Œ")
 
-#— R‚Ìƒf[ƒ^ì¬i‘S‘}ŠÓ‘Oj
-#make_bin(mons_ary, "mnt_bef.txt", "bin/mnt_bef.bin", debug, "— R}ŠÓ‘O")<<•s—v‚É‚È‚Á‚½
+#è£å±±ã®ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼ˆå…¨å›½å›³é‘‘å‰ï¼‰
+#make_bin(mons_ary, "mnt_bef.txt", "bin/mnt_bef.bin", debug, "è£å±±å›³é‘‘å‰")<<ä¸è¦ã«ãªã£ãŸ
 
-#— R‚Ìƒf[ƒ^ì¬i‘S‘}ŠÓŒãj
-make_bin(mons_ary, "mnt_af.txt", "bin/mnt_af.bin", debug, "— R}ŠÓŒã")
+#è£å±±ã®ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼ˆå…¨å›½å›³é‘‘å¾Œï¼‰
+make_bin(mons_ary, "mnt_af.txt", "bin/mnt_af.bin", debug, "è£å±±å›³é‘‘å¾Œ")
 
-#’Ş‚è‚Ìƒf[ƒ^ì¬
-make_bin(mons_ary, "fish.txt", "bin/fish.bin", debug, "’Ş‚è")
+#é‡£ã‚Šã®ãƒ‡ãƒ¼ã‚¿ä½œæˆ
+make_bin(mons_ary, "fish.txt", "bin/fish.bin", debug, "é‡£ã‚Š")
 

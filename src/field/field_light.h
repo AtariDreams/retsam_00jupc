@@ -2,7 +2,7 @@
 /**
  *
  *@file		field_light.h
- *@brief	ƒ‰ƒCƒgƒRƒ“ƒgƒ[ƒ‰
+ *@brief	ãƒ©ã‚¤ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
  *@author	tomoya takahashi
  *@data		2005.04.01
  */
@@ -25,78 +25,78 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 #define		DEB_MATE_ADD		(FX16_CONST( 0.10f ))
 
 enum { 
-	LIGHT_TYPE1,	// –ìŠO
-	LIGHT_TYPE2,	// Žº“à
-	LIGHT_TYPE3,	// ƒ_ƒ“ƒWƒ‡ƒ“
-	LIGHT_TYPEIAEA,	// ‚¢‚ ‚¦‚ —pƒ‰ƒCƒg
+	LIGHT_TYPE1,	// é‡Žå¤–
+	LIGHT_TYPE2,	// å®¤å†…
+	LIGHT_TYPE3,	// ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³
+	LIGHT_TYPEIAEA,	// ã„ã‚ãˆã‚ç”¨ãƒ©ã‚¤ãƒˆ
 	LIGHT_TYPE_MAX
 };
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
  */
 //-----------------------------------------------------------------------------
-typedef struct _LIGHT_CONT_SET* LIGHT_CONT_PTR;		// ƒ‰ƒCƒgƒVƒXƒeƒ€‚Ìƒf[ƒ^ƒ|ƒCƒ“ƒ^
-typedef const struct  _LIGHT_CONT_SET* CONST_LIGHT_CONT_PTR;		// ƒ‰ƒCƒgƒVƒXƒeƒ€‚Ìƒf[ƒ^ƒ|ƒCƒ“ƒ^
+typedef struct _LIGHT_CONT_SET* LIGHT_CONT_PTR;		// ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ã®ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+typedef const struct  _LIGHT_CONT_SET* CONST_LIGHT_CONT_PTR;		// ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ã®ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 
 
 //-------------------------------------
-//	‚Pƒ‰ƒCƒgƒf[ƒ^ƒe[ƒuƒ‹
+//	ï¼‘ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 //=====================================
 typedef struct{
-	u32			lightEnd;	// ƒ‰ƒCƒgŽŸ‚É•ÏXŽžŠÔ
+	u32			lightEnd;	// ãƒ©ã‚¤ãƒˆæ¬¡ã«å¤‰æ›´æ™‚é–“
 	
-	u8			lightFlag;		// ƒ‰ƒCƒg•`‰æƒtƒ‰ƒO
-	GXRgb		lightColor[4];	// ƒ‰ƒCƒg‚ÌF
-	VecFx16		lightVec[4];	// ƒ‰ƒCƒg‚Ì•ûŒü
+	u8			lightFlag;		// ãƒ©ã‚¤ãƒˆæç”»ãƒ•ãƒ©ã‚°
+	GXRgb		lightColor[4];	// ãƒ©ã‚¤ãƒˆã®è‰²
+	VecFx16		lightVec[4];	// ãƒ©ã‚¤ãƒˆã®æ–¹å‘
 	
-	GXRgb		diffuse;		// ƒfƒBƒtƒ…[ƒYF	i•¨‘Ì‚ÌFj
-    GXRgb		ambient;		// ƒAƒ“ƒrƒGƒ“ƒgF	iŠÂ‹«Œõj
-	GXRgb		specular;		// ƒXƒyƒLƒ…ƒ‰[F	iŒõ‚ª‹­‚­“–‚½‚Á‚½‚Æ‚±‚ë‚ÌFj
-	GXRgb		emission;		// •úŽËF
+	GXRgb		diffuse;		// ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºè‰²	ï¼ˆç‰©ä½“ã®è‰²ï¼‰
+    GXRgb		ambient;		// ã‚¢ãƒ³ãƒ“ã‚¨ãƒ³ãƒˆè‰²	ï¼ˆç’°å¢ƒå…‰ï¼‰
+	GXRgb		specular;		// ã‚¹ãƒšã‚­ãƒ¥ãƒ©ãƒ¼è‰²	ï¼ˆå…‰ãŒå¼·ãå½“ãŸã£ãŸã¨ã“ã‚ã®è‰²ï¼‰
+	GXRgb		emission;		// æ”¾å°„è‰²
 }LIGHT_CONT_DATA;
 
 
 
-// ƒ‚ƒfƒ‹ƒf[ƒ^‚Éƒ‰ƒCƒgÝ’è‚ª‚³‚ê‚Ä‚¢‚È‚¢•¨‚ª‚ ‚é‚½‚ßAƒ‰ƒCƒgƒtƒ‰ƒO‚ðÝ’è‚·‚é‚æ‚¤‚É‚·‚é
-// ‚µ‚©‚µA‘‹‚Ì’†‚ªŒõ‚Á‚Ä‚¢‚é‚Ì‚ðƒ`ƒFƒbƒN‚·‚é‚Æ‚«‚ÍAã‚ÌFIELD_LIGHT_MASK‚ðƒIƒ“‚É‚·‚é
-#define		FIELD_LIGHT_MASK	(GLST_LIGHTVEC_1|GLST_LIGHTVEC_2|GLST_LIGHTCOL_1|GLST_LIGHTCOL_2|GLST_DIFF|GLST_AMB|GLST_SPEC|GLST_EMI)		// field_glb_state‚ÅÝ’è‚·‚éƒf[ƒ^‚Ìƒ}ƒXƒN
+// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã«ãƒ©ã‚¤ãƒˆè¨­å®šãŒã•ã‚Œã¦ã„ãªã„ç‰©ãŒã‚ã‚‹ãŸã‚ã€ãƒ©ã‚¤ãƒˆãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
+// ã—ã‹ã—ã€çª“ã®ä¸­ãŒå…‰ã£ã¦ã„ã‚‹ã®ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã¨ãã¯ã€ä¸Šã®FIELD_LIGHT_MASKã‚’ã‚ªãƒ³ã«ã™ã‚‹
+#define		FIELD_LIGHT_MASK	(GLST_LIGHTVEC_1|GLST_LIGHTVEC_2|GLST_LIGHTCOL_1|GLST_LIGHTCOL_2|GLST_DIFF|GLST_AMB|GLST_SPEC|GLST_EMI)		// field_glb_stateã§è¨­å®šã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒžã‚¹ã‚¯
 
 //----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
-GLOBAL LIGHT_CONT_PTR InitLightCont(GLST_DATA_PTR glb, const u8 light_index/*const char* path*/);	// ƒ‰ƒCƒgƒVƒXƒeƒ€‚ð‰Šú‰»
-GLOBAL void DellLightCont(LIGHT_CONT_PTR* pLight);					// ƒ‰ƒCƒgƒVƒXƒeƒ€‚ð”jŠü
+GLOBAL LIGHT_CONT_PTR InitLightCont(GLST_DATA_PTR glb, const u8 light_index/*const char* path*/);	// ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–
+GLOBAL void DellLightCont(LIGHT_CONT_PTR* pLight);					// ãƒ©ã‚¤ãƒˆã‚·ã‚¹ãƒ†ãƒ ã‚’ç ´æ£„
 
-GLOBAL void MainLightCont(LIGHT_CONT_PTR Light);	// ƒ‰ƒCƒg‚ð“®‚©‚·
-GLOBAL void SetLightContReflect( LIGHT_CONT_PTR Light, BOOL reflect );	// ƒ‰ƒCƒgƒf[ƒ^‚ðƒtƒB[ƒ‹ƒh‚É”½‰f‚³‚¹‚é‚©Ý’è TREU”½‰f
+GLOBAL void MainLightCont(LIGHT_CONT_PTR Light);	// ãƒ©ã‚¤ãƒˆã‚’å‹•ã‹ã™
+GLOBAL void SetLightContReflect( LIGHT_CONT_PTR Light, BOOL reflect );	// ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«åæ˜ ã•ã›ã‚‹ã‹è¨­å®š TREUåæ˜ 
 GLOBAL BOOL GetLightContReflect( CONST_LIGHT_CONT_PTR Light );
-GLOBAL void DataSetLightCont( const LIGHT_CONT_DATA* move, GLST_DATA_PTR pGlst );	// 1ƒ‰ƒCƒgƒf[ƒ^Ý’è
+GLOBAL void DataSetLightCont( const LIGHT_CONT_DATA* move, GLST_DATA_PTR pGlst );	// 1ãƒ©ã‚¤ãƒˆãƒ‡ãƒ¼ã‚¿è¨­å®š
 
-GLOBAL void SetGlbLightMdl(NNSG3dResMdl* Mdl);	// ƒ‚ƒfƒ‹‚ÉƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚Ìƒ‰ƒCƒg‚ª”½‰f‚·‚é‚æ‚¤‚É‚·‚é
-GLOBAL void RemGlbLightMdl(NNSG3dResMdl* Mdl);	// ƒ‚ƒfƒ‹‚ªƒOƒ[ƒoƒ‹ƒXƒe[ƒg‚Ìƒ‰ƒCƒg‚ð”½‰f‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+GLOBAL void SetGlbLightMdl(NNSG3dResMdl* Mdl);	// ãƒ¢ãƒ‡ãƒ«ã«ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã®ãƒ©ã‚¤ãƒˆãŒåæ˜ ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
+GLOBAL void RemGlbLightMdl(NNSG3dResMdl* Mdl);	// ãƒ¢ãƒ‡ãƒ«ãŒã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆã®ãƒ©ã‚¤ãƒˆã‚’åæ˜ ã—ãªã„ã‚ˆã†ã«ã™ã‚‹
 
 
 //----------------------------------------------------------------------------
 /**
- * œƒfƒoƒbƒN—p	–l‚ª“Æ’f‚Æ•ÎŒ©‚Å–é‚©’‹‚©”»’f‚µ‚Ä‚¢‚Ü‚·
+ * â—ãƒ‡ãƒãƒƒã‚¯ç”¨	åƒ•ãŒç‹¬æ–­ã¨åè¦‹ã§å¤œã‹æ˜¼ã‹åˆ¤æ–­ã—ã¦ã„ã¾ã™
  *
- *	@brief	–é‚©ƒ`ƒFƒbƒN
+ *	@brief	å¤œã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cont	ƒ‰ƒCƒgƒRƒ“ƒgƒ[ƒ‹ƒVƒXƒeƒ€
+ *	@param	cont	ãƒ©ã‚¤ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@retval	TRUE	–é
- *	@retval	FALSE	’‹
+ *	@retval	TRUE	å¤œ
+ *	@retval	FALSE	æ˜¼
  *
  *
  */
@@ -106,7 +106,7 @@ GLOBAL BOOL GetLightNight( void );
 
 //----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 #undef	GLOBAL

@@ -12,118 +12,118 @@
 
   $Log: dwc_nd.c,v $
   Revision 1.37  2007/03/19 09:27:38  nakata
-  ƒfƒoƒbƒO•\¦‚ğOS_TPrintf‚©‚çDWC_Printf‚ğg—p‚·‚é‚æ‚¤‚É•ÏXB
+  ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºã‚’OS_TPrintfã‹ã‚‰DWC_Printfã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.36  2006/09/05 05:37:09  takayama
-  DWC_NdCleanupAsyncŠÖ”‚Ì•Ô‚è’l‚ğ void ‚©‚ç BOOL ‚É•ÏX‚µ‚½B
+  DWC_NdCleanupAsyncé–¢æ•°ã®è¿”ã‚Šå€¤ã‚’ void ã‹ã‚‰ BOOL ã«å¤‰æ›´ã—ãŸã€‚
 
   Revision 1.35  2006/08/25 04:31:35  nakata
-  –¢‰Šú‰»‚ÉCleanup‚µ‚Ä‚àASSERT‚µ‚È‚¢‚æ‚¤‚É•ÏX
+  æœªåˆæœŸåŒ–æ™‚ã«Cleanupã—ã¦ã‚‚ASSERTã—ãªã„ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.34  2006/08/21 07:50:01  nakata
-  Ndƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»¸”s‚É”­¶‚·‚éƒƒ‚ƒŠƒŠ[ƒN‚ğC³B
+  Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–å¤±æ•—æ™‚ã«ç™ºç”Ÿã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒªãƒ¼ã‚¯ã‚’ä¿®æ­£ã€‚
 
   Revision 1.33  2006/06/22 09:10:20  nakata
-  íœ‚µ‚½#pragma unused‚ğŒ³‚É–ß‚µ‚½
+  å‰Šé™¤ã—ãŸ#pragma unusedã‚’å…ƒã«æˆ»ã—ãŸ
 
   Revision 1.32  2006/06/22 02:34:19  nakata
-  ƒtƒ@ƒCƒ‹ƒ_ƒEƒ“ƒ[ƒh‚Ìƒoƒbƒtƒ@ƒTƒCƒY‚ªDWC_ND_RECVBUF_MIN‚æ‚è‚à¬‚³‚¢ê‡‚ÉASSERT‚ğ’Ç‰ÁB
+  ãƒ•ã‚¡ã‚¤ãƒ«ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æ™‚ã®ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãŒDWC_ND_RECVBUF_MINã‚ˆã‚Šã‚‚å°ã•ã„å ´åˆã«ASSERTã‚’è¿½åŠ ã€‚
 
   Revision 1.31  2006/06/22 02:03:04  nakata
-  ƒ_ƒEƒ“ƒ[ƒhƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒoƒbƒtƒ@•s‘«ƒGƒ‰[‚ğæ‚èœ‚¢‚½B(DWCError‚Ìí—Ş‚ğ‘‚â‚µ‚½‚­‚È‚¢‚½‚ß)
+  ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒãƒƒãƒ•ã‚¡ä¸è¶³ã‚¨ãƒ©ãƒ¼ã‚’å–ã‚Šé™¤ã„ãŸã€‚(DWCErrorã®ç¨®é¡ã‚’å¢—ã‚„ã—ãŸããªã„ãŸã‚)
 
   Revision 1.30  2006/06/22 00:49:50  nakata
-  ƒ_ƒEƒ“ƒ[ƒhƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒoƒbƒtƒ@•s‘«‚ÅOS_Panic‚µ‚È‚¢‚æ‚¤•ÏX
+  ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒãƒƒãƒ•ã‚¡ä¸è¶³ã§OS_Panicã—ãªã„ã‚ˆã†å¤‰æ›´
 
   Revision 1.29  2006/06/08 06:07:33  nakata
-  ƒRƒƒ“ƒg’Ç‰Á
+  ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ 
 
   Revision 1.28  2006/06/08 06:06:54  nakata
-  SVL‚ªbase64ƒfƒR[ƒh‚³‚ê‚Ä•Ô‚³‚ê‚é‚æ‚¤‚É‚È‚Á‚½‚½‚ßADWCi_Nd‚É“n‚·‘O‚Ébase64ƒGƒ“ƒR[ƒh‚·‚é‚æ‚¤‚É•ÏX
+  SVLãŒbase64ãƒ‡ã‚³ãƒ¼ãƒ‰ã•ã‚Œã¦è¿”ã•ã‚Œã‚‹ã‚ˆã†ã«ãªã£ãŸãŸã‚ã€DWCi_Ndã«æ¸¡ã™å‰ã«base64ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.27  2006/06/05 05:49:36  nakata
-  ƒ_ƒEƒ“ƒ[ƒhæƒoƒbƒtƒ@‚Ì‘å‚«‚³‚Æƒtƒ@ƒCƒ‹‚Ì‘å‚«‚³‚ğ”äŠr‚·‚éASSERTğŒ®‚ªŒë‚Á‚Ä‚¢‚½–â‘è‚ğC³
+  ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å…ˆãƒãƒƒãƒ•ã‚¡ã®å¤§ãã•ã¨ãƒ•ã‚¡ã‚¤ãƒ«ã®å¤§ãã•ã‚’æ¯”è¼ƒã™ã‚‹ASSERTæ¡ä»¶å¼ãŒèª¤ã£ã¦ã„ãŸå•é¡Œã‚’ä¿®æ­£
 
   Revision 1.26  2006/05/30 04:33:51  nakata
-  SVL‚ÌƒGƒ‰[”Ô†‚Ì‚İ‚ğc‚µ‚ÄNd‚©‚çDWC_Error‚ğİ’è‚·‚é•ÏX‚ğˆê•”‚É{‚µ‚½
+  SVLã®ã‚¨ãƒ©ãƒ¼ç•ªå·ã®ã¿ã‚’æ®‹ã—ã¦Ndã‹ã‚‰DWC_Errorã‚’è¨­å®šã™ã‚‹å¤‰æ›´ã‚’ä¸€éƒ¨ã«æ–½ã—ãŸ
 
   Revision 1.25  2006/05/29 11:37:00  nakata
-  SVLƒGƒ‰[‚ğ‚»‚Ì‚Ü‚Ü•Ô‚µ‚½ê‡Ndƒ‰ƒCƒuƒ‰ƒŠ‚ğ‰ğ•ú‚·‚é‘Îˆ‚ªs‚í‚ê‚È‚¢‚½‚ßANdƒ‰ƒCƒuƒ‰ƒŠ‚É‚æ‚Á‚ÄSVL‚ÌƒGƒ‰[‚ğã‘‚«‚·‚é‚æ‚¤‚ÉÄC³
+  SVLã‚¨ãƒ©ãƒ¼ã‚’ãã®ã¾ã¾è¿”ã—ãŸå ´åˆNdãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’è§£æ”¾ã™ã‚‹å¯¾å‡¦ãŒè¡Œã‚ã‚Œãªã„ãŸã‚ã€Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«ã‚ˆã£ã¦SVLã®ã‚¨ãƒ©ãƒ¼ã‚’ä¸Šæ›¸ãã™ã‚‹ã‚ˆã†ã«å†ä¿®æ­£
 
   Revision 1.24  2006/05/29 11:13:33  nakata
-  SVL‚ÌDWCError‚ğNd‚ªã‘‚«‚µ‚È‚¢‚æ‚¤•ÏX
+  SVLã®DWCErrorã‚’NdãŒä¸Šæ›¸ãã—ãªã„ã‚ˆã†å¤‰æ›´
 
   Revision 1.23  2006/05/26 04:09:59  nakata
-  DWCError”­¶‚ÉFATALƒGƒ‰[‚ğã‘‚«‚·‚é‚Ì‚ğ‚â‚ß‚é
+  DWCErrorç™ºç”Ÿæ™‚ã«FATALã‚¨ãƒ©ãƒ¼ã‚’ä¸Šæ›¸ãã™ã‚‹ã®ã‚’ã‚„ã‚ã‚‹
 
   Revision 1.22  2006/05/26 02:42:44  nakata
-  DWCErrorü‚è‚Ì’Ç‰Á
+  DWCErrorå‘¨ã‚Šã®è¿½åŠ 
 
   Revision 1.21  2006/05/25 10:42:41  nakata
-  DWC_Errorü‚è‚Ì’Ç‰Á
+  DWC_Errorå‘¨ã‚Šã®è¿½åŠ 
 
   Revision 1.20  2006/05/25 05:08:21  nakata
-  DWC_Nd/DWC_SVL‚ÉDWCƒGƒ‰[‚ğ•Ô‚·‹@”\‚ğ’Ç‰Á‚µ‚½‚±‚Æ‚É”º‚¤•ÏX
+  DWC_Nd/DWC_SVLã«DWCã‚¨ãƒ©ãƒ¼ã‚’è¿”ã™æ©Ÿèƒ½ã‚’è¿½åŠ ã—ãŸã“ã¨ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.19  2006/05/17 09:01:11  nakata
-  NHTTP/DWC_Ndƒ‰ƒCƒuƒ‰ƒŠ‚ğ5/17”Å‚ÉXV‚µ‚½‚±‚Æ‚É”º‚¤C³
+  NHTTP/DWC_Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’5/17ç‰ˆã«æ›´æ–°ã—ãŸã“ã¨ã«ä¼´ã†ä¿®æ­£
 
   Revision 1.18  2006/05/17 00:50:10  nakata
-  dwc_error.h‚Ì•ÏX‚É‚Æ‚à‚È‚¤C³
+  dwc_error.hã®å¤‰æ›´ã«ã¨ã‚‚ãªã†ä¿®æ­£
 
   Revision 1.17  2006/05/15 01:18:13  nakata
-  5/12”Å‚ÌDWC_Ndƒ‰ƒCƒuƒ‰ƒŠ‚É‘Î‰
+  5/12ç‰ˆã®DWC_Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªã«å¯¾å¿œ
 
   Revision 1.16  2006/05/12 11:24:48  nakata
-  ‘å–Ø‚³‚ñ‚Ìw“E‚É‘Î‰
+  å¤§æœ¨ã•ã‚“ã®æŒ‡æ‘˜ã«å¯¾å¿œ
 
   Revision 1.15  2006/05/10 11:50:58  nakata
-  Ndƒ‰ƒCƒuƒ‰ƒŠ‚Ìd—l•ÏX‚É”º‚Á‚Ä‰Šú‰»ŠÖ”‚ğ•ÏX
+  Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ä»•æ§˜å¤‰æ›´ã«ä¼´ã£ã¦åˆæœŸåŒ–é–¢æ•°ã‚’å¤‰æ›´
 
   Revision 1.14  2006/05/10 04:45:34  nakata
-  ‰Šú‰»‚Éİ’è‚³‚ê‚éDWCƒGƒ‰[‚ª³‚µ‚­‚È‚©‚Á‚½–â‘è‚ğC³
+  åˆæœŸåŒ–æ™‚ã«è¨­å®šã•ã‚Œã‚‹DWCã‚¨ãƒ©ãƒ¼ãŒæ­£ã—ããªã‹ã£ãŸå•é¡Œã‚’ä¿®æ­£
 
   Revision 1.13  2006/05/02 00:57:07  nakata
-  ƒ_ƒ~[ƒg[ƒNƒ“‚ğg—p‚·‚é‚æ‚¤‚É•ÏX
+  ãƒ€ãƒŸãƒ¼ãƒˆãƒ¼ã‚¯ãƒ³ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.12  2006/05/02 00:27:10  nakata
-  DWC_Nd‚ğ5Œ2“ú”Å‚ÉXV
+  DWC_Ndã‚’5æœˆ2æ—¥ç‰ˆã«æ›´æ–°
 
   Revision 1.11  2006/04/28 13:14:03  nakata
-  SVLæ“¾¸”s‚ÌƒGƒ‰[‚ğƒlƒbƒgƒ[ƒNƒGƒ‰[‚É•ÏX
+  SVLå–å¾—å¤±æ•—æ™‚ã®ã‚¨ãƒ©ãƒ¼ã‚’ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚¨ãƒ©ãƒ¼ã«å¤‰æ›´
 
   Revision 1.10  2006/04/28 12:23:27  nakata
-  ’è”–¼•ÏX‚É”º‚¤C³
+  å®šæ•°åå¤‰æ›´ã«ä¼´ã†ä¿®æ­£
 
   Revision 1.9  2006/04/28 10:08:43  nakata
-  DWC_NdInitAsync‚Épassword’Ç‰Á
-  DWC_NdGetFileAsync‚Ìd—l‘•ÏX‚É”º‚¤ŠÖ”•ÏX
-  Šeí’è”‚ğƒKƒCƒhƒ‰ƒCƒ“‚É‰ˆ‚Á‚½‚à‚Ì‚É•ÏX‚·‚éƒwƒbƒ_‚ğ’Ç‰Á
+  DWC_NdInitAsyncã«passwordè¿½åŠ 
+  DWC_NdGetFileAsyncã®ä»•æ§˜æ›¸å¤‰æ›´ã«ä¼´ã†é–¢æ•°å¤‰æ›´
+  å„ç¨®å®šæ•°ã‚’ã‚¬ã‚¤ãƒ‰ãƒ©ã‚¤ãƒ³ã«æ²¿ã£ãŸã‚‚ã®ã«å¤‰æ›´ã™ã‚‹ãƒ˜ãƒƒãƒ€ã‚’è¿½åŠ 
 
   Revision 1.8  2006/04/28 08:12:06  nakata
-  SVLæ“¾ƒXƒŒƒbƒh‚ªI—¹‚µ‚È‚¢ƒoƒO‚ğC³
+  SVLå–å¾—ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã—ãªã„ãƒã‚°ã‚’ä¿®æ­£
 
   Revision 1.7  2006/04/27 12:46:24  takayama
   svc(SVC) -> svl(SVL)
 
   Revision 1.6  2006/04/27 05:27:54  nakata
-  ƒGƒ‰[ƒR[ƒhŠÖ˜A‚ÌC³
-  DWCƒGƒ‰[”­¶‚É‚ÍŠeŠÖ”‚ÌÀs‚ğ•s‰Â”\‚É‚µ‚½
+  ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰é–¢é€£ã®ä¿®æ­£
+  DWCã‚¨ãƒ©ãƒ¼ç™ºç”Ÿæ™‚ã«ã¯å„é–¢æ•°ã®å®Ÿè¡Œã‚’ä¸å¯èƒ½ã«ã—ãŸ
 
   Revision 1.5  2006/04/26 10:52:39  nakata
-  DWC_Nd‚ğƒGƒ‰[ƒR[ƒh‚ğİ’è‚·‚é‚æ‚¤‚É•ÏX
+  DWC_Ndã‚’ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.4  2006/04/26 08:35:13  nakata
-  DWC_Nd‚ğdwc.h‚³‚¦ƒCƒ“ƒNƒ‹[ƒh‚·‚ê‚Î“®ì‚·‚é‚æ‚¤•ÏX
+  DWC_Ndã‚’dwc.hã•ãˆã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚Œã°å‹•ä½œã™ã‚‹ã‚ˆã†å¤‰æ›´
 
   Revision 1.3  2006/04/26 05:09:13  nakata
-  ‰Šú‰»¸”s‚Éƒƒ‚ƒŠ‚ª‰ğ•ú‚³‚ê‚È‚¢ƒoƒO‚ğC³
+  åˆæœŸåŒ–å¤±æ•—æ™‚ã«ãƒ¡ãƒ¢ãƒªãŒè§£æ”¾ã•ã‚Œãªã„ãƒã‚°ã‚’ä¿®æ­£
 
   Revision 1.2  2006/04/26 04:19:23  nakata
-  Nd/NHTTP‚ğ4Œ26“ú”Å‚ÉXV
+  Nd/NHTTPã‚’4æœˆ26æ—¥ç‰ˆã«æ›´æ–°
 
   Revision 1.1  2006/04/25 11:46:46  nakata
-  DWC_Ndƒ‰ƒbƒp‚ğ’Ç‰Á
+  DWC_Ndãƒ©ãƒƒãƒ‘ã‚’è¿½åŠ 
 
 
 
@@ -152,7 +152,7 @@
         define
    ------------------------------------------------------------------------- */
 
-// [nakata] Ndƒ‰ƒCƒuƒ‰ƒŠ‚ªg—p‚·‚éSVL
+// [nakata] Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒä½¿ç”¨ã™ã‚‹SVL
 #define DWC_ND_SVL				"9000"
 #define SVLTHREADSTACKSIZE		2048
 #define SVLHOSTNAMEMAX			255
@@ -170,21 +170,21 @@
         struct
    ------------------------------------------------------------------------- */
 
-// [nakata] DWCNd‚ÌŠeƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶‚·‚é‚½‚ß‚Ì\‘¢‘Ì
+// [nakata] DWCNdã®å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹ãŸã‚ã®æ§‹é€ ä½“
 typedef struct {
-	// [nakata] ‰Šú‰»ƒpƒ‰ƒ[ƒ^
+	// [nakata] åˆæœŸåŒ–æ™‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	DWCNdCallback			callback;
 	DWCNdCleanupCallback	cleanupcallback;
 	char					gamecd[GAMECDMAX];
 	char					passwd[PASSWDMAX];
 	
-	// [nakata] DWCi_Nd‰Šú‰»ƒtƒ‰ƒO
+	// [nakata] DWCi_NdåˆæœŸåŒ–ãƒ•ãƒ©ã‚°
 	BOOL			ndinitialized;
 	
-	// [nakata] SVLƒg[ƒNƒ“Ši”[—Ìˆæ
+	// [nakata] SVLãƒˆãƒ¼ã‚¯ãƒ³æ ¼ç´é ˜åŸŸ
 	DWCSvlResult	svlresult;
 	
-	// [nakata] SVLæ“¾‘Ò‚¿ƒXƒŒƒbƒh
+	// [nakata] SVLå–å¾—å¾…ã¡ã‚¹ãƒ¬ãƒƒãƒ‰
 	u8				svlthreadstack[SVLTHREADSTACKSIZE];
 	OSThread		svlthread;
 } DWCNdCnt;
@@ -193,7 +193,7 @@ typedef struct {
         variable
    ------------------------------------------------------------------------- */
 
-// [nakata] Init‚ÌŠeƒpƒ‰ƒ[ƒ^‚ğ•Û‘¶‚·‚é‚½‚ß‚Ì—Ìˆæ
+// [nakata] Initæ™‚ã®å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹ãŸã‚ã®é ˜åŸŸ
 static DWCNdCnt *dwcndcnt = NULL;
 
 /* -------------------------------------------------------------------------
@@ -210,12 +210,12 @@ static DWCNdCnt *dwcndcnt = NULL;
 /*---------------------------------------------------------------------------*
   Name:			DWCi_NdAlloc
 
-  Description:	Ndƒ‰ƒCƒuƒ‰ƒŠ“à‚Åg—p‚³‚ê‚éƒƒ‚ƒŠŠÇ—ŠÖ”
+  Description:	Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…ã§ä½¿ç”¨ã•ã‚Œã‚‹ãƒ¡ãƒ¢ãƒªç®¡ç†é–¢æ•°
 
-  Arguments:	size  - Šm•Û‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ì—e—Ê
-				align - Šm•Û‚·‚éƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒ‰ƒCƒ“ƒƒ“ƒg
-  Returns:		NULLˆÈŠO - Šm•Û‚³‚ê‚½ƒƒ‚ƒŠƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-				NULL     - ƒƒ‚ƒŠŠm•Û¸”s
+  Arguments:	size  - ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®å®¹é‡
+				align - ç¢ºä¿ã™ã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ©ã‚¤ãƒ³ãƒ¡ãƒ³ãƒˆ
+  Returns:		NULLä»¥å¤– - ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+				NULL     - ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—
  *---------------------------------------------------------------------------*/
 static void *DWCi_NdAlloc(u32 size, int align)
 {
@@ -225,10 +225,10 @@ static void *DWCi_NdAlloc(u32 size, int align)
 /*---------------------------------------------------------------------------*
   Name:			DWCi_NdFree
 
-  Description:	Ndƒ‰ƒCƒuƒ‰ƒŠ“à‚Åg—p‚³‚ê‚éƒƒ‚ƒŠŠÇ—ŠÖ”
+  Description:	Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…ã§ä½¿ç”¨ã•ã‚Œã‚‹ãƒ¡ãƒ¢ãƒªç®¡ç†é–¢æ•°
 
-  Arguments:	ptr - ‰ğ•ú‚³‚ê‚éƒƒ‚ƒŠƒuƒƒbƒN‚Ì—e—Ê
-  Returns:		‚È‚µ
+  Arguments:	ptr - è§£æ”¾ã•ã‚Œã‚‹ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®å®¹é‡
+  Returns:		ãªã—
  *---------------------------------------------------------------------------*/
 static void DWCi_NdFree(void *ptr)
 {
@@ -238,23 +238,23 @@ static void DWCi_NdFree(void *ptr)
 /*---------------------------------------------------------------------------*
   Name:			DWCi_NdCallback
 
-  Description:	Ndƒ‰ƒCƒuƒ‰ƒŠƒR[ƒ‹ƒoƒbƒN‚ğ“à•”“I‚Éˆ—‚µƒGƒ‰[ƒR[ƒh‚Ìİ’è‚È‚Ç‚ğs‚¤ŠÖ”
+  Description:	Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å†…éƒ¨çš„ã«å‡¦ç†ã—ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã®è¨­å®šãªã©ã‚’è¡Œã†é–¢æ•°
 
-  Arguments:	DWCNdCallbackŒ^‚ğQÆ
-  Returns:		‚È‚µ
+  Arguments:	DWCNdCallbackå‹ã‚’å‚ç…§
+  Returns:		ãªã—
  *---------------------------------------------------------------------------*/
 static void DWCi_NdCallback(DWCNdCallbackReason reason, DWCNdError error, int servererror)
 {
 	SDK_ASSERT(dwcndcnt);
 	SDK_ASSERT(dwcndcnt->callback);
 	
-	// [nakata] ƒGƒ‰[‚ª‚È‚¢‚È‚ç‚Î‚»‚Ì‚Ü‚ÜƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚Ño‚·
+	// [nakata] ã‚¨ãƒ©ãƒ¼ãŒãªã„ãªã‚‰ã°ãã®ã¾ã¾ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã™
 	if(error == DWC_ND_ERROR_NONE) {
 		dwcndcnt->callback(reason, error, servererror);
 		return;
 	}
 	
-	// [nakata] ƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚ÍDWCi_SetError‚ğŒÄ‚Ô•K—v‚ª‚ ‚é
+	// [nakata] ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯DWCi_SetErrorã‚’å‘¼ã¶å¿…è¦ãŒã‚ã‚‹
 	switch(error) {
 	case DWC_ND_ERROR_ALLOC:
 		DWCi_SetError(DWC_ERROR_FATAL, DWC_ECODE_SEQ_ADDINS + DWC_ECODE_FUNC_ND + DWC_ECODE_TYPE_ND_ALLOC);
@@ -283,17 +283,17 @@ static void DWCi_NdCallback(DWCNdCallbackReason reason, DWCNdError error, int se
 		OS_Panic("DWCi_NdCallback: Unknown error type.");
 	}
 	
-	// [nakata] ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚Ño‚·
+	// [nakata] ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã™
 	dwcndcnt->callback(reason, error, servererror);
 }
 
 /*---------------------------------------------------------------------------*
   Name:			DWCi_NdCleanupCallback
 
-  Description:	Ndƒ‰ƒCƒuƒ‰ƒŠƒNƒŠ[ƒ“ƒAƒbƒvƒR[ƒ‹ƒoƒbƒN‚ğ“à•”“I‚Éˆ—‚µƒGƒ‰[ƒR[ƒh‚Ìİ’è‚È‚Ç‚ğs‚¤ŠÖ”
+  Description:	Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒƒãƒ—ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å†…éƒ¨çš„ã«å‡¦ç†ã—ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã®è¨­å®šãªã©ã‚’è¡Œã†é–¢æ•°
 
-  Arguments:	DWCNdCleanupCallbackŒ^‚ğQÆ
-  Returns:		‚È‚µ
+  Arguments:	DWCNdCleanupCallbackå‹ã‚’å‚ç…§
+  Returns:		ãªã—
  *---------------------------------------------------------------------------*/
 static void DWCi_NdCleanupCallback(void)
 {
@@ -301,17 +301,17 @@ static void DWCi_NdCleanupCallback(void)
 	
 	SDK_ASSERT(dwcndcnt);
 	
-	// [nakata] ƒXƒŒƒbƒh‚ÉJoin
+	// [nakata] ã‚¹ãƒ¬ãƒƒãƒ‰ã«Join
 	OS_JoinThread(&dwcndcnt->svlthread);
 	
-	// [nakata] ƒ†[ƒU[İ’è‚µ‚½ƒR[ƒ‹ƒoƒbƒN‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+	// [nakata] ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šã—ãŸã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’ä¿å­˜ã—ã¦ãŠã
 	callback = dwcndcnt->cleanupcallback;
 	
-	// [nakata] ƒƒ‚ƒŠ‰ğ•ú(‚±‚±‚Ådwcndcnt‚ªNULL‚É‚È‚é‚½‚ßdwcndcnt->ndinitialized‚ÌƒNƒŠƒA‚Í•K—v‚È‚¢)
+	// [nakata] ãƒ¡ãƒ¢ãƒªè§£æ”¾(ã“ã“ã§dwcndcntãŒNULLã«ãªã‚‹ãŸã‚dwcndcnt->ndinitializedã®ã‚¯ãƒªã‚¢ã¯å¿…è¦ãªã„)
 	DWCi_NdFree(dwcndcnt);
 	dwcndcnt = NULL;
 	
-	// [nakata] ƒ†[ƒU[İ’è‚µ‚½ƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ño‚·
+	// [nakata] ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šã—ãŸã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã³å‡ºã™
 	if(callback != NULL)
 		callback();
 }
@@ -323,10 +323,10 @@ static void DWCi_NdCleanupCallback(void)
 /*---------------------------------------------------------------------------*
   Name:			DWCi_SVLTokenWaitThread
 
-  Description:	SVLƒg[ƒNƒ“æ“¾‘Ò‚¿ƒXƒŒƒbƒhŠÖ”
+  Description:	SVLãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å¾…ã¡ã‚¹ãƒ¬ãƒƒãƒ‰é–¢æ•°
 
-  Arguments:	‚È‚µ
-  Returns:		‚È‚µ
+  Arguments:	ãªã—
+  Returns:		ãªã—
  *---------------------------------------------------------------------------*/
 static void DWCi_SVLTokenWaitThread(void *arg)
 {
@@ -342,7 +342,7 @@ static void DWCi_SVLTokenWaitThread(void *arg)
 	for(;;) {
 		svlstate = DWC_SVLProcess();
 		if(svlstate == DWC_SVL_STATE_SUCCESS) {
-			// [nakata] SVLƒg[ƒNƒ“æ“¾¬Œ÷ANdƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»ŠJn
+			// [nakata] SVLãƒˆãƒ¼ã‚¯ãƒ³å–å¾—æˆåŠŸã€Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–é–‹å§‹
 			if(strlen(dwcndcnt->svlresult.svlhost)+strlen("https:///download") > SVLHOSTNAMEMAX) {
 				DWC_Printf(DWC_REPORTFLAG_ERROR, "DWCi_SVLTokenWaitThread: DWCi_NdStartup too long svlhost.\n");
 				DWCi_NdCallback(DWC_ND_CBREASON_INITIALIZE, DWC_ND_ERROR_FATAL, -1);
@@ -350,7 +350,7 @@ static void DWCi_SVLTokenWaitThread(void *arg)
 			}
 			OS_SNPrintf(url, SVLHOSTNAMEMAX+1, "https://%s/download", dwcndcnt->svlresult.svlhost);
 			
-			// [nakata] SVL‚ªƒg[ƒNƒ“‚ğbase64ƒfƒR[ƒh‚µ‚Ä•Ô‚·‚æ‚¤‚É•ÏX‚³‚ê‚½‚½‚ßADWCi_Nd‚É“n‚·‘O‚Ébase64ƒGƒ“ƒR[ƒh‚·‚é
+			// [nakata] SVLãŒãƒˆãƒ¼ã‚¯ãƒ³ã‚’base64ãƒ‡ã‚³ãƒ¼ãƒ‰ã—ã¦è¿”ã™ã‚ˆã†ã«å¤‰æ›´ã•ã‚ŒãŸãŸã‚ã€DWCi_Ndã«æ¸¡ã™å‰ã«base64ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã™ã‚‹
 			if(DWC_Auth_Base64Encode(dwcndcnt->svlresult.svltoken, strlen(dwcndcnt->svlresult.svltoken), token, TOKEN_LENGTH) < 0) {
 				DWC_Printf(DWC_REPORTFLAG_ERROR, "DWCi_SVLTokenWaitThread: Can't encode SVL token.\n");
 				DWCi_NdCallback(DWC_ND_CBREASON_INITIALIZE, DWC_ND_ERROR_FATAL, -1);
@@ -358,38 +358,38 @@ static void DWCi_SVLTokenWaitThread(void *arg)
 			}
 			
 			if(DWCi_NdStartup(DWCi_NdAlloc, DWCi_NdFree, url, token, dwcndcnt->gamecd, dwcndcnt->passwd, DWCi_NdCallback) == FALSE) {
-				// [nakata] Ndƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»¸”s
+				// [nakata] Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–å¤±æ•—
 				DWC_Printf(DWC_REPORTFLAG_ERROR, "DWCi_SVLTokenWaitThread: DWCi_NdStartup failed.\n");
 				DWCi_NdCallback(DWC_ND_CBREASON_INITIALIZE, DWC_ND_ERROR_FATAL, -1);
 				return;
 			}
 			
-			// [nakata] ndƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»¬Œ÷
+			// [nakata] ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–æˆåŠŸ
 			DWC_Printf(DWC_REPORTFLAG_DEBUG, "DWCi_SVLTokenWaitThread: DWCi_NdStartup successed.\n");
 			dwcndcnt->ndinitialized = TRUE;
 			DWCi_NdCallback(DWC_ND_CBREASON_INITIALIZE, DWC_ND_ERROR_NONE, -1);
 			return;
 		}
 		else if(svlstate == DWC_SVL_STATE_ERROR) {
-			// [nakata] SVLƒg[ƒNƒ“æ“¾¸”s
-			// [nakata] DWCƒGƒ‰[‚Íİ’èÏ‚İ
+			// [nakata] SVLãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å¤±æ•—
+			// [nakata] DWCã‚¨ãƒ©ãƒ¼ã¯è¨­å®šæ¸ˆã¿
 			DWC_Printf(DWC_REPORTFLAG_ERROR, "DWCi_SVLTokenWaitThread: Can't get SVL token.\n");
 			
-			// [nakata] ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚Ño‚·
+			// [nakata] ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã™
 			(void)DWC_GetLastError(&errorcode);
 			DWCi_SetError(DWC_ERROR_ND_ANY, errorcode);
 			dwcndcnt->callback(DWC_ND_CBREASON_INITIALIZE, DWC_ND_ERROR_HTTP, -1);
 			
-			// [nakata] DWCƒGƒ‰[‚Íİ’èÏ‚İ‚¾‚ªANdƒ‰ƒCƒuƒ‰ƒŠ‚ÍSVL‚Æˆá‚Á‚Ä‘Îˆ‚Æ‚µ‚Ä‰ğ•ú‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢‚½‚ß
-			//          ƒGƒ‰[‚ğã‘‚«
+			// [nakata] DWCã‚¨ãƒ©ãƒ¼ã¯è¨­å®šæ¸ˆã¿ã ãŒã€Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¯SVLã¨é•ã£ã¦å¯¾å‡¦ã¨ã—ã¦è§£æ”¾ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„ãŸã‚
+			//          ã‚¨ãƒ©ãƒ¼ã‚’ä¸Šæ›¸ã
 			//DWCi_NdCallback(DWC_ND_CBREASON_INITIALIZE, DWC_ND_ERROR_HTTP, -1);
 			return;
 		}
 		else if(svlstate == DWC_SVL_STATE_CANCELED) {
-			// [nakata] SVLƒg[ƒNƒ“æ“¾ƒLƒƒƒ“ƒZƒ‹
+			// [nakata] SVLãƒˆãƒ¼ã‚¯ãƒ³å–å¾—ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			//DWCi_NdCallback(DWC_ND_CBREASON_INITIALIZE, DWC_ND_ERROR_HTTP, -1);
 			
-			// [nakata] DWCƒGƒ‰[‚Íİ’èÏ‚İ‚¾‚ªANdƒ‰ƒCƒuƒ‰ƒŠƒLƒƒƒ“ƒZƒ‹ˆµ‚¢‚Æ‚µ‚ÄƒGƒ‰[‚ğã‘‚«
+			// [nakata] DWCã‚¨ãƒ©ãƒ¼ã¯è¨­å®šæ¸ˆã¿ã ãŒã€Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚­ãƒ£ãƒ³ã‚»ãƒ«æ‰±ã„ã¨ã—ã¦ã‚¨ãƒ©ãƒ¼ã‚’ä¸Šæ›¸ã
 			DWCi_NdCallback(DWC_ND_CBREASON_INITIALIZE, DWC_ND_ERROR_CANCELED, -1);
 		}
 		OS_Sleep(100);
@@ -400,12 +400,12 @@ static void DWCi_SVLTokenWaitThread(void *arg)
 /*---------------------------------------------------------------------------*
   Name:			DWC_NdInitAsync
 
-  Description:	Ndƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»ŠÖ”
+  Description:	Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–é–¢æ•°
 
-  Arguments:	callback - Ndƒ‰ƒCƒuƒ‰ƒŠ‚ªŒÄ‚Ño‚·’Ê’mƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                password - ƒ_ƒEƒ“ƒ[ƒhƒT[ƒo‚Ö‚ÌƒAƒNƒZƒX‚É•K—v‚ÈƒpƒXƒ[ƒh
-  Returns:		TRUE  - ‰Šú‰»¬Œ÷
-				FALSE - ‰Šú‰»¸”s
+  Arguments:	callback - Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒå‘¼ã³å‡ºã™é€šçŸ¥ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                password - ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚µãƒ¼ãƒã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã«å¿…è¦ãªãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰
+  Returns:		TRUE  - åˆæœŸåŒ–æˆåŠŸ
+				FALSE - åˆæœŸåŒ–å¤±æ•—
  *---------------------------------------------------------------------------*/
 BOOL DWC_NdInitAsync(DWCNdCallback callback, char *gamecd, char *passwd)
 {
@@ -414,12 +414,12 @@ BOOL DWC_NdInitAsync(DWCNdCallback callback, char *gamecd, char *passwd)
 	SDK_ASSERT(gamecd);
 	SDK_ASSERT(passwd);
 	
-	// [nakata] DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// [nakata] DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if(DWCi_IsError()) {
 		return FALSE;
 	}
 	
-	// [nakata] ƒRƒ“ƒgƒ[ƒ‹\‘¢‘Ì‰Šú‰»
+	// [nakata] ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«æ§‹é€ ä½“åˆæœŸåŒ–
 	dwcndcnt = DWCi_NdAlloc(sizeof(DWCNdCnt), 32);
 	SDK_ASSERT(dwcndcnt);
 	dwcndcnt->ndinitialized = FALSE;
@@ -429,20 +429,20 @@ BOOL DWC_NdInitAsync(DWCNdCallback callback, char *gamecd, char *passwd)
 	strncpy(dwcndcnt->gamecd, gamecd, GAMECDMAX-1);
 	strncpy(dwcndcnt->passwd, passwd, PASSWDMAX-1);
 	
-	// [nakata] SVLƒg[ƒNƒ“æ“¾ŠJn
+	// [nakata] SVLãƒˆãƒ¼ã‚¯ãƒ³å–å¾—é–‹å§‹
 	if(DWC_SVLGetTokenAsync(DWC_ND_SVL, &dwcndcnt->svlresult) == FALSE) {
-		// [nakata] SVLƒg[ƒNƒ“æ“¾ˆ—ŠJn¸”s
-		// [nakata] DWCƒGƒ‰[‚ÍSVL“à•”‚Åİ’èÏ‚İ
+		// [nakata] SVLãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å‡¦ç†é–‹å§‹å¤±æ•—
+		// [nakata] DWCã‚¨ãƒ©ãƒ¼ã¯SVLå†…éƒ¨ã§è¨­å®šæ¸ˆã¿
 		DWC_Printf(DWC_REPORTFLAG_ERROR, "DWC_NdInitAsync: DWC_SVLGetTokenAsync failed.\n");
 		
-		// [nakata] ƒƒ‚ƒŠ‰ğ•ú
+		// [nakata] ãƒ¡ãƒ¢ãƒªè§£æ”¾
 		DWCi_NdFree(dwcndcnt);
 		dwcndcnt = NULL;
 		return FALSE;
 	}
 	DWC_Printf(DWC_REPORTFLAG_DEBUG, "DWC_NdInitAsync: DWC_SVLGetTokenAsync started.\n");
 	
-	// [nakata] SVLƒg[ƒNƒ“óM‘Ò‚¿ƒXƒŒƒbƒh‹N“®
+	// [nakata] SVLãƒˆãƒ¼ã‚¯ãƒ³å—ä¿¡å¾…ã¡ã‚¹ãƒ¬ãƒƒãƒ‰èµ·å‹•
 	OS_CreateThread(&dwcndcnt->svlthread, DWCi_SVLTokenWaitThread, NULL, dwcndcnt->svlthreadstack+SVLTHREADSTACKSIZE, SVLTHREADSTACKSIZE, 16);
 	OS_WakeupThreadDirect(&dwcndcnt->svlthread);
 	
@@ -452,10 +452,10 @@ BOOL DWC_NdInitAsync(DWCNdCallback callback, char *gamecd, char *passwd)
 /*---------------------------------------------------------------------------*
   Name:			DWC_NdCleanupAsync
 
-  Description:	Ndƒ‰ƒCƒuƒ‰ƒŠ‰ğ•úŠÖ”
+  Description:	Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªè§£æ”¾é–¢æ•°
 
-  Arguments:	callback - Ndƒ‰ƒCƒuƒ‰ƒŠ‚ªŒÄ‚Ño‚·‰ğ•úŠ®—¹’Ê’mƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
-  Returns:		‚È‚µ
+  Arguments:	callback - Ndãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒå‘¼ã³å‡ºã™è§£æ”¾å®Œäº†é€šçŸ¥ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+  Returns:		ãªã—
  *---------------------------------------------------------------------------*/
 BOOL DWC_NdCleanupAsync(DWCNdCleanupCallback callback)
 {
@@ -474,41 +474,41 @@ BOOL DWC_NdCleanupAsync(DWCNdCleanupCallback callback)
 /*---------------------------------------------------------------------------*
   Name:			DWC_NdSetAttr
 
-  Description:	ƒ_ƒEƒ“ƒ[ƒh‘®«İ’èŠÖ”
+  Description:	ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æ™‚å±æ€§è¨­å®šé–¢æ•°
 
-  Arguments:	attr1 - ‘®«•¶š—ñ1
-				attr2 - ‘®«•¶š—ñ2
-				attr3 - ‘®«•¶š—ñ3
-  Returns:		TRUE  - ‘®«İ’è¬Œ÷
-				FALSE - ‘®«İ’è¸”s
+  Arguments:	attr1 - å±æ€§æ–‡å­—åˆ—1
+				attr2 - å±æ€§æ–‡å­—åˆ—2
+				attr3 - å±æ€§æ–‡å­—åˆ—3
+  Returns:		TRUE  - å±æ€§è¨­å®šæˆåŠŸ
+				FALSE - å±æ€§è¨­å®šå¤±æ•—
  *---------------------------------------------------------------------------*/
 BOOL DWC_NdSetAttr(const char* attr1, const char* attr2, const char* attr3)
 {
 	SDK_ASSERT(dwcndcnt);
 	
-	// [nakata] DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// [nakata] DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if(DWCi_IsError()) {
 		return FALSE;
 	}
 	
-	// [nakata] •Ô‚è’l‚É‚æ‚Á‚ÄƒGƒ‰[ƒR[ƒh‚ğİ’è‚·‚é
+	// [nakata] è¿”ã‚Šå€¤ã«ã‚ˆã£ã¦ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
 	return DWCi_NdSetAttr((char *)attr1, (char *)attr2, (char *)attr3);
 }
 
 /*---------------------------------------------------------------------------*
   Name:			DWC_NdGetFileListNumAsync
 
-  Description:	ƒtƒ@ƒCƒ‹ƒŠƒXƒg‘ƒGƒ“ƒgƒŠ”æ“¾ˆ—ŠJnŠÖ”
+  Description:	ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆç·ã‚¨ãƒ³ãƒˆãƒªæ•°å–å¾—å‡¦ç†é–‹å§‹é–¢æ•°
 
-  Arguments:	entrynum - ’ÊMŠ®—¹‚Éƒtƒ@ƒCƒ‹ƒŠƒXƒg‘ƒGƒ“ƒgƒŠ”‚ªŠi”[‚³‚ê‚é—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-  Returns:		TRUE  - ’ÊM‚ªŠJn‚³‚êˆ—Š®—¹‘Ò‚¿ó‘Ô
-				FALSE - ˆ—¸”s
+  Arguments:	entrynum - é€šä¿¡å®Œäº†æ™‚ã«ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆç·ã‚¨ãƒ³ãƒˆãƒªæ•°ãŒæ ¼ç´ã•ã‚Œã‚‹é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
+  Returns:		TRUE  - é€šä¿¡ãŒé–‹å§‹ã•ã‚Œå‡¦ç†å®Œäº†å¾…ã¡çŠ¶æ…‹
+				FALSE - å‡¦ç†å¤±æ•—
  *---------------------------------------------------------------------------*/
 BOOL DWC_NdGetFileListNumAsync(int* entrynum)
 {
 	SDK_ASSERT(dwcndcnt);
 	
-	// [nakata] DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// [nakata] DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if(DWCi_IsError()) {
 		return FALSE;
 	}
@@ -519,24 +519,24 @@ BOOL DWC_NdGetFileListNumAsync(int* entrynum)
 /*---------------------------------------------------------------------------*
   Name:			DWC_NdFileListAsync
 
-  Description:	ƒtƒ@ƒCƒ‹ƒŠƒXƒgæ“¾ˆ—ŠJnŠÖ”
+  Description:	ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆå–å¾—å‡¦ç†é–‹å§‹é–¢æ•°
 
-  Arguments:	filelist - æ“¾‚³‚ê‚½ƒtƒ@ƒCƒ‹ƒŠƒXƒg‚ªŠi”[‚³‚ê‚é”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-				offset   - æ“¾‚·‚éƒtƒ@ƒCƒ‹ƒŠƒXƒg‚ÌŠJnˆÊ’u‚ÌƒIƒtƒZƒbƒg
-				num      - æ“¾‚·‚éƒtƒ@ƒCƒ‹ƒŠƒXƒg‚ÌÅ‘å’·
-  Returns:		TRUE  - ’ÊM‚ªŠJn‚³‚êˆ—Š®—¹‘Ò‚¿ó‘Ô
-				FALSE - ˆ—¸”s
+  Arguments:	filelist - å–å¾—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆãŒæ ¼ç´ã•ã‚Œã‚‹é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+				offset   - å–å¾—ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆã®é–‹å§‹ä½ç½®ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+				num      - å–å¾—ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆã®æœ€å¤§é•·
+  Returns:		TRUE  - é€šä¿¡ãŒé–‹å§‹ã•ã‚Œå‡¦ç†å®Œäº†å¾…ã¡çŠ¶æ…‹
+				FALSE - å‡¦ç†å¤±æ•—
  *---------------------------------------------------------------------------*/
 BOOL DWC_NdGetFileListAsync(DWCNdFileInfo* filelist, unsigned  offset, unsigned int num)
 {
 	SDK_ASSERT(dwcndcnt);
 	
-	// [nakata] DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// [nakata] DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if(DWCi_IsError()) {
 		return FALSE;
 	}
 	
-	// [nakata] ƒtƒ@ƒCƒ‹ƒŠƒXƒg—Ìˆæ‚ğ0ƒNƒŠƒA
+	// [nakata] ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆé ˜åŸŸã‚’0ã‚¯ãƒªã‚¢
 	MI_CpuClear8(filelist, sizeof(DWCNdFileInfo)*num);
 	
 	return DWCi_NdGetFileListAsync(filelist, (int)offset, (int)num);
@@ -545,13 +545,13 @@ BOOL DWC_NdGetFileListAsync(DWCNdFileInfo* filelist, unsigned  offset, unsigned 
 /*---------------------------------------------------------------------------*
   Name:			DWC_NdGetFileAsync
 
-  Description:	ƒtƒ@ƒCƒ‹æ“¾ˆ—ŠJnŠÖ”
+  Description:	ãƒ•ã‚¡ã‚¤ãƒ«å–å¾—å‡¦ç†é–‹å§‹é–¢æ•°
 
-  Arguments:	filename - æ“¾‚·‚éƒtƒ@ƒCƒ‹‚Ì–¼‘O
-				buf      - æ“¾‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ìƒf[ƒ^‚ªŠi”[‚³‚ê‚é—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-				size     - æ“¾‚³‚ê‚½ƒtƒ@ƒCƒ‹‚Ìƒf[ƒ^‚ªŠi”[‚³‚ê‚é—Ìˆæ‚ÌƒTƒCƒY
-  Returns:		TRUE  - ’ÊM‚ªŠJn‚³‚êˆ—Š®—¹‘Ò‚¿ó‘Ô
-				FALSE - ˆ—¸”s
+  Arguments:	filename - å–å¾—ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰
+				buf      - å–å¾—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã‚‹é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
+				size     - å–å¾—ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã‚‹é ˜åŸŸã®ã‚µã‚¤ã‚º
+  Returns:		TRUE  - é€šä¿¡ãŒé–‹å§‹ã•ã‚Œå‡¦ç†å®Œäº†å¾…ã¡çŠ¶æ…‹
+				FALSE - å‡¦ç†å¤±æ•—
  *---------------------------------------------------------------------------*/
 BOOL DWC_NdGetFileAsync(DWCNdFileInfo *fileinfo, char* buf, unsigned int size)
 {
@@ -562,7 +562,7 @@ BOOL DWC_NdGetFileAsync(DWCNdFileInfo *fileinfo, char* buf, unsigned int size)
 	SDK_ASSERT(size >= DWC_ND_RECVBUF_MIN);
 	SDK_ASSERT(size >= fileinfo->size);
 	
-	// [nakata] DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// [nakata] DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if(DWCi_IsError()) {
 		return FALSE;
 	}
@@ -573,17 +573,17 @@ BOOL DWC_NdGetFileAsync(DWCNdFileInfo *fileinfo, char* buf, unsigned int size)
 /*---------------------------------------------------------------------------*
   Name:			DWC_NdCancelAsync
 
-  Description:	Às’†ˆ—‚Ì’†’f’Ê’mŠÖ”
+  Description:	å®Ÿè¡Œä¸­å‡¦ç†ã®ä¸­æ–­é€šçŸ¥é–¢æ•°
 
-  Arguments:	‚È‚µ
-  Returns:		TRUE  - ˆ—’†’f‚É¬Œ÷‚µ‚½‚©‚ ‚é‚¢‚Íˆ—‚ğÀs‚µ‚Ä‚¢‚È‚¢
-				FALSE - ˆ—¸”s
+  Arguments:	ãªã—
+  Returns:		TRUE  - å‡¦ç†ä¸­æ–­ã«æˆåŠŸã—ãŸã‹ã‚ã‚‹ã„ã¯å‡¦ç†ã‚’å®Ÿè¡Œã—ã¦ã„ãªã„
+				FALSE - å‡¦ç†å¤±æ•—
  *---------------------------------------------------------------------------*/
 BOOL DWC_NdCancelAsync(void)
 {
 	SDK_ASSERT(dwcndcnt);
 	
-	// [nakata] DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// [nakata] DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if(DWCi_IsError()) {
 		return FALSE;
 	}
@@ -594,18 +594,18 @@ BOOL DWC_NdCancelAsync(void)
 /*---------------------------------------------------------------------------*
   Name:			DWC_NdGetProgress
 
-  Description:	Às’†ˆ—‚Ìis“xæ“¾ŠÖ”
+  Description:	å®Ÿè¡Œä¸­å‡¦ç†ã®é€²è¡Œåº¦å–å¾—é–¢æ•°
 
-  Arguments:	received   - óMÏ‚İƒf[ƒ^‚ÌƒoƒCƒg”‚ğŠi”[‚·‚é—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-				contentlen - óM’†‚Ìƒf[ƒ^‚ÌContent-Length‚ğŠi”[‚·‚é—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-  Returns:		TRUE  - is“xæ“¾¬Œ÷
-				FALSE - is“xæ“¾¸”sA‚ ‚é‚¢‚Íˆ—‚ğÀs‚µ‚Ä‚¢‚È‚¢
+  Arguments:	received   - å—ä¿¡æ¸ˆã¿ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒˆæ•°ã‚’æ ¼ç´ã™ã‚‹é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
+				contentlen - å—ä¿¡ä¸­ã®ãƒ‡ãƒ¼ã‚¿ã®Content-Lengthã‚’æ ¼ç´ã™ã‚‹é ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
+  Returns:		TRUE  - é€²è¡Œåº¦å–å¾—æˆåŠŸ
+				FALSE - é€²è¡Œåº¦å–å¾—å¤±æ•—ã€ã‚ã‚‹ã„ã¯å‡¦ç†ã‚’å®Ÿè¡Œã—ã¦ã„ãªã„
  *---------------------------------------------------------------------------*/
 BOOL DWC_NdGetProgress(u32* received, u32* contentlen)
 {
 	SDK_ASSERT(dwcndcnt);
 	
-	// [nakata] DWCƒGƒ‰[‚ª”­¶‚µ‚Ä‚¢‚éê‡‚Í‚Í‚¶‚­
+	// [nakata] DWCã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã¯ã˜ã
 	if(DWCi_IsError()) {
 		return FALSE;
 	}

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	script.c
- * @bfief	ƒXƒNƒŠƒvƒg§ŒäƒƒCƒ“•”•ª
+ * @bfief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¡ã‚¤ãƒ³éƒ¨åˆ†
  * @author	Satoshi Nohara
  * @date	05.08.04
  *
@@ -44,7 +44,7 @@
 #include "itemtool/itemsym.h"						//ITEM_KIZUGUSURI
 #include "eventdata.h"
 
-#include "battle/battle_common.h"					//«ƒCƒ“ƒNƒ‹[ƒh‚É•K—v
+#include "battle/battle_common.h"					//â†“ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã«å¿…è¦
 #include "poketool/tr_tool.h"						//TT_TrainerDataParaGet
 
 #include "../fielddata/script/init_scr_def.h"		//SCRID_INIT_SCRIPT
@@ -56,7 +56,7 @@
 
 //============================================================================================
 //
-//	ƒfƒoƒbƒN
+//	ãƒ‡ãƒãƒƒã‚¯
 //
 //============================================================================================
 //VM_CODE* sp_script;
@@ -64,7 +64,7 @@
 
 //============================================================================================
 //
-//	ƒXƒNƒŠƒvƒgIDƒIƒtƒZƒbƒg
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‚ªãƒ•ã‚»ãƒƒãƒˆ
 //
 //============================================================================================
 #include "scr_offset.h"
@@ -72,98 +72,98 @@
 
 //============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //============================================================================================
-#define SCR_MSG_BUF_SIZE	(1024)					//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define SCR_MSG_BUF_SIZE	(1024)					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-typedef void (*fsysFunc)(FIELDSYS_WORK* fsys);		//ŠÖ”ƒ|ƒCƒ“ƒ^Œ^
+typedef void (*fsysFunc)(FIELDSYS_WORK* fsys);		//é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å‹
 
-//ƒgƒŒ[ƒi[‹üƒf[ƒ^\‘¢‘Ì
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct {
-	int range;						//‹ü‹——£
-	int dir;						//ˆÚ“®•ûŒü
-	int scr_id;						//ƒXƒNƒŠƒvƒgID
-	int tr_id;						//ƒgƒŒ[ƒi[ID
-	int tr_type;					//ƒgƒŒ[ƒi[ƒ^ƒCƒv
+	int range;						//è¦–ç·šè·é›¢
+	int dir;						//ç§»å‹•æ–¹å‘
+	int scr_id;						//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+	int tr_id;						//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+	int tr_type;					//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
 	FIELD_OBJ_PTR fldobj;			//
 	TCB_PTR	tcb;					//TCB
 }EV_TRAINER_EYE_HITDATA;
 
 #define TRAINER_EYE_HITMAX (2)
 
-//ƒXƒNƒŠƒvƒg§Œäƒ[ƒN\‘¢‘Ì
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 struct _EV_SCRIPT_WORK{
-	u32 magic_no;					//ƒCƒxƒ“ƒg‚Ìƒ[ƒN‚ªƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚©‚ğ”»•Ê
+	u32 magic_no;					//ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ¯ãƒ¼ã‚¯ãŒã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã‹ã‚’åˆ¤åˆ¥
 	u8 seq;							//
-	u8 MsgIndex;					//ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
-	u8 anm_count;					//ƒAƒjƒ[ƒVƒ‡ƒ“‚µ‚Ä‚¢‚é”
-	u8 common_scr_flag;				//ƒ[ƒJƒ‹E‹¤’ÊƒXƒNƒŠƒvƒgØ‚è‘Ö‚¦ƒtƒ‰ƒO(0=ƒ[ƒJƒ‹A1=‹¤’Ê)
-	u8 win_open_flag;				//‰ï˜bƒEƒBƒ“ƒhƒE‚ğŠJ‚¢‚½‚©ƒtƒ‰ƒO(0=ŠJ‚¢‚Ä‚¢‚È‚¢A1=ŠJ‚¢‚½)
-	u8 vm_machine_count;			//’Ç‰Á‚µ‚½‰¼‘zƒ}ƒVƒ“‚Ì”
-	u16 script_id;					//ƒƒCƒ“‚ÌƒXƒNƒŠƒvƒgID
-	BOOL win_flag;					///<í“¬Œ‹‰Ê•Û—pƒ[ƒN
+	u8 MsgIndex;					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8 anm_count;					//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã—ã¦ã„ã‚‹æ•°
+	u8 common_scr_flag;				//ãƒ­ãƒ¼ã‚«ãƒ«ãƒ»å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ‡ã‚Šæ›¿ãˆãƒ•ãƒ©ã‚°(0=ãƒ­ãƒ¼ã‚«ãƒ«ã€1=å…±é€š)
+	u8 win_open_flag;				//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã„ãŸã‹ãƒ•ãƒ©ã‚°(0=é–‹ã„ã¦ã„ãªã„ã€1=é–‹ã„ãŸ)
+	u8 vm_machine_count;			//è¿½åŠ ã—ãŸä»®æƒ³ãƒã‚·ãƒ³ã®æ•°
+	u16 script_id;					//ãƒ¡ã‚¤ãƒ³ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+	BOOL win_flag;					///<æˆ¦é—˜çµæœä¿æŒç”¨ãƒ¯ãƒ¼ã‚¯
 
-	//ƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒE
-	EV_WIN_WORK* ev_win;			//ƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒEƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	//ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	EV_WIN_WORK* ev_win;			//ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	//‰ï˜bƒEƒBƒ“ƒhƒE
-	GF_BGL_BMPWIN MsgWinDat;		//ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒf[ƒ^
-	BMPMENU_WORK* mw;				//ƒrƒbƒgƒ}ƒbƒvƒƒjƒ…[ƒ[ƒN
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN MsgWinDat;		//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+	BMPMENU_WORK* mw;				//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
 
-	int player_dir;					//ƒCƒxƒ“ƒg‹N“®‚ÌålŒö‚ÌŒü‚«
-	FIELD_OBJ_PTR target_obj;		//˜b‚µ‚©‚¯‘ÎÛ‚ÌOBJ‚Ìƒ|ƒCƒ“ƒ^
-	FIELD_OBJ_PTR dummy_obj;		//“§–¾ƒ_ƒ~[OBJ‚Ìƒ|ƒCƒ“ƒ^
+	int player_dir;					//ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•æ™‚ã®ä¸»äººå…¬ã®å‘ã
+	FIELD_OBJ_PTR target_obj;		//è©±ã—ã‹ã‘å¯¾è±¡ã®OBJã®ãƒã‚¤ãƒ³ã‚¿
+	FIELD_OBJ_PTR dummy_obj;		//é€æ˜ãƒ€ãƒŸãƒ¼OBJã®ãƒã‚¤ãƒ³ã‚¿
 
-	u16* ret_script_wk;				//ƒXƒNƒŠƒvƒgŒ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
-	VM_MACHINE *vm[VM_MACHINE_MAX];	//‰¼‘zƒ}ƒVƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	u16* ret_script_wk;				//ã‚¹ã‚¯ãƒªãƒ—ãƒˆçµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+	VM_MACHINE *vm[VM_MACHINE_MAX];	//ä»®æƒ³ãƒã‚·ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	WORDSET* wordset;				//’PŒêƒZƒbƒg
-	STRBUF* msg_buf;				//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
-	STRBUF* tmp_buf;				//ƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
-	void * waiticon;				///<‘Ò‹@ƒAƒCƒRƒ“‚Ìƒ|ƒCƒ“ƒ^
+	WORDSET* wordset;				//å˜èªã‚»ãƒƒãƒˆ
+	STRBUF* msg_buf;				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+	STRBUF* tmp_buf;				//ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+	void * waiticon;				///<å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	EV_TRAINER_EYE_HITDATA eye_hitdata[TRAINER_EYE_HITMAX];	//ƒgƒŒ[ƒi[‹üî•ñ
+	EV_TRAINER_EYE_HITDATA eye_hitdata[TRAINER_EYE_HITMAX];	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šæƒ…å ±
 
-	u16 work[EVSCR_WORK_MAX];		//ƒ[ƒN(ANSWORK,TMPWORK‚È‚Ç‚Ì‘ã‚í‚è)
+	u16 work[EVSCR_WORK_MAX];		//ãƒ¯ãƒ¼ã‚¯(ANSWORK,TMPWORKãªã©ã®ä»£ã‚ã‚Š)
 
-	fsysFunc next_func;				//ƒXƒNƒŠƒvƒgI—¹‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	fsysFunc next_func;				//ã‚¹ã‚¯ãƒªãƒ—ãƒˆçµ‚äº†æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 
-	void * subproc_work;			//ƒTƒuƒvƒƒZƒX‚Æ‚Ì‚â‚è‚Æ‚è‚Ég—p‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	void* pWork;					//ƒ[ƒN‚Ö‚Ì”Ä—pƒ|ƒCƒ“ƒ^
-	EOA_PTR eoa;					//å‚ÉƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg‚Ìƒ|ƒCƒ“ƒ^‚Æ‚µ‚Äg‚¤
+	void * subproc_work;			//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã¨ã®ã‚„ã‚Šã¨ã‚Šã«ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	void* pWork;					//ãƒ¯ãƒ¼ã‚¯ã¸ã®æ±ç”¨ãƒã‚¤ãƒ³ã‚¿
+	EOA_PTR eoa;					//ä¸»ã«ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒã‚¤ãƒ³ã‚¿ã¨ã—ã¦ä½¿ã†
 
-	TCB_PTR player_tcb;				//©‹@Œ`‘ÔƒŒƒ|[ƒgTCB
+	TCB_PTR player_tcb;				//è‡ªæ©Ÿå½¢æ…‹ãƒ¬ãƒãƒ¼ãƒˆTCB
 
-	GF_BGL_BMPWIN CoinWinDat;		//ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒf[ƒ^
-	GF_BGL_BMPWIN GoldWinDat;		//ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_BMPWIN CoinWinDat;		//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
+	GF_BGL_BMPWIN GoldWinDat;		//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
-	REPORT_INFO * riw;				///<ƒŒƒ|[ƒgî•ñ—pƒEƒBƒ“ƒhƒE§Œäƒ[ƒN
+	REPORT_INFO * riw;				///<ãƒ¬ãƒãƒ¼ãƒˆæƒ…å ±ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 };
 
 enum{
-	WORDSET_SCRIPT_SETNUM = 8,		//ƒfƒtƒHƒ‹ƒgƒoƒbƒtƒ@”
-	WORDSET_SCRIPT_BUFLEN = 64,		//ƒfƒtƒHƒ‹ƒgƒoƒbƒtƒ@’·i•¶š”j
+	WORDSET_SCRIPT_SETNUM = 8,		//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒƒãƒ•ã‚¡æ•°
+	WORDSET_SCRIPT_BUFLEN = 64,		//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒƒãƒ•ã‚¡é•·ï¼ˆæ–‡å­—æ•°ï¼‰
 };
 
 //============================================================================================
 //
-//	‰B‚µƒAƒCƒeƒ€ƒf[ƒ^
+//	éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 //
 //============================================================================================
 typedef struct{
-	u16 itemno;											//ƒAƒCƒeƒ€ƒiƒ“ƒo[
-	u8	num;											//ŒÂ”
-	u8	response;										//”½‰“x
-	u16	sp;												//“Áê(–¢g—p)
-	u16	index;											//ƒtƒ‰ƒOƒCƒ“ƒfƒbƒN
+	u16 itemno;											//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+	u8	num;											//å€‹æ•°
+	u8	response;										//åå¿œåº¦
+	u16	sp;												//ç‰¹æ®Š(æœªä½¿ç”¨)
+	u16	index;											//ãƒ•ãƒ©ã‚°ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯
 }HIDE_ITEM_DATA;
-#include "../fielddata/script/hide_item.dat"			//‰B‚µƒAƒCƒeƒ€ƒf[ƒ^
+#include "../fielddata/script/hide_item.dat"			//éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
 
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 void EventSet_Script( FIELDSYS_WORK * fsys, u16 scr_id, FIELD_OBJ_PTR obj );
@@ -181,7 +181,7 @@ static u16 SetScriptDataSub( FIELDSYS_WORK* fsys, VM_MACHINE* core, u16 id );
 static void SetScriptData( FIELDSYS_WORK* fsys, VM_MACHINE* core, int index, u32 dat_id );
 static void SetZoneScriptData( FIELDSYS_WORK* fsys, VM_MACHINE* core );
 
-//EV_SCRIPT_WORK‚Ìƒƒ“ƒo[ƒAƒNƒZƒX
+//EV_SCRIPT_WORKã®ãƒ¡ãƒ³ãƒãƒ¼ã‚¢ã‚¯ã‚»ã‚¹
 void* GetEvScriptWorkMemberAdrs_Sub( EV_SCRIPT_WORK* sc, u32 id );
 void* GetEvScriptWorkMemberAdrs( FIELDSYS_WORK* fsys, u32 id );
 void SetEvScriptNextFunc( FIELDSYS_WORK* fsys );
@@ -191,7 +191,7 @@ static void EventDataIDJump( VM_MACHINE * core, u16 ev_id );
 static void * LoadZoneScriptFile(int zone_id);
 static u32 LoadZoneMsgNo(int zone_id);
 
-//ƒCƒxƒ“ƒgƒ[ƒNAƒXƒNƒŠƒvƒgƒ[ƒNƒAƒNƒZƒXŠÖ”
+//ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã€ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 u16 * GetEventWorkAdrs( FIELDSYS_WORK* fsys, u16 work_no );
 u16 GetEventWorkValue( FIELDSYS_WORK* fsys, u16 work_no );
 BOOL SetEventWorkValue( FIELDSYS_WORK* fsys, u16 work_no, u16 value );
@@ -199,7 +199,7 @@ BOOL SetEventWorkValue( FIELDSYS_WORK* fsys, u16 work_no, u16 value );
 u16 GetEvDefineObjCode( FIELDSYS_WORK* fsys, u16 no );
 BOOL SetEvDefineObjCode( FIELDSYS_WORK* fsys, u16 no, u16 obj_code );
 
-//ƒCƒxƒ“ƒgƒtƒ‰ƒO
+//ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
 BOOL CheckEventFlag( FIELDSYS_WORK* fsys, u16 flag_no);
 void SetEventFlag( FIELDSYS_WORK* fsys, u16 flag_no);
 void ResetEventFlag( FIELDSYS_WORK* fsys, u16 flag_no);
@@ -207,7 +207,7 @@ void ResetEventFlag( FIELDSYS_WORK* fsys, u16 flag_no);
 void LocalEventFlagClear( FIELDSYS_WORK* fsys );
 void TimeEventFlagClear( FIELDSYS_WORK* fsys );
 
-//ƒgƒŒ[ƒi[ŠÖ˜A
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é–¢é€£
 u16 GetTrainerIdByScriptId( u16 scr_id );
 BOOL GetTrainerLRByScriptId( u16 scr_id );
 BOOL CheckTrainer2vs2Type( u16 tr_id );
@@ -215,14 +215,14 @@ BOOL CheckEventFlagTrainer( FIELDSYS_WORK* fsys, u16 tr_id );
 void SetEventFlagTrainer( FIELDSYS_WORK* fsys, u16 tr_id );
 void ResetEventFlagTrainer( FIELDSYS_WORK* fsys, u16 tr_id );
 
-//‰B‚µƒAƒCƒeƒ€
+//éš ã—ã‚¢ã‚¤ãƒ†ãƒ 
 u16 GetHideItemFlagNoByScriptId( u16 scr_id );
 u16 GetHideItemFlagIndexByScriptId( u16 scr_id );
 u8 GetHideItemResponseByScriptId( u16 scr_id );
 static BOOL HideItemParamSet( EV_SCRIPT_WORK* sc, u16 scr_id );
 void HideItemFlagOneDayClear( FIELDSYS_WORK* fsys );
 
-//“ÁêƒXƒNƒŠƒvƒg
+//ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 void GameStartScriptInit( FIELDSYS_WORK* fsys );
 void SpScriptStart( FIELDSYS_WORK* fsys, u16 scr_id );
 BOOL SpScriptSearch( FIELDSYS_WORK* fsys, u8 key );
@@ -232,72 +232,72 @@ static u16 SpScriptSearch_Sub2( FIELDSYS_WORK* fsys, const u8 * p, u8 key );
 
 //============================================================================================
 //
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //
 //============================================================================================
-//extern const VM_CMD ScriptCommand[];		//ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhŠÖ”ƒe[ƒuƒ‹
-//extern const VM_CMD ScriptCommandEnd[];	//ƒe[ƒuƒ‹ÅŒã‚ÌƒAƒhƒŒƒX
+//extern const VM_CMD ScriptCommand[];		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
+//extern const VM_CMD ScriptCommandEnd[];	//ãƒ†ãƒ¼ãƒ–ãƒ«æœ€å¾Œã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-//ƒfƒoƒbƒN—p
-//u8 debug_script_flag = 0;				//ƒXƒNƒŠƒvƒg‹N“®‚µ‚Ä‚¢‚é‚©ƒtƒ‰ƒO
+//ãƒ‡ãƒãƒƒã‚¯ç”¨
+//u8 debug_script_flag = 0;				//ã‚¹ã‚¯ãƒªãƒ—ãƒˆèµ·å‹•ã—ã¦ã„ã‚‹ã‹ãƒ•ãƒ©ã‚°
 #define EV_SCRIPT_WORK_MAGIC_NO		(0x3643f)
 
 
 //==============================================================================================
 //
-//	ƒXƒNƒŠƒvƒg§Œä
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡
 //
-//	œƒXƒNƒŠƒvƒgƒCƒxƒ“ƒgƒZƒbƒg
+//	â—ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
 //		EventSet_Script(...)
 //
-//	œˆ—‚Ì—¬‚ê
-//		EvScriptWork_Alloc(...)					ƒ[ƒNŠm•Û
-//		EvScriptWork_Init(...)					‰Šúİ’è
-//		FieldEvent_Set(...)						ƒCƒxƒ“ƒgİ’è
-//		GMEVENT_ControlScript(...)				ƒCƒxƒ“ƒg§ŒäŠÖ”
-//				«
-//		VMMachineAdd(...)						VMƒ}ƒV[ƒ“’Ç‰Á
+//	â—å‡¦ç†ã®æµã‚Œ
+//		EvScriptWork_Alloc(...)					ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
+//		EvScriptWork_Init(...)					åˆæœŸè¨­å®š
+//		FieldEvent_Set(...)						ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
+//		GMEVENT_ControlScript(...)				ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡é–¢æ•°
+//				â†“
+//		VMMachineAdd(...)						VMãƒã‚·ãƒ¼ãƒ³è¿½åŠ 
 //
-//	œ‰¼‘zƒ}ƒVƒ“(VM_MACHINE)
-//		E‰¼‘zƒ}ƒVƒ“’Ç‰Á(VMMachineAdd)
-//		E‰¼‘zƒ}ƒVƒ“‚Ì”(vm_machine_count)‚ğ’Ç‰Á
+//	â—ä»®æƒ³ãƒã‚·ãƒ³(VM_MACHINE)
+//		ãƒ»ä»®æƒ³ãƒã‚·ãƒ³è¿½åŠ (VMMachineAdd)
+//		ãƒ»ä»®æƒ³ãƒã‚·ãƒ³ã®æ•°(vm_machine_count)ã‚’è¿½åŠ 
 //
-//	œƒXƒNƒŠƒvƒg§ŒäƒƒCƒ“(GMEVENT_ControlScript)
-//		E‰¼‘zƒ}ƒVƒ“‚Ì”(vm_machine_count)‚ğƒ`ƒFƒbƒN‚µ‚ÄƒCƒxƒ“ƒgI—¹
+//	â—ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¡ã‚¤ãƒ³(GMEVENT_ControlScript)
+//		ãƒ»ä»®æƒ³ãƒã‚·ãƒ³ã®æ•°(vm_machine_count)ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 //
 //==============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgƒCƒxƒ“ƒgƒZƒbƒg
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	scr_id		ƒXƒNƒŠƒvƒgID
- * @param	obj			˜b‚µ‚©‚¯‘ÎÛOBJ‚Ìƒ|ƒCƒ“ƒ^(‚È‚¢‚ÍNULL)
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+ * @param	obj			è©±ã—ã‹ã‘å¯¾è±¡OBJã®ãƒã‚¤ãƒ³ã‚¿(ãªã„æ™‚ã¯NULL)
  *
  * @retval	none
  */
 //--------------------------------------------------------------------------------------------
 void EventSet_Script( FIELDSYS_WORK * fsys, u16 scr_id, FIELD_OBJ_PTR obj )
 {
-	EV_SCRIPT_WORK* sc = EvScriptWork_Alloc();			//ƒ[ƒNŠm•Û
-	EvScriptWork_Init( fsys, sc, scr_id, obj, NULL );	//‰Šúİ’è
-	FieldEvent_Set( fsys, GMEVENT_ControlScript, sc );	//ƒCƒxƒ“ƒgİ’è(_Set)
+	EV_SCRIPT_WORK* sc = EvScriptWork_Alloc();			//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
+	EvScriptWork_Init( fsys, sc, scr_id, obj, NULL );	//åˆæœŸè¨­å®š
+	FieldEvent_Set( fsys, GMEVENT_ControlScript, sc );	//ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š(_Set)
 	return;
 }
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹üî•ñ‚ğŠi”[@–‘O‚ÉEventSet_Script()‚ğ‹N“®‚µ‚Ä‚¨‚­–
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šæƒ…å ±ã‚’æ ¼ç´ã€€äº‹å‰ã«EventSet_Script()ã‚’èµ·å‹•ã—ã¦ãŠãäº‹
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	fldobj		‹ü‚ªƒqƒbƒg‚µ‚½FIELD_OBJ_PTR
- * @param	range		ƒOƒŠƒbƒh’PˆÊ‚Ì‹ü‹——£
- * @param	dir			ˆÚ“®•ûŒü
- * @param	scr_id		‹üƒqƒbƒg‚µ‚½ƒXƒNƒŠƒvƒgID
- * @param	tr_id		‹üƒqƒbƒg‚µ‚½ƒgƒŒ[ƒi[ID
- * @param	tr_type		ƒgƒŒ[ƒi[ƒ^ƒCƒv@ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ^ƒbƒO¯•Ê
- * @param	tr_no		‰½”Ô–Ú‚Éƒqƒbƒg‚µ‚½ƒgƒŒ[ƒi[‚È‚Ì‚©
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fldobj		è¦–ç·šãŒãƒ’ãƒƒãƒˆã—ãŸFIELD_OBJ_PTR
+ * @param	range		ã‚°ãƒªãƒƒãƒ‰å˜ä½ã®è¦–ç·šè·é›¢
+ * @param	dir			ç§»å‹•æ–¹å‘
+ * @param	scr_id		è¦–ç·šãƒ’ãƒƒãƒˆã—ãŸã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+ * @param	tr_id		è¦–ç·šãƒ’ãƒƒãƒˆã—ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param	tr_type		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã€€ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ã‚¿ãƒƒã‚°è­˜åˆ¥
+ * @param	tr_no		ä½•ç•ªç›®ã«ãƒ’ãƒƒãƒˆã—ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãªã®ã‹
  */
 //----------------------------------------------------------------------------------------------
 void EventSet_TrainerEyeData(
@@ -318,14 +318,14 @@ void EventSet_TrainerEyeData(
 #if 0
 //----------------------------------------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[‹üî•ñæ“¾
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¦–ç·šæƒ…å ±å–å¾—
  *
- * @param	fldobj		‹ü‚ªƒqƒbƒg‚µ‚½FIELD_OBJ_PTR
- * @param	range		ƒOƒŠƒbƒh’PˆÊ‚Ì‹ü‹——£
- * @param	scr_id		‹üƒqƒbƒg‚µ‚½ƒXƒNƒŠƒvƒgID
- * @param	tr_id		‹üƒqƒbƒg‚µ‚½ƒgƒŒ[ƒi[ID
- * @param	tr_type		ƒgƒŒ[ƒi[ƒ^ƒCƒv@ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ^ƒbƒO¯•Ê
- * @param	tr_no		‰½”Ô–Ú‚Éƒqƒbƒg‚µ‚½ƒgƒŒ[ƒi[‚È‚Ì‚©
+ * @param	fldobj		è¦–ç·šãŒãƒ’ãƒƒãƒˆã—ãŸFIELD_OBJ_PTR
+ * @param	range		ã‚°ãƒªãƒƒãƒ‰å˜ä½ã®è¦–ç·šè·é›¢
+ * @param	scr_id		è¦–ç·šãƒ’ãƒƒãƒˆã—ãŸã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+ * @param	tr_id		è¦–ç·šãƒ’ãƒƒãƒˆã—ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+ * @param	tr_type		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã€€ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ã‚¿ãƒƒã‚°è­˜åˆ¥
+ * @param	tr_no		ä½•ç•ªç›®ã«ãƒ’ãƒƒãƒˆã—ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãªã®ã‹
  */
 //----------------------------------------------------------------------------------------------
 void GetTrainerEyeData( FIELD_OBJ_PTR flagobj, int* range, int* scr_id, int* tr_id, int* tr_type, int tr_no )
@@ -343,12 +343,12 @@ void GetTrainerEyeData( FIELD_OBJ_PTR flagobj, int* range, int* scr_id, int* tr_
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgƒCƒxƒ“ƒgƒR[ƒ‹
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«
  *
- * @param	event		GMEVENT_CONTROLŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	scr_id		ƒXƒNƒŠƒvƒgID
- * @param	obj			˜b‚µ‚©‚¯‘ÎÛOBJ‚Ìƒ|ƒCƒ“ƒ^(‚È‚¢‚ÍNULL)
- * @param	ret_script_wk	ƒXƒNƒŠƒvƒgŒ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	event		GMEVENT_CONTROLå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+ * @param	obj			è©±ã—ã‹ã‘å¯¾è±¡OBJã®ãƒã‚¤ãƒ³ã‚¿(ãªã„æ™‚ã¯NULL)
+ * @param	ret_script_wk	ã‚¹ã‚¯ãƒªãƒ—ãƒˆçµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -356,43 +356,43 @@ void GetTrainerEyeData( FIELD_OBJ_PTR flagobj, int* range, int* scr_id, int* tr_
 void EventCall_Script( GMEVENT_CONTROL* event, u16 scr_id, FIELD_OBJ_PTR obj, void* ret_script_wk )
 {
 	FIELDSYS_WORK* fsys = FieldEvent_GetFieldSysWork( event );
-	EV_SCRIPT_WORK* sc	= EvScriptWork_Alloc();					//ƒ[ƒNŠm•Û
-	EvScriptWork_Init( fsys, sc, scr_id, obj, ret_script_wk );	//‰Šúİ’è
-	FieldEvent_Call( event, GMEVENT_ControlScript, sc );		//ƒCƒxƒ“ƒgİ’è(_Call)
+	EV_SCRIPT_WORK* sc	= EvScriptWork_Alloc();					//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
+	EvScriptWork_Init( fsys, sc, scr_id, obj, ret_script_wk );	//åˆæœŸè¨­å®š
+	FieldEvent_Call( event, GMEVENT_ControlScript, sc );		//ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š(_Call)
 	return;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgƒCƒxƒ“ƒgØ‘Ö
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¤ãƒ™ãƒ³ãƒˆåˆ‡æ›¿
  *
- * @param	event		GMEVENT_CONTROLŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	scr_id		ƒXƒNƒŠƒvƒgID
- * @param	obj			˜b‚µ‚©‚¯‘ÎÛOBJ‚Ìƒ|ƒCƒ“ƒ^(‚È‚¢‚ÍNULL)
+ * @param	event		GMEVENT_CONTROLå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+ * @param	obj			è©±ã—ã‹ã‘å¯¾è±¡OBJã®ãƒã‚¤ãƒ³ã‚¿(ãªã„æ™‚ã¯NULL)
  *
  * @retval	none
  *
- * ‘¼‚ÌƒCƒxƒ“ƒg‚©‚çƒXƒNƒŠƒvƒg‚Ö‚ÌØ‘Ö‚ğs‚¤
+ * ä»–ã®ã‚¤ãƒ™ãƒ³ãƒˆã‹ã‚‰ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¸ã®åˆ‡æ›¿ã‚’è¡Œã†
  */
 //--------------------------------------------------------------------------------------------
 void EventChange_Script(GMEVENT_CONTROL* event, u16 scr_id, FIELD_OBJ_PTR obj)
 {
 	FIELDSYS_WORK* fsys = FieldEvent_GetFieldSysWork( event );
-	EV_SCRIPT_WORK* sc	= EvScriptWork_Alloc();					//ƒ[ƒNŠm•Û
-	EvScriptWork_Init( fsys, sc, scr_id, obj, NULL );	//‰Šúİ’è
-	FieldEvent_Change( event, GMEVENT_ControlScript, sc );		//ƒCƒxƒ“ƒgİ’è
+	EV_SCRIPT_WORK* sc	= EvScriptWork_Alloc();					//ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
+	EvScriptWork_Init( fsys, sc, scr_id, obj, NULL );	//åˆæœŸè¨­å®š
+	FieldEvent_Change( event, GMEVENT_ControlScript, sc );		//ã‚¤ãƒ™ãƒ³ãƒˆè¨­å®š
 	return;
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒg§ŒäƒƒCƒ“
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¡ã‚¤ãƒ³
  *
- * @param	event		GMEVENT_CONTROLŒ^
+ * @param	event		GMEVENT_CONTROLå‹
  *
- * @retval	"FALSE = ƒXƒNƒŠƒvƒgÀs’†"
- * @retval	"TRUE = ƒXƒNƒŠƒvƒgÀsI—¹"
+ * @retval	"FALSE = ã‚¹ã‚¯ãƒªãƒ—ãƒˆå®Ÿè¡Œä¸­"
+ * @retval	"TRUE = ã‚¹ã‚¯ãƒªãƒ—ãƒˆå®Ÿè¡Œçµ‚äº†"
  */
 //--------------------------------------------------------------
 static BOOL GMEVENT_ControlScript(GMEVENT_CONTROL * event)
@@ -405,12 +405,12 @@ static BOOL GMEVENT_ControlScript(GMEVENT_CONTROL * event)
 
 	switch(sc->seq){
 	case 0:
-		//‰¼‘zƒ}ƒVƒ“’Ç‰Á
+		//ä»®æƒ³ãƒã‚·ãƒ³è¿½åŠ 
 		sc->vm[VM_MACHINE_MAIN] = VMMachineAdd( fsys, sc->script_id );
 		//VMMachineAdd( fsys, id, &ScriptCmdTbl[0], &ScriptCmdTbl[EVCMD_MAX] );
 		sc->vm_machine_count = 1;
 
-		//MSGMAN_Create‚ÌŒã‚Éˆ—
+		//MSGMAN_Createã®å¾Œã«å‡¦ç†
 		//sc->wordset = WORDSET_Create( HEAPID_WORLD );
 		sc->wordset = WORDSET_CreateEx(WORDSET_SCRIPT_SETNUM, WORDSET_SCRIPT_BUFLEN, HEAPID_WORLD);
 		sc->msg_buf = STRBUF_Create( SCR_MSG_BUF_SIZE, HEAPID_WORLD );
@@ -420,19 +420,19 @@ static BOOL GMEVENT_ControlScript(GMEVENT_CONTROL * event)
 		/* FALL THROUGH */
 		
 	case 1:
-		//‰¼‘zƒ}ƒVƒ“ƒRƒ“ƒgƒ[ƒ‹
+		//ä»®æƒ³ãƒã‚·ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 		for( i=0; i < VM_MACHINE_MAX; i++ ){
 
 			core = sc->vm[i];
 
 			if( core != NULL ){
 
-				if( VM_Control(core) == FALSE ){				//§ŒäƒƒCƒ“
+				if( VM_Control(core) == FALSE ){				//åˆ¶å¾¡ãƒ¡ã‚¤ãƒ³
 
-					script_del(core);							//ƒXƒNƒŠƒvƒgíœ
+					script_del(core);							//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‰Šé™¤
 
 					if( sc->vm_machine_count == 0 ){
-						GF_ASSERT( (0) && "‰¼‘zƒ}ƒVƒ“‚Ì”‚ª•s³‚Å‚·I" );
+						GF_ASSERT( (0) && "ä»®æƒ³ãƒã‚·ãƒ³ã®æ•°ãŒä¸æ­£ã§ã™ï¼" );
 					}
 
 					sc->vm[i] = NULL;
@@ -441,28 +441,28 @@ static BOOL GMEVENT_ControlScript(GMEVENT_CONTROL * event)
 			}
 		}
 
-		//‰¼‘zƒ}ƒVƒ“‚Ì”‚ğƒ`ƒFƒbƒN
+		//ä»®æƒ³ãƒã‚·ãƒ³ã®æ•°ã‚’ãƒã‚§ãƒƒã‚¯
 		if( sc->vm_machine_count <= 0 ){
 
-			func = sc->next_func;								//‘Ş”ğ
+			func = sc->next_func;								//é€€é¿
 
 			WORDSET_Delete( sc->wordset );
 			STRBUF_Delete( sc->msg_buf );
 			STRBUF_Delete( sc->tmp_buf );
 
-			//ƒfƒoƒbƒNˆ—
+			//ãƒ‡ãƒãƒƒã‚¯å‡¦ç†
 			//debug_script_flag = 0;
 			sc->magic_no = 0;
 
-			sys_FreeMemoryEz( sc );								//ƒXƒNƒŠƒvƒgƒ[ƒN
+			sys_FreeMemoryEz( sc );								//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯
 
-			//ƒXƒNƒŠƒvƒgI—¹‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”Às
+			//ã‚¹ã‚¯ãƒªãƒ—ãƒˆçµ‚äº†æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°å®Ÿè¡Œ
 			if( func != NULL ){
 				func(fsys);
-				return FALSE;				//FieldEvent‚ğI—¹‚µ‚È‚¢‚æ‚¤‚ÉFALSE‚ğ•Ô‚·I
+				return FALSE;				//FieldEventã‚’çµ‚äº†ã—ãªã„ã‚ˆã†ã«FALSEã‚’è¿”ã™ï¼
 			}
 
-			return TRUE;										//FieldEvent_SetI—¹I
+			return TRUE;										//FieldEvent_Setçµ‚äº†ï¼
 		}
 		break;
 	};
@@ -472,24 +472,24 @@ static BOOL GMEVENT_ControlScript(GMEVENT_CONTROL * event)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒg§Œäƒ[ƒNŠm•Û
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚ÌƒAƒhƒŒƒX"
+ * @retval	"ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹"
  */
 //--------------------------------------------------------------
 static EV_SCRIPT_WORK* EvScriptWork_Alloc()
 {
 	EV_SCRIPT_WORK* sc;
 
-	sc = sys_AllocMemory( HEAPID_WORLD, sizeof(EV_SCRIPT_WORK) );		//ƒXƒNƒŠƒvƒg§Œäƒ[ƒNŠm•Û
+	sc = sys_AllocMemory( HEAPID_WORLD, sizeof(EV_SCRIPT_WORK) );		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 	if( sc == NULL ){
-		GF_ASSERT( (0) && "ƒƒ‚ƒŠŠm•Û‚É¸”s‚µ‚Ü‚µ‚½I" );
+		GF_ASSERT( (0) && "ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸï¼" );
 	}
 	memset( sc, 0, sizeof(EV_SCRIPT_WORK) );
 
-	//ƒfƒoƒbƒNˆ—
+	//ãƒ‡ãƒãƒƒã‚¯å‡¦ç†
 	//debug_script_flag = 1;
 	sc->magic_no = EV_SCRIPT_WORK_MAGIC_NO;
 
@@ -498,9 +498,9 @@ static EV_SCRIPT_WORK* EvScriptWork_Alloc()
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒg‹¤’Êíœˆ—
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆå…±é€šå‰Šé™¤å‡¦ç†
  *
- * @param	core		VM_MACHINEŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		VM_MACHINEå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -508,22 +508,22 @@ static EV_SCRIPT_WORK* EvScriptWork_Alloc()
 static void script_del( VM_MACHINE* core )
 {
 	MSGMAN_Delete( core->msgman );
-	sys_FreeMemoryEz( core->pScript );			//ƒXƒNƒŠƒvƒgƒf[ƒ^
+	sys_FreeMemoryEz( core->pScript );			//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿
 	sys_FreeMemoryEz( core );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‰Šúİ’è
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯åˆæœŸè¨­å®š
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	sc			EV_SCRIPT_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	scr_id		ƒXƒNƒŠƒvƒgID
- * @param	obj			˜b‚µ‚©‚¯‘ÎÛOBJ‚Ìƒ|ƒCƒ“ƒ^
- * @param	ret_wk		ƒXƒNƒŠƒvƒgŒ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	sc			EV_SCRIPT_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+ * @param	obj			è©±ã—ã‹ã‘å¯¾è±¡OBJã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ret_wk		ã‚¹ã‚¯ãƒªãƒ—ãƒˆçµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚ÌƒAƒhƒŒƒX"
+ * @retval	"ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹"
  */
 //--------------------------------------------------------------
 static void EvScriptWork_Init( FIELDSYS_WORK * fsys, EV_SCRIPT_WORK* sc, u16 scr_id, FIELD_OBJ_PTR obj, void* ret_wk )
@@ -531,16 +531,16 @@ static void EvScriptWork_Init( FIELDSYS_WORK * fsys, EV_SCRIPT_WORK* sc, u16 scr
 	u16* objid = GetEvScriptWorkMemberAdrs_Sub( sc, ID_EVSCR_WK_TARGET_OBJID );
 
 	//DIR_NOT = -1
-	sc->player_dir = Player_DirGet(fsys->player);	//ƒCƒxƒ“ƒg‹N“®‚ÌålŒö‚ÌŒü‚«ƒZƒbƒg
-	sc->target_obj = obj;							//˜b‚µ‚©‚¯‘ÎÛOBJ‚Ìƒ|ƒCƒ“ƒ^ƒZƒbƒg
-	sc->script_id  = scr_id;						//ƒƒCƒ“‚ÌƒXƒNƒŠƒvƒgID
-	sc->ret_script_wk = ret_wk;						//ƒXƒNƒŠƒvƒgŒ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN
+	sc->player_dir = Player_DirGet(fsys->player);	//ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•æ™‚ã®ä¸»äººå…¬ã®å‘ãã‚»ãƒƒãƒˆ
+	sc->target_obj = obj;							//è©±ã—ã‹ã‘å¯¾è±¡OBJã®ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
+	sc->script_id  = scr_id;						//ãƒ¡ã‚¤ãƒ³ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+	sc->ret_script_wk = ret_wk;						//ã‚¹ã‚¯ãƒªãƒ—ãƒˆçµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 
 	if( obj != NULL ){
-		*objid = FieldOBJ_OBJIDGet(obj);			//˜b‚µ‚©‚¯‘ÎÛOBJID‚ÌƒZƒbƒg
+		*objid = FieldOBJ_OBJIDGet(obj);			//è©±ã—ã‹ã‘å¯¾è±¡OBJIDã®ã‚»ãƒƒãƒˆ
 	}
 
-	//‰B‚µƒAƒCƒeƒ€‚ÌƒXƒNƒŠƒvƒgID‚¾‚Á‚½‚ç(‚ ‚Æ‚ÅˆÚ“®‚·‚é—\’è)
+	//éš ã—ã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã ã£ãŸã‚‰(ã‚ã¨ã§ç§»å‹•ã™ã‚‹äºˆå®š)
 	if( (scr_id >= ID_HIDE_ITEM_OFFSET) && (scr_id <= ID_HIDE_ITEM_OFFSET_END) ){
 		HideItemParamSet( sc, scr_id );
 	}
@@ -554,12 +554,12 @@ static void EvScriptWork_Init( FIELDSYS_WORK * fsys, EV_SCRIPT_WORK* sc, u16 scr
 
 //--------------------------------------------------------------
 /**
- * @brief	‰¼‘zƒ}ƒVƒ“’Ç‰Á
+ * @brief	ä»®æƒ³ãƒã‚·ãƒ³è¿½åŠ 
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			ƒXƒNƒŠƒvƒgID
- * @param	start		–½—ßƒe[ƒuƒ‹ŠJnƒAƒhƒŒƒX
- * @param	end			–½—ßƒe[ƒuƒ‹I—¹ƒAƒhƒŒƒX
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+ * @param	start		å‘½ä»¤ãƒ†ãƒ¼ãƒ–ãƒ«é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	end			å‘½ä»¤ãƒ†ãƒ¼ãƒ–ãƒ«çµ‚äº†ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @retval	none
  */
@@ -571,26 +571,26 @@ VM_MACHINE* VMMachineAdd(FIELDSYS_WORK* fsys, u16 scr_id)
 
 	core = sys_AllocMemory( HEAPID_WORLD, sizeof(VM_MACHINE) );
 	if( core == NULL ){
-		GF_ASSERT( (0) && "ƒƒ‚ƒŠŠm•Û‚É¸”s‚µ‚Ü‚µ‚½I" );
+		GF_ASSERT( (0) && "ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸï¼" );
 	}
 
-	//‰¼‘zƒ}ƒVƒ“‰Šú‰»
+	//ä»®æƒ³ãƒã‚·ãƒ³åˆæœŸåŒ–
 	VM_Init( core, ScriptCmdTbl, ScriptCmdMax );
 	//VM_Init( core, start, end );
 
-	InitScript( fsys, core, scr_id, 0 );							//ƒ[ƒJƒ‹ƒXƒNƒŠƒvƒg‰Šú‰»
+	InitScript( fsys, core, scr_id, 0 );							//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆæœŸåŒ–
 
 	return core;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgİ’è‰Šú‰»
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆè¨­å®šåˆæœŸåŒ–
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	core		VM_MACHINEŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			ƒXƒNƒŠƒvƒgID
- * @param	type		"–¢g—p"
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	core		VM_MACHINEå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+ * @param	type		"æœªä½¿ç”¨"
  *
  * @retval	none
  */
@@ -600,184 +600,184 @@ static void InitScript( FIELDSYS_WORK* fsys, VM_MACHINE* core, u16 id, u8 type )
 	u16 scr_id;
 
 	core->fsys = fsys;
-	scr_id = SetScriptDataSub( fsys, core, id );	//ƒXƒNƒŠƒvƒgƒf[ƒ^AƒƒbƒZ[ƒWƒf[ƒ^“Ç‚İ‚İ
-	VM_Start( core, core->pScript );				//‰¼‘zƒ}ƒVƒ“‚ÉƒR[ƒhİ’è
+	scr_id = SetScriptDataSub( fsys, core, id );	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
+	VM_Start( core, core->pScript );				//ä»®æƒ³ãƒã‚·ãƒ³ã«ã‚³ãƒ¼ãƒ‰è¨­å®š
 	EventDataIDJump( core, scr_id );
-	VM_SetWork( core, (void *)fsys->event );		//ƒRƒ}ƒ“ƒh‚È‚Ç‚ÅQÆ‚·‚éƒ[ƒNƒZƒbƒg
+	VM_SetWork( core, (void *)fsys->event );		//ã‚³ãƒãƒ³ãƒ‰ãªã©ã§å‚ç…§ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒgID‚©‚çƒXƒNƒŠƒvƒgƒf[ƒ^AƒƒbƒZ[ƒWƒf[ƒ^‚ğ“Ç‚İ‚İ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	core		VM_MACHINEŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			ƒXƒNƒŠƒvƒgID
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	core		VM_MACHINEå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  *
- * @retval	"ƒXƒNƒŠƒvƒgID‚©‚çƒIƒtƒZƒbƒg‚ğˆø‚¢‚½’l"
+ * @retval	"ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å¼•ã„ãŸå€¤"
  */
 //--------------------------------------------------------------
 static u16 SetScriptDataSub( FIELDSYS_WORK* fsys, VM_MACHINE* core, u16 id )
 {
 	u16 scr_id = id;
 
-	//ƒXƒNƒ‰ƒbƒ`ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ã‚¹ã‚¯ãƒ©ãƒƒãƒã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	if( scr_id >= ID_SCRATCH_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_scratch_bin, NARC_msg_scratch_counter_dat );
 		scr_id -= ID_SCRATCH_OFFSET;
 
-	//ƒtƒƒ“ƒeƒBƒA¬ÑƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢æˆç¸¾ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_SEISEKI_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_seiseki_bin, NARC_msg_bf_seiseki_dat );
 		scr_id -= ID_SEISEKI_OFFSET;
 
-	//ƒhƒTü‚èƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ãƒ‰ã‚µå‘¨ã‚Šã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_DOSA_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_dosa_bin, NARC_msg_circuit_trainer_dat );
 		scr_id -= ID_DOSA_OFFSET;
 
-	//ƒTƒ|[ƒgƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ã‚µãƒãƒ¼ãƒˆã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else  if( scr_id >= ID_SUPPORT_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_support_bin, NARC_msg_support_dat );
 		scr_id -= ID_SUPPORT_OFFSET;
 
-	//”z’BˆõƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//é…é”å“¡ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_HAITATU_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_haitatu_bin, NARC_msg_haitatu_dat );
 		scr_id -= ID_HAITATU_OFFSET;
 
-	//TVƒCƒ“ƒ^ƒrƒ…[ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//TVã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_TV_INTERVIEW_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_tv_interview_bin, NARC_msg_tv_interview_dat );
 		scr_id -= ID_TV_INTERVIEW_OFFSET;
 
-	//TVƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//TVã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_TV_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_tv_bin, NARC_msg_tv_program_dat );
 		scr_id -= ID_TV_OFFSET;
 
-	//”é“`ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ç§˜ä¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_HIDEN_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_hiden_bin, NARC_msg_hiden_dat );
 		scr_id -= ID_HIDEN_OFFSET;
 
-	//•]‰¿ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//è©•ä¾¡ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_HYOUKA_SCR_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_hyouka_scr_bin, NARC_msg_hyouka_dat );
 		scr_id -= ID_HYOUKA_SCR_OFFSET;
 
-	//ƒfƒoƒbƒNƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ãƒ‡ãƒãƒƒã‚¯ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_DEBUG_SCR_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_debug_scr_bin, NARC_msg_common_scr_dat );
 		scr_id -= ID_DEBUG_SCR_OFFSET;
 
-	//ƒRƒ“ƒeƒXƒgó•tƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå—ä»˜ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_CON_RECEPTION_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_con_reception_bin, NARC_msg_con_reception_dat );
 		scr_id -= ID_CON_RECEPTION_OFFSET;
 
-	//˜A‚ê•à‚«ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//é€£ã‚Œæ­©ãã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_PAIR_SCR_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_pair_scr_bin, NARC_msg_pair_scr_dat );
 		scr_id -= ID_PAIR_SCR_OFFSET;
 
-	//ƒQ[ƒ€ŠJnƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ã‚²ãƒ¼ãƒ é–‹å§‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_INIT_SCR_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_init_scr_bin, NARC_msg_common_scr_dat );
 		scr_id -= ID_INIT_SCR_OFFSET;
 
-	//ˆç‚Ä‰®ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//è‚²ã¦å±‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_SODATEYA_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_sodateya_bin, NARC_msg_sodateya_dat );
 		scr_id -= ID_SODATEYA_OFFSET;
 
-	//ƒ|ƒ‹ƒgƒ~ƒjƒQ[ƒ€ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ãƒãƒ«ãƒˆãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_PORUTO_SCR_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_poruto_scr_bin, NARC_msg_pgamestart_dat );
 		scr_id -= ID_PORUTO_SCR_OFFSET;
 
-	//ƒOƒ‹[ƒvƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ã‚°ãƒ«ãƒ¼ãƒ—ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_GROUP_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_group_bin, NARC_msg_group_dat );
 		scr_id -= ID_GROUP_OFFSET;
 
-	//ƒ|ƒPƒZƒ“’n‰ºƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ãƒã‚±ã‚»ãƒ³åœ°ä¸‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_PC_UG_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_pc_ug_bin, NARC_msg_pc_ug_dat );
 		scr_id -= ID_PC_UG_OFFSET;
 
-	//ƒRƒƒVƒAƒ€ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ã‚³ãƒ­ã‚·ã‚¢ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_BATTLE_ROOM_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_battle_room_bin, NARC_msg_battle_room_dat );
 		scr_id -= ID_BATTLE_ROOM_OFFSET;
 
-	//’ÊMƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//é€šä¿¡ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_CONNECT_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_connect_bin, NARC_msg_connect_dat );
 		scr_id -= ID_CONNECT_OFFSET;
 
-	//ƒ|ƒPƒT[ƒ`ƒƒ[ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ãƒã‚±ã‚µãƒ¼ãƒãƒ£ãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_POKESEARCHER_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_pokesearcher_bin, NARC_msg_bag_dat );
 		scr_id -= ID_POKESEARCHER_OFFSET;
 
-	//ÄíƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//å†æˆ¦ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_SAISEN_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_saisen_bin, NARC_msg_saisen_dat );
 		scr_id -= ID_SAISEN_OFFSET;
 
-	//ƒyƒ‰ƒbƒvƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ãƒšãƒ©ãƒƒãƒ—ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_PERAP_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_perap_bin, NARC_msg_perap_dat );
 		scr_id -= ID_PERAP_OFFSET;
 
-	//ƒTƒtƒ@ƒŠƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ã‚µãƒ•ã‚¡ãƒªã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_SAFARI_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_safari_bin, NARC_msg_safari_dat );
 		scr_id -= ID_SAFARI_OFFSET;
 
-	//‰B‚µƒAƒCƒeƒ€ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//éš ã—ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_HIDE_ITEM_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_hide_item_bin, NARC_msg_hide_item_dat );
 		scr_id -= ID_HIDE_ITEM_OFFSET;
 
-	//ƒtƒB[ƒ‹ƒhƒAƒCƒeƒ€ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_FLD_ITEM_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_fld_item_bin, NARC_msg_fld_item_dat );
 		scr_id -= ID_FLD_ITEM_OFFSET;
 
-	//2vs2ƒgƒŒ[ƒi[ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//2vs2ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_TRAINER_2VS2_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_trainer_bin, NARC_msg_common_scr_dat );
 		scr_id -= ID_TRAINER_2VS2_OFFSET;
 
-	//ƒgƒŒ[ƒi[ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_TRAINER_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_trainer_bin, NARC_msg_common_scr_dat );
 		scr_id -= ID_TRAINER_OFFSET;
 
-	//‚«‚Ì‚İƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ãã®ã¿ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_KINOMI_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_kinomi_bin, NARC_msg_kinomi_dat );
 		scr_id -= ID_KINOMI_OFFSET;
 
-	//BGƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//BGã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_BG_ATTR_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_bg_attr_bin, NARC_msg_bg_attr_dat );
 		scr_id -= ID_BG_ATTR_OFFSET;
 
-	//‹¤’ÊƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_COMMON_SCR_OFFSET ){
 		SetScriptData( fsys, core, NARC_scr_seq_common_scr_bin, NARC_msg_common_scr_dat );
 		scr_id -= ID_COMMON_SCR_OFFSET;
 
-	//ƒ[ƒJƒ‹ƒXƒNƒŠƒvƒg‚ÌID‚ª“n‚³‚ê‚½
+	//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else if( scr_id >= ID_START_SCR_OFFSET ){
-		SetZoneScriptData( fsys, core );						//ƒ][ƒ“ƒXƒNƒŠƒvƒgƒf[ƒ^ƒZƒbƒg
+		SetZoneScriptData( fsys, core );						//ã‚¾ãƒ¼ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 		scr_id -= ID_START_SCR_OFFSET;
 
-	//SCRID_NULL(0)‚ª“n‚³‚ê‚½
+	//SCRID_NULL(0)ãŒæ¸¡ã•ã‚ŒãŸæ™‚
 	}else{
 		SetScriptData( fsys, core, NARC_scr_seq_dummy_scr_bin, NARC_msg_dummy_scr_dat );
 		scr_id = 0;
@@ -788,21 +788,21 @@ static u16 SetScriptDataSub( FIELDSYS_WORK* fsys, VM_MACHINE* core, u16 id )
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgƒf[ƒ^ƒZƒbƒg
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	core		VM_MACHINEŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	index		ƒXƒNƒŠƒvƒgƒf[ƒ^‚ÌID
- * @param	dat_id		ƒƒbƒZ[ƒWƒf[ƒ^‚ÌID
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	core		VM_MACHINEå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	index		ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ã®ID
+ * @param	dat_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ID
  */
 //----------------------------------------------------------------------------------------------
 static void SetScriptData( FIELDSYS_WORK* fsys, VM_MACHINE* core, int index, u32 dat_id )
 {
-	//‹¤’ÊƒXƒNƒŠƒvƒgƒf[ƒ^ƒ[ƒh
+	//å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	VM_CODE* script = ArchiveDataLoadMalloc(ARC_SCRIPT, index , HEAPID_WORLD);
 	core->pScript = (VM_CODE *)script;
 
-	//ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	core->msgman = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, dat_id, HEAPID_WORLD );
 	
 	return;
@@ -810,18 +810,18 @@ static void SetScriptData( FIELDSYS_WORK* fsys, VM_MACHINE* core, int index, u32
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒ][ƒ“ƒXƒNƒŠƒvƒgƒf[ƒ^ƒZƒbƒg
+ * ã‚¾ãƒ¼ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	ID		ƒXƒNƒŠƒvƒgƒf[ƒ^ID
+ * @param	ID		ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ID
  */
 //----------------------------------------------------------------------------------------------
 static void SetZoneScriptData( FIELDSYS_WORK* fsys, VM_MACHINE* core )
 {
-	//ƒ][ƒ“ID‚©‚çƒ[ƒh‚·‚éƒXƒNƒŠƒvƒgƒoƒCƒiƒŠ‚ğæ“¾
+	//ã‚¾ãƒ¼ãƒ³IDã‹ã‚‰ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒã‚¤ãƒŠãƒªã‚’å–å¾—
 	VM_CODE* script = LoadZoneScriptFile(fsys->location->zone_id);
 	core->pScript	= (VM_CODE*)script;
 
-	//ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	core->msgman = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, 
 									LoadZoneMsgNo(fsys->location->zone_id), HEAPID_WORLD );
 	
@@ -831,18 +831,18 @@ static void SetZoneScriptData( FIELDSYS_WORK* fsys, VM_MACHINE* core )
 
 //============================================================================================
 //
-//	ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚Ìƒƒ“ƒo[ƒAƒNƒZƒX
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ãƒ¡ãƒ³ãƒãƒ¼ã‚¢ã‚¯ã‚»ã‚¹
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚Ìƒƒ“ƒo[ƒAƒhƒŒƒXæ“¾
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ãƒ¡ãƒ³ãƒãƒ¼ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
  *
- * @param	sc		EV_SCRIPT_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		æ“¾‚·‚éƒƒ“ƒoID(script.hQÆ)
+ * @param	sc		EV_SCRIPT_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ¡ãƒ³ãƒID(script.hå‚ç…§)
  *
- * @return	"ƒAƒhƒŒƒX"
+ * @return	"ã‚¢ãƒ‰ãƒ¬ã‚¹"
  */
 //--------------------------------------------------------------------------------------------
 void* GetEvScriptWorkMemberAdrs_Sub( EV_SCRIPT_WORK* sc, u32 id )
@@ -850,222 +850,222 @@ void* GetEvScriptWorkMemberAdrs_Sub( EV_SCRIPT_WORK* sc, u32 id )
 	EV_TRAINER_EYE_HITDATA *eye;
 
 	switch( id ){
-	//ƒCƒxƒ“ƒgƒEƒBƒ“ƒhƒEƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+	//ã‚¤ãƒ™ãƒ³ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_EVWIN:
 		return &sc->ev_win;
 
-	//‰ï˜bƒEƒBƒ“ƒhƒEƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_MSGWINDAT:
 		return &sc->MsgWinDat;
 
-	//ƒrƒbƒgƒ}ƒbƒvƒƒjƒ…[ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+	//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_MENUWORK:
 		return &sc->mw;
 
-	//‰ï˜bƒEƒBƒ“ƒhƒEƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX‚Ìƒ|ƒCƒ“ƒ^
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_MSGINDEX:
 		return &sc->MsgIndex;
 
-	//ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì”‚Ìƒ|ƒCƒ“ƒ^
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_ANMCOUNT:
 		return &sc->anm_count;
 
-	//‹¤’ÊƒXƒNƒŠƒvƒgØ‚è‘Ö‚¦ƒtƒ‰ƒO‚Ìƒ|ƒCƒ“ƒ^
+	//å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ‡ã‚Šæ›¿ãˆãƒ•ãƒ©ã‚°ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_COMMON_SCR_FLAG:
 		return &sc->common_scr_flag;
 
-	//‰ï˜bƒEƒBƒ“ƒhƒE‚ğŠJ‚¢‚½‚©ƒtƒ‰ƒO‚Ìƒ|ƒCƒ“ƒ^
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã„ãŸã‹ãƒ•ãƒ©ã‚°ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_WIN_OPEN_FLAG:
 		return &sc->win_open_flag;
 
-	//’Ç‰Á‚µ‚½‰¼‘zƒ}ƒVƒ“‚Ì”‚Ìƒ|ƒCƒ“ƒ^
+	//è¿½åŠ ã—ãŸä»®æƒ³ãƒã‚·ãƒ³ã®æ•°ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_VM_MACHINE_COUNT:
 		return &sc->vm_machine_count;
 
-	//ƒƒCƒ“‚ÌƒXƒNƒŠƒvƒgID
+	//ãƒ¡ã‚¤ãƒ³ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
 	case ID_EVSCR_SCRIPT_ID:
 		return &sc->script_id;
 
-	//ƒCƒxƒ“ƒg‹N“®‚ÌålŒö‚ÌŒü‚«
+	//ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•æ™‚ã®ä¸»äººå…¬ã®å‘ã
 	case ID_EVSCR_PLAYER_DIR:
 		return &sc->player_dir;
 
-	//˜b‚µ‚©‚¯‘ÎÛ‚ÌOBJ‚Ìƒ|ƒCƒ“ƒ^
+	//è©±ã—ã‹ã‘å¯¾è±¡ã®OBJã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_TARGET_OBJ:
 		return &sc->target_obj;
 
-	//“§–¾ƒ_ƒ~[OBJ‚Ìƒ|ƒCƒ“ƒ^
+	//é€æ˜ãƒ€ãƒŸãƒ¼OBJã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_DUMMY_OBJ:
 		return &sc->dummy_obj;
 
-	//Œ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+	//çµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_RETURN_SCRIPT_WK:
 		return &sc->ret_script_wk;
 
-	//‰¼‘zƒ}ƒVƒ“(ƒƒCƒ“)‚Ìƒ|ƒCƒ“ƒ^
+	//ä»®æƒ³ãƒã‚·ãƒ³(ãƒ¡ã‚¤ãƒ³)ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_VM_MAIN:
 		return &sc->vm[VM_MACHINE_MAIN];
 
-	//‰¼‘zƒ}ƒVƒ“(ƒTƒu)‚Ìƒ|ƒCƒ“ƒ^
+	//ä»®æƒ³ãƒã‚·ãƒ³(ã‚µãƒ–)ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_VM_SUB1:
 		return &sc->vm[VM_MACHINE_SUB1];
 
-	//’PŒêƒZƒbƒg
+	//å˜èªã‚»ãƒƒãƒˆ
 	case ID_EVSCR_WORDSET:
 		return &sc->wordset;
 
-	//ƒƒbƒZ[ƒWƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_MSGBUF:
 		return &sc->msg_buf;
 
-	//ƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+	//ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_TMPBUF:
 		return &sc->tmp_buf;
 
-	//‘Ò‹@ƒAƒCƒRƒ“‚Ìƒ|ƒCƒ“ƒ^
+	//å¾…æ©Ÿã‚¢ã‚¤ã‚³ãƒ³ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_WAITICON:
 		return &sc->waiticon;
 
-	//ƒTƒuƒvƒƒZƒX‚Æ‚Ì‚â‚è‚Æ‚èƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã¨ã®ã‚„ã‚Šã¨ã‚Šãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_SUBPROC_WORK:
 		return &sc->subproc_work;
 
-	//ƒ[ƒN‚Ö‚Ì”Ä—pƒ|ƒCƒ“ƒ^
+	//ãƒ¯ãƒ¼ã‚¯ã¸ã®æ±ç”¨ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_PWORK:
 		return &sc->pWork;
 
-	//ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_EOA:
 		return &sc->eoa;
 
-	//©‹@Œ`‘ÔƒŒƒ|[ƒgTCB‚Ìƒ|ƒCƒ“ƒ^
+	//è‡ªæ©Ÿå½¢æ…‹ãƒ¬ãƒãƒ¼ãƒˆTCBã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_PLAYER_TCB:
 		return &sc->player_tcb;
 
-	//í“¬Œ‹‰Êƒtƒ‰ƒO
+	//æˆ¦é—˜çµæœãƒ•ãƒ©ã‚°
 	case ID_EVSCR_WIN_FLAG:
 		return &sc->win_flag;
 
-	//‹ü(0)F‹ü‹——£
+	//è¦–ç·š(0)ï¼šè¦–ç·šè·é›¢
 	case ID_EVSCR_TR0_RANGE:
 		eye = &sc->eye_hitdata[0];
 		return &eye->range;
 
-	//‹ü(0)F•ûŒü
+	//è¦–ç·š(0)ï¼šæ–¹å‘
 	case ID_EVSCR_TR0_DIR:
 		eye = &sc->eye_hitdata[0];
 		return &eye->dir;
 
-	//‹ü(0)FƒXƒNƒŠƒvƒgID
+	//è¦–ç·š(0)ï¼šã‚¹ã‚¯ãƒªãƒ—ãƒˆID
 	case ID_EVSCR_TR0_SCR_ID:
 		eye = &sc->eye_hitdata[0];
 		return &eye->scr_id;
 
-	//‹ü(0)FƒgƒŒ[ƒi[ID
+	//è¦–ç·š(0)ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
 	case ID_EVSCR_TR0_ID:
 		eye = &sc->eye_hitdata[0];
 		return &eye->tr_id;
 
-	//‹ü(0)FƒgƒŒ[ƒi[ƒ^ƒCƒv
+	//è¦–ç·š(0)ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
 	case ID_EVSCR_TR0_TYPE:
 		eye = &sc->eye_hitdata[0];
 		return &eye->tr_type;
 
-	//‹ü(0)FƒgƒŒ[ƒi[OBJ
+	//è¦–ç·š(0)ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼OBJ
 	case ID_EVSCR_TR0_FLDOBJ:
 		eye = &sc->eye_hitdata[0];
 		return &eye->fldobj;
 
-	//‹ü(0)FTCB
+	//è¦–ç·š(0)ï¼šTCB
 	case ID_EVSCR_TR0_TCB:
 		eye = &sc->eye_hitdata[0];
 		return &eye->tcb;
 
-	//‹ü(1)F‹ü‹——£
+	//è¦–ç·š(1)ï¼šè¦–ç·šè·é›¢
 	case ID_EVSCR_TR1_RANGE:
 		eye = &sc->eye_hitdata[1];
 		return &eye->range;
 
-	//‹ü(1)F•ûŒü
+	//è¦–ç·š(1)ï¼šæ–¹å‘
 	case ID_EVSCR_TR1_DIR:
 		eye = &sc->eye_hitdata[1];
 		return &eye->dir;
 
-	//‹ü(1)FƒXƒNƒŠƒvƒgID
+	//è¦–ç·š(1)ï¼šã‚¹ã‚¯ãƒªãƒ—ãƒˆID
 	case ID_EVSCR_TR1_SCR_ID:
 		eye = &sc->eye_hitdata[1];
 		return &eye->scr_id;
 
-	//‹ü(1)FƒgƒŒ[ƒi[ID
+	//è¦–ç·š(1)ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
 	case ID_EVSCR_TR1_ID:
 		eye = &sc->eye_hitdata[1];
 		return &eye->tr_id;
 
-	//‹ü(1)FƒgƒŒ[ƒi[ƒ^ƒCƒv
+	//è¦–ç·š(1)ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
 	case ID_EVSCR_TR1_TYPE:
 		eye = &sc->eye_hitdata[1];
 		return &eye->tr_type;
 
-	//‹ü(1)FƒgƒŒ[ƒi[OBJ
+	//è¦–ç·š(1)ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼OBJ
 	case ID_EVSCR_TR1_FLDOBJ:
 		eye = &sc->eye_hitdata[1];
 		return &eye->fldobj;
 
-	//‹ü(1)FTCB
+	//è¦–ç·š(1)ï¼šTCB
 	case ID_EVSCR_TR1_TCB:
 		eye = &sc->eye_hitdata[1];
 		return &eye->tcb;
 
-	//ƒRƒCƒ“ƒEƒBƒ“ƒhƒEƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+	//ã‚³ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_COINWINDAT:
 		return &sc->CoinWinDat;
 
-	//‚¨‹àƒEƒBƒ“ƒhƒEƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+	//ãŠé‡‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_GOLDWINDAT:
 		return &sc->GoldWinDat;
 
-	//ƒŒƒ|[ƒgî•ñ•\¦ƒEƒBƒ“ƒhƒE§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	//ãƒ¬ãƒãƒ¼ãƒˆæƒ…å ±è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	case ID_EVSCR_REPORTWIN:
 		return &sc->riw;
 
-	//ƒ[ƒN(ANSWORK,TMPWORK‚È‚Ç‚Ì‘ã‚í‚è)‚Ìƒ|ƒCƒ“ƒ^
-	//ƒXƒNƒŠƒvƒg‚ÆƒvƒƒOƒ‰ƒ€‚Ìƒf[ƒ^ŒğŠ·—p
+	//ãƒ¯ãƒ¼ã‚¯(ANSWORK,TMPWORKãªã©ã®ä»£ã‚ã‚Š)ã®ãƒã‚¤ãƒ³ã‚¿
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ãƒ‡ãƒ¼ã‚¿äº¤æ›ç”¨
 	case ID_EVSCR_WK_PARAM0:				
 	case ID_EVSCR_WK_PARAM1:
 	case ID_EVSCR_WK_PARAM2:
 	case ID_EVSCR_WK_PARAM3:
-	//ƒXƒNƒŠƒvƒg‚Å‚Ìƒeƒ“ƒ|ƒ‰ƒŠ
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ã®ãƒ†ãƒ³ãƒãƒ©ãƒª
 	case ID_EVSCR_WK_TEMP0:					
 	case ID_EVSCR_WK_TEMP1:
 	case ID_EVSCR_WK_TEMP2:
 	case ID_EVSCR_WK_TEMP3:
-	//ƒXƒNƒŠƒvƒg“à•”‚Å‚Ìˆ——p
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…éƒ¨ã§ã®å‡¦ç†ç”¨
 	case ID_EVSCR_WK_REG0:					
 	case ID_EVSCR_WK_REG1:
 	case ID_EVSCR_WK_REG2:
 	case ID_EVSCR_WK_REG3:
-	//ƒXƒNƒŠƒvƒg‚É“š‚¦‚ğ•Ô‚·”Ä—pƒ[ƒN
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«ç­”ãˆã‚’è¿”ã™æ±ç”¨ãƒ¯ãƒ¼ã‚¯
 	case ID_EVSCR_WK_ANSWER:
-	//˜b‚µ‚©‚¯‘ÎÛOBJID
+	//è©±ã—ã‹ã‘å¯¾è±¡OBJID
 	case ID_EVSCR_WK_TARGET_OBJID:
 		return &sc->work[ id - ID_EVSCR_WK_START ];
 
 	};
 
-	//ƒGƒ‰[
-	GF_ASSERT( (0) && "ƒƒ“ƒo[ID‚ª•s³‚Å‚·I" );
+	//ã‚¨ãƒ©ãƒ¼
+	GF_ASSERT( (0) && "ãƒ¡ãƒ³ãƒãƒ¼IDãŒä¸æ­£ã§ã™ï¼" );
 
 	return NULL;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚Ìƒƒ“ƒo[ƒAƒhƒŒƒXæ“¾
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ãƒ¡ãƒ³ãƒãƒ¼ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		æ“¾‚·‚éƒƒ“ƒoID(script.hQÆ)
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å–å¾—ã™ã‚‹ãƒ¡ãƒ³ãƒID(script.hå‚ç…§)
  *
- * @return	"ƒAƒhƒŒƒX"
+ * @return	"ã‚¢ãƒ‰ãƒ¬ã‚¹"
  */
 //--------------------------------------------------------------------------------------------
 void* GetEvScriptWorkMemberAdrs( FIELDSYS_WORK* fsys, u32 id )
@@ -1073,7 +1073,7 @@ void* GetEvScriptWorkMemberAdrs( FIELDSYS_WORK* fsys, u32 id )
 	EV_SCRIPT_WORK* sc = FieldEvent_GetSpecialWork( fsys->event );
 
 	if( sc->magic_no != EV_SCRIPT_WORK_MAGIC_NO ){
-		GF_ASSERT( (0) && "‹N“®(Šm•Û)‚µ‚Ä‚¢‚È‚¢ƒXƒNƒŠƒvƒg‚Ìƒ[ƒN‚ÉƒAƒNƒZƒX‚µ‚Ä‚¢‚Ü‚·I" );
+		GF_ASSERT( (0) && "èµ·å‹•(ç¢ºä¿)ã—ã¦ã„ãªã„ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒ¯ãƒ¼ã‚¯ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã„ã¾ã™ï¼" );
 	}
 
 	return GetEvScriptWorkMemberAdrs_Sub( sc, id );
@@ -1081,22 +1081,22 @@ void* GetEvScriptWorkMemberAdrs( FIELDSYS_WORK* fsys, u32 id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚Ì"next_func"‚Éƒƒjƒ…[ŒÄ‚Ño‚µ‚ğƒZƒbƒg
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®"next_func"ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
- * ƒtƒB[ƒ‹ƒhƒƒjƒ…[ŒÄ‚Ño‚µŒÀ’èI
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—é™å®šï¼
  *
- * —¬‚ê‚ª”cˆ¬‚µ‚¸‚ç‚­‚È‚é‚Ì‚ÅA”Ä—p“I‚Ég‚¦‚È‚¢‚æ‚¤‚É‚µ‚Ä‚¢‚éI
+ * æµã‚ŒãŒæŠŠæ¡ã—ãšã‚‰ããªã‚‹ã®ã§ã€æ±ç”¨çš„ã«ä½¿ãˆãªã„ã‚ˆã†ã«ã—ã¦ã„ã‚‹ï¼
  */
 //--------------------------------------------------------------------------------------------
 void SetEvScriptNextFunc( FIELDSYS_WORK* fsys )
 {
 	EV_SCRIPT_WORK* sc	= FieldEvent_GetSpecialWork( fsys->event );
 
-	if( FieldMenuCallCheck( fsys ) == TRUE ){	// u‚È‚¼‚Ì‚Î‚µ‚åvƒ`ƒFƒbƒN 2006/10/24 by nakahiro
+	if( FieldMenuCallCheck( fsys ) == TRUE ){	// ã€Œãªãã®ã°ã—ã‚‡ã€ãƒã‚§ãƒƒã‚¯ 2006/10/24 by nakahiro
 		sc->next_func = FieldMenuEvChg;
 	}
 
@@ -1105,18 +1105,18 @@ void SetEvScriptNextFunc( FIELDSYS_WORK* fsys )
 
 //--------------------------------------------------------------------------------------------
 /**
- * IDƒWƒƒƒ“ƒv
+ * IDã‚¸ãƒ£ãƒ³ãƒ—
  *
- * @param	core	VM_MACHINEŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ƒXƒNƒŠƒvƒgID
+ * @param	core	VM_MACHINEå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void EventDataIDJump( VM_MACHINE * core, u16 ev_id )
 {
-	core->PC += (ev_id * 4);			//ID•ªi‚ß‚é(adrs‚ªlong‚È‚Ì‚Å*4)
-	core->PC += VMGetU32( core );		//ƒ‰ƒxƒ‹ƒIƒtƒZƒbƒg•ªi‚ß‚é
+	core->PC += (ev_id * 4);			//IDåˆ†é€²ã‚ã‚‹(adrsãŒlongãªã®ã§*4)
+	core->PC += VMGetU32( core );		//ãƒ©ãƒ™ãƒ«ã‚ªãƒ•ã‚»ãƒƒãƒˆåˆ†é€²ã‚ã‚‹
 	return;
 }
 
@@ -1124,7 +1124,7 @@ static void EventDataIDJump( VM_MACHINE * core, u16 ev_id )
 /**
  * 
  *
- * @param	zone_id		ƒ][ƒ“ID
+ * @param	zone_id		ã‚¾ãƒ¼ãƒ³ID
  *
  * @retval	""
  */
@@ -1144,11 +1144,11 @@ void * LoadZoneMsgFile(int zone_id)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ}ƒbƒvŠÇ—•\‚É“o˜^‚³‚ê‚Ä‚¢‚éAƒƒbƒZ[ƒWƒtƒ@ƒCƒ‹‚ÌƒA[ƒJƒCƒuID‚ğæ“¾
+ * ãƒãƒƒãƒ—ç®¡ç†è¡¨ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–IDã‚’å–å¾—
  *
- * @param	zone_id		ƒ][ƒ“ID
+ * @param	zone_id		ã‚¾ãƒ¼ãƒ³ID
  *
- * @retval	"ƒA[ƒJƒCƒuID"
+ * @retval	"ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID"
  */
 //--------------------------------------------------------------------------------------------
 static u32 LoadZoneMsgNo(int zone_id)
@@ -1165,16 +1165,16 @@ static u32 LoadZoneMsgNo(int zone_id)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒ[ƒNƒAƒhƒŒƒX‚ğæ“¾
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
  *
- * @param	ev			ƒCƒxƒ“ƒgƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	work_no		ƒ[ƒNƒiƒ“ƒo[
+ * @param	ev			ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	work_no		ãƒ¯ãƒ¼ã‚¯ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	"ƒ[ƒN‚ÌƒAƒhƒŒƒX"
+ * @return	"ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹"
  *
- * @li	work_no < 0x8000	’Êí‚ÌƒZ[ƒuƒ[ƒN
- * @li	work_no >= 0x8000	ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚Ì’†‚ÉŠm•Û‚µ‚Ä‚¢‚éƒ[ƒN
+ * @li	work_no < 0x8000	é€šå¸¸ã®ã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯
+ * @li	work_no >= 0x8000	ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ä¸­ã«ç¢ºä¿ã—ã¦ã„ã‚‹ãƒ¯ãƒ¼ã‚¯
  */
 //------------------------------------------------------------------
 u16 * GetEventWorkAdrs( FIELDSYS_WORK* fsys, u16 work_no )
@@ -1185,18 +1185,18 @@ u16 * GetEventWorkAdrs( FIELDSYS_WORK* fsys, u16 work_no )
 	if( work_no < SVWK_START ){ return NULL; }
 	if( work_no < SCWK_START ){ return EventWork_GetEventWorkAdrs(ev,work_no); }
 
-	//ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚Ì’†‚ÅAANSWORK‚È‚Ç‚Ìƒ[ƒN‚ğŠm•Û‚µ‚Ä‚¢‚Ü‚·
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ä¸­ã§ã€ANSWORKãªã©ã®ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿ã—ã¦ã„ã¾ã™
 	return GetEvScriptWorkMemberAdrs( fsys, (ID_EVSCR_WK_START + work_no - SCWK_START) );
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒ[ƒN‚Ì’l‚ğæ“¾
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã®å€¤ã‚’å–å¾—
  *
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	work_no		ƒ[ƒNƒiƒ“ƒo[
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	work_no		ãƒ¯ãƒ¼ã‚¯ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	"ƒ[ƒN‚Ì’l"
+ * @return	"ãƒ¯ãƒ¼ã‚¯ã®å€¤"
  */
 //------------------------------------------------------------------
 u16 GetEventWorkValue( FIELDSYS_WORK* fsys, u16 work_no )
@@ -1208,13 +1208,13 @@ u16 GetEventWorkValue( FIELDSYS_WORK* fsys, u16 work_no )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒ[ƒN‚Ì’l‚ğƒZƒbƒg
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã®å€¤ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	work_no		ƒ[ƒNƒiƒ“ƒo[
- * @param	value		ƒZƒbƒg‚·‚é’l
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	work_no		ãƒ¯ãƒ¼ã‚¯ãƒŠãƒ³ãƒãƒ¼
+ * @param	value		ã‚»ãƒƒãƒˆã™ã‚‹å€¤
  *
- * @return	"TRUE=ƒZƒbƒgo—ˆ‚½AFALSE=ƒZƒbƒgo—ˆ‚È‚©‚Á‚½"
+ * @return	"TRUE=ã‚»ãƒƒãƒˆå‡ºæ¥ãŸã€FALSE=ã‚»ãƒƒãƒˆå‡ºæ¥ãªã‹ã£ãŸ"
  */
 //------------------------------------------------------------------
 BOOL SetEventWorkValue( FIELDSYS_WORK* fsys, u16 work_no, u16 value )
@@ -1227,53 +1227,53 @@ BOOL SetEventWorkValue( FIELDSYS_WORK* fsys, u16 work_no, u16 value )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒg‚©‚çw’è‚·‚éOBJƒR[ƒh‚ğæ“¾
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰æŒ‡å®šã™ã‚‹OBJã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
  *
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	no			0-15
  *
- * @return	"OBJƒLƒƒƒ‰ƒR[ƒh"
+ * @return	"OBJã‚­ãƒ£ãƒ©ã‚³ãƒ¼ãƒ‰"
  */
 //------------------------------------------------------------------
 u16 GetEvDefineObjCode( FIELDSYS_WORK* fsys, u16 no )
 {
-	GF_ASSERT( (no < OBJCHR_WORK_MAX) && "ˆø”‚ª•s³‚Å‚·I" );
+	GF_ASSERT( (no < OBJCHR_WORK_MAX) && "å¼•æ•°ãŒä¸æ­£ã§ã™ï¼" );
 	return GetEventWorkValue( fsys, (OBJCHR_WORK_START+no) );
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒg‚©‚çw’è‚·‚éOBJƒR[ƒh‚ğƒZƒbƒg
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰æŒ‡å®šã™ã‚‹OBJã‚³ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	fsys		FIELDSYS_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys		FIELDSYS_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	no			0-15
- * @param	obj_code	OBJƒR[ƒh
+ * @param	obj_code	OBJã‚³ãƒ¼ãƒ‰
  *
- * @return	"TRUE=ƒZƒbƒgo—ˆ‚½AFALSE=ƒZƒbƒgo—ˆ‚È‚©‚Á‚½"
+ * @return	"TRUE=ã‚»ãƒƒãƒˆå‡ºæ¥ãŸã€FALSE=ã‚»ãƒƒãƒˆå‡ºæ¥ãªã‹ã£ãŸ"
  */
 //------------------------------------------------------------------
 BOOL SetEvDefineObjCode( FIELDSYS_WORK* fsys, u16 no, u16 obj_code )
 {
-	GF_ASSERT( (no < OBJCHR_WORK_MAX) && "ˆø”‚ª•s³‚Å‚·I" );
+	GF_ASSERT( (no < OBJCHR_WORK_MAX) && "å¼•æ•°ãŒä¸æ­£ã§ã™ï¼" );
 	return SetEventWorkValue( fsys, (OBJCHR_WORK_START+no), obj_code );
 }
 
 
 //============================================================================================
 //
-//	ƒtƒ‰ƒOŠÖ˜A
+//	ãƒ•ãƒ©ã‚°é–¢é€£
 //
 //============================================================================================
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN‚·‚é
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- * @param	fsys		FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag_no		ƒtƒ‰ƒOƒiƒ“ƒo[
+ * @param	fsys		FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag_no		ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //------------------------------------------------------------------
 BOOL CheckEventFlag( FIELDSYS_WORK* fsys, u16 flag_no)
@@ -1283,10 +1283,10 @@ BOOL CheckEventFlag( FIELDSYS_WORK* fsys, u16 flag_no)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param	fsys		FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag_no		ƒtƒ‰ƒOƒiƒ“ƒo[
+ * @param	fsys		FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag_no		ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -1299,10 +1299,10 @@ void SetEventFlag( FIELDSYS_WORK* fsys, u16 flag_no)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒtƒ‰ƒO‚ğƒŠƒZƒbƒg‚·‚é
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param	fsys		FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag_no		ƒtƒ‰ƒOƒiƒ“ƒo[
+ * @param	fsys		FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag_no		ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -1315,9 +1315,9 @@ void ResetEventFlag( FIELDSYS_WORK* fsys, u16 flag_no)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒv“àŒÀ’è‚ÌƒZ[ƒuƒtƒ‰ƒO‚ğƒNƒŠƒA‚·‚é
+ * @brief	ãƒãƒƒãƒ—å†…é™å®šã®ã‚»ãƒ¼ãƒ–ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
  *
- * @param	fsys		FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys		FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1328,7 +1328,7 @@ void LocalEventFlagClear( FIELDSYS_WORK* fsys )
 	EVENTWORK* event;
 
 #if 0
-	//ƒNƒŠƒA‘O
+	//ã‚¯ãƒªã‚¢å‰
 	for( i=0; i < 80 ;i++ ){
 		OS_Printf( "flag %d= %d\n", i, CheckEventFlag(fsys,i) );
 	}
@@ -1337,18 +1337,18 @@ void LocalEventFlagClear( FIELDSYS_WORK* fsys )
 	}
 #endif
 
-	//ƒCƒxƒ“ƒgƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	event = SaveData_GetEventWork(fsys->savedata);
 
-	//ƒ[ƒJƒ‹ƒtƒ‰ƒO‚ÌƒNƒŠƒA"8bit * 8 = 64ŒÂ•ª"
-	//"0"‚Í–³Œø‚Èƒiƒ“ƒo[‚È‚Ì‚Å1‚ğ“n‚µ‚Äæ“¾‚µ‚Ä‚¢‚é
+	//ãƒ­ãƒ¼ã‚«ãƒ«ãƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢"8bit * 8 = 64å€‹åˆ†"
+	//"0"ã¯ç„¡åŠ¹ãªãƒŠãƒ³ãƒãƒ¼ãªã®ã§1ã‚’æ¸¡ã—ã¦å–å¾—ã—ã¦ã„ã‚‹
 	memset( EventWork_GetEventFlagAdrs(event,1), 0, LOCAL_FLAG_AREA_MAX );
 
-	//ƒ[ƒJƒ‹ƒ[ƒN‚ÌƒNƒŠƒA"32ŒÂ•ª"
+	//ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢"32å€‹åˆ†"
 	memset( EventWork_GetEventWorkAdrs(event,LOCAL_WORK_START), 0, 2*LOCAL_WORK_MAX );
 
 #if 0
-	//ƒNƒŠƒAŒã
+	//ã‚¯ãƒªã‚¢å¾Œ
 	for( i=0; i < 80 ;i++ ){
 		OS_Printf( "flag %d= %d\n", i, CheckEventFlag(fsys,i) );
 	}
@@ -1362,9 +1362,9 @@ void LocalEventFlagClear( FIELDSYS_WORK* fsys )
 
 //------------------------------------------------------------------
 /**
- * @brief	1“úŒo‰ß‚²‚Æ‚ÉƒNƒŠƒA‚³‚ê‚éƒtƒ‰ƒO‚ğƒNƒŠƒA‚·‚é
+ * @brief	1æ—¥çµŒéã”ã¨ã«ã‚¯ãƒªã‚¢ã•ã‚Œã‚‹ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
  *
- * @param	fsys		FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys		FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1373,7 +1373,7 @@ void TimeEventFlagClear( FIELDSYS_WORK* fsys )
 {
 	EVENTWORK* event;
 
-	//ƒCƒxƒ“ƒgƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	event = SaveData_GetEventWork(fsys->savedata);
 
 	memset( EventWork_GetEventFlagAdrs(event,TIMEFLAG_START), 0, TIMEFLAG_AREA_MAX );
@@ -1383,19 +1383,19 @@ void TimeEventFlagClear( FIELDSYS_WORK* fsys )
 
 //============================================================================================
 //
-//		ƒvƒƒOƒ‰ƒ€¨ƒXƒNƒŠƒvƒg”Ä—p
+//		ãƒ—ãƒ­ã‚°ãƒ©ãƒ â†’ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ±ç”¨
 //
 //
 //
 //============================================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒOƒ‰ƒ€‚©‚çƒXƒNƒŠƒvƒg‚Öƒpƒ‰ƒ[ƒ^‚ğ“n‚·
- * @param	event	ƒXƒNƒŠƒvƒg‚ğ‹N“®‚µ‚Ä‚¢‚éƒCƒxƒ“ƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	prm0	ƒpƒ‰ƒ[ƒ^‚OiSCWK_PARAM0j
- * @param	prm1	ƒpƒ‰ƒ[ƒ^‚PiSCWK_PARAM1j
- * @param	prm2	ƒpƒ‰ƒ[ƒ^‚QiSCWK_PARAM2j
- * @param	prm3	ƒpƒ‰ƒ[ƒ^‚RiSCWK_PARAM3j
+ * @brief	ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‹ã‚‰ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¸ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ¸¡ã™
+ * @param	event	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’èµ·å‹•ã—ã¦ã„ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	prm0	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ï¼ˆSCWK_PARAM0ï¼‰
+ * @param	prm1	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‘ï¼ˆSCWK_PARAM1ï¼‰
+ * @param	prm2	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼’ï¼ˆSCWK_PARAM2ï¼‰
+ * @param	prm3	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼“ï¼ˆSCWK_PARAM3ï¼‰
  */
 //--------------------------------------------------------------
 void EvScript_SetParam(FIELDSYS_WORK * fsys, u16 prm0, u16 prm1, u16 prm2, u16 prm3)
@@ -1408,9 +1408,9 @@ void EvScript_SetParam(FIELDSYS_WORK * fsys, u16 prm0, u16 prm1, u16 prm2, u16 p
 
 //============================================================================================
 //
-//	ƒgƒŒ[ƒi[ƒtƒ‰ƒOŠÖ˜A
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ•ãƒ©ã‚°é–¢é€£
 //
-//	EƒXƒNƒŠƒvƒgID‚©‚çAƒgƒŒ[ƒi[ID‚ğæ“¾‚µ‚ÄAƒtƒ‰ƒOƒ`ƒFƒbƒN
+//	ãƒ»ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å–å¾—ã—ã¦ã€ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 //	BOOL CheckEventFlagTrainer( fsys, GetTrainerIdByScriptId(scr_id) );
 //
 //============================================================================================
@@ -1418,29 +1418,29 @@ void EvScript_SetParam(FIELDSYS_WORK * fsys, u16 prm0, u16 prm1, u16 prm2, u16 p
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgID‚©‚çAƒgƒŒ[ƒi[ID‚ğæ“¾
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å–å¾—
  *
- * @param   scr_id		ƒXƒNƒŠƒvƒgID
+ * @param   scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  *
- * @retval  "ƒgƒŒ[ƒi[ID = ƒtƒ‰ƒOƒCƒ“ƒfƒbƒNƒX"
+ * @retval  "ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID = ãƒ•ãƒ©ã‚°ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"
  */
 //--------------------------------------------------------------
 u16 GetTrainerIdByScriptId( u16 scr_id )
 {
 	if( scr_id < ID_TRAINER_2VS2_OFFSET ){
-		return (scr_id - ID_TRAINER_OFFSET + 1);		//1ƒIƒŠƒWƒ“
+		return (scr_id - ID_TRAINER_OFFSET + 1);		//1ã‚ªãƒªã‚¸ãƒ³
 	}else{
-		return (scr_id - ID_TRAINER_2VS2_OFFSET + 1);		//1ƒIƒŠƒWƒ“
+		return (scr_id - ID_TRAINER_2VS2_OFFSET + 1);		//1ã‚ªãƒªã‚¸ãƒ³
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgID‚©‚çA¶‰E‚Ç‚¿‚ç‚ÌƒgƒŒ[ƒi[‚©æ“¾
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã€å·¦å³ã©ã¡ã‚‰ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‹å–å¾—
  *
- * @param   scr_id		ƒXƒNƒŠƒvƒgID
+ * @param   scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  *
- * @retval  "0=¶A1=‰E"
+ * @retval  "0=å·¦ã€1=å³"
  */
 //--------------------------------------------------------------
 BOOL GetTrainerLRByScriptId( u16 scr_id )
@@ -1454,11 +1454,11 @@ BOOL GetTrainerLRByScriptId( u16 scr_id )
 
 //--------------------------------------------------------------
 /**
- * ƒgƒŒ[ƒi[ID‚©‚çAƒ_ƒuƒ‹ƒoƒgƒ‹ƒ^ƒCƒv‚©æ“¾
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‹ã‚‰ã€ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—ã‹å–å¾—
  *
- * @param   tr_id		ƒgƒŒ[ƒi[ID
+ * @param   tr_id		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
  *
- * @retval  "0=ƒVƒ“ƒOƒ‹ƒoƒgƒ‹A1=ƒ_ƒuƒ‹ƒoƒgƒ‹"
+ * @retval  "0=ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«ã€1=ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«"
  */
 //--------------------------------------------------------------
 BOOL CheckTrainer2vs2Type( u16 tr_id )
@@ -1476,13 +1476,13 @@ BOOL CheckTrainer2vs2Type( u16 tr_id )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒCƒxƒ“ƒgƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN‚·‚é
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- * @param	fsys		FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	tr_id		ƒgƒŒ[ƒi[ID
+ * @param	fsys		FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	tr_id		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
  *
- * @retval	"1 = ƒtƒ‰ƒOON"
- * @retval	"0 = ƒtƒ‰ƒOOFF"
+ * @retval	"1 = ãƒ•ãƒ©ã‚°ON"
+ * @retval	"0 = ãƒ•ãƒ©ã‚°OFF"
  */
 //------------------------------------------------------------------
 BOOL CheckEventFlagTrainer( FIELDSYS_WORK* fsys, u16 tr_id )
@@ -1493,10 +1493,10 @@ BOOL CheckEventFlagTrainer( FIELDSYS_WORK* fsys, u16 tr_id )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒCƒxƒ“ƒgƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚é
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param	fsys		FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	tr_id		ƒgƒŒ[ƒi[ID
+ * @param	fsys		FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	tr_id		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
  *
  * @return	none
  */
@@ -1509,10 +1509,10 @@ void SetEventFlagTrainer( FIELDSYS_WORK* fsys, u16 tr_id )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒCƒxƒ“ƒgƒtƒ‰ƒO‚ğƒŠƒZƒbƒg‚·‚é
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param	fsys		FIELDSYS_WORK‚Ìƒ|ƒCƒ“ƒ^
- * @param	tr_id		ƒgƒŒ[ƒi[ID
+ * @param	fsys		FIELDSYS_WORKã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	tr_id		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
  *
  * @return	none
  */
@@ -1526,20 +1526,20 @@ void ResetEventFlagTrainer( FIELDSYS_WORK* fsys, u16 tr_id )
 
 //============================================================================================
 //
-//	‰B‚µƒAƒCƒeƒ€ŠÖ˜A
+//	éš ã—ã‚¢ã‚¤ãƒ†ãƒ é–¢é€£
 //
-//	EƒXƒNƒŠƒvƒgID‚©‚çA‰B‚µƒAƒCƒeƒ€ƒtƒ‰ƒO‚ğæ“¾‚µ‚ÄAƒtƒ‰ƒOƒ`ƒFƒbƒN
+//	ãƒ»ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã€éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã—ã¦ã€ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
 //	BOOL CheckEventFlag( fsys, GetHideItemFlagNoByScriptId(scr_id) );
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgID‚©‚çA‰B‚µƒAƒCƒeƒ€ƒtƒ‰ƒOƒiƒ“ƒo[‚ğæ“¾
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã€éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- * @param   scr_id		ƒXƒNƒŠƒvƒgID
+ * @param   scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  *
- * @retval  "ƒtƒ‰ƒOƒiƒ“ƒo["
+ * @retval  "ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼"
  */
 //--------------------------------------------------------------
 u16 GetHideItemFlagNoByScriptId( u16 scr_id )
@@ -1549,11 +1549,11 @@ u16 GetHideItemFlagNoByScriptId( u16 scr_id )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgID‚©‚çA‰B‚µƒAƒCƒeƒ€ƒtƒ‰ƒOƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã€éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãƒ•ãƒ©ã‚°ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  *
- * @param   scr_id		ƒXƒNƒŠƒvƒgID
+ * @param   scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  *
- * @retval  "ƒtƒ‰ƒOƒCƒ“ƒfƒbƒNƒX"
+ * @retval  "ãƒ•ãƒ©ã‚°ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"
  */
 //--------------------------------------------------------------
 u16 GetHideItemFlagIndexByScriptId( u16 scr_id )
@@ -1563,17 +1563,17 @@ u16 GetHideItemFlagIndexByScriptId( u16 scr_id )
 
 //--------------------------------------------------------------
 /**
- * 0‚Å‰B‚µƒtƒ‰ƒO‚ª•œŠˆ‚·‚é
+ * 0æ™‚ã§éš ã—ãƒ•ãƒ©ã‚°ãŒå¾©æ´»ã™ã‚‹
  *
- * @param   fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none
  *
- * “a“°“ü‚èŒã‚Ìƒ`ƒFƒbƒN‚ª”²‚¯‚Ä‚¢‚Ü‚µ‚½‚ªA
- * Œ»ó‚ÌŒ`‚ÅOK‚¾‚»‚¤‚Å‚·B(08.06.25)
+ * æ®¿å ‚å…¥ã‚Šå¾Œã®ãƒã‚§ãƒƒã‚¯ãŒæŠœã‘ã¦ã„ã¾ã—ãŸãŒã€
+ * ç¾çŠ¶ã®å½¢ã§OKã ãã†ã§ã™ã€‚(08.06.25)
  */
 //--------------------------------------------------------------
-static u16 oneday_hide_item1[][2] = {		//|“S“‡
+static u16 oneday_hide_item1[][2] = {		//é‹¼é‰„å³¶
 	{ ZONE_ID_D24R0103, 52 },
 	{ ZONE_ID_D24R0104, 53 },
 	{ ZONE_ID_D24R0105, 54 },
@@ -1581,7 +1581,7 @@ static u16 oneday_hide_item1[][2] = {		//|“S“‡
 };
 #define ONEDAY_HIDE_ITEM1_MAX	( NELEMS(oneday_hide_item1) )
 
-static u16 oneday_hide_item2[] = {			//ƒ\ƒmƒI‚Ì‰Ô‰€
+static u16 oneday_hide_item2[] = {			//ã‚½ãƒã‚ªã®èŠ±åœ’
 	58,59,219,220,221,222,
 };
 #define ONEDAY_HIDE_ITEM2_MAX	( NELEMS(oneday_hide_item2) )
@@ -1590,7 +1590,7 @@ void HideItemFlagOneDayClear( FIELDSYS_WORK* fsys )
 {
 	u8 index;
 
-	//|“S“‡‚Å2‰ÓŠ‚Ì‰B‚µƒAƒCƒeƒ€‚ª•œŠˆ‚·‚é‚±‚Æ‚ª‚ ‚é
+	//é‹¼é‰„å³¶ã§2ç®‡æ‰€ã®éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãŒå¾©æ´»ã™ã‚‹ã“ã¨ãŒã‚ã‚‹
 	index = ( gf_rand() % ONEDAY_HIDE_ITEM1_MAX );
 	OS_Printf( "0_0 index = %d\n", index );
 	if( fsys->location->zone_id != oneday_hide_item1[index][0] ){
@@ -1603,7 +1603,7 @@ void HideItemFlagOneDayClear( FIELDSYS_WORK* fsys )
 		ResetEventFlag( fsys, (FH_FLAG_START + oneday_hide_item1[index][1]) );
 	}
 
-	//ƒ\ƒmƒI‚Ì‰Ô‰€‚Å2‰ÓŠ‚Ì‰B‚µƒAƒCƒeƒ€‚ª•œŠˆ‚·‚é‚±‚Æ‚ª‚ ‚é
+	//ã‚½ãƒã‚ªã®èŠ±åœ’ã§2ç®‡æ‰€ã®éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãŒå¾©æ´»ã™ã‚‹ã“ã¨ãŒã‚ã‚‹
 	if( fsys->location->zone_id != ZONE_ID_D13R0101 ){
 		index = ( gf_rand() % ONEDAY_HIDE_ITEM2_MAX );
 		OS_Printf( "1_0 index = %d\n", index );
@@ -1618,13 +1618,13 @@ void HideItemFlagOneDayClear( FIELDSYS_WORK* fsys )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgID‚©‚çA‰B‚µƒAƒCƒeƒ€‚Ì”½‰‚ğæ“¾
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã€éš ã—ã‚¢ã‚¤ãƒ†ãƒ ã®åå¿œã‚’å–å¾—
  *
- * @param   scr_id		ƒXƒNƒŠƒvƒgID
+ * @param   scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  *
- * @retval  "”½‰"
+ * @retval  "åå¿œ"
  *
- * ‰B‚µƒAƒCƒeƒ€‚ÌƒXƒNƒŠƒvƒg‚ğŒ©‚Â‚¯‚½‚çŒÄ‚Ô‚æ‚¤‚É‚·‚éI
+ * éš ã—ã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’è¦‹ã¤ã‘ãŸã‚‰å‘¼ã¶ã‚ˆã†ã«ã™ã‚‹ï¼
  */
 //--------------------------------------------------------------
 u8 GetHideItemResponseByScriptId( u16 scr_id )
@@ -1634,18 +1634,18 @@ u8 GetHideItemResponseByScriptId( u16 scr_id )
 	const HIDE_ITEM_DATA* data;
 
 	data	= &hide_item_data[0];
-	index	= GetHideItemFlagIndexByScriptId(scr_id);			//ƒtƒ‰ƒOƒCƒ“ƒfƒbƒNƒXæ“¾
+	index	= GetHideItemFlagIndexByScriptId(scr_id);			//ãƒ•ãƒ©ã‚°ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 
-	//ƒT[ƒ`‚·‚é
+	//ã‚µãƒ¼ãƒã™ã‚‹
 	for( i=0; i < HIDE_ITEM_DATA_MAX ;i++ ){
 		if( data[i].index == index ){
 			break;
 		}
 	}
 
-	//Œ©‚Â‚©‚ç‚È‚©‚Á‚½
+	//è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
 	if( i >= HIDE_ITEM_DATA_MAX ){
-		GF_ASSERT( (0) && "‰B‚µƒAƒCƒeƒ€ƒf[ƒ^‚ÉŠY“–‚·‚éƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñI" );
+		GF_ASSERT( (0) && "éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã«è©²å½“ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“ï¼" );
 		return 0;
 	}
 
@@ -1654,14 +1654,14 @@ u8 GetHideItemResponseByScriptId( u16 scr_id )
 
 //--------------------------------------------------------------
 /**
- * ‰B‚µƒAƒCƒeƒ€ƒpƒ‰ƒ[ƒ^‚ğƒ[ƒN‚ÉƒZƒbƒg
+ * éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒ¯ãƒ¼ã‚¯ã«ã‚»ãƒƒãƒˆ
  *
- * @param   sc			EV_SCRIPT_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param   scr_id		ƒXƒNƒŠƒvƒgID
+ * @param   sc			EV_SCRIPT_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  *
- * @retval  "0=ƒZƒbƒg¸”sA1=ƒZƒbƒg¬Œ÷"
+ * @retval  "0=ã‚»ãƒƒãƒˆå¤±æ•—ã€1=ã‚»ãƒƒãƒˆæˆåŠŸ"
  *
- * g—p‚µ‚Ä‚¢‚éI
+ * ä½¿ç”¨ã—ã¦ã„ã‚‹ï¼
  * SCWK_PARAM0
  * SCWK_PARAM1
  * SCWK_PARAM2
@@ -1677,39 +1677,39 @@ static BOOL HideItemParamSet( EV_SCRIPT_WORK* sc, u16 scr_id )
 	u16* param2 = GetEvScriptWorkMemberAdrs_Sub( sc, ID_EVSCR_WK_PARAM2 );
 
 	data	= &hide_item_data[0];
-	index	= GetHideItemFlagIndexByScriptId(scr_id);		//ƒtƒ‰ƒOƒCƒ“ƒfƒbƒNƒXæ“¾
+	index	= GetHideItemFlagIndexByScriptId(scr_id);		//ãƒ•ãƒ©ã‚°ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 
-	//ƒT[ƒ`‚·‚é
+	//ã‚µãƒ¼ãƒã™ã‚‹
 	for( i=0; i < HIDE_ITEM_DATA_MAX ;i++ ){
 		if( data[i].index == index ){
 			break;
 		}
 	}
 
-	//Œ©‚Â‚©‚ç‚È‚©‚Á‚½
+	//è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
 	if( i >= HIDE_ITEM_DATA_MAX ){
-		GF_ASSERT( (0) && "‰B‚µƒAƒCƒeƒ€ƒf[ƒ^‚ÉŠY“–‚·‚éƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñI" );
+		GF_ASSERT( (0) && "éš ã—ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã«è©²å½“ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“ï¼" );
 		return 0;
 	}
 
-	*param0 = data[i].itemno;						//ƒAƒCƒeƒ€ƒiƒ“ƒo[
-	*param1 = data[i].num;							//ŒÂ”
-	*param2 = GetHideItemFlagNoByScriptId(scr_id);	//ƒtƒ‰ƒOƒiƒ“ƒo[
+	*param0 = data[i].itemno;						//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+	*param1 = data[i].num;							//å€‹æ•°
+	*param2 = GetHideItemFlagNoByScriptId(scr_id);	//ãƒ•ãƒ©ã‚°ãƒŠãƒ³ãƒãƒ¼
 
 	return 1;
 }
 
-#define DEBUG_HIDE_ITEM_LIST	//ƒfƒoƒbƒN—LŒø
+#define DEBUG_HIDE_ITEM_LIST	//ãƒ‡ãƒãƒƒã‚¯æœ‰åŠ¹
 //--------------------------------------------------------------
 /**
- * ‰æ–Ê“à‚É‚ ‚é‰B‚µƒAƒCƒeƒ€‚ğŒŸõ‚µ‚ÄŠm•Û‚µ‚½ƒŠƒXƒg‚É“o˜^
+ * ç”»é¢å†…ã«ã‚ã‚‹éš ã—ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ¤œç´¢ã—ã¦ç¢ºä¿ã—ãŸãƒªã‚¹ãƒˆã«ç™»éŒ²
  *
- * @param   fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param   heapid		ƒq[ƒvID
+ * @param   fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   heapid		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  "ƒŠƒXƒg‚ÌƒAƒhƒŒƒX"
+ * @retval  "ãƒªã‚¹ãƒˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹"
  *
- * ‰ğ•úˆ—‚ğ–Y‚ê‚¸‚ÉI
+ * è§£æ”¾å‡¦ç†ã‚’å¿˜ã‚Œãšã«ï¼
  */
 //--------------------------------------------------------------
 HIDE_ITEM_LIST* HideItem_CreateList( FIELDSYS_WORK * fsys, int heapid );
@@ -1722,99 +1722,99 @@ HIDE_ITEM_LIST* HideItem_CreateList( FIELDSYS_WORK * fsys, int heapid )
 
 	count = 0;
 
-	//BGƒf[ƒ^”æ“¾
+	//BGãƒ‡ãƒ¼ã‚¿æ•°å–å¾—
 	max = EventData_GetNowBgTalkDataSize( fsys );
-	max++;		//I—¹ƒR[ƒh‚ğ“ü‚ê‚é‚Ì‚Å+1
+	max++;		//çµ‚äº†ã‚³ãƒ¼ãƒ‰ã‚’å…¥ã‚Œã‚‹ã®ã§+1
 
-	//ƒƒ‚ƒŠŠm•Û
+	//ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	list = sys_AllocMemory( heapid, sizeof(HIDE_ITEM_LIST) * max );
 
-	//BGƒf[ƒ^‚ª‘¶İ‚µ‚Ä‚¢‚È‚©‚Á‚½
+	//BGãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ã¦ã„ãªã‹ã£ãŸæ™‚
 	if( max == 1 ){
-		//I—¹ƒR[ƒhƒZƒbƒg
+		//çµ‚äº†ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 		list[0].response= HIDE_LIST_RESPONSE_NONE;
 		list[0].gx		= 0xffff;
 		list[0].gz		= 0xffff;
 		return list;
 	}
 
-	//BGƒf[ƒ^æ“¾
+	//BGãƒ‡ãƒ¼ã‚¿å–å¾—
 	bg	= EventData_GetNowBgTalkData( fsys );
 	if( bg == NULL ){
-		//I—¹ƒR[ƒhƒZƒbƒg
+		//çµ‚äº†ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 		list[0].response= HIDE_LIST_RESPONSE_NONE;
 		list[0].gx		= 0xffff;
 		list[0].gz		= 0xffff;
 		return list;
 	}
 
-	//ålŒö‚ÌˆÊ’uæ“¾
+	//ä¸»äººå…¬ã®ä½ç½®å–å¾—
 	hero_gx = Player_NowGPosXGet( fsys->player );
 	hero_gz = Player_NowGPosZGet( fsys->player );
 
-	//ŒŸõ”ÍˆÍ‚ğƒZƒbƒg(3D‚ÍˆÓ¯‚¹‚¸‚ÌŠÈˆÕ”Å)
+	//æ¤œç´¢ç¯„å›²ã‚’ã‚»ãƒƒãƒˆ(3Dã¯æ„è­˜ã›ãšã®ç°¡æ˜“ç‰ˆ)
 	l = hero_gx - HIDE_LIST_SX;
 	r = hero_gx + HIDE_LIST_SX;
 	u = hero_gz - HIDE_LIST_TOP;
 	d = hero_gz + HIDE_LIST_BOTTOM;
 
-	//•â³
+	//è£œæ­£
 	if( l < 0 ){ l = 0; }
 	//if( r < 0 ){ 0 };
 	if( u < 0 ){ u = 0; }
 	//if( d < 0 ){ 0 };
 
 #ifdef DEBUG_HIDE_ITEM_LIST
-	OS_Printf( "\nƒŒŸõ”ÍˆÍ„\n" );
+	OS_Printf( "\nï¼œæ¤œç´¢ç¯„å›²ï¼\n" );
 	OS_Printf( "l = %d\n", l );
 	OS_Printf( "r = %d\n", r );
 	OS_Printf( "u = %d\n", u );
 	OS_Printf( "d = %d\n", d );
 #endif
 
-	//BGƒf[ƒ^•ªƒT[ƒ`‚ğ‚©‚¯‚é
+	//BGãƒ‡ãƒ¼ã‚¿åˆ†ã‚µãƒ¼ãƒã‚’ã‹ã‘ã‚‹
 	for( i=0; i < max ;i++ ){
 
-		//‰B‚µƒAƒCƒeƒ€ƒ^ƒCƒv‚ÅA‚Ü‚¾“üè‚µ‚Ä‚¢‚È‚©‚Á‚½‚ç
+		//éš ã—ã‚¢ã‚¤ãƒ†ãƒ ã‚¿ã‚¤ãƒ—ã§ã€ã¾ã å…¥æ‰‹ã—ã¦ã„ãªã‹ã£ãŸã‚‰
 		if( (bg[i].type == BG_TALK_TYPE_HIDE) &&
 			(CheckEventFlag(fsys, GetHideItemFlagNoByScriptId(bg[i].id)) == 0) ){
 
-			//ŒŸõ”ÍˆÍ“à‚É‚ ‚é‚©ƒ`ƒFƒbƒN
+			//æ¤œç´¢ç¯„å›²å†…ã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( (bg[i].gx >= l) &&
 				(bg[i].gx <= r) &&
 				(bg[i].gz >= u) &&
 				(bg[i].gz <= d) ){
 
-				//ƒXƒNƒŠƒvƒgID‚©‚çA‰B‚µƒAƒCƒeƒ€‚Ì”½‰‚ğæ“¾
+				//ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã€éš ã—ã‚¢ã‚¤ãƒ†ãƒ ã®åå¿œã‚’å–å¾—
 				list[count].response= GetHideItemResponseByScriptId( bg[i].id );
 
 #if 0
-				//Œ©‚Â‚¯‚½À•W‚ğ‚»‚Ì‚Ü‚Ü‘ã“ü
+				//è¦‹ã¤ã‘ãŸåº§æ¨™ã‚’ãã®ã¾ã¾ä»£å…¥
 				list[count].gx		= bg[i].gx;
 				list[count].gz		= bg[i].gz;
 
-				//ƒ[ƒJƒ‹À•W
+				//ãƒ­ãƒ¼ã‚«ãƒ«åº§æ¨™
 				list[count].gx		= (bg[i].gx % 32);
 				list[count].gz		= (bg[i].gz % 32);
 #endif	
 
-				//¶ã‚ğ0,0‚Æ‚µ‚Äæ“¾‚µ‚½À•W
-				//(ålŒö‚ÌˆÊ’u‚©‚ç‚Ì·•ª‚ğ‹‚ß‚é)
+				//å·¦ä¸Šã‚’0,0ã¨ã—ã¦å–å¾—ã—ãŸåº§æ¨™
+				//(ä¸»äººå…¬ã®ä½ç½®ã‹ã‚‰ã®å·®åˆ†ã‚’æ±‚ã‚ã‚‹)
 				tmp = ( hero_gx - bg[i].gx );
 				list[count].gx = abs(HIDE_LIST_SX - tmp);
 				tmp = ( hero_gz - bg[i].gz );
 				list[count].gz = abs(HIDE_LIST_TOP - tmp);
 
 #ifdef DEBUG_HIDE_ITEM_LIST
-				OS_Printf( "\nƒålŒö‚ÌˆÊ’u„\n" );
+				OS_Printf( "\nï¼œä¸»äººå…¬ã®ä½ç½®ï¼\n" );
 				OS_Printf( "hero_gx = %d\n", hero_gx );
 				OS_Printf( "hero_gz = %d\n", hero_gz );
 
-				OS_Printf( "\nƒŒ©‚Â‚¯‚½‰B‚µƒAƒCƒeƒ€‚ÌˆÊ’u„\n" );
+				OS_Printf( "\nï¼œè¦‹ã¤ã‘ãŸéš ã—ã‚¢ã‚¤ãƒ†ãƒ ã®ä½ç½®ï¼\n" );
 				OS_Printf( "bg[i].gx = %d\n", bg[i].gx );
 				OS_Printf( "bg[i].gz = %d\n", bg[i].gz );
 
-				OS_Printf( "\nƒ¶ã‚ğ0,0‚Æ‚µ‚Äæ“¾‚µ‚½À•W„\n" );
+				OS_Printf( "\nï¼œå·¦ä¸Šã‚’0,0ã¨ã—ã¦å–å¾—ã—ãŸåº§æ¨™ï¼\n" );
 				OS_Printf( "list[count].gx = %d\n", list[count].gx );
 				OS_Printf( "list[count].gz = %d\n", list[count].gz );
 #endif
@@ -1824,7 +1824,7 @@ HIDE_ITEM_LIST* HideItem_CreateList( FIELDSYS_WORK * fsys, int heapid )
 		}
 	}
 
-	//I—¹ƒR[ƒhƒZƒbƒg
+	//çµ‚äº†ã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
 	list[count].response= HIDE_LIST_RESPONSE_NONE;
 	list[count].gx		= 0xffff;
 	list[count].gz		= 0xffff;
@@ -1835,15 +1835,15 @@ HIDE_ITEM_LIST* HideItem_CreateList( FIELDSYS_WORK * fsys, int heapid )
 
 //============================================================================================
 //
-//	“ÁêƒXƒNƒŠƒvƒgŠÖ˜A
+//	ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆé–¢é€£
 //
 //============================================================================================
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ŠJn ƒXƒNƒŠƒvƒg‰Šúİ’è‚ÌÀs
+ * @brief	ã‚²ãƒ¼ãƒ é–‹å§‹ ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆæœŸè¨­å®šã®å®Ÿè¡Œ
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1854,10 +1854,10 @@ void GameStartScriptInit( FIELDSYS_WORK* fsys )
 
 #ifdef PM_DEBUG
 
-	//uƒfƒoƒbƒN‚©‚¢‚µv‚ğ‘I‘ğ‚µ‚Ä‚¢‚½‚ç
+	//ã€Œãƒ‡ãƒãƒƒã‚¯ã‹ã„ã—ã€ã‚’é¸æŠã—ã¦ã„ãŸã‚‰
 	if( DebugFlagData.debug_mode == TRUE ){
 
-		//ƒ|ƒPƒZƒ“’n‰ºƒXƒgƒbƒp[íœA‚Æ‚à‚¾‚¿è’ ƒCƒxƒ“ƒg–³Œø
+		//ãƒã‚±ã‚»ãƒ³åœ°ä¸‹ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼å‰Šé™¤ã€ã¨ã‚‚ã ã¡æ‰‹å¸³ã‚¤ãƒ™ãƒ³ãƒˆç„¡åŠ¹
 		SpScriptStart( fsys, SCRID_DEBUG_PC_UG );
 	}
 #endif
@@ -1867,43 +1867,43 @@ void GameStartScriptInit( FIELDSYS_WORK* fsys )
 
 //------------------------------------------------------------------
 /**
- * @brief	EVENT‚Å‚Í‚È‚­“ÁêƒXƒNƒŠƒvƒgÀs
+ * @brief	EVENTã§ã¯ãªãç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆå®Ÿè¡Œ
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	scr_id		ƒXƒNƒŠƒvƒgID
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  *
  * @return	none
  *
- * ’ˆÓI
- * EV_SCRIPT_WORK‚ğŠm•Û‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅA
- * SCWK_ANSWER‚È‚Ç‚Ìƒ[ƒN‚Íg—p‚·‚é‚±‚Æ‚ªo—ˆ‚È‚¢I
- * LOCALWORK0‚È‚Ç‚ğg—p‚·‚é‚æ‚¤‚É‚·‚éI
+ * æ³¨æ„ï¼
+ * EV_SCRIPT_WORKã‚’ç¢ºä¿ã—ã¦ã„ãªã„ã®ã§ã€
+ * SCWK_ANSWERãªã©ã®ãƒ¯ãƒ¼ã‚¯ã¯ä½¿ç”¨ã™ã‚‹ã“ã¨ãŒå‡ºæ¥ãªã„ï¼
+ * LOCALWORK0ãªã©ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ï¼
  *
- * ‹¤’ÊƒXƒNƒŠƒvƒg‚É‚Â‚¢‚Ä‚ÍŒ»óg—p•s‰ÂI
- * ‘Î‰—\’è‚¾‚ªAƒ][ƒ“‚ğ‚Ü‚½‚¢‚¾‚Éˆ——‚¿‚·‚é‚©‚àH
- * ‚ ‚Ü‚è‚Â‚©‚í‚È‚¢‚©‚àH
+ * å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆã«ã¤ã„ã¦ã¯ç¾çŠ¶ä½¿ç”¨ä¸å¯ï¼
+ * å¯¾å¿œäºˆå®šã ãŒã€ã‚¾ãƒ¼ãƒ³ã‚’ã¾ãŸã„ã æ™‚ã«å‡¦ç†è½ã¡ã™ã‚‹ã‹ã‚‚ï¼Ÿ
+ * ã‚ã¾ã‚Šã¤ã‹ã‚ãªã„ã‹ã‚‚ï¼Ÿ
  *
- * ƒtƒ‰ƒOƒ`ƒFƒ“ƒWƒ‰ƒxƒ‹‚Å‹¤’ÊƒXƒNƒŠƒvƒg‚ğg‚¢‚½‚¢‚Æ‚«‚ÍA
- * “ñ‚Âƒtƒ‰ƒOƒ`ƒFƒ“ƒWƒ‰ƒxƒ‹‚ğ‘‚­‚±‚Æ‚É‚È‚é‚©‚àH
- * •Ğ•û‚ÍAƒ][ƒ“‚Å‚±‚Æ‚½‚è‚é‚à‚ÌA•Ğ•û‚ÍA‹¤’ÊƒXƒNƒŠƒvƒg‚ÌID‚ğw’èHBBB
+ * ãƒ•ãƒ©ã‚°ãƒã‚§ãƒ³ã‚¸ãƒ©ãƒ™ãƒ«ã§å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ä½¿ã„ãŸã„ã¨ãã¯ã€
+ * äºŒã¤ãƒ•ãƒ©ã‚°ãƒã‚§ãƒ³ã‚¸ãƒ©ãƒ™ãƒ«ã‚’æ›¸ãã“ã¨ã«ãªã‚‹ã‹ã‚‚ï¼Ÿ
+ * ç‰‡æ–¹ã¯ã€ã‚¾ãƒ¼ãƒ³ã§ã“ã¨ãŸã‚Šã‚‹ã‚‚ã®ã€ç‰‡æ–¹ã¯ã€å…±é€šã‚¹ã‚¯ãƒªãƒ—ãƒˆã®IDã‚’æŒ‡å®šï¼Ÿã€‚ã€‚ã€‚
  */
 //------------------------------------------------------------------
 void SpScriptStart( FIELDSYS_WORK* fsys, u16 scr_id )
 {
 	VM_MACHINE*core = VMMachineAdd( fsys, scr_id );
 	while( VM_Control( core ) == TRUE );
-	script_del(core);	//ƒXƒNƒŠƒvƒgíœ
+	script_del(core);	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‰Šé™¤
 	return;
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	“ÁêƒXƒNƒŠƒvƒgŒŸõ‚µ‚ÄÀs
+ * @brief	ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆæ¤œç´¢ã—ã¦å®Ÿè¡Œ
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	key			“ÁêƒXƒNƒŠƒvƒgID
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	key			ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  *
- * @return	"TRUE=“ÁêƒXƒNƒŠƒvƒgÀsAFALSE=‰½‚à‚µ‚È‚¢"
+ * @return	"TRUE=ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆå®Ÿè¡Œã€FALSE=ä½•ã‚‚ã—ãªã„"
  */
 //------------------------------------------------------------------
 BOOL SpScriptSearch( FIELDSYS_WORK* fsys, u8 key )
@@ -1915,11 +1915,11 @@ BOOL SpScriptSearch( FIELDSYS_WORK* fsys, u8 key )
 	if (p == NULL) {
 		return FALSE;
 	}
-	//“ÁêƒXƒNƒŠƒvƒgŒŸõ
+	//ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆæ¤œç´¢
 	if( key == SP_SCRID_SCENE_CHANGE ){
-		scr_id = SpScriptSearch_Sub2( fsys, p, key );	//ğŒƒ`ƒFƒbƒN—L‚è
+		scr_id = SpScriptSearch_Sub2( fsys, p, key );	//æ¡ä»¶ãƒã‚§ãƒƒã‚¯æœ‰ã‚Š
 	}else{
-		scr_id = SpScriptSearch_Sub( p, key );			//ğŒƒ`ƒFƒbƒN–³‚µ
+		scr_id = SpScriptSearch_Sub( p, key );			//æ¡ä»¶ãƒã‚§ãƒƒã‚¯ç„¡ã—
 	}
 
 	//OS_Printf( "scr_id = %d\n", scr_id );
@@ -1927,7 +1927,7 @@ BOOL SpScriptSearch( FIELDSYS_WORK* fsys, u8 key )
 		return FALSE;
 	}
 
-	//“ÁêƒXƒNƒŠƒvƒgÀs
+	//ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆå®Ÿè¡Œ
 	if( key == SP_SCRID_SCENE_CHANGE ){
 		EventSet_Script( fsys, scr_id, NULL );
 	}else{
@@ -1938,48 +1938,48 @@ BOOL SpScriptSearch( FIELDSYS_WORK* fsys, u8 key )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒwƒbƒ_[ƒf[ƒ^‚©‚çw’èƒ^ƒCƒv‚Ì‚à‚Ì‚ğŒŸõ
+ * @brief	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ã‚‚ã®ã‚’æ¤œç´¢
  *
- * @param	key			“ÁêƒXƒNƒŠƒvƒgID
+ * @param	key			ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  *
- * @return	"ƒXƒNƒŠƒvƒgID"
+ * @return	"ã‚¹ã‚¯ãƒªãƒ—ãƒˆID"
  */
 //------------------------------------------------------------------
 static u16 SpScriptSearch_Sub(const u8 * p, u8 key )
 {
 
 	while( 1 ){
-		//I—¹‹Lqƒ`ƒFƒbƒN(SP_EVENT_DATA_END)
+		//çµ‚äº†è¨˜è¿°ãƒã‚§ãƒƒã‚¯(SP_EVENT_DATA_END)
 		if( *p == SP_SCRID_NONE ){
 			return 0xffff;
 		}
 
-		//w’èƒ^ƒCƒv‚Ì“ÁêƒXƒNƒŠƒvƒgŒŸõ
+		//æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆæ¤œç´¢
 		if( *p == key ){
-			p++;								//“ÁêƒXƒNƒŠƒvƒgID•ª‘«‚·
-			return ( *p + ( *(p+1)<<8 ) );		//ƒXƒNƒŠƒvƒgID‚ğ•Ô‚·
+			p++;								//ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆIDåˆ†è¶³ã™
+			return ( *p + ( *(p+1)<<8 ) );		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‚’è¿”ã™
 		}
 
-		p += (1 + 2 + 2);						//“ÁêƒXƒNƒŠƒvƒgID+ƒXƒNƒŠƒvƒgID+ƒ_ƒ~[•ª‘«‚·
+		p += (1 + 2 + 2);						//ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆID+ã‚¹ã‚¯ãƒªãƒ—ãƒˆID+ãƒ€ãƒŸãƒ¼åˆ†è¶³ã™
 	}
 
-	return 0xffff;								//‰½‚àŒ©‚Â‚©‚ç‚È‚©‚Á‚½
+	return 0xffff;								//ä½•ã‚‚è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒwƒbƒ_[ƒf[ƒ^‚©‚çw’èƒ^ƒCƒv‚Ì‚à‚Ì‚ğğŒŒŸõ(ƒV[ƒ“ƒCƒxƒ“ƒg)
+ * @brief	ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ã‚‚ã®ã‚’æ¡ä»¶æ¤œç´¢(ã‚·ãƒ¼ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ)
  *
- * @param	key			“ÁêƒXƒNƒŠƒvƒgID
+ * @param	key			ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  *
- * @return	"ƒXƒNƒŠƒvƒgID"
+ * @return	"ã‚¹ã‚¯ãƒªãƒ—ãƒˆID"
  *
  * 08/04/30
- * LOCALWORK0‚ğƒV[ƒ“ƒ`ƒFƒ“ƒW‚Åw’è‚µ‚Ä‚à“ÁêƒXƒNƒŠƒvƒg‚ª“®‚©‚È‚¢B
- * Œ´ˆö‚ğ’²‚×‚Ä‚İ‚½‚çASP_SCRIPT_END(=0)‚ğƒ`ƒFƒbƒN‚µ‚Ä‚¢‚éˆ—‚ªA
- * ƒ[ƒN‚ğu8‚Åˆ—‚µ‚Ä‚¢‚é‚Ì‚ÅA
- * LOCALWORK0(=0x4000)‚È‚Ì‚Å1byte‚ğŒ©‚é‚ÆA
- * 0‚Ì‚½‚ßASP_SCRIPT_END‚Æ‚µ‚Äˆ—‚³‚ê‚Ä‚µ‚Ü‚Á‚Ä‚¢‚½B
+ * LOCALWORK0ã‚’ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã§æŒ‡å®šã—ã¦ã‚‚ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒå‹•ã‹ãªã„ã€‚
+ * åŸå› ã‚’èª¿ã¹ã¦ã¿ãŸã‚‰ã€SP_SCRIPT_END(=0)ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ã‚‹å‡¦ç†ãŒã€
+ * ãƒ¯ãƒ¼ã‚¯ã‚’u8ã§å‡¦ç†ã—ã¦ã„ã‚‹ã®ã§ã€
+ * LOCALWORK0(=0x4000)ãªã®ã§1byteã‚’è¦‹ã‚‹ã¨ã€
+ * 0ã®ãŸã‚ã€SP_SCRIPT_ENDã¨ã—ã¦å‡¦ç†ã•ã‚Œã¦ã—ã¾ã£ã¦ã„ãŸã€‚
  */
 //------------------------------------------------------------------
 static u16 SpScriptSearch_Sub2( FIELDSYS_WORK* fsys, const u8 * p, u8 key )
@@ -1990,77 +1990,77 @@ static u16 SpScriptSearch_Sub2( FIELDSYS_WORK* fsys, const u8 * p, u8 key )
 	pos = 0;
 
 	while( 1 ){
-		//I—¹‹Lqƒ`ƒFƒbƒN(SP_EVENT_DATA_END)
+		//çµ‚äº†è¨˜è¿°ãƒã‚§ãƒƒã‚¯(SP_EVENT_DATA_END)
 		if( *p == SP_SCRID_NONE ){
 			return 0xffff;
 		}
 
-		//w’èƒ^ƒCƒv‚Ì“ÁêƒXƒNƒŠƒvƒgŒŸõ
+		//æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆæ¤œç´¢
 		if( (*p) == key ){
-			p++;								//“ÁêƒXƒNƒŠƒvƒgID•ª‘«‚·
+			p++;								//ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆIDåˆ†è¶³ã™
 			pos = ( *p + ( *(p+1)<<8 ) + ( *(p+2)<<16 ) + ( *(p+3)<<24 ) );
-			p += 4;								//ƒAƒhƒŒƒX•ª‘«‚·
+			p += 4;								//ã‚¢ãƒ‰ãƒ¬ã‚¹åˆ†è¶³ã™
 			break;
 		}
 
-		p += (1 + 4);							//“ÁêƒXƒNƒŠƒvƒgID+ƒAƒhƒŒƒX•ª‘«‚·
+		p += (1 + 4);							//ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆID+ã‚¢ãƒ‰ãƒ¬ã‚¹åˆ†è¶³ã™
 	}
 
-	//Œ©‚Â‚©‚ç‚È‚©‚Á‚½
+	//è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸæ™‚
 	if( pos == 0 ){
 		return 0xffff;
 	}
 
-	//“ÁêƒXƒNƒŠƒvƒgƒe[ƒuƒ‹‚ğƒZƒbƒg
+	//ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‚»ãƒƒãƒˆ
 	p = (p + pos);
 
 	while ( TRUE ) {
-		//I—¹‹Lqƒ`ƒFƒbƒN(SP_SCRIPT_END)
+		//çµ‚äº†è¨˜è¿°ãƒã‚§ãƒƒã‚¯(SP_SCRIPT_END)
 		if( *p == 0 ){
 			return 0xffff;
 		}
 
-		//”äŠr‚·ƒ[ƒNæ“¾
+		//æ¯”è¼ƒã™ãƒ¯ãƒ¼ã‚¯å–å¾—
 		work1 = ( *p + ( *(p+1)<<8 ) );
 		if( work1 == 0 ){
 			return 0xffff;
 		};
-		p += 2;									//ƒ[ƒN•ª‘«‚·
+		p += 2;									//ãƒ¯ãƒ¼ã‚¯åˆ†è¶³ã™
 		//OS_Printf( "work1 = %d\n", work1 );
 
-		//”äŠr‚·’l(ƒ[ƒN‰Â)æ“¾
+		//æ¯”è¼ƒã™å€¤(ãƒ¯ãƒ¼ã‚¯å¯)å–å¾—
 		work2 = ( *p + ( *(p+1)<<8 ) );
-		p += 2;									//”äŠr‚·‚é’l•ª‘«‚·(ƒ[ƒN‰Â)
+		p += 2;									//æ¯”è¼ƒã™ã‚‹å€¤åˆ†è¶³ã™(ãƒ¯ãƒ¼ã‚¯å¯)
 		//OS_Printf( "work2 = %d\n", work2 );
 
-		//ğŒƒ`ƒFƒbƒN
+		//æ¡ä»¶ãƒã‚§ãƒƒã‚¯
 		if( GetEventWorkValue(fsys,work1) == GetEventWorkValue(fsys,work2) ){
 			return ( *p + ( *(p+1)<<8 ) );
 		}
 
-		p += 2;									//ƒXƒNƒŠƒvƒgID•ª‘«‚·
+		p += 2;									//ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDåˆ†è¶³ã™
 	}
 
-	return 0xffff;								//‰½‚àŒ©‚Â‚©‚ç‚È‚©‚Á‚½
+	return 0xffff;								//ä½•ã‚‚è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
 }
 
 
 //============================================================================================
 //
-//	–¢g—p
+//	æœªä½¿ç”¨
 //
 //============================================================================================
 #if 0
 static void FieldScriptLoad( u16 map, u16 id );
 static void FieldScriptFileNameMake( char * path, u16 map, u16 id );
 
-static VM_MACHINE field_script;			// ‰¼‘zƒ}ƒVƒ“—p§Œä\‘¢‘Ì
-static u8 field_script_status;			// ƒXƒNƒŠƒvƒgó‘Ô•Ï”
-//static u8 ForceEventFlag;				// ‹­§ƒCƒxƒ“ƒg§Œäƒtƒ‰ƒO
-static VM_CODE * pScript = NULL;		// ’ÊíƒXƒNƒŠƒvƒg
-//static u16 * ScriptWork = NULL;		// ƒXƒNƒŠƒvƒgƒ[ƒN
+static VM_MACHINE field_script;			// ä»®æƒ³ãƒã‚·ãƒ³ç”¨åˆ¶å¾¡æ§‹é€ ä½“
+static u8 field_script_status;			// ã‚¹ã‚¯ãƒªãƒ—ãƒˆçŠ¶æ…‹å¤‰æ•°
+//static u8 ForceEventFlag;				// å¼·åˆ¶ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ•ãƒ©ã‚°
+static VM_CODE * pScript = NULL;		// é€šå¸¸ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+//static u16 * ScriptWork = NULL;		// ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯
 
-//	ƒXƒNƒŠƒvƒgó‘Ô’è‹`
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆçŠ¶æ…‹å®šç¾©
 enum{
 	SCRIPT_ON,
 	SCRIPT_WAIT,
@@ -2089,12 +2089,12 @@ static void FieldScriptLoad( u16 map, u16 id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒg‹N“®ƒ`ƒFƒbƒN
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆèµ·å‹•ãƒã‚§ãƒƒã‚¯
  *
  * @param	none
  *
- * @retval	"TRUE = ‹N“®‚µ‚Ä‚¢‚é"
- * @retval	"FALSE = ‹N“®‚µ‚Ä‚¢‚È‚¢"
+ * @retval	"TRUE = èµ·å‹•ã—ã¦ã„ã‚‹"
+ * @retval	"FALSE = èµ·å‹•ã—ã¦ã„ãªã„"
  */
 //--------------------------------------------------------------------------------------------
 u8 CheckScriptStatus(void)
@@ -2110,19 +2110,19 @@ u8 CheckScriptStatus(void)
 
 //============================================================================================
 //
-//	VMMachine‚ÌTCB‚ğ’Ç‰Á
+//	VMMachineã®TCBã‚’è¿½åŠ 
 //
 //============================================================================================
 
 #if 0
 //--------------------------------------------------------------
 /**
- * @brief	‰¼‘zƒ}ƒVƒ“’Ç‰Á
+ * @brief	ä»®æƒ³ãƒã‚·ãƒ³è¿½åŠ 
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	id			ƒXƒNƒŠƒvƒgID
- * @param	start		–½—ßƒe[ƒuƒ‹ŠJnƒAƒhƒŒƒX
- * @param	end			–½—ßƒe[ƒuƒ‹I—¹ƒAƒhƒŒƒX
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id			ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+ * @param	start		å‘½ä»¤ãƒ†ãƒ¼ãƒ–ãƒ«é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	end			å‘½ä»¤ãƒ†ãƒ¼ãƒ–ãƒ«çµ‚äº†ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @retval	none
  */
@@ -2137,14 +2137,14 @@ void VMMachineAddTCB(FIELDSYS_WORK* fsys, u16 id, const VM_CMD* start, const VM_
 	//core = sys_AllocMemory( HEAPID_FIELD, sizeof(VM_MACHINE) );
 	core = sys_AllocMemory( HEAPID_WORLD, sizeof(VM_MACHINE) );
 	if( core == NULL ){
-		GF_ASSERT( (0) && "ƒƒ‚ƒŠŠm•Û‚É¸”s‚µ‚Ü‚µ‚½I" );
+		GF_ASSERT( (0) && "ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸï¼" );
 	}
 
-	//‰¼‘zƒ}ƒVƒ“‰Šú‰»
+	//ä»®æƒ³ãƒã‚·ãƒ³åˆæœŸåŒ–
 	//VM_Init( core, &ScriptCmdTbl[0], &ScriptCmdTbl[EVCMD_MAX] );
 	VM_Init( core, start, end );
 
-	InitScript( fsys, core, id, 0 );							//ƒ[ƒJƒ‹ƒXƒNƒŠƒvƒg‰Šú‰»
+	InitScript( fsys, core, id, 0 );							//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆæœŸåŒ–
 	
 	TCB_Add( VMMachineControlTCB, core, 0 );
 	sc->vm_machine_count++;
@@ -2153,10 +2153,10 @@ void VMMachineAddTCB(FIELDSYS_WORK* fsys, u16 id, const VM_CMD* start, const VM_
 
 //--------------------------------------------------------------
 /**
- * @brief	TCBƒƒCƒ“
+ * @brief	TCBãƒ¡ã‚¤ãƒ³
  *
  * @param	tcb		TCB_PTR
- * @param	wk		ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @retval	none
  */
@@ -2175,13 +2175,13 @@ static void VMMachineControlTCB( TCB_PTR tcb, void* wk )
 
 		MSGMAN_Delete( core->msgman );
 
-		sys_FreeMemoryEz( core->pScript );			//ƒXƒNƒŠƒvƒgƒf[ƒ^
+		sys_FreeMemoryEz( core->pScript );			//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿
 
 		TCB_Delete( tcb );
 		sys_FreeMemoryEz( core );
 
 		if( sc->vm_machine_count == 0 ){
-			GF_ASSERT( (0) && "‰¼‘zƒ}ƒVƒ“‚Ì”‚ª•s³‚Å‚·I" );
+			GF_ASSERT( (0) && "ä»®æƒ³ãƒã‚·ãƒ³ã®æ•°ãŒä¸æ­£ã§ã™ï¼" );
 		}
 
 		sc->vm_machine_count--;
@@ -2194,11 +2194,11 @@ static void VMMachineControlTCB( TCB_PTR tcb, void* wk )
 #if 0
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚ÌVMƒ|ƒCƒ“ƒ^ƒe[ƒuƒ‹‚Ì‹ó‚«‚ğŒŸõ
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®VMãƒã‚¤ãƒ³ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç©ºãã‚’æ¤œç´¢
  *
- * @param	event		GMEVENT_CONTROLŒ^
+ * @param	event		GMEVENT_CONTROLå‹
  *
- * @retval	"0xff = ‹ó‚«‚È‚µA‚»‚êˆÈŠO‚ÍŠÇ—ID"
+ * @retval	"0xff = ç©ºããªã—ã€ãã‚Œä»¥å¤–ã¯ç®¡ç†ID"
  */
 //--------------------------------------------------------------
 u8 EvScriptWork_VMEmptySearch(GMEVENT_CONTROL * event);

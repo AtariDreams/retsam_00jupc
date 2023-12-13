@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	ug_bag.h
- * @brief	’n‰º“¹‹ï‚ğŠÇ—‚·‚éƒNƒ‰ƒX
+ * @brief	åœ°ä¸‹é“å…·ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author	Katsumi Ohno
  * @date    2005.12.21
  */
@@ -21,55 +21,55 @@ extern void CommUnderBagInit(pBagEndFunc func, FIELDSYS_WORK* pFSys);
 extern void CommUnderBagDeleteTrap(int type);
 extern void CommUnderBagDeleteStone(int type);
 
-// ƒoƒbƒO‚É‚½‚Ü‚ğ“ü‚ê‚é
+// ãƒãƒƒã‚°ã«ãŸã¾ã‚’å…¥ã‚Œã‚‹
 extern BOOL CommUnderBagAddStone(int no, int carat);
-// ‚¨‚½‚©‚ç‚ğƒoƒbƒO‚É“ü‚ê‚é
+// ãŠãŸã‹ã‚‰ã‚’ãƒãƒƒã‚°ã«å…¥ã‚Œã‚‹
 extern BOOL CommUnderBagAddTreasure(int no);
-// ã©‚ğ‚©‚Î‚ñ‚É’Ç‰Á
+// ç½ ã‚’ã‹ã°ã‚“ã«è¿½åŠ 
 extern BOOL CommUnderBagAddTrap(int no);
-// ‚¨•ó‚©ƒ^ƒ}‚©‚ğ•ª—Ş‚µ‚ÄƒoƒbƒO‚É“ü‚ê‚é
+// ãŠå®ã‹ã‚¿ãƒã‹ã‚’åˆ†é¡ã—ã¦ãƒãƒƒã‚°ã«å…¥ã‚Œã‚‹
 extern BOOL CommUnderBagAddFossil(int no);
-// GOODS‚ğ‚©‚Î‚ñ‚É“ü‚ê‚é
+// GOODSã‚’ã‹ã°ã‚“ã«å…¥ã‚Œã‚‹
 extern BOOL CommUnderBagAddGoods(int no);
-//GOOSƒƒjƒ…[‚ğŠJ‚­
+//GOOSãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ã
 extern void* UgBagGoodsMenuStart(pBagEndFunc func, FIELDSYS_WORK* pFSys);
-// GOODS‚ğƒoƒbƒO‚©‚çÁ‚·
+// GOODSã‚’ãƒãƒƒã‚°ã‹ã‚‰æ¶ˆã™
 extern void UgBagDeleteGoods(int type);
 
-// ŠøÁ‹ƒEƒCƒ“ƒhƒE
+// æ——æ¶ˆå»ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 extern void CommUnderBagFlagStart(pBagEndFunc func, FIELDSYS_WORK* pFSys);
 
 
 
-/// ‚¨“X‚Ì‘I‘ğ
+/// ãŠåº—ã®é¸æŠ
 extern int UgShopSelectMenuFuncAndCheck(void* pWork);
-/// ‚¨“X‚Ì‘I‘ğŠJn
+/// ãŠåº—ã®é¸æŠé–‹å§‹
 extern void* UgShopSelectMenuInit( BOOL bTrapShop, FIELDSYS_WORK* pFSys );
-/// ’n‰º‚Ì‚¨“X‚Ìƒƒjƒ…[‚ğŠJ‚­
+/// åœ°ä¸‹ã®ãŠåº—ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ã
 extern void* UgShopMenuInit(BOOL bTrapShop, FIELDSYS_WORK* pFSys);
 extern void* UgShopMenuInit2(BOOL bTrapShop, FIELDSYS_WORK* pFSys,int no);
-/// ’n‰º‚Ì‚¨“X‚Ìƒƒjƒ…[‚ğŠJ‚­
+/// åœ°ä¸‹ã®ãŠåº—ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ã
 ///extern void* UgShopMenuInit_New(BOOL bTrapShop, BOOL bBuy, FIELDSYS_WORK* pFSys);
-/// ’n‰º‚Ì‚¨“X‚Ìƒƒjƒ…[‚Ìó‘Ô‚ğ“¾‚é
+/// åœ°ä¸‹ã®ãŠåº—ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®çŠ¶æ…‹ã‚’å¾—ã‚‹
 extern int UgShopMenuFuncAndCheck(void* pWork);
 
 #include "ug_def.h"
 
 
-/// ‚¨“X‚Ì‰ï˜bŠJn
+/// ãŠåº—ã®ä¼šè©±é–‹å§‹
 extern int UgShopTalkStart(int messageNo);
-/// ‚¨“X‚Ì‰ï˜bI—¹
+/// ãŠåº—ã®ä¼šè©±çµ‚äº†
 extern void UgShopTalkEnd(void);
-/// ƒAƒCƒeƒ€‚Ì–¼‘O‚ğ‚¨“X‚Ì‰ï˜b‚É“o˜^
+/// ã‚¢ã‚¤ãƒ†ãƒ ã®åå‰ã‚’ãŠåº—ã®ä¼šè©±ã«ç™»éŒ²
 extern void UgShopTalkRegisterItemName(int index,int type);
-/// ã©‚Ì–¼‘O‚ğ‚¨“X‚Ì‰ï˜b‚É“o˜^
+/// ç½ ã®åå‰ã‚’ãŠåº—ã®ä¼šè©±ã«ç™»éŒ²
 extern void UgShopTalkRegisterTrapName(int index,int type);
-/// ƒOƒbƒY‚Ì–¼‘O‚ğ‚¨“X‚Ì‰ï˜b‚É“o˜^
+/// ã‚°ãƒƒã‚ºã®åå‰ã‚’ãŠåº—ã®ä¼šè©±ã«ç™»éŒ²
 extern void UgShopTalkRegisterGoodsName(int index,int type);
 
-/// ‹­§“I‚ÉÁ‚·
+/// å¼·åˆ¶çš„ã«æ¶ˆã™
 extern void UgGoodsMenuForceDelete(void* work,u32 ret);
-/// ‹­§“I‚ÉÁ‚· ˆø”ˆá‚¤‚ª’†g‚Í“¯‚¶
+/// å¼·åˆ¶çš„ã«æ¶ˆã™ å¼•æ•°é•ã†ãŒä¸­èº«ã¯åŒã˜
 extern void UgGoodsMenuForceDelete2(TCB_PTR pTCB, void* work);
 
 

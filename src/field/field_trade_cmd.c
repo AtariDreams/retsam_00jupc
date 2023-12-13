@@ -2,7 +2,7 @@
 /**
  *
  *	@file		field_trade_cmd.c
- *	@brief		ƒQ[ƒ€“àŒðŠ·@í’“@ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒh
+ *	@brief		ã‚²ãƒ¼ãƒ å†…äº¤æ›ã€€å¸¸é§ã€€ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰
  *	@author		tomoya takahashi
  *	@data		2006.05.16
  *
@@ -21,30 +21,30 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 typedef struct {
@@ -53,20 +53,20 @@ typedef struct {
 	int party_pos;
 	DEMO_TRADE_PARAM demo;
 
-	POKEMON_PARAM*   sendPoke;	///< ‚±‚¿‚ç‚©‚ç‘—‚Á‚½ƒ|ƒPƒ‚ƒ“
-	POKEMON_PARAM*   recvPoke;	///< ‚ ‚¿‚ç‚©‚ç‘—‚ç‚ê‚Ä‚«‚½ƒ|ƒPƒ‚ƒ“
+	POKEMON_PARAM*   sendPoke;	///< ã“ã¡ã‚‰ã‹ã‚‰é€ã£ãŸãƒã‚±ãƒ¢ãƒ³
+	POKEMON_PARAM*   recvPoke;	///< ã‚ã¡ã‚‰ã‹ã‚‰é€ã‚‰ã‚Œã¦ããŸãƒã‚±ãƒ¢ãƒ³
 } FIELD_TRADE_EVENT_WORK;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_FldTrade( GMEVENT_CONTROL * event );
 static void FLD_TradeStartDemo( GMEVENT_CONTROL * event );
 
-// ƒfƒ‚ŠJŽn
+// ãƒ‡ãƒ¢é–‹å§‹
 void FLD_TradeStartDemo( GMEVENT_CONTROL * event )
 {
 	FIELDSYS_WORK * p_fsys = FieldEvent_GetFieldSysWork(event);
@@ -88,8 +88,8 @@ void FLD_TradeStartDemo( GMEVENT_CONTROL * event )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒðŠ·ŽÀs
- *	@param	event ƒCƒxƒ“ƒg
+ *	@brief	äº¤æ›å®Ÿè¡Œ
+ *	@param	event ã‚¤ãƒ™ãƒ³ãƒˆ
  *	@return
  */
 //-----------------------------------------------------------------------------
@@ -99,40 +99,40 @@ static BOOL GMEVENT_FldTrade( GMEVENT_CONTROL * event )
 	FIELD_TRADE_EVENT_WORK* p_work = FieldEvent_GetSpecialWork(event);
 
 	switch( p_work->seq ){
-	case 0:	// ŒðŠ·ƒfƒ‚ƒf[ƒ^ì¬
+	case 0:	// äº¤æ›ãƒ‡ãƒ¢ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		FLD_TradeDemoDataMake( p_fsys, p_work->p_trade, p_work->party_pos, &p_work->demo, p_work->sendPoke, p_work->recvPoke );
 
-		// ƒf[ƒ^•”•ªŒðŠ·
+		// ãƒ‡ãƒ¼ã‚¿éƒ¨åˆ†äº¤æ›
 		FLD_Trade( p_fsys, p_work->p_trade, p_work->party_pos );
 		p_work->seq++;
 		break;
 
-	case 1:	// ƒtƒF[ƒhƒAƒEƒg
+	case 1:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		EventCmd_FieldFadeOut( event );
 		p_work->seq++;
 		break;
 
-	case 2:	// ƒtƒB[ƒ‹ƒh”jŠü
+	case 2:	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç ´æ£„
 		EventCmd_FinishFieldMap(event);
 		p_work->seq++;
 		break;
 
-	case 3:	//ŒðŠ·ƒfƒ‚
+	case 3:	//äº¤æ›ãƒ‡ãƒ¢
 		FLD_TradeStartDemo( event );
 		p_work->seq++;
 		break;
 
-	case 4:	// ƒtƒB[ƒ‹ƒh•œ‹A
+	case 4:	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°
 		EventCmd_StartFieldMap( event );
 		p_work->seq++;
 		break;
 
-	case 5:	// ƒtƒF[ƒhƒCƒ“
+	case 5:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		EventCmd_FieldFadeIn( event );
 		p_work->seq++;
 		break;
 
-	case 6:	// I—¹
+	case 6:	// çµ‚äº†
 		sys_FreeMemoryEz( p_work->sendPoke );
 		sys_FreeMemoryEz( p_work->recvPoke );
 		sys_FreeMemoryEz( p_work );
@@ -144,11 +144,11 @@ static BOOL GMEVENT_FldTrade( GMEVENT_CONTROL * event )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŒðŠ·ŽÀs
+ *	@brief	äº¤æ›å®Ÿè¡Œ
  *
- *	@param	event		ƒCƒxƒ“ƒgƒ[ƒN
- *	@param	p_work		ŒðŠ·—pƒ[ƒN
- *	@param	party_pos	ƒp[ƒeƒB[ƒiƒ“ƒo[
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work		äº¤æ›ç”¨ãƒ¯ãƒ¼ã‚¯
+ *	@param	party_pos	ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *	@param	heapID
  */
 //-----------------------------------------------------------------------------
@@ -160,7 +160,7 @@ void EventCmd_FldTrade(GMEVENT_CONTROL * event, FLD_TRADE_WORK* p_work, int part
 	p_data->p_trade = p_work;
 	p_data->party_pos = party_pos;
 
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^•Û‘¶—p—Ìˆæ‚ðì¬
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä¿å­˜ç”¨é ˜åŸŸã‚’ä½œæˆ
 	p_data->sendPoke = PokemonParam_AllocWork( heapID );
 	p_data->recvPoke = PokemonParam_AllocWork( heapID );
 	

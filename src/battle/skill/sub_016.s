@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_016.s
- *@brief	�퓬�V�[�P���X
- *			�N���e�B�J���q�b�g
+ *@brief	戦闘シーケンス
+ *			クリティカルヒット
  *@author	HisashiSogabe
  *@data		2005.11.25
  *
@@ -19,13 +19,13 @@ SUB_016:
 	MESSAGE			CriticalMsg,TAG_NONE
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//����������̂ڂ́A�U���͂�MAX�܂ŃA�b�v
+	//特性いかりのつぼは、攻撃力をMAXまでアップ
 	TOKUSEI_CHECK	TOKUSEI_NO_HAVE,SIDE_DEFENCE,TOKUSYU_IKARINOTUBO,SUB_016_END
-	//HP0�̎��͉������Ȃ�
+	//HP0の時は何もしない
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_hp,0,SUB_016_END
-	//���łɍU���͂�MAX�̎��͉������Ȃ�
+	//すでに攻撃力がMAXの時は何もしない
 	IF_PSP			IF_FLAG_EQ,SIDE_DEFENCE,ID_PSP_abiritycnt_pow,12,SUB_016_END
-	//�U����MAX
+	//攻撃をMAX
 	STATUS_EFFECT	SIDE_DEFENCE,STATUS_EFF_UP
 	SERVER_WAIT
 	PSP_VALUE		VAL_SET,SIDE_DEFENCE,ID_PSP_abiritycnt_pow,12

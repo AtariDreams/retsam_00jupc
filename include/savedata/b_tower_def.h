@@ -1,6 +1,6 @@
 /**
  *	@file	b_tower_def.h
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[@ƒZ[ƒuƒf[ƒ^’è”’è‹`
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å®šæ•°å®šç¾©
  *	@author	Miyuki Iwasawa
  *	@date	06.04.17
  */
@@ -8,7 +8,7 @@
 #ifndef __H_B_TOWER_DEF_H__
 #define __H_B_TOWER_DEF_H__
 
-///ƒvƒŒƒCƒf[ƒ^æ“¾ID
+///ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿å–å¾—ID
 typedef enum{
  BTWR_PSD_playmode,
  BTWR_PSD_round,
@@ -23,18 +23,18 @@ typedef enum{
  BTWR_PSD_rnd_seed,
 }BTWR_PSD_ID;
 
-///ƒXƒRƒAƒf[ƒ^‘€ìƒ‚[ƒh
+///ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿æ“ä½œãƒ¢ãƒ¼ãƒ‰
 typedef enum{
- BTWR_DATA_get,		///<ƒf[ƒ^æ“¾
- BTWR_DATA_set,		///<ƒZƒbƒg
- BTWR_DATA_reset,	///<ƒŠƒZƒbƒg
+ BTWR_DATA_get,		///<ãƒ‡ãƒ¼ã‚¿å–å¾—
+ BTWR_DATA_set,		///<ã‚»ãƒƒãƒˆ
+ BTWR_DATA_reset,	///<ãƒªã‚»ãƒƒãƒˆ
  BTWR_DATA_inc,		///<1++
  BTWR_DATA_dec,		///<1--
  BTWR_DATA_add,		///<add
  BTWR_DATA_sub,		///<sub
 }BTWR_DATA_SETID;
 
-///ƒXƒRƒAƒf[ƒ^ƒtƒ‰ƒO ƒAƒNƒZƒXID
+///ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ãƒ•ãƒ©ã‚° ã‚¢ã‚¯ã‚»ã‚¹ID
 typedef enum{
  BTWR_SFLAG_SILVER_GET,
  BTWR_SFLAG_GOLD_GET,
@@ -51,11 +51,11 @@ typedef enum{
  BTWR_SFLAG_WIFI_RECORD,
  BTWR_SFLAG_COPPER_GET,
  BTWR_SFLAG_COPPER_READY,
- BTWR_SFLAG_WIFI_MULTI_RECORD,		//ƒvƒ‰ƒ`ƒi’Ç‰Á
- BTWR_SFLAG_MAX,					//Å‘å”
+ BTWR_SFLAG_WIFI_MULTI_RECORD,		//ãƒ—ãƒ©ãƒãƒŠè¿½åŠ 
+ BTWR_SFLAG_MAX,					//æœ€å¤§æ•°
 }BTWR_SFLAG_ID;
 
-///ƒvƒŒƒCƒ„[ƒƒbƒZ[ƒWƒf[ƒ^@ƒAƒNƒZƒXID
+///ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã€€ã‚¢ã‚¯ã‚»ã‚¹ID
 typedef enum{
  BTWR_MSG_PLAYER_READY,
  BTWR_MSG_PLAYER_WIN,
@@ -63,23 +63,23 @@ typedef enum{
  BTWR_MSG_LEADER,
 }BTWR_PLAYER_MSG_ID;
 
-///ƒXƒRƒAƒf[ƒ^@ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒAƒNƒZƒXƒ‚[ƒh
+///ã‚¹ã‚³ã‚¢ãƒ‡ãƒ¼ã‚¿ã€€ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ãƒ¢ãƒ¼ãƒ‰
 typedef enum{
  BTWR_SCORE_POKE_SINGLE,
  BTWR_SCORE_POKE_WIFI,
 }BTWR_SCORE_POKE_DATA;
 
-///‘I‘ğ‚·‚éè‚¿ƒ|ƒPƒ‚ƒ“”‚ÌMAX
+///é¸æŠã™ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³æ•°ã®MAX
 #define BTOWER_STOCK_MEMBER_MAX	(4)
-///•Û‘¶‚µ‚Ä‚¨‚­‘ÎíƒgƒŒ[ƒi[ƒiƒ“ƒo[‚Ì”
+///ä¿å­˜ã—ã¦ãŠãå¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒŠãƒ³ãƒãƒ¼ã®æ•°
 #define BTOWER_STOCK_TRAINER_MAX	(14)
-///•Û‘¶‚µ‚Ä‚¨‚­AIƒ}ƒ‹ƒ`ƒyƒA‚Ìƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^”
+///ä¿å­˜ã—ã¦ãŠãAIãƒãƒ«ãƒãƒšã‚¢ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ•°
 #define BTOWER_STOCK_PAREPOKE_MAX	(2)
-///WiFi DLƒvƒŒƒCƒ„[ƒf[ƒ^”
+///WiFi DLãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿æ•°
 #define BTOWER_STOCK_WIFI_PLAYER_MAX	(7)
-///WiFi DLƒŠ[ƒ_[ƒf[ƒ^”
+///WiFi DLãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿æ•°
 #define BTOWER_STOCK_WIFI_LEADER_MAX	(30)
-///ƒ‹[ƒ€ƒf[ƒ^‚ÌDLƒtƒ‰ƒOƒGƒŠƒAƒoƒbƒtƒ@’·
+///ãƒ«ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã®DLãƒ•ãƒ©ã‚°ã‚¨ãƒªã‚¢ãƒãƒƒãƒ•ã‚¡é•·
 #define BTOWER_ROOM_DATA_FLAGS_LEN	(250)
 
 #endif	//__H_B_TOWER_DEF_H__

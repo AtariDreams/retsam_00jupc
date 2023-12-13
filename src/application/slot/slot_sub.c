@@ -2,7 +2,7 @@
 /**
  * 
  * @file	slot_sub.c
- * @brief	ƒ~ƒjƒQ[ƒ€@ƒXƒƒbƒg@ƒTƒu
+ * @brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã€€ã‚¹ãƒ­ãƒƒãƒˆã€€ã‚µãƒ–
  * @author	kagaya
  * @data	05.07.13
  *
@@ -24,12 +24,12 @@
 #endif
 
 //--------------------------------------------------------------
-///	ƒVƒ“ƒ{ƒ‹
+///	ã‚·ãƒ³ãƒœãƒ«
 //--------------------------------------------------------------
 #define BIGFONT_OFFS_Y (16)
 
 //--------------------------------------------------------------
-///	ƒŠ[ƒ‹ƒZƒ‹ƒAƒjƒNo
+///	ãƒªãƒ¼ãƒ«ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡No
 //--------------------------------------------------------------
 typedef enum
 {
@@ -42,7 +42,7 @@ typedef enum
 }REELANMNO;
 
 //--------------------------------------------------------------
-///	“]‘—ƒtƒ‰ƒO
+///	è»¢é€ãƒ•ãƒ©ã‚°
 //--------------------------------------------------------------
 typedef enum
 {
@@ -102,7 +102,7 @@ static const CELLARCDATA DATA_MonsBallArcDataTbl[BALL_MAX];
 static const CELLARCDATA DATA_PipArcDataTbl[PIP_MAX];
 
 //==============================================================================
-//	eoa	ƒXƒƒbƒgŠG•¿
+//	eoa	ã‚¹ãƒ­ãƒƒãƒˆçµµæŸ„
 //==============================================================================
 //--------------------------------------------------------------
 ///	REELHEAD
@@ -125,7 +125,7 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ƒXƒƒbƒgŠG•¿‰Šú‰»
+ * ã‚¹ãƒ­ãƒƒãƒˆçµµæŸ„åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -152,10 +152,10 @@ void SlotSubEoa_ReelPatternInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒXƒƒbƒgŠG•¿@‰Šú‰»
+ * EOA ã‚¹ãƒ­ãƒƒãƒˆçµµæŸ„ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
- * @retval	int		TRUE=³í FALSE=ˆÙí
+ * @retval	int		TRUE=æ­£å¸¸ FALSE=ç•°å¸¸
  */
 //--------------------------------------------------------------
 static int eoaReel_Init( EOA_PTR eoa, void *wk )
@@ -177,7 +177,7 @@ static int eoaReel_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒXƒƒbƒgŠG•¿@íœ
+ * EOA ã‚¹ãƒ­ãƒƒãƒˆçµµæŸ„ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -191,7 +191,7 @@ static void eoaReel_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒXƒƒbƒgŠG•¿@“®ì
+ * EOA ã‚¹ãƒ­ãƒƒãƒˆçµµæŸ„ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -226,7 +226,7 @@ static void eoaReel_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒXƒƒbƒgŠG•¿@•`‰æ
+ * EOA ã‚¹ãƒ­ãƒƒãƒˆçµµæŸ„ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -238,7 +238,7 @@ static void eoaReel_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA ŠG•¿
+///	EOA çµµæŸ„
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Reel =
 {
@@ -250,7 +250,7 @@ static const EOA_H_NPP DATA_EoaH_Reel =
 };
 
 //==============================================================================
-//	EOA •¶š@ƒNƒŒƒWƒbƒg
+//	EOA æ–‡å­—ã€€ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 ///	CREDITFWORK
@@ -265,7 +265,7 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ƒNƒŒƒWƒbƒg‰Šú‰»
+ * ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆåˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -282,10 +282,10 @@ void SlotSubEoa_CreditFontInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒNƒŒƒWƒbƒg@‰Šú‰»
+ * EOA ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
- * @retval	int		TRUE=³í FALSE=ˆÙí
+ * @retval	int		TRUE=æ­£å¸¸ FALSE=ç•°å¸¸
  */
 //--------------------------------------------------------------
 static int eoaCreditFont_Init( EOA_PTR eoa, void *wk )
@@ -309,7 +309,7 @@ static int eoaCreditFont_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒNƒŒƒWƒbƒg@íœ
+ * EOA ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -323,7 +323,7 @@ static void eoaCreditFont_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒNƒŒƒWƒbƒg@“®ì
+ * EOA ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -357,7 +357,7 @@ static void eoaCreditFont_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒNƒŒƒWƒbƒg@•`‰æ
+ * EOA ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -369,7 +369,7 @@ static void eoaCreditFont_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H ƒNƒŒƒWƒbƒg
+///	EOA_H ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆ
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_CreditFont =
 {
@@ -381,7 +381,7 @@ static const EOA_H_NPP DATA_EoaH_CreditFont =
 };
 
 //==============================================================================
-//	EOA@•¶š@ƒyƒCƒAƒEƒg
+//	EOAã€€æ–‡å­—ã€€ãƒšã‚¤ã‚¢ã‚¦ãƒˆ
 //==============================================================================
 static const EOA_H_NPP DATA_EoaH_PayOutFont;
 
@@ -398,7 +398,7 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * ƒyƒCƒAƒEƒg‰Šú‰»
+ * ãƒšã‚¤ã‚¢ã‚¦ãƒˆåˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -415,10 +415,10 @@ void SlotSubEoa_PayOutFontInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒyƒCƒAƒEƒg@‰Šú‰»
+ * EOA ãƒšã‚¤ã‚¢ã‚¦ãƒˆã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
- * @retval	int		TRUE=³í FALSE=ˆÙí
+ * @retval	int		TRUE=æ­£å¸¸ FALSE=ç•°å¸¸
  */
 //--------------------------------------------------------------
 static int eoaPayOutFont_Init( EOA_PTR eoa, void *wk )
@@ -441,7 +441,7 @@ static int eoaPayOutFont_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒyƒCƒAƒEƒg@íœ
+ * EOA ãƒšã‚¤ã‚¢ã‚¦ãƒˆã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -455,7 +455,7 @@ static void eoaPayOutFont_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒyƒCƒAƒEƒg@“®ì
+ * EOA ãƒšã‚¤ã‚¢ã‚¦ãƒˆã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -489,7 +489,7 @@ static void eoaPayOutFont_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒyƒCƒAƒEƒg@•`‰æ
+ * EOA ãƒšã‚¤ã‚¢ã‚¦ãƒˆã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -501,7 +501,7 @@ static void eoaPayOutFont_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H ƒyƒCƒAƒEƒg
+///	EOA_H ãƒšã‚¤ã‚¢ã‚¦ãƒˆ
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_PayOutFont =
 {
@@ -513,9 +513,9 @@ static const EOA_H_NPP DATA_EoaH_PayOutFont =
 };
 
 //==============================================================================
-//	WIN LOSE•¶š
+//	WIN LOSEæ–‡å­—
 //==============================================================================
-#if 0	//’†~
+#if 0	//ä¸­æ­¢
 //--------------------------------------------------------------
 ///	WINLOSEFWORK
 //--------------------------------------------------------------
@@ -528,7 +528,7 @@ typedef struct
 
 //--------------------------------------------------------------
 /**
- * WINLOSEF‰Šú‰»
+ * WINLOSEFåˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -541,10 +541,10 @@ void SlotSubEoa_WinLoseFontInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOA WINLOSE ‰Šú‰»
+ * EOA WINLOSE åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
- * @retval	int		TRUE=³í FALSE=ˆÙí
+ * @retval	int		TRUE=æ­£å¸¸ FALSE=ç•°å¸¸
  */
 //--------------------------------------------------------------
 static int eoaWinLoseFont_Init( EOA_PTR eoa, void *wk )
@@ -567,7 +567,7 @@ static int eoaWinLoseFont_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA WIN LOSE íœ
+ * EOA WIN LOSE å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -581,7 +581,7 @@ static void eoaWinLoseFont_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA WIN LOSE “®ì
+ * EOA WIN LOSE å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -611,7 +611,7 @@ static void eoaWinLoseFont_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA WIN LOSE •`‰æ
+ * EOA WIN LOSE æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -636,16 +636,16 @@ static const EOA_H_NPP DATA_EoaH_WinLoseFont =
 #endif
 
 //==============================================================================
-//	ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹@EOA
+//	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã€€EOA
 //==============================================================================
 static const EOA_H_NPP DATA_EoaH_MBall;
 static int (* const * const DATA_eoaMBallMoveTbl[MBALLMT_MAX])( MBALLWORK *work );
 
 //--------------------------------------------------------------
 /**
- * EOAƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹’Ç‰Á
+ * EOAãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«è¿½åŠ 
  * @param	main	SLOTMAIN
- * @retval	eoa		EOAƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹
+ * @retval	eoa		EOAãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
  */
 //--------------------------------------------------------------
 EOA_PTR SlotSubEoa_MBallSet( SLOTMAIN *main, BALLTYPE type )
@@ -665,7 +665,7 @@ EOA_PTR SlotSubEoa_MBallSet( SLOTMAIN *main, BALLTYPE type )
 
 //--------------------------------------------------------------
 /**
- * EOAƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹“®ì•ÏX
+ * EOAãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«å‹•ä½œå¤‰æ›´
  * @param	eoa		EOA_PTR
  * @param	type	MBALLMT
  * @retval	nothing
@@ -677,7 +677,7 @@ void SlotSubEoa_MBallMoveTypeChange( EOA_PTR eoa, MBALLMT type )
 	
 #ifdef PM_DEBUG
 	if( work->move_type == MBALLMT_INIT && work->end_flag == FALSE ){
-		GF_ASSERT( 0 && "MBALLMT_INIT Not End" );	//ƒAƒNƒ^[‚Ì‰Šú‰»‚à‚Ü‚¾‚È‚ñ‚¾‚ºH
+		GF_ASSERT( 0 && "MBALLMT_INIT Not End" );	//ã‚¢ã‚¯ã‚¿ãƒ¼ã®åˆæœŸåŒ–ã‚‚ã¾ã ãªã‚“ã ãœï¼Ÿ
 	}
 #endif
 	
@@ -689,9 +689,9 @@ void SlotSubEoa_MBallMoveTypeChange( EOA_PTR eoa, MBALLMT type )
 
 //--------------------------------------------------------------
 /**
- * EOAƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹@•\¦A”ñ•\¦
+ * EOAãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã€€è¡¨ç¤ºã€éè¡¨ç¤º
  * @param	eoa		EOA_PTR
- * @param	vanish	TRUE=”ñ•\¦@FALSE=•\¦
+ * @param	vanish	TRUE=éè¡¨ç¤ºã€€FALSE=è¡¨ç¤º
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -708,9 +708,9 @@ void SlotSubEoa_MBallVanishSet( EOA_PTR eoa, int vanish )
 
 //--------------------------------------------------------------
 /**
- * EOAƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹“®ìI—¹ƒ`ƒFƒbƒN
+ * EOAãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«å‹•ä½œçµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	eoa		EOA_PTR
- * @retval	int		TRUE=I—¹
+ * @retval	int		TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 int SlotSubEoa_MBallMoveEndCheck( EOA_PTR eoa )
@@ -721,10 +721,10 @@ int SlotSubEoa_MBallMoveEndCheck( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹@‰Šú‰»
+ * EOA ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		EOA work
- * @retval	int		TRUE=³íI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int eoaMBall_Init( EOA_PTR eoa, void *wk )
@@ -738,7 +738,7 @@ static int eoaMBall_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹@íœ
+ * EOA ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -756,7 +756,7 @@ static void eoaMBall_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹@“®ì
+ * EOA ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -776,7 +776,7 @@ static void eoaMBall_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹@•`‰æ
+ * EOA ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -788,7 +788,7 @@ static void eoaMBall_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹
+///	EOA_H ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_MBall =
 {
@@ -801,9 +801,9 @@ static const EOA_H_NPP DATA_EoaH_MBall =
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@‰Šú‰»@‰Šú‰»
+ * EOA MBALLå‹•ä½œã€€åˆæœŸåŒ–ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_Init_Init( MBALLWORK *work )
@@ -815,9 +815,9 @@ static int eoaMBallMove_Init_Init( MBALLWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@‰Šú‰»@ƒAƒNƒ^[’Ç‰Á
+ * EOA MBALLå‹•ä½œã€€åˆæœŸåŒ–ã€€ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_Init_InitWait( MBALLWORK *work )
@@ -831,9 +831,9 @@ static int eoaMBallMove_Init_InitWait( MBALLWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@‰Šú‰»@ƒAƒNƒ^[’Ç‰Á
+ * EOA MBALLå‹•ä½œã€€åˆæœŸåŒ–ã€€ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_Init_ActAdd( MBALLWORK *work )
@@ -848,9 +848,9 @@ static int eoaMBallMove_Init_ActAdd( MBALLWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@I—¹@‹¤’Ê
+ * EOA MBALLå‹•ä½œã€€çµ‚äº†ã€€å…±é€š
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_End( MBALLWORK *work )
@@ -859,7 +859,7 @@ static int eoaMBallMove_End( MBALLWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA MBALL“®ì@‰Šú‰»‚Ü‚Æ‚ß
+///	EOA MBALLå‹•ä½œã€€åˆæœŸåŒ–ã¾ã¨ã‚
 //--------------------------------------------------------------
 static int (* const DATA_eoaMBallMoveTbl_Init[])( MBALLWORK *work ) =
 {
@@ -871,9 +871,9 @@ static int (* const DATA_eoaMBallMoveTbl_Init[])( MBALLWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@“]‚ª‚èŠJn@‰Šú‰»
+ * EOA MBALLå‹•ä½œã€€è»¢ãŒã‚Šé–‹å§‹ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_SpinStart_Init( MBALLWORK *work )
@@ -894,9 +894,9 @@ static int eoaMBallMove_SpinStart_Init( MBALLWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@“]‚ª‚èŠJn@ˆÚ“®
+ * EOA MBALLå‹•ä½œã€€è»¢ãŒã‚Šé–‹å§‹ã€€ç§»å‹•
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  * 192-160=32,200
  */
 //--------------------------------------------------------------
@@ -928,9 +928,9 @@ static int eoaMBallMove_SpinStart_Move( MBALLWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@“]‚ª‚èŠJn@ƒAƒjƒI—¹‘Ò‚¿
+ * EOA MBALLå‹•ä½œã€€è»¢ãŒã‚Šé–‹å§‹ã€€ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  * 192-160=32,200
  */
 //--------------------------------------------------------------
@@ -948,7 +948,7 @@ static int eoaMBallMove_SpinStart_Wait( MBALLWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA MBALL“®ì@‰ñ“]ŠJn‚Ü‚Æ‚ß
+///	EOA MBALLå‹•ä½œã€€å›è»¢é–‹å§‹ã¾ã¨ã‚
 //--------------------------------------------------------------
 static int (* const DATA_eoaMBallMoveTbl_SpinStart[])( MBALLWORK *work ) =
 {
@@ -960,9 +960,9 @@ static int (* const DATA_eoaMBallMoveTbl_SpinStart[])( MBALLWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@ƒ{[ƒ‹ŠJ‚­@‰Šú‰»
+ * EOA MBALLå‹•ä½œã€€ãƒœãƒ¼ãƒ«é–‹ãã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_Open_Init( MBALLWORK *work )
@@ -978,9 +978,9 @@ static int eoaMBallMove_Open_Init( MBALLWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@ƒ{[ƒ‹ŠJ‚­@ƒEƒFƒCƒg
+ * EOA MBALLå‹•ä½œã€€ãƒœãƒ¼ãƒ«é–‹ãã€€ã‚¦ã‚§ã‚¤ãƒˆ
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_Open_Wait( MBALLWORK *work )
@@ -997,7 +997,7 @@ static int eoaMBallMove_Open_Wait( MBALLWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA MBALL“®ì@ŠJ‚­‚Ü‚Æ‚ß
+///	EOA MBALLå‹•ä½œã€€é–‹ãã¾ã¨ã‚
 //--------------------------------------------------------------
 static int (* const DATA_eoaMBallMoveTbl_Open[])( MBALLWORK *work ) =
 {
@@ -1008,9 +1008,9 @@ static int (* const DATA_eoaMBallMoveTbl_Open[])( MBALLWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@ƒ{[ƒ‹•Â‚¶‚é@‰Šú‰»
+ * EOA MBALLå‹•ä½œã€€ãƒœãƒ¼ãƒ«é–‰ã˜ã‚‹ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_Close_Init( MBALLWORK *work )
@@ -1032,9 +1032,9 @@ static int eoaMBallMove_Close_Init( MBALLWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@ƒ{[ƒ‹•Â‚¶‚é@—‰º
+ * EOA MBALLå‹•ä½œã€€ãƒœãƒ¼ãƒ«é–‰ã˜ã‚‹ã€€è½ä¸‹
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_Close_Move( MBALLWORK *work )
@@ -1061,7 +1061,7 @@ static int eoaMBallMove_Close_Move( MBALLWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA MBALL“®ì@ƒ{[ƒ‹•Â‚¶‚é
+///	EOA MBALLå‹•ä½œã€€ãƒœãƒ¼ãƒ«é–‰ã˜ã‚‹
 //--------------------------------------------------------------
 static int (* const DATA_eoaMBallMoveTbl_Close[])( MBALLWORK *work ) =
 {
@@ -1072,9 +1072,9 @@ static int (* const DATA_eoaMBallMoveTbl_Close[])( MBALLWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@‰æ–ÊŠO‚Ö@‰Šú‰»
+ * EOA MBALLå‹•ä½œã€€ç”»é¢å¤–ã¸ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_SpinOut_Init( MBALLWORK *work )
@@ -1097,9 +1097,9 @@ static int eoaMBallMove_SpinOut_Init( MBALLWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@‰æ–ÊŠO‚Ö@ˆÚ“®
+ * EOA MBALLå‹•ä½œã€€ç”»é¢å¤–ã¸ã€€ç§»å‹•
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_SpinOut_Move( MBALLWORK *work )
@@ -1131,7 +1131,7 @@ static int eoaMBallMove_SpinOut_Move( MBALLWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA MBALL“®ì@‰æ–ÊŠO‚Ö
+///	EOA MBALLå‹•ä½œã€€ç”»é¢å¤–ã¸
 //--------------------------------------------------------------
 static int (* const DATA_eoaMBallMoveTbl_SpinOut[])( MBALLWORK *work ) =
 {
@@ -1142,9 +1142,9 @@ static int (* const DATA_eoaMBallMoveTbl_SpinOut[])( MBALLWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@‚ä‚ç‚ä‚ç@‰Šú‰»
+ * EOA MBALLå‹•ä½œã€€ã‚†ã‚‰ã‚†ã‚‰ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_Shake_Init( MBALLWORK *work )
@@ -1158,7 +1158,7 @@ static int eoaMBallMove_Shake_Init( MBALLWORK *work )
 	work->frame = 0;
 	work->no = 0;
 	work->angle = 0;
-	work->end_flag = TRUE;	//‰½‚Å‚àI—¹‰Â”\ 
+	work->end_flag = TRUE;	//ä½•æ™‚ã§ã‚‚çµ‚äº†å¯èƒ½ 
 	
 	CLACT_SetMatrix( work->actwork.act, &mtx );
 	CLACT_SetScale( work->actwork.act, &scale );
@@ -1172,9 +1172,9 @@ static int eoaMBallMove_Shake_Init( MBALLWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@‚ä‚ç‚ä‚ç@“®ì
+ * EOA MBALLå‹•ä½œã€€ã‚†ã‚‰ã‚†ã‚‰ã€€å‹•ä½œ
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_Shake_Move( MBALLWORK *work )
@@ -1204,7 +1204,7 @@ static int eoaMBallMove_Shake_Move( MBALLWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA MBALL“®ì@‚ä‚ç‚ä‚ç‚Ü‚Æ‚ß
+///	EOA MBALLå‹•ä½œã€€ã‚†ã‚‰ã‚†ã‚‰ã¾ã¨ã‚
 //--------------------------------------------------------------
 static int (* const DATA_eoaMBallMoveTbl_Shake[])( MBALLWORK *work ) =
 {
@@ -1215,9 +1215,9 @@ static int (* const DATA_eoaMBallMoveTbl_Shake[])( MBALLWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA MBALL“®ì@’â~@‰Šú‰»
+ * EOA MBALLå‹•ä½œã€€åœæ­¢ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaMBallMove_Stop_Init( MBALLWORK *work )
@@ -1228,7 +1228,7 @@ static int eoaMBallMove_Stop_Init( MBALLWORK *work )
 	
 	work->mtx = mtx;
 	work->offs = offs;
-	work->end_flag = TRUE;	//‰½‚Å‚àI—¹‰Â”\ 
+	work->end_flag = TRUE;	//ä½•æ™‚ã§ã‚‚çµ‚äº†å¯èƒ½ 
 	
 	CLACT_SetMatrix( work->actwork.act, &mtx );
 	CLACT_SetScale( work->actwork.act, &scale );
@@ -1241,7 +1241,7 @@ static int eoaMBallMove_Stop_Init( MBALLWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA MBALL“®ì@’â~‚Ü‚Æ‚ß
+///	EOA MBALLå‹•ä½œã€€åœæ­¢ã¾ã¨ã‚
 //--------------------------------------------------------------
 static int (* const DATA_eoaMBallMoveTbl_Stop[])( MBALLWORK *work ) =
 {
@@ -1250,7 +1250,7 @@ static int (* const DATA_eoaMBallMoveTbl_Stop[])( MBALLWORK *work ) =
 };
 
 //--------------------------------------------------------------
-///	EOA MBALL“®ìƒe[ƒuƒ‹
+///	EOA MBALLå‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const * const DATA_eoaMBallMoveTbl[MBALLMT_MAX])( MBALLWORK *work ) =
 {
@@ -1264,13 +1264,13 @@ static int (* const * const DATA_eoaMBallMoveTbl[MBALLMT_MAX])( MBALLWORK *work 
 };
 
 //==============================================================================
-//	ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹@ƒp[ƒc
+//	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	main	SLOTMAIN
- * @param	type	ƒ{[ƒ‹ƒ^ƒCƒv
+ * @param	type	ãƒœãƒ¼ãƒ«ã‚¿ã‚¤ãƒ—
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1300,7 +1300,7 @@ static void MBall_GraphicInit( MBALLWORK *work, BALLTYPE type )
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -1313,7 +1313,7 @@ static void MBall_GraphicDelete( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒ‹ƒOƒ‰ƒtƒBƒbƒNVRAM“]‘—
+ * ãƒœãƒ¼ãƒ«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯VRAMè»¢é€
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -1331,7 +1331,7 @@ static void MBall_VramTransTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒ‹ƒOƒ‰ƒtƒBƒbƒNVRAM“]‘—Œã‚ÌƒŠƒ\[ƒX”jŠü
+ * ãƒœãƒ¼ãƒ«ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯VRAMè»¢é€å¾Œã®ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -1351,9 +1351,9 @@ static void MBall_VramResDeleteTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹@ƒZƒ‹ƒAƒNƒ^[’Ç‰Á
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã€€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  * @param	main	SLOTMAIN 
- * @param	mtx		À•W
+ * @param	mtx		åº§æ¨™
  * @retval	CLACT_WORK_PTR	CLACT_WORK_PTR
  */
 //--------------------------------------------------------------
@@ -1374,7 +1374,7 @@ static void MBall_ClActAdd( SLOTMAIN *main, CLACT_WORK_EX *actwork, const VecFx3
 }
 
 //==============================================================================
-//	ƒ{[ƒ‹‰Œ
+//	ãƒœãƒ¼ãƒ«ç…™
 //==============================================================================
 //--------------------------------------------------------------
 /// BALLEFFWORK	
@@ -1394,7 +1394,7 @@ static void BallEff_GraphicInit( BALLEFFWORK *work );
 
 //--------------------------------------------------------------
 /**
- * EOAƒ{[ƒ‹‰Œ’Ç‰Á
+ * EOAãƒœãƒ¼ãƒ«ç…™è¿½åŠ 
  * @param	main	SLOTMAIN
  * @retval	eoa		EOA
  */
@@ -1410,9 +1410,9 @@ EOA_PTR SlotSubEoa_BallEffSet( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOAƒ{[ƒ‹‰Œ“®ìI—¹ƒ`ƒFƒbƒN
+ * EOAãƒœãƒ¼ãƒ«ç…™å‹•ä½œçµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	eoa		EOA_PTR
- * @retval	int		TRUE=I—¹
+ * @retval	int		TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 int SlotSubEoa_BallEffEndCheck( EOA_PTR eoa )
@@ -1423,10 +1423,10 @@ int SlotSubEoa_BallEffEndCheck( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒ‹‰Œ@‰Šú‰»
+ * EOA ãƒœãƒ¼ãƒ«ç…™ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		EOA work
- * @retval	int		TRUE=³íI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int eoaBallEff_Init( EOA_PTR eoa, void *wk )
@@ -1441,7 +1441,7 @@ static int eoaBallEff_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒ‹‰Œ@íœ
+ * EOA ãƒœãƒ¼ãƒ«ç…™ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -1460,7 +1460,7 @@ static void eoaBallEff_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒ‹‰Œ@“®ì
+ * EOA ãƒœãƒ¼ãƒ«ç…™ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -1507,7 +1507,7 @@ static void eoaBallEff_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒ‹‰Œ@•`‰æ
+ * EOA ãƒœãƒ¼ãƒ«ç…™ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -1519,7 +1519,7 @@ static void eoaBallEff_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H ƒ{[ƒ‹‰Œ
+///	EOA_H ãƒœãƒ¼ãƒ«ç…™
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_BallEff =
 {
@@ -1532,7 +1532,7 @@ static const EOA_H_NPP DATA_EoaH_BallEff =
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒ‹ƒGƒtƒFƒNƒgVRAM“]‘—
+ * ãƒœãƒ¼ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆVRAMè»¢é€
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -1550,7 +1550,7 @@ static void BallEff_VramTransTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒ‹ƒGƒtƒFƒNƒgVRAM“]‘—Œã‚ÌƒŠƒ\[ƒXŠJ•ú
+ * ãƒœãƒ¼ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆVRAMè»¢é€å¾Œã®ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -1570,9 +1570,9 @@ static void BallEff_VramResDeleteTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒ‹‰ŒƒOƒ‰ƒtƒBƒbƒN@‰Šú‰»
+ * ãƒœãƒ¼ãƒ«ç…™ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã€€åˆæœŸåŒ–
  * @param	main	SLOTMAIN
- * @param	type	ƒ{[ƒ‹ƒ^ƒCƒv
+ * @param	type	ãƒœãƒ¼ãƒ«ã‚¿ã‚¤ãƒ—
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1597,7 +1597,7 @@ static void BallEff_GraphicInit( BALLEFFWORK *work )
 }
 
 //==============================================================================
-//	ƒsƒbƒs
+//	ãƒ”ãƒƒãƒ”
 //==============================================================================
 //--------------------------------------------------------------
 ///	PIPWORK
@@ -1621,7 +1621,7 @@ static int (* const * const DATA_eoaPipMoveTbl[PIPMT_MAX])( PIPWORK *work );
 
 //--------------------------------------------------------------
 /**
- * ƒsƒbƒsƒOƒ‰ƒtƒBƒbƒN“]‘—
+ * ãƒ”ãƒƒãƒ”ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -1656,7 +1656,7 @@ static void Pip_VramTransTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒsƒbƒsƒOƒ‰ƒtƒBƒbƒN“]‘—Œã‚ÌƒŠƒ\[ƒX”jŠü
+ * ãƒ”ãƒƒãƒ”ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€å¾Œã®ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -1681,7 +1681,7 @@ static void Pip_VramResDeleteTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒsƒbƒsƒOƒ‰ƒtƒBƒbƒN’Ç‰Á
+ * ãƒ”ãƒƒãƒ”ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è¿½åŠ 
  * @param	PIPWORK	PIPWORK
  * @retval	nothing
  */
@@ -1714,10 +1714,10 @@ static void Pip_GraphicInit( PIPWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOAƒsƒbƒs’Ç‰Á
+ * EOAãƒ”ãƒƒãƒ”è¿½åŠ 
  * @param	main	SLOTMAIN
  * @param	piptype	PIPTYPE
- * @retval	eoa		EOAƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹
+ * @retval	eoa		EOAãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«
  */
 //--------------------------------------------------------------
 EOA_PTR SlotSubEoa_PipSet( SLOTMAIN *main, PIPTYPE type )
@@ -1732,7 +1732,7 @@ EOA_PTR SlotSubEoa_PipSet( SLOTMAIN *main, PIPTYPE type )
 
 //--------------------------------------------------------------
 /**
- * EOAƒsƒbƒs“®ì•ÏX
+ * EOAãƒ”ãƒƒãƒ”å‹•ä½œå¤‰æ›´
  * @param	eoa		EOA_PTR
  * @param	type	MBALLMT
  * @retval	nothing
@@ -1744,7 +1744,7 @@ void SlotSubEoa_PipMoveTypeChange( EOA_PTR eoa, PIPMT type )
 
 #ifdef PM_DEBUG
 	if( work->move_type == PIPMT_INIT && work->end_flag == FALSE ){
-		GF_ASSERT( 0 && "PIPMT_INIT Not End" );	//ƒAƒNƒ^[‚Ì‰Šú‰»‚à‚Ü‚¾‚È‚ñ‚¾‚ºH
+		GF_ASSERT( 0 && "PIPMT_INIT Not End" );	//ã‚¢ã‚¯ã‚¿ãƒ¼ã®åˆæœŸåŒ–ã‚‚ã¾ã ãªã‚“ã ãœï¼Ÿ
 	}
 #endif
 	
@@ -1756,9 +1756,9 @@ void SlotSubEoa_PipMoveTypeChange( EOA_PTR eoa, PIPMT type )
 
 //--------------------------------------------------------------
 /**
- * EOAƒsƒbƒs“®ìI—¹ƒ`ƒFƒbƒN
+ * EOAãƒ”ãƒƒãƒ”å‹•ä½œçµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	eoa		EOA_PTR
- * @retval	int		TRUE=I—¹
+ * @retval	int		TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 int SlotSubEoa_PipMoveEndCheck( EOA_PTR eoa )
@@ -1769,10 +1769,10 @@ int SlotSubEoa_PipMoveEndCheck( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒsƒbƒs@‰Šú‰»
+ * EOA ãƒ”ãƒƒãƒ”ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		EOA work
- * @retval	int		TRUE=³íI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int eoaPip_Init( EOA_PTR eoa, void *wk )
@@ -1788,7 +1788,7 @@ static int eoaPip_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒsƒbƒs@íœ
+ * EOA ãƒ”ãƒƒãƒ”ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -1808,7 +1808,7 @@ static void eoaPip_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒsƒbƒs@“®ì
+ * EOA ãƒ”ãƒƒãƒ”ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -1828,7 +1828,7 @@ static void eoaPip_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒsƒbƒs@•`‰æ
+ * EOA ãƒ”ãƒƒãƒ”ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -1840,7 +1840,7 @@ static void eoaPip_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H ƒsƒbƒs
+///	EOA_H ãƒ”ãƒƒãƒ”
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Pip =
 {
@@ -1853,9 +1853,9 @@ static const EOA_H_NPP DATA_EoaH_Pip =
 
 //--------------------------------------------------------------
 /**
- * EOA ƒsƒbƒs“®ì@‰Šú‰»@‰Šú‰»
+ * EOA ãƒ”ãƒƒãƒ”å‹•ä½œã€€åˆæœŸåŒ–ã€€åˆæœŸåŒ–
  * @param	work	PIPWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_Init_Init( PIPWORK *work )
@@ -1880,9 +1880,9 @@ static int eoaPipMove_Init_Init( PIPWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA PIP“®ì@I—¹@‹¤’Ê
+ * EOA PIPå‹•ä½œã€€çµ‚äº†ã€€å…±é€š
  * @param	work	PIPWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_End( PIPWORK *work )
@@ -1891,7 +1891,7 @@ static int eoaPipMove_End( PIPWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA PIP“®ì@‰Šú‰»
+///	EOA PIPå‹•ä½œã€€åˆæœŸåŒ–
 //--------------------------------------------------------------
 static int (* const DATA_eoaPipMoveTbl_Init[])( PIPWORK *work ) =
 {
@@ -1901,9 +1901,9 @@ static int (* const DATA_eoaPipMoveTbl_Init[])( PIPWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA PIP“®ì@“oê@‰Šú‰»
+ * EOA PIPå‹•ä½œã€€ç™»å ´ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_Start_Init( PIPWORK *work )
@@ -1923,9 +1923,9 @@ static int eoaPipMove_Start_Init( PIPWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA PIP“®ì@“oê@ˆÚ“®
+ * EOA PIPå‹•ä½œã€€ç™»å ´ã€€ç§»å‹•
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_Start_Move( PIPWORK *work )
@@ -1958,9 +1958,9 @@ static int eoaPipMove_Start_Move( PIPWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA PIP“®ì@“oê@ƒAƒjƒ‘Ò‚¿
+ * EOA PIPå‹•ä½œã€€ç™»å ´ã€€ã‚¢ãƒ‹ãƒ¡å¾…ã¡
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_Start_Wait( PIPWORK *work )
@@ -1978,7 +1978,7 @@ static int eoaPipMove_Start_Wait( PIPWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA PIP“®ì@“oê
+///	EOA PIPå‹•ä½œã€€ç™»å ´
 //--------------------------------------------------------------
 static int (* const DATA_eoaPipMoveTbl_Start[])( PIPWORK *work ) =
 {
@@ -1990,9 +1990,9 @@ static int (* const DATA_eoaPipMoveTbl_Start[])( PIPWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA PIP“®ì@–ß‚é@‰Šú‰»
+ * EOA PIPå‹•ä½œã€€æˆ»ã‚‹ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_Back_Init( PIPWORK *work )
@@ -2013,9 +2013,9 @@ static int eoaPipMove_Back_Init( PIPWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA PIP“®ì@–ß‚é@ˆÚ“®
+ * EOA PIPå‹•ä½œã€€æˆ»ã‚‹ã€€ç§»å‹•
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_Back_Move( PIPWORK *work )
@@ -2045,7 +2045,7 @@ static int eoaPipMove_Back_Move( PIPWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA PIP“®ì@–ß‚é
+///	EOA PIPå‹•ä½œã€€æˆ»ã‚‹
 //--------------------------------------------------------------
 static int (* const DATA_eoaPipMoveTbl_Back[])( PIPWORK *work ) =
 {
@@ -2056,9 +2056,9 @@ static int (* const DATA_eoaPipMoveTbl_Back[])( PIPWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA PIP“®ì@—§‚¿@‰Šú‰»
+ * EOA PIPå‹•ä½œã€€ç«‹ã¡ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_Stand_Init( PIPWORK *work )
@@ -2079,7 +2079,7 @@ static int eoaPipMove_Stand_Init( PIPWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA PIP“®ì@—§‚¿
+///	EOA PIPå‹•ä½œã€€ç«‹ã¡
 //--------------------------------------------------------------
 static int (* const DATA_eoaPipMoveTbl_Stand[])( PIPWORK *work ) =
 {
@@ -2089,9 +2089,9 @@ static int (* const DATA_eoaPipMoveTbl_Stand[])( PIPWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA PIP“®ì@ƒpƒ^ƒpƒ^@‰Šú‰»
+ * EOA PIPå‹•ä½œã€€ãƒ‘ã‚¿ãƒ‘ã‚¿ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_PataPata_Init( PIPWORK *work )
@@ -2115,7 +2115,7 @@ static int eoaPipMove_PataPata_Init( PIPWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA PIP“®ì@ƒpƒ^ƒpƒ^
+///	EOA PIPå‹•ä½œã€€ãƒ‘ã‚¿ãƒ‘ã‚¿
 //--------------------------------------------------------------
 static int (* const DATA_eoaPipMoveTbl_PataPata[])( PIPWORK *work ) =
 {
@@ -2125,9 +2125,9 @@ static int (* const DATA_eoaPipMoveTbl_PataPata[])( PIPWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA PIP“®ì@’†‰›w‚µ@‰Šú‰»
+ * EOA PIPå‹•ä½œã€€ä¸­å¤®æŒ‡ã—ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_Naka_Init( PIPWORK *work )
@@ -2148,7 +2148,7 @@ static int eoaPipMove_Naka_Init( PIPWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA PIP“®ì@’†‰›w‚µ
+///	EOA PIPå‹•ä½œã€€ä¸­å¤®æŒ‡ã—
 //--------------------------------------------------------------
 static int (* const DATA_eoaPipMoveTbl_Naka[])( PIPWORK *work ) =
 {
@@ -2158,9 +2158,9 @@ static int (* const DATA_eoaPipMoveTbl_Naka[])( PIPWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA PIP“®ì@¶w‚µ@‰Šú‰»
+ * EOA PIPå‹•ä½œã€€å·¦æŒ‡ã—ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_Left_Init( PIPWORK *work )
@@ -2181,7 +2181,7 @@ static int eoaPipMove_Left_Init( PIPWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA PIP“®ì@¶w‚µ
+///	EOA PIPå‹•ä½œã€€å·¦æŒ‡ã—
 //--------------------------------------------------------------
 static int (* const DATA_eoaPipMoveTbl_Left[])( PIPWORK *work ) =
 {
@@ -2191,9 +2191,9 @@ static int (* const DATA_eoaPipMoveTbl_Left[])( PIPWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA PIP“®ì@‰Ew‚µ@‰Šú‰»
+ * EOA PIPå‹•ä½œã€€å³æŒ‡ã—ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_Right_Init( PIPWORK *work )
@@ -2214,7 +2214,7 @@ static int eoaPipMove_Right_Init( PIPWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA PIP“®ì@‰Ew‚µ
+///	EOA PIPå‹•ä½œã€€å³æŒ‡ã—
 //--------------------------------------------------------------
 static int (* const DATA_eoaPipMoveTbl_Right[])( PIPWORK *work ) =
 {
@@ -2224,9 +2224,9 @@ static int (* const DATA_eoaPipMoveTbl_Right[])( PIPWORK *work ) =
 
 //--------------------------------------------------------------
 /**
- * EOA PIP“®ì@–œÎ@‰Šú‰»
+ * EOA PIPå‹•ä½œã€€ä¸‡æ­³ã€€åˆæœŸåŒ–
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_Banzai_Init( PIPWORK *work )
@@ -2250,9 +2250,9 @@ static int eoaPipMove_Banzai_Init( PIPWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOA PIP“®ì@–œÎ@ƒAƒjƒ
+ * EOA PIPå‹•ä½œã€€ä¸‡æ­³ã€€ã‚¢ãƒ‹ãƒ¡
  * @param	work	MBALLWORK
- * @retval	int		TRUE=Ä‹A—v‹
+ * @retval	int		TRUE=å†å¸°è¦æ±‚
  */
 //--------------------------------------------------------------
 static int eoaPipMove_Banzai_Anm( PIPWORK *work )
@@ -2272,7 +2272,7 @@ static int eoaPipMove_Banzai_Anm( PIPWORK *work )
 }
 
 //--------------------------------------------------------------
-///	EOA PIP“®ì@–œÎ
+///	EOA PIPå‹•ä½œã€€ä¸‡æ­³
 //--------------------------------------------------------------
 static int (* const DATA_eoaPipMoveTbl_Banzai[])( PIPWORK *work ) =
 {
@@ -2282,7 +2282,7 @@ static int (* const DATA_eoaPipMoveTbl_Banzai[])( PIPWORK *work ) =
 };
 
 //--------------------------------------------------------------
-///	EOA PIP“®ìƒe[ƒuƒ‹
+///	EOA PIPå‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const * const DATA_eoaPipMoveTbl[PIPMT_MAX])( PIPWORK *work ) =
 {
@@ -2298,7 +2298,7 @@ static int (* const * const DATA_eoaPipMoveTbl[PIPMT_MAX])( PIPWORK *work ) =
 };
 
 //==============================================================================
-//	ƒsƒJƒ`ƒ…ƒE
+//	ãƒ”ã‚«ãƒãƒ¥ã‚¦
 //==============================================================================
 //--------------------------------------------------------------
 ///	PIKAWORK 
@@ -2321,7 +2321,7 @@ static const EOA_H_NPP DATA_EoaH_Pika;
 
 //--------------------------------------------------------------
 /**
- * ƒsƒJƒ`ƒ…ƒEVRAM“]‘—
+ * ãƒ”ã‚«ãƒãƒ¥ã‚¦VRAMè»¢é€
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -2339,7 +2339,7 @@ static void Pika_VramTransTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒsƒJƒ`ƒ…ƒEVRAM“]‘—Œã‚ÌƒŠƒ\[ƒX”jŠü
+ * ãƒ”ã‚«ãƒãƒ¥ã‚¦VRAMè»¢é€å¾Œã®ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -2359,7 +2359,7 @@ static void Pika_VramResDeleteTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒsƒJƒ`ƒ…ƒEƒOƒ‰ƒtƒBƒbƒN@‰Šú‰»
+ * ãƒ”ã‚«ãƒãƒ¥ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã€€åˆæœŸåŒ–
  * @param	work	PIKAWORK
  * @retval	nothing
  */
@@ -2386,7 +2386,7 @@ static void Pika_GraphicInit( PIKAWORK *work )
 
 //--------------------------------------------------------------
 /**
- * EOAƒsƒJƒ`ƒ…ƒE’Ç‰Á
+ * EOAãƒ”ã‚«ãƒãƒ¥ã‚¦è¿½åŠ 
  * @param	main	SLOTMAIN
  * @retval	eoa		EOA
  */
@@ -2402,9 +2402,9 @@ EOA_PTR SlotSubEoa_PikaSet( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOAƒsƒJƒ`ƒ…ƒE“®ìI—¹ƒ`ƒFƒbƒN
+ * EOAãƒ”ã‚«ãƒãƒ¥ã‚¦å‹•ä½œçµ‚äº†ãƒã‚§ãƒƒã‚¯
  * @param	eoa		EOA_PTR
- * @retval	int		TRUE=I—¹
+ * @retval	int		TRUE=çµ‚äº†
  */
 //--------------------------------------------------------------
 int SlotSubEoa_PikaEndCheck( EOA_PTR eoa )
@@ -2415,10 +2415,10 @@ int SlotSubEoa_PikaEndCheck( EOA_PTR eoa )
 
 //--------------------------------------------------------------
 /**
- * EOA @ƒsƒJƒ`ƒ…ƒE@‰Šú‰»
+ * EOA ã€€ãƒ”ã‚«ãƒãƒ¥ã‚¦ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		EOA work
- * @retval	int		TRUE=³íI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int eoaPika_Init( EOA_PTR eoa, void *wk )
@@ -2432,7 +2432,7 @@ static int eoaPika_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒsƒJƒ`ƒ…ƒE@íœ
+ * EOA ãƒ”ã‚«ãƒãƒ¥ã‚¦ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -2455,7 +2455,7 @@ static void eoaPika_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒsƒJƒ`ƒ…ƒE@À•W‘€ì
+ * ãƒ”ã‚«ãƒãƒ¥ã‚¦ã€€åº§æ¨™æ“ä½œ
  * @param
  * @retval
  */
@@ -2482,7 +2482,7 @@ static void eoaPika_PosSet( EOA_PTR eoa,
 
 //--------------------------------------------------------------
 /**
- * EOA ƒsƒJƒ`ƒ…ƒE@“®ì
+ * EOA ãƒ”ã‚«ãƒãƒ¥ã‚¦ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -2509,7 +2509,7 @@ static void eoaPika_Move( EOA_PTR eoa, void *wk )
 			CLACT_SetFlip( work->actwork1.act, CLACT_FLIP_H );
 			work->seq_no++;
 		}
-	case 1:	//“oê
+	case 1:	//ç™»å ´
 		{
 			int flag = FALSE;
 			VecFx32 mtx0,mtx1;
@@ -2676,7 +2676,7 @@ static void eoaPika_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒsƒJƒ`ƒ…ƒE@•`‰æ
+ * EOA ãƒ”ã‚«ãƒãƒ¥ã‚¦ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -2688,7 +2688,7 @@ static void eoaPika_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H ƒsƒJƒ`ƒ…ƒE
+///	EOA_H ãƒ”ã‚«ãƒãƒ¥ã‚¦
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Pika =
 {
@@ -2700,7 +2700,7 @@ static const EOA_H_NPP DATA_EoaH_Pika =
 };
 
 //==============================================================================
-//	EOA •¶š@ƒ{[ƒiƒX
+//	EOA æ–‡å­—ã€€ãƒœãƒ¼ãƒŠã‚¹
 //==============================================================================
 //--------------------------------------------------------------
 ///	BONUSFWORK
@@ -2715,7 +2715,7 @@ static const EOA_H_NPP DATA_EoaH_BonusFont;
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒX•¶š‰Šú‰»
+ * ãƒœãƒ¼ãƒŠã‚¹æ–‡å­—åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	EOA_PTR	eoa
  */
@@ -2731,10 +2731,10 @@ EOA_PTR SlotSubEoa_BonusFontInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒiƒXƒtƒHƒ“ƒg@‰Šú‰»
+ * EOA ãƒœãƒ¼ãƒŠã‚¹ãƒ•ã‚©ãƒ³ãƒˆã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
- * @retval	int		TRUE=³í FALSE=ˆÙí
+ * @retval	int		TRUE=æ­£å¸¸ FALSE=ç•°å¸¸
  */
 //--------------------------------------------------------------
 static int eoaBonusFont_Init( EOA_PTR eoa, void *wk )
@@ -2755,7 +2755,7 @@ static int eoaBonusFont_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒiƒX•¶š@íœ
+ * EOA ãƒœãƒ¼ãƒŠã‚¹æ–‡å­—ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -2769,7 +2769,7 @@ static void eoaBonusFont_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒiƒX•¶š@“®ì
+ * EOA ãƒœãƒ¼ãƒŠã‚¹æ–‡å­—ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -2789,7 +2789,7 @@ static void eoaBonusFont_Move( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA ƒ{[ƒiƒX•¶š@ƒwƒbƒ_[
+///	EOA ãƒœãƒ¼ãƒŠã‚¹æ–‡å­—ã€€ãƒ˜ãƒƒãƒ€ãƒ¼
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_BonusFont =
 {
@@ -2801,7 +2801,7 @@ static const EOA_H_NPP DATA_EoaH_BonusFont =
 };
 
 //==============================================================================
-//	EOA •¶š@‘å•¶šƒ{[ƒiƒX
+//	EOA æ–‡å­—ã€€å¤§æ–‡å­—ãƒœãƒ¼ãƒŠã‚¹
 //==============================================================================
 //--------------------------------------------------------------
 ///	BIGBONUSFWORK
@@ -2817,7 +2817,7 @@ static const EOA_H_NPP DATA_EoaH_BigBonusFont;
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒX‘å•¶š‰Šú‰»
+ * ãƒœãƒ¼ãƒŠã‚¹å¤§æ–‡å­—åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	EOA_PTR	eoa
  */
@@ -2835,10 +2835,10 @@ EOA_PTR SlotSubEoa_BigBonusFontInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒiƒX‘å•¶š ‰Šú‰»
+ * EOA ãƒœãƒ¼ãƒŠã‚¹å¤§æ–‡å­— åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
- * @retval	int		TRUE=³í FALSE=ˆÙí
+ * @retval	int		TRUE=æ­£å¸¸ FALSE=ç•°å¸¸
  */
 //--------------------------------------------------------------
 static int eoaBigBonusFont_Init( EOA_PTR eoa, void *wk )
@@ -2865,7 +2865,7 @@ static int eoaBigBonusFont_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒiƒX‘å•¶š@íœ
+ * EOA ãƒœãƒ¼ãƒŠã‚¹å¤§æ–‡å­—ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -2879,7 +2879,7 @@ static void eoaBigBonusFont_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒiƒX‘å•¶š@“®ì
+ * EOA ãƒœãƒ¼ãƒŠã‚¹å¤§æ–‡å­—ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -2898,7 +2898,7 @@ static void eoaBigBonusFont_Move( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA ƒ{[ƒiƒX‘å•¶š@ƒwƒbƒ_[
+///	EOA ãƒœãƒ¼ãƒŠã‚¹å¤§æ–‡å­—ã€€ãƒ˜ãƒƒãƒ€ãƒ¼
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_BigBonusFont =
 {
@@ -2910,7 +2910,7 @@ static const EOA_H_NPP DATA_EoaH_BigBonusFont =
 };
 
 //==============================================================================
-//	EOA •¶š@ƒQƒbƒg
+//	EOA æ–‡å­—ã€€ã‚²ãƒƒãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 ///	GETFWORK
@@ -2925,7 +2925,7 @@ static const EOA_H_NPP DATA_EoaH_GetFont;
 
 //--------------------------------------------------------------
 /**
- * ƒQƒbƒg•¶š‰Šú‰»
+ * ã‚²ãƒƒãƒˆæ–‡å­—åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	EOA_PTR	eoa
  */
@@ -2941,10 +2941,10 @@ EOA_PTR SlotSubEoa_GetFontInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒQƒbƒg•¶š@‰Šú‰»
+ * EOA ã‚²ãƒƒãƒˆæ–‡å­—ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
- * @retval	int		TRUE=³í FALSE=ˆÙí
+ * @retval	int		TRUE=æ­£å¸¸ FALSE=ç•°å¸¸
  */
 //--------------------------------------------------------------
 static int eoaGetFont_Init( EOA_PTR eoa, void *wk )
@@ -2965,7 +2965,7 @@ static int eoaGetFont_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒQƒbƒg•¶š@íœ
+ * EOA ã‚²ãƒƒãƒˆæ–‡å­—ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -2979,7 +2979,7 @@ static void eoaGetFont_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒQƒbƒg•¶š@“®ì
+ * EOA ã‚²ãƒƒãƒˆæ–‡å­—ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -2999,7 +2999,7 @@ static void eoaGetFont_Move( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA ƒQƒbƒg•¶š@ƒwƒbƒ_[
+///	EOA ã‚²ãƒƒãƒˆæ–‡å­—ã€€ãƒ˜ãƒƒãƒ€ãƒ¼
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_GetFont =
 {
@@ -3011,7 +3011,7 @@ static const EOA_H_NPP DATA_EoaH_GetFont =
 };
 
 //==============================================================================
-//	EOA •¶š@ƒQƒbƒg‘å•¶š
+//	EOA æ–‡å­—ã€€ã‚²ãƒƒãƒˆå¤§æ–‡å­—
 //==============================================================================
 //--------------------------------------------------------------
 ///	BIGGETFWORK
@@ -3027,7 +3027,7 @@ static const EOA_H_NPP DATA_EoaH_BigGetFont;
 
 //--------------------------------------------------------------
 /**
- * ƒQƒbƒg‘å•¶š‰Šú‰»
+ * ã‚²ãƒƒãƒˆå¤§æ–‡å­—åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	EOA_PTR	eoa
  */
@@ -3044,10 +3044,10 @@ EOA_PTR SlotSubEoa_BigGetFontInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒQƒbƒg‘å•¶š ‰Šú‰»
+ * EOA ã‚²ãƒƒãƒˆå¤§æ–‡å­— åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
- * @retval	int		TRUE=³í FALSE=ˆÙí
+ * @retval	int		TRUE=æ­£å¸¸ FALSE=ç•°å¸¸
  */
 //--------------------------------------------------------------
 static int eoaBigGetFont_Init( EOA_PTR eoa, void *wk )
@@ -3074,7 +3074,7 @@ static int eoaBigGetFont_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒQƒbƒg‘å•¶š@íœ
+ * EOA ã‚²ãƒƒãƒˆå¤§æ–‡å­—ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -3088,7 +3088,7 @@ static void eoaBigGetFont_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒQƒbƒg‘å•¶š@“®ì
+ * EOA ã‚²ãƒƒãƒˆå¤§æ–‡å­—ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -3107,7 +3107,7 @@ static void eoaBigGetFont_Move( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA ƒQƒbƒg‘å•¶š@ƒwƒbƒ_[
+///	EOA ã‚²ãƒƒãƒˆå¤§æ–‡å­—ã€€ãƒ˜ãƒƒãƒ€ãƒ¼
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_BigGetFont =
 {
@@ -3119,7 +3119,7 @@ static const EOA_H_NPP DATA_EoaH_BigGetFont =
 };
 
 //==============================================================================
-//	EOA@•¶š@ƒ{[ƒiƒXƒJƒEƒ“ƒg
+//	EOAã€€æ–‡å­—ã€€ãƒœãƒ¼ãƒŠã‚¹ã‚«ã‚¦ãƒ³ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 ///	BCOUNTFWORK
@@ -3134,7 +3134,7 @@ static const EOA_H_NPP DATA_EoaH_BCountFont;
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒXƒJƒEƒ“ƒg•¶š‰Šú‰»
+ * ãƒœãƒ¼ãƒŠã‚¹ã‚«ã‚¦ãƒ³ãƒˆæ–‡å­—åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	EOA_PTR	eoa
  */
@@ -3150,10 +3150,10 @@ EOA_PTR SlotSubEoa_BCountFontInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒiƒXƒJƒEƒ“ƒg•¶š ‰Šú‰»
+ * EOA ãƒœãƒ¼ãƒŠã‚¹ã‚«ã‚¦ãƒ³ãƒˆæ–‡å­— åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
- * @retval	int		TRUE=³í FALSE=ˆÙí
+ * @retval	int		TRUE=æ­£å¸¸ FALSE=ç•°å¸¸
  */
 //--------------------------------------------------------------
 static int eoaBCountFont_Init( EOA_PTR eoa, void *wk )
@@ -3178,7 +3178,7 @@ static int eoaBCountFont_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒiƒXƒJƒEƒ“ƒg•¶š@íœ
+ * EOA ãƒœãƒ¼ãƒŠã‚¹ã‚«ã‚¦ãƒ³ãƒˆæ–‡å­—ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -3193,7 +3193,7 @@ static void eoaBCountFont_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒiƒXƒJƒEƒ“ƒg•¶š@“®ì
+ * EOA ãƒœãƒ¼ãƒŠã‚¹ã‚«ã‚¦ãƒ³ãƒˆæ–‡å­—ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -3242,7 +3242,7 @@ static void eoaBCountFont_Move( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H ƒ{[ƒiƒXƒJƒEƒ“ƒg•¶š
+///	EOA_H ãƒœãƒ¼ãƒŠã‚¹ã‚«ã‚¦ãƒ³ãƒˆæ–‡å­—
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_BCountFont =
 {
@@ -3254,7 +3254,7 @@ static const EOA_H_NPP DATA_EoaH_BCountFont =
 };
 
 //==============================================================================
-//	EOA ƒQƒbƒg–‡”•¶š
+//	EOA ã‚²ãƒƒãƒˆæšæ•°æ–‡å­—
 //==============================================================================
 //--------------------------------------------------------------
 ///	GETCOINFWORK
@@ -3269,7 +3269,7 @@ static const EOA_H_NPP DATA_EoaH_GetCoinFont;
 
 //--------------------------------------------------------------
 /**
- * ƒQƒbƒg–‡”•¶š‰Šú‰»
+ * ã‚²ãƒƒãƒˆæšæ•°æ–‡å­—åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	EOA_PTR	eoa
  */
@@ -3285,10 +3285,10 @@ EOA_PTR SlotSubEoa_GetCountFontInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOA Šl“¾–‡”‰Šú‰»
+ * EOA ç²å¾—æšæ•°åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
- * @retval	int		TRUE=³í FALSE=ˆÙí
+ * @retval	int		TRUE=æ­£å¸¸ FALSE=ç•°å¸¸
  */
 //--------------------------------------------------------------
 static int eoaGetCoinFont_Init( EOA_PTR eoa, void *wk )
@@ -3310,7 +3310,7 @@ static int eoaGetCoinFont_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Šl“¾–‡”@íœ
+ * EOA ç²å¾—æšæ•°ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -3324,7 +3324,7 @@ static void eoaGetCoinFont_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Šl“¾–‡”@“®ì
+ * EOA ç²å¾—æšæ•°ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -3362,7 +3362,7 @@ static void eoaGetCoinFont_Move( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H Šl“¾–‡”
+///	EOA_H ç²å¾—æšæ•°
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_GetCoinFont =
 {
@@ -3374,7 +3374,7 @@ static const EOA_H_NPP DATA_EoaH_GetCoinFont =
 };
 
 //==============================================================================
-//	EOA –‡”‘å•¶š
+//	EOA æšæ•°å¤§æ–‡å­—
 //==============================================================================
 //--------------------------------------------------------------
 ///	BIGGETCOINFWORK
@@ -3394,7 +3394,7 @@ static const EOA_H_NPP DATA_EoaH_BigCountFont;
 
 //--------------------------------------------------------------
 /**
- * –‡”‘å•¶š‰Šú‰»
+ * æšæ•°å¤§æ–‡å­—åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @param	type	BIGFONTTYPE
  * @retval	EOA_PTR	eoa
@@ -3414,10 +3414,10 @@ EOA_PTR SlotSubEoa_BigCountFont( SLOTMAIN *main, BIGFONTTYPE type )
 
 //--------------------------------------------------------------
 /**
- * EOA@–‡”‘å•¶š@‰Šú‰»
+ * EOAã€€æšæ•°å¤§æ–‡å­—ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
- * @retval	int		TRUE=³í FALSE=ˆÙí
+ * @retval	int		TRUE=æ­£å¸¸ FALSE=ç•°å¸¸
  */
 //--------------------------------------------------------------
 static int eoaBigCountFont_Init( EOA_PTR eoa, void *wk )
@@ -3479,7 +3479,7 @@ static int eoaBigCountFont_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA –‡”‘å•¶š@íœ
+ * EOA æšæ•°å¤§æ–‡å­—ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -3497,7 +3497,7 @@ static void eoaBigCountFont_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA –‡”‘å•¶š@“®ì
+ * EOA æšæ•°å¤§æ–‡å­—ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -3516,7 +3516,7 @@ static void eoaBigCountFont_Move( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H –‡”‘å•¶š
+///	EOA_H æšæ•°å¤§æ–‡å­—
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_BigCountFont =
 {
@@ -3528,7 +3528,7 @@ static const EOA_H_NPP DATA_EoaH_BigCountFont =
 };
 
 //==============================================================================
-//	EOA ƒ{[ƒiƒX‰ñ”•¶š
+//	EOA ãƒœãƒ¼ãƒŠã‚¹å›æ•°æ–‡å­—
 //==============================================================================
 //--------------------------------------------------------------
 ///	MOONFWORK
@@ -3545,9 +3545,9 @@ static const EOA_H_NPP DATA_EoaH_MoonFont;
 
 //--------------------------------------------------------------
 /**
- * ƒ{[ƒiƒX‰ñ”•¶š‰Šú‰»
+ * ãƒœãƒ¼ãƒŠã‚¹å›æ•°æ–‡å­—åˆæœŸåŒ–
  * @param	main	SLOTMAIN
- * @param	count	•\¦”’l
+ * @param	count	è¡¨ç¤ºæ•°å€¤
  * @retval	EOA_PTR	EOA
  */
 //--------------------------------------------------------------
@@ -3566,10 +3566,10 @@ EOA_PTR SlotSubEoa_MoonFontInit( SLOTMAIN *main, u32 count )
 
 //--------------------------------------------------------------
 /**
- * EOA	ƒ{[ƒiƒX‰ñ”•¶š@‰Šú‰»
+ * EOA	ãƒœãƒ¼ãƒŠã‚¹å›æ•°æ–‡å­—ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		EOA work
- * @retval	int		TRUE=³í FALSE=ˆÙí
+ * @retval	int		TRUE=æ­£å¸¸ FALSE=ç•°å¸¸
  */
 //--------------------------------------------------------------
 static int eoaMoonFont_Init( EOA_PTR eoa, void *wk )
@@ -3610,7 +3610,7 @@ static int eoaMoonFont_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒiƒX‰ñ”•¶š@íœ
+ * EOA ãƒœãƒ¼ãƒŠã‚¹å›æ•°æ–‡å­—ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -3625,7 +3625,7 @@ static void eoaMoonFont_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒ{[ƒiƒX‰ñ”@“®ì
+ * EOA ãƒœãƒ¼ãƒŠã‚¹å›æ•°ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -3644,7 +3644,7 @@ static void eoaMoonFont_Move( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H ƒ{[ƒiƒX‰ñ”@•¶š
+///	EOA_H ãƒœãƒ¼ãƒŠã‚¹å›æ•°ã€€æ–‡å­—
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_MoonFont =
 {
@@ -3656,7 +3656,7 @@ static const EOA_H_NPP DATA_EoaH_MoonFont =
 };
 
 //==============================================================================
-//	ƒrƒbƒOƒqƒbƒgŠG•¿	
+//	ãƒ“ãƒƒã‚°ãƒ’ãƒƒãƒˆçµµæŸ„	
 //==============================================================================
 //--------------------------------------------------------------
 ///	BIGHITWORK
@@ -3680,7 +3680,7 @@ static void ReelBigHit_GraphicInit( BIGHITWORK *work );
 
 //--------------------------------------------------------------
 /**
- * ƒŠ[ƒ‹‘å“–‚½‚èŠG•¿•\¦
+ * ãƒªãƒ¼ãƒ«å¤§å½“ãŸã‚ŠçµµæŸ„è¡¨ç¤º
  * @parama	main	SLOTMAIN
  * @retval	EOA_PTR	EOA_PTR
  */
@@ -3726,10 +3726,10 @@ static const VecFx32 DATA_ReelBigHitTbl[LINE_MAX][3] =
 
 //--------------------------------------------------------------
 /**
- * EOA ŠG•¿ƒrƒbƒOƒqƒbƒg@‰Šú‰»
+ * EOA çµµæŸ„ãƒ“ãƒƒã‚°ãƒ’ãƒƒãƒˆã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		EOA work
- * @retval	int		TRUE=³íI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int eoaReelBigHit_Init( EOA_PTR eoa, void *wk )
@@ -3754,7 +3754,7 @@ static int eoaReelBigHit_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒrƒbƒOƒqƒbƒgŠG•¿@íœ
+ * EOA ãƒ“ãƒƒã‚°ãƒ’ãƒƒãƒˆçµµæŸ„ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -3779,7 +3779,7 @@ static void eoaReelBigHit_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ƒrƒbƒOƒqƒbƒgŠG•¿@“®ì
+ * EOA ãƒ“ãƒƒã‚°ãƒ’ãƒƒãƒˆçµµæŸ„ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work
  * @retval	nothing
@@ -3883,7 +3883,7 @@ static void eoaReelBigHit_Move( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	EOA_H ƒrƒbƒOƒqƒbƒgŠG•¿
+///	EOA_H ãƒ“ãƒƒã‚°ãƒ’ãƒƒãƒˆçµµæŸ„
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_ReelBigHit =
 {
@@ -3896,7 +3896,7 @@ static const EOA_H_NPP DATA_EoaH_ReelBigHit =
 
 //--------------------------------------------------------------
 /**
- * ƒrƒbƒOƒqƒbƒgŠG•¿@VRAM“]‘—
+ * ãƒ“ãƒƒã‚°ãƒ’ãƒƒãƒˆçµµæŸ„ã€€VRAMè»¢é€
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -3913,7 +3913,7 @@ static void ReelBigHit_VramTransTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒrƒbƒOƒqƒbƒgŠG•¿@VRAM“]‘—Œã‚ÌƒŠƒ\[ƒXŠJ•ú
+ * ãƒ“ãƒƒã‚°ãƒ’ãƒƒãƒˆçµµæŸ„ã€€VRAMè»¢é€å¾Œã®ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
  * @param	tcb		TCB_PTR
  * @param	wk		tcb work
  * @retval	nothing
@@ -3933,9 +3933,9 @@ static void ReelBigHit_VramResDeleteTCB( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ŠG•¿ƒrƒbƒOƒqƒbƒg@ƒOƒ‰ƒtƒBƒbƒN@‰Šú‰»
+ * çµµæŸ„ãƒ“ãƒƒã‚°ãƒ’ãƒƒãƒˆã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã€€åˆæœŸåŒ–
  * @param	main	SLOTMAIN
- * @param	type	ƒ{[ƒ‹ƒ^ƒCƒv
+ * @param	type	ãƒœãƒ¼ãƒ«ã‚¿ã‚¤ãƒ—
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -3970,7 +3970,7 @@ static void ReelBigHit_GraphicInit( BIGHITWORK *work )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	ŠG•¿•ÊƒZƒ‹ƒAƒjƒID	REEL_TYPE‚Ì•À‚Ñ‚Éˆê’v
+///	çµµæŸ„åˆ¥ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ID	REEL_TYPEã®ä¸¦ã³ã«ä¸€è‡´
 //--------------------------------------------------------------
 static const REELANMNO DATA_ReelTypeCellAnimeNoTbl[REEL_PATTERN_MAX] =
 {
@@ -3983,7 +3983,7 @@ static const REELANMNO DATA_ReelTypeCellAnimeNoTbl[REEL_PATTERN_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒNƒŒƒWƒbƒg@•¶š•ÊXƒIƒtƒZƒbƒg 0-9
+///	ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆã€€æ–‡å­—åˆ¥Xã‚ªãƒ•ã‚»ãƒƒãƒˆ 0-9
 //--------------------------------------------------------------
 static const fx32 DATA_CreditFontXOffsetTbl[10] =
 {
@@ -3999,7 +3999,7 @@ static const fx32 DATA_CreditFontXOffsetTbl[10] =
 };
 
 //--------------------------------------------------------------
-///	ƒyƒCƒAƒEƒg@•¶š•ÊXƒIƒtƒZƒbƒg 0-9
+///	ãƒšã‚¤ã‚¢ã‚¦ãƒˆã€€æ–‡å­—åˆ¥Xã‚ªãƒ•ã‚»ãƒƒãƒˆ 0-9
 //--------------------------------------------------------------
 static const fx32 DATA_PayOutFontXOffsetTbl[10] =
 {
@@ -4015,7 +4015,7 @@ static const fx32 DATA_PayOutFontXOffsetTbl[10] =
 };
 
 //--------------------------------------------------------------
-///	ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‚Ü‚Æ‚ß BALLTYPE‚Ì•À‚Ñ‚Éˆê’v
+///	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã¾ã¨ã‚ BALLTYPEã®ä¸¦ã³ã«ä¸€è‡´
 //--------------------------------------------------------------
 static const CELLARCDATA DATA_MonsBallArcDataTbl[BALL_MAX] =
 {
@@ -4027,7 +4027,7 @@ static const CELLARCDATA DATA_MonsBallArcDataTbl[BALL_MAX] =
 };
 
 //--------------------------------------------------------------
-///	ƒsƒbƒs‚Ü‚Æ‚ß BALLTYPE‚Ì•À‚Ñ‚Éˆê’v
+///	ãƒ”ãƒƒãƒ”ã¾ã¨ã‚ BALLTYPEã®ä¸¦ã³ã«ä¸€è‡´
 //--------------------------------------------------------------
 static const CELLARCDATA DATA_PipArcDataTbl[PIP_MAX] =
 {

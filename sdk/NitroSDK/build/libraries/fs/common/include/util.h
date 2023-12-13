@@ -31,7 +31,7 @@ extern "C" {
 
 /*
  * SDK_ARM7FS
- * ARM7 ‚©‚çƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ðŽg—p‚µ‚½‚¢ê‡‚Í‚±‚Ì’è‹`‚ð—LŒø‚É‚·‚é.
+ * ARM7 ã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‚’ä½¿ç”¨ã—ãŸã„å ´åˆã¯ã“ã®å®šç¾©ã‚’æœ‰åŠ¹ã«ã™ã‚‹.
  */
 /*
 #define	SDK_ARM7FS
@@ -39,7 +39,7 @@ extern "C" {
 
 /*
  * FS_IMPLEMENT
- * ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ìƒtƒ‹ƒZƒbƒg‚ðŠÜ‚Þ‚×‚«ŠÂ‹«‚Ì‚Ý’è‹`‚³‚ê‚é.
+ * ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ•ãƒ«ã‚»ãƒƒãƒˆã‚’å«ã‚€ã¹ãç’°å¢ƒã®ã¿å®šç¾©ã•ã‚Œã‚‹.
  */
 #if	!defined(SDK_ARM7) || defined(SDK_ARM7FS)
 #define	FS_IMPLEMENT
@@ -49,12 +49,12 @@ extern "C" {
 /*****************************************************************************/
 /* macro */
 
-/* ƒrƒbƒg‚ÆƒAƒ‰ƒCƒ“ƒƒ“ƒg‚Ìƒ}ƒNƒ */
+/* ãƒ“ãƒƒãƒˆã¨ã‚¢ãƒ©ã‚¤ãƒ³ãƒ¡ãƒ³ãƒˆã®ãƒžã‚¯ãƒ­ */
 #define	BIT_MASK(n)	((1 << (n)) - 1)
 #define	ALIGN_MASK(a)	((a) - 1)
 #define	ALIGN_BYTE(n, a)	(((u32)(n) + ALIGN_MASK(a)) & ~ALIGN_MASK(a))
 
-/* ŠÖ”ŒÄ‚Ño‚µ‚Ì³“–«”»’è */
+/* é–¢æ•°å‘¼ã³å‡ºã—ã®æ­£å½“æ€§åˆ¤å®š */
 #if	!defined(SDK_FINALROM)
 
 /* assertion failure message string */
@@ -141,10 +141,10 @@ extern const char *fsi_assert_arc_not_rom;
 /*---------------------------------------------------------------------------*
   Name:         FSi_CutFromListCore
 
-  Description:  “à•”ŠÖ”.
-                —v‘f‚ðŒ»Ý‚ÌŠ‘®ƒLƒ…[‚©‚çØ‚èŽæ‚é‚ªƒ|ƒCƒ“ƒ^‚ÍÄ‰Šú‰»‚µ‚È‚¢.
+  Description:  å†…éƒ¨é–¢æ•°.
+                è¦ç´ ã‚’ç¾åœ¨ã®æ‰€å±žã‚­ãƒ¥ãƒ¼ã‹ã‚‰åˆ‡ã‚Šå–ã‚‹ãŒãƒã‚¤ãƒ³ã‚¿ã¯å†åˆæœŸåŒ–ã—ãªã„.
 
-  Arguments:    trg              Ø‚èŽæ‚é—v‘f.
+  Arguments:    trg              åˆ‡ã‚Šå–ã‚‹è¦ç´ .
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -161,10 +161,10 @@ static inline void FSi_CutFromListCore(FSFileLink *trg)
 /*---------------------------------------------------------------------------*
   Name:         FSi_CutFromList
 
-  Description:  “à•”ŠÖ”.
-                —v‘f‚ðŒ»Ý‚ÌŠ‘®ƒLƒ…[‚©‚çØ‚èŽæ‚é.
+  Description:  å†…éƒ¨é–¢æ•°.
+                è¦ç´ ã‚’ç¾åœ¨ã®æ‰€å±žã‚­ãƒ¥ãƒ¼ã‹ã‚‰åˆ‡ã‚Šå–ã‚‹.
 
-  Arguments:    elem             Ø‚èŽæ‚é—v‘f.
+  Arguments:    elem             åˆ‡ã‚Šå–ã‚‹è¦ç´ .
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -178,11 +178,11 @@ static inline void FSi_CutFromList(FSFile *elem)
 /*---------------------------------------------------------------------------*
   Name:         FSi_AppendToList
 
-  Description:  “à•”ŠÖ”.
-                —v‘f‚ðØ‚èŽæ‚Á‚ÄŽw’èƒŠƒXƒg‚ÌÅŒã‚É’Ç‰Á.
+  Description:  å†…éƒ¨é–¢æ•°.
+                è¦ç´ ã‚’åˆ‡ã‚Šå–ã£ã¦æŒ‡å®šãƒªã‚¹ãƒˆã®æœ€å¾Œã«è¿½åŠ .
 
-  Arguments:    elem             ’Ç‰Á‚·‚é—v‘f.
-                list             ’Ç‰Áæ‚ÌƒŠƒXƒg.
+  Arguments:    elem             è¿½åŠ ã™ã‚‹è¦ç´ .
+                list             è¿½åŠ å…ˆã®ãƒªã‚¹ãƒˆ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -205,12 +205,12 @@ static inline void FSi_AppendToList(FSFile *elem, FSFile *list)
 /*---------------------------------------------------------------------------*
   Name:         FSi_IsSlash
 
-  Description:  “à•”ŠÖ”.
-                ƒfƒBƒŒƒNƒgƒŠ‹æØ‚è•¶Žš‚©”»’è.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåŒºåˆ‡ã‚Šæ–‡å­—ã‹åˆ¤å®š.
 
-  Arguments:    c                ”»’è‚·‚é•¶Žš.
+  Arguments:    c                åˆ¤å®šã™ã‚‹æ–‡å­—.
 
-  Returns:      ƒfƒBƒŒƒNƒgƒŠ‹æØ‚è•¶Žš‚È‚ç TRUE.
+  Returns:      ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªåŒºåˆ‡ã‚Šæ–‡å­—ãªã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL FSi_IsSlash(u32 c)
 {
@@ -220,12 +220,12 @@ static inline BOOL FSi_IsSlash(u32 c)
 /*---------------------------------------------------------------------------*
   Name:         FSi_IsArchiveRunning
 
-  Description:  “à•”ŠÖ”.
-                ƒA[ƒJƒCƒu‚ªŒ»Ýˆ—‚ðŽÀs’†‚©”»’è.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒç¾åœ¨å‡¦ç†ã‚’å®Ÿè¡Œä¸­ã‹åˆ¤å®š.
 
-  Arguments:    p_arc            ”»’è‚·‚éƒA[ƒJƒCƒu.
+  Arguments:    p_arc            åˆ¤å®šã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
 
-  Returns:      Œ»Ýˆ—‚ðŽÀs’†‚È‚ç TRUE.
+  Returns:      ç¾åœ¨å‡¦ç†ã‚’å®Ÿè¡Œä¸­ãªã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL FSi_IsArchiveRunning(const volatile FSArchive *p_arc)
 {
@@ -235,12 +235,12 @@ static inline BOOL FSi_IsArchiveRunning(const volatile FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FSi_IsArchiveCanceling
 
-  Description:  “à•”ŠÖ”.
-                ƒA[ƒJƒCƒuŠÇ—‰º‚Ìƒtƒ@ƒCƒ‹‚ªƒLƒƒƒ“ƒZƒ‹—v‹’†‚©”»’è.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç®¡ç†ä¸‹ã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«è¦æ±‚ä¸­ã‹åˆ¤å®š.
 
-  Arguments:    p_arc            ”»’è‚·‚éƒA[ƒJƒCƒu.
+  Arguments:    p_arc            åˆ¤å®šã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
 
-  Returns:      ƒLƒƒƒ“ƒZƒ‹—v‹’†‚È‚ç TRUE.
+  Returns:      ã‚­ãƒ£ãƒ³ã‚»ãƒ«è¦æ±‚ä¸­ãªã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL FSi_IsArchiveCanceling(const volatile FSArchive *p_arc)
 {
@@ -250,12 +250,12 @@ static inline BOOL FSi_IsArchiveCanceling(const volatile FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FSi_IsArchiveSuspending
 
-  Description:  “à•”ŠÖ”.
-                ƒA[ƒJƒCƒu‚ªŒ»ÝƒTƒXƒyƒ“ƒhˆÚs’†‚©”»’è.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒç¾åœ¨ã‚µã‚¹ãƒšãƒ³ãƒ‰ç§»è¡Œä¸­ã‹åˆ¤å®š.
 
-  Arguments:    p_arc            ”»’è‚·‚éƒA[ƒJƒCƒu.
+  Arguments:    p_arc            åˆ¤å®šã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
 
-  Returns:      Œ»ÝƒTƒXƒyƒ“ƒhˆÚs’†‚È‚ç TRUE.
+  Returns:      ç¾åœ¨ã‚µã‚¹ãƒšãƒ³ãƒ‰ç§»è¡Œä¸­ãªã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL FSi_IsArchiveSuspending(const volatile FSArchive *p_arc)
 {
@@ -265,12 +265,12 @@ static inline BOOL FSi_IsArchiveSuspending(const volatile FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FSi_IsArchiveAsync
 
-  Description:  “à•”ŠÖ”.
-                ƒA[ƒJƒCƒu‚ªŒ»Ý”ñ“¯ŠúƒRƒ}ƒ“ƒhˆ—’†‚©”»’è.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒç¾åœ¨éžåŒæœŸã‚³ãƒžãƒ³ãƒ‰å‡¦ç†ä¸­ã‹åˆ¤å®š.
 
-  Arguments:    p_arc            ”»’è‚·‚éƒA[ƒJƒCƒu.
+  Arguments:    p_arc            åˆ¤å®šã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
 
-  Returns:      ”ñ“¯ŠúƒRƒ}ƒ“ƒhˆ—’†‚È‚ç TRUE.
+  Returns:      éžåŒæœŸã‚³ãƒžãƒ³ãƒ‰å‡¦ç†ä¸­ãªã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL FSi_IsArchiveAsync(const volatile FSArchive *p_arc)
 {
@@ -280,12 +280,12 @@ static inline BOOL FSi_IsArchiveAsync(const volatile FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FSi_IsArchiveAsync
 
-  Description:  “à•”ŠÖ”.
-                ƒA[ƒJƒCƒu‚ªŒ»Ý“¯ŠúƒRƒ}ƒ“ƒh‚ÌƒuƒƒbƒLƒ“ƒO’†‚©”»’è.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒç¾åœ¨åŒæœŸã‚³ãƒžãƒ³ãƒ‰ã®ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ä¸­ã‹åˆ¤å®š.
 
-  Arguments:    p_arc            ”»’è‚·‚éƒA[ƒJƒCƒu.
+  Arguments:    p_arc            åˆ¤å®šã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
 
-  Returns:      “¯ŠúƒRƒ}ƒ“ƒh‚ÌƒuƒƒbƒLƒ“ƒO’†‚È‚ç TRUE.
+  Returns:      åŒæœŸã‚³ãƒžãƒ³ãƒ‰ã®ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ä¸­ãªã‚‰ TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL FSi_IsArchiveSync(const volatile FSArchive *p_arc)
 {
@@ -322,7 +322,7 @@ static inline BOOL FSi_IsArchiveSync(const volatile FSArchive *p_arc)
   fix assertion macros format. (remove ';' )
 
   Revision 1.14  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ðC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.13  2005/02/28 05:26:02  yosizaki
   do-indent.

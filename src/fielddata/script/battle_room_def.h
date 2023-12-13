@@ -1,10 +1,10 @@
 #ifndef _BATTLE_ROOM_DEF_H_
 #define _BATTLE_ROOM_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_BATTLE_ROOM_GUIDE		(9100)
 #define	SCRID_BATTLE_ROOM_EXIT		(9101)
 #define	SCRID_BATTLE_ROOM_FORCEEND		(9102)
-#define	SCRID_BATTLE_ROOM_DATA_MAX		(3)		//最大数
+#define	SCRID_BATTLE_ROOM_DATA_MAX		(3)		//譛螟ｧ謨ｰ
 
 #endif //_BATTLE_ROOM_DEF_H_

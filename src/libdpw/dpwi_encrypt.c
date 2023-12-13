@@ -33,26 +33,26 @@
 
 
 /*-----------------------------------------------------------------------*
-					Œ^E’è”éŒ¾
+					å‹ãƒ»å®šæ•°å®£è¨€
  *-----------------------------------------------------------------------*/
 #define SIZE_CHECKSUM	4
 #define SIZE_PID		4
 
 /*-----------------------------------------------------------------------*
-					ƒOƒ[ƒoƒ‹•Ï”’è‹`
+					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®šç¾©
  *-----------------------------------------------------------------------*/
 
 static int s_local_seed;
 
 
 /*-----------------------------------------------------------------------*
-					ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾
+					é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  *-----------------------------------------------------------------------*/
 
 
 
 /*-----------------------------------------------------------------------*
-					—”¶¬ƒ‹[ƒ`ƒ“
+					ä¹±æ•°ç”Ÿæˆãƒ«ãƒ¼ãƒãƒ³
  *-----------------------------------------------------------------------*/
 static void my_randinit(unsigned long seed) {
 	s_local_seed = (int)(seed | (seed << 16));
@@ -68,19 +68,19 @@ static unsigned char my_rand(void) {
 
 
 /*-----------------------------------------------------------------------*
-					ŠO•”ŒöŠJŠÖ”
+					å¤–éƒ¨å…¬é–‹é–¢æ•°
  *-----------------------------------------------------------------------*/
 
 /*!
-	ƒf[ƒ^‚ğˆÃ†‰»‚µ‚Äƒoƒbƒtƒ@‚É‘‚«o‚µ‚Ü‚·B
+	ãƒ‡ãƒ¼ã‚¿ã‚’æš—å·åŒ–ã—ã¦ãƒãƒƒãƒ•ã‚¡ã«æ›¸ãå‡ºã—ã¾ã™ã€‚
 	
-	“Æ©‚ÌƒXƒgƒŠ[ƒ€ˆÃ†•û®‚Åƒf[ƒ^‚ğˆÃ†‰»‚µ‚Ü‚·Boutbuf‚É‚ÍÅ’á‚Å‚à
-	ROUNDUP((len+4)/3)*4+1‚ÌƒTƒCƒY‚ª•K—v‚Å‚·B
+	ç‹¬è‡ªã®ã‚¹ãƒˆãƒªãƒ¼ãƒ æš—å·æ–¹å¼ã§ãƒ‡ãƒ¼ã‚¿ã‚’æš—å·åŒ–ã—ã¾ã™ã€‚outbufã«ã¯æœ€ä½ã§ã‚‚
+	ROUNDUP((len+4)/3)*4+1ã®ã‚µã‚¤ã‚ºãŒå¿…è¦ã§ã™ã€‚
 	
-	@param[in] src			ˆÃ†‰»‚·‚éƒ\[ƒX
-	@param[in] len			src‚ÌƒTƒCƒY
-	@param[in,out] outbuf	ˆÃ†‰»‚³‚ê‚½ƒf[ƒ^‚ğ‘‚«‚Şƒoƒbƒtƒ@
-	@param[in] outlen		outbuf‚ÌƒTƒCƒY
+	@param[in] src			æš—å·åŒ–ã™ã‚‹ã‚½ãƒ¼ã‚¹
+	@param[in] len			srcã®ã‚µã‚¤ã‚º
+	@param[in,out] outbuf	æš—å·åŒ–ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€ãƒãƒƒãƒ•ã‚¡
+	@param[in] outlen		outbufã®ã‚µã‚¤ã‚º
 */
 DpwiEncResult DpwiEncrypt(u32 pid, const u8* src, int len, u8* outbuf, int outlen){
 
@@ -88,16 +88,16 @@ DpwiEncResult DpwiEncrypt(u32 pid, const u8* src, int len, u8* outbuf, int outle
 	u32 sum = 0;
 	int i;
 
-	// outbuf‚ÌƒTƒCƒY‚ğ’²‚×‚é
+	// outbufã®ã‚µã‚¤ã‚ºã‚’èª¿ã¹ã‚‹
 	if( outlen < (int)DpwiB64Size((u32)(len + SIZE_CHECKSUM + SIZE_PID)) + 1 )
 		return DPWI_COMMON_ENC_ERROR_NOBUFFER;
 
-	// ƒ[ƒNƒoƒbƒtƒ@‚ğŠm•Û
+	// ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿
 	tmpbuf = (unsigned char*)DWC_Alloc( (DWCAllocType)DPWI_ALLOC, (unsigned long)(len + SIZE_CHECKSUM + SIZE_PID) );
 	if( tmpbuf == NULL )
 		return DPWI_COMMON_ENC_ERROR_NOMEMORY;
 
-	// ƒ`ƒFƒbƒNƒTƒ€‚ğŒvZ
+	// ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’è¨ˆç®—
 	sum += (u8)((pid >> 24) & 0xff);
 	sum += (u8)((pid >> 16) & 0xff);
 	sum += (u8)((pid >>  8) & 0xff);
@@ -106,39 +106,39 @@ DpwiEncResult DpwiEncrypt(u32 pid, const u8* src, int len, u8* outbuf, int outle
 	for( i=0; i<len; i++ )
 		sum += src[i];
 
-	// ƒ`ƒFƒbƒNƒTƒ€‚ğ—”‚Ìí‚Æ‚·‚éB
+	// ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’ä¹±æ•°ã®ç¨®ã¨ã™ã‚‹ã€‚
 	my_randinit( sum );
 
-	// æ“ª‚SƒoƒCƒg‚©‚çˆÃ†‰»‚³‚ê‚½PID‚ğŠi”[‚·‚é
+	// å…ˆé ­ï¼”ãƒã‚¤ãƒˆã‹ã‚‰æš—å·åŒ–ã•ã‚ŒãŸPIDã‚’æ ¼ç´ã™ã‚‹
 	tmpbuf[4] = (u8)(((pid      ) & 0xff) ^ my_rand());
 	tmpbuf[5] = (u8)(((pid >>  8) & 0xff) ^ my_rand());
 	tmpbuf[6] = (u8)(((pid >> 16) & 0xff) ^ my_rand());
 	tmpbuf[7] = (u8)(((pid >> 24) & 0xff) ^ my_rand());
 
-	// ƒXƒRƒAE‚h‚c‚ğ—”‚Åƒ}ƒXƒN‚ğ‚©‚¯‚Ä‚¢‚­B
+	// ã‚¹ã‚³ã‚¢ãƒ»ï¼©ï¼¤ã‚’ä¹±æ•°ã§ãƒã‚¹ã‚¯ã‚’ã‹ã‘ã¦ã„ãã€‚
 	for( i=0; i<len; i++ )
 		tmpbuf[ SIZE_CHECKSUM+SIZE_PID + i ] = (u8)(src[i] ^ my_rand());
 
-	// ƒ`ƒFƒbƒNƒTƒ€‚Éƒ}ƒXƒN‚ğ‚©‚¯‚é
+	// ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã«ãƒã‚¹ã‚¯ã‚’ã‹ã‘ã‚‹
 	sum ^= CHECKSUM_MASK;
 
 
-	// æ“ª‚SƒoƒCƒg‚Éƒ}ƒXƒN‚ğ‚©‚¯‚½ƒ`ƒFƒbƒNƒTƒ€‚ğŠi”[‚·‚é
+	// å…ˆé ­ï¼”ãƒã‚¤ãƒˆã«ãƒã‚¹ã‚¯ã‚’ã‹ã‘ãŸãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’æ ¼ç´ã™ã‚‹
 	tmpbuf[0] = (u8)((sum >> 24) & 0xff);
 	tmpbuf[1] = (u8)((sum >> 16) & 0xff);
 	tmpbuf[2] = (u8)((sum >>  8) & 0xff);
 	tmpbuf[3] = (u8)((sum      ) & 0xff);
 
-	// base64 ‚ÅƒGƒ“ƒR[ƒh‚·‚é
+	// base64 ã§ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã™ã‚‹
 	B64Encode(	(const char*)tmpbuf,
 				(char*)outbuf,
 				(int)(len + SIZE_CHECKSUM + SIZE_PID),
 				2 /* url safe */ );
 
-	// NULLI’[‚·‚é
+	// NULLçµ‚ç«¯ã™ã‚‹
 	((char*)outbuf)[DpwiB64Size((u32)(len + SIZE_CHECKSUM + SIZE_PID))] = '\0';
 
-	// ƒ[ƒNƒoƒbƒtƒ@‚ğŠJ•ú
+	// ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾
 	DWC_Free( (DWCAllocType)DPWI_ALLOC, tmpbuf, (u32)0 );
 
 	return DPWI_COMMON_ENC_SUCCESS;
@@ -146,11 +146,11 @@ DpwiEncResult DpwiEncrypt(u32 pid, const u8* src, int len, u8* outbuf, int outle
 
 
 /*!
-	BASE64ƒGƒ“ƒR[ƒhŒã‚ÌƒTƒCƒY‚ğ‹‚ß‚Ü‚·
+	BASE64ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰å¾Œã®ã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã¾ã™
 	
-	@param[in] len			ƒGƒ“ƒR[ƒh‚·‚éƒf[ƒ^ƒTƒCƒY
+	@param[in] len			ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 
-	@return	ƒGƒ“ƒR[ƒhŒã‚ÌƒTƒCƒY
+	@return	ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰å¾Œã®ã‚µã‚¤ã‚º
 */
 u32 DpwiB64Size( u32 len ){
 

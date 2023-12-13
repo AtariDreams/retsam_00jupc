@@ -21,10 +21,10 @@
   fix Copyright header.
 
   Revision 1.3  2005/01/17 09:28:04  takano_makoto
-  MB_XXXUserBeaconData �� MB_XXXUserVolatData�֕ύX�BMB_SetSendVolatCallback�֐���ǉ��B
+  MB_XXXUserBeaconData を MB_XXXUserVolatDataへ変更。MB_SetSendVolatCallback関数を追加。
 
   Revision 1.2  2005/01/17 05:50:02  takano_makoto
-  MB_SetUserBeaconData, MB_GetUserBeaconData��ǉ�
+  MB_SetUserBeaconData, MB_GetUserBeaconDataを追加
 
   Revision 1.1  2004/11/22 12:57:34  takano_makoto
   Initial update.
@@ -49,66 +49,66 @@ extern "C" {
 typedef void (*MBSendVolatCallbackFunc) (u32 ggid);
 
 /*
- * �e�@�Q�[�����̂����A�ω����Ȃ����.
- * (seqNo���ω�������A��M�������B�i�A���A���ʂ͌Œ�̂܂܁j)
+ * 親機ゲーム情報のうち、変化しない情報.
+ * (seqNoが変化したら、受信し直し。（但し、普通は固定のまま）)
  */
 typedef struct MBGameInfoFixed
 {
-    MBIconInfo icon;                   // 544B     �A�C�R���f�[�^
-    MBUserInfo parent;                 //  22B     �e�@���[�U�[���
-    u8      maxPlayerNum;              //   1B     �ő�v���C���[�l��
+    MBIconInfo icon;                   // 544B     アイコンデータ
+    MBUserInfo parent;                 //  22B     親機ユーザー情報
+    u8      maxPlayerNum;              //   1B     最大プレイヤー人数
     u8      pad[1];
-    u16     gameName[MB_GAME_NAME_LENGTH];      //  96B     �Q�[���^�C�g��
-    u16     gameIntroduction[MB_GAME_INTRO_LENGTH];     // 192B     �Q�[�����e����
+    u16     gameName[MB_GAME_NAME_LENGTH];      //  96B     ゲームタイトル
+    u16     gameIntroduction[MB_GAME_INTRO_LENGTH];     // 192B     ゲーム内容説明
 }
 MBGameInfoFixed, MbGameInfoFixed;
 
 
 /*
- * �e�@�Q�[�����̂����A�����I�ɕω�������B
- *�iseqNo�l���ω�������A��M�������j
+ * 親機ゲーム情報のうち、流動的に変化する情報。
+ *（seqNo値が変化したら、受信し直し）
  */
 typedef struct MBGameInfoVolatile
 {
-    u8      nowPlayerNum;              //   1B     ���݂̃v���C���[��
+    u8      nowPlayerNum;              //   1B     現在のプレイヤー数
     u8      pad[1];
-    u16     nowPlayerFlag;             //   2B     ���݂̑S�v���C���[�̃v���C���[�ԍ����r�b�g�Ŏ����B
-    u16     changePlayerFlag;          //   2B     ����̍X�V�ŕύX���ꂽ�v���C���[���̔ԍ����t���O�Ŏ����B
-    MBUserInfo member[MB_MEMBER_MAX_NUM];       // 330B     �����o�[���
-    u8      userVolatData[MB_USER_VOLAT_DATA_SIZE];     //   8B     ���[�U���Z�b�g�ł���f�[�^
+    u16     nowPlayerFlag;             //   2B     現在の全プレイヤーのプレイヤー番号をビットで示す。
+    u16     changePlayerFlag;          //   2B     今回の更新で変更されたプレイヤー情報の番号をフラグで示す。
+    MBUserInfo member[MB_MEMBER_MAX_NUM];       // 330B     メンバー情報
+    u8      userVolatData[MB_USER_VOLAT_DATA_SIZE];     //   8B     ユーザがセットできるデータ
 }
 MBGameInfoVolatile, MbGameInfoVolatile;
 
 
-/* �r�[�R������ */
+/* ビーコン属性 */
 typedef enum MbBeaconDataAttr
 {
-    MB_BEACON_DATA_ATTR_FIXED_NORMAL = 0,       /* �A�C�R���f�[�^����̌Œ�f�[�^ */
-    MB_BEACON_DATA_ATTR_FIXED_NO_ICON, /* �A�C�R���f�[�^�Ȃ��̌Œ�f�[�^ */
-    MB_BEACON_DATA_ATTR_VOLAT          /* �����o�[��񓙂̗����I�ȃf�[�^ */
+    MB_BEACON_DATA_ATTR_FIXED_NORMAL = 0,       /* アイコンデータありの固定データ */
+    MB_BEACON_DATA_ATTR_FIXED_NO_ICON, /* アイコンデータなしの固定データ */
+    MB_BEACON_DATA_ATTR_VOLAT          /* メンバー情報等の流動的なデータ */
 }
 MBBeaconDataAttr, MbBeaconDataAttr;
 
-/*  dataAttr = FIXED_NORMAL �̎��́AMbGameInfoFixed�̃f�[�^��擪  ����MB_BEACON_DATA_SIZE�P�ʂŕ������đ��M�B
-    dataAttr = FIXED_NO_ICON            �V                   MBUserInfo ����@�@�V                                �i�A�C�R���f�[�^�ȗ��j
-    dataAttr = VOLATILED�̎��́A�u����̑��M�l���~���[�U�[���v�ő��M
+/*  dataAttr = FIXED_NORMAL の時は、MbGameInfoFixedのデータを先頭  からMB_BEACON_DATA_SIZE単位で分割して送信。
+    dataAttr = FIXED_NO_ICON            〃                   MBUserInfo から　　〃                                （アイコンデータ省略）
+    dataAttr = VOLATILEDの時は、「今回の送信人数×ユーザー情報」で送信
 */
 
 /*
- * �e�@�Q�[�����r�[�R��
+ * 親機ゲーム情報ビーコン
  */
 typedef struct MBGameInfo
 {
-    MBGameInfoFixed fixed;             // �Œ�f�[�^
-    MBGameInfoVolatile volat;          // �����f�[�^
-    u16     broadcastedPlayerFlag;     // �@�@�V�@�@�@�@�@�@�̔z�M�ς݃v���C���[�����r�b�g�Ŏ����B
-    u8      dataAttr;                  // �f�[�^����
-    u8      seqNoFixed;                // �Œ�̈�̃V�[�P���X�ԍ�
-    u8      seqNoVolat;                // �����̈�̃V�[�P���X�ԍ�
-    u8      fileNo;                    // �t�@�C��No.
+    MBGameInfoFixed fixed;             // 固定データ
+    MBGameInfoVolatile volat;          // 流動データ
+    u16     broadcastedPlayerFlag;     // 　　〃　　　　　　の配信済みプレイヤー情報をビットで示す。
+    u8      dataAttr;                  // データ属性
+    u8      seqNoFixed;                // 固定領域のシーケンス番号
+    u8      seqNoVolat;                // 流動領域のシーケンス番号
+    u8      fileNo;                    // ファイルNo.
     u8      pad[2];
     u32     ggid;                      // GGID
-    struct MBGameInfo *nextp;          // ����GameInfo�ւ̃|�C���^�i�Е������X�g�j
+    struct MBGameInfo *nextp;          // 次のGameInfoへのポインタ（片方向リスト）
 }
 MBGameInfo, MbGameInfo;
 

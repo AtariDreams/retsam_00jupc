@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_command_frontier.h
- * @brief	’ÊM‚ÌƒRƒ}ƒ“ƒhˆê——  ƒtƒƒ“ƒeƒBƒA—p
+ * @brief	é€šä¿¡ã®ã‚³ãƒãƒ³ãƒ‰ä¸€è¦§  ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ç”¨
  * @author	nohara
  * @date    2007.07.18
  */
@@ -22,7 +22,7 @@
 #include "roulette_tool.h"
 #include "frontier_wifi.h"
 
-//ƒ^ƒ[
+//ã‚¿ãƒ¯ãƒ¼
 #include "field/location.h"
 #include "../field/b_tower_scr_def.h"
 #include "../field/tower_scr_common.h"
@@ -30,14 +30,14 @@
 
 //=============================================================================
 //
-/// ƒtƒƒ“ƒeƒBƒAê—p’ÊMƒRƒ}ƒ“ƒh‚Ì’è‹`
+/// ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å°‚ç”¨é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ã®å®šç¾©
 //
-//	1GameFrame‚Å22byte‚ªÀÛ‚É‘—M‚Å‚«‚é
+//	1GameFrameã§22byteãŒå®Ÿéš›ã«é€ä¿¡ã§ãã‚‹
 //
 //=============================================================================
 enum CommCommandBattle_e {
 	//////////////////////////////////////////////////////////////////////////////////////
-	//ƒtƒ@ƒNƒgƒŠ[(ƒtƒƒ“ƒeƒBƒA)
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢)
 	FC_FACTORY_BASIC_DATA = CS_COMMAND_MAX,
 	FC_FACTORY_TR_DATA,
 	FC_FACTORY_RENTAL_DATA,
@@ -46,7 +46,7 @@ enum CommCommandBattle_e {
 	FC_FACTORY_TRADE_YESNO_FLAG,
 	FC_FACTORY_TEMOTI_POKE_DATA,
 
-	//ƒtƒ@ƒNƒgƒŠ[(ƒŒƒ“ƒ^ƒ‹AŒğŠ·‰æ–Ê)factory.c
+	//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼(ãƒ¬ãƒ³ã‚¿ãƒ«ã€äº¤æ›ç”»é¢)factory.c
 	FC_FACTORY_PAIR,
 	FC_FACTORY_PAIR_POKE,
 	FC_FACTORY_PAIR_CANCEL,
@@ -54,7 +54,7 @@ enum CommCommandBattle_e {
 	
 	//////////////////////////////////////////////////////////////////////////////////////
 
-	//ƒXƒe[ƒW(ƒtƒƒ“ƒeƒBƒA)
+	//ã‚¹ãƒ†ãƒ¼ã‚¸(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢)
 	FC_STAGE_MONSNO,
 	FC_STAGE_BASIC_DATA,
 	FC_STAGE_TR_DATA,
@@ -62,14 +62,14 @@ enum CommCommandBattle_e {
 	FC_STAGE_RETIRE_FLAG,
 	FC_STAGE_TEMOTI_POKE_DATA,
 
-	//ƒXƒe[ƒW(ƒ^ƒCƒv‘I‘ğ‰æ–Ê)
+	//ã‚¹ãƒ†ãƒ¼ã‚¸(ã‚¿ã‚¤ãƒ—é¸æŠç”»é¢)
 	FC_STAGE_PAIR,
 	FC_STAGE_PAIR_POKETYPE,
 	FC_STAGE_PAIR_FINAL_ANSWER,
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
-	//ƒLƒƒƒbƒXƒ‹(ƒtƒƒ“ƒeƒBƒA)
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢)
 	FC_CASTLE_BASIC_DATA,
 	FC_CASTLE_TR_DATA,
 	FC_CASTLE_SEL_DATA,
@@ -78,33 +78,33 @@ enum CommCommandBattle_e {
 	FC_CASTLE_TRADE_YESNO_FLAG,
 	FC_CASTLE_TEMOTI_POKE_DATA,
 
-	//ƒLƒƒƒbƒXƒ‹(è‚¿ƒ|ƒPƒ‚ƒ“‰æ–Ê)
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«(æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ç”»é¢)
 	FC_CASTLE_MINE_PAIR,
 	FC_CASTLE_MINE_REQ_TYPE,
 	FC_CASTLE_MINE_CSR_POS,
 	FC_CASTLE_MINE_MODORU,
 
-	//ƒLƒƒƒbƒXƒ‹(“GƒgƒŒ[ƒi[‰æ–Ê)
+	//ã‚­ãƒ£ãƒƒã‚¹ãƒ«(æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç”»é¢)
 	FC_CASTLE_ENEMY_PAIR,
 	FC_CASTLE_ENEMY_REQ_TYPE,
 	FC_CASTLE_ENEMY_CSR_POS,
 	FC_CASTLE_ENEMY_MODORU,
 
-	//WiFió•t(ƒtƒƒ“ƒeƒBƒA)
+	//WiFiå—ä»˜(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢)
 	FC_WIFI_COUNTER_NO,
 	FC_WIFI_COUNTER_RETIRE_FLAG,
 	FC_WIFI_COUNTER_MONSNO_ITEMNO,
 	FC_WIFI_COUNTER_STAGE_RECORD_DEL,
 	FC_WIFI_COUNTER_GAME_CONTINUE,
 
-	//ƒ^ƒ[(ƒtƒB[ƒ‹ƒh,WiFi)
+	//ã‚¿ãƒ¯ãƒ¼(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰,WiFi)
 	FC_TOWER_PLAYER_DATA,
 	FC_TOWER_TR_DATA,
 	FC_TOWER_RETIRE_SELECT,
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
-	//ƒ‹[ƒŒƒbƒg(ƒtƒƒ“ƒeƒBƒA)
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ(ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢)
 	FC_ROULETTE_BASIC_DATA,
 	FC_ROULETTE_TR_DATA,
 	FC_ROULETTE_ENEMY_POKE_DATA,
@@ -112,26 +112,26 @@ enum CommCommandBattle_e {
 	FC_ROULETTE_TRADE_YESNO_FLAG,
 	FC_ROULETTE_TEMOTI_POKE_DATA,
 
-	//ƒ‹[ƒŒƒbƒg(ƒ‰ƒ“ƒNƒAƒbƒv‰æ–Ê)
+	//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ(ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ç”»é¢)
 	FC_ROULETTE_PAIR,
 	FC_ROULETTE_UP_TYPE,
 	FC_ROULETTE_CSR_POS,
 
-	//------------------------------------------------‚±‚±‚Ü‚Å
-	FC_COMMAND_MAX   // I’[--------------‚±‚ê‚ÍˆÚ“®‚³‚¹‚È‚¢‚Å‚­‚¾‚³‚¢
+	//------------------------------------------------ã“ã“ã¾ã§
+	FC_COMMAND_MAX   // çµ‚ç«¯--------------ã“ã‚Œã¯ç§»å‹•ã•ã›ãªã„ã§ãã ã•ã„
 };
 
 
 //==============================================================================
 //
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //
 //==============================================================================
 extern void CommCommandFrontierInitialize(void* pWork);
 extern BOOL CommFrontierSendPokePara(void*consys, int breeder_no, const POKEMON_PARAM *pp);
 extern BOOL CommFrontierSendPokeParaAll(void *consys, POKEMON_PARAM **pp);
 
-//ƒtƒ@ƒNƒgƒŠ[
+//ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 extern BOOL	CommFactorySendBasicData( FACTORY_SCRWORK* wk );
 extern BOOL	CommFactorySendTrData( FACTORY_SCRWORK* wk );
 extern BOOL	CommFactorySendRentalData( FACTORY_SCRWORK* wk );
@@ -140,7 +140,7 @@ extern BOOL	CommFactorySendRetireFlag( FACTORY_SCRWORK* wk, u8 retire_flag );
 extern BOOL	CommFactorySendTradeYesNoFlag( FACTORY_SCRWORK* wk, u8 trade_yesno_flag );
 extern BOOL	CommFactorySendTemotiPokeData( FACTORY_SCRWORK* wk );
 
-//ƒXƒe[ƒW
+//ã‚¹ãƒ†ãƒ¼ã‚¸
 extern BOOL CommStageSendMonsNo( STAGE_SCRWORK* wk, const POKEMON_PARAM* pp );
 extern BOOL	CommStageSendBasicData( STAGE_SCRWORK* wk );
 extern BOOL	CommStageSendTrData( STAGE_SCRWORK* wk );
@@ -148,7 +148,7 @@ extern BOOL	CommStageSendEnemyPokeData( STAGE_SCRWORK* wk );
 extern BOOL	CommStageSendRetireFlag( STAGE_SCRWORK* wk, u8 retire_flag );
 extern BOOL	CommStageSendBufTemotiPokeData( STAGE_SCRWORK* wk );
 
-//ƒLƒƒƒbƒXƒ‹
+//ã‚­ãƒ£ãƒƒã‚¹ãƒ«
 extern BOOL	CommCastleSendBufBasicData( CASTLE_SCRWORK* wk );
 extern BOOL	CommCastleSendBufTrData( CASTLE_SCRWORK* wk );
 extern BOOL	CommCastleSendBufSelData( CASTLE_SCRWORK* wk );
@@ -157,17 +157,17 @@ extern BOOL	CommCastleSendBufRetireFlag( CASTLE_SCRWORK* wk, u16 retire_flag );
 extern BOOL	CommCastleSendBufTradeYesNoFlag( CASTLE_SCRWORK* wk, u16 trade_yesno_flag );
 extern BOOL	CommCastleSendBufTemotiPokeData( CASTLE_SCRWORK* wk );
 
-//WiFió•t
+//WiFiå—ä»˜
 extern BOOL CommFrWiFiCounterSendBufBFNo( FRWIFI_SCRWORK* wk );
 extern BOOL CommFrWiFiCounterSendBufRetireFlag( FRWIFI_SCRWORK* wk, u16 retire_flag );
 extern BOOL CommFrWiFiCounterSendBufMonsNoItemNo( FRWIFI_SCRWORK* wk, u16 pos1, u16 pos2 );
 extern BOOL CommFrWiFiCounterSendBufStageRecordDel( FRWIFI_SCRWORK* wk, u16 stage_del_flag );
 extern BOOL CommFrWiFiCounterSendBufGameContinue( FRWIFI_SCRWORK* wk, u16 flag );
 
-//WiFió•t(ƒ^ƒ[)
+//WiFiå—ä»˜(ã‚¿ãƒ¯ãƒ¼)
 extern BOOL CommFrWiFiCounterTowerSendBufTrainerData( BTOWER_SCRWORK* wk );
 
-//ƒ‹[ƒŒƒbƒg
+//ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
 extern BOOL	CommRouletteSendBufBasicData( ROULETTE_SCRWORK* wk );
 extern BOOL	CommRouletteSendBufTrData( ROULETTE_SCRWORK* wk );
 extern BOOL	CommRouletteSendBufEnemyPokeData( ROULETTE_SCRWORK* wk );

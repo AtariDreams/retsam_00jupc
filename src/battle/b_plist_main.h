@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	b_plist_main.h
- * @brief	í“¬—pƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê
+ * @brief	æˆ¦é—˜ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢
  * @author	Hiroyuki Nakamura
  * @date	05.02.01
  */
@@ -17,189 +17,189 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
-// ƒpƒŒƒbƒg’è‹`
-#define	BPL_PAL_NN_PLATE	( 0 )		///< ƒpƒŒƒbƒg00FƒvƒŒ[ƒgi’Êíj
-#define	BPL_PAL_MN_PLATE	( 1 )		///< ƒpƒŒƒbƒg01FƒvƒŒ[ƒgiƒ}ƒ‹ƒ`j
-#define	BPL_PAL_DN_PLATE	( 2 )		///< ƒpƒŒƒbƒg02FƒvƒŒ[ƒgi•m€j
-#define	BPL_PAL_HPGAGE		( 9 )		///< ƒpƒŒƒbƒg09FHPƒQ[ƒW
+// ãƒ‘ãƒ¬ãƒƒãƒˆå®šç¾©
+#define	BPL_PAL_NN_PLATE	( 0 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ00ï¼šãƒ—ãƒ¬ãƒ¼ãƒˆï¼ˆé€šå¸¸ï¼‰
+#define	BPL_PAL_MN_PLATE	( 1 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ01ï¼šãƒ—ãƒ¬ãƒ¼ãƒˆï¼ˆãƒãƒ«ãƒï¼‰
+#define	BPL_PAL_DN_PLATE	( 2 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ02ï¼šãƒ—ãƒ¬ãƒ¼ãƒˆï¼ˆç€•æ­»ï¼‰
+#define	BPL_PAL_HPGAGE		( 9 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ09ï¼šHPã‚²ãƒ¼ã‚¸
 
-#define	BPL_PAL_B_RED		( 10 )		///< ƒpƒŒƒbƒg09Fƒ{ƒ^ƒ“iÔj
-#define	BPL_PAL_B_GREEN		( 12 )		///< ƒpƒŒƒbƒg09Fƒ{ƒ^ƒ“i—Îj
+#define	BPL_PAL_B_RED		( 10 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ09ï¼šãƒœã‚¿ãƒ³ï¼ˆèµ¤ï¼‰
+#define	BPL_PAL_B_GREEN		( 12 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ09ï¼šãƒœã‚¿ãƒ³ï¼ˆç·‘ï¼‰
 
-#define	BPL_PAL_SYS_FONT	( 13 )		///< ƒpƒŒƒbƒg13FƒVƒXƒeƒ€ƒtƒHƒ“ƒg
-#define	BPL_PAL_TALK_WIN	( 14 )		///< ƒpƒŒƒbƒg14F‰ï˜bƒEƒBƒ“ƒhƒE
-#define	BPL_PAL_TALK_FONT	( 15 )		///< ƒpƒŒƒbƒg15F‰ï˜bƒtƒHƒ“ƒg
+#define	BPL_PAL_SYS_FONT	( 13 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ13ï¼šã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆ
+#define	BPL_PAL_TALK_WIN	( 14 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ14ï¼šä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+#define	BPL_PAL_TALK_FONT	( 15 )		///< ãƒ‘ãƒ¬ãƒƒãƒˆ15ï¼šä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆ
 
-#define	BPL_HP_DOTTO_MAX	( 48 )		///< HPƒQ[ƒW‚ÌƒhƒbƒgƒTƒCƒY
+#define	BPL_HP_DOTTO_MAX	( 48 )		///< HPã‚²ãƒ¼ã‚¸ã®ãƒ‰ãƒƒãƒˆã‚µã‚¤ã‚º
 
-// ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
-	WIN_COMMENT = 0,	///< ƒRƒƒ“ƒg—pƒEƒBƒ“ƒhƒE
-	WIN_TALK,			///< ‰ï˜b—pƒEƒBƒ“ƒhƒE
+	WIN_COMMENT = 0,	///< ã‚³ãƒ¡ãƒ³ãƒˆç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	WIN_TALK,			///< ä¼šè©±ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	WIN_MAX
 };
 
-// ƒy[ƒW‚P‚Ì’Ç‰ÁƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// ãƒšãƒ¼ã‚¸ï¼‘ã®è¿½åŠ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
-	WIN_P1_POKE1 = 0,	// ƒ|ƒPƒ‚ƒ“‚P
-	WIN_P1_POKE2,		// ƒ|ƒPƒ‚ƒ“‚Q
-	WIN_P1_POKE3,		// ƒ|ƒPƒ‚ƒ“‚R
-	WIN_P1_POKE4,		// ƒ|ƒPƒ‚ƒ“‚S
-	WIN_P1_POKE5,		// ƒ|ƒPƒ‚ƒ“‚T
-	WIN_P1_POKE6,		// ƒ|ƒPƒ‚ƒ“‚U
+	WIN_P1_POKE1 = 0,	// ãƒã‚±ãƒ¢ãƒ³ï¼‘
+	WIN_P1_POKE2,		// ãƒã‚±ãƒ¢ãƒ³ï¼’
+	WIN_P1_POKE3,		// ãƒã‚±ãƒ¢ãƒ³ï¼“
+	WIN_P1_POKE4,		// ãƒã‚±ãƒ¢ãƒ³ï¼”
+	WIN_P1_POKE5,		// ãƒã‚±ãƒ¢ãƒ³ï¼•
+	WIN_P1_POKE6,		// ãƒã‚±ãƒ¢ãƒ³ï¼–
 	WIN_P1_MAX
 };
 
-// “ü‚ê‘Ö‚¦ƒy[ƒW‚Ì’Ç‰ÁƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸ã®è¿½åŠ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
-	WIN_CHG_NAME = 0,	// –¼‘O
-	WIN_CHG_IREKAE,		// u‚¢‚ê‚©‚¦‚év
-	WIN_CHG_STATUS,		// u‚Â‚æ‚³‚ğ‚İ‚év
-	WIN_CHG_WAZACHECK,	// u‚í‚´‚ğ‚İ‚év
+	WIN_CHG_NAME = 0,	// åå‰
+	WIN_CHG_IREKAE,		// ã€Œã„ã‚Œã‹ãˆã‚‹ã€
+	WIN_CHG_STATUS,		// ã€Œã¤ã‚ˆã•ã‚’ã¿ã‚‹ã€
+	WIN_CHG_WAZACHECK,	// ã€Œã‚ã–ã‚’ã¿ã‚‹ã€
 	WIN_CHG_MAX
 };
 
-// ‹Z‘I‘ğƒy[ƒW‚Ì’Ç‰ÁƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// æŠ€é¸æŠãƒšãƒ¼ã‚¸ã®è¿½åŠ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
-	WIN_STW_NAME = 0,		// –¼‘O
-	WIN_STW_SKILL1,			// ‹Z‚P
-	WIN_STW_SKILL2,			// ‹Z‚Q
-	WIN_STW_SKILL3,			// ‹Z‚R
-	WIN_STW_SKILL4,			// ‹Z‚S
+	WIN_STW_NAME = 0,		// åå‰
+	WIN_STW_SKILL1,			// æŠ€ï¼‘
+	WIN_STW_SKILL2,			// æŠ€ï¼’
+	WIN_STW_SKILL3,			// æŠ€ï¼“
+	WIN_STW_SKILL4,			// æŠ€ï¼”
 
-	WIN_STW_STATUS,			// u‚Â‚æ‚³‚ğ‚İ‚év
+	WIN_STW_STATUS,			// ã€Œã¤ã‚ˆã•ã‚’ã¿ã‚‹ã€
 
-	// «ƒXƒƒbƒv—p
-	WIN_STW_NAME_S,			// –¼‘OiƒXƒƒbƒvj
-	WIN_STW_SKILL1_S,		// ‹Z‚PiƒXƒƒbƒvj
-	WIN_STW_SKILL2_S,		// ‹Z‚QiƒXƒƒbƒvj
-	WIN_STW_SKILL3_S,		// ‹Z‚RiƒXƒƒbƒvj
-	WIN_STW_SKILL4_S,		// ‹Z‚SiƒXƒƒbƒvj
+	// â†“ã‚¹ãƒ¯ãƒƒãƒ—ç”¨
+	WIN_STW_NAME_S,			// åå‰ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_STW_SKILL1_S,		// æŠ€ï¼‘ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_STW_SKILL2_S,		// æŠ€ï¼’ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_STW_SKILL3_S,		// æŠ€ï¼“ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_STW_SKILL4_S,		// æŠ€ï¼”ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 
 	WIN_STW_MAX
 };
 
-// ƒXƒe[ƒ^ƒXƒƒCƒ“ƒy[ƒW‚Ì’Ç‰ÁƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¡ã‚¤ãƒ³ãƒšãƒ¼ã‚¸ã®è¿½åŠ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
-	WIN_P3_NAME = 0,	// –¼‘O
-	WIN_P3_SPANAME,		// “Á«–¼
-	WIN_P3_SPAINFO,		// “Á«à–¾
-	WIN_P3_ITEMNAME,	// “¹‹ï–¼
-	WIN_P3_HPNUM,		// HP’l
-	WIN_P3_POWNUM,		// UŒ‚’l
-	WIN_P3_DEFNUM,		// –hŒä’l
-	WIN_P3_AGINUM,		// ‘f‘‚³’l
-	WIN_P3_SPPNUM,		// “ÁU’l
-	WIN_P3_SPDNUM,		// “Á–h’l
-	WIN_P3_HPGAGE,		// HPƒQ[ƒW
-	WIN_P3_LVNUM,		// ƒŒƒxƒ‹’l
-	WIN_P3_NEXTNUM,		// Ÿ‚ÌƒŒƒxƒ‹’l
+	WIN_P3_NAME = 0,	// åå‰
+	WIN_P3_SPANAME,		// ç‰¹æ€§å
+	WIN_P3_SPAINFO,		// ç‰¹æ€§èª¬æ˜
+	WIN_P3_ITEMNAME,	// é“å…·å
+	WIN_P3_HPNUM,		// HPå€¤
+	WIN_P3_POWNUM,		// æ”»æ’ƒå€¤
+	WIN_P3_DEFNUM,		// é˜²å¾¡å€¤
+	WIN_P3_AGINUM,		// ç´ æ—©ã•å€¤
+	WIN_P3_SPPNUM,		// ç‰¹æ”»å€¤
+	WIN_P3_SPDNUM,		// ç‰¹é˜²å€¤
+	WIN_P3_HPGAGE,		// HPã‚²ãƒ¼ã‚¸
+	WIN_P3_LVNUM,		// ãƒ¬ãƒ™ãƒ«å€¤
+	WIN_P3_NEXTNUM,		// æ¬¡ã®ãƒ¬ãƒ™ãƒ«å€¤
 
-	WIN_P3_HP,			// uHPv
-	WIN_P3_POW,			// u‚±‚¤‚°‚«v
-	WIN_P3_DEF,			// u‚Ú‚¤‚¬‚åv
-	WIN_P3_AGI,			// u‚·‚Î‚â‚³v
-	WIN_P3_SPP,			// u‚Æ‚­‚±‚¤v
-	WIN_P3_SPD,			// u‚Æ‚­‚Ú‚¤v
-	WIN_P3_LV,			// uLv.v
-	WIN_P3_NEXT,		// u‚Â‚¬‚ÌƒŒƒxƒ‹‚Ü‚Åv
-	WIN_P3_WAZACHECK,	// u‚í‚´‚ğ‚İ‚év
+	WIN_P3_HP,			// ã€ŒHPã€
+	WIN_P3_POW,			// ã€Œã“ã†ã’ãã€
+	WIN_P3_DEF,			// ã€Œã¼ã†ãã‚‡ã€
+	WIN_P3_AGI,			// ã€Œã™ã°ã‚„ã•ã€
+	WIN_P3_SPP,			// ã€Œã¨ãã“ã†ã€
+	WIN_P3_SPD,			// ã€Œã¨ãã¼ã†ã€
+	WIN_P3_LV,			// ã€ŒLv.ã€
+	WIN_P3_NEXT,		// ã€Œã¤ãã®ãƒ¬ãƒ™ãƒ«ã¾ã§ã€
+	WIN_P3_WAZACHECK,	// ã€Œã‚ã–ã‚’ã¿ã‚‹ã€
 
-	// «ƒXƒƒbƒv—p
-	WIN_P3_NAME_S,		// –¼‘OiƒXƒƒbƒvj
-	WIN_P3_SPANAME_S,	// “Á«–¼iƒXƒƒbƒvj
-	WIN_P3_SPAINFO_S,	// “Á«à–¾iƒXƒƒbƒvj
-	WIN_P3_ITEMNAME_S,	// “¹‹ï–¼iƒXƒƒbƒvj
-	WIN_P3_HPNUM_S,		// HP’liƒXƒƒbƒvj
-	WIN_P3_POWNUM_S,	// UŒ‚’liƒXƒƒbƒvj
-	WIN_P3_DEFNUM_S,	// –hŒä’liƒXƒƒbƒvj
-	WIN_P3_AGINUM_S,	// ‘f‘‚³’liƒXƒƒbƒvj
-	WIN_P3_SPPNUM_S,	// “ÁU’liƒXƒƒbƒvj
-	WIN_P3_SPDNUM_S,	// “Á–h’liƒXƒƒbƒvj
-	WIN_P3_HPGAGE_S,	// HPƒQ[ƒWiƒXƒƒbƒvj
-	WIN_P3_LVNUM_S,		// ƒŒƒxƒ‹’liƒXƒƒbƒvj
-	WIN_P3_NEXTNUM_S,	// Ÿ‚ÌƒŒƒxƒ‹’liƒXƒƒbƒvj
+	// â†“ã‚¹ãƒ¯ãƒƒãƒ—ç”¨
+	WIN_P3_NAME_S,		// åå‰ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_P3_SPANAME_S,	// ç‰¹æ€§åï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_P3_SPAINFO_S,	// ç‰¹æ€§èª¬æ˜ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_P3_ITEMNAME_S,	// é“å…·åï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_P3_HPNUM_S,		// HPå€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_P3_POWNUM_S,	// æ”»æ’ƒå€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_P3_DEFNUM_S,	// é˜²å¾¡å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_P3_AGINUM_S,	// ç´ æ—©ã•å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_P3_SPPNUM_S,	// ç‰¹æ”»å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_P3_SPDNUM_S,	// ç‰¹é˜²å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_P3_HPGAGE_S,	// HPã‚²ãƒ¼ã‚¸ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_P3_LVNUM_S,		// ãƒ¬ãƒ™ãƒ«å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
+	WIN_P3_NEXTNUM_S,	// æ¬¡ã®ãƒ¬ãƒ™ãƒ«å€¤ï¼ˆã‚¹ãƒ¯ãƒƒãƒ—ï¼‰
 	WIN_P3_MAX
 };
 
-// ƒXƒe[ƒ^ƒX‹ZÚ×ƒy[ƒW‚Ì’Ç‰ÁƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€è©³ç´°ãƒšãƒ¼ã‚¸ã®è¿½åŠ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
-	WIN_P4_SKILL = 0,	// ‹Z–¼
+	WIN_P4_SKILL = 0,	// æŠ€å
 	WIN_P4_PPNUM,		// PP/PP
-	WIN_P4_HITNUM,		// –½’†’l
-	WIN_P4_POWNUM,		// ˆĞ—Í’l
-	WIN_P4_INFO,		// ‹Zà–¾
-	WIN_P4_BRNAME,		// •ª—Ş–¼
+	WIN_P4_HITNUM,		// å‘½ä¸­å€¤
+	WIN_P4_POWNUM,		// å¨åŠ›å€¤
+	WIN_P4_INFO,		// æŠ€èª¬æ˜
+	WIN_P4_BRNAME,		// åˆ†é¡å
 
-	WIN_P4_NAME,		// –¼‘O
+	WIN_P4_NAME,		// åå‰
 	WIN_P4_PP,			// PP
-	WIN_P4_HIT,			// u‚ß‚¢‚¿‚ã‚¤v
-	WIN_P4_POW,			// u‚¢‚è‚å‚­v
-	WIN_P4_BUNRUI,		// u‚Ô‚ñ‚é‚¢v
+	WIN_P4_HIT,			// ã€Œã‚ã„ã¡ã‚…ã†ã€
+	WIN_P4_POW,			// ã€Œã„ã‚Šã‚‡ãã€
+	WIN_P4_BUNRUI,		// ã€Œã¶ã‚“ã‚‹ã„ã€
 
-	// «ƒXƒƒbƒv—p
-	WIN_P4_SKILL_S,		// ‹Z–¼
+	// â†“ã‚¹ãƒ¯ãƒƒãƒ—ç”¨
+	WIN_P4_SKILL_S,		// æŠ€å
 	WIN_P4_PPNUM_S,		// PP/PP
-	WIN_P4_HITNUM_S,	// –½’†’l
-	WIN_P4_POWNUM_S,	// ˆĞ—Í’l
-	WIN_P4_INFO_S,		// ‹Zà–¾
-	WIN_P4_BRNAME_S,	// •ª—Ş–¼
+	WIN_P4_HITNUM_S,	// å‘½ä¸­å€¤
+	WIN_P4_POWNUM_S,	// å¨åŠ›å€¤
+	WIN_P4_INFO_S,		// æŠ€èª¬æ˜
+	WIN_P4_BRNAME_S,	// åˆ†é¡å
 	WIN_P4_MAX
 };
 
-// ‹Z–Y‚ê‘I‘ğƒy[ƒW‚Ì’Ç‰ÁƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// æŠ€å¿˜ã‚Œé¸æŠãƒšãƒ¼ã‚¸ã®è¿½åŠ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
-	WIN_P5_NAME = 0,	// –¼‘O
-	WIN_P5_SKILL1,		// ‹Z‚P
-	WIN_P5_SKILL2,		// ‹Z‚Q
-	WIN_P5_SKILL3,		// ‹Z‚R
-	WIN_P5_SKILL4,		// ‹Z‚S
-	WIN_P5_SKILL5,		// ‹Z‚T
+	WIN_P5_NAME = 0,	// åå‰
+	WIN_P5_SKILL1,		// æŠ€ï¼‘
+	WIN_P5_SKILL2,		// æŠ€ï¼’
+	WIN_P5_SKILL3,		// æŠ€ï¼“
+	WIN_P5_SKILL4,		// æŠ€ï¼”
+	WIN_P5_SKILL5,		// æŠ€ï¼•
 	WIN_P5_MAX
 };
 
-// ƒy[ƒW‚U‚Ì’Ç‰ÁƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// ãƒšãƒ¼ã‚¸ï¼–ã®è¿½åŠ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
-	WIN_P6_NAME = 0,	// –¼‘O
-	WIN_P6_SKILL,		// ‹Z–¼
+	WIN_P6_NAME = 0,	// åå‰
+	WIN_P6_SKILL,		// æŠ€å
 	WIN_P6_PP,			// PP
 	WIN_P6_PPNUM,		// PP/PP
-	WIN_P6_HIT,			// u‚ß‚¢‚¿‚ã‚¤v
-	WIN_P6_POW,			// u‚¢‚è‚å‚­v
-	WIN_P6_HITNUM,		// –½’†’l
-	WIN_P6_POWNUM,		// ˆĞ—Í’l
-	WIN_P6_INFO,		// ‹Zà–¾
-	WIN_P6_BUNRUI,		// u‚Ô‚ñ‚é‚¢v
-	WIN_P6_BRNAME,		// •ª—Ş–¼
-	WIN_P6_WASURERU,	// u‚í‚·‚ê‚év
+	WIN_P6_HIT,			// ã€Œã‚ã„ã¡ã‚…ã†ã€
+	WIN_P6_POW,			// ã€Œã„ã‚Šã‚‡ãã€
+	WIN_P6_HITNUM,		// å‘½ä¸­å€¤
+	WIN_P6_POWNUM,		// å¨åŠ›å€¤
+	WIN_P6_INFO,		// æŠ€èª¬æ˜
+	WIN_P6_BUNRUI,		// ã€Œã¶ã‚“ã‚‹ã„ã€
+	WIN_P6_BRNAME,		// åˆ†é¡å
+	WIN_P6_WASURERU,	// ã€Œã‚ã™ã‚Œã‚‹ã€
 	WIN_P6_MAX
 };
 
-// ‹Z‰ñ•œ‘I‘ğƒy[ƒW‚Ì’Ç‰ÁƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// æŠ€å›å¾©é¸æŠãƒšãƒ¼ã‚¸ã®è¿½åŠ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
-	WIN_P7_NAME = 0,	// –¼‘O
-	WIN_P7_SKILL1,		// ‹Z‚P
-	WIN_P7_SKILL2,		// ‹Z‚Q
-	WIN_P7_SKILL3,		// ‹Z‚R
-	WIN_P7_SKILL4,		// ‹Z‚S
+	WIN_P7_NAME = 0,	// åå‰
+	WIN_P7_SKILL1,		// æŠ€ï¼‘
+	WIN_P7_SKILL2,		// æŠ€ï¼’
+	WIN_P7_SKILL3,		// æŠ€ï¼“
+	WIN_P7_SKILL4,		// æŠ€ï¼”
 	WIN_P7_MAX
 };
 
-// ƒy[ƒW‚W‚Ì’Ç‰ÁƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// ãƒšãƒ¼ã‚¸ï¼˜ã®è¿½åŠ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
-	WIN_P8_NAME = 0,	// –¼‘O
-	WIN_P8_SKILL,		// ‹Z–¼
+	WIN_P8_NAME = 0,	// åå‰
+	WIN_P8_SKILL,		// æŠ€å
 	WIN_P8_PP,			// PP
 	WIN_P8_PPNUM,		// PP/PP
-	WIN_P8_APP,			// uƒAƒs[ƒ‹ƒ|ƒCƒ“ƒgv
-	WIN_P8_INFO,		// ‹Zà–¾
-	WIN_P8_WASURERU,	// u‚í‚·‚ê‚év
+	WIN_P8_APP,			// ã€Œã‚¢ãƒ”ãƒ¼ãƒ«ãƒã‚¤ãƒ³ãƒˆã€
+	WIN_P8_INFO,		// æŠ€èª¬æ˜
+	WIN_P8_WASURERU,	// ã€Œã‚ã™ã‚Œã‚‹ã€
 	WIN_P8_MAX
 };
 
-// ƒZƒ‹ƒAƒNƒ^[‚ÌID
+// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ID
 enum {
 	BPL_CA_ITEM1 = 0,
 	BPL_CA_ITEM2,
@@ -252,111 +252,111 @@ enum {
 };
 
 typedef struct {
-	u16	id;		// ‹Z”Ô†
+	u16	id;		// æŠ€ç•ªå·
 	u8	pp;		// PP
-	u8	mpp;	// Å‘åPP
+	u8	mpp;	// æœ€å¤§PP
 
-	u8	type;	// ƒ^ƒCƒv
-	u8	kind;	// •ª—Ş
-	u8	hit;	// –½’†
-	u8	pow;	// ˆĞ—Í
+	u8	type;	// ã‚¿ã‚¤ãƒ—
+	u8	kind;	// åˆ†é¡
+	u8	hit;	// å‘½ä¸­
+	u8	pow;	// å¨åŠ›
 }BPL_POKEWAZA;
 
 typedef struct {
-	POKEMON_PARAM * pp;		// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	POKEMON_PARAM * pp;		// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 
-	u16	mons;		// ƒ|ƒPƒ‚ƒ“”Ô†
-	u16	pow;		// UŒ‚
+	u16	mons;		// ãƒã‚±ãƒ¢ãƒ³ç•ªå·
+	u16	pow;		// æ”»æ’ƒ
 
-	u16	def;		// –hŒä
-	u16	agi;		// ‘f‘‚³
+	u16	def;		// é˜²å¾¡
+	u16	agi;		// ç´ æ—©ã•
 
-	u16	spp;		// “ÁU
-	u16	spd;		// “Á–h
+	u16	spp;		// ç‰¹æ”»
+	u16	spd;		// ç‰¹é˜²
 
 	u16	hp;			// HP
-	u16	mhp;		// Å‘åHP
+	u16	mhp;		// æœ€å¤§HP
 
-	u8	type1;		// ƒ^ƒCƒv‚P
-	u8	type2;		// ƒ^ƒCƒv‚Q
-	u8	lv:7;		// ƒŒƒxƒ‹
-	u8	sex_put:1;	// «•Ê•\¦iƒjƒhƒ‰ƒ“—pj0=ON, 1=OFF
-	u8	sex:3;		// «•Ê
-	u8	st:4;		// ó‘ÔˆÙí
-	u8	egg:1;		// ƒ^ƒ}ƒS
+	u8	type1;		// ã‚¿ã‚¤ãƒ—ï¼‘
+	u8	type2;		// ã‚¿ã‚¤ãƒ—ï¼’
+	u8	lv:7;		// ãƒ¬ãƒ™ãƒ«
+	u8	sex_put:1;	// æ€§åˆ¥è¡¨ç¤ºï¼ˆãƒ‹ãƒ‰ãƒ©ãƒ³ç”¨ï¼‰0=ON, 1=OFF
+	u8	sex:3;		// æ€§åˆ¥
+	u8	st:4;		// çŠ¶æ…‹ç•°å¸¸
+	u8	egg:1;		// ã‚¿ãƒã‚´
 
-	u16	spa;		// “Á«
-	u16	item;		// ƒAƒCƒeƒ€
+	u16	spa;		// ç‰¹æ€§
+	u16	item;		// ã‚¢ã‚¤ãƒ†ãƒ 
 
-	u32	now_exp;		// Œ»İ‚ÌŒoŒ±’l
-	u32	now_lv_exp;		// Œ»İ‚ÌƒŒƒxƒ‹‚ÌŒoŒ±’l
-	u32	next_lv_exp;	// Ÿ‚ÌƒŒƒxƒ‹‚ÌŒoŒ±’l
+	u32	now_exp;		// ç¾åœ¨ã®çµŒé¨“å€¤
+	u32	now_lv_exp;		// ç¾åœ¨ã®ãƒ¬ãƒ™ãƒ«ã®çµŒé¨“å€¤
+	u32	next_lv_exp;	// æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã®çµŒé¨“å€¤
 
-	u8	style;			// ‚©‚Á‚±‚æ‚³
-	u8	beautiful;		// ‚¤‚Â‚­‚µ‚³
-	u8	cute;			// ‚©‚í‚¢‚³
-	u8	clever;			// ‚©‚µ‚±‚³
-	u8	strong;			// ‚½‚­‚Ü‚µ‚³
+	u8	style;			// ã‹ã£ã“ã‚ˆã•
+	u8	beautiful;		// ã†ã¤ãã—ã•
+	u8	cute;			// ã‹ã‚ã„ã•
+	u8	clever;			// ã‹ã—ã“ã•
+	u8	strong;			// ãŸãã¾ã—ã•
 
-	u8	cb;				// ƒJƒXƒ^ƒ€ƒ{[ƒ‹
-	u8	form;			// ƒtƒHƒ‹ƒ€No
+	u8	cb;				// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
+	u8	form;			// ãƒ•ã‚©ãƒ«ãƒ No
 
-	BPL_POKEWAZA	waza[4];	// ‹Zƒf[ƒ^
+	BPL_POKEWAZA	waza[4];	// æŠ€ãƒ‡ãƒ¼ã‚¿
 
 }BPL_POKEDATA;
 
-#define	BPL_BANM_MAX_N	( 3 )		// ƒ{ƒ^ƒ“ƒAƒjƒƒpƒ^[ƒ“”i’Êíj
-#define	BPL_BANM_MAX_E	( 4 )		// ƒ{ƒ^ƒ“ƒAƒjƒƒpƒ^[ƒ“”i‰Ÿ‚¹‚È‚¢ƒ{ƒ^ƒ“‚ ‚èj
-// ƒvƒŒ[ƒgƒ{ƒ^ƒ“ƒTƒCƒY
+#define	BPL_BANM_MAX_N	( 3 )		// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°ï¼ˆé€šå¸¸ï¼‰
+#define	BPL_BANM_MAX_E	( 4 )		// ãƒœã‚¿ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³æ•°ï¼ˆæŠ¼ã›ãªã„ãƒœã‚¿ãƒ³ã‚ã‚Šï¼‰
+// ãƒ—ãƒ¬ãƒ¼ãƒˆãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define	BPL_BSX_PLATE	( 16 )
 #define	BPL_BSY_PLATE	( 6 )
-// –½—ßƒ{ƒ^ƒ“ƒTƒCƒY
+// å‘½ä»¤ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define	BPL_BSX_COMMAND	( 13 )
 #define	BPL_BSY_COMMAND	( 5 )
-// Ø‚è‘Ö‚¦ƒ{ƒ^ƒ“ƒTƒCƒY
+// åˆ‡ã‚Šæ›¿ãˆãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define	BPL_BSX_UPDOWN	( 5 )
 #define	BPL_BSY_UPDOWN	( 5 )
-// –ß‚éƒ{ƒ^ƒ“ƒTƒCƒY
+// æˆ»ã‚‹ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define	BPL_BSX_RET		( 5 )
 #define	BPL_BSY_RET		( 5 )
-// “ü‚ê‘Ö‚¦ƒ{ƒ^ƒ“
+// å…¥ã‚Œæ›¿ãˆãƒœã‚¿ãƒ³
 #define	BPL_BSX_CHG		( 30 )
 #define	BPL_BSY_CHG		( 17 )
-// ‹Zƒ{ƒ^ƒ“ƒTƒCƒY
+// æŠ€ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define	BPL_BSX_WAZA	( 16 )
 #define	BPL_BSY_WAZA	( 6 )
-// –Y‚ê‚éƒ{ƒ^ƒ“ƒTƒCƒY
+// å¿˜ã‚Œã‚‹ãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define	BPL_BSX_DEL		( 26 )
 #define	BPL_BSY_DEL		( 5 )
-// ƒRƒ“ƒeƒXƒgØ‚è‘Ö‚¦ƒ{ƒ^ƒ“ƒTƒCƒY
+// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆåˆ‡ã‚Šæ›¿ãˆãƒœã‚¿ãƒ³ã‚µã‚¤ã‚º
 #define	BPL_BSX_CONTEST	( 9 )
 #define	BPL_BSY_CONTEST	( 4 )
-// ‹ZˆÊ’uƒ{ƒ^ƒ“
+// æŠ€ä½ç½®ãƒœã‚¿ãƒ³
 #define	BPL_BSX_WP		( 5 )
 #define	BPL_BSY_WP		( 2 )
 
 typedef struct {
-	BPLIST_DATA * dat;	// ŠO•”QÆƒf[ƒ^
+	BPLIST_DATA * dat;	// å¤–éƒ¨å‚ç…§ãƒ‡ãƒ¼ã‚¿
 
-	BPL_POKEDATA	poke[6];	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	BPL_POKEDATA	poke[6];	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 
-	GF_BGL_INI * bgl;		// BGƒf[ƒ^
+	GF_BGL_INI * bgl;		// BGãƒ‡ãƒ¼ã‚¿
 
-	PALETTE_FADE_PTR pfd;	// ƒpƒŒƒbƒgƒtƒF[ƒhƒf[ƒ^
+	PALETTE_FADE_PTR pfd;	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
 
-	u16	btn_plate1[BPL_BANM_MAX_E][BPL_BSX_PLATE*BPL_BSY_PLATE];		// í“¬’†‚ÌƒvƒŒ[ƒgƒ{ƒ^ƒ“
-	u16	btn_plate2[BPL_BANM_MAX_E][BPL_BSX_PLATE*BPL_BSY_PLATE];		// T‚¦‚ÌƒvƒŒ[ƒgƒ{ƒ^ƒ“
-	u16	btn_command[BPL_BANM_MAX_E][BPL_BSX_COMMAND*BPL_BSY_COMMAND];	// –½—ßƒ{ƒ^ƒ“
-	u16	btn_up[BPL_BANM_MAX_E][BPL_BSX_UPDOWN*BPL_BSY_UPDOWN];			// Ø‚è‘Ö‚¦ƒ{ƒ^ƒ“iãj
-	u16	btn_down[BPL_BANM_MAX_E][BPL_BSX_UPDOWN*BPL_BSY_UPDOWN];		// Ø‚è‘Ö‚¦ƒ{ƒ^ƒ“i‰ºj
-	u16	btn_ret[BPL_BANM_MAX_E][BPL_BSX_RET*BPL_BSY_RET];				// –ß‚éƒ{ƒ^ƒ“
-	u16	btn_chg[BPL_BANM_MAX_N][BPL_BSX_CHG*BPL_BSY_CHG];				// “ü‚ê‘Ö‚¦ƒ{ƒ^ƒ“
-	u16	btn_waza[BPL_BANM_MAX_E][BPL_BSX_WAZA*BPL_BSY_WAZA];			// ‹Zƒ{ƒ^ƒ“
-	u16	btn_del[BPL_BANM_MAX_N][BPL_BSX_DEL*BPL_BSY_DEL];				// –Y‚ê‚éƒ{ƒ^ƒ“
-	u16	btn_contest[BPL_BANM_MAX_N][BPL_BSX_CONTEST*BPL_BSY_CONTEST];	// ƒRƒ“ƒeƒXƒgØ‚è‘Ö‚¦ƒ{ƒ^ƒ“
-	u16	btn_wp[BPL_BANM_MAX_N][BPL_BSX_WP*BPL_BSY_WP];					// ‹ZˆÊ’uƒ{ƒ^ƒ“
+	u16	btn_plate1[BPL_BANM_MAX_E][BPL_BSX_PLATE*BPL_BSY_PLATE];		// æˆ¦é—˜ä¸­ã®ãƒ—ãƒ¬ãƒ¼ãƒˆãƒœã‚¿ãƒ³
+	u16	btn_plate2[BPL_BANM_MAX_E][BPL_BSX_PLATE*BPL_BSY_PLATE];		// æ§ãˆã®ãƒ—ãƒ¬ãƒ¼ãƒˆãƒœã‚¿ãƒ³
+	u16	btn_command[BPL_BANM_MAX_E][BPL_BSX_COMMAND*BPL_BSY_COMMAND];	// å‘½ä»¤ãƒœã‚¿ãƒ³
+	u16	btn_up[BPL_BANM_MAX_E][BPL_BSX_UPDOWN*BPL_BSY_UPDOWN];			// åˆ‡ã‚Šæ›¿ãˆãƒœã‚¿ãƒ³ï¼ˆä¸Šï¼‰
+	u16	btn_down[BPL_BANM_MAX_E][BPL_BSX_UPDOWN*BPL_BSY_UPDOWN];		// åˆ‡ã‚Šæ›¿ãˆãƒœã‚¿ãƒ³ï¼ˆä¸‹ï¼‰
+	u16	btn_ret[BPL_BANM_MAX_E][BPL_BSX_RET*BPL_BSY_RET];				// æˆ»ã‚‹ãƒœã‚¿ãƒ³
+	u16	btn_chg[BPL_BANM_MAX_N][BPL_BSX_CHG*BPL_BSY_CHG];				// å…¥ã‚Œæ›¿ãˆãƒœã‚¿ãƒ³
+	u16	btn_waza[BPL_BANM_MAX_E][BPL_BSX_WAZA*BPL_BSY_WAZA];			// æŠ€ãƒœã‚¿ãƒ³
+	u16	btn_del[BPL_BANM_MAX_N][BPL_BSX_DEL*BPL_BSY_DEL];				// å¿˜ã‚Œã‚‹ãƒœã‚¿ãƒ³
+	u16	btn_contest[BPL_BANM_MAX_N][BPL_BSX_CONTEST*BPL_BSY_CONTEST];	// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆåˆ‡ã‚Šæ›¿ãˆãƒœã‚¿ãƒ³
+	u16	btn_wp[BPL_BANM_MAX_N][BPL_BSX_WP*BPL_BSY_WP];					// æŠ€ä½ç½®ãƒœã‚¿ãƒ³
 
-	u16	wb_pal[16*2];	// ‹Zƒ{ƒ^ƒ“‚ÌƒpƒŒƒbƒg
+	u16	wb_pal[16*2];	// æŠ€ãƒœã‚¿ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆ
 
 	u8	btn_seq;
 	u8	btn_cnt;
@@ -365,94 +365,94 @@ typedef struct {
 	u8	btn_pat:3;
 	u8	btn_flg:1;
 
-	NUMFONT * nfnt;					// 8x8ƒtƒHƒ“ƒg
-	MSGDATA_MANAGER * mman;			// ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ
-	WORDSET * wset;					// ’PŒêƒZƒbƒg
-	STRBUF * msg_buf;				// ƒƒbƒZ[ƒW—pƒoƒbƒtƒ@
+	NUMFONT * nfnt;					// 8x8ãƒ•ã‚©ãƒ³ãƒˆ
+	MSGDATA_MANAGER * mman;			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£
+	WORDSET * wset;					// å˜èªã‚»ãƒƒãƒˆ
+	STRBUF * msg_buf;				// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ãƒãƒƒãƒ•ã‚¡
 
-	CATS_RES_PTR	crp;				// ƒŠƒ\[ƒXŠÇ—
-	CATS_ACT_PTR	cap[BPL_CA_MAX];	// OAM‚ÌCAP
+	CATS_RES_PTR	crp;				// ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†
+	CATS_ACT_PTR	cap[BPL_CA_MAX];	// OAMã®CAP
 
-	GF_BGL_BMPWIN	win[WIN_MAX];	// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^i’Êíj
-	GF_BGL_BMPWIN * add_win;		// BMPƒEƒBƒ“ƒhƒEƒf[ƒ^i’Ç‰Áj
-	u8	bmp_add_max;				// ’Ç‰Á‚µ‚½BMP‚Ì”
-	u8	bmp_swap;					// ƒXƒƒbƒv•`‰æƒtƒ‰ƒO
+	GF_BGL_BMPWIN	win[WIN_MAX];	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ï¼ˆé€šå¸¸ï¼‰
+	GF_BGL_BMPWIN * add_win;		// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ï¼ˆè¿½åŠ ï¼‰
+	u8	bmp_add_max;				// è¿½åŠ ã—ãŸBMPã®æ•°
+	u8	bmp_swap;					// ã‚¹ãƒ¯ãƒƒãƒ—æç”»ãƒ•ãƒ©ã‚°
 
-	u8	init_poke;		// “ü‚ê‘Ö‚¦‘ÎÛ‚Ìƒ|ƒPƒ‚ƒ“ˆÊ’u
+	u8	init_poke;		// å…¥ã‚Œæ›¿ãˆå¯¾è±¡ã®ãƒã‚±ãƒ¢ãƒ³ä½ç½®
 
-	u8	bc_put:4;			// ‹Z‚Ì•\¦‚ªí“¬‚©ƒRƒ“ƒeƒXƒg‚©
-	u8	ev_contest:4;		// ƒRƒ“ƒeƒXƒg•\¦‹–‰Âƒtƒ‰ƒO
+	u8	bc_put:4;			// æŠ€ã®è¡¨ç¤ºãŒæˆ¦é—˜ã‹ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‹
+	u8	ev_contest:4;		// ã‚³ãƒ³ãƒ†ã‚¹ãƒˆè¡¨ç¤ºè¨±å¯ãƒ•ãƒ©ã‚°
 
-	u8	seq;			// ƒƒCƒ“ƒV[ƒPƒ“ƒX
-	u8	ret_seq;		// •œ‹AƒV[ƒPƒ“ƒX
-	u8	page;			// Œ»İ‚Ìƒy[ƒW
-	u8	midx;			// ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
+	u8	seq;			// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	ret_seq;		// å¾©å¸°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	page;			// ç¾åœ¨ã®ãƒšãƒ¼ã‚¸
+	u8	midx;			// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
 	u8	rcv_seq;
 	u8	rcv_st;
 	u16	rcv_hp;
 	u16	rcv_pp[4];
 
-	BAPP_CURSOR_MVWK * cmv_wk;	// ƒJ[ƒ\ƒ‹§Œäƒ[ƒN
-	u8	chg_page_cp;			// ƒ|ƒPƒ‚ƒ““ü‚ê‘Ö‚¦ƒy[ƒW‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
-	u8	wws_page_cp;			// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‹Z‘I‘ğƒy[ƒW‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
-	u8	wwm_page_cp;			// ƒXƒe[ƒ^ƒX‹Z–Y‚ê‹ZÚ×ƒy[ƒW‚ÌƒJ[ƒ\ƒ‹ˆÊ’u
+	BAPP_CURSOR_MVWK * cmv_wk;	// ã‚«ãƒ¼ã‚½ãƒ«åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
+	u8	chg_page_cp;			// ãƒã‚±ãƒ¢ãƒ³å…¥ã‚Œæ›¿ãˆãƒšãƒ¼ã‚¸ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8	wws_page_cp;			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚ŒæŠ€é¸æŠãƒšãƒ¼ã‚¸ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8	wwm_page_cp;			// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æŠ€å¿˜ã‚ŒæŠ€è©³ç´°ãƒšãƒ¼ã‚¸ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 
-	u8	multi_pos;				// ƒ}ƒ‹ƒ`ƒoƒgƒ‹‚Ì—§‚¿ˆÊ’u
+	u8	multi_pos;				// ãƒãƒ«ãƒãƒãƒˆãƒ«ã®ç«‹ã¡ä½ç½®
 }BPLIST_WORK;
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * w’èˆÊ’u‚Éƒ|ƒPƒ‚ƒ“‚ª‘¶İ‚·‚é‚©
+ * æŒ‡å®šä½ç½®ã«ãƒã‚±ãƒ¢ãƒ³ãŒå­˜åœ¨ã™ã‚‹ã‹
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½ç½®
  *
- * @retval	"0 = ‚¢‚È‚¢"
- * @retval	"1 = í“¬’†"
- * @retval	"2 = T‚¦"
+ * @retval	"0 = ã„ãªã„"
+ * @retval	"1 = æˆ¦é—˜ä¸­"
+ * @retval	"2 = æ§ãˆ"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 BattlePokeList_PokeSetCheck( BPLIST_WORK * wk, s32 pos );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ_ƒuƒ‹ƒoƒgƒ‹ƒ`ƒFƒbƒN
+ * ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = ƒ_ƒuƒ‹ƒoƒgƒ‹"
- * @retval	"FALSE = ƒ_ƒuƒ‹ƒoƒgƒ‹ˆÈŠO"
+ * @retval	"TRUE = ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«"
+ * @retval	"FALSE = ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ä»¥å¤–"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 BattlePokeList_DoubleCheck( BPLIST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ}ƒ‹ƒ`ƒoƒgƒ‹ƒ`ƒFƒbƒN
+ * ãƒãƒ«ãƒãƒãƒˆãƒ«ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"TRUE = ƒ_ƒuƒ‹ƒoƒgƒ‹"
- * @retval	"FALSE = ƒ_ƒuƒ‹ƒoƒgƒ‹ˆÈŠO"
+ * @retval	"TRUE = ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«"
+ * @retval	"FALSE = ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ä»¥å¤–"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 BattlePokeList_MultiCheck( BPLIST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ}ƒ‹ƒ`ƒoƒgƒ‹‚Åƒp[ƒgƒi[‚Ìƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN
+ * ãƒãƒ«ãƒãƒãƒˆãƒ«ã§ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½ç½®
  *
- * @retval	"TRUE = ‚Í‚¢"
- * @retval	"FALSE = ‚¢‚¢‚¦"
+ * @retval	"TRUE = ã¯ã„"
+ * @retval	"FALSE = ã„ã„ãˆ"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 BattlePokeList_MultiPosCheck( BPLIST_WORK * wk, u8 pos );

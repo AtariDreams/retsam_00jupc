@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FS_WriteFileAsync</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FS_WriteFileAsync</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,44 +22,44 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>p_file</STRONG></EM></TD>
-      <TD width="87%">FSFile�\���̂̃A�h���X</TD>
+      <TD width="87%">FSFile構造体のアドレス</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>src</STRONG></EM></TD>
-      <TD width="87%">�������ރf�[�^���i�[���ꂽ�o�b�t�@�̃A�h���X</TD>
+      <TD width="87%">書き込むデータが格納されたバッファのアドレス</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>len</STRONG></EM></TD>
-      <TD width="87%">�������ރf�[�^�̃o�C�g��</TD>
+      <TD width="87%">書き込むデータのバイト長</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�f�[�^���������������߂�Ȃ琬�����̃o�C�g����, �����łȂ��Ȃ� -1 ��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>データが正しく書き込めるなら成功時のバイト数を, そうでないなら -1 を返します。</p>
 
-<H2>����</H2>
-<P>�t�@�C���|�C���^�̌��݈ʒu����w��T�C�Y�̃f�[�^��񓯊����[�h�ŏ������݂܂��B<BR>
-�I�[���z����悤�ɃT�C�Y�w�肵���ꍇ�A�I�[�܂ŏ�������ł��̃T�C�Y��Ԃ��܂��B<BR>
+<H2>説明</H2>
+<P>ファイルポインタの現在位置から指定サイズのデータを非同期モードで書き込みます。<BR>
+終端を越えるようにサイズ指定した場合、終端まで書き込んでそのサイズを返します。<BR>
 <BR>
-���̊֐���<A href="FS_WriteFile.html">FS_WriteFile</A>�֐��Ƃ͈قȂ�A����������ɖ߂��񓯊��Ŏ��s����܂��B<BR>
-�����̊������m�F����ɂ�<A href="FS_IsBusy.html">FS_IsBusy</A>�֐����g�p���܂��B<BR>
-�܂��A<A href="FS_WaitAsync.html">FS_WaitAsync</A>�֐��ɂ���Ċ����܂ő҂��Ƃ��ł��܂��B<BR>
+この関数は<A href="FS_WriteFile.html">FS_WriteFile</A>関数とは異なり、制御をすぐに戻し非同期で実行されます。<BR>
+処理の完了を確認するには<A href="FS_IsBusy.html">FS_IsBusy</A>関数を使用します。<BR>
+また、<A href="FS_WaitAsync.html">FS_WaitAsync</A>関数によって完了まで待つことができます。<BR>
 <BR>
 </P>
-<H2>����</H2>
+<H2>注意</H2>
 <p><font color="#800000">
-���̊֐��́A������񓯊��Ɏ��s�ł��Ȃ��A�[�J�C�u�̏ꍇ��<A href="FS_WriteFile.html">FS_WriteFile</A>�֐��Ɠ��l�ɓ��������ƂȂ�܂��B<BR>
-���̂悤�ȃA�[�J�C�u�̏ꍇ�͂��̊֐������荞�݃n���h��(IRQ���[�h)����Ăяo�����Ƃ͂ł��܂���B<br>
-�܂��A���荞�݂��֎~�����܂܂̏�Ԃɂ���Ə������������Ȃ��ꍇ������_�ɒ��ӂ��ĉ������B<br>
+この関数は、処理を非同期に実行できないアーカイブの場合は<A href="FS_WriteFile.html">FS_WriteFile</A>関数と同様に同期処理となります。<BR>
+そのようなアーカイブの場合はこの関数を割り込みハンドラ(IRQモード)から呼び出すことはできません。<br>
+また、割り込みを禁止したままの状態にあると処理が完了しない場合がある点に注意して下さい。<br>
 </font></p>
 <BR>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../fs_file_type.html">FSFile</A> 
 <br>
@@ -73,11 +73,11 @@
 <A href="FS_SeekFileToEnd.html">FS_SeekFileToEnd</A> 
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/11/02 �������������<br>
-2004/09/24 �Ăяo��������ъ����̏����ɂ��Ă̒��ӂ��L�q�ǉ�<br>
-2004/07/13 ����<BR>
+2004/11/02 引数説明を訂正<br>
+2004/09/24 呼び出し時および完了の条件についての注意を記述追加<br>
+2004/07/13 初版<BR>
 </P>
 </body>
 </html>

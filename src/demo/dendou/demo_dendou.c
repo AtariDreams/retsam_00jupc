@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	demo_dendou.c
- * @brief	ƒ|ƒPƒ‚ƒ““a“°“ü‚èƒfƒ‚
+ * @brief	ãƒã‚±ãƒ¢ãƒ³æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¢
  * @author	taya
  * @date	2006.04.26
  */
@@ -82,17 +82,17 @@ enum {
 
 //--------------------------------------------------------------
 /**
- *	ƒ|ƒPƒ‚ƒ“‚Æ‚Ìo‰ï‚¢•ûƒpƒ^[ƒ“i“a“°ƒfƒ‚“ÆŽ©j
+ *	ãƒã‚±ãƒ¢ãƒ³ã¨ã®å‡ºä¼šã„æ–¹ãƒ‘ã‚¿ãƒ¼ãƒ³ï¼ˆæ®¿å ‚ãƒ‡ãƒ¢ç‹¬è‡ªï¼‰
  */
 //--------------------------------------------------------------
 typedef enum {
-	POKE_MEET_CATCH,		///< ƒQ[ƒ€“à‚Å•ßŠl‚µ‚½
-	POKE_MEET_BORN,			///< Ž©•ª‚Åƒ^ƒ}ƒS‚ð›z‚µ‚½
-	POKE_MEET_TRADE,		///< ‚Â‚¤‚µ‚ñŒðŠ·‚Å
-	POKE_MEET_KANTOU,		///< Ô—Î‚©‚ç—ˆ‚½
-	POKE_MEET_HOUEN,		///< ƒ‹ƒrƒTƒtƒ@ƒGƒ‚ç‚©‚ç—ˆ‚½
-	POKE_MEET_SOMEWHERE,	///< ‚Ç‚±‚©‚Æ‚¨‚¢‚Î‚µ‚åiƒRƒƒVƒAƒ€ê—pj
-	POKE_MEET_OTHER,		///< Œã‚Í‘S•”‚¤‚ñ‚ß‚¢“I‚Èo‰ï‚¢
+	POKE_MEET_CATCH,		///< ã‚²ãƒ¼ãƒ å†…ã§æ•ç²ã—ãŸ
+	POKE_MEET_BORN,			///< è‡ªåˆ†ã§ã‚¿ãƒžã‚´ã‚’å­µã—ãŸ
+	POKE_MEET_TRADE,		///< ã¤ã†ã—ã‚“äº¤æ›ã§
+	POKE_MEET_KANTOU,		///< èµ¤ç·‘ã‹ã‚‰æ¥ãŸ
+	POKE_MEET_HOUEN,		///< ãƒ«ãƒ“ã‚µãƒ•ã‚¡ã‚¨ãƒ¡ã‚‰ã‹ã‚‰æ¥ãŸ
+	POKE_MEET_SOMEWHERE,	///< ã©ã“ã‹ã¨ãŠã„ã°ã—ã‚‡ï¼ˆã‚³ãƒ­ã‚·ã‚¢ãƒ å°‚ç”¨ï¼‰
+	POKE_MEET_OTHER,		///< å¾Œã¯å…¨éƒ¨ã†ã‚“ã‚ã„çš„ãªå‡ºä¼šã„
 }POKE_MEET_PATTERN;
 
 typedef struct {
@@ -273,8 +273,8 @@ PROC_RESULT  DemoDendouPROC_Init( PROC* proc, int* seq )
 	wk->seq = 0;
 	wk->vintrTask = add_vtask( DendouDemoVIntr, wk, TASKPRI_DRAW );
 
-	//ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh
-	Snd_DataSetByScene( SND_SCENE_DENDOU, SEQ_BLD_EV_DENDO2, 1 );	//“a“°ƒfƒ‚‹ÈÄ¶
+	//ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
+	Snd_DataSetByScene( SND_SCENE_DENDOU, SEQ_BLD_EV_DENDO2, 1 );	//æ®¿å ‚ãƒ‡ãƒ¢æ›²å†ç”Ÿ
 
 	return PROC_RES_FINISH;
 }
@@ -609,23 +609,23 @@ static void setup_bg( DEMO_WORK* wk )
 {
 	ARCHANDLE* p_handle;
 	static const GF_BGL_DISPVRAM SetBankData = {
-		GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 
 	static const GF_BGL_SYS_HEADER BGsys_data = {
 			GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BGMODE_0, GX_BG0_AS_3D,
 	};
 
-	// BG1 = •¶Žš•`‰æƒŒƒCƒ„[
+	// BG1 = æ–‡å­—æç”»ãƒ¬ã‚¤ãƒ¤ãƒ¼
 	static const GF_BGL_BGCNT_HEADER header1 = {
 		0, 0, 0x1000, 0,	// scrX, scrY, scrbufSize, scrbufofs,
 		GF_BGL_SCRSIZ_256x512, GX_BG_COLORMODE_16,
@@ -633,7 +633,7 @@ static void setup_bg( DEMO_WORK* wk )
 		GX_BG_EXTPLTT_01, 0, 0, 0, FALSE	// pal, pri, areaover, dmy, mosaic
 	};
 
-	// BG2 = ^‚Á•ƒŒƒCƒ„[
+	// BG2 = çœŸã£é»’ãƒ¬ã‚¤ãƒ¤ãƒ¼
 	static const GF_BGL_BGCNT_HEADER header2 = {
 		0, 0, 0, 0,	// scrX, scrY, scrbufSize, scrbufofs,
 		GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -641,7 +641,7 @@ static void setup_bg( DEMO_WORK* wk )
 		GX_BG_EXTPLTT_01, 1, 0, 0, FALSE	// pal, pri, areaover, dmy, mosaic
 	};
 
-	// BG3 = ”wŒiƒŒƒCƒ„[
+	// BG3 = èƒŒæ™¯ãƒ¬ã‚¤ãƒ¤ãƒ¼
 	static const GF_BGL_BGCNT_HEADER header3 = {
 		0, 0, 0, 0,	// scrX, scrY, scrbufSize, scrbufofs,
 		GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -703,19 +703,19 @@ static void cleanup_bg( DEMO_WORK* wk )
 
 static void setup_3d_graphics( DEMO_WORK* wk )
 {
-	// NitroSystem:‚R‚cƒGƒ“ƒWƒ“‚Ì‰Šú‰»
+	// NitroSystem:ï¼“ï¼¤ã‚¨ãƒ³ã‚¸ãƒ³ã®åˆæœŸåŒ–
 	NNS_G3dInit();
-	// ƒ}ƒgƒŠƒNƒXƒXƒ^ƒbƒN‚Ì‰Šú‰»
+	// ãƒžãƒˆãƒªã‚¯ã‚¹ã‚¹ã‚¿ãƒƒã‚¯ã®åˆæœŸåŒ–
     G3X_InitMtxStack();
 
-	// ŠeŽí•`‰æƒ‚[ƒh‚ÌÝ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜Ž)
     G3X_SetShading(GX_SHADING_TOON);
     G3X_AntiAlias(TRUE);
 
-	G3X_AlphaTest(FALSE, 0);	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend(TRUE);		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest(FALSE, 0);	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend(TRUE);		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 
-	// ƒNƒŠƒAƒJƒ‰[‚ÌÝ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0, 0, 0),	// clear color
                       0,				// clear alpha
                       0x7fff,			// clear depth
@@ -723,17 +723,17 @@ static void setup_3d_graphics( DEMO_WORK* wk )
                       FALSE				// fog
                       );
 
-	// ƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‹N“®Œã•K‚¸ŒÄ‚Î‚ê‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+	// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³èµ·å‹•å¾Œå¿…ãšå‘¼ã°ã‚Œãªã‘ã‚Œã°ãªã‚‰ãªã„
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 
-	// ƒrƒ…[ƒ|[ƒg‚ÌÝ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 
     NNS_GfdInitFrmTexVramManager(1, TRUE);
     NNS_GfdInitFrmPlttVramManager(0x4000, TRUE);
 
 
-	// ‚R‚cŽg—p–Ê‚ÌÝ’è(•\Ž¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(2);
     G2_SetBlendAlpha( GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 0, 0 );
@@ -939,7 +939,7 @@ static void cleanup_actors( DEMO_WORK* wk )
 	REND_OAM_Delete();
 }
 //-----------------------------------------------------------------------------------------------
-// VIntrƒ^ƒXƒN—p‚Ìƒ[ƒNƒƒ‚ƒŠ‚ð‰ð•ú‚·‚é‚½‚ß‚ÌŽd‘g‚Ý
+// VIntrã‚¿ã‚¹ã‚¯ç”¨ã®ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹ãŸã‚ã®ä»•çµ„ã¿
 //-----------------------------------------------------------------------------------------------
 typedef struct {
 	void*		taskWork;
@@ -968,7 +968,7 @@ typedef struct {
 
 
 //-----------------------------------------------------------------------------------------------
-// ƒ|ƒPƒ‚ƒ“‚ª’èˆÊ’u‚Ü‚ÅˆÚ“®‚·‚é“®‚«
+// ãƒã‚±ãƒ¢ãƒ³ãŒå®šä½ç½®ã¾ã§ç§»å‹•ã™ã‚‹å‹•ã
 //-----------------------------------------------------------------------------------------------
 enum {
 	POKEIN_MOVE_DISTANCE = FX32_CONST(120),
@@ -1028,7 +1028,7 @@ static void PokeMoveInTask( TCB_PTR tcb, void* wk_adrs )
 }
 
 //-----------------------------------------------------------------------------------------------
-// ƒvƒŒƒCƒ„[‰æ‘œ‚ª“®‚¢‚Ä“ü‚Á‚Ä‚­‚é
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”»åƒãŒå‹•ã„ã¦å…¥ã£ã¦ãã‚‹
 //-----------------------------------------------------------------------------------------------
 enum {
 	PLAYER_START_YPOS = 192+40,
@@ -1076,7 +1076,7 @@ static void PlayerMoveInTask( TCB_PTR tcb, void* wk_adrs )
 
 
 //-----------------------------------------------------------------------------------------------
-// ƒn[ƒhƒEƒBƒ“ƒhƒE˜gˆÚ“®
+// ãƒãƒ¼ãƒ‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æž ç§»å‹•
 //-----------------------------------------------------------------------------------------------
 enum {
 	PVWIN_WIDTH = 96,
@@ -1133,7 +1133,7 @@ typedef struct {
 
 
 //------------------------------------------------------
-// …•½ˆÚ“®ƒ^ƒXƒN
+// æ°´å¹³ç§»å‹•ã‚¿ã‚¹ã‚¯
 //------------------------------------------------------
 static void HardWindowHMoveTask( TCB_PTR tcb, void* wk_adrs )
 {
@@ -1161,7 +1161,7 @@ static void HardWindowHMoveTask( TCB_PTR tcb, void* wk_adrs )
 	}
 }
 //------------------------------------------------------
-// ‚’¼ˆÚ“®ƒ^ƒXƒN
+// åž‚ç›´ç§»å‹•ã‚¿ã‚¹ã‚¯
 //------------------------------------------------------
 static void HardWindowVMoveTask( TCB_PTR tcb, void* wk_adrs )
 {
@@ -1190,7 +1190,7 @@ static void HardWindowVMoveTask( TCB_PTR tcb, void* wk_adrs )
 	}
 }
 //------------------------------------------------------
-// ‰¡••ÏXƒ^ƒXƒN
+// æ¨ªå¹…å¤‰æ›´ã‚¿ã‚¹ã‚¯
 //------------------------------------------------------
 static void HardWindowOpenTask( TCB_PTR tcb, void* wk_adrs )
 {
@@ -1218,7 +1218,7 @@ static void HardWindowOpenTask( TCB_PTR tcb, void* wk_adrs )
 	}
 }
 //------------------------------------------------------
-// c••ÏXƒ^ƒXƒN
+// ç¸¦å¹…å¤‰æ›´ã‚¿ã‚¹ã‚¯
 //------------------------------------------------------
 static void HardWindowVResizeTask( TCB_PTR tcb, void* wk_adrs )
 {
@@ -1248,7 +1248,7 @@ static void HardWindowVResizeTask( TCB_PTR tcb, void* wk_adrs )
 
 
 //------------------------------------------------------
-// ƒ|ƒPƒ‚ƒ“•\Ž¦ƒEƒBƒ“ƒhƒEƒtƒŒ[ƒ€ƒCƒ“
+// ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¤ãƒ³
 //------------------------------------------------------
 static void StartPokeViewWinMoveInTask( DEMO_WORK* wk, int pos, int taskID )
 {
@@ -1276,7 +1276,7 @@ static void StartPokeViewWinMoveInTask( DEMO_WORK* wk, int pos, int taskID )
 }
 
 //------------------------------------------------------
-// ƒ|ƒPƒ‚ƒ“•\Ž¦ƒEƒBƒ“ƒhƒEƒtƒŒ[ƒ€ƒAƒEƒg
+// ãƒã‚±ãƒ¢ãƒ³è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ
 //------------------------------------------------------
 static void StartPokeViewWinMoveOutTask( DEMO_WORK* wk, int pos, int taskID )
 {
@@ -1303,7 +1303,7 @@ static void StartPokeViewWinMoveOutTask( DEMO_WORK* wk, int pos, int taskID )
 }
 
 //------------------------------------------------------
-// ƒvƒŒƒCƒ„[•\Ž¦ƒEƒBƒ“ƒhƒEƒtƒŒ[ƒ€ƒCƒ“
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¤ãƒ³
 //------------------------------------------------------
 static void StartPlayerViewWinMoveInTask( DEMO_WORK* wk, int taskID )
 {
@@ -1322,7 +1322,7 @@ static void StartPlayerViewWinMoveInTask( DEMO_WORK* wk, int taskID )
 }
 
 //------------------------------------------------------
-// ƒvƒŒƒCƒ„[•\Ž¦ƒEƒBƒ“ƒhƒE‰¡‚¢‚Á‚Ï‚¢‚ÉL‚ª‚é
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¡¨ç¤ºã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ¨ªã„ã£ã±ã„ã«åºƒãŒã‚‹
 //------------------------------------------------------
 static void StartPlayerViewWinOpenTask( DEMO_WORK* wk, int taskID )
 {
@@ -1353,7 +1353,7 @@ static void StartWindowCloseTask( DEMO_WORK* wk, int taskID )
 }
 
 //-----------------------------------------------------------------------------------------------
-// ƒ|ƒPƒ‚ƒ“ƒAƒjƒ[ƒVƒ‡ƒ“
+// ãƒã‚±ãƒ¢ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
 //-----------------------------------------------------------------------------------------------
 
 typedef struct {
@@ -1418,11 +1418,11 @@ static void PokeAnimTask( TCB_PTR tcb, void* wk_adrs )
 }
 
 //-----------------------------------------------------------------------------------------------
-// ››‚Åo‰ï‚Á‚½‚È‚Ç‚Ìƒ|ƒPƒ‚ƒ“ƒvƒƒtƒB[ƒ‹ƒvƒŠƒ“ƒg
+// â—‹â—‹ã§å‡ºä¼šã£ãŸãªã©ã®ãƒã‚±ãƒ¢ãƒ³ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ—ãƒªãƒ³ãƒˆ
 //-----------------------------------------------------------------------------------------------
 enum {
 	PRINT_POKEAREA_WIDTH = 15*8,
-	PRINT_AREA_WIDTH = 256-PRINT_POKEAREA_WIDTH,	/// BitmapWindowŽ©‘Ì‚Í‚P‰æ–Ê•ª‚ ‚é‚ªA‘‚¯‚é—Ìˆæ‚Í‚±‚ê‚¾‚¯
+	PRINT_AREA_WIDTH = 256-PRINT_POKEAREA_WIDTH,	/// BitmapWindowè‡ªä½“ã¯ï¼‘ç”»é¢åˆ†ã‚ã‚‹ãŒã€æ›¸ã‘ã‚‹é ˜åŸŸã¯ã“ã‚Œã ã‘
 
 	PRINT_CONG_YPOS = 16*1,
 
@@ -1638,7 +1638,7 @@ static void ScrollOutMsgTask( TCB_PTR tcb, void* wk_adrs )
 }
 
 //-----------------------------------------------------------------------------------------------
-// ÅŒã‚Ìuƒ|ƒPƒ‚ƒ“ƒŠ[ƒOƒ`ƒƒƒ“ƒsƒIƒ“‚¨‚ß‚Å‚Æ‚¤Iv‚È‚Ç‚ðƒvƒŠƒ“ƒg
+// æœ€å¾Œã®ã€Œãƒã‚±ãƒ¢ãƒ³ãƒªãƒ¼ã‚°ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ãŠã‚ã§ã¨ã†ï¼ã€ãªã©ã‚’ãƒ—ãƒªãƒ³ãƒˆ
 //-----------------------------------------------------------------------------------------------
 static void PrintPlayerStatus( DEMO_WORK* wk )
 {
@@ -1667,7 +1667,7 @@ static void PrintPlayerStatus( DEMO_WORK* wk )
 }
 
 //-----------------------------------------------------------------------------------------------
-// ƒ|ƒPƒ‚ƒ“‘S•”‚ð‡”Ô‚É•\Ž¦
+// ãƒã‚±ãƒ¢ãƒ³å…¨éƒ¨ã‚’é †ç•ªã«è¡¨ç¤º
 //-----------------------------------------------------------------------------------------------
 typedef struct {
 	VINTR_TASKFREE_WORK	tfw;
@@ -1720,7 +1720,7 @@ static void StartDispAllPokeTask( DEMO_WORK* wk, int taskID )
 		CLACT_SetDrawFlag( twk->act[i], TRUE );
 	}
 
-	// ‹È‚ÌŽÚ‡‚í‚¹‚Ì‚½‚ßAŽèŽ‚¿‚ª­‚È‚­‚Ä‚à‚U‘Ì•ªƒEƒGƒCƒg‚ð“ü‚ê‚é
+	// æ›²ã®å°ºåˆã‚ã›ã®ãŸã‚ã€æ‰‹æŒã¡ãŒå°‘ãªãã¦ã‚‚ï¼–ä½“åˆ†ã‚¦ã‚¨ã‚¤ãƒˆã‚’å…¥ã‚Œã‚‹
 	for(i=0; i<TEMOTI_POKEMAX; i++)
 	{
 		FxMoveNum_Set( &twk->xpos[i], poke_start_pos[i].x, poke_end_xpos[i], POKE_DISPMOVE_FRAMES );
@@ -1766,7 +1766,7 @@ static void DispAllPokeTask( TCB_PTR tcb, void* wk_adrs )
 }
 
 //-----------------------------------------------------------------------------------------------
-// ƒ‰ƒCƒgƒ|ƒŠƒSƒ““®‚©‚µ
+// ãƒ©ã‚¤ãƒˆãƒãƒªã‚´ãƒ³å‹•ã‹ã—
 //-----------------------------------------------------------------------------------------------
 enum {
 	LIGHT_MAX = 8,
@@ -2080,7 +2080,7 @@ static BOOL WaitLightTaskDelete( void )
 }
 
 //-----------------------------------------------------------------------------------------------
-// Ž†áƒ|ƒŠƒSƒ““®‚©‚µ
+// ç´™å¹é›ªãƒãƒªã‚´ãƒ³å‹•ã‹ã—
 //-----------------------------------------------------------------------------------------------
 enum {
 	CONFETTI_MAX = 48,
@@ -2416,7 +2416,7 @@ static void GetConfettiPos( TCB_PTR tcb, VecFx16* vtx, int id, int pos, int* col
 }
 #endif
 //-----------------------------------------------------------------------------------------------
-// ŒÅ’è¬”‚ð“™‘¬‚Å‘Œ¸‚·‚é‚½‚ß‚ÌƒIƒuƒWƒFƒNƒg
+// å›ºå®šå°æ•°ã‚’ç­‰é€Ÿã§å¢—æ¸›ã™ã‚‹ãŸã‚ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 //-----------------------------------------------------------------------------------------------
 static void FxMoveNum_Set( FX_MOVE_NUMBER* num, fx32 start_num, fx32 end_num, int wait )
 {
@@ -2449,7 +2449,7 @@ static BOOL FxMoveNum_CheckEnd( FX_MOVE_NUMBER* num )
 }
 
 //-----------------------------------------------------------------------------------------------
-// o‰ï‚¢•ûƒpƒ^[ƒ“ƒ`ƒFƒbƒN
+// å‡ºä¼šã„æ–¹ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒã‚§ãƒƒã‚¯
 //-----------------------------------------------------------------------------------------------
 static  POKE_MEET_PATTERN  GetPokeMeetPattern( DEMO_WORK* wk, POKEMON_PARAM* pp, const MYSTATUS* player )
 {
@@ -2459,7 +2459,7 @@ static  POKE_MEET_PATTERN  GetPokeMeetPattern( DEMO_WORK* wk, POKEMON_PARAM* pp,
 	fastFlag = PokeParaFastModeOn(pp);
 
 	do {
-		// AGBƒƒ€‚©‚ç—ˆ‚½ƒP[ƒX
+		// AGBãƒ­ãƒ ã‹ã‚‰æ¥ãŸã‚±ãƒ¼ã‚¹
 		{
 			int romVer = PokeParaGet( pp, ID_PARA_get_cassette, NULL );
 			if( romVer == VERSION_SAPPHIRE || romVer == VERSION_RUBY || romVer == VERSION_EMERALD )
@@ -2479,14 +2479,14 @@ static  POKE_MEET_PATTERN  GetPokeMeetPattern( DEMO_WORK* wk, POKEMON_PARAM* pp,
 			}
 		}
 
-		// ŠO•””z•z‚È‚ç
+		// å¤–éƒ¨é…å¸ƒãªã‚‰
 		if( PokeParaGet( pp, ID_PARA_event_get_flag, NULL ) )
 		{
 			ptn = POKE_MEET_OTHER;
 			break;
 		}
 
-		// ID ‚Ü‚½‚Í e–¼‚Ì•sˆê’v‚È‚çA’ÊMŒðŠ·‚Æ‚Ý‚È‚·
+		// ID ã¾ãŸã¯ è¦ªåã®ä¸ä¸€è‡´ãªã‚‰ã€é€šä¿¡äº¤æ›ã¨ã¿ãªã™
 		{
 			u32 playerID, pokeID;
 
@@ -2509,16 +2509,16 @@ static  POKE_MEET_PATTERN  GetPokeMeetPattern( DEMO_WORK* wk, POKEMON_PARAM* pp,
 			}
 		}
 
-		// ‚±‚±‚Ü‚Å—ˆ‚½‚çƒ^ƒ}ƒS›z‰»‚©–ì¶•ßŠl‚Ì‚Í‚¸‚¾‚ªA
-		// ”O‚Ì‚½‚ßƒwƒ“‚ÈêŠƒR[ƒh‚ª“ü‚Á‚Ä‚¢‚½‚çu‚¤‚ñ‚ß‚¢‚Ä‚«‚È‚Å‚ ‚¢v‚Æ‚¢‚¤‚±‚Æ‚É‚µ‚Ä‚¨‚­
+		// ã“ã“ã¾ã§æ¥ãŸã‚‰ã‚¿ãƒžã‚´å­µåŒ–ã‹é‡Žç”Ÿæ•ç²ã®ã¯ãšã ãŒã€
+		// å¿µã®ãŸã‚ãƒ˜ãƒ³ãªå ´æ‰€ã‚³ãƒ¼ãƒ‰ãŒå…¥ã£ã¦ã„ãŸã‚‰ã€Œã†ã‚“ã‚ã„ã¦ããªã§ã‚ã„ã€ã¨ã„ã†ã“ã¨ã«ã—ã¦ãŠã
 		if( PokeParaGet( pp, ID_PARA_birth_place, NULL ) >= 2000 )
 		{
 			ptn = POKE_MEET_OTHER;
 		}
 		else
 		{
-			// ID_PARA_get_month ‚Ígƒ^ƒ}ƒS‚ð‚à‚ç‚Á‚½“ú•tiŒŽjh‚Æ‚¢‚¤ˆÓ–¡‚È‚Ì‚Å
-			// ‚±‚ê‚ª‚O‚¾‚Á‚½‚ç–ì¶‚Å•ß‚Ü‚¦‚½‚à‚Ì‚Æ‚Ý‚È‚·
+			// ID_PARA_get_month ã¯â€œã‚¿ãƒžã‚´ã‚’ã‚‚ã‚‰ã£ãŸæ—¥ä»˜ï¼ˆæœˆï¼‰â€ã¨ã„ã†æ„å‘³ãªã®ã§
+			// ã“ã‚ŒãŒï¼ã ã£ãŸã‚‰é‡Žç”Ÿã§æ•ã¾ãˆãŸã‚‚ã®ã¨ã¿ãªã™
 			if( PokeParaGet( pp, ID_PARA_get_month, NULL ) == 0 )
 			{
 				ptn = POKE_MEET_CATCH;

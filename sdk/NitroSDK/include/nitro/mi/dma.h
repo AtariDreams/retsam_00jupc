@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.47  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ðC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.46  2005/02/28 05:26:02  yosizaki
   do-indent.
@@ -51,31 +51,31 @@
   fix header comment
 
   Revision 1.35  2004/02/10 01:20:12  yada
-  MI_Cpu* ‚ð memory.h ‚ÉˆÚ‚µ‚½
+  MI_Cpu* ã‚’ memory.h ã«ç§»ã—ãŸ
 
   Revision 1.34  2004/02/05 11:39:03  yada
-  *Send*() ŠÖ”‚Ì“]‘—æƒ|ƒCƒ“ƒ^‚ðvolatile‚É‚µ‚½B
+  *Send*() é–¢æ•°ã®è»¢é€å…ˆãƒã‚¤ãƒ³ã‚¿ã‚’volatileã«ã—ãŸã€‚
 
   Revision 1.33  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
 
   Revision 1.32  2004/02/05 01:59:19  yada
-  SVC_* ‚Å‚Í‚È‚­ UTL_* ‚ðŽg‚¤‚æ‚¤‚É•ÏX
+  SVC_* ã§ã¯ãªã UTL_* ã‚’ä½¿ã†ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.31  2004/02/02 01:51:51  yada
-  controlƒŒƒWƒXƒ^‚É‘‚«ž‚Þ’l‚Ìdefine‚ÌŒë‚è‚ðC³
+  controlãƒ¬ã‚¸ã‚¹ã‚¿ã«æ›¸ãè¾¼ã‚€å€¤ã®defineã®èª¤ã‚Šã‚’ä¿®æ­£
 
   Revision 1.30  2004/01/30 05:00:39  yada
-  MI_DmaSend*, MI_CpuSend* ’Ç‰Á
+  MI_DmaSend*, MI_CpuSend* è¿½åŠ 
 
   Revision 1.29  2004/01/26 12:45:39  yada
-  inline Œ©’¼‚µ
+  inline è¦‹ç›´ã—
 
   Revision 1.28  2004/01/19 01:26:49  yada
-  ”ñ“¯ŠúŠÖ”–¼‚ð xxx_Async ‚©‚ç xxxAsync ‚Æ u _ v‚ðŽæ‚Á‚½Œ`‚É‚µ‚½B
+  éžåŒæœŸé–¢æ•°åã‚’ xxx_Async ã‹ã‚‰ xxxAsync ã¨ ã€Œ _ ã€ã‚’å–ã£ãŸå½¢ã«ã—ãŸã€‚
 
   Revision 1.27  2004/01/18 04:46:53  yada
-  ŠÖ”–¼ƒ~ƒXC³
+  é–¢æ•°åãƒŸã‚¹ä¿®æ­£
 
   Revision 1.26  2004/01/17 11:47:41  yada
   (none)
@@ -84,71 +84,71 @@
   convert 'inline' to 'static inline' in header files
 
   Revision 1.23  2004/01/16 11:45:13  yada
-  DMAƒNƒŠƒAƒoƒbƒtˆÚ“®‚ÅŽQÆ‚ÌŽd•û‚ª•Ï‚í‚Á‚½
+  DMAã‚¯ãƒªã‚¢ãƒãƒƒãƒ•ç§»å‹•ã§å‚ç…§ã®ä»•æ–¹ãŒå¤‰ã‚ã£ãŸ
 
   Revision 1.22  2004/01/06 00:36:46  yada
-  MI_SendGXCommand* ‚ÌƒTƒCƒYˆø”‚ðAƒRƒ}ƒ“ƒh”‚©‚çƒoƒCƒg”‚É•ÏX‚µ‚½B
+  MI_SendGXCommand* ã®ã‚µã‚¤ã‚ºå¼•æ•°ã‚’ã€ã‚³ãƒžãƒ³ãƒ‰æ•°ã‹ã‚‰ãƒã‚¤ãƒˆæ•°ã«å¤‰æ›´ã—ãŸã€‚
 
   Revision 1.21  2003/12/25 07:30:24  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  åž‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.20  2003/12/18 07:17:37  yada
-  red-sdk Žd—l‚ðœ‚¢‚½
+  red-sdk ä»•æ§˜ã‚’é™¤ã„ãŸ
 
   Revision 1.19  2003/12/17 06:06:15  yasu
-  prefix ‚ÌC³ __MI -> MIi_
+  prefix ã®ä¿®æ­£ __MI -> MIi_
 
   Revision 1.18  2003/12/16 05:30:17  yasu
-  OS_SystemWork ‚Ì•ÏX
+  OS_SystemWork ã®å¤‰æ›´
 
   Revision 1.17  2003/12/11 09:58:30  yada
-  MI_CpuCopy16() ‚ÅA32ƒrƒbƒg•“]‘—‚ðs‚í‚¹‚Ä‚¢‚½‚Ì‚ðC³
+  MI_CpuCopy16() ã§ã€32ãƒ“ãƒƒãƒˆå¹…è»¢é€ã‚’è¡Œã‚ã›ã¦ã„ãŸã®ã‚’ä¿®æ­£
 
   Revision 1.16  2003/12/09 08:35:26  yasu
-  ƒƒ‚ƒŠƒ}ƒbƒvŽü‚è‚ðüV
+  ãƒ¡ãƒ¢ãƒªãƒžãƒƒãƒ—å‘¨ã‚Šã‚’åˆ·æ–°
 
   Revision 1.15  2003/11/30 05:50:38  yada
-  DMA“]‘—ƒTƒCƒY‚ª0‚Ìê‡ƒŠƒ^[ƒ“‚·‚é‚æ‚¤‚É‚µ‚½
+  DMAè»¢é€ã‚µã‚¤ã‚ºãŒ0ã®å ´åˆãƒªã‚¿ãƒ¼ãƒ³ã™ã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.14  2003/11/28 01:54:21  yada
-  REDSDK‚Ì03-11-27”½‰f
+  REDSDKã®03-11-27åæ˜ 
 
   Revision 1.13  2003/11/26 09:54:41  yada
   (none)
 
   Revision 1.12  2003/11/26 09:51:17  yada
-  ƒŒƒWƒXƒ^ƒAƒhƒŒƒX‚ª•K—v‚È•”•ª‚É reg_G3X_... ‚ð‹Lq‚µ‚Ä‚¢‚½ƒoƒO‚ðC³
+  ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒå¿…è¦ãªéƒ¨åˆ†ã« reg_G3X_... ã‚’è¨˜è¿°ã—ã¦ã„ãŸãƒã‚°ã‚’ä¿®æ­£
 
   Revision 1.11  2003/11/21 12:35:52  yada
-  ƒŒƒWƒXƒ^ƒAƒhƒŒƒX‚ª•K—v‚È•”•ª‚É reg_MI_... ‚ð‹Lq‚µ‚Ä‚¢‚½ƒoƒO‚ðC³
+  ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒå¿…è¦ãªéƒ¨åˆ†ã« reg_MI_... ã‚’è¨˜è¿°ã—ã¦ã„ãŸãƒã‚°ã‚’ä¿®æ­£
 
   Revision 1.10  2003/11/18 00:22:29  yada
   (none)
 
   Revision 1.9  2003/11/17 02:23:05  yada
-  DMAƒRƒ}ƒ“ƒhŒãAƒEƒFƒCƒg‚µ‚È‚¢ƒ\[ƒXŒ³“¯‚¶‚ÌINLINE‚ðì¬B
+  DMAã‚³ãƒžãƒ³ãƒ‰å¾Œã€ã‚¦ã‚§ã‚¤ãƒˆã—ãªã„ã‚½ãƒ¼ã‚¹å…ƒåŒã˜ã®INLINEã‚’ä½œæˆã€‚
 
   Revision 1.8  2003/11/14 05:22:22  yada
-  DMAŠÖ˜A‚Ì’è‹`‚ðAŠJ‹Z‚Ì‚à‚Ì‚Æ‚ÍŠ®‘S‚É•ª—£‚µ‚½B
-  ‚Ü‚½AƒŒƒWƒXƒ^ƒAƒNƒZƒX‚Ìƒ}ƒNƒ REG_XXX ¨ reg_XXX ‚ÌC³‚ð‚µ‚½B
+  DMAé–¢é€£ã®å®šç¾©ã‚’ã€é–‹æŠ€ã®ã‚‚ã®ã¨ã¯å®Œå…¨ã«åˆ†é›¢ã—ãŸã€‚
+  ã¾ãŸã€ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ã®ãƒžã‚¯ãƒ­ REG_XXX â†’ reg_XXX ã®ä¿®æ­£ã‚’ã—ãŸã€‚
 
   Revision 1.7  2003/11/13 06:48:57  yada
-  DMAˆ—‚Ì’è‹`‚ð‘å•‚É‰ü’èBMI_DmaCopy32(...) ‚È‚ÇB
+  DMAå‡¦ç†ã®å®šç¾©ã‚’å¤§å¹…ã«æ”¹å®šã€‚MI_DmaCopy32(...) ãªã©ã€‚
 
   Revision 1.5  2003/11/12 07:50:37  yada
-  GX, G3X ‚Ì’è‹`C³
+  GX, G3X ã®å®šç¾©ä¿®æ­£
 
   Revision 1.4  2003/11/12 06:37:55  yada
-  ‚Æ‚è‚ ‚¦‚¸AC³‚µ‚½ DMA ŠÖ˜A‚Ìƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ðì¬B
+  ã¨ã‚Šã‚ãˆãšã€ä¿®æ­£ã—ãŸ DMA é–¢é€£ã®ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã€‚
 
   Revision 1.3  2003/11/07 07:52:22  yada
-  MI_DmaSet() ‚ÅADMA0ƒŒƒWƒXƒ^‚ÌƒAƒhƒŒƒXŽw’è‚ðŠÔˆá‚Á‚Ä‚¢‚½‚Ì‚ðC³
+  MI_DmaSet() ã§ã€DMA0ãƒ¬ã‚¸ã‚¹ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹æŒ‡å®šã‚’é–“é•ã£ã¦ã„ãŸã®ã‚’ä¿®æ­£
 
   Revision 1.2  2003/11/06 10:37:04  yada
-  #define ƒ~ƒXC³
+  #define ãƒŸã‚¹ä¿®æ­£
 
   Revision 1.1  2003/11/04 09:09:40  yada
-  ‰”Å
+  åˆç‰ˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	sysflag_def.h
- * @bfief	ƒVƒXƒeƒ€ƒtƒ‰ƒO’è‹`
+ * @bfief	ã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°å®šç¾©
  * @author	Satoshi Nohara
  * @date	06.04.14
  */
@@ -11,107 +11,107 @@
 
 
 //============================================================================================
-//	ƒtƒ‰ƒO’è‹`
+//	ãƒ•ãƒ©ã‚°å®šç¾©
 //
-//	ƒXƒNƒŠƒvƒg			’è‹`‚ð’¼ÚŽQÆ‚µ‚Ä‚æ‚¢I
+//	ã‚¹ã‚¯ãƒªãƒ—ãƒˆ			å®šç¾©ã‚’ç›´æŽ¥å‚ç…§ã—ã¦ã‚ˆã„ï¼
 //
-//	ƒvƒƒOƒ‰ƒ€			sysflag.h‚É‚ ‚éƒAƒNƒZƒXŠÖ”‚ðŽg‚¤I
+//	ãƒ—ãƒ­ã‚°ãƒ©ãƒ 			sysflag.hã«ã‚ã‚‹ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°ã‚’ä½¿ã†ï¼
 //
 //	SYSFLAG_MAX = 320
-//	SYS_FLAG_ARRIVE_START(80) ƒiƒ“ƒo[‚ªd•¡‚µ‚È‚¢‚æ‚¤‚É’ˆÓI
+//	SYS_FLAG_ARRIVE_START(80) ãƒŠãƒ³ãƒãƒ¼ãŒé‡è¤‡ã—ãªã„ã‚ˆã†ã«æ³¨æ„ï¼
 //============================================================================================
-#define	SYS_FLAG_BAG_GET				(SYSFLAG_START+0)		//ƒoƒbƒO“üŽè
-#define	SYS_FLAG_PAIR					(SYSFLAG_START+1)		//˜A‚ê•à‚«ƒtƒ‰ƒO
-#define	SYS_FLAG_KAIRIKI				(SYSFLAG_START+2)		//‚©‚¢‚è‚«ó‘Ôƒtƒ‰ƒO
-#define	SYS_FLAG_FNOTE_GET				(SYSFLAG_START+3)		//–`Œ¯ƒm[ƒg“üŽè
-#define	SYS_FLAG_GAME_CLEAR				(SYSFLAG_START+4)		//ƒQ[ƒ€ƒNƒŠƒA
-#define	SYS_FLAG_ONE_STEP				(SYSFLAG_START+5)		//ˆê•à“®‚¢‚½‚©ƒtƒ‰ƒO
-#define	SYS_FLAG_COMM_COUNTER			(SYSFLAG_START+6)		//’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO
-#define	SYS_FLAG_SAFARI_MODE			(SYSFLAG_START+7)		//ƒTƒtƒ@ƒŠƒ‚[ƒhƒtƒ‰ƒO
-#define	SYS_FLAG_CON_STYLE_MASTER		(SYSFLAG_START+8)		//ƒRƒ“ƒeƒXƒgƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒA
-#define	SYS_FLAG_CON_BEAUTIFUL_MASTER	(SYSFLAG_START+9)		//ƒRƒ“ƒeƒXƒgƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒA
-#define	SYS_FLAG_CON_CUTE_MASTER		(SYSFLAG_START+10)		//ƒRƒ“ƒeƒXƒgƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒA
-#define	SYS_FLAG_CON_CLEVER_MASTER		(SYSFLAG_START+11)		//ƒRƒ“ƒeƒXƒgƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒA
-#define	SYS_FLAG_CON_STRONG_MASTER		(SYSFLAG_START+12)		//ƒRƒ“ƒeƒXƒgƒ}ƒXƒ^[ƒ‰ƒ“ƒNƒNƒŠƒA
-#define	SYS_FLAG_BTL_SEARCHER_USE		(SYSFLAG_START+13)		//ƒoƒgƒ‹ƒT[ƒ`ƒƒ[‚ðŽg—p’†
-#define	SYS_FLAG_UG_ARRIVE				(SYSFLAG_START+14)		//’n‰ºF“ž’…
-#define	SYS_FLAG_UG_DIG					(SYSFLAG_START+15)		//’n‰ºF‰»Î
-#define	SYS_FLAG_UG_TAMA				(SYSFLAG_START+16)		//’n‰ºF‹Ê
-#define	SYS_FLAG_UG_BASE				(SYSFLAG_START+17)		//’n‰ºFŠî’n
-#define	SYS_FLAG_UG_GOODS				(SYSFLAG_START+18)		//’n‰ºF–Í—l‘Ö‚¦
-#define	SYS_FLAG_UG_HATA				(SYSFLAG_START+19)		//’n‰ºFŠø
-#define	SYS_FLAG_GTC_OPEN				(SYSFLAG_START+20)		//Ž{ÝFGTC
-#define	SYS_FLAG_BTOWER_OPEN			(SYSFLAG_START+21)		//Ž{ÝFƒoƒgƒ‹ƒ^ƒ[
+#define	SYS_FLAG_BAG_GET				(SYSFLAG_START+0)		//ãƒãƒƒã‚°å…¥æ‰‹
+#define	SYS_FLAG_PAIR					(SYSFLAG_START+1)		//é€£ã‚Œæ­©ããƒ•ãƒ©ã‚°
+#define	SYS_FLAG_KAIRIKI				(SYSFLAG_START+2)		//ã‹ã„ã‚ŠãçŠ¶æ…‹ãƒ•ãƒ©ã‚°
+#define	SYS_FLAG_FNOTE_GET				(SYSFLAG_START+3)		//å†’é™ºãƒŽãƒ¼ãƒˆå…¥æ‰‹
+#define	SYS_FLAG_GAME_CLEAR				(SYSFLAG_START+4)		//ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢
+#define	SYS_FLAG_ONE_STEP				(SYSFLAG_START+5)		//ä¸€æ­©å‹•ã„ãŸã‹ãƒ•ãƒ©ã‚°
+#define	SYS_FLAG_COMM_COUNTER			(SYSFLAG_START+6)		//é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéŽãƒ•ãƒ©ã‚°
+#define	SYS_FLAG_SAFARI_MODE			(SYSFLAG_START+7)		//ã‚µãƒ•ã‚¡ãƒªãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
+#define	SYS_FLAG_CON_STYLE_MASTER		(SYSFLAG_START+8)		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢
+#define	SYS_FLAG_CON_BEAUTIFUL_MASTER	(SYSFLAG_START+9)		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢
+#define	SYS_FLAG_CON_CUTE_MASTER		(SYSFLAG_START+10)		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢
+#define	SYS_FLAG_CON_CLEVER_MASTER		(SYSFLAG_START+11)		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢
+#define	SYS_FLAG_CON_STRONG_MASTER		(SYSFLAG_START+12)		//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒžã‚¹ã‚¿ãƒ¼ãƒ©ãƒ³ã‚¯ã‚¯ãƒªã‚¢
+#define	SYS_FLAG_BTL_SEARCHER_USE		(SYSFLAG_START+13)		//ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ã‚’ä½¿ç”¨ä¸­
+#define	SYS_FLAG_UG_ARRIVE				(SYSFLAG_START+14)		//åœ°ä¸‹ï¼šåˆ°ç€
+#define	SYS_FLAG_UG_DIG					(SYSFLAG_START+15)		//åœ°ä¸‹ï¼šåŒ–çŸ³
+#define	SYS_FLAG_UG_TAMA				(SYSFLAG_START+16)		//åœ°ä¸‹ï¼šçŽ‰
+#define	SYS_FLAG_UG_BASE				(SYSFLAG_START+17)		//åœ°ä¸‹ï¼šåŸºåœ°
+#define	SYS_FLAG_UG_GOODS				(SYSFLAG_START+18)		//åœ°ä¸‹ï¼šæ¨¡æ§˜æ›¿ãˆ
+#define	SYS_FLAG_UG_HATA				(SYSFLAG_START+19)		//åœ°ä¸‹ï¼šæ——
+#define	SYS_FLAG_GTC_OPEN				(SYSFLAG_START+20)		//æ–½è¨­ï¼šGTC
+#define	SYS_FLAG_BTOWER_OPEN			(SYSFLAG_START+21)		//æ–½è¨­ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 
-/*u‚Ì‚¤—ÍvAu‰Â‚Ì‚¤v“™‚Ìu‚Ì‚¤v‚ÌŠ¿Žš•”•ª‚Ì‹Lq‚ª‚ ‚éê‡
- * ³í‚Émake‚ªs‚í‚ê‚¸Adefine’è‹`‚ª”FŽ¯o—ˆ‚È‚­‚È‚é‚Æ‚¢‚¤ƒoƒO‚ª‚ ‚é*/
-#define	SYS_FLAG_SHIP					(SYSFLAG_START+22)		//‘DŽg—p‰Â‚Ì‚¤
+/*ã€Œã®ã†åŠ›ã€ã€ã€Œå¯ã®ã†ã€ç­‰ã®ã€Œã®ã†ã€ã®æ¼¢å­—éƒ¨åˆ†ã®è¨˜è¿°ãŒã‚ã‚‹å ´åˆ
+ * æ­£å¸¸ã«makeãŒè¡Œã‚ã‚Œãšã€defineå®šç¾©ãŒèªè­˜å‡ºæ¥ãªããªã‚‹ã¨ã„ã†ãƒã‚°ãŒã‚ã‚‹*/
+#define	SYS_FLAG_SHIP					(SYSFLAG_START+22)		//èˆ¹ä½¿ç”¨å¯ã®ã†
 
-#define	SYS_FLAG_TW_ROCKLIFT_ON			(SYSFLAG_START+23)		//”j‚ê‚½¢ŠE Šâ—Ž‚Æ‚µŠ®—¹Œã‚ÌƒŠƒtƒgoŒ»ƒtƒ‰ƒO
-#define	SYS_FLAG_PST					(SYSFLAG_START+24)		//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX@ƒRƒ“ƒeƒXƒg‹Z
-#define	SYS_FLAG_POKEPARK_MODE			(SYSFLAG_START+25)		//ƒ|ƒPƒp[ƒNƒ‚[ƒhƒtƒ‰ƒO
-#define SYS_FLAG_FLASH					(SYSFLAG_START+26)		//ƒtƒ‰ƒbƒVƒ…ó‘Ôƒtƒ‰ƒO
-#define	SYS_FLAG_KIRIBARAI				(SYSFLAG_START+27)		//–¶•¥‚¢ó‘Ôƒtƒ‰ƒO
-#define	SYS_FLAG_POKETCH_HOOK			(SYSFLAG_START+28)		//ƒ|ƒPƒbƒ`—}Ž~ƒtƒ‰ƒO
-#define	SYS_FLAG_REIAIHAI				(SYSFLAG_START+29)		//ƒŒƒCƒAƒCƒnƒC‹~oƒtƒ‰ƒO
-#define	SYS_FLAG_MIZUKI					(SYSFLAG_START+30)		//ƒ~ƒYƒLƒtƒ‰ƒO(PCŠÇ—ŽÒ)
-#define	SYS_FLAG_BS_LV1					(SYSFLAG_START+31)		//ƒoƒgƒ‹ƒT[ƒ`ƒƒ[LV1
-#define	SYS_FLAG_BS_LV2					(SYSFLAG_START+32)		//ƒoƒgƒ‹ƒT[ƒ`ƒƒ[LV2
-#define	SYS_FLAG_BS_LV3					(SYSFLAG_START+33)		//ƒoƒgƒ‹ƒT[ƒ`ƒƒ[LV3
-#define	SYS_FLAG_BS_LV4					(SYSFLAG_START+34)		//ƒoƒgƒ‹ƒT[ƒ`ƒƒ[LV4
-#define	SYS_FLAG_BS_LV5					(SYSFLAG_START+35)		//ƒoƒgƒ‹ƒT[ƒ`ƒƒ[LV5
-#define	SYS_FLAG_BGM_D28				(SYSFLAG_START+36)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-#define	SYS_FLAG_BGM_GINGA				(SYSFLAG_START+37)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-#define	SYS_FLAG_BGM_D26				(SYSFLAG_START+38)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-#define	SYS_FLAG_BGM_C04				(SYSFLAG_START+39)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-#define	SYS_FLAG_BGM_D02				(SYSFLAG_START+40)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-#define	SYS_FLAG_BGM_D13				(SYSFLAG_START+41)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-#define	SYS_FLAG_BGM_R224				(SYSFLAG_START+42)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-#define	SYS_FLAG_BGM_C10				(SYSFLAG_START+43)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-#define	SYS_FLAG_WIFI_USE				(SYSFLAG_START+44)		//WiFi‚ÉŒq‚¢‚¾
-#define	SYS_FLAG_T05_GINGA_EVENT		(SYSFLAG_START+45)		//ƒJƒ“ƒiƒM‚ÌƒMƒ“ƒK’cƒCƒxƒ“ƒg
-#define	SYS_FLAG_BGM_D27				(SYSFLAG_START+46)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-#define	SYS_FLAG_BGM_D29				(SYSFLAG_START+47)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-#define	SYS_FLAG_BGM_D16				(SYSFLAG_START+48)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-#define	SYS_FLAG_BGM_C02				(SYSFLAG_START+49)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-#define	SYS_FLAG_UG_FIRST				(SYSFLAG_START+50)		//’n‰º‰‰ñƒCƒxƒ“ƒg
-#define	SYS_FLAG_BGM_T02				(SYSFLAG_START+51)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-//ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh“à‚Åƒ`ƒFƒbƒN‚ð’Ê‰ß‚µ‚½ƒtƒ‰ƒO(ƒXƒNƒŠƒvƒg”»’è—p)
+#define	SYS_FLAG_TW_ROCKLIFT_ON			(SYSFLAG_START+23)		//ç ´ã‚ŒãŸä¸–ç•Œ å²©è½ã¨ã—å®Œäº†å¾Œã®ãƒªãƒ•ãƒˆå‡ºç¾ãƒ•ãƒ©ã‚°
+#define	SYS_FLAG_PST					(SYSFLAG_START+24)		//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã€€ã‚³ãƒ³ãƒ†ã‚¹ãƒˆæŠ€
+#define	SYS_FLAG_POKEPARK_MODE			(SYSFLAG_START+25)		//ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
+#define SYS_FLAG_FLASH					(SYSFLAG_START+26)		//ãƒ•ãƒ©ãƒƒã‚·ãƒ¥çŠ¶æ…‹ãƒ•ãƒ©ã‚°
+#define	SYS_FLAG_KIRIBARAI				(SYSFLAG_START+27)		//éœ§æ‰•ã„çŠ¶æ…‹ãƒ•ãƒ©ã‚°
+#define	SYS_FLAG_POKETCH_HOOK			(SYSFLAG_START+28)		//ãƒã‚±ãƒƒãƒæŠ‘æ­¢ãƒ•ãƒ©ã‚°
+#define	SYS_FLAG_REIAIHAI				(SYSFLAG_START+29)		//ãƒ¬ã‚¤ã‚¢ã‚¤ãƒã‚¤æ•‘å‡ºãƒ•ãƒ©ã‚°
+#define	SYS_FLAG_MIZUKI					(SYSFLAG_START+30)		//ãƒŸã‚ºã‚­ãƒ•ãƒ©ã‚°(PCç®¡ç†è€…)
+#define	SYS_FLAG_BS_LV1					(SYSFLAG_START+31)		//ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼LV1
+#define	SYS_FLAG_BS_LV2					(SYSFLAG_START+32)		//ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼LV2
+#define	SYS_FLAG_BS_LV3					(SYSFLAG_START+33)		//ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼LV3
+#define	SYS_FLAG_BS_LV4					(SYSFLAG_START+34)		//ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼LV4
+#define	SYS_FLAG_BS_LV5					(SYSFLAG_START+35)		//ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼LV5
+#define	SYS_FLAG_BGM_D28				(SYSFLAG_START+36)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+#define	SYS_FLAG_BGM_GINGA				(SYSFLAG_START+37)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+#define	SYS_FLAG_BGM_D26				(SYSFLAG_START+38)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+#define	SYS_FLAG_BGM_C04				(SYSFLAG_START+39)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+#define	SYS_FLAG_BGM_D02				(SYSFLAG_START+40)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+#define	SYS_FLAG_BGM_D13				(SYSFLAG_START+41)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+#define	SYS_FLAG_BGM_R224				(SYSFLAG_START+42)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+#define	SYS_FLAG_BGM_C10				(SYSFLAG_START+43)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+#define	SYS_FLAG_WIFI_USE				(SYSFLAG_START+44)		//WiFiã«ç¹‹ã„ã 
+#define	SYS_FLAG_T05_GINGA_EVENT		(SYSFLAG_START+45)		//ã‚«ãƒ³ãƒŠã‚®ã®ã‚®ãƒ³ã‚¬å›£ã‚¤ãƒ™ãƒ³ãƒˆ
+#define	SYS_FLAG_BGM_D27				(SYSFLAG_START+46)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+#define	SYS_FLAG_BGM_D29				(SYSFLAG_START+47)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+#define	SYS_FLAG_BGM_D16				(SYSFLAG_START+48)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+#define	SYS_FLAG_BGM_C02				(SYSFLAG_START+49)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+#define	SYS_FLAG_UG_FIRST				(SYSFLAG_START+50)		//åœ°ä¸‹åˆå›žã‚¤ãƒ™ãƒ³ãƒˆ
+#define	SYS_FLAG_BGM_T02				(SYSFLAG_START+51)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+//ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰å†…ã§ãƒã‚§ãƒƒã‚¯ã‚’é€šéŽã—ãŸãƒ•ãƒ©ã‚°(ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¤å®šç”¨)
 #define SYS_FLAG_CYCLINGROAD			(SYSFLAG_START+52)		//
-#define	SYS_FLAG_BGM_D10				(SYSFLAG_START+53)		//ƒCƒxƒ“ƒgBGMØ‚è‘Ö‚¦
-//ƒTƒCƒNƒŠƒ“ƒOƒ[ƒhƒQ[ƒg“à‚Ì”¼•ª‚ð’Ê‰ß‚µ‚½‚©ƒtƒ‰ƒO(ƒQ[ƒg“à‚Ì‚Ý—LŒø)
+#define	SYS_FLAG_BGM_D10				(SYSFLAG_START+53)		//ã‚¤ãƒ™ãƒ³ãƒˆBGMåˆ‡ã‚Šæ›¿ãˆ
+//ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ã‚²ãƒ¼ãƒˆå†…ã®åŠåˆ†ã‚’é€šéŽã—ãŸã‹ãƒ•ãƒ©ã‚°(ã‚²ãƒ¼ãƒˆå†…ã®ã¿æœ‰åŠ¹)
 #define	SYS_FLAG_BICYCLE_GATE			(SYSFLAG_START+54)		//
-#define	SYS_FLAG_FURNITURE_01			(SYSFLAG_START+55)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_02			(SYSFLAG_START+56)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_03			(SYSFLAG_START+57)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_04			(SYSFLAG_START+58)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_05			(SYSFLAG_START+59)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_06			(SYSFLAG_START+60)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_07			(SYSFLAG_START+61)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_08			(SYSFLAG_START+62)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_09			(SYSFLAG_START+63)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_10			(SYSFLAG_START+64)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_11			(SYSFLAG_START+65)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_12			(SYSFLAG_START+66)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_13			(SYSFLAG_START+67)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_14			(SYSFLAG_START+68)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_15			(SYSFLAG_START+69)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_16			(SYSFLAG_START+70)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_17			(SYSFLAG_START+71)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_18			(SYSFLAG_START+72)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_19			(SYSFLAG_START+73)		//‰Æ‹ï
-#define	SYS_FLAG_FURNITURE_20			(SYSFLAG_START+74)		//‰Æ‹ï
-#define	SYS_FLAG_T07_OBJ_IN				(SYSFLAG_START+75)		//ŠO‚É‚¢‚éOBJ‚ª’†‚É“ü‚Á‚½
-#define	SYS_FLAG_T07R0201_POS_APPEAR	(SYSFLAG_START+76)		//POS‚ÅOBJ‚ª•\Ž¦‚³‚ê‚Ä‚¢‚é
-#define SYS_FLAG_TW_ROCK_FINISH			(SYSFLAG_START+77)		//”j‚ê‚½¢ŠE Šâ—Ž‚Æ‚µŠ®—¹
-#define SYS_FLAG_TW_GIRAS_0500			(SYSFLAG_START+78)		//”j‚ê‚½¢ŠE ƒMƒ‰ƒeƒBƒi‰e
-#define SYS_FLAG_TW_GIRAS_0501			(SYSFLAG_START+79)		//”j‚ê‚½¢ŠE ƒMƒ‰ƒeƒBƒi‰e
+#define	SYS_FLAG_FURNITURE_01			(SYSFLAG_START+55)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_02			(SYSFLAG_START+56)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_03			(SYSFLAG_START+57)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_04			(SYSFLAG_START+58)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_05			(SYSFLAG_START+59)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_06			(SYSFLAG_START+60)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_07			(SYSFLAG_START+61)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_08			(SYSFLAG_START+62)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_09			(SYSFLAG_START+63)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_10			(SYSFLAG_START+64)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_11			(SYSFLAG_START+65)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_12			(SYSFLAG_START+66)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_13			(SYSFLAG_START+67)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_14			(SYSFLAG_START+68)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_15			(SYSFLAG_START+69)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_16			(SYSFLAG_START+70)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_17			(SYSFLAG_START+71)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_18			(SYSFLAG_START+72)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_19			(SYSFLAG_START+73)		//å®¶å…·
+#define	SYS_FLAG_FURNITURE_20			(SYSFLAG_START+74)		//å®¶å…·
+#define	SYS_FLAG_T07_OBJ_IN				(SYSFLAG_START+75)		//å¤–ã«ã„ã‚‹OBJãŒä¸­ã«å…¥ã£ãŸ
+#define	SYS_FLAG_T07R0201_POS_APPEAR	(SYSFLAG_START+76)		//POSã§OBJãŒè¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹
+#define SYS_FLAG_TW_ROCK_FINISH			(SYSFLAG_START+77)		//ç ´ã‚ŒãŸä¸–ç•Œ å²©è½ã¨ã—å®Œäº†
+#define SYS_FLAG_TW_GIRAS_0500			(SYSFLAG_START+78)		//ç ´ã‚ŒãŸä¸–ç•Œ ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±
+#define SYS_FLAG_TW_GIRAS_0501			(SYSFLAG_START+79)		//ç ´ã‚ŒãŸä¸–ç•Œ ã‚®ãƒ©ãƒ†ã‚£ãƒŠå½±
 
 //--------------------------------------------------------------------------------------------
-//“ž’…ƒtƒ‰ƒO‘€ì—p’è‹`
+//åˆ°ç€ãƒ•ãƒ©ã‚°æ“ä½œç”¨å®šç¾©
 //
 //	SYSFLAG_MAX = 320
-//	SYS_FLAG_ARRIVE_START(80) + FLAG_ARRIVE_MAX(66) = 146 ’´‚¦‚È‚¢‚æ‚¤‚É’ˆÓI
+//	SYS_FLAG_ARRIVE_START(80) + FLAG_ARRIVE_MAX(66) = 146 è¶…ãˆãªã„ã‚ˆã†ã«æ³¨æ„ï¼
 //--------------------------------------------------------------------------------------------
 #define	SYS_FLAG_ARRIVE_START			(SYSFLAG_START+80)
 
@@ -134,82 +134,82 @@
 #define	FLAG_ARRIVE_C10		(16)
 #define	FLAG_ARRIVE_C11		(17)
 
-//060525 Ž{Ý“ž’…ƒtƒ‰ƒO’Ç‰Á
-#define FLAG_ARRIVE_D01R0101	(18)	//ƒNƒƒKƒl’Yz//
-#define FLAG_ARRIVE_D02R0101	(19)	//’JŠÔ‚Ì”­“dŠ//
-#define FLAG_ARRIVE_D03			(20)	//ƒtƒ‰ƒO•s—v//ƒnƒNƒ^ƒC‚ÌX
-#define FLAG_ARRIVE_D04R0101	(21)	//ƒ^ƒ^ƒ‰»“SŠ//
-#define FLAG_ARRIVE_D05			(22)	//ƒtƒ‰ƒO•s—v//“VŠ¥ŽR
-#define FLAG_ARRIVE_D05R0114	(23)	//‘„‚Ì’Œ//
-#define FLAG_ARRIVE_D06			(24)	//ƒtƒ‰ƒO•s—v//‘åŽ¼Œ´
-#define FLAG_ARRIVE_D07R0102	(25)	//ƒYƒC‚ÌˆâÕ//
-#define FLAG_ARRIVE_D09R0101	(26)	//ƒ`ƒƒƒ“ƒsƒIƒ“ƒ[ƒh//
-#define FLAG_ARRIVE_D10R0101	(27)	//ƒ|ƒPƒ‚ƒ“ƒp[ƒN//
-#define FLAG_ARRIVE_D11R0101	(28)	//G‚ê‚ ‚¢Lê//
-#define FLAG_ARRIVE_D12R0101	(29)	//r‚ê‚½”²‚¯“¹//
-#define FLAG_ARRIVE_D13R0101	(30)	//ƒ\ƒmƒI‚Ì‰Ô”¨//
-#define FLAG_ARRIVE_D14R0101	(31)	//ƒNƒƒKƒlƒQ[ƒg//
-#define FLAG_ARRIVE_D15			(32)	//‰B‚µƒ}ƒbƒvƒtƒ‰ƒO//‰B‚µƒ|ƒPƒ‚ƒ“uƒ€[ƒoƒXv‚Ì“‡
-#define FLAG_ARRIVE_D16			(33)	//ƒtƒ‰ƒO•s—v//‰ÎŽR
-#define FLAG_ARRIVE_D16R0101	(34)	//ƒn[ƒhƒ}ƒEƒ“ƒeƒ“i‰ÎŽR“´ŒAj//
-#define FLAG_ARRIVE_D17			(35)	//‰B‚µƒ}ƒbƒvƒtƒ‰ƒO//‘—‚è‚Ìòi‚k‚O‚SŒÎj
-#define FLAG_ARRIVE_D17R0102	(36)	//–ß‚è‚Ì“´ŒA//
-#define FLAG_ARRIVE_D18			(37)	//‰B‚µƒ}ƒbƒvƒtƒ‰ƒO//”z•zƒ|ƒPƒ‚ƒ“uƒGƒEƒŠƒXv‚Ì“‡B
-#define FLAG_ARRIVE_D20R0101	(38)	//ƒLƒbƒTƒL_“a//
-#define FLAG_ARRIVE_D21R0101	(39)	//–À‚¢‚Ì“´ŒA//
-#define FLAG_ARRIVE_D22R0101	(40)	//ˆâÕƒ}ƒjƒA‚ÌŒŠ//
-#define FLAG_ARRIVE_D23R0101	(41)	//Ž©–‚Ì— ’ë//
-#define FLAG_ARRIVE_D24			(42)	//ƒtƒ‰ƒO•s—v//|“S“‡
-#define FLAG_ARRIVE_D24R0101	(43)	//zŽR//
-#define FLAG_ARRIVE_D25R0101	(44)	//X‚Ì—mŠÙ//
-#define FLAG_ARRIVE_D26R0101	(45)	//ƒMƒ“ƒK’cƒAƒWƒg//
-#define FLAG_ARRIVE_D27			(46)	//ƒtƒ‰ƒO•s—v//‚k‚O‚PŒÎ
-#define FLAG_ARRIVE_D27R0103	(47)	//‚k‚O‚PŒÎ‚Ì“à•”“´ŒA//
-#define FLAG_ARRIVE_D28			(48)	//ƒtƒ‰ƒO•s—v//‚k‚O‚QŒÎ
-#define FLAG_ARRIVE_D28R0103	(49)	//‚k‚O‚QŒÎ‚Ì“à•”“´ŒA//
-#define FLAG_ARRIVE_D29			(50)	//ƒtƒ‰ƒO•s—v//‚k‚O‚RŒÎ
-#define FLAG_ARRIVE_D29R0103	(51)	//‚k‚O‚RŒÎ‚Ì“à•”“´ŒA//
-#define FLAG_ARRIVE_D30			(52)	//‰B‚µƒ}ƒbƒvƒtƒ‰ƒO//”z•zƒ|ƒPƒ‚ƒ“uƒ_[ƒNv‚Ì“‡
-#define FLAG_ARRIVE_D32R0101	(53)	//ƒoƒgƒ‹ƒ^ƒ[Žó•tƒQ[ƒg//(c11r0101)
-#define FLAG_ARRIVE_R206		(54)	//ƒtƒ‰ƒO•s—v//ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh
-#define FLAG_ARRIVE_R208R0101	(55)	//–Ø‚ÌŽÀ–ê//
-#define FLAG_ARRIVE_R209R0101	(56)	//ƒƒXƒgƒ^ƒ[//
-#define FLAG_ARRIVE_R210AR0101	(57)	//‹i’ƒ“X//
-#define FLAG_ARRIVE_R210BR0101	(58)	//Å‹­ƒhƒ‰ƒSƒ“‹Z‹³‚¦‚Ì‰Æ//
-#define FLAG_ARRIVE_R212AR0101	(59)	//ƒ|ƒPƒ‚ƒ“‰®•~‚Æ— ’ë//
-#define FLAG_ARRIVE_R212BR0101	(60)	//‚©‚¯‚ç‚Æ“¹‹ï‚ðŒðŠ·‚µ‚Ä‚­‚ê‚é–¯‰Æ//
-#define FLAG_ARRIVE_R213R0201	(61)	//‘«Õ”ŽŽm‚Ì‰Æ//
-#define FLAG_ARRIVE_L02R0101	(62)	//ƒzƒeƒ‹ƒŒƒXƒgƒ‰ƒ“//
-#define FLAG_ARRIVE_R222R0101	(63)	//’Þ‚èƒIƒ„ƒW‚Ì‰Æ//
-#define FLAG_ARRIVE_R222R0201	(64)	//‘å‚«‚³”ä‚×‚Ì‰Æ//
-#define FLAG_ARRIVE_W226R0101	(65)	//ŠCŠO”Åƒ|ƒPƒ‚ƒ“‚ÆŒðŠ·‚µ‚Ä‚­‚ê‚ée•ƒ//
+//060525 æ–½è¨­åˆ°ç€ãƒ•ãƒ©ã‚°è¿½åŠ 
+#define FLAG_ARRIVE_D01R0101	(18)	//ã‚¯ãƒ­ã‚¬ãƒç‚­é‰±//
+#define FLAG_ARRIVE_D02R0101	(19)	//è°·é–“ã®ç™ºé›»æ‰€//
+#define FLAG_ARRIVE_D03			(20)	//ãƒ•ãƒ©ã‚°ä¸è¦//ãƒã‚¯ã‚¿ã‚¤ã®æ£®
+#define FLAG_ARRIVE_D04R0101	(21)	//ã‚¿ã‚¿ãƒ©è£½é‰„æ‰€//
+#define FLAG_ARRIVE_D05			(22)	//ãƒ•ãƒ©ã‚°ä¸è¦//å¤©å† å±±
+#define FLAG_ARRIVE_D05R0114	(23)	//æ§ã®æŸ±//
+#define FLAG_ARRIVE_D06			(24)	//ãƒ•ãƒ©ã‚°ä¸è¦//å¤§æ¹¿åŽŸ
+#define FLAG_ARRIVE_D07R0102	(25)	//ã‚ºã‚¤ã®éºè·¡//
+#define FLAG_ARRIVE_D09R0101	(26)	//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ãƒ­ãƒ¼ãƒ‰//
+#define FLAG_ARRIVE_D10R0101	(27)	//ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ã‚¯//
+#define FLAG_ARRIVE_D11R0101	(28)	//è§¦ã‚Œã‚ã„åºƒå ´//
+#define FLAG_ARRIVE_D12R0101	(29)	//è’ã‚ŒãŸæŠœã‘é“//
+#define FLAG_ARRIVE_D13R0101	(30)	//ã‚½ãƒŽã‚ªã®èŠ±ç•‘//
+#define FLAG_ARRIVE_D14R0101	(31)	//ã‚¯ãƒ­ã‚¬ãƒã‚²ãƒ¼ãƒˆ//
+#define FLAG_ARRIVE_D15			(32)	//éš ã—ãƒžãƒƒãƒ—ãƒ•ãƒ©ã‚°//éš ã—ãƒã‚±ãƒ¢ãƒ³ã€Œãƒ ãƒ¼ãƒã‚¹ã€ã®å³¶
+#define FLAG_ARRIVE_D16			(33)	//ãƒ•ãƒ©ã‚°ä¸è¦//ç«å±±
+#define FLAG_ARRIVE_D16R0101	(34)	//ãƒãƒ¼ãƒ‰ãƒžã‚¦ãƒ³ãƒ†ãƒ³ï¼ˆç«å±±æ´žçªŸï¼‰//
+#define FLAG_ARRIVE_D17			(35)	//éš ã—ãƒžãƒƒãƒ—ãƒ•ãƒ©ã‚°//é€ã‚Šã®æ³‰ï¼ˆï¼¬ï¼ï¼”æ¹–ï¼‰
+#define FLAG_ARRIVE_D17R0102	(36)	//æˆ»ã‚Šã®æ´žçªŸ//
+#define FLAG_ARRIVE_D18			(37)	//éš ã—ãƒžãƒƒãƒ—ãƒ•ãƒ©ã‚°//é…å¸ƒãƒã‚±ãƒ¢ãƒ³ã€Œã‚¨ã‚¦ãƒªã‚¹ã€ã®å³¶ã€‚
+#define FLAG_ARRIVE_D20R0101	(38)	//ã‚­ãƒƒã‚µã‚­ç¥žæ®¿//
+#define FLAG_ARRIVE_D21R0101	(39)	//è¿·ã„ã®æ´žçªŸ//
+#define FLAG_ARRIVE_D22R0101	(40)	//éºè·¡ãƒžãƒ‹ã‚¢ã®ç©´//
+#define FLAG_ARRIVE_D23R0101	(41)	//è‡ªæ…¢ã®è£åº­//
+#define FLAG_ARRIVE_D24			(42)	//ãƒ•ãƒ©ã‚°ä¸è¦//é‹¼é‰„å³¶
+#define FLAG_ARRIVE_D24R0101	(43)	//é‰±å±±//
+#define FLAG_ARRIVE_D25R0101	(44)	//æ£®ã®æ´‹é¤¨//
+#define FLAG_ARRIVE_D26R0101	(45)	//ã‚®ãƒ³ã‚¬å›£ã‚¢ã‚¸ãƒˆ//
+#define FLAG_ARRIVE_D27			(46)	//ãƒ•ãƒ©ã‚°ä¸è¦//ï¼¬ï¼ï¼‘æ¹–
+#define FLAG_ARRIVE_D27R0103	(47)	//ï¼¬ï¼ï¼‘æ¹–ã®å†…éƒ¨æ´žçªŸ//
+#define FLAG_ARRIVE_D28			(48)	//ãƒ•ãƒ©ã‚°ä¸è¦//ï¼¬ï¼ï¼’æ¹–
+#define FLAG_ARRIVE_D28R0103	(49)	//ï¼¬ï¼ï¼’æ¹–ã®å†…éƒ¨æ´žçªŸ//
+#define FLAG_ARRIVE_D29			(50)	//ãƒ•ãƒ©ã‚°ä¸è¦//ï¼¬ï¼ï¼“æ¹–
+#define FLAG_ARRIVE_D29R0103	(51)	//ï¼¬ï¼ï¼“æ¹–ã®å†…éƒ¨æ´žçªŸ//
+#define FLAG_ARRIVE_D30			(52)	//éš ã—ãƒžãƒƒãƒ—ãƒ•ãƒ©ã‚°//é…å¸ƒãƒã‚±ãƒ¢ãƒ³ã€Œãƒ€ãƒ¼ã‚¯ã€ã®å³¶
+#define FLAG_ARRIVE_D32R0101	(53)	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å—ä»˜ã‚²ãƒ¼ãƒˆ//(c11r0101)
+#define FLAG_ARRIVE_R206		(54)	//ãƒ•ãƒ©ã‚°ä¸è¦//ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰
+#define FLAG_ARRIVE_R208R0101	(55)	//æœ¨ã®å®Ÿçˆº//
+#define FLAG_ARRIVE_R209R0101	(56)	//ãƒ­ã‚¹ãƒˆã‚¿ãƒ¯ãƒ¼//
+#define FLAG_ARRIVE_R210AR0101	(57)	//å–«èŒ¶åº—//
+#define FLAG_ARRIVE_R210BR0101	(58)	//æœ€å¼·ãƒ‰ãƒ©ã‚´ãƒ³æŠ€æ•™ãˆã®å®¶//
+#define FLAG_ARRIVE_R212AR0101	(59)	//ãƒã‚±ãƒ¢ãƒ³å±‹æ•·ã¨è£åº­//
+#define FLAG_ARRIVE_R212BR0101	(60)	//ã‹ã‘ã‚‰ã¨é“å…·ã‚’äº¤æ›ã—ã¦ãã‚Œã‚‹æ°‘å®¶//
+#define FLAG_ARRIVE_R213R0201	(61)	//è¶³è·¡åšå£«ã®å®¶//
+#define FLAG_ARRIVE_L02R0101	(62)	//ãƒ›ãƒ†ãƒ«ãƒ¬ã‚¹ãƒˆãƒ©ãƒ³//
+#define FLAG_ARRIVE_R222R0101	(63)	//é‡£ã‚Šã‚ªãƒ¤ã‚¸ã®å®¶//
+#define FLAG_ARRIVE_R222R0201	(64)	//å¤§ãã•æ¯”ã¹ã®å®¶//
+#define FLAG_ARRIVE_W226R0101	(65)	//æµ·å¤–ç‰ˆãƒã‚±ãƒ¢ãƒ³ã¨äº¤æ›ã—ã¦ãã‚Œã‚‹è¦ªçˆ¶//
 
-#define	FLAG_ARRIVE_R221		(66)	//ƒ|ƒPƒp[ƒNŽ{Ý//
-#define	FLAG_ARRIVE_R221R0101	(67)	//ƒ|ƒPƒp[ƒNŽó•t//
-#define	FLAG_ARRIVE_CHAMPLEAGUE	(68)	//ƒ`ƒƒƒ“ƒsƒIƒ“ƒŠ[ƒO//
+#define	FLAG_ARRIVE_R221		(66)	//ãƒã‚±ãƒ‘ãƒ¼ã‚¯æ–½è¨­//
+#define	FLAG_ARRIVE_R221R0101	(67)	//ãƒã‚±ãƒ‘ãƒ¼ã‚¯å—ä»˜//
+#define	FLAG_ARRIVE_CHAMPLEAGUE	(68)	//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ãƒªãƒ¼ã‚°//
 
 #define	FLAG_ARRIVE_MAX			(69)
 
 
-//ƒtƒ‰ƒO‚ÌÅ‘å”‚È‚ÇŠm”F‚·‚éI
+//ãƒ•ãƒ©ã‚°ã®æœ€å¤§æ•°ãªã©ç¢ºèªã™ã‚‹ï¼
 
 
 //============================================================================================
 //
 //============================================================================================
-//ƒoƒbƒW‹¤’Ê’è‹`(MyStatus_GetBadgeFlag)
-#define BADGE_ID_C03			(0)						//ƒNƒƒKƒl
-#define BADGE_ID_C04			(1)						//ƒnƒNƒ^ƒC
-#define BADGE_ID_C07			(2)						//ƒgƒpƒŠ
-#define BADGE_ID_C06			(3)						//ƒmƒ‚ƒZ
-#define BADGE_ID_C05			(4)						//ƒˆƒXƒK
-#define BADGE_ID_C02			(5)						//ƒ~ƒI
-#define BADGE_ID_C09			(6)						//ƒLƒbƒTƒL
-#define BADGE_ID_C08			(7)						//ƒiƒMƒT
-#define BADGE_MAX				(8)						//ƒoƒbƒWÅ‘å”
+//ãƒãƒƒã‚¸å…±é€šå®šç¾©(MyStatus_GetBadgeFlag)
+#define BADGE_ID_C03			(0)						//ã‚¯ãƒ­ã‚¬ãƒ
+#define BADGE_ID_C04			(1)						//ãƒã‚¯ã‚¿ã‚¤
+#define BADGE_ID_C07			(2)						//ãƒˆãƒ‘ãƒª
+#define BADGE_ID_C06			(3)						//ãƒŽãƒ¢ã‚»
+#define BADGE_ID_C05			(4)						//ãƒ¨ã‚¹ã‚¬
+#define BADGE_ID_C02			(5)						//ãƒŸã‚ª
+#define BADGE_ID_C09			(6)						//ã‚­ãƒƒã‚µã‚­
+#define BADGE_ID_C08			(7)						//ãƒŠã‚®ã‚µ
+#define BADGE_MAX				(8)						//ãƒãƒƒã‚¸æœ€å¤§æ•°
 
-//•Ê‘‘@‰Æ‹ïÅ‘å”
-#define VILLA_FTURE_MAX			(20)					//•Ê‘‘@‰Æ‹ïÅ‘å”
+//åˆ¥è˜ã€€å®¶å…·æœ€å¤§æ•°
+#define VILLA_FTURE_MAX			(20)					//åˆ¥è˜ã€€å®¶å…·æœ€å¤§æ•°
 
 #endif	//__SYSFLAG_DEF_H__
 

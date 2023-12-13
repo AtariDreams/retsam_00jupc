@@ -2,7 +2,7 @@
 /**
  *
  *@file		res_manager.c
- *@brief	ƒŠƒ\[ƒXŠÇ—ƒ}ƒl[ƒWƒƒ[
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
  *@author	tomoya takahashi
  *@data		2005.08.29
  *
@@ -21,60 +21,60 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒŠƒ\[ƒXƒwƒbƒ_[ŒÂX‚Ìƒf[ƒ^
+//	ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼å€‹ã€…ã®ãƒ‡ãƒ¼ã‚¿
 //
-//	“o˜^ƒf[ƒ^‚ğ‚Ü‚Æ‚ß‚½ƒf[ƒ^‚Å‚·
+//	ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ã‚’ã¾ã¨ã‚ãŸãƒ‡ãƒ¼ã‚¿ã§ã™
 //	
 //=====================================
 typedef struct _RES_HEADER_SUB{
-	int		id;				// ŠÇ—ID
-	char	file_path[64];	// ƒtƒ@ƒCƒ‹ƒpƒX
+	int		id;				// ç®¡ç†ID
+	char	file_path[64];	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 } RES_HEADER_SUB;
 
 //-------------------------------------
 //	
-//	ƒŠƒ\[ƒXƒwƒbƒ_[‚Ìƒf[ƒ^
+//	ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼ã®ãƒ‡ãƒ¼ã‚¿
 //
-//	ŒÂX‚Ìƒf[ƒ^‚ğ‚Ü‚Æ‚ß‚½ƒf[ƒ^
+//	å€‹ã€…ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã¾ã¨ã‚ãŸãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct _RES_HEADER{
-	RES_HEADER_SUB* tbl;	// ŒÂX‚Ìƒf[ƒ^ƒe[ƒuƒ‹
-	int				num;	// ƒe[ƒuƒ‹”
+	RES_HEADER_SUB* tbl;	// å€‹ã€…ã®ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+	int				num;	// ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
 } RES_HEADER;
 
 
 //-------------------------------------
 //	
-//	“Ç‚İ‚Ü‚ê‚½ƒŠƒ\[ƒX‚Ìƒf[ƒ^
+//	èª­ã¿è¾¼ã¾ã‚ŒãŸãƒªã‚½ãƒ¼ã‚¹ã®ãƒ‡ãƒ¼ã‚¿
 //	
 //=====================================
 typedef struct _RES_OBJ{
-	int		id;		// ŠÇ—ID
-	void*	p_res;	// ƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+	int		id;		// ç®¡ç†ID
+	void*	p_res;	// ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
 } RES_OBJ;
 
 //-------------------------------------
 //	
-//	ƒŠƒ\[ƒXŠÇ—ƒ}ƒl[ƒWƒƒ[
-//	ŠÇ—ƒf[ƒ^\‘¢‘Ì
+//	ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//	ç®¡ç†ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct _RES_MANAGER{
-	RES_OBJ*	p_work;		// ƒŠƒ\[ƒXŠi”[ƒe[ƒuƒ‹
-	int			max;		// ‰Â”\Ši”[”
-	int			now;		// Œ»İŠi”[”
+	RES_OBJ*	p_work;		// ãƒªã‚½ãƒ¼ã‚¹æ ¼ç´ãƒ†ãƒ¼ãƒ–ãƒ«
+	int			max;		// å¯èƒ½æ ¼ç´æ•°
+	int			now;		// ç¾åœ¨æ ¼ç´æ•°
 } RES_MANAGER;
 
 
@@ -83,32 +83,32 @@ typedef struct _RES_MANAGER{
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXŒÀ’èƒ}ƒl[ƒWƒƒ
+*		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹é™å®šãƒãƒãƒ¼ã‚¸ãƒ£
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
+//	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
 //	
 //=====================================
 typedef struct _TEXRES_OBJ{
-	RES_OBJ*		resobj;		// ƒŠƒ\[ƒXƒIƒuƒWƒF
-	NNSGfdTexKey	texKey;		// ƒeƒNƒXƒ`ƒƒƒL[
-	NNSGfdTexKey	tex4x4Key;	// 4x4ƒeƒNƒXƒ`ƒƒƒL[
-	NNSGfdPlttKey	plttKey;	// ƒpƒŒƒbƒgƒL[
-	void*			p_cutTex;	// ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^”jŠü—pƒŠƒ\[ƒX
-	u16				cut_flag;	// ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^‚ğ”jŠü‚µ‚½‚©
-	u16				cuttex_flag;// ƒeƒNƒXƒ`ƒƒƒJƒbƒg‚Ì—L–³
+	RES_OBJ*		resobj;		// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+	NNSGfdTexKey	texKey;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+	NNSGfdTexKey	tex4x4Key;	// 4x4ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+	NNSGfdPlttKey	plttKey;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
+	void*			p_cutTex;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ç ´æ£„ç”¨ãƒªã‚½ãƒ¼ã‚¹
+	u16				cut_flag;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã—ãŸã‹
+	u16				cuttex_flag;// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚«ãƒƒãƒˆã®æœ‰ç„¡
 } TEXRES_OBJ;
 
 //-------------------------------------
 //	
-//	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+//	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
 //	
 //=====================================
 typedef struct _TEXRES_MANAGER{
-	RES_MANAGER*	resm;	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	TEXRES_OBJ*		tobj;	// ƒeƒNƒXƒ`ƒƒƒIƒuƒWƒFƒf[ƒ^
+	RES_MANAGER*	resm;	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	TEXRES_OBJ*		tobj;	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
 } TEXRES_MANAGER;
 
 
@@ -117,7 +117,7 @@ typedef struct _TEXRES_MANAGER{
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static RES_OBJ_PTR getCleanRES_OBJ(RES_MANAGER_PTR resm);
@@ -132,7 +132,7 @@ static void delCopyStr(char* copy);
 
 //-----------------------------------------------------------------------------
 /**
-*	ƒeƒNƒXƒ`ƒƒŒÀ’èƒ}ƒl[ƒWƒƒ
+*	ãƒ†ã‚¯ã‚¹ãƒãƒ£é™å®šãƒãƒãƒ¼ã‚¸ãƒ£
 */
 //-----------------------------------------------------------------------------
 static TEXRES_OBJ_PTR getCleanTEXRES_OBJ(CONST_TEXRES_MANAGER_PTR resm);
@@ -144,34 +144,34 @@ static void loadTexRes( NNSG3dResTex* res, TEXRES_OBJ_PTR r_obj );
 static void setTexkeyRes( NNSG3dResTex* res, NNSGfdTexKey tex, NNSGfdTexKey tex4x4, NNSGfdPlttKey pltt );
 static void releaseTexkeyRes( NNSG3dResTex* res );
 
-// ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ğíœ‚µ‚½NNSG3dResTex‚ğì¬‚·‚éŠÖ”ŒS
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚’å‰Šé™¤ã—ãŸNNSG3dResTexã‚’ä½œæˆã™ã‚‹é–¢æ•°éƒ¡
 static void* MakeCutTexWork( void* p_cuttex, u32 heap );
 static u32 GetCutTexDataSize( const void* p_cuttex );
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXŠÇ—ƒ}ƒl[ƒWƒƒ[À‘Ô•”ì¬
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿæ…‹éƒ¨ä½œæˆ
  *
- *@param	num		ƒf[ƒ^ŠÇ—ƒe[ƒuƒ‹”
+ *@param	num		ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
  *
- *@return	RES_MANAGER_PTR		ŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ *@return	RES_MANAGER_PTR		ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * œŠÇ—ƒe[ƒuƒ‹—Ìˆæ‚ÌŠm•Û
- * œŠÇ—ƒe[ƒuƒ‹—Ìˆæ‚Ì‰Šú‰»
+ * â—ç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«é ˜åŸŸã®ç¢ºä¿
+ * â—ç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«é ˜åŸŸã®åˆæœŸåŒ–
  *
  */
 //-----------------------------------------------------------------------------
 RES_MANAGER_PTR RESM_Init(int num, int heap)
 {
 	RES_MANAGER_PTR resm;
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 
-	// ƒŠƒ\[ƒXŠÇ—ƒ}ƒl[ƒWƒƒ[ì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	resm = sys_AllocMemory(heap, sizeof(RES_MANAGER));
 	GF_ASSERT(resm);
 	
-	// ŠÇ—ƒe[ƒuƒ‹ì¬
+	// ç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	resm->p_work = sys_AllocMemory(heap, sizeof(RES_OBJ)*num);
 	GF_ASSERT(resm->p_work);
 	for(i=0;i<num;i++){
@@ -179,8 +179,8 @@ RES_MANAGER_PTR RESM_Init(int num, int heap)
 	}
 
 
-	resm->max	= num;		// Å‘å”
-	resm->now	= 0;		// Œ»İ“o˜^”
+	resm->max	= num;		// æœ€å¤§æ•°
+	resm->now	= 0;		// ç¾åœ¨ç™»éŒ²æ•°
 
 	return resm;
 }
@@ -188,24 +188,24 @@ RES_MANAGER_PTR RESM_Init(int num, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXŠÇ—ƒf[ƒ^”jŠü
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *@param	resm	ƒŠƒ\[ƒXŠÇ—ƒf[ƒ^
+ *@param	resm	ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- *	œ“Ç‚İ‚ñ‚¾ƒŠƒ\[ƒX‚ğ”jŠü
- *	œŠÇ—ƒe[ƒuƒ‹—Ìˆæ‚ğ”jŠü
+ *	â—èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„
+ *	â—ç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«é ˜åŸŸã‚’ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 void RESM_Delete(RES_MANAGER_PTR resm)
 {
 	GF_ASSERT(resm);
 	
-	// “o˜^‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX‚ğ‘S‚Ä”jŠü
+	// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚’å…¨ã¦ç ´æ£„
 	RESM_DeleteAllRes(resm);
 
-	// ƒƒ‚ƒŠ”jŠü
+	// ãƒ¡ãƒ¢ãƒªç ´æ£„
 	sys_FreeMemoryEz(resm->p_work);
 	sys_FreeMemoryEz(resm);
 }
@@ -213,11 +213,11 @@ void RESM_Delete(RES_MANAGER_PTR resm)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	c‚è“o˜^‰Â”\”‚ğæ“¾
+ *@brief	æ®‹ã‚Šç™»éŒ²å¯èƒ½æ•°ã‚’å–å¾—
  *
- *@param	resm	æ“¾‚·‚éƒŠƒ\[ƒXŠÇ—ƒf[ƒ^
+ *@param	resm	å–å¾—ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿
  *
- *@return	int		c‚è“o˜^‰Â”\”
+ *@return	int		æ®‹ã‚Šç™»éŒ²å¯èƒ½æ•°
  *
  *
  */
@@ -232,26 +232,26 @@ int RESM_GetRest(RES_MANAGER_PTR resm)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID‚ªd•¡‚µ‚È‚¢‚©‚ğæ“¾
+ *@brief	IDãŒé‡è¤‡ã—ãªã„ã‹ã‚’å–å¾—
  *
- *@param	resm	æ“¾‚·‚éƒŠƒ\[ƒXŠÇ—ƒf[ƒ^
- *@param	id		ƒ`ƒFƒbƒN‚·‚éID
+ *@param	resm	å–å¾—ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿
+ *@param	id		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ID
  *
- *@retval	TRUE	d•¡‚µ‚È‚¢
- *@retval	FALSE	d•¡‚·‚é
+ *@retval	TRUE	é‡è¤‡ã—ãªã„
+ *@retval	FALSE	é‡è¤‡ã™ã‚‹
  *
  *
  */
 //-----------------------------------------------------------------------------
 BOOL RESM_CheckID(RES_MANAGER_PTR resm, int id)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 	GF_ASSERT(resm);
 
-	// ID‚ª“¯‚¶ƒe[ƒuƒ‹‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// IDãŒåŒã˜ãƒ†ãƒ¼ãƒ–ãƒ«ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( RESM_GetResObj(resm, id) == NULL ){
-		// “¯‚¶ƒe[ƒuƒ‹‚ª–³‚¢‚Ì‚Å,d•¡‚µ‚È‚¢
+		// åŒã˜ãƒ†ãƒ¼ãƒ–ãƒ«ãŒç„¡ã„ã®ã§,é‡è¤‡ã—ãªã„
 		return TRUE;
 	}
 
@@ -261,16 +261,16 @@ BOOL RESM_CheckID(RES_MANAGER_PTR resm, int id)
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	ƒŠƒ\[ƒX‚Ì“o˜^
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã®ç™»éŒ²
  *
- *@param	resm	“o˜^‚·‚éƒŠƒ\[ƒXŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- *@param	res		ƒŠƒ\[ƒX
- *@param	id		“o˜^ID	i–d•¡’ˆÓj
+ *@param	resm	ç™»éŒ²ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ *@param	res		ãƒªã‚½ãƒ¼ã‚¹
+ *@param	id		ç™»éŒ²ID	ï¼ˆï¼Šé‡è¤‡æ³¨æ„ï¼‰
  *
- *@retval	RES_OBJ_PTR	“o˜^¬Œ÷
- *@retval	NULL		“o˜^¸”s	“o˜^ƒe[ƒuƒ‹‚ª–”t
+ *@retval	RES_OBJ_PTR	ç™»éŒ²æˆåŠŸ
+ *@retval	NULL		ç™»éŒ²å¤±æ•—	ç™»éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«ãŒæº€æ¯
  *
- * œƒpƒX‚ÌƒŠƒ\[ƒX‚ğ“Ç‚İ‚ñ‚ÅAŠÇ—ƒf[ƒ^‚Éİ’è
+ * â—ãƒ‘ã‚¹ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚“ã§ã€ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã«è¨­å®š
  *
  */
 //-----------------------------------------------------------------------------
@@ -280,19 +280,19 @@ RES_OBJ_PTR RESM_AddResNormal(RES_MANAGER_PTR resm, void* res, int id)
 	
 	GF_ASSERT(resm);
 
-	// ‹ó‚¢‚Ä‚¢‚éƒe[ƒuƒ‹‚ğæ“¾
+	// ç©ºã„ã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
 	r_obj = getCleanRES_OBJ(resm);
-	GF_ASSERT(r_obj && ("ƒe[ƒuƒ‹‚É‹ó‚«‚ª–³‚¢"));
+	GF_ASSERT(r_obj && ("ãƒ†ãƒ¼ãƒ–ãƒ«ã«ç©ºããŒç„¡ã„"));
 
-	// ID‚ªd•¡‚µ‚È‚¢‚©ƒ`ƒFƒbƒN
+	// IDãŒé‡è¤‡ã—ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( (RESM_CheckID(resm, id) == TRUE) );
 
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	r_obj->p_res = res;
 
-	r_obj->id = id;	// “o˜^ID
+	r_obj->id = id;	// ç™»éŒ²ID
 
-	resm->now++;	// ƒe[ƒuƒ‹“o˜^”’Ç‰Á
+	resm->now++;	// ãƒ†ãƒ¼ãƒ–ãƒ«ç™»éŒ²æ•°è¿½åŠ 
 
 	return r_obj;
 }
@@ -300,16 +300,16 @@ RES_OBJ_PTR RESM_AddResNormal(RES_MANAGER_PTR resm, void* res, int id)
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	ƒŠƒ\[ƒX‚Ì“o˜^
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã®ç™»éŒ²
  *
- *@param	resm	“o˜^‚·‚éƒŠƒ\[ƒXŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- *@param	p_path	ƒŠƒ\[ƒX‚ÌƒpƒX
- *@param	id		“o˜^ID	i–d•¡’ˆÓj
- *@param	heap	ƒŠƒ\[ƒX“Ç‚İ‚İ‚Ég—p‚·‚éƒq[ƒv
+ *@param	resm	ç™»éŒ²ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ *@param	p_path	ãƒªã‚½ãƒ¼ã‚¹ã®ãƒ‘ã‚¹
+ *@param	id		ç™»éŒ²ID	ï¼ˆï¼Šé‡è¤‡æ³¨æ„ï¼‰
+ *@param	heap	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ã«ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
- *@retval	RES_OBJ_PTR	“o˜^¬Œ÷
+ *@retval	RES_OBJ_PTR	ç™»éŒ²æˆåŠŸ
  *
- * œƒpƒX‚ÌƒŠƒ\[ƒX‚ğ“Ç‚İ‚ñ‚ÅAŠÇ—ƒf[ƒ^‚Éİ’è
+ * â—ãƒ‘ã‚¹ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚“ã§ã€ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã«è¨­å®š
  *
  */
 //-----------------------------------------------------------------------------
@@ -320,20 +320,20 @@ RES_OBJ_PTR RESM_AddRes(RES_MANAGER_PTR resm, const char* p_path, int id, int he
 	GF_ASSERT(resm);
 	GF_ASSERT(p_path);
 
-	// ‹ó‚¢‚Ä‚¢‚éƒe[ƒuƒ‹‚ğæ“¾
+	// ç©ºã„ã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
 	r_obj = getCleanRES_OBJ(resm);
-	GF_ASSERT(r_obj && ("ƒe[ƒuƒ‹‚É‹ó‚«‚ª–³‚¢"));
+	GF_ASSERT(r_obj && ("ãƒ†ãƒ¼ãƒ–ãƒ«ã«ç©ºããŒç„¡ã„"));
 
-	// ID‚ªd•¡‚µ‚È‚¢‚©ƒ`ƒFƒbƒN
+	// IDãŒé‡è¤‡ã—ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( (RESM_CheckID(resm, id) == TRUE) );
 
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	r_obj->p_res = sys_LoadFile(heap, p_path);
-	GF_ASSERT(r_obj->p_res && ("ƒpƒX‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·"));
+	GF_ASSERT(r_obj->p_res && ("ãƒ‘ã‚¹ãŒé–“é•ã£ã¦ã„ã¾ã™"));
 
-	r_obj->id = id;	// “o˜^ID
+	r_obj->id = id;	// ç™»éŒ²ID
 
-	resm->now++;	// ƒe[ƒuƒ‹“o˜^”’Ç‰Á
+	resm->now++;	// ãƒ†ãƒ¼ãƒ–ãƒ«ç™»éŒ²æ•°è¿½åŠ 
 
 	return r_obj;
 }
@@ -341,16 +341,16 @@ RES_OBJ_PTR RESM_AddRes(RES_MANAGER_PTR resm, const char* p_path, int id, int he
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	ƒwƒbƒ_[‚ğg—p‚µ‚½ƒŠƒ\[ƒX‚Ì“o˜^i’P”­j
+ *@brief	ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’ä½¿ç”¨ã—ãŸãƒªã‚½ãƒ¼ã‚¹ã®ç™»éŒ²ï¼ˆå˜ç™ºï¼‰
  *
- *@param	resm	“o˜^‚·‚éƒŠƒ\[ƒXŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- *@param	header	ƒŠƒ\[ƒXƒwƒbƒ_[ƒ|ƒCƒ“ƒ^
- *@param	no		‰½”Ô–Ú‚ğ“o˜^‚·‚é‚©
- *@param	heap	ƒŠƒ\[ƒX“Ç‚İ‚İ‚Ég—p‚·‚éƒq[ƒv
+ *@param	resm	ç™»éŒ²ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ *@param	header	ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+ *@param	no		ä½•ç•ªç›®ã‚’ç™»éŒ²ã™ã‚‹ã‹
+ *@param	heap	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ã«ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
- *@retval	RES_OBJ_PTR	“o˜^¬Œ÷
+ *@retval	RES_OBJ_PTR	ç™»éŒ²æˆåŠŸ
  *
- * œƒpƒX‚ÌƒŠƒ\[ƒX‚ğ“Ç‚İ‚ñ‚ÅAŠÇ—ƒf[ƒ^‚Éİ’è
+ * â—ãƒ‘ã‚¹ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚“ã§ã€ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã«è¨­å®š
  *
  */
 //-----------------------------------------------------------------------------
@@ -359,7 +359,7 @@ RES_OBJ_PTR RESM_AddResHd(RES_MANAGER_PTR resm, const RES_HEADER_PTR header, int
 	GF_ASSERT(resm);
 	GF_ASSERT(header);
 
-	// —v‘f”ˆÈ‰º‚©ƒ`ƒFƒbƒN
+	// è¦ç´ æ•°ä»¥ä¸‹ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT(header->num > no);
 	
 	return RESM_AddRes(resm, header->tbl[no].file_path, header->tbl[no].id, heap);
@@ -368,15 +368,15 @@ RES_OBJ_PTR RESM_AddResHd(RES_MANAGER_PTR resm, const RES_HEADER_PTR header, int
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	ƒwƒbƒ_[‚ğg—p‚µ‚½ƒŠƒ\[ƒX‚Ì“o˜^i•¡”j
+ *@brief	ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’ä½¿ç”¨ã—ãŸãƒªã‚½ãƒ¼ã‚¹ã®ç™»éŒ²ï¼ˆè¤‡æ•°ï¼‰
  *
- *@param	resm	“o˜^‚·‚éƒŠƒ\[ƒXŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- *@param	header	ƒŠƒ\[ƒXƒwƒbƒ_[ƒ|ƒCƒ“ƒ^
- *@param	heap	ƒŠƒ\[ƒX“Ç‚İ‚İ‚Ég—p‚·‚éƒq[ƒv
+ *@param	resm	ç™»éŒ²ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ *@param	header	ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+ *@param	heap	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ã«ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
- * œƒpƒX‚ÌƒŠƒ\[ƒX‚ğ“Ç‚İ‚ñ‚ÅAŠÇ—ƒf[ƒ^‚Éİ’è
+ * â—ãƒ‘ã‚¹ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚“ã§ã€ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã«è¨­å®š
  *
  */
 //-----------------------------------------------------------------------------
@@ -391,18 +391,18 @@ void RESM_AddResHds(RES_MANAGER_PTR resm, const RES_HEADER_PTR header, int heap)
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	ƒwƒbƒ_[‚ğg—p‚µ‚½ƒŠƒ\[ƒX‚Ì“o˜^i•¡”j
- *			ƒwƒbƒ_[‚ÌŠJn—v‘fAI—¹—v‘f‚ğw’è
+ *@brief	ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’ä½¿ç”¨ã—ãŸãƒªã‚½ãƒ¼ã‚¹ã®ç™»éŒ²ï¼ˆè¤‡æ•°ï¼‰
+ *			ãƒ˜ãƒƒãƒ€ãƒ¼ã®é–‹å§‹è¦ç´ ã€çµ‚äº†è¦ç´ ã‚’æŒ‡å®š
  *
- *@param	resm	“o˜^‚·‚éƒŠƒ\[ƒXŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- *@param	header	ƒŠƒ\[ƒXƒwƒbƒ_[ƒ|ƒCƒ“ƒ^
- *@param	start	ŠJn—v‘f”
- *@param	num		“o˜^—v‘f”
- *@param	heap	ƒŠƒ\[ƒX“Ç‚İ‚İ‚Ég—p‚·‚éƒq[ƒv
+ *@param	resm	ç™»éŒ²ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ *@param	header	ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼ãƒã‚¤ãƒ³ã‚¿
+ *@param	start	é–‹å§‹è¦ç´ æ•°
+ *@param	num		ç™»éŒ²è¦ç´ æ•°
+ *@param	heap	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ã«ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	noen
  *
- * œƒpƒX‚ÌƒŠƒ\[ƒX‚ğ“Ç‚İ‚ñ‚ÅAŠÇ—ƒf[ƒ^‚Éİ’è
+ * â—ãƒ‘ã‚¹ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚“ã§ã€ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã«è¨­å®š
  *
  */
 //-----------------------------------------------------------------------------
@@ -413,7 +413,7 @@ void RESM_AddResHdsEx(RES_MANAGER_PTR resm, const RES_HEADER_PTR header, int sta
 	GF_ASSERT(resm);
 	GF_ASSERT(header);
 
-	// —v‘f”ƒI[ƒo[‚µ‚È‚¢‚©ƒ`ƒFƒbƒN
+	// è¦ç´ æ•°ã‚ªãƒ¼ãƒãƒ¼ã—ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT((start+num) <= header->num)
 
 	for(i=start;i<(start+num);i++){
@@ -424,12 +424,12 @@ void RESM_AddResHdsEx(RES_MANAGER_PTR resm, const RES_HEADER_PTR header, int sta
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒX‚Ì”jŠü
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *
- *@param	resm	”jŠü‚·‚éƒŠƒ\[ƒX‚ª“o˜^‚³‚ê‚Ä‚¢‚éŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- *@param	r_obj	”jŠü‚·‚éƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resm	ç ´æ£„ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ *@param	r_obj	ç ´æ£„ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- * œ“Ç‚İ‚ñ‚¾ƒŠƒ\[ƒX‚ğ”jŠü‚µAŠÇ—ƒf[ƒ^‚ğ‰Šú‰»
+ * â—èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã—ã€ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 void RESM_DeleteRes(RES_MANAGER_PTR resm, RES_OBJ_PTR r_obj)
@@ -443,18 +443,18 @@ void RESM_DeleteRes(RES_MANAGER_PTR resm, RES_OBJ_PTR r_obj)
 	}
 	r_obj->id = RES_MANAGER_ID_NONE;
 
-	resm->now--;	// ƒe[ƒuƒ‹“o˜^”Œ¸Z
+	resm->now--;	// ãƒ†ãƒ¼ãƒ–ãƒ«ç™»éŒ²æ•°æ¸›ç®—
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID‚ÅƒŠƒ\[ƒX‚Ì”jŠü
+ *@brief	IDã§ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *
- *@param	resm	”jŠü‚·‚éƒŠƒ\[ƒX‚ª“o˜^‚³‚ê‚Ä‚¢‚éŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- *@param	id		”jŠü‚·‚éƒŠƒ\[ƒX‚ÌID
+ *@param	resm	ç ´æ£„ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ *@param	id		ç ´æ£„ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã®ID
  *
- * œ“Ç‚İ‚ñ‚¾ƒŠƒ\[ƒX‚ğ”jŠü‚µAŠÇ—ƒf[ƒ^‚ğ‰Šú‰»
+ * â—èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã—ã€ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 void RESM_DeleteResID(RES_MANAGER_PTR resm, int id)
@@ -463,25 +463,25 @@ void RESM_DeleteResID(RES_MANAGER_PTR resm, int id)
 
 	GF_ASSERT(resm);
 	data = RESM_GetResObj(resm, id);
-	GF_ASSERT( data && ("ID‚Ìƒf[ƒ^‚Í‚ ‚è‚Ü‚¹‚ñB"));
+	GF_ASSERT( data && ("IDã®ãƒ‡ãƒ¼ã‚¿ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚"));
 
-	// ”jŠü
+	// ç ´æ£„
 	RESM_DeleteRes(resm, data);
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‘SƒŠƒ\[ƒX‚Ì”jŠü
+ *@brief	å…¨ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *
- *@param	resm	”jŠü‚·‚éƒŠƒ\[ƒX‚ª“o˜^‚³‚ê‚Ä‚¢‚éŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ *@param	resm	ç ´æ£„ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * œ“Ç‚İ‚ñ‚¾ƒŠƒ\[ƒX‚ğ”jŠü‚µAŠÇ—ƒf[ƒ^‚ğ‰Šú‰»
+ * â—èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã—ã€ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 void RESM_DeleteAllRes(RES_MANAGER_PTR resm)
 {
-	int i;	// ƒ‹[ƒv—p
+	int i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 	GF_ASSERT(resm);
 	GF_ASSERT(resm->p_work);
@@ -496,20 +496,20 @@ void RESM_DeleteAllRes(RES_MANAGER_PTR resm)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒIƒuƒWƒFƒNƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^‚ğæ“¾
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- *@param	resm		ƒŠƒ\[ƒXŠÇ—ƒf[ƒ^
- *@param	id			ƒŠƒ\[ƒX‚ÌID
+ *@param	resm		ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿
+ *@param	id			ãƒªã‚½ãƒ¼ã‚¹ã®ID
  *
- *@retval	NULL		“o˜^‚³‚ê‚Ä‚¢‚È‚¢
- *@retval	RES_OBJ_PTR	“o˜^‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+ *@retval	NULL		ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
+ *@retval	RES_OBJ_PTR	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
 //-----------------------------------------------------------------------------
 RES_OBJ_PTR RESM_GetResObj(RES_MANAGER_PTR resm, int id)
 {
-	int i;	// ƒ‹[ƒv—p
+	int i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 	GF_ASSERT(resm);
 
 	for(i = 0;i < resm->max; i++){
@@ -524,12 +524,12 @@ RES_OBJ_PTR RESM_GetResObj(RES_MANAGER_PTR resm, int id)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“o˜^‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒf[ƒ^‚ğæ“¾
+ *@brief	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *@param	r_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	r_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@retval	NULL		“o˜^‚³‚ê‚Ä‚¢‚È‚¢
- *@retval	NULLˆÈŠO	“o˜^‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ *@retval	NULL		ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
+ *@retval	NULLä»¥å¤–	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -544,11 +544,11 @@ void* RESM_GetRes(RES_OBJ_PTR r_obj)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“o˜^‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒf[ƒ^‚ğ•ÏX
+ *@brief	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å¤‰æ›´
  *
- *@param	r_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	r_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@param	“o˜^‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒf[ƒ^•ÏX
+ *@param	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  */
 //-----------------------------------------------------------------------------
@@ -565,9 +565,9 @@ void RESM_SetRes(RES_OBJ_PTR r_obj, void* res)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“o˜^‚³‚ê‚Ä‚¢‚éID‚ğæ“¾
+ *@brief	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹IDã‚’å–å¾—
  *
- *@param	r_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	r_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *@retval	int			ID
  *
@@ -584,10 +584,10 @@ int RESM_GetID(RES_OBJ_PTR r_obj)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“o˜^‚³‚ê‚Ä‚¢‚éID‚ğİ’è
+ *@brief	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹IDã‚’è¨­å®š
  *
- *@param	r_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	id			İ’è‚·‚éID
+ *@param	r_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	id			è¨­å®šã™ã‚‹ID
  *
  *@retval	none
  *
@@ -598,7 +598,7 @@ void RESM_SetID(RES_MANAGER_PTR resm, RES_OBJ_PTR r_obj, int id)
 {
 	GF_ASSERT(resm);
 	GF_ASSERT(r_obj);
-	GF_ASSERT( RESM_CheckID(resm, id) );	// d•¡‚µ‚È‚¢‚©ƒ`ƒFƒbƒN
+	GF_ASSERT( RESM_CheckID(resm, id) );	// é‡è¤‡ã—ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 
 	r_obj->id = id;
 }
@@ -606,12 +606,12 @@ void RESM_SetID(RES_MANAGER_PTR resm, RES_OBJ_PTR r_obj, int id)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‹ó‚¢‚Ä‚¢‚éƒIƒuƒWƒF‚ğæ“¾
+ *@brief	ç©ºã„ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚’å–å¾—
  *	
  *@param	none
  *
- *@retval	RES_OBJ_PTR	‹ó‚¢‚Ä‚¢‚éƒIƒuƒWƒF
- *@retval	NULL		‹ó‚¢‚Ä‚¢‚È‚¢
+ *@retval	RES_OBJ_PTR	ç©ºã„ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§
+ *@retval	NULL		ç©ºã„ã¦ã„ãªã„
  *
  *
  */
@@ -633,9 +633,9 @@ static RES_OBJ_PTR getCleanRES_OBJ(RES_MANAGER_PTR resm)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒIƒuƒWƒF‚Ì‰Šú‰»
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã®åˆæœŸåŒ–
  *
- *@param	data	ƒf[ƒ^
+ *@param	data	ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -651,17 +651,17 @@ static void clean_RES_OBJ(RES_OBJ* data)
 
 //-----------------------------------------------------------------------------
 //
-//		*********** ƒwƒbƒ_[—pŠÖ” **************
+//		*********** ãƒ˜ãƒƒãƒ€ãƒ¼ç”¨é–¢æ•° **************
 //
 //=============================================================================
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒwƒbƒ_[ƒTƒCƒY‚ğæ“¾
+ *@brief	ãƒ˜ãƒƒãƒ€ãƒ¼ã‚µã‚¤ã‚ºã‚’å–å¾—
  *
  *@param	none	
  *
- *@return	int		ƒwƒbƒ_[‚ÌƒoƒCƒgƒTƒCƒY
+ *@return	int		ãƒ˜ãƒƒãƒ€ãƒ¼ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
  *
  *
  */
@@ -674,12 +674,12 @@ int RESM_GetHeaderSize(void)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒwƒbƒ_[”z—ñ‚©‚ç—v‘f”‚Ìƒf[ƒ^‚ğ•Ô‚·
+ *@brief	ãƒ˜ãƒƒãƒ€ãƒ¼é…åˆ—ã‹ã‚‰è¦ç´ æ•°ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
  *
- *@param	tbl		”z—ñ‚É‚È‚Á‚Ä‚¢‚éƒwƒbƒ_[
- *@param	no		—v‘f”
+ *@param	tbl		é…åˆ—ã«ãªã£ã¦ã„ã‚‹ãƒ˜ãƒƒãƒ€ãƒ¼
+ *@param	no		è¦ç´ æ•°
  *
- *@return	RES_HEADER_PTR data[no] ‚ÌƒAƒhƒŒƒX
+ *@return	RES_HEADER_PTR data[no] ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  *
  */
@@ -693,11 +693,11 @@ RES_HEADER_PTR RESM_GetTbl(RES_HEADER_PTR tbl, int no)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒwƒbƒ_[‚Ì“Ç‚İ‚İ
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼ã®èª­ã¿è¾¼ã¿
  *
- *@param	header			ƒwƒbƒ_[ƒf[ƒ^Ši”[æ
- *@param	rom_path		ƒwƒbƒ_[ƒtƒ@ƒCƒ‹ƒpƒX
- *@param	heap			‚Ğ[‚ÕID 
+ *@param	header			ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *@param	rom_path		ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+ *@param	heap			ã²ãƒ¼ã·ID 
  *
  *@return	none
  *
@@ -706,36 +706,36 @@ RES_HEADER_PTR RESM_GetTbl(RES_HEADER_PTR tbl, int no)
 //-----------------------------------------------------------------------------
 void RESM_HeaderLoad(RES_HEADER_PTR header, const char* rom_path, int heap)
 {
-	char* tmp;				// ‰ğ•ú—p
-	char* buff;				// ƒtƒ@ƒCƒ‹ƒf[ƒ^
-	int	i;					// ƒ‹[ƒv—p
+	char* tmp;				// è§£æ”¾ç”¨
+	char* buff;				// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
+	int	i;					// ãƒ«ãƒ¼ãƒ—ç”¨
 
-	GF_ASSERT(header);		// ƒwƒbƒ_[—Ìˆæ‚ğŠm•Û‚µ‚Ä‚­‚¾‚³‚¢
+	GF_ASSERT(header);		// ãƒ˜ãƒƒãƒ€ãƒ¼é ˜åŸŸã‚’ç¢ºä¿ã—ã¦ãã ã•ã„
 	GF_ASSERT(rom_path);
 
 
-	// ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	tmp = sys_LoadFile(heap, rom_path);
-	GF_ASSERT(tmp&&("ƒwƒbƒ_[“Ç‚İ‚İ¸”s"))
+	GF_ASSERT(tmp&&("ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿å¤±æ•—"))
 
-	// ƒ[ƒNƒoƒbƒtƒ@
+	// ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡
 	buff = makeCopyStr(tmp, heap);
 	
-	// ƒtƒ@ƒCƒ‹”‚ğæ“¾
+	// ãƒ•ã‚¡ã‚¤ãƒ«æ•°ã‚’å–å¾—
 	header->num = getHeaderNum(buff);
 
-	// ƒƒ‚ƒŠŠm•Û
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	header->tbl = sys_AllocMemory(heap, sizeof(RES_HEADER_SUB)*header->num);
 	GF_ASSERT(header->tbl);
 
-	// ƒ[ƒNƒoƒbƒtƒ@‚É‘ã“ü
-	delCopyStr(buff);	// ‚¢‚Á‚½‚ñ”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã«ä»£å…¥
+	delCopyStr(buff);	// ã„ã£ãŸã‚“ç ´æ£„
 	buff = makeCopyStr(tmp, heap);
 
-	// ƒf[ƒ^“Ç‚İ‚İ
+	// ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	getHeaderData(buff, header->tbl, header->num);
 
-	// “Ç‚İ‚İƒtƒ@ƒCƒ‹”jŠü
+	// èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«ç ´æ£„
 	delCopyStr(buff);
 	sys_FreeMemoryEz(tmp);
 }
@@ -743,9 +743,9 @@ void RESM_HeaderLoad(RES_HEADER_PTR header, const char* rom_path, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒwƒbƒ_[‚Ì”jŠü
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼ã®ç ´æ£„
  *
- *@param	header			ƒwƒbƒ_[ƒf[ƒ^ƒf[ƒ^
+ *@param	header			ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -764,32 +764,32 @@ void RESM_HeaderFree(RES_HEADER_PTR header)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“o˜^ƒf[ƒ^”‚ğæ“¾
+ *@brief	ç™»éŒ²ãƒ‡ãƒ¼ã‚¿æ•°ã‚’å–å¾—
  *
- *@param	buff	ƒoƒbƒtƒ@
+ *@param	buff	ãƒãƒƒãƒ•ã‚¡
  *
- *@return	int		ƒf[ƒ^”
+ *@return	int		ãƒ‡ãƒ¼ã‚¿æ•°
  *
  *
  */
 //-----------------------------------------------------------------------------
 static int getHeaderNum(char* buff)
 {
-	int count;			// ƒf[ƒ^”ƒJƒEƒ“ƒg
-	char* file_path;	// ƒtƒ@ƒCƒ‹ƒpƒX
-	char* id;			// ƒtƒ@ƒCƒ‹ƒpƒX
+	int count;			// ãƒ‡ãƒ¼ã‚¿æ•°ã‚«ã‚¦ãƒ³ãƒˆ
+	char* file_path;	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+	char* id;			// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 
 
 	count = 0;
-	getOneData(buff, &file_path, &id);	// ‚P‚Â‚Ìƒf[ƒ^Ši”[
-	// ƒpƒX‚ª'0'‚Ìƒf[ƒ^‚ªI’[
+	getOneData(buff, &file_path, &id);	// ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿æ ¼ç´
+	// ãƒ‘ã‚¹ãŒ'0'ã®ãƒ‡ãƒ¼ã‚¿ãŒçµ‚ç«¯
 	while(file_path[0] != '0'){
 		count++;
 
-		getOneData(NULL, &file_path, &id);	// ‚P‰ñ–ÚˆÈ~‚ÍNULL‚ÅOK
+		getOneData(NULL, &file_path, &id);	// ï¼‘å›ç›®ä»¥é™ã¯NULLã§OK
 
 		if(file_path == NULL){
-			GF_ASSERT(0);		// I’[ƒR[ƒh‚ª–³‚¢
+			GF_ASSERT(0);		// çµ‚ç«¯ã‚³ãƒ¼ãƒ‰ãŒç„¡ã„
 		}
 	}
 
@@ -799,11 +799,11 @@ static int getHeaderNum(char* buff)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒf[ƒ^Ši”[
+ *@brief	ãƒ‡ãƒ¼ã‚¿æ ¼ç´
  *
- *@param	buff	Œ»İ‚Ìƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^
- *@param	data	ƒf[ƒ^Ši”[æ
- *@param	num		”
+ *@param	buff	ç¾åœ¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
+ *@param	data	ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *@param	num		æ•°
  *
  *@return	none
  *
@@ -812,14 +812,14 @@ static int getHeaderNum(char* buff)
 //-----------------------------------------------------------------------------
 static void getHeaderData(char* buff, RES_HEADER_SUB* data, int num)
 {
-	int i;		// ƒ‹[ƒv—p
-	char* file_path;	// ƒtƒ@ƒCƒ‹ƒpƒX
-	char* id;			// ƒtƒ@ƒCƒ‹ƒpƒX
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	char* file_path;	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+	char* id;			// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 
-	getOneData(buff, &file_path, &id);	// ‚P‚Â‚Ìƒf[ƒ^Ši”[
+	getOneData(buff, &file_path, &id);	// ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	setOneData(file_path, id, &data[0]);
 	for(i=1;i<num;i++){
-		getOneData(NULL, &file_path, &id);	// ‚P‚Â‚Ìƒf[ƒ^Ši”[
+		getOneData(NULL, &file_path, &id);	// ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 		setOneData(file_path, id, &data[i]);
 	}
 }
@@ -827,10 +827,10 @@ static void getHeaderData(char* buff, RES_HEADER_SUB* data, int num)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚P‚Â‚Ìƒf[ƒ^æ“¾
+ *@brief	ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *@param	buff		Å‰ˆÈŠO‚ÍNULL
- *@param	file_path	ƒtƒ@ƒCƒ‹ƒpƒX
+ *@param	buff		æœ€åˆä»¥å¤–ã¯NULL
+ *@param	file_path	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
  *@param	id			ID
  *
  *@return	none
@@ -847,11 +847,11 @@ static void getOneData(char* buff, char** file_path, char** id)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚P‚Â‚Ìƒf[ƒ^‚ğİ’è
+ *@brief	ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- *@param	fiel_path	ƒtƒ@ƒCƒ‹ƒpƒX
+ *@param	fiel_path	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
  *@param	id			id
- *@param	data		Ši”[æ
+ *@param	data		æ ¼ç´å…ˆ
  *
  *@return	none
  *
@@ -867,10 +867,10 @@ static void setOneData(char* file_path, char* id, RES_HEADER_SUB* data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒoƒbƒtƒ@‚ÌƒRƒs[‚ğì¬
+ *@brief	ãƒãƒƒãƒ•ã‚¡ã®ã‚³ãƒ”ãƒ¼ã‚’ä½œæˆ
  *
- *@param	buff	ƒRƒs[‚·‚éƒoƒbƒtƒ@
- *@param	heap	g—p‚·‚éƒq[ƒv
+ *@param	buff	ã‚³ãƒ”ãƒ¼ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+ *@param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return
  *
@@ -894,9 +894,9 @@ static char* makeCopyStr(const char* buff, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒRƒs[‚ğ”jŠü
+ *@brief	ã‚³ãƒ”ãƒ¼ã‚’ç ´æ£„
  *
- *@param	copy	ƒRƒs[
+ *@param	copy	ã‚³ãƒ”ãƒ¼
  *
  *@return	none
  *
@@ -916,7 +916,7 @@ static void delCopyStr(char* copy)
 //-----------------------------------------------------------------------------
 /**
 *
-*	ƒeƒNƒXƒ`ƒƒŠÇ—ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+*	ãƒ†ã‚¯ã‚¹ãƒãƒ£ç®¡ç†ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
 * 
 */
 //-----------------------------------------------------------------------------
@@ -924,14 +924,14 @@ static void delCopyStr(char* copy)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXŠÇ—ƒ}ƒl[ƒWƒƒ[À‘Ô•”ì¬
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿæ…‹éƒ¨ä½œæˆ
  *
- *@param	num		ƒf[ƒ^ŠÇ—ƒe[ƒuƒ‹”
+ *@param	num		ãƒ‡ãƒ¼ã‚¿ç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
  *
- *@return	TEXRES_MANAGER_PTR		ŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ *@return	TEXRES_MANAGER_PTR		ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * œŠÇ—ƒe[ƒuƒ‹—Ìˆæ‚ÌŠm•Û
- * œŠÇ—ƒe[ƒuƒ‹—Ìˆæ‚Ì‰Šú‰»
+ * â—ç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«é ˜åŸŸã®ç¢ºä¿
+ * â—ç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«é ˜åŸŸã®åˆæœŸåŒ–
  *
  */
 	//-----------------------------------------------------------------------------
@@ -956,24 +956,24 @@ TEXRES_MANAGER_PTR TEXRESM_Init(int num, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXŠÇ—ƒf[ƒ^”jŠü
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *@param	resm	ƒŠƒ\[ƒXŠÇ—ƒf[ƒ^
+ *@param	resm	ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- *	œ“Ç‚İ‚ñ‚¾ƒŠƒ\[ƒX‚ğ”jŠü
- *	œŠÇ—ƒe[ƒuƒ‹—Ìˆæ‚ğ”jŠü
+ *	â—èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„
+ *	â—ç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«é ˜åŸŸã‚’ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 void TEXRESM_Delete(TEXRES_MANAGER_PTR resm)
 {
 	GF_ASSERT(resm);
 	
-	// “o˜^‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒX”jŠü
+	// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	TEXRESM_DeleteAllRes( resm );
 	
-	// g—p‚µ‚Ä‚¢‚½ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”jŠü
+	// ä½¿ç”¨ã—ã¦ã„ãŸãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	RESM_Delete( resm->resm );
 	
 	sys_FreeMemoryEz( resm->tobj );
@@ -983,11 +983,11 @@ void TEXRESM_Delete(TEXRES_MANAGER_PTR resm)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	c‚è“o˜^‰Â”\”‚ğæ“¾
+ *@brief	æ®‹ã‚Šç™»éŒ²å¯èƒ½æ•°ã‚’å–å¾—
  *
- *@param	resm	æ“¾‚·‚éƒŠƒ\[ƒXŠÇ—ƒf[ƒ^
+ *@param	resm	å–å¾—ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿
  *
- *@return	int		c‚è“o˜^‰Â”\”
+ *@return	int		æ®‹ã‚Šç™»éŒ²å¯èƒ½æ•°
  *
  *
  */
@@ -1002,13 +1002,13 @@ int TEXRESM_GetRest(CONST_TEXRES_MANAGER_PTR resm)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID‚ªd•¡‚µ‚È‚¢‚©‚ğæ“¾
+ *@brief	IDãŒé‡è¤‡ã—ãªã„ã‹ã‚’å–å¾—
  *
- *@param	resm	æ“¾‚·‚éƒŠƒ\[ƒXŠÇ—ƒf[ƒ^
- *@param	id		ƒ`ƒFƒbƒN‚·‚éID
+ *@param	resm	å–å¾—ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿
+ *@param	id		ãƒã‚§ãƒƒã‚¯ã™ã‚‹ID
  *
- *@retval	TRUE	d•¡‚µ‚È‚¢
- *@retval	FALSE	d•¡‚·‚é
+ *@retval	TRUE	é‡è¤‡ã—ãªã„
+ *@retval	FALSE	é‡è¤‡ã™ã‚‹
  *
  *
  */
@@ -1023,18 +1023,18 @@ BOOL TEXRESM_CheckID(CONST_TEXRES_MANAGER_PTR resm, int id)
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	ƒŠƒ\[ƒX‚Ì“o˜^
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã®ç™»éŒ²
  *
- *@param	resm	“o˜^‚·‚éƒŠƒ\[ƒXŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- *@param	res		ƒŠƒ\[ƒX
- *@param	id		“o˜^ID	i–d•¡’ˆÓj
- *@param	texcut_flg	ƒeƒNƒXƒ`ƒƒƒJƒbƒg@—L–³@ƒtƒ‰ƒO
- *@param	heap		ƒeƒNƒXƒ`ƒƒƒJƒbƒgƒ[ƒN@ƒq[ƒv
+ *@param	resm	ç™»éŒ²ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ *@param	res		ãƒªã‚½ãƒ¼ã‚¹
+ *@param	id		ç™»éŒ²ID	ï¼ˆï¼Šé‡è¤‡æ³¨æ„ï¼‰
+ *@param	texcut_flg	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚«ãƒƒãƒˆã€€æœ‰ç„¡ã€€ãƒ•ãƒ©ã‚°
+ *@param	heap		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚«ãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã€€ãƒ’ãƒ¼ãƒ—
  *
- *@retval	TEXRES_OBJ_PTR	“o˜^¬Œ÷
- *@retval	NULL		“o˜^¸”s	“o˜^ƒe[ƒuƒ‹‚ª–”t
+ *@retval	TEXRES_OBJ_PTR	ç™»éŒ²æˆåŠŸ
+ *@retval	NULL		ç™»éŒ²å¤±æ•—	ç™»éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«ãŒæº€æ¯
  *
- * œƒpƒX‚ÌƒŠƒ\[ƒX‚ğ“Ç‚İ‚ñ‚ÅAŠÇ—ƒf[ƒ^‚Éİ’è
+ * â—ãƒ‘ã‚¹ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚“ã§ã€ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã«è¨­å®š
  *
  */
 //-----------------------------------------------------------------------------
@@ -1046,17 +1046,17 @@ TEXRES_OBJ_PTR TEXRESM_AddResNormal(CONST_TEXRES_MANAGER_PTR resm, void* res, in
 	GF_ASSERT(resm);	
 	tobj = getCleanTEXRES_OBJ( resm );
 
-	// ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^”jŠü—L–³ƒtƒ‰ƒO
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ç ´æ£„æœ‰ç„¡ãƒ•ãƒ©ã‚°
 	tobj->cuttex_flag = texcut_flg;
 	
-	// ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^”jŠü‚Ì—L–³‚©‚ç
-	// ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^”jŠüŒã‚Ìƒf[ƒ^ƒTƒCƒY‚Ìƒ[ƒN‚ğì¬
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ç ´æ£„ã®æœ‰ç„¡ã‹ã‚‰
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ç ´æ£„å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã®ãƒ¯ãƒ¼ã‚¯ã‚’ä½œæˆ
 	if( tobj->cuttex_flag == TEXRESM_TEX_CUT_TRUE ){
-		// ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^”jŠü‚³‚ê‚½ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒf[ƒ^‚ğì¬
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ç ´æ£„ã•ã‚ŒãŸãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 		buff = MakeCutTexWork( res, heap );
 		tobj->p_cutTex = res;
 	}else{
-		// ƒeƒNƒXƒ`ƒƒ”jŠü‚µ‚È‚¢‚Æ‚«‚Íres‚ğ‚»‚Ì‚Ü‚Üİ’è
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ç ´æ£„ã—ãªã„ã¨ãã¯resã‚’ãã®ã¾ã¾è¨­å®š
 		buff = res;
 		tobj->p_cutTex = NULL;
 	}
@@ -1068,30 +1068,30 @@ TEXRES_OBJ_PTR TEXRESM_AddResNormal(CONST_TEXRES_MANAGER_PTR resm, void* res, in
 //----------------------------------------------------------------------------
 /**
  *	
- *@brief	ƒŠƒ\[ƒX‚Ì“o˜^‚ÆVramKey‚Ìæ“¾‚ğs‚¤
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã®ç™»éŒ²ã¨VramKeyã®å–å¾—ã‚’è¡Œã†
  *
- *@param	resm	“o˜^‚·‚éƒŠƒ\[ƒXŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- *@param	res		ƒŠƒ\[ƒX
- *@param	id		“o˜^ID	i–d•¡’ˆÓj
- *@param	texcut_flg	ƒeƒNƒXƒ`ƒƒƒJƒbƒg@—L–³@ƒtƒ‰ƒO
- *@param	heap	ƒŠƒ\[ƒX“Ç‚İ‚İ‚Ég—p‚·‚éƒq[ƒv
+ *@param	resm	ç™»éŒ²ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ *@param	res		ãƒªã‚½ãƒ¼ã‚¹
+ *@param	id		ç™»éŒ²ID	ï¼ˆï¼Šé‡è¤‡æ³¨æ„ï¼‰
+ *@param	texcut_flg	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚«ãƒƒãƒˆã€€æœ‰ç„¡ã€€ãƒ•ãƒ©ã‚°
+ *@param	heap	ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ã«ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
- *@retval	TEXRES_OBJ_PTR	“o˜^¬Œ÷
- *@retval	NULL		“o˜^¸”s	“o˜^ƒe[ƒuƒ‹‚ª–”t
+ *@retval	TEXRES_OBJ_PTR	ç™»éŒ²æˆåŠŸ
+ *@retval	NULL		ç™»éŒ²å¤±æ•—	ç™»éŒ²ãƒ†ãƒ¼ãƒ–ãƒ«ãŒæº€æ¯
  *
- * œˆ—‚Ì—¬‚ê
- *	‚PFƒpƒX‚ÌƒŠƒ\[ƒX‚ğ“Ç‚İ‚Ş
- *	‚QFVramKey‚ğæ“¾
+ * â—å‡¦ç†ã®æµã‚Œ
+ *	ï¼‘ï¼šãƒ‘ã‚¹ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’èª­ã¿è¾¼ã‚€
+ *	ï¼’ï¼šVramKeyã‚’å–å¾—
  */
 //-----------------------------------------------------------------------------
 TEXRES_OBJ_PTR TEXRESM_AddAndAllocVramKeyResNormal(TEXRES_MANAGER_PTR resm, void* res, int id, u32 texcut_flg, int heap)
 {
 	TEXRES_OBJ_PTR tobj;
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚É“o˜^
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²
 	tobj = TEXRESM_AddResNormal( resm, res, id, texcut_flg, heap );
 
-	// VramKey‚Ìæ“¾
+	// VramKeyã®å–å¾—
 	TEXRESM_AllocVramKeyPTR( tobj );
 	
 	return tobj;
@@ -1101,12 +1101,12 @@ TEXRES_OBJ_PTR TEXRESM_AddAndAllocVramKeyResNormal(TEXRES_MANAGER_PTR resm, void
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒX‚Ì”jŠü
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *
- *@param	resm	”jŠü‚·‚éƒŠƒ\[ƒX‚ª“o˜^‚³‚ê‚Ä‚¢‚éŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- *@param	r_obj	”jŠü‚·‚éƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	resm	ç ´æ£„ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ *@param	r_obj	ç ´æ£„ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- * œ“Ç‚İ‚ñ‚¾ƒŠƒ\[ƒX‚ğ”jŠü‚µAŠÇ—ƒf[ƒ^‚ğ‰Šú‰»
+ * â—èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã—ã€ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 void TEXRESM_DeleteRes(TEXRES_MANAGER_PTR resm, TEXRES_OBJ_PTR r_obj)
@@ -1116,8 +1116,8 @@ void TEXRESM_DeleteRes(TEXRES_MANAGER_PTR resm, TEXRES_OBJ_PTR r_obj)
 	GF_ASSERT(resm);	
 	GF_ASSERT(r_obj);
 
-	// ƒeƒNƒXƒ`ƒƒƒJƒbƒg—p‚ÌƒŠƒ\[ƒX‚È‚Ì‚ÉƒeƒNƒXƒ`ƒƒƒJƒbƒg‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚«
-	// ‚Ìˆ—
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚«ãƒƒãƒˆç”¨ã®ãƒªã‚½ãƒ¼ã‚¹ãªã®ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚«ãƒƒãƒˆã•ã‚Œã¦ã„ãªã„ã¨ã
+	// ã®å‡¦ç†
 	if( (r_obj->cuttex_flag == TEXRESM_TEX_CUT_TRUE) &&
 		(r_obj->cut_flag == FALSE) ){
 		sys_FreeMemoryEz( r_obj->p_cutTex );
@@ -1128,19 +1128,19 @@ void TEXRESM_DeleteRes(TEXRES_MANAGER_PTR resm, TEXRES_OBJ_PTR r_obj)
 		RESM_DeleteRes( resm->resm, r_obj->resobj );
 	}
 
-	// ƒeƒNƒXƒ`ƒƒƒL[‚ª‚ ‚é‚Æ‚«‚Í”jŠü
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ãŒã‚ã‚‹ã¨ãã¯ç ´æ£„
 	if(r_obj->texKey != NNS_GFD_ALLOC_ERROR_TEXKEY){
 		check = NNS_GfdFreeTexVram( r_obj->texKey );
-		GF_ASSERT_MSG(check == 0, "ƒeƒNƒXƒ`ƒƒƒL[”jŠü¸”s");
+		GF_ASSERT_MSG(check == 0, "ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ç ´æ£„å¤±æ•—");
 	}
 	if(r_obj->tex4x4Key != NNS_GFD_ALLOC_ERROR_TEXKEY){
 		check = NNS_GfdFreeTexVram( r_obj->tex4x4Key );
-		GF_ASSERT_MSG(check == 0, "ƒeƒNƒXƒ`ƒƒƒL[”jŠü¸”s");
+		GF_ASSERT_MSG(check == 0, "ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ç ´æ£„å¤±æ•—");
 	}
-	// ƒpƒŒƒbƒgƒL[”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ç ´æ£„
 	if(r_obj->plttKey != NNS_GFD_ALLOC_ERROR_PLTTKEY){
 		check = NNS_GfdFreePlttVram( r_obj->plttKey );
-		GF_ASSERT_MSG(check == 0, "ƒpƒŒƒbƒgƒL[”jŠü¸”s");
+		GF_ASSERT_MSG(check == 0, "ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ç ´æ£„å¤±æ•—");
 	}
 
 	cleanTEXRES_OBJ( r_obj );
@@ -1149,12 +1149,12 @@ void TEXRESM_DeleteRes(TEXRES_MANAGER_PTR resm, TEXRES_OBJ_PTR r_obj)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ID‚ÅƒŠƒ\[ƒX‚Ì”jŠü
+ *@brief	IDã§ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *
- *@param	resm	”jŠü‚·‚éƒŠƒ\[ƒX‚ª“o˜^‚³‚ê‚Ä‚¢‚éŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- *@param	id		”jŠü‚·‚éƒŠƒ\[ƒX‚ÌID	(ŠÇ—ID)
+ *@param	resm	ç ´æ£„ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ *@param	id		ç ´æ£„ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã®ID	(ç®¡ç†ID)
  *
- * œ“Ç‚İ‚ñ‚¾ƒŠƒ\[ƒX‚ğ”jŠü‚µAŠÇ—ƒf[ƒ^‚ğ‰Šú‰»
+ * â—èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã—ã€ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 void TEXRESM_DeleteResID(TEXRES_MANAGER_PTR resm, int id)
@@ -1170,16 +1170,16 @@ void TEXRESM_DeleteResID(TEXRES_MANAGER_PTR resm, int id)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‘SƒŠƒ\[ƒX‚Ì”jŠü
+ *@brief	å…¨ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *
- *@param	resm	”jŠü‚·‚éƒŠƒ\[ƒX‚ª“o˜^‚³‚ê‚Ä‚¢‚éŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ *@param	resm	ç ´æ£„ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * œ“Ç‚İ‚ñ‚¾ƒŠƒ\[ƒX‚ğ”jŠü‚µAŠÇ—ƒf[ƒ^‚ğ‰Šú‰»
+ * â—èª­ã¿è¾¼ã‚“ã ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã—ã€ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–
  */
 //-----------------------------------------------------------------------------
 void TEXRESM_DeleteAllRes(TEXRES_MANAGER_PTR resm)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	GF_ASSERT(resm);
 	GF_ASSERT(resm->tobj);
 	
@@ -1193,13 +1193,13 @@ void TEXRESM_DeleteAllRes(TEXRES_MANAGER_PTR resm)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒIƒuƒWƒFƒNƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^‚ğæ“¾
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- *@param	resm		ƒŠƒ\[ƒXŠÇ—ƒf[ƒ^
- *@param	id			ƒŠƒ\[ƒX‚ÌID	(ŠÇ—ID)
+ *@param	resm		ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ‡ãƒ¼ã‚¿
+ *@param	id			ãƒªã‚½ãƒ¼ã‚¹ã®ID	(ç®¡ç†ID)
  *
- *@retval	NULL		“o˜^‚³‚ê‚Ä‚¢‚È‚¢
- *@retval	TEXRES_OBJ_PTR	“o˜^‚³‚ê‚Ä‚¢‚éƒŠƒ\[ƒXƒIƒuƒWƒFƒ|ƒCƒ“ƒ^
+ *@retval	NULL		ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
+ *@retval	TEXRES_OBJ_PTR	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -1227,11 +1227,11 @@ TEXRES_OBJ_PTR TEXRESM_GetResObj(CONST_TEXRES_MANAGER_PTR resm, int id)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“o˜^‚³‚ê‚Ä‚¢‚éID‚ğæ“¾
+ *@brief	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹IDã‚’å–å¾—
  *
- *@param	r_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	r_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@retval	int			ŠÇ—ID
+ *@retval	int			ç®¡ç†ID
  *
  *
  */
@@ -1246,11 +1246,11 @@ int TEXRESM_GetID(CONST_TEXRES_OBJ_PTR r_obj)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“o˜^‚³‚ê‚Ä‚¢‚éID‚ğİ’è
+ *@brief	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹IDã‚’è¨­å®š
  *
- *@param	resm		ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	r_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF
- *@param	id			İ’è‚·‚éID
+ *@param	resm		ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	r_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *@param	id			è¨­å®šã™ã‚‹ID
  *
  *@retval	none
  *
@@ -1268,12 +1268,12 @@ void TEXRESM_SetID(TEXRES_MANAGER_PTR resm, TEXRES_OBJ_PTR r_obj, int id)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“o˜^‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒf[ƒ^‚ğæ“¾
+ *@brief	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *@param	r_obj		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
+ *@param	r_obj		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@retval	NULL		“o˜^‚³‚ê‚Ä‚¢‚È‚¢
- *@retval	NULLˆÈŠO	“o˜^‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ *@retval	NULL		ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
+ *@retval	NULLä»¥å¤–	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -1287,15 +1287,15 @@ NNSG3dResTex* TEXRESM_GetResPTR(CONST_TEXRES_OBJ_PTR r_obj)
 
 //----------------------------------------------------------------------------
 /**
- * ID‚Åæ“¾
+ * IDã§å–å¾—
  *
- *@brief	“o˜^‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒf[ƒ^‚ğæ“¾
+ *@brief	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *@param	resm		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	id			“o˜^ID
+ *@param	resm		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	id			ç™»éŒ²ID
  *
- *@retval	NULL		“o˜^‚³‚ê‚Ä‚¢‚È‚¢
- *@retval	NULLˆÈŠO	“o˜^‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ|ƒCƒ“ƒ^
+ *@retval	NULL		ç™»éŒ²ã•ã‚Œã¦ã„ãªã„
+ *@retval	NULLä»¥å¤–	ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -1310,16 +1310,16 @@ NNSG3dResTex* TEXRESM_GetResID(CONST_TEXRES_MANAGER_PTR resm, int id)
 
 //----------------------------------------------------------------------------
 /**
- * œƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^
+ * â—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ğVram‚É“]‘—
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚’Vramã«è»¢é€
  *
- *	@param	r_obj	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	r_obj	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  *
- * ‚±‚ÌŠÖ”‚ğŒÄ‚Ô‚ÆVramKey‚ªì¬‚³‚ê‚Ü‚·B
- * Šm•Û‚µ‚½VramKey‚ÍTEXRESM_DeleteResŒnŠÖ”‚ÅƒŠƒ\[ƒX‚Æˆê‚É”jŠü‚³‚ê‚Ü‚·
+ * ã“ã®é–¢æ•°ã‚’å‘¼ã¶ã¨VramKeyãŒä½œæˆã•ã‚Œã¾ã™ã€‚
+ * ç¢ºä¿ã—ãŸVramKeyã¯TEXRESM_DeleteResç³»é–¢æ•°ã§ãƒªã‚½ãƒ¼ã‚¹ã¨ä¸€ç·’ã«ç ´æ£„ã•ã‚Œã¾ã™
  *
  */
 //-----------------------------------------------------------------------------
@@ -1328,35 +1328,35 @@ void TEXRESM_TexLoadPTR( TEXRES_OBJ_PTR r_obj )
 	NNSG3dResTex* tex_res;
 	
 	GF_ASSERT(r_obj);
-	GF_ASSERT_MSG( r_obj->cut_flag == FALSE, "ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^”jŠüÏ‚İ‚È‚Ì‚Å“]‘—‚Í‚Å‚«‚Ü‚¹‚ñB" );
+	GF_ASSERT_MSG( r_obj->cut_flag == FALSE, "ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ç ´æ£„æ¸ˆã¿ãªã®ã§è»¢é€ã¯ã§ãã¾ã›ã‚“ã€‚" );
 	
-	// VramKey‚ğæ“¾‚µ‚½ƒf[ƒ^‚©ƒ`ƒFƒbƒN
+	// VramKeyã‚’å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã‹ãƒã‚§ãƒƒã‚¯
 	if( r_obj->plttKey == NNS_GFD_ALLOC_ERROR_PLTTKEY ){
-		GF_ASSERT_MSG(0, "VramKey‚ğæ“¾‚µ‚Ä‚¢‚È‚¢‚Ì‚É“]‘—‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·BTEXRESM_AllocVramKeyŠÖ”‚ğÀs‚µ‚Ä‚©‚çTEXRESM_TexLoadŠÖ”‚ğÀs‚µ‚Ä‚­‚¾‚³‚¢B");
+		GF_ASSERT_MSG(0, "VramKeyã‚’å–å¾—ã—ã¦ã„ãªã„ã®ã«è»¢é€ã—ã‚ˆã†ã¨ã—ã¦ã„ã¾ã™ã€‚TEXRESM_AllocVramKeyé–¢æ•°ã‚’å®Ÿè¡Œã—ã¦ã‹ã‚‰TEXRESM_TexLoadé–¢æ•°ã‚’å®Ÿè¡Œã—ã¦ãã ã•ã„ã€‚");
 		return ;
 	}
 
-	// TexCut‚ª–³‚¢‚Æ‚«‚Í‚»‚Ì‚Ü‚ÜƒŠƒ\[ƒX‚ğæ“¾
-	// TexCut‚·‚é‚Æ‚«‚Í,p_cutTex‚ğæ“¾
+	// TexCutãŒç„¡ã„ã¨ãã¯ãã®ã¾ã¾ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—
+	// TexCutã™ã‚‹ã¨ãã¯,p_cutTexã‚’å–å¾—
 	tex_res = getTexRes_CheckCutTex( r_obj );
 	
-	// Vram—Ìˆæ‚É“]‘—
+	// Vramé ˜åŸŸã«è»¢é€
 	loadTexRes( tex_res, r_obj );
 }
 
 //----------------------------------------------------------------------------
 /**
- * œID
+ * â—ID
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ğVram‚É“]‘—
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚’Vramã«è»¢é€
  *
- *	@param	resm		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	id			“o˜^ID
+ *	@param	resm		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	id			ç™»éŒ²ID
  *
  *	@return	none
  *
- * ‚±‚ÌŠÖ”‚ğŒÄ‚Ô‚ÆVramKey‚ªì¬‚³‚ê‚Ü‚·B
- * Šm•Û‚µ‚½VramKey‚ÍTEXRESM_DeleteResŒnŠÖ”‚ÅƒŠƒ\[ƒX‚Æˆê‚É”jŠü‚³‚ê‚Ü‚·
+ * ã“ã®é–¢æ•°ã‚’å‘¼ã¶ã¨VramKeyãŒä½œæˆã•ã‚Œã¾ã™ã€‚
+ * ç¢ºä¿ã—ãŸVramKeyã¯TEXRESM_DeleteResç³»é–¢æ•°ã§ãƒªã‚½ãƒ¼ã‚¹ã¨ä¸€ç·’ã«ç ´æ£„ã•ã‚Œã¾ã™
  *
  */
 //-----------------------------------------------------------------------------
@@ -1373,11 +1373,11 @@ void TEXRESM_TexLoadID( TEXRES_MANAGER_PTR resm, int id )
 
 //----------------------------------------------------------------------------
 /**
- * œƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^
+ * â—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ÌÀƒf[ƒ^‚ğ”jŠü
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã®å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
- *	@param	r_obj	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	r_obj	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  *
@@ -1389,41 +1389,41 @@ void TEXRESM_CutTexPTR( TEXRES_OBJ_PTR r_obj )
 	
 	GF_ASSERT(r_obj);
 
-	// ƒJƒbƒg‚µ‚Ä—Ç‚¢ƒIƒuƒWƒFƒNƒg‚©ƒ`ƒFƒbƒN
+	// ã‚«ãƒƒãƒˆã—ã¦è‰¯ã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ãƒã‚§ãƒƒã‚¯
 	if( r_obj->cuttex_flag == TEXRESM_TEX_CUT_FALSE ){
-		// "ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^”jŠü‚Å‚«‚È‚¢ƒIƒuƒWƒFƒNƒg‚Å‚·"
+		// "ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ç ´æ£„ã§ããªã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ã™"
 		GF_ASSERT(0);
 		return ;
 	}
 	
-	//  ”jŠüÏ‚İ‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+	//  ç ´æ£„æ¸ˆã¿ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( r_obj->cut_flag ){
-		// "”jŠüÏ‚İ‚Å‚·"
+		// "ç ´æ£„æ¸ˆã¿ã§ã™"
 		GF_ASSERT(0);
 		return ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚©‚ç
-	// ƒeƒNƒXƒ`ƒƒƒL[‚ğ”jŠü
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã‚’ç ´æ£„
 	releaseTexkeyRes( getTexRes_CheckCutTex( r_obj ) );
 	setTexkeyRes( getTexRes( r_obj ), r_obj->texKey, r_obj->tex4x4Key, r_obj->plttKey );
 
-	// ƒƒ‚ƒŠ”jŠü
+	// ãƒ¡ãƒ¢ãƒªç ´æ£„
 	sys_FreeMemoryEz( r_obj->p_cutTex );
 	r_obj->p_cutTex = NULL;
 	
-	// ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^”jŠüŠ®—¹
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ç ´æ£„å®Œäº†
 	r_obj->cut_flag = TRUE;
 }
 
 //----------------------------------------------------------------------------
 /**
- * œID
+ * â—ID
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ÌÀƒf[ƒ^‚ğ”jŠü
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã®å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
- *	@param	resm		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	id			“o˜^ID
+ *	@param	resm		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	id			ç™»éŒ²ID
  *
  *	@return	none
  *
@@ -1440,16 +1440,16 @@ void TEXRESM_CutTexID( TEXRES_MANAGER_PTR resm, int id )
 
 //----------------------------------------------------------------------------
 /**
- * œƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^‚ÅŠm•Û
+ * â—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿ã§ç¢ºä¿
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒL[‚ğVramManager‚©‚çŠm•Û‚µ‚Ü‚·
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã‚’VramManagerã‹ã‚‰ç¢ºä¿ã—ã¾ã™
  *
- *	@param	r_obj		ƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	r_obj		ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return none
  *
- * Šm•Û‚µ‚½VramKeyiƒeƒNƒXƒ`ƒƒƒL[@ƒpƒŒƒbƒgƒL[j
- * ‚ÍTEXRESM_Delete`ŠÖ”‚Å”jŠü‚³‚ê‚Ü‚·B
+ * ç¢ºä¿ã—ãŸVramKeyï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã€€ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ï¼‰
+ * ã¯TEXRESM_Deleteã€œé–¢æ•°ã§ç ´æ£„ã•ã‚Œã¾ã™ã€‚
  *
  *
  */
@@ -1459,35 +1459,35 @@ void TEXRESM_AllocVramKeyPTR( TEXRES_OBJ_PTR r_obj )
 	NNSG3dResTex* tex_res;
 
 	GF_ASSERT( r_obj );
-	GF_ASSERT_MSG( r_obj->cut_flag == FALSE, "ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^”jŠüÏ‚İ‚È‚Ì‚ÅVramKeyŠm•Û‚Å‚«‚Ü‚¹‚ñB" );
+	GF_ASSERT_MSG( r_obj->cut_flag == FALSE, "ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ç ´æ£„æ¸ˆã¿ãªã®ã§VramKeyç¢ºä¿ã§ãã¾ã›ã‚“ã€‚" );
 	
-	// VramKeyæ“¾Ï‚İ‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+	// VramKeyå–å¾—æ¸ˆã¿ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( r_obj->plttKey != NNS_GFD_ALLOC_ERROR_PLTTKEY ){
-		GF_ASSERT_MSG(0, "VramKeyæ“¾Ï‚İ‚Å‚·");
+		GF_ASSERT_MSG(0, "VramKeyå–å¾—æ¸ˆã¿ã§ã™");
 		return ;
 	}
 
-	// TexCut‚ª–³‚¢‚Æ‚«‚Í‚»‚Ì‚Ü‚ÜƒŠƒ\[ƒX‚ğæ“¾
-	// TexCut‚·‚é‚Æ‚«‚Í,p_cutTex‚ğæ“¾
+	// TexCutãŒç„¡ã„ã¨ãã¯ãã®ã¾ã¾ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—
+	// TexCutã™ã‚‹ã¨ãã¯,p_cutTexã‚’å–å¾—
 	tex_res = getTexRes_CheckCutTex( r_obj );
 	
-	// Vramkey‚Ìæ“¾
+	// Vramkeyã®å–å¾—
 	getVramkey( tex_res, &r_obj->texKey, &r_obj->tex4x4Key, &r_obj->plttKey );
 }
 
 //----------------------------------------------------------------------------
 /**
- * œID‚ÅŠm•Û
+ * â—IDã§ç¢ºä¿
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒL[‚ğVramManager‚©‚çŠm•Û‚µ‚Ü‚·
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã‚’VramManagerã‹ã‚‰ç¢ºä¿ã—ã¾ã™
  *
- *	@param	resm		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	id			“o˜^ID
+ *	@param	resm		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	id			ç™»éŒ²ID
  *
  *	@return none
  *
- * Šm•Û‚µ‚½VramKeyiƒeƒNƒXƒ`ƒƒƒL[@ƒpƒŒƒbƒgƒL[j
- * ‚ÍTEXRESM_Delete`ŠÖ”‚Å”jŠü‚³‚ê‚Ü‚·B
+ * ç¢ºä¿ã—ãŸVramKeyï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã€€ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ï¼‰
+ * ã¯TEXRESM_Deleteã€œé–¢æ•°ã§ç ´æ£„ã•ã‚Œã¾ã™ã€‚
  *
  *
  */
@@ -1507,9 +1507,9 @@ void TEXRESM_AllocVramKeyID( CONST_TEXRES_MANAGER_PTR resm, int id )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ğVram‚É“]‘—
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚’Vramã«è»¢é€
  *
- *	@param	r_obj		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	r_obj		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  *
@@ -1524,12 +1524,12 @@ void TEXRESM_TexLoadAndCutTexPTR( TEXRES_OBJ_PTR r_obj )
 
 //----------------------------------------------------------------------------
 /**
- * ID‚Åæ“¾
+ * IDã§å–å¾—
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ğVram‚É“]‘—
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚’Vramã«è»¢é€
  *
- *	@param	resm		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	id			“o˜^ID
+ *	@param	resm		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	id			ç™»éŒ²ID
  *
  *	@return	none
  *
@@ -1547,11 +1547,11 @@ void TEXRESM_TexLoadAndCutTexID( TEXRES_MANAGER_PTR resm, int id )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒL[‚Ìæ“¾
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã®å–å¾—
  *
- *	@param	r_obj	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	r_obj	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	ƒeƒNƒXƒ`ƒƒƒL[
+ *	@return	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
  *
  *
  */
@@ -1565,14 +1565,14 @@ NNSGfdTexKey TEXRESM_GetTexKeyPTR( CONST_TEXRES_OBJ_PTR r_obj )
 
 //----------------------------------------------------------------------------
 /**
- * ID‚Åæ“¾
+ * IDã§å–å¾—
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒL[‚Ìæ“¾
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã®å–å¾—
  *
- *	@param	resm		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	id			“o˜^ID
+ *	@param	resm		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	id			ç™»éŒ²ID
  *
- *	@return	ƒeƒNƒXƒ`ƒƒƒL[
+ *	@return	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
  *
  *
  */
@@ -1589,11 +1589,11 @@ NNSGfdTexKey TEXRESM_GetTexKeyID( CONST_TEXRES_MANAGER_PTR resm, int id )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒ4x4ƒL[‚Ìæ“¾
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£4x4ã‚­ãƒ¼ã®å–å¾—
  *
- *	@param	r_obj	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	r_obj	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	ƒeƒNƒXƒ`ƒƒƒL[
+ *	@return	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
  *
  *
  */
@@ -1607,14 +1607,14 @@ NNSGfdTexKey TEXRESM_GetTex4x4KeyPTR( CONST_TEXRES_OBJ_PTR r_obj )
 
 //----------------------------------------------------------------------------
 /**
- * ID‚Åæ“¾
+ * IDã§å–å¾—
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒ4x4ƒL[‚Ìæ“¾
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£4x4ã‚­ãƒ¼ã®å–å¾—
  *
- *	@param	resm		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	id			“o˜^ID
+ *	@param	resm		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	id			ç™»éŒ²ID
  *
- *	@return	ƒeƒNƒXƒ`ƒƒƒL[
+ *	@return	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
  *
  *
  */
@@ -1631,11 +1631,11 @@ NNSGfdTexKey TEXRESM_GetTex4x4KeyID( CONST_TEXRES_MANAGER_PTR resm, int id )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒpƒŒƒbƒgƒL[‚Ìæ“¾
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ã®å–å¾—
  *
- *	@param	r_obj	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	r_obj	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	ƒpƒŒƒbƒgƒL[
+ *	@return	ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  *
  *
  */
@@ -1649,14 +1649,14 @@ NNSGfdPlttKey TEXRESM_GetPlttKeyPTR( CONST_TEXRES_OBJ_PTR r_obj )
 
 //----------------------------------------------------------------------------
 /**
- * ID‚Åæ“¾
+ * IDã§å–å¾—
  *
- *	@brief	ƒpƒŒƒbƒgƒL[‚Ìæ“¾
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ã®å–å¾—
  *
- *	@param	resm		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	id			“o˜^ID
+ *	@param	resm		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	id			ç™»éŒ²ID
  *
- *	@return	ƒpƒŒƒbƒgƒL[
+ *	@return	ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  *
  *
  */
@@ -1672,19 +1672,19 @@ NNSGfdPlttKey TEXRESM_GetPlttKeyID( CONST_TEXRES_MANAGER_PTR resm, int id )
 
 //----------------------------------------------------------------------------
 /**
- * œƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^
+ * â—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- *	@brief	w’è‚³‚ê‚½VramKeyˆÊ’u‚ÉƒeƒNƒXƒ`ƒƒ‚ğ“]‘—‚µ‚Ü‚·B
+ *	@brief	æŒ‡å®šã•ã‚ŒãŸVramKeyä½ç½®ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è»¢é€ã—ã¾ã™ã€‚
  *
- *	@param	r_obj		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
- *	@param	texkey		ƒeƒNƒXƒ`ƒƒƒL[
- *	@param	tex4x4key	ƒeƒNƒXƒ`ƒƒ4x4ƒL[
- *	@param	plttkey		ƒpƒŒƒbƒgƒL[
+ *	@param	r_obj		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	texkey		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *	@param	tex4x4key	ãƒ†ã‚¯ã‚¹ãƒãƒ£4x4ã‚­ãƒ¼
+ *	@param	plttkey		ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
- * ˆø”‚ÌtexkeyEplttkeyƒf[ƒ^‚ÍƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Å‚Í
- * ŠÇ—‚µ‚Ü‚¹‚ñ‚Ì‚ÅAŠe©Šm•ÛA”jŠü‚µ‚Ä‚­‚¾‚³‚¢B
+ * å¼•æ•°ã®texkeyãƒ»plttkeyãƒ‡ãƒ¼ã‚¿ã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã§ã¯
+ * ç®¡ç†ã—ã¾ã›ã‚“ã®ã§ã€å„è‡ªç¢ºä¿ã€ç ´æ£„ã—ã¦ãã ã•ã„ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -1693,37 +1693,37 @@ void TEXRESM_TexLoadOfKeyPTR( TEXRES_OBJ_PTR r_obj, NNSGfdTexKey texkey, NNSGfdT
 	NNSG3dResTex* res;
 	
 	GF_ASSERT( r_obj );
-	GF_ASSERT_MSG( r_obj->cut_flag == FALSE, "ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^‚ªíœ‚³‚ê‚Ä‚¢‚é‚Ì‚Å“]‘—‚Å‚«‚Ü‚¹‚ñB" );
+	GF_ASSERT_MSG( r_obj->cut_flag == FALSE, "ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ãŒå‰Šé™¤ã•ã‚Œã¦ã„ã‚‹ã®ã§è»¢é€ã§ãã¾ã›ã‚“ã€‚" );
 
-	// TexCut‚ª–³‚¢‚Æ‚«‚Í‚»‚Ì‚Ü‚ÜƒŠƒ\[ƒX‚ğæ“¾
-	// TexCut‚·‚é‚Æ‚«‚Í,p_cutTex‚ğæ“¾
+	// TexCutãŒç„¡ã„ã¨ãã¯ãã®ã¾ã¾ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—
+	// TexCutã™ã‚‹ã¨ãã¯,p_cutTexã‚’å–å¾—
 	res = getTexRes_CheckCutTex( r_obj );
 	
 	NNS_G3dTexSetTexKey(res, texkey, tex4x4key);
 	NNS_G3dPlttSetPlttKey(res, plttkey);
 
 	DC_FlushRange( res, res->header.size );
-	// VRAM‚Ö‚Ìƒ[ƒh
+	// VRAMã¸ã®ãƒ­ãƒ¼ãƒ‰
 	NNS_G3dTexLoad(res, TRUE);
 	NNS_G3dPlttLoad(res, TRUE);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	œID
+ *	â—ID
  * 
- *	@brief	w’è‚³‚ê‚½VramKeyˆÊ’u‚ÉƒeƒNƒXƒ`ƒƒ‚ğ“]‘—‚µ‚Ü‚·B
+ *	@brief	æŒ‡å®šã•ã‚ŒãŸVramKeyä½ç½®ã«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’è»¢é€ã—ã¾ã™ã€‚
  *
- *	@param	resm		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *	@param	id			“o˜^ID
- *	@param	texkey		ƒeƒNƒXƒ`ƒƒƒL[
- *	@param	tex4x4key	ƒeƒNƒXƒ`ƒƒ4x4ƒL[
- *	@param	plttkey		ƒpƒŒƒbƒgƒL[
+ *	@param	resm		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *	@param	id			ç™»éŒ²ID
+ *	@param	texkey		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *	@param	tex4x4key	ãƒ†ã‚¯ã‚¹ãƒãƒ£4x4ã‚­ãƒ¼
+ *	@param	plttkey		ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
- * ˆø”‚ÌtexkeyEplttkeyƒf[ƒ^‚ÍƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Å‚Í
- * ŠÇ—‚µ‚Ü‚¹‚ñ‚Ì‚ÅAŠe©Šm•ÛA”jŠü‚µ‚Ä‚­‚¾‚³‚¢B
+ * å¼•æ•°ã®texkeyãƒ»plttkeyãƒ‡ãƒ¼ã‚¿ã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã§ã¯
+ * ç®¡ç†ã—ã¾ã›ã‚“ã®ã§ã€å„è‡ªç¢ºä¿ã€ç ´æ£„ã—ã¦ãã ã•ã„ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -1738,16 +1738,16 @@ void TEXRESM_TexLoadOfKeyID( TEXRES_MANAGER_PTR resm, int id, NNSGfdTexKey texke
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒc[ƒ‹ŠÖ”
+ *			ãƒ„ãƒ¼ãƒ«é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚©‚çƒeƒNƒXƒ`ƒƒÀƒf[ƒ^‚ğ”²‚¢‚½ƒTƒCƒY‚ğæ“¾‚·‚é
+ *	@brief	ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’æŠœã„ãŸã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_file	ƒ‚ƒfƒ‹‚Ìƒtƒ@ƒCƒ‹
+ *	@param	p_file	ãƒ¢ãƒ‡ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«
  *
- *	@return	ƒeƒNƒXƒ`ƒƒƒf[ƒ^‚ğ”jŠü‚µ‚½ƒTƒCƒY
+ *	@return	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã—ãŸã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 u32 TEXRESM_TOOL_CutTexDataSizeGet( NNSG3dResFileHeader* p_file )
@@ -1759,11 +1759,11 @@ u32 TEXRESM_TOOL_CutTexDataSizeGet( NNSG3dResFileHeader* p_file )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‹ó‚¢‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF‚Ìæ“¾
+ *	@brief	ç©ºã„ã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã®å–å¾—
  *
- *	@param	resm	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+ *	@param	resm	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
  *
-*	@return	‹ó‚¢‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
+*	@return	ç©ºã„ã¦ã„ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *
  */
@@ -1784,9 +1784,9 @@ static TEXRES_OBJ_PTR getCleanTEXRES_OBJ(CONST_TEXRES_MANAGER_PTR resm)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF‚ğ‰Šú‰»
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚’åˆæœŸåŒ–
  *
- *	@param	obj		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	obj		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  *
@@ -1807,11 +1807,11 @@ static void cleanTEXRES_OBJ(TEXRES_OBJ_PTR obj)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ìæ“¾
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã®å–å¾—
  *
- *	@param	r_obj	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	r_obj	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
+ *	@return	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
  *
  *
  */
@@ -1830,11 +1830,11 @@ static NNSG3dResTex* getTexRes( CONST_TEXRES_OBJ_PTR r_obj )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^‚Ì“ü‚Á‚Ä‚¢‚é@ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXæ“¾
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ã®å…¥ã£ã¦ã„ã‚‹ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹å–å¾—
  *
- *	@param	r_obj	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	r_obj	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
- *	@return	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
+ *	@return	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
  */
 //-----------------------------------------------------------------------------
 static NNSG3dResTex* getTexRes_CheckCutTex( CONST_TEXRES_OBJ_PTR r_obj )
@@ -1842,10 +1842,10 @@ static NNSG3dResTex* getTexRes_CheckCutTex( CONST_TEXRES_OBJ_PTR r_obj )
 	void* buff;
 	NNSG3dResTex* o_tex;
 
-	// TexCut‚ª–³‚¢‚Æ‚«‚Í‚»‚Ì‚Ü‚ÜƒŠƒ\[ƒX‚ğæ“¾
-	// TexCut‚·‚é‚Æ‚«‚Í,p_cutTex‚ğæ“¾
+	// TexCutãŒç„¡ã„ã¨ãã¯ãã®ã¾ã¾ãƒªã‚½ãƒ¼ã‚¹ã‚’å–å¾—
+	// TexCutã™ã‚‹ã¨ãã¯,p_cutTexã‚’å–å¾—
 	if( r_obj->cuttex_flag == TEXRESM_TEX_CUT_FALSE ){
-		// ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ìæ“¾
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã®å–å¾—
 		buff = RESM_GetRes( r_obj->resobj );
 	}else{
 		buff = r_obj->p_cutTex;
@@ -1857,12 +1857,12 @@ static NNSG3dResTex* getTexRes_CheckCutTex( CONST_TEXRES_OBJ_PTR r_obj )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒf[ƒ^—p‚ÌVramkey‚ğæ“¾
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ç”¨ã®Vramkeyã‚’å–å¾—
  *
- *	@param	res		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- *	@param	tex		ƒeƒNƒXƒ`ƒƒƒL[
- *	@param	tex4x4	4x4ˆ³kƒeƒNƒXƒ`ƒƒ
- *	@param	pltt	ƒpƒŒƒbƒgƒL[
+ *	@param	res		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ *	@param	tex		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *	@param	tex4x4	4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£
+ *	@param	pltt	ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  *
  *	@return	none
  *
@@ -1882,18 +1882,18 @@ static void getVramkey( const NNSG3dResTex* res, NNSGfdTexKey* tex, NNSGfdTexKey
 
 	if(tex_size != 0){
 		*tex = NNS_GfdAllocTexVram( tex_size, FALSE, 0 );
-		// ƒeƒNƒXƒ`ƒƒƒL[Šm•Û¸”s
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ç¢ºä¿å¤±æ•—
 //		GF_ASSERT(*tex != NNS_GFD_ALLOC_ERROR_TEXKEY );
 	}
 	if(tex_4x4_size != 0){
 		*tex4x4 = NNS_GfdAllocTexVram( tex_4x4_size, TRUE, 0 );
-		// ƒeƒNƒXƒ`ƒƒƒL[Šm•Û¸”s
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ç¢ºä¿å¤±æ•—
 //		GF_ASSERT(*tex4x4 != NNS_GFD_ALLOC_ERROR_TEXKEY );
 	}
 	if(pltt_size != 0){
 		*pltt = NNS_GfdAllocPlttVram( pltt_size, 
 			res->tex4x4Info.flag & NNS_G3D_RESPLTT_USEPLTT4, 0 );
-		// ƒpƒŒƒbƒgƒL[Šm•Û¸”s
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼ç¢ºä¿å¤±æ•—
 //		GF_ASSERT(*pltt != NNS_GFD_ALLOC_ERROR_PLTTKEY );
 	}
 }
@@ -1901,10 +1901,10 @@ static void getVramkey( const NNSG3dResTex* res, NNSGfdTexKey* tex, NNSGfdTexKey
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	res		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- *	@param	r_obj	ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒIƒuƒWƒF
+ *	@param	res		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ *	@param	r_obj	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  *
@@ -1916,19 +1916,19 @@ static void loadTexRes( NNSG3dResTex* res, TEXRES_OBJ_PTR r_obj )
 	setTexkeyRes( res, r_obj->texKey, r_obj->tex4x4Key, r_obj->plttKey );
 
 	DC_FlushRange( res, res->header.size );
-	// VRAM‚Ö‚Ìƒ[ƒh
+	// VRAMã¸ã®ãƒ­ãƒ¼ãƒ‰
 	NNS_G3dTexLoad(res, TRUE);
 	NNS_G3dPlttLoad(res, TRUE);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒNƒXƒ`ƒƒƒL[‚ğƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Éİ’è
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã‚’ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã«è¨­å®š
  *
- *	@param	res			ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
- *	@param	tex			ƒeƒNƒXƒ`ƒƒƒL[
- *	@param	tex4x4		ƒeƒNƒXƒ`ƒƒƒL[	4x4
- *	@param	pltt		ƒpƒŒƒbƒgƒL[
+ *	@param	res			ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+ *	@param	tex			ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+ *	@param	tex4x4		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼	4x4
+ *	@param	pltt		ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void setTexkeyRes( NNSG3dResTex* res, NNSGfdTexKey tex, NNSGfdTexKey tex4x4, NNSGfdPlttKey pltt )
@@ -1939,29 +1939,29 @@ static void setTexkeyRes( NNSG3dResTex* res, NNSGfdTexKey tex, NNSGfdTexKey tex4
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒNƒXƒ`ƒƒƒL[‚ğƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚©‚çæ‚é
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼ã‚’ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‹ã‚‰å–ã‚‹
  *
- *	@param	res		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
+ *	@param	res		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void releaseTexkeyRes( NNSG3dResTex* res )
 {
-	NNSGfdTexKey	texKey;		// ƒeƒNƒXƒ`ƒƒƒL[
-	NNSGfdTexKey	tex4x4Key;	// 4x4ƒeƒNƒXƒ`ƒƒƒL[
-	NNSGfdPlttKey	plttKey;	// ƒpƒŒƒbƒgƒL[
+	NNSGfdTexKey	texKey;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+	NNSGfdTexKey	tex4x4Key;	// 4x4ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚­ãƒ¼
+	NNSGfdPlttKey	plttKey;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚­ãƒ¼
 
-	// VramKey‚ğ•t‚¯‘Ö‚¦‚é
+	// VramKeyã‚’ä»˜ã‘æ›¿ãˆã‚‹
 	NNS_G3dTexReleaseTexKey( res, &texKey, &tex4x4Key );
 	plttKey = NNS_G3dPlttReleasePlttKey( res );	
 }
 
-// ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ğíœ‚µ‚½NNSG3dResTex‚ğì¬‚·‚éŠÖ”ŒS
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚’å‰Šé™¤ã—ãŸNNSG3dResTexã‚’ä½œæˆã™ã‚‹é–¢æ•°éƒ¡
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^‚ğ”jŠü‚µ‚½ƒTƒCƒY‚ÌƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXì¬
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã—ãŸã‚µã‚¤ã‚ºã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ä½œæˆ
  *
- *	@param	p_cuttex	ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^‚ğ”jŠü‚·‚éƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
+ *	@param	p_cuttex	ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
  *
  *	@return	none	
  *
@@ -1970,14 +1970,14 @@ static void releaseTexkeyRes( NNSG3dResTex* res )
 //-----------------------------------------------------------------------------
 static void* MakeCutTexWork( void* p_cuttex, u32 heap )
 {
-	u32	data_size;		// ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^‚ğ“ü‚ê‚È‚¢ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒTƒCƒY
+	u32	data_size;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œãªã„ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚µã‚¤ã‚º
 	void* buff;
-	// ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^‚ğ“ü‚ê‚È‚¢ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒTƒCƒYæ“¾
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œãªã„ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚µã‚¤ã‚ºå–å¾—
 	data_size = GetCutTexDataSize( p_cuttex );
 
 	buff = sys_AllocMemory( heap, data_size );
 
-	// æ“ª‚©‚çbuff•ªƒRƒs[‚·‚é
+	// å…ˆé ­ã‹ã‚‰buffåˆ†ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	memcpy( buff, p_cuttex, data_size );
 	return buff;
 }
@@ -1985,11 +1985,11 @@ static void* MakeCutTexWork( void* p_cuttex, u32 heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^‚ğ“ü‚ê‚È‚¢ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒTƒCƒY‚ÌŒvZ
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œãªã„ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã‚µã‚¤ã‚ºã®è¨ˆç®—
  *
- *	@param	p_cuttex	ŒvZ‚·‚éƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXƒf[ƒ^
+ *	@param	p_cuttex	è¨ˆç®—ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒeƒNƒXƒ`ƒƒÀƒf[ƒ^‚ğ“ü‚ê‚È‚¢ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚ÌƒTƒCƒY
+ *	@return	ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œãªã„ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã®ã‚µã‚¤ã‚º
  *
  *
  */
@@ -1997,16 +1997,16 @@ static void* MakeCutTexWork( void* p_cuttex, u32 heap )
 static u32 GetCutTexDataSize( const void* p_cuttex )
 {
 	NNSG3dResTex* p_tex;
-	u8* tex_top;		// ƒeƒNƒXƒ`ƒƒƒf[ƒ^æ“ªƒf[ƒ^
-	u32 new_size;		// V‚µ‚¢ƒf[ƒ^ƒTƒCƒY
+	u8* tex_top;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿å…ˆé ­ãƒ‡ãƒ¼ã‚¿
+	u32 new_size;		// æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 
 	p_tex = NNS_G3dGetTex( p_cuttex );
-	GF_ASSERT_MSG( p_tex, "‚±‚ÌƒŠƒ\[ƒX‚É‚ÍƒeƒNƒXƒ`ƒƒƒf[ƒ^‚ª‚ ‚è‚Ü‚¹‚ñB" );
+	GF_ASSERT_MSG( p_tex, "ã“ã®ãƒªã‚½ãƒ¼ã‚¹ã«ã¯ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚Šã¾ã›ã‚“ã€‚" );
 
-	// ƒeƒNƒXƒ`ƒƒ‚Ìæ“ªƒAƒhƒŒƒXŒvZ
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹è¨ˆç®—
 	tex_top = (u8*)p_tex + p_tex->texInfo.ofsTex;
 
-	// ƒq[ƒv‚Ìæ“ª‚©‚çƒeƒNƒXƒ`ƒƒƒCƒ[ƒW‚Ü‚Å‚ÌƒTƒCƒY
+	// ãƒ’ãƒ¼ãƒ—ã®å…ˆé ­ã‹ã‚‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã¾ã§ã®ã‚µã‚¤ã‚º
     new_size = (u32)(tex_top - (u8*)p_cuttex);
 
 	return new_size;

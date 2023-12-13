@@ -15,38 +15,38 @@
   INDENT SOURCE
 
   Revision 1.11  2005/10/04 10:31:40  yasu
-  SOC_GetStatus ‚É‚¨‚¢‚ÄƒŠƒ‚[ƒg‚©‚ç FIN ‚ğó‚¯æ‚Á‚½‚Æ‚«‚ÌóMƒoƒbƒtƒ@‚Éc‚Á‚Ä‚¢‚é
-  ƒf[ƒ^‚ª‚ ‚é‚¤‚¿‚ÍAREADABLE ‚Æ‚İ‚È‚·‚æ‚¤‚ÉC³
+  SOC_GetStatus ã«ãŠã„ã¦ãƒªãƒ¢ãƒ¼ãƒˆã‹ã‚‰ FIN ã‚’å—ã‘å–ã£ãŸã¨ãã®å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«æ®‹ã£ã¦ã„ã‚‹
+  ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã†ã¡ã¯ã€READABLE ã¨ã¿ãªã™ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.10  2005/09/01 06:42:55  yasu
-  ƒ\ƒPƒbƒg‚ª¶‚«‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ì”»’è‚ğˆêŒ³‰»
+  ã‚½ã‚±ãƒƒãƒˆãŒç”Ÿãã¦ã„ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šã‚’ä¸€å…ƒåŒ–
 
   Revision 1.9  2005/08/26 04:02:25  yasu
-  Œx‚Ì—}§
+  è­¦å‘Šã®æŠ‘åˆ¶
 
   Revision 1.8  2005/08/26 03:45:25  yasu
-  SOCL_GetStatus ‚Ì UDP óMƒVƒXƒeƒ€•ÏX‚É‚Æ‚à‚È‚¤C³
+  SOCL_GetStatus ã® UDP å—ä¿¡ã‚·ã‚¹ãƒ†ãƒ å¤‰æ›´ã«ã¨ã‚‚ãªã†ä¿®æ­£
 
   Revision 1.7  2005/08/24 09:25:13  yasu
-  SOCL_SocketIsInvalid ’Ç‰Á
+  SOCL_SocketIsInvalid è¿½åŠ 
 
   Revision 1.6  2005/08/18 04:27:15  yasu
-  s––‚Ì '\' ‚ÌƒPƒA
+  è¡Œæœ«ã® '\' ã®ã‚±ã‚¢
 
   Revision 1.5  2005/08/17 04:10:28  yasu
-  SOC_Poll ‚Ì‹@”\’Ç‰Á
+  SOC_Poll ã®æ©Ÿèƒ½è¿½åŠ 
 
   Revision 1.4  2005/08/12 09:51:10  yasu
-  IsWritable ŠÖ”‚Ì•Ô’l‚ğŒµŠi‚É BOOL ‚É§ŒÀ
+  IsWritable é–¢æ•°ã®è¿”å€¤ã‚’å³æ ¼ã« BOOL ã«åˆ¶é™
 
   Revision 1.3  2005/08/01 07:34:28  yasu
-  IsWritable ‚É connected ‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN‚ğ’Ç‰Á
+  IsWritable ã« connected ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯ã‚’è¿½åŠ 
 
   Revision 1.2  2005/07/29 01:49:02  yasu
-  ‰pŒê”ÅƒRƒ“ƒpƒCƒ‰‘Îô
+  è‹±èªç‰ˆã‚³ãƒ³ãƒ‘ã‚¤ãƒ©å¯¾ç­–
 
   Revision 1.1  2005/07/28 11:15:17  yasu
-  SOC_Poll ‚ÌÀ‘•
+  SOC_Poll ã®å®Ÿè£…
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -56,16 +56,16 @@
 /*---------------------------------------------------------------------------*
   Name:         SOCL_GetStatus
 
-  Description:  w’è‚µ‚½ƒ\ƒPƒbƒg‚Ìó‘Ô‚ğ’²‚×‚Ü‚·D
+  Description:  æŒ‡å®šã—ãŸã‚½ã‚±ãƒƒãƒˆã®çŠ¶æ…‹ã‚’èª¿ã¹ã¾ã™ï¼
 
-  Arguments:    s       ƒ\ƒPƒbƒg‹Lqq
+  Arguments:    s       ã‚½ã‚±ãƒƒãƒˆè¨˜è¿°å­
   
-  Returns:      ˆÈ‰º‚Ì‚à‚Ì‚ª OR ‚³‚ê‚½‚à‚Ì‚Æ‚È‚é
-                SOC_POLLNVAL		0x80	ƒ\ƒPƒbƒg‚ª–³Œø
-                SOC_POLLHUP		0x40	Ú‘±ˆ—’†‚ ‚é‚¢‚ÍÚ‘±’†‚Å‚È‚¢
-                SOC_POLLERR		0x20	ƒGƒ‰[”­¶
-                SOC_POLLWRNORM		0x08	‘‚«‚İ‰Â”\.
-                SOC_POLLRDNORM		0x01	“Ç‚İ‚İ‰Â”\.
+  Returns:      ä»¥ä¸‹ã®ã‚‚ã®ãŒ OR ã•ã‚ŒãŸã‚‚ã®ã¨ãªã‚‹
+                SOC_POLLNVAL		0x80	ã‚½ã‚±ãƒƒãƒˆãŒç„¡åŠ¹
+                SOC_POLLHUP		0x40	æ¥ç¶šå‡¦ç†ä¸­ã‚ã‚‹ã„ã¯æ¥ç¶šä¸­ã§ãªã„
+                SOC_POLLERR		0x20	ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ
+                SOC_POLLWRNORM		0x08	æ›¸ãè¾¼ã¿å¯èƒ½.
+                SOC_POLLRDNORM		0x01	èª­ã¿è¾¼ã¿å¯èƒ½.
  *---------------------------------------------------------------------------*/
 int SOCL_GetStatus(int s)
 {
@@ -101,8 +101,8 @@ int SOCL_GetStatus(int s)
 
         if (SOCL_SocketIsTCP(socket))
         {
-            // Ú‘±ó‘Ô‚Å‚ ‚é‚©‚Ç‚¤‚©Šm”F‚µƒtƒ‰ƒO‚ğƒƒ“ƒeƒiƒ“ƒX‚·‚é
-            // READ ‰Â”\‚Èó‘Ô‚È‚çØ’fó‘Ô‚É‚Í‚µ‚È‚¢
+            // æ¥ç¶šçŠ¶æ…‹ã§ã‚ã‚‹ã‹ã©ã†ã‹ç¢ºèªã—ãƒ•ãƒ©ã‚°ã‚’ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ã™ã‚‹
+            // READ å¯èƒ½ãªçŠ¶æ…‹ãªã‚‰åˆ‡æ–­çŠ¶æ…‹ã«ã¯ã—ãªã„
             if (SOCL_SocketIsConnected(socket) && socket->cps_socket.state != CPS_STT_ESTABLISHED &&
                 !(result & SOC_POLLRDNORM))
             {
@@ -123,11 +123,11 @@ int SOCL_GetStatus(int s)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_GetReadBufferOccpiedSize
 
-  Description:  w’è‚µ‚½ƒ\ƒPƒbƒg‚Ì’…M‚µ‚Ä‚¢‚éƒf[ƒ^‚ÌƒTƒCƒY‚ğ’²‚×‚Ü‚·D
+  Description:  æŒ‡å®šã—ãŸã‚½ã‚±ãƒƒãƒˆã®ç€ä¿¡ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚ºã‚’èª¿ã¹ã¾ã™ï¼
 
-  Arguments:    socket   ƒ\ƒPƒbƒg
+  Arguments:    socket   ã‚½ã‚±ãƒƒãƒˆ
   
-  Returns:      ƒTƒCƒY
+  Returns:      ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 s32 SOCLi_GetReadBufferOccpiedSize(SOCLSocket* socket)
 {

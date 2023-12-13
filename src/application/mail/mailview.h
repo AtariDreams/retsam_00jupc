@@ -1,6 +1,6 @@
 /**
  *	@file	mailview.h
- *	@brief	ƒ[ƒ‹•`‰æƒ‹[ƒ`ƒ“@ƒ[ƒJƒ‹ƒwƒbƒ_
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ãƒ«ãƒ¼ãƒãƒ³ã€€ãƒ­ãƒ¼ã‚«ãƒ«ãƒ˜ãƒƒãƒ€
  *	@author	MiyukiIwasawa
  *	@date	06.02.08
  */
@@ -9,9 +9,9 @@
 #define _H_MAIL_VIEW_H_
 
 typedef enum{
-	MAILMODE_CREATE,	///<ì¬‚·‚é
-	MAILMODE_VIEW_D,	///<ƒfƒUƒCƒ“‚ğ‚İ‚é
-	MAILMODE_VIEW,		///<ì¬Ï‚İ‚Ìƒ[ƒ‹‚ğ‚İ‚é
+	MAILMODE_CREATE,	///<ä½œæˆã™ã‚‹
+	MAILMODE_VIEW_D,	///<ãƒ‡ã‚¶ã‚¤ãƒ³ã‚’ã¿ã‚‹
+	MAILMODE_VIEW,		///<ä½œæˆæ¸ˆã¿ã®ãƒ¡ãƒ¼ãƒ«ã‚’ã¿ã‚‹
 }MAILMODE_ENUM;
 
 enum{
@@ -22,12 +22,12 @@ enum{
  VIEW_END_CANCEL = 0xFFFF,
 };
 
-///ƒ[ƒ‹ƒf[ƒ^ƒeƒ“ƒ|ƒ‰ƒŠ
+///ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ³ãƒãƒ©ãƒª
 typedef struct _MAIL_TMP_DATA{
 	u16	val;
 	u8	cntNo;
 	u8	flags;
-	CONFIG*	configSave;	///<ƒRƒ“ƒtƒBƒOƒZ[ƒuƒf[ƒ^
+	CONFIG*	configSave;	///<ã‚³ãƒ³ãƒ•ã‚£ã‚°ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
 	
 	u32	writerID;
 	u8	sex;

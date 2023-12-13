@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <imd version="1.6.0">
 
 <head>
-	<create user="kanako_eo" host="W00107" date="2006-07-14T19:01:30" source="16枚fieldobj.mb"/>
+	<create user="kanako_eo" host="W00107" date="2006-07-14T19:01:30" source="16譫喃ieldobj.mb"/>
 	<title>Model Data for NINTENDO NITRO-System</title>
 	<generator name="Maya 6.5 NNS_Export" version="1.6.0.20060417"/>
 </head>
 
 <body>
 
-<original_create user="kanako_eo" host="W00107" date="2006-07-14T19:01:30" source="16枚fieldobj.mb"/>
+<original_create user="kanako_eo" host="W00107" date="2006-07-14T19:01:30" source="16譫喃ieldobj.mb"/>
 <original_generator name="Maya 6.5 NNS_Export" version="1.6.0.20060417"/>
 
 <model_info

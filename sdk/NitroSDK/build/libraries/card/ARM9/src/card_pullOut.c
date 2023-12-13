@@ -15,7 +15,7 @@
   indent source
 
   Revision 1.15  2006/09/22 02:29:04  okubata_ryoma
-  ƒJ[ƒh”²‚¯”­¶Žž‚ÉDMA“]‘—‚ð’âŽ~‚³‚¹‚éˆ—‚ð’Ç‰Á
+  ã‚«ãƒ¼ãƒ‰æŠœã‘ç™ºç”Ÿæ™‚ã«DMAè»¢é€ã‚’åœæ­¢ã•ã›ã‚‹å‡¦ç†ã‚’è¿½åŠ 
 
   Revision 1.14  2006/08/10 06:04:23  okubata_ryoma
   fix CARD_TerminateForPulledOut.
@@ -24,10 +24,10 @@
   small fix
 
   Revision 1.12  2006/07/21 12:48:02  okubata_ryoma
-  ƒJ[ƒh”²‚¯Žž‚É“dŒ¹‚ªOFF‚É‚³‚ê‚È‚¢•s‹ï‡C³‚Ì‚½‚ß‚Ì•ÏX
+  ã‚«ãƒ¼ãƒ‰æŠœã‘æ™‚ã«é›»æºãŒOFFã«ã•ã‚Œãªã„ä¸å…·åˆä¿®æ­£ã®ãŸã‚ã®å¤‰æ›´
 
   Revision 1.11  2006/02/07 08:19:36  kitase_hirotake
-  CARDi_PulledOutCallback “à‚Ì CARD_UserCallback ŒÄ‚Ño‚µðŒ•ÏX
+  CARDi_PulledOutCallback å†…ã® CARD_UserCallback å‘¼ã³å‡ºã—æ¡ä»¶å¤‰æ›´
 
   Revision 1.10  2006/01/18 02:11:19  kitase_hirotake
   do-indent
@@ -198,22 +198,22 @@ void CARD_TerminateForPulledOut(void)
     //---- if folding, power off
     if (PAD_DetectFold())
     {
-        /* ƒƒCƒ„ƒŒƒX‚É‚æ‚éSPI”r‘¼‚ÅŽ¸”s‚·‚éŒÀ‚èÄŽŽs‚·‚é */
+        /* ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹ã«ã‚ˆã‚‹SPIæŽ’ä»–ã§å¤±æ•—ã™ã‚‹é™ã‚Šå†è©¦è¡Œã™ã‚‹ */
         u32     res;
         while ((res = PM_ForceToPowerOff()) == SPI_PXI_RESULT_EXCLUSIVE)
         {
-            /* 10ms‘Ò‚Á‚ÄÄŽŽs */
+            /* 10mså¾…ã£ã¦å†è©¦è¡Œ */
             OS_SpinWait(HW_CPU_CLOCK_ARM9 / 100);
         }
         if (res == PM_RESULT_SUCCESS)
         {
-            // ARM7‚ª–Z‚µ‚¢ê‡A“dŒ¹OFF‚æ‚èTerminateˆ—‚ðæ‚És‚Á‚Ä‚µ‚Ü‚¢“dŒ¹‚ªØ‚ê‚È‚¢‰Â”\«‚ª‚ ‚é‚Ì‚Å
-            // PM_ForceToPowerOffŠÖ”‚ª¬Œ÷‚µ‚½ê‡‚ÍARM7‘¤‚ÉTerminateƒRƒ}ƒ“ƒh‚Í‘—‚ç‚È‚¢B
+            // ARM7ãŒå¿™ã—ã„å ´åˆã€é›»æºOFFã‚ˆã‚ŠTerminateå‡¦ç†ã‚’å…ˆã«è¡Œã£ã¦ã—ã¾ã„é›»æºãŒåˆ‡ã‚Œãªã„å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§
+            // PM_ForceToPowerOffé–¢æ•°ãŒæˆåŠŸã—ãŸå ´åˆã¯ARM7å´ã«Terminateã‚³ãƒžãƒ³ãƒ‰ã¯é€ã‚‰ãªã„ã€‚
             should_be_halt = FALSE;
         }
     }
 
-    // ŠW‚ª•Â‚¶‚ç‚ê‚Ä‚¢‚È‚¢‚Æ‚«A‚Ü‚½‚ÍPM_ForceToPowerOffŠÖ”‚ªŽ¸”s‚µ‚½ê‡‚ÍARM7‚ðŽ~‚ß‚È‚¢‚Æ‚¢‚¯‚È‚¢‚Ì‚ÅTerminateƒRƒ}ƒ“ƒh‚ð‘—‚éB
+    // è“‹ãŒé–‰ã˜ã‚‰ã‚Œã¦ã„ãªã„ã¨ãã€ã¾ãŸã¯PM_ForceToPowerOffé–¢æ•°ãŒå¤±æ•—ã—ãŸå ´åˆã¯ARM7ã‚’æ­¢ã‚ãªã„ã¨ã„ã‘ãªã„ã®ã§Terminateã‚³ãƒžãƒ³ãƒ‰ã‚’é€ã‚‹ã€‚
     if (should_be_halt)
     {
         //---- send 'TERMINATE' command to ARM7, and terminate itself immediately
@@ -227,10 +227,10 @@ void CARD_TerminateForPulledOut(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_CheckPulledOutCore
 
-  Description:  ƒJ[ƒh”²‚¯ŒŸoŠÖ”‚ÌƒƒCƒ“ˆ—.
-                ƒJ[ƒhƒoƒX‚ÍƒƒbƒN‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚é.
+  Description:  ã‚«ãƒ¼ãƒ‰æŠœã‘æ¤œå‡ºé–¢æ•°ã®ãƒ¡ã‚¤ãƒ³å‡¦ç†.
+                ã‚«ãƒ¼ãƒ‰ãƒã‚¹ã¯ãƒ­ãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹.
 
-  Arguments:    id            ƒJ[ƒh‚©‚ç“Ç‚Ýo‚³‚ê‚½ ROM-ID
+  Arguments:    id            ã‚«ãƒ¼ãƒ‰ã‹ã‚‰èª­ã¿å‡ºã•ã‚ŒãŸ ROM-ID
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

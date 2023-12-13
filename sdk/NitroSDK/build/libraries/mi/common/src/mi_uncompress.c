@@ -12,10 +12,10 @@
 
   $Log: mi_uncompress.c,v $
   Revision 1.15  2007/11/02 00:52:01  takano_makoto
-  copyright�̔N���C��.
+  copyrightの年号修正.
 
   Revision 1.14  2007/11/02 00:49:45  takano_makoto
-  LZ77�g�����k�ɑΉ�
+  LZ77拡張圧縮に対応
 
   Revision 1.13  2005/01/30 23:58:00  takano_makoto
   fix copyright header.
@@ -24,10 +24,10 @@
   fix comments.
 
   Revision 1.11  2004/11/15 08:43:47  takano_makoto
-  MI_UnfilterDiff�֐��̃R�[�h�œK��
+  MI_UnfilterDiff関数のコード最適化
 
   Revision 1.10  2004/11/15 08:34:27  takano_makoto
-  �p�C�v���C���̃X�g�[�������̂��߂̏C��
+  パイプラインのストール解消のための修正
 
   Revision 1.8  2004/07/20 07:31:34  yada
   MI_UnpackBitsParam->MIUnpackBitsParam
@@ -43,16 +43,16 @@
   only change comment
 
   Revision 1.4  2004/02/10 06:39:14  yada
-  �֐�����ύX�BUnComp��UnCompress���B
+  関数名を変更。UnComp→UnCompress等。
 
   Revision 1.3  2004/02/10 05:10:07  yada
-  �֐������`Byte���`8 �A�`short���`16 �ɕύX
+  関数名を〜Byte→〜8 、〜short→〜16 に変更
 
   Revision 1.2  2004/02/10 02:28:25  yada
-  code32�ň͂�
+  code32で囲う
 
   Revision 1.1  2004/02/10 01:22:22  yada
-  UTL_ ����̈ڍs
+  UTL_ からの移行
 
 
   $NoKeywords: $
@@ -61,37 +61,37 @@
 #include <nitro/types.h>
 #include <nitro/mi/uncompress.h>
 
-//****�o�O�΍�****
-//  CW �̃o�O�ŁAldrh �� strh �Ƃ������A�n�[�t���[�h�A�N�Z�X���߂�
-//  inline assembler �Œʂ�Ȃ��̂ŁA���ɖ��߂̒l�� dcd �ŏ�����
-//  �������B�o�O���Ȃ������牺��define �͍폜����B
+//****バグ対策****
+//  CW のバグで、ldrh や strh といった、ハーフワードアクセス命令が
+//  inline assembler で通らないので、直に命令の値を dcd で書いて
+//  回避する。バグがなおったら下のdefine は削除する。
 //#define CW_BUG_FOR_LDRH_AND_STRH
 
 //---- This code will be compiled in ARM-Mode
 #include <nitro/code32.h>
 
 //======================================================================
-//          ���k�f�[�^�W�J
+//          圧縮データ展開
 //======================================================================
 //----------------------------------------------------------------------
-//          �a�������k�f�[�^�W�J
+//          Ｂｉｔ圧縮データ展開
 //
-//�E0�Œ�̃r�b�g���l�߂��f�[�^��W�J���܂��B
-//�E�f�X�e�B�l�[�V�����A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・0固定のビットを詰めたデータを展開します。
+//・デスティネーションアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//             void *srcp     �\�[�X�A�h���X
-//             void *destp    �f�X�e�B�l�[�V�����A�h���X
-//  MIUnpackBitsParam *paramp   MIUnpackBitsParam�\���̂̃A�h���X
+//・引数：
+//             void *srcp     ソースアドレス
+//             void *destp    デスティネーションアドレス
+//  MIUnpackBitsParam *paramp   MIUnpackBitsParam構造体のアドレス
 //
-//�EMIUnpackBitsParam�\����
-//    u16 srcNum              �\�[�X�f�[�^�E�o�C�g��
-//    u8  srcBitNum           �P�\�[�X�f�[�^�E�r�b�g��
-//    u8  destBitNum          �P�f�X�e�B�l�[�V�����f�[�^�E�r�b�g��
-//    u32 destOffset:31       �\�[�X�f�[�^�ɉ��Z����I�t�Z�b�g��
-//        destOffset0_On:1    �O�̃f�[�^�ɃI�t�Z�b�g�����Z���邩�ۂ��̃t���O
+//・MIUnpackBitsParam構造体
+//    u16 srcNum              ソースデータ・バイト数
+//    u8  srcBitNum           １ソースデータ・ビット数
+//    u8  destBitNum          １デスティネーションデータ・ビット数
+//    u32 destOffset:31       ソースデータに加算するオフセット数
+//        destOffset0_On:1    ０のデータにオフセットを加算するか否かのフラグ
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 asm void MI_UnpackBits( register const void *srcp, register void *destp, register MIUnpackBitsParam *paramp )
@@ -151,31 +151,31 @@ asm void MI_UnpackBits( register const void *srcp, register void *destp, registe
 }
 
 //----------------------------------------------------------------------
-//          �k�y�V�V���k�f�[�^�W�������W�J
+//          ＬＺ７７圧縮データ８ｂｉｔ展開
 //
-//�ELZ77���k�f�[�^��W�J���A8bit�P�ʂŏ������݂܂��B
-//�EVRAM�ɒ��ړW�J���邱�Ƃ͂ł��܂���B
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・LZ77圧縮データを展開し、8bit単位で書き込みます。
+//・VRAMに直接展開することはできません。
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 :4                  �\��
-//        compType:4          ���k�^�C�v�i = 1�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 :4                  予約
+//        compType:4          圧縮タイプ（ = 1）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�t���O�f�[�^�t�H�[�}�b�g
-//    u8  flags               ���k�^�����k�t���O
-//                            �i0, 1�j = �i�����k�f�[�^, ���k�f�[�^�j
-//�E�R�[�h�f�[�^�t�H�[�}�b�g�iBig Endian�j
-//    u16 length:4            �W�J�f�[�^�� - 3�i��v��3Byte�ȏ㎞�݈̂��k�j
-//        offset:12           ��v�f�[�^�I�t�Z�b�g - 1
+//・フラグデータフォーマット
+//    u8  flags               圧縮／無圧縮フラグ
+//                            （0, 1） = （無圧縮データ, 圧縮データ）
+//・コードデータフォーマット（Big Endian）
+//    u16 length:4            展開データ長 - 3（一致長3Byte以上時のみ圧縮）
+//        offset:12           一致データオフセット - 1
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 asm void MI_UncompressLZ8( register const void *srcp, register void *destp )
@@ -205,7 +205,7 @@ asm void MI_UncompressLZ8( register const void *srcp, register void *destp )
                 bne     @23
 
                 ldrb    r6, [r0], #1            //              *srcp++;
-                swpb    r6, r6, [r1]            // r1:          *destp++;�i�o�C�g�������ݑ΍�j
+                swpb    r6, r6, [r1]            // r1:          *destp++;（バイト書き込み対策）
                 add     r1, r1, #1
                 sub     r2, r2, #1              //              destCount--;
                 b       @25
@@ -251,7 +251,7 @@ asm void MI_UncompressLZ8( register const void *srcp, register void *destp )
                 sub     r2, r2, r3              //              destCount -= length;
                                                 //              do {
 @24:            ldrb    r5, [r1, -r12]          //                  *destp++ = destp[-offset]
-                swpb    r5, r5, [r1]            //    �i�o�C�g�������ݑ΍�j
+                swpb    r5, r5, [r1]            //    （バイト書き込み対策）
                 add     r1, r1, #1
                 subs    r3, r3, #1              //              } while (--length > 0);
                 bgt     @24
@@ -271,33 +271,33 @@ asm void MI_UncompressLZ8( register const void *srcp, register void *destp )
 
 
 //----------------------------------------------------------------------
-//          �k�y�V�V���k�f�[�^�P�U�������W�J
+//          ＬＺ７７圧縮データ１６ｂｉｔ展開
 //
-//�ELZ77���k�f�[�^��W�J���A16bit�P�ʂŏ������݂܂��B
-//�E�f�[�^TCM�⃁�C���������ɂ��W�J�ł��܂����AMI_UncompressLZ77()
-//  ���ᑬ�ł��B
-//�E���k�f�[�^�͈�v�������2Byte�ȑO��茟���������̂ɂ��ĉ������B
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・LZ77圧縮データを展開し、16bit単位で書き込みます。
+//・データTCMやメインメモリにも展開できますが、MI_UncompressLZ77()
+//  より低速です。
+//・圧縮データは一致文字列を2Byte以前より検索したものにして下さい。
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 :4                  �\��
-//        compType:4          ���k�^�C�v�i = 1�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 :4                  予約
+//        compType:4          圧縮タイプ（ = 1）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�t���O�f�[�^�t�H�[�}�b�g
-//    u8  flags               ���k�^�����k�t���O
-//                            �i0, 1�j = �i�����k�f�[�^, ���k�f�[�^�j
-//�E�R�[�h�f�[�^�t�H�[�}�b�g�iBig Endian�j
-//    u16 length:4            �W�J�f�[�^�� - 3�i��v��3Byte�ȏ㎞�݈̂��k�j
-//        offset:12           ��v�f�[�^�I�t�Z�b�g�i >= 2�j - 1
+//・フラグデータフォーマット
+//    u8  flags               圧縮／無圧縮フラグ
+//                            （0, 1） = （無圧縮データ, 圧縮データ）
+//・コードデータフォーマット（Big Endian）
+//    u16 length:4            展開データ長 - 3（一致長3Byte以上時のみ圧縮）
+//        offset:12           一致データオフセット（ >= 2） - 1
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 asm void MI_UncompressLZ16( register const void *srcp, register void *destp )
@@ -438,48 +438,48 @@ asm void MI_UncompressLZ16( register const void *srcp, register void *destp )
 }
 
 //----------------------------------------------------------------------
-//          �n�t�}�����k�f�[�^�W�J
+//          ハフマン圧縮データ展開
 //
-//�E�n�t�}�����k�f�[�^��W�J���A32bit�P�ʂŏ������݂܂��B
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・ハフマン圧縮データを展開し、32bit単位で書き込みます。
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 bitSize:4           �P�f�[�^�E�r�b�g�T�C�Y�i�ʏ� 4|8�j
-//        compType:4          ���k�^�C�v�i = 2�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 bitSize:4           １データ・ビットサイズ（通常 4|8）
+//        compType:4          圧縮タイプ（ = 2）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�c���[�e�[�u��
-//    u8           treeSize        �c���[�e�[�u���T�C�Y/2 - 1
-//    TreeNodeData nodeRoot        ���[�g�m�[�h
+//・ツリーテーブル
+//    u8           treeSize        ツリーテーブルサイズ/2 - 1
+//    TreeNodeData nodeRoot        ルートノード
 //
-//    TreeNodeData nodeLeft        ���[�g���m�[�h
-//    TreeNodeData nodeRight       ���[�g�E�m�[�h
+//    TreeNodeData nodeLeft        ルート左ノード
+//    TreeNodeData nodeRight       ルート右ノード
 //
-//    TreeNodeData nodeLeftLeft    �����m�[�h
-//    TreeNodeData nodeLeftRight   ���E�m�[�h
+//    TreeNodeData nodeLeftLeft    左左ノード
+//    TreeNodeData nodeLeftRight   左右ノード
 //
-//    TreeNodeData nodeRightLeft   �E���m�[�h
-//    TreeNodeData nodeRightRight  �E�E�m�[�h
+//    TreeNodeData nodeRightLeft   右左ノード
+//    TreeNodeData nodeRightRight  右右ノード
 //
-//            �E
-//            �E
+//            ・
+//            ・
 //
-//  ���̌�Ɉ��k�f�[�^�{��
+//  この後に圧縮データ本体
 //
-//�ETreeNodeData�\����
-//    u8  nodeNextOffset:6    ���m�[�h�f�[�^�ւ̃I�t�Z�b�g - 1�i2Byte�P�ʁj
-//        rightEndFlag:1      �E�m�[�h�I���t���O
-//        leftEndzflag:1       ���m�[�h�I���t���O
-//                            �I���t���O���Z�b�g����Ă���ꍇ
-//                            ���m�[�h�Ƀf�[�^������
+//・TreeNodeData構造体
+//    u8  nodeNextOffset:6    次ノードデータへのオフセット - 1（2Byte単位）
+//        rightEndFlag:1      右ノード終了フラグ
+//        leftEndzflag:1       左ノード終了フラグ
+//                            終了フラグがセットされている場合
+//                            次ノードにデータがある
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 asm void MI_UncompressHuffman( register const void *srcp, register void *destp )
@@ -568,29 +568,29 @@ asm void MI_UncompressHuffman( register const void *srcp, register void *destp )
 }
 
 //----------------------------------------------------------------------
-//          ���������O�X���k�f�[�^�W�������W�J
+//          ランレングス圧縮データ８ｂｉｔ展開
 //
-//�E���������O�X���k�f�[�^��W�J���A8bit�P�ʂŏ������݂܂��B
-//�EVRAM�ɒ��ړW�J���邱�Ƃ͂ł��܂���B
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・ランレングス圧縮データを展開し、8bit単位で書き込みます。
+//・VRAMに直接展開することはできません。
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 :4                  �\��
-//        compType:4          ���k�^�C�v�i = 3�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 :4                  予約
+//        compType:4          圧縮タイプ（ = 3）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�t���O�f�[�^�t�H�[�}�b�g
-//    u8  length:7            �W�J�f�[�^�� - 1�i�����k���j
-//                            �W�J�f�[�^�� - 3�i�A����3Byte�ȏ㎞�݈̂��k�j
-//        flag:1              �i0, 1�j = �i�����k�f�[�^, ���k�f�[�^�j
+//・フラグデータフォーマット
+//    u8  length:7            展開データ長 - 1（無圧縮時）
+//                            展開データ長 - 3（連続長3Byte以上時のみ圧縮）
+//        flag:1              （0, 1） = （無圧縮データ, 圧縮データ）
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 asm void MI_UncompressRL8( register const void *srcp, register void *destp )
@@ -611,7 +611,7 @@ asm void MI_UncompressRL8( register const void *srcp, register void *destp )
                 add     r2, r2, #1              //          length++;
                 sub     r7, r7, r2              //          destCount -= length;
 @42:            ldrb    r3, [r0], #1            //          do{
-                swpb    r3, r3, [r1]            //              *destp++ = *srcp++;�i�o�C�g�������ݑ΍�j
+                swpb    r3, r3, [r1]            //              *destp++ = *srcp++;（バイト書き込み対策）
                 add     r1, r1, #1
                 subs    r2, r2, #1              //          } while (--length > 0);
                 bgt     @42                     //      } else {
@@ -620,7 +620,7 @@ asm void MI_UncompressRL8( register const void *srcp, register void *destp )
 @43:            add     r2, r2, #3              //          length += 3;
                 sub     r7, r7, r2              //          destCount -= length;
                 ldrb    r5, [r0], #1            //          srcTmp  = *srcp++;
-@44:            swpb    r4, r5, [r1]            //          do {�i�o�C�g�������ݑ΍�j
+@44:            swpb    r4, r5, [r1]            //          do {（バイト書き込み対策）
                 add     r1, r1, #1              //              *destp++ =  srcTmp;
                 subs    r2, r2, #1              //          } while (--length > 0);
                 bgt     @44                     //      }
@@ -631,30 +631,30 @@ asm void MI_UncompressRL8( register const void *srcp, register void *destp )
 }
 
 //----------------------------------------------------------------------
-//          ���������O�X���k�f�[�^�P�U�������W�J
+//          ランレングス圧縮データ１６ｂｉｔ展開
 //
-//�E���������O�X���k�f�[�^��W�J���A16bit�P�ʂŏ������݂܂��B
-//�E�f�[�^TCM�⃁�C���������ɂ��W�J�ł��܂����AMI_UncompressRL8()
-//  ���ᑬ�ł��B//---- 
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・ランレングス圧縮データを展開し、16bit単位で書き込みます。
+//・データTCMやメインメモリにも展開できますが、MI_UncompressRL8()
+//  より低速です。//---- 
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 :4                  �\��
-//        compType:4          ���k�^�C�v�i = 3�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 :4                  予約
+//        compType:4          圧縮タイプ（ = 3）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�t���O�f�[�^�t�H�[�}�b�g
-//    u8  length:7            �W�J�f�[�^�� - 1�i�����k���j
-//                            �W�J�f�[�^�� - 3�i�A����3Byte�ȏ㎞�݈̂��k�j
-//        flag:1              �i0, 1�j = �i�����k�f�[�^, ���k�f�[�^�j
+//・フラグデータフォーマット
+//    u8  length:7            展開データ長 - 1（無圧縮時）
+//                            展開データ長 - 3（連続長3Byte以上時のみ圧縮）
+//        flag:1              （0, 1） = （無圧縮データ, 圧縮データ）
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 //---- This code will be compiled in Thumb-Mode
@@ -731,24 +731,24 @@ asm void MI_UncompressRL16( register const void *srcp, register void *destp )
 #include <nitro/code32.h>
 
 //----------------------------------------------------------------------
-//          �����t�B���^�ϊ��̕��� �W�������W�J
+//          差分フィルタ変換の復元 ８ｂｉｔ展開
 //
-//�E�����t�B���^�𕜌����A8bit�P�ʂŏ������݂܂��B
-//�EVRAM�ɒ��ړW�J���邱�Ƃ͂ł��܂���B
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・差分フィルタを復元し、8bit単位で書き込みます。
+//・VRAMに直接展開することはできません。
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 :4                  �P�ʃr�b�g�T�C�Y
-//        compType:4          ���k�^�C�v�i = 3�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 :4                  単位ビットサイズ
+//        compType:4          圧縮タイプ（ = 3）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 asm void MI_UnfilterDiff8( register const void *srcp, register void *destp )
@@ -762,23 +762,23 @@ asm void MI_UnfilterDiff8( register const void *srcp, register void *destp )
                 cmp     r4, #1                  //      if (bitSize != 1) {
                 bne     @63
 
-@61             // 8bit�P�ʂł̍����v�Z
+@61             // 8bit単位での差分計算
                 add     r0, r0, #3              //          srcp += 4;
                 sub     r1, r1, #1
 @62                                             //          do {
                 ldrb    r4, [r0, #1]!           //              tmp = *(srcp++);
-                subs    r2, r2, #1              //              destCount--; �p�C�v���C���̃X�g�[�������̂��߂��̈ʒu�Ŏ��s
+                subs    r2, r2, #1              //              destCount--; パイプラインのストール解消のためこの位置で実行
                 add     r3, r3, r4              //              sum += tmp
                 strb    r3, [r1, #1]!           //              *(destp++) = sum;
                 bgt     @62                     //          } while ( destCount > 0 );
                 b       @65                     //      } else {
                 
-@63             // 16bit�P�ʂł̍����v�Z
+@63             // 16bit単位での差分計算
                 add     r0, r0, #2              //          
                 sub     r1, r1, #2              //          
 @64                                             //          do {
                 ldrh    r4, [r0, #2]!           //              tmp = *(u16*)srcp; srcp += 2;
-                subs    r2, r2, #2              //              destCount -= 2; �p�C�v���C���̃X�g�[�������̂��߂��̈ʒu�Ŏ��s
+                subs    r2, r2, #2              //              destCount -= 2; パイプラインのストール解消のためこの位置で実行
                 add     r3, r3, r4              //              sum += tmp;
                 strh    r3, [r1, #2]!           //              *(u16*)destp = sum; destp += 2;
                 bgt     @64                     //          } while ( destCount > 0 );
@@ -789,25 +789,25 @@ asm void MI_UnfilterDiff8( register const void *srcp, register void *destp )
 }
 
 //----------------------------------------------------------------------
-//          �����t�B���^�ϊ��̕��� �P�U�������W�J
+//          差分フィルタ変換の復元 １６ｂｉｔ展開
 //
-//�E�����t�B���^�𕜌����A16bit�P�ʂŏ������݂܂��B
-//�E�f�[�^TCM��VRAM�ɂ��W�J�ł��܂����AMI_Uncompress8()
-//  ���ᑬ�ł��B//---- 
-//�E���k�f�[�^�̃T�C�Y��4�̔{���ɂȂ�Ȃ������ꍇ��
-//  �o���邾��0�ŋl�߂Ē������ĉ������B
-//�E�\�[�X�A�h���X��4Byte���E�ɍ��킹�ĉ������B
+//・差分フィルタを復元し、16bit単位で書き込みます。
+//・データTCMやVRAMにも展開できますが、MI_Uncompress8()
+//  より低速です。//---- 
+//・圧縮データのサイズが4の倍数にならなかった場合は
+//  出来るだけ0で詰めて調整して下さい。
+//・ソースアドレスは4Byte境界に合わせて下さい。
 //
-//�E�����F
-//    void *srcp              �\�[�X�A�h���X
-//    void *destp             �f�X�e�B�l�[�V�����A�h���X
+//・引数：
+//    void *srcp              ソースアドレス
+//    void *destp             デスティネーションアドレス
 //
-//�E�f�[�^�w�b�_
-//    u32 :4                  �P�ʃr�b�g�T�C�Y
-//        compType:4          ���k�^�C�v�i = 3�j
-//        destSize:24         �W�J��̃f�[�^�T�C�Y
+//・データヘッダ
+//    u32 :4                  単位ビットサイズ
+//        compType:4          圧縮タイプ（ = 3）
+//        destSize:24         展開後のデータサイズ
 //
-//�E�߂�l�F�Ȃ�
+//・戻り値：なし
 //----------------------------------------------------------------------
 
 asm void MI_UnfilterDiff16( register const void *srcp, register void *destp )
@@ -821,12 +821,12 @@ asm void MI_UnfilterDiff16( register const void *srcp, register void *destp )
                 cmp     r4, #1                  //      if (bitSize != 1) {
                 bne     @63
 
-@61             // 8bit�P�ʂł̍����v�Z
+@61             // 8bit単位での差分計算
                 add     r0, r0, #2              //          srcp += 4;
                 sub     r1, r1, #2
 @62                                             //          do {
                 ldrh    r4, [r0, #2]!           //          tmp = *(u16*)srcp; srcp += 2;
-                sub     r2, r2, #2              //              destCount -= 2; �p�C�v���C���̃X�g�[�������̂��߂��̈ʒu�Ŏ��s
+                sub     r2, r2, #2              //              destCount -= 2; パイプラインのストール解消のためこの位置で実行
                 add     r3, r3, r4              //              sum += tmp
                 and     r5, r3, #0xFF           // r5:          tmp2 = sum & 0xFF;
                 add     r3, r3, r4, lsr #8      //              sum += (tmp >> 8);
@@ -842,12 +842,12 @@ asm void MI_UnfilterDiff16( register const void *srcp, register void *destp )
                 strh    r5, [r1, #2]!           //              *(u16*)destp = tmp2; destp += 2;
                 b       @65                     //          }
                                                 //      } else {
-@63             // 16bit�P�ʂł̍����v�Z
+@63             // 16bit単位での差分計算
                 add     r0, r0, #2
                 sub     r1, r1, #2
 @64                                             //          do {
                 ldrh    r4, [r0, #2]!           //              tmp = *(u16*)srcp; srcp += 2;
-                subs    r2, r2, #2              //              destCount -= 2; �p�C�v���C���̃X�g�[�������̂��߂��̈ʒu�Ŏ��s
+                subs    r2, r2, #2              //              destCount -= 2; パイプラインのストール解消のためこの位置で実行
                 add     r3, r3, r4              //              sum += tmp;
                 strh    r3, [r1, #2]!           //              *(u16*)destp = sum; destp += 2;
                 bgt     @64                     //          } while ( destCount > 0 );

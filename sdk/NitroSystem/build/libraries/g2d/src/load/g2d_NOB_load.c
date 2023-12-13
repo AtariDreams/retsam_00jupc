@@ -35,8 +35,8 @@ static void* GetPtrOamArrayHead_( NNSG2dCellDataBank* pCellBank )
 
 
 //------------------------------------------------------------------------------
-// ƒ†[ƒUŠg’£—Ìˆæ‚Ìî•ñ‚ð“WŠJ‚µ‚Ü‚·
-// Œ»Ý‚Í’P”‚Å‚·‚ªAŽÀÛ‚É‚Í•¡”‚ÌƒuƒƒbƒN‚ªƒ†[ƒUŠg’£—Ìˆæ‚ÉŠi”[‚³‚ê‚éê‡‚ª‚ ‚è‚¦‚Ü‚·B
+// ãƒ¦ãƒ¼ã‚¶æ‹¡å¼µé ˜åŸŸã®æƒ…å ±ã‚’å±•é–‹ã—ã¾ã™
+// ç¾åœ¨ã¯å˜æ•°ã§ã™ãŒã€å®Ÿéš›ã«ã¯è¤‡æ•°ã®ãƒ–ãƒ­ãƒƒã‚¯ãŒãƒ¦ãƒ¼ã‚¶æ‹¡å¼µé ˜åŸŸã«æ ¼ç´ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚Šãˆã¾ã™ã€‚
 static void UnPackExtendedData_( void* pExData )
 {
     NNS_G2D_NULL_ASSERT( pExData );
@@ -95,7 +95,7 @@ const NNSG2dCellData* NNS_G2dGetCellDataByIdx( const NNSG2dCellDataBank* pCellDa
     NNS_G2D_NULL_ASSERT( pCellData );
     
     // 
-    // •s³‚ÈƒCƒ“ƒfƒbƒNƒX‚ÍNULL‚ð•Ô‚·
+    // ä¸æ­£ãªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¯NULLã‚’è¿”ã™
     //
     if( idx >= pCellData->numCells )
     {
@@ -103,7 +103,7 @@ const NNSG2dCellData* NNS_G2dGetCellDataByIdx( const NNSG2dCellDataBank* pCellDa
     }
     
     //
-    // Ží—Þ‚É‚æ‚Á‚ÄƒAƒNƒZƒX•û–@‚ð•Ï‰»‚³‚¹‚é•K—v‚ª‚ ‚è‚Ü‚·
+    // ç¨®é¡žã«ã‚ˆã£ã¦ã‚¢ã‚¯ã‚»ã‚¹æ–¹æ³•ã‚’å¤‰åŒ–ã•ã›ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
     //
     if( NNSi_G2dCellBankHasBR( pCellData ) )
     {
@@ -160,7 +160,7 @@ void NNS_G2dUnpackNCE( NNSG2dCellDataBank* pCellData )
         }
         
         // 
-        // ƒ†[ƒUŠg’£ƒAƒgƒŠƒrƒ…[ƒg‚ð“WŠJ‚µ‚Ü‚·
+        // ãƒ¦ãƒ¼ã‚¶æ‹¡å¼µã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’å±•é–‹ã—ã¾ã™
         //
         if( pCellData->pExtendedData != NULL )
         {
@@ -210,7 +210,7 @@ void NNS_G2dPrintCellInfo( const NNSG2dCellData* pCell )
         OS_Printf( "numOBJ = %d\n", pCell->numOAMAttrs );
         
         //
-        // BoundingRect ‚ð Ž‚Â Cell ‚È‚ç‚Î•\Ž¦‚·‚é
+        // BoundingRect ã‚’ æŒã¤ Cell ãªã‚‰ã°è¡¨ç¤ºã™ã‚‹
         //
         if( NNSi_G2dCellHasBR( pCell ) )
         {
@@ -248,7 +248,7 @@ static void PrintVramTransformData_
 }
 
 //------------------------------------------------------------------------------
-// Šg’£î•ñ‚ð•\Ž¦‚µ‚Ü‚·
+// æ‹¡å¼µæƒ…å ±ã‚’è¡¨ç¤ºã—ã¾ã™
 static void PrintCellExtendedData_( const void* pExData )
 {
     NNS_G2D_NULL_ASSERT( pExData ); 
@@ -275,7 +275,7 @@ void NNS_G2dPrintCellBank( const NNSG2dCellDataBank*    pCellBank )
     }
     
     //
-    // Vram“]‘—î•ñ
+    // Vramè»¢é€æƒ…å ±
     //
     if( pCellBank->pVramTransferData != NULL )
     {
@@ -290,7 +290,7 @@ void NNS_G2dPrintCellBank( const NNSG2dCellDataBank*    pCellBank )
     }
     
     //
-    // Šg’£î•ñ
+    // æ‹¡å¼µæƒ…å ±
     //
     if( pCellBank->pExtendedData != NULL )
     { 

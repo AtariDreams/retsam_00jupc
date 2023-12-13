@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	stage_bmp.c
- * @brief	uƒoƒgƒ‹ƒXƒe[ƒWvBMP
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€BMP
  * @author	Satoshi Nohara
  * @date	07.06.08
  */
@@ -19,31 +19,31 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//u‰ï˜bv
+//ã€Œä¼šè©±ã€
 #define WIN_TALK_PX			(2)
 #define WIN_TALK_PY			(19)
 #define WIN_TALK_SX			(27)
 #define WIN_TALK_SY			(4)
 #define WIN_TALK_CGX		(1)
 
-//u‚Í‚¢E‚¢‚¢‚¦v
+//ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 #define WIN_YESNO_PX		(24)
 #define WIN_YESNO_PY		(13)
 #define WIN_YESNO_SX		(7)
 #define WIN_YESNO_SY		(4)
 #define WIN_YESNO_CGX		(WIN_TALK_CGX + WIN_TALK_SX * WIN_TALK_SY)
 
-//u‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“–¼1v
+//ã€Œé¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³å1ã€
 #define WIN_POKE1_PX		(10)
 #define WIN_POKE1_PY		(20)//(21)
 #define WIN_POKE1_SX		(9)
 #define WIN_POKE1_SY		(2)
 #define WIN_POKE1_CGX		(WIN_YESNO_CGX + WIN_YESNO_SX * WIN_YESNO_SY)
 
-//uƒ^ƒCƒv–¼(‚Æ‚è‚ ‚¦‚¸‚«‚ê‚¢‚ÉŽû‚Ü‚ç‚È‚¢‚Ì‚Å‰æ–Ê‘S‘Ì‚ðŠm•Û)v(ƒtƒŒ[ƒ€‚ð•Ï‚¦‚Ä‚¢‚é)
+//ã€Œã‚¿ã‚¤ãƒ—å(ã¨ã‚Šã‚ãˆãšãã‚Œã„ã«åŽã¾ã‚‰ãªã„ã®ã§ç”»é¢å…¨ä½“ã‚’ç¢ºä¿)ã€(ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å¤‰ãˆã¦ã„ã‚‹)
 #define WIN_TYPE_PX			(1)
 #define WIN_TYPE_PY			(0)
 // MatchComment: 30 -> 31
@@ -55,35 +55,35 @@
 #define WIN_TYPE_CGX		(1)
 #endif
 
-//ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define BS_MENU_CGX_NUM		(1024-MENU_WIN_CGX_SIZ)
 
-//‰ï˜bƒEƒBƒ“ƒhƒEƒLƒƒƒ‰
+//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©
 #define	BS_TALKWIN_CGX_SIZE	(TALK_WIN_CGX_SIZ)
 #define	BS_TALKWIN_CGX_NUM	(BS_MENU_CGX_NUM - BS_TALKWIN_CGX_SIZE)
 
 
 //==============================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
 static const BMPWIN_DAT StageBmpData[] =
 {
-	{	// 0:u‰ï˜bv
+	{	// 0:ã€Œä¼šè©±ã€
 		BS_FRAME_WIN, WIN_TALK_PX, WIN_TALK_PY,
 		WIN_TALK_SX, WIN_TALK_SY, BS_MSGFONT_PAL, WIN_TALK_CGX
 	},
-	{	// 1:u‚Í‚¢E‚¢‚¢‚¦v
+	{	// 1:ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
 		BS_FRAME_WIN, WIN_YESNO_PX, WIN_YESNO_PY,
 		WIN_YESNO_SX, WIN_YESNO_SY, BS_FONT_PAL, WIN_YESNO_CGX
 	},
-	{	// 2:uƒ|ƒPƒ‚ƒ“–¼1v
+	{	// 2:ã€Œãƒã‚±ãƒ¢ãƒ³å1ã€
 		BS_FRAME_WIN, WIN_POKE1_PX, WIN_POKE1_PY,
 		WIN_POKE1_SX, WIN_POKE1_SY, BS_FONT_PAL, WIN_POKE1_CGX
 	},	
-	{	// 3:uƒ^ƒCƒv–¼v
-		BS_FRAME_TYPE, WIN_TYPE_PX, WIN_TYPE_PY,					//ƒtƒŒ[ƒ€‚ªˆá‚¤‚Ì‚Å’ˆÓI
+	{	// 3:ã€Œã‚¿ã‚¤ãƒ—åã€
+		BS_FRAME_TYPE, WIN_TYPE_PX, WIN_TYPE_PY,					//ãƒ•ãƒ¬ãƒ¼ãƒ ãŒé•ã†ã®ã§æ³¨æ„ï¼
 		WIN_TYPE_SX, WIN_TYPE_SY, BS_FONT_PAL, WIN_TYPE_CGX
 	},	
 };
@@ -91,7 +91,7 @@ static const BMPWIN_DAT StageBmpData[] =
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 void StageAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win );
@@ -100,31 +100,31 @@ void StageOffBmpWin( GF_BGL_BMPWIN* win );
 void StageWriteMenuWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win );
 void StageTalkWinPut( GF_BGL_BMPWIN * win, WINTYPE wintype );
 
-//‚Í‚¢A‚¢‚¢‚¦ƒEƒBƒ“ƒhƒE’è‹`
-#define YESNO_PX		(23)			//ŠJŽn‚w
-#define YESNO_PY		(19)			//ŠJŽn‚x
-#define YESNO_SX		(8)				//•‚w
-#define YESNO_SY		(4)				//•‚x
+//ã¯ã„ã€ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å®šç¾©
+#define YESNO_PX		(23)			//é–‹å§‹ï¼¸
+#define YESNO_PY		(19)			//é–‹å§‹ï¼¹
+#define YESNO_SX		(8)				//å¹…ï¼¸
+#define YESNO_SY		(4)				//å¹…ï¼¹
 
-//‰ï˜bƒEƒBƒ“ƒhƒE’è‹`
-#define TALK_PX			(2)				//ŠJŽn‚w
-#define TALK_PY			(19)			//ŠJŽn‚x
-#define TALK_SX			(17)			//•‚w
-#define TALK_SY			(4)				//•‚x
+//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å®šç¾©
+#define TALK_PX			(2)				//é–‹å§‹ï¼¸
+#define TALK_PY			(19)			//é–‹å§‹ï¼¹
+#define TALK_SX			(17)			//å¹…ï¼¸
+#define TALK_SY			(4)				//å¹…ï¼¹
 
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—è¿½åŠ 
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -134,10 +134,10 @@ void StageAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 	u8 i;
 	const BMPWIN_DAT* dat = StageBmpData;
 
-	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—è¿½åŠ 
 	for( i=0; i < STAGE_BMPWIN_MAX; i++ ){
 		GF_BGL_BmpWinAddEx( bgl, &win[i], &dat[i] );
-		GF_BGL_BmpWinDataFill( &win[i], FBMP_COL_NULL );		//“h‚è‚Â‚Ô‚µ
+		GF_BGL_BmpWinDataFill( &win[i], FBMP_COL_NULL );		//å¡—ã‚Šã¤ã¶ã—
 	}
 
 	return;
@@ -145,9 +145,9 @@ void StageAddBmpWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü	
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„	
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -165,9 +165,9 @@ void StageExitBmpWin( GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEƒIƒt
+ * @brief	ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ•
  *
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
@@ -185,29 +185,29 @@ void StageOffBmpWin( GF_BGL_BMPWIN* win )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ƒEƒBƒ“ƒhƒE•\Ž¦
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
  *
  * @return	none
  */
 //--------------------------------------------------------------
 void StageWriteMenuWin( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 {
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ÌƒOƒ‰ƒtƒBƒbƒN‚ðƒZƒbƒg
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
 	MenuWinGraphicSet( bgl, BS_FRAME_WIN, BS_MENU_CGX_NUM, BS_MENU_PAL, 0, HEAPID_STAGE );
 
-	//ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚ð•`‰æ
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
 	BmpMenuWinWrite( win, WINDOW_TRANS_OFF, BS_MENU_CGX_NUM, BS_MENU_PAL );
 	return;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‰ï˜bƒEƒBƒ“ƒhƒE•\Ž¦
+ * @brief	ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
- * @param	win		BMPƒf[ƒ^
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */

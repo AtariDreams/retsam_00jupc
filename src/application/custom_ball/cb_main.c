@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	cb_main.c
- * @brief	ä»íPÇ»ê‡ñæÇèëÇ≠
+ * @brief	Á∞°Âçò„Å™Ë™¨Êòé„ÇíÊõ∏„Åè
  * @author	goto
- * @date	2006.04.03(åé)
+ * @date	2006.04.03(Êúà)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -52,7 +52,7 @@
 
 #include "savedata/record.h"
 
-///< ÉoÉbÉNÉAÉbÉv
+///< „Éê„ÉÉ„ÇØ„Ç¢„ÉÉ„Éó
 
 void BackupEditData_Make(CB_MAIN_WORK* cbmw)
 {
@@ -60,7 +60,7 @@ void BackupEditData_Make(CB_MAIN_WORK* cbmw)
 #if 0
 	{
 		int i;
-		OS_Printf("ÉoÉbÉNÉAÉbÉv\n");
+		OS_Printf("„Éê„ÉÉ„ÇØ„Ç¢„ÉÉ„Éó\n");
 		
 		for (i = 0; i < 8; i++){
 			CB_SEAL* seal = CB_SaveData_SealDataGet(cbmw->cb_edit_data[ cbmw->select[0] ].core, i);
@@ -76,7 +76,7 @@ void BackupEditData_Recover(CB_MAIN_WORK* cbmw)
 #if 0
 	{
 		int i;
-		OS_Printf("ÉäÉJÉoÅ[\n");
+		OS_Printf("„É™„Ç´„Éê„Éº\n");
 		
 		for (i = 0; i < 8; i++){
 			CB_SEAL* seal = CB_SaveData_SealDataGet(cbmw->cb_edit_data[ cbmw->select[0] ].core, i);
@@ -148,7 +148,7 @@ void CB_Tool_TestPokemonCreate(CB_MAIN_WORK* cbmw)
 	}
 }
 
-///< OBJä÷òA
+///< OBJÈñ¢ÈÄ£
 int CB_Tool_IsEdit(CB_CORE* core)
 {
 	int i;
@@ -174,7 +174,7 @@ int CB_Tool_IsEdit(CB_CORE* core)
 	return edit;
 }
 
-///< É{Å[ÉãÇÃèÛë‘ämîF
+///< „Éú„Éº„É´„ÅÆÁä∂ÊÖãÁ¢∫Ë™ç
 int CB_Tool_BallStatusCheck(CB_MAIN_WORK* cbmw, int no)
 {
 	int poke;
@@ -213,7 +213,7 @@ static void CB_Sub_SeqChange(CB_MAIN_WORK* cbmw, int mode, int seq, int keep_seq
 	cbmw->sub_seq	= 0;
 }
 
-///< ÇﬂÇ…Ç„Å[
+///< „ÇÅ„Å´„ÇÖ„Éº
 static int CB_MENU_Cancel(CB_MAIN_WORK* cbmw)
 {
 	BmpMenuWinClear(&cbmw->sys.win[ 1 ], WINDOW_TRANS_OFF );
@@ -260,11 +260,11 @@ static int CB_MENU_Change(CB_MAIN_WORK* cbmw)
 
 
 const TCB_MENU_PARAM CB_ParamTable[] = {
-	{ msg_menu_00_01, (const u32)CB_MENU_Edit	},		///< Ç÷ÇÒÇµÇ„Ç§
-	{ msg_menu_00_02, (const u32)CB_MENU_Cancel },		///< Ç‚ÇﬂÇÈ
-	{ msg_menu_00_03, (const u32)CB_MENU_Set 	},		///< ÉZÉbÉg
-	{ msg_menu_00_04, (const u32)CB_MENU_Remove },		///< ÇÕÇ∏Ç∑
-	{ msg_menu_00_05, (const u32)CB_MENU_Change },		///< Ç¢ÇÍÇ©Ç¶ÇÈ
+	{ msg_menu_00_01, (const u32)CB_MENU_Edit	},		///< „Å∏„Çì„Åó„ÇÖ„ÅÜ
+	{ msg_menu_00_02, (const u32)CB_MENU_Cancel },		///< „ÇÑ„ÇÅ„Çã
+	{ msg_menu_00_03, (const u32)CB_MENU_Set 	},		///< „Çª„ÉÉ„Éà
+	{ msg_menu_00_04, (const u32)CB_MENU_Remove },		///< „ÅØ„Åö„Åô
+	{ msg_menu_00_05, (const u32)CB_MENU_Change },		///< „ÅÑ„Çå„Åã„Åà„Çã
 };
 
 static BOOL CB_Sub_Select(CB_MAIN_WORK* cbmw);
@@ -335,7 +335,7 @@ static BOOL	CB_Tool_CursorMove(int* cur)
 	return TRUE;
 }
 
-///< éwíËà íuÇ…Ç¢Ç©Ç»Ç¢ÇÊÇ§Ç…à⁄ìÆÇ∑ÇÈ
+///< ÊåáÂÆö‰ΩçÁΩÆ„Å´„ÅÑ„Åã„Å™„ÅÑ„Çà„ÅÜ„Å´ÁßªÂãï„Åô„Çã
 static BOOL	CB_Tool_CursorMoveEx(int* cur, int pos)
 {
 	int move;
@@ -431,10 +431,10 @@ static BOOL CB_Sub_Select(CB_MAIN_WORK* cbmw)
 	case CBS_SELECT_INIT:
 		{
 			ARCHANDLE* p_handle;
-			// ÉJÉXÉ^ÉÄÉ{Å[ÉãÉOÉâÉtÉBÉbÉNÉAÅ[ÉJÉCÉuÉnÉìÉhÉãÉIÅ[ÉvÉì
+			// „Ç´„Çπ„Çø„É†„Éú„Éº„É´„Ç∞„É©„Éï„Ç£„ÉÉ„ÇØ„Ç¢„Éº„Ç´„Ç§„Éñ„Éè„É≥„Éâ„É´„Ç™„Éº„Éó„É≥
 			p_handle = ArchiveDataHandleOpen( ARC_CUSTOM_BALL_GRA, HEAPID_CUSTOM_BALL );
 			
-			///< OBJ+BGì«Ç›çûÇ›
+			///< OBJ+BGË™≠„ÅøËæº„Åø
 			CB_Tool_PokeIcon_Load(cbmw);
 			CB_Tool_PokeIcon_Add(cbmw);
 			CB_Tool_PokeIcon_CheckPosSetup(cbmw);
@@ -452,8 +452,8 @@ static BOOL CB_Sub_Select(CB_MAIN_WORK* cbmw)
 			CBS_Enable(cbmw, CATS_ENABLE_TRUE);
 			CBS_Seal_ViewPosSet(cbmw);
 			
-			///< äeÉ{É^ÉìÇÃÉäÉ\Å[ÉXì«Ç›çûÇ›ÅAìoò^ÅAîÒï\é¶
-			CB_Tool_BTN_ResLoad(cbmw, p_handle);			///< ÉyÅ[ÉWà»äOÇÃOBJ
+			///< ÂêÑ„Éú„Çø„É≥„ÅÆ„É™„ÇΩ„Éº„ÇπË™≠„ÅøËæº„Åø„ÄÅÁôªÈå≤„ÄÅÈùûË°®Á§∫
+			CB_Tool_BTN_ResLoad(cbmw, p_handle);			///< „Éö„Éº„Ç∏‰ª•Â§ñ„ÅÆOBJ
 			CB_Tool_BTN_Add(cbmw);
 			
 			Piko_ResLoad(cbmw, p_handle);
@@ -461,9 +461,9 @@ static BOOL CB_Sub_Select(CB_MAIN_WORK* cbmw)
 
 			BackupEditData_Make(cbmw);
 			BackupItemData_Make(cbmw);
-			PageData_Create(cbmw, cbmw->page.no);	///< ÉyÅ[ÉWç\íz
-			PageData_ResourceLoad(cbmw);	///< ÉäÉ\Å[ÉXì«Ç›çûÇ›
-			PageData_Add(cbmw);						///< OBJìoò^
+			PageData_Create(cbmw, cbmw->page.no);	///< „Éö„Éº„Ç∏ÊßãÁØâ
+			PageData_ResourceLoad(cbmw);	///< „É™„ÇΩ„Éº„ÇπË™≠„ÅøËæº„Åø
+			PageData_Add(cbmw);						///< OBJÁôªÈå≤
 			
 			CB_Tool_BTN_Enable(cbmw, CATS_ENABLE_FALSE);
 			Piko_Enable(cbmw, CATS_ENABLE_FALSE);
@@ -475,7 +475,7 @@ static BOOL CB_Sub_Select(CB_MAIN_WORK* cbmw)
 			CB_DispOn();
 			CB_Sys_MainTPSet(cbmw, FALSE);
 
-			// ÉJÉXÉ^ÉÄÉ{Å[ÉãÉOÉâÉtÉBÉbÉNÉAÅ[ÉJÉCÉuÉnÉìÉhÉãÉNÉçÅ[ÉY
+			// „Ç´„Çπ„Çø„É†„Éú„Éº„É´„Ç∞„É©„Éï„Ç£„ÉÉ„ÇØ„Ç¢„Éº„Ç´„Ç§„Éñ„Éè„É≥„Éâ„É´„ÇØ„É≠„Éº„Ç∫
 			ArchiveDataHandleClose( p_handle );
 		}
 		
@@ -483,13 +483,13 @@ static BOOL CB_Sub_Select(CB_MAIN_WORK* cbmw)
 		break;
 		
 	case CBS_SELECT_WIPE_IN:
-		///< ÉèÉCÉv
+		///< „ÉØ„Ç§„Éó
 		CB_WipeFadeIn();
 		cbmw->seq++;
 		break;
 	
 	case CBS_SELECT_WIPE_IN_WAIT:
-		///< ÉèÉCÉvë“Çø
+		///< „ÉØ„Ç§„ÉóÂæÖ„Å°
 		if (WIPE_SYS_EndCheck() != TRUE){ break; }
 		cbmw->seq++;
 		
@@ -570,20 +570,20 @@ static BOOL CB_Sub_Select(CB_MAIN_WORK* cbmw)
 		break;
 	
 	case CBS_SELECT_WIPE_OUT:
-		///< êÿÇËë÷Ç¶
+		///< Âàá„ÇäÊõø„Åà
 		CB_WipeFadeOut();
 		cbmw->seq++;
 		break;
 	
 	case CBS_SELECT_WIPE_OUT_WAIT:
-		///< ÉèÉCÉvÇ‹Çø
+		///< „ÉØ„Ç§„Éó„Åæ„Å°
 		if (WIPE_SYS_EndCheck() != TRUE){ break; }
 		GF_BGL_BmpWinDel(&cbmw->sys.win[ 0 ]);
 		SubSelect_ObjDelete(cbmw);	
 		CB_Tool_PokeIcon_Del(cbmw);
 		CB_Tool_BTN_Delete(cbmw);
 		Piko_Delete(cbmw);
-		PageData_Del(cbmw);					///< OBJìoò^
+		PageData_Del(cbmw);					///< OBJÁôªÈå≤
 		CBProc_NextModeSet(cbmw->cb_pw, CB_PROC_NEXT_MODE_END);
 		return FALSE;
 	}
@@ -724,7 +724,7 @@ void CB_Tool_ButtonCallBack( u32 button, u32 event, void* work )
 	
 	switch(button){
 	case CB_ENUM_BHIT_UP:
-		///< ÉyÅ[ÉWÅ™êÿÇËë÷Ç¶
+		///< „Éö„Éº„Ç∏‚ÜëÂàá„ÇäÊõø„Åà
 		if (event == BMN_EVENT_TOUCH){
 			if (cbmw->page.no > 0){
 				cbmw->page.no--;
@@ -745,7 +745,7 @@ void CB_Tool_ButtonCallBack( u32 button, u32 event, void* work )
 		break;
 		
 	case CB_ENUM_BHIT_DOWN:
-		///< ÉyÅ[ÉWÅ´êÿÇËë÷Ç¶
+		///< „Éö„Éº„Ç∏‚ÜìÂàá„ÇäÊõø„Åà
 		if (event == BMN_EVENT_TOUCH){
 			cbmw->page.no++;
 			cbmw->page.no %= cbmw->page.max;
@@ -762,7 +762,7 @@ void CB_Tool_ButtonCallBack( u32 button, u32 event, void* work )
 		break;
 		
 	case CB_ENUM_BHIT_CON:
-		///< ämîFÉ{É^Éì
+		///< Á¢∫Ë™ç„Éú„Çø„É≥
 		if (event == BMN_EVENT_TOUCH){
 			if (cbmw->seq != CBS_CUSTOM_CON){
 				cbmw->seq = CBS_CUSTOM_CON;
@@ -775,7 +775,7 @@ void CB_Tool_ButtonCallBack( u32 button, u32 event, void* work )
 		break;
 		
 	case CB_ENUM_BHIT_DEC:
-		///< åàíËÉ{É^Éì
+		///< Ê±∫ÂÆö„Éú„Çø„É≥
 		if (event == BMN_EVENT_TOUCH){
 			if (cbmw->seq != CBS_CUSTOM_DEC){
 				cbmw->seq = CBS_CUSTOM_DEC;
@@ -789,7 +789,7 @@ void CB_Tool_ButtonCallBack( u32 button, u32 event, void* work )
 		break;
 		
 	case CB_ENUM_BHIT_END:
-		///< Ç‚ÇﬂÇÈÉ{É^Éì
+		///< „ÇÑ„ÇÅ„Çã„Éú„Çø„É≥
 		if (event == BMN_EVENT_TOUCH){
 			if (cbmw->seq != CBS_CUSTOM_END){
 				cbmw->seq = CBS_CUSTOM_END;
@@ -810,13 +810,13 @@ void CB_Tool_ButtonCallBack( u32 button, u32 event, void* work )
 	case CB_ENUM_BHIT_SEAL_6:
 	case CB_ENUM_BHIT_SEAL_7:
 	case CB_ENUM_BHIT_SEAL_8:
-		///< ÉVÅ[ÉãÉ|ÉbÉvÉ{É^Éì
+		///< „Ç∑„Éº„É´„Éù„ÉÉ„Éó„Éú„Çø„É≥
 		{
 			int name_id;
 			if (event == BMN_EVENT_TOUCH){
 				
 				if (CBS_IsPop(cbmw) == FALSE){
-					///< Ç‡Ç§ãÛÇ´Ç™ñ≥Ç¢
+					///< „ÇÇ„ÅÜÁ©∫„Åç„ÅåÁÑ°„ÅÑ
 				
 					Snd_SePlay( CB_SE_LIMIT );
 					
@@ -856,7 +856,7 @@ void CB_Tool_ButtonCallBack( u32 button, u32 event, void* work )
 	case CB_BHIT_SEAL_5:
 	case CB_BHIT_SEAL_6:
 	case CB_BHIT_SEAL_7:
-		///< ÉhÉçÉbÉvÉVÅ[Éã
+		///< „Éâ„É≠„ÉÉ„Éó„Ç∑„Éº„É´
 		{
 			int id;
 			int name_id;
@@ -896,9 +896,9 @@ void CB_Sys_MainTPSet(CB_MAIN_WORK* cbmw, BOOL active)
 	cbmw->sys.main_tp_active = active;
 }
 
-///< ìÆÇ©Ç»Ç¢É{É^ÉìÇÃìñÇΩÇËîªíË
+///< Âãï„Åã„Å™„ÅÑ„Éú„Çø„É≥„ÅÆÂΩì„Åü„ÇäÂà§ÂÆö
 #ifdef SEAL_SBS
-	///< â°ï¿Ç—
+	///< Ê®™‰∏¶„Å≥
 	static const RECT_HIT_TBL hit_tbl[] = {
 		{ 16, 16 + 16,   8,   8 + 16	},	///< seal		
 		{ 16, 16 + 16,  64,  64 + 16	},	///< seal
@@ -909,8 +909,8 @@ void CB_Sys_MainTPSet(CB_MAIN_WORK* cbmw, BOOL active)
 		{ 88, 88 + 16,   8,   8 + 16	},
 		{ 88, 88 + 16,  64,  64 + 16	},
 		
-		{104,104 + 24,  8,   8 + 40	},	///< Å™
-		{104,104 + 24, 56,  56 + 40	},	///< Å´
+		{104,104 + 24,  8,   8 + 40	},	///< ‚Üë
+		{104,104 + 24, 56,  56 + 40	},	///< ‚Üì
 		{168,188,  18,  77	},			///< L
 		{168,188,  97,  156	},			///< C
 		{168,188, 178,  237	},			///< R
@@ -927,15 +927,15 @@ void CB_Sys_MainTPSet(CB_MAIN_WORK* cbmw, BOOL active)
 		{ 64, 64 + 16,  64,  64 + 16	},
 		{ 88, 88 + 16,  64,  64 + 16	},
 		
-		{104,104 + 24,  8,   8 + 40	},	///< Å™
-		{104,104 + 24, 56,  56 + 40	},	///< Å´
+		{104,104 + 24,  8,   8 + 40	},	///< ‚Üë
+		{104,104 + 24, 56,  56 + 40	},	///< ‚Üì
 		{168,188,  18,  77	},			///< L
 		{168,188,  97,  156	},			///< C
 		{168,188, 178,  237	},			///< R
 	};
 #endif
 
-/// ÉAÉ^ÉäîªíËèâä˙âª
+/// „Ç¢„Çø„É™Âà§ÂÆöÂàùÊúüÂåñ
 void CB_Tool_ButtonInit(CB_MAIN_WORK* cbmw)
 {
 	int i;
@@ -1075,7 +1075,7 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 {
 	switch(cbmw->seq){
 	case CBS_CUSTOM_INIT:
-		///< èâä˙âª
+		///< ÂàùÊúüÂåñ
 		CB_Sys_MainTPSet(cbmw, FALSE);
 		CB_BMP_InfoMessageSet(&cbmw->sys.win[0], CB_MSG_ID_CLEAR);
 		CB_BMP_SealNumWinAdd(cbmw);
@@ -1091,13 +1091,13 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 		break;
 		
 	case CBS_CUSTOM_T_FADE_OUT:
-		///< è„âÊñ àÍïîÅ{OBJÉtÉFÅ[Éh
+		///< ‰∏äÁîªÈù¢‰∏ÄÈÉ®ÔºãOBJ„Éï„Çß„Éº„Éâ
 		if (CB_Sys_IsSubTCB(cbmw) == TRUE){ break; }
 		
 		PaletteFadeReq(cbmw->sys.pfd, PF_BIT_MAIN_BG,  (1 << CB_DEF_MAIN_BG_PAL)|(1 << CB_DEF_MAIN_BG2_PAL), 0,  0, 16, 0);
 		PaletteFadeReq(cbmw->sys.pfd, PF_BIT_MAIN_OBJ, 0xFFFF, 0,  0, 16, 0);
 		
-		///< óDêÊìxïœçX
+		///< ÂÑ™ÂÖàÂ∫¶Â§âÊõ¥
 		GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_OFF);
 		GF_Disp_GXS_VisibleControl(CB_PLANE_LIST, VISIBLE_ON);
 		GF_BGL_PrioritySet(CB_DEF_EDIT_SUB_BG_FRM, CB_BG_PRI_SCR_EDIT_TOP);
@@ -1108,7 +1108,7 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 		break;
 		
 	case CBS_CUSTOM_T_FADE_OUT_WAIT:
-		///< ÉtÉFÅ[Éhë“Çø
+		///< „Éï„Çß„Éº„ÉâÂæÖ„Å°
 		if (PaletteFadeCheck(cbmw->sys.pfd) != 0){ break; }
 		GF_BGL_PrioritySet(CB_DEF_FIELD_BG_FRM, CB_BG_PRI_SCR_FIELD_TOP);
 		PaletteFadeReq(cbmw->sys.pfd, PF_BIT_MAIN_BG,  (1 << CB_DEF_MAIN_BG2_PAL), 0,  16, 0, 0);
@@ -1122,11 +1122,11 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 		break;
 	
 	case CBS_CUSTOM_MAIN:
-		///< ÉÅÉCÉì
+		///< „É°„Ç§„É≥
 		break;
 		
 	case CBS_CUSTOM_CON:
-		///< ÉpÅ[ÉeÉBÉNÉãämîF
+		///< „Éë„Éº„ÉÜ„Ç£„ÇØ„É´Á¢∫Ë™ç
 		{
 			switch(cbmw->sub_seq){
 			case 0:
@@ -1147,7 +1147,7 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 				break;
 			
 			case 1:
-				///< É{Å[ÉãÇ»Ç∞ÇÈ
+				///< „Éú„Éº„É´„Å™„Åí„Çã
 				if (PaletteFadeCheck(cbmw->sys.pfd) != 0){ break; }
 				
 				{
@@ -1308,9 +1308,9 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 		break;
 		
 	case CBS_CUSTOM_DEC:
-		///< åàíË
+		///< Ê±∫ÂÆö
 		CB_BMP_InfoMessageSet(&cbmw->sys.win[0], CB_MSG_ID_EDIT_END);
-		///< É\Å[Ég		
+		///< „ÇΩ„Éº„Éà		
 //		CBS_SVSort(cbmw);
 		if (CBS_CheckEditData(cbmw) == TRUE){
 			cbmw->sys.bEdit = TRUE;
@@ -1322,7 +1322,7 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 //		CBS_Delete(cbmw);
 //		CBS_LoadInit(cbmw);
 		{
-			///< ÉJÉEÉìÉgÉAÉbÉvèàóù
+			///< „Ç´„Ç¶„É≥„Éà„Ç¢„ÉÉ„ÉóÂá¶ÁêÜ
 			RECORD* rec;
 			
 			rec = SaveData_GetRecord(cbmw->cb_pw->save);
@@ -1333,7 +1333,7 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 		
 			POKEMON_PARAM* pp;
 	
-			///< è„èëÇ´
+			///< ‰∏äÊõ∏„Åç
 			if (cbmw->mo[ cbmw->select[ 0 ] ].poke_idx != CB_DEF_POKE_NOT_INDEX){
 
 				pp = cbmw->cb_pw->poke_para[ cbmw->mo[ cbmw->select[ 0 ] ].poke_idx ];
@@ -1348,11 +1348,11 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 		break;
 		
 	case CBS_CUSTOM_END:
-		///< Ç‚ÇﬂÇÈ
+		///< „ÇÑ„ÇÅ„Çã
 		{
 			switch(cbmw->sub_seq){
 			case 0:
-				///< îñà√Ç≠
+				///< ËñÑÊöó„Åè
 				if (CBS_CheckEditData(cbmw) == FALSE){
 					cbmw->seq = CBS_CUSTOM_T_FADE_IN;
 					break;
@@ -1369,7 +1369,7 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 				break;
 			
 			case 1:				
-				///< É`ÉFÉbÉN
+				///< „ÉÅ„Çß„ÉÉ„ÇØ
 				if (PaletteFadeCheck(cbmw->sys.pfd) != 0){ break; }
 			//	CB_Tool_ButtonAutoUpdate(cbmw);								
 				PaletteTrans_AutoSet(cbmw->sys.pfd, FALSE);
@@ -1462,7 +1462,7 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 		break;
 
 	case CBS_CUSTOM_T_FADE_IN:
-		///< ÉoÉgÉãîwåiÉtÉFÅ[Éh
+		///< „Éê„Éà„É´ËÉåÊôØ„Éï„Çß„Éº„Éâ
 		GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 		PaletteFadeReq(cbmw->sys.pfd, PF_BIT_MAIN_BG,  (1 << CB_DEF_MAIN_BG2_PAL), 0, 0, 16, 0);
 	//	CB_Tool_ButtonAutoUpdate(cbmw);
@@ -1470,7 +1470,7 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 		break;
 	
 	case CBS_CUSTOM_T_FADE_IN_2:
-		///< è„âÊñ àÍïîÅ{OBJÉtÉFÅ[Éh
+		///< ‰∏äÁîªÈù¢‰∏ÄÈÉ®ÔºãOBJ„Éï„Çß„Éº„Éâ
 		if (PaletteFadeCheck(cbmw->sys.pfd) != 0){ break; }
 		PaletteFadeReq(cbmw->sys.pfd, PF_BIT_MAIN_BG,  (1 << CB_DEF_MAIN_BG_PAL), 0,  16, 0, 0);
 		PaletteFadeReq(cbmw->sys.pfd, PF_BIT_MAIN_OBJ, 0xFFFF, 0,  16, 0, 0);
@@ -1488,7 +1488,7 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 		break;
 		
 	case CBS_CUSTOM_T_FADE_IN_WAIT:
-		///< ÉtÉFÅ[Éhë“Çø
+		///< „Éï„Çß„Éº„ÉâÂæÖ„Å°
 		if (PaletteFadeCheck(cbmw->sys.pfd) != 0){ break; }
 		if (CB_Sys_IsSubTCB(cbmw) == TRUE){ break; }
 		CATS_ObjectEnableCap(cbmw->cap_cur[1], CATS_ENABLE_FALSE);
@@ -1499,7 +1499,7 @@ static BOOL CB_Sub_Edit(CB_MAIN_WORK* cbmw)
 		return TRUE;
 	};
 	
-	///< É^ÉbÉ`ÉpÉlÉã
+	///< „Çø„ÉÉ„ÉÅ„Éë„Éç„É´
 	if (cbmw->sys.hold == CB_DEF_NOT_HOLD){
 		BMN_Main(cbmw->sys.btn);
 	}
@@ -1570,7 +1570,7 @@ static BOOL CB_Sub_SettingSet(CB_MAIN_WORK* cbmw)
 		CB_Tool_PokeIcon_Del(cbmw);
 		CB_Tool_BTN_Delete(cbmw);
 		Piko_Delete(cbmw);
-		PageData_Del(cbmw);					///< OBJìoò^
+		PageData_Del(cbmw);					///< OBJÁôªÈå≤
 		CBProc_NextModeSet(cbmw->cb_pw, CB_PROC_NEXT_MODE_LIST);
 
 		return FALSE;
@@ -1589,7 +1589,7 @@ void CB_Tool_CoreDataRemove(CB_MAIN_WORK* cbmw, int this)
 	int none_data = 0;
 	CB_CORE temp;
 	
-	///< É|ÉPÉpÉâëÄçÏ
+	///< „Éù„Ç±„Éë„É©Êìç‰Ωú
 	poke_this = cbmw->cb_edit_data[ this ].poke_idx;
 	if (poke_this != CB_DEF_POKE_NOT_INDEX){
 		PokeParaPut(cbmw->cb_pw->poke_para[ poke_this ], ID_PARA_cb_id, (u8*)&none_data);
@@ -1696,13 +1696,13 @@ static BOOL CB_Sub_End(CB_MAIN_WORK* cbmw)
 
 /*
 
-	ÉÅÉCÉìÉVÉXÉeÉÄ
+	„É°„Ç§„É≥„Ç∑„Çπ„ÉÜ„É†
 
  */
 
 //--------------------------------------------------------------
 /**
- * @brief	äÓñ{ìIÇ»ÉVÉXÉeÉÄèâä˙âª
+ * @brief	Âü∫Êú¨ÁöÑ„Å™„Ç∑„Çπ„ÉÜ„É†ÂàùÊúüÂåñ
  *
  * @param	heap	
  *
@@ -1712,22 +1712,22 @@ static BOOL CB_Sub_End(CB_MAIN_WORK* cbmw)
 //--------------------------------------------------------------
 void CB_Tool_SystemInit(int heap)
 {
-	sys_VBlankFuncChange(NULL, NULL);	///< VBlankÉZÉbÉg
-	sys_HBlankIntrStop();				///< HBlankäÑÇËçûÇ›í‚é~
+	sys_VBlankFuncChange(NULL, NULL);	///< VBlank„Çª„ÉÉ„Éà
+	sys_HBlankIntrStop();				///< HBlankÂâ≤„ÇäËæº„ÅøÂÅúÊ≠¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	GX_SetVisiblePlane(0);
 	GXS_SetVisiblePlane(0);
 	
-//	simple_3DBGInit(heap);				///< ä»à’3Dèâä˙âª
+//	simple_3DBGInit(heap);				///< Á∞°Êòì3DÂàùÊúüÂåñ
 	
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	äÓñ{ìIÇ»ÉVÉXÉeÉÄîjä¸
+ * @brief	Âü∫Êú¨ÁöÑ„Å™„Ç∑„Çπ„ÉÜ„É†Á†¥Ê£Ñ
  *
  * @param	heap	
  *
@@ -1739,14 +1739,14 @@ void CB_Tool_SystemDelete(int heap)
 {
 //	simple_3DBGExit();
 
-	sys_VBlankFuncChange( NULL, NULL );	///< VBlankÉZÉbÉg
-	sys_HBlankIntrStop();				///< HBlankäÑÇËçûÇ›í‚é~
+	sys_VBlankFuncChange( NULL, NULL );	///< VBlank„Çª„ÉÉ„Éà
+	sys_HBlankIntrStop();				///< HBlankÂâ≤„ÇäËæº„ÅøÂÅúÊ≠¢
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	Vramê›íË
+ * @brief	VramË®≠ÂÆö
  *
  * @param	bgl	
  *
@@ -1761,23 +1761,23 @@ void CB_Tool_Battle_VramBankSet(GF_BGL_INI *bgl)
 //	WIPE_ResetBrightness(WIPE_DISP_SUB);
 	
 	
-	//VRAMê›íË
+	//VRAMË®≠ÂÆö
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ÉÅÉCÉì2DÉGÉìÉWÉìÇÃBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ÉÅÉCÉì2DÉGÉìÉWÉìÇÃBGägí£ÉpÉåÉbÉg
-			GX_VRAM_SUB_BG_32_H,			// ÉTÉu2DÉGÉìÉWÉìÇÃBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ÉTÉu2DÉGÉìÉWÉìÇÃBGägí£ÉpÉåÉbÉg
-			GX_VRAM_OBJ_64_E,				// ÉÅÉCÉì2DÉGÉìÉWÉìÇÃOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ÉÅÉCÉì2DÉGÉìÉWÉìÇÃOBJägí£ÉpÉåÉbÉg
-			GX_VRAM_SUB_OBJ_16_I,			// ÉTÉu2DÉGÉìÉWÉìÇÃOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ÉTÉu2DÉGÉìÉWÉìÇÃOBJägí£ÉpÉåÉbÉg
-			GX_VRAM_TEX_01_BC,				// ÉeÉNÉXÉ`ÉÉÉCÉÅÅ[ÉWÉXÉçÉbÉg
-			GX_VRAM_TEXPLTT_01_FG			// ÉeÉNÉXÉ`ÉÉÉpÉåÉbÉgÉXÉçÉbÉg
+			GX_VRAM_BG_128_A,				// „É°„Ç§„É≥2D„Ç®„É≥„Ç∏„É≥„ÅÆBG
+			GX_VRAM_BGEXTPLTT_NONE,			// „É°„Ç§„É≥2D„Ç®„É≥„Ç∏„É≥„ÅÆBGÊã°Âºµ„Éë„É¨„ÉÉ„Éà
+			GX_VRAM_SUB_BG_32_H,			// „Çµ„Éñ2D„Ç®„É≥„Ç∏„É≥„ÅÆBG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// „Çµ„Éñ2D„Ç®„É≥„Ç∏„É≥„ÅÆBGÊã°Âºµ„Éë„É¨„ÉÉ„Éà
+			GX_VRAM_OBJ_64_E,				// „É°„Ç§„É≥2D„Ç®„É≥„Ç∏„É≥„ÅÆOBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// „É°„Ç§„É≥2D„Ç®„É≥„Ç∏„É≥„ÅÆOBJÊã°Âºµ„Éë„É¨„ÉÉ„Éà
+			GX_VRAM_SUB_OBJ_16_I,			// „Çµ„Éñ2D„Ç®„É≥„Ç∏„É≥„ÅÆOBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// „Çµ„Éñ2D„Ç®„É≥„Ç∏„É≥„ÅÆOBJÊã°Âºµ„Éë„É¨„ÉÉ„Éà
+			GX_VRAM_TEX_01_BC,				// „ÉÜ„ÇØ„Çπ„ÉÅ„É£„Ç§„É°„Éº„Ç∏„Çπ„É≠„ÉÉ„Éà
+			GX_VRAM_TEXPLTT_01_FG			// „ÉÜ„ÇØ„Çπ„ÉÅ„É£„Éë„É¨„ÉÉ„Éà„Çπ„É≠„ÉÉ„Éà
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMÉNÉäÉA
+		//VRAM„ÇØ„É™„Ç¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -1792,7 +1792,7 @@ void CB_Tool_Battle_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ÉÅÉCÉìâÊñ ÉtÉåÅ[ÉÄê›íË
+	//„É°„Ç§„É≥ÁîªÈù¢„Éï„É¨„Éº„É†Ë®≠ÂÆö
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_M
@@ -1825,7 +1825,7 @@ void CB_Tool_Battle_VramBankSet(GF_BGL_INI *bgl)
 		GF_Disp_GX_VisibleControl(GX_PLANEMASK_BG0, VISIBLE_ON);
 	}
 	
-	///< ÉTÉuâÊñ ÉtÉåÅ[ÉÄê›íË
+	///< „Çµ„ÉñÁîªÈù¢„Éï„É¨„Éº„É†Ë®≠ÂÆö
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			{	/// font
@@ -1868,7 +1868,7 @@ void CB_Tool_VBlank(void* work)
 
 	SoftSpriteTextureTrans(wk->sys.ssm_p);
 
-	DoVramTransferManager();			///< Vramì]ëóÉ}ÉlÅ[ÉWÉÉÅ[é¿çs
+	DoVramTransferManager();			///< VramËª¢ÈÄÅ„Éû„Éç„Éº„Ç∏„É£„ÉºÂÆüË°å
 	CATS_RenderOamTrans();
 	PaletteFadeTrans(wk->sys.pfd);
 	

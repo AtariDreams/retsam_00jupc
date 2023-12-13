@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_FndGetAllocatableSizeForExpHeapEx</title>
@@ -11,7 +11,7 @@
 
 <body>
 <h1 align="left">NNS_FndGetAllocatableSizeForExpHeapEx</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -20,32 +20,32 @@
         NNSFndHeapHandle    heap,
         int                 alignment);</CODE></pre>
 	</dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">heap</font></strong></em></td>
-    <td width="87%">�g���q�[�v�̃n���h��</td>
+    <td width="87%">拡張ヒープのハンドル</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">alignment</font></strong></em></td>
-    <td width="87%">�������u���b�N�̃A���C�����g�B4,8,16,32�̂����ꂩ�̒l���w��ł��܂��B</td>
+    <td width="87%">メモリブロックのアライメント。4,8,16,32のいずれかの値が指定できます。</td>
   </tr>
 </table>
-<h2>�Ԃ�l</h2>
-<p>�g���q�[�v�̋󂫗̈悩�犄�蓖�Ă邱�Ƃ̏o���郁�����u���b�N�̍ő�T�C�Y(�o�C�g)��Ԃ��܂��B</p>
-<H2>����</H2>
-<P>�g���q�[�v�̋󂫗̈悩�犄�蓖�Ă邱�Ƃ̏o���郁�����u���b�N�̍ő�T�C�Y(�o�C�g)���擾���܂��B</p>
-<P>�������u���b�N�̃A���C�����g�� alignment �ɂ���Ďw��ł��܂��B�A���C�����g�l�ɂ���āA�m�ۉ\�ȃ������u���b�N�̑傫�����ς��܂��B</p>
+<h2>返り値</h2>
+<p>拡張ヒープの空き領域から割り当てることの出来るメモリブロックの最大サイズ(バイト)を返します。</p>
+<H2>説明</H2>
+<P>拡張ヒープの空き領域から割り当てることの出来るメモリブロックの最大サイズ(バイト)を取得します。</p>
+<P>メモリブロックのアライメントを alignment によって指定できます。アライメント値によって、確保可能なメモリブロックの大きさが変わります。</p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <a href="NNS_FndGetAllocatableSizeForExpHeap.html">NNS_FndGetAllocatableSizeForExpHeap</a>, 
 <A href="NNS_FndGetTotalFreeSizeForExpHeap.html">NNS_FndGetTotalFreeSizeForExpHeap</A>, 
 <a href="NNS_FndAllocFromExpHeap.html">NNS_FndAllocFromExpHeap</a>, <a href="NNS_FndAllocFromExpHeapEx.html">NNS_FndAllocFromExpHeapEx</a>
 </CODE></p>
-<H2>����</H2>
-<P>2004/10/15 �s�v�ȃJ���}���폜�����B<br>
-2004/04/01 ����</P>
+<H2>履歴</H2>
+<P>2004/10/15 不要なカンマを削除した。<br>
+2004/04/01 初版</P>
 </body>
 </html>

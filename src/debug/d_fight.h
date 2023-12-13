@@ -2,7 +2,7 @@
 //==============================================================================================
 /**
  * @file	d_fight.h
- * @brief	ƒfƒoƒbƒOƒtƒ@ƒCƒg
+ * @brief	ãƒ‡ãƒãƒƒã‚°ãƒ•ã‚¡ã‚¤ãƒˆ
  * @author	sogabe
  * @date	2006.04.13
  */
@@ -13,7 +13,7 @@
 
 //==============================================================================================
 //
-//	\‘¢‘Ì
+//	æ§‹é€ ä½“
 //
 //==============================================================================================
 
@@ -164,18 +164,18 @@ typedef BOOL (*DF_FUNC)(DEBUG_FIGHT_PARAM *,DEBUG_POKEMON_PARAM *);
 
 typedef struct
 {
-	u8		cursor_pos_x;	//ƒJ[ƒ\ƒ‹XˆÊ’u
-	u8		cursor_pos_y;	//ƒJ[ƒ\ƒ‹YˆÊ’u
-	u8		move_up;		//ãƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	u8		move_down;		//‰ºƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	u8		move_left;		//¶ƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	u8		move_right;		//‰EƒL[‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌˆÚ“®æ
-	DF_FUNC	a_button_act;	//Aƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½‚Æ‚«‚ÌƒAƒNƒVƒ‡ƒ“
+	u8		cursor_pos_x;	//ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®
+	u8		cursor_pos_y;	//ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®
+	u8		move_up;		//ä¸Šã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	u8		move_down;		//ä¸‹ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	u8		move_left;		//å·¦ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	u8		move_right;		//å³ã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã¨ãã®ç§»å‹•å…ˆ
+	DF_FUNC	a_button_act;	//Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ãã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 }MENU_LIST_PARAM;
 
 //==================================================================================================
 //
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //
 //==================================================================================================
 
@@ -184,55 +184,55 @@ typedef struct
 #define	CUR_DEL				(0)
 #define	CUR_PUT				(1)
 
-#define	MINE_X				(24)		//u‚¶‚Ô‚ñv•\Ž¦XÀ•W
-#define	MINE_Y				(8)			//u‚¶‚Ô‚ñv•\Ž¦YÀ•W
-#define	ENEMY_X				(152)		//u‚ ‚¢‚Äv•\Ž¦XÀ•W
-#define	ENEMY_Y				(8)			//u‚ ‚¢‚Äv•\Ž¦YÀ•W
+#define	MINE_X				(24)		//ã€Œã˜ã¶ã‚“ã€è¡¨ç¤ºXåº§æ¨™
+#define	MINE_Y				(8)			//ã€Œã˜ã¶ã‚“ã€è¡¨ç¤ºYåº§æ¨™
+#define	ENEMY_X				(152)		//ã€Œã‚ã„ã¦ã€è¡¨ç¤ºXåº§æ¨™
+#define	ENEMY_Y				(8)			//ã€Œã‚ã„ã¦ã€è¡¨ç¤ºYåº§æ¨™
 
 #define	POKE_TOP			(28)
 
-#define	MINE_POKE_X			(24)		//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“1‘Ì–Ú•\Ž¦XÀ•W
-#define	MINE_POKE_Y			(POKE_TOP)	//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“1‘Ì–Ú•\Ž¦YÀ•W
-#define	MINE_POKE_Y_OFS		(16)		//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“YÀ•WƒIƒtƒZƒbƒg
+#define	MINE_POKE_X			(24)		//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³1ä½“ç›®è¡¨ç¤ºXåº§æ¨™
+#define	MINE_POKE_Y			(POKE_TOP)	//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³1ä½“ç›®è¡¨ç¤ºYåº§æ¨™
+#define	MINE_POKE_Y_OFS		(16)		//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³Yåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-#define	ENEMY_POKE_X		(152)		//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“1‘Ì–Ú•\Ž¦XÀ•W
-#define	ENEMY_POKE_Y		(POKE_TOP)	//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“1‘Ì–Ú•\Ž¦YÀ•W
-#define	ENEMY_POKE_Y_OFS	(16)		//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“YÀ•WƒIƒtƒZƒbƒg
+#define	ENEMY_POKE_X		(152)		//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³1ä½“ç›®è¡¨ç¤ºXåº§æ¨™
+#define	ENEMY_POKE_Y		(POKE_TOP)	//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³1ä½“ç›®è¡¨ç¤ºYåº§æ¨™
+#define	ENEMY_POKE_Y_OFS	(16)		//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³Yåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 #define	GROUND_TOP			(128)
 
-#define	GROUND_X			(24)			//u‚¿‚¯‚¢v•\Ž¦XÀ•W
-#define	GROUND_Y			(GROUND_TOP)	//u‚¿‚¯‚¢v•\Ž¦YÀ•W
+#define	GROUND_X			(24)			//ã€Œã¡ã‘ã„ã€è¡¨ç¤ºXåº§æ¨™
+#define	GROUND_Y			(GROUND_TOP)	//ã€Œã¡ã‘ã„ã€è¡¨ç¤ºYåº§æ¨™
 
-#define	BG_X				(104)			//u‚¿‚¯‚¢v•\Ž¦XÀ•W
-#define	BG_Y				(GROUND_TOP)	//u‚¿‚¯‚¢v•\Ž¦YÀ•W
+#define	BG_X				(104)			//ã€Œã¡ã‘ã„ã€è¡¨ç¤ºXåº§æ¨™
+#define	BG_Y				(GROUND_TOP)	//ã€Œã¡ã‘ã„ã€è¡¨ç¤ºYåº§æ¨™
 
-#define	WEATHER_X			(184)			//u‚Ä‚ñ‚±‚¤v•\Ž¦XÀ•W
-#define	WEATHER_Y			(GROUND_TOP)	//u‚Ä‚ñ‚±‚¤v•\Ž¦YÀ•W
+#define	WEATHER_X			(184)			//ã€Œã¦ã‚“ã“ã†ã€è¡¨ç¤ºXåº§æ¨™
+#define	WEATHER_Y			(GROUND_TOP)	//ã€Œã¦ã‚“ã“ã†ã€è¡¨ç¤ºYåº§æ¨™
 
-#define	RULE_DATA_X			(24)			//u‚¹‚ñ‚Æ‚¤ƒ‹[ƒ‹v•\Ž¦XÀ•W
-#define	RULE_DATA_Y			(GROUND_TOP+16)	//u‚¹‚ñ‚Æ‚¤ƒ‹[ƒ‹v•\Ž¦YÀ•W
+#define	RULE_DATA_X			(24)			//ã€Œã›ã‚“ã¨ã†ãƒ«ãƒ¼ãƒ«ã€è¡¨ç¤ºXåº§æ¨™
+#define	RULE_DATA_Y			(GROUND_TOP+16)	//ã€Œã›ã‚“ã¨ã†ãƒ«ãƒ¼ãƒ«ã€è¡¨ç¤ºYåº§æ¨™
 
-#define	EFF_FLAG_DATA_X		(104)			//uƒGƒtƒFƒNƒg‚n‚m^‚n‚e‚ev•\Ž¦XÀ•W
-#define	EFF_FLAG_DATA_Y		(GROUND_TOP+16)	//uƒGƒtƒFƒNƒg‚n‚m^‚n‚e‚ev•\Ž¦YÀ•W
+#define	EFF_FLAG_DATA_X		(104)			//ã€Œã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼¯ï¼®ï¼ï¼¯ï¼¦ï¼¦ã€è¡¨ç¤ºXåº§æ¨™
+#define	EFF_FLAG_DATA_Y		(GROUND_TOP+16)	//ã€Œã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼¯ï¼®ï¼ï¼¯ï¼¦ï¼¦ã€è¡¨ç¤ºYåº§æ¨™
 
-#define	MSG_SPEED_DATA_X	(184)			//uƒƒbƒZ[ƒWƒXƒs[ƒhv•\Ž¦XÀ•W
-#define	MSG_SPEED_DATA_Y	(GROUND_TOP+16)	//uƒƒbƒZ[ƒWƒXƒs[ƒhv•\Ž¦YÀ•W
+#define	MSG_SPEED_DATA_X	(184)			//ã€Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰ã€è¡¨ç¤ºXåº§æ¨™
+#define	MSG_SPEED_DATA_Y	(GROUND_TOP+16)	//ã€Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰ã€è¡¨ç¤ºYåº§æ¨™
 
-#define	MYSEX_X				(24)			//u‚¶‚Ô‚ñ‚Ì‚¹‚¢‚×‚Âv•\Ž¦XÀ•W
-#define	MYSEX_Y				(GROUND_TOP+32)	//u‚¶‚Ô‚ñ‚Ì‚¹‚¢‚×‚Âv•\Ž¦YÀ•W
+#define	MYSEX_X				(24)			//ã€Œã˜ã¶ã‚“ã®ã›ã„ã¹ã¤ã€è¡¨ç¤ºXåº§æ¨™
+#define	MYSEX_Y				(GROUND_TOP+32)	//ã€Œã˜ã¶ã‚“ã®ã›ã„ã¹ã¤ã€è¡¨ç¤ºYåº§æ¨™
 
-#define	TIMEZONE_X			(96)			//uƒ^ƒCƒ€ƒ][ƒ“v•\Ž¦XÀ•W
-#define	TIMEZONE_Y			(GROUND_TOP+32)	//uƒ^ƒCƒ€ƒ][ƒ“v•\Ž¦YÀ•W
+#define	TIMEZONE_X			(96)			//ã€Œã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã€è¡¨ç¤ºXåº§æ¨™
+#define	TIMEZONE_Y			(GROUND_TOP+32)	//ã€Œã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã€è¡¨ç¤ºYåº§æ¨™
 
-#define	MYSEX_DATA_X		(24)			//u‚¶‚Ô‚ñ‚Ì‚¹‚¢‚×‚Âvƒf[ƒ^•\Ž¦XÀ•W
-#define	MYSEX_DATA_Y		(GROUND_TOP+32)	//u‚¶‚Ô‚ñ‚Ì‚¹‚¢‚×‚Âvƒf[ƒ^•\Ž¦YÀ•W
+#define	MYSEX_DATA_X		(24)			//ã€Œã˜ã¶ã‚“ã®ã›ã„ã¹ã¤ã€ãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºXåº§æ¨™
+#define	MYSEX_DATA_Y		(GROUND_TOP+32)	//ã€Œã˜ã¶ã‚“ã®ã›ã„ã¹ã¤ã€ãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºYåº§æ¨™
 
-#define	FIGHT_TYPE_X		(24)			//u‚¹‚ñ‚Æ‚¤ƒ^ƒCƒvv•\Ž¦XÀ•W
-#define	FIGHT_TYPE_Y		(GROUND_TOP+32)	//u‚¹‚ñ‚Æ‚¤ƒ^ƒCƒvv•\Ž¦YÀ•W
+#define	FIGHT_TYPE_X		(24)			//ã€Œã›ã‚“ã¨ã†ã‚¿ã‚¤ãƒ—ã€è¡¨ç¤ºXåº§æ¨™
+#define	FIGHT_TYPE_Y		(GROUND_TOP+32)	//ã€Œã›ã‚“ã¨ã†ã‚¿ã‚¤ãƒ—ã€è¡¨ç¤ºYåº§æ¨™
 
-#define	FIGHT_TYPE_DATA_X	(152)			//u‚¹‚ñ‚Æ‚¤ƒ^ƒCƒvvƒf[ƒ^•\Ž¦XÀ•W
-#define	FIGHT_TYPE_DATA_Y	(GROUND_TOP+32)	//u‚¹‚ñ‚Æ‚¤ƒ^ƒCƒvvƒf[ƒ^•\Ž¦YÀ•W
+#define	FIGHT_TYPE_DATA_X	(152)			//ã€Œã›ã‚“ã¨ã†ã‚¿ã‚¤ãƒ—ã€ãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºXåº§æ¨™
+#define	FIGHT_TYPE_DATA_Y	(GROUND_TOP+32)	//ã€Œã›ã‚“ã¨ã†ã‚¿ã‚¤ãƒ—ã€ãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºYåº§æ¨™
 
 #define	LOAD_X				(24)
 #define	LOAD_Y				(GROUND_TOP+48)
@@ -243,66 +243,66 @@ typedef struct
 #define	BRD_SAVE_X			(152)
 #define	BRD_SAVE_Y			(GROUND_TOP+48)
 
-#define	VERSION_DATA_X		(240)			//uƒT[ƒoƒo[ƒWƒ‡ƒ“vƒf[ƒ^•\Ž¦XÀ•W
-#define	VERSION_DATA_Y		(GROUND_TOP+48)	//uƒT[ƒoƒo[ƒWƒ‡ƒ“vƒf[ƒ^•\Ž¦YÀ•W
+#define	VERSION_DATA_X		(240)			//ã€Œã‚µãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ§ãƒ³ã€ãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºXåº§æ¨™
+#define	VERSION_DATA_Y		(GROUND_TOP+48)	//ã€Œã‚µãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ§ãƒ³ã€ãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºYåº§æ¨™
 
-#define	MINE_CUR_X			(12)			//‚¶‚Ô‚ñƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	MINE_CUR_Y			(8)				//‚¶‚Ô‚ñƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	MINE_CUR_X			(12)			//ã˜ã¶ã‚“ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	MINE_CUR_Y			(8)				//ã˜ã¶ã‚“ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-#define	ENEMY_CUR_X			(140)			//‚ ‚¢‚ÄƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	ENEMY_CUR_Y			(8)				//‚ ‚¢‚ÄƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	ENEMY_CUR_X			(140)			//ã‚ã„ã¦ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	ENEMY_CUR_Y			(8)				//ã‚ã„ã¦ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-#define	MINE_POKE1_CUR_X	(12)			//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“1‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	MINE_POKE1_CUR_Y	(POKE_TOP)		//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“1‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
-#define	MINE_POKE2_CUR_X	(12)			//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“2‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	MINE_POKE2_CUR_Y	(POKE_TOP+16)	//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“2‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
-#define	MINE_POKE3_CUR_X	(12)			//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“3‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	MINE_POKE3_CUR_Y	(POKE_TOP+32)	//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“3‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
-#define	MINE_POKE4_CUR_X	(12)			//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“4‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	MINE_POKE4_CUR_Y	(POKE_TOP+48)	//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“4‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
-#define	MINE_POKE5_CUR_X	(12)			//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“5‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	MINE_POKE5_CUR_Y	(POKE_TOP+64)	//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“5‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
-#define	MINE_POKE6_CUR_X	(12)			//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“6‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	MINE_POKE6_CUR_Y	(POKE_TOP+80)	//‚¶‚Ô‚ñ‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“6‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
-#define	ENEMY_POKE1_CUR_X	(140)			//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“1‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	ENEMY_POKE1_CUR_Y	(POKE_TOP)		//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“1‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
-#define	ENEMY_POKE2_CUR_X	(140)			//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“2‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	ENEMY_POKE2_CUR_Y	(POKE_TOP+16)	//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“2‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
-#define	ENEMY_POKE3_CUR_X	(140)			//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“3‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	ENEMY_POKE3_CUR_Y	(POKE_TOP+32)	//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“3‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
-#define	ENEMY_POKE4_CUR_X	(140)			//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“4‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	ENEMY_POKE4_CUR_Y	(POKE_TOP+48)	//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“4‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
-#define	ENEMY_POKE5_CUR_X	(140)			//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“5‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	ENEMY_POKE5_CUR_Y	(POKE_TOP+64)	//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“5‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
-#define	ENEMY_POKE6_CUR_X	(140)			//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“6‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	ENEMY_POKE6_CUR_Y	(POKE_TOP+80)	//‚ ‚¢‚Ä‚ÌŽèŽ‚¿ƒ|ƒPƒ‚ƒ“6‘Ì–ÚƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	MINE_POKE1_CUR_X	(12)			//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³1ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	MINE_POKE1_CUR_Y	(POKE_TOP)		//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³1ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
+#define	MINE_POKE2_CUR_X	(12)			//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³2ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	MINE_POKE2_CUR_Y	(POKE_TOP+16)	//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³2ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
+#define	MINE_POKE3_CUR_X	(12)			//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³3ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	MINE_POKE3_CUR_Y	(POKE_TOP+32)	//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³3ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
+#define	MINE_POKE4_CUR_X	(12)			//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³4ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	MINE_POKE4_CUR_Y	(POKE_TOP+48)	//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³4ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
+#define	MINE_POKE5_CUR_X	(12)			//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³5ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	MINE_POKE5_CUR_Y	(POKE_TOP+64)	//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³5ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
+#define	MINE_POKE6_CUR_X	(12)			//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³6ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	MINE_POKE6_CUR_Y	(POKE_TOP+80)	//ã˜ã¶ã‚“ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³6ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
+#define	ENEMY_POKE1_CUR_X	(140)			//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³1ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	ENEMY_POKE1_CUR_Y	(POKE_TOP)		//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³1ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
+#define	ENEMY_POKE2_CUR_X	(140)			//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³2ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	ENEMY_POKE2_CUR_Y	(POKE_TOP+16)	//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³2ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
+#define	ENEMY_POKE3_CUR_X	(140)			//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³3ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	ENEMY_POKE3_CUR_Y	(POKE_TOP+32)	//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³3ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
+#define	ENEMY_POKE4_CUR_X	(140)			//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³4ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	ENEMY_POKE4_CUR_Y	(POKE_TOP+48)	//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³4ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
+#define	ENEMY_POKE5_CUR_X	(140)			//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³5ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	ENEMY_POKE5_CUR_Y	(POKE_TOP+64)	//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³5ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
+#define	ENEMY_POKE6_CUR_X	(140)			//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³6ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	ENEMY_POKE6_CUR_Y	(POKE_TOP+80)	//ã‚ã„ã¦ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³6ä½“ç›®ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-#define	GROUND_CUR_X		(12)			//u‚¿‚¯‚¢vƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	GROUND_CUR_Y		(GROUND_TOP)	//u‚¿‚¯‚¢vƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	GROUND_CUR_X		(12)			//ã€Œã¡ã‘ã„ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	GROUND_CUR_Y		(GROUND_TOP)	//ã€Œã¡ã‘ã„ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-#define	BG_CUR_X			(92)			//u‚Í‚¢‚¯‚¢vƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	BG_CUR_Y			(GROUND_TOP)	//u‚Í‚¢‚¯‚¢vƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	BG_CUR_X			(92)			//ã€Œã¯ã„ã‘ã„ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	BG_CUR_Y			(GROUND_TOP)	//ã€Œã¯ã„ã‘ã„ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-#define	WEATHER_CUR_X		(172)			//u‚Í‚¢‚¯‚¢vƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	WEATHER_CUR_Y		(GROUND_TOP)	//u‚Í‚¢‚¯‚¢vƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	WEATHER_CUR_X		(172)			//ã€Œã¯ã„ã‘ã„ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	WEATHER_CUR_Y		(GROUND_TOP)	//ã€Œã¯ã„ã‘ã„ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-#define	RULE_CUR_X			(12)			//u‚¹‚ñ‚Æ‚¤ƒ‹[ƒ‹vƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	RULE_CUR_Y			(GROUND_TOP+16)	//u‚¹‚ñ‚Æ‚¤ƒ‹[ƒ‹vƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	RULE_CUR_X			(12)			//ã€Œã›ã‚“ã¨ã†ãƒ«ãƒ¼ãƒ«ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	RULE_CUR_Y			(GROUND_TOP+16)	//ã€Œã›ã‚“ã¨ã†ãƒ«ãƒ¼ãƒ«ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-#define	EFFECT_FLAG_CUR_X	(92)			//u‹ZƒGƒtƒFƒNƒgON/OFFvƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	EFFECT_FLAG_CUR_Y	(GROUND_TOP+16)	//u‹ZƒGƒtƒFƒNƒgON/OFFvƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	EFFECT_FLAG_CUR_X	(92)			//ã€ŒæŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆON/OFFã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	EFFECT_FLAG_CUR_Y	(GROUND_TOP+16)	//ã€ŒæŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆON/OFFã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-#define	MSG_SPEED_CUR_X		(172)			//uƒƒbƒZ[ƒWƒXƒs[ƒhvƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	MSG_SPEED_CUR_Y		(GROUND_TOP+16)	//uƒƒbƒZ[ƒWƒXƒs[ƒhvƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	MSG_SPEED_CUR_X		(172)			//ã€Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	MSG_SPEED_CUR_Y		(GROUND_TOP+16)	//ã€Œãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ãƒ”ãƒ¼ãƒ‰ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-#define	MYSEX_CUR_X			(12)			//u‚¶‚Ô‚ñ‚Ì‚¹‚¢‚×‚ÂvƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	MYSEX_CUR_Y			(GROUND_TOP+32)	//u‚¶‚Ô‚ñ‚Ì‚¹‚¢‚×‚ÂvƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	MYSEX_CUR_X			(12)			//ã€Œã˜ã¶ã‚“ã®ã›ã„ã¹ã¤ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	MYSEX_CUR_Y			(GROUND_TOP+32)	//ã€Œã˜ã¶ã‚“ã®ã›ã„ã¹ã¤ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-#define	TIMEZONE_CUR_X		(84)			//uƒ^ƒCƒ€ƒ][ƒ“vƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	TIMEZONE_CUR_Y		(GROUND_TOP+32)	//uƒ^ƒCƒ€ƒ][ƒ“vƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	TIMEZONE_CUR_X		(84)			//ã€Œã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	TIMEZONE_CUR_Y		(GROUND_TOP+32)	//ã€Œã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-#define	FIGHT_TYPE_CUR_X	(140)			//u‚¹‚ñ‚Æ‚¤ƒ^ƒCƒvvƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	FIGHT_TYPE_CUR_Y	(GROUND_TOP+32)	//u‚¹‚ñ‚Æ‚¤ƒ^ƒCƒvvƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	FIGHT_TYPE_CUR_X	(140)			//ã€Œã›ã‚“ã¨ã†ã‚¿ã‚¤ãƒ—ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	FIGHT_TYPE_CUR_Y	(GROUND_TOP+32)	//ã€Œã›ã‚“ã¨ã†ã‚¿ã‚¤ãƒ—ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
 #define	LOAD_CUR_X			(12)
 #define	LOAD_CUR_Y			(GROUND_TOP+48)
@@ -313,10 +313,10 @@ typedef struct
 #define	BRD_SAVE_CUR_X		(140)
 #define	BRD_SAVE_CUR_Y		(GROUND_TOP+48)
 
-#define	VERSION_CUR_X		(VERSION_DATA_X-12)		//uƒT[ƒoƒo[ƒWƒ‡ƒ“vƒJ[ƒ\ƒ‹•\Ž¦XÀ•W
-#define	VERSION_CUR_Y		(GROUND_TOP+48)			//uƒT[ƒoƒo[ƒWƒ‡ƒ“vƒJ[ƒ\ƒ‹•\Ž¦YÀ•W
+#define	VERSION_CUR_X		(VERSION_DATA_X-12)		//ã€Œã‚µãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ§ãƒ³ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºXåº§æ¨™
+#define	VERSION_CUR_Y		(GROUND_TOP+48)			//ã€Œã‚µãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ§ãƒ³ã€ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºYåº§æ¨™
 
-//ƒƒCƒ“ƒXƒNƒŠ[ƒ“ƒƒjƒ…[ƒf[ƒ^
+//ãƒ¡ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
 enum{
 	MS_MINE_POKE_1=0,
 	MS_MINE_POKE_2,
@@ -705,7 +705,7 @@ enum{
 
 //==================================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==================================================================================================
 

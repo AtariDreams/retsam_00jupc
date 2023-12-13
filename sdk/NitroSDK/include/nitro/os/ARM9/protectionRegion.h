@@ -54,10 +54,10 @@
   change SDK prefix iris -> nitro
 
   Revision 1.2  2004/01/16 07:57:15  yada
-  protectionUnit ‹Lq
+  protectionUnit è¨˜è¿°
 
   Revision 1.1  2003/12/08 12:22:34  yada
-  ‰”Å
+  åˆç‰ˆ
 
 
   $NoKeywords: $

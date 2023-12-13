@@ -107,12 +107,12 @@ const NNSSndArcOffsetTable* GetOffsetTable( const NNSSndArcInfo* info, u32 offse
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcInit
 
-  Description:  ƒTƒEƒ“ƒhƒA[ƒJƒCƒu\‘¢‘Ì‚ğ‰Šú‰»
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æ§‹é€ ä½“ã‚’åˆæœŸåŒ–
 
-  Arguments:    arc            - ƒTƒEƒ“ƒhƒA[ƒJƒCƒu\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                filePath       - ƒTƒEƒ“ƒhƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚ÌƒpƒX
-                heap           - ƒTƒEƒ“ƒhƒq[ƒv
-                symbolLoadFlag - ƒVƒ“ƒ{ƒ‹ƒf[ƒ^‚ğƒ[ƒh‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+  Arguments:    arc            - ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                filePath       - ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹
+                heap           - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
+                symbolLoadFlag - ã‚·ãƒ³ãƒœãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -123,18 +123,18 @@ void NNS_SndArcInit( NNSSndArc* arc, const char* filePath, NNSSndHeapHandle heap
     NNS_ASSERT( FS_IsAvailable() );
     NNS_NULL_ASSERT( arc );
     
-    /* NNSSndArc\‘¢‘Ì‚Ì‰Šú‰» */ 
+    /* NNSSndArcæ§‹é€ ä½“ã®åˆæœŸåŒ– */ 
     arc->info = NULL;
     arc->fat  = NULL;
     arc->symbol = NULL;
     arc->loadBlockSize = 0;
 
-    /* ƒtƒ@ƒCƒ‹ID‚Ìæ“¾ */
+    /* ãƒ•ã‚¡ã‚¤ãƒ«IDã®å–å¾— */
     result = FS_ConvertPathToFileID( & arc->fileId, filePath );
     NNS_ASSERTMSG( result, "Cannot find file %s\n", filePath );
     if ( ! result ) return;
     
-    /* ƒtƒ@ƒCƒ‹‚ğŠJ‚­ */
+    /* ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã */
     FS_InitFile( & arc->file );
     result = FS_OpenFileFast( & arc->file, arc->fileId );
     NNS_ASSERTMSG( result, "Cannot open file %s\n", filePath );
@@ -142,26 +142,26 @@ void NNS_SndArcInit( NNSSndArc* arc, const char* filePath, NNSSndHeapHandle heap
     
     arc->file_open = TRUE;
     
-    /* ƒZƒbƒgƒAƒbƒv */
+    /* ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ— */
     result = NNS_SndArcSetup( arc, heap, symbolLoadFlag );
     NNS_ASSERT( result );
     if ( ! result ) return;
     
-    /* ƒJƒŒƒ“ƒgƒA[ƒJƒCƒu‚Æ‚µ‚Äİ’è */
+    /* ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã¨ã—ã¦è¨­å®š */
     sCurrent = arc;    
 }
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcInitWithResult
 
-  Description:  ƒTƒEƒ“ƒhƒA[ƒJƒCƒu\‘¢‘Ì‚ğ‰Šú‰»i•Ô‚è’l—L‚èj
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ï¼ˆè¿”ã‚Šå€¤æœ‰ã‚Šï¼‰
 
-  Arguments:    arc            - ƒTƒEƒ“ƒhƒA[ƒJƒCƒu\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                filePath       - ƒTƒEƒ“ƒhƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚ÌƒpƒX
-                heap           - ƒTƒEƒ“ƒhƒq[ƒv
-                symbolLoadFlag - ƒVƒ“ƒ{ƒ‹ƒf[ƒ^‚ğƒ[ƒh‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+  Arguments:    arc            - ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                filePath       - ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹
+                heap           - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
+                symbolLoadFlag - ã‚·ãƒ³ãƒœãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcInitWithResult( NNSSndArc* arc, const char* filePath, NNSSndHeapHandle heap, BOOL symbolLoadFlag )
 {
@@ -170,28 +170,28 @@ BOOL NNS_SndArcInitWithResult( NNSSndArc* arc, const char* filePath, NNSSndHeapH
     NNS_ASSERT( FS_IsAvailable() );
     NNS_NULL_ASSERT( arc );
     
-    /* NNSSndArc\‘¢‘Ì‚Ì‰Šú‰» */ 
+    /* NNSSndArcæ§‹é€ ä½“ã®åˆæœŸåŒ– */ 
     arc->info = NULL;
     arc->fat  = NULL;
     arc->symbol = NULL;    
     arc->loadBlockSize = 0;
 
-    /* ƒtƒ@ƒCƒ‹ID‚Ìæ“¾ */
+    /* ãƒ•ã‚¡ã‚¤ãƒ«IDã®å–å¾— */
     result = FS_ConvertPathToFileID( & arc->fileId, filePath );
     if ( ! result ) return FALSE;
     
-    /* ƒtƒ@ƒCƒ‹‚ğŠJ‚­ */
+    /* ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã */
     FS_InitFile( & arc->file );
     result = FS_OpenFileFast( & arc->file, arc->fileId );
     if ( ! result ) return FALSE;
     
     arc->file_open = TRUE;
     
-    /* ƒZƒbƒgƒAƒbƒv */
+    /* ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ— */
     result = NNS_SndArcSetup( arc, heap, symbolLoadFlag );
     if ( ! result ) return FALSE;
     
-    /* ƒJƒŒƒ“ƒgƒA[ƒJƒCƒu‚Æ‚µ‚Äİ’è */
+    /* ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã¨ã—ã¦è¨­å®š */
     sCurrent = arc;
     
     return TRUE;
@@ -200,13 +200,13 @@ BOOL NNS_SndArcInitWithResult( NNSSndArc* arc, const char* filePath, NNSSndHeapH
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcSetup
 
-  Description:  ƒTƒEƒ“ƒhƒA[ƒJƒCƒu\‘¢‘Ì‚ğƒZƒbƒgƒAƒbƒv
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æ§‹é€ ä½“ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 
-  Arguments:    arc            - ƒTƒEƒ“ƒhƒA[ƒJƒCƒu\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                heap           - ƒTƒEƒ“ƒhƒq[ƒv
-                symbolLoadFlag - ƒVƒ“ƒ{ƒ‹ƒf[ƒ^‚ğƒ[ƒh‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+  Arguments:    arc            - ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                heap           - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
+                symbolLoadFlag - ã‚·ãƒ³ãƒœãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcSetup( NNSSndArc* arc, NNSSndHeapHandle heap, BOOL symbolLoadFlag )
 {
@@ -216,7 +216,7 @@ BOOL NNS_SndArcSetup( NNSSndArc* arc, NNSSndHeapHandle heap, BOOL symbolLoadFlag
     NNS_NULL_ASSERT( arc );
     NNS_ASSERT( arc->file_open );
     
-    /* ƒwƒbƒ_‚Ìƒ[ƒh */
+    /* ãƒ˜ãƒƒãƒ€ã®ãƒ­ãƒ¼ãƒ‰ */
     result = FS_SeekFile( & arc->file, 0, FS_SEEK_SET );
     if ( ! result ) return FALSE;
     
@@ -236,7 +236,7 @@ BOOL NNS_SndArcSetup( NNSSndArc* arc, NNSSndHeapHandle heap, BOOL symbolLoadFlag
     
     if ( heap != NNS_SND_HEAP_INVALID_HANDLE )
     {
-        /* ƒTƒEƒ“ƒhî•ñƒe[ƒuƒ‹‚Ìƒ[ƒh */
+        /* ã‚µã‚¦ãƒ³ãƒ‰æƒ…å ±ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ­ãƒ¼ãƒ‰ */
         arc->info = (NNSSndArcInfo*)NNS_SndHeapAlloc( heap, arc->header.infoSize, InfoDisposeCallback, (u32)arc, 0 );
         if ( arc->info == NULL ) return FALSE;
         result = FS_SeekFile( & arc->file, (s32)( arc->header.infoOffset ), FS_SEEK_SET );
@@ -245,7 +245,7 @@ BOOL NNS_SndArcSetup( NNSSndArc* arc, NNSSndHeapHandle heap, BOOL symbolLoadFlag
         if ( readSize != arc->header.infoSize ) return FALSE;
         NNS_ASSERT( arc->info->blockHeader.kind == NNS_SND_ARC_SIGNATURE_INFO );
         
-        /* ƒtƒ@ƒCƒ‹ƒAƒƒP[ƒVƒ‡ƒ“ƒe[ƒuƒ‹‚Ìƒ[ƒh */
+        /* ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ­ãƒ¼ãƒ‰ */
         arc->fat = (NNSSndArcFat*)NNS_SndHeapAlloc( heap, arc->header.fatSize, FatDisposeCallback, (u32)arc, 0 );
         if ( arc->fat == NULL ) return FALSE;
         result = FS_SeekFile( & arc->file, (s32)( arc->header.fatOffset ), FS_SEEK_SET );
@@ -254,7 +254,7 @@ BOOL NNS_SndArcSetup( NNSSndArc* arc, NNSSndHeapHandle heap, BOOL symbolLoadFlag
         if ( readSize != arc->header.fatSize ) return FALSE;
         NNS_ASSERT( arc->fat->blockHeader.kind == NNS_SND_ARC_SIGNATURE_FAT );
         
-        /* ƒVƒ“ƒ{ƒ‹ƒe[ƒuƒ‹‚Ìƒ[ƒh */
+        /* ã‚·ãƒ³ãƒœãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ­ãƒ¼ãƒ‰ */
         if ( symbolLoadFlag && arc->header.symbolDataSize > 0 )
         {
             arc->symbol = (NNSSndArcSymbol*)NNS_SndHeapAlloc( heap, arc->header.symbolDataSize, SymbolDisposeCallback, (u32)arc, 0 );
@@ -277,11 +277,11 @@ BOOL NNS_SndArcSetup( NNSSndArc* arc, NNSSndHeapHandle heap, BOOL symbolLoadFlag
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcInitOnMemory
 
-  Description:  ƒƒ‚ƒŠã‚ÌƒTƒEƒ“ƒhƒA[ƒJƒCƒuƒf[ƒ^‚ğg‚Á‚ÄA
-                ƒTƒEƒ“ƒhƒA[ƒJƒCƒu\‘¢‘Ì‚ğ‰Šú‰»
+  Description:  ãƒ¡ãƒ¢ãƒªä¸Šã®ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ã£ã¦ã€
+                ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æ§‹é€ ä½“ã‚’åˆæœŸåŒ–
 
-  Arguments:    arc  - ƒTƒEƒ“ƒhƒA[ƒJƒCƒu\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                data - ƒTƒEƒ“ƒhƒA[ƒJƒCƒuƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    arc  - ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                data - ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -327,18 +327,18 @@ void NNS_SndArcInitOnMemory( NNSSndArc* arc, void* data )
     
     arc->file_open = FALSE;
     
-    /* ƒJƒŒƒ“ƒgƒA[ƒJƒCƒu‚Æ‚µ‚Äİ’è */
+    /* ã‚«ãƒ¬ãƒ³ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã¨ã—ã¦è¨­å®š */
     sCurrent = arc;    
 }
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcSetCurrent
 
-  Description:  ƒJƒŒƒ“ƒgƒTƒEƒ“ƒhƒA[ƒJƒCƒu‚Ìİ’è
+  Description:  ã‚«ãƒ¬ãƒ³ãƒˆã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®è¨­å®š
 
-  Arguments:    arc - ƒZƒbƒg‚·‚éƒTƒEƒ“ƒhƒA[ƒJƒCƒu
+  Arguments:    arc - ã‚»ãƒƒãƒˆã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 
-  Returns:      ƒZƒbƒg‘O‚ÌƒJƒŒƒ“ƒgƒTƒEƒ“ƒhƒA[ƒJƒCƒu
+  Returns:      ã‚»ãƒƒãƒˆå‰ã®ã‚«ãƒ¬ãƒ³ãƒˆã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *---------------------------------------------------------------------------*/
 NNSSndArc* NNS_SndArcSetCurrent( NNSSndArc* arc )
 {
@@ -350,11 +350,11 @@ NNSSndArc* NNS_SndArcSetCurrent( NNSSndArc* arc )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetCurrent
 
-  Description:  ƒJƒŒƒ“ƒgƒTƒEƒ“ƒhƒA[ƒJƒCƒu‚ğæ“¾
+  Description:  ã‚«ãƒ¬ãƒ³ãƒˆã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’å–å¾—
 
   Arguments:    None.
 
-  Returns:      ƒJƒŒƒ“ƒgƒTƒEƒ“ƒhƒA[ƒJƒCƒu
+  Returns:      ã‚«ãƒ¬ãƒ³ãƒˆã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
  *---------------------------------------------------------------------------*/
 NNSSndArc* NNS_SndArcGetCurrent( void )
 {
@@ -364,11 +364,11 @@ NNSSndArc* NNS_SndArcGetCurrent( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetSeqParam
 
-  Description:  ƒV[ƒPƒ“ƒXƒpƒ‰ƒ[ƒ^‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å–å¾—
 
-  Arguments:    seqNo - ƒV[ƒPƒ“ƒX”Ô†
+  Arguments:    seqNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 
-  Returns:      ƒV[ƒPƒ“ƒXƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  *---------------------------------------------------------------------------*/
 const NNSSndSeqParam* NNS_SndArcGetSeqParam( int seqNo )
 {
@@ -383,12 +383,12 @@ const NNSSndSeqParam* NNS_SndArcGetSeqParam( int seqNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetSeqArcParam
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒuƒpƒ‰ƒ[ƒ^‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å–å¾—
 
-  Arguments:    seqArcNo - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
-                index    - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
+  Arguments:    seqArcNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                index    - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-  Returns:      ƒV[ƒPƒ“ƒXƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  *---------------------------------------------------------------------------*/
 const NNSSndSeqParam* NNS_SndArcGetSeqArcParam( int seqArcNo, int index )
 {
@@ -411,12 +411,12 @@ const NNSSndSeqParam* NNS_SndArcGetSeqArcParam( int seqArcNo, int index )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetSeqInfo
 
-  Description:  ƒV[ƒPƒ“ƒXî•ñ‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æƒ…å ±ã®å–å¾—
 
-  Arguments:    seqNo - ƒV[ƒPƒ“ƒX”Ô†
+  Arguments:    seqNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 
-  Returns:      ƒV[ƒPƒ“ƒXî•ñ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                ¸”s‚µ‚½ê‡‚ÍANULL
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æƒ…å ±æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€NULL
  *---------------------------------------------------------------------------*/
 const NNSSndArcSeqInfo* NNS_SndArcGetSeqInfo( int seqNo )
 {
@@ -438,12 +438,12 @@ const NNSSndArcSeqInfo* NNS_SndArcGetSeqInfo( int seqNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetSeqArcInfo
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒuî•ñ‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æƒ…å ±ã®å–å¾—
 
-  Arguments:    seqArcNo - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
+  Arguments:    seqArcNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
 
-  Returns:      ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒuî•ñ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                ¸”s‚µ‚½ê‡‚ÍANULL
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æƒ…å ±æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€NULL
  *---------------------------------------------------------------------------*/
 const NNSSndArcSeqArcInfo* NNS_SndArcGetSeqArcInfo( int seqArcNo )
 {
@@ -465,12 +465,12 @@ const NNSSndArcSeqArcInfo* NNS_SndArcGetSeqArcInfo( int seqArcNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetBankInfo
 
-  Description:  ƒoƒ“ƒNî•ñ‚Ìæ“¾
+  Description:  ãƒãƒ³ã‚¯æƒ…å ±ã®å–å¾—
 
-  Arguments:    bankNo - ƒoƒ“ƒN”Ô†
+  Arguments:    bankNo - ãƒãƒ³ã‚¯ç•ªå·
 
-  Returns:      ƒoƒ“ƒNî•ñ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                ¸”s‚µ‚½ê‡‚ÍANULL
+  Returns:      ãƒãƒ³ã‚¯æƒ…å ±æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€NULL
  *---------------------------------------------------------------------------*/
 const NNSSndArcBankInfo* NNS_SndArcGetBankInfo( int bankNo )
 {
@@ -492,12 +492,12 @@ const NNSSndArcBankInfo* NNS_SndArcGetBankInfo( int bankNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetWaveArcInfo
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒuî•ñ‚Ìæ“¾
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æƒ…å ±ã®å–å¾—
 
-  Arguments:    waveArcNo - ”gŒ`ƒA[ƒJƒCƒu”Ô†
+  Arguments:    waveArcNo - æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
 
-  Returns:      ”gŒ`ƒA[ƒJƒCƒuî•ñ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                ¸”s‚µ‚½ê‡‚ÍANULL
+  Returns:      æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æƒ…å ±æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€NULL
  *---------------------------------------------------------------------------*/
 const NNSSndArcWaveArcInfo* NNS_SndArcGetWaveArcInfo( int waveArcNo )
 {
@@ -519,12 +519,12 @@ const NNSSndArcWaveArcInfo* NNS_SndArcGetWaveArcInfo( int waveArcNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetStrmInfo
 
-  Description:  ƒXƒgƒŠ[ƒ€î•ñ‚Ìæ“¾
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ æƒ…å ±ã®å–å¾—
 
-  Arguments:    strmNo - ƒXƒgƒŠ[ƒ€”Ô†
+  Arguments:    strmNo - ã‚¹ãƒˆãƒªãƒ¼ãƒ ç•ªå·
 
-  Returns:      ƒXƒgƒŠ[ƒ€î•ñ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                ¸”s‚µ‚½ê‡‚ÍANULL
+  Returns:      ã‚¹ãƒˆãƒªãƒ¼ãƒ æƒ…å ±æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€NULL
  *---------------------------------------------------------------------------*/
 const NNSSndArcStrmInfo* NNS_SndArcGetStrmInfo( int strmNo )
 {
@@ -546,12 +546,12 @@ const NNSSndArcStrmInfo* NNS_SndArcGetStrmInfo( int strmNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetPlayerInfo
 
-  Description:  ƒvƒŒƒCƒ„[î•ñ‚Ìæ“¾
+  Description:  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±ã®å–å¾—
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
 
-  Returns:      ƒvƒŒƒCƒ„[î•ñ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                ¸”s‚µ‚½ê‡‚ÍANULL
+  Returns:      ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€NULL
  *---------------------------------------------------------------------------*/
 const NNSSndArcPlayerInfo* NNS_SndArcGetPlayerInfo( int playerNo )
 {
@@ -573,12 +573,12 @@ const NNSSndArcPlayerInfo* NNS_SndArcGetPlayerInfo( int playerNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetStrmPlayerInfo
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[î•ñ‚Ìæ“¾
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±ã®å–å¾—
 
-  Arguments:    playerNo - ƒvƒŒƒCƒ„[”Ô†
+  Arguments:    playerNo - ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
 
-  Returns:      ƒXƒgƒŠ[ƒ€ƒvƒŒƒCƒ„[î•ñ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                ¸”s‚µ‚½ê‡‚ÍANULL
+  Returns:      ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æƒ…å ±æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€NULL
  *---------------------------------------------------------------------------*/
 const NNSSndArcStrmPlayerInfo* NNS_SndArcGetStrmPlayerInfo( int playerNo )
 {
@@ -600,12 +600,12 @@ const NNSSndArcStrmPlayerInfo* NNS_SndArcGetStrmPlayerInfo( int playerNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetGroupInfo
 
-  Description:  ƒOƒ‹[ƒvî•ñ‚Ìæ“¾
+  Description:  ã‚°ãƒ«ãƒ¼ãƒ—æƒ…å ±ã®å–å¾—
 
-  Arguments:    groupNo - ƒOƒ‹[ƒv”Ô†
+  Arguments:    groupNo - ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·
 
-  Returns:      ƒOƒ‹[ƒvî•ñ\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
-                ¸”s‚µ‚½ê‡‚ÍANULL
+  Returns:      ã‚°ãƒ«ãƒ¼ãƒ—æƒ…å ±æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€NULL
  *---------------------------------------------------------------------------*/
 const NNSSndArcGroupInfo* NNS_SndArcGetGroupInfo( int groupNo )
 {
@@ -628,11 +628,11 @@ const NNSSndArcGroupInfo* NNS_SndArcGetGroupInfo( int groupNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetSeqCount
 
-  Description:  ƒV[ƒPƒ“ƒXƒf[ƒ^‚ÌŒÂ”‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°ã®å–å¾—
 
   Arguments:    None.
 
-  Returns:      ƒV[ƒPƒ“ƒXƒf[ƒ^‚ÌŒÂ”
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
  *---------------------------------------------------------------------------*/
 u32 NNS_SndArcGetSeqCount( void )
 {
@@ -651,11 +651,11 @@ u32 NNS_SndArcGetSeqCount( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetSeqArcCount
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒuƒf[ƒ^‚ÌŒÂ”‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°ã®å–å¾—
 
   Arguments:    None.
 
-  Returns:      ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒuƒf[ƒ^‚ÌŒÂ”
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
  *---------------------------------------------------------------------------*/
 u32 NNS_SndArcGetSeqArcCount( void )
 {
@@ -674,11 +674,11 @@ u32 NNS_SndArcGetSeqArcCount( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetBankCount
 
-  Description:  ƒoƒ“ƒNƒf[ƒ^‚ÌŒÂ”‚Ìæ“¾
+  Description:  ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°ã®å–å¾—
 
   Arguments:    None.
 
-  Returns:      ƒoƒ“ƒNƒf[ƒ^‚ÌŒÂ”
+  Returns:      ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
  *---------------------------------------------------------------------------*/
 u32 NNS_SndArcGetBankCount( void )
 {
@@ -697,11 +697,11 @@ u32 NNS_SndArcGetBankCount( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetWaveArcCount
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒuƒf[ƒ^‚ÌŒÂ”‚Ìæ“¾
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°ã®å–å¾—
 
   Arguments:    None.
 
-  Returns:      ”gŒ`ƒA[ƒJƒCƒuƒf[ƒ^‚ÌŒÂ”
+  Returns:      æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
  *---------------------------------------------------------------------------*/
 u32 NNS_SndArcGetWaveArcCount( void )
 {
@@ -720,11 +720,11 @@ u32 NNS_SndArcGetWaveArcCount( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetStrmCount
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒf[ƒ^‚ÌŒÂ”‚Ìæ“¾
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°ã®å–å¾—
 
   Arguments:    None.
 
-  Returns:      ƒXƒgƒŠ[ƒ€ƒf[ƒ^‚ÌŒÂ”
+  Returns:      ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
  *---------------------------------------------------------------------------*/
 u32 NNS_SndArcGetStrmCount( void )
 {
@@ -743,11 +743,11 @@ u32 NNS_SndArcGetStrmCount( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetGroupCount
 
-  Description:  ƒOƒ‹[ƒvî•ñ‚ÌŒÂ”‚Ìæ“¾
+  Description:  ã‚°ãƒ«ãƒ¼ãƒ—æƒ…å ±ã®å€‹æ•°ã®å–å¾—
 
   Arguments:    None.
 
-  Returns:      ƒOƒ‹[ƒvî•ñ‚ÌŒÂ”
+  Returns:      ã‚°ãƒ«ãƒ¼ãƒ—æƒ…å ±ã®å€‹æ•°
  *---------------------------------------------------------------------------*/
 u32 NNS_SndArcGetGroupCount( void )
 {
@@ -766,11 +766,11 @@ u32 NNS_SndArcGetGroupCount( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetSeqArcSeqCount
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu’†‚ÌƒV[ƒPƒ“ƒX‚ÌŒÂ”æ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®å€‹æ•°å–å¾—
 
-  Arguments:    seqArcNo - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
+  Arguments:    seqArcNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
 
-  Returns:      ƒV[ƒPƒ“ƒX‚ÌŒÂ”
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®å€‹æ•°
  *---------------------------------------------------------------------------*/
 u32 NNS_SndArcGetSeqArcSeqCount( int seqArcNo )
 {
@@ -789,12 +789,12 @@ u32 NNS_SndArcGetSeqArcSeqCount( int seqArcNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetFileOffset
 
-  Description:  ƒtƒ@ƒCƒ‹ID‚©‚çƒtƒ@ƒCƒ‹ƒIƒtƒZƒbƒg‚ğæ“¾
+  Description:  ãƒ•ã‚¡ã‚¤ãƒ«IDã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å–å¾—
 
-  Arguments:    fileId - ƒtƒ@ƒCƒ‹ID
+  Arguments:    fileId - ãƒ•ã‚¡ã‚¤ãƒ«ID
 
-  Returns:      ƒtƒ@ƒCƒ‹ƒIƒtƒZƒbƒg
-                ¸”s‚µ‚½ê‡‚ÍA0
+  Returns:      ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€0
  *---------------------------------------------------------------------------*/
 u32 NNS_SndArcGetFileOffset( u32 fileId )
 {
@@ -809,12 +809,12 @@ u32 NNS_SndArcGetFileOffset( u32 fileId )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetFileSize
 
-  Description:  ƒtƒ@ƒCƒ‹ID‚©‚çƒtƒ@ƒCƒ‹ƒTƒCƒY‚ğæ“¾
+  Description:  ãƒ•ã‚¡ã‚¤ãƒ«IDã‹ã‚‰ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’å–å¾—
 
-  Arguments:    fileId - ƒtƒ@ƒCƒ‹ID
+  Arguments:    fileId - ãƒ•ã‚¡ã‚¤ãƒ«ID
 
-  Returns:      ƒtƒ@ƒCƒ‹ƒTƒCƒY
-                ¸”s‚µ‚½ê‡‚ÍA0
+  Returns:      ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚º
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€0
  *---------------------------------------------------------------------------*/
 u32 NNS_SndArcGetFileSize( u32 fileId )
 {
@@ -832,15 +832,15 @@ u32 NNS_SndArcGetFileSize( u32 fileId )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcReadFile
 
-  Description:  ƒtƒ@ƒCƒ‹‚ğƒƒ‚ƒŠã‚É“Ç‚İo‚·
+  Description:  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ¡ãƒ¢ãƒªä¸Šã«èª­ã¿å‡ºã™
 
-  Arguments:    fileId - ƒtƒ@ƒCƒ‹ID
-                buffer - ƒ[ƒh‚·‚éƒoƒbƒtƒ@‚Ìæ“ªƒAƒhƒŒƒX
-                size   - ƒ[ƒh‚·‚éƒoƒbƒtƒ@‚ÌƒTƒCƒY
-                offset - “Ç‚İo‚µƒIƒtƒZƒbƒg
+  Arguments:    fileId - ãƒ•ã‚¡ã‚¤ãƒ«ID
+                buffer - ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+                size   - ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+                offset - èª­ã¿å‡ºã—ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-  Returns:      “Ç‚İ‚ñ‚¾ƒTƒCƒY
-  @@@@@@@¸”s‚µ‚½‚Æ‚«‚ÍA-1
+  Returns:      èª­ã¿è¾¼ã‚“ã ã‚µã‚¤ã‚º
+  ã€€ã€€ã€€ã€€ã€€ã€€ã€€å¤±æ•—ã—ãŸã¨ãã¯ã€-1
  *---------------------------------------------------------------------------*/
 s32 NNS_SndArcReadFile( u32 fileId, void* buffer, s32 size, s32 offset )
 {
@@ -868,7 +868,7 @@ s32 NNS_SndArcReadFile( u32 fileId, void* buffer, s32 size, s32 offset )
     
     blockSize = arc->loadBlockSize;
     if ( blockSize == 0 ) {
-        // ƒuƒƒbƒNƒTƒCƒY‚ª‚O‚Ì‚ÍA•ªŠ„ƒ[ƒh‚µ‚È‚¢
+        // ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºãŒï¼ã®æ™‚ã¯ã€åˆ†å‰²ãƒ­ãƒ¼ãƒ‰ã—ãªã„
         blockSize = size;
     }
     totalReadSize = 0;
@@ -876,25 +876,25 @@ s32 NNS_SndArcReadFile( u32 fileId, void* buffer, s32 size, s32 offset )
     
     while( totalReadSize < size )
     {
-        // ƒ[ƒhƒTƒCƒY‚ÌŒvZ
+        // ãƒ­ãƒ¼ãƒ‰ã‚µã‚¤ã‚ºã®è¨ˆç®—
         requestSize = size - totalReadSize;
         if ( requestSize > blockSize ) requestSize = blockSize;
         if ( requestSize > file->size - currentOffset ) {
             requestSize = (s32)( file->size - currentOffset );
         }
         if ( requestSize == 0 ) {
-            // ƒtƒ@ƒCƒ‹ƒTƒCƒY‚ğ’´‚¦‚Ä“Ç‚İ‚à‚¤‚Æ‚µ‚½
+            // ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã‚’è¶…ãˆã¦èª­ã¿è¾¼ã‚‚ã†ã¨ã—ãŸ
             break;
         }
 
-        // ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+        // ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
         if ( ! FS_SeekFile( & arc->file, (s32)( file->offset + currentOffset ), FS_SEEK_SET ) ) {
             return -1;
         }
         readSize = FS_ReadFile( & arc->file, destAddress, requestSize );
         if ( readSize < 0 ) return readSize;
 
-        // ó‘ÔXV
+        // çŠ¶æ…‹æ›´æ–°
         totalReadSize += readSize;
         currentOffset += readSize;
         destAddress += readSize;
@@ -913,11 +913,11 @@ s32 NNS_SndArcReadFile( u32 fileId, void* buffer, s32 size, s32 offset )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetFileID
 
-  Description:  ƒTƒEƒ“ƒhƒA[ƒJƒCƒu‚Ìƒtƒ@ƒCƒ‹‚h‚c‚Ìæ“¾
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ•ã‚¡ã‚¤ãƒ«ï¼©ï¼¤ã®å–å¾—
 
   Arguments:    None.
 
-  Returns:      ƒtƒ@ƒCƒ‹‚h‚c
+  Returns:      ãƒ•ã‚¡ã‚¤ãƒ«ï¼©ï¼¤
  *---------------------------------------------------------------------------*/
 FSFileID NNS_SndArcGetFileID( void )
 {
@@ -936,11 +936,11 @@ FSFileID NNS_SndArcGetFileID( void )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetFileAddress
 
-  Description:  ‹L‰¯‚³‚¹‚½ƒtƒ@ƒCƒ‹ƒAƒhƒŒƒX‚ğæ“¾
+  Description:  è¨˜æ†¶ã•ã›ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 
-  Arguments:    fileId - ƒtƒ@ƒCƒ‹ID
+  Arguments:    fileId - ãƒ•ã‚¡ã‚¤ãƒ«ID
 
-  Returns:      ƒtƒ@ƒCƒ‹ƒAƒhƒŒƒX
+  Returns:      ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹
  *---------------------------------------------------------------------------*/
 void* NNS_SndArcGetFileAddress( u32 fileId )
 {
@@ -956,10 +956,10 @@ void* NNS_SndArcGetFileAddress( u32 fileId )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcSetFileAddress
 
-  Description:  ƒtƒ@ƒCƒ‹ƒAƒhƒŒƒX‚ğ‹L‰¯
+  Description:  ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¨˜æ†¶
 
-  Arguments:    fileId  - ƒtƒ@ƒCƒ‹ID
-                address - ƒtƒ@ƒCƒ‹ƒAƒhƒŒƒX
+  Arguments:    fileId  - ãƒ•ã‚¡ã‚¤ãƒ«ID
+                address - ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -977,11 +977,11 @@ void NNS_SndArcSetFileAddress( u32 fileId, void* address )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetLoadBlockSize
 
-  Description:  ƒ[ƒhƒuƒƒbƒNƒTƒCƒY‚ğæ“¾
+  Description:  ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºã‚’å–å¾—
 
   Arguments:    None
 
-  Returns:      ƒ[ƒhƒuƒƒbƒNƒTƒCƒY
+  Returns:      ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 s32 NNS_SndArcGetLoadBlockSize()
 {
@@ -994,9 +994,9 @@ s32 NNS_SndArcGetLoadBlockSize()
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcSetLoadBlockSize
 
-  Description:  ƒ[ƒhƒuƒƒbƒNƒTƒCƒY‚ğİ’è
+  Description:  ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºã‚’è¨­å®š
 
-  Arguments:    loadBlockSize - ƒ[ƒhƒuƒƒbƒNƒTƒCƒY
+  Arguments:    loadBlockSize - ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚º
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1011,12 +1011,12 @@ void NNS_SndArcSetLoadBlockSize( s32 loadBlockSize )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetSeqSymbol
 
-  Description:  ƒV[ƒPƒ“ƒXƒVƒ“ƒ{ƒ‹‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚·ãƒ³ãƒœãƒ«ã®å–å¾—
 
-  Arguments:    seqNo - ƒV[ƒPƒ“ƒX”Ô†
+  Arguments:    seqNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 
-  Returns:      ƒV[ƒPƒ“ƒXƒVƒ“ƒ{ƒ‹•¶š—ñ
-                ¸”s‚µ‚½ê‡‚ÍA‹ó•¶š—ñ
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚·ãƒ³ãƒœãƒ«æ–‡å­—åˆ—
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€ç©ºæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 const char* NNS_SndArcGetSeqSymbol( int seqNo )
 {
@@ -1036,12 +1036,12 @@ const char* NNS_SndArcGetSeqSymbol( int seqNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetSeqArcSymbol
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒuƒVƒ“ƒ{ƒ‹‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚·ãƒ³ãƒœãƒ«ã®å–å¾—
 
-  Arguments:    seqArcNo - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
+  Arguments:    seqArcNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
 
-  Returns:      ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒuƒVƒ“ƒ{ƒ‹•¶š—ñ
-                ¸”s‚µ‚½ê‡‚ÍA‹ó•¶š—ñ
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚·ãƒ³ãƒœãƒ«æ–‡å­—åˆ—
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€ç©ºæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 const char* NNS_SndArcGetSeqArcSymbol( int seqArcNo )
 {
@@ -1066,13 +1066,13 @@ const char* NNS_SndArcGetSeqArcSymbol( int seqArcNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetSeqArcIdxSymbol
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXƒVƒ“ƒ{ƒ‹‚Ìæ“¾
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚·ãƒ³ãƒœãƒ«ã®å–å¾—
 
-  Arguments:    seqArcNo - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
-                index    - ƒCƒ“ƒfƒbƒNƒX”Ô†
+  Arguments:    seqArcNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                index    - ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
 
-  Returns:      ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒXƒVƒ“ƒ{ƒ‹•¶š—ñ
-                ¸”s‚µ‚½ê‡‚ÍA‹ó•¶š—ñ
+  Returns:      ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚·ãƒ³ãƒœãƒ«æ–‡å­—åˆ—
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€ç©ºæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 const char* NNS_SndArcGetSeqArcIdxSymbol( int seqArcNo, int index )
 {
@@ -1099,12 +1099,12 @@ const char* NNS_SndArcGetSeqArcIdxSymbol( int seqArcNo, int index )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetBankSymbol
 
-  Description:  ƒoƒ“ƒNƒVƒ“ƒ{ƒ‹‚Ìæ“¾
+  Description:  ãƒãƒ³ã‚¯ã‚·ãƒ³ãƒœãƒ«ã®å–å¾—
 
-  Arguments:    bankNo - ƒoƒ“ƒN”Ô†
+  Arguments:    bankNo - ãƒãƒ³ã‚¯ç•ªå·
 
-  Returns:      ƒoƒ“ƒNƒVƒ“ƒ{ƒ‹•¶š—ñ
-                ¸”s‚µ‚½ê‡‚ÍA‹ó•¶š—ñ
+  Returns:      ãƒãƒ³ã‚¯ã‚·ãƒ³ãƒœãƒ«æ–‡å­—åˆ—
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€ç©ºæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 const char* NNS_SndArcGetBankSymbol( int bankNo )
 {
@@ -1124,12 +1124,12 @@ const char* NNS_SndArcGetBankSymbol( int bankNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetWaveArcSymbol
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒuƒVƒ“ƒ{ƒ‹‚Ìæ“¾
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚·ãƒ³ãƒœãƒ«ã®å–å¾—
 
-  Arguments:    waveArcNo - ”gŒ`ƒA[ƒJƒCƒu”Ô†
+  Arguments:    waveArcNo - æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
 
-  Returns:      ”gŒ`ƒA[ƒJƒCƒuƒVƒ“ƒ{ƒ‹•¶š—ñ
-                ¸”s‚µ‚½ê‡‚ÍA‹ó•¶š—ñ
+  Returns:      æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚·ãƒ³ãƒœãƒ«æ–‡å­—åˆ—
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€ç©ºæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 const char* NNS_SndArcGetWaveArcSymbol( int waveArcNo )
 {
@@ -1149,12 +1149,12 @@ const char* NNS_SndArcGetWaveArcSymbol( int waveArcNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetStrmSymbol
 
-  Description:  ƒXƒgƒŠ[ƒ€ƒVƒ“ƒ{ƒ‹‚Ìæ“¾
+  Description:  ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚·ãƒ³ãƒœãƒ«ã®å–å¾—
 
-  Arguments:    strmNo - ƒXƒgƒŠ[ƒ€”Ô†
+  Arguments:    strmNo - ã‚¹ãƒˆãƒªãƒ¼ãƒ ç•ªå·
 
-  Returns:      ƒXƒgƒŠ[ƒ€ƒVƒ“ƒ{ƒ‹•¶š—ñ
-                ¸”s‚µ‚½ê‡‚ÍA‹ó•¶š—ñ
+  Returns:      ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚·ãƒ³ãƒœãƒ«æ–‡å­—åˆ—
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€ç©ºæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 const char* NNS_SndArcGetStrmSymbol( int strmNo )
 {
@@ -1174,12 +1174,12 @@ const char* NNS_SndArcGetStrmSymbol( int strmNo )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcGetGroupSymbol
 
-  Description:  ƒOƒ‹[ƒvƒVƒ“ƒ{ƒ‹‚Ìæ“¾
+  Description:  ã‚°ãƒ«ãƒ¼ãƒ—ã‚·ãƒ³ãƒœãƒ«ã®å–å¾—
 
-  Arguments:    groupNo - ƒOƒ‹[ƒv”Ô†
+  Arguments:    groupNo - ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·
 
-  Returns:      ”gŒ`ƒA[ƒJƒCƒuƒVƒ“ƒ{ƒ‹•¶š—ñ
-                ¸”s‚µ‚½ê‡‚ÍA‹ó•¶š—ñ
+  Returns:      æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚·ãƒ³ãƒœãƒ«æ–‡å­—åˆ—
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€ç©ºæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 const char* NNS_SndArcGetGroupSymbol( int groupNo )
 {
@@ -1204,14 +1204,14 @@ const char* NNS_SndArcGetGroupSymbol( int groupNo )
 /*---------------------------------------------------------------------------*
   Name:         GetSymbol
 
-  Description:  ƒVƒ“ƒ{ƒ‹ƒIƒtƒZƒbƒgƒe[ƒuƒ‹‚©‚çƒVƒ“ƒ{ƒ‹‚ğæ“¾‚µ‚Ü‚·
+  Description:  ã‚·ãƒ³ãƒœãƒ«ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ã‚·ãƒ³ãƒœãƒ«ã‚’å–å¾—ã—ã¾ã™
 
-  Arguments:    table - ƒVƒ“ƒ{ƒ‹ƒIƒtƒZƒbƒgƒe[ƒuƒ‹‚Ìƒ|ƒCƒ“ƒ^
-                index - ƒCƒ“ƒfƒbƒNƒX”Ô†
-                base  - ƒIƒtƒZƒbƒgƒx[ƒXƒAƒhƒŒƒX
+  Arguments:    table - ã‚·ãƒ³ãƒœãƒ«ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
+                index - ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
+                base  - ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹
 
-  Returns:      ƒVƒ“ƒ{ƒ‹•¶š—ñ
-                ¸”s‚µ‚½ê‡‚ÍA‹ó•¶š—ñ
+  Returns:      ã‚·ãƒ³ãƒœãƒ«æ–‡å­—åˆ—
+                å¤±æ•—ã—ãŸå ´åˆã¯ã€ç©ºæ–‡å­—åˆ—
  *---------------------------------------------------------------------------*/
 static const char* GetSymbol( const NNSSndArcOffsetTable* table, int index, const void* base )
 {
@@ -1226,12 +1226,12 @@ static const char* GetSymbol( const NNSSndArcOffsetTable* table, int index, cons
 /*---------------------------------------------------------------------------*
   Name:         InfoDisposeCallback
 
-  Description:  ƒTƒEƒ“ƒhî•ñƒe[ƒuƒ‹”jŠü‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰æƒ…å ±ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-  Arguments:    mem   - ƒƒ‚ƒŠƒuƒƒbƒN‚Ìæ“ªƒAƒhƒŒƒXi–¢g—pj
-                size  - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒYi–¢g—pj
-                data1 - ƒ†[ƒU[ƒf[ƒ^iƒTƒEƒ“ƒhƒA[ƒJƒCƒu‚Ìƒ|ƒCƒ“ƒ^j
-                data2 - ƒ†[ƒU[ƒf[ƒ^i–¢g—pj
+  Arguments:    mem   - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼ˆæœªä½¿ç”¨ï¼‰
+                size  - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºï¼ˆæœªä½¿ç”¨ï¼‰
+                data1 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿ï¼‰
+                data2 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆæœªä½¿ç”¨ï¼‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1251,12 +1251,12 @@ static void InfoDisposeCallback( void* mem, u32 size, u32 data1, u32 data2 )
 /*---------------------------------------------------------------------------*
   Name:         FatDisposeCallback
 
-  Description:  ƒtƒ@ƒCƒ‹ƒAƒƒP[ƒVƒ‡ƒ“ƒe[ƒuƒ‹”jŠü‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Description:  ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-  Arguments:    mem   - ƒƒ‚ƒŠƒuƒƒbƒN‚Ìæ“ªƒAƒhƒŒƒXi–¢g—pj
-                size  - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒYi–¢g—pj
-                data1 - ƒ†[ƒU[ƒf[ƒ^iƒTƒEƒ“ƒhƒA[ƒJƒCƒu‚Ìƒ|ƒCƒ“ƒ^j
-                data2 - ƒ†[ƒU[ƒf[ƒ^i–¢g—pj
+  Arguments:    mem   - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼ˆæœªä½¿ç”¨ï¼‰
+                size  - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºï¼ˆæœªä½¿ç”¨ï¼‰
+                data1 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿ï¼‰
+                data2 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆæœªä½¿ç”¨ï¼‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1287,12 +1287,12 @@ static void FatDisposeCallback( void* mem, u32 size, u32 data1, u32 data2 )
 /*---------------------------------------------------------------------------*
   Name:         SymbolDisposeCallback
 
-  Description:  ƒVƒ“ƒ{ƒ‹ƒf[ƒ^”jŠü‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+  Description:  ã‚·ãƒ³ãƒœãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 
-  Arguments:    mem   - ƒƒ‚ƒŠƒuƒƒbƒN‚Ìæ“ªƒAƒhƒŒƒXi–¢g—pj
-                size  - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒYi–¢g—pj
-                data1 - ƒ†[ƒU[ƒf[ƒ^iƒTƒEƒ“ƒhƒA[ƒJƒCƒu‚Ìƒ|ƒCƒ“ƒ^j
-                data2 - ƒ†[ƒU[ƒf[ƒ^i–¢g—pj
+  Arguments:    mem   - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼ˆæœªä½¿ç”¨ï¼‰
+                size  - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚ºï¼ˆæœªä½¿ç”¨ï¼‰
+                data1 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿ï¼‰
+                data2 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆæœªä½¿ç”¨ï¼‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

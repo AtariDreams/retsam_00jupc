@@ -2,7 +2,7 @@
 /**
  *
  * @file	localres.c
- * @brief	Šm•Û‚µ‚½ƒŠƒ\[ƒX—Ìˆæ‚ğX‚É”z•ª‚µ‚ÄÄ—˜—p‚µ‚Ü‚­‚éB
+ * @brief	ç¢ºä¿ã—ãŸãƒªã‚½ãƒ¼ã‚¹é ˜åŸŸã‚’æ›´ã«é…åˆ†ã—ã¦å†åˆ©ç”¨ã—ã¾ãã‚‹ã€‚
  * @author	kagaya
  * @data	05.07.25
  *
@@ -20,38 +20,38 @@
 //	typedef
 //==============================================================================
 //--------------------------------------------------------------
-///	LRESID’è‹`
+///	LRESIDå®šç¾©
 //--------------------------------------------------------------
 typedef struct _RESID		RESID;
 
 //--------------------------------------------------------------
-///	LRES\‘¢‘Ì
+///	LRESæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _LRES
 {
-	u32 main_heap_id;								//Šm•Û‚·‚éHEAP ID
-	u32 reg_heap_id;								//“o˜^‚·‚éHEAP ID
-	u32 resid_max;									//ID“o˜^Å‘å”
-	u32 total_size;									//Šm•Û‚µ‚½ƒTƒCƒY
-	u32 resid_total_size;							//ƒ[ƒJƒ‹ƒŠƒ\[ƒXŠÇ——pƒ[ƒNÅ‘åƒTƒCƒY
-	RESID *resid_ptr;								//ƒ[ƒJƒ‹ƒŠƒ\[ƒXŠÇ—ƒ[ƒN *
+	u32 main_heap_id;								//ç¢ºä¿ã™ã‚‹HEAP ID
+	u32 reg_heap_id;								//ç™»éŒ²ã™ã‚‹HEAP ID
+	u32 resid_max;									//IDç™»éŒ²æœ€å¤§æ•°
+	u32 total_size;									//ç¢ºä¿ã—ãŸã‚µã‚¤ã‚º
+	u32 resid_total_size;							//ãƒ­ãƒ¼ã‚«ãƒ«ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ç”¨ãƒ¯ãƒ¼ã‚¯æœ€å¤§ã‚µã‚¤ã‚º
+	RESID *resid_ptr;								//ãƒ­ãƒ¼ã‚«ãƒ«ãƒªã‚½ãƒ¼ã‚¹ç®¡ç†ãƒ¯ãƒ¼ã‚¯ *
 };
 
-#define LRES_SIZE (sizeof(LRES))	//LRESƒTƒCƒY
+#define LRES_SIZE (sizeof(LRES))	//LRESã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	RESID\‘¢‘Ì
+///	RESIDæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _RESID
 {
-	void *alloc_ptr;								//Šm•Û‚µ‚Ä‚¢‚éƒŠƒ\[ƒX *@–¢Šm•Û=NULL
-	u32 alloc_id;									//“o˜^ID
+	void *alloc_ptr;								//ç¢ºä¿ã—ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ *ã€€æœªç¢ºä¿=NULL
+	u32 alloc_id;									//ç™»éŒ²ID
 };
 
-#define RESID_SIZE (sizeof(RESID))	//RESIDƒTƒCƒY
+#define RESID_SIZE (sizeof(RESID))	//RESIDã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void * lRes_AllocHeap( LRES *lres, u32 size, ALLOCTYPE type );
 static void lRes_FreeHeap( void *alloc );
@@ -69,12 +69,12 @@ static void lRes_ResIDDelete( RESID *resid );
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * LRES‰Šú‰»
- * @param	main_heap_id	Šm•Û‚·‚éHEAP ID
- * @param	reg_heap_id		Šm•Û‚µ‚½—Ìˆæ‚ğ¯•Ê‚·‚éHEAP ID
- * @param	size			Šm•Û‚·‚éƒTƒCƒY
- * @param	regid_max		“o˜^‚·‚éIDÅ‘å”BIDŠÇ——v‚ç‚È‚¢ê‡‚Í0w’è
- * @retval	LRES*			Šm•Û‚µ‚½LRES *
+ * LRESåˆæœŸåŒ–
+ * @param	main_heap_id	ç¢ºä¿ã™ã‚‹HEAP ID
+ * @param	reg_heap_id		ç¢ºä¿ã—ãŸé ˜åŸŸã‚’è­˜åˆ¥ã™ã‚‹HEAP ID
+ * @param	size			ç¢ºä¿ã™ã‚‹ã‚µã‚¤ã‚º
+ * @param	regid_max		ç™»éŒ²ã™ã‚‹IDæœ€å¤§æ•°ã€‚IDç®¡ç†è¦ã‚‰ãªã„å ´åˆã¯0æŒ‡å®š
+ * @retval	LRES*			ç¢ºä¿ã—ãŸLRES *
  */
 //--------------------------------------------------------------
 LRES * LRes_Init( u32 main_heap_id, u32 reg_heap_id, u32 size, u32 resid_max )
@@ -87,12 +87,12 @@ LRES * LRes_Init( u32 main_heap_id, u32 reg_heap_id, u32 size, u32 resid_max )
 	
 	{
 		BOOL ret = sys_CreateHeap( main_heap_id, reg_heap_id, total_size );
-		GF_ASSERT( ret == TRUE && "LRes_Init()—ÌˆæŠm•Û¸”s" );
+		GF_ASSERT( ret == TRUE && "LRes_Init()é ˜åŸŸç¢ºä¿å¤±æ•—" );
 	}
 	
 	size = total_size - size;
 	lres = sys_AllocMemory( reg_heap_id, size );
-	GF_ASSERT( lres != NULL && "LRes_Init()—ÌˆæŠm•Û¸”s" );
+	GF_ASSERT( lres != NULL && "LRes_Init()é ˜åŸŸç¢ºä¿å¤±æ•—" );
 	memset( lres, 0, size );
 	
 	lres->main_heap_id = main_heap_id;
@@ -107,7 +107,7 @@ LRES * LRes_Init( u32 main_heap_id, u32 reg_heap_id, u32 size, u32 resid_max )
 
 //--------------------------------------------------------------
 /**
- * LRESíœ
+ * LRESå‰Šé™¤
  * @param	lres	LRES *
  * @retval	nothing
  */
@@ -136,11 +136,11 @@ void LRes_Delete( LRES *lres )
 
 //--------------------------------------------------------------
 /**
- * LRES —ÌˆæŠm•Û
+ * LRES é ˜åŸŸç¢ºä¿
  * @param	lres	LRES *
- * @param	size	Šm•Û‚·‚éƒTƒCƒY
+ * @param	size	ç¢ºä¿ã™ã‚‹ã‚µã‚¤ã‚º
  * @param	type	ALLOCTYPE
- * @retval	void*	Šm•Û‚µ‚½—Ìˆæ NULL=Šm•Ûo—ˆ‚È‚¢B Šm•Ûo—ˆ‚È‚¢ê‡AASSERT
+ * @retval	void*	ç¢ºä¿ã—ãŸé ˜åŸŸ NULL=ç¢ºä¿å‡ºæ¥ãªã„ã€‚ ç¢ºä¿å‡ºæ¥ãªã„å ´åˆã€ASSERT
  */
 //--------------------------------------------------------------
 void * LRes_Alloc( LRES *lres, u32 size, ALLOCTYPE type )
@@ -151,18 +151,18 @@ void * LRes_Alloc( LRES *lres, u32 size, ALLOCTYPE type )
 
 //--------------------------------------------------------------
 /**
- * LRES —ÌˆæŠm•Û@ID“o˜^ƒAƒŠ
+ * LRES é ˜åŸŸç¢ºä¿ã€€IDç™»éŒ²ã‚¢ãƒª
  * @param	lres	LRES *
- * @param	id		“o˜^‚·‚éID
- * @param	size	Šm•Û‚·‚éƒTƒCƒY
+ * @param	id		ç™»éŒ²ã™ã‚‹ID
+ * @param	size	ç¢ºä¿ã™ã‚‹ã‚µã‚¤ã‚º
  * @param	type	ALLOCTYPE
- * @retval	void*	Šm•Û‚µ‚½—Ìˆæ NULL=Šm•Ûo—ˆ‚È‚¢B Šm•Ûo—ˆ‚È‚¢ê‡AASSERT
+ * @retval	void*	ç¢ºä¿ã—ãŸé ˜åŸŸ NULL=ç¢ºä¿å‡ºæ¥ãªã„ã€‚ ç¢ºä¿å‡ºæ¥ãªã„å ´åˆã€ASSERT
  */
 //--------------------------------------------------------------
 void * LRes_AllocID( LRES *lres, u32 id, u32 size, ALLOCTYPE type )
 {
 	RESID *resid = lRes_IDSpaceSearch( lres );
-	GF_ASSERT( resid != NULL && "LRes_AllocID()“o˜^”Å‘å\n" );
+	GF_ASSERT( resid != NULL && "LRes_AllocID()ç™»éŒ²æ•°æœ€å¤§\n" );
 	
 	{
 		void *alloc = lRes_AllocHeap( lres, size, type );
@@ -173,9 +173,9 @@ void * LRes_AllocID( LRES *lres, u32 id, u32 size, ALLOCTYPE type )
 
 //--------------------------------------------------------------
 /**
- * LRES —ÌˆæŠJ•úBalloc‚ªID“o˜^‚³‚ê‚Ä‚¢‚½ê‡A‚»‚ÌID‚àíœ‚·‚é
+ * LRES é ˜åŸŸé–‹æ”¾ã€‚allocãŒIDç™»éŒ²ã•ã‚Œã¦ã„ãŸå ´åˆã€ãã®IDã‚‚å‰Šé™¤ã™ã‚‹
  * @param	lres		LRES
- * @param	alloc		LRes_Alloc‚ÅŠm•Û‚µ‚½—Ìˆæ
+ * @param	alloc		LRes_Allocã§ç¢ºä¿ã—ãŸé ˜åŸŸ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -188,41 +188,41 @@ void LRes_Free( LRES *lres, void *alloc )
 
 //--------------------------------------------------------------
 /**
- * LRES —ÌˆæŠJ•ú ID”Å
+ * LRES é ˜åŸŸé–‹æ”¾ IDç‰ˆ
  * @param	lres		LRES
- * @param	id			LRes_AllocID‚Åw’è‚µ‚½ID
+ * @param	id			LRes_AllocIDã§æŒ‡å®šã—ãŸID
  * @retval	nothing
  */
 //--------------------------------------------------------------
 void LRes_FreeID( LRES *lres, u32 id )
 {
 	RESID *resid = lRes_IDSearch( lres, id );
-	GF_ASSERT( resid != NULL && "LRes_FreeID()id“o˜^–³‚µ\n" );
+	GF_ASSERT( resid != NULL && "LRes_FreeID()idç™»éŒ²ç„¡ã—\n" );
 	lRes_FreeHeap( resid->alloc_ptr );
 	lRes_ResIDDelete( resid );
 }
 
 //--------------------------------------------------------------
 /**
- * LRES IDw’è—Ìˆææ“¾B
+ * LRES IDæŒ‡å®šé ˜åŸŸå–å¾—ã€‚
  * @param	lres		LRES *
- * @param	id			LRes_AllocID‚Åw’è‚µ‚½ID
- * @retval	void*		LRes_AllocID(id)‚Åæ“¾‚µ‚½—Ìˆæ
+ * @param	id			LRes_AllocIDã§æŒ‡å®šã—ãŸID
+ * @retval	void*		LRes_AllocID(id)ã§å–å¾—ã—ãŸé ˜åŸŸ
  */
 //--------------------------------------------------------------
 void * LRes_IDResGet( LRES *lres, u32 id )
 {
 	RESID *resid = lRes_IDSearch( lres, id );
-	GF_ASSERT( resid != NULL && "LRes_IDResGet()id“o˜^–³‚µ\n" );
+	GF_ASSERT( resid != NULL && "LRes_IDResGet()idç™»éŒ²ç„¡ã—\n" );
 	return( resid->alloc_ptr );
 }
 
 //--------------------------------------------------------------
 /**
- * LRES ID“o˜^Ï‚İƒ`ƒFƒbƒN
+ * LRES IDç™»éŒ²æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
  * @param	lres		LRES
- * @param	id			LRes_AllocID‚Åw’è‚µ‚½ID
- * @retval	int			TRUE=“o˜^Ï‚İ@FALSE=“o˜^‚µ‚Ä‚¢‚È‚¢
+ * @param	id			LRes_AllocIDã§æŒ‡å®šã—ãŸID
+ * @retval	int			TRUE=ç™»éŒ²æ¸ˆã¿ã€€FALSE=ç™»éŒ²ã—ã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 int LRes_IDResCheck( LRES *lres, u32 id )
@@ -233,18 +233,18 @@ int LRes_IDResCheck( LRES *lres, u32 id )
 }
 
 //==============================================================================
-//	LRES ƒc[ƒ‹
+//	LRES ãƒ„ãƒ¼ãƒ«
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * LRES_Alloc()+ArchiveDataLoadByHandle()B
- * LRES_Alloc()‚ÅŠm•Û‚µ‚½—Ìˆæ‚ÖƒA[ƒJƒCƒuƒf[ƒ^“]‘—B
- * datId‚ÌƒTƒCƒY•ªAŠm•Û‚·‚éB
+ * LRES_Alloc()+ArchiveDataLoadByHandle()ã€‚
+ * LRES_Alloc()ã§ç¢ºä¿ã—ãŸé ˜åŸŸã¸ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿è»¢é€ã€‚
+ * datIdã®ã‚µã‚¤ã‚ºåˆ†ã€ç¢ºä¿ã™ã‚‹ã€‚
  * @param	lres		LRES *
  * @param	handle		ARCHANDLE*
- * @param	datId		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXID
+ * @param	datId		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ID
  * @param	type		ALLOCTYPE
- * @retval	void*		Šm•ÛAƒf[ƒ^“]‘—Ï‚İ‚Ì—Ìˆæ
+ * @retval	void*		ç¢ºä¿ã€ãƒ‡ãƒ¼ã‚¿è»¢é€æ¸ˆã¿ã®é ˜åŸŸ
  */
 //--------------------------------------------------------------
 void * LResUtil_AllocArcLoad( LRES *lres, ARCHANDLE *handle, u32 datId, ALLOCTYPE type )
@@ -257,15 +257,15 @@ void * LResUtil_AllocArcLoad( LRES *lres, ARCHANDLE *handle, u32 datId, ALLOCTYP
 
 //--------------------------------------------------------------
 /**
- * LRES_AllocID()+ArchiveDataLoadByHandle()B
- * LRES_AllocID()‚ÅŠm•Û‚µ‚½—Ìˆæ‚ÖƒA[ƒJƒCƒuƒf[ƒ^“]‘—B
- * datId‚ÌƒTƒCƒY•ªAŠm•Û‚·‚éB
+ * LRES_AllocID()+ArchiveDataLoadByHandle()ã€‚
+ * LRES_AllocID()ã§ç¢ºä¿ã—ãŸé ˜åŸŸã¸ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿è»¢é€ã€‚
+ * datIdã®ã‚µã‚¤ã‚ºåˆ†ã€ç¢ºä¿ã™ã‚‹ã€‚
  * @param	lres		LRES *
- * @param	id			“o˜^ID
+ * @param	id			ç™»éŒ²ID
  * @param	handle		ARCHANDLE*
- * @param	datId		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXID
+ * @param	datId		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ID
  * @param	type		ALLOCTYPE
- * @retval	void*		Šm•ÛAƒf[ƒ^“]‘—Ï‚İ‚Ì—Ìˆæ
+ * @retval	void*		ç¢ºä¿ã€ãƒ‡ãƒ¼ã‚¿è»¢é€æ¸ˆã¿ã®é ˜åŸŸ
  */
 //--------------------------------------------------------------
 void * LResUtil_AllocIDArcLoad(
@@ -278,15 +278,15 @@ void * LResUtil_AllocIDArcLoad(
 }
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * —ÌˆæŠm•Û
+ * é ˜åŸŸç¢ºä¿
  * @param	lress		LRES *
- * @param	size		Šm•Û‚·‚éƒTƒCƒY
+ * @param	size		ç¢ºä¿ã™ã‚‹ã‚µã‚¤ã‚º
  * @param	type		ALLOCTYPE
- * @retval	void*		Šm•Û‚µ‚½—Ìˆæ
+ * @retval	void*		ç¢ºä¿ã—ãŸé ˜åŸŸ
  */
 //--------------------------------------------------------------
 static void * lRes_AllocHeap( LRES *lres, u32 size, ALLOCTYPE type )
@@ -296,15 +296,15 @@ static void * lRes_AllocHeap( LRES *lres, u32 size, ALLOCTYPE type )
 	if( type == ALLOC_FR ){ alloc = sys_AllocMemory( lres->reg_heap_id, size ); }
 	else{ alloc = sys_AllocMemoryLo( lres->reg_heap_id, size ); }
 	
-	GF_ASSERT( alloc != NULL && "lRes_AllocHeap()Šm•Û¸”s\n" );
+	GF_ASSERT( alloc != NULL && "lRes_AllocHeap()ç¢ºä¿å¤±æ•—\n" );
 	return( alloc );
 }
 
 //--------------------------------------------------------------
 /**
- * —ÌˆæŠJ•ú
+ * é ˜åŸŸé–‹æ”¾
  * @param	lress		LRES *
- * @param	alloc		lRes_AllocHeap()‚ÅŠm•Û‚µ‚½—Ìˆæ
+ * @param	alloc		lRes_AllocHeap()ã§ç¢ºä¿ã—ãŸé ˜åŸŸ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -315,10 +315,10 @@ static void lRes_FreeHeap( void *alloc )
 
 //--------------------------------------------------------------
 /**
- * IDŒŸõ
+ * IDæ¤œç´¢
  * @param	lres		LRES *
- * @param	id			ŒŸõID
- * @retval	RESID*		ˆê’v‚·‚éRESID *@ˆê’v‚µ‚È‚¢=NULL
+ * @param	id			æ¤œç´¢ID
+ * @retval	RESID*		ä¸€è‡´ã™ã‚‹RESID *ã€€ä¸€è‡´ã—ãªã„=NULL
  */
 //--------------------------------------------------------------
 static RESID * lRes_IDSearch( LRES *lres, u32 id )
@@ -339,9 +339,9 @@ static RESID * lRes_IDSearch( LRES *lres, u32 id )
 
 //--------------------------------------------------------------
 /**
- * RESID‹ó‚«’T‚µ
+ * RESIDç©ºãæ¢ã—
  * @param	lres		LRES *
- * @retval	RESID*		‹óRESID@‹ó‚«–³‚µ=NULL
+ * @retval	RESID*		ç©ºRESIDã€€ç©ºãç„¡ã—=NULL
  */
 //--------------------------------------------------------------
 static RESID * lRes_IDSpaceSearch( LRES *lres )
@@ -362,10 +362,10 @@ static RESID * lRes_IDSpaceSearch( LRES *lres )
 
 //--------------------------------------------------------------
 /**
- * RESID@w’è‚³‚ê‚½—Ìˆæ‚ª“o˜^‚³‚ê‚Ä‚¢‚é‚©
+ * RESIDã€€æŒ‡å®šã•ã‚ŒãŸé ˜åŸŸãŒç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹
  * @param	lres		LRES *
- * @param	alloc		Šm•Û‚µ‚½—Ìˆæ
- * @retval	RESID*		ŠY“–‚·‚éRESID@ŠY“––³‚µ=NULL
+ * @param	alloc		ç¢ºä¿ã—ãŸé ˜åŸŸ
+ * @retval	RESID*		è©²å½“ã™ã‚‹RESIDã€€è©²å½“ç„¡ã—=NULL
  */
 //--------------------------------------------------------------
 static RESID * lRes_IDAllocSearch( LRES *lres, void *alloc )
@@ -386,10 +386,10 @@ static RESID * lRes_IDAllocSearch( LRES *lres, void *alloc )
 
 //--------------------------------------------------------------
 /**
- * RESID‰Šú‰»
- * @param	resid		‰Šú‰»‚·‚éRESID *
- * @param	id			“o˜^‚·‚éID
- * @param	alloc		Šm•Û‚µ‚Ä‚¢‚é—Ìˆæ
+ * RESIDåˆæœŸåŒ–
+ * @param	resid		åˆæœŸåŒ–ã™ã‚‹RESID *
+ * @param	id			ç™»éŒ²ã™ã‚‹ID
+ * @param	alloc		ç¢ºä¿ã—ã¦ã„ã‚‹é ˜åŸŸ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -401,8 +401,8 @@ static void lRes_ResIDInit( RESID *resid, u32 id, void *alloc )
 
 //--------------------------------------------------------------
 /**
- * RESIDíœ
- * @param	resid		íœ‚·‚éRESID *
+ * RESIDå‰Šé™¤
+ * @param	resid		å‰Šé™¤ã™ã‚‹RESID *
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -413,7 +413,7 @@ static void lRes_ResIDDelete( RESID *resid )
 }
 
 //==============================================================================
-//	ƒfƒoƒbƒO
+//	ãƒ‡ãƒãƒƒã‚°
 //==============================================================================
 //----
 #ifdef PM_DEBUG

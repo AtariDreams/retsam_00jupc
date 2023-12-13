@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_231.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			231�@���̃^�[���Ƀ_���[�W���󂯂Ă��鑊��ɑ�_���[�W��^����B�З͂Q�{
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			231　そのターンにダメージを受けている相手に大ダメージを与える。威力２倍
  *
  *@author	HisashiSogabe
  *@data		2006.02.14

@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	tower5.s
- * @brief	uƒoƒgƒ‹ƒ^ƒ[ƒVƒ“ƒOƒ‹‘Îí•”‰®vƒtƒƒ“ƒeƒBƒAƒXƒNƒŠƒvƒg(d31r0205,sp_d31r0205)
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚·ãƒ³ã‚°ãƒ«å¯¾æˆ¦éƒ¨å±‹ã€ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚¹ã‚¯ãƒªãƒ—ãƒˆ(d31r0205,sp_d31r0205)
  * @author	nohara
  * @date	2007.05.30
  */
@@ -22,29 +22,29 @@
 
 //--------------------------------------------------------------------
 //
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //
-//	FSW_LOCAL1	WK_SCENE_D31R0205‚ðŠi”[
-//	FSW_LOCAL3	‹L˜^‚µ‚½‚©
+//	FSW_LOCAL1	WK_SCENE_D31R0205ã‚’æ ¼ç´
+//	FSW_LOCAL3	è¨˜éŒ²ã—ãŸã‹
 //
-//	FSW_PARAM0	ŽålŒö‚ÌŒ©‚½–ÚŠi”[
-//	FSW_PARAM2	“GƒgƒŒ[ƒi[‚ÌOBJƒR[ƒh
-//	FSW_PARAM3	SCWK_TEMP3‚ð•ÏX(ŽŸ‚ÌƒXƒNƒŠƒvƒg‚Å‚àˆø‚«Œp‚¢‚Å‚¢‚é‚©‚à‚µ‚ê‚È‚¢‚Ì‚Å’ˆÓI)
+//	FSW_PARAM0	ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´
+//	FSW_PARAM2	æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®OBJã‚³ãƒ¼ãƒ‰
+//	FSW_PARAM3	SCWK_TEMP3ã‚’å¤‰æ›´(æ¬¡ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ã‚‚å¼•ãç¶™ã„ã§ã„ã‚‹ã‹ã‚‚ã—ã‚Œãªã„ã®ã§æ³¨æ„ï¼)
 //
 //--------------------------------------------------------------------
-_EVENT_DATA		fss_tower_single_btl_start	//ˆê”Ôã‚ÌEVENT_DATA‚ÍŽ©“®ŽÀs
-_EVENT_DATA_END								//I—¹
+_EVENT_DATA		fss_tower_single_btl_start	//ä¸€ç•ªä¸Šã®EVENT_DATAã¯è‡ªå‹•å®Ÿè¡Œ
+_EVENT_DATA_END								//çµ‚äº†
 
 //--------------------------------------------------------------------
-//					     ƒfƒoƒbƒN’è‹`
+//					     ãƒ‡ãƒãƒƒã‚¯å®šç¾©
 //--------------------------------------------------------------------
-//#define DEBUG_BTL_OFF					//ƒoƒgƒ‹ƒIƒtƒfƒoƒbƒN
-//#define DEBUG_BTL_LOSE_OFF			//ƒoƒgƒ‹”s–kƒIƒtƒfƒoƒbƒN
-//#define DEBUG_LEADER				//ƒŠ[ƒ_[‚Æƒoƒgƒ‹(21l–ÚA49l–Ú‚Énow_round‚ð•ÏX‚µ‚È‚¢‚Æƒ_ƒ)
+//#define DEBUG_BTL_OFF					//ãƒãƒˆãƒ«ã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
+//#define DEBUG_BTL_LOSE_OFF			//ãƒãƒˆãƒ«æ•—åŒ—ã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
+//#define DEBUG_LEADER				//ãƒªãƒ¼ãƒ€ãƒ¼ã¨ãƒãƒˆãƒ«(21äººç›®ã€49äººç›®ã«now_roundã‚’å¤‰æ›´ã—ãªã„ã¨ãƒ€ãƒ¡)
 
 
 //--------------------------------------------------------------------
-//							À•W’è‹`
+//							åº§æ¨™å®šç¾©
 //--------------------------------------------------------------------
 #define PLAYER_X		(8*15)//(8*16)
 #define PLAYER_Y		(8*14)//(8*24)
@@ -58,40 +58,40 @@ _EVENT_DATA_END								//I—¹
 
 /********************************************************************/
 //
-//SCENE_TOWER_SINGLE_BTL:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(ƒVƒ“ƒOƒ‹ƒoƒgƒ‹Žž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//SCENE_TOWER_SINGLE_BTL:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«æ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //
 /********************************************************************/
 _RESOURCE_LABEL	single_btl_set_resource
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA			FSW_PARAM6,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
-/*“GƒgƒŒ[ƒi[‚ÌŒˆ’èƒ^ƒCƒ~ƒ“ƒO‚ª“r’†‚È‚Ì‚Å•ª‚¯‚½*/
+/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æ±ºå®šã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒé€”ä¸­ãªã®ã§åˆ†ã‘ãŸ*/
 _RESOURCE_LABEL	enemy_set_resource
 	_CHAR_RESOURCE_DATA			FSW_PARAM2,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 //====================================================================
-//	SCENE_TOWER_SINGLE_BTL:ƒAƒNƒ^[(ƒVƒ“ƒOƒ‹ƒoƒgƒ‹Žž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENE_TOWER_SINGLE_BTL:ã‚¢ã‚¯ã‚¿ãƒ¼(ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«æ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //====================================================================
 #define OBJID_PLAYER				(0)
 #define OBJID_PCWOMAN2				(1)
 #define OBJID_ENEMY					(2)
 #define OBJID_MINE					(3)
 
-//ƒXƒNƒŠƒvƒgID(¡Œã‘Î‰ž—\’è)
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID(ä»Šå¾Œå¯¾å¿œäºˆå®š)
 #define EVENTID_TEST_SCR_OBJ1		(1)
 
 _ACTOR_LABEL	single_btl_set_actor
 	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP, \
-							PLAYER_X,PLAYER_Y,OFF	/*Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg*/
+							PLAYER_X,PLAYER_Y,OFF	/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	_ACTOR_DATA				OBJID_PCWOMAN2,FSW_PARAM6,WF2DMAP_WAY_C_RIGHT, \
 							PCWOMAN2_X,PCWOMAN2_Y,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_MINE,FSW_PARAM0,WF2DMAP_WAY_C_UP, \
 							MINE_X,MINE_Y,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA_END
 
-/*“GƒgƒŒ[ƒi[‚ÌŒˆ’èƒ^ƒCƒ~ƒ“ƒO‚ª“r’†‚È‚Ì‚Å•ª‚¯‚½*/
+/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®æ±ºå®šã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒé€”ä¸­ãªã®ã§åˆ†ã‘ãŸ*/
 _ACTOR_LABEL	enemy_set_actor
 	_ACTOR_DATA				OBJID_ENEMY,FSW_PARAM2,WF2DMAP_WAY_C_DOWN, \
 							ENEMY_X,ENEMY_Y,ON,EVENTID_TEST_SCR_OBJ1
@@ -99,11 +99,11 @@ _ACTOR_LABEL	enemy_set_actor
 
 
 /********************************************************************/
-/*							ƒAƒjƒ									*/
+/*							ã‚¢ãƒ‹ãƒ¡									*/
 /********************************************************************/
 
 //--------------------------------------------------------------------
-//Ž©‹@@‰ŠúˆÊ’u‚ÖˆÚ“®
+//è‡ªæ©Ÿã€€åˆæœŸä½ç½®ã¸ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_player_01
 	_ANIME_DATA	FC_WAIT_4F,1
@@ -116,7 +116,7 @@ _ANIME_LABEL	anm_d31r0205_player_01
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒGƒlƒ~[@‰ŠúˆÊ’u‚ÖˆÚ“®
+//ã‚¨ãƒãƒŸãƒ¼ã€€åˆæœŸä½ç½®ã¸ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_enemy_01
 	//_ANIME_DATA	FC_WALK_D_8F,1
@@ -128,21 +128,21 @@ _ANIME_LABEL	anm_d31r0205_enemy_01
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//Ž©‹@@‘Îí‘O‚Éˆê•à‘O‚Ö
+//è‡ªæ©Ÿã€€å¯¾æˆ¦å‰ã«ä¸€æ­©å‰ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_player_02
 	_ANIME_DATA	FC_WALK_R_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒGƒlƒ~[@‘Îí‘O‚Éˆê•à‘O‚Ö
+//ã‚¨ãƒãƒŸãƒ¼ã€€å¯¾æˆ¦å‰ã«ä¸€æ­©å‰ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_enemy_02
 	_ANIME_DATA	FC_WALK_L_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒGƒlƒ~[@”síŒã‘Þê
+//ã‚¨ãƒãƒŸãƒ¼ã€€æ•—æˆ¦å¾Œé€€å ´
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_enemy_03
 	//_ANIME_DATA	FC_DIR_D,1
@@ -156,7 +156,7 @@ _ANIME_LABEL	anm_d31r0205_enemy_03
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//Ž©‹@@‘ÎíŸ—˜Œã@ˆê•àˆø‚«U‚èŒü‚«
+//è‡ªæ©Ÿã€€å¯¾æˆ¦å‹åˆ©å¾Œã€€ä¸€æ­©å¼•ãæŒ¯ã‚Šå‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_player_03
 	_ANIME_DATA	FC_WALK_L_8F,1
@@ -164,21 +164,21 @@ _ANIME_LABEL	anm_d31r0205_player_03
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ˆÄ“àì@‘ÎíŸ—˜Œã@‹ß‚Ã‚«
+//æ¡ˆå†…å¬¢ã€€å¯¾æˆ¦å‹åˆ©å¾Œã€€è¿‘ã¥ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_pcwoman2_02
 	_ANIME_DATA	FC_WALK_R_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//Ž©‹@@‰ñ•œŒãU‚èŒü‚«
+//è‡ªæ©Ÿã€€å›žå¾©å¾ŒæŒ¯ã‚Šå‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_player_04
 	_ANIME_DATA	FC_DIR_R,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ˆÄ“àì@‰ñ•œŒã‰º‚ª‚é
+//æ¡ˆå†…å¬¢ã€€å›žå¾©å¾Œä¸‹ãŒã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_pcwoman2_03
 	_ANIME_DATA	FC_DIR_L,1
@@ -187,14 +187,14 @@ _ANIME_LABEL	anm_d31r0205_pcwoman2_03
 	_ANIME_DATA_END
 	
 //--------------------------------------------------------------------
-//Ž©‹@@‘±‚«‚©‚ç
+//è‡ªæ©Ÿã€€ç¶šãã‹ã‚‰
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_player_05
 	_ANIME_DATA	FC_DIR_L,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒŠ[ƒ_[“üê@‰ŠúˆÊ’u‚ÖˆÚ“®
+//ãƒªãƒ¼ãƒ€ãƒ¼å…¥å ´ã€€åˆæœŸä½ç½®ã¸ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_d31r0205_leader_01
 	_ANIME_DATA	FC_WALK_R_16F,3
@@ -204,11 +204,11 @@ _ANIME_LABEL	anm_d31r0205_leader_01
 
 
 /********************************************************************/
-/*							ŠJŽn									*/
+/*							é–‹å§‹									*/
 /********************************************************************/
 fss_tower_single_btl_start:
 
-	/*ƒ[ƒNŠm•Û*/
+	/*ãƒ¯ãƒ¼ã‚¯ç¢ºä¿*/
 	_BATTLE_REC_INIT
 
 	_SAVE_EVENT_WORK_GET	WK_SCENE_D31R0205,FSW_LOCAL1
@@ -219,7 +219,7 @@ fss_tower_single_btl_start:
 	/*OBJ_CHANGE*/
 	_CALL				ev_d31r0205_obj_change
 
-	/*‰E‘¤‚ÌWIFIƒQ[ƒg*/
+	/*å³å´ã®WIFIã‚²ãƒ¼ãƒˆ*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_WIFI,comm_tower_5_char_set_wifi
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_RETRY,comm_tower_5_char_set_wifi
@@ -227,10 +227,10 @@ fss_tower_single_btl_start:
 	_END
 
 fss_tower_single_btl_start_sub:
-	_CHAR_RESOURCE_SET	single_btl_set_resource					/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			single_btl_set_actor					/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	single_btl_set_resource					/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			single_btl_set_actor					/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 
-	/*u‚«‚ë‚­‚·‚év‚ÅŽg—p‚·‚éƒ[ƒN‚È‚Ì‚ÅƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	/*ã€Œãã‚ãã™ã‚‹ã€ã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ãªã®ã§ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 	_LDVAL				FSW_LOCAL3,0
 
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -239,8 +239,8 @@ fss_tower_single_btl_start_sub:
 	/********************/
 	//SCENE_CHANGE_LABEL
 	/********************/
-	_IFVAL_JUMP			FSW_LOCAL1,EQ,1,ev_tower_rooms_common_entry		/*Å‰‚©‚ç*/
-	_IFVAL_JUMP			FSW_LOCAL1,EQ,2,ev_tower_rooms_common_continue	/*‘±‚«‚©‚ç*/
+	_IFVAL_JUMP			FSW_LOCAL1,EQ,1,ev_tower_rooms_common_entry		/*æœ€åˆã‹ã‚‰*/
+	_IFVAL_JUMP			FSW_LOCAL1,EQ,2,ev_tower_rooms_common_continue	/*ç¶šãã‹ã‚‰*/
 	_END
 
 comm_tower_5_char_set_wifi:
@@ -285,13 +285,13 @@ ev_d31r0205_obj_pos_change:
 
 
 /********************************************************************/
-/*						‰‚ß‚Ä•”‰®‚É“üê‚µ‚½Žž 						*/
+/*						åˆã‚ã¦éƒ¨å±‹ã«å…¥å ´ã—ãŸæ™‚ 						*/
 /********************************************************************/
 ev_tower_rooms_common_entry:
 	_SAVE_EVENT_WORK_SET	WK_SCENE_D31R0205,3
 	_SAVE_EVENT_WORK_GET	WK_SCENE_D31R0205,FSW_LOCAL1
 
-	/*ƒGƒ‰[ƒ`ƒFƒbƒN*/
+	/*ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯*/
 	_BTOWER_TOOLS		BTWR_DEB_IS_WORK_NULL,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_rooms_common_exit
 
@@ -301,72 +301,72 @@ ev_tower_rooms_common_entry:
 
 
 /********************************************************************/
-/*						ƒVƒ“ƒOƒ‹‘Îíƒtƒ[	 						*/
+/*						ã‚·ãƒ³ã‚°ãƒ«å¯¾æˆ¦ãƒ•ãƒ­ãƒ¼	 						*/
 /********************************************************************/
 ev_tower_rooms_sbtl_01:
 	_CALL				ev_tower_rooms_common_sbtl_call
 
 #ifndef DEBUG_BTL_LOSE_OFF	/********************************************/
-	/*•‰‚¯‚Ä–ß‚é‚Æ‚«‚Ìˆ—*/
+	/*è² ã‘ã¦æˆ»ã‚‹ã¨ãã®å‡¦ç†*/
 	_IFVAL_JUMP			FSW_PARAM3,EQ,0,ev_tower_rooms_common_lose
 #endif	/****************************************************************/
 
-	/*Ÿ‚Á‚½Žž‚Ìˆ—(ƒNƒŠƒA‚µ‚Ä‚é‚©‚Ç‚¤‚©‚ðFSW_ANSWER‚É‚©‚¦‚·)*/
+	/*å‹ã£ãŸæ™‚ã®å‡¦ç†(ã‚¯ãƒªã‚¢ã—ã¦ã‚‹ã‹ã©ã†ã‹ã‚’FSW_ANSWERã«ã‹ãˆã™)*/
 	_CALL				ev_tower_rooms_common_win_param
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_rooms_common_clear_ret
 
-	//ƒGƒlƒ~[‘Þê
+	//ã‚¨ãƒãƒŸãƒ¼é€€å ´
 	_CALL				ev_tower_rooms_comanm_eneout
 
-	//ƒvƒŒƒCƒ„[U‚èŒü‚«
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æŒ¯ã‚Šå‘ã
 	_CALL				ev_tower_rooms_comanm_sbtl_end
 	
-	//˜Aíˆ—
+	//é€£æˆ¦å‡¦ç†
 
-	//ƒ|ƒPƒ‚ƒ“‰ñ•œ
+	//ãƒã‚±ãƒ¢ãƒ³å›žå¾©
 	_CALL				ev_tower_rooms_common_heal
 
-	//ƒoƒgƒ‹ƒŠ[ƒ_[íƒ`ƒFƒbƒN
+	//ãƒãƒˆãƒ«ãƒªãƒ¼ãƒ€ãƒ¼æˆ¦ãƒã‚§ãƒƒã‚¯
 	_JUMP				ev_tower_rooms_if_leader_battle
 	_END
 
-//•‰‚¯‚Ä–ß‚é‚Æ‚«‚Ìˆ—
+//è² ã‘ã¦æˆ»ã‚‹ã¨ãã®å‡¦ç†
 ev_tower_rooms_common_lose:
 	_JUMP				ev_tower_rooms_common_rec_lose
 	_END
 
-//ƒNƒŠƒA‚µ‚Ä–ß‚é‚Æ‚«‚Ìˆ—
+//ã‚¯ãƒªã‚¢ã—ã¦æˆ»ã‚‹ã¨ãã®å‡¦ç†
 ev_tower_rooms_common_clear_ret:
 	_JUMP				ev_tower_rooms_common_rec_win
 	_END
 
-//ƒŠ[ƒ_[‚ÉŸ—˜‚µ‚Ä–ß‚é‚Æ‚«‚Ìˆ—
+//ãƒªãƒ¼ãƒ€ãƒ¼ã«å‹åˆ©ã—ã¦æˆ»ã‚‹ã¨ãã®å‡¦ç†
 ev_tower_rooms_leader_clear_ret:
 	_JUMP				ev_tower_rooms_leader_rec_win
 	_END
 
 
 /********************************************************************/
-/*				u‚³‚«‚Ù‚Ç‚Ì@í‚¢‚ð@‹L˜^‚µ‚Ü‚·‚©Hv				*/
+/*				ã€Œã•ãã»ã©ã®ã€€æˆ¦ã„ã‚’ã€€è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€				*/
 /********************************************************************/
-/*ƒŠ[ƒ_[‚ÉŸ‚¿*/
+/*ãƒªãƒ¼ãƒ€ãƒ¼ã«å‹ã¡*/
 ev_tower_rooms_leader_rec_win:
-	/*u‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œè¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower5_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower5_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX		FSW_ANSWER									/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_win_rec_yes		/*u‚Í‚¢v*/
+	_YES_NO_WIN_EX		FSW_ANSWER									/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_win_rec_yes		/*ã€Œã¯ã„ã€*/
 
-	//ƒNƒŠƒAƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//ã‚¯ãƒªã‚¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_BTOWER_TOOLS		BTWR_SUB_SET_CLEAR_SCORE,BTWR_NULL_PARAM,FSW_ANSWER
 
 #if 1
-	/*u‚Ý‚²‚Æƒ^ƒ[ƒ^ƒCƒN[ƒ“‚ÉŸ—˜‚³‚ê‚Ü‚µ‚½‚Ëv*/
+	/*ã€Œã¿ã”ã¨ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³ã«å‹åˆ©ã•ã‚Œã¾ã—ãŸã­ã€*/
 	_TALKMSG			msg_tower_101_02
 
-	/*uƒvƒŒƒCƒ„[‚Í‚a‚o‚ð‚à‚ç‚Á‚½v*/
+	/*ã€Œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¯ï¼¢ï¼°ã‚’ã‚‚ã‚‰ã£ãŸã€*/
 	_CALL				ev_tower5_battle_point_get
 #endif
 
@@ -374,30 +374,30 @@ ev_tower_rooms_leader_rec_win:
 	_JUMP				ev_tower_rooms_common_exit
 	_END
 
-/*Ÿ‚¿*/
+/*å‹ã¡*/
 ev_tower_rooms_common_rec_win:
-	/*u‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œè¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower5_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower5_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX		FSW_ANSWER									/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_win_rec_yes		/*u‚Í‚¢v*/
+	_YES_NO_WIN_EX		FSW_ANSWER									/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_win_rec_yes		/*ã€Œã¯ã„ã€*/
 
-	//ƒNƒŠƒAƒpƒ‰ƒ[ƒ^ƒZƒbƒg(ƒZ[ƒuŒã‚Éˆ—‚·‚é)
+	//ã‚¯ãƒªã‚¢ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ(ã‚»ãƒ¼ãƒ–å¾Œã«å‡¦ç†ã™ã‚‹)
 	_BTOWER_TOOLS		BTWR_SUB_SET_CLEAR_SCORE,BTWR_NULL_PARAM,FSW_ANSWER
 
 #if 1
-	/*BTWR_MODE_RETRY‚Í‰½‚à‚µ‚È‚¢*/
+	/*BTWR_MODE_RETRYã¯ä½•ã‚‚ã—ãªã„*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,BTWR_MODE_RETRY,comm_tower_rooms_common_rec_win_retry
 #endif
 
 #if 1
-	/*u‚Ví“Ë”j‚¨‚ß‚Å‚Æ‚¤v*/
+	/*ã€Œï¼—æˆ¦çªç ´ãŠã‚ã§ã¨ã†ã€*/
 	_TALKMSG			msg_tower_101_01
 
-	/*uƒvƒŒƒCƒ„[‚Í‚a‚o‚ð‚à‚ç‚Á‚½v*/
+	/*ã€Œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¯ï¼¢ï¼°ã‚’ã‚‚ã‚‰ã£ãŸã€*/
 	_CALL				ev_tower5_battle_point_get
 #endif
 
@@ -405,41 +405,41 @@ ev_tower_rooms_common_rec_win:
 	_JUMP				ev_tower_rooms_common_exit
 	_END
 
-/*wifiDL‚Ìu‚Ü‚¦‚Ì‚Ö‚â‚É‚¿‚å‚¤‚¹‚ñvBP‚Í‚ ‚°‚È‚¢*/
+/*wifiDLã®ã€Œã¾ãˆã®ã¸ã‚„ã«ã¡ã‚‡ã†ã›ã‚“ã€BPã¯ã‚ã’ãªã„*/
 comm_tower_rooms_common_rec_win_retry:
-	/*u‚Ví“Ë”j‚¨‚ß‚Å‚Æ‚¤v*/
-	//_TALKMSG			msg_tower_101_05				/*ŠO‚Å“¯‚¶‚±‚Æ‚¢‚¤‚Ì‚Å‚¢‚ç‚È‚¢*/
+	/*ã€Œï¼—æˆ¦çªç ´ãŠã‚ã§ã¨ã†ã€*/
+	//_TALKMSG			msg_tower_101_05				/*å¤–ã§åŒã˜ã“ã¨ã„ã†ã®ã§ã„ã‚‰ãªã„*/
 	_TALK_CLOSE
 	_JUMP				ev_tower_rooms_common_exit
 	_END
 
-/*•‰‚¯*/
+/*è² ã‘*/
 ev_tower_rooms_common_rec_lose:
-	/*u‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œè¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower5_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower5_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX		FSW_ANSWER									/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_lose_rec_yes		/*u‚Í‚¢v*/
+	_YES_NO_WIN_EX		FSW_ANSWER									/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_lose_rec_yes		/*ã€Œã¯ã„ã€*/
 	_TALK_CLOSE
 
-	//”síƒpƒ‰ƒ[ƒ^ƒZƒbƒg(ƒZ[ƒuŒã‚Éˆ—‚·‚é)
+	//æ•—æˆ¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ(ã‚»ãƒ¼ãƒ–å¾Œã«å‡¦ç†ã™ã‚‹)
 	_BTOWER_TOOLS		BTWR_SUB_SET_LOSE_SCORE,BTWR_NULL_PARAM,FSW_ANSWER
 
 	_JUMP				ev_tower_rooms_common_exit
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_tower5_lose_rec_yes:
-	_CALL				ev_tower5_room_rec_lose		/*”s–k‚Ì‹L˜^*/
+	_CALL				ev_tower5_room_rec_lose		/*æ•—åŒ—ã®è¨˜éŒ²*/
 	_RET
 
 ev_tower5_win_rec_yes:
-	_CALL				ev_tower5_room_rec_win		/*Ÿ—˜‚Ì‹L˜^*/
+	_CALL				ev_tower5_room_rec_win		/*å‹åˆ©ã®è¨˜éŒ²*/
 	_RET
 
-/*uƒvƒŒƒCƒ„[‚Í‚a‚o‚ð‚à‚ç‚Á‚½v*/
+/*ã€Œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¯ï¼¢ï¼°ã‚’ã‚‚ã‚‰ã£ãŸã€*/
 ev_tower5_battle_point_get:
 	_BTOWER_TOOLS		BTWR_SUB_ADD_BATTLE_POINT,BTWR_NULL_PARAM,FSW_ANSWER
 	_NUMBER_NAME		1,FSW_ANSWER
@@ -448,30 +448,30 @@ ev_tower5_battle_point_get:
 	_ME_PLAY			ME_BP_GET
 	_ME_WAIT
 	
-	/*ƒŒƒ|[ƒg‚É‚©‚«‚±‚ñ‚Å‚¢‚Ü‚·*/
+	/*ãƒ¬ãƒãƒ¼ãƒˆã«ã‹ãã“ã‚“ã§ã„ã¾ã™*/
 	//_TALKMSG			msg_tower_101_04
 	_RET
 
 
 /********************************************************************/
-/*				ƒvƒŒƒCƒ„[Ÿ—˜Œã@ƒGƒlƒ~[‘Þê						*/
+/*				ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‹åˆ©å¾Œã€€ã‚¨ãƒãƒŸãƒ¼é€€å ´						*/
 /********************************************************************/
 ev_tower_rooms_comanm_eneout:
 	_OBJ_ANIME			OBJID_ENEMY,anm_d31r0205_enemy_03
 	_OBJ_ANIME_WAIT
 
-	/*‘ÎíƒgƒŒ[ƒi[íœ*/
+	/*å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å‰Šé™¤*/
 	_ACTOR_FREE			OBJID_ENEMY
 	_CHAR_RESOURCE_FREE	FSW_PARAM2
 
-	//ƒoƒjƒbƒVƒ…ƒtƒ‰ƒOON
+	//ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°ON
 	//_FLAG_SET			FV_OBJID_ETC
 	//_OBJ_DEL			OBJID_ENEMY
 	_RET
 
 
 /********************************************************************/
-/*			ƒvƒŒƒCƒ„[Ÿ—˜Œã@ƒvƒŒƒCƒ„[U‚èŒü‚«&ˆÄ“àì‹ß‚Ã‚«		*/
+/*			ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‹åˆ©å¾Œã€€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æŒ¯ã‚Šå‘ã&æ¡ˆå†…å¬¢è¿‘ã¥ã		*/
 /********************************************************************/
 ev_tower_rooms_comanm_sbtl_end:
 	_OBJ_ANIME			OBJID_MINE,anm_d31r0205_player_03
@@ -481,7 +481,7 @@ ev_tower_rooms_comanm_sbtl_end:
 
 
 /********************************************************************/
-/*							‰ñ•œˆ—								*/
+/*							å›žå¾©å‡¦ç†								*/
 /********************************************************************/
 ev_tower_rooms_common_heal:
 	_TALKMSG			msg_tower_65
@@ -492,45 +492,45 @@ ev_tower_rooms_common_heal:
 
 
 /********************************************************************/
-/*			ƒVƒ“ƒOƒ‹ƒoƒgƒ‹Ÿ—˜Žžƒpƒ‰ƒ[ƒ^ƒZƒbƒg					*/
+/*			ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«å‹åˆ©æ™‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ					*/
 /********************************************************************/
 ev_tower_rooms_common_win_param:
-	//ƒ‰ƒEƒ“ƒh”XV
+	//ãƒ©ã‚¦ãƒ³ãƒ‰æ•°æ›´æ–°
 	_BTOWER_TOOLS		BTWR_SUB_INC_ROUND,BTWR_NULL_PARAM,FSW_ANSWER
 
-	//ƒNƒŠƒA‚µ‚Ä‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¯ãƒªã‚¢ã—ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_BTOWER_TOOLS		BTWR_SUB_IS_CLEAR,BTWR_NULL_PARAM,FSW_ANSWER
 	_RET
 
 
 /********************************************************************/
-/*					‘±‚«‚©‚ç‚Å•”‰®‚É“üê‚µ‚½Žž						*/
+/*					ç¶šãã‹ã‚‰ã§éƒ¨å±‹ã«å…¥å ´ã—ãŸæ™‚						*/
 /********************************************************************/
 ev_tower_rooms_common_continue:
 	_SAVE_EVENT_WORK_SET	WK_SCENE_D31R0205,3
 	_SAVE_EVENT_WORK_GET	WK_SCENE_D31R0205,FSW_LOCAL1
 	
-	/*‹L˜^‚µ‚½ƒ[ƒN‚Éƒf[ƒ^‚ª‘‚«ž‚Ü‚ê‚Ä‚¢‚È‚¢‚Ì‚Åƒƒjƒ…[•\Ž¦‚µ‚È‚¢*/
+	/*è¨˜éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã«ãƒ‡ãƒ¼ã‚¿ãŒæ›¸ãè¾¼ã¾ã‚Œã¦ã„ãªã„ã®ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºã—ãªã„*/
 	_LDVAL				FSW_LOCAL3,1
 
-	//ƒGƒ‰[ˆ—
+	//ã‚¨ãƒ©ãƒ¼å‡¦ç†
 	_BTOWER_TOOLS		BTWR_DEB_IS_WORK_NULL,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_tower_rooms_common_exit
 
 	_CALL				ev_tower_rooms_comanm_in
 	_CALL				ev_tower_rooms_comanm_continue
 
-	//ŽŸ‚ÍHl–Ú‚Ìcc
+	//æ¬¡ã¯ï¼Ÿäººç›®ã®â€¦â€¦
 	_JUMP				ev_tower_rooms_if_leader_battle
 	_END
 
-//Ž©‹@‚ÆŽó•tì@“üê
+//è‡ªæ©Ÿã¨å—ä»˜å¬¢ã€€å…¥å ´
 ev_tower_rooms_comanm_in:
 	_OBJ_ANIME			OBJID_MINE,anm_d31r0205_player_01
 	_OBJ_ANIME_WAIT
 	_RET
 
-//Ž©‹@‚ÆŽó•tì@‘±‚«‚©‚çŽn‚ß‚½‚Æ‚«‚Ì“üêŒã
+//è‡ªæ©Ÿã¨å—ä»˜å¬¢ã€€ç¶šãã‹ã‚‰å§‹ã‚ãŸã¨ãã®å…¥å ´å¾Œ
 ev_tower_rooms_comanm_continue:
 	_OBJ_ANIME			OBJID_PCWOMAN2,anm_d31r0205_pcwoman2_02
 	_OBJ_ANIME			OBJID_MINE,anm_d31r0205_player_05
@@ -539,23 +539,23 @@ ev_tower_rooms_comanm_continue:
 
 
 /********************************************************************/
-/*					•”‰®‚©‚ç‘Þê‚µ‚ÄŽó•t‚É–ß‚é						*/
+/*					éƒ¨å±‹ã‹ã‚‰é€€å ´ã—ã¦å—ä»˜ã«æˆ»ã‚‹						*/
 /********************************************************************/
 ev_tower_rooms_common_exit:
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 
-	//ƒEƒFƒCƒg
+	//ã‚¦ã‚§ã‚¤ãƒˆ
 	_TIME_WAIT			30,FSW_ANSWER
 
-	//Žó•t–ß‚èƒtƒ‰ƒOƒZƒbƒg
+	//å—ä»˜æˆ»ã‚Šãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 	//_LDVAL				WK_SCENE_D31R0201,1
 	_SAVE_EVENT_WORK_SET	WK_SCENE_D31R0201,1
 
-	/*Œ»Ý‚ÌƒvƒŒƒCƒ‚[ƒh‚ðŽæ“¾*/
+	/*ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 
-	//“ü‚Á‚Ä‚«‚½ƒQ[ƒgˆÊ’u‚Ö–ß‚é
+	//å…¥ã£ã¦ããŸã‚²ãƒ¼ãƒˆä½ç½®ã¸æˆ»ã‚‹
 	_SWITCH				FSW_ANSWER
 	_CASE_JUMP			BTWR_MODE_WIFI,ev_tower_rooms_comexit_01
 	_CASE_JUMP			BTWR_MODE_RETRY,ev_tower_rooms_comexit_01
@@ -569,7 +569,7 @@ ev_tower_rooms_common_exit:
 
 	//_MAP_CHANGE			ZONE_ID_D31R0201,0,11,6,DIR_UP
 	//_END
-	_SCRIPT_FINISH			/*_END‚µ‚Ä2Dƒ}ƒbƒvI—¹*/
+	_SCRIPT_FINISH			/*_ENDã—ã¦2Dãƒžãƒƒãƒ—çµ‚äº†*/
 
 ev_tower_rooms_comexit_01:
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -581,11 +581,11 @@ ev_tower_rooms_comexit_01:
 
 	//_MAP_CHANGE			ZONE_ID_D31R0201,0,15,6,DIR_UP
 	//_END
-	_SCRIPT_FINISH			/*_END‚µ‚Ä2Dƒ}ƒbƒvI—¹*/
+	_SCRIPT_FINISH			/*_ENDã—ã¦2Dãƒžãƒƒãƒ—çµ‚äº†*/
 
 
 /********************************************************************/
-/*							ƒeƒXƒgH								*/
+/*							ãƒ†ã‚¹ãƒˆï¼Ÿ								*/
 /********************************************************************/
 ev_tower_rooms_test_entry:
 	_SAVE_EVENT_WORK_SET	WK_SCENE_D31R0205,0
@@ -595,32 +595,32 @@ ev_tower_rooms_test_entry:
 
 
 /********************************************************************/
-/*					ƒVƒ“ƒOƒ‹ƒoƒgƒ‹ŒÄ‚Ño‚µ							*/
+/*					ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«å‘¼ã³å‡ºã—							*/
 /********************************************************************/
 ev_tower_rooms_common_sbtl_call:
-	/*‘ÎíƒgƒŒ[ƒi[’Š‘I*/
+	/*å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŠ½é¸*/
 	_BTOWER_TOOLS		BTWR_SUB_CHOICE_BTL_PARTNER,BTWR_NULL_PARAM,FSW_ANSWER
 
-	/*ƒGƒlƒ~[“üê*/
+	/*ã‚¨ãƒãƒŸãƒ¼å…¥å ´*/
 	_CALL				ev_tower_rooms_comanm_enein
 
-	/*‘Îí‘O‘äŽŒ*/
+	/*å¯¾æˆ¦å‰å°è©ž*/
 	_TALKMSG_BTOWER_APPEAR	0
 	_AB_KEYWAIT
 	_TALK_CLOSE
 
-	/*ŒÝ‚¢‚É‹ß‚Ã‚­*/
+	/*äº’ã„ã«è¿‘ã¥ã*/
 	_CALL				ev_tower_rooms_comanm_sbtl_start
 
 	//_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	//_WIPE_FADE_END_CHECK
 	_ENCOUNT_EFFECT		FR_ENCOUNT_EFF_WIPE
 
-	/*‰í‚ð‚¨‚±‚È‚Á‚½‚©ƒZƒbƒg*/
+	/*åˆæˆ¦ã‚’ãŠã“ãªã£ãŸã‹ã‚»ãƒƒãƒˆ*/
 	_BTOWER_TOOLS		BTWR_SUB_SET_FIRST_BTL_FLAG,BTWR_NULL_PARAM,FSW_ANSWER
 
 #ifndef DEBUG_BTL_OFF	/************************************************/
-	/*í“¬ŒÄ‚Ño‚µ*/
+	/*æˆ¦é—˜å‘¼ã³å‡ºã—*/
 	//_BTOWER_TOOLS		BTWR_SUB_LOCAL_BTL_CALL,BTWR_NULL_PARAM,FSW_ANSWER
 	_BTOWER_BATTLE_CALL
 	//_TRAINER_LOSE_CHECK FSW_ANSWER
@@ -628,30 +628,30 @@ ev_tower_rooms_common_sbtl_call:
 	_BTOWER_CALL_GET_RESULT	FSW_PARAM3
 #endif	/****************************************************************/
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 	_RET
 
-/*ƒGƒlƒ~[“üê*/
+/*ã‚¨ãƒãƒŸãƒ¼å…¥å ´*/
 ev_tower_rooms_comanm_enein:
-	/*‘ÎíƒgƒŒ[ƒi[‚ÌOBJƒR[ƒhŽæ“¾*/
+	/*å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®OBJã‚³ãƒ¼ãƒ‰å–å¾—*/
 	_BTOWER_TOOLS		BTWR_SUB_GET_ENEMY_OBJ,0,FSW_PARAM2
 	//_BTOWER_TOOLS		BTWR_SUB_GET_ENEMY_OBJ,0,FSW_ANSWER
 	//_LDWK				OBJCHRWORK1,FSW_ANSWER
 
-	/*‘ÎíƒgƒŒ[ƒi[’Ç‰Á*/
-	_CHAR_RESOURCE_SET	enemy_set_resource				/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			enemy_set_actor					/*ƒAƒNƒ^[“o˜^*/
+	/*å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¿½åŠ */
+	_CHAR_RESOURCE_SET	enemy_set_resource				/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			enemy_set_actor					/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 
-	//ƒoƒjƒbƒVƒ…ƒtƒ‰ƒOOFF
+	//ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°OFF
 	//_FLAG_RESET		FV_OBJID_ETC
 	//_OBJ_ADD			OBJID_ENEMY
 	_OBJ_ANIME			OBJID_ENEMY,anm_d31r0205_enemy_01	
 	_OBJ_ANIME_WAIT
 	_RET
 
-/*ƒVƒ“ƒOƒ‹ƒoƒgƒ‹‘O@ŒÝ‚¢‚Éˆê•à‹ß‚Ã‚­*/
+/*ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«å‰ã€€äº’ã„ã«ä¸€æ­©è¿‘ã¥ã*/
 ev_tower_rooms_comanm_sbtl_start:
 	_OBJ_ANIME			OBJID_MINE,anm_d31r0205_player_02
 	_OBJ_ANIME			OBJID_ENEMY,anm_d31r0205_enemy_02
@@ -660,22 +660,22 @@ ev_tower_rooms_comanm_sbtl_start:
 
 
 /********************************************************************/
-/*						ƒVƒ“ƒOƒ‹‘Îí								*/
+/*						ã‚·ãƒ³ã‚°ãƒ«å¯¾æˆ¦								*/
 /********************************************************************/
 ev_tower_rooms_sbtl_02:
-	//’Êí˜Aí ŽŸ‚ÍHl–Ú‚Ì‘ŠŽè‚Å‚·
+	//é€šå¸¸é€£æˆ¦ æ¬¡ã¯ï¼Ÿäººç›®ã®ç›¸æ‰‹ã§ã™
 	_BTOWER_TOOLS		BTWR_SUB_GET_NOW_ROUND,BTWR_NULL_PARAM,FSW_PARAM3
 	_NUMBER_NAME		0,FSW_PARAM3
 	_TALKMSG			msg_tower_66
 
 	////////////////////////////////////////////////////////////////////////////////
-	/*ƒuƒŒ[ƒ“‚ÌƒŠƒXƒg‚ÖƒWƒƒƒ“ƒv*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ã®ãƒªã‚¹ãƒˆã¸ã‚¸ãƒ£ãƒ³ãƒ—*/
 
-	//ƒVƒ“ƒOƒ‹ƒoƒgƒ‹ƒ‚[ƒh‚Å‚È‚¢Žž‚ÍƒuƒŒ[ƒ“‚ÌƒŠƒXƒg‚ÖƒWƒƒƒ“ƒv‚·‚é‚©‚ð”ò‚Î‚·
+	//ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«ãƒ¢ãƒ¼ãƒ‰ã§ãªã„æ™‚ã¯ãƒ–ãƒ¬ãƒ¼ãƒ³ã®ãƒªã‚¹ãƒˆã¸ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹ã‹ã‚’é£›ã°ã™
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,NE,BTWR_MODE_SINGLE,ev_tower_rooms_sbtl_02_00
 
-	//ƒVƒ“ƒOƒ‹‚È‚çƒ‰ƒEƒ“ƒhƒ`ƒFƒbƒN
+	//ã‚·ãƒ³ã‚°ãƒ«ãªã‚‰ãƒ©ã‚¦ãƒ³ãƒ‰ãƒã‚§ãƒƒã‚¯
 	_BTOWER_TOOLS		BTWR_SUB_GET_RENSHOU_CNT,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,LEADER_SET_1ST,ev_tower_rooms_leader_comin_02
 	_IFVAL_JUMP			FSW_ANSWER,EQ,LEADER_SET_2ND,ev_tower_rooms_leader_comin_02
@@ -685,52 +685,52 @@ ev_tower_rooms_sbtl_02:
 	_END
 
 ev_tower_rooms_sbtl_02_00:
-	/*‚Ü‚¾‹L˜^‚µ‚Ä‚¢‚È‚¢A’†’f•œ‹A‚Å‚Í‚È‚¢Žž‚Íu‚«‚ë‚­‚·‚évƒƒjƒ…[’Ç‰Á*/
+	/*ã¾ã è¨˜éŒ²ã—ã¦ã„ãªã„ã€ä¸­æ–­å¾©å¸°ã§ã¯ãªã„æ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ */
 	_IFVAL_JUMP			FSW_LOCAL3,EQ,0,ev_tower_rooms_sbtl_02_rec
 
-	_BMPLIST_INIT		24,11,0,0,FSW_ANSWER			//BƒLƒƒƒ“ƒZƒ‹–³Œø
-	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0			//‚Â‚Ã‚¯‚é
+	_BMPLIST_INIT		24,11,0,0,FSW_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹
+	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0			//ã¤ã¥ã‘ã‚‹
 	_JUMP				ev_tower_rooms_sbtl_02_sub
 	_END
 
 ev_tower_rooms_sbtl_02_rec:
-	_BMPLIST_INIT		23,9,0,0,FSW_ANSWER				//BƒLƒƒƒ“ƒZƒ‹–³Œø
-	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0			//‚Â‚Ã‚¯‚é
-	_BMPLIST_MAKE_LIST	msg_tower_choice_13,FSEV_WIN_TALK_MSG_NONE,1			/*‚«‚ë‚­‚·‚é*/
+	_BMPLIST_INIT		23,9,0,0,FSW_ANSWER				//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹
+	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0			//ã¤ã¥ã‘ã‚‹
+	_BMPLIST_MAKE_LIST	msg_tower_choice_13,FSEV_WIN_TALK_MSG_NONE,1			/*ãã‚ãã™ã‚‹*/
 	_JUMP				ev_tower_rooms_sbtl_02_sub
 	_END
 
 ev_tower_rooms_sbtl_02_sub:
-	_BMPLIST_MAKE_LIST	msg_tower_choice_07,FSEV_WIN_TALK_MSG_NONE,2			//‚â‚·‚Þ
-	_BMPLIST_MAKE_LIST	msg_tower_choice_08,FSEV_WIN_TALK_MSG_NONE,3			//ƒŠƒ^ƒCƒA
+	_BMPLIST_MAKE_LIST	msg_tower_choice_07,FSEV_WIN_TALK_MSG_NONE,2			//ã‚„ã™ã‚€
+	_BMPLIST_MAKE_LIST	msg_tower_choice_08,FSEV_WIN_TALK_MSG_NONE,3			//ãƒªã‚¿ã‚¤ã‚¢
 	_BMPLIST_START
 	
 	_TALK_CLOSE
 
 	_SWITCH				FSW_ANSWER
-	_CASE_JUMP			0,ev_tower_rooms_next			//‚Â‚Ã‚¯‚é
-	_CASE_JUMP			1,ev_tower_rooms_is_rec			/*‚«‚ë‚­‚·‚é*/
-	_CASE_JUMP			2,ev_tower_rooms_is_rest		//‚â‚·‚Þ
-	_CASE_JUMP			3,ev_tower_rooms_is_retire		//ƒŠƒ^ƒCƒA
-	_JUMP				ev_tower_rooms_next				//‚Â‚Ã‚¯‚é
+	_CASE_JUMP			0,ev_tower_rooms_next			//ã¤ã¥ã‘ã‚‹
+	_CASE_JUMP			1,ev_tower_rooms_is_rec			/*ãã‚ãã™ã‚‹*/
+	_CASE_JUMP			2,ev_tower_rooms_is_rest		//ã‚„ã™ã‚€
+	_CASE_JUMP			3,ev_tower_rooms_is_retire		//ãƒªã‚¿ã‚¤ã‚¢
+	_JUMP				ev_tower_rooms_next				//ã¤ã¥ã‘ã‚‹
 	_END
 
 
 /********************************************************************/
-/*							‚Â‚Ã‚¯‚é								*/
+/*							ã¤ã¥ã‘ã‚‹								*/
 /********************************************************************/
 ev_tower_rooms_next:
-	//ˆÄ“àì‚à‚Æ‚ÌˆÊ’u‚Ö
+	//æ¡ˆå†…å¬¢ã‚‚ã¨ã®ä½ç½®ã¸
 	_CALL				ev_tower_rooms_comanm_guide_out
 
-	/*ƒ[ƒN‚ðƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	/*ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 	_LDVAL				FSW_LOCAL3,0
 
-	//ƒoƒgƒ‹
+	//ãƒãƒˆãƒ«
 	_JUMP				ev_tower_rooms_sbtl_01
 	_END
 
-//‰ñ•œŒã@ƒvƒŒƒCƒ„[U‚èŒü‚«•ˆÄ“àì‰º‚ª‚é
+//å›žå¾©å¾Œã€€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æŒ¯ã‚Šå‘ãï¼†æ¡ˆå†…å¬¢ä¸‹ãŒã‚‹
 ev_tower_rooms_comanm_guide_out:
 	_OBJ_ANIME			OBJID_MINE,anm_d31r0205_player_04
 	_OBJ_ANIME			OBJID_PCWOMAN2,anm_d31r0205_pcwoman2_03
@@ -739,44 +739,44 @@ ev_tower_rooms_comanm_guide_out:
 
 
 /********************************************************************/
-/*							‹L˜^‚·‚é								*/
+/*							è¨˜éŒ²ã™ã‚‹								*/
 /********************************************************************/
 ev_tower_rooms_is_rec:
-	/*u‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œè¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower5_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_tower5_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_tower5_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX	FSW_ANSWER									/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
+	_YES_NO_WIN_EX	FSW_ANSWER									/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_tower_rooms_sbtl_02
 
-	_CALL			ev_tower5_room_rec_win		/*Ÿ—˜‚Ì‹L˜^*/
+	_CALL			ev_tower5_room_rec_win		/*å‹åˆ©ã®è¨˜éŒ²*/
 	_JUMP			ev_tower_rooms_sbtl_02
 	_END
 
 
 /********************************************************************/
-/*							‹¤’Ê‹L˜^*/
+/*							å…±é€šè¨˜éŒ²*/
 /********************************************************************/
-/*Ÿ‚¿*/
+/*å‹ã¡*/
 ev_tower5_room_rec_win:
-	_CALL				ev_tower5_room_rec_common		/*ANSWER,LOCAL5Žg—p’†*/
+	_CALL				ev_tower5_room_rec_common		/*ANSWER,LOCAL5ä½¿ç”¨ä¸­*/
 	//_ADD_WK			FSW_LOCAL5,1
-	//_SUB_WK			FSW_LOCAL5,1					/*ƒ‰ƒEƒ“ƒh”‚Å‚Í‚È‚­Ÿ—˜”‚È‚Ì‚Å*/
+	//_SUB_WK			FSW_LOCAL5,1					/*ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã§ã¯ãªãå‹åˆ©æ•°ãªã®ã§*/
 	_JUMP				ev_tower5_room_rec
 	_END
 
-/*•‰‚¯*/
+/*è² ã‘*/
 ev_tower5_room_rec_lose:
-	_CALL				ev_tower5_room_rec_common		/*ANSWER,LOCAL5Žg—p’†*/
+	_CALL				ev_tower5_room_rec_common		/*ANSWER,LOCAL5ä½¿ç”¨ä¸­*/
 	_ADD_WK				FSW_LOCAL5,1
 	_JUMP				ev_tower5_room_rec
 	_END
 
-/*‹¤’Ê•”•ª*/
+/*å…±é€šéƒ¨åˆ†*/
 ev_tower5_room_rec_common:
-	/*˜^‰æƒf[ƒ^ƒZ[ƒu*/
-	_BTOWER_TOOLS		BTWR_SUB_GET_RENSHOU_CNT,BTWR_NULL_PARAM,FSW_LOCAL5		/*˜AŸ”*/
+	/*éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–*/
+	_BTOWER_TOOLS		BTWR_SUB_GET_RENSHOU_CNT,BTWR_NULL_PARAM,FSW_LOCAL5		/*é€£å‹æ•°*/
 	_RET
 
 ev_tower5_room_rec:
@@ -784,12 +784,12 @@ ev_tower5_room_rec:
 	_END
 
 ev_tower5_room_rec_sub:
-	/*‹L˜^‚µ‚½ƒ[ƒNƒZƒbƒg*/
+	/*è¨˜éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ*/
 	_LDVAL				FSW_LOCAL3,1
 
 	_TALKMSG_ALL_PUT	msg_tower_100_05
 	/*BTWR_MODE_SINGLE,BTWR_MODE_DOUBLE*/
-	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER		/*ƒ‚[ƒh*/
+	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER		/*ãƒ¢ãƒ¼ãƒ‰*/
 	_ADD_WAITICON
 	_BATTLE_REC_SAVE	FRONTIER_NO_TOWER,FSW_ANSWER,FSW_LOCAL5,FSW_LOCAL5
 	_DEL_WAITICON
@@ -798,33 +798,33 @@ ev_tower5_room_rec_sub:
 
 	_IFVAL_JUMP			FSW_LOCAL5,EQ,1,ev_tower5_room_rec_true
 
-	/*u‹L˜^o—ˆ‚Ü‚¹‚ñ‚Å‚µ‚½v*/
+	/*ã€Œè¨˜éŒ²å‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸã€*/
 	_TALKMSG			msg_tower_100_03
 	_RET
 
 ev_tower5_room_rec_true:
 	_SE_PLAY			SEQ_SE_DP_SAVE
-	/*u‹L˜^‚³‚ê‚Ü‚µ‚½v*/
+	/*ã€Œè¨˜éŒ²ã•ã‚Œã¾ã—ãŸã€*/
 	_PLAYER_NAME		0
 	_TALKMSG			msg_tower_100_02
 	_RET
 	
-/*˜^‰æƒf[ƒ^‚ª‚È‚¢ŽžƒƒbƒZ[ƒW*/
+/*éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒãªã„æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_tower5_room_rec_msg1:
 	_TALKMSG			msg_tower_100_01
 	_RET
 
-/*‚·‚Å‚É˜^‰æƒf[ƒ^‚ª‚ ‚éŽžƒƒbƒZ[ƒW*/
+/*ã™ã§ã«éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_tower5_room_rec_msg2:
 	_TALKMSG			msg_tower_100_04
 	_RET
 
 
 /********************************************************************/
-/*							‚â‚·‚Þ									*/
+/*							ã‚„ã™ã‚€									*/
 /********************************************************************/
 ev_tower_rooms_is_rest:
-	//’†’f‚µ‚Ä‹x‚Þ‚©‚Ç‚¤‚©H
+	//ä¸­æ–­ã—ã¦ä¼‘ã‚€ã‹ã©ã†ã‹ï¼Ÿ
 	_TALKMSG			msg_tower_67
 
 	_YES_NO_WIN			FSW_ANSWER
@@ -834,12 +834,12 @@ ev_tower_rooms_is_rest:
 	_JUMP				ev_tower_rooms_sbtl_02
 	_END
 
-//‹x‚Þ‚Æ‚«‚Ìˆ—
+//ä¼‘ã‚€ã¨ãã®å‡¦ç†
 ev_tower_rooms_common_rest:
 	//_LDVAL				WK_SCENE_D31R0201,2
-	_SAVE_EVENT_WORK_SET	WK_SCENE_D31R0201,2		/*‘±‚«‚©‚çÄŠJ‚³‚ê‚é‚æ‚¤‚É‚·‚é*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_D31R0201,2		/*ç¶šãã‹ã‚‰å†é–‹ã•ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 
-	//ƒvƒŒƒCƒf[ƒ^ƒZ[ƒu
+	//ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 	_BTOWER_TOOLS		BTWR_SUB_SAVE_REST_PLAY_DATA,BTWR_NULL_PARAM,FSW_ANSWER
 	_BTOWER_WORK_RELEASE
 
@@ -847,7 +847,7 @@ ev_tower_rooms_common_rest:
 	_ADD_WAITICON
 
 	_REPORT_SAVE		FSW_ANSWER
-	//_REPORT_DIV_SAVE	FSW_ANSWER					/*’ÊM‚µ‚Ä‚¢‚È‚¢*/
+	//_REPORT_DIV_SAVE	FSW_ANSWER					/*é€šä¿¡ã—ã¦ã„ãªã„*/
 	_DEL_WAITICON
 	_SE_PLAY			SEQ_SE_DP_SAVE
 	_SE_WAIT			SEQ_SE_DP_SAVE
@@ -856,20 +856,20 @@ ev_tower_rooms_common_rest:
 	_WIPE_FADE_END_CHECK
 	_TALK_CLOSE
 
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 
 //	_VANISH_DUMMY_OBJ_DEL
-	//ƒŠƒZƒbƒgƒRƒ}ƒ“ƒh
+	//ãƒªã‚»ãƒƒãƒˆã‚³ãƒžãƒ³ãƒ‰
 	_BTOWER_TOOLS		BTWR_TOOL_SYSTEM_RESET,BTWR_NULL_PARAM,FSW_ANSWER
 	_END
 
 
 /********************************************************************/
-/*							ƒŠƒ^ƒCƒ„								*/
+/*							ãƒªã‚¿ã‚¤ãƒ¤								*/
 /********************************************************************/
 ev_tower_rooms_is_retire:
-	//ƒŠƒ^ƒCƒA‚·‚é‚©‚Ç‚¤‚©H
+	//ãƒªã‚¿ã‚¤ã‚¢ã™ã‚‹ã‹ã©ã†ã‹ï¼Ÿ
 	_TALKMSG			msg_tower_68
 
 	_YES_NO_WIN_EX		FSW_ANSWER
@@ -880,28 +880,28 @@ ev_tower_rooms_is_retire:
 	_JUMP				ev_tower_rooms_sbtl_02
 	_END
 
-//ƒŠƒ^ƒCƒA‚·‚é‚Æ‚«‚Ìˆ—(‹L˜^‚·‚é—¬‚ê‚È‚µ)
+//ãƒªã‚¿ã‚¤ã‚¢ã™ã‚‹ã¨ãã®å‡¦ç†(è¨˜éŒ²ã™ã‚‹æµã‚Œãªã—)
 ev_tower_rooms_common_retire:
-	//”síƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//æ•—æˆ¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_BTOWER_TOOLS		BTWR_SUB_SET_LOSE_SCORE,BTWR_NULL_PARAM,FSW_ANSWER
 	_JUMP				ev_tower_rooms_common_exit
 	_END
 
 
 /********************************************************************/
-/*						ƒŠ[ƒ_[‘Îí								*/
+/*						ãƒªãƒ¼ãƒ€ãƒ¼å¯¾æˆ¦								*/
 /********************************************************************/
 ev_tower_rooms_if_leader_battle:
-	//ƒVƒ“ƒOƒ‹ƒoƒgƒ‹ƒ‚[ƒh‚©‚Ç‚¤‚©H
+	//ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ï¼Ÿ
 	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,NE,BTWR_MODE_SINGLE,ev_tower_rooms_sbtl_02
 
 #ifdef DEBUG_LEADER	/****************************************************/
-	/*ƒfƒoƒbƒNFƒŠ[ƒ_[‚Æí“¬*/
+	/*ãƒ‡ãƒãƒƒã‚¯ï¼šãƒªãƒ¼ãƒ€ãƒ¼ã¨æˆ¦é—˜*/
 	_JUMP				ev_tower_rooms_leader_comin
 #endif	/****************************************************************/
 
-	//ƒVƒ“ƒOƒ‹‚È‚çƒ‰ƒEƒ“ƒhƒ`ƒFƒbƒN
+	//ã‚·ãƒ³ã‚°ãƒ«ãªã‚‰ãƒ©ã‚¦ãƒ³ãƒ‰ãƒã‚§ãƒƒã‚¯
 	_BTOWER_TOOLS		BTWR_SUB_GET_RENSHOU_CNT,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,LEADER_SET_1ST,ev_tower_rooms_leader_comin
 	_IFVAL_JUMP			FSW_ANSWER,EQ,LEADER_SET_2ND,ev_tower_rooms_leader_comin
@@ -909,61 +909,61 @@ ev_tower_rooms_if_leader_battle:
 	_END
 
 ev_tower_rooms_leader_comin:
-	//ƒ^ƒ[ƒ^ƒCƒN[ƒ“‚Æ‚Ìí“¬‚É‚È‚è‚Ü‚·
+	//ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³ã¨ã®æˆ¦é—˜ã«ãªã‚Šã¾ã™
 	_TALKMSG			msg_tower_boss_01
 	_JUMP				ev_tower_rooms_leader_comin_02
 	_END
 
 ev_tower_rooms_leader_comin_02:
-	/*‚Ü‚¾‹L˜^‚µ‚Ä‚¢‚È‚¢A’†’f•œ‹A‚Å‚Í‚È‚¢Žž‚Íu‚«‚ë‚­‚·‚évƒƒjƒ…[’Ç‰Á*/
+	/*ã¾ã è¨˜éŒ²ã—ã¦ã„ãªã„ã€ä¸­æ–­å¾©å¸°ã§ã¯ãªã„æ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ */
 	_IFVAL_JUMP			FSW_LOCAL3,EQ,0,ev_tower_rooms_leader_comin_rec
 
-	_BMPLIST_INIT		24,11,0,0,FSW_ANSWER			//BƒLƒƒƒ“ƒZƒ‹–³Œø
-	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0			//‚Â‚Ã‚¯‚é
+	_BMPLIST_INIT		24,11,0,0,FSW_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹
+	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0			//ã¤ã¥ã‘ã‚‹
 	_JUMP				ev_tower_rooms_leader_comin_sub
 	_END
 
 ev_tower_rooms_leader_comin_rec:
-	_BMPLIST_INIT		23,9,0,0,FSW_ANSWER				//BƒLƒƒƒ“ƒZƒ‹–³Œø
-	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0			//‚Â‚Ã‚¯‚é
-	_BMPLIST_MAKE_LIST	msg_tower_choice_13,FSEV_WIN_TALK_MSG_NONE,1			/*‚«‚ë‚­‚·‚é*/
+	_BMPLIST_INIT		23,9,0,0,FSW_ANSWER				//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹
+	_BMPLIST_MAKE_LIST	msg_tower_choice_06,FSEV_WIN_TALK_MSG_NONE,0			//ã¤ã¥ã‘ã‚‹
+	_BMPLIST_MAKE_LIST	msg_tower_choice_13,FSEV_WIN_TALK_MSG_NONE,1			/*ãã‚ãã™ã‚‹*/
 	_JUMP				ev_tower_rooms_leader_comin_sub
 	_END
 
 ev_tower_rooms_leader_comin_sub:
-	_BMPLIST_MAKE_LIST	msg_tower_choice_07,FSEV_WIN_TALK_MSG_NONE,2			//‚â‚·‚Þ
-	_BMPLIST_MAKE_LIST	msg_tower_choice_08,FSEV_WIN_TALK_MSG_NONE,3			//ƒŠƒ^ƒCƒA
+	_BMPLIST_MAKE_LIST	msg_tower_choice_07,FSEV_WIN_TALK_MSG_NONE,2			//ã‚„ã™ã‚€
+	_BMPLIST_MAKE_LIST	msg_tower_choice_08,FSEV_WIN_TALK_MSG_NONE,3			//ãƒªã‚¿ã‚¤ã‚¢
 	_BMPLIST_START
 	
 	_TALK_CLOSE
 	_SWITCH				FSW_ANSWER
-	_CASE_JUMP			0,ev_tower_rooms_leader_entry	//‚Â‚Ã‚¯‚é
-	_CASE_JUMP			1,ev_tower_rooms_is_rec			/*‚«‚ë‚­‚·‚é*/
-	_CASE_JUMP			2,ev_tower_rooms_is_rest		//‚â‚·‚Þ
-	_CASE_JUMP			3,ev_tower_rooms_is_retire		//ƒŠƒ^ƒCƒA
-	_JUMP				ev_tower_rooms_leader_entry		//‚Â‚Ã‚¯‚é
+	_CASE_JUMP			0,ev_tower_rooms_leader_entry	//ã¤ã¥ã‘ã‚‹
+	_CASE_JUMP			1,ev_tower_rooms_is_rec			/*ãã‚ãã™ã‚‹*/
+	_CASE_JUMP			2,ev_tower_rooms_is_rest		//ã‚„ã™ã‚€
+	_CASE_JUMP			3,ev_tower_rooms_is_retire		//ãƒªã‚¿ã‚¤ã‚¢
+	_JUMP				ev_tower_rooms_leader_entry		//ã¤ã¥ã‘ã‚‹
 	_END
 
 
 /********************************************************************/
-/*						‚Â‚Ã‚¯‚é@ƒŠ[ƒ_[“üê						*/
+/*						ã¤ã¥ã‘ã‚‹ã€€ãƒªãƒ¼ãƒ€ãƒ¼å…¥å ´						*/
 /********************************************************************/
 ev_tower_rooms_leader_entry:
-	//ˆÄ“àì‚à‚Æ‚ÌˆÊ’u‚Ö
+	//æ¡ˆå†…å¬¢ã‚‚ã¨ã®ä½ç½®ã¸
 	_CALL				ev_tower_rooms_comanm_guide_out
 
-	/*ƒ[ƒN‚ðƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	/*ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 	_LDVAL				FSW_LOCAL3,0
 
-	//ƒŠ[ƒ_[ƒf[ƒ^ƒZƒbƒg
+	//ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_BTOWER_TOOLS		BTWR_SUB_CHOICE_BTL_PARTNER,BTWR_NULL_PARAM,FSW_ANSWER
 	
-	//ƒŠ[ƒ_[“üê
+	//ãƒªãƒ¼ãƒ€ãƒ¼å…¥å ´
 	//_BGM_STOP			SEQ_BF_TOWWER
 	//_BGM_PLAY			SEQ_PL_EYEBRAIN
 	_CALL				ev_tower_rooms_comanm_leader_in
 
-	//ƒŠ[ƒ_[‘Îí‘O‘äŽŒ
+	//ãƒªãƒ¼ãƒ€ãƒ¼å¯¾æˆ¦å‰å°è©ž
 	_BTOWER_TOOLS		BTWR_SUB_GET_RENSHOU_CNT,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,LEADER_SET_2ND,ev_tower_rooms_leader_talk_01
 
@@ -976,7 +976,7 @@ ev_tower_rooms_leader_entry:
 ev_tower_rooms_leader_talk01_end:
 	_TALK_CLOSE
 
-	//ŒÝ‚¢‚É‹ß‚Ã‚­
+	//äº’ã„ã«è¿‘ã¥ã
 	_CALL				ev_tower_rooms_comanm_sbtl_start
 
 	//_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -985,7 +985,7 @@ ev_tower_rooms_leader_talk01_end:
 	_BRAIN_ENCOUNT_EFFECT		FRONTIER_NO_TOWER
 
 #ifndef DEBUG_BTL_OFF	/************************************************/
-	/*í“¬ŒÄ‚Ño‚µ*/
+	/*æˆ¦é—˜å‘¼ã³å‡ºã—*/
 	//_BTOWER_TOOLS		BTWR_SUB_LOCAL_BTL_CALL,BTWR_NULL_PARAM,FSW_ANSWER
 	_BTOWER_BATTLE_CALL
 	//_TRAINER_LOSE_CHECK FSW_ANSWER
@@ -993,31 +993,31 @@ ev_tower_rooms_leader_talk01_end:
 	_BTOWER_CALL_GET_RESULT	FSW_PARAM3
 #endif	/****************************************************************/
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 #ifndef DEBUG_BTL_LOSE_OFF	/********************************************/
-	/*•‰‚¯‚Ä–ß‚é‚Æ‚«‚Ìˆ—*/
+	/*è² ã‘ã¦æˆ»ã‚‹ã¨ãã®å‡¦ç†*/
 	_IFVAL_JUMP			FSW_PARAM3,EQ,0,ev_tower_rooms_common_lose
 #endif	/****************************************************************/
 
-	//ƒŠ[ƒ_[•‰‚¯‘äŽŒ
+	//ãƒªãƒ¼ãƒ€ãƒ¼è² ã‘å°è©ž
 	_BTOWER_TOOLS		BTWR_SUB_GET_RENSHOU_CNT,BTWR_NULL_PARAM,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,LEADER_SET_2ND,ev_tower_rooms_leader_talk_02
 
-	/*Œ»Ý‚Ì‹L”OƒvƒŠƒ“ƒgó‘Ô‚ðŽæ“¾*/
+	/*ç¾åœ¨ã®è¨˜å¿µãƒ—ãƒªãƒ³ãƒˆçŠ¶æ…‹ã‚’å–å¾—*/
 	_SAVE_EVENT_WORK_GET	SYS_WORK_MEMORY_PRINT_TOWER,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,MEMORY_PRINT_NONE,ev_tower_meory_print_put_1st
 
-	/*1stƒŠ[ƒ_[í“¬Œãmsg*/
+	/*1stãƒªãƒ¼ãƒ€ãƒ¼æˆ¦é—˜å¾Œmsg*/
 	_TALKMSG			msg_tower_boss_04
 	_BTOWER_TOOLS		BTWR_SUB_SET_LEADER_CLEAR_FLAG,1,FSW_ANSWER
 
 	_JUMP				ev_tower_rooms_leader_talk02_end
 	_END
 
-/*Žó•t‚Å1st‹L”OƒvƒŠƒ“ƒg‚ð–á‚¦‚é‚æ‚¤‚É‚·‚é*/
+/*å—ä»˜ã§1stè¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’è²°ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 ev_tower_meory_print_put_1st:
 	_SAVE_EVENT_WORK_SET	SYS_WORK_MEMORY_PRINT_TOWER,MEMORY_PRINT_PUT_1ST
 	_RET
@@ -1027,11 +1027,11 @@ ev_tower_rooms_leader_talk02_end:
 	
 	_CALL				ev_tower_rooms_common_win_param
 
-	//ƒŠ[ƒ_[í‚Ìê‡A•K‚¸I‚í‚è
+	//ãƒªãƒ¼ãƒ€ãƒ¼æˆ¦ã®å ´åˆã€å¿…ãšçµ‚ã‚ã‚Š
 	_JUMP				ev_tower_rooms_leader_clear_ret
 	_END
 
-//“ñ‰ñ–Ú
+//äºŒå›žç›®
 ev_tower_rooms_leader_talk_01:
 	_TALKMSG			msg_tower_boss_03
 	_JUMP				ev_tower_rooms_leader_talk01_end
@@ -1039,35 +1039,35 @@ ev_tower_rooms_leader_talk_01:
 
 ev_tower_rooms_leader_talk_02:
 
-	/*Œ»Ý‚Ì‹L”OƒvƒŠƒ“ƒgó‘Ô‚ðŽæ“¾*/
+	/*ç¾åœ¨ã®è¨˜å¿µãƒ—ãƒªãƒ³ãƒˆçŠ¶æ…‹ã‚’å–å¾—*/
 	_SAVE_EVENT_WORK_GET	SYS_WORK_MEMORY_PRINT_TOWER,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,MEMORY_PRINT_PUT_OK_1ST,ev_tower_meory_print_put_2nd
 
-	/*2ndƒŠ[ƒ_[í“¬Œãmsg*/
+	/*2ndãƒªãƒ¼ãƒ€ãƒ¼æˆ¦é—˜å¾Œmsg*/
 	_TALKMSG			msg_tower_boss_05
 	_BTOWER_TOOLS		BTWR_SUB_SET_LEADER_CLEAR_FLAG,2,FSW_ANSWER
 	_JUMP				ev_tower_rooms_leader_talk02_end
 	_END
 
-/*Žó•t‚Å2nd‹L”OƒvƒŠƒ“ƒg‚ð–á‚¦‚é‚æ‚¤‚É‚·‚é*/
+/*å—ä»˜ã§2ndè¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’è²°ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 ev_tower_meory_print_put_2nd:
 	_SAVE_EVENT_WORK_SET	SYS_WORK_MEMORY_PRINT_TOWER,MEMORY_PRINT_PUT_2ND
 	_RET
 
 
 /********************************************************************/
-/*							ƒŠ[ƒ_[“üê							*/
+/*							ãƒªãƒ¼ãƒ€ãƒ¼å…¥å ´							*/
 /********************************************************************/
 ev_tower_rooms_comanm_leader_in:
-	//ƒ_ƒ~[‚Åƒhƒbƒyƒ‹ƒQƒ“ƒK[“üê
+	//ãƒ€ãƒŸãƒ¼ã§ãƒ‰ãƒƒãƒšãƒ«ã‚²ãƒ³ã‚¬ãƒ¼å…¥å ´
 	//_LDVAL			OBJCHRWORK1,TOWERBOSS
 	_LDVAL				FSW_PARAM2,TOWERBOSS
 
-	/*‘ÎíƒgƒŒ[ƒi[’Ç‰Á*/
-	_CHAR_RESOURCE_SET	enemy_set_resource				/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			enemy_set_actor					/*ƒAƒNƒ^[“o˜^*/
+	/*å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è¿½åŠ */
+	_CHAR_RESOURCE_SET	enemy_set_resource				/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			enemy_set_actor					/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 
-	//ƒoƒjƒbƒVƒ…ƒtƒ‰ƒOOFF
+	//ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°OFF
 	//_FLAG_RESET		FV_OBJID_ETC
 	//_OBJ_ADD			OBJID_ENEMY
 	_OBJ_ANIME			OBJID_ENEMY,anm_d31r0205_leader_01

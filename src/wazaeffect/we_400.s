@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_001.s
- * @brief	ÇÕÇΩÇ≠
+ * @brief	„ÅØ„Åü„Åè
  * @author	goto
- * @date	2005.07.13(êÖ)
+ * @date	2005.07.13(Ê∞¥)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	Å°ÇÕÇΩÇ≠
+//	‚ñ†„ÅØ„Åü„Åè
 //
 //
 // =============================================================================
@@ -30,7 +30,7 @@ WEST_400:
 	ADD_PARTICLE 	0,W_400_400_LINE_SCROLL, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_NONE, OPERATOR_POS_NONE, OPERATOR_AXIS_NONE, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 
-	///< 1âÒñ⁄
+	///< 1ÂõûÁõÆ
 	SE_C			SEQ_SE_DP_BRADE
 	SE_WAITPLAY_C	SEQ_SE_DP_W233,10
 	ADD_PARTICLE 	0,W_400_400_LINE_SLASH1, EMTFUNC_FIELD_OPERATOR
@@ -40,7 +40,7 @@ WEST_400:
 	ADD_PARTICLE 	0,W_400_400_HIT_MARK, EMTFUNC_DEFENCE_POS
 	FUNC_CALL		WEST_SP_WT_SHAKE, 5, SHAKE_S_X, 0, SHAKE_S_WAIT, SHAKE_S_NUM*3,  WE_TOOL_E1 | WE_TOOL_SSP,
 
-	///< 2âÒñ⁄
+	///< 2ÂõûÁõÆ
 	WAIT			10
 	SE_C			SEQ_SE_DP_BRADE
 	SE_WAITPLAY_C	SEQ_SE_DP_W233,10

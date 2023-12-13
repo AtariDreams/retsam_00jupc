@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  Cƒ\[ƒX->ƒoƒCƒiƒŠ[
+# Project:  Cã‚½ãƒ¼ã‚¹->ãƒã‚¤ãƒŠãƒªãƒ¼
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -12,7 +12,7 @@ SUBDIRS		=
 
 EVENTDATA	=	zone_event.narc
 
-#ƒRƒ“ƒo[ƒg‘ÎÛƒtƒ@ƒCƒ‹‚ÌƒTƒtƒBƒbƒNƒX
+#ã‚³ãƒ³ãƒãƒ¼ãƒˆå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚µãƒ•ã‚£ãƒƒã‚¯ã‚¹
 FILETYPES	=	evb	evc	evd	evp
 
 HEADERS		=	evc_id.h evd_id.h script_id.h
@@ -28,12 +28,12 @@ EVDFILES	= $(CONVSRCS:_total.c=.evd)
 EVPFILES	= $(CONVSRCS:_total.c=.evp)
 
 #----------------------------------------------------------------------------
-#Cƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·‚É•K—v‚È’è‹`
+#Cã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã«å¿…è¦ãªå®šç¾©
 #----------------------------------------------------------------------------
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#‹¤’Ê•Ï”’è‹`
+#å…±é€šå¤‰æ•°å®šç¾©
 include $(DP_ROOT)/commondefs.GF
 
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
@@ -46,7 +46,7 @@ ELFPICKUP = $(DP_ROOT)/convert/eventdata/elfpickup.pl
 ELFALLPICKUP = $(DP_ROOT)/convert/eventdata/elfallpickup2.pl
 
 #----------------------------------------------------------------------------
-#Make‚Å¶¬‚³‚ê‚é*.bin‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.binã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 #LDIRT_CLEAN	= $(CONVSRCS:.c=.bin) $(foreach mark, $(FILETYPES), $(CONVSRCS:_total.c=_$(mark).bin))
 #LDIRT_CLEAN += $(EVENTDATA) $(EVENTDATA:.narc=.naix) $(HEADERS)
 #LDIRT_CLEAN += $(CONVSRCS:_total.c=_evb.c) $(CONVSRCS:_total.c=_evc.c) \
@@ -60,7 +60,7 @@ LINCLUDES	+= $(dir $<)
 
 
 #----------------------------------------------------------------------------
-#	XVƒ‹[ƒ‹’è‹`
+#	æ›´æ–°ãƒ«ãƒ¼ãƒ«å®šç¾©
 #----------------------------------------------------------------------------
 
 do-build: $(EVENTDATA)
@@ -89,7 +89,7 @@ INCLUDES		+=	-I$(NITROSYSTEM_ROOT)/include
 
 precompile: $(PRECOMPILE_CC_MCH)
 
-#ƒo[ƒWƒ‡ƒ“’è‹`ƒtƒ@ƒCƒ‹‚ªXV‚³‚ê‚½‚çƒvƒŠƒRƒ“ƒpƒCƒ‹ƒwƒbƒ_‚àXV‚·‚é
+#ãƒãƒ¼ã‚¸ãƒ§ãƒ³å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ãŒæ›´æ–°ã•ã‚ŒãŸã‚‰ãƒ—ãƒªã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ã‚‚æ›´æ–°ã™ã‚‹
 $(PRECOMPILE_CC_MCH):	$(VER_FILE)
 
 -include $(PRECOMPILE_CC_MCH).d
@@ -127,15 +127,15 @@ all_data.elf:	ev_common.h $(EVBFILES) $(EVCFILES) $(EVDFILES) $(EVPFILES) $(HEAD
 	$(MWLD) -dis -o all_data.elf all_data.o
 
 
-#‚±‚ÌƒfƒBƒŒƒNƒgƒŠ‚É‘¶İ‚·‚é*evc.hƒtƒ@ƒCƒ‹‚ğ‘S•”ƒCƒ“ƒNƒ‹[ƒh‚·‚éƒtƒ@ƒCƒ‹evc_id.h‚ğ¶¬
+#ã“ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«å­˜åœ¨ã™ã‚‹*evc.hãƒ•ã‚¡ã‚¤ãƒ«ã‚’å…¨éƒ¨ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«evc_id.hã‚’ç”Ÿæˆ
 evc_id.h:
 	sed "s/evd\.h/evc\.h/" ../maptable/doorevent.h > evc_id.h
 
-#‚±‚ÌƒfƒBƒŒƒNƒgƒŠ‚É‘¶İ‚·‚é*evd.hƒtƒ@ƒCƒ‹‚ğ‘S•”ƒCƒ“ƒNƒ‹[ƒh‚·‚éƒtƒ@ƒCƒ‹evd_id.h‚ğ¶¬
+#ã“ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«å­˜åœ¨ã™ã‚‹*evd.hãƒ•ã‚¡ã‚¤ãƒ«ã‚’å…¨éƒ¨ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«evd_id.hã‚’ç”Ÿæˆ
 evd_id.h:
 	ls -1 *evd.h |sed "s/^/#include \"/;s/$$/\"/" > evd_id.h
 
-#scriptƒfƒBƒŒƒNƒgƒŠ‚É‘¶İ‚·‚é*def.hƒtƒ@ƒCƒ‹‚ğ‘S•”ƒCƒ“ƒNƒ‹[ƒh‚·‚éƒtƒ@ƒCƒ‹script_id.h‚ğ¶¬
+#scriptãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«å­˜åœ¨ã™ã‚‹*def.hãƒ•ã‚¡ã‚¤ãƒ«ã‚’å…¨éƒ¨ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«script_id.hã‚’ç”Ÿæˆ
 script_id.h: $(wildcard ../script/*_def.h)
 	ls -1 ../script/*_def.h |grep -v scr_seq_def.h |sed "s/^/#include \"/;s/$$/\"/" > script_id.h
 

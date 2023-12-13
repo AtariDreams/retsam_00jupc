@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.3  2005/09/05 01:36:43  yasu
-  TAB ‚Ì‹ó”’‰»
+  TAB ã®ç©ºç™½åŒ–
 
   Revision 1.2  2005/08/24 09:53:35  yada
   applied for new ISD library
@@ -53,16 +53,16 @@ extern NITROTOOLAPI_CHECKPOWER NITROToolAPIGetPowerStatus;
 extern NITROTOOLAPI_CARDSLOTPOWER NITROToolAPICardSlotPower;
 extern NITROTOOLAPI_CARTRIDGESLOTPOWER NITROToolAPICartridgeSlotPower;
 
-// ƒXƒgƒŠ[ƒ€ƒx[ƒX‚Ìƒf[ƒ^‘—óM
+// ã‚¹ãƒˆãƒªãƒ¼ãƒ ãƒ™ãƒ¼ã‚¹ã®ãƒ‡ãƒ¼ã‚¿é€å—ä¿¡
 extern NITROTOOLAPI_STREAMWRITE NITROToolAPIStreamWrite;
 extern NITROTOOLAPI_STREAMGETWRITABLELEN NITROToolAPIStreamGetWritableLength;
 extern NITROTOOLAPI_STREAMSETCB NITROToolAPISetReceiveStreamCallBackFunction;
 extern NITROTOOLAPI_STREAMCHKRECV NITROToolAPICheckStreamReceive;
 
-// ƒfƒoƒbƒOƒvƒŠƒ“ƒg‚Ìæ“¾Œn
+// ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒ³ãƒˆã®å–å¾—ç³»
 extern NITROTOOLAPI_GETDEBUGPRINT NITROToolAPIGetDebugPrint;
 
-// ƒGƒ‰[æ“¾Œn
+// ã‚¨ãƒ©ãƒ¼å–å¾—ç³»
 extern NITROTOOLAPI_GETLASTERROR NITROToolAPIGetLastError;
 extern NITROTOOLAPI_GETERRORMESSAGE NITROToolAPIGetErrorMessage;
 #endif
@@ -94,7 +94,7 @@ extern NITROTOOLAPI_GETLASTERROR ISNTD_GetLastError;
 extern NITROTOOLAPI_GETERRORMESSAGE ISNTD_GetLastErrorMessage;
 
 
-//---- ƒfƒoƒCƒXí—Ş
+//---- ãƒ‡ãƒã‚¤ã‚¹ç¨®é¡
 #define ISNTD_DEVICE_NONE                   0
 #define ISNTD_DEVICE_CGB_EMULATOR_USB       1
 #define ISNTD_DEVICE_CGB_EMULATOR_SCSI      2

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	tv_topic.h
- * @brief	ƒeƒŒƒr‚ÌƒgƒsƒbƒN“o˜^—pƒwƒbƒ_
+ * @brief	ãƒ†ãƒ¬ãƒ“ã®ãƒˆãƒ”ãƒƒã‚¯ç™»éŒ²ç”¨ãƒ˜ãƒƒãƒ€
  * @date	2006.05.22
  * @author	tamada GAME FREAK inc.
  */
@@ -20,172 +20,172 @@
 //============================================================================================
 //
 //
-//		ŒÂ•ÊƒgƒsƒbƒN—pˆ—
+//		å€‹åˆ¥ãƒˆãƒ”ãƒƒã‚¯ç”¨å‡¦ç†
 //
 //
 //============================================================================================
 
 //============================================================================================
 //
-//	ŠÄŽ‹Œ^(š‚ÍV‹KA¡‚Ííœ)
+//	ç›£è¦–åž‹(â˜…ã¯æ–°è¦ã€â– ã¯å‰Šé™¤)
 //
 //============================================================================================
 
-//02-01,02-02	ƒgƒsƒbƒN¶¬F•ßŠl¬Œ÷•Ž¸”s
+//02-01,02-02	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæ•ç²æˆåŠŸï¼†å¤±æ•—
 //--------------------------------------------------------------------
 /**
- * @brief	ƒeƒŒƒrƒgƒsƒbƒN¶¬F•ßŠl
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	tvwbw			ƒeƒŒƒrƒgƒsƒbƒN—pî•ñ•ÛŽƒ[ƒN
+ * @brief	ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæ•ç²
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	tvwbw			ãƒ†ãƒ¬ãƒ“ãƒˆãƒ”ãƒƒã‚¯ç”¨æƒ…å ±ä¿æŒãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_Capture(FIELDSYS_WORK * fsys,
 		const TVWATCH_BATTLE_WORK * wcw_result, int win_lose_flag);
 
-//02-03	ƒgƒsƒbƒN¶¬F¢ŠE‚ð’Þ‚éI
+//02-03	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šä¸–ç•Œã‚’é‡£ã‚‹ï¼
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F¢ŠE‚ð’Þ‚éI
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	success_flag	¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
- * @param	itemno			Žg—p‚µ‚½‚Â‚è‚´‚¨‚ÌƒAƒCƒeƒ€ƒiƒ“ƒo[
- * @param	pp				’Þ‚èã‚°‚½ƒ|ƒPƒ‚ƒ“‚ÌPOKEMON_PARAM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šä¸–ç•Œã‚’é‡£ã‚‹ï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	success_flag	æˆåŠŸã—ãŸã‹ã©ã†ã‹
+ * @param	itemno			ä½¿ç”¨ã—ãŸã¤ã‚Šã–ãŠã®ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param	pp				é‡£ã‚Šä¸Šã’ãŸãƒã‚±ãƒ¢ãƒ³ã®POKEMON_PARAMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ’Þ‚èã‚°‚ç‚ê‚È‚©‚Á‚½ê‡Asuccess_flag == FALSE‚ÅPP==NULL‚Å‚æ‚¢
+ * é‡£ã‚Šä¸Šã’ã‚‰ã‚Œãªã‹ã£ãŸå ´åˆã€success_flag == FALSEã§PP==NULLã§ã‚ˆã„
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_Fishing(FIELDSYS_WORK * fsys, BOOL success_flag,
 		u16 itemno, POKEMON_PARAM * pp);
 
-//02-04	ƒgƒsƒbƒN¶¬FƒOƒ‹[ƒv‚ð“ü‚ê‘Ö‚¦‚é
+//02-04	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚°ãƒ«ãƒ¼ãƒ—ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
 extern void TVTOPIC_Entry_Watch_ChangeGroup(FIELDSYS_WORK * fsys);
 
-//02-06	ƒgƒsƒbƒN¶¬F‰B‚µƒAƒCƒeƒ€”­Œ©
+//02-06	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šéš ã—ã‚¢ã‚¤ãƒ†ãƒ ç™ºè¦‹
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‰B‚µƒAƒCƒeƒ€”­Œ©I
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	item_no		Œ©‚Â‚¯‚½ƒAƒCƒeƒ€‚Ìƒiƒ“ƒo[
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šéš ã—ã‚¢ã‚¤ãƒ†ãƒ ç™ºè¦‹ï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	item_no		è¦‹ã¤ã‘ãŸã‚¢ã‚¤ãƒ†ãƒ ã®ãƒŠãƒ³ãƒãƒ¼
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_HideItem(FIELDSYS_WORK * fsys, u16 item_no);
 
-//02-07	ƒgƒsƒbƒN¶¬F”ƒ‚¢•¨ƒ`ƒFƒbƒN
+//02-07	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šè²·ã„ç‰©ãƒã‚§ãƒƒã‚¯
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F”ƒ‚¢•¨ƒ`ƒFƒbƒN			ˆê“x‚É10ŒÂˆÈã‚Ì“¹‹ï‚ð”ƒ‚Á‚½Žžš
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šè²·ã„ç‰©ãƒã‚§ãƒƒã‚¯			ä¸€åº¦ã«10å€‹ä»¥ä¸Šã®é“å…·ã‚’è²·ã£ãŸæ™‚â˜…
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 //extern void TVTOPIC_Entry_Watch_Shopping(FIELDSYS_WORK * fsys, u16 item_no, u8 item_num);
 extern void TVTOPIC_Entry_Watch_Shopping(SAVEDATA * savedata, u16 item_no, u8 item_num);
 
-//02-08	ƒgƒsƒbƒN¶¬Fƒ^ƒ}ƒS‚ª›z‚Á‚½I
+//02-08	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚¿ãƒžã‚´ãŒå­µã£ãŸï¼
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒ^ƒ}ƒS‚ª›z‚Á‚½I
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	›z‚Á‚½ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚¿ãƒžã‚´ãŒå­µã£ãŸï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	å­µã£ãŸãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_HatchEgg(FIELDSYS_WORK * fsys, POKEMON_PARAM * pp);
 
-//02-10	ƒgƒsƒbƒN¶¬F©–¼”»’f
+//02-10	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šå§“ååˆ¤æ–­
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F©–¼”»’f	ƒjƒbƒNƒl[ƒ€‚ð•ÏX‚µ‚½‚Æ‚«
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	pp		–¼‘O‚ð•Ï‚¦‚½ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šå§“ååˆ¤æ–­	ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ã‚’å¤‰æ›´ã—ãŸã¨ã
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pp		åå‰ã‚’å¤‰ãˆãŸãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_ChangeName(FIELDSYS_WORK * fsys, POKEMON_PARAM * pp);
 
-//02-13	ƒgƒsƒbƒN¶¬F’n‰º‰»ÎŒ@‚è
+//02-13	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šåœ°ä¸‹åŒ–çŸ³æŽ˜ã‚Š
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‰»ÎŒ@‚è	‰»ÎŒ@‚è‚ð‚µ‚½‚ ‚Æ
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	fossil_type		‰»Î‚ÌƒAƒCƒeƒ€ƒiƒ“ƒo[
- * @param	fossil_num		Žæ‚ê‚½‰»Î‚Ì”
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šåŒ–çŸ³æŽ˜ã‚Š	åŒ–çŸ³æŽ˜ã‚Šã‚’ã—ãŸã‚ã¨
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fossil_type		åŒ–çŸ³ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param	fossil_num		å–ã‚ŒãŸåŒ–çŸ³ã®æ•°
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_DigFossil(FIELDSYS_WORK * fsys, int fossil_type, int fossil_num);
 
-//02-15	ƒgƒsƒbƒN¶¬FƒTƒtƒ@ƒŠƒQ[ƒ€
+//02-15	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚µãƒ•ã‚¡ãƒªã‚²ãƒ¼ãƒ 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FƒTƒtƒ@ƒŠƒQ[ƒ€	ƒTƒtƒ@ƒŠƒQ[ƒ€‚ðI—¹‚³‚¹‚½‚Æ‚«
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚µãƒ•ã‚¡ãƒªã‚²ãƒ¼ãƒ 	ã‚µãƒ•ã‚¡ãƒªã‚²ãƒ¼ãƒ ã‚’çµ‚äº†ã•ã›ãŸã¨ã
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_Safari(FIELDSYS_WORK * fsys);
 
-//02-16	ƒgƒsƒbƒN¶¬FƒIƒX‚¾‚¯IƒƒX‚¾‚¯I
+//02-16	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚ªã‚¹ã ã‘ï¼ãƒ¡ã‚¹ã ã‘ï¼
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FƒIƒX‚¾‚¯IƒƒX‚¾‚¯I			ƒpƒ\ƒRƒ“‚©‚ç”²‚¯‚½Žž‚ÌŽèŽ‚¿‚É‚æ‚èš
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚ªã‚¹ã ã‘ï¼ãƒ¡ã‚¹ã ã‘ï¼			ãƒ‘ã‚½ã‚³ãƒ³ã‹ã‚‰æŠœã‘ãŸæ™‚ã®æ‰‹æŒã¡ã«ã‚ˆã‚Šâ˜…
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_OsuMesu(FIELDSYS_WORK * fsys);
 
-//02-17	ƒgƒsƒbƒN¶¬F—Ç–ò‚ÍŒû‚É‹ê‚µI	ƒ|ƒPƒ‚ƒ“‚ÉŠ¿•û–ò‚ð‚ ‚°‚½‚Æ‚«¡
-//tvtopic_extern.h‚É‚ ‚è‚Ü‚·
+//02-17	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šè‰¯è–¬ã¯å£ã«è‹¦ã—ï¼	ãƒã‚±ãƒ¢ãƒ³ã«æ¼¢æ–¹è–¬ã‚’ã‚ã’ãŸã¨ãâ– 
+//tvtopic_extern.hã«ã‚ã‚Šã¾ã™
 
-//02-18,02-19,03-06	ƒgƒsƒbƒN¶¬F‚«‚Ì‚ÝŠÖ˜A
+//02-18,02-19,03-06	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãã®ã¿é–¢é€£
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚«‚Ì‚Ý‚ð‚Æ‚Á‚½‚Æ‚«
- * @param	fsys			ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	nuts_item_no	‚Æ‚Á‚½‚«‚Ì‚Ý‚ÌƒAƒCƒeƒ€ƒiƒ“ƒo[
- * @param	hp				‚Æ‚Á‚½‚Æ‚«‚ÌHP‚Ì’l
- * @param	nuts_count		‚Æ‚Á‚½‚«‚Ì‚Ý‚Ì”
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãã®ã¿ã‚’ã¨ã£ãŸã¨ã
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	nuts_item_no	ã¨ã£ãŸãã®ã¿ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼
+ * @param	hp				ã¨ã£ãŸã¨ãã®HPã®å€¤
+ * @param	nuts_count		ã¨ã£ãŸãã®ã¿ã®æ•°
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_TakeNuts(FIELDSYS_WORK  *fsys, u16 nuts_item_no, u8 hp, u16 nuts_count);
 
-//02-20	ƒgƒsƒbƒN¶¬FƒOƒ‹[ƒv‚ðì‚é
+//02-20	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚°ãƒ«ãƒ¼ãƒ—ã‚’ä½œã‚‹
 extern void TVTOPIC_Entry_Watch_MakeGroup(FIELDSYS_WORK * fsys);
 
-//02-21	ƒgƒsƒbƒN¶¬FƒJƒXƒ^ƒ€ƒ{[ƒ‹ƒZƒbƒg
-//field/tvtopic_extern.h‚É‚ ‚è‚Ü‚·
+//02-21	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã‚»ãƒƒãƒˆ
+//field/tvtopic_extern.hã«ã‚ã‚Šã¾ã™
 
-//02-22	ƒgƒsƒbƒN¶¬FŠø‚ðŽ‚¿‹A‚Á‚½I
+//02-22	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæ——ã‚’æŒã¡å¸°ã£ãŸï¼
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FŠø‚ðŽæ‚Á‚½I		l‚ÌŠø‚ðŽ‚¿‹A‚Á‚½I
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	rival		‘ŠŽè‚ÌMYSTATUS‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæ——ã‚’å–ã£ãŸï¼		äººã®æ——ã‚’æŒã¡å¸°ã£ãŸï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	rival		ç›¸æ‰‹ã®MYSTATUSã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_GetFlag(FIELDSYS_WORK * fsys, const MYSTATUS * rival);
 
-//02-23	ƒgƒsƒbƒN¶¬FŠø‚ðŽ‚¿‹A‚ç‚ê‚½I
+//02-23	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæ——ã‚’æŒã¡å¸°ã‚‰ã‚ŒãŸï¼
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FŠø‚ðŽæ‚ç‚ê‚½I		Ž©•ª‚ÌŠø‚ðŽ‚¿‹A‚ç‚ê‚½I
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	rival		‘ŠŽè‚ÌMYSTATUS‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæ——ã‚’å–ã‚‰ã‚ŒãŸï¼		è‡ªåˆ†ã®æ——ã‚’æŒã¡å¸°ã‚‰ã‚ŒãŸï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	rival		ç›¸æ‰‹ã®MYSTATUSã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_LoseFlag(FIELDSYS_WORK * fsys, const MYSTATUS * rival);
 
-//02-25	ƒgƒsƒbƒN¶¬F•Ê‘‘w“üI
+//02-25	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šåˆ¥è˜è³¼å…¥ï¼
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F•Ê‘‘w“üI			•Ê‘‘‚ðì‚Á‚½Žžš
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šåˆ¥è˜è³¼å…¥ï¼			åˆ¥è˜ã‚’ä½œã£ãŸæ™‚â˜…
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_Villa(FIELDSYS_WORK * fsys);
 
-//02-26	ƒgƒsƒbƒN¶¬F•Ê‘‘‰ü’zI
+//02-26	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šåˆ¥è˜æ”¹ç¯‰ï¼
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F•Ê‘‘‰ü’zI			•Ê‘‘‚Å‰½‚©‚ðw“ü‚µ‚½Žžš
- *												•Ê‘‘w“ü(25)‚ª–¢•ú‘—‚È‚çì¬‚³‚ê‚È‚¢
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	no		w“ü‚µ‚½‰Æ‹ï
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šåˆ¥è˜æ”¹ç¯‰ï¼			åˆ¥è˜ã§ä½•ã‹ã‚’è³¼å…¥ã—ãŸæ™‚â˜…
+ *												åˆ¥è˜è³¼å…¥(25)ãŒæœªæ”¾é€ãªã‚‰ä½œæˆã•ã‚Œãªã„
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	no		è³¼å…¥ã—ãŸå®¶å…·
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Watch_Reconstruction(FIELDSYS_WORK * fsys, u8 no);
@@ -193,102 +193,102 @@ extern void TVTOPIC_Entry_Watch_Reconstruction(FIELDSYS_WORK * fsys, u8 no);
 
 //============================================================================================
 //
-//	ƒMƒlƒXŒ^(š‚ÍV‹KA¡‚Ííœ)
+//	ã‚®ãƒã‚¹åž‹(â˜…ã¯æ–°è¦ã€â– ã¯å‰Šé™¤)
 //
 //============================================================================================
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒoƒgƒ‹ƒ^ƒ[˜AŸ
- * @param	fsys			ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	renshou			˜AŸ”
- * @param	pp				æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	IsSingleFlag	ƒVƒ“ƒOƒ‹í‚©‚Ç‚¤‚©
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€£å‹
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	renshou			é€£å‹æ•°
+ * @param	pp				å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	IsSingleFlag	ã‚·ãƒ³ã‚°ãƒ«æˆ¦ã‹ã©ã†ã‹
  */
 //--------------------------------------------------------------------
-extern void TVTOPIC_Entry_Record_BTowerEx(SAVEDATA * savedata,		//ˆø”‚ðSAVEDATA‚É•ÏX
+extern void TVTOPIC_Entry_Record_BTowerEx(SAVEDATA * savedata,		//å¼•æ•°ã‚’SAVEDATAã«å¤‰æ›´
 		u32 renshou, POKEMON_PARAM * pp, BOOL IsSingleFlag);
 extern void TVTOPIC_Entry_Record_BTower(FIELDSYS_WORK * fsys,
 		u32 renshou, POKEMON_PARAM * pp, BOOL IsSingleFlag);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‘å‚«‚³‘ª’è‹L˜^XV	‘å‚«‚³‘ª’è‚Å‹L˜^‚ðXV‚µ‚½‚Æ‚«
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	size		‹L˜^
- * @param	pp			XV‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šå¤§ãã•æ¸¬å®šè¨˜éŒ²æ›´æ–°	å¤§ãã•æ¸¬å®šã§è¨˜éŒ²ã‚’æ›´æ–°ã—ãŸã¨ã
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	size		è¨˜éŒ²
+ * @param	pp			æ›´æ–°ã—ãŸãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Record_Ookisa(FIELDSYS_WORK * fsys, u32 size, POKEMON_PARAM * pp);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FƒXƒƒbƒg’Bl	ƒXƒƒbƒg‚Åˆê’è–‡”ˆÈã‚ð‰Ò‚¢‚¾‚Æ‚«
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	start_coin		ŠJŽnŽž‚ÌƒRƒCƒ“–‡”
- * @param	end_coin		I—¹Žž‚ÌƒRƒCƒ“–‡”
- * @param	playtime		ƒvƒŒƒCŽžŠÔi•ª’PˆÊj
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚¹ãƒ­ãƒƒãƒˆé”äºº	ã‚¹ãƒ­ãƒƒãƒˆã§ä¸€å®šæžšæ•°ä»¥ä¸Šã‚’ç¨¼ã„ã ã¨ã
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	start_coin		é–‹å§‹æ™‚ã®ã‚³ã‚¤ãƒ³æžšæ•°
+ * @param	end_coin		çµ‚äº†æ™‚ã®ã‚³ã‚¤ãƒ³æžšæ•°
+ * @param	playtime		ãƒ—ãƒ¬ã‚¤æ™‚é–“ï¼ˆåˆ†å˜ä½ï¼‰
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Record_Slot(FIELDSYS_WORK * fsys, u32 start_coin, u32 end_coin, u32 playtime);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FƒŠƒ{ƒ“ƒRƒŒƒNƒ^[@ƒŠƒ{ƒ“‚ðˆê’è–‡”ˆÈãŠl“¾Žž‚Éì¬š
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒªãƒœãƒ³ã‚³ãƒ¬ã‚¯ã‚¿ãƒ¼ã€€ãƒªãƒœãƒ³ã‚’ä¸€å®šæžšæ•°ä»¥ä¸Šç²å¾—æ™‚ã«ä½œæˆâ˜…
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 //extern void TVTOPIC_Entry_Record_Ribbon(FIELDSYS_WORK * fsys, POKEMON_PARAM* pp, u32 ribbon_id);
 extern void TVTOPIC_Entry_Record_Ribbon(SAVEDATA * savedata, POKEMON_PARAM* pp, u32 ribbon_id);
 
 
-//–Ø‚ÌŽÀˆç‚Ä‚Ì–¼l¡@©Œ©“–‚½‚ç‚È‚¢H
+//æœ¨ã®å®Ÿè‚²ã¦ã®åäººâ– ã€€â†è¦‹å½“ãŸã‚‰ãªã„ï¼Ÿ
 
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F—h‚ê‘–¼l¨ƒ|ƒPƒgƒŒ–¼l@—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg‚ªI—¹‚µ‚½Žžš
- *													˜A‘±”‚ª10ˆÈã‚È‚ç‚Îì¬
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæºã‚Œè‰åäººâ†’ãƒã‚±ãƒˆãƒ¬åäººã€€æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãŒçµ‚äº†ã—ãŸæ™‚â˜…
+ *													é€£ç¶šæ•°ãŒ10ä»¥ä¸Šãªã‚‰ã°ä½œæˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Record_Poketore(FIELDSYS_WORK * fsys );
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒƒi‰ðœ–¼l	’n‰º‚É“ü‚Á‚½‚Æ‚«A‚½‚­‚³‚ñ‚Ìƒƒi‚ð‰ðœ‚µ‚½‚çì¬
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	trap_no			Å‰‚É‰ðœ‚µ‚½ƒƒi‚Ìƒiƒ“ƒo[
- * @param	remove_count	ƒƒi‚ð‰ðœ‚µ‚½‰ñ”
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒ¯ãƒŠè§£é™¤åäºº	åœ°ä¸‹ã«å…¥ã£ãŸã¨ãã€ãŸãã•ã‚“ã®ãƒ¯ãƒŠã‚’è§£é™¤ã—ãŸã‚‰ä½œæˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	trap_no			æœ€åˆã«è§£é™¤ã—ãŸãƒ¯ãƒŠã®ãƒŠãƒ³ãƒãƒ¼
+ * @param	remove_count	ãƒ¯ãƒŠã‚’è§£é™¤ã—ãŸå›žæ•°
  *
- * ’n‰º‚É“ü‚Á‚Ä‚©‚ço‚é‚Ü‚Å‚ÌŠÔ‚Ì‰ñ”‚Å‚·Bˆê“xo‚½‚çƒŠƒZƒbƒg‚³‚ê‚Ü‚·B
+ * åœ°ä¸‹ã«å…¥ã£ã¦ã‹ã‚‰å‡ºã‚‹ã¾ã§ã®é–“ã®å›žæ•°ã§ã™ã€‚ä¸€åº¦å‡ºãŸã‚‰ãƒªã‚»ãƒƒãƒˆã•ã‚Œã¾ã™ã€‚
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Record_RemoveTrap(FIELDSYS_WORK * fsys, u16 trap_no, u16 remove_count);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒnƒ^ƒgƒŠ–¼l
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag_count		Šø‚ðŽæ‚Á‚½‰ñ”
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒã‚¿ãƒˆãƒªåäºº
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag_count		æ——ã‚’å–ã£ãŸå›žæ•°
  *
- * ’n‰º‚É“ü‚Á‚Ä‚©‚ço‚é‚Ü‚Å‚ÌŠÔ‚Ì‰ñ”‚Å‚·Bˆê“xo‚½‚çƒŠƒZƒbƒg‚³‚ê‚Ü‚·B
+ * åœ°ä¸‹ã«å…¥ã£ã¦ã‹ã‚‰å‡ºã‚‹ã¾ã§ã®é–“ã®å›žæ•°ã§ã™ã€‚ä¸€åº¦å‡ºãŸã‚‰ãƒªã‚»ãƒƒãƒˆã•ã‚Œã¾ã™ã€‚
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Record_GetFlag(FIELDSYS_WORK * fsys, u16 flag_count);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼l@ˆê“úˆê’èˆÈã‚Ìƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ð‰Ò‚¢‚¾š
- * @param	savedata	ƒZ[ƒuƒf[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäººã€€ä¸€æ—¥ä¸€å®šä»¥ä¸Šã®ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’ç¨¼ã„ã â˜…
+ * @param	savedata	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Record_BP(SAVEDATA * savedata);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬FGTS–¼l@ˆê“ú‚É10‰ñˆÈãƒ|ƒPƒ‚ƒ“‚ðŒðŠ·š
- * @param	savedata	ƒZ[ƒuƒf[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šGTSåäººã€€ä¸€æ—¥ã«10å›žä»¥ä¸Šãƒã‚±ãƒ¢ãƒ³ã‚’äº¤æ›â˜…
+ * @param	savedata	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_Record_GTS(SAVEDATA * savedata);
@@ -296,132 +296,132 @@ extern void TVTOPIC_Entry_Record_GTS(SAVEDATA * savedata);
 
 //============================================================================================
 //
-//	Ž¿–âŒ^(š‚ÍV‹KA¡‚Ííœ)
+//	è³ªå•åž‹(â˜…ã¯æ–°è¦ã€â– ã¯å‰Šé™¤)
 //
 //============================================================================================
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒoƒgƒ‹ƒ^ƒ[ƒCƒ“ƒ^ƒrƒ…[
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_BTower(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚ ‚È‚½‚Ìƒ|ƒPƒ‚ƒ“ƒCƒ“ƒ^ƒrƒ…[
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã‚ãªãŸã®ãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ³ã‚¿ãƒ“ãƒ¥ãƒ¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_Pokemon(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚¨‹C‚É“ü‚è‚Ìƒ|ƒPƒbƒ`
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãŠæ°—ã«å…¥ã‚Šã®ãƒã‚±ãƒƒãƒ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_Poketch(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F’§íIƒRƒ“ƒeƒXƒg
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæŒ‘æˆ¦ï¼ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_Contest(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒ|ƒPƒ‚ƒ“ƒNƒŠƒbƒvI
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒã‚±ãƒ¢ãƒ³ã‚¯ãƒªãƒƒãƒ—ï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_Clip(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F«Šif’fI
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šæ€§æ ¼è¨ºæ–­ï¼
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_Character(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒ|ƒ‹ƒg—¿—
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒãƒ«ãƒˆæ–™ç†
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_Poruto(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒ|ƒPƒ‚ƒ“˜A‚ê•à‚«
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒã‚±ãƒ¢ãƒ³é€£ã‚Œæ­©ã
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_Park(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒoƒgƒ‹ƒXƒe[ƒWš
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸â˜…
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_Stage(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_Strange1(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_Strange2(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_Strange3(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬F‚Ö‚ñ‚ÈƒAƒ“ƒP[ƒgš
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šã¸ã‚“ãªã‚¢ãƒ³ã‚±ãƒ¼ãƒˆâ˜…
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_Strange4(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //--------------------------------------------------------------------
 /**
- * @brief	ƒgƒsƒbƒN¶¬Fƒtƒƒ“ƒeƒBƒA‚Å’‡—Ç‚µš
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	word		ŠÈˆÕ‰ï˜b’PŒêID
+ * @brief	ãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆï¼šãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã§ä»²è‰¯ã—â˜…
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	word		ç°¡æ˜“ä¼šè©±å˜èªžID
  */
 //--------------------------------------------------------------------
 extern void TVTOPIC_Entry_QandA_Friend(FIELDSYS_WORK * fsys, PMS_WORD word);
@@ -429,13 +429,13 @@ extern void TVTOPIC_Entry_QandA_Friend(FIELDSYS_WORK * fsys, PMS_WORD word);
 
 //============================================================================================
 //
-//	ˆê“úˆê‰ñƒNƒŠƒA
+//	ä¸€æ—¥ä¸€å›žã‚¯ãƒªã‚¢
 //
 //============================================================================================
 
 //----------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼lAGTS–¼l‚Ìƒ[ƒNƒNƒŠƒAš
+ * @brief	ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäººã€GTSåäººã®ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢â˜…
  * @param	savedata
  * @return	none
  */

@@ -15,8 +15,8 @@
   do-indent.
 
   Revision 1.2  2005/02/09 09:13:16  terui
-  StartUp�֐��Ƀp�����[�^��ǉ��B
-  VRAM���w��\�ɂȂ������Ƃɂ��A�֐��������C���B
+  StartUp関数にパラメータを追加。
+  VRAMを指定可能になったことにより、関数説明を修正。
 
   Revision 1.1  2004/12/20 00:44:36  terui
   Initial upload.
@@ -34,34 +34,34 @@ extern "C" {
 
 #include    <nitro/gx/gx_vramcnt.h>
 
-// �񓯊� API �̃R�[���o�b�N�֐��^
+// 非同期 API のコールバック関数型
 typedef void (*WVRCallbackFunc) (void *arg, WVRResult result);
 
 
 /*---------------------------------------------------------------------------*
   Name:         WVR_StartUpAsync
 
-  Description:  �������C�u�������쓮�J�n����B
-                ������~����܂ŁA�w�肵��VRAM( C or D )�ւ̃A�N�Z�X�͋֎~�ɂȂ�B
+  Description:  無線ライブラリを駆動開始する。
+                強制停止するまで、指定したVRAM( C or D )へのアクセスは禁止になる。
 
-  Arguments:    vram        -   ARM7�Ɋ��蓖�Ă�VRAM�o���N���w��B
-                callback    -   �����������̃R�[���o�b�N�֐����w��B
-                arg         -   �R�[���o�b�N�֐��ɓn���������w��B
+  Arguments:    vram        -   ARM7に割り当てるVRAMバンクを指定。
+                callback    -   処理完了時のコールバック関数を指定。
+                arg         -   コールバック関数に渡す引数を指定。
 
-  Returns:      �������ʂ�Ԃ��B
+  Returns:      処理結果を返す。
  *---------------------------------------------------------------------------*/
 WVRResult WVR_StartUpAsync(GXVRamARM7 vram, WVRCallbackFunc callback, void *arg);
 
 /*---------------------------------------------------------------------------*
   Name:         WVR_TerminateAsync
 
-  Description:  �������C�u������������~����B
-                �񓯊�����������AVRAM( C or D )�ւ̃A�N�Z�X�͋������B
+  Description:  無線ライブラリを強制停止する。
+                非同期処理完了後、VRAM( C or D )へのアクセスは許可される。
 
-  Arguments:    callback    -   �����������̃R�[���o�b�N�֐����w��B
-                arg         -   �R�[���o�b�N�֐��ɓn���������w��B
+  Arguments:    callback    -   処理完了時のコールバック関数を指定。
+                arg         -   コールバック関数に渡す引数を指定。
 
-  Returns:      �������ʂ�Ԃ��B
+  Returns:      処理結果を返す。
  *---------------------------------------------------------------------------*/
 WVRResult WVR_TerminateAsync(WVRCallbackFunc callback, void *arg);
 

@@ -3,11 +3,11 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_system.c
- *	@brief		WiFiƒƒr[‹¤’Êˆ—ƒVƒXƒeƒ€
+ *	@brief		WiFiãƒ­ãƒ“ãƒ¼å…±é€šå‡¦ç†ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.09.14
  *
- *	WiFiƒƒr[’†í‚É“®ì‚µ‚Ä‚¢‚éƒVƒXƒeƒ€‚Í‚±‚±‚Å“®‚©‚·B
+ *	WiFiãƒ­ãƒ“ãƒ¼ä¸­å¸¸ã«å‹•ä½œã—ã¦ã„ã‚‹ã‚·ã‚¹ãƒ†ãƒ ã¯ã“ã“ã§å‹•ã‹ã™ã€‚
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 
@@ -46,19 +46,19 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 
@@ -75,44 +75,44 @@ extern BOOL D_Tomoya_WiFiLobby_ALLVip;
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	‰ï˜bƒf[ƒ^
+///	ä¼šè©±ãƒ‡ãƒ¼ã‚¿
 //=====================================
 enum {
-	WFLBY_TALK_TYPE_NONE,	// ‰½‚à‚µ‚Ä‚È‚¢
-	WFLBY_TALK_TYPE_A,		// ˜b‚µ‚©‚¯‚½‘¤
-	WFLBY_TALK_TYPE_B,		// ˜b‚µ‚©‚¯‚ç‚ê‚½‘¤
+	WFLBY_TALK_TYPE_NONE,	// ä½•ã‚‚ã—ã¦ãªã„
+	WFLBY_TALK_TYPE_A,		// è©±ã—ã‹ã‘ãŸå´
+	WFLBY_TALK_TYPE_B,		// è©±ã—ã‹ã‘ã‚‰ã‚ŒãŸå´
 } ;
 
 //-------------------------------------
-///	ƒtƒ[ƒgƒJƒEƒ“ƒg’l	
-//@ƒpƒŒ[ƒh‚Í–ñ144•b‚©‚©‚é
+///	ãƒ•ãƒ­ãƒ¼ãƒˆã‚«ã‚¦ãƒ³ãƒˆå€¤	
+//ã€€ãƒ‘ãƒ¬ãƒ¼ãƒ‰ã¯ç´„144ç§’ã‹ã‹ã‚‹
 //=====================================
-#define WFLBY_FLOAT_COUNT_MAX			( 144*30 )	// ‘S‘ÌƒJƒEƒ“ƒg’l
-#define WFLBY_FLOAT_COUNT_KANKAKU		( 12*30 )	// ‚P‚Â‚¸‚Â‚ªo‚éŠÔŠu
-#define WFLBY_FLOAT_COUNT_ONE			( 40*30 )	// ‚P‚Â‚Ìƒtƒ[ƒg‚ª”²‚¯‚Ä‚¢‚­•b”
+#define WFLBY_FLOAT_COUNT_MAX			( 144*30 )	// å…¨ä½“ã‚«ã‚¦ãƒ³ãƒˆå€¤
+#define WFLBY_FLOAT_COUNT_KANKAKU		( 12*30 )	// ï¼‘ã¤ãšã¤ãŒå‡ºã‚‹é–“éš”
+#define WFLBY_FLOAT_COUNT_ONE			( 40*30 )	// ï¼‘ã¤ã®ãƒ•ãƒ­ãƒ¼ãƒˆãŒæŠœã‘ã¦ã„ãç§’æ•°
 
 
 
 //-------------------------------------
-///	BGM‚ÌƒtƒF[ƒhƒAƒEƒgƒ^ƒCƒ~ƒ“ƒO
+///	BGMã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚¿ã‚¤ãƒŸãƒ³ã‚°
 //=====================================
 #define WFLBY_END_BGM_FADEOUT_FRAME		( 127 )
 
 
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒg‘I‘ğƒŒ[ƒgƒVƒXƒeƒ€
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆé¸æŠãƒ¬ãƒ¼ãƒˆã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
-#define WFLBY_GADGETRATE_DEF		( 100 )		// ‰ŠúƒŒ[ƒg
-#define WFLBY_GADGETRATE_DIV		( 2 )		// ƒKƒWƒFƒbƒg‚ª‘I‚Î‚ê‚½‚²‚Æ‚É’l‚ğŠ„‚é’l
+#define WFLBY_GADGETRATE_DEF		( 100 )		// åˆæœŸãƒ¬ãƒ¼ãƒˆ
+#define WFLBY_GADGETRATE_DIV		( 2 )		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãŒé¸ã°ã‚ŒãŸã”ã¨ã«å€¤ã‚’å‰²ã‚‹å€¤
 
 
 //-------------------------------------
-///	‡Œ¾—tA`D’l‚ÌƒCƒ“ƒfƒbƒNƒX
+///	åˆè¨€è‘‰Aã€œDå€¤ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 //=====================================
 enum{
 	WFLBY_AIKOTOBA_KEY_A,
@@ -124,13 +124,13 @@ enum{
 
 
 //-------------------------------------
-///	‰Ô‰Î’è”
+///	èŠ±ç«å®šæ•°
 //=====================================
 #define WFLBY_FIRE_MOVE_PAR_MAX	( 256 )	// 
 
 
 //-------------------------------------
-///	ƒLƒ…[ƒoƒbƒtƒ@”
+///	ã‚­ãƒ¥ãƒ¼ãƒãƒƒãƒ•ã‚¡æ•°
 //=====================================
 #define WFLBY_LASTACT_Q_BUFFNUM	( WFLBY_LASTACT_BUFFNUM+1 )
 
@@ -138,79 +138,79 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-///	ƒ†[ƒUŠî–{î•ñ
+///	ãƒ¦ãƒ¼ã‚¶åŸºæœ¬æƒ…å ±
 //=====================================
 typedef struct _WFLBY_USER_PROFILE{
-	s32				userid;						//  ƒƒr[“àƒ†[ƒUID
-	u32				trainerid;					// ƒgƒŒ[ƒi[ID					
-	STRCODE			name[PERSON_NAME_SIZE + EOM_SIZE];	// ƒ†[ƒU–¼
-	WFLBY_TIME		intime;						// “üºŠÔ
-	WFLBY_TIME		wldtime;					// ©•ª‚Ì‘‚ÌGMTŠÔ
-	u16				monsno[ TEMOTI_POKEMAX ];	// è‚¿ƒ|ƒPƒ‚ƒ“
-	u8				formid[ TEMOTI_POKEMAX ];	// ƒ|ƒPƒ‚ƒ“‚ÌƒtƒHƒ‹ƒ€ƒf[ƒ^
-	u8				tamago[ TEMOTI_POKEMAX ];	// —‘ƒtƒ‰ƒO	
-	u8				sex;						// «•Ê
-	u8				region_code;				// Œ¾ŒêƒR[ƒh LANG_JAPAN‚È‚Ç‚È‚Ç
-	u16				tr_type;					// ƒgƒŒ[ƒi‚ÌŒ©‚½–Ú
-	u16				nation;						// ‘ƒR[ƒh
-	u8				area;						// ’nˆæƒR[ƒh
-	u8				zukan_zenkoku;				// ‘S‘}ŠÓ•Ûƒtƒ‰ƒO
-	u8				game_clear;					// ƒQ[ƒ€ƒNƒŠƒAƒtƒ‰ƒO
-	u8				item;						// ƒ^ƒbƒ`ƒgƒC
-	u8				rom_code;					// ƒƒ€ƒo[ƒWƒ‡ƒ“	VERSION_PLATINUM‚Æ‚©
-	u8				status;						// ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒX
-	s64				start_sec;					// –`Œ¯‚ğn‚ß‚½“ú
-	u8				last_action[WFLBY_LASTACT_BUFFNUM];	// ÅŒã‚És‚Á‚½‚±‚Æ@WFLBY_LASTACTION_TYPE‚ª“ü‚è‚Ü‚·B
-	s32				last_action_userid[WFLBY_LASTACT_BUFFNUM];	// ÅŒã‚És‚Á‚½‚±‚Æ@l•¨‚Æ‚ÌÚG‚Éuserid‚ªİ’è‚³‚ê‚éƒoƒbƒtƒ@
-	u16				waza_type[WFLBY_SELECT_TYPENUM];	// ‘I‘ğ‚µ‚½ƒ†[ƒU‚Ì‘®«ƒ^ƒCƒv
-	WFLBY_ANKETO	anketo;						// ƒAƒ“ƒP[ƒg‘I‘ğƒf[ƒ^
+	s32				userid;						//  ãƒ­ãƒ“ãƒ¼å†…ãƒ¦ãƒ¼ã‚¶ID
+	u32				trainerid;					// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID					
+	STRCODE			name[PERSON_NAME_SIZE + EOM_SIZE];	// ãƒ¦ãƒ¼ã‚¶å
+	WFLBY_TIME		intime;						// å…¥å®¤æ™‚é–“
+	WFLBY_TIME		wldtime;					// è‡ªåˆ†ã®å›½ã®GMTæ™‚é–“
+	u16				monsno[ TEMOTI_POKEMAX ];	// æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³
+	u8				formid[ TEMOTI_POKEMAX ];	// ãƒã‚±ãƒ¢ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒ‡ãƒ¼ã‚¿
+	u8				tamago[ TEMOTI_POKEMAX ];	// åµãƒ•ãƒ©ã‚°	
+	u8				sex;						// æ€§åˆ¥
+	u8				region_code;				// è¨€èªã‚³ãƒ¼ãƒ‰ LANG_JAPANãªã©ãªã©
+	u16				tr_type;					// ãƒˆãƒ¬ãƒ¼ãƒŠã®è¦‹ãŸç›®
+	u16				nation;						// å›½ã‚³ãƒ¼ãƒ‰
+	u8				area;						// åœ°åŸŸã‚³ãƒ¼ãƒ‰
+	u8				zukan_zenkoku;				// å…¨å›½å›³é‘‘ä¿æŒãƒ•ãƒ©ã‚°
+	u8				game_clear;					// ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°
+	u8				item;						// ã‚¿ãƒƒãƒãƒˆã‚¤
+	u8				rom_code;					// ãƒ­ãƒ ãƒãƒ¼ã‚¸ãƒ§ãƒ³	VERSION_PLATINUMã¨ã‹
+	u8				status;						// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	s64				start_sec;					// å†’é™ºã‚’å§‹ã‚ãŸæ—¥æ™‚
+	u8				last_action[WFLBY_LASTACT_BUFFNUM];	// æœ€å¾Œã«è¡Œã£ãŸã“ã¨ã€€WFLBY_LASTACTION_TYPEãŒå…¥ã‚Šã¾ã™ã€‚
+	s32				last_action_userid[WFLBY_LASTACT_BUFFNUM];	// æœ€å¾Œã«è¡Œã£ãŸã“ã¨ã€€äººç‰©ã¨ã®æ¥è§¦æ™‚ã«useridãŒè¨­å®šã•ã‚Œã‚‹ãƒãƒƒãƒ•ã‚¡
+	u16				waza_type[WFLBY_SELECT_TYPENUM];	// é¸æŠã—ãŸãƒ¦ãƒ¼ã‚¶ã®å±æ€§ã‚¿ã‚¤ãƒ—
+	WFLBY_ANKETO	anketo;						// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆé¸æŠãƒ‡ãƒ¼ã‚¿
 
-	// ƒvƒ‰ƒ`ƒiˆÈŒã‚ÌƒVƒXƒeƒ€‚Í‚±‚±‚É’Ç‰Á‚µ‚Ä‚¢‚­
+	// ãƒ—ãƒ©ãƒãƒŠä»¥å¾Œã®ã‚·ã‚¹ãƒ†ãƒ ã¯ã“ã“ã«è¿½åŠ ã—ã¦ã„ã
 } WFLBY_USER_PROFILE;
 
 //-------------------------------------
-///	©•ª‚ÌŠî–{î•ñ
+///	è‡ªåˆ†ã®åŸºæœ¬æƒ…å ±
 //=====================================
 typedef struct {
-	STRCODE			def_name[PERSON_NAME_SIZE + EOM_SIZE];	// ƒ†[ƒU–¼
-	STRCODE			comm_name[PERSON_NAME_SIZE + EOM_SIZE];	// ’ÊMƒ†[ƒU–¼
+	STRCODE			def_name[PERSON_NAME_SIZE + EOM_SIZE];	// ãƒ¦ãƒ¼ã‚¶å
+	STRCODE			comm_name[PERSON_NAME_SIZE + EOM_SIZE];	// é€šä¿¡ãƒ¦ãƒ¼ã‚¶å
 	WFLBY_USER_PROFILE profile;
-	u32	crc_check;	// crcƒ`ƒFƒbƒN
+	u32	crc_check;	// crcãƒã‚§ãƒƒã‚¯
 } WFLBY_USER_MYPROFILE;
 
 
 
 //-------------------------------------
-///	WiFiLê—V‚ñ‚¾“à—e—š—ğ
+///	WiFiåºƒå ´éŠã‚“ã å†…å®¹å±¥æ­´
 //=====================================
 typedef struct {
-	u8	play[ WFLBY_PLAYED_NUM ];	// —V‚ñ‚¾‚©‚Ç‚¤‚©
+	u8	play[ WFLBY_PLAYED_NUM ];	// éŠã‚“ã ã‹ã©ã†ã‹
 } WFLBY_PLAYED_DATA;
 
 
 
 //-------------------------------------
-///	ƒtƒ[ƒgî•ñ
+///	ãƒ•ãƒ­ãƒ¼ãƒˆæƒ…å ±
 //=====================================
 typedef struct {
-	BOOL	start;							// “®ìŠJnƒtƒ‰ƒO
-	s32		all_count;						// ƒpƒŒ[ƒh‘S‘ÌƒJƒEƒ“ƒ^
-	s32		count[ WFLBY_FLOAT_MAX ];		// ‚»‚ê‚¼‚ê“®ìƒJƒEƒ“ƒ^
-	u32		move[ WFLBY_FLOAT_MAX ];		// “®ì’†‚©
-	u32		reserve[ WFLBY_FLOAT_MAX ][ WFLBY_FLOAT_ON_NUM ];	// —\–ñó‘Ô
-	u32		reserve_lock[ WFLBY_FLOAT_MAX ][ WFLBY_FLOAT_ON_NUM ];// —\–ñƒƒbƒN
-	BOOL	anm[ WFLBY_FLOAT_MAX ][ WFLBY_FLOAT_ON_NUM ];		// ƒAƒjƒƒŠƒNƒGƒXƒg
+	BOOL	start;							// å‹•ä½œé–‹å§‹ãƒ•ãƒ©ã‚°
+	s32		all_count;						// ãƒ‘ãƒ¬ãƒ¼ãƒ‰å…¨ä½“ã‚«ã‚¦ãƒ³ã‚¿
+	s32		count[ WFLBY_FLOAT_MAX ];		// ãã‚Œãã‚Œå‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
+	u32		move[ WFLBY_FLOAT_MAX ];		// å‹•ä½œä¸­ã‹
+	u32		reserve[ WFLBY_FLOAT_MAX ][ WFLBY_FLOAT_ON_NUM ];	// äºˆç´„çŠ¶æ…‹
+	u32		reserve_lock[ WFLBY_FLOAT_MAX ][ WFLBY_FLOAT_ON_NUM ];// äºˆç´„ãƒ­ãƒƒã‚¯
+	BOOL	anm[ WFLBY_FLOAT_MAX ][ WFLBY_FLOAT_ON_NUM ];		// ã‚¢ãƒ‹ãƒ¡ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 } WFLBY_FLOAT_DATA;
 
 
 //-------------------------------------
-///	‰Ô‰Îî•ñ
+///	èŠ±ç«æƒ…å ±
 //=====================================
 typedef struct {
 	BOOL	start;
@@ -218,123 +218,123 @@ typedef struct {
 	s32		count;
 	s32		count_max;
 
-	// “®ìƒ^ƒCƒv‚Æ¡‚Ìisƒp[ƒZƒ“ƒe[ƒW
+	// å‹•ä½œã‚¿ã‚¤ãƒ—ã¨ä»Šã®é€²è¡Œãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸
 	u32		move_type;
-	u32		move_count;	// “®ìƒJƒEƒ“Count
+	u32		move_count;	// å‹•ä½œã‚«ã‚¦ãƒ³Count
 } WFLBY_FIRE_DATA;
 
 
 //-------------------------------------
-///	ƒCƒxƒ“ƒgƒtƒ‰ƒO
+///	ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°
 //=====================================
 typedef struct {
 	u32 user_in;
 	u32 user_out;
-	u32 event_on;		//  ”­“®ƒCƒxƒ“ƒg‚Ìƒrƒbƒg‚ª—§‚Â
+	u32 event_on;		//  ç™ºå‹•ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ“ãƒƒãƒˆãŒç«‹ã¤
 	u32 profile_up;
 } WFLBY_SYSTEM_FLAG;
 
 //-------------------------------------
-///	ƒCƒxƒ“ƒgó‘Ôƒtƒ‰ƒO
+///	ã‚¤ãƒ™ãƒ³ãƒˆçŠ¶æ…‹ãƒ•ãƒ©ã‚°
 //=====================================
 typedef struct {
-	u8  lock:1;			// •”‰®‚ÌƒƒbƒN	TRUEorFALSE
-	u8	end:1;			// I—¹			TRUEorFALSE
-	u8	hababi:2;		// ‰Ô‰Î’è”		WFLBY_EVENT_HANABI_ST 
+	u8  lock:1;			// éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯	TRUEorFALSE
+	u8	end:1;			// çµ‚äº†			TRUEorFALSE
+	u8	hababi:2;		// èŠ±ç«å®šæ•°		WFLBY_EVENT_HANABI_ST 
 	u8	parade:1;		// PARADE		TRUEorFALSE
-	u8	mini:2;			// ƒ~ƒjƒQ[ƒ€OFFTRUEorFALSE
-	u8	endcm:1;			// ƒ~ƒjƒQ[ƒ€OFFTRUEorFALSE
-	u8	neon_room;		// ƒlƒIƒ“ó‘Ô	PPW_LOBBY_TIME_EVENT_NEON_A0`PPW_LOBBY_TIME_EVENT_NEON_A5 
-	u8	neon_floor;		// ƒtƒƒAó‘Ô	PPW_LOBBY_TIME_EVENT_NEON_B0`PPW_LOBBY_TIME_EVENT_NEON_B3
-	u8	neon_monu;		// ƒ‚ƒjƒ…ƒƒ“ƒgó‘Ô@PPW_LOBBY_TIME_EVENT_NEON_C0`PPW_LOBBY_TIME_EVENT_NEON_C3
+	u8	mini:2;			// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ OFFTRUEorFALSE
+	u8	endcm:1;			// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ OFFTRUEorFALSE
+	u8	neon_room;		// ãƒã‚ªãƒ³çŠ¶æ…‹	PPW_LOBBY_TIME_EVENT_NEON_A0ã€œPPW_LOBBY_TIME_EVENT_NEON_A5 
+	u8	neon_floor;		// ãƒ•ãƒ­ã‚¢çŠ¶æ…‹	PPW_LOBBY_TIME_EVENT_NEON_B0ã€œPPW_LOBBY_TIME_EVENT_NEON_B3
+	u8	neon_monu;		// ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆçŠ¶æ…‹ã€€PPW_LOBBY_TIME_EVENT_NEON_C0ã€œPPW_LOBBY_TIME_EVENT_NEON_C3
 
-	s16	end_count;		// I—¹ŠÔ‚Ü‚Å‚ÌƒJƒEƒ“ƒ^
-	s16 neon_count;		// ƒlƒIƒ“ŠJn‚Ü‚Å‚ÌƒJƒEƒ“ƒ^
-	s16 hanabi_count;	// ‰Ô‰ÎŠJn‚Ü‚Å‚ÌƒJƒEƒ“ƒ^
-	s16 parade_count;	// ƒpƒŒ[ƒhŠJn‚Ü‚Å‚ÌƒJƒEƒ“ƒ^
+	s16	end_count;		// çµ‚äº†æ™‚é–“ã¾ã§ã®ã‚«ã‚¦ãƒ³ã‚¿
+	s16 neon_count;		// ãƒã‚ªãƒ³é–‹å§‹ã¾ã§ã®ã‚«ã‚¦ãƒ³ã‚¿
+	s16 hanabi_count;	// èŠ±ç«é–‹å§‹ã¾ã§ã®ã‚«ã‚¦ãƒ³ã‚¿
+	s16 parade_count;	// ãƒ‘ãƒ¬ãƒ¼ãƒ‰é–‹å§‹ã¾ã§ã®ã‚«ã‚¦ãƒ³ã‚¿
 
-	u8	bgm_lock;	// ƒpƒŒ[ƒh‚Ì‚Æ‚«‚ÉBGM‚Ì•ÏX‚ğ‚µ‚Ä‚æ‚¢‚©
-	u8	bgm_vl_down;// ƒ{ƒŠƒ…[ƒ€—‚Æ‚µó‘Ôƒtƒ‰ƒO@‚±‚±‚É‚ ‚é‚Ì‚Í•Ï‚Å‚·‚ªEEE
-	u8	bgm_fadeout;// BGMƒtƒF[ƒhƒAƒEƒg’†FTRUE
-	u8	anketo_input:4;// ƒAƒ“ƒP[ƒg‚É“š‚¦‚½‚©
-	u8	anketo_output:4;// ƒAƒ“ƒP[ƒg‚ğ‚P‚©‚¢Œ©‚½‚©
+	u8	bgm_lock;	// ãƒ‘ãƒ¬ãƒ¼ãƒ‰ã®ã¨ãã«BGMã®å¤‰æ›´ã‚’ã—ã¦ã‚ˆã„ã‹
+	u8	bgm_vl_down;// ãƒœãƒªãƒ¥ãƒ¼ãƒ è½ã¨ã—çŠ¶æ…‹ãƒ•ãƒ©ã‚°ã€€ã“ã“ã«ã‚ã‚‹ã®ã¯å¤‰ã§ã™ãŒãƒ»ãƒ»ãƒ»
+	u8	bgm_fadeout;// BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆä¸­ï¼šTRUE
+	u8	anketo_input:4;// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã«ç­”ãˆãŸã‹
+	u8	anketo_output:4;// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã‚’ï¼‘ã‹ã„è¦‹ãŸã‹
 	
 } WFLBY_SYSTEM_EVENT;
 
 
 //-------------------------------------
-///	ƒAƒvƒŠƒf[ƒ^
+///	ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	NEWS_DATA*			p_lobbynews;		// ƒƒr[ƒjƒ…[ƒXƒf[ƒ^
-	BOOL				topic_event_start;	// ƒ^ƒCƒ€ƒCƒxƒ“ƒgƒgƒsƒbƒNŠJnƒtƒ‰ƒO
-	WFLBY_WLDTIMER		worldtimer;		// ¢ŠEŒvƒf[ƒ^
-	WFLBY_TIME			worldtime;		// ¢ŠEŠÔ
-	s64					worldtime_s64;	// ¢ŠEŠÔi‘å–{j
-	s64					locktime_s64;	// ƒƒbƒNŠÔi‘å–{j
+	NEWS_DATA*			p_lobbynews;		// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
+	BOOL				topic_event_start;	// ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆãƒˆãƒ”ãƒƒã‚¯é–‹å§‹ãƒ•ãƒ©ã‚°
+	WFLBY_WLDTIMER		worldtimer;		// ä¸–ç•Œæ™‚è¨ˆãƒ‡ãƒ¼ã‚¿
+	WFLBY_TIME			worldtime;		// ä¸–ç•Œæ™‚é–“
+	s64					worldtime_s64;	// ä¸–ç•Œæ™‚é–“ï¼ˆå¤§æœ¬ï¼‰
+	s64					locktime_s64;	// ãƒ­ãƒƒã‚¯æ™‚é–“ï¼ˆå¤§æœ¬ï¼‰
 	MYSTATUS*			p_mystatus[NEWS_TOPICNAME_NUM];
 } WFLBY_SYSTEM_GLB;
 
 
 //-------------------------------------
-///	‘—óMƒf[ƒ^
+///	é€å—ä¿¡ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	u16 data;			// ƒf[ƒ^
-	u16 seq;			// Ÿ‚ÌƒV[ƒPƒ“ƒXiƒf[ƒ^‚ÌˆÓ–¡‚É‚à‚Â‚È‚ª‚éj
+	u16 data;			// ãƒ‡ãƒ¼ã‚¿
+	u16 seq;			// æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆãƒ‡ãƒ¼ã‚¿ã®æ„å‘³ã«ã‚‚ã¤ãªãŒã‚‹ï¼‰
 } WFLBY_SYSTEM_TALK_DATA;
 
 //-------------------------------------
-///	ˆ¥Aƒf[ƒ^
+///	æŒ¨æ‹¶ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	u32 talk_msk;						// ‚»‚Ìl‚Æ˜b‚µ‚½‚±‚Æ‚ª‚ ‚é‚©
-	u16 talk_idx;						// ¡˜b‚µ‚Ä‚él‚ÌƒCƒ“ƒfƒbƒNƒX
-	u8  talk_seq;						// ‰ï˜bƒV[ƒPƒ“ƒXWFLBY_TALK_SEQ
-	u8	talk_b_start;					// ‰ï˜bB‚Ì‰ï˜bŠJnƒtƒ‰ƒO
-	u16 recv_data;						// óM‚µ‚½ƒƒbƒZ[ƒW
-	u8 talk_type;						// ‰ï˜bƒ^ƒCƒv
-	u8 talk_first;						// ‰‚ß‚Ä‚Ì‰ï˜b‚È‚ç TRUE
-	u8 talk_count[WFLBY_PLAYER_MAX];	// ‰ï˜b‰ñ”ƒJƒEƒ“ƒ^
-	WFLBY_SYSTEM_TALK_DATA send_data;	// ‘—‚éƒf[ƒ^
-	u16 recv_wait_on;					// óM‘Ò‚¿ŠJn
-	s16	recv_wait;						// óM‘Ò‚¿ŠÔ
+	u32 talk_msk;						// ãã®äººã¨è©±ã—ãŸã“ã¨ãŒã‚ã‚‹ã‹
+	u16 talk_idx;						// ä»Šè©±ã—ã¦ã‚‹äººã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8  talk_seq;						// ä¼šè©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹WFLBY_TALK_SEQ
+	u8	talk_b_start;					// ä¼šè©±Bã®ä¼šè©±é–‹å§‹ãƒ•ãƒ©ã‚°
+	u16 recv_data;						// å—ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	u8 talk_type;						// ä¼šè©±ã‚¿ã‚¤ãƒ—
+	u8 talk_first;						// åˆã‚ã¦ã®ä¼šè©±ãªã‚‰ TRUE
+	u8 talk_count[WFLBY_PLAYER_MAX];	// ä¼šè©±å›æ•°ã‚«ã‚¦ãƒ³ã‚¿
+	WFLBY_SYSTEM_TALK_DATA send_data;	// é€ã‚‹ãƒ‡ãƒ¼ã‚¿
+	u16 recv_wait_on;					// å—ä¿¡å¾…ã¡é–‹å§‹
+	s16	recv_wait;						// å—ä¿¡å¾…ã¡æ™‚é–“
 } WFLBY_SYSTEM_TALK;
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒgƒf[ƒ^
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	u8 gadget[ WFLBY_PLAYER_MAX ];	// óM‚µ‚½ƒKƒWƒFƒbƒg
+	u8 gadget[ WFLBY_PLAYER_MAX ];	// å—ä¿¡ã—ãŸã‚¬ã‚¸ã‚§ãƒƒãƒˆ
 } WFLBY_SYSTEM_GADGET;
 
 
 //-------------------------------------
-///	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒtƒ‰ƒOƒtƒ‰ƒO
+///	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°ãƒ•ãƒ©ã‚°
 //=====================================
 typedef struct {
-	s16 mg_lock_count;	// ƒ~ƒjƒQ[ƒ€ƒƒbƒN
-	u8	apl_force_end;	// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‹­§I—¹
+	s16 mg_lock_count;	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ­ãƒƒã‚¯
+	u8	apl_force_end;	// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å¼·åˆ¶çµ‚äº†
 	//u8	pad[2]; // MatchComment: padding not needed?
 } WFLBY_SYSTEM_APLFLAG;
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒgƒ‰ƒ“ƒ_ƒ€‘I‘ğ@ƒ[ƒN
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ©ãƒ³ãƒ€ãƒ é¸æŠã€€ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	u8	rate[ WFLBY_ITEM_GROUPNUM ];	// ƒKƒWƒFƒbƒg‚Ì‘I‘ğRATE
+	u8	rate[ WFLBY_ITEM_GROUPNUM ];	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã®é¸æŠRATE
 	u8	pad[3]; // MatchComment: padding not needed?
-	u8	gadget_recv[ WFLBY_PLAYER_MAX ];// ƒKƒWƒFƒbƒg‚ğóM‚µ‚ÄƒŒ[ƒg‚É”½‰f‚µ‚½‚Ì‚©
+	u8	gadget_recv[ WFLBY_PLAYER_MAX ];// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚’å—ä¿¡ã—ã¦ãƒ¬ãƒ¼ãƒˆã«åæ˜ ã—ãŸã®ã‹
 } WFLBY_SYSTEM_GADGETRATE;
 
 
 //-------------------------------------
-///	‡Œ¾—tƒoƒbƒtƒ@
+///	åˆè¨€è‘‰ãƒãƒƒãƒ•ã‚¡
 //=====================================
 typedef struct {
 	u8	aikotoba[ WFLBY_PLAYER_MAX ];		// 20byte
 	WFLBY_AIKOTOBA_DATA aikotoba_data[ WFLBY_PLAYER_MAX ];
-	PMSW_AIKOTOBA_TBL*	p_wordtbl;			// ŠÈˆÕ‰ï˜b’PŒêƒe[ƒuƒ‹
+	PMSW_AIKOTOBA_TBL*	p_wordtbl;			// ç°¡æ˜“ä¼šè©±å˜èªãƒ†ãƒ¼ãƒ–ãƒ«
 } WFLBY_SYSTEM_AIKOTOBA;
 typedef union {
 	u32 number;
@@ -343,37 +343,37 @@ typedef union {
 
 
 //-------------------------------------
-///	‚µ‚½‚±‚Æ—š—ğƒLƒ…[ŠÇ—î•ñ
+///	ã—ãŸã“ã¨å±¥æ­´ã‚­ãƒ¥ãƒ¼ç®¡ç†æƒ…å ±
 //=====================================
 typedef struct {
-	s32 cue_userid[ WFLBY_LASTACT_Q_BUFFNUM ];// useridƒLƒ…[
+	s32 cue_userid[ WFLBY_LASTACT_Q_BUFFNUM ];// useridã‚­ãƒ¥ãƒ¼
 	u8	cue[ WFLBY_LASTACT_Q_BUFFNUM ];	// buffnum 13
-	u8	top;		// æ“ª
-	u8	tail;		// ––”ö
+	u8	top;		// å…ˆé ­
+	u8	tail;		// æœ«å°¾
 	u8	pad;
 
 
-	// CRCƒ`ƒFƒbƒN—pƒpƒ‰ƒ[ƒ^‚Í‰º‘¤‚É“ü‚ê‚Æ‚­‚±‚Æ
-	//WFLBY_LASTACTION_CUE_CRC_DATASIZE‚©‚ç‚±‚ÌƒTƒCƒY‚Í”rœ‚·‚é
+	// CRCãƒã‚§ãƒƒã‚¯ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯ä¸‹å´ã«å…¥ã‚Œã¨ãã“ã¨
+	//WFLBY_LASTACTION_CUE_CRC_DATASIZEã‹ã‚‰ã“ã®ã‚µã‚¤ã‚ºã¯æ’é™¤ã™ã‚‹
 	const SAVEDATA* cp_save;
 	u16 crc_check;
 	u16 error;
 } WFLBY_LASTACTION_CUE;
-// CRCƒ`ƒFƒbƒN‚Åƒ`ƒFƒbƒN‚·‚é‚Æ‚«‚Ìƒf[ƒ^ƒTƒCƒY
+// CRCãƒã‚§ãƒƒã‚¯ã§ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã¨ãã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 #define WFLBY_LASTACTION_CUE_CRC_DATASIZE	( sizeof(WFLBY_LASTACTION_CUE) - 8 )
 
 
 //-------------------------------------
-///	ƒ~ƒjƒQ[ƒ€î•ñ
+///	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ æƒ…å ±
 //=====================================
 typedef struct {
 	MYSTATUS* p_mystatus;
-	BOOL		error_end;	// ’†’fI—¹‚µ‚½‚Æ‚«TRUE
+	BOOL		error_end;	// ä¸­æ–­çµ‚äº†ã—ãŸã¨ãTRUE
 } WFLBY_SYSTEM_MG;
 
 
 //-------------------------------------
-///	Lê“à‚ÌƒAƒ“ƒP[ƒgŒ‹‰Ê
+///	åºƒå ´å†…ã®ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆçµæœ
 //=====================================
 typedef struct {
 	ANKETO_QUESTION_RESULT data;
@@ -384,37 +384,37 @@ typedef struct {
 
 
 //-------------------------------------
-///	WiFiƒƒr[‹¤’ÊƒVƒXƒeƒ€ƒ[ƒN
+///	WiFiãƒ­ãƒ“ãƒ¼å…±é€šã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WFLBY_SYSTEM{
-	SAVEDATA*				p_save;			// ƒZ[ƒuƒf[ƒ^
-	WFLBY_SYSTEM_GLB		glbdata;		// ƒOƒ[ƒoƒ‹ƒf[ƒ^
-	WFLBY_SYSTEM_FLAG		flag;			// ƒtƒ‰ƒOŒS
-	WFLBY_USER_MYPROFILE	myprofile;		// ©•ª‚Ìƒ[ƒJƒ‹ƒvƒƒtƒB[ƒ‹
-	WFLBY_SYSTEM_TALK		talk;			// ‰ï˜bƒf[ƒ^
-	WFLBY_SYSTEM_GADGET		gadget;			// ƒKƒWƒFƒbƒg‹N“®ƒf[ƒ^
-	WFLBY_SYSTEM_EVENT		event;			// ƒCƒxƒ“ƒgó‘Ôƒf[ƒ^
-	WFLBY_FLOAT_DATA		floatdata;		// ƒtƒ[ƒgƒf[ƒ^
-	WFLBY_SYSTEM_APLFLAG	aplflag;		// ƒ~ƒjƒQ[ƒ€ƒtƒ‰ƒO
-	WFLBY_PLAYED_DATA		played;			// —V‚ñ‚¾‚±‚Æ‚Ì‚ ‚é‚à‚Ìƒf[ƒ^
-	WFLBY_SYSTEM_GADGETRATE gadgetrate;		// ƒKƒWƒFƒbƒg‘I‘ğƒŒ[ƒg
-	WFLBY_VIPFLAG			vipflag;		// VIPƒtƒ‰ƒO
-	WFLBY_MINIGAME_PLIDX	mg_plidx;		// ƒ~ƒjƒQ[ƒ€ƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX
-	WFLBY_SYSTEM_AIKOTOBA	aikotoba;		// ‡Œ¾—tƒf[ƒ^
-	WFLBY_FIRE_DATA			fire_data;		// ‰Ô‰Îƒf[ƒ^
-	_WIFI_MACH_STATUS*		p_wificlubbuff;	// Wi-FiƒNƒ‰ƒu‚Ìó‘Ô‚ğNONE‚É‚·‚é‚½‚ß‚Ìƒoƒbƒtƒ@
-	WFLBY_LASTACTION_CUE	lastactin_q;	// ÅŒã‚É‚µ‚½‚±‚ÆƒLƒ…[
-	WFLBY_SYSTEM_MG			mg_data;		// ƒ~ƒjƒQ[ƒ€î•ñ
-	WFLBY_SYSTEM_ANKETO		anketo_result;	// Lê‚ÌƒAƒ“ƒP[ƒgŒ‹‰Ê•Û‘¶æ
-	u32						heapID;			// ƒq[ƒvID
-	u32						error;			// ƒVƒXƒeƒ€“àerror
+	SAVEDATA*				p_save;			// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+	WFLBY_SYSTEM_GLB		glbdata;		// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+	WFLBY_SYSTEM_FLAG		flag;			// ãƒ•ãƒ©ã‚°éƒ¡
+	WFLBY_USER_MYPROFILE	myprofile;		// è‡ªåˆ†ã®ãƒ­ãƒ¼ã‚«ãƒ«ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+	WFLBY_SYSTEM_TALK		talk;			// ä¼šè©±ãƒ‡ãƒ¼ã‚¿
+	WFLBY_SYSTEM_GADGET		gadget;			// ã‚¬ã‚¸ã‚§ãƒƒãƒˆèµ·å‹•ãƒ‡ãƒ¼ã‚¿
+	WFLBY_SYSTEM_EVENT		event;			// ã‚¤ãƒ™ãƒ³ãƒˆçŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿
+	WFLBY_FLOAT_DATA		floatdata;		// ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+	WFLBY_SYSTEM_APLFLAG	aplflag;		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ•ãƒ©ã‚°
+	WFLBY_PLAYED_DATA		played;			// éŠã‚“ã ã“ã¨ã®ã‚ã‚‹ã‚‚ã®ãƒ‡ãƒ¼ã‚¿
+	WFLBY_SYSTEM_GADGETRATE gadgetrate;		// ã‚¬ã‚¸ã‚§ãƒƒãƒˆé¸æŠãƒ¬ãƒ¼ãƒˆ
+	WFLBY_VIPFLAG			vipflag;		// VIPãƒ•ãƒ©ã‚°
+	WFLBY_MINIGAME_PLIDX	mg_plidx;		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	WFLBY_SYSTEM_AIKOTOBA	aikotoba;		// åˆè¨€è‘‰ãƒ‡ãƒ¼ã‚¿
+	WFLBY_FIRE_DATA			fire_data;		// èŠ±ç«ãƒ‡ãƒ¼ã‚¿
+	_WIFI_MACH_STATUS*		p_wificlubbuff;	// Wi-Fiã‚¯ãƒ©ãƒ–ã®çŠ¶æ…‹ã‚’NONEã«ã™ã‚‹ãŸã‚ã®ãƒãƒƒãƒ•ã‚¡
+	WFLBY_LASTACTION_CUE	lastactin_q;	// æœ€å¾Œã«ã—ãŸã“ã¨ã‚­ãƒ¥ãƒ¼
+	WFLBY_SYSTEM_MG			mg_data;		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ æƒ…å ±
+	WFLBY_SYSTEM_ANKETO		anketo_result;	// åºƒå ´ã®ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆçµæœä¿å­˜å…ˆ
+	u32						heapID;			// ãƒ’ãƒ¼ãƒ—ID
+	u32						error;			// ã‚·ã‚¹ãƒ†ãƒ å†…error
 }WFLBY_SYSTEM;
 
 
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒtƒ[ƒg“®ìƒCƒxƒ“ƒgƒf[ƒ^
+ *	ãƒ•ãƒ­ãƒ¼ãƒˆå‹•ä½œã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const s32 sc_WFLBY_FLOAT_TIMING[ WFLBY_FLOAT_MAX ] = {
@@ -434,16 +434,16 @@ static const s32 sc_WFLBY_FLOAT_TIMING[ WFLBY_FLOAT_MAX ] = {
 
 
 //-------------------------------------
-///	ƒgƒŒ[ƒiƒ^ƒCƒv«•Êƒf[ƒ^
+///	ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—æ€§åˆ¥ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	u16		tr_type;
 	u16		sex;
 } WFLBY_SYSTEM_TRTYPE_SEX;
 
-#define WFLBY_SYSTEMUNICHAR_NUM		(16)	// ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^‚Ì”
+#define WFLBY_SYSTEMUNICHAR_NUM		(16)	// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®æ•°
 static const WFLBY_SYSTEM_TRTYPE_SEX sc_WFLBY_SYSTEM_TRTYPE_SEX[WFLBY_SYSTEMUNICHAR_NUM] = {
-	// ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^16
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿16
 	{
 		BOY1,
 		PM_MALE,
@@ -514,27 +514,27 @@ static const WFLBY_SYSTEM_TRTYPE_SEX sc_WFLBY_SYSTEM_TRTYPE_SEX[WFLBY_SYSTEMUNIC
 
 
 //-------------------------------------
-///	‰Ô‰Î\¬ƒf[ƒ^
+///	èŠ±ç«æ§‹æˆãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	u16	move_type;
 	u16	move_par_num;
 } WFLBY_FIRE_MOVE_DATA;
-// \¬ƒf[ƒ^
-// ƒp[ƒZƒ“ƒe[ƒW‚Ì‡Œv‚ğWFLBY_FIRE_MOVE_PAR_MAX‚É‚µ‚Ä‚­‚¾‚³‚¢
+// æ§‹æˆãƒ‡ãƒ¼ã‚¿
+// ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸ã®åˆè¨ˆã‚’WFLBY_FIRE_MOVE_PAR_MAXã«ã—ã¦ãã ã•ã„
 static const  WFLBY_FIRE_MOVE_DATA sc_WFLBY_FIRE_MOVE_DATA[] = {
 //*
 	{ WFLBY_FIRE_NORMAL,	80 },
-	{ WFLBY_FIRE_NONE,		2 },	// ‚¢‚Á‚½‚ñ‚Æ‚ß‚é
+	{ WFLBY_FIRE_NONE,		2 },	// ã„ã£ãŸã‚“ã¨ã‚ã‚‹
 	{ WFLBY_FIRE_KOUGO,		142 },
-	{ WFLBY_FIRE_NONE,		2 },	// ‚¢‚Á‚½‚ñ‚Æ‚ß‚é
+	{ WFLBY_FIRE_NONE,		2 },	// ã„ã£ãŸã‚“ã¨ã‚ã‚‹
 	{ WFLBY_FIRE_NAMI,		30 },
 //*/
 /*
 	{ WFLBY_FIRE_NAMI,		20 },
-	{ WFLBY_FIRE_NAMI,		2 },	// ‚¢‚Á‚½‚ñ‚Æ‚ß‚é
+	{ WFLBY_FIRE_NAMI,		2 },	// ã„ã£ãŸã‚“ã¨ã‚ã‚‹
 	{ WFLBY_FIRE_NAMI,		128 },
-	{ WFLBY_FIRE_NAMI,		2 },	// ‚¢‚Á‚½‚ñ‚Æ‚ß‚é
+	{ WFLBY_FIRE_NAMI,		2 },	// ã„ã£ãŸã‚“ã¨ã‚ã‚‹
 	{ WFLBY_FIRE_NAMI,		104 },
 //*/
 };
@@ -543,15 +543,15 @@ static const  WFLBY_FIRE_MOVE_DATA sc_WFLBY_FIRE_MOVE_DATA[] = {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
-// EOM‚ª•¶šƒR[ƒh‚ÌÅŒã‚É‚ ‚é‚©‚ğƒ`ƒFƒbƒN‚·‚é
+// EOMãŒæ–‡å­—ã‚³ãƒ¼ãƒ‰ã®æœ€å¾Œã«ã‚ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 static BOOL WFLBY_SYSTEM_CheckStrEOMCode( const STRCODE* cp_str, u32 len );
 
 
-// WiFiƒƒr[ƒ‰ƒCƒuƒ‰ƒŠƒR[ƒ‹ƒoƒbƒN
+// WiFiãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 static void WFLBY_SYSTEM_CallbackUserIn( s32 userid, const void* cp_profile, void* p_work, BOOL mydata );
 static void WFLBY_SYSTEM_CallbackUserOut( s32 userid, void* p_work );
 static void WFLBY_SYSTEM_CallbackUserProfileUpdate( s32 userid, const void* cp_profile, void* p_work );
@@ -559,14 +559,14 @@ static void WFLBY_SYSTEM_CallbackEvent( PPW_LOBBY_TIME_EVENT event, void* p_work
 static void WFLBY_SYSTEM_CallbackCheckProfile( const void* cp_profile, u32 profile_size, void* p_work );
 
 
-// ¢ŠEŒvƒf[ƒ^‚Ìì¬
+// ä¸–ç•Œæ™‚è¨ˆãƒ‡ãƒ¼ã‚¿ã®ä½œæˆ
 static void WFLBY_SYSTEM_SetWldTimerData( WFLBY_USER_MYPROFILE* p_myprofile, WFLBY_WLDTIMER* p_wk );
 
 
-// ƒCƒxƒ“ƒgî•ñ‚ª—ˆ‚Ä‚¢‚È‚¢‚Æ‚«‚ÌŠÔ§ŒÀƒ`ƒFƒbƒN
+// ã‚¤ãƒ™ãƒ³ãƒˆæƒ…å ±ãŒæ¥ã¦ã„ãªã„ã¨ãã®æ™‚é–“åˆ¶é™ãƒã‚§ãƒƒã‚¯
 static void WFLBY_SYSTEM_ContEndTime( WFLBY_SYSTEM* p_wk );
 
-// ƒvƒƒtƒB[ƒ‹ƒf[ƒ^‰Šú‰»
+// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 static void WFLBY_SYSTEM_InitProfile( WFLBY_USER_MYPROFILE* p_myprofile, SAVEDATA* p_save, u32 heapID );
 static void WFLBY_SYSTEM_DWC_SetMyProfile( WFLBY_SYSTEM* p_wk );
 static void WFLBY_SYSTEM_MyProfile_SetCrc( WFLBY_USER_MYPROFILE* p_myprofile, const SAVEDATA* cp_save );
@@ -577,31 +577,31 @@ static void WFLBY_SYSTEM_OSPrint_Profile( const WFLBY_USER_PROFILE* cp_profile )
 
 
 
-// ƒCƒxƒ“ƒgƒtƒ‰ƒOƒf[ƒ^
+// ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ãƒ‡ãƒ¼ã‚¿
 static void WFLBY_SYSTEM_FLAG_ClearEvent( WFLBY_SYSTEM_FLAG* p_wk );
 static void WFLBY_SYSTEM_EVENT_Count( WFLBY_SYSTEM_EVENT* p_wk, WFLBY_SYSTEM_FLAG* p_flag, WFLBY_FLOAT_DATA* p_float, WFLBY_FIRE_DATA* p_fire_data );
 static void WFLBY_SYSTEM_EVENT_Init( WFLBY_SYSTEM_EVENT* p_wk );
 static void WFLBY_SYSTEM_EVENT_PlayBgm( const WFLBY_SYSTEM_EVENT* cp_wk,  u32 bgm );
 static void WFLBY_SYSTEM_EVENT_SetBgmVolume( const WFLBY_SYSTEM_EVENT* cp_wk );
 
-// ƒ~ƒjƒQ[ƒ€ƒtƒ‰ƒO
+// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ•ãƒ©ã‚°
 static void WFLBY_SYSTEM_MgFlag_SetLock( WFLBY_SYSTEM_APLFLAG* p_wk );
 static BOOL WFLBY_SYSTEM_MgFlag_GetLock( const WFLBY_SYSTEM_APLFLAG* cp_wk );
 static void WFLBY_SYSTEM_MgFlag_Cont( WFLBY_SYSTEM_APLFLAG* p_wk );
 
-// ƒ~ƒjƒQ[ƒ€î•ñ
+// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ æƒ…å ±
 static void WFLBY_SYSTEM_MG_Init( WFLBY_SYSTEM_MG* p_wk, u32 heapID );
 static void WFLBY_SYSTEM_MG_Exit( WFLBY_SYSTEM_MG* p_wk );
 static void WFLBY_SYSTEM_MG_SetMyStatus( WFLBY_SYSTEM_MG* p_wk, const WFLBY_USER_MYPROFILE* cp_profile, u32  heapID );
 
-// ƒAƒvƒŠ‹­§I—¹ƒtƒ‰ƒO
+// ã‚¢ãƒ—ãƒªå¼·åˆ¶çµ‚äº†ãƒ•ãƒ©ã‚°
 static void WFLBY_SYSTEM_AplFlag_SetForceEnd( WFLBY_SYSTEM_APLFLAG* p_wk );
 static BOOL WFLBY_SYSTEM_AplFlag_GetForceEnd( const WFLBY_SYSTEM_APLFLAG* cp_wk );
 
-// ƒKƒWƒFƒbƒgƒf[ƒ^
+// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 static void WFLBY_SYSTEM_GadGetClear( WFLBY_SYSTEM_GADGET* p_wk );
 
-//  ‰ï˜bî•ñ
+//  ä¼šè©±æƒ…å ±
 static void WFLBY_SYSTEM_TALK_Init( WFLBY_SYSTEM_TALK* p_wk );
 static void WFLBY_SYSTEM_TALK_EndClear( WFLBY_SYSTEM_TALK* p_wk );
 static void WFLBY_SYSTEM_TALK_ExEndClear( WFLBY_SYSTEM_TALK* p_wk );
@@ -620,7 +620,7 @@ static BOOL WFLBY_SYSTEM_TALK_CheckRecvWait( const WFLBY_SYSTEM_TALK* cp_wk );
 static s16	WFLBY_SYSTEM_TALK_GetRacvWaitTime( const WFLBY_SYSTEM_TALK* cp_wk );
 
 
-// ƒgƒsƒbƒNƒf[ƒ^‚ğİ’è‚·‚é
+// ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 static void WFLBY_SYSTEM_TOPIC_SetConnect( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* cp_topic );
 static void WFLBY_SYSTEM_TOPIC_SetItem( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* cp_topic );
 static void WFLBY_SYSTEM_TOPIC_SetMinigame( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* cp_topic );
@@ -632,7 +632,7 @@ static void WFLBY_SYSTEM_TOPIC_SetDummy( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* 
 static void WFLBY_SYSTEM_TOPIC_SetEvent( WFLBY_SYSTEM* p_wk, WFLBY_EVENTTYPE event );
 
 
-// ƒtƒ[ƒgƒf[ƒ^
+// ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
 static void WFLBY_SYSTEM_FLOAT_Init( WFLBY_FLOAT_DATA* p_float );
 static void WFLBY_SYSTEM_FLOAT_Start( WFLBY_FLOAT_DATA* p_float );
 static void WFLBY_SYSTEM_FLOAT_Main( WFLBY_FLOAT_DATA* p_float );
@@ -651,7 +651,7 @@ static BOOL WFLBY_SYSTEM_FLOAT_CheckReserveLock( const WFLBY_FLOAT_DATA* cp_floa
 static WFLBY_FLOAT_STATION_TYPE WFLBY_SYSTEM_FLOAT_GetReserveLock( const WFLBY_FLOAT_DATA* cp_float, u32 idx );
 
 
-// ’ÊMóMƒR[ƒ‹ƒoƒbƒN
+// é€šä¿¡å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 static void WFLBY_SYSTEM_COMMCMD_TALK_Req( s32 userid, const void* cp_data, u32 size, void* p_work );
 static void WFLBY_SYSTEM_COMMCMD_TALK_Ans( s32 userid, const void* cp_data, u32 size, void* p_work );
 static void WFLBY_SYSTEM_COMMCMD_TALK_Data( s32 userid, const void* cp_data, u32 size, void* p_work );
@@ -662,20 +662,20 @@ static void WFLBY_SYSTEM_COMMCMD_FLOAT_On( s32 userid, const void* cp_data, u32 
 static void WFLBY_SYSTEM_COMMCMD_FLOAT_Anm( s32 userid, const void* cp_data, u32 size, void* p_work );
 
 
-// ƒvƒƒtƒB[ƒ‹‘€ì
+// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«æ“ä½œ
 static BOOL WFLBY_SYSTEM_PROFILE_CheckLastTmpStatus( WFLBY_STATUS_TYPE status );
 
-// ƒKƒWƒFƒbƒg‘I‘ğƒŒ[ƒg
+// ã‚¬ã‚¸ã‚§ãƒƒãƒˆé¸æŠãƒ¬ãƒ¼ãƒˆ
 static void WFLBY_SYSTEM_GADGETRATE_Init( WFLBY_SYSTEM_GADGETRATE* p_wk );
 static void WFLBY_SYSTEM_GADGETRATE_CalcRate( WFLBY_SYSTEM_GADGETRATE* p_wk, WFLBY_ITEMTYPE item, u32 plno );
 static WFLBY_ITEMTYPE WFLBY_SYSTEM_GADGETRATE_GetRandItem( const WFLBY_SYSTEM_GADGETRATE* cp_wk );
 
 
-// VIPƒtƒ‰ƒO
+// VIPãƒ•ãƒ©ã‚°
 static void WFLBY_SYSTEM_VIPFLAG_Set( WFLBY_VIPFLAG* p_wk, u32 idx, BOOL vip );
 static BOOL WFLBY_SYSTEM_VIPFLAG_Get( const WFLBY_VIPFLAG* cp_wk, u32 idx );
 
-// ‡Œ¾—tƒoƒbƒtƒ@
+// åˆè¨€è‘‰ãƒãƒƒãƒ•ã‚¡
 static void WFLBY_SYSTEM_AIKOTOBABUFF_Init( WFLBY_SYSTEM_AIKOTOBA* p_wk, u32 heapID );
 static void WFLBY_SYSTEM_AIKOTOBABUFF_Exit( WFLBY_SYSTEM_AIKOTOBA* p_wk );
 static void WFLBY_SYSTEM_AIKOTOBABUFF_SetData( WFLBY_SYSTEM_AIKOTOBA* p_wk, u32 idx, BOOL aikotoba, u32 number );
@@ -684,7 +684,7 @@ static const WFLBY_AIKOTOBA_DATA* WFLBY_SYSTEM_AIKOTOBABUFF_GetData( const WFLBY
 static void WFLBY_SYSTEM_AIKOTOBA_Make( PMSW_AIKOTOBA_TBL* p_wordtbl, u32 number, WFLBY_AIKOTOBA_DATA* p_aikotoba );
 
 
-// ‰Ô‰Îƒf[ƒ^
+// èŠ±ç«ãƒ‡ãƒ¼ã‚¿
 static void WFLBY_SYSTEM_FIREDATA_Init( WFLBY_FIRE_DATA* p_wk, u32 fire_start, u32 fire_end );
 static void WFLBY_SYSTEM_FIREDATA_Start( WFLBY_FIRE_DATA* p_wk );
 static void WFLBY_SYSTEM_FIREDATA_Main( WFLBY_FIRE_DATA* p_wk );
@@ -692,7 +692,7 @@ static u32 WFLBY_SYSTEM_FIREDATA_GetCount( const WFLBY_FIRE_DATA* cp_wk );
 static WFLBY_FIRE_TYPE WFLBY_SYSTEM_FIREDATA_GetType( const WFLBY_FIRE_DATA* cp_wk );
 
 
-// ÅŒã‚É‚µ‚½‚±‚ÆƒLƒ…[
+// æœ€å¾Œã«ã—ãŸã“ã¨ã‚­ãƒ¥ãƒ¼
 static void WFLBY_SYSTEM_LASTACTQ_Init( WFLBY_LASTACTION_CUE* p_wk, const SAVEDATA* cp_save );
 static void WFLBY_SYSTEM_LASTACTQ_Push( WFLBY_LASTACTION_CUE* p_wk, WFLBY_LASTACTION_TYPE data, s32 userid );
 static BOOL WFLBY_SYSTEM_LASTACTQ_ResetUserID( WFLBY_LASTACTION_CUE* p_wk, s32 before_id, s32 after_id );
@@ -703,30 +703,30 @@ static void WFLBY_SYSTEM_LASTACTQ_SetCrc( WFLBY_LASTACTION_CUE* p_wk );
 static void WFLBY_SYSTEM_LASTACTQ_CheckCrc( WFLBY_LASTACTION_CUE* p_wk );
 static BOOL WFLBY_SYSTEM_LASTACTQ_GetCrcError( const WFLBY_LASTACTION_CUE* cp_wk );
 
-// tr_type‚©‚çƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^“à‚¾‚¯‚Å‚ÌƒgƒŒ[ƒi[”Ô†‚ğæ“¾‚·‚é
+// tr_typeã‹ã‚‰ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å†…ã ã‘ã§ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç•ªå·ã‚’å–å¾—ã™ã‚‹
 static u32 WFLBY_TRTYPE_UNIONCHARNO_Get( u32 tr_type );
 static u32 WFLBY_UNIONCHARNO_TRTYPE_Get( u32 union_char_no );
 
 //-----------------------------------------------------------------------------
 /**
- *		’ÊMƒf[ƒ^
+ *		é€šä¿¡ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const DWC_LOBBY_MSGCOMMAND	sc_WFLBY_SYSTEM_COMMCMD[ WFLBY_SYSTEM_MAIN_COMMCMD_NUM ] = {
 
-	// ‰ï˜b
+	// ä¼šè©±
 	{ WFLBY_SYSTEM_COMMCMD_TALK_Req,		sizeof(WFLBY_SYSTEM_TALK_DATA) },
 	{ WFLBY_SYSTEM_COMMCMD_TALK_Ans,		sizeof(WFLBY_SYSTEM_TALK_DATA) },
 	{ WFLBY_SYSTEM_COMMCMD_TALK_Data,		sizeof(WFLBY_SYSTEM_TALK_DATA) },
 	{ WFLBY_SYSTEM_COMMCMD_TALK_End,		sizeof(WFLBY_SYSTEM_TALK_DATA) },
 
-	// ƒgƒsƒbƒN
+	// ãƒˆãƒ”ãƒƒã‚¯
 	{ WFLBY_SYSTEM_COMMCMD_TOPIC_Data,		sizeof(WFLBY_TOPIC) },
 
-	// ƒKƒWƒFƒbƒg
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆ
 	{ WFLBY_SYSTEM_COMMCMD_GADGET_Data,		sizeof(u32) },
 
-	// ƒtƒ[ƒg
+	// ãƒ•ãƒ­ãƒ¼ãƒˆ
 	{ WFLBY_SYSTEM_COMMCMD_FLOAT_On,		sizeof(u32)	},
 	{ WFLBY_SYSTEM_COMMCMD_FLOAT_Anm,		sizeof(u32)	},
 };
@@ -738,12 +738,12 @@ static const DWC_LOBBY_MSGCOMMAND	sc_WFLBY_SYSTEM_COMMCMD[ WFLBY_SYSTEM_MAIN_COM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒƒr[‹¤’Êˆ—ƒVƒXƒeƒ€
+ *	@brief	WiFiãƒ­ãƒ“ãƒ¼å…±é€šå‡¦ç†ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@param	p_save	ƒZ[ƒuƒf[ƒ^
- *	@param	heapID	ƒq[ƒvID
+ *	@param	p_save	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@return	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_SYSTEM* WFLBY_SYSTEM_Init( SAVEDATA* p_save, u32 heapID )
@@ -753,13 +753,13 @@ WFLBY_SYSTEM* WFLBY_SYSTEM_Init( SAVEDATA* p_save, u32 heapID )
 	p_wk = sys_AllocMemory( heapID, sizeof(WFLBY_SYSTEM) );
 	memset( p_wk, 0, sizeof(WFLBY_SYSTEM) );
 
-	// ƒZ[ƒuƒf[ƒ^•Û‘¶
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	p_wk->p_save = p_save;
 
-	// ƒq[ƒv
+	// ãƒ’ãƒ¼ãƒ—
 	p_wk->heapID = heapID;
 
-	// WiFiƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»
+	// WiFiãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–
 	{
 		DWC_LOBBY_CALLBACK callback;
 		callback.p_user_in				= WFLBY_SYSTEM_CallbackUserIn;
@@ -769,14 +769,14 @@ WFLBY_SYSTEM* WFLBY_SYSTEM_Init( SAVEDATA* p_save, u32 heapID )
 		callback.p_check_profile		= WFLBY_SYSTEM_CallbackCheckProfile;
 
 		DWC_LOBBY_Init( heapID, p_wk->p_save,
-				sizeof(WFLBY_USER_PROFILE),	// ƒvƒƒtƒB[ƒ‹ƒTƒCƒY
-				&callback,					// ƒR[ƒ‹ƒoƒbƒN
-				p_wk );						// ƒ[ƒN
+				sizeof(WFLBY_USER_PROFILE),	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚µã‚¤ã‚º
+				&callback,					// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+				p_wk );						// ãƒ¯ãƒ¼ã‚¯
 	}
 	
 	
 	
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	{
 		int i;
 		
@@ -788,34 +788,34 @@ WFLBY_SYSTEM* WFLBY_SYSTEM_Init( SAVEDATA* p_save, u32 heapID )
 		
 	}
 
-	// ©•ª‚ÌƒvƒƒtƒB[ƒ‹ì¬
+	// è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ä½œæˆ
 	WFLBY_SYSTEM_InitProfile( &p_wk->myprofile, p_wk->p_save, heapID );
 
-	// ‰ï˜bƒf[ƒ^‰Šú‰»
+	// ä¼šè©±ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	WFLBY_SYSTEM_TALK_Init( &p_wk->talk );
 
-	// ƒKƒWƒFƒbƒg
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆ
 	WFLBY_SYSTEM_GadGetClear( &p_wk->gadget );
 
-	// ’ÊMƒRƒ}ƒ“ƒhİ’è
+	// é€šä¿¡ã‚³ãƒãƒ³ãƒ‰è¨­å®š
 	DWC_LOBBY_SetMsgCmd( sc_WFLBY_SYSTEM_COMMCMD, WFLBY_SYSTEM_MAIN_COMMCMD_NUM, p_wk );
 
-	// ƒCƒxƒ“ƒgƒtƒ‰ƒOİ’è
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°è¨­å®š
 	WFLBY_SYSTEM_EVENT_Init( &p_wk->event );
 
-	// ƒtƒ[ƒgƒf[ƒ^ƒNƒŠƒA
+	// ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
 	WFLBY_SYSTEM_FLOAT_Init( &p_wk->floatdata );
 
-	// ƒKƒWƒFƒbƒgƒŒ[ƒg‰Šú‰»
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¬ãƒ¼ãƒˆåˆæœŸåŒ–
 	WFLBY_SYSTEM_GADGETRATE_Init( &p_wk->gadgetrate );
 
-	// ‡Œ¾—tƒoƒbƒtƒ@‚Ì‰Šú‰»
+	// åˆè¨€è‘‰ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ–
 	WFLBY_SYSTEM_AIKOTOBABUFF_Init( &p_wk->aikotoba, heapID );
 
-	// —š—ğƒLƒ…[‰Šú‰»
+	// å±¥æ­´ã‚­ãƒ¥ãƒ¼åˆæœŸåŒ–
 	WFLBY_SYSTEM_LASTACTQ_Init( &p_wk->lastactin_q, p_wk->p_save );
 
-	// ƒ~ƒjƒQ[ƒ€î•ñƒ[ƒN‰Šú‰»
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ æƒ…å ±ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	WFLBY_SYSTEM_MG_Init( &p_wk->mg_data, heapID );
 	
 	return p_wk;
@@ -823,14 +823,14 @@ WFLBY_SYSTEM* WFLBY_SYSTEM_Init( SAVEDATA* p_save, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒN‚Ì”jŠü
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã®ç ´æ£„
  *
- *	@param	p_wk	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_Exit( WFLBY_SYSTEM* p_wk )
 {
-	// Lêî•ñ‚ÌƒZ[ƒu
+	// åºƒå ´æƒ…å ±ã®ã‚»ãƒ¼ãƒ–
 	{
 		WFLBY_SAVEDATA* p_hiroba;
 		WFLBY_ANKETO	anketo_data;
@@ -842,18 +842,18 @@ void WFLBY_SYSTEM_Exit( WFLBY_SYSTEM* p_wk )
 		SAVEDATA_WFLBY_SetMyAnswer( p_hiroba, anketo_data.select );
 	}
 
-	// ƒ~ƒjƒQ[ƒ€î•ñƒ[ƒN”jŠü
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ æƒ…å ±ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	WFLBY_SYSTEM_MG_Exit( &p_wk->mg_data );
 
-	// ‡Œ¾—tƒoƒbƒtƒ@‚Ì”jŠü
+	// åˆè¨€è‘‰ãƒãƒƒãƒ•ã‚¡ã®ç ´æ£„
 	WFLBY_SYSTEM_AIKOTOBABUFF_Exit( &p_wk->aikotoba );
 	
-	// ’ÊMƒRƒ}ƒ“ƒh”jŠü
+	// é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ç ´æ£„
 	{
 		DWC_LOBBY_CleanMsgCmd();
 	}
 	
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	{
 		int i;
 
@@ -864,7 +864,7 @@ void WFLBY_SYSTEM_Exit( WFLBY_SYSTEM* p_wk )
 		}
 	}
 
-	// WiFiƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ”jŠü
+	// WiFiãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç ´æ£„
 	DWC_LOBBY_Exit();
 	
 	sys_FreeMemoryEz( p_wk );
@@ -872,9 +872,9 @@ void WFLBY_SYSTEM_Exit( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒCƒ“ˆ—
+ *	@brief	ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_wk	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_Main( WFLBY_SYSTEM* p_wk )
@@ -905,21 +905,21 @@ void WFLBY_SYSTEM_Main( WFLBY_SYSTEM* p_wk )
 			15,  
 		};
 
-		//©•ª‚ÌƒvƒƒtƒB[ƒ‹‚ğŠî–{‚É‚·‚é
+		//è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’åŸºæœ¬ã«ã™ã‚‹
 		profile = p_wk->myprofile.profile;
 		
-		profile.status		= WFLBY_STATUS_LOGIN;		// ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒX
+		profile.status		= WFLBY_STATUS_LOGIN;		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 		for( i=1; i<20; i++ ){
-			profile.userid		= i;						//  ƒƒr[“àƒ†[ƒUID
-			profile.sex			= gf_mtRand() % PM_NEUTRAL;	// «•Ê
-			profile.tr_type		= gf_mtRand() % NELEMS(tr_type);	// ƒgƒŒ[ƒi‚ÌŒ©‚½–Ú
+			profile.userid		= i;						//  ãƒ­ãƒ“ãƒ¼å†…ãƒ¦ãƒ¼ã‚¶ID
+			profile.sex			= gf_mtRand() % PM_NEUTRAL;	// æ€§åˆ¥
+			profile.tr_type		= gf_mtRand() % NELEMS(tr_type);	// ãƒˆãƒ¬ãƒ¼ãƒŠã®è¦‹ãŸç›®
 			DWC_LOBBY_DEBUG_PlayerIN( &profile, i );
 		}
 
 		if( sys.trg & PAD_BUTTON_R ){
 			int i;
 			WFLBY_USER_PROFILE* p_profile;
-			// ‘Sˆõ‚ğˆê‹C‚ÉƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚Ì‚Ù‚¤‚É‚¢‚©‚¹‚ÄŒ©‚é
+			// å…¨å“¡ã‚’ä¸€æ°—ã«ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã®ã»ã†ã«ã„ã‹ã›ã¦è¦‹ã‚‹
 			for( i=1; i<20; i++ ){
 				p_profile = (WFLBY_USER_PROFILE*)WFLBY_SYSTEM_GetUserProfile( p_wk, i );
 				p_profile->status = WFLBY_STATUS_WORLDTIMER;
@@ -930,10 +930,10 @@ void WFLBY_SYSTEM_Main( WFLBY_SYSTEM* p_wk )
 	}
 #endif
 
-	// ƒgƒsƒbƒNƒƒCƒ“
+	// ãƒˆãƒ”ãƒƒã‚¯ãƒ¡ã‚¤ãƒ³
 	NEWS_DSET_Main( p_wk->glbdata.p_lobbynews );
 
-	// ¢ŠEŠÔ‚ÌXV
+	// ä¸–ç•Œæ™‚é–“ã®æ›´æ–°
 	{
 		s64 time;
 		DWC_LOBBY_GetTime( &time );
@@ -942,38 +942,38 @@ void WFLBY_SYSTEM_Main( WFLBY_SYSTEM* p_wk )
 	}
 
 	// 080705	tomoya 
-	// BTS’ÊM789‚Ö‚Ì‘Îˆ
+	// BTSé€šä¿¡789ã¸ã®å¯¾å‡¦
 	{
-		// Œo‰ßŠÔ‚©‚ç–¾‚ç‚©‚ÉƒIƒƒŠ‚ÌŠÔ‚É‚È‚Á‚½‚ç
-		// ‹­§“I‚ÉI‚í‚ç‚¹‚é
+		// çµŒéæ™‚é–“ã‹ã‚‰æ˜ã‚‰ã‹ã«ã‚ªãƒ¯ãƒªã®æ™‚é–“ã«ãªã£ãŸã‚‰
+		// å¼·åˆ¶çš„ã«çµ‚ã‚ã‚‰ã›ã‚‹
 		WFLBY_SYSTEM_ContEndTime( p_wk );
 	}
 
-	// ‰ï˜bóM‘Ò‚¿ƒJƒEƒ“ƒg
+	// ä¼šè©±å—ä¿¡å¾…ã¡ã‚«ã‚¦ãƒ³ãƒˆ
 	{
 		WFLBY_SYSTEM_TALK_UpdateRecvWait( &p_wk->talk );
 	}
 
-	// ƒKƒWƒFƒbƒgƒf[ƒ^ƒNƒŠƒA
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
 	WFLBY_SYSTEM_GadGetClear( &p_wk->gadget );
 
-	// ƒCƒxƒ“ƒgƒtƒ‰ƒOƒNƒŠƒA
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
 	WFLBY_SYSTEM_FLAG_ClearEvent( &p_wk->flag );
 
-	// ƒ^ƒCƒ€ƒCƒxƒ“ƒgƒJƒEƒ“ƒg
+	// ã‚¿ã‚¤ãƒ ã‚¤ãƒ™ãƒ³ãƒˆã‚«ã‚¦ãƒ³ãƒˆ
 	WFLBY_SYSTEM_EVENT_Count( &p_wk->event, &p_wk->flag, 
 			&p_wk->floatdata, &p_wk->fire_data );
 
-	// ƒ~ƒjƒQ[ƒ€ƒtƒ‰ƒOŠÇ—
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ•ãƒ©ã‚°ç®¡ç†
 	WFLBY_SYSTEM_MgFlag_Cont( &p_wk->aplflag );
 
-	// ƒtƒ[ƒgƒf[ƒ^ƒƒCƒ“
+	// ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ¡ã‚¤ãƒ³
 	WFLBY_SYSTEM_FLOAT_Main( &p_wk->floatdata );
 
-	// ‰Ô‰Îƒf[ƒ^ƒƒCƒ“
+	// èŠ±ç«ãƒ‡ãƒ¼ã‚¿ãƒ¡ã‚¤ãƒ³
 	WFLBY_SYSTEM_FIREDATA_Main( &p_wk->fire_data );
 
-	// —š—ğQ‚ÌCRCƒ`ƒFƒbƒNƒGƒ‰[‚ğƒVƒXƒeƒ€“àƒGƒ‰[‚É”½‰f
+	// å±¥æ­´Qã®CRCãƒã‚§ãƒƒã‚¯ã‚¨ãƒ©ãƒ¼ã‚’ã‚·ã‚¹ãƒ†ãƒ å†…ã‚¨ãƒ©ãƒ¼ã«åæ˜ 
 	{
 		BOOL crc_error;
 		crc_error = WFLBY_SYSTEM_LASTACTQ_GetCrcError( &p_wk->lastactin_q );
@@ -985,9 +985,9 @@ void WFLBY_SYSTEM_Main( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBLANK	ˆ—
+ *	@brief	VBLANK	å‡¦ç†
  *
- *	@param	p_wk	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_VBlank( WFLBY_SYSTEM* p_wk )
@@ -997,12 +997,12 @@ void WFLBY_SYSTEM_VBlank( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Wi-Fi‚Ğ‚ë‚ÎƒVƒXƒeƒ€	ƒGƒ‰[ó‘Ôæ“¾
+ *	@brief	Wi-Fiã²ã‚ã°ã‚·ã‚¹ãƒ†ãƒ 	ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹å–å¾—
  *
- *	@param	cp_wk	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	cp_wk	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@retval	WFLBY_SYSTEM_ERR_NONE,
- *	@retval	WFLBY_SYSTEM_ERR_CRC,		// CRCƒ`ƒFƒbƒN‚ÅƒGƒ‰[‚ª‹N‚«‚½
+ *	@retval	WFLBY_SYSTEM_ERR_CRC,		// CRCãƒã‚§ãƒƒã‚¯ã§ã‚¨ãƒ©ãƒ¼ãŒèµ·ããŸ
  */
 //-----------------------------------------------------------------------------
 WFLBY_SYSTEM_ERR_TYPE WFLBY_SYSTEM_GetError( const WFLBY_SYSTEM* cp_wk )
@@ -1012,27 +1012,27 @@ WFLBY_SYSTEM_ERR_TYPE WFLBY_SYSTEM_GetError( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Wi-Fi‚Ğ‚ë‚Î’ÊM‰ßèó‘Ô‚Ìæ“¾
+ *	@brief	Wi-Fiã²ã‚ã°é€šä¿¡éå‰°çŠ¶æ…‹ã®å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	’ÊM‰ßèó‘Ô
- *	@retval	FALSE	’ÊM’Êíó‘Ô
+ *	@retval	TRUE	é€šä¿¡éå‰°çŠ¶æ…‹
+ *	@retval	FALSE	é€šä¿¡é€šå¸¸çŠ¶æ…‹
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_GetExcessFoodError( const WFLBY_SYSTEM* cp_wk )
 {
-	// ’ÊM‰ßèó‘Ô‚ğæ“¾‚·‚é
+	// é€šä¿¡éå‰°çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
 	return DWC_LOBBY_CheckExcessFlood();
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[ƒjƒ…[ƒXî•ñ‚ğæ“¾‚·‚é
+ *	@brief	ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹æƒ…å ±ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒƒr[ƒf[ƒ^
+ *	@return	ãƒ­ãƒ“ãƒ¼ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 NEWS_DATA* WFLBY_SYSTEM_GetLobbyData( WFLBY_SYSTEM* p_wk )
@@ -1042,14 +1042,14 @@ NEWS_DATA* WFLBY_SYSTEM_GetLobbyData( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠEŠÔæ“¾	Œ»İ‚Ìó‘Ô‚ğì¬‚µ‚ÄA‚»‚Ìƒf[ƒ^‚ğ•Ô‚µ‚Ü‚·B
+ *	@brief	ä¸–ç•Œæ™‚é–“å–å¾—	ç¾åœ¨ã®çŠ¶æ…‹ã‚’ä½œæˆã—ã¦ã€ãã®ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã—ã¾ã™ã€‚
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 const WFLBY_WLDTIMER* WFLBY_SYSTEM_GetWldTimer( WFLBY_SYSTEM* p_wk )
 {
-	// ¡‚Ìó‘Ô‚ğƒ[ƒN‚Éİ’è
+	// ä»Šã®çŠ¶æ…‹ã‚’ãƒ¯ãƒ¼ã‚¯ã«è¨­å®š
 	WFLBY_SYSTEM_SetWldTimerData( &p_wk->myprofile, &p_wk->glbdata.worldtimer );
 	
 	return &p_wk->glbdata.worldtimer;
@@ -1057,11 +1057,11 @@ const WFLBY_WLDTIMER* WFLBY_SYSTEM_GetWldTimer( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»İ‚ÌŠÔ‚ğæ“¾
+ *	@brief	ç¾åœ¨ã®æ™‚é–“ã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ŠÔ
+ *	@return	æ™‚é–“
  */
 //-----------------------------------------------------------------------------
 const WFLBY_TIME* WFLBY_SYSTEM_GetWldTime( const WFLBY_SYSTEM* cp_wk )
@@ -1071,13 +1071,13 @@ const WFLBY_TIME* WFLBY_SYSTEM_GetWldTime( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	V‚µ‚­“ü‚Á‚Ä‚«‚½l‚ğƒ`ƒFƒbƒN
+ *	@brief	æ–°ã—ãå…¥ã£ã¦ããŸäººã‚’ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	idx			ƒ`ƒFƒbƒN‚·‚él‚ÌƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ãƒã‚§ãƒƒã‚¯ã™ã‚‹äººã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	V‚µ‚­“ü‚Á‚Ä‚«‚½
- *	@retval	FALSE	“ü‚Á‚Ä‚«‚Ä‚È‚¢
+ *	@retval	TRUE	æ–°ã—ãå…¥ã£ã¦ããŸ
+ *	@retval	FALSE	å…¥ã£ã¦ãã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_FLAG_GetUserIn( WFLBY_SYSTEM* p_wk, u32 idx )
@@ -1091,13 +1091,13 @@ BOOL WFLBY_SYSTEM_FLAG_GetUserIn( WFLBY_SYSTEM* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	V‚µ‚¢‘ŞºÒ‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	æ–°ã—ã„é€€å®¤è€…ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	idx			ƒ`ƒFƒbƒN‚·‚éƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE		‘Şº‚µ‚½
- *	@retval	FALSE		‘Şº‚µ‚Ä‚È‚¢
+ *	@retval	TRUE		é€€å®¤ã—ãŸ
+ *	@retval	FALSE		é€€å®¤ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_FLAG_GetUserOut( WFLBY_SYSTEM* p_wk, u32 idx )
@@ -1111,13 +1111,13 @@ BOOL WFLBY_SYSTEM_FLAG_GetUserOut( WFLBY_SYSTEM* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰½‚©ƒCƒxƒ“ƒg‚ª”­“®‚µ‚½‚©ƒ`ƒFƒbƒN
+ *	@brief	ä½•ã‹ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºå‹•ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	type	ƒCƒxƒ“ƒgƒ^ƒCƒv
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	type	ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
  *
- *	@retval	TRUE	‰½‚©ƒCƒxƒ“ƒg‚ª”­“®‚µ‚½
- *	@retval	FALSE	‰½‚àŠJn‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	ä½•ã‹ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºå‹•ã—ãŸ
+ *	@retval	FALSE	ä½•ã‚‚é–‹å§‹ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_FLAG_GetEventStart( WFLBY_SYSTEM* p_wk, WFLBY_EVENT_CHG_TYPE type )
@@ -1132,13 +1132,13 @@ BOOL WFLBY_SYSTEM_FLAG_GetEventStart( WFLBY_SYSTEM* p_wk, WFLBY_EVENT_CHG_TYPE t
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUƒvƒƒtƒB[ƒ‹‚ªXV‚³‚ê‚½‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãŒæ›´æ–°ã•ã‚ŒãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	idx			ƒ†[ƒUIDX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ãƒ¦ãƒ¼ã‚¶IDX
  *
- *	@retval	TRUE	‚»‚Ìƒ†[ƒU‚ÌƒvƒƒtƒB[ƒ‹‚ªXV‚³‚ê‚½
- *	@retval	FALSE	XV‚³‚ê‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ãã®ãƒ¦ãƒ¼ã‚¶ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãŒæ›´æ–°ã•ã‚ŒãŸ
+ *	@retval	FALSE	æ›´æ–°ã•ã‚Œã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_FLAG_GetUserProfileUpdate( WFLBY_SYSTEM* p_wk, u32 idx )
@@ -1152,11 +1152,11 @@ BOOL WFLBY_SYSTEM_FLAG_GetUserProfileUpdate( WFLBY_SYSTEM* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZ[ƒuƒf[ƒ^æ“¾
+ *	@brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒZ[ƒuƒf[ƒ^
+ *	@return	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 SAVEDATA* WFLBY_SYSTEM_GetSaveData( WFLBY_SYSTEM* p_wk )
@@ -1166,28 +1166,28 @@ SAVEDATA* WFLBY_SYSTEM_GetSaveData( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ‹ƒZƒEƒX•\¦‹–‰Âƒtƒ‰ƒO‚ğæ“¾‚·‚é
+ *	@brief	ã‚¢ãƒ«ã‚»ã‚¦ã‚¹è¡¨ç¤ºè¨±å¯ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‹–‰Â
- *	@retval	FALSE	‚¾‚ß
+ *	@retval	TRUE	è¨±å¯
+ *	@retval	FALSE	ã ã‚
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_FLAG_GetArceus( const WFLBY_SYSTEM* cp_wk )
 {
-	GF_ASSERT( cp_wk );	// –{“–‚ÍSYSTEM‚¢‚ç‚È‚¢‚¯‚Ç•K—v‚È‚æ‚¤‚É‚È‚é‚©‚à‚µ‚ê‚È‚¢‚©‚ç
+	GF_ASSERT( cp_wk );	// æœ¬å½“ã¯SYSTEMã„ã‚‰ãªã„ã‘ã©å¿…è¦ãªã‚ˆã†ã«ãªã‚‹ã‹ã‚‚ã—ã‚Œãªã„ã‹ã‚‰
 	return DWC_LOBBY_GetRoomData( DWC_LOBBY_ROOMDATA_ARCEUS );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒg‚ğ“š‚¦‚½‚Ì‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã‚’ç­”ãˆãŸã®ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“š‚¦‚½
- *	@retval	FALSE	“š‚¦‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ç­”ãˆãŸ
+ *	@retval	FALSE	ç­”ãˆã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_FLAG_GetAnketoInput( const WFLBY_SYSTEM* cp_wk )
@@ -1199,12 +1199,12 @@ BOOL WFLBY_SYSTEM_FLAG_GetAnketoInput( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgŒ‹‰Ê‚ğŒ©‚½‚Ì‚©‚Ç‚¤‚©
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆçµæœã‚’è¦‹ãŸã®ã‹ã©ã†ã‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‚İ‚½
- *	@retval	FALSE	‚İ‚Ä‚È‚¢
+ *	@retval	TRUE	ã¿ãŸ
+ *	@retval	FALSE	ã¿ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_FLAG_GetAnketoView( const WFLBY_SYSTEM* cp_wk )
@@ -1216,9 +1216,9 @@ BOOL WFLBY_SYSTEM_FLAG_GetAnketoView( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒg‚ÌŒ‹‰Ê‚ğŒ©‚½‚Ì‚©‚ğİ’è
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã®çµæœã‚’è¦‹ãŸã®ã‹ã‚’è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_FLAG_SetAnketoView( WFLBY_SYSTEM* p_wk )
@@ -1230,12 +1230,12 @@ void WFLBY_SYSTEM_FLAG_SetAnketoView( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgó‘Ô	ƒƒbƒN
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆçŠ¶æ…‹	ãƒ­ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒƒbƒN
- *	@retval	FALSE	ƒƒbƒN‘O
+ *	@retval	TRUE	ãƒ­ãƒƒã‚¯
+ *	@retval	FALSE	ãƒ­ãƒƒã‚¯å‰
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_Event_GetLock( const WFLBY_SYSTEM* cp_wk )
@@ -1245,12 +1245,12 @@ BOOL WFLBY_SYSTEM_Event_GetLock( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹’mŠúŠÔ‚©ƒ`ƒFƒbƒN
+ *	@brief	çµ‚äº†å‘ŠçŸ¥æœŸé–“ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹’mŠúŠÔ
- *	@retval	FALSE	I—¹’mŠúŠÔ‘O
+ *	@retval	TRUE	çµ‚äº†å‘ŠçŸ¥æœŸé–“
+ *	@retval	FALSE	çµ‚äº†å‘ŠçŸ¥æœŸé–“å‰
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_Event_GetEndCM( const WFLBY_SYSTEM* cp_wk )
@@ -1260,12 +1260,12 @@ BOOL WFLBY_SYSTEM_Event_GetEndCM( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgó‘Ô	•”‰®I—¹
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆçŠ¶æ…‹	éƒ¨å±‹çµ‚äº†
  *
  *	@param	cp_wk 
  *
- *	@retval	TRUE	•”‰®‚ÌI—¹
- *	@retval	FALSE	•”‰®‚Ü‚¾I—¹‚¶‚á‚È‚¢
+ *	@retval	TRUE	éƒ¨å±‹ã®çµ‚äº†
+ *	@retval	FALSE	éƒ¨å±‹ã¾ã çµ‚äº†ã˜ã‚ƒãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_Event_GetEnd( const WFLBY_SYSTEM* cp_wk )
@@ -1279,13 +1279,13 @@ BOOL WFLBY_SYSTEM_Event_GetEnd( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgó‘Ô	‰Ô‰Î
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆçŠ¶æ…‹	èŠ±ç«
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	WFLBY_EVENT_HANABI_BEFORE,	// ‰Ô‰Î‘O
- *	@retval	WFLBY_EVENT_HANABI_PLAY,	// ‰Ô‰Î’†
- *	@retval	WFLBY_EVENT_HANABI_AFTER,	// ‰Ô‰ÎŒã
+ *	@retval	WFLBY_EVENT_HANABI_BEFORE,	// èŠ±ç«å‰
+ *	@retval	WFLBY_EVENT_HANABI_PLAY,	// èŠ±ç«ä¸­
+ *	@retval	WFLBY_EVENT_HANABI_AFTER,	// èŠ±ç«å¾Œ
  */
 //-----------------------------------------------------------------------------
 WFLBY_EVENT_HANABI_ST WFLBY_SYSTEM_Event_GetHanabi( const WFLBY_SYSTEM* cp_wk )
@@ -1298,12 +1298,12 @@ WFLBY_EVENT_HANABI_ST WFLBY_SYSTEM_Event_GetHanabi( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgó‘Ô	ƒpƒŒ[ƒh
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆçŠ¶æ…‹	ãƒ‘ãƒ¬ãƒ¼ãƒ‰
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE		ƒpƒŒ[ƒh’†
- *	@retval	FALSE		ƒpƒŒ[ƒh‚µ‚Ä‚È‚¢
+ *	@retval	TRUE		ãƒ‘ãƒ¬ãƒ¼ãƒ‰ä¸­
+ *	@retval	FALSE		ãƒ‘ãƒ¬ãƒ¼ãƒ‰ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_Event_GetParade( const WFLBY_SYSTEM* cp_wk )
@@ -1316,12 +1316,12 @@ BOOL WFLBY_SYSTEM_Event_GetParade( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgó‘Ô	ƒ~ƒjƒQ[ƒ€’â~
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆçŠ¶æ…‹	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ åœæ­¢
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒ~ƒjƒQ[ƒ€’â~
- *	@retval	FALSE	ƒ~ƒjƒQ[ƒ€‘±s
+ *	@retval	TRUE	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ åœæ­¢
+ *	@retval	FALSE	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ç¶šè¡Œ
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_Event_GetMiniGameStop( const WFLBY_SYSTEM* cp_wk )
@@ -1331,12 +1331,12 @@ BOOL WFLBY_SYSTEM_Event_GetMiniGameStop( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgó‘Ô	ƒlƒIƒ“ƒCƒxƒ“ƒg
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆçŠ¶æ…‹	ãƒã‚ªãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒlƒIƒ“ƒCƒxƒ“ƒgŠJn’†
- *	@retval	FALSE	ƒlƒIƒ“ƒCƒxƒ“ƒgŠJn‘O
+ *	@retval	TRUE	ãƒã‚ªãƒ³ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹ä¸­
+ *	@retval	FALSE	ãƒã‚ªãƒ³ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹å‰
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_Event_GetNeon( const WFLBY_SYSTEM* cp_wk )
@@ -1349,11 +1349,11 @@ BOOL WFLBY_SYSTEM_Event_GetNeon( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgó‘Ô	•”‰®ƒlƒIƒ“
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆçŠ¶æ…‹	éƒ¨å±‹ãƒã‚ªãƒ³
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	PPW_LOBBY_TIME_EVENT_NEON_A0`PPW_LOBBY_TIME_EVENT_NEON_A5
+ *	@return	PPW_LOBBY_TIME_EVENT_NEON_A0ã€œPPW_LOBBY_TIME_EVENT_NEON_A5
  */
 //-----------------------------------------------------------------------------
 PPW_LOBBY_TIME_EVENT WFLBY_SYSTEM_Event_GetNeonRoom( const WFLBY_SYSTEM* cp_wk )
@@ -1366,11 +1366,11 @@ PPW_LOBBY_TIME_EVENT WFLBY_SYSTEM_Event_GetNeonRoom( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgó‘Ô	°ƒlƒIƒ“
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆçŠ¶æ…‹	åºŠãƒã‚ªãƒ³
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	PPW_LOBBY_TIME_EVENT_NEON_B0`PPW_LOBBY_TIME_EVENT_NEON_B3
+ *	@return	PPW_LOBBY_TIME_EVENT_NEON_B0ã€œPPW_LOBBY_TIME_EVENT_NEON_B3
  */
 //-----------------------------------------------------------------------------
 PPW_LOBBY_TIME_EVENT WFLBY_SYSTEM_Event_GetNeonFloor( const WFLBY_SYSTEM* cp_wk )
@@ -1383,11 +1383,11 @@ PPW_LOBBY_TIME_EVENT WFLBY_SYSTEM_Event_GetNeonFloor( const WFLBY_SYSTEM* cp_wk 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgó‘Ô	ƒ‚ƒjƒ…ƒƒ“ƒgƒlƒIƒ“
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆçŠ¶æ…‹	ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆãƒã‚ªãƒ³
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	PPW_LOBBY_TIME_EVENT_NEON_C0`PPW_LOBBY_TIME_EVENT_NEON_C3
+ *	@return	PPW_LOBBY_TIME_EVENT_NEON_C0ã€œPPW_LOBBY_TIME_EVENT_NEON_C3
  */
 //--------------------PPW_LOBBY_TIME_EVENT_FIRE_WORKS_START---------------------------------------------------------
 PPW_LOBBY_TIME_EVENT WFLBY_SYSTEM_Event_GetNeonMonu( const WFLBY_SYSTEM* cp_wk )
@@ -1401,10 +1401,10 @@ PPW_LOBBY_TIME_EVENT WFLBY_SYSTEM_Event_GetNeonMonu( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€ƒtƒ‰ƒO	ƒƒbƒN
- *		e‚ªBCANCEL‚µ‚½‚ÉƒƒbƒN‚ğ‚©‚¯‚é
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ•ãƒ©ã‚°	ãƒ­ãƒƒã‚¯
+ *		è¦ªãŒBCANCELã—ãŸæ™‚ã«ãƒ­ãƒƒã‚¯ã‚’ã‹ã‘ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_MGFLAG_SetLock( WFLBY_SYSTEM* p_wk )
@@ -1414,12 +1414,12 @@ void WFLBY_SYSTEM_MGFLAG_SetLock( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€ƒtƒ‰ƒO	ƒƒbƒN’†‚©æ“¾
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ•ãƒ©ã‚°	ãƒ­ãƒƒã‚¯ä¸­ã‹å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒƒbƒN’†
- *	@retval	FALSE	ƒƒbƒN‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	ãƒ­ãƒƒã‚¯ä¸­
+ *	@retval	FALSE	ãƒ­ãƒƒã‚¯ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_MGFLAG_GetLock( const WFLBY_SYSTEM* cp_wk )
@@ -1430,12 +1430,12 @@ BOOL WFLBY_SYSTEM_MGFLAG_GetLock( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€ƒGƒ‰[I—¹	ƒ`ƒFƒbƒNŠÖ”
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¨ãƒ©ãƒ¼çµ‚äº†	ãƒã‚§ãƒƒã‚¯é–¢æ•°
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒGƒ‰[I—¹‚µ‚½
- *	@retval	FALSE	’ÊíI—¹‚µ‚½
+ *	@retval	TRUE	ã‚¨ãƒ©ãƒ¼çµ‚äº†ã—ãŸ
+ *	@retval	FALSE	é€šå¸¸çµ‚äº†ã—ãŸ
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_MG_CheckErrorEnd( const WFLBY_SYSTEM* cp_wk )
@@ -1445,9 +1445,9 @@ BOOL WFLBY_SYSTEM_MG_CheckErrorEnd( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€ƒGƒ‰[I—¹	İ’èŠÖ”
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¨ãƒ©ãƒ¼çµ‚äº†	è¨­å®šé–¢æ•°
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_MG_SetErrorEnd( WFLBY_SYSTEM* p_wk, BOOL flag )
@@ -1459,9 +1459,9 @@ void WFLBY_SYSTEM_MG_SetErrorEnd( WFLBY_SYSTEM* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€’ÊM‘Šè‚Ìƒƒr[“àƒCƒ“ƒfƒbƒNƒX	ƒoƒbƒtƒ@ƒNƒŠƒA
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é€šä¿¡ç›¸æ‰‹ã®ãƒ­ãƒ“ãƒ¼å†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹	ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_PLIDX_Clear( WFLBY_SYSTEM* p_wk )
@@ -1471,11 +1471,11 @@ void WFLBY_SYSTEM_PLIDX_Clear( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€’ÊM‘Šè‚Ìƒƒr[‚È‚¢ƒCƒ“ƒfƒbƒNƒX	İ’è
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é€šä¿¡ç›¸æ‰‹ã®ãƒ­ãƒ“ãƒ¼ãªã„ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹	è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	plidx		ƒƒr[“àƒCƒ“ƒfƒbƒNƒX
- *	@param	netid		’ÊMID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	plidx		ãƒ­ãƒ“ãƒ¼å†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	netid		é€šä¿¡ID
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_PLIDX_Set( WFLBY_SYSTEM* p_wk, s32 userid, u32 netid )
@@ -1484,7 +1484,7 @@ void WFLBY_SYSTEM_PLIDX_Set( WFLBY_SYSTEM* p_wk, s32 userid, u32 netid )
 	
 	GF_ASSERT( netid < WFLBY_MINIGAME_MAX );
 
-	// userid‚©‚çplidx‚ğ‹‚ß‚é
+	// useridã‹ã‚‰plidxã‚’æ±‚ã‚ã‚‹
 	plidx = DWC_LOBBY_GetUserIDIdx( userid );
 	GF_ASSERT( plidx != DWC_LOBBY_USERIDTBL_IDX_NONE );
 
@@ -1495,10 +1495,10 @@ void WFLBY_SYSTEM_PLIDX_Set( WFLBY_SYSTEM* p_wk, s32 userid, u32 netid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€’ÊM‘Šè‚Ìƒƒr[‚È‚¢ƒCƒ“ƒfƒbƒNƒX	©•ª‚Ìƒf[ƒ^‚ğİ’è
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é€šä¿¡ç›¸æ‰‹ã®ãƒ­ãƒ“ãƒ¼ãªã„ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹	è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	netid		ƒlƒbƒgID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	netid		ãƒãƒƒãƒˆID
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_PLIDX_SetMyData( WFLBY_SYSTEM* p_wk, u32 netid )
@@ -1511,10 +1511,10 @@ void WFLBY_SYSTEM_PLIDX_SetMyData( WFLBY_SYSTEM* p_wk, u32 netid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€’ÊM‘Šè‚Ìƒƒr[“àƒCƒ“ƒfƒbƒNƒX	æ“¾
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ é€šä¿¡ç›¸æ‰‹ã®ãƒ­ãƒ“ãƒ¼å†…ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹	å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	p_buff		ƒf[ƒ^Ši”[æ
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_buff		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_PLIDX_Get( const WFLBY_SYSTEM* cp_wk, WFLBY_MINIGAME_PLIDX* p_buff )
@@ -1525,9 +1525,9 @@ void WFLBY_SYSTEM_PLIDX_Get( const WFLBY_SYSTEM* cp_wk, WFLBY_MINIGAME_PLIDX* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒvƒŠ‚ğ‹­§“I‚ÉI—¹‚³‚¹‚½‚Ì‚©‚ğİ’è
+ *	@brief	ã‚¢ãƒ—ãƒªã‚’å¼·åˆ¶çš„ã«çµ‚äº†ã•ã›ãŸã®ã‹ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_APLFLAG_SetForceEnd( WFLBY_SYSTEM* p_wk )
@@ -1537,12 +1537,12 @@ void WFLBY_SYSTEM_APLFLAG_SetForceEnd( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹­§I—¹ƒtƒ‰ƒO‚ğæ“¾‚·‚é
+ *	@brief	å¼·åˆ¶çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‹­§I—¹
- *	@retval	FALSE	‹­§I—¹‚¶‚á‚È‚¢
+ *	@retval	TRUE	å¼·åˆ¶çµ‚äº†
+ *	@retval	FALSE	å¼·åˆ¶çµ‚äº†ã˜ã‚ƒãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_APLFLAG_GetForceEnd( const WFLBY_SYSTEM* cp_wk )
@@ -1554,10 +1554,10 @@ BOOL WFLBY_SYSTEM_APLFLAG_GetForceEnd( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGM‚ğƒpƒŒ[ƒh‚É•Ï‚¦‚é‚±‚Æ‚ğƒƒbƒN–”‚ÍƒƒbƒN‰ğœ‚·‚é
+ *	@brief	BGMã‚’ãƒ‘ãƒ¬ãƒ¼ãƒ‰ã«å¤‰ãˆã‚‹ã“ã¨ã‚’ãƒ­ãƒƒã‚¯åˆã¯ãƒ­ãƒƒã‚¯è§£é™¤ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		TRUEFƒƒbƒN	FALSEFƒƒbƒN‰ğœ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		TRUEï¼šãƒ­ãƒƒã‚¯	FALSEï¼šãƒ­ãƒƒã‚¯è§£é™¤
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetLockBGMChange( WFLBY_SYSTEM* p_wk, BOOL flag )
@@ -1567,35 +1567,35 @@ void WFLBY_SYSTEM_SetLockBGMChange( WFLBY_SYSTEM* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡—¬‚·‚×‚«BGM‚ğ—¬‚·
+ *	@brief	ä»Šæµã™ã¹ãBGMã‚’æµã™
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetNowBGM( const WFLBY_SYSTEM* cp_wk )
 {
 	if( (cp_wk->event.parade == TRUE) && (cp_wk->event.parade_count <= 0) ){
 
-		Snd_DataSetByScene( SND_SCENE_WIFI_LOBBY_HIROBA, SEQ_PL_WIFIPARADE, 0 );	// ƒpƒŒ[ƒh
+		Snd_DataSetByScene( SND_SCENE_WIFI_LOBBY_HIROBA, SEQ_PL_WIFIPARADE, 0 );	// ãƒ‘ãƒ¬ãƒ¼ãƒ‰
 
-		// ƒ{ƒŠƒ…[ƒ€İ’è
+		// ãƒœãƒªãƒ¥ãƒ¼ãƒ è¨­å®š
 		WFLBY_SYSTEM_EVENT_SetBgmVolume( &cp_wk->event );
 	}else{
 
-		// BGMƒ`ƒFƒ“ƒW
-		Snd_DataSetByScene( SND_SCENE_WIFI_LOBBY_HIROBA, SEQ_PL_WIFIUNION, 0 );	//wifiƒƒr[Ä¶
+		// BGMãƒã‚§ãƒ³ã‚¸
+		Snd_DataSetByScene( SND_SCENE_WIFI_LOBBY_HIROBA, SEQ_PL_WIFIUNION, 0 );	//wifiãƒ­ãƒ“ãƒ¼å†ç”Ÿ
 
-		// ƒ{ƒŠƒ…[ƒ€İ’è
+		// ãƒœãƒªãƒ¥ãƒ¼ãƒ è¨­å®š
 		WFLBY_SYSTEM_EVENT_SetBgmVolume( &cp_wk->event );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒŠƒ…[ƒ€—‚Æ‚µó‘Ôİ’è
+ *	@brief	ãƒœãƒªãƒ¥ãƒ¼ãƒ è½ã¨ã—çŠ¶æ…‹è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	flag		ƒtƒ‰ƒO	TRUEF—‚Æ‚·	FALSEF’Êí
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	flag		ãƒ•ãƒ©ã‚°	TRUEï¼šè½ã¨ã™	FALSEï¼šé€šå¸¸
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetBGMVolumeDown( WFLBY_SYSTEM* p_wk, BOOL flag )
@@ -1604,7 +1604,7 @@ void WFLBY_SYSTEM_SetBGMVolumeDown( WFLBY_SYSTEM* p_wk, BOOL flag )
 
 		p_wk->event.bgm_vl_down = flag;
 
-		// ‚¨‚Æ‰º‚°’†‚È‚ç‰º‚°‚Ä‚¨‚­
+		// ãŠã¨ä¸‹ã’ä¸­ãªã‚‰ä¸‹ã’ã¦ãŠã
 		WFLBY_SYSTEM_EVENT_SetBgmVolume( &p_wk->event );
 	}
 }
@@ -1612,11 +1612,11 @@ void WFLBY_SYSTEM_SetBGMVolumeDown( WFLBY_SYSTEM* p_wk, BOOL flag )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚Ìƒoƒbƒtƒ@ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é
+ *	@brief	è‡ªåˆ†ã®ãƒãƒƒãƒ•ã‚¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒCƒ“ƒfƒbƒNƒX
+ *	@return	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetMyIdx( const WFLBY_SYSTEM* cp_wk )
@@ -1627,11 +1627,11 @@ u32 WFLBY_SYSTEM_GetMyIdx( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚Ìƒ†[ƒUID‚ğæ“¾‚·‚é
+ *	@brief	è‡ªåˆ†ã®ãƒ¦ãƒ¼ã‚¶IDã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ†[ƒUID	iƒƒr[ƒ‰ƒCƒuƒ‰ƒŠŠÇ—IDj
+ *	@return	ãƒ¦ãƒ¼ã‚¶ID	ï¼ˆãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç®¡ç†IDï¼‰
  */
 //-----------------------------------------------------------------------------
 s32 WFLBY_SYSTEM_GetMyUserID( const WFLBY_SYSTEM* cp_wk )
@@ -1641,20 +1641,20 @@ s32 WFLBY_SYSTEM_GetMyUserID( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	idx‚ÌƒvƒŒƒCƒ„[‚ª•”‰®‚É“ü‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	idxã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒéƒ¨å±‹ã«å…¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	•”‰®‚É“ü‚Á‚Ä‚é
- *	@retval	FALSE	•”‰®‚É“ü‚Á‚Ä‚È‚¢
+ *	@retval	TRUE	éƒ¨å±‹ã«å…¥ã£ã¦ã‚‹
+ *	@retval	FALSE	éƒ¨å±‹ã«å…¥ã£ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_GetUserRoomIn( const WFLBY_SYSTEM* cp_wk, u32 idx )
 {
 	DWC_LOBBY_CHANNEL_USERID data;
 
-	// ƒ†[ƒUIDƒe[ƒuƒ‹æ“¾
+	// ãƒ¦ãƒ¼ã‚¶IDãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 	DWC_LOBBY_GetUserIDTbl( &data );
 	
 	if( data.cp_tbl[ idx ] != DWC_LOBBY_INVALID_USER_ID ){
@@ -1665,12 +1665,12 @@ BOOL WFLBY_SYSTEM_GetUserRoomIn( const WFLBY_SYSTEM* cp_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUƒvƒƒtƒB[ƒ‹‚ğæ“¾‚·‚é
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	ƒ†[ƒUƒvƒƒtƒB[ƒ‹
+ *	@return	ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 const WFLBY_USER_PROFILE* WFLBY_SYSTEM_GetUserProfile( const WFLBY_SYSTEM* cp_wk, u32 idx )
@@ -1681,19 +1681,19 @@ const WFLBY_USER_PROFILE* WFLBY_SYSTEM_GetUserProfile( const WFLBY_SYSTEM* cp_wk
 
 	GF_ASSERT( idx < WFLBY_PLAYER_MAX );
 
-	// ƒ†[ƒUIDƒe[ƒuƒ‹æ“¾
+	// ãƒ¦ãƒ¼ã‚¶IDãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 	DWC_LOBBY_GetUserIDTbl( &usertbl );
 
 
-	// ƒ†[ƒUID‚ÌƒvƒƒtƒB[ƒ‹æ“¾
+	// ãƒ¦ãƒ¼ã‚¶IDã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å–å¾—
 	user = usertbl.cp_tbl[ idx ];
 
-	// ‚»‚ÌINDEX‚Ìl‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãã®INDEXã®äººãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( user == DWC_LOBBY_INVALID_USER_ID ){
 		return NULL;
 	}
 
-	// ©•ª‚Ìƒf[ƒ^‚È‚çƒ[ƒJƒ‹ã‚Ì©•ª‚Ìƒf[ƒ^‚ğæ“¾‚·‚é
+	// è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ãªã‚‰ãƒ­ãƒ¼ã‚«ãƒ«ä¸Šã®è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 	if( user == DWC_LOBBY_GetMyUserID() ){
 		cp_data = &cp_wk->myprofile.profile;
 	}else{
@@ -1705,11 +1705,11 @@ const WFLBY_USER_PROFILE* WFLBY_SYSTEM_GetUserProfile( const WFLBY_SYSTEM* cp_wk
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚ÌƒvƒƒtƒB[ƒ‹‚ğæ“¾‚·‚é	ƒ‰ƒCƒuƒ‰ƒŠ‚Ì‚à‚Ì‚ğ’¼Ú
+ *	@brief	è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å–å¾—ã™ã‚‹	ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚‚ã®ã‚’ç›´æ¥
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return ƒvƒƒtƒB[ƒ‹
+ *	@return ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 
@@ -1724,19 +1724,19 @@ const WFLBY_USER_PROFILE* WFLBY_SYSTEM_GetMyProfile( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚ÌƒvƒƒtƒB[ƒ‹æ“¾	ƒVƒXƒeƒ€“à‚Ì‚à‚Ì‚ği’¼Ú‘‚«‚Ş‚æ‚¤j
+ *	@brief	è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å–å¾—	ã‚·ã‚¹ãƒ†ãƒ å†…ã®ã‚‚ã®ã‚’ï¼ˆç›´æ¥æ›¸ãè¾¼ã‚€ã‚ˆã†ï¼‰
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒvƒƒtƒB[ƒ‹
+ *	@return	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  *
  *
- *	*‘‚«‚ñ‚¾‚ç•K‚¸WFLBY_SYSTEM_SetMyProfile‚ğ‚µ‚Ä‚­‚¾‚³‚¢B
+ *	*æ›¸ãè¾¼ã‚“ã ã‚‰å¿…ãšWFLBY_SYSTEM_SetMyProfileã‚’ã—ã¦ãã ã•ã„ã€‚
  */
 //-----------------------------------------------------------------------------
 WFLBY_USER_PROFILE* WFLBY_SYSTEM_GetMyProfileLocal( WFLBY_SYSTEM* p_wk )
 {
-	// CRCƒ`ƒFƒbƒN
+	// CRCãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_MyProfile_CheckCrc( &p_wk->myprofile, p_wk->p_save ) == FALSE ){
 		p_wk->error = WFLBY_SYSTEM_ERR_CRC;
 	}
@@ -1745,10 +1745,10 @@ WFLBY_USER_PROFILE* WFLBY_SYSTEM_GetMyProfileLocal( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒe[ƒ^ƒX‚Ì•ÏX‚ğİ’è‚·‚é
+ *	@brief	ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®å¤‰æ›´ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	status		ƒXƒe[ƒ^ƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	status		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetMyStatus( WFLBY_SYSTEM* p_wk, WFLBY_STATUS_TYPE status )
@@ -1757,60 +1757,60 @@ void WFLBY_SYSTEM_SetMyStatus( WFLBY_SYSTEM* p_wk, WFLBY_STATUS_TYPE status )
 	
 	GF_ASSERT( status < WFLBY_STATUS_NUM );
 
-	// CRCƒ`ƒFƒbƒN
+	// CRCãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_MyProfile_CheckCrc( &p_wk->myprofile, p_wk->p_save ) == FALSE ){
 		p_wk->error = WFLBY_SYSTEM_ERR_CRC;
 		return ;
 	}
 
-	// •Ï‰»‚ ‚é‚©ƒ`ƒFƒbƒN
+	// å¤‰åŒ–ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_wk->myprofile.profile.status == status ){
 		return ;
 	}
 
-	// ‰ï˜bƒŠƒNƒGƒXƒg’†‚É‰ï˜bˆÈŠO‚Ìó‘Ô‚É‘JˆÚ‚·‚é‚Æ‚«A
-	// ‰ï˜bƒŠƒNƒGƒXƒg‚ğ”jŠü‚·‚é
+	// ä¼šè©±ãƒªã‚¯ã‚¨ã‚¹ãƒˆä¸­ã«ä¼šè©±ä»¥å¤–ã®çŠ¶æ…‹ã«é·ç§»ã™ã‚‹ã¨ãã€
+	// ä¼šè©±ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’ç ´æ£„ã™ã‚‹
 	if( status != WFLBY_STATUS_TALK ){
 		if( WFLBY_SYSTEM_CheckTalk( p_wk ) == TRUE ){
 
-			// e‚È‚ç‹­§I—¹
+			// è¦ªãªã‚‰å¼·åˆ¶çµ‚äº†
 			if( WFLBY_SYSTEM_CheckTalkReq( p_wk ) == FALSE ){
-				// ‰ï˜bI—¹
+				// ä¼šè©±çµ‚äº†
 				userid = DWC_LOBBY_GetUserIdxID( p_wk->talk.talk_idx );
-				WFLBY_SYSTEM_TALK_SendTalkExEnd( p_wk, p_wk->talk.talk_idx );	// ‘Šè•û‚É‚Ş‚è‚Æ‚¢‚¤
+				WFLBY_SYSTEM_TALK_SendTalkExEnd( p_wk, p_wk->talk.talk_idx );	// ç›¸æ‰‹æ–¹ã«ã‚€ã‚Šã¨ã„ã†
 			}
 			WFLBY_SYSTEM_TALK_ExEndClear( &p_wk->talk );
 		}
 	}
 
-	// ‚à‚µAƒ~ƒjƒQ[ƒ€‚È‚Ç‚ÌƒXƒe[ƒ^ƒX‚ğ•ÏX‚·‚é‚Ì‚Å‚ ‚ê‚ÎA
-	// ÅŒã‚É‚µ‚½‚±‚Æ‚àXV‚·‚é
+	// ã‚‚ã—ã€ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãªã©ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å¤‰æ›´ã™ã‚‹ã®ã§ã‚ã‚Œã°ã€
+	// æœ€å¾Œã«ã—ãŸã“ã¨ã‚‚æ›´æ–°ã™ã‚‹
 	switch( p_wk->myprofile.profile.status ){
-	case WFLBY_STATUS_BALLSLOW:		// ‹Ê‚¢‚ê
+	case WFLBY_STATUS_BALLSLOW:		// ç‰ã„ã‚Œ
 		WFLBY_SYSTEM_LASTACTQ_Push( &p_wk->lastactin_q, WFLBY_LASTACTION_BALLSLOW, DWC_LOBBY_INVALID_USER_ID );
 		break;
-	case WFLBY_STATUS_BALANCEBALL:	// ‹Êæ‚è
+	case WFLBY_STATUS_BALANCEBALL:	// ç‰ä¹—ã‚Š
 		WFLBY_SYSTEM_LASTACTQ_Push( &p_wk->lastactin_q, WFLBY_LASTACTION_BALANCEBALL, DWC_LOBBY_INVALID_USER_ID );
 		break;
-	case WFLBY_STATUS_BALLOON:		// •—‘D‚í‚è
+	case WFLBY_STATUS_BALLOON:		// é¢¨èˆ¹ã‚ã‚Š
 		WFLBY_SYSTEM_LASTACTQ_Push( &p_wk->lastactin_q, WFLBY_LASTACTION_BALLOON, DWC_LOBBY_INVALID_USER_ID );
 		break;
-	case WFLBY_STATUS_FOOTBOAD00:	// ‘«Õƒ{[ƒh
+	case WFLBY_STATUS_FOOTBOAD00:	// è¶³è·¡ãƒœãƒ¼ãƒ‰
 		WFLBY_SYSTEM_LASTACTQ_Push( &p_wk->lastactin_q, WFLBY_LASTACTION_FOOTWHITE, DWC_LOBBY_INVALID_USER_ID );
 		break;
-	case WFLBY_STATUS_FOOTBOAD01:	// ‘«Õƒ{[ƒh
+	case WFLBY_STATUS_FOOTBOAD01:	// è¶³è·¡ãƒœãƒ¼ãƒ‰
 		WFLBY_SYSTEM_LASTACTQ_Push( &p_wk->lastactin_q, WFLBY_LASTACTION_FOOTBLACK, DWC_LOBBY_INVALID_USER_ID );
 		break;
-	case WFLBY_STATUS_WORLDTIMER:	// ¢ŠEŒv
+	case WFLBY_STATUS_WORLDTIMER:	// ä¸–ç•Œæ™‚è¨ˆ
 		WFLBY_SYSTEM_LASTACTQ_Push( &p_wk->lastactin_q, WFLBY_LASTACTION_WLDTIMER, DWC_LOBBY_INVALID_USER_ID );
 		break;
-	case WFLBY_STATUS_TOPIC:		// ƒjƒ…[ƒX
+	case WFLBY_STATUS_TOPIC:		// ãƒ‹ãƒ¥ãƒ¼ã‚¹
 		WFLBY_SYSTEM_LASTACTQ_Push( &p_wk->lastactin_q, WFLBY_LASTACTION_NEWS, DWC_LOBBY_INVALID_USER_ID );
 		break;
 
 	// tomoya 080618
-	// ƒAƒ“ƒP[ƒg‚ÍƒCƒxƒ“ƒg‚Ì‚Ù‚¤‚Å‚½‚Ä‚é
-//	case WFLBY_STATUS_ANKETO:		// ƒAƒ“ƒP[ƒg
+	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã¯ã‚¤ãƒ™ãƒ³ãƒˆã®ã»ã†ã§ãŸã¦ã‚‹
+//	case WFLBY_STATUS_ANKETO:		// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 //		WFLBY_SYSTEM_LASTACTQ_Push( &p_wk->lastactin_q, WFLBY_LASTACTION_ANKETO, DWC_LOBBY_INVALID_USER_ID );
 //		break;
 	default:
@@ -1819,16 +1819,16 @@ void WFLBY_SYSTEM_SetMyStatus( WFLBY_SYSTEM* p_wk, WFLBY_STATUS_TYPE status )
 
 	p_wk->myprofile.profile.status = status;
 	WFLBY_SYSTEM_MyProfile_SetCrc( &p_wk->myprofile, p_wk->p_save );
-	WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// XV
+	WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// æ›´æ–°
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÅŒã‚É‚µ‚½‚±‚Æİ’è
+ *	@brief	æœ€å¾Œã«ã—ãŸã“ã¨è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	action		‚µ‚½‚±‚Æ
- *	@param	userid		ƒ†[ƒUID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	action		ã—ãŸã“ã¨
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetLastAction( WFLBY_SYSTEM* p_wk, WFLBY_LASTACTION_TYPE action, s32 userid )
@@ -1836,22 +1836,22 @@ void WFLBY_SYSTEM_SetLastAction( WFLBY_SYSTEM* p_wk, WFLBY_LASTACTION_TYPE actio
 	GF_ASSERT( action < WFLBY_LASTACTION_MAX );
 	
 	WFLBY_SYSTEM_LASTACTQ_Push( &p_wk->lastactin_q, action, userid );
-	WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// XV
+	WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// æ›´æ–°
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒeƒ€‚ğİ’è
+ *	@brief	ã‚¢ã‚¤ãƒ†ãƒ ã‚’è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	item	ƒAƒCƒeƒ€
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	item	ã‚¢ã‚¤ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetMyItem( WFLBY_SYSTEM* p_wk, WFLBY_ITEMTYPE item )
 {
 	GF_ASSERT( item < WFLBY_ITEM_NUM );
 
-	// CRCƒ`ƒFƒbƒN
+	// CRCãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_MyProfile_CheckCrc( &p_wk->myprofile, p_wk->p_save ) == FALSE ){
 		p_wk->error = WFLBY_SYSTEM_ERR_CRC;
 		return ;
@@ -1861,16 +1861,16 @@ void WFLBY_SYSTEM_SetMyItem( WFLBY_SYSTEM* p_wk, WFLBY_ITEMTYPE item )
 	p_wk->myprofile.profile.item = item;
 
 	WFLBY_SYSTEM_MyProfile_SetCrc( &p_wk->myprofile, p_wk->p_save );
-	WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// XV
+	WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// æ›´æ–°
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‹Zƒ^ƒCƒv‚ğİ’è
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æŠ€ã‚¿ã‚¤ãƒ—ã‚’è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	type1	‹Zƒ^ƒCƒv‚P
- *	@param	type2	‹Zƒ^ƒCƒv‚Q
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	type1	æŠ€ã‚¿ã‚¤ãƒ—ï¼‘
+ *	@param	type2	æŠ€ã‚¿ã‚¤ãƒ—ï¼’
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetSelectWazaType( WFLBY_SYSTEM* p_wk, WFLBY_POKEWAZA_TYPE type1, WFLBY_POKEWAZA_TYPE type2 )
@@ -1878,13 +1878,13 @@ void WFLBY_SYSTEM_SetSelectWazaType( WFLBY_SYSTEM* p_wk, WFLBY_POKEWAZA_TYPE typ
 	GF_ASSERT( type1 < WFLBY_POKEWAZA_TYPE_NUM );
 	GF_ASSERT( type2 < WFLBY_POKEWAZA_TYPE_NUM );
 
-	// CRCƒ`ƒFƒbƒN
+	// CRCãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_MyProfile_CheckCrc( &p_wk->myprofile, p_wk->p_save ) == FALSE ){
 		p_wk->error = WFLBY_SYSTEM_ERR_CRC;
 		return ;
 	}
 
-	// •s³ƒf[ƒ^ƒ`ƒFƒbƒN
+	// ä¸æ­£ãƒ‡ãƒ¼ã‚¿ãƒã‚§ãƒƒã‚¯
 	if( type1 >= WFLBY_POKEWAZA_TYPE_NUM ){
 		return ;
 	}
@@ -1892,8 +1892,8 @@ void WFLBY_SYSTEM_SetSelectWazaType( WFLBY_SYSTEM* p_wk, WFLBY_POKEWAZA_TYPE typ
 		return ;
 	}
 
-	// ã‚É‚Â‚ß‚ÄŠi”[‚·‚é
-	// type1‚ªNONE‚È‚çtype2‚ğã‚É“ü‚ê‚é
+	// ä¸Šã«ã¤ã‚ã¦æ ¼ç´ã™ã‚‹
+	// type1ãŒNONEãªã‚‰type2ã‚’ä¸Šã«å…¥ã‚Œã‚‹
 	if( type1 == WFLBY_POKEWAZA_TYPE_NONE ){
 		p_wk->myprofile.profile.waza_type[0] = type2;
 		p_wk->myprofile.profile.waza_type[1] = WFLBY_POKEWAZA_TYPE_NONE;
@@ -1903,23 +1903,23 @@ void WFLBY_SYSTEM_SetSelectWazaType( WFLBY_SYSTEM* p_wk, WFLBY_POKEWAZA_TYPE typ
 	}
 
 	WFLBY_SYSTEM_MyProfile_SetCrc( &p_wk->myprofile, p_wk->p_save );
-	WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// XV
+	WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// æ›´æ–°
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒg‘I‘ğî•ñ‚ğİ’è‚·‚é
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆé¸æŠæƒ…å ±ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	anketo_no		ƒAƒ“ƒP[ƒg’Ê‚µƒiƒ“ƒo[
- *	@param	select			‘I‘ğƒiƒ“ƒo[
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	anketo_no		ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆé€šã—ãƒŠãƒ³ãƒãƒ¼
+ *	@param	select			é¸æŠãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetAnketoData( WFLBY_SYSTEM* p_wk, u32 anketo_no, u32 select )
 {
 	GF_ASSERT( select < ANKETO_ANSWER_NUM );
 
-	// CRCƒ`ƒFƒbƒN
+	// CRCãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_MyProfile_CheckCrc( &p_wk->myprofile, p_wk->p_save ) == FALSE ){
 		p_wk->error = WFLBY_SYSTEM_ERR_CRC;
 		return ;
@@ -1932,24 +1932,24 @@ void WFLBY_SYSTEM_SetAnketoData( WFLBY_SYSTEM* p_wk, u32 anketo_no, u32 select )
 	p_wk->myprofile.profile.anketo.anketo_no	= anketo_no;
 	p_wk->myprofile.profile.anketo.select		= select;
 
-	// ƒAƒ“ƒP[ƒg‚É“š‚¦‚½ƒtƒ‰ƒOİ’è
+	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã«ç­”ãˆãŸãƒ•ãƒ©ã‚°è¨­å®š
 	p_wk->event.anketo_input	 = TRUE;
 
-	// ƒAƒ“ƒP[ƒg—V‚ñ‚¾
+	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆéŠã‚“ã 
 	WFLBY_SYSTEM_PLAYED_SetPlay( p_wk, WFLBY_PLAYED_ANKETO );
 	
 
 	WFLBY_SYSTEM_MyProfile_SetCrc( &p_wk->myprofile, p_wk->p_save );
-	WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// XV
+	WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// æ›´æ–°
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒtƒB[ƒ‹‚©‚ç‚l‚x‚r‚s‚`‚s‚t‚r‚ğ¶¬
+ *	@brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‹ã‚‰ï¼­ï¼¹ï¼³ï¼´ï¼¡ï¼´ï¼µï¼³ã‚’ç”Ÿæˆ
  *
- *	@param	cp_profile		ƒvƒƒtƒB[ƒ‹
- *	@param	p_buff			Ši”[æƒoƒbƒtƒ@
- *	@param	heapID			ƒq[ƒvID
+ *	@param	cp_profile		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	p_buff			æ ¼ç´å…ˆãƒãƒƒãƒ•ã‚¡
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_GetProfileMyStatus( const WFLBY_USER_PROFILE* cp_profile, MYSTATUS* p_buff, u32 heapID )
@@ -1957,18 +1957,18 @@ void WFLBY_SYSTEM_GetProfileMyStatus( const WFLBY_USER_PROFILE* cp_profile, MYST
 	BOOL result;
 	BOOL set_dummy;
 	
-	// –¼‘O‚ÉEOM‚ª‚ ‚é‚©ƒ`ƒFƒbƒN‚µ‚ÄA
-	// ‚ ‚Á‚½‚ç‚»‚Ì‚Ü‚ÜMYSTATUS‚Éİ’è‚·‚é
-	// ‚È‚©‚Á‚½‚çƒ_ƒ~[•¶š—ñ‚ğİ’è‚·‚é
+	// åå‰ã«EOMãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã—ã¦ã€
+	// ã‚ã£ãŸã‚‰ãã®ã¾ã¾MYSTATUSã«è¨­å®šã™ã‚‹
+	// ãªã‹ã£ãŸã‚‰ãƒ€ãƒŸãƒ¼æ–‡å­—åˆ—ã‚’è¨­å®šã™ã‚‹
 	result = WFLBY_SYSTEM_CheckStrEOMCode( cp_profile->name, PERSON_NAME_SIZE + EOM_SIZE );	
 
 	set_dummy = FALSE;
 	
 	if( result == TRUE ){
-		// –¼‘O
+		// åå‰
 		MyStatus_SetMyName( p_buff, cp_profile->name );
 
-		// •s–¾‚È•¶šƒR[ƒhƒ`ƒFƒbƒN
+		// ä¸æ˜ãªæ–‡å­—ã‚³ãƒ¼ãƒ‰ãƒã‚§ãƒƒã‚¯
 		{
 			STRBUF* p_name;
 			STRBUF* p_name_tmp;
@@ -1986,12 +1986,12 @@ void WFLBY_SYSTEM_GetProfileMyStatus( const WFLBY_USER_PROFILE* cp_profile, MYST
 		}
 		
 	}else{
-		// ƒ_ƒ~[‚Ì–¼‘Oİ’è
+		// ãƒ€ãƒŸãƒ¼ã®åå‰è¨­å®š
 		set_dummy = TRUE;
 	}
 
 
-	// ƒ_ƒ~[‚Ì–¼‘O‚ğİ’è
+	// ãƒ€ãƒŸãƒ¼ã®åå‰ã‚’è¨­å®š
 	if( set_dummy ){
 		MSGDATA_MANAGER*  p_msgman;
 		STRBUF* p_str;
@@ -2005,24 +2005,24 @@ void WFLBY_SYSTEM_GetProfileMyStatus( const WFLBY_USER_PROFILE* cp_profile, MYST
 	
 	// ID
 	MyStatus_SetID( p_buff, WFLBY_SYSTEM_GetProfileTrID( cp_profile ) );
-	// «•Ê
+	// æ€§åˆ¥
 	MyStatus_SetMySex( p_buff, WFLBY_SYSTEM_GetProfileSex( cp_profile ) );
-	// Œ©‚½–Ú
+	// è¦‹ãŸç›®
 	MyStatus_SetTrainerView( p_buff, WFLBY_SYSTEM_GetProfileTrType( cp_profile ) );
-	// ƒŠ[ƒWƒ‡ƒ“
+	// ãƒªãƒ¼ã‚¸ãƒ§ãƒ³
 	MyStatus_SetRegionCode( p_buff, WFLBY_SYSTEM_GetProfileRagionCode( cp_profile ) );
-	// ƒQ[ƒ€ƒNƒŠƒA
+	// ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢
 	MyStatus_SetDpClearFlag( p_buff );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒtƒB[ƒ‹‚Ìstatusƒƒ“ƒo‚ğæ“¾
+ *	@brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®statusãƒ¡ãƒ³ãƒã‚’å–å¾—
  *
- *	@param	cp_profile		ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  *
- *	@retval		ƒXƒe[ƒ^ƒX
- *	@retval		WFLBY_STATUS_UNKNOWN	‚È‚¼‚Ìó‘Ô
+ *	@retval		ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+ *	@retval		WFLBY_STATUS_UNKNOWN	ãªãã®çŠ¶æ…‹
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetProfileStatus( const WFLBY_USER_PROFILE* cp_profile )
@@ -2035,13 +2035,13 @@ u32 WFLBY_SYSTEM_GetProfileStatus( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒtƒB[ƒ‹‚Ìlastactionƒƒ“ƒo‚ğæ“¾
+ *	@brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®lastactionãƒ¡ãƒ³ãƒã‚’å–å¾—
  *
- *	@param	cp_profile		ƒvƒƒtƒB[ƒ‹ 
- *	@param	idx				ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_profile		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ« 
+ *	@param	idx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval		ÅŒã‚É‚µ‚½ƒXƒe[ƒ^ƒX
- *	@retval		WFLBY_LASTACTION_MAX‚È‚¼‚Ì‚à‚Ì
+ *	@retval		æœ€å¾Œã«ã—ãŸã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+ *	@retval		WFLBY_LASTACTION_MAXãªãã®ã‚‚ã®
  */
 //-----------------------------------------------------------------------------
 WFLBY_LASTACTION_TYPE WFLBY_SYSTEM_GetProfileLastAction( const WFLBY_USER_PROFILE* cp_profile, u32 idx )
@@ -2051,8 +2051,8 @@ WFLBY_LASTACTION_TYPE WFLBY_SYSTEM_GetProfileLastAction( const WFLBY_USER_PROFIL
 	
 	GF_ASSERT( idx < WFLBY_LASTACT_BUFFNUM );
 
-	// •s–¾‚Èƒf[ƒ^ˆÈŠO‚Ìƒf[ƒ^‚Åidx”Ô–Ú‚Ì‚à‚Ì‚ğ
-	// •Ô‚·
+	// ä¸æ˜ãªãƒ‡ãƒ¼ã‚¿ä»¥å¤–ã®ãƒ‡ãƒ¼ã‚¿ã§idxç•ªç›®ã®ã‚‚ã®ã‚’
+	// è¿”ã™
 	count = 0;
 	for( i=0; i<WFLBY_LASTACT_BUFFNUM; i++ ){
 
@@ -2070,13 +2070,13 @@ WFLBY_LASTACTION_TYPE WFLBY_SYSTEM_GetProfileLastAction( const WFLBY_USER_PROFIL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒtƒB[ƒ‹‚Ìlastaction_userƒƒ“ƒo‚ğæ“¾
+ *	@brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®lastaction_userãƒ¡ãƒ³ãƒã‚’å–å¾—
  *
- *	@param	cp_profile		ƒvƒƒtƒB[ƒ‹ 
- *	@param	idx				ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_profile		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ« 
+ *	@param	idx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	DWC_LOBBY_INVALID_USER_ID	‚Ğ‚Æ‚¶‚á‚È‚¢
- *	@retval	‚»‚Ì‘¼							ƒ†[ƒUIDX
+ *	@retval	DWC_LOBBY_INVALID_USER_ID	ã²ã¨ã˜ã‚ƒãªã„
+ *	@retval	ãã®ä»–							ãƒ¦ãƒ¼ã‚¶IDX
  */
 //-----------------------------------------------------------------------------
 s32 WFLBY_SYSTEM_GetProfileLastActionUserID( const WFLBY_USER_PROFILE* cp_profile, u32 idx )
@@ -2086,8 +2086,8 @@ s32 WFLBY_SYSTEM_GetProfileLastActionUserID( const WFLBY_USER_PROFILE* cp_profil
 	
 	GF_ASSERT( idx < WFLBY_LASTACT_BUFFNUM );
 
-	// •s–¾‚Èƒf[ƒ^ˆÈŠO‚Ìƒf[ƒ^‚Åidx”Ô–Ú‚Ì‚à‚Ì‚ğ
-	// •Ô‚·
+	// ä¸æ˜ãªãƒ‡ãƒ¼ã‚¿ä»¥å¤–ã®ãƒ‡ãƒ¼ã‚¿ã§idxç•ªç›®ã®ã‚‚ã®ã‚’
+	// è¿”ã™
 	count = 0;
 	for( i=0; i<WFLBY_LASTACT_BUFFNUM; i++ ){
 
@@ -2105,9 +2105,9 @@ s32 WFLBY_SYSTEM_GetProfileLastActionUserID( const WFLBY_USER_PROFILE* cp_profil
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUƒƒr[“à‚h‚c‚ğæ“¾
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ãƒ­ãƒ“ãƒ¼å†…ï¼©ï¼¤ã‚’å–å¾—
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 s32 WFLBY_SYSTEM_GetProfileUserID( const WFLBY_USER_PROFILE* cp_profile )
@@ -2117,9 +2117,9 @@ s32 WFLBY_SYSTEM_GetProfileUserID( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi‚h‚c‚ğæ“¾
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠï¼©ï¼¤ã‚’å–å¾—
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetProfileTrID( const WFLBY_USER_PROFILE* cp_profile )
@@ -2129,11 +2129,11 @@ u32 WFLBY_SYSTEM_GetProfileTrID( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiƒ^ƒCƒv‚É‘Î‰‚µ‚½ÅŒã‚É‚µ‚½‚±‚ÆNO‚ğ•Ô‚·
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—ã«å¯¾å¿œã—ãŸæœ€å¾Œã«ã—ãŸã“ã¨NOã‚’è¿”ã™
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  *
- *	@return	WFLBY_LASTACTION_TYPE	‘Î‰‚·‚éÅŒã‚É‚µ‚½‚±‚ÆNO
+ *	@return	WFLBY_LASTACTION_TYPE	å¯¾å¿œã™ã‚‹æœ€å¾Œã«ã—ãŸã“ã¨NO
  */
 //-----------------------------------------------------------------------------
 WFLBY_LASTACTION_TYPE WFLBY_SYSTEM_GetProfileTrTypetoLastActionNo( const WFLBY_USER_PROFILE* cp_profile )
@@ -2148,15 +2148,15 @@ WFLBY_LASTACTION_TYPE WFLBY_SYSTEM_GetProfileTrTypetoLastActionNo( const WFLBY_U
 		}
 	}
 
-	// ‚È‚¢‚Ì‚ÅMAX‚ğ•Ô‚·
+	// ãªã„ã®ã§MAXã‚’è¿”ã™
 	return WFLBY_LASTACTION_MAX;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“üºŠÔ‚ğæ“¾
+ *	@brief	å…¥å®¤æ™‚é–“ã‚’å–å¾—
  *	
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 WFLBY_TIME WFLBY_SYSTEM_GetProfileInTime( const WFLBY_USER_PROFILE* cp_profile )
@@ -2166,9 +2166,9 @@ WFLBY_TIME WFLBY_SYSTEM_GetProfileInTime( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠEŠÔ‚ğæ“¾
+ *	@brief	ä¸–ç•Œæ™‚é–“ã‚’å–å¾—
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 WFLBY_TIME WFLBY_SYSTEM_GetProfileWldTime( const WFLBY_USER_PROFILE* cp_profile )
@@ -2178,9 +2178,9 @@ WFLBY_TIME WFLBY_SYSTEM_GetProfileWldTime( const WFLBY_USER_PROFILE* cp_profile 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	«•Ê‚ğæ“¾
+ *	@brief	æ€§åˆ¥ã‚’å–å¾—
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetProfileSex( const WFLBY_USER_PROFILE* cp_profile )
@@ -2189,11 +2189,11 @@ u32 WFLBY_SYSTEM_GetProfileSex( const WFLBY_USER_PROFILE* cp_profile )
 	int i;
 	u32 tr_type;
 	
-	// ’m‚ç‚È‚¢«•Ê‚¶‚á‚È‚¢‚©ƒ`ƒFƒbƒN
+	// çŸ¥ã‚‰ãªã„æ€§åˆ¥ã˜ã‚ƒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( cp_profile->sex >= PM_NEUTRAL ){
 
-		// ’m‚ç‚È‚¢«•Ê‚È‚Ì‚ÅƒgƒŒ[ƒiƒ^ƒCƒv‚É‡‚í‚¹‚é
-		// •\¦‚Å‚«‚éƒgƒŒ[ƒiƒ^ƒCƒv‚©ƒ`ƒFƒbƒN
+		// çŸ¥ã‚‰ãªã„æ€§åˆ¥ãªã®ã§ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—ã«åˆã‚ã›ã‚‹
+		// è¡¨ç¤ºã§ãã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—ã‹ãƒã‚§ãƒƒã‚¯
 		tr_type = WFLBY_UNIONCHARNO_TRTYPE_Get( cp_profile->tr_type );
 		if( tr_type != OBJCODEMAX ){
 			for( i=0; i<NELEMS(sc_WFLBY_SYSTEM_TRTYPE_SEX); i++ ){
@@ -2203,7 +2203,7 @@ u32 WFLBY_SYSTEM_GetProfileSex( const WFLBY_USER_PROFILE* cp_profile )
 			}
 		}else{
 		
-			// ƒgƒŒ[ƒiƒ^ƒCƒv‚à•s³‚È‚Ì‚Å—
+			// ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—ã‚‚ä¸æ­£ãªã®ã§å¥³
 			sex = PM_FEMALE;
 		}
 			
@@ -2215,11 +2215,11 @@ u32 WFLBY_SYSTEM_GetProfileSex( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ¾ŒêƒR[ƒh‚ğæ“¾‚·‚é
+ *	@brief	è¨€èªã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  *
- *	@retval	Œ¾ŒêƒR[ƒh
+ *	@retval	è¨€èªã‚³ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetProfileRagionCode( const WFLBY_USER_PROFILE* cp_profile )
@@ -2229,24 +2229,24 @@ u32 WFLBY_SYSTEM_GetProfileRagionCode( const WFLBY_USER_PROFILE* cp_profile )
 	if( WFLBY_SYSTEM_CheckProfileRagionCode( cp_profile ) == TRUE ){
 		region_code = cp_profile->region_code;
 	}else{
-		region_code = WFLBY_REGIONCODE_ERR;	// (‰pŒê)
+		region_code = WFLBY_REGIONCODE_ERR;	// (è‹±èª)
 	}
 	return region_code;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—LŒø‚ÈƒŠ[ƒWƒ‡ƒ“ƒR[ƒh‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	æœ‰åŠ¹ãªãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  *
- *	@retval	TRUE	—LŒø
- *	@retval	FALSE	–³Œø
+ *	@retval	TRUE	æœ‰åŠ¹
+ *	@retval	FALSE	ç„¡åŠ¹
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_CheckProfileRagionCode( const WFLBY_USER_PROFILE* cp_profile )
 {
-	// ’m‚ç‚È‚¢Œ¾ŒêƒR[ƒh‚¶‚á‚È‚¢‚©ƒ`ƒFƒbƒN
+	// çŸ¥ã‚‰ãªã„è¨€èªã‚³ãƒ¼ãƒ‰ã˜ã‚ƒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	switch( cp_profile->region_code ){
 	case LANG_JAPAN:
 	case LANG_ENGLISH:
@@ -2256,7 +2256,7 @@ BOOL WFLBY_SYSTEM_CheckProfileRagionCode( const WFLBY_USER_PROFILE* cp_profile )
 	case LANG_SPAIN:
 		return TRUE;
 
-	// ŠØ‘Œê‚à•\¦‚Å‚«‚È‚¢‚Ì‚ÅA‰pŒê‚É‚·‚é
+	// éŸ“å›½èªã‚‚è¡¨ç¤ºã§ããªã„ã®ã§ã€è‹±èªã«ã™ã‚‹
 	default:
 		break;
 	}
@@ -2265,11 +2265,11 @@ BOOL WFLBY_SYSTEM_CheckProfileRagionCode( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘ƒR[ƒh‚ğ‚»‚Ì‚Ü‚Üæ“¾‚·‚é
+ *	@brief	å›½ã‚³ãƒ¼ãƒ‰ã‚’ãã®ã¾ã¾å–å¾—ã™ã‚‹
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  *
- *	@return	‚»‚Ì‚Ü‚Ü‚Ì‘ƒR[ƒh
+ *	@return	ãã®ã¾ã¾ã®å›½ã‚³ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetProfileRagionCodeOrg( const WFLBY_USER_PROFILE* cp_profile )
@@ -2279,9 +2279,9 @@ u32 WFLBY_SYSTEM_GetProfileRagionCodeOrg( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒiƒ^ƒCƒvæ“¾
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—å–å¾—
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetProfileTrType( const WFLBY_USER_PROFILE* cp_profile )
@@ -2292,12 +2292,12 @@ u32 WFLBY_SYSTEM_GetProfileTrType( const WFLBY_USER_PROFILE* cp_profile )
 
 	trtype = WFLBY_UNIONCHARNO_TRTYPE_Get( cp_profile->tr_type );
 	
-	// •\¦‚Å‚«‚éƒgƒŒ[ƒiƒ^ƒCƒv‚©ƒ`ƒFƒbƒN
+	// è¡¨ç¤ºã§ãã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—ã‹ãƒã‚§ãƒƒã‚¯
 	if( trtype != OBJCODEMAX ){
 		return trtype;
 	}
 	
-	// •\¦‚Å‚«‚È‚¢‚Ì‚ÅAo—ˆ‚é‚à‚Ì‚É’u‚«Š·‚¦‚é
+	// è¡¨ç¤ºã§ããªã„ã®ã§ã€å‡ºæ¥ã‚‹ã‚‚ã®ã«ç½®ãæ›ãˆã‚‹
 	if( WFLBY_SYSTEM_GetProfileSex( cp_profile ) == PM_MALE ){
 		return BOY1;
 	}
@@ -2306,24 +2306,24 @@ u32 WFLBY_SYSTEM_GetProfileTrType( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘ƒR[ƒhæ“¾
+ *	@brief	å›½ã‚³ãƒ¼ãƒ‰å–å¾—
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  *
- *	@retval	WFLBY_WLDDATA_NATION_NONE	•s³‚È‘
- *	@retval	‚»‚Ì‘¼						•\¦‚Å‚«‚é‘
+ *	@retval	WFLBY_WLDDATA_NATION_NONE	ä¸æ­£ãªå›½
+ *	@retval	ãã®ä»–						è¡¨ç¤ºã§ãã‚‹å›½
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetProfileNation( const WFLBY_USER_PROFILE* cp_profile )
 {
 	u32 nation;
 	
-	// ‚»‚Ì‘‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãã®å›½ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( cp_profile->nation >= WIFI_COUNTRY_MAX ){
 		nation = WFLBY_WLDDATA_NATION_NONE;
 	}else{
 
-		// ’nˆæ‚ª‚ ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		// åœ°åŸŸãŒã‚ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( WFLBY_AREA_Check( cp_profile->nation, cp_profile->area ) == FALSE ){
 			return WFLBY_WLDDATA_NATION_NONE;
 		}
@@ -2335,16 +2335,16 @@ u32 WFLBY_SYSTEM_GetProfileNation( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’nˆæƒR[ƒh‚ğæ“¾‚·‚é
+ *	@brief	åœ°åŸŸã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetProfileArea( const WFLBY_USER_PROFILE* cp_profile )
 {
 	u32 area;
 	
-	// ‚»‚Ì‘‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãã®å›½ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( WFLBY_AREA_Check( cp_profile->nation, cp_profile->area ) == FALSE ){
 		area = 0;
 	}else{
@@ -2356,9 +2356,9 @@ u32 WFLBY_SYSTEM_GetProfileArea( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘S‘}ŠÓ‚ğ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	å…¨å›½å›³é‘‘ã‚’æŒã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_GetProfileZukanZenkoku( const WFLBY_USER_PROFILE* cp_profile )
@@ -2369,9 +2369,9 @@ BOOL WFLBY_SYSTEM_GetProfileZukanZenkoku( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€ƒNƒŠƒA‚ğƒ`ƒFƒbƒN
+ *	@brief	ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã‚’ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_GetProfileGameClear( const WFLBY_USER_PROFILE* cp_profile )
@@ -2381,22 +2381,22 @@ BOOL WFLBY_SYSTEM_GetProfileGameClear( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚Á‚Ä‚¢‚éƒAƒCƒeƒ€‚ğæ“¾
+ *	@brief	æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 WFLBY_ITEMTYPE WFLBY_SYSTEM_GetProfileItem( const WFLBY_USER_PROFILE* cp_profile )
 {
 	u32 item;
 
-	// ‚Ü‚¾ƒ^ƒbƒ`ƒgƒC‚ğ‚à‚ç‚Á‚Ä‚¢‚È‚¢l‚ÉƒAƒNƒZƒX‚µ‚Ü‚µ‚½B
+	// ã¾ã ã‚¿ãƒƒãƒãƒˆã‚¤ã‚’ã‚‚ã‚‰ã£ã¦ã„ãªã„äººã«ã‚¢ã‚¯ã‚»ã‚¹ã—ã¾ã—ãŸã€‚
 	if( cp_profile->item == WFLBY_ITEM_INIT ){
 //		OS_TPrintf( "item error %d\n", cp_profile->item );
 		return WFLBY_ITEM_BELL00;
 	}
 	
-	// •s³ƒAƒCƒeƒ€‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ä¸æ­£ã‚¢ã‚¤ãƒ†ãƒ ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( cp_profile->item >= WFLBY_ITEM_NUM ){
 		item = WFLBY_ITEM_BELL00;
 	}else{
@@ -2407,12 +2407,12 @@ WFLBY_ITEMTYPE WFLBY_SYSTEM_GetProfileItem( const WFLBY_USER_PROFILE* cp_profile
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒbƒ`ƒgƒC‚ğ‚à‚ç‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ã‚¿ãƒƒãƒãƒˆã‚¤ã‚’ã‚‚ã‚‰ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  *
- *	@retval	TRUE	ƒ^ƒbƒ`ƒgƒC‚ğ‚à‚ç‚Á‚Ä‚¢‚é
- *	@retval	FALSE	ƒ^ƒbƒ`ƒgƒC‚ğ‚à‚ç‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ã‚¿ãƒƒãƒãƒˆã‚¤ã‚’ã‚‚ã‚‰ã£ã¦ã„ã‚‹
+ *	@retval	FALSE	ã‚¿ãƒƒãƒãƒˆã‚¤ã‚’ã‚‚ã‚‰ã£ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_CheckGetItem( const WFLBY_USER_PROFILE* cp_profile )
@@ -2425,12 +2425,12 @@ BOOL WFLBY_SYSTEM_CheckGetItem( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€‚ÌŠJnŠÔ‚ğƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ã‚²ãƒ¼ãƒ ã®é–‹å§‹æ™‚é–“ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  *
- *	@retval	TRUE	³í
- *	@retval	FALSE	•s³
+ *	@retval	TRUE	æ­£å¸¸
+ *	@retval	FALSE	ä¸æ­£
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_CheckProfileGameStartTime( const WFLBY_USER_PROFILE* cp_profile )
@@ -2443,12 +2443,12 @@ BOOL WFLBY_SYSTEM_CheckProfileGameStartTime( const WFLBY_USER_PROFILE* cp_profil
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘I‘ğ‚µ‚½‹Zƒ^ƒCƒv‚ğæ“¾‚·‚é
+ *	@brief	é¸æŠã—ãŸæŠ€ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
- *	@param	idx			‘I‘ğ“à—eƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	idx			é¸æŠå†…å®¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	‹Zƒ^ƒCƒv
+ *	@return	æŠ€ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 WFLBY_POKEWAZA_TYPE WFLBY_SYSTEM_GetProfileWazaType( const WFLBY_USER_PROFILE* cp_profile, u32 idx )
@@ -2464,23 +2464,23 @@ WFLBY_POKEWAZA_TYPE WFLBY_SYSTEM_GetProfileWazaType( const WFLBY_USER_PROFILE* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgƒf[ƒ^æ“¾
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	cp_profile		ƒ[ƒN
- *	@param	p_data			ƒAƒ“ƒP[ƒgƒf[ƒ^
+ *	@param	cp_profile		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data			ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_GetProfileAnketoData( const WFLBY_USER_PROFILE* cp_profile, WFLBY_ANKETO* p_data )
 {
-	// ƒAƒ“ƒP[ƒgƒf[ƒ^æ“¾
+	// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
 	*p_data = cp_profile->anketo;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒQ[ƒ€‚ÌŠJnŠÔ‚ğæ“¾
+ *	@brief	ã‚²ãƒ¼ãƒ ã®é–‹å§‹æ™‚é–“ã‚’å–å¾—
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 s64 WFLBY_SYSTEM_GetProfileGameStartTime( const WFLBY_USER_PROFILE* cp_profile )
@@ -2494,9 +2494,9 @@ s64 WFLBY_SYSTEM_GetProfileGameStartTime( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€ê—pMYSTATUS‚ğæ“¾‚·‚éi•s³–¼‘O‚ğ’uŠ·‚µ‚½ƒf[ƒ^‚ÌMYSTATUSj
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å°‚ç”¨MYSTATUSã‚’å–å¾—ã™ã‚‹ï¼ˆä¸æ­£åå‰ã‚’ç½®æ›ã—ãŸãƒ‡ãƒ¼ã‚¿ã®MYSTATUSï¼‰
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	MYSTATUS
  */
@@ -2509,13 +2509,13 @@ MYSTATUS* WFLBY_SYSTEM_GetMgMyStatus( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒU‚ÌVIPƒtƒ‰ƒO‚ğæ“¾‚·‚é
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ã®VIPãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	idx		ƒ†[ƒUƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ãƒ¦ãƒ¼ã‚¶ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	VIPƒ†[ƒU
- *	@retval	FALSE	•’Êƒ†[ƒU
+ *	@retval	TRUE	VIPãƒ¦ãƒ¼ã‚¶
+ *	@retval	FALSE	æ™®é€šãƒ¦ãƒ¼ã‚¶
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_GetUserVipFlag( const WFLBY_SYSTEM* cp_wk, u32 idx )
@@ -2525,10 +2525,10 @@ BOOL WFLBY_SYSTEM_GetUserVipFlag( const WFLBY_SYSTEM* cp_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIPƒtƒ‰ƒOƒoƒbƒtƒ@î•ñ‚Ìæ“¾
+ *	@brief	VIPãƒ•ãƒ©ã‚°ãƒãƒƒãƒ•ã‚¡æƒ…å ±ã®å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	p_buff	ƒf[ƒ^Ši”[æ
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_buff	ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_GetVipFlagWk( const WFLBY_SYSTEM* cp_wk, WFLBY_VIPFLAG* p_buff )
@@ -2541,13 +2541,13 @@ void WFLBY_SYSTEM_GetVipFlagWk( const WFLBY_SYSTEM* cp_wk, WFLBY_VIPFLAG* p_buff
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒU‚Ì‡Œ¾—t—L–³ƒtƒ‰ƒO‚ğæ“¾
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ã®åˆè¨€è‘‰æœ‰ç„¡ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *		
- *	@param	cp_wk	ƒ[ƒN
- *	@param	idx		ƒ†[ƒUƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ãƒ¦ãƒ¼ã‚¶ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	‚ ‚¢‚±‚Æ‚Î‚ª‚ ‚é
- *	@retval	FALSE	‚ ‚¢‚±‚Æ‚Î‚ª‚È‚¢
+ *	@retval	TRUE	ã‚ã„ã“ã¨ã°ãŒã‚ã‚‹
+ *	@retval	FALSE	ã‚ã„ã“ã¨ã°ãŒãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_GetUserAikotobaFlag( const WFLBY_SYSTEM* cp_wk, u32 idx )
@@ -2557,13 +2557,13 @@ BOOL WFLBY_SYSTEM_GetUserAikotobaFlag( const WFLBY_SYSTEM* cp_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒU‚Ì‡Œ¾—t‚ğæ“¾
+ *	@brief	ãƒ¦ãƒ¼ã‚¶ã®åˆè¨€è‘‰ã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	idx		ƒ†[ƒUƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ãƒ¦ãƒ¼ã‚¶ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	NULL				‡Œ¾—t‚ğ‚à‚Á‚Ä‚È‚¢
- *	@retval	‡Œ¾—tƒf[ƒ^
+ *	@retval	NULL				åˆè¨€è‘‰ã‚’ã‚‚ã£ã¦ãªã„
+ *	@retval	åˆè¨€è‘‰ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 const WFLBY_AIKOTOBA_DATA* WFLBY_SYSTEM_GetUserAikotobaStr( const WFLBY_SYSTEM* cp_wk, u32 idx )
@@ -2574,11 +2574,11 @@ const WFLBY_AIKOTOBA_DATA* WFLBY_SYSTEM_GetUserAikotobaStr( const WFLBY_SYSTEM* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚ª‘®‚µ‚Ä‚¢‚éƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚É‚¢‚éƒvƒŒƒCƒ„[”‚ğæ“¾
+ *	@brief	è‡ªåˆ†ãŒå±ã—ã¦ã„ã‚‹ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«ã„ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°ã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	©•ª‚ª‘®‚µ‚Ä‚¢‚éƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚É‚¢‚éƒvƒŒƒCƒ„[”
+ *	@return	è‡ªåˆ†ãŒå±ã—ã¦ã„ã‚‹ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«ã„ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetSubChanPlNum( const WFLBY_SYSTEM* cp_wk )
@@ -2592,13 +2592,13 @@ u32 WFLBY_SYSTEM_GetSubChanPlNum( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚ª‘®‚µ‚Ä‚¢‚éƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚É‚¢‚éƒ†[ƒU‚h‚c‚ğæ“¾
+ *	@brief	è‡ªåˆ†ãŒå±ã—ã¦ã„ã‚‹ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ã«ã„ã‚‹ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	idx			ƒf[ƒ^‚h‚c
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ãƒ‡ãƒ¼ã‚¿ï¼©ï¼¤
  *
- *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONEˆÈŠO	ƒ†[ƒU‚h‚c
- *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE		‚»‚ÌƒTƒuƒ`ƒƒƒ“ƒlƒ‹‚h‚c‚w‚Éƒ†[ƒU‚Í‚¢‚È‚¢
+ *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONEä»¥å¤–	ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤
+ *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE		ãã®ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«ï¼©ï¼¤ï¼¸ã«ãƒ¦ãƒ¼ã‚¶ã¯ã„ãªã„
  *
  */
 //-----------------------------------------------------------------------------
@@ -2617,11 +2617,11 @@ u32 WFLBY_SYSTEM_GetSubChanEnum( const WFLBY_SYSTEM* cp_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆ¥AƒgƒsƒbƒN‚Ì‘—M
+ *	@brief	æŒ¨æ‹¶ãƒˆãƒ”ãƒƒã‚¯ã®é€ä¿¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	user_a		ƒ†[ƒU‚`	˜b‚µ‚©‚¯‚½‘¤
- *	@param	user_b		ƒ†[ƒU‚a	˜b‚µ‚©‚¯‚ç‚ê‚½‘¤
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	user_a		ãƒ¦ãƒ¼ã‚¶ï¼¡	è©±ã—ã‹ã‘ãŸå´
+ *	@param	user_b		ãƒ¦ãƒ¼ã‚¶ï¼¢	è©±ã—ã‹ã‘ã‚‰ã‚ŒãŸå´
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_TOPIC_SendConnect( WFLBY_SYSTEM* p_wk, u32 user_a, u32 user_b )
@@ -2637,12 +2637,12 @@ void WFLBY_SYSTEM_TOPIC_SendConnect( WFLBY_SYSTEM* p_wk, u32 user_a, u32 user_b 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒeƒ€ŒğŠ·ƒƒbƒZ[ƒW‚Ì‘—M
+ *	@brief	ã‚¢ã‚¤ãƒ†ãƒ äº¤æ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®é€ä¿¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	user_a		ƒ†[ƒU‚`	‚à‚ç‚Á‚½‚ª‚í
- *	@param	user_b		ƒ†[ƒU‚a	‚ ‚°‚½‘¤
- *	@param	item		ƒAƒCƒeƒ€		
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	user_a		ãƒ¦ãƒ¼ã‚¶ï¼¡	ã‚‚ã‚‰ã£ãŸãŒã‚
+ *	@param	user_b		ãƒ¦ãƒ¼ã‚¶ï¼¢	ã‚ã’ãŸå´
+ *	@param	item		ã‚¢ã‚¤ãƒ†ãƒ 		
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_TOPIC_SendItem( WFLBY_SYSTEM* p_wk, u32 user_a, u32 user_b, WFLBY_ITEMTYPE item )
@@ -2659,16 +2659,16 @@ void WFLBY_SYSTEM_TOPIC_SendItem( WFLBY_SYSTEM* p_wk, u32 user_a, u32 user_b, WF
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€Œn‚ÌƒgƒsƒbƒN‚ğ‘—M
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ç³»ã®ãƒˆãƒ”ãƒƒã‚¯ã‚’é€ä¿¡
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	minigame		ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv
- *	@param	num				Q‰Ál”i©•ªŠÜ‚ßj
- *	@param	user_0			ƒ†[ƒU‚O	e‚ª‚ ‚é‚È‚çe‚Í‚±‚±
- *	@param	user_1			‚P
- *	@param	user_2			‚Q
- *	@param	user_3			‚R
- *	@param	play			ƒvƒŒƒC’†‚©
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	minigame		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—
+ *	@param	num				å‚åŠ äººæ•°ï¼ˆè‡ªåˆ†å«ã‚ï¼‰
+ *	@param	user_0			ãƒ¦ãƒ¼ã‚¶ï¼	è¦ªãŒã‚ã‚‹ãªã‚‰è¦ªã¯ã“ã“
+ *	@param	user_1			ï¼‘
+ *	@param	user_2			ï¼’
+ *	@param	user_3			ï¼“
+ *	@param	play			ãƒ—ãƒ¬ã‚¤ä¸­ã‹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_TOPIC_SendMiniGame( WFLBY_SYSTEM* p_wk, WFLBY_GAMETYPE minigame, u32 num, u32 user_0, u32 user_1, u32 user_2, u32 user_3, BOOL play )
@@ -2677,27 +2677,27 @@ void WFLBY_SYSTEM_TOPIC_SendMiniGame( WFLBY_SYSTEM* p_wk, WFLBY_GAMETYPE minigam
 	u32 topic_type;
 
 	switch( minigame ){
-	case WFLBY_GAME_BALLSLOW:		// ‹Ê“Š‚°
-	case WFLBY_GAME_BALANCEBALL:	// ‹Êæ‚è
-	case WFLBY_GAME_BALLOON:		// ‚Ó‚¤‚¹‚ñ‚í‚è
+	case WFLBY_GAME_BALLSLOW:		// ç‰æŠ•ã’
+	case WFLBY_GAME_BALANCEBALL:	// ç‰ä¹—ã‚Š
+	case WFLBY_GAME_BALLOON:		// ãµã†ã›ã‚“ã‚ã‚Š
 		topic_type = NEWS_TOPICTYPE_MINIGAME;
 		break;
 		
-	case WFLBY_GAME_FOOTWHITE:		// ‘«Õƒ{[ƒh@”’
-	case WFLBY_GAME_FOOTBLACK:		// ‘«Õƒ{[ƒh@•
+	case WFLBY_GAME_FOOTWHITE:		// è¶³è·¡ãƒœãƒ¼ãƒ‰ã€€ç™½
+	case WFLBY_GAME_FOOTBLACK:		// è¶³è·¡ãƒœãƒ¼ãƒ‰ã€€é»’
 		topic_type = NEWS_TOPICTYPE_FOOTBOARD;
 		break;
 		
-	case WFLBY_GAME_WLDTIMER:		// ¢ŠEŒv
+	case WFLBY_GAME_WLDTIMER:		// ä¸–ç•Œæ™‚è¨ˆ
 		topic_type = NEWS_TOPICTYPE_WORLDTIMER;
 		break;
 
-	case WFLBY_GAME_NEWS:			// ƒƒr[ƒjƒ…[ƒX
+	case WFLBY_GAME_NEWS:			// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹
 		topic_type = NEWS_TOPICTYPE_LOBBYNEWS;
 		break;
 
 	default:
-		return ;	// ‘—‚ç‚È‚¢
+		return ;	// é€ã‚‰ãªã„
 	}
 
 	topic.topic_type	= topic_type;
@@ -2713,15 +2713,15 @@ void WFLBY_SYSTEM_TOPIC_SendMiniGame( WFLBY_SYSTEM* p_wk, WFLBY_GAMETYPE minigam
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€—DŸÒ	ƒgƒsƒbƒN‘—M
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å„ªå‹è€…	ãƒˆãƒ”ãƒƒã‚¯é€ä¿¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	minigame	ƒ~ƒjƒQ[ƒ€ƒ^ƒCƒv	
- *	@param	num			—DŸÒ”
- *	@param	user_0		—DŸÒA
- *	@param	user_1		—DŸÒB
- *	@param	user_2		—DŸÒC
- *	@param	user_3		—DŸÒD 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	minigame	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¿ã‚¤ãƒ—	
+ *	@param	num			å„ªå‹è€…æ•°
+ *	@param	user_0		å„ªå‹è€…A
+ *	@param	user_1		å„ªå‹è€…B
+ *	@param	user_2		å„ªå‹è€…C
+ *	@param	user_3		å„ªå‹è€…D 
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_TOPIC_SendMiniGameTopResult( WFLBY_SYSTEM* p_wk, WFLBY_GAMETYPE minigame, u32 num, u32 user_0, u32 user_1, u32 user_2, u32 user_3 )
@@ -2730,14 +2730,14 @@ void WFLBY_SYSTEM_TOPIC_SendMiniGameTopResult( WFLBY_SYSTEM* p_wk, WFLBY_GAMETYP
 	u32 topic_type;
 
 	switch( minigame ){
-	case WFLBY_GAME_BALLSLOW:		// ‹Ê“Š‚°
-	case WFLBY_GAME_BALANCEBALL:	// ‹Êæ‚è
-	case WFLBY_GAME_BALLOON:		// ‚Ó‚¤‚¹‚ñ‚í‚è
+	case WFLBY_GAME_BALLSLOW:		// ç‰æŠ•ã’
+	case WFLBY_GAME_BALANCEBALL:	// ç‰ä¹—ã‚Š
+	case WFLBY_GAME_BALLOON:		// ãµã†ã›ã‚“ã‚ã‚Š
 		topic_type = NEWS_TOPICTYPE_MGRESULT;
 		break;
 		
 	default:
-		return ;	// ‘—‚ç‚È‚¢
+		return ;	// é€ã‚‰ãªã„
 	}
 
 	topic.topic_type	= topic_type;
@@ -2755,15 +2755,15 @@ void WFLBY_SYSTEM_TOPIC_SendMiniGameTopResult( WFLBY_SYSTEM* p_wk, WFLBY_GAMETYP
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚ÌƒvƒƒtƒB[ƒ‹‚ğXV‚·‚é
+ *	@brief	è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’æ›´æ–°ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetMyProfile( WFLBY_SYSTEM* p_wk, const WFLBY_USER_PROFILE* cp_data )
 {
-	// CRCƒ`ƒFƒbƒN
+	// CRCãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_MyProfile_CheckCrc( &p_wk->myprofile, p_wk->p_save ) == FALSE ){
 		p_wk->error = WFLBY_SYSTEM_ERR_CRC;
 		return ;
@@ -2771,16 +2771,16 @@ void WFLBY_SYSTEM_SetMyProfile( WFLBY_SYSTEM* p_wk, const WFLBY_USER_PROFILE* cp
 
 	p_wk->myprofile.profile = *cp_data;
 	WFLBY_SYSTEM_MyProfile_SetCrc( &p_wk->myprofile, p_wk->p_save );
-	WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// XV
+	WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// æ›´æ–°
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[ƒYƒ“î•ñ‚ğæ“¾‚·‚é
+ *	@brief	ã‚·ãƒ¼ã‚ºãƒ³æƒ…å ±ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒV[ƒYƒ“
+ *	@return	ã‚·ãƒ¼ã‚ºãƒ³
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetSeason( const WFLBY_SYSTEM* cp_wk )
@@ -2795,18 +2795,18 @@ u32 WFLBY_SYSTEM_GetSeason( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®ƒ^ƒCƒv‚ğæ“¾‚·‚é
+ *	@brief	éƒ¨å±‹ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	•”‰®ƒ^ƒCƒv
+ *	@return	éƒ¨å±‹ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetRoomType( const WFLBY_SYSTEM* cp_wk )
 {
 	u32 roomtype;
 	roomtype = DWC_LOBBY_GetRoomData( DWC_LOBBY_ROOMDATA_ROOMTYPE );
-	if( roomtype >= WFLBY_ROOM_NUM ){	// •s’è’lƒ`ƒFƒbƒN
+	if( roomtype >= WFLBY_ROOM_NUM ){	// ä¸å®šå€¤ãƒã‚§ãƒƒã‚¯
 		roomtype = WFLBY_ROOM_FIRE;
 	}
 	return roomtype;
@@ -2814,11 +2814,11 @@ u32 WFLBY_SYSTEM_GetRoomType( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®‚ÌƒƒbƒNŠÔ‚ğæ“¾‚·‚é
+ *	@brief	éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯æ™‚é–“ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	•”‰®‚ÌƒƒbƒNŠÔ	•b’PˆÊ
+ *	@return	éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯æ™‚é–“	ç§’å˜ä½
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetLockTime( const WFLBY_SYSTEM* cp_wk )
@@ -2828,20 +2828,20 @@ u32 WFLBY_SYSTEM_GetLockTime( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•”‰®‚ÌƒNƒ[ƒYŠÔ‚ğæ“¾‚·‚é	iƒƒbƒN‚ª‚©‚©‚Á‚Ä‚©‚çƒNƒ[ƒY‚Ü‚Å‚ÌŠÔj
+ *	@brief	éƒ¨å±‹ã®ã‚¯ãƒ­ãƒ¼ã‚ºæ™‚é–“ã‚’å–å¾—ã™ã‚‹	ï¼ˆãƒ­ãƒƒã‚¯ãŒã‹ã‹ã£ã¦ã‹ã‚‰ã‚¯ãƒ­ãƒ¼ã‚ºã¾ã§ã®æ™‚é–“ï¼‰
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	•”‰®‚ÌƒNƒ[ƒYŠÔ	•b’PˆÊ
+ *	@return	éƒ¨å±‹ã®ã‚¯ãƒ­ãƒ¼ã‚ºæ™‚é–“	ç§’å˜ä½
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetCloseTime( const WFLBY_SYSTEM* cp_wk )
 {
 	u32 closetime;
 
-	// ƒNƒ[ƒYŠÔ‚Ìæ“¾@‚½‚Á‚¾‚µAƒNƒ[ƒY‚ÍƒCƒxƒ“ƒg‚Í”­“®ŒãWFLBY_END_OVERTIME•bŒã
+	// ã‚¯ãƒ­ãƒ¼ã‚ºæ™‚é–“ã®å–å¾—ã€€ãŸã£ã ã—ã€ã‚¯ãƒ­ãƒ¼ã‚ºã¯ã‚¤ãƒ™ãƒ³ãƒˆã¯ç™ºå‹•å¾ŒWFLBY_END_OVERTIMEç§’å¾Œ
 	closetime = DWC_LOBBY_GetRoomData( DWC_LOBBY_ROOMDATA_CLOSETIME );
-	closetime += (WFLBY_END_OVERTIME/30);	// •`‰æƒtƒŒ[ƒ€’PˆÊ‚ğ•b’PˆÊ‚É‚µ‚Ä‚©‚ç‘«‚·
+	closetime += (WFLBY_END_OVERTIME/30);	// æç”»ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½ã‚’ç§’å˜ä½ã«ã—ã¦ã‹ã‚‰è¶³ã™
 
 	return closetime;
 }
@@ -2850,13 +2850,13 @@ u32 WFLBY_SYSTEM_GetCloseTime( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒg‚ğo‚·‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚’å‡ºã™ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	idx			ƒvƒŒƒCƒ„[INDEX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼INDEX
  *
- *	@retval	FALSE		o‚³‚È‚­‚Ä‚¢‚¢
- *	@retval	TRUE		o‚·	
+ *	@retval	FALSE		å‡ºã•ãªãã¦ã„ã„
+ *	@retval	TRUE		å‡ºã™	
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_GetGadGetFlag( const WFLBY_SYSTEM* cp_wk, u32 idx )
@@ -2867,10 +2867,10 @@ BOOL WFLBY_SYSTEM_GetGadGetFlag( const WFLBY_SYSTEM* cp_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒƒbƒZ[ƒW‚Ì‘—M
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®é€ä¿¡
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	gadget		ƒKƒWƒFƒbƒg
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	gadget		ã‚¬ã‚¸ã‚§ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SendGadGetData( WFLBY_SYSTEM* p_wk, WFLBY_ITEMTYPE gadget )
@@ -2887,14 +2887,14 @@ void WFLBY_SYSTEM_SendGadGetData( WFLBY_SYSTEM* p_wk, WFLBY_ITEMTYPE gadget )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg‚ª“®ì’†‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆãŒå‹•ä½œä¸­ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	idx		ƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	WFLBY_FLOAT_STATE_BEFORE,	// “®ì‘O
- *	@retval	WFLBY_FLOAT_STATE_MOVE,		// “®ì’†
- *	@retval	WFLBY_FLOAT_STATE_AFTER,	// “®ìŒã
+ *	@retval	WFLBY_FLOAT_STATE_BEFORE,	// å‹•ä½œå‰
+ *	@retval	WFLBY_FLOAT_STATE_MOVE,		// å‹•ä½œä¸­
+ *	@retval	WFLBY_FLOAT_STATE_AFTER,	// å‹•ä½œå¾Œ
  */
 //-----------------------------------------------------------------------------
 WFLBY_FLOAT_MOVE_STATE WFLBY_SYSTEM_GetFloatMove( const WFLBY_SYSTEM* cp_wk, u32 floatidx )
@@ -2904,12 +2904,12 @@ WFLBY_FLOAT_MOVE_STATE WFLBY_SYSTEM_GetFloatMove( const WFLBY_SYSTEM* cp_wk, u32
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg“®ìƒJƒEƒ“ƒ^æ“¾
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆå‹•ä½œã‚«ã‚¦ãƒ³ã‚¿å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	floatidx	ƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	floatidx	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	ƒJƒEƒ“ƒ^
+ *	@return	ã‚«ã‚¦ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetFloatCount( const WFLBY_SYSTEM* cp_wk, u32 floatidx )
@@ -2919,11 +2919,11 @@ u32 WFLBY_SYSTEM_GetFloatCount( const WFLBY_SYSTEM* cp_wk, u32 floatidx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg“®ì‚ÌÅ‘å’l‚ğæ“¾‚·‚é
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆå‹•ä½œã®æœ€å¤§å€¤ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒJƒEƒ“ƒg‚ÌÅ‘å’l
+ *	@return	ã‚«ã‚¦ãƒ³ãƒˆã®æœ€å¤§å€¤
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetFloatCountMax( const WFLBY_SYSTEM* cp_wk )
@@ -2933,12 +2933,12 @@ u32 WFLBY_SYSTEM_GetFloatCountMax( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg—\–ñî•ñ‚ğæ“¾
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆäºˆç´„æƒ…å ±ã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	idx		ƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	‚»‚Ìƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX‚ÉÚ‚Á‚Ä‚¢‚él‚ÌƒvƒŒƒCƒ„[‚h‚c‚w
+ *	@return	ãã®ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«è¼‰ã£ã¦ã„ã‚‹äººã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ï¼©ï¼¤ï¼¸
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetFloatReserve( const WFLBY_SYSTEM* cp_wk, u32 idx )
@@ -2948,13 +2948,13 @@ u32 WFLBY_SYSTEM_GetFloatReserve( const WFLBY_SYSTEM* cp_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚h‚c‚w‚Ì—\–ñ‚µ‚Ä‚¢‚éÀÈƒCƒ“ƒfƒbƒNƒX‚ğ‹A‚·
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ï¼©ï¼¤ï¼¸ã®äºˆç´„ã—ã¦ã„ã‚‹åº§å¸­ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å¸°ã™
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	plidx		ƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	plidx		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	ÀÈƒCƒ“ƒfƒbƒNƒX
- *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	—\–ñ‚µ‚Ä‚È‚¢
+ *	@retval	åº§å¸­ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	äºˆç´„ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetFloatPlIdxReserve( const WFLBY_SYSTEM* cp_wk, u32 plidx )
@@ -2964,14 +2964,14 @@ u32 WFLBY_SYSTEM_GetFloatPlIdxReserve( const WFLBY_SYSTEM* cp_wk, u32 plidx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg—\–ñî•ñ‚ğİ’è
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆäºˆç´„æƒ…å ±ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	plidx		ƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX
- *	@param	station		‰w’è”
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	plidx		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	station		é§…å®šæ•°
  *
- *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	—\–ñ¸”s
- *	@retval	‚»‚Ì‘¼							—\–ñ¬Œ÷
+ *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	äºˆç´„å¤±æ•—
+ *	@retval	ãã®ä»–							äºˆç´„æˆåŠŸ
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_SetFloatReserve( WFLBY_SYSTEM* p_wk, u32 plidx, WFLBY_FLOAT_STATION_TYPE station )
@@ -2981,10 +2981,10 @@ u32 WFLBY_SYSTEM_SetFloatReserve( WFLBY_SYSTEM* p_wk, u32 plidx, WFLBY_FLOAT_STA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—\–ñî•ñ‚Ì”jŠü
+ *	@brief	äºˆç´„æƒ…å ±ã®ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	plidx		ƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	plidx		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_ResetFloatReserve( WFLBY_SYSTEM* p_wk, u32 plidx )
@@ -2994,10 +2994,10 @@ void WFLBY_SYSTEM_ResetFloatReserve( WFLBY_SYSTEM* p_wk, u32 plidx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒAƒjƒƒŠƒNƒGƒXƒg‚ğİ’è
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	idx		ƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetFloatAnm( WFLBY_SYSTEM* p_wk, u32 idx )
@@ -3007,10 +3007,10 @@ void WFLBY_SYSTEM_SetFloatAnm( WFLBY_SYSTEM* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒAƒjƒƒŠƒNƒGƒXƒg‚ğæ“¾
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	idx		ƒtƒ[ƒgƒAƒjƒƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_GetFloatAnm( const WFLBY_SYSTEM* cp_wk, u32 idx )
@@ -3021,10 +3021,10 @@ BOOL WFLBY_SYSTEM_GetFloatAnm( const WFLBY_SYSTEM* cp_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒAƒjƒƒŠƒNƒGƒXƒg‚ÌƒNƒŠƒA
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	idx		ƒtƒ[ƒgƒAƒjƒƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_CleanFloatAnm( WFLBY_SYSTEM* p_wk, u32 idx )
@@ -3034,11 +3034,11 @@ void WFLBY_SYSTEM_CleanFloatAnm( WFLBY_SYSTEM* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgÀÈƒCƒ“ƒfƒbƒNƒX‚©‚çƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX‚ÆƒIƒtƒZƒbƒg‚ğæ“¾
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆåº§å¸­ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å–å¾—
  *
- *	@param	idx				ÀÈƒCƒ“ƒfƒbƒNƒX
- *	@param	p_floatidx		ƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX
- *	@param	p_floatofs		ƒtƒ[ƒgƒIƒtƒZƒbƒg
+ *	@param	idx				åº§å¸­ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	p_floatidx		ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	p_floatofs		ãƒ•ãƒ­ãƒ¼ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_GetFloatIdxOfs( u32 idx, u32* p_floatidx, u32* p_floatofs )
@@ -3048,11 +3048,11 @@ void WFLBY_SYSTEM_GetFloatIdxOfs( u32 idx, u32* p_floatidx, u32* p_floatofs )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg—\–ñƒƒbƒN
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆäºˆç´„ãƒ­ãƒƒã‚¯
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	idx		ÀÈƒCƒ“ƒfƒbƒNƒX
- *	@param	station	‰w’è”
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		åº§å¸­ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	station	é§…å®šæ•°
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetFloatReserveLock( WFLBY_SYSTEM* p_wk, u32 idx, WFLBY_FLOAT_STATION_TYPE station )
@@ -3062,12 +3062,12 @@ void WFLBY_SYSTEM_SetFloatReserveLock( WFLBY_SYSTEM* p_wk, u32 idx, WFLBY_FLOAT_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒƒbƒN	‚Ü‚¾—\–ñ‚Å‚«‚é‰w‚Ìæ“¾
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆãƒ­ãƒƒã‚¯	ã¾ã äºˆç´„ã§ãã‚‹é§…ã®å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	idx			ÀÈƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			åº§å¸­ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	‰w’è”
+ *	@return	é§…å®šæ•°
  */
 //-----------------------------------------------------------------------------
 WFLBY_FLOAT_STATION_TYPE WFLBY_SYSTEM_GetFloatReserveLock( const WFLBY_SYSTEM* cp_wk, u32 idx )
@@ -3077,9 +3077,9 @@ WFLBY_FLOAT_STATION_TYPE WFLBY_SYSTEM_GetFloatReserveLock( const WFLBY_SYSTEM* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg‚Éæ‚Á‚½‚±‚Æ‚ğ‘—M
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã«ä¹—ã£ãŸã“ã¨ã‚’é€ä¿¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SendFloatOn( WFLBY_SYSTEM* p_wk )
@@ -3090,9 +3090,9 @@ void WFLBY_SYSTEM_SendFloatOn( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒAƒjƒ‚ğg—p‚µ‚½‚±‚Æ‚ğ‘—M
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã‚’ä½¿ç”¨ã—ãŸã“ã¨ã‚’é€ä¿¡
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SendFloatAnm( WFLBY_SYSTEM* p_wk )
@@ -3104,9 +3104,9 @@ void WFLBY_SYSTEM_SendFloatAnm( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Š®‘S‚ÉƒNƒŠ[ƒ“‚Èó‘Ô‚É‚·‚é
+ *	@brief	å®Œå…¨ã«ã‚¯ãƒªãƒ¼ãƒ³ãªçŠ¶æ…‹ã«ã™ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_EndTalk( WFLBY_SYSTEM* p_wk )
@@ -3116,28 +3116,28 @@ void WFLBY_SYSTEM_EndTalk( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒŠƒNƒGƒXƒg
+ *	@brief	ä¼šè©±ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	idx		ƒ†[ƒUIDX 
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ãƒ¦ãƒ¼ã‚¶IDX 
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	¸”s	i‚ ‚Á‚¿‚ª–Z‚µ‚¢ó‘Ôj
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å¤±æ•—	ï¼ˆã‚ã£ã¡ãŒå¿™ã—ã„çŠ¶æ…‹ï¼‰
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_SendTalkReq( WFLBY_SYSTEM* p_wk, u32 idx )
 {
 	s32 userid;
 
-	// ‰ï˜b’†H
+	// ä¼šè©±ä¸­ï¼Ÿ
 //	GF_ASSERT( p_wk->talk.talk_type == WFLBY_TALK_TYPE_NONE );
-//	‚±‚±‚É—ˆ‚é‚±‚Æ‚à‚ ‚é‚æ‚¤‚È‚Ì‚Å«‚Ì‚æ‚¤‚ÉC³
-	// ‚»‚ÌuŠÔA˜b‚µ‚©‚¯‚ç‚ê‚½ó‘Ô‚Ì‚Æ‚«
+//	ã“ã“ã«æ¥ã‚‹ã“ã¨ã‚‚ã‚ã‚‹ã‚ˆã†ãªã®ã§â†“ã®ã‚ˆã†ã«ä¿®æ­£
+	// ãã®ç¬é–“ã€è©±ã—ã‹ã‘ã‚‰ã‚ŒãŸçŠ¶æ…‹ã®ã¨ã
 	if( p_wk->talk.talk_type != WFLBY_TALK_TYPE_NONE ){
 		return FALSE;
 	}
 	
-	// idx‚Ìl‚ª–Z‚µ‚¢ó‘Ô‚¶‚á‚È‚¢‚©ƒ`ƒFƒbƒN
+	// idxã®äººãŒå¿™ã—ã„çŠ¶æ…‹ã˜ã‚ƒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	{
 		const WFLBY_USER_PROFILE* cp_profile = WFLBY_SYSTEM_GetUserProfile( p_wk, idx );
 		u32 status = WFLBY_SYSTEM_GetProfileStatus( cp_profile );
@@ -3147,19 +3147,19 @@ BOOL WFLBY_SYSTEM_SendTalkReq( WFLBY_SYSTEM* p_wk, u32 idx )
 		}
 	}
 
-	// ‰ï˜bó‘Ôİ’è
+	// ä¼šè©±çŠ¶æ…‹è¨­å®š
 	p_wk->talk.talk_idx		= idx;
 	p_wk->talk.talk_seq		= WFLBY_TALK_SEQ_B_ANS;
 	p_wk->talk.talk_type	= WFLBY_TALK_TYPE_A;
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	WFLBY_SYSTEM_TALK_SetSendDataNowSeq( &p_wk->talk, 0 );
 	
-	// ‰ï˜bŠJn
+	// ä¼šè©±é–‹å§‹
 	userid = DWC_LOBBY_GetUserIdxID( idx );
 	DWC_LOBBY_SendPlayerMsg( WFLBY_SYSTEM_MAIN_COMMCMD_TALK_REQ, userid, &p_wk->talk.send_data, sizeof(WFLBY_SYSTEM_TALK_DATA) );
 
-	// óM‘Ò‚¿İ’è
+	// å—ä¿¡å¾…ã¡è¨­å®š
 	WFLBY_SYSTEM_TALK_StartRecvWait( &p_wk->talk );
 
 	return TRUE;
@@ -3167,10 +3167,10 @@ BOOL WFLBY_SYSTEM_SendTalkReq( WFLBY_SYSTEM* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒf[ƒ^‚ğ‘—‚é
+ *	@brief	ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	data		ƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	data		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SendTalkData( WFLBY_SYSTEM* p_wk, u16 data )
@@ -3178,23 +3178,23 @@ void WFLBY_SYSTEM_SendTalkData( WFLBY_SYSTEM* p_wk, u16 data )
 	BOOL exend = FALSE;
 	s32 userid;
 	
-	// ƒV[ƒPƒ“ƒX‚Ì®‡«ƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
 	if( (p_wk->talk.talk_type == WFLBY_TALK_TYPE_A) ){
 		if( p_wk->talk.talk_seq != WFLBY_TALK_SEQ_A_SEL ){
-			// ƒ^ƒCƒvA‚È‚Ì‚ÉA‚Ì‘I‘ğ’†‚¶‚á‚È‚¢
-			// ‰ï˜b‚ª‚¤‚Ü‚­s‚Á‚Ä‚È‚¢‚Ì‚ÅØ’f
+			// ã‚¿ã‚¤ãƒ—Aãªã®ã«Aã®é¸æŠä¸­ã˜ã‚ƒãªã„
+			// ä¼šè©±ãŒã†ã¾ãè¡Œã£ã¦ãªã„ã®ã§åˆ‡æ–­
 			exend = TRUE;
 		}
 	}else{
 		if( (p_wk->talk.talk_type == WFLBY_TALK_TYPE_B) ){
 			if( p_wk->talk.talk_seq != WFLBY_TALK_SEQ_B_SEL ){
-				// ƒ^ƒCƒvB‚È‚Ì‚ÉB‚Ì‘I‘ğ’†‚¶‚á‚È‚¢
-				// ‰ï˜b‚ª‚¤‚Ü‚­s‚Á‚Ä‚È‚¢‚Ì‚ÅØ’f
+				// ã‚¿ã‚¤ãƒ—Bãªã®ã«Bã®é¸æŠä¸­ã˜ã‚ƒãªã„
+				// ä¼šè©±ãŒã†ã¾ãè¡Œã£ã¦ãªã„ã®ã§åˆ‡æ–­
 				exend = TRUE;
 			}
 		}
 	}
-	// ‹Ù‹}I—¹
+	// ç·Šæ€¥çµ‚äº†
 	if( exend ){
 		userid = DWC_LOBBY_GetUserIdxID( p_wk->talk.talk_idx );
 		WFLBY_SYSTEM_TALK_SendTalkExEnd( p_wk, userid );
@@ -3203,7 +3203,7 @@ void WFLBY_SYSTEM_SendTalkData( WFLBY_SYSTEM* p_wk, u16 data )
 
 
 	
-	// ‰ï˜bó‘Ôİ’è
+	// ä¼šè©±çŠ¶æ…‹è¨­å®š
 	switch( p_wk->talk.talk_type ){
 	case WFLBY_TALK_TYPE_A:
 		p_wk->talk.talk_seq		= WFLBY_TALK_SEQ_B_SEL;
@@ -3214,29 +3214,29 @@ void WFLBY_SYSTEM_SendTalkData( WFLBY_SYSTEM* p_wk, u16 data )
 		break;
 
 	default:
-//		GF_ASSERT( 0 );	// ‘Î˜bƒ^ƒCƒv‚ª‚¨‚©‚µ‚¢
+//		GF_ASSERT( 0 );	// å¯¾è©±ã‚¿ã‚¤ãƒ—ãŒãŠã‹ã—ã„
 
 		userid = DWC_LOBBY_GetUserIdxID( p_wk->talk.talk_idx );
 		WFLBY_SYSTEM_TALK_SendTalkExEnd( p_wk, userid );
 		return;
 	}
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	WFLBY_SYSTEM_TALK_SetSendDataNowSeq( &p_wk->talk, data );
 	
-	// ‰ï˜bŠJn
+	// ä¼šè©±é–‹å§‹
 	userid = DWC_LOBBY_GetUserIdxID( p_wk->talk.talk_idx );
 	DWC_LOBBY_SendPlayerMsg( WFLBY_SYSTEM_MAIN_COMMCMD_TALK_DATA, userid, &p_wk->talk.send_data, sizeof(WFLBY_SYSTEM_TALK_DATA) );
 
-	// óM‘Ò‚¿İ’è
+	// å—ä¿¡å¾…ã¡è¨­å®š
 	WFLBY_SYSTEM_TALK_StartRecvWait( &p_wk->talk );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜b’†‚Åe‚È‚çI—¹‚ğ‘—‚é
+ *	@brief	ä¼šè©±ä¸­ã§è¦ªãªã‚‰çµ‚äº†ã‚’é€ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SendTalkEnd( WFLBY_SYSTEM* p_wk )
@@ -3250,21 +3250,21 @@ void WFLBY_SYSTEM_SendTalkEnd( WFLBY_SYSTEM* p_wk )
 		return ;
 	}
 
-	// ‘—M
+	// é€ä¿¡
 	p_wk->talk.send_data.seq = WFLBY_TALK_SEQ_NONE;
 
 	userid = DWC_LOBBY_GetUserIdxID( p_wk->talk.talk_idx );
 	DWC_LOBBY_SendPlayerMsg( WFLBY_SYSTEM_MAIN_COMMCMD_TALK_END, userid, &p_wk->talk.send_data, sizeof(WFLBY_SYSTEM_TALK_DATA) );
 
-	// ‰ï˜bI—¹
+	// ä¼šè©±çµ‚äº†
 	WFLBY_SYSTEM_TALK_EndClear( &p_wk->talk );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹­§I—¹‚µ‚½‚±‚Æ‚ğ‹³‚¦‚é
+ *	@brief	å¼·åˆ¶çµ‚äº†ã—ãŸã“ã¨ã‚’æ•™ãˆã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SendTalkExEnd( WFLBY_SYSTEM* p_wk )
@@ -3284,12 +3284,12 @@ void WFLBY_SYSTEM_SendTalkExEnd( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜b’†‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ä¼šè©±ä¸­ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‰ï˜b’†
- *	@retval	FALSE	‰ï˜b‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	ä¼šè©±ä¸­
+ *	@retval	FALSE	ä¼šè©±ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_CheckTalk( const WFLBY_SYSTEM* cp_wk )
@@ -3302,12 +3302,12 @@ BOOL WFLBY_SYSTEM_CheckTalk( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’N‚©‚©‚ç‰ï˜bƒŠƒNƒGƒXƒg‚ª—ˆ‚½‚©ƒ`ƒFƒbƒN
+ *	@brief	èª°ã‹ã‹ã‚‰ä¼šè©±ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæ¥ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE		‚«‚½
- *	@retval	FALSE		‚«‚Ä‚È‚¢
+ *	@retval	TRUE		ããŸ
+ *	@retval	FALSE		ãã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_CheckTalkReq( const WFLBY_SYSTEM* cp_wk )
@@ -3320,10 +3320,10 @@ BOOL WFLBY_SYSTEM_CheckTalkReq( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜b‚µ‚½‚±‚Æ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ä¼šè©±ã—ãŸã“ã¨ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_GetTalkMsk( const WFLBY_SYSTEM* cp_wk, u32 idx )
@@ -3333,11 +3333,11 @@ BOOL WFLBY_SYSTEM_GetTalkMsk( const WFLBY_SYSTEM* cp_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜b‘Šè‚ğóM‚·‚é
+ *	@brief	ä¼šè©±ç›¸æ‰‹ã‚’å—ä¿¡ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‰ï˜b‘Šè
+ *	@return	ä¼šè©±ç›¸æ‰‹
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_GetTalkIdx( const WFLBY_SYSTEM* cp_wk )
@@ -3347,12 +3347,12 @@ u32 WFLBY_SYSTEM_GetTalkIdx( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚±‚Ì‰ï˜b‚ª‰‚ß‚Ä‚©æ“¾
+ *	@brief	ã“ã®ä¼šè©±ãŒåˆã‚ã¦ã‹å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‰‚ß‚Ä
- *	@retval	FALSE	‚Í‚¶‚ß‚Ä‚¶‚á‚È‚¢
+ *	@retval	TRUE	åˆã‚ã¦
+ *	@retval	FALSE	ã¯ã˜ã‚ã¦ã˜ã‚ƒãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_GetTalkFirst( const WFLBY_SYSTEM* cp_wk )
@@ -3362,11 +3362,11 @@ BOOL WFLBY_SYSTEM_GetTalkFirst( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒV[ƒPƒ“ƒX‚ğæ“¾‚·‚é
+ *	@brief	ä¼šè©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	WFLBY_TALK_SEQ‰ï˜bƒV[ƒPƒ“ƒX
+ *	@return	WFLBY_TALK_SEQä¼šè©±ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //-----------------------------------------------------------------------------
 WFLBY_TALK_SEQ WFLBY_SYSTEM_GetTalkSeq( const WFLBY_SYSTEM* cp_wk )
@@ -3376,11 +3376,11 @@ WFLBY_TALK_SEQ WFLBY_SYSTEM_GetTalkSeq( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	óMƒf[ƒ^‚ğæ“¾‚·‚é	å‚É‘I‘ğ‚µ‚½€–Ú‚È‚Ç
+ *	@brief	å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹	ä¸»ã«é¸æŠã—ãŸé …ç›®ãªã©
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	óMƒf[ƒ^
+ *	@return	å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 u16 WFLBY_SYSTEM_GetTalkRecv( const WFLBY_SYSTEM* cp_wk )
@@ -3390,13 +3390,13 @@ u16 WFLBY_SYSTEM_GetTalkRecv( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯”‚©‚ç‚»‚Ìl‚Æ˜b‚¹‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	è©±ã—ã‹ã‘æ•°ã‹ã‚‰ãã®äººã¨è©±ã›ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	idx			ƒ†[ƒUƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ãƒ¦ãƒ¼ã‚¶ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *	
- *	@retval	TRUE		˜b‚µ‚©‚¯OK
- *	@retval	FALSE		˜b‚µ‚©‚¯‚¾‚ß
+ *	@retval	TRUE		è©±ã—ã‹ã‘OK
+ *	@retval	FALSE		è©±ã—ã‹ã‘ã ã‚
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_CheckTalkCount( const WFLBY_SYSTEM* cp_wk, u32 idx )
@@ -3411,12 +3411,12 @@ BOOL WFLBY_SYSTEM_CheckTalkCount( const WFLBY_SYSTEM* cp_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒGƒ‰[ó‘Ôƒ`ƒFƒbƒN
+ *	@brief	ä¼šè©±ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒGƒ‰[ó‘Ô
- *	@retval	FALSE	ƒGƒ‰[ó‘Ô‚¶‚á‚È‚¢
+ *	@retval	TRUE	ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹
+ *	@retval	FALSE	ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹ã˜ã‚ƒãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_CheckTalkError( const WFLBY_SYSTEM* cp_wk )
@@ -3425,7 +3425,7 @@ BOOL WFLBY_SYSTEM_CheckTalkError( const WFLBY_SYSTEM* cp_wk )
 		return TRUE;
 	}
 
-	// ƒ^ƒCƒ€ƒEƒGƒCƒgƒ`ƒFƒbƒN
+	// ã‚¿ã‚¤ãƒ ã‚¦ã‚¨ã‚¤ãƒˆãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_TALK_CheckRecvWait( &cp_wk->talk ) == FALSE ){
 		return TRUE;
 	}
@@ -3435,11 +3435,11 @@ BOOL WFLBY_SYSTEM_CheckTalkError( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bóM‘Ò‚¿ŠÔ‚ğæ“¾
+ *	@brief	ä¼šè©±å—ä¿¡å¾…ã¡æ™‚é–“ã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‚Ü‚¿ŠÔ
+ *	@return	ã¾ã¡æ™‚é–“
  */
 //-----------------------------------------------------------------------------
 s16	WFLBY_SYSTEM_GetRecvWaitTime( const WFLBY_SYSTEM* cp_wk )
@@ -3449,9 +3449,9 @@ s16	WFLBY_SYSTEM_GetRecvWaitTime( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯‚½‘¤‚ª‚»‚Î‚É‚«‚½‚Ì‚ÅŠ|‚¯‚ç‚ê‚½‘¤‚Í‰ï˜bŠJn
+ *	@brief	è©±ã—ã‹ã‘ãŸå´ãŒãã°ã«ããŸã®ã§æ›ã‘ã‚‰ã‚ŒãŸå´ã¯ä¼šè©±é–‹å§‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetTalkBStart( WFLBY_SYSTEM* p_wk )
@@ -3461,12 +3461,12 @@ void WFLBY_SYSTEM_SetTalkBStart( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯‚ç‚ê‚½ê‡A˜b‚µ‚©‚¯‘Šè‚ª©•ª‚Ì‚»‚Î‚É—ˆ‚½‚©æ“¾
+ *	@brief	è©±ã—ã‹ã‘ã‚‰ã‚ŒãŸå ´åˆã€è©±ã—ã‹ã‘ç›¸æ‰‹ãŒè‡ªåˆ†ã®ãã°ã«æ¥ãŸã‹å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	˜b‚µ‚©‚¯‚ç‚ê‚½‘¤‰ï˜bŠJn
- *	@retval	FALSE	‰ï˜b‚Ü‚¾‚¾‚ß
+ *	@retval	TRUE	è©±ã—ã‹ã‘ã‚‰ã‚ŒãŸå´ä¼šè©±é–‹å§‹
+ *	@retval	FALSE	ä¼šè©±ã¾ã ã ã‚
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_CheckTalkBStart( const WFLBY_SYSTEM* cp_wk )
@@ -3476,17 +3476,17 @@ BOOL WFLBY_SYSTEM_CheckTalkBStart( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜b¬—§‚µ‚½‰ñ”‚ğƒJƒEƒ“ƒg
+ *	@brief	ä¼šè©±æˆç«‹ã—ãŸå›æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_AddTalkCount( WFLBY_SYSTEM* p_wk )
 {
-	// ‰ï˜b’†‚©ƒ`ƒFƒbƒN
+	// ä¼šè©±ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_CheckTalk( p_wk ) == TRUE ){
 
-		// ‰ï˜b¬—§”‚ğƒJƒEƒ“ƒg
+		// ä¼šè©±æˆç«‹æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 		WFLBY_SYSTEM_TALK_AddCount( &p_wk->talk, p_wk->talk.talk_idx );
 	}
 	
@@ -3494,24 +3494,24 @@ void WFLBY_SYSTEM_AddTalkCount( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒgæ‚ğw’è‚µ‚ÄƒJƒEƒ“ƒg
+ *	@brief	ã‚«ã‚¦ãƒ³ãƒˆå…ˆã‚’æŒ‡å®šã—ã¦ã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	idx		ƒ†[ƒUƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ãƒ¦ãƒ¼ã‚¶ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_AddTalkCountEx( WFLBY_SYSTEM* p_wk, u32 idx )
 {
-	// ‰ï˜b¬—§”‚ğƒJƒEƒ“ƒg
+	// ä¼šè©±æˆç«‹æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 	WFLBY_SYSTEM_TALK_AddCount( &p_wk->talk, idx );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜b‚µ‚½‚±‚Æ‚ ‚éƒ}ƒXƒN‚ğİ’è
+ *	@brief	ä¼šè©±ã—ãŸã“ã¨ã‚ã‚‹ãƒã‚¹ã‚¯ã‚’è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetTalkMsk( WFLBY_SYSTEM* p_wk, u32 idx )
@@ -3522,10 +3522,10 @@ void WFLBY_SYSTEM_SetTalkMsk( WFLBY_SYSTEM* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–`Œ¯ƒm[ƒgƒf[ƒ^‚ğİ’è	‰ï˜b‚µ‚½
+ *	@brief	å†’é™ºãƒãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š	ä¼šè©±ã—ãŸ
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	plidx		‰ï˜b‚µ‚½l
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	plidx		ä¼šè©±ã—ãŸäºº
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_FNOTE_SetTalk( WFLBY_SYSTEM* p_wk, u32 plidx )
@@ -3553,10 +3553,10 @@ void WFLBY_SYSTEM_FNOTE_SetTalk( WFLBY_SYSTEM* p_wk, u32 plidx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–`Œ¯ƒm[ƒgƒf[ƒ^‚ğİ’è	ƒKƒWƒFƒbƒg‚ğæ“¾
+ *	@brief	å†’é™ºãƒãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚’å–å¾—
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	plidx		‚à‚ç‚Á‚½‘Šè
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	plidx		ã‚‚ã‚‰ã£ãŸç›¸æ‰‹
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_FNOTE_SetGetGadget( WFLBY_SYSTEM* p_wk, u32 plidx )
@@ -3584,10 +3584,10 @@ void WFLBY_SYSTEM_FNOTE_SetGetGadget( WFLBY_SYSTEM* p_wk, u32 plidx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–`Œ¯ƒm[ƒgƒf[ƒ^‚ğİ’è	ƒ~ƒjƒQ[ƒ€‚ğ—V‚ñ‚¾
+ *	@brief	å†’é™ºãƒãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚’éŠã‚“ã 
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	minigame		ƒ~ƒjƒQ[ƒ€ƒf[ƒ^
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	minigame		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_FNOTE_SetPlayMinigame( WFLBY_SYSTEM* p_wk, WFLBY_GAMETYPE minigame )
@@ -3598,26 +3598,26 @@ void WFLBY_SYSTEM_FNOTE_SetPlayMinigame( WFLBY_SYSTEM* p_wk, WFLBY_GAMETYPE mini
 	p_fnote		= SaveData_GetFNote( p_wk->p_save );
 
 	switch( minigame ){
-	// ƒ~ƒjƒQ[ƒ€
-	case WFLBY_GAME_BALLSLOW:	// ‹Ê“Š‚°
-	case WFLBY_GAME_BALANCEBALL:	// ‹Êæ‚è
-	case WFLBY_GAME_BALLOON:		// ‚Ó‚¤‚¹‚ñ‚í‚è
+	// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
+	case WFLBY_GAME_BALLSLOW:	// ç‰æŠ•ã’
+	case WFLBY_GAME_BALANCEBALL:	// ç‰ä¹—ã‚Š
+	case WFLBY_GAME_BALLOON:		// ãµã†ã›ã‚“ã‚ã‚Š
 		p_buf = FNOTE_SioLobbyMinigameDataMake( minigame,
 				HEAPID_WFLBY_ROOM, FNOTE_ID_PL_LOBBY_MINIGAME );
 		break;
 		
-	// ‘«Õƒ{[ƒh
-	case WFLBY_GAME_FOOTWHITE:	// ‘«Õƒ{[ƒh@‚µ‚ë
-	case WFLBY_GAME_FOOTBLACK:	// ‘«Õƒ{[ƒh@•
+	// è¶³è·¡ãƒœãƒ¼ãƒ‰
+	case WFLBY_GAME_FOOTWHITE:	// è¶³è·¡ãƒœãƒ¼ãƒ‰ã€€ã—ã‚
+	case WFLBY_GAME_FOOTBLACK:	// è¶³è·¡ãƒœãƒ¼ãƒ‰ã€€é»’
 		p_buf =  FNOTE_SioIDOnlyDataMake( HEAPID_WFLBY_ROOM, FNOTE_ID_PL_LOBBY_FOOT_BOARD );
 		break;
 		
-	// ¢ŠEŒv
+	// ä¸–ç•Œæ™‚è¨ˆ
 	case WFLBY_GAME_WLDTIMER:	
 		p_buf =  FNOTE_SioIDOnlyDataMake( HEAPID_WFLBY_ROOM, FNOTE_ID_PL_LOBBY_WORLDTIMER );
 		break;
 		
-	// ƒƒr[ƒjƒ…[ƒX
+	// ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹
 	case WFLBY_GAME_NEWS:		
 		p_buf =  FNOTE_SioIDOnlyDataMake( HEAPID_WFLBY_ROOM, FNOTE_ID_PL_LOBBY_NEWS );
 		break;
@@ -3634,9 +3634,9 @@ void WFLBY_SYSTEM_FNOTE_SetPlayMinigame( WFLBY_SYSTEM* p_wk, WFLBY_GAMETYPE mini
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–`Œ¯ƒm[ƒgƒf[ƒ^‚ğİ’è	ƒtƒ[ƒg‚Éæ‚Á‚½
+ *	@brief	å†’é™ºãƒãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š	ãƒ•ãƒ­ãƒ¼ãƒˆã«ä¹—ã£ãŸ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_FNOTE_SetParade( WFLBY_SYSTEM* p_wk )
@@ -3651,9 +3651,9 @@ void WFLBY_SYSTEM_FNOTE_SetParade( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŒƒR[ƒhƒf[ƒ^		˜b‚µ‚©‚¯‚½‰ñ”	ƒJƒEƒ“ƒg
+ *	@brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿		è©±ã—ã‹ã‘ãŸå›æ•°	ã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_RECORD_AddTalk( WFLBY_SYSTEM* p_wk )
@@ -3666,9 +3666,9 @@ void WFLBY_SYSTEM_RECORD_AddTalk( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŒƒR[ƒhƒf[ƒ^		ƒ~ƒjƒQ[ƒ€—V‚ñ‚¾‰ñ”	ƒJƒEƒ“ƒg
+ *	@brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿		ãƒŸãƒ‹ã‚²ãƒ¼ãƒ éŠã‚“ã å›æ•°	ã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN 
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯ 
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_RECORD_AddMinigame( WFLBY_SYSTEM* p_wk )
@@ -3681,10 +3681,10 @@ void WFLBY_SYSTEM_RECORD_AddMinigame( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—V‚ñ‚¾î•ñƒoƒbƒtƒ@	—V‚ñ‚¾‚±‚Æ‚ğİ’è
+ *	@brief	éŠã‚“ã æƒ…å ±ãƒãƒƒãƒ•ã‚¡	éŠã‚“ã ã“ã¨ã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	type		—V‚Ñ‚½‚¢‚¨‚Õ
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	type		éŠã³ãŸã„ãŠã·
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_PLAYED_SetPlay( WFLBY_SYSTEM* p_wk, WFLBY_PLAYED_TYPE type )
@@ -3695,12 +3695,12 @@ void WFLBY_SYSTEM_PLAYED_SetPlay( WFLBY_SYSTEM* p_wk, WFLBY_PLAYED_TYPE type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—V‚ñ‚¾î•ñƒoƒbƒtƒ@	‚¨Š©‚ß“x‚ªˆê”Ô‚‚¢‚Ü‚¾—V‚ñ‚¾‚±‚Æ‚Ì‚È‚¢—V‚Ñ‚ğ•Ô‚·
+ *	@brief	éŠã‚“ã æƒ…å ±ãƒãƒƒãƒ•ã‚¡	ãŠå‹§ã‚åº¦ãŒä¸€ç•ªé«˜ã„ã¾ã éŠã‚“ã ã“ã¨ã®ãªã„éŠã³ã‚’è¿”ã™
  *	
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	WFLBY_PLAYED_NUM	‚à‚¤—V‚ñ‚¾‚±‚Æ‚Ì‚È‚¢—V‚Ñ‚Í‚È‚¢
- *	@retval	‚»‚Ì‚½				‚¨Š©‚ß—V‚Ñ
+ *	@retval	WFLBY_PLAYED_NUM	ã‚‚ã†éŠã‚“ã ã“ã¨ã®ãªã„éŠã³ã¯ãªã„
+ *	@retval	ãã®ãŸ				ãŠå‹§ã‚éŠã³
  */
 //-----------------------------------------------------------------------------
 WFLBY_PLAYED_TYPE WFLBY_SYSTEM_PLAYED_GetOsusumePlayType( const WFLBY_SYSTEM* cp_wk )
@@ -3710,12 +3710,12 @@ WFLBY_PLAYED_TYPE WFLBY_SYSTEM_PLAYED_GetOsusumePlayType( const WFLBY_SYSTEM* cp
 
 	for( i=0; i<WFLBY_PLAYED_NUM; i++ ){
 		if( cp_wk->played.play[i] == FALSE ){
-			// ‚»‚Ì—V‚Ñ‚Í¡‚Å‚à—V‚×‚é‚©H
+			// ãã®éŠã³ã¯ä»Šã§ã‚‚éŠã¹ã‚‹ã‹ï¼Ÿ
 			switch( i ){
-			// ƒ~ƒjƒQ[ƒ€
-			case WFLBY_PLAYED_BALLTHROW:	// ƒ^ƒ}“Š‚°
-			case WFLBY_PLAYED_BALANCEBALL:	// Balanceƒ{[ƒ‹
-			case WFLBY_PLAYED_BALLOON:		// ‚Ó‚¤‚¹‚ñ‚í‚è
+			// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ 
+			case WFLBY_PLAYED_BALLTHROW:	// ã‚¿ãƒæŠ•ã’
+			case WFLBY_PLAYED_BALANCEBALL:	// Balanceãƒœãƒ¼ãƒ«
+			case WFLBY_PLAYED_BALLOON:		// ãµã†ã›ã‚“ã‚ã‚Š
 				if( WFLBY_SYSTEM_Event_GetMiniGameStop( cp_wk ) == TRUE ){
 					play_ok = FALSE;
 				}else{
@@ -3723,9 +3723,9 @@ WFLBY_PLAYED_TYPE WFLBY_SYSTEM_PLAYED_GetOsusumePlayType( const WFLBY_SYSTEM* cp
 				}
 				break;
 				
-			case WFLBY_PLAYED_WORLDTIMER:	// ¢ŠEŒv	
-			case WFLBY_PLAYED_TOPIC:		// Lêƒjƒ…[ƒX
-			case WFLBY_PLAYED_FOOTBOARD:	// ‘«ÕBOARD
+			case WFLBY_PLAYED_WORLDTIMER:	// ä¸–ç•Œæ™‚è¨ˆ	
+			case WFLBY_PLAYED_TOPIC:		// åºƒå ´ãƒ‹ãƒ¥ãƒ¼ã‚¹
+			case WFLBY_PLAYED_FOOTBOARD:	// è¶³è·¡BOARD
 				if( WFLBY_SYSTEM_Event_GetEndCM( cp_wk ) == TRUE ){
 					play_ok = FALSE;
 				}else{
@@ -3733,7 +3733,7 @@ WFLBY_PLAYED_TYPE WFLBY_SYSTEM_PLAYED_GetOsusumePlayType( const WFLBY_SYSTEM* cp
 				}
 				break;
 
-			case WFLBY_PLAYED_ANKETO:		// ƒAƒ“ƒP[ƒg
+			case WFLBY_PLAYED_ANKETO:		// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
 				if( WFLBY_SYSTEM_Event_GetNeon( cp_wk ) == TRUE ){
 					play_ok = FALSE;
 				}else{
@@ -3742,12 +3742,12 @@ WFLBY_PLAYED_TYPE WFLBY_SYSTEM_PLAYED_GetOsusumePlayType( const WFLBY_SYSTEM* cp
 				break;
 				
 			default:
-			case WFLBY_PLAYED_TALK:			// ˜b‚µ‚©‚¯
+			case WFLBY_PLAYED_TALK:			// è©±ã—ã‹ã‘
 				play_ok = TRUE;
 				break;
 			}
 
-			// —V‚×‚é‚È‚ç•Ô‚·
+			// éŠã¹ã‚‹ãªã‚‰è¿”ã™
 			if( play_ok == TRUE ){
 				return i;
 			}
@@ -3758,11 +3758,11 @@ WFLBY_PLAYED_TYPE WFLBY_SYSTEM_PLAYED_GetOsusumePlayType( const WFLBY_SYSTEM* cp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‰ƒ“ƒ_ƒ€ƒKƒWƒFƒbƒg‚Ìæ“¾
+ *	@brief	ãƒ©ãƒ³ãƒ€ãƒ ã‚¬ã‚¸ã‚§ãƒƒãƒˆã®å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒ‰ƒ“ƒ_ƒ€‚Å‘I‘ğ‚³‚ê‚½ƒKƒWƒFƒbƒg
+ *	@return	ãƒ©ãƒ³ãƒ€ãƒ ã§é¸æŠã•ã‚ŒãŸã‚¬ã‚¸ã‚§ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 WFLBY_ITEMTYPE WFLBY_SYSTEM_RandItemGet( const WFLBY_SYSTEM* cp_wk )
@@ -3770,7 +3770,7 @@ WFLBY_ITEMTYPE WFLBY_SYSTEM_RandItemGet( const WFLBY_SYSTEM* cp_wk )
 	WFLBY_ITEMTYPE	item;
 	item = WFLBY_SYSTEM_GADGETRATE_GetRandItem( &cp_wk->gadgetrate );
 
-	// ©•ª‚ªVIP‚È‚ç‘æ‚R’iŠK‚É•ÏX‚·‚é
+	// è‡ªåˆ†ãŒVIPãªã‚‰ç¬¬ï¼“æ®µéšã«å¤‰æ›´ã™ã‚‹
 	if( WFLBY_SYSTEM_GetUserVipFlag( cp_wk, WFLBY_SYSTEM_GetMyIdx( cp_wk ) ) == TRUE ){
 		item += (WFLBY_ITEM_DANKAI-1);
 	}
@@ -3781,16 +3781,16 @@ WFLBY_ITEMTYPE WFLBY_SYSTEM_RandItemGet( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰Î\¬ƒf[ƒ^	¡‚Ì‰Ô‰Î•\¦ƒ^ƒCƒv‚ğæ“¾
+ *	@brief	èŠ±ç«æ§‹æˆãƒ‡ãƒ¼ã‚¿	ä»Šã®èŠ±ç«è¡¨ç¤ºã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	WFLBY_FIRE_NONE,	// ‰Ô‰Î‚È‚µ
- *	@retval	WFLBY_FIRE_NORMAL,	// ’Êí
- *	@retval	WFLBY_FIRE_KOUGO,	// ŒğŒİ”­Ë
- *	@retval	WFLBY_FIRE_NAMI,	// ”gó”­Ë
- *	@retval	WFLBY_FIRE_CLIMAX,	// ÅŒã
- *	@retval	WFLBY_FIRE_END,		// ƒIƒƒŠ
+ *	@retval	WFLBY_FIRE_NONE,	// èŠ±ç«ãªã—
+ *	@retval	WFLBY_FIRE_NORMAL,	// é€šå¸¸
+ *	@retval	WFLBY_FIRE_KOUGO,	// äº¤äº’ç™ºå°„
+ *	@retval	WFLBY_FIRE_NAMI,	// æ³¢çŠ¶ç™ºå°„
+ *	@retval	WFLBY_FIRE_CLIMAX,	// æœ€å¾Œ
+ *	@retval	WFLBY_FIRE_END,		// ã‚ªãƒ¯ãƒª
  */
 //-----------------------------------------------------------------------------
 WFLBY_FIRE_TYPE WFLBY_SYSTEM_FIRE_GetType( const WFLBY_SYSTEM* cp_wk )
@@ -3800,11 +3800,11 @@ WFLBY_FIRE_TYPE WFLBY_SYSTEM_FIRE_GetType( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰Î\¬ƒf[ƒ^	“®ìƒJƒEƒ“ƒ^
+ *	@brief	èŠ±ç«æ§‹æˆãƒ‡ãƒ¼ã‚¿	å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
  *	
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	‰Ô‰Îƒ^ƒCƒv‚É‚È‚Á‚Ä‚©‚ç‚½‚Á‚½ŠÔi•`‰æƒtƒŒ[ƒ€’PˆÊj
+ *	@return	èŠ±ç«ã‚¿ã‚¤ãƒ—ã«ãªã£ã¦ã‹ã‚‰ãŸã£ãŸæ™‚é–“ï¼ˆæç”»ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½ï¼‰
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_SYSTEM_FIRE_GetTypeMoveCount( const WFLBY_SYSTEM* cp_wk )
@@ -3814,10 +3814,10 @@ u32 WFLBY_SYSTEM_FIRE_GetTypeMoveCount( const WFLBY_SYSTEM* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgŒ‹‰Ê‚ğ•Û‘¶‚·‚é
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆçµæœã‚’ä¿å­˜ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒAƒ“ƒP[ƒgŒ‹‰Ê
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆçµæœ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_SetAnketoResult( WFLBY_SYSTEM* p_wk, const ANKETO_QUESTION_RESULT* cp_data )
@@ -3828,10 +3828,10 @@ void WFLBY_SYSTEM_SetAnketoResult( WFLBY_SYSTEM* p_wk, const ANKETO_QUESTION_RES
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒP[ƒgŒ‹‰Ê‚ğæ“¾‚·‚é
+ *	@brief	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆçµæœã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	p_data		ƒAƒ“ƒP[ƒgŒ‹‰Ê•Û‘¶æ
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_data		ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆçµæœä¿å­˜å…ˆ
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_SYSTEM_GetAnketoResult( const WFLBY_SYSTEM* cp_wk, ANKETO_QUESTION_RESULT* p_data )
@@ -3848,9 +3848,9 @@ BOOL WFLBY_SYSTEM_GetAnketoResult( const WFLBY_SYSTEM* cp_wk, ANKETO_QUESTION_RE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒNƒ‰ƒu—p‚É‘—‚ç‚ê‚éƒ_ƒ~[î•ñ‚Ìƒoƒbƒtƒ@İ’è‚·‚é
+ *	@brief	WiFiã‚¯ãƒ©ãƒ–ç”¨ã«é€ã‚‰ã‚Œã‚‹ãƒ€ãƒŸãƒ¼æƒ…å ±ã®ãƒãƒƒãƒ•ã‚¡è¨­å®šã™ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_WiFiClubBuff_Init( WFLBY_SYSTEM* p_wk )
@@ -3861,23 +3861,23 @@ void WFLBY_SYSTEM_WiFiClubBuff_Init( WFLBY_SYSTEM* p_wk )
 
 	p_mystatus = SaveData_GetMyStatus( p_wk->p_save );
 	
-	// WiFiƒNƒ‰ƒu‚ÅA
+	// WiFiã‚¯ãƒ©ãƒ–ã§ã€
 	p_wk->p_wificlubbuff = WifiP2PMatch_CleanStatus_Set( p_mystatus, p_wk->heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	WiFiƒNƒ‰ƒu—p‚É‘—‚ç‚ê‚éƒ_ƒ~[î•ñ‚ğ”jŠü‚·‚é
+ *	@brief	WiFiã‚¯ãƒ©ãƒ–ç”¨ã«é€ã‚‰ã‚Œã‚‹ãƒ€ãƒŸãƒ¼æƒ…å ±ã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_SYSTEM_WiFiClubBuff_Exit( WFLBY_SYSTEM* p_wk )
 {
 //	GF_ASSERT( p_wk->p_wificlubbuff != NULL );
-	// WiFiƒNƒ‰ƒu‚ÅA
+	// WiFiã‚¯ãƒ©ãƒ–ã§ã€
 	if( p_wk->p_wificlubbuff != NULL ){
-		// ƒƒ‚ƒŠŠm•Û‚³‚ê‚Ä‚¢‚½‚çA”jŠü‚·‚é
+		// ãƒ¡ãƒ¢ãƒªç¢ºä¿ã•ã‚Œã¦ã„ãŸã‚‰ã€ç ´æ£„ã™ã‚‹
 		WifiP2PMatch_CleanStatus_Delete( p_wk->p_wificlubbuff );
 		p_wk->p_wificlubbuff = NULL;
 	}
@@ -3908,18 +3908,18 @@ void WFLBY_SYSTEM_DEBUG_SetLangCode( WFLBY_USER_PROFILE* p_profile, u32 code )
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒvƒ‰ƒCƒx[ƒg
+ *				ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆ
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	•¶š—ñ’†‚ÉEOM_ƒR[ƒh‚ª‚ ‚é‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	æ–‡å­—åˆ—ä¸­ã«EOM_ã‚³ãƒ¼ãƒ‰ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_str		•¶š—ñƒR[ƒh
- *	@param	len			•¶š”
+ *	@param	cp_str		æ–‡å­—åˆ—ã‚³ãƒ¼ãƒ‰
+ *	@param	len			æ–‡å­—æ•°
  *
- *	@retval	TRUE	‚ ‚é
- *	@retval	FALSE	‚È‚µ
+ *	@retval	TRUE	ã‚ã‚‹
+ *	@retval	FALSE	ãªã—
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_SYSTEM_CheckStrEOMCode( const STRCODE* cp_str, u32 len )
@@ -3936,12 +3936,12 @@ static BOOL WFLBY_SYSTEM_CheckStrEOMCode( const STRCODE* cp_str, u32 len )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒU“üºƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒ¦ãƒ¼ã‚¶å…¥å®¤ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	userid		ƒ†[ƒUID
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
- *	@param	p_work		ƒ[ƒN
- *	@param	mydata		©•ª‚Ìƒf[ƒ^‚©
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	mydata		è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_CallbackUserIn( s32 userid, const void* cp_profile, void* p_work, BOOL mydata )
@@ -3955,13 +3955,13 @@ static void WFLBY_SYSTEM_CallbackUserIn( s32 userid, const void* cp_profile, voi
 	p_wk = p_work;
 	
 
-	// ©•ª‚Ìƒf[ƒ^‚©ƒ`ƒFƒbƒN
+	// è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‹ãƒã‚§ãƒƒã‚¯
 	if( mydata ){
 
-		// cp_userdata‚Ì‚Ù‚¤‚©‚çƒ~ƒjƒQ[ƒ€—p‚ÌMYSTATUS‚ğì¬‚·‚é
+		// cp_userdataã®ã»ã†ã‹ã‚‰ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ç”¨ã®MYSTATUSã‚’ä½œæˆã™ã‚‹
 		WFLBY_SYSTEM_MG_SetMyStatus( &p_wk->mg_data, &p_wk->myprofile, p_wk->heapID );
 
-		// CRCƒ`ƒFƒbƒN
+		// CRCãƒã‚§ãƒƒã‚¯
 		if( WFLBY_SYSTEM_MyProfile_CheckCrc( &p_wk->myprofile, p_wk->p_save ) == FALSE ){
 			p_wk->error = WFLBY_SYSTEM_ERR_CRC;
 		}
@@ -3969,14 +3969,14 @@ static void WFLBY_SYSTEM_CallbackUserIn( s32 userid, const void* cp_profile, voi
 		idx = DWC_LOBBY_GetUserIDIdx( userid );
 		NEWS_DSET_SetRoomIn( p_wk->glbdata.p_lobbynews, idx, p_wk->myprofile.profile.sex, NEWS_ROOMSP_MYDATA|NEWS_ROOMSP_OLD );
 
-		// ©•ª‚Ìƒ†[ƒUID‚ğİ’è‚·‚é
+		// è‡ªåˆ†ã®ãƒ¦ãƒ¼ã‚¶IDã‚’è¨­å®šã™ã‚‹
 		p_wk->myprofile.profile.userid = userid;
 
 
 //		OS_TPrintf( "nation area %d %d\n", p_wk->myprofile.profile.nation, p_wk->myprofile.profile.area );
 		
 
-		// “üºŠÔ‚ğİ’è‚·‚é
+		// å…¥å®¤æ™‚é–“ã‚’è¨­å®šã™ã‚‹
 		{
 			s64 time;
 			DWC_LOBBY_GetLoginTime( userid, &time );
@@ -3984,16 +3984,16 @@ static void WFLBY_SYSTEM_CallbackUserIn( s32 userid, const void* cp_profile, voi
 			OS_TPrintf( "in time hour=%d min=%d  sec=%d\n", p_wk->myprofile.profile.intime.hour, p_wk->myprofile.profile.intime.minute, p_wk->myprofile.profile.intime.second );
 		}
 
-		// GMTŠÔ‚©‚ç©•ª‚Ì’nˆæ‚ÌŠÔ‚ğæ“¾‚·‚é
+		// GMTæ™‚é–“ã‹ã‚‰è‡ªåˆ†ã®åœ°åŸŸã®æ™‚é–“ã‚’å–å¾—ã™ã‚‹
 		{
 			u32 nation, area;
 			BOOL reagion_code;
 
 			nation = WFLBY_SYSTEM_GetProfileNation( &p_wk->myprofile.profile );
 			area = WFLBY_SYSTEM_GetProfileArea( &p_wk->myprofile.profile );
-			reagion_code = WFLBY_SYSTEM_CheckProfileRagionCode( &p_wk->myprofile.profile );	// ƒŠ[ƒWƒ‡ƒ“‚ª–³Œø‚©ƒ`ƒFƒbƒN
+			reagion_code = WFLBY_SYSTEM_CheckProfileRagionCode( &p_wk->myprofile.profile );	// ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ãŒç„¡åŠ¹ã‹ãƒã‚§ãƒƒã‚¯
 
-			// ‘‚ª‚ ‚é‚©ƒ`ƒFƒbƒN	‚³‚ç‚ÉŒ¾ŒêƒR[ƒh‚ª—LŒø‚©Šm”F
+			// å›½ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯	ã•ã‚‰ã«è¨€èªã‚³ãƒ¼ãƒ‰ãŒæœ‰åŠ¹ã‹ç¢ºèª
 			if( (nation != WFLBY_WLDDATA_NATION_NONE) && (reagion_code == TRUE) ){
 				p_wk->myprofile.profile.wldtime = WFLBY_WORLDTIMER_PLACE_GetPlaceTime( 
 						nation, 
@@ -4009,40 +4009,40 @@ static void WFLBY_SYSTEM_CallbackUserIn( s32 userid, const void* cp_profile, voi
 
 
 
-		// ƒvƒƒtƒB[ƒ‹‚ğXV
+		// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’æ›´æ–°
 		WFLBY_SYSTEM_MyProfile_SetCrc( &p_wk->myprofile, p_wk->p_save );
 		WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );
 		
 	}else{
-		// ƒvƒƒtƒB[ƒ‹İ’è
+		// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«è¨­å®š
 		cp_userdata = (const WFLBY_USER_PROFILE*)cp_profile;
 
 //		OS_TPrintf( "user profile lang_code %d\n", cp_userdata->region_code );
 
-		// ˆê”ÔŒÃ‚­‚©‚ç‚¢‚él‚ğæ‚Éæ“¾
+		// ä¸€ç•ªå¤ãã‹ã‚‰ã„ã‚‹äººã‚’å…ˆã«å–å¾—
 		old_user = DWC_LOBBY_GetOldUser();
 
-		// ƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚µ‚ÄA‚»‚Ìl‚ğ’†‚É“ü‚ê‚é
-		// ©•ª‚Ì•û‚ªŒÃ‚­‚©‚ç‚¢‚é‚Ì‚ÅA‚»‚Ìl‚ªˆê”ÔŒÃ‚¢‚í‚¯‚ª‚È‚¢
+		// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã—ã¦ã€ãã®äººã‚’ä¸­ã«å…¥ã‚Œã‚‹
+		// è‡ªåˆ†ã®æ–¹ãŒå¤ãã‹ã‚‰ã„ã‚‹ã®ã§ã€ãã®äººãŒä¸€ç•ªå¤ã„ã‚ã‘ãŒãªã„
 		idx = DWC_LOBBY_GetUserIDIdx( userid );
 		NEWS_DSET_SetRoomIn( p_wk->glbdata.p_lobbynews, idx, 
 				WFLBY_SYSTEM_GetProfileSex( cp_userdata ), NEWS_ROOMSP_NONE );
 
-		// ©•ª‚ªˆê”ÔŒÃ‚©‚Á‚½‚çˆê”ÔŒÃ‚¢ƒf[ƒ^‚Éİ’è
+		// è‡ªåˆ†ãŒä¸€ç•ªå¤ã‹ã£ãŸã‚‰ä¸€ç•ªå¤ã„ãƒ‡ãƒ¼ã‚¿ã«è¨­å®š
 		if( old_user == userid ){
 			NEWS_DSET_SetRoomOld( p_wk->glbdata.p_lobbynews, idx );
 		}
 
 
-		// 080702’Ç‰Á
-		// “ü‚Á‚Ä‚«‚½l‚Ì—š—ğ‚ª‚ ‚Á‚½‚çA’m‚ç‚È‚¢l‚É‚È‚é‚æ‚¤‚É‘‚«Š·‚¦
+		// 080702è¿½åŠ 
+		// å…¥ã£ã¦ããŸäººã®å±¥æ­´ãŒã‚ã£ãŸã‚‰ã€çŸ¥ã‚‰ãªã„äººã«ãªã‚‹ã‚ˆã†ã«æ›¸ãæ›ãˆ
 		if( WFLBY_SYSTEM_LASTACTQ_ResetUserID( &p_wk->lastactin_q, userid, DWC_LOBBY_INVALID_USER_ID ) ){
-			WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// XV
+			WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// æ›´æ–°
 		}
 	}
 
 
-	// ’N‚©“ü‚Á‚Ä‚«‚½
+	// èª°ã‹å…¥ã£ã¦ããŸ
 	idx  = DWC_LOBBY_GetUserIDIdx( userid );
 	p_wk->flag.user_in |= 1 << idx;
 
@@ -4054,7 +4054,7 @@ static void WFLBY_SYSTEM_CallbackUserIn( s32 userid, const void* cp_profile, voi
 			WFLBY_SYSTEM_AIKOTOBABUFF_SetData( &p_wk->aikotoba, idx, TRUE, gf_mtRand() );
 		}
 
-		//VIP‚ª“ü‚Á‚Ä‚«‚½ƒgƒsƒbƒN¶¬
+		//VIPãŒå…¥ã£ã¦ããŸãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆ
 		{
 			NEWS_DATA_SET_VIPIN news_data;
 			news_data.vip_plidx = idx;
@@ -4062,21 +4062,21 @@ static void WFLBY_SYSTEM_CallbackUserIn( s32 userid, const void* cp_profile, voi
 		}
 	}else{
 
-		// VIPƒ`ƒFƒbƒN
+		// VIPãƒã‚§ãƒƒã‚¯
 		if( DWC_LOBBY_VIP_CheckVip( userid ) == TRUE ){
 			u32 aikotoba_key;
 
-			// VIPƒtƒ‰ƒOİ’è
+			// VIPãƒ•ãƒ©ã‚°è¨­å®š
 			WFLBY_SYSTEM_VIPFLAG_Set( &p_wk->vipflag, idx, TRUE );
 
-			//VIP‚ª“ü‚Á‚Ä‚«‚½ƒgƒsƒbƒN¶¬
+			//VIPãŒå…¥ã£ã¦ããŸãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆ
 			{
 				NEWS_DATA_SET_VIPIN news_data;
 				news_data.vip_plidx = idx;
 				NEWS_DSET_SetVipIn( p_wk->glbdata.p_lobbynews, &news_data, &p_wk->vipflag );
 			}
 			
-			// ‚ ‚¢‚±‚Æ‚Î@ƒ`ƒFƒbƒN
+			// ã‚ã„ã“ã¨ã°ã€€ãƒã‚§ãƒƒã‚¯
 			aikotoba_key = DWC_LOBBY_VIP_GetAikotobaKey( userid );
 			if( aikotoba_key != DWC_LOBBY_VIP_KEYNONE ){
 				WFLBY_SYSTEM_AIKOTOBABUFF_SetData( &p_wk->aikotoba, idx, TRUE, aikotoba_key );
@@ -4084,8 +4084,8 @@ static void WFLBY_SYSTEM_CallbackUserIn( s32 userid, const void* cp_profile, voi
 				WFLBY_SYSTEM_AIKOTOBABUFF_SetData( &p_wk->aikotoba, idx, FALSE, aikotoba_key );
 			}
 		}else{
-			// ˆá‚Á‚½‚çÁ‚·
-			// VIPƒtƒ‰ƒOOFF
+			// é•ã£ãŸã‚‰æ¶ˆã™
+			// VIPãƒ•ãƒ©ã‚°OFF
 			WFLBY_SYSTEM_VIPFLAG_Set( &p_wk->vipflag, idx, FALSE );
 			WFLBY_SYSTEM_AIKOTOBABUFF_SetData( &p_wk->aikotoba, idx, FALSE, 0 );
 		}
@@ -4093,21 +4093,21 @@ static void WFLBY_SYSTEM_CallbackUserIn( s32 userid, const void* cp_profile, voi
 	}
 #else
 
-	// VIPƒ`ƒFƒbƒN
+	// VIPãƒã‚§ãƒƒã‚¯
 	if( DWC_LOBBY_VIP_CheckVip( userid ) == TRUE ){
 		u32 aikotoba_key;
 
-		// VIPƒtƒ‰ƒOİ’è
+		// VIPãƒ•ãƒ©ã‚°è¨­å®š
 		WFLBY_SYSTEM_VIPFLAG_Set( &p_wk->vipflag, idx, TRUE );
 
-		//VIP‚ª“ü‚Á‚Ä‚«‚½ƒgƒsƒbƒN¶¬
+		//VIPãŒå…¥ã£ã¦ããŸãƒˆãƒ”ãƒƒã‚¯ç”Ÿæˆ
 		{
 			NEWS_DATA_SET_VIPIN news_data;
 			news_data.vip_plidx = idx;
 			NEWS_DSET_SetVipIn( p_wk->glbdata.p_lobbynews, &news_data, &p_wk->vipflag );
 		}
 		
-		// ‚ ‚¢‚±‚Æ‚Î@ƒ`ƒFƒbƒN
+		// ã‚ã„ã“ã¨ã°ã€€ãƒã‚§ãƒƒã‚¯
 		aikotoba_key = DWC_LOBBY_VIP_GetAikotobaKey( userid );
 		if( aikotoba_key != DWC_LOBBY_VIP_KEYNONE ){
 			WFLBY_SYSTEM_AIKOTOBABUFF_SetData( &p_wk->aikotoba, idx, TRUE, aikotoba_key );
@@ -4115,8 +4115,8 @@ static void WFLBY_SYSTEM_CallbackUserIn( s32 userid, const void* cp_profile, voi
 			WFLBY_SYSTEM_AIKOTOBABUFF_SetData( &p_wk->aikotoba, idx, FALSE, aikotoba_key );
 		}
 	}else{
-		// ˆá‚Á‚½‚çÁ‚·
-		// VIPƒtƒ‰ƒOOFF
+		// é•ã£ãŸã‚‰æ¶ˆã™
+		// VIPãƒ•ãƒ©ã‚°OFF
 		WFLBY_SYSTEM_VIPFLAG_Set( &p_wk->vipflag, idx, FALSE );
 		WFLBY_SYSTEM_AIKOTOBABUFF_SetData( &p_wk->aikotoba, idx, FALSE, 0 );
 	}
@@ -4128,10 +4128,10 @@ static void WFLBY_SYSTEM_CallbackUserIn( s32 userid, const void* cp_profile, voi
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒU‘ŞºƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ãƒ¦ãƒ¼ã‚¶é€€å®¤ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	userid		ƒ†[ƒUID
- *	@param	p_work		ƒ[ƒN
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_CallbackUserOut( s32 userid, void* p_work )
@@ -4144,24 +4144,24 @@ static void WFLBY_SYSTEM_CallbackUserOut( s32 userid, void* p_work )
 	p_wk = p_work;
 
 
-	// ©•ª‚ÌƒƒOƒAƒEƒg‚Ìê‡‚ÍAƒGƒ‰[ˆ—‚Ö
+	// è‡ªåˆ†ã®ãƒ­ã‚°ã‚¢ã‚¦ãƒˆã®å ´åˆã¯ã€ã‚¨ãƒ©ãƒ¼å‡¦ç†ã¸
 	if( userid == DWC_LOBBY_GetMyUserID() ){
 		return ;
 	}
 
-	// ƒCƒ“ƒfƒbƒNƒXæ“¾
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 	idx = DWC_LOBBY_GetUserIDIdx( userid );
 
-	// ‰ï˜b’†‚Ìl‚È‚ç‹­§I—¹
+	// ä¼šè©±ä¸­ã®äººãªã‚‰å¼·åˆ¶çµ‚äº†
 	if( WFLBY_SYSTEM_CheckTalk( p_wk ) == TRUE ){
-		// ‰ï˜b’†‚Ìl‚©H
+		// ä¼šè©±ä¸­ã®äººã‹ï¼Ÿ
 		if( WFLBY_SYSTEM_GetTalkIdx( p_wk ) == idx ){
-			// ‰ï˜b‚Ì‹­§I—¹
+			// ä¼šè©±ã®å¼·åˆ¶çµ‚äº†
 			WFLBY_SYSTEM_TALK_ExEndClear( &p_wk->talk );
 		}
 	}
 
-	// ‚»‚Ìl‚ğ‘ŞÈ‚³‚¹‚é
+	// ãã®äººã‚’é€€å¸­ã•ã›ã‚‹
 	old_set = NEWS_DSET_SetRoomOut( p_wk->glbdata.p_lobbynews, idx );
 	if( old_set ){
 		old_user = DWC_LOBBY_GetOldUser_UserDesc( userid );
@@ -4170,26 +4170,26 @@ static void WFLBY_SYSTEM_CallbackUserOut( s32 userid, void* p_work )
 		NEWS_DSET_SetRoomOld( p_wk->glbdata.p_lobbynews, old_idx );
 	}
 
-	// VIPƒtƒ‰ƒOOFF
+	// VIPãƒ•ãƒ©ã‚°OFF
 	WFLBY_SYSTEM_VIPFLAG_Set( &p_wk->vipflag, idx, FALSE );
 
-	// ‰ï˜bƒJƒEƒ“ƒgOFF
+	// ä¼šè©±ã‚«ã‚¦ãƒ³ãƒˆOFF
 	WFLBY_SYSTEM_TALK_ClearCount( &p_wk->talk, idx );
 
-	// ‰ï˜b‚µ‚½‚±‚Æ‚ ‚é‚©ƒtƒ‰ƒO
+	// ä¼šè©±ã—ãŸã“ã¨ã‚ã‚‹ã‹ãƒ•ãƒ©ã‚°
 	WFLBY_SYSTEM_TALK_ClearMsk( &p_wk->talk, idx );
 
-	// 080702’Ç‰Á
-	// o‚Äs‚Á‚½l‚Ì—š—ğ‚Ìƒ†[ƒUID‚ğ‘‚«Š·‚¦
+	// 080702è¿½åŠ 
+	// å‡ºã¦è¡Œã£ãŸäººã®å±¥æ­´ã®ãƒ¦ãƒ¼ã‚¶IDã‚’æ›¸ãæ›ãˆ
 	if( WFLBY_SYSTEM_LASTACTQ_ResetUserID( &p_wk->lastactin_q, userid, DWC_LOBBY_INVALID_USER_ID ) ){
-		WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// XV
+		WFLBY_SYSTEM_DWC_SetMyProfile( p_wk );	// æ›´æ–°
 	}
 	
 
-	// ‡Œ¾—t
+	// åˆè¨€è‘‰
 	WFLBY_SYSTEM_AIKOTOBABUFF_SetData( &p_wk->aikotoba, idx, FALSE, 0 );
 
-	// ’N‚©‚Å‚Ä‚¢‚Á‚½
+	// èª°ã‹ã§ã¦ã„ã£ãŸ
 	idx  = DWC_LOBBY_GetUserIDIdx( userid );
 	p_wk->flag.user_out |= 1 << idx;
 
@@ -4197,11 +4197,11 @@ static void WFLBY_SYSTEM_CallbackUserOut( s32 userid, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒtƒB[ƒ‹ƒAƒbƒvƒf[ƒ^
+ *	@brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
  *	
- *	@param	userid		ƒ†[ƒUID
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
- *	@param	p_work		ƒ[ƒN
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_CallbackUserProfileUpdate( s32 userid, const void* cp_profile, void* p_work )
@@ -4217,22 +4217,22 @@ static void WFLBY_SYSTEM_CallbackUserProfileUpdate( s32 userid, const void* cp_p
 	
 	p_wk->flag.profile_up |= 1 << idx;
 
-	// ƒvƒƒtƒB[ƒ‹æ“¾
+	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å–å¾—
 	cp_data = cp_profile;
 
 	status = WFLBY_SYSTEM_GetProfileStatus( cp_data );
 
-	//  ‚»‚Ìl‚ÌƒXƒe[ƒ^ƒX‚ª‰ï˜bˆÈŠO‚É‚È‚éƒ^ƒCƒ~ƒ“ƒO‚ÅA
-	//  ‰ï˜bƒJƒEƒ“ƒ^‚ğƒŠƒZƒbƒg
-	// ó‘Ô‚ª•Ï‚í‚éŒ`‚ÅALOGINƒXƒe[ƒg‚É–ß‚é‚Æ‚«A‰ï˜b‰ñ”‚ğƒŠƒZƒbƒg
+	//  ãã®äººã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãŒä¼šè©±ä»¥å¤–ã«ãªã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ã€
+	//  ä¼šè©±ã‚«ã‚¦ãƒ³ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆ
+	// çŠ¶æ…‹ãŒå¤‰ã‚ã‚‹å½¢ã§ã€LOGINã‚¹ãƒ†ãƒ¼ãƒˆã«æˆ»ã‚‹ã¨ãã€ä¼šè©±å›æ•°ã‚’ãƒªã‚»ãƒƒãƒˆ
 	switch( status ){
-	case WFLBY_STATUS_BALLSLOW:		// ‹Ê‚¢‚ê
-	case WFLBY_STATUS_BALANCEBALL:	// ‹Êæ‚è
-	case WFLBY_STATUS_BALLOON:		// •—‘D‚í‚è
-	case WFLBY_STATUS_FOOTBOAD00:	// ‘«Õƒ{[ƒh
-	case WFLBY_STATUS_FOOTBOAD01:	// ‘«Õƒ{[ƒh
-	case WFLBY_STATUS_WORLDTIMER:	// ¢ŠEŒv
-	case WFLBY_STATUS_TOPIC:			// ƒjƒ…[ƒX
+	case WFLBY_STATUS_BALLSLOW:		// ç‰ã„ã‚Œ
+	case WFLBY_STATUS_BALANCEBALL:	// ç‰ä¹—ã‚Š
+	case WFLBY_STATUS_BALLOON:		// é¢¨èˆ¹ã‚ã‚Š
+	case WFLBY_STATUS_FOOTBOAD00:	// è¶³è·¡ãƒœãƒ¼ãƒ‰
+	case WFLBY_STATUS_FOOTBOAD01:	// è¶³è·¡ãƒœãƒ¼ãƒ‰
+	case WFLBY_STATUS_WORLDTIMER:	// ä¸–ç•Œæ™‚è¨ˆ
+	case WFLBY_STATUS_TOPIC:			// ãƒ‹ãƒ¥ãƒ¼ã‚¹
 		WFLBY_SYSTEM_TALK_ClearCount( &p_wk->talk, idx );
 		break;
 
@@ -4240,12 +4240,12 @@ static void WFLBY_SYSTEM_CallbackUserProfileUpdate( s32 userid, const void* cp_p
 		break;
 	}
 
-	// ƒKƒWƒFƒbƒgƒŒ[ƒgİ’è
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¬ãƒ¼ãƒˆè¨­å®š
 	if( WFLBY_SYSTEM_CheckGetItem( cp_data ) == TRUE ){
 		WFLBY_SYSTEM_GADGETRATE_CalcRate( &p_wk->gadgetrate, WFLBY_SYSTEM_GetProfileItem( cp_data ), idx );
 	}
 
-	// s“®—š—ğ‚Ì‚í‚©‚ç‚È‚¢ƒf[ƒ^•”•ª‚ğ”jŠü‚·‚é
+	// è¡Œå‹•å±¥æ­´ã®ã‚ã‹ã‚‰ãªã„ãƒ‡ãƒ¼ã‚¿éƒ¨åˆ†ã‚’ç ´æ£„ã™ã‚‹
 	
 
 
@@ -4254,10 +4254,10 @@ static void WFLBY_SYSTEM_CallbackUserProfileUpdate( s32 userid, const void* cp_p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgŠJnƒR[ƒ‹ƒoƒbƒN
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	event		ƒCƒxƒ“ƒg
- *	@param	p_work		ƒ[ƒN
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆ
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_CallbackEvent( PPW_LOBBY_TIME_EVENT event, void* p_work )
@@ -4271,9 +4271,9 @@ static void WFLBY_SYSTEM_CallbackEvent( PPW_LOBBY_TIME_EVENT event, void* p_work
 
 	// 080707
 	// tomoya takahashi
-	// ƒƒbƒNƒMƒŠƒMƒŠ‚Å“ü‚Á‚Ä‚­‚é‚ÆA
-	// ƒƒCƒ“‚ğ’Ê‚é‘O‚ÉA‚±‚±‚ÅŠÔ‚ğİ’è‚·‚é‰Â”\«‚ª‚ ‚é‚Ì‚ÅA
-	// ŠÔ‚ğæ“¾‚·‚é
+	// ãƒ­ãƒƒã‚¯ã‚®ãƒªã‚®ãƒªã§å…¥ã£ã¦ãã‚‹ã¨ã€
+	// ãƒ¡ã‚¤ãƒ³ã‚’é€šã‚‹å‰ã«ã€ã“ã“ã§æ™‚é–“ã‚’è¨­å®šã™ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ã€
+	// æ™‚é–“ã‚’å–å¾—ã™ã‚‹
 	{
 		PPW_LobbyTimeInfo time;
 
@@ -4282,81 +4282,81 @@ static void WFLBY_SYSTEM_CallbackEvent( PPW_LOBBY_TIME_EVENT event, void* p_work
 		p_wk->glbdata.worldtime_s64 = time.currentTime;
 	}
 
-	// ƒgƒsƒbƒNİ’è
+	// ãƒˆãƒ”ãƒƒã‚¯è¨­å®š
 	switch( event ){
-	case PPW_LOBBY_TIME_EVENT_LOCK:              ///< •”‰®‚ÌƒƒbƒNB
+	case PPW_LOBBY_TIME_EVENT_LOCK:              ///< éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯ã€‚
 		NEWS_DSET_SetLockTime( p_wk->glbdata.p_lobbynews, &p_wk->glbdata.worldtime );
 		p_wk->glbdata.locktime_s64 = p_wk->glbdata.worldtime_s64;
 		p_wk->event.lock	= TRUE;
 		p_wk->flag.event_on |= 1 << WFLBY_EVENT_CHG_LOCK;
 		break;
 
-	// ƒlƒIƒ“‚Æ‰Ô‰Î‚ğn‚ß‚Ü‚·
-	case PPW_LOBBY_TIME_EVENT_NEON_A1:           ///< º“àƒlƒIƒ“æ~’²1B
-	case PPW_LOBBY_TIME_EVENT_NEON_A2:           ///< º“àƒlƒIƒ“æ~’²2B
-	case PPW_LOBBY_TIME_EVENT_NEON_A3:           ///< º“àƒlƒIƒ“æ~’²3B
-	case PPW_LOBBY_TIME_EVENT_NEON_A4:           ///< º“àƒlƒIƒ“æ~’²4B
-	case PPW_LOBBY_TIME_EVENT_NEON_A5:           ///< º“àƒlƒIƒ“æ~’²5B
-		// Å‰‚Ì‚P‰ñ–Ú‚Ì‚Æ‚«‚Ì‚İƒgƒsƒbƒN‚ğì¬
+	// ãƒã‚ªãƒ³ã¨èŠ±ç«ã‚’å§‹ã‚ã¾ã™
+	case PPW_LOBBY_TIME_EVENT_NEON_A1:           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿1ã€‚
+	case PPW_LOBBY_TIME_EVENT_NEON_A2:           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿2ã€‚
+	case PPW_LOBBY_TIME_EVENT_NEON_A3:           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿3ã€‚
+	case PPW_LOBBY_TIME_EVENT_NEON_A4:           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿4ã€‚
+	case PPW_LOBBY_TIME_EVENT_NEON_A5:           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿5ã€‚
+		// æœ€åˆã®ï¼‘å›ç›®ã®ã¨ãã®ã¿ãƒˆãƒ”ãƒƒã‚¯ã‚’ä½œæˆ
 		if( p_wk->glbdata.topic_event_start == FALSE ){
 			topic_make = TRUE;
 			wflby_event = WFLBY_EVENT_NEON;
 
 			p_wk->glbdata.topic_event_start = TRUE;
 
-			// ƒlƒIƒ“ŠJnƒJƒEƒ“ƒg
+			// ãƒã‚ªãƒ³é–‹å§‹ã‚«ã‚¦ãƒ³ãƒˆ
 			p_wk->event.neon_count	= WFLBY_EVENT_STARTTIME;
 		}
-	case PPW_LOBBY_TIME_EVENT_NEON_A0:           ///< º“àƒlƒIƒ“æ~’²0B
+	case PPW_LOBBY_TIME_EVENT_NEON_A0:           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿0ã€‚
 
 		p_wk->event.neon_room	= event;
 		p_wk->flag.event_on |= 1 << WFLBY_EVENT_CHG_NEON_ROOM;
 		break;
 		
-	case PPW_LOBBY_TIME_EVENT_NEON_B1:           ///< °ƒlƒIƒ“æ~’²1B
-	case PPW_LOBBY_TIME_EVENT_NEON_B2:           ///< °ƒlƒIƒ“æ~’²2B
-	case PPW_LOBBY_TIME_EVENT_NEON_B3:           ///< °ƒlƒIƒ“æ~’²3B
-		// Å‰‚Ì‚P‰ñ–Ú‚Ì‚Æ‚«‚Ì‚İƒgƒsƒbƒN‚ğì¬
+	case PPW_LOBBY_TIME_EVENT_NEON_B1:           ///< åºŠãƒã‚ªãƒ³è«§èª¿1ã€‚
+	case PPW_LOBBY_TIME_EVENT_NEON_B2:           ///< åºŠãƒã‚ªãƒ³è«§èª¿2ã€‚
+	case PPW_LOBBY_TIME_EVENT_NEON_B3:           ///< åºŠãƒã‚ªãƒ³è«§èª¿3ã€‚
+		// æœ€åˆã®ï¼‘å›ç›®ã®ã¨ãã®ã¿ãƒˆãƒ”ãƒƒã‚¯ã‚’ä½œæˆ
 		if( p_wk->glbdata.topic_event_start == FALSE ){
 			topic_make = TRUE;
 			wflby_event = WFLBY_EVENT_NEON;
 
 			p_wk->glbdata.topic_event_start = TRUE;
 
-			// ƒlƒIƒ“ŠJnƒJƒEƒ“ƒg
+			// ãƒã‚ªãƒ³é–‹å§‹ã‚«ã‚¦ãƒ³ãƒˆ
 			p_wk->event.neon_count	= WFLBY_EVENT_STARTTIME;
 		}
-	case PPW_LOBBY_TIME_EVENT_NEON_B0:           ///< °ƒlƒIƒ“æ~’²0B
+	case PPW_LOBBY_TIME_EVENT_NEON_B0:           ///< åºŠãƒã‚ªãƒ³è«§èª¿0ã€‚
 
 		p_wk->event.neon_floor	= event;
 		p_wk->flag.event_on		|= 1 << WFLBY_EVENT_CHG_NEON_FLOOR;
 		break;
 
-	case PPW_LOBBY_TIME_EVENT_NEON_C1:           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²1B
-	case PPW_LOBBY_TIME_EVENT_NEON_C2:           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²2B
-	case PPW_LOBBY_TIME_EVENT_NEON_C3:           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²3B
-		// Å‰‚Ì‚P‰ñ–Ú‚Ì‚Æ‚«‚Ì‚İƒgƒsƒbƒN‚ğì¬
+	case PPW_LOBBY_TIME_EVENT_NEON_C1:           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿1ã€‚
+	case PPW_LOBBY_TIME_EVENT_NEON_C2:           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿2ã€‚
+	case PPW_LOBBY_TIME_EVENT_NEON_C3:           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿3ã€‚
+		// æœ€åˆã®ï¼‘å›ç›®ã®ã¨ãã®ã¿ãƒˆãƒ”ãƒƒã‚¯ã‚’ä½œæˆ
 		if( p_wk->glbdata.topic_event_start == FALSE ){
 			topic_make = TRUE;
 			wflby_event = WFLBY_EVENT_NEON;
 
 			p_wk->glbdata.topic_event_start = TRUE;
 
-			// ƒlƒIƒ“ŠJnƒJƒEƒ“ƒg
+			// ãƒã‚ªãƒ³é–‹å§‹ã‚«ã‚¦ãƒ³ãƒˆ
 			p_wk->event.neon_count	= WFLBY_EVENT_STARTTIME;
 		}
-	case PPW_LOBBY_TIME_EVENT_NEON_C0:           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²0B
+	case PPW_LOBBY_TIME_EVENT_NEON_C0:           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿0ã€‚
 
 		p_wk->event.neon_monu	= event;
 		p_wk->flag.event_on		|= 1 << WFLBY_EVENT_CHG_NEON_MONU;
 		break;
 		
-	case PPW_LOBBY_TIME_EVENT_FIRE_WORKS_START:  ///< ƒtƒ@ƒCƒA[ƒ[ƒNƒXŠJnB
+	case PPW_LOBBY_TIME_EVENT_FIRE_WORKS_START:  ///< ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚¹é–‹å§‹ã€‚
 		topic_make = TRUE;
 		wflby_event = WFLBY_EVENT_FIRE;
 
 
-		// ‰Ô‰ÎƒCƒxƒ“ƒg‚Ì’·‚³‚©‚ç‰Ô‰Îî•ñ‚ğ‰Šú‰»
+		// èŠ±ç«ã‚¤ãƒ™ãƒ³ãƒˆã®é•·ã•ã‹ã‚‰èŠ±ç«æƒ…å ±ã‚’åˆæœŸåŒ–
 		{
 			u32 fire_start,  fire_end;
 
@@ -4366,41 +4366,41 @@ static void WFLBY_SYSTEM_CallbackEvent( PPW_LOBBY_TIME_EVENT event, void* p_work
 			WFLBY_SYSTEM_FIREDATA_Init( &p_wk->fire_data, fire_start, fire_end );
 		}
 
-		// ‰Ô‰ÎŠJnƒJƒEƒ“ƒgŠJn
+		// èŠ±ç«é–‹å§‹ã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹
 		p_wk->event.hanabi_count	= WFLBY_EVENT_STARTTIME;
 		break;
 
-	case PPW_LOBBY_TIME_EVENT_FIRE_WORKS_END:    ///< ƒtƒ@ƒCƒA[ƒ[ƒNƒXI—¹B
+	case PPW_LOBBY_TIME_EVENT_FIRE_WORKS_END:    ///< ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚¹çµ‚äº†ã€‚
 		p_wk->event.hababi		= WFLBY_EVENT_HANABI_AFTER;
 		p_wk->flag.event_on		|= 1 << WFLBY_EVENT_CHG_FIRE;
 		break;
 
-	case PPW_LOBBY_TIME_EVENT_PARADE:            ///< ƒpƒŒ[ƒhB
+	case PPW_LOBBY_TIME_EVENT_PARADE:            ///< ãƒ‘ãƒ¬ãƒ¼ãƒ‰ã€‚
 		topic_make = TRUE;
 		wflby_event = WFLBY_EVENT_PARADE;
 
 
-		// ƒpƒŒ[ƒhŠJnƒJƒEƒ“ƒgŠJn
+		// ãƒ‘ãƒ¬ãƒ¼ãƒ‰é–‹å§‹ã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹
 		p_wk->event.parade_count	= WFLBY_EVENT_STARTTIME;
 		break;
 
-	case PPW_LOBBY_TIME_EVENT_CLOSE:             ///< I—¹B
+	case PPW_LOBBY_TIME_EVENT_CLOSE:             ///< çµ‚äº†ã€‚
 		topic_make = TRUE;
 		wflby_event = WFLBY_EVENT_CLOSE;
 
-		p_wk->event.endcm		= TRUE;			// I—¹CMŠJn
-		// I—¹ƒJƒEƒ“ƒgŠJn
+		p_wk->event.endcm		= TRUE;			// çµ‚äº†CMé–‹å§‹
+		// çµ‚äº†ã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹
 		p_wk->event.end_count	= WFLBY_END_OVERTIME;
 		break;
 		
-	case PPW_LOBBY_TIME_EVENT_MINIGAME_END:      ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²4B
+	case PPW_LOBBY_TIME_EVENT_MINIGAME_END:      ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿4ã€‚
 
 		p_wk->event.mini		= TRUE;
 		p_wk->flag.event_on		|= 1 << WFLBY_EVENT_CHG_MINIGAME;
 		break;
 
 		
-	// ‰½‚à‚µ‚È‚¢‚à‚Ì
+	// ä½•ã‚‚ã—ãªã„ã‚‚ã®
 	default:
 		break;
 	}
@@ -4414,11 +4414,11 @@ static void WFLBY_SYSTEM_CallbackEvent( PPW_LOBBY_TIME_EVENT event, void* p_work
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“üº•s³ƒ`ƒFƒbƒNŒã‚ÌƒvƒƒtƒB[ƒ‹óMƒR[ƒ‹ƒoƒbƒN
+ *	@brief	å…¥å®¤æ™‚ä¸æ­£ãƒã‚§ãƒƒã‚¯å¾Œã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@param	cp_profile		ƒvƒƒtƒB[ƒ‹
- *	@param	profile_size	ƒvƒƒtƒB[ƒ‹ƒTƒCƒY(•s³ƒ`ƒFƒbƒN‚Åserver‚ªƒ`ƒFƒbƒN‚µ‚½‚Æ‚«‚ÌƒTƒCƒY)
- *	@param	p_work			ƒ[ƒN
+ *	@param	cp_profile		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	profile_size	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚µã‚¤ã‚º(ä¸æ­£ãƒã‚§ãƒƒã‚¯ã§serverãŒãƒã‚§ãƒƒã‚¯ã—ãŸã¨ãã®ã‚µã‚¤ã‚º)
+ *	@param	p_work			ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_CallbackCheckProfile( const void* cp_profile, u32 profile_size, void* p_work )
@@ -4430,29 +4430,29 @@ static void WFLBY_SYSTEM_CallbackCheckProfile( const void* cp_profile, u32 profi
 	cp_userdata		= cp_profile;
 
 
-	// CRCƒ`ƒFƒbƒN
+	// CRCãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_MyProfile_CheckCrc( &p_wk->myprofile, p_wk->p_save ) == FALSE ){
 		p_wk->error = WFLBY_SYSTEM_ERR_CRC;
 		return ;
 	}
 
-	// ’uŠ·Œã‚ÌƒvƒƒtƒB[ƒ‹‚ğİ’è
+	// ç½®æ›å¾Œã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’è¨­å®š
 	WFLBY_SYSTEM_MyProfileCopy_CheckData( &p_wk->myprofile, cp_userdata, profile_size );
 
 #ifdef WFLBY_DEBUG_PROFILE_DRAW
 	WFLBY_SYSTEM_OSPrint_Profile( &p_wk->myprofile.profile );
 #endif
 
-	// ƒvƒƒtƒB[ƒ‹‚ğXV
+	// ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’æ›´æ–°
 	WFLBY_SYSTEM_MyProfile_SetCrc( &p_wk->myprofile, p_wk->p_save );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚Ìó‘Ô‚ğ¢ŠEŒv‚Éİ’è
+ *	@brief	ä»Šã®çŠ¶æ…‹ã‚’ä¸–ç•Œæ™‚è¨ˆã«è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_SetWldTimerData( WFLBY_USER_MYPROFILE* p_myprofile, WFLBY_WLDTIMER* p_wk )
@@ -4464,20 +4464,20 @@ static void WFLBY_SYSTEM_SetWldTimerData( WFLBY_USER_MYPROFILE* p_myprofile, WFL
 	u8 nation;
 	u8 area;
 
-	// ƒƒ‚ƒŠƒNƒŠƒA
+	// ãƒ¡ãƒ¢ãƒªã‚¯ãƒªã‚¢
 	memset( p_wk, 0, sizeof(WFLBY_WLDTIMER) );
 
-	// ƒ†[ƒUƒe[ƒuƒ‹æ“¾
+	// ãƒ¦ãƒ¼ã‚¶ãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 	DWC_LOBBY_GetUserIDTbl( &usertbl );
 
-	// ©•ª‚Ìƒf[ƒ^‚ğæ‚É’Ç‰Á
+	// è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã‚’å…ˆã«è¿½åŠ 
 	cp_profile = &p_myprofile->profile;
 	WFLBY_WLDTIMER_SetData( p_wk, 
 			WFLBY_SYSTEM_GetProfileNation( cp_profile ), 
 			WFLBY_SYSTEM_GetProfileArea( cp_profile ), FALSE );
 	
 	
-	// ‚Ü‚¸ƒƒr[‚É‚¢‚él‚Ìƒf[ƒ^‚Åƒoƒbƒtƒ@‚ğì¬
+	// ã¾ãšãƒ­ãƒ“ãƒ¼ã«ã„ã‚‹äººã®ãƒ‡ãƒ¼ã‚¿ã§ãƒãƒƒãƒ•ã‚¡ã‚’ä½œæˆ
 	for( i=0; i<WFLBY_PLAYER_MAX; i++ ){
 		if( usertbl.cp_tbl[i] != DWC_LOBBY_INVALID_USER_ID ){
 			cp_profile = (const WFLBY_USER_PROFILE*)DWC_LOBBY_GetUserProfile( usertbl.cp_tbl[ i ] );
@@ -4487,7 +4487,7 @@ static void WFLBY_SYSTEM_SetWldTimerData( WFLBY_USER_MYPROFILE* p_myprofile, WFL
 		}
 	}
 
-	// ‘ŞºÒƒf[ƒ^
+	// é€€å®¤è€…ãƒ‡ãƒ¼ã‚¿
 	for( i=0; i<DWC_WLDDATA_MAX; i++ ){
 		nation	= DWC_LOBBY_WLDDATA_GetNation( i );
 		area	= DWC_LOBBY_WLDDATA_GetArea( i );
@@ -4500,11 +4500,11 @@ static void WFLBY_SYSTEM_SetWldTimerData( WFLBY_USER_MYPROFILE* p_myprofile, WFL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ŠÔŠÇ—	iBTS’ÊM789‚Ì‘Îˆj
+ *	@brief	çµ‚äº†æ™‚é–“ç®¡ç†	ï¼ˆBTSé€šä¿¡789ã®å¯¾å‡¦ï¼‰
  *
- *	@param	p_wk	ƒ[ƒN	
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯	
  *
- *	ƒCƒxƒ“ƒg‚ª‰½‚à‚±‚¸AI—¹‚ÌŠÔ‚É‚È‚Á‚½‚ç‹­§“I‚ÉI—¹‚É‚·‚é
+ *	ã‚¤ãƒ™ãƒ³ãƒˆãŒä½•ã‚‚ã“ãšã€çµ‚äº†ã®æ™‚é–“ã«ãªã£ãŸã‚‰å¼·åˆ¶çš„ã«çµ‚äº†ã«ã™ã‚‹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_ContEndTime( WFLBY_SYSTEM* p_wk )
@@ -4512,27 +4512,27 @@ static void WFLBY_SYSTEM_ContEndTime( WFLBY_SYSTEM* p_wk )
 	s64	closetime;
 	s64	now_time;
 
-	// ƒƒbƒN’†‚È‚çŒo‰ßŠÔ‚ğæ“¾
+	// ãƒ­ãƒƒã‚¯ä¸­ãªã‚‰çµŒéæ™‚é–“ã‚’å–å¾—
 	if( (p_wk->event.lock == TRUE) && 
 		(p_wk->event.endcm == FALSE) && 
 		(DWC_LOBBY_GetState() == DWC_LOBBY_CHANNEL_STATE_CONNECT) ){
 
-		// I—¹ŠÔæ“¾
+		// çµ‚äº†æ™‚é–“å–å¾—
 		closetime = WFLBY_SYSTEM_GetCloseTime( p_wk );
 		closetime += p_wk->glbdata.locktime_s64;
 
-		// ¡‚ÌŠÔ
+		// ä»Šã®æ™‚é–“
 		now_time = p_wk->glbdata.worldtime_s64;
 
 
 //		OS_TPrintf( "closetime %d  worldtime %d\n", (u32)(closetime), (u32)(now_time) );
 
-		// ƒNƒ[ƒYCMŠÔ‚ª‚«‚Ä‚¢‚é‚Í‚¸
+		// ã‚¯ãƒ­ãƒ¼ã‚ºCMæ™‚é–“ãŒãã¦ã„ã‚‹ã¯ãš
 		if( now_time > closetime ){
 
-			// ‚±‚±‚ÅI—¹‚É‚µ‚Ä‚µ‚Ü‚¤
-			p_wk->event.endcm		= TRUE;			// I—¹CMŠJn
-			// I—¹ƒJƒEƒ“ƒgŠJn
+			// ã“ã“ã§çµ‚äº†ã«ã—ã¦ã—ã¾ã†
+			p_wk->event.endcm		= TRUE;			// çµ‚äº†CMé–‹å§‹
+			// çµ‚äº†ã‚«ã‚¦ãƒ³ãƒˆé–‹å§‹
 			p_wk->event.end_count	= WFLBY_END_OVERTIME;
 		}
 	}
@@ -4541,11 +4541,11 @@ static void WFLBY_SYSTEM_ContEndTime( WFLBY_SYSTEM* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZ[ƒuƒf[ƒ^‚©‚çƒvƒƒtƒB[ƒ‹î•ñ‚ğ‰Šú‰»‚·‚é
+ *	@brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«æƒ…å ±ã‚’åˆæœŸåŒ–ã™ã‚‹
  *
- *	@param	p_myprofile		ƒvƒƒtƒB[ƒ‹ƒf[ƒ^
- *	@param	p_save			ƒZ[ƒuƒf[ƒ^
- *	@param	heapID			ƒq[ƒv‚h‚c
+ *	@param	p_myprofile		ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_save			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_InitProfile( WFLBY_USER_MYPROFILE* p_myprofile, SAVEDATA* p_save, u32 heapID )
@@ -4556,7 +4556,7 @@ static void WFLBY_SYSTEM_InitProfile( WFLBY_USER_MYPROFILE* p_myprofile, SAVEDAT
 	ZUKAN_WORK* p_zukan;
 	GMTIME* p_time;
 
-	// ƒZ[ƒuƒf[ƒ^æ“¾
+	// ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 	{
 		p_mystatus		= SaveData_GetMyStatus( p_save );
 		p_pokeparty		= SaveData_GetTemotiPokemon( p_save );
@@ -4566,17 +4566,17 @@ static void WFLBY_SYSTEM_InitProfile( WFLBY_USER_MYPROFILE* p_myprofile, SAVEDAT
 	}
 
 	
-	{// –¼‘O‚ğİ’è
+	{// åå‰ã‚’è¨­å®š
 		STRBUF* p_name;
 		p_name = MyStatus_CreateNameString( p_mystatus, heapID );
-		// ‘—óM‚·‚éƒvƒƒtƒB[ƒ‹‚Ì–¼‘O
+		// é€å—ä¿¡ã™ã‚‹ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®åå‰
 		STRBUF_GetStringCode( p_name, p_myprofile->profile.name, PERSON_NAME_SIZE + EOM_SIZE );
 		STRBUF_GetStringCode( p_name, p_myprofile->def_name, PERSON_NAME_SIZE + EOM_SIZE );
 		STRBUF_Delete( p_name );
 	}
 	p_myprofile->profile.userid		= DWC_LOBBY_INVALID_USER_ID;
 	p_myprofile->profile.trainerid	= MyStatus_GetID( p_mystatus );
-	{	// ƒ|ƒPƒ‚ƒ“ŠÖ˜A
+	{	// ãƒã‚±ãƒ¢ãƒ³é–¢é€£
 		POKEMON_PARAM* p_pokemon;
 		int pokemax;
 		int i;
@@ -4596,7 +4596,7 @@ static void WFLBY_SYSTEM_InitProfile( WFLBY_USER_MYPROFILE* p_myprofile, SAVEDAT
 	p_myprofile->profile.sex			= MyStatus_GetMySex( p_mystatus );
 	p_myprofile->profile.region_code	= MyStatus_GetRegionCode( p_mystatus );
 	p_myprofile->profile.tr_type		= MyStatus_GetTrainerView( p_mystatus );
-	p_myprofile->profile.tr_type		= WFLBY_TRTYPE_UNIONCHARNO_Get( p_myprofile->profile.tr_type );	// FIELDOBJ_CODE‚©‚çƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^“à‚ÌƒCƒ“ƒfƒbƒNƒX’l‚É•ÏX
+	p_myprofile->profile.tr_type		= WFLBY_TRTYPE_UNIONCHARNO_Get( p_myprofile->profile.tr_type );	// FIELDOBJ_CODEã‹ã‚‰ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å†…ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å€¤ã«å¤‰æ›´
 	p_myprofile->profile.nation			= WIFIHISTORY_GetMyNation( p_history );
 	p_myprofile->profile.area			= WIFIHISTORY_GetMyArea( p_history );
 
@@ -4604,7 +4604,7 @@ static void WFLBY_SYSTEM_InitProfile( WFLBY_USER_MYPROFILE* p_myprofile, SAVEDAT
 	p_myprofile->profile.game_clear		= MyStatus_GetDpClearFlag( p_mystatus );
 	p_myprofile->profile.item			= WFLBY_ITEM_INIT;
 	p_myprofile->profile.status			= WFLBY_STATUS_NONE;
-	p_myprofile->profile.rom_code		= PM_VERSION;		// Œã‚ÌWiFiLê‚Ì‚½‚ß‚ÉVersion‚ÍƒQ[ƒ€‚É‚æ‚Á‚Ä‚©‚¦‚é‚±‚Æ
+	p_myprofile->profile.rom_code		= PM_VERSION;		// å¾Œã®WiFiåºƒå ´ã®ãŸã‚ã«Versionã¯ã‚²ãƒ¼ãƒ ã«ã‚ˆã£ã¦ã‹ãˆã‚‹ã“ã¨
 	p_myprofile->profile.start_sec		= p_time->start_sec;
 	{
 		int i;
@@ -4627,7 +4627,7 @@ static void WFLBY_SYSTEM_InitProfile( WFLBY_USER_MYPROFILE* p_myprofile, SAVEDAT
 	WFLBY_SYSTEM_OSPrint_Profile( &p_myprofile->profile );
 #endif
 	
-	//  CRCŒvZ
+	//  CRCè¨ˆç®—
 	WFLBY_SYSTEM_MyProfile_SetCrc( p_myprofile, p_save );
 
 //	OS_TPrintf( "lang code %d\n", p_myprofile->region_code );
@@ -4636,9 +4636,9 @@ static void WFLBY_SYSTEM_InitProfile( WFLBY_USER_MYPROFILE* p_myprofile, SAVEDAT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚ÌƒvƒƒtƒB[ƒ‹‚ğİ’è‚·‚é
+ *	@brief	è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk			ƒ[ƒN
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_DWC_SetMyProfile( WFLBY_SYSTEM* p_wk )
@@ -4646,36 +4646,36 @@ static void WFLBY_SYSTEM_DWC_SetMyProfile( WFLBY_SYSTEM* p_wk )
 	int i;
 	const WFLBY_USER_PROFILE* cp_lib_data;
 
-	// CRCƒ`ƒFƒbƒN
+	// CRCãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_MyProfile_CheckCrc( &p_wk->myprofile, p_wk->p_save ) == FALSE ){
 		p_wk->error = WFLBY_SYSTEM_ERR_CRC;
 		return ;
 	}
 	
-	// s“®—š—ğ‚ğİ’è
+	// è¡Œå‹•å±¥æ­´ã‚’è¨­å®š
 	for( i=0; i<WFLBY_LASTACT_BUFFNUM; i++ ){
 		p_wk->myprofile.profile.last_action[i]			= WFLBY_SYSTEM_LASTACTQ_GetData( &p_wk->lastactin_q, i );
 		p_wk->myprofile.profile.last_action_userid[i]	= WFLBY_SYSTEM_LASTACTQ_GetUserID( &p_wk->lastactin_q, i );
 	}
 
-	// –¼‘O‚ğƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒf[ƒ^‚É‚ ‚é•¨‚É‘‚«Š·‚¦‚Ä‚©‚ç‘—‚é
+	// åå‰ã‚’ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‡ãƒ¼ã‚¿ã«ã‚ã‚‹ç‰©ã«æ›¸ãæ›ãˆã¦ã‹ã‚‰é€ã‚‹
 	MI_CpuCopy8( p_wk->myprofile.comm_name, p_wk->myprofile.profile.name, sizeof(STRCODE)*(PERSON_NAME_SIZE + EOM_SIZE) );
 	
-	DWC_LOBBY_SetMyProfile( &p_wk->myprofile.profile );	// XV
+	DWC_LOBBY_SetMyProfile( &p_wk->myprofile.profile );	// æ›´æ–°
 
-	// ‘‚«Š·‚¦‚½–¼‘O‚ğŒ³‚É–ß‚·
+	// æ›¸ãæ›ãˆãŸåå‰ã‚’å…ƒã«æˆ»ã™
 	MI_CpuCopy8( p_wk->myprofile.def_name, p_wk->myprofile.profile.name, sizeof(STRCODE)*(PERSON_NAME_SIZE + EOM_SIZE) );
 
-	//  CRCŒvZ
+	//  CRCè¨ˆç®—
 	WFLBY_SYSTEM_MyProfile_SetCrc( &p_wk->myprofile, p_wk->p_save );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚ÌƒvƒƒtƒB[ƒ‹CRCƒnƒbƒVƒ…’lŠ„‚è“–‚Ä
+ *	@brief	è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«CRCãƒãƒƒã‚·ãƒ¥å€¤å‰²ã‚Šå½“ã¦
  *
- *	@param	p_myprofile		©•ª‚ÌƒvƒƒtƒB[ƒ‹
- *	@param	cp_save			ƒZ[ƒuƒf[ƒ^
+ *	@param	p_myprofile		è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	cp_save			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_MyProfile_SetCrc( WFLBY_USER_MYPROFILE* p_myprofile, const SAVEDATA* cp_save )
@@ -4686,20 +4686,20 @@ static void WFLBY_SYSTEM_MyProfile_SetCrc( WFLBY_USER_MYPROFILE* p_myprofile, co
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	©•ª‚ÌƒvƒƒtƒB[ƒ‹CRCƒnƒbƒVƒ…ƒ`ƒFƒbƒN
+ *	@brief	è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«CRCãƒãƒƒã‚·ãƒ¥ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_myprofile		©•ª‚ÌƒvƒƒtƒB[ƒ‹
- *	@param	cp_save			ƒZ[ƒuƒf[ƒ^
+ *	@param	cp_myprofile		è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	cp_save			ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE	³í
- *	@retval	FALSE	•s³ƒf[ƒ^
+ *	@retval	TRUE	æ­£å¸¸
+ *	@retval	FALSE	ä¸æ­£ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_SYSTEM_MyProfile_CheckCrc( const WFLBY_USER_MYPROFILE* cp_myprofile, const SAVEDATA* cp_save )
 {
 	u32 check_crc;
 
-	// CRCƒ`ƒFƒbƒN
+	// CRCãƒã‚§ãƒƒã‚¯
 	check_crc = SaveData_CalcCRC( cp_save, &cp_myprofile->profile, sizeof(WFLBY_USER_PROFILE) );
 //	OS_TPrintf( "crc check %d==%d\n", check_crc, cp_myprofile->crc_check );
 	if( check_crc != cp_myprofile->crc_check ){
@@ -4711,39 +4711,39 @@ static BOOL WFLBY_SYSTEM_MyProfile_CheckCrc( const WFLBY_USER_MYPROFILE* cp_mypr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•s³ƒ`ƒFƒbƒNŒã‚ÌƒvƒƒtƒB[ƒ‹‚ğMYƒvƒƒtƒB[ƒ‹‚Éİ’è
+ *	@brief	ä¸æ­£ãƒã‚§ãƒƒã‚¯å¾Œã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’MYãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã«è¨­å®š
  *
- *	@param	p_myprofile		MYƒvƒƒtƒB[ƒ‹
- *	@param	cp_userdata		•s³ƒ`ƒFƒbƒNŒã‚ÌƒvƒƒtƒB[ƒ‹
- *	@param	profile_size	•s³ƒ`ƒFƒbƒNŒã‚ÌƒvƒƒtƒB[ƒ‹ƒTƒCƒY
+ *	@param	p_myprofile		MYãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	cp_userdata		ä¸æ­£ãƒã‚§ãƒƒã‚¯å¾Œã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	profile_size	ä¸æ­£ãƒã‚§ãƒƒã‚¯å¾Œã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚µã‚¤ã‚º
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_MyProfileCopy_CheckData( WFLBY_USER_MYPROFILE* p_myprofile, const WFLBY_USER_PROFILE* cp_userdata, u32 profile_size )
 {
 	p_myprofile->profile = *cp_userdata;
 
-	// ƒ[ƒJƒ‹“à‚ÌƒvƒƒtƒB[ƒ‹ƒTƒCƒY‚ÆA’uŠ·Œã‚ÌƒvƒƒtƒB[ƒ‹ƒTƒCƒY‚ª“¯‚¶‚©¬‚³‚¢‚Æ‚«
+	// ãƒ­ãƒ¼ã‚«ãƒ«å†…ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚µã‚¤ã‚ºã¨ã€ç½®æ›å¾Œã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚µã‚¤ã‚ºãŒåŒã˜ã‹å°ã•ã„ã¨ã
 	if( sizeof(WFLBY_USER_PROFILE) >= profile_size ){
 		MI_CpuCopy8( cp_userdata, &p_myprofile->profile, profile_size );
 	}else{
-		// ’uŠ·‚²‚ÌƒvƒƒtƒB[ƒ‹‚Ì‚Ù‚¤‚ª‚Å‚©‚¢‚Æ‚«
+		// ç½®æ›ã”ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®ã»ã†ãŒã§ã‹ã„ã¨ã
 		MI_CpuCopy8( cp_userdata, &p_myprofile->profile, sizeof(WFLBY_USER_PROFILE) );
 	}
 	
 
-	// ’ÊM—p‚Ì©•ª‚Ì–¼‘O‚ğæ“¾‚·‚é
+	// é€šä¿¡ç”¨ã®è‡ªåˆ†ã®åå‰ã‚’å–å¾—ã™ã‚‹
 	MI_CpuCopy8( cp_userdata->name, p_myprofile->comm_name, sizeof(STRCODE)*(PERSON_NAME_SIZE + EOM_SIZE) );
 
-	//  –¼‘O‚Í©•ª‚Ì–¼‘O
+	//  åå‰ã¯è‡ªåˆ†ã®åå‰
 	MI_CpuCopy8( p_myprofile->def_name, p_myprofile->profile.name, sizeof(STRCODE)*(PERSON_NAME_SIZE + EOM_SIZE) );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒƒtƒB[ƒ‹‚Ì•\¦
+ *	@brief	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®è¡¨ç¤º
  *
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_OSPrint_Profile( const WFLBY_USER_PROFILE* cp_profile )
@@ -4805,9 +4805,9 @@ static void WFLBY_SYSTEM_OSPrint_Profile( const WFLBY_USER_PROFILE* cp_profile )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ‰ƒOƒ[ƒN	ƒCƒxƒ“ƒgƒtƒ‰ƒO‚ğ‰Šú‰»
+ *	@brief	ãƒ•ãƒ©ã‚°ãƒ¯ãƒ¼ã‚¯	ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚’åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_FLAG_ClearEvent( WFLBY_SYSTEM_FLAG* p_wk )
@@ -4817,22 +4817,22 @@ static void WFLBY_SYSTEM_FLAG_ClearEvent( WFLBY_SYSTEM_FLAG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	I—¹ƒ^ƒCƒ€ƒI[ƒo[ƒJƒEƒ“ƒg
+ *	@brief	çµ‚äº†ã‚¿ã‚¤ãƒ ã‚ªãƒ¼ãƒãƒ¼ã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_EVENT_Count( WFLBY_SYSTEM_EVENT* p_wk, WFLBY_SYSTEM_FLAG* p_flag, WFLBY_FLOAT_DATA* p_float, WFLBY_FIRE_DATA* p_fire_data )
 {
-	// ƒJƒEƒ“ƒg‚ªI‚í‚Á‚½‚çŠJnƒCƒxƒ“ƒg‚ğ”­“®‚³‚¹‚é
+	// ã‚«ã‚¦ãƒ³ãƒˆãŒçµ‚ã‚ã£ãŸã‚‰é–‹å§‹ã‚¤ãƒ™ãƒ³ãƒˆã‚’ç™ºå‹•ã•ã›ã‚‹
 	
 	if( (p_wk->end_count-1) >= 0 ){
 		p_wk->end_count --;
 
 		if( p_wk->end_count == WFLBY_END_BGMFADEOUT ){
-			//ƒtƒF[ƒhƒAƒEƒgŠJn
+			//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆé–‹å§‹
 			Snd_BgmFadeOut( BGM_VOL_MIN, WFLBY_END_BGM_FADEOUT_FRAME );
-			p_wk->bgm_fadeout = TRUE;	// ƒtƒF[ƒhƒAƒEƒg’†
+			p_wk->bgm_fadeout = TRUE;	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆä¸­
 		}
 	}else if( p_wk->end_count == 0 ){
 		p_wk->end		= TRUE;
@@ -4856,7 +4856,7 @@ static void WFLBY_SYSTEM_EVENT_Count( WFLBY_SYSTEM_EVENT* p_wk, WFLBY_SYSTEM_FLA
 		p_flag->event_on	|= 1 << WFLBY_EVENT_CHG_FIRE;
 		p_wk->hanabi_count--;
 
-		// ‰Ô‰Î“®ìŠJn
+		// èŠ±ç«å‹•ä½œé–‹å§‹
 		WFLBY_SYSTEM_FIREDATA_Start( p_fire_data );
 	}
 
@@ -4864,12 +4864,12 @@ static void WFLBY_SYSTEM_EVENT_Count( WFLBY_SYSTEM_EVENT* p_wk, WFLBY_SYSTEM_FLA
 		p_wk->parade_count --;
 	}else if( p_wk->parade_count == 0 ){
 
-		// ƒtƒ[ƒg“®ìŠJn
+		// ãƒ•ãƒ­ãƒ¼ãƒˆå‹•ä½œé–‹å§‹
 		WFLBY_SYSTEM_FLOAT_Start( p_float );
 
-		// BGM•ÏX
+		// BGMå¤‰æ›´
 		if( p_wk->bgm_lock == FALSE ){
-			Snd_BgmPlay( SEQ_PL_WIFIPARADE );	// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh
+			Snd_BgmPlay( SEQ_PL_WIFIPARADE );	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 		}
 		p_wk->parade		= TRUE;
 		p_flag->event_on	|= 1 << WFLBY_EVENT_CHG_PARADE;
@@ -4879,9 +4879,9 @@ static void WFLBY_SYSTEM_EVENT_Count( WFLBY_SYSTEM_EVENT* p_wk, WFLBY_SYSTEM_FLA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒf[ƒ^‰Šú‰»
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_EVENT_Init( WFLBY_SYSTEM_EVENT* p_wk )
@@ -4896,40 +4896,40 @@ static void WFLBY_SYSTEM_EVENT_Init( WFLBY_SYSTEM_EVENT* p_wk )
 	p_wk->neon_floor	= PPW_LOBBY_TIME_EVENT_NEON_B0;
 	p_wk->neon_monu		= PPW_LOBBY_TIME_EVENT_NEON_C0;
 
-	p_wk->end_count		= -1;		// I—¹ŠÔ‚Ü‚Å‚ÌƒJƒEƒ“ƒ^
-	p_wk->neon_count	= -1;		// ƒlƒIƒ“ŠJn‚Ü‚Å‚ÌƒJƒEƒ“ƒ^
-	p_wk->hanabi_count	= -1;		// ‰Ô‰ÎŠJn‚Ü‚Å‚ÌƒJƒEƒ“ƒ^
-	p_wk->parade_count	= -1;		// ƒpƒŒ[ƒhŠJn‚Ü‚Å‚ÌƒJƒEƒ“ƒ^
+	p_wk->end_count		= -1;		// çµ‚äº†æ™‚é–“ã¾ã§ã®ã‚«ã‚¦ãƒ³ã‚¿
+	p_wk->neon_count	= -1;		// ãƒã‚ªãƒ³é–‹å§‹ã¾ã§ã®ã‚«ã‚¦ãƒ³ã‚¿
+	p_wk->hanabi_count	= -1;		// èŠ±ç«é–‹å§‹ã¾ã§ã®ã‚«ã‚¦ãƒ³ã‚¿
+	p_wk->parade_count	= -1;		// ãƒ‘ãƒ¬ãƒ¼ãƒ‰é–‹å§‹ã¾ã§ã®ã‚«ã‚¦ãƒ³ã‚¿
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgBGM‚ÌÄ¶
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆBGMã®å†ç”Ÿ
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *	@param	bgm		BGM
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_EVENT_PlayBgm( const WFLBY_SYSTEM_EVENT* cp_wk,  u32 bgm )
 {
 	if( cp_wk->bgm_lock == FALSE ){
-		Snd_BgmPlay( bgm );	// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh
+		Snd_BgmPlay( bgm );	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 
-		// ‚¨‚Æ‰º‚°’†‚È‚ç‰º‚°‚Ä‚¨‚­
+		// ãŠã¨ä¸‹ã’ä¸­ãªã‚‰ä¸‹ã’ã¦ãŠã
 		WFLBY_SYSTEM_EVENT_SetBgmVolume( cp_wk );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ‰ƒOó‘Ô‚ÌBGMƒ{ƒŠƒ…[ƒ€İ’è
+ *	@brief	ãƒ•ãƒ©ã‚°çŠ¶æ…‹ã®BGMãƒœãƒªãƒ¥ãƒ¼ãƒ è¨­å®š
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_EVENT_SetBgmVolume( const WFLBY_SYSTEM_EVENT* cp_wk )
 {
-	// ƒtƒF[ƒhƒAƒEƒg’†‚Í‰½‚à‚µ‚È‚¢
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆä¸­ã¯ä½•ã‚‚ã—ãªã„
 	// MatchComment: remove outer if statement
     //if( cp_wk->bgm_fadeout == FALSE ){
 		
@@ -4944,9 +4944,9 @@ static void WFLBY_SYSTEM_EVENT_SetBgmVolume( const WFLBY_SYSTEM_EVENT* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€ƒtƒ‰ƒO	ƒƒbƒNƒZƒbƒg
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ•ãƒ©ã‚°	ãƒ­ãƒƒã‚¯ã‚»ãƒƒãƒˆ
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_MgFlag_SetLock( WFLBY_SYSTEM_APLFLAG* p_wk )
@@ -4956,12 +4956,12 @@ static void WFLBY_SYSTEM_MgFlag_SetLock( WFLBY_SYSTEM_APLFLAG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€ƒtƒ‰ƒO	ƒƒbƒN’†‚©æ“¾
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ•ãƒ©ã‚°	ãƒ­ãƒƒã‚¯ä¸­ã‹å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒƒbƒN’†
- *	@retval	FALSE	ƒƒbƒN‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	ãƒ­ãƒƒã‚¯ä¸­
+ *	@retval	FALSE	ãƒ­ãƒƒã‚¯ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_SYSTEM_MgFlag_GetLock( const WFLBY_SYSTEM_APLFLAG* cp_wk )
@@ -4974,9 +4974,9 @@ static BOOL WFLBY_SYSTEM_MgFlag_GetLock( const WFLBY_SYSTEM_APLFLAG* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€ƒtƒ‰ƒO	ŠÇ—
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒ•ãƒ©ã‚°	ç®¡ç†
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_MgFlag_Cont( WFLBY_SYSTEM_APLFLAG* p_wk )
@@ -4989,10 +4989,10 @@ static void WFLBY_SYSTEM_MgFlag_Cont( WFLBY_SYSTEM_APLFLAG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€î•ñ‚ğ‰Šú‰»
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ æƒ…å ±ã‚’åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_MG_Init( WFLBY_SYSTEM_MG* p_wk, u32 heapID )
@@ -5002,9 +5002,9 @@ static void WFLBY_SYSTEM_MG_Init( WFLBY_SYSTEM_MG* p_wk, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€î•ñ‚ğ”jŠü
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ æƒ…å ±ã‚’ç ´æ£„
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_MG_Exit( WFLBY_SYSTEM_MG* p_wk )
@@ -5014,28 +5014,28 @@ static void WFLBY_SYSTEM_MG_Exit( WFLBY_SYSTEM_MG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€î•ñ‚ÉMYSTATUS‚ğİ’è
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ æƒ…å ±ã«MYSTATUSã‚’è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_profile	ƒvƒƒtƒB[ƒ‹
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_profile	ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_MG_SetMyStatus( WFLBY_SYSTEM_MG* p_wk, const WFLBY_USER_MYPROFILE* cp_profile, u32  heapID )
 {
 	WFLBY_USER_PROFILE* p_buff;
 
-	// ƒoƒbƒtƒ@ì¬
+	// ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	p_buff = sys_AllocMemory( heapID,  sizeof(WFLBY_USER_PROFILE) );
 	MI_CpuCopyFast( &cp_profile->profile, p_buff, sizeof(WFLBY_USER_PROFILE) );
 
-	// –¼‘O‚ğƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒf[ƒ^‚É‚ ‚é•¨‚É‘‚«Š·‚¦‚Ä‚©‚çMYSTATUS‚ğæ“¾‚·‚é
+	// åå‰ã‚’ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ‡ãƒ¼ã‚¿ã«ã‚ã‚‹ç‰©ã«æ›¸ãæ›ãˆã¦ã‹ã‚‰MYSTATUSã‚’å–å¾—ã™ã‚‹
 	MI_CpuCopy8( cp_profile->comm_name, p_buff->name, sizeof(STRCODE)*(PERSON_NAME_SIZE + EOM_SIZE) );
 	
-	// MYSTATUS‚ğæ“¾
+	// MYSTATUSã‚’å–å¾—
 	WFLBY_SYSTEM_GetProfileMyStatus( p_buff, p_wk->p_mystatus, heapID );
 
-	// ƒoƒbƒtƒ@”jŠü
+	// ãƒãƒƒãƒ•ã‚¡ç ´æ£„
 	sys_FreeMemoryEz( p_buff );
 }
 
@@ -5043,9 +5043,9 @@ static void WFLBY_SYSTEM_MG_SetMyStatus( WFLBY_SYSTEM_MG* p_wk, const WFLBY_USER
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹­§I—¹ƒtƒ‰ƒO‚ğİ’è‚·‚é
+ *	@brief	å¼·åˆ¶çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’è¨­å®šã™ã‚‹
  *	
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_AplFlag_SetForceEnd( WFLBY_SYSTEM_APLFLAG* p_wk )
@@ -5055,12 +5055,12 @@ static void WFLBY_SYSTEM_AplFlag_SetForceEnd( WFLBY_SYSTEM_APLFLAG* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹­§I—¹ƒtƒ‰ƒO‚ğæ“¾‚·‚é
+ *	@brief	å¼·åˆ¶çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‹­§I—¹
- *	@retval	FALSE	‹­§I—¹‚¶‚á‚È‚¢
+ *	@retval	TRUE	å¼·åˆ¶çµ‚äº†
+ *	@retval	FALSE	å¼·åˆ¶çµ‚äº†ã˜ã‚ƒãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_SYSTEM_AplFlag_GetForceEnd( const WFLBY_SYSTEM_APLFLAG* cp_wk )
@@ -5071,9 +5071,9 @@ static BOOL WFLBY_SYSTEM_AplFlag_GetForceEnd( const WFLBY_SYSTEM_APLFLAG* cp_wk 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒf[ƒ^ƒNƒŠƒA
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_GadGetClear( WFLBY_SYSTEM_GADGET* p_wk )
@@ -5086,9 +5086,9 @@ static void WFLBY_SYSTEM_GadGetClear( WFLBY_SYSTEM_GADGET* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒ[ƒN‚ğ‰Šú‰»
+ *	@brief	ä¼šè©±ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TALK_Init( WFLBY_SYSTEM_TALK* p_wk )
@@ -5098,9 +5098,9 @@ static void WFLBY_SYSTEM_TALK_Init( WFLBY_SYSTEM_TALK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bI—¹‚ÌƒNƒŠƒA
+ *	@brief	ä¼šè©±çµ‚äº†æ™‚ã®ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TALK_EndClear( WFLBY_SYSTEM_TALK* p_wk )
@@ -5109,15 +5109,15 @@ static void WFLBY_SYSTEM_TALK_EndClear( WFLBY_SYSTEM_TALK* p_wk )
 	p_wk->talk_seq	= WFLBY_TALK_SEQ_NONE;
 	p_wk->talk_type	= WFLBY_TALK_TYPE_NONE;
 
-	// óM‘Ò‚¿’â~
+	// å—ä¿¡å¾…ã¡åœæ­¢
 	WFLBY_SYSTEM_TALK_StopRecvWait( p_wk );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹Ù‹}I—¹‚ÌƒNƒŠƒA
+ *	@brief	ç·Šæ€¥çµ‚äº†æ™‚ã®ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TALK_ExEndClear( WFLBY_SYSTEM_TALK* p_wk )
@@ -5125,19 +5125,19 @@ static void WFLBY_SYSTEM_TALK_ExEndClear( WFLBY_SYSTEM_TALK* p_wk )
 	p_wk->talk_idx	= 0;
 	p_wk->talk_seq	= WFLBY_TALK_SEQ_EXEND;
 
-	// óM‘Ò‚¿’â~
+	// å—ä¿¡å¾…ã¡åœæ­¢
 	WFLBY_SYSTEM_TALK_StopRecvWait( p_wk );
 	p_wk->talk_type	= WFLBY_TALK_TYPE_NONE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚Ìl‚Æ‰ï˜b‚µ‚½‚±‚Æ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãã®äººã¨ä¼šè©±ã—ãŸã“ã¨ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	‰ï˜b‚µ‚½‚±‚Æ‚ª‚ ‚é
+ *	@retval	TRUE	ä¼šè©±ã—ãŸã“ã¨ãŒã‚ã‚‹
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_SYSTEM_TALK_CheckMsk( const WFLBY_SYSTEM_TALK* cp_wk, u32 idx )
@@ -5151,10 +5151,10 @@ static BOOL WFLBY_SYSTEM_TALK_CheckMsk( const WFLBY_SYSTEM_TALK* cp_wk, u32 idx 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜b‚µ‚½‚±‚Æ‚ª‚ ‚é‚±‚Æ‚ğİ’è‚·‚é
+ *	@brief	ä¼šè©±ã—ãŸã“ã¨ãŒã‚ã‚‹ã“ã¨ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TALK_SetMsk( WFLBY_SYSTEM_TALK* p_wk, u32 idx )
@@ -5166,10 +5166,10 @@ static void WFLBY_SYSTEM_TALK_SetMsk( WFLBY_SYSTEM_TALK* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒXƒNƒNƒŠƒA
+ *	@brief	ãƒã‚¹ã‚¯ã‚¯ãƒªã‚¢
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TALK_ClearMsk( WFLBY_SYSTEM_TALK* p_wk, u32 idx )
@@ -5181,17 +5181,17 @@ static void WFLBY_SYSTEM_TALK_ClearMsk( WFLBY_SYSTEM_TALK* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜b”‚ğƒJƒEƒ“ƒg
+ *	@brief	ä¼šè©±æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
  *	
- *	@param	p_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TALK_AddCount( WFLBY_SYSTEM_TALK* p_wk, u32 idx )
 {
 	GF_ASSERT( idx < WFLBY_PLAYER_MAX );
 
-	// ‰ï˜b‚µ‚½‰ñ”‚ğ”‚¦‚é
+	// ä¼šè©±ã—ãŸå›æ•°ã‚’æ•°ãˆã‚‹
 	if( (p_wk->talk_count[idx] + 1) <= WFLBY_TALK_MAX ){
 
 		p_wk->talk_count[idx]++;
@@ -5200,7 +5200,7 @@ static void WFLBY_SYSTEM_TALK_AddCount( WFLBY_SYSTEM_TALK* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒJƒEƒ“ƒgƒNƒŠƒA
+ *	@brief	ä¼šè©±ã‚«ã‚¦ãƒ³ãƒˆã‚¯ãƒªã‚¢
  *
  *	@param	p_wk
  */
@@ -5213,10 +5213,10 @@ static void WFLBY_SYSTEM_TALK_ClearCount( WFLBY_SYSTEM_TALK* p_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘—Mƒf[ƒ^İ’è		¡‚ÌƒV[ƒPƒ“ƒX‚ğ“¯‚Éİ’è
+ *	@brief	é€ä¿¡ãƒ‡ãƒ¼ã‚¿è¨­å®š		ä»Šã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’åŒæ™‚ã«è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	data		ƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	data		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TALK_SetSendDataNowSeq( WFLBY_SYSTEM_TALK* p_wk, u16 data )
@@ -5228,11 +5228,11 @@ static void WFLBY_SYSTEM_TALK_SetSendDataNowSeq( WFLBY_SYSTEM_TALK* p_wk, u16 da
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜b‰“š
+ *	@brief	ä¼šè©±å¿œç­”
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	userid		ƒ†[ƒUID
- *	@param	ans			‰ï˜b‚·‚éFTRUE	‚µ‚È‚¢FFALSE
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	ans			ä¼šè©±ã™ã‚‹ï¼šTRUE	ã—ãªã„ï¼šFALSE
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TALK_SendTalkAns( WFLBY_SYSTEM* p_wk, s32 userid, BOOL ans )
@@ -5244,10 +5244,10 @@ static void WFLBY_SYSTEM_TALK_SendTalkAns( WFLBY_SYSTEM* p_wk, s32 userid, BOOL 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒf[ƒ^ƒGƒ‰[‚É‚æ‚éØ’fˆ—
+ *	@brief	ãƒ‡ãƒ¼ã‚¿ã‚¨ãƒ©ãƒ¼ã«ã‚ˆã‚‹åˆ‡æ–­å‡¦ç†
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	userid		ƒ†[ƒUID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TALK_SendTalkExEnd( WFLBY_SYSTEM* p_wk, s32 userid )
@@ -5259,9 +5259,9 @@ static void WFLBY_SYSTEM_TALK_SendTalkExEnd( WFLBY_SYSTEM* p_wk, s32 userid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	óM‘Ò‚¿‚ğŠJn‚·‚é
+ *	@brief	å—ä¿¡å¾…ã¡ã‚’é–‹å§‹ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TALK_StartRecvWait( WFLBY_SYSTEM_TALK* p_wk )
@@ -5272,9 +5272,9 @@ static void WFLBY_SYSTEM_TALK_StartRecvWait( WFLBY_SYSTEM_TALK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	óM‘Ò‚¿‚ğI—¹‚·‚é
+ *	@brief	å—ä¿¡å¾…ã¡ã‚’çµ‚äº†ã™ã‚‹
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TALK_StopRecvWait( WFLBY_SYSTEM_TALK* p_wk )
@@ -5285,9 +5285,9 @@ static void WFLBY_SYSTEM_TALK_StopRecvWait( WFLBY_SYSTEM_TALK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	óM‘Ò‚¿ƒAƒbƒvƒf[ƒg
+ *	@brief	å—ä¿¡å¾…ã¡ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TALK_UpdateRecvWait( WFLBY_SYSTEM_TALK* p_wk )
@@ -5301,12 +5301,12 @@ static void WFLBY_SYSTEM_TALK_UpdateRecvWait( WFLBY_SYSTEM_TALK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	óM‘Ò‚¿ŠÔ‚ğƒ`ƒFƒbƒN
+ *	@brief	å—ä¿¡å¾…ã¡æ™‚é–“ã‚’ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	‚Ü‚¾óM‘Ò‚¿‚µ‚ÄOK
- *	@retval	FALSE	‚à‚¤Ø’f‚µ‚¿‚á‚¤
+ *	@retval	TRUE	ã¾ã å—ä¿¡å¾…ã¡ã—ã¦OK
+ *	@retval	FALSE	ã‚‚ã†åˆ‡æ–­ã—ã¡ã‚ƒã†
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_SYSTEM_TALK_CheckRecvWait( const WFLBY_SYSTEM_TALK* cp_wk )
@@ -5322,11 +5322,11 @@ static BOOL WFLBY_SYSTEM_TALK_CheckRecvWait( const WFLBY_SYSTEM_TALK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bóM‘Ò‚¿ŠÔ‚ğæ“¾‚·‚é
+ *	@brief	ä¼šè©±å—ä¿¡å¾…ã¡æ™‚é–“ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	óM‘Ò‚¿ŠÔ
+ *	@return	å—ä¿¡å¾…ã¡æ™‚é–“
  */
 //-----------------------------------------------------------------------------
 static s16	WFLBY_SYSTEM_TALK_GetRacvWaitTime( const WFLBY_SYSTEM_TALK* cp_wk )
@@ -5337,7 +5337,7 @@ static s16	WFLBY_SYSTEM_TALK_GetRacvWaitTime( const WFLBY_SYSTEM_TALK* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ˆ¥AƒgƒsƒbƒNóM
+ *	@brief	æŒ¨æ‹¶ãƒˆãƒ”ãƒƒã‚¯å—ä¿¡
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TOPIC_SetConnect( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* cp_topic )
@@ -5372,7 +5372,7 @@ static void WFLBY_SYSTEM_TOPIC_SetConnect( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒCƒeƒ€ŒğŠ·ƒgƒsƒbƒNóM
+ *	@brief	ã‚¢ã‚¤ãƒ†ãƒ äº¤æ›ãƒˆãƒ”ãƒƒã‚¯å—ä¿¡
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TOPIC_SetItem( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* cp_topic )
@@ -5409,7 +5409,7 @@ static void WFLBY_SYSTEM_TOPIC_SetItem( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€ƒgƒsƒbƒNóM
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ãƒˆãƒ”ãƒƒã‚¯å—ä¿¡
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TOPIC_SetMinigame( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* cp_topic )
@@ -5441,7 +5441,7 @@ static void WFLBY_SYSTEM_TOPIC_SetMinigame( WFLBY_SYSTEM* p_wk, const WFLBY_TOPI
 			}
 		}
 	}else{
-		// •åW’†‚Ì‚Æ‚«‚Íe‚Ì–¼‘O‚Ì‚İ
+		// å‹Ÿé›†ä¸­ã®ã¨ãã¯è¦ªã®åå‰ã®ã¿
 		for( i=0; i<WFLBY_MINIGAME_MAX; i++ ){
 			if( i==0 ){
 				u32 idx = DWC_LOBBY_GetUserIDIdx( cp_topic->lobby_id[i] );
@@ -5476,7 +5476,7 @@ static void WFLBY_SYSTEM_TOPIC_SetMinigame( WFLBY_SYSTEM* p_wk, const WFLBY_TOPI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘«Õƒ{[ƒhƒgƒsƒbƒNóM
+ *	@brief	è¶³è·¡ãƒœãƒ¼ãƒ‰ãƒˆãƒ”ãƒƒã‚¯å—ä¿¡
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TOPIC_SetFootBoard( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* cp_topic )
@@ -5509,7 +5509,7 @@ static void WFLBY_SYSTEM_TOPIC_SetFootBoard( WFLBY_SYSTEM* p_wk, const WFLBY_TOP
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¢ŠEŒvƒgƒsƒbƒNóM
+ *	@brief	ä¸–ç•Œæ™‚è¨ˆãƒˆãƒ”ãƒƒã‚¯å—ä¿¡
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TOPIC_SetWldTimer( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* cp_topic )
@@ -5555,7 +5555,7 @@ static void WFLBY_SYSTEM_TOPIC_SetWldTimer( WFLBY_SYSTEM* p_wk, const WFLBY_TOPI
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒr[ƒjƒ…[ƒXƒgƒsƒbƒNóM
+ *	@brief	ãƒ­ãƒ“ãƒ¼ãƒ‹ãƒ¥ãƒ¼ã‚¹ãƒˆãƒ”ãƒƒã‚¯å—ä¿¡
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TOPIC_SetNews( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* cp_topic )
@@ -5601,7 +5601,7 @@ static void WFLBY_SYSTEM_TOPIC_SetNews( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€Œ‹‰Ê‰æ–Ê	ƒgƒsƒbƒNƒf[ƒ^İ’è
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµæœç”»é¢	ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TOPIC_SetMgResult( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* cp_topic )
@@ -5653,7 +5653,7 @@ static void WFLBY_SYSTEM_TOPIC_SetDummy( WFLBY_SYSTEM* p_wk, const WFLBY_TOPIC* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒCƒxƒ“ƒgƒgƒsƒbƒNóM
+ *	@brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒˆãƒ”ãƒƒã‚¯å—ä¿¡
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_TOPIC_SetEvent( WFLBY_SYSTEM* p_wk, WFLBY_EVENTTYPE event )
@@ -5672,9 +5672,9 @@ static void WFLBY_SYSTEM_TOPIC_SetEvent( WFLBY_SYSTEM* p_wk, WFLBY_EVENTTYPE eve
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒf[ƒ^ŠÇ—	‰Šú‰»
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ç®¡ç†	åˆæœŸåŒ–
  *
- *	@param	p_float		ƒtƒ[ƒgƒf[ƒ^
+ *	@param	p_float		ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_FLOAT_Init( WFLBY_FLOAT_DATA* p_float )
@@ -5685,23 +5685,23 @@ static void WFLBY_SYSTEM_FLOAT_Init( WFLBY_FLOAT_DATA* p_float )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg“®ìŠJn
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆå‹•ä½œé–‹å§‹
  *
- *	@param	p_float		ƒtƒ[ƒgƒf[ƒ^
+ *	@param	p_float		ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_FLOAT_Start( WFLBY_FLOAT_DATA* p_float )
 {
 	p_float->start = TRUE;
 
-	//  ‚±‚Ì’iŠK‚Å—\–ñ‚ª“ü‚Á‚Ä‚¢‚é‰Â”\«‚à\•ª‚ ‚é
+	//  ã“ã®æ®µéšã§äºˆç´„ãŒå…¥ã£ã¦ã„ã‚‹å¯èƒ½æ€§ã‚‚ååˆ†ã‚ã‚‹
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg“®ì
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆå‹•ä½œ
  *
- *	@param	p_float		ƒtƒ[ƒgƒf[ƒ^
+ *	@param	p_float		ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_FLOAT_Main( WFLBY_FLOAT_DATA* p_float )
@@ -5713,18 +5713,18 @@ static void WFLBY_SYSTEM_FLOAT_Main( WFLBY_FLOAT_DATA* p_float )
 	}
 
 	for( i=0; i<WFLBY_FLOAT_MAX; i++ ){
-		// “®ìŠJnƒ`ƒFƒbƒN
+		// å‹•ä½œé–‹å§‹ãƒã‚§ãƒƒã‚¯
 		if( p_float->all_count == sc_WFLBY_FLOAT_TIMING[i] ){
-			// ÀsŠJn
+			// å®Ÿè¡Œé–‹å§‹
 			p_float->move[i] = WFLBY_FLOAT_STATE_MOVE;
 		}
 
-		// ƒtƒ[ƒg“®ìƒJƒEƒ“ƒg
+		// ãƒ•ãƒ­ãƒ¼ãƒˆå‹•ä½œã‚«ã‚¦ãƒ³ãƒˆ
 		if( p_float->move[i] == WFLBY_FLOAT_STATE_MOVE ){
 			if( (p_float->count[i] + 1) <= WFLBY_FLOAT_COUNT_ONE ){
 				p_float->count[i] ++;
 			}else{
-				// “®ì’â~
+				// å‹•ä½œåœæ­¢
 				p_float->move[i] = WFLBY_FLOAT_STATE_AFTER;
 			}
 		}
@@ -5737,7 +5737,7 @@ static void WFLBY_SYSTEM_FLOAT_Main( WFLBY_FLOAT_DATA* p_float )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX‚©‚çƒiƒ“ƒo[‚ÆƒIƒtƒZƒbƒg‚ğæ“¾
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰ãƒŠãƒ³ãƒãƒ¼ã¨ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å–å¾—
  *
  *	@param	idx
  *	@param	p_num
@@ -5752,14 +5752,14 @@ static inline void WFLBY_SYSTEM_FLOAT_GetFloatNumOffs( u32 idx, u32* p_num, u32*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—\–ñî•ñ‚Ìİ’è
+ *	@brief	äºˆç´„æƒ…å ±ã®è¨­å®š
  *
- *	@param	p_float		ƒtƒ[ƒgƒf[ƒ^
- *	@param	plidx		ƒvƒŒƒCƒ„[IDX
- *	@param	station		‰w’è”
+ *	@param	p_float		ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	plidx		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼IDX
+ *	@param	station		é§…å®šæ•°
  *
- *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	—\–ñ¸”s
- *	@retval	‚»‚Ì‘¼							—\–ñ¬Œ÷
+ *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	äºˆç´„å¤±æ•—
+ *	@retval	ãã®ä»–							äºˆç´„æˆåŠŸ
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_SYSTEM_FLOAT_SetReserve( WFLBY_FLOAT_DATA* p_float, u32 plidx, WFLBY_FLOAT_STATION_TYPE station )
@@ -5770,12 +5770,12 @@ static u32 WFLBY_SYSTEM_FLOAT_SetReserve( WFLBY_FLOAT_DATA* p_float, u32 plidx, 
 	u32 on_plidx;
 
 
-	// ‚»‚¢‚Â‚Í‚·‚Å‚Éæ‚Á‚Ä‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ãã„ã¤ã¯ã™ã§ã«ä¹—ã£ã¦ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	idx = WFLBY_SYSTEM_FLOAT_GetIdx( p_float, plidx );
 	if( idx == DWC_LOBBY_USERIDTBL_IDX_NONE ){
 
-		// ƒƒbƒN‚ª‚©‚©‚Á‚Ä‚¢‚é‚Æ‚±‚ëˆÈ‰º‚ÅA“®ì‘O‚©“®ì’†‚ÅA
-		// ‹ó‚¢‚Ä‚¢‚é‚Æ‚±‚ë‚ª‚È‚¢‚©ƒ`ƒFƒbƒN
+		// ãƒ­ãƒƒã‚¯ãŒã‹ã‹ã£ã¦ã„ã‚‹ã¨ã“ã‚ä»¥ä¸‹ã§ã€å‹•ä½œå‰ã‹å‹•ä½œä¸­ã§ã€
+		// ç©ºã„ã¦ã„ã‚‹ã¨ã“ã‚ãŒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		for( i=0; i<WFLBY_FLOAT_MAX; i++ ){
 			if( WFLBY_SYSTEM_FLOAT_GetMove( p_float, i ) != WFLBY_FLOAT_STATE_AFTER ){
 				for( j=0; j<WFLBY_FLOAT_ON_NUM; j++ ){
@@ -5783,10 +5783,10 @@ static u32 WFLBY_SYSTEM_FLOAT_SetReserve( WFLBY_FLOAT_DATA* p_float, u32 plidx, 
 
 					result = WFLBY_SYSTEM_FLOAT_CheckReserveLock( p_float, idx, station );
 					if( result == FALSE ){
-						// ‚»‚±‹ó‚¢‚Ä‚¢‚éH
+						// ãã“ç©ºã„ã¦ã„ã‚‹ï¼Ÿ
 						on_plidx = WFLBY_SYSTEM_FLOAT_GetReserve( p_float, idx );
 						if( on_plidx == DWC_LOBBY_USERIDTBL_IDX_NONE ){
-							// ‚±‚±‚Éæ‚¹‚é
+							// ã“ã“ã«ä¹—ã›ã‚‹
 							p_float->reserve[ i ][ j ] = plidx;
 //							OS_TPrintf( "set reserve[%d][%d]=%d\n", i, j, p_float->reserve[ i ][ j ] );
 							return idx;
@@ -5799,16 +5799,16 @@ static u32 WFLBY_SYSTEM_FLOAT_SetReserve( WFLBY_FLOAT_DATA* p_float, u32 plidx, 
 		}
 	}
 
-	// ‚Ì‚ê‚È‚¢
+	// ã®ã‚Œãªã„
 	return DWC_LOBBY_USERIDTBL_IDX_NONE;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—\–ñ”jŠüˆ—
+ *	@brief	äºˆç´„ç ´æ£„å‡¦ç†
  *
- *	@param	p_float		ƒtƒ[ƒg
- *	@param	plidx		ƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_float		ãƒ•ãƒ­ãƒ¼ãƒˆ
+ *	@param	plidx		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_FLOAT_ResetReserve( WFLBY_FLOAT_DATA* p_float, u32 plidx )
@@ -5825,13 +5825,13 @@ static void WFLBY_SYSTEM_FLOAT_ResetReserve( WFLBY_FLOAT_DATA* p_float, u32 plid
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—\–ñî•ñ‚ğæ“¾
+ *	@brief	äºˆç´„æƒ…å ±ã‚’å–å¾—
  *
- *	@param	cp_float	ƒtƒ[ƒgƒf[ƒ^
- *	@param	idx			ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_float	ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	idx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	‚Ì‚Á‚Ä‚È‚¢
- *	@retval	‚»‚Ì‘¼	æ‚Á‚Ä‚é
+ *	@retval	DWC_LOBBY_USERIDTBL_IDX_NONE	ã®ã£ã¦ãªã„
+ *	@retval	ãã®ä»–	ä¹—ã£ã¦ã‚‹
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_SYSTEM_FLOAT_GetReserve( const WFLBY_FLOAT_DATA* cp_float, u32 idx )
@@ -5848,14 +5848,14 @@ static u32 WFLBY_SYSTEM_FLOAT_GetReserve( const WFLBY_FLOAT_DATA* cp_float, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒg‚ª“®ì‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆãŒå‹•ä½œã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_float		ƒtƒ[ƒgƒ[ƒN
- *	@param	floatidx		ƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_float		ãƒ•ãƒ­ãƒ¼ãƒˆãƒ¯ãƒ¼ã‚¯
+ *	@param	floatidx		ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	WFLBY_FLOAT_STATE_BEFORE,	// “®ì‘O
- *	@retval	WFLBY_FLOAT_STATE_MOVE,		// “®ì’†
- *	@retval	WFLBY_FLOAT_STATE_AFTER,	// “®ìŒã
+ *	@retval	WFLBY_FLOAT_STATE_BEFORE,	// å‹•ä½œå‰
+ *	@retval	WFLBY_FLOAT_STATE_MOVE,		// å‹•ä½œä¸­
+ *	@retval	WFLBY_FLOAT_STATE_AFTER,	// å‹•ä½œå¾Œ
  */
 //-----------------------------------------------------------------------------
 static WFLBY_FLOAT_MOVE_STATE WFLBY_SYSTEM_FLOAT_GetMove( const WFLBY_FLOAT_DATA* cp_float, u32 floatidx )
@@ -5866,12 +5866,12 @@ static WFLBY_FLOAT_MOVE_STATE WFLBY_SYSTEM_FLOAT_GetMove( const WFLBY_FLOAT_DATA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒEƒ“ƒg’l‚Ìæ“¾
+ *	@brief	ã‚«ã‚¦ãƒ³ãƒˆå€¤ã®å–å¾—
  *
- *	@param	cp_float		ƒtƒ[ƒgƒf[ƒ^
- *	@param	idx				ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_float		ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	idx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	ƒJƒEƒ“ƒg’l
+ *	@return	ã‚«ã‚¦ãƒ³ãƒˆå€¤
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_SYSTEM_FLOAT_GetCount( const WFLBY_FLOAT_DATA* cp_float, u32 floatidx )
@@ -5883,10 +5883,10 @@ static u32 WFLBY_SYSTEM_FLOAT_GetCount( const WFLBY_FLOAT_DATA* cp_float, u32 fl
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ‚Ìn“®‚ğİ’è
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ã®å§‹å‹•ã‚’è¨­å®š
  *
- *	@param	cp_float	ƒtƒ[ƒgƒf[ƒ^
- *	@param	plidx		ƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_float	ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	plidx		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */	
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_FLOAT_SetAnm( WFLBY_FLOAT_DATA* p_float, u32 plidx )
@@ -5904,13 +5904,13 @@ static void WFLBY_SYSTEM_FLOAT_SetAnm( WFLBY_FLOAT_DATA* p_float, u32 plidx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒAƒjƒ‚ğÄ¶‚·‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ã‚’å†ç”Ÿã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_float	ƒtƒ[ƒgƒf[ƒ^
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_float	ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	ƒtƒ[ƒgƒAƒjƒÄ¶
- *	@retval	FALSE	ƒtƒ[ƒgƒAƒjƒ‚È‚µ
+ *	@retval	TRUE	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡å†ç”Ÿ
+ *	@retval	FALSE	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ãªã—
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_SYSTEM_FLOAT_GetAnm( const WFLBY_FLOAT_DATA* cp_float, u32 idx )
@@ -5926,10 +5926,10 @@ static BOOL WFLBY_SYSTEM_FLOAT_GetAnm( const WFLBY_FLOAT_DATA* cp_float, u32 idx
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒAƒjƒÄ¶ƒf[ƒ^ƒNƒŠ[ƒ“
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡å†ç”Ÿãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªãƒ¼ãƒ³
  *
- *	@param	p_float		ƒtƒ[ƒgƒf[ƒ^
- *	@param	idx			ƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_float		ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	idx			ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_FLOAT_CleanAnm( WFLBY_FLOAT_DATA* p_float, u32 idx )
@@ -5945,13 +5945,13 @@ static void WFLBY_SYSTEM_FLOAT_CleanAnm( WFLBY_FLOAT_DATA* p_float, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒf[ƒ^	ƒvƒŒƒCƒ„[‚h‚c‚w‚©‚çæ‚Á‚Ä‚¢‚éƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ï¼©ï¼¤ï¼¸ã‹ã‚‰ä¹—ã£ã¦ã„ã‚‹ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  *
- *	@param	cp_float	ƒtƒ[ƒgƒf[ƒ^
- *	@param	plidx		ƒvƒŒƒCƒ„[ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_float	ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	plidx		ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval		ƒtƒ[ƒgƒCƒ“ƒfƒbƒNƒX
- *	@retval		DWC_LOBBY_USERIDTBL_IDX_NONE	‚¢‚È‚¢
+ *	@retval		ãƒ•ãƒ­ãƒ¼ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@retval		DWC_LOBBY_USERIDTBL_IDX_NONE	ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_SYSTEM_FLOAT_GetIdx( const WFLBY_FLOAT_DATA* cp_float, u32 plidx )
@@ -5972,10 +5972,10 @@ static u32 WFLBY_SYSTEM_FLOAT_GetIdx( const WFLBY_FLOAT_DATA* cp_float, u32 plid
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	—\–ñƒƒbƒN‚ğ‚©‚¯‚é
+ *	@brief	äºˆç´„ãƒ­ãƒƒã‚¯ã‚’ã‹ã‘ã‚‹
  *
- *	@param	cp_float	ƒtƒ[ƒg
- *	@param	idx			ÀÈƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_float	ãƒ•ãƒ­ãƒ¼ãƒˆ
+ *	@param	idx			åº§å¸­ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_FLOAT_SetReserveLock( WFLBY_FLOAT_DATA* p_float, u32 idx, WFLBY_FLOAT_STATION_TYPE station )
@@ -5986,19 +5986,19 @@ static void WFLBY_SYSTEM_FLOAT_SetReserveLock( WFLBY_FLOAT_DATA* p_float, u32 id
 	GF_ASSERT( idx < WFLBY_FLOAT_MAX*WFLBY_FLOAT_ON_NUM );
 
 	WFLBY_SYSTEM_FLOAT_GetFloatNumOffs( idx, &float_num, &float_ofs );
-	p_float->reserve_lock[ float_num ][ float_ofs ] = station+1;	// ‚»‚Ì‰wˆÈã‚Ì‰w‚©‚ç—\–ñ‚µ‚È‚¢‚Æ“ü‚ê‚È‚¢
+	p_float->reserve_lock[ float_num ][ float_ofs ] = station+1;	// ãã®é§…ä»¥ä¸Šã®é§…ã‹ã‚‰äºˆç´„ã—ãªã„ã¨å…¥ã‚Œãªã„
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚»‚ÌÀÈ‚É—\–ñ‚ÌƒƒbƒN‚ª‚©‚©‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ãã®åº§å¸­ã«äºˆç´„ã®ãƒ­ãƒƒã‚¯ãŒã‹ã‹ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_float	ƒtƒ[ƒg
- *	@param	idx			ÀÈƒCƒ“ƒfƒbƒNƒX
- *	@param	station		‰w’è”
+ *	@param	cp_float	ãƒ•ãƒ­ãƒ¼ãƒˆ
+ *	@param	idx			åº§å¸­ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	station		é§…å®šæ•°
  *
- *	@retval	TRUE	—\–ñƒƒbƒN‚ª‚©‚©‚Á‚Ä‚¢‚é
- *	@retval	FALSE	—\–ñƒƒbƒN‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	äºˆç´„ãƒ­ãƒƒã‚¯ãŒã‹ã‹ã£ã¦ã„ã‚‹
+ *	@retval	FALSE	äºˆç´„ãƒ­ãƒƒã‚¯ãŒã‹ã‹ã£ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_SYSTEM_FLOAT_CheckReserveLock( const WFLBY_FLOAT_DATA* cp_float, u32 idx, WFLBY_FLOAT_STATION_TYPE station )
@@ -6010,7 +6010,7 @@ static BOOL WFLBY_SYSTEM_FLOAT_CheckReserveLock( const WFLBY_FLOAT_DATA* cp_floa
 
 	WFLBY_SYSTEM_FLOAT_GetFloatNumOffs( idx, &float_num, &float_ofs );
 
-	// “ü‚Á‚Ä‚¢‚é’lˆÈã‚È‚ç—\–ñ‚Å‚«‚éó‘Ô
+	// å…¥ã£ã¦ã„ã‚‹å€¤ä»¥ä¸Šãªã‚‰äºˆç´„ã§ãã‚‹çŠ¶æ…‹
 	if( cp_float->reserve_lock[float_num][float_ofs] <= station ){
 		return FALSE;
 	}
@@ -6019,12 +6019,12 @@ static BOOL WFLBY_SYSTEM_FLOAT_CheckReserveLock( const WFLBY_FLOAT_DATA* cp_floa
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÀÈ‚Ì‰wƒƒbƒNƒf[ƒ^‚ğæ“¾
+ *	@brief	åº§å¸­ã®é§…ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- *	@param	cp_float	ƒtƒ[ƒgƒf[ƒ^
- *	@param	idx			ÀÈƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_float	ãƒ•ãƒ­ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
+ *	@param	idx			åº§å¸­ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	‰w’è”
+ *	@return	é§…å®šæ•°
  */
 //-----------------------------------------------------------------------------
 static WFLBY_FLOAT_STATION_TYPE WFLBY_SYSTEM_FLOAT_GetReserveLock( const WFLBY_FLOAT_DATA* cp_float, u32 idx )
@@ -6036,7 +6036,7 @@ static WFLBY_FLOAT_STATION_TYPE WFLBY_SYSTEM_FLOAT_GetReserveLock( const WFLBY_F
 
 	WFLBY_SYSTEM_FLOAT_GetFloatNumOffs( idx, &float_num, &float_ofs );
 
-	// “ü‚Á‚Ä‚¢‚é’l‚æ‚è‘å‚«‚©‚Á‚½‚ç—\–ñ‚Å‚«‚éó‘Ô
+	// å…¥ã£ã¦ã„ã‚‹å€¤ã‚ˆã‚Šå¤§ãã‹ã£ãŸã‚‰äºˆç´„ã§ãã‚‹çŠ¶æ…‹
 	return cp_float->reserve_lock[ float_num ][ float_ofs ];
 }	
 		
@@ -6050,10 +6050,10 @@ static WFLBY_FLOAT_STATION_TYPE WFLBY_SYSTEM_FLOAT_GetReserveLock( const WFLBY_F
 
 
 
-// ’ÊMƒR[ƒ‹ƒoƒbƒN
+// é€šä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒŠƒNƒGƒXƒg
+ *	@brief	ä¼šè©±ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_COMMCMD_TALK_Req( s32 userid, const void* cp_data, u32 size, void* p_work )
@@ -6064,13 +6064,13 @@ static void WFLBY_SYSTEM_COMMCMD_TALK_Req( s32 userid, const void* cp_data, u32 
 	u32 status;
 	BOOL now_talk;
 
-	// ƒf[ƒ^æ“¾
+	// ãƒ‡ãƒ¼ã‚¿å–å¾—
 	cp_talkdata = cp_data;
 
-	// ‚»‚Ìl‚ÌIDX‚ğæ“¾
+	// ãã®äººã®IDXã‚’å–å¾—
 	idx = DWC_LOBBY_GetUserIDIdx( userid );
 
-	// CRCƒ`ƒFƒbƒN
+	// CRCãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_MyProfile_CheckCrc( &p_wk->myprofile, p_wk->p_save ) == FALSE ){
 		p_wk->error = WFLBY_SYSTEM_ERR_CRC;
 	}
@@ -6079,9 +6079,9 @@ static void WFLBY_SYSTEM_COMMCMD_TALK_Req( s32 userid, const void* cp_data, u32 
 
 	now_talk = WFLBY_SYSTEM_CheckTalk( p_wk );
 	
-	// ¡‰ï˜b‚Å‚«‚éó‘Ô‚©ƒ`ƒFƒbƒN
-	// ó‘Ô‚ª–Z‚µ‚¢‚©A’m‚ç‚È‚¢l‚È‚ç‚²‚ß‚ñ‚È‚³‚¢
-	// ‚»‚Ìl‚©‚ç‰½“x‚à˜b‚µ‚©‚¯‚ç‚ê‚Ä‚¢‚éê‡
+	// ä»Šä¼šè©±ã§ãã‚‹çŠ¶æ…‹ã‹ãƒã‚§ãƒƒã‚¯
+	// çŠ¶æ…‹ãŒå¿™ã—ã„ã‹ã€çŸ¥ã‚‰ãªã„äººãªã‚‰ã”ã‚ã‚“ãªã•ã„
+	// ãã®äººã‹ã‚‰ä½•åº¦ã‚‚è©±ã—ã‹ã‘ã‚‰ã‚Œã¦ã„ã‚‹å ´åˆ
 	if( (status != WFLBY_STATUS_LOGIN) ||
 		(idx == DWC_LOBBY_USERIDTBL_IDX_NONE) ||
 		(cp_talkdata->seq != WFLBY_TALK_SEQ_B_ANS) ||
@@ -6089,7 +6089,7 @@ static void WFLBY_SYSTEM_COMMCMD_TALK_Req( s32 userid, const void* cp_data, u32 
 		(WFLBY_SYSTEM_CheckTalkCount( p_wk, idx ) == FALSE)){
 
 	
-		// ‰ï˜b‚Å‚«‚È‚¢‚±‚Æ‚ğ‘—M
+		// ä¼šè©±ã§ããªã„ã“ã¨ã‚’é€ä¿¡
 //		OS_TPrintf( "talk don't  user=%d\n", userid );
 //
 //		OS_TPrintf( "status %d\n", status );
@@ -6100,24 +6100,24 @@ static void WFLBY_SYSTEM_COMMCMD_TALK_Req( s32 userid, const void* cp_data, u32 
 		return ;
 	}
 
-	// ‰ï˜b‚Å‚«‚é‚æ‚¤‚È‚Ì‚ÅA‰“š‚·‚é
+	// ä¼šè©±ã§ãã‚‹ã‚ˆã†ãªã®ã§ã€å¿œç­”ã™ã‚‹
 	WFLBY_SYSTEM_TALK_SendTalkAns( p_wk, userid, TRUE );
 
-	// ‰‚ß‚Ä‚©ƒ`ƒFƒbƒN
+	// åˆã‚ã¦ã‹ãƒã‚§ãƒƒã‚¯
 	if( WFLBY_SYSTEM_TALK_CheckMsk( &p_wk->talk, idx ) == FALSE ){
 		p_wk->talk.talk_first = TRUE;
 	}else{
 		p_wk->talk.talk_first = FALSE;
 	}
 
-	// ó‘Ô‚ğ‰ï˜b‚É‚·‚é
+	// çŠ¶æ…‹ã‚’ä¼šè©±ã«ã™ã‚‹
 //	WFLBY_SYSTEM_TALK_SetMsk( &p_wk->talk, idx );
 	p_wk->talk.talk_idx		= idx;
 	p_wk->talk.talk_seq		= WFLBY_TALK_SEQ_A_SEL;
 	p_wk->talk.talk_type	= WFLBY_TALK_TYPE_B;
 	p_wk->talk.talk_b_start	= FALSE;
 
-	// ‰ï˜b‰“š‘Ò‚¿ŠJn
+	// ä¼šè©±å¿œç­”å¾…ã¡é–‹å§‹
 	WFLBY_SYSTEM_TALK_StartRecvWait( &p_wk->talk );
 
 //	OS_TPrintf( "talk match  user=%d\n", userid );
@@ -6125,7 +6125,7 @@ static void WFLBY_SYSTEM_COMMCMD_TALK_Req( s32 userid, const void* cp_data, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒŠƒNƒGƒXƒg‚Ö‚Ì•Ô“š
+ *	@brief	ä¼šè©±ãƒªã‚¯ã‚¨ã‚¹ãƒˆã¸ã®è¿”ç­”
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_COMMCMD_TALK_Ans( s32 userid, const void* cp_data, u32 size, void* p_work )
@@ -6134,48 +6134,48 @@ static void WFLBY_SYSTEM_COMMCMD_TALK_Ans( s32 userid, const void* cp_data, u32 
 	u32 idx;
 	const WFLBY_SYSTEM_TALK_DATA* cp_talkdata;
 
-	// ƒf[ƒ^æ“¾
+	// ãƒ‡ãƒ¼ã‚¿å–å¾—
 	cp_talkdata = cp_data;
 
-	// ƒCƒ“ƒfƒbƒNƒXæ“¾
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 	idx = DWC_LOBBY_GetUserIDIdx( userid );
 
-	// ‰ï˜b’†‚©ƒ`ƒFƒbƒN
+	// ä¼šè©±ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_wk->talk.talk_type == WFLBY_TALK_TYPE_NONE ){
-		// BTS:’ÊM No.206	
-		// ‚±‚±‚É—ˆ‚é‚±‚Æ‚à‚ ‚é‚æ‚¤‚Å‚·‚ªA
-		// E©•ª‚Í‰ï˜bó‘Ô‚Å‚È‚¢‚½‚ßAóM‚µ‚½î•ñ‚ğ–³‹
-		// ‚·‚éB
-		// Eƒf[ƒ^‚ğ‘—M‚µ‚½‘Šè‚ÍA•Ô“š‚ª‹A‚Á‚Ä‚±‚È‚¢‚Ì
-		// ‚ÅAƒ^ƒCƒ€ƒAƒEƒgˆ—‚Ö‘JˆÚ‚·‚éB
-		// ‚ÆA‚È‚Á‚Ä‚¢‚é‚Ì‚ÅAƒAƒT[ƒg‚Å‚Æ‚ß‚é•K—v‚Í‚È‚¢
+		// BTS:é€šä¿¡ No.206	
+		// ã“ã“ã«æ¥ã‚‹ã“ã¨ã‚‚ã‚ã‚‹ã‚ˆã†ã§ã™ãŒã€
+		// ãƒ»è‡ªåˆ†ã¯ä¼šè©±çŠ¶æ…‹ã§ãªã„ãŸã‚ã€å—ä¿¡ã—ãŸæƒ…å ±ã‚’ç„¡è¦–
+		// ã™ã‚‹ã€‚
+		// ãƒ»ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã—ãŸç›¸æ‰‹ã¯ã€è¿”ç­”ãŒå¸°ã£ã¦ã“ãªã„ã®
+		// ã§ã€ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆå‡¦ç†ã¸é·ç§»ã™ã‚‹ã€‚
+		// ã¨ã€ãªã£ã¦ã„ã‚‹ã®ã§ã€ã‚¢ã‚µãƒ¼ãƒˆã§ã¨ã‚ã‚‹å¿…è¦ã¯ãªã„
 		// 
 //		GF_ASSERT(0);
 		return ;
 	}
 	
-	// ‰ï˜b’†‚Ìl‚©ƒ`ƒFƒbƒN
+	// ä¼šè©±ä¸­ã®äººã‹ãƒã‚§ãƒƒã‚¯
 	if( p_wk->talk.talk_idx == idx ){
 
 
-		// ‰ï˜b‚ªŠm—§‚³‚ê‚½‚©ƒ`ƒFƒbƒN
+		// ä¼šè©±ãŒç¢ºç«‹ã•ã‚ŒãŸã‹ãƒã‚§ãƒƒã‚¯
 		if( cp_talkdata->data == TRUE ){
 
-			// ‰‚ß‚Ä‚©ƒ`ƒFƒbƒN
+			// åˆã‚ã¦ã‹ãƒã‚§ãƒƒã‚¯
 			if( WFLBY_SYSTEM_TALK_CheckMsk( &p_wk->talk, idx ) == FALSE ){
 				p_wk->talk.talk_first = TRUE;
 			}else{
 				p_wk->talk.talk_first = FALSE;
 			}
-			// ©•ª‚Ì‘I‘ğ‚Ö
+			// è‡ªåˆ†ã®é¸æŠã¸
 //			WFLBY_SYSTEM_TALK_SetMsk( &p_wk->talk, idx );
 			p_wk->talk.talk_seq = WFLBY_TALK_SEQ_A_SEL;
 		}else{
-			// Ø’f‚Ö
+			// åˆ‡æ–­ã¸
 			WFLBY_SYSTEM_TALK_EndClear( &p_wk->talk );
 		}
 
-		// óM‘Ò‚¿’â~
+		// å—ä¿¡å¾…ã¡åœæ­¢
 		WFLBY_SYSTEM_TALK_StopRecvWait( &p_wk->talk );
 	}else{
 //		OS_TPrintf( "talkans idx diff talkidx=%d  recvidx=%d\n", p_wk->talk.talk_idx, idx );
@@ -6185,7 +6185,7 @@ static void WFLBY_SYSTEM_COMMCMD_TALK_Ans( s32 userid, const void* cp_data, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bƒf[ƒ^‚ÌóM
+ *	@brief	ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_COMMCMD_TALK_Data( s32 userid, const void* cp_data, u32 size, void* p_work )
@@ -6194,41 +6194,41 @@ static void WFLBY_SYSTEM_COMMCMD_TALK_Data( s32 userid, const void* cp_data, u32
 	u32 idx;
 	const WFLBY_SYSTEM_TALK_DATA* cp_talkdata;
 
-	// ‰ï˜b’†‚©ƒ`ƒFƒbƒN
+	// ä¼šè©±ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_wk->talk.talk_type == WFLBY_TALK_TYPE_NONE ){
 		return ;
 	}
 
-	// ƒf[ƒ^æ“¾
+	// ãƒ‡ãƒ¼ã‚¿å–å¾—
 	cp_talkdata = cp_data;
 
-	// ƒCƒ“ƒfƒbƒNƒXæ“¾
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 	idx = DWC_LOBBY_GetUserIDIdx( userid );
 
-	// ‘Šè‚ª‚ ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ç›¸æ‰‹ãŒã‚ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_wk->talk.talk_idx == idx ){
 
-		// óM‚µ‚½ƒV[ƒPƒ“ƒX‚É•ÏX
+		// å—ä¿¡ã—ãŸã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«å¤‰æ›´
 		if( (cp_talkdata->seq == WFLBY_TALK_SEQ_A_SEL) ||
 			(cp_talkdata->seq == WFLBY_TALK_SEQ_B_SEL) ){
-			p_wk->talk.talk_seq = cp_talkdata->seq;	// Ø’f‚É‚È‚é‰Â”\«‚à‚ ‚é
+			p_wk->talk.talk_seq = cp_talkdata->seq;	// åˆ‡æ–­ã«ãªã‚‹å¯èƒ½æ€§ã‚‚ã‚ã‚‹
 
-			// ‘Šè‚©‚ç‚ÌóM‚ğóMƒoƒbƒtƒ@‚Éİ’è
+			// ç›¸æ‰‹ã‹ã‚‰ã®å—ä¿¡ã‚’å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«è¨­å®š
 			p_wk->talk.recv_data = cp_talkdata->data;
 
-			// óM‘Ò‚¿’â~
+			// å—ä¿¡å¾…ã¡åœæ­¢
 			WFLBY_SYSTEM_TALK_StopRecvWait( &p_wk->talk );
 		}else{
 
-			// ‹Ù‹}’â~
+			// ç·Šæ€¥åœæ­¢
 			WFLBY_SYSTEM_TALK_ExEndClear( &p_wk->talk );
 		}
 
 	}else{
 
-		// ‘Šè‚ª‚¢‚È‚­‚È‚Á‚Ä‚È‚¢‚©ƒ`ƒFƒbƒN
+		// ç›¸æ‰‹ãŒã„ãªããªã£ã¦ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		if( idx == DWC_LOBBY_USERIDTBL_IDX_NONE ){
-			// ‹Ù‹}Ø’f‚Ö
+			// ç·Šæ€¥åˆ‡æ–­ã¸
 			WFLBY_SYSTEM_TALK_ExEndClear( &p_wk->talk );
 		}
 
@@ -6238,12 +6238,12 @@ static void WFLBY_SYSTEM_COMMCMD_TALK_Data( s32 userid, const void* cp_data, u32
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ï˜bI—¹
+ *	@brief	ä¼šè©±çµ‚äº†
  *
- *	@param	userid		ƒ†[ƒU
- *	@param	cp_data		ƒf[ƒ^
- *	@param	size		ƒTƒCƒY
- *	@param	p_work		ƒ[ƒN
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_COMMCMD_TALK_End( s32 userid, const void* cp_data, u32 size, void* p_work )
@@ -6251,28 +6251,28 @@ static void WFLBY_SYSTEM_COMMCMD_TALK_End( s32 userid, const void* cp_data, u32 
 	WFLBY_SYSTEM*  p_wk = p_work;
 	u32 idx;
 
-	// ‰ï˜b’†‚©
+	// ä¼šè©±ä¸­ã‹
 	if( p_wk->talk.talk_seq == WFLBY_TALK_SEQ_NONE ){
 		return ;
 	}
 
-	// ‰ï˜b‚µ‚Ä‚él‚Æˆê‚©
+	// ä¼šè©±ã—ã¦ã‚‹äººã¨ä¸€ç·’ã‹
 	idx = DWC_LOBBY_GetUserIDIdx( userid );
 	if( p_wk->talk.talk_idx == idx ){
 //		OS_TPrintf( "talk end\n" );
-		// ‰ï˜bI—¹
+		// ä¼šè©±çµ‚äº†
 		WFLBY_SYSTEM_TALK_EndClear( &p_wk->talk );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒsƒbƒNƒf[ƒ^	óM
+ *	@brief	ãƒˆãƒ”ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	å—ä¿¡
  *
- *	@param	userid		ƒ†[ƒUID
- *	@param	cp_data		ƒf[ƒ^
- *	@param	size		ƒTƒCƒY
- *	@param	p_work		ƒ[ƒN
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_COMMCMD_TOPIC_Data( s32 userid, const void* cp_data, u32 size, void* p_work )
@@ -6291,18 +6291,18 @@ static void WFLBY_SYSTEM_COMMCMD_TOPIC_Data( s32 userid, const void* cp_data, u3
 		WFLBY_SYSTEM_TOPIC_SetMgResult,
 	};
 
-	// ƒgƒsƒbƒN‚Ì’Ç‰Á
+	// ãƒˆãƒ”ãƒƒã‚¯ã®è¿½åŠ 
 	pFunc[ cp_topic->topic_type ]( p_wk, cp_topic );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒf[ƒ^óM
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å—ä¿¡
  *
- *	@param	userid		ƒ†[ƒUID
- *	@param	cp_data		ƒf[ƒ^
- *	@param	size		ƒTƒCƒY
- *	@param	p_work		ƒ[ƒN
+ *	@param	userid		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	size		ã‚µã‚¤ã‚º
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_COMMCMD_GADGET_Data( s32 userid, const void* cp_data, u32 size, void* p_work )
@@ -6310,7 +6310,7 @@ static void WFLBY_SYSTEM_COMMCMD_GADGET_Data( s32 userid, const void* cp_data, u
 	WFLBY_SYSTEM* p_wk		= p_work;
 	u32 idx;
 
-	// ƒ†[ƒU‚ÌIDX‚ğóM
+	// ãƒ¦ãƒ¼ã‚¶ã®IDXã‚’å—ä¿¡
 	idx = DWC_LOBBY_GetUserIDIdx( userid );
 	if( idx != DWC_LOBBY_USERIDTBL_IDX_NONE ){
 		
@@ -6321,12 +6321,12 @@ static void WFLBY_SYSTEM_COMMCMD_GADGET_Data( s32 userid, const void* cp_data, u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgæÔ	óM
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆä¹—è»Š	å—ä¿¡
  *
- *	@param	userid	ƒ†[ƒU‚h‚c
- *	@param	cp_data	ƒf[ƒ^
- *	@param	size	ƒTƒCƒY
- *	@param	p_work	ƒ[ƒN
+ *	@param	userid	ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤
+ *	@param	cp_data	ãƒ‡ãƒ¼ã‚¿
+ *	@param	size	ã‚µã‚¤ã‚º
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_COMMCMD_FLOAT_On( s32 userid, const void* cp_data, u32 size, void* p_work )
@@ -6336,15 +6336,15 @@ static void WFLBY_SYSTEM_COMMCMD_FLOAT_On( s32 userid, const void* cp_data, u32 
 	u32 result;
 	int i;
 
-	// ƒ†[ƒU‚ÌIDX‚ğóM
+	// ãƒ¦ãƒ¼ã‚¶ã®IDXã‚’å—ä¿¡
 	idx = DWC_LOBBY_GetUserIDIdx( userid );
 	if( idx != DWC_LOBBY_USERIDTBL_IDX_NONE ){
-		// ‚Ç‚±‚©‚Éâ‘Î‚Ì‚¹‚é
+		// ã©ã“ã‹ã«çµ¶å¯¾ã®ã›ã‚‹
 		for( i=0; i<WFLBY_FLOAT_STATION_NUM; i++ ){
 			result = WFLBY_SYSTEM_FLOAT_SetReserve( &p_wk->floatdata, idx, i );
 
 			if( result != DWC_LOBBY_USERIDTBL_IDX_NONE ){
-				break;	// “o˜^¬Œ÷
+				break;	// ç™»éŒ²æˆåŠŸ
 			}
 		}
 	}
@@ -6352,12 +6352,12 @@ static void WFLBY_SYSTEM_COMMCMD_FLOAT_On( s32 userid, const void* cp_data, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒ[ƒgƒAƒjƒ	óM
+ *	@brief	ãƒ•ãƒ­ãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡	å—ä¿¡
  *
- *	@param	userid	ƒ†[ƒU‚h‚c
- *	@param	cp_data	ƒf[ƒ^
- *	@param	size	ƒTƒCƒY
- *	@param	p_work	ƒ[ƒN
+ *	@param	userid	ãƒ¦ãƒ¼ã‚¶ï¼©ï¼¤
+ *	@param	cp_data	ãƒ‡ãƒ¼ã‚¿
+ *	@param	size	ã‚µã‚¤ã‚º
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_COMMCMD_FLOAT_Anm( s32 userid, const void* cp_data, u32 size, void* p_work )
@@ -6365,7 +6365,7 @@ static void WFLBY_SYSTEM_COMMCMD_FLOAT_Anm( s32 userid, const void* cp_data, u32
 	WFLBY_SYSTEM* p_wk		= p_work;
 	u32 idx;
 
-	// ƒ†[ƒU‚ÌIDX‚ğóM
+	// ãƒ¦ãƒ¼ã‚¶ã®IDXã‚’å—ä¿¡
 	idx = DWC_LOBBY_GetUserIDIdx( userid );
 	if( idx != DWC_LOBBY_USERIDTBL_IDX_NONE ){
 		WFLBY_SYSTEM_FLOAT_SetAnm( &p_wk->floatdata, idx );
@@ -6379,12 +6379,12 @@ static void WFLBY_SYSTEM_COMMCMD_FLOAT_Anm( s32 userid, const void* cp_data, u32
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÅŒã‚É‚µ‚½‚±‚Æ‚É‚Æ‚Á‚Ä‚¨‚­ƒXƒe[ƒ^ƒX‚©ƒ`ƒFƒbƒN
+ *	@brief	æœ€å¾Œã«ã—ãŸã“ã¨ã«ã¨ã£ã¦ãŠãã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	status	ó‘Ô
+ *	@param	status	çŠ¶æ…‹
  *
- *	@retval		TRUE	‚Æ‚Á‚Ä‚¨‚­
- *	@retval		FALSE	‚Æ‚Á‚Ä‚¨‚©‚È‚¢
+ *	@retval		TRUE	ã¨ã£ã¦ãŠã
+ *	@retval		FALSE	ã¨ã£ã¦ãŠã‹ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_SYSTEM_PROFILE_CheckLastTmpStatus( WFLBY_STATUS_TYPE status )
@@ -6393,15 +6393,15 @@ static BOOL WFLBY_SYSTEM_PROFILE_CheckLastTmpStatus( WFLBY_STATUS_TYPE status )
 	
 	switch( status ){
 
-	case WFLBY_STATUS_BALLSLOW:		// ‹Ê‚¢‚ê
-	case WFLBY_STATUS_BALANCEBALL:	// ‹Êæ‚è
-	case WFLBY_STATUS_BALLOON:		// •—‘D‚í‚è
-	case WFLBY_STATUS_FOOTBOAD00:	// ‘«Õƒ{[ƒh
-	case WFLBY_STATUS_FOOTBOAD01:	// ‘«Õƒ{[ƒh
-	case WFLBY_STATUS_WORLDTIMER:	// ¢ŠEŒv
-	case WFLBY_STATUS_TOPIC:			// ƒjƒ…[ƒX
-	case WFLBY_STATUS_TALK:			// ‰ï˜b
-	case WFLBY_STATUS_FLOAT:			// ƒtƒ[ƒg
+	case WFLBY_STATUS_BALLSLOW:		// ç‰ã„ã‚Œ
+	case WFLBY_STATUS_BALANCEBALL:	// ç‰ä¹—ã‚Š
+	case WFLBY_STATUS_BALLOON:		// é¢¨èˆ¹ã‚ã‚Š
+	case WFLBY_STATUS_FOOTBOAD00:	// è¶³è·¡ãƒœãƒ¼ãƒ‰
+	case WFLBY_STATUS_FOOTBOAD01:	// è¶³è·¡ãƒœãƒ¼ãƒ‰
+	case WFLBY_STATUS_WORLDTIMER:	// ä¸–ç•Œæ™‚è¨ˆ
+	case WFLBY_STATUS_TOPIC:			// ãƒ‹ãƒ¥ãƒ¼ã‚¹
+	case WFLBY_STATUS_TALK:			// ä¼šè©±
+	case WFLBY_STATUS_FLOAT:			// ãƒ•ãƒ­ãƒ¼ãƒˆ
 		result = TRUE;
 		break;
 
@@ -6417,9 +6417,9 @@ static BOOL WFLBY_SYSTEM_PROFILE_CheckLastTmpStatus( WFLBY_STATUS_TYPE status )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒg‘I‘ğƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆé¸æŠã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_GADGETRATE_Init( WFLBY_SYSTEM_GADGETRATE* p_wk )
@@ -6428,7 +6428,7 @@ static void WFLBY_SYSTEM_GADGETRATE_Init( WFLBY_SYSTEM_GADGETRATE* p_wk )
 	
 	memset( p_wk, 0, sizeof(WFLBY_SYSTEM_GADGETRATE) );
 	
-	// ‰ŠúƒŒ[ƒg‚ğİ’è
+	// åˆæœŸãƒ¬ãƒ¼ãƒˆã‚’è¨­å®š
 	for( i=0; i<WFLBY_ITEM_GROUPNUM; i++ ){
 		p_wk->rate[i] = WFLBY_GADGETRATE_DEF;
 	}
@@ -6436,11 +6436,11 @@ static void WFLBY_SYSTEM_GADGETRATE_Init( WFLBY_SYSTEM_GADGETRATE* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒg‘I‘ğƒVƒXƒeƒ€	ƒŒ[ƒgŒvZ
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆé¸æŠã‚·ã‚¹ãƒ†ãƒ 	ãƒ¬ãƒ¼ãƒˆè¨ˆç®—
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	item	’N‚©‚ª‚Á‚Ä‚¢‚éƒKƒWƒFƒbƒg
- *	@param	plno	‚»‚ÌƒKƒWƒFƒbƒg‚ğ‚à‚ç‚Á‚½l
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	item	èª°ã‹ãŒæŒã£ã¦ã„ã‚‹ã‚¬ã‚¸ã‚§ãƒƒãƒˆ
+ *	@param	plno	ãã®ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚’ã‚‚ã‚‰ã£ãŸäºº
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_GADGETRATE_CalcRate( WFLBY_SYSTEM_GADGETRATE* p_wk, WFLBY_ITEMTYPE item, u32 plno )
@@ -6451,8 +6451,8 @@ static void WFLBY_SYSTEM_GADGETRATE_CalcRate( WFLBY_SYSTEM_GADGETRATE* p_wk, WFL
 	GF_ASSERT( item < WFLBY_ITEM_NUM );
 	
 	
-	// ‚Ü‚¾‚»‚Ìl‚ÌƒKƒWƒFƒbƒgƒf[ƒ^‚ªƒŒ[ƒg‚É”½‰f‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎA
-	// ƒŒ[ƒgŒvZ‚·‚é
+	// ã¾ã ãã®äººã®ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãŒãƒ¬ãƒ¼ãƒˆã«åæ˜ ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã€
+	// ãƒ¬ãƒ¼ãƒˆè¨ˆç®—ã™ã‚‹
 	if( p_wk->gadget_recv[plno] == FALSE ){
 		item_group = item / WFLBY_ITEM_DANKAI;
 		p_wk->rate[ item_group ] /= WFLBY_GADGETRATE_DIV;
@@ -6462,11 +6462,11 @@ static void WFLBY_SYSTEM_GADGETRATE_CalcRate( WFLBY_SYSTEM_GADGETRATE* p_wk, WFL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒg‘I‘ğƒVƒXƒeƒ€	ƒŒ[ƒg‚ğg‚Á‚Äƒ‰ƒ“ƒ_ƒ€‚É‘I‘ğ‚µ‚½ƒAƒCƒeƒ€æ“¾
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆé¸æŠã‚·ã‚¹ãƒ†ãƒ 	ãƒ¬ãƒ¼ãƒˆã‚’ä½¿ã£ã¦ãƒ©ãƒ³ãƒ€ãƒ ã«é¸æŠã—ãŸã‚¢ã‚¤ãƒ†ãƒ å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *	
- *	@return	ƒKƒWƒFƒbƒg
+ *	@return	ã‚¬ã‚¸ã‚§ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 static WFLBY_ITEMTYPE WFLBY_SYSTEM_GADGETRATE_GetRandItem( const WFLBY_SYSTEM_GADGETRATE* cp_wk )
@@ -6476,7 +6476,7 @@ static WFLBY_ITEMTYPE WFLBY_SYSTEM_GADGETRATE_GetRandItem( const WFLBY_SYSTEM_GA
 	u32 rate_start;
 	u32 rand;
 	
-	// ¡‚ÌƒŒ[ƒg‚Ì’l‚ğ‡Œv‚µ‚½’l‚ğæ“¾
+	// ä»Šã®ãƒ¬ãƒ¼ãƒˆã®å€¤ã‚’åˆè¨ˆã—ãŸå€¤ã‚’å–å¾—
 	rate_max = 0;
 	for( i=0; i<WFLBY_ITEM_GROUPNUM; i++ ){
 		rate_max += cp_wk->rate[i];
@@ -6484,8 +6484,8 @@ static WFLBY_ITEMTYPE WFLBY_SYSTEM_GADGETRATE_GetRandItem( const WFLBY_SYSTEM_GA
 
 	rand = gf_mtRand() % rate_max;
 	
-	// —”‚Ì’l‚ªƒKƒWƒFƒbƒgƒŒ[ƒg‚ÌƒOƒ‹[ƒv‚Ì’l‚Ì”ÍˆÍ“à‚È‚ç
-	// ‚»‚ÌƒKƒWƒFƒbƒg‚ÌƒŒƒxƒ‹‚P‚Ì’l‚ğ•Ô‚·
+	// ä¹±æ•°ã®å€¤ãŒã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¬ãƒ¼ãƒˆã®ã‚°ãƒ«ãƒ¼ãƒ—ã®å€¤ã®ç¯„å›²å†…ãªã‚‰
+	// ãã®ã‚¬ã‚¸ã‚§ãƒƒãƒˆã®ãƒ¬ãƒ™ãƒ«ï¼‘ã®å€¤ã‚’è¿”ã™
 	rate_start = 0;
 	for( i=0; i<WFLBY_ITEM_GROUPNUM; i++ ){
 		if( (rate_start <= rand) && ((rate_start+cp_wk->rate[i]) > rand) ){
@@ -6494,7 +6494,7 @@ static WFLBY_ITEMTYPE WFLBY_SYSTEM_GADGETRATE_GetRandItem( const WFLBY_SYSTEM_GA
 		rate_start += cp_wk->rate[i];
 	}
 
-	// ‚±‚±‚É—ˆ‚é‚±‚Æ‚Í‚È‚¢
+	// ã“ã“ã«æ¥ã‚‹ã“ã¨ã¯ãªã„
 	GF_ASSERT(0);
 	return WFLBY_ITEM_BELL00;
 }
@@ -6503,11 +6503,11 @@ static WFLBY_ITEMTYPE WFLBY_SYSTEM_GADGETRATE_GetRandItem( const WFLBY_SYSTEM_GA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIPƒtƒ‰ƒO	İ’è
+ *	@brief	VIPãƒ•ãƒ©ã‚°	è¨­å®š
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
- *	@param	vip			VIPƒtƒ‰ƒO
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	vip			VIPãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_VIPFLAG_Set( WFLBY_VIPFLAG* p_wk, u32 idx, BOOL vip )
@@ -6520,13 +6520,13 @@ static void WFLBY_SYSTEM_VIPFLAG_Set( WFLBY_VIPFLAG* p_wk, u32 idx, BOOL vip )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VIPƒtƒ‰ƒO	æ“¾
+ *	@brief	VIPãƒ•ãƒ©ã‚°	å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	VIP‚¾
- *	@retval	FALSE	VIP‚¶‚á‚È‚¢
+ *	@retval	TRUE	VIPã 
+ *	@retval	FALSE	VIPã˜ã‚ƒãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_SYSTEM_VIPFLAG_Get( const WFLBY_VIPFLAG* cp_wk, u32 idx )
@@ -6541,41 +6541,41 @@ static BOOL WFLBY_SYSTEM_VIPFLAG_Get( const WFLBY_VIPFLAG* cp_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‡Œ¾—tƒoƒbƒtƒ@‚Ì‰Šú‰»
+ *	@brief	åˆè¨€è‘‰ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_AIKOTOBABUFF_Init( WFLBY_SYSTEM_AIKOTOBA* p_wk, u32 heapID )
 {
 	MI_CpuClear8( p_wk, sizeof(WFLBY_SYSTEM_AIKOTOBA) );
 
-	// ŠÈˆÕ‰ï˜b’PŒêƒe[ƒuƒ‹æ“¾
+	// ç°¡æ˜“ä¼šè©±å˜èªãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 	p_wk->p_wordtbl = PMSW_AIKOTOBATBL_Init( heapID );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‡Œ¾—tƒoƒbƒtƒ@‚Ì”jŠü
+ *	@brief	åˆè¨€è‘‰ãƒãƒƒãƒ•ã‚¡ã®ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_AIKOTOBABUFF_Exit( WFLBY_SYSTEM_AIKOTOBA* p_wk )
 {
-	// ŠÈˆÕ‰ï˜b’PŒêƒe[ƒuƒ‹æ“¾
+	// ç°¡æ˜“ä¼šè©±å˜èªãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 	PMSW_AIKOTOBATBL_Delete( p_wk->p_wordtbl );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‡Œ¾—tƒoƒbƒtƒ@‚Éî•ñ‚ğİ’è
+ *	@brief	åˆè¨€è‘‰ãƒãƒƒãƒ•ã‚¡ã«æƒ…å ±ã‚’è¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
- *	@param	aikotoba‡Œ¾—t—L–³ƒtƒ‰ƒO
- *	@param	number	‡Œ¾—t¶¬—pƒL[’l
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	aikotobaåˆè¨€è‘‰æœ‰ç„¡ãƒ•ãƒ©ã‚°
+ *	@param	number	åˆè¨€è‘‰ç”Ÿæˆç”¨ã‚­ãƒ¼å€¤
  *
  */
 //-----------------------------------------------------------------------------
@@ -6595,13 +6595,13 @@ static void WFLBY_SYSTEM_AIKOTOBABUFF_SetData( WFLBY_SYSTEM_AIKOTOBA* p_wk, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‡Œ¾—tƒoƒbƒtƒ@‚©‚ç‡Œ¾—t‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	åˆè¨€è‘‰ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰åˆè¨€è‘‰ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	‚ ‚é
- *	@retval	FALSE	‚È‚¢
+ *	@retval	TRUE	ã‚ã‚‹
+ *	@retval	FALSE	ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_SYSTEM_AIKOTOBABUFF_GetFlag( const WFLBY_SYSTEM_AIKOTOBA* cp_wk, u32 idx )
@@ -6615,12 +6615,12 @@ static BOOL WFLBY_SYSTEM_AIKOTOBABUFF_GetFlag( const WFLBY_SYSTEM_AIKOTOBA* cp_w
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‡Œ¾—tƒoƒbƒtƒ@‚©‚ç‡Œ¾—tæ“¾
+ *	@brief	åˆè¨€è‘‰ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰åˆè¨€è‘‰å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@return	‡Œ¾—tƒf[ƒ^
+ *	@return	åˆè¨€è‘‰ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const WFLBY_AIKOTOBA_DATA* WFLBY_SYSTEM_AIKOTOBABUFF_GetData( const WFLBY_SYSTEM_AIKOTOBA* cp_wk, u32 idx )
@@ -6636,11 +6636,11 @@ static const WFLBY_AIKOTOBA_DATA* WFLBY_SYSTEM_AIKOTOBABUFF_GetData( const WFLBY
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚ ‚¢‚±‚Æ‚Î	¶¬
+ *	@brief	ã‚ã„ã“ã¨ã°	ç”Ÿæˆ
  *
- *	@param	p_wordtbl		’PŒêƒe[ƒuƒ‹
- *	@param	number			ƒL[’l
- *	@param	p_aikotoba		‡Œ¾—tŠi”[æ
+ *	@param	p_wordtbl		å˜èªãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	number			ã‚­ãƒ¼å€¤
+ *	@param	p_aikotoba		åˆè¨€è‘‰æ ¼ç´å…ˆ
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_AIKOTOBA_Make( PMSW_AIKOTOBA_TBL* p_wordtbl, u32 number, WFLBY_AIKOTOBA_DATA* p_aikotoba )
@@ -6649,33 +6649,33 @@ static void WFLBY_SYSTEM_AIKOTOBA_Make( PMSW_AIKOTOBA_TBL* p_wordtbl, u32 number
 	u32 tblnum;
 	u32 tblidx;
 
-	// ’PŒêƒe[ƒuƒ‹‘”æ“¾
+	// å˜èªãƒ†ãƒ¼ãƒ–ãƒ«ç·æ•°å–å¾—
 	tblnum = PMSW_AIKOTOBATBL_GetTblNum( p_wordtbl );
 
-	// ƒL[‚Ì’l‚©‚ç
-	// A’lB’lC’lD’l‚ğì¬
+	// ã‚­ãƒ¼ã®å€¤ã‹ã‚‰
+	// Aå€¤Bå€¤Cå€¤Då€¤ã‚’ä½œæˆ
 	keydata.number = number;
 
 
 	{
-		OS_TPrintf( "ƒe[ƒuƒ‹‘”:%d\n", tblnum );
+		OS_TPrintf( "ãƒ†ãƒ¼ãƒ–ãƒ«ç·æ•°:%d\n", tblnum );
 		OS_TPrintf( "key number:0x%x\n", number );
 			
-		OS_TPrintf( "A’l:%d\n", keydata.key[ WFLBY_AIKOTOBA_KEY_A ] );
-		OS_TPrintf( "B’l:%d\n", keydata.key[ WFLBY_AIKOTOBA_KEY_B ] );
-		OS_TPrintf( "C’l:%d\n", keydata.key[ WFLBY_AIKOTOBA_KEY_C ] );
-		OS_TPrintf( "D’l:%d\n", keydata.key[ WFLBY_AIKOTOBA_KEY_D ] );
+		OS_TPrintf( "Aå€¤:%d\n", keydata.key[ WFLBY_AIKOTOBA_KEY_A ] );
+		OS_TPrintf( "Bå€¤:%d\n", keydata.key[ WFLBY_AIKOTOBA_KEY_B ] );
+		OS_TPrintf( "Cå€¤:%d\n", keydata.key[ WFLBY_AIKOTOBA_KEY_C ] );
+		OS_TPrintf( "Då€¤:%d\n", keydata.key[ WFLBY_AIKOTOBA_KEY_D ] );
 
 
-		OS_TPrintf( "’PŒêA:%d\n", (keydata.key[WFLBY_AIKOTOBA_KEY_D] + keydata.key[WFLBY_AIKOTOBA_KEY_A]) % tblnum );
-		OS_TPrintf( "’PŒêB:%d\n", (keydata.key[WFLBY_AIKOTOBA_KEY_A] + keydata.key[WFLBY_AIKOTOBA_KEY_B]) % tblnum );
-		OS_TPrintf( "’PŒêC:%d\n", (keydata.key[WFLBY_AIKOTOBA_KEY_B] + keydata.key[WFLBY_AIKOTOBA_KEY_C]) % tblnum );
-		OS_TPrintf( "’PŒêD:%d\n", (keydata.key[WFLBY_AIKOTOBA_KEY_C] + keydata.key[WFLBY_AIKOTOBA_KEY_D]) % tblnum );
+		OS_TPrintf( "å˜èªA:%d\n", (keydata.key[WFLBY_AIKOTOBA_KEY_D] + keydata.key[WFLBY_AIKOTOBA_KEY_A]) % tblnum );
+		OS_TPrintf( "å˜èªB:%d\n", (keydata.key[WFLBY_AIKOTOBA_KEY_A] + keydata.key[WFLBY_AIKOTOBA_KEY_B]) % tblnum );
+		OS_TPrintf( "å˜èªC:%d\n", (keydata.key[WFLBY_AIKOTOBA_KEY_B] + keydata.key[WFLBY_AIKOTOBA_KEY_C]) % tblnum );
+		OS_TPrintf( "å˜èªD:%d\n", (keydata.key[WFLBY_AIKOTOBA_KEY_C] + keydata.key[WFLBY_AIKOTOBA_KEY_D]) % tblnum );
 
 		OS_TPrintf( "\n" );
 	}
 
-	// Šeƒ[ƒh‚ğ‘I•Ê
+	// å„ãƒ¯ãƒ¼ãƒ‰ã‚’é¸åˆ¥
 	tblidx				= (keydata.key[WFLBY_AIKOTOBA_KEY_D] + keydata.key[WFLBY_AIKOTOBA_KEY_A]) % tblnum;
 	p_aikotoba->word[0] = PMSW_AIKOTOBATBL_GetTblData( p_wordtbl, tblidx );
 
@@ -6693,11 +6693,11 @@ static void WFLBY_SYSTEM_AIKOTOBA_Make( PMSW_AIKOTOBA_TBL* p_wordtbl, u32 number
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰Îƒf[ƒ^ƒ[ƒN	‰Šú‰»
+ *	@brief	èŠ±ç«ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯	åˆæœŸåŒ–
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	fire_start		‰Ô‰ÎŠJn
- *	@param	fire_end		‰Ô‰ÎI—¹
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	fire_start		èŠ±ç«é–‹å§‹
+ *	@param	fire_end		èŠ±ç«çµ‚äº†
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_FIREDATA_Init( WFLBY_FIRE_DATA* p_wk, u32 fire_start, u32 fire_end )
@@ -6709,9 +6709,9 @@ static void WFLBY_SYSTEM_FIREDATA_Init( WFLBY_FIRE_DATA* p_wk, u32 fire_start, u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰Îƒf[ƒ^ƒ[ƒN	“®ìŠJn
+ *	@brief	èŠ±ç«ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯	å‹•ä½œé–‹å§‹
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_FIREDATA_Start( WFLBY_FIRE_DATA* p_wk )
@@ -6719,15 +6719,15 @@ static void WFLBY_SYSTEM_FIREDATA_Start( WFLBY_FIRE_DATA* p_wk )
 	p_wk->start		= TRUE;
 	p_wk->count		= 0;
 
-	// ‰Ô‰ÎŠJnŠÔæ“¾
+	// èŠ±ç«é–‹å§‹æ™‚é–“å–å¾—
 	DWC_LOBBY_GetTime( &p_wk->start_time );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Ô‰Îƒf[ƒ^ƒ[ƒN	“®ìƒƒCƒ“
+ *	@brief	èŠ±ç«ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯	å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_FIREDATA_Main( WFLBY_FIRE_DATA* p_wk )
@@ -6737,8 +6737,8 @@ static void WFLBY_SYSTEM_FIREDATA_Main( WFLBY_FIRE_DATA* p_wk )
 	
 	if( p_wk->start ){
 		
-		// ÀÛ‚ÌŠÔ‚Å‚ÌŒo‰ßŠÔŠu‚æ‚ècount‚ÌŒo‰ß‚ª¬‚³‚¢‚Æ‚«‚Í
-		// ŠÔ‚Ì‚Ù‚¤‚É‡‚í‚¹‚é
+		// å®Ÿéš›ã®æ™‚é–“ã§ã®çµŒéé–“éš”ã‚ˆã‚Šcountã®çµŒéãŒå°ã•ã„ã¨ãã¯
+		// æ™‚é–“ã®ã»ã†ã«åˆã‚ã›ã‚‹
 		DWC_LOBBY_GetTime( &now_time );
 		diff_time = now_time - p_wk->start_time;
 		if( p_wk->count < (diff_time*30) ){
@@ -6748,7 +6748,7 @@ static void WFLBY_SYSTEM_FIREDATA_Main( WFLBY_FIRE_DATA* p_wk )
 		if( p_wk->count < p_wk->count_max ){
 			p_wk->count ++;
 
-			// ƒJƒEƒ“ƒ^‚Ì’l‚©‚ç“®ìƒ^ƒCƒv‚ğ•ÏX
+			// ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã‹ã‚‰å‹•ä½œã‚¿ã‚¤ãƒ—ã‚’å¤‰æ›´
 			{
 				u32 par;
 				u32 par_num;
@@ -6772,13 +6772,13 @@ static void WFLBY_SYSTEM_FIREDATA_Main( WFLBY_FIRE_DATA* p_wk )
 
 		}else{
 			
-			// ‚±‚±‚Ü‚Å—ˆ‚½‚ç‚¸‚Á‚ÆCLIMAX
+			// ã“ã“ã¾ã§æ¥ãŸã‚‰ãšã£ã¨CLIMAX
 			if( p_wk->move_type != WFLBY_FIRE_CLIMAX ){
 				p_wk->move_type		= WFLBY_FIRE_CLIMAX;
 				p_wk->move_count	= 0;
 			}
 
-			// CLIMAX‚ÌŒo‰ßŠÔ‚ªWFLBY_FIRE_END_COUNT‚É‚È‚Á‚½‚ç‚¨‚í‚è
+			// CLIMAXã®çµŒéæ™‚é–“ãŒWFLBY_FIRE_END_COUNTã«ãªã£ãŸã‚‰ãŠã‚ã‚Š
 			if( (p_wk->move_count >= WFLBY_FIRE_END_COUNT) ){
 				p_wk->move_type	= WFLBY_FIRE_END;
 				p_wk->start		= FALSE;
@@ -6791,11 +6791,11 @@ static void WFLBY_SYSTEM_FIREDATA_Main( WFLBY_FIRE_DATA* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	movetype‚É–Â‚Á‚Ä‚©‚ç‚ÌŒo‰ßŠÔ‚ğæ“¾
+ *	@brief	movetypeã«é³´ã£ã¦ã‹ã‚‰ã®çµŒéæ™‚é–“ã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	Œo‰ßŠÔ
+ *	@return	çµŒéæ™‚é–“
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_SYSTEM_FIREDATA_GetCount( const WFLBY_FIRE_DATA* cp_wk )
@@ -6805,11 +6805,11 @@ static u32 WFLBY_SYSTEM_FIREDATA_GetCount( const WFLBY_FIRE_DATA* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚Ì‰Ô‰Î“®ìƒ^ƒCƒv‚ğæ“¾
+ *	@brief	ä»Šã®èŠ±ç«å‹•ä½œã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	“®ìƒ^ƒCƒv
+ *	@return	å‹•ä½œã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static WFLBY_FIRE_TYPE WFLBY_SYSTEM_FIREDATA_GetType( const WFLBY_FIRE_DATA* cp_wk )
@@ -6821,10 +6821,10 @@ static WFLBY_FIRE_TYPE WFLBY_SYSTEM_FIREDATA_GetType( const WFLBY_FIRE_DATA* cp_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÅŒã‚É‚µ‚½‚±‚ÆƒLƒ…[		‰Šú‰»
+ *	@brief	æœ€å¾Œã«ã—ãŸã“ã¨ã‚­ãƒ¥ãƒ¼		åˆæœŸåŒ–
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	cp_save	ƒZ[ƒuƒf[ƒ^
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_save	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_LASTACTQ_Init( WFLBY_LASTACTION_CUE* p_wk, const SAVEDATA* cp_save )
@@ -6845,46 +6845,46 @@ static void WFLBY_SYSTEM_LASTACTQ_Init( WFLBY_LASTACTION_CUE* p_wk, const SAVEDA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÅŒã‚É‚µ‚½‚±‚ÆƒLƒ…[	ƒvƒbƒVƒ…
+ *	@brief	æœ€å¾Œã«ã—ãŸã“ã¨ã‚­ãƒ¥ãƒ¼	ãƒ—ãƒƒã‚·ãƒ¥
  *
- *	@param	p_wk	ƒ[ƒN
- *	@param	data	ƒf[ƒ^
- *	@param	userid	ƒ†[ƒUID
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	data	ãƒ‡ãƒ¼ã‚¿
+ *	@param	userid	ãƒ¦ãƒ¼ã‚¶ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_LASTACTQ_Push( WFLBY_LASTACTION_CUE* p_wk, WFLBY_LASTACTION_TYPE data, s32 userid )
 {
-	// ƒ`ƒFƒbƒN
+	// ãƒã‚§ãƒƒã‚¯
 	WFLBY_SYSTEM_LASTACTQ_CheckCrc( p_wk );
 	
-	// ––”ö+1‚ªæ“ª‚Ì–”t
+	// æœ«å°¾+1ãŒå…ˆé ­ã®æ™‚æº€æ¯
 	if( ((p_wk->tail + 1)%WFLBY_LASTACT_Q_BUFFNUM) == p_wk->top ){
-		// –”t
-		// 1‚Âƒf[ƒ^‚ğƒ|ƒbƒv‚µ‚Äƒf[ƒ^Ši”[
+		// æº€æ¯
+		// 1ã¤ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ—ã—ã¦ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 		WFLBY_SYSTEM_LASTACTQ_Pop( p_wk );
 	}
 
-	// ƒf[ƒ^İ’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_wk->cue[ p_wk->tail ]			= data;
 	p_wk->cue_userid[ p_wk->tail ]	= userid;
 
-	// ––”öˆÊ’u‚ğ“®‚©‚·
+	// æœ«å°¾ä½ç½®ã‚’å‹•ã‹ã™
 	p_wk->tail = (p_wk->tail + 1)%WFLBY_LASTACT_Q_BUFFNUM;
 
-	// İ’è
+	// è¨­å®š
 	WFLBY_SYSTEM_LASTACTQ_SetCrc( p_wk );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†[ƒUID‚ğ’u‚«Š·‚¦‚é
+ *	@brief	ãƒ¦ãƒ¼ã‚¶IDã‚’ç½®ãæ›ãˆã‚‹
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	before_id		‘O
- *	@param	after_id		Œã
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	before_id		å‰
+ *	@param	after_id		å¾Œ
  *
- *	@retval	TRUE	’u‚«Š·‚¦‚½
- *	@retval	FALSE	’u‚«‚©‚¦‚Ä‚È‚¢
+ *	@retval	TRUE	ç½®ãæ›ãˆãŸ
+ *	@retval	FALSE	ç½®ãã‹ãˆã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_SYSTEM_LASTACTQ_ResetUserID( WFLBY_LASTACTION_CUE* p_wk, s32 before_id, s32 after_id )
@@ -6892,11 +6892,11 @@ static BOOL WFLBY_SYSTEM_LASTACTQ_ResetUserID( WFLBY_LASTACTION_CUE* p_wk, s32 b
 	int i;
 	BOOL ret = FALSE;
 	
-	// ƒ`ƒFƒbƒN
+	// ãƒã‚§ãƒƒã‚¯
 	WFLBY_SYSTEM_LASTACTQ_CheckCrc( p_wk );
 
 
-	// ƒ†[ƒUID‚Ì•ÏX
+	// ãƒ¦ãƒ¼ã‚¶IDã®å¤‰æ›´
 	for( i=0; i<WFLBY_LASTACT_Q_BUFFNUM; i++ ){
 		if( p_wk->cue_userid[i] == before_id ){
 			p_wk->cue_userid[i] = after_id;
@@ -6904,7 +6904,7 @@ static BOOL WFLBY_SYSTEM_LASTACTQ_ResetUserID( WFLBY_LASTACTION_CUE* p_wk, s32 b
 		}
 	}
 
-	// İ’è
+	// è¨­å®š
 	WFLBY_SYSTEM_LASTACTQ_SetCrc( p_wk );
 
 	return ret;
@@ -6912,31 +6912,31 @@ static BOOL WFLBY_SYSTEM_LASTACTQ_ResetUserID( WFLBY_LASTACTION_CUE* p_wk, s32 b
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÅŒã‚É‚µ‚½‚±‚ÆƒLƒ…[	ƒ|ƒbƒv
+ *	@brief	æœ€å¾Œã«ã—ãŸã“ã¨ã‚­ãƒ¥ãƒ¼	ãƒãƒƒãƒ—
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static WFLBY_LASTACTION_TYPE WFLBY_SYSTEM_LASTACTQ_Pop( WFLBY_LASTACTION_CUE* p_wk )
 {
 	u8 data;
 
-	// ƒ`ƒFƒbƒN
+	// ãƒã‚§ãƒƒã‚¯
 	WFLBY_SYSTEM_LASTACTQ_CheckCrc( p_wk );
 	
-	// æ“ª=––”ö	ƒf[ƒ^‚ª‚È‚¢
+	// å…ˆé ­=æœ«å°¾	ãƒ‡ãƒ¼ã‚¿ãŒãªã„
 	if( p_wk->tail == p_wk->top ){
 		return WFLBY_LASTACTION_MAX;
 	}
 
 	data = p_wk->cue[ p_wk->top ];
-	p_wk->cue[ p_wk->top ] = WFLBY_LASTACTION_MAX;	// ƒf[ƒ^”jŠü
+	p_wk->cue[ p_wk->top ] = WFLBY_LASTACTION_MAX;	// ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	p_wk->cue_userid[ p_wk->tail ]	= DWC_LOBBY_INVALID_USER_ID;
 
-	// æ“ªˆÊ’u‚ğ“®‚©‚·
+	// å…ˆé ­ä½ç½®ã‚’å‹•ã‹ã™
 	p_wk->top = (p_wk->top + 1)%WFLBY_LASTACT_Q_BUFFNUM;
 
-	// İ’è
+	// è¨­å®š
 	WFLBY_SYSTEM_LASTACTQ_SetCrc( p_wk );
 
 	return data;
@@ -6944,10 +6944,10 @@ static WFLBY_LASTACTION_TYPE WFLBY_SYSTEM_LASTACTQ_Pop( WFLBY_LASTACTION_CUE* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÅŒã‚É‚µ‚½‚±‚ÆƒLƒ…[	ƒf[ƒ^æ“¾	ÅV‚Ìƒf[ƒ^[„ŒÃ‚¢ƒf[ƒ^‚Ö
+ *	@brief	æœ€å¾Œã«ã—ãŸã“ã¨ã‚­ãƒ¥ãƒ¼	ãƒ‡ãƒ¼ã‚¿å–å¾—	æœ€æ–°ã®ãƒ‡ãƒ¼ã‚¿ãƒ¼ï¼å¤ã„ãƒ‡ãƒ¼ã‚¿ã¸
  *
- *	@param	p_wk		ƒ[ƒN	
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯	
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static WFLBY_LASTACTION_TYPE WFLBY_SYSTEM_LASTACTQ_GetData( WFLBY_LASTACTION_CUE* p_wk, u32 idx )
@@ -6955,10 +6955,10 @@ static WFLBY_LASTACTION_TYPE WFLBY_SYSTEM_LASTACTQ_GetData( WFLBY_LASTACTION_CUE
 	s32 dataidx;
 	GF_ASSERT( idx < WFLBY_LASTACT_BUFFNUM );
 
-	// ƒ`ƒFƒbƒN
+	// ãƒã‚§ãƒƒã‚¯
 	WFLBY_SYSTEM_LASTACTQ_CheckCrc( p_wk );
 
-	// 1‚ğ‘«‚·
+	// 1ã‚’è¶³ã™
 	idx ++;
 	
 	dataidx = p_wk->tail - idx;
@@ -6971,10 +6971,10 @@ static WFLBY_LASTACTION_TYPE WFLBY_SYSTEM_LASTACTQ_GetData( WFLBY_LASTACTION_CUE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÅŒã‚É‚µ‚½‚±‚ÆƒLƒ…[	useridæ“¾	ÅV‚Ìƒf[ƒ^[„ŒÃ‚¢ƒf[ƒ^‚Ö
+ *	@brief	æœ€å¾Œã«ã—ãŸã“ã¨ã‚­ãƒ¥ãƒ¼	useridå–å¾—	æœ€æ–°ã®ãƒ‡ãƒ¼ã‚¿ãƒ¼ï¼å¤ã„ãƒ‡ãƒ¼ã‚¿ã¸
  *
- *	@param	p_wk		ƒ[ƒN	
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯	
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static s32 WFLBY_SYSTEM_LASTACTQ_GetUserID( WFLBY_LASTACTION_CUE* p_wk, u32 idx )
@@ -6982,10 +6982,10 @@ static s32 WFLBY_SYSTEM_LASTACTQ_GetUserID( WFLBY_LASTACTION_CUE* p_wk, u32 idx 
 	s32 dataidx;
 	GF_ASSERT( idx < WFLBY_LASTACT_BUFFNUM );
 
-	// CRCƒ`ƒFƒbƒN
+	// CRCãƒã‚§ãƒƒã‚¯
 	WFLBY_SYSTEM_LASTACTQ_CheckCrc( p_wk );
 
-	// 1‚ğ‘«‚·
+	// 1ã‚’è¶³ã™
 	idx ++;
 	
 	dataidx = p_wk->tail - idx;
@@ -6998,9 +6998,9 @@ static s32 WFLBY_SYSTEM_LASTACTQ_GetUserID( WFLBY_LASTACTION_CUE* p_wk, u32 idx 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CRCİ’è
+ *	@brief	CRCè¨­å®š
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_LASTACTQ_SetCrc( WFLBY_LASTACTION_CUE* p_wk )
@@ -7012,16 +7012,16 @@ static void WFLBY_SYSTEM_LASTACTQ_SetCrc( WFLBY_LASTACTION_CUE* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CRCƒ`ƒFƒbƒN
+ *	@brief	CRCãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_SYSTEM_LASTACTQ_CheckCrc( WFLBY_LASTACTION_CUE* p_wk )
 {
 	u32 check_crc;
 
-	// CRCƒ`ƒFƒbƒN
+	// CRCãƒã‚§ãƒƒã‚¯
 	check_crc = SaveData_CalcCRC( p_wk->cp_save, p_wk, WFLBY_LASTACTION_CUE_CRC_DATASIZE );
 //	OS_TPrintf( "lastactQ crc check %d==%d\n", check_crc, p_wk->crc_check );
 	if( check_crc != p_wk->crc_check ){
@@ -7032,12 +7032,12 @@ static void WFLBY_SYSTEM_LASTACTQ_CheckCrc( WFLBY_LASTACTION_CUE* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CRC‚ÌƒGƒ‰[ó‘Ô‚ğæ“¾‚·‚é
+ *	@brief	CRCã®ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	ƒGƒ‰[ó‘Ô
- *	@retval	FLASE	³í
+ *	@retval	TRUE	ã‚¨ãƒ©ãƒ¼çŠ¶æ…‹
+ *	@retval	FLASE	æ­£å¸¸
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_SYSTEM_LASTACTQ_GetCrcError( const WFLBY_LASTACTION_CUE* cp_wk )
@@ -7049,12 +7049,12 @@ static BOOL WFLBY_SYSTEM_LASTACTQ_GetCrcError( const WFLBY_LASTACTION_CUE* cp_wk
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒgƒŒ[ƒi[ƒ^ƒCƒv‚©‚çƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[‚ğæ“¾
+ *	@brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‹ã‚‰ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- *	@param	tr_type		ƒgƒŒ[ƒiƒ^ƒCƒv
+ *	@param	tr_type		ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—
  *
- *	@retval	0`15	ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
- *	@retval	WFLBY_SYSTEMUNICHAR_NUM	•s³‚ÈƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+ *	@retval	0ã€œ15	ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
+ *	@retval	WFLBY_SYSTEMUNICHAR_NUM	ä¸æ­£ãªã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_TRTYPE_UNIONCHARNO_Get( u32 tr_type )
@@ -7072,12 +7072,12 @@ static u32 WFLBY_TRTYPE_UNIONCHARNO_Get( u32 tr_type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[‚©‚çƒgƒŒ[ƒiƒ^ƒCƒv‚ğæ“¾
+ *	@brief	ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- *	@param	union_char_no ƒ†ƒjƒIƒ“ƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+ *	@param	union_char_no ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	OBJCODEMAX		•s³‚Èƒf[ƒ^
- *	@retval	‚»‚Ì‘¼			ƒgƒŒ[ƒiID
+ *	@retval	OBJCODEMAX		ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿
+ *	@retval	ãã®ä»–			ãƒˆãƒ¬ãƒ¼ãƒŠID
  */
 //-----------------------------------------------------------------------------
 static u32 WFLBY_UNIONCHARNO_TRTYPE_Get( u32 union_char_no )

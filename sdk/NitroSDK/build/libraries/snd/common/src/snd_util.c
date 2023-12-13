@@ -15,16 +15,16 @@
   do-indent
 
   Revision 1.8  2005/09/22 06:53:18  ida
-  scale0‚Ì‚ÌƒfƒVƒxƒ‹’l‚ª\•ª‚É¬‚³‚­‚È‚©‚Á‚½–â‘èC³
+  scale0ã®æ™‚ã®ãƒ‡ã‚·ãƒ™ãƒ«å€¤ãŒååˆ†ã«å°ã•ããªã‹ã£ãŸå•é¡Œä¿®æ­£
 
   Revision 1.7  2005/04/12 06:16:12  ida
-  SND‚ğNITRO-SDK‚ÖˆÚİ
+  SNDã‚’NITRO-SDKã¸ç§»è¨­
 
   Revision 1.10  2005/03/24 04:52:01  ida
-  ’˜ìŒ ”NŸ•\‹L‚ğXV
+  è‘—ä½œæ¨©å¹´æ¬¡è¡¨è¨˜ã‚’æ›´æ–°
 
   Revision 1.9  2005/03/23 04:47:05  ida
-  SDK_FROM_TOOL‘Î‰
+  SDK_FROM_TOOLå¯¾å¿œ
 
   Revision 1.8  2004/08/02 05:32:00  ida
   workaround system call
@@ -392,18 +392,18 @@ static const s8 SinTable[SND_SIN_TABLE_SIZE + 1] = {
 /*---------------------------------------------------------------------------*
   Name:         SND_CalcTimer
 
-  Description:  Œ³‚Æ‚È‚éƒ^ƒCƒ}[’l‚É‘Î‚µ‚ÄAƒsƒbƒ`•ÏŠ·‚µ‚½’l‚ğ‹‚ß‚é
+  Description:  å…ƒã¨ãªã‚‹ã‚¿ã‚¤ãƒãƒ¼å€¤ã«å¯¾ã—ã¦ã€ãƒ”ãƒƒãƒå¤‰æ›ã—ãŸå€¤ã‚’æ±‚ã‚ã‚‹
 
-  Arguments:    base_timer : Œ³‚Æ‚È‚éƒ^ƒCƒ}[’l
-                pitch_     : •ÏŠ·ƒsƒbƒ`
+  Arguments:    base_timer : å…ƒã¨ãªã‚‹ã‚¿ã‚¤ãƒãƒ¼å€¤
+                pitch_     : å¤‰æ›ãƒ”ãƒƒãƒ
 
-  Returns:      ƒsƒbƒ`•ÏŠ·Œã‚Ìƒ^ƒCƒ}[’l
+  Returns:      ãƒ”ãƒƒãƒå¤‰æ›å¾Œã®ã‚¿ã‚¤ãƒãƒ¼å€¤
  *---------------------------------------------------------------------------*/
 u16 SND_CalcTimer(int base_timer, int pitch_)
 {
-    u64     timer;                     // Œ‹‰Êƒ^ƒCƒ}[’l
-    int     shift = 0;                 // ƒVƒtƒg—Ê
-    int     pitch = -pitch_;           // ‹t”‚ğ‹‚ß‚é
+    u64     timer;                     // çµæœã‚¿ã‚¤ãƒãƒ¼å€¤
+    int     shift = 0;                 // ã‚·ãƒ•ãƒˆé‡
+    int     pitch = -pitch_;           // é€†æ•°ã‚’æ±‚ã‚ã‚‹
 
     while (pitch < 0)
     {
@@ -463,12 +463,12 @@ u16 SND_CalcTimer(int base_timer, int pitch_)
 /*---------------------------------------------------------------------------*
   Name:         SND_CalcChannelVolume
 
-  Description:  ƒfƒVƒxƒ‹’l‚©‚çƒ`ƒƒƒ“ƒlƒ‹ƒŒƒWƒXƒ^‚ÉƒZƒbƒg‚·‚éƒ{ƒŠƒ…[ƒ€’l‚ğ‹‚ß‚é
+  Description:  ãƒ‡ã‚·ãƒ™ãƒ«å€¤ã‹ã‚‰ãƒãƒ£ãƒ³ãƒãƒ«ãƒ¬ã‚¸ã‚¹ã‚¿ã«ã‚»ãƒƒãƒˆã™ã‚‹ãƒœãƒªãƒ¥ãƒ¼ãƒ å€¤ã‚’æ±‚ã‚ã‚‹
 
-  Arguments:    dB : ƒfƒVƒxƒ‹’l
+  Arguments:    dB : ãƒ‡ã‚·ãƒ™ãƒ«å€¤
 
-  Returns:      ãˆÊ‚WƒrƒbƒgF SNDChannelDataShift
-                ‰ºˆÊ‚WƒrƒbƒgF 0 - 127 scale factor
+  Returns:      ä¸Šä½ï¼˜ãƒ“ãƒƒãƒˆï¼š SNDChannelDataShift
+                ä¸‹ä½ï¼˜ãƒ“ãƒƒãƒˆï¼š 0 - 127 scale factor
  *---------------------------------------------------------------------------*/
 u16 SND_CalcChannelVolume(int dB)
 {
@@ -515,11 +515,11 @@ u16 SND_CalcChannelVolume(int dB)
 /*---------------------------------------------------------------------------*
   Name:         SND_SinIdx
 
-  Description:  sin ‚Ìƒe[ƒuƒ‹’l‚ğQÆ‚µ‚Ü‚·
+  Description:  sin ã®ãƒ†ãƒ¼ãƒ–ãƒ«å€¤ã‚’å‚ç…§ã—ã¾ã™
 
-  Arguments:    index - ƒe[ƒuƒ‹ƒCƒ“ƒfƒbƒNƒX
+  Arguments:    index - ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-  Returns:      sin ‚Ìƒe[ƒuƒ‹’l
+  Returns:      sin ã®ãƒ†ãƒ¼ãƒ–ãƒ«å€¤
  *---------------------------------------------------------------------------*/
 s8 SND_SinIdx(int index)
 {
@@ -543,11 +543,11 @@ s8 SND_SinIdx(int index)
 /*---------------------------------------------------------------------------*
   Name:         SND_CalcRandom
 
-  Description:  —”’l‚ğŒvZ‚µ‚Ü‚·
+  Description:  ä¹±æ•°å€¤ã‚’è¨ˆç®—ã—ã¾ã™
 
   Arguments:    None.
 
-  Returns:      —”’l‚ğ•Ô‚µ‚Ü‚·
+  Returns:      ä¹±æ•°å€¤ã‚’è¿”ã—ã¾ã™
  *---------------------------------------------------------------------------*/
 u16 SND_CalcRandom(void)
 {

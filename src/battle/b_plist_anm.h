@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	b_plist_anm.h
- * @brief	�퓬�p�|�P�������X�g��� �{�^������
+ * @brief	戦闘用ポケモンリスト画面 ボタン制御
  * @author	Hiroyuki Nakamura
  * @date	05.03.16
  */
@@ -17,61 +17,61 @@
 
 
 //============================================================================================
-//	�萔��`
+//	定数定義
 //============================================================================================
-// �{�^��ID
+// ボタンID
 enum {
-	BPL_BUTTON_POKE1 = 0,	// �|�P�����P
-	BPL_BUTTON_POKE2,		// �|�P�����Q
-	BPL_BUTTON_POKE3,		// �|�P�����R
-	BPL_BUTTON_POKE4,		// �|�P�����S
-	BPL_BUTTON_POKE5,		// �|�P�����T
-	BPL_BUTTON_POKE6,		// �|�P�����U
-	BPL_BUTTON_RET,			// �߂�
-	BPL_BUTTON_POKE_CHG,	// ����ւ�
-	BPL_BUTTON_STATUS1,		// ����������i���z�u�j
-	BPL_BUTTON_STATUS2,		// ����������i�E�z�u�j
-	BPL_BUTTON_WAZASEL1,	// �Z������
-	BPL_BUTTON_WAZASEL2,	// �Z������i�P�Ɓj
-	BPL_BUTTON_UP,			// �؂�ւ��i��j
-	BPL_BUTTON_DOWN,		// �؂�ւ��i���j
-	BPL_BUTTON_WAZA1,		// �Z�P
-	BPL_BUTTON_WAZA2,		// �Z�Q
-	BPL_BUTTON_WAZA3,		// �Z�R
-	BPL_BUTTON_WAZA4,		// �Z�S
-	BPL_BUTTON_CONTEST,		// �R���e�X�g�Z<->�키�Z
+	BPL_BUTTON_POKE1 = 0,	// ポケモン１
+	BPL_BUTTON_POKE2,		// ポケモン２
+	BPL_BUTTON_POKE3,		// ポケモン３
+	BPL_BUTTON_POKE4,		// ポケモン４
+	BPL_BUTTON_POKE5,		// ポケモン５
+	BPL_BUTTON_POKE6,		// ポケモン６
+	BPL_BUTTON_RET,			// 戻る
+	BPL_BUTTON_POKE_CHG,	// 入れ替え
+	BPL_BUTTON_STATUS1,		// 強さを見る（左配置）
+	BPL_BUTTON_STATUS2,		// 強さを見る（右配置）
+	BPL_BUTTON_WAZASEL1,	// 技を見る
+	BPL_BUTTON_WAZASEL2,	// 技を見る（単独）
+	BPL_BUTTON_UP,			// 切り替え（上）
+	BPL_BUTTON_DOWN,		// 切り替え（下）
+	BPL_BUTTON_WAZA1,		// 技１
+	BPL_BUTTON_WAZA2,		// 技２
+	BPL_BUTTON_WAZA3,		// 技３
+	BPL_BUTTON_WAZA4,		// 技４
+	BPL_BUTTON_CONTEST,		// コンテスト技<->戦う技
 
-	BPL_BUTTON_WAZARCV1,	// �Z�񕜂P
-	BPL_BUTTON_WAZARCV2,	// �Z�񕜂Q
-	BPL_BUTTON_WAZARCV3,	// �Z�񕜂R
-	BPL_BUTTON_WAZARCV4,	// �Z�񕜂S
+	BPL_BUTTON_WAZARCV1,	// 技回復１
+	BPL_BUTTON_WAZARCV2,	// 技回復２
+	BPL_BUTTON_WAZARCV3,	// 技回復３
+	BPL_BUTTON_WAZARCV4,	// 技回復４
 
-	BPL_BUTTON_WAZADEL1,	// �Z�Y��P
-	BPL_BUTTON_WAZADEL2,	// �Z�Y��Q
-	BPL_BUTTON_WAZADEL3,	// �Z�Y��R
-	BPL_BUTTON_WAZADEL4,	// �Z�Y��S
-	BPL_BUTTON_WAZADEL5,	// �Z�Y��T
+	BPL_BUTTON_WAZADEL1,	// 技忘れ１
+	BPL_BUTTON_WAZADEL2,	// 技忘れ２
+	BPL_BUTTON_WAZADEL3,	// 技忘れ３
+	BPL_BUTTON_WAZADEL4,	// 技忘れ４
+	BPL_BUTTON_WAZADEL5,	// 技忘れ５
 
-	BPL_BUTTON_WAZADEL_B,	// �Y�ꂳ����i�퓬�j
-	BPL_BUTTON_WAZADEL_C,	// �Y�ꂳ����i�R���e�X�g�j
+	BPL_BUTTON_WAZADEL_B,	// 忘れさせる（戦闘）
+	BPL_BUTTON_WAZADEL_C,	// 忘れさせる（コンテスト）
 
-	BPL_BUTTON_WAZAPOS1,	// �Z�؂�ւ��P
-	BPL_BUTTON_WAZAPOS2,	// �Z�؂�ւ��Q
-	BPL_BUTTON_WAZAPOS3,	// �Z�؂�ւ��R
-	BPL_BUTTON_WAZAPOS4,	// �Z�؂�ւ��S
+	BPL_BUTTON_WAZAPOS1,	// 技切り替え１
+	BPL_BUTTON_WAZAPOS2,	// 技切り替え２
+	BPL_BUTTON_WAZAPOS3,	// 技切り替え３
+	BPL_BUTTON_WAZAPOS4,	// 技切り替え４
 };
 
 
 //============================================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * �{�^���X�N���[���쐬�P
+ * ボタンスクリーン作成１
  *
- * @param	wk		�퓬�|�P���X�g���[�N
- * @param	scrn	�O���t�B�b�N�f�[�^
+ * @param	wk		戦闘ポケリストワーク
+ * @param	scrn	グラフィックデータ
  *
  * @return	none
  */
@@ -80,10 +80,10 @@ GLOBAL void BattlePokeList_ButtonScreenMake( BPLIST_WORK * wk, u16 * scrn );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �{�^���X�N���[���쐬�Q
+ * ボタンスクリーン作成２
  *
- * @param	wk		�퓬�|�P���X�g���[�N
- * @param	scrn	�O���t�B�b�N�f�[�^
+ * @param	wk		戦闘ポケリストワーク
+ * @param	scrn	グラフィックデータ
  *
  * @return	none
  */
@@ -92,10 +92,10 @@ GLOBAL void BattlePokeList_ButtonScreenMake2( BPLIST_WORK * wk, u16 * scrn );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �{�^���A�j��������
+ * ボタンアニメ初期化
  *
- * @param	wk		�퓬�|�P���X�g�̃��[�N
- * @param	id		�{�^��ID
+ * @param	wk		戦闘ポケリストのワーク
+ * @param	id		ボタンID
  *
  * @return	none
  */
@@ -104,9 +104,9 @@ GLOBAL void BattlePokeList_ButtonAnmInit( BPLIST_WORK * wk, u8 id );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �{�^���A�j�����C��
+ * ボタンアニメメイン
  *
- * @param	wk		�퓬�|�P���X�g�̃��[�N
+ * @param	wk		戦闘ポケリストのワーク
  *
  * @return	none
  */
@@ -115,10 +115,10 @@ GLOBAL void BattlePokeList_ButtonAnmMain( BPLIST_WORK * wk );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �{�^��BG������
+ * ボタンBG初期化
  *
- * @param	wk		�퓬�|�P���X�g�̃��[�N
- * @param	page	�y�[�W�ԍ�
+ * @param	wk		戦闘ポケリストのワーク
+ * @param	page	ページ番号
  *
  * @return	none
  */
@@ -127,10 +127,10 @@ GLOBAL void BattlePokeList_ButtonPageScreenInit( BPLIST_WORK * wk, u8 page );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �{�^���̃p���b�g���Z�b�g
+ * ボタンのパレットをセット
  *
- * @param	wk		�퓬�|�P���X�g�̃��[�N
- * @param	page	�y�[�W�ԍ�
+ * @param	wk		戦闘ポケリストのワーク
+ * @param	page	ページ番号
  *
  * @return	none
  */
@@ -139,9 +139,9 @@ GLOBAL void BattlePokeList_ButtonPalSet( BPLIST_WORK * wk, u8 page );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �m���񕜎��ɋ����I�Ƀv���[�g�̐F��ς���
+ * 瀕死回復時に強制的にプレートの色を変える
  *
- * @param	wk		�퓬�|�P���X�g���[�N
+ * @param	wk		戦闘ポケリストワーク
  *
  * @return	none
  */

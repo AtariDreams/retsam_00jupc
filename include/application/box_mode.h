@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	box_mode.h
- * @brief	�{�b�N�X��ʂ̌Ăяo�����[�h��`�i�X�N���v�g����Q�Ƃł���悤��box.h����Ɨ��������j
+ * @brief	ボックス画面の呼び出しモード定義（スクリプトから参照できるようにbox.hから独立させた）
  * @author	taya
  * @date	2006.03.22
  */
@@ -11,13 +11,13 @@
 
 //------------------------------------------------------
 /**
- * �{�b�N�X��ʓ��샂�[�h
+ * ボックス画面動作モード
  */
 //------------------------------------------------------
-#define BOX_MODE_AZUKERU	(0)		///< ��������
-#define BOX_MODE_TURETEIKU	(1)		///< ��Ă���
-#define BOX_MODE_SEIRI		(2)		///< ������
-#define BOX_MODE_ITEM		(3)		///< �ǂ���������
-#define BOX_MODE_COMPARE	(4)		///< �悳�����
+#define BOX_MODE_AZUKERU	(0)		///< あずける
+#define BOX_MODE_TURETEIKU	(1)		///< つれていく
+#define BOX_MODE_SEIRI		(2)		///< せいり
+#define BOX_MODE_ITEM		(3)		///< どうぐせいり
+#define BOX_MODE_COMPARE	(4)		///< つよさくらべ
 
 #endif

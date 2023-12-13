@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_player_condition.h
- * @bfief	’ÊMƒvƒŒ[ƒ„[‚Ìó‘ÔŠÇ—  player‚Éhas‚³‚ê‚é
+ * @bfief	é€šä¿¡ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®çŠ¶æ…‹ç®¡ç†  playerã«hasã•ã‚Œã‚‹
  * @author	katsumi ohno
  * @date	05/10/19
  */
@@ -13,15 +13,15 @@
 //==============================================================================
 //	enum
 //==============================================================================
-// “à•”ó‘Ô‚ðŽ¦‚·
+// å†…éƒ¨çŠ¶æ…‹ã‚’ç¤ºã™
 typedef enum{
   PLAYER_COND_NONE,
-  PLAYER_COND_GIDDY,   // –Ú‰ñ‚µó‘Ô
-  PLAYER_COND_SMOG,   // –¶ó‘Ô
-  PLAYER_COND_FORCE_MOVE,  // ‹­§ˆÚ“®
-  PLAYER_COND_HOLE,  // ‚ ‚È
-  PLAYER_COND_STOP,  // ’âŽ~
-  PLAYER_COND_SLOW,  // ‚¨‚»‚¢ ‚Ì‚ë‚¢
+  PLAYER_COND_GIDDY,   // ç›®å›žã—çŠ¶æ…‹
+  PLAYER_COND_SMOG,   // éœ§çŠ¶æ…‹
+  PLAYER_COND_FORCE_MOVE,  // å¼·åˆ¶ç§»å‹•
+  PLAYER_COND_HOLE,  // ã‚ãª
+  PLAYER_COND_STOP,  // åœæ­¢
+  PLAYER_COND_SLOW,  // ãŠãã„ ã®ã‚ã„
 };
 
 //==============================================================================

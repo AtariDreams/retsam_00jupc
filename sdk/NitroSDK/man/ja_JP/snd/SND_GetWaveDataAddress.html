@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SND_GetWaveDataAddress</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,7 +11,7 @@
 <div></div>
 </div>
 <h1>SND_GetWaveDataAddress</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">const SNDWaveData* SND_GetWaveDataAddress(
@@ -19,7 +19,7 @@
         int <var>index</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA0LWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -27,11 +27,11 @@
 <tbody>
 <tr>
 <td><em><strong><code>waveArc</code></strong></em></td>
-<td>�g�`�A�[�J�C�u�̃|�C���^�ł��B</td>
+<td>波形アーカイブのポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>index</code></strong></em></td>
-<td>�g�`�f�[�^�̃C���f�b�N�X�ԍ��ł��B</td>
+<td>波形データのインデックス番号です。</td>
 </tr>
 </tbody>
 </table>
@@ -39,20 +39,20 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAQMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p><a href="SNDWaveData.html">SNDWaveData</a>�^�̔g�`�f�[�^�̃A�h���X���擾���܂��B</p>
+      <p><a href="SNDWaveData.html">SNDWaveData</a>型の波形データのアドレスを取得します。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDA1MWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�g�`�A�[�J�C�u���̔g�`�f�[�^�̃A�h���X���擾���܂��B
+波形アーカイブ中の波形データのアドレスを取得します。
 </p>
     </div>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><a href="SNDWaveData.html">SNDWaveData</a></p>
-<h2>����</h2>
-<p>2005/01/20 ����<br></p>
+<h2>履歴</h2>
+<p>2005/01/20 初版<br></p>
 </div>
 </body>
 </html>

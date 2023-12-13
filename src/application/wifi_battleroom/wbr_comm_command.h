@@ -22,44 +22,44 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 enum WbrCommCommand {
 
 	//-------------------------------------
-	//@ƒQ[ƒ€—p
+	//ã€€ã‚²ãƒ¼ãƒ ç”¨
 	//=====================================
-	// “¯Šú—p	
-	CNM_WBR_GAME_SYS_START = CS_COMMAND_MAX,	///< OYA->KO €”õŠ®—¹
-	CNM_WBR_GAME_SYS_GAMESTART,					///< OYA->KO ’ÊMˆ—ƒXƒ^[ƒg
-	CNM_WBR_GAME_SYS_END,						///< OYA->KO I—¹ 
+	// åŒæœŸç”¨	
+	CNM_WBR_GAME_SYS_START = CS_COMMAND_MAX,	///< OYA->KO æº–å‚™å®Œäº†
+	CNM_WBR_GAME_SYS_GAMESTART,					///< OYA->KO é€šä¿¡å‡¦ç†ã‚¹ã‚¿ãƒ¼ãƒˆ
+	CNM_WBR_GAME_SYS_END,						///< OYA->KO çµ‚äº† 
 	
-	// ƒf[ƒ^ŽóM—p
-	CNM_WBR_KO_COMMON,		///< KO->OYA ‹¤’Êƒf[ƒ^
-	CNM_WBR_KO_GAMEDATA,	///< KO->OYA ƒQ[ƒ€ƒRƒ}ƒ“ƒh
-	CNM_WBR_OYA_GAMEDATA,	///< OYA->KO ƒQ[ƒ€ó‘Ôƒf[ƒ^
-	CNM_WBR_KO_OYADATA_GET,	///< KO->OYA Œ»Ý‚ÌƒQ[ƒ€ó‘Ô‹­§Žæ“¾
-	CNM_WBR_KO_TALKDATA,	///< KO->OYA ˜b‚µ‚©‚¯ƒf[ƒ^
-	CNM_WBR_KO_TALKREQ,		///< KO->OYA ˜b‚µ‚©‚¯ƒŠƒNƒGƒXƒg
+	// ãƒ‡ãƒ¼ã‚¿å—ä¿¡ç”¨
+	CNM_WBR_KO_COMMON,		///< KO->OYA å…±é€šãƒ‡ãƒ¼ã‚¿
+	CNM_WBR_KO_GAMEDATA,	///< KO->OYA ã‚²ãƒ¼ãƒ ã‚³ãƒžãƒ³ãƒ‰
+	CNM_WBR_OYA_GAMEDATA,	///< OYA->KO ã‚²ãƒ¼ãƒ çŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿
+	CNM_WBR_KO_OYADATA_GET,	///< KO->OYA ç¾åœ¨ã®ã‚²ãƒ¼ãƒ çŠ¶æ…‹å¼·åˆ¶å–å¾—
+	CNM_WBR_KO_TALKDATA,	///< KO->OYA è©±ã—ã‹ã‘ãƒ‡ãƒ¼ã‚¿
+	CNM_WBR_KO_TALKREQ,		///< KO->OYA è©±ã—ã‹ã‘ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 
 	//-------------------------------------
 	//	
 	//=====================================
 	
-	//------------------------------------------------‚±‚±‚Ü‚Å
-	CNM_COMMAND_MAX   // I’[--------------‚±‚ê‚ÍˆÚ“®‚³‚¹‚È‚¢‚Å‚­‚¾‚³‚¢
+	//------------------------------------------------ã“ã“ã¾ã§
+	CNM_COMMAND_MAX   // çµ‚ç«¯--------------ã“ã‚Œã¯ç§»å‹•ã•ã›ãªã„ã§ãã ã•ã„
 };
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL const CommPacketTbl* Wbr_CommCommandTclGet( void );

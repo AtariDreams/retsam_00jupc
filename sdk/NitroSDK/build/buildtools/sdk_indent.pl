@@ -18,7 +18,7 @@
 # change SDK prefix iris -> nitro
 #
 # Revision 1.1  2003/12/01 11:17:08  nishida_kenji
-# V‹K
+# æ–°è¦
 #
 # $NoKeywords: $
 ##############################################################################
@@ -33,15 +33,15 @@ foreach $filename (@ARGV) {
 
   close(INFILE);
 
-  next if ($intext =~ m/\Wasm\W/s); #asm‚ª‚ ‚Á‚½‚ç‰½‚à‚µ‚È‚¢I
+  next if ($intext =~ m/\Wasm\W/s); #asmãŒã‚ã£ãŸã‚‰ä½•ã‚‚ã—ãªã„ï¼
   {
-    # intextˆ—•”
-    $intext =~ s/extern\s+\"C\"[^{]*\{/extern \"C\";/s;   # extern "C" {‚ÌƒJƒbƒR‚ª×–‚
+    # intextå‡¦ç†éƒ¨
+    $intext =~ s/extern\s+\"C\"[^{]*\{/extern \"C\";/s;   # extern "C" {ã®ã‚«ãƒƒã‚³ãŒé‚ªé­”
     $intext =~ s/\#ifdef\s+__cplusplus\s+\}/\#ifdef __cplusplus\n\/* \} *\//s;
   }
 
   {
-    # open2‚ª‚¨‚©‚µ‚¢‚Ì‚Åƒxƒ^‚É‘‚­‚±‚Æ‚É‚·‚é
+    # open2ãŒãŠã‹ã—ã„ã®ã§ãƒ™ã‚¿ã«æ›¸ãã“ã¨ã«ã™ã‚‹
     open OUTFILE, ">indent.tmp" or die "cannot open outfile indent.tmp\n";
     print OUTFILE $intext;
     close(OUTFILE);
@@ -69,8 +69,8 @@ unlink("indent.tmp~");
 close(INFILE2);
 
 {
-  # outtextˆ—•”
-  $outtext =~ s/extern\s+\"C\";/extern \"C\" \{/s;   # extern "C" {‚ÌƒJƒbƒR‚ğ‚Â‚¯‚é
+  # outtextå‡¦ç†éƒ¨
+  $outtext =~ s/extern\s+\"C\";/extern \"C\" \{/s;   # extern "C" {ã®ã‚«ãƒƒã‚³ã‚’ã¤ã‘ã‚‹
   $outtext =~ s/\#ifdef\s+__cplusplus\s+\/\* \} \*\//\#ifdef __cplusplus\n\}/s;
 }
 

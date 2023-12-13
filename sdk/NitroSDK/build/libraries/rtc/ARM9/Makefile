@@ -13,13 +13,13 @@
 #
 # $Log: Makefile,v $
 # Revision 1.8  2005/05/18 03:54:06  seiki_masashi
-# comment ‚ÌC³
+# comment ã®ä¿®æ­£
 #
 # Revision 1.7  2005/05/18 02:55:03  seiki_masashi
-# copyright •\‹L‚ÌC³
+# copyright è¡¨è¨˜ã®ä¿®æ­£
 #
 # Revision 1.6  2005/05/17 12:53:45  seiki_masashi
-# •ÏŠ·ŠÖ”‚Ì’Ç‰Á
+# å¤‰æ›é–¢æ•°ã®è¿½åŠ 
 #
 # Revision 1.5  2004/08/27 09:22:05  yasu
 # Fix around NITRO_CODEGEN_ALL

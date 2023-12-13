@@ -2,12 +2,12 @@
 /**
  *
  *	@file		laster.h
- *	@brief		ƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ *	@brief		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2005.12.01
  *
- * LABEL	LABEL_LASTER_SYS		ƒ‰ƒXƒ^[ƒVƒXƒeƒ€
- * LABEL	LABEL_LASTER_RAP_FUNC	ƒ‰ƒXƒ^[ƒVƒXƒeƒ€‚ðŽg—p‚µ‚½”Ä—pŠÖ”ŒS
+ * LABEL	LABEL_LASTER_SYS		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ * LABEL	LABEL_LASTER_RAP_FUNC	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ã‚’ä½¿ç”¨ã—ãŸæ±Žç”¨é–¢æ•°éƒ¡
  * 
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -24,20 +24,20 @@
 //-----------------------------------------------------------------------------
 /**
  *
- * ƒ‰ƒXƒ^[ƒVƒXƒeƒ€à–¾		[ LABEL_LASTER_SYS ]
- *	ƒ‰ƒXƒ^[ƒVƒXƒeƒ€\‘¢
- *		‘‚«ž‚Ý—pƒoƒbƒtƒ@AŽQÆ—pƒoƒbƒtƒ@‚Ì‚Q‚Â‚ð‰Šú‰»ŠÖ”‚ÅÝ’è‚µ‚Ü‚·B
- *		‚P‚Â‚ª‘‚«ž‚Ý—pƒoƒbƒtƒ@‚ÌŽžA‚à‚¤ˆê•û‚ÍŽQÆ—pƒoƒbƒtƒ@‚É‚È‚è‚Ü‚·B
+ * ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ èª¬æ˜Ž		[ LABEL_LASTER_SYS ]
+ *	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ 
+ *		æ›¸ãè¾¼ã¿ç”¨ãƒãƒƒãƒ•ã‚¡ã€å‚ç…§ç”¨ãƒãƒƒãƒ•ã‚¡ã®ï¼’ã¤ã‚’åˆæœŸåŒ–é–¢æ•°ã§è¨­å®šã—ã¾ã™ã€‚
+ *		ï¼‘ã¤ãŒæ›¸ãè¾¼ã¿ç”¨ãƒãƒƒãƒ•ã‚¡ã®æ™‚ã€ã‚‚ã†ä¸€æ–¹ã¯å‚ç…§ç”¨ãƒãƒƒãƒ•ã‚¡ã«ãªã‚Šã¾ã™ã€‚
  *
- *		‘‚«ž‚Ý‚ªI‚í‚Á‚½‚çA‘‚«ž‚Ýƒoƒbƒtƒ@‚ðŽQÆ—p‚ÉŽQÆ—p‚ð‘‚«ž‚Ý—p‚É
- *		ƒXƒCƒbƒ`‚µ‚Ü‚·Biƒ_ƒuƒ‹ƒoƒbƒtƒ@ˆ—j
+ *		æ›¸ãè¾¼ã¿ãŒçµ‚ã‚ã£ãŸã‚‰ã€æ›¸ãè¾¼ã¿ãƒãƒƒãƒ•ã‚¡ã‚’å‚ç…§ç”¨ã«å‚ç…§ç”¨ã‚’æ›¸ãè¾¼ã¿ç”¨ã«
+ *		ã‚¹ã‚¤ãƒƒãƒã—ã¾ã™ã€‚ï¼ˆãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡å‡¦ç†ï¼‰
  *
- *		‰Šú‰»ŠÖ”‚ÅÝ’è‚µ‚½‚Q‚Â‚Ìƒoƒbƒtƒ@‚Í‚Ç‚¿‚ç‚ªA‘‚«ž‚Ý—p‚©ŽQÆ—p‚©
- *		Žg—p‚·‚éƒ†[ƒU[‚©‚ç‚ÍA‚í‚©‚è‚Ü‚¹‚ñB
- *		ƒoƒbƒtƒ@‚ðŽg—p‚·‚é‚Æ‚«‚Í•K‚¸–ŠÖ”‚ðŽg—p‚µ‚Ä”z—ñ‚Ìæ“ªƒ|ƒCƒ“ƒ^‚ð
- *		Žæ“¾‚µ‚Ä‚­‚¾‚³‚¢B
+ *		åˆæœŸåŒ–é–¢æ•°ã§è¨­å®šã—ãŸï¼’ã¤ã®ãƒãƒƒãƒ•ã‚¡ã¯ã©ã¡ã‚‰ãŒã€æ›¸ãè¾¼ã¿ç”¨ã‹å‚ç…§ç”¨ã‹
+ *		ä½¿ç”¨ã™ã‚‹ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‹ã‚‰ã¯ã€ã‚ã‹ã‚Šã¾ã›ã‚“ã€‚
+ *		ãƒãƒƒãƒ•ã‚¡ã‚’ä½¿ç”¨ã™ã‚‹ã¨ãã¯å¿…ãšï¼Šé–¢æ•°ã‚’ä½¿ç”¨ã—ã¦é…åˆ—ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿ã‚’
+ *		å–å¾—ã—ã¦ãã ã•ã„ã€‚
  *
- *		–Žæ“¾ŠÖ”
+ *		ï¼Šå–å¾—é–¢æ•°
  *			void* LASTER_GetWriteBuff( CONST_LASTER_SYS_PTR cp_laster );
  *			const void* LASTER_GetReadBuff( CONST_LASTER_SYS_PTR cp_laster );
  *			
@@ -46,28 +46,28 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
 //	
-//	ƒXƒCƒbƒ`ƒtƒ‰ƒO
+//	ã‚¹ã‚¤ãƒƒãƒãƒ•ãƒ©ã‚°
 //	
 //=====================================
 enum{
-	LASTER_SWITCH_OFF,	// ƒoƒbƒtƒ@ƒXƒCƒbƒ`–³Œø
-	LASTER_SWITCH_ON,	// ƒoƒbƒtƒ@ƒXƒCƒbƒ`—LŒø
+	LASTER_SWITCH_OFF,	// ãƒãƒƒãƒ•ã‚¡ã‚¹ã‚¤ãƒƒãƒç„¡åŠ¹
+	LASTER_SWITCH_ON,	// ãƒãƒƒãƒ•ã‚¡ã‚¹ã‚¤ãƒƒãƒæœ‰åŠ¹
 };
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒ‰ƒXƒ^[ƒVƒXƒeƒ€\‘¢‘Ì
+//	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct _LASTER_SYS * LASTER_SYS_PTR;
@@ -76,19 +76,19 @@ typedef const struct _LASTER_SYS * CONST_LASTER_SYS_PTR;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	heap	Žg—p‚·‚éƒq[ƒv
- *	@param	p_buff1	ƒoƒbƒtƒ@‚P
- *	@param	p_buff2	ƒoƒbƒtƒ@‚Q
+ *	@param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	p_buff1	ãƒãƒƒãƒ•ã‚¡ï¼‘
+ *	@param	p_buff2	ãƒãƒƒãƒ•ã‚¡ï¼’
  *
- *	@return	ì¬‚µ‚½ƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ *	@return	ä½œæˆã—ãŸãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
  */
 //-----------------------------------------------------------------------------
@@ -97,9 +97,9 @@ GLOBAL LASTER_SYS_PTR LASTER_Init( int heap, void* p_buff1, void* p_buff2 );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ƒVƒXƒeƒ€”jŠü
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	lster	”jŠü‚·‚éƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ *	@param	lster	ç ´æ£„ã™ã‚‹ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
@@ -111,11 +111,11 @@ GLOBAL void LASTER_Delete( LASTER_SYS_PTR p_laster );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‘‚«ž‚Ý—pƒ‰ƒXƒ^[ƒoƒbƒtƒ@‚ðŽæ“¾
+ *	@brief	æ›¸ãè¾¼ã¿ç”¨ãƒ©ã‚¹ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—
  *
- *	@param	cp_laster	ƒ‰ƒXƒ^[ƒXƒXƒeƒ€
+ *	@param	cp_laster	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¹ãƒ†ãƒ 
  *
- *	@return	‘‚«ž‚Ý—pƒ‰ƒXƒ^[ƒoƒbƒtƒ@
+ *	@return	æ›¸ãè¾¼ã¿ç”¨ãƒ©ã‚¹ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡
  *
  *
  */
@@ -125,11 +125,11 @@ GLOBAL void* LASTER_GetWriteBuff( CONST_LASTER_SYS_PTR cp_laster );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ŽQÆ—pƒ‰ƒXƒ^[ƒoƒbƒtƒ@‚ðŽæ“¾
+ *	@brief	å‚ç…§ç”¨ãƒ©ã‚¹ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—
  *
- *	@param	cp_laster	ƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ *	@param	cp_laster	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ŽQÆ—pƒ‰ƒXƒ^[ƒoƒbƒtƒ@
+ *	@return	å‚ç…§ç”¨ãƒ©ã‚¹ã‚¿ãƒ¼ãƒãƒƒãƒ•ã‚¡
  *
  *
  */
@@ -139,18 +139,18 @@ GLOBAL const void* LASTER_GetReadBuff( CONST_LASTER_SYS_PTR cp_laster );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒoƒbƒtƒ@ƒXƒCƒbƒ`ƒtƒ‰ƒO‚ðÝ’è‚µ‚Ü‚·B
+ *	@brief	ãƒãƒƒãƒ•ã‚¡ã‚¹ã‚¤ãƒƒãƒãƒ•ãƒ©ã‚°ã‚’è¨­å®šã—ã¾ã™ã€‚
  *
- *	@param	p_laster	ƒ‰ƒXƒ^[ƒVƒXƒeƒ€
- *	@param	switch_flag	ƒXƒCƒbƒ`ƒtƒ‰ƒO
+ *	@param	p_laster	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	switch_flag	ã‚¹ã‚¤ãƒƒãƒãƒ•ãƒ©ã‚°
  *
  *	@return	none
  *
  * switch_flag	
- *	LASTER_SWITCH_ON,	// ƒoƒbƒtƒ@ƒXƒCƒbƒ`—LŒø
- *	LASTER_SWITCH_OFF	// ƒoƒbƒtƒ@ƒXƒCƒbƒ`–³Œø
+ *	LASTER_SWITCH_ON,	// ãƒãƒƒãƒ•ã‚¡ã‚¹ã‚¤ãƒƒãƒæœ‰åŠ¹
+ *	LASTER_SWITCH_OFF	// ãƒãƒƒãƒ•ã‚¡ã‚¹ã‚¤ãƒƒãƒç„¡åŠ¹
  * 
- *	LASTERE_InitŠÖ”‚ðŒÄ‚ñ‚¾ó‘Ô‚Åƒoƒbƒtƒ@ƒXƒCƒbƒ`‚Í—LŒø‚É‚È‚Á‚Ä‚¢‚Ü‚·B
+ *	LASTERE_Inité–¢æ•°ã‚’å‘¼ã‚“ã çŠ¶æ…‹ã§ãƒãƒƒãƒ•ã‚¡ã‚¹ã‚¤ãƒƒãƒã¯æœ‰åŠ¹ã«ãªã£ã¦ã„ã¾ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 GLOBAL void LASTER_SwitchFlagSet( LASTER_SYS_PTR p_laster, u8 switch_flag );
@@ -158,15 +158,15 @@ GLOBAL void LASTER_SwitchFlagSet( LASTER_SYS_PTR p_laster, u8 switch_flag );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[@Vƒuƒ‰ƒ“ƒNŠÖ”
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã€€Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°
  *
- *	@param	p_laster	ƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+ *	@param	p_laster	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
- * ƒoƒbƒtƒ@ƒXƒCƒbƒ`ƒtƒ‰ƒO‚ª—LŒø‚Ì‚Æ‚«
- *		‘‚«ž‚Ý—pƒoƒbƒtƒ@‚ðŽQÆ—p‚É
- *		ŽQÆ—pƒoƒbƒtƒ@‚ð‘‚«ž‚Ý—p‚É•ÏX‚µ‚Ü‚·B
+ * ãƒãƒƒãƒ•ã‚¡ã‚¹ã‚¤ãƒƒãƒãƒ•ãƒ©ã‚°ãŒæœ‰åŠ¹ã®ã¨ã
+ *		æ›¸ãè¾¼ã¿ç”¨ãƒãƒƒãƒ•ã‚¡ã‚’å‚ç…§ç”¨ã«
+ *		å‚ç…§ç”¨ãƒãƒƒãƒ•ã‚¡ã‚’æ›¸ãè¾¼ã¿ç”¨ã«å¤‰æ›´ã—ã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -177,21 +177,21 @@ GLOBAL void LASTER_VBlank( LASTER_SYS_PTR p_laster );
 //-----------------------------------------------------------------------------
 /**
  * 
- *		ƒ‰ƒXƒ^[ƒVƒXƒeƒ€‚ðŽg—p‚µ‚½”Ä—pŠÖ”ŒS	[ LABEL_LASTER_RAP_FUNC ]
+ *		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ã‚’ä½¿ç”¨ã—ãŸæ±Žç”¨é–¢æ•°éƒ¡	[ LABEL_LASTER_RAP_FUNC ]
  *		
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
  *
- *		ƒ‰ƒXƒ^[Hƒuƒ‰ƒ“ƒNDMA“]‘—ŠÖ”
+ *		ãƒ©ã‚¹ã‚¿ãƒ¼Hãƒ–ãƒ©ãƒ³ã‚¯DMAè»¢é€é–¢æ•°
  * 
  */
 //-----------------------------------------------------------------------------
-// ’ÊMŽž‚âƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^“]‘—Žž‚É
-// ‚¨‚©‚µ‚È‚±‚Æ‚ª‹N‚±‚ç‚È‚¢‚©‚ÌŽÀŒ±‚ª•K—v‚Å‚·‚ªA
-// ¡‚Ì‚Æ‚±‚ë‚Í0‚É‚µ‚Ä‚¨‚«‚Ü‚·B
-#define LASTER_USE_DMA	(0)		// Žg—p‚·‚éDMAƒiƒ“ƒo[
+// é€šä¿¡æ™‚ã‚„ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è»¢é€æ™‚ã«
+// ãŠã‹ã—ãªã“ã¨ãŒèµ·ã“ã‚‰ãªã„ã‹ã®å®Ÿé¨“ãŒå¿…è¦ã§ã™ãŒã€
+// ä»Šã®ã¨ã“ã‚ã¯0ã«ã—ã¦ãŠãã¾ã™ã€‚
+#define LASTER_USE_DMA	(0)		// ä½¿ç”¨ã™ã‚‹DMAãƒŠãƒ³ãƒãƒ¼
 enum{
 	LASTER_DMA_TYPE16,
 	LASTER_DMA_TYPE32
@@ -200,7 +200,7 @@ enum{
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[‚ÅŽg—p‚·‚éDMA‚ð’âŽ~‚·‚é
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã§ä½¿ç”¨ã™ã‚‹DMAã‚’åœæ­¢ã™ã‚‹
  *
  *	@param	none
  *
@@ -214,17 +214,17 @@ GLOBAL void LASTER_DmaStop( void );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	Hƒuƒ‰ƒ“ƒNDMA“]‘—ƒpƒ‰ƒ[ƒ^Ý’è
+ *	@brief	Hãƒ–ãƒ©ãƒ³ã‚¯DMAè»¢é€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	p_src		“]‘—Œ³
- *	@param	p_dest		“]‘—æ
- *	@param	szbyte		“]‘—ƒTƒCƒY	i‚P‰ñ‚Ì“]‘—‚Å“]‘—‚·‚éƒTƒCƒYj
+ *	@param	p_src		è»¢é€å…ƒ
+ *	@param	p_dest		è»¢é€å…ˆ
+ *	@param	szbyte		è»¢é€ã‚µã‚¤ã‚º	ï¼ˆï¼‘å›žã®è»¢é€ã§è»¢é€ã™ã‚‹ã‚µã‚¤ã‚ºï¼‰
  *	@param	dma_type
  *
  *	@return	none
  *
- *	LASTER_DMA_TYPE16,	16bit’PˆÊ
- *	LASTER_DMA_TYPE32	32bit’PˆÊ
+ *	LASTER_DMA_TYPE16,	16bitå˜ä½
+ *	LASTER_DMA_TYPE32	32bitå˜ä½
  *
  */
 //-----------------------------------------------------------------------------
@@ -233,14 +233,14 @@ GLOBAL void LASTER_DmaSet( const void* p_src, void* p_dest, int szbyte, int dma_
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹
- *			DMA“]‘—Žg—p
+ *		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
+ *			DMAè»¢é€ä½¿ç”¨
 */
 //-----------------------------------------------------------------------------
-#define LASTER_SCROLL_BUFF_SIZE	(192)	// ƒoƒbƒtƒ@ƒTƒCƒY
+#define LASTER_SCROLL_BUFF_SIZE	(192)	// ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-// BG–Ê’è”
-// ƒXƒNƒ[ƒ‹ƒŒƒWƒXƒ^@‚˜À•WƒAƒhƒŒƒX
+// BGé¢å®šæ•°
+// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¬ã‚¸ã‚¹ã‚¿ã€€ï½˜åº§æ¨™ã‚¢ãƒ‰ãƒ¬ã‚¹
 enum{
 	LASTER_SCROLL_MBG0 = REG_BG0HOFS_ADDR,
 	LASTER_SCROLL_MBG1 = REG_BG1HOFS_ADDR,
@@ -257,11 +257,11 @@ typedef const struct _LASTER_SCROLL* CONST_LASTER_SCROLL_PTR;
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒIƒuƒWƒF¶¬
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§ç”Ÿæˆ
  *
- *	@param	heap	ƒq[ƒv
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ì¬‚µ‚½ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒIƒuƒWƒF
+ *	@return	ä½œæˆã—ãŸãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚ªãƒ–ã‚¸ã‚§
  *
  *
  */
@@ -271,27 +271,27 @@ GLOBAL LASTER_SCROLL_PTR LASTER_ScrollInit( int heap );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ŠJŽn
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é–‹å§‹
  *
- *	@param	start		ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹‚³‚¹‚éŠJŽn‚™À•W
- *	@param	end			ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹‚³‚¹‚éI—¹‚™À•W
- *	@param	add_r		sinƒJ[ƒuƒe[ƒuƒ‹ì¬Žž‚ÌŠp“x‚ð‘«‚µ‚Ä‚¢‚­’l(0`65535)
- *	@param	r_w			sinƒJ[ƒu‚Ì”¼Œa
- *	@param	scr_sp		ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒXƒs[ƒh	®”*100‚µ‚½’l	ƒ}ƒCƒiƒX—LŒø
- *	@param	bg_no		ƒ‰ƒXƒ^[‚ð‚©‚¯‚éBG‚Ì”Ô†
- *	@param	init_num	ƒ[ƒN‚ð‰Šú‰»‚·‚é’l
- *	@param	tsk_pri		ƒ^ƒXƒN—Dæ‡ˆÊ
+ *	@param	start		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹é–‹å§‹ï½™åº§æ¨™
+ *	@param	end			ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹çµ‚äº†ï½™åº§æ¨™
+ *	@param	add_r		sinã‚«ãƒ¼ãƒ–ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆæ™‚ã®è§’åº¦ã‚’è¶³ã—ã¦ã„ãå€¤(0ã€œ65535)
+ *	@param	r_w			sinã‚«ãƒ¼ãƒ–ã®åŠå¾„
+ *	@param	scr_sp		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¹ãƒ”ãƒ¼ãƒ‰	æ•´æ•°*100ã—ãŸå€¤	ãƒžã‚¤ãƒŠã‚¹æœ‰åŠ¹
+ *	@param	bg_no		ãƒ©ã‚¹ã‚¿ãƒ¼ã‚’ã‹ã‘ã‚‹BGã®ç•ªå·
+ *	@param	init_num	ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–ã™ã‚‹å€¤
+ *	@param	tsk_pri		ã‚¿ã‚¹ã‚¯å„ªå…ˆé †ä½
  *
  *	@return	none
  *
- * start <= ƒXƒNƒ[ƒ‹”ÍˆÍ <= end
+ * start <= ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç¯„å›² <= end
  * 
  * bg_no
- * 		LASTER_SCROLL_MBG0,		// ƒƒCƒ“‰æ–Ê
+ * 		LASTER_SCROLL_MBG0,		// ãƒ¡ã‚¤ãƒ³ç”»é¢
  *		LASTER_SCROLL_MBG1,
  *		LASTER_SCROLL_MBG2,
  *		LASTER_SCROLL_MBG3,
- *		LASTER_SCROLL_SBG0,		// ƒTƒu‰æ–Ê
+ *		LASTER_SCROLL_SBG0,		// ã‚µãƒ–ç”»é¢
  *		LASTER_SCROLL_SBG1,
  *		LASTER_SCROLL_SBG2,
  *		LASTER_SCROLL_SBG3
@@ -304,9 +304,9 @@ GLOBAL void LASTER_YScrollStart( LASTER_SCROLL_PTR p_lstscr, u8 start, u8 end, u
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹I—¹
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«çµ‚äº†
  *
- *	@param	p_lstscr	I—¹‚³‚¹‚éƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒ[ƒN
+ *	@param	p_lstscr	çµ‚äº†ã•ã›ã‚‹ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -318,9 +318,9 @@ GLOBAL void LASTER_ScrollEnd( LASTER_SCROLL_PTR p_lstscr );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹”jŠü
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç ´æ£„
  *
- *	@param	p_lstscr	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒ[ƒN
+ *	@param	p_lstscr	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -332,11 +332,11 @@ GLOBAL void LASTER_ScrollDelete( LASTER_SCROLL_PTR p_lstscr );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒoƒbƒtƒ@Žæ“¾
+ *	@brief	ãƒãƒƒãƒ•ã‚¡å–å¾—
  *
- *	@param	p_lstscr	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒ[ƒN
+ *	@param	p_lstscr	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+ *	@return	ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
  *
  *
  */
@@ -347,41 +347,41 @@ GLOBAL const void* LASTER_GetScrollReadBuff( LASTER_SCROLL_PTR p_lstscr );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹Vƒuƒ‰ƒ“ƒNŠÖ”		
+ *	@brief	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°		
  *
- *	@param	p_lstscr	ƒ‰ƒXƒ^[ƒXƒNƒ[ƒ‹ƒ[ƒN
+ *	@param	p_lstscr	ãƒ©ã‚¹ã‚¿ãƒ¼ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
- * ƒoƒbƒtƒ@ƒXƒCƒbƒ`
- *		‚±‚Ìˆ—‚Í30ƒtƒŒ[ƒ€‚Å“®‚¢‚Ä‚¢‚é‚Æ‚«‚Í2‰ñ–Ú‚Ì
- *		VBlankŠúŠÔ‚ÅŒÄ‚ñ‚Å‚­‚¾‚³‚¢B
+ * ãƒãƒƒãƒ•ã‚¡ã‚¹ã‚¤ãƒƒãƒ
+ *		ã“ã®å‡¦ç†ã¯30ãƒ•ãƒ¬ãƒ¼ãƒ ã§å‹•ã„ã¦ã„ã‚‹ã¨ãã¯2å›žç›®ã®
+ *		VBlankæœŸé–“ã§å‘¼ã‚“ã§ãã ã•ã„ã€‚
  *
- *	HblankDma“]‘—Ý’è
- *		‚±‚Ìˆ—‚ÍVBlankŠúŠÔ‚ª—ˆ‚é‚½‚Ñ‚ÉŒÄ‚ñ‚Å‚­‚¾‚³‚¢B
+ *	HblankDmaè»¢é€è¨­å®š
+ *		ã“ã®å‡¦ç†ã¯VBlankæœŸé–“ãŒæ¥ã‚‹ãŸã³ã«å‘¼ã‚“ã§ãã ã•ã„ã€‚
  *
  */
 //-----------------------------------------------------------------------------
-// ƒoƒbƒtƒ@ƒXƒCƒbƒ`
+// ãƒãƒƒãƒ•ã‚¡ã‚¹ã‚¤ãƒƒãƒ
 GLOBAL void LASTER_ScrollVBuffSwitch( LASTER_SCROLL_PTR p_lstscr );
 
-// HblankDma“]‘—Ý’è
+// HblankDmaè»¢é€è¨­å®š
 GLOBAL void LASTER_ScrollVDma( LASTER_SCROLL_PTR p_lstscr );
 
 //-----------------------------------------------------------------------------
 /**
- *	‚»‚Ì‚½
+ *	ãã®ãŸ
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒTƒCƒ“ƒJ[ƒuƒe[ƒuƒ‹‚ðì¬‚·‚é
+ *	@brief	ã‚µã‚¤ãƒ³ã‚«ãƒ¼ãƒ–ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã™ã‚‹
  *
- *	@param	sinTbl	Ši”[æ”z—ñ
- *	@param	num		”z—ñ—v‘f”	s16 buff[ 10 ]; ‚È‚ç10‚ðŽw’è
- *	@param	add_r	‚P‰ñ‚É‰ñ“]Šp‚ð•Ï‰»‚³‚¹‚é’l
- *	@param	r_w		”¼Œa
+ *	@param	sinTbl	æ ¼ç´å…ˆé…åˆ—
+ *	@param	num		é…åˆ—è¦ç´ æ•°	s16 buff[ 10 ]; ãªã‚‰10ã‚’æŒ‡å®š
+ *	@param	add_r	ï¼‘å›žã«å›žè»¢è§’ã‚’å¤‰åŒ–ã•ã›ã‚‹å€¤
+ *	@param	r_w		åŠå¾„
  *
  *	@return	none
  *

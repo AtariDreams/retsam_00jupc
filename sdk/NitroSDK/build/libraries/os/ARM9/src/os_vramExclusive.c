@@ -18,10 +18,10 @@
   do-indent.
 
   Revision 1.2  2005/02/18 06:18:49  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.1  2005/02/08 08:38:20  terui
-  ‰”Å
+  åˆç‰ˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -31,7 +31,7 @@
 
 
 /*---------------------------------------------------------------------------*
-    “à•”•Ï”’è‹`
+    å†…éƒ¨å¤‰æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 static u32 OSi_vramExclusive;
 static u16 OSi_vramLockId[OS_VRAM_BANK_KINDS];
@@ -42,12 +42,12 @@ static u16 OSi_vramLockId[OS_VRAM_BANK_KINDS];
 /*---------------------------------------------------------------------------*
   Name:         OsCountZeroBits
 
-  Description:  32ƒrƒbƒg‚Ì’l‚Ì“àAãˆÊ‚©‚ç”‚¦‚Ä0‚ª•À‚ñ‚Å‚¢‚é”‚ğ•Ô‚·B
+  Description:  32ãƒ“ãƒƒãƒˆã®å€¤ã®å†…ã€ä¸Šä½ã‹ã‚‰æ•°ãˆã¦0ãŒä¸¦ã‚“ã§ã„ã‚‹æ•°ã‚’è¿”ã™ã€‚
 
-  Arguments:    bitmap  -       ’²¸‚·‚é’lB
+  Arguments:    bitmap  -       èª¿æŸ»ã™ã‚‹å€¤ã€‚
 
-  Returns:      u32             -       0ƒrƒbƒg‚Ì”B
-                                                        0x80000000‚Ìê‡ 0 A0x00000000‚Ìê‡ 32‚Æ‚È‚éB
+  Returns:      u32             -       0ãƒ“ãƒƒãƒˆã®æ•°ã€‚
+                                                        0x80000000ã®å ´åˆ 0 ã€0x00000000ã®å ´åˆ 32ã¨ãªã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 #include        <nitro/code32.h>
 static asm u32
@@ -62,7 +62,7 @@ OsCountZeroBits( u32 bitmap )
 /*---------------------------------------------------------------------------*
   Name:         OSi_InitVramExclusive
 
-  Description:  VRAM ”r‘¼ˆ—‚ğ‰Šú‰»‚·‚éB
+  Description:  VRAM æ’ä»–å‡¦ç†ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
 
   Arguments:    None.
 
@@ -83,12 +83,12 @@ OSi_InitVramExclusive( void )
 /*---------------------------------------------------------------------------*
   Name:         OSi_TryLockVram
 
-  Description:  VRAM ”r‘¼ƒƒbƒN‚ğ‚İ‚éB
+  Description:  VRAM æ’ä»–ãƒ­ãƒƒã‚¯ã‚’è©¦ã¿ã‚‹ã€‚
 
-  Arguments:    bank    -       ”r‘¼ƒƒbƒN‚ğ‚İ‚é VRAM ‚Ì ID ƒrƒbƒgƒ}ƒbƒvB
-                                lockId  -       ƒƒbƒN‚·‚éÛ‚ÌŒ®‚Æ‚È‚é”CˆÓ‚Ì IDB
+  Arguments:    bank    -       æ’ä»–ãƒ­ãƒƒã‚¯ã‚’è©¦ã¿ã‚‹ VRAM ã® ID ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã€‚
+                                lockId  -       ãƒ­ãƒƒã‚¯ã™ã‚‹éš›ã®éµã¨ãªã‚‹ä»»æ„ã® IDã€‚
 
-  Returns:      BOOL    -       ƒƒbƒN‚É¬Œ÷‚µ‚½ê‡‚É TRUE ‚ğ•Ô‚·B
+  Returns:      BOOL    -       ãƒ­ãƒƒã‚¯ã«æˆåŠŸã—ãŸå ´åˆã« TRUE ã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 BOOL OSi_TryLockVram(u16 bank, u16 lockId)
 {
@@ -96,7 +96,7 @@ BOOL OSi_TryLockVram(u16 bank, u16 lockId)
     s32     zeroBits;
     OSIntrMode enabled = OS_DisableInterrupts();
 
-    // Šù‚É•Ê ID ‚É‚æ‚Á‚Ä”r‘¼ƒƒbƒN‚³‚ê‚Ä‚¢‚È‚¢‚©Šm”F
+    // æ—¢ã«åˆ¥ ID ã«ã‚ˆã£ã¦æ’ä»–ãƒ­ãƒƒã‚¯ã•ã‚Œã¦ã„ãªã„ã‹ç¢ºèª
     workMap = (u32)(bank & OSi_vramExclusive);
     while (TRUE)
     {
@@ -113,7 +113,7 @@ BOOL OSi_TryLockVram(u16 bank, u16 lockId)
         }
     }
 
-    // w’è‚³‚ê‚½ ID ‚Ì VRAM ‚ğ‘S‚ÄƒƒbƒN
+    // æŒ‡å®šã•ã‚ŒãŸ ID ã® VRAM ã‚’å…¨ã¦ãƒ­ãƒƒã‚¯
     workMap = (u32)(bank & OS_VRAM_BANK_ID_ALL);
     while (TRUE)
     {
@@ -134,10 +134,10 @@ BOOL OSi_TryLockVram(u16 bank, u16 lockId)
 /*---------------------------------------------------------------------------*
   Name:         OSi_UnlockVram
 
-  Description:  VRAM ”r‘¼ƒƒbƒN‚ğ‰ğœ‚·‚éB
+  Description:  VRAM æ’ä»–ãƒ­ãƒƒã‚¯ã‚’è§£é™¤ã™ã‚‹ã€‚
 
-  Arguments:    bank    -       ”r‘¼ƒƒbƒN‚ğ‰ğœ‚·‚é VRAM ‚Ì ID ƒrƒbƒgƒ}ƒbƒvB
-                                lockId  -       ƒƒbƒN‚µ‚½Û‚Éw’è‚µ‚½”CˆÓ‚Ì IDB
+  Arguments:    bank    -       æ’ä»–ãƒ­ãƒƒã‚¯ã‚’è§£é™¤ã™ã‚‹ VRAM ã® ID ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã€‚
+                                lockId  -       ãƒ­ãƒƒã‚¯ã—ãŸéš›ã«æŒ‡å®šã—ãŸä»»æ„ã® IDã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

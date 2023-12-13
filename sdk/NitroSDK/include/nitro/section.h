@@ -12,13 +12,13 @@
 
   $Log: section.h,v $
   Revision 1.4  2006/04/06 09:04:07  kitase_hirotake
-  .itcm.bss .dtcm.bss wram.bss ‚É‘Î‰
+  .itcm.bss .dtcm.bss wram.bss ã«å¯¾å¿œ
 
   Revision 1.3  2006/01/18 02:12:28  kitase_hirotake
   do-indent
 
   Revision 1.2  2005/10/19 07:49:05  okubata_ryoma
-  #pragma difine_section ‚Ìƒpƒ‰ƒ[ƒ^‚Ì‹Lq•û–@‚ÌC³
+  #pragma difine_section ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨˜è¿°æ–¹æ³•ã®ä¿®æ­£
 
   Revision 1.1  2005/07/11 04:59:45  yada
   initial release

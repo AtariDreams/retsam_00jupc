@@ -1,13 +1,13 @@
 //============================================================================================
 /**
  * @file	randomgroup.c
- * @brief	—”‚ÌíƒOƒ‹[ƒvƒ\[ƒX
+ * @brief	ä¹±æ•°ã®ç¨®ã‚°ãƒ«ãƒ¼ãƒ—ã‚½ãƒ¼ã‚¹
  * @author	mori GAME FREAK inc.
  * @date	2006.03.22
  */
 //============================================================================================
 
-#include "savedata/savedata_def.h"	//SAVEDATAQÆ‚Ì‚½‚ß
+#include "savedata/savedata_def.h"	//SAVEDATAå‚ç…§ã®ãŸã‚
 
 #include "common.h"
 
@@ -31,13 +31,13 @@ RANDOM_GROUP * DebugRandomGroupPtr;
 
 //============================================================================================
 //
-//	ƒZ[ƒuƒf[ƒ^ƒVƒXƒeƒ€‚ªˆË‘¶‚·‚éŠÖ”
+//	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚·ã‚¹ãƒ†ãƒ ãŒä¾å­˜ã™ã‚‹é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	©•ªó‘Ô•Ûƒ[ƒN‚ÌƒTƒCƒYæ“¾
- * @return	int		ƒTƒCƒYiƒoƒCƒg’PˆÊj
+ * @brief	è‡ªåˆ†çŠ¶æ…‹ä¿æŒãƒ¯ãƒ¼ã‚¯ã®ã‚µã‚¤ã‚ºå–å¾—
+ * @return	int		ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  */
 //----------------------------------------------------------
 int RandomGroup_GetWorkSize(void)
@@ -47,7 +47,7 @@ int RandomGroup_GetWorkSize(void)
 
 //==============================================================================
 /**
- * $brief   ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒv“à‚Å‚ÌƒRƒs[iƒf[ƒ^‘S‘Ì‚ÌƒRƒs[‚Å‚Í‚È‚¢j
+ * $brief   ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—å†…ã§ã®ã‚³ãƒ”ãƒ¼ï¼ˆãƒ‡ãƒ¼ã‚¿å…¨ä½“ã®ã‚³ãƒ”ãƒ¼ã§ã¯ãªã„ï¼‰
  *
  * @param   randomgroup		
  * @param   from		
@@ -67,7 +67,7 @@ void RandomGroup_Copy( RANDOM_GROUP *randomgroup, int from, int to )
 
 //==============================================================================
 /**
- * $brief   ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒv‰Šú‰»
+ * $brief   ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—åˆæœŸåŒ–
  *
  * @param   randomgroup		
  *
@@ -94,12 +94,12 @@ void RandomGroup_Init(RANDOM_GROUP * randomgroup )
 
 //==============================================================================
 /**
- * @brief	—”‚ÌíXVˆ—
+ * @brief	ä¹±æ•°ã®ç¨®æ›´æ–°å‡¦ç†
  *
  * @param	randomgroup
- * @param	days			“ú”Œo‰ß
+ * @param	days			æ—¥æ•°çµŒé
  *
- * “ú”Œo‰ß‚Ì‰ñ”‚¾‚¯ƒ‰ƒ“ƒ_ƒ€‚Ìƒ^ƒl‚ğXV‚·‚éB
+ * æ—¥æ•°çµŒéã®å›æ•°ã ã‘ãƒ©ãƒ³ãƒ€ãƒ ã®ã‚¿ãƒã‚’æ›´æ–°ã™ã‚‹ã€‚
  */
 //==============================================================================
 void RandomGroup_Update(RANDOM_GROUP * randomgroup, u32 days)
@@ -118,7 +118,7 @@ void RandomGroup_Update(RANDOM_GROUP * randomgroup, u32 days)
 
 //==============================================================================
 /**
- * $brief   —”‚Ìíæ“¾(‚Ù‚Æ‚ñ‚ÇŒÄ‚Î‚È‚¢‚¾‚ë‚¤j
+ * $brief   ä¹±æ•°ã®ç¨®å–å¾—(ã»ã¨ã‚“ã©å‘¼ã°ãªã„ã ã‚ã†ï¼‰
  *
  * @param   randomgroup		
  * @param   no		
@@ -133,21 +133,21 @@ u32  RandomGroup_GetRandomSeed( RANDOM_GROUP* randomgroup, int no )
 
 //==============================================================================
 /**
- * $brief   —”‚Ìí‚Ìİ’èi—”ƒOƒ‹[ƒv‚ğì¬‚µ‚½‚Éˆê‰ñ‚¾‚¯ŒÄ‚Ôj
+ * $brief   ä¹±æ•°ã®ç¨®ã®è¨­å®šï¼ˆä¹±æ•°ã‚°ãƒ«ãƒ¼ãƒ—ã‚’ä½œæˆã—ãŸæ™‚ã«ä¸€å›ã ã‘å‘¼ã¶ï¼‰
  *
- * @param   randomgroup		—”ƒOƒ‹[ƒv\‘¢‘Ì
- * @param   no				‰½”Ô–Ú‚©
- * @param   seed			‰Šú’l
+ * @param   randomgroup		ä¹±æ•°ã‚°ãƒ«ãƒ¼ãƒ—æ§‹é€ ä½“
+ * @param   no				ä½•ç•ªç›®ã‹
+ * @param   seed			åˆæœŸå€¤
  *
  * @retval  u32		
  */
 //==============================================================================
 void  RandomGroup_SetRandomSeed( RANDOM_GROUP* randomgroup, int no, u32 seed )
 {
-	// —”‚Ìí‚ğŠi”[i‚Q“x‚ÆXV‚µ‚È‚¢j
+	// ä¹±æ•°ã®ç¨®ã‚’æ ¼ç´ï¼ˆï¼’åº¦ã¨æ›´æ–°ã—ãªã„ï¼‰
 	randomgroup->group[no].seed = seed;
 
-	// —”‚ğŠi”[‚µ‚Ä‚¨‚­
+	// ä¹±æ•°ã‚’æ ¼ç´ã—ã¦ãŠã
 	randomgroup->group[no].random = gf_fix_rand( seed );
 
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_RANDOMGROUP)
@@ -157,7 +157,7 @@ void  RandomGroup_SetRandomSeed( RANDOM_GROUP* randomgroup, int no, u32 seed )
 
 //==============================================================================
 /**
- * $brief   ˆê“úˆê‰ñ•Ï‚í‚é—”’l‚ğæ“¾
+ * $brief   ä¸€æ—¥ä¸€å›å¤‰ã‚ã‚‹ä¹±æ•°å€¤ã‚’å–å¾—
  *
  * @param   randomgroup		
  * @param   no				
@@ -172,13 +172,13 @@ u32  RandomGroup_GetRandom( RANDOM_GROUP* randomgroup, int no )
 
 //==============================================================================
 /**
- * @brief   ˆê“úˆê‰ñ•Ï‚í‚é—”’l‚ğæ“¾iƒfƒtƒHƒ‹ƒgj
+ * @brief   ä¸€æ—¥ä¸€å›å¤‰ã‚ã‚‹ä¹±æ•°å€¤ã‚’å–å¾—ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼‰
  *
  * @param	randomgroup
  *
  * @return	u32
  *
- * Šî–{“I‚ÉƒQ[ƒ€“à‚ÅQÆ‚·‚éu—”‚Ìƒ^ƒlv‚Í‚±‚ÌŠÖ”‚É‚æ‚Á‚Äæ“¾‚·‚éB
+ * åŸºæœ¬çš„ã«ã‚²ãƒ¼ãƒ å†…ã§å‚ç…§ã™ã‚‹ã€Œä¹±æ•°ã®ã‚¿ãƒã€ã¯ã“ã®é–¢æ•°ã«ã‚ˆã£ã¦å–å¾—ã™ã‚‹ã€‚
  */
 //==============================================================================
 u32  RandomGroup_GetDefaultRandom( RANDOM_GROUP* randomgroup )
@@ -188,8 +188,8 @@ u32  RandomGroup_GetDefaultRandom( RANDOM_GROUP* randomgroup )
 
 //==============================================================================
 /**
- * $brief   —”XV(‚P“ú‚P‰ñXV‚·‚éj
- *          Œ»İ•Û‚µ‚Ä‚¢‚é—”‚Ì’l‚ªV‚µ‚¢—”‚Ìí‚È‚Ì‚ÅŠO‚©‚çƒpƒ‰ƒ[ƒ^‚Í–á‚í‚È‚¢
+ * $brief   ä¹±æ•°æ›´æ–°(ï¼‘æ—¥ï¼‘å›æ›´æ–°ã™ã‚‹ï¼‰
+ *          ç¾åœ¨ä¿æŒã—ã¦ã„ã‚‹ä¹±æ•°ã®å€¤ãŒæ–°ã—ã„ä¹±æ•°ã®ç¨®ãªã®ã§å¤–ã‹ã‚‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯è²°ã‚ãªã„
  *
  * @param   randomgroup		
  * @param   no				
@@ -202,7 +202,7 @@ void RandomGroup_SetRandom( RANDOM_GROUP* randomgroup, int no )
 	u32 temp = randomgroup->group[no].random;
 	randomgroup->group[no].random = gf_fix_rand( randomgroup->group[no].random );
 
-	OS_TPrintf("—”XV no=%d from=%08x, to=%08x\n",no,temp,randomgroup->group[no].random);
+	OS_TPrintf("ä¹±æ•°æ›´æ–° no=%d from=%08x, to=%08x\n",no,temp,randomgroup->group[no].random);
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_RANDOMGROUP)
 	SVLD_SetCrc(GMDATA_ID_RANDOMGROUP);
 #endif //CRC_LOADCHECK
@@ -211,7 +211,7 @@ void RandomGroup_SetRandom( RANDOM_GROUP* randomgroup, int no )
 
 //==============================================================================
 /**
- * $brief   ƒOƒ‹[ƒv–¼E‚à‚µ‚­‚ÍƒŠ[ƒ_[–¼‚Ìƒ|ƒCƒ“ƒ^æ“¾
+ * $brief   ã‚°ãƒ«ãƒ¼ãƒ—åãƒ»ã‚‚ã—ãã¯ãƒªãƒ¼ãƒ€ãƒ¼åã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
  * @param   randomgroup		
  * @param   no		
@@ -231,7 +231,7 @@ const STRCODE *RandomGroup_GetNamePtr( const RANDOM_GROUP *randomgroup, int no, 
 
 //==============================================================================
 /**
- * $brief   ƒOƒ‹[ƒv–¼E‚Ü‚½‚ÍƒŠ[ƒ_[–¼‚ÌƒZƒbƒg
+ * $brief   ã‚°ãƒ«ãƒ¼ãƒ—åãƒ»ã¾ãŸã¯ãƒªãƒ¼ãƒ€ãƒ¼åã®ã‚»ãƒƒãƒˆ
  *
  * @param   randomgroup		
  * @param   no		
@@ -260,7 +260,7 @@ void  RandomGroup_SetName( RANDOM_GROUP *randomgroup, int no, int type, STRBUF *
 
 //==============================================================================
 /**
- * @brief	«•Ê‚ğƒZƒbƒg‚·‚é
+ * @brief	æ€§åˆ¥ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
  * @param   randomgroup		
  * @param   no		
@@ -276,11 +276,11 @@ void RandomGroup_SetSex( RANDOM_GROUP *randomgroup, int no, int sex)
 
 //==============================================================================
 /**
- * @brief	«•Ê‚ğæ“¾‚·‚é
+ * @brief	æ€§åˆ¥ã‚’å–å¾—ã™ã‚‹
  *
  * @param   randomgroup		
  * @param   no		
- * @return	int		«•ÊƒR[ƒh
+ * @return	int		æ€§åˆ¥ã‚³ãƒ¼ãƒ‰
  */
 //==============================================================================
 int RandomGroup_GetSex( const RANDOM_GROUP *randomgroup, int no)
@@ -290,11 +290,11 @@ int RandomGroup_GetSex( const RANDOM_GROUP *randomgroup, int no)
 
 //==============================================================================
 /**
- * @brief	ƒŠ[ƒWƒ‡ƒ“ƒR[ƒh‚ğæ“¾‚·‚é
+ * @brief	ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹
  *
  * @param   randomgroup		
  * @param   no		
- * @return	int		ƒŠ[ƒWƒ‡ƒ“ƒR[ƒh
+ * @return	int		ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
  */
 //==============================================================================
 int RandomGroup_GetRegionCode( const RANDOM_GROUP *randomgroup, int no)
@@ -304,7 +304,7 @@ int RandomGroup_GetRegionCode( const RANDOM_GROUP *randomgroup, int no)
 
 //==============================================================================
 /**
- * @brief	ƒŠ[ƒWƒ‡ƒ“ƒR[ƒh‚ğƒZƒbƒg‚·‚é
+ * @brief	ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
  * @param   randomgroup		
  * @param   no		
@@ -320,7 +320,7 @@ void RandomGroup_SetRegionCode( RANDOM_GROUP *randomgroup, int no, int region_co
 
 //==============================================================================
 /**
- * $brief   —”‚ÌíƒOƒ‹[ƒv‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * $brief   ä¹±æ•°ã®ç¨®ã‚°ãƒ«ãƒ¼ãƒ—ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  *
  * @param   sv		
  *
@@ -338,12 +338,12 @@ RANDOM_GROUP *SaveData_GetRandomGroup(SAVEDATA * sv)
 
 //==============================================================================
 /**
- * @brief	ƒOƒ‹[ƒvƒf[ƒ^‚Ì‘¶İƒ`ƒFƒbƒN
+ * @brief	ã‚°ãƒ«ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿ã®å­˜åœ¨ãƒã‚§ãƒƒã‚¯
  *
  * @param   randomgroup		
- * @param   no				ƒ`ƒFƒbƒN‚·‚éƒf[ƒ^‚ÌID
- * @retval	TRUE			‘¶İ‚·‚é
- * @retval	FALSE			‘¶İ‚µ‚È‚¢
+ * @param   no				ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ID
+ * @retval	TRUE			å­˜åœ¨ã™ã‚‹
+ * @retval	FALSE			å­˜åœ¨ã—ãªã„
  */
 //==============================================================================
 BOOL RandomGroup_ExistCheck(const RANDOM_GROUP * rg, int no)
@@ -354,12 +354,12 @@ BOOL RandomGroup_ExistCheck(const RANDOM_GROUP * rg, int no)
 
 //==============================================================================
 /**
- * @brief	ƒOƒ‹[ƒvƒf[ƒ^‚ª©•ª‚Ì“o˜^‚µ‚Ä‚¢‚éƒf[ƒ^‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+ * @brief	ã‚°ãƒ«ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿ãŒè‡ªåˆ†ã®ç™»éŒ²ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
  *
  * @param   randomgroup		
- * @param   no				”äŠr‚·‚éƒf[ƒ^‚ÌID
- * @retval	TRUE			ˆê’v‚µ‚½
- * @retval	FALSE			ˆê’v‚µ‚È‚¢
+ * @param   no				æ¯”è¼ƒã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ID
+ * @retval	TRUE			ä¸€è‡´ã—ãŸ
+ * @retval	FALSE			ä¸€è‡´ã—ãªã„
  */
 //==============================================================================
 BOOL RandomGroup_EntryCheck(const RANDOM_GROUP * rg, int no)
@@ -372,10 +372,10 @@ BOOL RandomGroup_EntryCheck(const RANDOM_GROUP * rg, int no)
 
 //==============================================================================
 /**
- * @brief	w’è‚µ‚½ƒOƒ‹[ƒv–¼‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+ * @brief	æŒ‡å®šã—ãŸã‚°ãƒ«ãƒ¼ãƒ—åãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
  * @param	rg
  * @param	group_name
- * @return	BOOL	TRUE‚Ì‚Æ‚«Aˆê’v‚·‚é–¼‘O‚ª‚ ‚é
+ * @return	BOOL	TRUEã®ã¨ãã€ä¸€è‡´ã™ã‚‹åå‰ãŒã‚ã‚‹
  */
 //==============================================================================
 BOOL RandomGroup_SameGroupNameCheck(const RANDOM_GROUP * rg, const STRCODE * group_name)
@@ -384,7 +384,7 @@ BOOL RandomGroup_SameGroupNameCheck(const RANDOM_GROUP * rg, const STRCODE * gro
 	const RANDOM_SEED * rs;
 
 	if (*group_name == EOM_) {
-		//–¼‘O‚ª‘¶İ‚µ‚È‚¢
+		//åå‰ãŒå­˜åœ¨ã—ãªã„
 		return FALSE;
 	}
 	for (index = 0; index < RANDOMGROUP_MAX; index ++ ) {
@@ -398,15 +398,15 @@ BOOL RandomGroup_SameGroupNameCheck(const RANDOM_GROUP * rg, const STRCODE * gro
 
 //============================================================================================
 //
-//		ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒv“à•”‚Å‚Ì‚İg—p‚·‚éŠÖ”
+//		ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—å†…éƒ¨ã§ã®ã¿ä½¿ç”¨ã™ã‚‹é–¢æ•°
 //
 //============================================================================================
 //----------------------------------------------------------
 /**
- * @brief	ƒf[ƒ^‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+ * @brief	ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
  * @param	rs
- * @retval	TRUE	‘¶İ‚µ‚È‚¢
- * @retval	FALSE	‘¶İ‚·‚é
+ * @retval	TRUE	å­˜åœ¨ã—ãªã„
+ * @retval	FALSE	å­˜åœ¨ã™ã‚‹
  */
 //----------------------------------------------------------
 BOOL RandomGroup_IsNullData(const RANDOM_SEED * rs)
@@ -422,11 +422,11 @@ BOOL RandomGroup_IsNullData(const RANDOM_SEED * rs)
 
 //----------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒ_ƒ€‚Ìƒ^ƒl‚ª“¯‚¶‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
- * @param	s1			ƒ‰ƒ“ƒ_ƒ€‚Ìƒ^ƒl‚»‚Ì‚P
- * @param	s2			ƒ‰ƒ“ƒ_ƒ€‚Ìƒ^ƒl‚»‚Ì‚Q
- * @retval	TRUE		ˆê’v‚µ‚½
- * @retval	FALSE		ˆá‚¤ƒf[ƒ^‚¾‚Á‚½
+ * @brief	ãƒ©ãƒ³ãƒ€ãƒ ã®ã‚¿ãƒãŒåŒã˜ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
+ * @param	s1			ãƒ©ãƒ³ãƒ€ãƒ ã®ã‚¿ãƒãã®ï¼‘
+ * @param	s2			ãƒ©ãƒ³ãƒ€ãƒ ã®ã‚¿ãƒãã®ï¼’
+ * @retval	TRUE		ä¸€è‡´ã—ãŸ
+ * @retval	FALSE		é•ã†ãƒ‡ãƒ¼ã‚¿ã ã£ãŸ
  */
 //----------------------------------------------------------
 BOOL RandomGroup_Compare(const RANDOM_SEED * s1, const RANDOM_SEED * s2)
@@ -449,7 +449,7 @@ BOOL RandomGroup_Compare(const RANDOM_SEED * s1, const RANDOM_SEED * s2)
 	}
 	/*
 	 * if (s1->random != s2->random) {
-	 *		‚±‚±‚Í‚Ç‚¤‚µ‚æ‚¤c
+	 *		ã“ã“ã¯ã©ã†ã—ã‚ˆã†â€¦
 	 * }
 	 */
 	return TRUE;

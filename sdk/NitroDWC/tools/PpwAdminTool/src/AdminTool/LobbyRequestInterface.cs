@@ -24,14 +24,14 @@ using System.Collections;
 namespace AdminTool
 {
     /// <summary>
-    /// ‹¤’ÊƒCƒ“ƒ^ƒtƒF[ƒXƒNƒ‰ƒX
+    /// å…±é€šã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚¯ãƒ©ã‚¹
     /// </summary>
     public partial class RequestInterface
     {
         /// <summary>
-        /// Ú‘±æƒpƒX
+        /// æ¥ç¶šå…ˆãƒ‘ã‚¹
         /// </summary>
-        // ƒXƒPƒWƒ…[ƒ‹
+        // ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«
         public const string URL_ADMIN_SET_LOBBY_SCHEDULE = "/web/enc/lobby/adminSetSchedule.asp";
         public const string URL_ADMIN_APPEND_LOBBY_SCHEDULE = "/web/enc/lobby/adminAppendSchedule.asp";
         public const string URL_ADMIN_GET_LOBBY_SCHEDULE = "/web/enc/lobby/adminGetSchedule.asp";
@@ -42,10 +42,10 @@ namespace AdminTool
         public const string URL_ADMIN_GET_LOBBY_VIP = "/web/enc/lobby/adminGetVip.asp";
         public const string URL_GET_LOBBY_VIP = "/web/enc/lobby/getVip.asp";
         
-        // •s³ƒ`ƒFƒbƒN
+        // ä¸æ­£ãƒã‚§ãƒƒã‚¯
         public const string URL_ADMIN_CHECK_PROFILE = "/web/enc/lobby/checkProfile.asp";
         
-        // ƒAƒ“ƒP[ƒg
+        // ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆ
         public const string URL_GET_QUESTIONNAIRE = "/web/enc/lobby/getQuestionnaire.asp";
         public const string URL_SUBMIT_QUESTIONNAIRE = "/web/enc/lobby/submitQuestionnaire.asp";
         public const string URL_ADMIN_GET_SPECIAL_WEEK = "/web/enc/lobby/adminGetSpecialWeek.asp";
@@ -73,7 +73,7 @@ namespace AdminTool
 
 
         /// <summary>
-        /// ƒƒr[ƒXƒPƒWƒ…[ƒ‹æ“¾ƒŠƒNƒGƒXƒg
+        /// ãƒ­ãƒ“ãƒ¼ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«å–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyGetScheduleRequest : RequestContainer
@@ -87,26 +87,26 @@ namespace AdminTool
 
         public enum PPW_LOBBY_TIME_EVENT : int
         {
-            LOCK,              ///< •”‰®‚ÌƒƒbƒNB
-            NEON_A0,           ///< º“àƒlƒIƒ“æ~’²0B
-            NEON_A1,           ///< º“àƒlƒIƒ“æ~’²1B
-            NEON_A2,           ///< º“àƒlƒIƒ“æ~’²2B
-            NEON_A3,           ///< º“àƒlƒIƒ“æ~’²3B
-            NEON_A4,           ///< º“àƒlƒIƒ“æ~’²4B
-            NEON_A5,           ///< º“àƒlƒIƒ“æ~’²5B
-            NEON_B0,           ///< °ƒlƒIƒ“æ~’²0B
-            NEON_B1,           ///< °ƒlƒIƒ“æ~’²1B
-            NEON_B2,           ///< °ƒlƒIƒ“æ~’²2B
-            NEON_B3,           ///< °ƒlƒIƒ“æ~’²3B
-            NEON_C0,           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²0B
-            NEON_C1,           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²1B
-            NEON_C2,           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²2B
-            NEON_C3,           ///< ƒ‚ƒjƒ…ƒƒ“ƒgæ~’²3B
-            MINIGAME_END,      ///< ƒ~ƒjƒQ[ƒ€I—¹B
-            FIRE_WORKS_START,  ///< ƒtƒ@ƒCƒA[ƒ[ƒNƒXŠJnB
-            FIRE_WORKS_END,    ///< ƒtƒ@ƒCƒA[ƒ[ƒNƒXI—¹B
-            PARADE,            ///< ƒpƒŒ[ƒhB
-            CLOSE              ///< I—¹B
+            LOCK,              ///< éƒ¨å±‹ã®ãƒ­ãƒƒã‚¯ã€‚
+            NEON_A0,           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿0ã€‚
+            NEON_A1,           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿1ã€‚
+            NEON_A2,           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿2ã€‚
+            NEON_A3,           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿3ã€‚
+            NEON_A4,           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿4ã€‚
+            NEON_A5,           ///< å®¤å†…ãƒã‚ªãƒ³è«§èª¿5ã€‚
+            NEON_B0,           ///< åºŠãƒã‚ªãƒ³è«§èª¿0ã€‚
+            NEON_B1,           ///< åºŠãƒã‚ªãƒ³è«§èª¿1ã€‚
+            NEON_B2,           ///< åºŠãƒã‚ªãƒ³è«§èª¿2ã€‚
+            NEON_B3,           ///< åºŠãƒã‚ªãƒ³è«§èª¿3ã€‚
+            NEON_C0,           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿0ã€‚
+            NEON_C1,           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿1ã€‚
+            NEON_C2,           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿2ã€‚
+            NEON_C3,           ///< ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆè«§èª¿3ã€‚
+            MINIGAME_END,      ///< ãƒŸãƒ‹ã‚²ãƒ¼ãƒ çµ‚äº†ã€‚
+            FIRE_WORKS_START,  ///< ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚¹é–‹å§‹ã€‚
+            FIRE_WORKS_END,    ///< ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚¹çµ‚äº†ã€‚
+            PARADE,            ///< ãƒ‘ãƒ¬ãƒ¼ãƒ‰ã€‚
+            CLOSE              ///< çµ‚äº†ã€‚
         }
 
         public enum PPW_LOBBY_SEASON : int
@@ -119,13 +119,13 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒƒr[ƒXƒPƒWƒ…[ƒ‹ƒŒƒR[ƒh
+        /// ãƒ­ãƒ“ãƒ¼ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         [Serializable()]
         public class LobbyScheduleRecord : IComparable<LobbyScheduleRecord>
         {
-            ///< ƒCƒxƒ“ƒg‚ª‹N“®‚·‚é(ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚ğƒƒbƒN‚µ‚½‚Æ‚«‚©‚ç‚ÌŠÔ)B
+            ///< ã‚¤ãƒ™ãƒ³ãƒˆãŒèµ·å‹•ã™ã‚‹æ™‚åˆ»(ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ãƒ­ãƒƒã‚¯ã—ãŸã¨ãã‹ã‚‰ã®æ™‚é–“)ã€‚
             private int time;
             public int Time
             {
@@ -133,7 +133,7 @@ namespace AdminTool
                 set { time = value; }
             }
                            
-            ///< ‹N“®‚·‚éƒCƒxƒ“ƒgB
+            ///< èµ·å‹•ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆã€‚
             private PPW_LOBBY_TIME_EVENT timeEvent;
 	        public PPW_LOBBY_TIME_EVENT TimeEvent
 	        {
@@ -142,7 +142,7 @@ namespace AdminTool
                 {
                     if (!Enum.IsDefined(typeof(PPW_LOBBY_TIME_EVENT), value) || PPW_LOBBY_TIME_EVENT.LOCK == value)
                     {
-                        throw new InvalidDataException("" + (int)value + " ‚ÍƒCƒxƒ“ƒg‚É•ÏŠ·‚Å‚«‚Ü‚¹‚ñB");
+                        throw new InvalidDataException("" + (int)value + " ã¯ã‚¤ãƒ™ãƒ³ãƒˆã«å¤‰æ›ã§ãã¾ã›ã‚“ã€‚");
                     }
                     timeEvent = value;
                 }
@@ -176,7 +176,7 @@ namespace AdminTool
                 return "- time: " + time.ToString() + "\n  event: " + timeEvent.ToString();
             }
 
-            #region IComparable ƒƒ“ƒo
+            #region IComparable ãƒ¡ãƒ³ãƒ
 
             public int CompareTo(LobbyScheduleRecord rhs)
             {
@@ -187,18 +187,18 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒƒr[ƒXƒPƒWƒ…[ƒ‹æ“¾ƒŒƒXƒ|ƒ“ƒX
+        /// ãƒ­ãƒ“ãƒ¼ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«å–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyGetScheduleResponse : ResponseContainer
         {
-            public uint lockTime;                           ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚ğƒI[ƒvƒ“‚µ‚Ä‚©‚çƒƒbƒN‚·‚é‚Ü‚Å‚ÌŠÔ(•b)B
-            public uint random;                             ///< ƒT[ƒo‚Å¶¬‚³‚ê‚é32bit”ÍˆÍ‚Ìƒ‰ƒ“ƒ_ƒ€’lB
-            public uint roomFlag;                           ///< PPW_LOBBY_ROOM_FLAG‚É‘Î‰‚·‚éŠeíbitƒtƒ‰ƒO
-            public byte roomType;                           ///< •”‰®‚Ìí—ŞB
-            public byte season;                             ///< ‹Gß”Ô†B
-            public ushort scheduleRecordNum;                ///< ƒXƒPƒWƒ…[ƒ‹ƒŒƒR[ƒh‚Ì”B
-            public List<LobbyScheduleRecord> scheduleRecords = new List<LobbyScheduleRecord>(); ///< ƒXƒPƒWƒ…[ƒ‹ƒŒƒR[ƒh
+            public uint lockTime;                           ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ã—ã¦ã‹ã‚‰ãƒ­ãƒƒã‚¯ã™ã‚‹ã¾ã§ã®æ™‚é–“(ç§’)ã€‚
+            public uint random;                             ///< ã‚µãƒ¼ãƒã§ç”Ÿæˆã•ã‚Œã‚‹32bitç¯„å›²ã®ãƒ©ãƒ³ãƒ€ãƒ å€¤ã€‚
+            public uint roomFlag;                           ///< PPW_LOBBY_ROOM_FLAGã«å¯¾å¿œã™ã‚‹å„ç¨®bitãƒ•ãƒ©ã‚°
+            public byte roomType;                           ///< éƒ¨å±‹ã®ç¨®é¡ã€‚
+            public byte season;                             ///< å­£ç¯€ç•ªå·ã€‚
+            public ushort scheduleRecordNum;                ///< ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰ã®æ•°ã€‚
+            public List<LobbyScheduleRecord> scheduleRecords = new List<LobbyScheduleRecord>(); ///< ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰
 
             public LobbyGetScheduleResponse() { }
 
@@ -220,7 +220,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒƒr[ƒXƒPƒWƒ…[ƒ‹İ’èæ“¾ƒŠƒNƒGƒXƒg
+        /// ãƒ­ãƒ“ãƒ¼ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«è¨­å®šå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminGetScheduleRequest : RequestContainer
@@ -233,7 +233,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒƒr[ƒXƒPƒWƒ…[ƒ‹İ’èƒx[ƒX
+        /// ãƒ­ãƒ“ãƒ¼ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«è¨­å®šãƒ™ãƒ¼ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         [Serializable()]
@@ -242,21 +242,21 @@ namespace AdminTool
             public byte startMonth;
             public byte startDay;
             public ushort startYear;
-            public uint lockTime;                           ///< ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚ğƒI[ƒvƒ“‚µ‚Ä‚©‚çƒƒbƒN‚·‚é‚Ü‚Å‚ÌŠÔ(•b)B
-            public uint roomFlag;                           ///< PPW_LOBBY_ROOM_FLAG‚É‘Î‰‚·‚éŠeíbitƒtƒ‰ƒO
-            [System.Xml.Serialization.XmlElement("roomRateFire")]   // XML—v‘f–¼•ÏX
-            public byte roomRate1;                        ///< •”‰®‚Ìí—ŞB
+            public uint lockTime;                           ///< ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ã—ã¦ã‹ã‚‰ãƒ­ãƒƒã‚¯ã™ã‚‹ã¾ã§ã®æ™‚é–“(ç§’)ã€‚
+            public uint roomFlag;                           ///< PPW_LOBBY_ROOM_FLAGã«å¯¾å¿œã™ã‚‹å„ç¨®bitãƒ•ãƒ©ã‚°
+            [System.Xml.Serialization.XmlElement("roomRateFire")]   // XMLè¦ç´ åå¤‰æ›´
+            public byte roomRate1;                        ///< éƒ¨å±‹ã®ç¨®é¡ã€‚
             [System.Xml.Serialization.XmlElement("roomRateWater")]
-            public byte roomRate2;                        ///< •”‰®‚Ìí—ŞB
+            public byte roomRate2;                        ///< éƒ¨å±‹ã®ç¨®é¡ã€‚
             [System.Xml.Serialization.XmlElement("roomRateThunder")]
-            public byte roomRate3;                        ///< •”‰®‚Ìí—ŞB
+            public byte roomRate3;                        ///< éƒ¨å±‹ã®ç¨®é¡ã€‚
             [System.Xml.Serialization.XmlElement("roomRateGrass")]
-            public byte roomRate4;                        ///< •”‰®‚Ìí—ŞB
+            public byte roomRate4;                        ///< éƒ¨å±‹ã®ç¨®é¡ã€‚
             [System.Xml.Serialization.XmlElement("roomRateSecret")]
-            public byte roomRate5;                        ///< •”‰®‚Ìí—ŞB
-            public byte season;                             ///< ‹Gß”Ô†B
-            [System.Xml.Serialization.XmlIgnoreAttribute]   // XMLƒVƒŠƒAƒ‰ƒCƒY‚µ‚È‚¢
-            public ushort scheduleRecordNum;                ///< ƒXƒPƒWƒ…[ƒ‹ƒŒƒR[ƒh‚Ì”B
+            public byte roomRate5;                        ///< éƒ¨å±‹ã®ç¨®é¡ã€‚
+            public byte season;                             ///< å­£ç¯€ç•ªå·ã€‚
+            [System.Xml.Serialization.XmlIgnoreAttribute]   // XMLã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã—ãªã„
+            public ushort scheduleRecordNum;                ///< ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰ã®æ•°ã€‚
 
             public LobbyAdminScheduleBase()
             {
@@ -274,7 +274,7 @@ namespace AdminTool
             internal List<byte> ToByteArray()
             {
                 List<byte> bytes = new List<byte>();
-                bytes.Add((byte)(startMonth - 1));  // ƒT[ƒo‚Å‚Í0-11‚ğ—v‹
+                bytes.Add((byte)(startMonth - 1));  // ã‚µãƒ¼ãƒã§ã¯0-11ã‚’è¦æ±‚
                 bytes.Add(startDay);
                 bytes.AddRange(BitConverter.GetBytes(startYear));
                 bytes.AddRange(BitConverter.GetBytes(lockTime));
@@ -303,7 +303,7 @@ namespace AdminTool
                 list.Add(roomRate4.ToString());
                 list.Add(roomRate5.ToString());
                 list.Add(season.ToString());
-                // ƒŒƒR[ƒh”‚ÍÀÛ‚ÌList‚Ì”‚ğg‚¤
+                // ãƒ¬ã‚³ãƒ¼ãƒ‰æ•°ã¯å®Ÿéš›ã®Listã®æ•°ã‚’ä½¿ã†
                 //list.Add(scheduleRecordNum.ToString());
                 return list;
             }
@@ -314,7 +314,7 @@ namespace AdminTool
                 {
                     Type t = this.GetType();
                     FieldInfo info = t.GetField(tag);
-                    // data‚ğƒZƒbƒg‚µ‚½‚¢Œ^‚ÉƒLƒƒƒXƒg‚µ‚ÄƒZƒbƒg
+                    // dataã‚’ã‚»ãƒƒãƒˆã—ãŸã„å‹ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ã‚»ãƒƒãƒˆ
                     info.SetValue(this, Convert.ChangeType(Int32.Parse(data), info.FieldType));
                 }
                 catch (Exception e)
@@ -334,19 +334,19 @@ namespace AdminTool
 
 
         /// <summary>
-        /// ƒƒr[ƒXƒPƒWƒ…[ƒ‹İ’èæ“¾ƒŒƒXƒ|ƒ“ƒX
+        /// ãƒ­ãƒ“ãƒ¼ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«è¨­å®šå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminGetScheduleResponse : ResponseContainer
         {
             public LobbyAdminScheduleBase scheduleBase;
-            public List<LobbyScheduleRecord> scheduleRecords = new List<LobbyScheduleRecord>(); ///< ƒXƒPƒWƒ…[ƒ‹ƒŒƒR[ƒh
+            public List<LobbyScheduleRecord> scheduleRecords = new List<LobbyScheduleRecord>(); ///< ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰
 
             public LobbyAdminGetScheduleResponse() { }
         }
 
         /// <summary>
-        /// ƒƒr[ƒXƒPƒWƒ…[ƒ‹İ’èƒZƒbƒgƒŠƒNƒGƒXƒg‚Ìˆê•”A‚‘¬‰»‚Ì‚½‚ß‚Ü‚Æ‚ß‚Ä‘—‚é‚Ì‚ÅƒŠƒNƒGƒXƒgƒIƒuƒWƒFƒNƒg‚©‚ç‚ÍŒp³‚µ‚È‚¢
+        /// ãƒ­ãƒ“ãƒ¼ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«è¨­å®šã‚»ãƒƒãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ä¸€éƒ¨ã€é«˜é€ŸåŒ–ã®ãŸã‚ã¾ã¨ã‚ã¦é€ã‚‹ã®ã§ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰ã¯ç¶™æ‰¿ã—ãªã„
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         [System.Xml.Serialization.XmlRoot("LobbySchedule")]
@@ -357,7 +357,7 @@ namespace AdminTool
             public LobbyAdminScheduleBase scheduleBase = new LobbyAdminScheduleBase();
 
             [System.Xml.Serialization.XmlElement("LobbyScheduleRecord", Type = typeof(LobbyScheduleRecord))]
-            public List<LobbyScheduleRecord> scheduleRecords = new List<LobbyScheduleRecord>(); ///< ƒXƒPƒWƒ…[ƒ‹ƒŒƒR[ƒh
+            public List<LobbyScheduleRecord> scheduleRecords = new List<LobbyScheduleRecord>(); ///< ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰
 
             public DateTime StartDate
             {
@@ -425,7 +425,7 @@ namespace AdminTool
                 {
                     if (!Enum.IsDefined(typeof(PPW_LOBBY_SEASON), value))
                     {
-                        throw new InvalidDataException("" + value + " ‚Í‹Gß‚É•ÏŠ·‚Å‚«‚Ü‚¹‚ñB");
+                        throw new InvalidDataException("" + value + " ã¯å­£ç¯€ã«å¤‰æ›ã§ãã¾ã›ã‚“ã€‚");
                     }
                     scheduleBase.season = (byte)value;
                 }
@@ -438,8 +438,8 @@ namespace AdminTool
                 set { }
             }
 
-            // scheduleRecords‚ğƒRƒs[—p(TSV)‚ÉƒVƒŠƒAƒ‰ƒCƒY
-            [System.Xml.Serialization.XmlIgnoreAttribute]   // XMLƒVƒŠƒAƒ‰ƒCƒY‚µ‚È‚¢
+            // scheduleRecordsã‚’ã‚³ãƒ”ãƒ¼ç”¨(TSV)ã«ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º
+            [System.Xml.Serialization.XmlIgnoreAttribute]   // XMLã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã—ãªã„
             public string ScheduleRecordsText
             {
                 get
@@ -449,7 +449,7 @@ namespace AdminTool
                     {
                         serializer.Serialize(ms, scheduleRecords);
 
-                        // Šª‚«–ß‚µ
+                        // å·»ãæˆ»ã—
                         ms.Seek(0, SeekOrigin.Begin);
 
                         using (StreamReader reader = new StreamReader(ms))
@@ -501,10 +501,10 @@ namespace AdminTool
             {
                 LobbyAdminSetScheduleRequestPart result = new LobbyAdminSetScheduleRequestPart();
 
-                // è“®‚Å\‘¢‘Ì\’z
+                // æ‰‹å‹•ã§æ§‹é€ ä½“æ§‹ç¯‰
                 int baseAddr = ptr.ToInt32();
                 result.scheduleBase = (LobbyAdminScheduleBase)Marshal.PtrToStructure(ptr, typeof(LobbyAdminScheduleBase));
-                result.scheduleBase.startMonth++;   // ƒT[ƒo‚Í0-11‚ğ•Ô‚µ‚Ä‚­‚é‚Ì‚ÅC³
+                result.scheduleBase.startMonth++;   // ã‚µãƒ¼ãƒã¯0-11ã‚’è¿”ã—ã¦ãã‚‹ã®ã§ä¿®æ­£
 
                 LobbyScheduleRecord data;
 
@@ -532,7 +532,7 @@ namespace AdminTool
                     }
                     else
                     {
-                        // ‚ ‚Ü‚è‚Í‹óƒf[ƒ^‚ğ‚Â‚Á‚±‚Ş
+                        // ã‚ã¾ã‚Šã¯ç©ºãƒ‡ãƒ¼ã‚¿ã‚’ã¤ã£ã“ã‚€
                         bytes.AddRange(BitConverter.GetBytes((int)0));
                         bytes.AddRange(BitConverter.GetBytes((int)0));
                     }
@@ -567,7 +567,7 @@ namespace AdminTool
                 return scheduleBase.IsConsistent() && scheduleRecords.Count <= 40;
             }
             
-            #region ICloneable ƒƒ“ƒo
+            #region ICloneable ãƒ¡ãƒ³ãƒ
 
             public object Clone()
             {
@@ -576,17 +576,17 @@ namespace AdminTool
 
             #endregion
 
-            #region IComparable ƒƒ“ƒo
+            #region IComparable ãƒ¡ãƒ³ãƒ
 
             public int CompareTo(LobbyAdminSetScheduleRequestPart rhs)
             {
-                // “ú•t‚Åƒ\[ƒg
+                // æ—¥ä»˜ã§ã‚½ãƒ¼ãƒˆ
                 int score = (this.scheduleBase.startYear - rhs.scheduleBase.startYear) * 10000
                     + (this.scheduleBase.startMonth - rhs.scheduleBase.startMonth) * 100
                     + (this.scheduleBase.startDay - rhs.scheduleBase.startDay);
                 if (score == 0)
                 {
-                    // ‚¹‚ß‚Ä‹N“®’†‚¾‚¯‚ÍˆÀ’èƒ\[ƒg‚É‚È‚é‚æ‚¤‚É
+                    // ã›ã‚ã¦èµ·å‹•ä¸­ã ã‘ã¯å®‰å®šã‚½ãƒ¼ãƒˆã«ãªã‚‹ã‚ˆã†ã«
                     return this.GetHashCode() - rhs.GetHashCode();
                 }
                 return score;
@@ -596,7 +596,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒƒr[ƒXƒPƒWƒ…[ƒ‹İ’èƒZƒbƒgƒŠƒNƒGƒXƒg
+        /// ãƒ­ãƒ“ãƒ¼ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«è¨­å®šã‚»ãƒƒãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         [Serializable()]
@@ -637,7 +637,7 @@ namespace AdminTool
                 return list.ToArray();
             }
 
-            // ƒXƒPƒWƒ…[ƒ‹‚²‚Æ‚Ìbyte‚ÌƒŠƒXƒg‚É‚µ‚Ä•Ô‚·
+            // ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã”ã¨ã®byteã®ãƒªã‚¹ãƒˆã«ã—ã¦è¿”ã™
             internal List<List<byte>> ToByteArrays()
             {
                 List<List<byte>> result = new List<List<byte>>();
@@ -695,7 +695,7 @@ namespace AdminTool
                     return false;
                 }
 
-                // Å‰‚ÌƒXƒPƒWƒ…[ƒ‹‚ª–¢—ˆ‚Ì‚à‚Ì‚È‚ç•s³
+                // æœ€åˆã®ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãŒæœªæ¥ã®ã‚‚ã®ãªã‚‰ä¸æ­£
                 LobbyAdminScheduleBase scheduleBase = lobbySchedules[0].scheduleBase;
                 DateTime scheduleTime;
                 try
@@ -704,7 +704,7 @@ namespace AdminTool
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    // •s³‚È“ú•t
+                    // ä¸æ­£ãªæ—¥ä»˜
                     return false;
                 }
 
@@ -724,7 +724,7 @@ namespace AdminTool
                 return true;
             }
 
-            #region ICloneable ƒƒ“ƒo
+            #region ICloneable ãƒ¡ãƒ³ãƒ
 
             public object Clone()
             {
@@ -735,7 +735,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒƒr[ƒXƒPƒWƒ…[ƒ‹İ’èƒZƒbƒgƒŒƒXƒ|ƒ“ƒX
+        /// ãƒ­ãƒ“ãƒ¼ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«è¨­å®šã‚»ãƒƒãƒˆãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminSetScheduleResponse : ResponseContainer
@@ -744,7 +744,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// VIPƒŒƒR[ƒh
+        /// VIPãƒ¬ã‚³ãƒ¼ãƒ‰
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyVipRecord
@@ -768,7 +768,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// VIPƒŒƒR[ƒh
+        /// VIPãƒ¬ã‚³ãƒ¼ãƒ‰
         /// </summary>
         [Serializable]
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
@@ -854,7 +854,7 @@ namespace AdminTool
 
             public LobbyVipSettingRecord()
             {
-                // DGVg—p‚ÌƒfƒtƒHƒ‹ƒgƒf[ƒ^‚ğİ’è
+                // DGVä½¿ç”¨æ™‚ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
                 DateTime now = DateTime.Now;
                 startMonth = (byte)now.Month;
                 startDay = (byte)now.Day;
@@ -870,10 +870,10 @@ namespace AdminTool
             internal List<byte> ToByteArray()
             {
                 List<byte> bytes = new List<byte>();
-                bytes.Add((byte)(startMonth - 1));  // ƒT[ƒo‚Å‚Í0-11‚ğ—v‹
+                bytes.Add((byte)(startMonth - 1));  // ã‚µãƒ¼ãƒã§ã¯0-11ã‚’è¦æ±‚
                 bytes.Add(startDay);
                 bytes.AddRange(BitConverter.GetBytes(startYear));
-                bytes.Add((byte)(endMonth - 1));  // ƒT[ƒo‚Å‚Í0-11‚ğ—v‹
+                bytes.Add((byte)(endMonth - 1));  // ã‚µãƒ¼ãƒã§ã¯0-11ã‚’è¦æ±‚
                 bytes.Add(endDay);
                 bytes.AddRange(BitConverter.GetBytes(endYear));
                 bytes.AddRange(BitConverter.GetBytes(profileId));
@@ -892,7 +892,7 @@ namespace AdminTool
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    // •s³‚È“ú•t
+                    // ä¸æ­£ãªæ—¥ä»˜
                     return false;
                 }
                 if (startTime >= endTime)
@@ -905,18 +905,18 @@ namespace AdminTool
                     && profileId >= 100000;
             }
 
-            #region IComparable<LobbyVipSettingRecord> ƒƒ“ƒo
+            #region IComparable<LobbyVipSettingRecord> ãƒ¡ãƒ³ãƒ
 
             public int CompareTo(LobbyVipSettingRecord other)
             {
-                // ŠJn“ú‡‚É‚·‚é
+                // é–‹å§‹æ—¥é †ã«ã™ã‚‹
                 return (this.startYear * 10000 + this.startMonth * 100 + this.startDay)
                      - (other.startYear * 10000 + other.startMonth * 100 + other.startDay);
             }
 
             #endregion
 
-            #region ICloneable ƒƒ“ƒo
+            #region ICloneable ãƒ¡ãƒ³ãƒ
 
             public object Clone()
             {
@@ -927,7 +927,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// VIPæ“¾ƒŠƒNƒGƒXƒg
+        /// VIPå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyGetVipRequest : RequestContainer
@@ -942,7 +942,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// VIPæ“¾ƒŒƒXƒ|ƒ“ƒX
+        /// VIPå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyGetVipResponse : ResponseContainer
@@ -953,7 +953,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// VIPİ’èæ“¾ƒŠƒNƒGƒXƒg
+        /// VIPè¨­å®šå–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminGetVipSettingRequest : RequestContainer
@@ -966,7 +966,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// VIPİ’èæ“¾ƒŒƒXƒ|ƒ“ƒX
+        /// VIPè¨­å®šå–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminGetVipSettingResponse : ResponseContainer
@@ -977,7 +977,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// VIPİ’è“o˜^ƒŠƒNƒGƒXƒg
+        /// VIPè¨­å®šç™»éŒ²ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [System.Xml.Serialization.XmlRoot("VipSetting")]
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
@@ -994,7 +994,7 @@ namespace AdminTool
 
             internal override List<byte> ToByteArray()
             {
-                // æ“ª‚É‹¤’Êƒwƒbƒ_‚ğ•t‚¯‚é
+                // å…ˆé ­ã«å…±é€šãƒ˜ãƒƒãƒ€ã‚’ä»˜ã‘ã‚‹
                 List<byte> result = base.ToByteArray();
 
                 foreach (LobbyVipSettingRecord item in vipSettingRecords)
@@ -1019,7 +1019,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// VIPİ’è“o˜^ƒŒƒXƒ|ƒ“ƒX
+        /// VIPè¨­å®šç™»éŒ²ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminSetVipSettingResponse : ResponseContainer
@@ -1042,10 +1042,10 @@ namespace AdminTool
 
             encSession.Session(URL_GET_LOBBY_SCHEDULE, ADMIN_PROFILE_ID, request, out ptr, out outSize);
 
-            // ƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚Ìƒ`ƒFƒbƒN
+            // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯
             if (outSize < Marshal.SizeOf(result.code))
             {
-                throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+                throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
             }
             else
             {
@@ -1053,7 +1053,7 @@ namespace AdminTool
                 //result.ntoh();
                 if (result.code != 0)
                 {
-                    // ƒƒbƒZ[ƒW‚Ìæ‚èo‚µ
+                    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–ã‚Šå‡ºã—
                     message = Marshal.PtrToStringAnsi(new IntPtr(ptr.ToInt32() + Marshal.SizeOf(result.code)), 128);
                     return result;
                 }
@@ -1061,10 +1061,10 @@ namespace AdminTool
 
             if (outSize < baseStructureOffset)
             {
-                throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BLobbyGetScheduleResponse\‘¢‘Ì‚ÌÅ’áƒTƒCƒY‚ğ–‚½‚µ‚Ä‚¢‚Ü‚¹‚ñB");
+                throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚LobbyGetScheduleResponseæ§‹é€ ä½“ã®æœ€ä½ã‚µã‚¤ã‚ºã‚’æº€ãŸã—ã¦ã„ã¾ã›ã‚“ã€‚");
             }
 
-            // è“®‚Å\‘¢‘Ì\’z
+            // æ‰‹å‹•ã§æ§‹é€ ä½“æ§‹ç¯‰
             int baseAddr = ptr.ToInt32();
             result.lockTime = (uint)Marshal.ReadInt32(new IntPtr(baseAddr + 4));
             result.random = (uint)Marshal.ReadInt32(new IntPtr(baseAddr + 8));
@@ -1076,7 +1076,7 @@ namespace AdminTool
 
             LobbyScheduleRecord data;
 
-            // ƒTƒCƒYƒ`ƒFƒbƒN
+            // ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
             if ((outSize - baseStructureOffset) % Marshal.SizeOf(typeof(LobbyScheduleRecord)) == 0 &&
                 (outSize - baseStructureOffset) / Marshal.SizeOf(typeof(LobbyScheduleRecord)) == result.scheduleRecordNum)
             {
@@ -1090,13 +1090,13 @@ namespace AdminTool
             }
             else
             {
-                throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BPPW_LobbyScheduleRecord\‘¢‘Ì‚Ì”{”‚Å‚Í‚ ‚è‚Ü‚¹‚ñB");
+                throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚PPW_LobbyScheduleRecordæ§‹é€ ä½“ã®å€æ•°ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚");
             }
             return result;
         }
 
         /// <summary>
-        /// •s³ƒ`ƒFƒbƒNƒŠƒNƒGƒXƒg
+        /// ä¸æ­£ãƒã‚§ãƒƒã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminCheckProfileRequest : RequestContainer
@@ -1119,7 +1119,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// •s³ƒ`ƒFƒbƒNƒŒƒXƒ|ƒ“ƒX
+        /// ä¸æ­£ãƒã‚§ãƒƒã‚¯ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminCheckProfileResponse : ResponseContainer
@@ -1136,15 +1136,15 @@ namespace AdminTool
                 code = 0;
                 message = "";
 
-                // ƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚Ìƒ`ƒFƒbƒN
+                // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯
                 if (size < Marshal.SizeOf(code))
                 {
-                    throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+                    throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
                 }
                 code = (uint)Marshal.ReadInt32(ptr);
                 if (code != 0)
                 {
-                    // ƒƒbƒZ[ƒW‚Ìæ‚èo‚µ
+                    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–ã‚Šå‡ºã—
                     message = Marshal.PtrToStringAnsi(new IntPtr(ptr.ToInt32() + Marshal.SizeOf(code)), 128);
                     return null;
                 }
@@ -1154,7 +1154,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒAƒ“ƒP[ƒgî•ñæ“¾ƒŠƒNƒGƒXƒg
+        /// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±å–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyGetQuestionnaireRequest : RequestContainer
@@ -1167,7 +1167,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒAƒ“ƒP[ƒgî•ñæ“¾ƒŒƒXƒ|ƒ“ƒX
+        /// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±å–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyGetQuestionnaireResponse : ResponseContainer
@@ -1184,15 +1184,15 @@ namespace AdminTool
                 code = 0;
                 message = "";
 
-                // ƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚Ìƒ`ƒFƒbƒN
+                // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯
                 if (size < Marshal.SizeOf(code))
                 {
-                    throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+                    throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
                 }
                 code = (uint)Marshal.ReadInt32(ptr);
                 if (code != 0)
                 {
-                    // ƒƒbƒZ[ƒW‚Ìæ‚èo‚µ
+                    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–ã‚Šå‡ºã—
                     message = Marshal.PtrToStringAnsi(new IntPtr(ptr.ToInt32() + Marshal.SizeOf(code)), 128);
                     return null;
                 }
@@ -1237,7 +1237,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒXƒyƒVƒƒƒ‹ƒEƒB[ƒNæ“¾ƒŠƒNƒGƒXƒg
+        /// ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯å–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminGetSpecialWeekRequest : RequestContainer
@@ -1250,7 +1250,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒXƒyƒVƒƒƒ‹ƒEƒB[ƒNæ“¾ƒŒƒXƒ|ƒ“ƒX
+        /// ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯å–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminGetSpecialWeekResponse : ResponseContainer
@@ -1261,7 +1261,7 @@ namespace AdminTool
             {
                 if (size % REF_PPW_LobbySpecialWeekRecord.SPECIAL_RECORD_SIZE != 0)
                 {
-                    throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BPPW_LobbySpecialWeekRecord\‘¢‘Ì‚Ì”{”‚Å‚Í‚ ‚è‚Ü‚¹‚ñB");
+                    throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚PPW_LobbySpecialWeekRecordæ§‹é€ ä½“ã®å€æ•°ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚");
                 }
 
                 while (size != 0)
@@ -1277,15 +1277,15 @@ namespace AdminTool
                 code = 0;
                 message = "";
 
-                // ƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚Ìƒ`ƒFƒbƒN
+                // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯
                 if (size < Marshal.SizeOf(code))
                 {
-                    throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+                    throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
                 }
                 code = (uint)Marshal.ReadInt32(ptr);
                 if (code != 0)
                 {
-                    // ƒƒbƒZ[ƒW‚Ìæ‚èo‚µ
+                    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–ã‚Šå‡ºã—
                     message = Marshal.PtrToStringAnsi(new IntPtr(ptr.ToInt32() + Marshal.SizeOf(code)), 128);
                     return null;
                 }
@@ -1296,7 +1296,7 @@ namespace AdminTool
 
 
         /// <summary>
-        /// ƒXƒyƒVƒƒƒ‹ƒEƒB[ƒN“o˜^ƒŠƒNƒGƒXƒg
+        /// ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯ç™»éŒ²ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         public class LobbyAdminSetSpecialWeekRequest : RequestContainer
@@ -1325,7 +1325,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒXƒyƒVƒƒƒ‹ƒEƒB[ƒN“o˜^ƒŒƒXƒ|ƒ“ƒX
+        /// ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯ç™»éŒ²ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminSetSpecialWeekResponse : ResponseContainer
@@ -1337,15 +1337,15 @@ namespace AdminTool
                 code = 0;
                 message = "";
 
-                // ƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚Ìƒ`ƒFƒbƒN
+                // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯
                 if (size < Marshal.SizeOf(code))
                 {
-                    throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+                    throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
                 }
                 code = (uint)Marshal.ReadInt32(ptr);
                 if (code != 0)
                 {
-                    // ƒƒbƒZ[ƒW‚Ìæ‚èo‚µ
+                    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–ã‚Šå‡ºã—
                     message = Marshal.PtrToStringAnsi(new IntPtr(ptr.ToInt32() + Marshal.SizeOf(code)), 128);
                     return;
                 }
@@ -1363,13 +1363,13 @@ namespace AdminTool
                 for (int i = 0; i < REF_PPW_LobbySpecialWeekRecord.LOBBY_FREE_QUESTION_NUM; i++)
                 {
                     List<string> answers = new List<string>();
-                    answers.Add("‚©‚¢‚Æ‚¤1");
-                    answers.Add("‚©‚¢‚Æ‚¤2");
-                    answers.Add("‚©‚¢‚Æ‚¤3");
+                    answers.Add("ã‹ã„ã¨ã†1");
+                    answers.Add("ã‹ã„ã¨ã†2");
+                    answers.Add("ã‹ã„ã¨ã†3");
 
                     records.Add(new REF_PPW_LobbyFreeQuestion(REF_PPW_LobbySpecialWeekRecord.LOBBY_FREE_QUESTION_START_NO + i,
                         language,
-                        "‚µ‚Â‚à‚ñ‚Ô‚ñ",
+                        "ã—ã¤ã‚‚ã‚“ã¶ã‚“",
                         answers));
                 }
             }
@@ -1412,7 +1412,7 @@ namespace AdminTool
                     }
                     catch (Exception e)
                     {
-                        MessageBox.Show("u" + cur + "v‚ÍƒQ[ƒ€“à•¶šƒR[ƒh‚Ö•ÏŠ·‚Å‚«‚Ü‚¹‚ñB");
+                        MessageBox.Show("ã€Œ" + cur + "ã€ã¯ã‚²ãƒ¼ãƒ å†…æ–‡å­—ã‚³ãƒ¼ãƒ‰ã¸å¤‰æ›ã§ãã¾ã›ã‚“ã€‚");
                         throw e;
                     }
                     List<ushort> questionSentenceList = Util.BytesToShorts(new List<byte>(Encoding.Unicode.GetBytes(questionSentence)), false);
@@ -1452,7 +1452,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ”CˆÓ¿–â“o˜^ƒŠƒNƒGƒXƒg
+        /// ä»»æ„è³ªå•ç™»éŒ²ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         public class LobbyAdminSetFreeQuestionRequest : RequestContainer
@@ -1480,7 +1480,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ”CˆÓ¿–â“o˜^ƒŒƒXƒ|ƒ“ƒX
+        /// ä»»æ„è³ªå•ç™»éŒ²ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminSetFreeQuestionResponse : ResponseContainer
@@ -1492,15 +1492,15 @@ namespace AdminTool
                 code = 0;
                 message = "";
 
-                // ƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚Ìƒ`ƒFƒbƒN
+                // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯
                 if (size < Marshal.SizeOf(code))
                 {
-                    throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+                    throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
                 }
                 code = (uint)Marshal.ReadInt32(ptr);
                 if (code != 0)
                 {
-                    // ƒƒbƒZ[ƒW‚Ìæ‚èo‚µ
+                    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–ã‚Šå‡ºã—
                     message = Marshal.PtrToStringAnsi(new IntPtr(ptr.ToInt32() + Marshal.SizeOf(code)), 128);
                     return;
                 }
@@ -1508,7 +1508,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ”CˆÓ¿–âæ“¾ƒŠƒNƒGƒXƒg
+        /// ä»»æ„è³ªå•å–å¾—ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminGetFreeQuestionRequest : RequestContainer
@@ -1523,7 +1523,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ”CˆÓ¿–âæ“¾ƒŒƒXƒ|ƒ“ƒX
+        /// ä»»æ„è³ªå•å–å¾—ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminGetFreeQuestionResponse : ResponseContainer
@@ -1540,15 +1540,15 @@ namespace AdminTool
                 code = 0;
                 message = "";
 
-                // ƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚Ìƒ`ƒFƒbƒN
+                // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯
                 if (size < Marshal.SizeOf(code))
                 {
-                    throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+                    throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
                 }
                 code = (uint)Marshal.ReadInt32(ptr);
                 if (code != 0)
                 {
-                    // ƒƒbƒZ[ƒW‚Ìæ‚èo‚µ
+                    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–ã‚Šå‡ºã—
                     message = Marshal.PtrToStringAnsi(new IntPtr(ptr.ToInt32() + Marshal.SizeOf(code)), 128);
                     return null;
                 }
@@ -1558,7 +1558,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒAƒ“ƒP[ƒgXVƒŠƒNƒGƒXƒg
+        /// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæ›´æ–°ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminUpdateQuestionnaireRequest : RequestContainer
@@ -1570,7 +1570,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒAƒ“ƒP[ƒgXVƒŒƒXƒ|ƒ“ƒX
+        /// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæ›´æ–°ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminUpdateQuestionnaireResponse : ResponseContainer
@@ -1578,7 +1578,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒAƒ“ƒP[ƒg’ñoƒŠƒNƒGƒXƒg
+        /// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæå‡ºãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbySubmitQuestionnaireRequest : RequestContainer
@@ -1598,7 +1598,7 @@ namespace AdminTool
                 answerNo = answerNo_;
                 language = language_;
 
-                // c‚è‚Í“K“–‚Éİ’è
+                // æ®‹ã‚Šã¯é©å½“ã«è¨­å®š
                 trainerId = 0;
                 sex = 0;
                 country = 0;
@@ -1607,7 +1607,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒAƒ“ƒP[ƒg’ñoƒŒƒXƒ|ƒ“ƒX
+        /// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæå‡ºãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbySubmitQuestionnaireResponse : ResponseContainer
@@ -1615,7 +1615,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ¿–â’Ê‚µ”Ô†ƒZƒbƒgƒŠƒNƒGƒXƒg
+        /// è³ªå•é€šã—ç•ªå·ã‚»ãƒƒãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminSetQuestionSerialNoRequest : RequestContainer
@@ -1629,7 +1629,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ¿–â’Ê‚µ”Ô†ƒZƒbƒgƒŒƒXƒ|ƒ“ƒX
+        /// è³ªå•é€šã—ç•ªå·ã‚»ãƒƒãƒˆãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminSetQuestionSerialNoResponse : ResponseContainer
@@ -1637,7 +1637,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// Ÿ‚Ì¿–â”Ô†ƒZƒbƒgƒŠƒNƒGƒXƒg
+        /// æ¬¡ã®è³ªå•ç•ªå·ã‚»ãƒƒãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminSetNextQuestionNoRequest : RequestContainer
@@ -1651,7 +1651,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// Ÿ‚Ì¿–â”Ô†ƒZƒbƒgƒŒƒXƒ|ƒ“ƒX
+        /// æ¬¡ã®è³ªå•ç•ªå·ã‚»ãƒƒãƒˆãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminSetNextQuestionNoResponse : ResponseContainer
@@ -1659,7 +1659,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ¿–â”Ô†ƒZƒbƒgƒŠƒNƒGƒXƒg
+        /// è³ªå•ç•ªå·ã‚»ãƒƒãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminSetQuestionNoRequest : RequestContainer
@@ -1673,7 +1673,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ¿–â”Ô†ƒZƒbƒgƒŒƒXƒ|ƒ“ƒX
+        /// è³ªå•ç•ªå·ã‚»ãƒƒãƒˆãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminSetQuestionNoResponse : ResponseContainer
@@ -1681,7 +1681,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒAƒ“ƒP[ƒg‰Šú‰»ƒŠƒNƒGƒXƒg
+        /// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆåˆæœŸåŒ–ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminInitializeQuestionnaireRequest : RequestContainer
@@ -1693,7 +1693,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒAƒ“ƒP[ƒg‰Šú‰»ƒŒƒXƒ|ƒ“ƒX
+        /// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆåˆæœŸåŒ–ãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminInitializeQuestionnaireResponse : ResponseContainer
@@ -1701,7 +1701,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// “Á•Ê¿–âè‡’lƒZƒbƒgƒŠƒNƒGƒXƒg
+        /// ç‰¹åˆ¥è³ªå•é–¾å€¤ã‚»ãƒƒãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminSetSpecialQuestionThresholdRequest : RequestContainer
@@ -1715,7 +1715,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// “Á•Ê¿–âè‡’lƒZƒbƒgƒŒƒXƒ|ƒ“ƒX
+        /// ç‰¹åˆ¥è³ªå•é–¾å€¤ã‚»ãƒƒãƒˆãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminSetSpecialQuestionThresholdResponse : ResponseContainer
@@ -1723,7 +1723,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒfƒtƒHƒ‹ƒgWŒvƒtƒ‰ƒOƒZƒbƒgƒZƒbƒgƒŠƒNƒGƒXƒg
+        /// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé›†è¨ˆãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆã‚»ãƒƒãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆ
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4, CharSet = CharSet.Ansi)]
         internal class LobbyAdminSetDefaultSummarizeFlagRequest : RequestContainer
@@ -1738,7 +1738,7 @@ namespace AdminTool
         }
 
         /// <summary>
-        /// ƒfƒtƒHƒ‹ƒgWŒvƒtƒ‰ƒOƒZƒbƒgƒŒƒXƒ|ƒ“ƒX
+        /// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆé›†è¨ˆãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆãƒ¬ã‚¹ãƒãƒ³ã‚¹
         /// </summary>
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal class LobbyAdminSetDefaultSummarizeFlagResponse : ResponseContainer
@@ -1748,7 +1748,7 @@ namespace AdminTool
         internal LobbySchedules LobbyAdminGetSchedule(out uint code, out string message)
         {
             LobbyAdminGetScheduleRequest request = new LobbyAdminGetScheduleRequest(ADMIN_PROFILE_ID);
-            LobbyAdminSetScheduleRequestPart[] result;  // ƒŒƒXƒ|ƒ“ƒX‚ÅLobbyAdminSetScheduleRequest‚Ì”z—ñ‚ğì‚é
+            LobbyAdminSetScheduleRequestPart[] result;  // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã§LobbyAdminSetScheduleRequestã®é…åˆ—ã‚’ä½œã‚‹
             IntPtr ptr;
             uint outSize;
             message = "";
@@ -1758,17 +1758,17 @@ namespace AdminTool
 
             encSession.Session(URL_ADMIN_GET_LOBBY_SCHEDULE, ADMIN_PROFILE_ID, request, out ptr, out outSize);
 
-            // ƒTƒCƒY‚Ìƒ`ƒFƒbƒN
+            // ã‚µã‚¤ã‚ºã®ãƒã‚§ãƒƒã‚¯
             if (outSize % LobbyAdminSetScheduleRequestPart.OBJECT_SIZE != resultCodeSize)
             {
-                throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·Bsize: " + outSize);
+                throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚size: " + outSize);
             }
 
             code = (uint)Marshal.ReadInt32(ptr);
 
             if (code != 0)
             {
-                // ƒƒbƒZ[ƒW‚Ìæ‚èo‚µ
+                // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–ã‚Šå‡ºã—
                 message = Marshal.PtrToStringAnsi(new IntPtr(ptr.ToInt32() + resultCodeSize), 128);
                 return null;
             }
@@ -1790,22 +1790,22 @@ namespace AdminTool
             List<List<byte>> list = schedules.ToByteArrays();
             if (list.Count == 0)
             {
-                throw new Exception("ƒXƒPƒWƒ…[ƒ‹‚ª‹ó‚Å‚·B");
+                throw new Exception("ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãŒç©ºã§ã™ã€‚");
             }
 
-            // ˆê“x‚É•¡”‚ÌƒXƒPƒWƒ…[ƒ‹‚ğƒZƒbƒg‚·‚é‚½‚ßA‚¢‚­‚Â‚©‚ÌƒXƒPƒWƒ…[ƒ‹‚ğ‚Ü‚Æ‚ß‚½ƒŠƒXƒg‚ğì‚éB
+            // ä¸€åº¦ã«è¤‡æ•°ã®ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãŸã‚ã€ã„ãã¤ã‹ã®ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ã¾ã¨ã‚ãŸãƒªã‚¹ãƒˆã‚’ä½œã‚‹ã€‚
             List<List<byte>> appendedList = new List<List<byte>>();
             {
                 foreach (List<byte> bytes in list)
                 {
                     if (appendedList.Count == 0 || appendedList[appendedList.Count - 1].Count + bytes.Count > RequestInterface.MAX_REQUEST_SIZE)
                     {
-                        // ÅŒã‚Ì—v‘f‚ª‚¢‚Á‚Ï‚¢‚É‚È‚Á‚½‚Ì‚ÅV‹KƒŠƒXƒg‚ğ’Ç‰Á
-                        // ‹¤’Êƒwƒbƒ_‚ğ•t‚¯‚Ä‰Šú‰»‚·‚é
+                        // æœ€å¾Œã®è¦ç´ ãŒã„ã£ã±ã„ã«ãªã£ãŸã®ã§æ–°è¦ãƒªã‚¹ãƒˆã‚’è¿½åŠ 
+                        // å…±é€šãƒ˜ãƒƒãƒ€ã‚’ä»˜ã‘ã¦åˆæœŸåŒ–ã™ã‚‹
                         appendedList.Add(new RequestContainer().ToByteArray());
                     }
 
-                    // ƒf[ƒ^‚ğ’Ç‰Á
+                    // ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ 
                     appendedList[appendedList.Count - 1].AddRange(bytes);
                 }
             }
@@ -1815,22 +1815,22 @@ namespace AdminTool
             {
                 encSession.Session(url, ADMIN_PROFILE_ID, bytes.ToArray(), out ptr, out outSize);
 
-                // ƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚Ìƒ`ƒFƒbƒN
+                // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯
                 if (outSize < Marshal.SizeOf(result.code))
                 {
-                    throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+                    throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
                 }
 
                 code = (uint)Marshal.ReadInt32(ptr);
                 //result.ntoh();
                 if (code != 0)
                 {
-                    // ƒƒbƒZ[ƒW‚Ìæ‚èo‚µ
+                    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–ã‚Šå‡ºã—
                     message = Marshal.PtrToStringAnsi(new IntPtr(ptr.ToInt32() + Marshal.SizeOf(result.code)), 128);
                     return;
                 }
 
-                // “ñ‰ñ–ÚˆÈ~‚ÍƒAƒyƒ“ƒh—pURL‚É•ÏX
+                // äºŒå›ç›®ä»¥é™ã¯ã‚¢ãƒšãƒ³ãƒ‰ç”¨URLã«å¤‰æ›´
                 url = URL_ADMIN_APPEND_LOBBY_SCHEDULE;
             }
         }
@@ -1846,17 +1846,17 @@ namespace AdminTool
 
             encSession.Session(URL_GET_LOBBY_VIP, ADMIN_PROFILE_ID, request, out ptr, out outSize);
 
-            // ƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚Ìƒ`ƒFƒbƒN
+            // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯
             if (outSize < Marshal.SizeOf(result.code))
             {
-                throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+                throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
             }
             else
             {
                 result.code = (uint)Marshal.ReadInt32(ptr);
                 if (result.code != 0)
                 {
-                    // ƒƒbƒZ[ƒW‚Ìæ‚èo‚µ
+                    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–ã‚Šå‡ºã—
                     message = Marshal.PtrToStringAnsi(new IntPtr(ptr.ToInt32() + Marshal.SizeOf(result.code)), 128);
                     return result;
                 }
@@ -1867,11 +1867,11 @@ namespace AdminTool
             long recordNum = (outSize - baseStructureOffset) / Marshal.SizeOf(typeof(LobbyVipRecord));
             if (recordNum == 0)
             {
-                MessageBox.Show("Œ»İVIP‚Í‚¢‚Ü‚¹‚ñB");
+                MessageBox.Show("ç¾åœ¨VIPã¯ã„ã¾ã›ã‚“ã€‚");
                 return result;
             }
 
-            // ƒTƒCƒYƒ`ƒFƒbƒN
+            // ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
             if ((outSize - baseStructureOffset) % Marshal.SizeOf(typeof(LobbyVipRecord)) == 0)
             {
                 LobbyVipRecord data;
@@ -1884,7 +1884,7 @@ namespace AdminTool
             }
             else
             {
-                throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BLobbyVipRecord\‘¢‘Ì‚Ì”{”‚Å‚Í‚ ‚è‚Ü‚¹‚ñB");
+                throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚LobbyVipRecordæ§‹é€ ä½“ã®å€æ•°ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚");
             }
             return result;
         }
@@ -1900,17 +1900,17 @@ namespace AdminTool
 
             encSession.Session(URL_ADMIN_GET_LOBBY_VIP, ADMIN_PROFILE_ID, request, out ptr, out outSize);
 
-            // ƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚Ìƒ`ƒFƒbƒN
+            // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯
             if (outSize < Marshal.SizeOf(result.code))
             {
-                throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+                throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
             }
             else
             {
                 result.code = (uint)Marshal.ReadInt32(ptr);
                 if (result.code != 0)
                 {
-                    // ƒƒbƒZ[ƒW‚Ìæ‚èo‚µ
+                    // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–ã‚Šå‡ºã—
                     message = Marshal.PtrToStringAnsi(new IntPtr(ptr.ToInt32() + Marshal.SizeOf(result.code)), 128);
                     return result;
                 }
@@ -1921,11 +1921,11 @@ namespace AdminTool
             long recordNum = (outSize - baseStructureOffset) / Marshal.SizeOf(typeof(LobbyVipSettingRecord));
             if (recordNum == 0)
             {
-                MessageBox.Show("ƒT[ƒo‚É“o˜^‚³‚ê‚Ä‚¢‚éVIPİ’èƒŠƒXƒg‚Í‹ó‚Å‚·B");
+                MessageBox.Show("ã‚µãƒ¼ãƒã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹VIPè¨­å®šãƒªã‚¹ãƒˆã¯ç©ºã§ã™ã€‚");
                 return result;
             }
 
-            // ƒTƒCƒYƒ`ƒFƒbƒN
+            // ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
             if ((outSize - baseStructureOffset) % Marshal.SizeOf(typeof(LobbyVipSettingRecord)) == 0)
             {
                 LobbyVipSettingRecord data;
@@ -1933,14 +1933,14 @@ namespace AdminTool
                 {
                     data = (LobbyVipSettingRecord)Marshal.PtrToStructure(
                         new IntPtr(baseAddr + baseStructureOffset + (i * Marshal.SizeOf(typeof(LobbyVipSettingRecord)))), typeof(LobbyVipSettingRecord));
-                    data.StartMonth++;  // Œ‚ÍƒT[ƒo‚©‚ç0-11‚ª•Ô‚Á‚Ä‚­‚é‚Ì‚ÅC³
+                    data.StartMonth++;  // æœˆã¯ã‚µãƒ¼ãƒã‹ã‚‰0-11ãŒè¿”ã£ã¦ãã‚‹ã®ã§ä¿®æ­£
                     data.EndMonth++;
                     result.vipSettingRecords.Add(data);
                 }
             }
             else
             {
-                throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BLobbyVipSettingRecord\‘¢‘Ì‚Ì”{”‚Å‚Í‚ ‚è‚Ü‚¹‚ñB");
+                throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚LobbyVipSettingRecordæ§‹é€ ä½“ã®å€æ•°ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚");
             }
             return result;
         }
@@ -1957,7 +1957,7 @@ namespace AdminTool
             List<byte> bytes = req.ToByteArray();
             if (bytes.Count == 0)
             {
-                if (MessageBox.Show("‹ó‚ÌVIPƒŠƒXƒg‚ğ“o˜^‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H", "Šm”F", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                if (MessageBox.Show("ç©ºã®VIPãƒªã‚¹ãƒˆã‚’ç™»éŒ²ã—ã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "ç¢ºèª", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 {
                     return;
                 }
@@ -1965,16 +1965,16 @@ namespace AdminTool
 
             encSession.Session(URL_ADMIN_SET_LOBBY_VIP, ADMIN_PROFILE_ID, bytes.ToArray(), out ptr, out outSize);
 
-            // ƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚Ìƒ`ƒFƒbƒN
+            // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯
             if (outSize < Marshal.SizeOf(result.code))
             {
-                throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·BƒŒƒXƒ|ƒ“ƒXƒR[ƒh‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB");
+                throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚³ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚");
             }
 
             code = (uint)Marshal.ReadInt32(ptr);
             if (code != 0)
             {
-                // ƒƒbƒZ[ƒW‚Ìæ‚èo‚µ
+                // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å–ã‚Šå‡ºã—
                 message = Marshal.PtrToStringAnsi(new IntPtr(ptr.ToInt32() + Marshal.SizeOf(result.code)), 128);
                 return;
             }

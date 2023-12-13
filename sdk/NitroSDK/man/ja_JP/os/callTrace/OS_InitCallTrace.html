@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>OS_DumpCallTrace</TITLE>
@@ -9,71 +9,71 @@
 </HEAD>
 <BODY>
 <H1 align="left">OS_InitCallTrace</H1>
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD><CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
   <BR>
   <CODE>void OS_InitCallTrace( void* buf, u32 size, OSCallTraceMode mode );</CODE>
 </DL>
-<H2>����</H2>
+<H2>引数</H2>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TD><I><B>buf</B></I></TD>
-      <TD>�֐��R�[���g���[�X�p�o�b�t�@</TD>
+      <TD>関数コールトレース用バッファ</TD>
     </TR>
     <TR>
       <TD><I><B>size</B></I></TD>
-      <TD>�֐��R�[���g���[�X�p�o�b�t�@�T�C�Y</TD>
+      <TD>関数コールトレース用バッファサイズ</TD>
     </TR>
     <TR>
       <TD><I><B>mode</B></I></TD>
-      <TD>�֐��R�[���g���[�X�̃��[�h</TD>
+      <TD>関数コールトレースのモード</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>�Ԃ�l</H2>
-<P>�Ȃ��B</P>
-<H2>����</H2>
-<P>�֐��R�[���g���[�X�̂��߂̃o�b�t�@��ݒ肵�A�֐��g���[�X���J�n���܂��B<BR>
-���̊֐����Ă�ŁA�֐��R�[���g���[�X�̐ݒ肪���ꂽ���ƁA�g���[�X��Ԃ�Enable�ɂȂ��Ă��܂��B(OS_EnableCallTrace()
-���Ă񂾏�ԂɂȂ��Ă��܂��B)</P>
-<P>�g���[�X�������֐��́Aprofile�@�\���I���ɂ��ăR���p�C�������K�v������܂��B(NITRO_PROFILE
-�� TRUE �ɂ��ăR���p�C������� �R���p�C������ -profile �I�v�V�������t���Aprofile�@�\���I���ɂȂ�܂��B)
-profile�@�\���I���̃R�[�h�Ƃ����łȂ��R�[�h�����݂��Ă���ꍇ�A����Ă�����̂ɂ��Ă̂݃g���[�X�����擾���Ă����܂��B</P>
-<P>�܂��A�֐��R�[���g���[�X�֘A�̋@�\��L���ɂ��邽�߂ɂ́A�����N���� libos.CALLTRACE.a
-(thumb �łȂ� libos.CALLTRACE.thumb.a ) ���܂ޕK�v������܂��B����� make
-�̃I�v�V������ NITRO_PROFILE_TYPE=CALLTRACE ���w�肷�邱�Ƃɂ��s�Ȃ��܂��BMakefile
-�̒��ɏ����Ă��L���ł��B�������ŏIROM��(FINALROM)���C�u�����ł͉���������s�Ȃ��܂���B</P>
-<P>�o�b�t�@ <B><I>buf</I></B> �ɂ́A�擪�����Ƀg���[�X�̂��߂̏��(�o�b�t�@�̍ŏI�ʒu�⌻�݂̃|�C���^�ȂǁAsizeof(OSCallTraceInfo)
-- sizeof(OSCallTrace) �o�C�g)���i�[����A�c��Ƀg���[�X��񂪏������܂�Ă����܂��B�X���b�h�V�X�e�����g�p���Ă���ꍇ�A�e�X���b�h�Ńo�b�t�@�͓Ɨ����Ă��܂��̂ŁA�g���[�X�����i�[�������ꍇ�͂��ꂼ��̃X���b�h�ł��ꂼ��قȂ�o�b�t�@���`���Ȃ���΂Ȃ�܂���B</P>
-<P>�g���[�X���[�h <B><I>mode</I></B> �͋L�^�̕������w�肵�܂��BOS_CALLTRACE_STACK ���w�肳���ƁAprofile�@�\���I���ɂȂ��Ă���֐��̓�����ŋL�^�����A�o���ŋL�^���̂Ă�Ƃ���������s�Ȃ��܂��B��������X�^�b�N���[�h�ƌĂт܂��B<B><I>mode</I></B> ��OS_CALLTRACE_LOG ���w�肳���ƁAprofile�@�\���I���ɂȂ��Ă���֐��̓�����ŋL�^����邾���ŏo���ŋL�^���̂Ă铮����s�Ȃ��܂���B����ɂ��A�ʉ߂����֐����L�^���Ă������O���[�h�Ƃ��Ă̓�����s�킹�邱�Ƃ��o���܂��B</P>
-<P>�֐����Ăяo���ꂽ�Ƃ��Ɋi�[�������̑傫���� sizeof(OSCallTrace) �o�C�g�ł��B�o�b�t�@�T�C�Y<B><I>size</I></B> �ɂ��ẮA�X�^�b�N���[�h�ł́A�ō�n��̊֐��R�[���l�X�g����������ꍇ�́Asizeof(OSCallTraceInfo)
-- sizeof(OSCallTrace*) + sizeof(OSCallTrace)*n �o�C�g�̑傫���̃o�b�t�@���K�v�Ƃ������ƂɂȂ�܂��B���O���[�h�ł̓o�b�t�@�������O��Ɏg�p���܂��B�]���Đ�قǂ̎��̒l�̑傫���̃o�b�t�@��
-n �̋L�^�����邱�Ƃ��\�ł��B</P>
-<P>���ڍׂȓ��쌴���ɂ��Đ������܂��Bprofile�@�\���I���ɂȂ��Ă���ƁA�֐��̓�����Əo�������ŁA���ꂼ��__PROFILE_ENTRY
-��__PROFILE_EXIT �Ƃ����֐����ĂԃR�[�h���ǉ�����܂��BNitroSDK �ł͂���𗘗p���āA__PROFILE_ENTRY�����Ŋ֐��ɓ������Ƃ��̏��(�߂�A�h���X�ƁA�I�v�V�����ň���)���擾���ăo�b�t�@�ɐς݁A__PROFILE_EXIT������(�X�^�b�N���[�h�̏ꍇ)�ł��ŋߎ擾���������̂Ă܂��B���O���[�h�ł�__PROFILE_EXIT
-�ŏ����̂Ă܂���B</P>
-<P>���̓X�^�b�N���[�h���̓������������}�ł��B</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>関数コールトレースのためのバッファを設定し、関数トレースを開始します。<BR>
+この関数を呼んで、関数コールトレースの設定がされたあと、トレース状態はEnableになっています。(OS_EnableCallTrace()
+を呼んだ状態になっています。)</P>
+<P>トレースをされる関数は、profile機能をオンにしてコンパイルされる必要があります。(NITRO_PROFILE
+を TRUE にしてコンパイルすると コンパイル時に -profile オプションが付き、profile機能がオンになります。)
+profile機能がオンのコードとそうでないコードが混在している場合、されているものについてのみトレース情報を取得していきます。</P>
+<P>また、関数コールトレース関連の機能を有効にするためには、リンク時に libos.CALLTRACE.a
+(thumb 版なら libos.CALLTRACE.thumb.a ) を含む必要があります。これは make
+のオプションに NITRO_PROFILE_TYPE=CALLTRACE を指定することにより行ないます。Makefile
+の中に書いても有効です。ただし最終ROM版(FINALROM)ライブラリでは何も動作を行ないません。</P>
+<P>バッファ <B><I>buf</I></B> には、先頭部分にトレースのための情報(バッファの最終位置や現在のポインタなど、sizeof(OSCallTraceInfo)
+- sizeof(OSCallTrace) バイト)が格納され、残りにトレース情報が書き込まれていきます。スレッドシステムを使用している場合、各スレッドでバッファは独立していますので、トレース情報を格納したい場合はそれぞれのスレッドでそれぞれ異なるバッファを定義しなければなりません。</P>
+<P>トレースモード <B><I>mode</I></B> は記録の方式を指定します。OS_CALLTRACE_STACK が指定されると、profile機能がオンになっている関数の入り口で記録を取り、出口で記録を捨てるという動作を行ないます。こちらをスタックモードと呼びます。<B><I>mode</I></B> にOS_CALLTRACE_LOG が指定されると、profile機能がオンになっている関数の入り口で記録を取るだけで出口で記録を捨てる動作を行ないません。これにより、通過した関数を記録していくログモードとしての動作を行わせることが出来ます。</P>
+<P>関数が呼び出されたときに格納される情報の大きさは sizeof(OSCallTrace) バイトです。バッファサイズ<B><I>size</I></B> については、スタックモードでは、最高n回の関数コールネストが発生する場合は、sizeof(OSCallTraceInfo)
+- sizeof(OSCallTrace*) + sizeof(OSCallTrace)*n バイトの大きさのバッファが必要ということになります。ログモードではバッファをリング状に使用します。従って先ほどの式の値の大きさのバッファで
+n 個の記録をつけることが可能です。</P>
+<P>より詳細な動作原理について説明します。profile機能がオンになっていると、関数の入り口と出口部分で、それぞれ__PROFILE_ENTRY
+と__PROFILE_EXIT という関数を呼ぶコードが追加されます。NitroSDK ではこれを利用して、__PROFILE_ENTRY部分で関数に入ったときの情報(戻りアドレスと、オプションで引数)を取得してバッファに積み、__PROFILE_EXIT部分で(スタックモードの場合)最も最近取得した情報を捨てます。ログモードでは__PROFILE_EXIT
+で情報を捨てません。</P>
+<P>下はスタックモード時の動作を説明した図です。</P>
 <P align="center"><IMG src="img01.jpg" border="0" width="560" height="467"></P>
-<P>�֐��R�[���g���[�X�o�b�t�@���̏���\������ɂ�<A href="OS_DumpCallTrace.html">OS_DumpCallTrace()</A> ���邢�� <A href="OS_DumpThreadCallTrace.html">OS_DumpThreadCallTrace()</A> ���Ă�ł��������B</P>
-<BLOCKQUOTE><CODE>(��)<BR>
+<P>関数コールトレースバッファ内の情報を表示するには<A href="OS_DumpCallTrace.html">OS_DumpCallTrace()</A> あるいは <A href="OS_DumpThreadCallTrace.html">OS_DumpThreadCallTrace()</A> を呼んでください。</P>
+<BLOCKQUOTE><CODE>(例)<BR>
 <BR>
 #define BUFFER_SIZE 0x400<BR>
 u32 traceBuffer[ BUFFER_SIZE/sizeof(u32) ];<BR>
 <BR>
 OS_InitCallTrace( traceBuffer, BUFFER_SIZE, OS_CALLTRACE_STACK );<BR>
-�@�@�F<BR>
-�@�@�F<BR>
+　　：<BR>
+　　：<BR>
 OS_DumpCallTrace();<BR>
 </CODE></BLOCKQUOTE>
-<H2>�Q��</H2>
+<H2>参照</H2>
 <P><CODE><A href="OS_DumpCallTrace.html">OS_DumpCallTrace</A>, <A href="OS_DumpThreadCallTrace.html">OS_DumpThreadCallTrace</A><BR>
 </CODE></P>
-<H2>����</H2>
-<P>2004/06/02 Make �I�v�V�����̋L�q�ύX<BR>
-2004/05/19 Make �I�v�V�����ɂ��Ă̐�����ǉ�<BR>
-2004/04/22 �X�^�b�N���[�h�ƃ��O���[�h�̋L�q��ǉ�<BR>
-2004/04/13 ����</P>
+<H2>履歴</H2>
+<P>2004/06/02 Make オプションの記述変更<BR>
+2004/05/19 Make オプションについての説明を追加<BR>
+2004/04/22 スタックモードとログモードの記述を追加<BR>
+2004/04/13 初版</P>
 </BODY>
 </HTML>

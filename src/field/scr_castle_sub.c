@@ -1,11 +1,11 @@
 //============================================================================================
 /**
  * @file	scr_castle_sub.c
- * @bfief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹(ó•t‚Ü‚í‚è)
+ * @bfief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«(å—ä»˜ã¾ã‚ã‚Š)
  * @author	Satoshi Nohara
  * @date	07.07.24
  *
- * ƒXƒNƒŠƒvƒgŠÖ˜A‚Æ‚ÍØ‚è—£‚µ‚½‚¢ˆ—‚ğ’u‚­
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆé–¢é€£ã¨ã¯åˆ‡ã‚Šé›¢ã—ãŸã„å‡¦ç†ã‚’ç½®ã
  */
 //============================================================================================
 #include "common.h"
@@ -14,9 +14,9 @@
 #include "system/pm_str.h"
 #include "system/msgdata.h"			//MSGMAN_GetString
 #include "system/wordset.h"			//WordSet_RegistPlayerName
-#include "gflib/strbuf_family.h"	//‹–‰Â§
+#include "gflib/strbuf_family.h"	//è¨±å¯åˆ¶
 
-//’ÊM
+//é€šä¿¡
 #include "communication/comm_def.h"
 #include "communication/comm_tool.h"
 #include "communication/comm_system.h"
@@ -27,7 +27,7 @@
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 void CommFldCastleRecvMonsNo(int id_no,int size,void *pData,void *work);
@@ -35,20 +35,20 @@ void CommFldCastleRecvMonsNo(int id_no,int size,void *pData,void *work);
 
 //============================================================================================
 //
-//	’ÊM
+//	é€šä¿¡
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief   Šî–{î•ñ ’ÊMóMˆ—
+ * @brief   åŸºæœ¬æƒ…å ± é€šä¿¡å—ä¿¡å‡¦ç†
  *
- * @param   id_no		‘—MÒ‚ÌƒlƒbƒgID
- * @param   size		óMƒf[ƒ^ƒTƒCƒY
- * @param   pData		óMƒf[ƒ^
- * @param   work		FRONTIER_SYSTEM‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   id_no		é€ä¿¡è€…ã®ãƒãƒƒãƒˆID
+ * @param   size		å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData		å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+ * @param   work		FRONTIER_SYSTEMã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒoƒgƒ‹ƒXƒe[ƒWƒ[ƒN‚ğŠm•ÛŒãAÅ‰‚Éó‚¯æ‚éƒf[ƒ^
+ * ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã‚’ç¢ºä¿å¾Œã€æœ€åˆã«å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void CommFldCastleRecvMonsNo(int id_no,int size,void *pData,void *work)
@@ -58,13 +58,13 @@ void CommFldCastleRecvMonsNo(int id_no,int size,void *pData,void *work)
 	//const u16* recv_buf = pData;
 	const FLDSCR_CASTLE_COMM* recv_buf = pData;
 
-	OS_Printf( "******ƒtƒB[ƒ‹ƒhƒXƒe[ƒW****** ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[óM\n" );
+	OS_Printf( "******ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¹ãƒ†ãƒ¼ã‚¸****** ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼å—ä¿¡\n" );
 	OS_Printf( "id_no = %d\n", id_no );
 
 	num = 0;
 	wk->recieve_count++;
 
-	//©•ª‚Ìƒf[ƒ^‚Íó‚¯æ‚ç‚È‚¢
+	//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿ã¯å—ã‘å–ã‚‰ãªã„
 	if( CommGetCurrentID() == id_no ){
 		return;
 	}
@@ -72,7 +72,7 @@ void CommFldCastleRecvMonsNo(int id_no,int size,void *pData,void *work)
 	OS_Printf( "size = %d\n", size );
 	OS_Printf( "recv_buf[0] = %d\n", recv_buf[0] );
 
-	//‘Šè‚Ìè‚¿‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ğæ“¾(ƒyƒAƒ[ƒN‚É‘ã“ü)
+	//ç›¸æ‰‹ã®æ‰‹æŒã¡ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—(ãƒšã‚¢ãƒ¯ãƒ¼ã‚¯ã«ä»£å…¥)
 	wk->pair_monsno[0] = recv_buf->mine_monsno[0];
 	wk->pair_monsno[1] = recv_buf->mine_monsno[1];
 	return;

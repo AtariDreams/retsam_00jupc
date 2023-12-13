@@ -13,7 +13,7 @@
 #
 # $Log: Makefile,v $
 # Revision 1.18  2007/01/18 04:07:26  okubata_ryoma
-# FX_AsinIdx, FX_AcosIdx �֐��̒ǉ�
+# FX_AsinIdx, FX_AcosIdx 関数の追加
 #
 # Revision 1.17  2004/08/27 09:22:05  yasu
 # Fix around NITRO_CODEGEN_ALL

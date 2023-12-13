@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	con_result.c
- * @brief	ƒRƒ“ƒeƒXƒgŒ‹‰Ê”­•\‰æ–Ê
+ * @brief	ã‚³ãƒ³ãƒ†ã‚¹ãƒˆçµæžœç™ºè¡¨ç”»é¢
  * @author	matsuda
- * @date	2006.03.17(‹à)
+ * @date	2006.03.17(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -54,93 +54,93 @@ FS_EXTERN_OVERLAY(ol_imageclip);
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///Œ»Ý‚Ì“®ìó‘Ô
+///ç¾åœ¨ã®å‹•ä½œçŠ¶æ…‹
 enum{
-	DPW_PROC_MODE_INIT,		///<‰Šú‰»’†
-	DPW_PROC_MODE_MAIN,		///<ƒƒCƒ“
-	DPW_PROC_MODE_ETC,		///<‚»‚êˆÈŠO
+	DPW_PROC_MODE_INIT,		///<åˆæœŸåŒ–ä¸­
+	DPW_PROC_MODE_MAIN,		///<ãƒ¡ã‚¤ãƒ³
+	DPW_PROC_MODE_ETC,		///<ãã‚Œä»¥å¤–
 };
 
-///Vram“]‘—ƒ}ƒl[ƒWƒƒ[ƒ^ƒXƒN”
+///Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚¿ã‚¹ã‚¯æ•°
 #define CONRES_VRAM_TRANSFER_TASK_NUM	(BATTLE_VRAM_TRANSFER_TASK_NUM)
 
 //--------------------------------------------------------------
-//	CL_ACT—p‚Ì’è”’è‹`
+//	CL_ACTç”¨ã®å®šæ•°å®šç¾©
 //--------------------------------------------------------------
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJŽn
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define CONRES_OAM_START_MAIN			(BATTLE_OAM_START_MAIN)
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define CONRES_OAM_END_MAIN				(BATTLE_OAM_END_MAIN)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define CONRES_OAM_AFFINE_START_MAIN		(BATTLE_OAM_AFFINE_START_MAIN)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define CONRES_OAM_AFFINE_END_MAIN		(BATTLE_OAM_AFFINE_END_MAIN)
-///ƒTƒu	OAMŠÇ——ÌˆæEŠJŽn
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define CONRES_OAM_START_SUB				(BATTLE_OAM_START_SUB)
-///ƒTƒu	OAMŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define CONRES_OAM_END_SUB				(BATTLE_OAM_END_SUB)
-///ƒTƒu ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn
+///ã‚µãƒ– ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define CONRES_OAM_AFFINE_START_SUB		(BATTLE_OAM_AFFINE_START_SUB)
-///ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define CONRES_OAM_AFFINE_END_SUB		(BATTLE_OAM_AFFINE_END_SUB)
 
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒLƒƒƒ‰ƒNƒ^IDŠÇ—”(ã‰æ–Ê{‰º‰æ–Ê)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿IDç®¡ç†æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define CONRES_CHAR_MAX					(BATTLE_CHAR_MAX)
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define CONRES_CHAR_VRAMSIZE_MAIN		(BATTLE_CHAR_VRAMSIZE_MAIN)
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define CONRES_CHAR_VRAMSIZE_SUB			(BATTLE_CHAR_VRAMSIZE_SUB)
 
-///ƒƒCƒ“‰æ–Ê{ƒTƒu‰æ–Ê‚ÅŽg—p‚·‚éƒAƒNƒ^[‘”
+///ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‹ã‚µãƒ–ç”»é¢ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç·æ•°
 #define CONRES_ACTOR_MAX					(BATTLE_ACTOR_MAX)
 
-///OBJ‚ÅŽg—p‚·‚éƒpƒŒƒbƒg–{”(ã‰æ–Ê{‰º‰æ–Ê)
+///OBJã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define CONRES_OAM_PLTT_MAX				(BATTLE_OAM_PLTT_MAX)
 
-///“]‘—ƒ‚[ƒh 3D = 0 main = 1 sub = 2 main/sub = 3
+///è»¢é€ãƒ¢ãƒ¼ãƒ‰ 3D = 0 main = 1 sub = 2 main/sub = 3
 #define CONRES_OAM_VRAM_TRANS			(BATTLE_OAM_VRAM_TRANS)
 
-///OAMƒŠƒ\[ƒXFƒLƒƒƒ‰“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚­ãƒ£ãƒ©ç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define CONRES_OAMRESOURCE_CHAR_MAX		(BATTLE_OAMRESOURCE_CHAR_MAX)
-///OAMƒŠƒ\[ƒXFƒpƒŒƒbƒg“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define CONRES_OAMRESOURCE_PLTT_MAX		(BATTLE_OAMRESOURCE_PLTT_MAX)
-///OAMƒŠƒ\[ƒXFƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define CONRES_OAMRESOURCE_CELL_MAX		(BATTLE_OAMRESOURCE_CELL_MAX)
-///OAMƒŠƒ\[ƒXFƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define CONRES_OAMRESOURCE_CELLANM_MAX	(BATTLE_OAMRESOURCE_CELLANM_MAX)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒžãƒ«ãƒã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define CONRES_OAMRESOURCE_MCELL_MAX		(BATTLE_OAMRESOURCE_MCELL_MAX)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define CONRES_OAMRESOURCE_MCELLANM_MAX	(BATTLE_OAMRESOURCE_MCELLANM_MAX)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒTƒu‰æ–ÊBG‚ÌƒXƒNƒŠ[ƒ“ƒNƒŠƒAƒR[ƒh
+///ã‚µãƒ–ç”»é¢BGã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
 #define SUB_BG_CLEAR_CODE		(0)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///‚Ç‚ñ‚¿‚å‚¤‚ÌƒpƒŒƒbƒg”Ô†
+///ã©ã‚“ã¡ã‚‡ã†ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 #define DONTYOU_PALNO			(0xc)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///Œ‹‰Ê”­•\‚ðŠJŽn‚·‚éŽž‚Ì‘Ò‚¿ŽžŠÔ
+///çµæžœç™ºè¡¨ã‚’é–‹å§‹ã™ã‚‹æ™‚ã®å¾…ã¡æ™‚é–“
 #define RESULT_ANNOUNCEMENT_WAIT			(60)
-///ƒrƒWƒ…ƒAƒ‹•”–å‚ÌŒ‹‰Ê”­•\‚ð‚µ‚½Œã‚Ì‘Ò‚¿ŽžŠÔ
+///ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã®çµæžœç™ºè¡¨ã‚’ã—ãŸå¾Œã®å¾…ã¡æ™‚é–“
 #define RESULT_ANNOUNCEMENT_WAIT_VISUAL		(60)
-///ƒrƒWƒ…ƒAƒ‹•”–å‚ÌŒ‹‰Ê”­•\‚ð‚µ‚½Œã‚Ì‘Ò‚¿ŽžŠÔ
+///ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã®çµæžœç™ºè¡¨ã‚’ã—ãŸå¾Œã®å¾…ã¡æ™‚é–“
 #define RESULT_ANNOUNCEMENT_WAIT_DANCE		(90)
-///ƒrƒWƒ…ƒAƒ‹•”–å‚ÌŒ‹‰Ê”­•\‚ð‚µ‚½Œã‚Ì‘Ò‚¿ŽžŠÔ
+///ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã®çµæžœç™ºè¡¨ã‚’ã—ãŸå¾Œã®å¾…ã¡æ™‚é–“
 #define RESULT_ANNOUNCEMENT_WAIT_ACTIN		(15)
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void ConresVBlank(void *work);
 static void ConresHBlank(void *work);
@@ -174,21 +174,21 @@ static void VBlankTCB_IntrTask(TCB_PTR tcb, void *work);
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 
 //==============================================================================
-//	ƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 //==============================================================================
-///ConresMainSeqTbl‚Ì–ß‚è’l‚Æ‚µ‚ÄŽg—p
+///ConresMainSeqTblã®æˆ»ã‚Šå€¤ã¨ã—ã¦ä½¿ç”¨
 enum{
-	CRRET_CONTINUE,		///<Œ»óˆÛŽ
-	CRRET_NEXT,			///<ŽŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
-	CRRET_SELECT_SEQ,	///<select_seqƒ[ƒN‚É“ü‚Á‚Ä‚¢‚éƒV[ƒPƒ“ƒX‚Öi‚Þ
-	CRRET_END,			///<I—¹
+	CRRET_CONTINUE,		///<ç¾çŠ¶ç¶­æŒ
+	CRRET_NEXT,			///<æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
+	CRRET_SELECT_SEQ,	///<select_seqãƒ¯ãƒ¼ã‚¯ã«å…¥ã£ã¦ã„ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸é€²ã‚€
+	CRRET_END,			///<çµ‚äº†
 };
 
-///Œ‹‰Ê”­•\•”–åƒƒCƒ“ŠÖ”‚ÌƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+///çµæžœç™ºè¡¨éƒ¨é–€ãƒ¡ã‚¤ãƒ³é–¢æ•°ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 static int (* const ConresMainSeqTbl[])(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local) = {
 	ConresSeq_Init,
 	ConresSeq_FastTalk,
@@ -204,7 +204,7 @@ static int (* const ConresMainSeqTbl[])(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK
 	ConresSeq_EndTalk,
 	ConresSeq_End,
 };
-///ConresMainSeqTbl‚ÌƒV[ƒPƒ“ƒX”Ô†	¦ConresMainSeqTbl‚Æ•À‚Ñ‚ð“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆII
+///ConresMainSeqTblã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·	â€»ConresMainSeqTblã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼ï¼
 enum{
 	CRSEQ_INIT,
 	CRSEQ_FAST_TALK,
@@ -222,7 +222,7 @@ enum{
 };
 
 //==============================================================================
-//	CLACT—pƒf[ƒ^
+//	CLACTç”¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 static	const TCATS_OAM_INIT ConresTcats = {
 	CONRES_OAM_START_MAIN, CONRES_OAM_END_MAIN,
@@ -251,7 +251,7 @@ static const TCATS_RESOURCE_NUM_LIST ConresResourceList = {
 //==============================================================================
 //	
 //==============================================================================
-///ƒJƒƒ‰‚Ìƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒg‚ÌƒEƒFƒCƒgƒe[ƒuƒ‹
+///ã‚«ãƒ¡ãƒ©ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¦ã‚§ã‚¤ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 ALIGN4 static const u16 CameraFlashEffectTbl[] = {
 	20, 35, 8, 30,21,25,30,15,
 };
@@ -260,20 +260,20 @@ ALIGN4 static const u16 CameraFlashEffectTbl[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT ConresProc_Init( PROC * proc, int * seq )
 {
 	CONRES_PROC_WORK *rpw;
 
-	sys_VBlankFuncChange(NULL, NULL);	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -299,7 +299,7 @@ PROC_RESULT ConresProc_Init( PROC * proc, int * seq )
 	ConresSystemWorkInit(rpw);
 	rpw->disp_mode = RESDISP_MODE_ANNOUNCE;
 	
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	rpw->sys.pfd = PaletteFadeInit(HEAPID_CONRES);
 	PaletteTrans_AutoSet(rpw->sys.pfd, TRUE);
 	PaletteFadeWorkAllocSet(rpw->sys.pfd, FADE_MAIN_BG, 0x200, HEAPID_CONRES);
@@ -315,23 +315,23 @@ PROC_RESULT ConresProc_Init( PROC * proc, int * seq )
 
 //	rpw->dip = DINPUT_SystemInit(&rpw->sys);
 
-	//VRAMŠ„‚è“–‚ÄÝ’è
+	//VRAMå‰²ã‚Šå½“ã¦è¨­å®š
 	ConresSys_VramBankSet(rpw->sys.bgl);
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPSystem();
 	InitTPNoBuff(4);
 
-	// ƒ{ƒ^ƒ“—pƒtƒHƒ“ƒg‚ð“Ç‚Ýž‚Ý
+	// ãƒœã‚¿ãƒ³ç”¨ãƒ•ã‚©ãƒ³ãƒˆã‚’èª­ã¿è¾¼ã¿
 	FontProc_LoadFont(FONT_BUTTON, HEAPID_CONRES);
 
-	// ˆø”‚ð•Û‘¶
+	// å¼•æ•°ã‚’ä¿å­˜
 //	SetConresWorkParameter(rpw, (NAMEIN_PARAM*)PROC_GetParentWork(proc));
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€ì¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	rpw->sys.csp=CATS_AllocMemory(HEAPID_CONRES);
 	CATS_SystemInit(rpw->sys.csp,&ConresTcats,&ConresCcmm,CONRES_OAM_PLTT_MAX);
-	//’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
 	rpw->sys.crp=CATS_ResourceCreate(rpw->sys.csp);
@@ -339,36 +339,36 @@ PROC_RESULT ConresProc_Init( PROC * proc, int * seq )
 	CATS_ResourceManagerInit(rpw->sys.csp,rpw->sys.crp,&ConresResourceList);
 
 	rpw->sys.soft_sprite = SoftSpriteInit(HEAPID_CONRES);
-	ConresParticleInit();	//ƒp[ƒeƒBƒNƒ‹‰Šú‰»
+	ConresParticleInit();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	rpw->sys.conres_msg = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_con_tally_dat, 
 		HEAPID_CONRES);
 	rpw->sys.wordset = WORDSET_Create(HEAPID_CONRES);
-	rpw->sys.msg_buf = STRBUF_Create(CONRES_MESSAGE_BUF_SIZE, HEAPID_CONRES);	//•¶Žš—ñƒoƒbƒtƒ@ì¬
+	rpw->sys.msg_buf = STRBUF_Create(CONRES_MESSAGE_BUF_SIZE, HEAPID_CONRES);	//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	
-	//ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€ì¬
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	rpw->sys.fontoam_sys = FONTOAM_SysInit(CONRES_FONTOAM_MAX_MAIN, HEAPID_CONRES);
 
-	//í’“BGƒZƒbƒg
+	//å¸¸é§BGã‚»ãƒƒãƒˆ
 	ConresDefaultBGSet(rpw);
 	ConresDefaultBGSet_Sub(rpw);
 
-	//BMPƒEƒBƒ“ƒhƒE’Ç‰Á
+	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
 	ConresSys_DefaultBmpWinAdd(rpw);
 
-	//í’“OBJƒZƒbƒg
+	//å¸¸é§OBJã‚»ãƒƒãƒˆ
 	ConresDefaultOBJSet(rpw);
 	ConresDefaultOBJSet_Sub(rpw);
 
 //	DINPUT_CreateBG(rpw->dip, DINPUT_TYPE_WALL, TRUE, NULL);
 	
-	//ƒ|ƒPƒ‚ƒ“(ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg)¶¬
+	//ãƒã‚±ãƒ¢ãƒ³(ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ)ç”Ÿæˆ
 	RT_SoftSpriteAddAll(rpw);
 
-	WirelessIconEasy();	//’ÊMƒAƒCƒRƒ“
+	WirelessIconEasy();	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
 	
-	// ‹P“x•ÏXƒZƒbƒg
+	// è¼åº¦å¤‰æ›´ã‚»ãƒƒãƒˆ
 //	ChangeBrightnessRequest(
 //		8, 0, -16, PLANEMASK_ALL, MASK_DOUBLE_DISPLAY );
 	WIPE_SYS_Start(WIPE_PATTERN_FMAS, WIPE_TYPE_SCREWIN, WIPE_TYPE_SCREWIN, WIPE_FADE_BLACK, 
@@ -381,7 +381,7 @@ PROC_RESULT ConresProc_Init( PROC * proc, int * seq )
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 
-	//ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒRƒ“ƒeƒXƒg)
+	//ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
 	Snd_DataSetByScene( SND_SCENE_CONTEST, SEQ_CON_TEST, 1 );
 	//if(Snd_NowBgmNoGet() != SEQ_CON_TEST){
 	//	Snd_Stop();
@@ -391,13 +391,13 @@ PROC_RESULT ConresProc_Init( PROC * proc, int * seq )
 	ConTool_MsgPrintFlagSet(rpw->consys->sio_flag);
 	
 	sys_VBlankFuncChange(ConresVBlank, rpw);
-	//«Wipe‚ÅHƒuƒ‰ƒ“ƒN‚ðŽg—p‚·‚é‚Ì‚ÅAWipe‚ªI—¹‚µ‚½‚çƒZƒbƒg‚·‚é‚æ‚¤‚É•ÏX
+	//â†“Wipeã§Hãƒ–ãƒ©ãƒ³ã‚¯ã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ã€WipeãŒçµ‚äº†ã—ãŸã‚‰ã‚»ãƒƒãƒˆã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 //	sys_HBlankIntrSet(ConresHBlank, rpw);
 	rpw->vintr_tcb = VIntrTCB_Add(VBlankTCB_IntrTask, rpw, 10);
 	
 	Snd_SePlay(RSE_AUDIENCE);
 	
-#if 0	//ƒfƒoƒbƒO—p‚É“¾“_ƒZƒbƒg
+#if 0	//ãƒ‡ãƒãƒƒã‚°ç”¨ã«å¾—ç‚¹ã‚»ãƒƒãƒˆ
 	{
 		int i;
 		for(i = 0; i < 4; i++){
@@ -418,12 +418,12 @@ PROC_RESULT ConresProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT ConresProc_Main( PROC * proc, int * seq )
@@ -494,12 +494,12 @@ PROC_RESULT ConresProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT ConresProc_End( PROC * proc, int * seq )
@@ -509,58 +509,58 @@ PROC_RESULT ConresProc_End( PROC * proc, int * seq )
 
 	Particle_SystemExitAll();
 	
-	//í’“OBJíœ
+	//å¸¸é§OBJå‰Šé™¤
 	ConresDefaultOBJDel(rpw);
 	ConresDefaultOBJDel_Sub(rpw);
-	//í’“BGíœ
+	//å¸¸é§BGå‰Šé™¤
 	ConresDefaultBGDel(rpw);
 	ConresDefaultBGDel_Sub(rpw);
 
-	//BMPŠJ•ú
+	//BMPé–‹æ”¾
 	for(i = 0; i < CONRES_BMPWIN_MAX; i++){
 		GF_BGL_BmpWinDel(&rpw->sys.win[i]);
 	}
 
-	//ƒƒCƒ“‰æ–ÊBGíœ
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢BGå‰Šé™¤
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	GF_BGL_BGControlExit(rpw->sys.bgl, CONRES_FRAME_WIN );
 	GF_BGL_BGControlExit(rpw->sys.bgl, CONRES_FRAME_EFF );
 	GF_BGL_BGControlExit(rpw->sys.bgl, CONRES_FRAME_BACKGROUND );
-	//ƒTƒu‰æ–ÊBGíœ
+	//ã‚µãƒ–ç”»é¢BGå‰Šé™¤
 	GF_BGL_VisibleSet(CONRES_FRAME_SUB_AUDIENCE, VISIBLE_OFF);
 	GF_BGL_BGControlExit(rpw->sys.bgl, CONRES_FRAME_SUB_AUDIENCE);
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	CATS_ResourceDestructor_S(rpw->sys.csp,rpw->sys.crp);
 	CATS_FreeMemory(rpw->sys.csp);
 
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[íœ
+	//Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤
 	DellVramTransferManager();
 
-	//ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgíœ
+	//ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå‰Šé™¤
 	RT_SoftSpriteDelAll(&rpw->sys);
 	SoftSpriteEnd(rpw->sys.soft_sprite);
 
-	//ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€íœ
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	FONTOAM_SysDelete(rpw->sys.fontoam_sys);
 	
-	//ƒtƒHƒ“ƒgíœ
+	//ãƒ•ã‚©ãƒ³ãƒˆå‰Šé™¤
 	FontProc_UnloadFont(FONT_BUTTON);
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€íœ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	PaletteFadeWorkAllocFree(rpw->sys.pfd, FADE_MAIN_BG);
 	PaletteFadeWorkAllocFree(rpw->sys.pfd, FADE_SUB_BG);
 	PaletteFadeWorkAllocFree(rpw->sys.pfd, FADE_MAIN_OBJ);
 	PaletteFadeWorkAllocFree(rpw->sys.pfd, FADE_SUB_OBJ);
 	PaletteFadeFree(rpw->sys.pfd);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚Ìíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ã®å‰Šé™¤
 	STRBUF_Delete(rpw->sys.msg_buf);
 	WORDSET_Delete(rpw->sys.wordset);
 	MSGMAN_Delete(rpw->sys.conres_msg);
 
-	//BGLŠJ•ú
+	//BGLé–‹æ”¾
 	sys_FreeMemoryEz(rpw->sys.bgl);
 
 	TCB_Delete(rpw->update_tcb);
@@ -569,15 +569,15 @@ PROC_RESULT ConresProc_End( PROC * proc, int * seq )
 	//simple_3DBGExit();
 	ADV_Contest_3D_Exit(rpw->g3Dman);
 
-	StopTP();		//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌI—¹
+	StopTP();		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµ‚äº†
 
-	PROC_FreeWork(proc);				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork(proc);				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	
 	GX_SetVisibleWnd(GX_WNDMASK_NONE);
 	GXS_SetVisibleWnd(GX_WNDMASK_NONE);
 	
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	sys_DeleteHeap(HEAPID_CONRES);
 
@@ -599,7 +599,7 @@ PROC_RESULT ConresProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
  * @param	work	
  *
@@ -611,14 +611,14 @@ static void ConresVBlank(void *work)
 {
 	CONRES_PROC_WORK *rpw = work;
 
-	{//ƒEƒBƒ“ƒhƒEÀ•W
+	{//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åº§æ¨™
 		G2_SetWnd0Position(rpw->wnd0_x1, rpw->wnd0_y1, rpw->wnd0_x2, rpw->wnd0_y2);
 		G2_SetWnd1Position(rpw->wnd1_x1, rpw->wnd1_y1, rpw->wnd1_x2, rpw->wnd1_y2);
 	}
 	
 	SoftSpriteTextureTrans(rpw->sys.soft_sprite);
 
-	DoVramTransferManager();	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+	DoVramTransferManager();	// Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	CATS_RenderOamTrans();
 	PaletteFadeTrans(rpw->sys.pfd);
 	
@@ -629,7 +629,7 @@ static void ConresVBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	HBLANKŠÖ”
+ * @brief	HBLANKé–¢æ•°
  *
  * @param	work	
  *
@@ -650,10 +650,10 @@ static void ConresHBlank(void *work)
 			GF_BGL_PrioritySet(CONRES_FRAME_WIN, 0);
 		}
 		else if(v_count < (RES_BMPWIN_TALK_POS_Y - 1) * 8){
-			//VBlankTCB_IntrTask‚Åƒvƒ‰ƒCƒIƒŠƒeƒB‚Í–ß‚µ‚Ä‚¢‚é‚Ì‚Å’Êí‚È‚ç‚±‚±‚Å‚â‚é•K—v‚Í‚È‚¢‚ªA
-			//’ÊM‚Ì“d”gó‹µ‚Å”­¶‚·‚éˆ—•‰‰×‚É‚æ‚Á‚Ä‚ÍA‚Ç‚¤‚àVƒuƒ‰ƒ“ƒN‚ð‰ß‚¬‚Ä‚©‚çŽÀs‚³‚ê‚é
-			//‚Ù‚Ç‚Ìˆ——Ž‚¿‚ª”­¶‚µ‚Ä‚µ‚Ü‚æ‚¤‚È‚Ì‚ÅA•ÛŒ¯‚Æ‚µ‚Ä‚±‚±‚Å‚àƒvƒ‰ƒCƒIƒŠƒeƒB‚ð
-			//–ß‚·ˆ—‚ð“ü‚ê‚Ä‚¨‚­ 2006.08.10(–Ø)
+			//VBlankTCB_IntrTaskã§ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã¯æˆ»ã—ã¦ã„ã‚‹ã®ã§é€šå¸¸ãªã‚‰ã“ã“ã§ã‚„ã‚‹å¿…è¦ã¯ãªã„ãŒã€
+			//é€šä¿¡ã®é›»æ³¢çŠ¶æ³ã§ç™ºç”Ÿã™ã‚‹å‡¦ç†è² è·ã«ã‚ˆã£ã¦ã¯ã€ã©ã†ã‚‚Vãƒ–ãƒ©ãƒ³ã‚¯ã‚’éŽãŽã¦ã‹ã‚‰å®Ÿè¡Œã•ã‚Œã‚‹
+			//ã»ã©ã®å‡¦ç†è½ã¡ãŒç™ºç”Ÿã—ã¦ã—ã¾ã‚ˆã†ãªã®ã§ã€ä¿é™ºã¨ã—ã¦ã“ã“ã§ã‚‚ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’
+			//æˆ»ã™å‡¦ç†ã‚’å…¥ã‚Œã¦ãŠã 2006.08.10(æœ¨)
 			GF_BGL_PrioritySet(CONRES_FRAME_WIN, CONRES_BGPRI_WIN);
 		}
 	}
@@ -661,10 +661,10 @@ static void ConresHBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   VBlankƒ^ƒXƒNŠÖ”(1/60‚Å‰ñ‚è‚Ü‚·)
+ * @brief   VBlankã‚¿ã‚¹ã‚¯é–¢æ•°(1/60ã§å›žã‚Šã¾ã™)
  *
- * @param   tcb		TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work	Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb		TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work	çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VBlankTCB_IntrTask(TCB_PTR tcb, void *work)
@@ -672,16 +672,16 @@ static void VBlankTCB_IntrTask(TCB_PTR tcb, void *work)
 	CONRES_PROC_WORK *rpw = work;
 	
 	if(rpw->disp_mode == RESDISP_MODE_RESULT){
-		//Hƒuƒ‰ƒ“ƒN‚Åã‚°‚Ä‚¢‚½ƒvƒ‰ƒCƒIƒŠƒeƒB‚ð–ß‚·
+		//Hãƒ–ãƒ©ãƒ³ã‚¯ã§ä¸Šã’ã¦ã„ãŸãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’æˆ»ã™
 		GF_BGL_PrioritySet(CONRES_FRAME_WIN, CONRES_BGPRI_WIN);
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“ƒ‹[ƒv‚ÌÅŒã‚És‚¤ƒVƒXƒeƒ€ŠÖ˜A‚ÌXVˆ—
+ * @brief   ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®æœ€å¾Œã«è¡Œã†ã‚·ã‚¹ãƒ†ãƒ é–¢é€£ã®æ›´æ–°å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		rpw
  */
 //--------------------------------------------------------------
@@ -702,32 +702,32 @@ static void ConresUpdate(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   Vramƒoƒ“ƒNÝ’è‚ðs‚¤
+ * @brief   Vramãƒãƒ³ã‚¯è¨­å®šã‚’è¡Œã†
  *
- * @param   bgl		BGLƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ConresSys_VramBankSet(GF_BGL_INI *bgl)
 {
 	GF_Disp_GX_VisibleControlInit();
 
-	//VRAMÝ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -742,24 +742,24 @@ static void ConresSys_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME1_M	ƒEƒBƒ“ƒhƒE
+			///<FRAME1_M	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 //				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01,
 				CONRES_BGPRI_WIN, 0, 0, FALSE
 			},
-			///<FRAME2_M	ƒGƒtƒFƒNƒg
+			///<FRAME2_M	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 			{
 				0, 0, 0x2000, 0, GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 //				GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
 				GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
 				CONRES_BGPRI_EFF, 0, 0, FALSE
 			},
-			///<FRAME3_M	”wŒi
+			///<FRAME3_M	èƒŒæ™¯
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -782,10 +782,10 @@ static void ConresSys_VramBankSet(GF_BGL_INI *bgl)
 		G2_SetBG0Priority(CONRES_3DBG_PRIORITY);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER SubBgCntDat[] = {
-			///<FRAME0_S	ŠÏ‹q
+			///<FRAME0_S	è¦³å®¢
 			{
 				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x7800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -801,9 +801,9 @@ static void ConresSys_VramBankSet(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ŠúBMPƒEƒBƒ“ƒhƒE‚ðÝ’è‚·‚é
+ * @brief   åˆæœŸBMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¨­å®šã™ã‚‹
  *
- * @param   rpw		Œ‹‰Ê”­•\ŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw		çµæžœç™ºè¡¨ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ConresSys_DefaultBmpWinAdd(CONRES_PROC_WORK *rpw)
@@ -850,7 +850,7 @@ static void ConresSys_DefaultBmpWinAdd(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\•”–å—pƒp[ƒeƒBƒNƒ‹‰Šú‰»
+ * @brief   çµæžœç™ºè¡¨éƒ¨é–€ç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
  */
 //--------------------------------------------------------------
 static void ConresParticleInit(void)
@@ -859,7 +859,7 @@ static void ConresParticleInit(void)
 	NNSGfdPlttKey pltt_key;
 	u32 tex_addrs, pltt_addrs;
 	
-	//ƒ|ƒPƒ‚ƒ“‚ÅŽg—p‚·‚é•ª‚ðŠm•Û
+	//ãƒã‚±ãƒ¢ãƒ³ã§ä½¿ç”¨ã™ã‚‹åˆ†ã‚’ç¢ºä¿
 	tex_key = NNS_GfdAllocTexVram(0x2000 * CLIENT_MAX, 0, 0);
 	pltt_key = NNS_GfdAllocPlttVram(0x20 * CLIENT_MAX, 0, 0);
 	
@@ -867,17 +867,17 @@ static void ConresParticleInit(void)
 	GF_ASSERT(pltt_key != NNS_GFD_ALLOC_ERROR_PLTTKEY);
 	tex_addrs = NNS_GfdGetTexKeyAddr(tex_key);
 	pltt_addrs = NNS_GfdGetPlttKeyAddr(pltt_key);
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒeƒNƒXƒ`ƒƒVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", tex_addrs);
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒpƒŒƒbƒgVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", pltt_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", tex_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆVramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", pltt_addrs);
 
-	//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‰Šú‰»
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	Particle_SystemWorkInit();
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ì‰Šúƒpƒ‰ƒ[ƒ^‚ðƒZƒbƒg‚·‚é
- * @param   rpw		Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   rpw		çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ConresSystemWorkInit(CONRES_PROC_WORK *rpw)
@@ -887,7 +887,7 @@ static void ConresSystemWorkInit(CONRES_PROC_WORK *rpw)
 	GF_ASSERT(rpw->consys != NULL);
 	
 	for(i = 0; i < BREEDER_MAX; i++){
-		rpw->r_game.breeder_sort[i] = BREEDER_MAX - 1 - i;	//ƒGƒ“ƒgƒŠ[‡
+		rpw->r_game.breeder_sort[i] = BREEDER_MAX - 1 - i;	//ã‚¨ãƒ³ãƒˆãƒªãƒ¼é †
 	}
 	
 	ConresOrder_WorkInit(rpw);
@@ -895,8 +895,8 @@ static void ConresSystemWorkInit(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\•”–å‚ÅŽg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ì“o˜^‚ðs‚¤
- * @param   rpw		Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   çµæžœç™ºè¡¨éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®ç™»éŒ²ã‚’è¡Œã†
+ * @param   rpw		çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ConresDefaultOBJSet(CONRES_PROC_WORK *rpw)
@@ -906,8 +906,8 @@ static void ConresDefaultOBJSet(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\•”–å‚ÅŽg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ìíœ‚ðs‚¤
- * @param   rpw		Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   çµæžœç™ºè¡¨éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®å‰Šé™¤ã‚’è¡Œã†
+ * @param   rpw		çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ConresDefaultOBJDel(CONRES_PROC_WORK *rpw)
@@ -917,8 +917,8 @@ static void ConresDefaultOBJDel(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊOBJFŒ‹‰Ê”­•\•”–å‚ÅŽg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ì“o˜^‚ðs‚¤
- * @param   rpw		Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢OBJï¼šçµæžœç™ºè¡¨éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®ç™»éŒ²ã‚’è¡Œã†
+ * @param   rpw		çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ConresDefaultOBJSet_Sub(CONRES_PROC_WORK *rpw)
@@ -927,8 +927,8 @@ static void ConresDefaultOBJSet_Sub(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊOBJFŒ‹‰Ê”­•\•”–å‚ÅŽg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ìíœ‚ðs‚¤
- * @param   rpw		Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢OBJï¼šçµæžœç™ºè¡¨éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®å‰Šé™¤ã‚’è¡Œã†
+ * @param   rpw		çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ConresDefaultOBJDel_Sub(CONRES_PROC_WORK *rpw)
@@ -937,8 +937,8 @@ static void ConresDefaultOBJDel_Sub(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–ÊBGFŒ‹‰Ê”­•\•”–å‚ÅŽg—p‚·‚éŠî–{BGƒf[ƒ^‚ÌƒZƒbƒg‚ðs‚¤
- * @param   rpw		Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢BGï¼šçµæžœç™ºè¡¨éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚’è¡Œã†
+ * @param   rpw		çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ConresDefaultBGSet(CONRES_PROC_WORK *rpw)
@@ -948,8 +948,8 @@ static void ConresDefaultBGSet(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–ÊBGFŒ‹‰Ê”­•\•”–å‚ÅŽg—p‚·‚éŠî–{BGƒf[ƒ^‚Ìíœˆ—‚ðs‚¤
- * @param   rpw		Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢BGï¼šçµæžœç™ºè¡¨éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†ã‚’è¡Œã†
+ * @param   rpw		çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ConresDefaultBGDel(CONRES_PROC_WORK *rpw)
@@ -959,28 +959,28 @@ static void ConresDefaultBGDel(CONRES_PROC_WORK *rpw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊBGFŒ‹‰Ê”­•\•”–å‚ÅŽg—p‚·‚éŠî–{BGƒf[ƒ^‚ÌƒZƒbƒg‚ðs‚¤
- * @param   rpw		Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢BGï¼šçµæžœç™ºè¡¨éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚’è¡Œã†
+ * @param   rpw		çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ConresDefaultBGSet_Sub(CONRES_PROC_WORK *rpw)
 {
-	//ƒLƒƒƒ‰ƒNƒ^
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
 	ArcUtil_BgCharSet(ARC_CONTEST_BG, CON_VISUAL_SUB_BG_NCGR_BIN, rpw->sys.bgl, 
 		CONRES_FRAME_SUB_AUDIENCE, 0, 0, 1, HEAPID_CONRES);
-	//ƒXƒNƒŠ[ƒ“
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	ArcUtil_ScrnSet(ARC_CONTEST_BG, CON_VISUAL__SUB_BG_NSCR_BIN, rpw->sys.bgl, 
 		CONRES_FRAME_SUB_AUDIENCE, 0, 0, 1, HEAPID_CONRES);
 
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSet_Arc(rpw->sys.pfd, ARC_CONTEST_BG, CONTEST_VISUAL_SUB_BG_NCLR, 
 		HEAPID_CONRES, FADE_SUB_BG, 0, 0);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊBGFŒ‹‰Ê”­•\•”–å‚ÅŽg—p‚·‚éŠî–{BGƒf[ƒ^‚Ìíœˆ—‚ðs‚¤
- * @param   rpw		Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢BGï¼šçµæžœç™ºè¡¨éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†ã‚’è¡Œã†
+ * @param   rpw		çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ConresDefaultBGDel_Sub(CONRES_PROC_WORK *rpw)
@@ -992,17 +992,17 @@ static void ConresDefaultBGDel_Sub(CONRES_PROC_WORK *rpw)
 
 //==============================================================================
 //
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒV[ƒPƒ“ƒXF‰Šú‰»ˆ—
+ * @brief   çµæžœç™ºè¡¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šåˆæœŸåŒ–å‡¦ç†
  *
- * @param   rpw			Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw			çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ConresSeq_Init(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
@@ -1063,12 +1063,12 @@ static int ConresSeq_Init(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒV[ƒPƒ“ƒXFÅ‰‚ÌƒƒbƒZ[ƒW•\Ž¦
+ * @brief   çµæžœç™ºè¡¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæœ€åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param   rpw			Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw			çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ConresSeq_FastTalk(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
@@ -1099,12 +1099,12 @@ static int ConresSeq_FastTalk(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒV[ƒPƒ“ƒXF‚Ç‚ñ‚¿‚å‚¤‚ðã‚°‚é
+ * @brief   çµæžœç™ºè¡¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã©ã‚“ã¡ã‚‡ã†ã‚’ä¸Šã’ã‚‹
  *
- * @param   rpw			Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw			çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ConresSeq_DonchouUp(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
@@ -1128,12 +1128,12 @@ static int ConresSeq_DonchouUp(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒV[ƒPƒ“ƒXFŒ‹‰Ê”­•\‰æ–Ê‚ÉØ‚è‘Ö‚¦
+ * @brief   çµæžœç™ºè¡¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµæžœç™ºè¡¨ç”»é¢ã«åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param   rpw			Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw			çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ConresSeq_ResultChange(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
@@ -1159,12 +1159,12 @@ static int ConresSeq_ResultChange(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *loca
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒV[ƒPƒ“ƒXFŒ‹‰Ê”­•\‰æ–Ê‚ÉØ‚è‘Ö‚¦Œã‚ÌÅ‰‚Ì‰ï˜b
+ * @brief   çµæžœç™ºè¡¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµæžœç™ºè¡¨ç”»é¢ã«åˆ‡ã‚Šæ›¿ãˆå¾Œã®æœ€åˆã®ä¼šè©±
  *
- * @param   rpw			Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw			çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ConresSeq_ChangeFirstTalk(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
@@ -1200,12 +1200,12 @@ static int ConresSeq_ChangeFirstTalk(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *l
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒV[ƒPƒ“ƒXFƒrƒWƒ…ƒAƒ‹Œ‹‰Ê
+ * @brief   çµæžœç™ºè¡¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«çµæžœ
  *
- * @param   rpw			Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw			çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ConresSeq_ResultVisual(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
@@ -1265,12 +1265,12 @@ static int ConresSeq_ResultVisual(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *loca
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒV[ƒPƒ“ƒXFƒ_ƒ“ƒXŒ‹‰Ê
+ * @brief   çµæžœç™ºè¡¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒ€ãƒ³ã‚¹çµæžœ
  *
- * @param   rpw			Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw			çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ConresSeq_ResultDance(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
@@ -1331,12 +1331,12 @@ static int ConresSeq_ResultDance(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒV[ƒPƒ“ƒXF‰‰‹Z—ÍŒ‹‰Ê
+ * @brief   çµæžœç™ºè¡¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæ¼”æŠ€åŠ›çµæžœ
  *
- * @param   rpw			Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw			çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ConresSeq_ResultActin(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
@@ -1397,12 +1397,12 @@ static int ConresSeq_ResultActin(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒV[ƒPƒ“ƒXF‡ˆÊ”­•\
+ * @brief   çµæžœç™ºè¡¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šé †ä½ç™ºè¡¨
  *
- * @param   rpw			Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw			çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ConresSeq_RankingAnnounce(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
@@ -1429,12 +1429,12 @@ static int ConresSeq_RankingAnnounce(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *l
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒV[ƒPƒ“ƒXFŒ‹‰ÊƒƒbƒZ[ƒW•\Ž¦
+ * @brief   çµæžœç™ºè¡¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµæžœãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param   rpw			Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw			çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ConresSeq_ResultTalk(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
@@ -1480,12 +1480,12 @@ static int ConresSeq_ResultTalk(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒV[ƒPƒ“ƒXF‚Ç‚ñ‚¿‚å‚¤‚ð‰º‚°‚é
+ * @brief   çµæžœç™ºè¡¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã©ã‚“ã¡ã‚‡ã†ã‚’ä¸‹ã’ã‚‹
  *
- * @param   rpw			Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw			çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ConresSeq_DonchouDown(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
@@ -1509,12 +1509,12 @@ static int ConresSeq_DonchouDown(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒV[ƒPƒ“ƒXFÅŒã‚ÌƒƒbƒZ[ƒW•\Ž¦
+ * @brief   çµæžœç™ºè¡¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæœ€å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param   rpw			Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw			çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ConresSeq_EndTalk(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
@@ -1545,12 +1545,12 @@ static int ConresSeq_EndTalk(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ‹‰Ê”­•\ƒV[ƒPƒ“ƒXFI—¹ˆ—
+ * @brief   çµæžœç™ºè¡¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµ‚äº†å‡¦ç†
  *
- * @param   rpw			Œ‹‰Ê”­•\•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   rpw			çµæžœç™ºè¡¨éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ConresSeq_End(CONRES_PROC_WORK *rpw, CONRES_LOCAL_WORK *local)

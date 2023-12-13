@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		comm_bct_command_func.h
- *	@brief		ƒoƒPƒbƒgƒ~ƒjƒQ[ƒ€@’ÊMƒRƒ}ƒ“ƒh
+ *	@brief		ãƒã‚±ãƒƒãƒˆãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã€€é€šä¿¡ã‚³ãƒãƒ³ãƒ‰
  *	@author		tomoya takahashi
  *	@data		2007.06.20
  *
@@ -16,45 +16,45 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ’ÊM‰Šú‰»ŠÖ”
+// é€šä¿¡åˆæœŸåŒ–é–¢æ•°
 extern void CommCommandBCTInitialize( BUCKET_WK* p_wk );
 
-// ‹¤’ÊƒTƒCƒYæ“¾ŠÖ”
+// å…±é€šã‚µã‚¤ã‚ºå–å¾—é–¢æ•°
 extern int CommBCTGetZeroSize( void );
 extern int CommBCTGetNutsSize( void );
 extern int CommBCTGetAllScoreSize( void );
 extern int CommBCTGetScoreSize( void );
 extern int CommBCTGetGameDataIdxSize( void );
 
-// e‚©‚ç‚ÌƒŠƒNƒGƒXƒg
+// è¦ªã‹ã‚‰ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 extern void CommBCTGameStart( int netID, int size, void* pBuff, void* pWork );
 extern void CommBCTGameEnd( int netID, int size, void* pBuff, void* pWork );
 
-// –Ø‚ÌÀƒf[ƒ^’ÊM
+// æœ¨ã®å®Ÿãƒ‡ãƒ¼ã‚¿é€šä¿¡
 extern void CommBCTNuts( int netID, int size, void* pBuff, void* pWork );
 
-// ƒXƒRƒA’ÊM
+// ã‚¹ã‚³ã‚¢é€šä¿¡
 extern void CommBCTScore( int netID, int size, void* pBuff, void* pWork );
 extern void CommBCTAllScore( int netID, int size, void* pBuff, void* pWork );
 extern void CommBCTMiddleScore( int netID, int size, void* pBuff, void* pWork );
 extern void CommBCTMiddleScoreOk( int netID, int size, void* pBuff, void* pWork );
 
-// ƒQ[ƒ€ƒŒƒxƒ‹
+// ã‚²ãƒ¼ãƒ ãƒ¬ãƒ™ãƒ«
 extern void CommBCTGameDataIdx( int netID, int size, void* pBuff, void* pWork );
 
 

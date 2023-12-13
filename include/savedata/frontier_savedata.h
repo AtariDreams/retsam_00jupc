@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_savedata.h
- * @brief	�t�����e�B�A�Z�[�u
+ * @brief	フロンティアセーブ
  * @author	matsuda
- * @date	2007.04.26(��)
+ * @date	2007.04.26(木)
  */
 //==============================================================================
 #ifndef __FRONTIER_SAVEDATA_H__
@@ -11,22 +11,22 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
 
-///�F�B�蒠�f�[�^�łȂ����R�[�h���擾���鎞��friend_no�Ɏw�肷��l
+///友達手帳データでないレコードを取得する時にfriend_noに指定する値
 #define FRONTIER_RECORD_NOT_FRIEND		(0xff)
 
-///�A���L�^�̃��~�b�g�l
+///連勝記録のリミット値
 #define FRONTIER_RECORD_LIMIT		(9999)
 
 //--------------------------------------------------------------
 /**
- *	�t�����e�B�A�e�{�݂̋L�^�f�[�^��ID
+ *	フロンティア各施設の記録データのID
  */
 //--------------------------------------------------------------
 enum{
-	//�^���[�pINDEX�J�n
+	//タワー用INDEX開始
 	FRID_TOWER_SINGLE_RENSHOU,
 	FRID_TOWER_SINGLE_RENSHOU_CNT,
 	FRID_TOWER_DOUBLE_RENSHOU,
@@ -38,7 +38,7 @@ enum{
 	FRID_TOWER_WIFI_DL_RENSHOU,
 	FRID_TOWER_WIFI_DL_RENSHOU_CNT,
 	
-	//�t�@�N�g���[�pINDEX�J�n(���т�ύX���Ă̓_���I)
+	//ファクトリー用INDEX開始(並びを変更してはダメ！)
 	FRID_FACTORY_SINGLE_RENSHOU,
 	FRID_FACTORY_SINGLE_RENSHOU_CNT,
 	FRID_FACTORY_SINGLE_TRADE,
@@ -64,10 +64,10 @@ enum{
 	FRID_FACTORY_MULTI_COMM_TRADE100,
 	FRID_FACTORY_MULTI_COMM_TRADE100_CNT,
 
-	//�X�e�[�W�pINDEX�J�n
-	FRID_STAGE_SINGLE_RENSHOU,				///<�_�~�[(�|�P�������̍ő�A�����ɂȂ�\��)
-	FRID_STAGE_SINGLE_RENSHOU_CNT,			///<�X�e�[�W�F�V���O�����݂̘A����
-	FRID_STAGE_SINGLE_MONSNO,				///<�X�e�[�W�F�V���O�����킵�Ă���|�P�����ԍ�
+	//ステージ用INDEX開始
+	FRID_STAGE_SINGLE_RENSHOU,				///<ダミー(ポケモン毎の最大連勝数になる予定)
+	FRID_STAGE_SINGLE_RENSHOU_CNT,			///<ステージ：シングル現在の連勝数
+	FRID_STAGE_SINGLE_MONSNO,				///<ステージ：シングル挑戦しているポケモン番号
 	FRID_STAGE_SINGLE_TYPE_LEVEL_0,
 	FRID_STAGE_SINGLE_TYPE_LEVEL_1,
 	FRID_STAGE_SINGLE_TYPE_LEVEL_2,
@@ -77,9 +77,9 @@ enum{
 	FRID_STAGE_SINGLE_TYPE_LEVEL_6,
 	FRID_STAGE_SINGLE_TYPE_LEVEL_7,
 	FRID_STAGE_SINGLE_TYPE_LEVEL_8,
-	FRID_STAGE_DOUBLE_RENSHOU,				///<�_�~�[(�|�P�������̍ő�A�����ɂȂ�\��)
-	FRID_STAGE_DOUBLE_RENSHOU_CNT,			///<�X�e�[�W�F�_�u�����݂̘A����
-	FRID_STAGE_DOUBLE_MONSNO,				///<�X�e�[�W�F�_�u�����킵�Ă���|�P�����ԍ�
+	FRID_STAGE_DOUBLE_RENSHOU,				///<ダミー(ポケモン毎の最大連勝数になる予定)
+	FRID_STAGE_DOUBLE_RENSHOU_CNT,			///<ステージ：ダブル現在の連勝数
+	FRID_STAGE_DOUBLE_MONSNO,				///<ステージ：ダブル挑戦しているポケモン番号
 	FRID_STAGE_DOUBLE_TYPE_LEVEL_0,
 	FRID_STAGE_DOUBLE_TYPE_LEVEL_1,
 	FRID_STAGE_DOUBLE_TYPE_LEVEL_2,
@@ -89,9 +89,9 @@ enum{
 	FRID_STAGE_DOUBLE_TYPE_LEVEL_6,
 	FRID_STAGE_DOUBLE_TYPE_LEVEL_7,
 	FRID_STAGE_DOUBLE_TYPE_LEVEL_8,
-	FRID_STAGE_MULTI_COMM_RENSHOU,			///<�_�~�[(�|�P�������̍ő�A�����ɂȂ�\��)
-	FRID_STAGE_MULTI_COMM_RENSHOU_CNT,		///<�X�e�[�W�F���C�����X���݂̘A����
-	FRID_STAGE_MULTI_COMM_MONSNO,			///<�X�e�[�W�F���C�����X���킵�Ă���|�P�����ԍ�
+	FRID_STAGE_MULTI_COMM_RENSHOU,			///<ダミー(ポケモン毎の最大連勝数になる予定)
+	FRID_STAGE_MULTI_COMM_RENSHOU_CNT,		///<ステージ：ワイヤレス現在の連勝数
+	FRID_STAGE_MULTI_COMM_MONSNO,			///<ステージ：ワイヤレス挑戦しているポケモン番号
 	FRID_STAGE_MULTI_COMM_TYPE_LEVEL_0,
 	FRID_STAGE_MULTI_COMM_TYPE_LEVEL_1,
 	FRID_STAGE_MULTI_COMM_TYPE_LEVEL_2,
@@ -102,67 +102,67 @@ enum{
 	FRID_STAGE_MULTI_COMM_TYPE_LEVEL_7,
 	FRID_STAGE_MULTI_COMM_TYPE_LEVEL_8,
 	
-	//�L���b�X���pINDEX�J�n
-	FRID_CASTLE_SINGLE_RENSHOU,				///<�L���b�X���F�V���O���ő�A����
-	FRID_CASTLE_SINGLE_RENSHOU_CNT,			///<�L���b�X���F�V���O�����݂̘A����
-	FRID_CASTLE_SINGLE_CP,					///<�L���b�X���F�V���O�����݂̃L���b�X���|�C���g
-	FRID_CASTLE_SINGLE_USED_CP,				///<�L���b�X���F�V���O���g�p�����L���b�X���|�C���g
-	FRID_CASTLE_SINGLE_REMAINDER_CP,		///<�L���b�X���F�V���O���ő�A�������L�^�������̎c��CP
-	FRID_CASTLE_SINGLE_RANK_RECOVER,	///<�L���b�X���F�ǂ��܂ŏグ�����L��
-	FRID_CASTLE_SINGLE_RANK_RENTAL,		///<�L���b�X���F�ǂ��܂ŏグ�����L��
-	FRID_CASTLE_SINGLE_RANK_INFO,		///<�L���b�X���F�ǂ��܂ŏグ�����L��
-	FRID_CASTLE_DOUBLE_RENSHOU,				///<�L���b�X���F�_�u���ő�A����
-	FRID_CASTLE_DOUBLE_RENSHOU_CNT,			///<�L���b�X���F�_�u�����݂̘A����
-	FRID_CASTLE_DOUBLE_CP,					///<�L���b�X���F�_�u�����݂̃L���b�X���|�C���g
-	FRID_CASTLE_DOUBLE_USED_CP,				///<�L���b�X���F�_�u���g�p�����L���b�X���|�C���g
-	FRID_CASTLE_DOUBLE_REMAINDER_CP,		///<�L���b�X���F�_�u���ő�A�������L�^�������̎c��CP
-	FRID_CASTLE_DOUBLE_RANK_RECOVER,	///<�L���b�X���F�ǂ��܂ŏグ�����L��
-	FRID_CASTLE_DOUBLE_RANK_RENTAL,		///<�L���b�X���F�ǂ��܂ŏグ�����L��
-	FRID_CASTLE_DOUBLE_RANK_INFO,		///<�L���b�X���F�ǂ��܂ŏグ�����L��
-	FRID_CASTLE_MULTI_COMM_RENSHOU,			///<�L���b�X���F���C�����X�ő�A����
-	FRID_CASTLE_MULTI_COMM_RENSHOU_CNT,		///<�L���b�X���F���C�����X���݂̘A����
-	FRID_CASTLE_MULTI_COMM_CP,				///<�L���b�X���F���C�����X���݂̃L���b�X���|�C���g
-	FRID_CASTLE_MULTI_COMM_USED_CP,			///<�L���b�X���F���C�����X�g�p�����L���b�X���|�C���g
-	FRID_CASTLE_MULTI_COMM_REMAINDER_CP,///<�L���b�X���F���C�����X�ő�A�������L�^�������̎c��CP
-	FRID_CASTLE_MULTI_COMM_RANK_RECOVER,	///<�L���b�X���F�ǂ��܂ŏグ�����L��
-	FRID_CASTLE_MULTI_COMM_RANK_RENTAL,		///<�L���b�X���F�ǂ��܂ŏグ�����L��
-	FRID_CASTLE_MULTI_COMM_RANK_INFO,		///<�L���b�X���F�ǂ��܂ŏグ�����L��
+	//キャッスル用INDEX開始
+	FRID_CASTLE_SINGLE_RENSHOU,				///<キャッスル：シングル最大連勝数
+	FRID_CASTLE_SINGLE_RENSHOU_CNT,			///<キャッスル：シングル現在の連勝数
+	FRID_CASTLE_SINGLE_CP,					///<キャッスル：シングル現在のキャッスルポイント
+	FRID_CASTLE_SINGLE_USED_CP,				///<キャッスル：シングル使用したキャッスルポイント
+	FRID_CASTLE_SINGLE_REMAINDER_CP,		///<キャッスル：シングル最大連勝数を記録した時の残りCP
+	FRID_CASTLE_SINGLE_RANK_RECOVER,	///<キャッスル：どこまで上げたか記憶
+	FRID_CASTLE_SINGLE_RANK_RENTAL,		///<キャッスル：どこまで上げたか記憶
+	FRID_CASTLE_SINGLE_RANK_INFO,		///<キャッスル：どこまで上げたか記憶
+	FRID_CASTLE_DOUBLE_RENSHOU,				///<キャッスル：ダブル最大連勝数
+	FRID_CASTLE_DOUBLE_RENSHOU_CNT,			///<キャッスル：ダブル現在の連勝数
+	FRID_CASTLE_DOUBLE_CP,					///<キャッスル：ダブル現在のキャッスルポイント
+	FRID_CASTLE_DOUBLE_USED_CP,				///<キャッスル：ダブル使用したキャッスルポイント
+	FRID_CASTLE_DOUBLE_REMAINDER_CP,		///<キャッスル：ダブル最大連勝数を記録した時の残りCP
+	FRID_CASTLE_DOUBLE_RANK_RECOVER,	///<キャッスル：どこまで上げたか記憶
+	FRID_CASTLE_DOUBLE_RANK_RENTAL,		///<キャッスル：どこまで上げたか記憶
+	FRID_CASTLE_DOUBLE_RANK_INFO,		///<キャッスル：どこまで上げたか記憶
+	FRID_CASTLE_MULTI_COMM_RENSHOU,			///<キャッスル：ワイヤレス最大連勝数
+	FRID_CASTLE_MULTI_COMM_RENSHOU_CNT,		///<キャッスル：ワイヤレス現在の連勝数
+	FRID_CASTLE_MULTI_COMM_CP,				///<キャッスル：ワイヤレス現在のキャッスルポイント
+	FRID_CASTLE_MULTI_COMM_USED_CP,			///<キャッスル：ワイヤレス使用したキャッスルポイント
+	FRID_CASTLE_MULTI_COMM_REMAINDER_CP,///<キャッスル：ワイヤレス最大連勝数を記録した時の残りCP
+	FRID_CASTLE_MULTI_COMM_RANK_RECOVER,	///<キャッスル：どこまで上げたか記憶
+	FRID_CASTLE_MULTI_COMM_RANK_RENTAL,		///<キャッスル：どこまで上げたか記憶
+	FRID_CASTLE_MULTI_COMM_RANK_INFO,		///<キャッスル：どこまで上げたか記憶
 	
-	//���[���b�g�pINDEX�J�n
-	FRID_ROULETTE_SINGLE_RENSHOU,			///<���[���b�g�F�V���O���ő�A����
-	FRID_ROULETTE_SINGLE_RENSHOU_CNT,		///<���[���b�g�F�V���O�����݂̘A����
-	FRID_ROULETTE_DOUBLE_RENSHOU,			///<���[���b�g�F�_�u���ő�A����
-	FRID_ROULETTE_DOUBLE_RENSHOU_CNT,		///<���[���b�g�F�_�u�����݂̘A����
-	FRID_ROULETTE_MULTI_COMM_RENSHOU,		///<���[���b�g�F���C�����X�ő�A����
-	FRID_ROULETTE_MULTI_COMM_RENSHOU_CNT,	///<���[���b�g�F���C�����X���݂̘A����
+	//ルーレット用INDEX開始
+	FRID_ROULETTE_SINGLE_RENSHOU,			///<ルーレット：シングル最大連勝数
+	FRID_ROULETTE_SINGLE_RENSHOU_CNT,		///<ルーレット：シングル現在の連勝数
+	FRID_ROULETTE_DOUBLE_RENSHOU,			///<ルーレット：ダブル最大連勝数
+	FRID_ROULETTE_DOUBLE_RENSHOU_CNT,		///<ルーレット：ダブル現在の連勝数
+	FRID_ROULETTE_MULTI_COMM_RENSHOU,		///<ルーレット：ワイヤレス最大連勝数
+	FRID_ROULETTE_MULTI_COMM_RENSHOU_CNT,	///<ルーレット：ワイヤレス現在の連勝数
 
-	FRID_SINGLE_END,	//��l�p�̃f�[�^�I�[
+	FRID_SINGLE_END,	//一人用のデータ終端
 	
-	//WIFI�̗F�B���̃N���A�t���O(�r�b�g�P�ʂŊǗ����Ă��܂�)
-	FRID_TOWER_MULTI_WIFI_CLEAR_BIT = FRID_SINGLE_END,	//FrontierRecord_Set,Get�֐��̂ݑΉ�
-	FRID_TOWER_MULTI_WIFI_CLEAR_BIT_SUB,		//���g�p�֎~�@�̈�m�ۂ̂�
-	FRID_FACTORY_MULTI_WIFI_CLEAR_BIT,			//FrontierRecord_Set,Get�֐��̂ݑΉ�
-	FRID_FACTORY_MULTI_WIFI_CLEAR_BIT_SUB,		//���g�p�֎~�@�̈�m�ۂ̂�
-	FRID_FACTORY_MULTI_WIFI_CLEAR100_BIT,		//FrontierRecord_Set,Get�֐��̂ݑΉ�
-	FRID_FACTORY_MULTI_WIFI_CLEAR100_BIT_SUB,	//���g�p�֎~�@�̈�m�ۂ̂�
-	FRID_STAGE_MULTI_WIFI_CLEAR_BIT,			//FrontierRecord_Set,Get�֐��̂ݑΉ�
-	FRID_STAGE_MULTI_WIFI_CLEAR_BIT_SUB,		//���g�p�֎~�@�̈�m�ۂ̂�
-	FRID_CASTLE_MULTI_WIFI_CLEAR_BIT,			//FrontierRecord_Set,Get�֐��̂ݑΉ�
-	FRID_CASTLE_MULTI_WIFI_CLEAR_BIT_SUB,		//���g�p�֎~�@�̈�m�ۂ̂�
-	FRID_ROULETTE_MULTI_WIFI_CLEAR_BIT,			//FrontierRecord_Set,Get�֐��̂ݑΉ�
-	FRID_ROULETTE_MULTI_WIFI_CLEAR_BIT_SUB,		//���g�p�֎~�@�̈�m�ۂ̂�
+	//WIFIの友達毎のクリアフラグ(ビット単位で管理しています)
+	FRID_TOWER_MULTI_WIFI_CLEAR_BIT = FRID_SINGLE_END,	//FrontierRecord_Set,Get関数のみ対応
+	FRID_TOWER_MULTI_WIFI_CLEAR_BIT_SUB,		//※使用禁止　領域確保のみ
+	FRID_FACTORY_MULTI_WIFI_CLEAR_BIT,			//FrontierRecord_Set,Get関数のみ対応
+	FRID_FACTORY_MULTI_WIFI_CLEAR_BIT_SUB,		//※使用禁止　領域確保のみ
+	FRID_FACTORY_MULTI_WIFI_CLEAR100_BIT,		//FrontierRecord_Set,Get関数のみ対応
+	FRID_FACTORY_MULTI_WIFI_CLEAR100_BIT_SUB,	//※使用禁止　領域確保のみ
+	FRID_STAGE_MULTI_WIFI_CLEAR_BIT,			//FrontierRecord_Set,Get関数のみ対応
+	FRID_STAGE_MULTI_WIFI_CLEAR_BIT_SUB,		//※使用禁止　領域確保のみ
+	FRID_CASTLE_MULTI_WIFI_CLEAR_BIT,			//FrontierRecord_Set,Get関数のみ対応
+	FRID_CASTLE_MULTI_WIFI_CLEAR_BIT_SUB,		//※使用禁止　領域確保のみ
+	FRID_ROULETTE_MULTI_WIFI_CLEAR_BIT,			//FrontierRecord_Set,Get関数のみ対応
+	FRID_ROULETTE_MULTI_WIFI_CLEAR_BIT_SUB,		//※使用禁止　領域確保のみ
 
-	//�I�[
+	//終端
 	FRID_MAX,
 
 	//--------------------------------------------------------------
-	//	�F�B�蒠���Ɏ����R�[�h
+	//	友達手帳毎に持つレコード
 	//--------------------------------------------------------------
-	//Wifi�^���[
+	//Wifiタワー
 	FRID_TOWER_MULTI_WIFI_RENSHOU = FRID_MAX,
 	FRID_TOWER_MULTI_WIFI_RENSHOU_CNT,
 	
-	//Wifi�t�@�N�g���[(���т�ύX���Ă̓_���I)
+	//Wifiファクトリー(並びを変更してはダメ！)
 	FRID_FACTORY_MULTI_WIFI_RENSHOU,
 	FRID_FACTORY_MULTI_WIFI_RENSHOU_CNT,
 	FRID_FACTORY_MULTI_WIFI_TRADE,
@@ -172,9 +172,9 @@ enum{
 	FRID_FACTORY_MULTI_WIFI_TRADE100,
 	FRID_FACTORY_MULTI_WIFI_TRADE100_CNT,
 	
-	//Wifi�X�e�[�W							//���͕ʂɊO���Ń|�P�������Ƃ̍ő�A�����������Ă���
-	FRID_STAGE_MULTI_WIFI_RENSHOU,			//������Ă���|�P�����̍ő�A����
-	FRID_STAGE_MULTI_WIFI_RENSHOU_CNT,		//������Ă���|�P�����̘A����
+	//Wifiステージ							//↓は別に外部でポケモンごとの最大連勝数をもっている
+	FRID_STAGE_MULTI_WIFI_RENSHOU,			//今やっているポケモンの最大連勝数
+	FRID_STAGE_MULTI_WIFI_RENSHOU_CNT,		//今やっているポケモンの連勝数
 	FRID_STAGE_MULTI_WIFI_MONSNO,
 	FRID_STAGE_MULTI_WIFI_TYPE_LEVEL_0,
 	FRID_STAGE_MULTI_WIFI_TYPE_LEVEL_1,
@@ -186,38 +186,38 @@ enum{
 	FRID_STAGE_MULTI_WIFI_TYPE_LEVEL_7,
 	FRID_STAGE_MULTI_WIFI_TYPE_LEVEL_8,
 	
-	//Wifi�L���b�X��
+	//Wifiキャッスル
 	FRID_CASTLE_MULTI_WIFI_RENSHOU,
 	FRID_CASTLE_MULTI_WIFI_RENSHOU_CNT,
 	FRID_CASTLE_MULTI_WIFI_CP,
 	FRID_CASTLE_MULTI_WIFI_USED_CP,
-	FRID_CASTLE_MULTI_WIFI_REMAINDER_CP,	///<�L���b�X���FWIFI�ő�A�������L�^�������̎c��CP
-	FRID_CASTLE_MULTI_WIFI_RANK_RECOVER,	///<�L���b�X���F�ǂ��܂ŏグ�����L��
-	FRID_CASTLE_MULTI_WIFI_RANK_RENTAL,		///<�L���b�X���F�ǂ��܂ŏグ�����L��
-	FRID_CASTLE_MULTI_WIFI_RANK_INFO,		///<�L���b�X���F�ǂ��܂ŏグ�����L��
+	FRID_CASTLE_MULTI_WIFI_REMAINDER_CP,	///<キャッスル：WIFI最大連勝数を記録した時の残りCP
+	FRID_CASTLE_MULTI_WIFI_RANK_RECOVER,	///<キャッスル：どこまで上げたか記憶
+	FRID_CASTLE_MULTI_WIFI_RANK_RENTAL,		///<キャッスル：どこまで上げたか記憶
+	FRID_CASTLE_MULTI_WIFI_RANK_INFO,		///<キャッスル：どこまで上げたか記憶
 
-	//Wifi���[���b�g
+	//Wifiルーレット
 	FRID_ROULETTE_MULTI_WIFI_RENSHOU,
 	FRID_ROULETTE_MULTI_WIFI_RENSHOU_CNT,
 	
-	//Wifi�I�[
+	//Wifi終端
 	FRID_WIFI_MAX,
 };
 
 
 //==============================================================================
-//	�\���̒�`
+//	構造体定義
 //==============================================================================
 /**
- *	@brief	�t�����e�B�A�@�u���b�N�f�[�^�\���̂ւ̕s���S�^�|�C���^
+ *	@brief	フロンティア　ブロックデータ構造体への不完全型ポインタ
  *
- * ���g�͌����܂��񂪃|�C���^�o�R�ŎQ�Ƃł��܂�
+ * 中身は見えませんがポインタ経由で参照できます
  */
 typedef struct _FRONTIER_SAVEWORK	FRONTIER_SAVEWORK;
 
 
 //==============================================================================
-//	�O���֐��錾
+//	外部関数宣言
 //==============================================================================
 extern int FrontierData_GetWorkSize(void);
 extern void FrontierData_Init(FRONTIER_SAVEWORK* save);

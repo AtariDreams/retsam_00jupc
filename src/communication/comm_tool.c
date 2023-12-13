@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_tool.c
- * @brief	’ÊM‚ğg‚Á‚½”Ä—pŠÖ”
+ * @brief	é€šä¿¡ã‚’ä½¿ã£ãŸæ±ç”¨é–¢æ•°
  * @author	Katsumi Ohno
  * @date    2006.03.14
  */
@@ -12,11 +12,11 @@
 #include "system/snd_tool.h"
 
 
-//”Ä—pƒf[ƒ^‚Ì‚PƒpƒPƒbƒg
+//æ±ç”¨ãƒ‡ãƒ¼ã‚¿ã®ï¼‘ãƒ‘ã‚±ãƒƒãƒˆ
 #define _TEMPDATA_SIZE (70)
 
 //==============================================================================
-// staticéŒ¾
+// staticå®£è¨€
 //==============================================================================
 
 typedef struct _COMM_TOOL_WORK_t COMM_TOOL_WORK;
@@ -28,25 +28,25 @@ typedef struct{
 }_ListResult;
 
 typedef struct _COMM_TOOL_WORK_t{
-    // ƒŠƒXƒg
-    _ListResult listNo[COMM_MACHINE_MAX];     // “¯ŠúƒRƒ}ƒ“ƒh—p
-    u8 timingSync[COMM_MACHINE_MAX];     // “¯ŠúƒRƒ}ƒ“ƒh—p
-    //------------------  tempƒf[ƒ^—pƒoƒbƒtƒ@
+    // ãƒªã‚¹ãƒˆ
+    _ListResult listNo[COMM_MACHINE_MAX];     // åŒæœŸã‚³ãƒãƒ³ãƒ‰ç”¨
+    u8 timingSync[COMM_MACHINE_MAX];     // åŒæœŸã‚³ãƒãƒ³ãƒ‰ç”¨
+    //------------------  tempãƒ‡ãƒ¼ã‚¿ç”¨ãƒãƒƒãƒ•ã‚¡
     u8 tempWork[COMM_MACHINE_MAX][_TEMPDATA_SIZE+2];
     u8 tempRecv[COMM_MACHINE_MAX];
     //-------------------
-    u8 timingSyncEnd;     // “¯ŠúƒRƒ}ƒ“ƒh—p
-    u8 timingSyncMy;  // ©•ª‚ª‘—‚Á‚½NO
+    u8 timingSyncEnd;     // åŒæœŸã‚³ãƒãƒ³ãƒ‰ç”¨
+    u8 timingSyncMy;  // è‡ªåˆ†ãŒé€ã£ãŸNO
     u8 timingSend;
 };
 
-static COMM_TOOL_WORK* _pCT = NULL;  ///<@ƒ[ƒN\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+static COMM_TOOL_WORK* _pCT = NULL;  ///<ã€€ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
 
 
 //==============================================================================
 /**
- * ‰Šú‰»
- * @param   callback—pˆø”
+ * åˆæœŸåŒ–
+ * @param   callbackç”¨å¼•æ•°
  * @retval  none
  */
 //==============================================================================
@@ -62,9 +62,9 @@ void CommToolInitialize(int heapID)
 
 
     for(i = 0; i< COMM_MACHINE_MAX;i++){
-        _pCT->timingSync[i]=0xff;     // “¯ŠúƒRƒ}ƒ“ƒh—p
+        _pCT->timingSync[i]=0xff;     // åŒæœŸã‚³ãƒãƒ³ãƒ‰ç”¨
     }
-    _pCT->timingSyncEnd = 0xff;     // “¯ŠúƒRƒ}ƒ“ƒh—p
+    _pCT->timingSyncEnd = 0xff;     // åŒæœŸã‚³ãƒãƒ³ãƒ‰ç”¨
     _pCT->timingSyncMy = 0xff;
     _pCT->timingSend = FALSE;
 
@@ -72,8 +72,8 @@ void CommToolInitialize(int heapID)
 
 //==============================================================================
 /**
- * ŠJ•ú
- * @param   callback—pˆø”
+ * é–‹æ”¾
+ * @param   callbackç”¨å¼•æ•°
  * @retval  none
  */
 //==============================================================================
@@ -86,8 +86,8 @@ void CommToolFinalize(void)
 
 //==============================================================================
 /**
- * Šm”F
- * @param   callback—pˆø”
+ * ç¢ºèª
+ * @param   callbackç”¨å¼•æ•°
  * @retval  none
  */
 //==============================================================================
@@ -103,8 +103,8 @@ BOOL CommToolIsInitialize(void)
 
 //==============================================================================
 /**
- * ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‚ğóM‚µ‚½   CS_TIMING_SYNC
- * @param   callback—pˆø”
+ * ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰ã‚’å—ä¿¡ã—ãŸ   CS_TIMING_SYNC
+ * @param   callbackç”¨å¼•æ•°
  * @retval  none
  */
 //==============================================================================
@@ -120,12 +120,12 @@ void CommRecvTimingSync(int netID, int size, void* pData, void* pWork)
         sendBuff[0] = netID;
         sendBuff[1] = syncNo;
         CommSendFixSizeData_ServerSide(CS_TIMING_SYNC_INFO, &sendBuff);
-        OHNO_PRINT("“¯ŠúóM %d %d\n",netID,syncNo);
-        _pCT->timingSync[netID] = syncNo;     // “¯ŠúƒRƒ}ƒ“ƒh—p
+        OHNO_PRINT("åŒæœŸå—ä¿¡ %d %d\n",netID,syncNo);
+        _pCT->timingSync[netID] = syncNo;     // åŒæœŸã‚³ãƒãƒ³ãƒ‰ç”¨
         for(i = 0; i < COMM_MACHINE_MAX; i++){
             if(CommIsConnect(i)){
                 if(syncNo != _pCT->timingSync[i]){
-                    // “¯Šú‚µ‚Ä‚¢‚È‚¢
+                    // åŒæœŸã—ã¦ã„ãªã„
                     return;
                 }
             }
@@ -137,24 +137,24 @@ void CommRecvTimingSync(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒhINFO‚ğóM‚µ‚½   CS_TIMING_SYNC_INFO
- * @param   callback—pˆø”
+ * ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰INFOã‚’å—ä¿¡ã—ãŸ   CS_TIMING_SYNC_INFO
+ * @param   callbackç”¨å¼•æ•°
  * @retval  none
  */
 //==============================================================================
 
 void CommRecvTimingSyncInfo(int netID, int size, void* pData, void* pWork)
 {
-    // q‹@‚ªó‹µ‚ğ”cˆ¬‚Å‚«‚é‚æ‚¤‚ÉƒRƒ}ƒ“ƒh‚ª‘—‚ç‚ê‚Ä‚­‚é
+    // å­æ©ŸãŒçŠ¶æ³ã‚’æŠŠæ¡ã§ãã‚‹ã‚ˆã†ã«ã‚³ãƒãƒ³ãƒ‰ãŒé€ã‚‰ã‚Œã¦ãã‚‹
     u8* pBuff = pData;
     
-    _pCT->timingSync[pBuff[0]] = pBuff[1];     // “¯ŠúƒRƒ}ƒ“ƒh—p
+    _pCT->timingSync[pBuff[0]] = pBuff[1];     // åŒæœŸã‚³ãƒãƒ³ãƒ‰ç”¨
 }
 
 //==============================================================================
 /**
- * ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒhEND‚ğóM‚µ‚½   CS_TIMING_SYNC_END
- * @param   callback—pˆø”
+ * ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰ENDã‚’å—ä¿¡ã—ãŸ   CS_TIMING_SYNC_END
+ * @param   callbackç”¨å¼•æ•°
  * @retval  none
  */
 //==============================================================================
@@ -164,29 +164,29 @@ void CommRecvTimingSyncEnd(int netID, int size, void* pData, void* pWork)
     u8* pBuff = pData;
     u8 syncNo = pBuff[0];
 
-    //OHNO_PRINT("‘Sˆõ“¯ŠúƒRƒ}ƒ“ƒhóM %d %d\n", syncNo);
-    _pCT->timingSyncEnd = syncNo;     // “¯ŠúƒRƒ}ƒ“ƒh—p
+    //OHNO_PRINT("å…¨å“¡åŒæœŸã‚³ãƒãƒ³ãƒ‰å—ä¿¡ %d %d\n", syncNo);
+    _pCT->timingSyncEnd = syncNo;     // åŒæœŸã‚³ãƒãƒ³ãƒ‰ç”¨
 }
 
 //==============================================================================
 /**
- * ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‚ğ”­s‚·‚é
- * @param   no   ƒ^ƒCƒ~ƒ“ƒOæ‚è‚½‚¢”Ô†
+ * ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰ã‚’ç™ºè¡Œã™ã‚‹
+ * @param   no   ã‚¿ã‚¤ãƒŸãƒ³ã‚°å–ã‚ŠãŸã„ç•ªå·
  * @retval  none
  */
 //==============================================================================
 
 void CommTimingSyncStart(u8 no)
 {
-    //OHNO_PRINT("ƒRƒ}ƒ“ƒh”­s %d \n",no);
+    //OHNO_PRINT("ã‚³ãƒãƒ³ãƒ‰ç™ºè¡Œ %d \n",no);
     _pCT->timingSyncMy = no;
     _pCT->timingSend = TRUE;
 }
 
 //==============================================================================
 /**
- * ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‚ğ‘—M
- * @param   no   ƒ^ƒCƒ~ƒ“ƒOæ‚è‚½‚¢”Ô†
+ * ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰ã‚’é€ä¿¡
+ * @param   no   ã‚¿ã‚¤ãƒŸãƒ³ã‚°å–ã‚ŠãŸã„ç•ªå·
  * @retval  none
  */
 //==============================================================================
@@ -202,7 +202,7 @@ void CommTimingSyncSend(void)
     if(_pCT){
         if(_pCT->timingSend){
             if(CommSendFixSizeData(CS_TIMING_SYNC, &_pCT->timingSyncMy)){
-                //OHNO_PRINT("ƒRƒ}ƒ“ƒh‘—M %d \n",_pCT->timingSyncMy);
+                //OHNO_PRINT("ã‚³ãƒãƒ³ãƒ‰é€ä¿¡ %d \n",_pCT->timingSyncMy);
                 _pCT->timingSend = FALSE;
             }
         }
@@ -246,16 +246,16 @@ void CommTimingSyncSend(void)
 
 //==============================================================================
 /**
- * ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‚ª“Í‚¢‚½‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
- * @param   no   “Í‚­”Ô†
- * @retval  “Í‚¢‚Ä‚¢‚½‚çTRUE
+ * ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰ãŒå±Šã„ãŸã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+ * @param   no   å±Šãç•ªå·
+ * @retval  å±Šã„ã¦ã„ãŸã‚‰TRUE
  */
 //==============================================================================
 
 BOOL CommIsTimingSync(u8 no)
 {
     if(_pCT==NULL){
-        return TRUE;  // ’ÊM‚µ‚Ä‚È‚¢ê‡“¯Šú‚µ‚Ä‚¢‚é‚Æ‚İ‚È‚·
+        return TRUE;  // é€šä¿¡ã—ã¦ãªã„å ´åˆåŒæœŸã—ã¦ã„ã‚‹ã¨ã¿ãªã™
     }
     if(_pCT->timingSyncEnd == no){
         return TRUE;
@@ -265,9 +265,9 @@ BOOL CommIsTimingSync(u8 no)
 
 //==============================================================================
 /**
- * ƒ^ƒCƒ~ƒ“ƒOƒRƒ}ƒ“ƒh‚ª“Í‚¢‚½‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
- * @param   no   “Í‚­”Ô†
- * @retval  “Í‚¢‚Ä‚¢‚½‚çTRUE
+ * ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚³ãƒãƒ³ãƒ‰ãŒå±Šã„ãŸã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
+ * @param   no   å±Šãç•ªå·
+ * @retval  å±Šã„ã¦ã„ãŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -278,8 +278,8 @@ int CommGetTimingSyncNo(int netID)
 
 //------------------------------------------------------
 /**
- * @brief   ‘I‘ğŒ‹‰Ê‚ğóM‚·‚éŠÖ”
- * @param   ƒR[ƒ‹ƒoƒbƒNˆø”
+ * @brief   é¸æŠçµæœã‚’å—ä¿¡ã™ã‚‹é–¢æ•°
+ * @param   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
  * @retval  none
  */
 //------------------------------------------------------
@@ -294,9 +294,9 @@ void CommRecvListNo(int netID, int size, void* pData, void* pWork)
 
 //------------------------------------------------------
 /**
- * @brief   ‘I‘ğŒ‹‰Ê‚ğ’ÊM‚·‚éƒRƒ}ƒ“ƒhƒTƒCƒY
- * @param   no        ‘I‘ğƒ†ƒj[ƒN”Ô†
- * @param   listNo    ‘I‘ğŒ‹‰Ê  0-255
+ * @brief   é¸æŠçµæœã‚’é€šä¿¡ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã‚µã‚¤ã‚º
+ * @param   no        é¸æŠãƒ¦ãƒ‹ãƒ¼ã‚¯ç•ªå·
+ * @param   listNo    é¸æŠçµæœ  0-255
  * @retval  none
  */
 //------------------------------------------------------
@@ -308,9 +308,9 @@ int CommGetListNoSize(void)
 
 //------------------------------------------------------
 /**
- * @brief   ‘I‘ğŒ‹‰Ê‚ğ’ÊM‚·‚é
- * @param   no        ‘I‘ğƒ†ƒj[ƒN”Ô†
- * @param   listNo    ‘I‘ğŒ‹‰Ê  0-255
+ * @brief   é¸æŠçµæœã‚’é€šä¿¡ã™ã‚‹
+ * @param   no        é¸æŠãƒ¦ãƒ‹ãƒ¼ã‚¯ç•ªå·
+ * @param   listNo    é¸æŠçµæœ  0-255
  * @retval  none
  */
 //------------------------------------------------------
@@ -326,10 +326,10 @@ void CommListSet(u8 no,u8 listNo)
 
 //------------------------------------------------------
 /**
- * @brief   ‘I‘ğŒ‹‰Ê‚ğó‚¯æ‚é
- * @param   recvNetID   ‚Ç‚Ìl‚Ìƒf[ƒ^‚ğ‘Ò‚¿ó‚¯‚é‚Ì‚©
- * @param   pBuff       óMƒoƒbƒtƒ@
- * @retval  ‘I‘ğŒ‹‰Ê ‚à‚µ‚­‚Í -1
+ * @brief   é¸æŠçµæœã‚’å—ã‘å–ã‚‹
+ * @param   recvNetID   ã©ã®äººã®ãƒ‡ãƒ¼ã‚¿ã‚’å¾…ã¡å—ã‘ã‚‹ã®ã‹
+ * @param   pBuff       å—ä¿¡ãƒãƒƒãƒ•ã‚¡
+ * @retval  é¸æŠçµæœ ã‚‚ã—ãã¯ -1
  */
 //------------------------------------------------------
 
@@ -347,7 +347,7 @@ int CommListGet(int netID, u8 no)
 
 //------------------------------------------------------
 /**
- * @brief   ‘I‘ğŒ‹‰Ê‚ğÁ‚·
+ * @brief   é¸æŠçµæœã‚’æ¶ˆã™
  * @param   none
  * @retval  none
  */
@@ -364,10 +364,10 @@ void CommListReset(void)
 
 //==============================================================================
 /**
- * Ú‘±‚É‘Šè‚É‘—‚è‚½‚¢ƒf[ƒ^‚ğ“ü‚ê‚é  10byte
- * @param   netID   id   ©•ª‚Ì—\’è‚ÌID
- * @param   pData   ‘—‚è‚½‚¢ƒf[ƒ^
- * @retval  ¸”s‚µ‚½ê‡‚Í‚O
+ * æ¥ç¶šæ™‚ã«ç›¸æ‰‹ã«é€ã‚ŠãŸã„ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹  10byte
+ * @param   netID   id   è‡ªåˆ†ã®äºˆå®šã®ID
+ * @param   pData   é€ã‚ŠãŸã„ãƒ‡ãƒ¼ã‚¿
+ * @retval  å¤±æ•—ã—ãŸå ´åˆã¯ï¼
  */
 //==============================================================================
 
@@ -382,10 +382,10 @@ void CommToolTempDataReset(void)
 
 //==============================================================================
 /**
- * Ú‘±‚É‘Šè‚É‘—‚è‚½‚¢ƒf[ƒ^‚ğ“ü‚ê‚é  10byte
- * @param   netID   id   ©•ª‚Ì—\’è‚ÌID
- * @param   pData   ‘—‚è‚½‚¢ƒf[ƒ^
- * @retval  ¸”s‚µ‚½ê‡‚Í‚O
+ * æ¥ç¶šæ™‚ã«ç›¸æ‰‹ã«é€ã‚ŠãŸã„ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹  10byte
+ * @param   netID   id   è‡ªåˆ†ã®äºˆå®šã®ID
+ * @param   pData   é€ã‚ŠãŸã„ãƒ‡ãƒ¼ã‚¿
+ * @retval  å¤±æ•—ã—ãŸå ´åˆã¯ï¼
  */
 //==============================================================================
 
@@ -401,9 +401,9 @@ BOOL CommToolSetTempData(int netID,const void* pData)
 
 //==============================================================================
 /**
- * Ú‘±‚É‘Šè‚É‘—‚Á‚½ƒf[ƒ^‚ğ“¾‚é  10byte
- * @param   netID   id   ‘Šè‚Ì—\’è‚ÌID
- * @retval  ¸”s‚µ‚½ê‡‚Í‚O
+ * æ¥ç¶šæ™‚ã«ç›¸æ‰‹ã«é€ã£ãŸãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹  10byte
+ * @param   netID   id   ç›¸æ‰‹ã®äºˆå®šã®ID
+ * @retval  å¤±æ•—ã—ãŸå ´åˆã¯ï¼
  */
 //==============================================================================
 
@@ -417,9 +417,9 @@ const void* CommToolGetTempData(int netID)
 
 //==============================================================================
 /**
- * ƒeƒ“ƒ|ƒ‰ƒŠ[ƒf[ƒ^‚ğóM‚·‚é
- * @param   netID   id   ‘Šè‚Ì—\’è‚ÌID
- * @retval  ¸”s‚µ‚½ê‡‚Í‚O
+ * ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹
+ * @param   netID   id   ç›¸æ‰‹ã®äºˆå®šã®ID
+ * @retval  å¤±æ•—ã—ãŸå ´åˆã¯ï¼
  */
 //==============================================================================
 
@@ -431,9 +431,9 @@ void CommToolRecvTempData(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * ƒeƒ“ƒ|ƒ‰ƒŠ[ƒf[ƒ^ƒTƒCƒY‚ğ•Ô‚·
- * @param   netID   id   ‘Šè‚Ì—\’è‚ÌID
- * @retval  ¸”s‚µ‚½ê‡‚Í‚O
+ * ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’è¿”ã™
+ * @param   netID   id   ç›¸æ‰‹ã®äºˆå®šã®ID
+ * @retval  å¤±æ•—ã—ãŸå ´åˆã¯ï¼
  */
 //==============================================================================
 

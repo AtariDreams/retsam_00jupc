@@ -27,8 +27,8 @@ extern "C" {
 #endif
 
 //
-// ‰ü–¼‚ğs‚Á‚½ŠÖ”‚Ì•Ê–¼
-// ŒİŠ·«ˆÛ‚Ì‚½‚ß•Ê–¼‚Æ‚µ‚ÄˆÈ‘O‚ÌŠÖ”‚ğéŒ¾‚µ‚Ü‚·B
+// æ”¹åã‚’è¡Œã£ãŸé–¢æ•°ã®åˆ¥å
+// äº’æ›æ€§ç¶­æŒã®ãŸã‚åˆ¥åã¨ã—ã¦ä»¥å‰ã®é–¢æ•°ã‚’å®£è¨€ã—ã¾ã™ã€‚
 // 
 #define NNS_G2dInitializeEntity        NNS_G2dInitEntity
 #define NNS_G2dSetCurrentAnimation     NNS_G2dSetEntityCurrentAnimation
@@ -42,21 +42,21 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNSG2dEntity
 
-  Description:  •`‰æ—pƒf[ƒ^‚ÆƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğƒOƒ‹[ƒv‰»‚·‚éŠT”O
-                ƒQ[ƒ€ƒLƒƒƒ‰ƒNƒ^Šî–{\‘¢
+  Description:  æç”»ç”¨ãƒ‡ãƒ¼ã‚¿ã¨ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚°ãƒ«ãƒ¼ãƒ—åŒ–ã™ã‚‹æ¦‚å¿µ
+                ã‚²ãƒ¼ãƒ ã‚­ãƒ£ãƒ©ã‚¯ã‚¿åŸºæœ¬æ§‹é€ 
                 
  *---------------------------------------------------------------------------*/ 
 typedef struct NNSG2dEntity
 {
-    void*                         pDrawStuff;                 // •`‰æƒf[ƒ^
-    const NNSG2dEntityData*       pEntityData;                // Ã“Iƒf[ƒ^‚Ö‚ÌQÆ
-    const NNSG2dAnimBankData*     pAnimDataBank;              // ŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚é Bank
-    u16                           currentSequenceIdx;         // Œ»İÄ¶’†‚ÌƒV[ƒPƒ“ƒX”Ô†
-    u16                           pad16_;                     // ƒpƒfƒBƒ“ƒO
+    void*                         pDrawStuff;                 // æç”»ãƒ‡ãƒ¼ã‚¿
+    const NNSG2dEntityData*       pEntityData;                // é™çš„ãƒ‡ãƒ¼ã‚¿ã¸ã®å‚ç…§
+    const NNSG2dAnimBankData*     pAnimDataBank;              // é–¢é€£ä»˜ã‘ã‚‰ã‚Œã¦ã„ã‚‹ Bank
+    u16                           currentSequenceIdx;         // ç¾åœ¨å†ç”Ÿä¸­ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+    u16                           pad16_;                     // ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
     //
-    // NULL‚Å‚ ‚ê‚Î bPaletteChangeEnable = FALSE ‚Æ‚İ‚È‚·
-    // ƒe[ƒuƒ‹—Ş‚ÍAƒTƒCƒY‚à‘å‚«‚¢‚µA•¡”ƒLƒƒƒ‰ƒNƒ^‚É‹¤—L‚³‚ê‚é‚±‚Æ‚à‘½‚¢‚Æl‚¦‚ç‚ê‚é
-    // ‚æ‚Á‚Äƒ|ƒCƒ“ƒ^‚ğ•Û‚·‚éd—l‚Æ‚µ‚½B
+    // NULLã§ã‚ã‚Œã° bPaletteChangeEnable = FALSE ã¨ã¿ãªã™
+    // ãƒ†ãƒ¼ãƒ–ãƒ«é¡ã¯ã€ã‚µã‚¤ã‚ºã‚‚å¤§ãã„ã—ã€è¤‡æ•°ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã«å…±æœ‰ã•ã‚Œã‚‹ã“ã¨ã‚‚å¤šã„ã¨è€ƒãˆã‚‰ã‚Œã‚‹
+    // ã‚ˆã£ã¦ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿æŒã™ã‚‹ä»•æ§˜ã¨ã—ãŸã€‚
     // 
     NNSG2dPaletteSwapTable*         pPaletteTbl;
     

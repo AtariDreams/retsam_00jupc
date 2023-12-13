@@ -1,8 +1,8 @@
 //====================================================================
 //								t07r0102
 //
-//�@��LOCALWORK0�g�p
-//	��LOCALWORK10�g�p
+//　※LOCALWORK0使用
+//	※LOCALWORK10使用
 //====================================================================
 
 	.text
@@ -12,11 +12,11 @@
 	.include	"../eventdata/zone_t07r0102evc.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_t07r0102_woman6
 _EVENT_DATA		ev_t07r0102_woman6a
@@ -27,18 +27,18 @@ _EVENT_DATA_END
 
 
 /********************************************************************/
-/*				�擪�|�P�������G�X�e(�Ȃ�UP)						*/
+/*				先頭ポケモンをエステ(なつきUP)						*/
 /********************************************************************/
 ev_t07r0102_woman6:
 	_TALK_OBJ_START
 
-	//�G�X�e�����Ɏ󂯂�
+	//エステを既に受けた
 	_IF_FLAGON_JUMP		TMFLG_T07R0101_ESTHTIQUE,ev_t07r0102_woman6_10
 
-	//�G�X�e�����Ɏ󂯁A1���ȏ�o���Ă������ɂ���Ƃ�
+	//エステを既に受け、1日以上経っても部屋にいるとき
 	_IFVAL_JUMP			LOCALWORK10,EQ,1,ev_t07r0102_woman6_10
 
-	/*�擪�ʒu(�^�}�S��������)���擾*/
+	/*先頭位置(タマゴ抜かした)を取得*/
 	_FRONT_POKEMON	LOCALWORK0
 
 	_PLAYER_NAME	0
@@ -49,7 +49,7 @@ ev_t07r0102_woman6:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t07r0102_woman6_02	//NO
 	_JUMP							ev_t07r0102_woman6_03	//YES
 
-//������
+//いいえ
 ev_t07r0102_woman6_02:
 	_TALKMSG		msg_t07r0102_woman6_02
 	_LAST_KEYWAIT
@@ -58,17 +58,17 @@ ev_t07r0102_woman6_02:
 	_TALK_OBJ_END
 	_END
 
-//�͂�
+//はい
 ev_t07r0102_woman6_03:
 	_TALK_KEYWAIT		msg_t07r0102_woman6_03
 	_TALK_CLOSE
 
-	//�A�j��
+	//アニメ
 	_CALL				ev_t07r0102_anime_01
 
 	_JUMP							ev_t07r0102_woman6_04
 
-//�G�X�e�J�n
+//エステ開始
 ev_t07r0102_woman6_04:
 	_TALK_KEYWAIT		msg_t07r0102_woman6_04
 
@@ -78,27 +78,27 @@ ev_t07r0102_woman6_04:
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_t07r0102_woman6_07
 	_JUMP							ev_t07r0102_woman6_08
 
-//�G�X�e���P
+//エステ中１
 ev_t07r0102_woman6_05:
 	_TALK_KEYWAIT		msg_t07r0102_woman6_05
 	_JUMP			ev_t07r0102_woman6_09
 
-//�G�X�e���Q
+//エステ中２
 ev_t07r0102_woman6_06:
 	_TALK_KEYWAIT		msg_t07r0102_woman6_06
 	_JUMP			ev_t07r0102_woman6_09
 
-//�G�X�e���R
+//エステ中３
 ev_t07r0102_woman6_07:
 	_TALK_KEYWAIT		msg_t07r0102_woman6_07
 	_JUMP			ev_t07r0102_woman6_09
 
-//�G�X�e���S
+//エステ中４
 ev_t07r0102_woman6_08:
 	_TALK_KEYWAIT		msg_t07r0102_woman6_08
 	_JUMP			ev_t07r0102_woman6_09
 
-//�I��
+//終了
 ev_t07r0102_woman6_09:
 	_TALK_CLOSE
 
@@ -111,7 +111,7 @@ ev_t07r0102_woman6_09:
 	_TALK_OBJ_END
 	_END
 
-//�G�X�e�����Ɏ󂯂�
+//エステを既に受けた
 ev_t07r0102_woman6_10:
 	_TALKMSG		msg_t07r0102_woman6_10
 	_LAST_KEYWAIT
@@ -120,7 +120,7 @@ ev_t07r0102_woman6_10:
 	_TALK_OBJ_END
 	_END
 
-//�Ȃ��x���{����
+//なつき度を＋する
 ev_t07r0102_natsuki_add:
 	_GET_RND		SCWK_ANSWER,100
 	_IFVAL_JUMP		SCWK_ANSWER,LT,5,ev_t07r0102_natsuki_add_30
@@ -146,7 +146,7 @@ ev_t07r0102_natsuki_add_5:
 	_RET
 
 //--------------------------------------------------------------------
-//�Ȃ��x�㏸�̋��ʏ���
+//なつき度上昇の共通処理
 //--------------------------------------------------------------------
 ev_t07r0102_natsuki_add_common:
 	_SE_WAIT		SEQ_SE_DP_FW367
@@ -154,7 +154,7 @@ ev_t07r0102_natsuki_add_common:
 
 	_FLAG_SET		TMFLG_T07R0101_ESTHTIQUE
 
-	_LDVAL			LOCALWORK10,1			//��������o�Ȃ�����́A1���o���Ă��G�X�e�͎󂯂��Ȃ�
+	_LDVAL			LOCALWORK10,1			//部屋から出ない限りは、1日経ってもエステは受けられない
 
 	_OBJ_ANIME		T07R0102_WOMAN6B,anm_woman6b_move_02
 	_OBJ_ANIME_WAIT
@@ -178,9 +178,9 @@ ev_t07r0102_natsuki_add_common:
 #define T07R0102_WOMAN6_POS_X	(12)
 #define T07R0102_WOMAN6_POS_Z	(5)
 
-//�A�j��
+//アニメ
 ev_t07r0102_anime_01:
-	//�v���C���[�̈ʒu�Z�o
+	//プレイヤーの位置算出
 	_PLAYER_POS_GET	SCWK_TEMP1,SCWK_TEMP2
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,T07R0102_WOMAN6_POS_X-1,anm_call_player_to_seat_l
 	_IFVAL_JUMP		SCWK_TEMP1,EQ,T07R0102_WOMAN6_POS_X+1,anm_call_player_to_seat_r
@@ -219,7 +219,7 @@ anm_call_3_woman_move:
 	_RET
 
 //--------------------------------------------------------------------
-//���肪�U��
+//助手が誘導
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_woman6_move_l
 	_ANIME_DATA	AC_WALK_R_8F,2
@@ -253,7 +253,7 @@ _ANIME_LABEL	anm_woman6_move_d
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�v���C���[���ړ�
+//プレイヤーが移動
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_player_to_seat_l
 	_ANIME_DATA	AC_WALK_R_8F,3
@@ -286,7 +286,7 @@ _ANIME_LABEL	anm_player_to_seat_d
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//3�l�̏��肪�ߊ��
+//3人の助手が近寄る
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_woman6a_move
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -301,7 +301,7 @@ _ANIME_LABEL	anm_woman6c_move
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���肪1�l���������i�v���C���[���o�����߁j
+//助手が1人だけ動く（プレイヤーを出すため）
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_woman6b_move_02
 	_ANIME_DATA	AC_WALK_U_8F,1

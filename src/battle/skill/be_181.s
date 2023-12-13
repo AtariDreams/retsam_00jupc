@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_181.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			181�@���^�[���`�F�b�N�ɂP�^�P�U�Â񕜁B�|�P��������ւ����ł��Ȃ��Ȃ�B�ق���Ȃǂ������Ȃ��Ȃ�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			181　毎ターンチェックに１／１６づつ回復。ポケモン入れ替えができなくなる。ほえるなども効かなくなる
  *
  *@author	HisashiSogabe
  *@data		2006.02.08
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_181:
-	//���łɂ˂��͂��Ă���ꍇ�́A���܂����܂��
+	//すでにねをはっている場合は、うまくきまらん
 	IF_PSP			IF_FLAG_BIT,SIDE_ATTACK,ID_PSP_waza_kouka,WAZAKOUKA_NEWOHARU,Umakukimaran
 	PSP_VALUE		VAL_BIT,SIDE_ATTACK,ID_PSP_waza_kouka,WAZAKOUKA_NEWOHARU
 	MESSAGE_PARAM	NewoharuMineMsg,TAG_NICK,SIDE_ATTACK

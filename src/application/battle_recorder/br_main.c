@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_main.c
- * @brief	ƒoƒgƒ‹ƒŒƒR[ƒ_[
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
  * @author	goto
- * @date	2007.07.26(–Ø)
+ * @date	2007.07.26(æœ¨)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -47,7 +47,7 @@ static void BR_CATS_Init( BR_WORK* wk );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€‰Šú‰»
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -57,9 +57,9 @@ static void BR_CATS_Init( BR_WORK* wk );
 //--------------------------------------------------------------
 void BR_SystemInit( BR_WORK* wk )
 {
-	///< ‰Šú‰»
-	sys_VBlankFuncChange( NULL, NULL );		///< VBlankƒZƒbƒg
-	sys_HBlankIntrStop();					///< HBlankŠ„‚è‚İ’â~
+	///< åˆæœŸåŒ–
+	sys_VBlankFuncChange( NULL, NULL );		///< VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();					///< HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	GX_SetVisiblePlane( 0 );
@@ -67,7 +67,7 @@ void BR_SystemInit( BR_WORK* wk )
 	
 	initVramTransferManagerHeap( 4, HEAPID_BR );
 	
-	///< ƒVƒXƒeƒ€ƒ[ƒN‚Ìì¬	
+	///< ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ä½œæˆ	
 	wk->sys.p_handle = ArchiveDataHandleOpen( ARC_BR_GRA, HEAPID_BR );	
 	wk->sys.bgl		 = GF_BGL_BglIniAlloc( HEAPID_BR );
 	wk->sys.pfd		 = PaletteFadeInit( HEAPID_BR );
@@ -81,7 +81,7 @@ void BR_SystemInit( BR_WORK* wk )
 	PaletteFadeWorkAllocSet( wk->sys.pfd, FADE_MAIN_OBJ, 0x200, HEAPID_BR );
 	PaletteFadeWorkAllocSet( wk->sys.pfd, FADE_SUB_OBJ,	 0x200, HEAPID_BR );
 	
-	///< İ’è‚Æ‚©
+	///< è¨­å®šã¨ã‹
 	BR_VramBankSet( wk->sys.bgl );
 	BR_CATS_Init( wk );
 	
@@ -100,7 +100,7 @@ void BR_SystemInit( BR_WORK* wk )
 	///< VBlank
 	sys_VBlankFuncChange( BR_VBlank, wk );
 	
-	///< ’ÊM‰Šú‰»ŠÖ˜A
+	///< é€šä¿¡åˆæœŸåŒ–é–¢é€£
 	if ( wk->mode != BR_MODE_BROWSE )
 	{
 		BR_GDSRAP_Init( wk );		
@@ -157,13 +157,13 @@ void BR_SystemInit( BR_WORK* wk )
 	//	FontProc_LoadFont( FONT_SYSTEM, HEAPID_BR );
 	}
 	
-	///< ˜^‰æƒf[ƒ^‚Ì“Ç‚İ‚±‚İ
+	///< éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿ã“ã¿
 	BR_SaveData_GppHead_Load( wk );
 
-	///< ƒƒjƒ…[İ’è
+	///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 	BattleRecorder_MenuSetting( wk );
 	
-	///< ”wŒi“Ç‚İ‚İ
+	///< èƒŒæ™¯èª­ã¿è¾¼ã¿
 	BR_disp_BG_Load( wk );
 	
 	BR_DrawTCB_Add( wk );
@@ -206,7 +206,7 @@ void BR_SystemExit( BR_WORK* wk )
 	PaletteFadeFree( wk->sys.pfd );
 	
 	
-	///< ƒŒƒR[ƒ_[ƒJƒ‰[‚Ì•Û‘¶
+	///< ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼ã‚«ãƒ©ãƒ¼ã®ä¿å­˜
 	if ( wk->mode == BR_MODE_BROWSE )
 	{
 		MISC* misc = SaveData_GetMisc( wk->save );
@@ -319,7 +319,7 @@ static const GF_BGL_BGCNT_HEADER TextBgCntDat2[] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	Bankİ’è
+ * @brief	Bankè¨­å®š
  *
  * @param	bgl	
  *
@@ -338,34 +338,34 @@ static void BR_VramBankSet( GF_BGL_INI* bgl )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 	
-	//VRAMİ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 			GX_VRAM_SUB_BG_128_C,
-//			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+//			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 //			GX_VRAM_SUB_OBJ_128_D,
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 //			GX_VRAM_TEX_NONE,
 //			GX_VRAM_TEXPLTT_NONE,
-			GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
 	}
 	
-		//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€İ’è
+		//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGControlSet( bgl, GF_BGL_FRAME0_M, &TextBgCntDat1[0], GF_BGL_MODE_TEXT );
 		GF_BGL_BGControlSet( bgl, GF_BGL_FRAME1_M, &TextBgCntDat1[1], GF_BGL_MODE_TEXT );
@@ -377,7 +377,7 @@ static void BR_VramBankSet( GF_BGL_INI* bgl )
 		GF_BGL_ScrClear( bgl, GF_BGL_FRAME3_M );
 	}
 	
-	///< ƒTƒu‰æ–ÊƒtƒŒ[ƒ€İ’è
+	///< ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGControlSet( bgl, GF_BGL_FRAME0_S, &TextBgCntDat2[0], GF_BGL_MODE_TEXT );
 		GF_BGL_BGControlSet( bgl, GF_BGL_FRAME1_S, &TextBgCntDat2[1], GF_BGL_MODE_TEXT );
@@ -401,7 +401,7 @@ static void BR_VramBankSet( GF_BGL_INI* bgl )
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 	
-	///< SUB‰æ–Ê‚ğƒƒCƒ“‰æ–Ê‚É‚·‚é‚½‚ß
+	///< SUBç”»é¢ã‚’ãƒ¡ã‚¤ãƒ³ç”»é¢ã«ã™ã‚‹ãŸã‚
 	BR_ChangeDisplay( DISP_3D_TO_SUB );
 	
 	G2_SetBlendAlpha( GX_BLEND_PLANEMASK_BG2,
@@ -414,7 +414,7 @@ static void BR_VramBankSet( GF_BGL_INI* bgl )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“‚ÆƒTƒu‚Ì3D–Ê‚ğ“ü‚ê‘Ö‚¦‚é
+ * @brief	ãƒ¡ã‚¤ãƒ³ã¨ã‚µãƒ–ã®3Dé¢ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
  *
  * @param	mode	
  *
@@ -430,7 +430,7 @@ void BR_ChangeDisplay( int mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	BG 2 ‚ğ‚¢‚Â‚à‚Ìó‘Ô‚É–ß‚· iƒhƒŒƒXƒAƒbƒv‚Å•ÏX‚³‚ê‚é‚½‚ßj
+ * @brief	BG 2 ã‚’ã„ã¤ã‚‚ã®çŠ¶æ…‹ã«æˆ»ã™ ï¼ˆãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã§å¤‰æ›´ã•ã‚Œã‚‹ãŸã‚ï¼‰
  *
  * @param	wk	
  *
@@ -445,7 +445,7 @@ void BG2_Recover( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	CATS ‚Ì ‰Šú‰»
+ * @brief	CATS ã® åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -462,14 +462,14 @@ static void BR_CATS_Init( BR_WORK* wk )
 			4, 128 - 4, 0, 32,
 		};
 		const TCATS_CHAR_MANAGER_MAKE Ccmm = {
-			64 + 64,			///< IDŠÇ— main + sub
+			64 + 64,			///< IDç®¡ç† main + sub
 			1024 * 0x40,		///< 64k
 			 512 * 0x20,		///< 32k
 		//	1024 * 0x40,		///< 32k
 		//	GX_OBJVRAMMODE_CHAR_1D_64K,
-		//	GX_OBJVRAMMODE_CHAR_1D_64K		///< 32K‚¾‚Á‚½
+		//	GX_OBJVRAMMODE_CHAR_1D_64K		///< 32Kã ã£ãŸ
 			GX_OBJVRAMMODE_CHAR_1D_128K,
-			GX_OBJVRAMMODE_CHAR_1D_128K		///< 32K‚¾‚Á‚½
+			GX_OBJVRAMMODE_CHAR_1D_128K		///< 32Kã ã£ãŸ
 		};
 		CATS_SystemInit( wk->sys.csp, &OamInit, &Ccmm, 16 + 16 );
 	}
@@ -477,12 +477,12 @@ static void BR_CATS_Init( BR_WORK* wk )
 	{
 		BOOL active;
 		const TCATS_RESOURCE_NUM_LIST ResourceList = {
-			64 + 64 ,	///< ƒLƒƒƒ‰“o˜^” 	main + sub
-			16 + 16,	///< ƒpƒŒƒbƒg“o˜^”	main + sub
-			128,		///< ƒZƒ‹
-			128,		///< ƒZƒ‹ƒAƒjƒ
-			16,			///< ƒ}ƒ‹ƒ`ƒZƒ‹
-			16,			///< ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+			64 + 64 ,	///< ã‚­ãƒ£ãƒ©ç™»éŒ²æ•° 	main + sub
+			16 + 16,	///< ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æ•°	main + sub
+			128,		///< ã‚»ãƒ«
+			128,		///< ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			16,			///< ãƒãƒ«ãƒã‚»ãƒ«
+			16,			///< ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		};
 		wk->sys.crp = CATS_ResourceCreate( wk->sys.csp );
 //		wk->sys.vintr_crp = CATS_ResourceCreate( wk->sys.csp );
@@ -517,7 +517,7 @@ void BR_VBlank( void* work )
 {
 	BR_WORK* wk = work;
 
-	DoVramTransferManager();			///< Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	DoVramTransferManager();			///< Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	
 //	SoftSpriteTextureTrans( wk->sys.ssm_p );
 	
@@ -535,7 +535,7 @@ void BR_VBlank( void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	XV
+ * @brief	æ›´æ–°
  *
  * @param	wk	
  *
@@ -550,7 +550,7 @@ BOOL BR_Main_Update( BR_WORK* wk, int* seq )
 	switch( *seq ){
 	
 	case eMAIN_Start:
-		///< ‹N“®ƒV[ƒPƒ“ƒX
+		///< èµ·å‹•ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 		bState = BR_start_MainTable[ wk->main_seq ]( wk );
 		
 		BR_Main_ProcSeqChange( wk, eMAIN_Input, bState, seq );
@@ -568,7 +568,7 @@ BOOL BR_Main_Update( BR_WORK* wk, int* seq )
 	case eMAIN_Input:		
 		///< Input
 		bState = BR_input_MainTable[ wk->main_seq ]( wk );		
-		///< touch panel ‚Ì ‘€ì
+		///< touch panel ã® æ“ä½œ
 	//	BR_TouchPanel_Update( wk );		
 		BR_Main_ProcSeqChange( wk, eMAIN_Blank, bState, seq );
 		break;
@@ -671,7 +671,7 @@ BOOL BR_Main_Update( BR_WORK* wk, int* seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒbƒNƒV[ƒPƒ“ƒXØ‚è‘Ö‚¦
+ * @brief	ãƒ—ãƒ­ãƒƒã‚¯ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	wk	
  * @param	next_seq	
@@ -693,7 +693,7 @@ void BR_Main_ProcSeqChange( BR_WORK* wk, int next_seq, BOOL flag, int* seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXØ‚è‘Ö‚¦
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	wk	
  * @param	next_seq	
@@ -713,7 +713,7 @@ void BR_Main_SeqChange( BR_WORK* wk, int next_seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	“à•”ƒTƒuƒV[ƒPƒ“ƒXØ‚è‘Ö‚¦
+ * @brief	å†…éƒ¨ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	wk	
  * @param	next_seq	
@@ -732,7 +732,7 @@ void BR_Main_SubSeqChange( BR_WORK* wk, int next_seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	‹¤’Êˆ—
+ * @brief	å…±é€šå‡¦ç†
  *
  * @param	wk	
  *
@@ -742,15 +742,15 @@ void BR_Main_SubSeqChange( BR_WORK* wk, int next_seq )
 //--------------------------------------------------------------
 void BR_Main_MenuChangeInit( BR_WORK* wk )
 {
-	BattleRecorder_MenuSetting( wk );									///< ƒƒjƒ…[İ’è
-	BR_Tag_ReSet( wk );													///< ƒ^ƒO‚ÌƒŠƒZƒbƒg
+	BattleRecorder_MenuSetting( wk );									///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
+	BR_Tag_ReSet( wk );													///< ã‚¿ã‚°ã®ãƒªã‚»ãƒƒãƒˆ
 		
-	wk->tag_man.cur_pos = 0;											///< ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ0‚É
+	wk->tag_man.cur_pos = 0;											///< ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’0ã«
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[‚ÌØ‚è‘Ö‚¦
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	wk	
  *
@@ -763,12 +763,12 @@ BOOL BR_Main_MenuChangeNext( BR_WORK* wk )
 	wk->menu_data_mem[ wk->tag_man.stack_s ] = wk->menu_data;
 	wk->tag_man.menu_data_stack[ wk->tag_man.stack_s ] = &wk->menu_data[ wk->tag_man.cur_pos ];
 	
-	wk->menu_data = wk->menu_data[ wk->tag_man.cur_pos ].data;			///< ƒƒjƒ…[Ø‚è‘Ö‚¦
+	wk->menu_data = wk->menu_data[ wk->tag_man.cur_pos ].data;			///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼åˆ‡ã‚Šæ›¿ãˆ
 	
 //	OS_Printf( "next stak_s = %2d\n", wk->tag_man.stack_s );
 	
-	wk->tag_man.stack_s++;												///< ã‰æ–Ê‚Ìƒ^ƒOŒÂ”‚ğ‘‚â‚·
-	wk->tag_man.cur_pos = 0;											///< ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ0‚É
+	wk->tag_man.stack_s++;												///< ä¸Šç”»é¢ã®ã‚¿ã‚°å€‹æ•°ã‚’å¢—ã‚„ã™
+	wk->tag_man.cur_pos = 0;											///< ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’0ã«
 
 	if ( wk->menu_data == NULL ){
 		
@@ -783,7 +783,7 @@ BOOL BR_Main_MenuChangeNext( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[‚ÌØ‚è‘Ö‚¦
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	wk	
  *
@@ -805,7 +805,7 @@ BOOL BR_Main_MenuChangeBack( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ƒf[ƒ^‚Ì‰ğÍ
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®è§£æ
  *
  * @param	wk	
  *
@@ -817,78 +817,78 @@ void BR_MenuData_Analysis( BR_WORK* wk )
 {
 	int seq = wk->menu_data[ wk->tag_man.cur_pos ].seq;
 	
-	///@BR_UnlockMenuCheck@‚ÅƒAƒ“ƒƒbƒN‚ğ‰ğœ‚µ‚È‚¢‚Æg‚¦‚È‚¢
+	///ã€€BR_UnlockMenuCheckã€€ã§ã‚¢ãƒ³ãƒ­ãƒƒã‚¯ã‚’è§£é™¤ã—ãªã„ã¨ä½¿ãˆãªã„
 	
 	switch ( seq ) {
-	case eMENU_DATA_SEQ_NONE:	///< –³‚µ
-	case eMENU_DATA_SEQ_SELECT:	///< ‘I‘ğ
-	case eMENU_DATA_SEQ_BACK:	///< –ß‚é
-	case eMENU_DATA_SEQ_BLANK:	///< –³‚µ
-		// “Á‚É‰½‚à‚µ‚È‚¢
+	case eMENU_DATA_SEQ_NONE:	///< ç„¡ã—
+	case eMENU_DATA_SEQ_SELECT:	///< é¸æŠ
+	case eMENU_DATA_SEQ_BACK:	///< æˆ»ã‚‹
+	case eMENU_DATA_SEQ_BLANK:	///< ç„¡ã—
+		// ç‰¹ã«ä½•ã‚‚ã—ãªã„
 		break;
 		
-	case eMENU_DATA_SEQ_END:	///< I—¹
+	case eMENU_DATA_SEQ_END:	///< çµ‚äº†
 		BR_PostMessage( wk->message, FALSE, 0 );
 		BR_Main_SeqChange( wk, eINPUT_END );
 		break;
 		
-	case eMENU_DATA_PROF_INIT:	///< ©•ª‚Ì‹L˜^‰Šú‰»
+	case eMENU_DATA_PROF_INIT:	///< è‡ªåˆ†ã®è¨˜éŒ²åˆæœŸåŒ–
 		BR_Main_ProcSeqChange( wk, eMAIN_Profile, TRUE, wk->proc_seq );
 		break;
 		
-	case eMENU_DATA_FREC_INIT:	///< ƒtƒƒ“ƒeƒBƒA‚Ì‹L˜^‰Šú‰»
+	case eMENU_DATA_FREC_INIT:	///< ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã®è¨˜éŒ²åˆæœŸåŒ–
 		BR_Main_ProcSeqChange( wk, eMAIN_Frontier, TRUE, wk->proc_seq );
 		break;
 	
-	case eMENU_DATA_PHOTO_SEND:	///< Ê^‚ğ‘—‚é
+	case eMENU_DATA_PHOTO_SEND:	///< å†™çœŸã‚’é€ã‚‹
 		BR_Main_ProcSeqChange( wk, eMAIN_PhotoSend, TRUE, wk->proc_seq );
 		break;
 		
-	case eMENU_DATA_PHOTO_RECV:	///< Ê^‚ğ‚İ‚é(óM)
+	case eMENU_DATA_PHOTO_RECV:	///< å†™çœŸã‚’ã¿ã‚‹(å—ä¿¡)
 		BR_Main_ProcSeqChange( wk, eMAIN_PhotoRecv, TRUE, wk->proc_seq );
 		break;
 		
-	case eMENU_DATA_BOX_SEND:	///< ƒ{ƒbƒNƒX‚ğ‘—‚é
+	case eMENU_DATA_BOX_SEND:	///< ãƒœãƒƒã‚¯ã‚¹ã‚’é€ã‚‹
 		BR_Main_ProcSeqChange( wk, eMAIN_BoxSend, TRUE, wk->proc_seq );
 		break;
 		
-	case eMENU_DATA_BOX_RECV:	///< ƒ{ƒbƒNƒX‚ğ‚İ‚é(óM)
+	case eMENU_DATA_BOX_RECV:	///< ãƒœãƒƒã‚¯ã‚¹ã‚’ã¿ã‚‹(å—ä¿¡)
 		BR_Main_ProcSeqChange( wk, eMAIN_BoxRecv, TRUE, wk->proc_seq );
 		break;
 				
-	case eMENU_DATA_THIS_WEEK:	///< ¡T‚Ìƒ‰ƒ“ƒLƒ“ƒO
+	case eMENU_DATA_THIS_WEEK:	///< ä»Šé€±ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°
 		BR_Main_ProcSeqChange( wk, eMAIN_ThisWeek, TRUE, wk->proc_seq );
 		break;
 		
-	case eMENU_DATA_LAST_WEEK:	///< æT‚Ìƒ‰ƒ“ƒLƒ“ƒO
+	case eMENU_DATA_LAST_WEEK:	///< å…ˆé€±ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°
 		BR_Main_ProcSeqChange( wk, eMAIN_LastWeek, TRUE, wk->proc_seq );
 		break;
 	
-	case eMENU_DATA_COMM_BATTLE_RANKING:	///< ’ÊM‘Îíƒ‰ƒ“ƒLƒ“ƒO
+	case eMENU_DATA_COMM_BATTLE_RANKING:	///< é€šä¿¡å¯¾æˆ¦ãƒ©ãƒ³ã‚­ãƒ³ã‚°
 		BR_Main_ProcSeqChange( wk, eMAIN_CommBattleRanking, TRUE, wk->proc_seq );
 		break;
 		
-	case eMENU_DATA_BATTLE_FRONTIER_RANKING:	///< ƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒAƒ‰ƒ“ƒLƒ“ƒO
+	case eMENU_DATA_BATTLE_FRONTIER_RANKING:	///< ãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ©ãƒ³ã‚­ãƒ³ã‚°
 		BR_Main_ProcSeqChange( wk, eMAIN_BattleFrontierRanking, TRUE, wk->proc_seq );
 		break;
 	
-	case eMENU_DATA_VIDE_NEW30:					///< ÅV‚R‚OŒ
+	case eMENU_DATA_VIDE_NEW30:					///< æœ€æ–°ï¼“ï¼ä»¶
 		BR_Main_ProcSeqChange( wk, eMAIN_VideoNew30, TRUE, wk->proc_seq );
 		break;
 		
-	case eMENU_DATA_VIDE_KUWASIKU:				///< Ú‚µ‚­’T‚·
+	case eMENU_DATA_VIDE_KUWASIKU:				///< è©³ã—ãæ¢ã™
 		BR_Main_ProcSeqChange( wk, eMAIN_VideoKuwasiku, TRUE, wk->proc_seq );
 		break;
 		
-	case eMENU_DATA_VIDE_NO_SEARCH:				///< ƒf[ƒ^ƒiƒ“ƒo[‚ÅŒŸõ
+	case eMENU_DATA_VIDE_NO_SEARCH:				///< ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ã§æ¤œç´¢
 		BR_Main_ProcSeqChange( wk, eMAIN_VideoNoSearch, TRUE, wk->proc_seq );
 		break;
 		
-	case eMENU_DATA_VIDE_SEND:					///< ƒrƒfƒI‚Ì‘—M
+	case eMENU_DATA_VIDE_SEND:					///< ãƒ“ãƒ‡ã‚ªã®é€ä¿¡
 		BR_Main_ProcSeqChange( wk, eMAIN_VideoSend, TRUE, wk->proc_seq );
 		break;
 		
-	case eMENU_DATA_REC_DELETE:					///< ƒZ[ƒu‚Ìíœ
+	case eMENU_DATA_REC_DELETE:					///< ã‚»ãƒ¼ãƒ–ã®å‰Šé™¤
 		BR_Main_ProcSeqChange( wk, eMAIN_Delete, TRUE, wk->proc_seq );
 		break;
 	}
@@ -898,13 +898,13 @@ void BR_MenuData_Analysis( BR_WORK* wk )
 // =============================================================================
 //
 //
-//	¡ƒ^ƒbƒ`ƒpƒlƒ‹ŠÖ˜A
+//	â– ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é–¢é€£
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ƒƒbƒNƒ`ƒFƒbƒN
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ­ãƒƒã‚¯ãƒã‚§ãƒƒã‚¯
  *
  * @param	wk	
  *
@@ -933,7 +933,7 @@ BOOL BR_UnlockMenuCheck( BR_WORK* wk )
 	
 	case BR_MODE_GDS_DRESS:		
 		if ( ex_param1 == IMC_SAVEDATA_TELEVISION_MYDATA ){	
-			///< ƒZ[ƒu‚ª‚»‚à‚»‚à‚ ‚é‚Ì‚©H
+			///< ã‚»ãƒ¼ãƒ–ãŒãã‚‚ãã‚‚ã‚ã‚‹ã®ã‹ï¼Ÿ
 			IMC_TELEVISION_SAVEDATA* dress = ImcSaveData_GetTelevisionSaveData( SaveData_GetImcSaveData( wk->save ), ex_param1 );					
 			bFlag = ImcSaveData_CheckTelevisionData( dress );
 			if ( bFlag == FALSE ){
@@ -941,7 +941,7 @@ BOOL BR_UnlockMenuCheck( BR_WORK* wk )
 			}
 		#if 0
 			else {
-				///< ‚P“x‘—‚Á‚½ƒhƒŒƒX‚©H
+				///< ï¼‘åº¦é€ã£ãŸãƒ‰ãƒ¬ã‚¹ã‹ï¼Ÿ
 				if ( MISC_GetGdsSend_Dress( SaveData_GetMisc( wk->save ) ) ){
 					Tool_InfoMessage( wk, msg_info_022 );
 					bFlag = FALSE;
@@ -952,7 +952,7 @@ BOOL BR_UnlockMenuCheck( BR_WORK* wk )
 		break;
 	
 	case BR_MODE_GDS_BOX:
-		///< ƒ{ƒbƒNƒX‚ğ‘—‚Á‚½‚©H
+		///< ãƒœãƒƒã‚¯ã‚¹ã‚’é€ã£ãŸã‹ï¼Ÿ
 		if ( ex_param1 == BR_EX_DATA_BOX_SHOT_SEND ){			
 			if ( ExParam2_Get( wk ) ){				
 				Tool_InfoMessage( wk, msg_info_004 );
@@ -962,7 +962,7 @@ BOOL BR_UnlockMenuCheck( BR_WORK* wk )
 		break;
 		
 	case BR_MODE_GDS_BV:
-		///< ‚P“x‘—‚Á‚½ƒrƒfƒI‚©H
+		///< ï¼‘åº¦é€ã£ãŸãƒ“ãƒ‡ã‚ªã‹ï¼Ÿ
 	//	if ( ex_param1 == BR_EX_DATA_VIDEO_SEND ){
 		if ( ex_param1 == BR_EX_SEND_CHECK ){//BR_EX_DATA_VIDEO_SEND ){
 			if ( wk->br_head[ LOADDATA_MYREC ] == NULL ){
@@ -981,7 +981,7 @@ BOOL BR_UnlockMenuCheck( BR_WORK* wk )
 		break;
 	case BR_MODE_GDS_RANK:
 	case BR_MODE_GDS_BV_RANK:
-		///< ‚È‚ñ‚à§ŒÀ–³‚µ
+		///< ãªã‚“ã‚‚åˆ¶é™ç„¡ã—
 		break;
 
 	}
@@ -998,7 +998,7 @@ BOOL BR_UnlockMenuCheck( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒR[ƒ‹ƒoƒbƒN
+ * @brief	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param	button	
  * @param	event	
@@ -1016,13 +1016,13 @@ static void BR_ButtonManagerCallBack( u32 button, u32 event, void* work )
 	
 	wk->tag_man.cur_pos = button;
 
-	///< ”»’è‚µ‚È‚¢ˆ—
+	///< åˆ¤å®šã—ãªã„å‡¦ç†
 	{
 		BOOL bLock = BR_UnlockMenuCheck( wk );		
 		if ( bLock == FALSE ){ return; }
 	}
 
-	///< ƒ^ƒO‚ğƒ^ƒbƒ`‚µ‚½
+	///< ã‚¿ã‚°ã‚’ã‚¿ãƒƒãƒã—ãŸæ™‚
 	if ( button >= eHRT_TAG_0 && button <= eHRT_TAG_4 ){
 		
 		s16 x, y;
@@ -1032,22 +1032,22 @@ static void BR_ButtonManagerCallBack( u32 button, u32 event, void* work )
 		
 		wk->ex_param1 = wk->menu_data[ wk->tag_man.cur_pos ].ex_param1;
 					
-		///< Œˆ’è
+		///< æ±ºå®š
 		BR_Main_SeqChange( wk, wk->menu_data[ wk->tag_man.cur_pos ].tag_seq );				
 		if ( wk->menu_data[ wk->tag_man.cur_pos ].tag_seq == eINPUT_END ){
 			BR_PostMessage( wk->message, FALSE, 0 );
 		}
 		else {
-			BR_TouchPanel_TagHRT_ReSet( wk );			///< ‚±‚±‚Åƒ^ƒO‚Ì“–‚½‚è”»’èÁ‚·
+			BR_TouchPanel_TagHRT_ReSet( wk );			///< ã“ã“ã§ã‚¿ã‚°ã®å½“ãŸã‚Šåˆ¤å®šæ¶ˆã™
 			Cursor_Visible( wk->cur_wk, TRUE );
 		}
 
 		if ( wk->ex_param1 == BR_EX_WIFI_END ){
-			///< wi-fiI—¹ƒ`ƒFƒbƒN‚És‚­‚Æ‚«
+			///< wi-fiçµ‚äº†ãƒã‚§ãƒƒã‚¯ã«è¡Œãã¨ã
 			Tool_WiFiEnd_Message( wk, msg_10001 );
 		}
 		else if ( wk->ex_param1 == BR_EX_SEND_CHECK ){
-			///< ƒoƒgƒ‹ƒrƒfƒI‚ğ‚Ù‚ñ‚Æ‚¤‚É‘—‚é‚©Šm”F‚·‚é‚Æ‚«
+			///< ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªã‚’ã»ã‚“ã¨ã†ã«é€ã‚‹ã‹ç¢ºèªã™ã‚‹ã¨ã
 			Tool_WiFiEnd_Message( wk, msg_info_032 );
 		}
 		else {
@@ -1061,7 +1061,7 @@ static void BR_ButtonManagerCallBack( u32 button, u32 event, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒbƒ`ƒpƒlƒ‹‰Šú‰»
+ * @brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -1073,7 +1073,7 @@ void BR_TouchPanel_Init( BR_WORK* wk )
 {
 	int i;
 	
-	///< ƒR[ƒh‚Ì“–‚½‚è”»’è
+	///< ã‚³ãƒ¼ãƒ‰ã®å½“ãŸã‚Šåˆ¤å®š
 	for ( i = 0; i < eHRT_MAX; i ++ ){
 				
 		wk->tag_man.tag_m[ i ].hit = &wk->sys.rht[ i ];
@@ -1085,7 +1085,7 @@ void BR_TouchPanel_Init( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒO‚Ì“–‚½‚è”»’èİ’è
+ * @brief	ã‚¿ã‚°ã®å½“ãŸã‚Šåˆ¤å®šè¨­å®š
  *
  * @param	wk	
  *
@@ -1193,7 +1193,7 @@ void BR_TouchPanel_Update( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚P’iŠK–ß‚·ˆ—
+ * @brief	ï¼‘æ®µéšæˆ»ã™å‡¦ç†
  *
  * @param	wk	
  *
@@ -1209,7 +1209,7 @@ void BR_Stack_Menu_Back( BR_WORK* wk )
 	else {
 		if ( wk->tag_man.stack_s != 0 ){
 			wk->tag_man.stack_s = 0;
-			GF_ASSERT_MSG( 0, " top menu ‚É –ß‚·‚æ " );
+			GF_ASSERT_MSG( 0, " top menu ã« æˆ»ã™ã‚ˆ " );
 		}
 	}
 	wk->menu_data = wk->menu_data_mem[ wk->tag_man.stack_s ];
@@ -1217,7 +1217,7 @@ void BR_Stack_Menu_Back( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒNƒŠƒA
+ * @brief	ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢
  *
  * @param	wk	
  *
@@ -1242,7 +1242,7 @@ void BR_RecoverWorkClear( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒNƒ`ƒFƒbƒN
+ * @brief	ãƒ¯ãƒ¼ã‚¯ãƒã‚§ãƒƒã‚¯
  *
  * @param	wk	
  *
@@ -1258,7 +1258,7 @@ BOOL BR_RecoverCheck( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÅŒã‚ÌƒV[ƒPƒ“ƒXƒQƒbƒg
+ * @brief	æœ€å¾Œã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚²ãƒƒãƒˆ
  *
  * @param	wk	
  *
@@ -1274,7 +1274,7 @@ int BR_RecoverSeqGet( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÅŒã‚ÌƒV[ƒPƒ“ƒXƒZƒbƒg
+ * @brief	æœ€å¾Œã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚»ãƒƒãƒˆ
  *
  * @param	wk	
  * @param	seq	

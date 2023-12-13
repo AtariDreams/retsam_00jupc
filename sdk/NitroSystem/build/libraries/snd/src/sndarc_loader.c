@@ -58,12 +58,12 @@ static void SingleWaveDisposeCallback( void* mem, u32 size, u32 data1, u32 data2
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcLoadGroup
 
-  Description:  ƒOƒ‹[ƒv‚ğƒ[ƒh
+  Description:  ã‚°ãƒ«ãƒ¼ãƒ—ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    groupNo - ƒOƒ‹[ƒv”Ô†
-                heap    - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
+  Arguments:    groupNo - ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·
+                heap    - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ƒ[ƒh‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcLoadGroup( int groupNo, NNSSndHeapHandle heap )
 {
@@ -77,12 +77,12 @@ BOOL NNS_SndArcLoadGroup( int groupNo, NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcLoadSeq
 
-  Description:  ƒV[ƒPƒ“ƒXƒf[ƒ^‚ğƒ[ƒh
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    seqNo - ƒV[ƒPƒ“ƒX”Ô†
-                heap  - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
+  Arguments:    seqNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+                heap  - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ƒ[ƒh‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcLoadSeq( int seqNo, NNSSndHeapHandle heap )
 {
@@ -96,12 +96,12 @@ BOOL NNS_SndArcLoadSeq( int seqNo, NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcLoadSeqArc
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu‚ğƒ[ƒh
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    seqArcNo - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
-                heap     - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
+  Arguments:    seqArcNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                heap     - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ƒ[ƒh‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcLoadSeqArc( int seqArcNo, NNSSndHeapHandle heap )
 {
@@ -115,12 +115,12 @@ BOOL NNS_SndArcLoadSeqArc( int seqArcNo, NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcLoadBank
 
-  Description:  ƒoƒ“ƒNƒf[ƒ^‚ğƒ[ƒh
+  Description:  ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    bankNo - ƒoƒ“ƒN”Ô†
-                heap   - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
+  Arguments:    bankNo - ãƒãƒ³ã‚¯ç•ªå·
+                heap   - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ƒ[ƒh‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcLoadBank( int bankNo, NNSSndHeapHandle heap )
 {
@@ -134,12 +134,12 @@ BOOL NNS_SndArcLoadBank( int bankNo, NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcLoadWaveArc
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒu‚ğƒ[ƒh
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    waveArcNo - ”gŒ`ƒA[ƒJƒCƒu”Ô†
-                heap      - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
+  Arguments:    waveArcNo - æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                heap      - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ƒ[ƒh‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcLoadWaveArc( int waveArcNo, NNSSndHeapHandle heap )
 {
@@ -153,13 +153,13 @@ BOOL NNS_SndArcLoadWaveArc( int waveArcNo, NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcLoadSeqEx
 
-  Description:  ƒV[ƒPƒ“ƒXƒf[ƒ^‚ğƒ[ƒh
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    seqNo    - ƒV[ƒPƒ“ƒX”Ô†
-                loadFlag - ƒ[ƒh‚·‚éƒf[ƒ^w’èƒtƒ‰ƒO
-                heap     - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
+  Arguments:    seqNo    - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+                loadFlag - ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿æŒ‡å®šãƒ•ãƒ©ã‚°
+                heap     - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ƒ[ƒh‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcLoadSeqEx( int seqNo, u32 loadFlag, NNSSndHeapHandle heap )
 {
@@ -173,13 +173,13 @@ BOOL NNS_SndArcLoadSeqEx( int seqNo, u32 loadFlag, NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndArcLoadBankEx
 
-  Description:  ƒoƒ“ƒNƒf[ƒ^‚ğƒ[ƒh
+  Description:  ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    bankNo - ƒoƒ“ƒN”Ô†
-                loadFlag - ƒ[ƒh‚·‚éƒf[ƒ^w’èƒtƒ‰ƒO
-                heap   - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
+  Arguments:    bankNo - ãƒãƒ³ã‚¯ç•ªå·
+                loadFlag - ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿æŒ‡å®šãƒ•ãƒ©ã‚°
+                heap   - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ƒ[ƒh‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL NNS_SndArcLoadBankEx( int bankNo, u32 loadFlag, NNSSndHeapHandle heap )
 {
@@ -197,12 +197,12 @@ BOOL NNS_SndArcLoadBankEx( int bankNo, u32 loadFlag, NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndArcLoadGroup
 
-  Description:  ƒOƒ‹[ƒv‚ğƒ[ƒh
+  Description:  ã‚°ãƒ«ãƒ¼ãƒ—ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    groupNo - ƒOƒ‹[ƒv”Ô†
-                heap    - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
+  Arguments:    groupNo - ã‚°ãƒ«ãƒ¼ãƒ—ç•ªå·
+                heap    - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ƒ[ƒh‚É¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 NNSSndArcLoadResult NNSi_SndArcLoadGroup( int groupNo, NNSSndHeapHandle heap )
 {
@@ -247,15 +247,15 @@ NNSSndArcLoadResult NNSi_SndArcLoadGroup( int groupNo, NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndArcLoadSeq
 
-  Description:  ƒV[ƒPƒ“ƒXƒf[ƒ^‚ğƒ[ƒh
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    seqNo    - ƒV[ƒPƒ“ƒX”Ô†
-                loadFlag - ƒ[ƒh‚·‚éƒf[ƒ^w’èƒtƒ‰ƒO
-                heap     - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
-                bSetAddr - ƒAƒhƒŒƒX‚ğNNS_SndArcSetFileAddress‚ÅƒZƒbƒg‚·‚é‚©‚Ç‚¤‚©
-                pData    - ƒ[ƒh‚µ‚½ƒf[ƒ^‚ÌˆÊ’u‚ğæ“¾‚·‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    seqNo    - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+                loadFlag - ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿æŒ‡å®šãƒ•ãƒ©ã‚°
+                heap     - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+                bSetAddr - ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’NNS_SndArcSetFileAddressã§ã‚»ãƒƒãƒˆã™ã‚‹ã‹ã©ã†ã‹
+                pData    - ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      Œ‹‰ÊƒR[ƒh
+  Returns:      çµæœã‚³ãƒ¼ãƒ‰
  *---------------------------------------------------------------------------*/
 NNSSndArcLoadResult NNSi_SndArcLoadSeq( int seqNo, u32 loadFlag, NNSSndHeapHandle heap, BOOL bSetAddr, struct NNSSndSeqData** pData )
 {
@@ -264,15 +264,15 @@ NNSSndArcLoadResult NNSi_SndArcLoadSeq( int seqNo, u32 loadFlag, NNSSndHeapHandl
     SNDBankData* bank = NULL;
     NNSSndArcLoadResult result;
     
-    // î•ñ‚Ìæ“¾
+    // æƒ…å ±ã®å–å¾—
     seqInfo = NNS_SndArcGetSeqInfo( seqNo );
     if ( seqInfo == NULL ) return NNS_SND_ARC_LOAD_ERROR_INVALID_SEQ_NO;
     
-    // ƒoƒ“ƒNi”gŒ`ƒf[ƒ^j‚Ìƒ[ƒh
+    // ãƒãƒ³ã‚¯ï¼ˆæ³¢å½¢ãƒ‡ãƒ¼ã‚¿ï¼‰ã®ãƒ­ãƒ¼ãƒ‰
     result = NNSi_SndArcLoadBank( seqInfo->param.bankNo, loadFlag, heap, bSetAddr, NULL );
     if ( result != NNS_SND_ARC_LOAD_SUCESS ) return result;
     
-    // ƒV[ƒPƒ“ƒXƒf[ƒ^‚Ìƒ[ƒh
+    // ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
     if ( loadFlag & NNS_SND_ARC_LOAD_SEQ )
     {
         seqData = LoadSeq( seqInfo->fileId, heap, bSetAddr );
@@ -293,26 +293,26 @@ NNSSndArcLoadResult NNSi_SndArcLoadSeq( int seqNo, u32 loadFlag, NNSSndHeapHandl
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndArcLoadSeqArc
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu‚ğƒ[ƒh
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    seqArcNo - ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu”Ô†
-                loadFlag - ƒ[ƒh‚·‚éƒf[ƒ^w’èƒtƒ‰ƒO
-                heap     - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
-                bSetAddr - ƒAƒhƒŒƒX‚ğNNS_SndArcSetFileAddress‚ÅƒZƒbƒg‚·‚é‚©‚Ç‚¤‚©
-                pData    - ƒ[ƒh‚µ‚½ƒf[ƒ^‚ÌˆÊ’u‚ğæ“¾‚·‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    seqArcNo - ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                loadFlag - ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿æŒ‡å®šãƒ•ãƒ©ã‚°
+                heap     - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+                bSetAddr - ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’NNS_SndArcSetFileAddressã§ã‚»ãƒƒãƒˆã™ã‚‹ã‹ã©ã†ã‹
+                pData    - ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      Œ‹‰ÊƒR[ƒh
+  Returns:      çµæœã‚³ãƒ¼ãƒ‰
  *---------------------------------------------------------------------------*/
 NNSSndArcLoadResult NNSi_SndArcLoadSeqArc( int seqArcNo, u32 loadFlag, NNSSndHeapHandle heap, BOOL bSetAddr, struct NNSSndSeqArc** pData )
 {
     const NNSSndArcSeqArcInfo* seqArcInfo;
     NNSSndSeqArc* seqArc = NULL;
     
-    // î•ñ‚Ìæ“¾
+    // æƒ…å ±ã®å–å¾—
     seqArcInfo = NNS_SndArcGetSeqArcInfo( seqArcNo );
     if ( seqArcInfo == NULL ) return NNS_SND_ARC_LOAD_ERROR_INVALID_SEQARC_NO;
     
-    // ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu‚Ìƒ[ƒh
+    // ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ­ãƒ¼ãƒ‰
     if ( loadFlag & NNS_SND_ARC_LOAD_SEQARC )
     {
         seqArc = LoadSeqArc( seqArcInfo->fileId, heap, bSetAddr );
@@ -333,15 +333,15 @@ NNSSndArcLoadResult NNSi_SndArcLoadSeqArc( int seqArcNo, u32 loadFlag, NNSSndHea
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndArcLoadBank
 
-  Description:  ƒoƒ“ƒNƒf[ƒ^‚ğƒ[ƒh
+  Description:  ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    bankNo   - ƒoƒ“ƒN”Ô†
-                loadFlag - ƒ[ƒh‚·‚éƒf[ƒ^w’èƒtƒ‰ƒO
-                heap     - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
-                bSetAddr - ƒAƒhƒŒƒX‚ğNNS_SndArcSetFileAddress‚ÅƒZƒbƒg‚·‚é‚©‚Ç‚¤‚©
-                pData    - ƒ[ƒh‚µ‚½ƒf[ƒ^‚ÌˆÊ’u‚ğæ“¾‚·‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    bankNo   - ãƒãƒ³ã‚¯ç•ªå·
+                loadFlag - ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿æŒ‡å®šãƒ•ãƒ©ã‚°
+                heap     - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+                bSetAddr - ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’NNS_SndArcSetFileAddressã§ã‚»ãƒƒãƒˆã™ã‚‹ã‹ã©ã†ã‹
+                pData    - ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      Œ‹‰ÊƒR[ƒh
+  Returns:      çµæœã‚³ãƒ¼ãƒ‰
  *---------------------------------------------------------------------------*/
 NNSSndArcLoadResult NNSi_SndArcLoadBank(
     int bankNo,
@@ -358,11 +358,11 @@ NNSSndArcLoadResult NNSi_SndArcLoadBank(
     NNSSndArcLoadResult result;
     int i;
 
-    // î•ñ‚Ìæ“¾
+    // æƒ…å ±ã®å–å¾—
     bankInfo = NNS_SndArcGetBankInfo( bankNo );
     if ( bankInfo == NULL ) return NNS_SND_ARC_LOAD_ERROR_INVALID_BANK_NO;
     
-    // ƒoƒ“ƒN‚Ìƒ[ƒh
+    // ãƒãƒ³ã‚¯ã®ãƒ­ãƒ¼ãƒ‰
     if ( loadFlag & NNS_SND_ARC_LOAD_BANK )
     {
         bank = LoadBank( bankInfo->fileId, heap, bSetAddr );
@@ -375,22 +375,22 @@ NNSSndArcLoadResult NNSi_SndArcLoadBank(
         bank = (SNDBankData*)NNS_SndArcGetFileAddress( bankInfo->fileId );
     }
     
-    // ”gŒ`ƒf[ƒ^‚Ìƒ[ƒh
+    // æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
     for( i = 0; i < NNS_SND_ARC_BANK_TO_WAVEARC_NUM ; i++ )
     {
         if ( bankInfo->waveArcNo[i] == NNS_SND_ARC_INVALID_WAVEARC_NO ) continue;
             
-        // ”gŒ`ƒA[ƒJƒCƒuî•ñ‚Ìæ“¾
+        // æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æƒ…å ±ã®å–å¾—
         waveArcInfo = NNS_SndArcGetWaveArcInfo( bankInfo->waveArcNo[i] );
         if ( waveArcInfo == NULL ) return NNS_SND_ARC_LOAD_ERROR_INVALID_WAVEARC_NO;
         
-        // ”gŒ`ƒA[ƒJƒCƒu‚Ìƒ[ƒh
+        // æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ­ãƒ¼ãƒ‰
         result = NNSi_SndArcLoadWaveArc( bankInfo->waveArcNo[i], loadFlag, heap, bSetAddr, &waveArc );
         if ( result != NNS_SND_ARC_LOAD_SUCESS ) return result;
                 
         if ( waveArcInfo->flags & NNS_SND_ARC_WAVEARC_SINGLE_LOAD )
         {
-            // ”gŒ`ƒf[ƒ^ŒÂ•Êƒ[ƒh
+            // æ³¢å½¢ãƒ‡ãƒ¼ã‚¿å€‹åˆ¥ãƒ­ãƒ¼ãƒ‰
             if ( loadFlag & NNS_SND_ARC_LOAD_WAVE )
             {
                 if ( ! LoadSingleWaves( waveArc, bank, i, waveArcInfo->fileId, heap ) ) {
@@ -399,7 +399,7 @@ NNSSndArcLoadResult NNSi_SndArcLoadBank(
             }
         }
             
-        // ”gŒ`‚Æƒoƒ“ƒN‚ÌŠÖ˜A‚Ã‚¯
+        // æ³¢å½¢ã¨ãƒãƒ³ã‚¯ã®é–¢é€£ã¥ã‘
         if ( bank != NULL && waveArc != NULL ) {
             SND_AssignWaveArc( bank, i, waveArc );
         }
@@ -413,15 +413,15 @@ NNSSndArcLoadResult NNSi_SndArcLoadBank(
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndArcLoadWaveArc
 
-  Description:  ”gŒ`ƒf[ƒ^‚ğƒ[ƒh
+  Description:  æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    waveArcNo - ”gŒ`ƒA[ƒJƒCƒu”Ô†
-                loadFlag - ƒ[ƒh‚·‚éƒf[ƒ^w’èƒtƒ‰ƒO
-                heap     - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
-                bSetAddr - ƒAƒhƒŒƒX‚ğNNS_SndArcSetFileAddress‚ÅƒZƒbƒg‚·‚é‚©‚Ç‚¤‚©
-                pData    - ƒ[ƒh‚µ‚½ƒf[ƒ^‚ÌˆÊ’u‚ğæ“¾‚·‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    waveArcNo - æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                loadFlag - ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‡ãƒ¼ã‚¿æŒ‡å®šãƒ•ãƒ©ã‚°
+                heap     - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+                bSetAddr - ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’NNS_SndArcSetFileAddressã§ã‚»ãƒƒãƒˆã™ã‚‹ã‹ã©ã†ã‹
+                pData    - ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ä½ç½®ã‚’å–å¾—ã™ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      Œ‹‰ÊƒR[ƒh
+  Returns:      çµæœã‚³ãƒ¼ãƒ‰
  *---------------------------------------------------------------------------*/
 NNSSndArcLoadResult NNSi_SndArcLoadWaveArc(
     int waveArcNo,
@@ -440,11 +440,11 @@ NNSSndArcLoadResult NNSi_SndArcLoadWaveArc(
     if ( loadFlag & NNS_SND_ARC_LOAD_WAVE )
     {
         if ( waveArcInfo->flags & NNS_SND_ARC_WAVEARC_SINGLE_LOAD ) {
-            // ŒÂ•Ê”gŒ`ƒ[ƒh
+            // å€‹åˆ¥æ³¢å½¢ãƒ­ãƒ¼ãƒ‰
             waveArc = LoadWaveArcTable( waveArcInfo->fileId, heap, bSetAddr );
         }
         else {
-            // ˆêŠ‡”gŒ`ƒ[ƒh
+            // ä¸€æ‹¬æ³¢å½¢ãƒ­ãƒ¼ãƒ‰
             waveArc = LoadWaveArc( waveArcInfo->fileId, heap, bSetAddr );
         }
         
@@ -465,16 +465,16 @@ NNSSndArcLoadResult NNSi_SndArcLoadWaveArc(
 /*---------------------------------------------------------------------------*
   Name:         NNSi_SndArcLoadFile
 
-  Description:  ƒtƒ@ƒCƒ‹‚ğƒ[ƒh
+  Description:  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    fileId   - ƒtƒ@ƒCƒ‹ID
-                callback - ƒƒ‚ƒŠ—Ìˆæ‚Ì”jŠü‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
-                data1    - ƒ†[ƒU[ƒf[ƒ^
-                data2    - ƒ†[ƒU[ƒf[ƒ^
-                heap     - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
+  Arguments:    fileId   - ãƒ•ã‚¡ã‚¤ãƒ«ID
+                callback - ãƒ¡ãƒ¢ãƒªé ˜åŸŸã®ç ´æ£„æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+                data1    - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿
+                data2    - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿
+                heap     - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ƒ[ƒh‚µ‚½ƒƒ‚ƒŠƒAƒhƒŒƒX
-                ƒ[ƒh¸”s‚É‚Í NULL ‚ğ•Ô‚·
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ¡ãƒ¢ãƒªã‚¢ãƒ‰ãƒ¬ã‚¹
+                ãƒ­ãƒ¼ãƒ‰å¤±æ•—æ™‚ã«ã¯ NULL ã‚’è¿”ã™
  *---------------------------------------------------------------------------*/
 void* NNSi_SndArcLoadFile(
     u32 fileId,
@@ -511,13 +511,13 @@ void* NNSi_SndArcLoadFile(
 /*---------------------------------------------------------------------------*
   Name:         LoadSeq
 
-  Description:  ƒV[ƒPƒ“ƒXƒf[ƒ^‚ğƒ[ƒh
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    fileId - ƒtƒ@ƒCƒ‹ID
-                heap   - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
-                bSetAddr - ƒAƒhƒŒƒX‚ğNNS_SndArcSetFileAddress‚ÅƒZƒbƒg‚·‚é‚©‚Ç‚¤‚©
+  Arguments:    fileId - ãƒ•ã‚¡ã‚¤ãƒ«ID
+                heap   - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+                bSetAddr - ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’NNS_SndArcSetFileAddressã§ã‚»ãƒƒãƒˆã™ã‚‹ã‹ã©ã†ã‹
 
-  Returns:      ƒ[ƒh‚µ‚½ƒAƒhƒŒƒX
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹
  *---------------------------------------------------------------------------*/
 static NNSSndSeqData* LoadSeq( u32 fileId, NNSSndHeapHandle heap, BOOL bSetAddr )
 {
@@ -545,13 +545,13 @@ static NNSSndSeqData* LoadSeq( u32 fileId, NNSSndHeapHandle heap, BOOL bSetAddr 
 /*---------------------------------------------------------------------------*
   Name:         LoadSeqArc
 
-  Description:  ƒV[ƒPƒ“ƒXƒA[ƒJƒCƒu‚ğƒ[ƒh
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    fileId - ƒtƒ@ƒCƒ‹ID
-                heap   - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
-                bSetAddr - ƒAƒhƒŒƒX‚ğNNS_SndArcSetFileAddress‚ÅƒZƒbƒg‚·‚é‚©‚Ç‚¤‚©
+  Arguments:    fileId - ãƒ•ã‚¡ã‚¤ãƒ«ID
+                heap   - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+                bSetAddr - ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’NNS_SndArcSetFileAddressã§ã‚»ãƒƒãƒˆã™ã‚‹ã‹ã©ã†ã‹
 
-  Returns:      ƒ[ƒh‚µ‚½ƒAƒhƒŒƒX
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹
  *---------------------------------------------------------------------------*/
 static NNSSndSeqArc* LoadSeqArc( u32 fileId, NNSSndHeapHandle heap, BOOL bSetAddr )
 {
@@ -579,13 +579,13 @@ static NNSSndSeqArc* LoadSeqArc( u32 fileId, NNSSndHeapHandle heap, BOOL bSetAdd
 /*---------------------------------------------------------------------------*
   Name:         LoadBank
 
-  Description:  ƒoƒ“ƒNƒf[ƒ^‚ğƒ[ƒh
+  Description:  ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    fileId - ƒtƒ@ƒCƒ‹ID
-                heap   - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
-                bSetAddr - ƒAƒhƒŒƒX‚ğNNS_SndArcSetFileAddress‚ÅƒZƒbƒg‚·‚é‚©‚Ç‚¤‚©
+  Arguments:    fileId - ãƒ•ã‚¡ã‚¤ãƒ«ID
+                heap   - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+                bSetAddr - ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’NNS_SndArcSetFileAddressã§ã‚»ãƒƒãƒˆã™ã‚‹ã‹ã©ã†ã‹
 
-  Returns:      ƒ[ƒh‚µ‚½ƒAƒhƒŒƒX
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹
  *---------------------------------------------------------------------------*/
 static SNDBankData* LoadBank( u32 fileId, NNSSndHeapHandle heap, BOOL bSetAddr )
 {
@@ -614,13 +614,13 @@ static SNDBankData* LoadBank( u32 fileId, NNSSndHeapHandle heap, BOOL bSetAddr )
 /*---------------------------------------------------------------------------*
   Name:         LoadWaveArc
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒu‚ğƒ[ƒh‚µ‚Ü‚·
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™
 
-  Arguments:    fileId - ƒtƒ@ƒCƒ‹ID
-                heap   - ƒf[ƒ^‚ğŠi”[‚·‚éƒq[ƒv
-                bSetAddr - ƒAƒhƒŒƒX‚ğNNS_SndArcSetFileAddress‚ÅƒZƒbƒg‚·‚é‚©‚Ç‚¤‚©
+  Arguments:    fileId - ãƒ•ã‚¡ã‚¤ãƒ«ID
+                heap   - ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+                bSetAddr - ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’NNS_SndArcSetFileAddressã§ã‚»ãƒƒãƒˆã™ã‚‹ã‹ã©ã†ã‹
 
-  Returns:      ƒ[ƒh‚µ‚½ƒAƒhƒŒƒX
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹
  *---------------------------------------------------------------------------*/
 static SNDWaveArc* LoadWaveArc( u32 fileId, NNSSndHeapHandle heap, BOOL bSetAddr )
 {
@@ -648,13 +648,13 @@ static SNDWaveArc* LoadWaveArc( u32 fileId, NNSSndHeapHandle heap, BOOL bSetAddr
 /*---------------------------------------------------------------------------*
   Name:         LoadWaveArcTable
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒu‚Ìƒe[ƒuƒ‹•”‚Ì‚İƒ[ƒh
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ†ãƒ¼ãƒ–ãƒ«éƒ¨ã®ã¿ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    fileId - ”gŒ`ƒA[ƒJƒCƒu‚Ìƒtƒ@ƒCƒ‹‚h‚c
-                heap - ƒTƒEƒ“ƒhƒq[ƒvƒnƒ“ƒhƒ‹
-                bSetAddr - ƒAƒhƒŒƒX‚ğNNS_SndArcSetFileAddress‚ÅƒZƒbƒg‚·‚é‚©‚Ç‚¤‚©
+  Arguments:    fileId - æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ•ã‚¡ã‚¤ãƒ«ï¼©ï¼¤
+                heap - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«
+                bSetAddr - ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’NNS_SndArcSetFileAddressã§ã‚»ãƒƒãƒˆã™ã‚‹ã‹ã©ã†ã‹
 
-  Returns:      ƒ[ƒh‚µ‚½ƒAƒhƒŒƒX
+  Returns:      ãƒ­ãƒ¼ãƒ‰ã—ãŸã‚¢ãƒ‰ãƒ¬ã‚¹
  *---------------------------------------------------------------------------*/
 static SNDWaveArc*  LoadWaveArcTable( u32 fileId, NNSSndHeapHandle heap, BOOL bSetAddr )
 {
@@ -667,10 +667,10 @@ static SNDWaveArc*  LoadWaveArcTable( u32 fileId, NNSSndHeapHandle heap, BOOL bS
     waveArc = (SNDWaveArc*)NNS_SndArcGetFileAddress( fileId );
     if ( waveArc == NULL )
     {
-        // ƒwƒbƒ_ƒ[ƒh
+        // ãƒ˜ãƒƒãƒ€ãƒ­ãƒ¼ãƒ‰
         readSize = NNS_SndArcReadFile( fileId, &waveArcHeader, sizeof(waveArcHeader), 0 );
         if ( readSize != sizeof(waveArcHeader) ) {
-            // ƒ[ƒh¸”s
+            // ãƒ­ãƒ¼ãƒ‰å¤±æ•—
             return NULL;
         }
         
@@ -681,7 +681,7 @@ static SNDWaveArc*  LoadWaveArcTable( u32 fileId, NNSSndHeapHandle heap, BOOL bS
             return NULL;
         }
 
-        // ƒƒ‚ƒŠŠm•Û
+        // ãƒ¡ãƒ¢ãƒªç¢ºä¿
         waveArc = (SNDWaveArc*)NNS_SndHeapAlloc(
             heap,
             len + RESERVED_AREASIZE , // NOTE: reserved 32byte
@@ -690,11 +690,11 @@ static SNDWaveArc*  LoadWaveArcTable( u32 fileId, NNSSndHeapHandle heap, BOOL bS
             fileId
         );
         if ( waveArc == NULL ) {
-            // ƒƒ‚ƒŠ•s‘«
+            // ãƒ¡ãƒ¢ãƒªä¸è¶³
             return NULL;
         }
         
-        // ƒwƒbƒ_•ƒe[ƒuƒ‹ƒ[ƒh
+        // ãƒ˜ãƒƒãƒ€ï¼†ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ­ãƒ¼ãƒ‰
         readSize = NNS_SndArcReadFile(
             fileId,
             waveArc,
@@ -702,21 +702,21 @@ static SNDWaveArc*  LoadWaveArcTable( u32 fileId, NNSSndHeapHandle heap, BOOL bS
             0
         );
         if ( readSize != sizeof(waveArcHeader) + tableSize ) {
-            // ƒ[ƒh¸”s
-            // ’ˆÓFŠm•Û‚µ‚½ƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é‚±‚Æ‚Í‚Å‚«‚È‚¢
+            // ãƒ­ãƒ¼ãƒ‰å¤±æ•—
+            // æ³¨æ„ï¼šç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹ã“ã¨ã¯ã§ããªã„
             return NULL;
         }
         
-        // ƒe[ƒuƒ‹ƒRƒs[
+        // ãƒ†ãƒ¼ãƒ–ãƒ«ã‚³ãƒ”ãƒ¼
         MI_CpuCopy8( waveArc->waveOffset, &waveArc->waveOffset[ waveArc->waveCount ], tableSize );
         
-        // ƒe[ƒuƒ‹ƒNƒŠƒA
+        // ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¯ãƒªã‚¢
         MI_CpuClear8( waveArc->waveOffset, tableSize );
 
         //
         DC_StoreRange( waveArc, len );
         
-        // ƒtƒ@ƒCƒ‹ƒAƒhƒŒƒX“o˜^
+        // ãƒ•ã‚¡ã‚¤ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ç™»éŒ²
         if ( bSetAddr ) {
             NNS_SndArcSetFileAddress( fileId, waveArc );
         }
@@ -728,11 +728,11 @@ static SNDWaveArc*  LoadWaveArcTable( u32 fileId, NNSSndHeapHandle heap, BOOL bS
 /*---------------------------------------------------------------------------*
   Name:         DisposeCallback
 
-  Description:  ƒTƒEƒ“ƒhƒf[ƒ^”jŠü‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN‚Ì‹¤’Êˆ—
+  Description:  ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ç ´æ£„æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å…±é€šå‡¦ç†
 
-  Arguments:    mem    - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒhƒŒƒX
-                arc    - ƒTƒEƒ“ƒhƒA[ƒJƒCƒu
-                fileId - ƒtƒ@ƒCƒ‹ID
+  Arguments:    mem    - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+                arc    - ã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+                fileId - ãƒ•ã‚¡ã‚¤ãƒ«ID
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -760,12 +760,12 @@ static void DisposeCallback( void* mem, NNSSndArc* arc, u32 fileId )
 /*---------------------------------------------------------------------------*
   Name:         SeqDisposeCallback
 
-  Description:  ƒV[ƒPƒ“ƒXƒf[ƒ^”jŠü‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
+  Description:  ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ç ´æ£„æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    mem   - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒhƒŒƒX
-                size  - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒY
-                data1 - ƒ†[ƒU[ƒf[ƒ^iƒTƒEƒ“ƒhƒA[ƒJƒCƒu‚Ìƒ|ƒCƒ“ƒ^j
-                data2 - ƒ†[ƒU[ƒf[ƒ^iƒtƒ@ƒCƒ‹IDj
+  Arguments:    mem   - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+                size  - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
+                data1 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿ï¼‰
+                data2 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«IDï¼‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -781,12 +781,12 @@ static void SeqDisposeCallback( void* mem, u32 size, u32 data1, u32 data2 )
 /*---------------------------------------------------------------------------*
   Name:         BankDisposeCallback
 
-  Description:  ƒoƒ“ƒNƒf[ƒ^”jŠü‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
+  Description:  ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿ç ´æ£„æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    mem   - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒhƒŒƒX
-                size  - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒY
-                data1 - ƒ†[ƒU[ƒf[ƒ^iƒTƒEƒ“ƒhƒA[ƒJƒCƒu‚Ìƒ|ƒCƒ“ƒ^j
-                data2 - ƒ†[ƒU[ƒf[ƒ^iƒtƒ@ƒCƒ‹IDj
+  Arguments:    mem   - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+                size  - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
+                data1 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿ï¼‰
+                data2 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«IDï¼‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -805,12 +805,12 @@ static void BankDisposeCallback( void* mem, u32 size, u32 data1, u32 data2 )
 /*---------------------------------------------------------------------------*
   Name:         WaveArcDisposeCallback
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒu”jŠü‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç ´æ£„æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    mem   - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒhƒŒƒX
-                size  - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒY
-                data1 - ƒ†[ƒU[ƒf[ƒ^iƒTƒEƒ“ƒhƒA[ƒJƒCƒu‚Ìƒ|ƒCƒ“ƒ^j
-                data2 - ƒ†[ƒU[ƒf[ƒ^iƒtƒ@ƒCƒ‹IDj
+  Arguments:    mem   - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+                size  - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
+                data1 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿ï¼‰
+                data2 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«IDï¼‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -829,12 +829,12 @@ static void WaveArcDisposeCallback( void* mem, u32 size, u32 data1, u32 data2 )
 /*---------------------------------------------------------------------------*
   Name:         WaveArcTableDisposeCallback
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒuƒe[ƒuƒ‹”jŠü‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    mem   - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒhƒŒƒX
-                size  - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒY
-                data1 - ƒ†[ƒU[ƒf[ƒ^iƒTƒEƒ“ƒhƒA[ƒJƒCƒu‚Ìƒ|ƒCƒ“ƒ^j
-                data2 - ƒ†[ƒU[ƒf[ƒ^iƒtƒ@ƒCƒ‹IDj
+  Arguments:    mem   - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+                size  - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
+                data1 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆã‚µã‚¦ãƒ³ãƒ‰ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿ï¼‰
+                data2 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«IDï¼‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -854,12 +854,12 @@ static void WaveArcTableDisposeCallback( void* mem, u32 size, u32 data1, u32 dat
 /*---------------------------------------------------------------------------*
   Name:         SingleWaveisposeCallback
 
-  Description:  ’P“Æ”gŒ`ƒf[ƒ^”jŠü‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
+  Description:  å˜ç‹¬æ³¢å½¢ãƒ‡ãƒ¼ã‚¿ç ´æ£„æ™‚ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    mem   - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒAƒhƒŒƒX
-                size  - ƒƒ‚ƒŠƒuƒƒbƒN‚ÌƒTƒCƒY
-                data1 - ƒ†[ƒU[ƒf[ƒ^i”gŒ`ƒA[ƒJƒCƒu‚Ìƒ|ƒCƒ“ƒ^j
-                data2 - ƒ†[ƒU[ƒf[ƒ^i”gŒ`ƒCƒ“ƒfƒbƒNƒXj
+  Arguments:    mem   - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+                size  - ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
+                data1 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆæ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒã‚¤ãƒ³ã‚¿ï¼‰
+                data2 - ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼ˆæ³¢å½¢ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼‰
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -878,14 +878,14 @@ static void SingleWaveDisposeCallback( void* mem, u32 size, u32 data1, u32 data2
 /*---------------------------------------------------------------------------*
   Name:         LoadSingleWave
 
-  Description:  ”gŒ`ƒA[ƒJƒCƒu’†‚Ì”gŒ`‚ğƒ[ƒh
+  Description:  æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä¸­ã®æ³¢å½¢ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    waveArc - ”gŒ`ƒA[ƒJƒCƒu
-                waveNo  - ”gŒ`ƒCƒ“ƒfƒbƒNƒX”Ô†
-                fileId - ”gŒ`ƒA[ƒJƒCƒu‚Ìƒtƒ@ƒCƒ‹‚h‚c
-                heap - ƒTƒEƒ“ƒhƒq[ƒvƒnƒ“ƒhƒ‹
+  Arguments:    waveArc - æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+                waveNo  - æ³¢å½¢ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
+                fileId - æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ•ã‚¡ã‚¤ãƒ«ï¼©ï¼¤
+                heap - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 static BOOL LoadSingleWave( SNDWaveArc* waveArc, int waveNo, u32 fileId, NNSSndHeapHandle heap )
 {
@@ -898,7 +898,7 @@ static BOOL LoadSingleWave( SNDWaveArc* waveArc, int waveNo, u32 fileId, NNSSndH
     NNS_MINMAX_ASSERT( waveNo, 0, SND_GetWaveDataCount( waveArc )-1 );
     
     if ( SND_GetWaveDataAddress( waveArc, waveNo ) != NULL ) {
-        // ƒ[ƒhÏ‚İ
+        // ãƒ­ãƒ¼ãƒ‰æ¸ˆã¿
         return TRUE;
     }
     
@@ -940,15 +940,15 @@ static BOOL LoadSingleWave( SNDWaveArc* waveArc, int waveNo, u32 fileId, NNSSndH
 /*---------------------------------------------------------------------------*
   Name:         LoadSingleWaves
 
-  Description:  ƒoƒ“ƒN‚É•K—v‚È”gŒ`ƒA[ƒJƒCƒu’†‚Ì”gŒ`‚ğƒ[ƒh
+  Description:  ãƒãƒ³ã‚¯ã«å¿…è¦ãªæ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä¸­ã®æ³¢å½¢ã‚’ãƒ­ãƒ¼ãƒ‰
 
-  Arguments:    waveArc - ”gŒ`ƒA[ƒJƒCƒu
-                bank - ƒoƒ“ƒN
-                waveArcNo - ƒoƒ“ƒN’†‚Å‚Ì”gŒ`ƒA[ƒJƒCƒu”Ô†
-                fileId - ”gŒ`ƒA[ƒJƒCƒu‚Ìƒtƒ@ƒCƒ‹‚h‚c
-                heap - ƒTƒEƒ“ƒhƒq[ƒvƒnƒ“ƒhƒ‹
+  Arguments:    waveArc - æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+                bank - ãƒãƒ³ã‚¯
+                waveArcNo - ãƒãƒ³ã‚¯ä¸­ã§ã®æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·
+                fileId - æ³¢å½¢ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã®ãƒ•ã‚¡ã‚¤ãƒ«ï¼©ï¼¤
+                heap - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 BOOL LoadSingleWaves( SNDWaveArc* waveArc, const SNDBankData* bank, int waveArcNo, u32 fileId, NNSSndHeapHandle heap )
 {

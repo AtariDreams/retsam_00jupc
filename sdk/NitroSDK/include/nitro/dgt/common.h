@@ -12,22 +12,22 @@
 
   $Log: common.h,v $
   Revision 1.9  2005/07/14 02:32:02  seiki_masashi
-  ƒRƒ“ƒpƒCƒ‹ƒXƒCƒbƒ`‚Ì®—
+  ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¹ã‚¤ãƒƒãƒã®æ•´ç†
 
   Revision 1.8  2005/07/08 12:33:50  seiki_masashi
-  ƒRƒ“ƒpƒCƒ‹ƒXƒCƒbƒ`‚Ì’Ç‰Á
+  ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¹ã‚¤ãƒƒãƒã®è¿½åŠ 
 
   Revision 1.7  2005/03/29 03:59:26  seiki_masashi
-  Copyright ‚ÌC³
+  Copyright ã®ä¿®æ­£
 
   Revision 1.6  2005/03/29 00:08:58  seiki_masashi
   small fix
 
   Revision 1.5  2005/03/28 04:18:34  seiki_masashi
-  common.h ‚Ìˆê•”‚ğ dgt.h ‚ÉˆÚ“®
+  common.h ã®ä¸€éƒ¨ã‚’ dgt.h ã«ç§»å‹•
 
   Revision 1.4  2005/03/28 03:54:00  seiki_masashi
-  math/dgt.h ‚©‚ç‚ÌQÆ‚É”º‚¤C³
+  math/dgt.h ã‹ã‚‰ã®å‚ç…§ã«ä¼´ã†ä¿®æ­£
 
   Revision 1.3  2004/11/05 13:27:04  yasu
   Support OverlayTable mode
@@ -51,14 +51,14 @@ extern "C" {
 //#define SDK_DGT_HASH1_CODE_SAFE
 //#define SDK_DGT_HASH2_CODE_SAFE
 
-// ƒ_ƒCƒWƒFƒXƒg’·
+// ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆé•·
 #define DGT_HASH1_DIGEST_SIZE   (128/8)
 #define DGT_HASH2_DIGEST_SIZE   (160/8)
 
-// Å‘å‚Ìƒ_ƒCƒWƒFƒXƒg’·
+// æœ€å¤§ã®ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆé•·
 #define DGT_HASH_DIGEST_SIZE_MAX  DGT_HASH2_DIGEST_SIZE
 
-// ˆ—ƒuƒƒbƒN’·
+// å‡¦ç†ãƒ–ãƒ­ãƒƒã‚¯é•·
 #define	DGT_HASH_BLOCK_SIZE	(512/8)
 
 #ifdef __cplusplus

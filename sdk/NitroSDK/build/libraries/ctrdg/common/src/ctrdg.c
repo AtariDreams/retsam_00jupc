@@ -15,10 +15,10 @@
   indent source
 
   Revision 1.23  2006/04/24 00:05:09  okubata_ryoma
-  CW2.0‚ÌŒxƒŒƒxƒ‹‹­‰»‚É”º‚Á‚½•ÏX
+  CW2.0ã®è­¦å‘Šãƒ¬ãƒ™ãƒ«å¼·åŒ–ã«ä¼´ã£ãŸå¤‰æ›´
 
   Revision 1.22  2006/02/22 04:06:44  kitase_hirotake
-  –³§ŒÀ‚ÉƒƒbƒN‘Ò‚¿‚µ‚È‚¢‚æ‚¤‚ÉC³
+  ç„¡åˆ¶é™ã«ãƒ­ãƒƒã‚¯å¾…ã¡ã—ãªã„ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.21  2006/02/10 02:53:18  yosizaki
   support memory protection of cartridge access.
@@ -36,10 +36,10 @@
   do-indent.
 
   Revision 1.16  2005/02/18 14:19:10  seiki_masashi
-  Copyright •\‹L‚ÌC³
+  Copyright è¡¨è¨˜ã®ä¿®æ­£
 
   Revision 1.15  2005/02/18 13:17:08  seiki_masashi
-  warning ‘Îô
+  warning å¯¾ç­–
 
   Revision 1.14  2004/09/29 02:32:59  yada
   consider for exchanging a option cartridge and an AGB cartridge in sleeping

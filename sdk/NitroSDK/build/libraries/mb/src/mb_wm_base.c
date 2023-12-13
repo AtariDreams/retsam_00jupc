@@ -18,7 +18,7 @@
   fix about MB_End
 
   Revision 1.16  2007/01/19 04:34:37  yosizaki
-  copyright‚ğXV.
+  copyrightã‚’æ›´æ–°.
 
   Revision 1.15  2007/01/18 05:58:03  yosizaki
   fix about finalization.
@@ -27,7 +27,7 @@
   change default lifetime parameters.
 
   Revision 1.13  2006/02/20 02:35:20  seiki_masashi
-  WM_GAMEINFO_TYPE_OLD ‚ÌƒTƒ|[ƒg‚ğ”p~
+  WM_GAMEINFO_TYPE_OLD ã®ã‚µãƒãƒ¼ãƒˆã‚’å»ƒæ­¢
 
   Revision 1.12  2006/01/18 02:11:30  kitase_hirotake
   do-indent
@@ -42,14 +42,14 @@
   fix about WM_ATTR_FLAG_ENTRY flag.
 
   Revision 1.8  2005/11/07 01:21:50  okubata_ryoma
-  SDK_STATIC_ASSERT‚©‚çSDK_COMPILER_ASSERT‚É•ÏX
+  SDK_STATIC_ASSERTã‹ã‚‰SDK_COMPILER_ASSERTã«å¤‰æ›´
 
   Revision 1.7  2005/10/28 11:23:41  seiki_masashi
-  WM_STATECODE_DISCONNECTED_FROM_MYSELF ‚Ì’Ç‰Á‚É‘Î‰
-  WM_STATECODE_PORT_INIT ‚Ì’Ç‰Á‚É‘Î‰
+  WM_STATECODE_DISCONNECTED_FROM_MYSELF ã®è¿½åŠ ã«å¯¾å¿œ
+  WM_STATECODE_PORT_INIT ã®è¿½åŠ ã«å¯¾å¿œ
 
   Revision 1.6  2005/07/29 03:45:01  seiki_masashi
-  WM_STATECODE_INFORMATION ‚Ì’Ç‰Á
+  WM_STATECODE_INFORMATION ã®è¿½åŠ 
 
   Revision 1.5  2005/04/14 04:40:20  yosizaki
   fix timing of calling WM_GetNextTgid().
@@ -73,7 +73,7 @@
   fix around hidden warnings.
 
   Revision 1.61  2005/01/27 07:07:49  takano_makoto
-  ichneumong—p‚ÉƒEƒFƒCƒg‚ğ“ü‚ê‚é‚æ‚¤‚ÉC³
+  ichneumonä½¿ç”¨æ™‚ã«ã‚¦ã‚§ã‚¤ãƒˆã‚’å…¥ã‚Œã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.60  2004/12/28 09:32:28  pair2
   fix around MB_EndToIdle. (check endReq == 1 or pWork == NULL )
@@ -85,31 +85,31 @@
   rename MB_StartParentEx/MB_EndEx..
 
   Revision 1.57  2004/11/22 12:47:26  takano_makoto
-  •ªŠ„ƒŠƒNƒGƒXƒg‘—M‚Ìˆ—‚ğmb_block‚Æ‚µ‚Ä•ª—£
+  åˆ†å‰²ãƒªã‚¯ã‚¨ã‚¹ãƒˆé€ä¿¡ã®å‡¦ç†ã‚’mb_blockã¨ã—ã¦åˆ†é›¢
 
   Revision 1.56  2004/11/18 07:28:46  takano_makoto
-  MB_SetParentCommSize, MB_SetParentCommParam‚Åq‹@‘—MƒTƒCƒY‚Ìİ’èˆø”‚ğ”p~
+  MB_SetParentCommSize, MB_SetParentCommParamã§å­æ©Ÿé€ä¿¡ã‚µã‚¤ã‚ºã®è¨­å®šå¼•æ•°ã‚’å»ƒæ­¢
 
   Revision 1.55  2004/11/11 11:46:56  yosizaki
   change WM_End/Ex to finish task-thread before WM_Reset.
 
   Revision 1.54  2004/11/10 07:40:03  takano_makoto
-  mb_gameinfo.c‚Ì’†‚©‚çMBwŠÖ”‚ğ”rœ‚µAƒXƒLƒƒƒ“ƒpƒ‰ƒ[ƒ^‚Ìİ’è‚ğØ‚èo‚·
+  mb_gameinfo.cã®ä¸­ã‹ã‚‰MBwé–¢æ•°ã‚’æ’é™¤ã—ã€ã‚¹ã‚­ãƒ£ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®šã‚’åˆ‡ã‚Šå‡ºã™
 
   Revision 1.53  2004/11/10 03:17:02  takano_makoto
-  MBi_SetBeaconRecvStatusBufferDefault‚ğ’Ç‰Á
+  MBi_SetBeaconRecvStatusBufferDefaultã‚’è¿½åŠ 
 
   Revision 1.52  2004/11/09 12:02:23  yosizaki
   fix allocation of wmBuf.
 
   Revision 1.51  2004/11/09 01:05:39  seiki_masashi
-  Null ‰“š‚É‚æ‚éƒ^ƒCƒ€ƒAƒEƒg‚ğÀ‘•
+  Null å¿œç­”ã«ã‚ˆã‚‹ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚’å®Ÿè£…
 
   Revision 1.50  2004/10/26 08:09:54  takano_makoto
-  MB_DisconnectChild‚ğ’Ç‰Á
+  MB_DisconnectChildã‚’è¿½åŠ 
 
   Revision 1.49  2004/10/19 00:55:31  sato_masaki
-  WM_API‚Ì•Ô‚è’lƒGƒ‰[‚ªMB_CALLBACK_API_ERROR‚Å•Ô‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‰ÓŠ‚ª‚ ‚é‚Ì‚ğC³B
+  WM_APIã®è¿”ã‚Šå€¤ã‚¨ãƒ©ãƒ¼ãŒMB_CALLBACK_API_ERRORã§è¿”ã•ã‚Œã¦ã„ãªã‹ã£ãŸç®‡æ‰€ãŒã‚ã‚‹ã®ã‚’ä¿®æ­£ã€‚
 
   Revision 1.48  2004/10/18 11:44:36  yosizaki
   add MB_StartParentEx, MB_EndEx.
@@ -118,35 +118,35 @@
   add start_mp_busy.
 
   Revision 1.46  2004/10/08 10:32:49  takano_makoto
-  IPL‹N“®‰æ–Ê‚ÅnameLength‚Ì•ÏX‚ª”½‰f‚³‚ê‚È‚¢•s‹ï‡‚ğC³
+  IPLèµ·å‹•ç”»é¢ã§nameLengthã®å¤‰æ›´ãŒåæ˜ ã•ã‚Œãªã„ä¸å…·åˆã‚’ä¿®æ­£
 
   Revision 1.45  2004/10/08 03:04:17  takano_makoto
-  1.44‚ÌC³‚É’Ç‰Á‚µ‚ÄNUL•¶š‚ğƒ`ƒFƒbƒN‚·‚é‚æ‚¤‚ÉC³
+  1.44ã®ä¿®æ­£ã«è¿½åŠ ã—ã¦NULæ–‡å­—ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.44  2004/10/08 02:44:46  takano_makoto
-  MB_Init‚ÅMBUserInfo‚ÌnameLength‚ğŒ©‚é‚æ‚¤‚ÉC³
+  MB_Initã§MBUserInfoã®nameLengthã‚’è¦‹ã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.43  2004/10/05 09:45:29  terui
-  MACƒAƒhƒŒƒX‚ğu8Œ^‚Ì”z—ñ‚É“ˆêB
+  MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’u8å‹ã®é…åˆ—ã«çµ±ä¸€ã€‚
 
   Revision 1.42  2004/10/04 13:40:25  terui
-  ƒQ[ƒ€ƒOƒ‹[ƒvID‚ğu32Œ^‚É“ˆêB
+  ã‚²ãƒ¼ãƒ ã‚°ãƒ«ãƒ¼ãƒ—IDã‚’u32å‹ã«çµ±ä¸€ã€‚
 
   Revision 1.41  2004/10/03 08:17:31  ooe
-  StartMPEx‚Ìd—l•ÏX‚É‘Î‰BignoreFatalErrorB
+  StartMPExã®ä»•æ§˜å¤‰æ›´ã«å¯¾å¿œã€‚ignoreFatalErrorã€‚
 
   Revision 1.40  2004/09/28 08:55:30  sato_masaki
-  - Indication callback‚ÅAWM_STATECODE_FIFO_ERROR‚ªo‚½‚Æ‚«‚ÍAOS_Panic‚ğo‚·‚æ‚¤‚É•ÏXB
-  - MBi_IsCommSizeValid‚É‚ÄAƒTƒCƒY”ÍˆÍ‚Ì”»’è‚ğ’Ç‰ÁB
+  - Indication callbackã§ã€WM_STATECODE_FIFO_ERRORãŒå‡ºãŸã¨ãã¯ã€OS_Panicã‚’å‡ºã™ã‚ˆã†ã«å¤‰æ›´ã€‚
+  - MBi_IsCommSizeValidã«ã¦ã€ã‚µã‚¤ã‚ºç¯„å›²ã®åˆ¤å®šã‚’è¿½åŠ ã€‚
 
   Revision 1.39  2004/09/25 05:51:47  sato_masaki
-  NitroSDK_IPL_branch 1.27.2.7 ‚Æƒ}[ƒW
+  NitroSDK_IPL_branch 1.27.2.7 ã¨ãƒãƒ¼ã‚¸
 
   Revision 1.38  2004/09/25 05:43:49  sato_masaki
-  ƒƒCƒ“ƒ‹[ƒv‚É‚¨‚¢‚ÄŒÄ‚Î‚ê“¾‚éAPIÀs’†‚ÉAŠ„‚è‚İ‹Ö~‚ğ‚·‚éˆ—‚ğ’Ç‰ÁB
+  ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã«ãŠã„ã¦å‘¼ã°ã‚Œå¾—ã‚‹APIå®Ÿè¡Œä¸­ã«ã€å‰²ã‚Šè¾¼ã¿ç¦æ­¢ã‚’ã™ã‚‹å‡¦ç†ã‚’è¿½åŠ ã€‚
 
   Revision 1.37  2004/09/22 09:41:18  sato_masaki
-  IPL_branch 1.27.2.5‚Æƒ}[ƒW
+  IPL_branch 1.27.2.5ã¨ãƒãƒ¼ã‚¸
 
   Revision 1.36  2004/09/22 02:50:31  yosizaki
   optimize for code-size around MBi_ChildCallback().
@@ -155,13 +155,13 @@
   optimize for code-size around MB_Init().
 
   Revision 1.34  2004/09/21 01:39:15  sato_masaki
-  WM‚É‹Nˆö‚·‚éƒGƒ‰[‚ğAMB_ERRCODE_WM_FAILURE‚É“ˆêBMB_ERRCODE_MP_SENT_FAILURE‚ğ”p~B
+  WMã«èµ·å› ã™ã‚‹ã‚¨ãƒ©ãƒ¼ã‚’ã€MB_ERRCODE_WM_FAILUREã«çµ±ä¸€ã€‚MB_ERRCODE_MP_SENT_FAILUREã‚’å»ƒæ­¢ã€‚
 
   Revision 1.33  2004/09/20 12:56:17  sato_masaki
-  MB_Init()‚É‚¨‚¢‚ÄA‰Šú‰»Ï‚İ‚Å‚ ‚é‚©”Û‚©‚Ì”»’è‚ğ’Ç‰ÁB
+  MB_Init()ã«ãŠã„ã¦ã€åˆæœŸåŒ–æ¸ˆã¿ã§ã‚ã‚‹ã‹å¦ã‹ã®åˆ¤å®šã‚’è¿½åŠ ã€‚
 
   Revision 1.32  2004/09/18 09:16:26  sato_masaki
-  p_mbi_param->endReqƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚éê‡‚ÍAMB_End()‚Í‰½‚à‚µ‚È‚¢‚æ‚¤‚É•ÏXB
+  p_mbi_param->endReqãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ã‚‹å ´åˆã¯ã€MB_End()ã¯ä½•ã‚‚ã—ãªã„ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.31  2004/09/18 03:11:25  sato_masaki
   small fix
@@ -174,60 +174,60 @@
   - change MP size check (it always returns 'TRUE')
 
   Revision 1.28  2004/09/16 12:48:35  sato_masaki
-  - mb.h‚É‚ÄAMBi_***‚Å’è‹`‚µ‚Ä‚¢‚½ŠÖ”‚ğAMB_***‚É•ÏXB
-  - ‘—óMƒf[ƒ^ƒTƒCƒY‚Ì³“–«•]‰¿‚ğ‚·‚é‚æ‚¤‚É‚µ‚½B
+  - mb.hã«ã¦ã€MBi_***ã§å®šç¾©ã—ã¦ã„ãŸé–¢æ•°ã‚’ã€MB_***ã«å¤‰æ›´ã€‚
+  - é€å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã®æ­£å½“æ€§è©•ä¾¡ã‚’ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.27  2004/09/15 06:51:59  sato_masaki
-  WBT’è‹`‚É“Z‚í‚éˆ—‚ğíœB
+  WBTå®šç¾©ã«çºã‚ã‚‹å‡¦ç†ã‚’å‰Šé™¤ã€‚
 
   Revision 1.26  2004/09/15 06:17:47  sato_masaki
   add MBi_SetParentCommSize, MBi_GetTgid functions
 
   Revision 1.25  2004/09/14 12:07:15  terui
-  randŠÖ”‚ğíœAMACƒAƒhƒŒƒX‚É‚æ‚èƒr[ƒRƒ“ŠÔŠu‚ğ‚Î‚ç‚Â‚©‚¹‚é‹@”\‚É·‘Ö‚¦B
+  randé–¢æ•°ã‚’å‰Šé™¤ã€MACã‚¢ãƒ‰ãƒ¬ã‚¹ã«ã‚ˆã‚Šãƒ“ãƒ¼ã‚³ãƒ³é–“éš”ã‚’ã°ã‚‰ã¤ã‹ã›ã‚‹æ©Ÿèƒ½ã«å·®æ›¿ãˆã€‚
 
   Revision 1.24  2004/09/14 02:55:29  sato_masaki
-  comment C³
+  comment ä¿®æ­£
 
   Revision 1.23  2004/09/14 02:41:38  sato_masaki
-  MBiParam ‚É mpBusy ’Ç‰ÁB
+  MBiParam ã« mpBusy è¿½åŠ ã€‚
 
   Revision 1.21  2004/09/13 13:08:26  sato_masaki
-  - MBi_ChildPortCallback()‚ğ’Ç‰ÁB
-  - WM_STATECODE_CHILD_CONNECTED‚Ì‚Æ‚«‚ÍAMPƒZƒbƒg‚ğ‚µ‚È‚¢‚æ‚¤‚É•ÏXB
+  - MBi_ChildPortCallback()ã‚’è¿½åŠ ã€‚
+  - WM_STATECODE_CHILD_CONNECTEDã®ã¨ãã¯ã€MPã‚»ãƒƒãƒˆã‚’ã—ãªã„ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.20  2004/09/13 02:56:23  sato_masaki
-  ‹Œd—l‚Æ‚ÌŒİŠ·‚Ì‚½‚ßAtgid‚ğˆø”‚É‚Á‚½MBi_Init()‚ğVİB
+  æ—§ä»•æ§˜ã¨ã®äº’æ›ã®ãŸã‚ã€tgidã‚’å¼•æ•°ã«æŒã£ãŸMBi_Init()ã‚’æ–°è¨­ã€‚
 
   Revision 1.19  2004/09/11 12:49:06  yosiokat
-  EMBi_StartCommon“à‚Å‚ÌƒXƒLƒƒƒ“ŠÔİ’è‚ğ’è”10‚©‚çMB_SCAN_TIME_NORMAL‚É•ÏXB
+  ãƒ»MBi_StartCommonå†…ã§ã®ã‚¹ã‚­ãƒ£ãƒ³æ™‚é–“è¨­å®šã‚’å®šæ•°10ã‹ã‚‰MB_SCAN_TIME_NORMALã«å¤‰æ›´ã€‚
 
   Revision 1.18  2004/09/11 11:16:10  sato_masaki
-  - eq‚»‚ê‚¼‚ê‚É‚Â‚¢‚ÄASDK_STATIC_ASSERT‚É‚Äƒ[ƒNƒTƒCƒY‚Ì³“–«‚ğ”»’èB
-  - MB_CommWork\‘¢‘Ì‚ğMB_CommPWork, MB_CommCWork, MB_CommCommonWork‚É•ª—£
+  - è¦ªå­ãã‚Œãã‚Œã«ã¤ã„ã¦ã€SDK_STATIC_ASSERTã«ã¦ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã®æ­£å½“æ€§ã‚’åˆ¤å®šã€‚
+  - MB_CommWorkæ§‹é€ ä½“ã‚’MB_CommPWork, MB_CommCWork, MB_CommCommonWorkã«åˆ†é›¢
 
   Revision 1.17  2004/09/11 07:02:08  yosiokat
-  ESDK_SMALL_BUILD’è‹`‚É‚æ‚éeqƒR[ƒh•ª—£‚ğ~‚ßA•’Ê‚Éƒrƒ‹ƒh‚µ‚Ä•ª—£‚Å‚«‚é‚æ‚¤•ÏX‚·‚éB
-  @MBi_StartCore‚Ìˆ—‚Ì‹¤’Ê‰»‚Å‚«‚é•”•ª‚ğMBi_StartCommon‚Æ‚µA‚»‚êˆÈŠO‚ğMB_StartParent‚ÆMB_StartChild‚ÉˆÚ‚·B
-  @MBi_SendMP“à‚Å‚ÌMODE_PARENT‚ÌƒR[ƒ‹ƒoƒbƒNw’è‚ğMBi_ParentCallback‚©‚çp_mbi_param->callback_ptr‚É•ÏXB
+  ãƒ»SDK_SMALL_BUILDå®šç¾©ã«ã‚ˆã‚‹è¦ªå­ã‚³ãƒ¼ãƒ‰åˆ†é›¢ã‚’æ­¢ã‚ã€æ™®é€šã«ãƒ“ãƒ«ãƒ‰ã—ã¦åˆ†é›¢ã§ãã‚‹ã‚ˆã†å¤‰æ›´ã™ã‚‹ã€‚
+  ã€€MBi_StartCoreã®å‡¦ç†ã®å…±é€šåŒ–ã§ãã‚‹éƒ¨åˆ†ã‚’MBi_StartCommonã¨ã—ã€ãã‚Œä»¥å¤–ã‚’MB_StartParentã¨MB_StartChildã«ç§»ã™ã€‚
+  ã€€MBi_SendMPå†…ã§ã®MODE_PARENTæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯æŒ‡å®šã‚’MBi_ParentCallbackã‹ã‚‰p_mbi_param->callback_ptrã«å¤‰æ›´ã€‚
 
   Revision 1.16  2004/09/11 05:01:26  terui
-  ‘—óMƒoƒbƒtƒ@ƒTƒCƒYŒvZƒ}ƒNƒ‚Ìb’è‘Îô‚ğŒ³‚É–ß‚µ‚½B
+  é€å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºè¨ˆç®—ãƒã‚¯ãƒ­ã®æš«å®šå¯¾ç­–ã‚’å…ƒã«æˆ»ã—ãŸã€‚
 
   Revision 1.15  2004/09/11 04:00:21  sato_masaki
-  WM_Calc*******()ƒ}ƒNƒ’†‚ÌAƒL[ƒVƒFƒAƒŠƒ“ƒOg—p‚ğ¦‚·BOOL’l‚ğTRUE‚É‚·‚éB
-  (WM_StartMPEx()‚ÌƒGƒ‰[‰ñ”ğ‚Ì‚½‚ß‚Ìˆê“I‘Î‰ôB)
+  WM_Calc*******()ãƒã‚¯ãƒ­ä¸­ã®ã€ã‚­ãƒ¼ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°ä½¿ç”¨ã‚’ç¤ºã™BOOLå€¤ã‚’TRUEã«ã™ã‚‹ã€‚
+  (WM_StartMPEx()ã®ã‚¨ãƒ©ãƒ¼å›é¿ã®ãŸã‚ã®ä¸€æ™‚çš„å¯¾å¿œç­–ã€‚)
 
   Revision 1.14  2004/09/10 12:32:47  seiki_masashi
-  ƒL[ƒVƒFƒAƒŠƒ“ƒO‚Ì‘—MƒoƒCƒg”‚ğƒ‰ƒCƒuƒ‰ƒŠ“à‚Å‰B•Á‚·‚é‚æ‚¤‚É•ÏX
+  ã‚­ãƒ¼ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°ã®é€ä¿¡ãƒã‚¤ãƒˆæ•°ã‚’ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…ã§éš è”½ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.13  2004/09/10 07:50:15  sato_masaki
-  changeScanChannel()ŠÖ”‚É‚ÄAWM_GetAllowedChannel()‚©‚çæ“¾‚µ‚½
-  g—p‰Â”\channel‚Ì’†‚©‚çAScanChannel‚ğ‘I’è‚·‚é‚æ‚¤‚É•ÏXB
-  ‚Ü‚½AƒXƒLƒƒƒ“‰Â”\‚ÈChannel‚ª‘¶İ‚µ‚È‚¢ê‡AMBi_CommEnd()‚ğŒÄ‚Ô‚æ‚¤‚É•ÏXB
+  changeScanChannel()é–¢æ•°ã«ã¦ã€WM_GetAllowedChannel()ã‹ã‚‰å–å¾—ã—ãŸ
+  ä½¿ç”¨å¯èƒ½channelã®ä¸­ã‹ã‚‰ã€ScanChannelã‚’é¸å®šã™ã‚‹ã‚ˆã†ã«å¤‰æ›´ã€‚
+  ã¾ãŸã€ã‚¹ã‚­ãƒ£ãƒ³å¯èƒ½ãªChannelãŒå­˜åœ¨ã—ãªã„å ´åˆã€MBi_CommEnd()ã‚’å‘¼ã¶ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.12  2004/09/10 02:32:23  sato_masaki
-  WM_StartScan()”­s‚ÌscanParam.channel’l‚ğ•ÏXB
+  WM_StartScan()ç™ºè¡Œæ™‚ã®scanParam.channelå€¤ã‚’å¤‰æ›´ã€‚
 
   Revision 1.11  2004/09/09 06:49:08  sato_masaki
   bug fix about changeScanChannel()
@@ -236,76 +236,76 @@
   change WM_SetMPData to use ToPort(WM_PORT_BT, WM_PRIORITY_LOW).
 
   Revision 1.9  2004/09/09 02:46:53  sato_masaki
-  CAM_LIFE_TIME‚ğ40‚É–ß‚·B
+  CAM_LIFE_TIMEã‚’40ã«æˆ»ã™ã€‚
 
   Revision 1.8  2004/09/09 01:33:18  sato_masaki
-  FRAME_LIFE_TIME‚ğ5‚É–ß‚µACAM_LIFE_TIME‚ğ2*40‚Éİ’èB
+  FRAME_LIFE_TIMEã‚’5ã«æˆ»ã—ã€CAM_LIFE_TIMEã‚’2*40ã«è¨­å®šã€‚
 
   Revision 1.7  2004/09/09 00:50:03  sato_masaki
-  FRAME_LIFE_TIME‚ğ10‚Éİ’èB
+  FRAME_LIFE_TIMEã‚’10ã«è¨­å®šã€‚
 
   Revision 1.6  2004/09/08 13:10:09  sato_masaki
-  WM_ERRCODE_INVALID_POLLBITMAP‚Ì‚àMB_CALLBACK_MP_CHILD_RECVƒR[ƒ‹ƒoƒbƒN‚ğ•Ô‚·‚æ‚¤‚É‚µ‚½B
+  WM_ERRCODE_INVALID_POLLBITMAPã®æ™‚ã‚‚MB_CALLBACK_MP_CHILD_RECVã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¿”ã™ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.5  2004/09/08 10:58:54  sato_masaki
-  - LIFETIME‚ğ—LŒÀ‚Éİ’èB
-  - Scan‚Ìseekƒ`ƒƒƒ“ƒlƒ‹‚ğ1,7,13‚É•ÏX
-  - WM_StartMP‚ğEx‚É•ÏX‚µAÄ‘—–³‚µƒ‚[ƒh‚Éİ’èB
+  - LIFETIMEã‚’æœ‰é™ã«è¨­å®šã€‚
+  - Scanæ™‚ã®seekãƒãƒ£ãƒ³ãƒãƒ«ã‚’1,7,13ã«å¤‰æ›´
+  - WM_StartMPã‚’Exã«å¤‰æ›´ã—ã€å†é€ç„¡ã—ãƒ¢ãƒ¼ãƒ‰ã«è¨­å®šã€‚
 
   Revision 1.4  2004/09/06 12:05:24  sato_masaki
-  StartConnect‚ÉŠÖ‚·‚éComment‚ğíœB
+  StartConnectã«é–¢ã™ã‚‹Commentã‚’å‰Šé™¤ã€‚
 
   Revision 1.3  2004/09/06 11:43:21  sato_masaki
-  MB_Init()ŠÖ”‚Ìˆø”‚ÉAtgid‚ğ’Ç‰ÁB
-  MBi_GetTgid()ŠÖ”‚Ì’Ç‰ÁB
+  MB_Init()é–¢æ•°ã®å¼•æ•°ã«ã€tgidã‚’è¿½åŠ ã€‚
+  MBi_GetTgid()é–¢æ•°ã®è¿½åŠ ã€‚
 
   Revision 1.2  2004/09/04 09:29:03  yosiokat
-  SDK_SMALL_BUILD’è‹`‚Ée‹@ƒ‚[ƒh‚ÌƒR[ƒh‚ğí‚é‚æ‚¤•ÏXB
+  SDK_SMALL_BUILDå®šç¾©æ™‚ã«è¦ªæ©Ÿãƒ¢ãƒ¼ãƒ‰ã®ã‚³ãƒ¼ãƒ‰ã‚’å‰Šã‚‹ã‚ˆã†å¤‰æ›´ã€‚
 
   Revision 1.1  2004/09/03 07:04:36  sato_masaki
-  ƒtƒ@ƒCƒ‹‚ğ‹@”\•Ê‚É•ªŠ„B
+  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ©Ÿèƒ½åˆ¥ã«åˆ†å‰²ã€‚
 
   Revision 1.25  2004/09/02 09:46:49  sato_masaki
-  mbc->fileinfo‚Ì0ƒNƒŠƒA‚ğ’Ç‰ÁB
+  mbc->fileinfoã®0ã‚¯ãƒªã‚¢ã‚’è¿½åŠ ã€‚
 
   Revision 1.24  2004/08/30 06:32:46  sato_masaki
-  ’è‹`WMBT‚ğWBT‚É•ÏXB
+  å®šç¾©WMBTã‚’WBTã«å¤‰æ›´ã€‚
 
   Revision 1.23  2004/08/26 10:08:57  sato_masaki
-  BeaconRecv‚ÌƒXƒe[ƒgƒ`ƒFƒbƒN‚ğ’Ç‰Á
+  BeaconRecvæ™‚ã®ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯ã‚’è¿½åŠ 
 
   Revision 1.22  2004/08/26 09:54:59  sato_masaki
   small fix
 
   Revision 1.21  2004/08/24 12:20:06  sato_masaki
-  SSIDÆ‡‘Îô(ˆê—½‚¬)
+  SSIDç…§åˆå¯¾ç­–(ä¸€æ™‚å‡Œã)
 
   Revision 1.20  2004/08/23 04:45:17  ooe
-  WM_StartConnect()‚Ìd—l•ÏX‚É‘Î‰B
+  WM_StartConnect()ã®ä»•æ§˜å¤‰æ›´ã«å¯¾å¿œã€‚
 
   Revision 1.19  2004/08/19 22:55:17  yosiokat
-  MB_Init‚Å‚Ìƒ}ƒ‹ƒ`ƒu[ƒgƒtƒ‰ƒOAGGID‚ÌƒZƒbƒg‚ğ~‚ß‚ÄAƒr[ƒRƒ“‘—M‚ÌWM_SetGameInfo‚ÅƒZƒbƒg‚·‚é‚æ‚¤‚É‚·‚éB
+  MB_Initã§ã®ãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆãƒ•ãƒ©ã‚°ã€GGIDã®ã‚»ãƒƒãƒˆã‚’æ­¢ã‚ã¦ã€ãƒ“ãƒ¼ã‚³ãƒ³é€ä¿¡æ™‚ã®WM_SetGameInfoã§ã‚»ãƒƒãƒˆã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ã€‚
 
   Revision 1.18  2004/08/19 16:00:09  miya
   modified WM_SetGameInfo function
 
   Revision 1.17  2004/08/19 15:11:47  yosiokat
-  ‘O‰ñC³‚ÌƒRƒƒ“ƒg’Ç‰ÁBMB_Init‚Åp_mbi_param->parentParam->multiBootFlag= 1‚É•ÏXB
+  å‰å›ä¿®æ­£ã®ã‚³ãƒ¡ãƒ³ãƒˆè¿½åŠ ã€‚MB_Initã§p_mbi_param->parentParam->multiBootFlag= 1ã«å¤‰æ›´ã€‚
 
   Revision 1.16  2004/08/19 15:07:37  yosiokat
-  WM_GAMEINFO_TYPE_OLD’è‹`‚Ì‚İp_mbi_param->parentParam->userNameAgameName‚ğƒZƒbƒg‚·‚é‚æ‚¤C³B
+  WM_GAMEINFO_TYPE_OLDå®šç¾©ã®ã¿p_mbi_param->parentParam->userNameã€gameNameã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã‚ˆã†ä¿®æ­£ã€‚
 
   Revision 1.15  2004/08/19 12:27:20  sato_masaki
-  Beacon Indicate‚Å‚ÌA’ÊMI—¹ˆ—‚ğƒRƒƒ“ƒgƒAƒEƒg
+  Beacon Indicateã§ã®ã€é€šä¿¡çµ‚äº†å‡¦ç†ã‚’ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 
   Revision 1.14  2004/08/19 08:00:53  ikedae
-  #include <string.h>@íœ
+  #include <string.h>ã€€å‰Šé™¤
 
   Revision 1.13  2004/08/19 07:51:40  sato_masaki
-  WM‚Ì•ÏXd—l‚É‘Î‰B
+  WMã®å¤‰æ›´ä»•æ§˜ã«å¯¾å¿œã€‚
 
   Revision 1.12  2004/08/19 07:34:16  ooe
-  beaconPeriod‚Ìƒ‰ƒ“ƒ_ƒ€‰»(b’è ÀŒ±—p)
+  beaconPeriodã®ãƒ©ãƒ³ãƒ€ãƒ åŒ–(æš«å®š å®Ÿé¨“ç”¨)
 
   Revision 1.11  2004/08/19 02:42:36  yosizaki
   change type of MBUserInfo.
@@ -314,17 +314,17 @@
   small fix
 
   Revision 1.9  2004/08/18 00:05:14  sato_masaki
-  WM_StartMP‚Ìˆø”•ÏX‚É”º‚¤XV
+  WM_StartMPã®å¼•æ•°å¤‰æ›´ã«ä¼´ã†æ›´æ–°
 
   Revision 1.8  2004/08/16 13:02:40  sato_masaki
-  MBi_GetSendBufSizeŠÖ”‚ğ’Ç‰Á
+  MBi_GetSendBufSizeé–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.7  2004/08/12 09:20:57  yosiokat
-  EMBi_RestartScanAMBi_SetMaxScanTimeAMBi_GetScanChannelŠÖ”‚Ì’Ç‰ÁB
-  EƒXƒLƒƒƒ“‚ÉPARENT_NOT_FOUND‚¾‚Á‚½ê‡‚É‚àAMB_CommƒŒƒCƒ„‚ÉƒR[ƒ‹ƒoƒbƒN‚ğ•Ô‚·‚æ‚¤•ÏXB
+  ãƒ»MBi_RestartScanã€MBi_SetMaxScanTimeã€MBi_GetScanChannelé–¢æ•°ã®è¿½åŠ ã€‚
+  ãƒ»ã‚¹ã‚­ãƒ£ãƒ³æ™‚ã«PARENT_NOT_FOUNDã ã£ãŸå ´åˆã«ã‚‚ã€MB_Commãƒ¬ã‚¤ãƒ¤ã«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¿”ã™ã‚ˆã†å¤‰æ›´ã€‚
 
   Revision 1.6  2004/08/10 12:11:55  sato_masaki
-  MBi_GetAidŠÖ”‚Ì’Ç‰ÁB
+  MBi_GetAidé–¢æ•°ã®è¿½åŠ ã€‚
 
   Revision 1.5  2004/08/09 14:56:43  yosizaki
   format all the symbol for API
@@ -338,7 +338,7 @@
 
 
 /*
- * —v‹‚µ‚Ä‚¢‚éƒTƒCƒY‚Å—e—Ê‚ª³‚µ‚¢‚©”»’è.
+ * è¦æ±‚ã—ã¦ã„ã‚‹ã‚µã‚¤ã‚ºã§å®¹é‡ãŒæ­£ã—ã„ã‹åˆ¤å®š.
  */
 SDK_COMPILER_ASSERT(32 + sizeof(MBiParam) + 32 + sizeof(MB_CommPWork) + 32 + WM_SYSTEM_BUF_SIZE <=
                     MB_SYSTEM_BUF_SIZE);
@@ -347,32 +347,32 @@ SDK_COMPILER_ASSERT(32 + sizeof(MBiParam) + 32 + sizeof(MB_CommCWork) + 32 + WM_
 
 
 /*
- * e/q ‘—óMƒoƒbƒtƒ@ƒTƒCƒYŒvZƒ}ƒNƒ
- * óMƒoƒbƒtƒ@  parentMaxSize + WLHeader(48B) + WMHeader(2B)
- * ‘—Mƒoƒbƒtƒ@ (parentMaxSize + WMHeader(2B) + (KeySet(36B) KS‚Ì‚İ) + 31) & 0xffffffe0 (ƒAƒ‰ƒCƒƒ“ƒgC³)
- * óMƒoƒbƒtƒ@ (childMaxSize + WLHeader(8B) + WMHeader(2B) + (KeyData(2B)(KeySharing‚Ì‚İ)) ‚ğ15‘ä•ª { ‘S‘Ì‚ÌHeader(8B) + 31) & 0xffffffe0 (ƒAƒ‰ƒCƒƒ“ƒgC³)
+ * è¦ª/å­ é€å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºè¨ˆç®—ãƒã‚¯ãƒ­
+ * å—ä¿¡ãƒãƒƒãƒ•ã‚¡  parentMaxSize + WLHeader(48B) + WMHeader(2B)
+ * é€ä¿¡ãƒãƒƒãƒ•ã‚¡ (parentMaxSize + WMHeader(2B) + (KeySet(36B) KSæ™‚ã®ã¿) + 31) & 0xffffffe0 (ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆä¿®æ­£)
+ * å—ä¿¡ãƒãƒƒãƒ•ã‚¡ (childMaxSize + WLHeader(8B) + WMHeader(2B) + (KeyData(2B)(KeySharingæ™‚ã®ã¿)) ã‚’15å°åˆ† ï¼‹ å…¨ä½“ã®Header(8B) + 31) & 0xffffffe0 (ã‚¢ãƒ©ã‚¤ãƒ¡ãƒ³ãƒˆä¿®æ­£)
  */
-#define WL_HEADER_LENGTH_P  48         /* e‹@óM‚ÌWLƒwƒbƒ_’· */
-#define WM_HEADER_LENGTH    2          /* WMHeader’· */
-#define WL_HEADER_LENGTH_T  8          /* ‘S‘Ì‚ÌWLƒwƒbƒ_’· */
-#define WL_HEADER_LENGTH_C  8          /* ‚»‚ê‚¼‚ê‚Ìq‹@ƒf[ƒ^‚ÌWLƒwƒbƒ_’· */
+#define WL_HEADER_LENGTH_P  48         /* è¦ªæ©Ÿå—ä¿¡æ™‚ã®WLãƒ˜ãƒƒãƒ€é•· */
+#define WM_HEADER_LENGTH    2          /* WMHeaderé•· */
+#define WL_HEADER_LENGTH_T  8          /* å…¨ä½“ã®WLãƒ˜ãƒƒãƒ€é•· */
+#define WL_HEADER_LENGTH_C  8          /* ãã‚Œãã‚Œã®å­æ©Ÿãƒ‡ãƒ¼ã‚¿ã®WLãƒ˜ãƒƒãƒ€é•· */
 
 
-// ƒ}ƒNƒ q‹@óMƒoƒbƒtƒ@ƒTƒCƒYŒvZ
+// ãƒã‚¯ãƒ­ å­æ©Ÿå—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºè¨ˆç®—
 
 #define WM_CalcChildSendBufSize(_pInfo_)        (u16)(WM_SIZE_MP_CHILD_SEND_BUFFER(((WMGameInfo *)(&(((WMBssDesc*)(_pInfo_))->gameInfo)))->childMaxSize, FALSE))
 #define WM_CalcChildRecvBufSize(_pInfo_)        (u16)(WM_SIZE_MP_CHILD_RECEIVE_BUFFER(((WMGameInfo *)(&(((WMBssDesc*)(_pInfo_))->gameInfo)))->parentMaxSize, FALSE))
 
-// ƒ}ƒNƒ e‹@‘—óMƒoƒbƒtƒ@ƒTƒCƒYŒvZ
+// ãƒã‚¯ãƒ­ è¦ªæ©Ÿé€å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºè¨ˆç®—
 #define WM_CalcParentSendBufSize(_libParam_)    (u16)(WM_SIZE_MP_PARENT_SEND_BUFFER(((MBiParam*)(_libParam_))->parentParam.parentMaxSize, FALSE))
 #define WM_CalcParentRecvBufSize(_libParam_)    (u16)(WM_SIZE_MP_PARENT_RECEIVE_BUFFER(((MBiParam*)(_libParam_))->parentParam.childMaxSize, WM_NUM_MAX_CHILD, FALSE))
 
 
-/* BeaconŠÔŠu(ms)ƒfƒtƒHƒ‹ƒg’l */
+/* Beaconé–“éš”(ms)ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ */
 #define MB_BEACON_PERIOD_DEFAULT    (200)
 
 /*
- * LifeTime ‚ÌØ‚è‘Ö‚¦ƒfƒoƒbƒOƒXƒCƒbƒ`.
+ * LifeTime ã®åˆ‡ã‚Šæ›¿ãˆãƒ‡ãƒãƒƒã‚°ã‚¹ã‚¤ãƒƒãƒ.
  */
 #define  NO_LIFETIME    0
 #if (NO_LIFETIME == 1)
@@ -380,7 +380,7 @@ SDK_COMPILER_ASSERT(32 + sizeof(MBiParam) + 32 + sizeof(MB_CommCWork) + 32 + WM_
 #define CAM_LIFE_TIME   0xFFFF
 #define MP_LIFE_TIME    0xFFFF
 #else
-/* WMƒ‰ƒCƒuƒ‰ƒŠ‚ª•sˆÀ’è‚Å‚ ‚Á‚½Šú‚És‚Á‚Ä‚¢‚½‘Îô */
+/* WMãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒä¸å®‰å®šã§ã‚ã£ãŸæ™‚æœŸã«è¡Œã£ã¦ã„ãŸå¯¾ç­– */
 /*
 #define FRAME_LIFE_TIME 0xFFFF
 */
@@ -400,13 +400,13 @@ static BOOL mbi_power_save_mode = TRUE;
 
 
 //===========================================================
-// ŠÖ”ƒvƒƒgƒ^ƒCƒvéŒ¾
+// é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //===========================================================
-static void MBi_ScanLock(u8 *macAddr); // ƒXƒLƒƒƒ“ƒƒbƒNİ’è—pŠÖ”
-static void MBi_ScanUnlock(void);      // ƒXƒLƒƒƒ“ƒƒbƒN‰ğœ—pŠÖ”
+static void MBi_ScanLock(u8 *macAddr); // ã‚¹ã‚­ãƒ£ãƒ³ãƒ­ãƒƒã‚¯è¨­å®šç”¨é–¢æ•°
+static void MBi_ScanUnlock(void);      // ã‚¹ã‚­ãƒ£ãƒ³ãƒ­ãƒƒã‚¯è§£é™¤ç”¨é–¢æ•°
 
 /*
- * WM Œ‹‰Ê’l‚ğƒ`ƒFƒbƒN‚µ‚ÄƒGƒ‰[‚È‚çƒR[ƒ‹ƒoƒbƒN
+ * WM çµæœå€¤ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ã‚¨ãƒ©ãƒ¼ãªã‚‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  */
 static void MBi_CheckWmErrcode(u16 apiid, int errcode);
 static void MBi_ParentCallback(void *arg);
@@ -414,15 +414,15 @@ static void MBi_ParentCallback(void *arg);
 
 
 /******************************************************************************/
-/* •Ï” */
+/* å¤‰æ•° */
 
 static MBiParam *p_mbi_param;
 static u16 WM_DMA_NO;
 
 /*
- * WMƒVƒXƒeƒ€ƒoƒbƒtƒ@.
- * Œ³‚Í MBiParam ƒƒ“ƒo‚¾‚Á‚½‚ª,
- * MB_StartParentFromIdle() ‚Ì‚½‚ß‚É“Æ—§.
+ * WMã‚·ã‚¹ãƒ†ãƒ ãƒãƒƒãƒ•ã‚¡.
+ * å…ƒã¯ MBiParam ãƒ¡ãƒ³ãƒã ã£ãŸãŒ,
+ * MB_StartParentFromIdle() ã®ãŸã‚ã«ç‹¬ç«‹.
  */
 static u8 *wmBuf;
 
@@ -430,30 +430,30 @@ static u8 *wmBuf;
 MB_CommCommonWork *mbc = NULL;
 
 
-/* q‹@—p•Ï” */
+/* å­æ©Ÿç”¨å¤‰æ•° */
 static WMscanParam scanParam ATTRIBUTE_ALIGN(32);
 
 
 /******************************************************************************/
-/* ŠÖ” */
+/* é–¢æ•° */
 
 
-/* ScanChannel ‚ğ„‰ñ•ÏX‚µ‚Ä‚¢‚­ */
+/* ScanChannel ã‚’å·¡å›å¤‰æ›´ã—ã¦ã„ã */
 static BOOL changeScanChannel(WMscanParam *p)
 {
     u16     channel_bmp, channel, i;
 
-    /* channel bitmap æ“¾ */
+    /* channel bitmap å–å¾— */
     channel_bmp = WM_GetAllowedChannel();
 
-    /* g—p‰Â”\‚Èchannel‚ª–³‚¢ê‡‚ÍAFALSE‚ğ•Ô‚·D */
+    /* ä½¿ç”¨å¯èƒ½ãªchannelãŒç„¡ã„å ´åˆã¯ã€FALSEã‚’è¿”ã™ï¼ */
     if (channel_bmp == 0)
     {
         OS_TWarning("No Available Scan channel\n");
         return FALSE;
     }
 
-    /* g—p‰Â”\‚Èchannel‚ª‘¶İ‚µ‚½ê‡D */
+    /* ä½¿ç”¨å¯èƒ½ãªchannelãŒå­˜åœ¨ã—ãŸå ´åˆï¼ */
     for (i = 0, channel = p->channel;
          i < 16; i++, channel = (u16)((channel == 16) ? 1 : channel + 1))
     {
@@ -462,7 +462,7 @@ static BOOL changeScanChannel(WMscanParam *p)
             continue;
         }
 
-        /* ŒŸo‚³‚ê‚½channel‚ª‘O‚Ì‚à‚Ì‚Æ“¯‚¶‚¾‚Á‚½ê‡‚Í•Ê‚Ìchannel‚ğŒŸõ‚·‚é */
+        /* æ¤œå‡ºã•ã‚ŒãŸchannelãŒå‰ã®ã‚‚ã®ã¨åŒã˜ã ã£ãŸå ´åˆã¯åˆ¥ã®channelã‚’æ¤œç´¢ã™ã‚‹ */
         if (p->channel != channel)
         {
             p->channel = channel;
@@ -478,12 +478,12 @@ static BOOL changeScanChannel(WMscanParam *p)
 /*---------------------------------------------------------------------------*
   Name:         MB_SetLifeTime
 
-  Description:  MB ‚ÌƒƒCƒ„ƒŒƒX‹ì“®‚É‘Î‚µ‚Äƒ‰ƒCƒtƒ^ƒCƒ€‚ğ–¾¦“I‚Éw’è.
-                ƒfƒtƒHƒ‹ƒg‚Å‚Í ( 0xFFFF, 40, 0xFFFF, 40 ) ‚É‚È‚Á‚Ä‚¢‚é.
+  Description:  MB ã®ãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é§†å‹•ã«å¯¾ã—ã¦ãƒ©ã‚¤ãƒ•ã‚¿ã‚¤ãƒ ã‚’æ˜ç¤ºçš„ã«æŒ‡å®š.
+                ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ ( 0xFFFF, 40, 0xFFFF, 40 ) ã«ãªã£ã¦ã„ã‚‹.
 
-  Arguments:    tgid            w’è‚³‚ê‚é TGID
+  Arguments:    tgid            æŒ‡å®šã•ã‚Œã‚‹ TGID
 
-  Returns:      ˆø”‚ğ‚»‚Ì‚Ü‚Ü‚©, ‚Ü‚½‚Í“KØ‚È TGID.
+  Returns:      å¼•æ•°ã‚’ãã®ã¾ã¾ã‹, ã¾ãŸã¯é©åˆ‡ãª TGID.
  *---------------------------------------------------------------------------*/
 void MB_SetLifeTime(u16 tableNumber, u16 camLifeTime, u16 frameLifeTime, u16 mpLifeTime)
 {
@@ -496,13 +496,13 @@ void MB_SetLifeTime(u16 tableNumber, u16 camLifeTime, u16 frameLifeTime, u16 mpL
 /*---------------------------------------------------------------------------*
   Name:         MB_SetPowerSaveMode
 
-  Description:  í’Ê“dƒ‚[ƒh‚ğİ’è‚·‚é.
-                ‚±‚ê‚Í“d—ÍÁ”ï‚ğl—¶‚µ‚È‚­‚Ä—Ç‚¢ê–Ê‚ÅˆÀ’è‚É‹ì“®‚·‚é‚½‚ß‚Ì
-                ƒIƒvƒVƒ‡ƒ“‚Å‚ ‚èƒfƒtƒHƒ‹ƒg‚Å‚Í–³Œø‚Æ‚È‚Á‚Ä‚¢‚é.
-                “dŒ¹‚É‚Â‚È‚ª‚ê‚Ä‚¢‚é‚±‚Æ‚ğ•ÛØ‚³‚ê‚½“®ìŠÂ‹«‚Å‚È‚¢ŒÀ‚è,
-                ’Êí‚ÌƒQ[ƒ€ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ª‚±‚ê‚ğg—p‚·‚×‚«‚Å‚Í‚È‚¢.
+  Description:  å¸¸æ™‚é€šé›»ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹.
+                ã“ã‚Œã¯é›»åŠ›æ¶ˆè²»ã‚’è€ƒæ…®ã—ãªãã¦è‰¯ã„å ´é¢ã§å®‰å®šã«é§†å‹•ã™ã‚‹ãŸã‚ã®
+                ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã§ã‚ã‚Šãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ç„¡åŠ¹ã¨ãªã£ã¦ã„ã‚‹.
+                é›»æºã«ã¤ãªãŒã‚Œã¦ã„ã‚‹ã“ã¨ã‚’ä¿è¨¼ã•ã‚ŒãŸå‹•ä½œç’°å¢ƒã§ãªã„é™ã‚Š,
+                é€šå¸¸ã®ã‚²ãƒ¼ãƒ ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãŒã“ã‚Œã‚’ä½¿ç”¨ã™ã¹ãã§ã¯ãªã„.
 
-  Arguments:    enable           —LŒø‚É‚·‚é‚È‚ç‚Î TRUE, –³Œø‚É‚·‚é‚È‚ç‚Î FALSE.
+  Arguments:    enable           æœ‰åŠ¹ã«ã™ã‚‹ãªã‚‰ã° TRUE, ç„¡åŠ¹ã«ã™ã‚‹ãªã‚‰ã° FALSE.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -513,7 +513,7 @@ void MB_SetPowerSaveMode(BOOL enable)
 
 
 /*
- * ˆ—’†‚ğ¬Œ÷‚Æ‚İ‚È‚µ‚Ä•ÏŠ·‚µ‚½ WM Œ‹‰Ê’l‚ğ•Ô‚·
+ * å‡¦ç†ä¸­ã‚’æˆåŠŸã¨ã¿ãªã—ã¦å¤‰æ›ã—ãŸ WM çµæœå€¤ã‚’è¿”ã™
  */
 static inline int conv_errcode(int errcode)
 {
@@ -522,10 +522,10 @@ static inline int conv_errcode(int errcode)
 
 
 /*
- * MP‘—M‹–‰Âƒ`ƒFƒbƒN
+ * MPé€ä¿¡è¨±å¯ãƒã‚§ãƒƒã‚¯
    
-   SetMPŒãAƒR[ƒ‹ƒoƒbƒN‚ª•Ô‚é‘O‚ÉAÄ‚ÑMP‚ğƒZƒbƒg‚µ‚Ä‚µ‚Ü‚í‚È‚¢‚æ‚¤‚ÉA
-   SetMPÀs‚É—§‚Ä‚éAmpBusy‚Ìƒtƒ‰ƒO‚ğ”»’è—v‘f‚É’Ç‰ÁB
+   SetMPå¾Œã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒè¿”ã‚‹å‰ã«ã€å†ã³MPã‚’ã‚»ãƒƒãƒˆã—ã¦ã—ã¾ã‚ãªã„ã‚ˆã†ã«ã€
+   SetMPå®Ÿè¡Œæ™‚ã«ç«‹ã¦ã‚‹ã€mpBusyã®ãƒ•ãƒ©ã‚°ã‚’åˆ¤å®šè¦ç´ ã«è¿½åŠ ã€‚
  
  */
 static BOOL MBi_IsSendEnabled(void)
@@ -538,7 +538,7 @@ static BOOL MBi_IsSendEnabled(void)
 static void MBi_OnInitializeDone(void)
 {
     int     errcode;
-    /* API‚Ì”­s */
+    /* APIã®ç™ºè¡Œ */
     errcode = WM_SetIndCallback(MBi_ParentCallback);
     MBi_CheckWmErrcode(WM_APIID_INDICATION, errcode);
     errcode = WM_SetLifeTime(MBi_ParentCallback, mbi_life_table_no,
@@ -548,10 +548,10 @@ static void MBi_OnInitializeDone(void)
 
 
 /* 
- * MBe‹@‚ªichneumon‚ğg—p‚µ‚ÄVRAM‚Å–³ü‚ğ“®ì‚³‚¹‚Ä‚¢‚éê‡A
- * q‹@‘ä”‚ª­‚È‚¢‚Æe‹@‚ÌMPƒf[ƒ^İ’è‚ª‘‚­‚Éˆ—‚³‚ê‰ß‚¬‚Ä‚µ‚Ü‚¢A
- * IPL‚ªe‹@‚ÌMP’ÊM‚É’Ç‚¢‚Â‚¯‚È‚¢B
- * ‚±‚Ì‘Îô‚Ì‚½‚ßAˆê’èŠÔ‚ÌƒEƒFƒCƒg‚ğ“ü‚ê‚éB
+ * MBè¦ªæ©ŸãŒichneumonã‚’ä½¿ç”¨ã—ã¦VRAMã§ç„¡ç·šã‚’å‹•ä½œã•ã›ã¦ã„ã‚‹å ´åˆã€
+ * å­æ©Ÿå°æ•°ãŒå°‘ãªã„ã¨è¦ªæ©Ÿã®MPãƒ‡ãƒ¼ã‚¿è¨­å®šãŒæ—©ãã«å‡¦ç†ã•ã‚Œéãã¦ã—ã¾ã„ã€
+ * IPLãŒè¦ªæ©Ÿã®MPé€šä¿¡ã«è¿½ã„ã¤ã‘ãªã„ã€‚
+ * ã“ã®å¯¾ç­–ã®ãŸã‚ã€ä¸€å®šæ™‚é–“ã®ã‚¦ã‚§ã‚¤ãƒˆã‚’å…¥ã‚Œã‚‹ã€‚
  */
 static inline void MbWaitForWvr(u32 cycles)
 {
@@ -566,7 +566,7 @@ static inline void MbWaitForWvr(u32 cycles)
                 break;
         }
     }
-    // q‹@‚ªˆê‘ä‚¾‚¯‚Ìê‡‚ÉƒEƒFƒCƒgˆ—‚ğ“ü‚ê‚éB
+    // å­æ©ŸãŒä¸€å°ã ã‘ã®å ´åˆã«ã‚¦ã‚§ã‚¤ãƒˆå‡¦ç†ã‚’å…¥ã‚Œã‚‹ã€‚
     if (child_cnt == 1)
     {
         OS_SpinWait(cycles);
@@ -576,9 +576,9 @@ static inline void MbWaitForWvr(u32 cycles)
 /*---------------------------------------------------------------------------*
   Name:         MBi_EndCommon
 
-  Description:  ‹¤’Ê‚ÌMBI—¹ˆ—.
+  Description:  å…±é€šã®MBçµ‚äº†å‡¦ç†.
 
-  Arguments:    arg               ƒ†[ƒU‚Ö‚ÌI—¹ƒR[ƒ‹ƒoƒbƒNˆø”.
+  Arguments:    arg               ãƒ¦ãƒ¼ã‚¶ã¸ã®çµ‚äº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -593,7 +593,7 @@ static void MBi_EndCommon(void *arg)
 }
 
 /*
- * e‹@ƒR[ƒ‹ƒoƒbƒN
+ * è¦ªæ©Ÿã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  */
 static void MBi_ParentCallback(void *arg)
 {
@@ -621,7 +621,7 @@ static void MBi_ParentCallback(void *arg)
                 return;
             }
 
-            // API‚Ì”­s
+            // APIã®ç™ºè¡Œ
             errcode = WM_SetParentParameter(MBi_ParentCallback, &p_mbi_param->parentParam);
             MBi_CheckWmErrcode(WM_APIID_SET_P_PARAM, errcode);
         }
@@ -630,13 +630,13 @@ static void MBi_ParentCallback(void *arg)
     case WM_APIID_SET_P_PARAM:
         {
             p_mbi_param->callback(MB_CALLBACK_INIT_COMPLETE, arg);
-            // ‚±‚±‚Å‚ÍƒGƒ‰[ƒR[ƒh‚Í•Ô‚Á‚Ä‚±‚È‚¢
+            // ã“ã“ã§ã¯ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã¯è¿”ã£ã¦ã“ãªã„
             errcode = WM_SetBeaconIndication(MBi_ParentCallback, 1 /* 1:ON, 0:OFF */ );
             MBi_CheckWmErrcode(WM_APIID_SET_BEACON_IND, errcode);
         }
         break;
 
-        // Beacon Send/Recv Indication‚ğ”­¶‚³‚¹‚é‚©‚Ç‚¤‚©
+        // Beacon Send/Recv Indicationã‚’ç™ºç”Ÿã•ã›ã‚‹ã‹ã©ã†ã‹
     case WM_APIID_SET_BEACON_IND:
         if (!p_mbi_param->endReq)
         {
@@ -651,7 +651,7 @@ static void MBi_ParentCallback(void *arg)
         }
         else
         {
-            // ƒr[ƒRƒ“’Ê’m‚ğ–³Œø‰»‚µAI—¹ˆ—Š®—¹
+            // ãƒ“ãƒ¼ã‚³ãƒ³é€šçŸ¥ã‚’ç„¡åŠ¹åŒ–ã—ã€çµ‚äº†å‡¦ç†å®Œäº†
             if (buf->errcode != WM_ERRCODE_SUCCESS)
             {
                 p_mbi_param->endReq = 0;
@@ -682,14 +682,14 @@ static void MBi_ParentCallback(void *arg)
                 break;
             case WM_STATECODE_CHILD_CONNECTED:
 
-                /* MB_End()ƒR[ƒ‹Œã‚Í‹­§“I‚Ébreak */
+                /* MB_End()ã‚³ãƒ¼ãƒ«å¾Œã¯å¼·åˆ¶çš„ã«break */
                 if (p_mbi_param->endReq == 1)
                     break;
 
                 p_mbi_param->child_bitmap |= (0x1 << callback->aid);
                 p_mbi_param->callback(MB_CALLBACK_CHILD_CONNECTED, arg);
 
-                // MPŠJn‘O‚È‚çMPŠJn
+                // MPé–‹å§‹å‰ãªã‚‰MPé–‹å§‹
                 if ((p_mbi_param->mpStarted == 0) && (!mbc->start_mp_busy))
                 {
                     mbc->start_mp_busy = TRUE;
@@ -702,7 +702,7 @@ static void MBi_ParentCallback(void *arg)
                 }
                 else
                 {
-                    // MP‘—M‹–‰ÂƒR[ƒ‹ƒoƒbƒN
+                    // MPé€ä¿¡è¨±å¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
                     if (MBi_IsSendEnabled())
                     {
                         p_mbi_param->callback(MB_CALLBACK_MP_SEND_ENABLE, NULL);
@@ -716,15 +716,15 @@ static void MBi_ParentCallback(void *arg)
                 break;
 
             case WM_STATECODE_DISCONNECTED_FROM_MYSELF:
-                // ©‚çØ’f‚µ‚½ê‡‚Íˆ—‚µ‚È‚¢
+                // è‡ªã‚‰åˆ‡æ–­ã—ãŸå ´åˆã¯å‡¦ç†ã—ãªã„
                 break;
 
             case WM_STATECODE_BEACON_SENT:
-                /* MB_End()ƒR[ƒ‹Œã‚Í‹­§“I‚Ébreak */
+                /* MB_End()ã‚³ãƒ¼ãƒ«å¾Œã¯å¼·åˆ¶çš„ã«break */
                 if (p_mbi_param->endReq == 1)
                     break;
 
-                // ƒr[ƒRƒ“‘—MŠ®—¹’Ê’m
+                // ãƒ“ãƒ¼ã‚³ãƒ³é€ä¿¡å®Œäº†é€šçŸ¥
                 p_mbi_param->callback(MB_CALLBACK_BEACON_SENT, arg);
                 break;
 
@@ -737,16 +737,16 @@ static void MBi_ParentCallback(void *arg)
 
     case WM_APIID_START_MP:
         {
-            // ‚±‚±‚Å‚ÍƒGƒ‰[ƒR[ƒh‚Í•Ô‚Á‚Ä‚±‚È‚¢
+            // ã“ã“ã§ã¯ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã¯è¿”ã£ã¦ã“ãªã„
             WMstartMPCallback *callback = (WMstartMPCallback *)arg;
             mbc->start_mp_busy = FALSE;
             switch (callback->state)
             {
             case WM_STATECODE_MP_START:
-                // MPŠJnÏ‚İƒtƒ‰ƒO‚ğƒZƒbƒg
+                // MPé–‹å§‹æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
                 p_mbi_param->mpStarted = 1;
                 {
-                    // MP‘—M‹–‰ÂƒR[ƒ‹ƒoƒbƒN
+                    // MPé€ä¿¡è¨±å¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
                     if (p_mbi_param->endReq == 0)
                     {
                         p_mbi_param->callback(MB_CALLBACK_MP_SEND_ENABLE, NULL);
@@ -755,7 +755,7 @@ static void MBi_ParentCallback(void *arg)
                 break;
 
             case WM_STATECODE_MPEND_IND:
-                // MPóMƒR[ƒ‹ƒoƒbƒN
+                // MPå—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
                 p_mbi_param->callback(MB_CALLBACK_MP_PARENT_RECV, (void *)(callback->recvBuf));
                 break;
 
@@ -769,10 +769,10 @@ static void MBi_ParentCallback(void *arg)
 
     case WM_APIID_SET_MP_DATA:
         {
-            /* MBe‹@‚ªichneumon‚ğg—p‚µ‚Ä‚¢‚éê‡‚ÉƒEƒFƒCƒg‚ğ“ü‚ê‚é */
+            /* MBè¦ªæ©ŸãŒichneumonã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã«ã‚¦ã‚§ã‚¤ãƒˆã‚’å…¥ã‚Œã‚‹ */
             if (pPwork->useWvrFlag)
             {
-                MbWaitForWvr(13000);   // ARM9‚ğIRQŠ„‚è‚İ’†‚É–ñ3ƒ‰ƒCƒ“ƒEƒFƒCƒg‚³‚¹‚é
+                MbWaitForWvr(13000);   // ARM9ã‚’IRQå‰²ã‚Šè¾¼ã¿ä¸­ã«ç´„3ãƒ©ã‚¤ãƒ³ã‚¦ã‚§ã‚¤ãƒˆã•ã›ã‚‹
             }
             p_mbi_param->mpBusy = 0;
             if (buf->errcode == WM_ERRCODE_SUCCESS)
@@ -780,7 +780,7 @@ static void MBi_ParentCallback(void *arg)
                 p_mbi_param->callback(MB_CALLBACK_MP_PARENT_SENT, arg);
                 if (p_mbi_param->endReq == 0)
                 {
-                    p_mbi_param->callback(MB_CALLBACK_MP_SEND_ENABLE, NULL);        // Ÿ‚Ì‘—M‚ğ‹–‰Â
+                    p_mbi_param->callback(MB_CALLBACK_MP_SEND_ENABLE, NULL);        // æ¬¡ã®é€ä¿¡ã‚’è¨±å¯
                 }
             }
             else if (buf->errcode == WM_ERRCODE_SEND_QUEUE_FULL)
@@ -792,7 +792,7 @@ static void MBi_ParentCallback(void *arg)
                 p_mbi_param->callback(MB_CALLBACK_MP_PARENT_SENT_ERR, arg);
                 if (p_mbi_param->endReq == 0)
                 {
-                    p_mbi_param->callback(MB_CALLBACK_MP_SEND_ENABLE, NULL);        // Ÿ‚Ì‘—M‚ğ‹–‰Â
+                    p_mbi_param->callback(MB_CALLBACK_MP_SEND_ENABLE, NULL);        // æ¬¡ã®é€ä¿¡ã‚’è¨±å¯
                 }
             }
         }
@@ -853,7 +853,7 @@ static void MBi_ParentCallback(void *arg)
                 return;
             }
 
-            // q‹@î•ñXV
+            // å­æ©Ÿæƒ…å ±æ›´æ–°
             p_mbi_param->child_bitmap &= ~(callback->disconnectedBitmap);
         }
         break;
@@ -863,16 +863,16 @@ static void MBi_ParentCallback(void *arg)
             WMindCallback *cb = (WMindCallback *)arg;
             switch (cb->state)
             {
-            case WM_STATECODE_BEACON_RECV:     // BeaconóMindicate
+            case WM_STATECODE_BEACON_RECV:     // Beaconå—ä¿¡indicate
                 p_mbi_param->callback(MB_CALLBACK_BEACON_RECV, arg);
                 break;
-            case WM_STATECODE_DISASSOCIATE:    // Ú‘±Ø’findicate
+            case WM_STATECODE_DISASSOCIATE:    // æ¥ç¶šåˆ‡æ–­indicate
                 p_mbi_param->callback(MB_CALLBACK_DISASSOCIATE, arg);
                 break;
-            case WM_STATECODE_REASSOCIATE:     // ÄÚ‘±indicate
+            case WM_STATECODE_REASSOCIATE:     // å†æ¥ç¶šindicate
                 p_mbi_param->callback(MB_CALLBACK_REASSOCIATE, arg);
                 break;
-            case WM_STATECODE_AUTHENTICATE:    // ”FØŠm”Findicate
+            case WM_STATECODE_AUTHENTICATE:    // èªè¨¼ç¢ºèªindicate
                 p_mbi_param->callback(MB_CALLBACK_AUTHENTICATE, arg);
                 break;
 
@@ -880,7 +880,7 @@ static void MBi_ParentCallback(void *arg)
                 OS_TPanic("FIFO Error\n");
                 break;
             case WM_STATECODE_INFORMATION:
-                // ‰½‚à‚µ‚È‚¢
+                // ä½•ã‚‚ã—ãªã„
                 break;
             }
         }
@@ -893,7 +893,7 @@ static void MBi_ParentCallback(void *arg)
 }
 
 /*
- * q‹@ƒR[ƒ‹ƒoƒbƒN
+ * å­æ©Ÿã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  */
 static void MBi_ChildPortCallback(void *arg)
 {
@@ -907,11 +907,11 @@ static void MBi_ChildPortCallback(void *arg)
     switch (cb->state)
     {
     case WM_STATECODE_PORT_RECV:
-        // ƒf[ƒ^óM‚ğ’Ê’m
+        // ãƒ‡ãƒ¼ã‚¿å—ä¿¡ã‚’é€šçŸ¥
         p_mbi_param->callback(MB_CALLBACK_MP_CHILD_RECV, (void *)(arg));
         break;
     case WM_STATECODE_CONNECTED:
-        // Ú‘±’Ê’m
+        // æ¥ç¶šé€šçŸ¥
         break;
     case WM_STATECODE_PORT_INIT:
     case WM_STATECODE_DISCONNECTED:
@@ -940,7 +940,7 @@ static void MBi_ChildCallback(void *arg)
 
             p_param->callback(MB_CALLBACK_INIT_COMPLETE, arg);
 
-            // API‚Ì”­s
+            // APIã®ç™ºè¡Œ
             errcode =
                 WM_SetLifeTime(MBi_ChildCallback, mbi_life_table_no, mbi_life_cam, mbi_life_frame,
                                mbi_life_mp);
@@ -956,7 +956,7 @@ static void MBi_ChildCallback(void *arg)
                 return;
             }
 
-            // WM_StartScan()”­s
+            // WM_StartScan()ç™ºè¡Œ
             scanParam.scanBuf = &p_param->parentInfoBuf;
             if (scanParam.channel == 0)
                 scanParam.channel = 1;
@@ -993,7 +993,7 @@ static void MBi_ChildCallback(void *arg)
                 break;
 
             case WM_STATECODE_PARENT_FOUND:
-                // Scan‚Åæ“¾‚µ‚½e‹@î•ñ‚ÌŠi”[
+                // Scanã§å–å¾—ã—ãŸè¦ªæ©Ÿæƒ…å ±ã®æ ¼ç´
                 {
                     WMstartScanCallback *buf = (WMstartScanCallback *)arg;
                     ParentInfo *p = &p_param->parent_info[0];
@@ -1018,7 +1018,7 @@ static void MBi_ChildCallback(void *arg)
                     if (i < MB_NUM_PARENT_INFORMATIONS)
                     {
                         p_param->found_parent_count = (u16)(i + 1);
-                        // V‹K‚É”­Œ©‚µ‚½e‹@‚È‚Ì‚ÅAƒf[ƒ^‚ğŠi”[‚·‚é
+                        // æ–°è¦ã«ç™ºè¦‹ã—ãŸè¦ªæ©Ÿãªã®ã§ã€ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
                         MI_CpuCopy16(buf, &p[i].scan_data, sizeof(p[i].scan_data));
                         DC_InvalidateRange(p_param->parent_info[i].parentInfo, WM_BSS_DESC_SIZE);
                         MI_DmaCopy16(WM_DMA_NO, &p_param->parentInfoBuf,
@@ -1045,7 +1045,7 @@ static void MBi_ChildCallback(void *arg)
                 break;
 
             case WM_STATECODE_PARENT_NOT_FOUND:
-                p_param->callback(MB_CALLBACK_PARENT_NOT_FOUND, arg);   // ‚±‚±‚ÌƒR[ƒ‹ƒoƒbƒN‚ÍParentInfoLifeTimeCount‚É
+                p_param->callback(MB_CALLBACK_PARENT_NOT_FOUND, arg);   // ã“ã“ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¯ParentInfoLifeTimeCountã«
                 if (!p_param->scanning_flag)
                 {
                     return;
@@ -1088,9 +1088,9 @@ static void MBi_ChildCallback(void *arg)
 
             if (callback->errcode != WM_ERRCODE_SUCCESS)
             {
-                /* e‚Ì”‚ğƒŠƒZƒbƒg */
+                /* è¦ªã®æ•°ã‚’ãƒªã‚»ãƒƒãƒˆ */
                 p_param->found_parent_count = 0;
-                // ƒR[ƒ‹ƒoƒbƒN‚ÅƒGƒ‰[’Ê’m
+                // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã§ã‚¨ãƒ©ãƒ¼é€šçŸ¥
                 p_param->callback(MB_CALLBACK_CONNECT_FAILED, arg);
                 return;
             }
@@ -1128,7 +1128,7 @@ static void MBi_ChildCallback(void *arg)
                 break;
 
             case WM_STATECODE_DISCONNECTED_FROM_MYSELF:
-                // ©‚çØ’f‚µ‚½ê‡‚Íˆ—‚µ‚È‚¢
+                // è‡ªã‚‰åˆ‡æ–­ã—ãŸå ´åˆã¯å‡¦ç†ã—ãªã„
                 break;
 
             default:
@@ -1145,9 +1145,9 @@ static void MBi_ChildCallback(void *arg)
             switch (callback->state)
             {
             case WM_STATECODE_MP_START:
-                p_param->mpStarted = 1; // MPŠJnÏ‚İƒtƒ‰ƒO‚ğƒZƒbƒg
+                p_param->mpStarted = 1; // MPé–‹å§‹æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
                 {
-                    // MP‘—M‹–‰ÂƒR[ƒ‹ƒoƒbƒN
+                    // MPé€ä¿¡è¨±å¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
                     if (MBi_IsSendEnabled())
                     {
                         p_param->callback(MB_CALLBACK_MP_SEND_ENABLE, NULL);
@@ -1194,7 +1194,7 @@ static void MBi_ChildCallback(void *arg)
             {
                 p_param->callback(MB_CALLBACK_MP_CHILD_SENT_ERR, arg);
             }
-            // Ÿ‚Ì‘—M‚ğ‹–‰Â
+            // æ¬¡ã®é€ä¿¡ã‚’è¨±å¯
             if (p_mbi_param->endReq == 0)
             {
                 p_param->callback(MB_CALLBACK_MP_SEND_ENABLE, NULL);
@@ -1235,7 +1235,7 @@ static void MBi_ChildCallback(void *arg)
         //---------------------------------------------------------------
     case WM_APIID_START_KS:
         {
-            // MP‘—M‹–‰ÂƒR[ƒ‹ƒoƒbƒN
+            // MPé€ä¿¡è¨±å¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
             if (MBi_IsSendEnabled())
             {
                 p_param->callback(MB_CALLBACK_MP_SEND_ENABLE, NULL);
@@ -1253,7 +1253,7 @@ static void MBi_ChildCallback(void *arg)
                 OS_TPanic("FIFO Error\n");
                 break;
             case WM_STATECODE_INFORMATION:
-                // ‰½‚à‚µ‚È‚¢
+                // ä½•ã‚‚ã—ãªã„
                 break;
             }
         }
@@ -1268,12 +1268,12 @@ static void MBi_ChildCallback(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_GetBeaconPeriodDispersion
 
-  Description:  ‹@Ší‚ÌMACƒAƒhƒŒƒX‚²‚Æ‚É“K“x‚É‚Î‚ç‚Â‚¢‚½ƒr[ƒRƒ“ŠÔŠu‚Ö•t‰Á‚·‚é
-                ’l‚ğæ“¾‚·‚éB
+  Description:  æ©Ÿå™¨ã®MACã‚¢ãƒ‰ãƒ¬ã‚¹ã”ã¨ã«é©åº¦ã«ã°ã‚‰ã¤ã„ãŸãƒ“ãƒ¼ã‚³ãƒ³é–“éš”ã¸ä»˜åŠ ã™ã‚‹
+                å€¤ã‚’å–å¾—ã™ã‚‹ã€‚
 
   Arguments:    None.
 
-  Returns:      u32 -   ‹@Ší‚²‚Æ‚É“K“x‚É‚Î‚ç‚Â‚¢‚½ 0 ` 19 ‚Ì’l‚ğ•Ô‚·B
+  Returns:      u32 -   æ©Ÿå™¨ã”ã¨ã«é©åº¦ã«ã°ã‚‰ã¤ã„ãŸ 0 ã€œ 19 ã®å€¤ã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static u32 MBi_GetBeaconPeriodDispersion(void)
 {
@@ -1295,7 +1295,7 @@ static u32 MBi_GetBeaconPeriodDispersion(void)
 /******************************************************************************/
 /* API */
 
-/* ‰Šú‰» */
+/* åˆæœŸåŒ– */
 int MB_Init(void *work, const MBUserInfo *user, u32 ggid, u32 tgid, u32 dma)
 {
 
@@ -1316,8 +1316,8 @@ int MB_Init(void *work, const MBUserInfo *user, u32 ggid, u32 tgid, u32 dma)
         OSIntrMode enabled;
 
         /*
-         * TGID ©“®w’è‚Ìê‡‚Í©“®æ“¾ˆ—.
-         * (“à•”‚Å RTC ‚ğg—p‚·‚é‚Ì‚ÅŠ„‚è‚İ‹Ö~‚Ì‘O‚Éæ“¾)
+         * TGID è‡ªå‹•æŒ‡å®šã®å ´åˆã¯è‡ªå‹•å–å¾—å‡¦ç†.
+         * (å†…éƒ¨ã§ RTC ã‚’ä½¿ç”¨ã™ã‚‹ã®ã§å‰²ã‚Šè¾¼ã¿ç¦æ­¢ã®å‰ã«å–å¾—)
          */
         if (tgid == MB_TGID_AUTO)
         {
@@ -1326,21 +1326,21 @@ int MB_Init(void *work, const MBUserInfo *user, u32 ggid, u32 tgid, u32 dma)
 
         enabled = OS_DisableInterrupts();
 
-        /* ƒ‰ƒCƒtƒ^ƒCƒ€‚ÆÈ“d—Íƒ‚[ƒhİ’è’l‚Ì‰Šú‰» */
+        /* ãƒ©ã‚¤ãƒ•ã‚¿ã‚¤ãƒ ã¨çœé›»åŠ›ãƒ¢ãƒ¼ãƒ‰è¨­å®šå€¤ã®åˆæœŸåŒ– */
         mbi_life_table_no = TABLE_NO;
         mbi_life_frame = FRAME_LIFE_TIME;
         mbi_life_cam = CAM_LIFE_TIME;
         mbi_life_mp = MP_LIFE_TIME;
         mbi_power_save_mode = TRUE;
 
-        /* DMA ƒ`ƒƒƒ“ƒlƒ‹, ƒ[ƒN—Ìˆæ‚Ì‰Šú‰» */
+        /* DMA ãƒãƒ£ãƒ³ãƒãƒ«, ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®åˆæœŸåŒ– */
         WM_DMA_NO = (u16)dma;
         p_mbi_param = p_parm;
         mbc = p_com;
         MI_CpuClear32(p_parm, sizeof(*p_parm));
         MI_CpuClear16(p_com, sizeof(*p_com));
 
-        {                              /* ƒ†[ƒU–¼, ƒQ[ƒ€–¼‚ğ•Û‘¶ */
+        {                              /* ãƒ¦ãƒ¼ã‚¶å, ã‚²ãƒ¼ãƒ åã‚’ä¿å­˜ */
             int     i;
             static const u16 *game = L"multiboot";
             u16    *c;
@@ -1369,11 +1369,11 @@ int MB_Init(void *work, const MBUserInfo *user, u32 ggid, u32 tgid, u32 dma)
             p_parm->p_sendlen = MB_COMM_P_SENDLEN_DEFAULT;
             p_parm->p_recvlen = MB_COMM_P_RECVLEN_DEFAULT;
 
-            /* e‹@î•ñ(q‹@‚ªScan‚Éæ“¾‚·‚éî•ñ)‚ğƒZƒbƒg */
+            /* è¦ªæ©Ÿæƒ…å ±(å­æ©ŸãŒScanæ™‚ã«å–å¾—ã™ã‚‹æƒ…å ±)ã‚’ã‚»ãƒƒãƒˆ */
             p_parm->sendBufSize = 0;
             p_parm->recvBufSize = 0;
 
-            /* •s—v? */
+            /* ä¸è¦? */
             p_parm->contSend = 1;
 
             p_parm->recvBuf = (WMmpRecvBuf *)p_com->recvbuf;
@@ -1381,14 +1381,14 @@ int MB_Init(void *work, const MBUserInfo *user, u32 ggid, u32 tgid, u32 dma)
             {
                 WMParentParam *const p_parent = &p_parm->parentParam;
                 /*
-                 * ‰‰ñƒr[ƒRƒ“‚Í entry/mb ‚Æ‚à‚É–³Œø.
-                 * MbBeacon‚ÌSetGameInfo‚ÅON‚É‚·‚é.
+                 * åˆå›ãƒ“ãƒ¼ã‚³ãƒ³ã¯ entry/mb ã¨ã‚‚ã«ç„¡åŠ¹.
+                 * MbBeaconã®SetGameInfoã§ONã«ã™ã‚‹.
                  */
                 p_parent->entryFlag = 0;
                 p_parent->multiBootFlag = 0;
                 p_parent->CS_Flag = 1;
                 p_parent->KS_Flag = 0;
-                /* ©‹@ŒÅ—L‚ÌGGID TGID‚ğƒZƒbƒg */
+                /* è‡ªæ©Ÿå›ºæœ‰ã®GGID TGIDã‚’ã‚»ãƒƒãƒˆ */
                 p_parent->ggid = ggid;
                 p_parent->tgid = (u16)tgid;
                 p_parent->beaconPeriod =
@@ -1417,7 +1417,7 @@ static BOOL MBi_IsCommSizeValid(u16 sendSize, u16 recvSize, u16 entry_num)
 
     SDK_ASSERT(entry_num > 0 && entry_num <= 15);
 
-    /* sendSize‚ª‹K’è”ÍˆÍŠO‚Ìê‡A–³Œø‚ÈƒTƒCƒYİ’è‚Æ”»’è */
+    /* sendSizeãŒè¦å®šç¯„å›²å¤–ã®å ´åˆã€ç„¡åŠ¹ãªã‚µã‚¤ã‚ºè¨­å®šã¨åˆ¤å®š */
     if (sendSize > MB_COMM_P_SENDLEN_MAX || sendSize < MB_COMM_P_SENDLEN_MIN)
     {
         OS_TWarning("MB Parent send buffer size is out of the range.[%3d - %3d Bytes]\n",
@@ -1425,7 +1425,7 @@ static BOOL MBi_IsCommSizeValid(u16 sendSize, u16 recvSize, u16 entry_num)
         return FALSE;
     }
 
-    /* recvSize‚ª‹K’è”ÍˆÍŠO‚Ìê‡A–³Œø‚ÈƒTƒCƒYİ’è‚Æ”»’è */
+    /* recvSizeãŒè¦å®šç¯„å›²å¤–ã®å ´åˆã€ç„¡åŠ¹ãªã‚µã‚¤ã‚ºè¨­å®šã¨åˆ¤å®š */
     if (recvSize > MB_COMM_P_RECVLEN_MAX || recvSize < MB_COMM_P_RECVLEN_MIN)
     {
         OS_TWarning
@@ -1434,10 +1434,10 @@ static BOOL MBi_IsCommSizeValid(u16 sendSize, u16 recvSize, u16 entry_num)
         return FALSE;
     }
 
-    /* 1‰ñ‚ÌMP’ÊM‚É‚©‚©‚éŠÔ‚É‘Î‚·‚é•]‰¿ */
+    /* 1å›ã®MPé€šä¿¡ã«ã‹ã‹ã‚‹æ™‚é–“ã«å¯¾ã™ã‚‹è©•ä¾¡ */
     usec = 330 + 4 * (sendSize + 38) + entry_num * (112 + 4 * (recvSize + 32));
 
-    /* Š—vŠÔ‚ª5600us‚ğ’´‰ß‚µ‚½ê‡A–³Œø‚ÈƒTƒCƒYİ’è‚Æ”»’è‚³‚ê‚éB */
+    /* æ‰€è¦æ™‚é–“ãŒ5600usã‚’è¶…éã—ãŸå ´åˆã€ç„¡åŠ¹ãªã‚µã‚¤ã‚ºè¨­å®šã¨åˆ¤å®šã•ã‚Œã‚‹ã€‚ */
     if (usec >= MP_USEC_TIME_LIMIT)
     {
         OS_TWarning("These send receive sizes require lower than %4dusec\n"
@@ -1453,7 +1453,7 @@ BOOL MB_SetParentCommParam(u16 sendSize, u16 maxChildren)
 {
     OSIntrMode enabled = OS_DisableInterrupts();
 
-    /* WM‚ª‹N“®‚µ‚Ä‚¢‚½‚çA•ÏX•s‰Â */
+    /* WMãŒèµ·å‹•ã—ã¦ã„ãŸã‚‰ã€å¤‰æ›´ä¸å¯ */
     if (p_mbi_param->mbIsStarted)
     {
         OS_TWarning("MB has Already started\n");
@@ -1462,7 +1462,7 @@ BOOL MB_SetParentCommParam(u16 sendSize, u16 maxChildren)
         return FALSE;
     }
 
-    /* ‘—óMƒf[ƒ^ƒTƒCƒY‚Ì³“–«‚ğ•]‰¿ */
+    /* é€å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã®æ­£å½“æ€§ã‚’è©•ä¾¡ */
     if (FALSE == MBi_IsCommSizeValid(sendSize, MB_COMM_P_RECVLEN_DEFAULT, maxChildren))
     {
         OS_TWarning("MP data sizes have not changed\n");
@@ -1471,10 +1471,10 @@ BOOL MB_SetParentCommParam(u16 sendSize, u16 maxChildren)
         return FALSE;
     }
 
-    /* Å‘åÚ‘±l”‚ÌƒZƒbƒg */
+    /* æœ€å¤§æ¥ç¶šäººæ•°ã®ã‚»ãƒƒãƒˆ */
     p_mbi_param->parentParam.maxEntry = maxChildren;
 
-    /* ‘—óMƒf[ƒ^ƒTƒCƒY‚ÌƒZƒbƒg */
+    /* é€å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã®ã‚»ãƒƒãƒˆ */
     p_mbi_param->p_sendlen = sendSize;
     p_mbi_param->p_recvlen = MB_COMM_P_RECVLEN_DEFAULT;
 
@@ -1489,7 +1489,7 @@ BOOL MB_SetParentCommSize(u16 sendSize)
     OSIntrMode enabled = OS_DisableInterrupts();
     BOOL    ret;
 
-    /* Å‘åÚ‘±l”‚ÍAŒ»İ‚Ìİ’è‚ğˆø‚«Œp‚® */
+    /* æœ€å¤§æ¥ç¶šäººæ•°ã¯ã€ç¾åœ¨ã®è¨­å®šã‚’å¼•ãç¶™ã */
     ret = MB_SetParentCommParam(sendSize, p_mbi_param->parentParam.maxEntry);
 
     (void)OS_RestoreInterrupts(enabled);
@@ -1502,7 +1502,7 @@ u16 MB_GetTgid(void)
     return p_mbi_param->parentParam.tgid;
 }
 
-/* ‰Šú‰»ieq‹¤’Ê•”•ªj */
+/* åˆæœŸåŒ–ï¼ˆè¦ªå­å…±é€šéƒ¨åˆ†ï¼‰ */
 static int MBi_StartCommon(void)
 {
     int     errcode;
@@ -1542,7 +1542,7 @@ static int MBi_StartCommon(void)
 }
 
 
-/* e‹@ƒpƒ‰ƒ[ƒ^İ’è & ƒXƒ^[ƒg ‹¤’Êˆ— */
+/* è¦ªæ©Ÿãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š & ã‚¹ã‚¿ãƒ¼ãƒˆ å…±é€šå‡¦ç† */
 static int MBi_StartParentCore(int channel)
 {
     int     i, ret;
@@ -1554,15 +1554,15 @@ static int MBi_StartParentCore(int channel)
     p_mbi_param->parentParam.channel = (u16)channel;
     wmBuf = (u8 *)((((u32)mbc) + sizeof(MB_CommPWork) + 31) & ~31);
 
-    /* Šù‚ÉCallback‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚½ê‡‚Ì‚½‚ß‚ÉAƒeƒ“ƒ|ƒ‰ƒŠ‚É‘Ş”ğ */
+    /* æ—¢ã«CallbackãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãŸå ´åˆã®ãŸã‚ã«ã€ãƒ†ãƒ³ãƒãƒ©ãƒªã«é€€é¿ */
     cb_tmp = pPwork->parent_callback;
 
-    /* e‹@ŒÅ—L‚Ìƒ[ƒN—Ìˆæ‚ğƒNƒŠƒA */
+    /* è¦ªæ©Ÿå›ºæœ‰ã®ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’ã‚¯ãƒªã‚¢ */
     MI_CpuClear16((void *)((u32)pPwork + sizeof(MB_CommCommonWork)),
                   sizeof(MB_CommPWork) - sizeof(MB_CommCommonWork));
     MB_CommSetParentStateCallback(cb_tmp);
 
-    /* ‘—óMƒTƒCƒYˆË‘¶‚Ìƒpƒ‰ƒ[ƒ^Zo */
+    /* é€å—ä¿¡ã‚µã‚¤ã‚ºä¾å­˜ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç®—å‡º */
     mbc->block_size_max = MB_COMM_CALC_BLOCK_SIZE(p_mbi_param->p_sendlen);
 
     MBi_SetChildMPMaxSize(p_mbi_param->p_recvlen);
@@ -1571,7 +1571,7 @@ static int MBi_StartParentCore(int channel)
     for (i = 0; i < MB_MAX_CHILD; i++)
     {
         pPwork->p_comm_state[i] = MB_COMM_PSTATE_NONE;
-        pPwork->fileid_of_child[i] = -1;        /* q‹@‚©‚ç‚ÌƒŠƒNƒGƒXƒgFileID‚ğ‰Šú‰» */
+        pPwork->fileid_of_child[i] = -1;        /* å­æ©Ÿã‹ã‚‰ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆFileIDã‚’åˆæœŸåŒ– */
     }
     pPwork->file_num = 0;
 
@@ -1582,10 +1582,10 @@ static int MBi_StartParentCore(int channel)
     p_mbi_param->callback = MBi_CommParentCallback;
     p_mbi_param->callback_ptr = MBi_ParentCallback;
 
-    /* e‹@Å‘å‘—MƒTƒCƒY(Byte) */
+    /* è¦ªæ©Ÿæœ€å¤§é€ä¿¡ã‚µã‚¤ã‚º(Byte) */
     p_mbi_param->parentParam.parentMaxSize = p_mbi_param->p_sendlen;
     p_mbi_param->sendBufSize = WM_CalcParentSendBufSize(p_mbi_param);
-    /* q‹@Å‘å‘—MƒTƒCƒY(Byte) */
+    /* å­æ©Ÿæœ€å¤§é€ä¿¡ã‚µã‚¤ã‚º(Byte) */
     p_mbi_param->parentParam.childMaxSize = p_mbi_param->p_recvlen;
     p_mbi_param->recvBufSize = WM_CalcParentRecvBufSize(p_mbi_param);
 
@@ -1605,21 +1605,21 @@ static int MBi_StartParentCore(int channel)
     return ret;
 }
 
-/* e‹@ƒpƒ‰ƒ[ƒ^İ’è & ƒXƒ^[ƒg (WM “à•”‰Šú‰») */
+/* è¦ªæ©Ÿãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š & ã‚¹ã‚¿ãƒ¼ãƒˆ (WM å†…éƒ¨åˆæœŸåŒ–) */
 int MB_StartParent(int channel)
 {
     mbc->is_started_ex = FALSE;
     return MBi_StartParentCore(channel);
 }
 
-/* e‹@ƒpƒ‰ƒ[ƒ^İ’è & ƒXƒ^[ƒg (WM ŠO•”‹N“®Ï) */
+/* è¦ªæ©Ÿãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š & ã‚¹ã‚¿ãƒ¼ãƒˆ (WM å¤–éƒ¨èµ·å‹•æ¸ˆ) */
 int MB_StartParentFromIdle(int channel)
 {
     mbc->is_started_ex = TRUE;
     return MBi_StartParentCore(channel);
 }
 
-/* q‹@ƒpƒ‰ƒ[ƒ^İ’è & ƒXƒ^[ƒg */
+/* å­æ©Ÿãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š & ã‚¹ã‚¿ãƒ¼ãƒˆ */
 int MB_StartChild(void)
 {
     int     ret;
@@ -1632,10 +1632,10 @@ int MB_StartChild(void)
 
     wmBuf = (u8 *)((((u32)mbc) + sizeof(MB_CommCWork) + 31) & ~31);
 
-    /* Šù‚ÉCallback‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚½ê‡‚Ì‚½‚ß‚ÉAƒeƒ“ƒ|ƒ‰ƒŠ‚É‘Ş”ğ */
+    /* æ—¢ã«CallbackãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãŸå ´åˆã®ãŸã‚ã«ã€ãƒ†ãƒ³ãƒãƒ©ãƒªã«é€€é¿ */
     cb_tmp = pCwork->child_callback;
 
-    /* q‹@ŒÅ—L‚Ìƒ[ƒN—Ìˆæ‚ğƒNƒŠƒA */
+    /* å­æ©Ÿå›ºæœ‰ã®ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’ã‚¯ãƒªã‚¢ */
     MI_CpuClear16((void *)((u32)pCwork + sizeof(MB_CommCommonWork)),
                   sizeof(MB_CommCWork) - sizeof(MB_CommCommonWork));
     MB_CommSetChildStateCallback(cb_tmp);
@@ -1662,7 +1662,7 @@ int MB_StartChild(void)
 }
 
 
-/* ƒ^ƒXƒNƒXƒŒƒbƒh‚ªI—¹‚µ‚½‚©‚Ü‚½‚ÍŒ³X‹N“®‚µ‚Ä‚¢‚È‚©‚Á‚½ê‡‚Ì–³ü‚ÌI—¹ˆ— */
+/* ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã—ãŸã‹ã¾ãŸã¯å…ƒã€…èµ·å‹•ã—ã¦ã„ãªã‹ã£ãŸå ´åˆã®ç„¡ç·šã®çµ‚äº†å‡¦ç† */
 static int MBi_CallReset(void)
 {
     int     errcode;
@@ -1677,13 +1677,13 @@ static void MBi_OnReset(MBiTaskInfo * p_task)
     (void)MBi_CallReset();
 }
 
-/* ’ÊM‚ğI—¹ */
+/* é€šä¿¡ã‚’çµ‚äº† */
 int MBi_CommEnd(void)
 {
     int     ret = WM_ERRCODE_FAILED;
     OSIntrMode enabled = OS_DisableInterrupts();
 
-    /* ‚Ü‚¾Start‚ğŒÄ‚Ño‚µ‚Ä‚¢‚È‚¯‚ê‚Î‚±‚Ìê‚Å‚½‚¾‚¿‚ÉI—¹ */
+    /* ã¾ã Startã‚’å‘¼ã³å‡ºã—ã¦ã„ãªã‘ã‚Œã°ã“ã®å ´ã§ãŸã ã¡ã«çµ‚äº† */
     if (!p_mbi_param->mbIsStarted)
     {
         MBi_EndCommon(NULL);
@@ -1692,13 +1692,13 @@ int MBi_CommEnd(void)
     {
         p_mbi_param->scanning_flag = FALSE;
         p_mbi_param->endReq = 1;
-        /* ƒ^ƒXƒNƒXƒŒƒbƒh‚ª‘–‚Á‚Ä‚¢‚ê‚Î‚±‚ê‚ğ’â~‚µ‚½Œã‚ÉƒŠƒZƒbƒg */
+        /* ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ãŒèµ°ã£ã¦ã„ã‚Œã°ã“ã‚Œã‚’åœæ­¢ã—ãŸå¾Œã«ãƒªã‚»ãƒƒãƒˆ */
         if (MBi_IsTaskAvailable())
         {
             MBi_EndTaskThread(MBi_OnReset);
             ret = WM_ERRCODE_SUCCESS;
         }
-        /* ‚»‚¤‚Å‚È‚¯‚ê‚Î‚±‚Ìê‚ÅƒŠƒZƒbƒg */
+        /* ãã†ã§ãªã‘ã‚Œã°ã“ã®å ´ã§ãƒªã‚»ãƒƒãƒˆ */
         else
         {
             ret = MBi_CallReset();
@@ -1739,7 +1739,7 @@ void MB_EndToIdle(void)
 }
 
 //-------------------------------------
-// q‹@‚ğØ’f
+// å­æ©Ÿã‚’åˆ‡æ–­
 //-------------------------------------
 void MB_DisconnectChild(u16 aid)
 {
@@ -1757,18 +1757,18 @@ void MB_DisconnectChild(u16 aid)
         return;
     }
 
-    /*  q‹@î•ñ‚ğÁ‹
-       (Ø’f‚ª‹N‚±‚Á‚½ê‡A‚»‚ÌAID‚ÉŠÖ‚·‚éq‹@î•ñ‚ÍÁ‹‚·‚é) */
+    /*  å­æ©Ÿæƒ…å ±ã‚’æ¶ˆå»
+       (åˆ‡æ–­ãŒèµ·ã“ã£ãŸå ´åˆã€ãã®AIDã«é–¢ã™ã‚‹å­æ©Ÿæƒ…å ±ã¯æ¶ˆå»ã™ã‚‹) */
     pPwork->childversion[aid - 1] = 0;
     MI_CpuClear8(&pPwork->childggid[aid - 1], sizeof(u32));
     MI_CpuClear8(&pPwork->childUser[aid - 1], sizeof(MBUserInfo));
 
-    /* óMƒoƒbƒtƒ@‚ğƒNƒŠƒA */
+    /* å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢ */
     MBi_ClearParentPieceBuffer(aid);
 
     pPwork->req2child[aid - 1] = MB_COMM_USER_REQ_NONE;
 
-    /* —v‹FileID‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚½ê‡BID‚ğ-1‚ÉƒNƒŠƒA‚·‚éB */
+    /* è¦æ±‚FileIDãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ãŸå ´åˆã€‚IDã‚’-1ã«ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚ */
     if (pPwork->fileid_of_child[aid - 1] != -1)
     {
         u8      fileID = (u8)pPwork->fileid_of_child[aid - 1];
@@ -1783,7 +1783,7 @@ void MB_DisconnectChild(u16 aid)
         MB_DEBUG_OUTPUT("Update Member (AID:%2d)\n", child);
     }
 
-    /* Ú‘±î•ñ‚ğƒNƒŠƒA */
+    /* æ¥ç¶šæƒ…å ±ã‚’ã‚¯ãƒªã‚¢ */
     if (pPwork->child_entry_bmp & (0x0001 << aid))
     {
         pPwork->child_num--;
@@ -1793,7 +1793,7 @@ void MB_DisconnectChild(u16 aid)
 }
 
 
-/* mb_child.c ‚Å‚Ì‚İg—p ****************************************************/
+/* mb_child.c ã§ã®ã¿ä½¿ç”¨ ****************************************************/
 
 int MBi_GetLastFountParent(void)
 {
@@ -1821,9 +1821,9 @@ static void MBi_ScanUnlock(void)
     WM_CopyBssid(bss_fill, scanParam.bssid);
 }
 
-/* mb_comm ‚Å‚Ì‚İg—p *********************************************************/
+/* mb_comm ã§ã®ã¿ä½¿ç”¨ *********************************************************/
 
-// ƒXƒLƒƒƒ“ŠÔ‚Ìİ’è
+// ã‚¹ã‚­ãƒ£ãƒ³æ™‚é–“ã®è¨­å®š
 void MBi_SetMaxScanTime(u16 time)
 {
     scanParam.maxChannelTime = time;
@@ -1849,7 +1849,7 @@ int MBi_SendMP(const void *buf, int len, int pollbmp)
     u16     size = (u16)len;
     u16     pollbitmap = (u16)pollbmp;
 
-    // MPŠJn‘O‹y‚ÑAI—¹—v‹”­sŒã‚ÍMPƒf[ƒ^‚Ì‘—M‚Í‚Å‚«‚È‚¢
+    // MPé–‹å§‹å‰åŠã³ã€çµ‚äº†è¦æ±‚ç™ºè¡Œå¾Œã¯MPãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡ã¯ã§ããªã„
     if ((p_mbi_param->mpStarted == 0) || (p_mbi_param->endReq == 1))
     {
         return WM_ERRCODE_FAILED;
@@ -1858,7 +1858,7 @@ int MBi_SendMP(const void *buf, int len, int pollbmp)
     switch (p_mbi_param->mode)
     {
     case MB_MODE_PARENT:
-        errcode = MBi_SetMPData(p_mbi_param->callback_ptr, (u16 *)buf, size,    // ¦MBi_ParentCallback‚ğg‚¤‚Æmb_child‚Å‚àParentCallback‚ªƒŠƒ“ƒN‚³‚ê‚Ä‚µ‚Ü‚¤‚Ì‚ÅAcallback_ptr‚Å‘ã—pB
+        errcode = MBi_SetMPData(p_mbi_param->callback_ptr, (u16 *)buf, size,    // â€»MBi_ParentCallbackã‚’ä½¿ã†ã¨mb_childã§ã‚‚ParentCallbackãŒãƒªãƒ³ã‚¯ã•ã‚Œã¦ã—ã¾ã†ã®ã§ã€callback_ptrã§ä»£ç”¨ã€‚
                                 (u16)((!p_mbi_param->contSend) ? 1000 : 0), pollbitmap);
 
         if (errcode == WM_ERRCODE_OPERATING)
@@ -1902,7 +1902,7 @@ int MBi_CommConnectToParent(const WMBssDesc *bssDescp)
     gameInfo = (WMgameInfo *)(&(bssDescp->gameInfo));
     p_mbi_param->p_sendlen = gameInfo->parentMaxSize;
     p_mbi_param->p_recvlen = gameInfo->childMaxSize;
-    /* ‘—óMƒTƒCƒYˆË‘¶‚Ìƒpƒ‰ƒ[ƒ^Zo */
+    /* é€å—ä¿¡ã‚µã‚¤ã‚ºä¾å­˜ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç®—å‡º */
     mbc->block_size_max = MB_COMM_CALC_BLOCK_SIZE(p_mbi_param->p_sendlen);
 
     MBi_SetChildMPMaxSize(p_mbi_param->p_recvlen);
@@ -1934,15 +1934,15 @@ u16 MBi_GetTgid(void)
 
 u8 MBi_GetAttribute(void)
 {
-    return ((u8)(((p_mbi_param->parentParam.entryFlag) ? WM_ATTR_FLAG_ENTRY : 0) |      // entryFlag Å‰ºˆÊƒrƒbƒg
-                 ((p_mbi_param->parentParam.multiBootFlag) ? WM_ATTR_FLAG_MB : 0) |     // multiBootFlag ‘æ2ƒrƒbƒg
-                 ((p_mbi_param->parentParam.KS_Flag) ? WM_ATTR_FLAG_KS : 0) |   // KS_Flag ‘æ3ƒrƒbƒg
-                 ((p_mbi_param->parentParam.CS_Flag) ? WM_ATTR_FLAG_CS : 0)     // CS_Flag ‘æ4ƒrƒbƒg
+    return ((u8)(((p_mbi_param->parentParam.entryFlag) ? WM_ATTR_FLAG_ENTRY : 0) |      // entryFlag æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆ
+                 ((p_mbi_param->parentParam.multiBootFlag) ? WM_ATTR_FLAG_MB : 0) |     // multiBootFlag ç¬¬2ãƒ“ãƒƒãƒˆ
+                 ((p_mbi_param->parentParam.KS_Flag) ? WM_ATTR_FLAG_KS : 0) |   // KS_Flag ç¬¬3ãƒ“ãƒƒãƒˆ
+                 ((p_mbi_param->parentParam.CS_Flag) ? WM_ATTR_FLAG_CS : 0)     // CS_Flag ç¬¬4ãƒ“ãƒƒãƒˆ
             ));
 }
 
 
-// ƒXƒLƒƒƒ“‚ÌÄŠJ
+// ã‚¹ã‚­ãƒ£ãƒ³ã®å†é–‹
 int MBi_RestartScan(void)
 {
     int     errcode;
@@ -1963,13 +1963,13 @@ int MBi_RestartScan(void)
 }
 
 
-// ƒXƒLƒƒƒ“ƒ`ƒƒƒ“ƒlƒ‹‚Ìæ“¾
+// ã‚¹ã‚­ãƒ£ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã®å–å¾—
 int MBi_GetScanChannel(void)
 {
     return scanParam.channel;
 }
 
-// ©g‚ÌAIDæ“¾
+// è‡ªèº«ã®AIDå–å¾—
 u16 MBi_GetAid(void)
 {
     return p_mbi_param->my_aid;
@@ -1980,7 +1980,7 @@ BOOL MBi_IsStarted(void)
     return (p_mbi_param->mbIsStarted == 1) ? TRUE : FALSE;
 }
 
-// WM_API‚Ì–ß‚è’lƒ`ƒFƒbƒN
+// WM_APIã®æˆ»ã‚Šå€¤ãƒã‚§ãƒƒã‚¯
 static void MBi_CheckWmErrcode(u16 apiid, int errcode)
 {
     u16     arg[2];

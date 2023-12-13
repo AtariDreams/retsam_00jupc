@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_015.s
- *@brief	�퓬�V�[�P���X
- *			�Ђ�ނŋZ�������Ȃ��V�[�P���X
+ *@brief	戦闘シーケンス
+ *			ひるむで技がだせないシーケンス
  *@author	HisashiSogabe
  *@data		2005.11.25
  *
@@ -18,9 +18,9 @@ SUB_015:
 	MESSAGE			HirumuMineMsg,TAG_NICK,SIDE_ATTACK
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//���ߌn�t���O�𗎂Ƃ�
+	//ため系フラグを落とす
 	KEEP_OFF		SIDE_ATTACK
-	//�����ӂ��̂�����́A�f����1�A�b�v
+	//特性ふくつのこころは、素早さ1アップ
 	TOKUSEI_CHECK	TOKUSEI_NO_HAVE,SIDE_ATTACK,TOKUSYU_HUKUTUNOKOKORO,SUB_015_END
 	VALUE			VAL_SET,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_TOKUSEI
 	VALUE			VAL_SET,BUF_PARA_TSUIKA_PARA,ADD_COND2_AGIUP

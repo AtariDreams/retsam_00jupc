@@ -40,7 +40,7 @@
   do-indent.
 
   Revision 1.41  2005/02/18 07:26:49  yasu
-  Signed/Unsigned �ϊ��x���}��
+  Signed/Unsigned 変換警告抑制
 
   Revision 1.40  2004/11/04 03:56:04  yosizaki
   fix comment typo.
@@ -118,7 +118,7 @@
   move MI_ReadCard to mi_card.c
 
   Revision 1.18  2004/04/23 07:03:39  yada
-  CW �o�O�ւ̑΍�
+  CW バグへの対策
 
   Revision 1.17  2004/04/22 02:31:02  yosizaki
   FS_LoadTables() -> FS_TryLoadTable().
@@ -203,7 +203,7 @@
 /*****************************************************************************/
 /* constant */
 
-/* �G���[���b�Z�[�W */
+/* エラーメッセージ */
 #if !defined(SDK_FINALROM)
 
 const char *fsi_assert_fs_format = "[file-system] %s.\n";
@@ -329,17 +329,17 @@ void FS_InitFile(FSFile *p_file)
 /*---------------------------------------------------------------------------*
   Name:         FSi_FindPath
 
-  Description:  �����֐�. �ȉ��̏������ꊇ���čs��.
-                1. �w��̃p�X�����΃p�X�����΃p�X�����肵,
-                   (FSArchive*) + (FSDirPos) + ("path") �̌`�ɐ��K������.
-                2. FS_COMMAND_FINDPATH �R�}���h�𑗂�, ���ʂ�Ԃ�.
+  Description:  内部関数. 以下の処理を一括して行う.
+                1. 指定のパス名を絶対パスか相対パスか判定し,
+                   (FSArchive*) + (FSDirPos) + ("path") の形に正規化する.
+                2. FS_COMMAND_FINDPATH コマンドを送り, 結果を返す.
 
-  Arguments:    p_dir       ���ʂ̃f�B���N�g�������i�[����|�C���^
-  Arguments:    path        ���K������Ă��Ȃ��p�X������
-                p_file_id   �t�@�C��ID�����߂�ꍇ�Ɍ��ʂ��i�[����|�C���^
-                p_dir_pos   �f�B���N�g���ʒu�����߂�ꍇ�Ɍ��ʂ��i�[����|�C���^
+  Arguments:    p_dir       結果のディレクトリ情報を格納するポインタ
+  Arguments:    path        正規化されていないパス文字列
+                p_file_id   ファイルIDを求める場合に結果を格納するポインタ
+                p_dir_pos   ディレクトリ位置を求める場合に結果を格納するポインタ
 
-  Returns:      FINDPATH �R�}���h�̌��ʒl.
+  Returns:      FINDPATH コマンドの結果値.
  *---------------------------------------------------------------------------*/
 static BOOL FSi_FindPath(FSFile *p_dir, const char *path, FSFileID *p_file_id, FSDirPos *p_dir_pos)
 {
@@ -359,9 +359,9 @@ static BOOL FSi_FindPath(FSFile *p_dir, const char *path, FSFileID *p_file_id, F
     }
     else
     {
-        /* "(path)/(path)" �܂��� "(arc):/(path)" */
+        /* "(path)/(path)" または "(arc):/(path)" */
         int     i;
-        /* ��{�I�ɂ͌��݂̈ʒu����̑��΃p�X */
+        /* 基本的には現在の位置からの相対パス */
         pos = current_dir_pos;
         for (i = 0; i <= FS_ARCHIVE_NAME_LEN_MAX; ++i)
         {
@@ -374,13 +374,13 @@ static BOOL FSi_FindPath(FSFile *p_dir, const char *path, FSFileID *p_file_id, F
                 FSArchive *const p_arc = FS_FindArchive(path, i);
                 if (!p_arc)
                 {
-                    /* �w��A�[�J�C�u�����o�^ */
+                    /* 指定アーカイブが未登録 */
                     OS_Warning("[file-system] " "archive \"%*s\" is not found.", i, path);
                     return FALSE;
                 }
                 else if (!FS_IsArchiveLoaded(p_arc))
                 {
-                    /* �w��A�[�J�C�u�������[�h */
+                    /* 指定アーカイブが未ロード */
                     OS_Warning("[file-system] "
                                "archive \"%*s\" is registered, but not loaded yet.", i, path);
                     return FALSE;
@@ -417,14 +417,14 @@ static BOOL FSi_FindPath(FSFile *p_dir, const char *path, FSFileID *p_file_id, F
 /*---------------------------------------------------------------------------*
   Name:         FSi_ReadFileCore
 
-  Description:  �����֐�. ReadFile �̋��ʏ���
+  Description:  内部関数. ReadFile の共通処理
 
-  Arguments:    p_file      �f�[�^��ǂݏo���t�@�C���n���h��
-  Arguments:    dst         �ǂݏo�����f�[�^���i�[����o�b�t�@
-                len         �ǂݏo���T�C�Y
-                async       �񓯊��������w�肷��Ȃ� TRUE
+  Arguments:    p_file      データを読み出すファイルハンドル
+  Arguments:    dst         読み出したデータを格納するバッファ
+                len         読み出しサイズ
+                async       非同期処理を指定するなら TRUE
 
-  Returns:      ���ʂƂ��ė\�z�����_���I�ȓǂݏo���T�C�Y.
+  Returns:      結果として予想される論理的な読み出しサイズ.
  *---------------------------------------------------------------------------*/
 static s32 FSi_ReadFileCore(FSFile *p_file, void *dst, s32 len, BOOL async)
 {
@@ -461,14 +461,14 @@ static s32 FSi_ReadFileCore(FSFile *p_file, void *dst, s32 len, BOOL async)
 /*---------------------------------------------------------------------------*
   Name:         FSi_ReadFileCore
 
-  Description:  �����֐�. WriteFile �̋��ʏ���
+  Description:  内部関数. WriteFile の共通処理
 
-  Arguments:    p_file      �f�[�^���������ރt�@�C���n���h��
-  Arguments:    src         �������񂽃f�[�^���i�[����o�b�t�@
-                len         �������݃T�C�Y
-                async       �񓯊��������w�肷��Ȃ� TRUE
+  Arguments:    p_file      データを書き込むファイルハンドル
+  Arguments:    src         書き込んたデータを格納するバッファ
+                len         書き込みサイズ
+                async       非同期処理を指定するなら TRUE
 
-  Returns:      ���ʂƂ��ė\�z�����_���I�ȏ������݃T�C�Y.
+  Returns:      結果として予想される論理的な書き込みサイズ.
  *---------------------------------------------------------------------------*/
 static s32 FSi_WriteFileCore(FSFile *p_file, const void *src, s32 len, BOOL async)
 {
@@ -699,7 +699,7 @@ BOOL FS_WaitAsync(FSFile *p_file)
         OSIntrMode bak_psr = OS_DisableInterrupts();
         if (FS_IsBusy(p_file))
         {
-            /* ���܂��������̔񓯊����[�h�Ȃ炱���ŏ����������󂯂� */
+            /* いまだ未処理の非同期モードならここで処理を引き受ける */
             is_owner = !(p_file->stat & (FS_FILE_STATUS_SYNC | FS_FILE_STATUS_OPERATING));
             if (is_owner)
             {
@@ -710,7 +710,7 @@ BOOL FS_WaitAsync(FSFile *p_file)
                 }
                 while (!(p_file->stat & FS_FILE_STATUS_OPERATING));
             }
-            /* �����łȂ��Ȃ�P�ɏ����̊�����҂� */
+            /* そうでないなら単に処理の完了を待つ */
             else
             {
                 do
@@ -721,7 +721,7 @@ BOOL FS_WaitAsync(FSFile *p_file)
             }
         }
         (void)OS_RestoreInterrupts(bak_psr);
-        /* �����󂯂������������Ŏ��s���� */
+        /* 引き受けた処理をここで実行する */
         if (is_owner)
         {
             return FSi_ExecuteSyncCommand(p_file);

@@ -2,7 +2,7 @@
 /**
  * 
  * @file	slot_data.c
- * @brief	ƒ~ƒjƒQ[ƒ€@ƒXƒƒbƒg@ƒf[ƒ^
+ * @brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã€€ã‚¹ãƒ­ãƒƒãƒˆã€€ãƒ‡ãƒ¼ã‚¿
  * @author	kagaya
  * @data	05.07.13
  *
@@ -20,24 +20,24 @@
 //==============================================================================
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 
 //==============================================================================
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒŠ[ƒ‹ŠG•¿”z—ñ@Še—ñAŠG•¿‚Ì”‚Í21
-//	REEL_RED7			//‚V
-//	REEL_BLACK7			//•‚V
-//	REEL_REPLAY			//ƒŠƒvƒŒƒC
-//	REEL_CHERRY			//ƒ`ƒFƒŠ[
-//	REEL_BELL			//ƒxƒ‹
-//	REEL_SUIKA			//Î
+///	ãƒªãƒ¼ãƒ«çµµæŸ„é…åˆ—ã€€å„åˆ—ã€çµµæŸ„ã®æ•°ã¯21
+//	REEL_RED7			//ï¼—
+//	REEL_BLACK7			//é»’ï¼—
+//	REEL_REPLAY			//ãƒªãƒ—ãƒ¬ã‚¤
+//	REEL_CHERRY			//ãƒã‚§ãƒªãƒ¼
+//	REEL_BELL			//ãƒ™ãƒ«
+//	REEL_SUIKA			//çŸ³
 //--------------------------------------------------------------
 const REEL_PATTERN DATA_SlotDataReelPattern[REEL_MAX][REEL_PT_MAX] =
 {
-	//ˆê—ñ–Ú
+	//ä¸€åˆ—ç›®
 	{
 		REEL_SUIKA,			//0  (21)
 		REEL_CHERRY,			//1
@@ -61,7 +61,7 @@ const REEL_PATTERN DATA_SlotDataReelPattern[REEL_MAX][REEL_PT_MAX] =
 		REEL_REPLAY,			//19
 		REEL_BELL,		//20	(1)
 	},
-	//“ñ—ñ–Ú
+	//äºŒåˆ—ç›®
 	{
 		REEL_CHERRY,			//0 (21)
 		REEL_RED7,			//1
@@ -85,7 +85,7 @@ const REEL_PATTERN DATA_SlotDataReelPattern[REEL_MAX][REEL_PT_MAX] =
 		REEL_BELL,			//19
 		REEL_REPLAY,		//20 (1)
 	},
-	//ŽO—ñ–Ú
+	//ä¸‰åˆ—ç›®
 	{
 		REEL_BELL,			//0 (21)
 		REEL_REPLAY,			//1
@@ -112,106 +112,106 @@ const REEL_PATTERN DATA_SlotDataReelPattern[REEL_MAX][REEL_PT_MAX] =
 };
 
 //--------------------------------------------------------------
-///	Žx•¥‚¢@Žq–ðŽž
+///	æ”¯æ‰•ã„ã€€å­å½¹æ™‚
 //--------------------------------------------------------------
 const int DATA_SlotPayOutSmall[REEL_PATTERN_MAX] =
 {
-	100, 				//Ô‚V
-	100,				//•‚V
-	0,					//ƒŠƒvƒŒƒC
-	2,					//ƒ`ƒFƒŠ[
-	10,					//ƒxƒ‹
-	15,					//ƒXƒCƒJ
+	100, 				//èµ¤ï¼—
+	100,				//é»’ï¼—
+	0,					//ãƒªãƒ—ãƒ¬ã‚¤
+	2,					//ãƒã‚§ãƒªãƒ¼
+	10,					//ãƒ™ãƒ«
+	15,					//ã‚¹ã‚¤ã‚«
 };
 
 //--------------------------------------------------------------
-///	Žx•¥‚¢@ƒ{[ƒiƒXŽž
+///	æ”¯æ‰•ã„ã€€ãƒœãƒ¼ãƒŠã‚¹æ™‚
 //--------------------------------------------------------------
 const int DATA_SlotPayOutBonus[REEL_PATTERN_MAX] =
 {
-	100, 				//Ô‚V
-	100,				//•‚V
-	15,					//ƒŠƒvƒŒƒC
-	2,					//ƒ`ƒFƒŠ[
-	10,					//ƒxƒ‹
-	15,					//ƒXƒCƒJ
+	100, 				//èµ¤ï¼—
+	100,				//é»’ï¼—
+	15,					//ãƒªãƒ—ãƒ¬ã‚¤
+	2,					//ãƒã‚§ãƒªãƒ¼
+	10,					//ãƒ™ãƒ«
+	15,					//ã‚¹ã‚¤ã‚«
 };
 
 //--------------------------------------------------------------
-///	Šî–{’Š‘I A
+///	åŸºæœ¬æŠ½é¸ A
 //--------------------------------------------------------------
 const u32 DATA_SlotBasicLotteryA[SLOT_HARD_MAX] =
 {
-	25,		//Ý’è‚P
-	25,		//Ý’è‚Q
-	30,		//Ý’è‚R
-	30,		//Ý’è‚S
-	35,		//Ý’è‚T
-	35,		//Ý’è‚U
+	25,		//è¨­å®šï¼‘
+	25,		//è¨­å®šï¼’
+	30,		//è¨­å®šï¼“
+	30,		//è¨­å®šï¼”
+	35,		//è¨­å®šï¼•
+	35,		//è¨­å®šï¼–
 };
 
 //--------------------------------------------------------------
-///	Žq–ð’Š‘I A { ƒ{[ƒiƒXŽq–ðŠm—§, Žq–ðŠm—§ }
+///	å­å½¹æŠ½é¸ A { ãƒœãƒ¼ãƒŠã‚¹å­å½¹ç¢ºç«‹, å­å½¹ç¢ºç«‹ }
 //--------------------------------------------------------------
 const LT_SMALLDATA DATA_SlotSmallLotteryA[SLOT_HARD_MAX] =
 {
-	{	//Ý’è‚P
-		{ 1, 4 },				//ƒ`ƒFƒŠ[ƒ{[ƒiƒXAƒ`ƒFƒŠ[
-		{ 2, 13 },				//ƒXƒCƒJƒ{[ƒiƒXAƒXƒCƒJ
-		{ 1, 39 },				//ƒxƒ‹ƒ{[ƒiƒXAƒxƒ‹
-		{ 1, 39 },				//ƒŠƒvƒŒƒCƒ{[ƒiƒXAƒŠƒvƒŒƒC
+	{	//è¨­å®šï¼‘
+		{ 1, 4 },				//ãƒã‚§ãƒªãƒ¼ãƒœãƒ¼ãƒŠã‚¹ã€ãƒã‚§ãƒªãƒ¼
+		{ 2, 13 },				//ã‚¹ã‚¤ã‚«ãƒœãƒ¼ãƒŠã‚¹ã€ã‚¹ã‚¤ã‚«
+		{ 1, 39 },				//ãƒ™ãƒ«ãƒœãƒ¼ãƒŠã‚¹ã€ãƒ™ãƒ«
+		{ 1, 39 },				//ãƒªãƒ—ãƒ¬ã‚¤ãƒœãƒ¼ãƒŠã‚¹ã€ãƒªãƒ—ãƒ¬ã‚¤
 	},
-	{	//Ý’è‚Q
-		{ 1, 4 },				//ƒ`ƒFƒŠ[ƒ{[ƒiƒXAƒ`ƒFƒŠ[
-		{ 2, 13 },				//ƒXƒCƒJƒ{[ƒiƒXAƒXƒCƒJ
-		{ 1, 39 },				//ƒxƒ‹ƒ{[ƒiƒXAƒxƒ‹
-		{ 1, 39 },				//ƒŠƒvƒŒƒCƒ{[ƒiƒXAƒŠƒvƒŒƒC
+	{	//è¨­å®šï¼’
+		{ 1, 4 },				//ãƒã‚§ãƒªãƒ¼ãƒœãƒ¼ãƒŠã‚¹ã€ãƒã‚§ãƒªãƒ¼
+		{ 2, 13 },				//ã‚¹ã‚¤ã‚«ãƒœãƒ¼ãƒŠã‚¹ã€ã‚¹ã‚¤ã‚«
+		{ 1, 39 },				//ãƒ™ãƒ«ãƒœãƒ¼ãƒŠã‚¹ã€ãƒ™ãƒ«
+		{ 1, 39 },				//ãƒªãƒ—ãƒ¬ã‚¤ãƒœãƒ¼ãƒŠã‚¹ã€ãƒªãƒ—ãƒ¬ã‚¤
 	},
-	{	//Ý’è‚R
-		{ 2, 3 },				//ƒ`ƒFƒŠ[ƒ{[ƒiƒXAƒ`ƒFƒŠ[
-		{ 4, 11 },				//ƒXƒCƒJƒ{[ƒiƒXAƒXƒCƒJ
-		{ 2, 38 },				//ƒxƒ‹ƒ{[ƒiƒXAƒxƒ‹
-		{ 2, 38 },				//ƒŠƒvƒŒƒCƒ{[ƒiƒXAƒŠƒvƒŒƒC
+	{	//è¨­å®šï¼“
+		{ 2, 3 },				//ãƒã‚§ãƒªãƒ¼ãƒœãƒ¼ãƒŠã‚¹ã€ãƒã‚§ãƒªãƒ¼
+		{ 4, 11 },				//ã‚¹ã‚¤ã‚«ãƒœãƒ¼ãƒŠã‚¹ã€ã‚¹ã‚¤ã‚«
+		{ 2, 38 },				//ãƒ™ãƒ«ãƒœãƒ¼ãƒŠã‚¹ã€ãƒ™ãƒ«
+		{ 2, 38 },				//ãƒªãƒ—ãƒ¬ã‚¤ãƒœãƒ¼ãƒŠã‚¹ã€ãƒªãƒ—ãƒ¬ã‚¤
 	},
-	{	//Ý’è‚S
-		{ 3, 2 },				//ƒ`ƒFƒŠ[ƒ{[ƒiƒXAƒ`ƒFƒŠ[
-		{ 4, 11 },				//ƒXƒCƒJƒ{[ƒiƒXAƒXƒCƒJ
-		{ 2, 38 },				//ƒxƒ‹ƒ{[ƒiƒXAƒxƒ‹
-		{ 2, 38 },				//ƒŠƒvƒŒƒCƒ{[ƒiƒXAƒŠƒvƒŒƒC
+	{	//è¨­å®šï¼”
+		{ 3, 2 },				//ãƒã‚§ãƒªãƒ¼ãƒœãƒ¼ãƒŠã‚¹ã€ãƒã‚§ãƒªãƒ¼
+		{ 4, 11 },				//ã‚¹ã‚¤ã‚«ãƒœãƒ¼ãƒŠã‚¹ã€ã‚¹ã‚¤ã‚«
+		{ 2, 38 },				//ãƒ™ãƒ«ãƒœãƒ¼ãƒŠã‚¹ã€ãƒ™ãƒ«
+		{ 2, 38 },				//ãƒªãƒ—ãƒ¬ã‚¤ãƒœãƒ¼ãƒŠã‚¹ã€ãƒªãƒ—ãƒ¬ã‚¤
 	},
-	{	//Ý’è‚T
-		{ 4, 1 },				//ƒ`ƒFƒŠ[ƒ{[ƒiƒXAƒ`ƒFƒŠ[
-		{ 6, 9 },				//ƒXƒCƒJƒ{[ƒiƒXAƒXƒCƒJ
-		{ 3, 37 },				//ƒxƒ‹ƒ{[ƒiƒXAƒxƒ‹
-		{ 3, 37 },				//ƒŠƒvƒŒƒCƒ{[ƒiƒXAƒŠƒvƒŒƒC
+	{	//è¨­å®šï¼•
+		{ 4, 1 },				//ãƒã‚§ãƒªãƒ¼ãƒœãƒ¼ãƒŠã‚¹ã€ãƒã‚§ãƒªãƒ¼
+		{ 6, 9 },				//ã‚¹ã‚¤ã‚«ãƒœãƒ¼ãƒŠã‚¹ã€ã‚¹ã‚¤ã‚«
+		{ 3, 37 },				//ãƒ™ãƒ«ãƒœãƒ¼ãƒŠã‚¹ã€ãƒ™ãƒ«
+		{ 3, 37 },				//ãƒªãƒ—ãƒ¬ã‚¤ãƒœãƒ¼ãƒŠã‚¹ã€ãƒªãƒ—ãƒ¬ã‚¤
 	},
-	{	//Ý’è‚U
-		{ 4, 1 },				//ƒ`ƒFƒŠ[ƒ{[ƒiƒXAƒ`ƒFƒŠ[
-		{ 6, 9 },				//ƒXƒCƒJƒ{[ƒiƒXAƒXƒCƒJ
-		{ 3, 37 },				//ƒxƒ‹ƒ{[ƒiƒXAƒxƒ‹
-		{ 3, 37 },				//ƒŠƒvƒŒƒCƒ{[ƒiƒXAƒŠƒvƒŒƒC
+	{	//è¨­å®šï¼–
+		{ 4, 1 },				//ãƒã‚§ãƒªãƒ¼ãƒœãƒ¼ãƒŠã‚¹ã€ãƒã‚§ãƒªãƒ¼
+		{ 6, 9 },				//ã‚¹ã‚¤ã‚«ãƒœãƒ¼ãƒŠã‚¹ã€ã‚¹ã‚¤ã‚«
+		{ 3, 37 },				//ãƒ™ãƒ«ãƒœãƒ¼ãƒŠã‚¹ã€ãƒ™ãƒ«
+		{ 3, 37 },				//ãƒªãƒ—ãƒ¬ã‚¤ãƒœãƒ¼ãƒŠã‚¹ã€ãƒªãƒ—ãƒ¬ã‚¤
 	},
 };
 
 //--------------------------------------------------------------
-///	Šî–{’Š‘IA‚ÌŽq–ð¬—§Žž‚Ìƒiƒr”­¶@’Êíƒiƒr‚ª”­¶‚·‚éŠm—¦
+///	åŸºæœ¬æŠ½é¸Aã®å­å½¹æˆç«‹æ™‚ã®ãƒŠãƒ“ç™ºç”Ÿã€€é€šå¸¸ãƒŠãƒ“ãŒç™ºç”Ÿã™ã‚‹ç¢ºçŽ‡
 //--------------------------------------------------------------
 const u32 DATA_LotteryNavi[SLOT_HARD_MAX] =
 {
-	80,	//Ý’è‚P
-	80,	//Ý’è‚Q
-	80,	//Ý’è‚R
-	80,	//Ý’è‚S
-	80,	//Ý’è‚T
-	70,	//Ý’è‚U
+	80,	//è¨­å®šï¼‘
+	80,	//è¨­å®šï¼’
+	80,	//è¨­å®šï¼“
+	80,	//è¨­å®šï¼”
+	80,	//è¨­å®šï¼•
+	70,	//è¨­å®šï¼–
 };
 
 //--------------------------------------------------------------
-///	Œp‘±—¦Š„‚èU‚è {Šm—¦,ƒqƒbƒg‚µ‚½Œp‘±—¦,Œp‘±—¦Ží—Þ}
+///	ç¶™ç¶šçŽ‡å‰²ã‚ŠæŒ¯ã‚Š {ç¢ºçŽ‡,ãƒ’ãƒƒãƒˆã—ãŸç¶™ç¶šçŽ‡,ç¶™ç¶šçŽ‡ç¨®é¡ž}
 //--------------------------------------------------------------
 const LT_CONT_BONUS DATA_LotteryContinueBonus[SLOT_HARD_MAX][CONT_BONUS_TYPE_MAX] =
 {
-	{	//Ý’è‚P
+	{	//è¨­å®šï¼‘
 		{ 5, CONT_GGG_50, CONT_BONUS_50 },
 		{ 10, CONT_777_70, CONT_BONUS_70 },
 		{ 10, CONT_GGG_90, CONT_BONUS_90 },
@@ -219,7 +219,7 @@ const LT_CONT_BONUS DATA_LotteryContinueBonus[SLOT_HARD_MAX][CONT_BONUS_TYPE_MAX
 		{ 15, CONT_GGG_70, CONT_BONUS_70 },
 		{ 50, CONT_777_50, CONT_BONUS_50 },
 	},
-	{	//Ý’è‚Q
+	{	//è¨­å®šï¼’
 		{ 5, CONT_GGG_50, CONT_BONUS_50 },
 		{ 10, CONT_777_70, CONT_BONUS_70 },
 		{ 10, CONT_GGG_90, CONT_BONUS_90 },
@@ -227,7 +227,7 @@ const LT_CONT_BONUS DATA_LotteryContinueBonus[SLOT_HARD_MAX][CONT_BONUS_TYPE_MAX
 		{ 15, CONT_GGG_70, CONT_BONUS_70 },
 		{ 50, CONT_777_50, CONT_BONUS_50 },
 	},
-	{	//Ý’è‚R
+	{	//è¨­å®šï¼“
 		{ 5, CONT_GGG_50, CONT_BONUS_50 },
 		{ 15, CONT_777_70, CONT_BONUS_70 },
 		{ 10, CONT_GGG_90, CONT_BONUS_90 },
@@ -235,7 +235,7 @@ const LT_CONT_BONUS DATA_LotteryContinueBonus[SLOT_HARD_MAX][CONT_BONUS_TYPE_MAX
 		{ 15, CONT_GGG_70, CONT_BONUS_70 },
 		{ 40, CONT_777_50, CONT_BONUS_50 },
 	},
-	{	//Ý’è‚S
+	{	//è¨­å®šï¼”
 		{ 5, CONT_GGG_50, CONT_BONUS_50 },
 		{ 15, CONT_777_70, CONT_BONUS_70 },
 		{ 15, CONT_GGG_90, CONT_BONUS_90 },
@@ -243,7 +243,7 @@ const LT_CONT_BONUS DATA_LotteryContinueBonus[SLOT_HARD_MAX][CONT_BONUS_TYPE_MAX
 		{ 10, CONT_GGG_70, CONT_BONUS_70 },
 		{ 40, CONT_777_50, CONT_BONUS_50 },
 	},
-	{	//Ý’è‚T
+	{	//è¨­å®šï¼•
 		{ 5, CONT_GGG_50, CONT_BONUS_50 },
 		{ 20, CONT_777_70, CONT_BONUS_70 },
 		{ 15, CONT_GGG_90, CONT_BONUS_90 },
@@ -251,7 +251,7 @@ const LT_CONT_BONUS DATA_LotteryContinueBonus[SLOT_HARD_MAX][CONT_BONUS_TYPE_MAX
 		{ 10, CONT_GGG_70, CONT_BONUS_70 },
 		{ 30, CONT_777_50, CONT_BONUS_50 },
 	},
-	{	//Ý’è‚U
+	{	//è¨­å®šï¼–
 		{ 5, CONT_GGG_50, CONT_BONUS_50 },
 		{ 20, CONT_777_70, CONT_BONUS_70 },
 		{ 15, CONT_GGG_90, CONT_BONUS_90 },
@@ -262,7 +262,7 @@ const LT_CONT_BONUS DATA_LotteryContinueBonus[SLOT_HARD_MAX][CONT_BONUS_TYPE_MAX
 };
 
 //--------------------------------------------------------------
-///	Œp‘±—¦Ží—Þ->ŽÀŒp‘±—¦
+///	ç¶™ç¶šçŽ‡ç¨®é¡ž->å®Ÿç¶™ç¶šçŽ‡
 //--------------------------------------------------------------
 const u32 DATA_ContinueBonusTypeParam[CONT_BONUS_TYPE_MAX] =
 {
@@ -275,245 +275,245 @@ const u32 DATA_ContinueBonusTypeParam[CONT_BONUS_TYPE_MAX] =
 };
 
 //--------------------------------------------------------------
-///	“oêƒ|ƒPƒ‚ƒ“‘I‘ð@{ Šm—¦, “oêƒ|ƒPƒ‚ƒ“ }
-//	PIP_RARE	ƒŒƒAƒsƒbƒs
-//	PIP_NORMAL	ƒsƒbƒs@
-//	PIP_META	ƒƒ^–å
+///	ç™»å ´ãƒã‚±ãƒ¢ãƒ³é¸æŠžã€€{ ç¢ºçŽ‡, ç™»å ´ãƒã‚±ãƒ¢ãƒ³ }
+//	PIP_RARE	ãƒ¬ã‚¢ãƒ”ãƒƒãƒ”
+//	PIP_NORMAL	ãƒ”ãƒƒãƒ”ã€€
+//	PIP_META	ãƒ¡ã‚¿é–€
 //--------------------------------------------------------------
 const LT_POKE_ENTRY DATA_LotteryPokeEntry[SLOT_HARD_MAX][CONT_BONUS_MAX][PIP_MAX] =
 {
-	{	//Ý’è‚P
-		{	//Œp‘±—¦‚T‚O“
+	{	//è¨­å®šï¼‘
+		{	//ç¶™ç¶šçŽ‡ï¼•ï¼ï¼…
 			{ 5, PIP_RARE },{ 20, PIP_NORMAL },{ 75, PIP_META },
 		},
-		{	//Œp‘±—¦‚V‚O“
+		{	//ç¶™ç¶šçŽ‡ï¼—ï¼ï¼…
 			{ 20, PIP_RARE },{ 60, PIP_NORMAL },{ 20, PIP_META },
 		},
-		{	//Œp‘±—¦‚X‚O“
+		{	//ç¶™ç¶šçŽ‡ï¼™ï¼ï¼…
 			{ 75, PIP_RARE },{ 20, PIP_NORMAL },{ 5, PIP_META },
 		},
 	},
-	{	//Ý’è‚Q
-		{	//Œp‘±—¦‚T‚O“
+	{	//è¨­å®šï¼’
+		{	//ç¶™ç¶šçŽ‡ï¼•ï¼ï¼…
 			{ 5, PIP_RARE },{ 20, PIP_NORMAL },{ 75, PIP_META },
 		},
-		{	//Œp‘±—¦‚V‚O“
+		{	//ç¶™ç¶šçŽ‡ï¼—ï¼ï¼…
 			{ 20, PIP_RARE },{ 60, PIP_NORMAL },{ 20, PIP_META },
 		},
-		{	//Œp‘±—¦‚X‚O“
+		{	//ç¶™ç¶šçŽ‡ï¼™ï¼ï¼…
 			{ 75, PIP_RARE },{ 20, PIP_NORMAL },{ 5, PIP_META },
 		},
 	},
-	{	//Ý’è‚R
-		{	//Œp‘±—¦‚T‚O“
+	{	//è¨­å®šï¼“
+		{	//ç¶™ç¶šçŽ‡ï¼•ï¼ï¼…
 			{ 5, PIP_RARE },{ 20, PIP_NORMAL },{ 75, PIP_META },
 		},
-		{	//Œp‘±—¦‚V‚O“
+		{	//ç¶™ç¶šçŽ‡ï¼—ï¼ï¼…
 			{ 20, PIP_RARE },{ 60, PIP_NORMAL },{ 20, PIP_META },
 		},
-		{	//Œp‘±—¦‚X‚O“
+		{	//ç¶™ç¶šçŽ‡ï¼™ï¼ï¼…
 			{ 75, PIP_RARE },{ 20, PIP_NORMAL },{ 5, PIP_META },
 		},
 	},
-	{	//Ý’è‚S
-		{	//Œp‘±—¦‚T‚O“
+	{	//è¨­å®šï¼”
+		{	//ç¶™ç¶šçŽ‡ï¼•ï¼ï¼…
 			{ 5, PIP_RARE },{ 20, PIP_NORMAL },{ 75, PIP_META },
 		},
-		{	//Œp‘±—¦‚V‚O“
+		{	//ç¶™ç¶šçŽ‡ï¼—ï¼ï¼…
 			{ 20, PIP_RARE },{ 60, PIP_NORMAL },{ 20, PIP_META },
 		},
-		{	//Œp‘±—¦‚X‚O“
+		{	//ç¶™ç¶šçŽ‡ï¼™ï¼ï¼…
 			{ 75, PIP_RARE },{ 20, PIP_NORMAL },{ 5, PIP_META },
 		},
 	},
-	{	//Ý’è‚T
-		{	//Œp‘±—¦‚T‚O“
+	{	//è¨­å®šï¼•
+		{	//ç¶™ç¶šçŽ‡ï¼•ï¼ï¼…
 			{ 5, PIP_RARE },{ 20, PIP_NORMAL },{ 75, PIP_META },
 		},
-		{	//Œp‘±—¦‚V‚O“
+		{	//ç¶™ç¶šçŽ‡ï¼—ï¼ï¼…
 			{ 20, PIP_RARE },{ 60, PIP_NORMAL },{ 20, PIP_META },
 		},
-		{	//Œp‘±—¦‚X‚O“
+		{	//ç¶™ç¶šçŽ‡ï¼™ï¼ï¼…
 			{ 75, PIP_RARE },{ 20, PIP_NORMAL },{ 5, PIP_META },
 		},
 	},
-	{	//Ý’è‚U
-		{	//Œp‘±—¦‚T‚O“
+	{	//è¨­å®šï¼–
+		{	//ç¶™ç¶šçŽ‡ï¼•ï¼ï¼…
 			{ 5, PIP_RARE },{ 20, PIP_NORMAL },{ 75, PIP_META },
 		},
-		{	//Œp‘±—¦‚V‚O“
+		{	//ç¶™ç¶šçŽ‡ï¼—ï¼ï¼…
 			{ 20, PIP_RARE },{ 60, PIP_NORMAL },{ 20, PIP_META },
 		},
-		{	//Œp‘±—¦‚X‚O“
+		{	//ç¶™ç¶šçŽ‡ï¼™ï¼ï¼…
 			{ 75, PIP_RARE },{ 20, PIP_NORMAL },{ 5, PIP_META },
 		},
 	},
 };
 
 //--------------------------------------------------------------
-///	Šî–{’Š‘I B
+///	åŸºæœ¬æŠ½é¸ B
 //--------------------------------------------------------------
 const u32 DATA_SlotBasicLotteryB[SLOT_HARD_MAX] =
 {
-	25,		//Ý’è‚P
-	25,		//Ý’è‚Q
-	30,		//Ý’è‚R
-	30,		//Ý’è‚S
-	35,		//Ý’è‚T
-	35,		//Ý’è‚U
+	25,		//è¨­å®šï¼‘
+	25,		//è¨­å®šï¼’
+	30,		//è¨­å®šï¼“
+	30,		//è¨­å®šï¼”
+	35,		//è¨­å®šï¼•
+	35,		//è¨­å®šï¼–
 };
 
 //--------------------------------------------------------------
-///	Žq–ð’Š‘I B
+///	å­å½¹æŠ½é¸ B
 //--------------------------------------------------------------
 const u32 DATA_SlotSmallLotteryB[SLOT_HARD_MAX][4] =
 {
-	{	//Ý’è‚P
-		5,		//ƒ`ƒFƒŠ[
-		15,		//ƒXƒCƒJ
-		30,		//ƒxƒ‹
-		50,		//ƒŠƒvƒŒƒC
+	{	//è¨­å®šï¼‘
+		5,		//ãƒã‚§ãƒªãƒ¼
+		15,		//ã‚¹ã‚¤ã‚«
+		30,		//ãƒ™ãƒ«
+		50,		//ãƒªãƒ—ãƒ¬ã‚¤
 	},
-	{	//Ý’è‚Q
-		5,		//ƒ`ƒFƒŠ[
-		15,		//ƒXƒCƒJ
-		30,		//ƒxƒ‹
-		50,		//ƒŠƒvƒŒƒC
+	{	//è¨­å®šï¼’
+		5,		//ãƒã‚§ãƒªãƒ¼
+		15,		//ã‚¹ã‚¤ã‚«
+		30,		//ãƒ™ãƒ«
+		50,		//ãƒªãƒ—ãƒ¬ã‚¤
 	},
-	{	//Ý’è‚R
-		5,		//ƒ`ƒFƒŠ[
-		15,		//ƒXƒCƒJ
-		30,		//ƒxƒ‹
-		50,		//ƒŠƒvƒŒƒC
+	{	//è¨­å®šï¼“
+		5,		//ãƒã‚§ãƒªãƒ¼
+		15,		//ã‚¹ã‚¤ã‚«
+		30,		//ãƒ™ãƒ«
+		50,		//ãƒªãƒ—ãƒ¬ã‚¤
 	},
-	{	//Ý’è‚S
-		5,		//ƒ`ƒFƒŠ[
-		15,		//ƒXƒCƒJ
-		30,		//ƒxƒ‹
-		50,		//ƒŠƒvƒŒƒC
+	{	//è¨­å®šï¼”
+		5,		//ãƒã‚§ãƒªãƒ¼
+		15,		//ã‚¹ã‚¤ã‚«
+		30,		//ãƒ™ãƒ«
+		50,		//ãƒªãƒ—ãƒ¬ã‚¤
 	},
-	{	//Ý’è‚T
-		5,		//ƒ`ƒFƒŠ[
-		15,		//ƒXƒCƒJ
-		30,		//ƒxƒ‹
-		50,		//ƒŠƒvƒŒƒC
+	{	//è¨­å®šï¼•
+		5,		//ãƒã‚§ãƒªãƒ¼
+		15,		//ã‚¹ã‚¤ã‚«
+		30,		//ãƒ™ãƒ«
+		50,		//ãƒªãƒ—ãƒ¬ã‚¤
 	},
-	{	//Ý’è‚U
-		5,		//ƒ`ƒFƒŠ[
-		15,		//ƒXƒCƒJ
-		30,		//ƒxƒ‹
-		50,		//ƒŠƒvƒŒƒC
+	{	//è¨­å®šï¼–
+		5,		//ãƒã‚§ãƒªãƒ¼
+		15,		//ã‚¹ã‚¤ã‚«
+		30,		//ãƒ™ãƒ«
+		50,		//ãƒªãƒ—ãƒ¬ã‚¤
 	},
 };
 
 //--------------------------------------------------------------
-///	ŒŽŒõƒtƒ‰ƒbƒVƒ…’Š‘I
+///	æœˆå…‰ãƒ•ãƒ©ãƒƒã‚·ãƒ¥æŠ½é¸
 //--------------------------------------------------------------
 const u32 DATA_LotteryMoonLight[SLOT_HARD_MAX] =
 {
-	1,	//Ý’è‚P
-	1,	//Ý’è‚Q
-	3,	//Ý’è‚R
-	3,	//Ý’è‚S
-	5,	//Ý’è‚T
-	5,	//Ý’è‚U
+	1,	//è¨­å®šï¼‘
+	1,	//è¨­å®šï¼’
+	3,	//è¨­å®šï¼“
+	3,	//è¨­å®šï¼”
+	5,	//è¨­å®šï¼•
+	5,	//è¨­å®šï¼–
 };
 
 //--------------------------------------------------------------
-///	Ô‚¢ŒŽ’Š‘I
+///	èµ¤ã„æœˆæŠ½é¸
 //--------------------------------------------------------------
 const u32 DATA_LotteryMoonLightRed[SLOT_HARD_MAX] =
 {
-	3,	//Ý’è‚P
-	3,	//Ý’è‚Q
-	5,	//Ý’è‚R
-	5,	//Ý’è‚S
-	7,	//Ý’è‚T
-	7,	//Ý’è‚U
+	3,	//è¨­å®šï¼‘
+	3,	//è¨­å®šï¼’
+	5,	//è¨­å®šï¼“
+	5,	//è¨­å®šï¼”
+	7,	//è¨­å®šï¼•
+	7,	//è¨­å®šï¼–
 };
 
 //--------------------------------------------------------------
-///	Œp‘±—¦ƒ_ƒEƒ“’Š‘I { 10%ƒ_ƒEƒ“, 5%ƒ_ƒEƒ“ }
+///	ç¶™ç¶šçŽ‡ãƒ€ã‚¦ãƒ³æŠ½é¸ { 10%ãƒ€ã‚¦ãƒ³, 5%ãƒ€ã‚¦ãƒ³ }
 //--------------------------------------------------------------
 const u32 DATA_LotteryBonusContinue[SLOT_HARD_MAX][CONT_BONUS_DOWN_MAX] =
 {
-	{ 25, 20 },	//Ý’è‚P
-	{ 20, 15 },	//Ý’è‚Q
-	{ 15, 15 },	//Ý’è‚R
-	{ 15, 15 },	//Ý’è‚S
-	{ 10, 15 },	//Ý’è‚T
-	{ 5, 10 },	//Ý’è‚U
+	{ 25, 20 },	//è¨­å®šï¼‘
+	{ 20, 15 },	//è¨­å®šï¼’
+	{ 15, 15 },	//è¨­å®šï¼“
+	{ 15, 15 },	//è¨­å®šï¼”
+	{ 10, 15 },	//è¨­å®šï¼•
+	{ 5, 10 },	//è¨­å®šï¼–
 };
 
 //--------------------------------------------------------------
-///	I—¹ŽžŒp‘±‰‰o {‘ÎÛ‚Æ‚È‚éŒp‘±—¦, ƒ{[ƒ‹–ß‚è, ’Êí, ƒAƒ“ƒR[ƒ‹ },
+///	çµ‚äº†æ™‚ç¶™ç¶šæ¼”å‡º {å¯¾è±¡ã¨ãªã‚‹ç¶™ç¶šçŽ‡, ãƒœãƒ¼ãƒ«æˆ»ã‚Š, é€šå¸¸, ã‚¢ãƒ³ã‚³ãƒ¼ãƒ« },
 //--------------------------------------------------------------
 const LT_CONTBONUSEND DATA_LotteryContinueBonusEnd[SLOT_HARD_MAX][CONT_BONUSEND_NUM_MAX] =
 {
-	{	//Ý’è‚P
-		{CONT_BONUSEND_100_75, 10, 10, 80 },	//`75%
-		{CONT_BONUSEND_65, 10, 30, 60 },		//`65%
-		{CONT_BONUSEND_55, 10, 40, 50 },		//`55%
-		{CONT_BONUSEND_45, 20, 50, 30 },		//`45%
-		{CONT_BONUSEND_35, 30, 50, 20 },		//`35%
-		{CONT_BONUSEND_25, 50, 40, 10 },		//`25%
-		{CONT_BONUSEND_15, 60, 30, 10 },		//`15%
-		{CONT_BONUSEND_5, 80, 10, 10 },			//`5%
-		{CONT_BONUSEND_0, 90, 5, 5 },			//`0% ”O‚Ìˆ×@–{—ˆ‚±‚±‚É‚Í—ˆ‚È‚¢
+	{	//è¨­å®šï¼‘
+		{CONT_BONUSEND_100_75, 10, 10, 80 },	//ã€œ75%
+		{CONT_BONUSEND_65, 10, 30, 60 },		//ã€œ65%
+		{CONT_BONUSEND_55, 10, 40, 50 },		//ã€œ55%
+		{CONT_BONUSEND_45, 20, 50, 30 },		//ã€œ45%
+		{CONT_BONUSEND_35, 30, 50, 20 },		//ã€œ35%
+		{CONT_BONUSEND_25, 50, 40, 10 },		//ã€œ25%
+		{CONT_BONUSEND_15, 60, 30, 10 },		//ã€œ15%
+		{CONT_BONUSEND_5, 80, 10, 10 },			//ã€œ5%
+		{CONT_BONUSEND_0, 90, 5, 5 },			//ã€œ0% å¿µã®ç‚ºã€€æœ¬æ¥ã“ã“ã«ã¯æ¥ãªã„
 	},
-	{	//Ý’è‚Q
-		{CONT_BONUSEND_100_75, 10, 10, 80 },	//`75%
-		{CONT_BONUSEND_65, 10, 30, 60 },		//`65%
-		{CONT_BONUSEND_55, 10, 40, 50 },		//`55%
-		{CONT_BONUSEND_45, 20, 50, 30 },		//`45%
-		{CONT_BONUSEND_35, 30, 50, 20 },		//`35%
-		{CONT_BONUSEND_25, 50, 40, 10 },		//`25%
-		{CONT_BONUSEND_15, 60, 30, 10 },		//`15%
-		{CONT_BONUSEND_5, 80, 10, 10 },			//`5%
-		{CONT_BONUSEND_0, 90, 5, 5 },			//`0%
+	{	//è¨­å®šï¼’
+		{CONT_BONUSEND_100_75, 10, 10, 80 },	//ã€œ75%
+		{CONT_BONUSEND_65, 10, 30, 60 },		//ã€œ65%
+		{CONT_BONUSEND_55, 10, 40, 50 },		//ã€œ55%
+		{CONT_BONUSEND_45, 20, 50, 30 },		//ã€œ45%
+		{CONT_BONUSEND_35, 30, 50, 20 },		//ã€œ35%
+		{CONT_BONUSEND_25, 50, 40, 10 },		//ã€œ25%
+		{CONT_BONUSEND_15, 60, 30, 10 },		//ã€œ15%
+		{CONT_BONUSEND_5, 80, 10, 10 },			//ã€œ5%
+		{CONT_BONUSEND_0, 90, 5, 5 },			//ã€œ0%
 	},
-	{	//Ý’è‚R
-		{CONT_BONUSEND_100_75, 10, 10, 80 },	//`75%
-		{CONT_BONUSEND_65, 10, 30, 60 },		//`65%
-		{CONT_BONUSEND_55, 10, 40, 50 },		//`55%
-		{CONT_BONUSEND_45, 20, 50, 30 },		//`45%
-		{CONT_BONUSEND_35, 30, 50, 20 },		//`35%
-		{CONT_BONUSEND_25, 50, 40, 10 },		//`25%
-		{CONT_BONUSEND_15, 60, 30, 10 },		//`15%
-		{CONT_BONUSEND_5, 80, 10, 10 },			//`5%
-		{CONT_BONUSEND_0, 90, 5, 5 },			//`0%
+	{	//è¨­å®šï¼“
+		{CONT_BONUSEND_100_75, 10, 10, 80 },	//ã€œ75%
+		{CONT_BONUSEND_65, 10, 30, 60 },		//ã€œ65%
+		{CONT_BONUSEND_55, 10, 40, 50 },		//ã€œ55%
+		{CONT_BONUSEND_45, 20, 50, 30 },		//ã€œ45%
+		{CONT_BONUSEND_35, 30, 50, 20 },		//ã€œ35%
+		{CONT_BONUSEND_25, 50, 40, 10 },		//ã€œ25%
+		{CONT_BONUSEND_15, 60, 30, 10 },		//ã€œ15%
+		{CONT_BONUSEND_5, 80, 10, 10 },			//ã€œ5%
+		{CONT_BONUSEND_0, 90, 5, 5 },			//ã€œ0%
 	},
-	{	//Ý’è‚S
-		{CONT_BONUSEND_100_75, 10, 10, 80 },	//`75%
-		{CONT_BONUSEND_65, 10, 30, 60 },		//`65%
-		{CONT_BONUSEND_55, 10, 40, 50 },		//`55%
-		{CONT_BONUSEND_45, 20, 50, 30 },		//`45%
-		{CONT_BONUSEND_35, 30, 50, 20 },		//`35%
-		{CONT_BONUSEND_25, 50, 40, 10 },		//`25%
-		{CONT_BONUSEND_15, 60, 30, 10 },		//`15%
-		{CONT_BONUSEND_5, 80, 10, 10 },			//`5%
-		{CONT_BONUSEND_0, 90, 5, 5 },			//`0%
+	{	//è¨­å®šï¼”
+		{CONT_BONUSEND_100_75, 10, 10, 80 },	//ã€œ75%
+		{CONT_BONUSEND_65, 10, 30, 60 },		//ã€œ65%
+		{CONT_BONUSEND_55, 10, 40, 50 },		//ã€œ55%
+		{CONT_BONUSEND_45, 20, 50, 30 },		//ã€œ45%
+		{CONT_BONUSEND_35, 30, 50, 20 },		//ã€œ35%
+		{CONT_BONUSEND_25, 50, 40, 10 },		//ã€œ25%
+		{CONT_BONUSEND_15, 60, 30, 10 },		//ã€œ15%
+		{CONT_BONUSEND_5, 80, 10, 10 },			//ã€œ5%
+		{CONT_BONUSEND_0, 90, 5, 5 },			//ã€œ0%
 	},
-	{	//Ý’è‚T
-		{CONT_BONUSEND_100_75, 10, 10, 80 },	//`75%
-		{CONT_BONUSEND_65, 10, 30, 60 },		//`65%
-		{CONT_BONUSEND_55, 10, 40, 50 },		//`55%
-		{CONT_BONUSEND_45, 20, 50, 30 },		//`45%
-		{CONT_BONUSEND_35, 30, 50, 20 },		//`35%
-		{CONT_BONUSEND_25, 50, 40, 10 },		//`25%
-		{CONT_BONUSEND_15, 60, 30, 10 },		//`15%
-		{CONT_BONUSEND_5, 80, 10, 10 },			//`5%
-		{CONT_BONUSEND_0, 90, 5, 5 },			//`0%
+	{	//è¨­å®šï¼•
+		{CONT_BONUSEND_100_75, 10, 10, 80 },	//ã€œ75%
+		{CONT_BONUSEND_65, 10, 30, 60 },		//ã€œ65%
+		{CONT_BONUSEND_55, 10, 40, 50 },		//ã€œ55%
+		{CONT_BONUSEND_45, 20, 50, 30 },		//ã€œ45%
+		{CONT_BONUSEND_35, 30, 50, 20 },		//ã€œ35%
+		{CONT_BONUSEND_25, 50, 40, 10 },		//ã€œ25%
+		{CONT_BONUSEND_15, 60, 30, 10 },		//ã€œ15%
+		{CONT_BONUSEND_5, 80, 10, 10 },			//ã€œ5%
+		{CONT_BONUSEND_0, 90, 5, 5 },			//ã€œ0%
 	},
-	{	//Ý’è‚U
-		{CONT_BONUSEND_100_75, 10, 10, 80 },	//`75%
-		{CONT_BONUSEND_65, 10, 30, 60 },		//`65%
-		{CONT_BONUSEND_55, 10, 40, 50 },		//`55%
-		{CONT_BONUSEND_45, 20, 50, 30 },		//`45%
-		{CONT_BONUSEND_35, 30, 50, 20 },		//`35%
-		{CONT_BONUSEND_25, 50, 40, 10 },		//`25%
-		{CONT_BONUSEND_15, 60, 30, 10 },		//`15%
-		{CONT_BONUSEND_5, 80, 10, 10 },			//`5%
-		{CONT_BONUSEND_0, 90, 5, 5 },			//`0%
+	{	//è¨­å®šï¼–
+		{CONT_BONUSEND_100_75, 10, 10, 80 },	//ã€œ75%
+		{CONT_BONUSEND_65, 10, 30, 60 },		//ã€œ65%
+		{CONT_BONUSEND_55, 10, 40, 50 },		//ã€œ55%
+		{CONT_BONUSEND_45, 20, 50, 30 },		//ã€œ45%
+		{CONT_BONUSEND_35, 30, 50, 20 },		//ã€œ35%
+		{CONT_BONUSEND_25, 50, 40, 10 },		//ã€œ25%
+		{CONT_BONUSEND_15, 60, 30, 10 },		//ã€œ15%
+		{CONT_BONUSEND_5, 80, 10, 10 },			//ã€œ5%
+		{CONT_BONUSEND_0, 90, 5, 5 },			//ã€œ0%
 	},
 };

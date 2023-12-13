@@ -29,11 +29,11 @@
 /*---------------------------------------------------------------------------*
   Name:         CARDi_OnFifoRecv
 
-  Description:  PXI FIFO ƒ[ƒhŽóMƒR[ƒ‹ƒoƒbƒN.
+  Description:  PXI FIFO ãƒ¯ãƒ¼ãƒ‰å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
 
-  Arguments:    tag        PXI ƒ^ƒO (í‚É PXI_FIFO_TAG_FS)
-                data       ŽóMƒf[ƒ^
-                err        ƒGƒ‰[ƒrƒbƒg (‹ŒŽd—l‚É‚æ‚é‚à‚Ì)
+  Arguments:    tag        PXI ã‚¿ã‚° (å¸¸ã« PXI_FIFO_TAG_FS)
+                data       å—ä¿¡ãƒ‡ãƒ¼ã‚¿
+                err        ã‚¨ãƒ©ãƒ¼ãƒ“ãƒƒãƒˆ (æ—§ä»•æ§˜ã«ã‚ˆã‚‹ã‚‚ã®)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -43,7 +43,7 @@ void CARDi_OnFifoRecv(PXIFifoTag tag, u32 data, BOOL err)
     if ((tag == PXI_FIFO_TAG_FS) && err)
     {
         CARDiCommon *const p = &cardi_common;
-        /* ARM7 ‚©‚ç‚Ì‰ž“š‚ðŽóM‚µ‚ÄŠ®—¹‚ð’Ê’m‚·‚é */
+        /* ARM7 ã‹ã‚‰ã®å¿œç­”ã‚’å—ä¿¡ã—ã¦å®Œäº†ã‚’é€šçŸ¥ã™ã‚‹ */
         SDK_ASSERT(data == CARD_REQ_ACK);
         p->flag &= ~CARD_STAT_REQ;
         OS_WakeupThreadDirect(p->cur_th);
@@ -53,9 +53,9 @@ void CARDi_OnFifoRecv(PXIFifoTag tag, u32 data, BOOL err)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_TaskThread
 
-  Description:  ƒ^ƒXƒNƒXƒŒƒbƒh‚ÌƒƒCƒ“ŠÖ”.
+  Description:  ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒ¡ã‚¤ãƒ³é–¢æ•°.
 
-  Arguments:    arg          •sŽg—p
+  Arguments:    arg          ä¸ä½¿ç”¨
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -66,7 +66,7 @@ void CARDi_TaskThread(void *arg)
 
     for (;;)
     {
-        /* ŽŸ‚Ìˆ—‚ð‘Ò‚Â */
+        /* æ¬¡ã®å‡¦ç†ã‚’å¾…ã¤ */
         OSIntrMode bak_psr = OS_DisableInterrupts();
         while ((p->flag & CARD_STAT_TASK) == 0)
         {
@@ -80,20 +80,20 @@ void CARDi_TaskThread(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_Request
 
-  Description:  ARM9 ‚©‚ç ARM7 ‚ÖƒŠƒNƒGƒXƒg‘—M‚µ, Š®—¹‚ðƒuƒƒbƒLƒ“ƒO.
-                Œ‹‰Ê‚ª CARD_RESULT_SUCCESS ‚Å‚È‚¢‚È‚çŽw’è‰ñ”‚Ü‚Å‚ÍÄŽŽs‚·‚é.
-                (Š’è‚ÌƒoƒX‚ÌƒƒbƒN‚¨‚æ‚Ñƒ^ƒXƒNƒXƒŒƒbƒh‚Ì”r‘¼§Œä‚Í,
-                 ‚±‚ÌŠÖ”‚ÌŒÄ‚Ño‚µŒ³‚Å•ÛØ‚·‚é)
+  Description:  ARM9 ã‹ã‚‰ ARM7 ã¸ãƒªã‚¯ã‚¨ã‚¹ãƒˆé€ä¿¡ã—, å®Œäº†ã‚’ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°.
+                çµæžœãŒ CARD_RESULT_SUCCESS ã§ãªã„ãªã‚‰æŒ‡å®šå›žæ•°ã¾ã§ã¯å†è©¦è¡Œã™ã‚‹.
+                (æ‰€å®šã®ãƒã‚¹ã®ãƒ­ãƒƒã‚¯ãŠã‚ˆã³ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã®æŽ’ä»–åˆ¶å¾¡ã¯,
+                 ã“ã®é–¢æ•°ã®å‘¼ã³å‡ºã—å…ƒã§ä¿è¨¼ã™ã‚‹)
 
-  Arguments:    p            ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ[ƒNƒoƒbƒtƒ@ (Œø—¦‚Ì‚½‚ß‚Éˆø”“n‚µ)
-                req_type     ƒRƒ}ƒ“ƒhƒŠƒNƒGƒXƒg‚ÌŽí—Þ
-                retry_max    ƒŠƒgƒ‰ƒCÅ‘å‰ñ”
+  Arguments:    p            ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ (åŠ¹çŽ‡ã®ãŸã‚ã«å¼•æ•°æ¸¡ã—)
+                req_type     ã‚³ãƒžãƒ³ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ç¨®é¡ž
+                retry_max    ãƒªãƒˆãƒ©ã‚¤æœ€å¤§å›žæ•°
 
-  Returns:      Œ‹‰Ê‚ª CARD_RESULT_SUCCESS ‚Å‚ ‚ê‚Î TRUE.
+  Returns:      çµæžœãŒ CARD_RESULT_SUCCESS ã§ã‚ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL CARDi_Request(CARDiCommon * p, int req_type, int retry_count)
 {
-    /* PXI –¢‰Šú‰»‚È‚ç‚±‚±‚ÅŽÀs */
+    /* PXI æœªåˆæœŸåŒ–ãªã‚‰ã“ã“ã§å®Ÿè¡Œ */
     if ((p->flag & CARD_STAT_INIT_CMD) == 0)
     {
         p->flag |= CARD_STAT_INIT_CMD;
@@ -101,20 +101,20 @@ BOOL CARDi_Request(CARDiCommon * p, int req_type, int retry_count)
         {
             OS_SpinWait(100);
         }
-        /* Å‰‚ÌƒRƒ}ƒ“ƒh "INIT" ‚ð‘—M (Ä‹A) */
+        /* æœ€åˆã®ã‚³ãƒžãƒ³ãƒ‰ "INIT" ã‚’é€ä¿¡ (å†å¸°) */
         (void)CARDi_Request(p, CARD_REQ_INIT, 1);
     }
-    /* Ý’è‚µ‚½‹¤—Lƒƒ‚ƒŠ‚ðƒtƒ‰ƒbƒVƒ… */
+    /* è¨­å®šã—ãŸå…±æœ‰ãƒ¡ãƒ¢ãƒªã‚’ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ */
     DC_FlushRange(p->cmd, sizeof(*p->cmd));
     DC_WaitWriteBufferEmpty();
 
     do
     {
-        /* ƒRƒ}ƒ“ƒhƒŠƒNƒGƒXƒg‘—M */
+        /* ã‚³ãƒžãƒ³ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆé€ä¿¡ */
         p->command = req_type;
         p->flag |= CARD_STAT_REQ;
         CARDi_SendPxi((u32)req_type);
-        /* Œã‘±ˆø”‚ª‚ ‚ê‚Î’Ç‰Á‘—M */
+        /* å¾Œç¶šå¼•æ•°ãŒã‚ã‚Œã°è¿½åŠ é€ä¿¡ */
         switch (req_type)
         {
         case CARD_REQ_INIT:
@@ -122,7 +122,7 @@ BOOL CARDi_Request(CARDiCommon * p, int req_type, int retry_count)
             break;
         }
         {
-            /* ƒRƒ}ƒ“ƒhŠ®—¹‚ð‘Ò‹@ */
+            /* ã‚³ãƒžãƒ³ãƒ‰å®Œäº†ã‚’å¾…æ©Ÿ */
             OSIntrMode bak_psr = OS_DisableInterrupts();
             while ((p->flag & CARD_STAT_REQ) != 0)
             {
@@ -131,11 +131,11 @@ BOOL CARDi_Request(CARDiCommon * p, int req_type, int retry_count)
             (void)OS_RestoreInterrupts(bak_psr);
         }
         DC_InvalidateRange(p->cmd, sizeof(*p->cmd));
-        /* ƒ^ƒCƒ€ƒAƒEƒg‚È‚çŽw’è‰ñ”‚Ü‚ÅÄŽŽs */
+        /* ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãªã‚‰æŒ‡å®šå›žæ•°ã¾ã§å†è©¦è¡Œ */
     }
     while ((p->cmd->result == CARD_RESULT_TIMEOUT) && (--retry_count > 0));
 
-    /* ¬”Û‚ð•Ô‚· */
+    /* æˆå¦ã‚’è¿”ã™ */
     return (p->cmd->result == CARD_RESULT_SUCCESS);
 }
 

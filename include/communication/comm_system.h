@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_system.h
- * @brief	’ÊMƒVƒXƒeƒ€
+ * @brief	é€šä¿¡ã‚·ã‚¹ãƒ†ãƒ 
  * @author	Katsumi Ohno
  * @date    2005.07.08
  */
@@ -11,208 +11,208 @@
 #define _COMM_SYSTEM_H_
 
 
-#include "gflib/tcb.h" //TCB_PTR‚Ì‚½‚ß
+#include "gflib/tcb.h" //TCB_PTRã®ãŸã‚
 #include "savedata/mystatus.h"
 
 //==============================================================================
-// externéŒ¾
+// externå®£è¨€
 //==============================================================================
 
-// •K—v‚Èƒ[ƒNƒTƒCƒY‚ğ•Ô‚µ‚Ü‚· Alloc‚µ‚Ä“n‚µ‚Ä‚­‚¾‚³‚¢
+// å¿…è¦ãªãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™ Allocã—ã¦æ¸¡ã—ã¦ãã ã•ã„
 extern u32 CommGetWorkSize(void);
-//e‹@‚Ì‰Šú‰»‚ğ‚µ‚Ü‚·B‚Â‚È‚¬‚É‚­‚éq‹@‚ğ‘Ò‚¿‚Ü‚·
+//è¦ªæ©Ÿã®åˆæœŸåŒ–ã‚’ã—ã¾ã™ã€‚ã¤ãªãã«ãã‚‹å­æ©Ÿã‚’å¾…ã¡ã¾ã™
 extern BOOL CommParentModeInit(BOOL bAlloc, BOOL bTGIDChange, int packetSizeMax, BOOL bEntry);
-// q‹@‚Ì‰Šú‰»‚ğ‚µ‚Ü‚·B“¯‚Ée‹@‚ğ’T‚µ‚És‚«‚Ü‚·
+// å­æ©Ÿã®åˆæœŸåŒ–ã‚’ã—ã¾ã™ã€‚åŒæ™‚ã«è¦ªæ©Ÿã‚’æ¢ã—ã«è¡Œãã¾ã™
 extern BOOL CommChildModeInit(BOOL bAlloc, BOOL bBconInit, int packetSizeMax);
-// ƒp[ƒeƒB[ƒQ[ƒ€‚ğ’T‚·q‹@‚Ì‰Šú‰»
+// ãƒ‘ãƒ¼ãƒ†ã‚£ãƒ¼ã‚²ãƒ¼ãƒ ã‚’æ¢ã™å­æ©Ÿã®åˆæœŸåŒ–
 extern BOOL CommChildPartyScanModeInit(BOOL bAlloc, BOOL bBconInit, int packetSizeMax);
 
 
-/// ‚±‚Ü‚ñ‚Çƒoƒbƒtƒ@‚ğƒNƒŠƒA‚·‚é
+/// ã“ã¾ã‚“ã©ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 extern void CommSystemReset(void);
 extern void CommSystemResetDS(void);
-/// ƒŠƒZƒbƒg‚·‚é
+/// ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 extern void CommSystemResetBattleChild(void);
 
 extern void CommStopSendMoveData(BOOL bStop);
 
-/// ’ÊMI—¹ˆ—
+/// é€šä¿¡çµ‚äº†å‡¦ç†
 extern void CommFinalize(void);
-// ”­Œ©‚µ‚½e‹@‚Ì”‚ğ•Ô‚µ‚Ü‚·
+// ç™ºè¦‹ã—ãŸè¦ªæ©Ÿã®æ•°ã‚’è¿”ã—ã¾ã™
 extern int CommGetParentCount(void);
-// e‹@‚ªŒ»İ‚Â‚È‚ª‚Á‚Ä‚¢‚é‘ä”‚ğ•Ô‚·
+// è¦ªæ©ŸãŒç¾åœ¨ã¤ãªãŒã£ã¦ã„ã‚‹å°æ•°ã‚’è¿”ã™
 extern int CommGetParentConnectionNum(int index);
-// e‹@‚ÌƒXƒLƒƒƒ“ƒŠƒXƒg‚ÉXV‚ª‚ ‚Á‚½ê‡TRUE
+// è¦ªæ©Ÿã®ã‚¹ã‚­ãƒ£ãƒ³ãƒªã‚¹ãƒˆã«æ›´æ–°ãŒã‚ã£ãŸå ´åˆTRUE
 extern BOOL CommIsScanListChange(void);
-// q‹@@ƒf[ƒ^ƒVƒFƒAƒŠƒ“ƒOó‘Ô‚ÅÚ‘±-- CC_CONNECT_STARTING‚ª‹A‚Á‚Ä‚«‚½‚ç¬Œ÷‚Å‚·
+// å­æ©Ÿã€€ãƒ‡ãƒ¼ã‚¿ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°çŠ¶æ…‹ã§æ¥ç¶š-- CC_CONNECT_STARTINGãŒå¸°ã£ã¦ããŸã‚‰æˆåŠŸã§ã™
 extern int CommChildNameAndIDConnect(STRBUF* pStrBuff, u32 pokeID);
-// q‹@@ƒf[ƒ^ƒVƒFƒAƒŠƒ“ƒOó‘Ô‚ÅÚ‘±-- TRUE‚ª‹A‚Á‚Ä‚«‚½‚ç¬Œ÷‚Å‚·
+// å­æ©Ÿã€€ãƒ‡ãƒ¼ã‚¿ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚°çŠ¶æ…‹ã§æ¥ç¶š-- TRUEãŒå¸°ã£ã¦ããŸã‚‰æˆåŠŸã§ã™
 extern BOOL CommChildIndexConnect(u16 index);
-// q‹@ e‹@‚ÌBCON‚Ìƒ^ƒCƒ€ƒAƒEƒg‚ğŠÄ‹‚µ‚Ü‚·
+// å­æ©Ÿ è¦ªæ©Ÿã®BCONã®ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã‚’ç›£è¦–ã—ã¾ã™
 extern void CommParentBconCheck(void);
-// ‘—MóM‚Ìˆ—‚ğs‚¢‚Ü‚·BVBlank‚É“ü‚Á‚Ä‚·‚®ŒÄ‚Ñ‚Ü‚µ‚å‚¤
+// é€ä¿¡å—ä¿¡ã®å‡¦ç†ã‚’è¡Œã„ã¾ã™ã€‚VBlankã«å…¥ã£ã¦ã™ãå‘¼ã³ã¾ã—ã‚‡ã†
 extern BOOL CommUpdateData(void);
-// óMƒR[ƒ‹ƒoƒbƒNq‹@—p
+// å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å­æ©Ÿç”¨
 extern void CommRecvCallback(u16 aid, u16 *data, u16 size);
-/// óMƒR[ƒ‹ƒoƒbƒNe‹@—p
+/// å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯è¦ªæ©Ÿç”¨
 extern void CommRecvParentCallback(u16 aid, u16 *data, u16 size);
-/// ‘ŠŒİóMƒR[ƒ‹ƒoƒbƒN
+/// ç›¸äº’å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 extern void CommRecvOtherCallback(u16 aid, u16 *data, u16 size);
 
-// “à•”ó‘Ô‚É‚æ‚Á‚Ä’ÊM‚É•K—v‚Èˆ—‚ğ‚·‚é
+// å†…éƒ¨çŠ¶æ…‹ã«ã‚ˆã£ã¦é€šä¿¡ã«å¿…è¦ãªå‡¦ç†ã‚’ã™ã‚‹
 extern void CommStateProcess(TCB_PTR tcb, void* work);
-// ’ÊM’†‚©‚Ç‚¤‚©‚ğ•Ô‚·
+// é€šä¿¡ä¸­ã‹ã©ã†ã‹ã‚’è¿”ã™
 extern BOOL CommIsConnect(u16 netID);
-// ‘—Mƒoƒbƒtƒ@‚Ìc—Ê‚ğ’²‚×‚Ü‚·
+// é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã®æ®‹é‡ã‚’èª¿ã¹ã¾ã™
 extern int CommGetSendRestSize(void);
-// ƒAƒNƒVƒ‡ƒ“‚ªs‚í‚ê‚½‚±‚Æ‚ğİ’è‚µ‚Ü‚·
+// ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãŒè¡Œã‚ã‚ŒãŸã“ã¨ã‚’è¨­å®šã—ã¾ã™
 extern void CommActionCommandSet(void);
-// ƒT[ƒo‘¤‚Ì‘—Mƒoƒbƒtƒ@‚Ìc—Ê‚ğ’²‚×‚Ü‚·
+// ã‚µãƒ¼ãƒå´ã®é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã®æ®‹é‡ã‚’èª¿ã¹ã¾ã™
 extern int CommGetSendRestSize_ServerSide(void);
-// óMƒf[ƒ^‚É–Ú“I‚ÌƒRƒ}ƒ“ƒh‚ª‚ ‚é‚©‚Ç‚¤‚©ŒŸ¸‚·‚é
+// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã«ç›®çš„ã®ã‚³ãƒãƒ³ãƒ‰ãŒã‚ã‚‹ã‹ã©ã†ã‹æ¤œæŸ»ã™ã‚‹
 extern BOOL CommGetRecvData_ServerSide(int netID,int chkCommand, int* retSize, u8* data);
-// Ú‘±l”‚ğ’²‚×‚Ü‚·
+// æ¥ç¶šäººæ•°ã‚’èª¿ã¹ã¾ã™
 extern int CommGetConnectNum(void);
-/// ‰Šú‰»‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ’²‚×‚Ü‚·
+/// åˆæœŸåŒ–ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã¾ã™
 extern BOOL CommIsInitialize(void);
-/// ’ÊMØ‚è‘Ö‚¦‚ğs‚¤ieq”½“]‚É•K—v‚Èˆ—j
+/// é€šä¿¡åˆ‡ã‚Šæ›¿ãˆã‚’è¡Œã†ï¼ˆè¦ªå­åè»¢ã«å¿…è¦ãªå‡¦ç†ï¼‰
 extern BOOL CommSwitchParentChild(void);
 
-/// ƒpƒbƒhƒRƒ“ƒgƒ[ƒ‹‚ğ•Ô‚·
+/// ãƒ‘ãƒƒãƒ‰ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚’è¿”ã™
 extern u16 CommGetPadCont(int netID);
 
-/// ˆÚ“®‘¬“x‚ğ“ü‚ê‚é
+/// ç§»å‹•é€Ÿåº¦ã‚’å…¥ã‚Œã‚‹
 extern void CommSetSpeed(u8 speed);
-/// ˆÚ“®‘¬“x‚ğ•Ô‚·
+/// ç§»å‹•é€Ÿåº¦ã‚’è¿”ã™
 extern u8 CommGetSpeed(int netID);
 
-// e‹@‚ğE‚¤ƒtƒ‰ƒO‚ğƒŠƒZƒbƒg
+// è¦ªæ©Ÿã‚’æ‹¾ã†ãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆ
 extern void CommResetScanChangeFlag(void);
-// ˆÚ“®ƒf[ƒ^‚ğ‘—M‚·‚é‚±‚Æ‚ğ‹–‰Â‚·‚é
+// ç§»å‹•ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã™ã‚‹ã“ã¨ã‚’è¨±å¯ã™ã‚‹
 extern void CommEnableSendMoveData(void);
-// ˆÚ“®ƒf[ƒ^‚ğ‘—M‚·‚é‚±‚Æ‚ğ‹Ö~‚·‚é
+// ç§»å‹•ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã™ã‚‹ã“ã¨ã‚’ç¦æ­¢ã™ã‚‹
 extern void CommDisableSendMoveData(void);
-// ˆÚ“®ƒf[ƒ^‚ğ‘—M‚·‚é‚±‚Æ‚ğ‹–‰Â‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ğ“¾‚é
+// ç§»å‹•ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã™ã‚‹ã“ã¨ã‚’è¨±å¯ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å¾—ã‚‹
 extern BOOL CommIsSendMoveData(void);
 
 
-// ƒf[ƒ^‚ğ‘—‚é
+// ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
 extern BOOL CommSendData(int command, const void* data, int size);
-// ‘å—e—Êƒf[ƒ^‚ğ‘—‚é
+// å¤§å®¹é‡ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
 extern BOOL CommSendHugeData(int command, const void* data, int size);
-// ‘å—e—Ê‚ÅƒTƒCƒYŒÅ’è‚Ìƒf[ƒ^‚ğ‘—‚é
+// å¤§å®¹é‡ã§ã‚µã‚¤ã‚ºå›ºå®šã®ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
 extern BOOL CommSendFixHugeSizeData(int command, const void* data);
-/// ƒTƒCƒY‚ªŒÅ’è‚Ìƒf[ƒ^‚ğ‘—‚é
+/// ã‚µã‚¤ã‚ºãŒå›ºå®šã®ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
 extern BOOL CommSendFixSizeData(int command, const void* data);
-/// ƒRƒ}ƒ“ƒh‚Ì‚İ‚Ìƒf[ƒ^‚ğ‘—‚é
+/// ã‚³ãƒãƒ³ãƒ‰ã®ã¿ã®ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
 extern BOOL CommSendFixData(int command);
-/// ƒT[ƒo‘¤‚Ìƒf[ƒ^‚ğ‘Sq‹@‚É‘—‚é
+/// ã‚µãƒ¼ãƒå´ã®ãƒ‡ãƒ¼ã‚¿ã‚’å…¨å­æ©Ÿã«é€ã‚‹
 extern BOOL CommSendData_ServerSide(int command, const void* data, int size);
-// ƒT[ƒo[‘¤‚ÖŒÅ’èƒTƒCƒY‚Ìƒf[ƒ^‚ğ‘—‚é
+// ã‚µãƒ¼ãƒãƒ¼å´ã¸å›ºå®šã‚µã‚¤ã‚ºã®ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
 extern BOOL CommSendFixSizeData_ServerSide(int command, const void* data);
-// ƒT[ƒo[‚©‚ç‘å—e—Êƒf[ƒ^‚ğ‘—‚é
+// ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰å¤§å®¹é‡ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
 extern BOOL CommSendHugeData_ServerSide(int command, const void* data, int size);
-// ƒT[ƒo[‚©‚çƒTƒCƒYŒÅ’è‚Ì‘å—e—Êƒf[ƒ^‚ğ‘—‚é
+// ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã‚µã‚¤ã‚ºå›ºå®šã®å¤§å®¹é‡ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
 extern BOOL CommSendFixHugeSizeData_ServerSide(int command, const void* data);
 
-// ƒLƒ…[‚É‘—‚é—\’è‚Ìƒf[ƒ^‚ğ‚½‚ß‚é
+// ã‚­ãƒ¥ãƒ¼ã«é€ã‚‹äºˆå®šã®ãƒ‡ãƒ¼ã‚¿ã‚’ãŸã‚ã‚‹
 extern BOOL CommSetSendQueue_ServerSide(int command, const void* data, int size);
-// ƒLƒ…[‚É‘—‚é—\’è‚Ìƒf[ƒ^‚ğ‚½‚ß‚é
+// ã‚­ãƒ¥ãƒ¼ã«é€ã‚‹äºˆå®šã®ãƒ‡ãƒ¼ã‚¿ã‚’ãŸã‚ã‚‹
 extern BOOL CommSetSendQueue(int command, const void* data, int size);
 
-/// ƒ‰ƒ“ƒ_ƒ€‚ÉƒL[‚ğ”­¶‚³‚¹‚é
+/// ãƒ©ãƒ³ãƒ€ãƒ ã«ã‚­ãƒ¼ã‚’ç™ºç”Ÿã•ã›ã‚‹
 extern void CommSetKeyRandMode(void);
 extern void CommSetKeyReverseMode(void);
 extern void CommResetKeyRandMode(void);
 
-/// DSƒ‚[ƒhMPƒ‚[ƒh‚ÌØ‚è‘Ö‚¦
+/// DSãƒ¢ãƒ¼ãƒ‰MPãƒ¢ãƒ¼ãƒ‰ã®åˆ‡ã‚Šæ›¿ãˆ
 extern void CommSetTransmissonTypeDS(void);
 extern void CommSetTransmissonTypeMP(void);
 extern int CommGetTransmissonType(void);
-// ’ÊMƒ‚[ƒhØ‘Ö‚ÌƒR[ƒ‹ƒoƒbƒN
+// é€šä¿¡ãƒ¢ãƒ¼ãƒ‰åˆ‡æ›¿ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 extern void CommRecvDSMPChange(int netID, int size, void* pData, void* pWork);
 extern void CommRecvDSMPChangeReq(int netID, int size, void* pData, void* pWork);
 extern void CommRecvDSMPChangeEnd(int netID, int size, void* pData, void* pWork);
-// ©•ª‚Ì‹@‚ÌnetID‚ğ•Ô‚·
+// è‡ªåˆ†ã®æ©Ÿã®netIDã‚’è¿”ã™
 extern u16 CommGetCurrentID(void);
 
-/// ƒf[ƒ^‚ªóMƒoƒbƒtƒ@‚É‚ ‚é‚©‚Ç‚¤‚©Šm”F‚·‚é
+/// ãƒ‡ãƒ¼ã‚¿ãŒå—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ã‚ã‚‹ã‹ã©ã†ã‹ç¢ºèªã™ã‚‹
 extern BOOL CommRecvData(int netID,int chkCommand, int* retSize, u8* data);
-/// WHƒ‰ƒCƒuƒ‰ƒŠ‚Å@ó‘Ô‚ªIDLE‚É‚È‚Á‚Ä‚¢‚é‚©Šm”F‚·‚é
+/// WHãƒ©ã‚¤ãƒ–ãƒ©ãƒªã§ã€€çŠ¶æ…‹ãŒIDLEã«ãªã£ã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹
 extern BOOL CommIsWHStateIdle(void);
-/// q‹@‚ª‚Â‚È‚ª‚Á‚½‚©‚Ç‚¤‚©‚ğŠm”F
+/// å­æ©ŸãŒã¤ãªãŒã£ãŸã‹ã©ã†ã‹ã‚’ç¢ºèª
 extern BOOL CommIsChildsConnecting(void);
-/// e‹@‚ª‰ñüØ’f‚µ‚½ê‡TRUE
+/// è¦ªæ©ŸãŒå›ç·šåˆ‡æ–­ã—ãŸå ´åˆTRUE
 extern BOOL CommParentDisconnect(void);
-/// VRAMD‚ÉƒCƒNƒjƒ…[ƒ‚ƒ“‚ğ“ü‚ê‚é
+/// VRAMDã«ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³ã‚’å…¥ã‚Œã‚‹
 extern void CommVRAMDInitialize(void);
-/// VRAMD‚ÌƒCƒNƒjƒ…[ƒ‚ƒ“‚ª“ü‚é‚Ì‚ğ‘Ò‚Â
+/// VRAMDã®ã‚¤ã‚¯ãƒ‹ãƒ¥ãƒ¼ãƒ¢ãƒ³ãŒå…¥ã‚‹ã®ã‚’å¾…ã¤
 extern BOOL CommIsVRAMDInitialize(void);
-/// ƒGƒ‰[‚ª‹N‚±‚é‚ÆTRUE‚ğ•Ô‚·
+/// ã‚¨ãƒ©ãƒ¼ãŒèµ·ã“ã‚‹ã¨TRUEã‚’è¿”ã™
 extern BOOL CommIsError(void);
-/// q‹@‚ª‚¢‚È‚¢–‚ğƒGƒ‰[‚É‚µ‚½‚¢ê‡ƒZƒbƒg‚·‚é
+/// å­æ©ŸãŒã„ãªã„äº‹ã‚’ã‚¨ãƒ©ãƒ¼ã«ã—ãŸã„å ´åˆã‚»ãƒƒãƒˆã™ã‚‹
 extern void CommSetNoChildError(BOOL bOn);
-/// ƒT[ƒrƒX‚É‘Î‰‚µ‚½‘—MƒoƒCƒg”‚ğ“¾‚é
+/// ã‚µãƒ¼ãƒ“ã‚¹ã«å¯¾å¿œã—ãŸé€ä¿¡ãƒã‚¤ãƒˆæ•°ã‚’å¾—ã‚‹
 extern u16 CommGetServiceMaxChildSendByte(u16 serviceNo);
-/// Å‘åÚ‘±l”‚ğ“¾‚é
+/// æœ€å¤§æ¥ç¶šäººæ•°ã‚’å¾—ã‚‹
 extern int CommGetMaxEntry(int service);
-/// Å¬Ú‘±l”‚ğ“¾‚é
+/// æœ€å°æ¥ç¶šäººæ•°ã‚’å¾—ã‚‹
 extern int CommGetMinEntry(int service);
 
-/// DS—póMƒf[ƒ^‰ğÍƒCƒeƒŒ[ƒ^[ ‰Šú‰»
+/// DSç”¨å—ä¿¡ãƒ‡ãƒ¼ã‚¿è§£æã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ãƒ¼ åˆæœŸåŒ–
 extern void CommRecvDSIteratorInitialize(int netID);
-/// DS—póMƒf[ƒ^‰ğÍƒCƒeƒŒ[ƒ^[ ƒf[ƒ^‚ª‚ ‚é‚©‚Ç‚¤‚©
+/// DSç”¨å—ä¿¡ãƒ‡ãƒ¼ã‚¿è§£æã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ãƒ¼ ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ã©ã†ã‹
 extern BOOL CommRecvDSIteratorHasNext(int netID);
-/// DS—póMƒf[ƒ^‰ğÍƒCƒeƒŒ[ƒ^[ ƒf[ƒ^‚ğæ‚èo‚µŸ‚Éi‚Ş
+/// DSç”¨å—ä¿¡ãƒ‡ãƒ¼ã‚¿è§£æã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ãƒ¼ ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã—æ¬¡ã«é€²ã‚€
 extern BOOL CommRecvDSIteratorNext(int netID,int *pCommand, int* pSize, u8* pData);
-/// ƒr[ƒRƒ“ƒf[ƒ^‚ğ“¾‚é
+/// ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã‚‹
 extern WMBssDesc* CommGetWMBssDesc(int index);
-/// ƒr[ƒRƒ“ƒf[ƒ^‚ğÁ‚·
+/// ãƒ“ãƒ¼ã‚³ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã™
 extern void CommResetWMBssDesc(int index);
-/// MYSTATUS‚ğ“¾‚é
+/// MYSTATUSã‚’å¾—ã‚‹
 extern MYSTATUS* CommGetMyStatus(void);
-/// BCON“à‚ÉŠÜ‚Ü‚ê‚éMYSTATUS‚ğ•Ô‚·
+/// BCONå†…ã«å«ã¾ã‚Œã‚‹MYSTATUSã‚’è¿”ã™
 extern MYSTATUS* CommGetBconMyStatus(int index);
-/// ©“®Ø’fƒ‚[ƒh‚É“ü‚Á‚½‚©‚Ç‚¤‚©‚ğ•Ô‚·
+/// è‡ªå‹•åˆ‡æ–­ãƒ¢ãƒ¼ãƒ‰ã«å…¥ã£ãŸã‹ã©ã†ã‹ã‚’è¿”ã™
 extern BOOL CommIsAutoExit(void);
-/// ©“®Ø’fƒ‚[ƒhON
+/// è‡ªå‹•åˆ‡æ–­ãƒ¢ãƒ¼ãƒ‰ON
 extern void CommSetAutoExit(void);
 
-/// ˆêl‚Å’ÊM‚·‚éƒ‚[ƒh‚Ìİ’è
+/// ä¸€äººã§é€šä¿¡ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
 extern void CommSetAloneMode(BOOL bAlone);
-/// ˆêl‚Å’ÊM‚·‚éƒ‚[ƒh‚©‚Ç‚¤‚©‚Ìæ“¾
+/// ä¸€äººã§é€šä¿¡ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã®å–å¾—
 extern BOOL CommGetAloneMode(void);
 
 extern void CommSetBackupMacAddress(u8* pMac, int netID);
-/// ƒT[ƒrƒX”Ô†‚ğæ“¾‚·‚é
+/// ã‚µãƒ¼ãƒ“ã‚¹ç•ªå·ã‚’å–å¾—ã™ã‚‹
 extern int CommGetServiceNo(void);
 
-/// —”‚Ìí‚ğ‰Šú‰»
+/// ä¹±æ•°ã®ç¨®ã‚’åˆæœŸåŒ–
 extern void CommRandSeedInitialize(MATHRandContext32* pRand);
 
-/// ƒRƒ}ƒ“ƒh‚ª‘—M‚³‚ê‚½‚©‚Ç‚¤‚©Šm”F
+/// ã‚³ãƒãƒ³ãƒ‰ãŒé€ä¿¡ã•ã‚ŒãŸã‹ã©ã†ã‹ç¢ºèª
 extern BOOL CommIsSendCommand_ServerSize(int command);
 extern BOOL CommIsSendCommand(int command);
 
 
-/// ƒLƒ…[‚ª‹ó‚Á‚Û‚©‚Ç‚¤‚©
+/// ã‚­ãƒ¥ãƒ¼ãŒç©ºã£ã½ã‹ã©ã†ã‹
 BOOL CommIsEmptyQueue_ServerSize(void);
-/// ƒLƒ…[‚ª‹ó‚Á‚Û‚©‚Ç‚¤‚©
+/// ã‚­ãƒ¥ãƒ¼ãŒç©ºã£ã½ã‹ã©ã†ã‹
 BOOL CommIsEmptyQueue(void);
-// DSƒ‚[ƒh‚©‚Ç‚¤‚©
+// DSãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹
 BOOL CommIsTransmissonDSType(void);
 
 
-// í“¬‚É“ü‚é‘O‚Ì“G–¡•û‚Ì—§‚¿ˆÊ’u‚ğİ’è
+// æˆ¦é—˜ã«å…¥ã‚‹å‰ã®æ•µå‘³æ–¹ã®ç«‹ã¡ä½ç½®ã‚’è¨­å®š
 extern void CommSetStandNo(int no, int netID);
-// í“¬‚É“ü‚é‘O‚Ì“G–¡•û‚Ì—§‚¿ˆÊ’u‚ğ“¾‚é
+// æˆ¦é—˜ã«å…¥ã‚‹å‰ã®æ•µå‘³æ–¹ã®ç«‹ã¡ä½ç½®ã‚’å¾—ã‚‹
 extern int CommGetStandNo(int netID);
-//  WIFI“¯Šú’ÊM”ñ“¯Šú’ÊMØ‚è‘Ö‚¦
+//  WIFIåŒæœŸé€šä¿¡éåŒæœŸé€šä¿¡åˆ‡ã‚Šæ›¿ãˆ
 extern void CommSetWifiBothNet(BOOL bFlg);
-//  WIFI“¯Šú’ÊM”ñ“¯Šú’ÊMØ‚è‘Ö‚¦+˜A“®‚µ‚½VCHAT‚ÌØ‚è‘Ö‚¦
+//  WIFIåŒæœŸé€šä¿¡éåŒæœŸé€šä¿¡åˆ‡ã‚Šæ›¿ãˆ+é€£å‹•ã—ãŸVCHATã®åˆ‡ã‚Šæ›¿ãˆ
 extern void CommSetWifiBothNetAndVChat(BOOL bFlg);
 
-// WIFI‚Åe‚É‘—M‚·‚é‰ñ”‚ğŒ¸‚ç‚µ‚Ü‚·
+// WIFIã§è¦ªã«é€ä¿¡ã™ã‚‹å›æ•°ã‚’æ¸›ã‚‰ã—ã¾ã™
 extern void CommSetPulseSendNum(u8 pulseNum);
 
 
@@ -234,7 +234,7 @@ extern void CommSystemShutdown(void);
 // 
 extern BOOL CommLocalIsUnionGroup(int serviceNo);
 
-// ƒLƒ…[‚ğÁ‚·
+// ã‚­ãƒ¥ãƒ¼ã‚’æ¶ˆã™
 extern void CommSystemResetQueue_Server(void);
 
 extern void CommSystemRecvStop(BOOL bFlg);

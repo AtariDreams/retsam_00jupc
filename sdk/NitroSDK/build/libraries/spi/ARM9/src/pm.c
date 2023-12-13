@@ -18,34 +18,34 @@
   small fix
 
   Revision 1.58  2007/10/02 07:25:49  okubata_ryoma
-  LCD §Œä‚Ìƒ}ƒCƒN“dŒ¹§Œä•ÏX
+  LCD åˆ¶å¾¡æ™‚ã®ãƒã‚¤ã‚¯é›»æºåˆ¶å¾¡å¤‰æ›´
 
   Revision 1.57  2007/06/08 07:09:39  okubata_ryoma
-  LCD OFF ŠúŠÔ‚ª 100ms –¢–‚É‚È‚ç‚È‚¢‚½‚ß‚É wait ‚ğ•ÏX
+  LCD OFF æœŸé–“ãŒ 100ms æœªæº€ã«ãªã‚‰ãªã„ãŸã‚ã« wait ã‚’å¤‰æ›´
 
   Revision 1.56  2007/02/20 00:28:10  kitase_hirotake
   indent source
 
   Revision 1.55  2007/01/16 02:38:39  okubata_ryoma
-  LCD off ŠúŠÔ‚Ì’²®
+  LCD off æœŸé–“ã®èª¿æ•´
 
   Revision 1.54  2006/09/13 04:03:25  okubata_ryoma
-  WaitBusy‚ÅIRQƒ‚[ƒh‚Å‚È‚­‚Ä‚àŠ„‚è‚İ‹Ö~‚È‚çPXI‚©‚çƒf[ƒ^‚ğæ“¾‚·‚é‚æ‚¤‚É•ÏX
+  WaitBusyã§IRQãƒ¢ãƒ¼ãƒ‰ã§ãªãã¦ã‚‚å‰²ã‚Šè¾¼ã¿ç¦æ­¢ãªã‚‰PXIã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.53  2006/05/22 07:01:22  okubata_ryoma
-  Š„‚è‚İ‹Ö~’†‚Å‚àPM‚Ì“¯ŠúŠÖ”‚ª“®ì‚·‚é‚æ‚¤‚ÉC³
+  å‰²ã‚Šè¾¼ã¿ç¦æ­¢ä¸­ã§ã‚‚PMã®åŒæœŸé–¢æ•°ãŒå‹•ä½œã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.52  2006/03/28 08:33:30  okubata_ryoma
-  LCD-OFF‚É‚È‚é‚Ü‚Å‘Ò‚¿‘±‚¯‚é‚æ‚¤‚ÉC³
+  LCD-OFFã«ãªã‚‹ã¾ã§å¾…ã¡ç¶šã‘ã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.51  2006/03/28 08:02:05  okubata_ryoma
-  SpinWait150ms‚Ì’Ç‰Á
+  SpinWait150msã®è¿½åŠ 
 
   Revision 1.50  2006/03/23 00:29:42  okubata_ryoma
-  ‘O‰ñ‚Ìd—l•ÏX‚É‚æ‚é•s‹ï‡C³
+  å‰å›ã®ä»•æ§˜å¤‰æ›´ã«ã‚ˆã‚‹ä¸å…·åˆä¿®æ­£
 
   Revision 1.49  2006/03/13 01:13:18  okubata_ryoma
-  í‚ÉLCD-ON‚Å“dŒ¹‚ğØ‚é‚æ‚¤‚É•ÏX
+  å¸¸ã«LCD-ONã§é›»æºã‚’åˆ‡ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.48  2006/01/18 02:12:27  kitase_hirotake
   do-indent
@@ -64,7 +64,7 @@
   do-indent.
 
   Revision 1.43  2005/02/18 07:30:00  yasu
-  OS_DisableInterrupts •Ô’l‚ÌŒ^C³
+  OS_DisableInterrupts è¿”å€¤ã®å‹ä¿®æ­£
 
   Revision 1.42  2005/02/14 01:03:22  yada
   just fix copyright year
@@ -981,19 +981,19 @@ u32 PM_SetAmpAsync(PMAmpSwitch status, PMCallback callback, void *arg)
 //---------------- sync version
 u32 PM_SetAmp(PMAmpSwitch status)
 {
-    // ƒ}ƒCƒN“dŒ¹İ’è•Û‘¶
+    // ãƒã‚¤ã‚¯é›»æºè¨­å®šä¿å­˜
     sAmpSwitch = status;
     return PMi_SetAmp(status);
 }
 
 static u32 PMi_SetAmp(PMAmpSwitch status)
 {
-    // LCD-ON ó‘Ô‚È‚ç‘¦•ÏX
+    // LCD-ON çŠ¶æ…‹ãªã‚‰å³å¤‰æ›´
     if (PM_GetLCDPower())
     {
         return PMi_WriteRegister(REG_PMIC_OP_CTL_ADDR, (u16)status);
     }
-    // LCD-OFF ó‘Ô‚È‚ç LCD-ON ‚É‚È‚é‚Ü‚Åˆ—’x‰„
+    // LCD-OFF çŠ¶æ…‹ãªã‚‰ LCD-ON ã«ãªã‚‹ã¾ã§å‡¦ç†é…å»¶
     else
     {
         return PM_RESULT_SUCCESS;
@@ -1356,7 +1356,7 @@ void PM_GoSleepMode(PMWakeUpTrigger trigger, PMLogic logic, u16 keyPattern)
         reg_GXS_DB_DISPCNT = preGXS;
     }
     
-    //---- LCD OFF ŠúŠÔ‚ª 100ms –¢–‚É‚È‚ç‚È‚¢‚½‚ß‚Ì wait 110ms
+    //---- LCD OFF æœŸé–“ãŒ 100ms æœªæº€ã«ãªã‚‰ãªã„ãŸã‚ã® wait 110ms
     OS_SpinWait(PMi_LCD_SLEEP_WAIT_TICK);
 
     //---- restore all interrupt
@@ -1431,12 +1431,12 @@ BOOL PMi_SetLCDPower(PMLCDPower sw, PMLEDStatus led, BOOL skip, BOOL isSync)
         }
 
         (void)GXi_PowerLCD(TRUE);
-        // ƒ}ƒCƒN“dŒ¹ó‘Ô•œ‹A
+        // ãƒã‚¤ã‚¯é›»æºçŠ¶æ…‹å¾©å¸°
         (void)PMi_SetAmp(sAmpSwitch);
         break;
 
     case PM_LCD_POWER_OFF:
-        // ƒ}ƒCƒN“dŒ¹OFF
+        // ãƒã‚¤ã‚¯é›»æºOFF
         (void)PMi_SetAmp(PM_AMP_OFF);
         (void)GXi_PowerLCD(FALSE);
 

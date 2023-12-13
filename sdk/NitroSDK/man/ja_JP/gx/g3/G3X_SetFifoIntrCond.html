@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>G3X_SetFifoIntrCond</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">G3X_SetFifoIntrCond</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -20,31 +20,31 @@
 
 void G3X_SetFifoIntrCond(GXFifoIntrCond cond);<BR></CODE></PRE>
   </dd>
-</dl><h2>����</h2>
-<P>�R�}���hFIFO���荞�ݗv����������</P>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ�</p>
-<H2>����</H2>
-<P>�R�}���hFIFO���荞�ݗv������������ݒ肵�܂��B���荞�ݗv���s�E���������Ŋ��荞�ݗv���E��Ŋ��荞�ݗv����3�̃I�v�V��������I�����܂��B<BR>
+</dl><h2>引数</h2>
+<P>コマンドFIFO割り込み要求発生条件</P>
+<h2>返り値</h2>
+<p>なし</p>
+<H2>説明</H2>
+<P>コマンドFIFO割り込み要求発生条件を設定します。割り込み要求不可・半分未満で割り込み要求・空で割り込み要求の3つのオプションから選択します。<BR>
 </P>
 <TABLE border="1">
   <TBODY>
     <TR>
       <TD width="30%"><CODE>GX_FIFOINTR_COND_DISABLE</CODE></TD>
-      <TD>�R�}���h�e�h�e�n���荞�ݗv���s��</TD>
+      <TD>コマンドＦＩＦＯ割り込み要求不可</TD>
     </TR>
     <TR>
       <TD><CODE>GX_FIFOINTR_COND_UNDERHALF</CODE></TD>
-      <TD>�R�}���h�e�h�e�n�������ȉ��̂Ƃ��Ɋ��荞�ݗv��</TD>
+      <TD>コマンドＦＩＦＯが半分以下のときに割り込み要求</TD>
     </TR>
     <TR>
       <TD><CODE>GX_FIFOINTR_COND_EMPTY</CODE></TD>
-      <TD>�R�}���hFIFO����̂Ƃ��Ɋ��荞�ݗv��</TD>
+      <TD>コマンドFIFOが空のときに割り込み要求</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P><BR>
-�ȉ���GXFifoIntrCond�^�̌^��`���L���Ă����܂��B</P>
+以下にGXFifoIntrCond型の型定義を記しておきます。</P>
 <PRE><CODE>typedef enum
 {
     GX_FIFOINTR_COND_DISABLE = 0,
@@ -52,8 +52,8 @@ void G3X_SetFifoIntrCond(GXFifoIntrCond cond);<BR></CODE></PRE>
     GX_FIFOINTR_COND_EMPTY = 2
 }
 GXFifoIntrCond;</CODE></PRE>
-<h2>�Q��</h2>
-<H2>����</H2>
+<h2>参照</h2>
+<H2>履歴</H2>
 <P>Ver. 2004/01/19</P>
 </body>
 </html>

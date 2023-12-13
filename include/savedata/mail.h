@@ -1,12 +1,12 @@
 /**
  *	@file	mail.h
- *	@brief	���[���Z�[�u�f�[�^�\����`�@�O���[�o���w�b�_
+ *	@brief	メールセーブデータ構造定義　グローバルヘッダ
  *	@date	06.01.12
  *	@author	Miyuki Iwasawa
  *
- *	���f�[�^���̂��`����ӏ��ȊO�ŎQ�Ƃ��Ă͂����܂���
- *	���z�|�C���^�o�R�Ńf�[�^�A�N�Z�X�ł���Ηǂ��ӏ��ł�
- *	savedata/mail_util.h��include���Ă�������
+ *	＊データ実体を定義する箇所以外で参照してはいけません
+ *	仮想ポインタ経由でデータアクセスできれば良い箇所では
+ *	savedata/mail_util.hをincludeしてください
  */
 
 #ifndef __MAIL_H__
@@ -17,37 +17,37 @@
 #include "system/pm_str.h"
 #include "system/pms_data.h"
 
-///�萔��`
+///定数定義
 #include "savedata/mail_def.h"
-///���[���f�[�^�^
+///メールデータ型
 //=============================================================
-//	�O�����J���Ă��܂����A���ڍ\���̃����o�փA�N�Z�X���邱�Ƃ�
-//	�����Ă��܂���B
+//	外部公開していますが、直接構造体メンバへアクセスすることは
+//	許可していません。
 //
-//	�����o�A�N�Z�X��savedata/mail_util.h�ɒ�`���ꂽ
-//	�A�N�Z�X�n�֐�����Ă�������
+//	メンバアクセスはsavedata/mail_util.hに定義された
+//	アクセス系関数を介してください
 //
 //  size=56byte
 //
-//  �\���̃T�C�Y��4byte���E�ɍ��킹�邽�߁AMAIL_ICON�z��v�f����+1����
-//  �p�f�B���O���s���Ă��܂�
+//  構造体サイズを4byte境界に合わせるため、MAIL_ICON配列要素数に+1して
+//  パディングを行っています
 //=============================================================
 typedef struct _MAIL_DATA{
-	u32	writerID;	//<�g���[�i�[ID 4
-	u8	sex;	//<��l���̐��� 1
-	u8	region;	//<���R�[�h 1
-	u8	version;	//<�J�Z�b�g�o�[�W���� 1
-	u8	design;	//<�f�U�C���i���o�[ 1
+	u32	writerID;	//<トレーナーID 4
+	u8	sex;	//<主人公の性別 1
+	u8	region;	//<国コード 1
+	u8	version;	//<カセットバージョン 1
+	u8	design;	//<デザインナンバー 1
 	STRCODE name[PERSON_NAME_SIZE+EOM_SIZE]; // 16
-	MAIL_ICON	icon[MAILDAT_ICONMAX];	//<�A�C�R��NO�i�[�ꏊ[]
-	u16 form_bit;	//padding�̈���v���`�i����3�̂̃|�P�����̃t�H�����ԍ��Ƃ��Ďg�p(5bit�P��)
-	PMS_DATA	msg[MAILDAT_MSGMAX];	//<���̓f�[�^
+	MAIL_ICON	icon[MAILDAT_ICONMAX];	//<アイコンNO格納場所[]
+	u16 form_bit;	//padding領域をプラチナから3体のポケモンのフォルム番号として使用(5bit単位)
+	PMS_DATA	msg[MAILDAT_MSGMAX];	//<文章データ
 }_MAIL_DATA;
 
 
 //=============================================================
 /**
- *	���[���f�[�^�A�N�Z�X�n�֐�
+ *	メールデータアクセス系関数
  */
 //=============================================================
 #include "savedata/mail_util.h"

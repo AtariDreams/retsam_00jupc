@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_080.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			ƒXƒPƒbƒ`ƒV[ƒPƒ“ƒX
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ã‚¹ã‚±ãƒƒãƒã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *@author	HisashiSogabe
  *@data		2006.01.24
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_080:
-	//‚Ý‚ª‚í‚è‚ðo‚³‚ê‚Ä‚¢‚é‚Æ‚«‚ÍAŽ¸”s‚·‚é
+	//ã¿ãŒã‚ã‚Šã‚’å‡ºã•ã‚Œã¦ã„ã‚‹ã¨ãã¯ã€å¤±æ•—ã™ã‚‹
 	MIGAWARI_CHECK	SIDE_DEFENCE,Umakukimaran
 	SKETCH			Umakukimaran
 	GOSUB			SUB_SEQ_WAZA_OUT_EFF

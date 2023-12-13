@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndArcStrmStop</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,13 +11,13 @@
 <div></div>
 </div>
 <h1>NNS_SndArcStrmStop</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndArcStrmStop( NNSSndStrmHandle* <var>handle</var>, int <var>fadeFrame</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDA0LWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -25,11 +25,11 @@
 <tbody>
 <tr>
 <td><em><strong><code>handle</code></strong></em></td>
-<td>�X�g���[���n���h���̃|�C���^�ł��B</td>
+<td>ストリームハンドルのポインタです。</td>
 </tr>
 <tr>
 <td><em><strong><code>fadeFrame</code></strong></em></td>
-<td>�t�F�[�h�A�E�g�t���[���ł��B�l�͈̔͂́A0 �` 65535�ł��B</td>
+<td>フェードアウトフレームです。値の範囲は、0 〜 65535です。</td>
 </tr>
 </tbody>
 </table>
@@ -37,26 +37,26 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAQMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAXMWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�X�g���[���n���h��<em><strong><code>handle</code></strong></em>�ɁA���т���ꂽ�X�g���[�����~���܂��B
-�X�g���[���n���h��<em><strong><code>handle</code></strong></em>�������̏ꍇ�́A�������܂���B 
+ストリームハンドル<em><strong><code>handle</code></strong></em>に、結びつけられたストリームを停止します。
+ストリームハンドル<em><strong><code>handle</code></strong></em>が無効の場合は、何もしません。 
 </p>
       <p>
-<em><strong><code>fadeFrame</code></strong></em>�Ŏw�肵���Q�[���t���[�����̎��Ԃ������āA���X�ɉ����������Ȃ�����A
-�X�g���[���͊��S�ɒ�~���܂��B<em><strong><code>fadeFrame</code></strong></em>��0�̏ꍇ�́A�����ɒ�~���܂��B
-�t�F�[�h�A�E�g���̃v���C�I���e�B�́A�Œ��0�ɂȂ�܂��B
+<em><strong><code>fadeFrame</code></strong></em>で指定したゲームフレーム分の時間をかけて、徐々に音が小さくなった後、
+ストリームは完全に停止します。<em><strong><code>fadeFrame</code></strong></em>が0の場合は、即座に停止します。
+フェードアウト中のプライオリティは、最低の0になります。
 </p>
     </div>
-<h2>�Q��</h2>
-<p>�Ȃ��B</p>
-<h2>����</h2>
-<p>2004/08/10 ����<br></p>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2004/08/10 初版<br></p>
 </div>
 </body>
 </html>

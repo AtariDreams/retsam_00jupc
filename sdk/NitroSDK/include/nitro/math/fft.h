@@ -21,7 +21,7 @@
   do-indent
 
   Revision 1.1  2005/05/13 09:23:56  seiki_masashi
-  FFT �֐��̒ǉ�
+  FFT 関数の追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -47,10 +47,10 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         MATH_MakeFFTSinTable
 
-  Description:  �����t�[���G�ϊ��ŗp���� sin �e�[�u�����쐬����
+  Description:  高速フーリエ変換で用いる sin テーブルを作成する
 
-  Arguments:    sinTable - 2^nShift * 3/4 �� sin �e�[�u�����i�[����ꏊ�ւ̃|�C���^
-                nShift - �f�[�^���� log2
+  Arguments:    sinTable - 2^nShift * 3/4 の sin テーブルを格納する場所へのポインタ
+                nShift - データ数の log2
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -59,12 +59,12 @@ void    MATH_MakeFFTSinTable(fx16 *sinTable, u32 nShift);
 /*---------------------------------------------------------------------------*
   Name:         MATHi_FFT
 
-  Description:  �����t�[���G�ϊ����s�������֐�
+  Description:  高速フーリエ変換を行う内部関数
 
-  Arguments:    data - �����ԖڂɎ����A��Ԗڂɋ��������߂��ϊ����s���f�[�^�B
-                       �ϊ����ʂ͏㏑������ĕԂ����B
-                nShift - �f�[�^���� log2
-                sinTable - �~�����f�[�^���œ����������� sin �̒l�̃e�[�u��
+  Arguments:    data - 偶数番目に実部、奇数番目に虚部を収めた変換を行うデータ。
+                       変換結果は上書きされて返される。
+                nShift - データ数の log2
+                sinTable - 円周をデータ数で等分した時の sin の値のテーブル
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -73,12 +73,12 @@ void    MATHi_FFT(fx32 *data, u32 nShift, const fx16 *sinTable);
 /*---------------------------------------------------------------------------*
   Name:         MATHi_IFFT
 
-  Description:  �����t�[���G�ϊ��̋t�ϊ����s�������֐�
+  Description:  高速フーリエ変換の逆変換を行う内部関数
 
-  Arguments:    data - �����ԖڂɎ����A��Ԗڂɋ��������߂��ϊ����s���f�[�^�B
-                       �ϊ����ʂ͏㏑������ĕԂ����B
-                nShift - �f�[�^���� log2
-                sinTable - �~�����f�[�^���œ����������� sin �̒l�̃e�[�u��
+  Arguments:    data - 偶数番目に実部、奇数番目に虚部を収めた変換を行うデータ。
+                       変換結果は上書きされて返される。
+                nShift - データ数の log2
+                sinTable - 円周をデータ数で等分した時の sin の値のテーブル
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -87,12 +87,12 @@ void    MATHi_IFFT(fx32 *data, u32 nShift, const fx16 *sinTable);
 /*---------------------------------------------------------------------------*
   Name:         MATH_FFT
 
-  Description:  �����t�[���G�ϊ����s��
+  Description:  高速フーリエ変換を行う
 
-  Arguments:    data - �����ԖڂɎ����A��Ԗڂɋ��������߂��ϊ����s���f�[�^�B
-                       �ϊ����ʂ͏㏑������ĕԂ����B
-                nShift - �f�[�^���� log2
-                sinTable - �~�����f�[�^���œ����������� sin �̒l�̃e�[�u��
+  Arguments:    data - 偶数番目に実部、奇数番目に虚部を収めた変換を行うデータ。
+                       変換結果は上書きされて返される。
+                nShift - データ数の log2
+                sinTable - 円周をデータ数で等分した時の sin の値のテーブル
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -101,12 +101,12 @@ void    MATH_FFT(fx32 *data, u32 nShift, const fx16 *sinTable);
 /*---------------------------------------------------------------------------*
   Name:         MATH_IFFT
 
-  Description:  �����t�[���G�ϊ��̋t�ϊ����s��
+  Description:  高速フーリエ変換の逆変換を行う
 
-  Arguments:    data - �����ԖڂɎ����A��Ԗڂɋ��������߂��ϊ����s���f�[�^�B
-                       �ϊ����ʂ͏㏑������ĕԂ����B
-                nShift - �f�[�^���� log2
-                sinTable - �~�����f�[�^���œ����������� sin �̒l�̃e�[�u��
+  Arguments:    data - 偶数番目に実部、奇数番目に虚部を収めた変換を行うデータ。
+                       変換結果は上書きされて返される。
+                nShift - データ数の log2
+                sinTable - 円周をデータ数で等分した時の sin の値のテーブル
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -115,12 +115,12 @@ void    MATH_IFFT(fx32 *data, u32 nShift, const fx16 *sinTable);
 /*---------------------------------------------------------------------------*
   Name:         MATH_FFTReal
 
-  Description:  �����t�[���G�ϊ����s��
+  Description:  高速フーリエ変換を行う
 
-  Arguments:    data - �����݂̂����߂��f�[�^�B
-                       �ϊ����ʂ͏㏑������ĕԂ����B
-                nShift - �f�[�^���� log2
-                sinTable - �~�����f�[�^���œ����������� sin �̒l�̃e�[�u��
+  Arguments:    data - 実部のみを収めたデータ。
+                       変換結果は上書きされて返される。
+                nShift - データ数の log2
+                sinTable - 円周をデータ数で等分した時の sin の値のテーブル
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -129,12 +129,12 @@ void    MATH_FFTReal(fx32 *data, u32 nShift, const fx16 *sinTable, const fx16 *s
 /*---------------------------------------------------------------------------*
   Name:         MATH_IFFTReal
 
-  Description:  �����t�[���G�ϊ��̋t�ϊ����s��
+  Description:  高速フーリエ変換の逆変換を行う
 
-  Arguments:    data - �����݂̂����߂��f�[�^�B
-                       �ϊ����ʂ͏㏑������ĕԂ����B
-                nShift - �f�[�^���� log2
-                sinTable - �~�����f�[�^���œ����������� sin �̒l�̃e�[�u��
+  Arguments:    data - 実部のみを収めたデータ。
+                       変換結果は上書きされて返される。
+                nShift - データ数の log2
+                sinTable - 円周をデータ数で等分した時の sin の値のテーブル
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

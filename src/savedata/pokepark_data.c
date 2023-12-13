@@ -3,7 +3,7 @@
  * @file	pokepark_data.c
  * @date	2006.06.01
  * @author	tamada / mitsuhara
- * @brief	AGB¨DS—pƒZ[ƒuƒf[ƒ^ŠÖ˜A
+ * @brief	AGBâ†’DSç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿é–¢é€£
  */
 //============================================================================================
 
@@ -13,8 +13,8 @@
 #include "gflib/assert.h"
 
 
-//–{“–‚Í‘¼‚ÌƒfƒBƒŒƒNƒgƒŠ‚Ì’†‚Éè‚ğ“Ë‚Á‚ñ‚ÅƒCƒ“ƒNƒ‹[ƒh‚·‚é‚æ‚¤‚È
-//‚±‚Æ‚Í‚â‚é‚×‚«‚Å‚È‚¢‚ªd•û‚È‚­c
+//æœ¬å½“ã¯ä»–ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ä¸­ã«æ‰‹ã‚’çªã£è¾¼ã‚“ã§ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ã‚ˆã†ãª
+//ã“ã¨ã¯ã‚„ã‚‹ã¹ãã§ãªã„ãŒä»•æ–¹ãªãâ€¦
 
 #include "../poketool/poke_tool_def.h"
 #include "poketool/poke_tool.h"
@@ -24,27 +24,27 @@
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒp[ƒN—pƒZ[ƒuƒf[ƒ^‚Ì’è‹`
+ * @brief	ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®å®šç¾©
  */
 //------------------------------------------------------------------
 #define POKEPARK_HISTORY_SIZE		20
 struct POKEPARK_DATA {
   POKEMON_PARAM mons[POKEPARK_MONS_MAX];
-  u32 AgbTrainerID[POKEPARK_HISTORY_SIZE];	// ˆÚ“®‚µ‚½ƒJƒZƒbƒg‚ÌƒgƒŒ[ƒi[ID
-  s64 CheckTime[POKEPARK_HISTORY_SIZE];		// ˆÚ“®‚µ‚½
-  s64 RTCOffset;				// ŠÔ‚ğ‚¸‚ç‚µ‚½—İÏ(”äŠr—p)
-  u8 MacAddress[6];				// ƒ|ƒPƒ‚ƒ“‚ğˆÚ“®‚µ‚½DS–{‘Ì‚ÌMacƒAƒhƒŒƒX
+  u32 AgbTrainerID[POKEPARK_HISTORY_SIZE];	// ç§»å‹•ã—ãŸã‚«ã‚»ãƒƒãƒˆã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
+  s64 CheckTime[POKEPARK_HISTORY_SIZE];		// ç§»å‹•ã—ãŸæ™‚åˆ»
+  s64 RTCOffset;				// æ™‚é–“ã‚’ãšã‚‰ã—ãŸç´¯ç©(æ¯”è¼ƒç”¨)
+  u8 MacAddress[6];				// ãƒã‚±ãƒ¢ãƒ³ã‚’ç§»å‹•ã—ãŸDSæœ¬ä½“ã®Macã‚¢ãƒ‰ãƒ¬ã‚¹
 };
 
 //============================================================================================
 //
-//		å‚ÉƒZ[ƒuƒVƒXƒeƒ€‚©‚çŒÄ‚Î‚ê‚éŠÖ”
+//		ä¸»ã«ã‚»ãƒ¼ãƒ–ã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰å‘¼ã°ã‚Œã‚‹é–¢æ•°
 //
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^ƒTƒCƒY‚Ìæ“¾
- * @return	int		ƒ|ƒPƒp[ƒN—pƒZ[ƒuƒf[ƒ^‚ÌƒTƒCƒY
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã®å–å¾—
+ * @return	int		ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
  */
 //------------------------------------------------------------------
 int POKEPARKDATA_GetWorkSize(void)
@@ -54,8 +54,8 @@ int POKEPARKDATA_GetWorkSize(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒuƒf[ƒ^‰Šú‰»
- * @param	ppark		ƒ|ƒPƒp[ƒN—pƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
+ * @param	ppark		ãƒã‚±ãƒ‘ãƒ¼ã‚¯ç”¨ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void POKEPARKDATA_Init(POKEPARK_DATA * ppark)
@@ -67,7 +67,7 @@ void POKEPARKDATA_Init(POKEPARK_DATA * ppark)
 		GF_ASSERT(PokeParaGet(&ppark->mons[i], ID_PARA_poke_exist, NULL) == 0);
 	}
 }
-// POKEMON_PARAM‚Ì‚İ‚ğ‰Šú‰»‚·‚é
+// POKEMON_PARAMã®ã¿ã‚’åˆæœŸåŒ–ã™ã‚‹
 void POKEPARKDATA_PreInit(POKEPARK_DATA * ppark)
 {
   int i;
@@ -81,14 +81,14 @@ void POKEPARKDATA_PreInit(POKEPARK_DATA * ppark)
 //============================================================================================
 //
 //
-//				ƒ[ƒJƒ‹ŠÖ”
+//				ãƒ­ãƒ¼ã‚«ãƒ«é–¢æ•°
 //
 //
 //============================================================================================
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒu‚·‚éŠÇ——pƒCƒ“ƒfƒbƒNƒX‚ğ•Ô‚·
+ * @brief	ã‚»ãƒ¼ãƒ–ã™ã‚‹ç®¡ç†ç”¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¿”ã™
  * @param	NONE
  * @return	NONE
  */
@@ -97,17 +97,17 @@ static int POKEPARKDATA_GetMasterIndex(POKEPARK_DATA *ppark, u32 agb_id)
 {
   int i, index;
   s64 min;
-  // “¯‚¶ƒgƒŒ[ƒi[ID‚ğ’T‚·
+  // åŒã˜ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’æ¢ã™
   for(i = 0; i < POKEPARK_HISTORY_SIZE; i++){
     if(ppark->AgbTrainerID[i] == agb_id)
       return i;
   }
-  // ‹ó‚¢‚Ä‚¢‚éêŠ‚ğ•Ô‚·
+  // ç©ºã„ã¦ã„ã‚‹å ´æ‰€ã‚’è¿”ã™
   for(i = 0; i < POKEPARK_HISTORY_SIZE; i++){
     if(ppark->AgbTrainerID[i] == 0)
       return i;
   }
-  // ˆê”ÔŠÔ‚ªŒo‰ß‚µ‚Ä‚¢‚éêŠ‚ğ•Ô‚·
+  // ä¸€ç•ªæ™‚é–“ãŒçµŒéã—ã¦ã„ã‚‹å ´æ‰€ã‚’è¿”ã™
   min = 0x7FFFFFFF;	// 68years
   for(i = 0; i < POKEPARK_HISTORY_SIZE; i++){
     if(ppark->CheckTime[i] < min){
@@ -122,13 +122,13 @@ static int POKEPARKDATA_GetMasterIndex(POKEPARK_DATA *ppark, u32 agb_id)
 //============================================================================================
 //
 //
-//				‘€ìŠÖ”
+//				æ“ä½œé–¢æ•°
 //
 //
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ìİ’è
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
  * @param	NONE
  * @return	NONE
  */
@@ -141,7 +141,7 @@ void POKEPARKDATA_SetData(POKEPARK_DATA *ppark, POKEMON_PASO_PARAM *ppp, int ind
 
 //------------------------------------------------------------------
 /**
- * @brief	ŠÇ——pƒf[ƒ^‚ğƒZƒbƒg
+ * @brief	ç®¡ç†ç”¨ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  * @param	NONE
  * @return	NONE
  */
@@ -157,10 +157,10 @@ void POKEPARKDATA_SetMasterData(POKEPARK_DATA *ppark, u32 agb_id)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒp[ƒNƒf[ƒ^‚ğƒRƒs[‚Åæ“¾‚·‚é
- * @param	ppark			ƒ|ƒPƒp[ƒNƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	index			æ“¾‚·‚éƒ|ƒPƒ‚ƒ“‚ÌƒCƒ“ƒfƒbƒNƒXƒiƒ“ƒo[
- * @param	pp				ƒRƒs[æ‚Ìƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã§å–å¾—ã™ã‚‹
+ * @param	ppark			ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	index			å–å¾—ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
+ * @param	pp				ã‚³ãƒ”ãƒ¼å…ˆã®ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void POKEPARKDATA_CopyPokemonParam(const POKEPARK_DATA * ppark, int index, POKEMON_PARAM * pp)
@@ -185,10 +185,10 @@ int POKEPARKDATA_CountPokemon(const POKEPARK_DATA * ppark)
 
 //------------------------------------------------------------------
 /**
- * @brief	—š—ğ‚Æˆê’v‚·‚é‚h‚c‚ª‘¶İ‚·‚é‚©•Ô‚·
- * @param	ppark			ƒ|ƒPƒp[ƒNƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	agb_id			ƒgƒŒ[ƒi[‚h‚c
- * @return	0: ‚È‚©‚Á‚½@‚»‚êˆÈŠO‚Í‘O‰ñ‚©‚ç‚Ì•b”
+ * @brief	å±¥æ­´ã¨ä¸€è‡´ã™ã‚‹ï¼©ï¼¤ãŒå­˜åœ¨ã™ã‚‹ã‹è¿”ã™
+ * @param	ppark			ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	agb_id			ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤
+ * @return	0: ãªã‹ã£ãŸã€€ãã‚Œä»¥å¤–ã¯å‰å›ã‹ã‚‰ã®ç§’æ•°
  */
 //------------------------------------------------------------------
 int POKEPARKDATA_CheckHistoryID(const POKEPARK_DATA *ppark, u32 agb_id)
@@ -207,9 +207,9 @@ int POKEPARKDATA_CheckHistoryID(const POKEPARK_DATA *ppark, u32 agb_id)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒZ[ƒu‚³‚ê‚Ä‚¢‚éMacƒAƒhƒŒƒX‚Æ–{‘Ì‚ÌMacƒAƒhƒŒƒX‚ğ”äŠr
- * @param	ppark			ƒ|ƒPƒp[ƒNƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	TRUE: ˆê’v@FALSE: •sˆê’v
+ * @brief	ã‚»ãƒ¼ãƒ–ã•ã‚Œã¦ã„ã‚‹Macã‚¢ãƒ‰ãƒ¬ã‚¹ã¨æœ¬ä½“ã®Macã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ¯”è¼ƒ
+ * @param	ppark			ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	TRUE: ä¸€è‡´ã€€FALSE: ä¸ä¸€è‡´
  */
 //------------------------------------------------------------------
 BOOL POKEPARKDATA_CheckMacAddress(const POKEPARK_DATA *ppark)
@@ -217,13 +217,13 @@ BOOL POKEPARKDATA_CheckMacAddress(const POKEPARK_DATA *ppark)
   int i;
   u8 mac[6];
   
-  // MACƒAƒhƒŒƒX‚Ìƒ`ƒFƒbƒN
+  // MACã‚¢ãƒ‰ãƒ¬ã‚¹ã®ãƒã‚§ãƒƒã‚¯
   OS_GetMacAddress(mac);
 #ifdef DEBUG_ONLY_FOR_mituhara
-  OS_TPrintf("ƒZ[ƒu‚³‚ê‚Ä‚¢‚éMACƒAƒhƒŒƒX: %02X-%02X-%02X-%02X-%02X-%02X\n",
+  OS_TPrintf("ã‚»ãƒ¼ãƒ–ã•ã‚Œã¦ã„ã‚‹MACã‚¢ãƒ‰ãƒ¬ã‚¹: %02X-%02X-%02X-%02X-%02X-%02X\n",
 	     ppark->MacAddress[0], ppark->MacAddress[1], ppark->MacAddress[2],
 	     ppark->MacAddress[3], ppark->MacAddress[4], ppark->MacAddress[5]);
-  OS_TPrintf("@@@@@–{‘Ì‚ÌMACƒAƒhƒŒƒX: %02X-%02X-%02X-%02X-%02X-%02X\n",
+  OS_TPrintf("ã€€ã€€ã€€ã€€ã€€æœ¬ä½“ã®MACã‚¢ãƒ‰ãƒ¬ã‚¹: %02X-%02X-%02X-%02X-%02X-%02X\n",
 	     mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
 #endif  
   for(i = 0; i < 6; i++){
@@ -236,9 +236,9 @@ BOOL POKEPARKDATA_CheckMacAddress(const POKEPARK_DATA *ppark)
 
 //------------------------------------------------------------------
 /**
- * @brief	ŠÔ‚ğ‚¸‚ç‚³‚ê‚½‚©‚ğ•Ô‚·
- * @param	ppark			ƒ|ƒPƒp[ƒNƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	TRUE: ‚¸‚ç‚³‚ê‚Ä‚È‚¢@FALSE: ‚¸‚ç‚³‚ê‚½
+ * @brief	æ™‚é–“ã‚’ãšã‚‰ã•ã‚ŒãŸã‹ã‚’è¿”ã™
+ * @param	ppark			ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	TRUE: ãšã‚‰ã•ã‚Œã¦ãªã„ã€€FALSE: ãšã‚‰ã•ã‚ŒãŸ
  */
 //------------------------------------------------------------------
 BOOL POKEPARKDATA_CheckRTCOffset(const POKEPARK_DATA *ppark)
@@ -249,9 +249,9 @@ BOOL POKEPARKDATA_CheckRTCOffset(const POKEPARK_DATA *ppark)
 
 //------------------------------------------------------------------
 /**
- * @brief	V‹KƒZ[ƒu‚©‚Ç‚¤‚©‚ğ•Ô‚·
- * @param	ppark			ƒ|ƒPƒp[ƒNƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	TRUE: V‹KƒZ[ƒu@FALSE: ‚»‚êˆÈŠO
+ * @brief	æ–°è¦ã‚»ãƒ¼ãƒ–ã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @param	ppark			ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	TRUE: æ–°è¦ã‚»ãƒ¼ãƒ–ã€€FALSE: ãã‚Œä»¥å¤–
  */
 //------------------------------------------------------------------
 BOOL POKEPARKDATA_isNewSave(const POKEPARK_DATA *ppark)
@@ -263,7 +263,7 @@ BOOL POKEPARKDATA_isNewSave(const POKEPARK_DATA *ppark)
     code |= ppark->MacAddress[i];
 
   if(code == 0)
-    // V‹KƒZ[ƒuƒf[ƒ^‚ªì¬‚³‚ê‚½‚Î‚©‚è‚ÍTRUE‚ğ•Ô‚·
+    // æ–°è¦ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãŒä½œæˆã•ã‚ŒãŸã°ã‹ã‚Šã¯TRUEã‚’è¿”ã™
     return TRUE;
   return FALSE;
 }
@@ -272,7 +272,7 @@ BOOL POKEPARKDATA_isNewSave(const POKEPARK_DATA *ppark)
 #ifdef	PM_DEBUG
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ìİ’è
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
  * @param	NONE
  * @return	NONE
  */

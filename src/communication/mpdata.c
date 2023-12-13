@@ -2,7 +2,7 @@
  * @version "$Id: mpdata.c,v 1.1 2006/05/02 03:09:56 mitsuhara Exp $"
  *
  * @file twl_data.c
- * @brief –³ü’ÊMƒ‰ƒCƒuƒ‰ƒŠ “à•”ƒf[ƒ^QÆŠÖ”
+ * @brief ç„¡ç·šé€šä¿¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒª å†…éƒ¨ãƒ‡ãƒ¼ã‚¿å‚ç…§é–¢æ•°
  * 
  */
 #include "mpconfig.h"
@@ -21,24 +21,24 @@ static MpInternalData MpData;
 
 __attribute__ ((aligned (32))) static WMParentParam MpDefaultParameter = {
   NULL, 0, 0,
-  MP_GGID,			/* ƒQ[ƒ€ƒOƒ‹[ƒvID */
+  MP_GGID,			/* ã‚²ãƒ¼ãƒ ã‚°ãƒ«ãƒ¼ãƒ—ID */
   0x0000,                       /* temporary ID */
-  1,				/* ƒGƒ“ƒgƒŠ[‹–‰Âƒtƒ‰ƒO */
-  MP_CONNECT_CHILD_MAX,		/* Å‘åÚ‘±q‹@” */
-  0,                            /* ƒ}ƒ‹ƒ`ƒu[ƒgƒtƒ‰ƒO */
-  0,                            /* ƒL[ƒVƒFƒAƒŠƒ“ƒO */
-  0,                            /* ˜A‘±‘—Mƒtƒ‰ƒO */
-  MP_DEFAULT_BEACON_PERIOD,	/* beacon ŠÔŠu */
+  1,				/* ã‚¨ãƒ³ãƒˆãƒªãƒ¼è¨±å¯ãƒ•ãƒ©ã‚° */
+  MP_CONNECT_CHILD_MAX,		/* æœ€å¤§æ¥ç¶šå­æ©Ÿæ•° */
+  0,                            /* ãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆãƒ•ãƒ©ã‚° */
+  0,                            /* ã‚­ãƒ¼ã‚·ã‚§ã‚¢ãƒªãƒ³ã‚° */
+  0,                            /* é€£ç¶šé€ä¿¡ãƒ•ãƒ©ã‚° */
+  MP_DEFAULT_BEACON_PERIOD,	/* beacon é–“éš” */
   {0, 0, 0, 0},			/* rdv1 */
   {0, 0, 0, 0, 0, 0, 0, 0},	/* rsv2 */
-  0,				/* Ú‘±ƒ`ƒƒƒ“ƒlƒ‹ */
-  MP_PARENT_DATA_SIZE,		/* e‹@‘—Mƒf[ƒ^ƒTƒCƒY */
-  MP_CHILD_DATA_SIZE		/* q‹@‘—Mƒf[ƒ^ƒTƒCƒY */
+  0,				/* æ¥ç¶šãƒãƒ£ãƒ³ãƒãƒ« */
+  MP_PARENT_DATA_SIZE,		/* è¦ªæ©Ÿé€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º */
+  MP_CHILD_DATA_SIZE		/* å­æ©Ÿé€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º */
 };
 
 
 /**
- * ƒ‰ƒCƒuƒ‰ƒŠ“à‚Å•Û‚³‚ê‚éWMParentParam‚ğ•Ô‚·
+ * ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…ã§ä¿æŒã•ã‚Œã‚‹WMParentParamã‚’è¿”ã™
  *
  * @return WMParentParam
  */
@@ -51,7 +51,7 @@ void MpSetConnectChildMax(u32 num) { MpDefaultParameter.maxEntry = (u16)num; }
 
 
 /**
- * “à•”‚Åg—p‚·‚éƒf[ƒ^‚ğ•Ô‚·
+ * å†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™
  *
  * @return TWL_InternalData
  */
@@ -62,7 +62,7 @@ MpInternalData *MpGetInternalData(void)
 
 
 /**
- * “à•”ƒXƒe[ƒ^ƒX‚ğ•Ô‚·
+ * å†…éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¿”ã™
  *
  * @return MP_STATUS
  */
@@ -70,7 +70,7 @@ MP_STATUS MpGetStatus(void) { return (MP_STATUS)MpGetInternalData()->status; }
 
 
 /**
- * “à•”ƒXƒe[ƒ^ƒX‚ğİ’è‚·‚é
+ * å†…éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¨­å®šã™ã‚‹
  *
  * @param status TWL_STATUS 
  */
@@ -78,7 +78,7 @@ void MpSetStatus(MP_STATUS status) { MpGetInternalData()->status = (u8)status; }
 
 
 /**
- * —v‹ƒXƒe[ƒ^ƒX‚ğ•Ô‚·
+ * è¦æ±‚ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¿”ã™
  *
  * @return MP_STATUS
  */
@@ -86,7 +86,7 @@ MP_STATUS MpGetRequestStatus(void) { return (MP_STATUS)MpGetInternalData()->requ
 
 
 /**
- * —v‹ƒXƒe[ƒ^ƒX‚ğİ’è‚·‚é
+ * è¦æ±‚ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¨­å®šã™ã‚‹
  *
  * @param status TWL_STATUS 
  */
@@ -94,7 +94,7 @@ void MpSetRequestStatus(MP_STATUS status) { MpGetInternalData()->request_status 
 
 
 /**
- * ’ÊMƒ‚[ƒh‚ğ•Ô‚·
+ * é€šä¿¡ãƒ¢ãƒ¼ãƒ‰ã‚’è¿”ã™
  *
  * @return MP_MODE
  */
@@ -102,7 +102,7 @@ MP_MODE MpGetMode(void) { return (MP_MODE)MpGetInternalData()->mode; }
 
 
 /**
- * ’ÊMƒ‚[ƒh‚ğİ’è‚·‚é
+ * é€šä¿¡ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
  *
  * @param mode MP_MODE
  */
@@ -110,7 +110,7 @@ void MpSetMode(MP_MODE mode) { MpGetInternalData()->mode = (u8)mode; }
 
 
 /**
- * ’ÊMƒ|[ƒg‚ğ•Ô‚·
+ * é€šä¿¡ãƒãƒ¼ãƒˆã‚’è¿”ã™
  *
  * @return port 
  */
@@ -118,7 +118,7 @@ u32 MpGetPort(void) { return (u32)MpGetInternalData()->port; }
 
 
 /**
- * ’ÊMƒ|[ƒg‚ğİ’è‚·‚é
+ * é€šä¿¡ãƒãƒ¼ãƒˆã‚’è¨­å®šã™ã‚‹
  *
  * @param port 
  */
@@ -126,7 +126,7 @@ void MpSetPort(u32 port) { MpGetInternalData()->port = (u8)port; }
 
 
 /**
- * ’ÊMƒ`ƒƒƒ“ƒlƒ‹‚ğ•Ô‚·
+ * é€šä¿¡ãƒãƒ£ãƒ³ãƒãƒ«ã‚’è¿”ã™
  *
  * @return channel 
  */
@@ -134,7 +134,7 @@ u32 MpGetChannel(void) { return (u32)MpGetParentParameter()->channel; }
 
 
 /**
- * ’ÊMƒ`ƒƒƒ“ƒlƒ‹‚ğİ’è‚·‚é
+ * é€šä¿¡ãƒãƒ£ãƒ³ãƒãƒ«ã‚’è¨­å®šã™ã‚‹
  *
  * @param channel 
  */
@@ -142,7 +142,7 @@ void MpSetChannel(u32 channel) { MpGetParentParameter()->channel= (u16)channel; 
 
 
 /**
- * WMScanParam‚ğæ“¾‚·‚é
+ * WMScanParamã‚’å–å¾—ã™ã‚‹
  *
  * @return WMScanParam
  */
@@ -153,47 +153,47 @@ WMScanParam *MpGetScanParameter(void)
 
 
 /**
- * ‘—Mƒoƒbƒtƒ@ƒTƒCƒY‚ğ•Ô‚·
+ * é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’è¿”ã™
  *
- * @return ƒoƒbƒtƒ@ƒTƒCƒY
+ * @return ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
  */
 u32 MpGetSendBuffSize(void) { return MpGetInternalData()->send_buff_size; }
 
 
 /**
- * óMƒoƒbƒtƒ@ƒTƒCƒY‚ğ•Ô‚·
+ * å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’è¿”ã™
  *
- * @return ƒoƒbƒtƒ@ƒTƒCƒY
+ * @return ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
  */
 u32 MpGetRecvBuffSize(void) { return MpGetInternalData()->recv_buff_size; }
 
 
 /**
- * ‘—Mƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  *
- * @return ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX
+ * @return ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 void *MpGetSendBuff(void) { return MpGetInternalData()->send_buff; }
 
 
 /**
- * óMƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  *
- * @return ƒoƒbƒtƒ@‚ÌƒAƒhƒŒƒX
+ * @return ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 void *MpGetRecvBuff(void) {  return MpGetInternalData()->recv_buff; }
 
 
 /**
- * WMBssDesc‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * WMBssDescã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  *
- * @return ƒAƒhƒŒƒX
+ * @return ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 WMBssDesc *MpGetBssDesc(void) { return MpGetInternalData()->bss_desc; }
 
 
 /**
- * AID‚ğ‹L˜^
+ * AIDã‚’è¨˜éŒ²
  *
  * @param aid AID
  */
@@ -201,7 +201,7 @@ void MpSetAid(u16 aid) { MpGetInternalData()->aid = aid; }
 
 
 /**
- * AID‚ğ•Ô‚·
+ * AIDã‚’è¿”ã™
  *
  * @return AID
  */
@@ -219,31 +219,31 @@ void MpSetIsEnd(BOOL flag) { MpGetInternalData()->is_end_flag = flag; }
 
 
 /**
- * ƒ‚[ƒh•Êƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * ãƒ¢ãƒ¼ãƒ‰åˆ¥ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  */
 MpModeData *MpGetModeData(void) { return &MpGetInternalData()->mode_data; }
 
 
 /**
- * q‹@ó‘Ô—pƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * å­æ©ŸçŠ¶æ…‹ç”¨ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  */
 MpDataChildMP *MpGetDataChildMP(void) { return &MpGetModeData()->child_mp; }
 
 
 /**
- * e‹@ó‘Ô—pƒf[ƒ^‚ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * è¦ªæ©ŸçŠ¶æ…‹ç”¨ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  */
 MpDataParentMP *MpGetDataParentMP(void) { return &MpGetModeData()->parent_mp; }
 
 
 /**
- * MpDataChildMP‚ğ‰Šú‰»
+ * MpDataChildMPã‚’åˆæœŸåŒ–
  */
 void MpInitDataChildMP(void)
 {
   MpDataChildMP *dcmp = MpGetDataChildMP();
 
-  /* ‘S‚Ä0ƒNƒŠƒA */
+  /* å…¨ã¦0ã‚¯ãƒªã‚¢ */
   MI_CpuClear8(dcmp, sizeof(MpDataChildMP));
 
   dcmp->time_count = 280;
@@ -251,25 +251,25 @@ void MpInitDataChildMP(void)
 
 
 /**
- * MpDataParentMP‚ğ‰Šú‰»
+ * MpDataParentMPã‚’åˆæœŸåŒ–
  */
 void MpInitDataParentMP(void)
 {
   MpDataParentMP *dpmp = MpGetDataParentMP();
 
-  /* ‘S‚Ä0ƒNƒŠƒA */
+  /* å…¨ã¦0ã‚¯ãƒªã‚¢ */
   MI_CpuClear8(dpmp, sizeof(MpDataParentMP));
 }
 
 
 /**
- * MpTransData‚ğ•Ô‚·
+ * MpTransDataã‚’è¿”ã™
  */
 MpTransData *MpGetTransData(void) { return &MpGetInternalData()->trans_data; }
 
 
 /**
- * MpTransData‚ğ‰Šú‰»
+ * MpTransDataã‚’åˆæœŸåŒ–
  */
 void MpInitTransData(void)
 {
@@ -279,7 +279,7 @@ void MpInitTransData(void)
 
 
 /**
- * GGID‚ğ•Ô‚·
+ * GGIDã‚’è¿”ã™
  */
 u32 MpGetGameID(void) { return MpGetInternalData()->ggid; }
 
@@ -291,7 +291,7 @@ u16 MpGetFramePeriod(void) { return MpGetInternalData()->frame_period; }
 
 
 /**
- * ƒvƒƒgƒRƒ‹ID‚ğ•Ô‚·
+ * ãƒ—ãƒ­ãƒˆã‚³ãƒ«IDã‚’è¿”ã™
  */
 u32 MpGetProtocolID(void)
 {
@@ -299,7 +299,7 @@ u32 MpGetProtocolID(void)
 }
 
 /**
- * ƒvƒƒgƒRƒ‹ƒo[ƒWƒ‡ƒ“‚ğ•Ô‚·
+ * ãƒ—ãƒ­ãƒˆã‚³ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’è¿”ã™
  */
 u32 MpGetProtocolVersion(void)
 {
@@ -308,7 +308,7 @@ u32 MpGetProtocolVersion(void)
 
 
 /**
- * Ú‘±ID‚ğ•Ô‚·
+ * æ¥ç¶šIDã‚’è¿”ã™
  */
 u32 MpGetConnectID(void)
 {
@@ -317,9 +317,9 @@ u32 MpGetConnectID(void)
 
 
 /**
- * UserGameInfo‚ÌƒTƒCƒY‚ğ•Ô‚·
+ * UserGameInfoã®ã‚µã‚¤ã‚ºã‚’è¿”ã™
  *
- * @return UserGameInfo‚ÌƒTƒCƒY
+ * @return UserGameInfoã®ã‚µã‚¤ã‚º
  */
 u32 MpGetUserGameInfoSize(void)
 {
@@ -328,9 +328,9 @@ u32 MpGetUserGameInfoSize(void)
 
 
 /**
- * MpUserGameInfo‚ğ•Ô‚·
+ * MpUserGameInfoã‚’è¿”ã™
  *
- * @return MpUserGameInfo‚ÌƒAƒhƒŒƒX
+ * @return MpUserGameInfoã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 MpUserGameInfo *MpGetUserGameInfo(void)
 {
@@ -339,9 +339,9 @@ MpUserGameInfo *MpGetUserGameInfo(void)
 
 
 /**
- * MpSsidData‚ğ•Ô‚·
+ * MpSsidDataã‚’è¿”ã™
  *
- * @return MpSsidData‚ÌƒAƒhƒŒƒX
+ * @return MpSsidDataã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 MpSsidData *MpGetSsidData(void)
 {
@@ -350,10 +350,10 @@ MpSsidData *MpGetSsidData(void)
 
 
 /**
- * MACƒAƒhƒŒƒX‚ğŠi”[‚µ‚½”z—ñ‚©‚çMpMACAddData‚ğ¶¬
+ * MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ ¼ç´ã—ãŸé…åˆ—ã‹ã‚‰MpMACAddDataã‚’ç”Ÿæˆ
  *
- * @param mac_arry MACƒAƒhƒŒƒX”z—ñ
- * @return@MpMACAddData
+ * @param mac_arry MACã‚¢ãƒ‰ãƒ¬ã‚¹é…åˆ—
+ * @returnã€€MpMACAddData
  */
 MpMACAddData MpMACAddArrayToMACAddData(u8 *mac_arry)
 {
@@ -368,10 +368,10 @@ MpMACAddData MpMACAddArrayToMACAddData(u8 *mac_arry)
 
 
 /**
- * MACƒAƒhƒŒƒX‚ğŠi”[‚µ‚½”z—ñ‚©‚çMpMACVendorData‚ğ¶¬
+ * MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ ¼ç´ã—ãŸé…åˆ—ã‹ã‚‰MpMACVendorDataã‚’ç”Ÿæˆ
  *
- * @param mac_arry MACƒAƒhƒŒƒX”z—ñ
- * @return@MpMACVendorData
+ * @param mac_arry MACã‚¢ãƒ‰ãƒ¬ã‚¹é…åˆ—
+ * @returnã€€MpMACVendorData
  */
 MpMACVendorData MpMACAddArrayToMACVendorData(u8 *mac_arry)
 {
@@ -386,11 +386,11 @@ MpMACVendorData MpMACAddArrayToMACVendorData(u8 *mac_arry)
 
 
 /**
- * u32‚ÌMACƒAƒhƒŒƒX‚©‚çÚ‘±ID‚ğ¶¬
+ * u32ã®MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‹ã‚‰æ¥ç¶šIDã‚’ç”Ÿæˆ
  *
- * @param mac_addr MACƒAƒhƒŒƒX
- * @param high_code ƒ†[ƒU[ƒR[ƒhãˆÊ‚ªŠi”[‚³‚ê‚é
- * @param low_code ƒ†[ƒU[ƒR[ƒh‰ºˆÊ‚ªŠi”[‚³‚ê‚é
+ * @param mac_addr MACã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param high_code ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒ¼ãƒ‰ä¸Šä½ãŒæ ¼ç´ã•ã‚Œã‚‹
+ * @param low_code ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒ¼ãƒ‰ä¸‹ä½ãŒæ ¼ç´ã•ã‚Œã‚‹
  */
 void MpMACAddressToConnectCode(u32 mac_addr, u32 *high_code, u32* low_code)
 {
@@ -400,10 +400,10 @@ void MpMACAddressToConnectCode(u32 mac_addr, u32 *high_code, u32* low_code)
 
 
 /**
- * u32‚ÌMACƒAƒhƒŒƒX‚©‚çÚ‘±ID‚ğ•¶š—ñ‚Æ‚µ‚Ä¶¬
+ * u32ã®MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‹ã‚‰æ¥ç¶šIDã‚’æ–‡å­—åˆ—ã¨ã—ã¦ç”Ÿæˆ
  *
- * @param mac_addr MACƒAƒhƒŒƒX
- * @return •¶š—ñƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+ * @param mac_addr MACã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @return æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  */
 const u16* MpConnectCodeToString(u32 mac_addr)
 {
@@ -448,11 +448,11 @@ const u16* MpConnectCodeToString(u32 mac_addr)
 
 #if 0
 /**
- * ãˆÊ‰ºˆÊ‚»‚ê‚¼‚ê‚Ìƒ†[ƒU[ƒR[ƒh‚©‚çu32‚ÌMACƒAƒhƒŒƒX‚ğ¶¬
+ * ä¸Šä½ä¸‹ä½ãã‚Œãã‚Œã®ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒ¼ãƒ‰ã‹ã‚‰u32ã®MACã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç”Ÿæˆ
  *
- * @param high_code ƒ†[ƒU[ƒR[ƒhãˆÊ
- * @param low_code ƒ†[ƒU[ƒR[ƒh‰ºˆÊ
- * @return MACƒAƒhƒŒƒX
+ * @param high_code ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒ¼ãƒ‰ä¸Šä½
+ * @param low_code ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒ¼ãƒ‰ä¸‹ä½
+ * @return MACã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 u32 MpUserCodeToMACAddress(u32 high_code, u32 low_code)
 {
@@ -461,9 +461,9 @@ u32 MpUserCodeToMACAddress(u32 high_code, u32 low_code)
 #endif
 
 /**
- * ‘—Mƒf[ƒ^‚Ìƒwƒbƒ_ƒTƒCƒY‚ğæ“¾ iŒ»İŒÅ’èj
+ * é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ãƒ˜ãƒƒãƒ€ã‚µã‚¤ã‚ºã‚’å–å¾— ï¼ˆç¾åœ¨å›ºå®šï¼‰
  *
- * @return ƒoƒCƒg”
+ * @return ãƒã‚¤ãƒˆæ•°
  */
 u32 MpGetSendHeaderSize(void)
 {
@@ -472,9 +472,9 @@ u32 MpGetSendHeaderSize(void)
 
 
 /**
- * •„†‰»—p—”seed’l‚ğæ“¾‚·‚é
+ * ç¬¦å·åŒ–ç”¨ä¹±æ•°seedå€¤ã‚’å–å¾—ã™ã‚‹
  *
- * @return seed’l
+ * @return seedå€¤
  */
 static u32 MpGetSeed()
 {
@@ -483,11 +483,11 @@ static u32 MpGetSeed()
 
 
 /**
- * •„†^•œ†‰»‚ğs‚¤
+ * ç¬¦å·ï¼å¾©å·åŒ–ã‚’è¡Œã†
  *
- * @param seed ƒV[ƒh
- * @param size ƒR[ƒh‰»‚·‚é—Ìˆæ‚ÌƒTƒCƒY
- * @param data ƒR[ƒh‰»‚·‚é—Ìˆæ‚ÌƒAƒhƒŒƒX
+ * @param seed ã‚·ãƒ¼ãƒ‰
+ * @param size ã‚³ãƒ¼ãƒ‰åŒ–ã™ã‚‹é ˜åŸŸã®ã‚µã‚¤ã‚º
+ * @param data ã‚³ãƒ¼ãƒ‰åŒ–ã™ã‚‹é ˜åŸŸã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 static u32 MpEncodeData(u32 seed, u32 size, void* data)
 {
@@ -507,12 +507,12 @@ static u32 MpEncodeData(u32 seed, u32 size, void* data)
 
 
 /**
- * ‘—M—pƒf[ƒ^‚ğ¶¬‚·‚é
+ * é€ä¿¡ç”¨ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹
  *
- * @param buff ƒf[ƒ^‚ğ¶¬‚·‚éƒAƒhƒŒƒX
- * @param data ‘—M—pƒf[ƒ^
- * @param data_size ‘—M—pƒf[ƒ^‚ÌƒTƒCƒY
- * @param control_code ’ÊM§ŒäƒR[ƒh
+ * @param buff ãƒ‡ãƒ¼ã‚¿ã‚’ç”Ÿæˆã™ã‚‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param data é€ä¿¡ç”¨ãƒ‡ãƒ¼ã‚¿
+ * @param data_size é€ä¿¡ç”¨ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+ * @param control_code é€šä¿¡åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰
  */
 void MpSetupSendData(void *buff, void *data, u32 data_size, MP_CONTROL_CODE control_code, u32 seq_num)
 {
@@ -550,9 +550,9 @@ void MpSetupSendData(void *buff, void *data, u32 data_size, MP_CONTROL_CODE cont
 
 
 /**
- * óM‚µ‚½ƒf[ƒ^‚ğ•œ†‚·‚é
+ * å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’å¾©å·ã™ã‚‹
  *
- * @param buff óM‚µ‚½ƒf[ƒ^
+ * @param buff å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 void MpDecodeRecvData(void *buff)
 {
@@ -564,14 +564,14 @@ void MpDecodeRecvData(void *buff)
 
     MpPrintf("MpDecodeRecvData() buff %x  encode seed %d\n", buff, header->data0.encode_data);
     
-    /* ƒwƒbƒ_^ƒf[ƒ^ƒTƒCƒY‚ğæ“¾‚·‚é‚½‚ß‚ÉMpSendHeader1‚©‚çMpSendHeader3‚Ü‚Å‚ğ•œ†‚·‚é */
+    /* ãƒ˜ãƒƒãƒ€ï¼ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹ãŸã‚ã«MpSendHeader1ã‹ã‚‰MpSendHeader3ã¾ã§ã‚’å¾©å·ã™ã‚‹ */
     seed = MpEncodeData(header->data0.encode_data,
 			sizeof(MpSendHeader1) + sizeof(MpSendHeader2) + sizeof(MpSendHeader3),
 			&header->data1);
 
     MpPrintf("\t header size %d  data size %d\n", header->data3.header_size, header->data3.data_size);
 
-    /* c‚è‚Ìƒf[ƒ^‚ğ•œ† */
+    /* æ®‹ã‚Šã®ãƒ‡ãƒ¼ã‚¿ã‚’å¾©å· */
     MpEncodeData(seed,
 		 header->data3.header_size + header->data3.data_size - sizeof(MpSendHeader),
 		 (void*)((u32)buff + sizeof(MpSendHeader)));
@@ -581,9 +581,9 @@ void MpDecodeRecvData(void *buff)
 
 
 /**
- * óM‚µ‚½ƒf[ƒ^‚ÌCRC‚ğƒ`ƒFƒbƒN‚·‚é
+ * å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã®CRCã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- * @return buff óM‚µ‚½ƒf[ƒ^
+ * @return buff å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 BOOL MpCheckRecvData(void *buff)
 {

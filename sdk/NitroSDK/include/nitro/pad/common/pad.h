@@ -15,7 +15,7 @@
   fix about headerfiles.
 
   Revision 1.10  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.9  2005/02/28 05:26:29  yosizaki
   do-indent.
@@ -27,13 +27,13 @@
   PAD_SetIrq -> PADi_SetIrq, PAD_ClearIrq -> PADi_ClearIrq
 
   Revision 1.6  2004/06/11 11:21:57  terui
-  ŠJ•ÂŒŸ’mŠÖ”‚Ìƒrƒbƒg˜_—‚ğ”½“]
+  é–‹é–‰æ¤œçŸ¥é–¢æ•°ã®ãƒ“ãƒƒãƒˆè«–ç†ã‚’åè»¢
 
   Revision 1.5  2004/06/11 11:04:59  terui
-  ŠJ•Â”»’è‚ÉŠÖ‚·‚é’è‹`‹y‚ÑŠÖ”‚ğ’Ç‰ÁB
+  é–‹é–‰åˆ¤å®šã«é–¢ã™ã‚‹å®šç¾©åŠã³é–¢æ•°ã‚’è¿½åŠ ã€‚
 
   Revision 1.4  2004/04/13 07:45:56  yada
-  Š„‚İƒL[İ’è‚Ìƒ}ƒXƒN’l‚ğC³
+  å‰²è¾¼ã¿ã‚­ãƒ¼è¨­å®šã®ãƒã‚¹ã‚¯å€¤ã‚’ä¿®æ­£
 
   Revision 1.3  2004/04/07 02:03:17  yada
   fix header comment
@@ -42,10 +42,10 @@
   Add DEBUG button.
 
   Revision 1.1  2004/02/18 01:23:28  yada
-  pad•”•ª‚ğARM7/9‚É•ª‚¯‚½‹¤’Ê•”•ª‚ÅˆÚ“®
+  padéƒ¨åˆ†ã‚’ARM7/9ã«åˆ†ã‘ãŸå…±é€šéƒ¨åˆ†ã§ç§»å‹•
 
   Revision 1.16  2004/02/17 09:22:03  yada
-  ARM7‘Î‰
+  ARM7å¯¾å¿œ
 
   Revision 1.15  2004/02/12 10:56:04  yasu
   new location of include files ARM9/ARM7
@@ -57,40 +57,40 @@
   convert 'inline' to 'static inline' in header files
 
   Revision 1.12  2004/01/08 12:03:21  yada
-  ƒL[Š„‚İ’è‹`‚ÌC³
+  ã‚­ãƒ¼å‰²è¾¼ã¿å®šç¾©ã®ä¿®æ­£
 
   Revision 1.11  2003/12/26 05:52:02  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.10  2003/12/25 10:55:08  yada
-  Œ^ƒ‹[ƒ‹“ˆê‚É‚æ‚é•ÏX
+  å‹ãƒ«ãƒ¼ãƒ«çµ±ä¸€ã«ã‚ˆã‚‹å¤‰æ›´
 
   Revision 1.9  2003/12/25 00:19:29  nishida_kenji
   convert INLINE to inline
 
   Revision 1.8  2003/12/11 08:00:31  yada
-  enum ’è‹`‚ğC³Benableƒtƒ‰ƒO‚Í BOOL Œ^‚Æ‚µ‚½B
+  enum å®šç¾©ã‚’ä¿®æ­£ã€‚enableãƒ•ãƒ©ã‚°ã¯ BOOL å‹ã¨ã—ãŸã€‚
 
   Revision 1.7  2003/12/01 10:39:04  yada
-  PAD_SetInterrupt()¨PAD_SetIRQ()APAD_ClearInterrupt()¨PAD_ClearIRQ() ‚ÉB
+  PAD_SetInterrupt()â†’PAD_SetIRQ()ã€PAD_ClearInterrupt()â†’PAD_ClearIRQ() ã«ã€‚
 
   Revision 1.6  2003/11/14 04:56:01  yada
-  ƒŒƒWƒXƒ^‚ÌƒAƒNƒZƒXƒ}ƒNƒ REG_XXX ¨ reg_XXX ‚Æ‚µ‚½B
+  ãƒ¬ã‚¸ã‚¹ã‚¿ã®ã‚¢ã‚¯ã‚»ã‚¹ãƒã‚¯ãƒ­ REG_XXX â†’ reg_XXX ã¨ã—ãŸã€‚
 
   Revision 1.5  2003/11/12 12:02:09  yada
-  ƒRƒƒ“ƒg‚ÌC³EƒCƒ“ƒNƒ‹[ƒh‚·‚éƒtƒ@ƒCƒ‹‚ÌC³
+  ã‚³ãƒ¡ãƒ³ãƒˆã®ä¿®æ­£ãƒ»ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿®æ­£
 
   Revision 1.4  2003/11/10 07:59:47  yada
-  ƒpƒbƒh‚©‚ç‚Ì“ü—Í‚ğ”½“]
+  ãƒ‘ãƒƒãƒ‰ã‹ã‚‰ã®å…¥åŠ›ã‚’åè»¢
 
   Revision 1.3  2003/11/05 01:03:31  yada
-  ƒLƒƒƒXƒg‚ğŒµ‚µ‚­B‚Æ‚è‚ ‚¦‚¸warning ‚ªo‚È‚¢‚æ‚¤‚ÉB
+  ã‚­ãƒ£ã‚¹ãƒˆã‚’å³ã—ãã€‚ã¨ã‚Šã‚ãˆãšwarning ãŒå‡ºãªã„ã‚ˆã†ã«ã€‚
 
   Revision 1.2  2003/10/30 11:42:57  yada
-  ƒŒƒWƒXƒ^‚ÌŒ^‚ÉREGTypexx ‚ğg‚¤‚æ‚¤‚É‚µ‚½B
+  ãƒ¬ã‚¸ã‚¹ã‚¿ã®å‹ã«REGTypexx ã‚’ä½¿ã†ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.1  2003/10/30 07:41:13  yada
-  ‰”Åì¬
+  åˆç‰ˆä½œæˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

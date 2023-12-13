@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=SHIFT_JIS">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_McsInitPrint</title>
 <LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
@@ -11,7 +11,7 @@
 <body>
 
 <h1 align="left">NNS_McsInitPrint</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,28 +22,28 @@
          void*   pBuffer,
          u32     size);</CODE></pre>
 	</dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
  
     <tr> 
   <td width="13%"><em><strong><font face="Courier New">pBuffer</font></strong></em></td>
-  <td width="87%">������o�͂̂��߂̍�Ɨp�o�b�t�@�B<code>NNS_McsPrintf</code>�֐��ł͂����Ŏw�肵���o�b�t�@���g�p���܂��B</td>
+  <td width="87%">文字列出力のための作業用バッファ。<code>NNS_McsPrintf</code>関数ではここで指定したバッファを使用します。</td>
  </tr>
  <tr> 
   <td width="13%"><em><strong><font face="Courier New">size</font></strong></em></td>
-  <td width="87%">������o�͂̂��߂̍�Ɨp�o�b�t�@�̃T�C�Y(�o�C�g)�B</td>
+  <td width="87%">文字列出力のための作業用バッファのサイズ(バイト)。</td>
  </tr>
   </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
-<H2>����</H2>
-<p>mcs�p������o�͊֐����g�p���邽�߂̏��������s���܂��B������o�͊֐�<code>NNS_McsPrintf</code>�͏o�͂��镶������쐬���邽�߂ɁA����<em><strong><font face="Courier New">pBuffer</font></strong></em>��<em><strong><font face="Courier New">size</font></strong></em>�Ŏw�肵���o�b�t�@���g�p���܂��B�֐�<code>NNS_McsPrintf</code>���o�͂ł��镶����̍ő�̒����͈���<em><strong><font face="Courier New">size</font></strong></em>�Ŏw�肵���T�C�Y(�o�C�g)�ƂȂ�܂��B</p>
-<h2>�Q��</h2>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<p>mcs用文字列出力関数を使用するための初期化を行います。文字列出力関数<code>NNS_McsPrintf</code>は出力する文字列を作成するために、引数<em><strong><font face="Courier New">pBuffer</font></strong></em>と<em><strong><font face="Courier New">size</font></strong></em>で指定したバッファを使用します。関数<code>NNS_McsPrintf</code>が出力できる文字列の最大の長さは引数<em><strong><font face="Courier New">size</font></strong></em>で指定したサイズ(バイト)となります。</p>
+<h2>参照</h2>
 <p><CODE><A href="NNS_McsPutString.html">NNS_McsPutString</A>, 
 <A href="NNS_McsPrintf.html">NNS_McsPrintf</A>
 </CODE></p>
-<H2>����</H2>
-<P>2004/12/17 ����</P>
+<H2>履歴</H2>
+<P>2004/12/17 初版</P>
 </body>
 </html>

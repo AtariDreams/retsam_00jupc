@@ -33,7 +33,7 @@
   fix assertion macros format. (remove ';' )
 
   Revision 1.31  2005/03/28 23:52:06  seiki_masashi
-  dgt/dgt.h ‚Ì include
+  dgt/dgt.h ã® include
 
   Revision 1.30  2005/03/01 01:16:03  yosizaki
     fix around check routine in FS_LoadOverlayImage*.
@@ -45,10 +45,10 @@
   fix FS_LoadOverlayImage*
 
   Revision 1.27  2005/02/18 07:53:19  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.26  2005/02/18 07:26:49  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.25  2004/11/17 06:02:43  yosizaki
   delete implement of FS_RegisterOverlayToDebugger.
@@ -166,7 +166,7 @@ extern u8 SDK_OVERLAY_DIGEST[];
 extern u8 SDK_OVERLAY_DIGEST_END[];
 #endif
 
-static const u8 fsi_def_digest_key[64] = {      // compstatic ‚Æ“¯ˆê’l
+static const u8 fsi_def_digest_key[64] = {      // compstatic ã¨åŒä¸€å€¤
     0x21, 0x06, 0xc0, 0xde,
     0xba, 0x98, 0xce, 0x3f,
     0xa6, 0x92, 0xe3, 0x9d,
@@ -192,16 +192,16 @@ static const void *fsi_digest_key_ptr = fsi_def_digest_key;
 static int fsi_digest_key_len = sizeof(fsi_def_digest_key);
 
 /********************************************************************/
-/* ’è” */
+/* å®šæ•° */
 
-/* "TEG ”Å ARM9" ˆÈŠO‚Å‚ ‚é(CARD ƒAƒNƒZƒX‚µ‚¤‚é)‚©‚ğ¦‚·ƒVƒ“ƒ{ƒ‹ */
+/* "TEG ç‰ˆ ARM9" ä»¥å¤–ã§ã‚ã‚‹(CARD ã‚¢ã‚¯ã‚»ã‚¹ã—ã†ã‚‹)ã‹ã‚’ç¤ºã™ã‚·ãƒ³ãƒœãƒ« */
 #if !defined(SDK_TEG) || !defined(SDK_ARM9)
 #define FS_NEED_CARD    1
 #endif
 
 
 /********************************************************************/
-/* ŠÖ” */
+/* é–¢æ•° */
 
 /*---------------------------------------------------------------------------*
   Name:         FSi_GetOverlayBinarySize
@@ -266,20 +266,20 @@ FSFileID FS_GetOverlayFileID(const FSOverlayInfo *p_ovi)
 /*---------------------------------------------------------------------------*
   Name:         FSi_LoadOverlayInfoCore
 
-  Description:  “à•”ŠÖ”.
-                w’è‚Ì rom-duplicated ƒA[ƒJƒCƒu‚©‚çƒI[ƒo[ƒŒƒCî•ñ‚ğ“Ç‚İo‚·.
-                IPL À‘•‚Ì—˜•Ö«‚Ì‚½‚ß‚ÉˆÃ–ÙŒöŠJ.
+  Description:  å†…éƒ¨é–¢æ•°.
+                æŒ‡å®šã® rom-duplicated ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤æƒ…å ±ã‚’èª­ã¿å‡ºã™.
+                IPL å®Ÿè£…ã®åˆ©ä¾¿æ€§ã®ãŸã‚ã«æš—é»™å…¬é–‹.
 
-  Arguments:    p_ovi            “Ç‚İo‚µ‚½î•ñ‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^.
-                target           ƒI[ƒo[ƒŒƒCƒ^[ƒQƒbƒg. (ARM9/ARM7)
-                id               “Ç‚İo‚·ƒI[ƒo[ƒŒƒC ID.
-                p_arc            “Ç‚İo‚µæ‚ÌƒA[ƒJƒCƒu.
-                offset_arm9      ƒA[ƒJƒCƒu“à‚ÌƒI[ƒo[ƒŒƒCî•ñŠi”[ˆÊ’uæ“ª.
-                len_arm9         ƒA[ƒJƒCƒu“à‚ÌƒI[ƒo[ƒŒƒCî•ñƒTƒCƒY.
-                offset_arm7      ƒA[ƒJƒCƒu“à‚ÌƒI[ƒo[ƒŒƒCî•ñŠi”[ˆÊ’uæ“ª.
-                len_arm7         ƒA[ƒJƒCƒu“à‚ÌƒI[ƒo[ƒŒƒCî•ñƒTƒCƒY.
+  Arguments:    p_ovi            èª­ã¿å‡ºã—ãŸæƒ…å ±ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿.
+                target           ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ. (ARM9/ARM7)
+                id               èª­ã¿å‡ºã™ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ ID.
+                p_arc            èª­ã¿å‡ºã—å…ˆã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
+                offset_arm9      ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤æƒ…å ±æ ¼ç´ä½ç½®å…ˆé ­.
+                len_arm9         ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤æƒ…å ±ã‚µã‚¤ã‚º.
+                offset_arm7      ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤æƒ…å ±æ ¼ç´ä½ç½®å…ˆé ­.
+                len_arm7         ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤æƒ…å ±ã‚µã‚¤ã‚º.
 
-  Returns:      ƒI[ƒo[ƒŒƒC‚ª³í‚É“Ç‚İo‚¹‚ê‚Î TRUE.
+  Returns:      ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãŒæ­£å¸¸ã«èª­ã¿å‡ºã›ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL FSi_LoadOverlayInfoCore(FSOverlayInfo *p_ovi, MIProcessor target, FSOverlayID id,
                              FSArchive *p_arc,
@@ -322,7 +322,7 @@ BOOL FSi_LoadOverlayInfoCore(FSOverlayInfo *p_ovi, MIProcessor target, FSOverlay
             }
             (void)FS_CloseFile(file);
             p_ovi->target = target;
-            /* CARD-ROM ã‚Ì”z’u‚à‚±‚±‚Å FAT ‚©‚ç“Ç‚İo‚µ */
+            /* CARD-ROM ä¸Šã®é…ç½®ã‚‚ã“ã“ã§ FAT ã‹ã‚‰èª­ã¿å‡ºã— */
             if (!FS_OpenFileFast(file, FS_GetOverlayFileID(p_ovi)))
             {
                 return FALSE;
@@ -365,7 +365,7 @@ BOOL FS_LoadOverlayInfo(FSOverlayInfo *p_ovi, MIProcessor target, FSOverlayID id
         {
             MI_CpuCopy8((const void *)(pr->offset + pos), p_ovi, sizeof(FSOverlayInfoHeader));
             p_ovi->target = target;
-            /* CARD-ROM ã‚Ì”z’u‚à‚±‚±‚Å FAT ‚©‚ç“Ç‚İo‚µ */
+            /* CARD-ROM ä¸Šã®é…ç½®ã‚‚ã“ã“ã§ FAT ã‹ã‚‰èª­ã¿å‡ºã— */
             {
                 FSFile  file[1];
                 FS_InitFile(file);
@@ -466,13 +466,13 @@ BOOL FS_LoadOverlayImage(FSOverlayInfo *p_ovi)
 /*---------------------------------------------------------------------------*
   Name:         FSi_CompareOverlayDigest
 
-  Description:  ƒI[ƒo[ƒŒƒC‚Ìƒ_ƒCƒWƒFƒXƒg’l‚ğ”äŠr.
+  Description:  ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã®ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆå€¤ã‚’æ¯”è¼ƒ.
 
-  Arguments:    spec_digest       ”äŠrŒ³‚Ìƒ_ƒCƒWƒFƒXƒg’l.
-                src               ”äŠræ‚Ìƒf[ƒ^.
-                len               src ‚ÌƒoƒCƒgƒTƒCƒY.
+  Arguments:    spec_digest       æ¯”è¼ƒå…ƒã®ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆå€¤.
+                src               æ¯”è¼ƒå…ˆã®ãƒ‡ãƒ¼ã‚¿.
+                len               src ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º.
 
-  Returns:      ”äŠr‚ªˆê’v‚·‚ê‚Î TRUE, ‚»‚¤‚Å‚È‚¯‚ê‚Î FALSE.
+  Returns:      æ¯”è¼ƒãŒä¸€è‡´ã™ã‚Œã° TRUE, ãã†ã§ãªã‘ã‚Œã° FALSE.
  *---------------------------------------------------------------------------*/
 static BOOL FSi_CompareDigest(const u8 *spec_digest, void *src, int len)
 {
@@ -509,7 +509,7 @@ void FS_StartOverlay(FSOverlayInfo *p_ovi)
     u32     rare_size = FSi_GetOverlayBinarySize(p_ovi);
 
 #ifndef  SDK_TEG
-    /* q‹@‚Å‚ ‚è”FØ‚É¸”s‚·‚ê‚ÎƒCƒ[ƒW‚ğ–³Œø‰» */
+    /* å­æ©Ÿã§ã‚ã‚Šèªè¨¼ã«å¤±æ•—ã™ã‚Œã°ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ç„¡åŠ¹åŒ– */
     if (MB_IsMultiBootChild())
     {
         BOOL    ret = FALSE;
@@ -535,7 +535,7 @@ void FS_StartOverlay(FSOverlayInfo *p_ovi)
 #endif
 
 #ifndef SDK_ARM7
-    /* ˆ³kƒf[ƒ^‚Å‚ ‚ê‚ÎL’£ */
+    /* åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã§ã‚ã‚Œã°ä¼¸å¼µ */
     if ((p_ovi->header.flag & FS_OVERLAY_FLAG_COMP) != 0)
     {
         MIi_UncompressBackward(p_ovi->header.ram_address + rare_size);
@@ -545,9 +545,9 @@ void FS_StartOverlay(FSOverlayInfo *p_ovi)
 
 #if !defined(SDK_FINALROM)
     /*
-     * ƒZƒOƒƒ“ƒg‚Í‚±‚ÌuŠÔ‚©‚çƒfƒoƒbƒK‚Å‘S‚Ä‚ğ’ÇÕ‰Â”\‚Æ‚È‚é.
-     * FS_RegisterOverlayToDebugger() ‚Ås‚Á‚Ä‚¢‚½ˆ—‚Í
-     * ³Šm‚É‚±‚ÌˆÊ’u‚©‚ç‚Ì‚İŒÄ‚Ño‚³‚ê‚È‚¯‚ê‚Î‚È‚ç‚È‚¢.
+     * ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã¯ã“ã®ç¬é–“ã‹ã‚‰ãƒ‡ãƒãƒƒã‚¬ã§å…¨ã¦ã‚’è¿½è·¡å¯èƒ½ã¨ãªã‚‹.
+     * FS_RegisterOverlayToDebugger() ã§è¡Œã£ã¦ã„ãŸå‡¦ç†ã¯
+     * æ­£ç¢ºã«ã“ã®ä½ç½®ã‹ã‚‰ã®ã¿å‘¼ã³å‡ºã•ã‚Œãªã‘ã‚Œã°ãªã‚‰ãªã„.
      */
     (void)_ISDbgLib_RegistOverlayInfo((p_ovi->target == MI_PROCESSOR_ARM9)
                                       ? OVERLAYPROC_ARM9 : OVERLAYPROC_ARM7,
@@ -556,7 +556,7 @@ void FS_StartOverlay(FSOverlayInfo *p_ovi)
 #endif
 
     {                                  /*
-                                        * static initializer ‚ğ‹N“®.
+                                        * static initializer ã‚’èµ·å‹•.
                                         */
         FSOverlayInitFunc *p = p_ovi->header.sinit_init;
         FSOverlayInitFunc *q = p_ovi->header.sinit_init_end;
@@ -586,10 +586,10 @@ void FS_EndOverlay(FSOverlayInfo *p_ovi)
     for (;;)
     {
         /*
-         * ‚Ü‚¸, ƒOƒ[ƒoƒ‹ƒ`ƒF[ƒ“‚©‚çŠY“– dtor ‚ğ’Šo‚·‚é.
-         * ƒCƒ“ƒXƒ^ƒ“ƒX‚ªƒI[ƒo[ƒŒƒC”ÍˆÍ‚É‚ ‚é‚©ƒ`ƒFƒbƒN.
-         * dtor ‚ÌêŠ‚É‚Â‚¢‚Ä‚Í, obj = NULL ‚Ìê‡‚¾‚¯
-         * ”ÍˆÍƒ`ƒFƒbƒN‚Ì‘ÎÛ‚Æ‚·‚é (2.2 ˆÈ~)
+         * ã¾ãš, ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒã‚§ãƒ¼ãƒ³ã‹ã‚‰è©²å½“ dtor ã‚’æŠ½å‡ºã™ã‚‹.
+         * ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ç¯„å›²ã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯.
+         * dtor ã®å ´æ‰€ã«ã¤ã„ã¦ã¯, obj = NULL ã®å ´åˆã ã‘
+         * ç¯„å›²ãƒã‚§ãƒƒã‚¯ã®å¯¾è±¡ã¨ã™ã‚‹ (2.2 ä»¥é™)
          */
         MWiDestructorChain *head = NULL, *tail = NULL;
         const u32 region_top = (u32)FS_GetOverlayAddress(p_ovi);
@@ -608,7 +608,7 @@ void FS_EndOverlay(FSOverlayInfo *p_ovi)
                 if (((obj == 0) && (dtor >= region_top) && (dtor < region_bottom)) ||
                     ((obj >= region_top) && (obj < region_bottom)))
                 {
-                    /* ŠY“–‚È‚ç’Šo‚·‚é */
+                    /* è©²å½“ãªã‚‰æŠ½å‡ºã™ã‚‹ */
                     if (!tail)
                     {
                         head = p;
@@ -629,7 +629,7 @@ void FS_EndOverlay(FSOverlayInfo *p_ovi)
                 }
                 else
                 {
-                    /* ‚»‚¤‚Å‚È‚¢‚È‚çŸ‚Öi‚ß‚é */
+                    /* ãã†ã§ãªã„ãªã‚‰æ¬¡ã¸é€²ã‚ã‚‹ */
                     prev = p;
                 }
                 p = next;
@@ -637,12 +637,12 @@ void FS_EndOverlay(FSOverlayInfo *p_ovi)
             (void)OS_RestoreInterrupts(bak_psr);
         }
 
-        /* dtor ‚ª 1 ŒÂ‚à–³‚¯‚ê‚ÎI—¹ */
+        /* dtor ãŒ 1 å€‹ã‚‚ç„¡ã‘ã‚Œã°çµ‚äº† */
         if (!head)
         {
             break;
         }
-        /* ‚ ‚ê‚Îæ“ª‚©‚ç‡‚ÉÀs‚µ‚Ä”jŠü */
+        /* ã‚ã‚Œã°å…ˆé ­ã‹ã‚‰é †ã«å®Ÿè¡Œã—ã¦ç ´æ£„ */
         do
         {
             MWiDestructorChain *next = head->next;
@@ -655,11 +655,11 @@ void FS_EndOverlay(FSOverlayInfo *p_ovi)
         while (head);
 
         /*
-         * dtor ‚ª‰‚ß‚ÄƒAƒNƒZƒX‚µ‚½ local-static-object ‚ª‚ ‚é‚Æ
-         * ‚±‚Ì’iŠK‚Å‚³‚ç‚ÉƒOƒ[ƒoƒ‹ƒ`ƒF[ƒ“‚Ö‚Ì’Ç‰Á‚ª”­¶‚µ‚Ä‚¢‚é.
-         * ‚±‚Ì‚æ‚¤‚Èõ–½‚Ì§Œä‚Í C++ “I‚É‚ÍƒCƒŒƒMƒ…ƒ‰[‚È•”—Ş‚¾‚ª
-         * ‘Î‰‚µ‚Ä‚àˆ«‚¢‚±‚Æ‚Í‚È‚¢.
-         * ‚æ‚Á‚Ä, ‰Â”\«‚ª‚ ‚éŒÀ‚èŒJ‚è•Ô‚µ’Šos‚·‚é.
+         * dtor ãŒåˆã‚ã¦ã‚¢ã‚¯ã‚»ã‚¹ã—ãŸ local-static-object ãŒã‚ã‚‹ã¨
+         * ã“ã®æ®µéšã§ã•ã‚‰ã«ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒã‚§ãƒ¼ãƒ³ã¸ã®è¿½åŠ ãŒç™ºç”Ÿã—ã¦ã„ã‚‹.
+         * ã“ã®ã‚ˆã†ãªå¯¿å‘½ã®åˆ¶å¾¡ã¯ C++ çš„ã«ã¯ã‚¤ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãªéƒ¨é¡ã ãŒ
+         * å¯¾å¿œã—ã¦ã‚‚æ‚ªã„ã“ã¨ã¯ãªã„.
+         * ã‚ˆã£ã¦, å¯èƒ½æ€§ãŒã‚ã‚‹é™ã‚Šç¹°ã‚Šè¿”ã—æŠ½å‡ºè©¦è¡Œã™ã‚‹.
          */
     }
 
@@ -741,13 +741,13 @@ BOOL FS_UnloadOverlay(MIProcessor target, FSOverlayID id)
 #else  /* !FS_IMPLEMENT */
 
 
-/* w’è‚ÌƒAƒhƒŒƒX‚ğ’¼ÚƒŠ[ƒh */
+/* æŒ‡å®šã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ç›´æ¥ãƒªãƒ¼ãƒ‰ */
 static void FSi_ReadRomDirect(const void *src, void *dst, u32 len)
 {
 #if !defined(SDK_TS)
     if (src >= (const void *)HW_CTRDG_ROM)
     {
-        // ƒJ[ƒgƒŠƒbƒW.
+        // ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸.
         (void)OS_LockCartridge((u16)fsi_card_lock_id);
         MI_CpuCopy32(src, dst, len);
         (void)OS_UnlockCartridge((u16)fsi_card_lock_id);
@@ -755,7 +755,7 @@ static void FSi_ReadRomDirect(const void *src, void *dst, u32 len)
     else
 #endif
     {
-        // ƒJ[ƒh.
+        // ã‚«ãƒ¼ãƒ‰.
         (void)CARD_LockRom((u16)fsi_card_lock_id);
         CARD_ReadRom(FS_DMA_NOT_USE, src, dst, len);
         (void)CARD_UnlockRom((u16)fsi_card_lock_id);
@@ -778,12 +778,12 @@ BOOL FS_LoadOverlay(MIProcessor target, FSOverlayID id)
     FS_ASSERT_INIT(FALSE);
 
     {
-        /* ROM ƒx[ƒXƒAƒhƒŒƒX */
+        /* ROM ãƒ™ãƒ¼ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹ */
         const u8 *const base = (const u8 *)
             (((OS_GetConsoleType() & OS_CONSOLE_DEV_CARD) != 0) ? 0x00000000 : HW_CTRDG_ROM);
-        /* FAT ƒe[ƒuƒ‹ */
+        /* FAT ãƒ†ãƒ¼ãƒ–ãƒ« */
         const CARDRomRegion *fat = CARD_GetRomRegionFAT();
-        /* OVT ƒIƒtƒZƒbƒg */
+        /* OVT ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
         const CARDRomRegion *ovt = CARD_GetRomRegionOVT(target);
 
         FSOverlayInfo ovi;
@@ -791,7 +791,7 @@ BOOL FS_LoadOverlay(MIProcessor target, FSOverlayID id)
 
         u32     pos, index;
 
-        /* OVT ‚ğ’¼ÚƒŠ[ƒh */
+        /* OVT ã‚’ç›´æ¥ãƒªãƒ¼ãƒ‰ */
         index = (u32)id;
         pos = index * sizeof(FSOverlayInfoHeader);
         if (pos >= ovt->length)
@@ -799,14 +799,14 @@ BOOL FS_LoadOverlay(MIProcessor target, FSOverlayID id)
         FSi_ReadRomDirect(base + ovt->offset + pos, &ovi, sizeof(FSOverlayInfoHeader));
         ovi.target = target;
 
-        /* FAT ‚©‚çƒCƒ[ƒW—Ìˆæ‚ğæ“¾ */
+        /* FAT ã‹ã‚‰ã‚¤ãƒ¡ãƒ¼ã‚¸é ˜åŸŸã‚’å–å¾— */
         index = ovi.header.file_id;
         pos = index * sizeof(FSArchiveFAT);
         if (pos >= fat->length)
             return FALSE;
         FSi_ReadRomDirect(base + fat->offset + pos, &fat_info, sizeof(FSArchiveFAT));
 
-        /* ‚±‚±‚Åƒ[ƒh */
+        /* ã“ã“ã§ãƒ­ãƒ¼ãƒ‰ */
         FS_ClearOverlayImage(&ovi);
         FSi_ReadRomDirect(base + fat_info.top,
                           ovi.header.ram_address, fat_info.bottom - fat_info.top);
@@ -861,7 +861,7 @@ void FS_AttachOverlayTable(MIProcessor target, const void *ptr, u32 len)
 {
 #ifdef	SDK_TS
     if ((ptr != NULL) && (target == MI_PROCESSOR_ARM9))
-    {                                  /* ƒI[ƒo[ƒŒƒCƒe[ƒuƒ‹‚Í©g‚Ì‚à‚Ì‚Å‚ ‚é•K—v‚ª‚ ‚é */
+    {                                  /* ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ†ãƒ¼ãƒ–ãƒ«ã¯è‡ªèº«ã®ã‚‚ã®ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹ */
         int     bak_ovt_mode = DGT_SetOverlayTableMode(TRUE);
         if (!FSi_CompareDigest((const u8 *)SDK_OVERLAYTABLE_DIGEST, (void *)ptr, (int)len))
         {

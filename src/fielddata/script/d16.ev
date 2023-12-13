@@ -1,6 +1,6 @@
 //====================================================================
 //							d16
-//						ƒn[ƒhƒ}ƒEƒ“ƒeƒ“
+//						ãƒãƒ¼ãƒ‰ãƒžã‚¦ãƒ³ãƒ†ãƒ³
 //====================================================================
 
 	.text
@@ -10,11 +10,11 @@
 	.include	"../eventdata/zone_d16evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d16_flag_change
 _EVENT_DATA		ev_d16_sign1
@@ -27,12 +27,12 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d16_flag_change:
-	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D16//“ž’…
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D16//åˆ°ç€
 	_END
 
 
 /********************************************************************/
-/*							Ž{ÝŠÅ”Â								*/
+/*							æ–½è¨­çœ‹æ¿								*/
 /********************************************************************/
 ev_d16_sign1:
 	_EASY_BOARD_MSG	msg_d16_sign1_01,BOARD_TYPE_POST,0
@@ -40,12 +40,12 @@ ev_d16_sign1:
 
 
 /********************************************************************/
-/*							ƒMƒ“ƒK’c								*/
+/*							ã‚®ãƒ³ã‚¬å›£								*/
 /********************************************************************/
 pos_d16_ginga:
 	_EVENT_START
 
-	/*ˆÚ“®*/
+	/*ç§»å‹•*/
 	_OBJ_ANIME		D16_GINGAM1,anm_d16_gingam1_48
 	_OBJ_ANIME		D16_GINGAM2,anm_d16_gingam2_48
 	_OBJ_ANIME_WAIT
@@ -53,26 +53,26 @@ pos_d16_ginga:
 	_TALK_KEYWAIT	msg_d16_gingam1_01
 	_TALK_CLOSE
 
-	/*ˆÚ“®*/
+	/*ç§»å‹•*/
 	_OBJ_ANIME		D16_GINGAM1,anm_d16_gingam1_50
 	_OBJ_ANIME		D16_GINGAM2,anm_d16_gingam2_50
 	_OBJ_ANIME_WAIT
 
-	/*˜b‚·“®ì*/
+	/*è©±ã™å‹•ä½œ*/
 	_OBJ_ANIME		D16_GINGAM2,anm_d16_gingam2_01
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_d16_gingam2_01
 	_TALK_CLOSE
 
-	/*˜b‚·“®ì*/
+	/*è©±ã™å‹•ä½œ*/
 	_OBJ_ANIME		D16_GINGAM1,anm_d16_gingam1_02
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_d16_gingam1_02
 	_TALK_CLOSE
 
-	/*ƒn[ƒhƒ}ƒEƒ“ƒeƒ“‚ÉˆÚ“®*/
+	/*ãƒãƒ¼ãƒ‰ãƒžã‚¦ãƒ³ãƒ†ãƒ³ã«ç§»å‹•*/
 	_OBJ_ANIME		D16_GINGAM1,anm_d16_gingam1_10
 	_OBJ_ANIME		D16_GINGAM2,anm_d16_gingam2_10
 	_OBJ_ANIME_WAIT
@@ -87,7 +87,7 @@ pos_d16_ginga:
 	_END
 
 //--------------------------------------------------------------------
-//‚µ‚½‚Á‚Ï1	ˆÚ“®
+//ã—ãŸã£ã±1	ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_gingam1_48
 	_ANIME_DATA	AC_WALK_R_8F,4
@@ -100,14 +100,14 @@ _ANIME_LABEL anm_d16_gingam1_50
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚µ‚½‚Á‚Ï1	˜b‚·
+//ã—ãŸã£ã±1	è©±ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_gingam1_01
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚µ‚½‚Á‚Ï1	˜b‚·
+//ã—ãŸã£ã±1	è©±ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_gingam1_02
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
@@ -116,7 +116,7 @@ _ANIME_LABEL anm_d16_gingam1_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚µ‚½‚Á‚Ï1	ƒn[ƒhƒ}ƒEƒ“ƒeƒ“‚ÉˆÚ“®
+//ã—ãŸã£ã±1	ãƒãƒ¼ãƒ‰ãƒžã‚¦ãƒ³ãƒ†ãƒ³ã«ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_gingam1_10
 	_ANIME_DATA	AC_WALK_U_8F,2
@@ -124,7 +124,7 @@ _ANIME_LABEL anm_d16_gingam1_10
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚µ‚½‚Á‚Ï2	ˆÚ“®
+//ã—ãŸã£ã±2	ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_gingam2_48
 	_ANIME_DATA	AC_WALK_U_8F,1
@@ -139,14 +139,14 @@ _ANIME_LABEL anm_d16_gingam2_50
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚µ‚½‚Á‚Ï2	˜b‚·
+//ã—ãŸã£ã±2	è©±ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_gingam2_01
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‚µ‚½‚Á‚Ï2	ƒn[ƒhƒ}ƒEƒ“ƒeƒ“‚ÉˆÚ“®
+//ã—ãŸã£ã±2	ãƒãƒ¼ãƒ‰ãƒžã‚¦ãƒ³ãƒ†ãƒ³ã«ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_gingam2_10
 	_ANIME_DATA	AC_WALK_R_8F,1
@@ -156,7 +156,7 @@ _ANIME_LABEL anm_d16_gingam2_10
 
 
 /********************************************************************/
-/*							‘ÛŒxŽ@(‹­§)							*/
+/*							å›½éš›è­¦å¯Ÿ(å¼·åˆ¶)							*/
 /********************************************************************/
 ev_d16_police:
 	_EVENT_START
@@ -168,14 +168,14 @@ ev_d16_police:
 
 	_TALK_KEYWAIT	msg_d16_detective_02
 
-	/*5lO“oê(‰EŒü‚«)*/
+	/*5äººè¡†ç™»å ´(å³å‘ã)*/
 	_OBJ_ANIME		D16_SEVEN2,anm_d16_seven2_01
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_d16_seven2_01
 	_TALK_CLOSE
 
-	/*5lOƒn[ƒhƒ}ƒEƒ“ƒeƒ“‚É“ü‚é*/
+	/*5äººè¡†ãƒãƒ¼ãƒ‰ãƒžã‚¦ãƒ³ãƒ†ãƒ³ã«å…¥ã‚‹*/
 	_OBJ_ANIME		D16_SEVEN2,anm_d16_seven2_02
 	_OBJ_ANIME_WAIT
 
@@ -187,7 +187,7 @@ ev_d16_police:
 
 	_TIME_WAIT		15,SCWK_ANSWER
 
-	/*5lOÄ“x“oê*/
+	/*5äººè¡†å†åº¦ç™»å ´*/
 	_OBJ_ANIME		D16_SEVEN2,anm_d16_seven2_03
 	_OBJ_ANIME		D16_POLICE,anm_d16_police_03
 	_OBJ_ANIME_WAIT
@@ -195,13 +195,13 @@ ev_d16_police:
 	_TALK_KEYWAIT	msg_d16_seven2_02
 	_TALK_CLOSE
 
-	/*5lO‘Þê*/
+	/*5äººè¡†é€€å ´*/
 	_OBJ_ANIME		D16_SEVEN2,anm_d16_seven2_04
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d16_player_04
 	_OBJ_ANIME_WAIT
 	_OBJ_DEL		D16_SEVEN2
 
-	/*ƒnƒ“ƒTƒ€‚ðŒ©‚é*/
+	/*ãƒãƒ³ã‚µãƒ ã‚’è¦‹ã‚‹*/
 	_OBJ_ANIME		D16_POLICE,anm_d16_police_05
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d16_player_05
 	_OBJ_ANIME_WAIT
@@ -223,7 +223,7 @@ ev_d16_police:
 	_END
 
 //--------------------------------------------------------------------
-//‘ÛŒxŽ@	5lOŒ©‘—‚é
+//å›½éš›è­¦å¯Ÿ	5äººè¡†è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_police_01
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
@@ -232,7 +232,7 @@ _ANIME_LABEL anm_d16_police_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‘ÛŒxŽ@	5lO‚ðŒ©‚é
+//å›½éš›è­¦å¯Ÿ	5äººè¡†ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_police_03
 	_ANIME_DATA	AC_WAIT_8F,1
@@ -240,21 +240,21 @@ _ANIME_LABEL anm_d16_police_03
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//‘ÛŒxŽ@	ŽålŒö‚ðŒ©‚é
+//å›½éš›è­¦å¯Ÿ	ä¸»äººå…¬ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_police_05
 	_ANIME_DATA	AC_STAY_WALK_D_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//5lO	“oê
+//5äººè¡†	ç™»å ´
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_seven2_01
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//5lO	ƒn[ƒhƒ}ƒEƒ“ƒeƒ“‚É“ü‚é
+//5äººè¡†	ãƒãƒ¼ãƒ‰ãƒžã‚¦ãƒ³ãƒ†ãƒ³ã«å…¥ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_seven2_02
 	_ANIME_DATA	AC_WALK_U_8F,2
@@ -262,7 +262,7 @@ _ANIME_LABEL anm_d16_seven2_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//5lO	Ä“x“oê
+//5äººè¡†	å†åº¦ç™»å ´
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_seven2_03
 	_ANIME_DATA	AC_VANISH_OFF,1
@@ -271,7 +271,7 @@ _ANIME_LABEL anm_d16_seven2_03
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//5lO	‘Þê
+//5äººè¡†	é€€å ´
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_seven2_04
 	_ANIME_DATA	AC_WALK_D_8F,2
@@ -285,14 +285,14 @@ _ANIME_LABEL anm_d16_seven2_04
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	5lO‚ðŒ©‘—‚é
+//ä¸»äººå…¬	5äººè¡†ã‚’è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_player_04
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	ƒnƒ“ƒTƒ€‚ðŒ©‚é
+//ä¸»äººå…¬	ãƒãƒ³ã‚µãƒ ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d16_player_05
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1

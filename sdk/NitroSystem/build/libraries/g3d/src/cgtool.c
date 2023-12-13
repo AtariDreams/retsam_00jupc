@@ -27,7 +27,7 @@
 
 
 //
-// �eCG�c�[�����̃X�P�[���v�Z�̈Ⴂ���z�����邽�߂̊֐��|�C���^�z��
+// 各CGツール毎のスケール計算の違いを吸収するための関数ポインタ配列
 //
 NNSG3dGetJointScale NNS_G3dGetJointScale_FuncArray[NNS_G3D_FUNC_SENDJOINTSRT_MAX] =
 {
@@ -46,7 +46,7 @@ NNSG3dGetJointScale NNS_G3dGetJointScale_FuncArray[NNS_G3D_FUNC_SENDJOINTSRT_MAX
 
 
 //
-// �eCG�c�[�����̃W���C���g��SRT�v�Z���@�̈Ⴂ���z�����邽�߂̊֐��|�C���^�z��
+// 各CGツール毎のジョイントのSRT計算方法の違いを吸収するための関数ポインタ配列
 //
 NNSG3dSendJointSRT  NNS_G3dSendJointSRT_FuncArray[NNS_G3D_FUNC_SENDJOINTSRT_MAX] =
 {
@@ -65,7 +65,7 @@ NNSG3dSendJointSRT  NNS_G3dSendJointSRT_FuncArray[NNS_G3D_FUNC_SENDJOINTSRT_MAX]
 
 
 //
-// �eCG�c�[�����̃e�N�X�`���s��̌v�Z���@�̈Ⴂ���z�����邽�߂̊֐��|�C���^�z��
+// 各CGツール毎のテクスチャ行列の計算方法の違いを吸収するための関数ポインタ配列
 //
 NNSG3dSendTexSRT    NNS_G3dSendTexSRT_FuncArray[NNS_G3D_FUNC_SENDTEXSRT_MAX] =
 {

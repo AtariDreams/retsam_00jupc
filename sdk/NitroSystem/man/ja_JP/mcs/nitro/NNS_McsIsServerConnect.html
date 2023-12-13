@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=SHIFT_JIS">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_McsIsServerConnect</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
@@ -11,7 +11,7 @@
 <body>
 
 <h1 align="left">NNS_McsIsServerConnect</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -20,17 +20,17 @@
 	  
   <pre><CODE>BOOL NNS_McsIsServerConnect(void);</CODE></pre>
 	</dd>
-</dl><h2>����</h2>
-<p>�Ȃ��B</p>
-<h2>�Ԃ�l</h2>
-<p>mcs�T�[�o���j���e���h�[DS�n�[�h�E�F�A�ɑ΂��Đڑ����Ă���ꍇ��TRUE�A�ؒf���Ă���ꍇ�́AFALSE��Ԃ��܂��B</p>
-<H2>����</H2>
-<p>mcs�T�[�o���j���e���h�[DS�n�[�h�E�F�A�ɑ΂��Đڑ����Ă��邩�A���邢�͐ؒf���Ă��邩�̏�Ԃ��擾���܂��B�������A���̊֐����Ԃ��l��mcs�T�[�o�̏�ԂƊ��S�ɓ������Ă���킯�ł͂���܂���Bmcs�̒ʐM�@�\���g�p���ď�Ԃ��擾���Ă��邽�߁Amcs�T�[�o�̏�Ԃ��j���e���h�[DS���Ŕ��f�ł���悤�ɂȂ�܂Ŏ኱�̃^�C�����O�������܂��B</p>
-<p>�߂�l��TRUE�̂Ƃ��́Amcs�T�[�o���j���e���h�[DS�n�[�h�E�F�A�ɑ΂��Đڑ����Ă��邱�Ƃ������܂��B�߂�l��FALSE�̂Ƃ��́Amcs�T�[�o���j���e���h�[DS�n�[�h�E�F�A�ɑ΂��Ĉ�x���ڑ����Ă��Ȃ����A�ڑ�������Őؒf���Ă��邱�Ƃ������Ă��܂��B</p>
-<p>��Ԃ̎擾��mcs�̒ʐM�@�\���g�p���Ă��邽�߁A�֐�<code>NNS_McsOpen</code>��p���ĒʐM���J�n����Ă���K�v������܂��B�܂��A�����Ŋ֐�<CODE>NNS_McsPollingIdle</CODE>���Ăяo���Ă��܂��B</p>
-<h2>�Q��</h2>
+</dl><h2>引数</h2>
+<p>なし。</p>
+<h2>返り値</h2>
+<p>mcsサーバがニンテンドーDSハードウェアに対して接続している場合はTRUE、切断している場合は、FALSEを返します。</p>
+<H2>説明</H2>
+<p>mcsサーバがニンテンドーDSハードウェアに対して接続しているか、あるいは切断しているかの状態を取得します。ただし、この関数が返す値はmcsサーバの状態と完全に同期しているわけではありません。mcsの通信機能を使用して状態を取得しているため、mcsサーバの状態がニンテンドーDS側で判断できるようになるまで若干のタイムラグが生じます。</p>
+<p>戻り値がTRUEのときは、mcsサーバがニンテンドーDSハードウェアに対して接続していることを示します。戻り値がFALSEのときは、mcsサーバがニンテンドーDSハードウェアに対して一度も接続していないか、接続した後で切断していることを示しています。</p>
+<p>状態の取得にmcsの通信機能を使用しているため、関数<code>NNS_McsOpen</code>を用いて通信が開始されている必要があります。また、内部で関数<CODE>NNS_McsPollingIdle</CODE>を呼び出しています。</p>
+<h2>参照</h2>
 <p><CODE><a href="NNS_McsOpen.html">NNS_McsOpen</a>, <a href="NNS_McsPollingIdle.html">NNS_McsPollingIdle</a></CODE></p>
-<H2>����</H2>
-<P>2005/01/24 ����</P>
+<H2>履歴</H2>
+<P>2005/01/24 初版</P>
 </body>
 </html>

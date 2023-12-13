@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_event.h
- *	@brief		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“•ÏX@}ŠÓI—¹‚È‚Ç‚ÌƒCƒxƒ“ƒgŠÇ—
+ *	@brief		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å¤‰æ›´ã€€å›³é‘‘çµ‚äº†ãªã©ã®ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†
  *	@author		tomoya takahashi
  *	@data		2006.01.17
  *
@@ -21,33 +21,33 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//		ƒCƒxƒ“ƒgŠÖ”‚É“n‚³‚ê‚é\‘¢‘Ì
+//		ã‚¤ãƒ™ãƒ³ãƒˆé–¢æ•°ã«æ¸¡ã•ã‚Œã‚‹æ§‹é€ ä½“
 //=====================================
 typedef struct {
 	int seq;
-	void* p_work;			// ƒCƒxƒ“ƒg“à•”ƒ[ƒN
-	void* p_data;			// ƒCƒxƒ“ƒgŠO•”‚©‚çŽó‚¯Žæ‚èƒf[ƒ^
+	void* p_work;			// ã‚¤ãƒ™ãƒ³ãƒˆå†…éƒ¨ãƒ¯ãƒ¼ã‚¯
+	void* p_data;			// ã‚¤ãƒ™ãƒ³ãƒˆå¤–éƒ¨ã‹ã‚‰å—ã‘å–ã‚Šãƒ‡ãƒ¼ã‚¿
 } ZKN_EVENT_WORK;
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief		ƒCƒxƒ“ƒgŠÖ”ƒ|ƒCƒ“ƒ^
+ *	@brief		ã‚¤ãƒ™ãƒ³ãƒˆé–¢æ•°ãƒã‚¤ãƒ³ã‚¿
  *
- *	@param		ƒ[ƒN
+ *	@param		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval		TRUE	ƒCƒxƒ“ƒgI—¹
- *	@retval		FALSE	ƒCƒxƒ“ƒg‘±s
+ *	@retval		TRUE	ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ *	@retval		FALSE	ã‚¤ãƒ™ãƒ³ãƒˆç¶šè¡Œ
  *
  *
  */
@@ -56,17 +56,17 @@ typedef BOOL (*ZKN_EVENT_FUNC)( ZKN_EVENT_WORK*  p_work );
 
 
 //-------------------------------------
-//		ƒCƒxƒ“ƒgŠÇ—\‘¢‘Ì
+//		ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†æ§‹é€ ä½“
 //=====================================
 typedef struct {
-	int key_msk;			// ƒCƒxƒ“ƒgŽÀsƒL[ƒ}ƒXƒN
-	ZKN_EVENT_FUNC func;	// ŽÀsƒCƒxƒ“ƒgŠÖ”
-	ZKN_EVENT_WORK work;	// ƒCƒxƒ“ƒgƒ[ƒN
+	int key_msk;			// ã‚¤ãƒ™ãƒ³ãƒˆå®Ÿè¡Œã‚­ãƒ¼ãƒžã‚¹ã‚¯
+	ZKN_EVENT_FUNC func;	// å®Ÿè¡Œã‚¤ãƒ™ãƒ³ãƒˆé–¢æ•°
+	ZKN_EVENT_WORK work;	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 } ZKN_EVENT_DATA;
 
 
 //-------------------------------------
-//		ƒCƒxƒ“ƒgŠÇ—ƒVƒXƒeƒ€
+//		ã‚¤ãƒ™ãƒ³ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _ZKN_EVENT_SYS*			ZKN_EVENT_SYS_PTR;
 typedef const struct _ZKN_EVENT_SYS*	CONST_ZKN_EVENT_SYS_PTR;
@@ -74,7 +74,7 @@ typedef const struct _ZKN_EVENT_SYS*	CONST_ZKN_EVENT_SYS_PTR;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL ZKN_EVENT_SYS_PTR ZKN_EVENT_MemoryAlloc( int heap );

@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_144.s
- *@brief	�퓬�V�[�P���X
- *			�ӂ�����ŋZ�������Ȃ��V�[�P���X
+ *@brief	戦闘シーケンス
+ *			ふういんで技がだせないシーケンス
 
  *@author	HisashiSogabe
  *@data		2006.02.09
@@ -19,6 +19,6 @@ SUB_144:
 	MESSAGE			HuuinNGMineMsg,TAG_NICK_WAZA,SIDE_ATTACK,SIDE_ATTACK
 	SERVER_WAIT
 	WAIT			MSG_WAIT
-	//���ߌn�t���O�𗎂Ƃ�
+	//ため系フラグを落とす
 	KEEP_OFF		SIDE_ATTACK
 	SEQ_END

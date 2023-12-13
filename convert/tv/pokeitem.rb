@@ -5,7 +5,7 @@ outfile = ARGV[1]
 inf = File.open(infile, "r")
 outf = File.open(outfile, "w")
 puts "\>\>#{outf.path}"
-inf.gets	#��s�ǂݔ�΂�
+inf.gets	#一行読み飛ばし
 lists = []
 while line = inf.gets
 	cl = line.split ","

@@ -25,7 +25,7 @@
 #define NNS_GFD_LNK_FREE_ERROR_INVALID_SIZE 2
 
 //
-// �}�l�[�W��
+// マネージャ
 //
 typedef struct NNS_GfdLnkTexVramManager
 {
@@ -35,7 +35,7 @@ typedef struct NNS_GfdLnkTexVramManager
     NNSiGfdLnkVramBlock*    pBlockPoolList;
     
     //
-    // ���Z�b�g���Ɏg�p���郁���o
+    // リセット時に使用するメンバ
     //
     u32                     szByte;
     u32                     szByteFor4x4;
@@ -47,9 +47,9 @@ typedef struct NNS_GfdLnkTexVramManager
 
 typedef struct SlotData
 {
-    u32     szFree; // �󂫗̈�T�C�Y
-    u32     szNrm;  // �ʏ�e�N�X�`���p�T�C�Y
-    u32     sz4x4;  // 4x4���k�e�N�X�`���p�T�C�Y
+    u32     szFree; // 空き領域サイズ
+    u32     szNrm;  // 通常テクスチャ用サイズ
+    u32     sz4x4;  // 4x4圧縮テクスチャ用サイズ
 
 }SlotData;
 
@@ -57,7 +57,7 @@ typedef struct SlotData
 static NNS_GfdLnkTexVramManager         mgr_;
 
 //------------------------------------------------------------------------------
-// �f�o�b�N�p�֐�(�A�T�[�g���̒��ɂ̂݋L�q�����֐��ł��B�������J����֐��ł��B)
+// デバック用関数(アサート分の中にのみ記述される関数です。内部公開限定関数です。)
 //------------------------------------------------------------------------------
 static u32 Dbg_GetVramManTotalFreeBlockSize_( const NNSiGfdLnkVramMan* pMgr )
 {
@@ -72,31 +72,31 @@ static u32 Dbg_GetVramManTotalFreeBlockSize_( const NNSiGfdLnkVramMan* pMgr )
 }
 
 //------------------------------------------------------------------------------
-// �������T�C�Y�p�����[�^���L�����H
+// 初期化サイズパラメータが有効か？
 static BOOL Dbg_IsInitializeSizeParamsValid_( u32 szByte, u32 szByteFor4x4 )
 {
     //
-    // �T�C�Y���s���ł͂Ȃ����H
+    // サイズが不正ではないか？
     //
     if( szByte > 0 && szByteFor4x4 <= GFD_SLOT_SIZE * 2 )
     {   
         //
-        // 4x4�p�̃T�C�Y�w�肪����ꍇ
+        // 4x4用のサイズ指定がある場合
         //
         if( szByteFor4x4 > 0 )
         {   
-            // �T�C�Y�� 0x20000 �ȉ��̏ꍇ
+            // サイズが 0x20000 以下の場合
             if( szByteFor4x4 <= GFD_SLOT_SIZE )
             {
-                // �C���f�b�N�X�e�[�u�������m�ۉ\�ȃT�C�Y���K�{�ƂȂ�
+                // インデックステーブル分が確保可能なサイズが必須となる
                 return (BOOL)(szByte >= GFD_SLOT1_BASEADDR + szByteFor4x4 / 2);
             }else{
-                // �C���f�b�N�X�e�[�u�������m�ۉ\�ȃT�C�Y���K�{�ƂȂ�
-                // GFD_SLOT_SIZE �� �C���f�b�N�X�e�[�u�� �Ƃ��Ďg�p����� Slot 1 �̃T�C�Y
+                // インデックステーブル分が確保可能なサイズが必須となる
+                // GFD_SLOT_SIZE は インデックステーブル として使用される Slot 1 のサイズ
                 return (BOOL)( szByte >= szByteFor4x4 + GFD_SLOT_SIZE );
             }
         }else{
-            // �ő�T�C�Y�����������Ă��Ȃ����H
+            // 最大サイズ制限をこえていないか？
             return (BOOL)( szByte <= GFD_SLOT_SIZE * 4 );
         }
     }else{
@@ -131,21 +131,21 @@ static NNS_GFD_INLINE BOOL InitSlotFreeBlock_
 }
 
 //------------------------------------------------------------------------------
-// �}�l�[�W���̓�����Ԃ��f�o�b�N�o�͂��܂��B
+// マネージャの内部状態をデバック出力します。
 void NNS_GfdDumpLnkTexVramManager()
 {
     OS_Printf("=== NNS_Gfd LnkTexVramManager Dump ====\n");
-    OS_Printf("   address:        size    \n");   // �w�b�_�[�s
+    OS_Printf("   address:        size    \n");   // ヘッダー行
     OS_Printf("=======================================\n");
     //
-    // �ʏ�e�N�X�`���̃t���[���X�g�����ׂĕ\�����A�g�p�ʂ̑��a���v�Z���܂��B
+    // 通常テクスチャのフリーリストをすべて表示し、使用量の総和を計算します。
     //
     OS_Printf("------ Normal Texture Free Blocks -----\n");   
     NNSi_GfdDumpLnkVramManFreeListInfo( mgr_.mgrNrm.pFreeList, mgr_.szByte );
         
         
     //
-    // 4x4�e�N�X�`���̃t���[���X�g�����ׂĕ\�����A�g�p�ʂ̑��a���v�Z���܂��B
+    // 4x4テクスチャのフリーリストをすべて表示し、使用量の総和を計算します。
     //
     OS_Printf("------ 4x4    Texture Free Blocks -----\n");   
     if( mgr_.szByteFor4x4 != 0 )
@@ -158,15 +158,15 @@ void NNS_GfdDumpLnkTexVramManager()
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdDumpLnkTexVramManagerEx
 
-  Description:  �f�o�b�N�o�͏����֐����w�肵�āA
-                �t���[�u���b�N�����f�o�b�N�o�͂��܂��B
+  Description:  デバック出力処理関数を指定して、
+                フリーブロック情報をデバック出力します。
                 
-  Arguments:    pFuncForNrm            : �f�o�b�N�o�͏����֐�(�ʏ�e�N�X�`���p)
-                pFuncFor4x4            : �f�o�b�N�o�͏����֐�(4��4���k�e�N�X�`���p)
-                pUserData              : �f�o�b�N�o�͏����֐��Ɉ����Ƃ��ēn�����A
-                                         �f�o�b�N�o�͏����p�f�[�^
+  Arguments:    pFuncForNrm            : デバック出力処理関数(通常テクスチャ用)
+                pFuncFor4x4            : デバック出力処理関数(4ｘ4圧縮テクスチャ用)
+                pUserData              : デバック出力処理関数に引数として渡される、
+                                         デバック出力処理用データ
                
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdDumpLnkTexVramManagerEx( 
@@ -176,7 +176,7 @@ void NNS_GfdDumpLnkTexVramManagerEx(
 {
     NNS_GFD_ASSERT( pFuncForNrm != NULL || pFuncFor4x4 != NULL );
     //
-    // �ʏ�e�N�X�`���̃t���[���X�g
+    // 通常テクスチャのフリーリスト
     //
     if( pFuncForNrm != NULL )
     {
@@ -184,7 +184,7 @@ void NNS_GfdDumpLnkTexVramManagerEx(
     }
     
     //
-    // 4x4�e�N�X�`���̃t���[���X�g
+    // 4x4テクスチャのフリーリスト
     //
     if( mgr_.szByteFor4x4 != 0 && pFuncFor4x4 != NULL )
     {
@@ -202,20 +202,20 @@ u32 NNS_GfdGetLnkTexVramManagerWorkSize( u32 numMemBlk )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdInitLnkTexVramManager
 
-  Description:  �e�N�X�`���L�[����VRAM���̃e�N�X�`���̈���J�����܂��B
+  Description:  テクスチャキーからVRAM中のテクスチャ領域を開放します。
                 
-  Arguments:    szByte                  �Ǘ�����VRAM�̈�̃o�C�g�T�C�Y�B
-                                        (1Slot = 0x20000,�ő�4Slot�Ƃ��Čv�Z����) 
-                szByteFor4x4            �Ǘ��̈撆��4x4���k�e�N�X�`���Ɏg�p����̈�̃o�C�g�T�C�Y�B
-                                        (1Slot = 0x20000,�ő�2Slot�Ƃ��Čv�Z����) 
-                pManagementWork         �Ǘ����Ƃ��Ďg�p���郁�����̈�ւ̃|�C���^�B 
-                szByteManagementWork    �Ǘ����̈�̃T�C�Y�B 
-                useAsDefault            �����N�h���X�g�e�N�X�`��VRAM�}�l�[�W�����J�����g��
-                                        �}�l�[�W���Ƃ��Ďg�p���邩�ǂ����B 
+  Arguments:    szByte                  管理するVRAM領域のバイトサイズ。
+                                        (1Slot = 0x20000,最大4Slotとして計算する) 
+                szByteFor4x4            管理領域中の4x4圧縮テクスチャに使用する領域のバイトサイズ。
+                                        (1Slot = 0x20000,最大2Slotとして計算する) 
+                pManagementWork         管理情報として使用するメモリ領域へのポインタ。 
+                szByteManagementWork    管理情報領域のサイズ。 
+                useAsDefault            リンクドリストテクスチャVRAMマネージャをカレントの
+                                        マネージャとして使用するかどうか。 
 
                 
                
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNS_GfdInitLnkTexVramManager
@@ -242,7 +242,7 @@ void NNS_GfdInitLnkTexVramManager
         NNS_GfdResetLnkTexVramState();
         
         //
-        // �����������Ő������ꂽ�A�t���[�u���b�N�̑��e�ʂ����������̂��m�F���܂�
+        // 初期化処理で生成された、フリーブロックの総容量が正しいものか確認します
         //
         NNS_GFD_ASSERT( mgr_.szByte - ( mgr_.szByteFor4x4 + mgr_.szByteFor4x4 / 2 ) 
             == Dbg_GetVramManTotalFreeBlockSize_( &mgr_.mgrNrm ) );
@@ -251,7 +251,7 @@ void NNS_GfdInitLnkTexVramManager
 
         
         //
-        // �f�t�H���g�̃A���P�[�^�Ƃ��Ďg�p
+        // デフォルトのアロケータとして使用
         //
         if( useAsDefault )
         {
@@ -264,15 +264,15 @@ void NNS_GfdInitLnkTexVramManager
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdAllocLnkTexVram
 
-  Description:  �e�N�X�`���̈��VRAM����m�ۂ��܂��B
+  Description:  テクスチャ領域をVRAMから確保します。
                 
-  Arguments:    szByte       : �m�ۂ���̈�o�C�g��
-                is4x4comp    : 4x4���k�e�N�X�`�����H
-                opt          : �I�v�V�����i�g�p����܂���j
+  Arguments:    szByte       : 確保する領域バイト数
+                is4x4comp    : 4x4圧縮テクスチャか？
+                opt          : オプション（使用されません）
                 
                
-  Returns:      �e�N�X�`���L�[
-                �m�ۂɎ��s�����ꍇ�́A�G���[�������L�[�ł���NNS_GFD_ALLOC_ERROR_TEXKEY��Ԃ��܂��B
+  Returns:      テクスチャキー
+                確保に失敗した場合は、エラーを示すキーであるNNS_GFD_ALLOC_ERROR_TEXKEYを返します。
 
   
  *---------------------------------------------------------------------------*/
@@ -284,11 +284,11 @@ NNSGfdTexKey    NNS_GfdAllocLnkTexVram( u32 szByte, BOOL is4x4comp, u32 opt )
     
     {
         //
-        // �e�N�X�`���L�[�ŕ\���ł��Ȃ������ȃT�C�Y�̊m�ۂ̏ꍇ�A�T�C�Y��؂�グ�Ċm�ۂ��܂��B
+        // テクスチャキーで表現できない小さなサイズの確保の場合、サイズを切り上げて確保します。
         //
         szByte = NNSi_GfdGetTexKeyRoundupSize( szByte );
         //
-        // �e�N�X�`���L�[���\���ł��Ȃ��قǑ傫�ȃT�C�Y�̊m�ۂ̏ꍇ�A�G���[�L�[��Ԃ��܂��B
+        // テクスチャキーが表現できないほど大きなサイズの確保の場合、エラーキーを返します。
         //
         if( szByte >= NNS_GFD_TEXSIZE_MAX )
         {
@@ -320,15 +320,15 @@ NNSGfdTexKey    NNS_GfdAllocLnkTexVram( u32 szByte, BOOL is4x4comp, u32 opt )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdFreeLnkTexVram
 
-  Description:  �e�N�X�`���̈��VRAM����J�����܂��B
+  Description:  テクスチャ領域をVRAMから開放します。
 
 
                 
                 
-  Arguments:    memKey : �e�N�X�`���L�[
+  Arguments:    memKey : テクスチャキー
 
                 
-  Returns:      �Ȃ�
+  Returns:      なし
 
  *---------------------------------------------------------------------------*/
 int             NNS_GfdFreeLnkTexVram( NNSGfdTexKey memKey )
@@ -366,43 +366,43 @@ int             NNS_GfdFreeLnkTexVram( NNSGfdTexKey memKey )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdGetLnkPlttVramManagerWorkSize
 
-  Description:  �����N�h���X�g�e�N�X�`��VRAM�}�l�[�W���̃e�N�X�`���p������
-                �m�ۏ�Ԃ�������Ԃɖ߂��܂��B
+  Description:  リンクドリストテクスチャVRAMマネージャのテクスチャ用メモリ
+                確保状態を初期状態に戻します。
       
-  Arguments:    �Ȃ�
+  Arguments:    なし
 
                 
-  Returns:      �Ȃ�
+  Returns:      なし
 
  *---------------------------------------------------------------------------*/
 void            NNS_GfdResetLnkTexVramState( void )
 {
     SlotData        sd[4] = 
     { 
-        // �󂫗̈�T�C�Y, �ʏ�e�N�X�`���p�T�C�Y, 4x4���k�e�N�X�`���p�T�C�Y
+        // 空き領域サイズ, 通常テクスチャ用サイズ, 4x4圧縮テクスチャ用サイズ
         { 0x20000, 0, 0 },
         { 0x20000, 0, 0 },
         { 0x20000, 0, 0 },
         { 0x20000, 0, 0 }
     };
     
-    // �X���b�g�P�Ɋm�ۂ����C���f�b�N�X�e�[�u���p�̈�̃T�C�Y
-    // (�������A�}�l�[�W���̓t���[�u���b�N�Ƃ��ĊǗ��͂��Ȃ��j
+    // スロット１に確保されるインデックステーブル用領域のサイズ
+    // (ただし、マネージャはフリーブロックとして管理はしない）
     const u32   szIndexTbl  = mgr_.szByteFor4x4 / 2; 
-    // �ʏ�e�N�X�`���T�C�Y                                                 
+    // 通常テクスチャサイズ                                                 
     u32         restNrm     = mgr_.szByte - ( mgr_.szByteFor4x4 + szIndexTbl );
-    // 4x4���k�e�N�X�`���T�C�Y                                                 
+    // 4x4圧縮テクスチャサイズ                                                 
     u32         rest4x4     = mgr_.szByteFor4x4;
     u32         slotNo;
     u32         val;
     
     
     //------------------------------------------------------------------------------
-    // 4x4�p�̎g�p�e�ʂ��v�Z���A���ʂ� SlotData �Ɋi�[���܂�
+    // 4x4用の使用容量を計算し、結果を SlotData に格納します
     //
     for( slotNo = 0; slotNo < 4; slotNo++ )
     {
-        // �X���b�g0��2�݂̂�4x4�p�̈�͊m�ۂ���܂�
+        // スロット0か2のみに4x4用領域は確保されます
         if( slotNo == 0 || slotNo == 2 )
         {
             if( sd[slotNo].szFree > 0 && rest4x4 > 0 )
@@ -422,15 +422,15 @@ void            NNS_GfdResetLnkTexVramState( void )
     }
     
     //
-    // �X���b�g�P�F�C���f�b�N�X�e�[�u���̈�̃T�C�Y���v�Z���A�t���[�̈悩�猸�Y���܂�
+    // スロット１：インデックステーブル領域のサイズを計算し、フリー領域から減産します
     //
     {
         sd[1].szFree    -= szIndexTbl;
-        // �}�l�[�W���̓C���f�b�N�X�e�[�u���p�̗̈�͊Ǘ����܂���
+        // マネージャはインデックステーブル用の領域は管理しません
     }
     
     //
-    // �c�����̈悩��A�ʏ�e�N�X�`���̈�̃T�C�Y���v�Z���܂�
+    // 残った領域から、通常テクスチャ領域のサイズを計算します
     //
     for( slotNo = 0; slotNo < 4; slotNo++ )
     {
@@ -451,7 +451,7 @@ void            NNS_GfdResetLnkTexVramState( void )
     
     //------------------------------------------------------------------------------
     //
-    // ����������(�Z�o���� SlotData �����Ƀt���[�u���b�N�����������܂��B)
+    // 初期化処理(算出した SlotData を元にフリーブロックを初期化します。)
     //
     {
         BOOL result = TRUE;    
@@ -461,7 +461,7 @@ void            NNS_GfdResetLnkTexVramState( void )
         
         
         //
-        // ���L�Ǘ��u���b�N��������
+        // 共有管理ブロックを初期化
         //
         mgr_.pBlockPoolList 
             = NNSi_GfdInitLnkVramBlockPool( (NNSiGfdLnkVramBlock*)mgr_.pWorkHead, 
@@ -469,7 +469,7 @@ void            NNS_GfdResetLnkTexVramState( void )
         
         {
             //
-            // ���ʑ���4x4�A���̂�����ʑ��ɒʏ�̃t���[�u���b�N���쐬���}�l�[�W���� �o�^����
+            // 下位側に4x4、そのすぐ上位側に通常のフリーブロックを作成しマネージャに 登録する
             //
             // slot 0 
             result &= 
@@ -488,15 +488,15 @@ void            NNS_GfdResetLnkTexVramState( void )
             InitSlotFreeBlock_( &mgr_.mgrNrm, &mgr_.pBlockPoolList , GFD_SLOT3_BASEADDR              , sd[3].szNrm );
             
             // slot 1
-            // �p���b�g�C���f�b�N�X�p�̗̈�̓}�l�[�W���ł͊Ǘ����Ȃ��B
-            // �p���b�g�C���f�b�N�X�p�̗̈�ȊO�̗̈��ʏ�e�N�X�`���p�t���[�u���b�N�Ƃ��ď���������B
+            // パレットインデックス用の領域はマネージャでは管理しない。
+            // パレットインデックス用の領域以外の領域を通常テクスチャ用フリーブロックとして初期化する。
             result &= 
             InitSlotFreeBlock_( &mgr_.mgrNrm, &mgr_.pBlockPoolList , GFD_SLOT1_BASEADDR + szIndexTbl, sd[1].szNrm );
         }
         NNS_GFD_ASSERT( result );    
     }
         
-    // �t���[���X�g�̌��������݂܂��B
+    // フリーリストの結合を試みます。
     NNSi_GfdMergeAllFreeBlocks( &mgr_.mgrNrm, &mgr_.pBlockPoolList );
     NNSi_GfdMergeAllFreeBlocks( &mgr_.mgr4x4, &mgr_.pBlockPoolList );
 }

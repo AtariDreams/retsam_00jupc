@@ -1,9 +1,9 @@
 //=============================================================================
 /**
  * @file	comm_command.c
- * @brief	ƒf[ƒ^‚ğ‘—‚é‚½‚ß‚ÌƒRƒ}ƒ“ƒh‚ğƒe[ƒuƒ‹‰»‚µ‚Ä‚¢‚Ü‚·
- *          ‘—M‚µ‚½‚¢“à—e‚ª‚ ‚éê‡A‚±‚±‚É’Ç‰Á‚µ‚Ä‚¢‚­‚±‚Æ‚É‚È‚è‚Ü‚·
- *          comm_command.h ‚Ì enum ‚Æ“¯‚¶•À‚Ñ‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·
+ * @brief	ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹ãŸã‚ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ãƒ†ãƒ¼ãƒ–ãƒ«åŒ–ã—ã¦ã„ã¾ã™
+ *          é€ä¿¡ã—ãŸã„å†…å®¹ãŒã‚ã‚‹å ´åˆã€ã“ã“ã«è¿½åŠ ã—ã¦ã„ãã“ã¨ã«ãªã‚Šã¾ã™
+ *          comm_command.h ã® enum ã¨åŒã˜ä¸¦ã³ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™
  * @author	Katsumi Ohno
  * @date    2005.07.26
  */
@@ -16,23 +16,23 @@
 #include "system/mystatus.h"
 
 //==============================================================================
-//  static’è‹`
+//  staticå®šç¾©
 //==============================================================================
 static void _commCommandRecvThrowOut(int netID, int size, void* pData, void* pWork);
 static void _commCommandRecvThrowOutReq(int netID, int size, void* pData, void* pWork);
 static void _commCommandRecvThrowOutEnd(int netID, int size, void* pData, void* pWork);
 static int _getTwo(void);
 
-// field/d_ohno.h‚É‚ ‚éƒfƒoƒbƒO—p
+// field/d_ohno.hã«ã‚ã‚‹ãƒ‡ãƒãƒƒã‚°ç”¨
 extern void CommDebugRecvHugeData(int netID, int size, void* pData, void* pWork);
 
 
 //==============================================================================
-//	ƒe[ƒuƒ‹éŒ¾
-//  comm_shar.h ‚Ì enum ‚Æ“¯‚¶‚È‚ç‚Ñ‚É‚µ‚Ä‚­‚¾‚³‚¢
-//  CALLBACK‚ğŒÄ‚Î‚ê‚½‚­‚È‚¢ê‡‚ÍNULL‚ğ‘‚¢‚Ä‚­‚¾‚³‚¢
-//  ƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY‚ğ•Ô‚·ŠÖ”‚ğ‘‚¢‚Ä‚à‚ç‚¦‚é‚Æ’ÊM‚ªŒy‚­‚È‚è‚Ü‚·
-//  _getZero‚ÍƒTƒCƒY‚È‚µ‚ğ•Ô‚µ‚Ü‚·B_getVariable‚Í‰Â•Ïƒf[ƒ^g—p‚Ég‚¢‚Ü‚·
+//	ãƒ†ãƒ¼ãƒ–ãƒ«å®£è¨€
+//  comm_shar.h ã® enum ã¨åŒã˜ãªã‚‰ã³ã«ã—ã¦ãã ã•ã„
+//  CALLBACKã‚’å‘¼ã°ã‚ŒãŸããªã„å ´åˆã¯NULLã‚’æ›¸ã„ã¦ãã ã•ã„
+//  ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚ºã‚’è¿”ã™é–¢æ•°ã‚’æ›¸ã„ã¦ã‚‚ã‚‰ãˆã‚‹ã¨é€šä¿¡ãŒè»½ããªã‚Šã¾ã™
+//  _getZeroã¯ã‚µã‚¤ã‚ºãªã—ã‚’è¿”ã—ã¾ã™ã€‚_getVariableã¯å¯å¤‰ãƒ‡ãƒ¼ã‚¿ä½¿ç”¨æ™‚ã«ä½¿ã„ã¾ã™
 //==============================================================================
 static const CommPacketTbl _CommPacketTbl[] = {
     {NULL, _getZero, NULL},
@@ -65,11 +65,11 @@ static const CommPacketTbl _CommPacketTbl[] = {
 };
 
 typedef struct{
-    const CommPacketTbl* pCommPacket;  ///< field‚âbattle‚ÌƒRƒ}ƒ“ƒh‚Ìƒe[ƒuƒ‹
-    int listNum;                       ///< _pCommPacket‚Ìlist”
-    void* pWork;                       ///< field‚âbattle‚ÌƒƒCƒ“‚É‚È‚éƒ[ƒN
-    u8 bThrowOutReq[COMM_MACHINE_MAX];        ///< ƒRƒ}ƒ“ƒh‚ğŒğŠ·‚µ‚½‚¢ƒtƒ‰ƒO
-    u8 bThrowOuted;    ///< ƒRƒ}ƒ“ƒh“ü‚ê‘Ö‚¦‚ªI—¹‚µ‚½‚çTRUE
+    const CommPacketTbl* pCommPacket;  ///< fieldã‚„battleã®ã‚³ãƒãƒ³ãƒ‰ã®ãƒ†ãƒ¼ãƒ–ãƒ«
+    int listNum;                       ///< _pCommPacketã®listæ•°
+    void* pWork;                       ///< fieldã‚„battleã®ãƒ¡ã‚¤ãƒ³ã«ãªã‚‹ãƒ¯ãƒ¼ã‚¯
+    u8 bThrowOutReq[COMM_MACHINE_MAX];        ///< ã‚³ãƒãƒ³ãƒ‰ã‚’äº¤æ›ã—ãŸã„ãƒ•ãƒ©ã‚°
+    u8 bThrowOuted;    ///< ã‚³ãƒãƒ³ãƒ‰å…¥ã‚Œæ›¿ãˆãŒçµ‚äº†ã—ãŸã‚‰TRUE
 } _COMM_COMMAND_WORK;
 
 static _COMM_COMMAND_WORK* _pCommandWork = NULL;
@@ -77,10 +77,10 @@ static _COMM_COMMAND_WORK* _pCommandWork = NULL;
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹‚Ì‰Šú‰»
- * @param   pCommPacketLocal ŒÄ‚Ño‚µƒ‚ƒWƒ…[ƒ‹ê—p‚ÌƒRƒ}ƒ“ƒh‘ÌŒn
- * @param   listNum          ƒRƒ}ƒ“ƒh”
- * @param   pWork            ŒÄ‚Ño‚µƒ‚ƒWƒ…[ƒ‹ê—p‚Ìƒ[ƒNƒGƒŠƒA
+ * @brief   ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ã®åˆæœŸåŒ–
+ * @param   pCommPacketLocal å‘¼ã³å‡ºã—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å°‚ç”¨ã®ã‚³ãƒãƒ³ãƒ‰ä½“ç³»
+ * @param   listNum          ã‚³ãƒãƒ³ãƒ‰æ•°
+ * @param   pWork            å‘¼ã³å‡ºã—ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å°‚ç”¨ã®ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -107,7 +107,7 @@ void CommCommandInitialize(const CommPacketTbl* pCommPacketLocal,int listNum,voi
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹‚ÌI—¹ˆ—
+ * @brief   ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ã®çµ‚äº†å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -123,11 +123,11 @@ void CommCommandFinalize( void )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒe[ƒuƒ‹‚É]‚¢ óMƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚Ño‚µ‚Ü‚·
- * @param   command         óMƒRƒ}ƒ“ƒh
- * @param   netID           ƒlƒbƒgƒ[ƒNID
- * @param   size            óMƒf[ƒ^ƒTƒCƒY
- * @param   pData           óMƒf[ƒ^
+ * @brief   ãƒ†ãƒ¼ãƒ–ãƒ«ã«å¾“ã„ å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã³å‡ºã—ã¾ã™
+ * @param   command         å—ä¿¡ã‚³ãƒãƒ³ãƒ‰
+ * @param   netID           ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ID
+ * @param   size            å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param   pData           å—ä¿¡ãƒ‡ãƒ¼ã‚¿
  * @retval  none
  */
 //--------------------------------------------------------------
@@ -144,10 +144,10 @@ void CommCommandCallBack(int netID, int command, int size, void* pData)
         if(command > (_pCommandWork->listNum + CS_COMMAND_MAX)){
 #ifdef DEBUG_ONLY_FOR_ohno
             OHNO_PRINT("command %d \n", command);
-            GF_ASSERT(0 && "‘¶İ‚µ‚È‚¢’ÊMƒRƒ}ƒ“ƒh");
+            GF_ASSERT(0 && "å­˜åœ¨ã—ãªã„é€šä¿¡ã‚³ãƒãƒ³ãƒ‰");
 #endif
             CommSetError();
-            return;  // –{”Ô‚Å‚ÍƒRƒ}ƒ“ƒh‚È‚µˆµ‚¢
+            return;  // æœ¬ç•ªã§ã¯ã‚³ãƒãƒ³ãƒ‰ãªã—æ‰±ã„
         }
         func = _pCommandWork->pCommPacket[command - CS_COMMAND_MAX].callbackFunc;
     }
@@ -164,9 +164,9 @@ void CommCommandCallBack(int netID, int command, int size, void* pData)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’è‹`‚ª‚ ‚Á‚½ƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·
- * @param   command         ƒRƒ}ƒ“ƒh
- * @retval  ƒf[ƒ^‚ÌƒTƒCƒY   ‰Â•Ï‚È‚ç COMM_VARIABLE_SIZE‚ğ•Ô‚µ‚Ü‚·
+ * @brief   å®šç¾©ãŒã‚ã£ãŸã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™
+ * @param   command         ã‚³ãƒãƒ³ãƒ‰
+ * @retval  ãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º   å¯å¤‰ãªã‚‰ COMM_VARIABLE_SIZEã‚’è¿”ã—ã¾ã™
  */
 //--------------------------------------------------------------
 
@@ -182,12 +182,12 @@ int CommCommandGetPacketSize(int command)
         GF_ASSERT(_pCommandWork);
         if(_pCommandWork==NULL){
             CommSetError();
-            return size;  // –{”Ô‚Å‚ÍƒGƒ‰[
+            return size;  // æœ¬ç•ªã§ã¯ã‚¨ãƒ©ãƒ¼
         }
         if(command > (_pCommandWork->listNum + CS_COMMAND_MAX)){
             GF_ASSERT_MSG(0,"command %d ",command);
             CommSetError();
-            return size;  // –{”Ô‚Å‚ÍƒGƒ‰[
+            return size;  // æœ¬ç•ªã§ã¯ã‚¨ãƒ©ãƒ¼
         }
         func = _pCommandWork->pCommPacket[command - CS_COMMAND_MAX].getSizeFunc;
     }
@@ -199,9 +199,9 @@ int CommCommandGetPacketSize(int command)
 
 //--------------------------------------------------------------
 /**
- * @brief   óMƒoƒbƒtƒ@‚ğ‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ÌŒŸ¸
- * @param   command         ƒRƒ}ƒ“ƒh
- * @retval  ‚Á‚Ä‚é‚È‚çTRUE
+ * @brief   å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã‚’æŒã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®æ¤œæŸ»
+ * @param   command         ã‚³ãƒãƒ³ãƒ‰
+ * @retval  æŒã£ã¦ã‚‹ãªã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -216,8 +216,8 @@ BOOL CommCommandCreateBuffCheck(int command)
 //--------------------------------------------------------------
 /**
  * @brief   
- * @param   command         ƒRƒ}ƒ“ƒh
- * @retval  ‚Á‚Ä‚é‚È‚çTRUE
+ * @param   command         ã‚³ãƒãƒ³ãƒ‰
+ * @retval  æŒã£ã¦ã‚‹ãªã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -239,9 +239,9 @@ void* CommCommandCreateBuffStart(int command,int netID, int size)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚R‚Â‚Æ‚àƒTƒCƒY‚ğ•Ô‚µ‚Ü‚·
- * @param   command         ƒRƒ}ƒ“ƒh
- * @retval  ƒTƒCƒY   ‰Â•Ï‚È‚ç COMM_VARIABLE_SIZE Zero‚Í‚O‚ğ•Ô‚·
+ * @brief   ï¼“ã¤ã¨ã‚‚ã‚µã‚¤ã‚ºã‚’è¿”ã—ã¾ã™
+ * @param   command         ã‚³ãƒãƒ³ãƒ‰
+ * @retval  ã‚µã‚¤ã‚º   å¯å¤‰ãªã‚‰ COMM_VARIABLE_SIZE Zeroã¯ï¼ã‚’è¿”ã™
  */
 //--------------------------------------------------------------
 int _getVariable(void)
@@ -267,9 +267,9 @@ static int _getTwo(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹‚Ì”pŠü
+ * @brief   ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ã®å»ƒæ£„
  * @param   none
- * @retval  ó•tŠ®—¹‚µ‚½‚çTRUE
+ * @retval  å—ä»˜å®Œäº†ã—ãŸã‚‰TRUE
  */
 //--------------------------------------------------------------
 
@@ -284,7 +284,7 @@ BOOL CommCommandThrowOut(void)
 
 //==============================================================================
 /**
- * ƒRƒ}ƒ“ƒh”pŠüƒR[ƒ‹ƒoƒbƒN
+ * ã‚³ãƒãƒ³ãƒ‰å»ƒæ£„ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -298,8 +298,8 @@ static void _commCommandRecvThrowOut(int netID, int size, void* pData, void* pWo
     if(CommGetCurrentID() != COMM_PARENT_ID){
         return;
     }
-//    OHNO_PRINT("CommRecvDSMPChange óM\n");
-    // ‘Sˆõ‚ÉØ‚è‘Ö‚¦M†‚ğ‘—‚é
+//    OHNO_PRINT("CommRecvDSMPChange å—ä¿¡\n");
+    // å…¨å“¡ã«åˆ‡ã‚Šæ›¿ãˆä¿¡å·ã‚’é€ã‚‹
     _pCommandWork->bThrowOutReq[netID] = TRUE;
     for(i = 0 ; i < COMM_MACHINE_MAX; i++){
         if(!CommIsConnect(i)){
@@ -314,7 +314,7 @@ static void _commCommandRecvThrowOut(int netID, int size, void* pData, void* pWo
 
 //==============================================================================
 /**
- * ƒRƒ}ƒ“ƒh”pŠüÀsƒR[ƒ‹ƒoƒbƒN
+ * ã‚³ãƒãƒ³ãƒ‰å»ƒæ£„å®Ÿè¡Œã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -335,7 +335,7 @@ static void _commCommandRecvThrowOutReq(int netID, int size, void* pData, void* 
 
 //==============================================================================
 /**
- * ƒRƒ}ƒ“ƒh”pŠüŠ®—¹ƒR[ƒ‹ƒoƒbƒN
+ * ã‚³ãƒãƒ³ãƒ‰å»ƒæ£„å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  * @param   none
  * @retval  none
  */
@@ -354,9 +354,9 @@ static void _commCommandRecvThrowOutEnd(int netID, int size, void* pData, void* 
 
 //==============================================================================
 /**
- * ƒRƒ}ƒ“ƒhŒğŠ·‚Å‚«‚½‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
+ * ã‚³ãƒãƒ³ãƒ‰äº¤æ›ã§ããŸã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
  * @param   none
- * @retval  ŒğŠ·Š®—¹‚µ‚½‚çTRUE
+ * @retval  äº¤æ›å®Œäº†ã—ãŸã‚‰TRUE
  */
 //==============================================================================
 

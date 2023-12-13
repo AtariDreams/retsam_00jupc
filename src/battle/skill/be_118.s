@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_118.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			118�@�G���u������v��Ԃɂ��邪�A�����Ɂu���������v���Q�i�K�グ�Ă��܂�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			118　敵を「こんらん」状態にするが、かわりに「こうげき」を２段階上げてしまう
  *
  *@author	HisashiSogabe
  *@data		2005.10.03

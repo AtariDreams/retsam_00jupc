@@ -38,31 +38,31 @@ extern void EventCmd_GirathinaWildBattle( GMEVENT_CONTROL * event,
 
 //extern void EventCmd_WifiBattle(GMEVENT_CONTROL * event,int targetID, int lvLimit,BOOL bSingle);
 //-------------------------------------
-///	ƒoƒgƒ‹ƒtƒ‰ƒO
+///	ãƒãƒˆãƒ«ãƒ•ãƒ©ã‚°
 //=====================================
 typedef enum{
-	WIFI_BATTLEFLAG_SINGLE,	// ƒVƒ“ƒOƒ‹ƒoƒgƒ‹
-	WIFI_BATTLEFLAG_DOUBLE,	// ƒ_ƒuƒ‹ƒoƒgƒ‹
-	WIFI_BATTLEFLAG_MULTI,	// ƒ}ƒ‹ƒ`ƒoƒgƒ‹
+	WIFI_BATTLEFLAG_SINGLE,	// ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«
+	WIFI_BATTLEFLAG_DOUBLE,	// ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
+	WIFI_BATTLEFLAG_MULTI,	// ãƒãƒ«ãƒãƒãƒˆãƒ«
 } WIFI_BATTLEFLAG;
 extern void EventCmd_WifiBattle(GMEVENT_CONTROL * event,int targetID, int lvLimit,WIFI_BATTLEFLAG bflag);
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhFƒoƒgƒ‹ƒ^ƒ[ƒ[ƒJƒ‹‘Îí
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	trainer_id	ƒgƒŒ[ƒi[w’èƒf[ƒ^
- * @param	fight_type	í“¬í•Ê
- * @param	heapID		ƒq[ƒvID
- * @param	win_flag	í“¬Œ‹‰Ê‚ğó‚¯æ‚éƒtƒ‰ƒO
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ­ãƒ¼ã‚«ãƒ«å¯¾æˆ¦
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	trainer_id	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŒ‡å®šãƒ‡ãƒ¼ã‚¿
+ * @param	fight_type	æˆ¦é—˜ç¨®åˆ¥
+ * @param	heapID		ãƒ’ãƒ¼ãƒ—ID
+ * @param	win_flag	æˆ¦é—˜çµæœã‚’å—ã‘å–ã‚‹ãƒ•ãƒ©ã‚°
  */
 //-----------------------------------------------------------------------------
 extern void EventCmd_TowerLocalBattle(GMEVENT_CONTROL * event,BTOWER_SCRWORK* wk, int * win_flag);
 
-//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒ|ƒPƒp[ƒNƒGƒ“ƒJƒEƒ“ƒg
+//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒã‚±ãƒ‘ãƒ¼ã‚¯ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 extern void EventSet_PokeParkBattle(FIELDSYS_WORK * fsys, BATTLE_PARAM * btlprm);
 
-//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhF•ßŠlƒfƒ‚ŒÄ‚Ño‚µ
+//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šæ•ç²ãƒ‡ãƒ¢å‘¼ã³å‡ºã—
 extern void EventCmd_CaptureDemo(GMEVENT_CONTROL * event);
 
 #ifdef	PM_DEBUG

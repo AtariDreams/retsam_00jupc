@@ -1,9 +1,9 @@
 //====================================================================
 //						c04r0401.gmm
-//					ƒVƒeƒB‚O‚SEr0401
+//					ã‚·ãƒ†ã‚£ï¼ï¼”ãƒ»r0401
 //
-//	LOCALWORK2		ƒQ[ƒg“à‚ÌPOS‚ÅŽg—p
-//	LOCALWORK3		ƒQ[ƒg“à‚Ì‹­§ƒCƒxƒ“ƒg‚ÅŽg—p
+//	LOCALWORK2		ã‚²ãƒ¼ãƒˆå†…ã®POSã§ä½¿ç”¨
+//	LOCALWORK3		ã‚²ãƒ¼ãƒˆå†…ã®å¼·åˆ¶ã‚¤ãƒ™ãƒ³ãƒˆã§ä½¿ç”¨
 //====================================================================
 	.text
 
@@ -12,11 +12,11 @@
 	.include	"../eventdata/zone_c04r0401evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c04r0401_flag_change
 _EVENT_DATA		ev_c04r0401_shopm1
@@ -24,7 +24,7 @@ _EVENT_DATA		pos_c04r0401_stopper_in
 _EVENT_DATA		pos_c04r0401_stopper_out
 _EVENT_DATA		ev_c04r0401_assistantm
 _EVENT_DATA		ev_c04r0401_cycle_check
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
@@ -32,17 +32,17 @@ _EVENT_DATA_END						//I—¹
 /********************************************************************/
 ev_c04r0401_cycle_check:
 
-	/*ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh‚©‚ç‹A‚Á‚Ä‚«‚½‚©ƒ`ƒFƒbƒN*/
+	/*ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ã‹ã‚‰å¸°ã£ã¦ããŸã‹ãƒã‚§ãƒƒã‚¯*/
 	_PLAYER_POS_GET	LOCALWORK4,LOCALWORK5
 	_IFVAL_CALL		LOCALWORK5,GE,12,ev_c04r0401_cycle_check_sub
 
 	_LDVAL			LOCALWORK3,1
 	_END
 
-/*ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh‚©‚ç‹A‚Á‚Ä‚«‚½*/
+/*ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ã‹ã‚‰å¸°ã£ã¦ããŸ*/
 ev_c04r0401_cycle_check_sub:
-	/*Ž©“]ŽÔƒQ[ƒg’Ê‰ß‚µ‚½ƒtƒ‰ƒO‚ð—§‚Ä‚é(Ž©“]ŽÔ‚©‚ç~‚è‚ç‚ê‚È‚¢)*/
-	_FLAG_SET		SYS_FLAG_BICYCLE_GATE		/*ƒQ[ƒg“à—LŒø*/
+	/*è‡ªè»¢è»Šã‚²ãƒ¼ãƒˆé€šéŽã—ãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹(è‡ªè»¢è»Šã‹ã‚‰é™ã‚Šã‚‰ã‚Œãªã„)*/
+	_FLAG_SET		SYS_FLAG_BICYCLE_GATE		/*ã‚²ãƒ¼ãƒˆå†…æœ‰åŠ¹*/
 	_RET
 
 
@@ -51,18 +51,18 @@ ev_c04r0401_cycle_check_sub:
 /********************************************************************/
 ev_c04r0401_flag_change:
 
-	//ŠwK‘•’u“üŽèÏ‚Ý‚È‚ç•Žè‚ðÁ‚·
+	//å­¦ç¿’è£…ç½®å…¥æ‰‹æ¸ˆã¿ãªã‚‰åŠ©æ‰‹ã‚’æ¶ˆã™
 	_IF_FLAGON_CALL		FE_GAKUSYUUSOUCHI_GET,ev_c04r0401_flag_change_assistantm_del
 	_END
 
-//•Žè‚ðo‚³‚È‚¢
+//åŠ©æ‰‹ã‚’å‡ºã•ãªã„
 ev_c04r0401_flag_change_assistantm_del:
 	_FLAG_SET		FV_C04R0401_ASSISTANTM
 	_RET
 
 
 /********************************************************************/
-/*							“Xˆõ@@								*/
+/*							åº—å“¡ã€€ã€€								*/
 /********************************************************************/
 ev_c04r0401_shopm1:
 	_EASY_OBJ_MSG	msg_c04r0401_shopm1_02
@@ -70,46 +70,46 @@ ev_c04r0401_shopm1:
 
 
 /********************************************************************/
-/*					“XˆõƒXƒgƒbƒp[(ƒQ[ƒg‚Öi‚Þ)@@				*/
+/*					åº—å“¡ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼(ã‚²ãƒ¼ãƒˆã¸é€²ã‚€)ã€€ã€€				*/
 /********************************************************************/
 pos_c04r0401_stopper_in:
 	_EVENT_START
 
-	/*Ž©“]ŽÔ‚Éæ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*è‡ªè»¢è»Šã«ä¹—ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_BICYCLE_CHECK	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c04r0401_bicycle_use
 
-	/*‹C‚Ã‚­*/
+	/*æ°—ã¥ã*/
 	_OBJ_ANIME		C04R0401_SHOPM1,anm_c04r0401_shopm1_01
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_c04r0401_shopm1_03
 	_TALK_CLOSE
 
-	/*‰Ÿ‚µ–ß‚³‚ê‚é*/
+	/*æŠ¼ã—æˆ»ã•ã‚Œã‚‹*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c04r0401_player_01
 	_OBJ_ANIME_WAIT
 
 	_EVENT_END
 	_END
 
-/*Ž©“]ŽÔ‚Éæ‚Á‚Ä‚¢‚é*/
+/*è‡ªè»¢è»Šã«ä¹—ã£ã¦ã„ã‚‹*/
 ev_c04r0401_bicycle_use:
-	/*Ž©“]ŽÔƒQ[ƒg’Ê‰ß‚µ‚½ƒtƒ‰ƒO‚ð—§‚Ä‚é(Ž©“]ŽÔ‚©‚ç~‚è‚ç‚ê‚È‚¢)*/
-	_FLAG_SET		SYS_FLAG_BICYCLE_GATE		/*ƒQ[ƒg“à—LŒø*/
+	/*è‡ªè»¢è»Šã‚²ãƒ¼ãƒˆé€šéŽã—ãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹(è‡ªè»¢è»Šã‹ã‚‰é™ã‚Šã‚‰ã‚Œãªã„)*/
+	_FLAG_SET		SYS_FLAG_BICYCLE_GATE		/*ã‚²ãƒ¼ãƒˆå†…æœ‰åŠ¹*/
 	_LDVAL			LOCALWORK2,1
 	_EVENT_END
 	_END
 
 //--------------------------------------------------------------------
-//ƒXƒgƒbƒp[	I
+//ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼	ï¼
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c04r0401_shopm1_01
 	_ANIME_DATA	AC_MARK_GYOE,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	‰Ÿ‚µ–ß‚³‚ê‚é
+//ä¸»äººå…¬	æŠ¼ã—æˆ»ã•ã‚Œã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_c04r0401_player_01
 	_ANIME_DATA	AC_WALK_U_8F,1
@@ -117,12 +117,12 @@ _ANIME_LABEL	anm_c04r0401_player_01
 
 
 /********************************************************************/
-/*					“XˆõƒXƒgƒbƒp[(ƒQ[ƒg‚©‚ço‚é)@@				*/
+/*					åº—å“¡ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼(ã‚²ãƒ¼ãƒˆã‹ã‚‰å‡ºã‚‹)ã€€ã€€				*/
 /********************************************************************/
 pos_c04r0401_stopper_out:
 	_EVENT_START
 
-	/*Ž©“]ŽÔƒQ[ƒg’Ê‰ß‚µ‚½ƒtƒ‰ƒO‚ð—Ž‚Æ‚·(Ž©“]ŽÔ‚©‚ç~‚è‚ç‚ê‚é)*/
+	/*è‡ªè»¢è»Šã‚²ãƒ¼ãƒˆé€šéŽã—ãŸãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™(è‡ªè»¢è»Šã‹ã‚‰é™ã‚Šã‚‰ã‚Œã‚‹)*/
 	_FLAG_RESET		SYS_FLAG_BICYCLE_GATE
 	_LDVAL			LOCALWORK2,0
 
@@ -131,21 +131,21 @@ pos_c04r0401_stopper_out:
 
 
 /********************************************************************/
-/*							•Žè‰@@								*/
+/*							åŠ©æ‰‹â™‚ã€€ã€€								*/
 /********************************************************************/
 ev_c04r0401_assistantm:
 	_TALK_OBJ_START
 
-#if 0	//070208@ƒfƒoƒbƒN—pˆ—@•K‚¸–³Œø‚É‚·‚é
+#if 0	//070208ã€€ãƒ‡ãƒãƒƒã‚¯ç”¨å‡¦ç†ã€€å¿…ãšç„¡åŠ¹ã«ã™ã‚‹
 
-	_FLAG_SET		SYS_FLAG_CYCLINGROAD	//POSƒCƒxƒ“ƒg‚ÅR206‚És‚­‘O‚ÉƒZƒbƒg‚µ‚Ä‚¨‚­
+	_FLAG_SET		SYS_FLAG_CYCLINGROAD	//POSã‚¤ãƒ™ãƒ³ãƒˆã§R206ã«è¡Œãå‰ã«ã‚»ãƒƒãƒˆã—ã¦ãŠã
 
 	_TALK_OBJ_END
 	_END
 
 #endif
 
-	//ŠwK‘•’u“üŽèÏ‚Ý
+	//å­¦ç¿’è£…ç½®å…¥æ‰‹æ¸ˆã¿
 	_IF_FLAGON_JUMP		FE_GAKUSYUUSOUCHI_GET,ev_c04r0401_assistantm_04
 
 	_PLAYER_NAME	0
@@ -155,39 +155,39 @@ ev_c04r0401_assistantm:
 	_IFVAL_JUMP		LOCALWORK0,EQ,0,ev_c04r0401_assistantm_01
 	_JUMP							ev_c04r0401_assistantm_02
 
-//’j
+//ç”·
 ev_c04r0401_assistantm_01:
 	_TALK_KEYWAIT	msg_c04r0401_assistantm_01
 	_JUMP			ev_c04r0401_assistantm_common_01
 
-//—
+//å¥³
 ev_c04r0401_assistantm_02:
 	_TALK_KEYWAIT	msg_c04r0401_assistantm_02
 	_JUMP			ev_c04r0401_assistantm_common_01
 
-//Œ©‚½”‚ðƒ`ƒFƒbƒN
+//è¦‹ãŸæ•°ã‚’ãƒã‚§ãƒƒã‚¯
 ev_c04r0401_assistantm_common_01:
-	_ZENKOKU_ZUKAN_SEE_NUM	SCWK_TEMP0		//¦ƒoƒO‘Îˆ‚Ìˆ×A‘S‘ƒ`ƒFƒbƒN‚Ö•ÏX060714¼‹{‚³‚ñ³”F
+	_ZENKOKU_ZUKAN_SEE_NUM	SCWK_TEMP0		//â€»ãƒã‚°å¯¾å‡¦ã®ç‚ºã€å…¨å›½ãƒã‚§ãƒƒã‚¯ã¸å¤‰æ›´060714æ¾å®®ã•ã‚“æ‰¿èª
 
-	//Œ©‚½”‚ðƒoƒbƒtƒ@‚Ö
+	//è¦‹ãŸæ•°ã‚’ãƒãƒƒãƒ•ã‚¡ã¸
 	_NUMBER_NAME	1,SCWK_TEMP0
 
-	//‚R‚T•C–¢–ž
+	//ï¼“ï¼•åŒ¹æœªæº€
 	_IFVAL_JUMP		SCWK_TEMP0,LT,35,ev_c04r0401_assistantm_05
 
 	_TALK_KEYWAIT	msg_c04r0401_assistantm_03
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_GAKUSYUUSOUTI
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c04r0401_assistantm_item_event_fail
 
 	_FLAG_SET		FE_GAKUSYUUSOUCHI_GET
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT
 	_TALK_CLOSE
 	_TALK_OBJ_END
@@ -201,7 +201,7 @@ ev_c04r0401_assistantm_item_event_fail:
 	_END
 
 
-//ŠwK‘•’u“üŽèÏ‚Ý
+//å­¦ç¿’è£…ç½®å…¥æ‰‹æ¸ˆã¿
 ev_c04r0401_assistantm_04:
 	_TALKMSG		msg_c04r0401_assistantm_04
 	_LAST_KEYWAIT
@@ -209,7 +209,7 @@ ev_c04r0401_assistantm_04:
 	_TALK_OBJ_END
 	_END
 
-//ƒ|ƒPƒ‚ƒ“”‚ª‘«‚è‚È‚¢
+//ãƒã‚±ãƒ¢ãƒ³æ•°ãŒè¶³ã‚Šãªã„
 ev_c04r0401_assistantm_05:
 	_TALKMSG		msg_c04r0401_assistantm_05
 	_LAST_KEYWAIT

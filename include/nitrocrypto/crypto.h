@@ -15,13 +15,13 @@
   *** empty log message ***
 
   Revision 1.3  2006/02/24 01:21:20  okubata_ryoma
-  NitroCrypto ‚ÌVİ@Crypt ‚©‚ç Crypto ‚Ö
+  NitroCrypto ã®æ–°è¨­ã€€Crypt ã‹ã‚‰ Crypto ã¸
 
   Revision 1.2  2005/12/27 12:44:04  seiki_masashi
-  RC4 ŠÖ”‚Ì’Ç‰Á
+  RC4 é–¢æ•°ã®è¿½åŠ 
 
   Revision 1.1  2005/12/21 13:55:44  seiki_masashi
-  crypt.h ‚Ì’Ç‰Á
+  crypt.h ã®è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

@@ -30,32 +30,32 @@
 /*---------------------------------------------------------------------------*
     NNSi_G3dSendJointSRTSi3d
 
-    �W���C���g�s����W�I���g���G���W���ɐݒ肷��B
-    �ʏ�ANNS_G3dSendJointSRT_FuncArray�Ƀ|�C���^���i�[����Ă��āA
-    NNS_G3D_SCALINGRULE_SI3D(<model_info>::scaling_rule��si3d�̏ꍇ)
-    ���w�肳��Ă����ꍇ�ɌĂяo�����悤�ɂȂ��Ă���B
+    ジョイント行列をジオメトリエンジンに設定する。
+    通常、NNS_G3dSendJointSRT_FuncArrayにポインタが格納されていて、
+    NNS_G3D_SCALINGRULE_SI3D(<model_info>::scaling_ruleがsi3dの場合)
+    が指定されていた場合に呼び出されるようになっている。
 
-    �܂��A�Ăяo�����ɂ́APosition/Vector���[�h�ł���A���H�Ώۂ̍s��
-    �J�����g�s��ɓ����Ă���K�v������B
+    また、呼び出し時には、Position/Vectorモードであり、加工対象の行列が
+    カレント行列に入っている必要がある。
  *---------------------------------------------------------------------------*/
 void NNSi_G3dSendJointSRTSi3d(const NNSG3dJntAnmResult* result)
 {
     BOOL rtFlag = FALSE;
-    // ���̎��_��
-    // �s�񃂁[�h��Position/Vector���[�h�łȂ���΂Ȃ�Ȃ��B
-    // ���H�Ώۂ̍s�񂪃J�����g�s��ɂȂ��Ă��Ȃ���΂Ȃ�Ȃ��B
+    // この時点で
+    // 行列モードはPosition/Vectorモードでなければならない。
+    // 加工対象の行列がカレント行列になっていなければならない。
 
-    // �v����Ɉȉ��̂悤�Ȍv�Z�����Ă���
-    // a(�e)->b(�q)->c(��)�Ƃ���ƁA
+    // 要するに以下のような計算をしている
+    // a(親)->b(子)->c(孫)とすると、
     // Sc * (SbSa) * Rc * T'c * inv(SbSa) * Sb * Sa * Rb * T'b * inv(Sa) * Sa * Ra * T'a
 
     u32 flagScaleEx = result->flag & (u32)(NNS_G3D_JNTANM_RESULTFLAG_SCALEEX0_ONE |
                                            NNS_G3D_JNTANM_RESULTFLAG_SCALEEX1_ONE);
 
     //
-    // ScaleEx0�ɂ̓X�P�[����ݏ悵�Ă����������A
-    // ScaleEx1�ɂ̓X�P�[���̋t����ݏ悵�Ă��������������Ă���B
-    // ����Ăǂ��炩�Е�������1�Ƃ������Ƃ͂Ȃ��B
+    // ScaleEx0にはスケールを累乗していった数が、
+    // ScaleEx1にはスケールの逆数を累乗していった数が入っている。
+    // よってどちらか片方だけが1ということはない。
     //
     NNS_G3D_ASSERT(flagScaleEx == 0 ||
                    flagScaleEx == (NNS_G3D_JNTANM_RESULTFLAG_SCALEEX0_ONE |
@@ -63,7 +63,7 @@ void NNSi_G3dSendJointSRTSi3d(const NNSG3dJntAnmResult* result)
 
     if (!flagScaleEx)
     {
-        // �e�܂ł̋t���X�P�[����1�łȂ��ꍇ�̓X�P�[�����O���s��
+        // 親までの逆数スケールが1でない場合はスケーリングを行う
         NNS_G3dGeBufferOP_N(G3OP_MTX_SCALE,
                             (u32*)&result->scaleEx1.x,
                             G3OP_MTX_SCALE_NPARAMS);
@@ -71,10 +71,10 @@ void NNSi_G3dSendJointSRTSi3d(const NNSG3dJntAnmResult* result)
 
     if (!(result->flag & NNS_G3D_JNTANM_RESULTFLAG_TRANS_ZERO))
     {
-        // Trans��0�łȂ��ꍇ
+        // Transが0でない場合
         if (!flagScaleEx)
         {
-            // �e�܂ł̋t���X�P�[����1�łȂ��ꍇ�Atranslation�ɏ���̏�Z���s��
+            // 親までの逆数スケールが1でない場合、translationに所定の乗算を行う
             VecFx32 tmp;
             tmp.x = (fx32)((fx64)result->trans.x * result->scaleEx0.x >> FX32_SHIFT);
             tmp.y = (fx32)((fx64)result->trans.y * result->scaleEx0.y >> FX32_SHIFT);
@@ -92,12 +92,12 @@ void NNSi_G3dSendJointSRTSi3d(const NNSG3dJntAnmResult* result)
 
     if (!(result->flag & NNS_G3D_JNTANM_RESULTFLAG_ROT_ZERO))
     {
-        // ��]�s�񂪒P�ʍs��łȂ��ꍇ�A��]�s�����Z����B
+        // 回転行列が単位行列でない場合、回転行列を乗算する。
         if (rtFlag)
         {
             // HACK ALLERT
-            // rot��trans�͘A�����Ă���Ƃ������Ƃ��O��
-            // �܂�A�R�[�h��NNSG3dJntAnmResult�̃����o�̏��ԂɈˑ����Ă���B
+            // rotとtransは連続しているということが前提
+            // つまり、コードはNNSG3dJntAnmResultのメンバの順番に依存している。
             NNS_G3dGeBufferOP_N(G3OP_MTX_MULT_4x3,
                                 (u32*)&result->rot._00,
                                 G3OP_MTX_MULT_4x3_NPARAMS);
@@ -113,7 +113,7 @@ void NNSi_G3dSendJointSRTSi3d(const NNSG3dJntAnmResult* result)
     {
         if (rtFlag)
         {
-            // �e�܂ł̋t���X�P�[����1�̏ꍇ�A���̂܂�translation�𑗂�
+            // 親までの逆数スケールが1の場合、そのままtranslationを送る
             NNS_G3dGeBufferOP_N(G3OP_MTX_TRANS,
                                 (u32*)&result->trans.x,
                                 G3OP_MTX_TRANS_NPARAMS);
@@ -122,7 +122,7 @@ void NNSi_G3dSendJointSRTSi3d(const NNSG3dJntAnmResult* result)
 
     if (!flagScaleEx)
     {
-        // �e�܂ł̃X�P�[����1�łȂ��ꍇ�̓X�P�[�����O���s��
+        // 親までのスケールが1でない場合はスケーリングを行う
         NNS_G3dGeBufferOP_N(G3OP_MTX_SCALE,
                             (u32*)&result->scaleEx0.x,
                             G3OP_MTX_SCALE_NPARAMS);
@@ -130,7 +130,7 @@ void NNSi_G3dSendJointSRTSi3d(const NNSG3dJntAnmResult* result)
 
     if (!(result->flag & NNS_G3D_JNTANM_RESULTFLAG_SCALE_ONE))
     {
-        // ���g�̃X�P�[����1�łȂ��ꍇ�̓X�P�[�����O���s��
+        // 自身のスケールが1でない場合はスケーリングを行う
         NNS_G3dGeBufferOP_N(G3OP_MTX_SCALE,
                             (u32*)&result->scale.x,
                             G3OP_MTX_SCALE_NPARAMS);
@@ -141,11 +141,11 @@ void NNSi_G3dSendJointSRTSi3d(const NNSG3dJntAnmResult* result)
 /*---------------------------------------------------------------------------*
     NNSi_G3dGetJointScaleSi3d
 
-    Si3d��Classic Scale Off���l�������X�P�[�����O���s���܂��B
-    pResult->scaleEx0�ɂ͐e�m�[�h�܂ł̗ݐσX�P�[���l�x�N�g��,
-    pResult->scaleEx1�ɂ͐e�m�[�h�܂ł̗ݐϋt���X�P�[���l�x�N�g��������܂��B
-    NNS_G3dRSOnGlb.scaleCache���ɂ͎��g�̗ݐσX�P�[���l�x�N�g���E
-    �ݐϋt���X�P�[���l������܂��B
+    Si3dのClassic Scale Offを考慮したスケーリングを行います。
+    pResult->scaleEx0には親ノードまでの累積スケール値ベクトル,
+    pResult->scaleEx1には親ノードまでの累積逆数スケール値ベクトルが入ります。
+    NNS_G3dRSOnGlb.scaleCache内には自身の累積スケール値ベクトル・
+    累積逆数スケール値が入ります。
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dGetJointScaleSi3d(NNSG3dJntAnmResult* pResult,
@@ -154,12 +154,12 @@ NNSi_G3dGetJointScaleSi3d(NNSG3dJntAnmResult* pResult,
                           u32 srtflag)
 {
     //
-    // srtflag��NNSG3dResNodeData::flag�ł���B
-    // cmd�͌��ݏ������Ă���SBC���w��(NODEDESC�R�}���h)
+    // srtflagはNNSG3dResNodeData::flagである。
+    // cmdは現在処理しているSBCを指す(NODEDESCコマンド)
     //
 
     //
-    // ScaleEx0, ScaleEx1�ɂ͐e�܂ł̗ݐσX�P�[���l������
+    // ScaleEx0, ScaleEx1には親までの累積スケール値が入る
     //
     u32 nodeID;
     u32 parentID;
@@ -173,12 +173,12 @@ NNSi_G3dGetJointScaleSi3d(NNSG3dJntAnmResult* pResult,
 
     if (srtflag & NNS_G3D_SRTFLAG_SCALE_ONE)
     {
-        // ���g�̃X�P�[���l��1�Ȃ̂Ńt���O�Z�b�g
+        // 自身のスケール値は1なのでフラグセット
         pResult->flag |= NNS_G3D_JNTANM_RESULTFLAG_SCALE_ONE;
 
         if (NNSi_G3dBitVecCheck(&NNS_G3dRS->isScaleCacheOne[0], parentID))
         {
-            // �ݐσX�P�[���l��1�̂܂�
+            // 累積スケール値は1のまま
             NNSi_G3dBitVecSet(&NNS_G3dRS->isScaleCacheOne[0], nodeID);
 
             pResult->flag |= (NNS_G3D_JNTANM_RESULTFLAG_SCALEEX0_ONE |
@@ -186,7 +186,7 @@ NNSi_G3dGetJointScaleSi3d(NNSG3dJntAnmResult* pResult,
         }
         else
         {
-            // �e�̗ݐσX�P�[���l�������z��
+            // 親の累積スケール値を持ち越す
             MI_CpuCopy32(&NNS_G3dRSOnGlb.scaleCache[parentID],
                          &NNS_G3dRSOnGlb.scaleCache[nodeID],
                          sizeof(VecFx32) + sizeof(VecFx32));
@@ -198,40 +198,40 @@ NNSi_G3dGetJointScaleSi3d(NNSG3dJntAnmResult* pResult,
     }
     else
     {
-        // ���g�̃X�P�[�����Z�b�g
+        // 自身のスケールをセット
         pResult->scale.x = *(p + 0);
         pResult->scale.y = *(p + 1);
         pResult->scale.z = *(p + 2);
 
         if (NNSi_G3dBitVecCheck(&NNS_G3dRS->isScaleCacheOne[0], parentID))
         {
-            // ���g�̃X�P�[���l���ݐσX�P�[���l�ɂȂ�
-            // NNSG3dResNodeData��Sx,Sy,Sz,InvSx,InvSy,InvSz���R�s�[���Ă���B
+            // 自身のスケール値が累積スケール値になる
+            // NNSG3dResNodeDataのSx,Sy,Sz,InvSx,InvSy,InvSzをコピーしている。
             MI_CpuCopy32(p,
                          &NNS_G3dRSOnGlb.scaleCache[nodeID],
                          sizeof(VecFx32) + sizeof(VecFx32));
 
             // NOTICE
-            // nodeID=0��scaleOne�t���O�͎��O�ɃZ�b�g����Ă��܂��B
-            // ����́A���m�[�h�̐e�m�[�h��scaleOne�ł��邱�Ƃ��������߂̂��̂ŁA
-            // ���m�[�h��scaleOne�łȂ��ꍇ�̓��Z�b�g���Ȃ��Ă͂����܂���B
-            // �Ȃ��A���̃R�[�h��if�̊O�ɏo���̂͊ԈႢ�ł��B
+            // nodeID=0のscaleOneフラグは事前にセットされています。
+            // これは、根ノードの親ノードがscaleOneであることを示すためのもので、
+            // 根ノードがscaleOneでない場合はリセットしなくてはいけません。
+            // なお、このコードをifの外に出すのは間違いです。
             NNSi_G3dBitVecReset(&NNS_G3dRS->isScaleCacheOne[0], nodeID);
 
-            // �e�܂ł̗ݐσX�P�[���l��1�Ȃ̂Ńt���O���Z�b�g
+            // 親までの累積スケール値は1なのでフラグをセット
             pResult->flag |= (NNS_G3D_JNTANM_RESULTFLAG_SCALEEX0_ONE |
                               NNS_G3D_JNTANM_RESULTFLAG_SCALEEX1_ONE);
         }
         else
         {
             // NOTICE
-            // nodeID=0��scaleOne�t���O�͎��O�ɃZ�b�g����Ă��܂��B
-            // ����́A���m�[�h�̐e�m�[�h��scaleOne�ł��邱�Ƃ��������߂̂��̂ŁA
-            // ���m�[�h��scaleOne�łȂ��ꍇ�̓��Z�b�g���Ȃ��Ă͂����܂���B
-            // �Ȃ��A�R�[�h��if�̊O�ɏo���̂͊ԈႢ�ł��B
+            // nodeID=0のscaleOneフラグは事前にセットされています。
+            // これは、根ノードの親ノードがscaleOneであることを示すためのもので、
+            // 根ノードがscaleOneでない場合はリセットしなくてはいけません。
+            // なお、コードをifの外に出すのは間違いです。
             NNSi_G3dBitVecReset(&NNS_G3dRS->isScaleCacheOne[0], nodeID);
 
-            // �e�̗ݐσX�P�[���l�Ɏ��g�̃X�P�[���l�������Ď��g�̗ݐσX�P�[���l�𓾂�
+            // 親の累積スケール値に自身のスケール値をかけて自身の累積スケール値を得る
             NNS_G3dRSOnGlb.scaleCache[nodeID].s.x =
                 (fx32)((fx64)(*(p + 0)) * NNS_G3dRSOnGlb.scaleCache[parentID].s.x >> FX32_SHIFT);
             NNS_G3dRSOnGlb.scaleCache[nodeID].s.y =
@@ -246,7 +246,7 @@ NNSi_G3dGetJointScaleSi3d(NNSG3dJntAnmResult* pResult,
             NNS_G3dRSOnGlb.scaleCache[nodeID].inv.z =
                 (fx32)((fx64)(*(p + 5)) * NNS_G3dRSOnGlb.scaleCache[parentID].inv.z >> FX32_SHIFT);
 
-            // �e�܂ł̗ݐσX�P�[���l���Z�b�g
+            // 親までの累積スケール値をセット
             MI_CpuCopy32(&NNS_G3dRSOnGlb.scaleCache[parentID],
                          &pResult->scaleEx0,
                          sizeof(VecFx32) + sizeof(VecFx32));
@@ -258,7 +258,7 @@ NNSi_G3dGetJointScaleSi3d(NNSG3dJntAnmResult* pResult,
 /*---------------------------------------------------------------------------*
     NNSi_G3dSendTexSRTSi3d
 
-    SoftImage3D�ō쐬���ꂽ���f���f�[�^�̃e�N�X�`���s���ݒ肵�܂��B
+    SoftImage3Dで作成されたモデルデータのテクスチャ行列を設定します。
  *---------------------------------------------------------------------------*/
 void NNSi_G3dSendTexSRTSi3d(const NNSG3dMatAnmResult* anm)
 {

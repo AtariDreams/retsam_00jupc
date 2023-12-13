@@ -68,12 +68,12 @@ static void EraseSync( void );
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndHeapCreate
 
-  Description:  ƒq[ƒv‚ğì¬
+  Description:  ãƒ’ãƒ¼ãƒ—ã‚’ä½œæˆ
 
-  Arguments:    startAddress - ŠJnƒAƒhƒŒƒX
-                size         - ƒƒ‚ƒŠƒTƒCƒY
+  Arguments:    startAddress - é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+                size         - ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
 
-  Returns:      ƒq[ƒvƒnƒ“ƒhƒ‹
+  Returns:      ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«
  *---------------------------------------------------------------------------*/
 NNSSndHeapHandle NNS_SndHeapCreate( void* startAddress, u32 size )
 {
@@ -114,9 +114,9 @@ NNSSndHeapHandle NNS_SndHeapCreate( void* startAddress, u32 size )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndHeapDestroy
 
-  Description:  ƒq[ƒv‚ğ”jŠü‚µ‚Ü‚·
+  Description:  ãƒ’ãƒ¼ãƒ—ã‚’ç ´æ£„ã—ã¾ã™
 
-  Arguments:    heap - ƒTƒEƒ“ƒhƒq[ƒv
+  Arguments:    heap - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -132,9 +132,9 @@ void NNS_SndHeapDestroy( NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndHeapClear
 
-  Description:  ƒq[ƒv‚ğì¬‚Ìó‘Ô‚É–ß‚·
+  Description:  ãƒ’ãƒ¼ãƒ—ã‚’ä½œæˆæ™‚ã®çŠ¶æ…‹ã«æˆ»ã™
 
-  Arguments:    heap - .ƒTƒEƒ“ƒhƒq[ƒv
+  Arguments:    heap - .ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -147,10 +147,10 @@ void NNS_SndHeapClear( NNSSndHeapHandle heap )
     
     NNS_ASSERT( heap != NNS_SND_HEAP_INVALID_HANDLE );
     
-    // ƒZƒNƒVƒ‡ƒ“‚Ì”jŠü
+    // ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ç ´æ£„
     while ( ( section = (NNSSndHeapSection*)NNS_FndGetPrevListObject( & heap->sectionList, NULL ) ) != NULL )
     {
-        // ƒR[ƒ‹ƒoƒbƒN‚ÌŒÄ‚Ño‚µ
+        // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å‘¼ã³å‡ºã—
         object = NULL;
         while ( ( object = NNS_FndGetPrevListObject( & section->blockList, object ) ) != NULL )
         {
@@ -161,17 +161,17 @@ void NNS_SndHeapClear( NNSSndHeapHandle heap )
             }
         }
         
-        // ƒZƒNƒVƒ‡ƒ“ƒŠƒXƒg‚©‚ç‚Ìíœ
+        // ã‚»ã‚¯ã‚·ãƒ§ãƒ³ãƒªã‚¹ãƒˆã‹ã‚‰ã®å‰Šé™¤
         NNS_FndRemoveListObject( & heap->sectionList, section );
     }
     
-    // ƒq[ƒv‚ÌƒNƒŠƒA
+    // ãƒ’ãƒ¼ãƒ—ã®ã‚¯ãƒªã‚¢
     NNS_FndFreeToFrmHeap( heap->handle, NNS_FND_FRMHEAP_FREE_ALL );
     
-    // ƒTƒEƒ“ƒhƒf[ƒ^‚Ìg—p’â~‚Ì“¯Šú
+    // ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ä½¿ç”¨åœæ­¢ã®åŒæœŸ
     if ( doCallback ) EraseSync();
     
-    // ƒx[ƒXƒZƒNƒVƒ‡ƒ“‚Ìì¬
+    // ãƒ™ãƒ¼ã‚¹ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ä½œæˆ
     result = NewSection( heap );
     NNS_ASSERTMSG( result, "NNS_SndHeapClear(): NewSection is Failed");
 }
@@ -179,15 +179,15 @@ void NNS_SndHeapClear( NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndHeapAlloc
 
-  Description:  ƒq[ƒv‚©‚çƒƒ‚ƒŠ‚ğŠm•Û
+  Description:  ãƒ’ãƒ¼ãƒ—ã‹ã‚‰ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿
 
-  Arguments:    heap     - ƒTƒEƒ“ƒhƒq[ƒv
-                size     - ƒƒ‚ƒŠƒTƒCƒY
-                callback - ƒƒ‚ƒŠ‚ª”jŠü‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ñ‚¾‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
-                data1    - ƒR[ƒ‹ƒoƒbƒNƒf[ƒ^1
-                data2    - ƒR[ƒ‹ƒoƒbƒNƒf[ƒ^2
+  Arguments:    heap     - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
+                size     - ãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚º
+                callback - ãƒ¡ãƒ¢ãƒªãŒç ´æ£„ã•ã‚ŒãŸã¨ãã«å‘¼ã³ã ã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+                data1    - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿1
+                data2    - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿2
 
-  Returns:      Šm•Û‚µ‚½ƒƒ‚ƒŠ‚Ìƒ|ƒCƒ“ƒ^
+  Returns:      ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªã®ãƒã‚¤ãƒ³ã‚¿
  *---------------------------------------------------------------------------*/
 void* NNS_SndHeapAlloc( NNSSndHeapHandle heap, u32 size, NNSSndHeapDisposeCallback callback, u32 data1, u32 data2 )
 {
@@ -216,12 +216,12 @@ void* NNS_SndHeapAlloc( NNSSndHeapHandle heap, u32 size, NNSSndHeapDisposeCallba
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndHeapSaveState
 
-  Description:  ƒq[ƒv‚Ìó‘Ô‚ğ•Û‘¶
+  Description:  ãƒ’ãƒ¼ãƒ—ã®çŠ¶æ…‹ã‚’ä¿å­˜
 
-  Arguments:    heap - ƒTƒEƒ“ƒhƒq[ƒv.
+  Arguments:    heap - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—.
 
-  Returns:      •Û‘¶‚µ‚½ŠK‘wƒŒƒxƒ‹‚ğ•Ô‚·
-                ¸”s‚É‚ÍA-1
+  Returns:      ä¿å­˜ã—ãŸéšå±¤ãƒ¬ãƒ™ãƒ«ã‚’è¿”ã™
+                å¤±æ•—æ™‚ã«ã¯ã€-1
  *---------------------------------------------------------------------------*/
 int NNS_SndHeapSaveState( NNSSndHeapHandle heap )
 {
@@ -245,10 +245,10 @@ int NNS_SndHeapSaveState( NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndHeapLoadState
 
-  Description:  ƒq[ƒv‚Ìó‘Ô‚ğ–ß‚·
+  Description:  ãƒ’ãƒ¼ãƒ—ã®çŠ¶æ…‹ã‚’æˆ»ã™
 
-  Arguments:    heap  - ƒTƒEƒ“ƒhƒq[ƒv
-                level - ŠK‘wƒŒƒxƒ‹
+  Arguments:    heap  - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
+                level - éšå±¤ãƒ¬ãƒ™ãƒ«
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -281,22 +281,22 @@ void NNS_SndHeapLoadState( NNSSndHeapHandle heap, int level )
             }
         }
         
-        // ƒZƒNƒVƒ‡ƒ“ƒŠƒXƒg‚©‚ç‚Ìíœ
+        // ã‚»ã‚¯ã‚·ãƒ§ãƒ³ãƒªã‚¹ãƒˆã‹ã‚‰ã®å‰Šé™¤
         NNS_FndRemoveListObject( & heap->sectionList, section );
     }
     
-    // ƒq[ƒvó‘Ô‚ğ•œŒ³
+    // ãƒ’ãƒ¼ãƒ—çŠ¶æ…‹ã‚’å¾©å…ƒ
     result = NNS_FndFreeByStateToFrmHeap( heap->handle, (u32)level );
     NNS_ASSERTMSG( result, "NNS_SndHeapLoadState(): NNS_FndFreeByStateToFrmHeap is Failed");   
 
-    // ƒTƒEƒ“ƒhƒf[ƒ^‚Ìg—p’â~‚Ì“¯Šú
+    // ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ã®ä½¿ç”¨åœæ­¢ã®åŒæœŸ
     if ( doCallback ) EraseSync();
     
-    // Ä“x‹L˜^
+    // å†åº¦è¨˜éŒ²
     result =  NNS_FndRecordStateForFrmHeap( heap->handle, heap->sectionList.numObjects );
     NNS_ASSERTMSG( result, "NNS_SndHeapLoadState(): NNS_FndRecordStateForFrmHeap is Failed");
     
-    // ƒZƒNƒVƒ‡ƒ“‚Ìì¬
+    // ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ä½œæˆ
     result = NewSection( heap );
     NNS_ASSERTMSG( result, "NNS_SndHeapLoadState(): NewSection is Failed");
 }
@@ -304,11 +304,11 @@ void NNS_SndHeapLoadState( NNSSndHeapHandle heap, int level )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndHeapGetCurrentLevel
 
-  Description:  ƒq[ƒv‚ÌŒ»İ‚ÌŠK‘wƒŒƒxƒ‹‚ğæ“¾
+  Description:  ãƒ’ãƒ¼ãƒ—ã®ç¾åœ¨ã®éšå±¤ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
 
-  Arguments:    heap - ƒTƒEƒ“ƒhƒq[ƒv
+  Arguments:    heap - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
 
-  Returns:      Œ»İ‚ÌŠK‘wƒŒƒxƒ‹
+  Returns:      ç¾åœ¨ã®éšå±¤ãƒ¬ãƒ™ãƒ«
  *---------------------------------------------------------------------------*/
 int NNS_SndHeapGetCurrentLevel( NNSSndHeapHandle heap )
 {
@@ -320,11 +320,11 @@ int NNS_SndHeapGetCurrentLevel( NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndHeapGetSize
 
-  Description:  ƒq[ƒv‚Ì—e—Ê‚ğæ“¾
+  Description:  ãƒ’ãƒ¼ãƒ—ã®å®¹é‡ã‚’å–å¾—
 
-  Arguments:    heap - ƒTƒEƒ“ƒhƒq[ƒv
+  Arguments:    heap - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ƒq[ƒv‚Ì—e—Ê
+  Returns:      ãƒ’ãƒ¼ãƒ—ã®å®¹é‡
  *---------------------------------------------------------------------------*/
 u32 NNS_SndHeapGetSize( NNSSndHeapHandle heap )
 {
@@ -339,11 +339,11 @@ u32 NNS_SndHeapGetSize( NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         NNS_SndHeapGetFreeSize
 
-  Description:  ƒq[ƒv‚Ì‹ó‚«—e—Ê‚ğæ“¾
+  Description:  ãƒ’ãƒ¼ãƒ—ã®ç©ºãå®¹é‡ã‚’å–å¾—
 
-  Arguments:    heap - ƒTƒEƒ“ƒhƒq[ƒv
+  Arguments:    heap - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ‹ó‚«—e—Ê
+  Returns:      ç©ºãå®¹é‡
  *---------------------------------------------------------------------------*/
 u32 NNS_SndHeapGetFreeSize( NNSSndHeapHandle heap )
 {
@@ -368,9 +368,9 @@ u32 NNS_SndHeapGetFreeSize( NNSSndHeapHandle heap )
 /*---------------------------------------------------------------------------*
   Name:         InitHeapSection
 
-  Description:  NNSSndHeapSection \‘¢‘Ì‚ğ‰Šú‰»
+  Description:  NNSSndHeapSection æ§‹é€ ä½“ã‚’åˆæœŸåŒ–
 
-  Arguments:    section - ƒq[ƒvƒZƒNƒVƒ‡ƒ“
+  Arguments:    section - ãƒ’ãƒ¼ãƒ—ã‚»ã‚¯ã‚·ãƒ§ãƒ³
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -382,19 +382,19 @@ static void InitHeapSection( NNSSndHeapSection* section )
 /*---------------------------------------------------------------------------*
   Name:         InitHeap
 
-  Description:  NNSSndHeap \‘¢‘Ì‚ğ‰Šú‰»
+  Description:  NNSSndHeap æ§‹é€ ä½“ã‚’åˆæœŸåŒ–
 
-  Arguments:    heap   - ƒTƒEƒ“ƒhƒq[ƒv
-                handle - ƒtƒŒ[ƒ€ƒq[ƒvƒnƒ“ƒhƒ‹
+  Arguments:    heap   - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
+                handle - ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ’ãƒ¼ãƒ—ãƒãƒ³ãƒ‰ãƒ«
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 static BOOL InitHeap( NNSSndHeap* heap, NNSFndHeapHandle handle )
 {
     NNS_FND_INIT_LIST( & heap->sectionList, NNSSndHeapSection, link );
     heap->handle = handle;
     
-    // ƒx[ƒXƒZƒNƒVƒ‡ƒ“‚Ìì¬
+    // ãƒ™ãƒ¼ã‚¹ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ä½œæˆ
     if ( ! NewSection( heap ) ) {
         return FALSE;
     }
@@ -405,11 +405,11 @@ static BOOL InitHeap( NNSSndHeap* heap, NNSFndHeapHandle handle )
 /*---------------------------------------------------------------------------*
   Name:         NewSection
 
-  Description:  V‚µ‚¢ƒZƒNƒVƒ‡ƒ“‚ğì¬
+  Description:  æ–°ã—ã„ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚’ä½œæˆ
 
-  Arguments:    heap - ƒTƒEƒ“ƒhƒq[ƒv
+  Arguments:    heap - ã‚µã‚¦ãƒ³ãƒ‰ãƒ’ãƒ¼ãƒ—
 
-  Returns:      ¬Œ÷‚µ‚½‚©‚Ç‚¤‚©
+  Returns:      æˆåŠŸã—ãŸã‹ã©ã†ã‹
  *---------------------------------------------------------------------------*/
 static BOOL NewSection( NNSSndHeap* heap )
 {
@@ -430,7 +430,7 @@ static BOOL NewSection( NNSSndHeap* heap )
 /*---------------------------------------------------------------------------*
   Name:         EraseSync
 
-  Description:  ƒq[ƒv‚Ìíœ‚ÉAƒf[ƒ^‚Ìg—p‚ğŠ®‘S‚É’â~‚·‚é‚½‚ß‚Ì“¯Šú
+  Description:  ãƒ’ãƒ¼ãƒ—ã®å‰Šé™¤æ™‚ã«ã€ãƒ‡ãƒ¼ã‚¿ã®ä½¿ç”¨ã‚’å®Œå…¨ã«åœæ­¢ã™ã‚‹ãŸã‚ã®åŒæœŸ
 
   Arguments:    None.
 

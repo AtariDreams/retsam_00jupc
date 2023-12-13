@@ -21,7 +21,7 @@
   do-indent
 
   Revision 1.33  2005/11/07 01:21:50  okubata_ryoma
-  SDK_STATIC_ASSERT‚©‚çSDK_COMPILER_ASSERT‚É•ÏX
+  SDK_STATIC_ASSERTã‹ã‚‰SDK_COMPILER_ASSERTã«å¤‰æ›´
 
   Revision 1.32  2005/05/20 03:10:01  yosizaki
   support MBGameRegistry::userParam.
@@ -61,36 +61,36 @@
   bug fix
 
   Revision 1.20  2004/09/27 11:24:02  sato_masaki
-  - IsAbleToLoad() ŠÖ”’Ç‰ÁB
-  - MB_RegisterFile‚É‚ÄABlockî•ñƒe[ƒuƒ‹ì¬‚É¸”s‚µ‚Ä‚àAGameInfo‚ªBeacon‚É“o˜^‚³‚ê‚Ä‚¢‚½‚Ì‚ğC³B
+  - IsAbleToLoad() é–¢æ•°è¿½åŠ ã€‚
+  - MB_RegisterFileã«ã¦ã€Blockæƒ…å ±ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆã«å¤±æ•—ã—ã¦ã‚‚ã€GameInfoãŒBeaconã«ç™»éŒ²ã•ã‚Œã¦ã„ãŸã®ã‚’ä¿®æ­£ã€‚
 
   Revision 1.19  2004/09/25 12:11:53  sato_masaki
-  MBi_IsAbleToRecv()‚ğ’Ç‰ÁB(IsAbleToRecv()‚ğƒŠƒl[ƒ€‚µAmb_child.c‚©‚çˆÚ“®B)
+  MBi_IsAbleToRecv()ã‚’è¿½åŠ ã€‚(IsAbleToRecv()ã‚’ãƒªãƒãƒ¼ãƒ ã—ã€mb_child.cã‹ã‚‰ç§»å‹•ã€‚)
 
   Revision 1.18  2004/09/25 05:30:32  sato_masaki
-  ƒƒCƒ“ƒ‹[ƒv‚É‚¨‚¢‚ÄŒÄ‚Î‚ê“¾‚éAPIÀs’†‚ÉAŠ„‚è‚İ‹Ö~‚ğ‚·‚éˆ—‚ğ’Ç‰ÁB
+  ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã«ãŠã„ã¦å‘¼ã°ã‚Œå¾—ã‚‹APIå®Ÿè¡Œä¸­ã«ã€å‰²ã‚Šè¾¼ã¿ç¦æ­¢ã‚’ã™ã‚‹å‡¦ç†ã‚’è¿½åŠ ã€‚
 
   Revision 1.17  2004/09/22 09:41:50  sato_masaki
-  MBi_get_blockinfo()‚ÉAğŒ”»’è’Ç‰ÁB
+  MBi_get_blockinfo()ã«ã€æ¡ä»¶åˆ¤å®šè¿½åŠ ã€‚
 
   Revision 1.16  2004/09/20 13:12:20  sato_masaki
-  MBi_get_blockinfo()‚Ì•Ô‚è’l‚ğBOOL’l‚É•ÏXB
+  MBi_get_blockinfo()ã®è¿”ã‚Šå€¤ã‚’BOOLå€¤ã«å¤‰æ›´ã€‚
 
   Revision 1.15  2004/09/17 11:37:17  sato_masaki
-  MB_RegisterFile() ‚É‚¨‚¢‚ÄAMB‚ªŠJn‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çAFALSE‚ğ•Ô‚·‚æ‚¤‚É‚µ‚½B
+  MB_RegisterFile() ã«ãŠã„ã¦ã€MBãŒé–‹å§‹ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ã€FALSEã‚’è¿”ã™ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.14  2004/09/16 12:50:37  sato_masaki
-  - mb.h‚É‚ÄAMBi_***‚Å’è‹`‚µ‚Ä‚¢‚½ŠÖ”AŒ^‚ğAMB_***‚É•ÏXB
-  - MB_UnregisterFile‚Ì•Ô‚è’l‚ğA“o˜^‚µ‚½ƒZƒOƒƒ“ƒgƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^‚É•ÏXB
+  - mb.hã«ã¦ã€MBi_***ã§å®šç¾©ã—ã¦ã„ãŸé–¢æ•°ã€å‹ã‚’ã€MB_***ã«å¤‰æ›´ã€‚
+  - MB_UnregisterFileã®è¿”ã‚Šå€¤ã‚’ã€ç™»éŒ²ã—ãŸã‚»ã‚°ãƒ¡ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã«å¤‰æ›´ã€‚
 
   Revision 1.13  2004/09/16 08:44:21  miya
-  ƒtƒ@ƒCƒ‹XV—pƒƒ“ƒo’Ç‰Á
+  ãƒ•ã‚¡ã‚¤ãƒ«æ›´æ–°ç”¨ãƒ¡ãƒ³ãƒè¿½åŠ 
 
   Revision 1.12  2004/09/15 06:51:59  sato_masaki
-  WBT’è‹`‚É“Z‚í‚éˆ—‚ğíœB
+  WBTå®šç¾©ã«çºã‚ã‚‹å‡¦ç†ã‚’å‰Šé™¤ã€‚
 
   Revision 1.11  2004/09/15 06:25:29  sato_masaki
-  MB_COMM_P_SENDLEN, MB_COMM_C_SENDLEN ‚Ì’è‹`‚ÉˆË‘¶‚µ‚Ä‚¢‚½•”•ª‚ğ•Ï”‰»B
+  MB_COMM_P_SENDLEN, MB_COMM_C_SENDLEN ã®å®šç¾©ã«ä¾å­˜ã—ã¦ã„ãŸéƒ¨åˆ†ã‚’å¤‰æ•°åŒ–ã€‚
 
   Revision 1.10  2004/09/14 15:38:45  yosizaki
   fix MB_ReadSegment
@@ -105,11 +105,11 @@
   small fix.
 
   Revision 1.6  2004/09/07 04:38:17  sato_masaki
-  - const’lAdefaultLoadSegList‚ğMBi_defaultLoadSegList‚ÉƒŠƒl[ƒ€‚µA”ñstatic‰»B
-  - MB_BlockInfo‚Ì—v‘f’Ç‰Á‚É‘Î‰B
+  - constå€¤ã€defaultLoadSegListã‚’MBi_defaultLoadSegListã«ãƒªãƒãƒ¼ãƒ ã—ã€éstaticåŒ–ã€‚
+  - MB_BlockInfoã®è¦ç´ è¿½åŠ ã«å¯¾å¿œã€‚
 
   Revision 1.5  2004/09/06 11:51:52  sato_masaki
-  GameInfo‚Ö‚ÌfileNo‚Ìİ’è‚ğAMB_RegisterFile()“à‚Ås‚¤‚æ‚¤‚É•ÏXB
+  GameInfoã¸ã®fileNoã®è¨­å®šã‚’ã€MB_RegisterFile()å†…ã§è¡Œã†ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.4  2004/09/06 06:23:03  yosizaki
   fix around MBi_ReadSegmentHeader().
@@ -119,10 +119,10 @@
   -change MB_RegisterFile() in order to send own program too.
 
   Revision 1.2  2004/09/04 11:03:18  sato_masaki
-  ROM_HEADER_SIZE_FULL‚Ì’è‹`‚ğmb_fileinfo.‚ˆ‚ÖˆÚ“®B
+  ROM_HEADER_SIZE_FULLã®å®šç¾©ã‚’mb_fileinfo.ï½ˆã¸ç§»å‹•ã€‚
 
   Revision 1.1  2004/09/03 07:04:36  sato_masaki
-  ƒtƒ@ƒCƒ‹‚ğ‹@”\•Ê‚É•ªŠ„B
+  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ©Ÿèƒ½åˆ¥ã«åˆ†å‰²ã€‚
 
 
   $NoKeywords: $
@@ -133,13 +133,13 @@
 // definition
 
 /*
- * ƒLƒƒƒbƒVƒ…ƒy[ƒW’PˆÊ.
- * Å‰‚Íe‹@ƒwƒbƒ_•”•ª‚Ì 16kB ‚É‚µ‚Ä‚¢‚½‚ª,
- * ‹«ŠE‚ğ‚Ü‚½‚¢‚¾ê‡‚É–â‘è‚ª‚ ‚é‚Ì‚Å 17kB ‚É‘‰Á.
+ * ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒšãƒ¼ã‚¸å˜ä½.
+ * æœ€åˆã¯è¦ªæ©Ÿãƒ˜ãƒƒãƒ€éƒ¨åˆ†ã® 16kB ã«ã—ã¦ã„ãŸãŒ,
+ * å¢ƒç•Œã‚’ã¾ãŸã„ã å ´åˆã«å•é¡ŒãŒã‚ã‚‹ã®ã§ 17kB ã«å¢—åŠ .
  */
 #define	MB_CACHE_PAGE_SIZE	(17 * 1024)
 
-/* MB_ReadSegment() Š—vƒoƒbƒtƒ@’è‹`’l‚Ì³“–«”»’è */
+/* MB_ReadSegment() æ‰€è¦ãƒãƒƒãƒ•ã‚¡å®šç¾©å€¤ã®æ­£å½“æ€§åˆ¤å®š */
 SDK_COMPILER_ASSERT(ROM_HEADER_SIZE_FULL +
                     MB_AUTHCODE_SIZE +
                     sizeof(MBiCacheList) +
@@ -148,8 +148,8 @@ SDK_COMPILER_ASSERT(ROM_HEADER_SIZE_FULL +
 // constant variables
 
 /* 
-    ƒfƒtƒHƒ‹ƒg‚ÌƒZƒOƒƒ“ƒgƒŠƒXƒg
-    ƒZƒOƒƒ“ƒg‚Ìƒ^ƒCƒv‚¨‚æ‚ÑŠi”[‡‚ÍA‚±‚ÌŒ`‚ÅŒÅ’è‚Æ‚·‚éB
+    ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆãƒªã‚¹ãƒˆ
+    ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®ã‚¿ã‚¤ãƒ—ãŠã‚ˆã³æ ¼ç´é †ã¯ã€ã“ã®å½¢ã§å›ºå®šã¨ã™ã‚‹ã€‚
  */
 const MbSegmentType MBi_defaultLoadSegList[MB_DL_SEGMENT_NUM] = {
     MB_SEG_ROMHEADER,                  /* ROM HEADER  */
@@ -158,12 +158,12 @@ const MbSegmentType MBi_defaultLoadSegList[MB_DL_SEGMENT_NUM] = {
 };
 
 
-/* ƒZƒOƒƒ“ƒg‚Ìƒwƒbƒ_—Ìˆæ */
+/* ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®ãƒ˜ãƒƒãƒ€é ˜åŸŸ */
 #define	MB_SEGMENT_HEADER_MIN	0x4000
 #define	MB_SEGMENT_HEADER_MAX	0x8000
 
 
-/* —LŒø‚ÈƒZƒOƒƒ“ƒgƒwƒbƒ_—Ìˆæ. («—ˆ‰Â•Ï‚É‚·‚éê‡‚Íİ’èŠÖ”‚ğ—pˆÓ) */
+/* æœ‰åŠ¹ãªã‚»ã‚°ãƒ¡ãƒ³ãƒˆãƒ˜ãƒƒãƒ€é ˜åŸŸ. (å°†æ¥å¯å¤‰ã«ã™ã‚‹å ´åˆã¯è¨­å®šé–¢æ•°ã‚’ç”¨æ„) */
 static const CARDRomRegion mbi_seg_header_default[] = {
     {0x4000, 0x1000,},
     {0x7000, 0x1000,},
@@ -171,7 +171,7 @@ static const CARDRomRegion mbi_seg_header_default[] = {
 };
 static const CARDRomRegion *mbi_seg_header = mbi_seg_header_default;
 
-/* ƒZƒOƒƒ“ƒg‚Ìƒwƒbƒ_•”‚ğƒŠ[ƒh‚·‚éÛ‚É•K—v‚Èî•ñ */
+/* ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®ãƒ˜ãƒƒãƒ€éƒ¨ã‚’ãƒªãƒ¼ãƒ‰ã™ã‚‹éš›ã«å¿…è¦ãªæƒ…å ± */
 typedef struct
 {
     u32     rom_src;
@@ -194,12 +194,12 @@ static BOOL IsAbleToLoad(u8 segment_no, u32 address, u32 size);
 /*---------------------------------------------------------------------------*
   Name:         MB_GetSegmentLength
 
-  Description:  w’è‚³‚ê‚½ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚É•K—v‚ÈƒZƒOƒƒ“ƒgƒoƒbƒtƒ@’·‚ğæ“¾
+  Description:  æŒ‡å®šã•ã‚ŒãŸãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«ã«å¿…è¦ãªã‚»ã‚°ãƒ¡ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡é•·ã‚’å–å¾—
 
-  Arguments:    file : ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚ğw‚· FSFile \‘¢‘Ì
-                       NULL ‚Ìê‡, ©g‚ğg—p‚·‚é. (eq‹¤—pƒoƒCƒiƒŠ)
+  Arguments:    file : ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’æŒ‡ã™ FSFile æ§‹é€ ä½“
+                       NULL ã®å ´åˆ, è‡ªèº«ã‚’ä½¿ç”¨ã™ã‚‹. (è¦ªå­å…±ç”¨ãƒã‚¤ãƒŠãƒª)
   
-  Returns:      ³í‚ÉƒTƒCƒY‚ğæ“¾‚Å‚«‚ê‚Î³‚Ì’l‚ğ, ‚»‚¤‚Å‚È‚¯‚ê‚Î 0
+  Returns:      æ­£å¸¸ã«ã‚µã‚¤ã‚ºã‚’å–å¾—ã§ãã‚Œã°æ­£ã®å€¤ã‚’, ãã†ã§ãªã‘ã‚Œã° 0
  *---------------------------------------------------------------------------*/
 
 u32 MB_GetSegmentLength(FSFile *file)
@@ -213,32 +213,32 @@ u32 MB_GetSegmentLength(FSFile *file)
 
     SDK_ASSERT(!file || FS_IsFile(file));
 
-    /* ’P‘Ì‚ÌƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚ğw’è */
+    /* å˜ä½“ã®ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’æŒ‡å®š */
     if (file)
     {
-        /* Œ»İ‚ÌˆÊ’u‚ğ‹L‰¯ */
+        /* ç¾åœ¨ã®ä½ç½®ã‚’è¨˜æ†¶ */
         const u32 bak_pos = FS_GetPosition(file);
-        /* ‚Æ‚è‚ ‚¦‚¸ ROM ƒwƒbƒ_•ª“Ç‚İ‚İ */
+        /* ã¨ã‚Šã‚ãˆãš ROM ãƒ˜ãƒƒãƒ€åˆ†èª­ã¿è¾¼ã¿ */
         if (FS_ReadFile(file, &rom, sizeof(rom)) >= sizeof(rom))
         {
             p = (const RomHeader *)rom;
         }
-        /* Å‰‚ÌˆÊ’u‚ğ•œ‹A */
+        /* æœ€åˆã®ä½ç½®ã‚’å¾©å¸° */
         (void)FS_SeekFile(file, (int)bak_pos, FS_SEEK_SET);
     }
-    /* eq‹¤—pƒoƒCƒiƒŠ */
+    /* è¦ªå­å…±ç”¨ãƒã‚¤ãƒŠãƒª */
     else
     {
         p = (const RomHeader *)HW_ROM_HEADER_BUF;
     }
     if (p)
     {
-        ret = (u32)(ROM_HEADER_SIZE_FULL +      /* ROM ƒwƒbƒ_ */
-                    MB_AUTHCODE_SIZE + /* auth ƒR[ƒh */
-                    sizeof(MBiCacheList) +      /* ƒLƒƒƒbƒVƒ…\‘¢‘Ì */
-                    sizeof(u32) * 4 +  /* segment - CARD ƒ}ƒbƒsƒ“ƒO */
-                    p->main_size +     /* ARM9 static ƒZƒOƒƒ“ƒg */
-                    p->sub_size        /* ARM7 static ƒZƒOƒƒ“ƒg */
+        ret = (u32)(ROM_HEADER_SIZE_FULL +      /* ROM ãƒ˜ãƒƒãƒ€ */
+                    MB_AUTHCODE_SIZE + /* auth ã‚³ãƒ¼ãƒ‰ */
+                    sizeof(MBiCacheList) +      /* ã‚­ãƒ£ãƒƒã‚·ãƒ¥æ§‹é€ ä½“ */
+                    sizeof(u32) * 4 +  /* segment - CARD ãƒãƒƒãƒ”ãƒ³ã‚° */
+                    p->main_size +     /* ARM9 static ã‚»ã‚°ãƒ¡ãƒ³ãƒˆ */
+                    p->sub_size        /* ARM7 static ã‚»ã‚°ãƒ¡ãƒ³ãƒˆ */
             );
         if (ret < MB_SEGMENT_BUFFER_MIN)
             ret = MB_SEGMENT_BUFFER_MIN;
@@ -249,14 +249,14 @@ u32 MB_GetSegmentLength(FSFile *file)
 /*---------------------------------------------------------------------------*
   Name:         MB_ReadSegment
 
-  Description:  w’è‚³‚ê‚½ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚©‚ç•K—v‚ÈƒZƒOƒƒ“ƒgƒf[ƒ^‚ğ“Ç‚İo‚µ.
+  Description:  æŒ‡å®šã•ã‚ŒãŸãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰å¿…è¦ãªã‚»ã‚°ãƒ¡ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã—.
 
-  Arguments:    file : ƒoƒCƒiƒŠƒtƒ@ƒCƒ‹‚ğw‚· FSFile \‘¢‘Ì
-                       NULL ‚Ìê‡, ©g‚ğg—p‚·‚é. (eq‹¤—pƒoƒCƒiƒŠ)
-                buf : ƒZƒOƒƒ“ƒgƒf[ƒ^‚ğ“Ç‚İo‚·ƒoƒbƒtƒ@
-				len : buf ‚ÌƒTƒCƒY
+  Arguments:    file : ãƒã‚¤ãƒŠãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’æŒ‡ã™ FSFile æ§‹é€ ä½“
+                       NULL ã®å ´åˆ, è‡ªèº«ã‚’ä½¿ç”¨ã™ã‚‹. (è¦ªå­å…±ç”¨ãƒã‚¤ãƒŠãƒª)
+                buf : ã‚»ã‚°ãƒ¡ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™ãƒãƒƒãƒ•ã‚¡
+				len : buf ã®ã‚µã‚¤ã‚º
   
-  Returns:      ³í‚ÉƒZƒOƒƒ“ƒgƒf[ƒ^‚ğ“Ç‚İo‚¹‚ê‚Î TRUE, ‚»‚¤‚Å‚È‚¯‚ê‚Î FALSE
+  Returns:      æ­£å¸¸ã«ã‚»ã‚°ãƒ¡ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã›ã‚Œã° TRUE, ãã†ã§ãªã‘ã‚Œã° FALSE
  *---------------------------------------------------------------------------*/
 
 BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len)
@@ -265,7 +265,7 @@ BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len)
     SDK_ASSERT(!file || FS_IsFile(file));
 
     /*
-     * w’è‚³‚ê‚½ƒoƒbƒtƒ@‚ğˆÈ‰º‚ÌƒtƒH[ƒ}ƒbƒg‚ÅØ‚èo‚·.
+     * æŒ‡å®šã•ã‚ŒãŸãƒãƒƒãƒ•ã‚¡ã‚’ä»¥ä¸‹ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§åˆ‡ã‚Šå‡ºã™.
      *
      * [RomHeader]
      * [AuthCode]
@@ -274,8 +274,8 @@ BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len)
      * [ARM9 static]
      * [ARM7 static]
      *
-     * ÅŒã‚Ì 2 ‚Â‚ÌƒZƒOƒƒ“ƒg‚Í, ƒTƒCƒY‚ª•s‘«‚µ‚Ä‚¢‚ê‚Î
-     * ƒLƒƒƒbƒVƒ…•û®‚Å‰¼‘zƒƒ‚ƒŠ‚ğÀŒ»‚µ‚Ä‘Î‰.
+     * æœ€å¾Œã® 2 ã¤ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã¯, ã‚µã‚¤ã‚ºãŒä¸è¶³ã—ã¦ã„ã‚Œã°
+     * ã‚­ãƒ£ãƒƒã‚·ãƒ¥æ–¹å¼ã§ä»®æƒ³ãƒ¡ãƒ¢ãƒªã‚’å®Ÿç¾ã—ã¦å¯¾å¿œ.
      */
 
     if (len >= ROM_HEADER_SIZE_FULL + 4)
@@ -296,7 +296,7 @@ BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len)
         p_rom = (RomHeader *) dst;
         dst += ROM_HEADER_SIZE_FULL, rest -= ROM_HEADER_SIZE_FULL;
 
-        /* ’Êí‚Ìƒ}ƒ‹ƒ`ƒu[ƒg */
+        /* é€šå¸¸ã®ãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆ */
         if (file)
         {
             bak_pos = FS_GetPosition(file);
@@ -306,7 +306,7 @@ BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len)
             if (!own_size)
                 own_size = 16 * 1024 * 1024;
         }
-        /* ƒNƒ[ƒ“ƒu[ƒg */
+        /* ã‚¯ãƒ­ãƒ¼ãƒ³ãƒ–ãƒ¼ãƒˆ */
         else
         {
             const RomHeader *mem_rom = (RomHeader *) HW_ROM_HEADER_BUF;
@@ -314,20 +314,20 @@ BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len)
             if (!own_size)
                 own_size = 16 * 1024 * 1024;
             is_own_binary = TRUE;
-            /* ©g‚ğ•\‚·ƒtƒ@ƒCƒ‹‚ğ’¼ÚŠJ‚­ */
+            /* è‡ªèº«ã‚’è¡¨ã™ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç›´æ¥é–‹ã */
             FS_InitFile(own_bin);
             (void)FS_OpenFileDirect(own_bin,
                                     FS_FindArchive("rom", 3), 0, (u32)(own_size + MB_AUTHCODE_SIZE),
                                     (u32)~0);
             file = own_bin;
             bak_pos = FS_GetPosition(file);
-            /* ‚Æ‚è‚ ‚¦‚¸ ROM ƒwƒbƒ_•ªƒRƒs[ */
+            /* ã¨ã‚Šã‚ãˆãš ROM ãƒ˜ãƒƒãƒ€åˆ†ã‚³ãƒ”ãƒ¼ */
             MI_CpuCopy8(mem_rom, p_rom, ROM_HEADER_SIZE_FULL);
-            /* •ÏŠ·‚³‚ê‚½ŒÂŠ‚ğ’ù³ */
+            /* å¤‰æ›ã•ã‚ŒãŸå€‹æ‰€ã‚’è¨‚æ­£ */
             *(u32 *)((u32)p_rom + 0x60) |= 0x00406000;
         }
 
-        /* MB_AUTHCODE_SIZE•ª ‚ÌƒoƒCƒiƒŠ’l‚ğ“Ç‚İ‚Ş */
+        /* MB_AUTHCODE_SIZEåˆ† ã®ãƒã‚¤ãƒŠãƒªå€¤ã‚’èª­ã¿è¾¼ã‚€ */
         if (rest >= MB_AUTHCODE_SIZE)
         {
             (void)FS_SeekFile(file, (int)(bak_pos + own_size), FS_SEEK_SET);
@@ -339,15 +339,15 @@ BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len)
             rest = 0;
         }
 
-        /* ƒLƒƒƒbƒVƒ…ƒŠƒXƒg\‘¢‘Ì‚ğŠm•Û */
+        /* ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒªã‚¹ãƒˆæ§‹é€ ä½“ã‚’ç¢ºä¿ */
         if (rest >= sizeof(MBiCacheList))
         {
             p_cache = (MBiCacheList *) dst;
             MBi_InitCache(p_cache);
             dst += sizeof(MBiCacheList), rest -= sizeof(MBiCacheList);
-            /* ROM ƒwƒbƒ_‚ğÅ‰‚ÌƒLƒƒƒbƒVƒ…‚É“o˜^ */
+            /* ROM ãƒ˜ãƒƒãƒ€ã‚’æœ€åˆã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã«ç™»éŒ² */
             MBi_AttachCacheBuffer(p_cache, 0, ROM_HEADER_SIZE_FULL, p_rom, MB_CACHE_STATE_LOCKED);
-            /* ‘ÎÛƒA[ƒJƒCƒu–¼‚ğ‹L‰¯. (’x‰„ƒ[ƒh‚Éw’è) */
+            /* å¯¾è±¡ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–åã‚’è¨˜æ†¶. (é…å»¶ãƒ­ãƒ¼ãƒ‰æ™‚ã«æŒ‡å®š) */
             {
                 FSArchive *p_arc = FS_GetAttachedArchive(file);
                 int     i = 0;
@@ -363,11 +363,11 @@ BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len)
             rest = 0;
         }
 
-        /* segment-CARD ƒ}ƒbƒsƒ“ƒO—Ìˆæ‚ğŠm•Û */
+        /* segment-CARD ãƒãƒƒãƒ”ãƒ³ã‚°é ˜åŸŸã‚’ç¢ºä¿ */
         if (rest >= sizeof(u32) * 4)
         {
             p_map = (u32 *)dst;
-            p_map[0] = 0;              /* ROM ƒwƒbƒ_ */
+            p_map[0] = 0;              /* ROM ãƒ˜ãƒƒãƒ€ */
             p_map[1] = FS_GetFileImageTop(file) + bak_pos + p_rom->main_rom_offset;     /* ARM9 static */
             p_map[2] = FS_GetFileImageTop(file) + bak_pos + p_rom->sub_rom_offset;      /* ARM7 static */
             dst += sizeof(u32) * 4, rest -= sizeof(u32) * 4;
@@ -377,10 +377,10 @@ BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len)
             rest = 0;
         }
 
-        /* ŠeƒZƒOƒƒ“ƒg“Ç‚İ‚İ */
+        /* å„ã‚»ã‚°ãƒ¡ãƒ³ãƒˆèª­ã¿è¾¼ã¿ */
         if (rest >= p_rom->main_size + p_rom->sub_size)
         {
-            /* [•ª‚É‘S‚ÄˆêŠ‡ƒŠ[ƒh‚Å‚«‚é—]—T‚ª‚ ‚éê‡ */
+            /* å……åˆ†ã«å…¨ã¦ä¸€æ‹¬ãƒªãƒ¼ãƒ‰ã§ãã‚‹ä½™è£•ãŒã‚ã‚‹å ´åˆ */
             const u32 base = FS_GetFileImageTop(file);
             (void)FS_SeekFile(file, (int)(p_map[1] - base), FS_SEEK_SET);
             (void)FS_ReadFile(file, dst, (int)p_rom->main_size);
@@ -390,39 +390,39 @@ BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len)
             (void)FS_ReadFile(file, dst, (int)p_rom->sub_size);
             MBi_AttachCacheBuffer(p_cache, p_map[2], p_rom->sub_size, dst, MB_CACHE_STATE_LOCKED);
             dst += p_rom->sub_size, rest -= p_rom->sub_size;
-            /* €”õŠ®—¹ */
+            /* æº–å‚™å®Œäº† */
             ret = TRUE;
         }
         else if (rest >= MB_CACHE_PAGE_SIZE * 3)
         {
-            /* 3 –‡‚ÌƒLƒƒƒbƒVƒ…•û®‚Å‘Î‰‚Å‚«‚é•ª‚Ì—]—T‚ª‚ ‚éê‡ */
+            /* 3 æšã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥æ–¹å¼ã§å¯¾å¿œã§ãã‚‹åˆ†ã®ä½™è£•ãŒã‚ã‚‹å ´åˆ */
             const u32 base = FS_GetFileImageTop(file);
             u32     offset = p_map[1];
-            /* 1 –‡–Ú (ŒÅ’è) */
+            /* 1 æšç›® (å›ºå®š) */
             (void)FS_SeekFile(file, (int)(offset - base), FS_SEEK_SET);
             (void)FS_ReadFile(file, dst, MB_CACHE_PAGE_SIZE);
             MBi_AttachCacheBuffer(p_cache, offset, MB_CACHE_PAGE_SIZE, dst, MB_CACHE_STATE_LOCKED);
             dst += MB_CACHE_PAGE_SIZE, rest -= MB_CACHE_PAGE_SIZE;
             offset += MB_CACHE_PAGE_SIZE;
-            /* 2 –‡–Ú */
+            /* 2 æšç›® */
             (void)FS_SeekFile(file, (int)(offset - base), FS_SEEK_SET);
             (void)FS_ReadFile(file, dst, MB_CACHE_PAGE_SIZE);
             MBi_AttachCacheBuffer(p_cache, offset, MB_CACHE_PAGE_SIZE, dst, MB_CACHE_STATE_READY);
             dst += MB_CACHE_PAGE_SIZE, rest -= MB_CACHE_PAGE_SIZE;
             offset += MB_CACHE_PAGE_SIZE;
-            /* 3 –‡–Ú */
+            /* 3 æšç›® */
             (void)FS_SeekFile(file, (int)(offset - base), FS_SEEK_SET);
             (void)FS_ReadFile(file, dst, MB_CACHE_PAGE_SIZE);
             MBi_AttachCacheBuffer(p_cache, offset, MB_CACHE_PAGE_SIZE, dst, MB_CACHE_STATE_READY);
             dst += MB_CACHE_PAGE_SIZE, rest -= MB_CACHE_PAGE_SIZE;
-            /* €”õŠ®—¹ */
+            /* æº–å‚™å®Œäº† */
             ret = TRUE;
         }
 
-        /* Å‰‚ÌˆÊ’u‚ğ•œ‹A */
+        /* æœ€åˆã®ä½ç½®ã‚’å¾©å¸° */
         (void)FS_SeekFile(file, (int)bak_pos, FS_SEEK_SET);
 
-        /* ƒNƒ[ƒ“ƒu[ƒg */
+        /* ã‚¯ãƒ­ãƒ¼ãƒ³ãƒ–ãƒ¼ãƒˆ */
         if (is_own_binary)
         {
             (void)FS_CloseFile(own_bin);
@@ -434,9 +434,9 @@ BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len)
                 info.mem_src = (u32)((u32)p_rom->main_ram_address - p_rom->main_rom_offset);
                 info.mem_dst = (u32)((u32)p_cache->list[1].ptr - p_rom->main_rom_offset);
                 info.len = len;
-                /* Å‰‚ÉŠY“–—Ìˆæ‚ğ‰Šú‰» */
+                /* æœ€åˆã«è©²å½“é ˜åŸŸã‚’åˆæœŸåŒ– */
                 MBi_ReadSegmentHeader(&info, MB_SEGMENT_HEADER_MIN, MB_SEGMENT_HEADER_MAX, TRUE);
-                /* ƒwƒbƒ_‚ğ‡Ÿ“]‘— */
+                /* ãƒ˜ãƒƒãƒ€ã‚’é †æ¬¡è»¢é€ */
                 for (; p_header->length != 0; ++p_header)
                 {
                     MBi_ReadSegmentHeader(&info,
@@ -444,7 +444,7 @@ BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len)
                                           (u32)(p_header->offset + p_header->length), FALSE);
                 }
                 {
-                    /* ƒfƒoƒbƒK‚Ì autoload ƒpƒbƒ`ˆ—‚ğ•œŒ³ */
+                    /* ãƒ‡ãƒãƒƒã‚¬ã® autoload ãƒ‘ãƒƒãƒå‡¦ç†ã‚’å¾©å…ƒ */
                     extern u32 _start_AutoloadDoneCallback[1];
                     u8     *dst = (u8 *)p_cache->list[1].ptr;
                     dst += ((u32)&_start_AutoloadDoneCallback - (u32)p_rom->main_ram_address);
@@ -463,29 +463,29 @@ BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len)
 }
 
 /*
- * ƒZƒOƒƒ“ƒg‚Ìƒwƒbƒ_•”‚ğ“Ç‚İ‚Ş.
+ * ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®ãƒ˜ãƒƒãƒ€éƒ¨ã‚’èª­ã¿è¾¼ã‚€.
  */
 static void MBi_ReadSegmentHeader(const MBiSegmentHeaderInfo * p, u32 top, u32 bottom, BOOL clean)
 {
-    /* ƒwƒbƒ_”ÍˆÍ‚Ì•â³ */
+    /* ãƒ˜ãƒƒãƒ€ç¯„å›²ã®è£œæ­£ */
     if (top < MB_SEGMENT_HEADER_MIN)
         top = MB_SEGMENT_HEADER_MIN;
     if (bottom > MB_SEGMENT_HEADER_MAX)
         bottom = MB_SEGMENT_HEADER_MAX;
-    /* À“]‘——Ìˆæ‚Ì•â³ */
+    /* å®Ÿè»¢é€é ˜åŸŸã®è£œæ­£ */
     if (top < p->rom_src)
         top = p->rom_src;
     if (bottom > p->rom_src + p->len)
         bottom = p->rom_src + p->len;
-    /* —Ìˆæ‚ª—LŒø‚È‚ç“]‘— */
+    /* é ˜åŸŸãŒæœ‰åŠ¹ãªã‚‰è»¢é€ */
     if (top < bottom)
     {
         if (clean)
-        {                              /* 0 ‰Šú‰» */
+        {                              /* 0 åˆæœŸåŒ– */
             MI_CpuClear8((void *)(p->mem_dst + top), (u32)(bottom - top));
         }
         else
-        {                              /* “]‘— */
+        {                              /* è»¢é€ */
             MI_CpuCopy8((const void *)(p->mem_src + top),
                         (void *)(p->mem_dst + top), (u32)(bottom - top));
         }
@@ -496,10 +496,10 @@ static void MBi_ReadSegmentHeader(const MBiSegmentHeaderInfo * p, u32 top, u32 b
 /*---------------------------------------------------------------------------*
   Name:         MB_RegisterFile
 
-  Description:  e‹@‚É‚ÄDownloadŒ³‚Ìƒtƒ@ƒCƒ‹‚ğ“o˜^‚·‚é
+  Description:  è¦ªæ©Ÿã«ã¦Downloadå…ƒã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç™»éŒ²ã™ã‚‹
 
-  Arguments:    game_reg : ƒQ[ƒ€“o˜^î•ñ
-                buf : ‚·‚Å‚É MB_ReadSegment ‚Åƒ[ƒhÏ‚İ‚ÌƒZƒOƒƒ“ƒgƒoƒbƒtƒ@
+  Arguments:    game_reg : ã‚²ãƒ¼ãƒ ç™»éŒ²æƒ…å ±
+                buf : ã™ã§ã« MB_ReadSegment ã§ãƒ­ãƒ¼ãƒ‰æ¸ˆã¿ã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡
   
   Returns:      
  *---------------------------------------------------------------------------*/
@@ -511,31 +511,31 @@ BOOL MB_RegisterFile(const MBGameRegistry *game_reg, const void *buf)
     u8     *appname = (u8 *)game_reg->gameNamep;
     u8      fileID = 0xff, i;
 
-    OSIntrMode enabled = OS_DisableInterrupts();        /* Š„‚è‚İ‹Ö~ */
+    OSIntrMode enabled = OS_DisableInterrupts();        /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢ */
 
-    /* MB‚ªŠJn‚³‚ê‚Ä‚¢‚È‚©‚Á‚½‚çAFALSE‚ğ•Ô‚·D */
+    /* MBãŒé–‹å§‹ã•ã‚Œã¦ã„ãªã‹ã£ãŸã‚‰ã€FALSEã‚’è¿”ã™ï¼ */
     if (!MBi_IsStarted())
     {
         OS_TWarning("MB has not started yet. Cannot Register File\n");
-        (void)OS_RestoreInterrupts(enabled);    /* Š„‚è‚İ‹Ö~‰ğœ */
+        (void)OS_RestoreInterrupts(enabled);    /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
         return FALSE;
     }
 
     if (pPwork->file_num + 1 > MB_MAX_FILE)
     {
         OS_TWarning("The number of registered files has exceeded.\n");
-        (void)OS_RestoreInterrupts(enabled);    /* Š„‚è‚İ‹Ö~‰ğœ */
+        (void)OS_RestoreInterrupts(enabled);    /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
         return FALSE;
     }
 
-    /* ‹ó‚«fileinfo‚ğ’T‚· */
+    /* ç©ºãfileinfoã‚’æ¢ã™ */
     for (i = 0; i < MB_MAX_FILE; i++)
     {
-        /* ‚»‚ÌGameRegistry‚ªŠù‚É“o˜^‚³‚ê‚Ä‚¢‚½‚çAFALSE‚ğ•Ô‚· */
+        /* ãã®GameRegistryãŒæ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ãŸã‚‰ã€FALSEã‚’è¿”ã™ */
         if (pPwork->fileinfo[i].game_reg == (MBGameRegistry *)game_reg)
         {
             MB_DEBUG_OUTPUT("Already Registered \"%s\"\n", game_reg->gameNamep);
-            (void)OS_RestoreInterrupts(enabled);        /* Š„‚è‚İ‹Ö~‰ğœ */
+            (void)OS_RestoreInterrupts(enabled);        /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
             return FALSE;
         }
 
@@ -546,58 +546,58 @@ BOOL MB_RegisterFile(const MBGameRegistry *game_reg, const void *buf)
         }
     }
 
-    /* ‹ó‚«fileinfo‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚çAˆÙíI—¹ */
+    /* ç©ºãfileinfoãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰ã€ç•°å¸¸çµ‚äº† */
     if (i == MB_MAX_FILE)
     {
         OS_TWarning("Too many Files! \"%s\"\n", game_reg->gameNamep);
-        (void)OS_RestoreInterrupts(enabled);    /* Š„‚è‚İ‹Ö~‰ğœ */
+        (void)OS_RestoreInterrupts(enabled);    /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
         return FALSE;
     }
 
 
-    // GameRegistry‚Ìƒ|ƒCƒ“ƒ^‚ğ“o˜^
+    // GameRegistryã®ãƒã‚¤ãƒ³ã‚¿ã‚’ç™»éŒ²
     pPwork->fileinfo[fileID].game_reg = (MBGameRegistry *)game_reg;
 
-    // DownloadFileInfo‚Ö‚Ìƒ|ƒCƒ“ƒ^ƒZƒbƒg
+    // DownloadFileInfoã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
     mdfi = &pPwork->fileinfo[fileID].dl_fileinfo.header;
 
-    // MBDownloadFileInfo ‚Ì¶¬
+    // MBDownloadFileInfo ã®ç”Ÿæˆ
     MBi_MakeDownloadFileInfo(mdfi, buf);
-    /* ƒ†[ƒU’è‹`Šg’£ƒpƒ‰ƒ[ƒ^‚ÌƒRƒs[ */
+    /* ãƒ¦ãƒ¼ã‚¶å®šç¾©æ‹¡å¼µãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼ */
     MI_CpuCopy8(game_reg->userParam,
                 ((MBDownloadFileInfo *) mdfi)->reserved, HW_DOWNLOAD_PARAMETER_SIZE);
 
-    // Blockî•ñƒe[ƒuƒ‹‚Ì¶¬
+    // Blockæƒ…å ±ãƒ†ãƒ¼ãƒ–ãƒ«ã®ç”Ÿæˆ
     if (FALSE == MBi_MakeBlockInfoTable(&pPwork->fileinfo[fileID].blockinfo_table, mdfi))
     {
         OS_TWarning("Cannot make block information!\n");
-        (void)OS_RestoreInterrupts(enabled);    /* Š„‚è‚İ‹Ö~‰ğœ */
+        (void)OS_RestoreInterrupts(enabled);    /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
         return FALSE;
     }
 
-    // MbGameInfo‚Ì¶¬
+    // MbGameInfoã®ç”Ÿæˆ
     MBi_MakeGameInfo(&pPwork->fileinfo[fileID].game_info, game_reg, &pPwork->common.user);
 
-    /* ƒtƒ@ƒCƒ‹”Ô†‚ğGameInfo‚ÉƒZƒbƒg */
+    /* ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå·ã‚’GameInfoã«ã‚»ãƒƒãƒˆ */
     pPwork->fileinfo[fileID].game_info.fileNo = fileID;
 
-    /* GameInfo ‚ğBeaconƒŠƒXƒg‚É“o˜^‚·‚éB */
+    /* GameInfo ã‚’Beaconãƒªã‚¹ãƒˆã«ç™»éŒ²ã™ã‚‹ã€‚ */
     MB_AddGameInfo(&pPwork->fileinfo[fileID].game_info);
 
-    /* ƒtƒ@ƒCƒ‹XV”Ô†‚ğGameInfo‚ÉƒZƒbƒg */
+    /* ãƒ•ã‚¡ã‚¤ãƒ«æ›´æ–°ç•ªå·ã‚’GameInfoã«ã‚»ãƒƒãƒˆ */
     pPwork->fileinfo[fileID].game_info.seqNoFixed = update++;
 
     pPwork->fileinfo[fileID].gameinfo_child_bmp = MB_GAMEINFO_PARENT_FLAG;
 
     pPwork->fileinfo[fileID].src_adr = (u32 *)buf;
 
-    /* ƒLƒƒƒbƒVƒ…—p‚ÌŠeíƒ|ƒCƒ“ƒ^‚ğ•Û‘¶ */
+    /* ã‚­ãƒ£ãƒƒã‚·ãƒ¥ç”¨ã®å„ç¨®ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿å­˜ */
     pPwork->fileinfo[fileID].cache_list = (MBiCacheList *)
         ((u32)buf + ROM_HEADER_SIZE_FULL + MB_AUTHCODE_SIZE);
     pPwork->fileinfo[fileID].card_mapping = (u32 *)
         ((u32)buf + ROM_HEADER_SIZE_FULL + MB_AUTHCODE_SIZE + sizeof(MBiCacheList));
 
-    /* ƒ^ƒXƒNƒXƒŒƒbƒh‚ª•K—v‚É‚È‚Á‚½‚ç‹N“® */
+    /* ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ãŒå¿…è¦ã«ãªã£ãŸã‚‰èµ·å‹• */
     if (pPwork->fileinfo[fileID].cache_list->list[3].state != MB_CACHE_STATE_EMPTY)
     {
         if (!MBi_IsTaskAvailable())
@@ -607,15 +607,15 @@ BOOL MB_RegisterFile(const MBGameRegistry *game_reg, const void *buf)
         }
     }
 
-    /* “o˜^ƒtƒ@ƒCƒ‹‚ğƒAƒNƒeƒBƒu‚É‚·‚éB */
+    /* ç™»éŒ²ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ã™ã‚‹ã€‚ */
     pPwork->fileinfo[fileID].active = 1;
 
-    // file”‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
+    // fileæ•°ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
     pPwork->file_num++;
 
     MB_DEBUG_OUTPUT("Register Game \"%s\"\n", game_reg->gameNamep);
 
-    (void)OS_RestoreInterrupts(enabled);        /* Š„‚è‚İ‹Ö~‰ğœ */
+    (void)OS_RestoreInterrupts(enabled);        /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
 
     return TRUE;
 
@@ -624,21 +624,21 @@ BOOL MB_RegisterFile(const MBGameRegistry *game_reg, const void *buf)
 /*---------------------------------------------------------------------------*
   Name:         MB_UnregisterFile
 
-  Description:  w’è‚µ‚½ƒtƒ@ƒCƒ‹‚ğƒ_ƒEƒ“ƒ[ƒhƒŠƒXƒg‚©‚çíœ
+  Description:  æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
 
-  Arguments:    game_reg : ƒQ[ƒ€“o˜^î•ñ
+  Arguments:    game_reg : ã‚²ãƒ¼ãƒ ç™»éŒ²æƒ…å ±
   
   Returns:      
  *---------------------------------------------------------------------------*/
 
-/* w’è‚µ‚½ƒtƒ@ƒCƒ‹‚ğƒ_ƒEƒ“ƒ[ƒhƒŠƒXƒg‚©‚çíœ */
+/* æŒ‡å®šã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤ */
 void   *MB_UnregisterFile(const MBGameRegistry *game_reg)
 {
     u8      fileID, i;
     void   *ret_bufp;
-    OSIntrMode enabled = OS_DisableInterrupts();        /* Š„‚è‚İ‹Ö~ */
+    OSIntrMode enabled = OS_DisableInterrupts();        /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢ */
 
-    /* GameRegistry‚Æˆê’v‚·‚éfileinfo‚ğ’T‚· */
+    /* GameRegistryã¨ä¸€è‡´ã™ã‚‹fileinfoã‚’æ¢ã™ */
     for (i = 0; i < MB_MAX_FILE; i++)
     {
         if (pPwork->fileinfo[i].game_reg == (MBGameRegistry *)game_reg)
@@ -651,24 +651,24 @@ void   *MB_UnregisterFile(const MBGameRegistry *game_reg)
     if (fileID != pPwork->fileinfo[fileID].game_info.fileNo)
     {
         OS_TWarning("Registerd File ID does not correspond with File ID in Registry List.\n");
-        (void)OS_RestoreInterrupts(enabled);    /* Š„‚è‚İ‹Ö~‰ğœ */
+        (void)OS_RestoreInterrupts(enabled);    /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
         return NULL;
     }
 
-    /* ˆê’v‚·‚éfileinfo‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚çAˆÙíI—¹ */
+    /* ä¸€è‡´ã™ã‚‹fileinfoãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰ã€ç•°å¸¸çµ‚äº† */
     if (i == MB_MAX_FILE)
     {
         OS_TWarning("Cannot find corresponding GameRegistry\n");
-        (void)OS_RestoreInterrupts(enabled);    /* Š„‚è‚İ‹Ö~‰ğœ */
+        (void)OS_RestoreInterrupts(enabled);    /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
         return NULL;
     }
 
-    /* GameInfo‚©‚çíœ */
+    /* GameInfoã‹ã‚‰å‰Šé™¤ */
     if (FALSE == MB_DeleteGameInfo(&pPwork->fileinfo[fileID].game_info))
     {
         OS_TWarning("Cannot delete GameInfo %s\n",
                     pPwork->fileinfo[fileID].game_info.fixed.gameName);
-        (void)OS_RestoreInterrupts(enabled);    /* Š„‚è‚İ‹Ö~‰ğœ */
+        (void)OS_RestoreInterrupts(enabled);    /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
         return NULL;
     }
 
@@ -676,14 +676,14 @@ void   *MB_UnregisterFile(const MBGameRegistry *game_reg)
 
     pPwork->fileinfo[fileID].active = 0;
 
-    /* ‘ÎÛ‚Ìfileinfo‚ğíœ */
+    /* å¯¾è±¡ã®fileinfoã‚’å‰Šé™¤ */
     MI_CpuClear16(&pPwork->fileinfo[fileID], sizeof(pPwork->fileinfo[0]));
 
     pPwork->file_num--;
 
     MB_DEBUG_OUTPUT("Delete Game \"%s\"\n", game_reg->gameNamep);
 
-    (void)OS_RestoreInterrupts(enabled);        /* Š„‚è‚İ‹Ö~‰ğœ */
+    (void)OS_RestoreInterrupts(enabled);        /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
 
     return ret_bufp;
 }
@@ -691,10 +691,10 @@ void   *MB_UnregisterFile(const MBGameRegistry *game_reg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_MakeDownloadFileInfo
 
-  Description:  w’è‚³‚ê‚½ƒ}ƒ‹ƒ`ƒu[ƒgƒQ[ƒ€“o‹L‚©‚çAƒ_ƒEƒ“ƒ[ƒhƒtƒ@ƒCƒ‹î•ñ‚ğ\’z‚·‚éB
+  Description:  æŒ‡å®šã•ã‚ŒãŸãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆã‚²ãƒ¼ãƒ ç™»è¨˜ã‹ã‚‰ã€ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‚’æ§‹ç¯‰ã™ã‚‹ã€‚
 
-  Arguments:    mbdlFileInfop - \’z‚³‚ê‚éMbDownloadFileInfo‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                buf           - FileƒCƒ[ƒWƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    mbdlFileInfop - æ§‹ç¯‰ã•ã‚Œã‚‹MbDownloadFileInfoã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                buf           - Fileã‚¤ãƒ¡ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
   
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -712,10 +712,10 @@ static void MBi_MakeDownloadFileInfo(MbDownloadFileInfoHeader * mbdlFileInfop, c
     auth_code = (const u16 *)((u32)buf + ROM_HEADER_SIZE_FULL);
 
     /*
-       ¦ROMƒwƒbƒ_‚Ìƒ`ƒFƒbƒN‚ğ‚µ‚ÄAROMƒoƒCƒiƒŠ‚©‚Ç‚¤‚©‚ğ”»’è‚µ‚½•û‚ª‚¢‚¢‚©‚àH
+       â€»ROMãƒ˜ãƒƒãƒ€ã®ãƒã‚§ãƒƒã‚¯ã‚’ã—ã¦ã€ROMãƒã‚¤ãƒŠãƒªã‹ã©ã†ã‹ã‚’åˆ¤å®šã—ãŸæ–¹ãŒã„ã„ã‹ã‚‚ï¼Ÿ
      */
 
-    // ƒ}ƒ‹ƒ`ƒu[ƒgƒQ[ƒ€î•ñ‚ğ‚à‚Æ‚ÉA‰Šúƒ_ƒEƒ“ƒ[ƒhƒtƒ@ƒCƒ‹î•ñ‚ğ\’z‚·‚éB
+    // ãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆã‚²ãƒ¼ãƒ æƒ…å ±ã‚’ã‚‚ã¨ã«ã€åˆæœŸãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±ã‚’æ§‹ç¯‰ã™ã‚‹ã€‚
     mbdlFileInfop->arm9EntryAddr = (u32)mbRomHeaderp->main_entry_address;
     mbdlFileInfop->arm7EntryAddr = (u32)mbRomHeaderp->sub_entry_address;
     seg_infop = (MbSegmentInfo *) (mbdlFileInfop + 1);
@@ -723,20 +723,20 @@ static void MBi_MakeDownloadFileInfo(MbDownloadFileInfoHeader * mbdlFileInfop, c
     MB_DEBUG_OUTPUT("\t<segment list>         recv_adr load_adr     size  rom_adr (base)\n");
 
     /*
-     * ƒZƒOƒƒ“ƒg‚Í static ‚É‚·‚é•ûŒü‚Å‚Ü‚Æ‚Ü‚Á‚½‚Ì‚Å‘S‚Ä”jŠü.
-     * overlay : Load/Unload ‚ÌŠÇ—‚ª‚Å‚«‚È‚¢‚Ì‚Å•s‰Â”\.
-     * file    : —e—Ê‚È‚Ç‚Ìd—l‚ğô’è‚µ‚ÄƒŠƒtƒ@ƒŒƒ“ƒX‚É‚·‚é•K—v‚ª‚ ‚è“ú’ö“I‚É•s‰Â”\.
+     * ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã¯ static ã«ã™ã‚‹æ–¹å‘ã§ã¾ã¨ã¾ã£ãŸã®ã§å…¨ã¦ç ´æ£„.
+     * overlay : Load/Unload æ™‚ã®ç®¡ç†ãŒã§ããªã„ã®ã§ä¸å¯èƒ½.
+     * file    : å®¹é‡ãªã©ã®ä»•æ§˜ã‚’ç­–å®šã—ã¦ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã«ã™ã‚‹å¿…è¦ãŒã‚ã‚Šæ—¥ç¨‹çš„ã«ä¸å¯èƒ½.
      */
     for (seg_num = 0; seg_num < MB_DL_SEGMENT_NUM; seg_num++)
     {
-        /* ŠeƒZƒOƒƒ“ƒg‚Ìƒ[ƒhƒAƒhƒŒƒX‚¨‚æ‚ÑƒTƒCƒYî•ñæ“¾ˆ— */
+        /* å„ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®ãƒ­ãƒ¼ãƒ‰ã‚¢ãƒ‰ãƒ¬ã‚¹ãŠã‚ˆã³ã‚µã‚¤ã‚ºæƒ…å ±å–å¾—å‡¦ç† */
         MB_DEBUG_OUTPUT("\t SEG%2d : ", seg_num);
         MBi_SetSegmentInfo(mbRomHeaderp, loadSegListp, seg_infop, &child_recv_buff_addr);
         seg_infop++;
         loadSegListp++;
     }
 
-    /* ”FØ—pƒR[ƒh‚ğMBDownloadFileInfo“à‚ÉƒZƒbƒg‚·‚é */
+    /* èªè¨¼ç”¨ã‚³ãƒ¼ãƒ‰ã‚’MBDownloadFileInfoå†…ã«ã‚»ãƒƒãƒˆã™ã‚‹ */
     {
         MBDownloadFileInfo *pMdfi = (MBDownloadFileInfo *) mbdlFileInfop;
         MI_CpuCopy8(auth_code, &pMdfi->auth_code[0], MB_AUTHCODE_SIZE);
@@ -746,7 +746,7 @@ static void MBi_MakeDownloadFileInfo(MbDownloadFileInfoHeader * mbdlFileInfop, c
 /*---------------------------------------------------------------------------*
   Name:         MBi_SetSegmentInfo
 
-  Description:  ƒZƒOƒƒ“ƒgî•ñ‚ÌƒZƒbƒg
+  Description:  ã‚»ã‚°ãƒ¡ãƒ³ãƒˆæƒ…å ±ã®ã‚»ãƒƒãƒˆ
 
   Arguments:    mbRomHeaderp
                 loadSegListp
@@ -761,7 +761,7 @@ static void MBi_SetSegmentInfo(const RomHeader * mbRomHeaderp,
 {
     CARDRomRegion *romRegp;
 
-    /* ŠeƒZƒOƒƒ“ƒg‚Ìƒ[ƒhƒAƒhƒŒƒX‚¨‚æ‚ÑƒTƒCƒYî•ñæ“¾ˆ— */
+    /* å„ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã®ãƒ­ãƒ¼ãƒ‰ã‚¢ãƒ‰ãƒ¬ã‚¹ãŠã‚ˆã³ã‚µã‚¤ã‚ºæƒ…å ±å–å¾—å‡¦ç† */
 
     switch (*loadSegListp)
     {
@@ -775,14 +775,14 @@ static void MBi_SetSegmentInfo(const RomHeader * mbRomHeaderp,
 
             seg_infop->size = romRegp->length;
             seg_infop->load_addr = (u32)romRegp->offset;
-            /* ¦ˆ³k“WŠJ‚ğl—¶‚·‚é‚ÆA«—ˆ“I‚É‚ÍAload_addr == recv_addr‚Å‚Íƒ_ƒ */
+            /* â€»åœ§ç¸®å±•é–‹ã‚’è€ƒæ…®ã™ã‚‹ã¨ã€å°†æ¥çš„ã«ã¯ã€load_addr == recv_addrã§ã¯ãƒ€ãƒ¡ */
             seg_infop->recv_addr = seg_infop->load_addr;
             seg_infop->target = MI_PROCESSOR_ARM9;
             MB_DEBUG_OUTPUT("arm9 static :");
         }
         else
         {
-            // ƒ[ƒhƒvƒƒOƒ‰ƒ€‚ÌƒAƒhƒŒƒX‚à‚µ‚­‚ÍƒAƒhƒŒƒX{ƒTƒCƒY‚ªƒ[ƒh‰Â”\ƒGƒŠƒA‚ğ’´‚¦‚Ä‚¢‚é
+            // ãƒ­ãƒ¼ãƒ‰ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚‚ã—ãã¯ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼‹ã‚µã‚¤ã‚ºãŒãƒ­ãƒ¼ãƒ‰å¯èƒ½ã‚¨ãƒªã‚¢ã‚’è¶…ãˆã¦ã„ã‚‹
             OS_Panic("ARM9 boot code out of the load area. : addr = %x  size = %x\n",
                      (u32)romRegp->offset, romRegp->length);
         }
@@ -797,18 +797,18 @@ static void MBi_SetSegmentInfo(const RomHeader * mbRomHeaderp,
             romRegp = (CARDRomRegion *)(&mbRomHeaderp->sub_ram_address);
             load_last_addr = (u32)((u32)romRegp->offset + romRegp->length);
 
-            // ”z’uƒAƒhƒŒƒXAƒTƒCƒY‚Ì”»’è
-            /* ”z’uæ“ªƒAƒhƒŒƒX‚É‚Â‚¢‚Ä(ƒƒCƒ“ƒƒ‚ƒŠ‚É”z’u‚Ìê‡) */
+            // é…ç½®ã‚¢ãƒ‰ãƒ¬ã‚¹ã€ã‚µã‚¤ã‚ºã®åˆ¤å®š
+            /* é…ç½®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã«ã¤ã„ã¦(ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ¢ãƒªã«é…ç½®ã®å ´åˆ) */
             if (((u32)romRegp->offset >= MB_LOAD_AREA_LO)
                 && ((u32)romRegp->offset < MB_BSSDESC_ADDRESS))
             {
-                /* ”z’uƒAƒhƒŒƒXÅŒã”ö‚É‚Â‚¢‚Ä */
-                if (load_last_addr <= MB_ARM7_STATIC_LOAD_AREA_HI)      // Ä”z’u‚Ì•K—v‚Ì‚È‚¢ê‡‚Í‚»‚Ì‚Ü‚ÜƒZƒbƒg
+                /* é…ç½®ã‚¢ãƒ‰ãƒ¬ã‚¹æœ€å¾Œå°¾ã«ã¤ã„ã¦ */
+                if (load_last_addr <= MB_ARM7_STATIC_LOAD_AREA_HI)      // å†é…ç½®ã®å¿…è¦ã®ãªã„å ´åˆã¯ãã®ã¾ã¾ã‚»ãƒƒãƒˆ
                 {
                 }
                 else if ((load_last_addr < MB_BSSDESC_ADDRESS)
                          && (romRegp->length <= MB_ARM7_STATIC_RECV_BUFFER_SIZE))
-                {                      // Ä”z’u‚ª•K—v‚Èê‡‚ÍA‚»‚Ì‚æ‚¤‚ÉB
+                {                      // å†é…ç½®ãŒå¿…è¦ãªå ´åˆã¯ã€ãã®ã‚ˆã†ã«ã€‚
                     reload_flag = TRUE;
                 }
                 else
@@ -817,13 +817,13 @@ static void MBi_SetSegmentInfo(const RomHeader * mbRomHeaderp,
                 }
             }
             else
-                /* ”z’uæ“ªƒAƒhƒŒƒX‚É‚Â‚¢‚Ä(WRAM‚É”z’u‚Ìê‡) */
+                /* é…ç½®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã«ã¤ã„ã¦(WRAMã«é…ç½®ã®å ´åˆ) */
             if (((u32)romRegp->offset >= HW_WRAM)
                     && ((u32)romRegp->offset < HW_WRAM + MB_ARM7_STATIC_LOAD_WRAM_MAX_SIZE))
             {
 
                 if (load_last_addr <= (HW_WRAM + MB_ARM7_STATIC_LOAD_WRAM_MAX_SIZE))
-                {                      // Ä”z’u‚Æ‚·‚éB
+                {                      // å†é…ç½®ã¨ã™ã‚‹ã€‚
                     reload_flag = TRUE;
                 }
                 else
@@ -832,18 +832,18 @@ static void MBi_SetSegmentInfo(const RomHeader * mbRomHeaderp,
                 }
             }
             else
-            {                          // ‚»‚êˆÈŠO‚Ì—Ìˆæ‚Ì‚ÍƒGƒ‰[
+            {                          // ãã‚Œä»¥å¤–ã®é ˜åŸŸã®æ™‚ã¯ã‚¨ãƒ©ãƒ¼
                 error_flag = TRUE;
             }
 
-            // ƒGƒ‰[”»’è
+            // ã‚¨ãƒ©ãƒ¼åˆ¤å®š
             if (error_flag == TRUE)
             {
                 OS_Panic("ARM7 boot code out of the load area. : addr = %x  size = %x\n",
                          (u32)romRegp->offset, romRegp->length);
             }
 
-            // ƒZƒOƒƒ“ƒgî•ñƒZƒbƒg
+            // ã‚»ã‚°ãƒ¡ãƒ³ãƒˆæƒ…å ±ã‚»ãƒƒãƒˆ
             {
                 seg_infop->size = romRegp->length;
                 seg_infop->load_addr = (u32)romRegp->offset;
@@ -854,8 +854,8 @@ static void MBi_SetSegmentInfo(const RomHeader * mbRomHeaderp,
                 else
                 {
                     /*
-                     * ARM7‚ÅÀsƒAƒhƒŒƒX‚ªÄ”z’u‚ª•K—v‚È—Ìˆæ‚È‚çA
-                     * óMƒAƒhƒŒƒX‚ğƒƒCƒ“ƒƒ‚ƒŠóMƒoƒbƒtƒ@‚Éİ’è‚·‚éB
+                     * ARM7ã§å®Ÿè¡Œã‚¢ãƒ‰ãƒ¬ã‚¹ãŒå†é…ç½®ãŒå¿…è¦ãªé ˜åŸŸãªã‚‰ã€
+                     * å—ä¿¡ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ¢ãƒªå—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«è¨­å®šã™ã‚‹ã€‚
                      */
                     seg_infop->recv_addr = *child_recv_buff_addr;
                     *child_recv_buff_addr += seg_infop->size;
@@ -871,7 +871,7 @@ static void MBi_SetSegmentInfo(const RomHeader * mbRomHeaderp,
         seg_infop->size = ROM_HEADER_SIZE_FULL;
         seg_infop->load_addr = (u32)MB_ROM_HEADER_ADDRESS;
         seg_infop->recv_addr = seg_infop->load_addr;
-        // ROMHEADER‚Ìtarget‚ÍMI_PROCESSOR_ARM9‚Æ‚·‚é
+        // ROMHEADERã®targetã¯MI_PROCESSOR_ARM9ã¨ã™ã‚‹
         seg_infop->target = MI_PROCESSOR_ARM9;
         MB_DEBUG_OUTPUT("rom header  :");
         break;
@@ -886,14 +886,14 @@ static void MBi_SetSegmentInfo(const RomHeader * mbRomHeaderp,
 
 /*	----------------------------------------------------------------------------
 
-	ƒuƒƒbƒNî•ñ§ŒäŠÖ”(e‹@—p)
+	ãƒ–ãƒ­ãƒƒã‚¯æƒ…å ±åˆ¶å¾¡é–¢æ•°(è¦ªæ©Ÿç”¨)
 
 	----------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
   Name:         MBi_MakeBlockInfoTable
 
-  Description:  Blockî•ñæ“¾‚Ì‚½‚ß‚Ìƒe[ƒuƒ‹‚ğì¬
+  Description:  Blockæƒ…å ±å–å¾—ã®ãŸã‚ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆ
 
   Arguments:    
 
@@ -949,7 +949,7 @@ BOOL MBi_MakeBlockInfoTable(MB_BlockInfoTable * table, MbDownloadFileInfoHeader 
 /*---------------------------------------------------------------------------*
   Name:         MBi_get_blockinfo
 
-  Description:  Blockî•ñ‚Ìæ“¾
+  Description:  Blockæƒ…å ±ã®å–å¾—
 
   Arguments:    
 
@@ -1001,7 +1001,7 @@ BOOL MBi_get_blockinfo(MB_BlockInfo * bi, MB_BlockInfoTable * table,
 /*---------------------------------------------------------------------------*
   Name:         MBi_get_blocknum
 
-  Description:  Block‘”‚Ìæ“¾
+  Description:  Blockç·æ•°ã®å–å¾—
 
   Arguments:    
 
@@ -1018,7 +1018,7 @@ u16 MBi_get_blocknum(MB_BlockInfoTable * table)
 /*---------------------------------------------------------------------------*
   Name:         MBi_IsAbleToRecv
 
-  Description:  óMƒAƒhƒŒƒX‚Ì³“–«ƒ`ƒFƒbƒN
+  Description:  å—ä¿¡ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ­£å½“æ€§ãƒã‚§ãƒƒã‚¯
 
   Arguments:    
 

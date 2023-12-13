@@ -15,30 +15,30 @@
   INDENT SOURCE
 
   Revision 1.8  2005/10/05 13:44:40  yasu
-  OS_SecondsToTicks() �̃o�O�̑΍�
+  OS_SecondsToTicks() のバグの対策
 
   Revision 1.7  2005/10/05 09:40:38  terui
-  �L�[�v�A���C�u�pNull�p�P�b�g���M�Ԋu��60�b��70�b�ɕύX
+  キープアライブ用Nullパケット送信間隔を60秒→70秒に変更
 
   Revision 1.6  2005/10/05 08:53:32  terui
-  �d�g���x�~�ρA�y�ю擾�֐��̃v���g�^�C�v�錾��ǉ�
+  電波強度蓄積、及び取得関数のプロトタイプ宣言を追加
 
   Revision 1.5  2005/09/12 10:01:13  terui
-  WCM_CONNECT_STATUSCODE_ILLEGAL_RATESET�萔��ǉ�
+  WCM_CONNECT_STATUSCODE_ILLEGAL_RATESET定数を追加
 
   Revision 1.4  2005/09/01 13:11:03  terui
-  Keep Alive �p�P�b�g���M�Ԋu��萔��`
-  �A���[���p�ϐ������[�N�\���̂ɒǉ�
-  �R�l�N�g���s���� wlStatus ��ێ�����ϐ������[�N�\���̂ɒǉ�
+  Keep Alive パケット送信間隔を定数定義
+  アラーム用変数をワーク構造体に追加
+  コネクト失敗時の wlStatus を保持する変数をワーク構造体に追加
 
   Revision 1.3  2005/08/09 07:58:30  terui
-  WEP�L�[��ޔ���������o�b�t�@��32�o�C�g�A���C�������ʒu�ɒ���
+  WEPキーを退避する内部バッファを32バイトアラインした位置に調整
 
   Revision 1.2  2005/07/11 12:05:31  terui
-  WCMWork �\���̂ɃL���b�V�����C�������킹��ׂ̃_�~�[�����o��ǉ��B
+  WCMWork 構造体にキャッシュラインを合わせる為のダミーメンバを追加。
 
   Revision 1.1  2005/07/07 10:45:37  terui
-  �V�K�ǉ�
+  新規追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -55,28 +55,28 @@ extern "C" {
 #include <nitro/os.h>
 
 /*---------------------------------------------------------------------------*
-    �萔 ��`
+    定数 定義
  *---------------------------------------------------------------------------*/
 
-// ���Z�b�g�d���Ăяo���Ǘ��t���O�̏��
+// リセット重複呼び出し管理フラグの状態
 #define WCM_RESETTING_OFF   0
 #define WCM_RESETTING_ON    1
 
-// AP ���ێ����X�g���̊e�u���b�N�̎g�p���
+// AP 情報保持リスト内の各ブロックの使用状態
 #define WCM_APLIST_BLOCK_EMPTY  0
 #define WCM_APLIST_BLOCK_OCCUPY 1
 
-// Keep Alive �p NULL �p�P�b�g���M�Ԋu(�b)
+// Keep Alive 用 NULL パケット送信間隔(秒)
 #define WCM_KEEP_ALIVE_SPAN ((OSTick) 70)
 
-// �f�o�b�O�\���L���ݒ�
+// デバッグ表示有無設定
 #ifdef SDK_FINALROM
 #define WCM_DEBUG   0
 #else
 #define WCM_DEBUG   1
 #endif
 
-// �ڑ����̎��s�R�[�h��`
+// 接続時の失敗コード定義
 #define WCM_CONNECT_STATUSCODE_ILLEGAL_RATESET  18
 
 #if WCM_DEBUG
@@ -90,10 +90,10 @@ extern "C" {
 #endif
 
 /*---------------------------------------------------------------------------*
-    �\���� ��`
+    構造体 定義
  *---------------------------------------------------------------------------*/
 
-// WCM �������[�N�ϐ��Q���܂Ƃ߂��\����
+// WCM 内部ワーク変数群をまとめた構造体
 typedef struct WCMWork
 {
     u8          wmWork[WCM_ROUNDUP32( WM_SYSTEM_BUF_SIZE ) ];
@@ -124,7 +124,7 @@ typedef struct WCMWork
 
 } WCMWork;
 
-// AP ���ێ����X�g���̃u���b�N�\����
+// AP 情報保持リスト内のブロック構造体
 typedef struct WCMApList
 {
     u8      state;
@@ -136,7 +136,7 @@ typedef struct WCMApList
     u32     data[WCM_ROUNDUP4( WCM_APLIST_SIZE ) / sizeof(u32) ];
 } WCMApList;
 
-// AP ���ێ����X�g�̊Ǘ��p�w�b�_�\����
+// AP 情報保持リストの管理用ヘッダ構造体
 typedef struct WCMApListHeader
 {
     u32         count;
@@ -146,28 +146,28 @@ typedef struct WCMApListHeader
 } WCMApListHeader;
 
 /*---------------------------------------------------------------------------*
-    �֐� ��`
+    関数 定義
  *---------------------------------------------------------------------------*/
 
-// WCM ���C�u�����̓����Ǘ��\���̂ւ̃|�C���^���擾
+// WCM ライブラリの内部管理構造体へのポインタを取得
 WCMWork*    WCMi_GetSystemWork(void);
 
-// AP ��񔭌����ɌĂяo����� �ێ����X�g�ւ̃G���g���[�ǉ�(�X�V)�v��
+// AP 情報発見時に呼び出される 保持リストへのエントリー追加(更新)要求
 void        WCMi_EntryApList(WMBssDesc* bssDesc, u16 linkLevel);
 
-// WCM_Init �֐�����Ăяo����� CPS �C���^�[�t�F�[�X�������֐�
+// WCM_Init 関数から呼び出される CPS インターフェース初期化関数
 void        WCMi_InitCpsif(void);
 
-// DCF �f�[�^��M���ɌĂяo����� CPS �C���^�[�t�F�[�X�ւ̃R�[���o�b�N�֐�
+// DCF データ受信時に呼び出される CPS インターフェースへのコールバック関数
 void        WCMi_CpsifRecvCallback(WMDcfRecvBuf* recv);
 
-// Keep Alive �p NULL �p�P�b�g�𑗐M����֐�
+// Keep Alive 用 NULL パケットを送信する関数
 void        WCMi_CpsifSendNullPacket(void);
 
-// Keep Alive �p�A���[�������Z�b�g����֐�
+// Keep Alive 用アラームをリセットする関数
 void        WCMi_ResetKeepAliveAlarm(void);
 
-// DCF �f�[�^��M���Ɏ�M�d�g���x����U�ޔ�����֐�
+// DCF データ受信時に受信電波強度を一旦退避する関数
 void        WCMi_ShelterRssi(u8 rssi);
 u8          WCMi_GetRssiAverage(void);
 

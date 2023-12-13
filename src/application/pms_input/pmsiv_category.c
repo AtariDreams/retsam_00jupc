@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pmsiv_category.c
- * @bfief	ŠÈˆÕ‰ï˜b“ü—Í‰æ–Êi•`‰æ‰º¿‚¯FƒJƒeƒSƒŠEƒCƒjƒVƒƒƒ‹j
+ * @bfief	ç°¡æ˜“ä¼šè©±å…¥åŠ›ç”»é¢ï¼ˆæç”»ä¸‹è«‹ã‘ï¼šã‚«ãƒ†ã‚´ãƒªãƒ»ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ï¼‰
  * @author	taya
  * @date	06.02.10
  */
@@ -29,7 +29,7 @@
 enum {
 	INPUTAREA_PALTYPE_MAX = 10,
 
-	STR_TMPBUF_LEN = 128,	// •\Ž¦‘O‚Ìƒeƒ“ƒ|ƒ‰ƒŠ‚Æ‚µ‚ÄŽg—pBÅ‘å•¶Žš”B
+	STR_TMPBUF_LEN = 128,	// è¡¨ç¤ºå‰ã®ãƒ†ãƒ³ãƒãƒ©ãƒªã¨ã—ã¦ä½¿ç”¨ã€‚æœ€å¤§æ–‡å­—æ•°ã€‚
 
 	HARD_WINDOW_TOP = 0,
 	HARD_WINDOW_BOTTOM = 160,
@@ -230,7 +230,7 @@ void PMSIV_CATEGORY_SetupGraphicDatas( PMSIV_CATEGORY* wk, ARCHANDLE* p_handle )
 	setup_actor( wk );
 
 
-	// ‘I‘ð‚Å‚«‚È‚¢ó‘Ô‚Æ‚¢‚¤‚±‚Æ‚ðŽ¦‚·‚½‚ßA‹P“x‚ð—Ž‚Æ‚µ‚Ä‚¨‚­
+	// é¸æŠžã§ããªã„çŠ¶æ…‹ã¨ã„ã†ã“ã¨ã‚’ç¤ºã™ãŸã‚ã€è¼åº¦ã‚’è½ã¨ã—ã¦ãŠã
 	G2_SetBlendBrightness( FRM_MAIN_CATEGORY_BLENDMASK, HARD_WINDOW_BLDY );
 	G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_ALL, TRUE);
 	G2_SetWndOutsidePlane(GX_WND_PLANEMASK_ALL^FRM_MAIN_CATEGORY_WNDMASK, TRUE);
@@ -413,7 +413,7 @@ static void setup_actor( PMSIV_CATEGORY* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹•\Ž¦ƒIƒ“ƒIƒt
+ * ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºã‚ªãƒ³ã‚ªãƒ•
  *
  * @param   wk		
  * @param   flag		
@@ -439,7 +439,7 @@ void PMSIV_CATEGORY_VisibleCursor( PMSIV_CATEGORY* wk, BOOL flag )
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹ˆÚ“®
+ * ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
  *
  * @param   wk		
  * @param   pos		
@@ -488,7 +488,7 @@ void PMSIV_CATEGORY_MoveCursor( PMSIV_CATEGORY* wk, u32 pos )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠ‘I‘ðŠJŽnƒGƒtƒFƒNƒgŠJŽn
+ * ã‚«ãƒ†ã‚´ãƒªé¸æŠžé–‹å§‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
  * @param   wk		
  *
@@ -503,11 +503,11 @@ void PMSIV_CATEGORY_StartEnableBG( PMSIV_CATEGORY* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠ‘I‘ðŠJŽnƒGƒtƒFƒNƒgI—¹‘Ò‚¿
+ * ã‚«ãƒ†ã‚´ãƒªé¸æŠžé–‹å§‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾…ã¡
  *
  * @param   wk		
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL PMSIV_CATEGORY_WaitEnableBG( PMSIV_CATEGORY* wk )
@@ -535,7 +535,7 @@ BOOL PMSIV_CATEGORY_WaitEnableBG( PMSIV_CATEGORY* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠ‘I‘ðI—¹ƒGƒtƒFƒNƒgŠJŽn
+ * ã‚«ãƒ†ã‚´ãƒªé¸æŠžçµ‚äº†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
  * @param   wk		
  *
@@ -552,11 +552,11 @@ void PMSIV_CATEGORY_StartDisableBG( PMSIV_CATEGORY* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠ‘I‘ðI—¹ƒGƒtƒFƒNƒgI—¹‘Ò‚¿
+ * ã‚«ãƒ†ã‚´ãƒªé¸æŠžçµ‚äº†ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†å¾…ã¡
  *
  * @param   wk		
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL PMSIV_CATEGORY_WaitDisableBG( PMSIV_CATEGORY* wk )
@@ -579,7 +579,7 @@ BOOL PMSIV_CATEGORY_WaitDisableBG( PMSIV_CATEGORY* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠ‘I‘ðI—¹Œã‚ÌˆÊ’u‚ÉBGƒIƒtƒZƒbƒg‚ð‹­§“I‚É–ß‚·
+ * ã‚«ãƒ†ã‚´ãƒªé¸æŠžçµ‚äº†å¾Œã®ä½ç½®ã«BGã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å¼·åˆ¶çš„ã«æˆ»ã™
  *
  * @param   wk		
  *
@@ -593,7 +593,7 @@ void PMSIV_CATEGORY_SetDisableBG( PMSIV_CATEGORY* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠ‘I‘ðƒEƒBƒ“ƒhƒE‹P“xƒ_ƒEƒ“ƒGƒtƒFƒNƒgŠJŽn
+ * ã‚«ãƒ†ã‚´ãƒªé¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¼åº¦ãƒ€ã‚¦ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
  * @param   wk		
  *
@@ -611,7 +611,7 @@ BOOL PMSIV_CATEGORY_WaitBrightDown( PMSIV_CATEGORY* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠ‘I‘ðƒEƒBƒ“ƒhƒEƒtƒF[ƒhƒAƒEƒgŠJŽn
+ * ã‚«ãƒ†ã‚´ãƒªé¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆé–‹å§‹
  *
  * @param   wk		
  *
@@ -624,7 +624,7 @@ void PMSIV_CATEGORY_StartFadeOut( PMSIV_CATEGORY* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠ‘I‘ðƒEƒBƒ“ƒhƒEƒtƒF[ƒhƒAƒEƒgŠJŽn
+ * ã‚«ãƒ†ã‚´ãƒªé¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆé–‹å§‹
  *
  * @param   wk		
  *
@@ -641,7 +641,7 @@ BOOL PMSIV_CATEGORY_WaitFadeOut( PMSIV_CATEGORY* wk )
 }
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠ‘I‘ðƒEƒBƒ“ƒhƒEƒtƒF[ƒhƒCƒ“ŠJŽn
+ * ã‚«ãƒ†ã‚´ãƒªé¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹
  *
  * @param   wk		
  *
@@ -657,7 +657,7 @@ void PMSIV_CATEGORY_StartFadeIn( PMSIV_CATEGORY* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠ‘I‘ðƒEƒBƒ“ƒhƒEƒtƒF[ƒhƒCƒ“I—¹‘Ò‚¿
+ * ã‚«ãƒ†ã‚´ãƒªé¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³çµ‚äº†å¾…ã¡
  *
  * @param   wk		
  *
@@ -671,7 +671,7 @@ BOOL PMSIV_CATEGORY_WaitFadeIn( PMSIV_CATEGORY* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠƒ‚[ƒh‚É‰ž‚¶‚Ä‚a‚fƒIƒtƒZƒbƒg‚ð•ÏXi‹­§j
+ * ã‚«ãƒ†ã‚´ãƒªãƒ¢ãƒ¼ãƒ‰ã«å¿œã˜ã¦ï¼¢ï¼§ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’å¤‰æ›´ï¼ˆå¼·åˆ¶ï¼‰
  *
  * @param   wk		
  *
@@ -697,7 +697,7 @@ void PMSIV_CATEGORY_ChangeModeBG( PMSIV_CATEGORY* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒeƒSƒŠƒ‚[ƒh‚É‰ž‚¶‚Ä‚a‚fƒIƒtƒZƒbƒg•ÏXiƒGƒtƒFƒNƒg‚ ‚èj
+ * ã‚«ãƒ†ã‚´ãƒªãƒ¢ãƒ¼ãƒ‰ã«å¿œã˜ã¦ï¼¢ï¼§ã‚ªãƒ•ã‚»ãƒƒãƒˆå¤‰æ›´ï¼ˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚ã‚Šï¼‰
  *
  * @param   wk		
  *

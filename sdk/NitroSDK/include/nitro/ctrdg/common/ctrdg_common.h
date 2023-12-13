@@ -12,7 +12,7 @@
 
   $Log: ctrdg_common.h,v $
   Revision 1.20  2007/05/09 05:22:22  okubata_ryoma
-  CTRDG_GetPhiClock �֐��̒ǉ�
+  CTRDG_GetPhiClock 関数の追加
 
   Revision 1.19  2007/02/20 00:28:11  kitase_hirotake
   indent source
@@ -22,10 +22,10 @@
   MIPhiClock enum -> CTRDGPhiClock enum
 
   Revision 1.17  2006/02/22 04:06:35  kitase_hirotake
-  �������Ƀ��b�N�҂����Ȃ��悤�ɏC��
+  無制限にロック待ちしないように修正
 
   Revision 1.16  2006/02/07 08:12:18  kitase_hirotake
-  CTRDG_CheckPulledOut �ǉ�
+  CTRDG_CheckPulledOut 追加
 
   Revision 1.15  2006/01/18 02:11:20  kitase_hirotake
   do-indent
@@ -34,7 +34,7 @@
   add CTRDG_IsEnabled(), CTRDG_Enable(), CTRDG_CheckEnabled().
 
   Revision 1.13  2005/11/01 01:16:12  okubata_ryoma
-  CTRDG_Ex�̒ǉ��ɂ��ύX
+  CTRDG_Exの追加による変更
 
   Revision 1.12  2005/04/12 06:23:03  yosizaki
   add pulled-out checkers.
@@ -43,10 +43,10 @@
   do-indent.
 
   Revision 1.10  2005/02/21 02:47:07  seiki_masashi
-  Copyright �\�L�̏C��
+  Copyright 表記の修正
 
   Revision 1.9  2005/02/18 13:17:26  seiki_masashi
-  warning �΍�
+  warning 対策
 
   Revision 1.8  2004/09/17 12:25:18  yada
   add data forwarding functions
@@ -93,26 +93,26 @@ extern "C" {
 
 //----------------------------------------------------------------------------
 
-// PXI�ł̒ʐM�v���g�R���֘A��`
-#define CTRDG_PXI_COMMAND_MASK              0x0000003f  // �J�n���[�h�̃R�}���h��
+// PXIでの通信プロトコル関連定義
+#define CTRDG_PXI_COMMAND_MASK              0x0000003f  // 開始ワードのコマンド部
 #define CTRDG_PXI_COMMAND_SHIFT             0
-#define CTRDG_PXI_COMMAND_PARAM_MASK        0x01ffffc0  // �J�n���[�h�̃p�����[�^��
+#define CTRDG_PXI_COMMAND_PARAM_MASK        0x01ffffc0  // 開始ワードのパラメータ部
 #define CTRDG_PXI_COMMAND_PARAM_SHIFT       6
-#define CTRDG_PXI_FIXLEN_DATA_MASK          0x03ffffff  // �Œ蒷�A���p�P�b�g���̃f�[�^��
+#define CTRDG_PXI_FIXLEN_DATA_MASK          0x03ffffff  // 固定長連続パケット時のデータ部
 #define CTRDG_PXI_FIXLEN_DATA_SHIFT         0
-#define CTRDG_PXI_FLEXLEN_DATA_MASK         0x01ffffff  // �ϒ��A���p�P�b�g���̃f�[�^��
+#define CTRDG_PXI_FLEXLEN_DATA_MASK         0x01ffffff  // 可変長連続パケット時のデータ部
 #define CTRDG_PXI_FLEXLEN_DATA_SHIFT        0
-#define CTRDG_PXI_FLEXLEN_CONTINUOUS_BIT    0x02000000  // �ϒ��A���p�P�b�g�]����
-#define CTRDG_PXI_PACKET_MAX                4   // �p�P�b�g�̍ő�A����
+#define CTRDG_PXI_FLEXLEN_CONTINUOUS_BIT    0x02000000  // 可変長連続パケット転送中
+#define CTRDG_PXI_PACKET_MAX                4   // パケットの最大連続回数
 
-// PXI�o�R��ARM9���ARM7�ɔ��s����閽��
+// PXI経由でARM9よりARM7に発行される命令
 #define CTRDG_PXI_COMMAND_INIT_MODULE_INFO  0x0001
 #define CTRDG_PXI_COMMAND_TERMINATE         0x0002
 #define CTRDG_PXI_COMMAND_SET_PHI           0x0003
 
 #define CTRDG_PXI_COMMAND_IMI_PACKET_SIZE   2
 
-// PXI�o�R��ARM7���ARM9�ɔ��s����閽��
+// PXI経由でARM7よりARM9に発行される命令
 #define CTRDG_PXI_COMMAND_PULLED_OUT        0x0011
 #define CTRDG_PXI_COMMAND_SET_PHI_RESULT    0x0012
 
@@ -143,7 +143,7 @@ CTRDGPhiClock;
 
 //----------------------------------------------------------------------------
 
-// �J�[�g���b�W�w�b�_
+// カートリッジヘッダ
 
 typedef struct
 {
@@ -169,7 +169,7 @@ typedef struct
 }
 CTRDGHeader;
 
-// ���Ӌ@��ID
+// 周辺機器ID
 
 typedef struct
 {
@@ -180,14 +180,14 @@ typedef struct
             u8      bitID;             // Bit ID
             u8      numberID:5;        // Number ID
             u8:     2;
-            u8      disableExLsiID:1;  // �g��LSI-ID�̈斳��
+            u8      disableExLsiID:1;  // 拡張LSI-ID領域無効
         };
         u16     raw;
     };
 }
 CTRDGModuleID;
 
-// ���Ӌ@����
+// 周辺機器情報
 
 typedef struct
 {
@@ -208,26 +208,26 @@ typedef BOOL (*CTRDGPulledOutCallback) (void);
 #endif
 /*---------------------------------------------------------------------------*
 
-  Description:  CTRDG���C�u�����ɂ���
+  Description:  CTRDGライブラリについて
 
-                ARM7�ɂĒ���I�ɃJ�[�g���b�W�̔������o���s���܂��B
-                �������AARM9���J�[�g���b�W�o�X�̃A�N�Z�X����������Ȃ��ꍇ�ɂ�
-                ���̏������s���Ȃ��Ȃ�܂��̂ŁA10�t���[���ȏネ�b�N�������Ȃ�
-                �悤�ɂ��ĉ������B
+                ARM7にて定期的にカートリッジの抜け検出を行います。
+                ただし、ARM9がカートリッジバスのアクセス権を解放しない場合には
+                この処理が行えなくなりますので、10フレーム以上ロックし続けない
+                ようにして下さい。
 
-                �����ŃJ�[�g���b�W�̃��b�N�����s���邽�߁A
-                �����̃v���Z�b�T�����b�N���Ă����ꍇ��
-                ��������܂Ŗ߂��Ă��܂���B
+                内部でカートリッジのロックを試行するため、
+                他方のプロセッサがロックしていた場合は
+                解除するまで戻ってきません。
 
-                �������A���v���Z�b�T�ɂĊ��Ƀ��b�N���Ă���ꍇ�ɂ�
-                ���������ɌĂяo���č\���܂���B
+                ただし、自プロセッサにて既にロックしている場合には
+                解除せずに呼び出して構いません。
 
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_Init
 
-  Description:  �J�[�g���b�W�֐��̏�����
+  Description:  カートリッジ関数の初期化
 
   Arguments:    None
 
@@ -238,13 +238,13 @@ void    CTRDG_Init(void);
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_IsPulledOut
 
-  Description:  �J�[�g���b�W���������o������
+  Description:  カートリッジ抜けを検出したか
 
-                ���߂���J�[�g���b�W�������ꍇ�� FALSE �ɂȂ�܂��B
+                初めからカートリッジが無い場合は FALSE になります。
 
-                IS-NITRO-DEBUGGER �ł͒�R�A�_�v�^�J�[�g���b�W��
-                ��������Ă��Ȃ���΁A���߂���J�[�g���b�W�������Ă�
-                �J�[�g���b�W���������o����ꍇ������܂��̂ł����Ӊ������B
+                IS-NITRO-DEBUGGER では抵抗アダプタカートリッジが
+                装着されていなければ、初めからカートリッジが無くても
+                カートリッジ抜けを検出する場合がありますのでご注意下さい。
 
   Arguments:    None
 
@@ -255,7 +255,7 @@ BOOL    CTRDG_IsPulledOut(void);
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_IsExisting
 
-  Description:  �J�[�g���b�W�����݂��Ă��邩
+  Description:  カートリッジが存在しているか
 
   Arguments:    None
 
@@ -266,7 +266,7 @@ BOOL    CTRDG_IsExisting(void);
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_IsBitID
 
-  Description:  �J�[�g���b�W�փr�b�gID���Ӌ@�킪���݂��Ă��邩
+  Description:  カートリッジへビットID周辺機器が存在しているか
 
 
   Arguments:    bitID  bit ID
@@ -278,7 +278,7 @@ BOOL    CTRDG_IsBitID(u8 bitID);
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_IsNumberID
 
-  Description:  �J�[�g���b�W�փi���o�[ID���Ӌ@�킪���݂��Ă��邩
+  Description:  カートリッジへナンバーID周辺機器が存在しているか
 
   Arguments:    numberID  number ID
 
@@ -289,7 +289,7 @@ BOOL    CTRDG_IsNumberID(u8 numberID);
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_IsAgbCartridge
 
-  Description:  AGB�J�[�g���b�W�����݂��Ă��邩
+  Description:  AGBカートリッジが存在しているか
 
   Arguments:    None
 
@@ -300,7 +300,7 @@ BOOL    CTRDG_IsAgbCartridge(void);
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_IsOptionCartridge
 
-  Description:  �I�v�V�����J�[�g���b�W�����݂��Ă��邩
+  Description:  オプションカートリッジが存在しているか
 
   Arguments:    None
 
@@ -311,7 +311,7 @@ BOOL    CTRDG_IsOptionCartridge(void);
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_GetAgbGameCode
 
-  Description:  AGB�J�[�g���b�W�̃Q�[���R�[�h���擾
+  Description:  AGBカートリッジのゲームコードを取得
 
   Arguments:    None
 
@@ -322,7 +322,7 @@ u32     CTRDG_GetAgbGameCode(void);
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_GetAgbMakerCode
 
-  Description:  AGB�J�[�g���b�W�̃��[�J�[�R�[�h���擾
+  Description:  AGBカートリッジのメーカーコードを取得
 
   Arguments:    None
 
@@ -381,7 +381,7 @@ void    CTRDG_TerminateForPulledOut(void);
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_SendToARM7
 
-  Description:  ARM7�Ƀf�[�^�𑗐M
+  Description:  ARM7にデータを送信
 
   Arguments:    arg : data to send
 
@@ -535,7 +535,7 @@ static inline CTRDGPhiClock CTRDG_GetPhiClock(void)
 //================================================================================
 //---- private function ( don't use these CTRDGi_* function )
 
-// ROM�A�N�Z�X�T�C�N���\����
+// ROMアクセスサイクル構造体
 typedef struct CTRDGRomCycle
 {
     MICartridgeRomCycle1st c1;
@@ -544,7 +544,7 @@ typedef struct CTRDGRomCycle
 }
 CTRDGRomCycle;
 
-// �v���Z�b�T�P�ʃ��b�N���\����
+// プロセッサ単位ロック情報構造体
 typedef struct CTRDGLockByProc
 {
     BOOL    locked;
@@ -571,13 +571,13 @@ BOOL    CTRDGi_IsAgbCartridgeAtInit(void);
 u32     CTRDGi_GetAgbGameCodeAtInit(void);
 u16     CTRDGi_GetAgbMakerCodeAtInit(void);
 
-// �J�[�g���b�W�w�b�_�A�h���X�l��
+// カートリッジヘッダアドレス獲得
 #define CTRDGi_GetHeaderAddr()          ((CTRDGHeader *)HW_CTRDG_ROM)
 
-// �J�[�g���b�W���Ӌ@��ID��ROM�C���[�W�A�h���X�l��
+// カートリッジ周辺機器IDのROMイメージアドレス獲得
 #define CTRDGi_GetModuleIDImageAddr()   ((u16 *)(HW_CTRDG_ROM + 0x0001fffe))
 
-// �J�[�g���b�W���Ӌ@����̃A�h���X�l��
+// カートリッジ周辺機器情報のアドレス獲得
 #define CTRDGi_GetModuleInfoAddr()      ((CTRDGModuleInfo *)HW_CTRDG_MODULE_INFO_BUF)
 
 

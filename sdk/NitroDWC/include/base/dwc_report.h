@@ -12,20 +12,20 @@
 
   $Log: dwc_report.h,v $
   Revision 1.7  2005/09/12 04:05:03  sasakit
-  DWC_Printf��type��ǉ��B
+  DWC_Printfのtypeを追加。
 
   Revision 1.6  2005/08/23 13:52:21  arakit
-  DWC_Printf()���ɁAGameSpy�̃f�o�b�O�\������荞�߂�悤�ɂ����B
+  DWC_Printf()内に、GameSpyのデバッグ表示も取り込めるようにした。
 
   Revision 1.5  2005/08/20 07:01:20  sasakit
-  �w�b�_�C���N���[�h�K�[�h�̏����𓝈ꂵ���B
-  bm/dwc_init.h -> bm/dwc_bm_init.h�ɕύX
-  �w�b�_��Copyright�������B
-  �\���̖̂��O��Ԃ��ł��邾�����[���ɂ����Â����B
-  util_wifiidtool.h��dwc_backup.h�̊֌W���኱�C���B
+  ヘッダインクルードガードの書式を統一した。
+  bm/dwc_init.h -> bm/dwc_bm_init.hに変更
+  ヘッダにCopyrightをつけた。
+  構造体の名前空間をできるだけルールにちかづけた。
+  util_wifiidtool.hとdwc_backup.hの関係を若干修正。
 
   Revision 1.4  2005/08/19 10:05:00  sasakit
-  Copyright �ǉ�
+  Copyright 追加
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -40,7 +40,7 @@ extern "C" {
 
 
 /** --------------------------------------------------------------------
-  dwc�̃f�o�b�O���o�͗p�t���O
+  dwcのデバッグ情報出力用フラグ
   ----------------------------------------------------------------------*/
 enum
 {

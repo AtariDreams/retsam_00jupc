@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_bg.c
- *	@brief		BGƒIƒuƒWƒFƒNƒg
+ *	@brief		BGã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *	@author		tomoya takahashi
  *	@data		2005.09.29
  *
@@ -20,36 +20,36 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	BGƒXƒNƒ[ƒ‹ƒ^ƒXƒN
+//	BGã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯
 //	
 //=====================================
 typedef struct {
-	IMC_BG* imc_bg;			// ¡•\Ž¦‚µ‚Ä‚¢‚éBG
-	IMC_BG_ADD	new_bg;		// V‚µ‚¢BG‚Ì“o˜^ƒf[ƒ^
-	BOOL*	end_flg;		// I—¹ƒtƒ‰ƒO
+	IMC_BG* imc_bg;			// ä»Šè¡¨ç¤ºã—ã¦ã„ã‚‹BG
+	IMC_BG_ADD	new_bg;		// æ–°ã—ã„BGã®ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
+	BOOL*	end_flg;		// çµ‚äº†ãƒ•ãƒ©ã‚°
 
 	int count;
 	int add_x;
 	int add_y;
 
-	int ret_scr_x;		// Œ³‚ÌScrollˆÊ’u
-	int ret_scr_y;		// Œ³‚ÌScrollˆÊ’u
+	int ret_scr_x;		// å…ƒã®Scrollä½ç½®
+	int ret_scr_y;		// å…ƒã®Scrollä½ç½®
 } IMC_BG_SCR_TASK;
 
 //-------------------------------------
-//	Vƒuƒ‰ƒ“ƒN@ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—ƒ^ƒXƒN
+//	Vãƒ–ãƒ©ãƒ³ã‚¯ã€€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€ã‚¿ã‚¹ã‚¯
 //=====================================
 typedef struct {
 	GF_BGL_INI* ini;
@@ -60,12 +60,12 @@ typedef struct {
 } IMC_BG_CHARACTER_TRANS;
 
 //-------------------------------------
-//	Vƒuƒ‰ƒ“ƒN@ƒpƒŒƒbƒgƒf[ƒ^“]‘—ƒ^ƒXƒN
+//	Vãƒ–ãƒ©ãƒ³ã‚¯ã€€ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€ã‚¿ã‚¹ã‚¯
 //=====================================
 typedef struct {
 	NNSG2dPaletteData* p_pltt;
 	void* p_buff;	
-	int pltype;	// ƒpƒŒƒbƒg“]‘—æ
+	int pltype;	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆ
 	int ofs;
 	int size;
 } IMC_BG_PALETTE_TRANS;
@@ -74,7 +74,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void imc_bg_set_screen_charofs( const NNSG2dScreenData* scrn, int char_offs );
@@ -93,11 +93,11 @@ static void imc_bg_plttTransTsk( TCB_PTR tcb, void* p_work );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BGƒf[ƒ^‚Ì“o˜^ & V‹K•ÏX
+ *	@brief	BGãƒ‡ãƒ¼ã‚¿ã®ç™»éŒ² & æ–°è¦å¤‰æ›´
  *
- *	@param	obj		BGƒIƒuƒWƒF
- *	@param	add		“o˜^ƒf[ƒ^
- *	@param	heap	Žg—p‚·‚éƒq[ƒv
+ *	@param	obj		BGã‚ªãƒ–ã‚¸ã‚§
+ *	@param	add		ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap	ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -106,7 +106,7 @@ static void imc_bg_plttTransTsk( TCB_PTR tcb, void* p_work );
 //-----------------------------------------------------------------------------
 void IMC_BG_MakaObj( IMC_BG* obj, IMC_BG_ADD* add )
 {
-	// ƒf[ƒ^Ý’è
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	obj->bg_ini		= add->bg_ini;
 	obj->x			= add->x / 8;	
 	obj->y			= add->y / 8;	
@@ -118,16 +118,16 @@ void IMC_BG_MakaObj( IMC_BG* obj, IMC_BG_ADD* add )
 	obj->scrn_arc	= add->scrn_arc;
 	
 	
-	// BGÝ’è
+	// BGè¨­å®š
 	imc_bg_addCore( add, &obj->width_char, &obj->height_char );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BGƒf[ƒ^‚Ì”jŠü
+ *	@brief	BGãƒ‡ãƒ¼ã‚¿ã®ç ´æ£„
  *
- *	@param	obj		BGƒIƒuƒWƒF
+ *	@param	obj		BGã‚ªãƒ–ã‚¸ã‚§
  *
  *	@return	none
  *
@@ -144,10 +144,10 @@ void IMC_BG_DeleteObj( IMC_BG* obj )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BGƒAƒjƒ[ƒVƒ‡ƒ“‰Šú‰»
+ *	@brief	BGã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åˆæœŸåŒ–
  *
- *	@param	anm		ƒAƒjƒBGƒf[ƒ^Ši”[æ
- *	@param	init	‰Šú‰»ƒf[ƒ^
+ *	@param	anm		ã‚¢ãƒ‹ãƒ¡BGãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	init	åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -167,10 +167,10 @@ void IMC_BG_AnmInit( IMC_BG_ANM* anm, IMC_BG_ANM_INIT* init )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒjƒ[ƒVƒ‡ƒ“XV
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ›´æ–°
  *
- *	@param	anm		ƒAƒjƒ[ƒVƒ‡ƒ“BG
- *	@param	frame	i‚ß‚éƒtƒŒ[ƒ€’l
+ *	@param	anm		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³BG
+ *	@param	frame	é€²ã‚ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ å€¤
  *	
  *	@return	none
  *
@@ -188,7 +188,7 @@ void IMC_BG_Anm( IMC_BG_ANM* anm, int frame )
 	if( anm->count > anm->timing ){
 		anm->count = 0;
 
-		// ƒXƒNƒŠ[ƒ“ƒtƒ@ƒCƒ‹‘I‘ð
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«é¸æŠž
 		if( anm->scrn_no == 0 ){
 			arc_id = anm->scrn_arc01;
 			anm->scrn_no = 1;
@@ -197,11 +197,11 @@ void IMC_BG_Anm( IMC_BG_ANM* anm, int frame )
 			anm->scrn_no = 0;
 		}
 		
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«o‚µ
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
 		scrn_buf = ArcUtil_ScrnDataGet(anm->bg->arc_file, arc_id,
 				FALSE, &scrn, anm->heap);
 
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 		imc_bg_scrnChg( anm->bg->bg_ini, anm->bg->frame, scrn,
 				anm->bg->width_char, anm->bg->height_char,
 				anm->bg->x, anm->bg->y,
@@ -214,9 +214,9 @@ void IMC_BG_Anm( IMC_BG_ANM* anm, int frame )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BGƒAƒjƒ‚ðI—¹‚³‚¹‚é
+ *	@brief	BGã‚¢ãƒ‹ãƒ¡ã‚’çµ‚äº†ã•ã›ã‚‹
  *
- *	@param	anm		ƒAƒjƒ[ƒVƒ‡ƒ“BG
+ *	@param	anm		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³BG
  *
  *	@return	none
  *
@@ -228,12 +228,12 @@ void IMC_BG_AnmDelete( IMC_BG_ANM* anm )
 	NNSG2dScreenData*	scrn;
 	void*				scrn_buf;
 
-	// ŠG‚ðƒfƒtƒH‚ÌŠG‚É‚µ‚Äƒƒ‚ƒŠƒNƒŠ[ƒ“
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«o‚µ
+	// çµµã‚’ãƒ‡ãƒ•ã‚©ã®çµµã«ã—ã¦ãƒ¡ãƒ¢ãƒªã‚¯ãƒªãƒ¼ãƒ³
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
 	scrn_buf = ArcUtil_ScrnDataGet(anm->bg->arc_file, anm->bg->scrn_arc,
 			FALSE, &scrn, anm->heap);
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	imc_bg_scrnChg( anm->bg->bg_ini, anm->bg->frame, scrn,
 			anm->bg->width_char, anm->bg->height_char,
 			anm->bg->x, anm->bg->y,
@@ -247,21 +247,21 @@ void IMC_BG_AnmDelete( IMC_BG_ANM* anm )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG‚ðScroll‚³‚¹‚Ü‚·B
+ *	@brief	BGã‚’Scrollã•ã›ã¾ã™ã€‚
  *
- *	@param	obj		¡•\Ž¦‚µ‚Ä‚¢‚éBG
- *	@param	scr_bg	ƒXƒNƒ[ƒ‹æBG
- *	@param	scr_dis	ƒXƒNƒ[ƒ‹‚³‚¹‚é’l
- *	@param	scr_syncƒXƒNƒ[ƒ‹‚ÉŽg‚¤ƒVƒ“ƒN”
- *	@param	end_flg	I—¹ŒŸ’mƒtƒ‰ƒO
+ *	@param	obj		ä»Šè¡¨ç¤ºã—ã¦ã„ã‚‹BG
+ *	@param	scr_bg	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å…ˆBG
+ *	@param	scr_dis	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹å€¤
+ *	@param	scr_syncã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã«ä½¿ã†ã‚·ãƒ³ã‚¯æ•°
+ *	@param	end_flg	çµ‚äº†æ¤œçŸ¥ãƒ•ãƒ©ã‚°
  *
  *	@return	none
  *
- * ÅI“I‚É‚Íscr_bg‚Ì•û‚ÌBG‚ª‰æ–Ê‚Éo‚é‚æ‚¤‚É‚È‚è‚Ü‚·
+ * æœ€çµ‚çš„ã«ã¯scr_bgã®æ–¹ã®BGãŒç”»é¢ã«å‡ºã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™
  *
- * ‚Ü‚½BGƒf[ƒ^”z’u‚ª
- * 256x256‚Å
- * ‚µ‚½128~255‚Ì•”•ª‚ÉƒLƒƒƒ‰ƒNƒ^‚ª‚ ‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * ã¾ãŸBGãƒ‡ãƒ¼ã‚¿é…ç½®ãŒ
+ * 256x256ã§
+ * ã—ãŸ128~255ã®éƒ¨åˆ†ã«ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãŒã‚ã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -270,13 +270,13 @@ void IMC_BG_ScrollReq( IMC_BG* obj, IMC_BG_ADD* scr_bg, int scr_x, int scr_y, in
 	IMC_BG_SCR_TASK* scr_tsk;
 	TCB_PTR tcb;
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	tcb = PMDS_taskAdd( imc_bg_scrTsk, sizeof(IMC_BG_SCR_TASK), 0, HEAPID_IMAGECLIP_DATA );
 	
-	// ƒ[ƒNŽæ“¾
+	// ãƒ¯ãƒ¼ã‚¯å–å¾—
 	scr_tsk = TCB_GetWork( tcb );
 
-	// Šeƒf[ƒ^Ý’è
+	// å„ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	scr_tsk->imc_bg = obj;
 	scr_tsk->new_bg = *scr_bg;
 	scr_tsk->end_flg = end_flg;
@@ -287,7 +287,7 @@ void IMC_BG_ScrollReq( IMC_BG* obj, IMC_BG_ADD* scr_bg, int scr_x, int scr_y, in
 	scr_tsk->ret_scr_x = GF_BGL_ScrollGetX( obj->bg_ini, obj->frame );
 	scr_tsk->ret_scr_y = GF_BGL_ScrollGetY( obj->bg_ini, obj->frame );
 
-	// ƒXƒNƒ[ƒ‹‚µ‚ÄA‰æ–Ê‚Éo‚·ŠG‚ð”z’u
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã—ã¦ã€ç”»é¢ã«å‡ºã™çµµã‚’é…ç½®
 	scr_bg->char_offs = IMC_BG_SCR_OFS;
 	scr_bg->pltt_offs = IMC_BG_SCR_PLTT_OFS;
 	scr_bg->x		  -= scr_x;
@@ -300,24 +300,24 @@ void IMC_BG_ScrollReq( IMC_BG* obj, IMC_BG_ADD* scr_bg, int scr_x, int scr_y, in
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ÌƒLƒƒƒ‰ƒNƒ^ƒl[ƒ€‚Ì’l‚ðƒIƒtƒZƒbƒg•ª‚¸‚ç‚·
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒ¼ãƒ ã®å€¤ã‚’ã‚ªãƒ•ã‚»ãƒƒãƒˆåˆ†ãšã‚‰ã™
  *
- *	@param	scrn			ƒXƒNƒŠ[ƒ“ƒf[ƒ^
- *	@param	char_offs		ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg	ƒLƒƒƒ‰ƒNƒ^’PˆÊ
+ *	@param	scrn			ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	char_offs		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½
  *
  *	@return	none
  *
- * ƒLƒƒƒ‰ƒNƒ^ƒl[ƒ€Å‘å’lƒ`ƒFƒbƒN‚ð‚µ‚Ä‚¢‚È‚¢‚Ì‚Å’ˆÓ‚µ‚Ä‚­‚¾‚³‚¢
+ * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒ¼ãƒ æœ€å¤§å€¤ãƒã‚§ãƒƒã‚¯ã‚’ã—ã¦ã„ãªã„ã®ã§æ³¨æ„ã—ã¦ãã ã•ã„
  *
  */
 //-----------------------------------------------------------------------------
 static void imc_bg_set_screen_charofs( const NNSG2dScreenData* scrn, int char_offs )
 {
-	int i;							// ƒ‹[ƒv—p
-	u16* scrndata;					// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
-	int size = scrn->szByte / 2;	// ƒ‹[ƒv‰ñ”	‚Q=2byte
+	int i;							// ãƒ«ãƒ¼ãƒ—ç”¨
+	u16* scrndata;					// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+	int size = scrn->szByte / 2;	// ãƒ«ãƒ¼ãƒ—å›žæ•°	ï¼’=2byte
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘ã“ü
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	scrndata = (u16*)scrn->rawData;
 
 	for(i=0; i<size; i++){
@@ -329,11 +329,11 @@ static void imc_bg_set_screen_charofs( const NNSG2dScreenData* scrn, int char_of
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰æ–Ê‚ÉŠG‚ªo‚é‚Ü‚Å‚Ìˆ—‚ð‚Ü‚Æ‚ß‚½ŠÖ”
+ *	@brief	ç”»é¢ã«çµµãŒå‡ºã‚‹ã¾ã§ã®å‡¦ç†ã‚’ã¾ã¨ã‚ãŸé–¢æ•°
  *
- *	@param	add				BG“o˜^ƒf[ƒ^
- *	@param	scrn_width		ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚Ì•Ši”[æiƒLƒƒƒ‰ƒNƒ^’PˆÊj
- *	@param	scrn_height		ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚Ì‚‚³Ši”[æiƒLƒƒƒ‰ƒNƒ^’PˆÊj
+ *	@param	add				BGç™»éŒ²ãƒ‡ãƒ¼ã‚¿
+ *	@param	scrn_width		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®å¹…æ ¼ç´å…ˆï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ï¼‰
+ *	@param	scrn_height		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®é«˜ã•æ ¼ç´å…ˆï¼ˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿å˜ä½ï¼‰
  *
  *	@return	none
  *
@@ -342,7 +342,7 @@ static void imc_bg_set_screen_charofs( const NNSG2dScreenData* scrn, int char_of
 //-----------------------------------------------------------------------------
 static void imc_bg_addCore( IMC_BG_ADD* add, int* scrn_width, int* scrn_height )
 {
-	int pltype;	// ƒpƒŒƒbƒg“]‘—æ
+	int pltype;	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆ
 	NNSG2dScreenData* scrn;
 	void* scrn_buf;
 	int height, width;
@@ -351,11 +351,11 @@ static void imc_bg_addCore( IMC_BG_ADD* add, int* scrn_width, int* scrn_height )
 	x = add->x / 8;
 	y = add->y / 8;
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	imc_bg_charTransReq( add->arc_file, add->char_arc,
 			add->bg_ini, add->frame, add->char_offs, add->heap);
 
-	// ƒpƒŒƒbƒgƒf[ƒ^“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€
 	if(add->frame < GF_BGL_FRAME0_S){	
 		pltype = PALTYPE_MAIN_BG;
 	}else{
@@ -364,15 +364,15 @@ static void imc_bg_addCore( IMC_BG_ADD* add, int* scrn_width, int* scrn_height )
 	imc_bg_plttTransReq( add->arc_file, add->pltt_arc,
 			pltype, add->pltt_offs*32, add->pltt_num*32,  add->heap );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«o‚µ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
 	scrn_buf = ArcUtil_ScrnDataGet(add->arc_file, add->scrn_arc,
 			FALSE, &scrn, add->heap);
 
-	// •@‚‚³‘ã“ü
+	// å¹…ã€€é«˜ã•ä»£å…¥
 	width = scrn->screenWidth/8;
 	height = scrn->screenHeight/8;
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	imc_bg_scrnChg( add->bg_ini, add->frame, scrn, width, height, x, y, add->char_offs, add->pltt_offs );
 
 	sys_FreeMemoryEz( scrn_buf );	
@@ -388,10 +388,10 @@ static void imc_bg_addCore( IMC_BG_ADD* add, int* scrn_width, int* scrn_height )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒNƒ[ƒ‹ƒ^ƒXƒN
+ *	@brief	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb			ƒ^ƒXƒNƒIƒuƒWƒF
- *	@param	work		ƒf[ƒ^
+ *	@param	tcb			ã‚¿ã‚¹ã‚¯ã‚ªãƒ–ã‚¸ã‚§
+ *	@param	work		ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -419,7 +419,7 @@ static void imc_bg_scrTsk( TCB_PTR tcb, void* work )
 			*task->end_flg = TRUE;
 		}
 		
-		// I—¹
+		// çµ‚äº†
 		PMDS_taskDel( tcb );
 	}
 }
@@ -427,17 +427,17 @@ static void imc_bg_scrTsk( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒXƒNƒŠ[ƒ“ƒf[ƒ^Ý’èŠÖ”
+ *	@brief	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è¨­å®šé–¢æ•°
  *
- *	@param	bg_ini		BGƒVƒXƒeƒ€ƒf[ƒ^
- *	@param	frame		BGƒtƒŒ[ƒ€
- *	@param	scrn		ƒXƒNƒŠ[ƒ“ƒf[ƒ^
- *	@param	width		•
- *	@param	height		‚‚³
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	chr_offs	ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒg
- *	@param	pltt_offs	ƒpƒŒƒbƒgƒIƒtƒZƒbƒg
+ *	@param	bg_ini		BGã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+ *	@param	frame		BGãƒ•ãƒ¬ãƒ¼ãƒ 
+ *	@param	scrn		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	width		å¹…
+ *	@param	height		é«˜ã•
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	chr_offs	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	pltt_offs	ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  *	@return	none
  *
@@ -446,10 +446,10 @@ static void imc_bg_scrTsk( TCB_PTR tcb, void* work )
 //-----------------------------------------------------------------------------
 static void imc_bg_scrnChg( GF_BGL_INI* bg_ini, int frame, const NNSG2dScreenData* scrn, int width, int height, int x, int y, int char_offs, int pltt_offs )
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒIƒtƒZƒbƒgÝ’è
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚ªãƒ•ã‚»ãƒƒãƒˆè¨­å®š
 	imc_bg_set_screen_charofs( scrn, char_offs );
 	
-	// ‘‚«‚¾‚µ
+	// æ›¸ãã ã—
 	GF_BGL_ScrWriteExpand(
 				bg_ini, frame,
 				x, y,
@@ -468,14 +468,14 @@ static void imc_bg_scrnChg( GF_BGL_INI* bg_ini, int frame, const NNSG2dScreenDat
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—ƒŠƒNƒGƒXƒg
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	fileIdx		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- *	@param	dataIdx		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	bgl			BGƒf[ƒ^
- *	@param	frm			ÌÚ°Ñƒiƒ“ƒo[
- *	@param	offs		ƒIƒtƒZƒbƒg
- *	@param	heapID		ƒq[ƒv
+ *	@param	fileIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	dataIdx		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	bgl			BGãƒ‡ãƒ¼ã‚¿
+ *	@param	frm			ãƒ•ãƒ¬ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼
+ *	@param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -487,28 +487,28 @@ static void imc_bg_charTransReq( u32 fileIdx, u32 dataIdx, GF_BGL_INI* bgl, u32 
 	p_tw = sys_AllocMemory( heapID, sizeof(IMC_BG_CHARACTER_TRANS) );
 	memset( p_tw, 0, sizeof(IMC_BG_CHARACTER_TRANS) );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_tw->p_buff = ArcUtil_CharDataGet( fileIdx, dataIdx, FALSE, &p_tw->p_char, heapID );
 
-	// “]‘—ƒf[ƒ^Ši”[
+	// è»¢é€ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	p_tw->ini = bgl;
 	p_tw->bg_frame = frm;
 	p_tw->char_ofs = offs;
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	VWaitTCB_Add( imc_bg_charTransTsk, p_tw, 128 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^“]‘—ƒŠƒNƒGƒXƒg
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	fileIdx		ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒCƒ“ƒfƒbƒNƒX
- *	@param	dataIdx		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- *	@param	palType		ƒpƒŒƒbƒg“]‘—æ
- *	@param	offs		ƒIƒtƒZƒbƒg
- *	@param	transSize	“]‘—size
- *	@param	heapID		ƒq[ƒv
+ *	@param	fileIdx		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	dataIdx		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	palType		ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆ
+ *	@param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	transSize	è»¢é€size
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -520,21 +520,21 @@ static void imc_bg_plttTransReq( u32 fileIdx, u32 dataIdx, PALTYPE palType, u32 
 	p_tw = sys_AllocMemory( heapID, sizeof(IMC_BG_PALETTE_TRANS) );
 	memset( p_tw, 0, sizeof(IMC_BG_PALETTE_TRANS) );
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚Ýž‚Ý
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_tw->p_buff = ArcUtil_PalDataGet( fileIdx, dataIdx, &p_tw->p_pltt, heapID );
 
-	// “]‘—ƒf[ƒ^Ši”[
+	// è»¢é€ãƒ‡ãƒ¼ã‚¿æ ¼ç´
 	p_tw->pltype = palType;
 	p_tw->ofs = offs;
 	p_tw->size = transSize;
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	VWaitTCB_Add( imc_bg_plttTransTsk, p_tw, 128 );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—ƒ^ƒXƒN
+ *	@brief	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€ã‚¿ã‚¹ã‚¯
  *
  *	@param	tcb
  *	@param	p_work 
@@ -551,7 +551,7 @@ static void imc_bg_charTransTsk( TCB_PTR tcb, void* p_work )
 	GF_BGL_LoadCharacter( p_tw->ini, p_tw->bg_frame, 
 			p_tw->p_char->pRawData, p_tw->p_char->szByte, p_tw->char_ofs );
 
-	// ƒƒ‚ƒŠ‰ð•ú
+	// ãƒ¡ãƒ¢ãƒªè§£æ”¾
 	TCB_Delete( tcb );
 	sys_FreeMemoryEz( p_tw->p_buff );
 	sys_FreeMemoryEz( p_tw );
@@ -559,7 +559,7 @@ static void imc_bg_charTransTsk( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒŒƒbƒgƒf[ƒ^“]‘—ƒ^ƒXƒN
+ *	@brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿è»¢é€ã‚¿ã‚¹ã‚¯
  *
  *	@param	tcb
  *	@param	p_work 
@@ -580,7 +580,7 @@ static void imc_bg_plttTransTsk( TCB_PTR tcb, void* p_work )
 		GXS_LoadBGPltt( p_tw->p_pltt->pRawData, p_tw->ofs, p_tw->size );
 	}
 
-	// ƒƒ‚ƒŠ‰ð•ú
+	// ãƒ¡ãƒ¢ãƒªè§£æ”¾
 	TCB_Delete( tcb );
 	sys_FreeMemoryEz( p_tw->p_buff );
 	sys_FreeMemoryEz( p_tw );

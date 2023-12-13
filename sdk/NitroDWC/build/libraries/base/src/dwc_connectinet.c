@@ -12,158 +12,158 @@
 
   $Log: dwc_connectinet.c,v $
   Revision 1.55  2006/12/28 08:22:31  nakata
-  DWC_TESTINET_NOT_INITIALIZED‚ª³‚µ‚­•Ô‚³‚ê‚È‚¢–â‘è‚ª‚ ‚Á‚½‚½‚ßC³‚µ‚½B
+  DWC_TESTINET_NOT_INITIALIZEDãŒæ­£ã—ãè¿”ã•ã‚Œãªã„å•é¡ŒãŒã‚ã£ãŸãŸã‚ä¿®æ­£ã—ãŸã€‚
 
   Revision 1.54  2006/11/22 12:29:18  nakata
-  DWC_TestInetProcess‚ÅƒGƒ‰[ƒR[ƒh‚ğİ’è‚·‚é‚æ‚¤‚É•ÏX
+  DWC_TestInetProcessã§ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.53  2006/11/17 06:54:02  nakata
-  TestInetŠÖ˜A‚Ì’è”‚Ì–¼Ì•ÏX
+  TestIneté–¢é€£ã®å®šæ•°ã®åç§°å¤‰æ›´
 
   Revision 1.52  2006/11/07 04:53:58  nakata
-  DWC_TestInetŒn‚Ì’Ç‰Á
+  DWC_TestInetç³»ã®è¿½åŠ 
 
   Revision 1.51  2006/10/06 12:02:16  takayama
-  DWC_AC_GetApType()‚Ì’lƒ`ƒFƒbƒN‚ğ’Ç‰Á‚µ‚½B
+  DWC_AC_GetApType()ã®å€¤ãƒã‚§ãƒƒã‚¯ã‚’è¿½åŠ ã—ãŸã€‚
 
   Revision 1.50  2006/07/27 01:03:02  nakata
-  DWC_UpdateConnection‚ÅƒGƒ‰[ƒR[ƒh‚ğ540xx‚Éİ’è‚·‚é‚æ‚¤‚É•ÏX
+  DWC_UpdateConnectionã§ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’540xxã«è¨­å®šã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.49  2006/06/27 06:43:52  nakata
-  FriendsMatchƒ‰ƒCƒuƒ‰ƒŠ‚È‚µ—p‚ÌDCFŠÄ‹ŠÖ”‚ğ’Ç‰Á
+  FriendsMatchãƒ©ã‚¤ãƒ–ãƒ©ãƒªãªã—ç”¨ã®DCFç›£è¦–é–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.48  2006/06/01 07:48:55  nakata
-  FINALROMƒrƒ‹ƒh‚Ìƒ[ƒjƒ“ƒO‚ğ—}§
+  FINALROMãƒ“ãƒ«ãƒ‰æ™‚ã®ãƒ¯ãƒ¼ãƒ‹ãƒ³ã‚°ã‚’æŠ‘åˆ¶
 
   Revision 1.47  2006/05/25 23:54:11  uemura
-  DWC_CheckWiFiStationŠÖ”‚ğ’Ç‰Á
+  DWC_CheckWiFiStationé–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.46  2006/04/17 07:33:40  nakata
-  ƒuƒ‰ƒEƒU—pƒzƒbƒgƒXƒ|ƒbƒgİ’èŠÖ”DWC_EnableHotSpot‚ğ’Ç‰Á
+  ãƒ–ãƒ©ã‚¦ã‚¶ç”¨ãƒ›ãƒƒãƒˆã‚¹ãƒãƒƒãƒˆè¨­å®šé–¢æ•°DWC_EnableHotSpotã‚’è¿½åŠ 
 
   Revision 1.45  2006/03/09 08:05:52  uemura
-  DWC_SetConnectApType‚Ìˆø”‚ğint‚©‚çDWCApInfoType‚Ö•ÏX
+  DWC_SetConnectApTypeã®å¼•æ•°ã‚’intã‹ã‚‰DWCApInfoTypeã¸å¤‰æ›´
 
   Revision 1.44  2006/03/09 07:35:13  nakata
-  DWCApInfo‚©‚çspotinfo‚ğÁ‹‚µAŠÖ˜A•”•ª‚ğ•ÏX
+  DWCApInfoã‹ã‚‰spotinfoã‚’æ¶ˆå»ã—ã€é–¢é€£éƒ¨åˆ†ã‚’å¤‰æ›´
 
   Revision 1.43  2006/03/09 06:07:41  uemura
-  DWC_DebugConnectInetAsync‚Ìˆø”WEP‚É16i‚O’l‚ª“ü‚Á‚Ä‚¢‚é‚Æ³‚µ‚­”»’è‚Å‚«‚È‚¢ƒoƒO‚ğC³
-  ˆø”‚ÉWEPMODE‚ğ“n‚·‚æ‚¤‚É•ÏX‚µ‚Ü‚µ‚½
+  DWC_DebugConnectInetAsyncã®å¼•æ•°WEPã«16é€²ï¼å€¤ãŒå…¥ã£ã¦ã„ã‚‹ã¨æ­£ã—ãåˆ¤å®šã§ããªã„ãƒã‚°ã‚’ä¿®æ­£
+  å¼•æ•°ã«WEPMODEã‚’æ¸¡ã™ã‚ˆã†ã«å¤‰æ›´ã—ã¾ã—ãŸ
 
   Revision 1.42  2006/03/09 04:38:38  uemura
-  ƒRƒƒ“ƒgC³
+  ã‚³ãƒ¡ãƒ³ãƒˆä¿®æ­£
 
   Revision 1.41  2006/03/09 02:50:37  uemura
-  ƒRƒƒ“ƒgC³
+  ã‚³ãƒ¡ãƒ³ãƒˆä¿®æ­£
 
   Revision 1.40  2006/03/09 02:27:17  uemura
-  DWC_SetConnectApType,DWC_DebugConnectInetAsync‚Ì’Ç‰Á
-  ‚±‚Ì2ŠÖ”‚ğdwc_connect_inet_sample‚ÖƒRƒ“ƒpƒCƒ‹ƒXƒCƒbƒ`‚Åg—p‚Å‚«‚é‚æ‚¤‚É’Ç‰Á‚·‚é
+  DWC_SetConnectApType,DWC_DebugConnectInetAsyncã®è¿½åŠ 
+  ã“ã®2é–¢æ•°ã‚’dwc_connect_inet_sampleã¸ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¹ã‚¤ãƒƒãƒã§ä½¿ç”¨ã§ãã‚‹ã‚ˆã†ã«è¿½åŠ ã™ã‚‹
 
   Revision 1.39  2006/02/24 10:31:29  sotoike
-  DWC_CleanupInet ŠÖ”‚É‚¨‚¢‚ÄNULL ƒ|ƒCƒ“ƒ^‚Ö‚ÌƒAƒNƒZƒX‚Ì‰Â”\«‚ª‚ ‚é‚Ì‚ğC³B
+  DWC_CleanupInet é–¢æ•°ã«ãŠã„ã¦NULL ãƒã‚¤ãƒ³ã‚¿ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã®å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã‚’ä¿®æ­£ã€‚
 
   Revision 1.38  2006/02/23 08:21:56  nakata
-  DWCApInfoü‚è‚Ì’è”–¼“™‚ğ•ÏXB
+  DWCApInfoå‘¨ã‚Šã®å®šæ•°åç­‰ã‚’å¤‰æ›´ã€‚
 
   Revision 1.37  2006/02/23 06:48:34  nakata
-  DWC_GetApInfoŠÖ”‚ª•s³‚Èƒf[ƒ^‚ğ•Ô‚·ƒoƒO‚ğC³B
+  DWC_GetApInfoé–¢æ•°ãŒä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™ãƒã‚°ã‚’ä¿®æ­£ã€‚
 
   Revision 1.36  2006/02/23 04:32:07  sotoike
   (none)
 
   Revision 1.35  2006/02/23 02:55:40  nakata
-  DWC_GetApInfoŠÖ”ŠÖ˜A‚Ìƒ}ƒjƒ…ƒAƒ‹‚ğ’Ç‰ÁB
+  DWC_GetApInfoé–¢æ•°é–¢é€£ã®ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ã‚’è¿½åŠ ã€‚
 
   Revision 1.34  2006/02/23 01:02:19  nakata
-  APî•ñæ“¾ŠÖ”DWC_GetApInfo“à‚ÌƒoƒO‚ğC³
+  APæƒ…å ±å–å¾—é–¢æ•°DWC_GetApInfoå†…ã®ãƒã‚°ã‚’ä¿®æ­£
 
   Revision 1.33  2006/02/23 00:53:54  nakata
-  APî•ñæ“¾ŠÖ”DWC_GetApInfo‚ğdwc_connectinet.c‚É’Ç‰Á
-  dwc_sample‚Ì•s•K—v‚ÈƒfƒoƒbƒOƒƒbƒZ[ƒW•\¦‚ğ—}§
+  APæƒ…å ±å–å¾—é–¢æ•°DWC_GetApInfoã‚’dwc_connectinet.cã«è¿½åŠ 
+  dwc_sampleã®ä¸å¿…è¦ãªãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚’æŠ‘åˆ¶
 
   Revision 1.32  2006/02/22 05:10:36  sotoike
-  stpInetCntl ‚ªNULL‚Ì(= DWC_InitInet ‚ğŒÄ‚ñ‚Å‚¢‚È‚¢‚Æ‚«)
-  DWC_ProcessInet ‚ğƒR[ƒ‹‚·‚é‚Æƒnƒ“ƒOƒAƒbƒv‚·‚é–â‘è‚ğC³
+  stpInetCntl ãŒNULLã®æ™‚(= DWC_InitInet ã‚’å‘¼ã‚“ã§ã„ãªã„ã¨ã)
+  DWC_ProcessInet ã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹ã¨ãƒãƒ³ã‚°ã‚¢ãƒƒãƒ—ã™ã‚‹å•é¡Œã‚’ä¿®æ­£
   Revision 1.31  2006/02/22 04:29:44  sotoike
-  DWC_InitInet ‚Æ DWC_ConnectInetAsync ‚ÌŠÔ‚Å DWC_GetInetStatus ‚ğŒÄ‚Ô‚Æ
-  NULLƒ|ƒCƒ“ƒ^ƒAƒNƒZƒX‚Åƒnƒ“ƒOƒAƒbƒv‚µ‚Ä‚¢‚½–â‘è‚ğC³B
+  DWC_InitInet ã¨ DWC_ConnectInetAsync ã®é–“ã§ DWC_GetInetStatus ã‚’å‘¼ã¶ã¨
+  NULLãƒã‚¤ãƒ³ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ã§ãƒãƒ³ã‚°ã‚¢ãƒƒãƒ—ã—ã¦ã„ãŸå•é¡Œã‚’ä¿®æ­£ã€‚
 
   Revision 1.30  2006/01/23 04:50:26  arakit
-  “ˆê—pŒê‚É‡‚í‚¹‚ÄƒRƒƒ“ƒg‚ğC³
+  çµ±ä¸€ç”¨èªã«åˆã‚ã›ã¦ã‚³ãƒ¡ãƒ³ãƒˆã‚’ä¿®æ­£
 
   Revision 1.29  2005/12/27 09:29:54  arakit
-  DWC_GetUdpPacketDropNum()‚ğAFINALROMƒrƒ‹ƒh‚Å‚à³í‚É“®ì‚·‚é‚æ‚¤‚É‚µ‚½B
+  DWC_GetUdpPacketDropNum()ã‚’ã€FINALROMãƒ“ãƒ«ãƒ‰ã§ã‚‚æ­£å¸¸ã«å‹•ä½œã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.28  2005/11/07 06:18:30  sasakit
-  GsStatus->OwnStatus‚É•ÏXB
+  GsStatus->OwnStatusã«å¤‰æ›´ã€‚
 
   Revision 1.27  2005/10/18 00:08:25  sasakit
-  DWC‚ÌauthÚ‘±‚ÉƒXƒŒƒbƒhƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ‰º‚°‚é‹@”\‚ğ‚â‚ß‚½B
+  DWCã®authæ¥ç¶šæ™‚ã«ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’ã‚„ã‚ãŸã€‚
 
   Revision 1.26  2005/10/17 07:31:44  sasakit
-  CPS‚ÌSSLÀs’†‚ÌƒXƒŒƒbƒhƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ’²®‚·‚é‹@”\‚ğíœ‚µ‚½B
+  CPSã®SSLå®Ÿè¡Œä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’èª¿æ•´ã™ã‚‹æ©Ÿèƒ½ã‚’å‰Šé™¤ã—ãŸã€‚
 
   Revision 1.25  2005/10/17 06:35:56  sasakit
-  SSLÀs’†‚ÌƒXƒŒƒbƒhƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ’²®‚·‚é‹@”\‚ğ—LŒø‰»‚µ‚½B(include’Ç‰Á)
-  Warningíœ
+  SSLå®Ÿè¡Œä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’èª¿æ•´ã™ã‚‹æ©Ÿèƒ½ã‚’æœ‰åŠ¹åŒ–ã—ãŸã€‚(includeè¿½åŠ )
+  Warningå‰Šé™¤
 
   Revision 1.24  2005/10/17 06:34:33  sasakit
-  SSLÀs’†‚ÌƒXƒŒƒbƒhƒvƒ‰ƒCƒIƒŠƒeƒB‚ğ’²®‚·‚é‹@”\‚ğ—LŒø‰»‚µ‚½B
+  SSLå®Ÿè¡Œä¸­ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ã‚’èª¿æ•´ã™ã‚‹æ©Ÿèƒ½ã‚’æœ‰åŠ¹åŒ–ã—ãŸã€‚
 
   Revision 1.23  2005/10/13 08:14:09  arakit
-  å—v‚ÈŠO•”ŠÖ”ŒÄ‚Ño‚µ‚ÉAƒŒƒ|[ƒgƒŒƒxƒ‹DWC_REPORTFLAG_DEBUG‚Å
-  ƒfƒoƒbƒOƒvƒŠƒ“ƒg•\¦‚ğs‚¤‚æ‚¤‚É‚µ‚½B
+  ä¸»è¦ãªå¤–éƒ¨é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã«ã€ãƒ¬ãƒãƒ¼ãƒˆãƒ¬ãƒ™ãƒ«DWC_REPORTFLAG_DEBUGã§
+  ãƒ‡ãƒãƒƒã‚°ãƒ—ãƒªãƒ³ãƒˆè¡¨ç¤ºã‚’è¡Œã†ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.22  2005/10/11 02:00:12  sasakit
-  Ú‘±’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚½‚Æ‚«‚ÉA³í‚ÉCleanupInet‚Å‚«‚È‚¢–â‘è‚ğC³B
-  SOCL_CalmDown()‚ªSOC_Startup()‚æ‚è‚à‘O‚ÉŒÄ‚×‚È‚¢–â‘è‚ÌC³B(ŒÄ‚Ño‚µ‚ğAC‚ÉˆÚ“®)
+  æ¥ç¶šä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸã¨ãã«ã€æ­£å¸¸ã«CleanupInetã§ããªã„å•é¡Œã‚’ä¿®æ­£ã€‚
+  SOCL_CalmDown()ãŒSOC_Startup()ã‚ˆã‚Šã‚‚å‰ã«å‘¼ã¹ãªã„å•é¡Œã®ä¿®æ­£ã€‚(å‘¼ã³å‡ºã—ã‚’ACã«ç§»å‹•)
 
   Revision 1.21  2005/10/06 05:59:34  sasakit
-  SSL‚Ì‘½”{’·—İæŒvZƒXƒŒƒbƒh‚Ì—Dæ‡ˆÊ‚ğ‰º‚°‚é‹@”\‚ğŠO•”‚©‚ç’²®‚Å‚«‚é‚æ‚¤‚É‚µ‚½B
+  SSLã®å¤šå€é•·ç´¯ä¹—è¨ˆç®—ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆé †ä½ã‚’ä¸‹ã’ã‚‹æ©Ÿèƒ½ã‚’å¤–éƒ¨ã‹ã‚‰èª¿æ•´ã§ãã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.20  2005/10/05 07:10:11  sasakit
-  SSL‚Ì‘½”{’·—İæŒvZƒXƒŒƒbƒh‚Ì—Dæ‡ˆÊ‚ğ‰º‚°‚éŠÖ”‚Ì’Ç‰ÁB
+  SSLã®å¤šå€é•·ç´¯ä¹—è¨ˆç®—ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆé †ä½ã‚’ä¸‹ã’ã‚‹é–¢æ•°ã®è¿½åŠ ã€‚
 
   Revision 1.19  2005/10/01 14:57:33  sasakit
-  DWC_GetInetStatus()‚ªNULL ptrƒAƒNƒZƒX‚Å‚Æ‚Ü‚é–â‘è‚ğC³B
+  DWC_GetInetStatus()ãŒNULL ptrã‚¢ã‚¯ã‚»ã‚¹ã§ã¨ã¾ã‚‹å•é¡Œã‚’ä¿®æ­£ã€‚
 
   Revision 1.18  2005/10/01 12:07:01  sasakit
-  ConnectInet’†‚Ìˆ—‚É–â‘è‚ª‚ ‚Á‚½‚Ì‚ÅAC³B
+  ConnectInetä¸­ã®å‡¦ç†ã«å•é¡ŒãŒã‚ã£ãŸã®ã§ã€ä¿®æ­£ã€‚
 
   Revision 1.17  2005/10/01 10:56:44  sasakit
-  DWC_CleanupInetAsync()’†‚ÉADWC_ProcessInet()‚ğŒÄ‚ñ‚Å‚àDISCONNECTED‚É‚È‚ç‚È‚¢‚æ‚¤‚É‚µ‚½B
+  DWC_CleanupInetAsync()ä¸­ã«ã€DWC_ProcessInet()ã‚’å‘¼ã‚“ã§ã‚‚DISCONNECTEDã«ãªã‚‰ãªã„ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.16  2005/09/29 09:06:53  sasakit
-  DWC_CleanupInetAsync()‚ğ‚È‚é‚×‚­ƒuƒƒbƒN‚µ‚È‚¢‚æ‚¤‚É‚µ‚½BiSOCL_CalmDown()‘Î‰j
+  DWC_CleanupInetAsync()ã‚’ãªã‚‹ã¹ããƒ–ãƒ­ãƒƒã‚¯ã—ãªã„ã‚ˆã†ã«ã—ãŸã€‚ï¼ˆSOCL_CalmDown()å¯¾å¿œï¼‰
 
   Revision 1.15  2005/09/27 13:22:41  sasakit
-  Ú‘±Œ‹‰ÊiƒGƒ‰[ó‘Ôj‚ªDWC_GetLastError()‚É“ü‚ç‚È‚©‚Á‚½–â‘è‚ğC³B
+  æ¥ç¶šçµæœï¼ˆã‚¨ãƒ©ãƒ¼çŠ¶æ…‹ï¼‰ãŒDWC_GetLastError()ã«å…¥ã‚‰ãªã‹ã£ãŸå•é¡Œã‚’ä¿®æ­£ã€‚
 
   Revision 1.14  2005/09/20 10:56:51  sasakit
-  Œ³‚É–ß‚µ‚½B
-  >> conntest.nintendowifi.net‚ª—‚¿‚½‚Ì‚ÅAwww.nintendo.co.jp‚ğQÆ‚·‚é‚æ‚¤‚É‚µ‚½B
+  å…ƒã«æˆ»ã—ãŸã€‚
+  >> conntest.nintendowifi.netãŒè½ã¡ãŸã®ã§ã€www.nintendo.co.jpã‚’å‚ç…§ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.13  2005/09/19 18:57:35  sasakit
-  conntest.nintendowifi.net‚ª—‚¿‚½‚Ì‚ÅAwww.nintendo.co.jp‚ğQÆ‚·‚é‚æ‚¤‚É‚µ‚½B
+  conntest.nintendowifi.netãŒè½ã¡ãŸã®ã§ã€www.nintendo.co.jpã‚’å‚ç…§ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.12  2005/09/17 00:32:28  sasakit
-  UDPƒpƒPƒbƒg‚ğ—‚Æ‚µ‚½”‚ğæ“¾‚·‚éŠÖ”‚Ì’Ç‰ÁB
-  DWC_GetLinkLevel()‚ÌÀ‘•‚ğC³B
+  UDPãƒ‘ã‚±ãƒƒãƒˆã‚’è½ã¨ã—ãŸæ•°ã‚’å–å¾—ã™ã‚‹é–¢æ•°ã®è¿½åŠ ã€‚
+  DWC_GetLinkLevel()ã®å®Ÿè£…ã‚’ä¿®æ­£ã€‚
 
   Revision 1.11  2005/09/14 01:55:00  sasakit
-  AP‚©‚ç‚ÌØ’fˆ—‚ğ®—‚µ‚½B
+  APã‹ã‚‰ã®åˆ‡æ–­å‡¦ç†ã‚’æ•´ç†ã—ãŸã€‚
 
   Revision 1.10  2005/09/13 07:29:16  sasakit
-  PowerMode‚ğACTIVE‚É•K‚¸‚·‚é‚æ‚¤‚É‚µ‚½B
+  PowerModeã‚’ACTIVEã«å¿…ãšã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.9  2005/09/07 07:13:34  sasakit
-  DWC_ACŠÖ”ŒQ‚ğŒµ–§‚ÉŒÄ‚Ño‚·‚æ‚¤‚ÉƒXƒe[ƒgƒ}ƒVƒ“‚ğ“ü‚ê‚½B
-  DWC_InitInet()‚ğ“ñd‚ÅŒÄ‚Ño‚µ‚½‚Æ‚«‚ÉAƒGƒ‰[‚É‚µ‚È‚¢‚æ‚¤‚É‚µ‚½Bi–³‹‚·‚é‚æ‚¤‚É‚µ‚½j
+  DWC_ACé–¢æ•°ç¾¤ã‚’å³å¯†ã«å‘¼ã³å‡ºã™ã‚ˆã†ã«ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚·ãƒ³ã‚’å…¥ã‚ŒãŸã€‚
+  DWC_InitInet()ã‚’äºŒé‡ã§å‘¼ã³å‡ºã—ãŸã¨ãã«ã€ã‚¨ãƒ©ãƒ¼ã«ã—ãªã„ã‚ˆã†ã«ã—ãŸã€‚ï¼ˆç„¡è¦–ã™ã‚‹ã‚ˆã†ã«ã—ãŸï¼‰
 
   Revision 1.8  2005/09/06 09:12:09  sasakit
-  ConnectInet‚ÌƒGƒ‰[‚Ìˆ—‚ğ’Ç‰ÁB
+  ConnectInetæ™‚ã®ã‚¨ãƒ©ãƒ¼ã®å‡¦ç†ã‚’è¿½åŠ ã€‚
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -196,14 +196,14 @@ static DWCInetControl* stpInetCntl;
 /*---------------------------------------------------------------------------*
   Name:         DWC_InitInetEx
 
-  Description:  ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±ŠÇ—‚Ì‰Šú‰»
+  Description:  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæ¥ç¶šç®¡ç†ã®åˆæœŸåŒ–
 
-  Arguments:    inetCntl     : ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±ŠÇ——p‚Ì\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                dmaNo        : g—p‚·‚édma”Ô†(wm‚Åg—p)
-                powerMode    : WM‚Ìƒpƒ[ƒ‚[ƒh‚Ìİ’è
-                ssl_priority : ssl thread‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+  Arguments:    inetCntl     : ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæ¥ç¶šç®¡ç†ç”¨ã®æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                dmaNo        : ä½¿ç”¨ã™ã‚‹dmaç•ªå·(wmã§ä½¿ç”¨)
+                powerMode    : WMã®ãƒ‘ãƒ¯ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
+                ssl_priority : ssl threadã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_InitInetEx( DWCInetControl* inetCntl, u16 dmaNo, u16 powerMode, u16 ssl_priority )
@@ -247,11 +247,11 @@ DWC_InitInetEx( DWCInetControl* inetCntl, u16 dmaNo, u16 powerMode, u16 ssl_prio
 /*---------------------------------------------------------------------------*
   Name:         DWC_InitInet
 
-  Description:  ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±ŠÇ—‚Ì‰Šú‰»
+  Description:  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæ¥ç¶šç®¡ç†ã®åˆæœŸåŒ–
 
-  Arguments:    inetCntl  : ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±ŠÇ——p‚Ì\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    inetCntl  : ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæ¥ç¶šç®¡ç†ç”¨ã®æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_InitInet( DWCInetControl* inetCntl )
@@ -262,11 +262,11 @@ DWC_InitInet( DWCInetControl* inetCntl )
 /*---------------------------------------------------------------------------*
   Name:         DWC_SetAuthServer
 
-  Description:  ”FØ‚Ég—p‚·‚éƒT[ƒo‚Ì•ÏX
+  Description:  èªè¨¼ã«ä½¿ç”¨ã™ã‚‹ã‚µãƒ¼ãƒã®å¤‰æ›´
 
-  Arguments:    type : ”FØƒT[ƒo‚Ìƒ^ƒCƒv
+  Arguments:    type : èªè¨¼ã‚µãƒ¼ãƒã®ã‚¿ã‚¤ãƒ—
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_SetAuthServer( DWCInetAuthType type )
@@ -293,30 +293,30 @@ DWC_SetAuthServer( DWCInetAuthType type )
 /*---------------------------------------------------------------------------*
   Name:         DWC_SetConnectApType
 
-  Description:  ƒCƒ“ƒ^[ƒlƒbƒg‚ÉÚ‘±‚·‚éÛ‚ÌAPƒ^ƒCƒv‚ğw’è‚·‚é
+  Description:  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã«æ¥ç¶šã™ã‚‹éš›ã®APã‚¿ã‚¤ãƒ—ã‚’æŒ‡å®šã™ã‚‹
 
-  Arguments:    type : Ú‘±‚·‚éAP‚Ìƒ^ƒCƒv
+  Arguments:    type : æ¥ç¶šã™ã‚‹APã®ã‚¿ã‚¤ãƒ—
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 #ifndef SDK_FINALROM
 void
 DWC_SetConnectApType( DWCApInfoType type )
 {
-    // ‰Šú‰»‚µ‚Ä‚È‚¢ê‡AƒfƒoƒbƒO—pŠÖ”‚Æ‚¢‚¤‚±‚Æ‚à‚ ‚é‚Ì‚ÅƒGƒ‰[ˆ—‚ğs‚í‚¸ƒAƒT[ƒg‚³‚¹‚é
+    // åˆæœŸåŒ–ã—ã¦ãªã„å ´åˆã€ãƒ‡ãƒãƒƒã‚°ç”¨é–¢æ•°ã¨ã„ã†ã“ã¨ã‚‚ã‚ã‚‹ã®ã§ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¡Œã‚ãšã‚¢ã‚µãƒ¼ãƒˆã•ã›ã‚‹
     SDK_ASSERTMSG( stpInetCntl, "DWC_InitInet[Ex] is not called." );
     
-    // nintendo spot ‚Íƒ^ƒCƒvw’è‚É‘Î‰‚µ‚Ä‚¢‚È‚¢
+    // nintendo spot ã¯ã‚¿ã‚¤ãƒ—æŒ‡å®šã«å¯¾å¿œã—ã¦ã„ãªã„
     SDK_ASSERTMSG( 0 <= type && type <= DWC_APINFO_TYPE_NINTENDOWFC, "Invalid argument 'type'" );
     
     DWC_Printf(DWC_REPORTFLAG_AC,"***************************************************************\n");
     DWC_Printf(DWC_REPORTFLAG_AC," DWC_CONNECTINET_SET_AP_TYPE: This setting is debug ONLY. \n");
     DWC_Printf(DWC_REPORTFLAG_AC,"***************************************************************\n");
     
-	// Ú‘±‚·‚éAP‚Ìtype‚ğw’è‚·‚é
+	// æ¥ç¶šã™ã‚‹APã®typeã‚’æŒ‡å®šã™ã‚‹
 	stpInetCntl->connectType = type + 1;
     
-    // nintendo spot‚Ö‚ÍÚ‘±‚µ‚È‚¢
+    // nintendo spotã¸ã¯æ¥ç¶šã—ãªã„
     stpInetCntl->wontExecuteWDS = TRUE;
 }
 #endif	// SDK_FINALROM
@@ -324,11 +324,11 @@ DWC_SetConnectApType( DWCApInfoType type )
 /*---------------------------------------------------------------------------*
   Name:         DWC_ConnectInetAsync
 
-  Description:  ƒCƒ“ƒ^[ƒlƒbƒg‚ÉÚ‘±‚·‚éB
+  Description:  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã«æ¥ç¶šã™ã‚‹ã€‚
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_ConnectInetAsync( void )
@@ -345,13 +345,13 @@ DWC_ConnectInetAsync( void )
 
         MI_CpuClear8( &inp, sizeof(DWCACConfig) );
 
-        inp.dmaNo     = (u8)stpInetCntl->dmaNo;       //DMA”Ô†
-        inp.powerMode = (u8)stpInetCntl->powerMode;   //‚OFSAVE ‚PFACTIVE
-        inp.alloc     = (DWCACAlloc)DWC_Alloc;    //©“®Ú‘±ˆ—‚Åg—p‚·‚éallocŠÖ”‚Ìƒ|ƒCƒ“ƒ^
-        inp.free      = (DWCACFree) DWC_Free;     //©“®Ú‘±ˆ—‚Åg—p‚·‚éfreeŠÖ”‚Ìƒ|ƒCƒ“ƒ^
+        inp.dmaNo     = (u8)stpInetCntl->dmaNo;       //DMAç•ªå·
+        inp.powerMode = (u8)stpInetCntl->powerMode;   //ï¼ï¼šSAVE ï¼‘ï¼šACTIVE
+        inp.alloc     = (DWCACAlloc)DWC_Alloc;    //è‡ªå‹•æ¥ç¶šå‡¦ç†ã§ä½¿ç”¨ã™ã‚‹allocé–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿
+        inp.free      = (DWCACFree) DWC_Free;     //è‡ªå‹•æ¥ç¶šå‡¦ç†ã§ä½¿ç”¨ã™ã‚‹freeé–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿
 
 #ifndef SDK_FINALROM
-		// Ú‘±APƒ^ƒCƒv‚Ìw’è
+		// æ¥ç¶šAPã‚¿ã‚¤ãƒ—ã®æŒ‡å®š
 		inp.option.connectType = (u8)stpInetCntl->connectType;
 #endif	// SDK_FINALROM
 
@@ -361,13 +361,13 @@ DWC_ConnectInetAsync( void )
 
         if ( !DWC_AC_Create(&inp) )
         {
-            // WCM_‚Ì‰Šú‰»‚É¸”s‚·‚é‚ÆA‚±‚±‚É—ˆ‚éB
+            // WCM_ã®åˆæœŸåŒ–ã«å¤±æ•—ã™ã‚‹ã¨ã€ã“ã“ã«æ¥ã‚‹ã€‚
             DWCi_SetError( DWC_ERROR_FATAL, -50199 );
         }
     }
     else
     {
-        // ‰Šú‰»‚µ‚Ä‚È‚¢B
+        // åˆæœŸåŒ–ã—ã¦ãªã„ã€‚
         DWCi_SetError( DWC_ERROR_FATAL, -50199 );
     }
 }
@@ -375,13 +375,13 @@ DWC_ConnectInetAsync( void )
 /*---------------------------------------------------------------------------*
   Name:         DWC_DebugConnectInetAsync
 
-  Description:  AP‚ğw’è‚µ‚ÄƒCƒ“ƒ^[ƒlƒbƒg‚ÉÚ‘±‚·‚éB
+  Description:  APã‚’æŒ‡å®šã—ã¦ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã«æ¥ç¶šã™ã‚‹ã€‚
 
-  Arguments:    ssid    : Ú‘±‚·‚éAP‚ÌSSID
-                wep     : Ú‘±‚·‚éAP‚ÌWEPƒL[
-                wepMode : WEPƒL[‚Ìƒ‚[ƒh
+  Arguments:    ssid    : æ¥ç¶šã™ã‚‹APã®SSID
+                wep     : æ¥ç¶šã™ã‚‹APã®WEPã‚­ãƒ¼
+                wepMode : WEPã‚­ãƒ¼ã®ãƒ¢ãƒ¼ãƒ‰
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_DebugConnectInetAsync( const void *ssid, const void *wep, int wepMode )
@@ -394,7 +394,7 @@ DWC_DebugConnectInetExAsync( const void *ssid, const void *wep, int wepMode, con
 {
 	DWC_ConnectInetAsync();
 
-    // nintendo spot ‚Ö‚ÍÚ‘±‚µ‚È‚¢
+    // nintendo spot ã¸ã¯æ¥ç¶šã—ãªã„
     if ( stpInetCntl != NULL )
     {
         stpInetCntl->wontExecuteWDS = TRUE;
@@ -402,7 +402,7 @@ DWC_DebugConnectInetExAsync( const void *ssid, const void *wep, int wepMode, con
     
 	if( DWC_GetInetStatus() == DWC_CONNECTINET_STATE_OPERATING )
 	{
-		// Ú‘±æ‚ğÄİ’è‚·‚é
+		// æ¥ç¶šå…ˆã‚’å†è¨­å®šã™ã‚‹
         DWC_AC_SetSpecifyApEx( ssid, wep, wepMode, apSpotInfo, overrideType );
 	}
 }
@@ -410,12 +410,12 @@ DWC_DebugConnectInetExAsync( const void *ssid, const void *wep, int wepMode, con
 /*---------------------------------------------------------------------------*
   Name:         DWC_CheckInet
 
-  Description:  ƒCƒ“ƒ^[ƒlƒbƒg‚ÉÚ‘±‚·‚éˆ—‚Ìis‚ğƒ`ƒFƒbƒN‚·‚éB
+  Description:  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã«æ¥ç¶šã™ã‚‹å‡¦ç†ã®é€²è¡Œã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      TRUE  : ˆ—Š®—¹
-                FALSE : ˆ—’†
+  Returns:      TRUE  : å‡¦ç†å®Œäº†
+                FALSE : å‡¦ç†ä¸­
  *---------------------------------------------------------------------------*/
 BOOL
 DWC_CheckInet( void )
@@ -431,10 +431,10 @@ DWC_CheckInet( void )
     {
         stpInetCntl->state = DWC_CONNECTINET_STATE_OPERATED;
 
-        (void)DWC_GetInetStatus(); // Œ‹‰Ê‚ğDWC_GetLastError()‚ÉŠi”[B
+        (void)DWC_GetInetStatus(); // çµæœã‚’DWC_GetLastError()ã«æ ¼ç´ã€‚
 
         if ( stpInetCntl->wontExecuteWDS )
-            return TRUE; // WDS‚Ö‚Ìs‚ğs‚í‚È‚¢‚È‚çI—¹ [masuda]
+            return TRUE; // WDSã¸ã®è©¦è¡Œã‚’è¡Œã‚ãªã„ãªã‚‰çµ‚äº† [masuda]
         else
             return FALSE;
     }
@@ -445,25 +445,25 @@ DWC_CheckInet( void )
 /*---------------------------------------------------------------------------*
   Name:         DWC_ProcessInet
 
-  Description:  ƒCƒ“ƒ^[ƒlƒbƒg‚ÉÚ‘±‚·‚éˆ—‚ğÀs‚·‚éB
+  Description:  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã«æ¥ç¶šã™ã‚‹å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹ã€‚
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_ProcessInet( void )
 {
-  if( stpInetCntl == NULL){ return; } // DWC_InitInet ‚ªŒÄ‚Î‚ê‚Ä‚È‚¢’iŠK
+  if( stpInetCntl == NULL){ return; } // DWC_InitInet ãŒå‘¼ã°ã‚Œã¦ãªã„æ®µéš
 
-    // WDS‚Ìˆ—’†‚¾‚Á‚½‚çWDS‚ÌƒvƒƒZƒX‚ğƒR[ƒ‹‚µ‚Äreturn
-    // Š®—¹‚µ‚½‚çA“¾‚ç‚ê‚½APî•ñ‚ÅÚ‘±‚ğŠJn‚·‚éB[masuda]
+    // WDSã®å‡¦ç†ä¸­ã ã£ãŸã‚‰WDSã®ãƒ—ãƒ­ã‚»ã‚¹ã‚’ã‚³ãƒ¼ãƒ«ã—ã¦return
+    // å®Œäº†ã—ãŸã‚‰ã€å¾—ã‚‰ã‚ŒãŸAPæƒ…å ±ã§æ¥ç¶šã‚’é–‹å§‹ã™ã‚‹ã€‚[masuda]
     switch( stpInetCntl->processWDSstate )
     {
         case DWC_WDS_STATE_IDLE:
             break;
         case DWC_WDS_STATE_PROCESS:
-            stpInetCntl->ac_state = 0; // ˆ—’†‚Æ‚·‚éB@–{—ˆ‚ÍDWC_AC_ProcessŠÖ”‚Åæ“¾
+            stpInetCntl->ac_state = 0; // å‡¦ç†ä¸­ã¨ã™ã‚‹ã€‚ã€€æœ¬æ¥ã¯DWC_AC_Processé–¢æ•°ã§å–å¾—
             stpInetCntl->processWDSstate = DWC_AC_ProcessGetWDSInfo();
             return;
         case DWC_WDS_STATE_COMPLETED:
@@ -478,17 +478,17 @@ DWC_ProcessInet( void )
             stpInetCntl->processWDSstate = DWC_WDS_STATE_IDLE;
             return;
         case DWC_WDS_STATE_FAILED:
-            // APî•ñ‚Ìæ“¾‚É¸”s‚µ‚½ê‡‚ÍADWC_GetInetStatusŠÖ”‚ÅƒGƒ‰[ƒZƒbƒg‚Ìˆ—‚ğ‚·‚éB
-            // DWC_CheckInet‚©‚çDWC_GetInetStatus‚ğŒÄ‚ñ‚Å‚à‚ç‚¤‚½‚ß‚É ac_state ‚Ì•ÏX‚ª•K—vB
+            // APæƒ…å ±ã®å–å¾—ã«å¤±æ•—ã—ãŸå ´åˆã¯ã€DWC_GetInetStatusé–¢æ•°ã§ã‚¨ãƒ©ãƒ¼ã‚»ãƒƒãƒˆã®å‡¦ç†ã‚’ã™ã‚‹ã€‚
+            // DWC_CheckInetã‹ã‚‰DWC_GetInetStatusã‚’å‘¼ã‚“ã§ã‚‚ã‚‰ã†ãŸã‚ã« ac_state ã®å¤‰æ›´ãŒå¿…è¦ã€‚
             DWC_AC_CleanupGetWDSInfo();
-            stpInetCntl->ac_state = -1; //@ƒGƒ‰[”­¶‚Æ‚·‚éB –{—ˆ‚ÍDWC_AC_ProcessŠÖ”‚Åæ“¾
-            stpInetCntl->wontExecuteWDS = TRUE; // DWC_CheckInet‚Åˆ—I—¹‚Æƒnƒ“ƒhƒ‹‚³‚ê‚é‚æ‚¤‚É
+            stpInetCntl->ac_state = -1; //ã€€ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã¨ã™ã‚‹ã€‚ æœ¬æ¥ã¯DWC_AC_Processé–¢æ•°ã§å–å¾—
+            stpInetCntl->wontExecuteWDS = TRUE; // DWC_CheckInetã§å‡¦ç†çµ‚äº†ã¨ãƒãƒ³ãƒ‰ãƒ«ã•ã‚Œã‚‹ã‚ˆã†ã«
             return;
         case DWC_WDS_STATE_ERROR:
             return;
         default:
             break;
-    }// WDSˆ—’†‚ÍAˆÈ‰º‚Ìˆ—‚Éi‚Ü‚¹‚È‚¢B[masuda]
+    }// WDSå‡¦ç†ä¸­ã¯ã€ä»¥ä¸‹ã®å‡¦ç†ã«é€²ã¾ã›ãªã„ã€‚[masuda]
 
     if ( stpInetCntl->state == DWC_CONNECTINET_STATE_OPERATING )
     {
@@ -496,12 +496,12 @@ DWC_ProcessInet( void )
     }
     else if ( stpInetCntl->state == DWC_CONNECTINET_STATE_CONNECTED )
     {
-        // DCF‚ÌÚ‘±ƒ`ƒFƒbƒN
+        // DCFã®æ¥ç¶šãƒã‚§ãƒƒã‚¯
         if ( stpInetCntl->online )
         {
             if ( WCM_GetPhase() != WCM_PHASE_DCF )
             {
-                // Ø’f‚³‚ê‚½B
+                // åˆ‡æ–­ã•ã‚ŒãŸã€‚
                 stpInetCntl->online = FALSE;
                 stpInetCntl->state = DWC_CONNECTINET_STATE_DISCONNECTED;
             }
@@ -512,22 +512,22 @@ DWC_ProcessInet( void )
 /*---------------------------------------------------------------------------*
   Name:         DWC_GetInetStatus
 
-  Description:  ƒCƒ“ƒ^[ƒlƒbƒg‚ÉÚ‘±‚·‚éˆ—‚ªŠ®—¹‚µ‚½Œã‚ÉAó‘Ô‚ğæ“¾‚·‚éB
+  Description:  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã«æ¥ç¶šã™ã‚‹å‡¦ç†ãŒå®Œäº†ã—ãŸå¾Œã«ã€çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹ã€‚
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      ƒXƒe[ƒ^ƒX
+  Returns:      ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  *---------------------------------------------------------------------------*/
 DWCInetResult
 DWC_GetInetStatus( void )
 {
   int state;
-  static int stateOld; // WDS‚ÅƒGƒ‰[ƒR[ƒh‚ğˆø‚«Œp‚®‚½‚ß‚Ìstate•Û‘¶—p•Ï” [masuda]
+  static int stateOld; // WDSã§ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’å¼•ãç¶™ããŸã‚ã®stateä¿å­˜ç”¨å¤‰æ•° [masuda]
   DWCInetResult result = DWC_CONNECTINET_STATE_NOT_INITIALIZED;
 
-  if ( stpInetCntl == NULL ){ return (result); } // –¢‰Šú‰»
+  if ( stpInetCntl == NULL ){ return (result); } // æœªåˆæœŸåŒ–
 
-    // WDS‚Ìˆ—’†‚Å‚ ‚Á‚½ê‡ADWC_CONNECTINET_STATE_OPERATING‚Æ‚·‚éB[masuda]
+    // WDSã®å‡¦ç†ä¸­ã§ã‚ã£ãŸå ´åˆã€DWC_CONNECTINET_STATE_OPERATINGã¨ã™ã‚‹ã€‚[masuda]
     switch( stpInetCntl->processWDSstate )
     {
         case DWC_WDS_STATE_IDLE:
@@ -535,43 +535,43 @@ DWC_GetInetStatus( void )
         case DWC_WDS_STATE_PROCESS:
             return DWC_CONNECTINET_STATE_OPERATING;
         case DWC_WDS_STATE_COMPLETED:
-            // ¬Œ÷‚µ‚½ê‡‚ÍADWC_ProcessInet‚ÅÚ‘±ˆ—‚ğn‚ß‚éB
+            // æˆåŠŸã—ãŸå ´åˆã¯ã€DWC_ProcessInetã§æ¥ç¶šå‡¦ç†ã‚’å§‹ã‚ã‚‹ã€‚
             return DWC_CONNECTINET_STATE_OPERATING;
         case DWC_WDS_STATE_FAILED:
-            // ’Êí‚ÌÚ‘±‚Å”­¶‚µ‚½ƒGƒ‰[‚ğƒZƒbƒg‚µ‚ÄI—¹
-            DWC_ProcessInet(); // DWC_GetInetStatus()‚ªProcess‚æ‚èæ‚ÉŒÄ‚Î‚ê‚½ê‡‚Ì‘Î‰(‰ğ•úˆ—“™)            
+            // é€šå¸¸ã®æ¥ç¶šã§ç™ºç”Ÿã—ãŸã‚¨ãƒ©ãƒ¼ã‚’ã‚»ãƒƒãƒˆã—ã¦çµ‚äº†
+            DWC_ProcessInet(); // DWC_GetInetStatus()ãŒProcessã‚ˆã‚Šå…ˆã«å‘¼ã°ã‚ŒãŸå ´åˆã®å¯¾å¿œ(è§£æ”¾å‡¦ç†ç­‰)            
             DWCi_SetError( DWC_ERROR_AC_ANY, stateOld );
             result = DWC_CONNECTINET_STATE_ERROR;
             stpInetCntl->state = result;
             stpInetCntl->processWDSstate = DWC_WDS_STATE_ERROR;        
             return result;
-        case DWC_WDS_STATE_ERROR: // WDS‚ªƒGƒ‰[‚ÅI—¹‚µA‰ğ•úˆ—‚ªI‚í‚Á‚½‚Æ‚«‚Íí‚ÉƒGƒ‰[‚ğ•Ô‚·B
+        case DWC_WDS_STATE_ERROR: // WDSãŒã‚¨ãƒ©ãƒ¼ã§çµ‚äº†ã—ã€è§£æ”¾å‡¦ç†ãŒçµ‚ã‚ã£ãŸã¨ãã¯å¸¸ã«ã‚¨ãƒ©ãƒ¼ã‚’è¿”ã™ã€‚
             result = DWC_CONNECTINET_STATE_ERROR;
             return result;
         default:
             break;
-    }// WDSˆ—’†‚ÍAˆÈ‰º‚Ìˆ—‚Éi‚Ü‚¹‚È‚¢B[masuda]
+    }// WDSå‡¦ç†ä¸­ã¯ã€ä»¥ä¸‹ã®å‡¦ç†ã«é€²ã¾ã›ãªã„ã€‚[masuda]
 
   result =  (DWCInetResult)stpInetCntl->state;
   
-  if(result == DWC_CONNECTINET_STATE_IDLE){ return (result); } // ‚±‚Ì’iŠK‚Å‚Í‚Ü‚¾DWC_AC_GetStatus()‚ğŒÄ‚×‚È‚¢
+  if(result == DWC_CONNECTINET_STATE_IDLE){ return (result); } // ã“ã®æ®µéšã§ã¯ã¾ã DWC_AC_GetStatus()ã‚’å‘¼ã¹ãªã„
 
   state = DWC_AC_GetStatus();
 
   if ( state ==  DWC_AC_STATE_COMPLETE )
 	{
-	  // Ú‘±Ï‚İB
+	  // æ¥ç¶šæ¸ˆã¿ã€‚
 	  result = DWC_CONNECTINET_STATE_CONNECTED;
 	  stpInetCntl->state = result;
 	  stpInetCntl->online = TRUE;
-	  stpInetCntl->wontExecuteWDS = TRUE; // ¬Œ÷‚µ‚½‚ç‚à‚¤WDSÚ‘±‚Ís‚í‚È‚¢B[masuda]
+	  stpInetCntl->wontExecuteWDS = TRUE; // æˆåŠŸã—ãŸã‚‰ã‚‚ã†WDSæ¥ç¶šã¯è¡Œã‚ãªã„ã€‚[masuda]
 	}
   else if ( state < 0 )
 	{
-	  // ƒGƒ‰[ˆ—B
+	  // ã‚¨ãƒ©ãƒ¼å‡¦ç†ã€‚
 	  if ( state >= -10 )
 		{
-		  // FATALƒGƒ‰[
+		  // FATALã‚¨ãƒ©ãƒ¼
 		  DWCi_SetError( DWC_ERROR_FATAL, -50199 );
 		  
 		  result = DWC_CONNECTINET_STATE_FATAL_ERROR;
@@ -579,39 +579,39 @@ DWC_GetInetStatus( void )
 		}
       else if ( !stpInetCntl->wontExecuteWDS )
         {
-          // AP‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½B‚à‚µ‚­‚ÍFatalˆÈŠO‚ÌƒGƒ‰[‚Å
-          // Ú‘±‚Å‚«‚È‚©‚Á‚½‚Ì‚ÅANintendoSpot‚ÉÚ‘±‚ğ‚İ‚éB‚±‚Ìs‚Í1“x‚«‚è[masuda]
-          // **** WDS‚Ìˆ—‚Å‚ÍADWC_ProcessInetŠÖ”‚Åˆ—‚ªI‚í‚Á‚½‚Æƒnƒ“ƒhƒŠƒO‚³‚ê‚È‚¢‚æ‚¤‚É
-          // **** ac base ‚ÌƒXƒe[ƒg‚ğ‹U‚é•K—v‚ª‚ ‚éB
+          // APãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã€‚ã‚‚ã—ãã¯Fatalä»¥å¤–ã®ã‚¨ãƒ©ãƒ¼ã§
+          // æ¥ç¶šã§ããªã‹ã£ãŸã®ã§ã€NintendoSpotã«æ¥ç¶šã‚’è©¦ã¿ã‚‹ã€‚ã“ã®è©¦è¡Œã¯1åº¦ãã‚Š[masuda]
+          // **** WDSã®å‡¦ç†ã§ã¯ã€DWC_ProcessIneté–¢æ•°ã§å‡¦ç†ãŒçµ‚ã‚ã£ãŸã¨ãƒãƒ³ãƒ‰ãƒªã‚°ã•ã‚Œãªã„ã‚ˆã†ã«
+          // **** ac base ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å½ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
           
-          // InitŠÖ˜Aî•ñ‚ğˆê•Û‘¶
+          // Inité–¢é€£æƒ…å ±ã‚’ä¸€æ™‚ä¿å­˜
           DWCInetControl *stepInetCntlTemp = stpInetCntl;
           u16 dmaNoTemp = stpInetCntl->dmaNo;
           u32 ssl_priority_Temp = CPS_GetSslLowThreadPriority();
           
-          // ƒGƒ‰[ƒR[ƒh‚ğˆê•Û‘¶
+          // ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’ä¸€æ™‚ä¿å­˜
           stateOld = state;
           
-          // ŠJ•úˆ—B
+          // é–‹æ”¾å‡¦ç†ã€‚
           DWC_CleanupInet();
           
-          // Ä‰Šú‰»(‚±‚ê‚ğ‚µ‚È‚¢‚ÆstpInetCntl‚ªg‚¦‚È‚¢)
+          // å†åˆæœŸåŒ–(ã“ã‚Œã‚’ã—ãªã„ã¨stpInetCntlãŒä½¿ãˆãªã„)
           DWC_InitInetEx( stepInetCntlTemp, dmaNoTemp, DWC_CONNECTINET_POWERMODE_ACTIVE, (u16)ssl_priority_Temp);
           
-          // NintendoSpot‚Ìî•ñ ssid wep wepmode ‚ğæ“¾
+          // NintendoSpotã®æƒ…å ± ssid wep wepmode ã‚’å–å¾—
           DWC_AC_StartupGetWDSInfo( &(stpInetCntl->nspotInfo) );
           stpInetCntl->processWDSstate = DWC_WDS_STATE_PROCESS;
           
-          // ˆ—’†‚Æ‚¢‚¤‚±‚Æ‚É‚·‚éB
+          // å‡¦ç†ä¸­ã¨ã„ã†ã“ã¨ã«ã™ã‚‹ã€‚
           result = DWC_CONNECTINET_STATE_OPERATING;
-          stpInetCntl->ac_state = 0; // ˆ—’†‚Æ‚·‚éB@–{—ˆ‚ÍDWC_AC_ProcessŠÖ”‚Åæ“¾
+          stpInetCntl->ac_state = 0; // å‡¦ç†ä¸­ã¨ã™ã‚‹ã€‚ã€€æœ¬æ¥ã¯DWC_AC_Processé–¢æ•°ã§å–å¾—
         }
 	  else
 		{
-		  // AC‚ÅƒGƒ‰[”­¶B
+		  // ACã§ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã€‚
           
-          // ’Êí‚ÌÚ‘±‚Å”­¶‚µ‚½ƒGƒ‰[‚ÆA
-          // ‚»‚ÌŒã‚ÌWDS‚Ö‚ÌÚ‘±‚Å”­¶‚µ‚½ƒGƒ‰[‚ÅA‚æ‚è[‚¢ƒV[ƒPƒ“ƒX‚ÌƒGƒ‰[‚ğƒZƒbƒg‚·‚é
+          // é€šå¸¸ã®æ¥ç¶šã§ç™ºç”Ÿã—ãŸã‚¨ãƒ©ãƒ¼ã¨ã€
+          // ãã®å¾Œã®WDSã¸ã®æ¥ç¶šã§ç™ºç”Ÿã—ãŸã‚¨ãƒ©ãƒ¼ã§ã€ã‚ˆã‚Šæ·±ã„ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®ã‚¨ãƒ©ãƒ¼ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
           if( stateOld < state)
           {
             state = stateOld;
@@ -625,7 +625,7 @@ DWC_GetInetStatus( void )
 	}
   else
 	{
-	  // ˆ—’†B
+	  // å‡¦ç†ä¸­ã€‚
 	  result = DWC_CONNECTINET_STATE_OPERATING;
 	}
   
@@ -635,11 +635,11 @@ DWC_GetInetStatus( void )
 /*---------------------------------------------------------------------------*
   Name:         DWC_CleanupInet
 
-  Description:  ƒCƒ“ƒ^[ƒlƒbƒg‚ÉÚ‘±‚ğI—¹‚µAƒƒ‚ƒŠ‚ğŠJ•ú‚·‚éB
+  Description:  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã«æ¥ç¶šã‚’çµ‚äº†ã—ã€ãƒ¡ãƒ¢ãƒªã‚’é–‹æ”¾ã™ã‚‹ã€‚
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void
 DWC_CleanupInet( void )
@@ -650,16 +650,16 @@ DWC_CleanupInet( void )
     if ( stpInetCntl == NULL )
     {
         DWC_Printf( DWC_REPORTFLAG_CONNECTINET, "ConnectInet library is not initialized.\n" );
-        // ‚Ü‚¾A‰Šú‰»‚³‚ê‚Ä‚È‚¢‚Ì‚ÅA‰½‚à‚µ‚È‚¢B
+        // ã¾ã ã€åˆæœŸåŒ–ã•ã‚Œã¦ãªã„ã®ã§ã€ä½•ã‚‚ã—ãªã„ã€‚
         return;
     }
 
-	if(stpInetCntl->state == DWC_CONNECTINET_STATE_IDLE){ // ‚Ü‚¾‰½‚àƒƒ‚ƒŠŠm•Û‚³‚ê‚Ä‚¢‚È‚¢
-	  stpInetCntl = NULL; // ƒRƒ“ƒgƒ[ƒ‹‚¾‚¯g‚í‚È‚­‚·‚é
+	if(stpInetCntl->state == DWC_CONNECTINET_STATE_IDLE){ // ã¾ã ä½•ã‚‚ãƒ¡ãƒ¢ãƒªç¢ºä¿ã•ã‚Œã¦ã„ãªã„
+	  stpInetCntl = NULL; // ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã ã‘ä½¿ã‚ãªãã™ã‚‹
 	  return; 
 	}
 
-    // ŠJ•úˆ—B
+    // é–‹æ”¾å‡¦ç†ã€‚
     while ( !DWC_AC_Destroy() )
     {
         OS_Sleep( 10 );
@@ -671,13 +671,13 @@ DWC_CleanupInet( void )
 /*---------------------------------------------------------------------------*
   Name:         DWC_CleanupInetAsync
 
-  Description:  ƒCƒ“ƒ^[ƒlƒbƒg‚ÉÚ‘±‚ğI—¹‚µAƒƒ‚ƒŠ‚ğŠJ•ú‚·‚éB(”ñ“¯Šú”Å)
-                TRUE‚ª–ß‚é‚Ü‚ÅA–ˆƒQ[ƒ€ƒtƒŒ[ƒ€ŒÄ‚ñ‚Å‚­‚¾‚³‚¢B
+  Description:  ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆã«æ¥ç¶šã‚’çµ‚äº†ã—ã€ãƒ¡ãƒ¢ãƒªã‚’é–‹æ”¾ã™ã‚‹ã€‚(éåŒæœŸç‰ˆ)
+                TRUEãŒæˆ»ã‚‹ã¾ã§ã€æ¯ã‚²ãƒ¼ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ å‘¼ã‚“ã§ãã ã•ã„ã€‚
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      TRUE  : ŠJ•ú‚ªI—¹‚µ‚½B
-                FALSE : ŠJ•ú’†B
+  Returns:      TRUE  : é–‹æ”¾ãŒçµ‚äº†ã—ãŸã€‚
+                FALSE : é–‹æ”¾ä¸­ã€‚
  *---------------------------------------------------------------------------*/
 BOOL
 DWC_CleanupInetAsync( void )
@@ -688,20 +688,20 @@ DWC_CleanupInetAsync( void )
     if ( stpInetCntl == NULL )
     {
         DWC_Printf( DWC_REPORTFLAG_CONNECTINET, "ConnectInet library is not initialized.\n" );
-        // ‚Ü‚¾A‰Šú‰»‚³‚ê‚Ä‚È‚¢‚Ì‚ÅA‰½‚à‚µ‚È‚¢B
+        // ã¾ã ã€åˆæœŸåŒ–ã•ã‚Œã¦ãªã„ã®ã§ã€ä½•ã‚‚ã—ãªã„ã€‚
         return TRUE;
     }
 
 
-    // ˆÀ’èƒXƒe[ƒg‚Ì‚Æ‚«‚¾‚¯B
+    // å®‰å®šã‚¹ãƒ†ãƒ¼ãƒˆã®ã¨ãã ã‘ã€‚
     if ( stpInetCntl->state == DWC_CONNECTINET_STATE_FATAL_ERROR )
     {
-        // FATALƒGƒ‰[‚Ì‚Æ‚«‚ÍA‰½‚à‚µ‚È‚¢B
+        // FATALã‚¨ãƒ©ãƒ¼ã®ã¨ãã¯ã€ä½•ã‚‚ã—ãªã„ã€‚
         // [arakit] main 051013
         DWC_Printf( DWC_REPORTFLAG_DEBUG, "CleanupInet Status: FATAL ERROR.\n" );
         return FALSE;
     }
-    else if ( stpInetCntl->state == DWC_CONNECTINET_STATE_IDLE ) // IDLE‚Ì‚Æ‚«‚ÍAƒNƒŠƒA‚µ‚ÄI‚í‚èB
+    else if ( stpInetCntl->state == DWC_CONNECTINET_STATE_IDLE ) // IDLEã®ã¨ãã¯ã€ã‚¯ãƒªã‚¢ã—ã¦çµ‚ã‚ã‚Šã€‚
     {
         DWC_Printf( DWC_REPORTFLAG_DEBUG, "CleanupInet Status: %d\n", stpInetCntl->state );
 
@@ -716,10 +716,10 @@ DWC_CleanupInetAsync( void )
 
 #if 0
 #if SDK_WIFI_VERSION_DATE >= 20050929
-    // TCP‚Ì‘SClose‘Ò‚ÂB
+    // TCPã®å…¨Closeå¾…ã¤ã€‚
     if ( SOCL_CalmDown() != SOCL_ESUCCESS )
     {
-        // close’†B
+        // closeä¸­ã€‚
         DWC_Printf( DWC_REPORTFLAG_DEBUG, "CleanupInet Status: %d %d\n", stpInetCntl->state, SOCL_CalmDown() );
 
         return FALSE;
@@ -727,10 +727,10 @@ DWC_CleanupInetAsync( void )
 #endif
 #endif
 
-    // AC‚ÌŠJ•úˆ—B
+    // ACã®é–‹æ”¾å‡¦ç†ã€‚
     if ( DWC_AC_Destroy() )
     {
-        // Ú‘±ˆ—I—¹.
+        // æ¥ç¶šå‡¦ç†çµ‚äº†.
         stpInetCntl = NULL;
 
         return TRUE;
@@ -774,21 +774,21 @@ DWC_GetUdpPacketDropNum( void )
 //#endif
 }
 
-// [nakata] ‚±‚±‚æ‚èAPî•ñæ“¾ŠÖ˜A‚ÌŠg’£•”•ª
+// [nakata] ã“ã“ã‚ˆã‚ŠAPæƒ…å ±å–å¾—é–¢é€£ã®æ‹¡å¼µéƒ¨åˆ†
 
-// [nakata] ŠO•”ŠÖ”‚Ì’è‹`
+// [nakata] å¤–éƒ¨é–¢æ•°ã®å®šç¾©
 extern u8* WCM_GetApMacAddress( void );
 extern u8* WCM_GetApEssid     ( u16* length );
 
 /*---------------------------------------------------------------------------*
   Name:         DWC_GetApInfo
 
-  Description:  Œ»İÚ‘±’†‚ÌAP‚ÉŠÖ‚·‚éî•ñ‚ğæ“¾‚·‚éB
+  Description:  ç¾åœ¨æ¥ç¶šä¸­ã®APã«é–¢ã™ã‚‹æƒ…å ±ã‚’å–å¾—ã™ã‚‹ã€‚
 
-  Arguments:    apinfo  : æ“¾‚µ‚½î•ñ‚ğ‘‚«‚Şƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    apinfo  : å–å¾—ã—ãŸæƒ…å ±ã‚’æ›¸ãè¾¼ã‚€ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      TRUE  : æ“¾‚É¬Œ÷‚µ‚½
-	            FALSE : æ“¾‚É¸”s‚µ‚½
+  Returns:      TRUE  : å–å¾—ã«æˆåŠŸã—ãŸ
+	            FALSE : å–å¾—ã«å¤±æ•—ã—ãŸ
  *---------------------------------------------------------------------------*/
 BOOL DWC_GetApInfo(DWCApInfo *apinfo)
 {
@@ -798,15 +798,15 @@ BOOL DWC_GetApInfo(DWCApInfo *apinfo)
 	unsigned short	essidlen;
 	u8 apSpotInfo[10];
 	
-	// [nakata] Ši”[æƒGƒŠƒA‚ğ0ƒNƒŠƒA
+	// [nakata] æ ¼ç´å…ˆã‚¨ãƒªã‚¢ã‚’0ã‚¯ãƒªã‚¢
 	MI_CpuClear8(apinfo, sizeof(DWCApInfo));
 	apinfo->area = DWC_APINFO_AREA_UNKNOWN;
 
-	// [nakata] ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±‚ªŠm—§‚µ‚Ä‚¢‚È‚¢ê‡‚É‚ÍFALSE‚ğ•Ô‚·
+	// [nakata] ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæ¥ç¶šãŒç¢ºç«‹ã—ã¦ã„ãªã„å ´åˆã«ã¯FALSEã‚’è¿”ã™
 	if(DWC_GetInetStatus() != DWC_CONNECTINET_STATE_CONNECTED)
 		return FALSE;
 	
-	// [nakata] APƒ^ƒCƒv‚ğæ“¾
+	// [nakata] APã‚¿ã‚¤ãƒ—ã‚’å–å¾—
 	apinfo->aptype = (DWCApInfoType)DWC_AC_GetApType();
 	if(apinfo->aptype == DWC_AC_AP_TYPE_FALSE || apinfo->aptype > DWC_AC_AP_TYPE_UNKNOWN)
 	{
@@ -814,7 +814,7 @@ BOOL DWC_GetApInfo(DWCApInfo *apinfo)
 		return FALSE;
 	}
 	
-	// [nakata] BSSID‚ğapinfo“à‚Éæ“¾
+	// [nakata] BSSIDã‚’apinfoå†…ã«å–å¾—
 	preirq = OS_DisableInterrupts();
 	wcmapbssid = WCM_GetApMacAddress();
 	DC_InvalidateRange(wcmapbssid, WM_SIZE_BSSID);
@@ -824,7 +824,7 @@ BOOL DWC_GetApInfo(DWCApInfo *apinfo)
 	}
 	MI_CpuCopy8(wcmapbssid, apinfo->bssid, 6);
 	
-	// [nakata] •K—v‚É‰‚¶‚ÄESSID‚ğapinfo“à‚Éæ“¾
+	// [nakata] å¿…è¦ã«å¿œã˜ã¦ESSIDã‚’apinfoå†…ã«å–å¾—
 	if(apinfo->aptype >= 0 && apinfo->aptype < 3) {
 		wcmapessid = WCM_GetApEssid(&essidlen);
 		DC_InvalidateRange(wcmapessid, WM_SIZE_SSID);
@@ -836,7 +836,7 @@ BOOL DWC_GetApInfo(DWCApInfo *apinfo)
 	}
 	preirq = OS_RestoreInterrupts(preirq);
 	
-	// [nakata] AP‚ÌêŠî•ñ‚ğapinfo“à‚Éæ“¾
+	// [nakata] APã®å ´æ‰€æƒ…å ±ã‚’apinfoå†…ã«å–å¾—
 	if( DWC_AC_GetApSpotInfo( apSpotInfo ) )
 	{
 		apinfo->area = (apSpotInfo[0] >= '0' && apSpotInfo[0] <= '9') ? (DWCApInfoArea)(apSpotInfo[0] - '0') : DWC_APINFO_AREA_UNKNOWN;
@@ -849,37 +849,37 @@ BOOL DWC_GetApInfo(DWCApInfo *apinfo)
 	
 	return TRUE;
 }
-// [nakata] ‚±‚±‚Ü‚ÅAPî•ñæ“¾ŠÖ˜A‚ÌŠg’£•”•ª
+// [nakata] ã“ã“ã¾ã§APæƒ…å ±å–å¾—é–¢é€£ã®æ‹¡å¼µéƒ¨åˆ†
 
-// [nakata] ‚±‚±‚æ‚èƒuƒ‰ƒEƒU‘Î‰‚ÌŠg’£•”•ª
+// [nakata] ã“ã“ã‚ˆã‚Šãƒ–ãƒ©ã‚¦ã‚¶å¯¾å¿œã®æ‹¡å¼µéƒ¨åˆ†
 
 /*---------------------------------------------------------------------------*
   Name:         DWC_EnableHotspot
 
-  Description:  Nintendo Wi-FiƒRƒlƒNƒVƒ‡ƒ“‚ªƒTƒ|[ƒg‚µ‚È‚¢Hotspot‚Ìg—p‚ğ‹–‰Â‚·‚é
+  Description:  Nintendo Wi-Fiã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ãŒã‚µãƒãƒ¼ãƒˆã—ãªã„Hotspotã®ä½¿ç”¨ã‚’è¨±å¯ã™ã‚‹
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 void DWC_EnableHotspot(void)
 {
 	DWC_Netcheck_SetAllow302(TRUE);
 }
 
-// [nakata] ‚±‚±‚Ü‚Åƒuƒ‰ƒEƒU‘Î‰‚ÌŠg’£•”•ª
+// [nakata] ã“ã“ã¾ã§ãƒ–ãƒ©ã‚¦ã‚¶å¯¾å¿œã®æ‹¡å¼µéƒ¨åˆ†
 
-// [uemura] 2006/05/24’Ç‰Á
+// [uemura] 2006/05/24è¿½åŠ 
 /*---------------------------------------------------------------------------*
   Name:         DWC_CheckWiFiStation
 
-  Description:  Wi-FiƒXƒe[ƒVƒ‡ƒ“‚©‚Ç‚¤‚©‚ğŠm”F‚·‚é
+  Description:  Wi-Fiã‚¹ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã‹ã©ã†ã‹ã‚’ç¢ºèªã™ã‚‹
 
-  Arguments:    ssid  : Šm”F‚·‚éAP‚ÌSSID
-                len   : SSID‚Ì’·‚³
+  Arguments:    ssid  : ç¢ºèªã™ã‚‹APã®SSID
+                len   : SSIDã®é•·ã•
 
-  Returns:      TRUE  : Wi-FiƒXƒe[ƒVƒ‡ƒ“
-                FALSE : Wi-FiƒXƒe[ƒVƒ‡ƒ“ˆÈŠO
+  Returns:      TRUE  : Wi-Fiã‚¹ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³
+                FALSE : Wi-Fiã‚¹ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ä»¥å¤–
  *---------------------------------------------------------------------------*/
 BOOL
 DWC_CheckWiFiStation( const void *ssid, u16 len )
@@ -887,14 +887,14 @@ DWC_CheckWiFiStation( const void *ssid, u16 len )
 	return DWC_AC_CheckWiFiStation( ssid, len );
 }
 
-// [uemura] ‚±‚±‚Ü‚Å
+// [uemura] ã“ã“ã¾ã§
 
-// [nakata] 06/06/27 dwc_main.c‚©‚çˆÚ“®(d•¡‚·‚éˆ—‚ğ“‡‚·‚é‚½‚ß)
+// [nakata] 06/06/27 dwc_main.cã‹ã‚‰ç§»å‹•(é‡è¤‡ã™ã‚‹å‡¦ç†ã‚’çµ±åˆã™ã‚‹ãŸã‚)
 /*---------------------------------------------------------------------------*
-  DCF’ÊMˆ—XVŠÖ”
-  ˆø”@F‚È‚µ
-  –ß‚è’lFTRUE‚Ì‚Æ‚«AØ’f‚³‚ê‚½
-  —p“r@F–ˆƒQ[ƒ€ƒtƒŒ[ƒ€ŒÄ‚Ño‚µADCF’ÊM‚ÌŠÄ‹‚ğs‚¤B
+  DCFé€šä¿¡å‡¦ç†æ›´æ–°é–¢æ•°
+  å¼•æ•°ã€€ï¼šãªã—
+  æˆ»ã‚Šå€¤ï¼šTRUEã®ã¨ãã€åˆ‡æ–­ã•ã‚ŒãŸ
+  ç”¨é€”ã€€ï¼šæ¯ã‚²ãƒ¼ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ å‘¼ã³å‡ºã—ã€DCFé€šä¿¡ã®ç›£è¦–ã‚’è¡Œã†ã€‚
  *---------------------------------------------------------------------------*/
 BOOL DWC_UpdateConnection( void )
 {
@@ -902,10 +902,10 @@ BOOL DWC_UpdateConnection( void )
 
     if ( DWCi_CheckDisconnected() )
     {
-        // Ø’f‚³‚ê‚½I
+        // åˆ‡æ–­ã•ã‚ŒãŸï¼
         u8 aptype = DWC_AC_GetApType();
 
-        // ©“®Ú‘±‚ÌƒGƒ‰[ƒR[ƒh‚ğİ’è
+        // è‡ªå‹•æ¥ç¶šã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®š
         if( aptype == DWC_AC_AP_TYPE_FALSE || aptype > DWC_AC_AP_TYPE_UNKNOWN )
         {
             aptype = DWC_AC_AP_TYPE_UNKNOWN;
@@ -921,33 +921,33 @@ BOOL DWC_UpdateConnection( void )
 }
 
 /*---------------------------------------------------------------------------*
-  DCF’ÊMˆ—I—¹ŠÖ”
-  ˆø”@F‚È‚µ
-  –ß‚è’lF‚È‚µ
-  —p“r@FDCF‚ªØ’f‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚êA•K—v‚Èˆ—‚ª‚ ‚éê‡‚É‚±‚±‚É‹Lq‚·‚éB
+  DCFé€šä¿¡å‡¦ç†çµ‚äº†é–¢æ•°
+  å¼•æ•°ã€€ï¼šãªã—
+  æˆ»ã‚Šå€¤ï¼šãªã—
+  ç”¨é€”ã€€ï¼šDCFãŒåˆ‡æ–­ã•ã‚ŒãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã€å¿…è¦ãªå‡¦ç†ãŒã‚ã‚‹å ´åˆã«ã“ã“ã«è¨˜è¿°ã™ã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 void DWC_ForceShutdown( void )
 {
-    // ‹­§“I‚ÉŒÄ‚ñ‚Å‚µ‚Ü‚Á‚Ä‚à‚©‚Ü‚í‚È‚¢ŠÖ”‚ğ‚±‚±‚ÅŒÄ‚Ño‚·B
+    // å¼·åˆ¶çš„ã«å‘¼ã‚“ã§ã—ã¾ã£ã¦ã‚‚ã‹ã¾ã‚ãªã„é–¢æ•°ã‚’ã“ã“ã§å‘¼ã³å‡ºã™ã€‚
 }
-// [nakata] ‚±‚±‚Ü‚Å
+// [nakata] ã“ã“ã¾ã§
 
-// [nakata] 06/11/06 ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±Šm”Fˆ—‚ğƒ‰ƒbƒv‚·‚éŠÖ”‚ğ’Ç‰Á
+// [nakata] 06/11/06 ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæ¥ç¶šç¢ºèªå‡¦ç†ã‚’ãƒ©ãƒƒãƒ—ã™ã‚‹é–¢æ•°ã‚’è¿½åŠ 
 
 /*---------------------------------------------------------------------------*
-  HTTP‚ğg—p‚µ‚½ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±Šm”FŠÖ”(”ñ“¯Šú)
-  ˆø”@Fƒ^ƒCƒ€ƒAƒEƒgŠÔ(ƒ~ƒŠ•bA0‚Ìê‡‚Í3000ˆµ‚¢)
-  –ß‚è’lFTRUE  - ¬Œ÷
-          FALSE - ¸”s
-  —p“r@FHTTP’ÊM‚ğg—p‚µ‚ÄƒCƒ“ƒ^[ƒlƒbƒgÚ‘±‚ğŠm”F‚·‚é
+  HTTPã‚’ä½¿ç”¨ã—ãŸã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæ¥ç¶šç¢ºèªé–¢æ•°(éåŒæœŸ)
+  å¼•æ•°ã€€ï¼šã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“(ãƒŸãƒªç§’ã€0ã®å ´åˆã¯3000æ‰±ã„)
+  æˆ»ã‚Šå€¤ï¼šTRUE  - æˆåŠŸ
+          FALSE - å¤±æ•—
+  ç”¨é€”ã€€ï¼šHTTPé€šä¿¡ã‚’ä½¿ç”¨ã—ã¦ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæ¥ç¶šã‚’ç¢ºèªã™ã‚‹
  *---------------------------------------------------------------------------*/
 BOOL DWC_TestInetAsync(int timeout)
 {
-    if ( stpInetCntl == NULL ) // DWC_InitInet ‚ªŒÄ‚Î‚ê‚Ä‚È‚¢
+    if ( stpInetCntl == NULL ) // DWC_InitInet ãŒå‘¼ã°ã‚Œã¦ãªã„
     {
         return FALSE;
     }
-    else if ( stpInetCntl->state != DWC_CONNECTINET_STATE_CONNECTED ) // DWC_ConnectInetAsync ‚ª¬Œ÷‚µ‚Ä‚¢‚È‚¢
+    else if ( stpInetCntl->state != DWC_CONNECTINET_STATE_CONNECTED ) // DWC_ConnectInetAsync ãŒæˆåŠŸã—ã¦ã„ãªã„
     {
         return FALSE;
     }
@@ -956,10 +956,10 @@ BOOL DWC_TestInetAsync(int timeout)
 }
 
 /*---------------------------------------------------------------------------*
-  HTTP‚ğg—p‚µ‚½ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±Šm”FƒvƒƒZƒXŠÖ”
-  ˆø”@F‚È‚µ
-  –ß‚è’lF‚È‚µ
-  —p“r@FDCF‚ªØ’f‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚êA•K—v‚Èˆ—‚ª‚ ‚éê‡‚É‚±‚±‚É‹Lq‚·‚éB
+  HTTPã‚’ä½¿ç”¨ã—ãŸã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæ¥ç¶šç¢ºèªãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
+  å¼•æ•°ã€€ï¼šãªã—
+  æˆ»ã‚Šå€¤ï¼šãªã—
+  ç”¨é€”ã€€ï¼šDCFãŒåˆ‡æ–­ã•ã‚ŒãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã€å¿…è¦ãªå‡¦ç†ãŒã‚ã‚‹å ´åˆã«ã“ã“ã«è¨˜è¿°ã™ã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 DWCTestInetResult DWC_TestInetProcess(void)
 {
@@ -984,7 +984,7 @@ DWCTestInetResult DWC_TestInetProcess(void)
 		return DWC_TESTINET_NOT_INITIALIZED;
 	}
 	
-	// [nakata] —\Šú‚µ‚È‚¢“®ì
+	// [nakata] äºˆæœŸã—ãªã„å‹•ä½œ
 	return DWC_TESTINET_DISCONNECTED;
 }
-// [nakata] ‚±‚±‚Ü‚Å
+// [nakata] ã“ã“ã¾ã§

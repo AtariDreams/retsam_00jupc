@@ -1,6 +1,6 @@
 /**
  *	@file	nutmixer_sys.h
- *	@brief	ƒiƒbƒcƒ~ƒLƒT[@ƒ[ƒJƒ‹ƒwƒbƒ_
+ *	@brief	ãƒŠãƒƒãƒ„ãƒŸã‚­ã‚µãƒ¼ã€€ãƒ­ãƒ¼ã‚«ãƒ«ãƒ˜ãƒƒãƒ€
  *	@author	Miyuki Iwasawa
  *	@date	06.04.06
  */
@@ -11,46 +11,46 @@
 #include "nutmixer_def.h"
 
 typedef struct _NUTMIXER_WORK{
-	int	heapID;		///<ƒq[ƒvID
-	u16	mem_num;	///<ƒƒ“ƒo[”
-	u16	comm_f:8;	///<ƒ[ƒJƒ‹‚©’ÊM‚©(’ÊM‚È‚çTRUE)
-	u16	endseq_f:4;	///<ƒƒCƒ“I—¹ƒtƒ‰ƒO
-	u16	view_f:4;	///<•`‰æŠÖ”ŒÄ‚Ño‚µƒtƒ‰ƒO
+	int	heapID;		///<ãƒ’ãƒ¼ãƒ—ID
+	u16	mem_num;	///<ãƒ¡ãƒ³ãƒãƒ¼æ•°
+	u16	comm_f:8;	///<ãƒ­ãƒ¼ã‚«ãƒ«ã‹é€šä¿¡ã‹(é€šä¿¡ãªã‚‰TRUE)
+	u16	endseq_f:4;	///<ãƒ¡ã‚¤ãƒ³çµ‚äº†ãƒ•ãƒ©ã‚°
+	u16	view_f:4;	///<æç”»é–¢æ•°å‘¼ã³å‡ºã—ãƒ•ãƒ©ã‚°
 
-	int	itemno;	///<‘I‚ñ‚¾–Ø‚ÌÀƒiƒ“ƒo[
-	BAG_CURSOR* bag_cursor;	// ƒoƒbƒOƒJ[ƒ\ƒ‹ˆÊ’u‹L‰¯—Ìˆæ
+	int	itemno;	///<é¸ã‚“ã æœ¨ã®å®ŸãƒŠãƒ³ãƒãƒ¼
+	BAG_CURSOR* bag_cursor;	// ãƒãƒƒã‚°ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®è¨˜æ†¶é ˜åŸŸ
 	
-	NUTMIXER_PARAM* param;	///<ˆøŒp‚¬ƒpƒ‰ƒ[ƒ^
-	int		m_seq;		///<ƒƒCƒ“ƒRƒ}ƒ“ƒhƒV[ƒPƒ“ƒX
-	void*	app_wk;		///<ƒTƒuƒAƒvƒŠƒ[ƒN
-	PROC	*proc;		///<ƒvƒƒZƒX
+	NUTMIXER_PARAM* param;	///<å¼•ç¶™ããƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	int		m_seq;		///<ãƒ¡ã‚¤ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	void*	app_wk;		///<ã‚µãƒ–ã‚¢ãƒ—ãƒªãƒ¯ãƒ¼ã‚¯
+	PROC	*proc;		///<ãƒ—ãƒ­ã‚»ã‚¹
 
-	// ƒQ[ƒ€‚©‚ç‘±‚¯‚é‚©æ“¾—p
-	BOOL game_next;		///< TRUEƒQ[ƒ€‚ğ‘±‚¯‚é FALSEI‚í‚é
+	// ã‚²ãƒ¼ãƒ ã‹ã‚‰ç¶šã‘ã‚‹ã‹å–å¾—ç”¨
+	BOOL game_next;		///< TRUEã‚²ãƒ¼ãƒ ã‚’ç¶šã‘ã‚‹ FALSEçµ‚ã‚ã‚‹
 
 	s16 vchat_wait;
 	u8 wifi;
-	u8 wifi_vchat;	///< wifiVCHATƒtƒ‰ƒO
+	u8 wifi_vchat;	///< wifiVCHATãƒ•ãƒ©ã‚°
 
 }NUTMIXER_WORK;
 
-//ƒƒCƒ“ƒRƒ}ƒ“ƒhŠÖ”Œ^
+//ãƒ¡ã‚¤ãƒ³ã‚³ãƒãƒ³ãƒ‰é–¢æ•°å‹
 typedef int (*NMIXER_MFUNC)(struct _NUTMIXER_WORK* mp,void* wk,int* seq);
 
-///ƒƒCƒ“ƒV[ƒPƒ“ƒX’è‹`
+///ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å®šç¾©
 typedef enum{
  NMSEQ_BAG_MAIN,
  NMSEQ_GAME_CALL,
  NMSEQ_GAME_WAIT,
  NMSEQ_GAME_END,
- NMSEQ_MAIN_END,	///<I—¹
+ NMSEQ_MAIN_END,	///<çµ‚äº†
  NMSEQ_MAX,
 };
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒvƒƒZƒXŒÄ‚Ño‚µˆ—
- * @param	proc	ƒTƒuƒvƒƒZƒXƒ|ƒCƒ“ƒ^‚ğ•Û‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹å‘¼ã³å‡ºã—å‡¦ç†
+ * @param	proc	ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿æŒã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 extern BOOL NutMixerProcCall(PROC ** proc);

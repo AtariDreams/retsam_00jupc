@@ -1,8 +1,8 @@
 #ifndef _R206R0201_DEF_H_
 #define _R206R0201_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R206R0201		(1)
-#define	SCRID_R206R0201_DATA_MAX		(1)		//最大数
+#define	SCRID_R206R0201_DATA_MAX		(1)		//譛螟ｧ謨ｰ
 
 #endif //_R206R0201_DEF_H_

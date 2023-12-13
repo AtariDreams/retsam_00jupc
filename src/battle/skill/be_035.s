@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_035.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			035�@�T�^�[���̊ԁA�G�̓���U���̃_���[�W�𔼌�������A�g�p�����|�P��������サ�Ă��^�[�����͌��ʂ��󂯌p�����
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			035　５ターンの間、敵の特殊攻撃のダメージを半減させる、使用したポケモンが交代してもターン分は効果が受け継がれる
  *
  *@author	HisashiSogabe
  *@data		2006.01.17

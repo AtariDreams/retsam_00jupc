@@ -15,10 +15,10 @@
   do-indent
 
   Revision 1.18  2005/11/14 05:10:03  okubata_ryoma
-  SDK_INLINE ‚É‘Î‰
+  SDK_INLINE ã«å¯¾å¿œ
 
   Revision 1.17  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.16  2005/02/28 05:26:13  yosizaki
   do-indent.

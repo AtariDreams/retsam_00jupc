@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>CTRDG_SetPulledOutCallback</TITLE>
@@ -9,71 +9,71 @@
 </HEAD>
 <BODY>
 <H1 align="left">CTRDG_SetPulledOutCallback</H1>
-<H2>\•¶</H2>
+<H2>æ§‹æ–‡</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nitro/ctrdg.h&gt;</CODE></PRE>
   <PRE><CODE>void CTRDG_SetPulledOutCallback( CTRDGPulledOutCallback callback );
   </CODE></PRE>
 </DL>
-<H2>ˆø”</H2>
+<H2>å¼•æ•°</H2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>callback</STRONG></EM></TD>
-      <TD width="87%">ƒJ[ƒgƒŠƒbƒW”²‚«‚ğŒŸo‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”</TD>
+      <TD width="87%">ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸æŠœãã‚’æ¤œå‡ºã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>•Ô‚è’l</H2>
-<P>‚È‚µB</P>
-<H2>à–¾</H2>
-<P>ƒJ[ƒgƒŠƒbƒW”²‚«‚ğŒŸo‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚µ‚Ü‚·B</P>
-<P><CODE>CTRDGPulledOutCallback</CODE> ‚Í</P>
+<H2>è¿”ã‚Šå€¤</H2>
+<P>ãªã—ã€‚</P>
+<H2>èª¬æ˜</H2>
+<P>ã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸æŠœãã‚’æ¤œå‡ºã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã—ã¾ã™ã€‚</P>
+<P><CODE>CTRDGPulledOutCallback</CODE> ã¯</P>
 <BLOCKQUOTE><CODE>typedef BOOL ( *CTRDGPulledOutCallback )( void );</CODE></BLOCKQUOTE>
-<P><CODE>‚Å’è‹`‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”</CODE> <B><I>callback</I></B> <CODE>‚ÌŒ^‚Å‚·B</CODE></P>
-<P><B><I>callback</I></B> ‚É NULL ‚ªw’è‚³‚ê‚é‚ÆAƒR[ƒ‹ƒoƒbƒN‚ÌŒÄ‚Ño‚µ‚Ís‚¢‚Ü‚¹‚ñB</P>
+<P><CODE>ã§å®šç¾©ã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°</CODE> <B><I>callback</I></B> <CODE>ã®å‹ã§ã™ã€‚</CODE></P>
+<P><B><I>callback</I></B> ã« NULL ãŒæŒ‡å®šã•ã‚Œã‚‹ã¨ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å‘¼ã³å‡ºã—ã¯è¡Œã„ã¾ã›ã‚“ã€‚</P>
 <H3><BR>
 <BR>
 <BR>
-<B>ƒR[ƒ‹ƒoƒbƒN‚É‚Â‚¢‚Ä</B></H3>
-<P>ƒR[ƒ‹ƒoƒbƒN‚Ì<CODE>•Ô‚è’l‚É‚ÍAƒR[ƒ‹ƒoƒbƒN‚©‚ç”²‚¯‚Ä‚·‚®‚É’â~‚·‚éê‡ TRUE ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢BFALSE‚ğw’è‚·‚é‚Æ’â~‚µ‚Ü‚¹‚ñB•K—v‚Èˆ—‚ÌŒã’â~‚·‚éê‡‚ÍŒã‚©‚ç
-<A href="CTRDG_TerminateForPulledOut.html">CTRDG_TerminateForPulledOut()</A> ‚ğŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B</CODE>‚½‚¾‚µ<CODE>’â~ˆ—‚ÍPXI‚ğg—p‚µ‚ÄARM7‚É’Ê’B‚·‚é‚Ì‚ÅAŠ„‚è‚İ‹Ö~ó‘Ô‚Å‚ ‚éƒR[ƒ‹ƒoƒbƒN‚Ì’†‚©‚ç‚ÍŒÄ‚Ño‚¹‚Ü‚¹‚ñB</CODE></P>
-<P>—á‚¦‚ÎA”²‚¯‚ğŒŸo‚µ‚½‚Æ‚«‚ÉuDON'T PULL OUT CARTRIDGEv‚Æ•\¦‚µ‚Ä’â~‚·‚é‚É‚ÍˆÈ‰º‚Ì‚æ‚¤‚É‚µ‚Ü‚·B<BR>
-(initˆ—‚È‚ÇA‘½‚­‚Ìs‚ğ’[Ü‚Á‚Ä‚ ‚è‚Ü‚·)</P>
+<B>ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«ã¤ã„ã¦</B></H3>
+<P>ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®<CODE>è¿”ã‚Šå€¤ã«ã¯ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‹ã‚‰æŠœã‘ã¦ã™ãã«åœæ­¢ã™ã‚‹å ´åˆ TRUE ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚FALSEã‚’æŒ‡å®šã™ã‚‹ã¨åœæ­¢ã—ã¾ã›ã‚“ã€‚å¿…è¦ãªå‡¦ç†ã®å¾Œåœæ­¢ã™ã‚‹å ´åˆã¯å¾Œã‹ã‚‰
+<A href="CTRDG_TerminateForPulledOut.html">CTRDG_TerminateForPulledOut()</A> ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚</CODE>ãŸã ã—<CODE>åœæ­¢å‡¦ç†ã¯PXIã‚’ä½¿ç”¨ã—ã¦ARM7ã«é€šé”ã™ã‚‹ã®ã§ã€å‰²ã‚Šè¾¼ã¿ç¦æ­¢çŠ¶æ…‹ã§ã‚ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®ä¸­ã‹ã‚‰ã¯å‘¼ã³å‡ºã›ã¾ã›ã‚“ã€‚</CODE></P>
+<P>ä¾‹ãˆã°ã€æŠœã‘ã‚’æ¤œå‡ºã—ãŸã¨ãã«ã€ŒDON'T PULL OUT CARTRIDGEã€ã¨è¡¨ç¤ºã—ã¦åœæ­¢ã™ã‚‹ã«ã¯ä»¥ä¸‹ã®ã‚ˆã†ã«ã—ã¾ã™ã€‚<BR>
+(initå‡¦ç†ãªã©ã€å¤šãã®è¡Œã‚’ç«¯æŠ˜ã£ã¦ã‚ã‚Šã¾ã™)</P>
 <BLOCKQUOTE><B>Example:</B><BR>
 <CODE><BR>
 BOOL isPulledOut = FALSE;<BR>
 <BR>
 void NitroMain( void )<BR>
 {<BR>
-@initializeRoutine();<BR>
-@<FONT color="#ff0000">CTRDG_Init();</FONT> <FONT color="#0066ff">// maybe called in OS_Init()</FONT><BR>
-@<FONT color="#ff0000">CTRDG_SetPulledOutCallback( myCallback );</FONT> <FONT color="#0066ff">// set callback</FONT><BR>
+ã€€initializeRoutine();<BR>
+ã€€<FONT color="#ff0000">CTRDG_Init();</FONT> <FONT color="#0066ff">// maybe called in OS_Init()</FONT><BR>
+ã€€<FONT color="#ff0000">CTRDG_SetPulledOutCallback( myCallback );</FONT> <FONT color="#0066ff">// set callback</FONT><BR>
 <BR>
-@while(1)<BR>
-@{<BR>
-@@@usualGameProcedure();<BR>
-@@@if ( isPulledOut == TRUE ) <FONT color="#0066ff">// check if cartridge is pulled out</FONT><BR>
-@@@{<BR>
-@@@@@drawMessageRoutine( &quot;DON'T PULL OUT CARTRIDGE&quot; );<BR>
-@@@@@<FONT color="#ff0000">CTRDG_TerminateForPulledOut();</FONT> <FONT color="#0066ff">// termination</FONT><BR>
-@@@@@<FONT color="#0066ff">// program halted. never reached.</FONT><BR>
-@@@}<BR>
-@}<BR>
+ã€€while(1)<BR>
+ã€€{<BR>
+ã€€ã€€ã€€usualGameProcedure();<BR>
+ã€€ã€€ã€€if ( isPulledOut == TRUE ) <FONT color="#0066ff">// check if cartridge is pulled out</FONT><BR>
+ã€€ã€€ã€€{<BR>
+ã€€ã€€ã€€ã€€ã€€drawMessageRoutine( &quot;DON'T PULL OUT CARTRIDGE&quot; );<BR>
+ã€€ã€€ã€€ã€€ã€€<FONT color="#ff0000">CTRDG_TerminateForPulledOut();</FONT> <FONT color="#0066ff">// termination</FONT><BR>
+ã€€ã€€ã€€ã€€ã€€<FONT color="#0066ff">// program halted. never reached.</FONT><BR>
+ã€€ã€€ã€€}<BR>
+ã€€}<BR>
 }<BR>
 <BR>
 <FONT color="#0066ff">//---- callback for cartridge pulled out</FONT><BR>
 BOOL myCallback( void )<BR>
 {<BR>
-@isPulledOut = TRUE; <FONT color="#0066ff">// remember that cartridge is pulled out</FONT><BR>
-@return FALSE; <FONT color="#0066ff">// means that not terminate</FONT><BR>
+ã€€isPulledOut = TRUE; <FONT color="#0066ff">// remember that cartridge is pulled out</FONT><BR>
+ã€€return FALSE; <FONT color="#0066ff">// means that not terminate</FONT><BR>
 }<BR>
 <BR>
 </CODE></BLOCKQUOTE>
-<H2>QÆ</H2>
+<H2>å‚ç…§</H2>
 <P><CODE><A href="CTRDG_Init.html">CTRDG_Init</A>, <A href="CTRDG_TerminateForPulledOut.html">CTRDG_TerminateForPulledOut</A></CODE></P>
-<H2>—š—ğ</H2>
-<P>2004/09/15 ‰”Å</P>
+<H2>å±¥æ­´</H2>
+<P>2004/09/15 åˆç‰ˆ</P>
 </BODY>
 </HTML>

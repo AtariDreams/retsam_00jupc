@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_000.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			153�@�G���J�E���g�퓬���͋����I�ɐ퓬���I��������
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			153　エンカウント戦闘時は強制的に戦闘を終了させる
  *
  *@author	HisashiSogabe
  *@data		2006.02.02
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_153:
-	//�쐶��̂݋N��
+	//野生戦のみ起動
 	IF			IF_FLAG_BIT,BUF_PARA_FIGHT_TYPE,FIGHT_TYPE_TRAINER,Umakukimaran
 	VALUE		VAL_SET,BUF_PARA_ADD_STATUS_DIRECT,ADD_COND2_TELEPORT|ADD_STATUS_WAZAKOUKA
 	SEQ_END

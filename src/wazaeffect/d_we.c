@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	d_we.c
- * @brief	ÉfÉoÉbÉOópãZÉGÉtÉFÉNÉg
+ * @brief	„Éá„Éê„ÉÉ„Ç∞Áî®ÊäÄ„Ç®„Éï„Çß„ÇØ„Éà
  * @author	goto
- * @date	2005.08.08(åé)
+ * @date	2005.08.08(Êúà)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -39,7 +39,7 @@
 
 // -----------------------------------------
 //
-//	ÉfÉoÉbÉOópç\ë¢ëÃ
+//	„Éá„Éê„ÉÉ„Ç∞Áî®ÊßãÈÄ†‰Ωì
 //
 // -----------------------------------------
 typedef struct _TDWE_SYS {
@@ -74,7 +74,7 @@ typedef struct _TDWE_SYS {
 // =============================================================================
 //
 //
-//	Å°ÉvÉçÉgÉ^ÉCÉv
+//	‚ñ†„Éó„É≠„Éà„Çø„Ç§„Éó
 //
 //
 // =============================================================================
@@ -86,7 +86,7 @@ static void DWE_WepSet(TDWE_SYS* wk);
 // =============================================================================
 //
 //
-//	Å°ì‡ïîéQè∆
+//	‚ñ†ÂÜÖÈÉ®ÂèÇÁÖß
 //
 //
 // =============================================================================
@@ -110,7 +110,7 @@ static void DWE_WepSet(TDWE_SYS* wk)
 	wk->wep.waza_eff_power  = 0;
 	wk->wep.waza_eff_cnt	 = wk->turn_num;
 	
-//	OS_Printf("ÉfÉoÉbÉOÉ^Å[Éì = %2d\n",wk->wep.waza_eff_cnt);
+//	OS_Printf("„Éá„Éê„ÉÉ„Ç∞„Çø„Éº„É≥ = %2d\n",wk->wep.waza_eff_cnt);
 	
 	wk->wep.waza_eff_natuki = 0;
 	wk->wep.waza_eff_weather= 0;
@@ -195,20 +195,20 @@ static void DWE_WepSet(TDWE_SYS* wk)
 
 #if 0
 typedef struct{
-	u8	command_code;		//ñΩóﬂÉRÅ[ÉhÉCÉìÉfÉbÉNÉX
-	u8	mode;				///< êÌì¨ÅEÉRÉìÉeÉXÉgÅEÉRÉìÉNÅ[ÉãÅH
-	u16	waza_no;			///<ÉGÉtÉFÉNÉgÇèoÇ∑ãZÉiÉìÉoÅ[
+	u8	command_code;		//ÂëΩ‰ª§„Ç≥„Éº„Éâ„Ç§„É≥„Éá„ÉÉ„ÇØ„Çπ
+	u8	mode;				///< Êà¶Èóò„Éª„Ç≥„É≥„ÉÜ„Çπ„Éà„Éª„Ç≥„É≥„ÇØ„Éº„É´Ôºü
+	u16	waza_no;			///<„Ç®„Éï„Çß„ÇØ„Éà„ÇíÂá∫„ÅôÊäÄ„Éä„É≥„Éê„Éº
 
-	s32 waza_eff_damage;	///< ãZÇ≈éÛÇØÇÈÉ_ÉÅÅ[ÉW(âÒïúÇÃéûÇÕ[ - ])
+	s32 waza_eff_damage;	///< ÊäÄ„ÅßÂèó„Åë„Çã„ÉÄ„É°„Éº„Ç∏(ÂõûÂæ©„ÅÆÊôÇ„ÅØ[ - ])
 
-	u16	waza_eff_power;		///< èoÇƒÇ¢ÇÈãZÇÃà–óÕ
-	u16 waza_eff_cnt;		///< ãZÉGÉtÉFÉNÉgÇÃÉJÉEÉìÉ^(ãÛÇîÚÇ‘Ç∆Ç©)
+	u16	waza_eff_power;		///< Âá∫„Å¶„ÅÑ„ÇãÊäÄ„ÅÆÂ®ÅÂäõ
+	u16 waza_eff_cnt;		///< ÊäÄ„Ç®„Éï„Çß„ÇØ„Éà„ÅÆ„Ç´„Ç¶„É≥„Çø(Á©∫„ÇíÈ£õ„Å∂„Å®„Åã)
 
-	u16	waza_eff_natuki;	///< Ç»Ç¬Ç´ìx
-	u16	waza_eff_weather;	///< ìVåÛ
+	u16	waza_eff_natuki;	///< „Å™„Å§„ÅçÂ∫¶
+	u16	waza_eff_weather;	///< Â§©ÂÄô
 	
-	u16	at_client_no;		///< çUåÇë§ÇÃÉNÉâÉCÉAÉìÉgî‘çÜ
-	u16	df_client_no;		///< ñhå‰ë§ÇÃÉNÉâÉCÉAÉìÉgî‘çÜ
+	u16	at_client_no;		///< ÊîªÊíÉÂÅ¥„ÅÆ„ÇØ„É©„Ç§„Ç¢„É≥„ÉàÁï™Âè∑
+	u16	df_client_no;		///< Èò≤Âæ°ÂÅ¥„ÅÆ„ÇØ„É©„Ç§„Ç¢„É≥„ÉàÁï™Âè∑
 }WAZA_EFFECT_PARAM;
 #endif
 }
@@ -275,19 +275,19 @@ static void DWE_Draw(DWE_SYS_PTR wk)
 	
 	wset = WORDSET_Create(HEAPID_BATTLE);
 	
-	///< ëŒè€
+	///< ÂØæË±°
 //	WORDSET_RegisterNumber(wset, 3, wk->target_no, 1, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
 //	WORDSET_ExpandStr(wset, str_dest[no], str_buff[no]);
 	DT_MsgPrint(wk->wcbep.bgl, &wk->win, str_target,	0*8, no*2*8, 1);
 	no++;
 
-	///< ÉGÉtÉFÉNÉgî‘çÜ
+	///< „Ç®„Éï„Çß„ÇØ„ÉàÁï™Âè∑
 	WORDSET_RegisterNumber(wset, 0, wk->eff_no, 3, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
 	WORDSET_ExpandStr(wset, str_dest[no], str_buff[no]);
 	DT_MsgPrint(wk->wcbep.bgl, &wk->win, str_dest[no],	0*8, no*2*8, 2);
 	no++;
 
-	///< ÉGÉtÉFÉNÉgñº
+	///< „Ç®„Éï„Çß„ÇØ„ÉàÂêç
 	if (wk->max >= 200){
 		WORDSET_RegisterWazaName( wset, 1, wk->eff_no );
 		WORDSET_ExpandStr(wset, str_dest[no], str_buff[no]);
@@ -299,13 +299,13 @@ static void DWE_Draw(DWE_SYS_PTR wk)
 		no++;
 	}
 
-	///< É^Å[Éìêî
+	///< „Çø„Éº„É≥Êï∞
 	WORDSET_RegisterNumber(wset, 2, wk->turn_num, 2, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
 	WORDSET_ExpandStr(wset, str_dest[no], str_buff[no]);
 	DT_MsgPrint(wk->wcbep.bgl, &wk->win, str_dest[no],	0*8, no*2*8, 1);
 	no++;
 
-	///< ÉJÉÅÉâ
+	///< „Ç´„É°„É©
 	DT_MsgPrint(wk->wcbep.bgl, &wk->win, str_camera,	0*8, no*2*8, 1);
 	no++;
 
@@ -337,19 +337,19 @@ static void DWE_MainTCB(TCB_PTR tcb, void* work)
 	
 	switch(wk->seq){
 	case 0:
-		///< âÊñ èâä˙âª
+		///< ÁîªÈù¢ÂàùÊúüÂåñ
 		DT_MsgClear(wk->wcbep.bgl, &wk->win);
 		BattleGaugePriSet(wk->d_wk,1);
 		G2_SetBG2Priority(0);
 		wk->seq++;
 		
 	case 1:
-		///< ÉÅÉjÉÖÅ[ï\é¶
+		///< „É°„Éã„É•„ÉºË°®Á§∫
 		DWE_Draw(wk);
 		wk->seq++;
 	
 	case 2:
-		///< ÉpÉâÉÅÅ[É^Å[ê›íË
+		///< „Éë„É©„É°„Éº„Çø„ÉºË®≠ÂÆö
 		sw = 1;
 		/*
 		if (sys.trg & PAD_KEY_UP){
@@ -367,7 +367,7 @@ static void DWE_MainTCB(TCB_PTR tcb, void* work)
 		}
 		*/
 		
-		///< É^Å[ÉQÉbÉg
+		///< „Çø„Éº„Ç≤„ÉÉ„Éà
 		sw = 1;
 		switch(wk->menu_sel){
 		case 0:
@@ -410,13 +410,13 @@ static void DWE_MainTCB(TCB_PTR tcb, void* work)
 			DWE_ParamSet(param, 0, 0);
 		}
 		else if (sys.trg & PAD_BUTTON_SELECT){
-			///< ÉJÉÅÉâ
+			///< „Ç´„É°„É©
 			wk->camera++;
 			wk->camera %= 3;
 			WE_SYS_CameraModeSet(wk->wsys, wk->camera);
 		}
 		else if (sys.trg & PAD_BUTTON_X){
-			///< ëŒè€
+			///< ÂØæË±°
 			param	= &wk->target_no;
 			if (wk->wcbep.fight_type){
 				sel_max = 14;
@@ -448,9 +448,9 @@ static void DWE_MainTCB(TCB_PTR tcb, void* work)
 			break;
 		}
 		
-		///< ÉRÉ}ÉìÉh
+		///< „Ç≥„Éû„É≥„Éâ
 		if (sys.trg & PAD_BUTTON_A){
-			///< î≠ìÆ
+			///< Áô∫Âãï
 			GF_BGL_BmpWinOff(&wk->win);
 			wk->seq++;
 		}
@@ -460,7 +460,7 @@ static void DWE_MainTCB(TCB_PTR tcb, void* work)
 		break;
 		
 	case 3:
-		///< ÉGÉtÉFÉNÉgèàóù-èâä˙âª
+		///< „Ç®„Éï„Çß„ÇØ„ÉàÂá¶ÁêÜ-ÂàùÊúüÂåñ
 		BattleGaugePriSet(wk->d_wk,0);
 		DWE_WepSet(wk);
 		WES_Call_Ex(wk->wsys, &wk->wep, wk->eff_no, &(wk->wcbep));
@@ -468,7 +468,7 @@ static void DWE_MainTCB(TCB_PTR tcb, void* work)
 		break;
 		
 	case 4:
-		///< ÉGÉtÉFÉNÉgèàóù-ÉÅÉCÉì
+		///< „Ç®„Éï„Çß„ÇØ„ÉàÂá¶ÁêÜ-„É°„Ç§„É≥
 		WES_Executed(wk->wsys);
 		if (IsWES_Executed(wk->wsys) == FALSE){
 			BattleGaugePriSet(wk->d_wk,1);
@@ -498,25 +498,25 @@ static void DWE_MainTCB(TCB_PTR tcb, void* work)
 		break;
 
 	case 5:
-		///< ÉGÉtÉFÉNÉgëIëèàóù
+		///< „Ç®„Éï„Çß„ÇØ„ÉàÈÅ∏ÊäûÂá¶ÁêÜ
 		BattleDefaultBlendSet();
 		wk->seq = 0;
 		break;
 
 	default:
-		///< èIóπèàóù
+		///< ÁµÇ‰∫ÜÂá¶ÁêÜ
 		{
 			BattleGaugePriSet(wk->d_wk,0);
 			G2_SetBG2Priority(1);
 			GF_BGL_BmpWinOff(&wk->win);
-			GF_BGL_BmpWinDel(&wk->win);					///< bmp-winîjä¸
+			GF_BGL_BmpWinDel(&wk->win);					///< bmp-winÁ†¥Ê£Ñ
 			WES_Delete(wk->wsys);
-			TCB_ChangeFunc(wk->btcb, wk->bfunc);		///< battle-tcbÇÃïúãA
+			TCB_ChangeFunc(wk->btcb, wk->bfunc);		///< battle-tcb„ÅÆÂæ©Â∏∞
 			if (wk->csp != NULL){
 				sys_FreeMemoryEz(wk->csp);			///< CSP
 			}
-			sys_FreeMemoryEz(wk);						///< ÉÅÉÇÉäâï˙
-			TCB_Delete(tcb);							///< tcbîjä¸
+			sys_FreeMemoryEz(wk);						///< „É°„É¢„É™Ëß£Êîæ
+			TCB_Delete(tcb);							///< tcbÁ†¥Ê£Ñ
 		}
 //		GF_BGL_VisibleSet(BATTLE_FRAME_EFFECT, VISIBLE_OFF);
 		break;
@@ -527,11 +527,11 @@ static void DWE_MainTCB(TCB_PTR tcb, void* work)
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉpÉâÉÅÅ[É^Å[ÉZÉbÉg
+ * @brief	„Éë„É©„É°„Éº„Çø„Éº„Çª„ÉÉ„Éà
  *
- * @param	num		êîíl
- * @param	max		ç≈ëÂíl
- * @param	flg		ïÑçÜ
+ * @param	num		Êï∞ÂÄ§
+ * @param	max		ÊúÄÂ§ßÂÄ§
+ * @param	flg		Á¨¶Âè∑
  *
  * @retval	none	
  *
@@ -559,17 +559,17 @@ static void DWE_ParamSet(int* num, int max, int flg)
 // =============================================================================
 //
 //
-//	Å°äOïîéQè∆
+//	‚ñ†Â§ñÈÉ®ÂèÇÁÖß
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ÉfÉoÉbÉOåƒÇ—èoÇµ
+ * @brief	„Éá„Éê„ÉÉ„Ç∞Âëº„Å≥Âá∫„Åó
  *
- * @param	work	ÉèÅ[ÉN	
+ * @param	work	„ÉØ„Éº„ÇØ	
  *
- * @retval	BOOL	FALSE=é∏îs
+ * @retval	BOOL	FALSE=Â§±Êïó
  *
  */
 //--------------------------------------------------------------
@@ -611,7 +611,7 @@ BOOL DebugWazaEffectInit(int heap, BATTLE_WORK* bw, TCB_PTR tcb, TCB_FUNC func)
 	wk->btcb		= tcb;
 	wk->bfunc		= func;
 	
-	///< ägí£à¯êî
+	///< Êã°ÂºµÂºïÊï∞
 	wk->wcbep.bgl	= BattleWorkGF_BGL_INIGet(bw);
 	wk->wcbep.fight_type = BattleWorkFightTypeGet(bw);
 	wk->wcbep.mons_no[0] = 1;
@@ -622,15 +622,15 @@ BOOL DebugWazaEffectInit(int heap, BATTLE_WORK* bw, TCB_PTR tcb, TCB_FUNC func)
 	if (wk->wcbep.fight_type){
 		wk->target_no = 2;
 	}
-	wk->wcbep.perap_voice = BattleWorkPerapVoiceGet(bw, 0);	///< ÉyÉâÉbÉv
-	wk->wcbep.bg_area = BattleWorkBGAreaGet(bw);			///< BGÉGÉäÉA
-	wk->wcbep.pal_area = BattleWorkPalAreaGet(bw);			///< PALÉGÉäÉA
+	wk->wcbep.perap_voice = BattleWorkPerapVoiceGet(bw, 0);	///< „Éö„É©„ÉÉ„Éó
+	wk->wcbep.bg_area = BattleWorkBGAreaGet(bw);			///< BG„Ç®„É™„Ç¢
+	wk->wcbep.pal_area = BattleWorkPalAreaGet(bw);			///< PAL„Ç®„É™„Ç¢
 
 //	wk->wcbep.excp	= BattleWorkExChrParamGet(bw);
 	for(i = 0; i < CLIENT_MAX; i++){
 		wk->wcbep.excp[i] = BattleWorkExChrClientParamGet(bw, i);
 
-		///< ÇÃÇøÇÃÇøÉpÉâÉÅÅ[É^çÏÇÈ
+		///< „ÅÆ„Å°„ÅÆ„Å°„Éë„É©„É°„Éº„Çø‰Ωú„Çã
 	}
 	wk->wcbep.pfd	= BattleWorkPfdGet(bw);
 	BattleClientTypeBufMake(bw, &(wk->wcbep.client_type[0]));
@@ -639,19 +639,19 @@ BOOL DebugWazaEffectInit(int heap, BATTLE_WORK* bw, TCB_PTR tcb, TCB_FUNC func)
 	if (sys.cont & PAD_BUTTON_R){
 		wk->max = 41;
 		wk->wcbep.eff_arc_id = ARC_WAZA_EFF_SUB;
-//		OS_Printf("Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°\n");
-//		OS_Printf("Å°Å† ÉXÉeÅ[É^ÉXÉGÉtÉFÉNÉgÉfÉoÉbÉO Å†Å°\n");
-//		OS_Printf("Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°\n");
+//		OS_Printf("‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†\n");
+//		OS_Printf("‚ñ†‚ñ° „Çπ„ÉÜ„Éº„Çø„Çπ„Ç®„Éï„Çß„ÇØ„Éà„Éá„Éê„ÉÉ„Ç∞ ‚ñ°‚ñ†\n");
+//		OS_Printf("‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†\n");
 	}
 	else {
 		wk->max = WAZANO_MAX + 1;
 		wk->wcbep.eff_arc_id = ARC_WAZA_EFF;
-//		OS_Printf("Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°\n");
-//		OS_Printf("Å°Å†Å@í èÌãZÉGÉtÉFÉNÉgÉfÉoÉbÉOÅ@Å@Å†Å°\n");
-//		OS_Printf("Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°Å†Å°\n");
+//		OS_Printf("‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†\n");
+//		OS_Printf("‚ñ†‚ñ°„ÄÄÈÄöÂ∏∏ÊäÄ„Ç®„Éï„Çß„ÇØ„Éà„Éá„Éê„ÉÉ„Ç∞„ÄÄ„ÄÄ‚ñ°‚ñ†\n");
+//		OS_Printf("‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†‚ñ°‚ñ†\n");
 	}
 	
-	///< îwåiÉfÅ[É^
+	///< ËÉåÊôØ„Éá„Éº„Çø
 	wk->wcbep.haikei_data.arc_index = ARC_BATT_BG;
 	wk->wcbep.haikei_data.chr_id	= BATTLE_BG00_NCGR_BIN + BattleWorkBGIDGet(bw);
 	wk->wcbep.haikei_data.pal_id	= BATT_BG00_D_NCLR + BattleWorkBGIDGet(bw)*3;
@@ -681,7 +681,7 @@ BOOL DebugWazaEffectInit(int heap, BATTLE_WORK* bw, TCB_PTR tcb, TCB_FUNC func)
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉfÉoÉbÉOèIóπ
+ * @brief	„Éá„Éê„ÉÉ„Ç∞ÁµÇ‰∫Ü
  *
  * @param	none	
  *
@@ -691,7 +691,7 @@ BOOL DebugWazaEffectInit(int heap, BATTLE_WORK* bw, TCB_PTR tcb, TCB_FUNC func)
 //--------------------------------------------------------------
 void DebugWazaEffectDelete(void)
 {
-	///< ÉCÉâÉl
+	///< „Ç§„É©„Éç
 }
 
 

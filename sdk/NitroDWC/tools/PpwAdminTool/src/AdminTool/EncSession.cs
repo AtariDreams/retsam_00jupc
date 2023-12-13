@@ -19,22 +19,22 @@ using System.Threading;
 
 namespace NWC
 {
-    // ƒŠƒNƒGƒXƒg—pƒCƒ“ƒ^ƒtƒF[ƒX
+    // ãƒªã‚¯ã‚¨ã‚¹ãƒˆç”¨ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹
     interface IRequestContainer
     {
         void hton();
     }
 
-    // ƒŒƒXƒ|ƒ“ƒX—pƒCƒ“ƒ^ƒtƒF[ƒX
+    // ãƒ¬ã‚¹ãƒãƒ³ã‚¹ç”¨ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹
     interface IResponseContainer
     {
         void ntoh();
     }
 
-    // ƒGƒ“ƒfƒBƒAƒ“•ÏŠ·‚È‚Ç‚Ìƒ†[ƒeƒBƒŠƒeƒB
+    // ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³å¤‰æ›ãªã©ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£
     class SessionUtil
     {
-        // Œ»İÀs’†‚ÌƒVƒXƒeƒ€‚ªƒŠƒgƒ‹ƒGƒ“ƒfƒBƒAƒ“‚Ìê‡‚ÉƒoƒCƒg—ñ‚ğ”½“]‚·‚é
+        // ç¾åœ¨å®Ÿè¡Œä¸­ã®ã‚·ã‚¹ãƒ†ãƒ ãŒãƒªãƒˆãƒ«ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³ã®å ´åˆã«ãƒã‚¤ãƒˆåˆ—ã‚’åè»¢ã™ã‚‹
         public static byte[] ConvertEndian(byte[] bin)
         {
             if (BitConverter.IsLittleEndian)
@@ -111,29 +111,29 @@ namespace NWC
     }
 
     /// <summary>
-    /// ˆÃ†‰»DLLƒ‰ƒbƒp[
+    /// æš—å·åŒ–DLLãƒ©ãƒƒãƒ‘ãƒ¼
     /// </summary>
     public class EncSession
     {
 
         enum DWC_END_SESSION_STATE
         {
-            CANCELED,		//!< ƒLƒƒƒ“ƒZƒ‹
-            ERROR,		    //!< ƒGƒ‰[”­¶
-            INITIAL,		//!< ‰Šúó‘Ô
-            INITIALIZED,	//!< ‰Šú‰»Œã
-            REQUEST,		//!< ƒŠƒNƒGƒXƒg”­s
-            GETTING_TOKEN,  //!< ƒg[ƒNƒ“æ“¾’†
-            GOT_TOKEN,	    //!< ƒg[ƒNƒ“æ“¾Š®—¹
-            SENDING_DATA,	//!< ƒf[ƒ^‘—M’†
-            COMPLETED		//!< Š®—¹
+            CANCELED,		//!< ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+            ERROR,		    //!< ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ
+            INITIAL,		//!< åˆæœŸçŠ¶æ…‹
+            INITIALIZED,	//!< åˆæœŸåŒ–å¾Œ
+            REQUEST,		//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºè¡Œ
+            GETTING_TOKEN,  //!< ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—ä¸­
+            GOT_TOKEN,	    //!< ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å®Œäº†
+            SENDING_DATA,	//!< ãƒ‡ãƒ¼ã‚¿é€ä¿¡ä¸­
+            COMPLETED		//!< å®Œäº†
         }
 
         public enum DWC_ENC_SERVER
         {
-            RELEASE,             //!< »•i—pƒT[ƒo[‚ÉÚ‘±‚µ‚Ü‚·
-            DEBUG,               //!< ŠJ”­—pƒT[ƒo[‚ÉÚ‘±‚µ‚Ü‚·
-            TEST                 //!< (g—p‚µ‚È‚¢‚Å‚­‚¾‚³‚¢)
+            RELEASE,             //!< è£½å“ç”¨ã‚µãƒ¼ãƒãƒ¼ã«æ¥ç¶šã—ã¾ã™
+            DEBUG,               //!< é–‹ç™ºç”¨ã‚µãƒ¼ãƒãƒ¼ã«æ¥ç¶šã—ã¾ã™
+            TEST                 //!< (ä½¿ç”¨ã—ãªã„ã§ãã ã•ã„)
         }
 
         private DWC_ENC_SERVER currentServer;
@@ -158,44 +158,44 @@ namespace NWC
 
 
         /// <summary>
-        /// “à•”‚ÅDWC_InitŠÖ”ADWCi_EncSessionInitializeŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚·B
+        /// å†…éƒ¨ã§DWC_Inité–¢æ•°ã€DWCi_EncSessionInitializeé–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã™ã€‚
         /// </summary>
         [DllImport("dwcenc.dll")]
         protected static extern void DWC_EncSessionInitialize( int server, string initdata );
 
         /// <summary>
-        /// “à•”‚ÅghttpSetProxyŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚·BŠÇ—ƒc[ƒ‹ê—pAPIB
+        /// å†…éƒ¨ã§ghttpSetProxyé–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã™ã€‚ç®¡ç†ãƒ„ãƒ¼ãƒ«å°‚ç”¨APIã€‚
         /// </summary>
         [DllImport("dwcenc.dll")]
         protected static extern bool DWC_EncSetProxy(string proxyServer);
 
         /// <summary>
-        /// “à•”‚ÅDWC_ClearErrorŠÖ”ADWCi_EncSessionShutdownŠÖ”ADWC_ShutdownŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚·B
+        /// å†…éƒ¨ã§DWC_ClearErroré–¢æ•°ã€DWCi_EncSessionShutdowné–¢æ•°ã€DWC_Shutdowné–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã™ã€‚
         /// </summary>
         [DllImport("dwcenc.dll")]
         protected static extern void DWC_EncSessionShutdown();
 
         /// <summary>
-        /// “à•”‚ÅDWCi_EncSessionGetAsyncŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚·B
+        /// å†…éƒ¨ã§DWCi_EncSessionGetAsyncé–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã™ã€‚
         /// </summary>
         [DllImport("dwcenc.dll")]
         protected static extern int DWC_EncSessionGetAsync(string url, int pid, IntPtr data, uint size, int cb);
 
         /// <summary>
-        /// “à•”‚ÅDWCi_EncSessionProcessŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚·B
+        /// å†…éƒ¨ã§DWCi_EncSessionProcessé–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã™ã€‚
         /// </summary>
         /// <returns></returns>
         [DllImport("dwcenc.dll")]
         protected static extern int DWC_EncSessionProcess();
 
         /// <summary>
-        /// “à•”‚ÅDWCi_EncSessionGetResponseŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚·B
+        /// å†…éƒ¨ã§DWCi_EncSessionGetResponseé–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã™ã€‚
         /// </summary>
         [DllImport("dwcenc.dll")]
         protected static extern IntPtr DWC_EncSessionGetResponse(ref uint size);
 
         /// <summary>
-        /// “à•”‚ÅDWCi_EncSessionCancelŠÖ”‚ªŒÄ‚Î‚ê‚Ü‚·B
+        /// å†…éƒ¨ã§DWCi_EncSessionCancelé–¢æ•°ãŒå‘¼ã°ã‚Œã¾ã™ã€‚
         /// </summary>
         [DllImport("dwcenc.dll")]
         protected static extern void DWC_EncSessionCancel();
@@ -211,10 +211,10 @@ namespace NWC
         }
 
         /// <summary>
-        /// GameSpyƒoƒbƒNƒGƒ“ƒh‚Æ‚Ì’ÊM‚ğ‰Šú‰»‚·‚é
+        /// GameSpyãƒãƒƒã‚¯ã‚¨ãƒ³ãƒ‰ã¨ã®é€šä¿¡ã‚’åˆæœŸåŒ–ã™ã‚‹
         /// </summary>
-        /// <param name="server">Ú‘±æƒT[ƒo</param>
-        /// <param name="_key">ƒQ[ƒ€‚²‚Æ‚ÉˆÙ‚È‚éƒV[ƒNƒŒƒbƒgƒL[</param>
+        /// <param name="server">æ¥ç¶šå…ˆã‚µãƒ¼ãƒ</param>
+        /// <param name="_key">ã‚²ãƒ¼ãƒ ã”ã¨ã«ç•°ãªã‚‹ã‚·ãƒ¼ã‚¯ãƒ¬ãƒƒãƒˆã‚­ãƒ¼</param>
         internal EncSession(DWC_ENC_SERVER server, string _key, string _proxyServer)
         {
             currentServer = server;
@@ -229,10 +229,10 @@ namespace NWC
         }
 
         /// <summary>
-        /// Ú‘±æƒT[ƒo‚ğØ‚è‘Ö‚¦‚éB‘O‰ñ‚Æ“¯‚¶ƒT[ƒo‚ğw’è‚µ‚½‚Æ‚«‚ÍÚ‘±‚µ’¼‚·B
+        /// æ¥ç¶šå…ˆã‚µãƒ¼ãƒã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã€‚å‰å›ã¨åŒã˜ã‚µãƒ¼ãƒã‚’æŒ‡å®šã—ãŸã¨ãã¯æ¥ç¶šã—ç›´ã™ã€‚
         /// </summary>
-        /// <param name="server">Ú‘±æƒT[ƒo</param>
-        /// <returns>ƒvƒƒLƒVƒT[ƒoƒtƒH[ƒ}ƒbƒg‚ª³‚µ‚¢‚©</returns>
+        /// <param name="server">æ¥ç¶šå…ˆã‚µãƒ¼ãƒ</param>
+        /// <returns>ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ­£ã—ã„ã‹</returns>
         internal bool ChangeServer(DWC_ENC_SERVER server)
         {
             currentServer = server;
@@ -241,11 +241,11 @@ namespace NWC
         }
 
         /// <summary>
-        /// Ú‘±æƒT[ƒoAƒfƒBƒŒƒNƒgƒŠ‚ğØ‚è‘Ö‚¦‚éB‘O‰ñ‚Æ“¯‚¶ƒT[ƒo‚ğw’è‚µ‚½‚Æ‚«‚ÍÚ‘±‚µ’¼‚·B
+        /// æ¥ç¶šå…ˆã‚µãƒ¼ãƒã€ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã€‚å‰å›ã¨åŒã˜ã‚µãƒ¼ãƒã‚’æŒ‡å®šã—ãŸã¨ãã¯æ¥ç¶šã—ç›´ã™ã€‚
         /// </summary>
-        /// <param name="server">Ú‘±æƒT[ƒo</param>
-        /// <param name="_key">ƒV[ƒNƒŒƒbƒgƒL[</param>
-        /// <returns>ƒvƒƒLƒVƒT[ƒoƒtƒH[ƒ}ƒbƒg‚ª³‚µ‚¢‚©</returns>
+        /// <param name="server">æ¥ç¶šå…ˆã‚µãƒ¼ãƒ</param>
+        /// <param name="_key">ã‚·ãƒ¼ã‚¯ãƒ¬ãƒƒãƒˆã‚­ãƒ¼</param>
+        /// <returns>ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆãŒæ­£ã—ã„ã‹</returns>
         internal bool ChangeServer(DWC_ENC_SERVER server, string _key)
         {
             currentServer = server;
@@ -264,17 +264,17 @@ namespace NWC
 
                 switch (state)
                 {
-                    case DWC_END_SESSION_STATE.COMPLETED:		//!< Š®—¹
+                    case DWC_END_SESSION_STATE.COMPLETED:		//!< å®Œäº†
                         return true;
-                    case DWC_END_SESSION_STATE.CANCELED:		//!< ƒLƒƒƒ“ƒZƒ‹
-                    case DWC_END_SESSION_STATE.ERROR:			//!< ƒGƒ‰[”­¶
+                    case DWC_END_SESSION_STATE.CANCELED:		//!< ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+                    case DWC_END_SESSION_STATE.ERROR:			//!< ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ
                         return false;
-                    case DWC_END_SESSION_STATE.INITIAL:			//!< ‰Šúó‘Ô
-                    case DWC_END_SESSION_STATE.INITIALIZED:		//!< ‰Šú‰»Œã
-                    case DWC_END_SESSION_STATE.REQUEST:			//!< ƒŠƒNƒGƒXƒg”­s
-                    case DWC_END_SESSION_STATE.GETTING_TOKEN:	//!< ƒg[ƒNƒ“æ“¾’†
-                    case DWC_END_SESSION_STATE.GOT_TOKEN:		//!< ƒg[ƒNƒ“æ“¾Š®—¹
-                    case DWC_END_SESSION_STATE.SENDING_DATA:	//!< ƒf[ƒ^‘—M’†
+                    case DWC_END_SESSION_STATE.INITIAL:			//!< åˆæœŸçŠ¶æ…‹
+                    case DWC_END_SESSION_STATE.INITIALIZED:		//!< åˆæœŸåŒ–å¾Œ
+                    case DWC_END_SESSION_STATE.REQUEST:			//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºè¡Œ
+                    case DWC_END_SESSION_STATE.GETTING_TOKEN:	//!< ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—ä¸­
+                    case DWC_END_SESSION_STATE.GOT_TOKEN:		//!< ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å®Œäº†
+                    case DWC_END_SESSION_STATE.SENDING_DATA:	//!< ãƒ‡ãƒ¼ã‚¿é€ä¿¡ä¸­
                         break;
                 }
                 Thread.Sleep(10);
@@ -282,13 +282,13 @@ namespace NWC
         }
 
         /// <summary>
-        /// ‰Â•Ï’·‚ÌƒŠƒNƒGƒXƒg‚ğ‘—M‚µAƒŒƒXƒ|ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+        /// å¯å¤‰é•·ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’é€ä¿¡ã—ã€ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
         /// </summary>
-        /// <param name="url">Ú‘±æƒpƒX</param>
+        /// <param name="url">æ¥ç¶šå…ˆãƒ‘ã‚¹</param>
         /// <param name="id">ProfileID</param>
-        /// <param name="inPtr">ƒŠƒNƒGƒXƒg‚ğŠi”[‚µ‚½byte—ñ</param>
-        /// <param name="outPtr">ƒŒƒXƒ|ƒ“ƒX‚ğw‚µ‚½ƒ|ƒCƒ“ƒ^</param>
-        /// <param name="outSize">ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY</param>
+        /// <param name="inPtr">ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’æ ¼ç´ã—ãŸbyteåˆ—</param>
+        /// <param name="outPtr">ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’æŒ‡ã—ãŸãƒã‚¤ãƒ³ã‚¿</param>
+        /// <param name="outSize">ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚º</param>
         internal void Session(string url, int id, byte[] bytes, out IntPtr outPtr, out uint outSize)
         {
             uint realSize = 0;
@@ -297,7 +297,7 @@ namespace NWC
 
             if (bytes == null || bytes.Length == 0)
             {
-                //throw new Exception("“ü—Íƒf[ƒ^‚ª‹ó‚Å‚·B");
+                //throw new Exception("å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ãŒç©ºã§ã™ã€‚");
             }
             else
             {
@@ -317,7 +317,7 @@ namespace NWC
                     EncSession.DWC_EncSessionGetAsync(url, id, inPtr, (uint)inSize, 0);
                     if (!WaitForResponse())
                     {
-                        throw new Exception("HTTPƒGƒ‰[");
+                        throw new Exception("HTTPã‚¨ãƒ©ãƒ¼");
                     }
                     outPtr = EncSession.DWC_EncSessionGetResponse(ref realSize);
                 }
@@ -332,13 +332,13 @@ namespace NWC
         }
 
         /// <summary>
-        /// ŒÅ’è’·‚ÌƒŠƒNƒGƒXƒg‚ğ‘—M‚µAƒŒƒXƒ|ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+        /// å›ºå®šé•·ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’é€ä¿¡ã—ã€ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
         /// </summary>
-        /// <param name="url">Ú‘±æƒpƒX</param>
+        /// <param name="url">æ¥ç¶šå…ˆãƒ‘ã‚¹</param>
         /// <param name="id">ProfileID</param>
-        /// <param name="request">ƒŠƒNƒGƒXƒgƒf[ƒ^</param>
-        /// <param name="outPtr">ƒŒƒXƒ|ƒ“ƒX‚ğw‚µ‚½ƒ|ƒCƒ“ƒ^</param>
-        /// <param name="outSize">ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY</param>
+        /// <param name="request">ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿</param>
+        /// <param name="outPtr">ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’æŒ‡ã—ãŸãƒã‚¤ãƒ³ã‚¿</param>
+        /// <param name="outSize">ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚º</param>
         internal void Session(string url, int id, object request, out IntPtr outPtr, out uint outSize)
         {
             uint realSize = 0;
@@ -352,7 +352,7 @@ namespace NWC
                     EncSession.DWC_EncSessionGetAsync(url, id, ptr, (uint)Marshal.SizeOf(request), 0);
                     if (!WaitForResponse())
                     {
-                        throw new Exception("HTTPƒGƒ‰[");
+                        throw new Exception("HTTPã‚¨ãƒ©ãƒ¼");
                     }
                     outPtr = EncSession.DWC_EncSessionGetResponse(ref realSize);
                 }
@@ -366,16 +366,16 @@ namespace NWC
         }
 
         /// <summary>
-        /// ŒÅ’è’·‚ÌƒŠƒNƒGƒXƒg‚ğ‘—M‚µAŒÅ’è’·‚ÌƒŒƒXƒ|ƒ“ƒX‚ğ•Ô‚·
+        /// å›ºå®šé•·ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’é€ä¿¡ã—ã€å›ºå®šé•·ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’è¿”ã™
         /// </summary>
-        /// <typeparam name="T_REQ">ƒŠƒNƒGƒXƒgƒf[ƒ^ƒNƒ‰ƒX</typeparam>
-        /// <typeparam name="T_RES">ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^ƒNƒ‰ƒX</typeparam>
-        /// <param name="url">Ú‘±æƒpƒX</param>
+        /// <typeparam name="T_REQ">ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚¯ãƒ©ã‚¹</typeparam>
+        /// <typeparam name="T_RES">ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒ©ã‚¹</typeparam>
+        /// <param name="url">æ¥ç¶šå…ˆãƒ‘ã‚¹</param>
         /// <param name="pid">ProfileID</param>
-        /// <param name="request">ƒŠƒNƒGƒXƒgƒf[ƒ^</param>
-        /// <param name="outPtr">ƒŒƒXƒ|ƒ“ƒX‚ğw‚µ‚½ƒ|ƒCƒ“ƒ^</param>
-        /// <param name="outSize">ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY</param>
-        /// <returns>ƒŒƒXƒ|ƒ“ƒXƒf[ƒ^BƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª‹K’è‚ÆˆÙ‚È‚Á‚½ê‡‚Ídefault’l‚ª•Ô‚éB</returns>
+        /// <param name="request">ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿</param>
+        /// <param name="outPtr">ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’æŒ‡ã—ãŸãƒã‚¤ãƒ³ã‚¿</param>
+        /// <param name="outSize">ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚º</param>
+        /// <returns>ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã€‚ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒè¦å®šã¨ç•°ãªã£ãŸå ´åˆã¯defaultå€¤ãŒè¿”ã‚‹ã€‚</returns>
         internal T_RES GenericSession<T_REQ, T_RES>(string url, int pid, T_REQ request, out IntPtr outPtr, out uint outSize)
             where T_REQ : IRequestContainer
             where T_RES : IResponseContainer
@@ -389,7 +389,7 @@ namespace NWC
             if (outSize != Marshal.SizeOf(typeof(T_RES)))
             {
                 return default(T_RES);
-                //throw new Exception("ƒŒƒXƒ|ƒ“ƒXƒTƒCƒY‚ª•s³‚Å‚·B\n" + outSize + " < " + Marshal.SizeOf(typeof(T_RES)));
+                //throw new Exception("ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚µã‚¤ã‚ºãŒä¸æ­£ã§ã™ã€‚\n" + outSize + " < " + Marshal.SizeOf(typeof(T_RES)));
             }
 
             response = (T_RES)Marshal.PtrToStructure(outPtr, typeof(T_RES));

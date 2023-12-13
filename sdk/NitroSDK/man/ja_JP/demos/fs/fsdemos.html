@@ -1,103 +1,103 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
 <TITLE>FS Demos</TITLE>
 </HEAD>
 <BODY>
-<H1>ROM �t�@�C���V�X�e��(FS)�T���v���f��</H1>
-<H2>�ꏊ</H2>
+<H1>ROM ファイルシステム(FS)サンプルデモ</H1>
+<H2>場所</H2>
 <P><CODE>$NitroSDK/build/demos/fs</CODE></P>
-<H2>�R���p�C�����@</H2>
-<P><CODE>$NitroSDK/build/demos/fs</CODE>�f�B���N�g���Ɉڂ�A</P>
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSDK/build/demos/fs</CODE>ディレクトリに移り、</P>
 <BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
-<P>�Ɠ��͂��܂��B���s�t�@�C��(<CODE>.nef</CODE>, <CODE>.srl</CODE> �t�@�C��) ���A</P>
-<BLOCKQUOTE><CODE>$NitroSDK/build/demos/fs/(�T���v����)/bin/(�v���b�g�t�H�[��)/(�^�[�Q�b�g)/</CODE></BLOCKQUOTE>
-<P>�̉��ɐ�������܂��B�Ⴆ�΁A</P>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/fs/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
 <BLOCKQUOTE><CODE>$NitroSDK/build/demos/fs/overlay/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
-<P>�̂悤�ɂȂ�܂��B</P>
-<P>FS �͑��̑����̃f���ƈقȂ�A<CODE>makerom</CODE> �̎g�p���K�{�ƂȂ��Ă��܂��̂ŁA<CODE>elftobin</CODE> ���g�����r���h(<CODE>make NITRO_ELFTOBIN=TRUE</CODE>)�͂ł��܂���B</P>
+<P>のようになります。</P>
+<P>FS は他の多くのデモと異なり、<CODE>makerom</CODE> の使用が必須となっていますので、<CODE>elftobin</CODE> を使ったビルド(<CODE>make NITRO_ELFTOBIN=TRUE</CODE>)はできません。</P>
 
-<H2>���s���@</H2>
-<P><CODE>$NitroSDK/build/demos/fs/(�T���v����)/bin/(�v���b�g�t�H�[��)/(�^�[�Q�b�g)/</CODE> �f�B���N�g���Ɉڂ�A�ȉ��̂����̈���s���܂��B</P>
+<H2>実行方法</H2>
+<P><CODE>$NitroSDK/build/demos/fs/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE> ディレクトリに移り、以下のうちの一つを行います。</P>
 <UL>
-  <LI>ensata �� <CODE>*.nef</CODE>, <CODE>*.srl</CODE> �����s����B
-  <LI>IS-NITRO-DEBUGGER �� <CODE>*.nlf</CODE> �t�@�C����ǂ݂���Ŏ��s����B
-  <LI>IS-NITRO-DEBUGGER �� <CODE>*.srl</CODE> �����s����B
+  <LI>ensata で <CODE>*.nef</CODE>, <CODE>*.srl</CODE> を実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
 </UL>
 
-<H2>����</H2>
+<H2>説明</H2>
 <TABLE width="720">
   <TBODY>
     <TR>
       <TD width="187"><EM><STRONG><CODE>file-1</CODE></STRONG></EM></TD>
-      <TD width="525">FS �𗘗p���邽�߂ɕK�v�ȃv���O�����\���́A�����ȒP�Ȑ��`�ł��B</TD>
+      <TD width="525">FS を利用するために必要なプログラム構成の、ごく簡単な雛形です。</TD>
     </TR>
     <TR>
       <TD width="187"><EM><STRONG><CODE>file-2</CODE></STRONG></EM></TD>
-      <TD width="525">�f�B���N�g���ƃt�@�C����g�ݍ��݁A�v���O�������œǂݏo���܂��B</TD>
+      <TD width="525">ディレクトリとファイルを組み込み、プログラム内で読み出します。</TD>
     </TR>
     <TR>
       <TD width="187"><EM><STRONG><CODE>file-3</CODE></STRONG></EM></TD>
-      <TD width="525"><A href="../../fs/file/FS_CreateFileFromMemory.html">FS_CreateFileFromMemory</a>�֐���<A href="../../fs/file/FS_CreateFileFromRom.html">FS_CreateFileFromRom</a>�֐��̓�����e�X�g���܂��B</TD>
+      <TD width="525"><A href="../../fs/file/FS_CreateFileFromMemory.html">FS_CreateFileFromMemory</a>関数と<A href="../../fs/file/FS_CreateFileFromRom.html">FS_CreateFileFromRom</a>関数の動作をテストします。</TD>
     </TR>
     <TR>
       <TD width="187"><EM><STRONG><CODE>async</CODE></STRONG></EM></TD>
-      <TD width="525">�e�X���b�h���œ������[�h���J��Ԃ��T���v���ł��B<BR>
-                      ���s����Ă�������񓯊�����ɑΉ����Ă���ꍇ�́A<BR>
-                      �u���b�L���O���ɃX���[�v���ăX���b�h���؂�ւ��܂��B<BR>
-                      �����łȂ��ꍇ�́A��ɒP��̃X���b�h���������[�h���J��Ԃ��܂��B<BR>
-                      �ڍׂ�FS_ReadFileAsync�֐��̉�����Q�Ƃ��������B</TD>
+      <TD width="525">各スレッド内で同期リードを繰り返すサンプルです。<BR>
+                      実行されている環境が非同期動作に対応している場合は、<BR>
+                      ブロッキング時にスリープしてスレッドが切り替わります。<BR>
+                      そうでない場合は、常に単一のスレッドが同期リードを繰り返します。<BR>
+                      詳細はFS_ReadFileAsync関数の解説を参照ください。</TD>
     </TR>
     <TR>
       <TD width="187"><EM><STRONG><CODE>overlay</CODE></STRONG></EM></TD>
-      <TD width="525">�I�[�o�[���C�̊ȒP�ȃT���v���ł��B</TD>
+      <TD width="525">オーバーレイの簡単なサンプルです。</TD>
     </TR>
     <TR>
       <TD width="187"><EM><STRONG><CODE>overlay-compressed</CODE></STRONG></EM></TD>
-      <TD width="525">�r���h�X�C�b�` NITRO_COMPRESS ���w�肵�Ĉ��k�I�[�o�[���C�̓�����e�X�g���܂��B<br>
-                      �v���O�������̂� overlay �T���v���f���Ɠ��l�ł��B</TD>
+      <TD width="525">ビルドスイッチ NITRO_COMPRESS を指定して圧縮オーバーレイの動作をテストします。<br>
+                      プログラム自体は overlay サンプルデモと同様です。</TD>
     </TR>
     <TR>
       <TD width="187"><EM><STRONG><CODE>overlay-staticinit</CODE></STRONG></EM></TD>
-      <TD width="525">sinit.h �w�b�_�� NitroStaticInit() �֐����`���AC����ŏ����ꂽ�I�[�o�[���C���� static initializer ���g�p����T���v���ł��B</TD>
+      <TD width="525">sinit.h ヘッダと NitroStaticInit() 関数を定義し、C言語で書かれたオーバーレイから static initializer を使用するサンプルです。</TD>
     </TR>
     <TR>
       <TD width="187"><EM><STRONG><CODE>arc-1</CODE></STRONG></EM></TD>
-      <TD width="525">�ȉ��̂Q�̃A�[�J�C�u��Ǝ��Ƀ��[�h����T���v���ł��B<br>
+      <TD width="525">以下の２つのアーカイブを独自にロードするサンプルです。<br>
 	  <br>
-	  �E�f�t�H���g��<A href="../../fs/archive_rom_spec.html">ROM�A�[�J�C�u</a>�Ɠ��l�̓��������A�[�J�C�u<br>
-	  �E�t�@�C���Ƃ��Ċi�[���ꂽ�v���O�����o�C�i�������̃t�@�C���V�X�e���փA�N�Z�X����A�[�J�C�u<br>
+	  ・デフォルトの<A href="../../fs/archive_rom_spec.html">ROMアーカイブ</a>と同様の動作をするアーカイブ<br>
+	  ・ファイルとして格納されたプログラムバイナリ内部のファイルシステムへアクセスするアーカイブ<br>
 	  <br>
 	  </TD>
     </TR>
     <TR>
       <TD width="187"><EM><STRONG><CODE>arc-2</CODE></STRONG></EM></TD>
-      <TD width="525">NitroROM�t�H�[�}�b�g�ɏ������Ă��Ȃ��Ǝ��̃f�B���N�g���\����<br>
-	  �A�[�J�C�u�Ƃ��ă��[�h����T���v���ł��B<br>
-	  ���̃T���v���ł� arc-1 �T���v���ƈقȂ�A��{�I�ȃA�N�Z�X�R�}���h�̂�������<br>
-	  ���[�U�v���V�[�W���ɂ���ăf�t�H���g��������u���������������܂��B<br>
+      <TD width="525">NitroROMフォーマットに準拠していない独自のディレクトリ構造を<br>
+	  アーカイブとしてロードするサンプルです。<br>
+	  このサンプルでは arc-1 サンプルと異なり、基本的なアクセスコマンドのいくつかを<br>
+	  ユーザプロシージャによってデフォルト処理から置き換える例を示します。<br>
 	  </TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>�G�~�����[�^</H2>
-<P><CODE>���ׂĐ���ɓ��삵�܂��B</CODE></P>
-<H2>�Q��</H2>
-<P><A href="../../fs/list_fs.html"><CODE>FS�֐��ꗗ</CODE></A></P>
-<H2>����</H2>
+<H2>エミュレータ</H2>
+<P><CODE>すべて正常に動作します。</CODE></P>
+<H2>参照</H2>
+<P><A href="../../fs/list_fs.html"><CODE>FS関数一覧</CODE></A></P>
+<H2>履歴</H2>
 <P>
-2005/06/28 file-3 �T���v���̐�����ǉ�<br>
-2005/05/10 overlay-compressed �T���v���̐�����ǉ�<br>
-2005/03/02 �L�q���e�����݂̃T�|�[�g���̏󋵂ɍ����悤�C��<BR>
-2005/01/19 overlay-staticinit �T���v���̐�����ǉ�<BR>
-2004/10/06 �ꕔ�T���v���̐����������C���E�ǉ�<BR>
-2004/08/17 IS-NITRO-EMULATOR�ɂ��Ă̕\�L�𓝈�<BR>
-2004/07/10 .bin ���� .srl �֕ύX�B<BR>
-2004/06/18 ���s���@ �̋L�q���C��<BR>
-2004/05/20 ����</P>
+2005/06/28 file-3 サンプルの説明を追加<br>
+2005/05/10 overlay-compressed サンプルの説明を追加<br>
+2005/03/02 記述内容を現在のサポート環境の状況に合うよう修正<BR>
+2005/01/19 overlay-staticinit サンプルの説明を追加<BR>
+2004/10/06 一部サンプルの説明抜けを修正・追加<BR>
+2004/08/17 IS-NITRO-EMULATORについての表記を統一<BR>
+2004/07/10 .bin から .srl へ変更。<BR>
+2004/06/18 実行方法 の記述を修正<BR>
+2004/05/20 初版</P>
 </BODY>
 </HTML>

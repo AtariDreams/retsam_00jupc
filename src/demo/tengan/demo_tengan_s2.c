@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	demo_tengan_s2.c
- * @brief	2ïCÇèûä“Ç∑ÇÈèÍñ 
+ * @brief	2Âåπ„ÇíÂÑüÈÇÑ„Åô„ÇãÂ†¥Èù¢
  * @author	goto
- * @date	2008.02.26(âŒ)
+ * @date	2008.02.26(ÁÅ´)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -78,7 +78,7 @@ static void SubBG_ResourceLoad( GF_BGL_INI* bgl, PALETTE_FADE_PTR pfd )
 }
 
 
-///< ã‚âÕì«Ç›çûÇ›
+///< ÈäÄÊ≤≥Ë™≠„ÅøËæº„Åø
 static void demo_scene02_ResourceLoad_Ginga( DEMO_SCENE_02_WORK* wk )
 {
 	ARCHANDLE*		 hdl = wk->sys->p_handle;
@@ -116,13 +116,13 @@ static void demo_scene02_ResourceLoad( DEMO_SCENE_02_WORK* wk )
 
 	///< 3D
 	
-	///< É}ÉbÉvÇ∆íåÇÕìØéûÇ…égÇ§
+	///< „Éû„ÉÉ„Éó„Å®Êü±„ÅØÂêåÊôÇ„Å´‰Ωø„ÅÜ
 	res_load_init( &wk->m_disp.map, NARC_demo_tengan_gra_g_demo_map_nsbmd, wk->sys->p_handle );
 	res_load_init( &wk->m_disp.colum, NARC_demo_tengan_gra_g_demo_colum_01_nsbmd, wk->sys->p_handle );
 	res_anime_init( 0, &wk->m_disp.colum, NARC_demo_tengan_gra_g_demo_colum_01_nsbca, wk->sys->p_handle, &wk->sys->allocator );
 	res_anime_init( 1, &wk->m_disp.colum, NARC_demo_tengan_gra_g_demo_colum_01_nsbma, wk->sys->p_handle, &wk->sys->allocator );
 
-	///< ÇΩÇ‹
+	///< „Åü„Åæ
 	res_load_init( &wk->m_disp.kage[ 0 ], NARC_demo_tengan_gra_kurotama_nsbmd, wk->sys->p_handle );
 	res_anime_init( 0, &wk->m_disp.kage[ 0 ], NARC_demo_tengan_gra_kurotama_nsbca, wk->sys->p_handle, &wk->sys->allocator );
 	res_anime_init( 1, &wk->m_disp.kage[ 0 ], NARC_demo_tengan_gra_kurotama_nsbma, wk->sys->p_handle, &wk->sys->allocator );
@@ -301,7 +301,7 @@ void* Demo_Tengan_Scene02_Init( DEMO_TENGAN_WORK* main_wk )
 	wk->sys->camera_target.z = FX32_CONST( 34 );
 	Demo_CameraSet( wk->sys->camera_p, &wk->sys->camera_target );
 	
-	Snd_DataSetByScene( SND_SCENE_SUB_CLIMAX, 0, 0 );	//ÉTÉEÉìÉhÉfÅ[É^ÉçÅ[Éh(BGMà¯åpÇ¨)
+	Snd_DataSetByScene( SND_SCENE_SUB_CLIMAX, 0, 0 );	//„Çµ„Ç¶„É≥„Éâ„Éá„Éº„Çø„É≠„Éº„Éâ(BGMÂºïÁ∂ô„Åé)
 		
 	return wk;
 }
@@ -314,17 +314,17 @@ static void ShakeTCB( TCB_PTR tcb, void* work )
 	case 0:
 		wk->cw->set_frame = 2;
 		if ( wk->cnt ){
-			if ( wk->main_seq == eS2_DIA_ACTIVE		 	///< ÉfÉBÉAÉãÉKèoÇÈÇ∆Ç´
-			||	 wk->main_seq == eS2_DIA_ON ){			///< ÉfÉBÉAÉãÉKèoÇΩå„
+			if ( wk->main_seq == eS2_DIA_ACTIVE		 	///< „Éá„Ç£„Ç¢„É´„Ç¨Âá∫„Çã„Å®„Åç
+			||	 wk->main_seq == eS2_DIA_ON ){			///< „Éá„Ç£„Ç¢„É´„Ç¨Âá∫„ÅüÂæå
 				wk->cw->mx = +FX32_CONST( 2 );
 			}
-			else if ( wk->main_seq == eS2_PAL_ACTIVE ){	///< ÉpÉãÉLÉAèoÇÈÇ∆Ç´
+			else if ( wk->main_seq == eS2_PAL_ACTIVE ){	///< „Éë„É´„Ç≠„Ç¢Âá∫„Çã„Å®„Åç
 				wk->cw->mx = +FX32_CONST( 4 );
 			}
 			else if ( wk->main_seq == 0xFF ){
 				wk->cw->mx = +FX32_CONST( 6 );
 			}
-			else if ( wk->main_seq == eS2_PAL_ON ){		///< ÉpÉãÉLÉAèoÇΩå„
+			else if ( wk->main_seq == eS2_PAL_ON ){		///< „Éë„É´„Ç≠„Ç¢Âá∫„ÅüÂæå
 				wk->cw->mx = +FX32_CONST( 2 );
 				wk->cw->set_frame = 4;
 			}
@@ -448,7 +448,7 @@ BOOL Demo_Tengan_Scene02_Main( void* work )
 		wk->cut++;
 		
 	case eS2_CAMERA_INIT:
-		///< ÉJÉÅÉâÇà⁄ìÆÇ≥ÇπÇÈ
+		///< „Ç´„É°„É©„ÇíÁßªÂãï„Åï„Åõ„Çã
 		{
 			wk->sys->cw.x = 0;
 			wk->sys->cw.y = 0;
@@ -465,7 +465,7 @@ BOOL Demo_Tengan_Scene02_Main( void* work )
 		}
 	
 	case eS2_CAMERA_MOVE:
-		///< à⁄ìÆë“Çø
+		///< ÁßªÂãïÂæÖ„Å°
 		if ( Camera_Work_Main( &wk->sys->cw ) ){
 			wk->wait = 0;
 			wk->cut++;
@@ -480,9 +480,9 @@ BOOL Demo_Tengan_Scene02_Main( void* work )
 		wk->cut++;
 		
 	case eS2_DIA_ACTIVE:
-		///< ÉfÉBÉAÉãÉKÉXÉ^Å[Ég
+		///< „Éá„Ç£„Ç¢„É´„Ç¨„Çπ„Çø„Éº„Éà
 		if ( GF_MSG_PrintEndCheck( wk->sys->msg_index ) ){ break; }
-		#if 1	///< âº
+		#if 1	///< ‰ªÆ
 		{
 			DEMO_MOTION_BL_DATA mb = {
 				GX_DISPMODE_VRAM_C,
@@ -507,7 +507,7 @@ BOOL Demo_Tengan_Scene02_Main( void* work )
 		wk->cut++;
 
 	case eS2_PAL_ACTIVE:
-		///< ÉpÉãÉLÉAÉXÉ^Å[Ég 2ïbå„
+		///< „Éë„É´„Ç≠„Ç¢„Çπ„Çø„Éº„Éà 2ÁßíÂæå
 		if ( ( ++wk->wait ) >= 60 ){
 			wk->sys->shake.main_seq = eS2_DIA_ACTIVE;
 			wk->m_disp.kage[ 1 ].bAnime = TRUE;
@@ -517,17 +517,17 @@ BOOL Demo_Tengan_Scene02_Main( void* work )
 		break;
 				
 	case eS2_DIA_ON:
-		///< ÉAÉjÉÅèIÇÌÇ¡ÇΩÇÁìoèÍ
+		///< „Ç¢„Éã„É°ÁµÇ„Çè„Å£„Åü„ÇâÁôªÂ†¥
 	#ifdef PM_DEBUG
 		if ( sys.trg & PAD_BUTTON_A ){
 			OS_Printf( "wait %d\n", wk->wait );
 		}
 	#endif
 		wk->wait++;
-		if ( wk->wait ==   80 ){			///< ÉfÉBÉAÇÃã Ç™óéÇøÇƒÇ≠ÇÈ
+		if ( wk->wait ==   80 ){			///< „Éá„Ç£„Ç¢„ÅÆÁéâ„ÅåËêΩ„Å°„Å¶„Åè„Çã
 			Snd_SePlayPan( DS_EFF_01, -70 );
 		}
-		if ( wk->wait ==  135 ){			///< ÉpÉãÉLÉAÇÃã Ç™óéÇøÇƒÇ≠ÇÈ
+		if ( wk->wait ==  135 ){			///< „Éë„É´„Ç≠„Ç¢„ÅÆÁéâ„ÅåËêΩ„Å°„Å¶„Åè„Çã
 			Snd_SePlayPan( DS_EFF_01, +70 );
 		}
 		if ( wk->wait == 310 || wk->wait == 375 || wk->wait == 432 ){
@@ -536,16 +536,16 @@ BOOL Demo_Tengan_Scene02_Main( void* work )
 		if ( wk->wait == 284 || wk->wait == 338 || wk->wait == 406 ){
 			Snd_SePlay( DS_EFF_04 );
 		}
-		if ( wk->wait == 165 ){			///< ã Ç™Ç≈Ç©Ç≠Ç»ÇÈÅ@ÉfÉBÉA
+		if ( wk->wait == 165 ){			///< Áéâ„Åå„Åß„Åã„Åè„Å™„Çã„ÄÄ„Éá„Ç£„Ç¢
 			Snd_SePlayPan( DS_EFF_02, -70 );	
 		}
-		if ( wk->wait == 220 ){			///< ã Ç™Ç≈Ç©Ç≠Ç»ÇÈÅ@ÉpÉã
+		if ( wk->wait == 220 ){			///< Áéâ„Åå„Åß„Åã„Åè„Å™„Çã„ÄÄ„Éë„É´
 			Snd_SePlayPan( DS_EFF_02, +70 );	
 		}
-		if ( wk->wait == 470 ){			///< ê¸Ç™ì¸ÇÈÅ@ÉfÉBÉA
+		if ( wk->wait == 470 ){			///< Á∑ö„ÅåÂÖ•„Çã„ÄÄ„Éá„Ç£„Ç¢
 			Snd_SePlayPan( DS_EFF_05, -70 );	
 		}
-		if ( wk->wait == 520 ){			///< ê¸Ç™ì¸ÇÈÅ@ÉpÉã
+		if ( wk->wait == 520 ){			///< Á∑ö„ÅåÂÖ•„Çã„ÄÄ„Éë„É´
 			Snd_SePlayPan( DS_EFF_05, +70 );	
 		}
 		if ( wk->wait == 120 ){
@@ -566,7 +566,7 @@ BOOL Demo_Tengan_Scene02_Main( void* work )
 		break;
 
 	case eS2_PAL_ON:
-		///< ÉAÉjÉÅèIÇÌÇ¡ÇΩÇÁìoèÍ
+		///< „Ç¢„Éã„É°ÁµÇ„Çè„Å£„Åü„ÇâÁôªÂ†¥
 		if ( wk->m_disp.kage[ 1 ].bAnime == FALSE ){
 			wk->sys->shake.main_seq = eS2_PAL_ON;
 			PokeOn_Init( wk, 1, MONSNO_EA );
@@ -645,7 +645,7 @@ BOOL Demo_Tengan_Scene02_Main( void* work )
 		break;
 		
 	case eS2_GINGA_ON:
-		///< ã‚âÕäJén
+		///< ÈäÄÊ≤≥ÈñãÂßã
 		if ( wk->sys->light_color.brightness != 0 ){ 
 			wk->sys->light_color.brightness--;
 			G2_SetBlendBrightness( DEMO_BLEND_MASK_M, wk->sys->light_color.brightness );
@@ -685,7 +685,7 @@ BOOL Demo_Tengan_Scene02_Main( void* work )
 			D3DOBJ_SetScale( &wk->m_disp.gira[ 1 ].obj, wk->m_disp.gira[ 1 ].obj_scale, FX32_CONST( 1.0 ), wk->m_disp.gira[ 1 ].obj_scale );
 		}
 		else {
-			Demo_MSG_Set( wk->sys, wk->param, msg_d05r0114_gingaboss_04 );	///< î¸ÇµÇ¢Å`
+			Demo_MSG_Set( wk->sys, wk->param, msg_d05r0114_gingaboss_04 );	///< Áæé„Åó„ÅÑ„Äú
 			wk->cut++;
 		}
 		break;
@@ -744,7 +744,7 @@ BOOL Demo_Tengan_Scene02_Main( void* work )
 		break;
 	}
 
-	///< âeÇÃï‚ê≥	
+	///< ÂΩ±„ÅÆË£úÊ≠£	
 	wk->m_disp.okage[ 0 ].obj.matrix = wk->m_disp.poke[ 0 ].obj.matrix;
 	wk->m_disp.okage[ 1 ].obj.matrix = wk->m_disp.poke[ 1 ].obj.matrix;
 	wk->m_disp.okage[ 2 ].obj.matrix = wk->m_disp.hobj[ 0 ].obj.matrix;

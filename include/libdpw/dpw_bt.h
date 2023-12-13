@@ -14,7 +14,7 @@
  *---------------------------------------------------------------------------*/
 
 /*! @file
-	@brief	DP WiFi Battle Tower ƒ‰ƒCƒuƒ‰ƒŠ
+	@brief	DP WiFi Battle Tower ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 	
 	@author	kitayama(kitayama_shigetoshi@nintendo.co.jp)
 	@author	Yamaguchi Ryo(yamaguchi_ryo@nintendo.co.jp)
@@ -37,96 +37,96 @@ extern "C" {
 
 #include "include/libdpw/dpw_common.h"
 /*-----------------------------------------------------------------------*
-					Œ^E’è”éŒ¾
+					å‹ãƒ»å®šæ•°å®£è¨€
  *-----------------------------------------------------------------------*/
 
-//! ƒ‰ƒ“ƒN‚Ì”
+//! ãƒ©ãƒ³ã‚¯ã®æ•°
 #define DPW_BT_RANK_NUM			10
 
-//! ƒ‹[ƒ€”‚ÌÅ‘å’l
+//! ãƒ«ãƒ¼ãƒ æ•°ã®æœ€å¤§å€¤
 #define DPW_BT_ROOM_NUM_MAX		100
 
-//! Dpw_Bt_Callback ‚ÌŒ‹‰Ê‚ªƒGƒ‰[‚Æ‚È‚éê‡‚Ìí•Ê
+//! Dpw_Bt_Callback ã®çµæœãŒã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹å ´åˆã®ç¨®åˆ¥
 typedef enum {
-	DPW_BT_ERROR_SERVER_FULL = -1,		//!< ƒT[ƒo[—e—ÊƒI[ƒo[
-	DPW_BT_ERROR_SERVER_TIMEOUT = -2,	//!< ƒT[ƒo[‚©‚ç‚Ì‰“š‚ª‚È‚¢
-	DPW_BT_ERROR_ILLIGAL_REQUEST = -3,	//!< ƒT[ƒo‚Ö‚Ì•s³‚È—v‹B•s³‚È•”‰®”Ô†‚ğw’è‚µ‚Ä‚¢‚Ü‚·
-	DPW_BT_ERROR_CANCEL	= -4,			//!< ˆ—‚ª Dpw_Bt_CancelAsync() ‚É‚æ‚Á‚ÄƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½
-	DPW_BT_ERROR_FATAL = -5,			//!< ’ÊM’v–½“IƒGƒ‰[B“dŒ¹‚ÌÄ“Š“ü‚ª•K—v‚Å‚·
-	DPW_BT_ERROR_DISCONNECTED = -6,		//!< ’ÊM•s”\ƒGƒ‰[Bƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»‚ª•K—v‚Å‚·B
-	DPW_BT_ERROR_FAILURE = -7			//!< ’ÊM¸”sƒGƒ‰[BƒŠƒgƒ‰ƒC‚µ‚Ä‚­‚¾‚³‚¢
+	DPW_BT_ERROR_SERVER_FULL = -1,		//!< ã‚µãƒ¼ãƒãƒ¼å®¹é‡ã‚ªãƒ¼ãƒãƒ¼
+	DPW_BT_ERROR_SERVER_TIMEOUT = -2,	//!< ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰ã®å¿œç­”ãŒãªã„
+	DPW_BT_ERROR_ILLIGAL_REQUEST = -3,	//!< ã‚µãƒ¼ãƒã¸ã®ä¸æ­£ãªè¦æ±‚ã€‚ä¸æ­£ãªéƒ¨å±‹ç•ªå·ã‚’æŒ‡å®šã—ã¦ã„ã¾ã™
+	DPW_BT_ERROR_CANCEL	= -4,			//!< å‡¦ç†ãŒ Dpw_Bt_CancelAsync() ã«ã‚ˆã£ã¦ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ
+	DPW_BT_ERROR_FATAL = -5,			//!< é€šä¿¡è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ã€‚é›»æºã®å†æŠ•å…¥ãŒå¿…è¦ã§ã™
+	DPW_BT_ERROR_DISCONNECTED = -6,		//!< é€šä¿¡ä¸èƒ½ã‚¨ãƒ©ãƒ¼ã€‚ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–ãŒå¿…è¦ã§ã™ã€‚
+	DPW_BT_ERROR_FAILURE = -7			//!< é€šä¿¡å¤±æ•—ã‚¨ãƒ©ãƒ¼ã€‚ãƒªãƒˆãƒ©ã‚¤ã—ã¦ãã ã•ã„
 } DpwBtError;
 
-//! ƒT[ƒo[ƒXƒe[ƒ^ƒX
+//! ã‚µãƒ¼ãƒãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 typedef enum {
-	DPW_BT_STATUS_SERVER_OK,				//!< ³í
-	DPW_BT_STATUS_SERVER_STOP_SERVICE,		//!< ƒT[ƒrƒXˆê’â~’†
-	DPW_BT_STATUS_SERVER_FULL				//!< ƒT[ƒo[—e—ÊƒI[ƒo[
+	DPW_BT_STATUS_SERVER_OK,				//!< æ­£å¸¸
+	DPW_BT_STATUS_SERVER_STOP_SERVICE,		//!< ã‚µãƒ¼ãƒ“ã‚¹ä¸€æ™‚åœæ­¢ä¸­
+	DPW_BT_STATUS_SERVER_FULL				//!< ã‚µãƒ¼ãƒãƒ¼å®¹é‡ã‚ªãƒ¼ãƒãƒ¼
 } DpwBtServerStatus;
 
-//! ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^Bƒf[ƒ^‚Ì“à—e‚ÍŒ©’m‚µ‚È‚¢
+//! ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã€‚ãƒ‡ãƒ¼ã‚¿ã®å†…å®¹ã¯è¦‹çŸ¥ã—ãªã„
 typedef struct {
-	u8 data[56];		//!< ƒ|ƒPƒ‚ƒ“‚Ìƒf[ƒ^
+	u8 data[56];		//!< ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‡ãƒ¼ã‚¿
 } Dpw_Bt_PokemonData;
 
-//! ƒŠ[ƒ_[ƒf[ƒ^\‘¢‘Ì
+//! ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct {
-	u16 playerName[8];		//!< ƒvƒŒƒCƒ„[–¼
-	u8 versionCode;			//!< ƒo[ƒWƒ‡ƒ“ƒR[ƒh
-	u8 langCode;			//!< Œ¾ŒêƒR[ƒh
-	u8 countryCode;			//!< Z‚ñ‚Å‚¢‚é‘ƒR[ƒh
-	u8 localCode;			//!< Z‚ñ‚Å‚¢‚é’n•ûƒR[ƒh
-	u8 playerId[4];			//!< ƒvƒŒƒCƒ„[ID
-	s8 leaderMessage[8];	//!< ƒŠ[ƒ_[ƒƒbƒZ[ƒW
+	u16 playerName[8];		//!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å
+	u8 versionCode;			//!< ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
+	u8 langCode;			//!< è¨€èªã‚³ãƒ¼ãƒ‰
+	u8 countryCode;			//!< ä½ã‚“ã§ã„ã‚‹å›½ã‚³ãƒ¼ãƒ‰
+	u8 localCode;			//!< ä½ã‚“ã§ã„ã‚‹åœ°æ–¹ã‚³ãƒ¼ãƒ‰
+	u8 playerId[4];			//!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
+	s8 leaderMessage[8];	//!< ãƒªãƒ¼ãƒ€ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	union{
 		struct{
-			u8 ngname_f	:1;	//!< NGƒl[ƒ€ƒtƒ‰ƒO
-			u8 gender	:1;	//!< ƒvƒŒƒCƒ„[‚Ì«•Êƒtƒ‰ƒO
-			u8			:6;	// ‚ ‚Ü‚è6bit
+			u8 ngname_f	:1;	//!< NGãƒãƒ¼ãƒ ãƒ•ãƒ©ã‚°
+			u8 gender	:1;	//!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ€§åˆ¥ãƒ•ãƒ©ã‚°
+			u8			:6;	// ã‚ã¾ã‚Š6bit
 		};
 		u8	  flags;
 	};
-	u8 padding;				// ƒpƒfƒBƒ“ƒO
+	u8 padding;				// ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
 } Dpw_Bt_Leader;
 
-//! ƒvƒŒƒCƒ„[ƒf[ƒ^\‘¢‘Ì
+//! ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct {
-	Dpw_Bt_PokemonData pokemon[3];	//!< ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u16 playerName[8];		//!< ƒvƒŒƒCƒ„[–¼
-	u8 versionCode;			//!< ƒo[ƒWƒ‡ƒ“ƒR[ƒh
-	u8 langCode;			//!< Œ¾ŒêƒR[ƒh
-	u8 countryCode;			//!< Z‚ñ‚Å‚¢‚é‘ƒR[ƒh
-	u8 localCode;			//!< Z‚ñ‚Å‚¢‚é’n•ûƒR[ƒh
-	u8 playerId[4];			//!< ƒvƒŒƒCƒ„[ID
-	s8 leaderMessage[8];	//!< ƒŠ[ƒ_[ƒƒbƒZ[ƒW
+	Dpw_Bt_PokemonData pokemon[3];	//!< ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16 playerName[8];		//!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å
+	u8 versionCode;			//!< ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
+	u8 langCode;			//!< è¨€èªã‚³ãƒ¼ãƒ‰
+	u8 countryCode;			//!< ä½ã‚“ã§ã„ã‚‹å›½ã‚³ãƒ¼ãƒ‰
+	u8 localCode;			//!< ä½ã‚“ã§ã„ã‚‹åœ°æ–¹ã‚³ãƒ¼ãƒ‰
+	u8 playerId[4];			//!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
+	s8 leaderMessage[8];	//!< ãƒªãƒ¼ãƒ€ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	union{
 		struct{
-			u8 ngname_f	:1;	//!< NGƒl[ƒ€ƒtƒ‰ƒO
-			u8 gender	:1;	//!< ƒvƒŒƒCƒ„[‚Ì«•Êƒtƒ‰ƒO
-			u8			:6;	// ‚ ‚Ü‚è6bit
+			u8 ngname_f	:1;	//!< NGãƒãƒ¼ãƒ ãƒ•ãƒ©ã‚°
+			u8 gender	:1;	//!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ€§åˆ¥ãƒ•ãƒ©ã‚°
+			u8			:6;	// ã‚ã¾ã‚Š6bit
 		};
 		u8	  flags;
 	};
-	u8 trainerType;			//!< ƒgƒŒ[ƒi[ƒ^ƒCƒv
-	s8 message[24];			//!< ƒƒbƒZ[ƒW
-	u16 result;				//!< ¬Ñ
+	u8 trainerType;			//!< ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
+	s8 message[24];			//!< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	u16 result;				//!< æˆç¸¾
 } Dpw_Bt_Player;
 
-//! ƒ‹[ƒ€ƒf[ƒ^\‘¢‘Ì
+//! ãƒ«ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct {
-	Dpw_Bt_Player player[7];	//!< ƒvƒŒƒCƒ„[ƒf[ƒ^
-	Dpw_Bt_Leader leader[30];	//!< ƒŠ[ƒ_[ƒf[ƒ^
+	Dpw_Bt_Player player[7];	//!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	Dpw_Bt_Leader leader[30];	//!< ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
 } Dpw_Bt_Room;
 
 
 /*-----------------------------------------------------------------------*
-					ƒOƒ[ƒoƒ‹•Ï”’è‹`
+					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®šç¾©
  *-----------------------------------------------------------------------*/
 
 
 
 /*-----------------------------------------------------------------------*
-					ŠÖ”ŠO•”éŒ¾
+					é–¢æ•°å¤–éƒ¨å®£è¨€
  *-----------------------------------------------------------------------*/
 
 extern void Dpw_Bt_Init(s32 pid, u64 friend_key);

@@ -21,7 +21,7 @@
   modified tick and seconds conversion functions to consider for u32 overflow
 
   Revision 1.5  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.4  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -33,13 +33,13 @@
   add one more ')' at OS_TicksToMicroSeconds
 
   Revision 1.1  2004/02/25 11:36:52  yada
-  systemClock¨Tick ‚É”º‚¤•ÏX
+  systemClockâ†’Tick ã«ä¼´ã†å¤‰æ›´
 
   Revision 1.8  2004/02/24 12:37:15  yada
-  OS_GetTick() ƒXƒyƒ‹ƒ~ƒXC³
+  OS_GetTick() ã‚¹ãƒšãƒ«ãƒŸã‚¹ä¿®æ­£
 
   Revision 1.7  2004/02/24 10:49:49  yada
-  OS_GetTick() ’Ç‰Á
+  OS_GetTick() è¿½åŠ 
 
   Revision 1.6  2004/02/12 13:36:40  yasu
   change directory of ioreg.h
@@ -51,15 +51,15 @@
   change SDK prefix iris -> nitro
 
   Revision 1.3  2004/02/04 07:36:25  yada
-  OS_IsSystemClockAvailable() ’Ç‰ÁB
-  OS_GetSystemClock(), OS_SetSystemClock()‚ğ
-  OS_GetTime(),OS_SetTime() ‚Ö–¼Ì•ÏXB
+  OS_IsSystemClockAvailable() è¿½åŠ ã€‚
+  OS_GetSystemClock(), OS_SetSystemClock()ã‚’
+  OS_GetTime(),OS_SetTime() ã¸åç§°å¤‰æ›´ã€‚
 
   Revision 1.2  2004/02/03 11:18:29  yada
-  systemClock’l‚ğ u32 ‚©‚ç OSTime(u64)‚É•ÏX
+  systemClockå€¤ã‚’ u32 ã‹ã‚‰ OSTime(u64)ã«å¤‰æ›´
 
   Revision 1.1  2004/02/02 05:29:18  yada
-  ƒVƒXƒeƒ€ƒNƒƒbƒNfirstRelease
+  ã‚·ã‚¹ãƒ†ãƒ ã‚¯ãƒ­ãƒƒã‚¯firstRelease
 
 
   $NoKeywords: $

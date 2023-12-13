@@ -2,18 +2,18 @@
 /**
  *
  *@file		weather_sys.c
- *@brief	‚¨“V‹CƒVƒXƒeƒ€
+ *@brief	ãŠå¤©æ°—ã‚·ã‚¹ãƒ†ãƒ 
  *@author	tomoya takahashi
  *@data		2005.04.25
  *
- *	‚±‚ÌƒVƒXƒeƒ€‚ÍAOAM@ƒtƒHƒO@BG‚Q@‚ğg—p‚µ‚Ü‚·B
+ *	ã“ã®ã‚·ã‚¹ãƒ†ãƒ ã¯ã€OAMã€€ãƒ•ã‚©ã‚°ã€€BGï¼’ã€€ã‚’ä½¿ç”¨ã—ã¾ã™ã€‚
  *
- *	V“VŒó“o˜^è‡
- *	‚PFƒwƒbƒ_‚Ì—ñ‹“‘Ì‚ÉV“VŒó‚Ì’è”–¼‚ğ’Ç‰Á
- *	‚QFƒOƒ‰ƒtƒBƒbƒNiƒZƒ‹ABGj‚ğ’Ç‰Á‚·‚é‚Æ‚«‚ÍA“V‹CƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚É’Ç‰Á
- *	‚RFƒRƒ“ƒgƒ[ƒ‹ƒ^ƒXƒNŠÖ”‚ğì¬‚µAWeatherSysDataƒe[ƒuƒ‹‚Éƒf[ƒ^‚ğİ’è
- *	‚SFƒRƒ“ƒgƒ[ƒ‹ƒ^ƒXƒNŠÖ”“à‚ÍAƒV[ƒPƒ“ƒX‚ÅŠÇ—‚·‚é‚±‚Æ‚ğŒˆ‚Ü‚è‚É‚µ‚Ä‚¢‚é‚Ì‚ÅA
- *	@@‰Šú‰»AƒtƒF[ƒhƒCƒ“AƒƒCƒ“AƒtƒF[ƒhƒAƒEƒgA”jŠü‚ÌƒV[ƒPƒ“ƒX‚É•ª‚¯‚Ä“VŒó‚ğì¬
+ *	æ–°å¤©å€™ç™»éŒ²æ‰‹é †
+ *	ï¼‘ï¼šãƒ˜ãƒƒãƒ€ã®åˆ—æŒ™ä½“ã«æ–°å¤©å€™ã®å®šæ•°åã‚’è¿½åŠ 
+ *	ï¼’ï¼šã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ï¼ˆã‚»ãƒ«ã€BGï¼‰ã‚’è¿½åŠ ã™ã‚‹ã¨ãã¯ã€å¤©æ°—ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã«è¿½åŠ 
+ *	ï¼“ï¼šã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯é–¢æ•°ã‚’ä½œæˆã—ã€WeatherSysDataãƒ†ãƒ¼ãƒ–ãƒ«ã«ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+ *	ï¼”ï¼šã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯é–¢æ•°å†…ã¯ã€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ç®¡ç†ã™ã‚‹ã“ã¨ã‚’æ±ºã¾ã‚Šã«ã—ã¦ã„ã‚‹ã®ã§ã€
+ *	ã€€ã€€åˆæœŸåŒ–ã€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€ãƒ¡ã‚¤ãƒ³ã€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã€ç ´æ£„ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«åˆ†ã‘ã¦å¤©å€™ã‚’ä½œæˆ
  *
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -47,17 +47,17 @@
 //-----------------------------------------------------------------------------
 /**
  *
- *					“V‹CŠÇ—ƒVƒXƒeƒ€
+ *					å¤©æ°—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  * 
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *			’è”’è‹`
+ *			å®šæ•°å®šç¾©
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//		“V‹C•ÏXƒ^ƒXƒN’è”
+//		å¤©æ°—å¤‰æ›´ã‚¿ã‚¹ã‚¯å®šæ•°
 //=====================================
 enum{
 	WEATHER_CHENGE_NOW_FADEOUT_START,
@@ -67,11 +67,11 @@ enum{
 	WEATHER_CHENGE_NEXT_FADEIN_START,
 	WEATHER_CHENGE_END,
 	
-	WEATHER_CHENGE_NONE,		// ƒŠƒNƒGƒXƒg–³‚µó‘Ô
+	WEATHER_CHENGE_NONE,		// ãƒªã‚¯ã‚¨ã‚¹ãƒˆç„¡ã—çŠ¶æ…‹
 };
 
 //-------------------------------------
-//		“V‹C•ÏXƒ^ƒXƒN’è”
+//		å¤©æ°—å¤‰æ›´ã‚¿ã‚¹ã‚¯å®šæ•°
 //=====================================
 enum{
 	WEATHER_CHENGE_WL_NEXT_INIT_START,
@@ -82,7 +82,7 @@ enum{
 };
 
 //-------------------------------------
-//	“V‹C•ÏXí—Ş
+//	å¤©æ°—å¤‰æ›´ç¨®é¡
 //=====================================
 enum{
 	WEATHER_CHANGE_SINGLE_TASK,
@@ -101,31 +101,31 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *			\‘¢‘ÌéŒ¾
+ *			æ§‹é€ ä½“å®£è¨€
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	“V‹CŠÇ—ƒVƒXƒeƒ€
+//	å¤©æ°—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 //	
 //=====================================
 typedef struct _WEATHER_MANAGER{
-	// “V‹CƒVƒXƒeƒ€
+	// å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ 
 	WEATHER_CONT_PTR	weather_sys;
 
-	// ŠÇ—ƒf[ƒ^
-	int now_play_weather;	// Às’†‚Ì“V‹C
+	// ç®¡ç†ãƒ‡ãƒ¼ã‚¿
+	int now_play_weather;	// å®Ÿè¡Œä¸­ã®å¤©æ°—
 
-	// •ÏXƒtƒF[ƒh—pƒf[ƒ^
-	int next_play_weather;	// Ÿ‚ÉÀs‚·‚é“V‹C
-	int chenge_seq;			// “V‹C•ÏXƒV[ƒPƒ“ƒX
-	int booking_weather;		// •ÏXŒãİ’è“V‹C	i“V‹C•ÏX’†‚É“V‹C•ÏXƒŠƒNƒGƒXƒg‚ª—ˆ‚½‚Æ‚«‚ÉŠi”[j
-	TCB_PTR tcb;			// “V‹C•ÏXTCB
+	// å¤‰æ›´ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨ãƒ‡ãƒ¼ã‚¿
+	int next_play_weather;	// æ¬¡ã«å®Ÿè¡Œã™ã‚‹å¤©æ°—
+	int chenge_seq;			// å¤©æ°—å¤‰æ›´ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	int booking_weather;		// å¤‰æ›´å¾Œè¨­å®šå¤©æ°—	ï¼ˆå¤©æ°—å¤‰æ›´ä¸­ã«å¤©æ°—å¤‰æ›´ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæ¥ãŸã¨ãã«æ ¼ç´ï¼‰
+	TCB_PTR tcb;			// å¤©æ°—å¤‰æ›´TCB
 } WEATHER_MANAGER;
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *			ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
 static void WEATHER_ChangeTcb( TCB_PTR tcb, void* work );
@@ -134,15 +134,15 @@ static int WEATHER_ChangeReqFuncNoGet( int now_weather, int next_weather );
 
 //-----------------------------------------------------------------------------
 /**
- *		À‘••”
+ *		å®Ÿè£…éƒ¨
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“V‹C‚Åg—p‚·‚éƒq[ƒv—Ìˆæ‚Ìì¬
+ *	@brief	å¤©æ°—ã§ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®ä½œæˆ
  *
- *	@param	heapid	eƒq[ƒv
+ *	@param	heapid	è¦ªãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 void WEATHER_CreateHeap( u32 heapid )
@@ -152,7 +152,7 @@ void WEATHER_CreateHeap( u32 heapid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“V‹C‚Åg—p‚·‚éƒq[ƒv—Ìˆæ‚Ì”jŠü
+ *	@brief	å¤©æ°—ã§ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—é ˜åŸŸã®ç ´æ£„
  */
 //-----------------------------------------------------------------------------
 void WEATHER_DeleteHeap( void )
@@ -164,11 +164,11 @@ void WEATHER_DeleteHeap( void )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“V‹CŠÇ—ƒVƒXƒeƒ€ì¬
+ *	@brief	å¤©æ°—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
  *
- *	@param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	“V‹CŠÇ—ƒVƒXƒeƒ€
+ *	@return	å¤©æ°—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *
  *
  */
@@ -177,23 +177,23 @@ WEATHER_MANAGER_PTR WEATHER_Init( FIELDSYS_WORK * fsys )
 {
 	WEATHER_MANAGER_PTR	wmp;	
 
-	// “V‹CŠÇ—ƒVƒXƒeƒ€ƒƒ‚ƒŠŠm•Û
+	// å¤©æ°—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	wmp = sys_AllocMemory( USE_HEAPID, sizeof(WEATHER_MANAGER) );
 	memset( wmp, 0, sizeof(WEATHER_MANAGER) );
 
-	// “V‹CƒVƒXƒeƒ€ì¬
+	// å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	wmp->weather_sys = InitWeatherSys( fsys );
 
-	// ŠÇ—ƒf[ƒ^‰Šú‰»
+	// ç®¡ç†ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	wmp->now_play_weather = WEATHER_SYS_SUNNY;
 
-	// “V‹C•ÏXƒ^ƒXƒNƒf[ƒ^
+	// å¤©æ°—å¤‰æ›´ã‚¿ã‚¹ã‚¯ãƒ‡ãƒ¼ã‚¿
 	wmp->next_play_weather = WEATHER_SYS_SUNNY;
 	wmp->chenge_seq = WEATHER_CHENGE_NONE;
 	wmp->tcb = NULL;
 	wmp->booking_weather = WEATHER_SYS_NUM;
 
-	// OAM•`‰æ
+	// OAMæç”»
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 
 
@@ -203,9 +203,9 @@ WEATHER_MANAGER_PTR WEATHER_Init( FIELDSYS_WORK * fsys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“V‹CŠÇ—ƒVƒXƒeƒ€”jŠü
+ *	@brief	å¤©æ°—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	pWes	“V‹CŠÇ—ƒVƒXƒeƒ€
+ *	@param	pWes	å¤©æ°—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  *
@@ -214,12 +214,12 @@ WEATHER_MANAGER_PTR WEATHER_Init( FIELDSYS_WORK * fsys )
 //-----------------------------------------------------------------------------
 void WEATHER_Delete( WEATHER_MANAGER_PTR pWes )
 {
-	// •ÏXTCB”jŠü
+	// å¤‰æ›´TCBç ´æ£„
 	if( pWes->tcb ){
 		TCB_Delete( pWes->tcb );
 	}
 	
-	// “V‹CƒVƒXƒeƒ€”jŠü
+	// å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	DestWeatherSys( &pWes->weather_sys );
 
 	memset( pWes, 0, sizeof(WEATHER_MANAGER) );
@@ -230,10 +230,10 @@ void WEATHER_Delete( WEATHER_MANAGER_PTR pWes )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“V‹Cİ’è@’¼‚¿‚Éw’è‚µ‚½“V‹C‚É‚È‚è‚Ü‚·B
+ *	@brief	å¤©æ°—è¨­å®šã€€ç›´ã¡ã«æŒ‡å®šã—ãŸå¤©æ°—ã«ãªã‚Šã¾ã™ã€‚
  *
- *	@param	pWes	“V‹CŠÇ—ƒVƒXƒeƒ€
- *	@param	no		“V‹Cƒiƒ“ƒo[
+ *	@param	pWes	å¤©æ°—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	no		å¤©æ°—ãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  *
@@ -243,10 +243,10 @@ void WEATHER_Set( WEATHER_MANAGER_PTR pWes, int no )
 {
 	BOOL check;
 
-	// •ÏX’†
+	// å¤‰æ›´ä¸­
 	GF_ASSERT( pWes->chenge_seq == WEATHER_CHENGE_NONE );
 
-	// •s³‚È“V‹C
+	// ä¸æ­£ãªå¤©æ°—
 	GF_ASSERT( no < WEATHER_SYS_NUM );
 
 #ifdef DEF_WEATHER
@@ -257,30 +257,30 @@ void WEATHER_Set( WEATHER_MANAGER_PTR pWes, int no )
 		return ;
 	}
 	
-	// ¡‚Ì“V‹C”jŠü
+	// ä»Šã®å¤©æ°—ç ´æ£„
 	check = ControlWeatherSys( pWes->weather_sys, WEATHER_SYS_DEST, pWes->now_play_weather );
-	GF_ASSERT( check );	// ”jŠü¸”s
+	GF_ASSERT( check );	// ç ´æ£„å¤±æ•—
 
-	// Ÿ‚Ì“V‹CŠJn
+	// æ¬¡ã®å¤©æ°—é–‹å§‹
 	check = ControlWeatherSys( pWes->weather_sys, WEATHER_SYS_INIT, no );
-	GF_ASSERT( check );	// ‰Šú‰»¸”s
+	GF_ASSERT( check );	// åˆæœŸåŒ–å¤±æ•—
 	check = ControlWeatherSys( pWes->weather_sys, WEATHER_SYS_START_NOFADE, no );
-	GF_ASSERT( check );	// ŠJn¸”s
+	GF_ASSERT( check );	// é–‹å§‹å¤±æ•—
 
-	// Às“V‹Cİ’è
+	// å®Ÿè¡Œå¤©æ°—è¨­å®š
 	pWes->now_play_weather = no;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“V‹C•ÏXƒŠƒNƒGƒXƒg@¡‚Ü‚Å‚Ì“V‹C‚ğƒtƒF[ƒhƒAƒEƒg‚³‚¹A™X‚Éw’è‚µ‚½“V‹C‚É‚È‚è‚Ü‚·B
+ *	@brief	å¤©æ°—å¤‰æ›´ãƒªã‚¯ã‚¨ã‚¹ãƒˆã€€ä»Šã¾ã§ã®å¤©æ°—ã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã•ã›ã€å¾ã€…ã«æŒ‡å®šã—ãŸå¤©æ°—ã«ãªã‚Šã¾ã™ã€‚
  *
- *	@param	pWes		“V‹CŠÇ—ƒVƒXƒeƒ€
- *	@param	no			“V‹Cƒiƒ“ƒo[
+ *	@param	pWes		å¤©æ°—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	no			å¤©æ°—ãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	TRUE		ƒŠƒNƒGƒXƒg¬Œ÷
- *	@retval	FALSE		ƒŠƒNƒGƒXƒg¸”s	Às’†‚ÌƒŠƒNƒGƒXƒg‚ª‚ ‚é
+ *	@retval	TRUE		ãƒªã‚¯ã‚¨ã‚¹ãƒˆæˆåŠŸ
+ *	@retval	FALSE		ãƒªã‚¯ã‚¨ã‚¹ãƒˆå¤±æ•—	å®Ÿè¡Œä¸­ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã‚‹
  *
  *
  */
@@ -288,38 +288,38 @@ void WEATHER_Set( WEATHER_MANAGER_PTR pWes, int no )
 BOOL WEATHER_ChengeReq( WEATHER_MANAGER_PTR pWes, int no )
 {
 	int change_mode;
-	// •s³‚È“V‹C
+	// ä¸æ­£ãªå¤©æ°—
 	GF_ASSERT( no < WEATHER_SYS_NUM );
 
 #ifdef DEF_WEATHER
 	no = DEF_WEATHER;
 #endif
 
-	// Às’†‚ÌƒŠƒNƒGƒXƒg‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// å®Ÿè¡Œä¸­ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( pWes->chenge_seq != WEATHER_CHENGE_NONE ){
-		pWes->booking_weather = no;	// —\–ñ
+		pWes->booking_weather = no;	// äºˆç´„
 		return TRUE;
 	}
 
-	// ¡‚Ì“V‹C‚ªˆê‚È‚ç‰½‚à‚µ‚È‚¢
+	// ä»Šã®å¤©æ°—ãŒä¸€ç·’ãªã‚‰ä½•ã‚‚ã—ãªã„
 	if( pWes->now_play_weather == no ){
 		return TRUE;
 	}
 
 	GF_ASSERT( pWes->tcb == NULL );
 	
-	// Ÿ‚Ì“V‹C‚Ìƒf[ƒ^İ’è
+	// æ¬¡ã®å¤©æ°—ã®ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	pWes->next_play_weather = no;
 
 	change_mode = WEATHER_ChangeReqFuncNoGet( pWes->now_play_weather ,pWes->next_play_weather );
 
 	if( change_mode == WEATHER_CHANGE_SINGLE_TASK ){
 		pWes->chenge_seq = WEATHER_CHENGE_NOW_FADEOUT_START;
-		// ƒ^ƒXƒN“o˜^
+		// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 		pWes->tcb = TCB_Add( WEATHER_ChangeTcb, pWes, WEATHER_TCB_CHG_PRI );
 	}else{
 		pWes->chenge_seq = WEATHER_CHENGE_WL_NEXT_INIT_START;
-		// ƒ^ƒXƒN“o˜^
+		// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 		pWes->tcb = TCB_Add( WEATHER_ChangeWithLastTcb, pWes, WEATHER_TCB_CHG_PRI );
 	}
 
@@ -329,11 +329,11 @@ BOOL WEATHER_ChengeReq( WEATHER_MANAGER_PTR pWes, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»İÀs’†‚Ì“V‹C
+ *	@brief	ç¾åœ¨å®Ÿè¡Œä¸­ã®å¤©æ°—
  *
- *	@param	pWes	ƒ[ƒN
+ *	@param	pWes	ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	“V‹Cƒiƒ“ƒo[
+ *	@return	å¤©æ°—ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 WEATHER_GetNow( WEATHER_MANAGER_PTR pWes )
@@ -344,38 +344,38 @@ u32 WEATHER_GetNow( WEATHER_MANAGER_PTR pWes )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘O‚Ì‚à‚Ì‚ğo‚µ‚Â‚ÂŸ‚Ì•¨‚ğo‚·
+ *	@brief	å‰ã®ã‚‚ã®ã‚’å‡ºã—ã¤ã¤æ¬¡ã®ç‰©ã‚’å‡ºã™
  *
- *	@param	pWes	“VŒóƒ[ƒN
- *	@param	no		•ÏXƒiƒ“ƒo[
+ *	@param	pWes	å¤©å€™ãƒ¯ãƒ¼ã‚¯
+ *	@param	no		å¤‰æ›´ãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	TRUE		ƒŠƒNƒGƒXƒg¬Œ÷
- *	@retval	FALSE		ƒŠƒNƒGƒXƒg¸”s	Às’†‚ÌƒŠƒNƒGƒXƒg‚ª‚ ‚é
+ *	@retval	TRUE		ãƒªã‚¯ã‚¨ã‚¹ãƒˆæˆåŠŸ
+ *	@retval	FALSE		ãƒªã‚¯ã‚¨ã‚¹ãƒˆå¤±æ•—	å®Ÿè¡Œä¸­ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã‚‹
  */
 //-----------------------------------------------------------------------------
 BOOL WEATHER_ChengeReqWithLast( WEATHER_MANAGER_PTR pWes, int no )
 {
-	// •s³‚È“V‹C
+	// ä¸æ­£ãªå¤©æ°—
 	GF_ASSERT( no < WEATHER_SYS_NUM );
 
-	// Às’†‚ÌƒŠƒNƒGƒXƒg‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// å®Ÿè¡Œä¸­ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( pWes->chenge_seq != WEATHER_CHENGE_NONE ){
-		pWes->booking_weather = no;	// —\–ñ
+		pWes->booking_weather = no;	// äºˆç´„
 		return TRUE;
 	}
 
-	// ¡‚Ì“V‹C‚ªˆê‚È‚ç‰½‚à‚µ‚È‚¢
+	// ä»Šã®å¤©æ°—ãŒä¸€ç·’ãªã‚‰ä½•ã‚‚ã—ãªã„
 	if( pWes->now_play_weather == no ){
 		return TRUE;
 	}
 
 	GF_ASSERT( pWes->tcb == NULL );
 	
-	// Ÿ‚Ì“V‹C‚Ìƒf[ƒ^İ’è
+	// æ¬¡ã®å¤©æ°—ã®ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	pWes->next_play_weather = no;
 	pWes->chenge_seq = WEATHER_CHENGE_WL_NEXT_INIT_START;
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	pWes->tcb = TCB_Add( WEATHER_ChangeWithLastTcb, pWes, WEATHER_TCB_CHG_PRI );
 
 	return TRUE;
@@ -384,16 +384,16 @@ BOOL WEATHER_ChengeReqWithLast( WEATHER_MANAGER_PTR pWes, int no )
 
 //-----------------------------------------------------------------------------
 /**
- *		“V‹CŠÇ—ƒVƒXƒeƒ€	ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		å¤©æ°—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“V‹C•ÏXƒ^ƒXƒN
+ *	@brief	å¤©æ°—å¤‰æ›´ã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -406,32 +406,32 @@ static void WEATHER_ChangeTcb( TCB_PTR tcb, void* work )
 	BOOL check;
 
 	switch( wmp->chenge_seq ){
-	// ¡‚Ì“V‹CƒtƒF[ƒhƒAƒEƒg	ŠJn
+	// ä»Šã®å¤©æ°—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ	é–‹å§‹
 	case WEATHER_CHENGE_NOW_FADEOUT_START:
 		check = ControlWeatherSys( wmp->weather_sys, WEATHER_SYS_END, wmp->now_play_weather );
-		GF_ASSERT( check );		// ƒtƒF[ƒhƒAƒEƒgˆ—ŠJn¸”s
+		GF_ASSERT( check );		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå‡¦ç†é–‹å§‹å¤±æ•—
 		wmp->chenge_seq++;
 		break;
 		
-	// ¡‚Ì“V‹CƒtƒF[ƒhƒAƒEƒg	I—¹‘Ò‚¿
+	// ä»Šã®å¤©æ°—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ	çµ‚äº†å¾…ã¡
 	case WEATHER_CHENGE_NOW_FADEOUT:
 		check = CheckMoveWeatherSys( wmp->weather_sys, wmp->now_play_weather );
 		if( check != WEATHER_SYS_MOVE_DO ){
 			check = ControlWeatherSys( wmp->weather_sys, WEATHER_SYS_DEST, wmp->now_play_weather );
-			GF_ASSERT( check );	// ”jŠü¸”s
+			GF_ASSERT( check );	// ç ´æ£„å¤±æ•—
 			wmp->chenge_seq++;
 		}
 		break;
 
-	// •ªŠ„‰Šú‰»ƒXƒ^[ƒg
+	// åˆ†å‰²åˆæœŸåŒ–ã‚¹ã‚¿ãƒ¼ãƒˆ
 	case WEATHER_CHENGE_NEXT_INIT_START:
-		OS_Printf( "ƒtƒF[ƒhƒCƒ“ŠJn\n" );
+		OS_Printf( "ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹\n" );
 		check = ControlWeatherSys( wmp->weather_sys, WEATHER_SYS_INIT_DIV, wmp->next_play_weather );
-		GF_ASSERT( check );		// ‰Šú‰»¸”s
+		GF_ASSERT( check );		// åˆæœŸåŒ–å¤±æ•—
 		wmp->chenge_seq++;
 		break;
 		
-	// •ªŠ„‰Šú‰»I—¹‘Ò‚¿
+	// åˆ†å‰²åˆæœŸåŒ–çµ‚äº†å¾…ã¡
 	case WEATHER_CHENGE_NEXT_INIT:
 		check = CheckMoveWeatherSys( wmp->weather_sys, wmp->next_play_weather );
 		if( check != WEATHER_SYS_MOVE_INIT ){
@@ -439,10 +439,10 @@ static void WEATHER_ChangeTcb( TCB_PTR tcb, void* work )
 		}
 		break;
 		
-	// Ÿ‚Ì“V‹CƒtƒF[ƒhƒCƒ“		ŠJn
+	// æ¬¡ã®å¤©æ°—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³		é–‹å§‹
 	case WEATHER_CHENGE_NEXT_FADEIN_START:
 		check = ControlWeatherSys( wmp->weather_sys, WEATHER_SYS_START, wmp->next_play_weather );
-		GF_ASSERT( check );		// ƒtƒF[ƒhƒCƒ“ŠJn¸”s
+		GF_ASSERT( check );		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹å¤±æ•—
 		wmp->chenge_seq++;
 
 		wmp->now_play_weather = wmp->next_play_weather;
@@ -450,15 +450,15 @@ static void WEATHER_ChangeTcb( TCB_PTR tcb, void* work )
 		
 		break;
 		
-	// ƒ^ƒXƒNI—¹
+	// ã‚¿ã‚¹ã‚¯çµ‚äº†
 	case WEATHER_CHENGE_END:
-		wmp->chenge_seq = WEATHER_CHENGE_NONE;	// ƒŠƒNƒGƒXƒg‚È‚µó‘Ô‚É‚·‚é
+		wmp->chenge_seq = WEATHER_CHENGE_NONE;	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆãªã—çŠ¶æ…‹ã«ã™ã‚‹
 		wmp->tcb = NULL;
 		TCB_Delete( tcb );
 
-		// —\–ñƒ`ƒFƒbƒN
+		// äºˆç´„ãƒã‚§ãƒƒã‚¯
 		if( wmp->booking_weather != WEATHER_SYS_NUM ){
-			// wmp->booking_weather‚Ì“V‹C‚É•ÏX‚·‚é
+			// wmp->booking_weatherã®å¤©æ°—ã«å¤‰æ›´ã™ã‚‹
 			WEATHER_ChengeReq( wmp, wmp->booking_weather );
 			wmp->booking_weather = WEATHER_SYS_NUM;
 		}
@@ -472,10 +472,10 @@ static void WEATHER_ChangeTcb( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“V‹C•ÏXƒ^ƒXƒN		WithLast
+ *	@brief	å¤©æ°—å¤‰æ›´ã‚¿ã‚¹ã‚¯		WithLast
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -488,14 +488,14 @@ static void WEATHER_ChangeWithLastTcb( TCB_PTR tcb, void* work )
 	BOOL check;
 
 	switch( wmp->chenge_seq ){
-	// •ªŠ„“Ç‚İ‚İŠJn
+	// åˆ†å‰²èª­ã¿è¾¼ã¿é–‹å§‹
 	case WEATHER_CHENGE_WL_NEXT_INIT_START:
 		check = ControlWeatherSys( wmp->weather_sys, WEATHER_SYS_INIT_DIV, wmp->next_play_weather );
-		GF_ASSERT( check );		// ‰Šú‰»¸”s
+		GF_ASSERT( check );		// åˆæœŸåŒ–å¤±æ•—
 		wmp->chenge_seq++;
 		break;
 
-	// •ªŠ„“Ç‚İ‚İI—¹ƒ`ƒFƒbƒN
+	// åˆ†å‰²èª­ã¿è¾¼ã¿çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	case WEATHER_CHENGE_WL_NEXT_INIT:
 		check = CheckMoveWeatherSys( wmp->weather_sys, wmp->next_play_weather );
 		if( check != WEATHER_SYS_MOVE_INIT ){
@@ -503,21 +503,21 @@ static void WEATHER_ChangeWithLastTcb( TCB_PTR tcb, void* work )
 		}
 		break;
 		
-	// ƒtƒF[ƒhŠJn
+	// ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 	case WEATHER_CHENGE_WL_NOW_FADEOUTIN_START:
 		check = ControlWeatherSys( wmp->weather_sys, WEATHER_SYS_END_NOFOG, wmp->now_play_weather );
-		GF_ASSERT( check );		// ƒtƒF[ƒhƒAƒEƒgˆ—ŠJn¸”s
+		GF_ASSERT( check );		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå‡¦ç†é–‹å§‹å¤±æ•—
 		check = ControlWeatherSys( wmp->weather_sys, WEATHER_SYS_START_WITHFOG, wmp->next_play_weather );
-		GF_ASSERT( check );		// ƒtƒF[ƒhƒCƒ“ŠJn¸”s
+		GF_ASSERT( check );		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹å¤±æ•—
 		wmp->chenge_seq++;
 		break;
 		
-	// ƒtƒF[ƒhI—¹ƒ`ƒFƒbƒN
+	// ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	case WEATHER_CHENGE_WL_NOW_FADEOUTIN:
 		check = CheckMoveWeatherSys( wmp->weather_sys, wmp->now_play_weather );
 		if( check != WEATHER_SYS_MOVE_DO ){
 			check = ControlWeatherSys( wmp->weather_sys, WEATHER_SYS_DEST, wmp->now_play_weather );
-			GF_ASSERT( check );	// ”jŠü¸”s
+			GF_ASSERT( check );	// ç ´æ£„å¤±æ•—
 			wmp->chenge_seq++;
 		}
 		break;
@@ -526,14 +526,14 @@ static void WEATHER_ChangeWithLastTcb( TCB_PTR tcb, void* work )
 		wmp->now_play_weather = wmp->next_play_weather;
 		wmp->next_play_weather = WEATHER_SYS_SUNNY;
 		
-		wmp->chenge_seq = WEATHER_CHENGE_NONE;	// ƒŠƒNƒGƒXƒg‚È‚µó‘Ô‚É‚·‚é
+		wmp->chenge_seq = WEATHER_CHENGE_NONE;	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆãªã—çŠ¶æ…‹ã«ã™ã‚‹
 		wmp->tcb = NULL;
 		TCB_Delete( tcb );
 
 
-		// —\–ñƒ`ƒFƒbƒN
+		// äºˆç´„ãƒã‚§ãƒƒã‚¯
 		if( wmp->booking_weather != WEATHER_SYS_NUM ){
-			// wmp->booking_weather‚Ì“V‹C‚É•ÏX‚·‚é
+			// wmp->booking_weatherã®å¤©æ°—ã«å¤‰æ›´ã™ã‚‹
 			WEATHER_ChengeReq( wmp, wmp->booking_weather );
 			wmp->booking_weather = WEATHER_SYS_NUM;
 		}
@@ -546,13 +546,13 @@ static void WEATHER_ChangeWithLastTcb( TCB_PTR tcb, void* work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“V‹C•ÏX
+ *	@brief	å¤©æ°—å¤‰æ›´
  *
- *	@param	now_weather		¡‚Ì“V‹C
- *	@param	next_weather	Ÿ‚Ì“V‹C
+ *	@param	now_weather		ä»Šã®å¤©æ°—
+ *	@param	next_weather	æ¬¡ã®å¤©æ°—
  *
- *	@retval	WEATHER_CHANGE_SINGLE_TASK	SINGLEƒ^ƒXƒN‚Å‚Ì•ÏX
- *	@ratval WEATHER_CHANGE_MULTI_TASK	MULTIƒ^ƒXƒN‚Å‚Ì•ÏX
+ *	@retval	WEATHER_CHANGE_SINGLE_TASK	SINGLEã‚¿ã‚¹ã‚¯ã§ã®å¤‰æ›´
+ *	@ratval WEATHER_CHANGE_MULTI_TASK	MULTIã‚¿ã‚¹ã‚¯ã§ã®å¤‰æ›´
  */
 //----------------------------------	-------------------------------------------
 static int WEATHER_ChangeReqFuncNoGet( int now_weather, int next_weather )
@@ -560,7 +560,7 @@ static int WEATHER_ChangeReqFuncNoGet( int now_weather, int next_weather )
 	int ret = WEATHER_CHANGE_SINGLE_TASK;
 	
 	switch( now_weather ){
-	case WEATHER_SYS_SNOW:		// á		OAM FOG
+	case WEATHER_SYS_SNOW:		// é›ª		OAM FOG
 		if( (next_weather == WEATHER_SYS_SNOWSTORM) ||
 			(next_weather == WEATHER_SYS_SNOW_STORM_BG) ||
 			(next_weather == WEATHER_SYS_SNOWSTORM_H) ){
@@ -568,7 +568,7 @@ static int WEATHER_ChangeReqFuncNoGet( int now_weather, int next_weather )
 		}
 		break;
 
-	case WEATHER_SYS_SNOWSTORM:	// á		OAM FOG
+	case WEATHER_SYS_SNOWSTORM:	// å¹é›ª		OAM FOG
 		if( (next_weather == WEATHER_SYS_SNOW) ||
 			(next_weather == WEATHER_SYS_SNOW_STORM_BG) ||
 			(next_weather == WEATHER_SYS_SNOWSTORM_H) ){
@@ -576,7 +576,7 @@ static int WEATHER_ChangeReqFuncNoGet( int now_weather, int next_weather )
 		}
 		break;
 		
-	case WEATHER_SYS_SNOW_STORM_BG:// BGg—pá	OAM FOG BG
+	case WEATHER_SYS_SNOW_STORM_BG:// BGä½¿ç”¨å¹é›ª	OAM FOG BG
 		if( (next_weather == WEATHER_SYS_SNOW) ||
 			(next_weather == WEATHER_SYS_SNOWSTORM) ||
 			(next_weather == WEATHER_SYS_SNOWSTORM_H) ){
@@ -585,7 +585,7 @@ static int WEATHER_ChangeReqFuncNoGet( int now_weather, int next_weather )
 		}
 		break;
 		
-	case WEATHER_SYS_SNOWSTORM_H:	// –kŠC“¹á	OAM FOG BG
+	case WEATHER_SYS_SNOWSTORM_H:	// åŒ—æµ·é“é›ª	OAM FOG BG
 		if( (next_weather == WEATHER_SYS_SNOW) ||
 			(next_weather == WEATHER_SYS_SNOW_STORM_BG) ||
 			(next_weather == WEATHER_SYS_SNOWSTORM) ){
@@ -606,52 +606,52 @@ static int WEATHER_ChangeReqFuncNoGet( int now_weather, int next_weather )
 //-----------------------------------------------------------------------------
 /**
  *
- *		“V‹CƒVƒXƒeƒ€
+ *		å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ 
  *
  */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
-#define		WEATHER_RES_NUM	(4)		// ŠÇ—‚·‚éƒŠƒ\[ƒX‚Ì”
-#define		WEATEHR_OBJ_MAX	(96)	// ƒIƒuƒWƒFƒNƒgÅ‘å”
-#define		WEATEHR_OBJDATA_MAX	(48)// ƒIƒuƒWƒFƒNƒgƒf[ƒ^Å‘å”
-#define		WEATHER_RENDER_X		(0)	// ƒŒƒ“ƒ_ƒ‰‰¡
-#define		WEATHER_RENDER_Y		(0)	// ƒŒƒ“ƒ_ƒ‰c
-#define		WEATHER_RENDER_WIDTH	(255<< FX32_SHIFT)	// ƒŒƒ“ƒ_ƒ‰•
-#define		WEATHER_RENDER_HEIGHT	(192 << FX32_SHIFT)	// ƒŒƒ“ƒ_ƒ‰‚‚³
+#define		WEATHER_RES_NUM	(4)		// ç®¡ç†ã™ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã®æ•°
+#define		WEATEHR_OBJ_MAX	(96)	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæœ€å¤§æ•°
+#define		WEATEHR_OBJDATA_MAX	(48)// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿æœ€å¤§æ•°
+#define		WEATHER_RENDER_X		(0)	// ãƒ¬ãƒ³ãƒ€ãƒ©æ¨ª
+#define		WEATHER_RENDER_Y		(0)	// ãƒ¬ãƒ³ãƒ€ãƒ©ç¸¦
+#define		WEATHER_RENDER_WIDTH	(255<< FX32_SHIFT)	// ãƒ¬ãƒ³ãƒ€ãƒ©å¹…
+#define		WEATHER_RENDER_HEIGHT	(192 << FX32_SHIFT)	// ãƒ¬ãƒ³ãƒ€ãƒ©é«˜ã•
 
 #define WEATHER_OBJ_MINTURN_X	(-64*FX32_ONE)
 #define WEATHER_OBJ_MINTURN_Y	(-64*FX32_ONE)
 #define WEATHER_OBJ_MAXTURN_X	(WEATHER_RENDER_WIDTH + 64*FX32_ONE)
 #define WEATHER_OBJ_MAXTURN_Y	(WEATHER_RENDER_HEIGHT + 64*FX32_ONE)
 
-#define		WEATHER_CONTROL_PRI	(4)		// “V‹CŠÇ—ƒ^ƒXƒN‚Ì—Dæ“x
-#define		WEATHER_CLACT_DRAW_TCB_PRI	(10)	// “V‹CƒAƒNƒ^[•`‰æƒ^ƒXƒN
-#define		WEATHER_OBJ_PRI		(5)		// “V‹CƒIƒuƒWƒFƒ^ƒXƒN‚Ì—Dæ“x
-#define		WEATHER_SYS_BG_2_DRAW_PRI	(1)	// ‚¨“V‹CƒVƒXƒeƒ€BG•\¦‡ˆÊ
-#define		WEATHER_GRAPHIC_NONE	(0xffff)	// ƒOƒ‰ƒtƒBƒbƒN‚È‚µ
+#define		WEATHER_CONTROL_PRI	(4)		// å¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯ã®å„ªå…ˆåº¦
+#define		WEATHER_CLACT_DRAW_TCB_PRI	(10)	// å¤©æ°—ã‚¢ã‚¯ã‚¿ãƒ¼æç”»ã‚¿ã‚¹ã‚¯
+#define		WEATHER_OBJ_PRI		(5)		// å¤©æ°—ã‚ªãƒ–ã‚¸ã‚§ã‚¿ã‚¹ã‚¯ã®å„ªå…ˆåº¦
+#define		WEATHER_SYS_BG_2_DRAW_PRI	(1)	// ãŠå¤©æ°—ã‚·ã‚¹ãƒ†ãƒ BGè¡¨ç¤ºé †ä½
+#define		WEATHER_GRAPHIC_NONE	(0xffff)	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãªã—
 
 #define		SCREEN_SIZE (32 * 32)
-#define		WEATHER_PLTT_OFS	(6)		// g—p‚·‚éƒpƒŒƒbƒg
-#define		WEATHER_LIGHT		(2)		// “V‹C—pƒ‰ƒCƒg
+#define		WEATHER_PLTT_OFS	(6)		// ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define		WEATHER_LIGHT		(2)		// å¤©æ°—ç”¨ãƒ©ã‚¤ãƒˆ
 
-#define		WEATHER_FOG_DEPTH_DEFAULT	( 0x6F6F )	// ƒtƒHƒOƒfƒtƒHƒ‹ƒg’l
+#define		WEATHER_FOG_DEPTH_DEFAULT	( 0x6F6F )	// ãƒ•ã‚©ã‚°ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤
 #define		WEATHER_FOG_SLOPE_DEFAULT	( 3 )
 
 #define WH_COLOR_R(x)	( ((x) >> GX_RGB_R_SHIFT) & 0x1f )
 #define WH_COLOR_G(x)	( ((x) >> GX_RGB_G_SHIFT) & 0x1f )
 #define WH_COLOR_B(x)	( ((x) >> GX_RGB_B_SHIFT) & 0x1f )
 
-// ƒtƒHƒOƒtƒF[ƒh—p
+// ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨
 #define FOG_DEPTH_COUNT_MAX		(127)
 #define FOG_TBL_SUB_FADEIN	( 1 )
 #define FOG_TBL_SUB_FADEOUT	( -1 )
 
 //-------------------------------------
-//	BGƒf[ƒ^
+//	BGãƒ‡ãƒ¼ã‚¿
 //=====================================
 enum{
 	WEATHER_BG_CONTROL_SNOW = 0,
@@ -670,262 +670,262 @@ enum{
 
 
 //-------------------------------------
-//		ƒfƒtƒHƒ‹ƒgƒV[ƒPƒ“ƒX
+//		ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //=====================================
 enum{
-	WEATHER_SEQ_INIT=0,		// ‰Šú‰»
-	WEATHER_SEQ_FADEIN,		// ƒtƒF[ƒhƒCƒ“
-	WEATHER_SEQ_NO_FADE,	// ƒtƒF[ƒh–³‚µ‚Ì‰Šú‰»
-	WEATHER_SEQ_MAIN,		// ƒƒCƒ“ˆ—
-	WEATHER_SEQ_FADEOUT,	// ƒtƒF[ƒhƒAƒEƒg
-	WEATHER_SEQ_DEST,		// Š®‘S”jŠü
+	WEATHER_SEQ_INIT=0,		// åˆæœŸåŒ–
+	WEATHER_SEQ_FADEIN,		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+	WEATHER_SEQ_NO_FADE,	// ãƒ•ã‚§ãƒ¼ãƒ‰ç„¡ã—æ™‚ã®åˆæœŸåŒ–
+	WEATHER_SEQ_MAIN,		// ãƒ¡ã‚¤ãƒ³å‡¦ç†
+	WEATHER_SEQ_FADEOUT,	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+	WEATHER_SEQ_DEST,		// å®Œå…¨ç ´æ£„
 };
 
 //-------------------------------------
-//	ƒtƒHƒOİ’è’è”
+//	ãƒ•ã‚©ã‚°è¨­å®šå®šæ•°
 //=====================================
 enum{
-	WEATHER_FOG_NONE,		// ƒtƒHƒO‚Ìİ’è‚È‚µ
-	WEATEHR_FOG_NEW,		// ƒtƒHƒO‚ğV‚µ‚­‰Šú‰»‚µ‚ÄŠJn
-	WEATHER_FOG_WITH,		// ‘O‚ÌƒtƒHƒOİ’è‚ğc‚µ‚Â‚ÂŠJn
+	WEATHER_FOG_NONE,		// ãƒ•ã‚©ã‚°ã®è¨­å®šãªã—
+	WEATEHR_FOG_NEW,		// ãƒ•ã‚©ã‚°ã‚’æ–°ã—ãåˆæœŸåŒ–ã—ã¦é–‹å§‹
+	WEATHER_FOG_WITH,		// å‰ã®ãƒ•ã‚©ã‚°è¨­å®šã‚’æ®‹ã—ã¤ã¤é–‹å§‹
 };
 
 
 //-------------------------------------
-//	‰JŠÇ—ŠÖ”’è”
+//	é›¨ç®¡ç†é–¢æ•°å®šæ•°
 //=====================================
-#define	WEATHER_RAIN_TIMING_MIN		(0)							// ‰J‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ¬
-#define WEATHER_RAIN_TIMING_MAX		(8)						// ‰J‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ‘å
-#define WEATHER_RAIN_TIMING_ADD		(1)							// ƒ^ƒCƒ~ƒ“ƒO‚ğŒ¸‚ç‚·”
-#define WEATHER_RAIN_ADD_START		(1)							// Å‰‚Ì“¯‚É‰J‚ğ“o˜^‚·‚é”
-#define WEATHER_RAIN_ADD_TIMING		(1)							// ‰J‚Ìƒ^ƒCƒ~ƒ“ƒO‚ğ‚±‚ê‰ñ•ÏX‚µ‚½‚ç‚P‰ñ‘‚â‚·
-#define WEATHER_RAIN_ADD			(1)							// “o˜^‚·‚é”‚ğ‘‚â‚·”
-#define	WEATHER_RAIN_ADD_MAIN		(4)							// ƒƒCƒ“ƒV[ƒPƒ“ƒX‚Å‚Ì“o˜^‚·‚é”
+#define	WEATHER_RAIN_TIMING_MIN		(0)							// é›¨ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å°
+#define WEATHER_RAIN_TIMING_MAX		(8)						// é›¨ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å¤§
+#define WEATHER_RAIN_TIMING_ADD		(1)							// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ¸›ã‚‰ã™æ•°
+#define WEATHER_RAIN_ADD_START		(1)							// æœ€åˆã®åŒæ™‚ã«é›¨ã‚’ç™»éŒ²ã™ã‚‹æ•°
+#define WEATHER_RAIN_ADD_TIMING		(1)							// é›¨ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ã“ã‚Œå›å¤‰æ›´ã—ãŸã‚‰ï¼‘å›å¢—ã‚„ã™
+#define WEATHER_RAIN_ADD			(1)							// ç™»éŒ²ã™ã‚‹æ•°ã‚’å¢—ã‚„ã™æ•°
+#define	WEATHER_RAIN_ADD_MAIN		(4)							// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ã®ç™»éŒ²ã™ã‚‹æ•°
 
-/*== ƒtƒF[ƒh–³‚µŠJn‚Ì ==*/
-#define WEATHER_RAIN_NOFADE_OBJ_START_NUM	( 20 )				// ŠJn‚ÌU•z‚·‚éƒIƒuƒWƒFƒNƒg‚Ì”
-#define	WEATHER_RAIN_NOFADE_OBJ_START_DUST_NUM	( 10 )			// ‰½ŒÂ’PˆÊ‚Å•Ï‰»‚³‚¹‚é‚©
-#define	WEATHER_RAIN_NOFADE_OBJ_START_DUST_MOVE	( 1 )			// ‚¸‚ç‚µ‚Ä“®ì‚³‚¹‚é’l
+/*== ãƒ•ã‚§ãƒ¼ãƒ‰ç„¡ã—é–‹å§‹ã®æ™‚ ==*/
+#define WEATHER_RAIN_NOFADE_OBJ_START_NUM	( 20 )				// é–‹å§‹æ™‚ã®æ•£å¸ƒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ•°
+#define	WEATHER_RAIN_NOFADE_OBJ_START_DUST_NUM	( 10 )			// ä½•å€‹å˜ä½ã§å¤‰åŒ–ã•ã›ã‚‹ã‹
+#define	WEATHER_RAIN_NOFADE_OBJ_START_DUST_MOVE	( 1 )			// ãšã‚‰ã—ã¦å‹•ä½œã•ã›ã‚‹å€¤
 
-/*== ƒtƒHƒO ==*/
-#define	WEATHER_RAIN_FOG_TIMING		(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_RAIN_FOG_TIMING_END	(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_RAIN_FOG_START		(0)						// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_RAIN_FOG_START_END	(0)						// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+/*== ãƒ•ã‚©ã‚° ==*/
+#define	WEATHER_RAIN_FOG_TIMING		(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_RAIN_FOG_TIMING_END	(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_RAIN_FOG_START		(0)						// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_RAIN_FOG_START_END	(0)						// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 #define WEATHER_RAIN_FOG_OFS		(0x300)
 
-/*== ‰JƒIƒuƒWƒFƒNƒg ==*/
-#define WEATHER_RAIN_SPEED_X		(-5)						// ‰¡‚Éi‚ŞƒXƒs[ƒh
-#define WEATHER_RAIN_SPEED_Y		(10)						// ‚½‚Ä‚Éi‚ŞƒXƒs[ƒhƒx[ƒX
-#define	WEATHER_RAIN_END_MIN		(1)							// I—¹ƒJƒEƒ“ƒ^Å¬
-#define WEATHER_RAIN_END_MAX		(3)							// I—¹ƒJƒEƒ“ƒ^Å‘å
-#define	WEATHER_RAIN_START_X_BASE	(0)							// ƒx[ƒX‚É‚È‚éXŠJnÀ•W
-#define	WEATHER_RAIN_MUL_X			(15)						// ƒx[ƒX‚É‰J‚Ìí—Ş•ª‘«‚·’l
-#define	WEATHER_RAIN_START_X_MAX	(270)						// XŠJnÀ•W—”‚ÌÅ‘å’l
-#define	WEATHER_RAIN_START_Y		(-96)						// YŠJnÀ•W
-#define	WEATHER_RAIN_SPEED_ERR		(20)						// ƒXƒs[ƒh•â³’l
+/*== é›¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ==*/
+#define WEATHER_RAIN_SPEED_X		(-5)						// æ¨ªã«é€²ã‚€ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define WEATHER_RAIN_SPEED_Y		(10)						// ãŸã¦ã«é€²ã‚€ã‚¹ãƒ”ãƒ¼ãƒ‰ãƒ™ãƒ¼ã‚¹
+#define	WEATHER_RAIN_END_MIN		(1)							// çµ‚äº†ã‚«ã‚¦ãƒ³ã‚¿æœ€å°
+#define WEATHER_RAIN_END_MAX		(3)							// çµ‚äº†ã‚«ã‚¦ãƒ³ã‚¿æœ€å¤§
+#define	WEATHER_RAIN_START_X_BASE	(0)							// ãƒ™ãƒ¼ã‚¹ã«ãªã‚‹Xé–‹å§‹åº§æ¨™
+#define	WEATHER_RAIN_MUL_X			(15)						// ãƒ™ãƒ¼ã‚¹ã«é›¨ã®ç¨®é¡åˆ†è¶³ã™å€¤
+#define	WEATHER_RAIN_START_X_MAX	(270)						// Xé–‹å§‹åº§æ¨™ä¹±æ•°ã®æœ€å¤§å€¤
+#define	WEATHER_RAIN_START_Y		(-96)						// Yé–‹å§‹åº§æ¨™
+#define	WEATHER_RAIN_SPEED_ERR		(20)						// ã‚¹ãƒ”ãƒ¼ãƒ‰è£œæ­£å€¤
 
-/*== ‰JƒOƒ‰ƒtƒBƒbƒN\¬ƒf[ƒ^ ==*/
+/*== é›¨ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ§‹æˆãƒ‡ãƒ¼ã‚¿ ==*/
 #define WEATHER_RAIN_GRAPHIC_CELL	( 0 )
 #define WEATHER_RAIN_GRAPHIC_BG		( WEATHER_GRAPHIC_NONE )
 
 //-------------------------------------
-//	áŠÇ—ŠÖ”’è”
+//	é›ªç®¡ç†é–¢æ•°å®šæ•°
 //=====================================
-#define	WEATHER_SNOW_TIMING_MIN		(14)				// á‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ¬
-#define WEATHER_SNOW_TIMING_MAX		(24)				// á‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ‘å
-#define WEATHER_SNOW_TIMING_ADD		(5)					// ƒ^ƒCƒ~ƒ“ƒO‚ğŒ¸‚ç‚·”
-#define	WEATHER_SNOW_ADD_TIMING		(1)					// ‚P“x‚ÌƒIƒuƒWƒF“o˜^”‚ğ‘‚â‚·ƒ^ƒCƒ~ƒ“ƒO
-#define	WEATHER_SNOW_ADD			(0)					// ƒIƒuƒWƒF“o˜^”‚ğ‘«‚·’l
-#define WEATHER_SNOW_MAIN			(1)					// ƒƒCƒ“‚Å‚Í‚±‚ê‚¾‚¯“o˜^
+#define	WEATHER_SNOW_TIMING_MIN		(14)				// é›ªã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å°
+#define WEATHER_SNOW_TIMING_MAX		(24)				// é›ªã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å¤§
+#define WEATHER_SNOW_TIMING_ADD		(5)					// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ¸›ã‚‰ã™æ•°
+#define	WEATHER_SNOW_ADD_TIMING		(1)					// ï¼‘åº¦ã®ã‚ªãƒ–ã‚¸ã‚§ç™»éŒ²æ•°ã‚’å¢—ã‚„ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define	WEATHER_SNOW_ADD			(0)					// ã‚ªãƒ–ã‚¸ã‚§ç™»éŒ²æ•°ã‚’è¶³ã™å€¤
+#define WEATHER_SNOW_MAIN			(1)					// ãƒ¡ã‚¤ãƒ³ã§ã¯ã“ã‚Œã ã‘ç™»éŒ²
 
-/*== ƒtƒF[ƒh–³‚µŠJn‚Ì ==*/
-#define WEATHER_SNOW_NOFADE_OBJ_START_NUM	( 20 )				// ŠJn‚ÌU•z‚·‚éƒIƒuƒWƒFƒNƒg‚Ì”
-#define	WEATHER_SNOW_NOFADE_OBJ_START_DUST_NUM	( 2 )			// ‰½ŒÂ‚¸‚Â‚¸‚ç‚·‚©
-#define	WEATHER_SNOW_NOFADE_OBJ_START_DUST_MOVE	( 24 )			// ‚¸‚ç‚µ‚Ä“®ì‚³‚¹‚é’l
+/*== ãƒ•ã‚§ãƒ¼ãƒ‰ç„¡ã—é–‹å§‹ã®æ™‚ ==*/
+#define WEATHER_SNOW_NOFADE_OBJ_START_NUM	( 20 )				// é–‹å§‹æ™‚ã®æ•£å¸ƒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ•°
+#define	WEATHER_SNOW_NOFADE_OBJ_START_DUST_NUM	( 2 )			// ä½•å€‹ãšã¤ãšã‚‰ã™ã‹
+#define	WEATHER_SNOW_NOFADE_OBJ_START_DUST_MOVE	( 24 )			// ãšã‚‰ã—ã¦å‹•ä½œã•ã›ã‚‹å€¤
 
-/*== ƒtƒHƒO ==*/
-#define	WEATHER_SNOW_FOG_TIMING		(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_SNOW_FOG_TIMING_END	(2)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_SNOW_FOG_START		(16)						// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_SNOW_FOG_START_END	(32)						// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+/*== ãƒ•ã‚©ã‚° ==*/
+#define	WEATHER_SNOW_FOG_TIMING		(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_SNOW_FOG_TIMING_END	(2)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_SNOW_FOG_START		(16)						// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_SNOW_FOG_START_END	(32)						// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 #define WEATHER_SNOW_FOG_OFS		(0x300)
 
-/*== áƒIƒuƒWƒFƒNƒg ==*/
-#define	WEATHER_SNOW_ADD_TMG_X_BASE	(4)					// á‚ÌƒXƒs[ƒh‚ğ‘«‚·ƒ^ƒCƒ~ƒ“ƒO
-#define	WEATHER_SNOW_ADD_TMG_X_RAN	(2)					// á‚ÌƒXƒs[ƒh‚ğ‘«‚·ƒ^ƒCƒ~ƒ“ƒO—”’l
-#define	WEATHER_SNOW_ADD_TMG_Y_BASE	(1)					// á‚ÌƒXƒs[ƒh‚ğ‘«‚·ƒ^ƒCƒ~ƒ“ƒO
-#define	WEATHER_SNOW_ADD_TMG_Y_RAN	(2)					// á‚ÌƒXƒs[ƒh‚ğ‘«‚·ƒ^ƒCƒ~ƒ“ƒO—”’l
+/*== é›ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ==*/
+#define	WEATHER_SNOW_ADD_TMG_X_BASE	(4)					// é›ªã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¶³ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define	WEATHER_SNOW_ADD_TMG_X_RAN	(2)					// é›ªã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¶³ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°ä¹±æ•°å€¤
+#define	WEATHER_SNOW_ADD_TMG_Y_BASE	(1)					// é›ªã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¶³ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define	WEATHER_SNOW_ADD_TMG_Y_RAN	(2)					// é›ªã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¶³ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°ä¹±æ•°å€¤
 
-#define	WEATHER_SNOW_START_X_BASE	(-32)						// ƒx[ƒX‚É‚È‚éXŠJnÀ•W
-#define	WEATHER_SNOW_START_X_MAX	(414)						// XŠJnÀ•W—”‚ÌÅ‘å’l
-#define WEATHER_SNOW_OBJ_NUM		(4)					// ƒIƒuƒWƒFí—Ş
+#define	WEATHER_SNOW_START_X_BASE	(-32)						// ãƒ™ãƒ¼ã‚¹ã«ãªã‚‹Xé–‹å§‹åº§æ¨™
+#define	WEATHER_SNOW_START_X_MAX	(414)						// Xé–‹å§‹åº§æ¨™ä¹±æ•°ã®æœ€å¤§å€¤
+#define WEATHER_SNOW_OBJ_NUM		(4)					// ã‚ªãƒ–ã‚¸ã‚§ç¨®é¡
 
-#define WEATHER_SNOW_OBJ_AUTODEST_TIMING_MAX ( 60 )	// ©–Åƒ^ƒCƒ€@Å‘å
-#define WEATHER_SNOW_OBJ_AUTODEST_TIMING_MIN ( 4 )	// ©–Åƒ^ƒCƒ€@Å¬
+#define WEATHER_SNOW_OBJ_AUTODEST_TIMING_MAX ( 60 )	// è‡ªæ»…ã‚¿ã‚¤ãƒ ã€€æœ€å¤§
+#define WEATHER_SNOW_OBJ_AUTODEST_TIMING_MIN ( 4 )	// è‡ªæ»…ã‚¿ã‚¤ãƒ ã€€æœ€å°
 
-/*== áƒOƒ‰ƒtƒBƒbƒN\¬ƒf[ƒ^ ==*/
+/*== é›ªã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ§‹æˆãƒ‡ãƒ¼ã‚¿ ==*/
 #define WEATHER_SNOW_GRAPHIC_CELL	( 3 )
 #define WEATHER_SNOW_GRAPHIC_BG		( WEATHER_GRAPHIC_NONE )
 
 
 //-------------------------------------
-//	áŠÇ—ŠÖ”’è”
+//	å¹é›ªç®¡ç†é–¢æ•°å®šæ•°
 //=====================================
-#define	WEATHER_SSNOW_TIMING_MIN		(3)							// ‰J‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ¬
-#define WEATHER_SSNOW_TIMING_MAX		(30)						// ‰J‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ‘å
-#define WEATHER_SSNOW_TIMING_ADD		(5)							// ƒ^ƒCƒ~ƒ“ƒO‚ğŒ¸‚ç‚·”
-#define WEATHER_SSNOW_ADD_START			(1)							// Å‰‚Ì“¯‚É‰J‚ğ“o˜^‚·‚é”
-#define WEATHER_SSNOW_ADD_TIMING		(2)							// ‰J‚Ìƒ^ƒCƒ~ƒ“ƒO‚ğ‚±‚ê‰ñ•ÏX‚µ‚½‚ç‚P‰ñ‘‚â‚·
-#define WEATHER_SSNOW_ADD				(1)							// “o˜^‚·‚é”‚ğ‘‚â‚·”
-#define WEATHER_SSNOW_ADD_END			(-3)							// “o˜^‚·‚é”‚ğ‘‚â‚·”
-#define	WEATHER_SSNOW_ADD_MAIN			(6)							// ƒƒCƒ“ƒV[ƒPƒ“ƒX‚Å‚Ì“o˜^‚·‚é”
+#define	WEATHER_SSNOW_TIMING_MIN		(3)							// é›¨ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å°
+#define WEATHER_SSNOW_TIMING_MAX		(30)						// é›¨ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å¤§
+#define WEATHER_SSNOW_TIMING_ADD		(5)							// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ¸›ã‚‰ã™æ•°
+#define WEATHER_SSNOW_ADD_START			(1)							// æœ€åˆã®åŒæ™‚ã«é›¨ã‚’ç™»éŒ²ã™ã‚‹æ•°
+#define WEATHER_SSNOW_ADD_TIMING		(2)							// é›¨ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ã“ã‚Œå›å¤‰æ›´ã—ãŸã‚‰ï¼‘å›å¢—ã‚„ã™
+#define WEATHER_SSNOW_ADD				(1)							// ç™»éŒ²ã™ã‚‹æ•°ã‚’å¢—ã‚„ã™æ•°
+#define WEATHER_SSNOW_ADD_END			(-3)							// ç™»éŒ²ã™ã‚‹æ•°ã‚’å¢—ã‚„ã™æ•°
+#define	WEATHER_SSNOW_ADD_MAIN			(6)							// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ã®ç™»éŒ²ã™ã‚‹æ•°
 
-/*== ƒtƒF[ƒh–³‚µŠJn‚Ì ==*/
-#define WEATHER_SSNOW_NOFADE_OBJ_START_NUM	( 20 )				// ŠJn‚ÌU•z‚·‚éƒIƒuƒWƒFƒNƒg‚Ì”
-#define	WEATHER_SSNOW_NOFADE_OBJ_START_DUST_NUM		( 2 )			// ‰½ŒÂ‚¸‚Â‚¸‚ç‚·‚©
-#define	WEATHER_SSNOW_NOFADE_OBJ_START_DUST_MOVE	( 3 )			// ‚¸‚ç‚µ‚Ä“®ì‚³‚¹‚é’l
+/*== ãƒ•ã‚§ãƒ¼ãƒ‰ç„¡ã—é–‹å§‹ã®æ™‚ ==*/
+#define WEATHER_SSNOW_NOFADE_OBJ_START_NUM	( 20 )				// é–‹å§‹æ™‚ã®æ•£å¸ƒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ•°
+#define	WEATHER_SSNOW_NOFADE_OBJ_START_DUST_NUM		( 2 )			// ä½•å€‹ãšã¤ãšã‚‰ã™ã‹
+#define	WEATHER_SSNOW_NOFADE_OBJ_START_DUST_MOVE	( 3 )			// ãšã‚‰ã—ã¦å‹•ä½œã•ã›ã‚‹å€¤
 
-/*== ƒtƒHƒO ==*/
-#define	WEATHER_SSNOW_FOG_TIMING		(2)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_SSNOW_FOG_TIMING_END	(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_SSNOW_FOG_START			(8)						// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_SSNOW_FOG_START_END		(0)						// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+/*== ãƒ•ã‚©ã‚° ==*/
+#define	WEATHER_SSNOW_FOG_TIMING		(2)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_SSNOW_FOG_TIMING_END	(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_SSNOW_FOG_START			(8)						// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_SSNOW_FOG_START_END		(0)						// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 #define WEATHER_SSNOW_FOG_OFS			(-0x200)
 
-/*== áƒIƒuƒWƒFƒNƒg ==*/
-#define WEATHER_SSNOW_SPEED_X		(-1)						// ‰¡‚Éi‚ŞƒXƒs[ƒh
-#define	WEATHER_SSNOW_END_MIN		(4)							// I—¹ƒJƒEƒ“ƒ^Å¬
-#define WEATHER_SSNOW_END_MAX		(46)						// I—¹ƒJƒEƒ“ƒ^Å‘å
-#define WEATHER_SSNOW_END_NUM		(WEATHER_SSNOW_END_MAX - WEATHER_SSNOW_END_MIN)	// ƒJƒEƒ“ƒ^‚Ì’l‚Ì”
-#define	WEATHER_SSNOW_END_DIV		((WEATHER_SSNOW_END_NUM / 3)+1)	// ƒIƒuƒWƒFƒNƒg‚Ìí—Ş‚ğŒvZ‚·‚é‚Æ‚«Š„‚é’l
-#define	WEATHER_SSNOW_START_X_BASE	(-20)						// ƒx[ƒX‚É‚È‚éXŠJnÀ•W
-#define	WEATHER_SSNOW_MUL_X			(20)						// ƒx[ƒX‚Éá‚Ìí—Ş•ª‘«‚·’l
-#define	WEATHER_SSNOW_START_X_MAX	(420)						// XŠJnÀ•W—”‚ÌÅ‘å’l
-#define	WEATHER_SSNOW_START_Y		(-8)						// YŠJnÀ•W
-#define	WEATHER_SSNOW_SPEED_ADD_TMG	(20)						// XÀ•W‚ÌƒXƒs[ƒh‚ğã‚°‚éƒ^ƒCƒ~ƒ“ƒO
+/*== é›ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ==*/
+#define WEATHER_SSNOW_SPEED_X		(-1)						// æ¨ªã«é€²ã‚€ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define	WEATHER_SSNOW_END_MIN		(4)							// çµ‚äº†ã‚«ã‚¦ãƒ³ã‚¿æœ€å°
+#define WEATHER_SSNOW_END_MAX		(46)						// çµ‚äº†ã‚«ã‚¦ãƒ³ã‚¿æœ€å¤§
+#define WEATHER_SSNOW_END_NUM		(WEATHER_SSNOW_END_MAX - WEATHER_SSNOW_END_MIN)	// ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã®æ•°
+#define	WEATHER_SSNOW_END_DIV		((WEATHER_SSNOW_END_NUM / 3)+1)	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç¨®é¡ã‚’è¨ˆç®—ã™ã‚‹ã¨ãå‰²ã‚‹å€¤
+#define	WEATHER_SSNOW_START_X_BASE	(-20)						// ãƒ™ãƒ¼ã‚¹ã«ãªã‚‹Xé–‹å§‹åº§æ¨™
+#define	WEATHER_SSNOW_MUL_X			(20)						// ãƒ™ãƒ¼ã‚¹ã«é›ªã®ç¨®é¡åˆ†è¶³ã™å€¤
+#define	WEATHER_SSNOW_START_X_MAX	(420)						// Xé–‹å§‹åº§æ¨™ä¹±æ•°ã®æœ€å¤§å€¤
+#define	WEATHER_SSNOW_START_Y		(-8)						// Yé–‹å§‹åº§æ¨™
+#define	WEATHER_SSNOW_SPEED_ADD_TMG	(20)						// Xåº§æ¨™ã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’ä¸Šã’ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
-#define	WEATHER_SSNOW_ADD_SP_TMG_NUM (4)						// ƒXƒs[ƒh‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO‚Ì”
-#define	WEATHER_SSNOW_ADD_SP_TMG_TMG (200)						// ƒXƒs[ƒh‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO‚Ìƒ^ƒCƒ~ƒ“ƒO
+#define	WEATHER_SSNOW_ADD_SP_TMG_NUM (4)						// ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®æ•°
+#define	WEATHER_SSNOW_ADD_SP_TMG_TMG (200)						// ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
-/*== áƒOƒ‰ƒtƒBƒbƒN\¬ƒf[ƒ^ ==*/
+/*== å¹é›ªã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ§‹æˆãƒ‡ãƒ¼ã‚¿ ==*/
 #define WEATHER_SSNOW_GRAPHIC_CELL	( 1 )
 #define WEATHER_SSNOW_GRAPHIC_BG	( WEATHER_GRAPHIC_NONE )
 
-/*== áBGƒOƒ‰ƒtƒBƒbƒN\¬ƒf[ƒ^ ==*/
+/*== å¹é›ªBGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ§‹æˆãƒ‡ãƒ¼ã‚¿ ==*/
 #define WEATHER_SSNOW_BG_GRAPHIC_CELL	( 1 )
 #define WEATHER_SSNOW_BG_GRAPHIC_BG	( 0 )
 
 
 //-----------------------
-// –kŠC“¹á
+// åŒ—æµ·é“é›ª
 //=======================
-#define	WEATHER_SNOW_S_TIMING_MIN		(1)							// á‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ¬
-#define WEATHER_SNOW_S_TIMING_MAX		(12)						// á‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ‘å
-#define WEATHER_SNOW_S_TIMING_ADD		(4)							// ƒ^ƒCƒ~ƒ“ƒO‚ğŒ¸‚ç‚·”
-#define WEATHER_SNOW_S_ADD_START		(4)							// Å‰‚Ì“¯‚Éá‚ğ“o˜^‚·‚é”
-#define WEATHER_SNOW_S_ADD_TIMING		(2)							// á‚Ìƒ^ƒCƒ~ƒ“ƒO‚ğ‚±‚ê‰ñ•ÏX‚µ‚½‚ç‚P‰ñ‘‚â‚·
-#define WEATHER_SNOW_S_ADD				(3)							// “o˜^‚·‚é”‚ğ‘‚â‚·”
-#define WEATHER_SNOW_S_ADD_END			(-4)							// “o˜^‚·‚é”‚ğ‘‚â‚·”
-#define	WEATHER_SNOW_S_ADD_MAIN			(10)						// ƒƒCƒ“ƒV[ƒPƒ“ƒX‚Å‚Ì“o˜^‚·‚é”
+#define	WEATHER_SNOW_S_TIMING_MIN		(1)							// é›ªã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å°
+#define WEATHER_SNOW_S_TIMING_MAX		(12)						// é›ªã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å¤§
+#define WEATHER_SNOW_S_TIMING_ADD		(4)							// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ¸›ã‚‰ã™æ•°
+#define WEATHER_SNOW_S_ADD_START		(4)							// æœ€åˆã®åŒæ™‚ã«é›ªã‚’ç™»éŒ²ã™ã‚‹æ•°
+#define WEATHER_SNOW_S_ADD_TIMING		(2)							// é›ªã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ã“ã‚Œå›å¤‰æ›´ã—ãŸã‚‰ï¼‘å›å¢—ã‚„ã™
+#define WEATHER_SNOW_S_ADD				(3)							// ç™»éŒ²ã™ã‚‹æ•°ã‚’å¢—ã‚„ã™æ•°
+#define WEATHER_SNOW_S_ADD_END			(-4)							// ç™»éŒ²ã™ã‚‹æ•°ã‚’å¢—ã‚„ã™æ•°
+#define	WEATHER_SNOW_S_ADD_MAIN			(10)						// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ã®ç™»éŒ²ã™ã‚‹æ•°
 
-/*== ƒtƒF[ƒh–³‚µŠJn‚Ì ==*/
-#define WEATHER_SNOW_S_NOFADE_OBJ_START_NUM	( 20 )				// ŠJn‚ÌU•z‚·‚éƒIƒuƒWƒFƒNƒg‚Ì”
-#define	WEATHER_SNOW_S_NOFADE_OBJ_START_DUST_NUM	( 2 )		// ‚P‚¸‚Â‚¸‚ç‚µ‚Ä“®ì‚³‚¹‚é
-#define	WEATHER_SNOW_S_NOFADE_OBJ_START_DUST_MOVE	( 2 )		// ‚P‚¸‚Â‚¸‚ç‚µ‚Ä“®ì‚³‚¹‚é
+/*== ãƒ•ã‚§ãƒ¼ãƒ‰ç„¡ã—é–‹å§‹ã®æ™‚ ==*/
+#define WEATHER_SNOW_S_NOFADE_OBJ_START_NUM	( 20 )				// é–‹å§‹æ™‚ã®æ•£å¸ƒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ•°
+#define	WEATHER_SNOW_S_NOFADE_OBJ_START_DUST_NUM	( 2 )		// ï¼‘ãšã¤ãšã‚‰ã—ã¦å‹•ä½œã•ã›ã‚‹
+#define	WEATHER_SNOW_S_NOFADE_OBJ_START_DUST_MOVE	( 2 )		// ï¼‘ãšã¤ãšã‚‰ã—ã¦å‹•ä½œã•ã›ã‚‹
 
-/*== ƒtƒHƒO ==*/
-#define	WEATHER_SNOW_S_FOG_TIMING		(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_SNOW_S_FOG_TIMING_END	(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_SNOW_S_FOG_START		(16)						// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_SNOW_S_FOG_START_END	(20)						// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+/*== ãƒ•ã‚©ã‚° ==*/
+#define	WEATHER_SNOW_S_FOG_TIMING		(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_SNOW_S_FOG_TIMING_END	(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_SNOW_S_FOG_START		(16)						// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_SNOW_S_FOG_START_END	(20)						// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 #define WEATHER_SNOW_S_FOG_OFS	(-0x400)
 
 /*== BG ==*/
-#define WEATHER_SNOW_S_BG_ALP_TIM_S	(6)		// ƒAƒ‹ƒtƒ@‚ğ‚Pã‚°‚éƒ^ƒCƒ~ƒ“ƒO
-#define WEATHER_SNOW_S_BG_ALP_TIM_E	(8)		// ƒAƒ‹ƒtƒ@‚ğ‚P‰º‚°‚éƒ^ƒCƒ~ƒ“ƒO
+#define WEATHER_SNOW_S_BG_ALP_TIM_S	(6)		// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’ï¼‘ä¸Šã’ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define WEATHER_SNOW_S_BG_ALP_TIM_E	(8)		// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’ï¼‘ä¸‹ã’ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
-// ƒIƒuƒWƒF 
-#define	WEATHER_SNOW_S_END_MIN		(18)						// I—¹ƒJƒEƒ“ƒ^Å¬
-#define WEATHER_SNOW_S_END_MAX		(24)						// I—¹ƒJƒEƒ“ƒ^Å‘å
-#define WEATHER_SNOW_S_START_X		(256)						// ‰¡‚©‚ço‚·‚Æ‚«‚ÌXÀ•W
-#define WEATHER_SNOW_S_START_X_RAN	(24)						// ‰¡‚©‚ço‚·‚Æ‚«‚ÌXÀ•W
-#define	WEATHER_SNOW_S_START_Y_BASE	(-32)							// ƒx[ƒX‚É‚È‚éYŠJnÀ•W
-#define	WEATHER_SNOW_S_START_Y_MAX	(168)						// XŠJnÀ•W—”‚ÌÅ‘å’l
+// ã‚ªãƒ–ã‚¸ã‚§ 
+#define	WEATHER_SNOW_S_END_MIN		(18)						// çµ‚äº†ã‚«ã‚¦ãƒ³ã‚¿æœ€å°
+#define WEATHER_SNOW_S_END_MAX		(24)						// çµ‚äº†ã‚«ã‚¦ãƒ³ã‚¿æœ€å¤§
+#define WEATHER_SNOW_S_START_X		(256)						// æ¨ªã‹ã‚‰å‡ºã™ã¨ãã®Xåº§æ¨™
+#define WEATHER_SNOW_S_START_X_RAN	(24)						// æ¨ªã‹ã‚‰å‡ºã™ã¨ãã®Xåº§æ¨™
+#define	WEATHER_SNOW_S_START_Y_BASE	(-32)							// ãƒ™ãƒ¼ã‚¹ã«ãªã‚‹Yé–‹å§‹åº§æ¨™
+#define	WEATHER_SNOW_S_START_Y_MAX	(168)						// Xé–‹å§‹åº§æ¨™ä¹±æ•°ã®æœ€å¤§å€¤
 
-#define	WEATHER_SNOW_S_SPEED_ADD_TMG (10)						// XÀ•W‚ÌƒXƒs[ƒh‚ğã‚°‚éƒ^ƒCƒ~ƒ“ƒO
+#define	WEATHER_SNOW_S_SPEED_ADD_TMG (10)						// Xåº§æ¨™ã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’ä¸Šã’ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
-#define	WEATHER_SNOW_S_ADD_SP_TMG_NUM (4)						// ƒXƒs[ƒh‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO‚Ì”
-#define	WEATHER_SNOW_S_ADD_SP_CHG_TMG (512)						// ƒXƒs[ƒh‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO‚Ìƒ^ƒCƒ~ƒ“ƒO
+#define	WEATHER_SNOW_S_ADD_SP_TMG_NUM (4)						// ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®æ•°
+#define	WEATHER_SNOW_S_ADD_SP_CHG_TMG (512)						// ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
-#define WEATHER_SNOW_S_ADD_SP_TMG		(4)						// ƒXƒs[ƒh‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO
-#define WEATHER_SNOW_S_SP_UP			(8)						// ‚±‚Ì’lˆÈã‚Ì‰¡ƒXƒs[ƒh‚Ì‚Æ‚«‚Í”hè‚É‚·‚é
+#define WEATHER_SNOW_S_ADD_SP_TMG		(4)						// ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define WEATHER_SNOW_S_SP_UP			(8)						// ã“ã®å€¤ä»¥ä¸Šã®æ¨ªã‚¹ãƒ”ãƒ¼ãƒ‰ã®ã¨ãã¯æ´¾æ‰‹ã«ã™ã‚‹
 static const int WEATHER_SSNOW_SPEED_X_SML[WEATHER_SNOW_S_ADD_SP_TMG_NUM] = {-4,-6,-8,-10};
-static const int WEATHER_SSNOW_SPEED_Y_SML[WEATHER_SNOW_S_ADD_SP_TMG_NUM] = {2,4,2,4};	// ‚½‚Ä‚Éi‚ŞƒXƒs[ƒh
+static const int WEATHER_SSNOW_SPEED_Y_SML[WEATHER_SNOW_S_ADD_SP_TMG_NUM] = {2,4,2,4};	// ãŸã¦ã«é€²ã‚€ã‚¹ãƒ”ãƒ¼ãƒ‰
 
 //#define WEATHER_SNOW_S_BG_ALPHA0	(4)
 //#define WEATHER_SNOW_S_BG_ALPHA1	(8)
 //#define WEATHER_SNOE_S_BG_ALPHA_DEF	(16)
 
-/*== –ÒáBGƒOƒ‰ƒtƒBƒbƒN\¬ƒf[ƒ^ ==*/
+/*== çŒ›å¹é›ªBGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ§‹æˆãƒ‡ãƒ¼ã‚¿ ==*/
 #define WEATHER_SNOW_S_GRAPHIC_CELL	( 9 )
 #define WEATHER_SNOW_S_GRAPHIC_BG	( 0 )
 
 
 //-------------------------------------
-//	»—’ŠÇ—ŠÖ”’è”
+//	ç ‚åµç®¡ç†é–¢æ•°å®šæ•°
 //=====================================
-#define	WEATHER_STORM_TIMING_MIN		(1)							// »‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ¬
-#define WEATHER_STORM_TIMING_MAX		(15)						// »‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ‘å
-#define WEATHER_STORM_TIMING_ADD		(2)							// ƒ^ƒCƒ~ƒ“ƒO‚ğŒ¸‚ç‚·”
-#define WEATHER_STORM_TIMING_ADD_END	(1)							// ƒ^ƒCƒ~ƒ“ƒO‚ğŒ¸‚ç‚·”
-#define WEATHER_STORM_ADD_START			(1)							// Å‰‚Ì“¯‚É‰J‚ğ“o˜^‚·‚é”
-#define WEATHER_STORM_ADD_TIMING		(4)							// »‚Ìƒ^ƒCƒ~ƒ“ƒO‚ğ‚±‚ê‰ñ•ÏX‚µ‚½‚ç‚P‰ñ‘‚â‚·
-#define WEATHER_STORM_ADD				(2)							// “o˜^‚·‚é”‚ğ‘‚â‚·”
-#define WEATHER_STORM_ADD_END			(-3)							// “o˜^‚·‚é”‚ğ‘‚â‚·”
-#define	WEATHER_STORM_ADD_MAIN			(8)							// ƒƒCƒ“ƒV[ƒPƒ“ƒX‚Å‚Ì“o˜^‚·‚é”
+#define	WEATHER_STORM_TIMING_MIN		(1)							// ç ‚ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å°
+#define WEATHER_STORM_TIMING_MAX		(15)						// ç ‚ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å¤§
+#define WEATHER_STORM_TIMING_ADD		(2)							// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ¸›ã‚‰ã™æ•°
+#define WEATHER_STORM_TIMING_ADD_END	(1)							// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ¸›ã‚‰ã™æ•°
+#define WEATHER_STORM_ADD_START			(1)							// æœ€åˆã®åŒæ™‚ã«é›¨ã‚’ç™»éŒ²ã™ã‚‹æ•°
+#define WEATHER_STORM_ADD_TIMING		(4)							// ç ‚ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ã“ã‚Œå›å¤‰æ›´ã—ãŸã‚‰ï¼‘å›å¢—ã‚„ã™
+#define WEATHER_STORM_ADD				(2)							// ç™»éŒ²ã™ã‚‹æ•°ã‚’å¢—ã‚„ã™æ•°
+#define WEATHER_STORM_ADD_END			(-3)							// ç™»éŒ²ã™ã‚‹æ•°ã‚’å¢—ã‚„ã™æ•°
+#define	WEATHER_STORM_ADD_MAIN			(8)							// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ã®ç™»éŒ²ã™ã‚‹æ•°
 
-/*== ƒtƒF[ƒh–³‚µŠJn‚Ì ==*/
-#define WEATHER_STORM_NOFADE_OBJ_START_NUM	( 24 )				// ŠJn‚ÌU•z‚·‚éƒIƒuƒWƒFƒNƒg‚Ì”
-#define	WEATHER_STORM_NOFADE_OBJ_START_DUST_NUM		( 2 )			// ‰½ŒÂ‚¸‚Â‚¸‚ç‚µ‚Ä“®ì‚³‚¹‚é‚©
-#define	WEATHER_STORM_NOFADE_OBJ_START_DUST_MOVE	( 2 )			// ‚P‚¸‚Â‚¸‚ç‚µ‚Ä“®ì‚³‚¹‚é
+/*== ãƒ•ã‚§ãƒ¼ãƒ‰ç„¡ã—é–‹å§‹ã®æ™‚ ==*/
+#define WEATHER_STORM_NOFADE_OBJ_START_NUM	( 24 )				// é–‹å§‹æ™‚ã®æ•£å¸ƒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ•°
+#define	WEATHER_STORM_NOFADE_OBJ_START_DUST_NUM		( 2 )			// ä½•å€‹ãšã¤ãšã‚‰ã—ã¦å‹•ä½œã•ã›ã‚‹ã‹
+#define	WEATHER_STORM_NOFADE_OBJ_START_DUST_MOVE	( 2 )			// ï¼‘ãšã¤ãšã‚‰ã—ã¦å‹•ä½œã•ã›ã‚‹
 
-/*== ƒtƒHƒO ==*/
-#define	WEATHER_STORM_FOG_TIMING		(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_STORM_FOG_TIMING_END	(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_STORM_FOG_START			(0)							// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_STORM_FOG_START_END		(31)						// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+/*== ãƒ•ã‚©ã‚° ==*/
+#define	WEATHER_STORM_FOG_TIMING		(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_STORM_FOG_TIMING_END	(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_STORM_FOG_START			(0)							// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_STORM_FOG_START_END		(31)						// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 #define WEATHER_STORM_FOG_OFS	( 28399 )
-#define WEATHER_STORM_FOG_SLOPE	( 3 )								// »—’ƒXƒ[ƒv
+#define WEATHER_STORM_FOG_SLOPE	( 3 )								// ç ‚åµã‚¹ãƒ­ãƒ¼ãƒ—
 
 
 /*== BG ==*/
-#define WEATHER_STORM_BG_ALP_TIM_S	(32)		// ƒAƒ‹ƒtƒ@‚ğ‚Pã‚°‚éƒ^ƒCƒ~ƒ“ƒO
-#define WEATHER_STORM_BG_ALP_TIM_E	(24)		// ƒAƒ‹ƒtƒ@‚ğ‚P‰º‚°‚éƒ^ƒCƒ~ƒ“ƒO
+#define WEATHER_STORM_BG_ALP_TIM_S	(32)		// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’ï¼‘ä¸Šã’ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define WEATHER_STORM_BG_ALP_TIM_E	(24)		// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’ï¼‘ä¸‹ã’ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 #define WEATHER_STORM_BG_ALP_S_END	( 3 )
 #define WEATHER_STORM_BG_ALP_E_END	( 0 )
 #define WEATHER_STORM_BG_ALP_DEF	( 16 )
 
-#define WEATHER_STORM_BG_ALP_STRONG_WIND	(4)	// ‚·‚²‚¢•—‚Ì‚Æ‚«‚Ìƒ¿’l
+#define WEATHER_STORM_BG_ALP_STRONG_WIND	(4)	// ã™ã”ã„é¢¨ã®ã¨ãã®Î±å€¤
 
 
-/*== »ƒIƒuƒWƒFƒNƒg ==*/
-#define	WEATHER_STORM_END_MIN		(15)						// I—¹ƒJƒEƒ“ƒ^Å¬
-#define WEATHER_STORM_END_MAX		(35)						// I—¹ƒJƒEƒ“ƒ^Å‘å
-#define WEATHER_STORM_END_NUM		(WEATHER_STORM_END_MAX - WEATHER_STORM_END_MIN)	// ƒJƒEƒ“ƒ^‚Ì’l‚Ì”
-#define	WEATHER_STORM_END_DIV		((WEATHER_STORM_END_NUM / 4)+1)	// ƒIƒuƒWƒFƒNƒg‚Ìí—Ş‚ğŒvZ‚·‚é‚Æ‚«Š„‚é’l
-#define	WEATHER_STORM_START_X1		(262)						// ƒx[ƒX‚É‚È‚éXŠJnÀ•W	‚æ‚±—p
-#define	WEATHER_STORM_START_X1_RAN	(24)						// ƒx[ƒX‚É‚È‚éXŠJnÀ•W	‚æ‚±—p
-#define WEATHER_STORM_START_Y1_MIN	( -64 )						//  YŠJnÀ•WÅ¬
-#define	WEATHER_STORM_START_Y1_MAX	(192)						// YŠJnÀ•WÅ‘å
-#define	WEATHER_STORM_SPEED_NUM		(8)							// •—Œü‚«‚Ì”
-#define	WEATHER_STORM_SPEED_CNG_NUM	(40)						// •Ï‚¦‚éƒ^ƒCƒ~ƒ“ƒO
-#define WEATHER_STORM_SPEED_ADD_TMG (5)						// •—‚Ì¨‚¢‚ğ•Ï‚¦‚éƒ^ƒCƒ~ƒ“ƒO
+/*== ç ‚ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ==*/
+#define	WEATHER_STORM_END_MIN		(15)						// çµ‚äº†ã‚«ã‚¦ãƒ³ã‚¿æœ€å°
+#define WEATHER_STORM_END_MAX		(35)						// çµ‚äº†ã‚«ã‚¦ãƒ³ã‚¿æœ€å¤§
+#define WEATHER_STORM_END_NUM		(WEATHER_STORM_END_MAX - WEATHER_STORM_END_MIN)	// ã‚«ã‚¦ãƒ³ã‚¿ã®å€¤ã®æ•°
+#define	WEATHER_STORM_END_DIV		((WEATHER_STORM_END_NUM / 4)+1)	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç¨®é¡ã‚’è¨ˆç®—ã™ã‚‹ã¨ãå‰²ã‚‹å€¤
+#define	WEATHER_STORM_START_X1		(262)						// ãƒ™ãƒ¼ã‚¹ã«ãªã‚‹Xé–‹å§‹åº§æ¨™	ã‚ˆã“ç”¨
+#define	WEATHER_STORM_START_X1_RAN	(24)						// ãƒ™ãƒ¼ã‚¹ã«ãªã‚‹Xé–‹å§‹åº§æ¨™	ã‚ˆã“ç”¨
+#define WEATHER_STORM_START_Y1_MIN	( -64 )						//  Yé–‹å§‹åº§æ¨™æœ€å°
+#define	WEATHER_STORM_START_Y1_MAX	(192)						// Yé–‹å§‹åº§æ¨™æœ€å¤§
+#define	WEATHER_STORM_SPEED_NUM		(8)							// é¢¨å‘ãã®æ•°
+#define	WEATHER_STORM_SPEED_CNG_NUM	(40)						// å¤‰ãˆã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define WEATHER_STORM_SPEED_ADD_TMG (5)						// é¢¨ã®å‹¢ã„ã‚’å¤‰ãˆã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
-#define WEATHER_STORM_STRONG_CHG	(6)						// •—‚ª‚±‚Ì’lˆÈã‚É‚È‚Á‚½¨‚¢‚ğ‹­‚­‚·‚é
+#define WEATHER_STORM_STRONG_CHG	(6)						// é¢¨ãŒã“ã®å€¤ä»¥ä¸Šã«ãªã£ãŸæ™‚å‹¢ã„ã‚’å¼·ãã™ã‚‹
 
 
-/*== ‚·‚È‚ ‚ç‚µƒOƒ‰ƒtƒBƒbƒN\¬ƒf[ƒ^ ==*/
+/*== ã™ãªã‚ã‚‰ã—ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ§‹æˆãƒ‡ãƒ¼ã‚¿ ==*/
 #define WEATHER_STORM_GRAPHIC_CELL	( 2 )
 #define WEATHER_STORM_GRAPHIC_BG	( WEATHER_GRAPHIC_NONE )
 
@@ -934,13 +934,13 @@ static const int WEATHER_SSNOW_SPEED_Y_SML[WEATHER_SNOW_S_ADD_SP_TMG_NUM] = {2,4
 
 
 //-------------------------------------
-//	–¶ŠÇ—ŠÖ”’è”
+//	éœ§ç®¡ç†é–¢æ•°å®šæ•°
 //=====================================
-/*== ƒtƒHƒO ==*/
-#define	WEATHER_FOG_TIMING		(2)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_FOG_TIMING_END	(2)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_FOG_START		(16)						// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_FOG_START_END	(16)						// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+/*== ãƒ•ã‚©ã‚° ==*/
+#define	WEATHER_FOG_TIMING		(2)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_FOG_TIMING_END	(2)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_FOG_START		(16)						// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_FOG_START_END	(16)						// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 
 #define WEATHER_FOG0_OFS	( 0x200 )
 #define WEATHER_FOG1_OFS	( -0x9E0 )	
@@ -949,7 +949,7 @@ static const int WEATHER_SSNOW_SPEED_Y_SML[WEATHER_SNOW_S_ADD_SP_TMG_NUM] = {2,4
 #define WEATHER_FOG2_SLOPE	( 5 )
 
 
-/*== FOG2 BGİ’è ==*/
+/*== FOG2 BGè¨­å®š ==*/
 #define WEATHER_FOG2_GRAPHIC_BG	( 6 )
 #define WEATHER_FOG2_GRAPHIC_CELL	( WEATHER_GRAPHIC_NONE )
 #define WEATHER_FOG2_FADE_COUNT_MAX	( 30 )
@@ -959,210 +959,210 @@ static const int WEATHER_SSNOW_SPEED_Y_SML[WEATHER_SNOW_S_ADD_SP_TMG_NUM] = {2,4
 
 
 //-------------------------------------
-//	ƒXƒm[ƒ_ƒXƒgŠÖŒW
+//	ã‚¹ãƒãƒ¼ãƒ€ã‚¹ãƒˆé–¢ä¿‚
 //====================================
-#define	WEATHER_SNOW_D_TIMING_MIN		(2)							// o‚·ƒ^ƒCƒ~ƒ“ƒOÅ¬
-#define WEATHER_SNOW_D_TIMING_MAX		(16)						// o‚·ƒ^ƒCƒ~ƒ“ƒOÅ‘å
-#define WEATHER_SNOW_D_TIMING_ADD		(2)							// ƒ^ƒCƒ~ƒ“ƒO‚ğŒ¸‚ç‚·”
-#define WEATHER_SNOW_D_TIMING_ADD_END	(6)							// ƒ^ƒCƒ~ƒ“ƒO‚ğŒ¸‚ç‚·”
-#define WEATHER_SNOW_D_ADD_START		(2)							// Å‰‚Ì“¯‚É“o˜^‚·‚é”
-#define WEATHER_SNOW_D_ADD_TIMING		(4)							// ƒ^ƒCƒ~ƒ“ƒO‚ğ‚±‚ê‰ñ•ÏX‚µ‚½‚ç‚P‰ñ‘‚â‚·
-#define WEATHER_SNOW_D_ADD				(2)							// “o˜^‚·‚é”‚ğ‘‚â‚·”
-#define WEATHER_SNOW_D_ADD_END			(10)							// “o˜^‚·‚é”‚ğ‘‚â‚·”
-#define	WEATHER_SNOW_D_ADD_MAIN			(20)						// ƒƒCƒ“ƒV[ƒPƒ“ƒX‚Å‚Ì“o˜^‚·‚é”
+#define	WEATHER_SNOW_D_TIMING_MIN		(2)							// å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å°
+#define WEATHER_SNOW_D_TIMING_MAX		(16)						// å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å¤§
+#define WEATHER_SNOW_D_TIMING_ADD		(2)							// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ¸›ã‚‰ã™æ•°
+#define WEATHER_SNOW_D_TIMING_ADD_END	(6)							// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ¸›ã‚‰ã™æ•°
+#define WEATHER_SNOW_D_ADD_START		(2)							// æœ€åˆã®åŒæ™‚ã«ç™»éŒ²ã™ã‚‹æ•°
+#define WEATHER_SNOW_D_ADD_TIMING		(4)							// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ã“ã‚Œå›å¤‰æ›´ã—ãŸã‚‰ï¼‘å›å¢—ã‚„ã™
+#define WEATHER_SNOW_D_ADD				(2)							// ç™»éŒ²ã™ã‚‹æ•°ã‚’å¢—ã‚„ã™æ•°
+#define WEATHER_SNOW_D_ADD_END			(10)							// ç™»éŒ²ã™ã‚‹æ•°ã‚’å¢—ã‚„ã™æ•°
+#define	WEATHER_SNOW_D_ADD_MAIN			(20)						// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ã®ç™»éŒ²ã™ã‚‹æ•°
 
-/*== ƒtƒF[ƒh–³‚µŠJn‚Ì ==*/
-#define WEATHER_SNOW_D_NOFADE_OBJ_START_NUM	( 20 )				// ŠJn‚ÌU•z‚·‚éƒIƒuƒWƒFƒNƒg‚Ì”
-#define	WEATHER_SNOW_D_NOFADE_OBJ_START_DUST_NUM	( 10 )		// ‰½ŒÂ‚¸‚Â“®ì”‚ğ‚©‚¦‚é‚©
-#define	WEATHER_SNOW_D_NOFADE_OBJ_START_DUST_MOVE	( 1 )		// ‚¸‚ç‚µ‚Ä“®ì‚³‚¹‚é’l
+/*== ãƒ•ã‚§ãƒ¼ãƒ‰ç„¡ã—é–‹å§‹ã®æ™‚ ==*/
+#define WEATHER_SNOW_D_NOFADE_OBJ_START_NUM	( 20 )				// é–‹å§‹æ™‚ã®æ•£å¸ƒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ•°
+#define	WEATHER_SNOW_D_NOFADE_OBJ_START_DUST_NUM	( 10 )		// ä½•å€‹ãšã¤å‹•ä½œæ•°ã‚’ã‹ãˆã‚‹ã‹
+#define	WEATHER_SNOW_D_NOFADE_OBJ_START_DUST_MOVE	( 1 )		// ãšã‚‰ã—ã¦å‹•ä½œã•ã›ã‚‹å€¤
 
 
-/*== ƒtƒHƒO ==*/
-#define	WEATHER_SNOW_D_FOG_TIMING		(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_SNOW_D_FOG_TIMING_END	(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_SNOW_D_FOG_START		(0)							// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_SNOW_D_FOG_START_END	(0)							// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+/*== ãƒ•ã‚©ã‚° ==*/
+#define	WEATHER_SNOW_D_FOG_TIMING		(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_SNOW_D_FOG_TIMING_END	(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_SNOW_D_FOG_START		(0)							// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_SNOW_D_FOG_START_END	(0)							// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 #define WEATHER_SNOW_D_FOG_OFS			(0x200)
 
-// ƒIƒuƒWƒFƒNƒg
-#define WEATHER_SNOW_D_START_X_MIN		(-64)					// ŠJnÀ•W
-#define	WEATHER_SNOW_D_START_X_DIS		(384)					// —”‚Å‹‚ß‚éŠJnÀ•W‚Ì’l
-#define WEATHER_SNOW_D_START_Y			(-8)					// ‚±‚±‚©‚ço‚·
-#define WEATHER_SNOW_D_START_Y_MAX		(256)					// ‚±‚±‚©‚ço‚·
-#define WEATHER_SNOW_D_SPARK_NUM_MIN	(7)						// ‚±‚ê‚¾‚¯o‚Ä‚éÅ¬
-#define WEATHER_SNOW_D_SPARK_NUM_RAN	(5)						// —”‚Å‹‚ß‚é’l
-#define WEATHER_SNOW_D_SPARK_NO			(0x14)					// Œõ‚Ì”
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+#define WEATHER_SNOW_D_START_X_MIN		(-64)					// é–‹å§‹åº§æ¨™
+#define	WEATHER_SNOW_D_START_X_DIS		(384)					// ä¹±æ•°ã§æ±‚ã‚ã‚‹é–‹å§‹åº§æ¨™ã®å€¤
+#define WEATHER_SNOW_D_START_Y			(-8)					// ã“ã“ã‹ã‚‰å‡ºã™
+#define WEATHER_SNOW_D_START_Y_MAX		(256)					// ã“ã“ã‹ã‚‰å‡ºã™
+#define WEATHER_SNOW_D_SPARK_NUM_MIN	(7)						// ã“ã‚Œã ã‘å‡ºã¦ã‚‹æœ€å°
+#define WEATHER_SNOW_D_SPARK_NUM_RAN	(5)						// ä¹±æ•°ã§æ±‚ã‚ã‚‹å€¤
+#define WEATHER_SNOW_D_SPARK_NO			(0x14)					// å…‰ã®æ•°
 
-#define WEATHER_SNOW_D_SP_ADD_TMG_X_MIN	(3)						//@ƒIƒuƒWƒFƒNƒg‚ÌƒXƒs[ƒh‚ğ‘«‚·ƒ^ƒCƒ~ƒ“ƒO
-#define WEATHER_SNOW_D_SP_ADD_TMG_X_MAX	(6)					//@ƒIƒuƒWƒFƒNƒg‚ÌƒXƒs[ƒh‚ğ‘«‚·ƒ^ƒCƒ~ƒ“ƒO
-#define WEATHER_SNOW_D_SP_ADD_TMG_Y_MIN	(4)						// ƒIƒuƒWƒFƒNƒg‚ÌƒXƒs[ƒh‚ğ‘«‚·ƒ^ƒCƒ~ƒ“ƒO
-#define WEATHER_SNOW_D_SP_ADD_TMG_Y_MAX	(5)					// ƒIƒuƒWƒFƒNƒg‚ÌƒXƒs[ƒh‚ğ‘«‚·ƒ^ƒCƒ~ƒ“ƒO	
+#define WEATHER_SNOW_D_SP_ADD_TMG_X_MIN	(3)						//ã€€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¶³ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define WEATHER_SNOW_D_SP_ADD_TMG_X_MAX	(6)					//ã€€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¶³ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define WEATHER_SNOW_D_SP_ADD_TMG_Y_MIN	(4)						// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¶³ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define WEATHER_SNOW_D_SP_ADD_TMG_Y_MAX	(5)					// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¶³ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°	
 
-/*== ƒXƒm[ƒ_ƒXƒgƒOƒ‰ƒtƒBƒbƒN\¬ƒf[ƒ^ ==*/
+/*== ã‚¹ãƒãƒ¼ãƒ€ã‚¹ãƒˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ§‹æˆãƒ‡ãƒ¼ã‚¿ ==*/
 #define WEATHER_SNOW_D_GRAPHIC_CELL	( 4 )
 #define WEATHER_SNOW_D_GRAPHIC_BG	( WEATHER_GRAPHIC_NONE )
 
 
 //-------------------------------------
-//	“ø
+//	è™¹
 //=====================================
-/*== “øƒOƒ‰ƒtƒBƒbƒN\¬ƒf[ƒ^ ==*/
+/*== è™¹ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ§‹æˆãƒ‡ãƒ¼ã‚¿ ==*/
 #define WEATHER_RAINBOW_GRAPHIC_CELL	( WEATHER_GRAPHIC_NONE  )
 #define WEATHER_RAINBOW_GRAPHIC_BG		( 2 )
 
-/*== ƒ[ƒNƒTƒCƒY ==*/
+/*== ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º ==*/
 #define WEATHER_RAINBOW_WORK_SIZE		(sizeof(int)*10)
 
 
 //-------------------------------------
-//	‘å‰J
+//	å¤§é›¨
 //=====================================
-#define	WEATHER_STRAIN_TIMING_MIN		(0)					// ‰J‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ¬
-#define WEATHER_STRAIN_TIMING_MAX		(15)				// ‰J‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ‘å
-#define WEATHER_STRAIN_TIMING_ADD		(3)					// ƒ^ƒCƒ~ƒ“ƒO‚ğŒ¸‚ç‚·”
-#define WEATHER_STRAIN_ADD_START		(1)					// Å‰‚Ì“¯‚É‰J‚ğ“o˜^‚·‚é”
-#define WEATHER_STRAIN_ADD_TIMING		(2)					// ‰J‚Ìƒ^ƒCƒ~ƒ“ƒO‚ğ‚±‚ê‰ñ•ÏX‚µ‚½‚ç‚P‰ñ‘‚â‚·
-#define WEATHER_STRAIN_ADD			(1)						// “o˜^‚·‚é”‚ğ‘‚â‚·”
-#define WEATHER_STRAIN_ADD_END		(-3)					// “o˜^‚·‚é”‚ğ‘‚â‚·”
-#define	WEATHER_STRAIN_ADD_MAIN		(10)					// ƒƒCƒ“ƒV[ƒPƒ“ƒX‚Å‚Ì“o˜^‚·‚é”
+#define	WEATHER_STRAIN_TIMING_MIN		(0)					// é›¨ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å°
+#define WEATHER_STRAIN_TIMING_MAX		(15)				// é›¨ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å¤§
+#define WEATHER_STRAIN_TIMING_ADD		(3)					// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ¸›ã‚‰ã™æ•°
+#define WEATHER_STRAIN_ADD_START		(1)					// æœ€åˆã®åŒæ™‚ã«é›¨ã‚’ç™»éŒ²ã™ã‚‹æ•°
+#define WEATHER_STRAIN_ADD_TIMING		(2)					// é›¨ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’ã“ã‚Œå›å¤‰æ›´ã—ãŸã‚‰ï¼‘å›å¢—ã‚„ã™
+#define WEATHER_STRAIN_ADD			(1)						// ç™»éŒ²ã™ã‚‹æ•°ã‚’å¢—ã‚„ã™æ•°
+#define WEATHER_STRAIN_ADD_END		(-3)					// ç™»éŒ²ã™ã‚‹æ•°ã‚’å¢—ã‚„ã™æ•°
+#define	WEATHER_STRAIN_ADD_MAIN		(10)					// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ã®ç™»éŒ²ã™ã‚‹æ•°
 
-/*== ƒtƒF[ƒh–³‚µŠJn‚Ì ==*/
-#define WEATHER_STRAIN_NOFADE_OBJ_START_NUM	( 20 )				// ŠJn‚ÌU•z‚·‚éƒIƒuƒWƒFƒNƒg‚Ì”
-#define	WEATHER_STRAIN_NOFADE_OBJ_START_DUST_NUM	( 5 )		// ‰½ŒÂ‚¸‚Â“®ì”‚ğ•ÏX‚·‚é‚©
-#define	WEATHER_STRAIN_NOFADE_OBJ_START_DUST_MOVE	( 1 )		// ‚¸‚ç‚·“®ì”‚Ì’l
+/*== ãƒ•ã‚§ãƒ¼ãƒ‰ç„¡ã—é–‹å§‹ã®æ™‚ ==*/
+#define WEATHER_STRAIN_NOFADE_OBJ_START_NUM	( 20 )				// é–‹å§‹æ™‚ã®æ•£å¸ƒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ•°
+#define	WEATHER_STRAIN_NOFADE_OBJ_START_DUST_NUM	( 5 )		// ä½•å€‹ãšã¤å‹•ä½œæ•°ã‚’å¤‰æ›´ã™ã‚‹ã‹
+#define	WEATHER_STRAIN_NOFADE_OBJ_START_DUST_MOVE	( 1 )		// ãšã‚‰ã™å‹•ä½œæ•°ã®å€¤
 
-/*== ƒtƒHƒO ==*/
-#define	WEATHER_STRAIN_FOG_TIMING		(1)						// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_STRAIN_FOG_TIMING_END	(1)						// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_STRAIN_FOG_START		(0)					// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_STRAIN_FOG_START_END	(0)					// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+/*== ãƒ•ã‚©ã‚° ==*/
+#define	WEATHER_STRAIN_FOG_TIMING		(1)						// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_STRAIN_FOG_TIMING_END	(1)						// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_STRAIN_FOG_START		(0)					// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_STRAIN_FOG_START_END	(0)					// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 
 
-/*== ‰JƒIƒuƒWƒFƒNƒg ==*/
-#define WEATHER_STRAIN_SPEED_X		(-24)						// ‰¡‚Éi‚ŞƒXƒs[ƒh
-#define WEATHER_STRAIN_SPEED_Y		(24)							// ‚½‚Ä‚Éi‚ŞƒXƒs[ƒhƒx[ƒX
-#define	WEATHER_STRAIN_END_MIN		(0)							// I—¹ƒJƒEƒ“ƒ^Å¬
-#define WEATHER_STRAIN_END_MAX		(4)							// I—¹ƒJƒEƒ“ƒ^Å‘å
-#define	WEATHER_STRAIN_START_X		(0)							// ƒx[ƒX‚É‚È‚éXŠJnÀ•W
-#define	WEATHER_STRAIN_START_X_MAX	(512)						// XŠJnÀ•W—”’l
-#define	WEATHER_STRAIN_START_Y		(-80)						// YŠJnÀ•W
-#define	WEATHER_STRAIN_START_Y_MAX	(48)						// YŠJnÀ•W—”’l
+/*== é›¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ==*/
+#define WEATHER_STRAIN_SPEED_X		(-24)						// æ¨ªã«é€²ã‚€ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define WEATHER_STRAIN_SPEED_Y		(24)							// ãŸã¦ã«é€²ã‚€ã‚¹ãƒ”ãƒ¼ãƒ‰ãƒ™ãƒ¼ã‚¹
+#define	WEATHER_STRAIN_END_MIN		(0)							// çµ‚äº†ã‚«ã‚¦ãƒ³ã‚¿æœ€å°
+#define WEATHER_STRAIN_END_MAX		(4)							// çµ‚äº†ã‚«ã‚¦ãƒ³ã‚¿æœ€å¤§
+#define	WEATHER_STRAIN_START_X		(0)							// ãƒ™ãƒ¼ã‚¹ã«ãªã‚‹Xé–‹å§‹åº§æ¨™
+#define	WEATHER_STRAIN_START_X_MAX	(512)						// Xé–‹å§‹åº§æ¨™ä¹±æ•°å€¤
+#define	WEATHER_STRAIN_START_Y		(-80)						// Yé–‹å§‹åº§æ¨™
+#define	WEATHER_STRAIN_START_Y_MAX	(48)						// Yé–‹å§‹åº§æ¨™ä¹±æ•°å€¤
 
-#define WEATHER_STRAIN_OBJ_MUL_NUM	(5)							// ƒIƒuƒWƒF‚ÌƒXƒs[ƒh‚ğ•Ï‰»‚³‚¹‚é’l
-#define WEATHER_STRAIN_OBJ_MUL_CHG	(60)						// •ÏXƒ^ƒCƒ~ƒ“ƒO
+#define WEATHER_STRAIN_OBJ_MUL_NUM	(5)							// ã‚ªãƒ–ã‚¸ã‚§ã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å¤‰åŒ–ã•ã›ã‚‹å€¤
+#define WEATHER_STRAIN_OBJ_MUL_CHG	(60)						// å¤‰æ›´ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
-/*== ‘å‰JƒOƒ‰ƒtƒBƒbƒN\¬ƒf[ƒ^ ==*/
+/*== å¤§é›¨ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ§‹æˆãƒ‡ãƒ¼ã‚¿ ==*/
 #define WEATHER_STRAIN_GRAPHIC_CELL	( 5 )
 #define WEATHER_STRAIN_GRAPHIC_BG	( WEATHER_GRAPHIC_NONE )
 
 //-------------------------------------
-//	‰ÎRŠDŠÇ—ŠÖ”’è”
+//	ç«å±±ç°ç®¡ç†é–¢æ•°å®šæ•°
 //=====================================
-#define	WEATHER_VOLCANO_TIMING_MIN	(6)		// ‰ÎRŠD‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ¬
-#define WEATHER_VOLCANO_TIMING_MAX	(12)		// ‰ÎRŠD‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ‘å
-#define WEATHER_VOLCANO_TIMING_ADD	(1)			// ƒ^ƒCƒ~ƒ“ƒO‚ğŒ¸‚ç‚·”
-#define	WEATHER_VOLCANO_ADD_TIMING	(4)			// ‚P“x‚ÌƒIƒuƒWƒF“o˜^”‚ğ‘‚â‚·ƒ^ƒCƒ~ƒ“ƒO
-#define	WEATHER_VOLCANO_ADD			(0)			// ƒIƒuƒWƒF“o˜^”‚ğ‘«‚·’l
-#define WEATHER_VOLCANO_MAIN		(1)			// ƒƒCƒ“‚Å‚Í‚±‚ê‚¾‚¯“o˜^
+#define	WEATHER_VOLCANO_TIMING_MIN	(6)		// ç«å±±ç°ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å°
+#define WEATHER_VOLCANO_TIMING_MAX	(12)		// ç«å±±ç°ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å¤§
+#define WEATHER_VOLCANO_TIMING_ADD	(1)			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ¸›ã‚‰ã™æ•°
+#define	WEATHER_VOLCANO_ADD_TIMING	(4)			// ï¼‘åº¦ã®ã‚ªãƒ–ã‚¸ã‚§ç™»éŒ²æ•°ã‚’å¢—ã‚„ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define	WEATHER_VOLCANO_ADD			(0)			// ã‚ªãƒ–ã‚¸ã‚§ç™»éŒ²æ•°ã‚’è¶³ã™å€¤
+#define WEATHER_VOLCANO_MAIN		(1)			// ãƒ¡ã‚¤ãƒ³ã§ã¯ã“ã‚Œã ã‘ç™»éŒ²
 
-/*== ƒtƒF[ƒh–³‚µŠJn‚Ì ==*/
-#define WEATHER_VOLCANO_NOFADE_OBJ_START_NUM	( 20 )				// ŠJn‚ÌU•z‚·‚éƒIƒuƒWƒFƒNƒg‚Ì”
-#define	WEATHER_VOLCANO_NOFADE_OBJ_START_DUST_NUM	( 2 )		// ‰½ƒIƒuƒWƒF‚¸‚Â“®ì”‚ğ‚Ö‚ñ‚±‚¤‚·‚é‚©
-#define	WEATHER_VOLCANO_NOFADE_OBJ_START_DUST_MOVE	( 16 )		// ‚¸‚ç‚·“®ì”‚Ì’l
+/*== ãƒ•ã‚§ãƒ¼ãƒ‰ç„¡ã—é–‹å§‹ã®æ™‚ ==*/
+#define WEATHER_VOLCANO_NOFADE_OBJ_START_NUM	( 20 )				// é–‹å§‹æ™‚ã®æ•£å¸ƒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ•°
+#define	WEATHER_VOLCANO_NOFADE_OBJ_START_DUST_NUM	( 2 )		// ä½•ã‚ªãƒ–ã‚¸ã‚§ãšã¤å‹•ä½œæ•°ã‚’ã¸ã‚“ã“ã†ã™ã‚‹ã‹
+#define	WEATHER_VOLCANO_NOFADE_OBJ_START_DUST_MOVE	( 16 )		// ãšã‚‰ã™å‹•ä½œæ•°ã®å€¤
 
-/*== ƒtƒHƒO ==*/
-#define	WEATHER_VOLCANO_FOG_TIMING		(1)		// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_VOLCANO_FOG_TIMING_END	(1)		// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_VOLCANO_FOG_START		(0)	// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_VOLCANO_FOG_START_END	(9)	// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+/*== ãƒ•ã‚©ã‚° ==*/
+#define	WEATHER_VOLCANO_FOG_TIMING		(1)		// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_VOLCANO_FOG_TIMING_END	(1)		// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_VOLCANO_FOG_START		(0)	// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_VOLCANO_FOG_START_END	(9)	// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 #define WEATHER_VOLCANO_FOG_OFS			(-0x40)
 #define WEATHER_VOLCANO_FOG_SLOPE		( 0 )
 
 /*== BG ==*/
-#define WEATHER_VOLCANO_BG_ALP_TIM_S	(6)		// ƒAƒ‹ƒtƒ@‚ğ‚Pã‚°‚éƒ^ƒCƒ~ƒ“ƒO
-#define WEATHER_VOLCANO_BG_ALP_TIM_E	(8)		// ƒAƒ‹ƒtƒ@‚ğ‚P‰º‚°‚éƒ^ƒCƒ~ƒ“ƒO
+#define WEATHER_VOLCANO_BG_ALP_TIM_S	(6)		// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’ï¼‘ä¸Šã’ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define WEATHER_VOLCANO_BG_ALP_TIM_E	(8)		// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’ï¼‘ä¸‹ã’ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 #define WEATHER_VOLCANO_BG_ALP_S_END	( 15 )
 #define WEATHER_VOLCANO_BG_ALP_E_END	( 0 )
 #define WEATHER_VOLCANO_BG_ALP_DEF		( 16 )
 
-/*== ‰ÎRŠDƒIƒuƒWƒFƒNƒg ==*/
-#define	WEATHER_VOLCANO_ADD_TMG_Y_BASE	(1)			// ‰ÎRŠD‚ÌƒXƒs[ƒh‚ğ‘«‚·ƒ^ƒCƒ~ƒ“ƒO
-#define	WEATHER_VOLCANO_ADD_TMG_Y_RAN	(1)			// ‰ÎRŠD‚ÌƒXƒs[ƒh‚ğ‘«‚·ƒ^ƒCƒ~ƒ“ƒO—”’l
-#define	WEATHER_VOLCANO_START_X_BASE	(-32)		// ƒx[ƒX‚É‚È‚éXŠJnÀ•W
-#define	WEATHER_VOLCANO_START_X_MAX		(414)		// XŠJnÀ•W—”‚ÌÅ‘å’l
-#define WEATHER_VOLCANO_OBJ_NUM			(4)			// ƒIƒuƒWƒFí—Ş
-#define WEATEHR_VOLCANO_DEL_COUNT_MIN	(10)			// ”jŠü‚·‚éƒJƒEƒ“ƒg’l
-#define WEATEHR_VOLCANO_DEL_COUNT_MAX	(20)			// ”jŠüƒJƒEƒ“ƒg’l
+/*== ç«å±±ç°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ==*/
+#define	WEATHER_VOLCANO_ADD_TMG_Y_BASE	(1)			// ç«å±±ç°ã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¶³ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define	WEATHER_VOLCANO_ADD_TMG_Y_RAN	(1)			// ç«å±±ç°ã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¶³ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°ä¹±æ•°å€¤
+#define	WEATHER_VOLCANO_START_X_BASE	(-32)		// ãƒ™ãƒ¼ã‚¹ã«ãªã‚‹Xé–‹å§‹åº§æ¨™
+#define	WEATHER_VOLCANO_START_X_MAX		(414)		// Xé–‹å§‹åº§æ¨™ä¹±æ•°ã®æœ€å¤§å€¤
+#define WEATHER_VOLCANO_OBJ_NUM			(4)			// ã‚ªãƒ–ã‚¸ã‚§ç¨®é¡
+#define WEATEHR_VOLCANO_DEL_COUNT_MIN	(10)			// ç ´æ£„ã™ã‚‹ã‚«ã‚¦ãƒ³ãƒˆå€¤
+#define WEATEHR_VOLCANO_DEL_COUNT_MAX	(20)			// ç ´æ£„ã‚«ã‚¦ãƒ³ãƒˆå€¤
 
-/*== ‰ÎRŠDƒOƒ‰ƒtƒBƒbƒN\¬ƒf[ƒ^ ==*/
+/*== ç«å±±ç°ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ§‹æˆãƒ‡ãƒ¼ã‚¿ ==*/
 #define WEATHER_VOLCANO_GRAPHIC_CELL	( 6 )
 #define WEATHER_VOLCANO_GRAPHIC_BG	( 3 )
 
 //-------------------------------------
-//	—‹ŠÇ—ŠÖ”’è”
+//	é›·ç®¡ç†é–¢æ•°å®šæ•°
 //=====================================
-#define WEATHER_SPARK_NUM		(2)	// ƒ‰ƒCƒgŒõƒJƒEƒ“ƒg
-#define WEATHER_SPARK_POWER_MIN	(200)	// —‹POWERÅ¬	(¬”“_ŒvZ‚Ì‚½‚ß‚P‚O‚O‚©‚¯‚½’l)
-#define WEATHER_SPARK_POWER_RAN	(480)	// —‹POWER—”	(¬”“_ŒvZ‚Ì‚½‚ß‚P‚O‚O‚©‚¯‚½’l)
+#define WEATHER_SPARK_NUM		(2)	// ãƒ©ã‚¤ãƒˆå…‰ã‚«ã‚¦ãƒ³ãƒˆ
+#define WEATHER_SPARK_POWER_MIN	(200)	// é›·POWERæœ€å°	(å°æ•°ç‚¹è¨ˆç®—ã®ãŸã‚ï¼‘ï¼ï¼ã‹ã‘ãŸå€¤)
+#define WEATHER_SPARK_POWER_RAN	(480)	// é›·POWERä¹±æ•°	(å°æ•°ç‚¹è¨ˆç®—ã®ãŸã‚ï¼‘ï¼ï¼ã‹ã‘ãŸå€¤)
 
-#define WEATHER_SPARK_SPARK_MUL	(50)	// Ÿ‚Ì—‹‚Ü‚Å‚ÌŠÔŠu‚ÍPOWER–‚±‚ê‚ğŠî–{ŠÔŠu‚Æ‚µ‚Ä‹‚ßA
-										//	‚µ‚½‚Ì’l‚Å—”—v‘f•t‰Á(‚P’PˆÊ[„‚P‚O‚O)
-#define WEATHER_SPARK_SPARK_RAN	(120)	// Ÿ‚Ì—‹‚Ü‚Å‚ÌŠÔŠu—”
-#define WEATHER_SPARK_SPARK_RAN_HIGH	(15)	// ‘‚­Ÿ‚ğo‚·‚Æ‚«‚ÌŸ‚Ì—‹‚Ü‚Å‚ÌŠÔŠu—”
-#define	WEATHER_SPARK_FOG_TIMING		(1)		// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_SPARK_FOG_TIMING_END	(1)		// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_SPARK_SUB_NUM			(36)	// ƒ¿’l‚ğŒ¸‚ç‚·’l
-#define WEATHER_SPARK_SUB_NUM_HIGH		(200)	// ‘‚­ƒAƒ‹ƒtƒ@‚ğŒ¸‚ç‚·
+#define WEATHER_SPARK_SPARK_MUL	(50)	// æ¬¡ã®é›·ã¾ã§ã®é–“éš”ã¯POWERï¼Šã“ã‚Œã‚’åŸºæœ¬é–“éš”ã¨ã—ã¦æ±‚ã‚ã€
+										//	ã—ãŸã®å€¤ã§ä¹±æ•°è¦ç´ ä»˜åŠ (ï¼‘å˜ä½ãƒ¼ï¼ï¼‘ï¼ï¼)
+#define WEATHER_SPARK_SPARK_RAN	(120)	// æ¬¡ã®é›·ã¾ã§ã®é–“éš”ä¹±æ•°
+#define WEATHER_SPARK_SPARK_RAN_HIGH	(15)	// æ—©ãæ¬¡ã‚’å‡ºã™ã¨ãã®æ¬¡ã®é›·ã¾ã§ã®é–“éš”ä¹±æ•°
+#define	WEATHER_SPARK_FOG_TIMING		(1)		// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_SPARK_FOG_TIMING_END	(1)		// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_SPARK_SUB_NUM			(36)	// Î±å€¤ã‚’æ¸›ã‚‰ã™å€¤
+#define WEATHER_SPARK_SUB_NUM_HIGH		(200)	// æ—©ãã‚¢ãƒ«ãƒ•ã‚¡ã‚’æ¸›ã‚‰ã™
 
-/*== —‹ƒOƒ‰ƒtƒBƒbƒN\¬ƒf[ƒ^ ==*/
+/*== é›·ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ§‹æˆãƒ‡ãƒ¼ã‚¿ ==*/
 #define WEATHER_SPARK_GRAPHIC_CELL	( WEATHER_GRAPHIC_NONE )
 #define WEATHER_SPARK_GRAPHIC_BG	( 4 )
-/*== ƒ[ƒNƒTƒCƒY ==*/
+/*== ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º ==*/
 #define WEATHER_SPARK_WORK_SIZE		(sizeof(int)*10)
 
 //-------------------------------------
-//	‹C‡ŠÇ—ŠÖ”’è”
+//	æ°—åˆç®¡ç†é–¢æ•°å®šæ•°
 //=====================================
-#define	WEATHER_SPIRIT_TIMING_MIN	(15)		// ‰J‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ¬
-#define WEATHER_SPIRIT_TIMING_MAX	(35)		// ‰J‚ğo‚·ƒ^ƒCƒ~ƒ“ƒOÅ‘å
-#define WEATHER_SPIRIT_TIMING_ADD	(2)			// ƒ^ƒCƒ~ƒ“ƒO‚ğŒ¸‚ç‚·”
-#define	WEATHER_SPIRIT_ADD_TIMING	(5)			// ‚P“x‚ÌƒIƒuƒWƒF“o˜^”‚ğ‘‚â‚·ƒ^ƒCƒ~ƒ“ƒO
-#define	WEATHER_SPIRIT_ADD			(1)			// ƒIƒuƒWƒF“o˜^”‚ğ‘«‚·’l
-#define	WEATHER_SPIRIT_ADD_END		(-3)			// ƒIƒuƒWƒF“o˜^”‚ğ‘«‚·’l
-#define WEATHER_SPIRIT_MAIN			(4)			// ƒƒCƒ“‚Å‚Í‚±‚ê‚¾‚¯“o˜^
+#define	WEATHER_SPIRIT_TIMING_MIN	(15)		// é›¨ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å°
+#define WEATHER_SPIRIT_TIMING_MAX	(35)		// é›¨ã‚’å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å¤§
+#define WEATHER_SPIRIT_TIMING_ADD	(2)			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ¸›ã‚‰ã™æ•°
+#define	WEATHER_SPIRIT_ADD_TIMING	(5)			// ï¼‘åº¦ã®ã‚ªãƒ–ã‚¸ã‚§ç™»éŒ²æ•°ã‚’å¢—ã‚„ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+#define	WEATHER_SPIRIT_ADD			(1)			// ã‚ªãƒ–ã‚¸ã‚§ç™»éŒ²æ•°ã‚’è¶³ã™å€¤
+#define	WEATHER_SPIRIT_ADD_END		(-3)			// ã‚ªãƒ–ã‚¸ã‚§ç™»éŒ²æ•°ã‚’è¶³ã™å€¤
+#define WEATHER_SPIRIT_MAIN			(4)			// ãƒ¡ã‚¤ãƒ³ã§ã¯ã“ã‚Œã ã‘ç™»éŒ²
 
-#define WEATHER_SPIRIT_S_MOVE_NUM	(2)			// ¬‚İ‚É—h‚ê‚é‹——£(‰¡)
-#define WEATHER_SPIRIT_S_MOVE_TMG	(1)			// ¬‚İ‚É—h‚ê‚éƒ^ƒCƒ~ƒ“ƒO
+#define WEATHER_SPIRIT_S_MOVE_NUM	(2)			// å°åˆ»ã¿ã«æºã‚Œã‚‹è·é›¢(æ¨ª)
+#define WEATHER_SPIRIT_S_MOVE_TMG	(1)			// å°åˆ»ã¿ã«æºã‚Œã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
-#define WEATHER_SPIRIT_OBJ_NUM		(0xe)		// ƒIƒuƒWƒFƒNƒg”
-#define WEATHER_SPIRIT_BIG_DIV		(4)			// ‚±‚ê‚ÅŠ„‚é‚ÆA‘å‚«‚³‚É‚È‚é
-#define	WEATHER_SPIRIT_SHIFT_UP		(8)			// ‚±‚ê‚ğ‘å‚«‚³idx‚Å‚©‚¯‚é
-#define WEATHER_SPIRIT_SHIFT_UP_RAN	(25)		// —”’l
-#define	WEATHER_SPIRIT_ADD_SPEED	(16)		// ‰Á‘¬’niƒXƒs[ƒh‚Í‚P‚O‚O”{ó‘Ôj
+#define WEATHER_SPIRIT_OBJ_NUM		(0xe)		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
+#define WEATHER_SPIRIT_BIG_DIV		(4)			// ã“ã‚Œã§å‰²ã‚‹ã¨ã€å¤§ãã•ã«ãªã‚‹
+#define	WEATHER_SPIRIT_SHIFT_UP		(8)			// ã“ã‚Œã‚’å¤§ãã•idxã§ã‹ã‘ã‚‹
+#define WEATHER_SPIRIT_SHIFT_UP_RAN	(25)		// ä¹±æ•°å€¤
+#define	WEATHER_SPIRIT_ADD_SPEED	(16)		// åŠ é€Ÿåœ°ï¼ˆã‚¹ãƒ”ãƒ¼ãƒ‰ã¯ï¼‘ï¼ï¼å€çŠ¶æ…‹ï¼‰
 
-/*== ƒtƒF[ƒh–³‚µŠJn‚Ì ==*/
-#define WEATHER_SPIRIT_NOFADE_OBJ_START_NUM	( 16 )				// ŠJn‚ÌU•z‚·‚éƒIƒuƒWƒFƒNƒg‚Ì”
-#define	WEATHER_SPIRIT_NOFADE_OBJ_START_DUST_NUM	( 2 )		// ‰½ƒIƒuƒWƒF‚¸‚Â“®ì‚·‚é”‚ğ•ÏX‚·‚é‚©
-#define	WEATHER_SPIRIT_NOFADE_OBJ_START_DUST_MOVE	( 1 )		// ‚¸‚ç‚µ‚Ä“®ì‚³‚¹‚é’l
+/*== ãƒ•ã‚§ãƒ¼ãƒ‰ç„¡ã—é–‹å§‹ã®æ™‚ ==*/
+#define WEATHER_SPIRIT_NOFADE_OBJ_START_NUM	( 16 )				// é–‹å§‹æ™‚ã®æ•£å¸ƒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ•°
+#define	WEATHER_SPIRIT_NOFADE_OBJ_START_DUST_NUM	( 2 )		// ä½•ã‚ªãƒ–ã‚¸ã‚§ãšã¤å‹•ä½œã™ã‚‹æ•°ã‚’å¤‰æ›´ã™ã‚‹ã‹
+#define	WEATHER_SPIRIT_NOFADE_OBJ_START_DUST_MOVE	( 1 )		// ãšã‚‰ã—ã¦å‹•ä½œã•ã›ã‚‹å€¤
 
-/*== ƒIƒuƒWƒFƒNƒg ==*/
-#define WEATHER_SPIRIT_MAT_X_MIN	(-128)		// XÀ•WÅ¬’l
-#define WEATHER_SPIRIT_MAT_X_RAN	(512)		// XÀ•W—”
+/*== ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ ==*/
+#define WEATHER_SPIRIT_MAT_X_MIN	(-128)		// Xåº§æ¨™æœ€å°å€¤
+#define WEATHER_SPIRIT_MAT_X_RAN	(512)		// Xåº§æ¨™ä¹±æ•°
 
-#define WEATHER_SPIRIT_MAT_Y_S_MIN	(8)			// YÀ•W	¬‚³‚¢‚Ì‚ª‚¢‚Ä‚¢‚¢êŠ(0,1)
-#define WEATHER_SPIRIT_MAT_Y_S_RAN	(192)		// YÀ•W	¬‚³‚¢‚Ì‚ª‚¢‚Ä‚¢‚¢êŠ
-#define WEATHER_SPIRIT_MAT_Y_M_MIN	(64)		// YÀ•W	’†‚­‚ç‚¢‚ª‚¢‚Ä‚¢‚¢êŠ(2)
-#define WEATHER_SPIRIT_MAT_Y_M_RAN	(128)		// YÀ•W	’†‚­‚ç‚¢‚ª‚¢‚Ä‚¢‚¢êŠ
-#define WEATHER_SPIRIT_MAT_Y_L_MIN	(160)		// YÀ•W	‘å‚«‚¢‚Ì‚ª‚¢‚Ä‚¢‚¢êŠ(3)
-#define WEATHER_SPIRIT_MAT_Y_L_RAN	(32)		// YÀ•W	‘å‚«‚¢‚Ì‚ª‚¢‚Ä‚¢‚¢êŠ
+#define WEATHER_SPIRIT_MAT_Y_S_MIN	(8)			// Yåº§æ¨™	å°ã•ã„ã®ãŒã„ã¦ã„ã„å ´æ‰€(0,1)
+#define WEATHER_SPIRIT_MAT_Y_S_RAN	(192)		// Yåº§æ¨™	å°ã•ã„ã®ãŒã„ã¦ã„ã„å ´æ‰€
+#define WEATHER_SPIRIT_MAT_Y_M_MIN	(64)		// Yåº§æ¨™	ä¸­ãã‚‰ã„ãŒã„ã¦ã„ã„å ´æ‰€(2)
+#define WEATHER_SPIRIT_MAT_Y_M_RAN	(128)		// Yåº§æ¨™	ä¸­ãã‚‰ã„ãŒã„ã¦ã„ã„å ´æ‰€
+#define WEATHER_SPIRIT_MAT_Y_L_MIN	(160)		// Yåº§æ¨™	å¤§ãã„ã®ãŒã„ã¦ã„ã„å ´æ‰€(3)
+#define WEATHER_SPIRIT_MAT_Y_L_RAN	(32)		// Yåº§æ¨™	å¤§ãã„ã®ãŒã„ã¦ã„ã„å ´æ‰€
 
 
-/*== ‹C‡ƒOƒ‰ƒtƒBƒbƒN\¬ƒf[ƒ^ ==*/
+/*== æ°—åˆã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ§‹æˆãƒ‡ãƒ¼ã‚¿ ==*/
 #define WEATHER_SPIRIT_GRAPHIC_CELL	( 7 )
 #define WEATHER_SPIRIT_GRAPHIC_BG	( WEATHER_GRAPHIC_NONE  )
 
 //-------------------------------------
-//	_”é
+//	ç¥ç§˜
 //=====================================
 #define WEATHER_MYSTIC_GRAPHIC_BG	( 8 )
 #define WEATHER_MYSTIC_GRAPHIC_CELL	( WEATHER_GRAPHIC_NONE )
@@ -1170,66 +1170,66 @@ static const int WEATHER_SSNOW_SPEED_Y_SML[WEATHER_SNOW_S_ADD_SP_TMG_NUM] = {2,4
 #define WEATHER_MYSTIC_FADE_COUNT_MAX	( 8 )
 #define WEATHER_MYSTIC_FADE_END_ALPHA	( 16 )
 
-/*== ƒtƒHƒO ==*/
-#define	WEATHER_MYSTIC_FOG_TIMING		(1)		// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_MYSTIC_FOG_TIMING_END	(1)		// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_MYSTIC_FOG_START		(0)		// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_MYSTIC_FOG_START_END	(48)	// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+/*== ãƒ•ã‚©ã‚° ==*/
+#define	WEATHER_MYSTIC_FOG_TIMING		(1)		// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_MYSTIC_FOG_TIMING_END	(1)		// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_MYSTIC_FOG_START		(0)		// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_MYSTIC_FOG_START_END	(48)	// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 #define WEATHER_MYSTIC_FOG_OFS			(32175)
 #define WEATHER_MYSTIC_FOG_SLOPE		(7)
 
 
 #if 0
-#define	WEATHER_MYSTIC_TIMING_MIN	(10)		// o‚·ƒ^ƒCƒ~ƒ“ƒOÅ¬
-#define WEATHER_MYSTIC_TIMING_MAX	(40)		// o‚·ƒ^ƒCƒ~ƒ“ƒOÅ‘å
-#define WEATHER_MYSTIC_TIMING_ADD	(3)			// ƒ^ƒCƒ~ƒ“ƒO‚ğŒ¸‚ç‚·”
-#define	WEATHER_MYSTIC_ADD_TIMING	(8)			// ‚P“x‚ÌƒIƒuƒWƒF“o˜^”‚ğ‘‚â‚·ƒ^ƒCƒ~ƒ“ƒO
+#define	WEATHER_MYSTIC_TIMING_MIN	(10)		// å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å°
+#define WEATHER_MYSTIC_TIMING_MAX	(40)		// å‡ºã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°æœ€å¤§
+#define WEATHER_MYSTIC_TIMING_ADD	(3)			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’æ¸›ã‚‰ã™æ•°
+#define	WEATHER_MYSTIC_ADD_TIMING	(8)			// ï¼‘åº¦ã®ã‚ªãƒ–ã‚¸ã‚§ç™»éŒ²æ•°ã‚’å¢—ã‚„ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 #define WEATHER_MYSTIC_ADD_START	(1)
-#define	WEATHER_MYSTIC_ADD			(0)			// ƒIƒuƒWƒF“o˜^”‚ğ‘«‚·’l
-#define	WEATHER_MYSTIC_ADD_END		(1)			// ƒIƒuƒWƒF“o˜^”‚ğ‘«‚·’l
-#define WEATHER_MYSTIC_ADD_MAIN		(1)			// ƒƒCƒ“‚Å‚Í‚±‚ê‚¾‚¯“o˜^
+#define	WEATHER_MYSTIC_ADD			(0)			// ã‚ªãƒ–ã‚¸ã‚§ç™»éŒ²æ•°ã‚’è¶³ã™å€¤
+#define	WEATHER_MYSTIC_ADD_END		(1)			// ã‚ªãƒ–ã‚¸ã‚§ç™»éŒ²æ•°ã‚’è¶³ã™å€¤
+#define WEATHER_MYSTIC_ADD_MAIN		(1)			// ãƒ¡ã‚¤ãƒ³ã§ã¯ã“ã‚Œã ã‘ç™»éŒ²
 
-/*== ƒtƒF[ƒh–³‚µŠJn‚Ì ==*/
-#define WEATHER_MYSTIC_NOFADE_OBJ_START_NUM	( 4 )				// ŠJn‚ÌU•z‚·‚éƒIƒuƒWƒFƒNƒg‚Ì”
-#define	WEATHER_MYSTIC_NOFADE_OBJ_START_DUST_NUM	( 1 )		// ‰½ƒIƒuƒWƒF‚¸‚Â“®ì”‚ğ•ÏX‚·‚é‚©
-#define	WEATHER_MYSTIC_NOFADE_OBJ_START_DUST_MOVE	( 10 )		// ‚¸‚ç‚µ‚Ä“®ì‚³‚¹‚é’l
-
-
-// ƒIƒuƒWƒFƒNƒg
-#define WEATHER_MYSTIC_M_Y			(60)		// ˆÚ“®’l
-#define WEATHER_MYSTIC_M_Y_MUL		(20)		// ‘å‚«‚³‚É‚æ‚è‘‚â‚·’l
-#define WEATHER_MYSTIC_M_X			(0)			// ˆÚ“®’l‰¡
-
-#define WEATHER_MYSTIC_MH_X			(50)		// •‚—V‚µ‚Ä‚¢‚é‚æ‚¤‚ÉŒ©‚¹‚éA•â•“®ìˆÚ“®’l
-#define WEATHER_MYSTIC_MH_Y			(50)		// •‚—V‚µ‚Ä‚¢‚é‚æ‚¤‚ÉŒ©‚¹‚éA•â•“®ìˆÚ“®’l
-#define WEATHER_MYSTIC_MH_COUNT		(2)			// ƒJƒEƒ“ƒg’l
-#define WEATHER_MYSTIC_MH_COUNT_RAN	(6)			// ƒJƒEƒ“ƒg’l—”
+/*== ãƒ•ã‚§ãƒ¼ãƒ‰ç„¡ã—é–‹å§‹ã®æ™‚ ==*/
+#define WEATHER_MYSTIC_NOFADE_OBJ_START_NUM	( 4 )				// é–‹å§‹æ™‚ã®æ•£å¸ƒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ•°
+#define	WEATHER_MYSTIC_NOFADE_OBJ_START_DUST_NUM	( 1 )		// ä½•ã‚ªãƒ–ã‚¸ã‚§ãšã¤å‹•ä½œæ•°ã‚’å¤‰æ›´ã™ã‚‹ã‹
+#define	WEATHER_MYSTIC_NOFADE_OBJ_START_DUST_MOVE	( 10 )		// ãšã‚‰ã—ã¦å‹•ä½œã•ã›ã‚‹å€¤
 
 
-#define WEATHER_MYSTIC_DES_TM		(32)		// €–SƒJƒEƒ“ƒg
-#define WEATHER_MYSTIC_DES_RAN		(16)		// €–SƒJƒEƒ“ƒgƒ‰ƒ“ƒ_ƒ€
+// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+#define WEATHER_MYSTIC_M_Y			(60)		// ç§»å‹•å€¤
+#define WEATHER_MYSTIC_M_Y_MUL		(20)		// å¤§ãã•ã«ã‚ˆã‚Šå¢—ã‚„ã™å€¤
+#define WEATHER_MYSTIC_M_X			(0)			// ç§»å‹•å€¤æ¨ª
 
-#define WEATHER_MYSTIC_NUM			(4)			// ƒIƒuƒWƒFƒNƒg”
-#define WEATHER_MYSTIC_RAN			(100)		// ‚Ç‚Ì‘å‚«‚³‚É‚·‚é‚©‚ğ‹‚ß‚é‚Ì’l
-#define WEATHER_MYSTIC_RAN_0		(40)		// ¬ƒIƒuƒWƒF‚ÌŠ„‡
-#define WEATHER_MYSTIC_RAN_1		(30)		// ’†ƒIƒuƒWƒF‚ÌŠ„‡
-#define WEATHER_MYSTIC_RAN_2		(20)		// ’†‘åƒIƒuƒWƒF‚ÌŠ„‡
-#define WEATHER_MYSTIC_RAN_3		(10)		// ‘åƒIƒuƒWƒF‚ÌŠ„‡
+#define WEATHER_MYSTIC_MH_X			(50)		// æµ®éŠã—ã¦ã„ã‚‹ã‚ˆã†ã«è¦‹ã›ã‚‹ã€è£œåŠ©å‹•ä½œç§»å‹•å€¤
+#define WEATHER_MYSTIC_MH_Y			(50)		// æµ®éŠã—ã¦ã„ã‚‹ã‚ˆã†ã«è¦‹ã›ã‚‹ã€è£œåŠ©å‹•ä½œç§»å‹•å€¤
+#define WEATHER_MYSTIC_MH_COUNT		(2)			// ã‚«ã‚¦ãƒ³ãƒˆå€¤
+#define WEATHER_MYSTIC_MH_COUNT_RAN	(6)			// ã‚«ã‚¦ãƒ³ãƒˆå€¤ä¹±æ•°
 
-#define WEATHER_MYSTIC_MAT_X		(0)			// ŠJnÀ•W
-#define WEAHTER_MYSTIC_MAT_X_RAN	(512)		// ŠJnÀ•Wƒ‰ƒ“”’l
-#define WEAHTER_MYSTIC_MAT_Y		(0)			// ŠJnÀ•W
-#define WEATHER_MYSTIC_MAT_Y_MUL	(48)		// ŠJnÀ•W‚ğ‘å‚«‚³‚É‚æ‚è•Ï‚¦‚é’l
-#define WEAHTER_MYSTIC_MAT_Y_RAN	(64)		// ŠJnÀ•Wƒ‰ƒ“”’l
 
-/*== _”éƒOƒ‰ƒtƒBƒbƒN\¬ƒf[ƒ^ ==*/
+#define WEATHER_MYSTIC_DES_TM		(32)		// æ­»äº¡ã‚«ã‚¦ãƒ³ãƒˆ
+#define WEATHER_MYSTIC_DES_RAN		(16)		// æ­»äº¡ã‚«ã‚¦ãƒ³ãƒˆãƒ©ãƒ³ãƒ€ãƒ 
+
+#define WEATHER_MYSTIC_NUM			(4)			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
+#define WEATHER_MYSTIC_RAN			(100)		// ã©ã®å¤§ãã•ã«ã™ã‚‹ã‹ã‚’æ±‚ã‚ã‚‹æ™‚ã®å€¤
+#define WEATHER_MYSTIC_RAN_0		(40)		// å°ã‚ªãƒ–ã‚¸ã‚§ã®å‰²åˆ
+#define WEATHER_MYSTIC_RAN_1		(30)		// ä¸­ã‚ªãƒ–ã‚¸ã‚§ã®å‰²åˆ
+#define WEATHER_MYSTIC_RAN_2		(20)		// ä¸­å¤§ã‚ªãƒ–ã‚¸ã‚§ã®å‰²åˆ
+#define WEATHER_MYSTIC_RAN_3		(10)		// å¤§ã‚ªãƒ–ã‚¸ã‚§ã®å‰²åˆ
+
+#define WEATHER_MYSTIC_MAT_X		(0)			// é–‹å§‹åº§æ¨™
+#define WEAHTER_MYSTIC_MAT_X_RAN	(512)		// é–‹å§‹åº§æ¨™ãƒ©ãƒ³æ•°å€¤
+#define WEAHTER_MYSTIC_MAT_Y		(0)			// é–‹å§‹åº§æ¨™
+#define WEATHER_MYSTIC_MAT_Y_MUL	(48)		// é–‹å§‹åº§æ¨™ã‚’å¤§ãã•ã«ã‚ˆã‚Šå¤‰ãˆã‚‹å€¤
+#define WEAHTER_MYSTIC_MAT_Y_RAN	(64)		// é–‹å§‹åº§æ¨™ãƒ©ãƒ³æ•°å€¤
+
+/*== ç¥ç§˜ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æ§‹æˆãƒ‡ãƒ¼ã‚¿ ==*/
 #define WEATHER_MYSTIC_GRAPHIC_CELL	( 8 )
 #define WEATHER_MYSTIC_GRAPHIC_BG	( WEATHER_GRAPHIC_NONE  )
 #endif
 
 
 //-------------------------------------
-//	“Ü‚è
+//	æ›‡ã‚Š
 //=====================================
 #define WEATHER_CLOUDINESS_GRAPHIC_BG	( 5 )
 #define WEATHER_CLOUDINESS_GRAPHIC_CELL	( WEATHER_GRAPHIC_NONE )
@@ -1238,7 +1238,7 @@ static const int WEATHER_SSNOW_SPEED_Y_SML[WEATHER_SNOW_S_ADD_SP_TMG_NUM] = {2,4
 #define WEATHER_CLOUDINESS_FADE_END_ALPHA	( 4 )
 
 //-------------------------------------
-//	‚«‚è‚Í‚ç‚¢
+//	ãã‚Šã¯ã‚‰ã„
 //=====================================
 #define WEATHER_KIRI_HARAI_GRAPHIC_BG	( 6 )
 #define WEATHER_KIRI_HARAI_GRAPHIC_CELL	( WEATHER_GRAPHIC_NONE )
@@ -1246,15 +1246,15 @@ static const int WEATHER_SSNOW_SPEED_Y_SML[WEATHER_SNOW_S_ADD_SP_TMG_NUM] = {2,4
 #define WEATHER_KIRI_HARAI_FADE_COUNT_MAX	( 30 )
 #define WEATHER_KIRI_HARAI_FADE_END_ALPHA	( 9 )
 
-/*== ƒtƒHƒO ==*/
-#define	WEATHER_KIRI_HARAI_FOG_TIMING		(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_KIRI_HARAI_FOG_TIMING_END	(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+/*== ãƒ•ã‚©ã‚° ==*/
+#define	WEATHER_KIRI_HARAI_FOG_TIMING		(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_KIRI_HARAI_FOG_TIMING_END	(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 #define WEATHER_KIRI_HARAI_FOG_COLOR		(GX_RGB(0,0,0))
 #define WEATHER_KIRI_HARAI_FOG_OFS			( 30287 )
 #define WEATHER_KIRI_HARAI_FOG_SLOPE		( 7 )
 
 //-------------------------------------
-//	‚«‚è‚Í‚ç‚¢	‚µ‚ë
+//	ãã‚Šã¯ã‚‰ã„	ã—ã‚
 //=====================================
 #define WEATHER_KIRI_HARAI_WHITE_GRAPHIC_BG	( 6 )
 #define WEATHER_KIRI_HARAI_WHITE_GRAPHIC_CELL	( WEATHER_GRAPHIC_NONE )
@@ -1262,15 +1262,15 @@ static const int WEATHER_SSNOW_SPEED_Y_SML[WEATHER_SNOW_S_ADD_SP_TMG_NUM] = {2,4
 #define WEATHER_KIRI_HARAI_WHITE_FADE_COUNT_MAX	( 30 )
 #define WEATHER_KIRI_HARAI_WHITE_FADE_END_ALPHA	( 9 )
 
-/*== ƒtƒHƒO ==*/
-#define	WEATHER_KIRI_HARAI_WHITE_FOG_TIMING		(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_KIRI_HARAI_WHITE_FOG_TIMING_END	(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+/*== ãƒ•ã‚©ã‚° ==*/
+#define	WEATHER_KIRI_HARAI_WHITE_FOG_TIMING		(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_KIRI_HARAI_WHITE_FOG_TIMING_END	(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 #define WEATHER_KIRI_HARAI_WHITE_FOG_COLOR		(GX_RGB(31,31,31))
 #define WEATHER_KIRI_HARAI_WHITE_FOG_OFS			( 30037 )
 #define WEATHER_KIRI_HARAI_WHITE_FOG_SLOPE		( 6 )
 
 //-------------------------------------
-//	ƒtƒ‰ƒbƒVƒ…
+//	ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 //=====================================
 #define WEATHER_FLASH_START_R	( FX32_CONST( 32 ) )
 #define WEATHER_FLASH_END_R		( FX32_CONST( 256 ) )
@@ -1278,14 +1278,14 @@ static const int WEATHER_SSNOW_SPEED_Y_SML[WEATHER_SNOW_S_ADD_SP_TMG_NUM] = {2,4
 #define WEATHER_FLASH_CX		( 128 )
 #define WEATHER_FLASH_CY		( 84 )
 
-#define WEATHER_FLASH_GRAPHIC_BG	( 7 )		// g—p‚·‚éBG
+#define WEATHER_FLASH_GRAPHIC_BG	( 7 )		// ä½¿ç”¨ã™ã‚‹BG
 
 #define WEATHER_FLASH_WND_MSK			( GX_BLEND_ALL )
 #define WEATHER_FLASH_OUTSIDE_WND_MSK	( GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD )
 
 
 //-------------------------------------
-//	“´ŒA
+//	æ´çªŸ
 //=====================================
 #define WEATHER_DOUKUTU_FADE_COUNT_MAX	( 8 )
 #define WEATHER_DOUKUTU_FADE_END_ALPHA	( 12 )
@@ -1293,10 +1293,10 @@ static const int WEATHER_SSNOW_SPEED_Y_SML[WEATHER_SNOW_S_ADD_SP_TMG_NUM] = {2,4
 #define WEATHER_DOUKUTU_FOG_OFS	( 28591 )	
 #define WEATHER_DOUKUTU_FOG_SLOPE	( 5 )
 #define WEATEHR_DOUKUTU_FOG_COLOER	( GX_RGB(0,0,0) )
-#define	WEATHER_DOUKUKTU_FOG_TIMING		(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_DOUKUKTU_FOG_TIMING_END	(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_DOUKUKTU_FOG_START		(0)						// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define WEATHER_DOUKUKTU_FOG_START_END	(0)						// ‚±‚ÌƒJƒEƒ“ƒg“®‚¢‚Ä‚©‚çƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+#define	WEATHER_DOUKUKTU_FOG_TIMING		(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_DOUKUKTU_FOG_TIMING_END	(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_DOUKUKTU_FOG_START		(0)						// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define WEATHER_DOUKUKTU_FOG_START_END	(0)						// ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå‹•ã„ã¦ã‹ã‚‰ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 #define WEATHER_DOUKUTU_ALPHA_MOVEGET(x)	((x)/128)
 
 static const char DoukutuFogTbl[32] = {
@@ -1323,14 +1323,14 @@ static const char DoukutuFogTbl[32] = {
 
 
 //-------------------------------------
-///	‹Ã‚ê”ü
+///	å‡ã‚Œç¾
 //=====================================
 #define WEATHER_KOGOREBI_FADE_COUNT_MAX	( 8 )
 #define WEATHER_KOGOREBI_FADE_END_ALPHA	( 7 )
 
-/*== ƒtƒHƒO ==*/
-#define	WEATHER_KOGOREBI_FOG_TIMING		(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
-#define	WEATHER_KOGOREBI_FOG_TIMING_END	(1)							// ‚É‚P‰ñƒtƒHƒOƒe[ƒuƒ‹‚ğ‘€ì
+/*== ãƒ•ã‚©ã‚° ==*/
+#define	WEATHER_KOGOREBI_FOG_TIMING		(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
+#define	WEATHER_KOGOREBI_FOG_TIMING_END	(1)							// ã«ï¼‘å›ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ“ä½œ
 #define WEATHER_KOGOREBI_FOG_OFS		(-1600)
 #define WEATHER_KOGOREBI_FOG_COLOR		(GX_RGB(31,31,31))
 
@@ -1416,7 +1416,7 @@ static u8 WEATHER_KOGOREBI_MOVEData[ WEATEHR_KOGOREBI_COUNT_NUM ] = {
 
 
 //-------------------------------------
-///	‹â‰Í’c@”–ˆÃ‚¢Š´‚¶@‚O‚O
+///	éŠ€æ²³å›£ã€€è–„æš—ã„æ„Ÿã˜ã€€ï¼ï¼
 //=====================================
 #define WEATHER_GINGA00_SLOPE	(3)
 #define WEATHER_GINGA00_OFFSET	(26095)
@@ -1424,7 +1424,7 @@ static u8 WEATHER_KOGOREBI_MOVEData[ WEATEHR_KOGOREBI_COUNT_NUM ] = {
 #define WEATHER_GINGA00_TIMING	(0)
 
 //-------------------------------------
-///	LostTowerFOG@‚O‚O
+///	LostTowerFOGã€€ï¼ï¼
 //=====================================
 #define WEATHER_LOSTTOWER00_SLOPE	(2)
 #define WEATHER_LOSTTOWER00_OFFSET	(26415)
@@ -1432,7 +1432,7 @@ static u8 WEATHER_KOGOREBI_MOVEData[ WEATEHR_KOGOREBI_COUNT_NUM ] = {
 #define WEATHER_LOSTTOWER00_TIMING	(0)
 
 //-------------------------------------
-///	ƒn[ƒhƒ}ƒEƒ“ƒeƒ“
+///	ãƒãƒ¼ãƒ‰ãƒã‚¦ãƒ³ãƒ†ãƒ³
 //=====================================
 #define WEATHER_HARDMOUNTAIN_SLOPE	(2)
 #define WEATHER_HARDMOUNTAIN_OFFSET	(26415)
@@ -1440,7 +1440,7 @@ static u8 WEATHER_KOGOREBI_MOVEData[ WEATEHR_KOGOREBI_COUNT_NUM ] = {
 #define WEATHER_HARDMOUNTAIN_TIMING	(0)
 
 //-------------------------------------
-///	“´ŒA‚O‚Q
+///	æ´çªŸï¼ï¼’
 //=====================================
 #define WEATHER_DOUKUTU02_SLOPE		(2)
 #define WEATHER_DOUKUTU02_OFFSET	(26415)
@@ -1448,7 +1448,7 @@ static u8 WEATHER_KOGOREBI_MOVEData[ WEATEHR_KOGOREBI_COUNT_NUM ] = {
 #define WEATHER_DOUKUTU02_TIMING	(0)
 
 //-------------------------------------
-///	”–ˆÃ‚¢FOG
+///	è–„æš—ã„FOG
 //=====================================
 #define WEATHER_USUGURAI_SLOPE		(1)
 #define WEATHER_USUGURAI_OFFSET		(19311)
@@ -1460,14 +1460,14 @@ static u8 WEATHER_KOGOREBI_MOVEData[ WEATEHR_KOGOREBI_COUNT_NUM ] = {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	“V‹CƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹ƒpƒXƒf[ƒ^
+//	å¤©æ°—ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ãƒ‡ãƒ¼ã‚¿
 //
-//	“Ç‚İ‚Ş“V‹C‚ÌƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹‚ğ
-//	‚Ü‚Æ‚ß‚é\‘¢‘Ì
+//	èª­ã¿è¾¼ã‚€å¤©æ°—ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ã‚’
+//	ã¾ã¨ã‚ã‚‹æ§‹é€ ä½“
 //=====================================
 
 // BG
@@ -1475,29 +1475,29 @@ typedef struct{
 	int pltt_arc;
 	int char_arc;
 	int screen_arc;
-	/*char	pltt_path[50];	// ƒpƒŒƒbƒgƒpƒX
-	char	char_path[50];	// ƒLƒƒƒ‰ƒNƒ^ƒpƒX
-	char	screen_path[50];// ƒXƒNƒŠ[ƒ“ƒpƒX//*/
+	/*char	pltt_path[50];	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‘ã‚¹
+	char	char_path[50];	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‘ã‚¹
+	char	screen_path[50];// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‘ã‚¹//*/
 } WEATHER_BG_DATA;
 
 //-------------------------------------
-//	“V‹CƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^\‘¢‘Ì
+//	å¤©æ°—ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 //-------------------------------------
-// ƒZƒ‹
+// ã‚»ãƒ«
 typedef struct{
 	CLACT_U_RES_OBJ_PTR res_obj[ WEATHER_RES_NUM ];
-	CLACT_ADD add;				// ƒZƒ‹ƒAƒNƒ^[“o˜^ƒf[ƒ^
-	CLACT_HEADER head;			// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[ƒf[ƒ^
+	CLACT_ADD add;				// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ãƒ‡ãƒ¼ã‚¿
+	CLACT_HEADER head;			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
 } WATHER_GRAPHIC_FILE_DATA;
 
 // BG
 typedef struct{
-	char*			pPlttBuff;		// ƒpƒŒƒbƒgƒf[ƒ^
-	char*			pCharBuff;		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
-	char*			pScreenBuff;	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
-	NNSG2dScreenData*		pScreen;// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
-	NNSG2dCharacterData*	pChar;	// BG‚ÌƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
-	NNSG2dPaletteData*		pPltt;	// BG‚ÌƒpƒŒƒbƒgƒf[ƒ^
+	char*			pPlttBuff;		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+	char*			pCharBuff;		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+	char*			pScreenBuff;	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+	NNSG2dScreenData*		pScreen;// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+	NNSG2dCharacterData*	pChar;	// BGã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
+	NNSG2dPaletteData*		pPltt;	// BGã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
 
 } WATHER_BG_FILE_DATA;
 
@@ -1505,141 +1505,141 @@ typedef struct{
 #define WEATHER_OBJ_DATA_WORK_SIZE	( sizeof(s32)*WEATHER_OBJ_DATA_WORK_NUM )
 //-------------------------------------
 //
-//		ŒÂX‚ÌƒIƒuƒWƒFƒNƒg‚Ì\‘¢‘Ì
+//		å€‹ã€…ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“
 //	
-//	‰J‚âAá‚ÌƒIƒuƒWƒFƒNƒg
+//	é›¨ã‚„ã€é›ªã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 //=====================================
 typedef struct WAETHER_OBJ_DATA_tag{
-	WEATHER_CONT_PTR	pWSysCont;	// “V‹Cƒf[ƒ^
-	CLACT_WORK_PTR	clact_w;	// ƒZƒ‹ƒAƒNƒ^[ƒ[ƒN
-	void*	work;					// ì‹Æ—Ìˆæ		AllocObjWork() FreeObjWork()‚Åì¬A”jŠü‚·‚é‚±‚Æ
-	s32	work_buff[WEATHER_OBJ_DATA_WORK_NUM];					// ì‹Æ—Ìˆæ		AllocObjWork() FreeObjWork()‚Åì¬A”jŠü‚·‚é‚±‚Æ
+	WEATHER_CONT_PTR	pWSysCont;	// å¤©æ°—ãƒ‡ãƒ¼ã‚¿
+	CLACT_WORK_PTR	clact_w;	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	void*	work;					// ä½œæ¥­é ˜åŸŸ		AllocObjWork() FreeObjWork()ã§ä½œæˆã€ç ´æ£„ã™ã‚‹ã“ã¨
+	s32	work_buff[WEATHER_OBJ_DATA_WORK_NUM];					// ä½œæ¥­é ˜åŸŸ		AllocObjWork() FreeObjWork()ã§ä½œæˆã€ç ´æ£„ã™ã‚‹ã“ã¨
 
-	struct WAETHER_OBJ_DATA_tag* pNext;	// Ÿ‚Ö
-	struct WAETHER_OBJ_DATA_tag* pPrev;	// ‘O‚Ö
+	struct WAETHER_OBJ_DATA_tag* pNext;	// æ¬¡ã¸
+	struct WAETHER_OBJ_DATA_tag* pPrev;	// å‰ã¸
 } WAETHER_OBJ_DATA;
 
 //------------------------------------
-//		“V‹CŠÇ—ƒf[ƒ^\‘¢‘Ì
+//		å¤©æ°—ç®¡ç†ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 //	
-//	“V‹C‚ğŠÇ—‚·‚éŠÖ”“à‚Å‚Ìƒ[ƒN—Ìˆæ\‘¢‘Ì
+//	å¤©æ°—ã‚’ç®¡ç†ã™ã‚‹é–¢æ•°å†…ã§ã®ãƒ¯ãƒ¼ã‚¯é ˜åŸŸæ§‹é€ ä½“
 //=====================================
 typedef struct{
-	WEATHER_CONT_PTR	pWSysCont;			// “V‹CƒVƒXƒeƒ€ƒRƒ“ƒgƒ[ƒ‰‚Ìƒ|ƒCƒ“ƒ^
-	void*			pWSD;				// ©•ª‚Ìe‚ÌWEATHER_SYS_DATAƒf[ƒ^
-	const WATHER_GRAPHIC_FILE_DATA*	pCell;		// g—p‚·‚éƒZƒ‹ƒf[ƒ^
-	WAETHER_OBJ_DATA	Dummy;				// ƒIƒuƒWƒFƒŠƒXƒg‚Ìƒ_ƒ~[ƒf[ƒ^
-	WAETHER_OBJ_DATA	ObjArray[WEATEHR_OBJDATA_MAX];// ƒIƒuƒWƒFƒŠƒXƒg”z—ñ
-	TCB_PTR tcb;							// ©•ª‚Ìƒ^ƒXƒNƒ|ƒCƒ“ƒ^
+	WEATHER_CONT_PTR	pWSysCont;			// å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®ãƒã‚¤ãƒ³ã‚¿
+	void*			pWSD;				// è‡ªåˆ†ã®è¦ªã®WEATHER_SYS_DATAãƒ‡ãƒ¼ã‚¿
+	const WATHER_GRAPHIC_FILE_DATA*	pCell;		// ä½¿ç”¨ã™ã‚‹ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
+	WAETHER_OBJ_DATA	Dummy;				// ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚¹ãƒˆã®ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
+	WAETHER_OBJ_DATA	ObjArray[WEATEHR_OBJDATA_MAX];// ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚¹ãƒˆé…åˆ—
+	TCB_PTR tcb;							// è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
 	
-	VecFx32		CameraTarget;				// ‚P‚Â‘O‚ÌƒJƒƒ‰ƒ^[ƒQƒbƒgƒXƒNƒ[ƒ‹—p
-	void*		work;						// ƒ[ƒN—Ìˆæ Še©ì¬	
+	VecFx32		CameraTarget;				// ï¼‘ã¤å‰ã®ã‚«ãƒ¡ãƒ©ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç”¨
+	void*		work;						// ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ å„è‡ªä½œæˆ	
 
 
-	// ‰¹‚ğ–Â‚ç‚µ‚Ä‚¢‚é‚©?
+	// éŸ³ã‚’é³´ã‚‰ã—ã¦ã„ã‚‹ã‹?
 	BOOL snd_play;
 	u16 snd_no;
-	u16		Sequence;						// ˆ—ƒV[ƒPƒ“ƒX
+	u16		Sequence;						// å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 
-	// ƒtƒHƒO“®ì‚ÌONOFFF
+	// ãƒ•ã‚©ã‚°å‹•ä½œã®ONOFFF
 	u16 fog_use;
 
-	u16		ContFlag;						// ŠO•”ƒRƒ“ƒgƒ[ƒ‹ƒtƒ‰ƒO		
+	u16		ContFlag;						// å¤–éƒ¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ•ãƒ©ã‚°		
 
 } WEATHER_SYS_WORK;
 
 //-------------------------------------
-//		“V‹Cƒf[ƒ^\‘¢‘Ì
+//		å¤©æ°—ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 //
-//	g—p‚·‚éƒtƒ@ƒCƒ‹‚âŠÖ”‚Ìƒf[ƒ^ŒS
+//	ä½¿ç”¨ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚„é–¢æ•°ã®ãƒ‡ãƒ¼ã‚¿éƒ¡
 //=====================================
 typedef struct{
-	u16		GraphicNo;					// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^”z—ñƒiƒ“ƒo[
-	u16		BGNo;						// BGƒf[ƒ^”z—ñƒiƒ“ƒo[
-	int		WorkByte;					// ƒ[ƒN—Ìˆæ‚ÌƒoƒCƒgƒTƒCƒY
-	WEATHER_SYS_WORK* pWork;			// Às’†:“V‹CŠÇ—ŠÖ”‚Ìƒ[ƒN—Ìˆæ	‰Šú‰»‚µ‚Ä‚¢‚È‚¢‚Æ‚«:NULL
-	WATHER_GRAPHIC_FILE_DATA*	pCell;	// g—p‚·‚éƒZƒ‹ƒf[ƒ^	‰Šú‰»‚µ‚Ä‚¢‚È‚¢‚Æ‚«:NULL
-	u16		MoveFlag;					// “®ìó‘Ô
-			  /*WEATHER_SYS_MOVE_NONE,	// “®‚¢‚Ä‚¢‚È‚¢
-				WEATHER_SYS_MOVE_INIT,	// ‰Šú‰»’†
-				WEATHER_SYS_MOVE_READY,	// ŠJn‘Ò‚¿
-				WEATHER_SYS_MOVE_DO,*/	// Às’†
+	u16		GraphicNo;					// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿é…åˆ—ãƒŠãƒ³ãƒãƒ¼
+	u16		BGNo;						// BGãƒ‡ãƒ¼ã‚¿é…åˆ—ãƒŠãƒ³ãƒãƒ¼
+	int		WorkByte;					// ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
+	WEATHER_SYS_WORK* pWork;			// å®Ÿè¡Œä¸­:å¤©æ°—ç®¡ç†é–¢æ•°ã®ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ	åˆæœŸåŒ–ã—ã¦ã„ãªã„ã¨ã:NULL
+	WATHER_GRAPHIC_FILE_DATA*	pCell;	// ä½¿ç”¨ã™ã‚‹ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿	åˆæœŸåŒ–ã—ã¦ã„ãªã„ã¨ã:NULL
+	u16		MoveFlag;					// å‹•ä½œçŠ¶æ…‹
+			  /*WEATHER_SYS_MOVE_NONE,	// å‹•ã„ã¦ã„ãªã„
+				WEATHER_SYS_MOVE_INIT,	// åˆæœŸåŒ–ä¸­
+				WEATHER_SYS_MOVE_READY,	// é–‹å§‹å¾…ã¡
+				WEATHER_SYS_MOVE_DO,*/	// å®Ÿè¡Œä¸­
 	
-	u16		DivInitSeq;					// •ªŠ„“Ç‚İ‚İƒV[ƒPƒ“ƒX
-	TCB_PTR	DivInitTcb;					// •ªŠ„“Ç‚İ‚İTCB
+	u16		DivInitSeq;					// åˆ†å‰²èª­ã¿è¾¼ã¿ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	TCB_PTR	DivInitTcb;					// åˆ†å‰²èª­ã¿è¾¼ã¿TCB
 	
-	void	(*cont)(TCB_PTR tcb, void* data);		// “V‹C‚ğŠÇ—‚·‚éŠÖ”
+	void	(*cont)(TCB_PTR tcb, void* data);		// å¤©æ°—ã‚’ç®¡ç†ã™ã‚‹é–¢æ•°
 } WEATHER_SYS_DATA;
 
-typedef void (*objFunc)(WAETHER_OBJ_DATA*);		// ƒIƒuƒWƒFƒNƒg“®ìŠÖ”Œ^
+typedef void (*objFunc)(WAETHER_OBJ_DATA*);		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œé–¢æ•°å‹
 
 //-------------------------------------
 //	
-//	‚QD•`‰æƒVƒXƒeƒ€\‘¢‘Ì
+//	ï¼’Dæç”»ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
 	
-	CLACT_U_RES_MANAGER_PTR	resMan[ WEATHER_RES_NUM ];	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_HEADER_PTR	resHeader;					// ƒŠƒ\[ƒXƒwƒbƒ_
+	CLACT_U_RES_MANAGER_PTR	resMan[ WEATHER_RES_NUM ];	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_HEADER_PTR	resHeader;					// ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€
 
-	// ƒƒCƒ“‰æ–Ê—pƒŒƒ“ƒ_ƒ‰[ƒf[ƒ^
-	NNSG2dRendererInstance	Render;		// ƒŒƒ“ƒ_ƒ‰
-	NNSG2dRenderSurface		Surface;	// ƒT[ƒtƒF[ƒX
-	CLACT_SET_PTR	clactSet;			// ƒZƒ‹ƒAƒNƒ^ƒZƒbƒg
-	TCB_PTR	clactDrawTcb;				// ƒAƒNƒ^[•`‰æTCB
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	NNSG2dRendererInstance	Render;		// ãƒ¬ãƒ³ãƒ€ãƒ©
+	NNSG2dRenderSurface		Surface;	// ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+	CLACT_SET_PTR	clactSet;			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ã‚»ãƒƒãƒˆ
+	TCB_PTR	clactDrawTcb;				// ã‚¢ã‚¯ã‚¿ãƒ¼æç”»TCB
 	
 } WEATHER_SYS_DRAWSYS;
 
 
 //---------------------------------------------------------
 //
-//		‚¨“V‹CƒVƒXƒeƒ€§ŒäƒIƒuƒWƒF
-//			“V‹CƒVƒXƒeƒ€‚ÌƒIƒuƒWƒFƒNƒg
+//		ãŠå¤©æ°—ã‚·ã‚¹ãƒ†ãƒ åˆ¶å¾¡ã‚ªãƒ–ã‚¸ã‚§
+//			å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 //
 //=========================================================
 typedef struct _WEATHER_SYS_CONTROL{
-	WEATHER_SYS_DATA*		pWSD;		// “V‹CƒVƒXƒeƒ€ƒf[ƒ^
-	const WEATHER_BG_DATA*	pWSBG;		// “V‹CƒVƒXƒeƒ€BGƒf[ƒ^
+	WEATHER_SYS_DATA*		pWSD;		// å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+	const WEATHER_BG_DATA*	pWSBG;		// å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ BGãƒ‡ãƒ¼ã‚¿
 
-	WEATHER_SYS_DRAWSYS		Draw;		// •`‰æƒVƒXƒeƒ€
+	WEATHER_SYS_DRAWSYS		Draw;		// æç”»ã‚·ã‚¹ãƒ†ãƒ 
 		
-	FIELDSYS_WORK* fsys;					// ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+	FIELDSYS_WORK* fsys;					// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
 
-	ARCHANDLE*	ArcHandle;		// ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
+	ARCHANDLE*	ArcHandle;		// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
 } WEATHER_SYS_CONTROL;
 
 //-----------------------------------------------
-//	‚»‚Ì‘¼ì‹Æ—p\‘¢‘Ì
+//	ãã®ä»–ä½œæ¥­ç”¨æ§‹é€ ä½“
 //==============================================
 //-------------------------------------
-//	ƒIƒuƒWƒFƒNƒgƒtƒF[ƒhƒf[ƒ^
+//	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
 //-------------------------------------
 typedef struct{
-	// ƒ[ƒN
-	WEATHER_SYS_WORK* pWork;	// ƒ[ƒN
+	// ãƒ¯ãƒ¼ã‚¯
+	WEATHER_SYS_WORK* pWork;	// ãƒ¯ãƒ¼ã‚¯
 
-	// ƒJƒEƒ“ƒ^
-	s16 objAddNum;		// ƒIƒuƒWƒFƒNƒg“o˜^”
-	s16 objAddTmg;		// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒJƒEƒ“ƒ^
-	s16 objAddTmgMax;	// “o˜^ƒ^ƒCƒ~ƒ“ƒO
-	s16 objAddNumSum;	// ƒIƒuƒWƒFƒNƒg“o˜^”‰ÁŒ¸ƒJƒEƒ“ƒ^
+	// ã‚«ã‚¦ãƒ³ã‚¿
+	s16 objAddNum;		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²æ•°
+	s16 objAddTmg;		// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚«ã‚¦ãƒ³ã‚¿
+	s16 objAddTmgMax;	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+	s16 objAddNumSum;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²æ•°åŠ æ¸›ã‚«ã‚¦ãƒ³ã‚¿
 	
-	// ’è”
-	s16	OBJ_ADD_NUM_END;		// ƒIƒuƒWƒFƒNƒg‚P‰ñ‚Ì“o˜^”@I—¹’l
-	s16	OBJ_ADD_TMG_END;		// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒJƒEƒ“ƒ^@I—¹’l
-	s16	OBJ_ADD_TMG_SUM;		// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒJƒEƒ“ƒ^•ÏX’l
-	s16 OBJ_ADD_NUM_SUM_TMG;	// ƒIƒuƒWƒFƒNƒg‚P‰ñ‚Ì“o˜^”‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO
-	s32 OBJ_ADD_NUM_SUM;		// •ÏX‚·‚é’l
+	// å®šæ•°
+	s16	OBJ_ADD_NUM_END;		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‘å›ã®ç™»éŒ²æ•°ã€€çµ‚äº†å€¤
+	s16	OBJ_ADD_TMG_END;		// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚«ã‚¦ãƒ³ã‚¿ã€€çµ‚äº†å€¤
+	s16	OBJ_ADD_TMG_SUM;		// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚«ã‚¦ãƒ³ã‚¿å¤‰æ›´å€¤
+	s16 OBJ_ADD_NUM_SUM_TMG;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‘å›ã®ç™»éŒ²æ•°ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+	s32 OBJ_ADD_NUM_SUM;		// å¤‰æ›´ã™ã‚‹å€¤
 
-	// ŠÖ”
-	void	(*add)(WEATHER_SYS_WORK* pWork, int num);		// OBJ“o˜^
+	// é–¢æ•°
+	void	(*add)(WEATHER_SYS_WORK* pWork, int num);		// OBJç™»éŒ²
 } WEATHER_SYS_OBJ_FADE;
-typedef void (*OBJADD_FUNC)(WEATHER_SYS_WORK* pWork, int num);// OBJ“o˜^
+typedef void (*OBJADD_FUNC)(WEATHER_SYS_WORK* pWork, int num);// OBJç™»éŒ²
 
 
 //-------------------------------------
-//	“®ìƒ[ƒN
+//	å‹•ä½œãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	int x;
@@ -1650,7 +1650,7 @@ typedef struct {
 } WEATHER_SYS_MOVE_WORK;
 
 //-------------------------------------
-//	‚†‚˜‚R‚Q“®ìƒ[ƒN
+//	ï½†ï½˜ï¼“ï¼’å‹•ä½œãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	fx32 x;
@@ -1661,10 +1661,10 @@ typedef struct {
 } WEATHER_SYS_MOVE_WORK_FX;
 
 //-------------------------------------
-//	ƒtƒHƒOƒfƒvƒX@ƒJƒ‰[@ƒXƒ[ƒv•ÏX
+//	ãƒ•ã‚©ã‚°ãƒ‡ãƒ—ã‚¹ã€€ã‚«ãƒ©ãƒ¼ã€€ã‚¹ãƒ­ãƒ¼ãƒ—å¤‰æ›´
 //=====================================
 typedef struct {
-	FOG_DATA_PTR	Fog;		// ƒtƒF[ƒh‚·‚éƒtƒHƒOƒf[ƒ^
+	FOG_DATA_PTR	Fog;		// ãƒ•ã‚§ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿
 	WEATHER_SYS_MOVE_WORK fog_depth;
 	WEATHER_SYS_MOVE_WORK r;
 	WEATHER_SYS_MOVE_WORK g;
@@ -1673,23 +1673,23 @@ typedef struct {
 } WEATHER_SYS_CHG_FOG_DATA;
 
 //-------------------------------------
-//	ƒtƒHƒOƒtƒF[ƒhƒf[ƒ^
+//	ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
 //-------------------------------------
 typedef struct{
-	FOG_DATA_PTR	Fog;		// ƒtƒF[ƒh‚·‚éƒtƒHƒOƒf[ƒ^
-	char			fog_tbl[32];// ƒtƒHƒOƒe[ƒuƒ‹
+	FOG_DATA_PTR	Fog;		// ãƒ•ã‚§ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿
+	char			fog_tbl[32];// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«
 
-	// ƒJƒEƒ“ƒ^
-	s32	fogDepth;		// ƒtƒHƒO[“x
-	s32	fogCount;		// ƒtƒHƒOƒJƒEƒ“ƒ^
+	// ã‚«ã‚¦ãƒ³ã‚¿
+	s32	fogDepth;		// ãƒ•ã‚©ã‚°æ·±åº¦
+	s32	fogCount;		// ãƒ•ã‚©ã‚°ã‚«ã‚¦ãƒ³ã‚¿
 
-	// ’è”
-	s16	FOG_CHG_TMG;		// ƒtƒHƒOƒe[ƒuƒ‹•ÏXƒ^ƒCƒ~ƒ“ƒO
-	s16	FOG_TBL_SUM;		// •ÏX’l
+	// å®šæ•°
+	s16	FOG_CHG_TMG;		// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«å¤‰æ›´ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+	s16	FOG_TBL_SUM;		// å¤‰æ›´å€¤
 } WEATHER_SYS_FOG_FADE;
 
 //-------------------------------------
-//	ƒVƒXƒeƒ€ƒ[ƒNƒf[ƒ^
+//	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
 //-------------------------------------
 
 // Normal
@@ -1700,20 +1700,20 @@ typedef struct{
 	s32	work[10];
 } WEATHER_SYSW_NORMAL;
 
-// ƒIƒuƒWƒFƒtƒF[ƒh‚Ì‚İ
+// ã‚ªãƒ–ã‚¸ã‚§ãƒ•ã‚§ãƒ¼ãƒ‰ã®ã¿
 typedef struct{
 	WEATHER_SYS_OBJ_FADE	objFade;
 	s32	work[10];
 } WEATHER_SYSW_OBJFADE;
 
-// ƒtƒHƒOƒtƒF[ƒh‚Ì‚İ
+// ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰ã®ã¿
 typedef struct{
 	WEATHER_SYS_FOG_FADE	fogFade;
 	WEATHER_SYS_CHG_FOG_DATA fogWithFade;
 	s32	work[10];
 } WEATHER_STSW_FOGFADE;
 
-// “Ü‚è‚æ‚¤ƒ[ƒN
+// æ›‡ã‚Šã‚ˆã†ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	WEATHER_SYS_MOVE_WORK alpha;
 	s16 x;
@@ -1722,7 +1722,7 @@ typedef struct{
 	u16 add;
 } WEATHER_CLOUDINESS_WORK;
 
-// –Ø˜R‚ê“úƒ[ƒN
+// æœ¨æ¼ã‚Œæ—¥ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	WEATHER_SYS_MOVE_WORK alpha;
 	WEATHER_SYS_FOG_FADE	fogFade;
@@ -1733,24 +1733,24 @@ typedef struct{
 	u16 add;
 } WEATHER_KOGOREBI_WORK;
 
-// –¶‚Í‚ç‚¢
+// éœ§ã¯ã‚‰ã„
 typedef struct{
 	WEATHER_SYS_MOVE_WORK alpha;
 	WEATHER_SYS_FOG_FADE	fogFade;
 	WEATHER_SYS_CHG_FOG_DATA fogWithFade;
 } WEATHER_KIRI_HARAI_WORK;
 
-// ƒT[ƒNƒ‹
+// ã‚µãƒ¼ã‚¯ãƒ«
 typedef struct {
-	s16 x;						// ’†S‚˜À•W
-	s16 y;						// ’†S‚™À•W
-	WEATHER_SYS_MOVE_WORK_FX r;	// ”¼Œa
-	FIELD_HBLANK_SYS* p_fldhblksys;	// hblankƒVƒXƒeƒ€
-	FIELD_HBLANK_OBJ* p_hblank;	// hblankƒ[ƒN
-	LASTER_SYS_PTR p_laster[2];	// ƒ‰ƒXƒ^[ƒVƒXƒeƒ€
+	s16 x;						// ä¸­å¿ƒï½˜åº§æ¨™
+	s16 y;						// ä¸­å¿ƒï½™åº§æ¨™
+	WEATHER_SYS_MOVE_WORK_FX r;	// åŠå¾„
+	FIELD_HBLANK_SYS* p_fldhblksys;	// hblankã‚·ã‚¹ãƒ†ãƒ 
+	FIELD_HBLANK_OBJ* p_hblank;	// hblankãƒ¯ãƒ¼ã‚¯
+	LASTER_SYS_PTR p_laster[2];	// ãƒ©ã‚¹ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
 	TCB_PTR vblank_tcb;
-	u32 status;				// ƒXƒe[ƒ^ƒX
-	u16	wnd_data[4][192];	// wndƒf[ƒ^
+	u32 status;				// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	u16	wnd_data[4][192];	// wndãƒ‡ãƒ¼ã‚¿
 } WEATHER_CIRCLE_WORK;
 enum{	// status
 	WEATHER_CIRCLE_STATUS_INIT,
@@ -1759,7 +1759,7 @@ enum{	// status
 #define WEATHER_CIRCLE_VBLANKTCB_PRI	( 1024 )
 
 
-// ƒtƒ‰ƒbƒVƒ…
+// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 typedef struct {
 	WEATHER_CIRCLE_WORK circle;
 } WEATHER_FLASH_WORK;
@@ -1767,11 +1767,11 @@ typedef struct {
 
 //----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	‚»‚Ì‘¼ƒvƒ‰ƒCƒx[ƒgŠÖ”
+//	ãã®ä»–ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 //=====================================
 static void WeatherLoopSndPlay( WEATHER_SYS_WORK* p_work, int snd_no );
 static void WeatherLoopSndStop( WEATHER_SYS_WORK* p_work );
@@ -1780,9 +1780,9 @@ static void WeatherMoveReq( WEATHER_SYS_MOVE_WORK* p_work, int s_x, int e_x, int
 static BOOL	WeatherMoveMain( WEATHER_SYS_MOVE_WORK* p_work );
 static void WeatherMoveReqFx( WEATHER_SYS_MOVE_WORK_FX* p_work, fx32 s_x, fx32 e_x, int count_max );
 static BOOL	WeatherMoveMainFx( WEATHER_SYS_MOVE_WORK_FX* p_work );
-static void load2DGraphicFile(WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_GRAPHIC_FILE_DATA* pCell);	// ŠG‚Ìƒf[ƒ^‚Ì“Ç‚İ‚İ
+static void load2DGraphicFile(WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_GRAPHIC_FILE_DATA* pCell);	// çµµã®ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 static void setUpBG( WEATHER_SYS_CONTROL* cont, int BGNo );
-static void destGraphicFile(WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_GRAPHIC_FILE_DATA* pCell);	// ŠG‚Ìƒf[ƒ^‚Ì”jŠü
+static void destGraphicFile(WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_GRAPHIC_FILE_DATA* pCell);	// çµµã®ãƒ‡ãƒ¼ã‚¿ã®ç ´æ£„
 
 static CLACT_U_RES_OBJ_PTR	loadRes(CLACT_U_RES_HEADER_PTR res_head, int res_type, int head_no, CLACT_U_RES_MANAGER_PTR resMan, ARCHANDLE* arcHandle, u32 alloc_type);
 
@@ -1791,33 +1791,33 @@ static void loadResHeader(CLACT_U_RES_HEADER_PTR head, int no, int arc_data);
 static void delete2DDrawSys(WEATHER_SYS_DRAWSYS* draw);
 static void clactSetDrawTcb( TCB_PTR tcb, void* p_work );
 
-//	“V‹Cƒf[ƒ^‘ã“üŠÖ”
+//	å¤©æ°—ãƒ‡ãƒ¼ã‚¿ä»£å…¥é–¢æ•°
 static void setSysData(WEATHER_SYS_DATA* pData, int CellNo, int BGNo, int WorkSize, TCB_FUNC func);
 static void setBGData(WEATHER_BG_DATA* pData, int pltt_arc, int char_arc, int screen_arc );
 
-// À•Wİ’èê—pŠÖ”
+// åº§æ¨™è¨­å®šå°‚ç”¨é–¢æ•°
 static void setClactMatrix( CLACT_WORK_PTR act, VecFx32* matrix );
 
 //-------------------------------------
-//	“V‹CŠÇ—ŠÖ”—pŠÖ”
+//	å¤©æ°—ç®¡ç†é–¢æ•°ç”¨é–¢æ•°
 //=====================================
-static void destObj(WAETHER_OBJ_DATA* pData);							// ƒIƒuƒWƒF‚Ì”jŠü
-static void destObjAll(WAETHER_OBJ_DATA* pDummy);						// ‘SƒIƒuƒWƒF‚Ì”jŠü
-static WAETHER_OBJ_DATA* addObj(WEATHER_SYS_WORK* pWork, int w_byte);	// ƒIƒuƒWƒF‚ğƒAƒbƒh
+static void destObj(WAETHER_OBJ_DATA* pData);							// ã‚ªãƒ–ã‚¸ã‚§ã®ç ´æ£„
+static void destObjAll(WAETHER_OBJ_DATA* pDummy);						// å…¨ã‚ªãƒ–ã‚¸ã‚§ã®ç ´æ£„
+static WAETHER_OBJ_DATA* addObj(WEATHER_SYS_WORK* pWork, int w_byte);	// ã‚ªãƒ–ã‚¸ã‚§ã‚’ã‚¢ãƒƒãƒ‰
 static void getHeader(CLACT_HEADER_PTR head, WEATHER_SYS_CONTROL* cont, WATHER_GRAPHIC_FILE_DATA* pcell,int vram_trans, int priority );
 static BOOL setUpCell( WEATHER_SYS_CONTROL* cont, WEATHER_SYS_DATA* w_sys );
-static void moveFuncObj(WAETHER_OBJ_DATA* pDummy, objFunc pFunc);		// ‘SƒIƒuƒWƒFƒNƒg‚ğ“®‚©‚·
-static void drawObj(WEATHER_SYS_WORK* pData);							// ƒIƒuƒWƒF‚Ì•`‰æ
+static void moveFuncObj(WAETHER_OBJ_DATA* pDummy, objFunc pFunc);		// å…¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‹•ã‹ã™
+static void drawObj(WEATHER_SYS_WORK* pData);							// ã‚ªãƒ–ã‚¸ã‚§ã®æç”»
 static VecFx32 getObjMat( WAETHER_OBJ_DATA* obj );
-static int getMaxOamNum(NNSG2dCellDataBank* pCell);						// ƒZƒ‹ƒf[ƒ^ƒoƒ“ƒN“à‚ÌƒZƒ‹‚ÌOAM‚ÌÅ‘å”æ“¾
-static void getScrollNum(fx32* x, fx32* y, WEATHER_SYS_WORK* pWork);		// ƒXƒNƒ[ƒ‹À•Wæ“¾
-static void scrollObj(WEATHER_SYS_WORK* pWork, int* x, int* y);			// ‘SƒIƒuƒWƒFƒNƒg‚ÌÀ•W‚ğscroll‚É‚ ‚í‚¹‚é
-static void scrollObj_Fx(WEATHER_SYS_WORK* pWork, fx32* x, fx32* y);			// ‘SƒIƒuƒWƒFƒNƒg‚ÌÀ•W‚ğscroll‚É‚ ‚í‚¹‚é
-static void allocObjWork(WAETHER_OBJ_DATA* pData, int byte);			// ƒ[ƒN—Ìˆæ‚ğì¬
-static void freeObjWork(WAETHER_OBJ_DATA* pData);						// ƒ[ƒN—Ìˆæ‚ğ”jŠü
+static int getMaxOamNum(NNSG2dCellDataBank* pCell);						// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯å†…ã®ã‚»ãƒ«ã®OAMã®æœ€å¤§æ•°å–å¾—
+static void getScrollNum(fx32* x, fx32* y, WEATHER_SYS_WORK* pWork);		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™å–å¾—
+static void scrollObj(WEATHER_SYS_WORK* pWork, int* x, int* y);			// å…¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åº§æ¨™ã‚’scrollã«ã‚ã‚ã›ã‚‹
+static void scrollObj_Fx(WEATHER_SYS_WORK* pWork, fx32* x, fx32* y);			// å…¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åº§æ¨™ã‚’scrollã«ã‚ã‚ã›ã‚‹
+static void allocObjWork(WAETHER_OBJ_DATA* pData, int byte);			// ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’ä½œæˆ
+static void freeObjWork(WAETHER_OBJ_DATA* pData);						// ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’ç ´æ£„
 static void weatherSysObjFadeInit( WEATHER_SYS_OBJ_FADE* data, WEATHER_SYS_WORK* pWork, s32 objAddTmgMax, s32 objAddNum, s32 OBJ_ADD_NUM_END, s32 OBJ_ADD_TMG_END, s32 OBJ_ADD_TMG_SUM, s32 OBJ_ADD_NUM_SUM_TMG, s32 OBJ_ADD_NUM_SUM, OBJADD_FUNC add );
 static void weatherSysObjFadeOutSet( WEATHER_SYS_OBJ_FADE* data, s32 OBJ_ADD_NUM_END, s32 OBJ_ADD_TMG_END, s32 OBJ_ADD_TMG_SUM, s32 OBJ_ADD_NUM_SUM );
-static int weatherSysObjFade(WEATHER_SYS_OBJ_FADE* data);				// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
+static int weatherSysObjFade(WEATHER_SYS_OBJ_FADE* data);				// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 static void weatherSysFogFadeInInitPack( WEATHER_SYS_CHG_FOG_DATA* fogParam, WEATHER_SYS_FOG_FADE* fogData, FOG_DATA_PTR Fog, int fog_slope, int fog_offs, GXRgb color, int timing, u32 fog_use_flg );
 static int weatherSysFogFadeInMainPack( WEATHER_SYS_CHG_FOG_DATA* fogParam, WEATHER_SYS_FOG_FADE* fogData, u32 fog_use_flg );
 static void weatherSysFogParamSet( FOG_DATA_PTR Fog, int fog_slope, int fog_offs, GXRgb color );
@@ -1825,28 +1825,28 @@ static void weatherSysFogParamFadeInit( WEATHER_SYS_CHG_FOG_DATA* data, FOG_DATA
 static BOOL weatherSysFogParamFadeMain( WEATHER_SYS_CHG_FOG_DATA* data );
 static void weatherSysFogTblInit( WEATHER_SYS_FOG_FADE* data );
 static void weatherSysFogFadeInit( WEATHER_SYS_FOG_FADE* data, int timing, BOOL fade_inout );
-static int weatherSysFogFade(WEATHER_SYS_FOG_FADE* data);				// ƒtƒHƒOƒtƒF[ƒh
-static int weatherSysFogFadeNoReflect(WEATHER_SYS_FOG_FADE* data);		// ƒtƒHƒOƒtƒF[ƒh@ƒtƒHƒOƒe[ƒuƒ‹‚Ì”½‰f‚ğs‚í‚È‚¢ƒo[ƒWƒ‡ƒ“
-static void weatherSysFogSet(WEATHER_SYS_FOG_FADE* data);				// ƒtƒHƒOƒtƒF[ƒhƒCƒ“Œã‚Ìƒe[ƒuƒ‹‚ğì¬‚·‚é
-static void calcWeatherFogTbl( WEATHER_SYS_FOG_FADE* data );			// ƒtƒHƒOƒe[ƒuƒ‹ì¬ŒvZ‚ğs‚¤
+static int weatherSysFogFade(WEATHER_SYS_FOG_FADE* data);				// ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰
+static int weatherSysFogFadeNoReflect(WEATHER_SYS_FOG_FADE* data);		// ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰ã€€ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã®åæ˜ ã‚’è¡Œã‚ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+static void weatherSysFogSet(WEATHER_SYS_FOG_FADE* data);				// ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾Œã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã™ã‚‹
+static void calcWeatherFogTbl( WEATHER_SYS_FOG_FADE* data );			// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆè¨ˆç®—ã‚’è¡Œã†
 //static BOOL weatherBGFade( s32* now_alpha, const int end_alpha, const int add_alpha, s32* timing_count, const int add_timing );
-static void weatherDustObj( WEATHER_SYS_WORK* pWork, OBJADD_FUNC add_func, int num, int dust_div_num, int dust_div_move, objFunc move_func );	// “V‹C‚ÌƒIƒuƒWƒFƒNƒg‚ğU•z‚³‚¹‚é
+static void weatherDustObj( WEATHER_SYS_WORK* pWork, OBJADD_FUNC add_func, int num, int dust_div_num, int dust_div_move, objFunc move_func );	// å¤©æ°—ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•£å¸ƒã•ã›ã‚‹
 static WAETHER_OBJ_DATA* getCleanObjData( WEATHER_SYS_WORK* pWork );
 
 
 //-------------------------------------
-//	“V‹CŠÇ—ŠÖ”‘€ìŠÖ”
+//	å¤©æ°—ç®¡ç†é–¢æ•°æ“ä½œé–¢æ•°
 //=====================================
-static BOOL initWeatherSys(WEATHER_SYS_CONTROL* cont,int no);				// ŠÇ—ŠÖ”‰Šú‰»
+static BOOL initWeatherSys(WEATHER_SYS_CONTROL* cont,int no);				// ç®¡ç†é–¢æ•°åˆæœŸåŒ–
 static BOOL divInitWeatherSysCall(WEATHER_SYS_CONTROL* cont,int no);
-static BOOL startWeatherSys(WEATHER_SYS_CONTROL* cont,int no, int init_seq, u32 fog_use);// ŠÇ—ŠÖ”ƒXƒ^[ƒg
-static void stopReqWeatherSys(WEATHER_SYS_CONTROL* cont,int no, u32 fog_use);				// ŠÇ—ŠÖ”I—¹
-static void stopWeatherSys( WEATHER_SYS_CONTROL* cont,int no );				// ‹­§I—¹
-static void destWeatherSys(WEATHER_SYS_CONTROL* cont,int no);				// ŠÇ—ŠÖ”Š®‘S”jŠü
-static void stopWeatherWork(WEATHER_SYS_CONTROL* cont,int no);				// ŠÇ—ƒf[ƒ^”jŠü
-static void stopWeatherWork_local(WEATHER_SYS_DATA* w_sys);				// ŠÇ—ƒf[ƒ^”jŠü
+static BOOL startWeatherSys(WEATHER_SYS_CONTROL* cont,int no, int init_seq, u32 fog_use);// ç®¡ç†é–¢æ•°ã‚¹ã‚¿ãƒ¼ãƒˆ
+static void stopReqWeatherSys(WEATHER_SYS_CONTROL* cont,int no, u32 fog_use);				// ç®¡ç†é–¢æ•°çµ‚äº†
+static void stopWeatherSys( WEATHER_SYS_CONTROL* cont,int no );				// å¼·åˆ¶çµ‚äº†
+static void destWeatherSys(WEATHER_SYS_CONTROL* cont,int no);				// ç®¡ç†é–¢æ•°å®Œå…¨ç ´æ£„
+static void stopWeatherWork(WEATHER_SYS_CONTROL* cont,int no);				// ç®¡ç†ãƒ‡ãƒ¼ã‚¿ç ´æ£„
+static void stopWeatherWork_local(WEATHER_SYS_DATA* w_sys);				// ç®¡ç†ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 
-// ‰Šú‰»ˆ—•ªŠ„ŠÖ”
+// åˆæœŸåŒ–å‡¦ç†åˆ†å‰²é–¢æ•°
 static void divInitWeatherSysTcb( TCB_PTR tcb, void* work );
 static BOOL initWeatherSysWork( WEATHER_SYS_CONTROL* cont, WEATHER_SYS_DATA* w_sys );
 
@@ -1865,75 +1865,75 @@ static void initBgChar( WEATHER_SYS_CONTROL* cont, int BGNo );
 static void initBgScr( WEATHER_SYS_CONTROL* cont, int BGNo );
 
 //-------------------------------------
-//	“V‹CŠÇ—ŠÖ”
+//	å¤©æ°—ç®¡ç†é–¢æ•°
 //=====================================
-static void contWeatherDummy(TCB_PTR tcb, void* work);		// ƒ_ƒ~[
-static void contWeatherRain(TCB_PTR tcb, void* work);		// ‰J
-static void contWeatherSnow(TCB_PTR tcb, void* work);		// á
-static void contWeatherSnowStorm(TCB_PTR tcb, void* work);	// á
-static void contWeatherSnowStormBG(TCB_PTR tcb, void* work);// BGg—pá
-static void contWeatherFog00(TCB_PTR tcb, void* work);		// –¶¬
-static void contWeatherFog01(TCB_PTR tcb, void* work);		// –¶’†
-static void contWeatherFog02(TCB_PTR tcb, void* work);		// –¶‹­
-static void contWeatherStorm(TCB_PTR tcb, void* work);		// »—’
-static void contWeatherStormBG(TCB_PTR tcb, void* work);	// BGg—p»—’
-static void contWeatherSnowSML(TCB_PTR tcb, void* work);	// –kŠC“¹á
-static void contWeatherSnowD(TCB_PTR tcb, void* work);		// ƒXƒm[ƒ_ƒXƒg
-static void contWeatherRainbow(TCB_PTR tcb, void* work);	// “ø
-static void contWeatherSTRain(TCB_PTR tcb, void* work);		// ‘å‰J
-static void contWeatherSTRainSpark(TCB_PTR tcb, void* work);// ‘å‰J{—‹
-static void contWeatherVolcano(TCB_PTR tcb, void* work);	// ‰ÎRŠD
-static void contWeatherSpark(TCB_PTR tcb, void* work);		// —‹
-static void contWeatherSpirit(TCB_PTR tcb, void* work);		// ‹C‡
-static void contWeatherMystic(TCB_PTR tcb, void* work);		// _”é
-static void contWeatherCloudiness(TCB_PTR tcb, void* work);	// “Ü‚è
-static void contWeatherKiriHarai(TCB_PTR tcb, void* work);	// ‚«‚è‚Í‚ç‚¢
-static void contWeatherKiriHarai_White(TCB_PTR tcb, void* work);	// ‚«‚è‚Í‚ç‚¢
-static void contWeatherFlash(TCB_PTR tcb, void* work);		// ƒtƒ‰ƒbƒVƒ…
-static void contWeatherKogorebi(TCB_PTR tcb, void* work);		// ‹Ã‚ê”ü
-static void contWeatherDoukutu00(TCB_PTR tcb, void* work);		// “´ŒA
-static void contWeatherDoukutu01(TCB_PTR tcb, void* work);		// “´ŒA
-static void contWeatherGinga00(TCB_PTR tcb, void* work);		// ‹â‰Í’c”–ˆÃ‚¢
-static void contWeatherLostTower00(TCB_PTR tcb, void* work);		// ƒƒX‚Æƒ^ƒ[ƒtƒHƒO
-static void contWeatherHardMountain(TCB_PTR tcb, void* work);		// ƒn[ƒhƒ}ƒEƒ“ƒeƒ“ƒtƒHƒO
-static void contWeatherDoukutu02(TCB_PTR tcb, void* work);		// ƒn[ƒhƒ}ƒEƒ“ƒeƒ“ƒtƒHƒO
-static void contWeatherUsugurai(TCB_PTR tcb, void* work);		// ”–ˆÃ‚¢FOG
+static void contWeatherDummy(TCB_PTR tcb, void* work);		// ãƒ€ãƒŸãƒ¼
+static void contWeatherRain(TCB_PTR tcb, void* work);		// é›¨
+static void contWeatherSnow(TCB_PTR tcb, void* work);		// é›ª
+static void contWeatherSnowStorm(TCB_PTR tcb, void* work);	// å¹é›ª
+static void contWeatherSnowStormBG(TCB_PTR tcb, void* work);// BGä½¿ç”¨å¹é›ª
+static void contWeatherFog00(TCB_PTR tcb, void* work);		// éœ§å°
+static void contWeatherFog01(TCB_PTR tcb, void* work);		// éœ§ä¸­
+static void contWeatherFog02(TCB_PTR tcb, void* work);		// éœ§å¼·
+static void contWeatherStorm(TCB_PTR tcb, void* work);		// ç ‚åµ
+static void contWeatherStormBG(TCB_PTR tcb, void* work);	// BGä½¿ç”¨ç ‚åµ
+static void contWeatherSnowSML(TCB_PTR tcb, void* work);	// åŒ—æµ·é“é›ª
+static void contWeatherSnowD(TCB_PTR tcb, void* work);		// ã‚¹ãƒãƒ¼ãƒ€ã‚¹ãƒˆ
+static void contWeatherRainbow(TCB_PTR tcb, void* work);	// è™¹
+static void contWeatherSTRain(TCB_PTR tcb, void* work);		// å¤§é›¨
+static void contWeatherSTRainSpark(TCB_PTR tcb, void* work);// å¤§é›¨ï¼‹é›·
+static void contWeatherVolcano(TCB_PTR tcb, void* work);	// ç«å±±ç°
+static void contWeatherSpark(TCB_PTR tcb, void* work);		// é›·
+static void contWeatherSpirit(TCB_PTR tcb, void* work);		// æ°—åˆ
+static void contWeatherMystic(TCB_PTR tcb, void* work);		// ç¥ç§˜
+static void contWeatherCloudiness(TCB_PTR tcb, void* work);	// æ›‡ã‚Š
+static void contWeatherKiriHarai(TCB_PTR tcb, void* work);	// ãã‚Šã¯ã‚‰ã„
+static void contWeatherKiriHarai_White(TCB_PTR tcb, void* work);	// ãã‚Šã¯ã‚‰ã„
+static void contWeatherFlash(TCB_PTR tcb, void* work);		// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
+static void contWeatherKogorebi(TCB_PTR tcb, void* work);		// å‡ã‚Œç¾
+static void contWeatherDoukutu00(TCB_PTR tcb, void* work);		// æ´çªŸ
+static void contWeatherDoukutu01(TCB_PTR tcb, void* work);		// æ´çªŸ
+static void contWeatherGinga00(TCB_PTR tcb, void* work);		// éŠ€æ²³å›£è–„æš—ã„
+static void contWeatherLostTower00(TCB_PTR tcb, void* work);		// ãƒ­ã‚¹ã¨ã‚¿ãƒ¯ãƒ¼ãƒ•ã‚©ã‚°
+static void contWeatherHardMountain(TCB_PTR tcb, void* work);		// ãƒãƒ¼ãƒ‰ãƒã‚¦ãƒ³ãƒ†ãƒ³ãƒ•ã‚©ã‚°
+static void contWeatherDoukutu02(TCB_PTR tcb, void* work);		// ãƒãƒ¼ãƒ‰ãƒã‚¦ãƒ³ãƒ†ãƒ³ãƒ•ã‚©ã‚°
+static void contWeatherUsugurai(TCB_PTR tcb, void* work);		// è–„æš—ã„FOG
 
 
 
 
 
 //-------------------------------------
-//	“V‹CƒIƒuƒWƒFƒNƒg“o˜^ŠÖ”
+//	å¤©æ°—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²é–¢æ•°
 //=====================================
-static void addWeatherRain(WEATHER_SYS_WORK* pWork, int num);		// ‰J
-static void addWeatherSnow(WEATHER_SYS_WORK* pWork, int num);		// á
-static void addWeatherSnowStorm(WEATHER_SYS_WORK* pWork, int num);	// á
-static void addWeatherStorm(WEATHER_SYS_WORK* pWork, int num);		// »—’
-static void addWeatherSnowSML(WEATHER_SYS_WORK* pWork, int num);	// –kŠC“¹á
-static void addWeatherSnowD(WEATHER_SYS_WORK* pWork, int num);		// ƒXƒm[ƒ_ƒXƒg
-static void addWeatherSTRain(WEATHER_SYS_WORK* pWork, int num);		// ‘å‰J
-static void addWeatherVolcano(WEATHER_SYS_WORK* pWork, int num);	// ‰ÎRŠD
-static void addWeatherSpirit(WEATHER_SYS_WORK* pWork, int num);		// ‹C‡
-static void addWeatherMystic(WEATHER_SYS_WORK* pWork, int num);		// _”é
+static void addWeatherRain(WEATHER_SYS_WORK* pWork, int num);		// é›¨
+static void addWeatherSnow(WEATHER_SYS_WORK* pWork, int num);		// é›ª
+static void addWeatherSnowStorm(WEATHER_SYS_WORK* pWork, int num);	// å¹é›ª
+static void addWeatherStorm(WEATHER_SYS_WORK* pWork, int num);		// ç ‚åµ
+static void addWeatherSnowSML(WEATHER_SYS_WORK* pWork, int num);	// åŒ—æµ·é“é›ª
+static void addWeatherSnowD(WEATHER_SYS_WORK* pWork, int num);		// ã‚¹ãƒãƒ¼ãƒ€ã‚¹ãƒˆ
+static void addWeatherSTRain(WEATHER_SYS_WORK* pWork, int num);		// å¤§é›¨
+static void addWeatherVolcano(WEATHER_SYS_WORK* pWork, int num);	// ç«å±±ç°
+static void addWeatherSpirit(WEATHER_SYS_WORK* pWork, int num);		// æ°—åˆ
+static void addWeatherMystic(WEATHER_SYS_WORK* pWork, int num);		// ç¥ç§˜
 
 //-------------------------------------
-//	“V‹C‚ÌƒIƒuƒWƒFŠÖ”
+//	å¤©æ°—ã®ã‚ªãƒ–ã‚¸ã‚§é–¢æ•°
 //=====================================
-static void objWeatherRain(WAETHER_OBJ_DATA* work);			// ‰J‚Ì—±
-static void objWeatherSnow(WAETHER_OBJ_DATA* work);			// á‚Ì—±
-static void objWeatherSnowStorm(WAETHER_OBJ_DATA* work);	// á‚Ì—±
-static void objWeatherStorm(WAETHER_OBJ_DATA* work);		// »—’
-static void objWeatherSnowSML(WAETHER_OBJ_DATA* work);		// –kŠC“¹á
-static void objWeatherSnowD(WAETHER_OBJ_DATA* work);		// ƒXƒm[ƒ_ƒXƒg
-static void objWeatherSTRain(WAETHER_OBJ_DATA* work);		// ‘å‰J
-static void objWeatherVolcano(WAETHER_OBJ_DATA* work);		// ‰ÎRŠD
-static void objWeatherSpirit(WAETHER_OBJ_DATA* work);		// ‹C‡
-static void objWeatherMystic(WAETHER_OBJ_DATA* work);		// _”é
+static void objWeatherRain(WAETHER_OBJ_DATA* work);			// é›¨ã®ç²’
+static void objWeatherSnow(WAETHER_OBJ_DATA* work);			// é›ªã®ç²’
+static void objWeatherSnowStorm(WAETHER_OBJ_DATA* work);	// å¹é›ªã®ç²’
+static void objWeatherStorm(WAETHER_OBJ_DATA* work);		// ç ‚åµ
+static void objWeatherSnowSML(WAETHER_OBJ_DATA* work);		// åŒ—æµ·é“é›ª
+static void objWeatherSnowD(WAETHER_OBJ_DATA* work);		// ã‚¹ãƒãƒ¼ãƒ€ã‚¹ãƒˆ
+static void objWeatherSTRain(WAETHER_OBJ_DATA* work);		// å¤§é›¨
+static void objWeatherVolcano(WAETHER_OBJ_DATA* work);		// ç«å±±ç°
+static void objWeatherSpirit(WAETHER_OBJ_DATA* work);		// æ°—åˆ
+static void objWeatherMystic(WAETHER_OBJ_DATA* work);		// ç¥ç§˜
 
 
 //-------------------------------------
-//	“V‹C‚ÌŠeˆ—‚ğ×‚©‚­ƒpƒbƒN‚µ‚½ŠÖ”ŒS
+//	å¤©æ°—ã®å„å‡¦ç†ã‚’ç´°ã‹ããƒ‘ãƒƒã‚¯ã—ãŸé–¢æ•°éƒ¡
 //=====================================
 static void contWeatherSTRain_Init( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NORMAL* sys_w );
 static BOOL contWeatherSTRain_FadeIn( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NORMAL* sys_w );
@@ -1948,7 +1948,7 @@ static void contWeatherDoukutuComm( TCB_PTR tcb, void* work, u32 alpha_def, u32 
 static void contWeatherCommFog( WEATHER_SYS_WORK* sys_work, WEATHER_STSW_FOGFADE* sys_w, u32 slope, u32 offset, GXRgb color, u32 in_timing, u32 out_timing );
 
 //-------------------------------------
-//	HBlankg—p‰~•`‰æƒVƒXƒeƒ€
+//	HBlankä½¿ç”¨å††æç”»ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 static void drawWeatherCircleInit( WEATHER_CIRCLE_WORK* p_circle, FIELD_HBLANK_SYS* p_fldhblksys );
 static void drawWeatherCircleEnd( WEATHER_CIRCLE_WORK* p_circle );
@@ -1970,11 +1970,11 @@ static void CalcWeatherCircleSub( fx32 c_r, int c_x, int c_y, int n_h, int* st, 
 
 //----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	BGƒe[ƒuƒ‹
+//	BGãƒ†ãƒ¼ãƒ–ãƒ«
 //=====================================
 static const WEATHER_BG_DATA WSBG[ WEATHER_BG_CONTROL_NUM ] = {
 	{ NARC_WEATHER_SYS_SNOW_NCLR,		NARC_WEATHER_SYS_STORM_BG_NCGR,		NARC_WEATHER_SYS_STORM_SC_NSCR },
@@ -1991,7 +1991,7 @@ static const WEATHER_BG_DATA WSBG[ WEATHER_BG_CONTROL_NUM ] = {
 };
 
 //-------------------------------------
-//	“V‹CƒIƒuƒWƒFƒNƒgƒe[ƒuƒ‹
+//	å¤©æ°—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //=====================================
 static WEATHER_SYS_DATA WSD[ WEATHER_SYS_NUM ] = {
 	{	// SUNNY
@@ -2355,9 +2355,9 @@ static WEATHER_SYS_DATA WSD[ WEATHER_SYS_NUM ] = {
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	•`‰æƒVƒXƒeƒ€‚Ì‰Šú‰»
+ *@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ ã®åˆæœŸåŒ–
  *
- *@param	draw	•`‰æƒVƒXƒeƒ€
+ *@param	draw	æç”»ã‚·ã‚¹ãƒ†ãƒ 
  *
  *@return	none
  *
@@ -2366,52 +2366,52 @@ static WEATHER_SYS_DATA WSD[ WEATHER_SYS_NUM ] = {
 //-----------------------------------------------------------------------------
 static void init2DDrawSys(WEATHER_SYS_DRAWSYS* draw)
 {
-	NNSG2dViewRect rect;		// ƒT[ƒtƒF[ƒX‹éŒ`
-	int i;						// ƒ‹[ƒv—p
-	int size;					// ƒwƒbƒ_ƒTƒCƒYæ“¾—p
+	NNSG2dViewRect rect;		// ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹çŸ©å½¢
+	int i;						// ãƒ«ãƒ¼ãƒ—ç”¨
+	int size;					// ãƒ˜ãƒƒãƒ€ã‚µã‚¤ã‚ºå–å¾—ç”¨
 	
-	// ƒŒƒ“ƒ_ƒ‰‰Šú‰»
+	// ãƒ¬ãƒ³ãƒ€ãƒ©åˆæœŸåŒ–
 	RNDP_InitRenderer(&draw->Render, -FX32_ONE);
 
-	// ƒT[ƒtƒF[ƒX‰Šú‰»
+	// ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹åˆæœŸåŒ–
 	rect.posTopLeft.x	= WEATHER_RENDER_X;
 	rect.posTopLeft.y	= WEATHER_RENDER_Y;
 	rect.sizeView.x		= WEATHER_RENDER_WIDTH;
 	rect.sizeView.y		= WEATHER_RENDER_HEIGHT;
 	REND_OAM_SetSurface(&draw->Surface, &rect, NNS_G2D_SURFACETYPE_MAIN2D, &draw->Render);
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	for(i=0;i<WEATHER_RES_NUM;i++){
 		draw->resMan[i] = CLACT_U_ResManagerInit(WEATHER_SYS_NUM, i, USE_HEAPID);
 	}
 
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒƒwƒbƒ_ì¬
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ˜ãƒƒãƒ€ä½œæˆ
 	size = CLACT_U_ResManagerGetHeaderSize();
 	draw->resHeader = sys_AllocMemory(USE_HEAPID, size * WEATHER_RES_NUM);
 	
-	// ƒŠƒ\[ƒXƒwƒbƒ_[“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼èª­ã¿è¾¼ã¿
 	loadResHeader(draw->resHeader, CLACT_U_CHAR_RES, NARC_WEATHER_SYS_WEATHER_CHAR_RESDAT );
 	loadResHeader(draw->resHeader, CLACT_U_PLTT_RES, NARC_WEATHER_SYS_WEATHER_PLTT_RESDAT);
 	loadResHeader(draw->resHeader, CLACT_U_CELL_RES, NARC_WEATHER_SYS_WEATHER_CELL_RESDAT);
 	loadResHeader(draw->resHeader, CLACT_U_CELLANM_RES, NARC_WEATHER_SYS_WEATHER_CELLANM_RESDAT);
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 	{
-		CLACT_SETDATA	set;	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬ƒf[ƒ^
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		CLACT_SETDATA	set;	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆãƒ‡ãƒ¼ã‚¿
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		set.WorkNum = WEATEHR_OBJ_MAX;
 		set.pRender	= &draw->Render;
 		set.heap	= USE_HEAPID;
 		draw->clactSet = CLACT_InitSet( &set );
 
-		// •`‰æƒ^ƒXƒN¶¬
+		// æç”»ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 		draw->clactDrawTcb = TCB_Add( clactSetDrawTcb, draw, WEATHER_CLACT_DRAW_TCB_PRI );
 	} 
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒNƒ^[•`‰æƒ^ƒXƒN
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼æç”»ã‚¿ã‚¹ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void clactSetDrawTcb( TCB_PTR tcb, void* p_work )
@@ -2424,11 +2424,11 @@ static void clactSetDrawTcb( TCB_PTR tcb, void* p_work )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒwƒbƒ_‚ğ‚P‚Â“Ç‚İ‚Ş
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ã‚’ï¼‘ã¤èª­ã¿è¾¼ã‚€
  *
- *@param	head		ƒwƒbƒ_ƒf[ƒ^”z—ñ
- *@param	no			“Ç‚İ‚Şƒwƒbƒ_”z—ñ—v‘f
- *@param	arc_data	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒf[ƒ^
+ *@param	head		ãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿é…åˆ—
+ *@param	no			èª­ã¿è¾¼ã‚€ãƒ˜ãƒƒãƒ€é…åˆ—è¦ç´ 
+ *@param	arc_data	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -2437,7 +2437,7 @@ static void clactSetDrawTcb( TCB_PTR tcb, void* p_work )
 //-----------------------------------------------------------------------------
 static void loadResHeader(CLACT_U_RES_HEADER_PTR head, int no, int arc_data)
 {
-	CLACT_U_RES_HEADER_PTR	w_head;		// ì‹Æ—pƒwƒbƒ_
+	CLACT_U_RES_HEADER_PTR	w_head;		// ä½œæ¥­ç”¨ãƒ˜ãƒƒãƒ€
 	void* file;
 
 	w_head = CLACT_U_ResManagerGetHeaderNoData(head, no);
@@ -2450,9 +2450,9 @@ static void loadResHeader(CLACT_U_RES_HEADER_PTR head, int no, int arc_data)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	•`‰æƒVƒXƒeƒ€ƒf[ƒ^”jŠü
+ *@brief	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *@param	draw	•`‰æƒVƒXƒeƒ€ƒf[ƒ^
+ *@param	draw	æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -2465,19 +2465,19 @@ static void delete2DDrawSys(WEATHER_SYS_DRAWSYS* draw)
 	CLACT_U_RES_HEADER_PTR	res_head;
 	
 
-	// ƒŠƒ\[ƒXƒwƒbƒ_”jŠü
-	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ç ´æ£„
+	// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	for(i=0;i < WEATHER_RES_NUM;i++){
 		res_head = CLACT_U_ResManagerGetHeaderNoData(draw->resHeader, i);
-		CLACT_U_ResManagerHeaderFree(res_head);		// ƒwƒbƒ_”jŠü
+		CLACT_U_ResManagerHeaderFree(res_head);		// ãƒ˜ãƒƒãƒ€ç ´æ£„
 
-		CLACT_U_ResManagerDelete(draw->resMan[i]);	// ƒ}ƒl[ƒWƒƒ”jŠü
+		CLACT_U_ResManagerDelete(draw->resMan[i]);	// ãƒãƒãƒ¼ã‚¸ãƒ£ç ´æ£„
 	}
 
 	sys_FreeMemoryEz(draw->resHeader);
 	draw->resHeader = NULL;
 
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(draw->clactSet);
 	draw->clactSet = NULL;
 
@@ -2488,13 +2488,13 @@ static void delete2DDrawSys(WEATHER_SYS_DRAWSYS* draw)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“V‹Cƒf[ƒ^‘ã“üŠÖ”
+ *	@brief	å¤©æ°—ãƒ‡ãƒ¼ã‚¿ä»£å…¥é–¢æ•°
  *
- *	@param	pData		İ’èæ
- *	@param	CellNo		ƒZƒ‹ƒf[ƒ^‚Ì”z—ñ—v‘f”
- *	@param	BGNo		BGƒf[ƒ^‚Ì”z—ñ—v‘f”
- *	@param	WorkSize	ƒ[ƒNƒTƒCƒY
- *	@param	func		ƒRƒ“ƒgƒ[ƒ‹ŠÖ”
+ *	@param	pData		è¨­å®šå…ˆ
+ *	@param	CellNo		ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã®é…åˆ—è¦ç´ æ•°
+ *	@param	BGNo		BGãƒ‡ãƒ¼ã‚¿ã®é…åˆ—è¦ç´ æ•°
+ *	@param	WorkSize	ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
+ *	@param	func		ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é–¢æ•°
  *
  *	@return	none
  *
@@ -2503,25 +2503,25 @@ static void delete2DDrawSys(WEATHER_SYS_DRAWSYS* draw)
 //-----------------------------------------------------------------------------
 static void setSysData(WEATHER_SYS_DATA* pData, int CellNo, int BGNo, int WorkSize, TCB_FUNC func)
 {
-	pData->GraphicNo	= CellNo;		// ƒZƒ‹No
+	pData->GraphicNo	= CellNo;		// ã‚»ãƒ«No
 	pData->BGNo			= BGNo;			// BGNo
-	pData->WorkByte		= WorkSize;		// “V‹CƒVƒXƒeƒ€ƒ[ƒNƒTƒCƒY
-	pData->pWork		= NULL;			// ƒVƒXƒeƒ€ƒ[ƒNÀ‘Ô
-	pData->pCell		= NULL;			// “Ç‚İ‚ñ‚¾ƒZƒ‹ƒf[ƒ^
-	pData->cont			= func;			// CONTROLŠÖ”
-	pData->MoveFlag		= WEATHER_SYS_MOVE_NONE;	// “®ìó‘Ô
-	pData->DivInitSeq	= 0;			// •ªŠ„‰Šú‰»ƒV[ƒPƒ“ƒX
-	pData->DivInitTcb	= NULL;			// •ªŠ„“Ç‚İ‚İTCB
+	pData->WorkByte		= WorkSize;		// å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚º
+	pData->pWork		= NULL;			// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯å®Ÿæ…‹
+	pData->pCell		= NULL;			// èª­ã¿è¾¼ã‚“ã ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
+	pData->cont			= func;			// CONTROLé–¢æ•°
+	pData->MoveFlag		= WEATHER_SYS_MOVE_NONE;	// å‹•ä½œçŠ¶æ…‹
+	pData->DivInitSeq	= 0;			// åˆ†å‰²åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	pData->DivInitTcb	= NULL;			// åˆ†å‰²èª­ã¿è¾¼ã¿TCB
 }
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BGƒf[ƒ^İ’èŠÖ”
+ *	@brief	BGãƒ‡ãƒ¼ã‚¿è¨­å®šé–¢æ•°
  *
- *	@param	pData			ƒf[ƒ^Ši”[æ
- *	@param	PlttPath		ƒpƒŒƒbƒgƒpƒX
- *	@param	CharPath		ƒLƒƒƒ‰ƒNƒ^ƒpƒX
- *	@param	ScreenPath		ƒXƒNƒŠ[ƒ“ƒf[ƒ^ƒpƒX
+ *	@param	pData			ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	PlttPath		ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‘ã‚¹
+ *	@param	CharPath		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‘ã‚¹
+ *	@param	ScreenPath		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ‘ã‚¹
  *
  *	@return	none
  *
@@ -2538,21 +2538,21 @@ static void setBGData(WEATHER_BG_DATA* pData, int pltt_arc, int char_arc, int sc
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒNƒ^[‚ÉÀ•W‚ğİ’è
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã«åº§æ¨™ã‚’è¨­å®š
  *
- *	@param	act			ƒAƒNƒ^[
- *	@param	matrix		À•W
+ *	@param	act			ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	matrix		åº§æ¨™
  *
  *	@return	none
  *
- * ƒT[ƒtƒF[ƒX“à‚ÌÀ•W‚ÅÜ‚è•Ô‚·‚æ‚¤‚É•â³‚ğs‚Á‚Ä‚©‚ç
- * “o˜^‚µ‚Ä‚¢‚Ü‚·B
+ * ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹å†…ã®åº§æ¨™ã§æŠ˜ã‚Šè¿”ã™ã‚ˆã†ã«è£œæ­£ã‚’è¡Œã£ã¦ã‹ã‚‰
+ * ç™»éŒ²ã—ã¦ã„ã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
 static void setClactMatrix( CLACT_WORK_PTR act, VecFx32* matrix )
 {
-	// Ü‚è•Ô‚µˆ—
+	// æŠ˜ã‚Šè¿”ã—å‡¦ç†
 	if(matrix->x > WEATHER_OBJ_MAXTURN_X){
 		matrix->x %= WEATHER_OBJ_MAXTURN_X;
 	}else{
@@ -2579,16 +2579,16 @@ static void setClactMatrix( CLACT_WORK_PTR act, VecFx32* matrix )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚¨“V‹CƒVƒXƒeƒ€‚ğ‰Šú‰»
+ *@brief	ãŠå¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ã‚’åˆæœŸåŒ–
  *
- *@param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒN
+ *@param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *@return	WEATHER_CONT_PTR	“V‹CƒVƒXƒeƒ€§Œäƒf[ƒ^
+ *@return	WEATHER_CONT_PTR	å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ åˆ¶å¾¡ãƒ‡ãƒ¼ã‚¿
  *
- *	“à—e
- *		“V‹CƒVƒXƒeƒ€‚Ì§Œäƒf[ƒ^‚ğì¬
- *		fast_cellƒVƒXƒeƒ€‚ÌOAMƒoƒbƒtƒ@ì¬
- *		ƒLƒƒƒ‰ƒNƒ^AƒpƒŒƒbƒg‚ÌENTRYƒf[ƒ^“Ç‚İ‚İ
+ *	å†…å®¹
+ *		å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ã®åˆ¶å¾¡ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
+ *		fast_cellã‚·ã‚¹ãƒ†ãƒ ã®OAMãƒãƒƒãƒ•ã‚¡ä½œæˆ
+ *		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€ãƒ‘ãƒ¬ãƒƒãƒˆã®ENTRYãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
  */
 //-----------------------------------------------------------------------------
@@ -2597,17 +2597,17 @@ WEATHER_CONT_PTR InitWeatherSys(FIELDSYS_WORK* fsys)
 	WEATHER_CONT_PTR pWSYSCONT;
 
 	pWSYSCONT = sys_AllocMemory( USE_HEAPID, sizeof(WEATHER_SYS_CONTROL) );
-	// ƒtƒHƒOƒf[ƒ^Ši”[æ‚ğ•Û‘¶
+	// ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆã‚’ä¿å­˜
 	pWSYSCONT->fsys = fsys;
 
-	// •`‰æƒVƒXƒeƒ€‰Šú‰»
+	// æç”»ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	init2DDrawSys(&pWSYSCONT->Draw);
 
-	// “V‹CƒVƒXƒeƒ€ƒf[ƒ^ì¬
+	// å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	pWSYSCONT->pWSD = WSD;
 	pWSYSCONT->pWSBG = WSBG;
 
-	// ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	 pWSYSCONT->ArcHandle = ArchiveDataHandleOpen( ARC_WEATHER_SYS_GRA, USE_HEAPID );
 	
 	return pWSYSCONT;
@@ -2616,41 +2616,41 @@ WEATHER_CONT_PTR InitWeatherSys(FIELDSYS_WORK* fsys)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚¨“V‹CƒVƒXƒeƒ€‚ğ”jŠü
+ *@brief	ãŠå¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ã‚’ç ´æ£„
  *
- *@param	pWes		“V‹C§Œäƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ *@param	pWes		å¤©æ°—åˆ¶å¾¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  *@return	none
  *
- *	“à—e
- *		“®ì‚µ‚Ä‚¢‚é“V‹CŠÇ—ŠÖ”ƒ^ƒXƒN‚Ì‹­§I—¹---“®‚¢‚Ä‚¢‚éƒIƒuƒWƒFƒNƒgƒ^ƒXƒN‚à‹­§I—¹
- *		ƒLƒƒƒ‰ƒNƒ^AƒpƒŒƒbƒg‚ÌENTRYƒf[ƒ^”jŠü
+ *	å†…å®¹
+ *		å‹•ä½œã—ã¦ã„ã‚‹å¤©æ°—ç®¡ç†é–¢æ•°ã‚¿ã‚¹ã‚¯ã®å¼·åˆ¶çµ‚äº†---å‹•ã„ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚¿ã‚¹ã‚¯ã‚‚å¼·åˆ¶çµ‚äº†
+ *		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã€ãƒ‘ãƒ¬ãƒƒãƒˆã®ENTRYãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
  */
 //-----------------------------------------------------------------------------
 void DestWeatherSys(WEATHER_CONT_PTR* pWes)
 {
-	int i;		// ƒ‹[ƒv—p
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
 	
 	if(*pWes != NULL){
 		
-		// “®ì‚µ‚Ä‚¢‚é“V‹CŠÇ—ƒ^ƒXƒN‚Ì‹­§I—¹
+		// å‹•ä½œã—ã¦ã„ã‚‹å¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯ã®å¼·åˆ¶çµ‚äº†
 		for(i=0;i<WEATHER_SYS_NUM;i++){
 			destWeatherSys(*pWes, i);
 		}
 		
-		SetFogData((*pWes)->fsys->fog_data, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+		SetFogData((*pWes)->fsys->fog_data, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		
 		G2_SetBG0Priority(1);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 
-		// ƒOƒ‰ƒtƒBƒbƒN•`‰æƒVƒXƒeƒ€”jŠü
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯æç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 		delete2DDrawSys(&(*pWes)->Draw);
 
-		// ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹”jŠü
+		// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ç ´æ£„
 		ArchiveDataHandleClose( (*pWes)->ArcHandle );
 		
-		// ŠÇ—ƒf[ƒ^”jŠü
+		// ç®¡ç†ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		sys_FreeMemory(USE_HEAPID,*pWes);
 		*pWes = NULL;
 	}
@@ -2659,21 +2659,21 @@ void DestWeatherSys(WEATHER_CONT_PTR* pWes)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚¨“V‹CƒVƒXƒeƒ€ƒRƒ“ƒgƒ[ƒ‹ŠÖ”
+ *@brief	ãŠå¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é–¢æ•°
  *
- *@param	Wes			‚¨“V‹C§Œäƒf[ƒ^
- *@param	cont		ƒRƒ“ƒgƒ[ƒ‹ƒiƒ“ƒo[
- *@param	no			‚¨“V‹Cƒiƒ“ƒo[
+ *@param	Wes			ãŠå¤©æ°—åˆ¶å¾¡ãƒ‡ãƒ¼ã‚¿
+ *@param	cont		ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒŠãƒ³ãƒãƒ¼
+ *@param	no			ãŠå¤©æ°—ãƒŠãƒ³ãƒãƒ¼
  *
- *@return	BOOL	¬Œ÷:TRUE	¸”s:FALSE
+ *@return	BOOL	æˆåŠŸ:TRUE	å¤±æ•—:FALSE
  *
- *	à–¾
+ *	èª¬æ˜
  *		cont
- *			WEATHER_SYS_START=0				// ³íŠJn
- *			WEATHER_SYS_END=1				// ³íI—¹(ƒtƒF[ƒh‚µ‚ÄI‚í‚é)
- *			WEATHER_SYS_COMPULSION_END=2	// ‹­§I—¹
+ *			WEATHER_SYS_START=0				// æ­£å¸¸é–‹å§‹
+ *			WEATHER_SYS_END=1				// æ­£å¸¸çµ‚äº†(ãƒ•ã‚§ãƒ¼ãƒ‰ã—ã¦çµ‚ã‚ã‚‹)
+ *			WEATHER_SYS_COMPULSION_END=2	// å¼·åˆ¶çµ‚äº†
  *		
- *		cont‚Ìƒiƒ“ƒo[‚É‚æ‚è‚¨“V‹CŠÇ—ƒ^ƒXƒN‚ğ‘€ì‚·‚é
+ *		contã®ãƒŠãƒ³ãƒãƒ¼ã«ã‚ˆã‚ŠãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯ã‚’æ“ä½œã™ã‚‹
  * 
  */
 //-----------------------------------------------------------------------------
@@ -2681,29 +2681,29 @@ BOOL ControlWeatherSys(WEATHER_CONT_PTR Wes, int cont, int no)
 {
 	BOOL ret = TRUE;
 
-	// “V‹Cƒiƒ“ƒo[ƒ`ƒFƒbƒN
+	// å¤©æ°—ãƒŠãƒ³ãƒãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( no > WEATHER_SYS_NUM ){
 		return FALSE;
 	}
 	
 	
 	switch(cont){
-	case WEATHER_SYS_INIT:		// ‚¨“V‹CŠÇ—ƒ^ƒXƒN‰Šú‰»
+	case WEATHER_SYS_INIT:		// ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
 		ret = initWeatherSys(Wes, no);
 		break;
-	case WEATHER_SYS_INIT_DIV:	// ‚¨“V‹C•ªŠ„‰Šú‰»ƒ^ƒXƒN“o˜^
+	case WEATHER_SYS_INIT_DIV:	// ãŠå¤©æ°—åˆ†å‰²åˆæœŸåŒ–ã‚¿ã‚¹ã‚¯ç™»éŒ²
 		ret = divInitWeatherSysCall( Wes, no );
 		break;
-	case WEATHER_SYS_START:		// ‚¨“V‹CŠÇ—ƒ^ƒXƒN“o˜^
+	case WEATHER_SYS_START:		// ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯ç™»éŒ²
 		ret = startWeatherSys(Wes, no, WEATHER_SEQ_INIT, WEATEHR_FOG_NEW);
 		break;
 
-	case WEATHER_SYS_START_NOFADE:	// ƒtƒF[ƒhƒCƒ“‚ğ”ò‚Î‚·
+	case WEATHER_SYS_START_NOFADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚’é£›ã°ã™
 		ret = startWeatherSys( Wes, no, WEATHER_SEQ_NO_FADE, WEATEHR_FOG_NEW );
 		break;
 
-	case WEATHER_SYS_START_WITHFOG:	// ƒtƒF[ƒhƒCƒ“‚ğ”ò‚Î‚·
-		// ‚à‚µŒ»İFOGİ’è‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎA’Êí‚ÌƒtƒHƒOƒtƒF[ƒh‚É‚·‚é
+	case WEATHER_SYS_START_WITHFOG:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚’é£›ã°ã™
+		// ã‚‚ã—ç¾åœ¨FOGè¨­å®šã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã€é€šå¸¸ã®ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰ã«ã™ã‚‹
 		if( GetFogFlag( Wes->fsys->fog_data ) == TRUE ){
 			ret = startWeatherSys( Wes, no, WEATHER_SEQ_INIT, WEATHER_FOG_WITH );
 		}else{
@@ -2711,11 +2711,11 @@ BOOL ControlWeatherSys(WEATHER_CONT_PTR Wes, int cont, int no)
 		}
 		break;
 
-	case WEATHER_SYS_END:		// ‚¨“V‹CŠÇ—ƒ^ƒXƒN³íI—¹
+	case WEATHER_SYS_END:		// ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯æ­£å¸¸çµ‚äº†
 		stopReqWeatherSys(Wes, no, WEATEHR_FOG_NEW);
 		break;
 
-	case WEATHER_SYS_END_NOFADE:// ƒtƒF[ƒhƒAƒEƒg‚È‚µI—¹
+	case WEATHER_SYS_END_NOFADE:// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãªã—çµ‚äº†
 		stopWeatherSys(Wes, no);
 		break;
 
@@ -2723,7 +2723,7 @@ BOOL ControlWeatherSys(WEATHER_CONT_PTR Wes, int cont, int no)
 		stopReqWeatherSys(Wes, no, WEATHER_FOG_NONE);
 		break;
 
-	case WEATHER_SYS_DEST:		// ‚¨“V‹CŠÇ—ƒ^ƒXƒN”jŠü
+	case WEATHER_SYS_DEST:		// ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯ç ´æ£„
 		destWeatherSys(Wes, no);
 		break;
 
@@ -2737,43 +2737,43 @@ BOOL ControlWeatherSys(WEATHER_CONT_PTR Wes, int cont, int no)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“V‹C‚ªI—¹‚µ‚Ä‚¢‚éí‘Ô‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	å¤©æ°—ãŒçµ‚äº†ã—ã¦ã„ã‚‹å¸¸æ…‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	Wes			“V‹C
- *	@param	no			“V‹Cƒiƒ“ƒo[
+ *	@param	Wes			å¤©æ°—
+ *	@param	no			å¤©æ°—ãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	WEATHER_SYS_MOVE_NONE   	‰½‚à–³‚µ
- *	@retval	WEATHER_SYS_MOVE_INIT		‰Šú‰»’†
- *  @retval WEATHER_SYS_MOVE_READY		ŠJn‘Ò‹@’†
- *  @retval WEATHER_SYS_MOVE_DO			“®ì’†
+ *	@retval	WEATHER_SYS_MOVE_NONE   	ä½•ã‚‚ç„¡ã—
+ *	@retval	WEATHER_SYS_MOVE_INIT		åˆæœŸåŒ–ä¸­
+ *  @retval WEATHER_SYS_MOVE_READY		é–‹å§‹å¾…æ©Ÿä¸­
+ *  @retval WEATHER_SYS_MOVE_DO			å‹•ä½œä¸­
  */
 //-----------------------------------------------------------------------------
 int CheckMoveWeatherSys(WEATHER_CONT_PTR Wes, int no)
 {
 	WEATHER_SYS_DATA* w_sys;
 
-	// “V‹Cƒiƒ“ƒo[ƒ`ƒFƒbƒN
+	// å¤©æ°—ãƒŠãƒ³ãƒãƒ¼ãƒã‚§ãƒƒã‚¯
 	if(no >= WEATHER_SYS_NUM){
 		return WEATHER_SYS_MOVE_NONE;
 	}
 	
 	w_sys = Wes->pWSD+no;
 
-	// “V‹CÀ‘Ì‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// å¤©æ°—å®Ÿä½“ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	return w_sys->MoveFlag;
 }
 
 
 //-----------------------------------------------------------------------------
-//	ƒvƒ‰ƒCƒx[ƒgŠÖ”
-//		‚»‚Ì‘¼
+//	ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
+//		ãã®ä»–
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒfƒtƒHƒ‹ƒgƒ¿İ’è
+ *	@brief	BGãƒ‡ãƒ•ã‚©ãƒ«ãƒˆÎ±è¨­å®š
  *
- *	@param	alpha1		ƒ¿ŒW”‚P
- *	@param	alpha2		ƒ¿ŒW”‚Q
+ *	@param	alpha1		Î±ä¿‚æ•°ï¼‘
+ *	@param	alpha2		Î±ä¿‚æ•°ï¼’
  *
  *	@return	none
  */
@@ -2785,12 +2785,12 @@ static void WeatherBGAlphaDef( int alpha1, int alpha2 )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ì‰Šú‰»
+ *	@brief	å‹•ä½œåˆæœŸåŒ–
  *
- *	@param	p_work			“®ìƒ[ƒN
- *	@param	s_x				ŠJnxÀ•W
- *	@param	e_x				I—¹xÀ•W
- *	@param	count_max		ƒJƒEƒ“ƒgÅ‘å’l
+ *	@param	p_work			å‹•ä½œãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x				é–‹å§‹xåº§æ¨™
+ *	@param	e_x				çµ‚äº†xåº§æ¨™
+ *	@param	count_max		ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§å€¤
  *
  *	@return	none
  */
@@ -2806,19 +2806,19 @@ static void WeatherMoveReq( WEATHER_SYS_MOVE_WORK* p_work, int s_x, int e_x, int
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìƒƒCƒ“
+ *	@brief	å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL	WeatherMoveMain( WEATHER_SYS_MOVE_WORK* p_work )
 {
 	int w_x;
 
-	// Œ»İÀ•Wæ“¾
+	// ç¾åœ¨åº§æ¨™å–å¾—
 	w_x = p_work->dis_x * p_work->count;
 	w_x = w_x / p_work->count_max;
 
@@ -2836,12 +2836,12 @@ static BOOL	WeatherMoveMain( WEATHER_SYS_MOVE_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“V‹C@”Ä—p“®ìƒ[ƒNƒŠƒNƒGƒXƒg
+ *	@brief	å¤©æ°—ã€€æ±ç”¨å‹•ä½œãƒ¯ãƒ¼ã‚¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	s_x			ŠJn’l
- *	@param	e_x			I—¹’l
- *	@param	count_max	ƒJƒEƒ“ƒgÅ‘å”
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x			é–‹å§‹å€¤
+ *	@param	e_x			çµ‚äº†å€¤
+ *	@param	count_max	ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§æ•°
  *	
  *	@return	none
  */
@@ -2858,19 +2858,19 @@ static void WeatherMoveReqFx( WEATHER_SYS_MOVE_WORK_FX* p_work, fx32 s_x, fx32 e
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“V‹C@”Ä—pŒvZ@ƒƒCƒ“ˆ—
+ *	@brief	å¤©æ°—ã€€æ±ç”¨è¨ˆç®—ã€€ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
- *	@param	p_work ƒ[ƒN
+ *	@param	p_work ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE		I—¹
- *	@retval	FALSE		“r’†
+ *	@retval	TRUE		çµ‚äº†
+ *	@retval	FALSE		é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL	WeatherMoveMainFx( WEATHER_SYS_MOVE_WORK_FX* p_work )
 {
 	fx32 w_x;
 
-	// Œ»İÀ•Wæ“¾
+	// ç¾åœ¨åº§æ¨™å–å¾—
 	w_x = FX_Mul( p_work->dis_x, p_work->count );
 	w_x = FX_Div( w_x, p_work->count_max );
 
@@ -2889,54 +2889,54 @@ static BOOL	WeatherMoveMainFx( WEATHER_SYS_MOVE_WORK_FX* p_work )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^“Ç‚İ‚İ
+ *@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *@param	cont			“V‹CƒRƒ“ƒgƒ[ƒ‰
- *@param	GraphicNo		ƒZƒ‹ƒpƒXƒf[ƒ^
- *@param	pCell			Ši”[æ
+ *@param	cont			å¤©æ°—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *@param	GraphicNo		ã‚»ãƒ«ãƒ‘ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *@param	pCell			æ ¼ç´å…ˆ
  *
  *@return	none
  *
- *	“à—e
- *		GraphicNo‚ÌŠG‚Ìƒf[ƒ^‚ğ“Ç‚İ‚İ
- *		pCell‚Ìƒƒ“ƒo‚ÉŠi”[‚·‚é
+ *	å†…å®¹
+ *		GraphicNoã®çµµã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿
+ *		pCellã®ãƒ¡ãƒ³ãƒã«æ ¼ç´ã™ã‚‹
  *
  */
 //-----------------------------------------------------------------------------
 static void load2DGraphicFile(WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_GRAPHIC_FILE_DATA* pCell)
 {
-	// ƒZƒ‹“Ç‚İ‚İ
+	// ã‚»ãƒ«èª­ã¿è¾¼ã¿
 	loadCell_CellData( cont, GraphicNo, pCell );
 
-	// ƒZƒ‹ƒAƒjƒ“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡èª­ã¿è¾¼ã¿
 	loadCell_CellAnmData( cont, GraphicNo, pCell );
 
-	// ƒLƒƒƒ‰ƒNƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿èª­ã¿è¾¼ã¿
 	loadCell_CharData( cont, GraphicNo, pCell );
 
-	// ƒpƒŒƒbƒg“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	loadCell_PlttData( cont, GraphicNo, pCell );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚É“o˜^
+ *@brief	ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã«ç™»éŒ²
  *	
- *@param	res_head	ƒŠƒ\[ƒXƒwƒbƒ_
- *@param	res_type	ƒŠƒ\[ƒXƒ^ƒCƒv
- *@param	head_no		ƒwƒbƒ_ƒiƒ“ƒo[
- *@param	resMan		ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
- *@param	arcHandle	ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹
+ *@param	res_head	ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€
+ *@param	res_type	ãƒªã‚½ãƒ¼ã‚¹ã‚¿ã‚¤ãƒ—
+ *@param	head_no		ãƒ˜ãƒƒãƒ€ãƒŠãƒ³ãƒãƒ¼
+ *@param	resMan		ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+ *@param	arcHandle	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«
  *
- *@return	CLACT_U_RES_OBJ_PTR		“Ç‚İ‚Ü‚ê‚½ƒŠƒ\[ƒXî•ñ
+ *@return	CLACT_U_RES_OBJ_PTR		èª­ã¿è¾¼ã¾ã‚ŒãŸãƒªã‚½ãƒ¼ã‚¹æƒ…å ±
  *
  *
  */
 //-----------------------------------------------------------------------------
 static CLACT_U_RES_OBJ_PTR	loadRes(CLACT_U_RES_HEADER_PTR res_head, int res_type, int head_no, CLACT_U_RES_MANAGER_PTR resMan, ARCHANDLE* arcHandle, u32 alloc_type)
 {
-	CLACT_U_RES_HEADER_PTR	w_head;	// ì‹Æ—pƒwƒbƒ_
+	CLACT_U_RES_HEADER_PTR	w_head;	// ä½œæ¥­ç”¨ãƒ˜ãƒƒãƒ€
 	CLACT_U_RES_OBJ_PTR		res_obj;
 	int data_idx;
 	BOOL comp_flg;
@@ -2944,10 +2944,10 @@ static CLACT_U_RES_OBJ_PTR	loadRes(CLACT_U_RES_HEADER_PTR res_head, int res_type
 	int pltt_num;
 	int data_id;
 
-	// ƒŠƒ\[ƒX‚Ìƒwƒbƒ_æ“¾
+	// ãƒªã‚½ãƒ¼ã‚¹ã®ãƒ˜ãƒƒãƒ€å–å¾—
 	w_head = CLACT_U_ResManagerGetHeaderNoData(res_head, res_type);
 
-	// ƒwƒbƒ_[ƒf[ƒ^æ“¾
+	// ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿å–å¾—
 	data_idx	= CLACT_U_ResManagerHeaderDataIdxGet( w_head, head_no );
 	comp_flg	= CLACT_U_ResManagerHeaderCompFlagGet( w_head, head_no );
 	vram_type	= CLACT_U_ResManagerHeaderVramTypeGet( w_head, head_no );
@@ -2955,40 +2955,40 @@ static CLACT_U_RES_OBJ_PTR	loadRes(CLACT_U_RES_HEADER_PTR res_head, int res_type
 	data_id		= CLACT_U_ResManagerHeaderDataIDGet( w_head, head_no );
 
 	switch( res_type ){
-	case CLACT_U_CHAR_RES:		// ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX‚ğŠÇ—
+	case CLACT_U_CHAR_RES:		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
 		res_obj = CLACT_U_ResManagerResAddArcChar_ArcHandle_AllocType( resMan, arcHandle, data_idx, comp_flg, data_id, vram_type, USE_HEAPID, alloc_type );
 		break;
 		
-	case CLACT_U_PLTT_RES:		// ƒpƒŒƒbƒgƒŠƒ\[ƒX‚ğŠÇ—
+	case CLACT_U_PLTT_RES:		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
 		res_obj = CLACT_U_ResManagerResAddArcPltt_ArcHandle_AllocType( resMan, arcHandle, data_idx, comp_flg, data_id, vram_type, pltt_num, USE_HEAPID, alloc_type );
 		break;
 		
-	case CLACT_U_CELL_RES:		// ƒZƒ‹ƒŠƒ\[ƒX‚ğŠÇ—
+	case CLACT_U_CELL_RES:		// ã‚»ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
 		res_obj = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( resMan, arcHandle, data_idx, comp_flg, data_id, CLACT_U_CELL_RES, USE_HEAPID );
 		break;
 		
-	case CLACT_U_CELLANM_RES:	// ƒZƒ‹ƒAƒjƒƒŠƒ\[ƒX‚ğŠÇ—
+	case CLACT_U_CELLANM_RES:	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’ç®¡ç†
 		res_obj = CLACT_U_ResManagerResAddArcKindCell_ArcHandle( resMan, arcHandle, data_idx, comp_flg, data_id, CLACT_U_CELLANM_RES, USE_HEAPID );
 		break;
 	}
 	
-	// ƒŠƒ\[ƒX“Ç‚İ‚İ
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	return res_obj;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^”jŠü
+ *@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *@param	cont			“V‹CƒRƒ“ƒgƒ[ƒ‰
- *@param	GraphicNo		ƒOƒ‰ƒtƒBƒbƒNƒiƒ“ƒo[
- *@param	pCell			ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^Ši”[ˆÊ’u
+ *@param	cont			å¤©æ°—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *@param	GraphicNo		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼
+ *@param	pCell			ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿æ ¼ç´ä½ç½®
  *
  *@return	none
  *
- *	“à—e
- *		GraphicNo‚ÌŠG‚Ìƒf[ƒ^‚ğ”jŠü‚·‚é
+ *	å†…å®¹
+ *		GraphicNoã®çµµã®ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹
  *
  */
 //-----------------------------------------------------------------------------
@@ -2997,17 +2997,17 @@ static void destGraphicFile(WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_GRA
 	int i;	
 
 	if(GraphicNo != WEATHER_GRAPHIC_NONE){
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^”jŠü
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		if( pCell->res_obj[ CLACT_U_CHAR_RES ] ){
 			CLACT_U_CharManagerDelete(pCell->res_obj[ CLACT_U_CHAR_RES ]);
 		}
 
-		// ƒpƒŒƒbƒgƒf[ƒ^”jŠü
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		if( pCell->res_obj[ CLACT_U_PLTT_RES ] ){
 			CLACT_U_PlttManagerDelete(pCell->res_obj[ CLACT_U_PLTT_RES ]);
 		}
 
-		// ƒŠƒ\[ƒX”jŠü
+		// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 		for(i=0;i<WEATHER_RES_NUM;i++){
 			if( pCell->res_obj[ i ] ){
 				CLACT_U_ResManagerResDelete(cont->Draw.resMan[ i ], pCell->res_obj[ i ]);
@@ -3018,22 +3018,22 @@ static void destGraphicFile(WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_GRA
 
 
 //-----------------------------------------------------------------------------
-//	ƒvƒ‰ƒCƒx[ƒgŠÖ”
-//		‚¨“V‹CŠÇ—ƒ^ƒXƒN‚ğŠO•”‚©‚ç‘€ì‚·‚éŠÖ”ŒS
+//	ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
+//		ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯ã‚’å¤–éƒ¨ã‹ã‚‰æ“ä½œã™ã‚‹é–¢æ•°éƒ¡
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚¨“V‹CŠÇ—ƒ^ƒXƒN‰Šú‰»
+ *@brief	ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
  *
  *
- *@param	cont	“V‹CƒRƒ“ƒgƒ[ƒ‰
- *@param	no		“V‹Cƒiƒ“ƒo[
+ *@param	cont	å¤©æ°—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *@param	no		å¤©æ°—ãƒŠãƒ³ãƒãƒ¼
  *
- *@return	BOOL	¬Œ÷:TRUE	¸”s:FALSE
+ *@return	BOOL	æˆåŠŸ:TRUE	å¤±æ•—:FALSE
  *
- *	“à—e
- *		ƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İˆ—
+ *	å†…å®¹
+ *		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿å‡¦ç†
  *
  */
 //-----------------------------------------------------------------------------
@@ -3042,32 +3042,32 @@ static BOOL initWeatherSys(WEATHER_SYS_CONTROL* cont,int no)
 	WEATHER_SYS_DATA* w_sys = cont->pWSD+no;
 	BOOL ret;
 	
-	// ì¬‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ä½œæˆã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(w_sys->pWork == NULL){
-		// ƒ[ƒN‚Ìì¬
+		// ãƒ¯ãƒ¼ã‚¯ã®ä½œæˆ
 		ret = initWeatherSysWork( cont, w_sys );
 		if( ret == FALSE ){
 			return FALSE;
 		}
 	
-		// ƒZƒ‹ƒAƒNƒ^[‚ğg—p‚Å‚«‚éó‘Ô‚É‚·‚é
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ä½¿ç”¨ã§ãã‚‹çŠ¶æ…‹ã«ã™ã‚‹
 		ret = setUpCell( cont, w_sys );
 		if( ret == FALSE ){
 			sys_FreeMemoryEz( w_sys->pWork );
 			w_sys->pWork = NULL;
 			return FALSE;
 		}
-		w_sys->pWork->pCell = w_sys->pCell;		// ƒZƒ‹ƒf[ƒ^ƒRƒs[
+		w_sys->pWork->pCell = w_sys->pCell;		// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 
 		if( w_sys->GraphicNo != WEATHER_GRAPHIC_NONE){
-			// ƒoƒbƒtƒ@‚ÌƒAƒNƒ^[‚ğ“o˜^
+			// ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç™»éŒ²
 			AddBuffClact( w_sys->pWork );
 		}
 
-		// BGƒZƒbƒgƒAƒbƒv
+		// BGã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		setUpBG( cont, w_sys->BGNo );
 
-		w_sys->MoveFlag = WEATHER_SYS_MOVE_READY;	// ŠJn‘Ò‹@’†
+		w_sys->MoveFlag = WEATHER_SYS_MOVE_READY;	// é–‹å§‹å¾…æ©Ÿä¸­
 	}
 
 
@@ -3077,16 +3077,16 @@ static BOOL initWeatherSys(WEATHER_SYS_CONTROL* cont,int no)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚¨“V‹CŠÇ—ƒ^ƒXƒNh•ªŠ„h‰Šú‰»ƒ^ƒXƒNƒR[ƒ‹
+ *@brief	ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯â€åˆ†å‰²â€åˆæœŸåŒ–ã‚¿ã‚¹ã‚¯ã‚³ãƒ¼ãƒ«
  *
  *
- *@param	cont	“V‹CƒRƒ“ƒgƒ[ƒ‰
- *@param	no		“V‹Cƒiƒ“ƒo[
+ *@param	cont	å¤©æ°—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *@param	no		å¤©æ°—ãƒŠãƒ³ãƒãƒ¼
  *
- *@return	BOOL	¬Œ÷:TRUE	¸”s:FALSE
+ *@return	BOOL	æˆåŠŸ:TRUE	å¤±æ•—:FALSE
  *
- *	“à—e
- *		ƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İˆ—
+ *	å†…å®¹
+ *		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿å‡¦ç†
  *
  */
 //-----------------------------------------------------------------------------
@@ -3094,23 +3094,23 @@ static BOOL divInitWeatherSysCall(WEATHER_SYS_CONTROL* cont,int no)
 {
 	WEATHER_SYS_DATA* w_sys = cont->pWSD+no;
 	
-	// ì¬Ï‚İ‚©ƒ`ƒFƒbƒN
+	// ä½œæˆæ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
 	if( w_sys->pWork ){
 		return TRUE;
 	}
 
-	// ƒ[ƒN‚ğì¬‚·‚é
+	// ãƒ¯ãƒ¼ã‚¯ã‚’ä½œæˆã™ã‚‹
 	if( initWeatherSysWork( cont, w_sys ) == FALSE ){
 		return FALSE;
 	}
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	w_sys->DivInitTcb = TCB_Add( divInitWeatherSysTcb, w_sys, WEATHER_TCB_DIV_LOAD_PRI );
 
-	// ‰Šú‰»’†‚É‚·‚é
+	// åˆæœŸåŒ–ä¸­ã«ã™ã‚‹
 	w_sys->MoveFlag		= WEATHER_SYS_MOVE_INIT;
 
-	// ‰Šú‰»ƒV[ƒPƒ“ƒX‰Šú‰»
+	// åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆæœŸåŒ–
 	w_sys->DivInitSeq	= 0;
 	
 
@@ -3120,17 +3120,17 @@ static BOOL divInitWeatherSysCall(WEATHER_SYS_CONTROL* cont,int no)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚¨“V‹CŠÇ—ƒ^ƒXƒNŠJn
+ *@brief	ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯é–‹å§‹
  *
- *@param	cont		“V‹CƒRƒ“ƒgƒ[ƒ‰
- *@param	no			“V‹Cƒiƒ“ƒo[
- *@param	init_seq	ƒV[ƒPƒ“ƒX‰Šú‰»’l
- *@param	fog_use		ƒtƒHƒOg—pƒtƒ‰ƒO
+ *@param	cont		å¤©æ°—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *@param	no			å¤©æ°—ãƒŠãƒ³ãƒãƒ¼
+ *@param	init_seq	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆæœŸåŒ–å€¤
+ *@param	fog_use		ãƒ•ã‚©ã‚°ä½¿ç”¨ãƒ•ãƒ©ã‚°
  *
- *@return	BOOL	¬Œ÷:TRUE	¸”s:FALSE
+ *@return	BOOL	æˆåŠŸ:TRUE	å¤±æ•—:FALSE
  *
- *	“à—e
- *		ƒiƒ“ƒo[‚Ì‚¨“V‹CŠÇ—ƒ^ƒXƒN‚ğŠJn‚µ‚Ü‚·B
+ *	å†…å®¹
+ *		ãƒŠãƒ³ãƒãƒ¼ã®ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯ã‚’é–‹å§‹ã—ã¾ã™ã€‚
  *
  */
 //-----------------------------------------------------------------------------
@@ -3138,51 +3138,51 @@ static BOOL startWeatherSys(WEATHER_SYS_CONTROL* cont,int no, int init_seq, u32 
 {
 	WEATHER_SYS_DATA* w_sys = cont->pWSD+no;
 	
-	// ŠG‚ª“Ç‚İ‚Ü‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// çµµãŒèª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(w_sys->GraphicNo != WEATHER_GRAPHIC_NONE){
 		if(w_sys->pCell == NULL){
 			return FALSE;
 		}
 	}
 
-	// ƒ^ƒXƒNƒ[ƒN‚ªì¬‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯ãŒä½œæˆã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(w_sys->pWork == NULL){
 		return FALSE;
 	}
 
-	// ŠJn‘Ò‚¿ó‘Ô‚©ƒ`ƒFƒbƒN
+	// é–‹å§‹å¾…ã¡çŠ¶æ…‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(w_sys->MoveFlag != WEATHER_SYS_MOVE_READY){
 		return FALSE;
 	}
 
-	// ƒ^ƒXƒN“o˜^
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	w_sys->pWork->tcb = TCB_Add(w_sys->cont, w_sys->pWork, WEATHER_CONTROL_PRI);
 
-	// ƒ^ƒXƒN“o˜^‚É¬Œ÷‚µ‚½‚©ƒ`ƒFƒbƒN
+	// ã‚¿ã‚¹ã‚¯ç™»éŒ²ã«æˆåŠŸã—ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if(w_sys->pWork->tcb == NULL){
 		return FALSE;
 	}
 
-	// Às
+	// å®Ÿè¡Œ
 	w_sys->MoveFlag = WEATHER_SYS_MOVE_DO;
 	
-	// ƒf[ƒ^İ’è
-	w_sys->pWork->Sequence = init_seq;		// ì‹ÆƒV[ƒPƒ“ƒX‰Šú‰»
-	w_sys->pWork->ContFlag = 0;				// ŠO•”ƒRƒ“ƒgƒ[ƒ‹ƒtƒ‰ƒO
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
+	w_sys->pWork->Sequence = init_seq;		// ä½œæ¥­ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆæœŸåŒ–
+	w_sys->pWork->ContFlag = 0;				// å¤–éƒ¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ•ãƒ©ã‚°
 	w_sys->pWork->Dummy.pNext = &w_sys->pWork->Dummy;
 	w_sys->pWork->Dummy.pPrev = &w_sys->pWork->Dummy;
-	w_sys->pWork->fog_use	= fog_use;		// ƒtƒHƒOg—pƒtƒ‰ƒO
+	w_sys->pWork->fog_use	= fog_use;		// ãƒ•ã‚©ã‚°ä½¿ç”¨ãƒ•ãƒ©ã‚°
 	w_sys->pWork->snd_play		= FALSE;
 
 	w_sys->pWork->CameraTarget = *(NNS_G3dGlbGetCameraTarget());
 	if(w_sys->WorkByte > 0){
-		w_sys->pWork->work = sys_AllocMemory(USE_HEAPID, w_sys->WorkByte);	// ƒ[ƒN—Ìˆæ
+		w_sys->pWork->work = sys_AllocMemory(USE_HEAPID, w_sys->WorkByte);	// ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
 		memset( w_sys->pWork->work, 0, w_sys->WorkByte );
 	}else{
 		w_sys->pWork->work = NULL;
 	}
 
-	// BGƒZƒbƒgƒAƒbƒv
+	// BGã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	if(w_sys->BGNo != WEATHER_GRAPHIC_NONE){
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 		G2_SetBG2Priority(1);
@@ -3196,17 +3196,17 @@ static BOOL startWeatherSys(WEATHER_SYS_CONTROL* cont,int no, int init_seq, u32 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚¨“V‹CŠÇ—ƒ^ƒXƒNI—¹	ƒtƒF[ƒhƒAƒEƒg‚µ‚Ä‚©‚çI—¹
+ *@brief	ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯çµ‚äº†	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã—ã¦ã‹ã‚‰çµ‚äº†
  *
- *@param	cont	“V‹CƒRƒ“ƒgƒ[ƒ‰
- *@param	no		“V‹Cƒiƒ“ƒo[
- *@param	fog_use	ƒtƒHƒOg—pƒtƒ‰ƒO
+ *@param	cont	å¤©æ°—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *@param	no		å¤©æ°—ãƒŠãƒ³ãƒãƒ¼
+ *@param	fog_use	ãƒ•ã‚©ã‚°ä½¿ç”¨ãƒ•ãƒ©ã‚°
  *
  *@return	none
  *
- *	“à—e
- *		ƒiƒ“ƒo[‚Ì‚¨“V‹CŠÇ—ƒ^ƒXƒN‚ğƒtƒF[ƒhƒAƒEƒgI—¹‚³‚¹‚Ü‚·
- *		*—áF‚¾‚ñ‚¾‚ñ‰J‚ª~‚ñ‚ÅI‚í‚é‚È‚Ç
+ *	å†…å®¹
+ *		ãƒŠãƒ³ãƒãƒ¼ã®ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯ã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆçµ‚äº†ã•ã›ã¾ã™
+ *		*ä¾‹ï¼šã ã‚“ã ã‚“é›¨ãŒæ­¢ã‚“ã§çµ‚ã‚ã‚‹ãªã©
  *
  */
 //-----------------------------------------------------------------------------
@@ -3214,9 +3214,9 @@ static void stopReqWeatherSys(WEATHER_SYS_CONTROL* cont,int no, u32 fog_use)
 {
 	WEATHER_SYS_DATA* w_sys = cont->pWSD+no;
 
-	// ‚¨“V‹CŠÇ—ƒ^ƒXƒN‚ª“®‚¢‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯ãŒå‹•ã„ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(w_sys->MoveFlag == WEATHER_SYS_MOVE_DO){
-		w_sys->pWork->ContFlag = WEATHER_SYS_END;	// I—¹ƒtƒ‰ƒO‚ğ—§‚Ä‚é
+		w_sys->pWork->ContFlag = WEATHER_SYS_END;	// çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
 		w_sys->pWork->fog_use = fog_use;
 	}
 }
@@ -3224,10 +3224,10 @@ static void stopReqWeatherSys(WEATHER_SYS_CONTROL* cont,int no, u32 fog_use)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“V‹CI—¹	ƒtƒF[ƒhƒAƒEƒg‚È‚µ
+ *	@brief	å¤©æ°—çµ‚äº†	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆãªã—
  *
- *	@param	cont	“V‹CƒRƒ“ƒgƒ[ƒ‰
- *	@param	no		“V‹Cƒiƒ“ƒo[
+ *	@param	cont	å¤©æ°—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *	@param	no		å¤©æ°—ãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  *
@@ -3239,7 +3239,7 @@ static void stopWeatherSys( WEATHER_SYS_CONTROL* cont,int no )
 	WEATHER_SYS_DATA* w_sys = cont->pWSD+no;
 	
 	if( CheckMoveWeatherSys( cont, no ) == WEATHER_SYS_MOVE_DO ){
-		// “V‹C‚ÌƒV[ƒPƒ“ƒX‚ğWEATHER_SEQ_DEST‚É‚µ‚ÄƒRƒ“ƒgƒ[ƒ‹ŠÖ”‚ğƒR[ƒ‹
+		// å¤©æ°—ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’WEATHER_SEQ_DESTã«ã—ã¦ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é–¢æ•°ã‚’ã‚³ãƒ¼ãƒ«
 		w_sys->pWork->Sequence = WEATHER_SEQ_DEST;
 	
 		w_sys->cont( NULL, w_sys->pWork );
@@ -3249,17 +3249,17 @@ static void stopWeatherSys( WEATHER_SYS_CONTROL* cont,int no )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‚¨“V‹CŠÇ—ƒ^ƒXƒN‹­§I—¹
+ *@brief	ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯å¼·åˆ¶çµ‚äº†
  *
- *@param	cont	“V‹CƒRƒ“ƒgƒ[ƒ‰
- *@param	no		“V‹Cƒiƒ“ƒo[
+ *@param	cont	å¤©æ°—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *@param	no		å¤©æ°—ãƒŠãƒ³ãƒãƒ¼
  *
  *@return	none
  *
- *	“à—e
- *		ŠÇ—‚µ‚Ä‚¢‚éƒIƒuƒWƒF‚ğ‘S‚Ä”jŠü
- *		ŠG‚Ìƒf[ƒ^‚ğ”jŠü
- *		©•ª‚ğ”jŠü
+ *	å†…å®¹
+ *		ç®¡ç†ã—ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚’å…¨ã¦ç ´æ£„
+ *		çµµã®ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
+ *		è‡ªåˆ†ã‚’ç ´æ£„
  *
  */
 //-----------------------------------------------------------------------------
@@ -3267,86 +3267,86 @@ static void destWeatherSys(WEATHER_SYS_CONTROL* cont,int no)
 {
 	WEATHER_SYS_DATA* w_sys = cont->pWSD+no;
 	
-	// BG–Ê‚Ì•\¦‚ğOFF
+	// BGé¢ã®è¡¨ç¤ºã‚’OFF
 	if(w_sys->BGNo != WEATHER_GRAPHIC_NONE ){
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 		G2_SetBG2Priority(3);
 		G2_SetBG0Priority(1);
 
-		//@ƒ¿ƒuƒŒƒ“ƒh”jŠü
+		//ã€€Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ç ´æ£„
 		G2_BlendNone();
 	}
 	
-	// ŠG‚Ìƒf[ƒ^”jŠü
+	// çµµã®ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	if(w_sys->pCell != NULL){
 
-		// ŠG‚Ìƒf[ƒ^”jŠü
+		// çµµã®ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 		destGraphicFile(cont, w_sys->GraphicNo, w_sys->pCell);
 		sys_FreeMemory(USE_HEAPID, w_sys->pCell);
 		w_sys->pCell = NULL;
 
-		// •ªŠ„“Ç‚İ‚İƒ^ƒXƒN”jŠü
+		// åˆ†å‰²èª­ã¿è¾¼ã¿ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if( w_sys->DivInitTcb != NULL ){
 			TCB_Delete( w_sys->DivInitTcb );
 			w_sys->DivInitTcb = NULL;
 		}
 	}
 	
-	// ‚¨“V‹CŠÇ—ƒ^ƒXƒN‚ª“®‚¢‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯ãŒå‹•ã„ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(w_sys->pWork != NULL){
-		// ŠÇ—‚µ‚Ä‚¢‚éƒIƒuƒWƒF‚ğ”jŠü
+		// ç®¡ç†ã—ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚’ç ´æ£„
 		destObjAll(&w_sys->pWork->Dummy);
 
 		if( w_sys->GraphicNo != WEATHER_GRAPHIC_NONE){
-			// ƒoƒbƒtƒ@‚ÌƒAƒNƒ^[‚ğ“o˜^
+			// ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç™»éŒ²
 			DelBuffClact( w_sys->pWork );
 		}
 
-		// ‰¹‚ª–Â‚Á‚Ä‚¢‚é‚È‚ç”jŠü
+		// éŸ³ãŒé³´ã£ã¦ã„ã‚‹ãªã‚‰ç ´æ£„
 		if( w_sys->pWork->snd_play == TRUE ){
 			WeatherLoopSndStop( w_sys->pWork );
 		}
 
-		// ƒ[ƒN—Ìˆæ
+		// ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
 		if(w_sys->pWork->work != NULL){
 			sys_FreeMemory(USE_HEAPID, w_sys->pWork->work);
 			w_sys->pWork->work = NULL;
 		}
 /*	CLACT_SET_DELETE
-		// ƒAƒNƒ^[ƒZƒbƒg”jŠü
+		// ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 		if( w_sys->pWork->clactSet ){
 			CLACT_DestSet(w_sys->pWork->clactSet);
 		}
 //*/
-		// ‰Šú‰»ƒ^ƒXƒN‚ğ”jŠü
+		// åˆæœŸåŒ–ã‚¿ã‚¹ã‚¯ã‚’ç ´æ£„
 		if( w_sys->MoveFlag == WEATHER_SYS_MOVE_INIT ){
 			
 			if( w_sys->DivInitTcb ){
-				TCB_Delete(w_sys->DivInitTcb);					// TCB”jŠü
+				TCB_Delete(w_sys->DivInitTcb);					// TCBç ´æ£„
 			}
 		}else{
 			
-			// “®ìƒ^ƒXƒN‚ğ”jŠü
+			// å‹•ä½œã‚¿ã‚¹ã‚¯ã‚’ç ´æ£„
 			if(w_sys->MoveFlag == WEATHER_SYS_MOVE_DO){
 				
-				TCB_Delete(w_sys->pWork->tcb);					// TCB”jŠü
+				TCB_Delete(w_sys->pWork->tcb);					// TCBç ´æ£„
 			}
 		}
-		sys_FreeMemory(USE_HEAPID, w_sys->pWork);	// ƒ[ƒN”jŠü
+		sys_FreeMemory(USE_HEAPID, w_sys->pWork);	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 		w_sys->pWork = NULL;
 	}
-	SetFogData(cont->fsys->fog_data, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+	SetFogData(cont->fsys->fog_data, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 }
 
 
-// ƒVƒXƒeƒ€‘€ìƒTƒuŠÖ”
+// ã‚·ã‚¹ãƒ†ãƒ æ“ä½œã‚µãƒ–é–¢æ•°
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	no‚Ì“V‹C‚Ì“V‹CƒVƒXƒeƒ€ƒf[ƒ^‚ğ”jŠü
+ *	@brief	noã®å¤©æ°—ã®å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *
- *	@param	cont		“V‹C§ŒäƒVƒXƒeƒ€
- *	@param	no			“V‹Cno
+ *	@param	cont		å¤©æ°—åˆ¶å¾¡ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	no			å¤©æ°—no
  *
  *	@return	none
  *
@@ -3361,36 +3361,36 @@ static void stopWeatherWork(WEATHER_SYS_CONTROL* cont,int no)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“V‹CƒVƒXƒeƒ€ƒf[ƒ^‚ğ”jŠü
+ *	@brief	å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
  *	@param	w_sys
  *	@return
  */
 //-----------------------------------------------------------------------------
 static void stopWeatherWork_local(WEATHER_SYS_DATA* w_sys)
 {
-	// BG–Ê‚Ì•\¦‚ğOFF
+	// BGé¢ã®è¡¨ç¤ºã‚’OFF
 	if(w_sys->BGNo != WEATHER_GRAPHIC_NONE ){
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 		G2_SetBG2Priority(3);
 		G2_SetBG0Priority(1);
-		//@ƒ¿ƒuƒŒƒ“ƒh”jŠü
+		//ã€€Î±ãƒ–ãƒ¬ãƒ³ãƒ‰ç ´æ£„
 		G2_BlendNone();
 	}
 
-	// ‚¨“V‹CŠÇ—ƒ^ƒXƒN‚ª“®‚¢‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯ãŒå‹•ã„ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(w_sys->pWork != NULL){
-		// ŠÇ—‚µ‚Ä‚¢‚éƒIƒuƒWƒF‚ğ”jŠü
+		// ç®¡ç†ã—ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚’ç ´æ£„
 		destObjAll(&w_sys->pWork->Dummy);
 
-		// ‰¹‚ª–Â‚Á‚Ä‚¢‚é‚È‚ç”jŠü
+		// éŸ³ãŒé³´ã£ã¦ã„ã‚‹ãªã‚‰ç ´æ£„
 		if( w_sys->pWork->snd_play == TRUE ){
 			WeatherLoopSndStop( w_sys->pWork );
 		}
 		
-		// ƒ^ƒXƒN‚ğ”jŠü
+		// ã‚¿ã‚¹ã‚¯ã‚’ç ´æ£„
 		if(w_sys->MoveFlag == WEATHER_SYS_MOVE_DO){
 			
-			TCB_Delete(w_sys->pWork->tcb);					// TCB”jŠü
+			TCB_Delete(w_sys->pWork->tcb);					// TCBç ´æ£„
 			w_sys->MoveFlag = WEATHER_SYS_MOVE_READY;
 		}
 	}
@@ -3399,10 +3399,10 @@ static void stopWeatherWork_local(WEATHER_SYS_DATA* w_sys)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BGƒf[ƒ^ƒZƒbƒgƒAƒbƒv
+ *	@brief	BGãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- *	@param	cont	“V‹CƒRƒ“ƒgƒ[ƒ‹ƒf[ƒ^
- *	@param	BGNo	BGƒiƒ“ƒo[
+ *	@param	cont	å¤©æ°—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	BGNo	BGãƒŠãƒ³ãƒãƒ¼
  *	
  *	@return	none
  *
@@ -3411,23 +3411,23 @@ static void stopWeatherWork_local(WEATHER_SYS_DATA* w_sys)
 //-----------------------------------------------------------------------------
 static void setUpBG( WEATHER_SYS_CONTROL* cont, int BGNo )
 {
-	// ƒpƒŒƒbƒg“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	initBgPltt( cont, BGNo );
 	
-	// ƒLƒƒƒ‰ƒNƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿èª­ã¿è¾¼ã¿
 	initBgChar( cont, BGNo );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
 	initBgScr( cont, BGNo );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒNƒ^[‚ğg—p‚Å‚«‚éó‘Ô‚É‚·‚é
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ä½¿ç”¨ã§ãã‚‹çŠ¶æ…‹ã«ã™ã‚‹
  *
- *	@param	cont		ƒRƒ“ƒgƒ[ƒ‹ƒf[ƒ^
- *	@param	w_sys		ƒf[ƒ^ŒS
+ *	@param	cont		ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	w_sys		ãƒ‡ãƒ¼ã‚¿éƒ¡
  *
  *	@return	none
  *
@@ -3438,32 +3438,32 @@ static BOOL setUpCell( WEATHER_SYS_CONTROL* cont, WEATHER_SYS_DATA* w_sys )
 {
 	BOOL ret;
 
-	// ƒZƒ‹ƒf[ƒ^‚ª•K—v‚©ƒ`ƒFƒbƒN
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãŒå¿…è¦ã‹ãƒã‚§ãƒƒã‚¯
 	if( w_sys->GraphicNo  != WEATHER_GRAPHIC_NONE ){
 		
 /*	CLACT_SET_DELETE
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‰Šú‰»
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆåˆæœŸåŒ–
 		initClactSet( cont, w_sys );
 //*/
 
-		// ƒZƒ‹ƒf[ƒ^ì¬Ï‚İ‚©ƒ`ƒFƒbƒN
+		// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆæ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
 		if( w_sys->pCell == NULL ){
 
-			// ƒZƒ‹ƒf[ƒ^Ši”[ƒƒ‚ƒŠŠm•Û
+			// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒ¡ãƒ¢ãƒªç¢ºä¿
 			ret = initCellDataMemory( w_sys );
 			if( ret == FALSE ){
 /*	CLACT_SET_DELETE
-				// ƒAƒNƒ^[ƒZƒbƒg”jŠü
+				// ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 				CLACT_DestSet(w_sys->pWork->clactSet);
 //*/
 				return FALSE;
 			}
 
-			// ƒZƒ‹ƒAƒNƒ^[“o˜^ƒf[ƒ^ì¬
-			// “Ç‚İ‚İ
+			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ä½œæˆ
+			// èª­ã¿è¾¼ã¿
 			load2DGraphicFile(cont, w_sys->GraphicNo, w_sys->pCell);
 
-			// ƒZƒ‹ƒAƒNƒ^[“o˜^ƒf[ƒ^ì¬
+			// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 			initClactAddData( cont, w_sys );
 	
 		}
@@ -3473,14 +3473,14 @@ static BOOL setUpCell( WEATHER_SYS_CONTROL* cont, WEATHER_SYS_DATA* w_sys )
 }
 
 
-// ‰Šú‰»ˆ—•ªŠ„ŠÖ”
+// åˆæœŸåŒ–å‡¦ç†åˆ†å‰²é–¢æ•°
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ªŠ„ˆ—TCB
+ *	@brief	åˆ†å‰²å‡¦ç†TCB
  *
- *	@param	tcb		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -3497,70 +3497,70 @@ static void divInitWeatherSysTcb( TCB_PTR tcb, void* work )
 	case 0:
 
 /*	CLACT_SET_DELETE
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‰Šú‰»
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆåˆæœŸåŒ–
 		initClactSet( cont, w_sys );
 //*/
 
-		// ƒZƒ‹ƒf[ƒ^Ši”[æƒƒ‚ƒŠŠm•Û
+		// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆãƒ¡ãƒ¢ãƒªç¢ºä¿
 		check = initCellDataMemory( w_sys );
 		GF_ASSERT( check );
 		w_sys->DivInitSeq++;
 		break;
 
 	case 1:
-		// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+		// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		loadCell_CellData( cont, w_sys->GraphicNo, w_sys->pCell );
 		w_sys->DivInitSeq++;
 		break;
 
 	case 2:
-		// ƒpƒŒƒbƒg“Ç‚İ‚İ
+		// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 		initBgPltt( cont, w_sys->BGNo );
 		w_sys->DivInitSeq++;
 		break;
 
 	case 3:
-		// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+		// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		loadCell_CellAnmData( cont, w_sys->GraphicNo, w_sys->pCell );
 		w_sys->DivInitSeq++;
 		break;
 
 	case 4:
-		// ƒLƒƒƒ‰ƒNƒ^“Ç‚İ‚İ
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿èª­ã¿è¾¼ã¿
 		initBgChar( cont, w_sys->BGNo );
 		w_sys->DivInitSeq++;
 		break;
 
 	case 5:
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		loadCell_CharData( cont, w_sys->GraphicNo, w_sys->pCell );
 		w_sys->DivInitSeq++;
 		break;
 		
 	case 6:
-		// ƒXƒNƒŠ[ƒ““Ç‚İ‚İ
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³èª­ã¿è¾¼ã¿
 		initBgScr( cont, w_sys->BGNo );
 		w_sys->DivInitSeq++;
 		break;
 
 	case 7:
-		// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		loadCell_PlttData( cont, w_sys->GraphicNo, w_sys->pCell );
 		w_sys->DivInitSeq++;
 		break;
 
 	case 8:
-		// ƒZƒ‹ƒAƒNƒ^[’Ç‰Áƒf[ƒ^ì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		initClactAddData( cont, w_sys );
-		w_sys->pWork->pCell = w_sys->pCell;		// ƒZƒ‹ƒf[ƒ^ƒRƒs[
+		w_sys->pWork->pCell = w_sys->pCell;		// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 
 
 		if( w_sys->GraphicNo != WEATHER_GRAPHIC_NONE){
-			// ƒoƒbƒtƒ@‚ÌƒAƒNƒ^[‚ğ“o˜^
+			// ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç™»éŒ²
 			AddBuffClact( w_sys->pWork );
 		}
 
-		w_sys->MoveFlag = WEATHER_SYS_MOVE_READY;	// ŠJn‘Ò‹@’†
+		w_sys->MoveFlag = WEATHER_SYS_MOVE_READY;	// é–‹å§‹å¾…æ©Ÿä¸­
 		w_sys->DivInitSeq = 0;
 		w_sys->DivInitTcb = NULL;
 		TCB_Delete( tcb );
@@ -3571,13 +3571,13 @@ static void divInitWeatherSysTcb( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ[ƒN‚Ìƒƒ‚ƒŠŠm•Û
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
  *
- *	@param	cont	ƒRƒ“ƒgƒ[ƒ‰
- *	@param	w_sys	ƒ[ƒN‚ÌŠi”[æ
+ *	@param	cont	ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *	@param	w_sys	ãƒ¯ãƒ¼ã‚¯ã®æ ¼ç´å…ˆ
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	¸”s
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å¤±æ•—
  *
  *
  */
@@ -3585,25 +3585,25 @@ static void divInitWeatherSysTcb( TCB_PTR tcb, void* work )
 static BOOL initWeatherSysWork( WEATHER_SYS_CONTROL* cont, WEATHER_SYS_DATA* w_sys )
 {
 	if( w_sys->pWork ){
-		// Šm•ÛÏ‚İ
+		// ç¢ºä¿æ¸ˆã¿
 		return TRUE;
 	}
 	
-	// ƒ[ƒN‚Ìì¬
+	// ãƒ¯ãƒ¼ã‚¯ã®ä½œæˆ
 	w_sys->pWork = sys_AllocMemory(USE_HEAPID, sizeof(WEATHER_SYS_WORK));
 	if(w_sys->pWork == NULL){
 		return FALSE;
 	}
 	memset( w_sys->pWork, 0, sizeof(WEATHER_SYS_WORK) );
 
-	// ƒf[ƒ^İ’è
-	w_sys->pWork->pWSysCont= cont;	// ƒRƒ“ƒgƒ[ƒ‰ƒ|ƒCƒ“ƒg
-	w_sys->pWork->Sequence = 0;		// ì‹ÆƒV[ƒPƒ“ƒX‰Šú‰»
-	w_sys->pWork->ContFlag = 0;		// ŠO•”ƒRƒ“ƒgƒ[ƒ‹ƒtƒ‰ƒO
+	// ãƒ‡ãƒ¼ã‚¿è¨­å®š
+	w_sys->pWork->pWSysCont= cont;	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒã‚¤ãƒ³ãƒˆ
+	w_sys->pWork->Sequence = 0;		// ä½œæ¥­ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆæœŸåŒ–
+	w_sys->pWork->ContFlag = 0;		// å¤–éƒ¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ•ãƒ©ã‚°
 	w_sys->pWork->Dummy.pNext = &w_sys->pWork->Dummy;
 	w_sys->pWork->Dummy.pPrev = &w_sys->pWork->Dummy;
-	w_sys->pWork->work	= NULL;		// ƒ[ƒN—Ìˆæ
-	w_sys->pWork->pWSD	= w_sys;	// ©•ª‚ğq‹Ÿ‚É‚à‹³‚¦‚Ä‚¨‚­
+	w_sys->pWork->work	= NULL;		// ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
+	w_sys->pWork->pWSD	= w_sys;	// è‡ªåˆ†ã‚’å­ä¾›ã«ã‚‚æ•™ãˆã¦ãŠã
 
 	return TRUE;
 }
@@ -3611,10 +3611,10 @@ static BOOL initWeatherSysWork( WEATHER_SYS_CONTROL* cont, WEATHER_SYS_DATA* w_s
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg‚Ìì¬
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆã®ä½œæˆ
  *
- *	@param	cont		ƒRƒ“ƒgƒ[ƒ‰
- *	@param	w_sys		“V‹Cƒf[ƒ^Ši”[æ
+ *	@param	cont		ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *	@param	w_sys		å¤©æ°—ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
  *	@return	none
  *
@@ -3625,17 +3625,17 @@ static void initClactSet( WEATHER_SYS_CONTROL* cont, WEATHER_SYS_DATA* w_sys )
 {
 
 /*	CLACT_SET_DELETE
-	CLACT_SETDATA	set;	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬ƒf[ƒ^
+	CLACT_SETDATA	set;	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆãƒ‡ãƒ¼ã‚¿
 
 
 	if( w_sys->GraphicNo != WEATHER_GRAPHIC_NONE){
 		
 		if( w_sys->pWork->clactSet ){
-			// Šm•ÛÏ‚İ
+			// ç¢ºä¿æ¸ˆã¿
 			return;
 		}
 
-		// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒgì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆä½œæˆ
 		set.WorkNum = WEATEHR_OBJ_MAX;
 		set.pRender	= &cont->Draw.Render;
 		set.heap	= USE_HEAPID;
@@ -3647,12 +3647,12 @@ static void initClactSet( WEATHER_SYS_CONTROL* cont, WEATHER_SYS_DATA* w_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒf[ƒ^Ši”[æƒƒ‚ƒŠ—ÌˆæŠm•Û
+ *	@brief	ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆãƒ¡ãƒ¢ãƒªé ˜åŸŸç¢ºä¿
  *
- *	@param	w_sys	“V‹Cƒf[ƒ^Ši”[æ
+ *	@param	w_sys	å¤©æ°—ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
- *	@retval TRUE	¬Œ÷
- *	@retval FALSE	¸”s
+ *	@retval TRUE	æˆåŠŸ
+ *	@retval FALSE	å¤±æ•—
  *
  *
  */
@@ -3662,10 +3662,10 @@ static BOOL initCellDataMemory( WEATHER_SYS_DATA* w_sys )
 	if( w_sys->GraphicNo != WEATHER_GRAPHIC_NONE){
 		if( w_sys->pCell ){
 
-			return TRUE;	// Šm•ÛÏ‚İ
+			return TRUE;	// ç¢ºä¿æ¸ˆã¿
 		}
 		
-		// ƒOƒ‰ƒtƒBƒbƒNƒtƒBƒbƒNƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş—Ìˆæ‚ğì¬
+		// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€é ˜åŸŸã‚’ä½œæˆ
 		w_sys->pCell = sys_AllocMemory(USE_HEAPID, sizeof(WATHER_GRAPHIC_FILE_DATA));
 		if(w_sys->pCell == NULL){
 			return FALSE;
@@ -3679,11 +3679,11 @@ static BOOL initCellDataMemory( WEATHER_SYS_DATA* w_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^@@ƒZƒ‹“Ç‚İ‚İ
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã€€ã€€ã‚»ãƒ«èª­ã¿è¾¼ã¿
  *
- *	@param	cont			ƒRƒ“ƒgƒ[ƒ‰
- *	@param	GraphicNo		ƒOƒ‰ƒtƒBƒbƒNƒiƒ“ƒo[
- *	@param	pCell			ƒZƒ‹ƒf[ƒ^Ši”[æ
+ *	@param	cont			ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *	@param	GraphicNo		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼
+ *	@param	pCell			ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
  *	@return	none
  *
@@ -3694,7 +3694,7 @@ static void loadCell_CellData( WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_
 {
 	if(GraphicNo != WEATHER_GRAPHIC_NONE){
 	
-		// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+		// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		pCell->res_obj[ CLACT_U_CELL_RES ] = loadRes(
 				cont->Draw.resHeader, CLACT_U_CELL_RES, 
 				GraphicNo,
@@ -3706,11 +3706,11 @@ static void loadCell_CellData( WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^	ƒZƒ‹ƒAƒjƒ“Ç‚İ‚İ
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿	ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡èª­ã¿è¾¼ã¿
  *
- *	@param	cont			ƒRƒ“ƒgƒ[ƒ‰
- *	@param	GraphicNo		ƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹ƒiƒ“ƒo[
- *	@param	pCell			ƒZƒ‹ƒf[ƒ^Ši”[æ
+ *	@param	cont			ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *	@param	GraphicNo		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ãƒŠãƒ³ãƒãƒ¼
+ *	@param	pCell			ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
  *	@return	none
  *
@@ -3721,7 +3721,7 @@ static void loadCell_CellAnmData( WEATHER_SYS_CONTROL* cont, int GraphicNo, WATH
 {
 	if(GraphicNo != WEATHER_GRAPHIC_NONE){
 	
-		// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+		// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		pCell->res_obj[ CLACT_U_CELLANM_RES ] = loadRes(
 				cont->Draw.resHeader, CLACT_U_CELLANM_RES, 
 				GraphicNo,
@@ -3733,11 +3733,11 @@ static void loadCell_CellAnmData( WEATHER_SYS_CONTROL* cont, int GraphicNo, WATH
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^“Ç‚İ‚İ	ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿
  *
- *	@param	cont			ƒRƒ“ƒgƒ[ƒ‰
- *	@param	GraphicNo		ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒiƒ“ƒo[
- *	@param	pCell			ƒZƒ‹ƒf[ƒ^Ši”[æ
+ *	@param	cont			ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *	@param	GraphicNo		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
+ *	@param	pCell			ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
  *	@return	none
  *
@@ -3748,16 +3748,16 @@ static void loadCell_CharData( WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_
 {
 	if(GraphicNo != WEATHER_GRAPHIC_NONE){
 	
-		// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		pCell->res_obj[ CLACT_U_CHAR_RES ] = loadRes(
 				cont->Draw.resHeader, CLACT_U_CHAR_RES, 
 				GraphicNo,
 				cont->Draw.resMan[ CLACT_U_CHAR_RES ],
 				cont->ArcHandle, ALLOC_BOTTOM );
 		
-		// Vram“]‘—
+		// Vramè»¢é€
 		CLACT_U_CharManagerSetAreaCont( pCell->res_obj[ CLACT_U_CHAR_RES ] );
-		// ƒLƒƒƒ‰ƒNƒ^‚Ì“Ç‚İ‚ñ‚Å‚«‚½ƒf[ƒ^‚Ì‚İ”jŠü
+		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®èª­ã¿è¾¼ã‚“ã§ããŸãƒ‡ãƒ¼ã‚¿ã®ã¿ç ´æ£„
 		CLACT_U_ResManagerResOnlyDelete( pCell->res_obj[ CLACT_U_CHAR_RES ] );
 	}
 }
@@ -3765,11 +3765,11 @@ static void loadCell_CharData( WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^	ƒpƒŒƒbƒg“Ç‚İ‚İ
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿	ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
  *
- *	@param	cont			ƒRƒ“ƒgƒ[ƒ‰
- *	@param	GraphicNo		ƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹ƒiƒ“ƒo[
- *	@param	pCell			ƒZƒ‹ƒf[ƒ^
+ *	@param	cont			ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *	@param	GraphicNo		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ãƒŠãƒ³ãƒãƒ¼
+ *	@param	pCell			ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -3780,16 +3780,16 @@ static void loadCell_PlttData( WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_
 {
 	if(GraphicNo != WEATHER_GRAPHIC_NONE){
 	
-		// ƒpƒŒƒbƒgƒf[ƒ^“Ç‚İ‚İ
+		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		pCell->res_obj[ CLACT_U_PLTT_RES ] = loadRes(
 				cont->Draw.resHeader, CLACT_U_PLTT_RES, 
 				GraphicNo,
 				cont->Draw.resMan[ CLACT_U_PLTT_RES ],
 				cont->ArcHandle, ALLOC_BOTTOM );
 		
-		// Vram“]‘—
+		// Vramè»¢é€
 		CLACT_U_PlttManagerSetCleanArea( pCell->res_obj[ CLACT_U_PLTT_RES ] );
-		// ƒpƒŒƒbƒg‚Ì“Ç‚İ‚ñ‚Å‚«‚½ƒf[ƒ^‚Ì‚İ”jŠü
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã®èª­ã¿è¾¼ã‚“ã§ããŸãƒ‡ãƒ¼ã‚¿ã®ã¿ç ´æ£„
 		CLACT_U_ResManagerResOnlyDelete( pCell->res_obj[ CLACT_U_PLTT_RES ] );
 	}
 }
@@ -3797,10 +3797,10 @@ static void loadCell_PlttData( WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒZƒ‹ƒAƒNƒ^[“o˜^ƒf[ƒ^ì¬
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	cont		ƒRƒ“ƒgƒ[ƒ‰
- *	@param	w_sys		“V‹Cƒf[ƒ^Ši”[æ
+ *	@param	cont		ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *	@param	w_sys		å¤©æ°—ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
  *	@return	none
  *
@@ -3810,7 +3810,7 @@ static void loadCell_PlttData( WEATHER_SYS_CONTROL* cont, int GraphicNo, WATHER_
 static void initClactAddData( WEATHER_SYS_CONTROL* cont, WEATHER_SYS_DATA* w_sys )
 {
 	if( w_sys->GraphicNo != WEATHER_GRAPHIC_NONE){
-		// ƒZƒ‹ƒAƒNƒ^[“o˜^ƒf[ƒ^ì¬
+		// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		getHeader(&w_sys->pCell->head, cont, w_sys->pCell, 0, WEATHER_SYS_BG_2_DRAW_PRI);
 		memset(&w_sys->pCell->add, 0, sizeof(CLACT_ADD));
 		w_sys->pCell->add.ClActSet		= cont->Draw.clactSet;
@@ -3825,9 +3825,9 @@ static void initClactAddData( WEATHER_SYS_CONTROL* cont, WEATHER_SYS_DATA* w_sys
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒNƒoƒbƒtƒ@‚ÌƒAƒNƒ^[‚ğˆê“x‚É“o˜^‚·‚é
+ *	@brief	ãƒ¯ãƒ¼ã‚¯ãƒãƒƒãƒ•ã‚¡ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ä¸€åº¦ã«ç™»éŒ²ã™ã‚‹
  *
- *	@param	pWork	ƒ[ƒN
+ *	@param	pWork	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void AddBuffClact( WEATHER_SYS_WORK* pWork )
@@ -3859,10 +3859,10 @@ static void DelBuffClact( WEATHER_SYS_WORK* pWork )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG	ƒpƒŒƒbƒg“Ç‚İ‚İ
+ *	@brief	BG	ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
  *
- *	@param	cont		ƒRƒ“ƒgƒ[ƒ‰
- *	@param	BGNo		“Ç‚İ‚ŞBGƒf[ƒ^ƒiƒ“ƒo[
+ *	@param	cont		ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *	@param	BGNo		èª­ã¿è¾¼ã‚€BGãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  *
@@ -3871,14 +3871,14 @@ static void DelBuffClact( WEATHER_SYS_WORK* pWork )
 //-----------------------------------------------------------------------------
 static void initBgPltt( WEATHER_SYS_CONTROL* cont, int BGNo )
 {
-	WATHER_BG_FILE_DATA	BG;		// BGƒtƒ@ƒCƒ‹ƒf[ƒ^“Ç‚İ‚İ—Ìˆæ
+	WATHER_BG_FILE_DATA	BG;		// BGãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿é ˜åŸŸ
 
 	if(BGNo != WEATHER_GRAPHIC_NONE){
-		// ƒpƒŒƒbƒg“Ç‚İ‚İ
+		// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 		BG.pPlttBuff = ArchiveDataLoadAllocByHandle( cont->ArcHandle, cont->pWSBG[BGNo].pltt_arc, USE_HEAPID );
-		// ƒAƒ“ƒpƒbƒN
+		// ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯
 		NNS_G2dGetUnpackedPaletteData( BG.pPlttBuff, &BG.pPltt );
-		// BG‚Ì“Ç‚İ‚İ			
+		// BGã®èª­ã¿è¾¼ã¿			
 		GF_BGL_PaletteSet(FLD_MBGFRM_EFFECT2,
 				BG.pPltt->pRawData,
 				32,
@@ -3891,10 +3891,10 @@ static void initBgPltt( WEATHER_SYS_CONTROL* cont, int BGNo )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG		ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+ *	@brief	BG		ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	cont		ƒRƒ“ƒgƒ[ƒ‰
- *	@param	BGNo		BGƒf[ƒ^ƒiƒ“ƒo[
+ *	@param	cont		ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *	@param	BGNo		BGãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  *
@@ -3903,12 +3903,12 @@ static void initBgPltt( WEATHER_SYS_CONTROL* cont, int BGNo )
 //-----------------------------------------------------------------------------
 static void initBgChar( WEATHER_SYS_CONTROL* cont, int BGNo )
 {
-	WATHER_BG_FILE_DATA	BG;		// BGƒtƒ@ƒCƒ‹ƒf[ƒ^“Ç‚İ‚İ—Ìˆæ
+	WATHER_BG_FILE_DATA	BG;		// BGãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿é ˜åŸŸ
 
 	if(BGNo != WEATHER_GRAPHIC_NONE){
-		// ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+		// ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 		BG.pCharBuff = ArchiveDataLoadAllocByHandle( cont->ArcHandle, cont->pWSBG[BGNo].char_arc, USE_HEAPID );
-		// ƒAƒ“ƒpƒbƒN
+		// ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯
 		NNS_G2dGetUnpackedCharacterData( BG.pCharBuff, &BG.pChar );
 
 		GF_BGL_LoadCharacter( cont->fsys->bgl, FLD_MBGFRM_EFFECT2,
@@ -3923,10 +3923,10 @@ static void initBgChar( WEATHER_SYS_CONTROL* cont, int BGNo )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG		ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+ *	@brief	BG		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	cont		ƒRƒ“ƒgƒ[ƒ‰
- *	@param	BGNo		BGƒf[ƒ^ƒiƒ“ƒo[
+ *	@param	cont		ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
+ *	@param	BGNo		BGãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼
  *
  *	@return	none
  *
@@ -3935,16 +3935,16 @@ static void initBgChar( WEATHER_SYS_CONTROL* cont, int BGNo )
 //-----------------------------------------------------------------------------
 static void initBgScr( WEATHER_SYS_CONTROL* cont, int BGNo )
 {
-	WATHER_BG_FILE_DATA	BG;		// BGƒtƒ@ƒCƒ‹ƒf[ƒ^“Ç‚İ‚İ—Ìˆæ
+	WATHER_BG_FILE_DATA	BG;		// BGãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿é ˜åŸŸ
 
 	if(BGNo != WEATHER_GRAPHIC_NONE){
 		// BGOFF
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 		
-		// ƒXƒNƒŠ[ƒ“ƒf[ƒ^
+		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
 		BG.pScreenBuff = ArchiveDataLoadAllocByHandle( cont->ArcHandle, cont->pWSBG[BGNo].screen_arc, USE_HEAPID );
 		GF_ASSERT(BG.pScreenBuff);
-		// ƒAƒ“ƒpƒbƒN
+		// ã‚¢ãƒ³ãƒ‘ãƒƒã‚¯
 		NNS_G2dGetUnpackedScreenData( BG.pScreenBuff, &BG.pScreen );
 		GF_BGL_LoadScreen(cont->fsys->bgl, FLD_MBGFRM_EFFECT2,
 				(void*)BG.pScreen->rawData,
@@ -3969,16 +3969,16 @@ static void initBgScr( WEATHER_SYS_CONTROL* cont, int BGNo )
 
 
 //-----------------------------------------------------------------------------
-//	ƒvƒ‰ƒCƒx[ƒgŠÖ”
-//		‚¨“V‹CŠÇ—ƒ^ƒXƒN“àˆ——pŠÖ”ŒS	
+//	ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
+//		ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯å†…å‡¦ç†ç”¨é–¢æ•°éƒ¡	
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒIƒuƒWƒF‚Ìƒ[ƒN—Ìˆæ‚ğŠm•Û
+ *@brief	ã‚ªãƒ–ã‚¸ã‚§ã®ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’ç¢ºä¿
  *
- *@param	pData		Šm•Û‚·‚éƒIƒuƒWƒFƒf[ƒ^
- *@param	Byte		Šm•Û‚·‚éƒoƒCƒgƒTƒCƒY
+ *@param	pData		ç¢ºä¿ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
+ *@param	Byte		ç¢ºä¿ã™ã‚‹ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
  *
  *@return	none
  *
@@ -3997,9 +3997,9 @@ static void allocObjWork(WAETHER_OBJ_DATA* pData, int byte)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒIƒuƒWƒF‚Ìƒ[ƒN—Ìˆæ‚ğ”jŠü
+ *@brief	ã‚ªãƒ–ã‚¸ã‚§ã®ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’ç ´æ£„
  *
- *@param	pData		”jŠü‚·‚éƒIƒuƒWƒFƒf[ƒ^
+ *@param	pData		ç ´æ£„ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -4019,39 +4019,39 @@ static void freeObjWork(WAETHER_OBJ_DATA* pData)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒIƒuƒWƒFƒ^ƒXƒN‚ğ“o˜^
+ *@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¿ã‚¹ã‚¯ã‚’ç™»éŒ²
  *
- *@param	pWork		“o˜^‚·‚éƒIƒuƒWƒF‚ÌŠÇ—ŠÖ”ƒ[ƒN
- *@param	w_byte		ƒ[ƒNƒoƒCƒgƒTƒCƒY
+ *@param	pWork		ç™»éŒ²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®ç®¡ç†é–¢æ•°ãƒ¯ãƒ¼ã‚¯
+ *@param	w_byte		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
  *
- *@return	WAETHER_OBJ_DATA*	¬Œ÷:ƒIƒuƒWƒFƒNƒg‚Ìƒ|ƒCƒ“ƒ^	¸”s:NULL
+ *@return	WAETHER_OBJ_DATA*	æˆåŠŸ:ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒã‚¤ãƒ³ã‚¿	å¤±æ•—:NULL
  *
- *	“à—e
- *		ŠÇ—ŠÖ”ƒ[ƒN‚©‚çƒIƒuƒWƒF‚ğì¬‚µ‚ÄƒŠƒXƒg“o˜^
+ *	å†…å®¹
+ *		ç®¡ç†é–¢æ•°ãƒ¯ãƒ¼ã‚¯ã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚’ä½œæˆã—ã¦ãƒªã‚¹ãƒˆç™»éŒ²
  *
  */
 //-----------------------------------------------------------------------------
 static WAETHER_OBJ_DATA* addObj(WEATHER_SYS_WORK* pWork, int w_byte)
 {
-	WAETHER_OBJ_DATA* p_obj;		// ƒIƒuƒWƒFƒf[ƒ^
-	WEATHER_SYS_CONTROL* cont = (WEATHER_SYS_CONTROL*)pWork->pWSysCont;	// ƒRƒ“ƒgƒ[ƒ‰
+	WAETHER_OBJ_DATA* p_obj;		// ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
+	WEATHER_SYS_CONTROL* cont = (WEATHER_SYS_CONTROL*)pWork->pWSysCont;	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
 	
-	// ƒIƒuƒWƒFƒNƒgƒf[ƒ^ì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	p_obj = getCleanObjData( pWork );
 	if(p_obj == NULL){
 		return NULL;
 	}
 
-	// ƒf[ƒ^ƒZƒbƒg
-	p_obj->pWSysCont				= cont;			// e‚Ì“V‹CŠÇ—ƒf[ƒ^
+	// ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
+	p_obj->pWSysCont				= cont;			// è¦ªã®å¤©æ°—ç®¡ç†ãƒ‡ãƒ¼ã‚¿
 	
-	// ƒŠƒXƒg‚É“o˜^
+	// ãƒªã‚¹ãƒˆã«ç™»éŒ²
 	p_obj->pNext				= &pWork->Dummy;
 	p_obj->pPrev				= pWork->Dummy.pPrev;
 	pWork->Dummy.pPrev->pNext	= p_obj;
 	pWork->Dummy.pPrev			= p_obj;
 
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	allocObjWork(p_obj, w_byte);
 	if(p_obj->work == NULL){
 		return NULL;
@@ -4066,13 +4066,13 @@ static WAETHER_OBJ_DATA* addObj(WEATHER_SYS_WORK* pWork, int w_byte)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+ *@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
  *	
- *@param	head	ƒwƒbƒ_
- *@param	cont	“V‹CŠÇ—ƒf[ƒ^
- *@param	pcell	ƒZƒ‹ƒf[ƒ^
- *@param	vram_trans	Vram“]‘—‚©
- *@param	priority	—Dæ‡ˆÊ
+ *@param	head	ãƒ˜ãƒƒãƒ€
+ *@param	cont	å¤©æ°—ç®¡ç†ãƒ‡ãƒ¼ã‚¿
+ *@param	pcell	ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿
+ *@param	vram_trans	Vramè»¢é€ã‹
+ *@param	priority	å„ªå…ˆé †ä½
  *
  *@return	none
  *
@@ -4081,15 +4081,15 @@ static WAETHER_OBJ_DATA* addObj(WEATHER_SYS_WORK* pWork, int w_byte)
 //-----------------------------------------------------------------------------
 static void getHeader(CLACT_HEADER_PTR head, WEATHER_SYS_CONTROL* cont, WATHER_GRAPHIC_FILE_DATA* pcell,int vram_trans, int priority )
 {
-	int id[ WEATHER_RES_NUM ];		// ƒŠƒ\[ƒX•ª‚ÌIDŠi”[ƒoƒbƒtƒ@
-	int i;							// ƒ‹[ƒv—p
+	int id[ WEATHER_RES_NUM ];		// ãƒªã‚½ãƒ¼ã‚¹åˆ†ã®IDæ ¼ç´ãƒãƒƒãƒ•ã‚¡
+	int i;							// ãƒ«ãƒ¼ãƒ—ç”¨
 
-	// ID‚ğæ“¾
+	// IDã‚’å–å¾—
 	for(i=0;i<WEATHER_RES_NUM;i++){
 		id[ i ] = CLACT_U_ResManagerGetResObjID( pcell->res_obj[ i ] );
 	}
 
-	// ƒwƒbƒ_ì¬
+	// ãƒ˜ãƒƒãƒ€ä½œæˆ
 	CLACT_U_MakeHeader( 
 			head,
 			id[ CLACT_U_CHAR_RES ], id[ CLACT_U_PLTT_RES ], 
@@ -4104,33 +4104,33 @@ static void getHeader(CLACT_HEADER_PTR head, WEATHER_SYS_CONTROL* cont, WATHER_G
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“o˜^ƒIƒuƒWƒFƒ^ƒXƒN”jŠü
+ *@brief	ç™»éŒ²ã‚ªãƒ–ã‚¸ã‚§ã‚¿ã‚¹ã‚¯ç ´æ£„
  *
- *@param	pData		”jŠü‚·‚éƒIƒuƒWƒFƒNƒgƒf[ƒ^
+ *@param	pData		ç ´æ£„ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- *	“à—e
- *		ƒIƒuƒWƒFƒNƒgƒf[ƒ^‚ğ”jŠü‚·‚é
+ *	å†…å®¹
+ *		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„ã™ã‚‹
  *
  */
 //-----------------------------------------------------------------------------
 static void destObj(WAETHER_OBJ_DATA* pData)
 {
 	CLACT_WORK_PTR p_tmp;
-//	WEATHER_SYS_CONTROL* cont = (WEATHER_SYS_CONTROL*)pData->pWSysCont;	// ƒRƒ“ƒgƒ[ƒ‰
+//	WEATHER_SYS_CONTROL* cont = (WEATHER_SYS_CONTROL*)pData->pWSysCont;	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©
 
-	// ƒŠƒXƒg‚©‚ç”jŠü
+	// ãƒªã‚¹ãƒˆã‹ã‚‰ç ´æ£„
 	pData->pPrev->pNext	= pData->pNext;
 	pData->pNext->pPrev	= pData->pPrev;
 
-	// ƒZƒ‹ƒAƒNƒ^[‚©‚ç”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‹ã‚‰ç ´æ£„
 	CLACT_SetDrawFlag( pData->clact_w, FALSE );
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	freeObjWork(pData);	
 		
-	// ”jŠü
+	// ç ´æ£„
 	p_tmp = pData->clact_w;
 	memset( pData, 0, sizeof(WAETHER_OBJ_DATA) );
 	pData->clact_w = p_tmp;
@@ -4139,27 +4139,27 @@ static void destObj(WAETHER_OBJ_DATA* pData)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“o˜^ƒIƒuƒWƒFƒ^ƒXƒN‘S”jŠü
+ *@brief	ç™»éŒ²ã‚ªãƒ–ã‚¸ã‚§ã‚¿ã‚¹ã‚¯å…¨ç ´æ£„
  *
- *@param	pDummy		”jŠü‚·‚éƒIƒuƒWƒFƒNƒgƒŠƒXƒg‚Ìæ“ªƒf[ƒ^
+ *@param	pDummy		ç ´æ£„ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆã®å…ˆé ­ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
- *	“à—e
- *		ƒIƒuƒWƒFƒNƒgƒf[ƒ^‚ğ‘S‚Ä”jŠü‚·‚é
+ *	å†…å®¹
+ *		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å…¨ã¦ç ´æ£„ã™ã‚‹
  *
  */
 //-----------------------------------------------------------------------------
 static void destObjAll(WAETHER_OBJ_DATA* pDummy)
 {
-	WAETHER_OBJ_DATA* p_work;		// ”jŠüì‹Æ—p
-	WAETHER_OBJ_DATA* p_next;		// Ÿ‚ÌƒIƒuƒWƒFƒNƒg
+	WAETHER_OBJ_DATA* p_work;		// ç ´æ£„ä½œæ¥­ç”¨
+	WAETHER_OBJ_DATA* p_next;		// æ¬¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	
-	// ‘S”jŠü
+	// å…¨ç ´æ£„
 	p_work = pDummy->pNext;
 	while(p_work != pDummy){
 		p_next = p_work->pNext;
-		destObj(p_work);		// ”jŠü
+		destObj(p_work);		// ç ´æ£„
 		p_work = p_next;
 	}
 }
@@ -4167,28 +4167,28 @@ static void destObjAll(WAETHER_OBJ_DATA* pDummy)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“o˜^‚³‚ê‚½‘SƒIƒuƒWƒFƒNƒg‚ğ“®‚©‚·
+ *@brief	ç™»éŒ²ã•ã‚ŒãŸå…¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‹•ã‹ã™
  *
- *@param	pDummy		“®‚©‚·ƒIƒuƒWƒFƒNƒgƒŠƒXƒg
- *@param	pFunc		“®‚©‚·ŠÖ”
+ *@param	pDummy		å‹•ã‹ã™ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒªã‚¹ãƒˆ
+ *@param	pFunc		å‹•ã‹ã™é–¢æ•°
  *
  *@return	none
  *
- *	“à—e
- *		ƒIƒuƒWƒFƒNƒgƒf[ƒ^‚ğ“®‚©‚·
+ *	å†…å®¹
+ *		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å‹•ã‹ã™
  *
  */
 //-----------------------------------------------------------------------------
 static void moveFuncObj(WAETHER_OBJ_DATA* pDummy, objFunc pFunc)
 {
-	WAETHER_OBJ_DATA* p_work;		// ì‹Æ—p
-	WAETHER_OBJ_DATA* p_work_next;	// ì‹Æ—p
+	WAETHER_OBJ_DATA* p_work;		// ä½œæ¥­ç”¨
+	WAETHER_OBJ_DATA* p_work_next;	// ä½œæ¥­ç”¨
 
-	// ‘S•”“®‚©‚·
+	// å…¨éƒ¨å‹•ã‹ã™
 	p_work = pDummy->pNext;
 	p_work_next = p_work->pNext;
 	while(p_work != pDummy){
-		pFunc(p_work);		// “®‚©‚·
+		pFunc(p_work);		// å‹•ã‹ã™
 		
 		p_work = p_work_next;
 		p_work_next = p_work->pNext;
@@ -4198,9 +4198,9 @@ static void moveFuncObj(WAETHER_OBJ_DATA* pDummy, objFunc pFunc)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒIƒuƒWƒFƒNƒg‚Ì•`‰æ
+ *@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æç”»
  *
- *@param	pData		“V‹C‚P‚Â‚Ìƒf[ƒ^
+ *@param	pData		å¤©æ°—ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿
  *
  *@return	none
  *
@@ -4217,11 +4217,11 @@ static void drawObj(WEATHER_SYS_WORK* pData)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒIƒuƒWƒFƒNƒgÀ•W‚ğæ“¾
+ *@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåº§æ¨™ã‚’å–å¾—
  *
- *@param	obj		æ“¾‚·‚éƒIƒuƒWƒF
+ *@param	obj		å–å¾—ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§
  *
- *@return	À•W
+ *@return	åº§æ¨™
  *
  *
  */
@@ -4233,25 +4233,25 @@ static VecFx32 getObjMat( WAETHER_OBJ_DATA* obj )
 	return *mat;
 }
 
-// ƒXƒNƒ[ƒ‹À•Wæ“¾
+// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™å–å¾—
 static void getScrollNum(fx32* x, fx32* y, WEATHER_SYS_WORK* pWork)
 {
 	
-	VecFx32	now_mat;				// ¡‚ÌÀ•W
-	fx32 scl_x, scl_y;				// ScrollÀ•W
-	fx32 d_x, d_y;					// 2d‚Å‚P‚Ì‚R‚„‚Ì’l
-	fx32 dist_x, dist_y;			// ˆÚ“®‚µ‚½’l
-	int	mark;						// •„†
-	fx32 aspect;					// ƒAƒXƒyƒNƒg”ä
+	VecFx32	now_mat;				// ä»Šã®åº§æ¨™
+	fx32 scl_x, scl_y;				// Scrollåº§æ¨™
+	fx32 d_x, d_y;					// 2dã§ï¼‘ã®ï¼“ï½„ã®å€¤
+	fx32 dist_x, dist_y;			// ç§»å‹•ã—ãŸå€¤
+	int	mark;						// ç¬¦å·
+	fx32 aspect;					// ã‚¢ã‚¹ãƒšã‚¯ãƒˆæ¯”
 
-	// “®‚¢‚½‚ç“®‚¢‚½•ûŒü‚É‚OD‚T‘«‚·i¬”“_‚ÌŒë·‚Å’l‚ª•Ï‚í‚ç‚È‚¢‚½‚ßj
+	// å‹•ã„ãŸã‚‰å‹•ã„ãŸæ–¹å‘ã«ï¼ï¼ï¼•è¶³ã™ï¼ˆå°æ•°ç‚¹ã®èª¤å·®ã§å€¤ãŒå¤‰ã‚ã‚‰ãªã„ãŸã‚ï¼‰
 	now_mat = *(NNS_G3dGlbGetCameraTarget());
 	
 	dist_x = (now_mat.x - pWork->CameraTarget.x);
 	dist_y = (now_mat.z - pWork->CameraTarget.z);
 
 	
-	// ¡‚ÌƒJƒƒ‰‚Ì2d‚Å1‚Ì‚R‚„‚Ì’l‚ğ‹‚ß‚é
+	// ä»Šã®ã‚«ãƒ¡ãƒ©ã®2dã§1ã®ï¼“ï½„ã®å€¤ã‚’æ±‚ã‚ã‚‹
 	aspect = FX_Div(FX32_CONST(4), FX32_CONST(3));
 	GetPerspectiveScreenSize( 
 			GFC_GetCameraPerspWay( pWork->pWSysCont->fsys->camera_ptr ),
@@ -4260,8 +4260,8 @@ static void getScrollNum(fx32* x, fx32* y, WEATHER_SYS_WORK* pWork)
 			&d_x, &d_y);
 	d_x = FX_Div(d_x, 256*FX32_ONE);
 
-	// ã‚Éi‚ñ‚Å‚¢‚é‚Æ‚«A
-	// ‰º‚Éi‚ñ‚Å‚¢‚é‚Æ‚«
+	// ä¸Šã«é€²ã‚“ã§ã„ã‚‹ã¨ãã€
+	// ä¸‹ã«é€²ã‚“ã§ã„ã‚‹ã¨ã
 	if( dist_y <= 0 ){
 		d_y = FX_Div(d_y, 0xbe8d0);
 	}else{
@@ -4269,28 +4269,28 @@ static void getScrollNum(fx32* x, fx32* y, WEATHER_SYS_WORK* pWork)
 	}
 
 
-	// ƒvƒ‰ƒX‚ÅŒvZ‚·‚é
+	// ãƒ—ãƒ©ã‚¹ã§è¨ˆç®—ã™ã‚‹
 	mark = FX32_ONE;
-	if(dist_x < 0){		// [‚Ì‚Í{‚Ì’l‚É‚·‚é
+	if(dist_x < 0){		// ãƒ¼ã®æ™‚ã¯ï¼‹ã®å€¤ã«ã™ã‚‹
 		mark = -FX32_ONE;
 		dist_x = FX_Mul( dist_x, -FX32_ONE );
 	}
-	scl_x = FX_Div(dist_x, d_x);	// ƒXƒNƒ[ƒ‹À•W‚ğŒvZ
-	if( mark < 0 ){		// Œ³‚Ì•„†‚É–ß‚·
-		scl_x = FX_Mul( scl_x, mark );	// Œ³‚Ì•„†‚É–ß‚·
+	scl_x = FX_Div(dist_x, d_x);	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã‚’è¨ˆç®—
+	if( mark < 0 ){		// å…ƒã®ç¬¦å·ã«æˆ»ã™
+		scl_x = FX_Mul( scl_x, mark );	// å…ƒã®ç¬¦å·ã«æˆ»ã™
 	}
 
 	mark = FX32_ONE;
-	if(dist_y < 0){		// [‚Ì‚Í{‚Ì’l‚É‚·‚é
+	if(dist_y < 0){		// ãƒ¼ã®æ™‚ã¯ï¼‹ã®å€¤ã«ã™ã‚‹
 		mark = -FX32_ONE;
 		dist_y = FX_Mul( dist_y, -FX32_ONE );
 	}	
-	scl_y = FX_Div(dist_y, d_y);	// ƒXƒNƒ[ƒ‹À•W‚ğ‹‚ß‚é
+	scl_y = FX_Div(dist_y, d_y);	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	if( mark < 0 ){
-		scl_y = FX_Mul( scl_y, mark );	// Œ³‚Ì•„†‚É–ß‚·
+		scl_y = FX_Mul( scl_y, mark );	// å…ƒã®ç¬¦å·ã«æˆ»ã™
 	}
 		
-	// ¡‚ÌÀ•W‚ğæ“¾
+	// ä»Šã®åº§æ¨™ã‚’å–å¾—
 	if((scl_x + scl_y) != 0){
 		pWork->CameraTarget = now_mat;
 	}
@@ -4302,15 +4302,15 @@ static void getScrollNum(fx32* x, fx32* y, WEATHER_SYS_WORK* pWork)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“o˜^‚³‚ê‚½‘SƒIƒuƒWƒFƒNƒg‚ÌÀ•W‚ğscroll‚É‚ ‚í‚¹‚é
+ *@brief	ç™»éŒ²ã•ã‚ŒãŸå…¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åº§æ¨™ã‚’scrollã«ã‚ã‚ã›ã‚‹
  *
- *@param	pWork		Scroll‚³‚¹‚é“V‹CƒRƒ“ƒgƒ[ƒ‰‚Ì–{‘Ì
- *@param	x, y		ƒXƒNƒ[ƒ‹À•W(‚¢‚ç‚È‚¢‚Æ‚«‚ÍNULL)
+ *@param	pWork		Scrollã•ã›ã‚‹å¤©æ°—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã®æœ¬ä½“
+ *@param	x, y		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™(ã„ã‚‰ãªã„ã¨ãã¯NULL)
  *
  *@return	none
  *
- *	“à—e
- *		ƒIƒuƒWƒFƒNƒg‚ÌÀ•W‚ğ‚±‚Ìƒ^[ƒ“‚Å‚ÌƒJƒƒ‰‚Ìƒ^[ƒQƒbƒg‚ÌˆÚ“®’n‚É‡‚í‚¹‚é
+ *	å†…å®¹
+ *		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åº§æ¨™ã‚’ã“ã®ã‚¿ãƒ¼ãƒ³ã§ã®ã‚«ãƒ¡ãƒ©ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ç§»å‹•åœ°ã«åˆã‚ã›ã‚‹
  *
  */
 //-----------------------------------------------------------------------------
@@ -4323,38 +4323,38 @@ static void scrollObj(WEATHER_SYS_WORK* pWork,int* x, int* y)
 	if(x != NULL){
 		*x = fx_x >> FX32_SHIFT;
 		if( *x < 0 ){
-			*x += FX32_ONE;	// ƒ}ƒCƒiƒX‚Ì‚Æ‚«-1•ª‚ÌŒë·‚ªo‚é‚½‚ß
+			*x += FX32_ONE;	// ãƒã‚¤ãƒŠã‚¹ã®ã¨ã-1åˆ†ã®èª¤å·®ãŒå‡ºã‚‹ãŸã‚
 		}
 	}
 	if(y != NULL){
 		*y = fx_y >> FX32_SHIFT;
 		if( *y < 0 ){
-			*y += 1;	// ƒ}ƒCƒiƒX‚Ì‚Æ‚«-1•ª‚ÌŒë·‚ªo‚é‚½‚ß
+			*y += 1;	// ãƒã‚¤ãƒŠã‚¹ã®ã¨ã-1åˆ†ã®èª¤å·®ãŒå‡ºã‚‹ãŸã‚
 		}
 	}
 }
 
-// FX32ƒo[ƒWƒ‡ƒ“
+// FX32ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 static void scrollObj_Fx(WEATHER_SYS_WORK* pWork, fx32* x, fx32* y )
 {
-	WAETHER_OBJ_DATA* p_work;		// ì‹Æ—p
-	fx32 scl_x, scl_y;		// ƒXƒNƒ[ƒ‹À•W	
-	VecFx32 mat;			// À•W
+	WAETHER_OBJ_DATA* p_work;		// ä½œæ¥­ç”¨
+	fx32 scl_x, scl_y;		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™	
+	VecFx32 mat;			// åº§æ¨™
 	
 
 	getScrollNum(&scl_x,&scl_y, pWork);
 	
 	
-	// ‘S•”ƒIƒuƒWƒFƒNƒg‚É”½‰f
+	// å…¨éƒ¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«åæ˜ 
 	p_work = pWork->Dummy.pNext;
 	while(p_work != &pWork->Dummy){
-		// ¡‚ÌÀ•Wæ“¾
+		// ä»Šã®åº§æ¨™å–å¾—
 		mat = getObjMat(p_work);
 		
 		mat.x -= scl_x;
 		mat.y -= scl_y;
 
-		// À•Wİ’è
+		// åº§æ¨™è¨­å®š
 		setClactMatrix(p_work->clact_w, &mat);
 		
 		p_work = p_work->pNext;
@@ -4371,18 +4371,18 @@ static void scrollObj_Fx(WEATHER_SYS_WORK* pWork, fx32* x, fx32* y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒtƒF[ƒhƒpƒ‰ƒ[ƒ^‚Ì‰Šú‰»
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
  *
- *	@param	data					ƒIƒuƒWƒFƒtƒF[ƒhƒ[ƒN
- *	@param	pWork					“V‹CƒVƒXƒeƒ€ƒ[ƒN
- *	@param	objAddNum				ƒIƒuƒWƒFƒNƒg“o˜^”
- *	@param	objAddTmgMax			“o˜^ƒ^ƒCƒ~ƒ“ƒO
- *	@param	OBJ_ADD_NUM_END			ƒIƒuƒWƒFƒNƒg“o˜^”@I—¹’l
- *	@param	OBJ_ADD_TMG_END			ƒIƒuƒWƒFƒNƒg‚P‰ñ‚Ì“o˜^”@I—¹’l
- *	@param	OBJ_ADD_TMG_SUM         “o˜^ƒ^ƒCƒ~ƒ“ƒOƒJƒEƒ“ƒ^@I—¹’l
- *	@param	OBJ_ADD_NUM_SUM_TMG     “o˜^ƒ^ƒCƒ~ƒ“ƒOƒJƒEƒ“ƒ^•ÏX’l
- *	@param	OBJ_ADD_NUM_SUM         ƒIƒuƒWƒFƒNƒg‚P‰ñ‚Ì“o˜^”‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO
- *	@param	add						“o˜^ŠÖ”
+ *	@param	data					ã‚ªãƒ–ã‚¸ã‚§ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param	pWork					å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	objAddNum				ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²æ•°
+ *	@param	objAddTmgMax			ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+ *	@param	OBJ_ADD_NUM_END			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²æ•°ã€€çµ‚äº†å€¤
+ *	@param	OBJ_ADD_TMG_END			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‘å›ã®ç™»éŒ²æ•°ã€€çµ‚äº†å€¤
+ *	@param	OBJ_ADD_TMG_SUM         ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚«ã‚¦ãƒ³ã‚¿ã€€çµ‚äº†å€¤
+ *	@param	OBJ_ADD_NUM_SUM_TMG     ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚«ã‚¦ãƒ³ã‚¿å¤‰æ›´å€¤
+ *	@param	OBJ_ADD_NUM_SUM         ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‘å›ã®ç™»éŒ²æ•°ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+ *	@param	add						ç™»éŒ²é–¢æ•°
  */
 //-----------------------------------------------------------------------------
 static void weatherSysObjFadeInit( WEATHER_SYS_OBJ_FADE* data, WEATHER_SYS_WORK* pWork, s32 objAddNum, s32 objAddTmgMax, s32 OBJ_ADD_NUM_END, s32 OBJ_ADD_TMG_END, s32 OBJ_ADD_TMG_SUM, s32 OBJ_ADD_NUM_SUM_TMG, s32 OBJ_ADD_NUM_SUM, OBJADD_FUNC add )
@@ -4402,13 +4402,13 @@ static void weatherSysObjFadeInit( WEATHER_SYS_OBJ_FADE* data, WEATHER_SYS_WORK*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhƒAƒEƒg‚Ì‚½‚ß‚Ìİ’è
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®ãŸã‚ã®è¨­å®š
  *
- *	@param	data				ƒ[ƒN
- *	@param	OBJ_ADD_NUM_END			ƒIƒuƒWƒFƒNƒg“o˜^”@I—¹’l
- *	@param	OBJ_ADD_TMG_END			ƒIƒuƒWƒFƒNƒg‚P‰ñ‚Ì“o˜^”@I—¹’l
- *	@param	OBJ_ADD_TMG_SUM         “o˜^ƒ^ƒCƒ~ƒ“ƒOƒJƒEƒ“ƒ^@I—¹’l
- *	@param	OBJ_ADD_NUM_SUM         ƒIƒuƒWƒFƒNƒg‚P‰ñ‚Ì“o˜^”‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO
+ *	@param	data				ãƒ¯ãƒ¼ã‚¯
+ *	@param	OBJ_ADD_NUM_END			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²æ•°ã€€çµ‚äº†å€¤
+ *	@param	OBJ_ADD_TMG_END			ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‘å›ã®ç™»éŒ²æ•°ã€€çµ‚äº†å€¤
+ *	@param	OBJ_ADD_TMG_SUM         ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚«ã‚¦ãƒ³ã‚¿ã€€çµ‚äº†å€¤
+ *	@param	OBJ_ADD_NUM_SUM         ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‘å›ã®ç™»éŒ²æ•°ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
  */
 //-----------------------------------------------------------------------------
 static void weatherSysObjFadeOutSet( WEATHER_SYS_OBJ_FADE* data, s32 OBJ_ADD_NUM_END, s32 OBJ_ADD_TMG_END, s32 OBJ_ADD_TMG_SUM, s32 OBJ_ADD_NUM_SUM )
@@ -4422,17 +4422,17 @@ static void weatherSysObjFadeOutSet( WEATHER_SYS_OBJ_FADE* data, s32 OBJ_ADD_NUM
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
+ *@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
  *
- *@param	data		ƒIƒuƒWƒFƒNƒg‚ÌƒtƒF[ƒhƒf[ƒ^
+ *@param	data		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
- *@retval	0			ƒtƒF[ƒh–¢I—¹
- *@retval	1			“o˜^ƒ^ƒCƒ~ƒ“ƒOƒJƒEƒ“ƒ^ƒtƒF[ƒhI—¹
- *@retval	2			“o˜^”ƒtƒF[ƒhI—¹
- *@retval	3			Š®‘SI—¹
+ *@retval	0			ãƒ•ã‚§ãƒ¼ãƒ‰æœªçµ‚äº†
+ *@retval	1			ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚«ã‚¦ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
+ *@retval	2			ç™»éŒ²æ•°ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
+ *@retval	3			å®Œå…¨çµ‚äº†
  *
- * ŠeƒJƒEƒ“ƒ^‚Ì‰Šú‰»‚ğ–‘O‚É‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚·B
- * ƒJƒEƒ“ƒ^‚Íƒ|ƒCƒ“ƒ^QÆ‚È‚Ì‚ÅA‘‚«Š·‚¦‚È‚¢‚æ‚¤‚É‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚·B
+ * å„ã‚«ã‚¦ãƒ³ã‚¿ã®åˆæœŸåŒ–ã‚’äº‹å‰ã«ã—ã¦ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+ * ã‚«ã‚¦ãƒ³ã‚¿ã¯ãƒã‚¤ãƒ³ã‚¿å‚ç…§ãªã®ã§ã€æ›¸ãæ›ãˆãªã„ã‚ˆã†ã«ã—ã¦ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  * 
  * 
  */
@@ -4443,19 +4443,19 @@ static int weatherSysObjFade(WEATHER_SYS_OBJ_FADE* data)
 	int ret = 0;
 	
 
-	// ƒtƒF[ƒhI—¹ƒ`ƒFƒbƒN
-	// ƒ^ƒCƒ~ƒ“ƒO-------------------------------------------
-	// ‘«‚·’l‚ª‚O‚È‚çƒ^ƒCƒ~ƒ“ƒOƒtƒF[ƒhI—¹
+	// ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†ãƒã‚§ãƒƒã‚¯
+	// ã‚¿ã‚¤ãƒŸãƒ³ã‚°-------------------------------------------
+	// è¶³ã™å€¤ãŒï¼ãªã‚‰ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
 	if(data->OBJ_ADD_TMG_SUM == 0){
 		ret |= 1;
 	}else{
-		// ƒtƒF[ƒhƒCƒ“AƒAƒEƒgƒ`ƒFƒbƒN
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€ã‚¢ã‚¦ãƒˆãƒã‚§ãƒƒã‚¯
 		if(data->OBJ_ADD_TMG_SUM > 0){
-			fade_flag = 0;		// •ÏX’l‚ªƒvƒ‰ƒX‚È‚Ì‚ÅƒtƒF[ƒhƒCƒ“
+			fade_flag = 0;		// å¤‰æ›´å€¤ãŒãƒ—ãƒ©ã‚¹ãªã®ã§ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		}else{
-			fade_flag = 1;		// •ÏX’l‚ªƒ}ƒCƒiƒX‚È‚Ì‚ÅƒtƒF[ƒhƒAƒEƒg
+			fade_flag = 1;		// å¤‰æ›´å€¤ãŒãƒã‚¤ãƒŠã‚¹ãªã®ã§ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		}
-		// “o˜^ƒ^ƒCƒ~ƒ“ƒOI—¹“_‚É‚«‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+		// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°çµ‚äº†ç‚¹ã«ãã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		if(((data->objAddTmgMax >= data->OBJ_ADD_TMG_END)&&(fade_flag == 0)) ||
 			((data->objAddTmgMax <= data->OBJ_ADD_TMG_END)&&(fade_flag == 1))){
 			ret |= 1;
@@ -4464,19 +4464,19 @@ static int weatherSysObjFade(WEATHER_SYS_OBJ_FADE* data)
 		}
 	}
 
-	// “o˜^”---------------------------------------------------
-	// ‘«‚·’l‚ª‚O‚È‚ç“o˜^”ƒtƒF[ƒhI—¹
+	// ç™»éŒ²æ•°---------------------------------------------------
+	// è¶³ã™å€¤ãŒï¼ãªã‚‰ç™»éŒ²æ•°ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
 	if(data->OBJ_ADD_NUM_SUM == 0){
 		ret |= 2;
 	}else{
 		
-		// ƒtƒF[ƒhƒCƒ“AƒAƒEƒgƒ`ƒFƒbƒN
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€ã‚¢ã‚¦ãƒˆãƒã‚§ãƒƒã‚¯
 		if(data->OBJ_ADD_NUM_SUM > 0){
-			fade_flag = 0;		// •ÏX’l‚ªƒvƒ‰ƒX‚È‚Ì‚ÅƒtƒF[ƒhƒCƒ“
+			fade_flag = 0;		// å¤‰æ›´å€¤ãŒãƒ—ãƒ©ã‚¹ãªã®ã§ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		}else{
-			fade_flag = 1;		// •ÏX’l‚ªƒ}ƒCƒiƒX‚È‚Ì‚ÅƒtƒF[ƒhƒAƒEƒg
+			fade_flag = 1;		// å¤‰æ›´å€¤ãŒãƒã‚¤ãƒŠã‚¹ãªã®ã§ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		}
-		// ƒIƒuƒWƒFƒNƒg“o˜^I—¹“_‚É‚«‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²çµ‚äº†ç‚¹ã«ãã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		if(((data->objAddNum >= data->OBJ_ADD_NUM_END)&&(fade_flag == 0)) ||
 			((data->objAddNum <= data->OBJ_ADD_NUM_END)&&(fade_flag == 1))){
 		
@@ -4486,27 +4486,27 @@ static int weatherSysObjFade(WEATHER_SYS_OBJ_FADE* data)
 	}
 	
 
-	// ƒ^ƒCƒ~ƒ“ƒOƒJƒEƒ“ƒ^‚ªÅ¬‚É‚È‚é‚Ü‚ÅƒJƒEƒ“ƒgì‹Æ
+	// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚«ã‚¦ãƒ³ã‚¿ãŒæœ€å°ã«ãªã‚‹ã¾ã§ã‚«ã‚¦ãƒ³ãƒˆä½œæ¥­
 	(data->objAddTmg)--;
 	if(data->objAddTmg <= 0){
 
-		// “o˜^
+		// ç™»éŒ²
 		data->add(data->pWork, data->objAddNum);
 
-		data->objAddTmg = data->objAddTmgMax;			// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒZƒbƒg
+		data->objAddTmg = data->objAddTmgMax;			// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚»ãƒƒãƒˆ
 		
-		// ƒ^ƒCƒ~ƒ“ƒO-------------------------------------------
+		// ã‚¿ã‚¤ãƒŸãƒ³ã‚°-------------------------------------------
 		if((ret & 1) == 0){
-			data->objAddTmgMax += data->OBJ_ADD_TMG_SUM;	// ‰Jƒ^ƒCƒ~ƒ“ƒOŒvZ
+			data->objAddTmgMax += data->OBJ_ADD_TMG_SUM;	// é›¨ã‚¿ã‚¤ãƒŸãƒ³ã‚°è¨ˆç®—
 		}
 		
 	
-		// “o˜^”---------------------------------------------------
+		// ç™»éŒ²æ•°---------------------------------------------------
 		if((ret & 2) == 0){
 			(data->objAddNumSum)++;
 			if(data->objAddNumSum >= data->OBJ_ADD_NUM_SUM_TMG){
 				data->objAddNumSum = 0;
-				data->objAddNum += data->OBJ_ADD_NUM_SUM;	// “o˜^”ƒAƒbƒh
+				data->objAddNum += data->OBJ_ADD_NUM_SUM;	// ç™»éŒ²æ•°ã‚¢ãƒƒãƒ‰
 			}
 		}
 	}
@@ -4517,16 +4517,16 @@ static int weatherSysObjFade(WEATHER_SYS_OBJ_FADE* data)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒOƒtƒF[ƒhƒCƒ“@‰Šú‰»ˆ—@ƒpƒbƒN
+ *	@brief	ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€åˆæœŸåŒ–å‡¦ç†ã€€ãƒ‘ãƒƒã‚¯
  *
- *	@param	fogParam		ƒtƒHƒOƒpƒ‰ƒ[ƒ^ƒ[ƒN
- *	@param	fogData			ƒtƒHƒOƒe[ƒuƒ‹ƒ[ƒN
- *	@param	Fog				ƒtƒHƒOƒf[ƒ^
- *	@param	fog_slope		ƒtƒHƒOƒXƒ[ƒv
- *	@param	fog_offs		ƒtƒHƒOƒIƒtƒZƒbƒg
- *	@param	color			ƒJƒ‰[
- *	@param	timing			ƒ^ƒCƒ~ƒ“ƒO
- *	@param	fog_use_flg		ƒtƒHƒO“®ìƒtƒ‰ƒO
+ *	@param	fogParam		ãƒ•ã‚©ã‚°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	fogData			ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¯ãƒ¼ã‚¯
+ *	@param	Fog				ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿
+ *	@param	fog_slope		ãƒ•ã‚©ã‚°ã‚¹ãƒ­ãƒ¼ãƒ—
+ *	@param	fog_offs		ãƒ•ã‚©ã‚°ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	color			ã‚«ãƒ©ãƒ¼
+ *	@param	timing			ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+ *	@param	fog_use_flg		ãƒ•ã‚©ã‚°å‹•ä½œãƒ•ãƒ©ã‚°
  *
  *	@return	none
  */
@@ -4547,21 +4547,21 @@ static void weatherSysFogFadeInInitPack( WEATHER_SYS_CHG_FOG_DATA* fogParam, WEA
 					fog_slope, 
 					fog_offs,
 					color, timing * FOG_DEPTH_COUNT_MAX );
-					// ª¶³İÀ@ƒtƒHƒO‚Ítiming‚É‚P‰ñƒfƒvƒX’l‚ğ•ÏX‚·‚é
-					// ‚Ì‚Å‚»‚ê‚É‚ ‚í‚¹‚Ä‚±‚ÌƒJƒEƒ“ƒg’l‚É‚·‚é
+					// â†‘ã‚«ã‚¦ãƒ³ã‚¿ã€€ãƒ•ã‚©ã‚°ã¯timingã«ï¼‘å›ãƒ‡ãƒ—ã‚¹å€¤ã‚’å¤‰æ›´ã™ã‚‹
+					// ã®ã§ãã‚Œã«ã‚ã‚ã›ã¦ã“ã®ã‚«ã‚¦ãƒ³ãƒˆå€¤ã«ã™ã‚‹
 		}
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒOƒtƒF[ƒhƒƒCƒ“
+ *	@brief	ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¡ã‚¤ãƒ³
  *
- *	@param	fogParam	ƒtƒHƒOƒpƒ‰ƒ[ƒ^ƒtƒF[ƒhƒf[ƒ^
- *	@param	fogData		ƒtƒHƒOƒe[ƒuƒ‹ƒtƒF[ƒhƒf[ƒ^
+ *	@param	fogParam	ãƒ•ã‚©ã‚°ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
+ *	@param	fogData		ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	1	I—¹
- *	@retval	0	“r’†
+ *	@retval	1	çµ‚äº†
+ *	@retval	0	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static int weatherSysFogFadeInMainPack( WEATHER_SYS_CHG_FOG_DATA* fogParam, WEATHER_SYS_FOG_FADE* fogData, u32 fog_use_flg )
@@ -4585,31 +4585,31 @@ static int weatherSysFogFadeInMainPack( WEATHER_SYS_CHG_FOG_DATA* fogParam, WEAT
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒO‚Ì’lİ’è
+ *	@brief	ãƒ•ã‚©ã‚°ã®å€¤è¨­å®š
  *
- *	@param	Fog			ƒtƒHƒOƒf[ƒ^
- *	@param	fog_slope	ƒtƒHƒOƒXƒ[ƒv
- *	@param	fog_offs	ƒtƒHƒOƒIƒtƒZƒbƒg
- *	@param	color		ƒJƒ‰[
+ *	@param	Fog			ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿
+ *	@param	fog_slope	ãƒ•ã‚©ã‚°ã‚¹ãƒ­ãƒ¼ãƒ—
+ *	@param	fog_offs	ãƒ•ã‚©ã‚°ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	color		ã‚«ãƒ©ãƒ¼
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void weatherSysFogParamSet( FOG_DATA_PTR Fog, int fog_slope, int fog_offs, GXRgb color )
 {
-	SetFogData(Fog, FOG_SYS_ALL, TRUE, GX_FOGBLEND_COLOR_ALPHA, fog_slope, fog_offs);		// ƒtƒHƒOƒf[ƒ^
-	SetFogColor(Fog, FOG_SYS_ALL, color, 31);	// ƒtƒHƒOƒJƒ‰[
+	SetFogData(Fog, FOG_SYS_ALL, TRUE, GX_FOGBLEND_COLOR_ALPHA, fog_slope, fog_offs);		// ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿
+	SetFogColor(Fog, FOG_SYS_ALL, color, 31);	// ãƒ•ã‚©ã‚°ã‚«ãƒ©ãƒ¼
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒO@ƒpƒ‰ƒ[ƒ^’lƒtƒF[ƒh
+ *	@brief	ãƒ•ã‚©ã‚°ã€€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å€¤ãƒ•ã‚§ãƒ¼ãƒ‰
  *
- *	@param	data		Ši”[æƒ[ƒN
- *	@param	fog			ƒtƒHƒO’lƒoƒbƒtƒ@
- *	@param	fogslope	•ÏXŒã‚ÌƒtƒHƒO‚ÌŒW‚è‹ï‡
- *	@param	offs		ƒIƒtƒZƒbƒg’l
- *	@param	color		ƒJƒ‰[
+ *	@param	data		æ ¼ç´å…ˆãƒ¯ãƒ¼ã‚¯
+ *	@param	fog			ãƒ•ã‚©ã‚°å€¤ãƒãƒƒãƒ•ã‚¡
+ *	@param	fogslope	å¤‰æ›´å¾Œã®ãƒ•ã‚©ã‚°ã®ä¿‚ã‚Šå…·åˆ
+ *	@param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
+ *	@param	color		ã‚«ãƒ©ãƒ¼
  *
  *	@return	none
  */
@@ -4620,7 +4620,7 @@ static void weatherSysFogParamFadeInit( WEATHER_SYS_CHG_FOG_DATA* data, FOG_DATA
 	int fog_offs;
 	GXRgb fog_color;
 
-	// Œ»İ‚Ìƒpƒ‰ƒ[ƒ^æ“¾
+	// ç¾åœ¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	fog_slope = GetFogSlope( fog );
 	fog_offs = GetFogOffset( fog );
 	fog_color = GetFogColor( fog );
@@ -4636,26 +4636,26 @@ static void weatherSysFogParamFadeInit( WEATHER_SYS_CHG_FOG_DATA* data, FOG_DATA
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhˆ—ƒƒCƒ“
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ãƒ¡ã‚¤ãƒ³
  *
- *	@param	data	ƒ[ƒN
+ *	@param	data	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL weatherSysFogParamFadeMain( WEATHER_SYS_CHG_FOG_DATA* data )
 {
 	BOOL check;
 	
-	// ŒvZ
+	// è¨ˆç®—
 	check = WeatherMoveMain( &data->fog_depth );
 	WeatherMoveMain( &data->r );
 	WeatherMoveMain( &data->g );
 	WeatherMoveMain( &data->b );
 	WeatherMoveMain( &data->slope );
 
-	// ’lİ’è
+	// å€¤è¨­å®š
 	weatherSysFogParamSet( data->Fog,
 		data->slope.x, data->fog_depth.x, GX_RGB(data->r.x,data->g.x,data->b.x)	);
 	
@@ -4665,9 +4665,9 @@ static BOOL weatherSysFogParamFadeMain( WEATHER_SYS_CHG_FOG_DATA* data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒOƒe[ƒuƒ‹‰Šú‰»
+ *	@brief	ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«åˆæœŸåŒ–
  *
- *	@param	data	ƒ[ƒN
+ *	@param	data	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -4675,19 +4675,19 @@ static BOOL weatherSysFogParamFadeMain( WEATHER_SYS_CHG_FOG_DATA* data )
 static void weatherSysFogTblInit( WEATHER_SYS_FOG_FADE* data )
 {
 	int i;
-	for(i=0;i<32;i++){						// ƒtƒHƒOƒe[ƒuƒ‹
+	for(i=0;i<32;i++){						// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«
 		data->fog_tbl[i] = 0;
 	}
-	SetFogTbl(data->Fog, data->fog_tbl);				// ƒtƒHƒOƒe[ƒuƒ‹
+	SetFogTbl(data->Fog, data->fog_tbl);				// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒOƒtƒF[ƒhƒe[ƒuƒ‹ƒpƒ‰ƒ[ƒ^İ’è
+ *	@brief	ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
  *
- *	@param	data			ƒf[ƒ^Ši”[æ
- *	@param	timing			•ÏXƒ^ƒCƒ~ƒ“ƒO
- *	@param	fade_inout		ƒtƒF[ƒhƒCƒ“ƒAƒEƒg
+ *	@param	data			ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	timing			å¤‰æ›´ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+ *	@param	fade_inout		ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆ
  *
  *	@return	none
  */
@@ -4708,29 +4708,29 @@ static void weatherSysFogFadeInit( WEATHER_SYS_FOG_FADE* data, int timing, BOOL 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒtƒHƒOƒtƒF[ƒh
+ *@brief	ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰
  *
- *@param	data		ƒIƒuƒWƒFƒNƒg‚ÌƒtƒF[ƒhƒf[ƒ^
+ *@param	data		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
- *@retval	0			ƒtƒF[ƒh–¢I—¹
- *@retval	1			ƒtƒF[ƒhI—¹
+ *@retval	0			ãƒ•ã‚§ãƒ¼ãƒ‰æœªçµ‚äº†
+ *@retval	1			ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
  *
- * ŠeƒJƒEƒ“ƒ^‚Ì‰Šú‰»‚ğ–‘O‚É‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚·B
- * ƒJƒEƒ“ƒ^‚Íƒ|ƒCƒ“ƒ^QÆ‚È‚Ì‚ÅA‘‚«Š·‚¦‚È‚¢‚æ‚¤‚É‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚·B
+ * å„ã‚«ã‚¦ãƒ³ã‚¿ã®åˆæœŸåŒ–ã‚’äº‹å‰ã«ã—ã¦ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+ * ã‚«ã‚¦ãƒ³ã‚¿ã¯ãƒã‚¤ãƒ³ã‚¿å‚ç…§ãªã®ã§ã€æ›¸ãæ›ãˆãªã„ã‚ˆã†ã«ã—ã¦ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  * 
  * 
  */
 //-----------------------------------------------------------------------------
 static int weatherSysFogFade(WEATHER_SYS_FOG_FADE* data)
 {
-	int ret;		// –ß‚è’l
+	int ret;		// æˆ»ã‚Šå€¤
 	
 	ret = weatherSysFogFadeNoReflect( data );
 
-	// fogCount‚ª0ƒe[ƒuƒ‹ƒf[ƒ^‚ğ•ÏX‚µ‚½ƒ^ƒCƒ~ƒ“ƒO
-	// ‚È‚Ì‚Å”½‰f
+	// fogCountãŒ0ï¼ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å¤‰æ›´ã—ãŸã‚¿ã‚¤ãƒŸãƒ³ã‚°
+	// ãªã®ã§åæ˜ 
 	if( data->fogCount == 0 ){
-		SetFogTbl(data->Fog, data->fog_tbl);	// ƒtƒHƒOƒe[ƒuƒ‹ƒZƒbƒg
+		SetFogTbl(data->Fog, data->fog_tbl);	// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚»ãƒƒãƒˆ
 	}
 
 	return ret;
@@ -4739,9 +4739,9 @@ static int weatherSysFogFade(WEATHER_SYS_FOG_FADE* data)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒtƒF[ƒhƒCƒ“Œã‚Éì¬‚³‚ê‚Ä‚¢‚éƒtƒHƒOƒf[ƒ^‚ğì¬‚·‚é
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å¾Œã«ä½œæˆã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
  *
- *	@param	data		ƒtƒHƒOƒtƒF[ƒhƒf[ƒ^
+ *	@param	data		ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *	
  *	@return	none
  *
@@ -4758,39 +4758,39 @@ static void weatherSysFogSet(WEATHER_SYS_FOG_FADE* data)
 	data->FOG_CHG_TMG	= 0;
 	data->FOG_TBL_SUM	= 1;
 
-	// ƒe[ƒuƒ‹ŒvZ
+	// ãƒ†ãƒ¼ãƒ–ãƒ«è¨ˆç®—
 	calcWeatherFogTbl( data );
 /*	do{
-		result = weatherSysFogFadeNoReflect( data );	// ƒtƒHƒOƒe[ƒuƒ‹ì¬
+		result = weatherSysFogFadeNoReflect( data );	// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	}while( result != TRUE );//*/
-	SetFogTbl(data->Fog, data->fog_tbl);	// ƒtƒHƒOƒe[ƒuƒ‹ƒZƒbƒg
+	SetFogTbl(data->Fog, data->fog_tbl);	// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚»ãƒƒãƒˆ
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒtƒHƒOƒtƒF[ƒh		ƒtƒHƒOƒf[ƒ^‚Ì”½‰f‚ğs‚í‚È‚¢ƒo[ƒWƒ‡ƒ“
+ *@brief	ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰		ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿ã®åæ˜ ã‚’è¡Œã‚ãªã„ãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *
- *@param	data		ƒIƒuƒWƒFƒNƒg‚ÌƒtƒF[ƒhƒf[ƒ^
+ *@param	data		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
- *@retval	0			ƒtƒF[ƒh–¢I—¹
- *@retval	1			ƒtƒF[ƒhI—¹
+ *@retval	0			ãƒ•ã‚§ãƒ¼ãƒ‰æœªçµ‚äº†
+ *@retval	1			ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
  *
- * ŠeƒJƒEƒ“ƒ^‚Ì‰Šú‰»‚ğ–‘O‚É‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚·B
- * ƒJƒEƒ“ƒ^‚Íƒ|ƒCƒ“ƒ^QÆ‚È‚Ì‚ÅA‘‚«Š·‚¦‚È‚¢‚æ‚¤‚É‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚è‚Ü‚·B
+ * å„ã‚«ã‚¦ãƒ³ã‚¿ã®åˆæœŸåŒ–ã‚’äº‹å‰ã«ã—ã¦ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+ * ã‚«ã‚¦ãƒ³ã‚¿ã¯ãƒã‚¤ãƒ³ã‚¿å‚ç…§ãªã®ã§ã€æ›¸ãæ›ãˆãªã„ã‚ˆã†ã«ã—ã¦ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  * 
  * 
  */
 //-----------------------------------------------------------------------------
 static int weatherSysFogFadeNoReflect(WEATHER_SYS_FOG_FADE* data)
 {
-	int ret = 0;		// –ß‚è’l
+	int ret = 0;		// æˆ»ã‚Šå€¤
 	
 	if(data->FOG_TBL_SUM == 0){
 		ret = 1;
 	}else{
 	
-		// I—¹‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		// çµ‚äº†ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if(data->fogDepth <= 0){
 			ret = 1;
 		}else{
@@ -4799,14 +4799,14 @@ static int weatherSysFogFadeNoReflect(WEATHER_SYS_FOG_FADE* data)
 			if(data->fogCount >= data->FOG_CHG_TMG){
 				data->fogCount = 0;
 
-				// ƒe[ƒuƒ‹ŒvZ
+				// ãƒ†ãƒ¼ãƒ–ãƒ«è¨ˆç®—
 				calcWeatherFogTbl( data );
 				
 				data->fogDepth--;
-				if(data->fogDepth <= 0){		// I—¹ƒ`ƒFƒbƒN
+				if(data->fogDepth <= 0){		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 					ret = 1;
 				}
-//				SetFogTbl(data->Fog, data->fog_tbl);	// ƒtƒHƒOƒe[ƒuƒ‹ƒZƒbƒg
+//				SetFogTbl(data->Fog, data->fog_tbl);	// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ã‚»ãƒƒãƒˆ
 			}
 		}
 	}
@@ -4817,9 +4817,9 @@ static int weatherSysFogFadeNoReflect(WEATHER_SYS_FOG_FADE* data)
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒtƒHƒOƒe[ƒuƒ‹ì¬ŒvZ
+ *	@brief	ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆè¨ˆç®—
  *
- *	@param	data	ƒtƒHƒOƒtƒF[ƒhƒf[ƒ^
+ *	@param	data	ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -4829,7 +4829,7 @@ static int weatherSysFogFadeNoReflect(WEATHER_SYS_FOG_FADE* data)
 static void calcWeatherFogTbl( WEATHER_SYS_FOG_FADE* data )
 {
 	int i;
-	int fog_num;		// ƒtƒHƒOƒe[ƒuƒ‹ŒvZ—p
+	int fog_num;		// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«è¨ˆç®—ç”¨
 	int fog_calc;
 
 	if( data->FOG_TBL_SUM < 0 ){
@@ -4838,12 +4838,12 @@ static void calcWeatherFogTbl( WEATHER_SYS_FOG_FADE* data )
 		fog_calc = data->fogDepth;
 	}
 
-	// ƒtƒHƒO‚ğ“®‚©‚·		(y=(x*x)/(4*x))
+	// ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™		(y=(x*x)/(4*x))
 	fog_num = fog_calc/4;
 	for(i=31;i>fog_num;i--){
 		data->fog_tbl[i] = ((i-fog_num)*4);
 
-		// 127ˆÈã‚É‚µ‚È‚¢
+		// 127ä»¥ä¸Šã«ã—ãªã„
 		if( data->fog_tbl[i] > 127 ){
 			data->fog_tbl[i] = 127;
 		}
@@ -4854,16 +4854,16 @@ static void calcWeatherFogTbl( WEATHER_SYS_FOG_FADE* data )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BGƒ¿ƒtƒF[ƒhŒvZŠÖ”
+ *	@brief	BGÎ±ãƒ•ã‚§ãƒ¼ãƒ‰è¨ˆç®—é–¢æ•°
  *
- *	@param	now_alpha		Œ»İ‚Ìƒ¿’l
- *	@param	end_alpha		ƒtƒF[ƒhI—¹ƒ¿’l
- *	@param	add_alpha		‘«‚·ƒ¿’l
- *	@param	timing_count	ƒ^ƒCƒ~ƒ“ƒOƒJƒEƒ“ƒ^
- *	@param	add_timing		‘«‚·ƒ^ƒCƒ~ƒ“ƒO
+ *	@param	now_alpha		ç¾åœ¨ã®Î±å€¤
+ *	@param	end_alpha		ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†Î±å€¤
+ *	@param	add_alpha		è¶³ã™Î±å€¤
+ *	@param	timing_count	ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚«ã‚¦ãƒ³ã‚¿
+ *	@param	add_timing		è¶³ã™ã‚¿ã‚¤ãƒŸãƒ³ã‚°
  *
- *	@retval	TRUE		³í
- *	@retval	FALSE		ƒtƒF[ƒhI—¹
+ *	@retval	TRUE		æ­£å¸¸
+ *	@retval	FALSE		ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†
  *
  *
  */
@@ -4901,22 +4901,22 @@ static BOOL weatherBGFade( s32* now_alpha, const int end_alpha, const int add_al
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	“V‹C‚ÌƒIƒuƒWƒFƒNƒg‚ğ•ª•z‚³‚¹‚é
+ *	@brief	å¤©æ°—ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’åˆ†å¸ƒã•ã›ã‚‹
  *
- *	@param	pWork			ƒ[ƒN
- *	@param	add_func		ƒIƒuƒWƒFƒNƒg“o˜^ŠÖ”ƒ|ƒCƒ“ƒ^
- *	@param	num				“o˜^”
- *	@param	dust_div_num	‰½ƒIƒuƒWƒFƒNƒg‚²‚Æ‚É“®ì”‚ğ•ÏX‚·‚é‚©
- *	@param	dust_div_move	ŠeƒIƒuƒWƒFƒNƒg‚Ì“®ì”‚ğ‚Ç‚Ì‚­‚ç‚¢—£‚·‚©
- *	@param	move_func		“®ìŠÖ”
+ *	@param	pWork			ãƒ¯ãƒ¼ã‚¯
+ *	@param	add_func		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
+ *	@param	num				ç™»éŒ²æ•°
+ *	@param	dust_div_num	ä½•ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã”ã¨ã«å‹•ä½œæ•°ã‚’å¤‰æ›´ã™ã‚‹ã‹
+ *	@param	dust_div_move	å„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‹•ä½œæ•°ã‚’ã©ã®ãã‚‰ã„é›¢ã™ã‹
+ *	@param	move_func		å‹•ä½œé–¢æ•°
  *
  *	@return	none
  *
- * num•ª‚ÌƒIƒuƒWƒFƒNƒg‚ğ“o˜^‚µA0”Ô–Ú‚ÌƒIƒuƒWƒFƒNƒg‚©‚çdust_div_move‰ñ”•ª
- * ‘½‚­ƒIƒuƒWƒFƒNƒg‚ğ“®ì‚³‚¹‚é
- * 0”Ô–Ú‚ÌƒIƒuƒWƒFƒNƒg@0
- * 1”Ô–Ú‚ÌƒIƒuƒWƒFƒNƒg	dust_div_move
- * 2”Ô–Ú‚ÌƒIƒuƒWƒFƒNƒg	dust_div_move * 2
+ * numåˆ†ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²ã—ã€0ç•ªç›®ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‹ã‚‰dust_div_moveå›æ•°åˆ†
+ * å¤šãã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‹•ä½œã•ã›ã‚‹
+ * 0ç•ªç›®ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€€0
+ * 1ç•ªç›®ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ	dust_div_move
+ * 2ç•ªç›®ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ	dust_div_move * 2
  * ....
  *
  */
@@ -4929,17 +4929,17 @@ static void weatherDustObj( WEATHER_SYS_WORK* pWork, OBJADD_FUNC add_func, int n
 	WAETHER_OBJ_DATA* obj;
 	WAETHER_OBJ_DATA* obj_next;
 	
-	// ƒIƒuƒWƒFƒNƒg“o˜^
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²
 	add_func( pWork, num );
 
 
-	// ƒIƒuƒWƒFƒNƒg‚ği‚ß‚é
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é€²ã‚ã‚‹
 	move_num = 0;
 	obj = pWork->Dummy.pNext;
 	obj_next = obj->pNext;
 	for( i=0; i<num; i++ ){	
 		
-		// “o˜^¸”s‚µ‚Ä‚¢‚é‚Æ‚«‚Ínum•ª‚ÌƒIƒuƒWƒFƒNƒg‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¢
+		// ç™»éŒ²å¤±æ•—ã—ã¦ã„ã‚‹ã¨ãã¯numåˆ†ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã„
 		if( obj == &pWork->Dummy ){
 			break;
 		}
@@ -4947,17 +4947,17 @@ static void weatherDustObj( WEATHER_SYS_WORK* pWork, OBJADD_FUNC add_func, int n
 		for( j=0; j<move_num; j++ ){
 			move_func( obj );
 
-			// ”jŠü‚³‚ê‚½‚çI‚í‚è
+			// ç ´æ£„ã•ã‚ŒãŸã‚‰çµ‚ã‚ã‚Š
 			if( obj->work == NULL ){
 				break;
 			}
 		}
 
-		// Ÿ‚Ö
+		// æ¬¡ã¸
 		obj = obj_next;
-		obj_next = obj->pNext;	// move_func“à‚ÅƒIƒuƒWƒFƒNƒg‚ª”jŠü‚³‚ê‚é‚±‚Æ‚à‚ ‚é‚½‚ßAŸ‚ÌƒIƒuƒWƒFƒNƒgƒ|ƒCƒ“ƒ^‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+		obj_next = obj->pNext;	// move_funcå†…ã§ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç ´æ£„ã•ã‚Œã‚‹ã“ã¨ã‚‚ã‚ã‚‹ãŸã‚ã€æ¬¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒã‚¤ãƒ³ã‚¿ã‚’ä¿å­˜ã—ã¦ãŠã
 
-		// “®ì”•ÏXŒvZ
+		// å‹•ä½œæ•°å¤‰æ›´è¨ˆç®—
 		if( i >= dust_div_num ){
 			if( (i % dust_div_num) == 0 ){
 				move_num += dust_div_move;
@@ -4969,11 +4969,11 @@ static void weatherDustObj( WEATHER_SYS_WORK* pWork, OBJADD_FUNC add_func, int n
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒJƒ‰‚ÌƒIƒuƒWƒFƒNƒgƒf[ƒ^”z—ñ—v‘f‚ğæ“¾
+ *	@brief	ã‚«ãƒ©ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ—è¦ç´ ã‚’å–å¾—
  *
- *	@param	pWork	“V‹CƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	pWork	å¤©æ°—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	WAETHER_OBJ_DATA	ƒIƒuƒWƒFƒf[ƒ^
+ *	@return	WAETHER_OBJ_DATA	ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -4993,12 +4993,12 @@ static WAETHER_OBJ_DATA* getCleanObjData( WEATHER_SYS_WORK* pWork )
 }
 
 //----------------------------------------------------------------------------
-//	ƒvƒ‰ƒCƒx[ƒgŠÖ”
-//		‚¨“V‹CŠÇ—ƒ^ƒXƒNŒS	
+//	ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
+//		ãŠå¤©æ°—ç®¡ç†ã‚¿ã‚¹ã‚¯éƒ¡	
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ_ƒ~[“V‹C
+ *	@brief	ãƒ€ãƒŸãƒ¼å¤©æ°—
  *	@param	tcb
  *	@param	work
  *	@return
@@ -5008,30 +5008,30 @@ static void contWeatherDummy(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
 
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
 
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
 		
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
-		// I—¹ƒ`ƒFƒbƒN
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		sys_work->Sequence = WEATHER_SEQ_DEST;
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
 			stopWeatherWork_local(p_wsd);
@@ -5046,10 +5046,10 @@ static void contWeatherDummy(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰JŠÇ—ƒ^ƒXƒN
+ *@brief	é›¨ç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -5058,21 +5058,21 @@ static void contWeatherDummy(TCB_PTR tcb, void* work)
 static void contWeatherRain(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	WEATHER_SYSW_NORMAL*	sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	int		result;		// ŠÖ”Œ‹‰Ê
-	int	fog_result;	// ƒtƒHƒOŒ‹‰Ê
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	WEATHER_SYSW_NORMAL*	sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		result;		// é–¢æ•°çµæœ
+	int	fog_result;	// ãƒ•ã‚©ã‚°çµæœ
 	
-	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;
 	
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 		
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh—p
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ç”¨
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
 			WEATHER_RAIN_ADD_START,
 			WEATHER_RAIN_TIMING_MAX,
@@ -5083,7 +5083,7 @@ static void contWeatherRain(TCB_PTR tcb, void* work)
 			WEATHER_RAIN_ADD,
 			addWeatherRain );
 
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_FOG_SLOPE_DEFAULT, 
@@ -5092,38 +5092,38 @@ static void contWeatherRain(TCB_PTR tcb, void* work)
 				WEATHER_RAIN_FOG_TIMING,
 				sys_work->fog_use );
 
-		sys_w->work[0] = WEATHER_RAIN_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
+		sys_w->work[0] = WEATHER_RAIN_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 
-		// ‰¹
+		// éŸ³
 		WeatherLoopSndPlay( sys_work, SEQ_SE_DP_T_AME );	
 		
-		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰
 //		G2_SetBlendAlpha(GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG0, 4,16);
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 	
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1) && (result == 3)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1) && (result == 3)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 			}
 		}
 		break;
 
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh—p
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ç”¨
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
 			WEATHER_RAIN_ADD_MAIN,
 			WEATHER_RAIN_TIMING_MIN,
@@ -5134,68 +5134,68 @@ static void contWeatherRain(TCB_PTR tcb, void* work)
 			WEATHER_RAIN_ADD,
 			addWeatherRain );
 
-		// ƒtƒHƒOƒf[ƒ^İ’è
+		// ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG_SLOPE_DEFAULT, WEATHER_FOG_DEPTH_DEFAULT + WEATHER_RAIN_FOG_OFS, GX_RGB(26,26,26) );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 		
-		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh
+		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰
 //		G2_SetBlendAlpha(GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG0, 4,16);
 
-		// ‰JƒIƒuƒWƒFƒNƒg‚ğU‚ç‚Î‚·
+		// é›¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•£ã‚‰ã°ã™
 		weatherDustObj( sys_work, addWeatherRain, WEATHER_RAIN_NOFADE_OBJ_START_NUM, WEATHER_RAIN_NOFADE_OBJ_START_DUST_NUM, WEATHER_RAIN_NOFADE_OBJ_START_DUST_MOVE, objWeatherRain );
 
-		// ‰¹
+		// éŸ³
 		WeatherLoopSndPlay( sys_work, SEQ_SE_DP_T_AME );	
 		
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
 		
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		
-		// ƒJƒEƒ“ƒ^‚ª0‚¢‚©‚É‚È‚Á‚½‚ç‰J“o˜^
+		// ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã„ã‹ã«ãªã£ãŸã‚‰é›¨ç™»éŒ²
 		if(sys_w->objFade.objAddTmg-- <= 0){
 
-			// ‰J“o˜^
+			// é›¨ç™»éŒ²
 			addWeatherRain(sys_work, sys_w->objFade.objAddNum);
 	
-			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒZƒbƒg	
+			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚»ãƒƒãƒˆ	
 		}
 
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			// obj
-			// ƒtƒF[ƒhƒAƒEƒgİ’è
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆè¨­å®š
 			weatherSysObjFadeOutSet( &sys_w->objFade,
 					0,
 					WEATHER_RAIN_TIMING_MAX,
 					WEATHER_RAIN_TIMING_ADD,
 					-WEATHER_RAIN_ADD );
 			
-			// ƒtƒHƒO
+			// ãƒ•ã‚©ã‚°
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_RAIN_FOG_TIMING_END, FALSE );
 			}
-			sys_w->work[0] = WEATHER_RAIN_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p
+			sys_w->work[0] = WEATHER_RAIN_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 
-			// ‰¹
+			// éŸ³
 			WeatherLoopSndStop( sys_work );
 		}
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 	
-		// ƒtƒHƒO‘€ì
+		// ãƒ•ã‚©ã‚°æ“ä½œ
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 		
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
@@ -5205,20 +5205,20 @@ static void contWeatherRain(TCB_PTR tcb, void* work)
 			}
 		
 			if((fog_result == 1) && (result == 3)){
-				// “o˜^”‚ª‚O‚É‚È‚Á‚½‚çI—¹‚·‚é‚©ƒ`ƒFƒbƒN
-				// ©•ª‚ÌŠÇ—‚·‚é‚ ‚ß‚ª‘S‚Ä”jŠü‚³‚ê‚½‚çI—¹
+				// ç™»éŒ²æ•°ãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+				// è‡ªåˆ†ã®ç®¡ç†ã™ã‚‹ã‚ã‚ãŒå…¨ã¦ç ´æ£„ã•ã‚ŒãŸã‚‰çµ‚äº†
 				if(sys_work->Dummy.pNext == &sys_work->Dummy){
 					
-					// ƒV[ƒPƒ“ƒX•ÏX
+					// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 					sys_work->Sequence = WEATHER_SEQ_DEST;
 				}
 			}
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -5231,7 +5231,7 @@ static void contWeatherRain(TCB_PTR tcb, void* work)
 		break;
 	}
 
-	// ‰Šú‰»A”jŠüˆÈŠO‚Ì‚Æ‚«‚ÍƒIƒuƒWƒFƒNƒg‚ğ“®ì‚³‚¹‚é
+	// åˆæœŸåŒ–ã€ç ´æ£„ä»¥å¤–ã®ã¨ãã¯ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‹•ä½œã•ã›ã‚‹
 	if((sys_work->Sequence != WEATHER_SEQ_DEST) &&
 		(sys_work->Sequence != WEATHER_SEQ_INIT) ){
 
@@ -5244,63 +5244,63 @@ static void contWeatherRain(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰JƒIƒuƒWƒFƒNƒg“o˜^ŠÖ”
+ *@brief	é›¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²é–¢æ•°
  *
- *@param	pWork		“o˜^‚·‚éƒIƒuƒWƒF‚ÌŠÇ—ŠÖ”ƒ[ƒN
- *@param	num			“o˜^‚·‚é”
+ *@param	pWork		ç™»éŒ²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®ç®¡ç†é–¢æ•°ãƒ¯ãƒ¼ã‚¯
+ *@param	num			ç™»éŒ²ã™ã‚‹æ•°
  *
  *@return	none
  *
- *	“à—e
- *		num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
- *		‰J—p‚Éƒ[ƒN—Ìˆæ‚ğ‰Šú‰»
+ *	å†…å®¹
+ *		numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
+ *		é›¨ç”¨ã«ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’åˆæœŸåŒ–
  *
  */
 //-----------------------------------------------------------------------------
 static void addWeatherRain(WEATHER_SYS_WORK* pWork, int num)
 {
-	int i;		// ƒ‹[ƒv—p
-	WAETHER_OBJ_DATA* add_obj;		// “o˜^ƒIƒuƒWƒF
-	int	err;	// •â³’l
-	s32* obj_w;	// ƒIƒuƒWƒFƒNƒgƒ[ƒN
-	int frame;	// •`‰æƒtƒŒ[ƒ€
-	VecFx32	mat;	// İ’èÀ•W
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	WAETHER_OBJ_DATA* add_obj;		// ç™»éŒ²ã‚ªãƒ–ã‚¸ã‚§
+	int	err;	// è£œæ­£å€¤
+	s32* obj_w;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+	int frame;	// æç”»ãƒ•ãƒ¬ãƒ¼ãƒ 
+	VecFx32	mat;	// è¨­å®šåº§æ¨™
 	u32 rand;
 	
-	// num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
+	// numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
 	for(i=0;i<num;i++){
 
-		add_obj = addObj(pWork, sizeof(s32)*8);		// “o˜^
-		if(add_obj == NULL){			// ¸”s‚µ‚½‚çI—¹
+		add_obj = addObj(pWork, sizeof(s32)*8);		// ç™»éŒ²
+		if(add_obj == NULL){			// å¤±æ•—ã—ãŸã‚‰çµ‚äº†
 			break;
 		}
-		obj_w = (s32*)add_obj->work;		// ƒIƒuƒWƒFƒ[ƒNì¬
+		obj_w = (s32*)add_obj->work;		// ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 
-		// —”æ“¾
+		// ä¹±æ•°å–å¾—
 		rand = gf_mtRand();
 		
-		// —Ìˆæ‚ğ‰Šú‰»
-		obj_w[0] = 0;			// ƒJƒEƒ“ƒ^
-		frame = rand%3;	// ‰J‚Ìí—Ş
+		// é ˜åŸŸã‚’åˆæœŸåŒ–
+		obj_w[0] = 0;			// ã‚«ã‚¦ãƒ³ã‚¿
+		frame = rand%3;	// é›¨ã®ç¨®é¡
 		CLACT_AnmFrameSet(add_obj->clact_w, frame);
 
 		err = (rand % WEATHER_RAIN_SPEED_ERR);
 		obj_w[2] = WEATHER_RAIN_SPEED_Y * (frame+1) + err;
-		if(frame == 2){		// ˆê”Ô‘O‚Ì‰J‚ÍƒXƒs[ƒh‚ğ‚P’iŠKã‚°‚é
+		if(frame == 2){		// ä¸€ç•ªå‰ã®é›¨ã¯ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’ï¼‘æ®µéšä¸Šã’ã‚‹
 			obj_w[2] += WEATHER_RAIN_SPEED_Y;
 		}
 		
 		err /= WEATHER_RAIN_SPEED_X;
 		obj_w[4] = WEATHER_RAIN_SPEED_X * (frame+1) + err;
-		if(frame == 2){		// ˆê”Ô‘O‚Ì‰J‚ÍƒXƒs[ƒh‚ğ‚P’iŠKã‚°‚é
+		if(frame == 2){		// ä¸€ç•ªå‰ã®é›¨ã¯ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’ï¼‘æ®µéšä¸Šã’ã‚‹
 			obj_w[4] += WEATHER_RAIN_SPEED_X;
 		}
-		obj_w[3] = 0;			// ”jŠüƒAƒjƒƒtƒ‰ƒO
+		obj_w[3] = 0;			// ç ´æ£„ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
 		
-		// ”jŠüƒ^ƒCƒ~ƒ“ƒO	‘S•”‹¤’Ê‚Ì”ÍˆÍ‚Ì’l
+		// ç ´æ£„ã‚¿ã‚¤ãƒŸãƒ³ã‚°	å…¨éƒ¨å…±é€šã®ç¯„å›²ã®å€¤
 		obj_w[1] = WEATHER_RAIN_END_MIN  + (rand % WEATHER_RAIN_END_MAX);
 		
-		// À•W‚ğİ’è
+		// åº§æ¨™ã‚’è¨­å®š
 		mat.x = ( WEATHER_RAIN_START_X_BASE + (frame * WEATHER_RAIN_MUL_X) + (rand % WEATHER_RAIN_START_X_MAX) ) << FX32_SHIFT;
 		mat.y = WEATHER_RAIN_START_Y << FX32_SHIFT;
 		mat.z = 0;	
@@ -5311,9 +5311,9 @@ static void addWeatherRain(WEATHER_SYS_WORK* pWork, int num)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰JƒIƒuƒWƒFƒNƒg“®ìŠÖ”
+ *@brief	é›¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œé–¢æ•°
  *
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -5325,43 +5325,43 @@ static void objWeatherRain(WAETHER_OBJ_DATA* work)
 	int i;
 	WAETHER_OBJ_DATA* p_obj = work;
 	s32*	obj_w = (s32*)p_obj->work;
-	VecFx32 mat;	// À•W
+	VecFx32 mat;	// åº§æ¨™
 
 	mat = getObjMat(p_obj);
 	
-	// “®ìƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+	// å‹•ä½œãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 	switch(obj_w[3]){
-	case 0:		// “®ì
-		// “®‚©‚·
+	case 0:		// å‹•ä½œ
+		// å‹•ã‹ã™
 		mat.x += (obj_w[4]*2) << FX32_SHIFT;
 		mat.y += (obj_w[2]*2) << FX32_SHIFT;
 	
-		// ”jŠü‚·‚é‚©ƒ`ƒFƒbƒN
+		// ç ´æ£„ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		obj_w[0] += 2;
 		if(obj_w[0] > obj_w[1]){
-			// ƒAƒjƒ[ƒVƒ‡ƒ“‚³‚¹‚é‚©ƒ`ƒFƒbƒN
-			if((gf_mtRand() % 10) < 7){		// 7/10‚Í”jŠü
-				// ”jŠü
+			// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+			if((gf_mtRand() % 10) < 7){		// 7/10ã¯ç ´æ£„
+				// ç ´æ£„
 				obj_w[3] = 2;
 			}else{
 			
-				// ”jŠüƒAƒjƒ
+				// ç ´æ£„ã‚¢ãƒ‹ãƒ¡
 				obj_w[3] = 1;		
-				obj_w[0] = 4;			// ”jŠüƒAƒjƒƒJƒEƒ“ƒ^
+				obj_w[0] = 4;			// ç ´æ£„ã‚¢ãƒ‹ãƒ¡ã‚«ã‚¦ãƒ³ã‚¿
 				CLACT_AnmFrameSet(p_obj->clact_w, 3);
 			}
 		}
-		// À•Wİ’è
+		// åº§æ¨™è¨­å®š
 		setClactMatrix(p_obj->clact_w, &mat);
 
 		break;
-	case 1:		// ”jŠüƒAƒjƒ
+	case 1:		// ç ´æ£„ã‚¢ãƒ‹ãƒ¡
 		if(obj_w[0]-- <= 0){
-			obj_w[3] = 2;		// ”jŠü
+			obj_w[3] = 2;		// ç ´æ£„
 		}
 		break;
 
-	case 2:		// ”jŠü
+	case 2:		// ç ´æ£„
 		destObj(p_obj);
 		break;
 	}		
@@ -5370,10 +5370,10 @@ static void objWeatherRain(WAETHER_OBJ_DATA* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	áŠÇ—ƒ^ƒXƒN
+ *@brief	é›ªç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -5382,19 +5382,19 @@ static void objWeatherRain(WAETHER_OBJ_DATA* work)
 static void contWeatherSnow(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	int		tmp_y;		// yÀ•W•Û‘¶—p
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	int		tmp_y;		// yåº§æ¨™ä¿å­˜ç”¨
 	WEATHER_SYSW_NORMAL*	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;
-	int		result;		// ŠÖ”Œ‹‰Ê
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
+	int		result;		// é–¢æ•°çµæœ
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
 	
 
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 		
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
 			1,
 			WEATHER_SNOW_TIMING_MAX,
@@ -5405,9 +5405,9 @@ static void contWeatherSnow(TCB_PTR tcb, void* work)
 			WEATHER_SNOW_ADD,
 			addWeatherSnow );
 		
-		sys_w->work[1] = 0;							// á‚ª‚P‰ñ‰º‚Ü‚Ås‚Á‚½‚©‚Ìƒtƒ‰ƒO
+		sys_w->work[1] = 0;							// é›ªãŒï¼‘å›ä¸‹ã¾ã§è¡Œã£ãŸã‹ã®ãƒ•ãƒ©ã‚°
 		
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_FOG_SLOPE_DEFAULT, 
@@ -5415,32 +5415,32 @@ static void contWeatherSnow(TCB_PTR tcb, void* work)
 				GX_RGB(26,26,26),
 				WEATHER_SNOW_FOG_TIMING,
 				sys_work->fog_use );
-		sys_w->work[0] = WEATHER_SNOW_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
+		sys_w->work[0] = WEATHER_SNOW_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 	
 //		G2_SetBlendAlpha(GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG0, 8, 16);
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1) && (result == 3)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1) && (result == 3)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 			}
 		}
 		break;
 	case WEATHER_SEQ_NO_FADE:
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
 			WEATHER_SNOW_MAIN,
 			WEATHER_SNOW_TIMING_MIN,
@@ -5451,36 +5451,36 @@ static void contWeatherSnow(TCB_PTR tcb, void* work)
 			WEATHER_SNOW_ADD,
 			addWeatherSnow );
 		
-		sys_w->work[1] = 0;							// á‚ª‚P‰ñ‰º‚Ü‚Ås‚Á‚½‚©‚Ìƒtƒ‰ƒO
-		sys_w->work[2] = 0;							// ©“®”jŠüƒtƒ‰ƒO
+		sys_w->work[1] = 0;							// é›ªãŒï¼‘å›ä¸‹ã¾ã§è¡Œã£ãŸã‹ã®ãƒ•ãƒ©ã‚°
+		sys_w->work[2] = 0;							// è‡ªå‹•ç ´æ£„ãƒ•ãƒ©ã‚°
 		
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG_SLOPE_DEFAULT, WEATHER_FOG_DEPTH_DEFAULT + WEATHER_SNOW_FOG_OFS, GX_RGB(26,26,26) );
 
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 
 //		G2_SetBlendAlpha(GX_BLEND_PLANEMASK_OBJ, GX_BLEND_PLANEMASK_BG0, 8, 16);
-		// ƒIƒuƒWƒFƒNƒg‚ğU‚ç‚Î‚·
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•£ã‚‰ã°ã™
 		weatherDustObj( sys_work, addWeatherSnow, WEATHER_SNOW_NOFADE_OBJ_START_NUM, WEATHER_SNOW_NOFADE_OBJ_START_DUST_NUM, WEATHER_SNOW_NOFADE_OBJ_START_DUST_MOVE, objWeatherSnow );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		
-		// ƒJƒEƒ“ƒ^‚ª0‚¢‚©‚É‚È‚Á‚½‚ç‰J“o˜^
+		// ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã„ã‹ã«ãªã£ãŸã‚‰é›¨ç™»éŒ²
 		if(sys_w->objFade.objAddTmg-- <= 0){
 
-			// á“o˜^
+			// é›ªç™»éŒ²
 			addWeatherSnow(sys_work, sys_w->objFade.objAddNum);
-			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒZƒbƒg	
+			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚»ãƒƒãƒˆ	
 		}
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			// obj
 			weatherSysObjFadeOutSet( &sys_w->objFade,
@@ -5492,18 +5492,18 @@ static void contWeatherSnow(TCB_PTR tcb, void* work)
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_SNOW_FOG_TIMING_END, FALSE );
 			}
-			sys_w->work[0] = WEATHER_SNOW_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_w->work[0] = WEATHER_SNOW_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 		
-		// ƒtƒHƒO‘€ì
+		// ãƒ•ã‚©ã‚°æ“ä½œ
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 		
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
@@ -5514,23 +5514,23 @@ static void contWeatherSnow(TCB_PTR tcb, void* work)
 		
 			if((fog_result == 1) && (result == 3)){
 
-				// ƒIƒuƒWƒF”jŠüƒtƒ‰ƒOON
+				// ã‚ªãƒ–ã‚¸ã‚§ç ´æ£„ãƒ•ãƒ©ã‚°ON
 				sys_w->work[2] = 1;
 				
-				// “o˜^”‚ª‚O‚É‚È‚Á‚½‚çI—¹‚·‚é‚©ƒ`ƒFƒbƒN
-				// ©•ª‚ÌŠÇ—‚·‚é‚ ‚ß‚ª‘S‚Ä”jŠü‚³‚ê‚½‚çI—¹
+				// ç™»éŒ²æ•°ãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+				// è‡ªåˆ†ã®ç®¡ç†ã™ã‚‹ã‚ã‚ãŒå…¨ã¦ç ´æ£„ã•ã‚ŒãŸã‚‰çµ‚äº†
 				if(sys_work->Dummy.pNext == &sys_work->Dummy){//*/
 					
-					// ƒV[ƒPƒ“ƒX•ÏX
+					// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 					sys_work->Sequence = WEATHER_SEQ_DEST;
 				}
 			}
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -5542,7 +5542,7 @@ static void contWeatherSnow(TCB_PTR tcb, void* work)
 		break;
 	}
 
-	// ‰Šú‰»A”jŠüˆÈŠO‚Ì‚Æ‚«‚Í“®ìŠÖ”‚ğ“®‚©‚·
+	// åˆæœŸåŒ–ã€ç ´æ£„ä»¥å¤–ã®ã¨ãã¯å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™
 	if((sys_work->Sequence != WEATHER_SEQ_DEST) &&
 		(sys_work->Sequence != WEATHER_SEQ_INIT) ){
 
@@ -5556,28 +5556,28 @@ static void contWeatherSnow(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	áƒIƒuƒWƒFƒNƒg“o˜^ŠÖ”
+ *@brief	é›ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²é–¢æ•°
  *
- *@param	pWork		“o˜^‚·‚éƒIƒuƒWƒF‚ÌŠÇ—ŠÖ”ƒ[ƒN
- *@param	num			“o˜^‚·‚é”
+ *@param	pWork		ç™»éŒ²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®ç®¡ç†é–¢æ•°ãƒ¯ãƒ¼ã‚¯
+ *@param	num			ç™»éŒ²ã™ã‚‹æ•°
  *
  *@return	none
  *
- *	“à—e
- *		num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
- *		á—p‚Éƒ[ƒN—Ìˆæ‚ğ‰Šú‰»
+ *	å†…å®¹
+ *		numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
+ *		é›ªç”¨ã«ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’åˆæœŸåŒ–
  *
  */
 //-----------------------------------------------------------------------------
 static void addWeatherSnow(WEATHER_SYS_WORK* pWork, int num)
 {
-	int i;		// ƒ‹[ƒv—p
-	int rand;	// —”
-	WAETHER_OBJ_DATA* add_obj;		// “o˜^ƒIƒuƒWƒF
-	WEATHER_SYSW_NORMAL*	sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	s32*	obj_w;		// ƒIƒuƒWƒFƒNƒgƒ[ƒN
-	int	frame;		// ƒtƒŒ[ƒ€
-	VecFx32	mat;	// À•W
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	int rand;	// ä¹±æ•°
+	WAETHER_OBJ_DATA* add_obj;		// ç™»éŒ²ã‚ªãƒ–ã‚¸ã‚§
+	WEATHER_SYSW_NORMAL*	sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	s32*	obj_w;		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+	int	frame;		// ãƒ•ãƒ¬ãƒ¼ãƒ 
+	VecFx32	mat;	// åº§æ¨™
 
 	sys_w = (WEATHER_SYSW_NORMAL*)pWork->work;
 	
@@ -5585,11 +5585,11 @@ static void addWeatherSnow(WEATHER_SYS_WORK* pWork, int num)
 		num *= 2;
 	}
 	
-	// num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
+	// numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
 	for(i=0;i<num;i++){
 
-		add_obj = addObj(pWork, sizeof(s32)*10);		// “o˜^
-		if(add_obj == NULL){			// ¸”s‚µ‚½‚çI—¹
+		add_obj = addObj(pWork, sizeof(s32)*10);		// ç™»éŒ²
+		if(add_obj == NULL){			// å¤±æ•—ã—ãŸã‚‰çµ‚äº†
 			break;
 		}
 		obj_w = (s32*)add_obj->work;
@@ -5597,16 +5597,16 @@ static void addWeatherSnow(WEATHER_SYS_WORK* pWork, int num)
 		frame = gf_mtRand() % WEATHER_SNOW_OBJ_NUM;
 		CLACT_AnmFrameSet(add_obj->clact_w, frame);
 		
-		obj_w[4] = 10;	// ‰¡‚Ì“®‚­•ûŒü•ÏXƒJƒEƒ“ƒ^	
+		obj_w[4] = 10;	// æ¨ªã®å‹•ãæ–¹å‘å¤‰æ›´ã‚«ã‚¦ãƒ³ã‚¿	
 		obj_w[5] = 0;
-		obj_w[6] = 0;	// ‹P‚«ƒJƒEƒ“ƒ^
-		obj_w[8] = 0;							// ƒV[ƒPƒ“ƒX
+		obj_w[6] = 0;	// è¼ãã‚«ã‚¦ãƒ³ã‚¿
+		obj_w[8] = 0;							// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 		
 		rand = gf_mtRand();
 
-		obj_w[9] = WEATHER_SNOW_OBJ_AUTODEST_TIMING_MIN + (rand % WEATHER_SNOW_OBJ_AUTODEST_TIMING_MAX);		// ©–Å¶³İÀ
+		obj_w[9] = WEATHER_SNOW_OBJ_AUTODEST_TIMING_MIN + (rand % WEATHER_SNOW_OBJ_AUTODEST_TIMING_MAX);		// è‡ªæ»…ã‚«ã‚¦ãƒ³ã‚¿
 	
-		// ƒXƒs[ƒh
+		// ã‚¹ãƒ”ãƒ¼ãƒ‰
 		if((rand % 2) == 0){
 			obj_w[1] = 1;
 		}else{
@@ -5615,14 +5615,14 @@ static void addWeatherSnow(WEATHER_SYS_WORK* pWork, int num)
 		obj_w[2] = WEATHER_SNOW_ADD_TMG_X_BASE + (gf_mtRand() % WEATHER_SNOW_ADD_TMG_X_RAN);
 		obj_w[3] = WEATHER_SNOW_ADD_TMG_Y_BASE + (gf_mtRand() % WEATHER_SNOW_ADD_TMG_Y_RAN);
 
-		obj_w[0] = (s32)&sys_w->work[1];		// ‰º‚Ü‚Ås‚Á‚½‚çƒtƒ‰ƒO‚ğ—§‚Ä‚éƒ|ƒCƒ“ƒ^‚ğ•Û‘¶
-		obj_w[7] = (s32)&sys_w->work[2];		// ”jŠüƒtƒ‰ƒOƒ|ƒCƒ“ƒ^ON
+		obj_w[0] = (s32)&sys_w->work[1];		// ä¸‹ã¾ã§è¡Œã£ãŸã‚‰ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿å­˜
+		obj_w[7] = (s32)&sys_w->work[2];		// ç ´æ£„ãƒ•ãƒ©ã‚°ãƒã‚¤ãƒ³ã‚¿ON
 		
-		// À•W‚ğİ’è
+		// åº§æ¨™ã‚’è¨­å®š
 		mat.x = ( WEATHER_SNOW_START_X_BASE + (gf_mtRand() % WEATHER_SNOW_START_X_MAX) ) << FX32_SHIFT;
 		
 		if((sys_w->work[1] == 1) &&
-			(i >= (num /2)) ){	// ”¼•ªo‚·
+			(i >= (num /2)) ){	// åŠåˆ†å‡ºã™
 			mat.y = ( -40 - (gf_mtRand() % 20)) << FX32_SHIFT;
 		}else{
 			mat.y = ( -8 - (gf_mtRand() % 20) ) <<FX32_SHIFT;
@@ -5633,46 +5633,46 @@ static void addWeatherSnow(WEATHER_SYS_WORK* pWork, int num)
 
 static void objWeatherSnowObjNormal( WAETHER_OBJ_DATA* p_obj, s32* obj_w )
 {
-	VecFx32 mat;	// À•W
-	s32*	p_flg;	// á‚ª‰æ–ÊŠO‚Ös‚Á‚½‚©‚Ìƒtƒ‰ƒO
+	VecFx32 mat;	// åº§æ¨™
+	s32*	p_flg;	// é›ªãŒç”»é¢å¤–ã¸è¡Œã£ãŸã‹ã®ãƒ•ãƒ©ã‚°
 
 	mat = getObjMat(p_obj);
 
-	// “®‚©‚·
-	// XÀ•WˆÚ“®
+	// å‹•ã‹ã™
+	// Xåº§æ¨™ç§»å‹•
 	if(((obj_w[5] & 0xffff) >= obj_w[2])){
 		mat.x	+= obj_w[1] << FX32_SHIFT;
 		obj_w[4]++;
 		obj_w[5] &= 0xffff0000;
-		// ƒXƒs[ƒhƒ`ƒFƒ“ƒWƒƒ[
+		// ã‚¹ãƒ”ãƒ¼ãƒ‰ãƒã‚§ãƒ³ã‚¸ãƒ£ãƒ¼
 		if(obj_w[4] < 10){
 			obj_w[2]--;
 		}else{
 			obj_w[2]++;
 		}
-		if(obj_w[4] >= 20){	// ‚±‚ê‚Å¶‰E‚É‚ä‚ç‚ä‚ç
+		if(obj_w[4] >= 20){	// ã“ã‚Œã§å·¦å³ã«ã‚†ã‚‰ã‚†ã‚‰
 			obj_w[4] = 0;
 			obj_w[1]*=-1;
 		}//*/
 	}
-	// YÀ•WˆÚ“®
+	// Yåº§æ¨™ç§»å‹•
 	if(((obj_w[5] >> 16) >= obj_w[3])){
 		mat.y += FX32_ONE;
 		obj_w[5] &= 0x0000ffff;
 	} 
 
-	// À•Wİ’è
+	// åº§æ¨™è¨­å®š
 	setClactMatrix( p_obj->clact_w, &mat );
 
 	mat.x >>= FX32_SHIFT;
 	mat.y >>= FX32_SHIFT;
 	
-	// ƒJƒEƒ“ƒgİ’è
+	// ã‚«ã‚¦ãƒ³ãƒˆè¨­å®š
 	obj_w[6] = (obj_w[6] + 1) % 100;
 	obj_w[5]++;
 	obj_w[5]+=0x10000;
 
-	// ”jŠüƒ][ƒ“‚É‚¢‚½‚ç”jŠü  
+	// ç ´æ£„ã‚¾ãƒ¼ãƒ³ã«ã„ãŸã‚‰ç ´æ£„  
 	if(((mat.y < -284) && (mat.y > -296)) ||
 		((mat.y > 212) && (mat.y < 232))){
 		p_flg = (s32*)(obj_w[0]);
@@ -5684,9 +5684,9 @@ static void objWeatherSnowObjNormal( WAETHER_OBJ_DATA* p_obj, s32* obj_w )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	á“®ìŠÖ”
+ *@brief	é›ªå‹•ä½œé–¢æ•°
  *
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -5696,17 +5696,17 @@ static void objWeatherSnow(WAETHER_OBJ_DATA* work)
 {
 	WAETHER_OBJ_DATA* p_obj = (WAETHER_OBJ_DATA*)work;
 	s32*	obj_w = (s32*)p_obj->work;
-	s32* p_flg = (s32*)obj_w[7];	// ’†g‚Íƒ|ƒCƒ“ƒ^
+	s32* p_flg = (s32*)obj_w[7];	// ä¸­èº«ã¯ãƒã‚¤ãƒ³ã‚¿
 
 	switch( obj_w[8] ){
 	case 0:
-		// ‚à‚µ@”jŠüƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚ç©“®”jŠü“®‚³‚Ö
+		// ã‚‚ã—ã€€ç ´æ£„ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰è‡ªå‹•ç ´æ£„å‹•ã•ã¸
 		if( *p_flg == 1 ){
 			obj_w[8] ++;
 		}
 		break;
 
-	case 1:	// ¶³İÀ‚ª0‚É‚È‚Á‚½‚ç”jŠü
+	case 1:	// ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã«ãªã£ãŸã‚‰ç ´æ£„
 		obj_w[9] --;
 		if( obj_w[9] < 0 ){
 			destObj(p_obj);
@@ -5715,21 +5715,21 @@ static void objWeatherSnow(WAETHER_OBJ_DATA* work)
 		break;
 	}
 	
-	// ’Êí“®‚³
+	// é€šå¸¸å‹•ã•
 	objWeatherSnowObjNormal( p_obj, obj_w );
 }
 
 
 //-------------------------------------
-//	á
+//	å¹é›ª
 //=====================================
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	áŠÇ—ƒ^ƒXƒN
+ *@brief	å¹é›ªç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -5738,19 +5738,19 @@ static void objWeatherSnow(WAETHER_OBJ_DATA* work)
 static void contWeatherSnowStorm(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	WEATHER_SYSW_NORMAL*	sys_w;		// ƒVƒXƒeƒ€ƒ[ƒN—Ìˆæ
-	int		result;		// ŠÖ”Œ‹‰Ê
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê	
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	WEATHER_SYSW_NORMAL*	sys_w;		// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
+	int		result;		// é–¢æ•°çµæœ
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ	
 	
 	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;
 	
 
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
 			WEATHER_SSNOW_ADD_START,
 			WEATHER_SSNOW_TIMING_MAX,
@@ -5761,7 +5761,7 @@ static void contWeatherSnowStorm(TCB_PTR tcb, void* work)
 			WEATHER_SSNOW_ADD,
 			addWeatherSnowStorm );
 
-		// ƒtƒHƒO‚Ìİ’è		
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š		
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_FOG_SLOPE_DEFAULT, 
@@ -5769,34 +5769,34 @@ static void contWeatherSnowStorm(TCB_PTR tcb, void* work)
 				GX_RGB(24,24,24),
 				WEATHER_SSNOW_FOG_TIMING,
 				sys_work->fog_use );
-		sys_w->work[0] = WEATHER_SSNOW_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
+		sys_w->work[0] = WEATHER_SSNOW_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 	
 		
-		sys_w->work[1] = 0;					// ƒIƒuƒWƒF”ƒJƒEƒ“ƒ^
+		sys_w->work[1] = 0;					// ã‚ªãƒ–ã‚¸ã‚§æ•°ã‚«ã‚¦ãƒ³ã‚¿
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às	
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ	
 		
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1) && (result == 3)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1) && (result == 3)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 			}
 		}	
 		break;
 
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
 			WEATHER_SSNOW_ADD_MAIN,  
 			WEATHER_SSNOW_TIMING_MIN,
@@ -5807,35 +5807,35 @@ static void contWeatherSnowStorm(TCB_PTR tcb, void* work)
 			WEATHER_SSNOW_ADD,
 			addWeatherSnowStorm );
 
-		// ƒtƒHƒO‚Ìİ’è		
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š		
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG_SLOPE_DEFAULT, WEATHER_FOG_DEPTH_DEFAULT + WEATHER_SSNOW_FOG_OFS, GX_RGB(24,24,24) );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 
-		sys_w->work[1] = 0;					// ƒIƒuƒWƒF”ƒJƒEƒ“ƒ^
+		sys_w->work[1] = 0;					// ã‚ªãƒ–ã‚¸ã‚§æ•°ã‚«ã‚¦ãƒ³ã‚¿
 
-		// ƒIƒuƒWƒFƒNƒg‚ğU‚ç‚Î‚·
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•£ã‚‰ã°ã™
 		weatherDustObj( sys_work, addWeatherSnowStorm, WEATHER_SSNOW_NOFADE_OBJ_START_NUM, WEATHER_SSNOW_NOFADE_OBJ_START_DUST_NUM, WEATHER_SSNOW_NOFADE_OBJ_START_DUST_MOVE, objWeatherSnowStorm );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
 
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		
-		// ƒJƒEƒ“ƒ^‚ª0‚¢‚©‚É‚È‚Á‚½‚ç‰J“o˜^
+		// ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã„ã‹ã«ãªã£ãŸã‚‰é›¨ç™»éŒ²
 		if(sys_w->objFade.objAddTmg-- <= 0){
 
-			// á“o˜^
+			// å¹é›ªç™»éŒ²
 			addWeatherSnowStorm(sys_work, sys_w->objFade.objAddNum);
 	
-			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒZƒbƒg	
+			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚»ãƒƒãƒˆ	
 		}
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			// obj
 			weatherSysObjFadeOutSet( &sys_w->objFade,
@@ -5847,17 +5847,17 @@ static void contWeatherSnowStorm(TCB_PTR tcb, void* work)
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_SSNOW_FOG_TIMING_END, FALSE );
 			}
-			sys_w->work[0] = WEATHER_SSNOW_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_w->work[0] = WEATHER_SSNOW_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 
-		// ƒtƒHƒO‘€ì
+		// ãƒ•ã‚©ã‚°æ“ä½œ
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 		
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
@@ -5867,20 +5867,20 @@ static void contWeatherSnowStorm(TCB_PTR tcb, void* work)
 			}
 		
 			if((fog_result == 1) && (result == 3)){
-				// “o˜^”‚ª‚O‚É‚È‚Á‚½‚çI—¹‚·‚é‚©ƒ`ƒFƒbƒN
-				// ©•ª‚ÌŠÇ—‚·‚é‚ ‚ß‚ª‘S‚Ä”jŠü‚³‚ê‚½‚çI—¹
+				// ç™»éŒ²æ•°ãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+				// è‡ªåˆ†ã®ç®¡ç†ã™ã‚‹ã‚ã‚ãŒå…¨ã¦ç ´æ£„ã•ã‚ŒãŸã‚‰çµ‚äº†
 				if(sys_work->Dummy.pNext == &sys_work->Dummy){
 					
-					// ƒV[ƒPƒ“ƒX•ÏX
+					// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 					sys_work->Sequence = WEATHER_SEQ_DEST;
 				}
 			}
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -5892,7 +5892,7 @@ static void contWeatherSnowStorm(TCB_PTR tcb, void* work)
 		break;
 	}
 
-	// ‰Šú‰»A”jŠüˆÈŠO‚Ì‚Æ‚«‚Í“®ìŠÖ”‚ğ“®‚©‚·
+	// åˆæœŸåŒ–ã€ç ´æ£„ä»¥å¤–ã®ã¨ãã¯å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™
 	if((sys_work->Sequence != WEATHER_SEQ_DEST) &&
 		(sys_work->Sequence != WEATHER_SEQ_INIT) ){
 
@@ -5905,45 +5905,45 @@ static void contWeatherSnowStorm(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	áƒIƒuƒWƒFƒNƒg“o˜^ŠÖ”
+ *@brief	å¹é›ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²é–¢æ•°
  *
- *@param	pWork		“o˜^‚·‚éƒIƒuƒWƒF‚ÌŠÇ—ŠÖ”ƒ[ƒN
- *@param	num			“o˜^‚·‚é”
+ *@param	pWork		ç™»éŒ²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®ç®¡ç†é–¢æ•°ãƒ¯ãƒ¼ã‚¯
+ *@param	num			ç™»éŒ²ã™ã‚‹æ•°
  *
  *@return	none
  *
- *	“à—e
- *		num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
- *		‰J—p‚Éƒ[ƒN—Ìˆæ‚ğ‰Šú‰»
+ *	å†…å®¹
+ *		numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
+ *		é›¨ç”¨ã«ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’åˆæœŸåŒ–
  *
  */
 //-----------------------------------------------------------------------------
 static void addWeatherSnowStorm(WEATHER_SYS_WORK* pWork, int num)
 {
-	int i;		// ƒ‹[ƒv—p
-	WAETHER_OBJ_DATA* add_obj;		// “o˜^ƒIƒuƒWƒF
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	WAETHER_OBJ_DATA* add_obj;		// ç™»éŒ²ã‚ªãƒ–ã‚¸ã‚§
 	int tbl_num;
-	WEATHER_SYSW_NORMAL* sys_w;		// ƒVƒXƒeƒ€ƒ[ƒN
-	s32* obj_w;			// ƒIƒuƒWƒFƒNƒgƒ[ƒN
+	WEATHER_SYSW_NORMAL* sys_w;		// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	s32* obj_w;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 	int WEATHER_SSNOW_ADD_SP_TMG[WEATHER_SSNOW_ADD_SP_TMG_NUM] = {16,32,16,10};
-	int WEATHER_SSNOW_SPEED_Y[WEATHER_SSNOW_ADD_SP_TMG_NUM] = {2,2,2,2};	// ‚½‚Ä‚Éi‚ŞƒXƒs[ƒh
-	int frame;	// ƒtƒŒ[ƒ€”
+	int WEATHER_SSNOW_SPEED_Y[WEATHER_SSNOW_ADD_SP_TMG_NUM] = {2,2,2,2};	// ãŸã¦ã«é€²ã‚€ã‚¹ãƒ”ãƒ¼ãƒ‰
+	int frame;	// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 	
 	sys_w = (WEATHER_SYSW_NORMAL*)pWork->work;
 	
 	
 
-	// num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
+	// numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
 	for(i=0;i<num;i++){
 
-		add_obj = addObj(pWork, sizeof(s32)*8);		// “o˜^
-		if(add_obj == NULL){			// ¸”s‚µ‚½‚çI—¹
+		add_obj = addObj(pWork, sizeof(s32)*8);		// ç™»éŒ²
+		if(add_obj == NULL){			// å¤±æ•—ã—ãŸã‚‰çµ‚äº†
 			break;
 		}
 
 		obj_w = (s32*)add_obj->work;
 
-		// •—‚Ì’l‚ğ‹‚ß‚é
+		// é¢¨ã®å€¤ã‚’æ±‚ã‚ã‚‹
 		sys_w->work[1]++;
 		if(sys_w->work[1] >= (WEATHER_SSNOW_ADD_SP_TMG_TMG * WEATHER_SSNOW_ADD_SP_TMG_NUM)){
 			sys_w->work[1] = 0;
@@ -5953,17 +5953,17 @@ static void addWeatherSnowStorm(WEATHER_SYS_WORK* pWork, int num)
 		
 	
 		
-		// —Ìˆæ‚ğ‰Šú‰»
-		obj_w[0] = 0;			// ƒJƒEƒ“ƒ^
-		obj_w[1] = WEATHER_SSNOW_END_MIN + (gf_mtRand() % (WEATHER_SSNOW_END_MAX - WEATHER_SSNOW_END_MIN));	// I—¹ƒJƒEƒ“ƒ^
-		frame = (obj_w[1] - WEATHER_SSNOW_END_MIN) / WEATHER_SSNOW_END_DIV;	// á‚Ìí—Ş
+		// é ˜åŸŸã‚’åˆæœŸåŒ–
+		obj_w[0] = 0;			// ã‚«ã‚¦ãƒ³ã‚¿
+		obj_w[1] = WEATHER_SSNOW_END_MIN + (gf_mtRand() % (WEATHER_SSNOW_END_MAX - WEATHER_SSNOW_END_MIN));	// çµ‚äº†ã‚«ã‚¦ãƒ³ã‚¿
+		frame = (obj_w[1] - WEATHER_SSNOW_END_MIN) / WEATHER_SSNOW_END_DIV;	// å¹é›ªã®ç¨®é¡
 		CLACT_AnmFrameSet(add_obj->clact_w, frame);
 		
 		obj_w[4] = WEATHER_SSNOW_SPEED_X * (frame+1);
-		obj_w[2] = WEATHER_SSNOW_SPEED_Y[tbl_num] * (frame+1);	// ‚½‚ÄƒXƒs[ƒh
-		obj_w[3] = 0;			// ”jŠüƒAƒjƒƒtƒ‰ƒO
+		obj_w[2] = WEATHER_SSNOW_SPEED_Y[tbl_num] * (frame+1);	// ãŸã¦ã‚¹ãƒ”ãƒ¼ãƒ‰
+		obj_w[3] = 0;			// ç ´æ£„ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
 		
-		// À•W‚ğİ’è
+		// åº§æ¨™ã‚’è¨­å®š
 		{
 			VecFx32	mat = getObjMat( add_obj );
 			mat.x = WEATHER_SSNOW_START_X_BASE + (frame * WEATHER_SSNOW_MUL_X) + (gf_mtRand() % WEATHER_SSNOW_START_X_MAX);
@@ -5981,9 +5981,9 @@ static void addWeatherSnowStorm(WEATHER_SYS_WORK* pWork, int num)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	áƒIƒuƒWƒFƒNƒg“®ìŠÖ”
+ *@brief	å¹é›ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œé–¢æ•°
  *
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -5996,20 +5996,20 @@ static void objWeatherSnowStorm(WAETHER_OBJ_DATA* work)
 	s32* obj_w = (s32*)p_obj->work;
 	VecFx32 mat = getObjMat( p_obj );
 	
-	// “®ìƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+	// å‹•ä½œãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 	switch(obj_w[3]){
-	case 0:		// “®ì
+	case 0:		// å‹•ä½œ
 
-		// “®‚©‚·
+		// å‹•ã‹ã™
 		mat.x += obj_w[4] << FX32_SHIFT;
 		mat.y += obj_w[2] << FX32_SHIFT;
 
-		// ”jŠü‚·‚é‚©ƒ`ƒFƒbƒN
+		// ç ´æ£„ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if(obj_w[0]++ > obj_w[1]){
-			// ”jŠü
+			// ç ´æ£„
 			obj_w[3] = 1;
 		}
-		// ƒJƒEƒ“ƒ^‚Å“®‚©‚·’l‚ğ•Ï‰»
+		// ã‚«ã‚¦ãƒ³ã‚¿ã§å‹•ã‹ã™å€¤ã‚’å¤‰åŒ–
 		if((obj_w[0] % obj_w[5]) == 0){
 			obj_w[4]--;
 			
@@ -6022,7 +6022,7 @@ static void objWeatherSnowStorm(WAETHER_OBJ_DATA* work)
 		setClactMatrix(p_obj->clact_w, &mat);
 	
 		break;
-	case 1:		// ”jŠü
+	case 1:		// ç ´æ£„
 		destObj(p_obj);
 		break;
 	}		
@@ -6031,10 +6031,10 @@ static void objWeatherSnowStorm(WAETHER_OBJ_DATA* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	BGg—páŠÇ—ƒ^ƒXƒN
+ *@brief	BGä½¿ç”¨å¹é›ªç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -6043,22 +6043,22 @@ static void objWeatherSnowStorm(WAETHER_OBJ_DATA* work)
 static void contWeatherSnowStormBG(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	WEATHER_SYSW_NORMAL* sys_w;			// ƒVƒXƒeƒ€ƒ[ƒN
-	int		result;		// ŠÖ”Œ‹‰Ê
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	WEATHER_SYSW_NORMAL* sys_w;			// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		result;		// é–¢æ•°çµæœ
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
 	
-	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
 		
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 		
 //		G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG0, 0, 16);
 		
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
 			WEATHER_SSNOW_ADD_START,
 			WEATHER_SSNOW_TIMING_MAX,
@@ -6071,7 +6071,7 @@ static void contWeatherSnowStormBG(TCB_PTR tcb, void* work)
 
 		
 
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_FOG_SLOPE_DEFAULT, 
@@ -6079,22 +6079,22 @@ static void contWeatherSnowStormBG(TCB_PTR tcb, void* work)
 				GX_RGB(24,24,24),
 				WEATHER_SSNOW_FOG_TIMING,
 				sys_work->fog_use );
-		sys_w->work[0] = WEATHER_SSNOW_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
+		sys_w->work[0] = WEATHER_SSNOW_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 	
 		
-		sys_w->work[1] = 0;					// ƒIƒuƒWƒF”ƒJƒEƒ“ƒ^
-		sys_w->work[2] = 0;					// BGƒJƒEƒ“ƒ^
+		sys_w->work[1] = 0;					// ã‚ªãƒ–ã‚¸ã‚§æ•°ã‚«ã‚¦ãƒ³ã‚¿
+		sys_w->work[2] = 0;					// BGã‚«ã‚¦ãƒ³ã‚¿
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 			if(sys_w->work[0] == 0){
 //				G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG0, 1, 16);
 			}
@@ -6102,9 +6102,9 @@ static void contWeatherSnowStormBG(TCB_PTR tcb, void* work)
 			
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1) && (result == 3)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1) && (result == 3)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 //				G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG0, 2, 16);
 			}
@@ -6114,7 +6114,7 @@ static void contWeatherSnowStormBG(TCB_PTR tcb, void* work)
 	case WEATHER_SEQ_NO_FADE:
 //		G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG0, 2, 16);
 		
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
 			WEATHER_SSNOW_ADD_MAIN,  
 			WEATHER_SSNOW_TIMING_MIN,
@@ -6126,37 +6126,37 @@ static void contWeatherSnowStormBG(TCB_PTR tcb, void* work)
 			addWeatherSnowStorm );
 		
 
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG_SLOPE_DEFAULT, WEATHER_FOG_DEPTH_DEFAULT, GX_RGB(24,24,24) );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 	
 		
-		sys_w->work[1] = 0;					// ƒIƒuƒWƒF”ƒJƒEƒ“ƒ^
-		sys_w->work[2] = 0;					// BGƒJƒEƒ“ƒ^
+		sys_w->work[1] = 0;					// ã‚ªãƒ–ã‚¸ã‚§æ•°ã‚«ã‚¦ãƒ³ã‚¿
+		sys_w->work[2] = 0;					// BGã‚«ã‚¦ãƒ³ã‚¿
 
-		// ƒIƒuƒWƒFƒNƒg‚ğU‚ç‚Î‚·
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•£ã‚‰ã°ã™
 		weatherDustObj( sys_work, addWeatherSnowStorm, WEATHER_SSNOW_NOFADE_OBJ_START_NUM, WEATHER_SSNOW_NOFADE_OBJ_START_DUST_NUM, WEATHER_SSNOW_NOFADE_OBJ_START_DUST_MOVE, objWeatherSnowStorm );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
 		
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		
-		// ƒJƒEƒ“ƒ^‚ª0‚¢‚©‚É‚È‚Á‚½‚ç‰J“o˜^
+		// ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã„ã‹ã«ãªã£ãŸã‚‰é›¨ç™»éŒ²
 		if(sys_w->objFade.objAddTmg-- <= 0){
 
-			// á“o˜^
+			// å¹é›ªç™»éŒ²
 			addWeatherSnowStorm(sys_work, sys_w->objFade.objAddNum);
 	
-			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒZƒbƒg	
+			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚»ãƒƒãƒˆ	
 		}
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			// obj
 			weatherSysObjFadeOutSet( &sys_w->objFade,
@@ -6169,18 +6169,18 @@ static void contWeatherSnowStormBG(TCB_PTR tcb, void* work)
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_SSNOW_FOG_TIMING_END, FALSE );
 			}
-			sys_w->work[0] = WEATHER_SSNOW_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_w->work[0] = WEATHER_SSNOW_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 
-		// ƒtƒHƒO‘€ì
+		// ãƒ•ã‚©ã‚°æ“ä½œ
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 			if(sys_w->work[0] == 0){
 //				G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG0, 1, 16);
 			}
@@ -6193,21 +6193,21 @@ static void contWeatherSnowStormBG(TCB_PTR tcb, void* work)
 			}
 		
 			if((fog_result == 1) && (result == 3)){
-				// “o˜^”‚ª‚O‚É‚È‚Á‚½‚çI—¹‚·‚é‚©ƒ`ƒFƒbƒN
-				// ©•ª‚ÌŠÇ—‚·‚é‚ ‚ß‚ª‘S‚Ä”jŠü‚³‚ê‚½‚çI—¹
+				// ç™»éŒ²æ•°ãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+				// è‡ªåˆ†ã®ç®¡ç†ã™ã‚‹ã‚ã‚ãŒå…¨ã¦ç ´æ£„ã•ã‚ŒãŸã‚‰çµ‚äº†
 				if(sys_work->Dummy.pNext == &sys_work->Dummy){
 					
 //					G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG0, 0, 16);
-					// ƒV[ƒPƒ“ƒX•ÏX
+					// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 					sys_work->Sequence = WEATHER_SEQ_DEST;
 				}
 			}
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -6219,7 +6219,7 @@ static void contWeatherSnowStormBG(TCB_PTR tcb, void* work)
 		break;
 	}
 
-	// ‰Šú‰»A”jŠüˆÈŠO‚Ì‚Æ‚«‚Í“®ìŠÖ”‚ğ“®‚©‚·
+	// åˆæœŸåŒ–ã€ç ´æ£„ä»¥å¤–ã®ã¨ãã¯å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™
 	if((sys_work->Sequence != WEATHER_SEQ_DEST) &&
 		(sys_work->Sequence != WEATHER_SEQ_INIT) ){
 
@@ -6227,7 +6227,7 @@ static void contWeatherSnowStormBG(TCB_PTR tcb, void* work)
 		scrollObj(sys_work, NULL, NULL);
 		drawObj(sys_work);
 
-		// BG–Ê‚ğÎ‚ßã‚É“®‚©‚·
+		// BGé¢ã‚’æ–œã‚ä¸Šã«å‹•ã‹ã™
 		sys_w->work[2] = (sys_w->work[2] + 6) % 256;
 		G2_SetBG2Offset(sys_w->work[2],-sys_w->work[2]);
 
@@ -6237,15 +6237,15 @@ static void contWeatherSnowStormBG(TCB_PTR tcb, void* work)
 
 
 //---------------------------------------------------------
-//		–¶
+//		éœ§
 //=========================================================
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	–¶ŠÇ—ƒ^ƒXƒN
+ *@brief	éœ§ç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -6254,16 +6254,16 @@ static void contWeatherSnowStormBG(TCB_PTR tcb, void* work)
 static void contWeatherFog00(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	WEATHER_STSW_FOGFADE* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
-	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	WEATHER_STSW_FOGFADE* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
+	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
 
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
-		// ƒtƒHƒO‚Ìİ’è
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_FOG_SLOPE_DEFAULT, 
@@ -6271,52 +6271,52 @@ static void contWeatherFog00(TCB_PTR tcb, void* work)
 				GX_RGB(26,26,26),
 				WEATHER_FOG_TIMING,
 				sys_work->fog_use );
-		sys_w->work[0] = WEATHER_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
+		sys_w->work[0] = WEATHER_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 			}
 		}	
 		break;
 	case WEATHER_SEQ_NO_FADE:
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG_SLOPE_DEFAULT, WEATHER_FOG_DEPTH_DEFAULT + WEATHER_FOG0_OFS, GX_RGB(26,26,26) );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
-		// I—¹ƒ`ƒFƒbƒN
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_FOG_TIMING_END, FALSE );
 			}
-			sys_w->work[0] = WEATHER_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_w->work[0] = WEATHER_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
 		
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				fog_result = weatherSysFogFade(&sys_w->fogFade);
@@ -6324,17 +6324,17 @@ static void contWeatherFog00(TCB_PTR tcb, void* work)
 				fog_result = 1;
 			}
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎI—¹‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°çµ‚äº†ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_DEST;
 			}
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -6350,10 +6350,10 @@ static void contWeatherFog00(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	–¶ŠÇ—ƒ^ƒXƒN
+ *@brief	éœ§ç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -6362,17 +6362,17 @@ static void contWeatherFog00(TCB_PTR tcb, void* work)
 static void contWeatherFog01(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	WEATHER_STSW_FOGFADE* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
-	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	WEATHER_STSW_FOGFADE* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
+	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
 		
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
-		// ƒtƒHƒO‚Ìİ’è
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_FOG1_SLOPE, 
@@ -6380,54 +6380,54 @@ static void contWeatherFog01(TCB_PTR tcb, void* work)
 				GX_RGB(26,26,26),
 				WEATHER_FOG_TIMING,
 				sys_work->fog_use );
-		sys_w->work[0] = WEATHER_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
-		// ƒV[ƒPƒ“ƒX•ÏX
+		sys_w->work[0] = WEATHER_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 			}
 		}
 		break;
 	case WEATHER_SEQ_NO_FADE:
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG1_SLOPE, WEATHER_FOG_DEPTH_DEFAULT + WEATHER_FOG1_OFS, GX_RGB(26,26,26) );
 
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
-		// I—¹ƒ`ƒFƒbƒN
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_FOG_TIMING_END, FALSE );
 			}
-			sys_w->work[0] = WEATHER_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_w->work[0] = WEATHER_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
 		
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				fog_result = weatherSysFogFade(&sys_w->fogFade);	
@@ -6435,17 +6435,17 @@ static void contWeatherFog01(TCB_PTR tcb, void* work)
 				fog_result = 1;
 			}
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎI—¹‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°çµ‚äº†ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_DEST;
 			}
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -6461,10 +6461,10 @@ static void contWeatherFog01(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	–¶ŠÇ—ƒ^ƒXƒN
+ *@brief	éœ§ç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -6473,15 +6473,15 @@ static void contWeatherFog01(TCB_PTR tcb, void* work)
 static void contWeatherFog02(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_KIRI_HARAI_WORK* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
+	WEATHER_KIRI_HARAI_WORK* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
 	BOOL	alpha_result;
-	sys_w = (WEATHER_KIRI_HARAI_WORK*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_KIRI_HARAI_WORK*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
-		// ƒtƒHƒO‚Ìİ’è
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_FOG2_SLOPE, 
@@ -6495,30 +6495,30 @@ static void contWeatherFog02(TCB_PTR tcb, void* work)
 		G2_SetBG2Priority(3);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		
 		fog_result = weatherSysFogFade(&sys_w->fogFade);
 
 		alpha_result = WeatherMoveMain( &sys_w->alpha );
 		WeatherBGAlphaDef(sys_w->alpha.x, 16 - sys_w->alpha.x);
 		
-		// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-		if((fog_result == 1) && (alpha_result == TRUE)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-			// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+		if((fog_result == 1) && (alpha_result == TRUE)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_MAIN;
 		}
 		break;
 	case WEATHER_SEQ_NO_FADE:
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG2_SLOPE, WEATHER_FOG_DEPTH_DEFAULT+WEATHER_FOG2_OFS, GX_RGB(31,31,31) );
 
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 
@@ -6526,22 +6526,22 @@ static void contWeatherFog02(TCB_PTR tcb, void* work)
 		G2_SetBG2Priority(3);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
-		// I—¹ƒ`ƒFƒbƒN
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_KIRI_HARAI_WHITE_FOG_TIMING_END, FALSE );
 			}
 
 			WeatherMoveReq( &sys_w->alpha, WEATHER_FOG2_FADE_END_ALPHA, 0, WEATHER_FOG2_FADE_COUNT_MAX );
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
 		
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
 			fog_result = weatherSysFogFade(&sys_w->fogFade);
@@ -6552,16 +6552,16 @@ static void contWeatherFog02(TCB_PTR tcb, void* work)
 		alpha_result = WeatherMoveMain( &sys_w->alpha );
 		WeatherBGAlphaDef(sys_w->alpha.x, 16 - sys_w->alpha.x);
 		
-		// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-		if((fog_result == 1) && (alpha_result == TRUE)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎI—¹‚Ö
-			// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+		if((fog_result == 1) && (alpha_result == TRUE)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°çµ‚äº†ã¸
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_DEST;
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -6577,10 +6577,10 @@ static void contWeatherFog02(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	»—’ŠÇ—ƒ^ƒXƒN
+ *@brief	ç ‚åµç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -6589,20 +6589,20 @@ static void contWeatherFog02(TCB_PTR tcb, void* work)
 static void contWeatherStorm(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	WEATHER_SYSW_NORMAL* sys_w;			// ƒVƒXƒeƒ€ƒ[ƒN
-	int		result;		// ŠÖ”Œ‹‰Ê
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
-	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	WEATHER_SYSW_NORMAL* sys_w;			// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		result;		// é–¢æ•°çµæœ
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
+	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 		
 
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			WEATHER_STORM_ADD_START,	// obj“o˜^”
-			WEATHER_STORM_TIMING_MAX,	// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			WEATHER_STORM_ADD_START,	// objç™»éŒ²æ•°
+			WEATHER_STORM_TIMING_MAX,	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_STORM_ADD_MAIN,
 			WEATHER_STORM_TIMING_MIN,
 			-WEATHER_STORM_TIMING_ADD,
@@ -6610,7 +6610,7 @@ static void contWeatherStorm(TCB_PTR tcb, void* work)
 			WEATHER_STORM_ADD,
 			addWeatherStorm );
 		
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_STORM_FOG_SLOPE, 
@@ -6618,34 +6618,34 @@ static void contWeatherStorm(TCB_PTR tcb, void* work)
 				GX_RGB(26,20,5),
 				WEATHER_STORM_FOG_TIMING,
 				sys_work->fog_use );
-		sys_w->work[0] = WEATHER_STORM_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
-		sys_w->work[1] = 0;			// ƒIƒuƒWƒFƒNƒg’Ç‰Á”ƒJƒEƒ“ƒ^
+		sys_w->work[0] = WEATHER_STORM_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
+		sys_w->work[1] = 0;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¿½åŠ æ•°ã‚«ã‚¦ãƒ³ã‚¿
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 		
 		
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1) && (result == 3)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1) && (result == 3)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 			}
 		}
 		break;
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			WEATHER_STORM_ADD_MAIN,	// obj“o˜^”
-			WEATHER_STORM_TIMING_MIN,	// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			WEATHER_STORM_ADD_MAIN,	// objç™»éŒ²æ•°
+			WEATHER_STORM_TIMING_MIN,	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_STORM_ADD_MAIN,
 			WEATHER_STORM_TIMING_MIN,
 			-WEATHER_STORM_TIMING_ADD,
@@ -6653,33 +6653,33 @@ static void contWeatherStorm(TCB_PTR tcb, void* work)
 			WEATHER_STORM_ADD,
 			addWeatherStorm );
 		
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_STORM_FOG_SLOPE, WEATHER_STORM_FOG_OFS, GX_RGB(26,20,5) );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
-		sys_w->work[1] = 0;			// ƒIƒuƒWƒFƒNƒg’Ç‰Á”ƒJƒEƒ“ƒ^
+		sys_w->work[1] = 0;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¿½åŠ æ•°ã‚«ã‚¦ãƒ³ã‚¿
 
-		// ƒIƒuƒWƒFƒNƒg‚ğU‚ç‚Î‚·
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•£ã‚‰ã°ã™
 		weatherDustObj( sys_work, addWeatherStorm, WEATHER_STORM_NOFADE_OBJ_START_NUM, WEATHER_STORM_NOFADE_OBJ_START_DUST_NUM, WEATHER_STORM_NOFADE_OBJ_START_DUST_MOVE, objWeatherStorm );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		
-		// ƒJƒEƒ“ƒ^‚ª0‚¢‚©‚É‚È‚Á‚½‚ç‰J“o˜^
+		// ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã„ã‹ã«ãªã£ãŸã‚‰é›¨ç™»éŒ²
 		if(sys_w->objFade.objAddTmg-- <= 0){
 
-			// »—’“o˜^
+			// ç ‚åµç™»éŒ²
 			addWeatherStorm(sys_work, sys_w->objFade.objAddNum);
 	
-			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒZƒbƒg	
+			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚»ãƒƒãƒˆ	
 		}
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			// obj
 			weatherSysObjFadeOutSet( &sys_w->objFade,
@@ -6692,18 +6692,18 @@ static void contWeatherStorm(TCB_PTR tcb, void* work)
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_STORM_FOG_TIMING_END, FALSE );
 			}
-			sys_w->work[0] = WEATHER_STORM_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_w->work[0] = WEATHER_STORM_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 		
-		// ƒtƒHƒO‘€ì
+		// ãƒ•ã‚©ã‚°æ“ä½œ
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 		
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
@@ -6713,20 +6713,20 @@ static void contWeatherStorm(TCB_PTR tcb, void* work)
 			}
 		
 			if((fog_result == 1) && (result == 3)){
-				// “o˜^”‚ª‚O‚É‚È‚Á‚½‚çI—¹‚·‚é‚©ƒ`ƒFƒbƒN
-				// ©•ª‚ÌŠÇ—‚·‚é‚ ‚ß‚ª‘S‚Ä”jŠü‚³‚ê‚½‚çI—¹
+				// ç™»éŒ²æ•°ãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+				// è‡ªåˆ†ã®ç®¡ç†ã™ã‚‹ã‚ã‚ãŒå…¨ã¦ç ´æ£„ã•ã‚ŒãŸã‚‰çµ‚äº†
 				if(sys_work->Dummy.pNext == &sys_work->Dummy){
 					
-					// ƒV[ƒPƒ“ƒX•ÏX
+					// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 					sys_work->Sequence = WEATHER_SEQ_DEST;
 				}
 			}
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -6738,7 +6738,7 @@ static void contWeatherStorm(TCB_PTR tcb, void* work)
 		break;
 	}
 
-	// ‰Šú‰»A”jŠüˆÈŠO‚Ì‚Æ‚«‚Í“®ìŠÖ”‚ğ“®‚©‚·
+	// åˆæœŸåŒ–ã€ç ´æ£„ä»¥å¤–ã®ã¨ãã¯å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™
 	if((sys_work->Sequence != WEATHER_SEQ_DEST) &&
 		(sys_work->Sequence != WEATHER_SEQ_INIT) ){
 
@@ -6751,28 +6751,28 @@ static void contWeatherStorm(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	»—’ƒIƒuƒWƒFƒNƒg“o˜^ŠÖ”
+ *@brief	ç ‚åµã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²é–¢æ•°
  *
- *@param	pWork		“o˜^‚·‚éƒIƒuƒWƒF‚ÌŠÇ—ŠÖ”ƒ[ƒN
- *@param	num			“o˜^‚·‚é”
+ *@param	pWork		ç™»éŒ²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®ç®¡ç†é–¢æ•°ãƒ¯ãƒ¼ã‚¯
+ *@param	num			ç™»éŒ²ã™ã‚‹æ•°
  *
  *@return	none
  *
- *	“à—e
- *		num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
- *		‰J—p‚Éƒ[ƒN—Ìˆæ‚ğ‰Šú‰»
+ *	å†…å®¹
+ *		numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
+ *		é›¨ç”¨ã«ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’åˆæœŸåŒ–
  *
  */
 //-----------------------------------------------------------------------------
 static void addWeatherStorm(WEATHER_SYS_WORK* pWork, int num)
 {
-	int i;		// ƒ‹[ƒv—p
-	WAETHER_OBJ_DATA* add_obj;		// “o˜^ƒIƒuƒWƒF
-	int	wind;	// •—Œü‚«
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	WAETHER_OBJ_DATA* add_obj;		// ç™»éŒ²ã‚ªãƒ–ã‚¸ã‚§
+	int	wind;	// é¢¨å‘ã
 	int	rand;
-	WEATHER_SYSW_NORMAL* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	s32* obj_w;	// ƒIƒuƒWƒFƒ[ƒN
-	int frame;	// ƒtƒŒ[ƒ€”
+	WEATHER_SYSW_NORMAL* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	s32* obj_w;	// ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯
+	int frame;	// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 	
 	static const int	STORM_SPEED_X_TBL[WEATHER_STORM_SPEED_NUM] = {-3,-5,-5,-4,-5,-6,-10,-6};
 	static const int	STORM_SPEED_Y_TBL[WEATHER_STORM_SPEED_NUM] = { 2, 2, 2, 4, 4, 2, 2, 2};
@@ -6781,36 +6781,36 @@ static void addWeatherStorm(WEATHER_SYS_WORK* pWork, int num)
 
 	
 	
-	// •—•ÏXƒJƒEƒ“ƒg
+	// é¢¨å¤‰æ›´ã‚«ã‚¦ãƒ³ãƒˆ
 	sys_w->work[1] = (sys_w->work[1]+1) % (WEATHER_STORM_SPEED_CNG_NUM*WEATHER_STORM_SPEED_NUM);
 		
-	// •—Œü‚«‚ğ‹‚ß‚é
+	// é¢¨å‘ãã‚’æ±‚ã‚ã‚‹
 	wind = sys_w->work[1] / WEATHER_STORM_SPEED_CNG_NUM;
 	
-	// num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
+	// numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
 	for(i=0;i<num;i++){
 
-		add_obj = addObj(pWork, sizeof(s32)*8);		// “o˜^
-		if(add_obj == NULL){			// ¸”s‚µ‚½‚çI—¹
+		add_obj = addObj(pWork, sizeof(s32)*8);		// ç™»éŒ²
+		if(add_obj == NULL){			// å¤±æ•—ã—ãŸã‚‰çµ‚äº†
 			break;
 		}
 
-		// ƒIƒuƒWƒFƒ[ƒN
+		// ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯
 		obj_w = add_obj->work;
 		
 		
-		// —Ìˆæ‚ğ‰Šú‰»
-		obj_w[0] = 0;			// ƒJƒEƒ“ƒ^
-		obj_w[1] = WEATHER_STORM_END_MIN + (gf_mtRand() % (WEATHER_STORM_END_MAX - WEATHER_STORM_END_MIN));	// I—¹ƒJƒEƒ“ƒ^
+		// é ˜åŸŸã‚’åˆæœŸåŒ–
+		obj_w[0] = 0;			// ã‚«ã‚¦ãƒ³ã‚¿
+		obj_w[1] = WEATHER_STORM_END_MIN + (gf_mtRand() % (WEATHER_STORM_END_MAX - WEATHER_STORM_END_MIN));	// çµ‚äº†ã‚«ã‚¦ãƒ³ã‚¿
 		
-		frame = 3 - ((obj_w[1] - WEATHER_STORM_END_MIN) / WEATHER_STORM_END_DIV);	// á‚Ìí—Ş
+		frame = 3 - ((obj_w[1] - WEATHER_STORM_END_MIN) / WEATHER_STORM_END_DIV);	// å¹é›ªã®ç¨®é¡
 		
 		obj_w[2] = (STORM_SPEED_Y_TBL[wind]) * (frame+1);
 		obj_w[4] = (STORM_SPEED_X_TBL[wind]) * (frame+1);
-		obj_w[3] = 0;			// ”jŠüƒAƒjƒƒtƒ‰ƒO
-		obj_w[5] = STORM_SPEED_X_TBL[wind];	// ƒXƒs[ƒh‚ğã‚°‚Ä‚¢‚­’l
+		obj_w[3] = 0;			// ç ´æ£„ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
+		obj_w[5] = STORM_SPEED_X_TBL[wind];	// ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’ä¸Šã’ã¦ã„ãå€¤
 
-		// ‚Ù‚ñ‚Æ‚É‚½‚Ü‚ÉƒTƒ{ƒeƒ“
+		// ã»ã‚“ã¨ã«ãŸã¾ã«ã‚µãƒœãƒ†ãƒ³
 		rand = gf_mtRand() % 1000;
 		if(rand == 777){
 			frame = 4;
@@ -6834,9 +6834,9 @@ static void addWeatherStorm(WEATHER_SYS_WORK* pWork, int num)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	»—’ƒIƒuƒWƒFƒNƒg“®ìŠÖ”
+ *@brief	ç ‚åµã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œé–¢æ•°
  *
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -6846,14 +6846,14 @@ static void addWeatherStorm(WEATHER_SYS_WORK* pWork, int num)
 static void objWeatherStorm(WAETHER_OBJ_DATA* work)
 {
 	WAETHER_OBJ_DATA* p_obj = (WAETHER_OBJ_DATA*)work;
-	s32* obj_w = (s32*)p_obj->work;		// ƒIƒuƒWƒFƒ[ƒN
+	s32* obj_w = (s32*)p_obj->work;		// ã‚ªãƒ–ã‚¸ã‚§ãƒ¯ãƒ¼ã‚¯
 	VecFx32 mat = getObjMat( p_obj );
 	
-	// “®ìƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+	// å‹•ä½œãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 	switch(obj_w[3]){
-	case 0:		// “®ì
+	case 0:		// å‹•ä½œ
 
-		// “®‚©‚·
+		// å‹•ã‹ã™
 		mat.x += obj_w[4] << FX32_SHIFT;
 		mat.y += obj_w[2] << FX32_SHIFT;
 
@@ -6861,16 +6861,16 @@ static void objWeatherStorm(WAETHER_OBJ_DATA* work)
 			obj_w[4] += obj_w[5];
 		}
 
-		// ”jŠü‚·‚é‚©ƒ`ƒFƒbƒN
+		// ç ´æ£„ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if(obj_w[0]++ > obj_w[1]){
-			// ”jŠü
+			// ç ´æ£„
 			obj_w[3] = 1;
 		}
 
 		setClactMatrix(p_obj->clact_w, &mat);
 			
 		break;
-	case 1:		// ”jŠü
+	case 1:		// ç ´æ£„
 		destObj(p_obj);
 		break;
 	}		
@@ -6880,10 +6880,10 @@ static void objWeatherStorm(WAETHER_OBJ_DATA* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	»—’ŠÇ—ƒ^ƒXƒN		BGg—p
+ *@brief	ç ‚åµç®¡ç†ã‚¿ã‚¹ã‚¯		BGä½¿ç”¨
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -6892,27 +6892,27 @@ static void objWeatherStorm(WAETHER_OBJ_DATA* work)
 static void contWeatherStormBG(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	int		wind;		// •—ƒe[ƒuƒ‹‚Ì’l
-	int		scl_x, scl_y;// ƒXƒNƒ[ƒ‹À•W
-	WEATHER_SYSW_NORMAL* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	int		result;		// ŠÖ”Œ‹‰Ê
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	int		wind;		// é¢¨ãƒ†ãƒ¼ãƒ–ãƒ«ã®å€¤
+	int		scl_x, scl_y;// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™
+	WEATHER_SYSW_NORMAL* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		result;		// é–¢æ•°çµæœ
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
 	static const int STORM_SPEED_X_TBL[WEATHER_STORM_SPEED_NUM] = {-3,-5,-5,-3,-5,-6,-10,-6};
 	static const int STORM_SPEED_Y_TBL[WEATHER_STORM_SPEED_NUM] = { 2, 2, 2, 4, 4, 2, 2, 2};	
 	
-	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 
 
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 		
 
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			WEATHER_STORM_ADD_START,	// obj“o˜^”
-			WEATHER_STORM_TIMING_MAX,	// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			WEATHER_STORM_ADD_START,	// objç™»éŒ²æ•°
+			WEATHER_STORM_TIMING_MAX,	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_STORM_ADD_MAIN,
 			WEATHER_STORM_TIMING_MIN,
 			-WEATHER_STORM_TIMING_ADD,
@@ -6920,7 +6920,7 @@ static void contWeatherStormBG(TCB_PTR tcb, void* work)
 			WEATHER_STORM_ADD,
 			addWeatherStorm );
 	
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_STORM_FOG_SLOPE, 
@@ -6928,31 +6928,31 @@ static void contWeatherStormBG(TCB_PTR tcb, void* work)
 				GX_RGB(26,20,5),
 				WEATHER_STORM_FOG_TIMING,
 				sys_work->fog_use );
-		sys_w->work[0] = WEATHER_STORM_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
-		sys_w->work[1] = 0;		// ƒIƒuƒWƒFƒNƒg’Ç‰Á”ƒJƒEƒ“ƒ^
-		sys_w->work[2] = 0;		// BGƒJƒEƒ“ƒ^
-		sys_w->work[3] = 0;		// •—‚ÌƒXƒs[ƒh
+		sys_w->work[0] = WEATHER_STORM_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
+		sys_w->work[1] = 0;		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¿½åŠ æ•°ã‚«ã‚¦ãƒ³ã‚¿
+		sys_w->work[2] = 0;		// BGã‚«ã‚¦ãƒ³ã‚¿
+		sys_w->work[3] = 0;		// é¢¨ã®ã‚¹ãƒ”ãƒ¼ãƒ‰
 		
 
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 		
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			
 			// fog
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1) && (result == 3)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1) && (result == 3)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 
 				// BGON
@@ -6960,13 +6960,13 @@ static void contWeatherStormBG(TCB_PTR tcb, void* work)
 			}
 		}
 		break;
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 		
 
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			WEATHER_STORM_ADD_MAIN,	// obj“o˜^”
-			WEATHER_STORM_TIMING_MIN,	// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			WEATHER_STORM_ADD_MAIN,	// objç™»éŒ²æ•°
+			WEATHER_STORM_TIMING_MIN,	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_STORM_ADD_MAIN,
 			WEATHER_STORM_TIMING_MIN,
 			-WEATHER_STORM_TIMING_ADD,
@@ -6974,55 +6974,55 @@ static void contWeatherStormBG(TCB_PTR tcb, void* work)
 			WEATHER_STORM_ADD,
 			addWeatherStorm );
 	
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_STORM_FOG_SLOPE, WEATHER_STORM_FOG_OFS, GX_RGB(26,20,5) );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 
 		
-		sys_w->work[1] = 0;		// ƒIƒuƒWƒFƒNƒg’Ç‰Á”ƒJƒEƒ“ƒ^
-		sys_w->work[2] = 0;		// BGƒJƒEƒ“ƒ^
-		sys_w->work[3] = 0;		// •—‚ÌƒXƒs[ƒh
+		sys_w->work[1] = 0;		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¿½åŠ æ•°ã‚«ã‚¦ãƒ³ã‚¿
+		sys_w->work[2] = 0;		// BGã‚«ã‚¦ãƒ³ã‚¿
+		sys_w->work[3] = 0;		// é¢¨ã®ã‚¹ãƒ”ãƒ¼ãƒ‰
 		
-		// ƒIƒuƒWƒFƒNƒg‚ğU‚ç‚Î‚·
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•£ã‚‰ã°ã™
 		weatherDustObj( sys_work, addWeatherStorm, WEATHER_STORM_NOFADE_OBJ_START_NUM, WEATHER_STORM_NOFADE_OBJ_START_DUST_NUM, WEATHER_STORM_NOFADE_OBJ_START_DUST_MOVE, objWeatherStorm );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 
 		// BGON
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		
-		// ƒJƒEƒ“ƒ^‚ª0‚¢‚©‚É‚È‚Á‚½‚ç‰J“o˜^
+		// ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã„ã‹ã«ãªã£ãŸã‚‰é›¨ç™»éŒ²
 		if(sys_w->objFade.objAddTmg-- <= 0){
 
-			// •—ƒe[ƒuƒ‹‚ğæ“¾
+			// é¢¨ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
 			wind = sys_w->work[1] / WEATHER_STORM_SPEED_CNG_NUM;
-			// •—‚ğİ’è‚·‚é
+			// é¢¨ã‚’è¨­å®šã™ã‚‹
 			sys_w->work[3] = STORM_SPEED_X_TBL[wind];
 			
-			// ƒ¿’l‚ÆƒIƒuƒWƒF‚Ìo‚·—Ê‚ğ•—‚Ì‹­‚³‚Å•Ï‚¦‚é
+			// Î±å€¤ã¨ã‚ªãƒ–ã‚¸ã‚§ã®å‡ºã™é‡ã‚’é¢¨ã®å¼·ã•ã§å¤‰ãˆã‚‹
 			if(sys_w->work[3] <= -WEATHER_STORM_STRONG_CHG){
-				// »—’“o˜^
+				// ç ‚åµç™»éŒ²
 				addWeatherStorm(sys_work, sys_w->objFade.objAddNum*2);
 			
 			}else{
-				// »—’“o˜^
+				// ç ‚åµç™»éŒ²
 				addWeatherStorm(sys_work, sys_w->objFade.objAddNum);
 			}
 	
-			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒZƒbƒg	
+			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚»ãƒƒãƒˆ	
 		}
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			// obj
-			// ƒtƒF[ƒhƒAƒEƒgİ’è
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆè¨­å®š
 			weatherSysObjFadeOutSet( &sys_w->objFade,
 					0,
 					WEATHER_STORM_TIMING_MAX,
@@ -7032,21 +7032,21 @@ static void contWeatherStormBG(TCB_PTR tcb, void* work)
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_STORM_FOG_TIMING_END, FALSE );
 			}
-			sys_w->work[0] = WEATHER_STORM_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_w->work[0] = WEATHER_STORM_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 			// BGOFF
 			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 		}
 
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 
-		// ƒtƒHƒO‘€ì
+		// ãƒ•ã‚©ã‚°æ“ä½œ
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 		
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
@@ -7056,20 +7056,20 @@ static void contWeatherStormBG(TCB_PTR tcb, void* work)
 			}
 		
 			if((fog_result == 1) && (result == 3)){
-				// “o˜^”‚ª‚O‚É‚È‚Á‚½‚çI—¹‚·‚é‚©ƒ`ƒFƒbƒN
-				// ©•ª‚ÌŠÇ—‚·‚é‚ ‚ß‚ª‘S‚Ä”jŠü‚³‚ê‚½‚çI—¹
+				// ç™»éŒ²æ•°ãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+				// è‡ªåˆ†ã®ç®¡ç†ã™ã‚‹ã‚ã‚ãŒå…¨ã¦ç ´æ£„ã•ã‚ŒãŸã‚‰çµ‚äº†
 				if(sys_work->Dummy.pNext == &sys_work->Dummy){
 					
-					// ƒV[ƒPƒ“ƒX•ÏX
+					// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 					sys_work->Sequence = WEATHER_SEQ_DEST;
 				}
 			}
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -7081,7 +7081,7 @@ static void contWeatherStormBG(TCB_PTR tcb, void* work)
 		break;
 	}
 
-	// ‰Šú‰»A”jŠüˆÈŠO‚Ì‚Æ‚«‚Í“®ìŠÖ”‚ğ“®‚©‚·
+	// åˆæœŸåŒ–ã€ç ´æ£„ä»¥å¤–ã®ã¨ãã¯å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™
 	if((sys_work->Sequence != WEATHER_SEQ_DEST) &&
 		(sys_work->Sequence != WEATHER_SEQ_INIT) ){
 
@@ -7089,7 +7089,7 @@ static void contWeatherStormBG(TCB_PTR tcb, void* work)
 		scrollObj(sys_work, &scl_x, &scl_y);
 		drawObj(sys_work);
 
-		// BG–Ê‚ğÎ‚ßã‚É“®‚©‚·
+		// BGé¢ã‚’æ–œã‚ä¸Šã«å‹•ã‹ã™
 		sys_w->work[2] = (sys_w->work[2] + 6) % 256;
 		G2_SetBG2Offset(sys_w->work[2]*2 - scl_x,-sys_w->work[2] + scl_y);
 	}
@@ -7100,10 +7100,10 @@ static void contWeatherStormBG(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	–kŠC“¹áŠÇ—ƒ^ƒXƒN
+ *@brief	åŒ—æµ·é“é›ªç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -7112,26 +7112,26 @@ static void contWeatherStormBG(TCB_PTR tcb, void* work)
 static void contWeatherSnowSML(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	int		wind;		// •—
-	int		scl_x, scl_y;// ƒXƒNƒ[ƒ‹À•W
-	WEATHER_SYSW_NORMAL* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	int		result;		// ŠÖ”Œ‹‰Ê
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
-	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	int		wind;		// é¢¨
+	int		scl_x, scl_y;// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™
+	WEATHER_SYSW_NORMAL* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		result;		// é–¢æ•°çµæœ
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
+	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
 		
 
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 		
 		
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			WEATHER_SSNOW_ADD_START,	// obj“o˜^”
-			WEATHER_SSNOW_TIMING_MAX,	// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			WEATHER_SSNOW_ADD_START,	// objç™»éŒ²æ•°
+			WEATHER_SSNOW_TIMING_MAX,	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_SNOW_S_ADD_MAIN,
 			WEATHER_SNOW_S_TIMING_MIN,
 			-WEATHER_SNOW_S_TIMING_ADD,
@@ -7139,7 +7139,7 @@ static void contWeatherSnowSML(TCB_PTR tcb, void* work)
 			WEATHER_SNOW_S_ADD,
 			addWeatherSnowSML );
 		
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_FOG_SLOPE_DEFAULT, 
@@ -7147,42 +7147,42 @@ static void contWeatherSnowSML(TCB_PTR tcb, void* work)
 				GX_RGB(24,24,24),
 				WEATHER_SNOW_S_FOG_TIMING,
 				sys_work->fog_use );
-		sys_w->work[0] = WEATHER_SNOW_S_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
+		sys_w->work[0] = WEATHER_SNOW_S_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 		
-		sys_w->work[1] = 0;				// ƒIƒuƒWƒF”ƒJƒEƒ“ƒ^
-		sys_w->work[2] = 0;				// BGƒJƒEƒ“ƒ^
+		sys_w->work[1] = 0;				// ã‚ªãƒ–ã‚¸ã‚§æ•°ã‚«ã‚¦ãƒ³ã‚¿
+		sys_w->work[2] = 0;				// BGã‚«ã‚¦ãƒ³ã‚¿
 
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às	
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ	
 	
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 
 			// fog
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1) && (result == 3)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1) && (result == 3)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 				// BGON
 				GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 			}
 		}
 		break;
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 		
 		
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			WEATHER_SNOW_S_ADD_MAIN,	// obj“o˜^”
-			WEATHER_SNOW_S_TIMING_MIN,	// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			WEATHER_SNOW_S_ADD_MAIN,	// objç™»éŒ²æ•°
+			WEATHER_SNOW_S_TIMING_MIN,	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_SNOW_S_ADD_MAIN,
 			WEATHER_SNOW_S_TIMING_MIN,
 			-WEATHER_SNOW_S_TIMING_ADD,
@@ -7190,47 +7190,47 @@ static void contWeatherSnowSML(TCB_PTR tcb, void* work)
 			WEATHER_SNOW_S_ADD,
 			addWeatherSnowSML );
 		
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG_SLOPE_DEFAULT, WEATHER_FOG_DEPTH_DEFAULT + WEATHER_SNOW_S_FOG_OFS, GX_RGB(24,24,24) );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 
-		sys_w->work[1] = 0;				// ƒIƒuƒWƒF”ƒJƒEƒ“ƒ^
-		sys_w->work[2] = 0;				// BGƒJƒEƒ“ƒ^
+		sys_w->work[1] = 0;				// ã‚ªãƒ–ã‚¸ã‚§æ•°ã‚«ã‚¦ãƒ³ã‚¿
+		sys_w->work[2] = 0;				// BGã‚«ã‚¦ãƒ³ã‚¿
 
 
-		// ƒIƒuƒWƒFƒNƒg‚ğU‚ç‚Î‚·
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•£ã‚‰ã°ã™
 		weatherDustObj( sys_work, addWeatherSnowSML, WEATHER_SNOW_S_NOFADE_OBJ_START_NUM, WEATHER_SNOW_S_NOFADE_OBJ_START_DUST_NUM, WEATHER_SNOW_S_NOFADE_OBJ_START_DUST_MOVE, objWeatherSnowSML );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		
 		// BGON
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		
-		// ƒJƒEƒ“ƒ^‚ª0‚¢‚©‚É‚È‚Á‚½‚ç‰J“o˜^
+		// ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã„ã‹ã«ãªã£ãŸã‚‰é›¨ç™»éŒ²
 		if(sys_w->objFade.objAddTmg-- <= 0){
 
 			wind = sys_w->work[1] / WEATHER_SNOW_S_ADD_SP_CHG_TMG;
 			wind = WEATHER_SSNOW_SPEED_X_SML[wind];
 			
 			if(wind <= -WEATHER_SNOW_S_SP_UP){
-				// á“o˜^
+				// å¹é›ªç™»éŒ²
 				addWeatherSnowSML(sys_work, sys_w->objFade.objAddNum*2);
 			}else{
-				// á“o˜^
+				// å¹é›ªç™»éŒ²
 				addWeatherSnowSML(sys_work, sys_w->objFade.objAddNum);
 			}
 	
-			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒZƒbƒg	
+			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚»ãƒƒãƒˆ	
 		}
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			// obj
 			weatherSysObjFadeOutSet( &sys_w->objFade,
@@ -7243,21 +7243,21 @@ static void contWeatherSnowSML(TCB_PTR tcb, void* work)
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_SNOW_S_FOG_TIMING_END, FALSE );
 			}
-			sys_w->work[0] = WEATHER_SNOW_S_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_w->work[0] = WEATHER_SNOW_S_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 			
 			// BGOFF
 			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 		}
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 
-		// ƒtƒHƒO‘€ì
+		// ãƒ•ã‚©ã‚°æ“ä½œ
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 		
 			// fog
@@ -7268,19 +7268,19 @@ static void contWeatherSnowSML(TCB_PTR tcb, void* work)
 			}
 		
 			if((fog_result == 1) && (result == 3)){
-				// “o˜^”‚ª‚O‚É‚È‚Á‚½‚çI—¹‚·‚é‚©ƒ`ƒFƒbƒN
-				// ©•ª‚ÌŠÇ—‚·‚éá‚ª‘S‚Ä”jŠü‚³‚ê‚½‚çI—¹
+				// ç™»éŒ²æ•°ãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+				// è‡ªåˆ†ã®ç®¡ç†ã™ã‚‹é›ªãŒå…¨ã¦ç ´æ£„ã•ã‚ŒãŸã‚‰çµ‚äº†
 				if(sys_work->Dummy.pNext == &sys_work->Dummy){
-					// ƒV[ƒPƒ“ƒX•ÏX
+					// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 					sys_work->Sequence = WEATHER_SEQ_DEST;
 				}
 			}
 		}		
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -7292,7 +7292,7 @@ static void contWeatherSnowSML(TCB_PTR tcb, void* work)
 		break;
 	}
 
-	// ‰Šú‰»A”jŠüˆÈŠO‚Ì‚Æ‚«‚Í“®ìŠÖ”‚ğ“®‚©‚·
+	// åˆæœŸåŒ–ã€ç ´æ£„ä»¥å¤–ã®ã¨ãã¯å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™
 	if((sys_work->Sequence != WEATHER_SEQ_DEST) &&
 		(sys_work->Sequence != WEATHER_SEQ_INIT) ){
 
@@ -7300,7 +7300,7 @@ static void contWeatherSnowSML(TCB_PTR tcb, void* work)
 //		scrollObj(sys_work, &scl_x, &scl_y);
 		drawObj(sys_work);
 
-		// BG–Ê‚ğÎ‚ßã‚É“®‚©‚·
+		// BGé¢ã‚’æ–œã‚ä¸Šã«å‹•ã‹ã™
 		sys_w->work[2] = (sys_w->work[2] + 12) % 256;
 		G2_SetBG2Offset(sys_w->work[2]*2,-sys_w->work[2]);
 
@@ -7310,32 +7310,32 @@ static void contWeatherSnowSML(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	–kŠC“¹áƒIƒuƒWƒFƒNƒg“o˜^ŠÖ”
+ *@brief	åŒ—æµ·é“é›ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²é–¢æ•°
  *
- *@param	pWork		“o˜^‚·‚éƒIƒuƒWƒF‚ÌŠÇ—ŠÖ”ƒ[ƒN
- *@param	num			“o˜^‚·‚é”
+ *@param	pWork		ç™»éŒ²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®ç®¡ç†é–¢æ•°ãƒ¯ãƒ¼ã‚¯
+ *@param	num			ç™»éŒ²ã™ã‚‹æ•°
  *
  *@return	none
  *
- *	“à—e
- *		num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
- *		‰J—p‚Éƒ[ƒN—Ìˆæ‚ğ‰Šú‰»
+ *	å†…å®¹
+ *		numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
+ *		é›¨ç”¨ã«ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’åˆæœŸåŒ–
  *
  */
 //-----------------------------------------------------------------------------
 static void addWeatherSnowSML(WEATHER_SYS_WORK* pWork, int num)
 {
-	int i;		// ƒ‹[ƒv—p
-	WAETHER_OBJ_DATA* add_obj;		// “o˜^ƒIƒuƒWƒF
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	WAETHER_OBJ_DATA* add_obj;		// ç™»éŒ²ã‚ªãƒ–ã‚¸ã‚§
 	int tbl_num;
-	WEATHER_SYSW_NORMAL* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	s32* obj_w;	// ƒIƒuƒWƒFƒNƒgƒ[ƒN
-	int		frame;		// ƒtƒŒ[ƒ€”
+	WEATHER_SYSW_NORMAL* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	s32* obj_w;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+	int		frame;		// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 	
 	sys_w = (WEATHER_SYSW_NORMAL*)pWork->work;
 
 		
-	// •—‚Ì’l‚ğ‹‚ß‚é
+	// é¢¨ã®å€¤ã‚’æ±‚ã‚ã‚‹
 	sys_w->work[1]++;
 	if(sys_w->work[1] >= (WEATHER_SNOW_S_ADD_SP_CHG_TMG  * WEATHER_SNOW_S_ADD_SP_TMG_NUM)){
 		sys_w->work[1] = 0;
@@ -7343,32 +7343,32 @@ static void addWeatherSnowSML(WEATHER_SYS_WORK* pWork, int num)
 	tbl_num = (sys_w->work[1] / WEATHER_SNOW_S_ADD_SP_CHG_TMG );
 
 	
-	// num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
+	// numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
 	for(i=0;i<num*4;i++){
 
-		add_obj = addObj(pWork, sizeof(s32)*8);		// “o˜^
-		if(add_obj == NULL){			// ¸”s‚µ‚½‚çI—¹
+		add_obj = addObj(pWork, sizeof(s32)*8);		// ç™»éŒ²
+		if(add_obj == NULL){			// å¤±æ•—ã—ãŸã‚‰çµ‚äº†
 			break;
 		}
 
 		obj_w = (s32*)add_obj->work;
 		
-		// —Ìˆæ‚ğ‰Šú‰»
-		obj_w[0] = 0;			// ƒJƒEƒ“ƒ^
-		obj_w[1] = WEATHER_SNOW_S_END_MIN + (gf_mtRand() % (WEATHER_SNOW_S_END_MAX - WEATHER_SNOW_S_END_MIN));	// I—¹ƒJƒEƒ“ƒ^
-		frame = gf_mtRand()%4;	// á‚Ìí—Ş
+		// é ˜åŸŸã‚’åˆæœŸåŒ–
+		obj_w[0] = 0;			// ã‚«ã‚¦ãƒ³ã‚¿
+		obj_w[1] = WEATHER_SNOW_S_END_MIN + (gf_mtRand() % (WEATHER_SNOW_S_END_MAX - WEATHER_SNOW_S_END_MIN));	// çµ‚äº†ã‚«ã‚¦ãƒ³ã‚¿
+		frame = gf_mtRand()%4;	// å¹é›ªã®ç¨®é¡
 		CLACT_AnmFrameSet( add_obj->clact_w, frame );
 		
 		obj_w[4] = WEATHER_SSNOW_SPEED_X_SML[tbl_num] * ((frame)+1);
-		obj_w[2] = WEATHER_SSNOW_SPEED_Y_SML[tbl_num] * ((frame)+1);	// ‚½‚ÄƒXƒs[ƒh
-		obj_w[3] = 0;			// ”jŠüƒAƒjƒƒtƒ‰ƒO
+		obj_w[2] = WEATHER_SSNOW_SPEED_Y_SML[tbl_num] * ((frame)+1);	// ãŸã¦ã‚¹ãƒ”ãƒ¼ãƒ‰
+		obj_w[3] = 0;			// ç ´æ£„ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
 		if(frame == 3){
 			obj_w[4] += WEATHER_SSNOW_SPEED_X_SML[tbl_num];
 			obj_w[2] += WEATHER_SSNOW_SPEED_Y_SML[tbl_num];
 		}
 		obj_w[5] = WEATHER_SSNOW_SPEED_X_SML[tbl_num];
 		
-		// À•W‚ğİ’è
+		// åº§æ¨™ã‚’è¨­å®š
 		{
 			VecFx32 mat = getObjMat( add_obj );
 			mat.x = WEATHER_SNOW_S_START_X + (gf_mtRand() % WEATHER_SNOW_S_START_X_RAN);
@@ -7386,9 +7386,9 @@ static void addWeatherSnowSML(WEATHER_SYS_WORK* pWork, int num)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	áƒIƒuƒWƒFƒNƒg“®ìŠÖ”
+ *@brief	å¹é›ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œé–¢æ•°
  *
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -7401,20 +7401,20 @@ static void objWeatherSnowSML(WAETHER_OBJ_DATA* work)
 	s32* obj_w = (s32*)p_obj->work;
 	VecFx32 mat = getObjMat( p_obj );
 	
-	// “®ìƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+	// å‹•ä½œãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 	switch(obj_w[3]){
-	case 0:		// “®ì
+	case 0:		// å‹•ä½œ
 
-		// “®‚©‚·
+		// å‹•ã‹ã™
 		mat.x += obj_w[4] << FX32_SHIFT;
 		mat.y += obj_w[2] << FX32_SHIFT;
 
-		// ”jŠü‚·‚é‚©ƒ`ƒFƒbƒN
+		// ç ´æ£„ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if(obj_w[0]++ > obj_w[1]){
-			// ”jŠü
+			// ç ´æ£„
 			obj_w[3] = 1;
 		}
-		// ƒJƒEƒ“ƒ^‚Å“®‚©‚·’l‚ğ•Ï‰»
+		// ã‚«ã‚¦ãƒ³ã‚¿ã§å‹•ã‹ã™å€¤ã‚’å¤‰åŒ–
 		if((obj_w[0] % WEATHER_SNOW_S_ADD_SP_TMG) == 0){
 			obj_w[4] += obj_w[5];
 			
@@ -7425,7 +7425,7 @@ static void objWeatherSnowSML(WAETHER_OBJ_DATA* work)
 	
 		setClactMatrix( p_obj->clact_w, &mat );
 		break;
-	case 1:		// ”jŠü
+	case 1:		// ç ´æ£„
 		destObj(p_obj);
 		break;
 	}		
@@ -7435,10 +7435,10 @@ static void objWeatherSnowSML(WAETHER_OBJ_DATA* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒm[ƒ_ƒXƒgŠÇ—ƒ^ƒXƒN
+ *@brief	ã‚¹ãƒãƒ¼ãƒ€ã‚¹ãƒˆç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -7447,24 +7447,24 @@ static void objWeatherSnowSML(WAETHER_OBJ_DATA* work)
 static void contWeatherSnowD(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	WEATHER_SYSW_NORMAL* sys_w;		// ƒVƒXƒeƒ€ƒ[ƒN
-	int		result;		// ŠÖ”Œ‹‰Ê
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	WEATHER_SYSW_NORMAL* sys_w;		// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		result;		// é–¢æ•°çµæœ
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
 	
-	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
 
 		
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 
 	
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			WEATHER_SNOW_D_ADD_START,	// obj“o˜^”
-			WEATHER_SNOW_D_TIMING_MAX,// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			WEATHER_SNOW_D_ADD_START,	// objç™»éŒ²æ•°
+			WEATHER_SNOW_D_TIMING_MAX,// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_SNOW_D_ADD_MAIN,
 			WEATHER_SNOW_D_TIMING_MIN,
 			-WEATHER_SNOW_D_TIMING_ADD,
@@ -7472,7 +7472,7 @@ static void contWeatherSnowD(TCB_PTR tcb, void* work)
 			WEATHER_SNOW_D_ADD,
 			addWeatherSnowD );
 		
-		// ƒtƒHƒOİ’è
+		// ãƒ•ã‚©ã‚°è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_FOG_SLOPE_DEFAULT, 
@@ -7480,35 +7480,35 @@ static void contWeatherSnowD(TCB_PTR tcb, void* work)
 				GX_RGB(26,26,26),
 				WEATHER_SNOW_D_FOG_TIMING,
 				sys_work->fog_use );
-		sys_w->work[0] = WEATHER_SNOW_D_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
+		sys_w->work[0] = WEATHER_SNOW_D_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às	
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ	
 		
 
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1) && (result == 3)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1) && (result == 3)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 			}
 		}
 		break;
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 
 	
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			WEATHER_SNOW_D_ADD_MAIN,	// obj“o˜^”
-			WEATHER_SNOW_D_TIMING_MIN,// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			WEATHER_SNOW_D_ADD_MAIN,	// objç™»éŒ²æ•°
+			WEATHER_SNOW_D_TIMING_MIN,// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_SNOW_D_ADD_MAIN,
 			WEATHER_SNOW_D_TIMING_MIN,
 			-WEATHER_SNOW_D_TIMING_ADD,
@@ -7516,35 +7516,35 @@ static void contWeatherSnowD(TCB_PTR tcb, void* work)
 			WEATHER_SNOW_D_ADD,
 			addWeatherSnowD );
 		
-		// ƒtƒHƒOİ’è
+		// ãƒ•ã‚©ã‚°è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG_SLOPE_DEFAULT, WEATHER_FOG_DEPTH_DEFAULT + WEATHER_SNOW_D_FOG_OFS, GX_RGB(26,26,26) );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 
-		// ƒIƒuƒWƒFƒNƒg‚ğU‚ç‚Î‚·
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•£ã‚‰ã°ã™
 		weatherDustObj( sys_work, addWeatherSnowD, WEATHER_SNOW_D_NOFADE_OBJ_START_NUM, WEATHER_SNOW_D_NOFADE_OBJ_START_DUST_NUM, WEATHER_SNOW_D_NOFADE_OBJ_START_DUST_MOVE, objWeatherSnowD );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		
-		// ƒJƒEƒ“ƒ^‚ª0‚¢‚©‚É‚È‚Á‚½‚ç‰J“o˜^
+		// ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã„ã‹ã«ãªã£ãŸã‚‰é›¨ç™»éŒ²
 		if(sys_w->objFade.objAddTmg-- <= 0){
 			
 			
-			// ƒ_ƒCƒ„ƒ‚ƒ“ƒhƒ_ƒXƒg“o˜^
+			// ãƒ€ã‚¤ãƒ¤ãƒ¢ãƒ³ãƒ‰ãƒ€ã‚¹ãƒˆç™»éŒ²
 			addWeatherSnowD(sys_work, sys_w->objFade.objAddNum);
 	
-			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒZƒbƒg	
+			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚»ãƒƒãƒˆ	
 		}
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 
-			// ƒtƒF[ƒhƒAƒEƒgİ’è
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆè¨­å®š
 			weatherSysObjFadeOutSet( &sys_w->objFade,
 					0,
 					WEATHER_SNOW_D_TIMING_MAX,
@@ -7554,38 +7554,38 @@ static void contWeatherSnowD(TCB_PTR tcb, void* work)
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_SNOW_D_FOG_TIMING_END, FALSE );
 			}
-			sys_w->work[0] = WEATHER_SNOW_S_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p	
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_w->work[0] = WEATHER_SNOW_S_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨	
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 		
 
-		// ƒtƒHƒO‘€ì
+		// ãƒ•ã‚©ã‚°æ“ä½œ
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 		
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 		
 			if((fog_result == 1) && (result == 3)){
-				// “o˜^”‚ª‚O‚É‚È‚Á‚½‚çI—¹‚·‚é‚©ƒ`ƒFƒbƒN
-				// ©•ª‚ÌŠÇ—‚·‚é‚ ‚ß‚ª‘S‚Ä”jŠü‚³‚ê‚½‚çI—¹
+				// ç™»éŒ²æ•°ãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+				// è‡ªåˆ†ã®ç®¡ç†ã™ã‚‹ã‚ã‚ãŒå…¨ã¦ç ´æ£„ã•ã‚ŒãŸã‚‰çµ‚äº†
 				if(sys_work->Dummy.pNext == &sys_work->Dummy){
 					
-					// ƒV[ƒPƒ“ƒX•ÏX
+					// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 					sys_work->Sequence = WEATHER_SEQ_DEST;
 				}
 			}
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -7597,7 +7597,7 @@ static void contWeatherSnowD(TCB_PTR tcb, void* work)
 		break;
 	}
 
-	// ‰Šú‰»A”jŠüˆÈŠO‚Ì‚Æ‚«‚Í“®ìŠÖ”‚ğ“®‚©‚·
+	// åˆæœŸåŒ–ã€ç ´æ£„ä»¥å¤–ã®ã¨ãã¯å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™
 	if((sys_work->Sequence != WEATHER_SEQ_DEST) &&
 		(sys_work->Sequence != WEATHER_SEQ_INIT) ){
 
@@ -7612,46 +7612,46 @@ static void contWeatherSnowD(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒm[ƒ_ƒXƒgƒIƒuƒWƒFƒNƒg“o˜^ŠÖ”
+ *@brief	ã‚¹ãƒãƒ¼ãƒ€ã‚¹ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²é–¢æ•°
  *
- *@param	pWork		“o˜^‚·‚éƒIƒuƒWƒF‚ÌŠÇ—ŠÖ”ƒ[ƒN
- *@param	num			“o˜^‚·‚é”
+ *@param	pWork		ç™»éŒ²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®ç®¡ç†é–¢æ•°ãƒ¯ãƒ¼ã‚¯
+ *@param	num			ç™»éŒ²ã™ã‚‹æ•°
  *
  *@return	none
  *
- *	“à—e
- *		num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
- *		‰J—p‚Éƒ[ƒN—Ìˆæ‚ğ‰Šú‰»
+ *	å†…å®¹
+ *		numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
+ *		é›¨ç”¨ã«ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’åˆæœŸåŒ–
  *
  */
 //-----------------------------------------------------------------------------
 static void addWeatherSnowD(WEATHER_SYS_WORK* pWork, int num)
 {
-	int i;		// ƒ‹[ƒv—p
-	WAETHER_OBJ_DATA* add_obj;		// “o˜^ƒIƒuƒWƒF
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	WAETHER_OBJ_DATA* add_obj;		// ç™»éŒ²ã‚ªãƒ–ã‚¸ã‚§
 	int	rand;
-	int sum_y;	// yÀ•WŒvZ
-	int	big_d;	// ‘å‚«‚¢ƒ_ƒCƒ„ƒ‚ƒ“ƒhƒ_ƒXƒg‚É‚·‚é‚©ƒ`ƒFƒbƒN
-	int frame;	// ƒtƒŒ[ƒ€”
-	VecFx32 mat;	// À•W
-	s32* obj_w;	// ƒIƒuƒWƒFƒNƒgƒ[ƒN
+	int sum_y;	// yåº§æ¨™è¨ˆç®—
+	int	big_d;	// å¤§ãã„ãƒ€ã‚¤ãƒ¤ãƒ¢ãƒ³ãƒ‰ãƒ€ã‚¹ãƒˆã«ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+	int frame;	// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+	VecFx32 mat;	// åº§æ¨™
+	s32* obj_w;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 	
-	// num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
+	// numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
 	for(i=0;i<num;i++){
 
-		add_obj = addObj(pWork, sizeof(s32)*8);		// “o˜^
-		if(add_obj == NULL){			// ¸”s‚µ‚½‚çI—¹
+		add_obj = addObj(pWork, sizeof(s32)*8);		// ç™»éŒ²
+		if(add_obj == NULL){			// å¤±æ•—ã—ãŸã‚‰çµ‚äº†
 			break;
 		}
 
 		obj_w = (s32*)add_obj->work;
 		
-		obj_w[0] = 0;		// ƒJƒEƒ“ƒ^
+		obj_w[0] = 0;		// ã‚«ã‚¦ãƒ³ã‚¿
 		obj_w[1] = WEATHER_SNOW_D_SPARK_NUM_MIN + (gf_mtRand() % WEATHER_SNOW_D_SPARK_NUM_RAN);
 		rand = gf_mtRand() % 1000;
 
 		
-		if((rand % 2) == 0){			// ‰¡‚ÌˆÚ“®‚Ìƒvƒ‰ƒXƒ}ƒCƒiƒX
+		if((rand % 2) == 0){			// æ¨ªã®ç§»å‹•ã®ãƒ—ãƒ©ã‚¹ãƒã‚¤ãƒŠã‚¹
 			obj_w[2] = 1;
 		}else{
 			obj_w[2] = -1;
@@ -7663,10 +7663,10 @@ static void addWeatherSnowD(WEATHER_SYS_WORK* pWork, int num)
 		obj_w[5] = WEATHER_SNOW_D_SP_ADD_TMG_Y_MIN + (gf_mtRand() % WEATHER_SNOW_D_SP_ADD_TMG_Y_MAX);
 		
 	
-		// ¬‚³‚¢Œõ‚ğo‚·
+		// å°ã•ã„å…‰ã‚’å‡ºã™
 		frame = gf_mtRand() % WEATHER_SNOW_D_SPARK_NO;
 		
-		// À•W
+		// åº§æ¨™
 		{
 			mat = getObjMat( add_obj );
 			mat.x = WEATHER_SNOW_D_START_X_MIN + (gf_mtRand() % WEATHER_SNOW_D_START_X_DIS);
@@ -7680,7 +7680,7 @@ static void addWeatherSnowD(WEATHER_SYS_WORK* pWork, int num)
 		}
 		
 		
-		// X‚Ì’l‚©‚ç•û’ö®‚Å‹‚ß‚é
+		// Xã®å€¤ã‹ã‚‰æ–¹ç¨‹å¼ã§æ±‚ã‚ã‚‹
 		sum_y = 50 - (mat.x/3);
 		rand = 206 - (mat.x/3);
 		if(rand < 0){
@@ -7693,11 +7693,11 @@ static void addWeatherSnowD(WEATHER_SYS_WORK* pWork, int num)
 			(big_d >= mat.y)){
 			
 			obj_w[1] *= 2;
-//			obj_w[6] = 4;		// ‚¨‚»“_–Å
+//			obj_w[6] = 4;		// ãŠãç‚¹æ»…
 		}else{
-			// ¬‚³‚¢Œõ‚É‚·‚é
+			// å°ã•ã„å…‰ã«ã™ã‚‹
 			frame = gf_mtRand() % 4;
-//			obj_w[6] = 1;		// ”¼“§–¾
+//			obj_w[6] = 1;		// åŠé€æ˜
 		}
 		CLACT_AnmFrameSet( add_obj->clact_w, frame );
 	}
@@ -7706,9 +7706,9 @@ static void addWeatherSnowD(WEATHER_SYS_WORK* pWork, int num)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒXƒm[ƒ_ƒXƒgƒIƒuƒWƒFƒNƒg“®ìŠÖ”
+ *@brief	ã‚¹ãƒãƒ¼ãƒ€ã‚¹ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œé–¢æ•°
  *
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -7723,7 +7723,7 @@ static void objWeatherSnowD(WAETHER_OBJ_DATA* work)
 	VecFx32 mat = getObjMat( p_obj );
 
 
-	// ‚Ô‚ê‚é
+	// ã¶ã‚Œã‚‹
 	obj_w[0]++;
 	
 	if((obj_w[0] % obj_w[4]) == 0){
@@ -7734,7 +7734,7 @@ static void objWeatherSnowD(WAETHER_OBJ_DATA* work)
 		mat.y += obj_w[3] << FX32_SHIFT;
 	}
 	
-	// ”jŠü‚·‚é‚©ƒ`ƒFƒbƒN
+	// ç ´æ£„ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(obj_w[0] >= obj_w[1]){
 		destObj(p_obj);
 		return ;
@@ -7747,10 +7747,10 @@ static void objWeatherSnowD(WAETHER_OBJ_DATA* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	“øŠÇ—ƒ^ƒXƒN
+ *@brief	è™¹ç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -7759,31 +7759,31 @@ static void objWeatherSnowD(WAETHER_OBJ_DATA* work)
 static void contWeatherRainbow(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	s32* sys_w;			// ƒVƒXƒeƒ€ƒ[ƒN
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	s32* sys_w;			// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 
-	sys_w = (s32*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (s32*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
 
 		
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 
-		sys_w[0] = 0;	// ƒAƒ‹ƒtƒ@ƒJƒEƒ“ƒ^
-		sys_w[1] = 0;	// ƒAƒ‹ƒtƒ@’l
+		sys_w[0] = 0;	// ã‚¢ãƒ«ãƒ•ã‚¡ã‚«ã‚¦ãƒ³ã‚¿
+		sys_w[1] = 0;	// ã‚¢ãƒ«ãƒ•ã‚¡å€¤
 		
 		WeatherBGAlphaDef(0, 16);
 		G2_SetBG2Offset(0,32);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 		
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
 	
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 
 		sys_w[0]++;
 		
@@ -7793,11 +7793,11 @@ static void contWeatherRainbow(TCB_PTR tcb, void* work)
 		
 			WeatherBGAlphaDef(sys_w[1], 16);
 			if(sys_w[1] >= 10){
-				sys_w[2] = 10 + (gf_mtRand() % 20);	// ’l‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO
-				sys_w[3] = 5 + (gf_mtRand() % 3);		// ƒAƒ‹ƒtƒ@‚ğ—‚Æ‚·ŒÀ“x
-				sys_w[4] = 1;							// ƒAƒ‹ƒtƒ@‚ğŒ¸‚ç‚·‚©
+				sys_w[2] = 10 + (gf_mtRand() % 20);	// å€¤ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+				sys_w[3] = 5 + (gf_mtRand() % 3);		// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’è½ã¨ã™é™åº¦
+				sys_w[4] = 1;							// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’æ¸›ã‚‰ã™ã‹
 				
-				// ƒV[ƒPƒ“ƒX•ÏX
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 			}
 			
@@ -7806,23 +7806,23 @@ static void contWeatherRainbow(TCB_PTR tcb, void* work)
 		
 		break;
 
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 
-		sys_w[0] = 0;	// ƒAƒ‹ƒtƒ@ƒJƒEƒ“ƒ^
-		sys_w[1] = 10;	// ƒAƒ‹ƒtƒ@’l
+		sys_w[0] = 0;	// ã‚¢ãƒ«ãƒ•ã‚¡ã‚«ã‚¦ãƒ³ã‚¿
+		sys_w[1] = 10;	// ã‚¢ãƒ«ãƒ•ã‚¡å€¤
 		G2_SetBG2Offset(0,32);
 		
 		WeatherBGAlphaDef(sys_w[1], 16);
 		
-		sys_w[2] = 10 + (gf_mtRand() % 20);	// ’l‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO
-		sys_w[3] = 5 + (gf_mtRand() % 3);		// ƒAƒ‹ƒtƒ@‚ğ—‚Æ‚·ŒÀ“x
-		sys_w[4] = 1;							// ƒAƒ‹ƒtƒ@‚ğŒ¸‚ç‚·‚©
+		sys_w[2] = 10 + (gf_mtRand() % 20);	// å€¤ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+		sys_w[3] = 5 + (gf_mtRand() % 3);		// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’è½ã¨ã™é™åº¦
+		sys_w[4] = 1;							// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’æ¸›ã‚‰ã™ã‹
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
 	
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		sys_w[0]++;
 		
 
@@ -7832,28 +7832,28 @@ static void contWeatherRainbow(TCB_PTR tcb, void* work)
 			if(sys_w[4] == 1){
 				sys_w[1]--;
 				if(sys_w[1] <= sys_w[3]){
-					sys_w[2] = 10 + (gf_mtRand() % 15);		// ’l‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO
-					sys_w[3] = 7 + (gf_mtRand() % 3);		// ƒAƒ‹ƒtƒ@‚ğ—‚Æ‚·ŒÀ“x
-					sys_w[4] = 0;							// ƒAƒ‹ƒtƒ@‚ğŒ¸‚ç‚·‚©
+					sys_w[2] = 10 + (gf_mtRand() % 15);		// å€¤ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+					sys_w[3] = 7 + (gf_mtRand() % 3);		// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’è½ã¨ã™é™åº¦
+					sys_w[4] = 0;							// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’æ¸›ã‚‰ã™ã‹
 				}
 			}else{
 				sys_w[1]++;
 				if(sys_w[1] >= sys_w[3]){
-					sys_w[2] = 10 + (gf_mtRand() % 20);	// ’l‚ğ•ÏX‚·‚éƒ^ƒCƒ~ƒ“ƒO
-					sys_w[3] = 5 + (gf_mtRand() % 3);		// ƒAƒ‹ƒtƒ@‚ğ—‚Æ‚·ŒÀ“x
-					sys_w[4] = 1;							// ƒAƒ‹ƒtƒ@‚ğŒ¸‚ç‚·‚©
+					sys_w[2] = 10 + (gf_mtRand() % 20);	// å€¤ã‚’å¤‰æ›´ã™ã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+					sys_w[3] = 5 + (gf_mtRand() % 3);		// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’è½ã¨ã™é™åº¦
+					sys_w[4] = 1;							// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’æ¸›ã‚‰ã™ã‹
 				}
 			}
 		}
 		WeatherBGAlphaDef(sys_w[1], 16);
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
 	
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		sys_w[0]++;
 		
 		if(sys_w[0] >= 10){
@@ -7862,14 +7862,14 @@ static void contWeatherRainbow(TCB_PTR tcb, void* work)
 		
 			WeatherBGAlphaDef(sys_w[1], 16);
 			if(sys_w[1] <= 0){
-				// ƒV[ƒPƒ“ƒX•ÏX
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_DEST;
 			}
 			
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
 			stopWeatherWork_local(p_wsd);
@@ -7884,7 +7884,7 @@ static void contWeatherRainbow(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘å‰J‰Šú‰»ˆ—
+ *	@brief	å¤§é›¨åˆæœŸåŒ–å‡¦ç†
  *	@param	sys_work
  *	@param	sys_w 
  *	@return
@@ -7892,10 +7892,10 @@ static void contWeatherRainbow(TCB_PTR tcb, void* work)
 //-----------------------------------------------------------------------------
 static void contWeatherSTRain_Init( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NORMAL* sys_w )
 {
-	// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+	// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 	weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-		WEATHER_STRAIN_ADD_START,	// obj“o˜^”
-		WEATHER_STRAIN_TIMING_MAX,// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+		WEATHER_STRAIN_ADD_START,	// objç™»éŒ²æ•°
+		WEATHER_STRAIN_TIMING_MAX,// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 		WEATHER_STRAIN_ADD_MAIN,
 		WEATHER_STRAIN_TIMING_MIN,
 		-WEATHER_STRAIN_TIMING_ADD,
@@ -7904,7 +7904,7 @@ static void contWeatherSTRain_Init( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NOR
 		addWeatherSTRain );
 	
 
-	// ƒtƒHƒO‚Ìİ’è
+	// ãƒ•ã‚©ã‚°ã®è¨­å®š
 	weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 			sys_work->pWSysCont->fsys->fog_data,
 			WEATHER_FOG_SLOPE_DEFAULT, 
@@ -7912,11 +7912,11 @@ static void contWeatherSTRain_Init( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NOR
 			GX_RGB(26,26,26),
 			WEATHER_STRAIN_FOG_TIMING,
 			sys_work->fog_use );
-	sys_w->work[0] = WEATHER_STRAIN_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
+	sys_w->work[0] = WEATHER_STRAIN_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 	sys_w->work[1] = 0;
-	sys_w->work[2] = 0;							// •—ƒJƒEƒ“ƒ^
+	sys_w->work[2] = 0;							// é¢¨ã‚«ã‚¦ãƒ³ã‚¿
 
-	// ‰¹
+	// éŸ³
 	WeatherLoopSndPlay( sys_work, SEQ_SE_DP_T_OOAME );	
 
 //*/
@@ -7924,31 +7924,31 @@ static void contWeatherSTRain_Init( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NOR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘å‰JƒtƒF[ƒhƒCƒ“ˆ—
+ *	@brief	å¤§é›¨ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å‡¦ç†
  *	@param	sys_work
  *	@param	sys_w 
  *
- *	@retval	TRUE	ƒtƒF[ƒhŠ®—¹
- *	@retval	FALSE	ƒtƒF[ƒh“r’†
+ *	@retval	TRUE	ãƒ•ã‚§ãƒ¼ãƒ‰å®Œäº†
+ *	@retval	FALSE	ãƒ•ã‚§ãƒ¼ãƒ‰é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL contWeatherSTRain_FadeIn( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NORMAL* sys_w )
 {
-	int		result;		// ŠÖ”Œ‹‰Ê
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
+	int		result;		// é–¢æ•°çµæœ
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
 
-	// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-	result = weatherSysObjFade(&sys_w->objFade);	// Às	
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+	result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ	
 
 	if(sys_w->work[0] > 0){
-		sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+		sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		
 	}else{
 		fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 		
 
-		// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-		if((fog_result == 1) && (result == 3)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
+		// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+		if((fog_result == 1) && (result == 3)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
 			return TRUE;
 		}
 	}
@@ -7958,7 +7958,7 @@ static BOOL contWeatherSTRain_FadeIn( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_N
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘å‰J@ƒtƒF[ƒh‚È‚µ‰Šú‰»
+ *	@brief	å¤§é›¨ã€€ãƒ•ã‚§ãƒ¼ãƒ‰ãªã—åˆæœŸåŒ–
  *
  *	@param	sys_work	
  *	@param	sys_w 
@@ -7966,10 +7966,10 @@ static BOOL contWeatherSTRain_FadeIn( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_N
 //-----------------------------------------------------------------------------
 static void contWeatherSTRain_NoFade( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NORMAL* sys_w )
 {
-	// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+	// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 	weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-		WEATHER_STRAIN_ADD_MAIN,	// obj“o˜^”
-		WEATHER_STRAIN_TIMING_MIN,// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+		WEATHER_STRAIN_ADD_MAIN,	// objç™»éŒ²æ•°
+		WEATHER_STRAIN_TIMING_MIN,// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 		WEATHER_STRAIN_ADD_MAIN,
 		WEATHER_STRAIN_TIMING_MIN,
 		-WEATHER_STRAIN_TIMING_ADD,
@@ -7978,29 +7978,29 @@ static void contWeatherSTRain_NoFade( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_N
 		addWeatherSTRain );
 	
 
-	// ƒtƒHƒO‚Ìİ’è
+	// ãƒ•ã‚©ã‚°ã®è¨­å®š
 	if(sys_work->fog_use != WEATHER_FOG_NONE){
-		// ƒf[ƒ^‚ğİ’è
-		sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+		// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+		sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 		weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG_SLOPE_DEFAULT, WEATHER_FOG_DEPTH_DEFAULT, GX_RGB(26,26,26) );
-		// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 		weatherSysFogSet( &sys_w->fogFade );
 	}
 
 	sys_w->work[1] = 0;
-	sys_w->work[2] = 0;							// •—ƒJƒEƒ“ƒ^
+	sys_w->work[2] = 0;							// é¢¨ã‚«ã‚¦ãƒ³ã‚¿
 
-	// ƒIƒuƒWƒFƒNƒg‚ğU‚ç‚Î‚·
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•£ã‚‰ã°ã™
 	weatherDustObj( sys_work, addWeatherSTRain, WEATHER_STRAIN_NOFADE_OBJ_START_NUM, WEATHER_STRAIN_NOFADE_OBJ_START_DUST_NUM, WEATHER_STRAIN_NOFADE_OBJ_START_DUST_MOVE, objWeatherSTRain );
 
 
-	// ‰¹
+	// éŸ³
 	WeatherLoopSndPlay( sys_work, SEQ_SE_DP_T_OOAME );	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘å‰JƒƒCƒ“ˆ—
+ *	@brief	å¤§é›¨ãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
  *	@param	sys_work
  *	@param	sys_w 
@@ -8008,19 +8008,19 @@ static void contWeatherSTRain_NoFade( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_N
 //-----------------------------------------------------------------------------
 static void contWeatherSTRain_Main( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NORMAL* sys_w )
 {
-	sys_w->work[2] = (sys_w->work[2] + 1) % (WEATHER_STRAIN_OBJ_MUL_CHG*WEATHER_STRAIN_OBJ_MUL_NUM);		// ‰J“o˜^—¿•ÏXƒJƒEƒ“ƒ^
-	// ƒJƒEƒ“ƒ^‚ª0‚¢‚©‚É‚È‚Á‚½‚ç‰J“o˜^
+	sys_w->work[2] = (sys_w->work[2] + 1) % (WEATHER_STRAIN_OBJ_MUL_CHG*WEATHER_STRAIN_OBJ_MUL_NUM);		// é›¨ç™»éŒ²æ–™å¤‰æ›´ã‚«ã‚¦ãƒ³ã‚¿
+	// ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã„ã‹ã«ãªã£ãŸã‚‰é›¨ç™»éŒ²
 	if(sys_w->objFade.objAddTmg-- <= 0){
 						
-		// ‰J“o˜^
+		// é›¨ç™»éŒ²
 		addWeatherSTRain(sys_work, sys_w->objFade.objAddNum);
 
-		sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒZƒbƒg	
+		sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚»ãƒƒãƒˆ	
 	}
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘å‰JƒtƒF[ƒhƒAƒEƒg‰Šú‰»ˆ—
+ *	@brief	å¤§é›¨ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆåˆæœŸåŒ–å‡¦ç†
  *	@param	sys_work
  *	@param	sys_w 
  */
@@ -8028,7 +8028,7 @@ static void contWeatherSTRain_Main( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NOR
 static void contWeatherSTRain_FadeOutInit( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NORMAL* sys_w )
 {
 	// obj
-	// ƒtƒF[ƒhƒAƒEƒgİ’è
+	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆè¨­å®š
 	weatherSysObjFadeOutSet( &sys_w->objFade,
 			0,
 			WEATHER_STRAIN_TIMING_MAX,
@@ -8039,34 +8039,34 @@ static void contWeatherSTRain_FadeOutInit( WEATHER_SYS_WORK* sys_work, WEATHER_S
 	if(sys_work->fog_use != WEATHER_FOG_NONE){
 		weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_STRAIN_FOG_TIMING_END, FALSE );
 	}
-	sys_w->work[0] = WEATHER_STRAIN_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p
+	sys_w->work[0] = WEATHER_STRAIN_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 
-	// ‰¹
+	// éŸ³
 	WeatherLoopSndStop( sys_work );	
 	
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘å‰JƒtƒF[ƒhƒAƒEƒgˆ—
+ *	@brief	å¤§é›¨ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå‡¦ç†
  *
  *	@param	sys_work
  *	@param	sys_w 
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL contWeatherSTRain_FadeOut( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NORMAL* sys_w )
 {
-	int		result;		// ŠÖ”Œ‹‰Ê
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
+	int		result;		// é–¢æ•°çµæœ
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
 
-	// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-	result = weatherSysObjFade(&sys_w->objFade);	// Às
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+	result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 	
-	// ƒtƒHƒO‘€ì
+	// ãƒ•ã‚©ã‚°æ“ä½œ
 	if(sys_w->work[0] > 0){
-		sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+		sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		
 	}else{
 	
@@ -8077,8 +8077,8 @@ static BOOL contWeatherSTRain_FadeOut( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_
 		}
 
 		if((fog_result == 1) && (result == 3)){
-			// “o˜^”‚ª‚O‚É‚È‚Á‚½‚çI—¹‚·‚é‚©ƒ`ƒFƒbƒN
-			// ©•ª‚ÌŠÇ—‚·‚é‚ ‚ß‚ª‘S‚Ä”jŠü‚³‚ê‚½‚çI—¹
+			// ç™»éŒ²æ•°ãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+			// è‡ªåˆ†ã®ç®¡ç†ã™ã‚‹ã‚ã‚ãŒå…¨ã¦ç ´æ£„ã•ã‚ŒãŸã‚‰çµ‚äº†
 			if(sys_work->Dummy.pNext == &sys_work->Dummy){
 				
 				return TRUE;
@@ -8091,7 +8091,7 @@ static BOOL contWeatherSTRain_FadeOut( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘å‰J@”jŠüˆ—
+ *	@brief	å¤§é›¨ã€€ç ´æ£„å‡¦ç†
  *
  *	@param	sys_work
  *	@param	sys_w 
@@ -8100,7 +8100,7 @@ static BOOL contWeatherSTRain_FadeOut( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_
 static void contWeatherSTRain_Dest( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NORMAL* sys_w )
 {
 	if(sys_work->fog_use != WEATHER_FOG_NONE){
-		SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+		SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 	}
 	{
 		WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -8112,7 +8112,7 @@ static void contWeatherSTRain_Dest( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NOR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘å‰J@•`‰æˆ—
+ *	@brief	å¤§é›¨ã€€æç”»å‡¦ç†
  *
  *	@param	sys_work
  *	@param	sys_w 
@@ -8120,7 +8120,7 @@ static void contWeatherSTRain_Dest( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NOR
 //-----------------------------------------------------------------------------
 static void contWeatherSTRain_Draw( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NORMAL* sys_w )
 {
-	// ‰Šú‰»A”jŠüˆÈŠO‚Ì‚Æ‚«‚Í“®ìŠÖ”‚ğ“®‚©‚·
+	// åˆæœŸåŒ–ã€ç ´æ£„ä»¥å¤–ã®ã¨ãã¯å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™
 	if((sys_work->Sequence != WEATHER_SEQ_DEST) &&
 		(sys_work->Sequence != WEATHER_SEQ_INIT) ){
 
@@ -8132,7 +8132,7 @@ static void contWeatherSTRain_Draw( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NOR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“´ŒA‹¤’Êˆ—
+ *	@brief	æ´çªŸå…±é€šå‡¦ç†
  *
  *	@param	tcb
  *	@param	work
@@ -8141,16 +8141,16 @@ static void contWeatherSTRain_Draw( WEATHER_SYS_WORK* sys_work, WEATHER_SYSW_NOR
 static void contWeatherDoukutuComm( TCB_PTR tcb, void* work, u32 alpha_def, u32 alpha_subnum, u32 alpha_movemax, u32 alpha_moveeff )
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	WEATHER_STSW_FOGFADE* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
-	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	WEATHER_STSW_FOGFADE* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
+	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
 
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
-		// ƒtƒHƒO‚Ìİ’è
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 /*		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_DOUKUTU_FOG_SLOPE, 
@@ -8158,54 +8158,54 @@ static void contWeatherDoukutuComm( TCB_PTR tcb, void* work, u32 alpha_def, u32 
 				WEATEHR_DOUKUTU_FOG_COLOER,
 				WEATHER_DOUKUKTU_FOG_TIMING,
 				sys_work->fog_use );
-		sys_w->work[0] = WEATHER_DOUKUKTU_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
+		sys_w->work[0] = WEATHER_DOUKUKTU_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 //*/
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
 			weatherSysFogParamSet( sys_work->pWSysCont->fsys->fog_data,
 					WEATHER_DOUKUTU_FOG_SLOPE,
 					WEATHER_DOUKUTU_FOG_OFS,
 					WEATEHR_DOUKUTU_FOG_COLOER );
 			SetFogTbl(sys_work->pWSysCont->fsys->fog_data,
-					DoukutuFogTbl);				// ƒtƒHƒOƒe[ƒuƒ‹
+					DoukutuFogTbl);				// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«
 
 			WeatherBGAlphaDef(alpha_def, 16-alpha_def);
 			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
-			sys_w->work[0] = alpha_movemax;	// ƒAƒ‹ƒtƒ@ƒtƒF[ƒh
-			sys_w->work[1] = 0;	// ƒAƒ‹ƒtƒ@ƒtƒF[ƒh
+			sys_w->work[0] = alpha_movemax;	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰
+			sys_w->work[1] = 0;	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰
 		}
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 /*
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 			}
 		}	
 //*/
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
 	case WEATHER_SEQ_NO_FADE:
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
 /*
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG_SLOPE_DEFAULT, 
 					WEATHER_FOG_DEPTH_DEFAULT + WEATHER_DOUKUTU_FOG_OFS, 
 					WEATEHR_DOUKUTU_FOG_COLOER );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 //*/
 			weatherSysFogParamSet( sys_work->pWSysCont->fsys->fog_data,
@@ -8213,25 +8213,25 @@ static void contWeatherDoukutuComm( TCB_PTR tcb, void* work, u32 alpha_def, u32 
 					WEATHER_DOUKUTU_FOG_OFS,
 					WEATEHR_DOUKUTU_FOG_COLOER );
 			SetFogTbl(sys_work->pWSysCont->fsys->fog_data,
-					DoukutuFogTbl);				// ƒtƒHƒOƒe[ƒuƒ‹
+					DoukutuFogTbl);				// ãƒ•ã‚©ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«
 			WeatherBGAlphaDef(alpha_def, 16-alpha_def);
 			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
-			sys_w->work[0] = alpha_movemax;	// ƒAƒ‹ƒtƒ@ƒtƒF[ƒh
-			sys_w->work[1] = 0;	// ƒAƒ‹ƒtƒ@ƒtƒF[ƒh
+			sys_w->work[0] = alpha_movemax;	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰
+			sys_w->work[1] = 0;	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰
 		}
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 
 		
-		if( sys_w->work[1] == 0 ){	// –Ú‚È‚êƒVƒXƒeƒ€
+		if( sys_w->work[1] == 0 ){	// ç›®ãªã‚Œã‚·ã‚¹ãƒ†ãƒ 
 			sys_w->work[0] -= alpha_subnum;
 			if( sys_w->work[0] <= 0 ){
 				sys_w->work[1] = 1;
 			}
-		}else if( sys_w->work[1] == 1 ){	// ­‚µ‚¸‚ÂƒAƒ‹ƒtƒ@‚ğ‚©‚¦‚é
+		}else if( sys_w->work[1] == 1 ){	// å°‘ã—ãšã¤ã‚¢ãƒ«ãƒ•ã‚¡ã‚’ã‹ãˆã‚‹
 			sys_w->work[0] ++;
 			if( sys_w->work[0] >= alpha_moveeff ){
 				sys_w->work[1] = 2;
@@ -8246,22 +8246,22 @@ static void contWeatherDoukutuComm( TCB_PTR tcb, void* work, u32 alpha_def, u32 
 		WeatherBGAlphaDef((alpha_def+WEATHER_DOUKUTU_ALPHA_MOVEGET(sys_w->work[0])), 
 				16-(alpha_def+WEATHER_DOUKUTU_ALPHA_MOVEGET(sys_w->work[0])));
 		
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 /*
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_FOG_TIMING_END, FALSE );
 			}
-			sys_w->work[0] = WEATHER_DOUKUKTU_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p
+			sys_w->work[0] = WEATHER_DOUKUKTU_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 //*/
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
 		
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 /*
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				fog_result = weatherSysFogFade(&sys_w->fogFade);
@@ -8269,9 +8269,9 @@ static void contWeatherDoukutuComm( TCB_PTR tcb, void* work, u32 alpha_def, u32 
 				fog_result = 1;
 			}
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎI—¹‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°çµ‚äº†ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_DEST;
 			}
 		}
@@ -8281,9 +8281,9 @@ static void contWeatherDoukutuComm( TCB_PTR tcb, void* work, u32 alpha_def, u32 
 		sys_work->Sequence = WEATHER_SEQ_DEST;
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_work->pWSysCont->fsys->fog_data, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_work->pWSysCont->fsys->fog_data, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -8298,26 +8298,26 @@ static void contWeatherDoukutuComm( TCB_PTR tcb, void* work, u32 alpha_def, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒO‹¤’Êˆ—
+ *	@brief	ãƒ•ã‚©ã‚°å…±é€šå‡¦ç†
  *
- *	@param	sys_work		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	sys_w			ƒtƒHƒOƒtƒF[ƒhƒ[ƒN
- *	@param	slope			ƒXƒ[ƒv
- *	@param	offset			ƒIƒtƒZƒbƒg
- *	@param	color			ƒJƒ‰[
- *	@param	in_timing		ƒCƒ“ƒ^ƒCƒ~ƒ“ƒO
- *	@param	out_timing		ƒAƒEƒgƒ^ƒCƒ~ƒ“ƒO
+ *	@param	sys_work		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	sys_w			ãƒ•ã‚©ã‚°ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯
+ *	@param	slope			ã‚¹ãƒ­ãƒ¼ãƒ—
+ *	@param	offset			ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *	@param	color			ã‚«ãƒ©ãƒ¼
+ *	@param	in_timing		ã‚¤ãƒ³ã‚¿ã‚¤ãƒŸãƒ³ã‚°
+ *	@param	out_timing		ã‚¢ã‚¦ãƒˆã‚¿ã‚¤ãƒŸãƒ³ã‚°
  */
 //-----------------------------------------------------------------------------
 static void contWeatherCommFog( WEATHER_SYS_WORK* sys_work, WEATHER_STSW_FOGFADE* sys_w, u32 slope, u32 offset, GXRgb color, u32 in_timing, u32 out_timing )
 {
-	int		i;			// ƒ‹[ƒv—p
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
-		// ƒtƒHƒO‚Ìİ’è
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				slope, 
@@ -8326,62 +8326,62 @@ static void contWeatherCommFog( WEATHER_SYS_WORK* sys_work, WEATHER_STSW_FOGFADE
 				in_timing,
 				sys_work->fog_use );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 		
-		// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-		if((fog_result == 1)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-			// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+		if((fog_result == 1)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_MAIN;
 		}
 		break;
 	case WEATHER_SEQ_NO_FADE:
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog,
 					slope, 
 					offset,
 					color );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
-		// I—¹ƒ`ƒFƒbƒN
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, 
 						out_timing, FALSE );
 			}
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
 		
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
 			fog_result = weatherSysFogFade(&sys_w->fogFade);
 		}else{
 			fog_result = 1;
 		}
 		
-		// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-		if((fog_result == 1)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎI—¹‚Ö
-			// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+		if((fog_result == 1)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°çµ‚äº†ã¸
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_DEST;
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -8396,10 +8396,10 @@ static void contWeatherCommFog( WEATHER_SYS_WORK* sys_work, WEATHER_STSW_FOGFADE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘å‰J{—‹
+ *	@brief	å¤§é›¨ï¼‹é›·
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -8407,58 +8407,58 @@ static void contWeatherCommFog( WEATHER_SYS_WORK* sys_work, WEATHER_STSW_FOGFADE
 static void contWeatherSTRainSpark(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_SYSW_NORMAL* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
+	WEATHER_SYSW_NORMAL* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 	
-	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
-		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
+		// åˆæœŸåŒ–å‡¦ç†
 		contWeatherSTRain_Init( sys_work, sys_w );
-		// —‹‚ğ”­“®
+		// é›·ã‚’ç™ºå‹•
 		ControlWeatherSys( sys_work->pWSysCont, WEATHER_SYS_INIT, WEATHER_SYS_SPARK_EFF );
 		ControlWeatherSys( sys_work->pWSysCont, WEATHER_SYS_START_NOFADE, WEATHER_SYS_SPARK_EFF );
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		if( contWeatherSTRain_FadeIn( sys_work, sys_w ) ){
-			// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_MAIN;
 		}
 		break;
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 		contWeatherSTRain_NoFade( sys_work, sys_w );
-		// —‹‚ğ”­“®
+		// é›·ã‚’ç™ºå‹•
 		ControlWeatherSys( sys_work->pWSysCont, WEATHER_SYS_INIT, WEATHER_SYS_SPARK_EFF );
 		ControlWeatherSys( sys_work->pWSysCont, WEATHER_SYS_START_NOFADE, WEATHER_SYS_SPARK_EFF );//*/
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		contWeatherSTRain_Main( sys_work, sys_w );
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			contWeatherSTRain_FadeOutInit( sys_work, sys_w );
-			// —‹I—¹
+			// é›·çµ‚äº†
 			ControlWeatherSys( sys_work->pWSysCont, WEATHER_SYS_END, WEATHER_SYS_SPARK_EFF );//*/
 
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		if( contWeatherSTRain_FadeOut( sys_work, sys_w ) ){
-			// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_DEST;
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		contWeatherSTRain_Dest( sys_work, sys_w );
-		// —‹‹­§I—¹
+		// é›·å¼·åˆ¶çµ‚äº†
 		ControlWeatherSys( sys_work->pWSysCont, WEATHER_SYS_DEST, WEATHER_SYS_SPARK_EFF );//*/
 
 		break;
@@ -8466,7 +8466,7 @@ static void contWeatherSTRainSpark(TCB_PTR tcb, void* work)
 	default:
 		break;
 	}
-	// •`‰æˆ—
+	// æç”»å‡¦ç†
 	contWeatherSTRain_Draw( sys_work, sys_w );
 }
 
@@ -8474,10 +8474,10 @@ static void contWeatherSTRainSpark(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰JŠÇ—ƒ^ƒXƒN
+ *@brief	é›¨ç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -8486,55 +8486,55 @@ static void contWeatherSTRainSpark(TCB_PTR tcb, void* work)
 static void contWeatherSTRain(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_SYSW_NORMAL* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
+	WEATHER_SYSW_NORMAL* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 
-	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
-		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
+		// åˆæœŸåŒ–å‡¦ç†
 		contWeatherSTRain_Init( sys_work, sys_w );
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		if( contWeatherSTRain_FadeIn( sys_work, sys_w ) ){
-			// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_MAIN;
 		}
 		break;
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 		contWeatherSTRain_NoFade( sys_work, sys_w );
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		contWeatherSTRain_Main( sys_work, sys_w );
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			contWeatherSTRain_FadeOutInit( sys_work, sys_w );
 
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		if( contWeatherSTRain_FadeOut( sys_work, sys_w ) ){
-			// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_DEST;
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		contWeatherSTRain_Dest( sys_work, sys_w );
 		break;
 
 	default:
 		break;
 	}
-	// •`‰æˆ—
+	// æç”»å‡¦ç†
 	contWeatherSTRain_Draw( sys_work, sys_w );
 	
 }
@@ -8543,47 +8543,47 @@ static void contWeatherSTRain(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰JƒIƒuƒWƒFƒNƒg“o˜^ŠÖ”
+ *@brief	é›¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²é–¢æ•°
  *
- *@param	pWork		“o˜^‚·‚éƒIƒuƒWƒF‚ÌŠÇ—ŠÖ”ƒ[ƒN
- *@param	num			“o˜^‚·‚é”
+ *@param	pWork		ç™»éŒ²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®ç®¡ç†é–¢æ•°ãƒ¯ãƒ¼ã‚¯
+ *@param	num			ç™»éŒ²ã™ã‚‹æ•°
  *
  *@return	none
  *
- *	“à—e
- *		num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
- *		‰J—p‚Éƒ[ƒN—Ìˆæ‚ğ‰Šú‰»
+ *	å†…å®¹
+ *		numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
+ *		é›¨ç”¨ã«ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’åˆæœŸåŒ–
  *
  */
 //-----------------------------------------------------------------------------
 static void addWeatherSTRain(WEATHER_SYS_WORK* pWork, int num)
 {
-	int i;		// ƒ‹[ƒv—p
-	WAETHER_OBJ_DATA* add_obj;		// “o˜^ƒIƒuƒWƒF
-	int	err;	// •â³’l
-	s32* obj_w;	// ƒIƒuƒWƒFƒNƒgƒ[ƒN
-	WEATHER_SYSW_NORMAL* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	int speed_m;	// ƒXƒs[ƒh‚É‚©‚¯‚é’lƒe[ƒuƒ‹‚Ì—v‘f”
-	int frame;		// ƒtƒŒ[ƒ€”
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	WAETHER_OBJ_DATA* add_obj;		// ç™»éŒ²ã‚ªãƒ–ã‚¸ã‚§
+	int	err;	// è£œæ­£å€¤
+	s32* obj_w;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+	WEATHER_SYSW_NORMAL* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int speed_m;	// ã‚¹ãƒ”ãƒ¼ãƒ‰ã«ã‹ã‘ã‚‹å€¤ãƒ†ãƒ¼ãƒ–ãƒ«ã®è¦ç´ æ•°
+	int frame;		// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 	static const int WEATHER_STRAIN_OBJ_MUL[ WEATHER_STRAIN_OBJ_MUL_NUM ] = {1, 1, 2, 1, 3};
 	u32 rand;
 
 	sys_w = (WEATHER_SYSW_NORMAL*)pWork->work;
 	
-	// num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
+	// numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
 	for(i=0;i<num;i++){
 
-		add_obj = addObj(pWork, sizeof(s32)*8);		// “o˜^
-		if(add_obj == NULL){			// ¸”s‚µ‚½‚çI—¹
+		add_obj = addObj(pWork, sizeof(s32)*8);		// ç™»éŒ²
+		if(add_obj == NULL){			// å¤±æ•—ã—ãŸã‚‰çµ‚äº†
 			break;
 		}
 		obj_w = (s32*)add_obj->work;
 
 		rand = gf_mtRand();
 		
-		// —Ìˆæ‚ğ‰Šú‰»
-		obj_w[0] = 0;			// ƒJƒEƒ“ƒ^
-		frame = rand%3;	// ‰J‚Ìí—Ş
+		// é ˜åŸŸã‚’åˆæœŸåŒ–
+		obj_w[0] = 0;			// ã‚«ã‚¦ãƒ³ã‚¿
+		frame = rand%3;	// é›¨ã®ç¨®é¡
 		CLACT_AnmFrameSet( add_obj->clact_w, frame );
 
 		obj_w[4] = WEATHER_STRAIN_SPEED_X * (frame+1);
@@ -8591,13 +8591,13 @@ static void addWeatherSTRain(WEATHER_SYS_WORK* pWork, int num)
 		obj_w[4] *= WEATHER_STRAIN_OBJ_MUL[sys_w->work[2]/WEATHER_STRAIN_OBJ_MUL_CHG];
 		obj_w[2] *= WEATHER_STRAIN_OBJ_MUL[sys_w->work[2]/WEATHER_STRAIN_OBJ_MUL_CHG];
 		
-		obj_w[3] = 0;			// ”jŠüƒAƒjƒƒtƒ‰ƒO
+		obj_w[3] = 0;			// ç ´æ£„ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°
 		
-		// ”jŠüƒ^ƒCƒ~ƒ“ƒO	‘S•”‹¤’Ê‚Ì”ÍˆÍ‚Ì’l
+		// ç ´æ£„ã‚¿ã‚¤ãƒŸãƒ³ã‚°	å…¨éƒ¨å…±é€šã®ç¯„å›²ã®å€¤
 		obj_w[1] = WEATHER_STRAIN_END_MIN  + (rand % WEATHER_STRAIN_END_MAX);
 		obj_w[1] /= WEATHER_STRAIN_OBJ_MUL[sys_w->work[2]/WEATHER_STRAIN_OBJ_MUL_CHG];
 		
-		// À•W‚ğİ’è
+		// åº§æ¨™ã‚’è¨­å®š
 		{
 			VecFx32 mat = getObjMat( add_obj );
 			mat.x = WEATHER_STRAIN_START_X + (rand % WEATHER_STRAIN_START_X_MAX);
@@ -8615,9 +8615,9 @@ static void addWeatherSTRain(WEATHER_SYS_WORK* pWork, int num)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰JƒIƒuƒWƒFƒNƒg“®ìŠÖ”
+ *@brief	é›¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œé–¢æ•°
  *
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -8631,37 +8631,37 @@ static void objWeatherSTRain(WAETHER_OBJ_DATA* work)
 	s32* obj_w = (s32*)p_obj->work;
 	VecFx32 mat = getObjMat( p_obj );
 	
-	// “®ìƒtƒ‰ƒO‚ğƒ`ƒFƒbƒN
+	// å‹•ä½œãƒ•ãƒ©ã‚°ã‚’ãƒã‚§ãƒƒã‚¯
 	switch(obj_w[3]){
-	case 0:		// “®ì
-		// “®‚©‚·
+	case 0:		// å‹•ä½œ
+		// å‹•ã‹ã™
 		mat.x += (obj_w[4]*2) << FX32_SHIFT;
 		mat.y += (obj_w[2]*2) << FX32_SHIFT;
 	
-		// ”jŠü‚·‚é‚©ƒ`ƒFƒbƒN
+		// ç ´æ£„ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		obj_w[0] += 2;
 		if(obj_w[0] > obj_w[1]){
-			// ƒAƒjƒ[ƒVƒ‡ƒ“‚³‚¹‚é‚©ƒ`ƒFƒbƒN
-			if((gf_mtRand() % 10) < 5){		// 7/10‚Í”jŠü
-				// ”jŠü
+			// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+			if((gf_mtRand() % 10) < 5){		// 7/10ã¯ç ´æ£„
+				// ç ´æ£„
 				obj_w[3] = 2;
 			}else{
 			
-				// ”jŠüƒAƒjƒ
+				// ç ´æ£„ã‚¢ãƒ‹ãƒ¡
 				obj_w[3] = 1;		
-				obj_w[0] = 4;			// ”jŠüƒAƒjƒƒJƒEƒ“ƒ^
-				CLACT_AnmFrameSet(p_obj->clact_w, 3);// ”jŠüƒAƒjƒ‚ÌŠG
+				obj_w[0] = 4;			// ç ´æ£„ã‚¢ãƒ‹ãƒ¡ã‚«ã‚¦ãƒ³ã‚¿
+				CLACT_AnmFrameSet(p_obj->clact_w, 3);// ç ´æ£„ã‚¢ãƒ‹ãƒ¡ã®çµµ
 			}
 		}
 		setClactMatrix(p_obj->clact_w, &mat);
 		break;
-	case 1:		// ”jŠüƒAƒjƒ
+	case 1:		// ç ´æ£„ã‚¢ãƒ‹ãƒ¡
 		if(obj_w[0]-- <= 0){
-			obj_w[3] = 2;		// ”jŠü
+			obj_w[3] = 2;		// ç ´æ£„
 		}
 		break;
 
-	case 2:		// ”jŠü
+	case 2:		// ç ´æ£„
 		destObj(p_obj);
 		break;
 	}		
@@ -8671,10 +8671,10 @@ static void objWeatherSTRain(WAETHER_OBJ_DATA* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰ÎRŠDŠÇ—ƒ^ƒXƒN
+ *@brief	ç«å±±ç°ç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -8683,27 +8683,27 @@ static void objWeatherSTRain(WAETHER_OBJ_DATA* work)
 static void contWeatherVolcano(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	int		tmp_y;		// yÀ•W•Û‘¶—p
-	int		scl_x, scl_y;	// ƒXƒNƒ[ƒ‹À•W
-	short		sc_w_x, sc_w_y;	// ƒXƒNƒ[ƒ‹ƒ[ƒN
-	WEATHER_SYSW_NORMAL* sys_w;			// ƒVƒXƒeƒ€ƒ[ƒN
-	int		result;		// ŠÖ”Œ‹‰Ê
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	int		tmp_y;		// yåº§æ¨™ä¿å­˜ç”¨
+	int		scl_x, scl_y;	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™
+	short		sc_w_x, sc_w_y;	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
+	WEATHER_SYSW_NORMAL* sys_w;			// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		result;		// é–¢æ•°çµæœ
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
 	
-	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
 
 
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 		
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			1,	// obj“o˜^”
-			WEATHER_VOLCANO_TIMING_MAX,	// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			1,	// objç™»éŒ²æ•°
+			WEATHER_VOLCANO_TIMING_MAX,	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_VOLCANO_MAIN,
 			WEATHER_VOLCANO_TIMING_MIN,
 			-WEATHER_VOLCANO_TIMING_ADD,
@@ -8711,13 +8711,13 @@ static void contWeatherVolcano(TCB_PTR tcb, void* work)
 			WEATHER_VOLCANO_ADD,
 			addWeatherVolcano );
 		
-		sys_w->work[1] = 0;						// ‰ÎRŠD‚ª‚P‰ñ‰º‚Ü‚Ås‚Á‚½‚©‚Ìƒtƒ‰ƒO
-		sys_w->work[2] = 0;						// BGÀ•W	ã16bit X	‰º16bit Y
-		sys_w->work[4] = 0;						// BG‰¡ƒJƒEƒ“ƒ^
+		sys_w->work[1] = 0;						// ç«å±±ç°ãŒï¼‘å›ä¸‹ã¾ã§è¡Œã£ãŸã‹ã®ãƒ•ãƒ©ã‚°
+		sys_w->work[2] = 0;						// BGåº§æ¨™	ä¸Š16bit X	ä¸‹16bit Y
+		sys_w->work[4] = 0;						// BGæ¨ªã‚«ã‚¦ãƒ³ã‚¿
 
-		sys_w->work[5] = 0;						// ƒIƒuƒWƒFƒNƒg”jŠüƒtƒ‰ƒO
+		sys_w->work[5] = 0;						// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„ãƒ•ãƒ©ã‚°
 		
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_FOG_SLOPE_DEFAULT + WEATHER_VOLCANO_FOG_SLOPE, 
@@ -8725,37 +8725,37 @@ static void contWeatherVolcano(TCB_PTR tcb, void* work)
 				GX_RGB(20,20,14),
 				WEATHER_VOLCANO_FOG_TIMING,
 				sys_work->fog_use );
-		sys_w->work[0] = WEATHER_VOLCANO_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
+		sys_w->work[0] = WEATHER_VOLCANO_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 		
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 		
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			// FOG
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1) && (result == 3)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1) && (result == 3)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 				// BGON
 				GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 			}
 		}
 		break;
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 		
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			WEATHER_VOLCANO_MAIN,	// obj“o˜^”
-			WEATHER_VOLCANO_TIMING_MIN,	// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			WEATHER_VOLCANO_MAIN,	// objç™»éŒ²æ•°
+			WEATHER_VOLCANO_TIMING_MIN,	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_VOLCANO_MAIN,
 			WEATHER_VOLCANO_TIMING_MIN,
 			-WEATHER_VOLCANO_TIMING_ADD,
@@ -8763,44 +8763,44 @@ static void contWeatherVolcano(TCB_PTR tcb, void* work)
 			WEATHER_VOLCANO_ADD,
 			addWeatherVolcano );
 		
-		sys_w->work[1] = 0;						// ‰ÎRŠD‚ª‚P‰ñ‰º‚Ü‚Ås‚Á‚½‚©‚Ìƒtƒ‰ƒO
-		sys_w->work[2] = 0;						// BGÀ•W	ã16bit X	‰º16bit Y
-		sys_w->work[4] = 0;						// BG‰¡ƒJƒEƒ“ƒ^
-		sys_w->work[5] = 0;						// ƒIƒuƒWƒFƒNƒg”jŠüƒtƒ‰ƒO
+		sys_w->work[1] = 0;						// ç«å±±ç°ãŒï¼‘å›ä¸‹ã¾ã§è¡Œã£ãŸã‹ã®ãƒ•ãƒ©ã‚°
+		sys_w->work[2] = 0;						// BGåº§æ¨™	ä¸Š16bit X	ä¸‹16bit Y
+		sys_w->work[4] = 0;						// BGæ¨ªã‚«ã‚¦ãƒ³ã‚¿
+		sys_w->work[5] = 0;						// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„ãƒ•ãƒ©ã‚°
 		
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG_SLOPE_DEFAULT, WEATHER_FOG_DEPTH_DEFAULT + WEATHER_VOLCANO_FOG_OFS, GX_RGB(20,20,14) );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 		
 
-		// ƒIƒuƒWƒFƒNƒg‚ğU‚ç‚Î‚·
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•£ã‚‰ã°ã™
 		weatherDustObj( sys_work, addWeatherVolcano, WEATHER_VOLCANO_NOFADE_OBJ_START_NUM, WEATHER_VOLCANO_NOFADE_OBJ_START_DUST_NUM, WEATHER_VOLCANO_NOFADE_OBJ_START_DUST_MOVE, objWeatherVolcano );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 
 		// BGON
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		
-		// ƒJƒEƒ“ƒ^‚ª0‚¢‚©‚É‚È‚Á‚½‚ç‰J“o˜^
+		// ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã„ã‹ã«ãªã£ãŸã‚‰é›¨ç™»éŒ²
 		if(sys_w->objFade.objAddTmg-- <= 0){
 
-			// ‰ÎRŠD“o˜^
+			// ç«å±±ç°ç™»éŒ²
 			addWeatherVolcano(sys_work, sys_w->objFade.objAddNum);
 	
-			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒZƒbƒg	
+			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚»ãƒƒãƒˆ	
 		}
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			// obj
-			// ƒtƒF[ƒhƒAƒEƒgİ’è
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆè¨­å®š
 			weatherSysObjFadeOutSet( &sys_w->objFade,
 					0,
 					WEATHER_VOLCANO_TIMING_MAX,
@@ -8811,24 +8811,24 @@ static void contWeatherVolcano(TCB_PTR tcb, void* work)
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_VOLCANO_FOG_TIMING_END, FALSE );
 			}
-			sys_w->work[0] = WEATHER_VOLCANO_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_w->work[0] = WEATHER_VOLCANO_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 
-			sys_w->work[5] = 1;						// ƒIƒuƒWƒFƒNƒg”jŠüƒtƒ‰ƒO
+			sys_w->work[5] = 1;						// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„ãƒ•ãƒ©ã‚°
 			
 			// BGOFF
 			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 		}
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 
-		// ƒtƒHƒO‘€ì
+		// ãƒ•ã‚©ã‚°æ“ä½œ
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
-			// ƒtƒHƒO
+			// ãƒ•ã‚©ã‚°
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				fog_result = weatherSysFogFade(&sys_w->fogFade);
 			}else{
@@ -8836,20 +8836,20 @@ static void contWeatherVolcano(TCB_PTR tcb, void* work)
 			}
 		
 			if((fog_result == 1) && (result == 3)){
-				// “o˜^”‚ª‚O‚É‚È‚Á‚½‚çI—¹‚·‚é‚©ƒ`ƒFƒbƒN
-				// ©•ª‚ÌŠÇ—‚·‚é‚ ‚ß‚ª‘S‚Ä”jŠü‚³‚ê‚½‚çI—¹
+				// ç™»éŒ²æ•°ãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+				// è‡ªåˆ†ã®ç®¡ç†ã™ã‚‹ã‚ã‚ãŒå…¨ã¦ç ´æ£„ã•ã‚ŒãŸã‚‰çµ‚äº†
 				if(sys_work->Dummy.pNext == &sys_work->Dummy){
 					
-					// ƒV[ƒPƒ“ƒX•ÏX
+					// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 					sys_work->Sequence = WEATHER_SEQ_DEST;
 				}
 			}
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -8861,7 +8861,7 @@ static void contWeatherVolcano(TCB_PTR tcb, void* work)
 		break;
 	}
 
-	// ‰Šú‰»A”jŠüˆÈŠO‚Ì‚Æ‚«‚Í“®ìŠÖ”‚ğ“®‚©‚·
+	// åˆæœŸåŒ–ã€ç ´æ£„ä»¥å¤–ã®ã¨ãã¯å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™
 	if((sys_work->Sequence != WEATHER_SEQ_DEST) &&
 		(sys_work->Sequence != WEATHER_SEQ_INIT) ){
 
@@ -8870,8 +8870,8 @@ static void contWeatherVolcano(TCB_PTR tcb, void* work)
 		drawObj(sys_work);
 
 
-		// BGƒXƒNƒ[ƒ‹
-		sc_w_x = sys_w->work[2] >> 16;	// ƒXƒNƒ[ƒ‹À•Wæ‚èo‚µ
+		// BGã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
+		sc_w_x = sys_w->work[2] >> 16;	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™å–ã‚Šå‡ºã—
 		sc_w_y = sys_w->work[2] & 0xffff;
 		sc_w_x += scl_x;
 		sc_w_y -= scl_y*5;
@@ -8886,7 +8886,7 @@ static void contWeatherVolcano(TCB_PTR tcb, void* work)
 			sc_w_y += 2048;
 		}
 
-		// BG–Ê‚Ì‰¡‚Íˆê’èŠÔŠu‚Å‚¸‚ç‚·i‚¿‚ç‚¿‚ç‚ğ•\Œ»j
+		// BGé¢ã®æ¨ªã¯ä¸€å®šé–“éš”ã§ãšã‚‰ã™ï¼ˆã¡ã‚‰ã¡ã‚‰ã‚’è¡¨ç¾ï¼‰
 		sys_w->work[4]+=2;
 		if(sys_w->work[4] > 60){
 			sys_w->work[4] = 0;
@@ -8894,10 +8894,10 @@ static void contWeatherVolcano(TCB_PTR tcb, void* work)
 			sc_w_x = (sc_w_x + 32) % 256;
 		}
 		
-		// BG–Ê‚ğÎ‚ßã‚É“®‚©‚·
+		// BGé¢ã‚’æ–œã‚ä¸Šã«å‹•ã‹ã™
 		sc_w_y = (sc_w_y + 2) % 2048;
 		G2_SetBG2Offset(sc_w_x, -sc_w_y/5);
-		sys_w->work[2] = sc_w_x << 16;	// ƒXƒNƒ[ƒ‹À•WŠi”[
+		sys_w->work[2] = sc_w_x << 16;	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åº§æ¨™æ ¼ç´
 		sys_w->work[2] |= sc_w_y & 0xffff;
 	}
 }
@@ -8906,27 +8906,27 @@ static void contWeatherVolcano(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰ÎRŠDƒIƒuƒWƒFƒNƒg“o˜^ŠÖ”
+ *@brief	ç«å±±ç°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²é–¢æ•°
  *
- *@param	pWork		“o˜^‚·‚éƒIƒuƒWƒF‚ÌŠÇ—ŠÖ”ƒ[ƒN
- *@param	num			“o˜^‚·‚é”
+ *@param	pWork		ç™»éŒ²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®ç®¡ç†é–¢æ•°ãƒ¯ãƒ¼ã‚¯
+ *@param	num			ç™»éŒ²ã™ã‚‹æ•°
  *
  *@return	none
  *
- *	“à—e
- *		num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
- *		‰ÎRŠD—p‚Éƒ[ƒN—Ìˆæ‚ğ‰Šú‰»
+ *	å†…å®¹
+ *		numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
+ *		ç«å±±ç°ç”¨ã«ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚’åˆæœŸåŒ–
  *
  */
 //-----------------------------------------------------------------------------
 static void addWeatherVolcano(WEATHER_SYS_WORK* pWork, int num)
 {
-	int i;		// ƒ‹[ƒv—p
-	int rand;	// —”
-	WAETHER_OBJ_DATA* add_obj;		// “o˜^ƒIƒuƒWƒF
-	WEATHER_SYSW_NORMAL* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	int frame;	// ƒtƒŒ[ƒ€”
-	s32* obj_w;	// ƒIƒuƒWƒFƒNƒgƒ[ƒN
+	int i;		// ãƒ«ãƒ¼ãƒ—ç”¨
+	int rand;	// ä¹±æ•°
+	WAETHER_OBJ_DATA* add_obj;		// ç™»éŒ²ã‚ªãƒ–ã‚¸ã‚§
+	WEATHER_SYSW_NORMAL* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int frame;	// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+	s32* obj_w;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 	sys_w = pWork->work;
 
 
@@ -8934,11 +8934,11 @@ static void addWeatherVolcano(WEATHER_SYS_WORK* pWork, int num)
 		num *= 2;
 	}
 	
-	// num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
+	// numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
 	for(i=0;i<num;i++){
 
-		add_obj = addObj(pWork, sizeof(s32)*8);		// “o˜^
-		if(add_obj == NULL){			// ¸”s‚µ‚½‚çI—¹
+		add_obj = addObj(pWork, sizeof(s32)*8);		// ç™»éŒ²
+		if(add_obj == NULL){			// å¤±æ•—ã—ãŸã‚‰çµ‚äº†
 			break;
 		}
 
@@ -8947,12 +8947,12 @@ static void addWeatherVolcano(WEATHER_SYS_WORK* pWork, int num)
 		frame = gf_mtRand() % WEATHER_VOLCANO_OBJ_NUM;
 		CLACT_AnmFrameSet( add_obj->clact_w, frame );
 		
-		obj_w[4] = 10;	// ‰¡‚Ì“®‚­•ûŒü•ÏXƒJƒEƒ“ƒ^	
+		obj_w[4] = 10;	// æ¨ªã®å‹•ãæ–¹å‘å¤‰æ›´ã‚«ã‚¦ãƒ³ã‚¿	
 		obj_w[5] = 0;
 		
 		rand = gf_mtRand();
 	
-		// ƒXƒs[ƒh
+		// ã‚¹ãƒ”ãƒ¼ãƒ‰
 		if((rand % 2) == 0){
 			obj_w[1] = 1;
 		}else{
@@ -8960,17 +8960,17 @@ static void addWeatherVolcano(WEATHER_SYS_WORK* pWork, int num)
 		}
 		obj_w[3] = WEATHER_VOLCANO_ADD_TMG_Y_BASE + (gf_mtRand() % WEATHER_VOLCANO_ADD_TMG_Y_RAN);
 
-		obj_w[0] = (s32)&sys_w->work[1];		// ‰º‚Ü‚Ås‚Á‚½‚çƒtƒ‰ƒO‚ğ—§‚Ä‚éƒ|ƒCƒ“ƒ^‚ğ•Û‘¶
-		obj_w[6] = (s32)&sys_w->work[5];		// ”jŠüƒtƒ‰ƒO
-		obj_w[7] = WEATEHR_VOLCANO_DEL_COUNT_MIN + (gf_mtRand() % WEATEHR_VOLCANO_DEL_COUNT_MAX);					// ”jŠü¶³İÀ
+		obj_w[0] = (s32)&sys_w->work[1];		// ä¸‹ã¾ã§è¡Œã£ãŸã‚‰ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿å­˜
+		obj_w[6] = (s32)&sys_w->work[5];		// ç ´æ£„ãƒ•ãƒ©ã‚°
+		obj_w[7] = WEATEHR_VOLCANO_DEL_COUNT_MIN + (gf_mtRand() % WEATEHR_VOLCANO_DEL_COUNT_MAX);					// ç ´æ£„ã‚«ã‚¦ãƒ³ã‚¿
 		
-		// À•W‚ğİ’è
+		// åº§æ¨™ã‚’è¨­å®š
 		{
 			VecFx32 mat = getObjMat( add_obj );
 			mat.x = WEATHER_VOLCANO_START_X_BASE + (gf_mtRand() % WEATHER_VOLCANO_START_X_MAX);
 		
 			if((sys_w->work[1] == 1) &&
-				(i >= (num /2)) ){	// ”¼•ªo‚·
+				(i >= (num /2)) ){	// åŠåˆ†å‡ºã™
 				mat.y = -40 - (gf_mtRand() % 20);
 			}else{
 				mat.y = -8 - (gf_mtRand() % 20);
@@ -8987,9 +8987,9 @@ static void addWeatherVolcano(WEATHER_SYS_WORK* pWork, int num)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‰ÎRŠD“®ìŠÖ”
+ *@brief	ç«å±±ç°å‹•ä½œé–¢æ•°
  *
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -9002,7 +9002,7 @@ static void objWeatherVolcano(WAETHER_OBJ_DATA* work)
 	VecFx32 mat = getObjMat( p_obj );
 	BOOL del_flg = FALSE;
 
-	// “®‚©‚·
+	// å‹•ã‹ã™
 	if((obj_w[5] >= obj_w[3])){
 		mat.y += FX32_ONE;
 		obj_w[5] = 0;
@@ -9014,17 +9014,17 @@ static void objWeatherVolcano(WAETHER_OBJ_DATA* work)
 
 	mat.y >>= FX32_SHIFT;
 
-	// ”jŠüƒtƒ‰ƒO‚ª—§‚Á‚Ä‚¢‚½‚çA”jŠü
+	// ç ´æ£„ãƒ•ãƒ©ã‚°ãŒç«‹ã£ã¦ã„ãŸã‚‰ã€ç ´æ£„
 	if( *((s32*)obj_w[6]) == 1 ){
 
-		// ”jŠü¶³İÀ‚ª–³‚­‚È‚Á‚½‚ç”jŠü
+		// ç ´æ£„ã‚«ã‚¦ãƒ³ã‚¿ãŒç„¡ããªã£ãŸã‚‰ç ´æ£„
 		obj_w[7] --;
 		if( obj_w[7] <= 0 ){
 			del_flg = TRUE;
 		}
 	}
 	
-	// ”jŠüƒ][ƒ“‚É‚¢‚½‚ç”jŠü  
+	// ç ´æ£„ã‚¾ãƒ¼ãƒ³ã«ã„ãŸã‚‰ç ´æ£„  
 	if(((mat.y < -284) && (mat.y > -296)) ||
 		((mat.y > 212) && (mat.y < 232))){
 		del_flg = TRUE;
@@ -9040,10 +9040,10 @@ static void objWeatherVolcano(WAETHER_OBJ_DATA* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	—‹ŠÇ—ƒ^ƒXƒN
+ *@brief	é›·ç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -9052,70 +9052,70 @@ static void objWeatherVolcano(WAETHER_OBJ_DATA* work)
 static void contWeatherSpark(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	s32* sys_w;			// ƒVƒXƒeƒ€ƒ[ƒN
+	s32* sys_w;			// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 	int	num;
 	int rand;
 	
-	sys_w = (s32*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (s32*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
 
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 		
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
-		sys_w[0] = 0;		// ƒ‰ƒCƒgƒtƒF[ƒhƒJƒEƒ“ƒ^
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
+		sys_w[0] = 0;		// ãƒ©ã‚¤ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚«ã‚¦ãƒ³ã‚¿
 		sys_w[4] = 0;
 		sys_w[1] = 0;
 		WeatherBGAlphaDef(0,31);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 		
 
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		if(sys_w[4] >= 0){
 			sys_w[4]--;
 		}else{
 			switch(sys_w[1]){
 			case 0:
-				sys_w[1] = 1;		// ƒ‰ƒCƒgƒtƒF[ƒh’†
+				sys_w[1] = 1;		// ãƒ©ã‚¤ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ä¸­
 				sys_w[5] = 0;
-				sys_w[6] = WEATHER_SPARK_POWER_MIN+(gf_mtRand() % WEATHER_SPARK_POWER_RAN);	// Œõ‚Ì‘‚â‚·’l‚ğ‹‚ß‚é
-				sys_w[7] = 0;		// ¡‚ÌƒAƒ‹ƒtƒ@
+				sys_w[6] = WEATHER_SPARK_POWER_MIN+(gf_mtRand() % WEATHER_SPARK_POWER_RAN);	// å…‰ã®å¢—ã‚„ã™å€¤ã‚’æ±‚ã‚ã‚‹
+				sys_w[7] = 0;		// ä»Šã®ã‚¢ãƒ«ãƒ•ã‚¡
 
-				// “_–Å‚Ì—‹‚É‚·‚é‚©@—‚¿‚½—‹‚É‚·‚é‚©ƒ`ƒFƒbƒN
+				// ç‚¹æ»…ã®é›·ã«ã™ã‚‹ã‹ã€€è½ã¡ãŸé›·ã«ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 				if((gf_mtRand()%3) != 0){
 					sys_w[2] = WEATHER_SPARK_SUB_NUM;
 
-					// ‚²‚ë—‹
+					// ã”ã‚é›·
 					Snd_SePlay( SEQ_SE_DP_T_KAMI2 );
 				}else{
 					sys_w[2] = WEATHER_SPARK_SUB_NUM_HIGH;
 
-					// ƒsƒJ—‹
+					// ãƒ”ã‚«é›·
 					Snd_SePlay( SEQ_SE_DP_T_KAMI );
 				}
 				break;
 			case 1:
 				sys_w[5]++;
 				sys_w[7] += sys_w[6];	
-				if(sys_w[5] >= WEATHER_SPARK_NUM){	// I—¹ƒ`ƒFƒbƒN
-					sys_w[1] = 2;		// ˆÃ‚­‚·‚é
+				if(sys_w[5] >= WEATHER_SPARK_NUM){	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
+					sys_w[1] = 2;		// æš—ãã™ã‚‹
 				}
 				WeatherBGAlphaDef(sys_w[7]/100,31);
 				break;
 			case 2:
 				sys_w[7] -= sys_w[2];	
-				if(sys_w[7] <= 0){	// I—¹ƒ`ƒFƒbƒN
+				if(sys_w[7] <= 0){	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 					sys_w[1] = 0;
 					sys_w[7] = 0;
 
-					// Ÿ‚Ì—‹‚Ü‚Å‚ÌƒJƒEƒ“ƒ^‚ğİ’è
-					// Á‚¦‚é‚Ì‚ª‘‚¢‚Æ‚«‚Í‚à‚¤ˆê“xo‚·
+					// æ¬¡ã®é›·ã¾ã§ã®ã‚«ã‚¦ãƒ³ã‚¿ã‚’è¨­å®š
+					// æ¶ˆãˆã‚‹ã®ãŒæ—©ã„ã¨ãã¯ã‚‚ã†ä¸€åº¦å‡ºã™
 					if(sys_w[2] == WEATHER_SPARK_SUB_NUM_HIGH){
 						sys_w[4] = (gf_mtRand() % WEATHER_SPARK_SPARK_RAN_HIGH);
 					}else{
@@ -9126,18 +9126,18 @@ static void contWeatherSpark(TCB_PTR tcb, void* work)
 				break;
 			}
 		}
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 				
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		
 		sys_work->Sequence = WEATHER_SEQ_DEST;
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
 			stopWeatherWork_local(p_wsd);
@@ -9152,10 +9152,10 @@ static void contWeatherSpark(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‹C‡ŠÇ—ƒ^ƒXƒN
+ *@brief	æ°—åˆç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -9164,22 +9164,22 @@ static void contWeatherSpark(TCB_PTR tcb, void* work)
 static void contWeatherSpirit(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	WEATHER_SYSW_OBJFADE* sys_w;			// ƒVƒXƒeƒ€ƒ[ƒN
-	int		result;		// ŠÖ”Œ‹‰Ê
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	WEATHER_SYSW_OBJFADE* sys_w;			// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		result;		// é–¢æ•°çµæœ
 	
-	sys_w = (WEATHER_SYSW_OBJFADE*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_SYSW_OBJFADE*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
 
 			
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 		
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			1,	// obj“o˜^”
-			WEATHER_SPIRIT_TIMING_MAX,	// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			1,	// objç™»éŒ²æ•°
+			WEATHER_SPIRIT_TIMING_MAX,	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_SPIRIT_MAIN,
 			WEATHER_SPIRIT_TIMING_MIN,
 			-WEATHER_SPIRIT_TIMING_ADD,
@@ -9188,79 +9188,79 @@ static void contWeatherSpirit(TCB_PTR tcb, void* work)
 			addWeatherSpirit );
 		
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 		
-		// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-		if(result == 3){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-			// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+		if(result == 3){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_MAIN;
 		}
 		break;
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 		
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			1,	// obj“o˜^”
-			WEATHER_SPIRIT_MAIN,	// obj“o˜^”
-			WEATHER_SPIRIT_TIMING_MIN,	// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			1,	// objç™»éŒ²æ•°
+			WEATHER_SPIRIT_MAIN,	// objç™»éŒ²æ•°
+			WEATHER_SPIRIT_TIMING_MIN,	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_SPIRIT_TIMING_MIN,
 			-WEATHER_SPIRIT_TIMING_ADD,
 			WEATHER_SPIRIT_ADD_TIMING,
 			WEATHER_SPIRIT_ADD,
 			addWeatherSpirit );
 
-		// ƒIƒuƒWƒFƒNƒg‚ğU‚ç‚Î‚·
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•£ã‚‰ã°ã™
 		weatherDustObj( sys_work, addWeatherSpirit, WEATHER_SPIRIT_NOFADE_OBJ_START_NUM, WEATHER_SPIRIT_NOFADE_OBJ_START_DUST_NUM, WEATHER_SPIRIT_NOFADE_OBJ_START_DUST_MOVE, objWeatherSpirit );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		
-		// ƒJƒEƒ“ƒ^‚ª0‚¢‚©‚É‚È‚Á‚½‚ç“o˜^
+		// ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã„ã‹ã«ãªã£ãŸã‚‰ç™»éŒ²
 		if(sys_w->objFade.objAddTmg-- <= 0){
 
-			// Šâ“o˜^
+			// å²©ç™»éŒ²
 			addWeatherSpirit(sys_work, sys_w->objFade.objAddNum);
 	
-			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒZƒbƒg	
+			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚»ãƒƒãƒˆ	
 		}
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			// obj
-			// ƒtƒF[ƒhƒAƒEƒgİ’è
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆè¨­å®š
 			weatherSysObjFadeOutSet( &sys_w->objFade,
 					0,
 					WEATHER_SPIRIT_TIMING_MAX,
 					WEATHER_SPIRIT_TIMING_ADD,
 					WEATHER_SPIRIT_ADD_END );
 			
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 
 		if(result == 3){
-			// “o˜^”‚ª‚O‚É‚È‚Á‚½‚çI—¹‚·‚é‚©ƒ`ƒFƒbƒN
-			// ©•ª‚ÌŠÇ—‚·‚é‚ ‚ß‚ª‘S‚Ä”jŠü‚³‚ê‚½‚çI—¹
+			// ç™»éŒ²æ•°ãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+			// è‡ªåˆ†ã®ç®¡ç†ã™ã‚‹ã‚ã‚ãŒå…¨ã¦ç ´æ£„ã•ã‚ŒãŸã‚‰çµ‚äº†
 			if(sys_work->Dummy.pNext == &sys_work->Dummy){
 				
-				// ƒV[ƒPƒ“ƒX•ÏX
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_DEST;
 			
 			}
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
 			stopWeatherWork_local(p_wsd);
@@ -9271,7 +9271,7 @@ static void contWeatherSpirit(TCB_PTR tcb, void* work)
 		break;
 	}
 
-	// ‰Šú‰»A”jŠüˆÈŠO‚Ì‚Æ‚«‚Í“®ìŠÖ”‚ğ“®‚©‚·
+	// åˆæœŸåŒ–ã€ç ´æ£„ä»¥å¤–ã®ã¨ãã¯å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™
 	if((sys_work->Sequence != WEATHER_SEQ_DEST) &&
 		(sys_work->Sequence != WEATHER_SEQ_INIT) ){
 
@@ -9285,10 +9285,10 @@ static void contWeatherSpirit(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‹C‡ƒIƒuƒWƒFƒNƒg“o˜^ŠÖ”
+ *@brief	æ°—åˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²é–¢æ•°
  *
- *@param	pWork		“o˜^‚·‚éƒIƒuƒWƒF‚ÌŠÇ—ŠÖ”ƒ[ƒN
- *@param	num			“o˜^‚·‚é”
+ *@param	pWork		ç™»éŒ²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®ç®¡ç†é–¢æ•°ãƒ¯ãƒ¼ã‚¯
+ *@param	num			ç™»éŒ²ã™ã‚‹æ•°
  *
  *@return	none
  *
@@ -9296,42 +9296,42 @@ static void contWeatherSpirit(TCB_PTR tcb, void* work)
 //-----------------------------------------------------------------------------
 static void addWeatherSpirit(WEATHER_SYS_WORK* pWork, int num)
 {
-	int i;			// ƒ‹[ƒv—p
-	WAETHER_OBJ_DATA* add_obj;		// “o˜^ƒIƒuƒWƒF
-	s32* obj_w;		// ƒIƒuƒWƒFƒNƒgƒ[ƒN
-	int obj_num;	// ƒIƒuƒWƒFƒNƒg”
-	int frame;		// ƒtƒŒ[ƒ€”
-	VecFx32 mat;	// À•W
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	WAETHER_OBJ_DATA* add_obj;		// ç™»éŒ²ã‚ªãƒ–ã‚¸ã‚§
+	s32* obj_w;		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+	int obj_num;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
+	int frame;		// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+	VecFx32 mat;	// åº§æ¨™
 
 		
-	// num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
+	// numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
 	for(i=0;i<num;i++){
 
-		add_obj = addObj(pWork, sizeof(s32)*8);		// “o˜^
-		if(add_obj == NULL){			// ¸”s‚µ‚½‚çI—¹
+		add_obj = addObj(pWork, sizeof(s32)*8);		// ç™»éŒ²
+		if(add_obj == NULL){			// å¤±æ•—ã—ãŸã‚‰çµ‚äº†
 			break;
 		}
 
 		obj_w = (s32*)add_obj->work;
 
-		// í—Ş‚ğ‹‚ß‚é
+		// ç¨®é¡ã‚’æ±‚ã‚ã‚‹
 		frame = gf_mtRand() % WEATHER_SPIRIT_OBJ_NUM;
 		CLACT_AnmFrameSet( add_obj->clact_w, frame );
 
-		// í—Ş‚©‚ç‰ğ•úƒJƒEƒ“ƒ^A‰Á‘¬’l‚ğ‹‚ß‚é
-		obj_num = frame / WEATHER_SPIRIT_BIG_DIV;	// ƒIƒuƒWƒF‚Ì‘å‚«‚³idx
-		obj_num++;	// 0->1‚É‚·‚é
-		obj_w[0] = WEATHER_SPIRIT_SHIFT_UP+(gf_mtRand()%WEATHER_SPIRIT_SHIFT_UP_RAN);	// —Í‰ğ•úƒJƒEƒ“ƒ^
+		// ç¨®é¡ã‹ã‚‰è§£æ”¾ã‚«ã‚¦ãƒ³ã‚¿ã€åŠ é€Ÿå€¤ã‚’æ±‚ã‚ã‚‹
+		obj_num = frame / WEATHER_SPIRIT_BIG_DIV;	// ã‚ªãƒ–ã‚¸ã‚§ã®å¤§ãã•idx
+		obj_num++;	// 0->1ã«ã™ã‚‹
+		obj_w[0] = WEATHER_SPIRIT_SHIFT_UP+(gf_mtRand()%WEATHER_SPIRIT_SHIFT_UP_RAN);	// åŠ›è§£æ”¾ã‚«ã‚¦ãƒ³ã‚¿
 		obj_w[0] *= obj_num;
-		obj_w[1] = WEATHER_SPIRIT_ADD_SPEED / obj_num;	// ‰Á‘¬’l//*/
-		obj_w[2] = 0;									// ¡‚Ì‘¬“x
+		obj_w[1] = WEATHER_SPIRIT_ADD_SPEED / obj_num;	// åŠ é€Ÿå€¤//*/
+		obj_w[2] = 0;									// ä»Šã®é€Ÿåº¦
 
-		// ¬‚İ‚É‰¡‚É“®‚­
-		obj_w[3] = gf_mtRand() % 2;		// 0:‰E	1:¶
-		obj_w[4] = WEATHER_SPIRIT_S_MOVE_TMG;	// ‚ä‚ê‚éƒ^ƒCƒ~ƒ“ƒO
+		// å°åˆ»ã¿ã«æ¨ªã«å‹•ã
+		obj_w[3] = gf_mtRand() % 2;		// 0:å³	1:å·¦
+		obj_w[4] = WEATHER_SPIRIT_S_MOVE_TMG;	// ã‚†ã‚Œã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 
 		
-		// À•W
+		// åº§æ¨™
 		switch(obj_num){
 		case 1:
 		case 2:
@@ -9358,9 +9358,9 @@ static void addWeatherSpirit(WEATHER_SYS_WORK* pWork, int num)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	‹C‡“®ìŠÖ”
+ *@brief	æ°—åˆå‹•ä½œé–¢æ•°
  *
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -9372,17 +9372,17 @@ static void objWeatherSpirit(WAETHER_OBJ_DATA* work)
 	s32* obj_w = (s32*)p_obj->work;
 	VecFx32 mat = getObjMat( p_obj );
 
-	// ‰Á‘¬‚µ‚È‚ª‚çˆÚ“®
+	// åŠ é€Ÿã—ãªãŒã‚‰ç§»å‹•
 	obj_w[2] += obj_w[1];
 	if(obj_w[0] > 0){
-		obj_w[0]--;		// —Í‰ğ•úƒJƒEƒ“ƒg	0‚É‚È‚Á‚½‚ç‘¬“x–‚Q
+		obj_w[0]--;		// åŠ›è§£æ”¾ã‚«ã‚¦ãƒ³ãƒˆ	0ã«ãªã£ãŸã‚‰é€Ÿåº¦ï¼Šï¼’
 
 		mat.y -= (obj_w[2]/100) << FX32_SHIFT;
 	}else{
 		mat.y -= (obj_w[2]/50) << FX32_SHIFT;
 	}
 
-	// ¬‚İ‚É—h‚ê‚é
+	// å°åˆ»ã¿ã«æºã‚Œã‚‹
 	obj_w[4]--;
 	if(obj_w[4] <= 0){
 		obj_w[4] = WEATHER_SPIRIT_S_MOVE_TMG;
@@ -9399,7 +9399,7 @@ static void objWeatherSpirit(WAETHER_OBJ_DATA* work)
 	setClactMatrix( p_obj->clact_w, &mat );
 	
 
-	//@ã‚Ü‚Ås‚Á‚½‚çI‚í‚è
+	//ã€€ä¸Šã¾ã§è¡Œã£ãŸã‚‰çµ‚ã‚ã‚Š
 	if( (mat.y >> FX32_SHIFT) <= -16){
 		destObj(p_obj);
 	}
@@ -9409,10 +9409,10 @@ static void objWeatherSpirit(WAETHER_OBJ_DATA* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	_”éŠÇ—ƒ^ƒXƒN
+ *@brief	ç¥ç§˜ç®¡ç†ã‚¿ã‚¹ã‚¯
  *
- *@param	tcb		©•ª‚Ìƒ^ƒXƒN
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	tcb		è‡ªåˆ†ã®ã‚¿ã‚¹ã‚¯
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -9421,24 +9421,24 @@ static void objWeatherSpirit(WAETHER_OBJ_DATA* work)
 static void contWeatherMystic(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_KIRI_HARAI_WORK* sys_w;			// ƒVƒXƒeƒ€ƒ[ƒN
+	WEATHER_KIRI_HARAI_WORK* sys_w;			// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 	BOOL result;
 	BOOL fog_result;
-	sys_w = (WEATHER_KIRI_HARAI_WORK*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_KIRI_HARAI_WORK*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 		WeatherMoveReq( &sys_w->alpha, 0, WEATHER_MYSTIC_FADE_END_ALPHA, WEATHER_MYSTIC_FADE_COUNT_MAX );
 		WeatherBGAlphaDef(0, 16);
 
-		// •\¦—Dæ‡ˆÊ•ÏX
+		// è¡¨ç¤ºå„ªå…ˆé †ä½å¤‰æ›´
 		G2_SetBG2Priority(3);
 		
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 
 /*
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_MYSTIC_FOG_SLOPE, 
@@ -9447,11 +9447,11 @@ static void contWeatherMystic(TCB_PTR tcb, void* work)
 				WEATHER_MYSTIC_FOG_TIMING,
 				sys_work->fog_use );
 //*/		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
 	
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 
 //		fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 		fog_result = TRUE;
@@ -9460,36 +9460,36 @@ static void contWeatherMystic(TCB_PTR tcb, void* work)
 		WeatherBGAlphaDef(sys_w->alpha.x, 16 - sys_w->alpha.x);
 
 		if( (result == TRUE) && (fog_result == TRUE) ){
-			// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_MAIN;
 		}
 		break;
 
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 
 		WeatherBGAlphaDef(WEATHER_MYSTIC_FADE_END_ALPHA, 16 - WEATHER_MYSTIC_FADE_END_ALPHA);
 
-		// •\¦—Dæ‡ˆÊ•ÏX
+		// è¡¨ç¤ºå„ªå…ˆé †ä½å¤‰æ›´
 		G2_SetBG2Priority(3);
 		
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 
 
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 /*		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_MYSTIC_FOG_SLOPE, WEATHER_MYSTIC_FOG_OFS, GX_RGB(0,0,0) );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}//*/
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
 	
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
-		// I—¹ƒ`ƒFƒbƒN
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			WeatherMoveReq( &sys_w->alpha, WEATHER_MYSTIC_FADE_END_ALPHA, 0, WEATHER_MYSTIC_FADE_COUNT_MAX );
 
@@ -9498,11 +9498,11 @@ static void contWeatherMystic(TCB_PTR tcb, void* work)
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_MYSTIC_FOG_TIMING_END, FALSE );
 			}//*/
 			
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
 	
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		result = WeatherMoveMain( &sys_w->alpha );
 		WeatherBGAlphaDef(sys_w->alpha.x, 16 - sys_w->alpha.x);
 
@@ -9514,14 +9514,14 @@ static void contWeatherMystic(TCB_PTR tcb, void* work)
 		fog_result = TRUE;
 
 		if( (result == TRUE) && (fog_result == TRUE) ){
-			// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_DEST;
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 /*		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}//*/
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -9535,24 +9535,24 @@ static void contWeatherMystic(TCB_PTR tcb, void* work)
 
 #if 0
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	int		i;			// ƒ‹[ƒv—p
-	WEATHER_SYSW_NORMAL* sys_w;			// ƒVƒXƒeƒ€ƒ[ƒN
-	int		result;		// ŠÖ”Œ‹‰Ê
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
-	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	int		i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	WEATHER_SYSW_NORMAL* sys_w;			// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		result;		// é–¢æ•°çµæœ
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
+	sys_w = (WEATHER_SYSW_NORMAL*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 		
 
 		
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 		
 		
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			WEATHER_MYSTIC_ADD_START,	// obj“o˜^”
-			WEATHER_MYSTIC_TIMING_MAX,	// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			WEATHER_MYSTIC_ADD_START,	// objç™»éŒ²æ•°
+			WEATHER_MYSTIC_TIMING_MAX,	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_MYSTIC_ADD_MAIN,
 			WEATHER_MYSTIC_TIMING_MIN,
 			-WEATHER_MYSTIC_TIMING_ADD,
@@ -9560,7 +9560,7 @@ static void contWeatherMystic(TCB_PTR tcb, void* work)
 			WEATHER_MYSTIC_ADD,
 			addWeatherMystic );
 		
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_FOG_SLOPE_DEFAULT, 
@@ -9568,37 +9568,37 @@ static void contWeatherMystic(TCB_PTR tcb, void* work)
 				GX_RGB(31,31,31),
 				WEATHER_MYSTIC_FOG_TIMING,
 				sys_work->fog_use );
-		sys_w->work[0] = WEATHER_MYSTIC_FOG_START;	// “¯‚¶‚­ƒtƒHƒO—p
+		sys_w->work[0] = WEATHER_MYSTIC_FOG_START;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
 		
-		sys_w->work[1] = 0;			// ƒIƒuƒWƒFƒNƒg’Ç‰Á”ƒJƒEƒ“ƒ^
+		sys_w->work[1] = 0;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¿½åŠ æ•°ã‚«ã‚¦ãƒ³ã‚¿
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 		
 		
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 			fog_result = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);
 			
-			// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-			if((fog_result == 1) && (result == 3)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-				// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+			if((fog_result == 1) && (result == 3)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+				// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 				sys_work->Sequence = WEATHER_SEQ_MAIN;
 			}
 		}
 		break;
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 		
 		
-		// ì‹Æ—Ìˆæ‚Ì‰Šú‰»
+		// ä½œæ¥­é ˜åŸŸã®åˆæœŸåŒ–
 		weatherSysObjFadeInit( &sys_w->objFade, sys_work,
-			WEATHER_MYSTIC_ADD_MAIN,	// obj“o˜^”
-			WEATHER_MYSTIC_TIMING_MIN,	// “o˜^ƒ^ƒCƒ~ƒ“ƒO
+			WEATHER_MYSTIC_ADD_MAIN,	// objç™»éŒ²æ•°
+			WEATHER_MYSTIC_TIMING_MIN,	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°
 			WEATHER_MYSTIC_ADD_MAIN,
 			WEATHER_MYSTIC_TIMING_MIN,
 			-WEATHER_MYSTIC_TIMING_ADD,
@@ -9606,37 +9606,37 @@ static void contWeatherMystic(TCB_PTR tcb, void* work)
 			WEATHER_MYSTIC_ADD,
 			addWeatherMystic );
 		
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG_SLOPE_DEFAULT, WEATHER_FOG_DEPTH_DEFAULT + WEATHER_MYSTIC_FOG_OFS, GX_RGB(31,31,31) );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 		
-		sys_w->work[1] = 0;			// ƒIƒuƒWƒFƒNƒg’Ç‰Á”ƒJƒEƒ“ƒ^
+		sys_w->work[1] = 0;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¿½åŠ æ•°ã‚«ã‚¦ãƒ³ã‚¿
 
-		// ƒIƒuƒWƒFƒNƒg‚ğU‚ç‚Î‚·
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•£ã‚‰ã°ã™
 		weatherDustObj( sys_work, addWeatherMystic, WEATHER_MYSTIC_NOFADE_OBJ_START_NUM, WEATHER_MYSTIC_NOFADE_OBJ_START_DUST_NUM, WEATHER_MYSTIC_NOFADE_OBJ_START_DUST_MOVE, objWeatherMystic );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 		
-		// ƒJƒEƒ“ƒ^‚ª0‚¢‚©‚É‚È‚Á‚½‚ç‰J“o˜^
+		// ã‚«ã‚¦ãƒ³ã‚¿ãŒ0ã„ã‹ã«ãªã£ãŸã‚‰é›¨ç™»éŒ²
 		if(sys_w->objFade.objAddTmg-- <= 0){
 
-			// _”é“o˜^
+			// ç¥ç§˜ç™»éŒ²
 			addWeatherMystic(sys_work, sys_w->objFade.objAddNum);
 	
-			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// “o˜^ƒ^ƒCƒ~ƒ“ƒOƒZƒbƒg	
+			sys_w->objFade.objAddTmg = sys_w->objFade.objAddTmgMax;	// ç™»éŒ²ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚»ãƒƒãƒˆ	
 		}
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			// obj
-			// ƒtƒF[ƒhƒAƒEƒgİ’è
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆè¨­å®š
 			weatherSysObjFadeOutSet( &sys_w->objFade,
 					0,
 					WEATHER_MYSTIC_TIMING_MAX,
@@ -9647,18 +9647,18 @@ static void contWeatherMystic(TCB_PTR tcb, void* work)
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_MYSTIC_FOG_TIMING_END, FALSE );
 			}
-			sys_w->work[0] = WEATHER_MYSTIC_FOG_START_END;	// “¯‚¶‚­ƒtƒHƒO—p
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_w->work[0] = WEATHER_MYSTIC_FOG_START_END;	// åŒã˜ããƒ•ã‚©ã‚°ç”¨
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
-		// ƒIƒuƒWƒFƒNƒgƒtƒF[ƒh
-		result = weatherSysObjFade(&sys_w->objFade);	// Às
+		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
+		result = weatherSysObjFade(&sys_w->objFade);	// å®Ÿè¡Œ
 		
-		// ƒtƒHƒO‘€ì
+		// ãƒ•ã‚©ã‚°æ“ä½œ
 		if(sys_w->work[0] > 0){
-			sys_w->work[0]--;			// ƒ[ƒN6‚ª‚O‚É‚È‚Á‚½‚çƒtƒHƒO‚ğ“®‚©‚·
+			sys_w->work[0]--;			// ãƒ¯ãƒ¼ã‚¯6ãŒï¼ã«ãªã£ãŸã‚‰ãƒ•ã‚©ã‚°ã‚’å‹•ã‹ã™
 		}else{
 		
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
@@ -9668,20 +9668,20 @@ static void contWeatherMystic(TCB_PTR tcb, void* work)
 			}
 		
 			if((fog_result == 1) && (result == 3)){
-				// “o˜^”‚ª‚O‚É‚È‚Á‚½‚çI—¹‚·‚é‚©ƒ`ƒFƒbƒN
-				// ©•ª‚ÌŠÇ—‚·‚é‚ ‚ß‚ª‘S‚Ä”jŠü‚³‚ê‚½‚çI—¹
+				// ç™»éŒ²æ•°ãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+				// è‡ªåˆ†ã®ç®¡ç†ã™ã‚‹ã‚ã‚ãŒå…¨ã¦ç ´æ£„ã•ã‚ŒãŸã‚‰çµ‚äº†
 				if(sys_work->Dummy.pNext == &sys_work->Dummy){
 					
-					// ƒV[ƒPƒ“ƒX•ÏX
+					// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 					sys_work->Sequence = WEATHER_SEQ_DEST;
 				}
 			}
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -9693,7 +9693,7 @@ static void contWeatherMystic(TCB_PTR tcb, void* work)
 		break;
 	}
 
-	// ‰Šú‰»A”jŠüˆÈŠO‚Ì‚Æ‚«‚Í“®ìŠÖ”‚ğ“®‚©‚·
+	// åˆæœŸåŒ–ã€ç ´æ£„ä»¥å¤–ã®ã¨ãã¯å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™
 	if((sys_work->Sequence != WEATHER_SEQ_DEST) &&
 		(sys_work->Sequence != WEATHER_SEQ_INIT) ){
 
@@ -9708,10 +9708,10 @@ static void contWeatherMystic(TCB_PTR tcb, void* work)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	_”éƒIƒuƒWƒFƒNƒg“o˜^ŠÖ”
+ *@brief	ç¥ç§˜ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²é–¢æ•°
  *
- *@param	pWork		“o˜^‚·‚éƒIƒuƒWƒF‚ÌŠÇ—ŠÖ”ƒ[ƒN
- *@param	num			“o˜^‚·‚é”
+ *@param	pWork		ç™»éŒ²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®ç®¡ç†é–¢æ•°ãƒ¯ãƒ¼ã‚¯
+ *@param	num			ç™»éŒ²ã™ã‚‹æ•°
  *
  *@return	none
  *
@@ -9719,25 +9719,25 @@ static void contWeatherMystic(TCB_PTR tcb, void* work)
 //-----------------------------------------------------------------------------
 static void addWeatherMystic(WEATHER_SYS_WORK* pWork, int num)
 {
-	int i;			// ƒ‹[ƒv—p
-	WAETHER_OBJ_DATA* add_obj;		// “o˜^ƒIƒuƒWƒF
-	s32* obj_w;		// ƒIƒuƒWƒFƒNƒgƒ[ƒN
-	int obj_num;	// ƒIƒuƒWƒFƒNƒg‚Ì‘å‚«‚³‚¯‚Á‚Ä‚¢‚æ‚¤
-	int ch_num;		// ƒIƒuƒWƒFƒNƒg‚Ì‘å‚«‚³‚¯‚Á‚Ä‚¢‚æ‚¤
-	int frame;		// ƒtƒŒ[ƒ€”
-	VecFx32 mat;	// À•W
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	WAETHER_OBJ_DATA* add_obj;		// ç™»éŒ²ã‚ªãƒ–ã‚¸ã‚§
+	s32* obj_w;		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+	int obj_num;	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å¤§ãã•ã‘ã£ã¦ã„ã‚ˆã†
+	int ch_num;		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å¤§ãã•ã‘ã£ã¦ã„ã‚ˆã†
+	int frame;		// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+	VecFx32 mat;	// åº§æ¨™
 	
 	
-	// num•ªƒIƒuƒWƒFƒNƒg‚ğ“o˜^
+	// numåˆ†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²
 	for(i=0;i<num;i++){
 
-		add_obj = addObj(pWork, sizeof(s32)*10);		// “o˜^
-		if(add_obj == NULL){			// ¸”s‚µ‚½‚çI—¹
+		add_obj = addObj(pWork, sizeof(s32)*10);		// ç™»éŒ²
+		if(add_obj == NULL){			// å¤±æ•—ã—ãŸã‚‰çµ‚äº†
 			break;
 		}
 
 		obj_w = (s32*)add_obj->work;
-		// ‘å‚«‚³‚ğŒˆ‚ß‚é
+		// å¤§ãã•ã‚’æ±ºã‚ã‚‹
 		obj_num = gf_mtRand()%WEATHER_MYSTIC_RAN;
 		ch_num = 0;
 		for(i=0;i<WEATHER_MYSTIC_NUM;i++){
@@ -9763,23 +9763,23 @@ static void addWeatherMystic(WEATHER_SYS_WORK* pWork, int num)
 		}
 		CLACT_AnmFrameSet( add_obj->clact_w, frame );
 	 	
-		// ”jŠüƒJƒEƒ“ƒ^‰Šú‰»
+		// ç ´æ£„ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 		obj_w[0] = WEATHER_MYSTIC_DES_TM+(gf_mtRand()%WEATHER_MYSTIC_DES_RAN);
 		
-		// ƒXƒs[ƒh‚ğ‹‚ß‚é
+		// ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’æ±‚ã‚ã‚‹
 		obj_w[2] = WEATHER_MYSTIC_M_Y + (WEATHER_MYSTIC_M_Y_MUL*frame);
 
-		// •t‰ÁˆÚ“®i•‚—V•¨‚ª©—R‚É”ò‚ñ‚Å‚¢‚é‚æ‚¤‚ÉŒ©‚¹‚é‚½‚ßAsin.cos‚Å“®‚©‚·j
+		// ä»˜åŠ ç§»å‹•ï¼ˆæµ®éŠç‰©ãŒè‡ªç”±ã«é£›ã‚“ã§ã„ã‚‹ã‚ˆã†ã«è¦‹ã›ã‚‹ãŸã‚ã€sin.cosã§å‹•ã‹ã™ï¼‰
 		obj_w[4] = gf_mtRand() % 360;
 		obj_w[5] = gf_mtRand() % 360;
 		obj_w[6] = gf_mtRand() % WEATHER_MYSTIC_MH_X;
 		obj_w[7] = gf_mtRand() % WEATHER_MYSTIC_MH_Y;
 		obj_w[8] = WEATHER_MYSTIC_MH_COUNT + (gf_mtRand() % WEATHER_MYSTIC_MH_COUNT_RAN);
 		
-		// À•W‚ğ‹‚ß‚é
+		// åº§æ¨™ã‚’æ±‚ã‚ã‚‹
 		obj_w[1] = 0;
 		obj_w[3] = 0;
-		mat.x = WEATHER_MYSTIC_MAT_X+(gf_mtRand()%WEAHTER_MYSTIC_MAT_X_RAN);	// XÀ•W
+		mat.x = WEATHER_MYSTIC_MAT_X+(gf_mtRand()%WEAHTER_MYSTIC_MAT_X_RAN);	// Xåº§æ¨™
 		mat.y = WEAHTER_MYSTIC_MAT_Y+(WEATHER_MYSTIC_MAT_Y_MUL*frame);
 		mat.y += (gf_mtRand()%WEAHTER_MYSTIC_MAT_Y_RAN);
 		mat.z = 0;
@@ -9793,9 +9793,9 @@ static void addWeatherMystic(WEATHER_SYS_WORK* pWork, int num)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	_”é“®ìŠÖ”
+ *@brief	ç¥ç§˜å‹•ä½œé–¢æ•°
  *
- *@param	work	ƒ[ƒN—Ìˆæ
+ *@param	work	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸ
  *
  *@return	none
  *
@@ -9805,15 +9805,15 @@ static void objWeatherMystic(WAETHER_OBJ_DATA* work)
 {
 	WAETHER_OBJ_DATA* p_obj = (WAETHER_OBJ_DATA*)work;
 	s32* obj_w = (s32*)p_obj->work;
-	int hm_num;		// •â•ˆÚ“®’l
-	fx32 hm_par;	// ˆÚ“®•â³’l‚Ì’l‚É‚©‚¯‚é’l
-	int sc_ch;		// ƒXƒNƒ[ƒ‹Áª¯¸—p
+	int hm_num;		// è£œåŠ©ç§»å‹•å€¤
+	fx32 hm_par;	// ç§»å‹•è£œæ­£å€¤ã®å€¤ã«ã‹ã‘ã‚‹å€¤
+	int sc_ch;		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯ç”¨
 	VecFx32 mat = getObjMat( p_obj );
 
 	mat.x >>= FX32_SHIFT;
 	mat.y >>= FX32_SHIFT;
 
-	// ƒXƒNƒ[ƒ‹ƒ`ƒFƒbƒN	ƒXƒNƒ[ƒ‹ˆ—‚Å“®‚¢‚½À•W‚ğŠe“à•”À•W‚É‚·‚é
+	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†ã§å‹•ã„ãŸåº§æ¨™ã‚’å„å†…éƒ¨åº§æ¨™ã«ã™ã‚‹
 	sc_ch = obj_w[1] % 100;
 	obj_w[1] = mat.y * 100;
 	obj_w[1] += sc_ch;
@@ -9821,20 +9821,20 @@ static void objWeatherMystic(WAETHER_OBJ_DATA* work)
 	obj_w[3] = mat.x * 100;
 	obj_w[3] += sc_ch;
 	
-	// ˆÚ“®
+	// ç§»å‹•
 	obj_w[1] -= obj_w[2];
 	
-	// •â•ˆÚ“®
+	// è£œåŠ©ç§»å‹•
 	hm_par = FX_SinIdx(obj_w[4]*182);
 	hm_num = FX_Mul(hm_par, obj_w[6]<<FX32_SHIFT) >> FX32_SHIFT;
-	obj_w[3] += hm_num;		// XÀ•W•â³
+	obj_w[3] += hm_num;		// Xåº§æ¨™è£œæ­£
 	hm_par = FX_SinIdx(obj_w[5]*182);
 	hm_num = FX_Mul(hm_par, obj_w[7]<<FX32_SHIFT) >> FX32_SHIFT;
-	obj_w[1] += hm_num;		// YÀ•W•â³
-	obj_w[4] = (obj_w[4]+obj_w[8]) % 360;	// Šp“x•ÏX
-	obj_w[5] = (obj_w[5]+obj_w[8]) % 360;	// Šp“x•ÏX
+	obj_w[1] += hm_num;		// Yåº§æ¨™è£œæ­£
+	obj_w[4] = (obj_w[4]+obj_w[8]) % 360;	// è§’åº¦å¤‰æ›´
+	obj_w[5] = (obj_w[5]+obj_w[8]) % 360;	// è§’åº¦å¤‰æ›´
 	
-	// À•W‚ğİ’è
+	// åº§æ¨™ã‚’è¨­å®š
 	mat.y = obj_w[1]/100;
 	mat.x = obj_w[3]/100;
 
@@ -9843,7 +9843,7 @@ static void objWeatherMystic(WAETHER_OBJ_DATA* work)
 	mat.y <<= FX32_SHIFT;
 	setClactMatrix( p_obj->clact_w, &mat );
 	
-	// ”jŠü
+	// ç ´æ£„
 	if(obj_w[0] <= 0){
 		destObj(p_obj);
 	}else{
@@ -9855,10 +9855,10 @@ static void objWeatherMystic(WAETHER_OBJ_DATA* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“Ü‚è@ƒRƒ“ƒgƒ[ƒ‹ŠÖ”
+ *	@brief	æ›‡ã‚Šã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é–¢æ•°
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -9866,62 +9866,62 @@ static void objWeatherMystic(WAETHER_OBJ_DATA* work)
 static void contWeatherCloudiness(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_CLOUDINESS_WORK* sys_w;			// ƒVƒXƒeƒ€ƒ[ƒN
+	WEATHER_CLOUDINESS_WORK* sys_w;			// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 	BOOL result;
-	sys_w = (WEATHER_CLOUDINESS_WORK*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_CLOUDINESS_WORK*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 		WeatherMoveReq( &sys_w->alpha, 0, WEATHER_CLOUDINESS_FADE_END_ALPHA, WEATHER_CLOUDINESS_FADE_COUNT_MAX );
 		WeatherBGAlphaDef(0, 16);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
 	
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 
 		result = WeatherMoveMain( &sys_w->alpha );
 		WeatherBGAlphaDef(sys_w->alpha.x, 16 - sys_w->alpha.x);
 
 		if( result ){
-			// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_MAIN;
 		}
 		break;
 
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 
 		WeatherBGAlphaDef(WEATHER_CLOUDINESS_FADE_END_ALPHA, 16 - WEATHER_CLOUDINESS_FADE_END_ALPHA);
 
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
 	
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
-		// I—¹ƒ`ƒFƒbƒN
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			WeatherMoveReq( &sys_w->alpha, WEATHER_CLOUDINESS_FADE_END_ALPHA, 0, WEATHER_CLOUDINESS_FADE_COUNT_MAX );
 			
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
 	
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		result = WeatherMoveMain( &sys_w->alpha );
 		WeatherBGAlphaDef(sys_w->alpha.x, 16 - sys_w->alpha.x);
 
 		if( result ){
-			// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_DEST;
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
 			stopWeatherWork_local(p_wsd);
@@ -9935,7 +9935,7 @@ static void contWeatherCloudiness(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–¶•¥‚¢
+ *	@brief	éœ§æ‰•ã„
  *
  *	@param	tcb
  *	@param	work
@@ -9946,15 +9946,15 @@ static void contWeatherCloudiness(TCB_PTR tcb, void* work)
 static void contWeatherKiriHarai(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_KIRI_HARAI_WORK* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
+	WEATHER_KIRI_HARAI_WORK* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
 	BOOL	alpha_result;
-	sys_w = (WEATHER_KIRI_HARAI_WORK*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_KIRI_HARAI_WORK*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
-		// ƒtƒHƒO‚Ìİ’è
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_KIRI_HARAI_FOG_SLOPE, 
@@ -9967,52 +9967,52 @@ static void contWeatherKiriHarai(TCB_PTR tcb, void* work)
 		WeatherBGAlphaDef(0, 16);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		
 		fog_result = weatherSysFogFade(&sys_w->fogFade);
 
 		alpha_result = WeatherMoveMain( &sys_w->alpha );
 		WeatherBGAlphaDef(sys_w->alpha.x, 16 - sys_w->alpha.x);
 		
-		// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-		if((fog_result == 1) && (alpha_result == TRUE)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-			// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+		if((fog_result == 1) && (alpha_result == TRUE)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_MAIN;
 		}
 		break;
 	case WEATHER_SEQ_NO_FADE:
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_KIRI_HARAI_FOG_SLOPE, WEATHER_KIRI_HARAI_FOG_OFS, WEATHER_KIRI_HARAI_FOG_COLOR );
 
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 
 		WeatherBGAlphaDef(WEATHER_KIRI_HARAI_FADE_END_ALPHA, 16 - WEATHER_KIRI_HARAI_FADE_END_ALPHA);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
-		// I—¹ƒ`ƒFƒbƒN
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_KIRI_HARAI_FOG_TIMING_END, FALSE );
 			}
 
 			WeatherMoveReq( &sys_w->alpha, WEATHER_KIRI_HARAI_FADE_END_ALPHA, 0, WEATHER_KIRI_HARAI_FADE_COUNT_MAX );
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
 		
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
 			fog_result = weatherSysFogFade(&sys_w->fogFade);
@@ -10023,16 +10023,16 @@ static void contWeatherKiriHarai(TCB_PTR tcb, void* work)
 		alpha_result = WeatherMoveMain( &sys_w->alpha );
 		WeatherBGAlphaDef(sys_w->alpha.x, 16 - sys_w->alpha.x);
 		
-		// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-		if((fog_result == 1) && (alpha_result == TRUE)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎI—¹‚Ö
-			// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+		if((fog_result == 1) && (alpha_result == TRUE)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°çµ‚äº†ã¸
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_DEST;
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -10047,7 +10047,7 @@ static void contWeatherKiriHarai(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–¶•¥‚¢	‚µ‚ë
+ *	@brief	éœ§æ‰•ã„	ã—ã‚
  *
  *	@param	tcb
  *	@param	work
@@ -10058,15 +10058,15 @@ static void contWeatherKiriHarai(TCB_PTR tcb, void* work)
 static void contWeatherKiriHarai_White(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_KIRI_HARAI_WORK* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	int		fog_result;	// ƒtƒHƒOŒ‹‰Ê
+	WEATHER_KIRI_HARAI_WORK* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	int		fog_result;	// ãƒ•ã‚©ã‚°çµæœ
 	BOOL	alpha_result;
-	sys_w = (WEATHER_KIRI_HARAI_WORK*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_KIRI_HARAI_WORK*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
-		// ƒtƒHƒO‚Ìİ’è
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_KIRI_HARAI_WHITE_FOG_SLOPE, 
@@ -10079,52 +10079,52 @@ static void contWeatherKiriHarai_White(TCB_PTR tcb, void* work)
 		WeatherBGAlphaDef(0, 16);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		
 		fog_result = weatherSysFogFade(&sys_w->fogFade);
 
 		alpha_result = WeatherMoveMain( &sys_w->alpha );
 		WeatherBGAlphaDef(sys_w->alpha.x, 16 - sys_w->alpha.x);
 		
-		// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-		if((fog_result == 1) && (alpha_result == TRUE)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎƒƒCƒ“‚Ö
-			// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+		if((fog_result == 1) && (alpha_result == TRUE)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°ãƒ¡ã‚¤ãƒ³ã¸
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_MAIN;
 		}
 		break;
 	case WEATHER_SEQ_NO_FADE:
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_KIRI_HARAI_WHITE_FOG_SLOPE, WEATHER_KIRI_HARAI_WHITE_FOG_OFS, WEATHER_KIRI_HARAI_WHITE_FOG_COLOR );
 
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 
 		WeatherBGAlphaDef(WEATHER_KIRI_HARAI_WHITE_FADE_END_ALPHA, 16 - WEATHER_KIRI_HARAI_WHITE_FADE_END_ALPHA);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
-		// I—¹ƒ`ƒFƒbƒN
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_KIRI_HARAI_WHITE_FOG_TIMING_END, FALSE );
 			}
 
 			WeatherMoveReq( &sys_w->alpha, WEATHER_KIRI_HARAI_WHITE_FADE_END_ALPHA, 0, WEATHER_KIRI_HARAI_WHITE_FADE_COUNT_MAX );
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
 		
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
 			fog_result = weatherSysFogFade(&sys_w->fogFade);
@@ -10135,16 +10135,16 @@ static void contWeatherKiriHarai_White(TCB_PTR tcb, void* work)
 		alpha_result = WeatherMoveMain( &sys_w->alpha );
 		WeatherBGAlphaDef(sys_w->alpha.x, 16 - sys_w->alpha.x);
 		
-		// ƒ^ƒCƒ~ƒ“ƒO‚ªÅ¬‚É‚È‚Á‚½‚çƒƒCƒ“‚Ö
-		if((fog_result == 1) && (alpha_result == TRUE)){		// ƒtƒF[ƒhƒŠƒUƒ‹ƒg‚ªŠ®—¹‚È‚ç‚ÎI—¹‚Ö
-			// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãŒæœ€å°ã«ãªã£ãŸã‚‰ãƒ¡ã‚¤ãƒ³ã¸
+		if((fog_result == 1) && (alpha_result == TRUE)){		// ãƒ•ã‚§ãƒ¼ãƒ‰ãƒªã‚¶ãƒ«ãƒˆãŒå®Œäº†ãªã‚‰ã°çµ‚äº†ã¸
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_DEST;
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -10159,10 +10159,10 @@ static void contWeatherKiriHarai_White(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“V‹Cƒtƒ‰ƒbƒVƒ…
+ *	@brief	å¤©æ°—ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
  *
- *	@param	tcb		ƒ^ƒXƒNƒ[ƒN
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -10170,69 +10170,69 @@ static void contWeatherKiriHarai_White(TCB_PTR tcb, void* work)
 static void contWeatherFlash(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_FLASH_WORK* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
+	WEATHER_FLASH_WORK* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 	WEATHER_SYS_CONTROL* sys_cont = sys_work->pWSysCont;
 	FIELDSYS_WORK* fsys = sys_cont->fsys;
-	sys_w = (WEATHER_FLASH_WORK*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_FLASH_WORK*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
-		// ƒtƒ‰ƒbƒVƒ…
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
+		// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 		drawWeatherCircleInit( &sys_w->circle, fsys->fldmap->hblanksys );
 		drawWeatherCircleStart( &sys_w->circle, WEATHER_FLASH_END_R, WEATHER_FLASH_START_R, WEATHER_FLASH_CX, WEATHER_FLASH_CY, WEATHER_FLASH_SYNC );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		if( drawWeatherCircleMain( &sys_w->circle ) == TRUE ){	
 
-			// BG•\¦
+			// BGè¡¨ç¤º
 			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 
 
-			// Hƒuƒ‰ƒ“ƒNˆ—”jŠü
+			// Hãƒ–ãƒ©ãƒ³ã‚¯å‡¦ç†ç ´æ£„
 			drawWeatherCircleEndReq( &sys_w->circle );
 			
-			// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_MAIN;	
 		}
 		break;
 
 	case WEATHER_SEQ_NO_FADE:
-		// BG•\¦
+		// BGè¡¨ç¤º
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
 
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
-		// I—¹ƒ`ƒFƒbƒN
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			drawWeatherCircleInit( &sys_w->circle, fsys->fldmap->hblanksys );
 			drawWeatherCircleStart( &sys_w->circle, WEATHER_FLASH_START_R, WEATHER_FLASH_END_R, WEATHER_FLASH_CX, WEATHER_FLASH_CY, WEATHER_FLASH_SYNC );
 
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
 		
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 
-		// –ˆƒtƒŒ[ƒ€OFF‚µ‚Ä‚¢‚é‚±‚Æ‚É‚È‚é‚ªA
-		// ‚±‚¤‚µ‚È‚¢‚Æã‚ÌŠÖ”‚ÅHƒuƒ‰ƒ“ƒNİ’è‚·‚éuŠÔ•Ï‚È‚à‚Ì‚ªo‚Ä‚µ‚Ü‚¤
+		// æ¯ãƒ•ãƒ¬ãƒ¼ãƒ OFFã—ã¦ã„ã‚‹ã“ã¨ã«ãªã‚‹ãŒã€
+		// ã“ã†ã—ãªã„ã¨ä¸Šã®é–¢æ•°ã§Hãƒ–ãƒ©ãƒ³ã‚¯è¨­å®šã™ã‚‹ç¬é–“å¤‰ãªã‚‚ã®ãŒå‡ºã¦ã—ã¾ã†
 		// BGOFF
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 		
 
 		if( drawWeatherCircleMain( &sys_w->circle ) == TRUE ){	
-			// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_DEST;
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		drawWeatherCircleEnd( &sys_w->circle );
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -10247,7 +10247,7 @@ static void contWeatherFlash(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹Ã‚ê”üƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	å‡ã‚Œç¾ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
  *	@param	tcb
  *	@param	work
@@ -10256,19 +10256,19 @@ static void contWeatherFlash(TCB_PTR tcb, void* work)
 static void contWeatherKogorebi(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_KOGOREBI_WORK* sys_w;			// ƒVƒXƒeƒ€ƒ[ƒN
+	WEATHER_KOGOREBI_WORK* sys_w;			// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 	BOOL result;
 	BOOL result_fog;
-	sys_w = (WEATHER_KOGOREBI_WORK*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	sys_w = (WEATHER_KOGOREBI_WORK*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	
-	// ƒV[ƒPƒ“ƒXƒ`ƒFƒbƒN
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯
 	switch(sys_work->Sequence){
-	case WEATHER_SEQ_INIT:		// ‰Šú‰»ˆ—
+	case WEATHER_SEQ_INIT:		// åˆæœŸåŒ–å‡¦ç†
 		WeatherMoveReq( &sys_w->alpha, 0, WEATHER_KOGOREBI_FADE_END_ALPHA, WEATHER_KOGOREBI_FADE_COUNT_MAX );
 		WeatherBGAlphaDef(0, 16);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_ON );
 
-		// ƒtƒHƒO‚Ìİ’è
+		// ãƒ•ã‚©ã‚°ã®è¨­å®š
 		weatherSysFogFadeInInitPack( &sys_w->fogWithFade, &sys_w->fogFade,
 				sys_work->pWSysCont->fsys->fog_data,
 				WEATHER_FOG_SLOPE_DEFAULT, 
@@ -10281,32 +10281,32 @@ static void contWeatherKogorebi(TCB_PTR tcb, void* work)
 		sys_w->y = 0;
 		sys_w->count = 0;
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_FADEIN;
 		break;
 	
-	case WEATHER_SEQ_FADEIN:	// ƒtƒF[ƒhƒCƒ“
+	case WEATHER_SEQ_FADEIN:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 
-		result_fog = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);	// Às
+		result_fog = weatherSysFogFadeInMainPack(&sys_w->fogWithFade, &sys_w->fogFade, sys_work->fog_use);	// å®Ÿè¡Œ
 		result = WeatherMoveMain( &sys_w->alpha );
 		WeatherBGAlphaDef(sys_w->alpha.x, 16 - sys_w->alpha.x);
 
 		if( (result == result_fog) && (result == TRUE) ){
-			// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_MAIN;
 		}
 		break;
 
-	case WEATHER_SEQ_NO_FADE:	// ƒtƒF[ƒhƒCƒ“‚È‚µ‰Šú‰»
+	case WEATHER_SEQ_NO_FADE:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãªã—åˆæœŸåŒ–
 
 		WeatherBGAlphaDef(WEATHER_KOGOREBI_FADE_END_ALPHA, 16 - WEATHER_KOGOREBI_FADE_END_ALPHA);
 
-		// ƒtƒHƒOƒf[ƒ^İ’è
+		// ãƒ•ã‚©ã‚°ãƒ‡ãƒ¼ã‚¿è¨­å®š
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			// ƒf[ƒ^‚ğİ’è
-			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ƒtƒHƒO•Û‘¶æ‘ã“ü
+			// ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+			sys_w->fogFade.Fog = sys_work->pWSysCont->fsys->fog_data;		// ãƒ•ã‚©ã‚°ä¿å­˜å…ˆä»£å…¥
 			weatherSysFogParamSet( sys_w->fogFade.Fog, WEATHER_FOG_SLOPE_DEFAULT, WEATHER_FOG_DEPTH_DEFAULT + WEATHER_KOGOREBI_FOG_OFS, WEATHER_KOGOREBI_FOG_COLOR );
-			// ƒe[ƒuƒ‹ƒf[ƒ^‚ğì¬‚µ‚Ä”½‰f
+			// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦åæ˜ 
 			weatherSysFogSet( &sys_w->fogFade );
 		}
 
@@ -10316,11 +10316,11 @@ static void contWeatherKogorebi(TCB_PTR tcb, void* work)
 		sys_w->y = 0;
 		sys_w->count = 0;
 		
-		// ƒV[ƒPƒ“ƒX•ÏX
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 		sys_work->Sequence = WEATHER_SEQ_MAIN;
 		break;
 	
-	case WEATHER_SEQ_MAIN:		// ƒƒCƒ“
+	case WEATHER_SEQ_MAIN:		// ãƒ¡ã‚¤ãƒ³
 #if 0
 		{
 			static int eva = WEATHER_KOGOREBI_FADE_END_ALPHA;
@@ -10337,33 +10337,33 @@ static void contWeatherKogorebi(TCB_PTR tcb, void* work)
 		}
 #endif
 		
-		// I—¹ƒ`ƒFƒbƒN
+		// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 		if(sys_work->ContFlag == WEATHER_SYS_END){
 			WeatherMoveReq( &sys_w->alpha, WEATHER_KOGOREBI_FADE_END_ALPHA, 0, WEATHER_KOGOREBI_FADE_COUNT_MAX );
 
-			// ƒtƒHƒO
+			// ãƒ•ã‚©ã‚°
 			if(sys_work->fog_use != WEATHER_FOG_NONE){
 				weatherSysFogFadeInit( &sys_w->fogFade, WEATHER_KOGOREBI_FOG_TIMING_END, FALSE );
 			}
 			
-			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// ³íI—¹
+			sys_work->Sequence = WEATHER_SEQ_FADEOUT;		// æ­£å¸¸çµ‚äº†
 		}
 		break;
 	
-	case WEATHER_SEQ_FADEOUT:	// ƒtƒF[ƒhƒAƒEƒg
+	case WEATHER_SEQ_FADEOUT:	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		result = WeatherMoveMain( &sys_w->alpha );
 		result_fog = weatherSysFogFade(&sys_w->fogFade);
 		WeatherBGAlphaDef(sys_w->alpha.x, 16 - sys_w->alpha.x);
 
 		if( (result == result_fog) && (result == TRUE) ){
-			// ƒV[ƒPƒ“ƒX•ÏX
+			// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
 			sys_work->Sequence = WEATHER_SEQ_DEST;
 		}
 		break;
 
-	case WEATHER_SEQ_DEST:		// ƒ^ƒXƒN”jŠü
+	case WEATHER_SEQ_DEST:		// ã‚¿ã‚¹ã‚¯ç ´æ£„
 		if(sys_work->fog_use != WEATHER_FOG_NONE){
-			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ƒtƒHƒO‚ğƒIƒt
+			SetFogData(sys_w->fogFade.Fog, FOG_SYS_FLAG, FALSE, 0,0,0);	// ãƒ•ã‚©ã‚°ã‚’ã‚ªãƒ•
 		}
 		{
 			WEATHER_SYS_DATA* p_wsd = sys_work->pWSD;
@@ -10375,16 +10375,16 @@ static void contWeatherKogorebi(TCB_PTR tcb, void* work)
 		break;
 	}
 
-	// ‰Šú‰»A”jŠüˆÈŠO‚Ì‚Æ‚«‚Í“®ìŠÖ”‚ğ“®‚©‚·
+	// åˆæœŸåŒ–ã€ç ´æ£„ä»¥å¤–ã®ã¨ãã¯å‹•ä½œé–¢æ•°ã‚’å‹•ã‹ã™
 	if((sys_work->Sequence != WEATHER_SEQ_DEST) &&
 		(sys_work->Sequence != WEATHER_SEQ_INIT) ){
 		int add_x;
 		fx32 fxscl_x, fxscl_y;
 		
-		// BG–Ê‚ğƒXƒNƒ[ƒ‹	
+		// BGé¢ã‚’ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«	
 		scrollObj_Fx(sys_work, &fxscl_x, &fxscl_y);
 
-		//  ƒXƒNƒ[ƒ‹ˆÚ“®’l‚ğ•â³
+		//  ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç§»å‹•å€¤ã‚’è£œæ­£
 		if( fxscl_y < 0 ){
 			fxscl_y = FX_Mul( fxscl_y, FX32_CONST(0.75) );	
 		}else{
@@ -10392,11 +10392,11 @@ static void contWeatherKogorebi(TCB_PTR tcb, void* work)
 		}
 
 
-		// ƒXƒNƒ[ƒ‹
+		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 		sys_w->x += fxscl_x;
 		sys_w->y += fxscl_y;	
 
-		// ‚ä‚ê‚é
+		// ã‚†ã‚Œã‚‹
 		sys_w->count++;
 		if( sys_w->count >= (WEATEHR_KOGOREBI_COUNT_ONE*WEATEHR_KOGOREBI_COUNT_NUM) ){
 			sys_w->count = 0;
@@ -10411,7 +10411,7 @@ static void contWeatherKogorebi(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“´ŒA‚O‚O
+ *	@brief	æ´çªŸï¼ï¼
  *
  *	@param	tcb
  *	@param	work
@@ -10427,7 +10427,7 @@ static void contWeatherDoukutu00(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“´ŒA‚O‚P
+ *	@brief	æ´çªŸï¼ï¼‘
  *
  *	@param	tcb
  *	@param	work
@@ -10444,14 +10444,14 @@ static void contWeatherDoukutu01(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‹â‰Í@”–ˆÃ‚¢Š´‚¶‚O‚O
+ *	@brief	éŠ€æ²³ã€€è–„æš—ã„æ„Ÿã˜ï¼ï¼
  */
 //-----------------------------------------------------------------------------
 static void contWeatherGinga00(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_STSW_FOGFADE* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	WEATHER_STSW_FOGFADE* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 
 	contWeatherCommFog( sys_work, sys_w, WEATHER_GINGA00_SLOPE, 
 			WEATHER_GINGA00_OFFSET, WEATHER_GINGA00_RGB, 
@@ -10460,14 +10460,14 @@ static void contWeatherGinga00(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	LostTowerFOG	‚O‚O
+ *	@brief	LostTowerFOG	ï¼ï¼
  */
 //-----------------------------------------------------------------------------
 static void contWeatherLostTower00(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_STSW_FOGFADE* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	WEATHER_STSW_FOGFADE* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 
 	contWeatherCommFog( sys_work, sys_w, WEATHER_LOSTTOWER00_SLOPE, 
 			WEATHER_LOSTTOWER00_OFFSET, WEATHER_LOSTTOWER00_RGB, 
@@ -10476,14 +10476,14 @@ static void contWeatherLostTower00(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒn[ƒhƒ}ƒEƒ“ƒeƒ“
+ *	@brief	ãƒãƒ¼ãƒ‰ãƒã‚¦ãƒ³ãƒ†ãƒ³
  */
 //-----------------------------------------------------------------------------
 static void contWeatherHardMountain(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_STSW_FOGFADE* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	WEATHER_STSW_FOGFADE* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 
 	contWeatherCommFog( sys_work, sys_w, WEATHER_HARDMOUNTAIN_SLOPE, 
 			WEATHER_HARDMOUNTAIN_OFFSET, WEATHER_HARDMOUNTAIN_RGB, 
@@ -10492,14 +10492,14 @@ static void contWeatherHardMountain(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“´ŒA‚O‚Q
+ *	@brief	æ´çªŸï¼ï¼’
  */
 //-----------------------------------------------------------------------------
 static void contWeatherDoukutu02(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_STSW_FOGFADE* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	WEATHER_STSW_FOGFADE* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 
 	contWeatherCommFog( sys_work, sys_w, WEATHER_DOUKUTU02_SLOPE, 
 			WEATHER_DOUKUTU02_OFFSET, WEATHER_DOUKUTU02_RGB, 
@@ -10508,14 +10508,14 @@ static void contWeatherDoukutu02(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”–ˆÃ‚¢FOG
+ *	@brief	è–„æš—ã„FOG
  */
 //-----------------------------------------------------------------------------
 static void contWeatherUsugurai(TCB_PTR tcb, void* work)
 {
 	WEATHER_SYS_WORK* sys_work = (WEATHER_SYS_WORK*)work;
-	WEATHER_STSW_FOGFADE* sys_w;	// ƒVƒXƒeƒ€ƒ[ƒN
-	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ƒ[ƒNƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	WEATHER_STSW_FOGFADE* sys_w;	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+	sys_w = (WEATHER_STSW_FOGFADE*)sys_work->work;	// ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 
 	contWeatherCommFog( sys_work, sys_w, WEATHER_USUGURAI_SLOPE, 
 			WEATHER_USUGURAI_OFFSET, WEATHER_USUGURAI_RGB, 
@@ -10526,7 +10526,7 @@ static void contWeatherUsugurai(TCB_PTR tcb, void* work)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‹[ƒv‚·‚éƒTƒEƒ“ƒhÄ¶
+ *	@brief	ãƒ«ãƒ¼ãƒ—ã™ã‚‹ã‚µã‚¦ãƒ³ãƒ‰å†ç”Ÿ
  *
  *	@param	p_work
  *	@param	snd_no 
@@ -10536,7 +10536,7 @@ static void contWeatherUsugurai(TCB_PTR tcb, void* work)
 //-----------------------------------------------------------------------------
 static void WeatherLoopSndPlay( WEATHER_SYS_WORK* p_work, int snd_no )
 {
-	// ‚à‚¤‚È‚Á‚Ä‚é‚æI
+	// ã‚‚ã†ãªã£ã¦ã‚‹ã‚ˆï¼
 	GF_ASSERT( p_work->snd_play == FALSE );
 	p_work->snd_play = TRUE;
 	p_work->snd_no = snd_no;
@@ -10546,9 +10546,9 @@ static void WeatherLoopSndPlay( WEATHER_SYS_WORK* p_work, int snd_no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‹[ƒvÄ¶SE’â~ˆ—
+ *	@brief	ãƒ«ãƒ¼ãƒ—å†ç”ŸSEåœæ­¢å‡¦ç†
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -10561,35 +10561,35 @@ static void WeatherLoopSndStop( WEATHER_SYS_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	circleŒvZ
+ *	@brief	circleè¨ˆç®—
  *
- *	@param	p_circle	circleƒ[ƒN
+ *	@param	p_circle	circleãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void CalcWeatherCircle( WEATHER_CIRCLE_WORK* p_circle )
 {
-	int i;			// ƒ‹[ƒv—p
-	int st;			// ƒEƒBƒ“ƒhƒEŠJn“_
-	int ed;			// ƒEƒBƒ“ƒhƒEI—¹“_
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
+	int st;			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é–‹å§‹ç‚¹
+	int ed;			// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦çµ‚äº†ç‚¹
 	u16* p_start_buff;
 	u16* p_end_buff;
 
-	// ŠJnˆÊ’uŠi”[æ
+	// é–‹å§‹ä½ç½®æ ¼ç´å…ˆ
 	p_start_buff = LASTER_GetWriteBuff( p_circle->p_laster[0] );
 	p_end_buff = LASTER_GetWriteBuff( p_circle->p_laster[1] );
 
-	// ”¼Œa‚ª‰æ–Ê“à‚É‚ ‚é‚Æ‚«‚Í
-	// ’†S‚Ü‚Å•‚ğ‹‚ß‚½‚ç‰º”¼•ª‚ÍƒRƒs[‚·‚é‚æ‚¤‚É‚·‚é
+	// åŠå¾„ãŒç”»é¢å†…ã«ã‚ã‚‹ã¨ãã¯
+	// ä¸­å¿ƒã¾ã§å¹…ã‚’æ±‚ã‚ãŸã‚‰ä¸‹åŠåˆ†ã¯ã‚³ãƒ”ãƒ¼ã™ã‚‹ã‚ˆã†ã«ã™ã‚‹
 	for(i=0;i < 192;i++){
-		if(i <= p_circle->y){		// ”¼Œa‚Ü‚Å‚Í•’Ê‚Ì‹‚ß‚é
+		if(i <= p_circle->y){		// åŠå¾„ã¾ã§ã¯æ™®é€šã®æ±‚ã‚ã‚‹
 			CalcWeatherCircleSub(p_circle->r.x, p_circle->x, p_circle->y, i, &st, &ed);
 		}else{
-			if(i <= (p_circle->y*2)){		// ”¼Œa‚©‚ç”¼Œa‚Ì‚Q”{‚Ü‚Å‚Í,ƒRƒs[
+			if(i <= (p_circle->y*2)){		// åŠå¾„ã‹ã‚‰åŠå¾„ã®ï¼’å€ã¾ã§ã¯,ã‚³ãƒ”ãƒ¼
 				st = p_start_buff[(p_circle->y*2)-i];
 				ed = p_end_buff[(p_circle->y*2)-i];
-			}else{				// ‚»‚Ì‘¼‚Í•’Ê‚É‹‚ß‚é
+			}else{				// ãã®ä»–ã¯æ™®é€šã«æ±‚ã‚ã‚‹
 				CalcWeatherCircleSub(p_circle->r.x, p_circle->x, p_circle->y, i, &st, &ed);
 			}
 		}
@@ -10601,23 +10601,23 @@ static void CalcWeatherCircle( WEATHER_CIRCLE_WORK* p_circle )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰~‚Ì•ŒvZ
+ *	@brief	å††ã®å¹…è¨ˆç®—
  *
- *	@param	c_r		”¼Œa
- *	@param	c_x		’†S‚˜À•W
- *	@param	c_y		’†S‚™À•W
- *	@param	n_h		Œ»İ‚Ì‚‚³
- *	@param	st		‰¡ŠJn“_Ši”[æ
- *	@param	ed		‰¡I—¹“_Ši”[æ
+ *	@param	c_r		åŠå¾„
+ *	@param	c_x		ä¸­å¿ƒï½˜åº§æ¨™
+ *	@param	c_y		ä¸­å¿ƒï½™åº§æ¨™
+ *	@param	n_h		ç¾åœ¨ã®é«˜ã•
+ *	@param	st		æ¨ªé–‹å§‹ç‚¹æ ¼ç´å…ˆ
+ *	@param	ed		æ¨ªçµ‚äº†ç‚¹æ ¼ç´å…ˆ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void CalcWeatherCircleSub( fx32 c_r, int c_x, int c_y, int n_h, int* st, int* ed )
 {
-	fx32 r;			// ”¼Œa
-	fx32 height;	// ‚‚³
-	fx32 width;		// •
+	fx32 r;			// åŠå¾„
+	fx32 height;	// é«˜ã•
+	fx32 width;		// å¹…
 
 	r = c_r;
 
@@ -10630,12 +10630,12 @@ static void CalcWeatherCircleSub( fx32 c_r, int c_x, int c_y, int n_h, int* st, 
 		*st = 0;
 		*ed = 0;
 	}else{
-		// ”¼Œa‚©‚ç•‚ğ‹‚ß‚é
+		// åŠå¾„ã‹ã‚‰å¹…ã‚’æ±‚ã‚ã‚‹
 		height <<= FX32_SHIFT;
 		width = FX_Sqrt(FX_Mul(r,r) - FX_Mul(height,height));
 		width >>= FX32_SHIFT;
 
-		// ƒEƒBƒ“ƒhƒE‚ÌŠJn“_‚ğİ’è
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®é–‹å§‹ç‚¹ã‚’è¨­å®š
 		*st = c_x - width;
 		if(*st < 0){
 			*st = 0;
@@ -10649,10 +10649,10 @@ static void CalcWeatherCircleSub( fx32 c_r, int c_x, int c_y, int n_h, int* st, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“V‹C@‰~•`‰æƒVƒXƒeƒ€
+ *	@brief	å¤©æ°—ã€€å††æç”»ã‚·ã‚¹ãƒ†ãƒ 
  *	
- *	@param	p_circle		ƒ[ƒN
- *	@param	p_fldhblksys	Hƒuƒ‰ƒ“ƒNƒVƒXƒeƒ€
+ *	@param	p_circle		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_fldhblksys	Hãƒ–ãƒ©ãƒ³ã‚¯ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  */
@@ -10661,9 +10661,9 @@ static void drawWeatherCircleInit( WEATHER_CIRCLE_WORK* p_circle, FIELD_HBLANK_S
 {
 	int i;
 	
-	// ƒ[ƒN‰Šú‰»
-	// Hƒuƒ‰ƒ“ƒNƒ^ƒXƒN
-	// Vƒuƒ‰ƒ“ƒNƒ^ƒXƒN“o˜^
+	// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
+	// Hãƒ–ãƒ©ãƒ³ã‚¯ã‚¿ã‚¹ã‚¯
+	// Vãƒ–ãƒ©ãƒ³ã‚¯ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	memset( p_circle, 0, sizeof(WEATHER_CIRCLE_WORK) );	
 
 	p_circle->p_laster[0] = LASTER_Init( USE_HEAPID, p_circle->wnd_data[0], p_circle->wnd_data[1] );
@@ -10674,14 +10674,14 @@ static void drawWeatherCircleInit( WEATHER_CIRCLE_WORK* p_circle, FIELD_HBLANK_S
 	}
 
 /*	
-	// ”wŒi•
+	// èƒŒæ™¯é»’
 	{
 		u16 color = 0;
 		GX_LoadBGPltt( &color, 0, 32 );
 	}
 //*/	
 
-	// ‰æ–Ê‚É‰½‚ào‚È‚¢‚æ‚¤‚ÉVBlankŠúŠÔ’†‚ÉHƒuƒ‰ƒ“ƒNŠÖ”‚ğ“o˜^‚·‚é
+	// ç”»é¢ã«ä½•ã‚‚å‡ºãªã„ã‚ˆã†ã«VBlankæœŸé–“ä¸­ã«Hãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ã‚’ç™»éŒ²ã™ã‚‹
 	p_circle->p_fldhblksys = p_fldhblksys;
 	VWaitTCB_Add( drawWeatherCircleInitHblankTcb, p_circle, WEATHER_TCB_CIRCLEINIT_PRI );
 	
@@ -10692,9 +10692,9 @@ static void drawWeatherCircleInit( WEATHER_CIRCLE_WORK* p_circle, FIELD_HBLANK_S
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰~˜gI—¹
+ *	@brief	å††æ çµ‚äº†
  *
- *	@param	p_circle	‰~ƒ[ƒN
+ *	@param	p_circle	å††ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -10702,12 +10702,12 @@ static void drawWeatherCircleInit( WEATHER_CIRCLE_WORK* p_circle, FIELD_HBLANK_S
 static void drawWeatherCircleEnd( WEATHER_CIRCLE_WORK* p_circle )
 {
 	int visi = GX_GetVisibleWnd();
-	// ƒEƒBƒ“ƒhƒE”jŠü
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	GX_SetVisibleWnd( visi & (~GX_WNDMASK_W1) );
 	
-	// hƒuƒ‰ƒ“ƒN”jŠü
+	// hãƒ–ãƒ©ãƒ³ã‚¯ç ´æ£„
 	FLDHBLANK_OBJ_Delete( p_circle->p_hblank );
-	// Vƒuƒ‰ƒ“ƒN
+	// Vãƒ–ãƒ©ãƒ³ã‚¯
 	TCB_Delete( p_circle->vblank_tcb );
 
 	LASTER_Delete( p_circle->p_laster[0] );
@@ -10718,14 +10718,14 @@ static void drawWeatherCircleEnd( WEATHER_CIRCLE_WORK* p_circle )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	´Ìª¸ÄŠJn
+ *	@brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- *	@param	p_circle	‰~ƒ[ƒN
- *	@param	s_r			ŠJn”¼Œa
- *	@param	e_r			I—¹”¼Œa
- *	@param	c_x			’†S‚˜À•W
- *	@param	c_y			’†S‚™À•W
- *	@param	sync		ƒVƒ“ƒN
+ *	@param	p_circle	å††ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_r			é–‹å§‹åŠå¾„
+ *	@param	e_r			çµ‚äº†åŠå¾„
+ *	@param	c_x			ä¸­å¿ƒï½˜åº§æ¨™
+ *	@param	c_y			ä¸­å¿ƒï½™åº§æ¨™
+ *	@param	sync		ã‚·ãƒ³ã‚¯
  *	
  *	@return	none
  */
@@ -10742,12 +10742,12 @@ static void drawWeatherCircleStart( WEATHER_CIRCLE_WORK* p_circle, fx32 s_r, fx3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰~ƒ[ƒNƒƒCƒ“
+ *	@brief	å††ãƒ¯ãƒ¼ã‚¯ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_circle	‰~ƒ[ƒN
+ *	@param	p_circle	å††ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹	
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†	
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL drawWeatherCircleMain( WEATHER_CIRCLE_WORK* p_circle )
@@ -10756,8 +10756,8 @@ static BOOL drawWeatherCircleMain( WEATHER_CIRCLE_WORK* p_circle )
 
 	if( p_circle->status == WEATHER_CIRCLE_STATUS_INIT ){
 
-		// I‚í‚Á‚Ä‚¢‚é‚Ì‚ÅAQÆæ‚ğ‘‚«‚İæ‚É
-		// ƒRƒs[‚ğŒJ‚è•Ô‚·
+		// çµ‚ã‚ã£ã¦ã„ã‚‹ã®ã§ã€å‚ç…§å…ˆã‚’æ›¸ãè¾¼ã¿å…ˆã«
+		// ã‚³ãƒ”ãƒ¼ã‚’ç¹°ã‚Šè¿”ã™
 		CalcWeatherCircleCopyBuff( p_circle );
 
 		return TRUE;
@@ -10775,9 +10775,9 @@ static BOOL drawWeatherCircleMain( WEATHER_CIRCLE_WORK* p_circle )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Hƒuƒ‰ƒ“ƒNŠúŠÔƒR[ƒ‹ƒoƒbƒNŠÖ”
+ *	@brief	Hãƒ–ãƒ©ãƒ³ã‚¯æœŸé–“ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -10796,11 +10796,11 @@ static void drawWeatherCircleHblankCall( FIELD_HBLANK_OBJ* p_hbw, void* p_work )
 	}
 	
 	if( count < 192 ){
-		count++;	// Ÿ‚Ì‚‚³‚Ìƒf[ƒ^‚ğİ’è
+		count++;	// æ¬¡ã®é«˜ã•ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
 		if( count >= 192 ){
 			count -= 192;
 		}
-		// BG1–Ê‚ÌH•ûŒüƒXƒNƒ[ƒ‹İ’è
+		// BG1é¢ã®Hæ–¹å‘ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«è¨­å®š
 		if( GX_IsHBlank() ){
 			G2_SetWnd1Position( cp_buff[ 0 ][ count ], 0, cp_buff[ 1 ][ count ], 192 );
 		}
@@ -10809,9 +10809,9 @@ static void drawWeatherCircleHblankCall( FIELD_HBLANK_OBJ* p_hbw, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Vƒuƒ‰ƒ“ƒNƒR[ƒ‹ƒoƒbƒNŠÖ”
+ *	@brief	Vãƒ–ãƒ©ãƒ³ã‚¯ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -10828,9 +10828,9 @@ static void drawWeatherCircleVblankCall( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlankŠúŠÔ’†‚ÉƒEƒBƒ“ƒhƒE‚Å‚Ì‰~•`‰æˆ—‚ğ”jŠü‚·‚é
+ *	@brief	VBlankæœŸé–“ä¸­ã«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§ã®å††æç”»å‡¦ç†ã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	p_circle	ƒ[ƒN
+ *	@param	p_circle	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -10842,10 +10842,10 @@ static void drawWeatherCircleEndReq( WEATHER_CIRCLE_WORK* p_circle )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlankŠúŠÔ’†‚ÉƒEƒBƒ“ƒhƒE‚Å‚Ì‰~•`‰æˆ—‚ğ”jŠü‚·‚é
+ *	@brief	VBlankæœŸé–“ä¸­ã«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§ã®å††æç”»å‡¦ç†ã‚’ç ´æ£„ã™ã‚‹
  *
- *	@param	tcb		TCBƒ[ƒN
- *	@param	p_work	ƒ[ƒN
+ *	@param	tcb		TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -10859,10 +10859,10 @@ static void drawWeatherCircleEndVblank( TCB_PTR tcb, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	circle‚ª•Â‚¶‚½‚èŠJ‚­ƒAƒjƒI—¹Œã‚ÍAƒ_ƒuƒ‹ƒoƒbƒtƒ@‚Ì‘‚«‚İæ‚É
- *	@QÆæ‚Ìƒf[ƒ^‚ğƒRƒs[‚·‚é‚½‚ß‚ÌŠÖ”
+ *	@brief	circleãŒé–‰ã˜ãŸã‚Šé–‹ãã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾Œã¯ã€ãƒ€ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡ã®æ›¸ãè¾¼ã¿å…ˆã«
+ *	ã€€å‚ç…§å…ˆã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã™ã‚‹ãŸã‚ã®é–¢æ•°
  *
- *	@param	p_circle	‰~ƒ[ƒN
+ *	@param	p_circle	å††ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -10884,10 +10884,10 @@ static void CalcWeatherCircleCopyBuff( WEATHER_CIRCLE_WORK* p_circle )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Hƒuƒ‰ƒ“ƒNŠ„‚è‚İƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ“o˜^
+ *	@brief	Hãƒ–ãƒ©ãƒ³ã‚¯å‰²ã‚Šè¾¼ã¿ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ç™»éŒ²
  *
- *	@param	tcb			TCBƒ[ƒN
- *	@param	p_work		ƒ[ƒN
+ *	@param	tcb			TCBãƒ¯ãƒ¼ã‚¯
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -10898,7 +10898,7 @@ static void drawWeatherCircleInitHblankTcb( TCB_PTR tcb, void* p_work )
 	GXWndPlane outside = G2_GetWndOutsidePlane();
 	int visi = GX_GetVisibleWnd();
 
-	// ƒEƒBƒ“ƒhƒEİ’è
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®š
 	G2_SetWnd1InsidePlane( WEATHER_FLASH_WND_MSK, TRUE );
 //	G2_SetWndOutsidePlane( outside.planeMask | WEATHER_FLASH_OUTSIDE_WND_MSK, outside.effect );
 	G2_SetWndOutsidePlane( WEATHER_FLASH_OUTSIDE_WND_MSK, outside.effect );

@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	calctool.h
- * @brief	ŒvZŠÖŒW
+ * @brief	è¨ˆç®—é–¢ä¿‚
  * @author	mori
  * @date	2004.10.28
  *
@@ -20,40 +20,40 @@
 
 
 //-------------------------------------
-///	CALCTOOL•ÏX’è‹`
-#define CALCTOOL_SINCOSTBLDEL	(1)	// ƒTƒCƒ“ƒRƒTƒCƒ“ƒe[ƒuƒ‹”jŠü
+///	CALCTOOLå¤‰æ›´å®šç¾©
+#define CALCTOOL_SINCOSTBLDEL	(1)	// ã‚µã‚¤ãƒ³ã‚³ã‚µã‚¤ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ç ´æ£„
 
 
 //=============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //=============================================================================================
-#define	AFFINE_MAX_NORMAL	( 0 )	// Šgk‚ÌŠp“x‚ğ0`0xffff‚ÅŒvZ
-#define	AFFINE_MAX_256		( 1 )	// Šgk‚ÌŠp“x‚ğ0`255‚ÅŒvZ
-#define	AFFINE_MAX_360		( 2 )	// Šgk‚ÌŠp“x‚Ì0`359‚ÅŒvZ
+#define	AFFINE_MAX_NORMAL	( 0 )	// æ‹¡ç¸®ã®è§’åº¦ã‚’0ã€œ0xffffã§è¨ˆç®—
+#define	AFFINE_MAX_256		( 1 )	// æ‹¡ç¸®ã®è§’åº¦ã‚’0ã€œ255ã§è¨ˆç®—
+#define	AFFINE_MAX_360		( 2 )	// æ‹¡ç¸®ã®è§’åº¦ã®0ã€œ359ã§è¨ˆç®—
 
-#define FX_GET_ROTA_NUM(x)	( (x*0xffff) / 360 )	// FX_SinIdx CosIdx‚Ìˆø”‚Ì‰ñ“]’l‚ğ‹‚ß‚é
+#define FX_GET_ROTA_NUM(x)	( (x*0xffff) / 360 )	// FX_SinIdx CosIdxã®å¼•æ•°ã®å›è»¢å€¤ã‚’æ±‚ã‚ã‚‹
 
-#define GF_RAND_MAX			( 0xffff )		// gf_rand()‚ÌÅ‘å”
-#define GF_MT_RAND_MAX		( 0xffffffff )	// gf_mtRand()‚ÌÅ‘å”
+#define GF_RAND_MAX			( 0xffff )		// gf_rand()ã®æœ€å¤§æ•°
+#define GF_MT_RAND_MAX		( 0xffffffff )	// gf_mtRand()ã®æœ€å¤§æ•°
 
 //=============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //=============================================================================================
-#define ERRCHECK_ON_DEG_TO_XXX	//‚±‚Ì’è‹`‚ğ–³Œø‚É‚·‚é‚ÆDEGŠÖ”‚ÌƒGƒ‰[ƒ`ƒFƒbƒN‚ğ–³Œø‚É‚Å‚«‚é
+#define ERRCHECK_ON_DEG_TO_XXX	//ã“ã®å®šç¾©ã‚’ç„¡åŠ¹ã«ã™ã‚‹ã¨DEGé–¢æ•°ã®ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã‚’ç„¡åŠ¹ã«ã§ãã‚‹
 
 /**
- *	@brief	“x”–@‚Åw’è‚µ‚½Šp“x‚©‚çA‚»‚ê‚¼‚ê‚Ì‘Î‰‚·‚é’l‚ğæ“¾‚·‚é
- *	@param	deg	u16:0-359‚Ü‚Å‚Ì•Ï”
+ *	@brief	åº¦æ•°æ³•ã§æŒ‡å®šã—ãŸè§’åº¦ã‹ã‚‰ã€ãã‚Œãã‚Œã®å¯¾å¿œã™ã‚‹å€¤ã‚’å–å¾—ã™ã‚‹
+ *	@param	deg	u16:0-359ã¾ã§ã®å¤‰æ•°
  */
- ///SinIdx(),CosIdx(),IndexƒL[‚Ì’l‚ğ•Ô‚·(‰ñ‚è‚İ‚È‚µ)
+ ///SinIdx(),CosIdx(),Indexã‚­ãƒ¼ã®å€¤ã‚’è¿”ã™(å›ã‚Šè¾¼ã¿ãªã—)
  GLOBAL fx32 Sin360(u16 deg);
  GLOBAL fx32 Cos360(u16 deg);
  GLOBAL u16	RotKey(u16 deg);
- ///SinIdx(),CosIdx(),IndexƒL[‚Ì’l‚ğ•Ô‚·(‰ñ‚è‚İ‚ ‚è)
+ ///SinIdx(),CosIdx(),Indexã‚­ãƒ¼ã®å€¤ã‚’è¿”ã™(å›ã‚Šè¾¼ã¿ã‚ã‚Š)
  GLOBAL fx32 Sin360R(u16 deg);
  GLOBAL fx32 Cos360R(u16 deg);
  GLOBAL u16	RotKeyR(u16 deg);
- ///SinIdx(),CosIdx()‚Ì’l‚ğ•Ô‚·(fx32Œ^‚ğˆø”‚Éæ‚éA‰ñ‚è‚İ‚ ‚è)
+ ///SinIdx(),CosIdx()ã®å€¤ã‚’è¿”ã™(fx32å‹ã‚’å¼•æ•°ã«å–ã‚‹ã€å›ã‚Šè¾¼ã¿ã‚ã‚Š)
  GLOBAL fx32 Sin360FX(fx32 deg);
  GLOBAL fx32 Cos360FX(fx32 deg);
 #if CALCTOOL_SINCOSTBLDEL
@@ -68,21 +68,21 @@ GLOBAL const u16 RotKey360Tbl[360];
  #define _RotKey( a ) (RotKey360Tbl[a])
 #endif
 
-GLOBAL u32 gf_get_seed(void);		// —”‚Ìí‚Ìæ“¾
-GLOBAL void gf_srand(u32 seed);		// —”‚Ì‰Šú‰»
-GLOBAL u16 gf_rand(void);			// —”æ“¾i0 - 65535)
-GLOBAL u32 gf_fix_rand( u32 seed );	// í‚ğ“n‚µ‚Äæ“¾‚·‚é—”
+GLOBAL u32 gf_get_seed(void);		// ä¹±æ•°ã®ç¨®ã®å–å¾—
+GLOBAL void gf_srand(u32 seed);		// ä¹±æ•°ã®åˆæœŸåŒ–
+GLOBAL u16 gf_rand(void);			// ä¹±æ•°å–å¾—ï¼ˆ0 - 65535)
+GLOBAL u32 gf_fix_rand( u32 seed );	// ç¨®ã‚’æ¸¡ã—ã¦å–å¾—ã™ã‚‹ä¹±æ•°
 
-GLOBAL void gf_mtSrand(u32 s);		// MT•û—”‰Šú‰»ŠÖ”
-GLOBAL u32 gf_mtRand(void);			// MT•û—”æ“¾
+GLOBAL void gf_mtSrand(u32 s);		// MTæ–¹ä¹±æ•°åˆæœŸåŒ–é–¢æ•°
+GLOBAL u32 gf_mtRand(void);			// MTæ–¹ä¹±æ•°å–å¾—
 
 //==============================================================================
 /**
- *	Šm—¦ŒvZ—pƒ‰ƒ“ƒ_ƒ€æ“¾ŠÖ”
+ *	ç¢ºç‡è¨ˆç®—ç”¨ãƒ©ãƒ³ãƒ€ãƒ å–å¾—é–¢æ•°
  * 
- * @param   inDinominate	Šm—¦•ª•ê
+ * @param   inDinominate	ç¢ºç‡åˆ†æ¯
  *
- * @retval  u16		0`inDinominate-1‚Ì”
+ * @retval  u16		0ã€œinDinominate-1ã®æ•°
  */
 //==============================================================================
 inline u16 gf_p_rand(const u16 inDinominate)
@@ -95,60 +95,60 @@ inline u16 gf_p_rand(const u16 inDinominate)
 		u16 val;
 		per = (0xffff/inDinominate)+1;
 		val = gf_rand()/per;
-		GF_ASSERT((val<inDinominate)&&"ERROR:Random Calc Error!");//”O‚Ì‚½‚ß
+		GF_ASSERT((val<inDinominate)&&"ERROR:Random Calc Error!");//å¿µã®ãŸã‚
 		return val;
 	}
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGEOBJ‚ÌAffine—p•ÏŠ·s—ñ‚ğì¬ ( 2D )
+ * BGãƒ»OBJã®Affineç”¨å¤‰æ›è¡Œåˆ—ã‚’ä½œæˆ ( 2D )
  *
- * @param	mtx			•ÏŠ·s—ñŠi”[êŠ
- * @param	rad			Šp“x ( MAX = 0xffff )
- * @param	scale_x		X•ûŒü‚ÌŠg‘å—¦
- * @param	scale_y		Y•ûŒü‚ÌŠg‘å—¦
- * @param	mode		Šp“x•ÏŠ·ƒ‚[ƒh
+ * @param	mtx			å¤‰æ›è¡Œåˆ—æ ¼ç´å ´æ‰€
+ * @param	rad			è§’åº¦ ( MAX = 0xffff )
+ * @param	scale_x		Xæ–¹å‘ã®æ‹¡å¤§ç‡
+ * @param	scale_y		Yæ–¹å‘ã®æ‹¡å¤§ç‡
+ * @param	mode		è§’åº¦å¤‰æ›ãƒ¢ãƒ¼ãƒ‰
  *
- * @return	•ÏŠ·s—ñ
+ * @return	å¤‰æ›è¡Œåˆ—
  *
  * @li	mode = AFFINE_MAX_256 : theta < 256
  * @li	mode = AFFINE_MAX_360 : theta < 360
- * @li	scale_x(y) = FX32_ONE : ‚P”{
+ * @li	scale_x(y) = FX32_ONE : ï¼‘å€
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void AffineMtxMake_2D( MtxFx22 * mtx, u16 rad, fx32 scale_x, fx32 scale_y, u8 mode );
 
 
 ///==========================================
-//ƒxƒNƒgƒ‹‰‰ZŒn‚Ìƒ}ƒNƒ
+//ãƒ™ã‚¯ãƒˆãƒ«æ¼”ç®—ç³»ã®ãƒã‚¯ãƒ­
 ///==========================================
-//ƒxƒNƒgƒ‹ƒRƒs[
+//ãƒ™ã‚¯ãƒˆãƒ«ã‚³ãƒ”ãƒ¼
 #define VEC_COPY(a,b)	{ \
  (a)->x = (b)->x;	\
  (a)->y = (b)->y;	\
  (a)->z = (b)->z;	\
 }
 
-//ƒxƒNƒgƒ‹æZ
+//ãƒ™ã‚¯ãƒˆãƒ«ä¹—ç®—
 #define VEC_MUL(dest,a,b)	{	\
  (dest)->x = FX_Mul((a)->x,(b)->x);	\
  (dest)->y = FX_Mul((a)->y,(b)->y);	\
  (dest)->z = FX_Mul((a)->z,(b)->z);	\
 }
-//ƒxƒNƒgƒ‹œZ
+//ãƒ™ã‚¯ãƒˆãƒ«é™¤ç®—
 #define VEC_DIV(dest,a,b)	{	\
  (dest)->x = FX_Div((a)->x,(b)->x);	\
  (dest)->y = FX_Div((a)->y,(b)->y);	\
  (dest)->z = FX_Div((a)->z,(b)->z);	\
 }
-//ƒxƒNƒgƒ‹‚ÌÀ””{
+//ãƒ™ã‚¯ãƒˆãƒ«ã®å®Ÿæ•°å€
 #define VEC_APPLYM(dest,a,fval) {	\
  (dest)->x = FX_MUL((a)->x,fval);	\
  (dest)->y = FX_MUL((a)->y,fval);	\
  (dest)->z = FX_MUL((a)->z,fval);	\
 }
-//ƒxƒNƒgƒ‹‚ğÀ”‚ÅŠ„‚é
+//ãƒ™ã‚¯ãƒˆãƒ«ã‚’å®Ÿæ•°ã§å‰²ã‚‹
 #define VEC_APPLYD(dest,a,fval) {	\
  (dest)->x = FX_Div((a)->x,fval);	\
  (dest)->y = FX_Div((a)->y,fval);	\
@@ -163,14 +163,14 @@ GLOBAL void AffineMtxMake_2D( MtxFx22 * mtx, u16 rad, fx32 scale_x, fx32 scale_y
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	•½–Ê‚Q’¸“_‚©‚çƒQ[ƒtƒŠ“Æ©‰ñ“]“®‚³’l‚ğæ“¾‚·‚é
+ *	@brief	å¹³é¢ï¼’é ‚ç‚¹ã‹ã‚‰ã‚²ãƒ¼ãƒ•ãƒªç‹¬è‡ªå›è»¢å‹•ã•å€¤ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	x0		A“_‚˜À•W
- *	@param	y0		A“_‚™À•W
- *	@param	x1		B“_‚˜À•W
- *	@param	y1		B“_‚™À•W
+ *	@param	x0		Aç‚¹ï½˜åº§æ¨™
+ *	@param	y0		Aç‚¹ï½™åº§æ¨™
+ *	@param	x1		Bç‚¹ï½˜åº§æ¨™
+ *	@param	y1		Bç‚¹ï½™åº§æ¨™
  *
- *	@return	ƒQ[ƒtƒŠ“Æ©‰ñ“]“®‚³‹——£’l
+ *	@return	ã‚²ãƒ¼ãƒ•ãƒªç‹¬è‡ªå›è»¢å‹•ã•è·é›¢å€¤
  */
 //-----------------------------------------------------------------------------
 GLOBAL s32 CalcTool_CircleVectorMove( s32 x0, s32 y0, s32 x1, s32 y1 );
@@ -178,15 +178,15 @@ GLOBAL s32 CalcTool_CircleVectorMove( s32 x0, s32 y0, s32 x1, s32 y1 );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•½–Ê‚Q’¸“_‚©‚ç”CˆÓ‚Ì“®ì’l‚ğæ“¾‚·‚é
+ *	@brief	å¹³é¢ï¼’é ‚ç‚¹ã‹ã‚‰ä»»æ„ã®å‹•ä½œå€¤ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	x0		A“_‚˜À•W
- *	@param	y0		A“_‚™À•W
- *	@param	x1		B“_‚˜À•W
- *	@param	y1		B“_‚™À•W
- *	@param	roopnum	‚P‰ñ“]‚ğ•\‚·‹——£
+ *	@param	x0		Aç‚¹ï½˜åº§æ¨™
+ *	@param	y0		Aç‚¹ï½™åº§æ¨™
+ *	@param	x1		Bç‚¹ï½˜åº§æ¨™
+ *	@param	y1		Bç‚¹ï½™åº§æ¨™
+ *	@param	roopnum	ï¼‘å›è»¢ã‚’è¡¨ã™è·é›¢
  *
- *	@return	roopnum’PˆÊ‚Ì“®ì’l
+ *	@return	roopnumå˜ä½ã®å‹•ä½œå€¤
  */
 //-----------------------------------------------------------------------------
 GLOBAL s32 CalcTool_CircleVectorNum( s32 x0, s32 y0, s32 x1, s32 y1, u16 roopnum );
@@ -194,42 +194,42 @@ GLOBAL s32 CalcTool_CircleVectorNum( s32 x0, s32 y0, s32 x1, s32 y1, u16 roopnum
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•½–Ê‚Q’¸“_‚©‚ç”CˆÓ‚Ì“®ì’l‚ğæ“¾‚·‚é
+ *	@brief	å¹³é¢ï¼’é ‚ç‚¹ã‹ã‚‰ä»»æ„ã®å‹•ä½œå€¤ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	x0		A“_‚˜À•W
- *	@param	y0		A“_‚™À•W
- *	@param	x1		B“_‚˜À•W
- *	@param	y1		B“_‚™À•W
- *	@param	r		Šî€”¼Œa	‚±‚Ì”¼Œa‚Åã‚ÅˆÚ“®‚µ‚½‹——£‚ğ‹‚ß‚Ü‚·
+ *	@param	x0		Aç‚¹ï½˜åº§æ¨™
+ *	@param	y0		Aç‚¹ï½™åº§æ¨™
+ *	@param	x1		Bç‚¹ï½˜åº§æ¨™
+ *	@param	y1		Bç‚¹ï½™åº§æ¨™
+ *	@param	r		åŸºæº–åŠå¾„	ã“ã®åŠå¾„ã§ä¸Šã§ç§»å‹•ã—ãŸè·é›¢ã‚’æ±‚ã‚ã¾ã™
  *
- *	@return	ˆÚ“®‹——£
+ *	@return	ç§»å‹•è·é›¢
  *
- *	‰—p•û–@
- *		r‚Ì‰~ü‚ğ‹‚ßAˆÚ“®‹——£‚ª‰~ü‚Ì‰½ƒp[ƒZƒ“ƒg‚É“–‚½‚é‚©‚É‚æ‚èA‰ñ“]Šp“x‚ğ‹‚ß‚é‚±‚Æ‚ào—ˆ‚Ü‚·
+ *	å¿œç”¨æ–¹æ³•
+ *		rã®å††å‘¨ã‚’æ±‚ã‚ã€ç§»å‹•è·é›¢ãŒå††å‘¨ã®ä½•ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆã«å½“ãŸã‚‹ã‹ã«ã‚ˆã‚Šã€å›è»¢è§’åº¦ã‚’æ±‚ã‚ã‚‹ã“ã¨ã‚‚å‡ºæ¥ã¾ã™
  */
 //-----------------------------------------------------------------------------
 GLOBAL s32 CalcTool_CircleVectorDistance( s32 x0, s32 y0, s32 x1, s32 y1, u32 r );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”¼Œa‚Æ‹——£‚©‚çŒ»İ‚Ì‰ñ“]Šp‚ğæ“¾‚·‚é
+ *	@brief	åŠå¾„ã¨è·é›¢ã‹ã‚‰ç¾åœ¨ã®å›è»¢è§’ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	r		”¼Œa
- *	@param	dist	ˆÚ“®‹——£
+ *	@param	r		åŠå¾„
+ *	@param	dist	ç§»å‹•è·é›¢
  *
- *	@return	ˆÚ“®‹——£‚©‚ç
+ *	@return	ç§»å‹•è·é›¢ã‹ã‚‰
  */
 //-----------------------------------------------------------------------------
 GLOBAL s32 CalcTool_CircleVectroDistRotaGet( u16 r, s32 dist );
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒ`ƒFƒbƒNƒTƒ€‚ÌZoƒ‹[ƒ`ƒ“
+ * ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã®ç®—å‡ºãƒ«ãƒ¼ãƒãƒ³
  *
- * @param	adrs	ŠJnƒAƒhƒŒƒX
- * @param	size	ƒf[ƒ^ƒTƒCƒY
+ * @param	adrs	é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	size	ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  *
- * @retval	"Zo‚µ‚½’l"
+ * @retval	"ç®—å‡ºã—ãŸå€¤"
  */
 //----------------------------------------------------------------------------------------------
 GLOBAL u32 CalcTool_calc_check_sum(const void * adrs, u32 size);
@@ -242,27 +242,27 @@ GLOBAL void	CalcTool_Decoded(void *data,u32 size,u32 code);
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒ`ƒFƒbƒNƒTƒ€‚ÌZoƒ‹[ƒ`ƒ“
- * @param	adrs	ŠJnƒAƒhƒŒƒX
- * @param	size	ƒf[ƒ^ƒTƒCƒY
- * @retval	"Zo‚µ‚½’l"
+ * ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã®ç®—å‡ºãƒ«ãƒ¼ãƒãƒ³
+ * @param	adrs	é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	size	ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @retval	"ç®—å‡ºã—ãŸå€¤"
  */
 //----------------------------------------------------------------------------------------------
 GLOBAL u16 CalcTool_CrcCheck(const void * adrs, u32 size);
 
 //----------------------------------------------------------------------------------------------
 /**
- * @brief   ‚b‚q‚bƒe[ƒuƒ‹‚Ì‰Šú‰»
- * @param	heapID  ƒƒ‚ƒŠŠm•ÛID
- * @retval	–³‚µ
+ * @brief   ï¼£ï¼²ï¼£ãƒ†ãƒ¼ãƒ–ãƒ«ã®åˆæœŸåŒ–
+ * @param	heapID  ãƒ¡ãƒ¢ãƒªç¢ºä¿ID
+ * @retval	ç„¡ã—
  */
 //----------------------------------------------------------------------------------------------
 GLOBAL void CalcTool_CrcInit(int heapID);
 
 //----------------------------------------------------------------------------------------------
 /**
- * @brief   ‚b‚q‚bƒe[ƒuƒ‹‚ÌI—¹ˆ—
- * @retval	–³‚µ
+ * @brief   ï¼£ï¼²ï¼£ãƒ†ãƒ¼ãƒ–ãƒ«ã®çµ‚äº†å‡¦ç†
+ * @retval	ç„¡ã—
  */
 //----------------------------------------------------------------------------------------------
 GLOBAL void CalcTool_CrcEnd(void);

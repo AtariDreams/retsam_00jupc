@@ -15,7 +15,7 @@
   Copyright fix
 
   Revision 1.11  2007/07/31 02:09:37  tokunaga_eiji
-  RTCTimeEx \‘¢‘Ì‚Æ RTC_GetDateTimeExByTick ŠÖ”‚Ì’è‹`‚ğ’Ç‰ÁB
+  RTCTimeEx æ§‹é€ ä½“ã¨ RTC_GetDateTimeExByTick é–¢æ•°ã®å®šç¾©ã‚’è¿½åŠ ã€‚
 
   Revision 1.10  2006/01/18 02:11:19  kitase_hirotake
   do-indent
@@ -24,22 +24,22 @@
   do-indent.
 
   Revision 1.8  2004/11/02 04:14:29  terui
-  RTC_GetTimeAsync‚Ìƒvƒƒgƒ^ƒCƒv‚Ìˆø”–¼‚ğC³B
+  RTC_GetTimeAsyncã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—ã®å¼•æ•°åã‚’ä¿®æ­£ã€‚
 
   Revision 1.7  2004/08/19 13:43:01  terui
-  HourFormatŠÖ˜A‚Ì’è‹`‚ğíœB
+  HourFormaté–¢é€£ã®å®šç¾©ã‚’å‰Šé™¤ã€‚
 
   Revision 1.6  2004/08/19 12:50:36  terui
-  24ŠÔ•\‹LŒÅ’è‰»‚É”º‚¤C³B
+  24æ™‚é–“è¡¨è¨˜å›ºå®šåŒ–ã«ä¼´ã†ä¿®æ­£ã€‚
 
   Revision 1.5  2004/08/04 05:32:13  miya
-  Hêİ’è—p‚ÉŠÖ”’Ç‰Á
+  å·¥å ´è¨­å®šç”¨ã«é–¢æ•°è¿½åŠ 
 
   Revision 1.4  2004/07/01 03:17:15  yosizaki
   change around RTCHourFormat to internal use.
 
   Revision 1.3  2004/05/17 11:05:55  terui
-  ŠeŠÖ”‚Ì•Ô‚è’l‚ğRTCResultŒ^‚É“ˆê
+  å„é–¢æ•°ã®è¿”ã‚Šå€¤ã‚’RTCResultå‹ã«çµ±ä¸€
 
   Revision 1.1  2004/05/12 02:27:56  terui
   initial upload
@@ -62,49 +62,49 @@ extern "C" {
 
 
 /*---------------------------------------------------------------------------*
-    ’è”’è‹`
+    å®šæ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 
-// —j“ú’è‹`
+// æ›œæ—¥å®šç¾©
 typedef enum RTCWeek
 {
-    RTC_WEEK_SUNDAY = 0,               // “ú—j“ú
-    RTC_WEEK_MONDAY,                   // Œ—j“ú
-    RTC_WEEK_TUESDAY,                  // ‰Î—j“ú
-    RTC_WEEK_WEDNESDAY,                // …—j“ú
-    RTC_WEEK_THURSDAY,                 // –Ø—j“ú
-    RTC_WEEK_FRIDAY,                   // ‹à—j“ú
-    RTC_WEEK_SATURDAY,                 // “y—j“ú
+    RTC_WEEK_SUNDAY = 0,               // æ—¥æ›œæ—¥
+    RTC_WEEK_MONDAY,                   // æœˆæ›œæ—¥
+    RTC_WEEK_TUESDAY,                  // ç«æ›œæ—¥
+    RTC_WEEK_WEDNESDAY,                // æ°´æ›œæ—¥
+    RTC_WEEK_THURSDAY,                 // æœ¨æ›œæ—¥
+    RTC_WEEK_FRIDAY,                   // é‡‘æ›œæ—¥
+    RTC_WEEK_SATURDAY,                 // åœŸæ›œæ—¥
     RTC_WEEK_MAX
 }
 RTCWeek;
 
-// ƒAƒ‰[ƒ€ƒ`ƒƒƒ“ƒlƒ‹’è‹`
+// ã‚¢ãƒ©ãƒ¼ãƒ ãƒãƒ£ãƒ³ãƒãƒ«å®šç¾©
 typedef enum RTCAlarmChan
 {
-    RTC_ALARM_CHAN_1 = 0,              // Š„‚İƒ`ƒƒƒ“ƒlƒ‹‚P
-    RTC_ALARM_CHAN_2,                  // Š„‚İƒ`ƒƒƒ“ƒlƒ‹‚Q
+    RTC_ALARM_CHAN_1 = 0,              // å‰²è¾¼ã¿ãƒãƒ£ãƒ³ãƒãƒ«ï¼‘
+    RTC_ALARM_CHAN_2,                  // å‰²è¾¼ã¿ãƒãƒ£ãƒ³ãƒãƒ«ï¼’
     RTC_ALARM_CHAN_MAX
 }
 RTCAlarmChan;
 
-// ƒAƒ‰[ƒ€ó‘Ô’è‹`
+// ã‚¢ãƒ©ãƒ¼ãƒ çŠ¶æ…‹å®šç¾©
 typedef enum RTCAlarmStatus
 {
-    RTC_ALARM_STATUS_OFF = 0,          // Š„‚İ‹Ö~ó‘Ô
-    RTC_ALARM_STATUS_ON,               // Š„‚İ‹–‰Âó‘Ô
+    RTC_ALARM_STATUS_OFF = 0,          // å‰²è¾¼ã¿ç¦æ­¢çŠ¶æ…‹
+    RTC_ALARM_STATUS_ON,               // å‰²è¾¼ã¿è¨±å¯çŠ¶æ…‹
     RTC_ALARM_STATUS_MAX
 }
 RTCAlarmStatus;
 
-// ƒAƒ‰[ƒ€—LŒøƒtƒ‰ƒO’è‹`
-#define     RTC_ALARM_ENABLE_NONE       0x0000  // —LŒøƒtƒ‰ƒO‚È‚µ
-#define     RTC_ALARM_ENABLE_WEEK       0x0001  // —j“úİ’è‚ğŠ„‚İ”»’f‚Ég—p
-#define     RTC_ALARM_ENABLE_HOUR       0x0002  // ŠÔİ’è‚ğŠ„‚İ”»’f‚Ég—p
-#define     RTC_ALARM_ENABLE_MINUTE     0x0004  // •ªİ’è‚ğŠ„‚İ”»’f‚Ég—p
+// ã‚¢ãƒ©ãƒ¼ãƒ æœ‰åŠ¹ãƒ•ãƒ©ã‚°å®šç¾©
+#define     RTC_ALARM_ENABLE_NONE       0x0000  // æœ‰åŠ¹ãƒ•ãƒ©ã‚°ãªã—
+#define     RTC_ALARM_ENABLE_WEEK       0x0001  // æ›œæ—¥è¨­å®šã‚’å‰²è¾¼ã¿åˆ¤æ–­ã«ä½¿ç”¨
+#define     RTC_ALARM_ENABLE_HOUR       0x0002  // æ™‚é–“è¨­å®šã‚’å‰²è¾¼ã¿åˆ¤æ–­ã«ä½¿ç”¨
+#define     RTC_ALARM_ENABLE_MINUTE     0x0004  // åˆ†è¨­å®šã‚’å‰²è¾¼ã¿åˆ¤æ–­ã«ä½¿ç”¨
 #define     RTC_ALARM_ENABLE_ALL        ( RTC_ALARM_ENABLE_WEEK | RTC_ALARM_ENABLE_HOUR | RTC_ALARM_ENABLE_MINUTE )
 
-// ˆ—Œ‹‰Ê’è‹`
+// å‡¦ç†çµæœå®šç¾©
 typedef enum RTCResult
 {
     RTC_RESULT_SUCCESS = 0,
@@ -120,64 +120,64 @@ RTCResult;
 
 
 /*---------------------------------------------------------------------------*
-    \‘¢‘Ì’è‹`
+    æ§‹é€ ä½“å®šç¾©
  *---------------------------------------------------------------------------*/
-// ƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^’è‹`
+// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‹å®šç¾©
 typedef void (*RTCCallback) (RTCResult result, void *arg);
 typedef void (*RTCInterrupt) (void);
 
-// “ú•t\‘¢‘Ì
+// æ—¥ä»˜æ§‹é€ ä½“
 typedef struct RTCDate
 {
-    u32     year;                      // ”N ( 0 ~ 99 )
-    u32     month;                     // Œ ( 1 ~ 12 )
-    u32     day;                       // “ú ( 1 ~ 31 )
-    RTCWeek week;                      // —j“ú
+    u32     year;                      // å¹´ ( 0 ~ 99 )
+    u32     month;                     // æœˆ ( 1 ~ 12 )
+    u32     day;                       // æ—¥ ( 1 ~ 31 )
+    RTCWeek week;                      // æ›œæ—¥
 
 }
 RTCDate;
 
-// \‘¢‘Ì
+// æ™‚åˆ»æ§‹é€ ä½“
 typedef struct RTCTime
 {
-    u32     hour;                      //  ( 0 ~ 23 )
-    u32     minute;                    // •ª ( 0 ~ 59 )
-    u32     second;                    // •b ( 0 ~ 59 )
+    u32     hour;                      // æ™‚ ( 0 ~ 23 )
+    u32     minute;                    // åˆ† ( 0 ~ 59 )
+    u32     second;                    // ç§’ ( 0 ~ 59 )
 
 }
 RTCTime;
 
-// ƒ~ƒŠ•bƒtƒB[ƒ‹ƒh‚ª’Ç‰Á‚³‚ê‚½\‘¢‘Ì
+// ãƒŸãƒªç§’ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãŒè¿½åŠ ã•ã‚ŒãŸæ™‚åˆ»æ§‹é€ ä½“
 typedef struct RTCTimeEx
 {
-    s32     hour;                      //  ( 0 ~ 23 )
-    s32     minute;                    // •ª ( 0 ~ 59 )
-    s32     second;                    // •b ( 0 ~ 59 )
-    s32     millisecond;               // ƒ~ƒŠ•b ( 0 ~ 999)
+    s32     hour;                      // æ™‚ ( 0 ~ 23 )
+    s32     minute;                    // åˆ† ( 0 ~ 59 )
+    s32     second;                    // ç§’ ( 0 ~ 59 )
+    s32     millisecond;               // ãƒŸãƒªç§’ ( 0 ~ 999)
 }
 RTCTimeEx;
 
-// ƒAƒ‰[ƒ€ƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+// ã‚¢ãƒ©ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct RTCAlarmParam
 {
-    RTCWeek week;                      // —j“ú
-    u32     hour;                      //  ( 0 ~ 23 )
-    u32     minute;                    // •ª ( 0 ~ 59 )
-    u32     enable;                    // ƒAƒ‰[ƒ€—LŒøƒtƒ‰ƒO( RTC_ALARM_ENABLE_* )
+    RTCWeek week;                      // æ›œæ—¥
+    u32     hour;                      // æ™‚ ( 0 ~ 23 )
+    u32     minute;                    // åˆ† ( 0 ~ 59 )
+    u32     enable;                    // ã‚¢ãƒ©ãƒ¼ãƒ æœ‰åŠ¹ãƒ•ãƒ©ã‚°( RTC_ALARM_ENABLE_* )
 
 }
 RTCAlarmParam;
 
 
 /*---------------------------------------------------------------------------*
-    ŠÖ”’è‹`
+    é–¢æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_Init
 
-  Description:  RTCƒ‰ƒCƒuƒ‰ƒŠ‚ğ‰Šú‰»‚·‚éB
-       Notice:  ƒRƒ“ƒ|[ƒlƒ“ƒg‘¤‚Ì‰Šú‰»‚É‚æ‚Á‚Ä“dŒ¹“Š“üƒ`ƒFƒbƒN‚ªs‚í‚ê‚éB
+  Description:  RTCãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
+       Notice:  ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå´ã®åˆæœŸåŒ–ã«ã‚ˆã£ã¦é›»æºæŠ•å…¥ãƒã‚§ãƒƒã‚¯ãŒè¡Œã‚ã‚Œã‚‹ã€‚
 
   Arguments:    None.
 
@@ -188,208 +188,208 @@ void    RTC_Init(void);
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetDate
 
-  Description:  RTC‚©‚ç“ú•tƒf[ƒ^‚ğ“Ç‚İo‚·B
+  Description:  RTCã‹ã‚‰æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™ã€‚
 
-  Arguments:    date      - “ú•tƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
+  Arguments:    date      - æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetDate(RTCDate *date);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetTime
 
-  Description:  RTC‚©‚çƒf[ƒ^‚ğ“Ç‚İo‚·B
+  Description:  RTCã‹ã‚‰æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™ã€‚
 
-  Arguments:    time      - ƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
+  Arguments:    time      - æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetTime(RTCTime *time);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetDateTime
 
-  Description:  RTC‚©‚ç“ú•tEƒf[ƒ^‚ğ“Ç‚İo‚·B
+  Description:  RTCã‹ã‚‰æ—¥ä»˜ãƒ»æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™ã€‚
 
-  Arguments:    date      - “ú•tƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
-                time      - ƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
+  Arguments:    date      - æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                time      - æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetDateTime(RTCDate *date, RTCTime *time);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetDateTimeExByTick
 
-  Description:  CPU ƒ`ƒbƒN‚ğ—˜—p‚µ‚Äƒ~ƒŠ•b’PˆÊ‚Ü‚Å‚Ì“ú•tEƒf[ƒ^‚ğ“Ç‚İo‚·B
+  Description:  CPU ãƒãƒƒã‚¯ã‚’åˆ©ç”¨ã—ã¦ãƒŸãƒªç§’å˜ä½ã¾ã§ã®æ—¥ä»˜ãƒ»æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã™ã€‚
 
-  Arguments:    date      - “ú•tƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
-                time      - ƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
+  Arguments:    date      - æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                time      - æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetDateTimeExByTick(RTCDate *date, RTCTimeEx *time);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetDate
 
-  Description:  RTC‚É“ú•tƒf[ƒ^‚ğ‘‚«‚ŞB
+  Description:  RTCã«æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€ã€‚
 
-  Arguments:    date      - “ú•tƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚ğw’èB
+  Arguments:    date      - æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetDate(const RTCDate *date);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetTime
 
-  Description:  RTC‚Éƒf[ƒ^‚ğ‘‚«‚ŞB
+  Description:  RTCã«æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€ã€‚
 
-  Arguments:    time      - ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚ğw’èB
+  Arguments:    time      - æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetTime(const RTCTime *time);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetDateTime
 
-  Description:  RTC‚É“ú•tEƒf[ƒ^‚ğ‘‚«‚ŞB
+  Description:  RTCã«æ—¥ä»˜ãƒ»æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€ã€‚
 
-  Arguments:    date      - “ú•tƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚ğw’èB
-                time      - ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚ğw’èB
+  Arguments:    date      - æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                time      - æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetDateTime(const RTCDate *date, const RTCTime *time);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetAlarmStatus
 
-  Description:  RTC‚©‚çƒAƒ‰[ƒ€‚ÌON/OFFó‘Ô‚ğ“Ç‚İo‚·B
+  Description:  RTCã‹ã‚‰ã‚¢ãƒ©ãƒ¼ãƒ ã®ON/OFFçŠ¶æ…‹ã‚’èª­ã¿å‡ºã™ã€‚
 
-  Arguments:    chan      - ƒAƒ‰[ƒ€‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğw’èB
-                status    - ƒAƒ‰[ƒ€ó‘Ô‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
+  Arguments:    chan      - ã‚¢ãƒ©ãƒ¼ãƒ ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’æŒ‡å®šã€‚
+                status    - ã‚¢ãƒ©ãƒ¼ãƒ çŠ¶æ…‹ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetAlarmStatus(RTCAlarmChan chan, RTCAlarmStatus *status);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetAlarmParam
 
-  Description:  RTC‚©‚çƒAƒ‰[ƒ€‚Ìİ’è’l‚ğ“Ç‚İo‚·B
+  Description:  RTCã‹ã‚‰ã‚¢ãƒ©ãƒ¼ãƒ ã®è¨­å®šå€¤ã‚’èª­ã¿å‡ºã™ã€‚
 
-  Arguments:    chan      - ƒAƒ‰[ƒ€‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğw’èB
-                param     - ƒAƒ‰[ƒ€İ’è’l‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
+  Arguments:    chan      - ã‚¢ãƒ©ãƒ¼ãƒ ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’æŒ‡å®šã€‚
+                param     - ã‚¢ãƒ©ãƒ¼ãƒ è¨­å®šå€¤ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetAlarmParam(RTCAlarmChan chan, RTCAlarmParam *param);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetAlarmStatus
 
-  Description:  RTC‚ÉƒAƒ‰[ƒ€ó‘Ô‚ğ‘‚«‚ŞB
+  Description:  RTCã«ã‚¢ãƒ©ãƒ¼ãƒ çŠ¶æ…‹ã‚’æ›¸ãè¾¼ã‚€ã€‚
 
-  Arguments:    chan      - ƒAƒ‰[ƒ€‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğw’èB
-                status    - ƒAƒ‰[ƒ€ó‘Ô‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚ğw’èB
+  Arguments:    chan      - ã‚¢ãƒ©ãƒ¼ãƒ ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’æŒ‡å®šã€‚
+                status    - ã‚¢ãƒ©ãƒ¼ãƒ çŠ¶æ…‹ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetAlarmStatus(RTCAlarmChan chan, const RTCAlarmStatus *status);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetAlarmParam
 
-  Description:  RTC‚ÉƒAƒ‰[ƒ€İ’è’l‚ğ‘‚«‚ŞB
+  Description:  RTCã«ã‚¢ãƒ©ãƒ¼ãƒ è¨­å®šå€¤ã‚’æ›¸ãè¾¼ã‚€ã€‚
 
-  Arguments:    chan      - ƒAƒ‰[ƒ€‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğw’èB
-                param     - ƒAƒ‰[ƒ€İ’è’l‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚ğw’èB
+  Arguments:    chan      - ã‚¢ãƒ©ãƒ¼ãƒ ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’æŒ‡å®šã€‚
+                param     - ã‚¢ãƒ©ãƒ¼ãƒ è¨­å®šå€¤ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ƒfƒoƒCƒX‘€ì‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - ãƒ‡ãƒã‚¤ã‚¹æ“ä½œã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetAlarmParam(RTCAlarmChan chan, const RTCAlarmParam *param);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetDateAsync
 
-  Description:  RTC‚©‚ç“ú•tƒf[ƒ^‚ğ”ñ“¯Šú‚Å“Ç‚İo‚·B
+  Description:  RTCã‹ã‚‰æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ã‚’éåŒæœŸã§èª­ã¿å‡ºã™ã€‚
 
-  Arguments:    date      - “ú•tƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
-                callback  - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ğw’èB
-                arg       - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ‚Ìˆø”‚ğw’èB
+  Arguments:    date      - æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                callback  - éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg       - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJn‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - éåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetDateAsync(RTCDate *date, RTCCallback callback, void *arg);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetTimeAsync
 
-  Description:  RTC‚©‚çƒf[ƒ^‚ğ”ñ“¯Šú‚Å“Ç‚İo‚·B
+  Description:  RTCã‹ã‚‰æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’éåŒæœŸã§èª­ã¿å‡ºã™ã€‚
 
-  Arguments:    time      - ƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
-                callback  - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ğw’èB
-                arg       - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ‚Ìˆø”‚ğw’èB
+  Arguments:    time      - æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                callback  - éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg       - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJn‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - éåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetTimeAsync(RTCTime *time, RTCCallback callback, void *arg);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetDateTimeAsync
 
-  Description:  RTC‚©‚ç“ú•tEƒf[ƒ^‚ğ”ñ“¯Šú‚Å“Ç‚İo‚·B
+  Description:  RTCã‹ã‚‰æ—¥ä»˜ãƒ»æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’éåŒæœŸã§èª­ã¿å‡ºã™ã€‚
 
-  Arguments:    date      - “ú•tƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
-                time      - ƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
-                callback  - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ğw’èB
-                arg       - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ‚Ìˆø”‚ğw’èB
+  Arguments:    date      - æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                time      - æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                callback  - éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg       - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJn‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - éåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetDateTimeAsync(RTCDate *date, RTCTime *time, RTCCallback callback, void *arg);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetDateAsync
 
-  Description:  RTC‚É“ú•tƒf[ƒ^‚ğ”ñ“¯Šú‚Å‘‚«‚ŞB
+  Description:  RTCã«æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ã‚’éåŒæœŸã§æ›¸ãè¾¼ã‚€ã€‚
 
-  Arguments:    date      - “ú•tƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚ğw’èB
-                callback  - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ğw’èB
-                arg       - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ‚Ìˆø”‚ğw’èB
+  Arguments:    date      - æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                callback  - éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg       - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJn‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - éåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetDateAsync(const RTCDate *date, RTCCallback callback, void *arg);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetTimeAsync
 
-  Description:  RTC‚Éƒf[ƒ^‚ğ”ñ“¯Šú‚Å‘‚«‚ŞB
+  Description:  RTCã«æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’éåŒæœŸã§æ›¸ãè¾¼ã‚€ã€‚
 
-  Arguments:    time      - ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚ğw’èB
-                callback  - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ğw’èB
-                arg       - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ‚Ìˆø”‚ğw’èB
+  Arguments:    time      - æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                callback  - éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg       - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJn‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - éåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetTimeAsync(const RTCTime *time, RTCCallback callback, void *arg);
 
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetDateTimeAsync
 
-  Description:  RTC‚É“ú•tEƒf[ƒ^‚ğ”ñ“¯Šú‚Å‘‚«‚ŞB
+  Description:  RTCã«æ—¥ä»˜ãƒ»æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ã‚’éåŒæœŸã§æ›¸ãè¾¼ã‚€ã€‚
 
-  Arguments:    date      - “ú•tƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚ğw’èB
-                time      - ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚ğw’èB
-                callback  - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ğw’èB
-                arg       - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ‚Ìˆø”‚ğw’èB
+  Arguments:    date      - æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                time      - æ™‚åˆ»ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                callback  - éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg       - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJn‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - éåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetDateTimeAsync(const RTCDate *date, const RTCTime *time, RTCCallback callback,
                                void *arg);
@@ -397,14 +397,14 @@ RTCResult RTC_SetDateTimeAsync(const RTCDate *date, const RTCTime *time, RTCCall
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetAlarmStatusAsync
 
-  Description:  RTC‚©‚çƒAƒ‰[ƒ€‚ÌON/OFFó‘Ô‚ğ”ñ“¯Šú‚Å“Ç‚İo‚·B
+  Description:  RTCã‹ã‚‰ã‚¢ãƒ©ãƒ¼ãƒ ã®ON/OFFçŠ¶æ…‹ã‚’éåŒæœŸã§èª­ã¿å‡ºã™ã€‚
 
-  Arguments:    chan      - ƒAƒ‰[ƒ€‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğw’èB
-                status    - ƒAƒ‰[ƒ€ó‘Ô‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
-                callback  - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ğw’èB
-                arg       - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ‚Ìˆø”‚ğw’èB
+  Arguments:    chan      - ã‚¢ãƒ©ãƒ¼ãƒ ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’æŒ‡å®šã€‚
+                status    - ã‚¢ãƒ©ãƒ¼ãƒ çŠ¶æ…‹ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                callback  - éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg       - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJn‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - éåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetAlarmStatusAsync(RTCAlarmChan chan, RTCAlarmStatus *status, RTCCallback callback,
                                   void *arg);
@@ -412,14 +412,14 @@ RTCResult RTC_GetAlarmStatusAsync(RTCAlarmChan chan, RTCAlarmStatus *status, RTC
 /*---------------------------------------------------------------------------*
   Name:         RTC_GetAlarmParamAsync
 
-  Description:  RTC‚©‚çƒAƒ‰[ƒ€‚Ìİ’è’l‚ğ”ñ“¯Šú‚Å“Ç‚İo‚·B
+  Description:  RTCã‹ã‚‰ã‚¢ãƒ©ãƒ¼ãƒ ã®è¨­å®šå€¤ã‚’éåŒæœŸã§èª­ã¿å‡ºã™ã€‚
 
-  Arguments:    chan      - ƒAƒ‰[ƒ€‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğw’èB
-                param     - ƒAƒ‰[ƒ€İ’è’l‚ğŠi”[‚·‚éƒoƒbƒtƒ@‚ğw’èB
-                callback  - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ğw’èB
-                arg       - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ‚Ìˆø”‚ğw’èB
+  Arguments:    chan      - ã‚¢ãƒ©ãƒ¼ãƒ ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’æŒ‡å®šã€‚
+                param     - ã‚¢ãƒ©ãƒ¼ãƒ è¨­å®šå€¤ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                callback  - éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg       - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJn‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - éåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_GetAlarmParamAsync(RTCAlarmChan chan, RTCAlarmParam *param, RTCCallback callback,
                                  void *arg);
@@ -427,9 +427,9 @@ RTCResult RTC_GetAlarmParamAsync(RTCAlarmChan chan, RTCAlarmParam *param, RTCCal
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetAlarmInterrupt
 
-  Description:  ƒAƒ‰[ƒ€Š„‚İ”­¶‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è‚·‚éB
+  Description:  ã‚¢ãƒ©ãƒ¼ãƒ å‰²è¾¼ã¿ç™ºç”Ÿæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®šã™ã‚‹ã€‚
 
-  Arguments:    interrupt - ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğw’èB
+  Arguments:    interrupt - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’æŒ‡å®šã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -438,14 +438,14 @@ void    RTC_SetAlarmInterrupt(RTCInterrupt interrupt);
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetAlarmStatusAsync
 
-  Description:  RTC‚ÉƒAƒ‰[ƒ€ó‘Ô‚ğ”ñ“¯Šú‚Å‘‚«‚ŞB
+  Description:  RTCã«ã‚¢ãƒ©ãƒ¼ãƒ çŠ¶æ…‹ã‚’éåŒæœŸã§æ›¸ãè¾¼ã‚€ã€‚
 
-  Arguments:    chan      - ƒAƒ‰[ƒ€‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğw’èB
-                status    - ƒAƒ‰[ƒ€ó‘Ô‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚ğw’èB
-                callback  - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ğw’èB
-                arg       - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ‚Ìˆø”‚ğw’èB
+  Arguments:    chan      - ã‚¢ãƒ©ãƒ¼ãƒ ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’æŒ‡å®šã€‚
+                status    - ã‚¢ãƒ©ãƒ¼ãƒ çŠ¶æ…‹ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                callback  - éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg       - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJn‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - éåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetAlarmStatusAsync(RTCAlarmChan chan, const RTCAlarmStatus *status,
                                   RTCCallback callback, void *arg);
@@ -453,23 +453,23 @@ RTCResult RTC_SetAlarmStatusAsync(RTCAlarmChan chan, const RTCAlarmStatus *statu
 /*---------------------------------------------------------------------------*
   Name:         RTC_SetAlarmParamAsync
 
-  Description:  RTC‚ÉƒAƒ‰[ƒ€İ’è‚ğ”ñ“¯Šú‚Å‘‚«‚ŞB
-       Notice:  RTC‚ÌƒAƒ‰[ƒ€ó‘Ô‚ªON‚É‚È‚Á‚Ä‚¢‚È‚¢ê‡AƒfƒoƒCƒX‘¤‚Åƒ‰ƒCƒg‚ğ
-                ó‚¯•t‚¯‚Ä‚­‚ê‚È‚¢‚Ì‚ÅA‘‚«‚İ‚Í¸”s‚·‚éB
+  Description:  RTCã«ã‚¢ãƒ©ãƒ¼ãƒ è¨­å®šã‚’éåŒæœŸã§æ›¸ãè¾¼ã‚€ã€‚
+       Notice:  RTCã®ã‚¢ãƒ©ãƒ¼ãƒ çŠ¶æ…‹ãŒONã«ãªã£ã¦ã„ãªã„å ´åˆã€ãƒ‡ãƒã‚¤ã‚¹å´ã§ãƒ©ã‚¤ãƒˆã‚’
+                å—ã‘ä»˜ã‘ã¦ãã‚Œãªã„ã®ã§ã€æ›¸ãè¾¼ã¿ã¯å¤±æ•—ã™ã‚‹ã€‚
 
-  Arguments:    chan      - ƒAƒ‰[ƒ€‚Ìƒ`ƒƒƒ“ƒlƒ‹‚ğw’èB
-                param     - ƒAƒ‰[ƒ€İ’è’l‚ªŠi”[‚³‚ê‚Ä‚¢‚éƒoƒbƒtƒ@‚ğw’èB
-                callback  - ”ñ“¯Šúˆ—‚ªŠ®—¹‚µ‚½Û‚ÉŒÄ‚Ño‚·ŠÖ”‚ğw’èB
-                arg       - ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ‚Ìˆø”‚ğw’èB
+  Arguments:    chan      - ã‚¢ãƒ©ãƒ¼ãƒ ã®ãƒãƒ£ãƒ³ãƒãƒ«ã‚’æŒ‡å®šã€‚
+                param     - ã‚¢ãƒ©ãƒ¼ãƒ è¨­å®šå€¤ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã€‚
+                callback  - éåŒæœŸå‡¦ç†ãŒå®Œäº†ã—ãŸéš›ã«å‘¼ã³å‡ºã™é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg       - ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—æ™‚ã®å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      RTCResult - ”ñ“¯ŠúƒfƒoƒCƒX‘€ìŠJn‚Ìˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      RTCResult - éåŒæœŸãƒ‡ãƒã‚¤ã‚¹æ“ä½œé–‹å§‹ã®å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 RTCResult RTC_SetAlarmParamAsync(RTCAlarmChan chan, const RTCAlarmParam *param,
                                  RTCCallback callback, void *arg);
 
 
 /*---------------------------------------------------------------------------*
-    ”ñŒöŠJŠÖ”’è‹`
+    éå…¬é–‹é–¢æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 BOOL    RTCi_ResetAsync(void);
 BOOL    RTCi_SetHourFormatAsync(void);

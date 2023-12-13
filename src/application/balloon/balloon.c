@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	balloon.c
- * @brief	•—‘D–c‚ç‚Ü‚µƒƒCƒ“
+ * @brief	é¢¨èˆ¹è†¨ã‚‰ã¾ã—ãƒ¡ã‚¤ãƒ³
  * @author	matsuda
- * @date	2007.11.01(–Ø)
+ * @date	2007.11.01(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -33,9 +33,9 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒƒCƒ“ƒV[ƒPƒ“ƒX”Ô†
+///ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 enum{
 	MAINSEQ_ENTRY_PROC,
 	MAINSEQ_ENTRY_WAIT,
@@ -48,13 +48,13 @@ enum{
 	MAINSEQ_END,
 };
 
-///ƒQ[ƒ€I—¹Žž‚ÌÅŒã‚Ì“¯ŠúŽæ‚è‚ÉŽg—p‚·‚é”Ô†
+///ã‚²ãƒ¼ãƒ çµ‚äº†æ™‚ã®æœ€å¾Œã®åŒæœŸå–ã‚Šã«ä½¿ç”¨ã™ã‚‹ç•ªå·
 #define BALLOON_END_TIMING_NO		(222)
 
 //==============================================================================
-//	PROCƒf[ƒ^
+//	PROCãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///•—‘DŠ„‚èƒQ[ƒ€‰æ–ÊƒvƒƒZƒX’è‹`ƒf[ƒ^
+///é¢¨èˆ¹å‰²ã‚Šã‚²ãƒ¼ãƒ ç”»é¢ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 static const PROC_DATA BalloonGameProcData = {
 	BalloonGameProc_Init,
 	BalloonGameProc_Main,
@@ -62,7 +62,7 @@ static const PROC_DATA BalloonGameProcData = {
 	NO_OVERLAY_ID,//FS_OVERLAY_ID(balloon),
 };
 
-///•—‘DŠ„‚èƒGƒ“ƒgƒŠ[‰æ–Ê•Œ‹‰Ê”­•\‰æ–ÊƒvƒƒZƒX’è‹`ƒf[ƒ^
+///é¢¨èˆ¹å‰²ã‚Šã‚¨ãƒ³ãƒˆãƒªãƒ¼ç”»é¢ï¼†çµæžœç™ºè¡¨ç”»é¢ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 static const PROC_DATA BalloonEntryProcData = {
 	BalloonEntryProc_Init,
 	BalloonEntryProc_Main,
@@ -72,7 +72,7 @@ static const PROC_DATA BalloonEntryProcData = {
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void Ballon_ProcWorkInit(BALLOON_SYSTEM_WORK *bsw, BALLOON_PROC_WORK *parent);
 static BOOL Ballon_DisconnectErrorCheck( BALLOON_SYSTEM_WORK *bsw );
@@ -85,10 +85,10 @@ static BOOL Ballon_DisconnectErrorCheck( BALLOON_SYSTEM_WORK *bsw );
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DŠ„‚èF‰Šú‰»
+ * @brief   é¢¨èˆ¹å‰²ã‚Šï¼šåˆæœŸåŒ–
  *
- * @param   proc		PROC‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒXƒ[ƒN
+ * @param   proc		PROCã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¯ãƒ¼ã‚¯
  *
  * @retval  
  */
@@ -98,7 +98,7 @@ PROC_RESULT BalloonProc_Init( PROC * proc, int * seq )
 	BALLOON_PROC_WORK *parent = PROC_GetParentWork(proc);
 	BALLOON_SYSTEM_WORK *bsw;
 
-	//Eƒ[ƒ‹ŠÇ——pƒq[ƒvì¬
+	//Eãƒ¡ãƒ¼ãƒ«ç®¡ç†ç”¨ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_BALLOON, 0x60000 );
 
 	bsw = PROC_AllocWork(proc, sizeof(BALLOON_SYSTEM_WORK), HEAPID_BALLOON );
@@ -113,10 +113,10 @@ PROC_RESULT BalloonProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DŠ„‚èFƒƒCƒ“
+ * @brief   é¢¨èˆ¹å‰²ã‚Šï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		PROC‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒXƒ[ƒN
+ * @param   proc		PROCã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¯ãƒ¼ã‚¯
  *
  * @retval  
  */
@@ -126,7 +126,7 @@ PROC_RESULT BalloonProc_Main( PROC * proc, int * seq )
 	BALLOON_SYSTEM_WORK * bsw  = PROC_GetWork( proc );
 	BALLOON_PROC_WORK *parent = PROC_GetParentWork(proc);
 
-	// ’ÊMƒGƒ‰[I—¹ƒ`ƒFƒbƒN
+	// é€šä¿¡ã‚¨ãƒ©ãƒ¼çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( Ballon_DisconnectErrorCheck( bsw ) == TRUE ){
 		return PROC_RES_FINISH;
 	}
@@ -148,7 +148,7 @@ PROC_RESULT BalloonProc_Main( PROC * proc, int * seq )
 		if(ProcMain(bsw->sub_proc) == TRUE){
 			PROC_Delete(bsw->sub_proc);
 			bsw->sub_proc = NULL;
-			(*seq)++;	//ƒQ[ƒ€‰æ–Ê‚Ö
+			(*seq)++;	//ã‚²ãƒ¼ãƒ ç”»é¢ã¸
 		}
 		break;
 
@@ -192,16 +192,16 @@ PROC_RESULT BalloonProc_Main( PROC * proc, int * seq )
 		}
 		break;
 	
-	case MAINSEQ_END_BEFORE_TIMING:	//ƒQ[ƒ€I—¹‘O‚ÌÅŒã‚Ì“¯ŠúŽæ‚è‚ðs‚¤
-		// Ø’fƒGƒ‰[‚ð–³Ž‹‚·‚éiƒuƒ‹[ƒXƒNƒŠ[ƒ“‚É‚à”ò‚Î‚È‚­‚È‚éj
+	case MAINSEQ_END_BEFORE_TIMING:	//ã‚²ãƒ¼ãƒ çµ‚äº†å‰ã®æœ€å¾Œã®åŒæœŸå–ã‚Šã‚’è¡Œã†
+		// åˆ‡æ–­ã‚¨ãƒ©ãƒ¼ã‚’ç„¡è¦–ã™ã‚‹ï¼ˆãƒ–ãƒ«ãƒ¼ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«ã‚‚é£›ã°ãªããªã‚‹ï¼‰
 		CommStateSetErrorCheck(FALSE,TRUE);
-		//“¯Šú–½—ß‘—M
+		//åŒæœŸå‘½ä»¤é€ä¿¡
 		CommTimingSyncStart(BALLOON_END_TIMING_NO);
 		(*seq)++;
 		break;
 	case MAINSEQ_END_BEFORE_TIMING_WAIT:
 		if((CommIsTimingSync(BALLOON_END_TIMING_NO) == TRUE) ||
-			(CommGetConnectNum() < CommInfoGetEntryNum()) ){	// l”‚ª­‚È‚­‚È‚Á‚½‚ç‚»‚Ì‚Ü‚Ü”²‚¯‚é
+			(CommGetConnectNum() < CommInfoGetEntryNum()) ){	// äººæ•°ãŒå°‘ãªããªã£ãŸã‚‰ãã®ã¾ã¾æŠœã‘ã‚‹
 			(*seq)++;
 		}
 		break;
@@ -216,10 +216,10 @@ PROC_RESULT BalloonProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DŠ„‚èFI—¹ˆ—
+ * @brief   é¢¨èˆ¹å‰²ã‚Šï¼šçµ‚äº†å‡¦ç†
  *
- * @param   proc		PROC‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒXƒ[ƒN
+ * @param   proc		PROCã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¯ãƒ¼ã‚¯
  *
  * @retval  
  */
@@ -228,7 +228,7 @@ PROC_RESULT BalloonProc_End(PROC *proc, int *seq)
 {
 	BALLOON_SYSTEM_WORK * bsw  = PROC_GetWork( proc );
 
-	PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
 	sys_DeleteHeap( HEAPID_BALLOON );
 
@@ -241,21 +241,21 @@ PROC_RESULT BalloonProc_End(PROC *proc, int *seq)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   PROCƒ[ƒN‚Ì‰Šú’lÝ’è
- * @param   bsw		PROCƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   parent	BALLOON_PROC_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   PROCãƒ¯ãƒ¼ã‚¯ã®åˆæœŸå€¤è¨­å®š
+ * @param   bsw		PROCãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   parent	BALLOON_PROC_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Ballon_ProcWorkInit(BALLOON_SYSTEM_WORK *bsw, BALLOON_PROC_WORK *parent)
 {
 	int i, index, my_no, current_id;
 	
-//	bsw->result_param.p_gadget = &parent->gadget;	// GADGET‚È‚­‚µ‚Ü‚µ‚½ tomoya
+//	bsw->result_param.p_gadget = &parent->gadget;	// GADGETãªãã—ã¾ã—ãŸ tomoya
 	
 	current_id = CommGetCurrentID();
 	my_no = 0;
 	
-	//ŽQ‰Á‚µ‚Ä‚¢‚énetID‚ÌƒŠƒXƒg‚ðì¬
+	//å‚åŠ ã—ã¦ã„ã‚‹netIDã®ãƒªã‚¹ãƒˆã‚’ä½œæˆ
 	index = 0;
 	for(i = 0; i < WFLBY_MINIGAME_MAX; i++){
 		if(CommInfoGetMyStatus(i) != NULL){
@@ -281,7 +281,7 @@ static void Ballon_ProcWorkInit(BALLOON_SYSTEM_WORK *bsw, BALLOON_PROC_WORK *par
 		}
 	}
 	else{
-		//ƒGƒ“ƒgƒŠ[‰æ–Ê•Œ‹‰Ê”­•\‰æ–Ê—p‚Ì’lƒZƒbƒg
+		//ã‚¨ãƒ³ãƒˆãƒªãƒ¼ç”»é¢ï¼†çµæžœç™ºè¡¨ç”»é¢ç”¨ã®å€¤ã‚»ãƒƒãƒˆ
 		MNGM_ENRES_PARAM_Init( &bsw->entry_param, parent->wifi_lobby, parent->p_save, parent->vchat, &parent->lobby_wk );
 	}
 #else
@@ -293,26 +293,26 @@ static void Ballon_ProcWorkInit(BALLOON_SYSTEM_WORK *bsw, BALLOON_PROC_WORK *par
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒGƒ‰[Ø’fƒ`ƒFƒbƒN
+ *	@brief	é€šä¿¡ã‚¨ãƒ©ãƒ¼åˆ‡æ–­ãƒã‚§ãƒƒã‚¯
  *
- *	@param	bsw		ƒ[ƒN
+ *	@param	bsw		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹‚Ö
- *	@retval	FALSE	ƒGƒ‰[‚È‚µ
+ *	@retval	TRUE	çµ‚äº†ã¸
+ *	@retval	FALSE	ã‚¨ãƒ©ãƒ¼ãªã—
  */
 //-----------------------------------------------------------------------------
 static BOOL Ballon_DisconnectErrorCheck( BALLOON_SYSTEM_WORK *bsw )
 {
 	if( bsw->dis_error == FALSE ){
 		if( MNGM_ERROR_CheckDisconnect( &bsw->entry_param ) == TRUE ){
-			bsw->dis_error = TRUE;	// Ø’fƒGƒ‰[”­¶
+			bsw->dis_error = TRUE;	// åˆ‡æ–­ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ
 
 			// 
 		}
 	}
 
 	if( bsw->dis_error == TRUE ){
-		// Ø’fƒGƒ‰[’†‚ÅAƒTƒuƒvƒƒbƒN‚ª‚È‚¢ê‡’¼‚®‚ÉI—¹
+		// åˆ‡æ–­ã‚¨ãƒ©ãƒ¼ä¸­ã§ã€ã‚µãƒ–ãƒ—ãƒ­ãƒƒã‚¯ãŒãªã„å ´åˆç›´ãã«çµ‚äº†
 		if( bsw->sub_proc == NULL ){
 			return TRUE;
 		}

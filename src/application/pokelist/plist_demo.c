@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	plist_demo.c
- * @brief	�|�P�������X�g��ł̃V�F�C�~�A�M���e�B�i�̃t�H�����`�F���W�f��
+ * @brief	ポケモンリスト上でのシェイミ、ギラティナのフォルムチェンジデモ
  * @author	matsuda
- * @date	2007.12.15(�y)
+ * @date	2007.12.15(土)
  */
 //==============================================================================
 #include "common.h"
@@ -48,34 +48,34 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///�퓬�p�[�e�B�N���̃J�����j�A�ݒ�
+///戦闘パーティクルのカメラニア設定
 #define BP_NEAR			(FX32_ONE)
-///�퓬�p�[�e�B�N���̃J�����t�@�[�ݒ�
+///戦闘パーティクルのカメラファー設定
 #define BP_FAR			(FX32_ONE * 900)
 
-///�p�[�e�B�N�����o�āA���̎��Ԃ����o������|�P�����A�C�R���ύX
+///パーティクルが出て、この時間だけ経ったらポケモンアイコン変更
 #define ICON_CHANGE_WAIT_GIRATHINA		(65)
-///�p�[�e�B�N�����o�āA���̎��Ԃ����o������|�P�����A�C�R���ύX
+///パーティクルが出て、この時間だけ経ったらポケモンアイコン変更
 #define ICON_CHANGE_WAIT_SHEIMI			(35)
 
 //==============================================================================
-//	�\���̒�`
+//	構造体定義
 //==============================================================================
 typedef struct _LIST_FORMDEMO_WORK{
 	int seq;
 	int wait;
 	int wait_max;
 	int monsno;
-	u32 spa_id;				///<SPA��ID
-	int pos;				///<�J�[�\���ʒu
-	PTC_PTR ptc;			///<�p�[�e�B�N���V�X�e���ւ̃|�C���^
+	u32 spa_id;				///<SPAのID
+	int pos;				///<カーソル位置
+	PTC_PTR ptc;			///<パーティクルシステムへのポインタ
 }LIST_FORMDEMO_WORK;
 
 
 //==============================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //==============================================================================
 static void PokeList_FormDemoEnd(PLIST_WORK *wk);
 static void ListDemo_EffectInit(PLIST_WORK *wk);
@@ -89,9 +89,9 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt);
 static void EmitCall_PosSet(EMIT_PTR emit);
 
 //==============================================================================
-//	�f�[�^
+//	データ
 //==============================================================================
-///�|�P�������X�g�̃J�[�\���ʒu�ɑΉ������G�~�b�^�ʒu(X,Y)
+///ポケモンリストのカーソル位置に対応したエミッタ位置(X,Y)
 static const fx32 EmitPos[][2] = {
 	{-16500, 12000},
 	{5000, 11500},
@@ -104,9 +104,9 @@ static const fx32 EmitPos[][2] = {
 
 //--------------------------------------------------------------------------------------------
 /**
- * �t�H�����`�F���W�f�������ݒ�
+ * フォルムチェンジデモ初期設定
  *
- * @param	wk		�|�P�������X�g�̃��[�N
+ * @param	wk		ポケモンリストのワーク
  *
  * @return	none
  */
@@ -122,11 +122,11 @@ void PokeList_FormDemoInit( PLIST_WORK * wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   �t�H�����`�F���W�f�����C������
+ * @brief   フォルムチェンジデモメイン処理
  *
- * @param   wk		�|�P�������X�g�̃��[�N
+ * @param   wk		ポケモンリストのワーク
  *
- * @retval  TRUE:�G�t�F�N�g�I���B�@�@FALSE:�G�t�F�N�g��
+ * @retval  TRUE:エフェクト終了。　　FALSE:エフェクト中
  */
 //--------------------------------------------------------------
 int PokeList_FormDemoMain(PLIST_WORK *wk)
@@ -155,7 +155,7 @@ int PokeList_FormDemoMain(PLIST_WORK *wk)
 	
 	switch(demo->seq){
 	case DEMOSEQ_INIT:
-		{//�|�P�����̃p�����[�^�ύX
+		{//ポケモンのパラメータ変更
 			demo->monsno = PokeParaGet(pp, ID_PARA_monsno, NULL);
 			switch(demo->monsno){
 			case MONSNO_KIMAIRAN:
@@ -168,13 +168,13 @@ int PokeList_FormDemoMain(PLIST_WORK *wk)
 				demo->wait_max = ICON_CHANGE_WAIT_SHEIMI;
 				demo->spa_id = DEMO_SHEIMI_SPA;
 				break;
-			case MONSNO_PURAZUMA:	//���󃍃g���̓f���̗\�薳�� 2007.10.12(��)
+			case MONSNO_PURAZUMA:	//現状ロトムはデモの予定無し 2007.10.12(金)
 			default:
 				GF_ASSERT(0);
 				break;
 			}
 			ZukanWork_SetPokeGet(
-				SaveData_GetZukanWork(GameSystem_GetSaveData(wk->dat->fsys)), pp);//�}�ӓo�^
+				SaveData_GetZukanWork(GameSystem_GetSaveData(wk->dat->fsys)), pp);//図鑑登録
 		}
 		demo->seq++;
 		break;
@@ -194,7 +194,7 @@ int PokeList_FormDemoMain(PLIST_WORK *wk)
 		demo->seq++;
 		break;
 	case DEMOSEQ_EFF_MAIN:
-		//�p�[�e�B�N���ŃA�C�R�����B�ꂽ�^�C�~���O��_���ă|�P�����A�C�R���ύX
+		//パーティクルでアイコンが隠れたタイミングを狙ってポケモンアイコン変更
 		demo->wait++;
 		if(demo->wait == demo->wait_max){
 			PokeListIconChange( wk, wk->pos );
@@ -246,9 +246,9 @@ int PokeList_FormDemoMain(PLIST_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   �t�H�����`�F���W�f���I��
+ * @brief   フォルムチェンジデモ終了
  *
- * @param   wk		�|�P�������X�g�̃��[�N
+ * @param   wk		ポケモンリストのワーク
  */
 //--------------------------------------------------------------
 static void PokeList_FormDemoEnd(PLIST_WORK *wk)
@@ -259,9 +259,9 @@ static void PokeList_FormDemoEnd(PLIST_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   �f�����o�p�ɉ�ʍ\���ύX
+ * @brief   デモ演出用に画面構成変更
  *
- * @param   wk		�|�P�������X�g�̃��[�N
+ * @param   wk		ポケモンリストのワーク
  *
  * @retval  
  *
@@ -270,21 +270,21 @@ static void PokeList_FormDemoEnd(PLIST_WORK *wk)
 //--------------------------------------------------------------
 static void ListDemo_EffectInit(PLIST_WORK *wk)
 {
-	//BG0�ʂ�3D�ʂ֕ύX
+	//BG0面を3D面へ変更
 	PokeListBG0_Change(wk, LIST_BG0_MODE_3D);
 	
-	//�p�[�e�B�N���V�X�e���쐬
+	//パーティクルシステム作成
 	ListDemo_ParticleSystemCreate(wk->demo);
 	
-	//Blend�ݒ�
+	//Blend設定
 	G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 31, 0);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   �f�����o�p�ɕύX���Ă�����ʍ\�������ɖ߂�
+ * @brief   デモ演出用に変更していた画面構成を元に戻す
  *
- * @param   wk		�|�P�������X�g�̃��[�N
+ * @param   wk		ポケモンリストのワーク
  *
  * @retval  
  *
@@ -293,21 +293,21 @@ static void ListDemo_EffectInit(PLIST_WORK *wk)
 //--------------------------------------------------------------
 static void ListDemo_EffectExit(PLIST_WORK *wk)
 {
-	//�p�[�e�B�N���V�X�e���j��
+	//パーティクルシステム破棄
 	ListDemo_ParticleExit(wk->demo);
 
-	//BG0�ʂ�3D�ʂ֕ύX
+	//BG0面を3D面へ変更
 	PokeListBG0_Change(wk, LIST_BG0_MODE_2D);
 	
-	//Blend�ݒ�
+	//Blend設定
 	G2_BlendNone();
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   �|�P�������X�g�p�p�[�e�B�N���V�X�e���쐬
+ * @brief   ポケモンリスト用パーティクルシステム作成
  *
- * @param   demo		�f�����[�N�ւ̃|�C���^
+ * @param   demo		デモワークへのポインタ
  */
 //--------------------------------------------------------------
 static void ListDemo_ParticleSystemCreate(LIST_FORMDEMO_PTR demo)
@@ -315,7 +315,7 @@ static void ListDemo_ParticleSystemCreate(LIST_FORMDEMO_PTR demo)
 	void *heap;
 	GF_CAMERA_PTR camera_ptr;
 
-	Particle_SystemWorkInit();	//�p�[�e�B�N���V�X�e��������
+	Particle_SystemWorkInit();	//パーティクルシステム初期化
 	
 	heap = sys_AllocMemory(HEAPID_POKELIST, PARTICLE_LIB_HEAP_SIZE);
 	demo->ptc = Particle_SystemCreate(sAllocTex, sAllocTexPalette, heap, 
@@ -326,21 +326,21 @@ static void ListDemo_ParticleSystemCreate(LIST_FORMDEMO_PTR demo)
 
 //--------------------------------------------------------------
 /**
- * @brief   �G�~�b�^����
+ * @brief   エミッタ生成
  *
- * @param   demo		�f���p���[�N�ւ̃|�C���^
+ * @param   demo		デモ用ワークへのポインタ
  */
 //--------------------------------------------------------------
 static void ListDemo_ParticleAdd(LIST_FORMDEMO_PTR demo)
 {
 	void *resource;
 
-	//���\�[�X�ǂݍ��݁��o�^
+	//リソース読み込み＆登録
 	resource = Particle_ArcResourceLoad(
 		ARC_POKELIST_PARTICLE, demo->spa_id, HEAPID_POKELIST);
 	Particle_ResourceSet(demo->ptc, resource, PTC_AUTOTEX_LNK | PTC_AUTOPLTT_LNK, TRUE);
 	
-	//�G�~�b�^����
+	//エミッタ生成
 	switch(demo->monsno){
 	case MONSNO_KIMAIRAN:
 		Particle_CreateEmitterCallback(demo->ptc, 
@@ -364,8 +364,8 @@ static void ListDemo_ParticleAdd(LIST_FORMDEMO_PTR demo)
 
 //--------------------------------------------------------------
 /**
- * @brief   �G�~�b�^�̍��W��ݒ肷��
- * @param   emit		���������G�~�b�^�ւ̃|�C���^
+ * @brief   エミッタの座標を設定する
+ * @param   emit		生成したエミッタへのポインタ
  */
 //--------------------------------------------------------------
 static void EmitCall_PosSet(EMIT_PTR emit)
@@ -381,9 +381,9 @@ static void EmitCall_PosSet(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief   �p�[�e�B�N���V�X�e���E���C���֐�(�v�Z�E�`�揈���Ȃǂ����s)
+ * @brief   パーティクルシステム・メイン関数(計算・描画処理などを実行)
  *
- * @retval  �`�悪�s��ꂽ��
+ * @retval  描画が行われた数
  */
 //--------------------------------------------------------------
 static int ListDemo_ParticleMain(void)
@@ -392,14 +392,14 @@ static int ListDemo_ParticleMain(void)
 	
 	GF_G3X_Reset();
 
-	draw_num = Particle_DrawAll();	//�p�[�e�B�N���`��
+	draw_num = Particle_DrawAll();	//パーティクル描画
 
 	if(draw_num > 0){
-		//�p�[�e�B�N���̕`�悪�I�������̂ŁA�Ăу\�t�g�E�F�A�X�v���C�g�p�J�����ɐݒ�
+		//パーティクルの描画が終了したので、再びソフトウェアスプライト用カメラに設定
 		GF_G3X_Reset();
 	}
 
-	Particle_CalcAll();	//�p�[�e�B�N���v�Z
+	Particle_CalcAll();	//パーティクル計算
 
 	
 	GF_G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
@@ -408,9 +408,9 @@ static int ListDemo_ParticleMain(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   �p�[�e�B�N���V�X�e���j��
+ * @brief   パーティクルシステム破棄
  *
- * @param   demo		�f���p���[�N�ւ̃|�C���^
+ * @param   demo		デモ用ワークへのポインタ
  */
 //--------------------------------------------------------------
 static void ListDemo_ParticleExit(LIST_FORMDEMO_PTR demo)
@@ -424,12 +424,12 @@ static void ListDemo_ParticleExit(LIST_FORMDEMO_PTR demo)
 
 //--------------------------------------------------------------
 /**
- * @brief   �e�N�X�`��VRAM�A�h���X��Ԃ����߂̃R�[���o�b�N�֐�
+ * @brief   テクスチャVRAMアドレスを返すためのコールバック関数
  *
- * @param   size		�e�N�X�`���T�C�Y
- * @param   is4x4comp	4x4���k�e�N�X�`���ł��邩�ǂ����̃t���O(TRUE=���k�e�N�X�`��)
+ * @param   size		テクスチャサイズ
+ * @param   is4x4comp	4x4圧縮テクスチャであるかどうかのフラグ(TRUE=圧縮テクスチャ)
  *
- * @retval  �ǂݍ��݂��J�n����VRAM�̃A�h���X
+ * @retval  読み込みを開始するVRAMのアドレス
  */
 //--------------------------------------------------------------
 static u32 sAllocTex(u32 size, BOOL is4x4comp)
@@ -438,22 +438,22 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 	
 	key = NNS_GfdAllocTexVram(size, is4x4comp, 0);
 	GF_ASSERT(key != NNS_GFD_ALLOC_ERROR_TEXKEY);
-	Particle_LnkTexKeySet(key);		//�����N�h���X�g���g�p���Ă���̂ŃL�[�����Z�b�g
+	Particle_LnkTexKeySet(key);		//リンクドリストを使用しているのでキー情報をセット
 	
 	return NNS_GfdGetTexKeyAddr(key);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	�e�N�X�`���p���b�gVRAM�A�h���X��Ԃ����߂̃R�[���o�b�N�֐�
+ * @brief	テクスチャパレットVRAMアドレスを返すためのコールバック関数
  *
- * @param	size		�e�N�X�`���T�C�Y
- * @param	is4pltt		4�F�p���b�g�ł��邩�ǂ����̃t���O
+ * @param	size		テクスチャサイズ
+ * @param	is4pltt		4色パレットであるかどうかのフラグ
  *
- * @retval	�ǂݍ��݂��J�n����VRAM�̃A�h���X
+ * @retval	読み込みを開始するVRAMのアドレス
  *
- * direct�`���̃e�N�X�`���̏ꍇ�ASPL_LoadTexPlttByCallbackFunction��
- * �R�[���o�b�N�֐����Ăяo���܂���B
+ * direct形式のテクスチャの場合、SPL_LoadTexPlttByCallbackFunctionは
+ * コールバック関数を呼び出しません。
  */
 //--------------------------------------------------------------
 static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
@@ -463,7 +463,7 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 	key = NNS_GfdAllocPlttVram(size, is4pltt, NNS_GFD_ALLOC_FROM_LOW);
 	GF_ASSERT(key != NNS_GFD_ALLOC_ERROR_PLTTKEY);
 	
-	Particle_PlttLnkTexKeySet(key);	//�����N�h���X�g���g�p���Ă���̂ŃL�[�����Z�b�g
+	Particle_PlttLnkTexKeySet(key);	//リンクドリストを使用しているのでキー情報をセット
 	
 	return NNS_GfdGetPlttKeyAddr(key);
 }

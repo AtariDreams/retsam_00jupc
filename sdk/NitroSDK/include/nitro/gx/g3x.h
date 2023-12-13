@@ -15,16 +15,16 @@
   do-indent
 
   Revision 1.74  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL ÇÃîªíËïîï™Ç… SDK_WIN32 Ç≈ÇÃîªíËÇ‡í«â¡
+  SDK_FROM_TOOL „ÅÆÂà§ÂÆöÈÉ®ÂàÜ„Å´ SDK_WIN32 „Åß„ÅÆÂà§ÂÆö„ÇÇËøΩÂä†
 
   Revision 1.73  2005/03/01 01:57:00  yosizaki
-  copyright ÇÃîNÇèCê≥.
+  copyright „ÅÆÂπ¥„Çí‰øÆÊ≠£.
 
   Revision 1.72  2005/02/28 05:26:13  yosizaki
   do-indent.
 
   Revision 1.71  2004/10/22 13:08:30  takano_makoto
-  LineBufferOverflow -> LineBufferUnderflowÇ÷â¸ñº
+  LineBufferOverflow -> LineBufferUnderflow„Å∏ÊîπÂêç
 
   Revision 1.70  2004/05/14 11:52:57  takano_makoto
   Add #ifndef SDK_FROM_TOOL for VC or BCB.

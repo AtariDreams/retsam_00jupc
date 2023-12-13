@@ -1,41 +1,41 @@
 //-----------------------------------------------------------------------------
 /**
- *			Wi-FiLê“üê‹–‰ÂŠm”Fƒf[ƒ^\‘¢‘Ì
+ *			Wi-Fiåºƒå ´å…¥å ´è¨±å¯ç¢ºèªãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-/// l•¨‚Ì–¼‘O‚Ì’·‚³iŽ©•ª‚àŠÜ‚Þj
+/// äººç‰©ã®åå‰ã®é•·ã•ï¼ˆè‡ªåˆ†ã‚‚å«ã‚€ï¼‰
 //=====================================
 #define PERSON_NAME_SIZE	(7)	
 
 //-------------------------------------
-/// I—¹ƒR[ƒh‚Ì’·‚³
+/// çµ‚äº†ã‚³ãƒ¼ãƒ‰ã®é•·ã•
 //=====================================
 #define	EOM_SIZE			(1)	
 
 //-------------------------------------
-///	ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌÅ‘å”
+///	æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®æœ€å¤§æ•°
 //=====================================
 #define TEMOTI_POKEMAX	(6)
 
 
 //-------------------------------------
-///	s‚Á‚½‚±‚Æ‚Ì—š—ð@•ÛŽ”
+///	è¡Œã£ãŸã“ã¨ã®å±¥æ­´ã€€ä¿æŒæ•°
 //=====================================
 #define WFLBY_LASTACT_BUFFNUM	( 12 )
 
 
 //-------------------------------------
-///	ƒ†[ƒU‚ªƒvƒƒtƒB[ƒ‹—p‚É‘I‘ð‚·‚é‘®«ƒ^ƒCƒv
+///	ãƒ¦ãƒ¼ã‚¶ãŒãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ç”¨ã«é¸æŠžã™ã‚‹å±žæ€§ã‚¿ã‚¤ãƒ—
 //=====================================
-#define WFLBY_SELECT_TYPENUM		(2)								// ‘I‘ð”
+#define WFLBY_SELECT_TYPENUM		(2)								// é¸æŠžæ•°
 
 
 
 //-------------------------------------
-///	ŽžŠÔ		4byte
+///	æ™‚é–“		4byte
 //=====================================
 typedef struct {
 	union{
@@ -50,49 +50,49 @@ typedef struct {
 } WFLBY_TIME;
 
 //-------------------------------------
-///	•¶ŽšƒR[ƒh		2byte
+///	æ–‡å­—ã‚³ãƒ¼ãƒ‰		2byte
 //=====================================
 typedef u16		STRCODE;
 
 
 //-------------------------------------
-///	ƒAƒ“ƒP[ƒg•ÛŽƒ[ƒN
+///	ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆä¿æŒãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	u32	anketo_no;		// ƒAƒ“ƒP[ƒg’Ê‚µƒiƒ“ƒo[
-	u32	select;			// ‘I‘ðƒiƒ“ƒo[
+	u32	anketo_no;		// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆé€šã—ãƒŠãƒ³ãƒãƒ¼
+	u32	select;			// é¸æŠžãƒŠãƒ³ãƒãƒ¼
 } WFLBY_ANKETO;
 
 
 //-------------------------------------
-///	ƒ†[ƒUŠî–{î•ñ
+///	ãƒ¦ãƒ¼ã‚¶åŸºæœ¬æƒ…å ±
 //=====================================
 typedef struct _WFLBY_USER_PROFILE{
-	s32				userid;						//  ƒƒr[“àƒ†[ƒUID
-	u32				trainerid;					// ƒgƒŒ[ƒi[ID					
-	STRCODE			name[PERSON_NAME_SIZE + EOM_SIZE];	// ƒ†[ƒU–¼
-	WFLBY_TIME		intime;						// “üŽºŽžŠÔ
-	WFLBY_TIME		wldtime;					// Ž©•ª‚Ì‘‚ÌGMTŽžŠÔ
-	u16				monsno[ TEMOTI_POKEMAX ];	// ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“
-	u8				formid[ TEMOTI_POKEMAX ];	// ƒ|ƒPƒ‚ƒ“‚ÌƒtƒHƒ‹ƒ€ƒf[ƒ^
-	u8				tamago[ TEMOTI_POKEMAX ];	// —‘ƒtƒ‰ƒO	
-	u8				sex;						// «•Ê
-	u8				region_code;				// Œ¾ŒêƒR[ƒh LANG_JAPAN‚È‚Ç‚È‚Ç
-	u16				tr_type;					// ƒgƒŒ[ƒi‚ÌŒ©‚½–Ú
-	u16				nation;						// ‘ƒR[ƒh
-	u8				area;						// ’nˆæƒR[ƒh
-	u8				zukan_zenkoku;				// ‘S‘}ŠÓ•ÛŽƒtƒ‰ƒO
-	u8				game_clear;					// ƒQ[ƒ€ƒNƒŠƒAƒtƒ‰ƒO
-	u8				item;						// ƒ^ƒbƒ`ƒgƒC
-	u8				rom_code;					// ƒƒ€ƒo[ƒWƒ‡ƒ“	VERSION_PLATINUM‚Æ‚©
-	u8				status;						// ƒvƒŒƒCƒ„[ƒXƒe[ƒ^ƒX
-	s64				start_sec;					// –`Œ¯‚ðŽn‚ß‚½“úŽž
-	u8				last_action[WFLBY_LASTACT_BUFFNUM];	// ÅŒã‚És‚Á‚½‚±‚Æ@WFLBY_LASTACTION_TYPE‚ª“ü‚è‚Ü‚·B
-	s32				last_action_userid[WFLBY_LASTACT_BUFFNUM];	// ÅŒã‚És‚Á‚½‚±‚Æ@l•¨‚Æ‚ÌÚGŽž‚Éuserid‚ªÝ’è‚³‚ê‚éƒoƒbƒtƒ@
-	u16				waza_type[WFLBY_SELECT_TYPENUM];	// ‘I‘ð‚µ‚½ƒ†[ƒU‚Ì‘®«ƒ^ƒCƒv
-	WFLBY_ANKETO	anketo;						// ƒAƒ“ƒP[ƒg‘I‘ðƒf[ƒ^
+	s32				userid;						//  ãƒ­ãƒ“ãƒ¼å†…ãƒ¦ãƒ¼ã‚¶ID
+	u32				trainerid;					// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID					
+	STRCODE			name[PERSON_NAME_SIZE + EOM_SIZE];	// ãƒ¦ãƒ¼ã‚¶å
+	WFLBY_TIME		intime;						// å…¥å®¤æ™‚é–“
+	WFLBY_TIME		wldtime;					// è‡ªåˆ†ã®å›½ã®GMTæ™‚é–“
+	u16				monsno[ TEMOTI_POKEMAX ];	// æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³
+	u8				formid[ TEMOTI_POKEMAX ];	// ãƒã‚±ãƒ¢ãƒ³ã®ãƒ•ã‚©ãƒ«ãƒ ãƒ‡ãƒ¼ã‚¿
+	u8				tamago[ TEMOTI_POKEMAX ];	// åµãƒ•ãƒ©ã‚°	
+	u8				sex;						// æ€§åˆ¥
+	u8				region_code;				// è¨€èªžã‚³ãƒ¼ãƒ‰ LANG_JAPANãªã©ãªã©
+	u16				tr_type;					// ãƒˆãƒ¬ãƒ¼ãƒŠã®è¦‹ãŸç›®
+	u16				nation;						// å›½ã‚³ãƒ¼ãƒ‰
+	u8				area;						// åœ°åŸŸã‚³ãƒ¼ãƒ‰
+	u8				zukan_zenkoku;				// å…¨å›½å›³é‘‘ä¿æŒãƒ•ãƒ©ã‚°
+	u8				game_clear;					// ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°
+	u8				item;						// ã‚¿ãƒƒãƒãƒˆã‚¤
+	u8				rom_code;					// ãƒ­ãƒ ãƒãƒ¼ã‚¸ãƒ§ãƒ³	VERSION_PLATINUMã¨ã‹
+	u8				status;						// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	s64				start_sec;					// å†’é™ºã‚’å§‹ã‚ãŸæ—¥æ™‚
+	u8				last_action[WFLBY_LASTACT_BUFFNUM];	// æœ€å¾Œã«è¡Œã£ãŸã“ã¨ã€€WFLBY_LASTACTION_TYPEãŒå…¥ã‚Šã¾ã™ã€‚
+	s32				last_action_userid[WFLBY_LASTACT_BUFFNUM];	// æœ€å¾Œã«è¡Œã£ãŸã“ã¨ã€€äººç‰©ã¨ã®æŽ¥è§¦æ™‚ã«useridãŒè¨­å®šã•ã‚Œã‚‹ãƒãƒƒãƒ•ã‚¡
+	u16				waza_type[WFLBY_SELECT_TYPENUM];	// é¸æŠžã—ãŸãƒ¦ãƒ¼ã‚¶ã®å±žæ€§ã‚¿ã‚¤ãƒ—
+	WFLBY_ANKETO	anketo;						// ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆé¸æŠžãƒ‡ãƒ¼ã‚¿
 
 
-	// ƒvƒ‰ƒ`ƒiˆÈŒã‚ÌƒVƒXƒeƒ€‚Í‚±‚±‚É’Ç‰Á‚µ‚Ä‚¢‚­
+	// ãƒ—ãƒ©ãƒãƒŠä»¥å¾Œã®ã‚·ã‚¹ãƒ†ãƒ ã¯ã“ã“ã«è¿½åŠ ã—ã¦ã„ã
 } WFLBY_USER_PROFILE;
 

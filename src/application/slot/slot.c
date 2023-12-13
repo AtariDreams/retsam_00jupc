@@ -2,7 +2,7 @@
 /**
  * 
  * @file	slot.c
- * @brief	ƒ~ƒjƒQ[ƒ€@ƒXƒƒbƒg
+ * @brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã€€ã‚¹ãƒ­ãƒƒãƒˆ
  * @author	kagaya
  * @data	05.07.13
  *
@@ -23,7 +23,7 @@
 typedef struct _TAG_SLOTPROC SLOTPROC;
 
 //--------------------------------------------------------------
-///	SLOTPROC\‘¢‘Ì
+///	SLOTPROCæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_SLOTPROC
 {
@@ -34,7 +34,7 @@ typedef struct _TAG_SLOTPROC
 #define SLOTPROC_SIZE (sizeof(SLOTPROC))
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void slot_SlotParamReflect( SLOTPROC *slotproc, SLOTMAIN *main );
 
@@ -80,13 +80,13 @@ static int DEBUG_SlotCoin;
 #endif
 
 //==============================================================================
-//	ƒXƒƒbƒg	ƒvƒƒZƒX
+//	ã‚¹ãƒ­ãƒƒãƒˆ	ãƒ—ãƒ­ã‚»ã‚¹
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒXƒƒbƒgƒvƒƒZƒX@‰Šú‰»
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * ã‚¹ãƒ­ãƒƒãƒˆãƒ—ãƒ­ã‚»ã‚¹ã€€åˆæœŸåŒ–
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  * @retval	PROC_RESULT	PROC_RESULT
  */
 //--------------------------------------------------------------
@@ -145,7 +145,7 @@ PROC_RESULT SlotProc_Init( PROC *proc, int *seq )
 	SlotSubEoa_CreditFontInit( main );
 	SlotSubEoa_PayOutFontInit( main );
 	
-	Snd_DataSetByScene( SND_SCENE_SUB_SLOT, 0, 0 );	// ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒXƒƒbƒg)(BGMˆøŒp‚¬)
+	Snd_DataSetByScene( SND_SCENE_SUB_SLOT, 0, 0 );	// ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ã‚¹ãƒ­ãƒƒãƒˆ)(BGMå¼•ç¶™ã)
 	slotBGM_Init( main );
 	
 	WIPE_SYS_Start( WIPE_PATTERN_WMS,
@@ -156,9 +156,9 @@ PROC_RESULT SlotProc_Init( PROC *proc, int *seq )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒƒbƒgƒvƒƒZƒX@ƒƒCƒ“
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * ã‚¹ãƒ­ãƒƒãƒˆãƒ—ãƒ­ã‚»ã‚¹ã€€ãƒ¡ã‚¤ãƒ³
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  * @retval	PROC_RESULT	PROC_RESULT
  */
 //--------------------------------------------------------------
@@ -202,9 +202,9 @@ PROC_RESULT SlotProc_Main( PROC *proc, int *seq )
 
 //--------------------------------------------------------------
 /**
- * ƒXƒƒbƒgƒvƒƒZƒX@I—¹
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * ã‚¹ãƒ­ãƒƒãƒˆãƒ—ãƒ­ã‚»ã‚¹ã€€çµ‚äº†
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  * @retval	PROC_RESULT	PROC_RESULT
  */
 //--------------------------------------------------------------
@@ -234,7 +234,7 @@ PROC_RESULT SlotProc_End( PROC *proc, int *seq )
 
 //--------------------------------------------------------------
 /**
- * I—¹‚ÌSLOT_PARAM”½‰f
+ * çµ‚äº†æ™‚ã®SLOT_PARAMåæ˜ 
  * @param	slotproc	SLOTPROC
  * @retval	nothing
  */
@@ -252,11 +252,11 @@ static void slot_SlotParamReflect( SLOTPROC *slotproc, SLOTMAIN *main )
 }
 
 //==============================================================================
-//	ƒXƒƒbƒg@ƒƒCƒ“ƒ[ƒN
+//	ã‚¹ãƒ­ãƒƒãƒˆã€€ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * SLOTMAIN‰Šú‰»
+ * SLOTMAINåˆæœŸåŒ–
  * @param	slotparam	SLOT_PARAM
  * @retval	SLOTPROC	SLOTPROC *
  */
@@ -273,7 +273,7 @@ static SLOTMAIN * slot_MainWorkInit( SLOT_PARAM *param )
 
 //--------------------------------------------------------------
 /**
- * SLOTMAINíœ
+ * SLOTMAINå‰Šé™¤
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -284,11 +284,11 @@ static void slot_MainWorkDelete( SLOTMAIN *main )
 }
 
 //==============================================================================
-//	•`‰æ
+//	æç”»
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * •`‰æ‰Šú‰»
+ * æç”»åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -328,7 +328,7 @@ static void slotDraw_Init( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * •`‰æíœ
+ * æç”»å‰Šé™¤
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -342,7 +342,7 @@ static void slotDraw_Delete( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * VRAM BANKŠ„‚è“–‚Ä
+ * VRAM BANKå‰²ã‚Šå½“ã¦
  * @param	nothing
  * @retval	nothing
  */
@@ -350,20 +350,20 @@ static void slotDraw_Delete( SLOTMAIN *main )
 static void slotDraw_VramBankSet( void )
 {
 	GF_BGL_DISPVRAM tbl = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 	
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 	
-		GX_VRAM_OBJ_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_OBJ_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 	
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 	
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	
 	GF_Disp_SetBank( &tbl );
@@ -371,7 +371,7 @@ static void slotDraw_VramBankSet( void )
 
 //--------------------------------------------------------------
 /**
- * BG‰Šú‰»@
+ * BGåˆæœŸåŒ–ã€€
  * @param	bgl		GF_BGL_INI
  * @retval	nothing
  */
@@ -387,7 +387,7 @@ static void slotDraw_BGLSet( GF_BGL_INI *ini )
 		GF_BGL_InitBG( &BGsys_data );
 	}
 	
-	{	//ã‰æ–Ê@‰ï˜bƒEƒBƒ“ƒhƒE
+	{	//ä¸Šç”»é¢ã€€ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
@@ -399,7 +399,7 @@ static void slotDraw_BGLSet( GF_BGL_INI *ini )
 		GF_BGL_ClearCharSet( BGFRAME_KAIWA, 32, 0, HEAPID_SLOT );
 	}
 	
-	{	//ƒXƒƒbƒg‘ä
+	{	//ã‚¹ãƒ­ãƒƒãƒˆå°
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x0800, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
@@ -410,7 +410,7 @@ static void slotDraw_BGLSet( GF_BGL_INI *ini )
 		GF_BGL_ScrClear( ini, BGFRAME_SLOT );
 	}
 	
-	{	//ƒXƒƒbƒg‰e
+	{	//ã‚¹ãƒ­ãƒƒãƒˆå½±
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x14000, GX_BG_EXTPLTT_01,
@@ -421,7 +421,7 @@ static void slotDraw_BGLSet( GF_BGL_INI *ini )
 		GF_BGL_ScrClear( ini, BGFRAME_SLOT_SHADOW );
 	}
 	
-	{	//‰º‰æ–Ê”wŒi
+	{	//ä¸‹ç”»é¢èƒŒæ™¯
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x1800, GX_BG_CHARBASE_0x20000, GX_BG_EXTPLTT_01,
@@ -448,7 +448,7 @@ static void slotDraw_BGLSet( GF_BGL_INI *ini )
 
 //--------------------------------------------------------------
 /**
- * BGíœ
+ * BGå‰Šé™¤
  * @param	bgl		GF_BGL_INI
  * @retval	nothing
  */
@@ -469,7 +469,7 @@ static void slotDraw_BGLDelete( GF_BGL_INI *ini )
 
 //--------------------------------------------------------------
 /**
- * ƒEƒBƒ“ƒhƒE‰Šú‰»
+ * ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
  * @param	nothing
  * @retval	nothing
  */
@@ -498,25 +498,25 @@ static void slotDraw_WindowInit( void )
 }
 
 //==============================================================================
-//	ƒXƒƒbƒg BG
+//	ã‚¹ãƒ­ãƒƒãƒˆ BG
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * BG‰Šú‰»
+ * BGåˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void slotBG_Init( SLOTMAIN *main )
 {
-	//ƒXƒƒbƒgBGƒpƒŒƒbƒg
+	//ã‚¹ãƒ­ãƒƒãƒˆBGãƒ‘ãƒ¬ãƒƒãƒˆ
 	void *buf = SlotArc_DataLoad( main, NARC_slot_slot_mount_NCLR, FALSE );
 	NNS_G2dGetUnpackedPaletteData( buf, &main->bg_pPltt );
 	GF_BGL_PaletteSet( BGFRAME_SLOT, main->bg_pPltt->pRawData, 
 		BGF_SLOT_PLTT_SIZE, BGF_SLOT_PLTT_OFFSET );
 	sys_FreeMemoryEz( buf );
 	
-	//ƒXƒƒbƒg‘ä
+	//ã‚¹ãƒ­ãƒƒãƒˆå°
 	buf = SlotArc_DataLoad( main, NARC_slot_slot_machine_NCGR, FALSE );
 	NNS_G2dGetUnpackedCharacterData( buf, &main->bg_pChar );
 	GF_BGL_LoadCharacter( main->bgl, BGFRAME_SLOT,
@@ -530,7 +530,7 @@ static void slotBG_Init( SLOTMAIN *main )
 	GF_BGL_LoadScreenReq( main->bgl, BGFRAME_SLOT );
 	sys_FreeMemoryEz( buf );
 	
-	//‰e
+	//å½±
 	buf = SlotArc_DataLoad( main, NARC_slot_slot_bg_shadow_NCGR, FALSE );
 	NNS_G2dGetUnpackedCharacterData( buf, &main->bg_pChar );
 	GF_BGL_LoadCharacter( main->bgl, BGFRAME_SLOT_SHADOW,
@@ -544,7 +544,7 @@ static void slotBG_Init( SLOTMAIN *main )
 	GF_BGL_LoadScreenReq( main->bgl, BGFRAME_SLOT_SHADOW );
 	sys_FreeMemoryEz( buf );
 	
-	//‰º‰æ–Ê
+	//ä¸‹ç”»é¢
 	buf = SlotArc_DataLoad( main, NARC_slot_slot_mount_NCLR, FALSE );
 	NNS_G2dGetUnpackedPaletteData( buf, &main->bg_pPltt );
 	GF_BGL_PaletteSet( BGFRAME_BGSUB, main->bg_pPltt->pRawData, 
@@ -564,7 +564,7 @@ static void slotBG_Init( SLOTMAIN *main )
 	GF_BGL_LoadScreenReq( main->bgl, BGFRAME_BGSUB );
 	sys_FreeMemoryEz( buf );
 	
-	//‰º‰æ–Ê@ƒfƒoƒbƒO
+	//ä¸‹ç”»é¢ã€€ãƒ‡ãƒãƒƒã‚°
 #ifdef DEBUG_ON_SLOT
 	main->bg_pPltt = GF_BGL_NTRCHR_PalLoad( buf, HEAPID_SLOT, "data/nfont.NCLR" );
 	GF_BGL_PaletteSet( BGFRAME_SUB_DEBUG, main->bg_pPltt->pRawData, 32, BGF_SLOT_PANO_FONT*32 );
@@ -574,11 +574,11 @@ static void slotBG_Init( SLOTMAIN *main )
 }
 
 //==============================================================================
-//	ƒXƒƒbƒg@ƒtƒHƒ“ƒg
+//	ã‚¹ãƒ­ãƒƒãƒˆã€€ãƒ•ã‚©ãƒ³ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒg ‰Šú‰»
+ * ãƒ•ã‚©ãƒ³ãƒˆ åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -611,7 +611,7 @@ void SlotTalkWinFont_Init( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒgíœ
+ * ãƒ•ã‚©ãƒ³ãƒˆå‰Šé™¤
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -633,9 +633,9 @@ void SlotTalkWinFont_Delete( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒE•\¦
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  * @param	main	SLOTMAIN
- * @param	msgno	ƒƒbƒZ[ƒWƒf[ƒ^No
+ * @param	msgno	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿No
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -657,7 +657,7 @@ void SlotTalkWin_Write( SLOTMAIN *main, u32 msgno )
 
 //--------------------------------------------------------------
 /**
- * ‰ï˜bƒEƒBƒ“ƒhƒEƒNƒŠƒA
+ * ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒªã‚¢
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -672,11 +672,11 @@ void SlotTalkWin_Clear( SLOTMAIN *main )
 }
 
 //==============================================================================
-//	ƒXƒƒbƒg@ƒLƒƒƒ‰AƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ
+//	ã‚¹ãƒ­ãƒƒãƒˆã€€ã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰AƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ‰Šú‰»
+ * ã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
  * @param	nothing
  * @retval	nothing
  */
@@ -696,7 +696,7 @@ static void slotCharPalM_Init( void )
 
 //--------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰AƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒíœ
+ * ã‚­ãƒ£ãƒ©ã€ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£å‰Šé™¤
  * @param	nothing
  * @retval	nothing
  */
@@ -708,28 +708,28 @@ static void slotCharPalM_Delete( void )
 }
 
 //==============================================================================
-//	ƒXƒƒbƒg@ƒZƒ‹ƒAƒNƒ^[
+//	ã‚¹ãƒ­ãƒƒãƒˆã€€ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[@‰Šú‰»
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
 //--------------------------------------------------------------
 static void slotClAct_Init( SLOTMAIN *main )
 {
-	//OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+	//OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
 	
-	//‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	//ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	//‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ğ‚İ‚ñ‚È‚Å‹¤—L‚·‚é
+	//å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	//ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	//ã“ã“ã§ä½œæˆã—ãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 	REND_OAMInit( 
-			0, 128,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 128,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 128,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 128,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			HEAPID_SLOT );
 	
 	main->clactset = ClActSetDataInit( HEAPID_SLOT, SLOT_CLACT_MAX, SLOT_CLACT_TRANS_MAX,
@@ -741,7 +741,7 @@ static void slotClAct_Init( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[@íœ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã€€å‰Šé™¤
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -755,7 +755,7 @@ static void slotClAct_Delete( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[VRAM‰Šú‰»
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼VRAMåˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -775,7 +775,7 @@ static void slotClAct_VramInit( SLOTMAIN *main )
 	ClActCharAdd( main->clactset, G2D_2DSUB,
 		main->arc_handle, NARC_slot_moon_font_NCGR, SLOT_CHARID_MOONFONT );
 	
-	ClActPlttAdd( main->clactset, G2D_2DMAX,	//ƒrƒbƒOƒqƒbƒgA‰º‰æ–Ê—˜—p
+	ClActPlttAdd( main->clactset, G2D_2DMAX,	//ãƒ“ãƒƒã‚°ãƒ’ãƒƒãƒˆã€ä¸‹ç”»é¢åˆ©ç”¨
 			main->arc_handle, NARC_slot_slotreel_NCLR, SLOT_PLTTID_REEL );
 	ClActPlttAdd( main->clactset, G2D_2DMAIN,
 			main->arc_handle, NARC_slot_credit_font_NCLR, SLOT_PLTTID_CREDITFONT );
@@ -835,7 +835,7 @@ static void slotClAct_VramInit( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[VRAMíœ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼VRAMå‰Šé™¤
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -845,11 +845,11 @@ static void slotClAct_VramDelete( SLOTMAIN *main )
 }
 
 //==============================================================================
-//	ƒXƒƒbƒg EOA
+//	ã‚¹ãƒ­ãƒƒãƒˆ EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * EOA‰Šú‰»
+ * EOAåˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -861,7 +861,7 @@ static void slotEoa_Init( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * EOAíœ
+ * EOAå‰Šé™¤
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -876,7 +876,7 @@ static void slotEoa_Delete( SLOTMAIN *main )
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * w’èBGMÄ¶
+ * æŒ‡å®šBGMå†ç”Ÿ
  * @param	main	SLOTMAIN
  * @param	type	BGMTYPE
  * @retval	nothing
@@ -897,9 +897,9 @@ void SlotBGM_Play( SLOTMAIN *main, BGMTYPE type )
 
 //--------------------------------------------------------------
 /**
- * BGMÄ¶ƒ`ƒFƒbƒN
+ * BGMå†ç”Ÿãƒã‚§ãƒƒã‚¯
  * @param	main	SLOTMAIN
- * @retval	int		TRUE=BGMØ‚è‘Ö‚¦’†
+ * @retval	int		TRUE=BGMåˆ‡ã‚Šæ›¿ãˆä¸­
  */
 //--------------------------------------------------------------
 static int slotBGM_ChangeCheck( SLOTMAIN *main )
@@ -910,7 +910,7 @@ static int slotBGM_ChangeCheck( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * BGMŠÇ—‰Šú‰»
+ * BGMç®¡ç†åˆæœŸåŒ–
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -926,7 +926,7 @@ static void slotBGM_Init( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * BGMŠÇ—íœ
+ * BGMç®¡ç†å‰Šé™¤
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -938,7 +938,7 @@ static void slotBGM_Delete( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * BGMŠÇ—
+ * BGMç®¡ç†
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -975,11 +975,11 @@ static void slotBGM_Tcb( TCB_PTR tcb, void *wk )
 }
 
 //==============================================================================
-//	ƒXƒƒbƒg@Vƒuƒ‰ƒ“ƒN
+//	ã‚¹ãƒ­ãƒƒãƒˆã€€Vãƒ–ãƒ©ãƒ³ã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒXƒƒbƒgVBlankˆ—
+ * ã‚¹ãƒ­ãƒƒãƒˆVBlankå‡¦ç†
  * @param	work	SLOTMAIN
  * @retval	nothing
  */
@@ -988,24 +988,24 @@ static void slot_VBlankFunc( void *work )
 {
 	SLOTMAIN *main = work;
 	
-	//ƒZƒ‹ƒAƒNƒ^[Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 	
-	//ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	//ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();
 	
-	//BG“]‘—
+	//BGè»¢é€
 	GF_BGL_VBlankFunc( main->bgl );
 }
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒƒ‚ƒŠŠm•Û
- * @param	size	Šm•ÛƒTƒCƒY
- * @retval	void*	Šm•Û‚µ‚½—Ìˆæ
+ * ãƒ¡ãƒ¢ãƒªç¢ºä¿
+ * @param	size	ç¢ºä¿ã‚µã‚¤ã‚º
+ * @retval	void*	ç¢ºä¿ã—ãŸé ˜åŸŸ
  */
 //--------------------------------------------------------------
 void * Slot_AllocMemory( u32 size )
@@ -1018,9 +1018,9 @@ void * Slot_AllocMemory( u32 size )
 
 //--------------------------------------------------------------
 /**
- * ƒƒ‚ƒŠŠm•Û@Œã‚ë
- * @param	size	Šm•ÛƒTƒCƒY
- * @retval	void*	Šm•Û‚µ‚½—Ìˆæ
+ * ãƒ¡ãƒ¢ãƒªç¢ºä¿ã€€å¾Œã‚
+ * @param	size	ç¢ºä¿ã‚µã‚¤ã‚º
+ * @retval	void*	ç¢ºä¿ã—ãŸé ˜åŸŸ
  */
 //--------------------------------------------------------------
 void * Slot_AllocMemoryLo( u32 size )
@@ -1033,7 +1033,7 @@ void * Slot_AllocMemoryLo( u32 size )
 
 //--------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒI[ƒvƒ“
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚ªãƒ¼ãƒ—ãƒ³
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -1045,7 +1045,7 @@ static void slotArc_HandleOpen( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒNƒ[ƒY
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¯ãƒ­ãƒ¼ã‚º
  * @param	main	SLOTMAIN
  * @retval	nothing
  */
@@ -1057,11 +1057,11 @@ static void slotArc_HandleClose( SLOTMAIN *main )
 
 //--------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒf[ƒ^ƒ[ƒh
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
  * @param	main	SLOTMAIN
- * @param	id		ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒX
- * @param	fb		TRUE=‘O FALSE=Œã‚ë‚©‚ç—Ìˆææ“¾
- * @retval	void*	ƒ[ƒh‚µ‚½ƒf[ƒ^
+ * @param	id		ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	fb		TRUE=å‰ FALSE=å¾Œã‚ã‹ã‚‰é ˜åŸŸå–å¾—
+ * @retval	void*	ãƒ­ãƒ¼ãƒ‰ã—ãŸãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------
 void * SlotArc_DataLoad( SLOTMAIN *main, u32 id, int fb )
@@ -1084,7 +1084,7 @@ void * SlotArc_DataLoad( SLOTMAIN *main, u32 id, int fb )
 //	msg data
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE
+///	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //--------------------------------------------------------------
 static const BMPWIN_DAT DATA_SlotBmpWinList[SLOTWIN_MAX] =
 {

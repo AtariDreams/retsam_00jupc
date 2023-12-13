@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	stage_tool.c
- * @brief	ƒoƒgƒ‹ƒXƒe[ƒWŠÖ˜Aƒc[ƒ‹—Ş
+ * @brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸é–¢é€£ãƒ„ãƒ¼ãƒ«é¡
  * @author	nohara
  * @date	2007.06.06
  */
@@ -41,21 +41,21 @@
 
 //==============================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //==============================================================================
-//ƒgƒŒ[ƒi[ƒf[ƒ^¶¬i©•ª‘¤j
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆè‡ªåˆ†å´ï¼‰
 extern void BattleParam_TrainerDataMake( BATTLE_PARAM* bp );
-//ƒgƒŒ[ƒi[ƒf[ƒ^¶¬i“G‘¤j
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆï¼ˆæ•µå´ï¼‰
 extern void BattleParam_EnemyTrainerDataMake( BATTLE_PARAM* bp );
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 #include "battle/trtype_def.h"
 
-//ƒT[ƒ`—p‚Éƒf[ƒ^ƒe[ƒuƒ‹‚ğ‚½‚­‚³‚ñì‚Á‚½‚Ì‚Åƒtƒ@ƒCƒ‹‚ğ•ª‚¯‚½
+//ã‚µãƒ¼ãƒç”¨ã«ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ãŸãã•ã‚“ä½œã£ãŸã®ã§ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ†ã‘ãŸ
 #include "stage.dat"
 
 
@@ -64,14 +64,14 @@ extern void BattleParam_EnemyTrainerDataMake( BATTLE_PARAM* bp );
 //
 //
 //==============================================================================
-//ƒ|ƒPƒ‚ƒ“‚ÌŠî–{İ’èƒf[ƒ^
+//ãƒã‚±ãƒ¢ãƒ³ã®åŸºæœ¬è¨­å®šãƒ‡ãƒ¼ã‚¿
 typedef struct{
 	u8 dummy2;			//
-	u8 pow_rnd;			//ƒpƒ[—”(‚±‚Ì’l‚ğpow_rnd,agi_rnd‚È‚Ç‚É“ü‚ê‚é)
+	u8 pow_rnd;			//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°(ã“ã®å€¤ã‚’pow_rnd,agi_rndãªã©ã«å…¥ã‚Œã‚‹)
 	u16 dummy;			//
 }STAGE_POKE_DATA;
 
-//ƒ‰ƒ“ƒN‚É‘Î‰
+//ãƒ©ãƒ³ã‚¯ã«å¯¾å¿œ
 static const STAGE_POKE_DATA stage_poke_data[STAGE_TYPE_LEVEL_MAX] = {
 	{ 0,	8,		0 },	//1
 	{ 0,	10,		0 },	//2
@@ -85,13 +85,13 @@ static const STAGE_POKE_DATA stage_poke_data[STAGE_TYPE_LEVEL_MAX] = {
 	{ 0,	26,		0 },	//10
 };
 
-//ƒ{ƒX‚ÍŒÅ’è
-//90í–Ú(5T–ÚÅŒã)		LV50	31 ƒGƒLƒXƒp[ƒg
-//180í–Ú(10T–ÚÅŒã)	LV100	31 ƒGƒLƒXƒp[ƒg
+//ãƒœã‚¹ã¯å›ºå®š
+//90æˆ¦ç›®(5é€±ç›®æœ€å¾Œ)		LV50	31 ã‚¨ã‚­ã‚¹ãƒ‘ãƒ¼ãƒˆ
+//180æˆ¦ç›®(10é€±ç›®æœ€å¾Œ)	LV100	31 ã‚¨ã‚­ã‚¹ãƒ‘ãƒ¼ãƒˆ
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 void Stage_CreateTrType( u8 csr_pos, u8 set_num, u8 rank, u8 round, u16 tr_index[] );
 void Stage_CreateTrIndex( u8 type, u8 set_num, int lap, u8 rank, u8 round, u16 tr_index[] );
@@ -118,19 +118,19 @@ static BOOL Stage_PattiiruPersonalRndChg( STAGE_SCRWORK* wk, u8 round );
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi["ƒ^ƒCƒv"‚ğŒˆ’è
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼"ã‚¿ã‚¤ãƒ—"ã‚’æ±ºå®š
  *
- * @param   type			ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹‚È‚Ç
- * @param   rank			ƒ‰ƒ“ƒN(0-9,10)
- * @param   round			ƒ‰ƒEƒ“ƒh”
- * @param   tr_index		ƒgƒŒ[ƒi[ƒ^ƒCƒv‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^
+ * @param   type			ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ãªã©
+ * @param   rank			ãƒ©ãƒ³ã‚¯(0-9,10)
+ * @param   round			ãƒ©ã‚¦ãƒ³ãƒ‰æ•°
+ * @param   tr_index		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none
  *
- * u‚½‚ñ‚Ï‚ñ‚±‚¼‚¤A‚½‚ñ‚Ï‚ñ‚±‚¼‚¤v‚Æ‚¢‚¤Œ`‚Å‘Io‚³‚ê‚Ä‚à–â‘è‚È‚¢
- * ƒgƒŒ[ƒi[‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾‚·‚é‚É“¯‚¶u‚½‚ñ‚Ï‚ñ‚±‚¼‚¤v‚É‚È‚ç‚È‚¯‚ê‚Î—Ç‚¢
- * g—p‚µ‚Ä‚¢‚È‚¢u‚½‚ñ‚Ï‚ñ‚±‚¼‚¤v‚ª‘¶İ‚µ‚È‚¢‚ÍA
- * ƒgƒŒ[ƒi[ƒ^ƒCƒv‚ğ‚à‚¤ˆê“x‘Io‚µ‚È‚¯‚ê‚Î‚¢‚¯‚È‚¢
+ * ã€ŒãŸã‚“ã±ã‚“ã“ãã†ã€ãŸã‚“ã±ã‚“ã“ãã†ã€ã¨ã„ã†å½¢ã§é¸å‡ºã•ã‚Œã¦ã‚‚å•é¡Œãªã„
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—ã™ã‚‹æ™‚ã«åŒã˜ã€ŒãŸã‚“ã±ã‚“ã“ãã†ã€ã«ãªã‚‰ãªã‘ã‚Œã°è‰¯ã„
+ * ä½¿ç”¨ã—ã¦ã„ãªã„ã€ŒãŸã‚“ã±ã‚“ã“ãã†ã€ãŒå­˜åœ¨ã—ãªã„æ™‚ã¯ã€
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‚’ã‚‚ã†ä¸€åº¦é¸å‡ºã—ãªã‘ã‚Œã°ã„ã‘ãªã„
  */
 //--------------------------------------------------------------
 void Stage_CreateTrType( u8 csr_pos, u8 set_num, u8 rank, u8 round, u16 tr_index[] )
@@ -140,26 +140,26 @@ void Stage_CreateTrType( u8 csr_pos, u8 set_num, u8 rank, u8 round, u16 tr_index
 	u8 set_pos,rankno;
 	int set_count = 0;
 
-	set_pos = (round * STAGE_ENTRY_POKE_MAX);		//ƒZƒbƒg‚·‚éˆÊ’u
+	set_pos = (round * STAGE_ENTRY_POKE_MAX);		//ã‚»ãƒƒãƒˆã™ã‚‹ä½ç½®
 
 	rankno = Stage_GetRank( rank );
 
-	OS_Printf( "ƒJ[ƒ\ƒ‹ˆÊ’u = %d\n", csr_pos );
-	OS_Printf( "ƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv = %d\n", Stage_GetPokeType(csr_pos) );
-	OS_Printf( "ƒ‰ƒ“ƒN = %d\n", rankno );
-	OS_Printf( "ƒ‰ƒEƒ“ƒh = %d\n", round );
+	OS_Printf( "ã‚«ãƒ¼ã‚½ãƒ«ä½ç½® = %d\n", csr_pos );
+	OS_Printf( "ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ— = %d\n", Stage_GetPokeType(csr_pos) );
+	OS_Printf( "ãƒ©ãƒ³ã‚¯ = %d\n", rankno );
+	OS_Printf( "ãƒ©ã‚¦ãƒ³ãƒ‰ = %d\n", round );
 
 	do{
 		no = ( gf_rand() % STAGE_RANK_TR_MAX );
 
-		//ƒe[ƒuƒ‹‚©‚çƒgƒŒ[ƒi[ƒ^ƒCƒv‚ğæ“¾
+		//ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
 		if( no < STAGE_RANK_TR1_NUM ){
 			tr_index[set_pos+set_count] = rank_tr1_list[rankno][no];
 		}else{
 			tr_index[set_pos+set_count] = rank_tr2_list[csr_pos][no-STAGE_RANK_TR1_NUM];
 		}
 
-		OS_Printf( "ƒgƒŒ[ƒi[ƒ^ƒCƒv tr_index = %d\n", tr_index[set_pos+set_count] );
+		OS_Printf( "ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ— tr_index = %d\n", tr_index[set_pos+set_count] );
 		set_count++;
 
 	}while( set_count < set_num );
@@ -169,19 +169,19 @@ void Stage_CreateTrType( u8 csr_pos, u8 set_num, u8 rank, u8 round, u16 tr_index
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi["ƒCƒ“ƒfƒbƒNƒX"‚ğŒˆ’è
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹"ã‚’æ±ºå®š
  *
- * @param   type			ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹‚È‚Ç
- * @param   rank			ƒ‰ƒ“ƒN(0-9,10)
- * @param   round			ƒ‰ƒEƒ“ƒh”
- * @param   tr_index		ƒgƒŒ[ƒi[ƒCƒ“ƒfƒbƒNƒX‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^(ƒgƒŒ[ƒi[ƒ^ƒCƒv‚ğŠi”[‚µ‚Ä‚¨‚­)
+ * @param   type			ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ãªã©
+ * @param   rank			ãƒ©ãƒ³ã‚¯(0-9,10)
+ * @param   round			ãƒ©ã‚¦ãƒ³ãƒ‰æ•°
+ * @param   tr_index		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿(ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‚’æ ¼ç´ã—ã¦ãŠã)
  *
  * @retval  none
  *
- * ƒ‹[ƒv’·‚¢‚©‚àAAAŠm”F‚·‚éI
+ * ãƒ«ãƒ¼ãƒ—é•·ã„ã‹ã‚‚ã€ã€ã€ç¢ºèªã™ã‚‹ï¼
  *
- * ƒT[ƒ`‚ª’x‚©‚Á‚½‚çƒf[ƒ^ƒe[ƒuƒ‹‚ğƒgƒŒ[ƒi[ƒ^ƒCƒv•Ê‚Éƒ\[ƒg‚µ‚Ä‚¨‚¢‚ÄA
- * ƒgƒŒ[ƒi[ƒCƒ“ƒfƒbƒNƒX‚àƒf[ƒ^‚ÉŠÜ‚ß‚Ä‚¨‚­‚È‚Ç‚ª•K—v
+ * ã‚µãƒ¼ãƒãŒé…ã‹ã£ãŸã‚‰ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—åˆ¥ã«ã‚½ãƒ¼ãƒˆã—ã¦ãŠã„ã¦ã€
+ * ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚‚ãƒ‡ãƒ¼ã‚¿ã«å«ã‚ã¦ãŠããªã©ãŒå¿…è¦
  *
  * index, trtype, 
  * 100,		TRTYPE_TANPAN,
@@ -197,14 +197,14 @@ void Stage_CreateTrIndex( u8 type, u8 set_num, int lap, u8 rank, u8 round, u16 t
 	u8 set_pos,rankno;
 	
 	set_count	= 0;
-	set_pos		= (round * STAGE_ENTRY_POKE_MAX);		//ƒZƒbƒg‚·‚éˆÊ’u
+	set_pos		= (round * STAGE_ENTRY_POKE_MAX);		//ã‚»ãƒƒãƒˆã™ã‚‹ä½ç½®
 	
 	rankno = Stage_GetRank( rank );
 
-	OS_Printf( "ƒ‰ƒ“ƒN = %d\n", rankno );
-	OS_Printf( "ƒ‰ƒEƒ“ƒh = %d\n", round );
+	OS_Printf( "ãƒ©ãƒ³ã‚¯ = %d\n", rankno );
+	OS_Printf( "ãƒ©ã‚¦ãƒ³ãƒ‰ = %d\n", round );
 
-	//ƒuƒŒ[ƒ“(ƒVƒ“ƒOƒ‹‚Ì‚İ)
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³(ã‚·ãƒ³ã‚°ãƒ«ã®ã¿)
 	if( type == STAGE_TYPE_SINGLE ){
 		check_num = (lap * STAGE_LAP_ENEMY_MAX) + (round + 1);
 		if( check_num == STAGE_LEADER_SET_1ST ){
@@ -219,79 +219,79 @@ void Stage_CreateTrIndex( u8 type, u8 set_num, int lap, u8 rank, u8 round, u16 t
 #if 0
 	/////////////////////////////////////////////////////////////////
 	//
-	//0)‚·‚Å‚ÉƒgƒŒ[ƒi[ƒ^ƒCƒv‚ªtr_index‚ÉŠi”[‚³‚ê‚Ä‚¢‚é
+	//0)ã™ã§ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ãŒtr_indexã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹
 	//
-	//1)300‚Ì’†‚©‚çƒ‰ƒ“ƒ_ƒ€‚ğæ“¾
+	//1)300ã®ä¸­ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã‚’å–å¾—
 	//
-	//2)“¯‚¶ƒgƒŒ[ƒi[ƒ^ƒCƒv‚ğ’T‚·
+	//2)åŒã˜ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‚’æ¢ã™
 	//
-	//3)index‚ª”í‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+	//3)indexãŒè¢«ã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	//
 	/////////////////////////////////////////////////////////////////
 #endif
 
 	do{
-		//ƒ^ƒ[ƒf[ƒ^‚ÌƒgƒŒ[ƒi[ƒ^ƒCƒvƒe[ƒuƒ‹(300)‚Ì’†‚©‚çƒ‰ƒ“ƒ_ƒ€æ“¾
+		//ã‚¿ãƒ¯ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«(300)ã®ä¸­ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ å–å¾—
 		no = ( gf_rand() % TOWER_TRTYPE_LIST_MAX );
 		start_no = no;
 
 		while( 1 ){
 
-			//ƒgƒŒ[ƒi[ƒ^ƒCƒv‚ğæ“¾(šŒ©‚Â‚©‚ç‚È‚©‚Á‚½ê‡‚Ítr_index[..]‚ª•ÏX‚³‚ê‚é‚±‚Æ‚ ‚è
+			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‚’å–å¾—(â˜…è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå ´åˆã¯tr_index[..]ãŒå¤‰æ›´ã•ã‚Œã‚‹ã“ã¨ã‚ã‚Š
 			tr_type = tr_index[set_pos+set_count];
-			OS_Printf( "’T‚·tr_type = %d\n", tr_type );
+			OS_Printf( "æ¢ã™tr_type = %d\n", tr_type );
 
-			//“¯‚¶ƒgƒŒ[ƒi[ƒ^ƒCƒv‚ğŒ©‚Â‚¯‚½
+			//åŒã˜ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã‚’è¦‹ã¤ã‘ãŸ
 			if( tr_type == tower_trtype_list[no] ){
 
-				//‘O‚Ìƒ‰ƒEƒ“ƒh‚Ü‚Å‚ÌƒgƒŒ[ƒi[ƒCƒ“ƒfƒbƒNƒX‚Æ”äŠr‚·‚é
+				//å‰ã®ãƒ©ã‚¦ãƒ³ãƒ‰ã¾ã§ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨æ¯”è¼ƒã™ã‚‹
 				//for( i=0; i < set_pos ;i++ ){
 				
-				//‘O‚Ìƒ‰ƒEƒ“ƒh‚Ü‚Å‚ÆA“ñl‘Io‚Ì‚ª‚ ‚é‚Ì‚ÅAˆêl–Ú‚àƒgƒŒ[ƒi[ƒCƒ“ƒfƒbƒNƒX”äŠr
+				//å‰ã®ãƒ©ã‚¦ãƒ³ãƒ‰ã¾ã§ã¨ã€äºŒäººé¸å‡ºã®æ™‚ãŒã‚ã‚‹ã®ã§ã€ä¸€äººç›®ã‚‚ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ¯”è¼ƒ
 				for( i=0; i < (set_pos+set_count) ;i++ ){
 					//if( tr_index[i] == tr_index[set_pos+set_count] ){
-					//ƒ‰ƒ“ƒ_ƒ€‚Åæ“¾‚µ‚½ƒCƒ“ƒfƒbƒNƒX(no)‚ª”í‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+					//ãƒ©ãƒ³ãƒ€ãƒ ã§å–å¾—ã—ãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(no)ãŒè¢«ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 					if( tr_index[i] == no ){
-						break;		//”í‚Á‚Ä‚¢‚é
+						break;		//è¢«ã£ã¦ã„ã‚‹
 					}
 				}
 
-				//”í‚Á‚Ä‚¢‚È‚©‚Á‚½I
+				//è¢«ã£ã¦ã„ãªã‹ã£ãŸï¼
 				//if( i == set_pos ){
 
-				//ƒ‹[ƒv‚ªÅŒã‚Ü‚Å‰ñ‚Á‚Ä‚¢‚½‚çA”í‚Á‚Ä‚¢‚È‚¢I
+				//ãƒ«ãƒ¼ãƒ—ãŒæœ€å¾Œã¾ã§å›ã£ã¦ã„ãŸã‚‰ã€è¢«ã£ã¦ã„ãªã„ï¼
 				if( i == (set_pos+set_count) ){
-					//ƒgƒŒ[ƒi[ƒCƒ“ƒfƒbƒNƒX‚ğŠi”[
+					//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ ¼ç´
 					//tr_index[set_count] = tower_trtype_list[no];
 					tr_index[set_pos+set_count] = no;
-					OS_Printf("ƒgƒŒ[ƒiƒCƒ“ƒfƒbƒNƒX tr_index = %d\n", tr_index[set_pos+set_count]);
+					OS_Printf("ãƒˆãƒ¬ãƒ¼ãƒŠã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ tr_index = %d\n", tr_index[set_pos+set_count]);
 					set_count++;
 					break;
 				}
 			}
 
-			//Ÿ‚Ìƒf[ƒ^‚Ö
+			//æ¬¡ã®ãƒ‡ãƒ¼ã‚¿ã¸
 			no++;
 
-			//I’[‚Ü‚Å‚«‚½‚Ì‚Å“ª‚É–ß‚·
+			//çµ‚ç«¯ã¾ã§ããŸã®ã§é ­ã«æˆ»ã™
 			if( no >= TOWER_TRTYPE_LIST_MAX ){
 				no = 0;
 			}
 
 			//////////////////////////
-			//‹ó‚«‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½
+			//ç©ºããŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
 			//////////////////////////
 			if( no == start_no ){
 
-				//ˆá‚¤ƒgƒŒ[ƒi[ƒ^ƒCƒv‚É•ÏX‚·‚é
+				//é•ã†ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã«å¤‰æ›´ã™ã‚‹
 				while( 1 ){
 					chg_no = ( gf_rand() % STAGE_RANK_TR1_NUM );
 
 					//if( tr_index[set_pos+set_count] != rank_tr1_list[rankno][chg_no] ){
 					if( tr_type != rank_tr1_list[rankno][chg_no] ){
-						OS_Printf( "–¢g—p‚È‚µƒ^ƒCƒv = %d\n", tr_index[set_pos+set_count] );
+						OS_Printf( "æœªä½¿ç”¨ãªã—ã‚¿ã‚¤ãƒ— = %d\n", tr_index[set_pos+set_count] );
 						tr_index[set_pos+set_count] = rank_tr1_list[rankno][chg_no];
-						OS_Printf( "•ÏX‚µ‚½ƒ^ƒCƒv = %d\n", tr_index[set_pos+set_count] );
+						OS_Printf( "å¤‰æ›´ã—ãŸã‚¿ã‚¤ãƒ— = %d\n", tr_index[set_pos+set_count] );
 						break;
 					}
 				}
@@ -303,15 +303,15 @@ void Stage_CreateTrIndex( u8 type, u8 set_num, int lap, u8 rank, u8 round, u16 t
 }
 
 #if 0
-//ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹‚©‚çA‚P‚Â‚¸‚Âƒƒ‚ƒŠ“WŠJ‚µ‚ÄƒT[ƒ`‚Í‘å•ÏI
+//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã€ï¼‘ã¤ãšã¤ãƒ¡ãƒ¢ãƒªå±•é–‹ã—ã¦ã‚µãƒ¼ãƒã¯å¤§å¤‰ï¼
 
-//ƒgƒŒ[ƒi[ƒf[ƒ^
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
 B_TOWER_TRAINER_ROM_DATA * Frontier_TrainerRomDataGet(u16 trainer_index,int heap_id)
 {
 	return	ArchiveDataLoadMalloc(ARC_PL_BTD_TR,trainer_index,heap_id);
 }
 
-//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 void Frontier_PokemonRomDataGet(B_TOWER_POKEMON_ROM_DATA *prd,int index)
 {
 	ArchiveDataLoad(prd,ARC_PL_STAGE_PM,index);
@@ -320,12 +320,12 @@ void Frontier_PokemonRomDataGet(B_TOWER_POKEMON_ROM_DATA *prd,int index)
 
 //
 typedef struct{
-	u16	index_start;		//ƒCƒ“ƒfƒbƒNƒXŠJn
-	u16	index_end;			//ƒCƒ“ƒfƒbƒNƒXI—¹
+	u16	index_start;		//ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹é–‹å§‹
+	u16	index_end;			//ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹çµ‚äº†
 }STAGE_POKE_RANGE;
 
 #if 1
-//07.12.27XV
+//07.12.27æ›´æ–°
 #define STAGE_POKE_INDEX_START	( 1 )
 #else
 #define STAGE_POKE_INDEX_START	( 895 )
@@ -348,29 +348,29 @@ static const STAGE_POKE_RANGE stage_poke_range[] = {
 };
 #define STAGE_POKE_RANGE_MAX	( NELEMS(stage_poke_range) )
 
-#if 0	//DEBUG_ƒhƒ‰ƒSƒ“
+#if 0	//DEBUG_ãƒ‰ãƒ©ã‚´ãƒ³
 static const u16 debug_poke_index[] = { 126, 148, 188, 242, 249, 336, 266 };
 #endif
 
-//F‚²‚Æ‚Ì”ÍˆÍ
+//è‰²ã”ã¨ã®ç¯„å›²
 static const STAGE_POKE_RANGE stage_poke_color_range[] = {
-	{ STAGE_POKE_INDEX_START,	154 },		//0:Â
-	{ 155,						270 },		//1:‰©
-	{ 271,						375 },		//2:Ô
-	{ 376,						477 },		//3:é
+	{ STAGE_POKE_INDEX_START,	154 },		//0:é’
+	{ 155,						270 },		//1:é»„
+	{ 271,						375 },		//2:èµ¤
+	{ 376,						477 },		//3:æœ±
 };
 #define STAGE_POKE_COLOR_RANGE_MAX	( NELEMS(stage_poke_color_range) )
 
 //--------------------------------------------------------------
 /**
- * @brief   “Gƒ|ƒPƒ‚ƒ“‚ğŒˆ’è‚·‚é
+ * @brief   æ•µãƒã‚±ãƒ¢ãƒ³ã‚’æ±ºå®šã™ã‚‹
  *
- * @param   set_num			‘Io‚·‚é”(•K‚¸1)
- * @param   poketype		‘I‘ğ‚µ‚½ƒ^ƒCƒv
- * @param   rank			‘I‘ğ‚µ‚½ƒ^ƒCƒv‚Ìƒ‰ƒ“ƒN
- * @param   monsno			©•ª‚ªo‚·ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
- * @param   poke_index[]	Œˆ’è‚µ‚½ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX‚ğŠi”[‚·‚éƒ|ƒCƒ“ƒ^(2•C•ª—pˆÓ)
- * @param   brain_count		0=’ÊíA1=ƒuƒŒ[ƒ“1‰ñ–ÚA2=ƒuƒŒ[ƒ“2‰ñ–Ú
+ * @param   set_num			é¸å‡ºã™ã‚‹æ•°(å¿…ãš1)
+ * @param   poketype		é¸æŠã—ãŸã‚¿ã‚¤ãƒ—
+ * @param   rank			é¸æŠã—ãŸã‚¿ã‚¤ãƒ—ã®ãƒ©ãƒ³ã‚¯
+ * @param   monsno			è‡ªåˆ†ãŒå‡ºã™ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ * @param   poke_index[]	æ±ºå®šã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ ¼ç´ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿(2åŒ¹åˆ†ç”¨æ„)
+ * @param   brain_count		0=é€šå¸¸ã€1=ãƒ–ãƒ¬ãƒ¼ãƒ³1å›ç›®ã€2=ãƒ–ãƒ¬ãƒ¼ãƒ³2å›ç›®
  *
  * @retval  none
  */
@@ -383,16 +383,16 @@ void Stage_CreatePokeIndex(u8 set_num, u8 poketype, u8 rank, u8 round, u16 monsn
 	int set_count = 0;
 	u16 range_no = 0;
 
-	ex_flag = 0;									//”í‚Á‚Ä‚¢‚È‚¢ƒ|ƒPƒ‚ƒ“‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½”»•Ê
-	set_pos = (round * STAGE_ENTRY_POKE_MAX);		//ƒZƒbƒg‚·‚éˆÊ’u
+	ex_flag = 0;									//è¢«ã£ã¦ã„ãªã„ãƒã‚±ãƒ¢ãƒ³ãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸåˆ¤åˆ¥
+	set_pos = (round * STAGE_ENTRY_POKE_MAX);		//ã‚»ãƒƒãƒˆã™ã‚‹ä½ç½®
 
 	rankno = Stage_GetRank( rank );
 
-	//ƒuƒŒ[ƒ“‚Ì‚ÍA©•ª‚ªo‚·ƒ|ƒPƒ‚ƒ“‚ª‚¢‚éFƒŒƒ“ƒW‚©‚ç‘Io‚É‚È‚é
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ã®æ™‚ã¯ã€è‡ªåˆ†ãŒå‡ºã™ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹è‰²ãƒ¬ãƒ³ã‚¸ã‹ã‚‰é¸å‡ºã«ãªã‚‹
 	//if( poketype == HATE_TYPE ){
 	if( brain_count != 0 ){
 
-		//ƒtƒHƒ‹ƒ€ˆá‚¢‚àƒe[ƒuƒ‹‚É‚¢‚é‚ªA”ÍˆÍ(F‚í‚¯)“I‚É‚Í“¯‚¶Š‚É‚¢‚é‚Ì‚ÅŒ©‚È‚­‚Ä‚æ‚¢
+		//ãƒ•ã‚©ãƒ«ãƒ é•ã„ã‚‚ãƒ†ãƒ¼ãƒ–ãƒ«ã«ã„ã‚‹ãŒã€ç¯„å›²(è‰²ã‚ã‘)çš„ã«ã¯åŒã˜æ‰€ã«ã„ã‚‹ã®ã§è¦‹ãªãã¦ã‚ˆã„
 		for( i=0; i < STAGE_POKE_NO_MAX ;i++ ){
 			if( monsno == stage_poke_no[i] ){
 				monsno_pos = i;
@@ -400,24 +400,24 @@ void Stage_CreatePokeIndex(u8 set_num, u8 poketype, u8 rank, u8 round, u16 monsn
 			}
 		}
 
-		//ƒGƒ‰[‰ñ”ğ
+		//ã‚¨ãƒ©ãƒ¼å›é¿
 		if( i == STAGE_POKE_NO_MAX ){
 			monsno_pos = stage_poke_color_range[STAGE_POKE_COLOR_RANGE_MAX-1].index_start;
 		}
 
-		//F‚²‚Æ‚Ì”ÍˆÍ(monsno_pos‚Í0ƒIƒŠƒWƒ“‚Å“ü‚é‚Ì‚Å–â‘è‚È‚µ 08.05.30)
+		//è‰²ã”ã¨ã®ç¯„å›²(monsno_posã¯0ã‚ªãƒªã‚¸ãƒ³ã§å…¥ã‚‹ã®ã§å•é¡Œãªã— 08.05.30)
 		for( i=0; i < STAGE_POKE_COLOR_RANGE_MAX ;i++ ){
 			if( monsno_pos < stage_poke_color_range[i].index_end ){
 				break;
 			}
 		}
 
-		//ƒGƒ‰[‰ñ”ğ
+		//ã‚¨ãƒ©ãƒ¼å›é¿
 		if( i == STAGE_POKE_COLOR_RANGE_MAX ){
 			i = ( STAGE_POKE_COLOR_RANGE_MAX - 1 );
 		}
 
-		//ƒuƒŒ[ƒ“2‰ñ–Ú‚Ì‚ÍA‹­‚¢F‚Ì”ÍˆÍ‚©‚ç‘Io
+		//ãƒ–ãƒ¬ãƒ¼ãƒ³2å›ç›®ã®æ™‚ã¯ã€å¼·ã„è‰²ã®ç¯„å›²ã‹ã‚‰é¸å‡º
 		if( brain_count == 2 ){
 			p_range = &stage_poke_color_range[(STAGE_POKE_COLOR_RANGE_MAX-1)];
 		}else{
@@ -427,7 +427,7 @@ void Stage_CreatePokeIndex(u8 set_num, u8 poketype, u8 rank, u8 round, u16 monsn
 		p_range = &stage_poke_range[rankno];
 	}
 
-	rand_range = (p_range->index_end - p_range->index_start) + 1;		//ƒŒƒ“ƒW”ÍˆÍ
+	rand_range = (p_range->index_end - p_range->index_start) + 1;		//ãƒ¬ãƒ³ã‚¸ç¯„å›²
 	OS_Printf( "p_range->index_start = %d\n", p_range->index_start );
 	OS_Printf( "p_range->index_end = %d\n", p_range->index_end );
 
@@ -435,7 +435,7 @@ void Stage_CreatePokeIndex(u8 set_num, u8 poketype, u8 rank, u8 round, u16 monsn
 	//start_no = no;
 	no -= STAGE_POKE_INDEX_START;
 
-#if 0	//DEBUG_ƒhƒ‰ƒSƒ“
+#if 0	//DEBUG_ãƒ‰ãƒ©ã‚´ãƒ³
 	if( (set_pos / STAGE_ENTRY_POKE_MAX) < 7 ){
 		no = debug_poke_index[set_pos / STAGE_ENTRY_POKE_MAX] - 1;
 	}
@@ -447,50 +447,50 @@ void Stage_CreatePokeIndex(u8 set_num, u8 poketype, u8 rank, u8 round, u16 monsn
 
 		if( ex_flag == 0 ){
 
-			//¡‚Ü‚Å¶¬‚µ‚Ä‚«‚½ƒ|ƒPƒ‚ƒ“‚Æ”í‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+			//ä»Šã¾ã§ç”Ÿæˆã—ã¦ããŸãƒã‚±ãƒ¢ãƒ³ã¨è¢«ã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			for( j=0; j < set_pos ;j++ ){
-				if( poke_index[j] == (no + 1) ){		//štower poke 0‚Ídummy‚È‚Ì‚Åindex‚ğ+1
-					break;	//”í‚Á‚½
+				if( poke_index[j] == (no + 1) ){		//â˜…tower poke 0ã¯dummyãªã®ã§indexã‚’+1
+					break;	//è¢«ã£ãŸ
 				}
 			}
 		}else{
 
-			//‘O‰ñ‚Ìƒ|ƒPƒ‚ƒ“‚Æ”í‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
-			//set_pos=0‚Í‚ ‚è‚¦‚È‚¢‚Ì‚Å‘åä•v
-			//štower poke 0‚Ídummy‚È‚Ì‚Åindex‚ğ+1
+			//å‰å›ã®ãƒã‚±ãƒ¢ãƒ³ã¨è¢«ã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
+			//set_pos=0ã¯ã‚ã‚Šãˆãªã„ã®ã§å¤§ä¸ˆå¤«
+			//â˜…tower poke 0ã¯dummyãªã®ã§indexã‚’+1
 			if( poke_index[set_pos-STAGE_ENTRY_POKE_MAX] == (no + 1) ){
-				j = 0;			//”í‚Á‚Ä‚¢‚½‚çA( j == set_pos )‚Éˆø‚Á‚©‚©‚ç‚È‚¢‚æ‚¤‚É‚·‚é
+				j = 0;			//è¢«ã£ã¦ã„ãŸã‚‰ã€( j == set_pos )ã«å¼•ã£ã‹ã‹ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹
 			}else{
-				j = set_pos;	//”í‚Á‚Ä‚¢‚È‚¢
+				j = set_pos;	//è¢«ã£ã¦ã„ãªã„
 			}
 		}
 
-		//”í‚Á‚Ä‚¢‚È‚©‚Á‚½
+		//è¢«ã£ã¦ã„ãªã‹ã£ãŸæ™‚
 		if( j == set_pos ){
 
-			//HHHƒ^ƒCƒv‚Ì
+			//ï¼Ÿï¼Ÿï¼Ÿã‚¿ã‚¤ãƒ—ã®æ™‚
 			//if( poketype == HATE_TYPE ){
 			if( brain_count != 0 ){
 
-				//’§í’†‚Ìƒ|ƒPƒ‚ƒ“‚ÍœŠO‚·‚é
+				//æŒ‘æˆ¦ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ã¯é™¤å¤–ã™ã‚‹
 				if( monsno != stage_poke_no[no] ){
 					//poke_index[set_pos+set_count] = no;
-					poke_index[set_pos+set_count] = (no + 1);//štower poke 0‚Ídummy‚È‚Ì‚Åindex‚ğ+1
+					poke_index[set_pos+set_count] = (no + 1);//â˜…tower poke 0ã¯dummyãªã®ã§indexã‚’+1
 					OS_Printf( "poke_no = %d\n", stage_poke_no[no] );
 					OS_Printf( "poke_index = %d\n", no );
 					set_count++;
 				}
 			}else{
 
-				//•Ğ•û‚Ìƒ^ƒCƒv‚ªˆê’v‚·‚ê‚ÎOK
+				//ç‰‡æ–¹ã®ã‚¿ã‚¤ãƒ—ãŒä¸€è‡´ã™ã‚Œã°OK
 				if( (poketype == stage_poke_type[no][0]) || (poketype == stage_poke_type[no][1]) ){
 
-					//’§í’†‚Ìƒ|ƒPƒ‚ƒ“‚ÍœŠO‚·‚é
+					//æŒ‘æˆ¦ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ã¯é™¤å¤–ã™ã‚‹
 					if( monsno != stage_poke_no[no] ){
 						//poke_index[set_pos+set_count] = no;
-						poke_index[set_pos+set_count] = (no + 1);//štowerpoke 0=dmy‚È‚Ì‚Åindex‚ğ+1
+						poke_index[set_pos+set_count] = (no + 1);//â˜…towerpoke 0=dmyãªã®ã§indexã‚’+1
 
-#if 0	//ƒpƒbƒ`[ƒ‹ƒ`ƒFƒbƒN
+#if 0	//ãƒ‘ãƒƒãƒãƒ¼ãƒ«ãƒã‚§ãƒƒã‚¯
 		poke_index[set_pos+set_count] = (241);
 #endif
 
@@ -507,16 +507,16 @@ void Stage_CreatePokeIndex(u8 set_num, u8 poketype, u8 rank, u8 round, u16 monsn
 		no++;
 		//OS_Printf( "no = %d\n", no );
 
-		//I’[‚Ü‚Å’T‚µ‚½‚ªŒ©‚Â‚©‚ç‚È‚©‚Á‚½‚Ì‚Å“ª‚É–ß‚é
+		//çµ‚ç«¯ã¾ã§æ¢ã—ãŸãŒè¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã®ã§é ­ã«æˆ»ã‚‹
 		if( (no + STAGE_POKE_INDEX_START) >= p_range->index_end ){
 			no = (p_range->index_start - STAGE_POKE_INDEX_START);
 		}
 
-		//”ÍˆÍ“à‚É”í‚Á‚Ä‚¢‚È‚¢ƒ|ƒPƒ‚ƒ“‚ª‘¶İ‚µ‚È‚¢ƒtƒ‰ƒO‚ğ—§‚Ä‚é(ƒhƒ‰ƒSƒ“ƒ^ƒCƒv‚È‚Ç‚ª‚ ‚è‚¦‚é)
+		//ç¯„å›²å†…ã«è¢«ã£ã¦ã„ãªã„ãƒã‚±ãƒ¢ãƒ³ãŒå­˜åœ¨ã—ãªã„ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹(ãƒ‰ãƒ©ã‚´ãƒ³ã‚¿ã‚¤ãƒ—ãªã©ãŒã‚ã‚Šãˆã‚‹)
 		if( no == start_no ){
 			ex_flag = 1;
-			OS_Printf( "”ÍˆÍ“à‚É”í‚Á‚Ä‚¢‚È‚¢ƒ|ƒPƒ‚ƒ“‚ª‘¶İ‚µ‚È‚¢‚Ì‚ÅA\n" );
-			OS_Printf( "‘O‰ñ‚Æ”í‚Á‚Ä‚¢‚È‚¢ƒ|ƒPƒ‚ƒ“‘Io‚ÉØ‚è‘Ö‚¦‚Ü‚·I\n" );
+			OS_Printf( "ç¯„å›²å†…ã«è¢«ã£ã¦ã„ãªã„ãƒã‚±ãƒ¢ãƒ³ãŒå­˜åœ¨ã—ãªã„ã®ã§ã€\n" );
+			OS_Printf( "å‰å›ã¨è¢«ã£ã¦ã„ãªã„ãƒã‚±ãƒ¢ãƒ³é¸å‡ºã«åˆ‡ã‚Šæ›¿ãˆã¾ã™ï¼\n" );
 		}
 	};
 
@@ -525,7 +525,7 @@ void Stage_CreatePokeIndex(u8 set_num, u8 poketype, u8 rank, u8 round, u16 monsn
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒgƒ‹ƒXƒe[ƒW—p@ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^¶¬
+ * @brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ç”¨ã€€ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç”Ÿæˆ
  */
 //--------------------------------------------------------------
 BATTLE_PARAM* BtlStage_CreateBattleParam( STAGE_SCRWORK* wk, FRONTIER_EX_PARAM* ex_param )
@@ -542,23 +542,23 @@ BATTLE_PARAM* BtlStage_CreateBattleParam( STAGE_SCRWORK* wk, FRONTIER_EX_PARAM* 
 	MYSTATUS* my;
 	POKEPARTY* party;
 
-	//ƒ_ƒuƒ‹—p‚É2l‚¸‚Âƒf[ƒ^‚ğŠi”[‚µ‚Ä‚¢‚é‚Ì‚Åƒ‰ƒEƒ“ƒh”‚ğ’²®
+	//ãƒ€ãƒ–ãƒ«ç”¨ã«2äººãšã¤ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ã¦ã„ã‚‹ã®ã§ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã‚’èª¿æ•´
 	//(tr_index[],enemy_poke[],enemy_poke_index[])
 	round = (wk->round * STAGE_ENTRY_POKE_MAX);
-	OS_Printf( "’²®‚µ‚½round = %d\n", round );
+	OS_Printf( "èª¿æ•´ã—ãŸround = %d\n", round );
 
-	//Q‰Áƒ|ƒPƒ‚ƒ“”‚ğæ“¾
+	//å‚åŠ ãƒã‚±ãƒ¢ãƒ³æ•°ã‚’å–å¾—
 	m_max = Stage_GetMinePokeNum( wk->type );
 	e_max = Stage_GetEnemyPokeNum( wk->type );
 
-	//‰ñ•œˆ—
+	//å›å¾©å‡¦ç†
 	party = SaveData_GetTemotiPokemon( wk->sv );
 	PokeParty_RecoverAll( party );
 
-	//í“¬ƒpƒ‰ƒ[ƒ^‚Ì¶¬ˆ—(field_battle.c)(fssc_stage.c FSSC_StageCallGetResult‚ÅDelete)
+	//æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ç”Ÿæˆå‡¦ç†(field_battle.c)(fssc_stage.c FSSC_StageCallGetResultã§Delete)
 	bp = BattleParam_Create( HEAPID_WORLD, Stage_GetFightType(wk->type) );
 	
-	//í“¬ƒpƒ‰ƒ[ƒ^‚ÌûWƒRƒA(ƒtƒB[ƒ‹ƒh)
+	//æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åé›†ã‚³ã‚¢(ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰)
 	BattleParam_SetParamByGameDataCore( bp, NULL, 
 										ex_param->savedata,
 										ex_param->zone_id,
@@ -566,78 +566,78 @@ BATTLE_PARAM* BtlStage_CreateBattleParam( STAGE_SCRWORK* wk, FRONTIER_EX_PARAM* 
 										ex_param->bag_cursor,
 										ex_param->battle_cursor);
 
-	//Œ»ó‚ÍŒÅ’èI
-	bp->bg_id		= BG_ID_STAGE;			//Šî–{”wŒiw’è
-	bp->ground_id	= GROUND_ID_STAGE;		//Šî–{’n–Êw’è
+	//ç¾çŠ¶ã¯å›ºå®šï¼
+	bp->bg_id		= BG_ID_STAGE;			//åŸºæœ¬èƒŒæ™¯æŒ‡å®š
+	bp->ground_id	= GROUND_ID_STAGE;		//åŸºæœ¬åœ°é¢æŒ‡å®š
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//MINEF‘I‚ñ‚¾è‚¿ƒ|ƒPƒ‚ƒ“‚ğƒZƒbƒg
+	//MINEï¼šé¸ã‚“ã æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 	PokeParty_Init( bp->poke_party[POKEPARTY_MINE], m_max );
 
-	//MINEF©•ª‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒZƒbƒg
+	//MINEï¼šè‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	pp = PokemonParam_AllocWork( HEAPID_WORLD );
 	for( i=0; i < m_max ;i++ ){
 
-		//POKEMON_PARAM\‘¢‘Ì‚©‚çPOKEMON_PARAM\‘¢‘Ì‚ÖƒRƒs[
+		//POKEMON_PARAMæ§‹é€ ä½“ã‹ã‚‰POKEMON_PARAMæ§‹é€ ä½“ã¸ã‚³ãƒ”ãƒ¼
 		PokeCopyPPtoPP( PokeParty_GetMemberPointer(party,wk->mine_poke_pos[i]), pp );
 
-		//í“¬ƒpƒ‰ƒ[ƒ^ƒZƒbƒg:ƒ|ƒPƒ‚ƒ“‚ğ‰Á‚¦‚é
+		//æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ:ãƒã‚±ãƒ¢ãƒ³ã‚’åŠ ãˆã‚‹
 		BattleParam_AddPokemon( bp, pp, POKEPARTY_MINE );
 	}
 	sys_FreeMemoryEz( pp );
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//MINEFƒgƒŒ[ƒi[ƒf[ƒ^¶¬
+	//MINEï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 	BattleParam_TrainerDataMake( bp );
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//ENEMY1FROM‚©‚çƒgƒŒ[ƒi[ƒf[ƒ^‚ğŠm•Û
+	//ENEMY1ï¼šROMã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ç¢ºä¿
 	p_rom_tr = Frontier_TrainerDataGet( &bt_trd, wk->tr_index[round], HEAPID_WORLD, ARC_PL_BTD_TR );
-	//OS_Printf( "æ“¾‚µ‚½tr_index[%d] = %d\n", round, wk->tr_index[round] );
+	//OS_Printf( "å–å¾—ã—ãŸtr_index[%d] = %d\n", round, wk->tr_index[round] );
 	sys_FreeMemoryEz( p_rom_tr );
 
-	//ENEMY1FƒgƒŒ[ƒi[ƒf[ƒ^‚ğƒZƒbƒg
+	//ENEMY1ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	BattleParamTrainerDataSet( bp, &bt_trd, e_max, CLIENT_NO_ENEMY, HEAPID_WORLD );
 
-	//ENEMY1F‘I‚ñ‚¾è‚¿ƒ|ƒPƒ‚ƒ“‚ğƒZƒbƒg
+	//ENEMY1ï¼šé¸ã‚“ã æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 	PokeParty_Init( bp->poke_party[POKEPARTY_ENEMY], e_max );
 
-	//’ÊMƒ}ƒ‹ƒ`‚Ì‚İƒ‰ƒ“ƒN10ŒÅ’èI(WIFI‚Íˆá‚¤)
+	//é€šä¿¡ãƒãƒ«ãƒã®ã¿ãƒ©ãƒ³ã‚¯10å›ºå®šï¼(WIFIã¯é•ã†)
 	rank = Stage_GetTypeLevel( wk->csr_pos, &wk->type_level[wk->type][0] );
 	//if( Stage_CommCheck(wk->type) == TRUE ){
 	if( wk->type == STAGE_TYPE_MULTI ){
 		rank = (STAGE_TYPE_LEVEL_MAX - 1);
 	}
 
-	//AIƒZƒbƒg
+	//AIã‚»ãƒƒãƒˆ
 	ai = Stage_GetStagePokeDataAI( wk, round, rank );
 
 	for( i=0; i < CLIENT_MAX ;i++ ){
 		bp->trainer_data[i].aibit = ai;
 	}
-	OS_Printf( "ƒgƒŒ[ƒi[‚ÌAI = %d\n", ai );
+	OS_Printf( "ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®AI = %d\n", ai );
 
-	//“Gƒ|ƒPƒ‚ƒ“‚ğˆê“x‚É¶¬
+	//æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«ç”Ÿæˆ
 	Stage_PokemonParamCreateAll(	&wk->enemy_poke[round], rank, wk->tr_index[round],
 									&wk->enemy_poke_index[round], 
 									e_max, HEAPID_WORLD, ARC_PL_STAGE_PM );
 
-	//ENEMY1Fí“¬ƒpƒ‰ƒ[ƒ^ƒZƒbƒg:ƒ|ƒPƒ‚ƒ“‚ğ‰Á‚¦‚é
+	//ENEMY1ï¼šæˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ:ãƒã‚±ãƒ¢ãƒ³ã‚’åŠ ãˆã‚‹
 	pp = PokemonParam_AllocWork( HEAPID_WORLD );
 	for( i=0; i < e_max ;i++ ){
 
 		while( 1 ){
-		//ƒXƒe[ƒW‚Åƒpƒbƒ`[ƒ‹‚Ìƒuƒ`‚ğ•Ï‰»‚³‚¹‚é(ŒÂ«—”‚ªŒ©‚ê‚é‚í‚¯‚Å‚Í‚È‚¢‚Ì‚ÅŠÈ’P‚Èˆ—)
+		//ã‚¹ãƒ†ãƒ¼ã‚¸ã§ãƒ‘ãƒƒãƒãƒ¼ãƒ«ã®ãƒ–ãƒã‚’å¤‰åŒ–ã•ã›ã‚‹(å€‹æ€§ä¹±æ•°ãŒè¦‹ã‚Œã‚‹ã‚ã‘ã§ã¯ãªã„ã®ã§ç°¡å˜ãªå‡¦ç†)
 			if( Stage_PattiiruPersonalRndChg(wk,round) == 0 ){
 				break;
 			}
 		}
 
-		//ƒoƒgƒ‹ƒ^ƒ[—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚©‚çPOKEMON_PARAM‚ğ¶¬(“¯‚¶ƒ|ƒPƒ‚ƒ“‚È‚Ì‚ÅŒÅ’è)
+		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰POKEMON_PARAMã‚’ç”Ÿæˆ(åŒã˜ãƒã‚±ãƒ¢ãƒ³ãªã®ã§å›ºå®š)
 		//Frontier_PokeParaMake( &wk->enemy_poke[round+i], pp, Stage_GetPokeLevel(wk,rank) );
 		Frontier_PokeParaMake( &wk->enemy_poke[round], pp, Stage_GetPokeLevel(wk,rank) );
 
-		//“Á«‚ğÄŒvZ
+		//ç‰¹æ€§ã‚’å†è¨ˆç®—
 		OS_Printf( "tokusei = %d\n", PokeParaGet(pp,ID_PARA_speabino,NULL) );
 		PokeParaSpeabiSet( pp );
 		OS_Printf( "tokusei = %d\n", PokeParaGet(pp,ID_PARA_speabino,NULL) );
@@ -653,54 +653,54 @@ BATTLE_PARAM* BtlStage_CreateBattleParam( STAGE_SCRWORK* wk, FRONTIER_EX_PARAM* 
 	case STAGE_TYPE_WIFI_MULTI:
 
 		//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-		//ƒp[ƒgƒi[‚Ìƒf[ƒ^‚ğŠi”[‚µ‚Ä‚¨‚©‚È‚¢‚Æƒ_ƒI
+		//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ã¦ãŠã‹ãªã„ã¨ãƒ€ãƒ¡ï¼
 		//B_TOWER_PARTNER_DATA	tr_data[2];
 
-		//MINE2FƒgƒŒ[ƒi[ƒf[ƒ^¶¬
+		//MINE2ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 		BattleParam_TrainerDataMake( bp );
 
-		//MINE2Fƒp[ƒgƒi[‚ÌMyStatus‚ğæ“¾‚µ‚ÄƒRƒs[
+		//MINE2ï¼šãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®MyStatusã‚’å–å¾—ã—ã¦ã‚³ãƒ”ãƒ¼
 		my = CommInfoGetMyStatus( 1 - CommGetCurrentID() );
 		MyStatus_Copy( my, bp->my_status[CLIENT_NO_MINE2] );
 
 		//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-		//ƒp[ƒgƒi[‚Ìƒf[ƒ^‚ğŠi”[‚µ‚Ä‚¨‚©‚È‚¢‚Æƒ_ƒI
+		//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ã¦ãŠã‹ãªã„ã¨ãƒ€ãƒ¡ï¼
 		//B_TOWER_PARTNER_DATA	tr_data[2];
 
-		//ENEMY2FROM‚©‚çƒgƒŒ[ƒi[ƒf[ƒ^‚ğŠm•Û
+		//ENEMY2ï¼šROMã‹ã‚‰ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ç¢ºä¿
 		p_rom_tr = Frontier_TrainerDataGet( &bt_trd, wk->tr_index[round+1], HEAPID_WORLD, 
 											ARC_PL_BTD_TR );
-		//OS_Printf( "æ“¾‚µ‚½tr_index[%d+1] = %d\n", round, wk->tr_index[round+1] );
+		//OS_Printf( "å–å¾—ã—ãŸtr_index[%d+1] = %d\n", round, wk->tr_index[round+1] );
 		sys_FreeMemoryEz( p_rom_tr );
 
-		//ENEMY2FƒgƒŒ[ƒi[ƒf[ƒ^‚ğƒZƒbƒg
+		//ENEMY2ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 		BattleParamTrainerDataSet( bp, &bt_trd, e_max, CLIENT_NO_ENEMY2, HEAPID_WORLD );
 
 #if 1
-		//ENEMY2F‘I‚ñ‚¾è‚¿ƒ|ƒPƒ‚ƒ“‚ğƒZƒbƒg
+		//ENEMY2ï¼šé¸ã‚“ã æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆ
 		PokeParty_Init( bp->poke_party[POKEPARTY_ENEMY_PAIR], e_max );
 
-		//ENEMY2Fí“¬ƒpƒ‰ƒ[ƒ^ƒZƒbƒg:ƒ|ƒPƒ‚ƒ“‚ğ‰Á‚¦‚é
+		//ENEMY2ï¼šæˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ:ãƒã‚±ãƒ¢ãƒ³ã‚’åŠ ãˆã‚‹
 		pp = PokemonParam_AllocWork( HEAPID_WORLD );
 
 		while( 1 ){
-		//ƒXƒe[ƒW‚Åƒpƒbƒ`[ƒ‹‚Ìƒuƒ`‚ğ•Ï‰»‚³‚¹‚é(ŒÂ«—”‚ªŒ©‚ê‚é‚í‚¯‚Å‚Í‚È‚¢‚Ì‚ÅŠÈ’P‚Èˆ—)
+		//ã‚¹ãƒ†ãƒ¼ã‚¸ã§ãƒ‘ãƒƒãƒãƒ¼ãƒ«ã®ãƒ–ãƒã‚’å¤‰åŒ–ã•ã›ã‚‹(å€‹æ€§ä¹±æ•°ãŒè¦‹ã‚Œã‚‹ã‚ã‘ã§ã¯ãªã„ã®ã§ç°¡å˜ãªå‡¦ç†)
 			if( Stage_PattiiruPersonalRndChg(wk,round) == 0 ){
 				break;
 			}
 		}
 
-		//ƒoƒgƒ‹ƒ^ƒ[—pƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚©‚çPOKEMON_PARAM‚ğ¶¬
+		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰POKEMON_PARAMã‚’ç”Ÿæˆ
 		//Frontier_PokeParaMake( &wk->enemy_poke[round+1], pp, Stage_GetPokeLevel(wk,rank));
-		//“¯‚¶ƒ|ƒPƒ‚ƒ“‚ğƒZƒbƒg‚µ‚Ä‚¢‚é(‚±‚ê‚Å—Ç‚¢H)
+		//åŒã˜ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹(ã“ã‚Œã§è‰¯ã„ï¼Ÿ)
 		Frontier_PokeParaMake( &wk->enemy_poke[round], pp, Stage_GetPokeLevel(wk,rank) );
 
-		//“Á«‚ğÄŒvZ
+		//ç‰¹æ€§ã‚’å†è¨ˆç®—
 		OS_Printf( "tokusei = %d\n", PokeParaGet(pp,ID_PARA_speabino,NULL) );
 		PokeParaSpeabiSet( pp );
 		OS_Printf( "tokusei = %d\n", PokeParaGet(pp,ID_PARA_speabino,NULL) );
 
-		//POKEMON_PARAM\‘¢‘Ì‚©‚çPOKEMON_PARAM\‘¢‘Ì‚ÖƒRƒs[
+		//POKEMON_PARAMæ§‹é€ ä½“ã‹ã‚‰POKEMON_PARAMæ§‹é€ ä½“ã¸ã‚³ãƒ”ãƒ¼
 		//PokeCopyPPtoPP( PokeParty_GetMemberPointer(party,wk->mine_poke_pos[1]), pp );
 		
 		BattleParam_AddPokemon( bp, pp, POKEPARTY_ENEMY_PAIR );
@@ -718,18 +718,18 @@ BATTLE_PARAM* BtlStage_CreateBattleParam( STAGE_SCRWORK* wk, FRONTIER_EX_PARAM* 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒe[ƒW‚Åƒpƒbƒ`[ƒ‹‚Ìƒuƒ`‚ğ•Ï‰»‚³‚¹‚é(ŒÂ«—”‚ªŒ©‚ê‚é‚í‚¯‚Å‚Í‚È‚¢‚Ì‚ÅŠÈ’P‚Èˆ—)
+ * @brief	ã‚¹ãƒ†ãƒ¼ã‚¸ã§ãƒ‘ãƒƒãƒãƒ¼ãƒ«ã®ãƒ–ãƒã‚’å¤‰åŒ–ã•ã›ã‚‹(å€‹æ€§ä¹±æ•°ãŒè¦‹ã‚Œã‚‹ã‚ã‘ã§ã¯ãªã„ã®ã§ç°¡å˜ãªå‡¦ç†)
  *
- * ’ÊM‚à‚ ‚é‚Ì‚ÅA‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚Åƒ‰ƒ“ƒ_ƒ€æ“¾‚ğƒŒƒA‚¶‚á‚È‚¢‚Ü‚Å‰ñ‚·‚Ì‚Íƒ_ƒI
+ * é€šä¿¡ã‚‚ã‚ã‚‹ã®ã§ã€ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ãƒ©ãƒ³ãƒ€ãƒ å–å¾—ã‚’ãƒ¬ã‚¢ã˜ã‚ƒãªã„ã¾ã§å›ã™ã®ã¯ãƒ€ãƒ¡ï¼
  *
- * ƒpƒbƒ`[ƒ‹ˆÈŠO‚É‚à“K‰‚·‚é‚±‚Æ‚É‚È‚Á‚½
+ * ãƒ‘ãƒƒãƒãƒ¼ãƒ«ä»¥å¤–ã«ã‚‚é©å¿œã™ã‚‹ã“ã¨ã«ãªã£ãŸ
  *
- * ƒŒƒA‚©‚ğ•Ô‚µ‚Ä‚¢‚é
+ * ãƒ¬ã‚¢ã‹ã‚’è¿”ã—ã¦ã„ã‚‹
  */
 //--------------------------------------------------------------
 static BOOL Stage_PattiiruPersonalRndChg( STAGE_SCRWORK* wk, u8 round )
 {
-	//ƒfƒoƒbƒN///////////////////////////////////////////
+	//ãƒ‡ãƒãƒƒã‚¯///////////////////////////////////////////
 	//wk->enemy_poke[round].mons_no = MONSNO_PATTIIRU;
 	//wk->enemy_poke[round+1].mons_no = MONSNO_PATTIIRU;
 	/////////////////////////////////////////////////////
@@ -740,11 +740,11 @@ static BOOL Stage_PattiiruPersonalRndChg( STAGE_SCRWORK* wk, u8 round )
 	OS_Printf( "seikaku_rnd0 = %d\n", PokeSeikakuGetRnd(wk->enemy_poke[round].personal_rnd) );
 	OS_Printf( "seikaku_rnd1 = %d\n", PokeSeikakuGetRnd(wk->enemy_poke[round+1].personal_rnd) );
 
-	//ƒXƒe[ƒW‚Åƒpƒbƒ`[ƒ‹‚Ìƒuƒ`‚ğ•Ï‰»‚³‚¹‚é(ŒÂ«—”‚ªŒ©‚ê‚é‚í‚¯‚Å‚Í‚È‚¢‚Ì‚ÅŠÈ’P‚Èˆ—)
+	//ã‚¹ãƒ†ãƒ¼ã‚¸ã§ãƒ‘ãƒƒãƒãƒ¼ãƒ«ã®ãƒ–ãƒã‚’å¤‰åŒ–ã•ã›ã‚‹(å€‹æ€§ä¹±æ•°ãŒè¦‹ã‚Œã‚‹ã‚ã‘ã§ã¯ãªã„ã®ã§ç°¡å˜ãªå‡¦ç†)
 	//if( wk->enemy_poke[round].mons_no == MONSNO_PATTIIRU ){
 
-		//+1‚Í25‚ÅŠ„‚Á‚½—]‚è‚È‚Ì‚ÅB
-		//10001‚Í“K“–‚É‚¸‚ç‚·”{—¦
+		//+1ã¯25ã§å‰²ã£ãŸä½™ã‚Šãªã®ã§ã€‚
+		//10001ã¯é©å½“ã«ãšã‚‰ã™å€ç‡
 		if( wk->enemy_poke[round].personal_rnd > ((CHR_MAX + 1)*10001) ){
 			wk->enemy_poke[round].personal_rnd -= ((CHR_MAX + 1)*10001);
 		}else{
@@ -758,16 +758,16 @@ static BOOL Stage_PattiiruPersonalRndChg( STAGE_SCRWORK* wk, u8 round )
 	OS_Printf( "seikaku_rnd0 = %d\n", PokeSeikakuGetRnd(wk->enemy_poke[round].personal_rnd) );
 	OS_Printf( "seikaku_rnd1 = %d\n", PokeSeikakuGetRnd(wk->enemy_poke[round+1].personal_rnd) );
 
-	//2•C•ªƒf[ƒ^ƒZƒbƒg‚µ‚Ä‚¢‚È‚¢‚©‚à‚µ‚ê‚È‚¢‚Ì‚ÅA
-	//1•CBATTLE_PARAM‚ÉƒZƒbƒg‚µ‚½‚çA
-	//personal_rnd‚ğ‘‚«Š·‚¦‚Ä‚¢‚é
+	//2åŒ¹åˆ†ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆã—ã¦ã„ãªã„ã‹ã‚‚ã—ã‚Œãªã„ã®ã§ã€
+	//1åŒ¹BATTLE_PARAMã«ã‚»ãƒƒãƒˆã—ãŸã‚‰ã€
+	//personal_rndã‚’æ›¸ãæ›ãˆã¦ã„ã‚‹
 
 	return PokeRareGetPara( wk->enemy_poke[round].id_no, wk->enemy_poke[round].personal_rnd );
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒŒƒCƒ‚[ƒh‚©‚çFIGHT_TYPE‚ğ•Ô‚·
+ * @brief	ãƒ—ãƒ¬ã‚¤ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰FIGHT_TYPEã‚’è¿”ã™
  */
 //--------------------------------------------------------------
 static u32 Stage_GetFightType( u8 type )
@@ -794,11 +794,11 @@ static u32 Stage_GetFightType( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒCƒv‚É‚æ‚Á‚Ä1l‚ÌƒgƒŒ[ƒi[‚ª‚Â©•ª‚Ìƒ|ƒPƒ‚ƒ“‚Ì”‚ğæ“¾
+ * @brief   ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦1äººã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒæŒã¤è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
  *
  * @param   type
  *
- * @retval  "ƒ|ƒPƒ‚ƒ“‚Ì”"
+ * @retval  "ãƒã‚±ãƒ¢ãƒ³ã®æ•°"
  */
 //--------------------------------------------------------------
 u8 Stage_GetMinePokeNum( u8 type )
@@ -814,11 +814,11 @@ u8 Stage_GetMinePokeNum( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒCƒv‚É‚æ‚Á‚Ä1l‚ÌƒgƒŒ[ƒi[‚ª‚Â“Gƒ|ƒPƒ‚ƒ“‚Ì”‚ğæ“¾
+ * @brief   ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦1äººã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒæŒã¤æ•µãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’å–å¾—
  *
  * @param   type
  *
- * @retval  "ƒ|ƒPƒ‚ƒ“‚Ì”"
+ * @retval  "ãƒã‚±ãƒ¢ãƒ³ã®æ•°"
  */
 //--------------------------------------------------------------
 u8 Stage_GetEnemyPokeNum( u8 type )
@@ -834,13 +834,13 @@ u8 Stage_GetEnemyPokeNum( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒoƒgƒ‹ƒXƒe[ƒW‚Åg—p‚·‚éƒ|ƒPƒ‚ƒ“‚ğˆê“x‚É•¡”•C¶¬
+ * @brief   ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã§ä½¿ç”¨ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€åº¦ã«è¤‡æ•°åŒ¹ç”Ÿæˆ
  *
- * @param   pwd					ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^“WŠJêŠ(set_num•ª‚Ì—v‘f”‚ª‚ ‚é”z—ñ‚Å‚ ‚é–)
- * @param   type_level			ƒ^ƒCƒv‚²‚Æ‚ÌƒŒƒxƒ‹
+ * @param   pwd					ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å±•é–‹å ´æ‰€(set_numåˆ†ã®è¦ç´ æ•°ãŒã‚ã‚‹é…åˆ—ã§ã‚ã‚‹äº‹)
+ * @param   type_level			ã‚¿ã‚¤ãƒ—ã”ã¨ã®ãƒ¬ãƒ™ãƒ«
  * @param   poke_index		
- * @param   set_num				‰½‘Ì‚Ìƒ|ƒPƒ‚ƒ“‚ğ¶¬‚·‚é‚©
- * @param   heap_id				ƒq[ƒvID
+ * @param   set_num				ä½•ä½“ã®ãƒã‚±ãƒ¢ãƒ³ã‚’ç”Ÿæˆã™ã‚‹ã‹
+ * @param   heap_id				ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------
 static void Stage_PokemonParamCreateAll( B_TOWER_POKEMON *pwd, u8 type_level, u16 tr_index, u16 poke_index[], int set_num, int heap_id, int arcPM )
@@ -850,7 +850,7 @@ static void Stage_PokemonParamCreateAll( B_TOWER_POKEMON *pwd, u8 type_level, u1
 	u8 power_rnd;
 	u32 num;
 
-	//ƒuƒŒ[ƒ“‚Ì‚Í“Áê
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ã®æ™‚ã¯ç‰¹æ®Š
 	if( tr_index == STAGE_LEADER_TR_INDEX_1ST ){
 		num = 31;
 	}else if( tr_index == STAGE_LEADER_TR_INDEX_2ND ){
@@ -863,21 +863,21 @@ static void Stage_PokemonParamCreateAll( B_TOWER_POKEMON *pwd, u8 type_level, u1
 		OS_Printf( "*********************\npoke_index[%d] = %d\n", i, poke_index[i] );
 		//Frontier_PokemonParamCreate(	&pwd[i], poke_index[i], i, num, num, heap_id, arcPM );
 		Frontier_PokemonParamCreate( &pwd[i], poke_index[i], i, num, 0, heap_id, arcPM );
-		//0=ŒÂ«—”‚Í“à•”‚Å©“®¶¬
+		//0=å€‹æ€§ä¹±æ•°ã¯å†…éƒ¨ã§è‡ªå‹•ç”Ÿæˆ
 	}
 
 	return;
 }
 
-//¡‰½l–Ú‚©‚ğLV‚Éƒvƒ‰ƒX‚·‚é
+//ä»Šä½•äººç›®ã‹ã‚’LVã«ãƒ—ãƒ©ã‚¹ã™ã‚‹
 static u32 Stage_GetPokeLevel( STAGE_SCRWORK* wk, u8 rank )
 {
 	u8 set_pos;
 	u32 lv;
 
-	set_pos	= (wk->round * STAGE_ENTRY_POKE_MAX);		//ƒZƒbƒg‚·‚éˆÊ’u
+	set_pos	= (wk->round * STAGE_ENTRY_POKE_MAX);		//ã‚»ãƒƒãƒˆã™ã‚‹ä½ç½®
 
-	//ƒuƒŒ[ƒ“‚Ì‚ÍAƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚ğ©•ª‚Ìè‚¿ƒ|ƒPƒ‚ƒ“‚É‡‚í‚¹‚é
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³ã®æ™‚ã¯ã€ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ã‚’è‡ªåˆ†ã®æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã«åˆã‚ã›ã‚‹
 	if( (wk->tr_index[set_pos] == STAGE_LEADER_TR_INDEX_1ST) ||
 		(wk->tr_index[set_pos] == STAGE_LEADER_TR_INDEX_2ND) ){
 		lv = StageScr_CommGetPokeLevel( wk );
@@ -885,12 +885,12 @@ static u32 Stage_GetPokeLevel( STAGE_SCRWORK* wk, u8 rank )
 		lv = wk->enemy_level;
 	}
 
-	OS_Printf( "“Gƒ|ƒPƒ‚ƒ“‚ÌLV = %d\n", lv );
+	OS_Printf( "æ•µãƒã‚±ãƒ¢ãƒ³ã®LV = %d\n", lv );
 	OS_Printf( "wk->round = %d\n", wk->round );	
 	return lv;
 }
 
-//ƒ^ƒCƒv•À‚Ñƒe[ƒuƒ‹
+//ã‚¿ã‚¤ãƒ—ä¸¦ã³ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 type_tbl[TYPE_X_MAX*TYPE_Y_MAX] = {
 	NORMAL_TYPE,
 	FIRE_TYPE,
@@ -913,16 +913,16 @@ static const u8 type_tbl[TYPE_X_MAX*TYPE_Y_MAX] = {
 	AKU_TYPE,
 
 	METAL_TYPE,
-	DUMMY_TYPE,			//’ˆÓI
-	DUMMY_TYPE,			//’ˆÓI
-	HATE_TYPE,			//HHH
+	DUMMY_TYPE,			//æ³¨æ„ï¼
+	DUMMY_TYPE,			//æ³¨æ„ï¼
+	HATE_TYPE,			//ï¼Ÿï¼Ÿï¼Ÿ
 };
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ˆÊ’u‚Ìƒ|ƒPƒ‚ƒ“ƒ^ƒCƒv‚ğæ“¾
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã®ãƒã‚±ãƒ¢ãƒ³ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
- * @param   csr_pos		ƒJ[ƒ\ƒ‹ˆÊ’u
+ * @param   csr_pos		ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
  */
 //--------------------------------------------------------------
 u8 Stage_GetPokeType( u8 csr_pos )
@@ -932,12 +932,12 @@ u8 Stage_GetPokeType( u8 csr_pos )
 
 //--------------------------------------------------------------
 /**
- * @brief	’ÊMƒ^ƒCƒv‚©ƒ`ƒFƒbƒN
+ * @brief	é€šä¿¡ã‚¿ã‚¤ãƒ—ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	type		ƒ^ƒCƒv
+ * @param	type		ã‚¿ã‚¤ãƒ—
  *
- * @return	"FALSE = ’ÊM‚Å‚Í‚È‚¢"
- * @return	"TRUE  = ’ÊM‚Å‚ ‚é"
+ * @return	"FALSE = é€šä¿¡ã§ã¯ãªã„"
+ * @return	"TRUE  = é€šä¿¡ã§ã‚ã‚‹"
  */
 //--------------------------------------------------------------
 BOOL Stage_CommCheck( u8 type );
@@ -955,11 +955,11 @@ BOOL Stage_CommCheck( u8 type )
 
 //--------------------------------------------------------------
 /**
- * @brief	è‚¿ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚©‚çƒ‰ƒ“ƒN‚ğæ“¾
+ * @brief	æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ã‹ã‚‰ãƒ©ãƒ³ã‚¯ã‚’å–å¾—
  *
  * @param	wk		
  *
- * @return	"ƒ‰ƒ“ƒN"
+ * @return	"ãƒ©ãƒ³ã‚¯"
  */
 //--------------------------------------------------------------
 u8 Stage_GetMineLevelRank( STAGE_SCRWORK* wk )
@@ -969,23 +969,23 @@ u8 Stage_GetMineLevelRank( STAGE_SCRWORK* wk )
 	POKEPARTY* party;
 	POKEMON_PARAM* poke;
 
-	//è‚¿ƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹‚ğæ“¾
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
 	party = SaveData_GetTemotiPokemon( wk->sv );
-	OS_Printf( "è‚¿êŠ = %d\n", wk->mine_poke_pos[0] );
+	OS_Printf( "æ‰‹æŒã¡å ´æ‰€ = %d\n", wk->mine_poke_pos[0] );
 	poke = PokeParty_GetMemberPointer( party, wk->mine_poke_pos[0] );
 	mine_lv = PokeParaGet( poke, ID_PARA_level, NULL );
 
-	OS_Printf( "level(ƒ‰ƒ“ƒN) = %d\n", (mine_lv / 10) );
+	OS_Printf( "level(ãƒ©ãƒ³ã‚¯) = %d\n", (mine_lv / 10) );
 	return ( mine_lv / 10 );
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	stage_poke_data:ƒpƒ[—”‚ğæ“¾
+ * @brief	stage_poke_data:ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°ã‚’å–å¾—
  *
- * @param	rank		ƒ‰ƒ“ƒN
+ * @param	rank		ãƒ©ãƒ³ã‚¯
  *
- * @return	"ƒŒƒxƒ‹"
+ * @return	"ãƒ¬ãƒ™ãƒ«"
  */
 //--------------------------------------------------------------
 static u8 Stage_GetStagePokeDataPowRnd( u8 rank )
@@ -996,11 +996,11 @@ static u8 Stage_GetStagePokeDataPowRnd( u8 rank )
 
 //--------------------------------------------------------------
 /**
- * @brief	stage_poke_data:AI‚ğæ“¾
+ * @brief	stage_poke_data:AIã‚’å–å¾—
  *
- * @param	wk			STAGE_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	round		ƒ‰ƒEƒ“ƒh”
- * @param	rank		ƒ‰ƒ“ƒN
+ * @param	wk			STAGE_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	round		ãƒ©ã‚¦ãƒ³ãƒ‰æ•°
+ * @param	rank		ãƒ©ãƒ³ã‚¯
  *
  * @return	"AI"
  */
@@ -1011,8 +1011,8 @@ static u16 Stage_GetStagePokeDataAI( STAGE_SCRWORK* wk, u8 round, u8 rank )
 	u16 ai;
 
 #if 0
-	//’§í‰ñ”‚Åæ“¾
-	OS_Printf( "Œ»İ‚Ì’§í‰ñ” = %d\n", wk->rensyou );
+	//æŒ‘æˆ¦å›æ•°ã§å–å¾—
+	OS_Printf( "ç¾åœ¨ã®æŒ‘æˆ¦å›æ•° = %d\n", wk->rensyou );
 	if( wk->rensyou >= 101 ){
 		ai = FR_AI_EXPERT;
 	}else if( wk->rensyou >= 31 ){
@@ -1021,7 +1021,7 @@ static u16 Stage_GetStagePokeDataAI( STAGE_SCRWORK* wk, u8 round, u8 rank )
 		ai = FR_AI_YASEI;
 	}
 #else
-	//ƒ‰ƒ“ƒN‚Å•ªŠò
+	//ãƒ©ãƒ³ã‚¯ã§åˆ†å²
 	if( (rank+1) >= 8 ){
 		ai = FR_AI_EXPERT;
 	}else if( (rank+1) >= 4 ){
@@ -1032,10 +1032,10 @@ static u16 Stage_GetStagePokeDataAI( STAGE_SCRWORK* wk, u8 round, u8 rank )
 	OS_Printf( "AI rank = %d\n", rank );
 #endif
 
-	//ƒuƒŒ[ƒ“‚ÌAIƒZƒbƒg
+	//ãƒ–ãƒ¬ãƒ¼ãƒ³æ™‚ã®AIã‚»ãƒƒãƒˆ
 	if( wk->type == STAGE_TYPE_SINGLE ){
 
-		set_pos	= (round * STAGE_ENTRY_POKE_MAX);		//ƒZƒbƒg‚·‚éˆÊ’u
+		set_pos	= (round * STAGE_ENTRY_POKE_MAX);		//ã‚»ãƒƒãƒˆã™ã‚‹ä½ç½®
 
 		if( (wk->tr_index[set_pos] == STAGE_LEADER_TR_INDEX_1ST) ||
 			(wk->tr_index[set_pos] == STAGE_LEADER_TR_INDEX_2ND) ){
@@ -1044,7 +1044,7 @@ static u16 Stage_GetStagePokeDataAI( STAGE_SCRWORK* wk, u8 round, u8 rank )
 		}
 	}
 
-	//ƒ}ƒ‹ƒ`‚ÌAIƒZƒbƒg
+	//ãƒãƒ«ãƒæ™‚ã®AIã‚»ãƒƒãƒˆ
 	if( wk->type == STAGE_TYPE_MULTI ){
 		ai = FR_AI_EXPERT;
 		OS_Printf( "MULTI AI SET\n" );
@@ -1055,11 +1055,11 @@ static u16 Stage_GetStagePokeDataAI( STAGE_SCRWORK* wk, u8 round, u8 rank )
 
 //--------------------------------------------------------------
 /**
- * @brief	§ŒÀ‚ğ‚©‚¯‚½ƒ‰ƒ“ƒN‚ğæ“¾
+ * @brief	åˆ¶é™ã‚’ã‹ã‘ãŸãƒ©ãƒ³ã‚¯ã‚’å–å¾—
  *
- * @param	rank		ƒ‰ƒ“ƒN
+ * @param	rank		ãƒ©ãƒ³ã‚¯
  *
- * @return	"§ŒÀ‚ğ‚©‚¯‚½ƒ‰ƒ“ƒN"
+ * @return	"åˆ¶é™ã‚’ã‹ã‘ãŸãƒ©ãƒ³ã‚¯"
  */
 //--------------------------------------------------------------
 static u16 Stage_GetRank( u8 rank )
@@ -1067,7 +1067,7 @@ static u16 Stage_GetRank( u8 rank )
 	u8 no;
 	no = rank;
 
-	//ƒ‰ƒ“ƒN‚Ì’l‚É§ŒÀ‚ğ‚©‚¯‚é
+	//ãƒ©ãƒ³ã‚¯ã®å€¤ã«åˆ¶é™ã‚’ã‹ã‘ã‚‹
 	if( no >= STAGE_TYPE_LEVEL_MAX ){
 		no = (STAGE_TYPE_LEVEL_MAX - 1);
 	}
@@ -1077,11 +1077,11 @@ static u16 Stage_GetRank( u8 rank )
 
 //--------------------------------------------------------------
 /**
- * @brief	"eq"‚ÌQ‰Áƒ|ƒPƒ‚ƒ“‚ğ”äŠr‚µ‚ÄAˆê”Ô‚‚¢ƒŒƒxƒ‹‚ğæ“¾
+ * @brief	"è¦ªå­"ã®å‚åŠ ãƒã‚±ãƒ¢ãƒ³ã‚’æ¯”è¼ƒã—ã¦ã€ä¸€ç•ªé«˜ã„ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
  *
- * @param	wk		FACTORY_SCRWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_SCRWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"ˆê”Ô‚‚¢ƒŒƒxƒ‹"
+ * @return	"ä¸€ç•ªé«˜ã„ãƒ¬ãƒ™ãƒ«"
  */
 //--------------------------------------------------------------
 u16 StageScr_CommGetPokeLevel( STAGE_SCRWORK* wk )
@@ -1090,11 +1090,11 @@ u16 StageScr_CommGetPokeLevel( STAGE_SCRWORK* wk )
 	POKEMON_PARAM* poke;
 	u16	level_1,level_2;
 
-	party	= SaveData_GetTemotiPokemon( wk->sv );						//è‚¿ƒp[ƒeƒBæ“¾
+	party	= SaveData_GetTemotiPokemon( wk->sv );						//æ‰‹æŒã¡ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 	poke	= PokeParty_GetMemberPointer( party, wk->mine_poke_pos[0] );
 	level_1 = PokeParaGet( poke, ID_PARA_level, NULL );
 
-	//ƒ_ƒuƒ‹‚Ì
+	//ãƒ€ãƒ–ãƒ«ã®æ™‚
 	if( Stage_GetMinePokeNum(wk->type) == 2 ){
 
 		poke	= PokeParty_GetMemberPointer( party, wk->mine_poke_pos[1] );
@@ -1108,12 +1108,12 @@ u16 StageScr_CommGetPokeLevel( STAGE_SCRWORK* wk )
 
 	}else{
 
-		//ƒ}ƒ‹ƒ`AWIFIƒ}ƒ‹ƒ`
+		//ãƒãƒ«ãƒã€WIFIãƒãƒ«ãƒ
 		if( Stage_CommCheck(wk->type) == TRUE ){
 
 			OS_Printf( "pair_poke_level[0] = %d\n", wk->pair_poke_level[0] );
 
-			//’ÊM‚É‚Íü‰ñ”‚Ì‘½‚¢‚Ù‚¤‚Å’Š‘I
+			//é€šä¿¡æ™‚ã«ã¯å‘¨å›æ•°ã®å¤šã„ã»ã†ã§æŠ½é¸
 			if( level_1 > wk->pair_poke_level[0] ){
 				return level_1;
 			}else{
@@ -1122,17 +1122,17 @@ u16 StageScr_CommGetPokeLevel( STAGE_SCRWORK* wk )
 		}
 	}
 
-	//ƒVƒ“ƒOƒ‹
+	//ã‚·ãƒ³ã‚°ãƒ«
 	return level_1;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	•½•ûª
+ * @brief	å¹³æ–¹æ ¹
  *
- * @param	param	u32‚Ì’l
+ * @param	param	u32ã®å€¤
  *
- * @return	"param‚Ì•½•ûª"
+ * @return	"paramã®å¹³æ–¹æ ¹"
  */
 //--------------------------------------------------------------
 //u32 StageScr_GetSqrt32( u32 param )

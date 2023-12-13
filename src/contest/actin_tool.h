@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	actin_tool.h
- * @brief	‰‰‹Z—Í•”–å‚ÅŽg—p‚·‚éƒc[ƒ‹—Þ
+ * @brief	æ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹ãƒ„ãƒ¼ãƒ«é¡ž
  * @author	matsuda
- * @date	2005.11.24(–Ø)
+ * @date	2005.11.24(æœ¨)
  */
 //==============================================================================
 #ifndef __ACTIN_TOOL_H__
@@ -11,11 +11,11 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///‰‰‹Z—Í•”–åƒm[ƒ}ƒ‹‰ï˜bƒƒbƒZ[ƒW‚ÌID’è‹`(¦ActinTalkMsgDataƒe[ƒuƒ‹‚Æ•À‚Ñ‚ð“¯‚¶‚É‚µ‚Ä‚¨‚­Ž–II)
+///æ¼”æŠ€åŠ›éƒ¨é–€ãƒŽãƒ¼ãƒžãƒ«ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®IDå®šç¾©(â€»ActinTalkMsgDataãƒ†ãƒ¼ãƒ–ãƒ«ã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãäº‹ï¼ï¼)
 enum{
-	A_TALK_NULL,			///<ƒƒbƒZ[ƒWŽw’è‚È‚µ
+	A_TALK_NULL,			///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æŒ‡å®šãªã—
 	
 	A_TALK_SELECT_JUDGE,
 	A_TALK_SELECT_WAZA,
@@ -62,70 +62,70 @@ enum{
 	A_TALK_EXPLAIN_02,
 	A_TALK_PRAC_APREFACE,
 	A_TALK_PRACTICE_OPENING,
-	A_TALK_SIO_WAIT,		//‚Â‚¤‚µ‚ñ@‚½‚¢‚«‚¿‚ã‚¤c
+	A_TALK_SIO_WAIT,		//ã¤ã†ã—ã‚“ã€€ãŸã„ãã¡ã‚…ã†â€¦
 };
 
-///‰ï˜bƒEƒBƒ“ƒhƒEƒXƒ‰ƒCƒh•ûŒü
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ãƒ©ã‚¤ãƒ‰æ–¹å‘
 enum{
-	TALKWIN_SLIDE_DIR_OUT,		///<‰ï˜bƒEƒBƒ“ƒhƒEƒXƒ‰ƒCƒhƒAƒEƒg
-	TALKWIN_SLIDE_DIR_IN,		///<‰ï˜bƒEƒBƒ“ƒhƒEƒXƒ‰ƒCƒhƒCƒ“
+	TALKWIN_SLIDE_DIR_OUT,		///<ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¢ã‚¦ãƒˆ
+	TALKWIN_SLIDE_DIR_IN,		///<ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³
 };
 
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹ƒ¿ƒGƒtƒFƒNƒgƒ^ƒCƒv
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«Î±ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¤ãƒ—
 enum{
-	BRDPANEL_ALPHA_TYPE_RETIRE,		///<ƒuƒŠ[ƒ_[ƒpƒlƒ‹‚ð‰B‚·
-	BRDPANEL_ALPHA_TYPE_RETURN,		///<ƒuƒŠ[ƒ_[ƒpƒlƒ‹•œ‹A
+	BRDPANEL_ALPHA_TYPE_RETIRE,		///<ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ã‚’éš ã™
+	BRDPANEL_ALPHA_TYPE_RETURN,		///<ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«å¾©å¸°
 };
 
-///‰ï˜bƒEƒBƒ“ƒhƒE‚ÌƒXƒNƒŠ[ƒ“•`‰æƒ‚[ƒh
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æç”»ãƒ¢ãƒ¼ãƒ‰
 enum{
-	TALKWIN_SCREEN_WRITE_BEFORE,	///<ƒXƒNƒ[ƒ‹‘O
-	TALKWIN_SCREEN_WRITE_AFTER,		///<ƒXƒNƒ[ƒ‹Œã
+	TALKWIN_SCREEN_WRITE_BEFORE,	///<ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‰
+	TALKWIN_SCREEN_WRITE_AFTER,		///<ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¾Œ
 };
 
-///R”»ƒŠƒAƒNƒVƒ‡ƒ“ƒAƒCƒRƒ“‚Ìƒ^ƒCƒv
+///å¯©åˆ¤ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¿ã‚¤ãƒ—
 enum{
-	JUDGE_REACTION_ICON_NOMINATION,		///<R”»Žw–¼
-	JUDGE_REACTION_ICON_WEAR,			///<Žw–¼”í‚è
-	JUDGE_REACTION_ICON_VOLTAGE,		///<ƒ{ƒ‹ƒe[ƒWƒAƒbƒv
-	JUDGE_REACTION_ICON_VOLTAGE_MAX,	///<ƒ{ƒ‹ƒe[ƒWÅ‘å
-	JUDGE_REACTION_ICON_SUFFER_BIG,		///<R”»”í‚èFƒŠƒAƒNƒVƒ‡ƒ“‚Å‚©‚¢
-	JUDGE_REACTION_ICON_SUFFER_MIDDLE,	///<R”»”í‚èFƒŠƒAƒNƒVƒ‡ƒ“’†‚­‚ç‚¢
-	JUDGE_REACTION_ICON_SUFFER_SMALL,	///<R”»”í‚èFƒŠƒAƒNƒVƒ‡ƒ“¬‚³‚¢
+	JUDGE_REACTION_ICON_NOMINATION,		///<å¯©åˆ¤æŒ‡å
+	JUDGE_REACTION_ICON_WEAR,			///<æŒ‡åè¢«ã‚Š
+	JUDGE_REACTION_ICON_VOLTAGE,		///<ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã‚¢ãƒƒãƒ—
+	JUDGE_REACTION_ICON_VOLTAGE_MAX,	///<ãƒœãƒ«ãƒ†ãƒ¼ã‚¸æœ€å¤§
+	JUDGE_REACTION_ICON_SUFFER_BIG,		///<å¯©åˆ¤è¢«ã‚Šï¼šãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã§ã‹ã„
+	JUDGE_REACTION_ICON_SUFFER_MIDDLE,	///<å¯©åˆ¤è¢«ã‚Šï¼šãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³ä¸­ãã‚‰ã„
+	JUDGE_REACTION_ICON_SUFFER_SMALL,	///<å¯©åˆ¤è¢«ã‚Šï¼šãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³å°ã•ã„
 };
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒ{ƒ‹ƒe[ƒWƒ|ƒCƒ“ƒgƒAƒjƒ—pƒ[ƒN
+///ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ç”¨ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	ACTIN_PROC_WORK *apw;		///<‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	TCB_PTR tcb;				///<ƒAƒjƒŽÀsƒ^ƒXƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u8 judge_no;				///<ƒ{ƒ‹ƒe[ƒW‚ðŠŽ‚µ‚Ä‚¢‚éR”»‚Ì”Ô†
+	ACTIN_PROC_WORK *apw;		///<æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	TCB_PTR tcb;				///<ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œã‚¿ã‚¹ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 judge_no;				///<ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ã‚’æ‰€æŒã—ã¦ã„ã‚‹å¯©åˆ¤ã®ç•ªå·
 }VOLTAGE_POINT_ANIME_WORK;
 
-///ƒRƒ“ƒeƒXƒg‚Å‹ZƒGƒtƒFƒNƒg‚ðo‚·Û‚Ìƒpƒ‰ƒ[ƒ^
+///ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã§æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™éš›ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
 	u32 waza_kouka;
-	u16 wazano;					///<‹Z”Ô†
-	u8 loop;					///<‘±‚¯‚Äo‚·‰ñ”
+	u16 wazano;					///<æŠ€ç•ªå·
+	u8 loop;					///<ç¶šã‘ã¦å‡ºã™å›žæ•°
 	u8 counter;					
-	u8 natukido;				///<‚È‚Â‚«“x
+	u8 natukido;				///<ãªã¤ãåº¦
 }CON_WAZAEFF_PARAM;
 
-///ƒuƒŠ[ƒ_[ƒpƒlƒ‹Fƒtƒ‰ƒbƒVƒ…“®ìƒ[ƒN
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ï¼šãƒ•ãƒ©ãƒƒã‚·ãƒ¥å‹•ä½œãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	PALETTE_FADE_PTR pfd;		///<ƒpƒŒƒbƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	TCB_PTR tcb;				///<ƒuƒŠ[ƒ_[ƒpƒlƒ‹ƒtƒ‰ƒbƒVƒ…ƒƒCƒ““®ìƒ^ƒXƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	s16 evy;					///<Œ»ÝEVY’l
-	u8 breeder_no;				///<ƒuƒŠ[ƒ_[”Ô†
-	u8 req;						///<TRUE:ƒŠƒNƒGƒXƒg’†AFALSE:‘Ò‹@’†
+	PALETTE_FADE_PTR pfd;		///<ãƒ‘ãƒ¬ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	TCB_PTR tcb;				///<ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãƒ¡ã‚¤ãƒ³å‹•ä½œã‚¿ã‚¹ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	s16 evy;					///<ç¾åœ¨EVYå€¤
+	u8 breeder_no;				///<ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+	u8 req;						///<TRUE:ãƒªã‚¯ã‚¨ã‚¹ãƒˆä¸­ã€FALSE:å¾…æ©Ÿä¸­
 }PANEL_FLASH_WORK;
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void AT_SoftSpriteAddAll(ACTIN_SYSTEM_PARAM *sys);
 extern void AT_SoftSpriteDelAll(ACTIN_SYSTEM_PARAM *sys);
@@ -199,7 +199,7 @@ extern void AT_TalkMessageWinClear(ACTIN_PROC_WORK *apw);
 
 
 //==============================================================================
-//	ŠO•”ƒf[ƒ^éŒ¾
+//	å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿å®£è¨€
 //==============================================================================
 extern const u8 BreederPanelScreenPalNo[];
 

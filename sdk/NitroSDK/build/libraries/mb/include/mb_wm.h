@@ -15,13 +15,13 @@
   do-indent
 
   Revision 1.4  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.3  2005/02/28 05:26:25  yosizaki
   do-indent.
 
   Revision 1.2  2004/11/24 13:01:06  takano_makoto
-  MBi_WMReset,  MBi_WMClearCallback‚ğ’Ç‰Á
+  MBi_WMReset,  MBi_WMClearCallbackã‚’è¿½åŠ 
 
   Revision 1.1  2004/11/22 12:47:52  takano_makoto
   Initial update.
@@ -52,7 +52,7 @@ extern "C" {
   MB_CALLBACK_API_ERROR,
   MB_CALLBACK_ERROR
 */
-/* MB ‚ÌƒR[ƒ‹ƒoƒbƒN‚Ég—p‚·‚éŠÖ”‚ÌŒ`® */
+/* MB ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«ä½¿ç”¨ã™ã‚‹é–¢æ•°ã®å½¢å¼ */
 typedef void (*MBWMCallbackFunc) (u16 type, void *arg);
 
 
@@ -63,15 +63,15 @@ typedef struct
     u32    *sendBuf;
     u32    *recvBuf;
     BOOL    start_mp_busy;
-    u16     sendBufSize;               // ‘—Mƒoƒbƒtƒ@‚ÌƒTƒCƒY
-    u16     recvBufSize;               // óMƒoƒbƒtƒ@‚ÌƒTƒCƒY
-    u16     pSendLen;                  // 1‰ñ‚ÌMP‚Å‚Ìq‹@‚ÌóMƒTƒCƒY
-    u16     pRecvLen;                  // 1‰ñ‚ÌMP‚Å‚Ìe‹@‚ÌóMƒTƒCƒY
+    u16     sendBufSize;               // é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+    u16     recvBufSize;               // å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+    u16     pSendLen;                  // 1å›ã®MPã§ã®å­æ©Ÿã®å—ä¿¡ã‚µã‚¤ã‚º
+    u16     pRecvLen;                  // 1å›ã®MPã§ã®è¦ªæ©Ÿã®å—ä¿¡ã‚µã‚¤ã‚º
     u16     blockSizeMax;              // 
-    u16     mpStarted;                 // MPŠJnÏ‚İƒtƒ‰ƒO
-    u16     endReq;                    // I—¹ƒŠƒNƒGƒXƒg
-    u16     child_bitmap;              // q‹@Ú‘±ó‹µ
-    u16     mpBusy;                    // MP‘—M’†ƒtƒ‰ƒO
+    u16     mpStarted;                 // MPé–‹å§‹æ¸ˆã¿ãƒ•ãƒ©ã‚°
+    u16     endReq;                    // çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+    u16     child_bitmap;              // å­æ©Ÿæ¥ç¶šçŠ¶æ³
+    u16     mpBusy;                    // MPé€ä¿¡ä¸­ãƒ•ãƒ©ã‚°
     u8      _padding[2];
 }
 MBWMWork;

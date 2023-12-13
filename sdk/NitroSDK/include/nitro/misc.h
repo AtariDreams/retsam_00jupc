@@ -18,38 +18,38 @@
   add OSi_AbortByUnsupportedRegister.
 
   Revision 1.40  2006/03/13 05:58:26  okubata_ryoma
-  ƒ}ƒNƒ‚Ì”÷C³
+  ãƒã‚¯ãƒ­ã®å¾®ä¿®æ­£
 
   Revision 1.39  2006/01/18 02:11:19  kitase_hirotake
   do-indent
 
   Revision 1.38  2005/11/07 01:55:34  okubata_ryoma
-  ”÷C³
+  å¾®ä¿®æ­£
 
   Revision 1.35  2005/11/01 05:39:01  okubata_ryoma
-  ”÷C³
+  å¾®ä¿®æ­£
 
   Revision 1.33  2005/10/19 07:49:05  okubata_ryoma
-  #pragma difine_section ‚Ìƒpƒ‰ƒ[ƒ^‚Ì‹Lq•û–@‚ÌC³
+  #pragma difine_section ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨˜è¿°æ–¹æ³•ã®ä¿®æ­£
 
   Revision 1.32  2005/07/11 05:01:41  yada
   section block is moved to section.h
 
   Revision 1.31  2005/07/05 10:55:55  yasu
-  utest.h ‚ÌƒCƒ“ƒNƒ‹[ƒhˆÊ’u‚ğŒ³‚É–ß‚·
+  utest.h ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ä½ç½®ã‚’å…ƒã«æˆ»ã™
 
   Revision 1.30  2005/07/05 09:35:49  yasu
-  nitro/utest.h ‚Ì’Ç‰Á
+  nitro/utest.h ã®è¿½åŠ 
 
   Revision 1.29  2005/04/08 09:32:06  yosizaki
   define_section VERSION.
   add several macros for embedded middleware.
 
   Revision 1.28  2005/03/04 10:07:03  yasu
-  ƒRƒ“ƒpƒCƒ‰ˆË‘¶•”•ª‚ğğŒ•ª‚¯
+  ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ä¾å­˜éƒ¨åˆ†ã‚’æ¡ä»¶åˆ†ã‘
 
   Revision 1.27  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.26  2005/02/28 05:26:02  yosizaki
   do-indent.
@@ -95,47 +95,47 @@
   SDK_INTERNAL_ERROR(...)
 
   Revision 1.13  2003/12/02 12:09:22  yasu
-  ƒAƒZƒ“ƒuƒ‰‚Ì‘g‚İ‚İƒvƒŠƒvƒƒZƒbƒT‚ª #<SPACE> ‚ğƒRƒƒ“ƒg‹‚µ‚Ä‚µ‚Ü‚¤‚±‚Æ‚Ì‘Îˆ
+  ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã®çµ„ã¿è¾¼ã¿ãƒ—ãƒªãƒ—ãƒ­ã‚»ãƒƒã‚µãŒ #<SPACE> ã‚’ã‚³ãƒ¡ãƒ³ãƒˆè¦–ã—ã¦ã—ã¾ã†ã“ã¨ã®å¯¾å‡¦
 
   Revision 1.12  2003/12/01 00:47:40  nishida_kenji
-  SDK_IFDEFCPP‚ÆSDK_ENDIFCPP‚Ì’è‹`
+  SDK_IFDEFCPPã¨SDK_ENDIFCPPã®å®šç¾©
 
   Revision 1.11  2003/11/17 01:20:28  yasu
   small bugfix
 
   Revision 1.10  2003/11/17 00:49:06  yada
-  OS_Warning() ‚Ì’è‹`ƒ~ƒX‚ğC³
+  OS_Warning() ã®å®šç¾©ãƒŸã‚¹ã‚’ä¿®æ­£
 
   Revision 1.9  2003/11/17 00:34:41  yasu
-  OS_Printf ‚È‚Ç‚ğ iris/os/printf.h ‚Ö•ª—£‚µ‚»‚ê‚ğƒCƒ“ƒNƒ‹[ƒh‚·‚é‚æ‚¤•ÏX
+  OS_Printf ãªã©ã‚’ iris/os/printf.h ã¸åˆ†é›¢ã—ãã‚Œã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ã‚ˆã†å¤‰æ›´
 
   Revision 1.8  2003/11/17 00:00:42  yada
-  OS_Printf()A OS_Warning()A OS_Panic() ‚Ìƒvƒƒgƒ^ƒCƒvéŒ¾’Ç‰Á
+  OS_Printf()ã€ OS_Warning()ã€ OS_Panic() ã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€è¿½åŠ 
 
   Revision 1.7  2003/11/14 07:54:35  yada
-  #ifdef NITRO_DEBUG   ¨  #ifdef SDK_DEBUG ‚ÉC³B
+  #ifdef NITRO_DEBUG   â†’  #ifdef SDK_DEBUG ã«ä¿®æ­£ã€‚
 
   Revision 1.6  2003/11/14 07:02:01  yada
-  ¬C³
+  å°ä¿®æ­£
 
   Revision 1.5  2003/11/14 06:58:11  yada
   (none)
 
   Revision 1.4  2003/11/14 06:51:14  yada
-  SDK_WARNING(), SDK_ASSERT(), OS_Halt(), OS_Panic() ’è‹`’Ç‰Á
+  SDK_WARNING(), SDK_ASSERT(), OS_Halt(), OS_Panic() å®šç¾©è¿½åŠ 
 
   Revision 1.3  2003/11/14 04:31:10  yada
-  SDK_WARNING(x,msg) ‚ğ’Ç‰ÁB
-  (’†g‚Í‚Ü‚¾‚È‚¢)
+  SDK_WARNING(x,msg) ã‚’è¿½åŠ ã€‚
+  (ä¸­èº«ã¯ã¾ã ãªã„)
 
   Revision 1.2  2003/11/11 08:56:31  yada
-  SDK_ASSERTMSG(x,msg) ‚ğ’Ç‰Á
+  SDK_ASSERTMSG(x,msg) ã‚’è¿½åŠ 
 
   Revision 1.1  2003/11/11 06:14:54  yada
-  osƒfƒBƒŒƒNƒgƒŠ‚©‚ç‚ÌˆÚ“®
+  osãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã‚‰ã®ç§»å‹•
 
   Revision 1.1  2003/11/11 05:46:42  yada
-  ‰”Åì¬
+  åˆç‰ˆä½œæˆ
 
 
   $NoKeywords: $
@@ -151,7 +151,7 @@ extern "C" {
 #include <nitro/os/common/printf.h>
 
 //--------------------------------------------------------------------------------
-//  C++—pƒ}ƒNƒ
+//  C++ç”¨ãƒã‚¯ãƒ­
 //
 #ifdef __cplusplus
 #define SDK_IFDEFCPP extern "C" {
@@ -175,7 +175,7 @@ extern "C" {
 #endif
 #endif // SDK_DEBUG
 
-/* ƒRƒ“ƒpƒCƒ‹ƒ`ƒFƒbƒN */
+/* ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ™‚ãƒã‚§ãƒƒã‚¯ */
 #define SDK_COMPILER_ASSERT(expr) \
     extern void sdk_compiler_assert ## __LINE__ ( char is[(expr) ? +1 : -1] )
 

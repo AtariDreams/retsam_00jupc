@@ -1,7 +1,7 @@
 //[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
 /**
  *	@file		zkn_height_gram.c
- *	@brief		ƒ|ƒPƒ‚ƒ“‚‚³@d‚³ƒAƒNƒZƒX
+ *	@brief		ãƒã‚±ãƒ¢ãƒ³é«˜ã•ã€€é‡ã•ã‚¢ã‚¯ã‚»ã‚¹
  *	@author		tomoya takahashi 
  *	@data		2006.02.02
  */
@@ -21,40 +21,40 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	‚‚³d‚³î•ñ
+//	é«˜ã•é‡ã•æƒ…å ±
 //=====================================
 typedef struct _ZKN_HEIGHT_GRAM{
 	int* p_height;
 	int* p_gram;
 
-	// •`‰æŠÖŒW
+	// æç”»é–¢ä¿‚
 	short* p_height_y;
 	short* p_height_y_poke;
 	short* p_height_scale;
@@ -63,7 +63,7 @@ typedef struct _ZKN_HEIGHT_GRAM{
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static int* LoadHeight( ARCHANDLE* p_handle, int heap );
@@ -75,11 +75,11 @@ static void LoadHeightScale_girl( ARCHANDLE* p_handle, short** p_hero, short** p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³d‚³î•ñŠi”[ƒGƒŠƒAì¬
+ *	@brief	é«˜ã•é‡ã•æƒ…å ±æ ¼ç´ã‚¨ãƒªã‚¢ä½œæˆ
  *
- *	@param	heap	g—pƒq[ƒv
+ *	@param	heap	ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
- *	@return	ƒGƒŠƒA
+ *	@return	ã‚¨ãƒªã‚¢
  */
 //-----------------------------------------------------------------------------
 ZKN_HEIGHT_GRAM_PTR ZKN_HEIGHTGRAM_Alloc( int heap )
@@ -94,9 +94,9 @@ ZKN_HEIGHT_GRAM_PTR ZKN_HEIGHTGRAM_Alloc( int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³d‚³î•ñŠi”[ƒGƒŠƒA”jŠü
+ *	@brief	é«˜ã•é‡ã•æƒ…å ±æ ¼ç´ã‚¨ãƒªã‚¢ç ´æ£„
  *
- *	@param	p_heightgram	”jŠüdata
+ *	@param	p_heightgram	ç ´æ£„data
  *
  *	@return	none
  */
@@ -111,17 +111,17 @@ void ZKN_HEIGHTGRAM_Free( ZKN_HEIGHT_GRAM_PTR p_heightgram )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³d‚³î•ñ“Ç‚İ‚İ
+ *	@brief	é«˜ã•é‡ã•æƒ…å ±èª­ã¿è¾¼ã¿
  *
- *	@param	p_heightgram	Ši”[ƒGƒŠƒA
- *	@param	type			ƒf[ƒ^ƒ^ƒCƒv
- *	@param	heap			ƒq[ƒv
+ *	@param	p_heightgram	æ ¼ç´ã‚¨ãƒªã‚¢
+ *	@param	type			ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
+ *	@param	heap			ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
  * type
- *		ZKN_HEIGHT_GRAM_TYPE_MAN,	// ålŒö’j
- *		ZKN_HEIGHT_GRAM_TYPE_GIRL,	// ålŒö—
+ *		ZKN_HEIGHT_GRAM_TYPE_MAN,	// ä¸»äººå…¬ç”·
+ *		ZKN_HEIGHT_GRAM_TYPE_GIRL,	// ä¸»äººå…¬å¥³
  *	
  */
 //-----------------------------------------------------------------------------
@@ -132,7 +132,7 @@ void ZKN_HEIGHTGRAM_Load( ZKN_HEIGHT_GRAM_PTR p_heightgram, int type, int heap )
 	
 	GF_ASSERT( p_heightgram );
 
-	// “Ç‚İ‚İÏ‚İ‚Å‚·‚æB
+	// èª­ã¿è¾¼ã¿æ¸ˆã¿ã§ã™ã‚ˆã€‚
 	GF_ASSERT(p_heightgram->p_height == NULL);
 	GF_ASSERT(p_heightgram->p_gram == NULL);
 
@@ -142,7 +142,7 @@ void ZKN_HEIGHTGRAM_Load( ZKN_HEIGHT_GRAM_PTR p_heightgram, int type, int heap )
 	p_heightgram->p_height = LoadHeight( p_handle, heap );
 	p_heightgram->p_gram = LoadGram( p_handle, heap );
 
-	// •\¦ƒpƒ‰ƒ[ƒ^
+	// è¡¨ç¤ºãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	if( type == ZKN_HEIGHT_GRAM_TYPE_MAN ){
 		LoadHeightY_man( p_handle, &p_heightgram->p_height_y, &p_heightgram->p_height_y_poke, heap );
 		LoadHeightScale_man( p_handle, &p_heightgram->p_height_scale, &p_heightgram->p_height_scale_poke, heap );
@@ -156,9 +156,9 @@ void ZKN_HEIGHTGRAM_Load( ZKN_HEIGHT_GRAM_PTR p_heightgram, int type, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³d‚³î•ñ”jŠü
+ *	@brief	é«˜ã•é‡ã•æƒ…å ±ç ´æ£„
  *
- *	@param	p_heightgram	”jŠüdata
+ *	@param	p_heightgram	ç ´æ£„data
  *
  *	@return	none
  */
@@ -186,12 +186,12 @@ void ZKN_HEIGHTGRAM_Release( ZKN_HEIGHT_GRAM_PTR p_heightgram )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³î•ñæ“¾
+ *	@brief	é«˜ã•æƒ…å ±å–å¾—
  *
- *	@param	cp_heightgram		‚‚³d‚³î•ñ
- *	@param	mons_no				ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@param	cp_heightgram		é«˜ã•é‡ã•æƒ…å ±
+ *	@param	mons_no				ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	‚‚³‚ğ10”{‚µ‚½’l
+ *	@return	é«˜ã•ã‚’10å€ã—ãŸå€¤
  */
 //-----------------------------------------------------------------------------
 int ZKN_HEIGHTGRAM_GetHeight( CONST_ZKN_HEIGHT_GRAM_PTR cp_heightgram, int mons_no )
@@ -203,12 +203,12 @@ int ZKN_HEIGHTGRAM_GetHeight( CONST_ZKN_HEIGHT_GRAM_PTR cp_heightgram, int mons_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	d‚³î•ñæ“¾
+ *	@brief	é‡ã•æƒ…å ±å–å¾—
  *
- *	@param	cp_heightgram		‚‚³d‚³î•ñ
- *	@param	mons_no				ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@param	cp_heightgram		é«˜ã•é‡ã•æƒ…å ±
+ *	@param	mons_no				ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	d‚³‚ğ10”{‚µ‚½’l
+ *	@return	é‡ã•ã‚’10å€ã—ãŸå€¤
  */
 //-----------------------------------------------------------------------------
 int ZKN_HEIGHTGRAM_GetGram( CONST_ZKN_HEIGHT_GRAM_PTR cp_heightgram, int mons_no )
@@ -220,12 +220,12 @@ int ZKN_HEIGHTGRAM_GetGram( CONST_ZKN_HEIGHT_GRAM_PTR cp_heightgram, int mons_no
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³”ä‚×@ålŒö‚Ì•\¦ƒIƒtƒZƒbƒgˆÊ’u
+ *	@brief	é«˜ã•æ¯”ã¹ã€€ä¸»äººå…¬ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
  *
- *	@param	cp_heightgram		ƒf[ƒ^ƒ[ƒN
- *	@param	mons_no				ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ *	@param	cp_heightgram		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	mons_no				ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	ƒIƒtƒZƒbƒg’l
+ *	@return	ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
  */
 //-----------------------------------------------------------------------------
 short ZKN_HEIGHTGRAM_GetHeightY_hero( CONST_ZKN_HEIGHT_GRAM_PTR cp_heightgram, int mons_no )
@@ -237,12 +237,12 @@ short ZKN_HEIGHTGRAM_GetHeightY_hero( CONST_ZKN_HEIGHT_GRAM_PTR cp_heightgram, i
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³”ä‚×@ƒ|ƒPƒ‚ƒ“‚Ì•\¦ƒIƒtƒZƒbƒgˆÊ’u
+ *	@brief	é«˜ã•æ¯”ã¹ã€€ãƒã‚±ãƒ¢ãƒ³ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆä½ç½®
  *
- *	@param	cp_heightgram	ƒf[ƒ^ƒ[ƒN
- *	@param	mons_no			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[ 
+ *	@param	cp_heightgram	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	mons_no			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ 
  *
- *	@return	ƒIƒtƒZƒbƒg’l
+ *	@return	ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
  */
 //-----------------------------------------------------------------------------
 short ZKN_HEIGHTGRAM_GetHeightY_poke( CONST_ZKN_HEIGHT_GRAM_PTR cp_heightgram, int mons_no )
@@ -254,12 +254,12 @@ short ZKN_HEIGHTGRAM_GetHeightY_poke( CONST_ZKN_HEIGHT_GRAM_PTR cp_heightgram, i
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³”ä‚×@ålŒöŠgk’l
+ *	@brief	é«˜ã•æ¯”ã¹ã€€ä¸»äººå…¬æ‹¡ç¸®å€¤
  *
- *	@param	cp_heightgram	ƒf[ƒ^ƒ[ƒN
- *	@param	mons_no			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@param	cp_heightgram	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	mons_no			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *	
- *	@return	Šgk’l
+ *	@return	æ‹¡ç¸®å€¤
  */
 //-----------------------------------------------------------------------------
 short ZKN_HEIGHTGRAM_GetHeightScale_hero( CONST_ZKN_HEIGHT_GRAM_PTR cp_heightgram, int mons_no )
@@ -271,12 +271,12 @@ short ZKN_HEIGHTGRAM_GetHeightScale_hero( CONST_ZKN_HEIGHT_GRAM_PTR cp_heightgra
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³”ä‚×@ƒ|ƒPƒ‚ƒ“Šgk’l
+ *	@brief	é«˜ã•æ¯”ã¹ã€€ãƒã‚±ãƒ¢ãƒ³æ‹¡ç¸®å€¤
  *
- *	@param	cp_heightgram	ƒf[ƒ^ƒ[ƒN
- *	@param	mons_no			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@param	cp_heightgram	ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
+ *	@param	mons_no			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *	
- *	@return	Šgk’l
+ *	@return	æ‹¡ç¸®å€¤
  */
 //-----------------------------------------------------------------------------
 short ZKN_HEIGHTGRAM_GetHeightScale_poke( CONST_ZKN_HEIGHT_GRAM_PTR cp_heightgram, int mons_no )
@@ -294,11 +294,11 @@ short ZKN_HEIGHTGRAM_GetHeightScale_poke( CONST_ZKN_HEIGHT_GRAM_PTR cp_heightgra
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³ƒf[ƒ^“Ç‚İ‚İ
+ *	@brief	é«˜ã•ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	heap	ƒq[ƒv
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
- *	@return	“Ç‚İ‚İƒf[ƒ^
+ *	@return	èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static int* LoadHeight( ARCHANDLE* p_handle, int heap )
@@ -313,11 +313,11 @@ static int* LoadHeight( ARCHANDLE* p_handle, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	d‚³ƒf[ƒ^“Ç‚İ‚İ
+ *	@brief	é‡ã•ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	heap	ƒq[ƒv
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
- *	@return	“Ç‚İ‚İƒf[ƒ^
+ *	@return	èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static int* LoadGram( ARCHANDLE* p_handle, int heap )
@@ -331,11 +331,11 @@ static int* LoadGram( ARCHANDLE* p_handle, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³•\¦YÀ•W”z—ñ
+ *	@brief	é«˜ã•è¡¨ç¤ºæ™‚Yåº§æ¨™é…åˆ—
  *
- *	@param	p_hero		ålŒö
- *	@param	p_poke		ƒ|ƒPƒ‚ƒ“
- *	@param	heap		ƒq[ƒv
+ *	@param	p_hero		ä¸»äººå…¬
+ *	@param	p_poke		ãƒã‚±ãƒ¢ãƒ³
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -349,11 +349,11 @@ static void LoadHeightY_man( ARCHANDLE* p_handle, short** p_hero, short** p_poke
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³•\¦YÀ•W”z—ñ
+ *	@brief	é«˜ã•è¡¨ç¤ºæ™‚Yåº§æ¨™é…åˆ—
  *
- *	@param	p_hero		ålŒö
- *	@param	p_poke		ƒ|ƒPƒ‚ƒ“
- *	@param	heap		ƒq[ƒv
+ *	@param	p_hero		ä¸»äººå…¬
+ *	@param	p_poke		ãƒã‚±ãƒ¢ãƒ³
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -366,11 +366,11 @@ static void LoadHeightY_girl( ARCHANDLE* p_handle, short** p_hero, short** p_pok
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³•\¦Šgk’l”z—ñ
+ *	@brief	é«˜ã•è¡¨ç¤ºæ™‚æ‹¡ç¸®å€¤é…åˆ—
  *
- *	@param	p_hero		ålŒö
- *	@param	p_poke		ƒ|ƒPƒ‚ƒ“
- *	@param	heap		ƒq[ƒv
+ *	@param	p_hero		ä¸»äººå…¬
+ *	@param	p_poke		ãƒã‚±ãƒ¢ãƒ³
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -383,11 +383,11 @@ static void LoadHeightScale_man( ARCHANDLE* p_handle, short** p_hero, short** p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚‚³•\¦Šgk’l”z—ñ
+ *	@brief	é«˜ã•è¡¨ç¤ºæ™‚æ‹¡ç¸®å€¤é…åˆ—
  *
- *	@param	p_hero		ålŒö
- *	@param	p_poke		ƒ|ƒPƒ‚ƒ“
- *	@param	heap		ƒq[ƒv
+ *	@param	p_hero		ä¸»äººå…¬
+ *	@param	p_poke		ãƒã‚±ãƒ¢ãƒ³
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */

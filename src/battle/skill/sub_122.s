@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_122.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			ƒeƒŒƒ|[ƒg”­“®ƒV[ƒPƒ“ƒX
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ãƒ†ãƒ¬ãƒãƒ¼ãƒˆç™ºå‹•ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *@author	HisashiSogabe
  *@data		2006.02.02
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_122:
-	//2vs2–ì¶‚Í¸”s
+	//2vs2é‡ç”Ÿã¯å¤±æ•—
 	IF			IF_FLAG_EQ,BUF_PARA_FIGHT_TYPE,FIGHT_TYPE_2vs2_YASEI,Umakukimaran
 	TELEPORT	Umakukimaran
 	GOSUB		SUB_SEQ_WAZA_OUT_EFF

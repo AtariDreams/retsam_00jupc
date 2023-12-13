@@ -21,7 +21,7 @@
   add wbt.h
 
   Revision 1.87  2006/03/02 10:20:34  okubata_ryoma
-  vib.h‚Ì’Ç‰Á
+  vib.hã®è¿½åŠ 
 
   Revision 1.86  2006/01/18 02:11:30  kitase_hirotake
   do-indent
@@ -33,43 +33,43 @@
   add std.h
 
   Revision 1.83  2005/07/05 10:55:55  yasu
-  utest.h ‚ÌƒCƒ“ƒNƒ‹[ƒhˆÊ’u‚ğŒ³‚É–ß‚·
+  utest.h ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ä½ç½®ã‚’å…ƒã«æˆ»ã™
 
   Revision 1.82  2005/07/05 09:36:29  yasu
-  utest.h ‚Ì misc.h ‚Ö‚ÌˆÚ“®
+  utest.h ã® misc.h ã¸ã®ç§»å‹•
 
   Revision 1.81  2005/06/24 02:20:13  yasu
-  utest ’Ç‰Á
+  utest è¿½åŠ 
 
   Revision 1.80  2005/06/23 12:16:01  yasu
-  SDK_LITTLE_ENDIAN ’è‹`‚Ì’Ç‰Á
+  SDK_LITTLE_ENDIAN å®šç¾©ã®è¿½åŠ 
 
   Revision 1.79  2005/02/24 08:29:20  yasu
-  ƒtƒH[ƒ}ƒbƒgC³
+  ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆä¿®æ­£
 
   Revision 1.78  2005/02/21 00:33:02  yasu
-  ŒµŠi‚ÈŒ^ƒ`ƒFƒbƒN‚É‘Î‰
+  å³æ ¼ãªå‹ãƒã‚§ãƒƒã‚¯ã«å¯¾å¿œ
 
   Revision 1.77  2005/02/18 08:42:35  yasu
-  ‘¶İ‚µ‚È‚¢ƒ}ƒNƒ•Ï”‚É‘Î‚·‚éŒx‚Ö‚Ì‘Îˆ
+  å­˜åœ¨ã—ãªã„ãƒã‚¯ãƒ­å¤‰æ•°ã«å¯¾ã™ã‚‹è­¦å‘Šã¸ã®å¯¾å‡¦
 
   Revision 1.76  2005/02/16 23:51:41  terui
   Update copyright.
 
   Revision 1.75  2005/02/16 10:33:41  terui
-  wvr.h ‚ğ’Ç‰ÁB
+  wvr.h ã‚’è¿½åŠ ã€‚
 
   Revision 1.74  2004/12/14 13:13:12  takano_makoto
-  fx_rand.h‚ğmath/rand.h‚ÖˆÚ“®
+  fx_rand.hã‚’math/rand.hã¸ç§»å‹•
 
   Revision 1.73  2004/12/14 10:51:38  seiki_masashi
-  MATH ƒWƒƒƒ“ƒ‹‚ğ’Ç‰Á
+  MATH ã‚¸ãƒ£ãƒ³ãƒ«ã‚’è¿½åŠ 
 
   Revision 1.72  2004/12/13 07:45:25  takano_makoto
-  fx/fx_rand.h‚ğ’Ç‰Á
+  fx/fx_rand.hã‚’è¿½åŠ 
 
   Revision 1.71  2004/11/10 13:14:18  takano_makoto
-  mb.h‚ğ’Ç‰Á
+  mb.hã‚’è¿½åŠ 
 
   Revision 1.70  2004/10/20 06:18:04  terui
   Add include <nitro/hw/common/lcd.h>
@@ -108,16 +108,16 @@
   add SDK_ASM
 
   Revision 1.58  2004/03/10 05:38:14  yada
-  ARM7‚É spi.h ‚ğ’Ç‰Á
+  ARM7ã« spi.h ã‚’è¿½åŠ 
 
   Revision 1.57  2004/02/18 07:05:36  nishida_kenji
   Add gx_sp.h.
 
   Revision 1.56  2004/02/18 01:23:52  yada
-  pad ˆÚ“®, exi Vİ
+  pad ç§»å‹•, exi æ–°è¨­
 
   Revision 1.55  2004/02/17 09:22:39  yada
-  pad.h ‚ğ ARM7/9 —¼•û‚ªƒCƒ“ƒNƒ‹[ƒh‚·‚é‚æ‚¤‚É‚µ‚½
+  pad.h ã‚’ ARM7/9 ä¸¡æ–¹ãŒã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.54  2004/02/14 06:43:55  yasu
   add pxi.h
@@ -135,7 +135,7 @@
   new location of include files ARM9/ARM7
 
   Revision 1.49  2004/02/10 01:21:33  yada
-  mi/*.h ‚ª‘‚¦‚Ä‚«‚½‚Ì‚Å mi.h ‚É“Z‚ß‚é
+  mi/*.h ãŒå¢—ãˆã¦ããŸã®ã§ mi.h ã«çºã‚ã‚‹
 
   Revision 1.48  2004/02/05 07:09:03  yasu
   change SDK prefix iris -> nitro
@@ -155,103 +155,103 @@
   integrate g3x.h and g3x_status.h
 
   Revision 1.43  2003/12/12 01:27:14  yada
-  include‚Ì–¼Ì•ÏX(os/system.h ‚Æ hw/armArch.h) ‚É‚æ‚éC³
+  includeã®åç§°å¤‰æ›´(os/system.h ã¨ hw/armArch.h) ã«ã‚ˆã‚‹ä¿®æ­£
 
   Revision 1.42  2003/12/10 00:16:12  nishida_kenji
   fx_sincos.h -> fx_trig.h
 
   Revision 1.41  2003/12/09 08:35:44  yasu
-  ƒƒ‚ƒŠƒ}ƒbƒvü‚è‚ğüV@memorymap.h ‚Ì’Ç‰Á
+  ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—å‘¨ã‚Šã‚’åˆ·æ–°ã€€memorymap.h ã®è¿½åŠ 
 
   Revision 1.40  2003/12/08 12:17:50  yada
-  ƒCƒ“ƒNƒ‹[ƒh‚·‚éƒtƒ@ƒCƒ‹‚ğMemoryMap.h‚©‚ç mmap_global.h‚É•ÏX
+  ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’MemoryMap.hã‹ã‚‰ mmap_global.hã«å¤‰æ›´
 
   Revision 1.39  2003/11/29 08:52:43  nishida_kenji
   g2util.h
 
   Revision 1.38  2003/11/28 01:55:51  yada
-  REDSDK‚Ì03-11-27”½‰f
+  REDSDKã®03-11-27åæ˜ 
 
   Revision 1.37  2003/11/25 07:04:43  nishida_kenji
-  gx_capture.h‚Ì’Ç‰Á
+  gx_capture.hã®è¿½åŠ 
 
   Revision 1.36  2003/11/25 05:52:58  yada
-  os.h ‰ñ‚è•ÏX
+  os.h å›ã‚Šå¤‰æ›´
 
   Revision 1.35  2003/11/25 02:22:58  nishida_kenji
-  gx_bgcnt.h‚ğ’Ç‰Á
+  gx_bgcnt.hã‚’è¿½åŠ 
 
   Revision 1.34  2003/11/25 00:58:50  nishida_kenji
-  gx_vramcnt.h‚ğ’Ç‰Á
+  gx_vramcnt.hã‚’è¿½åŠ 
 
   Revision 1.33  2003/11/21 09:54:10  nishida_kenji
-  g3util.h‚Ì’Ç‰Á
+  g3util.hã®è¿½åŠ 
 
   Revision 1.32  2003/11/21 08:14:50  nishida_kenji
-  g3x_status.h‚Ì’Ç‰Á
+  g3x_status.hã®è¿½åŠ 
 
   Revision 1.31  2003/11/18 11:17:59  nishida_kenji
   fx_cp.h, fx_vec.h fx_mtx.h
 
   Revision 1.30  2003/11/17 00:35:17  nishida_kenji
-  fx’Ç‰Á
+  fxè¿½åŠ 
 
   Revision 1.29  2003/11/14 12:05:05  nishida_kenji
-  fx_const.h’Ç‰Á
+  fx_const.hè¿½åŠ 
 
   Revision 1.28  2003/11/14 10:54:14  nishida_kenji
-  fx.h‚Ì’Ç‰Á
+  fx.hã®è¿½åŠ 
 
   Revision 1.27  2003/11/14 06:05:41  nishida_kenji
-  G3R‚Ì”p~
+  G3Rã®å»ƒæ­¢
 
   Revision 1.26  2003/11/13 11:25:47  nishida_kenji
-  gxsincos.h’Ç‰Á
+  gxsincos.hè¿½åŠ 
 
   Revision 1.25  2003/11/12 12:25:25  yasu
-  base.h -> crt0.h ‚Ö‚Ì•ÏX
+  base.h -> crt0.h ã¸ã®å¤‰æ›´
 
   Revision 1.24  2003/11/12 08:56:13  yasu
-  typo C³
+  typo ä¿®æ­£
 
   Revision 1.23  2003/11/11 12:48:00  yada
-  systemCall.h ‚ğƒCƒ“ƒNƒ‹[ƒh‚·‚é‚æ‚¤‚É‚µ‚½
+  systemCall.h ã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.22  2003/11/11 06:16:38  yada
-  misc.h ‚ğ’Ç‰Á
+  misc.h ã‚’è¿½åŠ 
 
   Revision 1.21  2003/11/11 06:08:06  nishida_kenji
-  fixed.h‚Ævec.h‚Ìœ‹
+  fixed.hã¨vec.hã®é™¤å»
 
   Revision 1.20  2003/11/10 09:02:02  yada
-  base/base.h ‚ğƒCƒ“ƒNƒ‹[ƒh‚·‚é‚æ‚¤‚É‚µ‚½
+  base/base.h ã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.19  2003/11/10 05:53:23  nishida_kenji
-  g2oam.h’Ç‰Á
+  g2oam.hè¿½åŠ 
 
   Revision 1.18  2003/11/05 07:20:41  yasu
-  hw/ -> iris/hw ‚É•ÏX
+  hw/ -> iris/hw ã«å¤‰æ›´
 
   Revision 1.17  2003/11/05 01:44:14  yada
-  spinlock¨spinLock
+  spinlockâ†’spinLock
 
   Revision 1.16  2003/11/05 01:29:00  Nishida_Kenji
-  ƒXƒyƒ‹ƒ~ƒXC³
+  ã‚¹ãƒšãƒ«ãƒŸã‚¹ä¿®æ­£
 
   Revision 1.15  2003/11/05 01:07:20  yada
-  spinlock¨spinLock
+  spinlockâ†’spinLock
 
   Revision 1.14  2003/11/04 10:39:10  Nishida_Kenji
-  ioreg’Ç‰Á
+  ioregè¿½åŠ 
 
   Revision 1.13  2003/11/04 09:26:26  yada
   (none)
 
   Revision 1.12  2003/11/04 09:25:15  yada
-  hw ‚ÌƒCƒ“ƒNƒ‹[ƒh‚ğ’Ç‰Á
+  hw ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã‚’è¿½åŠ 
 
   Revision 1.11  2003/11/04 09:23:22  yada
-  cp,mi,os,pad ‚ÌƒCƒ“ƒNƒ‹[ƒhî•ñ‚ğ’Ç‰ÁB
+  cp,mi,os,pad ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰æƒ…å ±ã‚’è¿½åŠ ã€‚
 
   Revision 1.10  2003/10/31 10:57:36  Nishida_Kenji
   iris/gx/gx.h
@@ -263,19 +263,19 @@
   g3r.h
 
   Revision 1.7  2003/10/30 10:45:12  Nishida_Kenji
-  gx‚ÌˆÚ“®
+  gxã®ç§»å‹•
 
   Revision 1.6  2003/10/30 09:53:02  Nishida_Kenji
   g3x.h
 
   Revision 1.5  2003/10/30 05:07:47  Nishida_Kenji
-  g3imm.h‚Ì’Ç‰Á
+  g3imm.hã®è¿½åŠ 
 
   Revision 1.4  2003/10/30 02:12:04  Nishida_Kenji
   iris/g3b.h iris/g3c.h
 
   Revision 1.3  2003/10/30 01:24:47  Nishida_Kenji
-  ƒCƒ“ƒNƒ‹[ƒh‚·‚éƒtƒ@ƒCƒ‹‚ğ’Ç‰Á
+  ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ 
 
   Revision 1.2  2003/10/28 11:36:51  Nishida_Kenji
   changed the header of this file

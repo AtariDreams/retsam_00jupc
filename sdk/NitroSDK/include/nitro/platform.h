@@ -31,54 +31,54 @@
 
 
 /*****************************************************************************/
-/* ���ʂ̒�` */
+/* 共通の定義 */
 
-/* �G���f�B�A���܂��̓r�b�g�����̒�` */
+/* エンディアンまたはビット順序の定義 */
 #define PLATFORM_ENDIAN_BIG     0
 #define PLATFORM_ENDIAN_LITTLE  1
 
 
 /*****************************************************************************/
-/* �v���b�g�t�H�[���ŗL�̒�` */
+/* プラットフォーム固有の定義 */
 
-/* �G���f�B�A�� (PLATFORM_ENDIAN_*) */
+/* エンディアン (PLATFORM_ENDIAN_*) */
 #define PLATFORM_BYTES_ENDIAN           PLATFORM_ENDIAN_LITTLE
 
-/* �f�[�^�A�N�Z�X���ɃA�N�Z�X���ł̋��E�������K�v�Ȃ� 1, �����łȂ��Ȃ� 0 */
+/* データアクセス時にアクセス幅での境界整合が必要なら 1, そうでないなら 0 */
 #define PLATFORM_BYTES_ALIGN            1
 
-/* �v���O�������ӎ�����K�v�̂���L���b�V�����C���̃T�C�Y (�s�v�Ȃ�1) */
+/* プログラムが意識する必要のあるキャッシュラインのサイズ (不要なら1) */
 #define PLATFORM_CACHE_SIZE             32
 
-/* �L���b�V�����C���̋��E�������K�v�ȕϐ��Ɏw�肷��C���q (�s�v�Ȃ��̒�`) */
+/* キャッシュラインの境界整合が必要な変数に指定する修飾子 (不要なら空の定義) */
 #define PLATFORM_ATTRIBUTE_CACHEALIGN   ATTRIBUTE_ALIGN(32)
 
-/* �u���b�N�̐擪�ŌĂяo���\�Ȋ��荞�݋֎~�֐� */
+/* ブロックの先頭で呼び出し可能な割り込み禁止関数 */
 #define PLATFORM_ENTER_CRITICALSECTION()    OSIntrMode bak_interrupt_mode_ = OS_DisableInterrupts()
 
-/* ��L�֐��Ƒ΂ɂȂ銄�荞�݉����֐� */
+/* 上記関数と対になる割り込み解除関数 */
 #define PLATFORM_LEAVE_CRITICALSECTION()    (void)OS_RestoreInterrupts(bak_interrupt_mode_)
 
 
 /*****************************************************************************/
-/* �����n�ŗL�̒�` */
+/* 処理系固有の定義 */
 
 #if	defined(SDK_CW) || defined(__MWERKS__)
 
-/* �r�b�g�t�B�[���h���l�߂��鏇�� (PLATFORM_ENDIAN_*) */
+/* ビットフィールドが詰められる順序 (PLATFORM_ENDIAN_*) */
 #define PLATFORM_BITFIELDS_ENDIAN       PLATFORM_ENDIAN_LITTLE
 
-/* �R���p�C�����̐���������}�N�� */
+/* コンパイル時の正当性判定マクロ */
 #define PLATFORM_COMPILER_ASSERT(expr) \
     extern void platform_compiler_assert ## __LINE__ (char is[(expr) ? +1 : -1])
 
 /*
- * �\���̂��ő僁���o�T�C�Y���傫�Ȓl�Ńp�f�B���O����Ȃ��悤
- * �����I�ɍ\���̒�`�� } �ȍ~�֎w�肷��C���q.
+ * 構造体が最大メンバサイズより大きな値でパディングされないよう
+ * 明示的に構造体定義の } 以降へ指定する修飾子.
  */
 #define PLATFORM_STRUCT_PADDING_FOOTER
 
-/* �֐��̃C�����C���w��q */
+/* 関数のインライン指定子 */
 #define PLATFORM_ATTRIBUTE_INLINE       SDK_INLINE
 
 
@@ -88,53 +88,53 @@
 
 
 /*****************************************************************************/
-/* ���ʂ̌^��` */
+/* 共通の型定義 */
 
 /*
- * �T�C�Y�w�萮���\����.
+ * サイズ指定整数構造体.
  *
- * �����͊O���f�o�C�X��ʐM�H���o�R���Č�������鐮���f�[�^�ɑ΂���
- * �s�p�ӂȒ��ڃA�N�Z�X�̋֎~��\������ړI�őg�ݍ��݌^�̂����Ɏg�p�����.
- * �g�ݍ��݌^���炱�̍\���̂֊i�[����ۂɂ� MI_Store* �Ȃǂ̊֐���,
- * ���̍\���̂���l���Q�Ƃ���ۂɂ� MI_Load* �Ȃǂ̊֐����g�p����.
+ * これらは外部デバイスや通信路を経由して交換される整数データに対して
+ * 不用意な直接アクセスの禁止を表明する目的で組み込み型のかわりに使用される.
+ * 組み込み型からこの構造体へ格納する際には MI_Store* などの関数を,
+ * この構造体から値を参照する際には MI_Load* などの関数を使用する.
  */
 
-/* 8bit ���g���G���f�B�A���^ */
+/* 8bit リトルエンディアン型 */
 typedef struct PLATFORM_LE8
 {
     unsigned char byte[1];
 }
 PLATFORM_STRUCT_PADDING_FOOTER PLATFORM_LE8;
 
-/* 16bit ���g���G���f�B�A���^ */
+/* 16bit リトルエンディアン型 */
 typedef struct PLATFORM_LE16
 {
     unsigned char byte[2];
 }
 PLATFORM_STRUCT_PADDING_FOOTER PLATFORM_LE16;
 
-/* 32bit ���g���G���f�B�A���^ */
+/* 32bit リトルエンディアン型 */
 typedef struct PLATFORM_LE32
 {
     unsigned char byte[4];
 }
 PLATFORM_STRUCT_PADDING_FOOTER PLATFORM_LE32;
 
-/* 8bit �r�b�O�G���f�B�A���^ */
+/* 8bit ビッグエンディアン型 */
 typedef struct PLATFORM_BE8
 {
     unsigned char byte[1];
 }
 PLATFORM_STRUCT_PADDING_FOOTER PLATFORM_BE8;
 
-/* 16bit �r�b�O�G���f�B�A���^ */
+/* 16bit ビッグエンディアン型 */
 typedef struct PLATFORM_BE16
 {
     unsigned char byte[2];
 }
 PLATFORM_STRUCT_PADDING_FOOTER PLATFORM_BE16;
 
-/* 32bit �r�b�O�G���f�B�A���^ */
+/* 32bit ビッグエンディアン型 */
 typedef struct PLATFORM_BE32
 {
     unsigned char byte[4];

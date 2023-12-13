@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_235.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			235�@�o�o���c�肪���Ȃ��قǈЗ͂������Ȃ�B�З͗ʁi40�A50�A60�A80�A200�j����86
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			235　ＰＰが残りが少ないほど威力が高くなる。威力量（40、50、60、80、200）平均86
  *
  *@author	HisashiSogabe
  *@data		2005.10.03

@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_104.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			104�@�R��A���œG���U������A�U������������x�Ƀ_���[�W�͑傫���Ȃ�i�P�O�A�Q�O�A�R�O�j�A
- *				 �P�x�U�����O���ƋZ�͂����Ŏ~�܂�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			104　３回連続で敵を攻撃する、攻撃が命中する度にダメージは大きくなる（１０、２０、３０）、
+ *				 １度攻撃が外れると技はそこで止まる
  *
  *@author	HisashiSogabe
  *@data		2006.01.24
@@ -17,9 +17,9 @@
 
 BE_104:
 	RENZOKU			3,TRIPLEKICK_HIT_OFF
-	//ServerWazaOutAfterMessage�̃^�C�v�����[�v�p�ɂ���
+	//ServerWazaOutAfterMessageのタイプをループ用にする
 	VALUE			VAL_SET,BUF_PARA_SWOAM_TYPE,SWOAM_LOOP
-	//�P�O�������Ă���
+	//１０ずつあげていく
 	VALUE			VAL_ADD,BUF_PARA_DAMAGE_POWER,10
 	CRITICAL_CHECK
 	DAMAGE_CALC

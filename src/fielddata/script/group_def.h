@@ -1,8 +1,8 @@
 #ifndef _GROUP_DEF_H_
 #define _GROUP_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_GROUP		(9300)
-#define	SCRID_GROUP_DATA_MAX		(1)		//最大数
+#define	SCRID_GROUP_DATA_MAX		(1)		//譛螟ｧ謨ｰ
 
 #endif //_GROUP_DEF_H_

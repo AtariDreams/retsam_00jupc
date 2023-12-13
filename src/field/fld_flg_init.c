@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	fld_flg_init.c
- * @brief	ƒtƒB[ƒ‹ƒhˆÚ“®‚Å‚Ìƒtƒ‰ƒOƒIƒtE’lƒNƒŠƒA‚Æ‚©i‹C•t‚¢‚½‚â‚Â‚¾‚¯“ü‚ê‚Æ‚«‚Ü‚·j
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç§»å‹•ã§ã®ãƒ•ãƒ©ã‚°ã‚ªãƒ•ãƒ»å€¤ã‚¯ãƒªã‚¢ã¨ã‹ï¼ˆæ°—ä»˜ã„ãŸã‚„ã¤ã ã‘å…¥ã‚Œã¨ãã¾ã™ï¼‰
  * @date	2006.05.23
  * @author	Nozomu Saito
  *
@@ -28,14 +28,14 @@ static BOOL FldFlgInit_FnoteMapChgDataSet( FIELDSYS_WORK * fsys );
 
 //----------------------------------------------------------------------------
 /**
- * @brief	–]‰“‹¾ƒ‚[ƒh‚ÌƒZƒbƒg
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	flag		TRUE‚Ì‚Æ‚«A–]‰“‹¾ƒ‚[ƒh‚ÉƒZƒbƒg
+ * @brief	æœ›é é¡ãƒ¢ãƒ¼ãƒ‰ã®ã‚»ãƒƒãƒˆ
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag		TRUEã®ã¨ãã€æœ›é é¡ãƒ¢ãƒ¼ãƒ‰ã«ã‚»ãƒƒãƒˆ
  *
- * ‚ ‚éƒ}ƒbƒv‚©‚ç‘¼‚Ìƒ}ƒbƒv‚ğŒ©‚¹‚½‚¢‚¾‚¯‚Ìê‡‚Ì‚Æ‚«‚ÉA
- * Šeíƒtƒ‰ƒO‚ÌXV‚ğƒtƒbƒN‚·‚é•K—v‚ª‚ ‚éB‚»‚Ìê‡‚ÍA
- * ƒCƒxƒ“ƒgŠJn‚É‚±‚ÌŠÖ”‚ğg‚Á‚Ä–]‰“‹¾ƒ‚[ƒh‚ÉˆÚs‚µA
- * ƒ}ƒbƒv‘JˆÚ‚ªI‚í‚Á‚½‚ç–]‰“‹¾ƒ‚[ƒh‚ğI—¹‚·‚éB
+ * ã‚ã‚‹ãƒãƒƒãƒ—ã‹ã‚‰ä»–ã®ãƒãƒƒãƒ—ã‚’è¦‹ã›ãŸã„ã ã‘ã®å ´åˆã®ã¨ãã«ã€
+ * å„ç¨®ãƒ•ãƒ©ã‚°ã®æ›´æ–°ã‚’ãƒ•ãƒƒã‚¯ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚ãã®å ´åˆã¯ã€
+ * ã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹æ™‚ã«ã“ã®é–¢æ•°ã‚’ä½¿ã£ã¦æœ›é é¡ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œã—ã€
+ * ãƒãƒƒãƒ—é·ç§»ãŒçµ‚ã‚ã£ãŸã‚‰æœ›é é¡ãƒ¢ãƒ¼ãƒ‰ã‚’çµ‚äº†ã™ã‚‹ã€‚
  */
 //----------------------------------------------------------------------------
 void FldFlg_SetScopeMode(FIELDSYS_WORK * fsys, BOOL flag)
@@ -45,9 +45,9 @@ void FldFlg_SetScopeMode(FIELDSYS_WORK * fsys, BOOL flag)
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒtƒ‰ƒO‰Šú‰»F•à‚¢‚Äƒ][ƒ“‚ğ‚Ü‚½‚¢‚¾‚Æ‚«i•K‚¸ŒÄ‚Î‚ê‚éj
+ * @brief	ãƒ•ãƒ©ã‚°åˆæœŸåŒ–ï¼šæ­©ã„ã¦ã‚¾ãƒ¼ãƒ³ã‚’ã¾ãŸã„ã ã¨ãï¼ˆå¿…ãšå‘¼ã°ã‚Œã‚‹ï¼‰
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
@@ -55,36 +55,36 @@ void FldFlg_SetScopeMode(FIELDSYS_WORK * fsys, BOOL flag)
 //-----------------------------------------------------------------------------
 void FldFlgInit_Walk(FIELDSYS_WORK * fsys)
 {
-	//--–`Œ¯ƒm[ƒg—pXVˆ—
+	//--å†’é™ºãƒãƒ¼ãƒˆç”¨æ›´æ–°å‡¦ç†
 	FldFlgInit_FnoteTownDataSet( fsys );
 
-	//©“]ÔƒQ[ƒg’Ê‰ß‚µ‚½ƒtƒ‰ƒO‚ÌƒNƒŠƒA(ƒQ[ƒg“à‚Å‚Ì‚İ—LŒø)
+	//è‡ªè»¢è»Šã‚²ãƒ¼ãƒˆé€šéã—ãŸãƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢(ã‚²ãƒ¼ãƒˆå†…ã§ã®ã¿æœ‰åŠ¹)
 	SysFlag_BicycleGatePassage( SaveData_GetEventWork(fsys->savedata), SYSFLAG_MODE_RESET );
 
-	//‚©‚¢‚è‚«ƒtƒ‰ƒO‚ÌƒNƒŠƒA
+	//ã‹ã„ã‚Šããƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢
 	SysFlag_KairikiReset( SaveData_GetEventWork(fsys->savedata) );
-	//“’…ƒtƒ‰ƒO‚ÌƒZƒbƒg
+	//åˆ°ç€ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
 	ARRIVEDATA_SetArriveFlag(fsys, fsys->location->zone_id);
-	//ƒr[ƒhƒƒNƒŠƒA
+	//ãƒ“ãƒ¼ãƒ‰ãƒ­ã‚¯ãƒªã‚¢
 	EncDataSave_SetVidro( EncDataSave_GetSaveDataPtr(fsys->savedata), VIDRO_NONE );
-	//ƒGƒ“ƒJƒEƒ“ƒg•à”ƒNƒŠƒA
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæ­©æ•°ã‚¯ãƒªã‚¢
 	fsys->encount.walk_count = 0;
-	//ƒTƒtƒ@ƒŠ‚É‚¢‚È‚¢‚Æ‚«‚Ìˆ—
+	//ã‚µãƒ•ã‚¡ãƒªã«ã„ãªã„ã¨ãã®å‡¦ç†
 	if ( !SysFlag_SafariCheck(SaveData_GetEventWork(fsys->savedata)) ){
-		//ˆÚ“®ƒ|ƒPƒ‚ƒ“ˆ—(ƒTƒtƒ@ƒŠ“àƒ][ƒ“Ø‚è‘Ö‚¦‚Ì‚Æ‚«‚Í—š—ğ‚ğÏ‚Ü‚È‚¢)
+		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å‡¦ç†(ã‚µãƒ•ã‚¡ãƒªå†…ã‚¾ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã®ã¨ãã¯å±¥æ­´ã‚’ç©ã¾ãªã„)
 		ENC_SV_PTR data;
 		data = EncDataSave_GetSaveDataPtr(fsys->savedata);
-		MP_UpdatePlayerZoneHist(data, fsys->location->zone_id);		//ƒ][ƒ“—š—ğ‚ğXV
-		//•à‚¢‚ÄˆÚ“®‚µ‚½ê‡‚ÍˆÚ“®ƒ|ƒPƒ‚ƒ“‚ÌˆÚ“®ˆ—
-		MP_MovePokemonNeighboring(data);//ˆÚ“®ƒ|ƒPƒ‚ƒ“—×ÚˆÚ“®
+		MP_UpdatePlayerZoneHist(data, fsys->location->zone_id);		//ã‚¾ãƒ¼ãƒ³å±¥æ­´ã‚’æ›´æ–°
+		//æ­©ã„ã¦ç§»å‹•ã—ãŸå ´åˆã¯ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã®ç§»å‹•å‡¦ç†
+		MP_MovePokemonNeighboring(data);//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³éš£æ¥ç§»å‹•
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒtƒ‰ƒO‰Šú‰»FƒƒCƒv‚Ì‚Í‚¢‚éƒ}ƒbƒvƒWƒƒƒ“ƒv‚Ì‚Æ‚«(•K‚¸ŒÄ‚Î‚ê‚é)
+ * @brief	ãƒ•ãƒ©ã‚°åˆæœŸåŒ–ï¼šãƒ¯ã‚¤ãƒ—ã®ã¯ã„ã‚‹ãƒãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—ã®ã¨ã(å¿…ãšå‘¼ã°ã‚Œã‚‹)
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
@@ -93,41 +93,41 @@ void FldFlgInit_Walk(FIELDSYS_WORK * fsys)
 void FldFlgInit_MapJump(FIELDSYS_WORK * fsys)
 {
 	if (fsys->scope_mode_flag == TRUE) {
-		//–]‰“‹¾ƒ‚[ƒh‚Ìê‡‚ÍXVˆ—‚ğs‚í‚È‚¢
+		//æœ›é é¡ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆã¯æ›´æ–°å‡¦ç†ã‚’è¡Œã‚ãªã„
 		return;
 	}
 
-	//--–`Œ¯ƒm[ƒg—pXVˆ—
+	//--å†’é™ºãƒãƒ¼ãƒˆç”¨æ›´æ–°å‡¦ç†
 	if( FldFlgInit_FnoteTownDataSet( fsys ) == FALSE ){
 		FldFlgInit_FnoteMapChgDataSet( fsys );
 	}
 
-	//©“]ÔƒQ[ƒg’Ê‰ß‚µ‚½ƒtƒ‰ƒO‚ÌƒNƒŠƒA(ƒQ[ƒg“à‚Å‚Ì‚İ—LŒø)
+	//è‡ªè»¢è»Šã‚²ãƒ¼ãƒˆé€šéã—ãŸãƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢(ã‚²ãƒ¼ãƒˆå†…ã§ã®ã¿æœ‰åŠ¹)
 	SysFlag_BicycleGatePassage( SaveData_GetEventWork(fsys->savedata), SYSFLAG_MODE_RESET );
 
-	//ƒTƒCƒNƒŠƒ“ƒOƒ[ƒhƒ‚[ƒh‚ÌƒNƒŠƒA
+	//ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®ã‚¯ãƒªã‚¢
 	SysFlag_CyclingRoadReset( SaveData_GetEventWork(fsys->savedata) );
-	//‚©‚¢‚è‚«ƒtƒ‰ƒO‚ÌƒNƒŠƒA
+	//ã‹ã„ã‚Šããƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢
 	SysFlag_KairikiReset( SaveData_GetEventWork(fsys->savedata) );
-	//“’…ƒtƒ‰ƒO‚ÌƒZƒbƒg
+	//åˆ°ç€ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ
 	ARRIVEDATA_SetArriveFlag(fsys, fsys->location->zone_id);
-	//ƒr[ƒhƒƒNƒŠƒA
+	//ãƒ“ãƒ¼ãƒ‰ãƒ­ã‚¯ãƒªã‚¢
 	EncDataSave_SetVidro( EncDataSave_GetSaveDataPtr(fsys->savedata), VIDRO_NONE );
-	//ƒGƒ“ƒJƒEƒ“ƒg•à”ƒNƒŠƒA
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæ­©æ•°ã‚¯ãƒªã‚¢
 	fsys->encount.walk_count = 0;
-	//ˆÚ“®ƒ|ƒPƒ‚ƒ“ˆ—
+	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å‡¦ç†
 	{
 		ENC_SV_PTR data;
 		data = EncDataSave_GetSaveDataPtr(fsys->savedata);
-		MP_UpdatePlayerZoneHist(data, fsys->location->zone_id);		//ƒ][ƒ“—š—ğ‚ğXV
+		MP_UpdatePlayerZoneHist(data, fsys->location->zone_id);		//ã‚¾ãƒ¼ãƒ³å±¥æ­´ã‚’æ›´æ–°
 	}
-	//ƒ_ƒ“ƒWƒ‡ƒ“‚Å‚È‚¢ê‡Aƒtƒ‰ƒbƒVƒ…ó‘Ôƒtƒ‰ƒO‚Æ–¶•¥‚¢ó‘Ôƒtƒ‰ƒO‚ğƒNƒŠƒA
+	//ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã§ãªã„å ´åˆã€ãƒ•ãƒ©ãƒƒã‚·ãƒ¥çŠ¶æ…‹ãƒ•ãƒ©ã‚°ã¨éœ§æ‰•ã„çŠ¶æ…‹ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢
 	if (!ZoneData_IsDungeon(fsys->location->zone_id)) {
 		EVENTWORK * ev = SaveData_GetEventWork(fsys->savedata);
 		SysFlag_FlashReset(ev);
 		SysFlag_KiribaraiReset(ev);
 	}
-	//©‹@ó‘Ô‚Ìİ’è
+	//è‡ªæ©ŸçŠ¶æ…‹ã®è¨­å®š
 	{
 		PLAYER_SAVE_DATA * jikisave = Situation_GetPlayerSaveData(SaveData_GetSituation(fsys->savedata));
 		if (jikisave->form == HERO_FORM_CYCLE
@@ -138,9 +138,9 @@ void FldFlgInit_MapJump(FIELDSYS_WORK * fsys)
 		}
 	}
 
-	//--ƒ^ƒEƒ“ƒ}ƒbƒv‘«Õ
+	//--ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—è¶³è·¡
 	if (ZoneData_IsSinouField(fsys->location->zone_id)) {
-		//ƒtƒB[ƒ‹ƒhˆÈŠO‚Å‚Í‘«Õ‚ÌXV‚Í‚È‚¢I
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä»¥å¤–ã§ã¯è¶³è·¡ã®æ›´æ–°ã¯ãªã„ï¼
 		TOWN_MAP_FOOTMARK * footmark;
 		footmark = Situation_GetTMFootMark(SaveData_GetSituation(fsys->savedata));
 		TMFootMark_SetNoDir(footmark, fsys->location->grid_x, fsys->location->grid_z);
@@ -149,9 +149,9 @@ void FldFlgInit_MapJump(FIELDSYS_WORK * fsys)
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒtƒ‰ƒO‰Šú‰»F‹ó‚ğ”ò‚Ô‚ğg‚Á‚½‚Æ‚«ŒÅ—L‚Ås‚¤‚à‚Ì
+ * @brief	ãƒ•ãƒ©ã‚°åˆæœŸåŒ–ï¼šç©ºã‚’é£›ã¶ã‚’ä½¿ã£ãŸã¨ãå›ºæœ‰ã§è¡Œã†ã‚‚ã®
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
@@ -159,17 +159,17 @@ void FldFlgInit_MapJump(FIELDSYS_WORK * fsys)
 //-----------------------------------------------------------------------------
 void FldFlgInit_FlySky(FIELDSYS_WORK * fsys)
 {
-	//ƒTƒtƒ@ƒŠƒtƒ‰ƒOƒNƒŠƒA
+	//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
 	SysFlag_SafariReset( SaveData_GetEventWork(fsys->savedata) );
-	//ˆÚ“®ƒ|ƒPƒ‚ƒ“‘S•”ƒWƒƒƒ“ƒv
+	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å…¨éƒ¨ã‚¸ãƒ£ãƒ³ãƒ—
 	MP_JumpMovePokemonAll(EncDataSave_GetSaveDataPtr(fsys->savedata));
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒtƒ‰ƒO‰Šú‰»FƒeƒŒƒ|[ƒg‚ğg‚Á‚½‚Æ‚«ŒÅ—L‚Ås‚¤‚à‚Ì
+ * @brief	ãƒ•ãƒ©ã‚°åˆæœŸåŒ–ï¼šãƒ†ãƒ¬ãƒãƒ¼ãƒˆã‚’ä½¿ã£ãŸã¨ãå›ºæœ‰ã§è¡Œã†ã‚‚ã®
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
@@ -177,17 +177,17 @@ void FldFlgInit_FlySky(FIELDSYS_WORK * fsys)
 //-----------------------------------------------------------------------------
 void FldFlgInit_Teleport(FIELDSYS_WORK * fsys)
 {
-	//ƒTƒtƒ@ƒŠƒtƒ‰ƒOƒNƒŠƒA
+	//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
 	SysFlag_SafariReset( SaveData_GetEventWork(fsys->savedata) );
-	//ˆÚ“®ƒ|ƒPƒ‚ƒ“‘S•”ƒWƒƒƒ“ƒv
+	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å…¨éƒ¨ã‚¸ãƒ£ãƒ³ãƒ—
 	MP_JumpMovePokemonAll(EncDataSave_GetSaveDataPtr(fsys->savedata));
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒtƒ‰ƒO‰Šú‰»F‚ ‚È‚Ê‚¯‚Ì‚Ğ‚àE‚ ‚È‚ğ‚Ù‚é‚ğg‚Á‚½‚Æ‚«ŒÅ—L‚Ås‚¤‚à‚Ì
+ * @brief	ãƒ•ãƒ©ã‚°åˆæœŸåŒ–ï¼šã‚ãªã¬ã‘ã®ã²ã‚‚ãƒ»ã‚ãªã‚’ã»ã‚‹ã‚’ä½¿ã£ãŸã¨ãå›ºæœ‰ã§è¡Œã†ã‚‚ã®
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
@@ -195,15 +195,15 @@ void FldFlgInit_Teleport(FIELDSYS_WORK * fsys)
 //-----------------------------------------------------------------------------
 void FldFlgInit_Escape(FIELDSYS_WORK * fsys)
 {
-	//ƒTƒtƒ@ƒŠƒtƒ‰ƒOƒNƒŠƒA
+	//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
 	SysFlag_SafariReset( SaveData_GetEventWork(fsys->savedata) );
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒtƒ‰ƒO‰Šú‰»FƒQ[ƒ€ƒI[ƒo[
+ * @brief	ãƒ•ãƒ©ã‚°åˆæœŸåŒ–ï¼šã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
@@ -213,16 +213,16 @@ void FldFlgInit_GameOver(FIELDSYS_WORK * fsys)
 {
 	EVENTWORK* ev = SaveData_GetEventWork( fsys->savedata );
 
-	//˜A‚ê•à‚«ƒtƒ‰ƒOAƒgƒŒ[ƒi[IDŠi”[ƒ[ƒN‚ÌƒNƒŠƒA
+	//é€£ã‚Œæ­©ããƒ•ãƒ©ã‚°ã€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDæ ¼ç´ãƒ¯ãƒ¼ã‚¯ã®ã‚¯ãƒªã‚¢
 	SysFlag_PairReset( ev );
 	SysWork_PairTrainerIDSet( ev, 0 );
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒtƒ‰ƒO‰Šú‰»FƒRƒ“ƒeƒBƒjƒ…[
+ * @brief	ãƒ•ãƒ©ã‚°åˆæœŸåŒ–ï¼šã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
@@ -230,15 +230,15 @@ void FldFlgInit_GameOver(FIELDSYS_WORK * fsys)
 //-----------------------------------------------------------------------------
 void FldFlgInit_Continue(FIELDSYS_WORK * fsys)
 {
-	//ˆÚ“®ƒ|ƒPƒ‚ƒ“‘S•”ƒWƒƒƒ“ƒv
+	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å…¨éƒ¨ã‚¸ãƒ£ãƒ³ãƒ—
 	MP_JumpMovePokemonAll(EncDataSave_GetSaveDataPtr(fsys->savedata));
 }
 
 //----------------------------------------------------------------------------
 /**
- * @brief	ƒtƒ‰ƒO‰Šú‰»F’n‰º‚Ö‚¢‚­
+ * @brief	ãƒ•ãƒ©ã‚°åˆæœŸåŒ–ï¼šåœ°ä¸‹ã¸ã„ã
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
@@ -252,12 +252,12 @@ void FldFlgInit_UnderGround(FIELDSYS_WORK * fsys)
 
 //----------------------------------------------------------------------------
 /**
- * @brief	–`Œ¯ƒm[ƒgì¬F’¬‚É“’…
+ * @brief	å†’é™ºãƒãƒ¼ãƒˆä½œæˆï¼šç”ºã«åˆ°ç€
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"TURE = ì¬‚³‚ê‚½"
- * @retval	"FALSE = ì¬‚³‚ê‚È‚©‚Á‚½"
+ * @retval	"TURE = ä½œæˆã•ã‚ŒãŸ"
+ * @retval	"FALSE = ä½œæˆã•ã‚Œãªã‹ã£ãŸ"
  *
  */
 //-----------------------------------------------------------------------------
@@ -274,12 +274,12 @@ static BOOL FldFlgInit_FnoteTownDataSet( FIELDSYS_WORK * fsys )
 
 //----------------------------------------------------------------------------
 /**
- * @brief	–`Œ¯ƒm[ƒgì¬Fƒ}ƒbƒvØ‚è‘Ö‚¦
+ * @brief	å†’é™ºãƒãƒ¼ãƒˆä½œæˆï¼šãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"TURE = ì¬‚³‚ê‚½"
- * @retval	"FALSE = ì¬‚³‚ê‚È‚©‚Á‚½"
+ * @retval	"TURE = ä½œæˆã•ã‚ŒãŸ"
+ * @retval	"FALSE = ä½œæˆã•ã‚Œãªã‹ã£ãŸ"
  *
  */
 //-----------------------------------------------------------------------------

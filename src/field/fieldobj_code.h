@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fieldobj_code.h
- * @brief	ƒtƒB[ƒ‹ƒhOBJ‚ÅŽg—p‚·‚éƒVƒ“ƒ{ƒ‹,ƒR[ƒhéŒ¾ ƒAƒZƒ“ƒuƒ‰ƒ\[ƒX“Ç‚Ýž‚ÝƒAƒŠ ŒÌ‚Éenum‹ÖŽ~
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã§ä½¿ç”¨ã™ã‚‹ã‚·ãƒ³ãƒœãƒ«,ã‚³ãƒ¼ãƒ‰å®£è¨€ ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ã‚¢ãƒª æ•…ã«enumç¦æ­¢
  * @author	kagaya
  * @data	05.07.20
  */
@@ -11,199 +11,199 @@
 #define FIELD_OBJ_CODE_H_FILE
 
 //==============================================================================
-///	•ûŒü
+///	æ–¹å‘
 //==============================================================================
-#define DIR_NOT			(-1)								///<Œü‚«‚ª‚È‚¢ê‡
-#define DIR_UP			(0)									///<ãŒü‚«
-#define DIR_DOWN		(1)									///<‰ºŒü‚«
-#define DIR_LEFT		(2)									///<¶Œü‚«
-#define DIR_RIGHT		(3)									///<‰EŒü‚«
+#define DIR_NOT			(-1)								///<å‘ããŒãªã„å ´åˆ
+#define DIR_UP			(0)									///<ä¸Šå‘ã
+#define DIR_DOWN		(1)									///<ä¸‹å‘ã
+#define DIR_LEFT		(2)									///<å·¦å‘ã
+#define DIR_RIGHT		(3)									///<å³å‘ã
 
-#define DIR_LEFTUP		(4)									///<¶ãŒü‚«
-#define DIR_RIGHTUP		(5)									///<‰EãŒü‚«
-#define DIR_LEFTDOWN	(6)									///<¶‰ºŒü‚«
-#define DIR_RIGHTDOWN	(7)									///<‰E‰ºŒü‚«
+#define DIR_LEFTUP		(4)									///<å·¦ä¸Šå‘ã
+#define DIR_RIGHTUP		(5)									///<å³ä¸Šå‘ã
+#define DIR_LEFTDOWN	(6)									///<å·¦ä¸‹å‘ã
+#define DIR_RIGHTDOWN	(7)									///<å³ä¸‹å‘ã
 
-#define DIR_4_MAX (DIR_LEFTUP)								///<4•ûŒüÅ‘å
-
-//==============================================================================
-//	“ÁŽêID
-//==============================================================================
-//--------------------------------------------------------------
-//	ƒtƒB[ƒ‹ƒhOBJ “ÁŽêID
-//--------------------------------------------------------------
-#define FLDOBJ_ID_PLAYER 	(0xff)	///<Ž©‹@ê—pID
-#define FLDOBJ_ID_PAIR   	(0xfe)	///<˜A‚ê•à‚«ê—pID
-#define FLDOBJ_ID_GIMMICK	(0xfd)	///<ƒWƒ€“™‚ÌŽdŠ|‚¯ê—pID
+#define DIR_4_MAX (DIR_LEFTUP)								///<4æ–¹å‘æœ€å¤§
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ “®ìƒR[ƒh
+//	ç‰¹æ®ŠID
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒtƒB[ƒ‹ƒhOBJ “®ìƒR[ƒh
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ç‰¹æ®ŠID
 //--------------------------------------------------------------
-#define MV_DMY			0x00		///<“®ì–³‚µ
-#define MV_PLAYER		0x01		///<Ž©‹@ê—p
-#define MV_DIR_RND		0x02		///<ƒ‰ƒ“ƒ_ƒ€‚É•ûŒüØ‚è‘Ö‚¦
-#define MV_RND			0x03		///<ƒ‰ƒ“ƒ_ƒ€‚ÉˆÚ“®
-#define MV_RND_V		0x04		///<ƒ‰ƒ“ƒ_ƒ€‚ÉcˆÚ“®
-#define MV_RND_H		0x05		///<ƒ‰ƒ“ƒ_ƒ€‚É‰¡ˆÚ“®
-#define MV_RND_UL		0x06		///<ƒ‰ƒ“ƒ_ƒ€‚Éã¶•ûŒüØ‚è‘Ö‚¦
-#define MV_RND_UR		0x07		///<ƒ‰ƒ“ƒ_ƒ€‚Éã‰E•ûŒüØ‚è‘Ö‚¦
-#define MV_RND_DL		0x08		///<ƒ‰ƒ“ƒ_ƒ€‚É‰º¶•ûŒüØ‚è‘Ö‚¦
-#define MV_RND_DR		0x09		///<ƒ‰ƒ“ƒ_ƒ€‚É‰º‰E•ûŒüØ‚è‘Ö‚¦
-#define MV_RND_UDL		0x0a		///<ƒ‰ƒ“ƒ_ƒ€‚Éã‰º¶•ûŒüØ‚è‘Ö‚¦
-#define MV_RND_UDR		0x0b		///<ƒ‰ƒ“ƒ_ƒ€‚Éã‰º‰E•ûŒüØ‚è‘Ö‚¦
-#define MV_RND_ULR		0x0c		///<ƒ‰ƒ“ƒ_ƒ€‚Éã¶‰E•ûŒüØ‚è‘Ö‚¦
-#define MV_RND_DLR		0x0d		///<ƒ‰ƒ“ƒ_ƒ€‚É‰º¶‰E•ûŒüØ‚è‘Ö‚¦
-#define MV_UP			0x0e		///<ãŒÅ’è
-#define MV_DOWN			0x0f		///<‰ºŒÅ’è
-#define MV_LEFT			0x10		///<¶ŒÅ’è
-#define MV_RIGHT		0x11		///<‰EŒÅ’è
-#define MV_SPIN_L		0x12		///<¶‰ñ“]
-#define MV_SPIN_R		0x13		///<‰E‰ñ“]
-#define MV_RT2			0x14		///<ƒ‹[ƒg2
-#define MV_RTURLD       0x15        ///<ƒ‹[ƒg3 ã‰E¶‰º
-#define MV_RTRLDU       0x16        ///<ƒ‹[ƒg3 ‰E¶‰ºã
-#define MV_RTDURL       0x17        ///<ƒ‹[ƒg3 ‰ºã‰E¶
-#define MV_RTLDUR       0x18        ///<ƒ‹[ƒg3 ¶‰ºã‰E
-#define MV_RTULRD       0x19        ///<ƒ‹[ƒg3 ã¶‰E‰º
-#define MV_RTLRDU       0x1a        ///<ƒ‹[ƒg3 ¶‰E‰ºã
-#define MV_RTDULR       0x1b        ///<ƒ‹[ƒg3 ‰ºã¶‰E
-#define MV_RTRDUL       0x1c        ///<ƒ‹[ƒg3 ‰E‰ºã¶
-#define MV_RTLUDR       0x1d        ///<ƒ‹[ƒg3 ¶ã‰º‰E
-#define MV_RTUDRL       0x1e        ///<ƒ‹[ƒg3 ã‰º‰E¶
-#define MV_RTRLUD       0x1f        ///<ƒ‹[ƒg3 ‰E¶ã‰º
-#define MV_RTDRLU       0x20        ///<ƒ‹[ƒg3 ‰º‰E¶ã
-#define MV_RTRUDL       0x21        ///<ƒ‹[ƒg3 ‰Eã‰º¶
-#define MV_RTUDLR       0x22        ///<ƒ‹[ƒg3 ã‰º¶‰E
-#define MV_RTLRUD       0x23        ///<ƒ‹[ƒg3 ¶‰Eã‰º
-#define MV_RTDLRU       0x24        ///<ƒ‹[ƒg3 ‰º¶‰Eã
-#define MV_RTUL         0x25        ///<ƒ‹[ƒg4 ã¶
-#define MV_RTDR         0x26        ///<ƒ‹[ƒg4 ‰º‰E
-#define MV_RTLD         0x27        ///<ƒ‹[ƒg4 ¶‰º
-#define MV_RTRU         0x28        ///<ƒ‹[ƒg4 ‰Eã
-#define MV_RTUR         0x29        ///<ƒ‹[ƒg4 ã‰E
-#define MV_RTDL         0x2a        ///<ƒ‹[ƒg4 ‰º¶
-#define MV_RTLU         0x2b        ///<ƒ‹[ƒg4 ¶ã
-#define MV_RTRD         0x2c        ///<ƒ‹[ƒg4 ‰E‰º
-#define MV_RND_UD		0x2d		///<ƒ‰ƒ“ƒ_ƒ€‚Éã‰ºØ‚è‘Ö‚¦
-#define MV_RND_LR		0x2e		///<ƒ‰ƒ“ƒ_ƒ€‚É¶‰EØ‚è‘Ö‚¦
-#define MV_SEED			0x2f		///<–Ø‚ÌŽÀ
-#define MV_PAIR			0x30		///<˜A‚ê•à‚«
-#define MV_REWAR		0x31		///<Äí
-#define MV_TR_PAIR		0x32		///<ƒgƒŒ[ƒi[˜A‚ê•à‚«
-#define MV_HIDE_SNOW	0x33		///<‰B‚ê–ª@á
-#define MV_HIDE_SAND	0x34		///<‰B‚ê–ª@»
-#define MV_HIDE_GRND	0x35		///<‰B‚ê–ª@“y
-#define MV_HIDE_KUSA	0x36		///<‰B‚ê–ª@‘
-#define MV_COPYU		0x37		///<‚à‚Ì‚Ü‚Ëã
-#define MV_COPYD		0x38		///<‚à‚Ì‚Ü‚Ë‰º
-#define MV_COPYL		0x39		///<‚à‚Ì‚Ü‚Ë¶
-#define MV_COPYR		0x3a		///<‚à‚Ì‚Ü‚Ë‰E
-#define MV_COPYLGRASSU	0x3b		///<‚à‚Ì‚Ü‚Ëã
-#define MV_COPYLGRASSD	0x3c		///<‚à‚Ì‚Ü‚Ë‰º
-#define MV_COPYLGRASSL	0x3d		///<‚à‚Ì‚Ü‚Ë¶
-#define MV_COPYLGRASSR	0x3e		///<‚à‚Ì‚Ü‚Ë‰E
-#define MV_ALONGW_L		0x3f		///<•Ç‰ˆ‚¢¶(m
-#define MV_ALONGW_R		0x40		///<•Ç‰ˆ‚¢‰E(m
-#define MV_ALONGW_LRL	0x41		///<•Ç‰ˆ‚¢—¼Žè¶(m
-#define MV_ALONGW_LRR	0x42		///<•Ç‰ˆ‚¢—¼Žè‰E(m
-#define MV_RND_H_LIM	0x43		///<ƒ‰ƒ“ƒ_ƒ€‚É‰¡ˆÚ“® ˆÚ“®ƒ`ƒFƒbƒNˆÚ“®§ŒÀ‚Ì‚Ý
+#define FLDOBJ_ID_PLAYER 	(0xff)	///<è‡ªæ©Ÿå°‚ç”¨ID
+#define FLDOBJ_ID_PAIR   	(0xfe)	///<é€£ã‚Œæ­©ãå°‚ç”¨ID
+#define FLDOBJ_ID_GIMMICK	(0xfd)	///<ã‚¸ãƒ ç­‰ã®ä»•æŽ›ã‘å°‚ç”¨ID
 
-#define MV_CODE_MAX		0x44		///<ƒR[ƒhÅ‘åiƒvƒƒOƒ‰ƒ€”»’èê—p
-#define MV_CODE_NOT		0xff		///<”ñ“®ìƒR[ƒh(ƒvƒƒOƒ‰ƒ€”»’èê—p
+//==============================================================================
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ å‹•ä½œã‚³ãƒ¼ãƒ‰
+//==============================================================================
+//--------------------------------------------------------------
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ å‹•ä½œã‚³ãƒ¼ãƒ‰
+//--------------------------------------------------------------
+#define MV_DMY			0x00		///<å‹•ä½œç„¡ã—
+#define MV_PLAYER		0x01		///<è‡ªæ©Ÿå°‚ç”¨
+#define MV_DIR_RND		0x02		///<ãƒ©ãƒ³ãƒ€ãƒ ã«æ–¹å‘åˆ‡ã‚Šæ›¿ãˆ
+#define MV_RND			0x03		///<ãƒ©ãƒ³ãƒ€ãƒ ã«ç§»å‹•
+#define MV_RND_V		0x04		///<ãƒ©ãƒ³ãƒ€ãƒ ã«ç¸¦ç§»å‹•
+#define MV_RND_H		0x05		///<ãƒ©ãƒ³ãƒ€ãƒ ã«æ¨ªç§»å‹•
+#define MV_RND_UL		0x06		///<ãƒ©ãƒ³ãƒ€ãƒ ã«ä¸Šå·¦æ–¹å‘åˆ‡ã‚Šæ›¿ãˆ
+#define MV_RND_UR		0x07		///<ãƒ©ãƒ³ãƒ€ãƒ ã«ä¸Šå³æ–¹å‘åˆ‡ã‚Šæ›¿ãˆ
+#define MV_RND_DL		0x08		///<ãƒ©ãƒ³ãƒ€ãƒ ã«ä¸‹å·¦æ–¹å‘åˆ‡ã‚Šæ›¿ãˆ
+#define MV_RND_DR		0x09		///<ãƒ©ãƒ³ãƒ€ãƒ ã«ä¸‹å³æ–¹å‘åˆ‡ã‚Šæ›¿ãˆ
+#define MV_RND_UDL		0x0a		///<ãƒ©ãƒ³ãƒ€ãƒ ã«ä¸Šä¸‹å·¦æ–¹å‘åˆ‡ã‚Šæ›¿ãˆ
+#define MV_RND_UDR		0x0b		///<ãƒ©ãƒ³ãƒ€ãƒ ã«ä¸Šä¸‹å³æ–¹å‘åˆ‡ã‚Šæ›¿ãˆ
+#define MV_RND_ULR		0x0c		///<ãƒ©ãƒ³ãƒ€ãƒ ã«ä¸Šå·¦å³æ–¹å‘åˆ‡ã‚Šæ›¿ãˆ
+#define MV_RND_DLR		0x0d		///<ãƒ©ãƒ³ãƒ€ãƒ ã«ä¸‹å·¦å³æ–¹å‘åˆ‡ã‚Šæ›¿ãˆ
+#define MV_UP			0x0e		///<ä¸Šå›ºå®š
+#define MV_DOWN			0x0f		///<ä¸‹å›ºå®š
+#define MV_LEFT			0x10		///<å·¦å›ºå®š
+#define MV_RIGHT		0x11		///<å³å›ºå®š
+#define MV_SPIN_L		0x12		///<å·¦å›žè»¢
+#define MV_SPIN_R		0x13		///<å³å›žè»¢
+#define MV_RT2			0x14		///<ãƒ«ãƒ¼ãƒˆ2
+#define MV_RTURLD       0x15        ///<ãƒ«ãƒ¼ãƒˆ3 ä¸Šå³å·¦ä¸‹
+#define MV_RTRLDU       0x16        ///<ãƒ«ãƒ¼ãƒˆ3 å³å·¦ä¸‹ä¸Š
+#define MV_RTDURL       0x17        ///<ãƒ«ãƒ¼ãƒˆ3 ä¸‹ä¸Šå³å·¦
+#define MV_RTLDUR       0x18        ///<ãƒ«ãƒ¼ãƒˆ3 å·¦ä¸‹ä¸Šå³
+#define MV_RTULRD       0x19        ///<ãƒ«ãƒ¼ãƒˆ3 ä¸Šå·¦å³ä¸‹
+#define MV_RTLRDU       0x1a        ///<ãƒ«ãƒ¼ãƒˆ3 å·¦å³ä¸‹ä¸Š
+#define MV_RTDULR       0x1b        ///<ãƒ«ãƒ¼ãƒˆ3 ä¸‹ä¸Šå·¦å³
+#define MV_RTRDUL       0x1c        ///<ãƒ«ãƒ¼ãƒˆ3 å³ä¸‹ä¸Šå·¦
+#define MV_RTLUDR       0x1d        ///<ãƒ«ãƒ¼ãƒˆ3 å·¦ä¸Šä¸‹å³
+#define MV_RTUDRL       0x1e        ///<ãƒ«ãƒ¼ãƒˆ3 ä¸Šä¸‹å³å·¦
+#define MV_RTRLUD       0x1f        ///<ãƒ«ãƒ¼ãƒˆ3 å³å·¦ä¸Šä¸‹
+#define MV_RTDRLU       0x20        ///<ãƒ«ãƒ¼ãƒˆ3 ä¸‹å³å·¦ä¸Š
+#define MV_RTRUDL       0x21        ///<ãƒ«ãƒ¼ãƒˆ3 å³ä¸Šä¸‹å·¦
+#define MV_RTUDLR       0x22        ///<ãƒ«ãƒ¼ãƒˆ3 ä¸Šä¸‹å·¦å³
+#define MV_RTLRUD       0x23        ///<ãƒ«ãƒ¼ãƒˆ3 å·¦å³ä¸Šä¸‹
+#define MV_RTDLRU       0x24        ///<ãƒ«ãƒ¼ãƒˆ3 ä¸‹å·¦å³ä¸Š
+#define MV_RTUL         0x25        ///<ãƒ«ãƒ¼ãƒˆ4 ä¸Šå·¦
+#define MV_RTDR         0x26        ///<ãƒ«ãƒ¼ãƒˆ4 ä¸‹å³
+#define MV_RTLD         0x27        ///<ãƒ«ãƒ¼ãƒˆ4 å·¦ä¸‹
+#define MV_RTRU         0x28        ///<ãƒ«ãƒ¼ãƒˆ4 å³ä¸Š
+#define MV_RTUR         0x29        ///<ãƒ«ãƒ¼ãƒˆ4 ä¸Šå³
+#define MV_RTDL         0x2a        ///<ãƒ«ãƒ¼ãƒˆ4 ä¸‹å·¦
+#define MV_RTLU         0x2b        ///<ãƒ«ãƒ¼ãƒˆ4 å·¦ä¸Š
+#define MV_RTRD         0x2c        ///<ãƒ«ãƒ¼ãƒˆ4 å³ä¸‹
+#define MV_RND_UD		0x2d		///<ãƒ©ãƒ³ãƒ€ãƒ ã«ä¸Šä¸‹åˆ‡ã‚Šæ›¿ãˆ
+#define MV_RND_LR		0x2e		///<ãƒ©ãƒ³ãƒ€ãƒ ã«å·¦å³åˆ‡ã‚Šæ›¿ãˆ
+#define MV_SEED			0x2f		///<æœ¨ã®å®Ÿ
+#define MV_PAIR			0x30		///<é€£ã‚Œæ­©ã
+#define MV_REWAR		0x31		///<å†æˆ¦
+#define MV_TR_PAIR		0x32		///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€£ã‚Œæ­©ã
+#define MV_HIDE_SNOW	0x33		///<éš ã‚Œè“‘ã€€é›ª
+#define MV_HIDE_SAND	0x34		///<éš ã‚Œè“‘ã€€ç ‚
+#define MV_HIDE_GRND	0x35		///<éš ã‚Œè“‘ã€€åœŸ
+#define MV_HIDE_KUSA	0x36		///<éš ã‚Œè“‘ã€€è‰
+#define MV_COPYU		0x37		///<ã‚‚ã®ã¾ã­ä¸Š
+#define MV_COPYD		0x38		///<ã‚‚ã®ã¾ã­ä¸‹
+#define MV_COPYL		0x39		///<ã‚‚ã®ã¾ã­å·¦
+#define MV_COPYR		0x3a		///<ã‚‚ã®ã¾ã­å³
+#define MV_COPYLGRASSU	0x3b		///<ã‚‚ã®ã¾ã­ä¸Š
+#define MV_COPYLGRASSD	0x3c		///<ã‚‚ã®ã¾ã­ä¸‹
+#define MV_COPYLGRASSL	0x3d		///<ã‚‚ã®ã¾ã­å·¦
+#define MV_COPYLGRASSR	0x3e		///<ã‚‚ã®ã¾ã­å³
+#define MV_ALONGW_L		0x3f		///<å£æ²¿ã„å·¦(m
+#define MV_ALONGW_R		0x40		///<å£æ²¿ã„å³(m
+#define MV_ALONGW_LRL	0x41		///<å£æ²¿ã„ä¸¡æ‰‹å·¦(m
+#define MV_ALONGW_LRR	0x42		///<å£æ²¿ã„ä¸¡æ‰‹å³(m
+#define MV_RND_H_LIM	0x43		///<ãƒ©ãƒ³ãƒ€ãƒ ã«æ¨ªç§»å‹• ç§»å‹•ãƒã‚§ãƒƒã‚¯ç§»å‹•åˆ¶é™ã®ã¿
 
-/*@–¢‘Î‰ž
-#define MV_SLEEP	///<–°‚è@ƒ_ƒbƒVƒ…‚Å‹N‚«‚é
-#define MV_DIVE		///<‘fö‚è
+#define MV_CODE_MAX		0x44		///<ã‚³ãƒ¼ãƒ‰æœ€å¤§ï¼ˆãƒ—ãƒ­ã‚°ãƒ©ãƒ åˆ¤å®šå°‚ç”¨
+#define MV_CODE_NOT		0xff		///<éžå‹•ä½œã‚³ãƒ¼ãƒ‰(ãƒ—ãƒ­ã‚°ãƒ©ãƒ åˆ¤å®šå°‚ç”¨
 
-#define MV_HIDE_SKY			///<‰B‚ê–ª@‹ó
-#define MV_HIDE_SWIM		///<‰B‚ê–ª@ŠC
-#define MV_HIDE_SNOWMAN		///<‰B‚ê–ª@á‚¾‚é‚Ü
+/*ã€€æœªå¯¾å¿œ
+#define MV_SLEEP	///<çœ ã‚Šã€€ãƒ€ãƒƒã‚·ãƒ¥ã§èµ·ãã‚‹
+#define MV_DIVE		///<ç´ æ½œã‚Š
+
+#define MV_HIDE_SKY			///<éš ã‚Œè“‘ã€€ç©º
+#define MV_HIDE_SWIM		///<éš ã‚Œè“‘ã€€æµ·
+#define MV_HIDE_SNOWMAN		///<éš ã‚Œè“‘ã€€é›ªã ã‚‹ã¾
 */
 
 /*
- ƒTƒu“®ì‚Å‘Î‰ž‚·‚é‚à‚Ì
-@1:‚Æ‚Ü‚Á‚Ä‚«‚å‚ë‚«‚å‚ë ok
-@@ƒ‰ƒ“ƒ_ƒ€ˆÚ“®
-@@ƒ‹[ƒg‚QC‚RC‚S@
-@2F‚Æ‚Ü‚Á‚Ä‚­‚é‚­‚é ok
-@@ƒ‰ƒ“ƒ_ƒ€ˆÚ“®
-@@ƒ‹[ƒg‚QC‚RC‚S@
+ ã‚µãƒ–å‹•ä½œã§å¯¾å¿œã™ã‚‹ã‚‚ã®
+ã€€1:ã¨ã¾ã£ã¦ãã‚‡ã‚ãã‚‡ã‚ ok
+ã€€ã€€ãƒ©ãƒ³ãƒ€ãƒ ç§»å‹•
+ã€€ã€€ãƒ«ãƒ¼ãƒˆï¼’ï¼Œï¼“ï¼Œï¼”ã€€
+ã€€2ï¼šã¨ã¾ã£ã¦ãã‚‹ãã‚‹ ok
+ã€€ã€€ãƒ©ãƒ³ãƒ€ãƒ ç§»å‹•
+ã€€ã€€ãƒ«ãƒ¼ãƒˆï¼’ï¼Œï¼“ï¼Œï¼”ã€€
 	
-@3F‚­‚é‚­‚éˆÚ“® ok
-@@ƒ‰ƒ“ƒ_ƒ€ˆÚ“®
-@@ƒ‹[ƒg‚QC‚RC‚S@
-@4F“¦‚°‚é ok
-@@ƒ‹[ƒg‚S@
-@5F‰¡‰j‚¬
-@@ƒ‹[ƒg‚Q?
+ã€€3ï¼šãã‚‹ãã‚‹ç§»å‹• ok
+ã€€ã€€ãƒ©ãƒ³ãƒ€ãƒ ç§»å‹•
+ã€€ã€€ãƒ«ãƒ¼ãƒˆï¼’ï¼Œï¼“ï¼Œï¼”ã€€
+ã€€4ï¼šé€ƒã’ã‚‹ ok
+ã€€ã€€ãƒ«ãƒ¼ãƒˆï¼”ã€€
+ã€€5ï¼šæ¨ªæ³³ãŽ
+ã€€ã€€ãƒ«ãƒ¼ãƒˆï¼’?
  * */
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒCƒxƒ“ƒgƒ^ƒCƒv
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒtƒB[ƒ‹ƒhOBJ ƒCƒxƒ“ƒgƒ^ƒCƒv
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
 //--------------------------------------------------------------
-#define EV_TYPE_NORMAL 				0x00	///<’Êíƒ^ƒCƒv
-#define EV_TYPE_TRAINER				0x01	///<ƒgƒŒ[ƒi[ƒ^ƒCƒv
-#define EV_TYPE_TRAINER_EYEALL		0x02	///<ƒgƒŒ[ƒi[‘S•ûˆÊŒŸ’mƒ^ƒCƒv
-#define EV_TYPE_ITEM				0x03	///<ƒAƒCƒeƒ€ƒ^ƒCƒv
-#define EV_TYPE_TRAINER_KYORO		0x04	///<ƒgƒŒ[ƒi[ƒ^ƒCƒv@‚«‚å‚ë‚«‚å‚ë
-#define EV_TYPE_TRAINER_SPIN_STOP_L	0x05	///<ƒgƒŒ[ƒi[ƒ^ƒCƒv@’âŽ~‰ñ“]@¶Žü‚è
-#define EV_TYPE_TRAINER_SPIN_STOP_R	0x06	///<ƒgƒŒ[ƒi[ƒ^ƒCƒv@’âŽ~‰ñ“]@‰E‰ñ‚è
-#define EV_TYPE_TRAINER_SPIN_MOVE_L	0x07	///<ƒgƒŒ[ƒi[ƒ^ƒCƒv@ˆÚ“®‰ñ“]@¶Žü‚è
-#define EV_TYPE_TRAINER_SPIN_MOVE_R	0x08	///<ƒgƒŒ[ƒi[ƒ^ƒCƒv@ˆÚ“®‰ñ“]@‰E‰ñ‚è
-#define EV_TYPE_MSG 				0x09	///<’Êíƒ^ƒCƒv ƒƒbƒZ[ƒWIDŽw’è
-#define EV_TYPE_TRAINER_ESCAPE		0x0a	///<ƒgƒŒ[ƒi[ƒ^ƒCƒv@“¦‚°‚é
+#define EV_TYPE_NORMAL 				0x00	///<é€šå¸¸ã‚¿ã‚¤ãƒ—
+#define EV_TYPE_TRAINER				0x01	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—
+#define EV_TYPE_TRAINER_EYEALL		0x02	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å…¨æ–¹ä½æ¤œçŸ¥ã‚¿ã‚¤ãƒ—
+#define EV_TYPE_ITEM				0x03	///<ã‚¢ã‚¤ãƒ†ãƒ ã‚¿ã‚¤ãƒ—
+#define EV_TYPE_TRAINER_KYORO		0x04	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã€€ãã‚‡ã‚ãã‚‡ã‚
+#define EV_TYPE_TRAINER_SPIN_STOP_L	0x05	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã€€åœæ­¢å›žè»¢ã€€å·¦å‘¨ã‚Š
+#define EV_TYPE_TRAINER_SPIN_STOP_R	0x06	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã€€åœæ­¢å›žè»¢ã€€å³å›žã‚Š
+#define EV_TYPE_TRAINER_SPIN_MOVE_L	0x07	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã€€ç§»å‹•å›žè»¢ã€€å·¦å‘¨ã‚Š
+#define EV_TYPE_TRAINER_SPIN_MOVE_R	0x08	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã€€ç§»å‹•å›žè»¢ã€€å³å›žã‚Š
+#define EV_TYPE_MSG 				0x09	///<é€šå¸¸ã‚¿ã‚¤ãƒ— ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸IDæŒ‡å®š
+#define EV_TYPE_TRAINER_ESCAPE		0x0a	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã€€é€ƒã’ã‚‹
 
 /*
-#define EV_TYPE_TRAINER_ESCAPE		0x09	///<ƒgƒŒ[ƒi[ƒ^ƒCƒv@“¦‚°‚é
-#define EV_TYPE_TRAINER_SWIM_H		0x0a	///<ƒgƒŒ[ƒi[ƒ^ƒCƒv@‰¡‰j‚¬
-#define EV_TYPE_TRAINER_LIGHT			///<ƒgƒŒ[ƒi[ƒ^ƒCƒv@ƒ‰ƒCƒg
-#define EV_TYPE_TRAINER_LIGHT_DASH		///<ƒgƒŒ[ƒi[ƒ^ƒCƒv@ƒ‰ƒCƒgƒ_ƒbƒVƒ…
+#define EV_TYPE_TRAINER_ESCAPE		0x09	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã€€é€ƒã’ã‚‹
+#define EV_TYPE_TRAINER_SWIM_H		0x0a	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã€€æ¨ªæ³³ãŽ
+#define EV_TYPE_TRAINER_LIGHT			///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã€€ãƒ©ã‚¤ãƒˆ
+#define EV_TYPE_TRAINER_LIGHT_DASH		///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ã€€ãƒ©ã‚¤ãƒˆãƒ€ãƒƒã‚·ãƒ¥
 */
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ •`‰æƒXƒe[ƒ^ƒX
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhOBJ •`‰æƒXƒe[ƒ^ƒX
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //--------------------------------------------------------------
-#define DRAW_STA_STOP		0x00		///<’âŽ~
-#define DRAW_STA_WALK		0x01		///<ˆÚ“®
-#define DRAW_STA_WALK_32F	0x01		///<ˆÚ“® 32ƒtƒŒ[ƒ€
-#define DRAW_STA_WALK_16F	0x02		///<ˆÚ“® 16ƒtƒŒ[ƒ€
-#define DRAW_STA_WALK_8F	0x03		///<ˆÚ“® 8ƒtƒŒ[ƒ€
-#define DRAW_STA_WALK_4F	0x04		///<ˆÚ“® 4ƒtƒŒ[ƒ€
-#define DRAW_STA_WALK_2F	0x05		///<ˆÚ“® 2ƒtƒŒ[ƒ€
-#define DRAW_STA_WALK_6F	0x06		///<ˆÚ“® 6ƒtƒŒ[ƒ€
-#define DRAW_STA_WALK_3F	0x07		///<ˆÚ“® 3ƒtƒŒ[ƒ€
-#define DRAW_STA_WALK_7F	0x08		///<ˆÚ“® 7ƒtƒŒ[ƒ€
+#define DRAW_STA_STOP		0x00		///<åœæ­¢
+#define DRAW_STA_WALK		0x01		///<ç§»å‹•
+#define DRAW_STA_WALK_32F	0x01		///<ç§»å‹• 32ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define DRAW_STA_WALK_16F	0x02		///<ç§»å‹• 16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define DRAW_STA_WALK_8F	0x03		///<ç§»å‹• 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define DRAW_STA_WALK_4F	0x04		///<ç§»å‹• 4ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define DRAW_STA_WALK_2F	0x05		///<ç§»å‹• 2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define DRAW_STA_WALK_6F	0x06		///<ç§»å‹• 6ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define DRAW_STA_WALK_3F	0x07		///<ç§»å‹• 3ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define DRAW_STA_WALK_7F	0x08		///<ç§»å‹• 7ãƒ•ãƒ¬ãƒ¼ãƒ 
 
-#define DRAW_STA_MAX (DRAW_STA_WALK_7F+1)	///<•`‰æƒXƒe[ƒ^ƒXÅ‘å
+#define DRAW_STA_MAX (DRAW_STA_WALK_7F+1)	///<æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æœ€å¤§
 
 #define DRAW_STA_PC_BOW		0x09
 #define DRAW_STA_PCWOMAN_MAX (DRAW_STA_PC_BOW+1)
 
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhOBJ Ž©‹@ê—p•`‰æƒXƒe[ƒ^ƒX
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ è‡ªæ©Ÿå°‚ç”¨æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //--------------------------------------------------------------
-///ˆÚ“®@ƒ_ƒbƒVƒ… 4ƒtƒŒ[ƒ€
+///ç§»å‹•ã€€ãƒ€ãƒƒã‚·ãƒ¥ 4ãƒ•ãƒ¬ãƒ¼ãƒ 
 #define DRAW_STA_DASH_4F		(DRAW_STA_MAX)
-///•`‰æƒXƒe[ƒ^ƒXÅ‘å@Ž©‹@
+///æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æœ€å¤§ã€€è‡ªæ©Ÿ
 #define DRAW_STA_MAX_HERO		(DRAW_STA_DASH_4F+1)
-///Ž©‹@@ƒWƒƒƒ“ƒv‘ä
+///è‡ªæ©Ÿã€€ã‚¸ãƒ£ãƒ³ãƒ—å°
 #define DRAW_STA_TAKE_OFF_16F	(DRAW_STA_MAX)
-///Ž©‹@@ƒWƒƒƒ“ƒv‘ä
+///è‡ªæ©Ÿã€€ã‚¸ãƒ£ãƒ³ãƒ—å°
 #define DRAW_STA_TAKE_OFF_8F	(DRAW_STA_MAX+1)
-///•`‰æƒXƒe[ƒ^ƒXÅ‘å@Ž©‹@
+///æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æœ€å¤§ã€€è‡ªæ©Ÿ
 #define DRAW_STA_MAX_CYCLEHERO	(DRAW_STA_TAKE_OFF_8F+1)
 
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhOBJ Ž©‹@’Þ‚èê—p•`‰æƒXƒe[ƒ^ƒX
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ è‡ªæ©Ÿé‡£ã‚Šå°‚ç”¨æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //--------------------------------------------------------------
 #define DRAW_STA_FISH_END	0x00
 #define DRAW_STA_FISH_START	0x01
@@ -213,207 +213,207 @@
 #define DRAW_STA_MAX_FISH	(DRAW_STA_FISH_HIT+1)
 
 //--------------------------------------------------------------
-///	ƒtƒB[ƒ‹ƒhOBJ Ž©‹@–œÎê—p•`‰æƒXƒe[ƒ^ƒX
+///	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ è‡ªæ©Ÿä¸‡æ­³å°‚ç”¨æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //--------------------------------------------------------------
 #define DRAW_STA_BANZAI 	0x00
 #define DRAW_STA_BANZAI_UKE	0x01
 #define DRAW_STA_MAX_BANZAI (DRAW_STA_BANZAI_UKE+1)
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒR[ƒh
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒtƒB[ƒ‹ƒhOBJ ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒR[ƒh
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰
 //--------------------------------------------------------------
-#define AC_DIR_U				0x00		///<ã‚ÉŒü‚­
-#define AC_DIR_D				0x01		///<‰º‚ÉŒü‚­
-#define AC_DIR_L				0x02		///<¶‚ÉŒü‚­
-#define AC_DIR_R				0x03		///<‰E‚ÉŒü‚­
-#define AC_WALK_U_32F			0x04		///<ã‚ÉˆÚ“®@32ƒtƒŒ[ƒ€
-#define AC_WALK_D_32F			0x05		///<‰º‚ÉˆÚ“®@32ƒtƒŒ[ƒ€
-#define AC_WALK_L_32F			0x06		///<¶‚ÉˆÚ“®@32ƒtƒŒ[ƒ€
-#define AC_WALK_R_32F			0x07		///<‰E‚ÉˆÚ“®@32ƒtƒŒ[ƒ€
-#define AC_WALK_U_16F			0x08		///<ã‚ÉˆÚ“®@16ƒtƒŒ[ƒ€
-#define AC_WALK_D_16F			0x09		///<‰º‚ÉˆÚ“®@16ƒtƒŒ[ƒ€
-#define AC_WALK_L_16F			0x0a		///<¶‚ÉˆÚ“®@16ƒtƒŒ[ƒ€
-#define AC_WALK_R_16F			0x0b		///<‰E‚ÉˆÚ“®@16ƒtƒŒ[ƒ€
-#define AC_WALK_U_8F			0x0c		///<ã‚ÉˆÚ“®@8ƒtƒŒ[ƒ€
-#define AC_WALK_D_8F			0x0d		///<‰º‚ÉˆÚ“®@8ƒtƒŒ[ƒ€
-#define AC_WALK_L_8F			0x0e		///<¶‚ÉˆÚ“®@8ƒtƒŒ[ƒ€
-#define AC_WALK_R_8F			0x0f		///<‰E‚ÉˆÚ“®@8ƒtƒŒ[ƒ€
-#define AC_WALK_U_4F			0x10		///<ã‚ÉˆÚ“®@4ƒtƒŒ[ƒ€
-#define AC_WALK_D_4F			0x11		///<‰º‚ÉˆÚ“®@4ƒtƒŒ[ƒ€
-#define AC_WALK_L_4F			0x12		///<¶‚ÉˆÚ“®@4ƒtƒŒ[ƒ€
-#define AC_WALK_R_4F			0x13		///<‰E‚ÉˆÚ“®@4ƒtƒŒ[ƒ€
-#define AC_WALK_U_2F			0x14		///<ã‚ÉˆÚ“®@2ƒtƒŒ[ƒ€
-#define AC_WALK_D_2F			0x15		///<‰º‚ÉˆÚ“®@2ƒtƒŒ[ƒ€
-#define AC_WALK_L_2F			0x16		///<¶‚ÉˆÚ“®@2ƒtƒŒ[ƒ€
-#define AC_WALK_R_2F			0x17		///<‰E‚ÉˆÚ“®@2ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_U_32F		0x18		///<ãŒü‚«‚É‚»‚Ìê•à‚«@32ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_D_32F		0x19		///<‰ºŒü‚«‚É‚»‚Ìê•à‚«@32ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_L_32F		0x1a		///<¶Œü‚«‚É‚»‚Ìê•à‚«@32ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_R_32F		0x1b		///<‰EŒü‚«‚É‚»‚Ìê•à‚«@32ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_U_16F		0x1c		///<ãŒü‚«‚É‚»‚Ìê•à‚«@16ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_D_16F		0x1d		///<‰ºŒü‚«‚É‚»‚Ìê•à‚«@16ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_L_16F		0x1e		///<¶Œü‚«‚É‚»‚Ìê•à‚«@16ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_R_16F		0x1f		///<‰EŒü‚«‚É‚»‚Ìê•à‚«@16ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_U_8F		0x20		///<ãŒü‚«‚É‚»‚Ìê•à‚«@8ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_D_8F		0x21		///<‰ºŒü‚«‚É‚»‚Ìê•à‚«@8ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_L_8F		0x22		///<¶Œü‚«‚É‚»‚Ìê•à‚«@8ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_R_8F		0x23		///<‰EŒü‚«‚É‚»‚Ìê•à‚«@8ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_U_4F		0x24		///<ãŒü‚«‚É‚»‚Ìê•à‚«@4ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_D_4F		0x25		///<‰ºŒü‚«‚É‚»‚Ìê•à‚«@4ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_L_4F		0x26		///<¶Œü‚«‚É‚»‚Ìê•à‚«@4ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_R_4F		0x27		///<‰EŒü‚«‚É‚»‚Ìê•à‚«@4ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_U_2F		0x28		///<ãŒü‚«‚É‚»‚Ìê•à‚«@2ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_D_2F		0x29		///<‰ºŒü‚«‚É‚»‚Ìê•à‚«@2ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_L_2F		0x2a		///<¶Œü‚«‚É‚»‚Ìê•à‚«@2ƒtƒŒ[ƒ€
-#define AC_STAY_WALK_R_2F		0x2b		///<‰EŒü‚«‚É‚»‚Ìê•à‚«@2ƒtƒŒ[ƒ€
-#define AC_STAY_JUMP_U_16F		0x2c		///<ãŒü‚«‚É‚»‚ÌêƒWƒƒƒ“ƒv 16ƒtƒŒ[ƒ€
-#define AC_STAY_JUMP_D_16F		0x2d		///<‰ºŒü‚«‚É‚»‚ÌêƒWƒƒƒ“ƒv 16ƒtƒŒ[ƒ€
-#define AC_STAY_JUMP_L_16F		0x2e		///<¶Œü‚«‚É‚»‚ÌêƒWƒƒƒ“ƒv 16ƒtƒŒ[ƒ€
-#define AC_STAY_JUMP_R_16F		0x2f		///<‰EŒü‚«‚É‚»‚ÌêƒWƒƒƒ“ƒv 16ƒtƒŒ[ƒ€
-#define AC_STAY_JUMP_U_8F		0x30		///<ãŒü‚«‚É‚»‚ÌêƒWƒƒƒ“ƒv 8ƒtƒŒ[ƒ€
-#define AC_STAY_JUMP_D_8F		0x31		///<‰ºŒü‚«‚É‚»‚ÌêƒWƒƒƒ“ƒv 8ƒtƒŒ[ƒ€
-#define AC_STAY_JUMP_L_8F		0x32		///<¶Œü‚«‚É‚»‚ÌêƒWƒƒƒ“ƒv 8ƒtƒŒ[ƒ€
-#define AC_STAY_JUMP_R_8F		0x33		///<‰EŒü‚«‚É‚»‚ÌêƒWƒƒƒ“ƒv 8ƒtƒŒ[ƒ€
-#define AC_JUMP_U_1G_8F			0x34		///<ãŒü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMP_D_1G_8F			0x35		///<‰ºŒü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMP_L_1G_8F			0x36		///<¶Œü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMP_R_1G_8F			0x37		///<‰EŒü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMP_U_2G_16F		0x38		///<ãŒü‚«‚ÉƒWƒƒƒ“ƒv 2ƒOƒŠƒbƒh 16ƒtƒŒ[ƒ€
-#define AC_JUMP_D_2G_16F		0x39		///<‰ºŒü‚«‚ÉƒWƒƒƒ“ƒv 2ƒOƒŠƒbƒh 16ƒtƒŒ[ƒ€
-#define AC_JUMP_L_2G_16F		0x3a		///<¶Œü‚«‚ÉƒWƒƒƒ“ƒv 2ƒOƒŠƒbƒh 16ƒtƒŒ[ƒ€
-#define AC_JUMP_R_2G_16F		0x3b		///<‰EŒü‚«‚ÉƒWƒƒƒ“ƒv 2ƒOƒŠƒbƒh 16ƒtƒŒ[ƒ€
-#define AC_WAIT_1F				0x3c		///<1ƒtƒŒ[ƒ€‘Ò‚¿
-#define AC_WAIT_2F				0x3d		///<2ƒtƒŒ[ƒ€‘Ò‚¿
-#define AC_WAIT_4F				0x3e		///<4ƒtƒŒ[ƒ€‘Ò‚¿
-#define AC_WAIT_8F				0x3f		///<8ƒtƒŒ[ƒ€‘Ò‚¿
-#define AC_WAIT_15F				0x40		///<15ƒtƒŒ[ƒ€‘Ò‚¿
-#define AC_WAIT_16F				0x41		///<16ƒtƒŒ[ƒ€‘Ò‚¿
-#define AC_WAIT_32F				0x42		///<32ƒtƒŒ[ƒ€‘Ò‚¿
-#define AC_WARP_UP				0x43		///<ã‚Éƒ[ƒv
-#define AC_WARP_DOWN			0x44		///<‰º‚Éƒ[ƒv
-#define AC_VANISH_ON			0x45		///<”ñ•\Ž¦‚É‚·‚é
-#define AC_VANISH_OFF			0x46		///<•\Ž¦‚É‚·‚é
-#define AC_DIR_PAUSE_ON			0x47		///<•ûŒüŒÅ’è‚·‚é
-#define AC_DIR_PAUSE_OFF		0x48		///<•ûŒüŒÅ’è‚µ‚È‚¢
-#define AC_ANM_PAUSE_ON			0x49		///<ƒAƒjƒƒ|[ƒY
-#define AC_ANM_PAUSE_OFF		0x4a		///<ƒAƒjƒƒ|[ƒY‚ð‰ðœ
-#define AC_MARK_GYOE			0x4b		///<!ƒ}[ƒN‚ðo‚·
-#define AC_WALK_U_6F			0x4c		///<ã•ûŒü‚ÉˆÚ“®@6ƒtƒŒ[ƒ€
-#define AC_WALK_D_6F			0x4d		///<‰º•ûŒü‚ÉˆÚ“®@6ƒtƒŒ[ƒ€
-#define AC_WALK_L_6F			0x4e		///<¶•ûŒü‚ÉˆÚ“®@6ƒtƒŒ[ƒ€
-#define AC_WALK_R_6F			0x4f		///<‰E•ûŒü‚ÉˆÚ“®@6ƒtƒŒ[ƒ€
-#define AC_WALK_U_3F			0x50		///<ã•ûŒü‚ÉˆÚ“®@3ƒtƒŒ[ƒ€
-#define AC_WALK_D_3F			0x51		///<‰º•ûŒü‚ÉˆÚ“®@3ƒtƒŒ[ƒ€
-#define AC_WALK_L_3F			0x52		///<¶•ûŒü‚ÉˆÚ“®@3ƒtƒŒ[ƒ€
-#define AC_WALK_R_3F			0x53		///<‰E•ûŒü‚ÉˆÚ“®@3ƒtƒŒ[ƒ€
-#define AC_WALK_U_1F			0x54		///<ã•ûŒü‚ÉˆÚ“®@1ƒtƒŒ[ƒ€(ƒVƒXƒeƒ€–¢‘Î‰ž Žg—p‹ÖŽ~
-#define AC_WALK_D_1F			0x55		///<‰º•ûŒü‚ÉˆÚ“®@1ƒtƒŒ[ƒ€(ƒVƒXƒeƒ€–¢‘Î‰ž Žg—p‹ÖŽ~
-#define AC_WALK_L_1F			0x56		///<¶•ûŒü‚ÉˆÚ“®@1ƒtƒŒ[ƒ€(ƒVƒXƒeƒ€–¢‘Î‰ž Žg—p‹ÖŽ~
-#define AC_WALK_R_1F			0x57		///<‰E•ûŒü‚ÉˆÚ“®@1ƒtƒŒ[ƒ€(ƒVƒXƒeƒ€–¢‘Î‰ž Žg—p‹ÖŽ~
-#define AC_DASH_U_4F			0x58		///<ã•ûŒü‚ÉˆÚ“®@4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASH_D_4F			0x59		///<‰º•ûŒü‚ÉˆÚ“®@4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASH_L_4F			0x5a		///<¶•ûŒü‚ÉˆÚ“®@4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASH_R_4F			0x5b		///<‰E•ûŒü‚ÉˆÚ“®@4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_JUMPHI_L_1G_16F		0x5c	///<¶•ûŒü‚É‚‚¢ƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 16ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_JUMPHI_R_1G_16F		0x5d	///<‰E•ûŒü‚É‚‚¢ƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 16ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_JUMPHI_L_3G_32F		0x5e	///<¶•ûŒü‚É‚‚¢ƒWƒƒƒ“ƒv 3ƒOƒŠƒbƒh 32ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_JUMPHI_R_3G_32F		0x5f	///<‰E•ûŒü‚É‚‚¢ƒWƒƒƒ“ƒv 3ƒOƒŠƒbƒh 32ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_WALK_U_7F			0x60		///<ã•ûŒü‚ÉˆÚ“®@7ƒtƒŒ[ƒ€
-#define AC_WALK_D_7F			0x61		///<‰º•ûŒü‚ÉˆÚ“®@7ƒtƒŒ[ƒ€
-#define AC_WALK_L_7F			0x62		///<¶•ûŒü‚ÉˆÚ“®@7ƒtƒŒ[ƒ€
-#define AC_WALK_R_7F			0x63		///<‰E•ûŒü‚ÉˆÚ“®@7ƒtƒŒ[ƒ€
-#define AC_PC_BOW				0x64		///<PC‚¨Ž«‹V(PCWOMAN1ê—p
-#define AC_HIDE_PULLOFF			0x65		///<‰B‚ê–ª’E‚®(MV_HIDEê—p
-#define AC_HERO_BANZAI			0x66		///<PC—¼Žè·o(Ž©‹@ê—p
-#define AC_MARK_SAISEN			0x67		///<Äíƒ}[ƒN•\Ž¦
-#define AC_HERO_BANZAI_UKE		0x68		///<PC—¼Žè·oŽó‚¯Žæ‚è(Ž©‹@ê—p
-#define AC_WALKGL_U_8F			0x69		///<¶•ÇˆÚ“® ã 8ƒtƒŒ[ƒ€
-#define AC_WALKGL_D_8F			0x6a		///<¶•ÇˆÚ“® ‰º 8ƒtƒŒ[ƒ€
-#define AC_WALKGL_L_8F			0x6b		///<¶•ÇˆÚ“® ¶ 8ƒtƒŒ[ƒ€
-#define AC_WALKGL_R_8F			0x6c		///<¶•ÇˆÚ“® ‰E 8ƒtƒŒ[ƒ€
-#define AC_WALKGR_U_8F			0x6d		///<‰E•ÇˆÚ“® ã 8ƒtƒŒ[ƒ€
-#define AC_WALKGR_D_8F			0x6e		///<‰E•ÇˆÚ“® ‰º 8ƒtƒŒ[ƒ€
-#define AC_WALKGR_L_8F			0x6f		///<‰E•ÇˆÚ“® ¶ 8ƒtƒŒ[ƒ€
-#define AC_WALKGR_R_8F			0x70		///<‰E•ÇˆÚ“® ‰E 8ƒtƒŒ[ƒ€
-#define AC_WALKGU_U_8F			0x71		///<ã•ÇˆÚ“® ã 8ƒtƒŒ[ƒ€
-#define AC_WALKGU_D_8F			0x72		///<ã•ÇˆÚ“® ‰º 8ƒtƒŒ[ƒ€
-#define AC_WALKGU_L_8F			0x73		///<ã•ÇˆÚ“® ¶ 8ƒtƒŒ[ƒ€
-#define AC_WALKGU_R_8F			0x74		///<ã•ÇˆÚ“® ‰E 8ƒtƒŒ[ƒ€
-#define AC_JUMP_U_3G_24F		0x75			///<ãŒü‚«‚ÉƒWƒƒƒ“ƒv 3ƒOƒŠƒbƒh 24ƒtƒŒ[ƒ€
-#define AC_JUMP_D_3G_24F		0x76			///<ãŒü‚«‚ÉƒWƒƒƒ“ƒv 3ƒOƒŠƒbƒh 24ƒtƒŒ[ƒ€
-#define AC_JUMP_L_3G_24F		0x77			///<ãŒü‚«‚ÉƒWƒƒƒ“ƒv 3ƒOƒŠƒbƒh 24ƒtƒŒ[ƒ€
-#define AC_JUMP_R_3G_24F		0x78			///<ãŒü‚«‚ÉƒWƒƒƒ“ƒv 3ƒOƒŠƒbƒh 24ƒtƒŒ[ƒ€
-#define AC_DASHGL_U_4F			0x79		///<¶•ÇˆÚ“® ã 4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASHGL_D_4F			0x7a		///<¶•ÇˆÚ“® ‰º 4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASHGL_L_4F			0x7b		///<¶•ÇˆÚ“® ¶ 4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASHGL_R_4F			0x7c		///<¶•ÇˆÚ“® ‰E 4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASHGR_U_4F			0x7d		///<‰E•ÇˆÚ“® ã 4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASHGR_D_4F			0x7e		///<‰E•ÇˆÚ“® ‰º 4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASHGR_L_4F			0x7f		///<‰E•ÇˆÚ“® ¶ 4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASHGR_R_4F			0x80		///<‰E•ÇˆÚ“® ‰E 4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASHGU_U_4F			0x81		///<ã•ÇˆÚ“® ã 4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASHGU_D_4F			0x82		///<ã•ÇˆÚ“® ‰º 4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASHGU_L_4F			0x83		///<ã•ÇˆÚ“® ¶ 4ƒtƒŒ[ƒ€(Ž©‹@ê—p
-#define AC_DASHGU_R_4F			0x84		///<ã•ÇˆÚ“® ‰E 4ƒtƒŒ[ƒ€(Ž©‹@ê—p
+#define AC_DIR_U				0x00		///<ä¸Šã«å‘ã
+#define AC_DIR_D				0x01		///<ä¸‹ã«å‘ã
+#define AC_DIR_L				0x02		///<å·¦ã«å‘ã
+#define AC_DIR_R				0x03		///<å³ã«å‘ã
+#define AC_WALK_U_32F			0x04		///<ä¸Šã«ç§»å‹•ã€€32ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_D_32F			0x05		///<ä¸‹ã«ç§»å‹•ã€€32ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_L_32F			0x06		///<å·¦ã«ç§»å‹•ã€€32ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_R_32F			0x07		///<å³ã«ç§»å‹•ã€€32ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_U_16F			0x08		///<ä¸Šã«ç§»å‹•ã€€16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_D_16F			0x09		///<ä¸‹ã«ç§»å‹•ã€€16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_L_16F			0x0a		///<å·¦ã«ç§»å‹•ã€€16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_R_16F			0x0b		///<å³ã«ç§»å‹•ã€€16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_U_8F			0x0c		///<ä¸Šã«ç§»å‹•ã€€8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_D_8F			0x0d		///<ä¸‹ã«ç§»å‹•ã€€8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_L_8F			0x0e		///<å·¦ã«ç§»å‹•ã€€8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_R_8F			0x0f		///<å³ã«ç§»å‹•ã€€8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_U_4F			0x10		///<ä¸Šã«ç§»å‹•ã€€4ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_D_4F			0x11		///<ä¸‹ã«ç§»å‹•ã€€4ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_L_4F			0x12		///<å·¦ã«ç§»å‹•ã€€4ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_R_4F			0x13		///<å³ã«ç§»å‹•ã€€4ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_U_2F			0x14		///<ä¸Šã«ç§»å‹•ã€€2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_D_2F			0x15		///<ä¸‹ã«ç§»å‹•ã€€2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_L_2F			0x16		///<å·¦ã«ç§»å‹•ã€€2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_R_2F			0x17		///<å³ã«ç§»å‹•ã€€2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_U_32F		0x18		///<ä¸Šå‘ãã«ãã®å ´æ­©ãã€€32ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_D_32F		0x19		///<ä¸‹å‘ãã«ãã®å ´æ­©ãã€€32ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_L_32F		0x1a		///<å·¦å‘ãã«ãã®å ´æ­©ãã€€32ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_R_32F		0x1b		///<å³å‘ãã«ãã®å ´æ­©ãã€€32ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_U_16F		0x1c		///<ä¸Šå‘ãã«ãã®å ´æ­©ãã€€16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_D_16F		0x1d		///<ä¸‹å‘ãã«ãã®å ´æ­©ãã€€16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_L_16F		0x1e		///<å·¦å‘ãã«ãã®å ´æ­©ãã€€16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_R_16F		0x1f		///<å³å‘ãã«ãã®å ´æ­©ãã€€16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_U_8F		0x20		///<ä¸Šå‘ãã«ãã®å ´æ­©ãã€€8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_D_8F		0x21		///<ä¸‹å‘ãã«ãã®å ´æ­©ãã€€8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_L_8F		0x22		///<å·¦å‘ãã«ãã®å ´æ­©ãã€€8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_R_8F		0x23		///<å³å‘ãã«ãã®å ´æ­©ãã€€8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_U_4F		0x24		///<ä¸Šå‘ãã«ãã®å ´æ­©ãã€€4ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_D_4F		0x25		///<ä¸‹å‘ãã«ãã®å ´æ­©ãã€€4ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_L_4F		0x26		///<å·¦å‘ãã«ãã®å ´æ­©ãã€€4ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_R_4F		0x27		///<å³å‘ãã«ãã®å ´æ­©ãã€€4ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_U_2F		0x28		///<ä¸Šå‘ãã«ãã®å ´æ­©ãã€€2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_D_2F		0x29		///<ä¸‹å‘ãã«ãã®å ´æ­©ãã€€2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_L_2F		0x2a		///<å·¦å‘ãã«ãã®å ´æ­©ãã€€2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_WALK_R_2F		0x2b		///<å³å‘ãã«ãã®å ´æ­©ãã€€2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_JUMP_U_16F		0x2c		///<ä¸Šå‘ãã«ãã®å ´ã‚¸ãƒ£ãƒ³ãƒ— 16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_JUMP_D_16F		0x2d		///<ä¸‹å‘ãã«ãã®å ´ã‚¸ãƒ£ãƒ³ãƒ— 16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_JUMP_L_16F		0x2e		///<å·¦å‘ãã«ãã®å ´ã‚¸ãƒ£ãƒ³ãƒ— 16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_JUMP_R_16F		0x2f		///<å³å‘ãã«ãã®å ´ã‚¸ãƒ£ãƒ³ãƒ— 16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_JUMP_U_8F		0x30		///<ä¸Šå‘ãã«ãã®å ´ã‚¸ãƒ£ãƒ³ãƒ— 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_JUMP_D_8F		0x31		///<ä¸‹å‘ãã«ãã®å ´ã‚¸ãƒ£ãƒ³ãƒ— 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_JUMP_L_8F		0x32		///<å·¦å‘ãã«ãã®å ´ã‚¸ãƒ£ãƒ³ãƒ— 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_STAY_JUMP_R_8F		0x33		///<å³å‘ãã«ãã®å ´ã‚¸ãƒ£ãƒ³ãƒ— 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMP_U_1G_8F			0x34		///<ä¸Šå‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMP_D_1G_8F			0x35		///<ä¸‹å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMP_L_1G_8F			0x36		///<å·¦å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMP_R_1G_8F			0x37		///<å³å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMP_U_2G_16F		0x38		///<ä¸Šå‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 2ã‚°ãƒªãƒƒãƒ‰ 16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMP_D_2G_16F		0x39		///<ä¸‹å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 2ã‚°ãƒªãƒƒãƒ‰ 16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMP_L_2G_16F		0x3a		///<å·¦å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 2ã‚°ãƒªãƒƒãƒ‰ 16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMP_R_2G_16F		0x3b		///<å³å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 2ã‚°ãƒªãƒƒãƒ‰ 16ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WAIT_1F				0x3c		///<1ãƒ•ãƒ¬ãƒ¼ãƒ å¾…ã¡
+#define AC_WAIT_2F				0x3d		///<2ãƒ•ãƒ¬ãƒ¼ãƒ å¾…ã¡
+#define AC_WAIT_4F				0x3e		///<4ãƒ•ãƒ¬ãƒ¼ãƒ å¾…ã¡
+#define AC_WAIT_8F				0x3f		///<8ãƒ•ãƒ¬ãƒ¼ãƒ å¾…ã¡
+#define AC_WAIT_15F				0x40		///<15ãƒ•ãƒ¬ãƒ¼ãƒ å¾…ã¡
+#define AC_WAIT_16F				0x41		///<16ãƒ•ãƒ¬ãƒ¼ãƒ å¾…ã¡
+#define AC_WAIT_32F				0x42		///<32ãƒ•ãƒ¬ãƒ¼ãƒ å¾…ã¡
+#define AC_WARP_UP				0x43		///<ä¸Šã«ãƒ¯ãƒ¼ãƒ—
+#define AC_WARP_DOWN			0x44		///<ä¸‹ã«ãƒ¯ãƒ¼ãƒ—
+#define AC_VANISH_ON			0x45		///<éžè¡¨ç¤ºã«ã™ã‚‹
+#define AC_VANISH_OFF			0x46		///<è¡¨ç¤ºã«ã™ã‚‹
+#define AC_DIR_PAUSE_ON			0x47		///<æ–¹å‘å›ºå®šã™ã‚‹
+#define AC_DIR_PAUSE_OFF		0x48		///<æ–¹å‘å›ºå®šã—ãªã„
+#define AC_ANM_PAUSE_ON			0x49		///<ã‚¢ãƒ‹ãƒ¡ãƒãƒ¼ã‚º
+#define AC_ANM_PAUSE_OFF		0x4a		///<ã‚¢ãƒ‹ãƒ¡ãƒãƒ¼ã‚ºã‚’è§£é™¤
+#define AC_MARK_GYOE			0x4b		///<!ãƒžãƒ¼ã‚¯ã‚’å‡ºã™
+#define AC_WALK_U_6F			0x4c		///<ä¸Šæ–¹å‘ã«ç§»å‹•ã€€6ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_D_6F			0x4d		///<ä¸‹æ–¹å‘ã«ç§»å‹•ã€€6ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_L_6F			0x4e		///<å·¦æ–¹å‘ã«ç§»å‹•ã€€6ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_R_6F			0x4f		///<å³æ–¹å‘ã«ç§»å‹•ã€€6ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_U_3F			0x50		///<ä¸Šæ–¹å‘ã«ç§»å‹•ã€€3ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_D_3F			0x51		///<ä¸‹æ–¹å‘ã«ç§»å‹•ã€€3ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_L_3F			0x52		///<å·¦æ–¹å‘ã«ç§»å‹•ã€€3ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_R_3F			0x53		///<å³æ–¹å‘ã«ç§»å‹•ã€€3ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_U_1F			0x54		///<ä¸Šæ–¹å‘ã«ç§»å‹•ã€€1ãƒ•ãƒ¬ãƒ¼ãƒ (ã‚·ã‚¹ãƒ†ãƒ æœªå¯¾å¿œ ä½¿ç”¨ç¦æ­¢
+#define AC_WALK_D_1F			0x55		///<ä¸‹æ–¹å‘ã«ç§»å‹•ã€€1ãƒ•ãƒ¬ãƒ¼ãƒ (ã‚·ã‚¹ãƒ†ãƒ æœªå¯¾å¿œ ä½¿ç”¨ç¦æ­¢
+#define AC_WALK_L_1F			0x56		///<å·¦æ–¹å‘ã«ç§»å‹•ã€€1ãƒ•ãƒ¬ãƒ¼ãƒ (ã‚·ã‚¹ãƒ†ãƒ æœªå¯¾å¿œ ä½¿ç”¨ç¦æ­¢
+#define AC_WALK_R_1F			0x57		///<å³æ–¹å‘ã«ç§»å‹•ã€€1ãƒ•ãƒ¬ãƒ¼ãƒ (ã‚·ã‚¹ãƒ†ãƒ æœªå¯¾å¿œ ä½¿ç”¨ç¦æ­¢
+#define AC_DASH_U_4F			0x58		///<ä¸Šæ–¹å‘ã«ç§»å‹•ã€€4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASH_D_4F			0x59		///<ä¸‹æ–¹å‘ã«ç§»å‹•ã€€4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASH_L_4F			0x5a		///<å·¦æ–¹å‘ã«ç§»å‹•ã€€4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASH_R_4F			0x5b		///<å³æ–¹å‘ã«ç§»å‹•ã€€4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_JUMPHI_L_1G_16F		0x5c	///<å·¦æ–¹å‘ã«é«˜ã„ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 16ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_JUMPHI_R_1G_16F		0x5d	///<å³æ–¹å‘ã«é«˜ã„ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 16ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_JUMPHI_L_3G_32F		0x5e	///<å·¦æ–¹å‘ã«é«˜ã„ã‚¸ãƒ£ãƒ³ãƒ— 3ã‚°ãƒªãƒƒãƒ‰ 32ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_JUMPHI_R_3G_32F		0x5f	///<å³æ–¹å‘ã«é«˜ã„ã‚¸ãƒ£ãƒ³ãƒ— 3ã‚°ãƒªãƒƒãƒ‰ 32ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_WALK_U_7F			0x60		///<ä¸Šæ–¹å‘ã«ç§»å‹•ã€€7ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_D_7F			0x61		///<ä¸‹æ–¹å‘ã«ç§»å‹•ã€€7ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_L_7F			0x62		///<å·¦æ–¹å‘ã«ç§»å‹•ã€€7ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALK_R_7F			0x63		///<å³æ–¹å‘ã«ç§»å‹•ã€€7ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_PC_BOW				0x64		///<PCãŠè¾žå„€(PCWOMAN1å°‚ç”¨
+#define AC_HIDE_PULLOFF			0x65		///<éš ã‚Œè“‘è„±ã(MV_HIDEå°‚ç”¨
+#define AC_HERO_BANZAI			0x66		///<PCä¸¡æ‰‹å·®å‡º(è‡ªæ©Ÿå°‚ç”¨
+#define AC_MARK_SAISEN			0x67		///<å†æˆ¦ãƒžãƒ¼ã‚¯è¡¨ç¤º
+#define AC_HERO_BANZAI_UKE		0x68		///<PCä¸¡æ‰‹å·®å‡ºå—ã‘å–ã‚Š(è‡ªæ©Ÿå°‚ç”¨
+#define AC_WALKGL_U_8F			0x69		///<å·¦å£ç§»å‹• ä¸Š 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGL_D_8F			0x6a		///<å·¦å£ç§»å‹• ä¸‹ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGL_L_8F			0x6b		///<å·¦å£ç§»å‹• å·¦ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGL_R_8F			0x6c		///<å·¦å£ç§»å‹• å³ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGR_U_8F			0x6d		///<å³å£ç§»å‹• ä¸Š 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGR_D_8F			0x6e		///<å³å£ç§»å‹• ä¸‹ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGR_L_8F			0x6f		///<å³å£ç§»å‹• å·¦ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGR_R_8F			0x70		///<å³å£ç§»å‹• å³ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGU_U_8F			0x71		///<ä¸Šå£ç§»å‹• ä¸Š 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGU_D_8F			0x72		///<ä¸Šå£ç§»å‹• ä¸‹ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGU_L_8F			0x73		///<ä¸Šå£ç§»å‹• å·¦ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGU_R_8F			0x74		///<ä¸Šå£ç§»å‹• å³ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMP_U_3G_24F		0x75			///<ä¸Šå‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 3ã‚°ãƒªãƒƒãƒ‰ 24ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMP_D_3G_24F		0x76			///<ä¸Šå‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 3ã‚°ãƒªãƒƒãƒ‰ 24ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMP_L_3G_24F		0x77			///<ä¸Šå‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 3ã‚°ãƒªãƒƒãƒ‰ 24ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMP_R_3G_24F		0x78			///<ä¸Šå‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 3ã‚°ãƒªãƒƒãƒ‰ 24ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_DASHGL_U_4F			0x79		///<å·¦å£ç§»å‹• ä¸Š 4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASHGL_D_4F			0x7a		///<å·¦å£ç§»å‹• ä¸‹ 4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASHGL_L_4F			0x7b		///<å·¦å£ç§»å‹• å·¦ 4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASHGL_R_4F			0x7c		///<å·¦å£ç§»å‹• å³ 4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASHGR_U_4F			0x7d		///<å³å£ç§»å‹• ä¸Š 4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASHGR_D_4F			0x7e		///<å³å£ç§»å‹• ä¸‹ 4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASHGR_L_4F			0x7f		///<å³å£ç§»å‹• å·¦ 4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASHGR_R_4F			0x80		///<å³å£ç§»å‹• å³ 4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASHGU_U_4F			0x81		///<ä¸Šå£ç§»å‹• ä¸Š 4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASHGU_D_4F			0x82		///<ä¸Šå£ç§»å‹• ä¸‹ 4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASHGU_L_4F			0x83		///<ä¸Šå£ç§»å‹• å·¦ 4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
+#define AC_DASHGU_R_4F			0x84		///<ä¸Šå£ç§»å‹• å³ 4ãƒ•ãƒ¬ãƒ¼ãƒ (è‡ªæ©Ÿå°‚ç”¨
 
-#define AC_JUMPGL_U_1G_8F		0x85		///<¶•Ç@ãŒü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMPGL_D_1G_8F		0x86		///<¶•Ç@‰ºŒü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMPGL_L_1G_8F		0x87		///<¶•Ç@¶Œü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMPGL_R_1G_8F		0x88		///<¶•Ç@‰EŒü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMPGR_U_1G_8F		0x89		///<‰E•Ç@ãŒü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMPGR_D_1G_8F		0x8a		///<‰E•Ç@‰ºŒü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMPGR_L_1G_8F		0x8b		///<‰E•Ç@¶Œü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMPGR_R_1G_8F		0x8c		///<‰E•Ç@‰EŒü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMPGU_U_1G_8F		0x8d		///<ã•Ç@ãŒü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMPGU_D_1G_8F		0x8e		///<ã•Ç@‰ºŒü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMPGU_L_1G_8F		0x8f		///<ã•Ç@¶Œü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_JUMPGU_R_1G_8F		0x90		///<ã•Ç@‰EŒü‚«‚ÉƒWƒƒƒ“ƒv 1ƒOƒŠƒbƒh 8ƒtƒŒ[ƒ€
-#define AC_WALKGU_U_4F			0x91		///<ã•ÇˆÚ“® ã 4ƒtƒŒ[ƒ€
-#define AC_WALKGU_D_4F			0x92		///<ã•ÇˆÚ“® ‰º 4ƒtƒŒ[ƒ€
-#define AC_WALKGU_L_4F			0x93		///<ã•ÇˆÚ“® ¶ 4ƒtƒŒ[ƒ€
-#define AC_WALKGU_R_4F			0x94		///<ã•ÇˆÚ“® ‰E 4ƒtƒŒ[ƒ€
-#define AC_WALKGU_U_2F			0x95		///<ã•ÇˆÚ“® ã 2ƒtƒŒ[ƒ€
-#define AC_WALKGU_D_2F			0x96		///<ã•ÇˆÚ“® ‰º 2ƒtƒŒ[ƒ€
-#define AC_WALKGU_L_2F			0x97		///<ã•ÇˆÚ“® ¶ 2ƒtƒŒ[ƒ€
-#define AC_WALKGU_R_2F			0x98		///<ã•ÇˆÚ“® ‰E 2ƒtƒŒ[ƒ€
-#define AC_MARK_GYOE_TWAIT		0x99		///<!ƒ}[ƒN‚ðo‚· ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^“]‘—‘Ò‚¿”Å
+#define AC_JUMPGL_U_1G_8F		0x85		///<å·¦å£ã€€ä¸Šå‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMPGL_D_1G_8F		0x86		///<å·¦å£ã€€ä¸‹å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMPGL_L_1G_8F		0x87		///<å·¦å£ã€€å·¦å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMPGL_R_1G_8F		0x88		///<å·¦å£ã€€å³å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMPGR_U_1G_8F		0x89		///<å³å£ã€€ä¸Šå‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMPGR_D_1G_8F		0x8a		///<å³å£ã€€ä¸‹å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMPGR_L_1G_8F		0x8b		///<å³å£ã€€å·¦å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMPGR_R_1G_8F		0x8c		///<å³å£ã€€å³å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMPGU_U_1G_8F		0x8d		///<ä¸Šå£ã€€ä¸Šå‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMPGU_D_1G_8F		0x8e		///<ä¸Šå£ã€€ä¸‹å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMPGU_L_1G_8F		0x8f		///<ä¸Šå£ã€€å·¦å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_JUMPGU_R_1G_8F		0x90		///<ä¸Šå£ã€€å³å‘ãã«ã‚¸ãƒ£ãƒ³ãƒ— 1ã‚°ãƒªãƒƒãƒ‰ 8ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGU_U_4F			0x91		///<ä¸Šå£ç§»å‹• ä¸Š 4ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGU_D_4F			0x92		///<ä¸Šå£ç§»å‹• ä¸‹ 4ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGU_L_4F			0x93		///<ä¸Šå£ç§»å‹• å·¦ 4ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGU_R_4F			0x94		///<ä¸Šå£ç§»å‹• å³ 4ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGU_U_2F			0x95		///<ä¸Šå£ç§»å‹• ä¸Š 2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGU_D_2F			0x96		///<ä¸Šå£ç§»å‹• ä¸‹ 2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGU_L_2F			0x97		///<ä¸Šå£ç§»å‹• å·¦ 2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_WALKGU_R_2F			0x98		///<ä¸Šå£ç§»å‹• å³ 2ãƒ•ãƒ¬ãƒ¼ãƒ 
+#define AC_MARK_GYOE_TWAIT		0x99		///<!ãƒžãƒ¼ã‚¯ã‚’å‡ºã™ ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è»¢é€å¾…ã¡ç‰ˆ
 
-#define ACMD_MAX				0x9a		///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhÅ‘å”
+#define ACMD_MAX				0x9a		///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰æœ€å¤§æ•°
 
-#define ACMD_END				0xfe		///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhI—¹
-#define ACMD_NOT				0xff		///<”ñƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh
+#define ACMD_END				0xfe		///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰çµ‚äº†
+#define ACMD_NOT				0xff		///<éžã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒžãƒ³ãƒ‰
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ •\Ž¦ƒR[ƒh
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ è¡¨ç¤ºã‚³ãƒ¼ãƒ‰
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒtƒB[ƒ‹ƒhOBJ •\Ž¦ƒR[ƒh
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ è¡¨ç¤ºã‚³ãƒ¼ãƒ‰
 //--------------------------------------------------------------
-#define HERO			0x0000		///<ŽålŒö
-#define BABYBOY1		0x0001		///<’j‚ÌŽq
-#define BABYGIRL1		0x0002		///<—‚ÌŽq
-#define BOY1			0x0003		///<­”N
-#define BOY2			0x0004		///<Šˆ”­­”N
-#define BOY3			0x0005		///<”ž‚í‚ç­”N
-#define GIRL1			0x0006		///<­—
-#define GIRL2			0x0007		///<Šˆ”­­—
-#define GIRL3			0x0008		///<‚¨Ÿ­—Ž­—
-#define MAN1			0x0009		///<‚¨ŒZ‚³‚ñ
-#define MAN2			0x000a		///<ƒcƒbƒpƒŠ‚¨ŒZ‚³‚ñ
-#define MAN3			0x000b		///<ƒgƒŒ[ƒi[‚¨ŒZ‚³‚ñ
-#define WOMAN1			0x000c		///<‚¨Žo‚³‚ñ
-#define WOMAN2			0x000d		///<‚¨Ÿ­—Ž‚¨Žo‚³‚ñ
-#define WOMAN3			0x000e		///<ƒgƒŒ[ƒi[‚¨Žo‚³‚ñ
-#define MIDDLEMAN1		0x000f		///<‚¨‚¶‚³‚ñ
-#define MIDDLEWOMAN1	0x0010		///<‚¨‚Î‚³‚ñ
-#define OLDMAN1			0x0011		///<˜a•—–ê‚³‚ñ
-#define OLDWOMAN1		0x0012		///<˜a•—”k‚³‚ñ
-#define BIGMAN			0x0013		///<‘¾‚Á‚½‚¨ŒZ‚³‚ñ
-#define MOUNT			0x0014		///<ŽR’j
-#define CYCLEHERO		0x0015		///<ŽålŒöŽ©“]ŽÔ
+#define HERO			0x0000		///<ä¸»äººå…¬
+#define BABYBOY1		0x0001		///<ç”·ã®å­
+#define BABYGIRL1		0x0002		///<å¥³ã®å­
+#define BOY1			0x0003		///<å°‘å¹´
+#define BOY2			0x0004		///<æ´»ç™ºå°‘å¹´
+#define BOY3			0x0005		///<éº¦ã‚ã‚‰å°‘å¹´
+#define GIRL1			0x0006		///<å°‘å¥³
+#define GIRL2			0x0007		///<æ´»ç™ºå°‘å¥³
+#define GIRL3			0x0008		///<ãŠæ´’è½å°‘å¥³
+#define MAN1			0x0009		///<ãŠå…„ã•ã‚“
+#define MAN2			0x000a		///<ãƒ„ãƒƒãƒ‘ãƒªãŠå…„ã•ã‚“
+#define MAN3			0x000b		///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŠå…„ã•ã‚“
+#define WOMAN1			0x000c		///<ãŠå§‰ã•ã‚“
+#define WOMAN2			0x000d		///<ãŠæ´’è½ãŠå§‰ã•ã‚“
+#define WOMAN3			0x000e		///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŠå§‰ã•ã‚“
+#define MIDDLEMAN1		0x000f		///<ãŠã˜ã•ã‚“
+#define MIDDLEWOMAN1	0x0010		///<ãŠã°ã•ã‚“
+#define OLDMAN1			0x0011		///<å’Œé¢¨çˆºã•ã‚“
+#define OLDWOMAN1		0x0012		///<å’Œé¢¨å©†ã•ã‚“
+#define BIGMAN			0x0013		///<å¤ªã£ãŸãŠå…„ã•ã‚“
+#define MOUNT			0x0014		///<å±±ç”·
+#define CYCLEHERO		0x0015		///<ä¸»äººå…¬è‡ªè»¢è»Š
 #define REPORTER		0x0016		///<
 #define CAMERAMAN		0x0017		///<
 #define SHOPM1			0x0018		///<
@@ -483,12 +483,12 @@
 #define SHADOW			0x0058		///<
 #define BOUGH			0x0059		///<
 #define FALLTREE		0x005a		///<
-#define BOARD_A			0x005b		///<ŠÅ”Â
-#define BOARD_B			0x005c		///<ŠÅ”Â
-#define BOARD_C			0x005d		///<ŠÅ”Â
-#define BOARD_D			0x005e		///<ŠÅ”Â
-#define BOARD_E			0x005f		///<ŠÅ”Â
-#define BOARD_F			0x0060		///<ŠÅ”Â
+#define BOARD_A			0x005b		///<çœ‹æ¿
+#define BOARD_B			0x005c		///<çœ‹æ¿
+#define BOARD_C			0x005d		///<çœ‹æ¿
+#define BOARD_D			0x005e		///<çœ‹æ¿
+#define BOARD_E			0x005f		///<çœ‹æ¿
+#define BOARD_F			0x0060		///<çœ‹æ¿
 #define HEROINE			0x0061		///<
 #define CYCLEHEROINE	0x0062		///<
 #define DOCTOR			0x0063
@@ -509,7 +509,7 @@
 #define WKOBJCODE13		0x0072
 #define WKOBJCODE14		0x0073
 #define WKOBJCODE15		0x0074
-#define BANCODE			0x0075	//ƒR[ƒh’Ç‰Áƒ~ƒX@Žg—p‹ÖŽ~
+#define BANCODE			0x0075	//ã‚³ãƒ¼ãƒ‰è¿½åŠ ãƒŸã‚¹ã€€ä½¿ç”¨ç¦æ­¢
 #define SNOWBALL		0x0076
 #define GINGABOSS		0x0078
 #define GKANBU1			0x0079
@@ -668,17 +668,17 @@
 #define GSTPOKEHERO		0x0112
 #define GSTPOKEHEROINE	0x0113
 
-#define OBJCODEMAX		0xffff		///<OBJƒR[ƒhÅ‘å
+#define OBJCODEMAX		0xffff		///<OBJã‚³ãƒ¼ãƒ‰æœ€å¤§
 
 //--------------------------------------------------------------
-///	ƒ[ƒNŽQÆŒ^OBJƒR[ƒh@ƒ`ƒFƒbƒNƒVƒ“ƒ{ƒ‹
+///	ãƒ¯ãƒ¼ã‚¯å‚ç…§åž‹OBJã‚³ãƒ¼ãƒ‰ã€€ãƒã‚§ãƒƒã‚¯ã‚·ãƒ³ãƒœãƒ«
 //--------------------------------------------------------------
 #define WKOBJCODE_ORG	(WKOBJCODE00)
 #define WKOBJCODE_END	(WKOBJCODE15)
 
 //--------------------------------------------------------------
-///	–Ø‚ÌŽÀê—pOBJƒR[ƒh@’Êí‚ÌOBJƒR[ƒh‚Éd‚È‚ç‚È‚¢—lA’ˆÓ
-/// ¦ƒ}ƒbƒvƒGƒfƒBƒ^‚Å‚Ì”z’u‚Í‹ÖŽ~
+///	æœ¨ã®å®Ÿå°‚ç”¨OBJã‚³ãƒ¼ãƒ‰ã€€é€šå¸¸ã®OBJã‚³ãƒ¼ãƒ‰ã«é‡ãªã‚‰ãªã„æ§˜ã€æ³¨æ„
+/// â€»ãƒžãƒƒãƒ—ã‚¨ãƒ‡ã‚£ã‚¿ã§ã®é…ç½®ã¯ç¦æ­¢
 //--------------------------------------------------------------
 #define SEEDCODEORG (0x1000)
 #define SEED00				(SEEDCODEORG + 0x00)
@@ -876,48 +876,48 @@
 #define SEED64C                (SEEDCODEORG + 0xc0)
 
 //--------------------------------------------------------------
-///	“ÁŽêOBJƒR[ƒh
-/// ¦ƒ}ƒbƒvƒGƒfƒBƒ^‚Å‚Ì”z’u‚Í‹ÖŽ~
+///	ç‰¹æ®ŠOBJã‚³ãƒ¼ãƒ‰
+/// â€»ãƒžãƒƒãƒ—ã‚¨ãƒ‡ã‚£ã‚¿ã§ã®é…ç½®ã¯ç¦æ­¢
 //--------------------------------------------------------------
 #define NONDRAW			(0x2000)
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒ‚ƒfƒ‹ID
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ãƒ¢ãƒ‡ãƒ«ID
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒ‚ƒfƒ‹ID
+//	ãƒ¢ãƒ‡ãƒ«ID
 //--------------------------------------------------------------
 #define BLACT_MDLID_32x32		0x0000		///<32x32
 #define BLACT_MDLID_16x16		0x0001		///<16x16
 #define BLACT_MDLID_16x16_1		0x0002		///<16x16
-#define BLACT_MDLID_SEED_ME		0x0003		///<–Ø‚ÌŽÀ@‰è
-#define BLACT_MDLID_SEED		0x0004		///<–Ø‚ÌŽÀ
+#define BLACT_MDLID_SEED_ME		0x0003		///<æœ¨ã®å®Ÿã€€èŠ½
+#define BLACT_MDLID_SEED		0x0004		///<æœ¨ã®å®Ÿ
 #define BLACT_MDLID_64x64		0x0005		///<64x64
-#define BLACT_MDLID_FISHINGHERO	0x0006		///<’Þ‚èŽ©‹@
+#define BLACT_MDLID_FISHINGHERO	0x0006		///<é‡£ã‚Šè‡ªæ©Ÿ
 #define BLACT_MDLID_16x32		0x0007		///<16x32
 #define BLACT_MDLID_64x32		0x0008		///<64x32
-#define BLACT_MDLID_32x32FOGOFF	0x0009		///<32x32 ƒtƒHƒO–³Œø
-#define BLACT_MDLID_32x32BOFF	0x000a		///<32x32 ƒrƒ‹ƒ{[ƒhƒIƒt
-#define BLACT_MDLID_GIRATINA	0x000b		///<128x64 ƒMƒ‰ƒeƒBƒi
-#define BLACT_MDLID_GSET		0x000c		///<128x32 ƒMƒ“ƒK’c‘Š„
-#define BLACT_MDLID_MONUMENT2A	0x000d		///<64x32 ƒ‚ƒjƒ…ƒƒ“ƒg2ê—p
-#define BLACT_MDLID_MONUMENT2B	0x000e		///<64x32 ƒ‚ƒjƒ…ƒƒ“ƒg2ê—p
-#define BLACT_MDLID_ROTATE32x32	0x000f		///<32x32 ‰ñ“]ƒAƒjƒ‘Î‰ž
-#define BLACT_MDLID_GSET2		0x0010		///<128x32 ƒMƒ“ƒK’c‘Š„2
-#define BLACT_MDLID_32x32BLD	0x0011 ///<32x32 MDLID_32x32‚Æ“¯ˆê ƒAƒ‹ƒtƒ@“K—p
+#define BLACT_MDLID_32x32FOGOFF	0x0009		///<32x32 ãƒ•ã‚©ã‚°ç„¡åŠ¹
+#define BLACT_MDLID_32x32BOFF	0x000a		///<32x32 ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚ªãƒ•
+#define BLACT_MDLID_GIRATINA	0x000b		///<128x64 ã‚®ãƒ©ãƒ†ã‚£ãƒŠ
+#define BLACT_MDLID_GSET		0x000c		///<128x32 ã‚®ãƒ³ã‚¬å›£æ›¸å‰²
+#define BLACT_MDLID_MONUMENT2A	0x000d		///<64x32 ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆ2å°‚ç”¨
+#define BLACT_MDLID_MONUMENT2B	0x000e		///<64x32 ãƒ¢ãƒ‹ãƒ¥ãƒ¡ãƒ³ãƒˆ2å°‚ç”¨
+#define BLACT_MDLID_ROTATE32x32	0x000f		///<32x32 å›žè»¢ã‚¢ãƒ‹ãƒ¡å¯¾å¿œ
+#define BLACT_MDLID_GSET2		0x0010		///<128x32 ã‚®ãƒ³ã‚¬å›£æ›¸å‰²2
+#define BLACT_MDLID_32x32BLD	0x0011 ///<32x32 MDLID_32x32ã¨åŒä¸€ ã‚¢ãƒ«ãƒ•ã‚¡é©ç”¨
 
-#define BLACT_MDLID_MAX			0xffff		///<ƒ‚ƒfƒ‹IDÅ‘å
+#define BLACT_MDLID_MAX			0xffff		///<ãƒ¢ãƒ‡ãƒ«IDæœ€å¤§
 
 //==============================================================================
-//	ƒtƒB[ƒ‹ƒhOBJ ƒAƒjƒID
+//	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ã‚¢ãƒ‹ãƒ¡ID
 //==============================================================================
 //--------------------------------------------------------------
-//	ƒAƒjƒID
+//	ã‚¢ãƒ‹ãƒ¡ID
 //--------------------------------------------------------------
-#define BLACT_ANMID_NORMAL_0	0x0000		///<ƒm[ƒ}ƒ‹ƒAƒjƒ
-#define BLACT_ANMID_HERO_0		0x0001		///<Ž©‹@—pƒAƒjƒ
-#define BLACT_ANMID_SEED		0x0002		///<–Ø‚ÌŽÀƒAƒjƒ
-#define BLACT_ANMID_HEROCYCLE_0	0x0003		///<Ž©‹@Ž©“]ŽÔƒAƒjƒ
+#define BLACT_ANMID_NORMAL_0	0x0000		///<ãƒŽãƒ¼ãƒžãƒ«ã‚¢ãƒ‹ãƒ¡
+#define BLACT_ANMID_HERO_0		0x0001		///<è‡ªæ©Ÿç”¨ã‚¢ãƒ‹ãƒ¡
+#define BLACT_ANMID_SEED		0x0002		///<æœ¨ã®å®Ÿã‚¢ãƒ‹ãƒ¡
+#define BLACT_ANMID_HEROCYCLE_0	0x0003		///<è‡ªæ©Ÿè‡ªè»¢è»Šã‚¢ãƒ‹ãƒ¡
 #define BLACT_ANMID_SPHERO		0x0004
 #define BLACT_ANMID_WATERHERO	0x0005
 #define BLACT_ANMID_SWIMHERO	0x0006
@@ -938,6 +938,6 @@
 #define BLACT_ANMID_GIRATINA	0x0015
 #define BLACT_ANMID_BSHERO		0x0016
 
-#define BLACT_ANMID_MAX			0xffff		///<ƒAƒjƒIDÅ‘å
+#define BLACT_ANMID_MAX			0xffff		///<ã‚¢ãƒ‹ãƒ¡IDæœ€å¤§
 
 #endif //FIELD_OBJ_CODE_H_FILE

@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_317.s
- * @brief	‚ª‚ρ‚Ή‚«‚Σ‚¤‚¶			317
+ * @brief	γγ‚“γ›γγµγ†γ			317
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(ζ°΄)
  *
- * ‚±‚±‚ΙFX‚Θ‰πΰ“™‚π‘‚Ά‚Δ‚ΰ‚ζ‚Ά
+ * γ“γ“γ«θ‰²γ€…γªθ§£θª¬η­‰γ‚’ζ›Έγ„γ¦γ‚‚γ‚γ„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	΅‚ª‚ρ‚Ή‚«‚Σ‚¤‚¶			317
+//	β– γγ‚“γ›γγµγ†γ			317
 //
 //
 // =============================================================================
@@ -28,7 +28,7 @@ WEST_GANSEKIHUUZI:
 	LOAD_PARTICLE_DROP	0,W_317_SPA
 	LOAD_PARTICLE_DROP	1,W_317_SPA
 	
-	///< β
+	///< ε²©
 	ADD_PARTICLE 	0,W_317_317_STONE_DOWN, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_EP, OPERATOR_AXIS_NONE, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 
@@ -36,7 +36,7 @@ WEST_GANSEKIHUUZI:
 	SE_REPEAT_R		SEQ_SE_DP_W070,4,4
 	WAIT			20
 	
-	///< ƒJƒƒ‰•ΟX
+	///< γ‚«γƒ΅γƒ©ε¤‰ζ›΄
 	CAMERA_CHG		1,WE_CAMERA_TYPE_PERSPECTIV
 	
 	SIDE_JP			1,WEST_317_SIDE_MINE,WEST_317_SIDE_ENEMY

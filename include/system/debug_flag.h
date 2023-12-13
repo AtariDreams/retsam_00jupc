@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	debug_flag.h
- * @brief	ƒfƒoƒbƒO—p\‘¢‘Ì’è‹`
+ * @brief	ãƒ‡ãƒãƒƒã‚°ç”¨æ§‹é€ ä½“å®šç¾©
  * @author	Hiroyuki Nakamura
  * @date	2006.05.16
  */
@@ -13,13 +13,13 @@
 
 
 typedef struct {
-	BOOL	debug_mode;		//ƒfƒoƒbƒOƒ‚[ƒh‚©‚Ç‚¤‚©
-	BOOL	encount_flag;	// ƒGƒ“ƒJƒEƒ“ƒg§Œä@0=ON, 1=OFF
-	int		postman_status;	// ‚Ó‚µ‚¬”z’Bˆõ§Œä
-	int		tv_program_id;	///< ƒeƒŒƒr”Ô‘gID
+	BOOL	debug_mode;		//ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹
+	BOOL	encount_flag;	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆåˆ¶å¾¡ã€€0=ON, 1=OFF
+	int		postman_status;	// ãµã—ãé…é”å“¡åˆ¶å¾¡
+	int		tv_program_id;	///< ãƒ†ãƒ¬ãƒ“ç•ªçµ„ID
 }DEBUG_FLAG_DATA;
 
-extern DEBUG_FLAG_DATA	DebugFlagData;		// –{‘Ì‚Í"system/main.c"‚É‚ ‚è‚Ü‚·
+extern DEBUG_FLAG_DATA	DebugFlagData;		// æœ¬ä½“ã¯"system/main.c"ã«ã‚ã‚Šã¾ã™
 
 
 #endif	// DEBUG_FLAG_H

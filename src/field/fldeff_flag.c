@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_flag.c
- * @brief	ˆê–‡ƒ|ƒŠƒSƒ“ ’n‰º—p Šø
+ * @brief	ä¸€æšãƒãƒªã‚´ãƒ³ åœ°ä¸‹ç”¨ æ——
  * @author	k.ohno
  * @data	05.11.29
  *
@@ -18,21 +18,21 @@
 //	define
 //==============================================================================
 
-#define FLAG_FLDOBJ_Y_MOVE_START ((FX32_ONE*6))				///<Šø‰‘¬
-#define FLAG_FLDOBJ_Y_OFFSET ((FX32_ONE*25))				///<ƒtƒB[ƒ‹ƒhOBJ‚©‚ç‚ÌYƒIƒtƒZƒbƒg
-#define FLAG_FLDOBJ_Z_OFFSET ((FX32_ONE*-10))					///<ƒtƒB[ƒ‹ƒhOBJ‚©‚ç‚ÌZƒIƒtƒZƒbƒg
-#define FLAG_END_FRAME (30)									///<ŠøI—¹ƒtƒŒ[ƒ€	
+#define FLAG_FLDOBJ_Y_MOVE_START ((FX32_ONE*6))				///<æ——åˆé€Ÿ
+#define FLAG_FLDOBJ_Y_OFFSET ((FX32_ONE*25))				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ã®Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define FLAG_FLDOBJ_Z_OFFSET ((FX32_ONE*-10))					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰ã®Zã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define FLAG_END_FRAME (30)									///<æ——çµ‚äº†ãƒ•ãƒ¬ãƒ¼ãƒ 	
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_FLAGŒ^
+///	FE_FLAGå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_FLAG * FE_FLAG_PTR;
 
 //--------------------------------------------------------------
-///	FE_FLAG\‘¢‘Ì
+///	FE_FLAGæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_FLAG
 {
@@ -41,48 +41,48 @@ typedef struct _TAG_FE_FLAG
 	FE_SYS *fes;
 	FRO_MDL rmdl;
 	FRO_OBJ robj;
-	FIELD_OBJ_PTR fldobj;						///<Šø‚Ì‘ÎÛFIELD_OBJ_PTR
+	FIELD_OBJ_PTR fldobj;						///<æ——ã®å¯¾è±¡FIELD_OBJ_PTR
 }FE_FLAG;
 
-#define FE_FLAG_SIZE (sizeof(FE_FLAG)) ///<FE_FLAGƒTƒCƒY
+#define FE_FLAG_SIZE (sizeof(FE_FLAG)) ///<FE_FLAGã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	FLAG_ADD_H\‘¢‘Ì
+///	FLAG_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
 	FE_SYS *fes;
 	FE_FLAG_PTR flag;						///<FE_FLAG_PTR
-	FIELD_OBJ_PTR fldobj;						///<Šø‚Ì‘ÎÛFIELD_OBJ_PTR
+	FIELD_OBJ_PTR fldobj;						///<æ——ã®å¯¾è±¡FIELD_OBJ_PTR
 }FLAG_ADD_H;
 
-#define FLAG_ADD_H_SIZE (sizeof(FLAG_ADD_H)) ///<FLAG_ADD_HƒTƒCƒY
+#define FLAG_ADD_H_SIZE (sizeof(FLAG_ADD_H)) ///<FLAG_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	FLAG_WORK\‘¢‘Ì
+///	FLAG_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	int seq_no;									///<“®ì”Ô†
-	int frame;									///<ƒtƒŒ[ƒ€
-	int obj_id;									///<Šø‘ÎÛOBJID
-	int zone_id;								///<Šø‘ÎÛƒ][ƒ“ID
-	int vanish_sw;								///<”ñ•\¦SW
-	int end_sw;									///<I—¹SW
-	VecFx32 offset;								///<ƒIƒtƒZƒbƒg
-	VecFx32 move;								///<ˆÚ“®—Ê
+	int seq_no;									///<å‹•ä½œç•ªå·
+	int frame;									///<ãƒ•ãƒ¬ãƒ¼ãƒ 
+	int obj_id;									///<æ——å¯¾è±¡OBJID
+	int zone_id;								///<æ——å¯¾è±¡ã‚¾ãƒ¼ãƒ³ID
+	int vanish_sw;								///<éè¡¨ç¤ºSW
+	int end_sw;									///<çµ‚äº†SW
+	VecFx32 offset;								///<ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	VecFx32 move;								///<ç§»å‹•é‡
 /*    int counter;
     int dir;
-	int obj_id;									///<Šø‘ÎÛOBJID
-	int zone_id;								///<Šø‘ÎÛƒ][ƒ“ID
-	int vanish_sw;								///<”ñ•\¦SW*/
-	FLAG_ADD_H head;							///<’Ç‰Á‚ÌFLAG_ADD_H
+	int obj_id;									///<æ——å¯¾è±¡OBJID
+	int zone_id;								///<æ——å¯¾è±¡ã‚¾ãƒ¼ãƒ³ID
+	int vanish_sw;								///<éè¡¨ç¤ºSW*/
+	FLAG_ADD_H head;							///<è¿½åŠ æ™‚ã®FLAG_ADD_H
 }FLAG_WORK;
 
-#define FLAG_WORK_SIZE (sizeof(FLAG_WORK))	///<FLAG_WORKƒTƒCƒY
+#define FLAG_WORK_SIZE (sizeof(FLAG_WORK))	///<FLAG_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Flag_GraphicInit( FE_FLAG_PTR sd );
 static void Flag_GraphicDelete( FE_FLAG_PTR sd );
@@ -90,11 +90,11 @@ static void Flag_GraphicDelete( FE_FLAG_PTR sd );
 static const EOA_H_NPP DATA_EoaH_Flag;
 
 //==============================================================================
-//	Šø@ƒVƒXƒeƒ€
+//	æ——ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * Šø‰Šú‰»
+ * æ——åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	FE_FLAG_PTR	FE_FLAG_PTR
  */
@@ -112,7 +112,7 @@ void * FE_Flag_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * Šøíœ
+ * æ——å‰Šé™¤
  * @param	sd		FE_FLAG_PTR
  * @retval	nothing
  */
@@ -125,15 +125,15 @@ void FE_Flag_Delete( void *work )
 }
 
 //==============================================================================
-//	Šø	ƒp[ƒc
+//	æ——	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 
 //==============================================================================
-//	Šø@ƒOƒ‰ƒtƒBƒbƒN
+//	æ——ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * Šø ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * æ—— ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	sd	FE_FLAG_PTR
  * @retval	nothing
  */
@@ -147,7 +147,7 @@ static void Flag_GraphicInit( FE_FLAG_PTR sd )
 
 //--------------------------------------------------------------
 /**
- * Šø ƒOƒ‰ƒtƒBƒbƒNíœ
+ * æ—— ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	sd	FE_FLAG_PTR
  * @retval	nothing
  */
@@ -158,11 +158,11 @@ static void Flag_GraphicDelete( FE_FLAG_PTR sd )
 }
 
 //==============================================================================
-//	Šø@EOA
+//	æ——ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒgƒ‰ƒbƒv’Ç‰Á
+ * ãƒˆãƒ©ãƒƒãƒ—è¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	EOA_PTR
  */
@@ -190,10 +190,10 @@ EOA_PTR FE_Flag_Add(  FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * EOA Šø@‰Šú‰»
+ * EOA æ——ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaFlag_Init( EOA_PTR eoa, void *wk )
@@ -217,7 +217,7 @@ static int EoaFlag_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Šø@íœ
+ * EOA æ——ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -229,7 +229,7 @@ static void EoaFlag_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Šø@“®ì
+ * EOA æ——ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -245,7 +245,7 @@ static void EoaFlag_Move( EOA_PTR eoa, void *wk )
     fldobj = work->head.fldobj;
 	
 	GF_ASSERT( FieldOBJ_CheckSameID(fldobj,work->obj_id,work->zone_id) != FALSE &&
-		"Šø“®ì’†‚É‘ÎÛ‚ÌƒtƒB[ƒ‹ƒhOBJ‚ªíœ‚³‚ê‚Ü‚µ‚½" );
+		"æ——å‹•ä½œä¸­ã«å¯¾è±¡ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJãŒå‰Šé™¤ã•ã‚Œã¾ã—ãŸ" );
 	
 	switch( work->seq_no ){
 	case 0:
@@ -283,7 +283,7 @@ static void EoaFlag_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA Šø@•`‰æ
+ * EOA æ——ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -306,7 +306,7 @@ static void EoaFlag_Draw( EOA_PTR eoa, void *wk )
 		vec.y += FLAG_FLDOBJ_Y_OFFSET;
         vec.z += - (FX32_ONE*5);
         
-		{    // ƒJƒƒ‰‹ts—ñ‚ğ“ü‚ê‚é
+		{    // ã‚«ãƒ¡ãƒ©é€†è¡Œåˆ—ã‚’å…¥ã‚Œã‚‹
             const MtxFx43* pCamInv = NNS_G3dGlbGetInvCameraMtx();
             MtxFx33 Mat33;
             
@@ -320,7 +320,7 @@ static void EoaFlag_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	ŠøEOA_H
+///	æ——EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Flag =
 {

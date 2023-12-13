@@ -9,18 +9,18 @@
 	.include	"../eventdata/zone_r218r0201evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r218r0201_policeman
 _EVENT_DATA		pos_r218r0201_zukan
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 /********************************************************************/
-/*						@•è‰									*/
+/*						ã€€åŠ©æ‰‹â™‚									*/
 /********************************************************************/
 #define	POS_R218R0201_ASSISTANTM_01			(5)
 #define	POS_R218R0201_ASSISTANTM_02			(6)
@@ -31,38 +31,38 @@ _EVENT_DATA_END						//I—¹
 pos_r218r0201_zukan:
 	_EVENT_START
 
-	//•è‹ßŠñ‚èƒAƒjƒ
+	//åŠ©æ‰‹è¿‘å¯„ã‚Šã‚¢ãƒ‹ãƒ¡
 	_CALL			r218r0201_assistantm_anime_01
 
 	_PLAYER_NAME	0
 	_SUPPORT_NAME	1
 
 	_GET_MY_SEX		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r218r0201_assistantm_01	//’j
-	_JUMP							ev_r218r0201_assistantm_02	//—
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r218r0201_assistantm_01	//ç”·
+	_JUMP							ev_r218r0201_assistantm_02	//å¥³
 	_END
 
-//’j
+//ç”·
 ev_r218r0201_assistantm_01:
 	_TALK_KEYWAIT		msg_r218r0201_assistantm_01
 	_JUMP				ev_r218r0201_assistantm_03
 	_END
 
-//—
+//å¥³
 ev_r218r0201_assistantm_02:
 	_TALK_KEYWAIT		msg_r218r0201_assistantm_02
 	_JUMP				ev_r218r0201_assistantm_03
 	_END
 
-//ƒpƒ[ƒAƒbƒv
+//ãƒ‘ãƒ¯ãƒ¼ã‚¢ãƒƒãƒ—
 ev_r218r0201_assistantm_03:
 	_TALK_KEYWAIT		msg_r218r0201_assistantm_03
 	_TALK_CLOSE
 
-	//}ŠÓƒpƒ[ƒAƒbƒv‰Š’Ç‰Á
+	//å›³é‘‘ãƒ‘ãƒ¯ãƒ¼ã‚¢ãƒƒãƒ—â™‚â™€è¿½åŠ 
 	_ZUKAN_SEX_VER_UP
 
-	//•è‰“‚´‚©‚é
+	//åŠ©æ‰‹é ã–ã‹ã‚‹
 	_CALL				r218r0201_assistantm_anime_02
 
 	_SE_PLAY			SEQ_SE_DP_KAIDAN2
@@ -74,9 +74,9 @@ ev_r218r0201_assistantm_03:
 	_EVENT_END
 	_END
 
-//•è‹ßŠñ‚èƒAƒjƒ
+//åŠ©æ‰‹è¿‘å¯„ã‚Šã‚¢ãƒ‹ãƒ¡
 r218r0201_assistantm_anime_01:
-	//ƒvƒŒƒCƒ„[‚ÌˆÊ’uZo
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ç®—å‡º
 	_PLAYER_POS_GET	SCWK_TEMP1,SCWK_TEMP2
 	_IFVAL_JUMP		SCWK_TEMP2,EQ,POS_R218R0201_ASSISTANTM_01,r218r0201_assistant_move_in_01
 	_IFVAL_JUMP		SCWK_TEMP2,EQ,POS_R218R0201_ASSISTANTM_02,r218r0201_assistant_move_in_02
@@ -110,9 +110,9 @@ r218r0201_assistant_move_in_05:
 	_OBJ_ANIME_WAIT
 	_RET
 
-//•è—§‚¿‹‚èƒAƒjƒ
+//åŠ©æ‰‹ç«‹ã¡å»ã‚Šã‚¢ãƒ‹ãƒ¡
 r218r0201_assistantm_anime_02:
-	//ƒvƒŒƒCƒ„[‚ÌˆÊ’uZo
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®ç®—å‡º
 	_PLAYER_POS_GET	SCWK_TEMP1,SCWK_TEMP2
 	_IFVAL_JUMP		SCWK_TEMP2,EQ,POS_R218R0201_ASSISTANTM_01,r218r0201_assistant_move_out_01
 	_IFVAL_JUMP		SCWK_TEMP2,EQ,POS_R218R0201_ASSISTANTM_02,r218r0201_assistant_move_out_02
@@ -151,7 +151,7 @@ r218r0201_assistant_move_out_05:
 //		anime
 //
 //====================================================================
-//ƒAƒVƒXƒ^ƒ“ƒg‹ßŠñ‚é
+//ã‚¢ã‚·ã‚¹ã‚¿ãƒ³ãƒˆè¿‘å¯„ã‚‹
 _ANIME_LABEL anm_r218r0201_assistantm_in_01
 	_ANIME_DATA	AC_MARK_GYOE,1
 	_ANIME_DATA	AC_WALK_R_8F,1
@@ -185,7 +185,7 @@ _ANIME_LABEL anm_r218r0201_assistantm_in_05
 	_ANIME_DATA	AC_STAY_WALK_R_8F,1
 	_ANIME_DATA	ACMD_END,0
 
-//ƒAƒVƒXƒ^ƒ“ƒg‹‚é
+//ã‚¢ã‚·ã‚¹ã‚¿ãƒ³ãƒˆå»ã‚‹
 _ANIME_LABEL anm_r218r0201_assistantm_out_01
 	_ANIME_DATA	AC_WALK_D_8F,2
 	_ANIME_DATA	AC_WALK_R_8F,4
@@ -215,7 +215,7 @@ _ANIME_LABEL anm_r218r0201_assistantm_out_05
 
 
 /********************************************************************/
-/*							‚¨‚Ü‚í‚è‚³‚ñ							*/
+/*							ãŠã¾ã‚ã‚Šã•ã‚“							*/
 /********************************************************************/
 ev_r218r0201_policeman:
 	_EASY_OBJ_MSG	msg_r218r0201_policeman_01

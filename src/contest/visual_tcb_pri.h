@@ -1,29 +1,29 @@
 //==============================================================================
 /**
  * @file	visual_tcb_pri.h
- * @brief	ƒrƒWƒ…ƒAƒ‹•”–å‚ÌTCBƒvƒ‰ƒCƒIƒŠƒeƒB’è‹`
+ * @brief	ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ã®TCBãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å®šç¾©
  * @author	matsuda
- * @date	2005.12.10(“y)
+ * @date	2005.12.10(åœŸ)
  */
 //==============================================================================
 #ifndef __VISUAL_TCB_PRI_H__
 #define __VISUAL_TCB_PRI_H__
 
 
-///FightUpdate(ƒAƒNƒ^[Update“™ŽÀs‚µ‚Ä‚¢‚é)	ƒƒCƒ“ƒ‹[ƒv‚ÌÅŒã‚ÅŽÀs
+///FightUpdate(ã‚¢ã‚¯ã‚¿ãƒ¼Updateç­‰å®Ÿè¡Œã—ã¦ã„ã‚‹)	ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®æœ€å¾Œã§å®Ÿè¡Œ
 #define TCBPRI_VISUAL_UPDATE		(60000)
 
-///–½—ßŽÀsƒTƒuƒ^ƒXƒN‚Ì”Ä—pƒvƒ‰ƒCƒIƒŠƒeƒB
+///å‘½ä»¤å®Ÿè¡Œã‚µãƒ–ã‚¿ã‚¹ã‚¯ã®æ±Žç”¨ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_VISUAL_ORDERSUB		(30000)
-///–½—ßŽÀsƒTƒuƒ^ƒXƒN‚Ì’†‚Å¶¬‚³‚ê‚éƒ^ƒXƒN‚Ì”Ä—pƒvƒ‰ƒCƒIƒŠƒeƒB
+///å‘½ä»¤å®Ÿè¡Œã‚µãƒ–ã‚¿ã‚¹ã‚¯ã®ä¸­ã§ç”Ÿæˆã•ã‚Œã‚‹ã‚¿ã‚¹ã‚¯ã®æ±Žç”¨ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_VISUAL_ORDERSUB_SUB	(TCBPRI_VISUAL_ORDERSUB + 10)
 
-///ŠeŽíƒGƒtƒFƒNƒg—p‚Ì”Ä—pƒvƒ‰ƒCƒIƒŠƒeƒB
+///å„ç¨®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã®æ±Žç”¨ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define TCBPRI_VISUAL_EFFECT		(50000)
 
 
 //--------------------------------------------------------------
-//	ƒTƒu‰æ–Ê
+//	ã‚µãƒ–ç”»é¢
 //--------------------------------------------------------------
 
 

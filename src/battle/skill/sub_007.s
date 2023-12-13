@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_007.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			‹Zƒm[ƒqƒbƒgƒV[ƒPƒ“ƒX
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			æŠ€ãƒŽãƒ¼ãƒ’ãƒƒãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *@author	HisashiSogabe
  *@data		2005.07.29
  *
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 SUB_007:
-	//WAZA_OUTƒV[ƒPƒ“ƒX‚És‚­‘O‚É‚±‚±‚É‚­‚é‚Ì‚ÅAƒAƒ^ƒbƒNƒƒbƒZ[ƒW‚ð•\Ž¦‚·‚é
+	//WAZA_OUTã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã«è¡Œãå‰ã«ã“ã“ã«ãã‚‹ã®ã§ã€ã‚¢ã‚¿ãƒƒã‚¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹
 	ATTACK_MESSAGE
 	SERVER_WAIT
 	WAIT			MSG_WAIT
@@ -74,7 +74,7 @@ IchigekiNoHit:
 	BRANCH			MoreNoHitMsg
 NoHit:
 	WAZA_PARAM_GET	ID_WTD_attackrange
-	//•¡”‘I‘ð‹Z‚ÍA‚ ‚½‚ç‚È‚©‚Á‚½ƒƒbƒZ[ƒW‚É‚·‚é
+	//è¤‡æ•°é¸æŠžæŠ€ã¯ã€ã‚ãŸã‚‰ãªã‹ã£ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«ã™ã‚‹
 	IF				IF_FLAG_EQ,BUF_PARA_CALC_WORK,RANGE_DOUBLE,Ataranakatta
 	IF				IF_FLAG_EQ,BUF_PARA_CALC_WORK,RANGE_TRIPLE,Ataranakatta
 	MESSAGE			NoHitMineMsg,TAG_NICK,SIDE_ATTACK
@@ -87,9 +87,9 @@ MoreNoHitMsg:
 	IF				IF_FLAG_NBIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_MORE_NOHIT_MSG,SUB_007_NEXT
 	GOSUB			SUB_SEQ_MESSAGE_WORK
 SUB_007_NEXT:
-	//‚½‚ßŒnƒtƒ‰ƒO‚ð—Ž‚Æ‚·
+	//ãŸã‚ç³»ãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™
 	KEEP_OFF		SIDE_ATTACK
-	//‹Z‚ªŠO‚ê‚½Žž‚Éƒyƒiƒ‹ƒeƒB‚ð‰Û‚·ƒ‹[ƒ`ƒ“‚ÖƒWƒƒƒ“ƒv
+	//æŠ€ãŒå¤–ã‚ŒãŸæ™‚ã«ãƒšãƒŠãƒ«ãƒ†ã‚£ã‚’èª²ã™ãƒ«ãƒ¼ãƒãƒ³ã¸ã‚¸ãƒ£ãƒ³ãƒ—
 	GOSUB			SUB_SEQ_NOHIT_PENALTY
 	SEQ_END
 

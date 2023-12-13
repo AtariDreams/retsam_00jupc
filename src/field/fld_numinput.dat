@@ -1,13 +1,13 @@
 /**
 	@file	fld_numinput.dat
-	@biref	ƒfƒoƒbƒOƒƒjƒ…[@”’l“ü—Íƒf[ƒ^ƒŠƒXƒg
+	@biref	ãƒ‡ãƒãƒƒã‚°ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€€æ•°å€¤å…¥åŠ›ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆ
 	@author	Miyuki Iwasawa
 	@date	06.06.12
 */
 
 /**
- *	”’l“ü—Í—p‚ÌŒ©o‚µ•¶š—ñw’èAparam‚Í0‚©‚ç‚Ì˜A”Ô
- *	Debug_NumInput_List‚Æ•À‚Ñ‚ğ‚»‚ë‚¦‚Ä‚¨‚­•K—v‚ ‚èI
+ *	æ•°å€¤å…¥åŠ›ç”¨ã®è¦‹å‡ºã—æ–‡å­—åˆ—æŒ‡å®šã€paramã¯0ã‹ã‚‰ã®é€£ç•ª
+ *	Debug_NumInput_Listã¨ä¸¦ã³ã‚’ãã‚ãˆã¦ãŠãå¿…è¦ã‚ã‚Šï¼
  */
 static const GMM_MENU_PARAM Debug_NumInputG_Tower[] = {
  {dni_rec_renshou_max01,	0},	
@@ -33,7 +33,7 @@ static const GMM_MENU_PARAM Debug_NumInputG_Tower[] = {
  {dni_rec_tower_entry,		20},	
  {dni_rec_tower_win,		21},	
  {dni_tower_wifi_rank,		22},	
- //ª‚±‚±‚Ü‚Åƒoƒgƒ‹ƒ^ƒ[
+ //â†‘ã“ã“ã¾ã§ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
  
 };	
 static const DEBUG_NUMINPUT_LIST Debug_NumInputL_Tower[] = {
@@ -60,12 +60,12 @@ static const DEBUG_NUMINPUT_LIST Debug_NumInputL_Tower[] = {
  {0,99999,RECID_BTOWER_CHALLENGE,DNumInput_RecordSet,DNumInput_RecordGet},
  {0,99999,RECID_BTOWER_WIN,DNumInput_RecordSet,DNumInput_RecordGet},
  {1,10,		0,DNumInput_TowerWifiRankSet,DNumInput_TowerWifiRankGet},
- //ª‚±‚±‚Ü‚Åƒoƒgƒ‹ƒ^ƒ[
+ //â†‘ã“ã“ã¾ã§ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
 };
 
 ////////////////////////////////////////////////////////////////////////
 /**
-	@brief	ƒVƒXƒeƒ€ƒtƒ‰ƒOŒnƒŠƒXƒg
+	@brief	ã‚·ã‚¹ãƒ†ãƒ ãƒ•ãƒ©ã‚°ç³»ãƒªã‚¹ãƒˆ
 */
 /////////////////////////////////////////////////////////////////////////
 static const GMM_MENU_PARAM Debug_NumInputG_SysFlag[] = {
@@ -89,7 +89,7 @@ static const DEBUG_NUMINPUT_LIST Debug_NumInputL_SysFlag[] = {
 
 ////////////////////////////////////////////////////////////////////////
 /**
-	@brief	ƒŒƒR[ƒhƒJƒEƒ“ƒgŒnƒŠƒXƒg
+	@brief	ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚«ã‚¦ãƒ³ãƒˆç³»ãƒªã‚¹ãƒˆ
 */
 /////////////////////////////////////////////////////////////////////////
 static const GMM_MENU_PARAM Debug_NumInputG_Record[] = {
@@ -175,7 +175,7 @@ static const DEBUG_NUMINPUT_LIST Debug_NumInputL_Record[] = {
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/10/30
-// ålŒö‚ÌƒgƒŒ[ƒi[ID‚ğ•ÏX‚·‚éƒfƒoƒbƒO‹@”\‚ğ’Ç‰Á
+// ä¸»äººå…¬ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å¤‰æ›´ã™ã‚‹ãƒ‡ãƒãƒƒã‚°æ©Ÿèƒ½ã‚’è¿½åŠ 
 
 static const GMM_MENU_PARAM Debug_NumInputG_TrainerId[] = {
 	{dni_tid_01,	0},	

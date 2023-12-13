@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	boxv_compare.c
- * @brief	�{�b�N�X�����ʁ@�`�扺�����i�悳����׃��[�h�֘A�j
+ * @brief	ボックス操作画面　描画下請け（つよさくらべモード関連）
  * @author	taya
  * @date	2006.03.28
  */
@@ -103,11 +103,11 @@ enum {
 	BMPWIN_SKILL_STR_HEIGHT = 24,
 
 /*
-	���O				18*2=36
-	�X�e�[�^�X			144*2=288
-	�X�e�[�^�X�^�C�g��	128
-	���U				132*2=264
-	���U�^�C�g��		16
+	名前				18*2=36
+	ステータス			144*2=288
+	ステータスタイトル	128
+	ワザ				132*2=264
+	ワザタイトル		16
 */
 
 };
@@ -256,7 +256,7 @@ BOOL BoxAppView_CompareInit( COMPARE_VIEW_WORK** wk_ptr_adrs, BOXAPP_VIEW_WORK* 
 /**
  * 
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -281,9 +281,9 @@ void BoxAppView_CompareQuit( COMPARE_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ��ʍ\�z
+ * 画面構築
  *
- * @param   wk		���[�N�|�C���^
+ * @param   wk		ワークポインタ
  *
  */
 //------------------------------------------------------------------
@@ -316,7 +316,7 @@ void BoxAppView_SetupCompare( COMPARE_VIEW_WORK* wk, ARCHANDLE* p_boxgra_handle 
 
 //------------------------------------------------------------------
 /**
- * �T�C�h�ύX
+ * サイド変更
  *
  * @param   wk		
  *
@@ -346,7 +346,7 @@ void BoxAppView_Compare_SwitchSide( COMPARE_VIEW_WORK* wk, BOOL buttonAnmFlag )
 
 //------------------------------------------------------------------
 /**
- * �J�[�\�����w���Ă���|�P�����̃p�����[�^�X�V�J�n
+ * カーソルが指しているポケモンのパラメータ更新開始
  *
  * @param   wk		
  */
@@ -377,7 +377,7 @@ void BoxAppView_Compare_StartUpdate( COMPARE_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �J�[�\�����w���Ă���|�P�����̃p�����[�^�X�V�I���҂�
+ * カーソルが指しているポケモンのパラメータ更新終了待ち
  *
  * @param   wk		
  *
@@ -393,7 +393,7 @@ BOOL BoxAppView_Compare_WaitUpdate( COMPARE_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * �y�[�W�؂�ւ�
+ * ページ切り替え
  *
  * @param   wk		
  *
@@ -410,11 +410,11 @@ void BoxAppView_Compare_ChangePage( COMPARE_VIEW_WORK* wk )
 }
 //------------------------------------------------------------------
 /**
- * �y�[�W�؂�ւ��̏I���҂�
+ * ページ切り替えの終了待ち
  *
  * @param   wk		
  *
- * @retval  BOOL	TRUE�ŏI��
+ * @retval  BOOL	TRUEで終了
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_Compare_WaitChangePage( COMPARE_VIEW_WORK* wk )
@@ -503,7 +503,7 @@ static void InitBmpWin( COMPARE_VIEW_WORK* wk )
 
 	int i;
 
-	// chrbuf == NULL ���E�B���h�E���쐬�ł���t���O�Ƃ��Ďg��
+	// chrbuf == NULL をウィンドウ未作成であるフラグとして使う
 	for(i=0; i<WINID_MAX; i++)
 	{
 		wk->bmpwin[i].chrbuf = NULL;

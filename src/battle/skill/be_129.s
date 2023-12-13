@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_129.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			129�@�u���߂��v�u�܂����v���̘A���Z���甲���o�����Ƃ��o����B�u��ǂ肬�̃^�l�v�u�܂��т��v�������������
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			129　「しめつけ」「まきつき」等の連続技から抜け出すことが出来る。「やどりぎのタネ」「まきびし」からも解放される
  *
  *@author	HisashiSogabe
  *@data		2006.02.02

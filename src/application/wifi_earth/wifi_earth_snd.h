@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wifi_earth_snd.h
- *	@brief		¢ŠEŽžŒv	‰¹
+ *	@brief		ä¸–ç•Œæ™‚è¨ˆ	éŸ³
  *	@author		tomoya takahashi
  *	@data		2007.09.28
  *
@@ -14,13 +14,13 @@
 
 #include "system/snd_tool.h"
 
-#define WIFIEARTH_SND_ZOMEIN			( SEQ_SE_PL_FTIMER03 )		// ƒY[ƒ€ƒCƒ“
-#define WIFIEARTH_SND_ZOMEOUT			( SEQ_SE_PL_FTIMER03 )		// ƒY[ƒ€ƒAƒEƒg
+#define WIFIEARTH_SND_ZOMEIN			( SEQ_SE_PL_FTIMER03 )		// ã‚ºãƒ¼ãƒ ã‚¤ãƒ³
+#define WIFIEARTH_SND_ZOMEOUT			( SEQ_SE_PL_FTIMER03 )		// ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ
 
-#define WIFIEARTH_SND_SELECT			( SEQ_SE_DP_SELECT )		// ƒZƒŒƒNƒg
-#define WIFIEARTH_SND_XSELECT			( SEQ_SE_DP_DECIDE )		// xƒZƒŒƒNƒg
+#define WIFIEARTH_SND_SELECT			( SEQ_SE_DP_SELECT )		// ã‚»ãƒ¬ã‚¯ãƒˆ
+#define WIFIEARTH_SND_XSELECT			( SEQ_SE_DP_DECIDE )		// xã‚»ãƒ¬ã‚¯ãƒˆ
 
-#define WIFIEARTH_SND_YAMERU			( SEQ_SE_DP_DECIDE )		// ‚â‚ß‚é‚ðƒ^ƒbƒ`ABƒLƒƒƒ“ƒZƒ‹
+#define WIFIEARTH_SND_YAMERU			( SEQ_SE_DP_DECIDE )		// ã‚„ã‚ã‚‹ã‚’ã‚¿ãƒƒãƒã€Bã‚­ãƒ£ãƒ³ã‚»ãƒ«
 
 #endif		// __WIFI_EARTH_SND_H__
 

@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	actin_ai.c
- * @brief	‰‰‹Z—Í•”–åFAI
+ * @brief	æ¼”æŠ€åŠ›éƒ¨é–€ï¼šAI
  * @author	matsuda
- * @date	2006.05.20(“y)
+ * @date	2006.05.20(åœŸ)
  */
 //==============================================================================
 #include "common.h"
@@ -15,54 +15,54 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///‰‰‹Z—ÍAIFR”»‘I‘ğƒ^ƒCƒv
+///æ¼”æŠ€åŠ›AIï¼šå¯©åˆ¤é¸æŠã‚¿ã‚¤ãƒ—
 enum{
-	BRD_AI_JUDGE_SELECT_NULL,		///<w’è‚È‚µ
-	BRD_AI_JUDGE_SELECT_THIS,		///<‚»‚ÌR¸ˆõ‚ÅŒˆ’è
-	BRD_AI_JUDGE_SELECT_BESIDES,	///<‚»‚êˆÈŠO‚ÌR¸ˆõ{‚P
-	BRD_AI_JUDGE_SELECT_LOW,		///<’á‚¢R¸ˆõ‚ÅŒˆ’è
+	BRD_AI_JUDGE_SELECT_NULL,		///<æŒ‡å®šãªã—
+	BRD_AI_JUDGE_SELECT_THIS,		///<ãã®å¯©æŸ»å“¡ã§æ±ºå®š
+	BRD_AI_JUDGE_SELECT_BESIDES,	///<ãã‚Œä»¥å¤–ã®å¯©æŸ»å“¡ï¼‹ï¼‘
+	BRD_AI_JUDGE_SELECT_LOW,		///<ä½ã„å¯©æŸ»å“¡ã§æ±ºå®š
 };
 
-///‰‰‹ZAIF‘ÎÛ‹Z
+///æ¼”æŠ€AIï¼šå¯¾è±¡æŠ€
 enum{
-	BRD_AI_TARGET_SAMETYPE = 0xf0,			///<“¯‚¶ƒ^ƒCƒv(CONTYPE_???)‚Ì‹Z
-	BRD_AI_TARGET_HART_2_UP,				///<ƒn[ƒg2ˆÈã‚Ì‹Z
+	BRD_AI_TARGET_SAMETYPE = 0xf0,			///<åŒã˜ã‚¿ã‚¤ãƒ—(CONTYPE_???)ã®æŠ€
+	BRD_AI_TARGET_HART_2_UP,				///<ãƒãƒ¼ãƒˆ2ä»¥ä¸Šã®æŠ€
 };
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///è‚¿‹Z1‚Â‚²‚Æ‚ª‚ÂAI—p‚Ìƒ[ƒN
+///æ‰‹æŒã¡æŠ€1ã¤ã”ã¨ãŒæŒã¤AIç”¨ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	u16 wazano;		///<‹Z”Ô†
-	s16 point;		///<ƒ|ƒCƒ“ƒg
-	s16 judge_point[JUDGE_MAX];		///<R”»‚Ìƒ|ƒCƒ“ƒg
-	u8 ap_no;		///<‹ZŒø‰Ê”Ô†
-	u8 con_type;	///<‹Z‚ÌƒRƒ“ƒeƒXƒgƒ^ƒCƒv
+	u16 wazano;		///<æŠ€ç•ªå·
+	s16 point;		///<ãƒã‚¤ãƒ³ãƒˆ
+	s16 judge_point[JUDGE_MAX];		///<å¯©åˆ¤ã®ãƒã‚¤ãƒ³ãƒˆ
+	u8 ap_no;		///<æŠ€åŠ¹æœç•ªå·
+	u8 con_type;	///<æŠ€ã®ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—
 }ACTIN_AI_WAZA;
 
-///ƒuƒŠ[ƒ_[1l‚ª‚ÂAI—p‚Ìƒ[ƒN
+///ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼1äººãŒæŒã¤AIç”¨ã®ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	ACTIN_AI_WAZA ai_waza[WAZA_TEMOTI_MAX];	///<è‚¿‹Zƒpƒ‰ƒ[ƒ^
-	u8 character;		///<ƒuƒŠ[ƒ_[‚Ì«Ši
+	ACTIN_AI_WAZA ai_waza[WAZA_TEMOTI_MAX];	///<æ‰‹æŒã¡æŠ€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	u8 character;		///<ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®æ€§æ ¼
 }ACTIN_AI_WORK;
 
-///AIƒf[ƒ^ƒe[ƒuƒ‹
+///AIãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
 typedef struct{
-	u8 sort_pos;		///<‡”Ô(ƒuƒŠ[ƒ_[‚ÌˆÊ’u‚Æˆê’v‚µ‚½A‚±‚ÌğŒ®‚ÌŠÖ”‚ªÀs‚³‚ê‚é)
-	u8 tbl_no;			///<ğŒ®‚Ìƒe[ƒuƒ‹”Ô†
-	u8 target_ap_no;	///<‘ÎÛ‹Z(‹ZŒø‰Ê”Ô†(ap_no)‚Å‘ÎÛ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚·)
-	s8 judge_select;	///<R”»‘I‘ğƒ^ƒCƒv
+	u8 sort_pos;		///<é †ç•ª(ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã®ä½ç½®ã¨ä¸€è‡´ã—ãŸæ™‚ã€ã“ã®æ¡ä»¶å¼ã®é–¢æ•°ãŒå®Ÿè¡Œã•ã‚Œã‚‹)
+	u8 tbl_no;			///<æ¡ä»¶å¼ã®ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·
+	u8 target_ap_no;	///<å¯¾è±¡æŠ€(æŠ€åŠ¹æœç•ªå·(ap_no)ã§å¯¾è±¡ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã™)
+	s8 judge_select;	///<å¯©åˆ¤é¸æŠã‚¿ã‚¤ãƒ—
 
-	s16 add_point[BRD_CHARACTER_MAX];	///<«Ši–ˆ‚Ìƒ|ƒCƒ“ƒg‰ÁZ’l
+	s16 add_point[BRD_CHARACTER_MAX];	///<æ€§æ ¼æ¯ã®ãƒã‚¤ãƒ³ãƒˆåŠ ç®—å€¤
 }ACTIN_AI_DATA_TBL;
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void ActinAI_WazaParamSet(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, int breeder_no);
 static void ActinAI_Calc(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, int breeder_no, 
@@ -126,7 +126,7 @@ static int ActinAI_28(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 
 //==============================================================================
-//	‹ZŒˆ’è•ªŠòğŒƒe[ƒuƒ‹
+//	æŠ€æ±ºå®šåˆ†å²æ¡ä»¶ãƒ†ãƒ¼ãƒ–ãƒ«
 //==============================================================================
 static int (* const ActinAI_FuncTbl[])(ACTIN_GAME_PARAM *, int, ACTIN_AI_WORK *, u8 *, int) = {
 	NULL,
@@ -162,7 +162,7 @@ static int (* const ActinAI_FuncTbl[])(ACTIN_GAME_PARAM *, int, ACTIN_AI_WORK *,
 
 
 //==============================================================================
-//	ŠO•”ƒf[ƒ^
+//	å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 #include "actin_ai_tbl.dat"
 
@@ -174,10 +174,10 @@ static int (* const ActinAI_FuncTbl[])(ACTIN_GAME_PARAM *, int, ACTIN_AI_WORK *,
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   CPU‚ÌAIŒvZ‚ğs‚¢AŒJ‚èo‚·‹Z”Ô†‚ÆR”»”Ô†‚ğæ“¾‚·‚é
+ * @brief   CPUã®AIè¨ˆç®—ã‚’è¡Œã„ã€ç¹°ã‚Šå‡ºã™æŠ€ç•ªå·ã¨å¯©åˆ¤ç•ªå·ã‚’å–å¾—ã™ã‚‹
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   answer		Œ‹‰Êæ“¾—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   answer		çµæœå–å¾—ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void ActinAI_Main(ACTIN_PROC_WORK *apw, ACTIN_AI_ANSWER *answer)
@@ -197,11 +197,11 @@ void ActinAI_Main(ACTIN_PROC_WORK *apw, ACTIN_AI_ANSWER *answer)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Zƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+ * @brief   æŠ€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
  */
 //--------------------------------------------------------------
 static void ActinAI_WazaParamSet(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, int breeder_no)
@@ -228,13 +228,13 @@ static void ActinAI_WazaParamSet(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, in
 
 //--------------------------------------------------------------
 /**
- * @brief   AIŒvZ
+ * @brief   AIè¨ˆç®—
  *
- * @param   apw				‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   ret_wazano		ŒJ‚èo‚·‹Z”Ô†‘ã“üæ
- * @param   ret_judge_no	w–¼‚µ‚½R”»”Ô†‘ã“üæ
+ * @param   apw				æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   ret_wazano		ç¹°ã‚Šå‡ºã™æŠ€ç•ªå·ä»£å…¥å…ˆ
+ * @param   ret_judge_no	æŒ‡åã—ãŸå¯©åˆ¤ç•ªå·ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 static void ActinAI_Calc(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, int breeder_no, 
@@ -253,9 +253,9 @@ static void ActinAI_Calc(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, int breede
 		}
 	}
 	pos = i;
-	pos++;	//ƒe[ƒuƒ‹‚ª1origin‚È‚Ì‚ÅA1‘«‚·
+	pos++;	//ãƒ†ãƒ¼ãƒ–ãƒ«ãŒ1originãªã®ã§ã€1è¶³ã™
 	
-	//AIŒvZÀs
+	//AIè¨ˆç®—å®Ÿè¡Œ
 	for(i = 0; i < ACTIN_AI_DATA_TBL_MAX; i++){
 		if(ActinAIDataTbl[i].sort_pos == pos){
 			for(d = 0; d < JUDGE_MAX; d++){
@@ -265,7 +265,7 @@ static void ActinAI_Calc(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, int breede
 			ret = ActinAI_FuncTbl[ActinAIDataTbl[i].tbl_no](a_game, breeder_no, aiwork, 
 				judge, apw->consys->c_game.type);
 			if(ret == TRUE){
-				//R”»‘I‘ğƒ^ƒCƒv‚É]‚Á‚Ä‘ÎÛR”»‚Ìƒtƒ‰ƒO‚Ì‘€ì
+				//å¯©åˆ¤é¸æŠã‚¿ã‚¤ãƒ—ã«å¾“ã£ã¦å¯¾è±¡å¯©åˆ¤ã®ãƒ•ãƒ©ã‚°ã®æ“ä½œ
 				switch(ActinAIDataTbl[i].judge_select){
 				case BRD_AI_JUDGE_SELECT_NULL:
 					for(d = 0; d < JUDGE_MAX; d++){
@@ -282,10 +282,10 @@ static void ActinAI_Calc(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, int breede
 				
 				add_point = ActinAIDataTbl[i].add_point[apw->consys->c_game.character[breeder_no]];
 				if(apw->consys->c_game.character[breeder_no] != BRD_CHARACTER_ELITE){
-					//ƒGƒŠ[ƒgˆÈŠO‚ÍŠî–{’l‚Æ‚µ‚ÄƒGƒŠ[ƒg“¾“_‚ğ‰ÁZ
+					//ã‚¨ãƒªãƒ¼ãƒˆä»¥å¤–ã¯åŸºæœ¬å€¤ã¨ã—ã¦ã‚¨ãƒªãƒ¼ãƒˆå¾—ç‚¹ã‚’åŠ ç®—
 					add_point += ActinAIDataTbl[i].add_point[BRD_CHARACTER_ELITE];
 				}
-				//‘ÎÛ‚Æ‚È‚é‹Z‚Éƒ|ƒCƒ“ƒg‰ÁZ
+				//å¯¾è±¡ã¨ãªã‚‹æŠ€ã«ãƒã‚¤ãƒ³ãƒˆåŠ ç®—
 				switch(ActinAIDataTbl[i].target_ap_no){
 				case BRD_AI_TARGET_SAMETYPE:
 					for(s = 0; s < WAZA_TEMOTI_MAX; s++){
@@ -330,12 +330,12 @@ static void ActinAI_Calc(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, int breede
 		}
 	}
 	
-	//-- ˆê”Ôƒ|ƒCƒ“ƒg‚ª‚‚¢‚à‚Ì‚ğ’Šo --//
+	//-- ä¸€ç•ªãƒã‚¤ãƒ³ãƒˆãŒé«˜ã„ã‚‚ã®ã‚’æŠ½å‡º --//
 	{
 		u16 waza_rnd[WAZA_TEMOTI_MAX], judge_rnd[JUDGE_MAX];
 		int start_pos, max_pos, now_point, max_point, judge_pos, waza_pos;
 		
-		//ƒ|ƒCƒ“ƒg‚ª“¯‚¶‚¾‚Á‚½‚Ì”äŠr—p‚Ìƒ‰ƒ“ƒ_ƒ€’l‚ğ¶¬
+		//ãƒã‚¤ãƒ³ãƒˆãŒåŒã˜ã ã£ãŸæ™‚ã®æ¯”è¼ƒç”¨ã®ãƒ©ãƒ³ãƒ€ãƒ å€¤ã‚’ç”Ÿæˆ
 		for(i = 0; i < WAZA_TEMOTI_MAX; i++){
 			waza_rnd[i] = contest_rand(apw->consys);
 		}
@@ -343,7 +343,7 @@ static void ActinAI_Calc(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, int breede
 			judge_rnd[i] = contest_rand(apw->consys);
 		}
 		
-		//‹Z’Šo
+		//æŠ€æŠ½å‡º
 		for(start_pos = 0; aiwork->ai_waza[start_pos].wazano == 0; start_pos++){
 			;
 		}
@@ -361,7 +361,7 @@ static void ActinAI_Calc(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, int breede
 		}
 		waza_pos = max_pos;
 
-		//ƒvƒŒƒCƒ„[‚ÆR”»‚ª”í‚ç‚È‚¢‚æ‚¤‚Éˆê’è‚ÌŠm—¦‚Å‘€ì
+		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨å¯©åˆ¤ãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«ä¸€å®šã®ç¢ºç‡ã§æ“ä½œ
 		if(apw->consys->sio_flag == FALSE){
 			int count, i, hassei_rand, player_judge;
 			count = 0;
@@ -370,7 +370,7 @@ static void ActinAI_Calc(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, int breede
 					count++;
 				}
 			}
-			if(count == JUDGE_MAX){	//R”»—Dæ‹Z‚ª”­¶‚µ‚Ä‚¢‚È‚¢‚Ì‚Å‘€ì‚·‚é
+			if(count == JUDGE_MAX){	//å¯©åˆ¤å„ªå…ˆæŠ€ãŒç™ºç”Ÿã—ã¦ã„ãªã„ã®ã§æ“ä½œã™ã‚‹
 				const u8 JudgeControlRand[] = {
 					230,	//90%	CONRANK_NORMAL
 					128,	//50%	CONRANK_SUPER
@@ -380,13 +380,13 @@ static void ActinAI_Calc(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, int breede
 
 				hassei_rand = contest_rand(apw->consys) & 0xff;
 				if(hassei_rand < JudgeControlRand[apw->consys->c_game.rank]){
-					//ƒvƒŒƒCƒ„[‚Ì‘I‚ñ‚¾R”»‚ª’Šo‚³‚ê‚È‚¢‚æ‚¤‚Éƒ|ƒCƒ“ƒg‚ğƒ}ƒCƒiƒX‚É‚µ‚Ä‚¨‚­
+					//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®é¸ã‚“ã å¯©åˆ¤ãŒæŠ½å‡ºã•ã‚Œãªã„ã‚ˆã†ã«ãƒã‚¤ãƒ³ãƒˆã‚’ãƒã‚¤ãƒŠã‚¹ã«ã—ã¦ãŠã
 					player_judge = apw->a_game.judge_no[apw->consys->c_game.my_breeder_no];
 					aiwork->ai_waza[waza_pos].judge_point[player_judge] -= 100;
 				}
 			}
 		}
-		//R”»’Šo
+		//å¯©åˆ¤æŠ½å‡º
 		max_pos = 0;
 		max_point = aiwork->ai_waza[waza_pos].judge_point[0];
 		for(i = 1; i < JUDGE_MAX; i++){
@@ -410,20 +410,20 @@ static void ActinAI_Calc(ACTIN_PROC_WORK *apw, ACTIN_AI_WORK *aiwork, int breede
 
 //==============================================================================
 //
-//	‹ZŒˆ’èğŒ•ªŠò
+//	æŠ€æ±ºå®šæ¡ä»¶åˆ†å²
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ¡‚Ìƒ^[ƒ“‚ª4ƒ^[ƒ“–Ú
+ * @brief   ä»Šã®ã‚¿ãƒ¼ãƒ³ãŒ4ã‚¿ãƒ¼ãƒ³ç›®
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_1(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -436,15 +436,15 @@ static int ActinAI_1(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *ai
 
 //--------------------------------------------------------------
 /**
- * @brief   ¡‚Ìƒ^[ƒ“‚ª‚Q”{ó‘Ô
+ * @brief   ä»Šã®ã‚¿ãƒ¼ãƒ³ãŒï¼’å€çŠ¶æ…‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_2(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -457,15 +457,15 @@ static int ActinAI_2(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *ai
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚T‚ğ‚Á‚Ä‚¢‚é
+ * @brief   æŠ€ï¼•ã‚’æŒã£ã¦ã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_3(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -481,15 +481,15 @@ static int ActinAI_3(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *ai
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚X‚ğ‚à‚Á‚Ä‚¢‚é
+ * @brief   æŠ€ï¼™ã‚’ã‚‚ã£ã¦ã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_4(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -505,15 +505,15 @@ static int ActinAI_4(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *ai
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚P‚Q‚ğ‚Á‚Ä‚¢‚é
+ * @brief   æŠ€ï¼‘ï¼’ã‚’æŒã£ã¦ã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_5(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -529,15 +529,15 @@ static int ActinAI_5(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *ai
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚P‚T‚ğ‚Á‚Ä‚¢‚é
+ * @brief   æŠ€ï¼‘ï¼•ã‚’æŒã£ã¦ã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_6(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -553,15 +553,15 @@ static int ActinAI_6(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *ai
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚P‚V‚ğ‚Á‚Ä‚¢‚é
+ * @brief   æŠ€ï¼‘ï¼—ã‚’æŒã£ã¦ã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_7(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -577,15 +577,15 @@ static int ActinAI_7(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *ai
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚P‚W‚ğ‚Á‚Ä‚¢‚é
+ * @brief   æŠ€ï¼‘ï¼˜ã‚’æŒã£ã¦ã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_8(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -601,15 +601,15 @@ static int ActinAI_8(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *ai
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚P‚X‚ğ‚Á‚Ä‚¢‚é
+ * @brief   æŠ€ï¼‘ï¼™ã‚’æŒã£ã¦ã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_9(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -625,15 +625,15 @@ static int ActinAI_9(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *ai
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚Q‚O‚ğ‚Á‚Ä‚¢‚é
+ * @brief   æŠ€ï¼’ï¼ã‚’æŒã£ã¦ã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_10(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -649,15 +649,15 @@ static int ActinAI_10(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚Q‚P‚ğ‚Á‚Ä‚¢‚é
+ * @brief   æŠ€ï¼’ï¼‘ã‚’æŒã£ã¦ã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_11(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -673,15 +673,15 @@ static int ActinAI_11(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   ©•ª‚ªÅ‰ºˆÊ
+ * @brief   è‡ªåˆ†ãŒæœ€ä¸‹ä½
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_12(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -702,15 +702,15 @@ static int ActinAI_12(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   ¡‚Ìƒ^[ƒ“‚ª‚Sƒ^[ƒ“–Ú‚ÅA©•ª‚ªÅ‰ºˆÊ
+ * @brief   ä»Šã®ã‚¿ãƒ¼ãƒ³ãŒï¼”ã‚¿ãƒ¼ãƒ³ç›®ã§ã€è‡ªåˆ†ãŒæœ€ä¸‹ä½
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_13(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -733,15 +733,15 @@ static int ActinAI_13(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚S‚ª‚»‚Ì•”–å‚Ì‹Z
+ * @brief   æŠ€ï¼”ãŒãã®éƒ¨é–€ã®æŠ€
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_14(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -758,15 +758,15 @@ static int ActinAI_14(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   ‚»‚Ì•”–å‚Ì‹Z‚ğ‚Á‚Ä‚¢‚é
+ * @brief   ãã®éƒ¨é–€ã®æŠ€ã‚’æŒã£ã¦ã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_15(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -782,15 +782,15 @@ static int ActinAI_15(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒW4‚ª‚¢‚é‚ª‚»‚Ì•”–å‚Ì‹Z‚ª–³‚¢
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸4ãŒã„ã‚‹ãŒãã®éƒ¨é–€ã®æŠ€ãŒç„¡ã„
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_16(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -803,7 +803,7 @@ static int ActinAI_16(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 		}
 	}
 	if(i == WAZA_TEMOTI_MAX){
-		return FALSE;	//•”–å‚Ì‹Z‚ª‚È‚©‚Á‚½
+		return FALSE;	//éƒ¨é–€ã®æŠ€ãŒãªã‹ã£ãŸ
 	}
 	
 	count = 0;
@@ -821,15 +821,15 @@ static int ActinAI_16(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒW‚R‚ª‚¢‚é‚ª‚»‚Ì•”–å‚Ì‹Z‚ª–³‚¢
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ï¼“ãŒã„ã‚‹ãŒãã®éƒ¨é–€ã®æŠ€ãŒç„¡ã„
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_17(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -842,7 +842,7 @@ static int ActinAI_17(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 		}
 	}
 	if(i == WAZA_TEMOTI_MAX){
-		return FALSE;	//•”–å‚Ì‹Z‚ª‚È‚©‚Á‚½
+		return FALSE;	//éƒ¨é–€ã®æŠ€ãŒãªã‹ã£ãŸ
 	}
 	
 	count = 0;
@@ -860,15 +860,15 @@ static int ActinAI_17(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚W‚ğ‚Á‚Ä‚¢‚é
+ * @brief   æŠ€ï¼˜ã‚’æŒã£ã¦ã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_18(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -884,15 +884,15 @@ static int ActinAI_18(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹Z‚P‚R‚ğ‚Á‚Ä‚¢‚é
+ * @brief   æŠ€ï¼‘ï¼“ã‚’æŒã£ã¦ã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_19(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -908,15 +908,15 @@ static int ActinAI_19(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   R¸ˆõ‚Ì’†‚Éƒ{ƒ‹ƒe[ƒW4‚ª‚¢‚é
+ * @brief   å¯©æŸ»å“¡ã®ä¸­ã«ãƒœãƒ«ãƒ†ãƒ¼ã‚¸4ãŒã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_20(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -938,15 +938,15 @@ static int ActinAI_20(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   R¸ˆõ‚Ì’†‚Éƒ{ƒ‹ƒe[ƒW‚R‚ª‚¢‚é
+ * @brief   å¯©æŸ»å“¡ã®ä¸­ã«ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ï¼“ãŒã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_21(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -968,15 +968,15 @@ static int ActinAI_21(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   R¸ˆõ‚Ì’†‚Éƒ{ƒ‹ƒe[ƒW‚O`‚P‚ª‚¢‚é
+ * @brief   å¯©æŸ»å“¡ã®ä¸­ã«ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ï¼ã€œï¼‘ãŒã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_22(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -998,15 +998,15 @@ static int ActinAI_22(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   R¸ˆõ‘Sˆõ‚ªƒ{ƒ‹ƒe[ƒW‚QˆÈã
+ * @brief   å¯©æŸ»å“¡å…¨å“¡ãŒãƒœãƒ«ãƒ†ãƒ¼ã‚¸ï¼’ä»¥ä¸Š
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_23(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -1027,15 +1027,15 @@ static int ActinAI_23(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   R¸ˆõ‚Ìƒ{ƒ‹ƒe[ƒW‚ª‘Sˆõ‚QˆÈ‰º
+ * @brief   å¯©æŸ»å“¡ã®ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãŒå…¨å“¡ï¼’ä»¥ä¸‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_24(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -1055,15 +1055,15 @@ static int ActinAI_24(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   R¸ˆõ‚Ì’†‚Éƒ{ƒ‹ƒe[ƒW‚QˆÈ‰º‚ªˆêl‚¢‚é
+ * @brief   å¯©æŸ»å“¡ã®ä¸­ã«ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ï¼’ä»¥ä¸‹ãŒä¸€äººã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_25(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -1085,15 +1085,15 @@ static int ActinAI_25(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   R¸ˆõ‚Ì’†‚Éƒ{ƒ‹ƒe[ƒW4‚ª2l‚¢‚é
+ * @brief   å¯©æŸ»å“¡ã®ä¸­ã«ãƒœãƒ«ãƒ†ãƒ¼ã‚¸4ãŒ2äººã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_26(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -1115,15 +1115,15 @@ static int ActinAI_26(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒW‚O‚ª‚Pl‚¾‚¯‚¢‚é
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ï¼ãŒï¼‘äººã ã‘ã„ã‚‹
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_27(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -1145,15 +1145,15 @@ static int ActinAI_27(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ{ƒ‹ƒe[ƒW4‚ª‚¢‚é‚ª‚»‚Ì•”–å‚Ì‹Z‚ª–³‚¢
+ * @brief   ãƒœãƒ«ãƒ†ãƒ¼ã‚¸4ãŒã„ã‚‹ãŒãã®éƒ¨é–€ã®æŠ€ãŒç„¡ã„
  *
- * @param   a_game			‰‰‹Z—Í•”–åƒQ[ƒ€ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   breeder_no		ƒuƒŠ[ƒ_[”Ô†
- * @param   aiwork			AIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   judge			‘ÎÛR¸ˆõ‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   con_type		ƒRƒ“ƒeƒXƒgƒ^ƒCƒv(CONTYPE_???)
+ * @param   a_game			æ¼”æŠ€åŠ›éƒ¨é–€ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   breeder_no		ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·
+ * @param   aiwork			AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   judge			å¯¾è±¡å¯©æŸ»å“¡ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   con_type		ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚¿ã‚¤ãƒ—(CONTYPE_???)
  *
- * @retval  TRUE:ğŒ¬—§A@FALSE:•s¬—§
+ * @retval  TRUE:æ¡ä»¶æˆç«‹ã€ã€€FALSE:ä¸æˆç«‹
  */
 //--------------------------------------------------------------
 static int ActinAI_28(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *aiwork, u8 *judge, int con_type)
@@ -1166,7 +1166,7 @@ static int ActinAI_28(ACTIN_GAME_PARAM *a_game, int breeder_no, ACTIN_AI_WORK *a
 		}
 	}
 	if(i == WAZA_TEMOTI_MAX){
-		return FALSE;	//•”–å‚Ì‹Z‚ª‚È‚©‚Á‚½
+		return FALSE;	//éƒ¨é–€ã®æŠ€ãŒãªã‹ã£ãŸ
 	}
 	
 	count = 0;

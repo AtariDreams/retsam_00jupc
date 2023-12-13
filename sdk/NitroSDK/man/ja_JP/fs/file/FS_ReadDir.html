@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FS_ReadDir</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FS_ReadDir</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,40 +22,40 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>p_dir</STRONG></EM></TD>
-      <TD width="87%">FSFile�\���̂̃A�h���X</TD>
+      <TD width="87%">FSFile構造体のアドレス</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>p_entry</STRONG></EM></TD>
-      <TD width="87%">FSDirEntry�\���̂̃A�h���X</TD>
+      <TD width="87%">FSDirEntry構造体のアドレス</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�c��̃f�B���N�g���G���g�������݂���΂�����擾���� TRUE ��Ԃ��܂��B<BR>
-�f�B���N�g�����X�g�̏I�[�ɒB���Ă���� FALSE ��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>残りのディレクトリエントリが存在すればそれを取得して TRUE を返します。<BR>
+ディレクトリリストの終端に達していれば FALSE を返します。</p>
 
-<H2>����</H2>
-<P>�w�肵���f�B���N�g�����X�g����A���̃f�B���N�g���G���g�����擾���܂��B<BR>
-�擾�Ɠ����Ɉ�Âf�B���N�g�����X�g�̈ʒu���i�߂��A<BR>
-�f�B���N�g�����X�g���I�[�ɒB����Ǝ������ FALSE ��Ԃ��܂��B<BR>
+<H2>説明</H2>
+<P>指定したディレクトリリストから、次のディレクトリエントリを取得します。<BR>
+取得と同時に一つづつディレクトリリストの位置が進められ、<BR>
+ディレクトリリストが終端に達すると次からは FALSE を返します。<BR>
 <BR>
-�Ⴆ�΂R�̃t�@�C�����܂ރf�B���N�g����<A href="FS_FindDir.html">FS_FindDir</A>�֐��ŊJ���A<BR>
-���̃f�B���N�g�����X�g���g�p���Ė{�֐����Ăяo���ƁA<BR>
-�R�� TRUE ��Ԃ��ĂS��ڈȍ~�� FALSE ��Ԃ��܂��B<BR>
+例えば３つのファイルを含むディレクトリを<A href="FS_FindDir.html">FS_FindDir</A>関数で開き、<BR>
+そのディレクトリリストを使用して本関数を呼び出すと、<BR>
+３回 TRUE を返して４回目以降は FALSE を返します。<BR>
 <BR>
-<H2>����</H2>
+<H2>注意</H2>
 <p><font color="#800000">
-���̊֐������荞�݃n���h��(IRQ���[�h)����Ăяo�����Ƃ͂ł��܂���B<br>
-�܂��A���荞�݂��֎~�����܂܂̏�Ԃɂ���Ə������������Ȃ��ꍇ������_�ɒ��ӂ��ĉ������B<br>
+この関数を割り込みハンドラ(IRQモード)から呼び出すことはできません。<br>
+また、割り込みを禁止したままの状態にあると処理が完了しない場合がある点に注意して下さい。<br>
 </font></p>
 <BR>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../fs_file_type.html">FSFile</A> 
 <A href="../fs_dir_entry_type.html">FSDirEntry</A> 
@@ -65,11 +65,11 @@
 <A href="FS_RewindDir.html">FS_RewindDir</A> 
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/09/24 �Ăяo��������ъ����̏����ɂ��Ă̒��ӂ��L�q�ǉ�<br>
-2004/04/08 FSDir��FSFile�̓����ɂ��L�q�C��<BR>
-2004/04/01 ����<BR>
+2004/09/24 呼び出し時および完了の条件についての注意を記述追加<br>
+2004/04/08 FSDirとFSFileの統合による記述修正<BR>
+2004/04/01 初版<BR>
 </P>
 </body>
 </html>

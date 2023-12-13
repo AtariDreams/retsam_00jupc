@@ -15,7 +15,7 @@
   Update copyright
 
   Revision 1.2  2005/03/02 12:43:56  terui
-  �֐��p�����[�^��const��ǉ��B
+  関数パラメータにconstを追加。
 
   Revision 1.1  2004/12/22 02:40:58  terui
   Initial upload
@@ -38,42 +38,42 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         CHT_IsPictochatParent
 
-  Description:  �e�@�̃r�[�R����񂪃s�N�g�`���b�g�̃r�[�R���ł��邩�ǂ�����
-                ��������B
+  Description:  親機のビーコン情報がピクトチャットのビーコンであるかどうかを
+                調査する。
 
-  Arguments:    pWmBssDesc  -   ��������r�[�R�����ւ̃|�C���^�B
+  Arguments:    pWmBssDesc  -   調査するビーコン情報へのポインタ。
 
-  Returns:      BOOL        -   �s�N�g�`���b�g�̃r�[�R���ł���ꍇ��TRUE���A
-                                �����łȂ��ꍇ��FALSE��Ԃ��B
+  Returns:      BOOL        -   ピクトチャットのビーコンである場合はTRUEを、
+                                そうでない場合はFALSEを返す。
  *---------------------------------------------------------------------------*/
 BOOL    CHT_IsPictochatParent( const WMBssDesc* pWmBssDesc );
 
 /*---------------------------------------------------------------------------*
   Name:         CHT_GetPictochatClientNum
 
-  Description:  �s�N�g�`���b�g�̃r�[�R����񂩂�O���[�v�ɎQ�����Ă���q�@��
-                ���𒲍�����B
-                �s�N�g�`���b�g�̃r�[�R���łȂ��ꍇ�͕s��Ȓl��Ԃ����ƂɂȂ�
-                �̂ŁACHT_IsPictochatParent �֐��Ŕ��肵�Ă���g�p����B
+  Description:  ピクトチャットのビーコン情報からグループに参加している子機の
+                数を調査する。
+                ピクトチャットのビーコンでない場合は不定な値を返すことになる
+                ので、CHT_IsPictochatParent 関数で判定してから使用する。
 
-  Arguments:    pWmBssDesc  -   ��������r�[�R�����ւ̃|�C���^�B
+  Arguments:    pWmBssDesc  -   調査するビーコン情報へのポインタ。
 
-  Returns:      int         -   �O���[�v�ɎQ�����Ă���q�@�̐���Ԃ��B
-                                �ُ�ȃr�[�R�����ł������ꍇ�� -1 ��Ԃ��B
+  Returns:      int         -   グループに参加している子機の数を返す。
+                                異常なビーコン情報であった場合は -1 を返す。
  *---------------------------------------------------------------------------*/
 int     CHT_GetPictochatClientNum( const WMBssDesc* pWmBssDesc );
 
 /*---------------------------------------------------------------------------*
   Name:         CHT_GetPictochatRoomNumber
 
-  Description:  �s�N�g�`���b�g�̃r�[�R����񂩂烋�[���ԍ����擾����B
-                �s�N�g�`���b�g�̃r�[�R���łȂ��ꍇ�͕s��Ȓl��Ԃ����ƂɂȂ�
-                �̂ŁACHT_IsPictochatParent �֐��Ŕ��肵�Ă���g�p����B
+  Description:  ピクトチャットのビーコン情報からルーム番号を取得する。
+                ピクトチャットのビーコンでない場合は不定な値を返すことになる
+                ので、CHT_IsPictochatParent 関数で判定してから使用する。
 
-  Arguments:    pWmBssDesc  -   ��������r�[�R�����ւ̃|�C���^�B
+  Arguments:    pWmBssDesc  -   調査するビーコン情報へのポインタ。
 
-  Returns:      int         -   ���[���ԍ���Ԃ��B
-                                �ُ�ȃr�[�R�����ł������ꍇ�� -1 ��Ԃ��B
+  Returns:      int         -   ルーム番号を返す。
+                                異常なビーコン情報であった場合は -1 を返す。
  *---------------------------------------------------------------------------*/
 int     CHT_GetPictochatRoomNumber( const WMBssDesc* pWmBssDesc );
 

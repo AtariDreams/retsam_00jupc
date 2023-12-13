@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	mapresource.c
- * @bfief	ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒŠƒ\[ƒX\’zˆ—
+ * @bfief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹æ§‹ç¯‰å‡¦ç†
  * @author	mori         GAME FREAK inc.
  *
  *
@@ -25,9 +25,9 @@
 #include "system/arc_tool.h"
 #include "situation_local.h"
 
-#define BUILD_MODEL_MAX	(768)	//(550)		ƒvƒ‰ƒ`ƒi‚Å‘‚â‚µ‚½
+#define BUILD_MODEL_MAX	(768)	//(550)		ãƒ—ãƒ©ãƒãƒŠã§å¢—ã‚„ã—ãŸ
 
-//ƒGƒbƒWƒ}[ƒLƒ“ƒOƒe[ƒuƒ‹
+//ã‚¨ãƒƒã‚¸ãƒãƒ¼ã‚­ãƒ³ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const GXRgb gEdgeColorField[8] = {
     GX_RGB(0, 0, 0),
     GX_RGB(4, 4, 4),
@@ -38,7 +38,7 @@ static const GXRgb gEdgeColorField[8] = {
     GX_RGB(4, 4, 4),
     GX_RGB(4, 4, 4)
 };
-//ƒGƒbƒWƒ}[ƒLƒ“ƒOƒe[ƒuƒ‹
+//ã‚¨ãƒƒã‚¸ãƒãƒ¼ã‚­ãƒ³ã‚°ãƒ†ãƒ¼ãƒ–ãƒ«
 static const GXRgb gEdgeColorOther[8] = {
     GX_RGB(4, 4, 4),
     GX_RGB(4, 4, 4),
@@ -65,22 +65,22 @@ typedef struct MAP_RES_SETUP_WORK_tag
 
 typedef struct RESOURCE_PARAM_tag
 {
-	u16 model_set;			//ƒ‚ƒfƒ‹ƒZƒbƒgƒCƒ“ƒfƒbƒNƒX
-	u16 tex_set;		//’nŒ`ƒeƒNƒXƒ`ƒƒƒZƒbƒgƒCƒ“ƒfƒbƒNƒX
-	u16 move_model_set;		//“®ìƒ‚ƒfƒ‹ƒZƒbƒgƒCƒ“ƒfƒbƒNƒX
-	u16 light;				//ƒ‰ƒCƒgƒtƒ‰ƒO
+	u16 model_set;			//ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u16 tex_set;		//åœ°å½¢ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u16 move_model_set;		//å‹•ä½œãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u16 light;				//ãƒ©ã‚¤ãƒˆãƒ•ãƒ©ã‚°
 }RESOURCE_PARAM;
 
-//-ƒ}ƒbƒvƒŠƒ\[ƒX\‘¢‘Ì(worldmap‚©‚ç•ª—£)------------------------------------------------------
+//-ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹æ§‹é€ ä½“(worldmapã‹ã‚‰åˆ†é›¢)------------------------------------------------------
 typedef struct _MAP_RESOURCE{
-	int 				modelTableNum;	///< modelTable‚ª‚Âƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^‚Ì”
-	NNSG3dResFileHeader	*model[BUILD_MODEL_MAX];	///< ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚Ìƒe[ƒuƒ‹
-	void*				pTexFile;		///< ƒeƒNƒXƒ`ƒƒ[ƒtƒ@ƒCƒ‹À‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	void*				pBmTexFile;		///< ”z’uƒ‚ƒfƒ‹ƒeƒNƒXƒ`ƒƒ[ƒtƒ@ƒCƒ‹À‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	NNSG3dResTex		*Tex;			///< ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
-	NNSG3dResTex		*BmTex;			///< ”z’uƒ‚ƒfƒ‹ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
+	int 				modelTableNum;	///< modelTableãŒæŒã¤ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	NNSG3dResFileHeader	*model[BUILD_MODEL_MAX];	///< ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã®ãƒ†ãƒ¼ãƒ–ãƒ«
+	void*				pTexFile;		///< ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«å®Ÿä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	void*				pBmTexFile;		///< é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«å®Ÿä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	NNSG3dResTex		*Tex;			///< ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
+	NNSG3dResTex		*BmTex;			///< é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
 
-	MSD_PTR				MatShpData;		///< 3‚c‚n‚a‚i‚Ìƒ}ƒeƒŠƒAƒ‹AƒVƒFƒCƒv‘Î‰ƒf[ƒ^
+	MSD_PTR				MatShpData;		///< 3ï¼¤ï¼¯ï¼¢ï¼ªã®ãƒãƒ†ãƒªã‚¢ãƒ«ã€ã‚·ã‚§ã‚¤ãƒ—å¯¾å¿œãƒ‡ãƒ¼ã‚¿
 	
 	RESOURCE_PARAM ResourceParam;
 
@@ -92,16 +92,16 @@ typedef struct _MAP_RESOURCE{
 
 
 #ifdef PM_DEBUG
-///#define DEBUG_TEX_INFO		//ƒeƒNƒXƒ`ƒƒî•ñ•\¦
+///#define DEBUG_TEX_INFO		//ãƒ†ã‚¯ã‚¹ãƒãƒ£æƒ…å ±è¡¨ç¤º
 static void DebugPrintTexInfo(NNSG3dResTex *pTex);
 #endif
 
 //==============================================================================
 /**
- * ƒeƒNƒXƒ`ƒƒÀ‘Ì‚ğ”jŠü
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£å®Ÿä½“ã‚’ç ´æ£„
  *
- * @param   memBlock	ƒƒ‚ƒŠƒuƒƒbƒN
- * @param	texture		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
+ * @param   memBlock	ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯
+ * @param	texture		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
  *
  * @retval  none
  */
@@ -111,30 +111,30 @@ static void CollapseResourceMemory(void* memBlock, NNSG3dResTex* texture)
     u8* texImgStartAddr;
     u32 newSize;
 
-    // ƒeƒNƒXƒ`ƒƒ^ƒpƒŒƒbƒg‚ÍA4x4COMPˆÈŠO‚ÌƒeƒNƒXƒ`ƒƒE4x4COMP‚ÌƒeƒNƒXƒ`ƒƒEƒpƒŒƒbƒg
-    // ‚Ì‡”Ô‚ÅŠi”[‚³‚ê‚Ä‚¢‚Ü‚·B‚æ‚Á‚Ä4x4COMPˆÈŠO‚ÌƒeƒNƒXƒ`ƒƒ‚ÌŠJnƒAƒhƒŒƒXˆÈ~‚Í
-    // •s—v‚É‚È‚è‚Ü‚·B‚È‚¨A4x4COMPƒtƒH[ƒ}ƒbƒgˆÈŠO‚ÌƒeƒNƒXƒ`ƒƒƒCƒ[ƒW‚ª‘¶İ‚µ‚È‚¢
-    // ê‡‚Å‚àtexture->texInfo.ofsTex‚É‚Í“KØ‚È’l‚ª“ü‚Á‚Ä‚¢‚Ü‚·B
+    // ãƒ†ã‚¯ã‚¹ãƒãƒ£ï¼ãƒ‘ãƒ¬ãƒƒãƒˆã¯ã€4x4COMPä»¥å¤–ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ»4x4COMPã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆ
+    // ã®é †ç•ªã§æ ¼ç´ã•ã‚Œã¦ã„ã¾ã™ã€‚ã‚ˆã£ã¦4x4COMPä»¥å¤–ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é–‹å§‹ã‚¢ãƒ‰ãƒ¬ã‚¹ä»¥é™ã¯
+    // ä¸è¦ã«ãªã‚Šã¾ã™ã€‚ãªãŠã€4x4COMPãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆä»¥å¤–ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ãŒå­˜åœ¨ã—ãªã„
+    // å ´åˆã§ã‚‚texture->texInfo.ofsTexã«ã¯é©åˆ‡ãªå€¤ãŒå…¥ã£ã¦ã„ã¾ã™ã€‚
     SDK_ASSERT(texture->texInfo.ofsTex != 0);
     texImgStartAddr = (u8*)texture + texture->texInfo.ofsTex;
 
-    // ƒq[ƒv‚Ìæ“ª‚©‚çƒeƒNƒXƒ`ƒƒƒCƒ[ƒW‚Ü‚Å‚ÌƒTƒCƒY
+    // ãƒ’ãƒ¼ãƒ—ã®å…ˆé ­ã‹ã‚‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã¾ã§ã®ã‚µã‚¤ã‚º
     newSize = (u32)(texImgStartAddr - (u8*)memBlock);
 
-    // ƒƒ‚ƒŠƒuƒƒbƒN‚ğk¬‚µ‚Ü‚·B
-    // ‚»‚ÌŒ‹‰ÊAƒeƒNƒXƒ`ƒƒƒCƒ[ƒW•ª‚Ìƒƒ‚ƒŠ‚Íƒq[ƒv‚É•Ô‹p‚³‚ê‚Ü‚·B
+    // ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚’ç¸®å°ã—ã¾ã™ã€‚
+    // ãã®çµæœã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸åˆ†ã®ãƒ¡ãƒ¢ãƒªã¯ãƒ’ãƒ¼ãƒ—ã«è¿”å´ã•ã‚Œã¾ã™ã€‚
     ///(void)NNS_FndResizeForMBlockExpHeap(G3DDemo_AppHeap, memBlock, newSize);
 	sys_CutMemoryBlockSize( memBlock, newSize );
 }
 
 //==============================================================================
 /**
- * MAP_RESOURCE‚ÌƒAƒƒP[ƒVƒ‡ƒ“
+ * MAP_RESOURCEã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³
  *
- * @param   area_id		ƒGƒŠƒAID
- * @param	field_3d_anime	3‚cƒAƒjƒ
+ * @param   area_id		ã‚¨ãƒªã‚¢ID
+ * @param	field_3d_anime	3ï¼¤ã‚¢ãƒ‹ãƒ¡
  *
- * @retval  MAP_RESOURCE_PTR	Šm•Û‚µ‚½MAPRESOURCE‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  MAP_RESOURCE_PTR	ç¢ºä¿ã—ãŸMAPRESOURCEã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 MAP_RESOURCE_PTR AllocMapResource(const int area_id, FLD_3D_ANM_MNG_PTR field_3d_anime)
@@ -144,7 +144,7 @@ MAP_RESOURCE_PTR AllocMapResource(const int area_id, FLD_3D_ANM_MNG_PTR field_3d
 #ifdef DEBUG_ONLY_FOR_saitou	
 	OS_Printf("local_print AREA_ID:%d\n",area_id);
 #endif
-	//ƒ[ƒN‚ÌŠm•Û
+	//ãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿
 	mapresource->SetupWork = sys_AllocMemoryLo(HEAPID_FIELD,sizeof(MAP_RES_SETUP_WORK));
 	mapresource->SetupWork->AreaID = area_id;
 	mapresource->SetupWork->FldAnmMng = field_3d_anime;
@@ -154,9 +154,9 @@ MAP_RESOURCE_PTR AllocMapResource(const int area_id, FLD_3D_ANM_MNG_PTR field_3d
 
 //==============================================================================
 /**
- * ƒ}ƒbƒvƒŠƒ\[ƒXƒZƒbƒgƒAƒbƒv
+ * ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param   outMapResource		MAPRESOURCE‚Ìƒ|ƒCƒ“ƒ^
+ * @param   outMapResource		MAPRESOURCEã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none	
  */
@@ -169,32 +169,32 @@ void SetupMapResource(MAP_RESOURCE_PTR outMapResource)
 #endif
 	MAP_RES_SETUP_WORK *work = outMapResource->SetupWork;
 	
-	//ƒA[ƒJƒCƒu‚©‚çƒGƒŠƒAƒf[ƒ^‚ğæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰ã‚¨ãƒªã‚¢ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	ArchiveDataLoad(&outMapResource->ResourceParam, ARC_AREA_DATA, work->AreaID);
 	
 #ifdef DEBUG_ONLY_FOR_saitou	
 	OS_Printf("local_print TEX_LOAD:%d\n",outMapResource->ResourceParam.tex_set);
 #endif
 
-	//ƒGƒŠƒA“àƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^ƒŠƒXƒg“Ç‚İ‚İ
+	//ã‚¨ãƒªã‚¢å†…ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆèª­ã¿è¾¼ã¿
 	outMapResource->ModelFile = ArchiveDataLoadMalloc(	ARC_AREA_BUILD_MODEL,
 														outMapResource->ResourceParam.model_set,
 														HEAPID_FIELD );
 	work->Num = outMapResource->ModelFile[0];
 
-	GF_ASSERT(work->Num<BUILD_MODEL_MAX&&"”z’uƒ‚ƒfƒ‹“o˜^”ƒI[ƒo[");
+	GF_ASSERT(work->Num<BUILD_MODEL_MAX&&"é…ç½®ãƒ¢ãƒ‡ãƒ«ç™»éŒ²æ•°ã‚ªãƒ¼ãƒãƒ¼");
 	
-	//’nŒ`—p‹¤’ÊƒeƒNƒXƒ`ƒƒ“Ç‚İ‚İ
+	//åœ°å½¢ç”¨å…±é€šãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿
 	outMapResource->Tex = NULL;
-	//AreaID‚É‘Î‰‚µ‚½‹¤’ÊƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+	//AreaIDã«å¯¾å¿œã—ãŸå…±é€šãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 	outMapResource->pTexFile = ArchiveDataLoadMalloc(	ARC_AREA_TEX_SET,
 														outMapResource->ResourceParam.tex_set,
 														HEAPID_FIELD );
-	//”z’uƒ‚ƒfƒ‹ƒeƒNƒXƒ`ƒƒƒZƒbƒg‚ğ“Ç‚İ‚Ş
+	//é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆã‚’èª­ã¿è¾¼ã‚€
 	outMapResource->pBmTexFile = ArchiveDataLoadMalloc(	ARC_BM_TEX_SET,
 														outMapResource->ResourceParam.model_set,
 														HEAPID_FIELD );
-	// ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ğæ“¾
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—
 	outMapResource->Tex = NNS_G3dGetTex((NNSG3dResFileHeader*) outMapResource->pTexFile );
 	if (work->Num != 0){
 		outMapResource->BmTex = NNS_G3dGetTex((NNSG3dResFileHeader*) outMapResource->pBmTexFile );
@@ -207,11 +207,11 @@ void SetupMapResource(MAP_RESOURCE_PTR outMapResource)
 #ifdef DEBUG_TEX_INFO
 		DebugPrintTexInfo(outMapResource->Tex);
 #endif
-		//ƒeƒNƒXƒ`ƒƒ‚ğ‚u‚q‚`‚l‚Öƒ[ƒh
+		//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ï¼¶ï¼²ï¼¡ï¼­ã¸ãƒ­ãƒ¼ãƒ‰
 		rc = LoadVRAMTexture(outMapResource->Tex);
-		GF_ASSERT(rc && "ƒeƒNƒXƒ`ƒƒ‚ÌVRAMŠm•Û¸”s");
+		GF_ASSERT(rc && "ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®VRAMç¢ºä¿å¤±æ•—");
 	}
-	//À‘Ì‚ğ”jŠü
+	//å®Ÿä½“ã‚’ç ´æ£„
 	CollapseResourceMemory(outMapResource->pTexFile, outMapResource->Tex);
 	
 	if (outMapResource->BmTex != NULL){
@@ -219,16 +219,16 @@ void SetupMapResource(MAP_RESOURCE_PTR outMapResource)
 #ifdef DEBUG_TEX_INFO
 		DebugPrintTexInfo(outMapResource->BmTex);
 #endif		
-		//ƒeƒNƒXƒ`ƒƒ‚ğ‚u‚q‚`‚l‚Öƒ[ƒh
+		//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ï¼¶ï¼²ï¼¡ï¼­ã¸ãƒ­ãƒ¼ãƒ‰
 		rc = LoadVRAMTexture(outMapResource->BmTex);
-		GF_ASSERT(rc && "ƒeƒNƒXƒ`ƒƒ‚ÌVRAMŠm•Û¸”s");
-		//À‘Ì‚ğ”jŠü
+		GF_ASSERT(rc && "ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®VRAMç¢ºä¿å¤±æ•—");
+		//å®Ÿä½“ã‚’ç ´æ£„
 		CollapseResourceMemory(outMapResource->pBmTexFile, outMapResource->BmTex);
 	}
 	
 	{
 		int i;
-		//‰Šú‰»
+		//åˆæœŸåŒ–
 		for(i=0;i<BUILD_MODEL_MAX;i++){
 			outMapResource->model[i] = NULL;
 		}
@@ -242,7 +242,7 @@ void SetupMapResource(MAP_RESOURCE_PTR outMapResource)
 #endif
 	}
 
-	//3Dƒ‚ƒfƒ‹ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	//3Dãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	model_handle = ArchiveDataHandleOpen( ARC_3D_STRUCT, HEAPID_FIELD );
 	{
 		int i;
@@ -250,22 +250,22 @@ void SetupMapResource(MAP_RESOURCE_PTR outMapResource)
 		int anime_num;
 
 		anime_num = F3DA_GetAnimeArcObjNum(work->FldAnmMng);
-		//ƒ|ƒCƒ“ƒ^unowv‚ÍŠù‚É1s“Ç‚İ”ò‚Î‚³‚ê‚½
-		//modelTable‚Ì“à—e‚ğw‚µ‚Ä‚¢‚é‚Ì‚ÅŸ‚©‚çStrTok‚ÍƒpƒX–¼æ“¾‚É‚È‚é
+		//ãƒã‚¤ãƒ³ã‚¿ã€Œnowã€ã¯æ—¢ã«1è¡Œèª­ã¿é£›ã°ã•ã‚ŒãŸ
+		//modelTableã®å†…å®¹ã‚’æŒ‡ã—ã¦ã„ã‚‹ã®ã§æ¬¡ã‹ã‚‰StrTokã¯ãƒ‘ã‚¹åå–å¾—ã«ãªã‚‹
 		for(i=0;i<work->Num;i++){
-			//ƒf[ƒ^‚Íƒƒ‚ƒŠ‚Ì1”Ô–Ú‚©‚çi0”Ô–Ú‚ÍŒÂ”j
+			//ãƒ‡ãƒ¼ã‚¿ã¯ãƒ¡ãƒ¢ãƒªã®1ç•ªç›®ã‹ã‚‰ï¼ˆ0ç•ªç›®ã¯å€‹æ•°ï¼‰
 			no = outMapResource->ModelFile[i+1];
 			
 			#ifdef DEBUG_ONLY_FOR_saitou
 			OS_Printf("local_print model_no = %d\n",no);
 			#endif
 			GF_ASSERT_MSG(outMapResource->model[no]==NULL,
-				"”z’uƒ‚ƒfƒ‹(%d)‚Ì‚Qd“o˜^‚Ì‰Â”\«‚ ‚è",no);
+				"é…ç½®ãƒ¢ãƒ‡ãƒ«(%d)ã®ï¼’é‡ç™»éŒ²ã®å¯èƒ½æ€§ã‚ã‚Š",no);
 			
 			outMapResource->model[no] = ArchiveDataLoadAllocByHandle(
 					model_handle, no, HEAPID_FIELD );
 			
-			{	//ƒAƒjƒƒZƒbƒg
+			{	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 				NNSG3dResMdl* model;
 				
 				if (no < anime_num){
@@ -279,16 +279,16 @@ void SetupMapResource(MAP_RESOURCE_PTR outMapResource)
 				}
 			}
 			
-			//ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh
+			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰
 			{
 				BOOL rc;
 				rc = BindTexture(
 					outMapResource->model[no], outMapResource->BmTex);
-				GF_ASSERT(rc && "3‚c‚n‚a‚iƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh¸”s");
+				GF_ASSERT(rc && "3ï¼¤ï¼¯ï¼¢ï¼ªãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰å¤±æ•—");
 			}
 			
 			#ifdef DEBUG_TEX_INFO				
-			{	// ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ğæ“¾
+			{	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—
 				NNSG3dResTex *tex;
 				tex = NNS_G3dGetTex(
 					(NNSG3dResFileHeader*) outMapResource->model[no] );
@@ -301,7 +301,7 @@ void SetupMapResource(MAP_RESOURCE_PTR outMapResource)
 		}//end for
 	}
 	
-	//ƒ_ƒ~[ƒf[ƒ^‚Íí’“‚³‚¹‚Æ‚­
+	//ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ã¯å¸¸é§ã•ã›ã¨ã
 	if( outMapResource->model[0] == NULL ){
 		BOOL rc;
 		NNSG3dResTex *tex;
@@ -313,81 +313,81 @@ void SetupMapResource(MAP_RESOURCE_PTR outMapResource)
 		
 		outMapResource->model[0] =
 			ArchiveDataLoadAllocByHandle( model_handle, 0, HEAPID_FIELD );
-		OS_Printf("‰½‚à’u‚©‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅAƒ_ƒ~[‚ğ“o˜^\n");
+		OS_Printf("ä½•ã‚‚ç½®ã‹ã‚Œã¦ã„ãªã„ã®ã§ã€ãƒ€ãƒŸãƒ¼ã‚’ç™»éŒ²\n");
 		
-		// ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ğæ“¾
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å–å¾—
 		tex = NNS_G3dGetTex(
 			(NNSG3dResFileHeader*) outMapResource->model[0] );
 		
 		if(tex != NULL){
-			//ƒeƒNƒXƒ`ƒƒ‚ğ‚u‚q‚`‚l‚Öƒ[ƒh
+			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ï¼¶ï¼²ï¼¡ï¼­ã¸ãƒ­ãƒ¼ãƒ‰
 			rc = LoadVRAMTexture(tex);
-			GF_ASSERT(rc && "ƒeƒNƒXƒ`ƒƒ‚ÌVRAMŠm•Û¸”s");
-			//ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh
+			GF_ASSERT(rc && "ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®VRAMç¢ºä¿å¤±æ•—");
+			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰
 			rc = BindTexture(outMapResource->model[0], tex);
-			GF_ASSERT(rc && "3‚c‚n‚a‚iƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh¸”s");
+			GF_ASSERT(rc && "3ï¼¤ï¼¯ï¼¢ï¼ªãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰å¤±æ•—");
 		}
 	}
 
-	//3Dƒ‚ƒfƒ‹ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒNƒ[ƒY
+	//3Dãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
 	ArchiveDataHandleClose( model_handle );
 	
 	#if	1
 	G3X_EdgeMarking(TRUE);
 	
 	if ( MAPRES_IsValidLight(outMapResource) == FALSE) {
-		G3X_SetEdgeColorTable(gEdgeColorField);	// º“à
+		G3X_SetEdgeColorTable(gEdgeColorField);	// å®¤å†…
 	} else {
-		G3X_SetEdgeColorTable(gEdgeColorOther);	// –ìŠO
+		G3X_SetEdgeColorTable(gEdgeColorOther);	// é‡å¤–
 	}
 	#endif
 	
 	///sys_FreeMemoryEz(work->ModelFile);
 	{
 		char name[256];
-		//ƒ}ƒeƒŠƒAƒ‹AƒVƒFƒCƒv‘Î‰ƒf[ƒ^ƒ[ƒh
+		//ãƒãƒ†ãƒªã‚¢ãƒ«ã€ã‚·ã‚§ã‚¤ãƒ—å¯¾å¿œãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 		outMapResource->MatShpData = AllocMatShpData();
 		sprintf(name,"fielddata/build_model/build_model_matshp.dat");
 		LoadMatShape(name, outMapResource->MatShpData);
 	}
 	
 ///	OS_Printf("model_tex_size_total=%d\n",debug_tex_size);
-	//ƒ[ƒN‚Ì‰ğ•ú
+	//ãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾
 	sys_FreeMemoryEz(outMapResource->SetupWork);
 	outMapResource->SetupWork = NULL;
 }
 
 //==============================================================================
 /**
- * ƒGƒŠƒA‚É‘Î‰‚µ‚½ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^ƒtƒ@ƒCƒ‹–¼‚Ìæ“¾
+ * ã‚¨ãƒªã‚¢ã«å¯¾å¿œã—ãŸãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«åã®å–å¾—
  *
- * @param   index		ƒ‚ƒfƒ‹ID
- * @param   mapresource		WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
+ * @param   index		ãƒ¢ãƒ‡ãƒ«ID
+ * @param   mapresource		WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  NNSG3dResFileHeader**		ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  NNSG3dResFileHeader**		ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 NNSG3dResFileHeader** GetMapResourceModelRes(const int index, const MAP_RESOURCE_PTR mapresource)
 {
-	GF_ASSERT((mapresource!=NULL) && "mapresourcemap‚ª–¢Šm•Û");
+	GF_ASSERT((mapresource!=NULL) && "mapresourcemapãŒæœªç¢ºä¿");
 
 	if (mapresource->model[index] == NULL){
-//		OS_Printf("index = %d ”z’uƒ‚ƒfƒ‹“o˜^ƒGƒ‰[ ƒ_ƒ~[‚ğ•\¦‚µ‚Ü‚·\n",index);
-		GF_ASSERT(mapresource->model[0]!=NULL&&"ƒ_ƒ~[‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¢\n");
-		//NULLƒf[ƒ^‚ª‚«‚½‚çAƒ_ƒ~[ƒ{ƒbƒNƒX‚ğ•Ô‚·‚æ‚¤‚É‚µ‚Ä‚¨‚­
+//		OS_Printf("index = %d é…ç½®ãƒ¢ãƒ‡ãƒ«ç™»éŒ²ã‚¨ãƒ©ãƒ¼ ãƒ€ãƒŸãƒ¼ã‚’è¡¨ç¤ºã—ã¾ã™\n",index);
+		GF_ASSERT(mapresource->model[0]!=NULL&&"ãƒ€ãƒŸãƒ¼ãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã„\n");
+		//NULLãƒ‡ãƒ¼ã‚¿ãŒããŸã‚‰ã€ãƒ€ãƒŸãƒ¼ãƒœãƒƒã‚¯ã‚¹ã‚’è¿”ã™ã‚ˆã†ã«ã—ã¦ãŠã
 		return &(mapresource->model[0]);	
 	}
 	
-	///GF_ASSERT((mapresource->model[index] != NULL)&&"ƒ‚ƒfƒŠƒ“ƒOƒf[ƒ^‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+	///GF_ASSERT((mapresource->model[index] != NULL)&&"ãƒ¢ãƒ‡ãƒªãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ãŒç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“");
 	return &(mapresource->model[index]);	
 	
 }
 
 //==============================================================================
 /**
- * MAP_RESOURCE‚Ì‰ğ•ú
+ * MAP_RESOURCEã®è§£æ”¾
  *
- * @param   mapresource		MAP_RESOURCE‚Ìƒ|ƒCƒ“ƒ^
+ * @param   mapresource		MAP_RESOURCEã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
@@ -396,7 +396,7 @@ void ReleaseMapResource(MAP_RESOURCE_PTR *mapresource)
 {
 	int i;
 
-	//ƒ}ƒeƒŠƒAƒ‹AƒVƒFƒCƒv‘Î‰ƒf[ƒ^‰ğ•ú
+	//ãƒãƒ†ãƒªã‚¢ãƒ«ã€ã‚·ã‚§ã‚¤ãƒ—å¯¾å¿œãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	if ((*mapresource)->MatShpData != NULL){
 		FreeMatShpData((*mapresource)->MatShpData);
 	}
@@ -409,53 +409,53 @@ void ReleaseMapResource(MAP_RESOURCE_PTR *mapresource)
 
 	sys_FreeMemoryEz((*mapresource)->ModelFile);
 	
-	sys_FreeMemoryEz((*mapresource)->pTexFile);			// ƒtƒB[ƒ‹ƒh‹¤’ÊƒeƒNƒXƒ`ƒƒ‰ğ•ú
+	sys_FreeMemoryEz((*mapresource)->pTexFile);			// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å…±é€šãƒ†ã‚¯ã‚¹ãƒãƒ£è§£æ”¾
 	(*mapresource)->pTexFile   = NULL;
-	sys_FreeMemoryEz((*mapresource)->pBmTexFile);			// ”z’uƒ‚ƒfƒ‹ƒeƒNƒXƒ`ƒƒ‰ğ•ú
+	sys_FreeMemoryEz((*mapresource)->pBmTexFile);			// é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£è§£æ”¾
 	(*mapresource)->pBmTexFile   = NULL;
-	sys_FreeMemoryEz((*mapresource));						// ƒ[ƒ‹ƒhƒ}ƒbƒv‰ğ•ú
+	sys_FreeMemoryEz((*mapresource));						// ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—è§£æ”¾
 	(*mapresource) = NULL;
 }
 
 //==============================================================================
 /**
- * ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ÌÀ‘Ì‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã®å®Ÿä½“ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  *
- * @param   mapresource		WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
+ * @param   mapresource		WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  NNSG3dResTex *		ƒeƒNƒXƒ`ƒƒƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  NNSG3dResTex *		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 NNSG3dResTex *GetMapResourceTexturePTR(const MAP_RESOURCE_PTR mapresource)
 {
-	GF_ASSERT((mapresource!=NULL) && "mapresourcemap‚ª–¢Šm•Û");
+	GF_ASSERT((mapresource!=NULL) && "mapresourcemapãŒæœªç¢ºä¿");
 
 	return mapresource->Tex;	
 }
 
 //==============================================================================
 /**
- * ƒeƒNƒXƒ`ƒƒƒtƒ@ƒCƒ‹‚ÌÀ‘Ì‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚¡ã‚¤ãƒ«ã®å®Ÿä½“ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
  *
- * @param   mapresource		WORLD_MAP‚Ìƒ|ƒCƒ“ƒ^
+ * @param   mapresource		WORLD_MAPã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  NNSG3dResTex *		ƒeƒNƒXƒ`ƒƒƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  NNSG3dResTex *		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 NNSG3dResTex *GetMapResourceBmTexturePTR(const MAP_RESOURCE_PTR mapresource)
 {
-	GF_ASSERT((mapresource!=NULL) && "mapresourcemap‚ª–¢Šm•Û");
+	GF_ASSERT((mapresource!=NULL) && "mapresourcemapãŒæœªç¢ºä¿");
 
 	return mapresource->BmTex;	
 }
 
 //==============================================================================
 /**
- * ƒ}ƒeƒŠƒAƒ‹AƒVƒFƒCƒv‘Î‰ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾ŠÖ”
+ * ãƒãƒ†ãƒªã‚¢ãƒ«ã€ã‚·ã‚§ã‚¤ãƒ—å¯¾å¿œãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—é–¢æ•°
  *
- * @param   mapresource		ƒ}ƒbƒvƒŠƒ\[ƒX‚Ìƒ|ƒCƒ“ƒ^
+ * @param   mapresource		ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  MSD_CONST_PTR	ƒ}ƒeƒŠƒAƒ‹AƒVƒFƒCƒv‘Î‰ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  MSD_CONST_PTR	ãƒãƒ†ãƒªã‚¢ãƒ«ã€ã‚·ã‚§ã‚¤ãƒ—å¯¾å¿œãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 
@@ -466,30 +466,30 @@ MSD_CONST_PTR GetMatShpDataPtr(const MAP_RESOURCE_PTR mapresource)
 
 //==============================================================================
 /**
- * ƒ‰ƒCƒg—LŒø‚©‚Ç‚¤‚©‚Ìæ“¾ŠÖ”
+ * ãƒ©ã‚¤ãƒˆæœ‰åŠ¹ã‹ã©ã†ã‹ã®å–å¾—é–¢æ•°
  *
- * @param   mapresource		ƒ}ƒbƒvƒŠƒ\[ƒX‚Ìƒ|ƒCƒ“ƒ^
+ * @param   mapresource		ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE:ƒ‰ƒCƒg—LŒø		FALSE:ƒ‰ƒCƒg–³Œø
+ * @retval  BOOL	TRUE:ãƒ©ã‚¤ãƒˆæœ‰åŠ¹		FALSE:ãƒ©ã‚¤ãƒˆç„¡åŠ¹
  */
 //==============================================================================
 BOOL MAPRES_IsValidLight(const MAP_RESOURCE_PTR mapresource)
 {
 	if ((mapresource->ResourceParam.light == LIGHT_TYPE1) || 
 		(mapresource->ResourceParam.light == LIGHT_TYPEIAEA) ){
-		return TRUE;	// –ìŠO
+		return TRUE;	// é‡å¤–
 	}else{
-		return FALSE;	// º“à
+		return FALSE;	// å®¤å†…
 	}
 }
 
 //==============================================================================
 /**
- * ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+ * ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  *
- * @param   mapresource		ƒ}ƒbƒvƒŠƒ\[ƒX‚Ìƒ|ƒCƒ“ƒ^
+ * @param   mapresource		ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  light_idx	ƒ‰ƒCƒgƒCƒ“ƒfƒbƒNƒX
+ * @retval  light_idx	ãƒ©ã‚¤ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //==============================================================================
 u8 MAPRES_GetLightIndex(const MAP_RESOURCE_PTR mapresource)
@@ -506,12 +506,12 @@ u8 MAPRES_GetLightIndex(const MAP_RESOURCE_PTR mapresource)
 
 //==============================================================================
 /**
- * ƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹‚©‚çOBJID‚ğæ“¾
+ * ãƒ¢ãƒ‡ãƒ«ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰OBJIDã‚’å–å¾—
  *
- * @param   inMapresource		ƒ}ƒbƒvƒŠƒ\[ƒX‚Ìƒ|ƒCƒ“ƒ^
- * @param	inIndex			ƒŠƒXƒgƒCƒ“ƒfƒbƒNƒX
+ * @param   inMapresource		ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inIndex			ãƒªã‚¹ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @retval  obj_id				OBJIDiƒCƒ“ƒfƒbƒNƒX0”Ô–Ú‚ÍŒÂ”j
+ * @retval  obj_id				OBJIDï¼ˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹0ç•ªç›®ã¯å€‹æ•°ï¼‰
  */
 //==============================================================================
 int MAPRES_GetObjIDFromModelFile(const MAP_RESOURCE_PTR inMapResource, const int inIndex)
@@ -523,12 +523,12 @@ int MAPRES_GetObjIDFromModelFile(const MAP_RESOURCE_PTR inMapResource, const int
 
 //==============================================================================
 /**
- * ƒŠƒ\[ƒX‚ÌƒGƒ“ƒgƒŠ[ƒ`ƒFƒbƒN
+ * ãƒªã‚½ãƒ¼ã‚¹ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚§ãƒƒã‚¯
  *
- * @param   mapresource		ƒ}ƒbƒvƒŠƒ\[ƒX‚Ìƒ|ƒCƒ“ƒ^
+ * @param   mapresource		ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	inID			OBJID
  *
- * @retval  TRUE:“o˜^Ï‚İ	FALSE:–¢“o˜^
+ * @retval  TRUE:ç™»éŒ²æ¸ˆã¿	FALSE:æœªç™»éŒ²
  */
 //==============================================================================
 BOOL CheckResourceEntry(const MAP_RESOURCE_PTR mapresource, const int inID)
@@ -544,7 +544,7 @@ BOOL CheckResourceEntry(const MAP_RESOURCE_PTR mapresource, const int inID)
 static void DebugPrintTexInfo(NNSG3dResTex *pTex)
 {
 	int szTex,numTex;
-	// •K—v‚ÈƒTƒCƒY‚ğæ“¾
+	// å¿…è¦ãªã‚µã‚¤ã‚ºã‚’å–å¾—
 	szTex    = NNS_G3dTexGetRequiredSize(pTex);
 	numTex = pTex->dict.numEntry;
 	OS_Printf("texsize = %d\n",szTex);

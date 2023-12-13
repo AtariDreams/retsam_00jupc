@@ -13,7 +13,7 @@
   $Log: env_system.c,v $
   Revision 1.16  2005/10/12 07:47:49  kitase_hirotake
   add ENV_SetResoruceSetArray()
-  ‘S‚Ä‚Ì•Ï”AŠÖ”‚ğ SDK_WEAK_SYMBOL
+  å…¨ã¦ã®å¤‰æ•°ã€é–¢æ•°ã‚’ SDK_WEAK_SYMBOL
 
   Revision 1.15  2005/08/31 09:44:17  yada
   applied for multi env array
@@ -37,7 +37,7 @@
   offset value available
 
   Revision 1.8  2005/08/19 08:16:59  yasu
-  commondefs.add-ins.env ‚É‚æ‚è WiFi ‚ÌƒƒCƒ“ƒcƒŠ[‚ÖƒCƒ“ƒXƒg[ƒ‹‚·‚é‚æ‚¤‚ÉC³
+  commondefs.add-ins.env ã«ã‚ˆã‚Š WiFi ã®ãƒ¡ã‚¤ãƒ³ãƒ„ãƒªãƒ¼ã¸ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.7  2005/08/19 00:35:10  yada
   fix around WARNING

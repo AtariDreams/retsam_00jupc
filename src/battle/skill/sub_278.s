@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_278.s
- *@brief	�퓬�V�[�P���X
- *			�搧�n�̃A�C�e�����ʔ����`�F�b�N
+ *@brief	戦闘シーケンス
+ *			先制系のアイテム効果発動チェック
  *@author	HisashiSogabe
  *@data		2006.06.22
  *
@@ -15,13 +15,13 @@
 	.include	"waza_seq_def.h"
 
 SUB_278:
-//2vs2��̂Ƃ��ɁA��ɂS�̈ȓ��ꍇ�͂��̃`�F�b�N�ł͂��߂Ȃ̂ŁA�v���`�i�ŏC��
+//2vs2戦のときに、場に４体以内場合はこのチェックではだめなので、プラチナで修正
 //	VALUE_WORK			VAL_GET,BUF_PARA_CLIENT_SET_MAX,BUF_PARA_TEMP_WORK
 //	VALUE				VAL_SUB,BUF_PARA_TEMP_WORK,1
 
 #if 0
-//�v���`�i�ł̏C���o�[�W����
-	//�Ō��Client�̓`�F�b�N���Ȃ�
+//プラチナでの修正バージョン
+	//最後のClientはチェックしない
 	IF					IF_FLAG_EQ,BUF_PARA_CLIENT_WORKING_COUNT,1,SUB_278_CHECK
 
 	IF_PSP				IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_wkw_sensei_flag,1,SUB_278_NEXT
@@ -45,12 +45,12 @@ SUB_278_END:
 	SEQ_END
 #endif
 
-//�v���`�i�ł̏C���o�[�W����
+//プラチナでの修正バージョン
 	IF_PSP				IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_wkw_once_agi_up,1,SUB_278_ONCE_AGI_UP
 	IF_PSP				IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_wkw_sensei_flag,0,SUB_278_END
 
 SUB_278_SENSEI_FLAG:
-	//�Ō��Client�̓`�F�b�N���Ȃ�
+	//最後のClientはチェックしない
 	IF					IF_FLAG_EQ,BUF_PARA_CLIENT_WORKING_COUNT,1,SUB_278_CHECK
 	STATUS_EFFECT		SIDE_ATTACK,STATUS_ITEM_POKE
 	SERVER_WAIT
@@ -59,7 +59,7 @@ SUB_278_SENSEI_FLAG:
 SUB_278_ONCE_AGI_UP:
 	STATUS_EFFECT		SIDE_ATTACK,STATUS_ITEM_POKE
 	SERVER_WAIT
-	//�Ō��Client�̓��b�Z�[�W���o���Ȃ�
+	//最後のClientはメッセージを出さない
 	IF					IF_FLAG_EQ,BUF_PARA_CLIENT_WORKING_COUNT,1,SUB_278_CHECK
 	MESSAGE				ItemSenseiMineMsg,TAG_NICK_ITEM,SIDE_ATTACK,SIDE_ATTACK
 	SERVER_WAIT

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pokegra_get.h
- * @brief	ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNŽæ“¾ˆ—
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å–å¾—å‡¦ç†
  * @author	Hiroyuki Nakamura
  * @date	2005.05.09
  */
@@ -17,36 +17,36 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 /*
    0000_0000_0000_0000_0000_0000_0000_0000
-     || |||| |||| |||| ŠJ”­ƒiƒ“ƒo[
+     || |||| |||| |||| é–‹ç™ºãƒŠãƒ³ãƒãƒ¼
      || |||| |||| ||||
-     || |||| “ÁŽêƒR[ƒhiƒAƒ“ƒm[ƒ“‚È‚Çji5bit‚Å\•ªj
+     || |||| ç‰¹æ®Šã‚³ãƒ¼ãƒ‰ï¼ˆã‚¢ãƒ³ãƒŽãƒ¼ãƒ³ãªã©ï¼‰ï¼ˆ5bitã§ååˆ†ï¼‰
      || ||||
-     || ||ƒtƒ@ƒCƒ‹ƒ^ƒCƒv
+     || ||ãƒ•ã‚¡ã‚¤ãƒ«ã‚¿ã‚¤ãƒ—
      || ||
-     || ƒOƒ‰ƒtƒBƒbƒNƒ^ƒCƒv
+     || ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¿ã‚¤ãƒ—
      ||
-	 |‰Š
+	 |â™‚â™€
 	 |
-	 ƒJƒ‰[
+	 ã‚«ãƒ©ãƒ¼
 */
 
-#define	POKEGRA_EXCODE_SHIFT	( 16 )	// ƒpƒ‰ƒ[ƒ^ƒVƒtƒgF“ÁŽêƒR[ƒh
+#define	POKEGRA_EXCODE_SHIFT	( 16 )	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚·ãƒ•ãƒˆï¼šç‰¹æ®Šã‚³ãƒ¼ãƒ‰
 
-#define	POKEGRA_CGX		( 0x00000000 )	// ƒtƒ@ƒCƒ‹ƒ^ƒCƒvFƒLƒƒƒ‰
-#define	POKEGRA_PAL		( 0x01000000 )	// ƒtƒ@ƒCƒ‹ƒ^ƒCƒvFƒpƒŒƒbƒg
-#define	POKEGRA_FRNT	( 0x00000000 )	// ƒOƒ‰ƒtƒBƒbƒNƒ^ƒCƒvF‘O–Ê
-#define	POKEGRA_BACK	( 0x04000000 )	// ƒOƒ‰ƒtƒBƒbƒNƒ^ƒCƒvF”w–Ê
-#define	POKEGRA_ICON	( 0x08000000 )	// ƒOƒ‰ƒtƒBƒbƒNƒ^ƒCƒvFƒAƒCƒRƒ“
-#define	POKEGRA_MALE	( 0x00000000 )	// ‰
-#define	POKEGRA_FEMALE	( 0x10000000 )	// Š
-#define	POKEGRA_N_COL	( 0x00000000 )	// ’ÊíƒJƒ‰[
-#define	POKEGRA_R_COL	( 0x20000000 )	// ƒŒƒAƒJƒ‰[
+#define	POKEGRA_CGX		( 0x00000000 )	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¿ã‚¤ãƒ—ï¼šã‚­ãƒ£ãƒ©
+#define	POKEGRA_PAL		( 0x01000000 )	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚¿ã‚¤ãƒ—ï¼šãƒ‘ãƒ¬ãƒƒãƒˆ
+#define	POKEGRA_FRNT	( 0x00000000 )	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¿ã‚¤ãƒ—ï¼šå‰é¢
+#define	POKEGRA_BACK	( 0x04000000 )	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¿ã‚¤ãƒ—ï¼šèƒŒé¢
+#define	POKEGRA_ICON	( 0x08000000 )	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¿ã‚¤ãƒ—ï¼šã‚¢ã‚¤ã‚³ãƒ³
+#define	POKEGRA_MALE	( 0x00000000 )	// â™‚
+#define	POKEGRA_FEMALE	( 0x10000000 )	// â™€
+#define	POKEGRA_N_COL	( 0x00000000 )	// é€šå¸¸ã‚«ãƒ©ãƒ¼
+#define	POKEGRA_R_COL	( 0x20000000 )	// ãƒ¬ã‚¢ã‚«ãƒ©ãƒ¼
 
-// “ÁŽêƒR[ƒhFƒAƒ“ƒm[ƒ“—p’è‹`
+// ç‰¹æ®Šã‚³ãƒ¼ãƒ‰ï¼šã‚¢ãƒ³ãƒŽãƒ¼ãƒ³ç”¨å®šç¾©
 #define POKEGRA_UNA		( 0x00000000 )	// A
 #define POKEGRA_UNB		( 0x00010000 )	// B
 #define POKEGRA_UNC		( 0x00020000 )	// C
@@ -78,27 +78,27 @@
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒX–¼ì¬
+ * ãƒ‘ã‚¹åä½œæˆ
  *
- * @param	path	ƒpƒX–¼Ši”[êŠ
- * @param	param	ƒpƒ‰ƒ[ƒ^
+ * @param	path	ãƒ‘ã‚¹åæ ¼ç´å ´æ‰€
+ * @param	param	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
  * @return	none
  *
- * @li	ì¬‚³‚ê‚éƒpƒX–¼‚Ì—áF"/data/pmdp_frnt_001_m.ncgr"iƒtƒVƒMƒ_ƒl‰‚Ì‘O–Ê‚ÌƒLƒƒƒ‰j
+ * @li	ä½œæˆã•ã‚Œã‚‹ãƒ‘ã‚¹åã®ä¾‹ï¼š"/data/pmdp_frnt_001_m.ncgr"ï¼ˆãƒ•ã‚·ã‚®ãƒ€ãƒâ™‚ã®å‰é¢ã®ã‚­ãƒ£ãƒ©ï¼‰
  *
- *	—á‚PjƒLƒ‚ƒŠ‰‚Ì‘O–ÊƒLƒƒƒ‰
+ *	ä¾‹ï¼‘ï¼‰ã‚­ãƒ¢ãƒªâ™‚ã®å‰é¢ã‚­ãƒ£ãƒ©
  *	  PokeGraGetPath( path, MONSNO_KIMORI | POKEGRA_CGX | POKEGRA_FRNT | POKEGRA_MALE );
- *	—á‚QjƒLƒ‚ƒŠ‰‚ÌƒpƒŒƒbƒg
+ *	ä¾‹ï¼’ï¼‰ã‚­ãƒ¢ãƒªâ™‚ã®ãƒ‘ãƒ¬ãƒƒãƒˆ
  *	  PokeGraGetPath( path, MONSNO_KIMORI | POKEGRA_PAL | POKEGRA_FRNT | POKEGRA_N_COL );
- *	—á‚RjƒLƒ‚ƒŠ‚ÌƒAƒCƒRƒ“ƒLƒƒƒ‰
+ *	ä¾‹ï¼“ï¼‰ã‚­ãƒ¢ãƒªã®ã‚¢ã‚¤ã‚³ãƒ³ã‚­ãƒ£ãƒ©
  *	  PokeGraGetPath( path, MONSNO_KIMORI | POKEGRA_CGX | POKEGRA_ICON );
- *	—á‚SjƒLƒ‚ƒŠ‚ÌƒAƒCƒRƒ“ƒpƒŒƒbƒg
+ *	ä¾‹ï¼”ï¼‰ã‚­ãƒ¢ãƒªã®ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆ
  *	  PokeGraGetPath( path, MONSNO_KIMORI | POKEGRA_PAL | POKEGRA_ICON );
  */
 //--------------------------------------------------------------------------------------------
@@ -106,14 +106,14 @@ GLOBAL void PokeGraGetPath( char * path, u32 param );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^Žæ“¾
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- * @param	param	ƒpƒ‰ƒ[ƒ^
- * @param	mode	ƒƒ‚ƒŠŽæ“¾ƒ‚[ƒh
+ * @param	param	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	mode	ãƒ¡ãƒ¢ãƒªå–å¾—ãƒ¢ãƒ¼ãƒ‰
  *
- * @return	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+ * @return	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- * @li	malloc‚ðŽg—p‚·‚é‚Ì‚ÅAŠJ•ú‚ð–Y‚ê‚¸‚ÉI
+ * @li	mallocã‚’ä½¿ç”¨ã™ã‚‹ã®ã§ã€é–‹æ”¾ã‚’å¿˜ã‚Œãšã«ï¼
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * PokeGraGet( u32 param, u8 mode );

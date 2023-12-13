@@ -1,5 +1,5 @@
 /* Metrowerks Standard Library
- * Copyright © 1995-2004 Metrowerks Corporation.  All rights reserved.
+ * Copyright 1995-2004 Metrowerks Corporation.  All rights reserved.
  *
  * $Date: 2004/04/16 19:31:33 $
  * $Revision: 1.1 $

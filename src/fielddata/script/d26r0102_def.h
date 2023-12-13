@@ -1,7 +1,7 @@
 #ifndef _D26R0102_DEF_H_
 #define _D26R0102_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D26R0102_BED		(1)
 #define	SCRID_D26R0102_PAPER1		(2)
 #define	SCRID_D26R0102_PAPER2		(3)
@@ -9,6 +9,6 @@
 #define	SCRID_D26R0102_SINK1		(5)
 #define	SCRID_D26R0102_BOOK		(6)
 #define	SCRID_D26R0102_FREEZER1		(7)
-#define	SCRID_D26R0102_DATA_MAX		(7)		//最大数
+#define	SCRID_D26R0102_DATA_MAX		(7)		//譛螟ｧ謨ｰ
 
 #endif //_D26R0102_DEF_H_

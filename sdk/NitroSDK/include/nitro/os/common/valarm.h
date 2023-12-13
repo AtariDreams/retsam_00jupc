@@ -18,7 +18,7 @@
   do-indent
 
   Revision 1.10  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.9  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -39,10 +39,10 @@
   fix header comment
 
   Revision 1.3  2004/03/08 05:35:03  yada
-  üŠúVCount‚Ì’x‰„‹–—e”ÍˆÍ‚ğİ’èo—ˆ‚é‚æ‚¤‚É‚µ‚½B
+  å‘¨æœŸVCountã®é…å»¶è¨±å®¹ç¯„å›²ã‚’è¨­å®šå‡ºæ¥ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.2  2004/03/02 11:04:36  yada
-  VŠ„‚è‚İ‚Ì’x‰„‚ğl—¶‚µ‚½B
+  Vå‰²ã‚Šè¾¼ã¿ã®é…å»¶ã‚’è€ƒæ…®ã—ãŸã€‚
 
   Revision 1.1  2004/02/23 11:57:58  yada
   firstRelease

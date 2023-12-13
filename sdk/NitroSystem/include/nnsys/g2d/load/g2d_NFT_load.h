@@ -30,13 +30,13 @@ extern "C" {
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dGetUnpackedFont
 
-  Description:  NFTR �t�@�C���� NITRO�t�H���g�ւƓW�J���܂��B
+  Description:  NFTR ファイルを NITROフォントへと展開します。
 
-  Arguments:    pNftrFile:  NFTR �t�@�C���f�[�^�ւ̃|�C���^�B
-                ppFont:     NITRO�t�H���g�ւ̃|�C���^���i�[����o�b�t�@�ւ�
-                            �|�C���^�B
+  Arguments:    pNftrFile:  NFTR ファイルデータへのポインタ。
+                ppFont:     NITROフォントへのポインタを格納するバッファへの
+                            ポインタ。
 
-  Returns:      �W�J�ɐ��������� TRUE ��Ԃ��܂��B
+  Returns:      展開に成功したら TRUE を返します。
  *---------------------------------------------------------------------------*/
 BOOL NNSi_G2dGetUnpackedFont( void* pNftrFile, NNSG2dFontInformation** ppFont );
 
@@ -45,13 +45,13 @@ BOOL NNSi_G2dGetUnpackedFont( void* pNftrFile, NNSG2dFontInformation** ppFont );
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dUnpackNFT
 
-  Description:  NFTR �t�@�C���f�[�^�����C�u�����ŗ��p�ł���`�ւƓW�J���܂��B
-                �e�t�@�C���f�[�^�ɑ΂��ă��C�u�����ł̎g�p�̑O��1�񂾂�
-                ���s����K�v������܂��B
+  Description:  NFTR ファイルデータをライブラリで利用できる形へと展開します。
+                各ファイルデータに対してライブラリでの使用の前に1回だけ
+                実行する必要があります。
 
-  Arguments:    pHeader:    NFTR �t�@�C���̃o�C�i���t�@�C���w�b�_�ւ̃|�C���^�B
+  Arguments:    pHeader:    NFTR ファイルのバイナリファイルヘッダへのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 void NNSi_G2dUnpackNFT(NNSG2dBinaryFileHeader* pHeader);
 
@@ -60,11 +60,11 @@ void NNSi_G2dUnpackNFT(NNSG2dBinaryFileHeader* pHeader);
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dPrintFont
 
-  Description:  NITRO�t�H���g�̏����f�o�b�O�o�͂ɏo�͂��܂��B
+  Description:  NITROフォントの情報をデバッグ出力に出力します。
 
-  Arguments:    pFont:  NITRO�t�H���g�ւ̃|�C���^�B
+  Arguments:    pFont:  NITROフォントへのポインタ。
 
-  Returns:      �Ȃ��B
+  Returns:      なし。
  *---------------------------------------------------------------------------*/
 #ifdef SDK_FINALROM
     NNS_G2D_INLINE void NNS_G2dPrintFont( const NNSG2dFont* /*pFont*/ )

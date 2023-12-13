@@ -44,54 +44,54 @@ extern FSDirPos current_dir_pos;
 /*---------------------------------------------------------------------------*
   Name:         FSi_StrNICmp
 
-  Description:  “à•”ŠÖ”.
-                ‘å¬•¶Žš‚ð‹æ•Ê‚¹‚¸‚ÉŽw’èƒoƒCƒg”‚¾‚¯•¶Žš—ñ”äŠr.
+  Description:  å†…éƒ¨é–¢æ•°.
+                å¤§å°æ–‡å­—ã‚’åŒºåˆ¥ã›ãšã«æŒ‡å®šãƒã‚¤ãƒˆæ•°ã ã‘æ–‡å­—åˆ—æ¯”è¼ƒ.
 
-  Arguments:    str1             ”äŠrŒ³•¶Žš—ñ.
-                str2             ”äŠræ•¶Žš—ñ.
-                len              ”äŠrƒoƒCƒg”.
+  Arguments:    str1             æ¯”è¼ƒå…ƒæ–‡å­—åˆ—.
+                str2             æ¯”è¼ƒå…ˆæ–‡å­—åˆ—.
+                len              æ¯”è¼ƒãƒã‚¤ãƒˆæ•°.
 
-  Returns:      (str1 - str2) ‚Ì”äŠrŒ‹‰Ê.
+  Returns:      (str1 - str2) ã®æ¯”è¼ƒçµæžœ.
  *---------------------------------------------------------------------------*/
 int     FSi_StrNICmp(const char *str1, const char *str2, u32 len);
 
 /*---------------------------------------------------------------------------*
   Name:         FSi_SendCommand
 
-  Description:  “à•”ŠÖ”.
-                ƒA[ƒJƒCƒu‚ÖƒRƒ}ƒ“ƒh‚ð”­s‚·‚é.
-                ‹N“®ƒ^ƒCƒ~ƒ“ƒO‚Ì’²®‚Æ‚Æ‚à‚É, “¯ŠúŒn‚È‚ç‚±‚±‚ÅƒuƒƒbƒLƒ“ƒO.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã¸ã‚³ãƒžãƒ³ãƒ‰ã‚’ç™ºè¡Œã™ã‚‹.
+                èµ·å‹•ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã®èª¿æ•´ã¨ã¨ã‚‚ã«, åŒæœŸç³»ãªã‚‰ã“ã“ã§ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°.
 
-  Arguments:    p_file           ƒRƒ}ƒ“ƒhˆø”‚ðŽw’è‚³‚ê‚½ FSFile \‘¢‘Ì.
-                command          ƒRƒ}ƒ“ƒh ID.
+  Arguments:    p_file           ã‚³ãƒžãƒ³ãƒ‰å¼•æ•°ã‚’æŒ‡å®šã•ã‚ŒãŸ FSFile æ§‹é€ ä½“.
+                command          ã‚³ãƒžãƒ³ãƒ‰ ID.
 
-  Returns:      ƒRƒ}ƒ“ƒh‚ª¬Œ÷‚·‚ê‚Î TRUE.
+  Returns:      ã‚³ãƒžãƒ³ãƒ‰ãŒæˆåŠŸã™ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    FSi_SendCommand(FSFile *p_file, FSCommandType command);
 
 /*---------------------------------------------------------------------------*
   Name:         FSi_TranslateCommand
 
-  Description:  “à•”ŠÖ”.
-                ƒ†[ƒUƒvƒƒV[ƒWƒƒ‚Ü‚½‚ÍƒfƒtƒHƒ‹ƒgˆ—‚ðŒÄ‚Ño‚µ, Œ‹‰Ê‚ð•Ô‚·.
-                “¯ŠúŒnƒRƒ}ƒ“ƒh‚ª”ñ“¯Šú“I‰ž“š‚ð•Ô‚µ‚½ê‡‚Í“à•”‚ÅŠ®—¹‚ð‘Ò‚Â.
-                ”ñ“¯ŠúŒnƒRƒ}ƒ“ƒh‚ª”ñ“¯Šú“I‰ž“š‚ð•Ô‚µ‚½ê‡‚Í‚»‚Ì‚Ü‚Ü•Ô‚·.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã¾ãŸã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‡¦ç†ã‚’å‘¼ã³å‡ºã—, çµæžœã‚’è¿”ã™.
+                åŒæœŸç³»ã‚³ãƒžãƒ³ãƒ‰ãŒéžåŒæœŸçš„å¿œç­”ã‚’è¿”ã—ãŸå ´åˆã¯å†…éƒ¨ã§å®Œäº†ã‚’å¾…ã¤.
+                éžåŒæœŸç³»ã‚³ãƒžãƒ³ãƒ‰ãŒéžåŒæœŸçš„å¿œç­”ã‚’è¿”ã—ãŸå ´åˆã¯ãã®ã¾ã¾è¿”ã™.
 
-  Arguments:    p_file           ŽÀs‚·‚éƒRƒ}ƒ“ƒh‚ðŠi”[‚µ‚½ FSFile \‘¢‘Ì.
-                command          ƒRƒ}ƒ“ƒh ID.
+  Arguments:    p_file           å®Ÿè¡Œã™ã‚‹ã‚³ãƒžãƒ³ãƒ‰ã‚’æ ¼ç´ã—ãŸ FSFile æ§‹é€ ä½“.
+                command          ã‚³ãƒžãƒ³ãƒ‰ ID.
 
-  Returns:      ƒRƒ}ƒ“ƒh‚Ìˆ—Œ‹‰Ê.
+  Returns:      ã‚³ãƒžãƒ³ãƒ‰ã®å‡¦ç†çµæžœ.
  *---------------------------------------------------------------------------*/
 FSResult FSi_TranslateCommand(FSFile *p_file, FSCommandType command);
 
 /*---------------------------------------------------------------------------*
   Name:         FSi_ReleaseCommand
 
-  Description:  “à•”ŠÖ”.
-                ƒRƒ}ƒ“ƒh‚ðŠ®—¹‚µ‘Ò‹@ƒXƒŒƒbƒh‚ª‚ ‚ê‚Î•œ‹A‚·‚é.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ã‚³ãƒžãƒ³ãƒ‰ã‚’å®Œäº†ã—å¾…æ©Ÿã‚¹ãƒ¬ãƒƒãƒ‰ãŒã‚ã‚Œã°å¾©å¸°ã™ã‚‹.
 
-  Arguments:    p_file           Š®—¹‚µ‚½ƒRƒ}ƒ“ƒh‚ðŠi”[‚·‚é FSFile \‘¢‘Ì.
-                ret              ƒRƒ}ƒ“ƒh‚ÌŒ‹‰Ê’l.
+  Arguments:    p_file           å®Œäº†ã—ãŸã‚³ãƒžãƒ³ãƒ‰ã‚’æ ¼ç´ã™ã‚‹ FSFile æ§‹é€ ä½“.
+                ret              ã‚³ãƒžãƒ³ãƒ‰ã®çµæžœå€¤.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -100,30 +100,30 @@ void    FSi_ReleaseCommand(FSFile *p_file, FSResult ret);
 /*---------------------------------------------------------------------------*
   Name:         FSi_NextCommand
 
-  Description:  “à•”ŠÖ”.
-                ŽŸ‚Éˆ—‚·‚×‚«ƒRƒ}ƒ“ƒh‚ð‘I‘ð‚·‚é.
-                ”ñ“¯ŠúƒRƒ}ƒ“ƒh‚ª‘I‘ð‚³‚ê‚½‚ç‚»‚Ìƒ|ƒCƒ“ƒ^‚ð•Ô‚·.
-                NULL ˆÈŠO‚ª•Ô‚³‚ê‚½ê‡‚Í‚»‚Ìê‚Åˆ—‚ª•K—v.
+  Description:  å†…éƒ¨é–¢æ•°.
+                æ¬¡ã«å‡¦ç†ã™ã¹ãã‚³ãƒžãƒ³ãƒ‰ã‚’é¸æŠžã™ã‚‹.
+                éžåŒæœŸã‚³ãƒžãƒ³ãƒ‰ãŒé¸æŠžã•ã‚ŒãŸã‚‰ãã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™.
+                NULL ä»¥å¤–ãŒè¿”ã•ã‚ŒãŸå ´åˆã¯ãã®å ´ã§å‡¦ç†ãŒå¿…è¦.
 
-  Arguments:    p_arc            ŽŸ‚ÌƒRƒ}ƒ“ƒh‚ðŽæ“¾‚·‚éƒA[ƒJƒCƒu.
+  Arguments:    p_arc            æ¬¡ã®ã‚³ãƒžãƒ³ãƒ‰ã‚’å–å¾—ã™ã‚‹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–.
 
-  Returns:      ‚±‚Ìê‚Åˆ—‚ð•K—v‚Æ‚·‚éŽŸ‚ÌƒRƒ}ƒ“ƒh.
+  Returns:      ã“ã®å ´ã§å‡¦ç†ã‚’å¿…è¦ã¨ã™ã‚‹æ¬¡ã®ã‚³ãƒžãƒ³ãƒ‰.
  *---------------------------------------------------------------------------*/
 FSFile *FSi_NextCommand(FSArchive *p_arc);
 
 /*---------------------------------------------------------------------------*
   Name:         FSi_ExecuteAsyncCommand
 
-  Description:  “à•”ŠÖ”.
-                ”ñ“¯ŠúŒnƒRƒ}ƒ“ƒh‚ÌŽÀs.
-                Å‰‚Ì 1 ‰ñ‚Íƒ†[ƒUƒXƒŒƒbƒh‚©‚çŠ„‚èž‚Ý‹–‰Â‚ÅŒÄ‚Î‚ê‚é.
-                ƒA[ƒJƒCƒu‚ª“¯Šú“I‚É“®ì‚·‚éŒÀ‚è‚±‚±‚ÅƒRƒ}ƒ“ƒhˆ—‚ðŒJ‚è•Ô‚µ,
-                1 ‰ñ‚Å‚à”ñ“¯Šúˆ—‚É‚È‚ê‚Î‘±‚«‚Í NotifyAsyncEnd() ‚Ås‚¤.
+  Description:  å†…éƒ¨é–¢æ•°.
+                éžåŒæœŸç³»ã‚³ãƒžãƒ³ãƒ‰ã®å®Ÿè¡Œ.
+                æœ€åˆã® 1 å›žã¯ãƒ¦ãƒ¼ã‚¶ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰å‰²ã‚Šè¾¼ã¿è¨±å¯ã§å‘¼ã°ã‚Œã‚‹.
+                ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒåŒæœŸçš„ã«å‹•ä½œã™ã‚‹é™ã‚Šã“ã“ã§ã‚³ãƒžãƒ³ãƒ‰å‡¦ç†ã‚’ç¹°ã‚Šè¿”ã—,
+                1 å›žã§ã‚‚éžåŒæœŸå‡¦ç†ã«ãªã‚Œã°ç¶šãã¯ NotifyAsyncEnd() ã§è¡Œã†.
 
-                ‚æ‚Á‚Ä, ƒA[ƒJƒCƒuˆ—‚ª“¯Šú / ”ñ“¯Šú‚ÅØ‚è‘Ö‚í‚éê‡‚Í
-                NotifyAsyncEnd() ‚ÌŒÄ‚Ño‚µŠÂ‹«‚É’ˆÓ‚·‚é•K—v‚ª‚ ‚é.
+                ã‚ˆã£ã¦, ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å‡¦ç†ãŒåŒæœŸ / éžåŒæœŸã§åˆ‡ã‚Šæ›¿ã‚ã‚‹å ´åˆã¯
+                NotifyAsyncEnd() ã®å‘¼ã³å‡ºã—ç’°å¢ƒã«æ³¨æ„ã™ã‚‹å¿…è¦ãŒã‚ã‚‹.
 
-  Arguments:    p_file           ŽÀs‚·‚é”ñ“¯ŠúƒRƒ}ƒ“ƒh‚ðŠi”[‚µ‚½ FSFile \‘¢‘Ì.
+  Arguments:    p_file           å®Ÿè¡Œã™ã‚‹éžåŒæœŸã‚³ãƒžãƒ³ãƒ‰ã‚’æ ¼ç´ã—ãŸ FSFile æ§‹é€ ä½“.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -132,12 +132,12 @@ void    FSi_ExecuteAsyncCommand(FSFile *p_file);
 /*---------------------------------------------------------------------------*
   Name:         FSi_ExecuteSyncCommand
 
-  Description:  “à•”ŠÖ”.
-                “¯Šúƒ‚[ƒh‚É‚¨‚¯‚éƒRƒ}ƒ“ƒhŽÀs.
+  Description:  å†…éƒ¨é–¢æ•°.
+                åŒæœŸãƒ¢ãƒ¼ãƒ‰ã«ãŠã‘ã‚‹ã‚³ãƒžãƒ³ãƒ‰å®Ÿè¡Œ.
 
-  Arguments:    p_file           ŽÀs‚·‚é“¯ŠúƒRƒ}ƒ“ƒh‚ðŠi”[‚µ‚½ FSFile \‘¢‘Ì.
+  Arguments:    p_file           å®Ÿè¡Œã™ã‚‹åŒæœŸã‚³ãƒžãƒ³ãƒ‰ã‚’æ ¼ç´ã—ãŸ FSFile æ§‹é€ ä½“.
 
-  Returns:      ƒRƒ}ƒ“ƒh‚ª¬Œ÷‚·‚ê‚Î TRUE.
+  Returns:      ã‚³ãƒžãƒ³ãƒ‰ãŒæˆåŠŸã™ã‚Œã° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    FSi_ExecuteSyncCommand(FSFile *p_file);
 
@@ -158,7 +158,7 @@ BOOL    FSi_ExecuteSyncCommand(FSFile *p_file);
   add comments.
 
   Revision 1.4  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ðC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.3  2005/02/28 05:26:02  yosizaki
   do-indent.

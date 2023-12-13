@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ev_time.c
- * @brief	ƒQ[ƒ€“àŠÔ§ŒäŠÖ˜A
+ * @brief	ã‚²ãƒ¼ãƒ å†…æ™‚é–“åˆ¶å¾¡é–¢é€£
  * @author	tamada
  * @date	2006.02.03
  */
@@ -80,7 +80,7 @@ void EVTIME_Update(FIELDSYS_WORK * fsys)
 }
 
 //------------------------------------------------------------------
-///“ú”Œo‰ß‚ğŒ©‚é
+///æ—¥æ•°çµŒéã‚’è¦‹ã‚‹
 //------------------------------------------------------------------
 static void UpdateDateCheck(FIELDSYS_WORK * fsys, GMTIME * tm, const RTCDate * now_date)
 {
@@ -88,8 +88,8 @@ static void UpdateDateCheck(FIELDSYS_WORK * fsys, GMTIME * tm, const RTCDate * n
 	now_day = RTC_ConvertDateToDay(now_date);
 
 	if (now_day < tm->sv_day) {
-		//Œ»İ@ƒ@‰ß‹@c‚ ‚è‚¦‚È‚¢‚Í‚¸
-		//Œ»İŠÔ‚ğƒZƒbƒg‚·‚é‚¾‚¯‚Å–ß‚é
+		//ç¾åœ¨ã€€ï¼œã€€éå»ã€€â€¦ã‚ã‚Šãˆãªã„ã¯ãš
+		//ç¾åœ¨æ™‚é–“ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã ã‘ã§æˆ»ã‚‹
 		tm->sv_day = now_day;
 	}
 	else if (now_day > tm->sv_day) {
@@ -102,7 +102,7 @@ static void UpdateDateCheck(FIELDSYS_WORK * fsys, GMTIME * tm, const RTCDate * n
 }
 
 //------------------------------------------------------------------
-///•b”Œo‰ß‚ğŒ©‚é
+///ç§’æ•°çµŒéã‚’è¦‹ã‚‹
 //------------------------------------------------------------------
 static void UpdateMinuteCheck(FIELDSYS_WORK * fsys, GMTIME * tm,
 		const RTCDate * now_date, const RTCTime * now_time)
@@ -112,8 +112,8 @@ static void UpdateMinuteCheck(FIELDSYS_WORK * fsys, GMTIME * tm,
 	now = RTC_ConvertDateTimeToSecond(now_date, now_time);
 	sv = RTC_ConvertDateTimeToSecond(&tm->sv_date, &tm->sv_time);
 	if (now < sv) {
-		//Œ»İ@ƒ@‰ß‹@c‚ ‚è‚¦‚È‚¢‚Í‚¸
-		//Œ»İŠÔ‚ğƒZƒbƒg‚·‚é‚¾‚¯‚Å–ß‚é
+		//ç¾åœ¨ã€€ï¼œã€€éå»ã€€â€¦ã‚ã‚Šãˆãªã„ã¯ãš
+		//ç¾åœ¨æ™‚é–“ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã ã‘ã§æˆ»ã‚‹
 		tm->sv_date = *now_date;
 		tm->sv_time = *now_time;
 	}
@@ -136,40 +136,40 @@ static void UpdateMinuteCheck(FIELDSYS_WORK * fsys, GMTIME * tm,
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ŠÔ‚É‚æ‚éƒf[ƒ^XVF“ú”’PˆÊ
- * @param	fsys			ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	diff_days		Œo‰ß‚µ‚½ŠÔi“ú”j
+ * @brief	æ™‚é–“ã«ã‚ˆã‚‹ãƒ‡ãƒ¼ã‚¿æ›´æ–°ï¼šæ—¥æ•°å˜ä½
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	diff_days		çµŒéã—ãŸæ™‚é–“ï¼ˆæ—¥æ•°ï¼‰
  *
- * ˆø”‚ÉFIELDSYS_WORK‚ğ‚Æ‚Á‚Ä‚¢‚é‚ªAŠî–{“I‚É‚ÍSAVEDATA‚Ì‚İ‚Å
- * XV‚Å‚«‚é‚æ‚¤‚Èd‘g‚İ‚ÌŠÖ”‚ğŒÄ‚Ô‚×‚«B
+ * å¼•æ•°ã«FIELDSYS_WORKã‚’ã¨ã£ã¦ã„ã‚‹ãŒã€åŸºæœ¬çš„ã«ã¯SAVEDATAã®ã¿ã§
+ * æ›´æ–°ã§ãã‚‹ã‚ˆã†ãªä»•çµ„ã¿ã®é–¢æ•°ã‚’å‘¼ã¶ã¹ãã€‚
  */
 //------------------------------------------------------------------
 static void UpdateDayEvent(FIELDSYS_WORK * fsys, s32 diff_days)
 {
 	
-	//‰º‹L‚Ì‚æ‚¤‚ÈŠ´‚¶‚ÅŠÔŠÖ˜AƒCƒxƒ“ƒgXVˆ—‚ğ’Ç‰Á‚·‚é
+	//ä¸‹è¨˜ã®ã‚ˆã†ãªæ„Ÿã˜ã§æ™‚é–“é–¢é€£ã‚¤ãƒ™ãƒ³ãƒˆæ›´æ–°å‡¦ç†ã‚’è¿½åŠ ã™ã‚‹
 	//
 	//TVData_Update(fsys, diff_days);
 	//ZukanHyouka_Update
-	//c
+	//â€¦
 
-    // ’n‰º‚Ì“ú”Œo‰ß‚ÉŠÖ˜A‚µ‚½ˆ—
+    // åœ°ä¸‹ã®æ—¥æ•°çµŒéã«é–¢é€£ã—ãŸå‡¦ç†
     UnderGroundDataDayUpdate(GameSystem_GetSaveData(fsys), diff_days);
 
-	//1“ú–ˆ‚ÉƒNƒŠƒA‚·‚éƒtƒ‰ƒO
+	//1æ—¥æ¯ã«ã‚¯ãƒªã‚¢ã™ã‚‹ãƒ•ãƒ©ã‚°
 	TimeEventFlagClear(fsys);
 
-	//ƒgƒŒ[ƒi[ƒP[ƒX‚ÌƒoƒbƒW‚ğ•…‚ç‚¹‚é
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚±ãƒ¼ã‚¹ã®ãƒãƒƒã‚¸ã‚’è…ã‚‰ã›ã‚‹
 	TRCTIME_CorrodeBadge(fsys->savedata, diff_days);	
 
-	// —”‚ÌíƒOƒ‹[ƒvXV
+	// ä¹±æ•°ã®ç¨®ã‚°ãƒ«ãƒ¼ãƒ—æ›´æ–°
 	RandomGroup_Update(SaveData_GetRandomGroup(fsys->savedata), diff_days);
 
-	//ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜Aƒ‰ƒ“ƒ_ƒ€‚ÌíXV
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®æ›´æ–°
 	EncDataSave_UpdateRandSeed(EncDataSave_GetSaveDataPtr( fsys->savedata ),
 			RandomGroup_GetDefaultRandom( SaveData_GetRandomGroup(fsys->savedata) ) );
 
-	//ƒ|ƒPƒ‹ƒXŠ´õ‚ÌŒo‰ß‚ğŒ©‚é by soga 2006.05.16
+	//ãƒã‚±ãƒ«ã‚¹æ„ŸæŸ“ã®çµŒéã‚’è¦‹ã‚‹ by soga 2006.05.16
 	{
 		POKEPARTY *ppt;
 
@@ -177,7 +177,7 @@ static void UpdateDayEvent(FIELDSYS_WORK * fsys, s32 diff_days)
 		PokerusCounterDec(ppt,diff_days);
 	}
 
-	//V•·ĞƒCƒxƒ“ƒg—pB‚µ‚ß‚«‚è“ú”‚ğXV by tomo 2006.5.17
+	//æ–°èç¤¾ã‚¤ãƒ™ãƒ³ãƒˆç”¨ã€‚ã—ã‚ãã‚Šæ—¥æ•°ã‚’æ›´æ–° by tomo 2006.5.17
 	{
 		EVENTWORK * ev = SaveData_GetEventWork(fsys->savedata);
 		u16 onedaywork = SysWork_NewsDaysCountGet( ev );
@@ -189,40 +189,40 @@ static void UpdateDayEvent(FIELDSYS_WORK * fsys, s32 diff_days)
 		SysWork_NewsDaysCountSet( ev , onedaywork );
 	}
 
-	//ƒ|ƒPƒ‚ƒ“ƒNƒW
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¯ã‚¸
 	{
 		SysWorkUpdatePokeLot(fsys->savedata, diff_days);
 	}
 
-	//ƒAƒCƒeƒ€‚¨‚¶‚³‚ñ
+	//ã‚¢ã‚¤ãƒ†ãƒ ãŠã˜ã•ã‚“
 	{
 		SysWorkUpdatePokeLevelNo(fsys->savedata);
 	}
 
-	//‚P“ú‚P‰ñA•Ê‘‘‚ÌƒCƒxƒ“ƒgŒˆ’è
+	//ï¼‘æ—¥ï¼‘å›ã€åˆ¥è˜ã®ã‚¤ãƒ™ãƒ³ãƒˆæ±ºå®š
 	SysWorkUpdateEventT07R0201( fsys->savedata );
 
-	//•œŠˆ‚·‚é‰B‚µƒAƒCƒeƒ€
+	//å¾©æ´»ã™ã‚‹éš ã—ã‚¢ã‚¤ãƒ†ãƒ 
 	HideItemFlagOneDayClear( fsys );
 
-	//ƒoƒgƒ‹ƒ^ƒ[Dayƒ‰ƒ“ƒ_ƒ€ƒV[ƒhˆê“úˆê‰ñ‚ÌXVˆ—
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼Dayãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰ä¸€æ—¥ä¸€å›ã®æ›´æ–°å‡¦ç†
 	BtlTower_UpdateDayRndSeed(fsys->savedata);
 
-	//WIFI’ÊM—š—ğƒf[ƒ^‚ÌXVˆ—
+	//WIFIé€šä¿¡å±¥æ­´ãƒ‡ãƒ¼ã‚¿ã®æ›´æ–°å‡¦ç†
 	WIFIHISTORY_Update(SaveData_GetWifiHistory(fsys->savedata));
 
-	//TVŠÖ˜A(ƒoƒgƒ‹ƒ|ƒCƒ“ƒg–¼lAGTS–¼l)
+	//TVé–¢é€£(ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆåäººã€GTSåäºº)
 	TVWORK_OneDayTempClear( fsys->savedata );
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ŠÔ‚É‚æ‚éƒf[ƒ^XVF•ª’PˆÊ
- * @param	fsys			ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	diff_minute		Œo‰ß‚µ‚½ŠÔi•ª’PˆÊj
+ * @brief	æ™‚é–“ã«ã‚ˆã‚‹ãƒ‡ãƒ¼ã‚¿æ›´æ–°ï¼šåˆ†å˜ä½
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	diff_minute		çµŒéã—ãŸæ™‚é–“ï¼ˆåˆ†å˜ä½ï¼‰
  *
- * ˆø”‚ÉFIELDSYS_WORK‚ğ‚Æ‚Á‚Ä‚¢‚é‚ªAŠî–{“I‚É‚ÍSAVEDATA‚Ì‚İ‚Å
- * XV‚Å‚«‚é‚æ‚¤‚Èd‘g‚İ‚ÌŠÖ”‚ğŒÄ‚Ô‚×‚«B
+ * å¼•æ•°ã«FIELDSYS_WORKã‚’ã¨ã£ã¦ã„ã‚‹ãŒã€åŸºæœ¬çš„ã«ã¯SAVEDATAã®ã¿ã§
+ * æ›´æ–°ã§ãã‚‹ã‚ˆã†ãªä»•çµ„ã¿ã®é–¢æ•°ã‚’å‘¼ã¶ã¹ãã€‚
  */
 //------------------------------------------------------------------
 static void UpdateMinuteEvent(FIELDSYS_WORK * fsys, s32 diff_minute, const RTCTime * now)
@@ -237,7 +237,7 @@ static void UpdateMinuteEvent(FIELDSYS_WORK * fsys, s32 diff_minute, const RTCTi
 		TVWORK_UpdateMinuteCount(tvwk, diff_minute, now->minute);
 	}
 	
-	//–é‚É‚È‚Á‚½(Œo‰ß‚µ‚½)‚È‚ç‚Î•Ï‚í‚Á‚½è‚¿ƒVƒFƒCƒ~‚ÌƒtƒHƒ‹ƒ€‚ğ–ß‚·
+	//å¤œã«ãªã£ãŸ(çµŒéã—ãŸ)ãªã‚‰ã°å¤‰ã‚ã£ãŸæ‰‹æŒã¡ã‚·ã‚§ã‚¤ãƒŸã®ãƒ•ã‚©ãƒ«ãƒ ã‚’æˆ»ã™
 	{
 		POKEPARTY *ppt;
 
@@ -254,9 +254,9 @@ static void UpdateMinuteEvent(FIELDSYS_WORK * fsys, s32 diff_minute, const RTCTi
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ŠÔ‘Ñ‚Ìæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		ŠÔ‘Ñifield/timezone.h‚ğQÆj
+ * @brief	æ™‚é–“å¸¯ã®å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		æ™‚é–“å¸¯ï¼ˆfield/timezone.hã‚’å‚ç…§ï¼‰
  */
 //------------------------------------------------------------------
 int EVTIME_GetTimeZone(const FIELDSYS_WORK * fsys)
@@ -267,9 +267,9 @@ int EVTIME_GetTimeZone(const FIELDSYS_WORK * fsys)
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgŠÔiŒj‚Ìæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		Œ
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ™‚é–“ï¼ˆæœˆï¼‰ã®å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		æœˆ
  */
 //------------------------------------------------------------------
 int EVTIME_GetMonth(const FIELDSYS_WORK * fsys)
@@ -279,9 +279,9 @@ int EVTIME_GetMonth(const FIELDSYS_WORK * fsys)
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgŠÔi“új‚Ìæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		“ú
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ™‚é–“ï¼ˆæ—¥ï¼‰ã®å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		æ—¥
  */
 //------------------------------------------------------------------
 int EVTIME_GetDay(const FIELDSYS_WORK * fsys)
@@ -291,9 +291,9 @@ int EVTIME_GetDay(const FIELDSYS_WORK * fsys)
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgŠÔi—j“új‚Ìæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		—j“ú
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ™‚é–“ï¼ˆæ›œæ—¥ï¼‰ã®å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		æ›œæ—¥
  */
 //------------------------------------------------------------------
 int EVTIME_GetWeek(const FIELDSYS_WORK * fsys)
@@ -303,9 +303,9 @@ int EVTIME_GetWeek(const FIELDSYS_WORK * fsys)
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgŠÔij‚Ìæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		ŠÔ
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ™‚é–“ï¼ˆæ™‚ï¼‰ã®å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		æ™‚é–“
  */
 //------------------------------------------------------------------
 int EVTIME_GetHour(const FIELDSYS_WORK * fsys)
@@ -315,9 +315,9 @@ int EVTIME_GetHour(const FIELDSYS_WORK * fsys)
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgŠÔi•ªj‚Ìæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		•ª
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ™‚é–“ï¼ˆåˆ†ï¼‰ã®å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		åˆ†
  */
 //------------------------------------------------------------------
 int EVTIME_GetMinute(const FIELDSYS_WORK * fsys)
@@ -329,10 +329,10 @@ int EVTIME_GetMinute(const FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ŠJn‚Ì“ú•t•ŠÔæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	date	ƒQ[ƒ€ŠJn‚Ì“ú•t‚ğó‚¯æ‚é‚½‚ß‚ÌRTCDateŒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	time	ƒQ[ƒ€ŠJn‚ÌŠÔ‚ğó‚¯æ‚é‚½‚ß‚ÌRTCTimeŒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚²ãƒ¼ãƒ é–‹å§‹ã®æ—¥ä»˜ï¼†æ™‚é–“å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	date	ã‚²ãƒ¼ãƒ é–‹å§‹ã®æ—¥ä»˜ã‚’å—ã‘å–ã‚‹ãŸã‚ã®RTCDateå‹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	time	ã‚²ãƒ¼ãƒ é–‹å§‹ã®æ™‚é–“ã‚’å—ã‘å–ã‚‹ãŸã‚ã®RTCTimeå‹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void EVTIME_GetGameStartDateTime(const FIELDSYS_WORK * fsys, RTCDate * date, RTCTime * time)
@@ -343,10 +343,10 @@ void EVTIME_GetGameStartDateTime(const FIELDSYS_WORK * fsys, RTCDate * date, RTC
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒNƒŠƒA‚Ì“ú•t•ŠÔæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	date	ƒQ[ƒ€ŠJn‚Ì“ú•t‚ğó‚¯æ‚é‚½‚ß‚ÌRTCDateŒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	time	ƒQ[ƒ€ŠJn‚ÌŠÔ‚ğó‚¯æ‚é‚½‚ß‚ÌRTCTimeŒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã®æ—¥ä»˜ï¼†æ™‚é–“å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	date	ã‚²ãƒ¼ãƒ é–‹å§‹ã®æ—¥ä»˜ã‚’å—ã‘å–ã‚‹ãŸã‚ã®RTCDateå‹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	time	ã‚²ãƒ¼ãƒ é–‹å§‹ã®æ™‚é–“ã‚’å—ã‘å–ã‚‹ãŸã‚ã®RTCTimeå‹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void EVTIME_GetGameClearDateTime(const FIELDSYS_WORK * fsys, RTCDate * date, RTCTime * time)
@@ -357,8 +357,8 @@ void EVTIME_GetGameClearDateTime(const FIELDSYS_WORK * fsys, RTCDate * date, RTC
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒNƒŠƒA‚Ì“ú•t•ŠÔƒZƒbƒg
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã®æ—¥ä»˜ï¼†æ™‚é–“ã‚»ãƒƒãƒˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void EVTIME_SetGameClearDateTime(const FIELDSYS_WORK * fsys)
@@ -373,9 +373,9 @@ void EVTIME_SetGameClearDateTime(const FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	DSİ’è•ÏX‚Ìƒyƒiƒ‹ƒeƒBƒ‚[ƒh‚©‚Ç‚¤‚©‚Ì”»’è
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL	TRUE‚Ì‚Æ‚«Aƒyƒiƒ‹ƒeƒB’†
+ * @brief	DSè¨­å®šå¤‰æ›´ã®ãƒšãƒŠãƒ«ãƒ†ã‚£ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã®åˆ¤å®š
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL	TRUEã®ã¨ãã€ãƒšãƒŠãƒ«ãƒ†ã‚£ä¸­
  */
 //------------------------------------------------------------------
 BOOL EVTIME_IsPenaltyMode(FIELDSYS_WORK * fsys)

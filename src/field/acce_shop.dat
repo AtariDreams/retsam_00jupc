@@ -1,5 +1,5 @@
 //-------------------------------------
-//	アクセサリデータ
+//	繧｢繧ｯ繧ｻ繧ｵ繝ｪ繝�繝ｼ繧ｿ
 //=====================================
 typedef struct {
 	u32 acce_no;
@@ -9,7 +9,7 @@ typedef struct {
 
 
 #define ACCE_SHOP_DATA_NUM	( 22 )
-/* accessoryショップデータ */
+/* accessory繧ｷ繝ｧ繝�繝励ョ繝ｼ繧ｿ */
 
 static const ACCE_SHOP_DATA AcceShopData[ ACCE_SHOP_DATA_NUM ] = {
 	{

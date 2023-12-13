@@ -3,7 +3,7 @@
  * @file	fushigi_data.c
  * @date	2006.04.28
  * @author	tamada / mitsuhara
- * @brief	�ӂ����ʐM�p�Z�[�u�f�[�^�֘A
+ * @brief	ふしぎ通信用セーブデータ関連
  */
 //============================================================================================
 
@@ -26,25 +26,25 @@ extern FUSHIGI_DATA * SaveData_GetFushigiData(SAVEDATA * sv);
 
 //------------------------------------------------------------------
 /**
- * @brief	�ӂ����f�[�^�̒�`
+ * @brief	ふしぎデータの定義
  */
 //------------------------------------------------------------------
 struct FUSHIGI_DATA{
   u8 recv_flag[FUSHIGI_DATA_MAX_EVENT / 8];		//256 * 8 = 2048 bit
-  GIFT_DELIVERY delivery[GIFT_DELIVERY_MAX];		// �z�B���W��
-  GIFT_CARD card[GIFT_CARD_MAX];			// �J�[�h���R��
+  GIFT_DELIVERY delivery[GIFT_DELIVERY_MAX];		// 配達員８つ
+  GIFT_CARD card[GIFT_CARD_MAX];			// カード情報３つ
 };
 
 
 //============================================================================================
 //
-//		��ɃZ�[�u�V�X�e������Ă΂��֐�
+//		主にセーブシステムから呼ばれる関数
 //
 //============================================================================================
 //------------------------------------------------------------------
 /**
- * @brief	�Z�[�u�f�[�^�T�C�Y�̎擾
- * @return	int		�ӂ����Z�[�u�f�[�^�̃T�C�Y
+ * @brief	セーブデータサイズの取得
+ * @return	int		ふしぎセーブデータのサイズ
  */
 //------------------------------------------------------------------
 int FUSHIGIDATA_GetWorkSize(void)
@@ -53,15 +53,15 @@ int FUSHIGIDATA_GetWorkSize(void)
 }
 //------------------------------------------------------------------
 /**
- * @brief	�Z�[�u�f�[�^������
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
+ * @brief	セーブデータ初期化
+ * @param	fd		ふしぎセーブデータへのポインタ
  */
 //------------------------------------------------------------------
 void FUSHIGIDATA_Init(FUSHIGI_DATA * fd)
 {
 #ifdef DEBUG_ONLY_FOR_mituhara
-  OS_TPrintf("�ӂ����f�[�^������\n");
-  // ���̏�����saveload_system.c��SVDT_Init�ōs���Ă���̂ŉ������Ȃ�
+  OS_TPrintf("ふしぎデータ初期化\n");
+  // この処理はsaveload_system.cのSVDT_Initで行われているので何もしない
   MI_CpuClearFast(fd, sizeof(FUSHIGI_DATA));
 #endif
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_FUSHIGIDATA)
@@ -71,16 +71,16 @@ void FUSHIGIDATA_Init(FUSHIGI_DATA * fd)
 
 //============================================================================================
 //
-//		���p���邽�߂ɌĂ΂��A�N�Z�X�֐�
+//		利用するために呼ばれるアクセス関数
 //
 //============================================================================================
 
 
 //------------------------------------------------------------------
 /**
- * @brief	�f�[�^���L�����ǂ���
+ * @brief	データが有効かどうか
  * @param	gift_type
- * @return	BOOL =TRUE �L��
+ * @return	BOOL =TRUE 有効
  */
 //------------------------------------------------------------------
 
@@ -95,17 +95,17 @@ static BOOL FUSHIGIDATA_IsIn(u16 gift_type)
 
 //------------------------------------------------------------------
 /**
- * @brief	�z�B���f�[�^�̎擾
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @param	index		�z�B���f�[�^�̃C���f�b�N�X�i�O�I���W���j
- * @return	GIFT_DATA	�z�B���f�[�^�ւ̃|�C���^
+ * @brief	配達員データの取得
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @param	index		配達員データのインデックス（０オリジン）
+ * @return	GIFT_DATA	配達員データへのポインタ
  */
 //------------------------------------------------------------------
 GIFT_DELIVERY * FUSHIGIDATA_GetDeliData(FUSHIGI_DATA * fd, int index)
 {
     if((index >= 0) && (index < GIFT_DELIVERY_MAX)){
         if(FUSHIGIDATA_IsIn(fd->delivery[index].gift_type)){
-            // �f�[�^���L���Ȃ̂Ń|�C���^��Ԃ�
+            // データが有効なのでポインタを返す
             return &fd->delivery[index];
         }
     }
@@ -114,10 +114,10 @@ GIFT_DELIVERY * FUSHIGIDATA_GetDeliData(FUSHIGI_DATA * fd, int index)
 
 //------------------------------------------------------------------
 /**
- * @brief	�J�[�h�f�[�^�̎擾
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @param	index		���蕨�f�[�^�̃C���f�b�N�X�i�O�I���W���j
- * @return	GIFT_CARD	�J�[�h�f�[�^�ւ̃|�C���^
+ * @brief	カードデータの取得
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @param	index		贈り物データのインデックス（０オリジン）
+ * @return	GIFT_CARD	カードデータへのポインタ
  */
 //------------------------------------------------------------------
 GIFT_CARD *FUSHIGIDATA_GetCardData(FUSHIGI_DATA *fd, int index)
@@ -132,10 +132,10 @@ GIFT_CARD *FUSHIGIDATA_GetCardData(FUSHIGI_DATA *fd, int index)
 
 //------------------------------------------------------------------
 /**
- * @brief	�z�B���f�[�^���Z�[�u�f�[�^�֓o�^
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @param	p		�f�[�^�ւ̃|�C���^
- * @return	TRUE: �Z�[�u�ł��� : FALSE: �󂫃X���b�g����������
+ * @brief	配達員データをセーブデータへ登録
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @param	p		データへのポインタ
+ * @return	TRUE: セーブできた : FALSE: 空きスロットが無かった
  */
 //------------------------------------------------------------------
 BOOL FUSHIGIDATA_SetDeliData(FUSHIGI_DATA *fd, const void *p, int link)
@@ -143,10 +143,10 @@ BOOL FUSHIGIDATA_SetDeliData(FUSHIGI_DATA *fd, const void *p, int link)
   int i;
     BOOL bRet=FALSE;
 
-  // �Z�[�u�ł���̈悪������΃Z�[�u���s
+  // セーブできる領域が無ければセーブ失敗
   if(FUSHIGIDATA_CheckDeliDataSpace(fd) == FALSE)	return FALSE;
 
-  // ������ȍ~�͗e�ʓI�ɂ̓Z�[�u�ɐ�������͂�
+  // ↓これ以降は容量的にはセーブに成功するはず
   
   for(i = 0; i < GIFT_DELIVERY_MAX; i++){
     if(!FUSHIGIDATA_IsIn(fd->delivery[i].gift_type)){
@@ -164,10 +164,10 @@ BOOL FUSHIGIDATA_SetDeliData(FUSHIGI_DATA *fd, const void *p, int link)
 
 //------------------------------------------------------------------
 /**
- * @brief	�J�[�h�f�[�^���Z�[�u�f�[�^�֓o�^
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @param	p		�f�[�^�ւ̃|�C���^
- * @return	TRUE: �Z�[�u�ł��� : FALSE: �󂫃X���b�g����������
+ * @brief	カードデータをセーブデータへ登録
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @param	p		データへのポインタ
+ * @return	TRUE: セーブできた : FALSE: 空きスロットが無かった
  */
 //------------------------------------------------------------------
 BOOL FUSHIGIDATA_SetCardData(FUSHIGI_DATA *fd, const void *p)
@@ -176,23 +176,23 @@ BOOL FUSHIGIDATA_SetCardData(FUSHIGI_DATA *fd, const void *p)
     GIFT_CARD *gc = (GIFT_CARD *)p;
     BOOL bRet = FALSE;
 
-    // �Z�[�u�ł���̈悪������΃Z�[�u���s
+    // セーブできる領域が無ければセーブ失敗
     if(FUSHIGIDATA_CheckCardDataSpace(fd) == FALSE)	return FALSE;
-    // �z�B�����܂ރf�[�^�̏ꍇ�͔z�B�������`�F�b�N
+    // 配達員を含むデータの場合は配達員側もチェック
     if(gc->beacon.delivery_flag == TRUE &&
        FUSHIGIDATA_CheckDeliDataSpace(fd) == FALSE)	return FALSE;
 
-  // ������ȍ~�͗e�ʓI�ɂ̓Z�[�u�ɐ�������͂�
+  // ↓これ以降は容量的にはセーブに成功するはず
   
-  // �J�[�h���Z�[�u����
+  // カードをセーブする
     for(i = 0; i < GIFT_CARD_MAX; i++){
         if(!FUSHIGIDATA_IsIn(fd->card[i].gift_type)){
 #ifdef DEBUG_ONLY_FOR_mituhara
-            OS_TPrintf("�J�[�h���Z�[�u���܂��� [%d]\n", i);
+            OS_TPrintf("カードをセーブしました [%d]\n", i);
 #endif
             MI_CpuCopy8(gc, &fd->card[i], sizeof(GIFT_CARD));
 
-      // �z�B�����Z�[�u����
+      // 配達員をセーブする
             if(gc->beacon.delivery_flag == TRUE){
                 FUSHIGIDATA_SetDeliData(fd, (const void *)&gc->gift_type, i);
             }
@@ -208,10 +208,10 @@ BOOL FUSHIGIDATA_SetCardData(FUSHIGI_DATA *fd, const void *p)
 
 //------------------------------------------------------------------
 /**
- * @brief	�z�B���f�[�^�𖕏�����
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @param	index		�z�B���f�[�^�̃C���f�b�N�X
- * @return	TRUE: �Z�[�u�ł��� : FALSE: �󂫃X���b�g����������
+ * @brief	配達員データを抹消する
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @param	index		配達員データのインデックス
+ * @return	TRUE: セーブできた : FALSE: 空きスロットが無かった
  */
 //------------------------------------------------------------------
 BOOL FUSHIGIDATA_RemoveDeliData(FUSHIGI_DATA *fd, int index)
@@ -227,18 +227,18 @@ BOOL FUSHIGIDATA_RemoveDeliData(FUSHIGI_DATA *fd, int index)
 
 //------------------------------------------------------------------
 /**
- * @brief	�J�[�h�f�[�^�𖕏����� �z�B����  BIT�����Ƃ�
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @return	TRUE: �Z�[�u�ł��� : FALSE: �󂫃X���b�g����������
+ * @brief	カードデータを抹消する 配達員も  BITもおとす
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @return	TRUE: セーブできた : FALSE: 空きスロットが無かった
  */
 //------------------------------------------------------------------
 BOOL FUSHIGIDATA_RemoveCardDataPlusBit(FUSHIGI_DATA *fd, int index)
 {
     GF_ASSERT(index < GIFT_CARD_MAX);
     fd->card[index].gift_type = MYSTERYGIFT_TYPE_NONE;
-    //BIT�����Ƃ�
+    //BITもおとす
     FUSHIGIDATA_ResetEventRecvFlag(fd, fd->card[index].beacon.event_id);
-    // �����N����Ă���J�[�h���ꏏ�ɖ���
+    // リンクされているカードも一緒に抹消
     FUSHIGIDATA_RemoveCardLinkDeli(fd, index);
 
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_FUSHIGIDATA)
@@ -249,9 +249,9 @@ BOOL FUSHIGIDATA_RemoveCardDataPlusBit(FUSHIGI_DATA *fd, int index)
 
 //------------------------------------------------------------------
 /**
- * @brief	�J�[�h�f�[�^�𖕏�����
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @return	TRUE: �Z�[�u�ł��� : FALSE: �󂫃X���b�g����������
+ * @brief	カードデータを抹消する
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @return	TRUE: セーブできた : FALSE: 空きスロットが無かった
  */
 //------------------------------------------------------------------
 BOOL FUSHIGIDATA_RemoveCardData(FUSHIGI_DATA *fd, int index)
@@ -267,9 +267,9 @@ BOOL FUSHIGIDATA_RemoveCardData(FUSHIGI_DATA *fd, int index)
 
 //------------------------------------------------------------------
 /**
- * @brief	�z�B���f�[�^���Z�[�u�ł��邩�`�F�b�N
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @return	TRUE: �󂫂����� : FALSE: �󂫃X���b�g������
+ * @brief	配達員データがセーブできるかチェック
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @return	TRUE: 空きがある : FALSE: 空きスロットが無い
  */
 //------------------------------------------------------------------
 BOOL FUSHIGIDATA_CheckDeliDataSpace(FUSHIGI_DATA *fd)
@@ -285,10 +285,10 @@ BOOL FUSHIGIDATA_CheckDeliDataSpace(FUSHIGI_DATA *fd)
 
 //------------------------------------------------------------------
 /**
- * @brief	�J�[�h�f�[�^���Z�[�u�ł��邩�`�F�b�N
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @param	size		�f�[�^�̃T�C�Y
- * @return	TRUE: �󂫂����� : FALSE: �󂫃X���b�g������
+ * @brief	カードデータがセーブできるかチェック
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @param	size		データのサイズ
+ * @return	TRUE: 空きがある : FALSE: 空きスロットが無い
  */
 //------------------------------------------------------------------
 BOOL FUSHIGIDATA_CheckCardDataSpace(FUSHIGI_DATA *fd)
@@ -304,10 +304,10 @@ BOOL FUSHIGIDATA_CheckCardDataSpace(FUSHIGI_DATA *fd)
 
 //------------------------------------------------------------------
 /**
- * @brief	���蕨�f�[�^�̑��݃`�F�b�N
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @param	index		���蕨�f�[�^�̃C���f�b�N�X�i�O�I���W���j
- * @return	BOOL	TRUE�̎��A���݂���
+ * @brief	贈り物データの存在チェック
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @param	index		贈り物データのインデックス（０オリジン）
+ * @return	BOOL	TRUEの時、存在する
  */
 //------------------------------------------------------------------
 BOOL FUSHIGIDATA_IsExistsDelivery(const FUSHIGI_DATA * fd, int index)
@@ -323,9 +323,9 @@ BOOL FUSHIGIDATA_IsExistsDelivery(const FUSHIGI_DATA * fd, int index)
 
 //------------------------------------------------------------------
 /**
- * @brief	�J�[�h�f�[�^�����݂��邩�Ԃ�
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @return	BOOL	TRUE�̎��A���݂���
+ * @brief	カードデータが存在するか返す
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @return	BOOL	TRUEの時、存在する
  */
 //------------------------------------------------------------------
 BOOL FUSHIGIDATA_IsExistsCard(const FUSHIGI_DATA * fd, int index)
@@ -341,7 +341,7 @@ BOOL FUSHIGIDATA_IsExistsCard(const FUSHIGI_DATA * fd, int index)
 
 //------------------------------------------------------------------
 /**
- * @brief	�Z�[�u�f�[�^���ɃJ�[�h�f�[�^�����݂��邩�Ԃ�
+ * @brief	セーブデータ内にカードデータが存在するか返す
  * @param	NONE
  * @return	NONE
  */
@@ -358,9 +358,9 @@ BOOL FUSHIGIDATA_IsExistsCardAll(const FUSHIGI_DATA *fd)
 
 //------------------------------------------------------------------
 /**
- * @brief	�w��̃J�[�h�Ƀ����N����Ă���z�B�������݂��邩
- * @param	��index��0�`2���L��
- * @return	TRUE: �z�B���͑��݂��� FALSE: ���݂��Ȃ�
+ * @brief	指定のカードにリンクされている配達員が存在するか
+ * @param	※indexは0〜2が有効
+ * @return	TRUE: 配達員は存在する FALSE: 存在しない
  */
 //------------------------------------------------------------------
 BOOL FUSHIGIDATA_GetCardLinkDeli(const FUSHIGI_DATA *fd, int index)
@@ -380,8 +380,8 @@ BOOL FUSHIGIDATA_GetCardLinkDeli(const FUSHIGI_DATA *fd, int index)
 
 //------------------------------------------------------------------
 /**
- * @brief	�w��J�[�h�Ƀ����N����Ă���z�B�����폜
- * @param	��index��0�`2���L��(������Ή������Ȃ�)
+ * @brief	指定カードにリンクされている配達員を削除
+ * @param	※indexは0〜2が有効(無ければ何もしない)
  * @return	NONE
  */
 //------------------------------------------------------------------
@@ -393,7 +393,7 @@ void FUSHIGIDATA_RemoveCardLinkDeli(const FUSHIGI_DATA *fd, int index)
         if(FUSHIGIDATA_IsIn(fd->delivery[i].gift_type)){
             if(fd->delivery[i].link == index){
 #if (DEBUG_ONLY_FOR_mituhara | DEBUG_ONLY_FOR_ohno)
-                OS_TPrintf("�J�[�h�ƈꏏ�� %d �Ԃ̂�������̂������܂���\n", i );
+                OS_TPrintf("カードと一緒に %d 番のおくりものも消しました\n", i );
 #endif
                 FUSHIGIDATA_RemoveDeliData((FUSHIGI_DATA *)fd, i);
                 return;
@@ -404,10 +404,10 @@ void FUSHIGIDATA_RemoveCardLinkDeli(const FUSHIGI_DATA *fd, int index)
 
 //------------------------------------------------------------------
 /**
- * @brief	�w��̃C�x���g�͂��łɂ���������Ԃ�
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @param	num		�C�x���g�ԍ�
- * @return	BOOL	TRUE�̎��A���łɂ�����Ă���
+ * @brief	指定のイベントはすでにもらったか返す
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @param	num		イベント番号
+ * @return	BOOL	TRUEの時、すでにもらっている
  */
 //------------------------------------------------------------------
 BOOL FUSHIGIDATA_IsEventRecvFlag(FUSHIGI_DATA * fd, int num)
@@ -419,9 +419,9 @@ BOOL FUSHIGIDATA_IsEventRecvFlag(FUSHIGI_DATA * fd, int num)
 
 //------------------------------------------------------------------
 /**
- * @brief	�w��̃C�x���g���������t���O�𗧂Ă�
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @param	num		�C�x���g�ԍ�
+ * @brief	指定のイベントもらったよフラグを立てる
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @param	num		イベント番号
  * @return	NONE
  */
 //------------------------------------------------------------------
@@ -436,9 +436,9 @@ void FUSHIGIDATA_SetEventRecvFlag(FUSHIGI_DATA * fd, int num)
 
 //------------------------------------------------------------------
 /**
- * @brief	�w��̃C�x���g���������t���O�𗎂� �J�[�h�Ɣz�B�����ꏏ�ɏ����������g�p����
- * @param	fd		�ӂ����Z�[�u�f�[�^�ւ̃|�C���^
- * @param	num		�C�x���g�ԍ�
+ * @brief	指定のイベントもらったよフラグを落す カードと配達員を一緒に消す時だけ使用する
+ * @param	fd		ふしぎセーブデータへのポインタ
+ * @param	num		イベント番号
  * @return	NONE
  */
 //------------------------------------------------------------------
@@ -462,9 +462,9 @@ void FUSHIGIDATA_ResetEventRecvFlag(FUSHIGI_DATA * fd, int num)
 
 //------------------------------------------------------------------
 /**
- * @brief	�ӂ����Ȃ�������̂�\���o���邩�H
+ * @brief	ふしぎなおくりものを表示出来るか？
  * @param	NONE
- * @return	TRUE: �\���@FALSE: �\�����Ȃ�
+ * @return	TRUE: 表示　FALSE: 表示しない
  */
 //------------------------------------------------------------------
 BOOL FUSHIGIDATA_IsFushigiMenu(FUSHIGI_DATA *fd)
@@ -475,7 +475,7 @@ BOOL FUSHIGIDATA_IsFushigiMenu(FUSHIGI_DATA *fd)
 
 //------------------------------------------------------------------
 /**
- * @brief	�ӂ����Ȃ�������̂̕\���t���O��ON�ɂ���
+ * @brief	ふしぎなおくりものの表示フラグをONにする
  * @param	NONE
  * @return	NONE
  */
@@ -488,7 +488,7 @@ void FUSHIGIDATA_SetFushigiMenu(FUSHIGI_DATA *fd)
 
 //============================================================================================
 //
-//		����ɏ�ʂ̊֐��Q�@��ɂ�������Ă�ł�������
+//		さらに上位の関数群　主にこちらを呼んでください
 //
 //============================================================================================
 
@@ -496,9 +496,9 @@ static FUSHIGI_DATA *_fushigi_ptr = NULL;
 
 //------------------------------------------------------------------
 /**
- * @brief	����ȉ��̊֐����g�����߂ɕK�v�ȏ�����
- * @param	sv		�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @param	heap_id		���[�N���擾����q�[�v��ID
+ * @brief	これ以下の関数を使うために必要な初期化
+ * @param	sv		セーブデータ構造へのポインタ
+ * @param	heap_id		ワークを取得するヒープのID
  * @return	NONE
  */
 //------------------------------------------------------------------
@@ -516,9 +516,9 @@ void FUSHIGIDATA_InitSlot(SAVEDATA * sv, int heap_id)
 
 //------------------------------------------------------------------
 /**
- * @brief	����ȉ��̊֐����g���I�������̌�n��
- * @param	sv		�Z�[�u�f�[�^�\���ւ̃|�C���^
- * @param	flag		TRUE: �Z�[�u���� / FALSE: �Z�[�u���Ȃ�
+ * @brief	これ以下の関数を使い終わった後の後始末
+ * @param	sv		セーブデータ構造へのポインタ
+ * @param	flag		TRUE: セーブする / FALSE: セーブしない
  * @return	NONE
  */
 //------------------------------------------------------------------
@@ -536,9 +536,9 @@ void FUSHIGIDATA_FinishSlot(SAVEDATA * sv, int flag)
      
 //------------------------------------------------------------------
 /**
- * @brief	�X���b�g�Ƀf�[�^�����邩�Ԃ��֐�
+ * @brief	スロットにデータがあるか返す関数
  * @param	NONE
- * @return	-1..�f�[�^�Ȃ�: 0�ȏ� �f�[�^index�ԍ�
+ * @return	-1..データなし: 0以上 データindex番号
 */
 //------------------------------------------------------------------
 int FUSHIGIDATA_GetSlotData(void)
@@ -553,9 +553,9 @@ int FUSHIGIDATA_GetSlotData(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	�X���b�g�Ƀf�[�^�����邩�Ԃ��֐�
+ * @brief	スロットにデータがあるか返す関数
  * @param	NONE
- * @return	FALSE..�f�[�^�Ȃ�: TRUE �f�[�^����
+ * @return	FALSE..データなし: TRUE データあり
 */
 //------------------------------------------------------------------
 BOOL FUSHIGIDATA_CheckSlotData(void)
@@ -568,11 +568,11 @@ BOOL FUSHIGIDATA_CheckSlotData(void)
 
 //------------------------------------------------------------------
 /**
- * @brief	�w��ԍ��̃X���b�g�f�[�^�̃^�C�v��Ԃ�
- * @param	index		�X���b�g�̃C���f�b�N�X�ԍ�
+ * @brief	指定番号のスロットデータのタイプを返す
+ * @param	index		スロットのインデックス番号
  * @return	int		MYSTERYGIFT_TYPE_xxxxx
  *
- * ���C���f�b�N�X�ԍ���FUSHIGIDATA_GetSlotData�ŕԂ��ꂽ�l
+ * ※インデックス番号はFUSHIGIDATA_GetSlotDataで返された値
 */
 //------------------------------------------------------------------
 int FUSHIGIDATA_GetSlotType(int index)
@@ -589,11 +589,11 @@ int FUSHIGIDATA_GetSlotType(int index)
 
 //------------------------------------------------------------------
 /**
- * @brief	�w��ԍ��̃X���b�g�\���̂ւ̃|�C���^��Ԃ�
- * @param	index		�X���b�g�̃C���f�b�N�X�ԍ�
- * @return	GIFT_PRESENT	�\���̂ւ̃|�C���^
+ * @brief	指定番号のスロット構造体へのポインタを返す
+ * @param	index		スロットのインデックス番号
+ * @return	GIFT_PRESENT	構造体へのポインタ
  *
- * ���C���f�b�N�X�ԍ���FUSHIGIDATA_GetSlotData�ŕԂ��ꂽ�l
+ * ※インデックス番号はFUSHIGIDATA_GetSlotDataで返された値
  */
 //------------------------------------------------------------------
 GIFT_PRESENT *FUSHIGIDATA_GetSlotPtr(int index)
@@ -609,11 +609,11 @@ GIFT_PRESENT *FUSHIGIDATA_GetSlotPtr(int index)
 
 //------------------------------------------------------------------
 /**
- * @brief	�w��̃X���b�g����������
- * @param	index		�X���b�g�̃C���f�b�N�X�ԍ�
+ * @brief	指定のスロットを消去する
+ * @param	index		スロットのインデックス番号
  * @return	NONE
  *
- * ���C���f�b�N�X�ԍ���FUSHIGIDATA_GetSlotData�ŕԂ��ꂽ�l
+ * ※インデックス番号はFUSHIGIDATA_GetSlotDataで返された値
  */
 //------------------------------------------------------------------
 void FUSHIGIDATA_RemoveSlot(int index)

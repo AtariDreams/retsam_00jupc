@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wbr_surver_cont.c
- *	@brief		ƒT[ƒo[@ƒIƒuƒWƒFƒNƒgŠÇ—ƒVƒXƒeƒ€
+ *	@brief		ã‚µãƒ¼ãƒãƒ¼ã€€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.04.19
  *
@@ -21,32 +21,32 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define WBR_SURVERCONT_GRID_X		( 16 )		// ŠÇ—ƒOƒŠƒbƒh”
-#define WBR_SURVERCONT_GRID_Y		( 12 )		// ŠÇ—ƒOƒŠƒbƒh”
+#define WBR_SURVERCONT_GRID_X		( 16 )		// ç®¡ç†ã‚°ãƒªãƒƒãƒ‰æ•°
+#define WBR_SURVERCONT_GRID_Y		( 12 )		// ç®¡ç†ã‚°ãƒªãƒƒãƒ‰æ•°
 #define WBR_SURVERCONT_GRID_BUFF	( WBR_SURVERCONT_GRID_X*WBR_SURVERCONT_GRID_Y )
 
 //-------------------------------------
-///	ƒ}ƒbƒvƒpƒ‰ƒ[ƒ^
+///	ãƒãƒƒãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //=====================================
 enum {
 	WBR_MAPPM_NONE,
@@ -58,7 +58,7 @@ enum {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒ}ƒbƒvƒf[ƒ^
+ *					ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const WF2DMAP_MAP	WBR_SurverContMapData[ WBR_SURVERCONT_GRID_BUFF ] = {
@@ -113,13 +113,13 @@ static const WF2DMAP_MAP	WBR_SurverContMapData[ WBR_SURVERCONT_GRID_BUFF ] = {
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-///	ƒIƒuƒWƒFƒNƒgƒf[ƒ^
+///	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	WF2DMAP_OBJWK* p_obj;
@@ -130,7 +130,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	ƒT[ƒo[ƒIƒuƒWƒFƒNƒgŠÇ—
+///	ã‚µãƒ¼ãƒãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†
 //=====================================
 typedef struct _WBR_SURVERCONT {
 	WF2DMAP_MAPSYS*		p_mapsys;
@@ -144,7 +144,7 @@ typedef struct _WBR_SURVERCONT {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void WBR_SurverCont_ObjInit( WBR_SURVERCONT* p_sys, WBR_SURVEROBJ* p_wk, u32 aid );
@@ -156,12 +156,12 @@ static void WBR_SurverCont_ObjTalkEnd( WBR_SURVERCONT* p_sys, WBR_SURVEROBJ* p_w
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒT[ƒo[ƒIƒuƒWƒFƒNƒgŠÇ—ƒVƒXƒeƒ€
+ *	@brief	ã‚µãƒ¼ãƒãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *	
- *	@param	objnum		ƒIƒuƒWƒFƒNƒg”
- *	@param	heapID		ƒq[ƒvID
+ *	@param	objnum		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒT[ƒo[ŠÇ—ƒ[ƒN
+ *	@return	ã‚µãƒ¼ãƒãƒ¼ç®¡ç†ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WBR_SURVERCONT* WBR_SurverContInit( u32 objnum, u32 heapID )
@@ -169,32 +169,32 @@ WBR_SURVERCONT* WBR_SurverContInit( u32 objnum, u32 heapID )
 	WBR_SURVERCONT* p_sys;
 	int i;
 
-	// ƒƒ‚ƒŠŠm•Û
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_sys = sys_AllocMemory( heapID, sizeof(WBR_SURVERCONT) );
 	memset( p_sys, 0, sizeof(WBR_SURVERCONT) );
 
-	{	// ƒIƒuƒWƒFƒNƒgƒ[ƒNì¬
+	{	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ä½œæˆ
 		p_sys->wknum = objnum;
 		p_sys->p_wk = sys_AllocMemory( heapID, sizeof(WBR_SURVEROBJ)*p_sys->wknum );
 		memset( p_sys->p_wk, 0, sizeof(WBR_SURVEROBJ)*p_sys->wknum );
 	}
 
-	{	// ƒ}ƒbƒvƒf[ƒ^ì¬
+	{	// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		p_sys->p_mapsys = WF2DMAP_MAPSysInit( WBR_SURVERCONT_GRID_X, WBR_SURVERCONT_GRID_Y, heapID );
 		WF2DMAP_MAPSysDataSet( p_sys->p_mapsys, WBR_SurverContMapData );
 	}
 
-	{	// ƒIƒuƒWƒFƒNƒgƒf[ƒ^ì¬
+	{	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		p_sys->p_objsys = WF2DMAP_OBJSysInit( p_sys->wknum, heapID );
 	}
 
-	{	// ƒRƒ}ƒ“ƒhQ
+	{	// ã‚³ãƒãƒ³ãƒ‰Q
 		p_sys->p_reqQ = WF2DMAP_REQCMDQSysInit( WBR_CMDQ_BUFFNUM, heapID );
 		p_sys->p_actQ = WF2DMAP_ACTCMDQSysInit( WBR_CMDQ_BUFFNUM, heapID );
 	}
 
 	{
-		// l”•ª‚ÌƒIƒuƒWƒFƒNƒgì¬
+		// äººæ•°åˆ†ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä½œæˆ
 		for( i=0; i<p_sys->wknum; i++ ){
 			WBR_SurverCont_ObjInit( p_sys,  &p_sys->p_wk[i], i );
 		}
@@ -205,66 +205,66 @@ WBR_SURVERCONT* WBR_SurverContInit( u32 objnum, u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŠÇ—ƒf[ƒ^”jŠü
+ *	@brief	ç®¡ç†ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_SurverContExit( WBR_SURVERCONT* p_sys )
 {
-	// ŠeƒVƒXƒeƒ€ƒ[ƒN”jŠü
+	// å„ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	WF2DMAP_MAPSysExit( p_sys->p_mapsys );
 	WF2DMAP_OBJSysExit( p_sys->p_objsys );
 	WF2DMAP_REQCMDQSysExit( p_sys->p_reqQ );
 	WF2DMAP_ACTCMDQSysExit( p_sys->p_actQ );
 
-	// ƒIƒuƒWƒFƒNƒgƒ[ƒN”jŠü
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_sys->p_wk );
 
-	// ƒVƒXƒeƒ€ƒ[ƒN”jŠü
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_sys );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ìˆ—
+ *	@brief	å‹•ä½œå‡¦ç†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WBR_SurverContMain( WBR_SURVERCONT* p_sys )
 {
 	BOOL result;
 	
-	// ƒIƒuƒWƒFƒNƒg“®ì
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‹•ä½œ
 	WF2DMAP_OBJSysMain( p_sys->p_objsys );
 
-	// ‰ï˜bŠJnƒ`ƒFƒbƒN
+	// ä¼šè©±é–‹å§‹ãƒã‚§ãƒƒã‚¯
 	WBR_SurverCont_TalkMain( p_sys );
 
-	// I—¹ƒ`ƒFƒbƒN
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	result = WBR_SurverCont_ExitCheck( p_sys );
-	if( result ){	// I—¹
+	if( result ){	// çµ‚äº†
 		return result;
 	}
 	
-	// ƒWƒƒƒbƒW•”•ª
+	// ã‚¸ãƒ£ãƒƒã‚¸éƒ¨åˆ†
 	{
 		WF2DMAP_REQCMD	req;
 		WF2DMAP_ACTCMD	act;
 		while( WF2DMAP_REQCMDQSysCmdPop( p_sys->p_reqQ, &req ) == TRUE ){
 
-			// ƒWƒƒƒbƒW
+			// ã‚¸ãƒ£ãƒƒã‚¸
 			result = WF2DMAP_JUDGESysCmdJudge( p_sys->p_mapsys, p_sys->p_objsys, &req, &act );
 			if( result == TRUE ){
-				// ƒIƒuƒWƒF‚ÉƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ğ”½‰f
+				// ã‚ªãƒ–ã‚¸ã‚§ã«ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚’åæ˜ 
 				WF2DMAP_OBJSysCmdSet( p_sys->p_objsys, &act );
 
-				// ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒLƒ…[‚Éİ’è
+				// ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ã«è¨­å®š
 				WF2DMAP_ACTCMDQSysCmdPush( p_sys->p_actQ, &act );
 			}
 		}
@@ -274,9 +274,9 @@ BOOL WBR_SurverContMain( WBR_SURVERCONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚Ìó‘Ô‚ÌƒRƒ}ƒ“ƒh‚ğƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhQ‚Éİ’è‚·‚é
+ *	@brief	ä»Šã®çŠ¶æ…‹ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰Qã«è¨­å®šã™ã‚‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_SurverContNowStatusActCmdSet( WBR_SURVERCONT* p_sys )
@@ -296,17 +296,17 @@ void WBR_SurverContNowStatusActCmdSet( WBR_SURVERCONT* p_sys )
 			act.pos = WF2DMAP_OBJWkMatrixGet( p_sys->p_wk[i].p_obj );
 		}
 		
-		// ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒLƒ…[‚Éİ’è
+		// ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚­ãƒ¥ãƒ¼ã«è¨­å®š
 		WF2DMAP_ACTCMDQSysCmdPush( p_sys->p_actQ, &act );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	óM‚µ‚½ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒh‚ğİ’è
+ *	@brief	å—ä¿¡ã—ãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒãƒ³ãƒ‰ã‚’è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_req		ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_req		ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒãƒ³ãƒ‰ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WBR_SurverContReqCmdSet( WBR_SURVERCONT* p_sys, const WF2DMAP_REQCMD* cp_req )
@@ -316,11 +316,11 @@ void WBR_SurverContReqCmdSet( WBR_SURVERCONT* p_sys, const WF2DMAP_REQCMD* cp_re
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜bƒf[ƒ^‚ğİ’è
+ *	@brief	è©±ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
  *	@param	aid			AID
- *	@param	cp_data		˜bƒf[ƒ^
+ *	@param	cp_data		è©±ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WBR_SurverContTalkDataSet( WBR_SURVERCONT* p_sys, u32 aid, const WBR_TALK_DATA* cp_data )
@@ -330,10 +330,10 @@ void WBR_SurverContTalkDataSet( WBR_SURVERCONT* p_sys, u32 aid, const WBR_TALK_D
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯ƒŠƒNƒGƒXƒgƒf[ƒ^‚ğŠi”[
+ *	@brief	è©±ã—ã‹ã‘ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 void WBR_SurverContTalkReqDataSet( WBR_SURVERCONT* p_sys, const WBR_TALK_REQ* cp_data )
@@ -344,23 +344,23 @@ void WBR_SurverContTalkReqDataSet( WBR_SURVERCONT* p_sys, const WBR_TALK_REQ* cp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚¨‚â‘—Mƒf[ƒ^‚ğæ“¾‚·‚é
+ *	@brief	ãŠã‚„é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_buff		‘—Mƒf[ƒ^Ši”[æ
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_buff		é€ä¿¡ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
  *
- *	@retval	TRUE	ƒf[ƒ^‚ª‚ ‚Á‚½
- *	@retval	FALSE	‚à‚¤ƒf[ƒ^‚ª‚È‚¢
+ *	@retval	TRUE	ãƒ‡ãƒ¼ã‚¿ãŒã‚ã£ãŸ
+ *	@retval	FALSE	ã‚‚ã†ãƒ‡ãƒ¼ã‚¿ãŒãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WBR_SurverContSendDataPop( WBR_SURVERCONT* p_sys, WBR_OBJ_DATA* p_buff )
 {
 	BOOL result;
 
-	// ƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ğæ“¾
+	// ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚’å–å¾—
 	result = WF2DMAP_ACTCMDQSysCmdPop( p_sys->p_actQ, &p_buff->act );
 	if( result ){
-		// ‰ï˜bƒf[ƒ^‚àŠi”[	
+		// ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‚‚æ ¼ç´	
 		p_buff->talk_data = p_sys->p_wk[ p_buff->act.playid ].talk_data;
 
 		return TRUE;
@@ -370,16 +370,16 @@ BOOL WBR_SurverContSendDataPop( WBR_SURVERCONT* p_sys, WBR_OBJ_DATA* p_buff )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgƒf[ƒ^‰Šú‰»
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒf[ƒ^Ši”[æƒ[ƒN
- *	@param	aid			’ÊMID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆãƒ¯ãƒ¼ã‚¯
+ *	@param	aid			é€šä¿¡ID
  */
 //-----------------------------------------------------------------------------
 static void WBR_SurverCont_ObjInit( WBR_SURVERCONT* p_sys, WBR_SURVEROBJ* p_wk, u32 aid )
@@ -394,23 +394,23 @@ static void WBR_SurverCont_ObjInit( WBR_SURVERCONT* p_sys, WBR_SURVEROBJ* p_wk, 
 		{ WF2DMAP_GRID2POS(8), WF2DMAP_GRID2POS(10) },
 	};
 
-	// “o˜^À•W‚ğİ’è
+	// ç™»éŒ²åº§æ¨™ã‚’è¨­å®š
 	data.x = player_pos[aid][0];
 	data.y = player_pos[aid][1];
 	data.playid = aid;
 
-	// ƒIƒuƒWƒFƒNƒgƒf[ƒ^“o˜^
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ç™»éŒ²
 	p_sys->p_wk[ aid ].p_obj = WF2DMAP_OBJWkNew( p_sys->p_objsys, &data );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	oŒûƒ`ƒFƒbƒN
+ *	@brief	å‡ºå£ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	cp_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	oŒû‚É—§‚Á‚Ä‚¢‚é
- *	@retval	FALSE	oŒû‚É‚¢‚È‚¢
+ *	@retval	TRUE	å‡ºå£ã«ç«‹ã£ã¦ã„ã‚‹
+ *	@retval	FALSE	å‡ºå£ã«ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WBR_SurverCont_ExitCheck( const WBR_SURVERCONT* cp_sys )
@@ -435,7 +435,7 @@ static BOOL WBR_SurverCont_ExitCheck( const WBR_SURVERCONT* cp_sys )
 			}
 		}
 	}
-	// ‚İ‚ñ‚ÈoŒû‚É‚«‚Ä‚¢‚½‚çI‚í‚è
+	// ã¿ã‚“ãªå‡ºå£ã«ãã¦ã„ãŸã‚‰çµ‚ã‚ã‚Š
 	if( exit_count >= cp_sys->wknum ){
 		return TRUE;
 	}
@@ -444,9 +444,9 @@ static BOOL WBR_SurverCont_ExitCheck( const WBR_SURVERCONT* cp_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgó‘Ô‚ğƒRƒ}ƒ“ƒh‚É•ÏX‚·‚é
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆçŠ¶æ…‹ã‚’ã‚³ãƒãƒ³ãƒ‰ã«å¤‰æ›´ã™ã‚‹
  *
- *	@param	st	ƒIƒuƒWƒFƒNƒgó‘Ô
+ *	@param	st	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆçŠ¶æ…‹
  */
 //-----------------------------------------------------------------------------
 static WF2DMAP_CMD WBR_SurverCont_OBJST2CMDGet( WF2DMAP_OBJST st )
@@ -463,9 +463,9 @@ static WF2DMAP_CMD WBR_SurverCont_OBJST2CMDGet( WF2DMAP_OBJST st )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯ƒ`ƒFƒbƒNƒƒCƒ“ŠÖ”
+ *	@brief	è©±ã—ã‹ã‘ãƒã‚§ãƒƒã‚¯ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_SurverCont_TalkMain( WBR_SURVERCONT* p_sys )
@@ -473,7 +473,7 @@ static void WBR_SurverCont_TalkMain( WBR_SURVERCONT* p_sys )
 	int i;
 	for( i=0; i<p_sys->wknum; i++ ){
 	
-		// ƒŠƒNƒGƒXƒg‚ª—ˆ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		// ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒæ¥ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( p_sys->p_wk[i].talk_req_flag == TRUE ){
 			if( p_sys->p_wk[i].talk_req.flag == WBR_TALK_REQ_START ){
 				WBR_SurverCont_ObjTalkStart( p_sys, &p_sys->p_wk[i] );
@@ -488,10 +488,10 @@ static void WBR_SurverCont_TalkMain( WBR_SURVERCONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯ƒ`ƒFƒbƒNˆ—
+ *	@brief	è©±ã—ã‹ã‘ãƒã‚§ãƒƒã‚¯å‡¦ç†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		˜b‚µ‚©‚¯ƒ`ƒFƒbƒN‚·‚éƒIƒuƒWƒFƒNƒg
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		è©±ã—ã‹ã‘ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void WBR_SurverCont_ObjTalkStart( WBR_SURVERCONT* p_sys, WBR_SURVEROBJ* p_wk )
@@ -513,35 +513,35 @@ static void WBR_SurverCont_ObjTalkStart( WBR_SURVERCONT* p_sys, WBR_SURVEROBJ* p
 	playid = WF2DMAP_OBJWkDataGet( p_wk->p_obj, WF2DMAP_OBJPM_PLID );
 	pos = WF2DMAP_OBJWkMatrixGet( p_wk->p_obj );
 
-	// ©•ª‚ª“®ì’â~ó‘Ô‚©ƒ`ƒFƒbƒN
+	// è‡ªåˆ†ãŒå‹•ä½œåœæ­¢çŠ¶æ…‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( status != WF2DMAP_OBJST_NONE ){
 		return ;
 	}
 
-	// ©•ª‚Ì–Ú‚Ì‘O‚Él‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+	// è‡ªåˆ†ã®ç›®ã®å‰ã«äººãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	cp_hitobj = WF2DMAP_OBJSysHitCheck( p_wk->p_obj, p_sys->p_objsys, way );	
 	if( cp_hitobj == NULL ){
 		return ;
 	}
 
-	// ˜b‚µ‘Šèƒf[ƒ^æ“¾
+	// è©±ã—ç›¸æ‰‹ãƒ‡ãƒ¼ã‚¿å–å¾—
 	to_status = WF2DMAP_OBJWkDataGet( cp_hitobj, WF2DMAP_OBJPM_ST );
 	to_way = WF2DMAP_OBJWkDataGet( cp_hitobj, WF2DMAP_OBJPM_WAY );
 	to_playid = WF2DMAP_OBJWkDataGet( cp_hitobj, WF2DMAP_OBJPM_PLID );
 	to_pos = WF2DMAP_OBJWkMatrixGet( cp_hitobj );
 
-	// ˜b‚µ‘Šè‚ª‘Ò‹@ó‘Ô‚ÅƒiƒCƒg˜b‚¹‚È‚¢
+	// è©±ã—ç›¸æ‰‹ãŒå¾…æ©ŸçŠ¶æ…‹ã§ãƒŠã‚¤ãƒˆè©±ã›ãªã„
 	if( to_status != WF2DMAP_OBJST_NONE ){
 		return ;
 	}
 
-	// ‚»‚Ìl‚ÌƒT[ƒo[ƒ[ƒN‚ğæ“¾
+	// ãã®äººã®ã‚µãƒ¼ãƒãƒ¼ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
 	p_talkobj = &p_sys->p_wk[ to_playid ];
 
-	// ‚Ql‚Æ‚àƒrƒW[ó‘Ô‚É•ÏX
-	// ˜bƒf[ƒ^‚ğİ’è‚µAƒAƒNƒVƒ‡ƒ“ƒRƒ}ƒ“ƒh‚ğİ’è
+	// ï¼’äººã¨ã‚‚ãƒ“ã‚¸ãƒ¼çŠ¶æ…‹ã«å¤‰æ›´
+	// è©±ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã—ã€ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã‚’è¨­å®š
 	{
-		// ˜b‚µ‚©‚¯æ‚Ìİ’è
+		// è©±ã—ã‹ã‘å…ˆã®è¨­å®š
 		act.cmd = WF2DMAP_CMD_BUSY;
 		act.way = way;
 		act.playid = playid;
@@ -554,7 +554,7 @@ static void WBR_SurverCont_ObjTalkStart( WBR_SURVERCONT* p_sys, WBR_SURVEROBJ* p
 		p_wk->talk_data.talk_seq = WBR_TALK_SEQ_START;
 	}
 	{
-		// ˜b‚µ‚©‚¯‚³‚êæİ’è
+		// è©±ã—ã‹ã‘ã•ã‚Œå…ˆè¨­å®š
 		act.cmd = WF2DMAP_CMD_BUSY;
 		act.way = WF2DMPA_OBJToolRetWayGet( way );
 		act.playid = to_playid;
@@ -570,10 +570,10 @@ static void WBR_SurverCont_ObjTalkStart( WBR_SURVERCONT* p_sys, WBR_SURVEROBJ* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	˜b‚µ‚©‚¯I—¹ˆ—
+ *	@brief	è©±ã—ã‹ã‘çµ‚äº†å‡¦ç†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WBR_SurverCont_ObjTalkEnd( WBR_SURVERCONT* p_sys, WBR_SURVEROBJ* p_wk )
@@ -588,15 +588,15 @@ static void WBR_SurverCont_ObjTalkEnd( WBR_SURVERCONT* p_sys, WBR_SURVEROBJ* p_w
 	WF2DMAP_POS to_pos;
 
 	
-	// ˜b‚µ‚©‚¯’†‚©ƒ`ƒFƒbƒN
+	// è©±ã—ã‹ã‘ä¸­ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_wk->talk_data.talk_mode == WBR_TALK_NONE ){
 		return ;
 	}
 
-	// ˜b‚µ‚©‚¯‚³‚«ƒIƒuƒWƒFæ“¾
+	// è©±ã—ã‹ã‘ã•ãã‚ªãƒ–ã‚¸ã‚§å–å¾—
 	p_talkobj = &p_sys->p_wk[ p_wk->talk_data.talk_playid ];
 
-	// ƒf[ƒ^æ“¾
+	// ãƒ‡ãƒ¼ã‚¿å–å¾—
 	way = WF2DMAP_OBJWkDataGet( p_wk->p_obj, WF2DMAP_OBJPM_WAY );
 	playid = WF2DMAP_OBJWkDataGet( p_wk->p_obj, WF2DMAP_OBJPM_PLID );
 	pos = WF2DMAP_OBJWkMatrixGet( p_wk->p_obj );
@@ -604,9 +604,9 @@ static void WBR_SurverCont_ObjTalkEnd( WBR_SURVERCONT* p_sys, WBR_SURVEROBJ* p_w
 	to_playid = WF2DMAP_OBJWkDataGet( p_talkobj->p_obj, WF2DMAP_OBJPM_PLID );
 	to_pos = WF2DMAP_OBJWkMatrixGet( p_talkobj->p_obj );
 
-	// ˜b‚µ‚©‚¯I—¹
+	// è©±ã—ã‹ã‘çµ‚äº†
 	{
-		// ˜b‚µ‚©‚¯e
+		// è©±ã—ã‹ã‘è¦ª
 		act.cmd = WF2DMAP_CMD_NONE;
 		act.way = way;
 		act.playid = playid;
@@ -616,7 +616,7 @@ static void WBR_SurverCont_ObjTalkEnd( WBR_SURVERCONT* p_sys, WBR_SURVEROBJ* p_w
 		memset( &p_wk->talk_data, 0, sizeof(WBR_TALK_DATA) );
 	}
 	{
-		// ˜b‚µ‚©‚¯q
+		// è©±ã—ã‹ã‘å­
 		act.cmd = WF2DMAP_CMD_NONE;
 		act.way = to_way;
 		act.playid = to_playid;

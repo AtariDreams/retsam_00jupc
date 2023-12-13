@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_c11r0401evc.h"
 
 //--------------------------------------------------------------------
-//					     ÉXÉNÉäÉvÉgñ{ëÃ
+//					     „Çπ„ÇØ„É™„Éó„ÉàÊú¨‰Ωì
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ÉXÉNÉäÉvÉgÉeÅ[ÉuÉã
+//					     „Çπ„ÇØ„É™„Éó„Éà„ÉÜ„Éº„Éñ„É´
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c11r0401_oldman2
 _EVENT_DATA		ev_c11r0401_oldwoman2
@@ -51,7 +51,7 @@ ev_c11r0401_purin:
 	_END
 
 /********************************************************************/
-/*							ìπãÔê‡ñæ									*/
+/*							ÈÅìÂÖ∑Ë™¨Êòé									*/
 /********************************************************************/
 ev_c11r0401_item:
 	_TALK_OBJ_START
@@ -60,11 +60,11 @@ ev_c11r0401_item:
 	_JUMP			ev_c11r0401_item_menu
 	_END
 
-/*ÉÅÉjÉÖÅ[ï\é¶*/
+/*„É°„Éã„É•„ÉºË°®Á§∫*/
 ev_c11r0401_item_menu:
 	_TALK_KEYWAIT	msg_c11r0401_item_02
 
-	_BMPLIST_INIT_EX	1,1,0,1,SCWK_ANSWER			//BÉLÉÉÉìÉZÉãóLå¯
+	_BMPLIST_INIT_EX	1,1,0,1,SCWK_ANSWER			//B„Ç≠„É£„É≥„Çª„É´ÊúâÂäπ
 	_BMPLIST_MAKE_LIST	msg_c11r0401_item_12,EV_WIN_TALK_MSG_NONE,0
 	_BMPLIST_MAKE_LIST	msg_c11r0401_item_13,EV_WIN_TALK_MSG_NONE,1
 	_BMPLIST_MAKE_LIST	msg_c11r0401_item_14,EV_WIN_TALK_MSG_NONE,2
@@ -77,15 +77,15 @@ ev_c11r0401_item_menu:
 	_BMPLIST_START
 
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_c11r0401_item_12			/*ÉâÉÄ*/
-	_CASE_JUMP		1,ev_c11r0401_item_13			/*Ç´Ç†Ç¢*/
-	_CASE_JUMP		2,ev_c11r0401_item_14			/*ÇΩÇ¬Ç∂ÇÒ*/
-	_CASE_JUMP		3,ev_c11r0401_item_15			/*Ç¢ÇÃÇø*/
-	_CASE_JUMP		4,ev_c11r0401_item_16			/*Ç±ÇæÇÌÇË*/
-	_CASE_JUMP		5,ev_c11r0401_item_17			/*Ç±ÇæÇÌÇË*/
-	_CASE_JUMP		6,ev_c11r0401_item_18			/*Ç±ÇæÇÌÇË*/
-	_CASE_JUMP		7,ev_c11r0401_item_19			/*ÇΩÇ◊ÇÃÇ±Çµ*/
-	_JUMP			ev_c11r0401_item_20				/*èIóπÇ÷*/
+	_CASE_JUMP		0,ev_c11r0401_item_12			/*„É©„É†*/
+	_CASE_JUMP		1,ev_c11r0401_item_13			/*„Åç„ÅÇ„ÅÑ*/
+	_CASE_JUMP		2,ev_c11r0401_item_14			/*„Åü„Å§„Åò„Çì*/
+	_CASE_JUMP		3,ev_c11r0401_item_15			/*„ÅÑ„ÅÆ„Å°*/
+	_CASE_JUMP		4,ev_c11r0401_item_16			/*„Åì„Å†„Çè„Çä*/
+	_CASE_JUMP		5,ev_c11r0401_item_17			/*„Åì„Å†„Çè„Çä*/
+	_CASE_JUMP		6,ev_c11r0401_item_18			/*„Åì„Å†„Çè„Çä*/
+	_CASE_JUMP		7,ev_c11r0401_item_19			/*„Åü„Åπ„ÅÆ„Åì„Åó*/
+	_JUMP			ev_c11r0401_item_20				/*ÁµÇ‰∫Ü„Å∏*/
 	_END
 
 ev_c11r0401_item_12:
@@ -128,7 +128,7 @@ ev_c11r0401_item_19:
 	_JUMP			ev_c11r0401_item_menu
 	_END
 
-/*Ç‚ÇﬂÇÈ*/
+/*„ÇÑ„ÇÅ„Çã*/
 ev_c11r0401_item_20:
 	_TALK_KEYWAIT	msg_c11r0401_item_03
 	_LAST_KEYWAIT

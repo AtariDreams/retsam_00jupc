@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	field_effect_code.h
- * @brief	ƒtƒB[ƒ‹ƒhƒGƒtƒFƒNƒg—pƒVƒ“ƒ{ƒ‹’è‹`
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚·ãƒ³ãƒœãƒ«å®šç¾©
  * @author	kagaya
  * @data	05.07.13
  */
@@ -10,144 +10,144 @@
 #define FIELD_EFFECT_CODE_H_FILE
 
 //==============================================================================
-//	ƒGƒtƒFƒNƒg
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒGƒtƒFƒNƒgID
+///	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆID
 //--------------------------------------------------------------
 enum
 {
-	FE_FLD_SHADOW = 0,				///<ƒtƒB[ƒ‹ƒhOBJ@‰e
-	FE_FLD_REFLECT,					///<ƒtƒB[ƒ‹ƒhOBJ@‰f‚è‚İ
-	FE_UG_TRAP,						///<’n‰º@ã©
-	FE_UG_TRAP_HOLE,				///<’n‰º@ã©@ŒŠ
-	FE_UG_TRAP_DIR,					///<’n‰º@ã©@•ûŒü
-	FE_UG_TRAP_FLAG,				///<’n‰º@ã©@Šø
-	FE_UG_TRAP_EXCLAMATION,			///<’n‰º@ã©@!ƒ}[ƒN
-	FE_UG_TRAP_OK,					///<’n‰º@ã©@OKƒ}[ƒN
-	FE_UG_TRAP_SMOG,				///<’n‰º@ã©@‰Œ
-	FE_UG_TRAP_GFLASH,				///<’n‰º@ã©@‚½‚Üƒ}[ƒN
-	FE_UG_DRILL,					///<’n‰º@ƒhƒŠƒ‹‰‰o
-	FE_FLD_FOOTMARK,				///<ƒtƒB[ƒ‹ƒhOBJ@‘«Õ
-//	FE_FLD_BOARD,					///<ƒtƒB[ƒ‹ƒhOBJ@ŠÅ”Â			1
-	FE_FLD_SEEDGROUND,				///<ƒtƒB[ƒ‹ƒhOBJ@–Ø‚ÌÀ“y
-	FE_FLD_SNOWBALL,				///<ƒtƒB[ƒ‹ƒhOBJ@á‹…
-//	FE_FLD_BOOK,					///<ƒtƒB[ƒ‹ƒhOBJ@–{			2
-	FE_FLD_ARROW,					///<ƒtƒB[ƒ‹ƒhOBJ@–îˆó
-	FE_FLD_NAMIPOKE,				///<ƒtƒB[ƒ‹ƒhOBJ@”gæ‚èƒ|ƒPƒ‚ƒ“
-	FE_FLD_ROCKRIDE,				///<ƒtƒB[ƒ‹ƒhOBJ@•Ç‚Ì‚Ú‚èƒ|ƒPƒ‚ƒ“
-	FE_FLD_RIPPLE,					///<ƒtƒB[ƒ‹ƒhOBJ@…”g–ä
-	FE_FLD_NRIPPLE,					///<ƒtƒB[ƒ‹ƒhOBJ@À”g–ä
-	FE_FLD_GRASS,					///<ƒtƒB[ƒ‹ƒhOBJ@‘íœ
-	FE_FLD_GYOE,					///<ƒtƒB[ƒ‹ƒhOBJ@ƒMƒ‡ƒG[
-	FE_FLD_SPLASH,					///<ƒtƒB[ƒ‹ƒhOBJ@…‚µ‚Ô‚«
-	FE_UG_REDFRAME,					///<’n‰º@˜g
-	FE_FLD_KEMURI,					///<ƒtƒB[ƒ‹ƒhOBJ@“y‰Œ
-	FE_FLD_LGRASS,					///<ƒtƒB[ƒ‹ƒhOBJ@’·‚¢‘
-	FE_FLD_NGRASS,					///<ƒtƒB[ƒ‹ƒhOBJ@À‘
-	FE_FLD_HIDE,					///<ƒtƒB[ƒ‹ƒhOBJ@‰B‚ê–ª
-	FE_FLD_HKEMURI,					///<ƒtƒB[ƒ‹ƒhOBJ@‰B‚ê–ª‰Œ
-	FE_FLD_SEED_EFF,				///<ƒtƒB[ƒ‹ƒhOBJ@–Ø‚ÌÀƒGƒtƒFƒNƒg
-//	FE_FLD_DOOR2,					///<ƒtƒB[ƒ‹ƒhOBJ@ƒhƒA‚Q		3
-	FE_FLD_FLDROBJ,					///<ƒtƒB[ƒ‹ƒhOBJ@ƒŒƒ“ƒ_OBJ
-	FE_FLD_GYM04EFF,				///<ƒtƒB[ƒ‹ƒh@‘ƒWƒ€ƒGƒtƒFƒNƒg
-	FE_FLD_GYM07EFF,				///<ƒtƒB[ƒ‹ƒh@Ši“¬ƒWƒ€ƒGƒtƒFƒNƒg
-	FE_FLD_GYM05EFF,				///<ƒtƒB[ƒ‹ƒh@ƒS[ƒXƒgƒWƒ€ƒGƒtƒFƒNƒg
-	FE_FLD_NAMIPOKER,				///<ƒtƒB[ƒ‹ƒh@‰ñ“]”gæ‚èƒ|ƒPƒ‚ƒ“
+	FE_FLD_SHADOW = 0,				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€å½±
+	FE_FLD_REFLECT,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€æ˜ ã‚Šè¾¼ã¿
+	FE_UG_TRAP,						///<åœ°ä¸‹ã€€ç½ 
+	FE_UG_TRAP_HOLE,				///<åœ°ä¸‹ã€€ç½ ã€€ç©´
+	FE_UG_TRAP_DIR,					///<åœ°ä¸‹ã€€ç½ ã€€æ–¹å‘
+	FE_UG_TRAP_FLAG,				///<åœ°ä¸‹ã€€ç½ ã€€æ——
+	FE_UG_TRAP_EXCLAMATION,			///<åœ°ä¸‹ã€€ç½ ã€€!ãƒãƒ¼ã‚¯
+	FE_UG_TRAP_OK,					///<åœ°ä¸‹ã€€ç½ ã€€OKãƒãƒ¼ã‚¯
+	FE_UG_TRAP_SMOG,				///<åœ°ä¸‹ã€€ç½ ã€€ç…™
+	FE_UG_TRAP_GFLASH,				///<åœ°ä¸‹ã€€ç½ ã€€ãŸã¾ãƒãƒ¼ã‚¯
+	FE_UG_DRILL,					///<åœ°ä¸‹ã€€ãƒ‰ãƒªãƒ«æ¼”å‡º
+	FE_FLD_FOOTMARK,				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€è¶³è·¡
+//	FE_FLD_BOARD,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€çœ‹æ¿			1
+	FE_FLD_SEEDGROUND,				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€æœ¨ã®å®ŸåœŸ
+	FE_FLD_SNOWBALL,				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€é›ªçƒ
+//	FE_FLD_BOOK,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€æœ¬			2
+	FE_FLD_ARROW,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€çŸ¢å°
+	FE_FLD_NAMIPOKE,				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³
+	FE_FLD_ROCKRIDE,				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€å£ã®ã¼ã‚Šãƒã‚±ãƒ¢ãƒ³
+	FE_FLD_RIPPLE,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€æ°´æ³¢ç´‹
+	FE_FLD_NRIPPLE,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€æ²¼æ³¢ç´‹
+	FE_FLD_GRASS,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€è‰å‰Šé™¤
+	FE_FLD_GYOE,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ã‚®ãƒ§ã‚¨ãƒ¼
+	FE_FLD_SPLASH,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€æ°´ã—ã¶ã
+	FE_UG_REDFRAME,					///<åœ°ä¸‹ã€€æ 
+	FE_FLD_KEMURI,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€åœŸç…™
+	FE_FLD_LGRASS,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€é•·ã„è‰
+	FE_FLD_NGRASS,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€æ²¼è‰
+	FE_FLD_HIDE,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€éš ã‚Œè“‘
+	FE_FLD_HKEMURI,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€éš ã‚Œè“‘ç…™
+	FE_FLD_SEED_EFF,				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+//	FE_FLD_DOOR2,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ãƒ‰ã‚¢ï¼’		3
+	FE_FLD_FLDROBJ,					///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€ãƒ¬ãƒ³ãƒ€OBJ
+	FE_FLD_GYM04EFF,				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€è‰ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	FE_FLD_GYM07EFF,				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€æ ¼é—˜ã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	FE_FLD_GYM05EFF,				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	FE_FLD_NAMIPOKER,				///<ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€å›è»¢æ³¢ä¹—ã‚Šãƒã‚±ãƒ¢ãƒ³
 	
-	FE_PROC_MAX,					///<Å‘å
+	FE_PROC_MAX,					///<æœ€å¤§
 };
 
 //==============================================================================
-//	ƒrƒ‹ƒ{[ƒh
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒrƒ‹ƒ{[ƒhƒwƒbƒ_[ID
+///	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒ˜ãƒƒãƒ€ãƒ¼ID
 //--------------------------------------------------------------
 enum
 {
-	FE_BLACT_H_ID_GRASS = 0,				///<‘
-	FE_BLACT_H_ID_GYOE,						///<ƒMƒ‡ƒG[
-	FE_BLACT_H_ID_REFLECT,					///<‰f‚è‚±‚İ
-	FE_BLACT_H_ID_SPLASH,					///<…”ò–—
-	FE_BLACT_H_ID_REDFRAME,					///<Ô˜g
-	FE_BLACT_H_ID_GRASS_ENCOUNT_SMALL,		///<ƒGƒ“ƒJƒEƒ“ƒg‘—h‚ê¬
-	FE_BLACT_H_ID_GRASS_ENCOUNT_BIG,		///<ƒGƒ“ƒJƒEƒ“ƒg‘—h‚ê‘å
-	FE_BLACT_H_ID_GRASS_ENCOUNT_KIRAKIRA,	///<ƒGƒ“ƒJƒEƒ“ƒg‘—h‚ê‚«‚ç‚«‚ç
-	FE_BLACT_H_ID_KEMURI,					///<“y‰Œ
-	FE_BLACT_H_ID_LGRASS,					///<’·‚¢‘
-	FE_BLACT_H_ID_NGRASS,					///<À‘
-	FE_BLACT_H_ID_HKEMURI,					///<‰B‚ê–ª“y‰Œ
-	FE_BLACT_H_ID_GYOE_SAISEN,				///<ÄíƒMƒ‡ƒG[
-	FE_BLACT_H_ID_SEED_EFF,					///<–Ø‚ÌÀƒGƒtƒFƒNƒg
-	FE_BLACT_H_ID_KEMURI_L,					///<“y‰Œ ¶
-	FE_BLACT_H_ID_KEMURI_R,					///<“y‰Œ ‰E
-	FE_BLACT_H_ID_KEMURI_U,					///<“y‰Œ ã
+	FE_BLACT_H_ID_GRASS = 0,				///<è‰
+	FE_BLACT_H_ID_GYOE,						///<ã‚®ãƒ§ã‚¨ãƒ¼
+	FE_BLACT_H_ID_REFLECT,					///<æ˜ ã‚Šã“ã¿
+	FE_BLACT_H_ID_SPLASH,					///<æ°´é£›æ²«
+	FE_BLACT_H_ID_REDFRAME,					///<èµ¤æ 
+	FE_BLACT_H_ID_GRASS_ENCOUNT_SMALL,		///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆè‰æºã‚Œå°
+	FE_BLACT_H_ID_GRASS_ENCOUNT_BIG,		///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆè‰æºã‚Œå¤§
+	FE_BLACT_H_ID_GRASS_ENCOUNT_KIRAKIRA,	///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆè‰æºã‚Œãã‚‰ãã‚‰
+	FE_BLACT_H_ID_KEMURI,					///<åœŸç…™
+	FE_BLACT_H_ID_LGRASS,					///<é•·ã„è‰
+	FE_BLACT_H_ID_NGRASS,					///<æ²¼è‰
+	FE_BLACT_H_ID_HKEMURI,					///<éš ã‚Œè“‘åœŸç…™
+	FE_BLACT_H_ID_GYOE_SAISEN,				///<å†æˆ¦ã‚®ãƒ§ã‚¨ãƒ¼
+	FE_BLACT_H_ID_SEED_EFF,					///<æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	FE_BLACT_H_ID_KEMURI_L,					///<åœŸç…™ å·¦
+	FE_BLACT_H_ID_KEMURI_R,					///<åœŸç…™ å³
+	FE_BLACT_H_ID_KEMURI_U,					///<åœŸç…™ ä¸Š
 	
-	FE_BLACT_H_ID_NOT,						///<–³ŒøID
+	FE_BLACT_H_ID_NOT,						///<ç„¡åŠ¹ID
 };
 
 //--------------------------------------------------------------
-///	ƒrƒ‹ƒ{[ƒhƒŠƒ\[ƒX@ƒ‚ƒfƒ‹ID
+///	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒªã‚½ãƒ¼ã‚¹ã€€ãƒ¢ãƒ‡ãƒ«ID
 //--------------------------------------------------------------
 enum
 {
-	FE_RESID_MDL_GRASS = 0,					///<‘
-	FE_RESID_MDL_GYOE,						///<ƒMƒ‡ƒG[
-	FE_RESID_MDL_REFLECT,					///<‰f‚è‚±‚İ
-	FE_RESID_MDL_SPLASH,					///<…”ò–—
-	FE_RESID_MDL_REDFRAME,					///<Ô˜g
-	FE_RESID_MDL_GRASS_ENCOUNT,				///<‘ƒGƒ“ƒJƒEƒ“ƒg
-	FE_RESID_MDL_KEMURI,					///<“y‰Œ
-	FE_RESID_MDL_LGRASS,					///<’·‚¢‘
-	FE_RESID_MDL_NGRASS,					///<À‘
-	FE_RESID_MDL_HKEMURI,					///<‰B‚ê–ª“y‰Œ
-	FE_RESID_MDL_GYOE_SAISEN,				///<ÄíƒMƒ‡ƒG[
-	FE_RESID_MDL_SEED_EFF,					///<–Ø‚ÌÀƒGƒtƒFƒNƒg
-	FE_RESID_MDL_KEMURI_L,					///<“y‰Œ ¶
-	FE_RESID_MDL_KEMURI_R,					///<“y‰Œ ‰E
-	FE_RESID_MDL_KEMURI_U,					///<“y‰Œ ã
+	FE_RESID_MDL_GRASS = 0,					///<è‰
+	FE_RESID_MDL_GYOE,						///<ã‚®ãƒ§ã‚¨ãƒ¼
+	FE_RESID_MDL_REFLECT,					///<æ˜ ã‚Šã“ã¿
+	FE_RESID_MDL_SPLASH,					///<æ°´é£›æ²«
+	FE_RESID_MDL_REDFRAME,					///<èµ¤æ 
+	FE_RESID_MDL_GRASS_ENCOUNT,				///<è‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
+	FE_RESID_MDL_KEMURI,					///<åœŸç…™
+	FE_RESID_MDL_LGRASS,					///<é•·ã„è‰
+	FE_RESID_MDL_NGRASS,					///<æ²¼è‰
+	FE_RESID_MDL_HKEMURI,					///<éš ã‚Œè“‘åœŸç…™
+	FE_RESID_MDL_GYOE_SAISEN,				///<å†æˆ¦ã‚®ãƒ§ã‚¨ãƒ¼
+	FE_RESID_MDL_SEED_EFF,					///<æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	FE_RESID_MDL_KEMURI_L,					///<åœŸç…™ å·¦
+	FE_RESID_MDL_KEMURI_R,					///<åœŸç…™ å³
+	FE_RESID_MDL_KEMURI_U,					///<åœŸç…™ ä¸Š
 };
 
 //--------------------------------------------------------------
-///	ƒrƒ‹ƒ{[ƒhƒŠƒ\[ƒX@ƒAƒjƒID
+///	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒªã‚½ãƒ¼ã‚¹ã€€ã‚¢ãƒ‹ãƒ¡ID
 //--------------------------------------------------------------
 enum
 {
-	FE_RESID_ANM_GRASS = 0,					///<‘
-	FE_RESID_ANM_GYOE,						///<ƒMƒ‡ƒG[
-	FE_RESID_ANM_SPLASH,					///<…”ò–—
-	FE_RESID_ANM_GRASS_ENCOUNT_SMALL,		///<ƒGƒ“ƒJƒEƒ“ƒg‘—h‚ê¬
-	FE_RESID_ANM_GRASS_ENCOUNT_BIG,			///<ƒGƒ“ƒJƒEƒ“ƒg‘—h‚ê‘å
-	FE_RESID_ANM_GRASS_ENCOUNT_KIRAKIRA,	///<ƒGƒ“ƒJƒEƒ“ƒg‘—h‚ê‚«‚ç‚«‚ç
-	FE_RESID_ANM_KEMURI,					///<“y‰Œ
-	FE_RESID_ANM_LGRASS,					///<’·‚¢‘
-	FE_RESID_ANM_NGRASS,					///<À‘
-	FE_RESID_ANM_HKEMURI,					///<‰B‚ê–ª“y‰Œ
-	FE_RESID_ANM_GYOE_SAISEN,				///<ÄíƒMƒ‡ƒG[
-	FE_RESID_ANM_SEED_EFF,					///<–Ø‚ÌÀƒGƒtƒFƒNƒg
+	FE_RESID_ANM_GRASS = 0,					///<è‰
+	FE_RESID_ANM_GYOE,						///<ã‚®ãƒ§ã‚¨ãƒ¼
+	FE_RESID_ANM_SPLASH,					///<æ°´é£›æ²«
+	FE_RESID_ANM_GRASS_ENCOUNT_SMALL,		///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆè‰æºã‚Œå°
+	FE_RESID_ANM_GRASS_ENCOUNT_BIG,			///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆè‰æºã‚Œå¤§
+	FE_RESID_ANM_GRASS_ENCOUNT_KIRAKIRA,	///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆè‰æºã‚Œãã‚‰ãã‚‰
+	FE_RESID_ANM_KEMURI,					///<åœŸç…™
+	FE_RESID_ANM_LGRASS,					///<é•·ã„è‰
+	FE_RESID_ANM_NGRASS,					///<æ²¼è‰
+	FE_RESID_ANM_HKEMURI,					///<éš ã‚Œè“‘åœŸç…™
+	FE_RESID_ANM_GYOE_SAISEN,				///<å†æˆ¦ã‚®ãƒ§ã‚¨ãƒ¼
+	FE_RESID_ANM_SEED_EFF,					///<æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 };
 
 //--------------------------------------------------------------
-///	ƒrƒ‹ƒ{[ƒhƒŠƒ\[ƒX@ƒeƒNƒXƒ`ƒƒID
+///	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒªã‚½ãƒ¼ã‚¹ã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£ID
 //--------------------------------------------------------------
 enum
 {
-	FE_RESID_TEX_GRASS = 0,					///<‘
-	FE_RESID_TEX_GYOE,						///<ƒMƒ‡ƒG[
-	FE_RESID_TEX_SPLASH,					///<…”ò–—
-	FE_RESID_TEX_REDFRAME,					///<Ô˜g
-	FE_RESID_TEX_GRASS_ENCOUNT_SMALL,		///<ƒGƒ“ƒJƒEƒ“ƒg‘—h‚ê¬
-	FE_RESID_TEX_GRASS_ENCOUNT_BIG,			///<ƒGƒ“ƒJƒEƒ“ƒg‘—h‚ê‘å
-	FE_RESID_TEX_GRASS_ENCOUNT_KIRAKIRA,	///<ƒGƒ“ƒJƒEƒ“ƒg‘—h‚ê‚«‚ç‚«‚ç
-	FE_RESID_TEX_KEMURI,					///<“y‰Œ
-	FE_RESID_TEX_LGRASS,					///<’·‚¢‘
-	FE_RESID_TEX_NGRASS,					///<À‘
-	FE_RESID_TEX_HKEMURI,					///<‰B‚ê–ª“y‰Œ
-	FE_RESID_TEX_GYOE_SAISEN,				///<ÄíƒMƒ‡ƒG[
-	FE_RESID_TEX_SEED_EFF,					///<–Ø‚ÌÀƒGƒtƒFƒNƒg
+	FE_RESID_TEX_GRASS = 0,					///<è‰
+	FE_RESID_TEX_GYOE,						///<ã‚®ãƒ§ã‚¨ãƒ¼
+	FE_RESID_TEX_SPLASH,					///<æ°´é£›æ²«
+	FE_RESID_TEX_REDFRAME,					///<èµ¤æ 
+	FE_RESID_TEX_GRASS_ENCOUNT_SMALL,		///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆè‰æºã‚Œå°
+	FE_RESID_TEX_GRASS_ENCOUNT_BIG,			///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆè‰æºã‚Œå¤§
+	FE_RESID_TEX_GRASS_ENCOUNT_KIRAKIRA,	///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆè‰æºã‚Œãã‚‰ãã‚‰
+	FE_RESID_TEX_KEMURI,					///<åœŸç…™
+	FE_RESID_TEX_LGRASS,					///<é•·ã„è‰
+	FE_RESID_TEX_NGRASS,					///<æ²¼è‰
+	FE_RESID_TEX_HKEMURI,					///<éš ã‚Œè“‘åœŸç…™
+	FE_RESID_TEX_GYOE_SAISEN,				///<å†æˆ¦ã‚®ãƒ§ã‚¨ãƒ¼
+	FE_RESID_TEX_SEED_EFF,					///<æœ¨ã®å®Ÿã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	
-	FE_RESID_TEX_MAX,						///<Å‘å
+	FE_RESID_TEX_MAX,						///<æœ€å¤§
 };
 
 #endif //FIELD_EFFECT_CODE_H_FILE

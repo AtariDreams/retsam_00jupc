@@ -1,6 +1,6 @@
 /**
  *	@file	fld_mailbox.h
- *	@brief	ƒtƒB[ƒ‹ƒhƒ[ƒ‹ƒ{ƒbƒNƒXˆ—
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹å‡¦ç†
  *	@author	Miyuki Iwasawa
  *	@date	06.03.03
  */
@@ -9,15 +9,15 @@
 #define __H_FLD_MAIL_BOX_H__
 
 /**
- *	@brief	ƒ[ƒ‹ƒ{ƒbƒNƒXŒÄ‚Ño‚µ•‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹å‘¼ã³å‡ºã—ï¼†åˆæœŸåŒ–
  */
 extern void MailBox_Call(void* fsys,int* end_flag);
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ[ƒ‹ƒ{ƒbƒNƒXƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+ * @brief	ãƒ¡ãƒ¼ãƒ«ãƒœãƒƒã‚¯ã‚¹ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
  * @param	event	GMEVENT_CONTROL*
- * @param	dir		ˆÚ“®•ûŒü
+ * @param	dir		ç§»å‹•æ–¹å‘
  * @param	jiki	PLAYER_STATE_PTR
  * @retval	nothing
  */

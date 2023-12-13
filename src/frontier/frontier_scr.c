@@ -1,13 +1,13 @@
 //==============================================================================
 /**
  * @file	frontier_scr.c
- * @brief	ƒtƒƒ“ƒeƒBƒA—pƒXƒNƒŠƒvƒg§Œä
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡
  * @author	matsuda
- * @date	2007.03.28(…)
+ * @date	2007.03.28(æ°´)
  */
 //==============================================================================
 #include "common.h"
-#include "poketool/poke_tool.h"	// POKEMON_PASO_PARAM QÆ‚Ì‚½‚ß
+#include "poketool/poke_tool.h"	// POKEMON_PASO_PARAM å‚ç…§ã®ãŸã‚
 #include "battle/battle_common.h"
 #include "system/clact_tool.h"
 #include "system/arc_tool.h"
@@ -25,21 +25,21 @@
 
 //============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //============================================================================================
-#define SCR_MSG_BUF_SIZE	(1024)					//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define SCR_MSG_BUF_SIZE	(1024)					//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-//typedef void (*fsysFunc)(FIELDSYS_WORK* fsys);		//ŠÖ”ƒ|ƒCƒ“ƒ^Œ^
+//typedef void (*fsysFunc)(FIELDSYS_WORK* fsys);		//é–¢æ•°ãƒã‚¤ãƒ³ã‚¿å‹
 
 enum{
-	WORDSET_SCRIPT_SETNUM = 8,		//ƒfƒtƒHƒ‹ƒgƒoƒbƒtƒ@”
-	WORDSET_SCRIPT_BUFLEN = 64,		//ƒfƒtƒHƒ‹ƒgƒoƒbƒtƒ@’·i•¶š”j
+	WORDSET_SCRIPT_SETNUM = 8,		//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒƒãƒ•ã‚¡æ•°
+	WORDSET_SCRIPT_BUFLEN = 64,		//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒƒãƒ•ã‚¡é•·ï¼ˆæ–‡å­—æ•°ï¼‰
 };
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static BOOL FSS_TaskPointerSet(FSS_PTR fss, FSS_TASK *fss_task);
 static void FSS_ScrTaskDel(FSS_PTR fss, FSS_TASK *core);
@@ -56,11 +56,11 @@ static void FSS_EventDataIDJump( FSS_TASK * core, int event_id );
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€ì¬
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
  *
- * @param   heap_id		ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€“à•”‚Åg—p‚·‚éƒq[ƒvID
+ * @param   heap_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ å†…éƒ¨ã§ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  ì¬‚³‚ê‚½ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ä½œæˆã•ã‚ŒãŸã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 FSS_PTR FSS_SystemCreate(FMAIN_PTR fmain, int heap_id, int scene_id)
@@ -74,15 +74,15 @@ FSS_PTR FSS_SystemCreate(FMAIN_PTR fmain, int heap_id, int scene_id)
 	fss->heap_id = heap_id;
 	fss->def_scene_id = scene_id;
 
-	//•W€ƒXƒNƒŠƒvƒgƒf[ƒ^A•W€ƒƒbƒZ[ƒWƒf[ƒ^“Ç‚İ‚İ
+	//æ¨™æº–ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ã€æ¨™æº–ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	FSS_SetScriptData(&fss->def_script, &fss->def_msgman, scene_id, heap_id);
 
 	fss->wordset = WORDSET_CreateEx(WORDSET_SCRIPT_SETNUM, WORDSET_SCRIPT_BUFLEN, heap_id);
 	fss->msg_buf = STRBUF_Create(SCR_MSG_BUF_SIZE, heap_id);
 	fss->tmp_buf = STRBUF_Create(SCR_MSG_BUF_SIZE, heap_id);
 
-	//¦check@‚Ü‚¾–¢ì¬
-	FssScriptWork_Init(fss, scene_id, NULL, NULL);		//‰Šúİ’è
+	//â€»checkã€€ã¾ã æœªä½œæˆ
+	FssScriptWork_Init(fss, scene_id, NULL, NULL);		//åˆæœŸè¨­å®š
 
 	return fss;
 }
@@ -90,12 +90,12 @@ FSS_PTR FSS_SystemCreate(FMAIN_PTR fmain, int heap_id, int scene_id)
 #include "../field/scr_tool.h"
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒg§ŒäƒƒCƒ“
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¡ã‚¤ãƒ³
  *
- * @param	event		GMEVENT_CONTROLŒ^
+ * @param	event		GMEVENT_CONTROLå‹
  *
- * @retval	"FALSE = ƒXƒNƒŠƒvƒgÀs’†"
- * @retval	"TRUE = ƒXƒNƒŠƒvƒg‚Í“®‚¢‚Ä‚¢‚È‚¢(‰¼‘zƒ}ƒVƒ“‚Ì”‚O)"
+ * @retval	"FALSE = ã‚¹ã‚¯ãƒªãƒ—ãƒˆå®Ÿè¡Œä¸­"
+ * @retval	"TRUE = ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¯å‹•ã„ã¦ã„ãªã„(ä»®æƒ³ãƒã‚·ãƒ³ã®æ•°ï¼)"
  */
 //--------------------------------------------------------------
 //static BOOL FSEVENT_ControlScript(GMEVENT_CONTROL * event)
@@ -123,19 +123,19 @@ BOOL FSS_ScriptMain(FSS_PTR fss)
 
 	switch(fss->seq){
 	case 0:
-		//‰¼‘zƒ}ƒVƒ“ƒRƒ“ƒgƒ[ƒ‹
+		//ä»®æƒ³ãƒã‚·ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 		for(i = 0; i < FSS_TASK_MAX; i++){
 			core = fss->fss_task[i];
 			if(core != NULL){
-				if( FSST_Control(core) == FALSE ){				//§ŒäƒƒCƒ“
-					FSS_ScrTaskDel(fss, core);					//ƒXƒNƒŠƒvƒgíœ
+				if( FSST_Control(core) == FALSE ){				//åˆ¶å¾¡ãƒ¡ã‚¤ãƒ³
+					FSS_ScrTaskDel(fss, core);					//ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‰Šé™¤
 					fss->fss_task[i] = NULL;
 					fss->fss_task_count--;
 				}
 			}
 		}
 
-		//OBJ“®ìƒR[ƒhÀs
+		//OBJå‹•ä½œã‚³ãƒ¼ãƒ‰å®Ÿè¡Œ
 		FSS_ObjMoveFuncAll(fss->fmain);
 		
 		break;
@@ -152,15 +152,15 @@ BOOL FSS_ScriptMain(FSS_PTR fss)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€‰ğ•ú
- * @param   fss		ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ è§£æ”¾
+ * @param   fss		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void FSS_SystemFree(FSS_PTR fss)
 {
-	GF_ASSERT(fss->fss_task_count == 0);	//‰¼‘zƒ}ƒVƒ“‚ª“®‚¢‚Ä‚¢‚éó‘Ô‚Å‚ÍI—¹o—ˆ‚È‚¢
+	GF_ASSERT(fss->fss_task_count == 0);	//ä»®æƒ³ãƒã‚·ãƒ³ãŒå‹•ã„ã¦ã„ã‚‹çŠ¶æ…‹ã§ã¯çµ‚äº†å‡ºæ¥ãªã„
 	
-	//ƒfƒoƒbƒNˆ—
+	//ãƒ‡ãƒãƒƒã‚¯å‡¦ç†
 	//debug_script_flag = 0;
 //	fss->magic_no = 0;
 
@@ -171,16 +171,16 @@ void FSS_SystemFree(FSS_PTR fss)
 	sys_FreeMemoryEz(fss->def_script);
 	MSGMAN_Delete(fss->def_msgman);
 	
-	sys_FreeMemoryEz(fss);								//ƒXƒNƒŠƒvƒgƒ[ƒN
+	sys_FreeMemoryEz(fss);								//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒgƒ^ƒXƒNì¬
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¿ã‚¹ã‚¯ä½œæˆ
  *
- * @param   fss			ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   scr_id		ƒXƒNƒŠƒvƒgID(FSS_SCENEID_DEFAULT‚Ìê‡‚Í•W€ƒXƒNƒŠƒvƒgg—p)
- * @param   event_id	ƒCƒxƒ“ƒgID
+ * @param   fss			ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID(FSS_SCENEID_DEFAULTã®å ´åˆã¯æ¨™æº–ã‚¹ã‚¯ãƒªãƒ—ãƒˆä½¿ç”¨)
+ * @param   event_id	ã‚¤ãƒ™ãƒ³ãƒˆID
  *
  * @retval  
  */
@@ -200,26 +200,26 @@ void FSS_ScrTaskAdd(FSS_PTR fss, int scene_id, int event_id)
 		core->msgman = fss->def_msgman;
 	}
 	else{
-		//ƒXƒNƒŠƒvƒgƒf[ƒ^AƒƒbƒZ[ƒWƒf[ƒ^“Ç‚İ‚İ
+		//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		FSS_SetScriptData(&core->pScript, &core->msgman, scene_id, fss->heap_id);
 	}
 	
-	FSST_Start( core, core->pScript );				//‰¼‘zƒ}ƒVƒ“‚ÉƒR[ƒhİ’è
+	FSST_Start( core, core->pScript );				//ä»®æƒ³ãƒã‚·ãƒ³ã«ã‚³ãƒ¼ãƒ‰è¨­å®š
 	FSS_EventDataIDJump( core, event_id );
-//	VM_SetWork( core, (void *)fsys->event );		//ƒRƒ}ƒ“ƒh‚È‚Ç‚ÅQÆ‚·‚éƒ[ƒNƒZƒbƒg
+//	VM_SetWork( core, (void *)fsys->event );		//ã‚³ãƒãƒ³ãƒ‰ãªã©ã§å‚ç…§ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ
 
 	FSS_TaskPointerSet(fss, core);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€ƒ[ƒN‚ÉV‚µ‚­‰¼‘zƒ}ƒVƒ“‚Ìƒ|ƒCƒ“ƒ^‚ğ’Ç‰Á‚·‚é
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã«æ–°ã—ãä»®æƒ³ãƒã‚·ãƒ³ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿½åŠ ã™ã‚‹
  *
- * @param   fss				ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   fss_task		’Ç‰Á‚·‚é‰¼‘zƒ}ƒVƒ“‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fss				ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   fss_task		è¿½åŠ ã™ã‚‹ä»®æƒ³ãƒã‚·ãƒ³ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:¬Œ÷
- * @retval  FALSE:¸”s
+ * @retval  TRUE:æˆåŠŸ
+ * @retval  FALSE:å¤±æ•—
  */
 //--------------------------------------------------------------
 static BOOL FSS_TaskPointerSet(FSS_PTR fss, FSS_TASK *fss_task)
@@ -234,13 +234,13 @@ static BOOL FSS_TaskPointerSet(FSS_PTR fss, FSS_TASK *fss_task)
 		}
 	}
 	
-	GF_ASSERT(0 && "ƒ^ƒXƒN‚ªŠù‚É‚¢‚Á‚Ï‚¢");
+	GF_ASSERT(0 && "ã‚¿ã‚¹ã‚¯ãŒæ—¢ã«ã„ã£ã±ã„");
 	return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒg‹¤’Êíœˆ—
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆå…±é€šå‰Šé™¤å‡¦ç†
  * @param   core		
  */
 //--------------------------------------------------------------
@@ -250,7 +250,7 @@ static void FSS_ScrTaskDel(FSS_PTR fss, FSS_TASK *core)
 		MSGMAN_Delete( core->msgman );
 	}
 	if(core->pScript != fss->def_script){
-		sys_FreeMemoryEz( core->pScript );			//ƒXƒNƒŠƒvƒgƒf[ƒ^
+		sys_FreeMemoryEz( core->pScript );			//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿
 	}
 	
 	sys_FreeMemoryEz( core );
@@ -258,15 +258,15 @@ static void FSS_ScrTaskDel(FSS_PTR fss, FSS_TASK *core)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‰Šúİ’è
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯åˆæœŸè¨­å®š
  *
- * @param	fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	fss			ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	scr_id		ƒXƒNƒŠƒvƒgID
- * @param	obj			˜b‚µ‚©‚¯‘ÎÛOBJ‚Ìƒ|ƒCƒ“ƒ^
- * @param	ret_wk		ƒXƒNƒŠƒvƒgŒ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	fss			ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+ * @param	obj			è©±ã—ã‹ã‘å¯¾è±¡OBJã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ret_wk		ã‚¹ã‚¯ãƒªãƒ—ãƒˆçµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"ƒXƒNƒŠƒvƒg§Œäƒ[ƒN‚ÌƒAƒhƒŒƒX"
+ * @retval	"ã‚¹ã‚¯ãƒªãƒ—ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹"
  */
 //--------------------------------------------------------------
 static void FssScriptWork_Init(FSS_PTR fss, u16 scene_id, TARGET_OBJ_PTR obj, void* ret_wk )
@@ -274,23 +274,23 @@ static void FssScriptWork_Init(FSS_PTR fss, u16 scene_id, TARGET_OBJ_PTR obj, vo
 //	u16* objid = GetEvScriptWorkMemberAdrs_Sub( fss, ID_EVSCR_WK_TARGET_OBJID );
 
 	//DIR_NOT = -1
-//	fss->player_dir = Player_DirGet(fsys->player);	//ƒCƒxƒ“ƒg‹N“®‚ÌålŒö‚ÌŒü‚«ƒZƒbƒg
-//	fss->target_obj = obj;							//˜b‚µ‚©‚¯‘ÎÛOBJ‚Ìƒ|ƒCƒ“ƒ^ƒZƒbƒg
-//	fss->script_id  = scr_id;						//ƒƒCƒ“‚ÌƒXƒNƒŠƒvƒgID
-//	fss->ret_script_wk = ret_wk;						//ƒXƒNƒŠƒvƒgŒ‹‰Ê‚ğ‘ã“ü‚·‚éƒ[ƒN
+//	fss->player_dir = Player_DirGet(fsys->player);	//ã‚¤ãƒ™ãƒ³ãƒˆèµ·å‹•æ™‚ã®ä¸»äººå…¬ã®å‘ãã‚»ãƒƒãƒˆ
+//	fss->target_obj = obj;							//è©±ã—ã‹ã‘å¯¾è±¡OBJã®ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
+//	fss->script_id  = scr_id;						//ãƒ¡ã‚¤ãƒ³ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+//	fss->ret_script_wk = ret_wk;						//ã‚¹ã‚¯ãƒªãƒ—ãƒˆçµæœã‚’ä»£å…¥ã™ã‚‹ãƒ¯ãƒ¼ã‚¯
 
 	if( obj != NULL ){
-//		*objid = FieldOBJ_OBJIDGet(obj);			//˜b‚µ‚©‚¯‘ÎÛOBJID‚ÌƒZƒbƒg
+//		*objid = FieldOBJ_OBJIDGet(obj);			//è©±ã—ã‹ã‘å¯¾è±¡OBJIDã®ã‚»ãƒƒãƒˆ
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ][ƒ“ƒXƒNƒŠƒvƒgƒf[ƒ^ƒZƒbƒg
+ * @brief   ã‚¾ãƒ¼ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
  * @param   fss			
  * @param   core		
- * @param   scr_id		ƒXƒNƒŠƒvƒgID
+ * @param   scr_id		ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
  */
 //--------------------------------------------------------------
 static void FSS_SetScriptData(FSS_CODE **code, MSGDATA_MANAGER **msgman, int scene_id, int heap_id)
@@ -300,28 +300,28 @@ static void FSS_SetScriptData(FSS_CODE **code, MSGDATA_MANAGER **msgman, int sce
 	scr_id = FSS_SceneParamGet(scene_id, FSS_SCENE_DATA_SCRID);
 	msg_id = FSS_SceneParamGet(scene_id, FSS_SCENE_DATA_MSGID);
 
-	//ƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹‚ğƒ[ƒh
+	//ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰
 	OS_TPrintf("scene = %d, scr = %d, msg = %d\n", scene_id, scr_id, msg_id);
 	*code = ArchiveDataLoadMalloc(ARC_FRONTIER_SCRIPT, scr_id, heap_id);
 
-	//ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	*msgman = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, msg_id, heap_id );
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€‚Åg—p‚µ‚Ä‚¢‚é•W€ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚ğV‚µ‚¢ƒV[ƒ“‚Ì
- * 			ƒƒbƒZ[ƒWƒf[ƒ^‚Åƒ}ƒl[ƒWƒƒ‚ğì‚è’¼‚µ‚ÄAg—p‚µ‚Ä‚¢‚é‰¼‘zƒ}ƒVƒ“‚Ì
- *			ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚Ìƒ|ƒCƒ“ƒ^‚ğV‚µ‚¢‚Ù‚¤‚Åİ’è‚µ‚È‚¨‚·
+ * @brief   ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ã§ä½¿ç”¨ã—ã¦ã„ã‚‹æ¨™æº–ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ã‚’æ–°ã—ã„ã‚·ãƒ¼ãƒ³ã®
+ * 			ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã§ãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ä½œã‚Šç›´ã—ã¦ã€ä½¿ç”¨ã—ã¦ã„ã‚‹ä»®æƒ³ãƒã‚·ãƒ³ã®
+ *			ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒã‚¤ãƒ³ã‚¿ã‚’æ–°ã—ã„ã»ã†ã§è¨­å®šã—ãªãŠã™
  *
- * @param   fss					ƒXƒNƒŠƒvƒgƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   new_scene_id		V‚µ‚¢ƒV[ƒ“‚ÌID
- * @param   heap_id				ƒq[ƒvID
+ * @param   fss					ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   new_scene_id		æ–°ã—ã„ã‚·ãƒ¼ãƒ³ã®ID
+ * @param   heap_id				ãƒ’ãƒ¼ãƒ—ID
  *
- * •W€ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚ğg—p‚µ‚Ä‚¢‚È‚¢‰¼‘zƒ}ƒVƒ“‚É‚Â‚¢‚Ä‚Í‰½‚às‚í‚ê‚Ü‚¹‚ñ
+ * æ¨™æº–ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ä½¿ç”¨ã—ã¦ã„ãªã„ä»®æƒ³ãƒã‚·ãƒ³ã«ã¤ã„ã¦ã¯ä½•ã‚‚è¡Œã‚ã‚Œã¾ã›ã‚“
  *
- * ‚±‚ÌŠÖ”‚ÍƒXƒNƒŠƒvƒg‚©‚çMAP_CHANGE‚ÅƒV[ƒ“ID‚ğ•ÏX‚µ‚½ê‡A‚»‚ÌƒV[ƒ“ƒf[ƒ^‚ÌƒƒbƒZ[ƒW‚ğ
- * g‚¤‚æ‚¤‚É‚·‚éˆ×‚É—pˆÓ‚³‚ê‚½‚à‚Ì‚Å‚·B
+ * ã“ã®é–¢æ•°ã¯ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰MAP_CHANGEã§ã‚·ãƒ¼ãƒ³IDã‚’å¤‰æ›´ã—ãŸå ´åˆã€ãã®ã‚·ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’
+ * ä½¿ã†ã‚ˆã†ã«ã™ã‚‹ç‚ºã«ç”¨æ„ã•ã‚ŒãŸã‚‚ã®ã§ã™ã€‚
  */
 //--------------------------------------------------------------
 void FSS_MsgManageSceneChange(FSS_PTR fss, int new_scene_id, int heap_id)
@@ -343,8 +343,8 @@ void FSS_MsgManageSceneChange(FSS_PTR fss, int new_scene_id, int heap_id)
 		core = fss->fss_task[i];
 		if(core != NULL){
 			if(core->msgman == fss->def_msgman){
-				//ƒfƒtƒHƒ‹ƒg‚ÌƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚ğg‚Á‚Ä‚¢‚é‚È‚çV‚µ‚¢ƒV[ƒ“‚Ì
-				//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚Éİ’è‚µ‚È‚¨‚·
+				//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ä½¿ã£ã¦ã„ã‚‹ãªã‚‰æ–°ã—ã„ã‚·ãƒ¼ãƒ³ã®
+				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ã«è¨­å®šã—ãªãŠã™
 				core->msgman = new_msgman;
 			}
 		}
@@ -356,12 +356,12 @@ void FSS_MsgManageSceneChange(FSS_PTR fss, int new_scene_id, int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   param_work‚Ì’l‚ğƒƒ‚ƒŠ‚ğŠm•Û‚µ‚ÄA‚»‚±‚ÉƒoƒbƒNƒAƒbƒv‚µ‚Ü‚·
+ * @brief   param_workã®å€¤ã‚’ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã¦ã€ãã“ã«ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã—ã¾ã™
  *
  * @param   fss			
- * @param   heap_id		ƒq[ƒvID
+ * @param   heap_id		ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval  ƒoƒbƒNƒAƒbƒvƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚éƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 FS_PARAM_WORK *FSS_ParamWorkBackup(FSS_PTR fss, int heap_id)
@@ -375,13 +375,13 @@ FS_PARAM_WORK *FSS_ParamWorkBackup(FSS_PTR fss, int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   FSS_ParamWorkBackupŠÖ”‚ÅƒoƒbƒNƒAƒbƒv‚µ‚½param_work‚ğ•œ‹A‚³‚¹‚Ü‚·
+ * @brief   FSS_ParamWorkBackupé–¢æ•°ã§ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã—ãŸparam_workã‚’å¾©å¸°ã•ã›ã¾ã™
  *
  * @param   fss		
- * @param   pw		param_work‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   pw		param_workã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * FSS_ParamWorkBackupŠÖ”‚ÆƒZƒbƒg‚Åg—p‚·‚é‚±‚Æ‚ª‘O’ñ‚É‚È‚Á‚Ä‚¢‚Ü‚·B
- * ŠÖ”“à‚Åpw‚Íƒƒ‚ƒŠ‰ğ•ú‚³‚ê‚Ü‚·
+ * FSS_ParamWorkBackupé–¢æ•°ã¨ã‚»ãƒƒãƒˆã§ä½¿ç”¨ã™ã‚‹ã“ã¨ãŒå‰æã«ãªã£ã¦ã„ã¾ã™ã€‚
+ * é–¢æ•°å†…ã§pwã¯ãƒ¡ãƒ¢ãƒªè§£æ”¾ã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------
 void FSS_ParamWorkRecover(FSS_PTR fss, FS_PARAM_WORK *pw)
@@ -392,10 +392,10 @@ void FSS_ParamWorkRecover(FSS_PTR fss, FS_PARAM_WORK *pw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒCƒxƒ“ƒgIDƒWƒƒƒ“ƒv
+ * @brief   ã‚¤ãƒ™ãƒ³ãƒˆIDã‚¸ãƒ£ãƒ³ãƒ—
  *
  * @param   core		
- * @param   event_id	ƒCƒxƒ“ƒgID
+ * @param   event_id	ã‚¤ãƒ™ãƒ³ãƒˆID
  *
  * @retval  
  *
@@ -404,18 +404,18 @@ void FSS_ParamWorkRecover(FSS_PTR fss, FS_PARAM_WORK *pw)
 //--------------------------------------------------------------
 static void FSS_EventDataIDJump( FSS_TASK * core, int event_id )
 {
-	core->PC += (event_id * 4);			//ID•ªi‚ß‚é(adrs‚ªlong‚È‚Ì‚Å*4)
-	core->PC += FSSTGetU32( core );		//ƒ‰ƒxƒ‹ƒIƒtƒZƒbƒg•ªi‚ß‚é
+	core->PC += (event_id * 4);			//IDåˆ†é€²ã‚ã‚‹(adrsãŒlongãªã®ã§*4)
+	core->PC += FSSTGetU32( core );		//ãƒ©ãƒ™ãƒ«ã‚ªãƒ•ã‚»ãƒƒãƒˆåˆ†é€²ã‚ã‚‹
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   param_work‚ÌƒAƒhƒŒƒX‚ğæ“¾‚·‚é
+ * @brief   param_workã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
  *
  * @param   fss			
- * @param   work_no		ƒ[ƒN”Ô†
+ * @param   work_no		ãƒ¯ãƒ¼ã‚¯ç•ªå·
  *
- * @retval  ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @retval  ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------
 u16 * FSS_ParamWorkAdrsGet(FSS_PTR fss, int work_no)
@@ -425,11 +425,11 @@ u16 * FSS_ParamWorkAdrsGet(FSS_PTR fss, int work_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   fmap‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+ * @brief   fmapã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
  * @param   fss		
  *
- * @retval  fmapƒ|ƒCƒ“ƒ^
+ * @retval  fmapãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 FMAP_PTR FSS_GetFMapAdrs(FSS_PTR fss)

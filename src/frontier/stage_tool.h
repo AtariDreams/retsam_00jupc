@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	stage_tool.h
- * @brief	ƒoƒgƒ‹ƒXƒe[ƒWŠÖ˜Aƒc[ƒ‹—Ş
+ * @brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸é–¢é€£ãƒ„ãƒ¼ãƒ«é¡
  * @author	nohara
  * @date	07.06.07
  */
@@ -24,72 +24,72 @@
 
 //============================================================================================
 //
-//	ƒoƒgƒ‹ƒXƒe[ƒW@ƒXƒNƒŠƒvƒgƒ[ƒN
+//	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€€ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¯ãƒ¼ã‚¯
 //
 //============================================================================================
 typedef struct{
 
-	int	heapID;											//ƒq[ƒv
+	int	heapID;											//ãƒ’ãƒ¼ãƒ—
 
-	u8	type;											//ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`Awifiƒ}ƒ‹ƒ`
-	u8	round;											//¡‰½l–ÚH
-	u8	clear_flag;										//7˜AŸ(ƒNƒŠƒA)‚µ‚½‚©ƒtƒ‰ƒO(0‚©1)
-	u8	enemy_level;									//“Gƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
+	u8	type;											//ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒã€wifiãƒãƒ«ãƒ
+	u8	round;											//ä»Šä½•äººç›®ï¼Ÿ
+	u8	clear_flag;										//7é€£å‹(ã‚¯ãƒªã‚¢)ã—ãŸã‹ãƒ•ãƒ©ã‚°(0ã‹1)
+	u8	enemy_level;									//æ•µãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
 
-	u16	rensyou;										//Œ»İ‚Ì˜AŸ”
-	u16	lap;											//Œ»İ‚Ìü‰ñ”
+	u16	rensyou;										//ç¾åœ¨ã®é€£å‹æ•°
+	u16	lap;											//ç¾åœ¨ã®å‘¨å›æ•°
 
-	fx32 sqrt;											//•½•ûª
-	u32	win_cnt;										//Œ»İ‚Ü‚Å‚Ì‘Ÿ—˜”
-	int winlose_flag;									//Ÿ‚¿•‰‚¯ƒtƒ‰ƒO
+	fx32 sqrt;											//å¹³æ–¹æ ¹
+	u32	win_cnt;										//ç¾åœ¨ã¾ã§ã®ç·å‹åˆ©æ•°
+	int winlose_flag;									//å‹ã¡è² ã‘ãƒ•ãƒ©ã‚°
 
-	//“GƒgƒŒ[ƒi[ƒf[ƒ^
-	u16 tr_index[STAGE_LAP_MULTI_ENEMY_MAX];			//ƒgƒŒ[ƒi[indexƒe[ƒuƒ‹[18*2]
+	//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	u16 tr_index[STAGE_LAP_MULTI_ENEMY_MAX];			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼indexãƒ†ãƒ¼ãƒ–ãƒ«[18*2]
 
-	//‘Îí‘Šèƒf[ƒ^Ši”[êŠ
+	//å¯¾æˆ¦ç›¸æ‰‹ãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
 	B_TOWER_PARTNER_DATA tr_data[2];
 
-	//Q‰Á‚µ‚Ä‚¢‚éè‚¿ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®æƒ…å ±
 	u8 mine_poke_pos[STAGE_ENTRY_POKE_MAX];
 	POKEPARTY* p_party;
 
-	//“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u16 enemy_poke_index[STAGE_LAP_MULTI_ENEMY_MAX];	//ƒ|ƒPƒ‚ƒ“indexƒe[ƒuƒ‹
-	B_TOWER_POKEMON enemy_poke[STAGE_LAP_MULTI_ENEMY_MAX];	//ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	u16 dummy_enemy_eom;								//b’èˆ—(EOM‚ª2byte—]Œv‚É‘‚«‚Ü‚ê‚é‚½‚ß)
+	//æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16 enemy_poke_index[STAGE_LAP_MULTI_ENEMY_MAX];	//ãƒã‚±ãƒ¢ãƒ³indexãƒ†ãƒ¼ãƒ–ãƒ«
+	B_TOWER_POKEMON enemy_poke[STAGE_LAP_MULTI_ENEMY_MAX];	//ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16 dummy_enemy_eom;								//æš«å®šå‡¦ç†(EOMãŒ2byteä½™è¨ˆã«æ›¸ãè¾¼ã¾ã‚Œã‚‹ãŸã‚)
 
-	//ƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒCƒv‘I‘ğ‰æ–Ê‚Ö“n‚·—p‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	//ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ã‚¤ãƒ—é¸æŠç”»é¢ã¸æ¸¡ã™ç”¨ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 	u16 ret_work;
 
-	u8 poke_type;										//’§í‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒCƒv
-	u8 csr_pos;											//‘I‘ğ‚µ‚½ˆÊ’u
+	u8 poke_type;										//æŒ‘æˆ¦ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ã‚¤ãƒ—
+	u8 csr_pos;											//é¸æŠã—ãŸä½ç½®
 
-	STAGEDATA* stage_savedata;							//ƒXƒe[ƒWƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	STAGEDATA* stage_savedata;							//ã‚¹ãƒ†ãƒ¼ã‚¸ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	SAVEDATA* sv;
 	void* p_work;
 
-	//ƒ^ƒCƒv‚²‚Æ‚ÌƒŒƒxƒ‹(ƒ‰ƒ“ƒN)
+	//ã‚¿ã‚¤ãƒ—ã”ã¨ã®ãƒ¬ãƒ™ãƒ«(ãƒ©ãƒ³ã‚¯)
 	u8 type_level[STAGE_TYPE_MAX][STAGE_TR_TYPE_MAX/2];	//[4][18/2]	4bit
 
-	u16 itemno[STAGE_ENTRY_POKE_MAX];					//ŠƒAƒCƒeƒ€
+	u16 itemno[STAGE_ENTRY_POKE_MAX];					//æ‰€æŒã‚¢ã‚¤ãƒ†ãƒ 
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//’ÊM—pFƒf[ƒ^ƒoƒbƒtƒ@
+	//é€šä¿¡ç”¨ï¼šãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
 	u16	buf[STAGE_COMM_BUF_LEN];
 	u8	huge_buf[STAGE_HUGE_BUF_LEN];
 	u8	recieve_huge_buf[STAGE_COMM_PLAYER_NUM][STAGE_HUGE_BUF_LEN];
 
-	u16 pair_poke_level[STAGE_ENTRY_POKE_MAX];				//‘Šè‚Ìƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
+	u16 pair_poke_level[STAGE_ENTRY_POKE_MAX];				//ç›¸æ‰‹ã®ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
 
-	//’ÊM—pFŠî–{î•ñ
-	u8	pair_retire_flag;									//ƒŠƒ^ƒCƒ„‚ğ‘I‚ñ‚¾‚©=1
+	//é€šä¿¡ç”¨ï¼šåŸºæœ¬æƒ…å ±
+	u8	pair_retire_flag;									//ãƒªã‚¿ã‚¤ãƒ¤ã‚’é¸ã‚“ã ã‹=1
 
 	POKEMON_PARAM* pair_poke;
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 
-	//’ÊM‚Ì‘—óMƒoƒbƒtƒ@
-	u8 recieve_count;										//óMƒf[ƒ^‚ğó‚¯æ‚Á‚½l”‚ğƒJƒEƒ“ƒg
+	//é€šä¿¡ã®é€å—ä¿¡ãƒãƒƒãƒ•ã‚¡
+	u8 recieve_count;										//å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã£ãŸäººæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 
 	u32 dummy_work;
 }STAGE_SCRWORK;
@@ -97,7 +97,7 @@ typedef struct{
 
 //============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //============================================================================================
 extern void Stage_CreateTrType( u8 csr_pos, u8 set_num, u8 rank, u8 round, u16 tr_index[] );

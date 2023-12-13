@@ -1,7 +1,7 @@
 #ifndef _T01_DEF_H_
 #define _T01_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T01_FLAG_CHANGE		(1)
 #define	SCRID_T01_RIVAL		(2)
 #define	SCRID_T01_STOP		(3)
@@ -11,6 +11,6 @@
 #define	SCRID_T01_SIGN1		(7)
 #define	SCRID_T01_SIGN2		(8)
 #define	SCRID_T01_SIGN3		(9)
-#define	SCRID_T01_DATA_MAX		(9)		//最大数
+#define	SCRID_T01_DATA_MAX		(9)		//譛螟ｧ謨ｰ
 
 #endif //_T01_DEF_H_

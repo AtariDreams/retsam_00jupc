@@ -1,12 +1,12 @@
 #ifndef _C02PC0101_DEF_H_
 #define _C02PC0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_C02PC0101_PCWOMAN1		(1)
 #define	SCRID_C02PC0101_WOMAN1		(2)
 #define	SCRID_C02PC0101_GIRL1		(3)
 #define	SCRID_C02PC0101_ASSISTANTM		(4)
 #define	SCRID_C02PC0101_BOY1		(5)
-#define	SCRID_C02PC0101_DATA_MAX		(5)		//最大数
+#define	SCRID_C02PC0101_DATA_MAX		(5)		//譛螟ｧ謨ｰ
 
 #endif //_C02PC0101_DEF_H_

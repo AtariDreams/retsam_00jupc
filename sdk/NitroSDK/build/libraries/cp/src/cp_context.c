@@ -15,7 +15,7 @@
   Copyright fix
 
   Revision 1.6  2006/08/09 06:38:50  takano_makoto
-  stm, ldm‚ğg—p‚µ‚Ä‚‘¬‰»
+  stm, ldmã‚’ä½¿ç”¨ã—ã¦é«˜é€ŸåŒ–
 
   Revision 1.5  2005/02/28 05:26:03  yosizaki
   do-indent.

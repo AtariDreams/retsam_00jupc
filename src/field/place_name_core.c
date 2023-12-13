@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	place_name.c	
- * @bfief	’n–¼•\¦(í’“•”)
+ * @bfief	åœ°åè¡¨ç¤º(å¸¸é§éƒ¨)
  * @author	Nozomu Saito
  * @date	06.07.11
  *
@@ -21,11 +21,11 @@
 
 //------------------------------------------------------------------
 /**
- * @brief	’n–¼‚Ìæ“¾
- * @param	inPlaceNameCont	’n–¼\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inNameID		’n–¼
- * @param	outName			Ši”[ƒoƒbƒtƒ@
- * @return	u32				•¶š—ñ’·
+ * @brief	åœ°åã®å–å¾—
+ * @param	inPlaceNameCont	åœ°åæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inNameID		åœ°å
+ * @param	outName			æ ¼ç´ãƒãƒƒãƒ•ã‚¡
+ * @return	u32				æ–‡å­—åˆ—é•·
  */
 //------------------------------------------------------------------
 u32 PNC_GetPlaceName(MSGDATA_MANAGER* manager, const int inNameID, STRBUF *outName)
@@ -38,14 +38,14 @@ u32 PNC_GetPlaceName(MSGDATA_MANAGER* manager, const int inNameID, STRBUF *outNa
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ][ƒ“ID‚©‚ç’n–¼‚ğæ“¾
+ * @brief	ã‚¾ãƒ¼ãƒ³IDã‹ã‚‰åœ°åã‚’å–å¾—
  *	
- * @param	inZoneID	ƒ][ƒ“ID
- * @param	inHeapID	ƒq[ƒvID
- * @param	outName		æ“¾’n–¼
+ * @param	inZoneID	ã‚¾ãƒ¼ãƒ³ID
+ * @param	inHeapID	ãƒ’ãƒ¼ãƒ—ID
+ * @param	outName		å–å¾—åœ°å
  * @return	none
  *
- * ¦ƒoƒbƒtƒ@‚Í•K‚¸BUFLEN_PLACE_NAME‚Ì’·‚³•ªŠm•Û‚µ‚Ä‚­‚¾‚³‚¢
+ * â€»ãƒãƒƒãƒ•ã‚¡ã¯å¿…ãšBUFLEN_PLACE_NAMEã®é•·ã•åˆ†ç¢ºä¿ã—ã¦ãã ã•ã„
  */
 //------------------------------------------------------------------
 void PNC_GetPlaceNameFromZoneID(const int inZoneID, const u32 inHeapID, STRBUF *outName)

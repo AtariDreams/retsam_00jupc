@@ -1,19 +1,19 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
-<TITLE>�֐��E�ϐ��Ȃǂ̃l�[�~���O��{���[��</TITLE>
+<TITLE>関数・変数などのネーミング基本ルール</TITLE>
 <LINK rel="stylesheet" href="NitroSDKstandard.css" type="text/css">
 </HEAD>
 <BODY>
-<H1>�֐��E�ϐ��Ȃǂ̃l�[�~���O��{���[��</H1>
-<H2>�J�e�S��</H2>
-<P>Nitro SDK �̊֐��͂��̕���ɉ����ăJ�e�S���Ƃ�΂�镪�ނ�����Ă���l�[�~���O�ł����ꂪ�킩��悤�ɔz������Ă��܂��B</P>
+<H1>関数・変数などのネーミング基本ルール</H1>
+<H2>カテゴリ</H2>
+<P>Nitro SDK の関数はその分野に応じてカテゴリとよばれる分類がされておりネーミングでもそれがわかるように配慮されています。</P>
 <DL>
-  <DT>�J�e�S��
-  <DD>�A���t�@�x�b�g�̑啶�����Q�ȏ㑱��������(�O���t�B�N�X�̂ݐ��������p)
+  <DT>カテゴリ
+  <DD>アルファベットの大文字が２つ以上続いたもの(グラフィクスのみ数字も併用)
   <DD>
   <BLOCKQUOTE>[A-Z][A-Z0-9]+</BLOCKQUOTE>
 </DL>
@@ -22,75 +22,75 @@
   <TBODY>
     <TR>
       <TH align="left">OS</TH>
-      <TD>OS �V�X�e���Ɋւ������</TD>
+      <TD>OS システムに関するもの</TD>
     </TR>
     <TR>
       <TH align="left">G2,G3,GX...</TH>
-      <TD>�O���t�B�N�X�Ɋւ������(��O�I�ɐ������܂܂��)</TD>
+      <TD>グラフィクスに関するもの(例外的に数字が含まれる)</TD>
     </TR>
     <TR>
       <TH align="left">MI</TH>
-      <TD>DMA �Ȃǃ������̂����Ɋւ������</TD>
+      <TD>DMA などメモリのやり取りに関するもの</TD>
     </TR>
     <TR>
       <TH align="left">SVC</TH>
-      <TD>�V�X�e���R�[���Ɋւ������</TD>
+      <TD>システムコールに関するもの</TD>
     </TR>
   </TBODY>
 </TABLE>
 <P align="right">(03/11/13)</P>
-<P align="left">��)�J�e�S���̃��C���v���Z�b�T�ƃT�u�v���Z�b�T�̋�ʂ͂Ȃ��Ȃ�A�S�đ啶���ɓ��ꂳ��܂���</P>
+<P align="left">※)カテゴリのメインプロセッサとサブプロセッサの区別はなくなり、全て大文字に統一されました</P>
 <P align="right">(04/01/18)</P>
-<H2>�֐�</H2>
-<P>�֐��̃l�[�~���O�͈ȉ��̂悤�ɂȂ��Ă��܂��B[����] ��[�ړI��] �͒P�ꖈ�ɐ擪�ꕶ����啶���ɂ��ăA���_�[�X�R�A�Ȃ��ɘA�����܂��B</P>
+<H2>関数</H2>
+<P>関数のネーミングは以下のようになっています。[動詞] や[目的語] は単語毎に先頭一文字を大文字にしてアンダースコアなしに連結します。</P>
 <DL>
-  <DT>���J�֐�(API)
-  <DD>[�J�e�S����] _ [����] [�ړI��Ȃ�]
+  <DT>公開関数(API)
+  <DD>[カテゴリ名] _ [動詞] [目的語など]
   <DD>
-  <BLOCKQUOTE>�� OS_SetInterruptMask, OS_IsLocked</BLOCKQUOTE>
+  <BLOCKQUOTE>例 OS_SetInterruptMask, OS_IsLocked</BLOCKQUOTE>
 </DL>
 <DL>
-  <DT>����J�֐�
-  <DD>[�J�e�S����] i_ [����] [�ړI��Ȃ�]
+  <DT>非公開関数
+  <DD>[カテゴリ名] i_ [動詞] [目的語など]
   <DD>
-  <BLOCKQUOTE>�� OSi_SetInterruptMaskBase</BLOCKQUOTE>
+  <BLOCKQUOTE>例 OSi_SetInterruptMaskBase</BLOCKQUOTE>
 </DL>
 <DL>
-  <DT>static �֐�
-  <DD>���R��
+  <DT>static 関数
+  <DD>自由に
 </DL>
-<P>���������K�Ƃ��Ă��̃��[���ɑ����Ȃ����̂��ꕔ����܂��B(OS_InterruptHandler
-�Ƃ�)</P>
+<P>ただし慣習としてこのルールに則さないものも一部あります。(OS_InterruptHandler
+とか)</P>
 <P align="right">(03/11/13)</P>
-<P>�I�u�W�F�N�g�𐶐�����������֐��̖��̂����߂�Ƃ��� Create ���g���ꍇ��
-Init ���g���ꍇ��2�̕��@���l�����܂��B���̏ꍇ�͖����I�ɔp���̂��߂̊֐��Ăяo�����s�Ȃ�˂ΐ���Ȃ��ꍇ��
-Create ���g�p���A�p���������s�Ȃ��K�v�̂Ȃ��ꍇ�� Init ���g�p����Ƃ����g�����������Ă��������B</P>
+<P>オブジェクトを生成初期化する関数の名称を決めるときに Create を使う場合と
+Init を使う場合の2つの方法が考えられます。この場合は明示的に廃棄のための関数呼び出しを行なわねば成らない場合は
+Create を使用し、廃棄処理を行なう必要のない場合は Init を使用するという使い分けをしてください。</P>
 <P align="right">(03/12/15)</P>
-<H2>�ϐ��^��</H2>
-<P>typedef �ł̃l�[�~���O�͊�{�I�ɂ�GAMECUBE�𓥏P���Ă���̂Ŋ֐��ƌ`�Ԃ������ɂȂ��Ă��܂��B�J�e�S�����̌オ[����]�ł͂Ȃ��Ƃ������ƂȂǂŌ�������K�v������܂��B</P>
+<H2>変数型名</H2>
+<P>typedef でのネーミングは基本的にはGAMECUBEを踏襲しているので関数と形態が同じになっています。カテゴリ名の後が[動詞]ではないということなどで見分ける必要があります。</P>
 <DL>
-  <DT>�ϐ��^��
-  <DD>[�J�e�S����] [����]
+  <DT>変数型名
+  <DD>[カテゴリ名] [名詞]
   <DD>
-  <BLOCKQUOTE>�� OSInterruptCallback</BLOCKQUOTE>
+  <BLOCKQUOTE>例 OSInterruptCallback</BLOCKQUOTE>
 </DL>
 <DL>
-  <DT>�ϐ���(��O)
-  <DD>[�J�e�S����] [����] Mode
+  <DT>変数名(例外)
+  <DD>[カテゴリ名] [動詞] Mode
   <DD>
-  <BLOCKQUOTE>�� OSCopyMode</BLOCKQUOTE>
+  <BLOCKQUOTE>例 OSCopyMode</BLOCKQUOTE>
 </DL>
-<P>��O�Ƃ���API �̓��삻�̂��̂̃R���g���[�������邽�߂̌^�Ƃ��ď�L�̂悤��
-OSCopyMode�Ƃ����`�̂��̂�����܂��B���̏ꍇ GXCopy �Ƃ����悤�Ȋ֐��̓���̃R���g���[���Ɏg�p�����̂ł��傤�B�����悤�Ȃ��̂�
-GXCopyStatues, GXCopyType �Ƃ����̂��l�����܂��B���̂悤�ȏꍇ�ɂ͂��̌`���͎��R�ȃl�[�~���O�Ȃ̂ŔF�߂��Ă��܂������܂藔�p���Ȃ��悤�ɒ��ӂ��Ă��������B</P>
+<P>例外としてAPI の動作そのもののコントロールをするための型として上記のような
+OSCopyModeという形のものもあります。この場合 GXCopy というような関数の動作のコントロールに使用されるのでしょう。同じようなものに
+GXCopyStatues, GXCopyType というのも考えられます。このような場合にはこの形式は自然なネーミングなので認められていますがあまり濫用しないように注意してください。</P>
 <P align="right">(03/11/13)</P>
-<H2>�񋓖��E�}�N����</H2>
-<P>enum, define, const �Œ�`�����萔�͈ȉ��̂悤�Ȍ`���ƂȂ�܂��B</P>
+<H2>列挙名・マクロ名</H2>
+<P>enum, define, const で定義される定数は以下のような形式となります。</P>
 <DL>
-  <DT>�萔��
-  <DD>[�J�e�S����] _ [A-Z0-9_]+
+  <DT>定数名
+  <DD>[カテゴリ名] _ [A-Z0-9_]+
   <DD>
-  <BLOCKQUOTE>�� OS_INTERRUPT_MAX, OS_INTERRUPT_MAX</BLOCKQUOTE>
+  <BLOCKQUOTE>例 OS_INTERRUPT_MAX, OS_INTERRUPT_MAX</BLOCKQUOTE>
 </DL>
 <P align="right">(04/01/18)</P>
 </BODY>

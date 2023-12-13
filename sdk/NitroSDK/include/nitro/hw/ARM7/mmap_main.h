@@ -12,7 +12,7 @@
 
   $Log: mmap_main.h,v $
   Revision 1.9  2005/04/14 07:00:12  yasu
-  ƒƒ‚ƒŠƒ}ƒbƒv}‚ÌC³
+  ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—å›³ã®ä¿®æ­£
 
   Revision 1.8  2005/04/13 12:47:40  terui
   HW_MAIN_MEM_MAIN_SIZE 0x3C0000 -> 0x3E0000
@@ -36,7 +36,7 @@
   small change at define of HW_MAIN_MEM_SUB_SIZE.
 
   Revision 1.1  2004/02/13 01:52:31  yada
-  ARM7—p‚É’Ç‰Á (temporary?)
+  ARM7ç”¨ã«è¿½åŠ  (temporary?)
 
   Revision 1.4  2004/02/05 12:21:14  yasu
   change SDK prefix iris -> nitro
@@ -45,10 +45,10 @@
   change SDK prefix iris -> nitro
 
   Revision 1.2  2003/12/17 06:05:39  yasu
-  mmap_reserved.h ‚ğ mmap_tcm.h ‚Æ mmap_shared.h ‚É•ªŠ„
+  mmap_reserved.h ã‚’ mmap_tcm.h ã¨ mmap_shared.h ã«åˆ†å‰²
 
   Revision 1.1  2003/12/09 08:35:26  yasu
-  ƒƒ‚ƒŠƒ}ƒbƒvü‚è‚ğüV
+  ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—å‘¨ã‚Šã‚’åˆ·æ–°
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

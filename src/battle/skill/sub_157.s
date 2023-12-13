@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_157.s
- *@brief	戦闘シーケンス
- *			じゅうりょくNGシーケンス
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			縺倥ｅ縺�繧翫ｇ縺蒐G繧ｷ繝ｼ繧ｱ繝ｳ繧ｹ
  *@author	HisashiSogabe
  *@data		2006.02.13
  *

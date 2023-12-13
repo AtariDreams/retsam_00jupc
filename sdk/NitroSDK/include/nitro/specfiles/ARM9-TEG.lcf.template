@@ -12,51 +12,51 @@
 #
 #  $Log: ARM9-TEG.lcf.template,v $
 #  Revision 1.39  2007/07/09 12:49:10  yasu
-#  TARGET_NAME ‚ÌƒTƒ|[ƒg
+#  TARGET_NAME ã®ã‚µãƒãƒ¼ãƒˆ
 #
 #  Revision 1.38  2007/07/09 07:12:55  yasu
-#  MAINEX ƒZƒNƒVƒ‡ƒ“‚ÌƒTƒ|[ƒg
+#  MAINEX ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®ã‚µãƒãƒ¼ãƒˆ
 #
 #  Revision 1.37  2007/06/21 00:16:01  yasu
-#  MAINEX ƒZƒOƒƒ“ƒg’è‹`‚ðƒ[ƒ‹ƒoƒbƒN
+#  MAINEX ã‚»ã‚°ãƒ¡ãƒ³ãƒˆå®šç¾©ã‚’ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯
 #
 #  Revision 1.36  2007/06/20 10:32:39  yasu
-#  static initializer ‚â C++ ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Ì Autoload ‘Î‰ž
+#  static initializer ã‚„ C++ ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã® Autoload å¯¾å¿œ
 #
 #  Revision 1.35  2007/06/19 11:55:13  yasu
-#  lcf.template “à‚É MAINEX ‚Ì’è‹`’Ç‰Á
+#  lcf.template å†…ã« MAINEX ã®å®šç¾©è¿½åŠ 
 #
 #  Revision 1.34  2007/04/12 00:11:41  yasu
-#  ’˜ì”N“xC³
+#  è‘—ä½œå¹´åº¦ä¿®æ­£
 #
 #  Revision 1.33  2007/04/10 14:11:11  yasu
-#  •¡”‚Ì SEARCH_SYMBOL ‘Î‰ž
+#  è¤‡æ•°ã® SEARCH_SYMBOL å¯¾å¿œ
 #
 #  Revision 1.32  2006/07/18 11:11:01  yasu
-#  check.xTCM ‚É‚æ‚é TCM —Ìˆæ‚ÌƒI[ƒo[ƒtƒ[ƒ`ƒFƒbƒN‚É‚¨‚¢‚Ä
-#  OVERLAY —Ìˆæ‚ÌƒTƒCƒY‚ÌŽæ“¾•û–@‚ÉŒë‚è‚ª‚ ‚èAŒ»ó³Šm‚ÈŒvŽZ•û–@‚ª
-#  •s–¾‚Å‚ ‚é‚½‚ß OVERLAY —Ìˆæ‚Ì‰ÁŽZ‚ðŽæ‚è‚â‚ß‚½
+#  check.xTCM ã«ã‚ˆã‚‹ TCM é ˜åŸŸã®ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ãƒã‚§ãƒƒã‚¯ã«ãŠã„ã¦
+#  OVERLAY é ˜åŸŸã®ã‚µã‚¤ã‚ºã®å–å¾—æ–¹æ³•ã«èª¤ã‚ŠãŒã‚ã‚Šã€ç¾çŠ¶æ­£ç¢ºãªè¨ˆç®—æ–¹æ³•ãŒ
+#  ä¸æ˜Žã§ã‚ã‚‹ãŸã‚ OVERLAY é ˜åŸŸã®åŠ ç®—ã‚’å–ã‚Šã‚„ã‚ãŸ
 #
 #  Revision 1.31  2006/05/10 03:19:47  yasu
-#  CodeWarrior 2.x ‚ÌƒI[ƒo[ƒŒƒCŠg’£‚Ö‚Ì‘Î‰ž
+#  CodeWarrior 2.x ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤æ‹¡å¼µã¸ã®å¯¾å¿œ
 #
 #  Revision 1.30  2006/03/30 00:31:29  yasu
-#  NUMBER_OVERLAYS ‚ð NUMBER.OVERLAYS ‚ÉC³
+#  NUMBER_OVERLAYS ã‚’ NUMBER.OVERLAYS ã«ä¿®æ­£
 #
 #  Revision 1.29  2006/03/29 13:19:14  yasu
-#  NUMBER_OVERLAYS -> NUMBER.OVERLAYS ‚Ö‚ÌC³
+#  NUMBER_OVERLAYS -> NUMBER.OVERLAYS ã¸ã®ä¿®æ­£
 #
 #  Revision 1.28  2005/09/02 04:14:22  yasu
-#  SDK2.2 ‚Å‚àŽg—p‰Â”\‚Ì‚æ‚¤‚ÉŒÃ‚¢ƒVƒ“ƒ{ƒ‹‚ðÄ’è‹`‚µ‚½
+#  SDK2.2 ã§ã‚‚ä½¿ç”¨å¯èƒ½ã®ã‚ˆã†ã«å¤ã„ã‚·ãƒ³ãƒœãƒ«ã‚’å†å®šç¾©ã—ãŸ
 #
 #  Revision 1.27  2005/08/31 09:34:57  yasu
-#  section_BSS ‚Æ‚¢‚¤‚æ‚¤‚ÈƒZƒNƒVƒ‡ƒ“–¼‚ðŽg‚Á‚½‚Æ‚«‚É³í‚É“®ì‚µ‚È‚¢ê‡‚ª‚ ‚é‚Ì‚ðC³
+#  section_BSS ã¨ã„ã†ã‚ˆã†ãªã‚»ã‚¯ã‚·ãƒ§ãƒ³åã‚’ä½¿ã£ãŸã¨ãã«æ­£å¸¸ã«å‹•ä½œã—ãªã„å ´åˆãŒã‚ã‚‹ã®ã‚’ä¿®æ­£
 #
 #  Revision 1.26  2005/08/26 11:22:16  yasu
-#  ITCM/DTCM ‚Ö‚Ì overlay ‚Ì‘Î‰ž
+#  ITCM/DTCM ã¸ã® overlay ã®å¯¾å¿œ
 #
 #  Revision 1.25  2005/06/20 12:29:20  yasu
-#  Surffix -> Suffix C³
+#  Surffix -> Suffix ä¿®æ­£
 #
 #  Revision 1.24  2005/06/17 03:16:11  yasu
 #  fix copyright header

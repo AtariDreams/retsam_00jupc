@@ -21,9 +21,9 @@ extern "C" {
 #endif // __cplusplus
 
 /** --------------------------------------------------------------------
-  ƒ†[ƒUƒf[ƒ^Ši”[—p‚Ì\‘¢‘Ì
+  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿æ ¼ç´ç”¨ã®æ§‹é€ ä½“
   ----------------------------------------------------------------------*/
-// ƒtƒ‰ƒOƒ`ƒFƒbƒN—p‚Ì\‘¢‘Ì
+// ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯ç”¨ã®æ§‹é€ ä½“
 typedef struct DWCstAccFlag
 {
     u32         flags;
@@ -31,7 +31,7 @@ typedef struct DWCstAccFlag
     u32         reserved1;
 } DWCAccFlag;
 
-// ƒƒOƒCƒ“IDŠi”[—p‚Ì\‘¢‘Ì
+// ãƒ­ã‚°ã‚¤ãƒ³IDæ ¼ç´ç”¨ã®æ§‹é€ ä½“
 typedef struct DWCstAccLoginId
 {
     u32         id_data;
@@ -39,7 +39,7 @@ typedef struct DWCstAccLoginId
     u32         playerid;
 } DWCAccLoginId;
 
-// —F’B“o˜^Œ®—p‚Ì\‘¢‘Ì
+// å‹é”ç™»éŒ²éµç”¨ã®æ§‹é€ ä½“
 typedef struct DWCstAccFriendKey
 {
     u32         id_data;
@@ -47,7 +47,7 @@ typedef struct DWCstAccFriendKey
     u32         friendkey_hi32;
 } DWCAccFriendKey;
 
-// GS Profile ID—p‚Ì\‘¢‘Ì
+// GS Profile IDç”¨ã®æ§‹é€ ä½“
 typedef struct DWCstAccGsProfileId
 {
     u32         id_data;
@@ -55,7 +55,7 @@ typedef struct DWCstAccGsProfileId
     u32         reserved;
 } DWCAccGsProfileId;
 
-// —F’Bî•ñŠi”[—p‚Ì‹¤—p‘Ì 12Bytes
+// å‹é”æƒ…å ±æ ¼ç´ç”¨ã®å…±ç”¨ä½“ 12Bytes
 typedef union DWCstAccFriendData
 {
     DWCAccFlag          flags;
@@ -64,7 +64,7 @@ typedef union DWCstAccFriendData
     DWCAccGsProfileId   gs_profile_id;
 } DWCAccFriendData;
 
-// ©•ª‚Ìƒf[ƒ^Ši”[—p‚Ì\‘¢‘Ì 64Bytes
+// è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿æ ¼ç´ç”¨ã®æ§‹é€ ä½“ 64Bytes
 typedef struct DWCstAccUserData
 {
     int                 size;               // 4
@@ -78,14 +78,14 @@ typedef struct DWCstAccUserData
     u32                 crc32;              // 4
 } DWCAccUserData;
 
-// DWCUserData‚Ì’è‹`
+// DWCUserDataã®å®šç¾©
 typedef DWCAccUserData DWCUserData;
 typedef DWCAccFriendData DWCFriendData;
 
 /** --------------------------------------------------------------------
-  ’è”’è‹`
+  å®šæ•°å®šç¾©
   ----------------------------------------------------------------------*/
-// FriendData—p‚Ì’è‹`
+// FriendDataç”¨ã®å®šç¾©
 #define DWC_ACC_USERDATA_BUFSIZE            64
 
 #define DWC_ACC_USERNAME_STRING_LENGTH      20
@@ -119,7 +119,7 @@ typedef DWCAccFriendData DWCFriendData;
 #define DWC_ACC_USERDATA_DIRTY_MASK               (1u)
 
 /** --------------------------------------------------------------------
-  ŒöŠJ’è‹`
+  å…¬é–‹å®šç¾©
   ----------------------------------------------------------------------*/
 #define DWC_FRIENDDATA_NODATA        DWC_ACC_FRIENDDATA_NODATA
 #define DWC_FRIENDDATA_LOGIN_ID      DWC_ACC_FRIENDDATA_LOGIN_ID
@@ -128,9 +128,9 @@ typedef DWCAccFriendData DWCFriendData;
 #define DWC_FRIENDKEY_STRING_BUFSIZE DWC_ACC_FRIENDKEY_STRING_BUFSIZE
 
 /** --------------------------------------------------------------------
-  ŠÖ”‚ÌŠO•”’è‹`
+  é–¢æ•°ã®å¤–éƒ¨å®šç¾©
   ----------------------------------------------------------------------*/
-// ƒ†[ƒUƒf[ƒ^‚Ìì¬^Šm”F—pB
+// ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã®ä½œæˆï¼ç¢ºèªç”¨ã€‚
 void    DWC_CreateUserData            ( DWCAccUserData* userdata, u32 gamecode );
 BOOL    DWC_CheckUserData             ( const DWCAccUserData* userdata );
 BOOL    DWC_CheckHasProfile           ( const DWCAccUserData* userdata );
@@ -138,7 +138,7 @@ BOOL    DWC_CheckValidConsole         ( const DWCAccUserData* userdata );
 BOOL    DWC_CheckDirtyFlag            ( const DWCAccUserData* userdata );
 void    DWC_ClearDirtyFlag            ( DWCAccUserData* userdata );
 
-// —F’BŠÖŒW
+// å‹é”é–¢ä¿‚
 u64     DWC_GetFriendKey              ( const DWCAccFriendData* frienddata );
 u64     DWC_CreateFriendKey           ( const DWCAccUserData*   userdata );
 void    DWC_CreateExchangeToken       ( const DWCAccUserData*   userdata, DWCAccFriendData* token );
@@ -151,19 +151,19 @@ BOOL    DWC_IsBuddyFriendData         ( const DWCAccFriendData* frienddata );
 int     DWC_GetFriendDataType         ( const DWCAccFriendData* frienddata );
 void    DWC_ClearBuddyFlagFriendData  ( DWCAccFriendData*       frienddata );
 
-// —F’BŒŸõ—p
+// å‹é”æ¤œç´¢ç”¨
 int     DWC_GetGsProfileId            ( const DWCAccUserData* userdata, const DWCAccFriendData* frienddata );
 void    DWC_LoginIdToUserName         ( const DWCAccUserData* userdata, const DWCAccFriendData* frienddata, char* username );
 
-// ƒfƒoƒbƒO—p
+// ãƒ‡ãƒãƒƒã‚°ç”¨
 void    DWC_ReportFriendData          ( const DWCAccUserData* userdata, const DWCAccFriendData* frienddata );
 void    DWC_ReportUserData            ( const DWCAccUserData* userdata );
 
-// —F’B“o˜^Œ®ŠÖŒW
+// å‹é”ç™»éŒ²éµé–¢ä¿‚
 u64     DWC_StringToFriendKey         ( const char* string );
 void    DWC_FriendKeyToString         ( char* string, u64 friendKey );
 
-// “à•”ŠÖ”B
+// å†…éƒ¨é–¢æ•°ã€‚
 void    DWCi_Acc_CreateUserData       ( DWCAccUserData* userdata, u32 gamecode );
 void    DWCi_Acc_CreateTempLoginId    ( DWCAccLoginId* loginid );
 

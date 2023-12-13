@@ -1,5 +1,5 @@
 /**
- *	@brief	ƒMƒlƒXƒz[ƒ‹ƒZ[ƒuƒf[ƒ^—Ìˆæ’è‹`
+ *	@brief	ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿é ˜åŸŸå®šç¾©
  *	
  */
 
@@ -16,32 +16,32 @@
 #define __GUINNESS_H_GLOBAL
 #include "savedata/guinness.h"
 
-#include "system/pm_str.h"	//“Á•Ê
-#include "gflib/strbuf_family.h"	//“Á•Ê
+#include "system/pm_str.h"	//ç‰¹åˆ¥
+#include "gflib/strbuf_family.h"	//ç‰¹åˆ¥
 
 /**
- * ƒ^ƒCƒv•ÊƒMƒlƒXƒf[ƒ^‚ÌƒAƒNƒZƒXƒe[ƒuƒ‹
+ * ã‚¿ã‚¤ãƒ—åˆ¥ã‚®ãƒã‚¹ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ã‚¯ã‚»ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
  *
- * 0:ƒ^ƒCƒv“àƒf[ƒ^ƒuƒƒbƒN”
- * 1:GNSIDƒIƒtƒZƒbƒg
+ * 0:ã‚¿ã‚¤ãƒ—å†…ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯æ•°
+ * 1:GNSIDã‚ªãƒ•ã‚»ãƒƒãƒˆ
  */
 static const u8 rankingTable[][2] = {
 	{6,0},{4,6},{3,10}
 }; 
 
-///ƒ^ƒCƒv•Ê‚ÌƒuƒƒbƒN”‚ğ•Ô‚·
+///ã‚¿ã‚¤ãƒ—åˆ¥ã®ãƒ–ãƒ­ãƒƒã‚¯æ•°ã‚’è¿”ã™
 u8 GNSRank_GetTypeBlockNum(GNSTYPE type) 
 {
 	return rankingTable[type][0];
 }
-///ƒ^ƒCƒv•Ê‚ÌGNSIDƒIƒtƒZƒbƒg‚ğ•Ô‚·
+///ã‚¿ã‚¤ãƒ—åˆ¥ã®GNSIDã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¿”ã™
 u8 GNSRank_GetTypeGNSIDOfs(GNSTYPE type)
 {
 	return rankingTable[type][1];
 }
 
 /**
- *	@brief	ƒMƒlƒXƒf[ƒ^@ƒNƒŠƒA
+ *	@brief	ã‚®ãƒã‚¹ãƒ‡ãƒ¼ã‚¿ã€€ã‚¯ãƒªã‚¢
  */
 void GNS_DataClear(GUINNESS_DATA* dat)
 {
@@ -54,7 +54,7 @@ void GNS_DataClear(GUINNESS_DATA* dat)
 }
 
 /**
- *	@brief	ƒMƒlƒXƒf[ƒ^@ƒRƒs[
+ *	@brief	ã‚®ãƒã‚¹ãƒ‡ãƒ¼ã‚¿ã€€ã‚³ãƒ”ãƒ¼
  */
 void GNS_DataCopy(const GUINNESS_DATA* src,GUINNESS_DATA* dest)
 {
@@ -65,9 +65,9 @@ void GNS_DataCopy(const GUINNESS_DATA* src,GUINNESS_DATA* dest)
 }
 
 /**
- *	@brief	ƒMƒlƒXƒf[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©H
+ *	@brief	ã‚®ãƒã‚¹ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹ï¼Ÿ
  *
- *	––¼‘O•¶š—ñ‚ªNULL•¶š—ñ‚È‚ç‹ó
+ *	ï¼Šåå‰æ–‡å­—åˆ—ãŒNULLæ–‡å­—åˆ—ãªã‚‰ç©º
  */
 BOOL GNS_IsEnable(GUINNESS_DATA* dat)
 {
@@ -78,7 +78,7 @@ BOOL GNS_IsEnable(GUINNESS_DATA* dat)
 }
 
 /**
- *	@brief	ƒMƒlƒXƒz[ƒ‹@ƒf[ƒ^ƒTƒCƒY
+ *	@brief	ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ã€€ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 int	GuinnessData_GetWorkSize(void)
 {
@@ -86,7 +86,7 @@ int	GuinnessData_GetWorkSize(void)
 }
 
 /**
- *	@brief	ƒMƒlƒXƒz[ƒ‹@ƒf[ƒ^‰Šú‰»
+ *	@brief	ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ã€€ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  */
 void GuinnessData_Init(GUINNESS* dat)
 {
@@ -105,7 +105,7 @@ void GuinnessData_Init(GUINNESS* dat)
 }
 
 /**
- *	@brief	ƒMƒlƒXƒz[ƒ‹@ƒf[ƒ^ƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ *	@brief	ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ã€€ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  */
 GUINNESS* SaveData_GetGuinnessData(SAVEDATA* sv)
 {
@@ -116,7 +116,7 @@ GUINNESS* SaveData_GetGuinnessData(SAVEDATA* sv)
 }
 
 /**
- *	@brief	ƒMƒlƒX@w’è‚µ‚½ƒf[ƒ^‚ğÁ‹‚·‚é
+ *	@brief	ã‚®ãƒã‚¹ã€€æŒ‡å®šã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆå»ã™ã‚‹
  */
 void GuinnessData_DelRecord(GUINNESS* dat,GNSID id,u8 idx)
 {
@@ -125,7 +125,7 @@ void GuinnessData_DelRecord(GUINNESS* dat,GNSID id,u8 idx)
 	
 	if(idx >= GNS_DATA_NUM){
 		GF_ASSERT(idx < GNS_DATA_NUM && "GNS Recoed Del -> idx over\n")
-		return;	//‰½‚à‚µ‚È‚¢
+		return;	//ä½•ã‚‚ã—ãªã„
 	}
 	bp = &(dat->block[id]);
 
@@ -138,7 +138,7 @@ void GuinnessData_DelRecord(GUINNESS* dat,GNSID id,u8 idx)
 #endif //CRC_LOADCHECK
 }
 /**
- *	@brief	ƒMƒlƒX@ƒŒƒR[ƒh‘—Mƒf[ƒ^ƒTƒCƒYæ“¾
+ *	@brief	ã‚®ãƒã‚¹ã€€ãƒ¬ã‚³ãƒ¼ãƒ‰é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
  */
 int GuinnessRecord_GetWorkSize(void)
 {
@@ -146,9 +146,9 @@ int GuinnessRecord_GetWorkSize(void)
 }
 
 /**
- *	@brief	©•ª‚Ì‹L˜^‚ğu32[GNS_RECORD_NUM]”z—ñ‚ÉŠi”[‚µ‚Ä•Ô‚·
+ *	@brief	è‡ªåˆ†ã®è¨˜éŒ²ã‚’u32[GNS_RECORD_NUM]é…åˆ—ã«æ ¼ç´ã—ã¦è¿”ã™
  *
- *	–ŒÄ‚Ño‚µ‘¤‚ª‚«‚¿‚ñ‚Æƒƒ‚ƒŠ‰ğ•ú‚·‚é‚±‚Æ
+ *	ï¼Šå‘¼ã³å‡ºã—å´ãŒãã¡ã‚“ã¨ãƒ¡ãƒ¢ãƒªè§£æ”¾ã™ã‚‹ã“ã¨
  */
 static u32* guinness_AllocMyRecord(SAVEDATA* sv,int heapID)
 {
@@ -179,19 +179,19 @@ static u32* guinness_AllocMyRecord(SAVEDATA* sv,int heapID)
 
 	for(i = 0;i < GNS_RECORD_NUM;i++){
 		switch(i){
-		case GNSID_GLB_WIN:	//•½‹ÏŸ‚¿”²‚«”
+		case GNSID_GLB_WIN:	//å¹³å‡å‹ã¡æŠœãæ•°
 			value = RECORD_Get(record,RECID_BTOWER_CHALLENGE);
 			if(value > 0){
 				value = RECORD_Get(record,RECID_BTOWER_WIN)/value;	
 			}
 			data[i] = value;
 			break;
-		case GNSID_GLC_GPX:	//ƒRƒ“ƒeƒXƒg—DŸ‰ñ”
+		case GNSID_GLC_GPX:	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå„ªå‹å›æ•°
 			value = RECORD_Get(record,RECID_CONTEST_GPX);
 			value += RECORD_Get(record,RECID_CONTEST_COMM_GPX);
 			data[i] = value;
 			break;
-		case GNSID_GLC_GPXPER:	//ƒRƒ“ƒeƒXƒg—DŸ—¦
+		case GNSID_GLC_GPXPER:	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆå„ªå‹ç‡
 			value = RECORD_Get(record,RECID_CONTEST_ENTRY);
 			value += RECORD_Get(record,RECID_CONTEST_COMM_ENTRY);
 			if(value > 0){
@@ -215,7 +215,7 @@ static u32* guinness_AllocMyRecord(SAVEDATA* sv,int heapID)
 }
 
 /**
- *	@brief	ƒMƒlƒX@ƒŒƒR[ƒh‘—Mƒf[ƒ^ì¬
+ *	@brief	ã‚®ãƒã‚¹ã€€ãƒ¬ã‚³ãƒ¼ãƒ‰é€ä¿¡ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  */
 void* GuinnessRecord_SendDataAlloc(SAVEDATA* sv,int heapID)
 {
@@ -230,14 +230,14 @@ void* GuinnessRecord_SendDataAlloc(SAVEDATA* sv,int heapID)
 	gp = sys_AllocMemoryLo(heapID,sizeof(GUINNESS_RECORD));
 	MI_CpuClear8(gp,sizeof(GUINNESS_RECORD));
 
-	//ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒvIDæ“¾
+	//ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—IDå–å¾—
 	groupID = RandomGroup_GetRandomSeed(
 			SaveData_GetRandomGroup(sv),RANDOMGROUP_MYUSE );
 
-	//–¼‘Oæ“¾
+	//åå‰å–å¾—
 	name = MyStatus_CreateNameString(my,heapID);
 	
-	//©•ª‚Ì‹L˜^‚ğæ“¾
+	//è‡ªåˆ†ã®è¨˜éŒ²ã‚’å–å¾—
 	record = guinness_AllocMyRecord(sv,heapID);
 
 	for(i = 0;i < GNS_RECORD_NUM;i++){
@@ -255,7 +255,7 @@ void* GuinnessRecord_SendDataAlloc(SAVEDATA* sv,int heapID)
 	return gp;
 }
 
-//ƒOƒ‹[ƒvID‚ª•ÏX‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
+//ã‚°ãƒ«ãƒ¼ãƒ—IDãŒå¤‰æ›´ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
 static BOOL gnsRecord_IsUpdateGroupData(GUINNESS* gnsSave,u32 groupID)
 {
 	int i,j;
@@ -273,7 +273,7 @@ static BOOL gnsRecord_IsUpdateGroupData(GUINNESS* gnsSave,u32 groupID)
 	}
 	return FALSE;
 }
-//ƒuƒƒbƒN‚ğˆê’U”jŠü‚·‚é
+//ãƒ–ãƒ­ãƒƒã‚¯ã‚’ä¸€æ—¦ç ´æ£„ã™ã‚‹
 static void gnsRecord_ClearBlockData(GUINNESS_BLOCK* block)
 {
 	int i;
@@ -282,7 +282,7 @@ static void gnsRecord_ClearBlockData(GUINNESS_BLOCK* block)
 	}
 }
 
-//ƒOƒ‹[ƒvƒŒƒR[ƒh‚ğˆê’U”jŠü‚·‚é
+//ã‚°ãƒ«ãƒ¼ãƒ—ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’ä¸€æ—¦ç ´æ£„ã™ã‚‹
 static void gnsRecord_ClearGroupData(GUINNESS* gns)
 {
 	int i;
@@ -293,16 +293,16 @@ static void gnsRecord_ClearGroupData(GUINNESS* gns)
 #define RECMIX_NUM	(5+GNS_DATA_NUM)
 
 typedef struct _RECMIX{
-	int	snum;	//ƒ\[ƒX‚Ì”
-	int	lnum;	//óMƒf[ƒ^‚Ì”
-	int	dnum;	//—LŒøƒf[ƒ^‘”
+	int	snum;	//ã‚½ãƒ¼ã‚¹ã®æ•°
+	int	lnum;	//å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®æ•°
+	int	dnum;	//æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ç·æ•°
 
 	GUINNESS_DATA*	pList[RECMIX_NUM];
 	GUINNESS_DATA*	pSrc[GNS_DATA_NUM];
-	GUINNESS_BLOCK	block;	//ƒuƒƒbƒNƒf[ƒ^‚ÌÀ‘Ìƒ[ƒN
+	GUINNESS_BLOCK	block;	//ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®å®Ÿä½“ãƒ¯ãƒ¼ã‚¯
 }RECMIX;
 
-//“¯‚¶ƒvƒŒƒCƒ„[‚Ìƒf[ƒ^‚©‚Ç‚¤‚©”»•Ê
+//åŒã˜ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹åˆ¤åˆ¥
 static BOOL gnsRecord_IsSamePlayer(const GUINNESS_DATA* d1,const GUINNESS_DATA* d2)
 {
 	if(d1->groupID != d2->groupID){
@@ -315,7 +315,7 @@ static BOOL gnsRecord_IsSamePlayer(const GUINNESS_DATA* d1,const GUINNESS_DATA* 
 }
 
 /**
- *	@brief	“¯‚¶ƒvƒŒƒCƒ„[‚Ìƒf[ƒ^‚ªóMƒf[ƒ^“à‚É‚ ‚é‚©H
+ *	@brief	åŒã˜ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ‡ãƒ¼ã‚¿ãŒå—ä¿¡ãƒ‡ãƒ¼ã‚¿å†…ã«ã‚ã‚‹ã‹ï¼Ÿ
  */
 static BOOL gnsRecord_IsSamePlayerExist(RECMIX* wk,const GUINNESS_DATA* src)
 {
@@ -329,7 +329,7 @@ static BOOL gnsRecord_IsSamePlayerExist(RECMIX* wk,const GUINNESS_DATA* src)
 	return FALSE;
 }
 
-//ƒŒƒR[ƒhƒ\[ƒg
+//ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚½ãƒ¼ãƒˆ
 static void gnsRecord_GetMixData(GUINNESS* gns,RECMIX* wk,u32 groupID,u8 id,u8 mode,
 		GUINNESS_RECORD** src,u8 num,int heapID)
 {
@@ -339,13 +339,13 @@ static void gnsRecord_GetMixData(GUINNESS* gns,RECMIX* wk,u32 groupID,u8 id,u8 m
 	
 	MI_CpuClear8(wk,sizeof(RECMIX));
 
-	if(mode == 0){	//ƒOƒ[ƒoƒ‹
+	if(mode == 0){	//ã‚°ãƒ­ãƒ¼ãƒãƒ«
 		gp = &(gns->block[id]);
 
-		//ƒf[ƒ^À‘Ì‚ğƒeƒ“ƒ|ƒ‰ƒŠ‚ÉƒRƒs[‚µ‚Ä•Û‘¶
+		//ãƒ‡ãƒ¼ã‚¿å®Ÿä½“ã‚’ãƒ†ãƒ³ãƒãƒ©ãƒªã«ã‚³ãƒ”ãƒ¼ã—ã¦ä¿å­˜
 		MI_CpuCopy8(gp,&(wk->block),sizeof(GUINNESS_BLOCK));
 
-		//ƒOƒ[ƒoƒ‹óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+		//ã‚°ãƒ­ãƒ¼ãƒãƒ«å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		for(i = 0;i < num;i++){
 			wk->pList[wk->lnum++] = &(src[i]->dat[id]);
 		}
@@ -355,17 +355,17 @@ static void gnsRecord_GetMixData(GUINNESS* gns,RECMIX* wk,u32 groupID,u8 id,u8 m
 				continue;
 			}
 			if(gnsRecord_IsSamePlayerExist(wk,&(wk->block.dat[i]))){
-				continue;	//“¯‚¶l‚Ìƒf[ƒ^‚ª‚ ‚é‚ÍóMƒf[ƒ^—Dæ
+				continue;	//åŒã˜äººã®ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹æ™‚ã¯å—ä¿¡ãƒ‡ãƒ¼ã‚¿å„ªå…ˆ
 			}
 			wk->pSrc[wk->snum++] = &(wk->block.dat[i]);
 		}
-	}else{	//ƒOƒ‹[ƒv
+	}else{	//ã‚°ãƒ«ãƒ¼ãƒ—
 		gp = &(gns->block[id+GNS_RECORD_NUM]);
 		
-		//ƒf[ƒ^À‘Ì‚ğƒeƒ“ƒ|ƒ‰ƒŠ‚ÉƒRƒs[‚µ‚Ä•Û‘¶
+		//ãƒ‡ãƒ¼ã‚¿å®Ÿä½“ã‚’ãƒ†ãƒ³ãƒãƒ©ãƒªã«ã‚³ãƒ”ãƒ¼ã—ã¦ä¿å­˜
 		MI_CpuCopy8(gp,&(wk->block),sizeof(GUINNESS_BLOCK));
 
-		//ƒOƒ‹[ƒvóMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+		//ã‚°ãƒ«ãƒ¼ãƒ—å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		for(i = 0;i < num;i++){
 			if(	(src[i]->dat[id].groupID == 0) ||
 				(src[i]->dat[id].groupID != groupID)){
@@ -373,7 +373,7 @@ static void gnsRecord_GetMixData(GUINNESS* gns,RECMIX* wk,u32 groupID,u8 id,u8 m
 			}
 			wk->pList[wk->lnum++] = &(src[i]->dat[id]);
 		}
-		//©•ª‚Ìƒf[ƒ^æ“¾
+		//è‡ªåˆ†ã®ãƒ‡ãƒ¼ã‚¿å–å¾—
 		for(i = 0;i < GNS_DATA_NUM;i++){
 			if(!GNS_IsEnable(&(wk->block.dat[i]))){
 				continue;
@@ -382,18 +382,18 @@ static void gnsRecord_GetMixData(GUINNESS* gns,RECMIX* wk,u32 groupID,u8 id,u8 m
 				continue;
 			}
 			if(gnsRecord_IsSamePlayerExist(wk,&(wk->block.dat[i]))){
-				continue;	//“¯‚¶l‚Ìƒf[ƒ^‚ª‚ ‚é‚ÍóMƒf[ƒ^—Dæ
+				continue;	//åŒã˜äººã®ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹æ™‚ã¯å—ä¿¡ãƒ‡ãƒ¼ã‚¿å„ªå…ˆ
 			}
 			wk->pSrc[wk->snum++] = &(wk->block.dat[i]);
 		}
 	}
-	//ƒ\[ƒgƒf[ƒ^‚Ì‘”‚ğæ“¾
+	//ã‚½ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã®ç·æ•°ã‚’å–å¾—
 	wk->dnum = wk->lnum+wk->snum;
-	//ƒf[ƒ^ƒŠƒXƒg˜AŒ‹
+	//ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆé€£çµ
 	for(i = 0;i < wk->snum;i++){
 		wk->pList[i+wk->lnum] = wk->pSrc[i];
 	}
-	//ƒ\[ƒg
+	//ã‚½ãƒ¼ãƒˆ
 	for(i = 0;i < (wk->dnum-1);i++){
 		for(j = (wk->dnum-1);j > i;j--){
 			if(wk->pList[i]->record >= wk->pList[j]->record){
@@ -404,14 +404,14 @@ static void gnsRecord_GetMixData(GUINNESS* gns,RECMIX* wk,u32 groupID,u8 id,u8 m
 			wk->pList[j] = tmp;
 		}
 	}
-	//ƒZ[ƒuƒf[ƒ^‚É”½‰f
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	gnsRecord_ClearBlockData(gp);
 	for(i = 0;(i < GNS_DATA_NUM && i < wk->dnum);i++ ){
 		gp->dat[i] = *(wk->pList[i]);
 	}
 }
 
-//ŠeíƒŒƒR[ƒh‚ğûW‚·‚é
+//å„ç¨®ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’åé›†ã™ã‚‹
 static void gnsRecord_DataCorrect(GUINNESS* gns,u32 groupID,u8 id,GUINNESS_RECORD** src,u8 num,int heapID)
 {
 	int i,j;
@@ -419,10 +419,10 @@ static void gnsRecord_DataCorrect(GUINNESS* gns,u32 groupID,u8 id,GUINNESS_RECOR
 
 	wk = sys_AllocMemoryLo(heapID,sizeof(RECMIX));
 
-	//ƒOƒ[ƒoƒ‹
+	//ã‚°ãƒ­ãƒ¼ãƒãƒ«
 	gnsRecord_GetMixData(gns,wk,groupID,id,0,src,num,heapID);
 	
-	//ƒOƒ‹[ƒv
+	//ã‚°ãƒ«ãƒ¼ãƒ—
 	if(groupID != 0){
 		gnsRecord_GetMixData(gns,wk,groupID,id,1,src,num,heapID);
 	}
@@ -443,7 +443,7 @@ static void gnsRecord_DataCorrect(GUINNESS* gns,u32 groupID,u8 id,GUINNESS_RECOR
 	MI_CpuClear8(pList,4*RECMIX_NUM);
 	MI_CpuClear8(pSrc,4*GNS_DATA_NUM);
 
-	//ƒZ[ƒuÏ‚İ—LŒøƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ã‚»ãƒ¼ãƒ–æ¸ˆã¿æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	snum = 0;
 	rnum = 0;
 	for(i = 0;i < GNS_DATA_NUM;i++){
@@ -451,18 +451,18 @@ static void gnsRecord_DataCorrect(GUINNESS* gns,u32 groupID,u8 id,GUINNESS_RECOR
 			pSrc[snum++] = &(gp0->dat[i]);
 		}
 	}
-	//ƒOƒ[ƒoƒ‹óMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ã‚°ãƒ­ãƒ¼ãƒãƒ«å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	for(i = 0;i < num;i++){
 		pList[i] = &(src[i]->dat[id]);
 	}
 	rnum = num;
 	dnum = snum+rnum;
 	
-	//ƒZ[ƒuÏ‚İƒf[ƒ^Œ‹‡
+	//ã‚»ãƒ¼ãƒ–æ¸ˆã¿ãƒ‡ãƒ¼ã‚¿çµåˆ
 	for(i = 0;i < snum;i++){
 		pList[rnum+i] = pSrc[i];
 	}
-	//ƒ\[ƒg
+	//ã‚½ãƒ¼ãƒˆ
 	for(i = 0;i < (dnum-1);i++){
 		for(j = (dnum-1);j > i;j--){
 			if(pList[i]->record >= pList[j]->record){
@@ -473,7 +473,7 @@ static void gnsRecord_DataCorrect(GUINNESS* gns,u32 groupID,u8 id,GUINNESS_RECOR
 			pList[j] = tmp;
 		}
 	}
-	//ƒOƒ[ƒoƒ‹ƒZ[ƒuƒf[ƒ^‚É”½‰f
+	//ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	gnsRecord_ClearBlockData(gp0);
 	for(i = 0;(i < GNS_DATA_NUM && i < dnum);i++ ){
 		gp0->dat[i] = *(pList[i]);
@@ -484,13 +484,13 @@ static void gnsRecord_DataCorrect(GUINNESS* gns,u32 groupID,u8 id,GUINNESS_RECOR
 	snum = 0;
 	rnum = 0;
 	
-	//ƒZ[ƒuÏ‚İƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ã‚»ãƒ¼ãƒ–æ¸ˆã¿ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	for(i = 0;i < GNS_DATA_NUM;i++){
 		if(GNS_IsEnable(&(gp1->dat[i])) && (gp1->dat[i].groupID == groupID)){
 			pSrc[snum++] = &(gp1->dat[i]);
 		}
 	}
-	//ƒOƒ‹[ƒvóMƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
+	//ã‚°ãƒ«ãƒ¼ãƒ—å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 	for(i = 0;i < num;i++){
 		if(src[i]->dat[id].groupID == groupID){
 			pList[rnum++] = &(src[i]->dat[id]);
@@ -498,11 +498,11 @@ static void gnsRecord_DataCorrect(GUINNESS* gns,u32 groupID,u8 id,GUINNESS_RECOR
 	}
 	dnum = snum+rnum;
 
-	//ƒZ[ƒuÏ‚İƒf[ƒ^Œ‹‡
+	//ã‚»ãƒ¼ãƒ–æ¸ˆã¿ãƒ‡ãƒ¼ã‚¿çµåˆ
 	for(i = 0;i < snum;i++){
 		pList[rnum+i] = pSrc[i];
 	}
-	//ƒ\[ƒg
+	//ã‚½ãƒ¼ãƒˆ
 	for(i = 0;i < (dnum-1);i++){
 		for(j = (dnum-1);j > i;j--){
 			if(pList[i]->record >= pList[j]->record){
@@ -513,7 +513,7 @@ static void gnsRecord_DataCorrect(GUINNESS* gns,u32 groupID,u8 id,GUINNESS_RECOR
 			pList[j] = tmp;
 		}
 	}
-	//ƒOƒ‹[ƒvƒZ[ƒuƒf[ƒ^‚É”½‰f
+	//ã‚°ãƒ«ãƒ¼ãƒ—ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 	gnsRecord_ClearBlockData(gp1);
 	for(i = 0;(i < GNS_DATA_NUM && i < dnum);i++ ){
 		gp1->dat[i] = *(pList[i]);
@@ -523,7 +523,7 @@ static void gnsRecord_DataCorrect(GUINNESS* gns,u32 groupID,u8 id,GUINNESS_RECOR
 }
 
 /**
- *	@brief	ƒMƒlƒX@ƒŒƒR[ƒhMix
+ *	@brief	ã‚®ãƒã‚¹ã€€ãƒ¬ã‚³ãƒ¼ãƒ‰Mix
  */
 void GuinnessRecord_RecvDataMix(SAVEDATA* sv,int myid,u8 datanum,const void** array,int heapID)
 {
@@ -533,35 +533,35 @@ void GuinnessRecord_RecvDataMix(SAVEDATA* sv,int myid,u8 datanum,const void** ar
 	GUINNESS*	gnsSave;
 	GNS_RANKING*	gnsRank;
 
-	//ƒMƒlƒXƒZ[ƒuƒf[ƒ^æ“¾
+	//ã‚®ãƒã‚¹ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 	gnsSave = SaveData_GetGuinnessData(sv);
 
-	//ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒvIDæ“¾
+	//ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—IDå–å¾—
 	groupID = RandomGroup_GetRandomSeed(
 			SaveData_GetRandomGroup(sv),RANDOMGROUP_MYUSE );
 
 #if 0
-	//©•ª‚Ìƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒvID‚ª•ÏX‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	//è‡ªåˆ†ã®ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—IDãŒå¤‰æ›´ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if(gnsRecord_IsUpdateGroupData(gnsSave,groupID)){
-		//ˆê’UƒOƒ‹[ƒvƒŒƒR[ƒh”jŠü
+		//ä¸€æ—¦ã‚°ãƒ«ãƒ¼ãƒ—ãƒ¬ã‚³ãƒ¼ãƒ‰ç ´æ£„
 		gnsRecord_ClearGroupData(gnsSave);
 	}
 #endif
 	dat_num = 0;
 	for(i = 0;i < datanum;i++){
 		if(i == myid){
-			continue;	//©•ª‚ÍƒpƒX
+			continue;	//è‡ªåˆ†ã¯ãƒ‘ã‚¹
 		}
 		if(array[i] == NULL){
-			continue;	//NULLƒf[ƒ^‚È‚çƒpƒX
+			continue;	//NULLãƒ‡ãƒ¼ã‚¿ãªã‚‰ãƒ‘ã‚¹
 		}
 		src[dat_num++] = (GUINNESS_RECORD*)array[i];
 	}
 	if(dat_num == 0){
-		return;	//‘¼l‚Ìƒf[ƒ^‚ª‚È‚¢
+		return;	//ä»–äººã®ãƒ‡ãƒ¼ã‚¿ãŒãªã„
 	}
 
-	//Šeƒf[ƒ^‚ğûW&ƒ\[ƒg‚·‚é
+	//å„ãƒ‡ãƒ¼ã‚¿ã‚’åé›†&ã‚½ãƒ¼ãƒˆã™ã‚‹
 	for(i = 0;i < GNS_RECORD_NUM;i++){
 		gnsRecord_DataCorrect(gnsSave,
 			groupID,i,src,dat_num,heapID);
@@ -573,15 +573,15 @@ void GuinnessRecord_RecvDataMix(SAVEDATA* sv,int myid,u8 datanum,const void** ar
 }
 
 /**
- *	@brief	ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^@©•ª‚ÌƒŒƒR[ƒh‚ğæ“¾
+ *	@brief	ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã€€è‡ªåˆ†ã®ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
  *
  *	@return	GNS_RANKING*
  *
- *	–GNS_RANKINGƒf[ƒ^Œ^ƒƒ‚ƒŠ‚ğŠm•Û‚µAƒf[ƒ^‚ğŠi”[‚µ‚Ä•Ô‚·
+ *	ï¼ŠGNS_RANKINGãƒ‡ãƒ¼ã‚¿å‹ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ã€ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã—ã¦è¿”ã™
  *	
- *	@GNSRank_FreeRankingData()ŠÖ”‚ğ•K‚¸—p‚¢‚Ä
- *	@ŒÄ‚Ño‚µ‘¤‚ª‚«‚¿‚ñ‚Æƒƒ‚ƒŠ‰ğ•ú‚·‚é‚±‚ÆI
- *	  sys_FreeMemory‚Å‰ğ•ú‚µ‚¿‚áƒ_ƒ	
+ *	ã€€GNSRank_FreeRankingData()é–¢æ•°ã‚’å¿…ãšç”¨ã„ã¦
+ *	ã€€å‘¼ã³å‡ºã—å´ãŒãã¡ã‚“ã¨ãƒ¡ãƒ¢ãƒªè§£æ”¾ã™ã‚‹ã“ã¨ï¼
+ *	  sys_FreeMemoryã§è§£æ”¾ã—ã¡ã‚ƒãƒ€ãƒ¡	
  */
 GNS_RANKING* GNSRank_AllocMyData(SAVEDATA* sv,GNSTYPE type,int heapID)
 {
@@ -595,10 +595,10 @@ GNS_RANKING* GNSRank_AllocMyData(SAVEDATA* sv,GNSTYPE type,int heapID)
 	rp = sys_AllocMemory(heapID,sizeof(GNS_RANKING));
 	MI_CpuClear8(rp,sizeof(GNS_RANKING));
 	
-	//ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒvIDæ“¾
+	//ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—IDå–å¾—
 	groupID = RandomGroup_GetRandomSeed(
 			SaveData_GetRandomGroup(sv),RANDOMGROUP_MYUSE );
-	//©•ª‚Ì‹L˜^‚ğæ“¾
+	//è‡ªåˆ†ã®è¨˜éŒ²ã‚’å–å¾—
 	record = guinness_AllocMyRecord(sv,heapID);
 	
 	rp->num = GNSRank_GetTypeBlockNum(type);
@@ -614,14 +614,14 @@ GNS_RANKING* GNSRank_AllocMyData(SAVEDATA* sv,GNSTYPE type,int heapID)
 }
 
 /**
- *	@brief	ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^æ“¾
+ *	@brief	ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
  *	@return	
- *	–GNS_RANKINGƒf[ƒ^Œ^ƒƒ‚ƒŠ‚ğŠm•Û‚µƒf[ƒ^‚ğƒRƒs[‚µ‚Ä•Ô‚·
+ *	ï¼ŠGNS_RANKINGãƒ‡ãƒ¼ã‚¿å‹ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã—ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã—ã¦è¿”ã™
  *
- *	@GNSRank_FreeRankingData()ŠÖ”‚ğ•K‚¸—p‚¢‚Ä
- *	@ŒÄ‚Ño‚µ‘¤‚ª‚«‚¿‚ñ‚Æƒƒ‚ƒŠ‰ğ•ú‚·‚é‚±‚ÆI
- *	  sys_FreeMemory‚Å‰ğ•ú‚µ‚¿‚áƒ_ƒ	
+ *	ã€€GNSRank_FreeRankingData()é–¢æ•°ã‚’å¿…ãšç”¨ã„ã¦
+ *	ã€€å‘¼ã³å‡ºã—å´ãŒãã¡ã‚“ã¨ãƒ¡ãƒ¢ãƒªè§£æ”¾ã™ã‚‹ã“ã¨ï¼
+ *	  sys_FreeMemoryã§è§£æ”¾ã—ã¡ã‚ƒãƒ€ãƒ¡	
  */
 GNS_RANKING* GNSRank_AllocRankingData(GUINNESS* gns,GNSID id,int heapID) 
 {
@@ -649,10 +649,10 @@ GNS_RANKING* GNSRank_AllocRankingData(GUINNESS* gns,GNSID id,int heapID)
 }
 
 /**
- *	@brief	ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^‰ğ•ú
+ *	@brief	ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿è§£æ”¾
  *
- *	–GNSRank_GetRankingData()ŠÖ”‚ğ—p‚¢‚Äæ“¾‚µ‚½
- *	@ƒƒ‚ƒŠ—Ìˆæ‚ğŠJ•ú‚·‚é
+ *	ï¼ŠGNSRank_GetRankingData()é–¢æ•°ã‚’ç”¨ã„ã¦å–å¾—ã—ãŸ
+ *	ã€€ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’é–‹æ”¾ã™ã‚‹
  */
 void GNSRank_FreeRankingData(GNS_RANKING* dat)
 {
@@ -672,10 +672,10 @@ void GNSRank_FreeRankingData(GNS_RANKING* dat)
 }
 
 /**
- *	@brief	ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^ƒZƒbƒg
+ *	@brief	ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- *	ƒ‰ƒ“ƒLƒ“ƒOƒ\[ƒgÏ‚İƒf[ƒ^‚ğGNS_RANKINGŒ^‚ÉŠi”[‚µ‚Ä
- *	ˆø“n‚µAƒZ[ƒuƒf[ƒ^‚ÉƒZƒbƒg‚·‚é
+ *	ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚½ãƒ¼ãƒˆæ¸ˆã¿ãƒ‡ãƒ¼ã‚¿ã‚’GNS_RANKINGå‹ã«æ ¼ç´ã—ã¦
+ *	å¼•æ¸¡ã—ã€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«ã‚»ãƒƒãƒˆã™ã‚‹
  */
 void GNSRank_SetRankingData(GUINNESS* gns,GNSID id,GNS_RANKING* dat)
 {
@@ -706,7 +706,7 @@ void GNSRank_SetRankingData(GUINNESS* gns,GNSID id,GNS_RANKING* dat)
 #include "msgdata/msg_trname.h"
 
 /**
- *	@brief	ƒMƒlƒXƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^@ƒ_ƒ~[¶¬
+ *	@brief	ã‚®ãƒã‚¹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã€€ãƒ€ãƒŸãƒ¼ç”Ÿæˆ
  */
 void DebugGNSRank_MakeDmyRankingData(GUINNESS* gns)
 {

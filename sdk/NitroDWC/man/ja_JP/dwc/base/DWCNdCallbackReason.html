@@ -1,6 +1,6 @@
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
 		<TITLE>DWCNdCallbackReason</TITLE>
 		<LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
 	<BODY>
 		<H1>DWCNdCallbackReason</H1>
 
-		<H2>��`</H2>
+		<H2>定義</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>
@@ -27,41 +27,41 @@ typedef enum {
 			</DD>
 		</DL>
 
-		<H2>����</H2>
+		<H2>説明</H2>
 		<P>
-		  �_�E�����[�h���C�u�����ɂ���Ēʒm�R�[���o�b�N�֐����Ăяo���ꂽ�ہA�ǂ̂悤�ȏ��������s���ł��������������񋓌^�ł��B
+		  ダウンロードライブラリによって通知コールバック関数が呼び出された際、どのような処理が実行中であったかを示す列挙型です。
 		</P>
 		<TABLE border="1">
 		<TBODY>
 		  <TR>
 			<TD width="25%"><EM><STRONG><CODE>DWC_ND_CBREASON_INITIALIZE</CODE></STRONG></EM></TD>
-			<TD>�_�E�����[�h���C�u�������������ɒʒm�R�[���o�b�N���Ăяo���ꂽ<BR></TD>
+			<TD>ダウンロードライブラリ初期化中に通知コールバックが呼び出された<BR></TD>
           </TR>
 		  <TR>
 			<TD width="25%"><EM><STRONG><CODE>DWC_ND_CBREASON_GETFILELISTNUM</CODE></STRONG></EM></TD>
-			<TD>�_�E�����[�h�\�ȃt�@�C���������_�E�����[�h���ɒʒm�R�[���o�b�N���Ăяo���ꂽ<BR></TD>
+			<TD>ダウンロード可能なファイル総数をダウンロード中に通知コールバックが呼び出された<BR></TD>
           </TR>
 		  <TR>
 			<TD width="25%"><EM><STRONG><CODE>DWC_ND_CBREASON_GETFILELIST</CODE></STRONG></EM></TD>
-			<TD>�t�@�C�����ꗗ���_�E�����[�h���ɒʒm�R�[���o�b�N���Ăяo���ꂽ<BR></TD>
+			<TD>ファイル情報一覧をダウンロード中に通知コールバックが呼び出された<BR></TD>
           </TR>
 		  <TR>
 			<TD width="25%"><EM><STRONG><CODE>DWC_ND_CBREASON_GETFILE</CODE></STRONG></EM></TD>
-			<TD>�t�@�C�����_�E�����[�h���ɒʒm�R�[���o�b�N���Ăяo���ꂽ<BR></TD>
+			<TD>ファイルをダウンロード中に通知コールバックが呼び出された<BR></TD>
           </TR>
 		</TBODY>
 		</TABLE>
 
-		<H2>�Q��</H2>
+		<H2>参照</H2>
 		<P>
 			<code>
 			<a href="DWCNdCallback.html">DWCNdCallback</a>
 			</code>
 		</P>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2006/04/26 ����<BR>
+			2006/04/26 初版<BR>
 		</P>
 
 	</BODY>

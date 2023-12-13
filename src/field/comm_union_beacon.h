@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_union_beacon.h
- * @brief	���j�I�����[���r�[�R���ݒ菈��
+ * @brief	ユニオンルームビーコン設定処理
  * @author	Akito Mori
  * @date    2005.12.10
  */
@@ -14,41 +14,41 @@
 #define UNION_PARENT_MODE_FREE			(  0 )
 #define UNION_PARENT_MODE_OEKAKI_FREE	(  1 )
 #define UNION_PARENT_MODE_RECORD_FREE	(  2 )
-#define UNION_PARENT_MODE_GURUGURU_FREE	(  3 )	//�ꉞ��`���c���Ă��邪�g�p�֎~
+#define UNION_PARENT_MODE_GURUGURU_FREE	(  3 )	//一応定義を残しているが使用禁止
 #define UNION_PARENT_MODE_BUSY			(  4 )
 #define UNION_PARENT_MODE_CARDNOW		(  5 )
 #define UNION_PARENT_MODE_BATTLENOW		(  6 )
 #define UNION_PARENT_MODE_TRADENOW		(  7 )
 #define UNION_PARENT_MODE_OEKAKINOW		(  8 )
 #define UNION_PARENT_MODE_RECORDNOW		(  9 )
-#define UNION_PARENT_MODE_GURUGURUNOW	( 10 )	//�ꉞ��`���c���Ă��邪�g�p�֎~
+#define UNION_PARENT_MODE_GURUGURUNOW	( 10 )	//一応定義を残しているが使用禁止
 #define UNION_PARENT_MODE_PARTY			( 11 )
 //PL
 #define UNION_PARENT_MODE_GURU2			( 12 )
 #define UNION_PARENT_MODE_GURU2_FREE	( 13 )
 #define UNION_PARENT_MODE_MAX			( 14 )
 
-#ifndef	__ASM_NO_DEF_	// ������ȍ~�́A�A�Z���u���ł͖���
+#ifndef	__ASM_NO_DEF_	// ↓これ以降は、アセンブラでは無視
 
 #include "system/pms_data.h"
 
-// �r�[�R���Ɋ܂܂�郆�j�I�����[���p���\����
-// ���̏���WMBssDec.gameDataInfo.userGameInfo�̒����L���X�g���ĎQ�Ƃ���
-// _GF_BSS_DATA_INFO.regulationBuff���܂�����L���X�g���Ďg���Ă���
-// regulationBuff�͐퓬�p�̃��M�����[�V�����Ȃ̂ŁA���j�I���ł͂܂������g�p���Ă��Ȃ�����
+// ビーコンに含まれるユニオンルーム用情報構造体
+// この情報はWMBssDec.gameDataInfo.userGameInfoの中をキャストして参照する
+// _GF_BSS_DATA_INFO.regulationBuffをまたもやキャストして使っている
+// regulationBuffは戦闘用のレギュレーションなので、ユニオンではまったく使用していないから
 typedef struct{
-	u32 c_id[4];		// �q�@��ID			16
-	u8  c_rom[4];		// �q�@��ROM		20
-	u8  c_region[4];	// �q�@�̍��R�[�h	24
-	u8  c_face[4];		// �q�@�̎p�ԍ�		28
-	u8  mode;			// �e�@�̏�ԁi�t���[�E���������Ńt���[�E�Z�����E��������E�o�g���j	29
-	u8  nation;			// �Z��ł��鍑   30
-	u8	area;			// �Z��ł���s�s�E�ꏊ 31
-	u8  etc;			// �]��i�������̂P�o�C�g�����c�j32 
+	u32 c_id[4];		// 子機のID			16
+	u8  c_rom[4];		// 子機のROM		20
+	u8  c_region[4];	// 子機の国コード	24
+	u8  c_face[4];		// 子機の姿番号		28
+	u8  mode;			// 親機の状態（フリー・おえかきでフリー・忙しい・こうかん・バトル）	29
+	u8  nation;			// 住んでいる国   30
+	u8	area;			// 住んでいる都市・場所 31
+	u8  etc;			// 余り（もうこの１バイトだけ…）32 
 }UNION_BEACON_STATE;
 
 
-// ���j�I���p�r�[�R�����������֐�
+// ユニオン用ビーコン書き換え関数
 extern void Union_BeaconChange( int flag );
 extern void Union_PMSReWrite( PMS_DATA *pms );
 

@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	oekaki_local.h
- * @brief	���G�����{�[�h�p�\���̒�`�i�����Q�Ɨp)
+ * @brief	お絵かきボード用構造体定義（内部参照用)
  *          
  * @author	Akito Mori
  * @date    	2006.02.14
@@ -15,47 +15,47 @@
 
 #include "system/touch_subwindow.h"
 
-// �@�\�{�^���p��`
-#define FUNCBUTTON_NUM	( 7 ) 		// �@�\�{�^���̐�
-#define START_WORDPANEL ( 0 )		// �ŏ��̕������̓p�l���̔ԍ��i�O���Ђ炪�ȁj
+// 機能ボタン用定義
+#define FUNCBUTTON_NUM	( 7 ) 		// 機能ボタンの数
+#define START_WORDPANEL ( 0 )		// 最初の文字入力パネルの番号（０＝ひらがな）
 
-// �ڑ��l��MAX�͂T�l
+// 接続人数MAXは５人
 #define OEKAKI_MEMBER_MAX	( 5 )
 
 
-// CLACT�Œ�`���Ă���Z�����傫�����ăT�u��ʂɉe�����łĂ��܂��̂ŗ����Ă݂�
+// CLACTで定義しているセルが大きすぎてサブ画面に影響がでてしまうので離してみる
 #define NAMEIN_SUB_ACTOR_DISTANCE 	(256*FX32_ONE)
 
-// CellActor�ɏ��������郊�\�[�X�}�l�[�W���̎�ނ̐��i���}���`�Z���E�}���`�Z���A�j���͎g�p���Ȃ��j
+// CellActorに処理させるリソースマネージャの種類の数（＝マルチセル・マルチセルアニメは使用しない）
 #define CLACT_RESOURCE_NUM		(  4 )
 #define NAMEIN_OAM_NUM			( 14 )
 
 
-// ���b�Z�[�W�\�����WAIT
+// メッセージ表示後のWAIT
 #define OEKAKI_MESSAGE_END_WAIT	( 60 )
 
 
-// ���G�����{�[�h�̕��E����
+// お絵かきボードの幅・高さ
 #define OEKAKI_BOARD_W	 	( 30 )
 #define OEKAKI_BOARD_H	 	( 15 )
 #define OEKAKI_GRAPHI_SIZE  ( OEKAKI_BOARD_W*OEKAKI_BOARD_H*32 )
 
-// �{�^���Z���A�N�^�[�̃y�����`���n�܂�ԍ�
+// ボタンセルアクターのペン先定義が始まる番号
 #define CELL_BRUSH_NO		( 9 )
 
 
-// �u���V�̑傫��
+// ブラシの大きさ
 #define SMALL_BRUSH			( 0 )
 #define MIDDLE_BRUSH		( 1 )
 #define BIG_BRUSH			( 2 )
 
 
-// ���G�����֎~�t���O
+// お絵かき禁止フラグ
 #define OEKAKI_BAN_NONE		( 0 )
 #define OEKAKI_BAN_OFF		( 1 )
 #define OEKAKI_BAN_ON		( 2 )
 
-// ���C���V�[�P���X�̑J��
+// メインシーケンスの遷移
 enum {
 	SEQ_IN = 0,
 	SEQ_MAIN,
@@ -63,7 +63,7 @@ enum {
 	SEQ_OUT,
 };
 
-// �T�u�V�[�P���X�̑J�ڗp
+// サブシーケンスの遷移用
 enum{
 	OEKAKI_MODE_INIT  = 0, 
 
@@ -105,12 +105,12 @@ enum{
 	OEKAKI_SYNCHRONIZE_END=200,
 };
 
-// �㉺��ʎw���`
+// 上下画面指定定義
 #define BOTH_LCD	( 2 )
-#define MAIN_LCD	( GF_BGL_MAIN_DISP )	// �v�͂O��
-#define SUB_LCD		( GF_BGL_SUB_DISP )		// �P�Ȃ�ł����B
+#define MAIN_LCD	( GF_BGL_MAIN_DISP )	// 要は０と
+#define SUB_LCD		( GF_BGL_SUB_DISP )		// １なんですが。
 
-// BMPWIN�w��
+// BMPWIN指定
 enum{
 	BMP_NAME1_S_BG0,
 	BMP_NAME2_S_BG0,
@@ -124,15 +124,15 @@ enum{
 
 
 
-// �^�b�`�p�l�����\����
-// ���̃f�[�^���ʐM�ő��M����܂�
+// タッチパネル情報構造体
+// このデータが通信で送信されます
 typedef struct{
-	u8 x[4];	// �ő�S�񕪂̃^�b�`���W
+	u8 x[4];	// 最大４回分のタッチ座標
 	u8 y[4];	// 
-	u8 color:3;	// �I�𒆂̃J���[
-	u8 size:3;	// �T���v�����O������
-	u8 brush:2; // �I�𒆂̃y����
-	u8 banFlag;  // ����֎~�t���O(�e�@����̂ݑ��M�j
+	u8 color:3;	// 選択中のカラー
+	u8 size:3;	// サンプリング成功個数
+	u8 brush:2; // 選択中のペン先
+	u8 banFlag;  // 操作禁止フラグ(親機からのみ送信）
 }TOUCH_INFO;
 
 typedef struct{
@@ -148,7 +148,7 @@ typedef struct{
 }OEKAKIG_SPLIT_DATA;
 
 //============================================================================================
-//	�\���̒�`
+//	構造体定義
 //============================================================================================
 
 struct OEKAKI_WORK{
@@ -156,39 +156,39 @@ struct OEKAKI_WORK{
 	BOOL			wipe_end;
 	OEKAKI_PARAM	*param;
 
-	WORDSET			*WordSet;								// ���b�Z�[�W�W�J�p���[�N�}�l�[�W���[
-	MSGDATA_MANAGER *MsgManager;							// ���O���̓��b�Z�[�W�f�[�^�}�l�[�W���[
-	STRBUF			*TrainerName[OEKAKI_MEMBER_MAX];		// ���O
-	STRBUF			*EndString;								// ������u��߂�v
-	STRBUF			*TalkString;							// ��b���b�Z�[�W�p
-	int				MsgIndex;								// �I�����o�p���[�N
+	WORDSET			*WordSet;								// メッセージ展開用ワークマネージャー
+	MSGDATA_MANAGER *MsgManager;							// 名前入力メッセージデータマネージャー
+	STRBUF			*TrainerName[OEKAKI_MEMBER_MAX];		// 名前
+	STRBUF			*EndString;								// 文字列「やめる」
+	STRBUF			*TalkString;							// 会話メッセージ用
+	int				MsgIndex;								// 終了検出用ワーク
 
-	CLACT_SET_PTR 			clactSet;								// �Z���A�N�^�[�Z�b�g
-	CLACT_U_EASYRENDER_DATA	renddata;								// �ȈՃ����_�[�f�[�^
-	CLACT_U_RES_MANAGER_PTR	resMan[CLACT_RESOURCE_NUM];				// ���\�[�X�}�l�[�W��
-	CLACT_U_RES_OBJ_PTR 	resObjTbl[BOTH_LCD][CLACT_RESOURCE_NUM];// ���\�[�X�I�u�W�F�e�[�u��
-	CLACT_HEADER			clActHeader_m;							// �Z���A�N�^�[�w�b�_�[
-	CLACT_HEADER			clActHeader_s;							// �Z���A�N�^�[�w�b�_�[
-	CLACT_WORK_PTR			MainActWork[NAMEIN_OAM_NUM];				// �Z���A�N�^�[���[�N�|�C���^�z��
-	CLACT_WORK_PTR			SubActWork[NAMEIN_OAM_NUM];				// �Z���A�N�^�[���[�N�|�C���^�z��
-	CLACT_WORK_PTR			ButtonActWork[12];						// �{�^���A�N�^�[�|�C���^
+	CLACT_SET_PTR 			clactSet;								// セルアクターセット
+	CLACT_U_EASYRENDER_DATA	renddata;								// 簡易レンダーデータ
+	CLACT_U_RES_MANAGER_PTR	resMan[CLACT_RESOURCE_NUM];				// リソースマネージャ
+	CLACT_U_RES_OBJ_PTR 	resObjTbl[BOTH_LCD][CLACT_RESOURCE_NUM];// リソースオブジェテーブル
+	CLACT_HEADER			clActHeader_m;							// セルアクターヘッダー
+	CLACT_HEADER			clActHeader_s;							// セルアクターヘッダー
+	CLACT_WORK_PTR			MainActWork[NAMEIN_OAM_NUM];				// セルアクターワークポインタ配列
+	CLACT_WORK_PTR			SubActWork[NAMEIN_OAM_NUM];				// セルアクターワークポインタ配列
+	CLACT_WORK_PTR			ButtonActWork[12];						// ボタンアクターポインタ
 
-	GF_BGL_BMPWIN 			TrainerNameWin[BMP_OEKAKI_MAX];			// ���G������ʗpBMP�E�C���h�E
+	GF_BGL_BMPWIN 			TrainerNameWin[BMP_OEKAKI_MAX];			// お絵かき画面用BMPウインドウ
 	GF_BGL_BMPWIN			OekakiBoard;
-	GF_BGL_BMPWIN			MsgWin;									// ��b�E�C���h�E
-	GF_BGL_BMPWIN			EndWin;									// ��߂�
-	GF_BGL_BMPWIN			*YesNoWin[2];								// �͂��E�������E�C���h�E�̃|�C���^
+	GF_BGL_BMPWIN			MsgWin;									// 会話ウインドウ
+	GF_BGL_BMPWIN			EndWin;									// やめる
+	GF_BGL_BMPWIN			*YesNoWin[2];								// はい・いいえウインドウのポインタ
 
-	int						proc_seq;								// MainProc�̃V�[�P���X���Ď����邽�߂����ɂ���
-																	// �i�T�u�V�[�P���X�͏��������Ȃ��j
-	int						seq;									// ���݂̃T�u�V�[�P���X���
-	int						next_seq;								// ���̃V�[�P���X�͉����H
-	int						mode;									// ���ݍőO�ʂ̕����p�l��
+	int						proc_seq;								// MainProcのシーケンスを監視するためだけにある
+																	// （サブシーケンスは書き換えない）
+	int						seq;									// 現在のサブシーケンス状態
+	int						next_seq;								// 次のシーケンスは何か？
+	int						mode;									// 現在最前面の文字パネル
 	int						wait;
-	int						connectBackup;							// ���O�̐ڑ��l��
-	int						shareNum;								// �摜���M�ς݂̐l��
-	int						shareBit;								// �摜���M�ς݂̐l��(�r�b�g)
-	int						newMemberId;							// �������Ă����l��ID
+	int						connectBackup;							// 直前の接続人数
+	int						shareNum;								// 画像送信済みの人数
+	int						shareBit;								// 画像送信済みの人数(ビット)
+	int						newMemberId;							// 乱入してきた人のID
 	
 	u8						ConnectCheck[8][2];
 	MYSTATUS				*TrainerStatus[8][2];
@@ -198,32 +198,32 @@ struct OEKAKI_WORK{
 	u8						brush_color;
 	u8						brush;
 
-	TOUCH_INFO				MyTouchResult;							// �����̃T���v�����O���ʁi����͑��M���邾��
-	TOUCH_INFO				AllTouchResult[OEKAKI_MEMBER_MAX];		// �ʐM�Ŏ擾�����T���v�����O���ʁi���̃f�[�^�ŕ`�悷��
-	OLD_TOUCH_INFO			OldTouch[OEKAKI_MEMBER_MAX];			// �O�񂩂�̃|�C���g����
+	TOUCH_INFO				MyTouchResult;							// 自分のサンプリング結果（これは送信するだけ
+	TOUCH_INFO				AllTouchResult[OEKAKI_MEMBER_MAX];		// 通信で取得したサンプリング結果（このデータで描画する
+	OLD_TOUCH_INFO			OldTouch[OEKAKI_MEMBER_MAX];			// 前回からのポイント履歴
 
-	u8						*lz_buf;								// ���k�摜�i�[�̈�
+	u8						*lz_buf;								// 圧縮画像格納領域
 	int						send_num;
 	u8						canvas_buf[OEKAKI_GRAPHI_SIZE];
 	OEKAKIG_SPLIT_DATA		send_buf;
 	OEKAKIG_SPLIT_DATA		split_temp[OEKAKI_MEMBER_MAX];
 
-	s32 					err_num;								// �ʐM�I�����݂邽�߂̃��[�N
-	u32						ridatu_bit;								// ���E���悤�Ƃ��Ă���q��Bit
-	u16						oya_share_num;			// �e�������Ă���shareNum�����炤
-	s16						ridatu_wait;			// ���E�p�̃E�F�C�g
-	u8						status_end;								// TRUE:�I���V�[�P���X�ֈڍs
+	s32 					err_num;								// 通信終了をみるためのワーク
+	u32						ridatu_bit;								// 離脱しようとしている子のBit
+	u16						oya_share_num;			// 親が持っているshareNumをもらう
+	s16						ridatu_wait;			// 離脱用のウェイト
+	u8						status_end;								// TRUE:終了シーケンスへ移行
 
-	// ----�e�������K�v�ȃ��[�N
+	// ----親だけが必要なワーク
 
 	TOUCH_INFO				ParentTouchResult[5];
 	TOUCH_SW_SYS			*TouchSubWindowSys;
 	int						banFlag;
-	int						yesno_flag;								// ���݁u�͂��E�������v��ʂ��Ăяo����
-	int						firstChild;								// ��ԍŏ��ɂ���Ă����Ƃ��Ɏq�@���痐���錾����Ă�����
-	int						ireagalJoin;							//���G�����I�����ɗ������ꂽ��
-	int						bookJoin;								//�����\��t���O
-	int						joinBit;								//�����҃r�b�g
+	int						yesno_flag;								// 現在「はい・いいえ」画面を呼び出し中
+	int						firstChild;								// 一番最初にやってきたときに子機から乱入宣言されても無視
+	int						ireagalJoin;							//お絵かき終了時に乱入されたか
+	int						bookJoin;								//乱入予約フラグ
+	int						joinBit;								//乱入者ビット
 #ifdef PM_DEBUG
 	int 					frame;									//
 	int						framenum[9][2];							//
@@ -232,21 +232,21 @@ struct OEKAKI_WORK{
 
 //--------------------------------------------------------------
 /**
- * @brief   ���̍\���̂̒��g��ւ�����A�K���ʐM�֐��e�[�u����
- *          CommRecordCornerEndChild���g�p���Ă���ӏ��̑���M�T�C�Y��ύX���邱�ƁI�I
- *			�t�@�C���Fcomm_command_record.c, comm_command_oekaki.c, comm_command_field.c
+ * @brief   この構造体の中身を替えたら、必ず通信関数テーブルで
+ *          CommRecordCornerEndChildを使用している箇所の送受信サイズを変更すること！！
+ *			ファイル：comm_command_record.c, comm_command_oekaki.c, comm_command_field.c
  */
 //--------------------------------------------------------------
 typedef struct{
-	u8 ridatu_id;			///<���E�҂�ID
-	u8 oya_share_num;		///<�e�̎���shareNum
-	u8 request;				///<���߃R�[�h
-	u8 ridatu_kyoka;		///<TRUE:���EOK�AFALSE:���ENG
+	u8 ridatu_id;			///<離脱者のID
+	u8 oya_share_num;		///<親の持つshareNum
+	u8 request;				///<命令コード
+	u8 ridatu_kyoka;		///<TRUE:離脱OK、FALSE:離脱NG
 }COMM_OEKAKI_END_CHILD_WORK;
 
 enum{
-	COEC_REQ_RIDATU_CHECK,		///<���E�m�F
-	COEC_REQ_RIDATU_EXE,		///<���E���s
+	COEC_REQ_RIDATU_CHECK,		///<離脱確認
+	COEC_REQ_RIDATU_EXE,		///<離脱実行
 };
 
 

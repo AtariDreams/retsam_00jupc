@@ -18,7 +18,7 @@
   do-indent.
 
   Revision 1.2  2004/09/03 04:29:15  terui
-  NVRAM“àƒ†[ƒU[î•ñ‚ÉŠÖ‚·‚é\‘¢‘Ì’è‹`®—‚É”º‚¤C³B
+  NVRAMå†…ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ã«é–¢ã™ã‚‹æ§‹é€ ä½“å®šç¾©æ•´ç†ã«ä¼´ã†ä¿®æ­£ã€‚
 
   Revision 1.1  2004/08/25 09:20:43  terui
   Initial upload.
@@ -35,119 +35,119 @@ extern "C" {
 /*===========================================================================*/
 
 /*---------------------------------------------------------------------------*
-    ’è”’è‹`
+    å®šæ•°å®šç¾©
  *---------------------------------------------------------------------------*/
-// ƒRƒ“ƒtƒBƒOÝ’èƒf[ƒ^ƒtƒH[ƒ}ƒbƒgƒo[ƒWƒ‡ƒ“
+// ã‚³ãƒ³ãƒ•ã‚£ã‚°è¨­å®šãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³
 #define NVRAM_CONFIG_DATA_VERSION           2
 
-// ƒRƒ“ƒtƒBƒO“à‚ÌŠeŽíÝ’è’l
-#define NVRAM_CONFIG_BOOT_GAME_LOG_NUM      8   // ƒu[ƒgƒQ[ƒ€—š—ð‚Ì•Û‘¶ŒÂ”
-#define NVRAM_CONFIG_NICKNAME_LENGTH        8   // ƒjƒbƒNƒl[ƒ€’·
+// ã‚³ãƒ³ãƒ•ã‚£ã‚°å†…ã®å„ç¨®è¨­å®šå€¤
+#define NVRAM_CONFIG_BOOT_GAME_LOG_NUM      8   // ãƒ–ãƒ¼ãƒˆã‚²ãƒ¼ãƒ å±¥æ­´ã®ä¿å­˜å€‹æ•°
+#define NVRAM_CONFIG_NICKNAME_LENGTH        8   // ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ é•·
 
-// Œ¾ŒêÝ’èƒR[ƒh
-#define NVRAM_CONFIG_LANG_JAPANESE          0   // “ú–{Œê
-#define NVRAM_CONFIG_LANG_ENGLISH           1   // ‰pŒê
-#define NVRAM_CONFIG_LANG_FRENCH            2   // ƒtƒ‰ƒ“ƒXŒê
-#define NVRAM_CONFIG_LANG_GERMAN            3   // ƒhƒCƒcŒê
-#define NVRAM_CONFIG_LANG_ITALIAN           4   // ƒCƒ^ƒŠƒAŒê
-#define NVRAM_CONFIG_LANG_SPANISH           5   // ƒXƒyƒCƒ“Œê
-#define NVRAM_CONFIG_LANG_CODE_MAX          6   // Œ¾ŒêÝ’èƒR[ƒh‚ÌŽí—Þ”
+// è¨€èªžè¨­å®šã‚³ãƒ¼ãƒ‰
+#define NVRAM_CONFIG_LANG_JAPANESE          0   // æ—¥æœ¬èªž
+#define NVRAM_CONFIG_LANG_ENGLISH           1   // è‹±èªž
+#define NVRAM_CONFIG_LANG_FRENCH            2   // ãƒ•ãƒ©ãƒ³ã‚¹èªž
+#define NVRAM_CONFIG_LANG_GERMAN            3   // ãƒ‰ã‚¤ãƒ„èªž
+#define NVRAM_CONFIG_LANG_ITALIAN           4   // ã‚¤ã‚¿ãƒªã‚¢èªž
+#define NVRAM_CONFIG_LANG_SPANISH           5   // ã‚¹ãƒšã‚¤ãƒ³èªž
+#define NVRAM_CONFIG_LANG_CODE_MAX          6   // è¨€èªžè¨­å®šã‚³ãƒ¼ãƒ‰ã®ç¨®é¡žæ•°
 
 /*---------------------------------------------------------------------------*
-    \‘¢‘Ì’è‹`
+    æ§‹é€ ä½“å®šç¾©
  *---------------------------------------------------------------------------*/
-// ƒjƒbƒNƒl[ƒ€(20byte)
+// ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ (20byte)
 typedef struct NVRAMConfigNickname
 {
-    u16     name[NVRAM_CONFIG_NICKNAME_LENGTH]; // ƒjƒbƒNƒl[ƒ€iUNICODE‚ÅÅ‘å8•¶ŽšAI’[ƒR[ƒh‚È‚µj
-    u16     length;                    // •¶Žš”
+    u16     name[NVRAM_CONFIG_NICKNAME_LENGTH]; // ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ ï¼ˆUNICODEã§æœ€å¤§8æ–‡å­—ã€çµ‚ç«¯ã‚³ãƒ¼ãƒ‰ãªã—ï¼‰
+    u16     length;                    // æ–‡å­—æ•°
     u16     padding;
 
 }
 NVRAMConfigNickname;
 
-// «•ÊƒR[ƒh(4byte)
+// æ€§åˆ¥ã‚³ãƒ¼ãƒ‰(4byte)
 typedef enum NVRAMConfigSexCode
 {
-    NVRAM_CONFIG_SEX_MALE = 0,         // ’j
-    NVRAM_CONFIG_SEX_FEMALE,           // —
+    NVRAM_CONFIG_SEX_MALE = 0,         // ç”·
+    NVRAM_CONFIG_SEX_FEMALE,           // å¥³
     NVRAM_CONFIG_SEX_CODE_MAX
 }
 NVRAMConfigSexCode;
 
-// ŒŒ‰tŒ^ƒR[ƒh(4byte)
+// è¡€æ¶²åž‹ã‚³ãƒ¼ãƒ‰(4byte)
 typedef enum NVRAMConfigBloodType
 {
-    NVRAM_CONFIG_BLOOD_A = 0,          // A Œ^
-    NVRAM_CONFIG_BLOOD_B,              // B Œ^
-    NVRAM_CONFIG_BLOOD_AB,             // ABŒ^
-    NVRAM_CONFIG_BLOOD_O,              // O Œ^
+    NVRAM_CONFIG_BLOOD_A = 0,          // A åž‹
+    NVRAM_CONFIG_BLOOD_B,              // B åž‹
+    NVRAM_CONFIG_BLOOD_AB,             // ABåž‹
+    NVRAM_CONFIG_BLOOD_O,              // O åž‹
     NVRAM_CONFIG_BLOOD_TYPE_MAX
 }
 NVRAMConfigBloodType;
 
-// “ú•tƒf[ƒ^(4byte)
+// æ—¥ä»˜ãƒ‡ãƒ¼ã‚¿(4byte)
 typedef struct NVRAMConfigDate
 {
-    u16     year;                      // ”N:1800`2100
-    u8      month;                     // ŒŽ:01`12
-    u8      day;                       // “ú:01`31
+    u16     year;                      // å¹´:1800ã€œ2100
+    u8      month;                     // æœˆ:01ã€œ12
+    u8      day;                       // æ—¥:01ã€œ31
 
 }
 NVRAMConfigDate;
 
-// ƒI[ƒi[î•ñ(32byte)
+// ã‚ªãƒ¼ãƒŠãƒ¼æƒ…å ±(32byte)
 typedef struct NVRAMConfigOwnerInfo
 {
-    NVRAMConfigNickname nickname;      // ƒjƒbƒNƒl[ƒ€
-    NVRAMConfigSexCode sex;            // «•Ê
-    NVRAMConfigBloodType bloodType;    // ŒŒ‰tŒ^
-    NVRAMConfigDate birthday;          // ¶”NŒŽ“ú
+    NVRAMConfigNickname nickname;      // ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ 
+    NVRAMConfigSexCode sex;            // æ€§åˆ¥
+    NVRAMConfigBloodType bloodType;    // è¡€æ¶²åž‹
+    NVRAMConfigDate birthday;          // ç”Ÿå¹´æœˆæ—¥
 
 }
 NVRAMConfigOwnerInfo;
 
 
-// ‹N“®ƒQ[ƒ€—š—ðƒf[ƒ^(36byte)
+// èµ·å‹•ã‚²ãƒ¼ãƒ å±¥æ­´ãƒ‡ãƒ¼ã‚¿(36byte)
 typedef struct NVRAMConfigBootGameLog
 {
-    u32     gameCode[NVRAM_CONFIG_BOOT_GAME_LOG_NUM];   // ‰ß‹Ž‚É‹N“®‚µ‚½ƒQ[ƒ€‚ÌƒQ[ƒ€—ª†ƒŠƒXƒgiƒŠƒ“ƒOƒoƒbƒtƒ@j
-    u16     top;                       // ÅIƒƒO‚ÌƒCƒ“ƒfƒbƒNƒX”Ô†
-    u16     num;                       // ƒƒO‚ÌŒÂ”
+    u32     gameCode[NVRAM_CONFIG_BOOT_GAME_LOG_NUM];   // éŽåŽ»ã«èµ·å‹•ã—ãŸã‚²ãƒ¼ãƒ ã®ã‚²ãƒ¼ãƒ ç•¥å·ãƒªã‚¹ãƒˆï¼ˆãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ï¼‰
+    u16     top;                       // æœ€çµ‚ãƒ­ã‚°ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
+    u16     num;                       // ãƒ­ã‚°ã®å€‹æ•°
 
 }
 NVRAMConfigBootGameLog;
 
-// ƒ^ƒbƒ`ƒpƒlƒ‹À•W•â³ƒf[ƒ^(12byte)
+// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«åº§æ¨™è£œæ­£ãƒ‡ãƒ¼ã‚¿(12byte)
 typedef struct NVRAMConfigTpCData
 {
-    u16     calib_data[6];             // ƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ“î•ñ
+    u16     calib_data[6];             // ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³æƒ…å ±
 
 }
 NVRAMConfigTpCData;
 
 
-// ƒRƒ“ƒtƒBƒOŠeŽíÝ’èƒf[ƒ^(96byte)
+// ã‚³ãƒ³ãƒ•ã‚£ã‚°å„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿(96byte)
 typedef struct NVRAMConfigData
 {
-    u8      version;                   // ƒtƒ‰ƒbƒVƒ…Ši”[ƒf[ƒ^ƒtƒH[ƒ}ƒbƒg‚Ìƒo[ƒWƒ‡ƒ“
-    u8      timezone;                  // ƒ^ƒCƒ€ƒ][ƒ“
-    u16     agbLcd;                    // AGBƒ‚[ƒh‚Å‹N“®‚·‚éŽž‚É‚Ç‚¿‚ç‚ÌLCD‚Å‹N“®‚·‚é‚©Hi0:TOP,1:BOTTOMj
-    s64     rtcOffset;                 // RTCÝ’èŽž‚ÌƒIƒtƒZƒbƒg’liƒ†[ƒU[‚ªRTCÝ’è‚ð•ÏX‚·‚é“x‚É‚»‚Ì’l‚É‰ž‚¶‚Ä‘Œ¸‚µ‚Ü‚·Bj
-    u32     language;                  // Œ¾ŒêƒR[ƒh
-    NVRAMConfigOwnerInfo owner;        // ƒI[ƒi[î•ñ
-    NVRAMConfigTpCData tp;             // ƒ^ƒbƒ`ƒpƒlƒ‹ƒLƒƒƒŠƒuƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^
-    NVRAMConfigBootGameLog bootGameLog; // ‹N“®ƒQ[ƒ€—š—ð
+    u8      version;                   // ãƒ•ãƒ©ãƒƒã‚·ãƒ¥æ ¼ç´ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+    u8      timezone;                  // ã‚¿ã‚¤ãƒ ã‚¾ãƒ¼ãƒ³
+    u16     agbLcd;                    // AGBãƒ¢ãƒ¼ãƒ‰ã§èµ·å‹•ã™ã‚‹æ™‚ã«ã©ã¡ã‚‰ã®LCDã§èµ·å‹•ã™ã‚‹ã‹ï¼Ÿï¼ˆ0:TOP,1:BOTTOMï¼‰
+    s64     rtcOffset;                 // RTCè¨­å®šæ™‚ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ï¼ˆãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒRTCè¨­å®šã‚’å¤‰æ›´ã™ã‚‹åº¦ã«ãã®å€¤ã«å¿œã˜ã¦å¢—æ¸›ã—ã¾ã™ã€‚ï¼‰
+    u32     language;                  // è¨€èªžã‚³ãƒ¼ãƒ‰
+    NVRAMConfigOwnerInfo owner;        // ã‚ªãƒ¼ãƒŠãƒ¼æƒ…å ±
+    NVRAMConfigTpCData tp;             // ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚­ãƒ£ãƒªãƒ–ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+    NVRAMConfigBootGameLog bootGameLog; // èµ·å‹•ã‚²ãƒ¼ãƒ å±¥æ­´
 
 }
 NVRAMConfigData;
 
-// ƒRƒ“ƒtƒBƒOŠeŽíÝ’èƒf[ƒ^‚ÌNVRAM•Û‘¶ŽžƒtƒH[ƒ}ƒbƒg(100byte)
+// ã‚³ãƒ³ãƒ•ã‚£ã‚°å„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿ã®NVRAMä¿å­˜æ™‚ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆ(100byte)
 typedef struct NVRAMConfig
 {
-    NVRAMConfigData ncd;               // ƒRƒ“ƒtƒBƒOŠeŽíÝ’èƒf[ƒ^
-    u16     saveCount;                 // 0x00-0x7f‚ðƒ‹[ƒv‚µ‚ÄƒJƒEƒ“ƒg‚µAƒJƒEƒ“ƒg’l‚ªV‚µ‚¢ƒf[ƒ^‚ª—LŒøB
-    u16     crc16;                     // ƒRƒ“ƒtƒBƒOŠeŽíÝ’èƒf[ƒ^‚Ì16bitCRC
+    NVRAMConfigData ncd;               // ã‚³ãƒ³ãƒ•ã‚£ã‚°å„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿
+    u16     saveCount;                 // 0x00-0x7fã‚’ãƒ«ãƒ¼ãƒ—ã—ã¦ã‚«ã‚¦ãƒ³ãƒˆã—ã€ã‚«ã‚¦ãƒ³ãƒˆå€¤ãŒæ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã€‚
+    u16     crc16;                     // ã‚³ãƒ³ãƒ•ã‚£ã‚°å„ç¨®è¨­å®šãƒ‡ãƒ¼ã‚¿ã®16bitCRC
 
 }
 NVRAMConfig;

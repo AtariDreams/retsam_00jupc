@@ -1,13 +1,13 @@
 //============================================================================================
 /**
  * @file	wbtower_enter.c
- * @bfief	WIFIƒoƒgƒ‹ƒ^ƒ[“±“üˆ—
+ * @bfief	WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼å°Žå…¥å‡¦ç†
  * @author	Akito Mori
  * @date	06.05.15
  */
 //============================================================================================
 #ifdef PM_DEBUG
-// —LŒø‚É‚·‚é‚ÆƒƒOƒCƒ“Žž‚É•K‚¸FATALERROR‚ª‹N‚«‚é
+// æœ‰åŠ¹ã«ã™ã‚‹ã¨ãƒ­ã‚°ã‚¤ãƒ³æ™‚ã«å¿…ãšFATALERRORãŒèµ·ãã‚‹
 //#define DEBUG_FATAL_TEST
 #endif
 
@@ -53,15 +53,15 @@
 #include "application/connect_anm.h"
 
 
-#include "../wifi_worldtrade/worldtrade.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
-#include "../wifi_p2pmatch/wifip2pmatch.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "../wifi_worldtrade/worldtrade.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
+#include "../wifi_p2pmatch/wifip2pmatch.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 static void BgInit( GF_BGL_INI * ini );
 static void BgExit( GF_BGL_INI * ini );
 static void BgGraphicSet( WBTOWER_WORK * wk );
@@ -152,8 +152,8 @@ static void TimeIconAdd( WBTOWER_WORK *wk );
 static void TimeIconDel( WBTOWER_WORK *wk );
 
 
-///‹­§ƒ^ƒCƒ€ƒAƒEƒg‚Ü‚Å‚ÌŽžŠÔ
-#define TIMEOUT_TIME			(30*60*2)	//2•ª
+///å¼·åˆ¶ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã¾ã§ã®æ™‚é–“
+#define TIMEOUT_TIME			(30*60*2)	//2åˆ†
 
 
 enum{
@@ -169,7 +169,7 @@ enum{
 	ENTER_PROFILE_START,
 	ENTER_PROFILE_RESULT,
 
-	// ƒ_ƒEƒ“ƒ[ƒh
+	// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 	ENTER_SERVER_GET_RANK,
 	ENTER_SERVER_GET_RANK_RESULT,
 
@@ -189,13 +189,13 @@ enum{
 	ENTER_LEADER_DATA_END_START,
     ENTER_LEADER_DATA_END_YESNO_SELECT,
 
-	// ƒAƒbƒvƒ[ƒh
+	// ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
 	ENTER_TOWER_SCORE_UPLOAD_MES,
     ENTER_TOWER_SCORE_UPLOAD,
     ENTER_TOWER_SCORE_UPLOAD_RESULT,
     ENTER_TOWER_SCORE_UPLOAD_SUCCESS,
 	
-	// ƒŠ[ƒ_[ƒf[ƒ^ƒ_ƒEƒ“ƒ[ƒh
+	// ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 	ENTER_SELECT_RANK_MES,
 	ENTER_SELECT_RANK,
 	ENTER_SELECT_RANK_RESULT,
@@ -208,11 +208,11 @@ enum{
 	ENTER_LEADER_DATA_DOWNLOAD_RESULT,
     ENTER_LEADER_DATA_DOWNLOAD_SUCCESS,
 
-	// ƒZ[ƒuƒV[ƒPƒ“ƒX
+	// ã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	ENTER_BTOWER_SAVE,
 	ENTER_BTOWER_SAVE_WAIT,
 
-	// I—¹ƒV[ƒPƒ“ƒX
+	// çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	ENTER_FORCE_END_START,
 	ENTER_FORCE_END,
 	ENTER_FORCE_END_MES,
@@ -244,12 +244,12 @@ static int (*Functable[])( WBTOWER_WORK *wk ) = {
 	Enter_DpwBtInit,			// ENTER_DPWTR_INIT
 	Enter_ServerStart,			// ENTER_SERVER_START
 	Enter_ServerResult,			// ENTER_SERVER_RESULT
-	Enter_ProfileStart,			// ENTER_PROFILE_START	ƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰Á
-	Enter_ProfileResult,		// ENTER_PROFILE_RESULT	ƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰Á
+	Enter_ProfileStart,			// ENTER_PROFILE_START	ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ 
+	Enter_ProfileResult,		// ENTER_PROFILE_RESULT	ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ 
 	Enter_ServerGetRank,		// ENTER_SERVER_GET_RANK
 	Enter_ServerGetRankResult,	// ENTER_SERVER_GET_RANK_RESULT
 
-	// ƒ_ƒEƒ“ƒ[ƒh
+	// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 	Enter_ServerRoomSelectMes,
     Enter_ServerRoomSelect,
     Enter_ServerRoomSelectWait,
@@ -268,13 +268,13 @@ static int (*Functable[])( WBTOWER_WORK *wk ) = {
 	Enter_LeaderDataEndStart,		// ENTER_LEADER_DATA_END_START,
     Enter_LeaderDataEndYesNoSelect,	// ENTER_LEADER_DATA_END_YESNO_SELECT,
 
-	// ƒAƒbƒvƒ[ƒh
+	// ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
 	Enter_TowerScoreUploadMessage,
     Enter_TowerScoreUpload,
     Enter_TowerScoreUploadResult,
     Enter_TowerScoreUploadSuccess,
 
-	// ƒŠ[ƒ_[ƒf[ƒ^ƒ_ƒEƒ“ƒ[ƒh
+	// ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 	Enter_SelectRankMessage,
 	Enter_SelectRank,
 	Enter_SelectRankResult,
@@ -287,11 +287,11 @@ static int (*Functable[])( WBTOWER_WORK *wk ) = {
     Enter_LeaderDataDownLoadResult,
     Enter_LeaderDataDownloadSuccess,
 
-	// ƒZ[ƒuƒV[ƒPƒ“ƒX
+	// ã‚»ãƒ¼ãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	Enter_BtowerSave,
 	Enter_BtowerSaveWait,
 
-	// I—¹ƒV[ƒPƒ“ƒX
+	// çµ‚äº†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 	Enter_ForceEndStart,        // ENTER_FORCE_END_START
 	Enter_ForceEnd,             // ENTER_FORCE_END,
 	Enter_ForceEndMessage,		// ENTER_FORCE_END_MES,
@@ -316,12 +316,12 @@ static int (*Functable[])( WBTOWER_WORK *wk ) = {
 
 
 //======================================x======================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–Ê‰Šú‰»
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢åˆæœŸåŒ–
  *
  * @param   wk		
  * @param   seq		
@@ -331,39 +331,39 @@ static int (*Functable[])( WBTOWER_WORK *wk ) = {
 //==============================================================================
 int WBTower_EnterInit(WBTOWER_WORK *wk, int seq)
 {
-	// ƒ[ƒN‰Šú‰»
+	// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	InitWork( wk );
 	
-	// ƒƒCƒvƒtƒF[ƒhŠJŽn
+	// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 	WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, 8, 1, HEAPID_WIFI_BATTLETOWER );
 
-	// BGÝ’è
+	// BGè¨­å®š
 	BgInit( wk->bgl );
 
-	// BGƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	BgGraphicSet( wk );
 
-	// BMPWINŠm•Û
+	// BMPWINç¢ºä¿
 	BmpWinInit( wk );
 
 
-	// BG–Ê•\Ž¦ON
+	// BGé¢è¡¨ç¤ºON
 	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG0, VISIBLE_ON );
 	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG1, VISIBLE_ON );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_ON );
 
-    // ’ÊMƒGƒ‰[ŠÇ—‚Ì‚½‚ß‚É’ÊMƒ‹[ƒ`ƒ“‚ðON
+    // é€šä¿¡ã‚¨ãƒ©ãƒ¼ç®¡ç†ã®ãŸã‚ã«é€šä¿¡ãƒ«ãƒ¼ãƒãƒ³ã‚’ON
     CommStateWifiDPWStart( wk->param->savedata );
-	// Wifi’ÊMƒAƒCƒRƒ“
+	// Wifié€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
 	WBTower_WifiIconAdd( wk );
 
-	// Œ»Ý‚Ìƒ‰ƒ“ƒN‚ðŽæ“¾
+	// ç¾åœ¨ã®ãƒ©ãƒ³ã‚¯ã‚’å–å¾—
 	wk->Rank    = TowerScoreData_SetWifiRank(wk->param->btowerscore, BTWR_DATA_get);
 	wk->NowRank = wk->Rank;
 	wk->NowRoom = 1;
 
-	// ŽžŠÔƒAƒCƒRƒ“ƒtƒ‰ƒOƒ^ƒXƒNƒ[ƒN‚ð‰Šú‰»
+	// æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³ãƒ•ãƒ©ã‚°ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
 	wk->timeWaitWork = NULL;
 
 	if(!DWC_CheckInet()){
@@ -381,7 +381,7 @@ int WBTower_EnterInit(WBTOWER_WORK *wk, int seq)
 }
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–ÊƒƒCƒ“
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢ãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  * @param   seq		
@@ -393,10 +393,10 @@ int WBTower_EnterMain(WBTOWER_WORK *wk, int seq)
 {
 	int ret, temp_subprocess_seq;
 
-	// ’ÊMó‘Ô‚ðŠm”F‚µ‚ÄƒAƒCƒRƒ“‚Ì•\Ž¦‚ð•Ï‚¦‚é
+	// é€šä¿¡çŠ¶æ…‹ã‚’ç¢ºèªã—ã¦ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºã‚’å¤‰ãˆã‚‹
     WirelessIconEasy_SetLevel(WBTower_WifiLinkLevel());
 
-	// ƒV[ƒPƒ“ƒX‘JˆÚ‚ÅŽÀs
+	// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é·ç§»ã§å®Ÿè¡Œ
 	temp_subprocess_seq = wk->subprocess_seq;
 	ret = (*Functable[wk->subprocess_seq])( wk );
 	if(temp_subprocess_seq != wk->subprocess_seq){
@@ -412,7 +412,7 @@ int WBTower_EnterMain(WBTOWER_WORK *wk, int seq)
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–ÊI—¹
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢çµ‚äº†
  *
  * @param   wk		
  * @param   seq		
@@ -431,23 +431,23 @@ int WBTower_EnterEnd(WBTOWER_WORK *wk, int seq)
 	BgExit( wk->bgl );
 	ConnectBGPalAnm_OccSet(&wk->cbp, FALSE);
 
-	// ŽŸ‚ÌƒTƒuƒvƒƒZƒX‚ðÝ’è‚·‚é
+	// æ¬¡ã®ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚’è¨­å®šã™ã‚‹
 	wk->sub_process = wk->sub_nextprocess;
 	
-	// ŽŸ‚ÌƒTƒuƒvƒƒZƒX‚ª“ü‚èŒû‚Ì‚Ü‚Ü‚¾‚Á‚½‚ç¢ŠEŒðŠ·I—¹
+	// æ¬¡ã®ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ãŒå…¥ã‚Šå£ã®ã¾ã¾ã ã£ãŸã‚‰ä¸–ç•Œäº¤æ›çµ‚äº†
 	if(wk->sub_process==WBTOWER_ENTER){
 		return SEQ_OUT;
 	}
-	// ŽŸ‚ªÝ’è‚³‚ê‚Ä‚¢‚½‚ç‰Šú‰»‚Ö
+	// æ¬¡ãŒè¨­å®šã•ã‚Œã¦ã„ãŸã‚‰åˆæœŸåŒ–ã¸
 	return SEQ_INIT;
 }
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGÝ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -455,7 +455,7 @@ int WBTower_EnterEnd(WBTOWER_WORK *wk, int seq)
 static void BgInit( GF_BGL_INI * ini )
 {
 
-	// ƒƒCƒ“‰æ–ÊƒeƒLƒXƒg–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ†ã‚­ã‚¹ãƒˆé¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -467,7 +467,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_BGL_ScrClear( ini, GF_BGL_FRAME0_M );
 	}
 
-	// ƒƒCƒ“‰æ–Ê”wŒi–Ê
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯é¢
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -478,7 +478,7 @@ static void BgInit( GF_BGL_INI * ini )
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	}
 
-	// ƒTƒu‰æ–Ê•¶Žš”Å0
+	// ã‚µãƒ–ç”»é¢æ–‡å­—ç‰ˆ0
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -492,7 +492,7 @@ static void BgInit( GF_BGL_INI * ini )
 	}
 
 
-	// ƒTƒu‰æ–Ê”wŒi
+	// ã‚µãƒ–ç”»é¢èƒŒæ™¯
 	{	
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -512,9 +512,9 @@ static void BgInit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ð•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -532,9 +532,9 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -544,15 +544,15 @@ static void BgGraphicSet( WBTOWER_WORK * wk )
 	GF_BGL_INI *bgl = wk->bgl;
 	ARCHANDLE* p_handle = ArchiveDataHandleOpen( ARC_WIFIP2PMATCH_GRA, HEAPID_WIFI_BATTLETOWER );
 
-	// ã‰º‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+	// ä¸Šä¸‹ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
     ArcUtil_HDL_PalSet(    p_handle, NARC_wifip2pmatch_conect_NCLR, PALTYPE_MAIN_BG, 0, 0,  HEAPID_WIFI_BATTLETOWER);
     ArcUtil_HDL_PalSet(    p_handle, NARC_wifip2pmatch_conect_NCLR, PALTYPE_SUB_BG,  0, 0,  HEAPID_WIFI_BATTLETOWER);
 	
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, WBTOWER_TALKFONT_PAL*0x20, HEAPID_WIFI_BATTLETOWER );
 	TalkFontPaletteLoad( PALTYPE_SUB_BG,  WBTOWER_TALKFONT_PAL*0x20, HEAPID_WIFI_BATTLETOWER );
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	TalkWinGraphicSet(	bgl, GF_BGL_FRAME0_M, WBTOWER_MESFRAME_CHR, 
 						WBTOWER_MESFRAME_PAL, CONFIG_GetWindowType(wk->param->config), HEAPID_WIFI_BATTLETOWER );
 
@@ -563,25 +563,25 @@ static void BgGraphicSet( WBTOWER_WORK * wk )
 
 
 
-	// ƒƒCƒ“‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_conect_NCGR, bgl, GF_BGL_FRAME1_M, 0, 0, 0, HEAPID_WIFI_BATTLETOWER);
 
-	// ƒƒCƒ“‰æ–ÊBG1ƒXƒNƒŠ[ƒ““]‘—
+	// ãƒ¡ã‚¤ãƒ³ç”»é¢BG1ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_wifip2pmatch_conect_01_NSCR, bgl, GF_BGL_FRAME1_M, 0, 32*24*2, 0, HEAPID_WIFI_BATTLETOWER);
 
 
 
-	// ƒTƒu‰æ–ÊBG1ƒLƒƒƒ‰“]‘—
+	// ã‚µãƒ–ç”»é¢BG1ã‚­ãƒ£ãƒ©è»¢é€
 	ArcUtil_HDL_BgCharSet( p_handle, NARC_wifip2pmatch_conect_sub_NCGR, bgl, GF_BGL_FRAME1_S, 0, 0, 0, HEAPID_WIFI_BATTLETOWER);
 
-	// ƒTƒu‰æ–ÊBG1ƒXƒNƒŠ[ƒ““]‘—
+	// ã‚µãƒ–ç”»é¢BG1ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	ArcUtil_HDL_ScrnSet(   p_handle, NARC_wifip2pmatch_conect_sub_NSCR, bgl, GF_BGL_FRAME1_S, 0, 32*24*2, 0f, HEAPID_WIFI_BATTLETOWER);
 
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0 );
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0 );
 
 
-	//WifiÚ‘±BGƒpƒŒƒbƒgƒAƒjƒƒVƒXƒeƒ€‰Šú‰»
+	//WifiæŽ¥ç¶šBGãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	ConnectBGPalAnm_Init(&wk->cbp, p_handle, 
 		NARC_wifip2pmatch_conect_anm_NCLR, HEAPID_WIFI_BATTLETOWER);
 
@@ -616,7 +616,7 @@ static void BgGraphicSet( WBTOWER_WORK * wk )
 //#define TITLE_MESSAGE_OFFSET ( TALK_MESSAGE_OFFSET + SUB_TEXT_SX*SUB_TEXT_SY )
 //------------------------------------------------------------------
 /**
- * BMPWINˆ—i•¶Žšƒpƒlƒ‹‚ÉƒtƒHƒ“ƒg•`‰æj
+ * BMPWINå‡¦ç†ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«ã«ãƒ•ã‚©ãƒ³ãƒˆæç”»ï¼‰
  *
  * @param   wk		
  *
@@ -625,29 +625,29 @@ static void BgGraphicSet( WBTOWER_WORK * wk )
 //------------------------------------------------------------------
 static void BmpWinInit( WBTOWER_WORK *wk )
 {
-	// ---------- ƒƒCƒ“‰æ–Ê ------------------
+	// ---------- ãƒ¡ã‚¤ãƒ³ç”»é¢ ------------------
 
-	// BG0–ÊBMPWIN(ƒGƒ‰[à–¾)ƒEƒCƒ“ƒhƒEŠm•ÛE•`‰æ
+	// BG0é¢BMPWIN(ã‚¨ãƒ©ãƒ¼èª¬æ˜Ž)ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿ãƒ»æç”»
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->SubWin, GF_BGL_FRAME0_M,
 	SUB_TEXT_X, SUB_TEXT_Y, SUB_TEXT_SX, SUB_TEXT_SY, WBTOWER_TALKFONT_PAL,  ERROR_MESSAGE_OFFSET );
 
 	GF_BGL_BmpWinDataFill( &wk->SubWin, 0x0000 );
 
-	// BG0–ÊBMPWIN(ƒ‹[ƒ€”Ô†Žw’è)ƒEƒCƒ“ƒhƒEŠm•Û
+	// BG0é¢BMPWIN(ãƒ«ãƒ¼ãƒ ç•ªå·æŒ‡å®š)ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->NumberWin, GF_BGL_FRAME0_M,
 	SUB_NUMBER_X, SUB_NUMBER_Y, SUB_NUMBER_SX, SUB_NUMBER_SY, WBTOWER_TALKFONT_PAL,  NUMBER_WIN_OFFSET );
 
 	GF_BGL_BmpWinDataFill( &wk->NumberWin, 0x0f0f );
 
 
-	// BG0–ÊBMPWIN(ƒ‰ƒ“ƒN”Ô†Žw’è)ƒEƒCƒ“ƒhƒEŠm•ÛE•`‰æ
+	// BG0é¢BMPWIN(ãƒ©ãƒ³ã‚¯ç•ªå·æŒ‡å®š)ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿ãƒ»æç”»
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->RankWin, GF_BGL_FRAME0_M,
 	SUB_RANK_X, SUB_RANK_Y, SUB_RANK_SX, SUB_RANK_SY, WBTOWER_TALKFONT_PAL,  RANK_WIN_OFFSET );
 
 	GF_BGL_BmpWinDataFill( &wk->RankWin, 0x0f0f );
 
 
-	// WIFIƒoƒgƒ‹ƒ^ƒ[‚É‚¹‚Â‚¼‚­
+	// WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã«ã›ã¤ãžã
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->TitleWin, GF_BGL_FRAME0_M,
 		TITLE_TEXT_X, TITLE_TEXT_Y, TITLE_TEXT_SX, TITLE_TEXT_SY, 
 		WBTOWER_TALKFONT_PAL,  TITLE_WIN_OFFSET );
@@ -656,8 +656,8 @@ static void BmpWinInit( WBTOWER_WORK *wk )
 	WBTower_TalkPrint( &wk->TitleWin, wk->TitleString, 0, 1, 1, GF_PRINTCOLOR_MAKE(15,14,0) );
 
 
-	// ----------- ƒTƒu‰æ–Ê–¼‘O•\Ž¦BMPŠm•Û ------------------
-	// BG0–ÊBMPi‰ï˜bƒEƒCƒ“ƒhƒEjŠm•Û
+	// ----------- ã‚µãƒ–ç”»é¢åå‰è¡¨ç¤ºBMPç¢ºä¿ ------------------
+	// BG0é¢BMPï¼ˆä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼‰ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MsgWin, GF_BGL_FRAME0_M,
 		TALK_WIN_X, 
 		TALK_WIN_Y, 
@@ -669,7 +669,7 @@ static void BmpWinInit( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Šm•Û‚µ‚½BMPWIN‚ð‰ð•ú
+ * $brief   ç¢ºä¿ã—ãŸBMPWINã‚’è§£æ”¾
  *
  * @param   wk		
  *
@@ -690,7 +690,7 @@ static void BmpWinDelete( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * ¢ŠEŒðŠ·ƒ[ƒN‰Šú‰»
+ * ä¸–ç•Œäº¤æ›ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   wk		WBTOWER_WORK*
  *
@@ -700,7 +700,7 @@ static void BmpWinDelete( WBTOWER_WORK *wk )
 static void InitWork( WBTOWER_WORK *wk )
 {
 
-	// •¶Žš—ñƒoƒbƒtƒ@ì¬
+	// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	wk->TalkString   = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_WIFI_BATTLETOWER );
 	wk->RoomString   = STRBUF_Create( NUMBER_BUF_NUM, HEAPID_WIFI_BATTLETOWER );
 	wk->RankString   = STRBUF_Create( RANK_BUF_NUM, HEAPID_WIFI_BATTLETOWER );
@@ -708,7 +708,7 @@ static void InitWork( WBTOWER_WORK *wk )
 	wk->ErrorString  = STRBUF_Create( DWC_ERROR_BUF_NUM,    HEAPID_WIFI_BATTLETOWER );
 	
 
-	// ƒŒƒR[ƒh‚±‚¤‚©‚ñ‚Ú‚µ‚ã‚¤’†I•¶Žš—ñŽæ“¾
+	// ãƒ¬ã‚³ãƒ¼ãƒ‰ã“ã†ã‹ã‚“ã¼ã—ã‚…ã†ä¸­ï¼æ–‡å­—åˆ—å–å¾—
 //	MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_002, wk->TitleString );
 
 }
@@ -716,7 +716,7 @@ static void InitWork( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ[ƒN‰ð•ú
+ * $brief   ãƒ¯ãƒ¼ã‚¯è§£æ”¾
  *
  * @param   wk		
  *
@@ -746,7 +746,7 @@ static void FreeWork( WBTOWER_WORK *wk )
 //--------------------------------------------------------------------
 //------------------------------------------------------------------
 /**
- * $brief   ƒTƒuƒvƒƒZƒXƒV[ƒPƒ“ƒXƒXƒ^[ƒgˆ—
+ * $brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¹ã‚¿ãƒ¼ãƒˆå‡¦ç†
  *
  * @param   wk		
  *
@@ -755,11 +755,11 @@ static void FreeWork( WBTOWER_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_Start( WBTOWER_WORK *wk)
 {
-	// WIFIƒRƒlƒNƒVƒ‡ƒ“‚ÉÚ‘±‚µ‚Ü‚·‚©H
+	// WIFIã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã«æŽ¥ç¶šã—ã¾ã™ã‹ï¼Ÿ
 	MessagePrint( wk, wk->SystemMsgManager, dwc_message_0002, 1, 0x0f0f );
 	WBTower_SetNextSeq( wk, ENTER_MES_WAIT_YESNO_START, ENTER_CONNECT_YESNO_SELECT );
 
-	OS_TPrintf("Enter ŠJŽn\n");
+	OS_TPrintf("Enter é–‹å§‹\n");
 
 	return SEQ_MAIN;
 }
@@ -768,7 +768,7 @@ static int Enter_Start( WBTOWER_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ðŠJŽn‚µ‚Ü‚·‚©H
+ * $brief   æŽ¥ç¶šã‚’é–‹å§‹ã—ã¾ã™ã‹ï¼Ÿ
  *
  * @param   wk		
  *
@@ -781,18 +781,18 @@ static int Enter_ConnectYesNoSelect( WBTOWER_WORK *wk )
 
 	if(ret!=BMPMENU_NULL){
 		if(ret==BMPMENU_CANCEL){
-			// Ú‘±‚ðI—¹‚µ‚Ü‚·‚©H
+			// æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ
 //			MessagePrint( wk, wk->MsgManager, msg_gtc_01_008, 1, 0, 0x0f0f );
 //			WBTower_SetNextSeq( wk, ENTER_MES_WAIT_YESNO_START, ENTER_END_YESNO_SELECT );
 //			wk->subprocess_seq = ENTER_END_START;
 
-			// I—¹
+			// çµ‚äº†
 		    CommStateWifiDPWEnd();
 			WBTower_SubProcessChange( wk, WBTOWER_ENTER, 0 );
 			wk->subprocess_seq  = ENTER_END;
 
 		}else{
-			// WIFI‚¹‚Â‚¼‚­‚ðŠJŽn
+			// WIFIã›ã¤ãžãã‚’é–‹å§‹
 			MessagePrint( wk, wk->LobbyMsgManager, msg_wifilobby_002, 1, 0x0f0f );
 			WBTower_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_INTERNET_CONNECT );
 			TimeIconAdd( wk );
@@ -805,7 +805,7 @@ static int Enter_ConnectYesNoSelect( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ðI—¹‚µ‚Ü‚·‚©H
+ * $brief   æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ
  *
  * @param   wk		
  *
@@ -814,7 +814,7 @@ static int Enter_ConnectYesNoSelect( WBTOWER_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_EndStart( WBTOWER_WORK *wk ) 
 {
-	// Ú‘±‚ðI—¹‚µ‚Ü‚·‚©H
+	// æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ
 	MessagePrint( wk, wk->LobbyMsgManager, msg_wifilobby_009, 1, 0x0f0f );
 	WBTower_SetNextSeq( wk, ENTER_MES_WAIT_YESNO_START, ENTER_END_YESNO_SELECT );
 
@@ -823,7 +823,7 @@ static int Enter_EndStart( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ðI—¹‚µ‚Ü‚·‚©HiWIFIƒoƒgƒ‹ƒ^ƒ[‚ðÚ‘±‚¹‚¸‚ÉI—¹j
+ * $brief   æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿï¼ˆWIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚’æŽ¥ç¶šã›ãšã«çµ‚äº†ï¼‰
  *
  * @param   wk		
  *
@@ -837,23 +837,23 @@ static int Enter_EndYesNoSelect( WBTOWER_WORK *wk )
 	if(ret!=BMPMENU_NULL){
 		if(ret==BMPMENU_CANCEL){
 			if(!DWC_CheckInet()){		
-				// Ú‘±‚ðŠJŽn‚µ‚Ü‚·‚©H
+				// æŽ¥ç¶šã‚’é–‹å§‹ã—ã¾ã™ã‹ï¼Ÿ
 				wk->subprocess_seq  = ENTER_START;
 			}else{
-				// Šù‚ÉÚ‘±Ï‚Ý‚È‚çƒ^ƒCƒgƒ‹‚Ö
+				// æ—¢ã«æŽ¥ç¶šæ¸ˆã¿ãªã‚‰ã‚¿ã‚¤ãƒˆãƒ«ã¸
 //				WBTower_SubProcessChange( wk, WBTOWER_ENTER, 0 );
 //				wk->subprocess_seq  = ENTER_END;
 				wk->subprocess_seq  = ENTER_FORCE_END_START;
 			}
 		}else{
-			// WIFI‚¹‚Â‚¼‚­‚ðI—¹
+			// WIFIã›ã¤ãžãã‚’çµ‚äº†
 			if(!DWC_CheckInet()){		
 				WBTower_SubProcessChange( wk, WBTOWER_ENTER, 0 );
 				wk->subprocess_seq  = ENTER_END;
 			}else{
 				wk->subprocess_seq  = ENTER_FORCE_END_START;
 			}
-			// ƒLƒƒƒ“ƒZƒ‹I—¹‚ð’Ê’m‚·‚é
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«çµ‚äº†ã‚’é€šçŸ¥ã™ã‚‹
 			wk->param->result = WIFI_BTOWER_RESULT_CANCEL;
 
 		}
@@ -865,7 +865,7 @@ static int Enter_EndYesNoSelect( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒCƒ“ƒ^[ƒlƒbƒgÚ‘±ŠJŽn
+ * $brief   ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆæŽ¥ç¶šé–‹å§‹
  *
  * @param   wk		
  *
@@ -886,7 +886,7 @@ static int Enter_InternetConnect( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒlƒbƒgÚ‘±‘Ò‚¿
+ * $brief   ãƒãƒƒãƒˆæŽ¥ç¶šå¾…ã¡
  *
  * @param   wk		
  *
@@ -907,7 +907,7 @@ static int Enter_InternetConnectWait( WBTOWER_WORK *wk )
 		{
 		case DWC_CONNECTINET_STATE_ERROR:
 			{
-				// ƒGƒ‰[•\Ž¦
+				// ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
 				DWCError err;
 				int errcode;
 				err = DWC_GetLastError(&errcode);
@@ -933,7 +933,7 @@ static int Enter_InternetConnectWait( WBTOWER_WORK *wk )
 			//break;
 		case DWC_CONNECTINET_STATE_FATAL_ERROR:
 			{
-				// ƒGƒ‰[•\Ž¦
+				// ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
 				DWCError err;
 				int errcode;
 				err = DWC_GetLastError(&errcode);
@@ -946,7 +946,7 @@ static int Enter_InternetConnectWait( WBTOWER_WORK *wk )
 			break;
 
 		case DWC_CONNECTINET_STATE_CONNECTED:
-	        {	// Ú‘±æ‚ð•\Ž¦‚·‚éB“X•Ü‚Ìê‡‚Í“X•Üî•ñ‚à•\Ž¦‚·‚éB
+	        {	// æŽ¥ç¶šå…ˆã‚’è¡¨ç¤ºã™ã‚‹ã€‚åº—èˆ—ã®å ´åˆã¯åº—èˆ—æƒ…å ±ã‚‚è¡¨ç¤ºã™ã‚‹ã€‚
 				DWCApInfo apinfo;
 	
 				DWC_GetApInfo(&apinfo);
@@ -960,13 +960,13 @@ static int Enter_InternetConnectWait( WBTOWER_WORK *wk )
 	                OS_TPrintf("spotinfo : %s.\n", apinfo.spotinfo);
 	            }
 	        }
-	        // ƒRƒlƒNƒg¬Œ÷H
+	        // ã‚³ãƒã‚¯ãƒˆæˆåŠŸï¼Ÿ
 //			wk->subprocess_seq = ENTER_DPWBT_INIT;
 			wk->subprocess_seq = ENTER_WIFI_CONNECTION_LOGIN;
 			break;
 		}
 
-		// ŽžŠÔƒAƒCƒRƒ“Á‹Ž
+		// æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³æ¶ˆåŽ»
 
 	}
 	
@@ -976,7 +976,7 @@ static int Enter_InternetConnectWait( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   GameSpyƒT[ƒo[ƒƒOƒCƒ“ŠJŽn
+ * @brief   GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³é–‹å§‹
  *
  * @param   wk		
  *
@@ -987,13 +987,13 @@ static int Enter_WifiConnectionLogin( WBTOWER_WORK *wk )
 {
 	DWC_NASLoginAsync();
 	wk->subprocess_seq = ENTER_WIFI_CONNECTION_LOGIN_WAIT;
-	OS_Printf("GameSpyƒT[ƒo[ƒƒOƒCƒ“ŠJŽn\n");
+	OS_Printf("GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³é–‹å§‹\n");
 
 	return SEQ_MAIN;
 }
 //------------------------------------------------------------------
 /**
- * @brief   GameSpyƒT[ƒo[ƒƒOƒCƒ“ˆ—‘Ò‚¿
+ * @brief   GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†å¾…ã¡
  *
  * @param   wk		
  *
@@ -1004,14 +1004,14 @@ static int Enter_WifiConnectionLoginWait( WBTOWER_WORK *wk )
 {
 	switch(DWC_NASLoginProcess()){
 	case DWC_NASLOGIN_STATE_SUCCESS:
-		OS_Printf("GameSpyƒT[ƒo[ƒƒOƒCƒ“¬Œ÷\n");
+		OS_Printf("GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³æˆåŠŸ\n");
 		wk->subprocess_seq = ENTER_DPWBT_INIT;
 		break;
 	case DWC_NASLOGIN_STATE_ERROR:
 	case DWC_NASLOGIN_STATE_CANCELED:
 	case DWC_NASLOGIN_STATE_DIRTY:
 		TimeIconDel( wk );
-		OS_Printf("GameSpyƒT[ƒo[ƒƒOƒCƒ“Ž¸”s\n");
+		OS_Printf("GameSpyã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³å¤±æ•—\n");
 		{
 			int errCode;
 			DWCErrorType errType;
@@ -1023,7 +1023,7 @@ static int Enter_WifiConnectionLoginWait( WBTOWER_WORK *wk )
 			DWC_ClearError();
 			DWC_CleanupInet();
 
-			//‚ ‚è‚¦‚È‚¢‚Í‚¸‚¾‚ªA‚Ç‚ÌƒGƒ‰[‚É‚àˆø‚Á‚©‚©‚ç‚È‚¢‰Â”\«‚ðl—¶‚µA‰Šú’l‚Æ‚µ‚ÄŽŸ‚ÌƒV[ƒPƒ“ƒX‚ðæ‚ÉÝ’è‚µ‚Ä‚¨‚­
+			//ã‚ã‚Šãˆãªã„ã¯ãšã ãŒã€ã©ã®ã‚¨ãƒ©ãƒ¼ã«ã‚‚å¼•ã£ã‹ã‹ã‚‰ãªã„å¯èƒ½æ€§ã‚’è€ƒæ…®ã—ã€åˆæœŸå€¤ã¨ã—ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’å…ˆã«è¨­å®šã—ã¦ãŠã
 			wk->subprocess_seq = ENTER_DWC_ERROR_PRINT;
 
 			switch(errType){
@@ -1043,16 +1043,16 @@ static int Enter_WifiConnectionLoginWait( WBTOWER_WORK *wk )
 				DWC_ShutdownFriendsMatch();
 				wk->subprocess_seq = ENTER_DWC_ERROR_PRINT;
 				break;
-			case DWC_ETYPE_SHUTDOWN_ND:	//‚±‚ÌƒV[ƒPƒ“ƒX‚Å‚Í‚ ‚è‚¦‚È‚¢‚Ì‚Åˆê‰ž‹­§‚Ó‚Á‚Æ‚Î‚µ‚É‚·‚é
+			case DWC_ETYPE_SHUTDOWN_ND:	//ã“ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã§ã¯ã‚ã‚Šãˆãªã„ã®ã§ä¸€å¿œå¼·åˆ¶ãµã£ã¨ã°ã—ã«ã™ã‚‹
 				OS_TPrintf("DWC_ETYPE_SHUTDOWN_ND!\n");
 				//break;
 			case DWC_ETYPE_FATAL:
-				// ‹­§‚Ó‚Á‚Æ‚Î‚µ
+				// å¼·åˆ¶ãµã£ã¨ã°ã—
 				CommFatalErrorFunc_NoNumber();
 				break;
 			}
 
-			// 20000”Ô‘ä‚ðƒLƒƒƒbƒ`‚µ‚½‚çerrType‚ª‰½‚Å‚ ‚ë‚¤‚ÆƒŠƒZƒbƒgƒGƒ‰[‚Ö
+			// 20000ç•ªå°ã‚’ã‚­ãƒ£ãƒƒãƒã—ãŸã‚‰errTypeãŒä½•ã§ã‚ã‚ã†ã¨ãƒªã‚»ãƒƒãƒˆã‚¨ãƒ©ãƒ¼ã¸
 			if(errCode<-20000 && errCode >=-29999){
 //				CommSetErrorReset(COMM_ERROR_RESET_TITLE);
 				OS_Printf("dwcError = %d  errCode = %d, errType = %d\n", dwcError, errCode, errType);
@@ -1069,7 +1069,7 @@ static int Enter_WifiConnectionLoginWait( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ¢ŠEŒðŠ·ƒT[ƒo[Ú‘±ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»
+ * $brief   ä¸–ç•Œäº¤æ›ã‚µãƒ¼ãƒãƒ¼æŽ¥ç¶šãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–
  *
  * @param   wk		
  *
@@ -1080,24 +1080,24 @@ static int Enter_DpwBtInit( WBTOWER_WORK *wk )
 {
 	s32 profileId;
 
-	// ‚±‚ÌFriendKey‚ÍƒvƒŒƒCƒ„[‚ªŽn‚ß‚ÄŽæ“¾‚µ‚½‚à‚Ì‚©H
+	// ã“ã®FriendKeyã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒå§‹ã‚ã¦å–å¾—ã—ãŸã‚‚ã®ã‹ï¼Ÿ
 	profileId = SYSTEMDATA_GetDpwInfo( wk->param->systemdata );
 	if( profileId==0 ){
-		OS_TPrintf("‰‰ñŽæ“¾profileId‚È‚Ì‚ÅDpwInfo‚Æ‚µ‚Ä“o˜^‚µ‚½ %08x \n", wk->param->profileId);
+		OS_TPrintf("åˆå›žå–å¾—profileIdãªã®ã§DpwInfoã¨ã—ã¦ç™»éŒ²ã—ãŸ %08x \n", wk->param->profileId);
 
-		// ‰‰ñŽæ“¾FriendKey‚È‚Ì‚ÅADpwId‚Æ‚µ‚Ä•Û‘¶‚·‚é
+		// åˆå›žå–å¾—FriendKeyãªã®ã§ã€DpwIdã¨ã—ã¦ä¿å­˜ã™ã‚‹
 		SYSTEMDATA_SetDpwInfo( wk->param->systemdata, wk->param->profileId );
 	}
 
 
-	// ³Ž®‚Èƒf[ƒ^‚ðŽæ“¾
+	// æ­£å¼ãªãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	profileId = SYSTEMDATA_GetDpwInfo( wk->param->systemdata );
-	OS_Printf("DpwƒT[ƒo[ƒƒOƒCƒ“î•ñ profileId=%08x\n", profileId );
+	OS_Printf("Dpwã‚µãƒ¼ãƒãƒ¼ãƒ­ã‚°ã‚¤ãƒ³æƒ…å ± profileId=%08x\n", profileId );
 
-	// Wifiƒoƒgƒ‹ƒ^ƒ[Ú‘±‰Šú‰»
+	// Wifiãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æŽ¥ç¶šåˆæœŸåŒ–
 	Dpw_Bt_Init( profileId, DWC_CreateFriendKey( wk->param->MyUserData ));
 
-	OS_TPrintf("Dpw Battle Tower ‰Šú‰»\n");
+	OS_TPrintf("Dpw Battle Tower åˆæœŸåŒ–\n");
 
 	wk->subprocess_seq = ENTER_SERVER_START;
 	
@@ -1106,7 +1106,7 @@ static int Enter_DpwBtInit( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ¢ŠEŒðŠ·ƒ‰ƒCƒuƒ‰ƒŠÚ‘±ó‹µŽæ“¾ŠJŽn
+ * $brief   ä¸–ç•Œäº¤æ›ãƒ©ã‚¤ãƒ–ãƒ©ãƒªæŽ¥ç¶šçŠ¶æ³å–å¾—é–‹å§‹
  *
  * @param   wk		
  *
@@ -1117,9 +1117,9 @@ static int Enter_ServerStart( WBTOWER_WORK *wk )
 {
 	Dpw_Bt_GetServerStateAsync();
 
-	OS_TPrintf("Dpw Battle ƒT[ƒo[ó‘ÔŽæ“¾ŠJŽn\n");
+	OS_TPrintf("Dpw Battle ã‚µãƒ¼ãƒãƒ¼çŠ¶æ…‹å–å¾—é–‹å§‹\n");
 
-	// ƒT[ƒo[ó‘ÔŠm”F‘Ò‚¿‚Ö
+	// ã‚µãƒ¼ãƒãƒ¼çŠ¶æ…‹ç¢ºèªå¾…ã¡ã¸
 	wk->subprocess_seq = ENTER_SERVER_RESULT;
 	wk->timeout_count = 0;
 //	WBTower_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_MAIN );
@@ -1129,7 +1129,7 @@ static int Enter_ServerStart( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒT[ƒo[ó‘ÔŠm”F‘Ò‚¿
+ * $brief   ã‚µãƒ¼ãƒãƒ¼çŠ¶æ…‹ç¢ºèªå¾…ã¡
  *
  * @param   wk		
  *
@@ -1142,22 +1142,22 @@ static int Enter_ServerResult( WBTOWER_WORK *wk )
 		s32 result = Dpw_Bt_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		case DPW_BT_STATUS_SERVER_OK:		// ³í‚É“®ì‚µ‚Ä‚¢‚é
+		case DPW_BT_STATUS_SERVER_OK:		// æ­£å¸¸ã«å‹•ä½œã—ã¦ã„ã‚‹
 			OS_TPrintf(" server is up!\n");
-		#if 1	//EmailXV‚ÍGTS‚Ì‚Ý‚É‚È‚Á‚½ 2008.03.29(“y) matsuda
+		#if 1	//Emailæ›´æ–°ã¯GTSã®ã¿ã«ãªã£ãŸ 2008.03.29(åœŸ) matsuda
 			TimeIconDel( wk );
 
 			switch(wk->param->mode){
-			// ƒ_ƒEƒ“ƒ[ƒh
+			// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 			case WIFI_BTOWER_MODE_DOWNLOAD:
 				WBTower_SetNextSeq( wk, ENTER_SERVER_GET_RANK, ENTER_SERVER_ROOM_SELECT_MES );
 				
 				break;
-			// ƒAƒbƒvƒ[ƒh
+			// ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
 			case WIFI_BTOWER_MODE_UPLOAD:
 				wk->subprocess_seq = ENTER_TOWER_SCORE_UPLOAD_MES;
 				break;
-			// ƒŠ[ƒ_[ƒf[ƒ^ƒ_ƒEƒ“ƒ[ƒh
+			// ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 			case WIFI_BTOWER_MODE_LEADER:
 				wk->subprocess_seq = ENTER_SELECT_RANK_MES;
 				break;
@@ -1167,7 +1167,7 @@ static int Enter_ServerResult( WBTOWER_WORK *wk )
 		#endif
 			break;
 		case DPW_BT_STATUS_SERVER_STOP_SERVICE:	
-			// ƒT[ƒrƒX’âŽ~’†
+			// ã‚µãƒ¼ãƒ“ã‚¹åœæ­¢ä¸­
 			OS_TPrintf(" server stop service.\n");
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -1175,7 +1175,7 @@ static int Enter_ServerResult( WBTOWER_WORK *wk )
 			break;
 		case DPW_BT_STATUS_SERVER_FULL:		
 		case DPW_BT_ERROR_SERVER_FULL:		
-			// ƒT[ƒo[‚ª–ž”t
+			// ã‚µãƒ¼ãƒãƒ¼ãŒæº€æ¯
 			OS_TPrintf(" server full.\n");
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -1184,7 +1184,7 @@ static int Enter_ServerResult( WBTOWER_WORK *wk )
 			
   		case DPW_BT_ERROR_FAILURE:
   		case DPW_BT_ERROR_CANCEL:
-			// ƒT[ƒo[‚Æ’ÊM‚Å‚«‚Ü‚¹‚ñ¨I—¹
+			// ã‚µãƒ¼ãƒãƒ¼ã¨é€šä¿¡ã§ãã¾ã›ã‚“â†’çµ‚äº†
 			OS_TPrintf(" upload error. %d \n", result);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -1192,7 +1192,7 @@ static int Enter_ServerResult( WBTOWER_WORK *wk )
 			break;
 		case DPW_BT_ERROR_SERVER_TIMEOUT:
   		case DPW_BT_ERROR_DISCONNECTED:
-			// ƒT[ƒo[‚Æ’ÊM‚Å‚«‚Ü‚¹‚ñ¨I—¹
+			// ã‚µãƒ¼ãƒãƒ¼ã¨é€šä¿¡ã§ãã¾ã›ã‚“â†’çµ‚äº†
 			OS_TPrintf(" upload error. %d \n", result);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -1200,7 +1200,7 @@ static int Enter_ServerResult( WBTOWER_WORK *wk )
 			break;
   		case DPW_BT_ERROR_FATAL:
   		default:
-			// ’v–½“IƒGƒ‰[‚È‚Ì‚Å“dŒ¹Ø‚è‰æ–Ê‚Ö‚Ó‚Á‚Æ‚Î‚µ
+			// è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ãªã®ã§é›»æºåˆ‡ã‚Šç”»é¢ã¸ãµã£ã¨ã°ã—
 			TimeIconDel( wk );
 			CommFatalErrorFunc_NoNumber();
 			break;
@@ -1212,7 +1212,7 @@ static int Enter_ServerResult( WBTOWER_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//‹­§‚Ó‚Á‚Æ‚Î‚µ
+			CommFatalErrorFunc_NoNumber();	//å¼·åˆ¶ãµã£ã¨ã°ã—
 		}
 	}
 	return SEQ_MAIN;
@@ -1220,7 +1220,7 @@ static int Enter_ServerResult( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ¢ŠEŒðŠ·ƒ‰ƒCƒuƒ‰ƒŠFƒvƒƒtƒB[ƒ‹‘—MŠJŽn
+ * $brief   ä¸–ç•Œäº¤æ›ãƒ©ã‚¤ãƒ–ãƒ©ãƒªï¼šãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«é€ä¿¡é–‹å§‹
  *
  * @param   wk		
  *
@@ -1232,9 +1232,9 @@ static int Enter_ProfileStart( WBTOWER_WORK *wk )
 	EMAILSAVE_DCProfileCreate_Update(wk->param->savedata, &wk->dc_profile);
 	Dpw_Bt_SetProfileAsync(&wk->dc_profile, &wk->dc_profile_result);
 
-	OS_TPrintf("Dpw Battle ƒvƒƒtƒB[ƒ‹(Eƒ[ƒ‹)‘—M\n");
+	OS_TPrintf("Dpw Battle ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«(Eãƒ¡ãƒ¼ãƒ«)é€ä¿¡\n");
 
-	// ƒT[ƒo[ó‘ÔŠm”F‘Ò‚¿‚Ö
+	// ã‚µãƒ¼ãƒãƒ¼çŠ¶æ…‹ç¢ºèªå¾…ã¡ã¸
 	wk->subprocess_seq = ENTER_PROFILE_RESULT;
 	wk->timeout_count = 0;
 //	WBTower_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_MAIN );
@@ -1244,7 +1244,7 @@ static int Enter_ProfileStart( WBTOWER_WORK *wk )
 
 //--------------------------------------------------------------
 /**
- * @brief   ¢ŠEŒðŠ·ƒ‰ƒCƒuƒ‰ƒŠFƒvƒƒtƒB[ƒ‹Œ‹‰ÊŠm”F‘Ò‚¿
+ * @brief   ä¸–ç•Œäº¤æ›ãƒ©ã‚¤ãƒ–ãƒ©ãƒªï¼šãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«çµæžœç¢ºèªå¾…ã¡
  *
  * @param   wk		
  *
@@ -1257,59 +1257,59 @@ static int Enter_ProfileResult( WBTOWER_WORK *wk )
 		s32 result = Dpw_Bt_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		case DPW_BT_STATUS_SERVER_OK:		// ³í‚É“®ì‚µ‚Ä‚¢‚é
+		case DPW_BT_STATUS_SERVER_OK:		// æ­£å¸¸ã«å‹•ä½œã—ã¦ã„ã‚‹
 			OS_TPrintf(" profile is up!\n");
 			TimeIconDel( wk );
 
 			switch(wk->dc_profile_result.code){
-			case DPW_PROFILE_RESULTCODE_SUCCESS:	//î•ñ‚Ì“o˜^‚É¬Œ÷
+			case DPW_PROFILE_RESULTCODE_SUCCESS:	//æƒ…å ±ã®ç™»éŒ²ã«æˆåŠŸ
 				OS_TPrintf("mailAddrAuthResult = %d\n", wk->dc_profile_result.mailAddrAuthResult);
 				switch(wk->dc_profile_result.mailAddrAuthResult){
-				case DPW_PROFILE_AUTHRESULT_SUCCESS:	//”FØ¬Œ÷
+				case DPW_PROFILE_AUTHRESULT_SUCCESS:	//èªè¨¼æˆåŠŸ
 					switch(wk->param->mode){
-					// ƒ_ƒEƒ“ƒ[ƒh
+					// ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 					case WIFI_BTOWER_MODE_DOWNLOAD:
 						WBTower_SetNextSeq(wk,ENTER_SERVER_GET_RANK,ENTER_SERVER_ROOM_SELECT_MES );
 						break;
-					// ƒAƒbƒvƒ[ƒh
+					// ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
 					case WIFI_BTOWER_MODE_UPLOAD:
 						wk->subprocess_seq = ENTER_TOWER_SCORE_UPLOAD_MES;
 						break;
-					// ƒŠ[ƒ_[ƒf[ƒ^ƒ_ƒEƒ“ƒ[ƒh
+					// ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰
 					case WIFI_BTOWER_MODE_LEADER:
 						wk->subprocess_seq = ENTER_SELECT_RANK_MES;
 						break;
 					}
 					break;
-				//ˆÈ‰º‚ÌƒGƒ‰[ˆ—‚Í‚±‚ÌƒV[ƒ“‚Å‚Í‘z’è‚µ‚Ä‚¢‚È‚¢ƒ[ƒ‹”FØ‚ÌŒ‹‰Ê‚ª•Ô‚Á‚½ê‡
-				// (Ž©•ª‚Ì—F’BƒR[ƒh‚ª•Ï‰»‚µ‚½‚Æ‚«‚ÉˆÈ‘O‚Æ“¯‚¶ƒ[ƒ‹ƒAƒhƒŒƒX‚ÆƒpƒXƒ[ƒh‚ð‘—
-				// M‚µ‚½‚Æ‚«‚É‚±‚Ì‚æ‚¤‚É‚È‚é‰Â”\«‚ª‚ ‚è‚Ü‚·B’Êí‚Í‚ ‚è“¾‚Ü‚¹‚ñB)ƒ}ƒjƒ…ƒAƒ‹ˆø—p
-				case DPW_PROFILE_AUTHRESULT_SEND:	//”FØƒ[ƒ‹‘—M‚µ‚½
-				case DPW_PROFILE_AUTHRESULT_SENDFAILURE:	//”FØƒ[ƒ‹‚Ì‘—M‚ÉŽ¸”s
-				case DPW_PROFILE_AUTHRESULT_FAILURE:	//”FØ‚ÉŽ¸”s
+				//ä»¥ä¸‹ã®ã‚¨ãƒ©ãƒ¼å‡¦ç†ã¯ã“ã®ã‚·ãƒ¼ãƒ³ã§ã¯æƒ³å®šã—ã¦ã„ãªã„ãƒ¡ãƒ¼ãƒ«èªè¨¼ã®çµæžœãŒè¿”ã£ãŸå ´åˆ
+				// (è‡ªåˆ†ã®å‹é”ã‚³ãƒ¼ãƒ‰ãŒå¤‰åŒ–ã—ãŸã¨ãã«ä»¥å‰ã¨åŒã˜ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’é€
+				// ä¿¡ã—ãŸã¨ãã«ã“ã®ã‚ˆã†ã«ãªã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚é€šå¸¸ã¯ã‚ã‚Šå¾—ã¾ã›ã‚“ã€‚)ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«å¼•ç”¨
+				case DPW_PROFILE_AUTHRESULT_SEND:	//èªè¨¼ãƒ¡ãƒ¼ãƒ«é€ä¿¡ã—ãŸ
+				case DPW_PROFILE_AUTHRESULT_SENDFAILURE:	//èªè¨¼ãƒ¡ãƒ¼ãƒ«ã®é€ä¿¡ã«å¤±æ•—
+				case DPW_PROFILE_AUTHRESULT_FAILURE:	//èªè¨¼ã«å¤±æ•—
 					OS_TPrintf(" mail service error\n");
-					wk->ConnectErrorNo = result;//¦check ƒGƒ‰[”Ô†‚É‘Î‰ž‚µ‚½ƒƒbƒZ[ƒW—pˆÓ‚·‚é
+					wk->ConnectErrorNo = result;//â€»check ã‚¨ãƒ©ãƒ¼ç•ªå·ã«å¯¾å¿œã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨æ„ã™ã‚‹
 					wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 					TimeIconDel( wk );
 					break;
 				}
 				break;
-			case DPW_PROFILE_RESULTCODE_ERROR_INVALIDPARAM:	//ƒvƒƒtƒB[ƒ‹‚Ì‘—Mƒpƒ‰ƒ[ƒ^•s³
-			case DPW_PROFILE_RESULTCODE_ERROR_SERVERSTATE:	//ƒT[ƒoƒƒ“ƒeƒiƒ“ƒXorˆêŽž’âŽ~’†
+			case DPW_PROFILE_RESULTCODE_ERROR_INVALIDPARAM:	//ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®é€ä¿¡ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¸æ­£
+			case DPW_PROFILE_RESULTCODE_ERROR_SERVERSTATE:	//ã‚µãƒ¼ãƒãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹orä¸€æ™‚åœæ­¢ä¸­
 				OS_TPrintf(" server stop service.\n");
-				wk->ConnectErrorNo = result;	//¦check ƒGƒ‰[”Ô†‚É‘Î‰ž‚µ‚½ƒƒbƒZ[ƒW—pˆÓ‚·‚é
+				wk->ConnectErrorNo = result;	//â€»check ã‚¨ãƒ©ãƒ¼ç•ªå·ã«å¯¾å¿œã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨æ„ã™ã‚‹
 				wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 				TimeIconDel( wk );
 				break;
 			default:
-				// ’v–½“IƒGƒ‰[‚È‚Ì‚Å“dŒ¹Ø‚è‰æ–Ê‚Ö‚Ó‚Á‚Æ‚Î‚µ
+				// è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ãªã®ã§é›»æºåˆ‡ã‚Šç”»é¢ã¸ãµã£ã¨ã°ã—
 				TimeIconDel( wk );
 				CommFatalErrorFunc_NoNumber();
 				break;
 			}
 			break;
 		case DPW_BT_STATUS_SERVER_STOP_SERVICE:	
-			// ƒT[ƒrƒX’âŽ~’†
+			// ã‚µãƒ¼ãƒ“ã‚¹åœæ­¢ä¸­
 			OS_TPrintf(" server stop service.\n");
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -1317,7 +1317,7 @@ static int Enter_ProfileResult( WBTOWER_WORK *wk )
 			break;
 		case DPW_BT_STATUS_SERVER_FULL:		
 		case DPW_BT_ERROR_SERVER_FULL:		
-			// ƒT[ƒo[‚ª–ž”t
+			// ã‚µãƒ¼ãƒãƒ¼ãŒæº€æ¯
 			OS_TPrintf(" server full.\n");
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -1325,7 +1325,7 @@ static int Enter_ProfileResult( WBTOWER_WORK *wk )
 			break;
   		case DPW_BT_ERROR_FAILURE:
   		case DPW_BT_ERROR_CANCEL:
-			// ƒT[ƒo[‚Æ’ÊM‚Å‚«‚Ü‚¹‚ñ¨I—¹
+			// ã‚µãƒ¼ãƒãƒ¼ã¨é€šä¿¡ã§ãã¾ã›ã‚“â†’çµ‚äº†
 			OS_TPrintf(" upload error. %d \n", result);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -1333,7 +1333,7 @@ static int Enter_ProfileResult( WBTOWER_WORK *wk )
 			break;
 		case DPW_BT_ERROR_SERVER_TIMEOUT:
   		case DPW_BT_ERROR_DISCONNECTED:
-			// ƒT[ƒo[‚Æ’ÊM‚Å‚«‚Ü‚¹‚ñ¨I—¹
+			// ã‚µãƒ¼ãƒãƒ¼ã¨é€šä¿¡ã§ãã¾ã›ã‚“â†’çµ‚äº†
 			OS_TPrintf(" upload error. %d \n", result);
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -1341,7 +1341,7 @@ static int Enter_ProfileResult( WBTOWER_WORK *wk )
 			break;
   		case DPW_BT_ERROR_FATAL:
   		default:
-			// ’v–½“IƒGƒ‰[‚È‚Ì‚Å“dŒ¹Ø‚è‰æ–Ê‚Ö‚Ó‚Á‚Æ‚Î‚µ
+			// è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ãªã®ã§é›»æºåˆ‡ã‚Šç”»é¢ã¸ãµã£ã¨ã°ã—
 			TimeIconDel( wk );
 			CommFatalErrorFunc_NoNumber();
 			break;
@@ -1350,7 +1350,7 @@ static int Enter_ProfileResult( WBTOWER_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//‹­§‚Ó‚Á‚Æ‚Î‚µ
+			CommFatalErrorFunc_NoNumber();	//å¼·åˆ¶ãµã£ã¨ã°ã—
 		}
 	}
 	return SEQ_MAIN;
@@ -1358,7 +1358,7 @@ static int Enter_ProfileResult( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   Žw’è‚Ìƒ‰ƒ“ƒN‚Ì•”‰®”‚ðŽæ“¾‚·‚é
+ * @brief   æŒ‡å®šã®ãƒ©ãƒ³ã‚¯ã®éƒ¨å±‹æ•°ã‚’å–å¾—ã™ã‚‹
  *
  * @param   wk		
  *
@@ -1367,14 +1367,14 @@ static int Enter_ProfileResult( WBTOWER_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_ServerGetRank( WBTOWER_WORK *wk )
 {
-	// WIFIƒoƒgƒ‹ƒ^ƒ[ƒ‰ƒ“ƒNŽæ“¾
+	// WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ©ãƒ³ã‚¯å–å¾—
 
-// Wifiƒoƒgƒ‹ƒ^ƒ[ƒŠ[ƒ_[ƒ_ƒEƒ“ƒ[ƒh‰æ–Ê‚Åƒ‰ƒ“ƒN‚ðŽw’è‚µ‚Ä‚à
-// Ž©•ª‚Ìƒ‰ƒ“ƒN‚µ‚©Žæ“¾‚µ‚È‚­‚È‚Á‚Ä‚¢‚éƒoƒO‚É‘Îˆ 
-// ‚±‚ÌŠÖ”‚ÍƒŠ[ƒ_[ƒ_ƒEƒ“ƒ[ƒh‚Å‚àAƒoƒgƒ‹ƒ^ƒ[ƒf[ƒ^‚Ìƒ_ƒEƒ“ƒ[ƒh‚Ì‚Ç‚¿‚ç‚©‚ç‚à
-// ŒÄ‚Ño‚³‚ê‚Ä‚¢‚é‚Ì‚ÅA’ˆÓ‚ª•K—v
-// ƒoƒgƒ‹ƒ^ƒ[ƒf[ƒ^‚Ìƒ_ƒEƒ“ƒ[ƒh‚ÌÛ‚ÍWBTower_EnterInit“à‚ÅRank‚©‚çNowRank‚É
-// “n‚³‚ê‚Ä‚¢‚é‚Ì‚Å³í‚É“®ì‚·‚é
+// Wifiãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒªãƒ¼ãƒ€ãƒ¼ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ç”»é¢ã§ãƒ©ãƒ³ã‚¯ã‚’æŒ‡å®šã—ã¦ã‚‚
+// è‡ªåˆ†ã®ãƒ©ãƒ³ã‚¯ã—ã‹å–å¾—ã—ãªããªã£ã¦ã„ã‚‹ãƒã‚°ã«å¯¾å‡¦ 
+// ã“ã®é–¢æ•°ã¯ãƒªãƒ¼ãƒ€ãƒ¼ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã§ã‚‚ã€ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã®ã©ã¡ã‚‰ã‹ã‚‰ã‚‚
+// å‘¼ã³å‡ºã•ã‚Œã¦ã„ã‚‹ã®ã§ã€æ³¨æ„ãŒå¿…è¦
+// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã®éš›ã¯WBTower_EnterInitå†…ã§Rankã‹ã‚‰NowRankã«
+// æ¸¡ã•ã‚Œã¦ã„ã‚‹ã®ã§æ­£å¸¸ã«å‹•ä½œã™ã‚‹
 
 #if AFTERMASTER_070222_WIFI_BATTLETOWER_NOWRANK_BUG_FIX
 	Dpw_Bt_GetRoomNumAsync ( wk->NowRank );
@@ -1394,7 +1394,7 @@ static int Enter_ServerGetRank( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ŒðŠ·ƒ|ƒPƒ‚ƒ“ƒT[ƒo[Šm”Fˆ—‘Ò‚¿
+ * @brief   äº¤æ›ãƒã‚±ãƒ¢ãƒ³ã‚µãƒ¼ãƒãƒ¼ç¢ºèªå‡¦ç†å¾…ã¡
  *
  * @param   wk		
  *
@@ -1403,7 +1403,7 @@ static int Enter_ServerGetRank( WBTOWER_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_ServerGetRankResult( WBTOWER_WORK *wk )
 {
-	// ƒT[ƒo[–â‚¢‡‚í‚¹I—¹‘Ò‚¿
+	// ã‚µãƒ¼ãƒãƒ¼å•ã„åˆã‚ã›çµ‚äº†å¾…ã¡
 	if (Dpw_Bt_IsAsyncEnd()){
 		s32 result = Dpw_Bt_GetAsyncResult();
 		wk->timeout_count = 0;
@@ -1413,7 +1413,7 @@ static int Enter_ServerGetRankResult( WBTOWER_WORK *wk )
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			break;
-		// ƒ^ƒCƒ€ƒAƒEƒg
+		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
 		case DPW_BT_ERROR_SERVER_TIMEOUT :
 			OS_TPrintf(" server timeout\n");
 			wk->ConnectErrorNo = result;
@@ -1429,7 +1429,7 @@ static int Enter_ServerGetRankResult( WBTOWER_WORK *wk )
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			break;
-		// Ž¸”s‚µ‚½‚Ì‚ÅƒŠƒgƒ‰ƒC‚·‚é
+		// å¤±æ•—ã—ãŸã®ã§ãƒªãƒˆãƒ©ã‚¤ã™ã‚‹
 		case DPW_BT_ERROR_CANCEL :
 		case DPW_BT_ERROR_FAILURE :
 			OS_TPrintf(" failure ... retry\n");
@@ -1437,7 +1437,7 @@ static int Enter_ServerGetRankResult( WBTOWER_WORK *wk )
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			break;
 		case DPW_BT_ERROR_FATAL :
-			// ’v–½“IƒGƒ‰[‚È‚Ì‚Å‚Ó‚Á‚Æ‚Î‚µ
+			// è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ãªã®ã§ãµã£ã¨ã°ã—
 			OS_TPrintf(" server fatal erro  you must PowerOff\n");
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -1445,9 +1445,9 @@ static int Enter_ServerGetRankResult( WBTOWER_WORK *wk )
 			CommFatalErrorFunc_NoNumber();
 			break;
 
-		// •”‰®”‚ªŽæ“¾‚Å‚«‚½
+		// éƒ¨å±‹æ•°ãŒå–å¾—ã§ããŸ
 		default:
-			// 0ŒÂ‚Á‚Ä‚ ‚é‚ÌH
+			// 0å€‹ã£ã¦ã‚ã‚‹ã®ï¼Ÿ
 			if(result>0){
 				wk->RoomNum = result;
 				wk->subprocess_seq = wk->subprocess_nextseq;
@@ -1458,14 +1458,14 @@ static int Enter_ServerGetRankResult( WBTOWER_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//‹­§‚Ó‚Á‚Æ‚Î‚µ
+			CommFatalErrorFunc_NoNumber();	//å¼·åˆ¶ãµã£ã¨ã°ã—
 		}
 	}
 	return SEQ_MAIN;
 }
 //------------------------------------------------------------------
 /**
- * @brief   ‚¿‚å‚¤‚¹‚ñ‚µ‚½‚¢‚Ö‚â‚ð‘I‚ñ‚Å‚­‚¾‚³‚¢
+ * @brief   ã¡ã‚‡ã†ã›ã‚“ã—ãŸã„ã¸ã‚„ã‚’é¸ã‚“ã§ãã ã•ã„
  *
  * @param   wk		
  *
@@ -1482,7 +1482,7 @@ static int Enter_ServerRoomSelectMes( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ‹[ƒ€‘I‘ðŠJŽn
+ * @brief   ãƒ«ãƒ¼ãƒ é¸æŠžé–‹å§‹
  *
  * @param   wk		
  *
@@ -1497,7 +1497,7 @@ static int Enter_ServerRoomSelect( WBTOWER_WORK *wk )
 	BmpMenuWinWrite( &wk->NumberWin, WINDOW_TRANS_ON, WBTOWER_MENUFRAME_CHR, WBTOWER_MESFRAME_PAL );
 	NumStringBmpWrite( &wk->NumberWin, wk->RoomString, wk->NowRoom, 3 );
 
-	// –îˆó•\Ž¦
+	// çŸ¢å°è¡¨ç¤º
 	SelectArrowOnOff( wk, 0, TRUE );
 	GF_BGL_BmpWinOn( &wk->NumberWin );
 
@@ -1508,7 +1508,7 @@ static int Enter_ServerRoomSelect( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ‹[ƒ€‘I‘ð‘Ò‚¿
+ * @brief   ãƒ«ãƒ¼ãƒ é¸æŠžå¾…ã¡
  *
  * @param   wk		
  *
@@ -1539,10 +1539,10 @@ static int Enter_ServerRoomSelectWait( WBTOWER_WORK *wk )
 			RTCTime time;
 			RTCDate date;
 
-			// GameSpyƒT[ƒo[ŽžŠÔE“ú•t‚ðŽæ“¾
+			// GameSpyã‚µãƒ¼ãƒãƒ¼æ™‚é–“ãƒ»æ—¥ä»˜ã‚’å–å¾—
 			DWC_GetDateTime( &date, &time);
 
-			// ¡“ú‚ÍŠù‚Éƒ_ƒEƒ“ƒ[ƒh‚µ‚Ä‚¢‚é‚©H
+			// ä»Šæ—¥ã¯æ—¢ã«ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ã‚‹ã‹ï¼Ÿ
 			if(TowerWifiData_CheckRoomDataFlag( wk->param->wifitowerdata, wk->NowRank, wk->NowRoom, &date )){
 				wk->subprocess_seq = ENTER_ROOM_DATA_NOT_MES;
 			}else{
@@ -1554,10 +1554,10 @@ static int Enter_ServerRoomSelectWait( WBTOWER_WORK *wk )
 			RTCTime time;
 			RTCDate date;
 
-			// GameSpyƒT[ƒo[ŽžŠÔE“ú•t‚ðŽæ“¾
+			// GameSpyã‚µãƒ¼ãƒãƒ¼æ™‚é–“ãƒ»æ—¥ä»˜ã‚’å–å¾—
 			DWC_GetDateTime( &date, &time);
 
-			// ¡“ú‚ÍŠù‚Éƒ_ƒEƒ“ƒ[ƒh‚µ‚Ä‚¢‚é‚©H
+			// ä»Šæ—¥ã¯æ—¢ã«ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ã‚‹ã‹ï¼Ÿ
 			if(TowerWifiData_CheckRoomDataFlag( wk->param->wifitowerdata, wk->NowRank, wk->NowRoom, &date )){
 				wk->subprocess_seq = ENTER_ROOM_DATA_NOT_MES;
 			}else{
@@ -1580,7 +1580,7 @@ static int Enter_ServerRoomSelectWait( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   uƒ‰ƒ“ƒN‚O‚O@ƒ‹[ƒ€‚O‚O‚O‚ðƒ_ƒEƒ“ƒ[ƒh’†‚Å‚·vƒƒbƒZ[ƒW•\Ž¦
+ * @brief   ã€Œãƒ©ãƒ³ã‚¯ï¼ï¼ã€€ãƒ«ãƒ¼ãƒ ï¼ï¼ï¼ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­ã§ã™ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -1603,7 +1603,7 @@ static int Enter_RoomDataDownloadMessage( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚»‚Ìƒoƒgƒ‹ƒ‹[ƒ€‚Í‚Â‚¬‚Ì‚±‚¤‚µ‚ñ‚Ü‚Å‚¿‚å‚¤‚¹‚ñ‚Å‚«‚Ü‚¹‚ñ
+ * @brief   ãã®ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã¯ã¤ãŽã®ã“ã†ã—ã‚“ã¾ã§ã¡ã‚‡ã†ã›ã‚“ã§ãã¾ã›ã‚“
  *
  * @param   wk		
  *
@@ -1623,7 +1623,7 @@ static int Enter_RoomDataNotMessage( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ_ƒEƒ“ƒ[ƒhŠJŽn
+ * @brief   ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰é–‹å§‹
  *
  * @param   wk		
  *
@@ -1647,7 +1647,7 @@ static int Enter_RoomDataDownLoad( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   •”‰®ƒf[ƒ^ƒ_ƒEƒ“ƒ[ƒhŒ‹‰Ê
+ * @brief   éƒ¨å±‹ãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰çµæžœ
  *
  * @param   wk		
  *
@@ -1661,11 +1661,11 @@ static int Enter_RoomDataDownLoadResult( WBTOWER_WORK *wk )
 		s32 result = Dpw_Bt_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		// ¬Œ÷
+		// æˆåŠŸ
 		case 0:
 			OS_TPrintf(" room data download success \n");
 
-			// ƒ‹[ƒ€ƒf[ƒ^‚ðƒZ[ƒuƒf[ƒ^‚É”½‰f
+			// ãƒ«ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 			TowerWifiData_SetPlayerData(wk->param->wifitowerdata, 
 											(DPW_BT_PLAYER*)wk->roomBtData.player, wk->Rank, wk->NowRoom);
 			OS_Printf("poke1 = %d\n",wk->roomBtData.player[0].pokemon[0].data[0]);
@@ -1677,15 +1677,15 @@ static int Enter_RoomDataDownLoadResult( WBTOWER_WORK *wk )
 
 			WBTower_SetNextSeq( wk, ENTER_BTOWER_SAVE, ENTER_ROOM_DATA_DOWNLOAD_SUCCESS );
 
-			// ’§íÏ‚Ýƒtƒ‰ƒOˆ—
+			// æŒ‘æˆ¦æ¸ˆã¿ãƒ•ãƒ©ã‚°å‡¦ç†
 			{
 				RTCTime time;
 				RTCDate date;
 
-				// GameSpyƒT[ƒo[ŽžŠÔE“ú•t‚ðŽæ“¾
+				// GameSpyã‚µãƒ¼ãƒãƒ¼æ™‚é–“ãƒ»æ—¥ä»˜ã‚’å–å¾—
 				DWC_GetDateTime( &date, &time);
 				
-				// ’§íÏ‚Ýƒtƒ‰ƒO—§‚Ä‚é
+				// æŒ‘æˆ¦æ¸ˆã¿ãƒ•ãƒ©ã‚°ç«‹ã¦ã‚‹
 				TowerWifiData_SetRoomDataFlag( wk->param->wifitowerdata, wk->NowRank, wk->NowRoom, &date );
 
 			}
@@ -1696,7 +1696,7 @@ static int Enter_RoomDataDownLoadResult( WBTOWER_WORK *wk )
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			TimeIconDel(wk);
 			break;
-		// ƒ^ƒCƒ€ƒAƒEƒg
+		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
 		case DPW_BT_ERROR_SERVER_TIMEOUT :
 			OS_TPrintf(" server timeout\n");
 			wk->ConnectErrorNo = result;
@@ -1717,14 +1717,14 @@ static int Enter_RoomDataDownLoadResult( WBTOWER_WORK *wk )
 			TimeIconDel(wk);
 			break;
 		case DPW_BT_ERROR_FAILURE :
-			// ƒAƒNƒZƒXŽ¸”s
+			// ã‚¢ã‚¯ã‚»ã‚¹å¤±æ•—
 			OS_TPrintf(" failure ... retry\n");
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			TimeIconDel(wk);
 			break;
 		case DPW_BT_ERROR_FATAL :
-			// ’v–½“IƒGƒ‰[‚È‚Ì‚Å‚Ó‚Á‚Æ‚Î‚µ
+			// è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ãªã®ã§ãµã£ã¨ã°ã—
 			OS_TPrintf(" server fatal erro  you must PowerOff\n");
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -1737,7 +1737,7 @@ static int Enter_RoomDataDownLoadResult( WBTOWER_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//‹­§‚Ó‚Á‚Æ‚Î‚µ
+			CommFatalErrorFunc_NoNumber();	//å¼·åˆ¶ãµã£ã¨ã°ã—
 		}
 	}
 
@@ -1748,7 +1748,7 @@ static int Enter_RoomDataDownLoadResult( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   •”‰®ƒf[ƒ^ƒ_ƒEƒ“ƒ[ƒh¬Œ÷
+ * @brief   éƒ¨å±‹ãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æˆåŠŸ
  *
  * @param   wk		
  *
@@ -1771,7 +1771,7 @@ static int Enter_RoomDataDownloadSuccess( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   u‚¹‚¢‚¹‚«‚ðƒAƒbƒvƒ[ƒh‚¿‚ã‚¤vƒƒbƒZ[ƒW•\Ž¦
+ * @brief   ã€Œã›ã„ã›ãã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã¡ã‚…ã†ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -1793,7 +1793,7 @@ static int Enter_TowerScoreUploadMessage( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒAƒbƒvƒ[ƒhŠJŽn
+ * @brief   ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰é–‹å§‹
  *
  * @param   wk		
  *
@@ -1804,13 +1804,13 @@ static int Enter_TowerScoreUpload( WBTOWER_WORK *wk )
 {
 	BTOWER_ROOMID roomId;
 
-	// Ÿ—˜”‚ðŽæ“¾
+	// å‹åˆ©æ•°ã‚’å–å¾—
 	int win = TowerScoreData_GetWifiWinNum(wk->param->btowerscore);
 
-	// ’§í‚µ‚½•”‰®‚Ìƒ‰ƒ“ƒN‚Æƒ‹[ƒ€ƒiƒ“ƒo[‚ðƒf[ƒ^‚©‚çŽæ“¾
+	// æŒ‘æˆ¦ã—ãŸéƒ¨å±‹ã®ãƒ©ãƒ³ã‚¯ã¨ãƒ«ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—
 	TowerWifiData_GetPlayerDataRoomID(wk->param->wifitowerdata, &roomId);
 
-	// ƒoƒgƒ‹ƒ^ƒ[‚ÌƒAƒbƒvƒ[ƒhƒf[ƒ^‚ðì¬
+	// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã®ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
 	BtlTowerData_MakeUpdatePlayerData(wk->param->savedata,BTWR_SCORE_POKE_WIFI, (DPW_BT_PLAYER*)&wk->BtPlayer);
 	
 	OS_Printf("Upload Rank = %d Room = %d win = %d \n",roomId.rank, roomId.no, win );
@@ -1829,7 +1829,7 @@ static int Enter_TowerScoreUpload( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   Ÿ—˜ƒf[ƒ^ƒAƒbƒvƒ[ƒhŒ‹‰Ê
+ * @brief   å‹åˆ©ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰çµæžœ
  *
  * @param   wk		
  *
@@ -1843,11 +1843,11 @@ static int Enter_TowerScoreUploadResult( WBTOWER_WORK *wk )
 		s32 result = Dpw_Bt_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		// ¬Œ÷
+		// æˆåŠŸ
 		case 0:
 			OS_TPrintf(" room data upload success \n");
 
-			// ƒoƒgƒ‹ƒ^ƒ[–¢ƒAƒbƒvƒ[ƒhƒtƒ‰ƒO‚ðƒNƒŠƒA
+			// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æœªã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ã‚’ã‚¯ãƒªã‚¢
 			TowerScoreData_SetFlags(wk->param->btowerscore,BTWR_SFLAG_WIFI_UPLOAD,BTWR_DATA_reset);
 
 			WBTower_SetNextSeq( wk, ENTER_BTOWER_SAVE, ENTER_TOWER_SCORE_UPLOAD_SUCCESS );
@@ -1859,7 +1859,7 @@ static int Enter_TowerScoreUploadResult( WBTOWER_WORK *wk )
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			TimeIconDel( wk );
 			break;
-		// ƒ^ƒCƒ€ƒAƒEƒg
+		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
 		case DPW_BT_ERROR_SERVER_TIMEOUT :
 			OS_TPrintf(" server timeout\n");
 			wk->ConnectErrorNo = result;
@@ -1878,7 +1878,7 @@ static int Enter_TowerScoreUploadResult( WBTOWER_WORK *wk )
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			TimeIconDel( wk );
 			break;
-		// Ž¸”s‚µ‚½‚Ì‚ÅƒŠƒgƒ‰ƒC‚·‚é
+		// å¤±æ•—ã—ãŸã®ã§ãƒªãƒˆãƒ©ã‚¤ã™ã‚‹
 		case DPW_BT_ERROR_CANCEL :
 		case DPW_BT_ERROR_FAILURE :
 			OS_TPrintf(" failure ... retry\n");
@@ -1887,7 +1887,7 @@ static int Enter_TowerScoreUploadResult( WBTOWER_WORK *wk )
 			TimeIconDel( wk );
 			break;
 		case DPW_BT_ERROR_FATAL :
-			// ’v–½“IƒGƒ‰[‚È‚Ì‚Å‚Ó‚Á‚Æ‚Î‚µ
+			// è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ãªã®ã§ãµã£ã¨ã°ã—
 			OS_TPrintf(" server fatal erro  you must PowerOff\n");
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -1900,7 +1900,7 @@ static int Enter_TowerScoreUploadResult( WBTOWER_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//‹­§‚Ó‚Á‚Æ‚Î‚µ
+			CommFatalErrorFunc_NoNumber();	//å¼·åˆ¶ãµã£ã¨ã°ã—
 		}
 	}
 
@@ -1911,7 +1911,7 @@ static int Enter_TowerScoreUploadResult( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒAƒbƒvƒ[ƒh¬Œ÷
+ * @brief   ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰æˆåŠŸ
  *
  * @param   wk		
  *
@@ -1935,7 +1935,7 @@ static int Enter_TowerScoreUploadSuccess( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   uƒ‰ƒ“ƒN‚ð‚¢‚ê‚Ä‚­‚¾‚³‚¢vƒƒbƒZ[ƒW•\Ž¦
+ * @brief   ã€Œãƒ©ãƒ³ã‚¯ã‚’ã„ã‚Œã¦ãã ã•ã„ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -1952,7 +1952,7 @@ static int Enter_SelectRankMessage( WBTOWER_WORK *wk )
 }
 //------------------------------------------------------------------
 /**
- * @brief   ƒ‰ƒ“ƒNƒZƒŒƒNƒgŠJŽn
+ * @brief   ãƒ©ãƒ³ã‚¯ã‚»ãƒ¬ã‚¯ãƒˆé–‹å§‹
  *
  * @param   wk		
  *
@@ -1966,7 +1966,7 @@ static int Enter_SelectRank( WBTOWER_WORK *wk )
 	BmpMenuWinWrite( &wk->RankWin, WINDOW_TRANS_ON, WBTOWER_MENUFRAME_CHR, WBTOWER_MESFRAME_PAL );
 	NumStringBmpWrite( &wk->RankWin, wk->RankString, wk->NowRank, 2 );
 
-	// –îˆó•\Ž¦
+	// çŸ¢å°è¡¨ç¤º
 	SelectArrowOnOff( wk, 1, TRUE );
 	GF_BGL_BmpWinOn( &wk->RankWin );
 
@@ -1979,7 +1979,7 @@ static int Enter_SelectRank( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ‰ƒ“ƒNƒZƒŒƒNƒgŒ‹‰Ê‘Ò‚¿
+ * @brief   ãƒ©ãƒ³ã‚¯ã‚»ãƒ¬ã‚¯ãƒˆçµæžœå¾…ã¡
  *
  * @param   wk		
  *
@@ -2023,7 +2023,7 @@ static int Enter_SelectRankResult( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   uƒoƒgƒ‹ƒ‹[ƒ€‚Ì‚Î‚ñ‚²‚¤‚ð‚¢‚ê‚Ä‚­‚¾‚³‚¢v•\Ž¦
+ * @brief   ã€Œãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã®ã°ã‚“ã”ã†ã‚’ã„ã‚Œã¦ãã ã•ã„ã€è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -2040,7 +2040,7 @@ static int Enter_SelectLeaderRoomMes( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒŠ[ƒ_[ƒf[ƒ^‚ð—Ž‚Æ‚·ƒ‹[ƒ€”Ô†‘I‘ðŠJŽn
+ * @brief   ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’è½ã¨ã™ãƒ«ãƒ¼ãƒ ç•ªå·é¸æŠžé–‹å§‹
  *
  * @param   wk		
  *
@@ -2050,8 +2050,8 @@ static int Enter_SelectLeaderRoomMes( WBTOWER_WORK *wk )
 static int Enter_SelectLeaderRoom( WBTOWER_WORK *wk )
 {
 
-/* Wifiƒoƒgƒ‹ƒ^ƒ[‚Åƒ‰ƒ“ƒN‚ð‘I‚ñ‚¾Œã‚Éƒ‹[ƒ€ƒiƒ“ƒo[‚ð‰Šú‰»‚µ‚Ä‚¢‚È‚¢‚¹‚¢‚ÅA
-   ƒ‰ƒ“ƒN–ˆ‚Ìƒ‹[ƒ€”‚ªˆá‚¤‚Æƒ‹[ƒ€ƒiƒ“ƒo[‚ª‘¶Ý‚µ‚È‚¢êŠ‚ð‚µ‚Ä‚¢‚Å‚«‚Ä‚µ‚Ü‚¤ƒoƒO‚ð‘Îˆ */
+/* Wifiãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã§ãƒ©ãƒ³ã‚¯ã‚’é¸ã‚“ã å¾Œã«ãƒ«ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’åˆæœŸåŒ–ã—ã¦ã„ãªã„ã›ã„ã§ã€
+   ãƒ©ãƒ³ã‚¯æ¯Žã®ãƒ«ãƒ¼ãƒ æ•°ãŒé•ã†ã¨ãƒ«ãƒ¼ãƒ ãƒŠãƒ³ãƒãƒ¼ãŒå­˜åœ¨ã—ãªã„å ´æ‰€ã‚’ã—ã¦ã„ã§ãã¦ã—ã¾ã†ãƒã‚°ã‚’å¯¾å‡¦ */
 #if AFTERMASTER_070125_WIFI_BATTLETOWER_BUG_FIX
 	wk->NowRoom = 1;
 #endif
@@ -2059,7 +2059,7 @@ static int Enter_SelectLeaderRoom( WBTOWER_WORK *wk )
 	BmpMenuWinWrite( &wk->NumberWin, WINDOW_TRANS_ON, WBTOWER_MENUFRAME_CHR, WBTOWER_MESFRAME_PAL );
 	NumStringBmpWrite( &wk->NumberWin, wk->RoomString, wk->NowRoom, 3 );
 
-	// –îˆó•\Ž¦
+	// çŸ¢å°è¡¨ç¤º
 	SelectArrowOnOff( wk, 0, TRUE );
 	GF_BGL_BmpWinOn( &wk->NumberWin );
 
@@ -2070,7 +2070,7 @@ static int Enter_SelectLeaderRoom( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ‹[ƒ€‘I‘ð‘Ò‚¿
+ * @brief   ãƒ«ãƒ¼ãƒ é¸æŠžå¾…ã¡
  *
  * @param   wk		
  *
@@ -2113,7 +2113,7 @@ static int Enter_SelectLeaderRoomWait( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒŠ[ƒ_[ƒf[ƒ^ƒ_ƒEƒ“ƒ[ƒh’†
+ * @brief   ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­
  *
  * @param   wk		
  *
@@ -2136,7 +2136,7 @@ static int Enter_LeaderDataDownLoadMessage( WBTOWER_WORK*wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ_ƒEƒ“ƒ[ƒhŠJŽn
+ * @brief   ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰é–‹å§‹
  *
  * @param   wk		
  *
@@ -2161,7 +2161,7 @@ static int Enter_LeaderDataDownLoad( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   •”‰®ƒf[ƒ^ƒ_ƒEƒ“ƒ[ƒhŒ‹‰Ê
+ * @brief   éƒ¨å±‹ãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰çµæžœ
  *
  * @param   wk		
  *
@@ -2175,11 +2175,11 @@ static int Enter_LeaderDataDownLoadResult( WBTOWER_WORK *wk )
 		s32 result = Dpw_Bt_GetAsyncResult();
 		wk->timeout_count = 0;
 		switch (result){
-		// ¬Œ÷
+		// æˆåŠŸ
 		case 0:
 			OS_TPrintf(" room data download success \n");
 			
-			// ƒŠ[ƒ_[ƒf[ƒ^‚ðƒZ[ƒuƒf[ƒ^‚É”½‰f
+			// ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
 			TowerWifiData_SetLeaderData(wk->param->wifitowerdata, 
 											(DPW_BT_LEADER*)wk->roomBtData.leader, wk->NowRank, wk->NowRoom);
 
@@ -2191,7 +2191,7 @@ static int Enter_LeaderDataDownLoadResult( WBTOWER_WORK *wk )
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			TimeIconDel( wk );
 			break;
-		// ƒ^ƒCƒ€ƒAƒEƒg
+		// ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ
 		case DPW_BT_ERROR_SERVER_TIMEOUT :
 			OS_TPrintf(" server timeout\n");
 			wk->ConnectErrorNo = result;
@@ -2210,7 +2210,7 @@ static int Enter_LeaderDataDownLoadResult( WBTOWER_WORK *wk )
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
 			TimeIconDel( wk );
 			break;
-		// Ž¸”s‚µ‚½‚Ì‚ÅƒŠƒgƒ‰ƒC‚·‚é
+		// å¤±æ•—ã—ãŸã®ã§ãƒªãƒˆãƒ©ã‚¤ã™ã‚‹
 		case DPW_BT_ERROR_FAILURE :
 		case DPW_BT_ERROR_CANCEL :
 			OS_TPrintf(" failure ... retry\n");
@@ -2219,7 +2219,7 @@ static int Enter_LeaderDataDownLoadResult( WBTOWER_WORK *wk )
 			TimeIconDel( wk );
 			break;
 		case DPW_BT_ERROR_FATAL :
-			// ’v–½“IƒGƒ‰[‚È‚Ì‚Å‚Ó‚Á‚Æ‚Î‚µ
+			// è‡´å‘½çš„ã‚¨ãƒ©ãƒ¼ãªã®ã§ãµã£ã¨ã°ã—
 			OS_TPrintf(" server fatal erro  you must PowerOff\n");
 			wk->ConnectErrorNo = result;
 			wk->subprocess_seq = ENTER_SERVER_SERVICE_ERROR;
@@ -2232,7 +2232,7 @@ static int Enter_LeaderDataDownLoadResult( WBTOWER_WORK *wk )
 	else{
 		wk->timeout_count++;
 		if(wk->timeout_count == TIMEOUT_TIME){
-			CommFatalErrorFunc_NoNumber();	//‹­§‚Ó‚Á‚Æ‚Î‚µ
+			CommFatalErrorFunc_NoNumber();	//å¼·åˆ¶ãµã£ã¨ã°ã—
 		}
 	}
 
@@ -2243,7 +2243,7 @@ static int Enter_LeaderDataDownLoadResult( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   •”‰®ƒf[ƒ^ƒ_ƒEƒ“ƒ[ƒh¬Œ÷
+ * @brief   éƒ¨å±‹ãƒ‡ãƒ¼ã‚¿ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æˆåŠŸ
  *
  * @param   wk		
  *
@@ -2257,7 +2257,7 @@ static int Enter_LeaderDataDownloadSuccess( WBTOWER_WORK *wk )
 
 	TimeIconDel( wk );
 
-	// ¬Œ÷I—¹‚ð’Ê’m‚·‚é
+	// æˆåŠŸçµ‚äº†ã‚’é€šçŸ¥ã™ã‚‹
 	wk->param->result = WIFI_BTOWER_RESULT_SUCCESS;
 
 	return SEQ_MAIN;
@@ -2267,7 +2267,7 @@ static int Enter_LeaderDataDownloadSuccess( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ³íI—¹
+ * @brief   æ­£å¸¸çµ‚äº†
  *
  * @param   wk		
  *
@@ -2276,7 +2276,7 @@ static int Enter_LeaderDataDownloadSuccess( WBTOWER_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_SuccessEnd( WBTOWER_WORK *wk )
 {
-	// WIFI‚¹‚Â‚¼‚­‚ðI—¹
+	// WIFIã›ã¤ãžãã‚’çµ‚äº†
 //    DWC_CleanupInet();
 //	WBTower_SubProcessChange( wk, WBTOWER_ENTER, 0 );
 //	wk->subprocess_seq = ENTER_END;
@@ -2288,7 +2288,7 @@ static int Enter_SuccessEnd( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒZ[ƒuŠJŽn
+ * @brief   ã‚»ãƒ¼ãƒ–é–‹å§‹
  *
  * @param   wk		
  *
@@ -2297,7 +2297,7 @@ static int Enter_SuccessEnd( WBTOWER_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_BtowerSave( WBTOWER_WORK *wk )
 {
-	// ƒZ[ƒu‰Šú‰»
+	// ã‚»ãƒ¼ãƒ–åˆæœŸåŒ–
 	SaveData_DivSave_Init( wk->param->savedata,SVBLK_ID_MAX);
 	OS_Printf("save init\n");
 
@@ -2309,7 +2309,7 @@ static int Enter_BtowerSave( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒZ[ƒuI—¹‘Ò‚¿
+ * @brief   ã‚»ãƒ¼ãƒ–çµ‚äº†å¾…ã¡
  *
  * @param   wk		
  *
@@ -2323,7 +2323,7 @@ static int Enter_BtowerSaveWait( WBTOWER_WORK *wk )
 
 		wk->subprocess_seq = wk->subprocess_nextseq;
 
-		// ŽžŠÔƒAƒCƒRƒ“Á‹Ž
+		// æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³æ¶ˆåŽ»
 		TimeIconDel( wk );
 
 	}
@@ -2339,7 +2339,7 @@ static int Enter_BtowerSaveWait( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ðI—¹‚µ‚Ü‚·‚©H
+ * $brief   æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ
  *
  * @param   wk		
  *
@@ -2348,7 +2348,7 @@ static int Enter_BtowerSaveWait( WBTOWER_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_ChallengeEndStart( WBTOWER_WORK *wk ) 
 {
-	// Ú‘±‚ðI—¹‚µ‚Ü‚·‚©H
+	// æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ
 	MessagePrint( wk, wk->MsgManager, msg_wifi_bt_005, 1, 0x0f0f );
 	WBTower_SetNextSeq( wk, ENTER_MES_WAIT_YESNO_START, ENTER_CHALLENGE_END_YESNO_SELECT );
 
@@ -2357,7 +2357,7 @@ static int Enter_ChallengeEndStart( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ðI—¹‚µ‚Ü‚·‚©HiWIFIƒoƒgƒ‹ƒ^ƒ[‚ðƒ_ƒEƒ“ƒ[ƒh‚¹‚¸‚ÉI—¹j
+ * $brief   æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿï¼ˆWIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã›ãšã«çµ‚äº†ï¼‰
  *
  * @param   wk		
  *
@@ -2372,13 +2372,13 @@ static int Enter_ChallengeEndYesNoSelect( WBTOWER_WORK *wk )
 		if(ret==BMPMENU_CANCEL){	// Enter_ServerRoomSelectMes
 			wk->subprocess_seq  = ENTER_SERVER_ROOM_SELECT_MES;
 		}else{
-			// WIFI‚¹‚Â‚¼‚­‚ðI—¹
+			// WIFIã›ã¤ãžãã‚’çµ‚äº†
 //		    DWC_CleanupInet();
 //			WBTower_SubProcessChange( wk, WBTOWER_ENTER, 0 );
 //			wk->subprocess_seq  = ENTER_END;
 			wk->subprocess_seq  = ENTER_FORCE_END_START;
 
-			// ƒLƒƒƒ“ƒZƒ‹I—¹‚ð’Ê’m‚·‚é
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«çµ‚äº†ã‚’é€šçŸ¥ã™ã‚‹
 			wk->param->result = WIFI_BTOWER_RESULT_CANCEL;
 
 		}
@@ -2390,7 +2390,7 @@ static int Enter_ChallengeEndYesNoSelect( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ_ƒEƒ“ƒ[ƒh‚ð’†Ž~‚µ‚Ü‚·‚©H
+ * $brief   ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚’ä¸­æ­¢ã—ã¾ã™ã‹ï¼Ÿ
  *
  * @param   wk		
  *
@@ -2399,7 +2399,7 @@ static int Enter_ChallengeEndYesNoSelect( WBTOWER_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_LeaderDataEndStart( WBTOWER_WORK *wk ) 
 {
-	// uƒ_ƒEƒ“ƒ[ƒh‚ð’†Ž~‚µ‚Ü‚·‚©Hv
+	// ã€Œãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚’ä¸­æ­¢ã—ã¾ã™ã‹ï¼Ÿã€
 	MessagePrint( wk, wk->MsgManager, msg_wifi_bt_010, 1, 0x0f0f );
 	WBTower_SetNextSeq( wk, ENTER_MES_WAIT_YESNO_START, ENTER_LEADER_DATA_END_YESNO_SELECT );
 
@@ -2408,7 +2408,7 @@ static int Enter_LeaderDataEndStart( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚ðI—¹‚µ‚Ü‚·‚©HiWIFIƒoƒgƒ‹ƒ^ƒ[‚ðƒ_ƒEƒ“ƒ[ƒh‚¹‚¸‚ÉI—¹j
+ * $brief   æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿï¼ˆWIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã›ãšã«çµ‚äº†ï¼‰
  *
  * @param   wk		
  *
@@ -2421,13 +2421,13 @@ static int Enter_LeaderDataEndYesNoSelect( WBTOWER_WORK *wk )
 
 	if(ret!=BMPMENU_NULL){
 		if(ret==BMPMENU_CANCEL){
-			// ƒ‰ƒ“ƒNƒZƒŒƒNƒg‚É–ß‚é
+			// ãƒ©ãƒ³ã‚¯ã‚»ãƒ¬ã‚¯ãƒˆã«æˆ»ã‚‹
 			wk->subprocess_seq  = ENTER_SELECT_RANK_MES;
 		}else{
-			// I—¹
+			// çµ‚äº†
 			wk->subprocess_seq  = ENTER_FORCE_END_START;
 
-			// ƒLƒƒƒ“ƒZƒ‹I—¹‚ð’Ê’m‚·‚é
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«çµ‚äº†ã‚’é€šçŸ¥ã™ã‚‹
 			wk->param->result = WIFI_BTOWER_RESULT_CANCEL;
 
 		}
@@ -2440,7 +2440,7 @@ static int Enter_LeaderDataEndYesNoSelect( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Šù‚É‘I‘ð‚ÍI‚í‚Á‚Ä‚¢‚é‚Ì‚ÅWIFI‚©‚çÚ‘±‚·‚é
+ * $brief   æ—¢ã«é¸æŠžã¯çµ‚ã‚ã£ã¦ã„ã‚‹ã®ã§WIFIã‹ã‚‰æŽ¥ç¶šã™ã‚‹
  *
  * @param   wk		
  *
@@ -2449,7 +2449,7 @@ static int Enter_LeaderDataEndYesNoSelect( WBTOWER_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_ForceEndStart( WBTOWER_WORK *wk ) 
 {
-	// Ú‘±‚ðI—¹‚µ‚Ü‚·
+	// æŽ¥ç¶šã‚’çµ‚äº†ã—ã¾ã™
 	MessagePrint( wk, wk->SystemMsgManager, dwc_message_0011, 1, 0x0f0f );
 	WBTower_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_FORCE_END );
 
@@ -2458,7 +2458,7 @@ static int Enter_ForceEndStart( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±I—¹
+ * $brief   æŽ¥ç¶šçµ‚äº†
  *
  * @param   wk		
  *
@@ -2467,7 +2467,7 @@ static int Enter_ForceEndStart( WBTOWER_WORK *wk )
 //------------------------------------------------------------------
 static int Enter_ForceEnd( WBTOWER_WORK *wk )
 {
-	// WIFIÚ‘±‚ðI—¹
+	// WIFIæŽ¥ç¶šã‚’çµ‚äº†
     DWC_CleanupInet();
 	WBTower_SubProcessChange( wk, WBTOWER_ENTER, 0 );
 	wk->subprocess_seq  = ENTER_FORCE_END_MES;
@@ -2478,7 +2478,7 @@ static int Enter_ForceEnd( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   Ú‘±I—¹ƒƒbƒZ[ƒW
+ * @brief   æŽ¥ç¶šçµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  *
  * @param   wk		
  *
@@ -2497,7 +2497,7 @@ static int Enter_ForceEndMessage( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒTƒuƒvƒƒZƒXƒV[ƒPƒ“ƒXƒƒCƒ“
+ * $brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  *
@@ -2509,7 +2509,7 @@ static int Enter_Main( WBTOWER_WORK *wk)
 
 #if 0
 	if(sys.trg & PAD_BUTTON_B){
-		// DWCƒlƒbƒgÚ‘±I—¹
+		// DWCãƒãƒƒãƒˆæŽ¥ç¶šçµ‚äº†
 	    DWC_CleanupInet();
 		wk->subprocess_seq = ENTER_END;
 	}
@@ -2524,7 +2524,7 @@ static int Enter_Main( WBTOWER_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒTƒuƒvƒƒZƒXƒV[ƒPƒ“ƒXI—¹ˆ—
+ * $brief   ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹çµ‚äº†å‡¦ç†
  *
  * @param   wk		
  *
@@ -2535,7 +2535,7 @@ static int Enter_End( WBTOWER_WORK *wk)
 {
     WirelessIconEasyEnd();
 
-    // ’ÊMƒGƒ‰[ŠÇ—‚Ì‚½‚ß‚É’ÊMƒ‹[ƒ`ƒ“‚ðOFF
+    // é€šä¿¡ã‚¨ãƒ©ãƒ¼ç®¡ç†ã®ãŸã‚ã«é€šä¿¡ãƒ«ãƒ¼ãƒãƒ³ã‚’OFF
     CommStateWifiDPWEnd();
 	
 	WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, 8, 1, HEAPID_WIFI_BATTLETOWER );
@@ -2546,7 +2546,7 @@ static int Enter_End( WBTOWER_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚Í‚¢E‚¢‚¢‚¦
+ * $brief   ã¯ã„ãƒ»ã„ã„ãˆ
  *
  * @param   wk		
  *
@@ -2566,7 +2566,7 @@ static int Enter_YesNo( WBTOWER_WORK *wk)
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚Í‚¢E‚¢‚¢‚¦‘I‘ð
+ * $brief   ã¯ã„ãƒ»ã„ã„ãˆé¸æŠž
  *
  * @param   wk		
  *
@@ -2579,10 +2579,10 @@ static int Enter_YesNoSelect( WBTOWER_WORK *wk)
 
 	if(ret!=BMPMENU_NULL){
 		if(ret==BMPMENU_CANCEL){
-			// ‚à‚¤‚¢‚Á‚©‚¢ƒgƒ‰ƒC
+			// ã‚‚ã†ã„ã£ã‹ã„ãƒˆãƒ©ã‚¤
 			wk->subprocess_seq = ENTER_START;
 		}else{
-			// WIFI‚¹‚Â‚¼‚­‚ðI—¹
+			// WIFIã›ã¤ãžãã‚’çµ‚äº†
 //			 WBTower_SubProcessChange( wk, WBTOWER_ENTER, 0 );
 //			wk->subprocess_seq = ENTER_END;
 			wk->subprocess_seq = ENTER_FORCE_END_START;
@@ -2596,7 +2596,7 @@ static int Enter_YesNoSelect( WBTOWER_WORK *wk)
 
 //==============================================================================
 /**
- * $brief   ƒlƒbƒg‚É‚ÍŒq‚ª‚Á‚½‚¯‚ÇƒT[ƒo[ƒGƒ‰[‚¾‚Á‚½•\Ž¦
+ * $brief   ãƒãƒƒãƒˆã«ã¯ç¹‹ãŒã£ãŸã‘ã©ã‚µãƒ¼ãƒãƒ¼ã‚¨ãƒ©ãƒ¼ã ã£ãŸè¡¨ç¤º
  *
  * @param   wk		
  *
@@ -2627,21 +2627,21 @@ static int Enter_ServerServiceError( WBTOWER_WORK *wk )
 		msgno = msg_wifi_bt_error_005;
 		break;
 	}
-	// ƒGƒ‰[•\Ž¦
+	// ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
 	
 	TimeIconDel( wk );
 
 	MessagePrint( wk, wk->MsgManager, msgno, 1, 0x0f0f );
 	WBTower_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_SERVER_SERVICE_END );
 
-	OS_TPrintf("ƒT[ƒo[ERROR\n");
+	OS_TPrintf("ã‚µãƒ¼ãƒãƒ¼ERROR\n");
 
 	return SEQ_MAIN;
 }
 
 //==============================================================================
 /**
- * $brief   ƒT[ƒo[ƒT[ƒrƒX‚Ì–â‘è‚ÅI—¹
+ * $brief   ã‚µãƒ¼ãƒãƒ¼ã‚µãƒ¼ãƒ“ã‚¹ã®å•é¡Œã§çµ‚äº†
  *
  * @param   wk		
  *
@@ -2657,7 +2657,7 @@ static int Enter_ServerServiceEnd( WBTOWER_WORK *wk )
 		break;
 	case 1:
 		if( GF_MSG_PrintEndCheck( wk->MsgIndex )==0){
-		    // ’ÊMƒGƒ‰[ŠÇ—‚Ì‚½‚ß‚É’ÊMƒ‹[ƒ`ƒ“‚ðOFF
+		    // é€šä¿¡ã‚¨ãƒ©ãƒ¼ç®¡ç†ã®ãŸã‚ã«é€šä¿¡ãƒ«ãƒ¼ãƒãƒ³ã‚’OFF
 		    CommStateWifiDPWEnd();
 		    DWC_CleanupInet();
 			wk->local_seq++;
@@ -2686,7 +2686,7 @@ static int Enter_ServerServiceEnd( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bI—¹‚ð‘Ò‚Á‚ÄŽŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
+ * $brief   ä¼šè©±çµ‚äº†ã‚’å¾…ã£ã¦æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
  *
  * @param   wk		
  *
@@ -2704,7 +2704,7 @@ static int Enter_MessageWait( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‰ï˜b•\Ž¦Œã1•b‘Ò‚Â
+ * @brief   ä¼šè©±è¡¨ç¤ºå¾Œ1ç§’å¾…ã¤
  *
  * @param   wk		
  *
@@ -2725,7 +2725,7 @@ static int Enter_MessageWait1Second( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜b•\Ž¦‚ð‘Ò‚Á‚½ã‚Åu‚Í‚¢E‚¢‚¢‚¦v‚ðŠJŽn‚·‚é
+ * $brief   ä¼šè©±è¡¨ç¤ºã‚’å¾…ã£ãŸä¸Šã§ã€Œã¯ã„ãƒ»ã„ã„ãˆã€ã‚’é–‹å§‹ã™ã‚‹
  *
  * @param   wk		
  *
@@ -2750,7 +2750,7 @@ static void WordSetMessagePrint( WBTOWER_WORK *wk, MSGDATA_MANAGER *msgman, int 
 	GF_BGL_BmpWinDataFill( &wk->MsgWin,  0x0f0f );
 	BmpTalkWinWrite( &wk->MsgWin, WINDOW_TRANS_ON, WBTOWER_MESFRAME_CHR, WBTOWER_MESFRAME_PAL );
 
-	// •¶Žš—ñ•`‰æŠJŽn
+	// æ–‡å­—åˆ—æç”»é–‹å§‹
 	wk->MsgIndex = GF_STR_PrintSimple( &wk->MsgWin, FONT_TALK, wk->TalkString, 0, 0, wait, NULL);
 
 
@@ -2762,7 +2762,7 @@ static void WordSetMessagePrint( WBTOWER_WORK *wk, MSGDATA_MANAGER *msgman, int 
 
 //------------------------------------------------------------------
 /**
- * @brief   WifiÚ‘±ƒGƒ‰[‚ð•\Ž¦
+ * @brief   WifiæŽ¥ç¶šã‚¨ãƒ©ãƒ¼ã‚’è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -2787,7 +2787,7 @@ static int Enter_DwcErrorPrint( WBTOWER_WORK *wk )
 }
 //------------------------------------------------------------------
 /**
- * @brief   ƒvƒŠƒ“ƒgŒãƒL[‘Ò‚¿
+ * @brief   ãƒ—ãƒªãƒ³ãƒˆå¾Œã‚­ãƒ¼å¾…ã¡
  *
  * @param   wk		
  *
@@ -2816,7 +2816,7 @@ static int Enter_ErrorPadWait( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\Ž¦
+ * $brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -2826,14 +2826,14 @@ static int Enter_ErrorPadWait( WBTOWER_WORK *wk )
 static void MessagePrint( WBTOWER_WORK *wk, MSGDATA_MANAGER *msgman, int msgno, int wait, u16 dat )
 {
 
-	//•¶Žš—ñŽæ“¾
+	//æ–‡å­—åˆ—å–å¾—
 	MSGMAN_GetString(  msgman, msgno, wk->TalkString );
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æž æç”»
 	GF_BGL_BmpWinDataFill( &wk->MsgWin,  0x0f0f );
 	BmpTalkWinWrite( &wk->MsgWin, WINDOW_TRANS_ON, WBTOWER_MESFRAME_CHR, WBTOWER_MESFRAME_PAL );
 
-	// •¶Žš—ñ•`‰æŠJŽn
+	// æ–‡å­—åˆ—æç”»é–‹å§‹
 	wk->MsgIndex = GF_STR_PrintSimple( &wk->MsgWin, FONT_TALK, wk->TalkString, 0, 0, wait, NULL);
 
 
@@ -2841,11 +2841,11 @@ static void MessagePrint( WBTOWER_WORK *wk, MSGDATA_MANAGER *msgman, int msgno, 
 
 //------------------------------------------------------------------
 /**
- * @brief   •¶Žš•\Ž¦‹¤’Êˆ—i‚wÀ•WŽw’èA¶E‰EŠñ‚¹AƒZƒ“ƒ^ƒŠƒ“ƒOj
+ * @brief   æ–‡å­—è¡¨ç¤ºå…±é€šå‡¦ç†ï¼ˆï¼¸åº§æ¨™æŒ‡å®šã€å·¦ãƒ»å³å¯„ã›ã€ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ï¼‰
  *
  * @param   win		
  * @param   strbuf		
- * @param   flag		0:¶Šñ‚¹	1:ƒZƒ“ƒ^ƒŠƒ“ƒO	2:‰EŠñ‚¹
+ * @param   flag		0:å·¦å¯„ã›	1:ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°	2:å³å¯„ã›
  * @param   color		
  *
  * @retval  int		
@@ -2870,13 +2870,13 @@ static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag,
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒZƒ“ƒ^ƒŠƒ“ƒO‚µ‚ÄƒvƒŠƒ“ƒg(•`‰æ‚Ì‚Ýj
+ * $brief   ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã—ã¦ãƒ—ãƒªãƒ³ãƒˆ(æç”»ã®ã¿ï¼‰
  *
  * @param   win		GF_BGL_BMPWIN
  * @param   strbuf	
- * @param   flag	0‚¾‚Æ¶Šñ‚¹A1‚¾‚ÆƒZƒ“ƒ^ƒŠƒ“ƒOA2‚¾‚Æ‰EŠñ‚¹
- * @param   y		YÀ•W‚¸‚ç‚·’l
- * @param   color	•¶ŽšFŽw’èi”wŒiF‚ÅBMP‚ð“h‚è‚Â‚Ô‚µ‚Ü‚·j
+ * @param   flag	0ã ã¨å·¦å¯„ã›ã€1ã ã¨ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã€2ã ã¨å³å¯„ã›
+ * @param   y		Yåº§æ¨™ãšã‚‰ã™å€¤
+ * @param   color	æ–‡å­—è‰²æŒ‡å®šï¼ˆèƒŒæ™¯è‰²ã§BMPã‚’å¡—ã‚Šã¤ã¶ã—ã¾ã™ï¼‰
  *
  * @retval  none
  */
@@ -2899,12 +2899,12 @@ void WBTower_SysPrint( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int y, int fla
 
 //------------------------------------------------------------------
 /**
- * @brief   ”’l‚ðBMPWIN‚É‘‚«ž‚Þ
+ * @brief   æ•°å€¤ã‚’BMPWINã«æ›¸ãè¾¼ã‚€
  *
  * @param   win			
- * @param   numstr		o—Í—pSTRBUF
- * @param   num			”’l
- * @param   keta		Œ…”
+ * @param   numstr		å‡ºåŠ›ç”¨STRBUF
+ * @param   num			æ•°å€¤
+ * @param   keta		æ¡æ•°
  *
  * @retval  none		
  */
@@ -2918,7 +2918,7 @@ static void NumStringBmpWrite( GF_BGL_BMPWIN *win, STRBUF *numstr, int num, int 
 
 //------------------------------------------------------------------
 /**
- * $brief   WIFIƒAƒCƒRƒ“‚ð•\Ž¦“o˜^‚·‚é
+ * $brief   WIFIã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºç™»éŒ²ã™ã‚‹
  *
  * @param   wk		
  *
@@ -2933,7 +2933,7 @@ void WBTower_WifiIconAdd( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   –îˆó‚n‚mE‚n‚e‚e
+ * @brief   çŸ¢å°ï¼¯ï¼®ãƒ»ï¼¯ï¼¦ï¼¦
  *
  * @param   wk		
  * @param   flag		
@@ -2951,9 +2951,9 @@ static void SelectArrowOnOff( WBTOWER_WORK *wk, int no, int flag )
 
 //------------------------------------------------------------------
 /**
- * @brief   À•WŽw’è
+ * @brief   åº§æ¨™æŒ‡å®š
  *
- * @param   act		ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @param   act		ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   x		
  * @param   y		
  *
@@ -2974,7 +2974,7 @@ static void SelectArrowPos( CLACT_WORK_PTR act, int x, int y )
 
 //------------------------------------------------------------------
 /**
- * @brief   ŽžŠÔƒAƒCƒRƒ“‚ð•\Ž¦‚·‚é
+ * @brief   æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹
  *
  * @param   wk		
  *
@@ -2991,7 +2991,7 @@ static void TimeIconAdd( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ŽžŠÔƒAƒCƒRƒ“‚ðÁ‚·
+ * @brief   æ™‚é–“ã‚¢ã‚¤ã‚³ãƒ³ã‚’æ¶ˆã™
  *
  * @param   wk		
  *
@@ -3008,7 +3008,7 @@ static void TimeIconDel( WBTOWER_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ‚—‚‰‚†‚‰ƒGƒ‰[•\Ž¦
+ * @brief   ï½—ï½‰ï½†ï½‰ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
  *
  * @param   wk		
  * @param   msgno		
@@ -3022,10 +3022,10 @@ static void _systemMessagePrint( WBTOWER_WORK *wk, int msgno )
     MSGMAN_GetString(  wk->SystemMsgManager, msgno, tmpString );
     WORDSET_ExpandStr( wk->WordSet, wk->ErrorString, tmpString );
 
-    // ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+    // ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æž æç”»
     GF_BGL_BmpWinDataFill(&wk->SubWin, 15 );
     BmpMenuWinWrite(&wk->SubWin, WINDOW_TRANS_OFF, WBTOWER_MENUFRAME_CHR, WBTOWER_MENUFRAME_PAL );
-    // •¶Žš—ñ•`‰æŠJŽn
+    // æ–‡å­—åˆ—æç”»é–‹å§‹
     wk->MsgIndex = GF_STR_PrintSimple( &wk->SubWin, FONT_TALK,
                                        wk->ErrorString, 0, 0, MSG_ALLPUT, NULL);
 
@@ -3034,7 +3034,7 @@ static void _systemMessagePrint( WBTOWER_WORK *wk, int msgno )
 
 //------------------------------------------------------------------
 /**
- * @brief   WifiƒRƒlƒNƒVƒ‡ƒ“ƒGƒ‰[‚Ì•\Ž¦
+ * @brief   Wifiã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚¨ãƒ©ãƒ¼ã®è¡¨ç¤º
  *
  * @param   wk		
  * @param   type	

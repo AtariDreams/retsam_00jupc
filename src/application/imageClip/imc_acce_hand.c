@@ -2,8 +2,8 @@
 /**
  *
  *	@file		imc_acce_hand.c
- *	@brief		ƒCƒ[ƒWƒNƒŠƒbƒv ƒAƒNƒZƒTƒŠƒnƒ“ƒh ƒVƒXƒeƒ€
- *				ƒAƒNƒZƒTƒŠ‘€ìƒ‚[ƒh‚Ìƒnƒ“ƒhƒVƒXƒeƒ€‚Å‚·
+ *	@brief		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ— ã‚¢ã‚¯ã‚»ã‚µãƒªãƒãƒ³ãƒ‰ ã‚·ã‚¹ãƒ†ãƒ 
+ *				ã‚¢ã‚¯ã‚»ã‚µãƒªæ“ä½œãƒ¢ãƒ¼ãƒ‰æ™‚ã®ãƒãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã§ã™
  *	@author		tomoya takahashi
  *	@data		2005.09.23
  *
@@ -26,47 +26,47 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define	IMC_ACCE_HAND_PRI		(0)	// ‚Â‚©‚ñ‚¾ƒAƒNƒZƒTƒŠ‚Ì—Dæ‡ˆÊ
+#define	IMC_ACCE_HAND_PRI		(0)	// ã¤ã‹ã‚“ã ã‚¢ã‚¯ã‚»ã‚µãƒªã®å„ªå…ˆé †ä½
 
 
 //-------------------------------------
 //	
-//	¶ƒ{ƒbƒNƒX•Ô‹pƒ^ƒXƒN—p
+//	å·¦ãƒœãƒƒã‚¯ã‚¹è¿”å´ã‚¿ã‚¹ã‚¯ç”¨
 //	
 //=====================================
 #define IMC_ACCE_HAND_LBOX_RET_SYNC	(4)
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	ƒAƒNƒZƒTƒŠƒnƒ“ƒh@\‘¢‘Ì
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒãƒ³ãƒ‰ã€€æ§‹é€ ä½“
 //	
 //=====================================
 typedef struct {
-	IMC_DRAW_DATA* drawData;	// •`‰æƒf[ƒ^\‘¢‘Ì
-	IMC_RIGHT_BOX*	rbox;		// ‰Eƒ{ƒbƒNƒX\‘¢‘Ì
-	IMC_LEFT_BOX*	lbox;		// ¶ƒ{ƒbƒNƒX\‘¢‘Ì
-	IMC_SUBWIN*		subwin;		// ƒTƒuƒEƒBƒ“ƒhƒE\‘¢‘Ì
+	IMC_DRAW_DATA* drawData;	// æç”»ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+	IMC_RIGHT_BOX*	rbox;		// å³ãƒœãƒƒã‚¯ã‚¹æ§‹é€ ä½“
+	IMC_LEFT_BOX*	lbox;		// å·¦ãƒœãƒƒã‚¯ã‚¹æ§‹é€ ä½“
+	IMC_SUBWIN*		subwin;		// ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹é€ ä½“
 
-	IMC_OBJLIST* obj;			// ‚Á‚Ä‚éƒIƒuƒWƒFƒNƒgƒf[ƒ^
-	int offset_x;				// ¶ã‚©‚ç‚ÌƒIƒtƒZƒbƒg‚˜À•W
-	int offset_y;				// ¶ã‚©‚ç‚ÌƒIƒtƒZƒbƒg‚™À•W
-	s16 from_x;					// ‚Á‚½‚Æ‚«‚ÌÀ•W
+	IMC_OBJLIST* obj;			// æŒã£ã¦ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+	int offset_x;				// å·¦ä¸Šã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï½˜åº§æ¨™
+	int offset_y;				// å·¦ä¸Šã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï½™åº§æ¨™
+	s16 from_x;					// æŒã£ãŸã¨ãã®åº§æ¨™
 	s16 from_y;
-	u8	from;					// Œ³‚¢‚½êŠ	
-	u8	from_list;				// Œ³‚¢‚½êŠ‚ÌƒŠƒXƒgƒiƒ“ƒo[
+	u8	from;					// å…ƒã„ãŸå ´æ‰€	
+	u8	from_list;				// å…ƒã„ãŸå ´æ‰€ã®ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼
 
-	// ƒ|ƒPƒ‚ƒ“‚ªg‚¤
+	// ãƒã‚±ãƒ¢ãƒ³ãŒä½¿ã†
 	int last_x;
 	int last_y;
-	BOOL poketouch;		// ƒ|ƒPƒ‚ƒ“‚ÉU‚ê‚é‚±‚Æ‚ªo—ˆ‚é‚©‚Ç‚¤‚©
+	BOOL poketouch;		// ãƒã‚±ãƒ¢ãƒ³ã«æŒ¯ã‚Œã‚‹ã“ã¨ãŒå‡ºæ¥ã‚‹ã‹ã©ã†ã‹
 
 	u32 push_flg;
 
@@ -74,27 +74,27 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	¶ƒ{ƒbƒNƒX•Ô‹pƒGƒtƒFƒNƒgƒ^ƒXƒN
+//	å·¦ãƒœãƒƒã‚¯ã‚¹è¿”å´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¹ã‚¯
 //	
 //=====================================
 typedef struct {
-	IMC_LEFT_BOX*	lbox;	// ¶ƒ{ƒbƒNƒX\‘¢‘Ì
-	IMC_OBJLIST* obj;		// ‚Á‚Ä‚éƒIƒuƒWƒFƒNƒgƒf[ƒ^
-	int one_x;		// 1sync‚É“®‚­’l
-	int one_y;		// 1sync‚É“®‚­’l
-	int targ_x;		// ƒ^[ƒQƒbƒg‚˜À•W
-	int targ_y;		// ƒ^[ƒQƒbƒg‚™À•W
-	int lbox_mode;	// “o˜^æ¶ƒ{ƒbƒNƒXƒAƒNƒZƒTƒŠƒ‚[ƒh
-	int list_no;	// “o˜^æ¶ƒ{ƒbƒNƒXƒAƒNƒZƒTƒŠƒŠƒXƒgNo
-	int count;		// Œã‰½‰ñ“®‚­‚©
-	int* p_left_state;	// ¶ƒ{ƒbƒNƒXƒXƒe[ƒ^ƒX
-	u32* p_new_push_flg;// ƒAƒNƒZƒTƒŠ–ß‚è’†‚ÉV‚µ‚¢ƒvƒbƒVƒ…‚ª‚ ‚Á‚½
+	IMC_LEFT_BOX*	lbox;	// å·¦ãƒœãƒƒã‚¯ã‚¹æ§‹é€ ä½“
+	IMC_OBJLIST* obj;		// æŒã£ã¦ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
+	int one_x;		// 1syncã«å‹•ãå€¤
+	int one_y;		// 1syncã«å‹•ãå€¤
+	int targ_x;		// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆï½˜åº§æ¨™
+	int targ_y;		// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆï½™åº§æ¨™
+	int lbox_mode;	// ç™»éŒ²å…ˆå·¦ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
+	int list_no;	// ç™»éŒ²å…ˆå·¦ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆNo
+	int count;		// å¾Œä½•å›å‹•ãã‹
+	int* p_left_state;	// å·¦ãƒœãƒƒã‚¯ã‚¹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	u32* p_new_push_flg;// ã‚¢ã‚¯ã‚»ã‚µãƒªæˆ»ã‚Šä¸­ã«æ–°ã—ã„ãƒ—ãƒƒã‚·ãƒ¥ãŒã‚ã£ãŸ
 } IMC_ACCE_HAND_EFE_LBOX_RET;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void imcAcceHandPushFunc( IMC_HAND* hand );
@@ -107,7 +107,7 @@ static void cleanAcceHandAcce( IMC_ACCE_HAND* hand );
 static void imcSubWinMsgPrint( IMC_ACCE_HAND* hand );
 
 
-// ƒ|ƒPƒ‚ƒ“—p
+// ãƒã‚±ãƒ¢ãƒ³ç”¨
 static void imcAcceHandPopForPokeFunc( IMC_HAND* hand );
 static void imcAcceHandPushIngForPokeFunc( IMC_HAND* hand );
 
@@ -123,10 +123,10 @@ static void imcBGHandRefFunc( IMC_HAND* hand );
 
 //-------------------------------------
 //	
-//	“®ìƒ^ƒXƒNŒn
+//	å‹•ä½œã‚¿ã‚¹ã‚¯ç³»
 //	
 //=====================================
-// ¶ƒ{ƒbƒNƒX‚É–ß‚·
+// å·¦ãƒœãƒƒã‚¯ã‚¹ã«æˆ»ã™
 static void imcAcceHandIconLboxRetStart( IMC_ACCE_HAND* acce_hand, int sync, int targ_x, int targ_y, int acce_mode, int list_no );
 static void imcAcceHandIconLboxRetTsk( TCB_PTR tcb, void* work );
 
@@ -137,14 +137,14 @@ static void imcAcceHandTakaOff( IMC_ACCE_HAND* acce_hand );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒnƒ“ƒhì¬
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒãƒ³ãƒ‰ä½œæˆ
  *
- *	@param	hand		ƒnƒ“ƒh\‘¢‘Ì
- *	@param	rbox		‰Eƒ{ƒbƒNƒX\‘¢‘Ì
- *	@param	lbox		¶ƒ{ƒbƒNƒX\‘¢‘Ì
- *	@param	drawData	•`‰æƒf[ƒ^\‘¢‘Ì
- *	@param	subwin		ƒTƒuƒEƒBƒ“ƒhƒE\‘¢‘Ì
- *	@param	poketouch	ƒ|ƒPƒ‚ƒ“‚É‚Ó‚ê‚é‚©‚Ç‚¤‚©
+ *	@param	hand		ãƒãƒ³ãƒ‰æ§‹é€ ä½“
+ *	@param	rbox		å³ãƒœãƒƒã‚¯ã‚¹æ§‹é€ ä½“
+ *	@param	lbox		å·¦ãƒœãƒƒã‚¯ã‚¹æ§‹é€ ä½“
+ *	@param	drawData	æç”»ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+ *	@param	subwin		ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æ§‹é€ ä½“
+ *	@param	poketouch	ãƒã‚±ãƒ¢ãƒ³ã«ãµã‚Œã‚‹ã‹ã©ã†ã‹
  *	
  *	@return	none
  *
@@ -155,10 +155,10 @@ void IMC_ACCE_HAND_Init( IMC_HAND* hand, IMC_RIGHT_BOX* rbox, IMC_LEFT_BOX* lbox
 {
 	IMC_ACCE_HAND* acce_hand;
 	
-	// ƒnƒ“ƒh\‘¢‘Ì‰Šú‰»
+	// ãƒãƒ³ãƒ‰æ§‹é€ ä½“åˆæœŸåŒ–
 	IMC_HAND_Init( hand );
 
-	// ƒ[ƒNì¬
+	// ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	hand->hand_w = sys_AllocMemory( HEAPID_IMAGECLIP_DATA, sizeof( IMC_ACCE_HAND ) );
 	memset( hand->hand_w, 0, sizeof( IMC_ACCE_HAND ) );
 	acce_hand = hand->hand_w;
@@ -169,7 +169,7 @@ void IMC_ACCE_HAND_Init( IMC_HAND* hand, IMC_RIGHT_BOX* rbox, IMC_LEFT_BOX* lbox
 	acce_hand->subwin	= subwin;
 	acce_hand->poketouch = poketouch;
 
-	// ŠÖ”İ’è
+	// é–¢æ•°è¨­å®š
 	hand->push		= imcAcceHandPushFunc;
 	hand->pop		= imcAcceHandPopFunc;
 	hand->push_ing	= imcAcceHandPushIngFunc;
@@ -179,9 +179,9 @@ void IMC_ACCE_HAND_Init( IMC_HAND* hand, IMC_RIGHT_BOX* rbox, IMC_LEFT_BOX* lbox
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒnƒ“ƒh”jŠü
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒãƒ³ãƒ‰ç ´æ£„
  *
- *	@param	hand	ƒnƒ“ƒh\‘¢‘Ì
+ *	@param	hand	ãƒãƒ³ãƒ‰æ§‹é€ ä½“
  *
  *	@return
  *
@@ -190,10 +190,10 @@ void IMC_ACCE_HAND_Init( IMC_HAND* hand, IMC_RIGHT_BOX* rbox, IMC_LEFT_BOX* lbox
 //-----------------------------------------------------------------------------
 void IMC_ACCE_HAND_Delete( IMC_HAND* hand )
 {
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( hand->hand_w );
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	IMC_HAND_Init( hand );
 }
 
@@ -202,15 +202,15 @@ void IMC_ACCE_HAND_Delete( IMC_HAND* hand )
 
 //-----------------------------------------------------------------------------
 /**
-*		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+*		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰Ÿ‚µ‚½‚Æ‚«‚Ì“®ì
+ *	@brief	æŠ¼ã—ãŸã¨ãã®å‹•ä½œ
  *
- *	@param	hand	ƒnƒ“ƒh\‘¢‘Ì
+ *	@param	hand	ãƒãƒ³ãƒ‰æ§‹é€ ä½“
  *
  *	@return	none
  *
@@ -220,23 +220,23 @@ void IMC_ACCE_HAND_Delete( IMC_HAND* hand )
 static void imcAcceHandPushFunc( IMC_HAND* hand )
 {
 	IMC_ACCE_HAND* acce_hand		= hand->hand_w;
-	IMC_OBJLIST* obj;			// ƒIƒuƒWƒFƒNƒgƒf[ƒ^
+	IMC_OBJLIST* obj;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿
 	BOOL ret;
-	int offset_x, offset_y;		// ¶ã‚©‚ç‚ÌƒIƒtƒZƒbƒg’l
-	int set_list;				// ƒAƒNƒZƒTƒŠ‚ğİ’è‚·‚éƒŠƒXƒgNo
+	int offset_x, offset_y;		// å·¦ä¸Šã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤
+	int set_list;				// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’è¨­å®šã™ã‚‹ãƒªã‚¹ãƒˆNo
 	int draw_pri;
 	
-	// ‰Eƒ{ƒbƒNƒX‚É“ü‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	// å³ãƒœãƒƒã‚¯ã‚¹ã«å…¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	ret = IMC_RBOX_TPHit( acce_hand->rbox );
 	if( ret ){
 
-		// ƒAƒNƒZƒTƒŠ‚ğG‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’è§¦ã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		obj = IMC_RBOX_TPHitObjEx( acce_hand->rbox, &offset_x, &offset_y, acce_hand->drawData->SWSP_UPchar );
 
 		if( obj ){
-			// æ“¾‚µ‚½‚Ì‚ªƒ|ƒPƒ‚ƒ“‚Ì‚Æ‚«
-			// poketouchƒƒ“ƒo‚ğ‚İ‚Ä
-			// ‘€ì‹Ö~‚È‚çG‚ç‚È‚©‚Á‚½‚±‚Æ‚É‚·‚é
+			// å–å¾—ã—ãŸã®ãŒãƒã‚±ãƒ¢ãƒ³ã®ã¨ã
+			// poketouchãƒ¡ãƒ³ãƒã‚’ã¿ã¦
+			// æ“ä½œç¦æ­¢ãªã‚‰è§¦ã‚‰ãªã‹ã£ãŸã“ã¨ã«ã™ã‚‹
 			if( obj->flag == IMC_OBJLIST_POKE ){
 				if( acce_hand->poketouch == FALSE ){
 					obj = NULL;
@@ -247,50 +247,50 @@ static void imcAcceHandPushFunc( IMC_HAND* hand )
 		if( (obj != NULL) ){
 			
 			if( obj->flag == IMC_OBJLIST_ACCE ){
-				// ƒAƒNƒZƒTƒŠØ‚è—£‚µ
+				// ã‚¢ã‚¯ã‚»ã‚µãƒªåˆ‡ã‚Šé›¢ã—
 				IMC_RBOX_DeleteAccessorieMove( acce_hand->rbox, obj );
 				draw_pri = IMC_ACCE_HAND_PRI;
 
 			}else{
 
-				// ƒ|ƒPƒ‚ƒ“‘€ìOFF‚È‚çƒ|ƒPƒ‚ƒ“‚ğ“®‚©‚·‚±‚Æ‚Í‚µ‚È‚¢
-				// ƒ|ƒPƒ‚ƒ“Ø‚è—£‚µ
+				// ãƒã‚±ãƒ¢ãƒ³æ“ä½œOFFãªã‚‰ãƒã‚±ãƒ¢ãƒ³ã‚’å‹•ã‹ã™ã“ã¨ã¯ã—ãªã„
+				// ãƒã‚±ãƒ¢ãƒ³åˆ‡ã‚Šé›¢ã—
 				IMC_RBOX_MoveDeletePoke( obj );
-				draw_pri = IMC_POKE_DrawPriorityGet( obj->obj_data );	// •\¦—Dæ‡ˆÊ‚¢‚Ü‚Ì’Ê‚è
-				// À•W‚ğæ“¾
+				draw_pri = IMC_POKE_DrawPriorityGet( obj->obj_data );	// è¡¨ç¤ºå„ªå…ˆé †ä½ã„ã¾ã®é€šã‚Š
+				// åº§æ¨™ã‚’å–å¾—
 				IMC_OBJLIST_ACCEPOKE_MatGet( obj, &acce_hand->last_x, &acce_hand->last_y );
 			}
 			
-			// •\¦—Dæ‡ˆÊ‚ÌÄİ’è
+			// è¡¨ç¤ºå„ªå…ˆé †ä½ã®å†è¨­å®š
 			IMC_RBOX_SetObjPriority( acce_hand->rbox );
 			
-			// “o˜^
+			// ç™»éŒ²
 			setAcceHandAcce( acce_hand, obj, IMC_ACCE_HAND_FROM_RBOX,
 					offset_x, offset_y,  draw_pri );
 
-			// BG—Dæ‡ˆÊ‚Ìİ’è
+			// BGå„ªå…ˆé †ä½ã®è¨­å®š
 			IMC_DRAW_WndMaskObjMoveSet();
 		}
 	}else{
 
-		// ¶ƒ{ƒbƒNƒX‚É“ü‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		// å·¦ãƒœãƒƒã‚¯ã‚¹ã«å…¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		ret = IMC_LBOX_TPHit( acce_hand->lbox );
 		if( ret ){
 
-			// ƒAƒNƒZƒTƒŠ‚ğG‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+			// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’è§¦ã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			obj = IMC_LBOX_TPHitAccessorieEx( acce_hand->lbox, &offset_x, &offset_y, acce_hand->drawData->SWSP_UPchar );
 			if( obj != NULL ){
 				
-				// ƒAƒNƒZƒTƒŠØ‚è—£‚µ
+				// ã‚¢ã‚¯ã‚»ã‚µãƒªåˆ‡ã‚Šé›¢ã—
 				IMC_LBOX_DeleteAccessorieMove( obj );
 				
-				// •\¦—Dæ‡ˆÊ‚ÌÄİ’è
+				// è¡¨ç¤ºå„ªå…ˆé †ä½ã®å†è¨­å®š
 				IMC_LBOX_SetAccessoriePriority( acce_hand->lbox );
 			
 				setAcceHandAcce( acce_hand, obj, IMC_ACCE_HAND_FROM_LBOX, 
 						offset_x, offset_y, IMC_ACCE_HAND_PRI );	
 
-				// BG—Dæ‡ˆÊ‚Ìİ’è
+				// BGå„ªå…ˆé †ä½ã®è¨­å®š
 				IMC_DRAW_WndMaskObjMoveSet();
 			}
 		}
@@ -298,8 +298,8 @@ static void imcAcceHandPushFunc( IMC_HAND* hand )
 
 	if( acce_hand->obj ){
 		int se = IMC_SE_HAVE_SAMETHING;
-		// —£‚·‚Æ‚«‚Ì“®ìŠÖ”İ’è
-		// ‰Ÿ‚µ‚Á‚Ï‚È‚µ“®ìŠÖ”İ’è
+		// é›¢ã™ã¨ãã®å‹•ä½œé–¢æ•°è¨­å®š
+		// æŠ¼ã—ã£ã±ãªã—å‹•ä½œé–¢æ•°è¨­å®š
 		switch( acce_hand->obj->flag ){
 		case IMC_OBJLIST_ACCE:
 			hand->pop		= imcAcceHandPopFunc; 
@@ -308,7 +308,7 @@ static void imcAcceHandPushFunc( IMC_HAND* hand )
 		case IMC_OBJLIST_BG:
 			hand->pop		= imcAcceHandBgDummyPop; 
 			hand->push_ing	= imcAcceHandBgDummy;
-			imcBGHandRefFunc( hand );	// BG”½‰f
+			imcBGHandRefFunc( hand );	// BGåæ˜ 
 			se = IMC_SE_BG_CHANGE;
 			break;
 		case IMC_OBJLIST_POKE:
@@ -319,24 +319,24 @@ static void imcAcceHandPushFunc( IMC_HAND* hand )
 			break;
 		}
 	
-		// ‰½‚©‚ğ‚Â‚©‚ñ‚¾‰¹
+		// ä½•ã‹ã‚’ã¤ã‹ã‚“ã éŸ³
 		Snd_SePlay( se );
 		
-		// ‚Á‚½‚Æ‚«‚ÌƒGƒtƒFƒNƒg
+		// æŒã£ãŸã¨ãã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //		imcAcceHandSameThingHave( acce_hand );
 		
 		imcSubWinMsgPrint( acce_hand );
 	}
 }
 
-// ”wŒi—pƒ_ƒ~[
+// èƒŒæ™¯ç”¨ãƒ€ãƒŸãƒ¼
 static void imcAcceHandBgDummy( IMC_HAND* hand )
 {
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	”wŒi—pPOPŠÖ”
+ *	@brief	èƒŒæ™¯ç”¨POPé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 static void imcAcceHandBgDummyPop( IMC_HAND* hand )
@@ -344,17 +344,17 @@ static void imcAcceHandBgDummyPop( IMC_HAND* hand )
 	IMC_ACCE_HAND* bg_hand = hand->hand_w;
 	
 
-	// ƒ^ƒbƒ`‚µ‚½ƒIƒuƒWƒF‚ª‚ ‚é‚È‚ç
-	// ‚»‚Ìƒiƒ“ƒo[‚ÌBG‚ğ‰EƒpƒŒƒbƒg‚É”½‰f
+	// ã‚¿ãƒƒãƒã—ãŸã‚ªãƒ–ã‚¸ã‚§ãŒã‚ã‚‹ãªã‚‰
+	// ãã®ãƒŠãƒ³ãƒãƒ¼ã®BGã‚’å³ãƒ‘ãƒ¬ãƒƒãƒˆã«åæ˜ 
 	if( bg_hand->obj ){
 
-		// ƒIƒuƒWƒF‚Ìƒ^ƒCƒv‚ªBG‚Å‚ ‚é‚±‚Æ‚ğƒ`ƒFƒbƒN
+		// ã‚ªãƒ–ã‚¸ã‚§ã®ã‚¿ã‚¤ãƒ—ãŒBGã§ã‚ã‚‹ã“ã¨ã‚’ãƒã‚§ãƒƒã‚¯
 		GF_ASSERT( bg_hand->obj->flag == IMC_OBJLIST_BG );
 	
-		// ¶ƒ{ƒbƒNƒX•Ô‹pƒ^ƒXƒN¶¬
+		// å·¦ãƒœãƒƒã‚¯ã‚¹è¿”å´ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 		imcAcceHandIconLboxRetStart( bg_hand, IMC_ACCE_HAND_LBOX_RET_SYNC, bg_hand->from_x, bg_hand->from_y, bg_hand->obj->flag, bg_hand->from_list );
 
-		// ó‚¯Œp‚¬Š®—¹
+		// å—ã‘ç¶™ãå®Œäº†
 		cleanAcceHandAcce( bg_hand );
 	}
 }
@@ -362,9 +362,9 @@ static void imcAcceHandBgDummyPop( IMC_HAND* hand )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	—£‚µ‚½‚Ì“®ì
+ *	@brief	é›¢ã—ãŸæ™‚ã®å‹•ä½œ
  *
- *	@param	hand	ƒnƒ“ƒh\‘¢‘Ì
+ *	@param	hand	ãƒãƒ³ãƒ‰æ§‹é€ ä½“
  *
  *	@return	none
  *
@@ -374,20 +374,20 @@ static void imcAcceHandBgDummyPop( IMC_HAND* hand )
 static void imcAcceHandPopFunc( IMC_HAND* hand )
 {
 	IMC_ACCE_HAND* acce_hand		= hand->hand_w;
-	int	acce_list_no;				// ƒAƒNƒZƒTƒŠƒŠƒXƒgƒiƒ“ƒo[
+	int	acce_list_no;				// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼
 	int ret;
-	int top, bottom, left, right;	// ŠeÀ•W
-	int size_x, size_y;				// ƒTƒCƒY
-	int x,y;						// À•W
-	BOOL check;						// ’Ç‰Áƒ`ƒFƒbƒN
+	int top, bottom, left, right;	// å„åº§æ¨™
+	int size_x, size_y;				// ã‚µã‚¤ã‚º
+	int x,y;						// åº§æ¨™
+	BOOL check;						// è¿½åŠ ãƒã‚§ãƒƒã‚¯
 
-	// ƒIƒuƒWƒFƒNƒg‚ª‚ ‚é‚Æ‚«
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã‚ã‚‹ã¨ã
 	if( acce_hand->obj ){
-		// ‹éŒ`ƒf[ƒ^æ“¾
+		// çŸ©å½¢ãƒ‡ãƒ¼ã‚¿å–å¾—
 		imcAcceHandGetObjRectSubInSize( hand, &top, &bottom, &left, &right );
 		
-		// ‰Eƒ{ƒbƒNƒX‚É“ü‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
-		// ‚Ç‚±‚©‚ªo‚Ä‚¢‚½‚ç‚¾‚ß
+		// å³ãƒœãƒƒã‚¯ã‚¹ã«å…¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+		// ã©ã“ã‹ãŒå‡ºã¦ã„ãŸã‚‰ã ã‚
 		ret = IMC_RBOX_TPHitSelf( acce_hand->rbox, left, top );
 		ret += IMC_RBOX_TPHitSelf( acce_hand->rbox, right, top );
 		ret += IMC_RBOX_TPHitSelf( acce_hand->rbox, left, bottom );
@@ -395,51 +395,51 @@ static void imcAcceHandPopFunc( IMC_HAND* hand )
 
 		if( ret >= 4 ){
 
-			// ¡‚ÌÀ•W‚Å‰Eƒ{ƒbƒNƒX‚É‚¨‚­
+			// ä»Šã®åº§æ¨™ã§å³ãƒœãƒƒã‚¯ã‚¹ã«ãŠã
 			check = IMC_RBOX_AddAccessorieMove( acce_hand->rbox, acce_hand->obj, acce_hand->drawData->SWSP_UPchar );
-			if( check == FALSE ){		// “o˜^¸”s‚È‚ç¶‚É–ß‚·
+			if( check == FALSE ){		// ç™»éŒ²å¤±æ•—ãªã‚‰å·¦ã«æˆ»ã™
 				x = acce_hand->from_x;
 				y = acce_hand->from_y;
 				
-				// ¶ƒ{ƒbƒNƒX‚É•Ô‹p‚·‚éƒGƒtƒFƒNƒg‚Ì‰¹
+				// å·¦ãƒœãƒƒã‚¯ã‚¹ã«è¿”å´ã™ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®éŸ³
 				Snd_SePlay( IMC_SE_RET_LBOX );
 
-				// ƒRƒƒ“ƒg•\¦
+				// ã‚³ãƒ¡ãƒ³ãƒˆè¡¨ç¤º
 				IMC_SUBWIN_SetBmpWin( acce_hand->subwin, ARC_MSG, NARC_msg_imageclip_dat, imgclip_ng0002 );
 			
-				// ¶ƒ{ƒbƒNƒX•Ô‹pƒ^ƒXƒN¶¬
+				// å·¦ãƒœãƒƒã‚¯ã‚¹è¿”å´ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 				imcAcceHandIconLboxRetStart( acce_hand, IMC_ACCE_HAND_LBOX_RET_SYNC, x, y, acce_hand->obj->flag, acce_hand->from_list );
 
 			}else{
 				
-				// •\¦—Dæ‡ˆÊ‚ÌÄİ’è
+				// è¡¨ç¤ºå„ªå…ˆé †ä½ã®å†è¨­å®š
 				IMC_RBOX_SetObjPriority( acce_hand->rbox );
-				// BG—Dæ‡ˆÊ‚Ìİ’è
+				// BGå„ªå…ˆé †ä½ã®è¨­å®š
 				IMC_DRAW_WndMaskNormalSet();
 				acce_hand->push_flg = FALSE;
 
-				// ‰Eƒ{ƒbƒNƒX‚É‚¨‚¢‚½‰¹
+				// å³ãƒœãƒƒã‚¯ã‚¹ã«ãŠã„ãŸéŸ³
 				Snd_SePlay( IMC_SE_ON_RBOX );
 			}
 
 		}else{
-			// ¶ƒpƒŒƒbƒg”»’è
-			IMC_ACCESSORIE_OBJ* acce_obj = acce_hand->obj->obj_data;	// ‚±‚±‚É‚ÍƒAƒNƒZƒTƒŠ‚µ‚©’u‚¯‚È‚¢
+			// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¤å®š
+			IMC_ACCESSORIE_OBJ* acce_obj = acce_hand->obj->obj_data;	// ã“ã“ã«ã¯ã‚¢ã‚¯ã‚»ã‚µãƒªã—ã‹ç½®ã‘ãªã„
 
-			// H‚¢‚ñ‚Å‚æ‚¢ƒTƒCƒY‚ğl—¶‚µ‚È‚¢
+			// é£Ÿã„è¾¼ã‚“ã§ã‚ˆã„ã‚µã‚¤ã‚ºã‚’è€ƒæ…®ã—ãªã„
 			imcAcceHandGetObjRect( hand, &top, &bottom, &left, &right );
 
-			// ¶ƒ{ƒbƒNƒX‚É“ü‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+			// å·¦ãƒœãƒƒã‚¯ã‚¹ã«å…¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			ret = IMC_LBOX_TPHitSelf( acce_hand->lbox, left, top );
 			ret += IMC_LBOX_TPHitSelf( acce_hand->lbox, right, bottom );
 			if( ret < 2 ){
 				
-				// from‚ª¶ƒpƒŒƒbƒg‚È‚ç
-				// ¶ƒpƒŒƒbƒg‚É‚¢‚½‚Æ‚«‚ÌÀ•W‚ª‚ ‚é
+				// fromãŒå·¦ãƒ‘ãƒ¬ãƒƒãƒˆãªã‚‰
+				// å·¦ãƒ‘ãƒ¬ãƒƒãƒˆã«ã„ãŸã¨ãã®åº§æ¨™ãŒã‚ã‚‹
 				if( acce_hand->from == IMC_ACCE_HAND_FROM_RBOX ){
 					IMC_OBJLIST_ACCEPOKE_SizeGet( acce_hand->obj, &size_x, &size_y );
 
-					// ¶ƒ{ƒbƒNƒX“K“–‚ÈˆÊ’u‚É–ß‚·
+					// å·¦ãƒœãƒƒã‚¯ã‚¹é©å½“ãªä½ç½®ã«æˆ»ã™
 					x = (IMC_LBOX_AREA_X_MOVEOK) + (gf_mtRand() % (IMC_LBOX_AREA_WIDTH_MOVEOK - size_x) );
 					y = (IMC_LBOX_AREA_Y_MOVEOK) + (gf_mtRand() % (IMC_LBOX_AREA_HEIGHT_MOVEOK - size_y) );
 				}else{
@@ -448,31 +448,31 @@ static void imcAcceHandPopFunc( IMC_HAND* hand )
 					y = acce_hand->from_y;
 				}
 
-				// ¶ƒ{ƒbƒNƒX‚É•Ô‹p‚·‚éƒGƒtƒFƒNƒg‚Ì‰¹
+				// å·¦ãƒœãƒƒã‚¯ã‚¹ã«è¿”å´ã™ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®éŸ³
 				Snd_SePlay( IMC_SE_RET_LBOX );
 			}else{
 				
-				// ¡‚ÌÀ•W‚ğæ“¾
+				// ä»Šã®åº§æ¨™ã‚’å–å¾—
 				IMC_OBJLIST_ACCEPOKE_MatGet( acce_hand->obj, &x, &y );
 
-				// •ú‚µ‚½‰¹
+				// æ”¾ã—ãŸéŸ³
 				Snd_SePlay( IMC_SE_TAKE_OFF );
 			}
 
-			// ‰E‚©‚ç—ˆ‚½ƒAƒNƒZƒTƒŠ‚Ì‚ÍƒŠƒXƒgƒiƒ“ƒo[‚ğæ“¾
+			// å³ã‹ã‚‰æ¥ãŸã‚¢ã‚¯ã‚»ã‚µãƒªã®æ™‚ã¯ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 			if( acce_hand->from == IMC_ACCE_HAND_FROM_RBOX){
 				acce_hand->from_list = IMC_LBOX_GetListNo( acce_hand->obj->flag, acce_obj->accessorie_no, acce_hand->lbox->boxData.p_item_buff );
 			}
 
-			// ¶ƒ{ƒbƒNƒX•Ô‹pƒ^ƒXƒN¶¬
+			// å·¦ãƒœãƒƒã‚¯ã‚¹è¿”å´ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 			imcAcceHandIconLboxRetStart( acce_hand, IMC_ACCE_HAND_LBOX_RET_SYNC, x, y, acce_hand->obj->flag, acce_hand->from_list );
 
 		}
 
-		// •ú‚µ‚½‚Æ‚«‚ÌƒGƒtƒFƒNƒg
+		// æ”¾ã—ãŸã¨ãã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //		imcAcceHandTakaOff( acce_hand );
 
-		// ó‚¯Œp‚¬Š®—¹
+		// å—ã‘ç¶™ãå®Œäº†
 		cleanAcceHandAcce( acce_hand );
 	}
 }
@@ -480,9 +480,9 @@ static void imcAcceHandPopFunc( IMC_HAND* hand )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brieof	‰Ÿ‚µ‚Á‚Ï‚È‚µ‚Ì“®ì
+ *	@brieof	æŠ¼ã—ã£ã±ãªã—æ™‚ã®å‹•ä½œ
  *
- *	@param	hand		ƒnƒ“ƒh\‘¢‘Ì
+ *	@param	hand		ãƒãƒ³ãƒ‰æ§‹é€ ä½“
  *
  *	@return	none
  *
@@ -494,11 +494,11 @@ static void imcAcceHandPushIngFunc( IMC_HAND* hand )
 	IMC_ACCE_HAND* acce_hand		= hand->hand_w;
 	int x, y;
 
-	// ƒAƒNƒZƒTƒŠ‚ğ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍAƒ^ƒbƒ`ƒpƒlƒ‹‚ÌˆÊ’u‚É
-	// ƒAƒNƒZƒTƒŠ‚ğ“®‚©‚·
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’æŒã£ã¦ã„ã‚‹ã¨ãã¯ã€ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ä½ç½®ã«
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’å‹•ã‹ã™
 	if( acce_hand->obj != NULL ){
 
-		// À•W‚Ì³“–«‚ğƒ`ƒFƒbƒN
+		// åº§æ¨™ã®æ­£å½“æ€§ã‚’ãƒã‚§ãƒƒã‚¯
 		if( (sys.tp_x != 0xffff) &&
 			(sys.tp_x != 0xffff) ){
 		
@@ -513,9 +513,9 @@ static void imcAcceHandPushIngFunc( IMC_HAND* hand )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	—£‚µ‚½‚Æ‚«‚Ì“®ì	ƒ|ƒPƒ‚ƒ“‚Á‚Ä‚é‚Æ‚«‚æ‚¤
+ *	@brief	é›¢ã—ãŸã¨ãã®å‹•ä½œ	ãƒã‚±ãƒ¢ãƒ³æŒã£ã¦ã‚‹ã¨ãã‚ˆã†
  *
- *	@param	hand		ƒnƒ“ƒh\‘¢‘Ì 
+ *	@param	hand		ãƒãƒ³ãƒ‰æ§‹é€ ä½“ 
  *
  *	@return	none
  *
@@ -526,26 +526,26 @@ static void imcAcceHandPopForPokeFunc( IMC_HAND* hand )
 {
 	IMC_ACCE_HAND* acce_hand		= hand->hand_w;
 	BOOL ret1, ret2;
-	int size_x,size_y;			// ƒIƒuƒWƒFƒNƒgƒTƒCƒYXY
+	int size_x,size_y;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚µã‚¤ã‚ºXY
 
-	// ƒIƒuƒWƒFƒNƒg‚ª‚ ‚é‚Æ‚«
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã‚ã‚‹ã¨ã
 	if( acce_hand->obj ){
 
-		// ¡‚ÌÀ•W‚Å‰Eƒ{ƒbƒNƒX‚É‚¨‚­
+		// ä»Šã®åº§æ¨™ã§å³ãƒœãƒƒã‚¯ã‚¹ã«ãŠã
 		IMC_RBOX_MoveAddPoke( acce_hand->rbox, acce_hand->obj );
 
-		// •\¦—Dæ‡ˆÊ‚ÌÄİ’è
+		// è¡¨ç¤ºå„ªå…ˆé †ä½ã®å†è¨­å®š
 		IMC_RBOX_SetObjPriority( acce_hand->rbox );
 
 
-		// BG—Dæ‡ˆÊ‚Ìİ’è
+		// BGå„ªå…ˆé †ä½ã®è¨­å®š
 		IMC_DRAW_WndMaskNormalSet();
 		acce_hand->push_flg = FALSE;
 
-		// •ú‚µ‚½‚Æ‚«‚ÌƒGƒtƒFƒNƒg
+		// æ”¾ã—ãŸã¨ãã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //		imcAcceHandTakaOff( acce_hand );
 
-		// •ú‚µ‚½‰¹
+		// æ”¾ã—ãŸéŸ³
 		Snd_SePlay( IMC_SE_TAKE_OFF );
 
 		cleanAcceHandAcce( acce_hand );
@@ -555,9 +555,9 @@ static void imcAcceHandPopForPokeFunc( IMC_HAND* hand )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brieof	‰Ÿ‚µ‚Á‚Ï‚È‚µ‚Ì“®ì	ƒ|ƒPƒ‚ƒ“‚Á‚Ä‚é‚Æ‚«‚æ‚¤
+ *	@brieof	æŠ¼ã—ã£ã±ãªã—æ™‚ã®å‹•ä½œ	ãƒã‚±ãƒ¢ãƒ³æŒã£ã¦ã‚‹ã¨ãã‚ˆã†
  *
- *	@param	hand	ƒnƒ“ƒhƒf[ƒ^
+ *	@param	hand	ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -570,40 +570,40 @@ static void imcAcceHandPushIngForPokeFunc( IMC_HAND* hand )
 	int size_x, size_y;
 	int x,y;
 	int area_x, area_y;
-	int in_s_x, in_s_y;	// H‚¢‚ñ‚Å‚¢‚Ä‚æ‚¢ƒTƒCƒY
+	int in_s_x, in_s_y;	// é£Ÿã„è¾¼ã‚“ã§ã„ã¦ã‚ˆã„ã‚µã‚¤ã‚º
 #if PLFIX_S2407
 	int in_s_right, in_s_bottom;
 #endif
 
-	// ƒAƒNƒZƒTƒŠ‚ğ‚Á‚Ä‚¢‚é‚Æ‚«‚ÍAƒ^ƒbƒ`ƒpƒlƒ‹‚ÌˆÊ’u‚É
-	// ƒAƒNƒZƒTƒŠ‚ğ“®‚©‚·
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’æŒã£ã¦ã„ã‚‹ã¨ãã¯ã€ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®ä½ç½®ã«
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’å‹•ã‹ã™
 	if( acce_hand->obj != NULL ){
 
-		// À•W‚Ì³“–«‚ğƒ`ƒFƒbƒN
+		// åº§æ¨™ã®æ­£å½“æ€§ã‚’ãƒã‚§ãƒƒã‚¯
 		if( (sys.tp_x != 0xffff) &&
 			(sys.tp_x != 0xffff) ){
 			
-			// H‚¢‚ñ‚Å‚æ‚¢ƒTƒCƒY‚ğæ“¾
+			// é£Ÿã„è¾¼ã‚“ã§ã‚ˆã„ã‚µã‚¤ã‚ºã‚’å–å¾—
 #if PLFIX_S2407
 			IMC_OBJLIST_ACCEPOKE_InSizeGet( acce_hand->obj, &in_s_x, &in_s_right, &in_s_y, &in_s_bottom );
 #else
 			IMC_OBJLIST_ACCEPOKE_InSizeGet( acce_hand->obj, &in_s_x, &in_s_y );
 #endif
 
-			// ƒTƒCƒY‚ğæ“¾
+			// ã‚µã‚¤ã‚ºã‚’å–å¾—
 			IMC_OBJLIST_ACCEPOKE_SizeGet( acce_hand->obj, &size_x, &size_y );
-			// VÀ•W‚ğŒvZ
+			// æ–°åº§æ¨™ã‚’è¨ˆç®—
 			x = sys.tp_x - acce_hand->offset_x;
 			y = sys.tp_y - acce_hand->offset_y;
 
-			// À‚ ‚½‚è”»’èƒGƒŠƒA‚ğì¬
+			// å®Ÿã‚ãŸã‚Šåˆ¤å®šã‚¨ãƒªã‚¢ã‚’ä½œæˆ
 #if PLFIX_S2407
 			area_x = x + in_s_x;
 			area_y = y + in_s_y;
 			size_x -= in_s_right;
 			size_y -= in_s_bottom;
 
-			// À•W‚ª‰Eƒ{ƒbƒNƒX“à‚É‚È‚é‚æ‚¤‚É‚·‚é
+			// åº§æ¨™ãŒå³ãƒœãƒƒã‚¯ã‚¹å†…ã«ãªã‚‹ã‚ˆã†ã«ã™ã‚‹
 			if( area_x <= IMC_RBOX_AREA_X_MOVEOK){
 				x = IMC_RBOX_AREA_X_MOVEOK - in_s_x;
 			}else{
@@ -624,7 +624,7 @@ static void imcAcceHandPushIngForPokeFunc( IMC_HAND* hand )
 			size_x -= in_s_x;
 			size_y -= in_s_y;
 
-			// À•W‚ª‰Eƒ{ƒbƒNƒX“à‚É‚È‚é‚æ‚¤‚É‚·‚é
+			// åº§æ¨™ãŒå³ãƒœãƒƒã‚¯ã‚¹å†…ã«ãªã‚‹ã‚ˆã†ã«ã™ã‚‹
 			if( area_x <= IMC_RBOX_AREA_X_MOVEOK){
 				x = IMC_RBOX_AREA_X_MOVEOK - in_s_x;
 			}else{
@@ -642,14 +642,14 @@ static void imcAcceHandPushIngForPokeFunc( IMC_HAND* hand )
 #endif
 
 			
-			// À•Wİ’è
+			// åº§æ¨™è¨­å®š
 			imcAcceHandSetPokeMatrix( hand, x, y );
 
-			// ‚±‚ÌˆÊ’u‚ÅƒAƒNƒZƒTƒŠ‚ªH‚¢‚Ü‚È‚¢‚©ƒ`ƒFƒbƒN
+			// ã“ã®ä½ç½®ã§ã‚¢ã‚¯ã‚»ã‚µãƒªãŒé£Ÿã„è¾¼ã¾ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			IMC_RBOX_GetPokeUpListEncSize( acce_hand->rbox,
 					&in_s_x, &in_s_y );
 
-			// ã‚ÌH‚¢‚ñ‚Å‚¢‚éƒTƒCƒY•ª“®‚©‚µ‚ÄÄİ’è
+			// ä¸Šã®é£Ÿã„è¾¼ã‚“ã§ã„ã‚‹ã‚µã‚¤ã‚ºåˆ†å‹•ã‹ã—ã¦å†è¨­å®š
 			x += in_s_x;
 			y += in_s_y;
 			imcAcceHandSetPokeMatrix( hand, x, y );
@@ -662,9 +662,9 @@ static void imcAcceHandPushIngForPokeFunc( IMC_HAND* hand )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG•ÏXƒnƒ“ƒhŠÖ”	—£‚µ‚½‚Æ‚«
+ *	@brief	BGå¤‰æ›´ãƒãƒ³ãƒ‰é–¢æ•°	é›¢ã—ãŸã¨ã
  *
- *	@param	hand	ƒnƒ“ƒh\‘¢‘Ì
+ *	@param	hand	ãƒãƒ³ãƒ‰æ§‹é€ ä½“
  *
  *	@return	none
  *
@@ -675,41 +675,41 @@ static void imcAcceHandPushIngForPokeFunc( IMC_HAND* hand )
 static void imcBGHandPopFunc( IMC_HAND* hand )
 {
 	IMC_ACCE_HAND* bg_hand = hand->hand_w;
-	IMC_ACCESSORIE_OBJ* acce;	// ƒAƒNƒZƒTƒŠ[ƒIƒuƒWƒF
+	IMC_ACCESSORIE_OBJ* acce;	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‚ªãƒ–ã‚¸ã‚§
 	int acce_list_no;
 	
-	// ƒ^ƒbƒ`‚µ‚½ƒIƒuƒWƒF‚ª‚ ‚é‚È‚ç
-	// ‚»‚Ìƒiƒ“ƒo[‚ÌBG‚ğ‰EƒpƒŒƒbƒg‚É”½‰f
+	// ã‚¿ãƒƒãƒã—ãŸã‚ªãƒ–ã‚¸ã‚§ãŒã‚ã‚‹ãªã‚‰
+	// ãã®ãƒŠãƒ³ãƒãƒ¼ã®BGã‚’å³ãƒ‘ãƒ¬ãƒƒãƒˆã«åæ˜ 
 	if( bg_hand->obj ){
 		
-		// ƒIƒuƒWƒF‚Ìƒ^ƒCƒv‚ªBG‚Å‚ ‚é‚±‚Æ‚ğƒ`ƒFƒbƒN
+		// ã‚ªãƒ–ã‚¸ã‚§ã®ã‚¿ã‚¤ãƒ—ãŒBGã§ã‚ã‚‹ã“ã¨ã‚’ãƒã‚§ãƒƒã‚¯
 		GF_ASSERT( bg_hand->obj->flag == IMC_OBJLIST_BG );
 		
-		// ƒAƒNƒZƒTƒŠƒf[ƒ^‘ã“ü
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ä»£å…¥
 		acce = bg_hand->obj->obj_data;
 
-		// ‰EƒpƒŒƒbƒg“à‚É‚¢‚½‚çBG‚ğ”½‰f
+		// å³ãƒ‘ãƒ¬ãƒƒãƒˆå†…ã«ã„ãŸã‚‰BGã‚’åæ˜ 
 		if( IMC_RBOX_TPHitSelf( bg_hand->rbox, hand->old_x, hand->old_y ) ){
 
-			// ƒAƒNƒZƒTƒŠƒiƒ“ƒo[‚ÌBG‚ğ‰EƒpƒŒƒbƒg‚Éİ’è
+			// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼ã®BGã‚’å³ãƒ‘ãƒ¬ãƒƒãƒˆã«è¨­å®š
 			IMC_RBOX_BGClean( bg_hand->rbox );
 			IMC_RBOX_BGSet( bg_hand->rbox, acce->accessorie_no, HEAPID_IMAGECLIP_DRAW );
 
-			// BG•ÏX‚µ‚½‰¹
+			// BGå¤‰æ›´ã—ãŸéŸ³
 			Snd_SePlay( IMC_SE_BG_CHANGE );
 		}else{
 
-			// ¶ƒ{ƒbƒNƒX‚É–ß‚·‰¹
+			// å·¦ãƒœãƒƒã‚¯ã‚¹ã«æˆ»ã™éŸ³
 			Snd_SePlay( IMC_SE_RET_LBOX );
 		}
 		
-		// ¶ƒ{ƒbƒNƒX•Ô‹pƒ^ƒXƒN¶¬
+		// å·¦ãƒœãƒƒã‚¯ã‚¹è¿”å´ã‚¿ã‚¹ã‚¯ç”Ÿæˆ
 		imcAcceHandIconLboxRetStart( bg_hand, IMC_ACCE_HAND_LBOX_RET_SYNC, bg_hand->from_x, bg_hand->from_y, bg_hand->obj->flag, bg_hand->from_list );
 		
-		// •ú‚µ‚½‚Æ‚«‚ÌƒGƒtƒFƒNƒg
+		// æ”¾ã—ãŸã¨ãã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //		imcAcceHandTakaOff( bg_hand );
 		
-		// ó‚¯Œp‚¬Š®—¹
+		// å—ã‘ç¶™ãå®Œäº†
 		cleanAcceHandAcce( bg_hand );
 	}
 }
@@ -718,9 +718,9 @@ static void imcBGHandPopFunc( IMC_HAND* hand )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG•ÏXƒnƒ“ƒhŠÖ”	—£‚µ‚½‚Æ‚«
+ *	@brief	BGå¤‰æ›´ãƒãƒ³ãƒ‰é–¢æ•°	é›¢ã—ãŸã¨ã
  *
- *	@param	hand	ƒnƒ“ƒh\‘¢‘Ì
+ *	@param	hand	ãƒãƒ³ãƒ‰æ§‹é€ ä½“
  *
  *	@return	none
  *
@@ -731,25 +731,25 @@ static void imcBGHandPopFunc( IMC_HAND* hand )
 static void imcBGHandRefFunc( IMC_HAND* hand )
 {
 	IMC_ACCE_HAND* bg_hand = hand->hand_w;
-	IMC_ACCESSORIE_OBJ* acce;	// ƒAƒNƒZƒTƒŠ[ƒIƒuƒWƒF
+	IMC_ACCESSORIE_OBJ* acce;	// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‚ªãƒ–ã‚¸ã‚§
 	int acce_list_no;
 	
-	// ƒ^ƒbƒ`‚µ‚½ƒIƒuƒWƒF‚ª‚ ‚é‚È‚ç
-	// ‚»‚Ìƒiƒ“ƒo[‚ÌBG‚ğ‰EƒpƒŒƒbƒg‚É”½‰f
+	// ã‚¿ãƒƒãƒã—ãŸã‚ªãƒ–ã‚¸ã‚§ãŒã‚ã‚‹ãªã‚‰
+	// ãã®ãƒŠãƒ³ãƒãƒ¼ã®BGã‚’å³ãƒ‘ãƒ¬ãƒƒãƒˆã«åæ˜ 
 	if( bg_hand->obj ){
 		
-		// ƒIƒuƒWƒF‚Ìƒ^ƒCƒv‚ªBG‚Å‚ ‚é‚±‚Æ‚ğƒ`ƒFƒbƒN
+		// ã‚ªãƒ–ã‚¸ã‚§ã®ã‚¿ã‚¤ãƒ—ãŒBGã§ã‚ã‚‹ã“ã¨ã‚’ãƒã‚§ãƒƒã‚¯
 		GF_ASSERT( bg_hand->obj->flag == IMC_OBJLIST_BG );
 		
-		// ƒAƒNƒZƒTƒŠƒf[ƒ^‘ã“ü
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿ä»£å…¥
 		acce = bg_hand->obj->obj_data;
 
 
-		// ƒAƒNƒZƒTƒŠƒiƒ“ƒo[‚ÌBG‚ğ‰EƒpƒŒƒbƒg‚Éİ’è
+		// ã‚¢ã‚¯ã‚»ã‚µãƒªãƒŠãƒ³ãƒãƒ¼ã®BGã‚’å³ãƒ‘ãƒ¬ãƒƒãƒˆã«è¨­å®š
 		IMC_RBOX_BGClean( bg_hand->rbox );
 		IMC_RBOX_BGSet( bg_hand->rbox, acce->accessorie_no, HEAPID_IMAGECLIP_DRAW );
 
-		// •ú‚µ‚½‚Æ‚«‚ÌƒGƒtƒFƒNƒg
+		// æ”¾ã—ãŸã¨ãã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //		imcAcceHandTakaOff( bg_hand );
 	}
 }
@@ -758,21 +758,21 @@ static void imcBGHandRefFunc( IMC_HAND* hand )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒIƒuƒWƒFƒNƒg‚Ì“o˜^
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç™»éŒ²
  *
- *	@param	hand		ƒnƒ“ƒhƒf[ƒ^
- *	@param	obj			“o˜^ƒIƒuƒWƒFƒNƒg
- *	@param	from		Œ³‚ ‚Á‚½êŠ
- *	@param	offset_x	¶ã‚©‚ç‚ÌƒIƒtƒZƒbƒgÀ•W
- *	@param	offset_y	¶ã‚©‚ç‚ÌƒIƒtƒZƒbƒgÀ•W
- *	@param	pri			•\¦—Dæ‡ˆÊ
+ *	@param	hand		ãƒãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿
+ *	@param	obj			ç™»éŒ²ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	from		å…ƒã‚ã£ãŸå ´æ‰€
+ *	@param	offset_x	å·¦ä¸Šã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™
+ *	@param	offset_y	å·¦ä¸Šã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™
+ *	@param	pri			è¡¨ç¤ºå„ªå…ˆé †ä½
  *
  *	@return	none
  *
  *	form
  *		enum{
- *			IMC_ACCE_HAND_FROM_LBOX,		// ¶ƒ{ƒbƒNƒX
- * 			IMC_ACCE_HAND_FROM_RBOX,		// ‰Eƒ{ƒbƒNƒX
+ *			IMC_ACCE_HAND_FROM_LBOX,		// å·¦ãƒœãƒƒã‚¯ã‚¹
+ * 			IMC_ACCE_HAND_FROM_RBOX,		// å³ãƒœãƒƒã‚¯ã‚¹
  *		};
  *
  */
@@ -790,27 +790,27 @@ static void setAcceHandAcce( IMC_ACCE_HAND* hand, IMC_OBJLIST* obj, int from, in
 	hand->offset_y	= offset_y;
 
 	if( from == IMC_ACCE_HAND_FROM_LBOX ){
-		// ¶ƒ{ƒbƒNƒX‚©‚ç‚«‚½‚à‚Ì‚È‚ç
-		// ¡‚Ìƒ‚[ƒh‚ğİ’è
-		hand->from_list	= IMC_LBOX_GetCurrentNo( hand->lbox, hand->obj->flag );	// ƒJƒŒƒ“ƒgƒŠƒXƒgNo
+		// å·¦ãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰ããŸã‚‚ã®ãªã‚‰
+		// ä»Šã®ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®š
+		hand->from_list	= IMC_LBOX_GetCurrentNo( hand->lbox, hand->obj->flag );	// ã‚«ãƒ¬ãƒ³ãƒˆãƒªã‚¹ãƒˆNo
 	}else{
-		// ‰E‚©‚ç—ˆ‚½‚à‚Ì‚ÍƒfƒtƒHƒ‹ƒg‚Å‚±‚ê
+		// å³ã‹ã‚‰æ¥ãŸã‚‚ã®ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã“ã‚Œ
 		hand->from_list	= 0;
 	}
 
-	// ƒnƒ“ƒhƒvƒbƒVƒ…‚n‚m
+	// ãƒãƒ³ãƒ‰ãƒ—ãƒƒã‚·ãƒ¥ï¼¯ï¼®
 	hand->push_flg = TRUE;
 
-	// —Dæ‡ˆÊ‚ğÅã‚É‚·‚é
+	// å„ªå…ˆé †ä½ã‚’æœ€ä¸Šã«ã™ã‚‹
 	IMC_OBJLIST_ACCEPOKE_Pri( obj, pri );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒAƒNƒZƒTƒŠƒnƒ“ƒh‚ÌƒAƒNƒZƒTƒŠƒf[ƒ^•”‚Ì‚İ‰Šú‰»
+ *	@brief	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒãƒ³ãƒ‰ã®ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ‡ãƒ¼ã‚¿éƒ¨ã®ã¿åˆæœŸåŒ–
  *
- *	@param	hand	ƒAƒNƒZƒTƒŠƒnƒ“ƒh\‘¢‘Ì
+ *	@param	hand	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒãƒ³ãƒ‰æ§‹é€ ä½“
  *
  *	@return	none
  *
@@ -830,13 +830,13 @@ static void cleanAcceHandAcce( IMC_ACCE_HAND* hand )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒnƒ“ƒh\‘¢ƒ^ƒC‚É“o˜^‚³‚ê‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚Ì‹éŒ`ƒTƒCƒY‚ğæ“¾‚·‚é
+ *	@brief	ãƒãƒ³ãƒ‰æ§‹é€ ã‚¿ã‚¤ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®çŸ©å½¢ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
  *	
- *	@param	hand		ƒnƒ“ƒh\‘¢‘Ì
- *	@param	top			ãÀ•W
- *	@param	bottom		‰ºÀ•W
- *	@param	left		¶À•W
- *	@param	right		‰EÀ•W	
+ *	@param	hand		ãƒãƒ³ãƒ‰æ§‹é€ ä½“
+ *	@param	top			ä¸Šåº§æ¨™
+ *	@param	bottom		ä¸‹åº§æ¨™
+ *	@param	left		å·¦åº§æ¨™
+ *	@param	right		å³åº§æ¨™	
  *
  *	@return	none
  *	
@@ -846,8 +846,8 @@ static void cleanAcceHandAcce( IMC_ACCE_HAND* hand )
 static void imcAcceHandGetObjRect( IMC_HAND* hand, int* top, int* bottom, int* left, int* right )
 {
 	IMC_ACCE_HAND* acce_hand		= hand->hand_w;
-	int size_x,size_y;			// ƒIƒuƒWƒFƒNƒgƒTƒCƒYXY
-	int mat_x, mat_y;			// ƒIƒuƒWƒFƒNƒgÀ•W
+	int size_x,size_y;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚µã‚¤ã‚ºXY
+	int mat_x, mat_y;			// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåº§æ¨™
 
 	IMC_OBJLIST_ACCEPOKE_SizeGet( acce_hand->obj, &size_x, &size_y );
 	IMC_OBJLIST_ACCEPOKE_MatGet( acce_hand->obj, &mat_x, &mat_y );
@@ -861,15 +861,15 @@ static void imcAcceHandGetObjRect( IMC_HAND* hand, int* top, int* bottom, int* l
 
 //----------------------------------------------------------------------------
 /**
- * œH‚¢‚ñ‚Å‚æ‚¢ƒTƒCƒY‚ğŒ¸‚ç‚·		‰EƒpƒŒƒbƒg—p
+ * â—é£Ÿã„è¾¼ã‚“ã§ã‚ˆã„ã‚µã‚¤ã‚ºã‚’æ¸›ã‚‰ã™		å³ãƒ‘ãƒ¬ãƒƒãƒˆç”¨
  *
- *	@brief	ƒnƒ“ƒh\‘¢ƒ^ƒC‚É“o˜^‚³‚ê‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚Ì‹éŒ`ƒTƒCƒY‚ğæ“¾‚·‚é
+ *	@brief	ãƒãƒ³ãƒ‰æ§‹é€ ã‚¿ã‚¤ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®çŸ©å½¢ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
  *	
- *	@param	hand		ƒnƒ“ƒh\‘¢‘Ì
- *	@param	top			ãÀ•W
- *	@param	bottom		‰ºÀ•W
- *	@param	left		¶À•W
- *	@param	right		‰EÀ•W	
+ *	@param	hand		ãƒãƒ³ãƒ‰æ§‹é€ ä½“
+ *	@param	top			ä¸Šåº§æ¨™
+ *	@param	bottom		ä¸‹åº§æ¨™
+ *	@param	left		å·¦åº§æ¨™
+ *	@param	right		å³åº§æ¨™	
  *
  *	@return	none
  *	
@@ -886,20 +886,20 @@ static void imcAcceHandGetObjRectSubInSize( IMC_HAND* hand, int* top, int* botto
 
 //-------------------------------------
 //	
-//	“®ìƒ^ƒXƒNŒn
+//	å‹•ä½œã‚¿ã‚¹ã‚¯ç³»
 //	
 //=====================================
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¶ƒ{ƒbƒNƒX‚Ö‚ÌƒAƒNƒZƒTƒŠ•Ô‹pƒGƒtƒFƒNƒgƒ^ƒXƒNŠJnŠÖ”
+ *	@brief	å·¦ãƒœãƒƒã‚¯ã‚¹ã¸ã®ã‚¢ã‚¯ã‚»ã‚µãƒªè¿”å´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¹ã‚¯é–‹å§‹é–¢æ•°
  *	
- *	@param	acce_hand		ƒAƒNƒZƒTƒŠƒnƒ“ƒh\‘¢‘Ì
- *	@param	sync			‰½ƒVƒ“ƒN‚Å“®‚©‚·‚©
- *	@param	targ_x			•Ô‹pæÀ•W‚˜
- *	@param	targ_y			•Ô‹pæÀ•W‚™
- *	@param	acce_mode		ƒAƒNƒZƒTƒŠƒ‚[ƒh
- *	@param	list_no			ƒAƒNƒZƒTƒŠƒŠƒXƒg”Ô†
+ *	@param	acce_hand		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒãƒ³ãƒ‰æ§‹é€ ä½“
+ *	@param	sync			ä½•ã‚·ãƒ³ã‚¯ã§å‹•ã‹ã™ã‹
+ *	@param	targ_x			è¿”å´å…ˆåº§æ¨™ï½˜
+ *	@param	targ_y			è¿”å´å…ˆåº§æ¨™ï½™
+ *	@param	acce_mode		ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¢ãƒ¼ãƒ‰
+ *	@param	list_no			ã‚¢ã‚¯ã‚»ã‚µãƒªãƒªã‚¹ãƒˆç•ªå·
  *
  *	@return	none
  *
@@ -926,23 +926,23 @@ static void imcAcceHandIconLboxRetStart( IMC_ACCE_HAND* acce_hand, int sync, int
 	work->p_left_state = &acce_hand->lbox->boxData.state;
 	work->p_new_push_flg = &acce_hand->push_flg;
 	
-	// ‚PƒVƒ“ƒN‚É“®‚©‚·’l‚ğæ“¾
+	// ï¼‘ã‚·ãƒ³ã‚¯ã«å‹•ã‹ã™å€¤ã‚’å–å¾—
 	IMC_OBJLIST_ACCEPOKE_MatGet( acce_hand->obj, &x, &y );
 	
 	work->one_x		= (work->targ_x - x) / sync;
 	work->one_y		= (work->targ_y - y) / sync;
 
-	// ƒAƒNƒZƒTƒŠ‚ğ‚Í‚È‚µ‚½
+	// ã‚¢ã‚¯ã‚»ã‚µãƒªã‚’ã¯ãªã—ãŸ
 	acce_hand->push_flg = FALSE;
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	¶ƒ{ƒbƒNƒX‚Ö‚ÌƒAƒNƒZƒTƒŠ•Ô‹pƒGƒtƒFƒNƒgƒ^ƒXƒN
+ *	@brief	å·¦ãƒœãƒƒã‚¯ã‚¹ã¸ã®ã‚¢ã‚¯ã‚»ã‚µãƒªè¿”å´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¹ã‚¯
  *
- *	@param	tcb		tcbƒ|ƒCƒ“ƒ^
- *	@param	work	ƒ[ƒN
+ *	@param	tcb		tcbãƒã‚¤ãƒ³ã‚¿
+ *	@param	work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  *
@@ -952,9 +952,9 @@ static void imcAcceHandIconLboxRetStart( IMC_ACCE_HAND* acce_hand, int sync, int
 static void imcAcceHandIconLboxRetTsk( TCB_PTR tcb, void* work )
 {
 	IMC_ACCE_HAND_EFE_LBOX_RET* tsk_w = work;
-	int x, y;			// À•W
+	int x, y;			// åº§æ¨™
 
-	// ¶ƒ{ƒbƒNƒX‚ªƒtƒF[ƒh’†‚Í‚Æ‚ß‚é
+	// å·¦ãƒœãƒƒã‚¯ã‚¹ãŒãƒ•ã‚§ãƒ¼ãƒ‰ä¸­ã¯ã¨ã‚ã‚‹
 	if( *tsk_w->p_left_state == IMC_LBOX_STATE_FADE ){
 		return ;
 	}
@@ -966,12 +966,12 @@ static void imcAcceHandIconLboxRetTsk( TCB_PTR tcb, void* work )
 
 	tsk_w->count--;
 
-	// I—¹ƒ`ƒFƒbƒN
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( (tsk_w->count < 0) || ((tsk_w->one_x == 0)&&(tsk_w->one_y == 0)) ){
 		IMC_OBJLIST_ACCEPOKE_Mat( tsk_w->obj, tsk_w->targ_x, tsk_w->targ_y );
 
 		
-		// ¡‚ÌÀ•W‚Å¶ƒ{ƒbƒNƒX‚É‚¨‚­
+		// ä»Šã®åº§æ¨™ã§å·¦ãƒœãƒƒã‚¯ã‚¹ã«ãŠã
 		IMC_LBOX_AddAccessorieMove(
 				tsk_w->lbox,
 				tsk_w->lbox_mode,
@@ -979,22 +979,22 @@ static void imcAcceHandIconLboxRetTsk( TCB_PTR tcb, void* work )
 				tsk_w->obj	);
 		
 		
-		// •\¦—Dæ‡ˆÊ‚ÌÄİ’è
+		// è¡¨ç¤ºå„ªå…ˆé †ä½ã®å†è¨­å®š
 		IMC_LBOX_SetAccessoriePriority( tsk_w->lbox );
 
-		// BG—Dæ‡ˆÊ‚Ìİ’è
-		// ©•ª‚ª¶ƒpƒŒƒbƒg‚É–ß‚Á‚Ä‚¢‚éŠÔ‚É
-		// V‚µ‚¢‚à‚Ì‚ğè‚ª‚Â‚©‚ñ‚Å‚¢‚½‚ç
-		// ƒ}ƒXƒNƒ`ƒFƒ“ƒW‚ğs‚í‚È‚¢
+		// BGå„ªå…ˆé †ä½ã®è¨­å®š
+		// è‡ªåˆ†ãŒå·¦ãƒ‘ãƒ¬ãƒƒãƒˆã«æˆ»ã£ã¦ã„ã‚‹é–“ã«
+		// æ–°ã—ã„ã‚‚ã®ã‚’æ‰‹ãŒã¤ã‹ã‚“ã§ã„ãŸã‚‰
+		// ãƒã‚¹ã‚¯ãƒã‚§ãƒ³ã‚¸ã‚’è¡Œã‚ãªã„
 		if( *(tsk_w->p_new_push_flg) == FALSE ){
 			IMC_DRAW_WndMaskNormalSet();
 		}
 		
-		// I—¹
+		// çµ‚äº†
 		PMDS_taskDel( tcb );
 	}else{
 
-		// À•Wİ’è
+		// åº§æ¨™è¨­å®š
 		IMC_OBJLIST_ACCEPOKE_Mat( tsk_w->obj, x, y );
 	}
 }
@@ -1002,9 +1002,9 @@ static void imcAcceHandIconLboxRetTsk( TCB_PTR tcb, void* work )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‰½‚©‚Á‚½‚Æ‚«‚ÌŠÖ”
+ *	@brief	ä½•ã‹æŒã£ãŸã¨ãã®é–¢æ•°
  *
- *	@param	acce_hand	‰½‚©‚Á‚½ƒnƒ“ƒh\‘¢‘Ì
+ *	@param	acce_hand	ä½•ã‹æŒã£ãŸãƒãƒ³ãƒ‰æ§‹é€ ä½“
  *
  *	@return	none
  *
@@ -1024,9 +1024,9 @@ static void imcAcceHandSameThingHave( IMC_ACCE_HAND* acce_hand )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ú‚·ƒGƒtƒFƒNƒg‚ÌŠÖ”
+ *	@brief	æ”¾ã™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®é–¢æ•°
  *
- *	@param	acce_hand	‚±‚ê‚©‚ç•ú‚·‰½‚©‚ğ‚Á‚½ƒnƒ“ƒh\‘¢‘Ì
+ *	@param	acce_hand	ã“ã‚Œã‹ã‚‰æ”¾ã™ä½•ã‹ã‚’æŒã£ãŸãƒãƒ³ãƒ‰æ§‹é€ ä½“
  *
  *	@return	none
  *
@@ -1047,9 +1047,9 @@ static void imcAcceHandTakaOff( IMC_ACCE_HAND* acce_hand )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief		ƒTƒuƒEƒBƒ“ƒhƒE‚É¡•Û‚µ‚Ä‚¢‚é•¨‚ÌƒƒbƒZ[ƒW‚ğo‚·
+ *	@brief		ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ä»Šä¿æŒã—ã¦ã„ã‚‹ç‰©ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™
  *
- *	@param	hand ƒAƒNƒZƒTƒŠƒnƒ“ƒh\‘¢‘Ì
+ *	@param	hand ã‚¢ã‚¯ã‚»ã‚µãƒªãƒãƒ³ãƒ‰æ§‹é€ ä½“
  *
  *	@return	none
  *
@@ -1058,7 +1058,7 @@ static void imcAcceHandTakaOff( IMC_ACCE_HAND* acce_hand )
 //-----------------------------------------------------------------------------
 static void imcSubWinMsgPrint( IMC_ACCE_HAND* hand )
 {
-	// ƒAƒNƒZƒTƒŠ
+	// ã‚¢ã‚¯ã‚»ã‚µãƒª
 	if( hand->obj->flag == IMC_OBJLIST_ACCE ){
 		IMC_ACCESSORIE_OBJ* acce = hand->obj->obj_data;
 		
@@ -1074,11 +1074,11 @@ static void imcSubWinMsgPrint( IMC_ACCE_HAND* hand )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“À•W‚ğİ’è‚·‚é
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³åº§æ¨™ã‚’è¨­å®šã™ã‚‹
  *
- *	@param	hand	ƒAƒNƒZƒTƒŠƒnƒ“ƒh
- *	@param	x		‚˜À•W
- *	@param	y		‚™À•W
+ *	@param	hand	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒãƒ³ãƒ‰
+ *	@param	x		ï½˜åº§æ¨™
+ *	@param	y		ï½™åº§æ¨™
  *
  *	@return	none
  */
@@ -1088,8 +1088,8 @@ static void imcAcceHandSetPokeMatrix( IMC_HAND* hand, int x, int y )
 	IMC_ACCE_HAND* acce_hand = hand->hand_w;
 	IMC_OBJLIST_ACCEPOKE_Mat( acce_hand->obj, x, y );
 
-	// ˆÚ“®‹——£•ª“®‚©‚·
-	// ‰Eƒ{ƒbƒNƒX‚Ìƒ|ƒPƒ‚ƒ“‚Ìã‚ÌƒAƒNƒZƒTƒŠ‚à“®‚©‚·
+	// ç§»å‹•è·é›¢åˆ†å‹•ã‹ã™
+	// å³ãƒœãƒƒã‚¯ã‚¹ã®ãƒã‚±ãƒ¢ãƒ³ã®ä¸Šã®ã‚¢ã‚¯ã‚»ã‚µãƒªã‚‚å‹•ã‹ã™
 	IMC_RBOX_PokeUpListMove( acce_hand->rbox, 
 			x - acce_hand->last_x, y - acce_hand->last_y );
 

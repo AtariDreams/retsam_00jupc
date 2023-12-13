@@ -1,14 +1,14 @@
 //=============================================================================
 /**
  * @file	dendou_ball_anm.c
- * @bfief	“a“°ƒ}ƒVƒ“ãƒ{[ƒ‹ƒAƒjƒ
+ * @bfief	æ®¿å ‚ãƒã‚·ãƒ³ä¸Šãƒœãƒ¼ãƒ«ã‚¢ãƒ‹ãƒ¡
  * @author	Nozomu Saito
  *
  */
 //=============================================================================
 
-#define BALL_ANM_CONT_CODE	(0x10)		//ƒ{[ƒ‹ƒAƒjƒ¯•ÊƒR[ƒh ’l‚Í“K“–
-#define BALL_PUT_WAIT	(15)			//ƒ{[ƒ‹‚ğ‚¨‚¢‚½Œã‚ÌƒEƒFƒCƒg
+#define BALL_ANM_CONT_CODE	(0x10)		//ãƒœãƒ¼ãƒ«ã‚¢ãƒ‹ãƒ¡è­˜åˆ¥ã‚³ãƒ¼ãƒ‰ å€¤ã¯é©å½“
+#define BALL_PUT_WAIT	(15)			//ãƒœãƒ¼ãƒ«ã‚’ãŠã„ãŸå¾Œã®ã‚¦ã‚§ã‚¤ãƒˆ
 
 #include "common.h"
 #include "fieldsys.h"
@@ -30,20 +30,20 @@ enum{
 
 typedef struct DENDOU_BALL_ANM_tag
 {
-	VecFx32 MachinePos;	//‰ñ•œƒ}ƒV[ƒ“À•W
-	u8 MyPokeNum;		//è‚¿ƒ|ƒPƒ‚ƒ“”	
-	u8 NowPos;			//Œ»İ”z’u’†ƒ{[ƒ‹”
-	u8 Wait;			//ƒ{[ƒ‹‚ğ’u‚­ŠÔŠu
-	u8 Seq;				//ƒV[ƒPƒ“ƒT
+	VecFx32 MachinePos;	//å›å¾©ãƒã‚·ãƒ¼ãƒ³åº§æ¨™
+	u8 MyPokeNum;		//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³æ•°	
+	u8 NowPos;			//ç¾åœ¨é…ç½®ä¸­ãƒœãƒ¼ãƒ«æ•°
+	u8 Wait;			//ãƒœãƒ¼ãƒ«ã‚’ç½®ãé–“éš”
+	u8 Seq;				//ã‚·ãƒ¼ã‚±ãƒ³ã‚µ
 
-	u8 EntryIdx[6];		//ƒ{[ƒ‹Å‘å6ŒÂ
+	u8 EntryIdx[6];		//ãƒœãƒ¼ãƒ«æœ€å¤§6å€‹
 }DENDOU_BALL_ANM;
 
 static BOOL DendouBallAnimeEvent(GMEVENT_CONTROL * event);
 
 #define BALL_OFS	( (FX32_ONE*4)+(FX32_ONE/2) )		//4.5
 
-//¡‰ñ•œƒ}ƒVƒ“‚ğŠî€‚Æ‚µ‚½ƒ{[ƒ‹”z’uÀ•WiXYZj
+//â– å›å¾©ãƒã‚·ãƒ³ã‚’åŸºæº–ã¨ã—ãŸãƒœãƒ¼ãƒ«é…ç½®åº§æ¨™ï¼ˆXYZï¼‰
 static VecFx32 BallPos[6] = {
 	{-BALL_OFS,FX32_ONE*12,-BALL_OFS},		//-4.5,12,-4.5
 	{ BALL_OFS,FX32_ONE*12,-BALL_OFS},		//4.5,12,-4.5
@@ -55,10 +55,10 @@ static VecFx32 BallPos[6] = {
 
 //==============================================================================
 /**
- * “a“°ƒ}ƒVƒ“ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg
+ * æ®¿å ‚ãƒã‚·ãƒ³ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
  * 
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inBallNum		ƒ{[ƒ‹ŒÂ”
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inBallNum		ãƒœãƒ¼ãƒ«å€‹æ•°
  * 
  * @return	none
  */
@@ -73,8 +73,8 @@ void DendouBallAnm_StartAnm(FIELDSYS_WORK * fsys, const u8 inBallNum)
 	rc = MPTL_CheckMap3DObj(fsys, obj_id, &obj_ptr,&block_idx);
 			
 	if (rc){
-		//“a“°ƒ}ƒVƒ“‚ ‚Á‚½
-		//ƒf[ƒ^ì¬
+		//æ®¿å ‚ãƒã‚·ãƒ³ã‚ã£ãŸ
+		//ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		DENDOU_BALL_ANM *work = sys_AllocMemoryLo(HEAPID_FIELD,sizeof(DENDOU_BALL_ANM));
 		work->MyPokeNum = inBallNum;
 		work->NowPos = 0;
@@ -87,20 +87,20 @@ void DendouBallAnm_StartAnm(FIELDSYS_WORK * fsys, const u8 inBallNum)
 			work->MachinePos.x += trans.x;
 			work->MachinePos.z += trans.z;
 		}
-		//ƒAƒjƒƒCƒxƒ“ƒgƒR[ƒ‹
+		//ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«
 		FieldEvent_Call(fsys->event, DendouBallAnimeEvent, work);
 	}else{
-		GF_ASSERT(0&&"“a“°ƒ}ƒVƒ“‚ ‚è‚Ü‚¹‚ñ");
+		GF_ASSERT(0&&"æ®¿å ‚ãƒã‚·ãƒ³ã‚ã‚Šã¾ã›ã‚“");
 	}
 }
 
 //==============================================================================
 /**
- * “a“°ƒ}ƒVƒ“ãƒ{[ƒ‹ƒAƒjƒƒCƒxƒ“ƒg
+ * æ®¿å ‚ãƒã‚·ãƒ³ä¸Šãƒœãƒ¼ãƒ«ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ™ãƒ³ãƒˆ
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL	TRUE:ƒCƒxƒ“ƒgI—¹@FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //==============================================================================
 static BOOL DendouBallAnimeEvent(GMEVENT_CONTROL * event)
@@ -116,17 +116,17 @@ static BOOL DendouBallAnimeEvent(GMEVENT_CONTROL * event)
 			
 			ball_res_file = GetMapResourceModelRes(BMID_PC_MB, fsys->MapResource);
 			ball_model = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*ball_res_file),0);
-			//ƒ{[ƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgƒAƒbƒv
+			//ãƒœãƒ¼ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 			F3DASub_SetUpAnimation( fsys->field_3d_anime,
 									fsys->AnimeContMng,
-									BALL_ANM_CONT_CODE,	//ƒ{[ƒ‹ƒAƒjƒ¯•ÊƒR[ƒh
+									BALL_ANM_CONT_CODE,	//ãƒœãƒ¼ãƒ«ã‚¢ãƒ‹ãƒ¡è­˜åˆ¥ã‚³ãƒ¼ãƒ‰
 									BMID_PC_MB,
-									NULL,			//Œã‚Åw’è
+									NULL,			//å¾Œã§æŒ‡å®š
 									ball_model,
 									GetMapResourceBmTexturePTR(fsys->MapResource),
-									1,				//ƒAƒjƒ”1
-									1,		//ƒ‹[ƒv1‰ñ
-									FALSE			//”½“]‚µ‚È‚¢
+									1,				//ã‚¢ãƒ‹ãƒ¡æ•°1
+									1,		//ãƒ«ãƒ¼ãƒ—1å›
+									FALSE			//åè»¢ã—ãªã„
 									);
 		}
 		(work->Seq)++;
@@ -141,9 +141,9 @@ static BOOL DendouBallAnimeEvent(GMEVENT_CONTROL * event)
 			pos.x = work->MachinePos.x + BallPos[work->NowPos].x;
 			pos.y = work->MachinePos.y + BallPos[work->NowPos].y;
 			pos.z = work->MachinePos.z + BallPos[work->NowPos].z;
-			//¦ƒ{[ƒ‹‚ğ’u‚­‰¹‚Í–Â‚ç‚µ‚Ü‚¹‚ñid—lj
+			//â€»ãƒœãƒ¼ãƒ«ã‚’ç½®ãéŸ³ã¯é³´ã‚‰ã—ã¾ã›ã‚“ï¼ˆä»•æ§˜ï¼‰
 			
-			//ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹‚ğ’u‚­
+			//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã‚’ç½®ã
 			work->EntryIdx[work->NowPos] = 
 				M3DO_SetMap3DObjExp(fsys->Map3DObjExp,
 									fsys->MapResource,
@@ -151,7 +151,7 @@ static BOOL DendouBallAnimeEvent(GMEVENT_CONTROL * event)
 									&pos,
 									&rot,
 									fsys->field_3d_anime);
-			//‚n‚a‚iƒ|ƒCƒ“ƒ^‚ğæ‚è’¼‚µ‚ÄAƒŒƒ“ƒ_[‚n‚a‚i‚ğƒZƒbƒg
+			//ï¼¯ï¼¢ï¼ªãƒã‚¤ãƒ³ã‚¿ã‚’å–ã‚Šç›´ã—ã¦ã€ãƒ¬ãƒ³ãƒ€ãƒ¼ï¼¯ï¼¢ï¼ªã‚’ã‚»ãƒƒãƒˆ
 			obj_ptr = M3DO_GetMap3DObjDataFromIndex(fsys->Map3DObjExp, work->EntryIdx[work->NowPos]);
 			render_obj = M3DO_GetRenderObj(obj_ptr);
 			F3DASub_EntryRenderObj(fsys->AnimeContMng, BALL_ANM_CONT_CODE, work->NowPos, render_obj);
@@ -165,7 +165,7 @@ static BOOL DendouBallAnimeEvent(GMEVENT_CONTROL * event)
 		}else{
 			work->Wait = 0;;
 		}
-		//’u‚¢‚½ƒ{[ƒ‹‚Ì”‚ªè‚¿•ª‚È‚çŸ‚ÌƒV[ƒPƒ“ƒX‚Ö
+		//ç½®ã„ãŸãƒœãƒ¼ãƒ«ã®æ•°ãŒæ‰‹æŒã¡åˆ†ãªã‚‰æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
 		work->NowPos++;
 		if (work->NowPos < work->MyPokeNum){
 			(work->Seq) = SEQ_BALL_PUT;
@@ -174,18 +174,18 @@ static BOOL DendouBallAnimeEvent(GMEVENT_CONTROL * event)
 		}
 		break;
 	case SEQ_ANM_START:
-		//ƒ‚ƒ“ƒXƒ^[ƒ{[ƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒ^[ƒg
+		//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒœãƒ¼ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ã‚¿ãƒ¼ãƒˆ
 		F3DASub_StartAnimation(fsys->AnimeContMng, BALL_ANM_CONT_CODE, 0);
 
 		(work->Seq)++;
 		break;
 	case SEQ_ANM_WAIT:
-		//ƒAƒjƒEƒWƒ“ƒOƒ‹‘Ò‚¿
+		//ã‚¢ãƒ‹ãƒ¡ãƒ»ã‚¸ãƒ³ã‚°ãƒ«å¾…ã¡
 		if ( (F3DASub_WaitAnimation(fsys->AnimeContMng, BALL_ANM_CONT_CODE)) ){
 			u8 i;
-			//ƒAƒjƒ‰ğ•ú
+			//ã‚¢ãƒ‹ãƒ¡è§£æ”¾
 			F3DASub_RereaseAnimation(fsys->field_3d_anime, fsys->AnimeContMng, BALL_ANM_CONT_CODE);
-			//’Ç‰Á‚µ‚½ƒ{[ƒ‹‚n‚a‚i‚ğ‰ğ•ú‚·‚é
+			//è¿½åŠ ã—ãŸãƒœãƒ¼ãƒ«ï¼¯ï¼¢ï¼ªã‚’è§£æ”¾ã™ã‚‹
 			for(i=0;i<work->MyPokeNum;i++){
 				M3DO_CleanMap3DObj(work->EntryIdx[i], fsys->Map3DObjExp);
 			}
@@ -193,7 +193,7 @@ static BOOL DendouBallAnimeEvent(GMEVENT_CONTROL * event)
 		}
 		break;
 	case SEQ_END:
-		//I‚è
+		//çµ‚ã‚Š
 		sys_FreeMemoryEz(work);
 		return TRUE;
 	}

@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	email.c
- * @brief	ä»íPÇ»ê‡ñæÇèëÇ≠
+ * @brief	Á∞°Âçò„Å™Ë™¨Êòé„ÇíÊõ∏„Åè
  * @author	goto
- * @date	2007.10.19(ã‡)
+ * @date	2007.10.19(Èáë)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -56,24 +56,24 @@
 #define EMAIL_PRINT_COL	( GF_PRINTCOLOR_MAKE( 1,  2, 0 ) )
 
 
-///< ÉVÉXÉeÉÄ
+///< „Ç∑„Çπ„ÉÜ„É†
 typedef struct {
 	
-	ARCHANDLE*			p_handle;			///< ÉAÅ[ÉJÉCÉuÉnÉìÉhÉã
+	ARCHANDLE*			p_handle;			///< „Ç¢„Éº„Ç´„Ç§„Éñ„Éè„É≥„Éâ„É´
 	
-	CATS_SYS_PTR		csp;				///< OAMÉVÉXÉeÉÄ
-	CATS_RES_PTR		crp;				///< ÉäÉ\Å[ÉXàÍäáä«óù
+	CATS_SYS_PTR		csp;				///< OAM„Ç∑„Çπ„ÉÜ„É†
+	CATS_RES_PTR		crp;				///< „É™„ÇΩ„Éº„Çπ‰∏ÄÊã¨ÁÆ°ÁêÜ
 
 	GF_BGL_INI*			bgl;				///< BGL
-	PALETTE_FADE_PTR	pfd;				///< ÉpÉåÉbÉgÉtÉFÅ[Éh
+	PALETTE_FADE_PTR	pfd;				///< „Éë„É¨„ÉÉ„Éà„Éï„Çß„Éº„Éâ
 	
-	BUTTON_MAN*			btn;				///< É{É^Éì	
-	RECT_HIT_TBL		rht[ EMAIL_BTN_MAX ];	///< ìñÇΩÇËîªíË(managerÇ…ìoò^Ç∑ÇÈ)
+	BUTTON_MAN*			btn;				///< „Éú„Çø„É≥	
+	RECT_HIT_TBL		rht[ EMAIL_BTN_MAX ];	///< ÂΩì„Åü„ÇäÂà§ÂÆö(manager„Å´ÁôªÈå≤„Åô„Çã)
 	
-	BOOL				touch;				///< ÉÇÅ[Éh
+	BOOL				touch;				///< „É¢„Éº„Éâ
 	
-	GF_BGL_BMPWIN		win;				///< è„
-	GF_BGL_BMPWIN		info_win;			///< â∫
+	GF_BGL_BMPWIN		win;				///< ‰∏ä
+	GF_BGL_BMPWIN		info_win;			///< ‰∏ã
 	GF_BGL_BMPWIN		win1[ 2 ];			///< email num
 	GF_BGL_BMPWIN		win2[ 5 ];			///< etc a-z
 	
@@ -94,14 +94,14 @@ typedef struct {
 	u16				max;
 	u16				min;
 	
-	u16				input_num_limit;			///< í«â¡ì¸óÕÇÃâÒêî 
-	s16				cur_px_limit;				///< ÉJÅ[É\Éãà íu
+	u16				input_num_limit;			///< ËøΩÂä†ÂÖ•Âäõ„ÅÆÂõûÊï∞ 
+	s16				cur_px_limit;				///< „Ç´„Éº„ÇΩ„É´‰ΩçÁΩÆ
 	s16				cur_py_limit;
 	
 	u16				address[ EMAIL_CODE_MAX ];
 	u16				temp[ EMAIL_CODE_MAX ];
 	
-	int				input_num;					///< 0 = èââÒì¸óÕ 1 = ämîFì¸óÕ
+	int				input_num;					///< 0 = ÂàùÂõûÂÖ•Âäõ 1 = Á¢∫Ë™çÂÖ•Âäõ
 	
 	CATS_ACT_PTR	btn_cap[ 2 ];
 	CATS_ACT_PTR	cur_cap[ 2 ];
@@ -511,7 +511,7 @@ static void EM_VBlank( void* work )
 {
 	EMAIL_WORK* wk = work;
 
-	DoVramTransferManager();			///< Vramì]ëóÉ}ÉlÅ[ÉWÉÉÅ[é¿çs
+	DoVramTransferManager();			///< VramËª¢ÈÄÅ„Éû„Éç„Éº„Ç∏„É£„ÉºÂÆüË°å
 	
 	CATS_RenderOamTrans();
 
@@ -526,30 +526,30 @@ static void EM_VramBankSet( GF_BGL_INI* bgl )
 {
 	GF_Disp_GX_VisibleControlInit();
 	
-	//VRAMê›íË
+	//VRAMË®≠ÂÆö
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ÉÅÉCÉì2DÉGÉìÉWÉìÇÃBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ÉÅÉCÉì2DÉGÉìÉWÉìÇÃBGägí£ÉpÉåÉbÉg
-			GX_VRAM_SUB_BG_32_H,			// ÉTÉu2DÉGÉìÉWÉìÇÃBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ÉTÉu2DÉGÉìÉWÉìÇÃBGägí£ÉpÉåÉbÉg
-			GX_VRAM_OBJ_64_E,				// ÉÅÉCÉì2DÉGÉìÉWÉìÇÃOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ÉÅÉCÉì2DÉGÉìÉWÉìÇÃOBJägí£ÉpÉåÉbÉg
-			GX_VRAM_SUB_OBJ_16_I,			// ÉTÉu2DÉGÉìÉWÉìÇÃOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ÉTÉu2DÉGÉìÉWÉìÇÃOBJägí£ÉpÉåÉbÉg
-			GX_VRAM_TEX_01_BC,				// ÉeÉNÉXÉ`ÉÉÉCÉÅÅ[ÉWÉXÉçÉbÉg
-			GX_VRAM_TEXPLTT_01_FG			// ÉeÉNÉXÉ`ÉÉÉpÉåÉbÉgÉXÉçÉbÉg
+			GX_VRAM_BG_128_A,				// „É°„Ç§„É≥2D„Ç®„É≥„Ç∏„É≥„ÅÆBG
+			GX_VRAM_BGEXTPLTT_NONE,			// „É°„Ç§„É≥2D„Ç®„É≥„Ç∏„É≥„ÅÆBGÊã°Âºµ„Éë„É¨„ÉÉ„Éà
+			GX_VRAM_SUB_BG_32_H,			// „Çµ„Éñ2D„Ç®„É≥„Ç∏„É≥„ÅÆBG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// „Çµ„Éñ2D„Ç®„É≥„Ç∏„É≥„ÅÆBGÊã°Âºµ„Éë„É¨„ÉÉ„Éà
+			GX_VRAM_OBJ_64_E,				// „É°„Ç§„É≥2D„Ç®„É≥„Ç∏„É≥„ÅÆOBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// „É°„Ç§„É≥2D„Ç®„É≥„Ç∏„É≥„ÅÆOBJÊã°Âºµ„Éë„É¨„ÉÉ„Éà
+			GX_VRAM_SUB_OBJ_16_I,			// „Çµ„Éñ2D„Ç®„É≥„Ç∏„É≥„ÅÆOBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// „Çµ„Éñ2D„Ç®„É≥„Ç∏„É≥„ÅÆOBJÊã°Âºµ„Éë„É¨„ÉÉ„Éà
+			GX_VRAM_TEX_01_BC,				// „ÉÜ„ÇØ„Çπ„ÉÅ„É£„Ç§„É°„Éº„Ç∏„Çπ„É≠„ÉÉ„Éà
+			GX_VRAM_TEXPLTT_01_FG			// „ÉÜ„ÇØ„Çπ„ÉÅ„É£„Éë„É¨„ÉÉ„Éà„Çπ„É≠„ÉÉ„Éà
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMÉNÉäÉA
+		//VRAM„ÇØ„É™„Ç¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
 	}
 	
-		//ÉÅÉCÉìâÊñ ÉtÉåÅ[ÉÄê›íË
+		//„É°„Ç§„É≥ÁîªÈù¢„Éï„É¨„Éº„É†Ë®≠ÂÆö
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_M
@@ -590,7 +590,7 @@ static void EM_VramBankSet( GF_BGL_INI* bgl )
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_ON );
 	}
 	
-	///< ÉTÉuâÊñ ÉtÉåÅ[ÉÄê›íË
+	///< „Çµ„ÉñÁîªÈù¢„Éï„É¨„Éº„É†Ë®≠ÂÆö
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			{	/// font
@@ -636,7 +636,7 @@ static void EM_VramBankSet( GF_BGL_INI* bgl )
 		GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG3, VISIBLE_OFF );
 	}
 	
-	///< SUBâÊñ ÇÉÅÉCÉìâÊñ Ç…Ç∑ÇÈÇΩÇﬂ
+	///< SUBÁîªÈù¢„Çí„É°„Ç§„É≥ÁîªÈù¢„Å´„Åô„Çã„Åü„ÇÅ
 	sys.disp3DSW = DISP_3D_TO_SUB;
 	GF_Disp_DispSelect();
 	
@@ -653,7 +653,7 @@ void EM_CATS_Init( EMAIL_WORK* wk )
 			4, 128 - 4, 0, 32,
 		};
 		const TCATS_CHAR_MANAGER_MAKE Ccmm = {
-			48 + 48,			///< IDä«óù main + sub
+			48 + 48,			///< IDÁÆ°ÁêÜ main + sub
 			1024 * 0x40,		///< 64k
 			 512 * 0x20,		///< 32k
 			GX_OBJVRAMMODE_CHAR_1D_32K,
@@ -665,12 +665,12 @@ void EM_CATS_Init( EMAIL_WORK* wk )
 	{
 		BOOL active;
 		const TCATS_RESOURCE_NUM_LIST ResourceList = {
-			48 + 48,	///< ÉLÉÉÉâìoò^êî 	main + sub
-			16 + 16,	///< ÉpÉåÉbÉgìoò^êî	main + sub
-			64,			///< ÉZÉã
-			64,			///< ÉZÉãÉAÉjÉÅ
-			16,			///< É}ÉãÉ`ÉZÉã
-			16,			///< É}ÉãÉ`ÉZÉãÉAÉjÉÅ
+			48 + 48,	///< „Ç≠„É£„É©ÁôªÈå≤Êï∞ 	main + sub
+			16 + 16,	///< „Éë„É¨„ÉÉ„ÉàÁôªÈå≤Êï∞	main + sub
+			64,			///< „Çª„É´
+			64,			///< „Çª„É´„Ç¢„Éã„É°
+			16,			///< „Éû„É´„ÉÅ„Çª„É´
+			16,			///< „Éû„É´„ÉÅ„Çª„É´„Ç¢„Éã„É°
 		};
 		
 		wk->sys.crp = CATS_ResourceCreate( wk->sys.csp );
@@ -707,15 +707,15 @@ PROC_RESULT EMail_Proc_Init( PROC* proc, int* seq )
 	wk->address[ 0 ] = EOM_;
 	wk->temp[ 0 ] = EOM_;
 	
-	///< èâä˙âª
-	sys_VBlankFuncChange( NULL, NULL );		///< VBlankÉZÉbÉg
-	sys_HBlankIntrStop();					///< HBlankäÑÇËçûÇ›í‚é~
+	///< ÂàùÊúüÂåñ
+	sys_VBlankFuncChange( NULL, NULL );		///< VBlank„Çª„ÉÉ„Éà
+	sys_HBlankIntrStop();					///< HBlankÂâ≤„ÇäËæº„ÅøÂÅúÊ≠¢
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	GX_SetVisiblePlane( 0 );
 	GXS_SetVisiblePlane( 0 );
 	
-	///< ÉVÉXÉeÉÄÉèÅ[ÉNÇÃçÏê¨
+	///< „Ç∑„Çπ„ÉÜ„É†„ÉØ„Éº„ÇØ„ÅÆ‰ΩúÊàê
 	wk->sys.p_handle = ArchiveDataHandleOpen( ARC_EMAIL_GRA, HEAPID_EMAIL );	
 	wk->sys.bgl		 = GF_BGL_BglIniAlloc( HEAPID_EMAIL );	
 	wk->sys.pfd		 = PaletteFadeInit( HEAPID_EMAIL );
@@ -726,10 +726,10 @@ PROC_RESULT EMail_Proc_Init( PROC* proc, int* seq )
 	PaletteFadeWorkAllocSet( wk->sys.pfd, FADE_MAIN_OBJ, 0x200, HEAPID_EMAIL );
 	PaletteFadeWorkAllocSet( wk->sys.pfd, FADE_SUB_OBJ,	 0x200, HEAPID_EMAIL );	
 
-	///< Vramê›íË
+	///< VramË®≠ÂÆö
 	EM_VramBankSet( wk->sys.bgl );	
 	
-	///< OAMê›íË
+	///< OAMË®≠ÂÆö
 	EM_CATS_Init( wk );
 	
 	if ( wk->param->mode == EMAIL_INPUT_NUMBER )
@@ -752,10 +752,10 @@ PROC_RESULT EMail_Proc_Init( PROC* proc, int* seq )
 		}
 	}
 	
-	///< ê›íËèâä˙âª
+	///< Ë®≠ÂÆöÂàùÊúüÂåñ
 //	CI_pv_ParamInit( wk );
 	
-	///< Touch Panelê›íË
+	///< Touch PanelË®≠ÂÆö
 	{
 		InitTPSystem();
 		InitTPNoBuff( 4 );		
@@ -909,7 +909,7 @@ PROC_RESULT EMail_Proc_Init( PROC* proc, int* seq )
 		}
 	}
 	
-	///< ìñÇΩÇËîªíËçÏê¨
+	///< ÂΩì„Åü„ÇäÂà§ÂÆö‰ΩúÊàê
 	{
 		int i, n, j;
 		int len[] = { CODE_num_MAX, CODE_etc_MAX, CODE_A_M_MAX, CODE_N_Z_MAX, CODE_a_m_MAX, CODE_n_z_MAX, CODE_btn_MAX };
@@ -987,7 +987,7 @@ PROC_RESULT EMail_Proc_Init( PROC* proc, int* seq )
 
 	wk->sys.touch = TRUE;
 	
-	///< param ÇÃ ämîF
+	///< param „ÅÆ Á¢∫Ë™ç
 	{
 		if ( wk->param->mode == EMAIL_INPUT_NUMBER ){
 			int i;
@@ -1178,7 +1178,7 @@ static void EMail_KeyInput( EMAIL_WORK* wk )
 		return;
 	}
 	
-	///< è„â∫ÇÃà⁄ìÆ
+	///< ‰∏ä‰∏ã„ÅÆÁßªÂãï
 	{
 		int i,s,e;
 		BOOL bM;
@@ -1220,7 +1220,7 @@ static void EMail_KeyInput( EMAIL_WORK* wk )
 		}
 	}
 	
-	///< ç∂âEÇÃà⁄ìÆ
+	///< Â∑¶Âè≥„ÅÆÁßªÂãï
 	if ( sys.repeat & PAD_KEY_LEFT ){
 		if ( len[ wk->cy ] == CODE_btn_MAX ){
 			if ( wk->cx <= EMAIL_CUR_BACK_CPX ){
@@ -1253,7 +1253,7 @@ static void EMail_KeyInput( EMAIL_WORK* wk )
 		Snd_SePlay( EM_SE_MOVE );
 	}
 	
-	///< ç¿ïWçXêV
+	///< Â∫ßÊ®ôÊõ¥Êñ∞
 	{
 		int button;
 		s16 x,y;
@@ -1275,7 +1275,7 @@ static void EMail_KeyInput( EMAIL_WORK* wk )
 		CATS_ObjectPosSetCap( wk->cur_cap[ 0 ], x, y );
 	}
 	
-	///< åàíËÅEÉLÉÉÉìÉZÉã
+	///< Ê±∫ÂÆö„Éª„Ç≠„É£„É≥„Çª„É´
 	if ( sys.trg & PAD_BUTTON_A ){
 		EMail_ButtonCallBack( EMail_PosMove_CodeGet( wk ), BMN_EVENT_TOUCH, wk );
 	}
@@ -1376,7 +1376,7 @@ static void EMail_ButtonCallBack( u32 button, u32 event, void* work )
 				wk->address[ wk->now ] = EOM_;
 			}
 			else {
-				if ( event != BMN_EVENT_TOUCH ){ return; }			////< âº
+				if ( event != BMN_EVENT_TOUCH ){ return; }			////< ‰ªÆ
 				
 				if ( wk->param->mode != EMAIL_INPUT_PASSWORD ){
 					if ( wk->input_num == 0 ){					
@@ -1442,7 +1442,7 @@ static BOOL EMail_EndCheck( EMAIL_WORK* wk, int end_set )
 	int len1;
 	int len2;
 	
-	///< ÉÅÅ[ÉãÉAÉhÉåÉXì¸óÕ
+	///< „É°„Éº„É´„Ç¢„Éâ„É¨„ÇπÂÖ•Âäõ
 	if ( wk->param->mode == EMAIL_INPUT_ADDRESS ){
 		
 		STRBUF_SetStringCode( str1, wk->address );
@@ -1454,7 +1454,7 @@ static BOOL EMail_EndCheck( EMAIL_WORK* wk, int end_set )
 		
 		if ( comp == 0 ){			
 			if ( wk->input_num == wk->input_num_limit ){
-				OS_Printf( "ÇPâÒñ⁄ Ç∆ ÇQâÒñ⁄ Ç™ àÍív\n");
+				OS_Printf( "ÔºëÂõûÁõÆ „Å® ÔºíÂõûÁõÆ „Åå ‰∏ÄËá¥\n");
 				wk->param->ret_address_flag = EMAIL_ADDRESS_RET_SET;
 				bOK = TRUE;
 			}
@@ -1468,7 +1468,7 @@ static BOOL EMail_EndCheck( EMAIL_WORK* wk, int end_set )
 			wk->param->ret_address_flag = EMAIL_ADDRESS_RET_CANCEL;
 		}
 		
-		///< ï∂éöóÒÉRÉsÅ[
+		///< ÊñáÂ≠óÂàó„Ç≥„Éî„Éº
 		if ( wk->param->ret_address_flag == EMAIL_ADDRESS_RET_SET ){
 			STRBUF_Copy( wk->param->str, str1 );
 		}
@@ -1476,7 +1476,7 @@ static BOOL EMail_EndCheck( EMAIL_WORK* wk, int end_set )
 	STRBUF_Delete( str1 );
 	STRBUF_Delete( str2 );
 
-	///< êîéöì¸óÕ
+	///< Êï∞Â≠óÂÖ•Âäõ
 	if ( wk->param->mode == EMAIL_INPUT_NUMBER ){
 		if ( wk->now == wk->max ){
 			wk->param->ret_address_flag = EMAIL_ADDRESS_RET_SET;
@@ -1490,7 +1490,7 @@ static BOOL EMail_EndCheck( EMAIL_WORK* wk, int end_set )
 					keta /= 10;
 				}
 				wk->param->ret_authenticate_code = num;
-				OS_Printf( " îFèÿÉRÅ[Éh = %d\n", wk->param->ret_authenticate_code );
+				OS_Printf( " Ë™çË®º„Ç≥„Éº„Éâ = %d\n", wk->param->ret_authenticate_code );
 			}
 		//	Snd_SePlay( EM_SE_DEC );
 		}
@@ -1502,7 +1502,7 @@ static BOOL EMail_EndCheck( EMAIL_WORK* wk, int end_set )
 		}
 	}
 	
-	///< ÉpÉXÉèÅ[Éhì¸óÕ
+	///< „Éë„Çπ„ÉØ„Éº„ÉâÂÖ•Âäõ
 	if ( wk->param->mode == EMAIL_INPUT_PASSWORD ){
 		OS_Printf( "%d %d\n",wk->now, wk->max );
 		if ( wk->now == wk->max ){
@@ -1517,7 +1517,7 @@ static BOOL EMail_EndCheck( EMAIL_WORK* wk, int end_set )
 					keta /= 10;
 				}
 				wk->param->ret_password = num;
-				OS_Printf( " ÉpÉXÉèÅ[Éh = %d\n", wk->param->ret_password  );
+				OS_Printf( " „Éë„Çπ„ÉØ„Éº„Éâ = %d\n", wk->param->ret_password  );
 			}
 		//	Snd_SePlay( EM_SE_DEC );
 		}
@@ -1529,7 +1529,7 @@ static BOOL EMail_EndCheck( EMAIL_WORK* wk, int end_set )
 		}
 	}
 	
-	///< ÉÅÅ[ÉãämîF ÇøÇÂÇ¡Ç∆ì¡éÍ
+	///< „É°„Éº„É´Á¢∫Ë™ç „Å°„Çá„Å£„Å®ÁâπÊÆä
 	if ( wk->param->mode == EMAIL_INPUT_VIEW ){
 		OS_Printf( "%d %d\n",wk->now, wk->max );
 		{
@@ -1540,7 +1540,7 @@ static BOOL EMail_EndCheck( EMAIL_WORK* wk, int end_set )
 				num += ( wk->address[ i ] - n0_ ) * keta;
 				keta /= 10;
 			}
-			OS_Printf( " ÉpÉXÉèÅ[Éh = %d\n = %d", num, wk->param->password );
+			OS_Printf( " „Éë„Çπ„ÉØ„Éº„Éâ = %d\n = %d", num, wk->param->password );
 			
 			if ( num == wk->param->password ){
 				wk->mail_view = TRUE;
@@ -1767,7 +1767,7 @@ PROC_RESULT EMail_Proc_Exit( PROC* proc, int* seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉvÉçÉZÉXÉfÅ[É^
+ * @brief	„Éó„É≠„Çª„Çπ„Éá„Éº„Çø
  */
 //--------------------------------------------------------------
 const PROC_DATA EMail_ProcData = {

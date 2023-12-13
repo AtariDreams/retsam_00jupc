@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_044.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			044 ‚Q‰ñ˜A‘±‚ÅUŒ‚‚·‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			044 ï¼’å›é€£ç¶šã§æ”»æ’ƒã™ã‚‹
  *
  *@author	HisashiSogabe
  *@data		2005.10.03
@@ -16,7 +16,7 @@
 
 BE_044:
 	RENZOKU			2,RENZOKU_HIT_OFF
-	//ServerWazaOutAfterMessage‚Ìƒ^ƒCƒv‚ğƒ‹[ƒv—p‚É‚·‚é
+	//ServerWazaOutAfterMessageã®ã‚¿ã‚¤ãƒ—ã‚’ãƒ«ãƒ¼ãƒ—ç”¨ã«ã™ã‚‹
 	VALUE			VAL_SET,BUF_PARA_SWOAM_TYPE,SWOAM_LOOP
 	CRITICAL_CHECK
 	DAMAGE_CALC

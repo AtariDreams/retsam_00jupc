@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_268.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			268�@�����Ă���v���[�g�ɂ���ă^�C�v���ω�����B�ʏ�̓m�[�}���^�C�v�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			268　持っているプレートによってタイプが変化する。通常はノーマルタイプ。
  *
  *@author	HisashiSogabe
  *@data		2006.05.05

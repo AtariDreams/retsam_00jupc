@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	dance_order.h
- * @brief	ƒrƒWƒ…ƒAƒ‹•”–åF–½—ß‘—ŽóM‚Ìƒwƒbƒ_
+ * @brief	ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«éƒ¨é–€ï¼šå‘½ä»¤é€å—ä¿¡ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2005.12.13(‰Î)
+ * @date	2005.12.13(ç«)
  */
 //==============================================================================
 #ifndef __DANCE_ORDER_H__
@@ -11,57 +11,57 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
 /**
- *     –½—ßƒR[ƒh
- * 					¦OrderFuncTbl‚Æ•K‚¸•À‚Ñ‚ð“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆI
+ *     å‘½ä»¤ã‚³ãƒ¼ãƒ‰
+ * 					â€»OrderFuncTblã¨å¿…ãšä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼
  */
 //--------------------------------------------------------------
 enum{
-	DORDER_NO_SAMPLE,			///<ƒTƒ“ƒvƒ‹
-	DORDER_NO_DONCHOU_UP,		///<‚Ç‚ñ‚¿‚å‚¤‚ðã‚°‚é
-	DORDER_NO_DONCHOU_DOWN,		///<‚Ç‚ñ‚¿‚å‚¤‚ð‰º‚°‚é
-	DORDER_NO_OPENING_EFF,		///<ƒI[ƒvƒjƒ“ƒOƒGƒtƒFƒNƒg
-	DORDER_NO_DANCE_EXIT,		///<ƒ_ƒ“ƒX•”–åI—¹
-	DORDER_NO_DANCING,			///<ƒ_ƒ“ƒXŽÀs
-	DORDER_NO_ROTATION,			///<ƒ[ƒe[ƒVƒ‡ƒ“
-	DORDER_NO_BEFORE,			///<ƒ_ƒ“ƒXŠJŽn‘O
-	DORDER_NO_AFTER,			///<ƒ_ƒ“ƒXI—¹Œã
-	DORDER_NO_TALK,				///<‰ï˜bƒƒbƒZ[ƒW•\Ž¦
-	DORDER_NO_GAMEPARAM,		///<ƒQ[ƒ€ƒpƒ‰ƒ[ƒ^XV
-	DORDER_NO_MUSIC_START,		///<‰¹ŠyŠJŽn
-	DORDER_NO_END_EFFECT,		///<‘Sˆõ‚Ìƒ_ƒ“ƒXI—¹Œã‚ÌƒGƒtƒFƒNƒgˆ—
+	DORDER_NO_SAMPLE,			///<ã‚µãƒ³ãƒ—ãƒ«
+	DORDER_NO_DONCHOU_UP,		///<ã©ã‚“ã¡ã‚‡ã†ã‚’ä¸Šã’ã‚‹
+	DORDER_NO_DONCHOU_DOWN,		///<ã©ã‚“ã¡ã‚‡ã†ã‚’ä¸‹ã’ã‚‹
+	DORDER_NO_OPENING_EFF,		///<ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	DORDER_NO_DANCE_EXIT,		///<ãƒ€ãƒ³ã‚¹éƒ¨é–€çµ‚äº†
+	DORDER_NO_DANCING,			///<ãƒ€ãƒ³ã‚¹å®Ÿè¡Œ
+	DORDER_NO_ROTATION,			///<ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³
+	DORDER_NO_BEFORE,			///<ãƒ€ãƒ³ã‚¹é–‹å§‹å‰
+	DORDER_NO_AFTER,			///<ãƒ€ãƒ³ã‚¹çµ‚äº†å¾Œ
+	DORDER_NO_TALK,				///<ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	DORDER_NO_GAMEPARAM,		///<ã‚²ãƒ¼ãƒ ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°
+	DORDER_NO_MUSIC_START,		///<éŸ³æ¥½é–‹å§‹
+	DORDER_NO_END_EFFECT,		///<å…¨å“¡ã®ãƒ€ãƒ³ã‚¹çµ‚äº†å¾Œã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‡¦ç†
 };
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒ|ƒPƒ‚ƒ“ƒ[ƒe[ƒVƒ‡ƒ“AŠeƒuƒŠ[ƒ_[“®ì\‘¢‘Ì
+///ãƒã‚±ãƒ¢ãƒ³ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã€å„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼å‹•ä½œæ§‹é€ ä½“
 typedef struct{
-	//TCB¶¬Žž‚ÉƒZƒbƒg‚³‚ê‚Ä‚¢‚éƒpƒ‰ƒ[ƒ^
-	POKEMON_PARAM *pp;			///<Ž©•ª‚Ìƒ|ƒPƒ‚ƒ“‚Ìƒpƒ‰ƒ[ƒ^
-	SOFT_SPRITE *ss;			///<Ž©•ª‚Ìƒ|ƒPƒ‚ƒ“ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	CONTEST_IMC_WORK *imcwork;	///<Ž©•ª‚Ìƒ|ƒPƒ‚ƒ“ƒCƒ[ƒWƒNƒŠƒbƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u8 now_rotation_pos;		///<Œ»Ý‚Ìƒ[ƒe[ƒVƒ‡ƒ“ˆÊ’u
-	u8 next_rotation_pos;		///<ŽŸ‚Ìƒ[ƒe[ƒVƒ‡ƒ“ˆÊ’u
-	u16 move_frame;				///<ƒ[ƒe[ƒVƒ‡ƒ“‚ÌˆÚ“®‚É‚©‚¯‚éƒtƒŒ[ƒ€”
+	//TCBç”Ÿæˆæ™‚ã«ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	POKEMON_PARAM *pp;			///<è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	SOFT_SPRITE *ss;			///<è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	CONTEST_IMC_WORK *imcwork;	///<è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 now_rotation_pos;		///<ç¾åœ¨ã®ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ä½ç½®
+	u8 next_rotation_pos;		///<æ¬¡ã®ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ä½ç½®
+	u16 move_frame;				///<ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã®ç§»å‹•ã«ã‹ã‘ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 
-	//ŠeƒuƒŠ[ƒ_[“®ìTCB“à‚Å•ÏXAƒZƒbƒg‚·‚éƒpƒ‰ƒ[ƒ^
+	//å„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼å‹•ä½œTCBå†…ã§å¤‰æ›´ã€ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	s32 x;
 	s32 y;
 	s32 z;
 	s32 add_x;
 	s32 add_y;
 	s32 add_z;
-	u16 frame;					///<Œ»Ý‚ÌŒo‰ßƒtƒŒ[ƒ€”
+	u16 frame;					///<ç¾åœ¨ã®çµŒéŽãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 	u8 seq;
-	u8 end;						///<TRUE:ŽŸ‚Ìƒ[ƒe[ƒVƒ‡ƒ“ˆÊ’u‚É“ž’B
+	u8 end;						///<TRUE:æ¬¡ã®ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ä½ç½®ã«åˆ°é”
 }DOLOCAL_ROTATION_BREEDER;
 
-///ƒ|ƒPƒ‚ƒ“ƒ[ƒe[ƒVƒ‡ƒ“ƒ[ƒJƒ‹\‘¢‘Ì
+///ãƒã‚±ãƒ¢ãƒ³ãƒ­ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	DANCE_PROC_WORK *dpw;
 	CORDER_HEAD req_head;
@@ -74,23 +74,23 @@ typedef struct{
 	DANCE_ADVANCE_PARAM dap;
 }DOLOCAL_ROTATION;
 
-///ƒ_ƒ“ƒXƒ`ƒFƒbƒNƒ[ƒN\‘¢‘Ì
+///ãƒ€ãƒ³ã‚¹ãƒã‚§ãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct{
 	DANCE_PROC_WORK *dpw;
 	u8 seq;
-	u8 touch_wait;			///<ƒ^ƒbƒ`Œã‚ÉŽŸ‚Ìƒ^ƒbƒ`ƒ`ƒFƒbƒN‚ªo—ˆ‚é‚Ü‚Å‚ÌƒEƒFƒCƒgƒJƒEƒ“ƒg
+	u8 touch_wait;			///<ã‚¿ãƒƒãƒå¾Œã«æ¬¡ã®ã‚¿ãƒƒãƒãƒã‚§ãƒƒã‚¯ãŒå‡ºæ¥ã‚‹ã¾ã§ã®ã‚¦ã‚§ã‚¤ãƒˆã‚«ã‚¦ãƒ³ãƒˆ
 }DANCE_TOUCH_WORK;
 
-///ƒ_ƒ“ƒXƒpƒ‰ƒ[ƒ^‘—Mƒ^ƒXƒNƒ[ƒN
+///ãƒ€ãƒ³ã‚¹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€ä¿¡ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
 typedef struct{
-	TCB_PTR tcb;			///<‘—MŽÀsƒ^ƒXƒN‚Ìƒ|ƒCƒ“ƒ^
+	TCB_PTR tcb;			///<é€ä¿¡å®Ÿè¡Œã‚¿ã‚¹ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
 	DANCE_PROC_WORK *dpw;
 	DANCING_PARAM dancing_param;
 	u8 ai;
-	u8 req;			///<TRUEF‘—MƒŠƒNƒGƒXƒg‚ª‚©‚©‚Á‚Ä‚¢‚é
+	u8 req;			///<TRUEï¼šé€ä¿¡ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‹ã‹ã£ã¦ã„ã‚‹
 }DANCING_SEND_WORK;
 
-///ƒƒCƒ“ƒ_ƒ“ƒXƒ[ƒJƒ‹\‘¢‘Ì
+///ãƒ¡ã‚¤ãƒ³ãƒ€ãƒ³ã‚¹ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	DANCE_PROC_WORK *dpw;
 	CORDER_HEAD req_head;
@@ -106,11 +106,11 @@ typedef struct{
 	DANCE_ADVANCE_PARAM dap;
 	DANCE_TOUCH_WORK dtw;
 	
-	DANCE_AI_WORK aiwork[BREEDER_MAX];		///<ƒ_ƒ“ƒX—pAIƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	DANCING_SEND_WORK *sendwork[BREEDER_MAX];	///<ƒ_ƒ“ƒXƒpƒ‰ƒ[ƒ^‘—Mƒ^ƒXƒNƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	DANCE_AI_WORK aiwork[BREEDER_MAX];		///<ãƒ€ãƒ³ã‚¹ç”¨AIãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	DANCING_SEND_WORK *sendwork[BREEDER_MAX];	///<ãƒ€ãƒ³ã‚¹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é€ä¿¡ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 }DOLOCAL_MAINDANCE;
 
-///‚Ç‚ñ‚¿‚å‚¤‚ðã‚°‚éƒ[ƒJƒ‹\‘¢‘Ì
+///ã©ã‚“ã¡ã‚‡ã†ã‚’ä¸Šã’ã‚‹ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	DANCE_PROC_WORK *dpw;
 	CORDER_HEAD req_head;
@@ -118,13 +118,13 @@ typedef struct{
 	
 	u8 seq;
 
-	s8 anm_line;			///<ƒAƒjƒ‘‚«Š·‚¦‚ÌŠî–{ƒ‰ƒCƒ“
-	u8 anm_no;				///<ƒAƒjƒNo
-	s8 anm_wait;			///<ƒAƒjƒƒEƒFƒCƒg
-	s8 anm_dansa_wait;		///<ƒAƒjƒ’i·ƒEƒFƒCƒg
+	s8 anm_line;			///<ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆã®åŸºæœ¬ãƒ©ã‚¤ãƒ³
+	u8 anm_no;				///<ã‚¢ãƒ‹ãƒ¡No
+	s8 anm_wait;			///<ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
+	s8 anm_dansa_wait;		///<ã‚¢ãƒ‹ãƒ¡æ®µå·®ã‚¦ã‚§ã‚¤ãƒˆ
 }DOLOCAL_DONCHOU_UP;
 
-///‚Ç‚ñ‚¿‚å‚¤‚ð‰º‚°‚éƒ[ƒJƒ‹\‘¢‘Ì
+///ã©ã‚“ã¡ã‚‡ã†ã‚’ä¸‹ã’ã‚‹ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	DANCE_PROC_WORK *dpw;
 	CORDER_HEAD req_head;
@@ -132,13 +132,13 @@ typedef struct{
 	
 	u8 seq;
 
-	s8 anm_line;			///<ƒAƒjƒ‘‚«Š·‚¦‚ÌŠî–{ƒ‰ƒCƒ“
-	u8 anm_no;				///<ƒAƒjƒNo
-	s8 anm_wait;			///<ƒAƒjƒƒEƒFƒCƒg
-	s8 anm_dansa_wait;		///<ƒAƒjƒ’i·ƒEƒFƒCƒg
+	s8 anm_line;			///<ã‚¢ãƒ‹ãƒ¡æ›¸ãæ›ãˆã®åŸºæœ¬ãƒ©ã‚¤ãƒ³
+	u8 anm_no;				///<ã‚¢ãƒ‹ãƒ¡No
+	s8 anm_wait;			///<ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚§ã‚¤ãƒˆ
+	s8 anm_dansa_wait;		///<ã‚¢ãƒ‹ãƒ¡æ®µå·®ã‚¦ã‚§ã‚¤ãƒˆ
 }DOLOCAL_DONCHOU_DOWN;
 
-///‚Ç‚ñ‚¿‚å‚¤‚ð‰º‚°‚éƒ[ƒJƒ‹\‘¢‘Ì
+///ã©ã‚“ã¡ã‚‡ã†ã‚’ä¸‹ã’ã‚‹ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	DANCE_PROC_WORK *dpw;
 	CORDER_HEAD req_head;
@@ -150,7 +150,7 @@ typedef struct{
 	s16 wait;
 }DOLOCAL_OPENING_EFF;
 
-///ƒ_ƒ“ƒXŠJŽn‘Oˆ—‚Ìƒ[ƒJƒ‹\‘¢‘Ì
+///ãƒ€ãƒ³ã‚¹é–‹å§‹å‰å‡¦ç†ã®ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	DANCE_PROC_WORK *dpw;
 	CORDER_HEAD req_head;
@@ -160,7 +160,7 @@ typedef struct{
 	u8 seq;
 }DOLOCAL_BEFORE;
 
-///ƒ_ƒ“ƒXI—¹Œãˆ—‚Ìƒ[ƒJƒ‹\‘¢‘Ì
+///ãƒ€ãƒ³ã‚¹çµ‚äº†å¾Œå‡¦ç†ã®ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	DANCE_PROC_WORK *dpw;
 	CORDER_HEAD req_head;
@@ -170,7 +170,7 @@ typedef struct{
 	u8 seq;
 }DOLOCAL_AFTER;
 
-///‰ï˜bƒƒbƒZ[ƒW‚Ì•\Ž¦
+///ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤º
 typedef struct{
 	DANCE_PROC_WORK *dpw;
 	CORDER_HEAD req_head;
@@ -180,13 +180,13 @@ typedef struct{
 	u8 breeder_no;
 	u8 close_wait;
 	
-	DTAG_PARAM a_talk_tagpara;		///<ƒm[ƒ}ƒ‹‰ï˜bFƒ^ƒO“WŠJ—pƒpƒ‰ƒ[ƒ^
-	u8 a_talk_id;					///<ƒm[ƒ}ƒ‹‰ï˜bID(A_TALK_DANCE_???)
-	u8 a_talk_bmpwin_close_wait;	///<ƒƒbƒZ[ƒW‚ð•\Ž¦‚µ‚«‚Á‚Ä‚©‚çƒEƒBƒ“ƒhƒE‚ð•Â‚¶‚é‚Ü‚Å‚Ìwait
-	u8 a_talk_bmpwin_not_close;		///<TRUE:ƒEƒBƒ“ƒhƒE‚ð•Â‚¶‚¸‚ÉI—¹
+	DTAG_PARAM a_talk_tagpara;		///<ãƒŽãƒ¼ãƒžãƒ«ä¼šè©±ï¼šã‚¿ã‚°å±•é–‹ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	u8 a_talk_id;					///<ãƒŽãƒ¼ãƒžãƒ«ä¼šè©±ID(A_TALK_DANCE_???)
+	u8 a_talk_bmpwin_close_wait;	///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ãã£ã¦ã‹ã‚‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹ã¾ã§ã®wait
+	u8 a_talk_bmpwin_not_close;		///<TRUE:ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ãšã«çµ‚äº†
 }DOLOCAL_TALK_PUT;
 
-///‘Sˆõ‚Ìƒ_ƒ“ƒXI—¹Œã‚ÌƒGƒtƒFƒNƒg‚È‚Ç‚Ìƒ[ƒJƒ‹\‘¢‘Ì
+///å…¨å“¡ã®ãƒ€ãƒ³ã‚¹çµ‚äº†å¾Œã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãªã©ã®ãƒ­ãƒ¼ã‚«ãƒ«æ§‹é€ ä½“
 typedef struct{
 	DANCE_PROC_WORK *dpw;
 	CORDER_HEAD req_head;
@@ -200,7 +200,7 @@ typedef struct{
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void DanceOrder_WorkInit(DANCE_PROC_WORK *dpw);
 extern int DanceTP_to_DanceStep(int dance_tp);

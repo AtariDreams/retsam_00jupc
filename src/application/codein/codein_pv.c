@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	codein_pv.c
- * @brief	•¶š“ü—ÍƒCƒ“ƒ^[ƒtƒF[ƒX
+ * @brief	æ–‡å­—å…¥åŠ›ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
  * @author	goto
- * @date	2007.07.11(…)
+ * @date	2007.07.11(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -44,7 +44,7 @@
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒH[ƒJƒXƒZƒbƒg‚µ‚ÄŠg‘åk¬‘ÎÛ‚ğİ’è‚·‚é
+ * @brief	ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚»ãƒƒãƒˆã—ã¦æ‹¡å¤§ç¸®å°å¯¾è±¡ã‚’è¨­å®šã™ã‚‹
  *
  * @param	next_focus	
  *
@@ -90,7 +90,7 @@ void CI_pv_FocusSet( CODEIN_WORK* wk, int next_focus )
 
 //--------------------------------------------------------------
 /**
- * @brief	Šeíƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+ * @brief	å„ç¨®ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
  *
  * @param	wk	
  *
@@ -102,7 +102,7 @@ void CI_pv_ParamInit( CODEIN_WORK* wk )
 {
 	int i;
 
-	///< Touch ƒpƒlƒ‹ƒ‚[ƒh
+	///< Touch ãƒ‘ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰
 	wk->sys.touch = TRUE;
     
     {
@@ -115,7 +115,7 @@ void CI_pv_ParamInit( CODEIN_WORK* wk )
     }
     
     //wk->b_tbl[
-	/////< block table ‚Ìì¬
+	/////< block table ã®ä½œæˆ
 	//{
 	//	wk->b_tbl[ 0 ][ 0 ] = 0;
 	//	wk->b_tbl[ 0 ][ 1 ] = wk->param.block[ 0 ];
@@ -124,10 +124,10 @@ void CI_pv_ParamInit( CODEIN_WORK* wk )
 	//	wk->b_tbl[ 2 ][ 0 ] = wk->param.block[ 0 ] + wk->param.block[ 1 ];
 	//	wk->b_tbl[ 2 ][ 1 ] = wk->param.block[ 0 ] + wk->param.block[ 1 ] + wk->param.block[ 2 ];
 	//}		
-	///< focus‚Ìİ’è
+	///< focusã®è¨­å®š
 	CI_pv_FocusSet( wk, wk->param.unk24 + 1 );
 
-    ///< block ‘”‚©‚çcode‚ÌÅ‘å”‚ğ‹‚ß‚é
+    ///< block ç·æ•°ã‹ã‚‰codeã®æœ€å¤§æ•°ã‚’æ±‚ã‚ã‚‹
     for ( i = 0; i < CODE_BLOCK_MAX; i++ ){
         if (wk->param.block[i] == 0) {
             break;
@@ -153,7 +153,7 @@ void CI_pv_ParamInit( CODEIN_WORK* wk )
 
     wk->x_tbl[ 1 ] += 12;
 
-	///< table ì¬
+	///< table ä½œæˆ
 	//{
 	//	int sw = 0;
 	//	const x_tbl[][ CODE_BLOCK_MAX ] = {
@@ -170,7 +170,7 @@ void CI_pv_ParamInit( CODEIN_WORK* wk )
 	//	wk->x_tbl[ i ] = x_tbl[ sw ][ i - 1 ];
 	//}
 	
-	///< code—ñ“à‚Å‚Ìbar‚ÌˆÊ’u
+	///< codeåˆ—å†…ã§ã®barã®ä½ç½®
 	{
 		int pos = 0;
         //if (wk->unk3ec > 0) {
@@ -184,7 +184,7 @@ void CI_pv_ParamInit( CODEIN_WORK* wk )
 	
     
     
-	///< ƒOƒ‹[ƒv‚Ìİ’è
+	///< ã‚°ãƒ«ãƒ¼ãƒ—ã®è¨­å®š
 	{
 		int j;
 		int bno = 0;
@@ -215,7 +215,7 @@ void CI_pv_ParamInit( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXØ‚è‘Ö‚¦
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	wk	
  * @param	seq	
@@ -234,7 +234,7 @@ void CI_pv_SeqChange( CODEIN_WORK* wk, int seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -281,7 +281,7 @@ BOOL CI_pv_MainInit( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹
+ * @brief	çµ‚äº†
  *
  * @param	wk	
  *
@@ -317,7 +317,7 @@ BOOL CI_pv_MainEnd( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	“ü—Í
+ * @brief	å…¥åŠ›
  *
  * @param	wk	
  *
@@ -348,7 +348,7 @@ BOOL CI_pv_MainInput( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒH[ƒJƒX‚ÌˆÚ“®
+ * @brief	ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã®ç§»å‹•
  *
  * @param	wk	
  *
@@ -367,11 +367,11 @@ BOOL CI_pv_MainFocusMove( CODEIN_WORK* wk )
 	};
 
 	switch( wk->gene_seq ){
-	///< Šg‘åk¬‘O”¼
+	///< æ‹¡å¤§ç¸®å°å‰åŠ
 	case 0:
 		CI_pv_disp_CurOAM_Visible( wk, 0, FALSE );
 		{
-			///< ƒR[ƒh•”•ª‚Ìˆ—
+			///< ã‚³ãƒ¼ãƒ‰éƒ¨åˆ†ã®å‡¦ç†
 			for ( i = 0; i < wk->code_max; i++ ){
 				
 				if ( wk->code[ i ].move_wk.wait == 0 ){ continue; }
@@ -391,21 +391,21 @@ BOOL CI_pv_MainFocusMove( CODEIN_WORK* wk )
 				}
 			}
 			
-			///< ƒo[•”•ª‚Ìˆ—
+			///< ãƒãƒ¼éƒ¨åˆ†ã®å‡¦ç†
 			for ( i = 0; i < wk->unk3ec; i++ ){
 				if ( wk->bar[ i ].move_wk.wait == 0 ){ continue; }
 				CATS_ObjectPosMoveCap( wk->bar[ i ].cap, wk->bar[ i ].move_wk.x, wk->bar[ i ].move_wk.y );
 				wk->bar[ i ].move_wk.wait--;
 			}
 			
-			///< ”»’è
+			///< åˆ¤å®š
 			if ( wk->code[ 0 ].move_wk.wait == 0 ){
 				for ( i = wk->ls; i < wk->le; i++ ){
-					CATS_ObjectAnimeSeqSetCap( wk->code[ i ].cap, CI_pv_disp_CodeAnimeGet( wk->code[ i ].state, wk->code[ i ].size ) );///< anime pat ‚ğ 3 ‚ÉB
+					CATS_ObjectAnimeSeqSetCap( wk->code[ i ].cap, CI_pv_disp_CodeAnimeGet( wk->code[ i ].state, wk->code[ i ].size ) );///< anime pat ã‚’ 3 ã«ã€‚
 					CATS_ObjectUpdateCap( wk->code[ i ].cap );
 				}
 				for ( i = wk->ss; i < wk->se; i++ ){
-					CATS_ObjectAnimeSeqSetCap( wk->code[ i ].cap, CI_pv_disp_CodeAnimeGet( wk->code[ i ].state, wk->code[ i ].size ) );///< anime pat ‚ğ 3 ‚ÉB
+					CATS_ObjectAnimeSeqSetCap( wk->code[ i ].cap, CI_pv_disp_CodeAnimeGet( wk->code[ i ].state, wk->code[ i ].size ) );///< anime pat ã‚’ 3 ã«ã€‚
 					CATS_ObjectUpdateCap( wk->code[ i ].cap );
 				}
 				wk->gene_seq++;
@@ -414,7 +414,7 @@ BOOL CI_pv_MainFocusMove( CODEIN_WORK* wk )
 		}
 		break;
 		
-	///< Šg‘åk¬Œã”¼
+	///< æ‹¡å¤§ç¸®å°å¾ŒåŠ
 	case 1:
 		for ( i = wk->ls; i < wk->le; i++ ){
 			if ( wk->code[ i ].move_wk.scale == SCALE_CNT_F ){ continue; }
@@ -433,9 +433,9 @@ BOOL CI_pv_MainFocusMove( CODEIN_WORK* wk )
 		}
 		break;
 	
-	///< I—¹
+	///< çµ‚äº†
 	default:
-		CI_pv_disp_HitTableSet( wk );				///< “–‚½‚è”»’è‚Ìƒe[ƒuƒ‹XV
+		CI_pv_disp_HitTableSet( wk );				///< å½“ãŸã‚Šåˆ¤å®šã®ãƒ†ãƒ¼ãƒ–ãƒ«æ›´æ–°
 		
 		if ( wk->state.work == 0 ){
 			CI_pv_disp_CurBar_PosSet( wk, CI_pv_FocusTopSerach( wk, wk->state.target ) );
@@ -459,7 +459,7 @@ BOOL CI_pv_MainFocusMove( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ŠÖ”ƒe[ƒuƒ‹
+ * @brief	é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  * @param	CI_pv_MainTable[]	
  *
@@ -477,11 +477,11 @@ static BOOL (* const CI_pv_MainTable[])( CODEIN_WORK* wk ) = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
  * @param	wk	
  *
- * @retval	BOOL	TRUE = I—¹
+ * @retval	BOOL	TRUE = çµ‚äº†
  *
  */
 //--------------------------------------------------------------
@@ -504,7 +504,7 @@ BOOL CI_pv_MainUpdate( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒL[“ü—ÍƒƒCƒ“
+ * @brief	ã‚­ãƒ¼å…¥åŠ›ãƒ¡ã‚¤ãƒ³
  *
  * @param	wk	
  *
@@ -600,27 +600,27 @@ void CI_KEY_Main( CODEIN_WORK* wk )
 //		Snd_SePlay( CI_SE_MOVE );
 	}
 	else if ( sys.trg & PAD_BUTTON_A ){
-		///< A ƒ{ƒ^ƒ“‰Ÿ‚µ‚½
+		///< A ãƒœã‚¿ãƒ³æŠ¼ã—ãŸ
 		
 		int cur_p;
 		int now_g;
 		int next_g;
 		
 		if ( dat == 10 ){
-			///< Back ‰Ÿ‚³‚ê‚½ê‡	
+			///< Back æŠ¼ã•ã‚ŒãŸå ´åˆ	
 			CI_pv_Input_back( wk );
 
 			Snd_SePlay( CI_SE_BACK );
 		}		
 		else if ( dat == 11 ){
-			///< End ‰Ÿ‚³‚ê‚½ê‡
+			///< End æŠ¼ã•ã‚ŒãŸå ´åˆ
 			CI_pv_Input_End( wk );	
 
 			Snd_SePlay( CI_SE_END );				
 		}
 		else {
 			
-			///< ”š•”•ª‚Å‰Ÿ‚³‚ê‚½ê‡
+			///< æ•°å­—éƒ¨åˆ†ã§æŠ¼ã•ã‚ŒãŸå ´åˆ
 			
 			if ( wk->focus_now == 0 ){ return; }
 						
@@ -660,7 +660,7 @@ void CI_KEY_Main( CODEIN_WORK* wk )
 		}
 	}
 	else if ( sys.trg & PAD_BUTTON_B ){
-		///< –ß‚é‚Æˆê
+		///< æˆ»ã‚‹ã¨ä¸€ç·’
 		CI_pv_Input_back( wk );
 
 		Snd_SePlay( CI_SE_TOUCH );
@@ -678,13 +678,13 @@ void CI_KEY_Main( CODEIN_WORK* wk )
 		button = wk->cur[ 0 ].state;
 		
 		if ( wk->code[ button ].size == TRUE ){
-			///< “ü—Í•”•ª‚ÌˆÚ“®
+			///< å…¥åŠ›éƒ¨åˆ†ã®ç§»å‹•
 			
 			wk->state.param		= eSTATE_CUR_MOVE;
 			wk->state.target	= button;
 		}
 		else {
-			///< ŠgkƒJƒŒƒ“ƒgˆÚ“®‘€ì
+			///< æ‹¡ç¸®ã‚«ãƒ¬ãƒ³ãƒˆç§»å‹•æ“ä½œ
 			
 			wk->state.param		= eSTATE_FOCUS_MOVE;
 			wk->state.target	= wk->code[ button ].group;
@@ -706,13 +706,13 @@ void CI_KEY_Main( CODEIN_WORK* wk )
 		button = wk->cur[ 0 ].state;
 		
 		if ( wk->code[ button ].size == TRUE ){
-			///< “ü—Í•”•ª‚ÌˆÚ“®
+			///< å…¥åŠ›éƒ¨åˆ†ã®ç§»å‹•
 			
 			wk->state.param		= eSTATE_CUR_MOVE;
 			wk->state.target	= button;
 		}
 		else {
-			///< ŠgkƒJƒŒƒ“ƒgˆÚ“®‘€ì
+			///< æ‹¡ç¸®ã‚«ãƒ¬ãƒ³ãƒˆç§»å‹•æ“ä½œ
 			
 			wk->state.param		= eSTATE_FOCUS_MOVE;
 			wk->state.target	= wk->code[ button ].group;
@@ -743,7 +743,7 @@ void CI_KEY_Main( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹
+ * @brief	çµ‚äº†
  *
  * @param	wk	
  *
@@ -780,7 +780,7 @@ void CI_pv_Input_End( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	–ß‚é
+ * @brief	æˆ»ã‚‹
  *
  * @param	wk	
  *
@@ -789,7 +789,7 @@ void CI_pv_Input_End( CODEIN_WORK* wk )
  */
 //--------------------------------------------------------------
 void CI_pv_Input_back( CODEIN_WORK* wk )
-{	///< –ß‚é
+{	///< æˆ»ã‚‹
 					
 	int cur_p;
 	int now_g;
@@ -838,7 +838,7 @@ void CI_pv_Input_back( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒ^ƒ“—pƒ}ƒl[ƒWƒƒ[İ’è
+ * @brief	ãƒœã‚¿ãƒ³ç”¨ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼è¨­å®š
  *
  * @param	wk	
  *
@@ -850,13 +850,13 @@ void CI_pv_ButtonManagerInit( CODEIN_WORK* wk )
 {
 	int i;
 	
-	///< ƒR[ƒh‚Ì“–‚½‚è”»’è
+	///< ã‚³ãƒ¼ãƒ‰ã®å½“ãŸã‚Šåˆ¤å®š
 	for ( i = 0; i < eHRT_CODE_15 + 1; i ++ ){
 				
 		wk->code[ i ].hit = &wk->sys.rht[ i ];
 	}
 	
-	///< ƒ{ƒ^ƒ“•”•ª‚Ì“–‚½‚è”»’è
+	///< ãƒœã‚¿ãƒ³éƒ¨åˆ†ã®å½“ãŸã‚Šåˆ¤å®š
 	{
 		///< x, y, sx, sy,
 		const s16 tbl[][ 4 ] = {
@@ -885,7 +885,7 @@ void CI_pv_ButtonManagerInit( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒ^ƒ“—pƒ}ƒl[ƒWƒƒ[ƒR[ƒ‹ƒoƒbƒN
+ * @brief	ãƒœã‚¿ãƒ³ç”¨ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param	button	
  * @param	event	
@@ -899,17 +899,17 @@ void CI_pv_ButtonManagerCallBack( u32 button, u32 event, void* work )
 {
 	CODEIN_WORK* wk = work;
 	
-	///< “ü—Í‚¶‚á‚È‚¯‚ê‚Î”ò‚Î‚·
+	///< å…¥åŠ›ã˜ã‚ƒãªã‘ã‚Œã°é£›ã°ã™
 	if ( wk->seq != eSEQ_INPUT ){ return; }
 	
-	///< Touch ‚¶‚á–³‚¯‚ê‚Î Touch ‚É‚µ‚Ä”ò‚Î‚·
+	///< Touch ã˜ã‚ƒç„¡ã‘ã‚Œã° Touch ã«ã—ã¦é£›ã°ã™
 	if ( wk->sys.touch != TRUE ){
 		 wk->sys.touch = TRUE;
 	}
 	
 	if ( event == BMN_EVENT_TOUCH ){
 		
-		///< •¶š“ü—Í•”•ª‚ª‰Ÿ‚³‚ê‚½
+		///< æ–‡å­—å…¥åŠ›éƒ¨åˆ†ãŒæŠ¼ã•ã‚ŒãŸ
         // MatchComment: change eHRT_CODE_11 -> eHRT_NUM_0, condition from <= to <
 		if ( button >= eHRT_CODE_0 && button < eHRT_NUM_0 ){
             // MatchComment: add this check
@@ -919,23 +919,23 @@ void CI_pv_ButtonManagerCallBack( u32 button, u32 event, void* work )
 			OS_Printf( "button = %3d\n", button );
 			
 			if ( wk->code[ button ].size == TRUE ){
-				///< “ü—Í•”•ª‚ÌˆÚ“®
+				///< å…¥åŠ›éƒ¨åˆ†ã®ç§»å‹•
 				
 				wk->state.param		= eSTATE_CUR_MOVE;
 				wk->state.target	= button;
 			}
 			else {
-				///< ŠgkƒJƒŒƒ“ƒgˆÚ“®‘€ì
+				///< æ‹¡ç¸®ã‚«ãƒ¬ãƒ³ãƒˆç§»å‹•æ“ä½œ
 				
 				wk->state.param		= eSTATE_FOCUS_MOVE;
 				wk->state.target	= wk->code[ button ].group;
 			}
 			Snd_SePlay( CI_SE_BLOCK );
 		}
-		///< ‚»‚Ì‘¼‚Ìƒ{ƒ^ƒ“
+		///< ãã®ä»–ã®ãƒœã‚¿ãƒ³
 		else {
 			
-			///< ƒL[ˆÊ’u‚É‚à•ÏŠ·
+			///< ã‚­ãƒ¼ä½ç½®ã«ã‚‚å¤‰æ›
 			if ( button == eHRT_BACK ){
 				wk->cur[ 1 ].move_wk.x = 0;
 				wk->cur[ 1 ].move_wk.y = 2;
@@ -952,7 +952,7 @@ void CI_pv_ButtonManagerCallBack( u32 button, u32 event, void* work )
 				Snd_SePlay( CI_SE_TOUCH );
 			}
 			
-			///< ”šƒpƒlƒ‹
+			///< æ•°å­—ãƒ‘ãƒãƒ«
 			if ( button >= eHRT_NUM_0 && button <= eHRT_NUM_9 ){
 				
 				int cur_p;
@@ -966,7 +966,7 @@ void CI_pv_ButtonManagerCallBack( u32 button, u32 event, void* work )
 				
 				CATS_ObjectAnimeSeqSetCap( wk->code[ cur_p ].cap, CI_pv_disp_CodeAnimeGet( wk->code[ cur_p ].state, wk->code[ cur_p ].size ) );
 				
-				///< ƒJ[ƒ\ƒ‹
+				///< ã‚«ãƒ¼ã‚½ãƒ«
 				CI_pv_disp_CurOAM_Visible( wk, 1, TRUE );
 				CI_pv_disp_CurSQ_PosSet( wk, button - eHRT_NUM_0 );
 				CI_pv_disp_CurOAM_Visible( wk, 1, FALSE );
@@ -1002,11 +1002,11 @@ void CI_pv_ButtonManagerCallBack( u32 button, u32 event, void* work )
 				///< back End
 				
 				if ( button == eHRT_BACK ){
-					///< –ß‚é
+					///< æˆ»ã‚‹
 					CI_pv_Input_back( wk );
 				}
 				else {
-					///< Œˆ’è
+					///< æ±ºå®š
 					CI_pv_Input_End( wk );					
 				}
 			}
@@ -1017,7 +1017,7 @@ void CI_pv_ButtonManagerCallBack( u32 button, u32 event, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ó‘Ô‚ÌXVˆ—
+ * @brief	çŠ¶æ…‹ã®æ›´æ–°å‡¦ç†
  *
  * @param	wk	
  *
@@ -1032,20 +1032,20 @@ void CI_pv_StateUpdate( CODEIN_WORK* wk )
 	case eSTATE_INPUT:
 		break;
 	
-	///< ƒtƒH[ƒJƒX‚ğˆÚ“®‚·‚é
+	///< ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’ç§»å‹•ã™ã‚‹
 	case eSTATE_FOCUS_MOVE:
-		CI_pv_FocusSet( wk, wk->state.target );				///< Ÿ‚ÌƒtƒH[ƒJƒXİ’è
-		CI_pv_disp_SizeFlagSet( wk );						///< ƒTƒCƒYİ’è
-		CI_pv_disp_MovePosSet( wk, eMPS_MOVE_SET );			///< ˆÚ“®’nİ’è
+		CI_pv_FocusSet( wk, wk->state.target );				///< æ¬¡ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®š
+		CI_pv_disp_SizeFlagSet( wk );						///< ã‚µã‚¤ã‚ºè¨­å®š
+		CI_pv_disp_MovePosSet( wk, eMPS_MOVE_SET );			///< ç§»å‹•åœ°è¨­å®š
 		
 		CI_pv_SeqChange( wk, eSEQ_FOCUS_MOVE );		
 		wk->state.param	= eSTATE_BLANK;
 		break;
 	
-	///< “ü—ÍˆÊ’u‚ğˆÚ“®‚·‚é
+	///< å…¥åŠ›ä½ç½®ã‚’ç§»å‹•ã™ã‚‹
 	case eSTATE_CUR_MOVE:
 		
-		CI_pv_disp_CurBar_PosSet( wk, wk->state.target );	///< ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ•ÏX
+		CI_pv_disp_CurBar_PosSet( wk, wk->state.target );	///< ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å¤‰æ›´
 		CI_pv_StateInit( wk );
 		break;
 	
@@ -1057,7 +1057,7 @@ void CI_pv_StateUpdate( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ó‘Ô‚Ì‰Šú‰»
+ * @brief	çŠ¶æ…‹ã®åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -1075,7 +1075,7 @@ void CI_pv_StateInit( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‘ÎÛƒtƒH[ƒJƒX‚Ìæ“ªƒuƒƒbƒN‚ğæ“¾
+ * @brief	å¯¾è±¡ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã®å…ˆé ­ãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—
  *
  * @param	wk	
  * @param	next	
@@ -1101,7 +1101,7 @@ int CI_pv_FocusTopSerach( CODEIN_WORK* wk, int next )
 
 //--------------------------------------------------------------
 /**
- * @brief	‘ÎÛƒtƒH[ƒJƒX‚ÌÅŒã”öƒuƒƒbƒN‚ğæ“¾
+ * @brief	å¯¾è±¡ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã®æœ€å¾Œå°¾ãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—
  *
  * @param	wk	
  * @param	next	

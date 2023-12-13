@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_menu_data.c
- * @brief	ƒoƒgƒ‹ƒŒƒR[ƒ_[
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
  * @author	goto
- * @date	2007.07.26(–Ø)
+ * @date	2007.07.26(æœ¨)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -75,14 +75,14 @@ static const BR_MENU_DATA br_gds_box_dress_end_top[ 5 ];
 
 typedef struct _BR_MENU_DATA {
 	
-	BOOL			active;		///< —LŒø‚Èƒf[ƒ^‚©‚Ç‚¤‚©	
-	BOOL			seamless;	///< ƒV[ƒ€ƒŒƒX
+	BOOL			active;		///< æœ‰åŠ¹ãªãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹	
+	BOOL			seamless;	///< ã‚·ãƒ¼ãƒ ãƒ¬ã‚¹
 	int				msgID;		///< message
-	int				ID;			///< Ž¯•Ê—p	
-	int				seq;		///< ŽŸ‚ÌƒV[ƒPƒ“ƒX
-	int				tag_seq;	///< ƒ^ƒO‚Ì“®‚«
-	int				ex_param1;	///< Šg’£ƒf[ƒ^
-	const BR_MENU_DATA*	data;	///< ƒf[ƒ^
+	int				ID;			///< è­˜åˆ¥ç”¨	
+	int				seq;		///< æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	int				tag_seq;	///< ã‚¿ã‚°ã®å‹•ã
+	int				ex_param1;	///< æ‹¡å¼µãƒ‡ãƒ¼ã‚¿
+	const BR_MENU_DATA*	data;	///< ãƒ‡ãƒ¼ã‚¿
 	
 } BR_MENU_DATA;
 
@@ -91,7 +91,7 @@ typedef struct _BR_MENU_DATA {
 
 // -----------------------------------------
 //
-//	ƒƒjƒ…[ƒf[ƒ^
+//	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
 //
 // -----------------------------------------
 static const BR_MENU_DATA br_brows_menu_base[ BR_MODE_MAX ] = {
@@ -133,7 +133,7 @@ static const BR_MENU_DATA br_brows_menu_base[ BR_MODE_MAX ] = {
 		br_video_menu_top,
 	},	
 	
-	///< GDS MODE ƒrƒfƒIƒ‰ƒ“ƒLƒ“ƒO
+	///< GDS MODE ãƒ“ãƒ‡ã‚ªãƒ©ãƒ³ã‚­ãƒ³ã‚°
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -146,7 +146,7 @@ static const BR_MENU_DATA br_brows_menu_base[ BR_MODE_MAX ] = {
 		br_video_rank_2_menu_top,
 	},	
 	
-	///< GDS MODE TŠÔƒ‰ƒ“ƒLƒ“ƒO
+	///< GDS MODE é€±é–“ãƒ©ãƒ³ã‚­ãƒ³ã‚°
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -159,7 +159,7 @@ static const BR_MENU_DATA br_brows_menu_base[ BR_MODE_MAX ] = {
 		br_weekly_rank_menu_top,
 	},	
 	
-	///< GDS MODE ŽÊ^iƒhƒŒƒXƒAƒbƒvj
+	///< GDS MODE å†™çœŸï¼ˆãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ï¼‰
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -172,7 +172,7 @@ static const BR_MENU_DATA br_brows_menu_base[ BR_MODE_MAX ] = {
 		br_photo_menu_top,
 	},	
 	
-	///< GDS MODE ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg
+	///< GDS MODE ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆ
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -188,11 +188,11 @@ static const BR_MENU_DATA br_brows_menu_base[ BR_MODE_MAX ] = {
 
 // -----------------------------------------
 //
-//	ƒgƒbƒvƒƒjƒ…[
+//	ãƒˆãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //
 // -----------------------------------------
 static const BR_MENU_DATA br_brows_menu_top[ 5 ] = {
-	///< ‚µ‚å‚¤‚Ô‚Ì‚«‚ë‚­
+	///< ã—ã‚‡ã†ã¶ã®ãã‚ã
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -204,19 +204,19 @@ static const BR_MENU_DATA br_brows_menu_top[ 5 ] = {
 		BR_EX_DATA_NONE,
 		br_brows_menu_2_1,
 	},
-	///< ƒtƒƒ“ƒeƒBƒA‚«‚ë‚­
+	///< ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãã‚ã
 	{
 		TRUE,
 		SEAM_LESS_ON,
 		msg_02,
 		eTAG_FRONTIER,
-		eMENU_DATA_FREC_INIT,	///< ƒtƒƒ“ƒeƒBƒA‚Ì‹L˜^
+		eMENU_DATA_FREC_INIT,	///< ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã®è¨˜éŒ²
 		eINPUT_TAG_SELECT,
 		BR_EX_DATA_NONE,
 		BR_EX_DATA_NONE,		
 		NULL,
 	},
-	///< ‚â‚ß‚é
+	///< ã‚„ã‚ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -232,9 +232,9 @@ static const BR_MENU_DATA br_brows_menu_top[ 5 ] = {
 	{	FALSE,FALSE,0,0x0000,0,0,0,0,NULL },
 };
 
-///< –¢ƒNƒŠƒAŽž
+///< æœªã‚¯ãƒªã‚¢æ™‚
 static const BR_MENU_DATA br_brows_menu_top2[ 5 ] = {
-	///< ‚µ‚å‚¤‚Ô‚Ì‚«‚ë‚­
+	///< ã—ã‚‡ã†ã¶ã®ãã‚ã
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -246,7 +246,7 @@ static const BR_MENU_DATA br_brows_menu_top2[ 5 ] = {
 		BR_EX_DATA_NONE,
 		br_brows_menu_2_1,
 	},
-	///< ‚â‚ß‚é
+	///< ã‚„ã‚ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -265,11 +265,11 @@ static const BR_MENU_DATA br_brows_menu_top2[ 5 ] = {
 
 // -----------------------------------------
 //
-//	‚µ‚å‚¤‚Ô‚Ì‚«‚ë‚­
+//	ã—ã‚‡ã†ã¶ã®ãã‚ã
 //
 // -----------------------------------------
 static const BR_MENU_DATA br_brows_menu_2_1[ 5 ] = {
-	///< ‚¶‚Ô‚ñ‚Ì‚«‚ë‚­
+	///< ã˜ã¶ã‚“ã®ãã‚ã
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -281,7 +281,7 @@ static const BR_MENU_DATA br_brows_menu_2_1[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚¾‚ê‚©‚Ì‚«‚ë‚­
+	///< ã ã‚Œã‹ã®ãã‚ã
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -293,7 +293,7 @@ static const BR_MENU_DATA br_brows_menu_2_1[ 5 ] = {
 		BR_EX_DATA_NONE,
 		br_brows_menu_2_2,
 	},
-	///< ‚«‚ë‚­‚ð‚¯‚·
+	///< ãã‚ãã‚’ã‘ã™
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -305,7 +305,7 @@ static const BR_MENU_DATA br_brows_menu_2_1[ 5 ] = {
 		BR_EX_DATA_NONE,
 		br_brows_menu_2_3,
 	},
-	///< ‚à‚Ç‚é
+	///< ã‚‚ã©ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -321,43 +321,43 @@ static const BR_MENU_DATA br_brows_menu_2_1[ 5 ] = {
 };
 
 static const BR_MENU_DATA br_brows_menu_2_2[ 5 ] = {
-	///< ‚ ‚«
+	///< ã‚ã
 	{
 		TRUE,
 		SEAM_LESS_ON,
 		msg_10,
 		eTAG_ATHORDATA,
-		eMENU_DATA_PROF_INIT,	///< ƒvƒƒtƒB[ƒ‹
+		eMENU_DATA_PROF_INIT,	///< ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
 		eINPUT_TAG_SELECT,
 		LOADDATA_DOWNLOAD0,
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚ ‚«
+	///< ã‚ã
 	{
 		TRUE,
 		SEAM_LESS_ON,
 		msg_10,
 		eTAG_ATHORDATA,
-		eMENU_DATA_PROF_INIT,	///< ƒvƒƒtƒB[ƒ‹
+		eMENU_DATA_PROF_INIT,	///< ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
 		eINPUT_TAG_SELECT,
 		LOADDATA_DOWNLOAD1,
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚ ‚«
+	///< ã‚ã
 	{
 		TRUE,
 		SEAM_LESS_ON,
 		msg_10,
 		eTAG_ATHORDATA,
-		eMENU_DATA_PROF_INIT,	///< ƒvƒƒtƒB[ƒ‹
+		eMENU_DATA_PROF_INIT,	///< ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
 		eINPUT_TAG_SELECT,
 		LOADDATA_DOWNLOAD2,
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚à‚Ç‚é
+	///< ã‚‚ã©ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -374,7 +374,7 @@ static const BR_MENU_DATA br_brows_menu_2_2[ 5 ] = {
 
 
 static const BR_MENU_DATA br_brows_menu_2_3[ 5 ] = {
-	///< ‚¶‚Ô‚ñ‚Ì‚«‚ë‚­‚ð‚¯‚·
+	///< ã˜ã¶ã‚“ã®ãã‚ãã‚’ã‘ã™
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -386,7 +386,7 @@ static const BR_MENU_DATA br_brows_menu_2_3[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚¾‚ê‚©‚Ì‚«‚ë‚­‚ð‚¯‚·
+	///< ã ã‚Œã‹ã®ãã‚ãã‚’ã‘ã™
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -398,7 +398,7 @@ static const BR_MENU_DATA br_brows_menu_2_3[ 5 ] = {
 		BR_EX_DATA_NONE,
 		br_brows_menu_2_4,
 	},
-	///< ‚à‚Ç‚é
+	///< ã‚‚ã©ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -415,7 +415,7 @@ static const BR_MENU_DATA br_brows_menu_2_3[ 5 ] = {
 };
 
 static const BR_MENU_DATA br_brows_menu_2_4[ 5 ] = {
-	///< ‚ ‚«
+	///< ã‚ã
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -427,7 +427,7 @@ static const BR_MENU_DATA br_brows_menu_2_4[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚ ‚«
+	///< ã‚ã
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -439,7 +439,7 @@ static const BR_MENU_DATA br_brows_menu_2_4[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚ ‚«
+	///< ã‚ã
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -451,7 +451,7 @@ static const BR_MENU_DATA br_brows_menu_2_4[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚à‚Ç‚é
+	///< ã‚‚ã©ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -469,18 +469,18 @@ static const BR_MENU_DATA br_brows_menu_2_4[ 5 ] = {
 // -----------------------------------------
 //
 //
-//	¡ GDS
+//	â–  GDS
 //
 //
 // -----------------------------------------
 
 // -----------------------------------------
 //
-//	ƒgƒbƒvƒƒjƒ…[
+//	ãƒˆãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //
 // -----------------------------------------
 static const BR_MENU_DATA br_gds_menu_top[ 5 ] = {
-	///< ƒf[ƒ^‚ð‚Ý‚é
+	///< ãƒ‡ãƒ¼ã‚¿ã‚’ã¿ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -493,7 +493,7 @@ static const BR_MENU_DATA br_gds_menu_top[ 5 ] = {
 
 		br_gds_menu_2_1,
 	},
-	///< ƒf[ƒ^‚ð‘—‚é
+	///< ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -506,7 +506,7 @@ static const BR_MENU_DATA br_gds_menu_top[ 5 ] = {
 		
 		NULL,
 	},
-	///< ‚â‚ß‚é
+	///< ã‚„ã‚ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -524,7 +524,7 @@ static const BR_MENU_DATA br_gds_menu_top[ 5 ] = {
 };
 
 static const BR_MENU_DATA br_gds_menu_2_1[ 5 ] = {
-	///< ‚³‚¢‚µ‚ñ‚R‚OŒÂ
+	///< ã•ã„ã—ã‚“ï¼“ï¼å€‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -536,7 +536,7 @@ static const BR_MENU_DATA br_gds_menu_2_1[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚­‚í‚µ‚­‚³‚ª‚·
+	///< ãã‚ã—ãã•ãŒã™
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -548,7 +548,7 @@ static const BR_MENU_DATA br_gds_menu_2_1[ 5 ] = {
 		BR_EX_DATA_NONE,
 		br_gds_menu_2_2,
 	},
-	///< ƒf[ƒ^ƒiƒ“ƒo[‚Å‚³‚ª‚·
+	///< ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ã§ã•ãŒã™
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -560,7 +560,7 @@ static const BR_MENU_DATA br_gds_menu_2_1[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚à‚Ç‚é
+	///< ã‚‚ã©ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -576,7 +576,7 @@ static const BR_MENU_DATA br_gds_menu_2_1[ 5 ] = {
 };
 
 static const BR_MENU_DATA br_gds_menu_2_2[ 5 ] = {
-	///< ‚µ‚¹‚Â‚Å‚³‚ª‚·
+	///< ã—ã›ã¤ã§ã•ãŒã™
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -588,7 +588,7 @@ static const BR_MENU_DATA br_gds_menu_2_2[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ƒ|ƒPƒ‚ƒ“‚Å‚³‚ª‚·
+	///< ãƒã‚±ãƒ¢ãƒ³ã§ã•ãŒã™
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -600,7 +600,7 @@ static const BR_MENU_DATA br_gds_menu_2_2[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ƒvƒƒtƒB[ƒ‹‚Å‚³‚ª‚·
+	///< ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã§ã•ãŒã™
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -612,7 +612,7 @@ static const BR_MENU_DATA br_gds_menu_2_2[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚à‚Ç‚é
+	///< ã‚‚ã©ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -627,9 +627,9 @@ static const BR_MENU_DATA br_gds_menu_2_2[ 5 ] = {
 	{	FALSE,FALSE,0,0x0000,0,0,0,0,NULL },	
 };
 
-/// ƒhƒŒƒXƒAƒbƒv
+/// ãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—
 static const BR_MENU_DATA br_photo_menu_top[ 5 ] = {
-	///< ƒhƒŒƒX‚ð‚Ý‚é
+	///< ãƒ‰ãƒ¬ã‚¹ã‚’ã¿ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -641,7 +641,7 @@ static const BR_MENU_DATA br_photo_menu_top[ 5 ] = {
 		BR_EX_DATA_NONE,		
 		NULL,
 	},
-	///< ƒhƒŒƒX‚ð‚¨‚­‚é
+	///< ãƒ‰ãƒ¬ã‚¹ã‚’ãŠãã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -653,7 +653,7 @@ static const BR_MENU_DATA br_photo_menu_top[ 5 ] = {
 		BR_EX_DATA_NONE,	
 		NULL,
 	},
-	///< ‚â‚ß‚é
+	///< ã‚„ã‚ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -669,9 +669,9 @@ static const BR_MENU_DATA br_photo_menu_top[ 5 ] = {
 	{	FALSE,FALSE,0,0x0000,0,0,0,0,NULL },
 };
 
-/// ƒ{ƒbƒNƒXƒVƒ‡ƒbƒg
+/// ãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆ
 static const BR_MENU_DATA br_box_menu_top[ 5 ] = {
-	///< ƒ{ƒbƒNƒX‚Ý‚é
+	///< ãƒœãƒƒã‚¯ã‚¹ã¿ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -683,7 +683,7 @@ static const BR_MENU_DATA br_box_menu_top[ 5 ] = {
 		BR_EX_DATA_NONE,		
 		NULL,
 	},
-	///< ƒ{ƒbƒNƒX‚¨‚­‚é
+	///< ãƒœãƒƒã‚¯ã‚¹ãŠãã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -695,7 +695,7 @@ static const BR_MENU_DATA br_box_menu_top[ 5 ] = {
 		BR_EX_DATA_NONE,	
 		NULL,
 	},
-	///< ‚â‚ß‚é
+	///< ã‚„ã‚ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -712,9 +712,9 @@ static const BR_MENU_DATA br_box_menu_top[ 5 ] = {
 };
 
 
-/// TŠÔƒ‰ƒ“ƒLƒ“ƒO
+/// é€±é–“ãƒ©ãƒ³ã‚­ãƒ³ã‚°
 static const BR_MENU_DATA br_weekly_rank_menu_top[ 5 ] = {
-	///< ¡T
+	///< ä»Šé€±
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -726,7 +726,7 @@ static const BR_MENU_DATA br_weekly_rank_menu_top[ 5 ] = {
 		BR_EX_DATA_NONE,	
 		NULL,
 	},
-	///< æT
+	///< å…ˆé€±
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -738,7 +738,7 @@ static const BR_MENU_DATA br_weekly_rank_menu_top[ 5 ] = {
 		BR_EX_DATA_NONE,	
 		NULL,
 	},
-	///< ‚â‚ß‚é
+	///< ã‚„ã‚ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -755,9 +755,9 @@ static const BR_MENU_DATA br_weekly_rank_menu_top[ 5 ] = {
 };
 
 
-/// ƒrƒfƒIƒ‰ƒ“ƒLƒ“ƒO
+/// ãƒ“ãƒ‡ã‚ªãƒ©ãƒ³ã‚­ãƒ³ã‚°
 static const BR_MENU_DATA br_video_rank_1_menu_top[ 5 ] = {
-	///< ’ÊM‘Îí
+	///< é€šä¿¡å¯¾æˆ¦
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -769,7 +769,7 @@ static const BR_MENU_DATA br_video_rank_1_menu_top[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚â‚ß‚é
+	///< ã‚„ã‚ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -786,9 +786,9 @@ static const BR_MENU_DATA br_video_rank_1_menu_top[ 5 ] = {
 	{	FALSE,FALSE,0,0x0000,0,0,0,0,NULL },
 };
 
-/// ƒrƒfƒIƒ‰ƒ“ƒLƒ“ƒO
+/// ãƒ“ãƒ‡ã‚ªãƒ©ãƒ³ã‚­ãƒ³ã‚°
 static const BR_MENU_DATA br_video_rank_2_menu_top[ 5 ] = {
-	///< ’ÊM‘Îí
+	///< é€šä¿¡å¯¾æˆ¦
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -800,7 +800,7 @@ static const BR_MENU_DATA br_video_rank_2_menu_top[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒA
+	///< ãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -812,7 +812,7 @@ static const BR_MENU_DATA br_video_rank_2_menu_top[ 5 ] = {
 		BR_EX_DATA_NONE,		
 		NULL,
 	},
-	///< ‚â‚ß‚é
+	///< ã‚„ã‚ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -829,7 +829,7 @@ static const BR_MENU_DATA br_video_rank_2_menu_top[ 5 ] = {
 };
 
 static const BR_MENU_DATA br_video_send_check[ 5 ] = {	
-	///< ‘—‚é
+	///< é€ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -841,7 +841,7 @@ static const BR_MENU_DATA br_video_send_check[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚à‚Ç‚é
+	///< ã‚‚ã©ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -858,7 +858,7 @@ static const BR_MENU_DATA br_video_send_check[ 5 ] = {
 };
 
 static const BR_MENU_DATA br_video_menu_top[ 5 ] = {
-	///< ƒrƒfƒI‚ð‚Ý‚é
+	///< ãƒ“ãƒ‡ã‚ªã‚’ã¿ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -870,7 +870,7 @@ static const BR_MENU_DATA br_video_menu_top[ 5 ] = {
 		BR_EX_DATA_NONE,
 		br_video_menu_2_top,
 	},
-	///< ƒrƒfƒI‚ð‚¨‚­‚é
+	///< ãƒ“ãƒ‡ã‚ªã‚’ãŠãã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -883,7 +883,7 @@ static const BR_MENU_DATA br_video_menu_top[ 5 ] = {
 		BR_EX_DATA_NONE,
 		br_video_send_check,
 	},
-	///< ‚â‚ß‚é
+	///< ã‚„ã‚ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -900,7 +900,7 @@ static const BR_MENU_DATA br_video_menu_top[ 5 ] = {
 };
 
 static const BR_MENU_DATA br_video_menu_2_top[ 5 ] = {
-	///< ÅV‚R‚OŒÂ
+	///< æœ€æ–°ï¼“ï¼å€‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -912,7 +912,7 @@ static const BR_MENU_DATA br_video_menu_2_top[ 5 ] = {
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚­‚í‚µ‚­
+	///< ãã‚ã—ã
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -924,7 +924,7 @@ static const BR_MENU_DATA br_video_menu_2_top[ 5 ] = {
 		BR_EX_DATA_NONE,		
 		NULL,
 	},
-	///< ƒf[ƒ^ƒiƒ“ƒo[‚Å’T‚·
+	///< ãƒ‡ãƒ¼ã‚¿ãƒŠãƒ³ãƒãƒ¼ã§æŽ¢ã™
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -936,7 +936,7 @@ static const BR_MENU_DATA br_video_menu_2_top[ 5 ] = {
 		BR_EX_DATA_NONE,	
 		NULL,
 	},
-	///< ‚à‚Ç‚é
+	///< ã‚‚ã©ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -955,13 +955,13 @@ static const BR_MENU_DATA br_video_menu_2_top[ 5 ] = {
 // =============================================================================
 //
 //
-//	¡GDS@‚©‚ç‚ÌI—¹ˆ—
+//	â– GDSã€€ã‹ã‚‰ã®çµ‚äº†å‡¦ç†
 //
 //
 // =============================================================================
 static const BR_MENU_DATA br_gds_video_end_top[ 5 ] = 
 {
-	///< ‚Í‚¢
+	///< ã¯ã„
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -973,7 +973,7 @@ static const BR_MENU_DATA br_gds_video_end_top[ 5 ] =
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚à‚Ç‚é
+	///< ã‚‚ã©ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -992,7 +992,7 @@ static const BR_MENU_DATA br_gds_video_end_top[ 5 ] =
 
 static const BR_MENU_DATA br_gds_vrank_end_top[ 5 ] = 
 {
-	///< ‚Í‚¢
+	///< ã¯ã„
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -1004,7 +1004,7 @@ static const BR_MENU_DATA br_gds_vrank_end_top[ 5 ] =
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚à‚Ç‚é
+	///< ã‚‚ã©ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -1023,7 +1023,7 @@ static const BR_MENU_DATA br_gds_vrank_end_top[ 5 ] =
 
 static const BR_MENU_DATA br_gds_wrank_end_top[ 5 ] = 
 {
-	///< ‚Í‚¢
+	///< ã¯ã„
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -1035,7 +1035,7 @@ static const BR_MENU_DATA br_gds_wrank_end_top[ 5 ] =
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚à‚Ç‚é
+	///< ã‚‚ã©ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -1054,7 +1054,7 @@ static const BR_MENU_DATA br_gds_wrank_end_top[ 5 ] =
 
 static const BR_MENU_DATA br_gds_box_dress_end_top[ 5 ] = 
 {
-	///< ‚Í‚¢
+	///< ã¯ã„
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -1066,7 +1066,7 @@ static const BR_MENU_DATA br_gds_box_dress_end_top[ 5 ] =
 		BR_EX_DATA_NONE,
 		NULL,
 	},
-	///< ‚à‚Ç‚é
+	///< ã‚‚ã©ã‚‹
 	{
 		TRUE,
 		SEAM_LESS_ON,
@@ -1085,7 +1085,7 @@ static const BR_MENU_DATA br_gds_box_dress_end_top[ 5 ] =
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[ƒf[ƒ^‚ÌŽæ“¾ ( ˆÈŒã Link \‘¢‚Ì“à•”‚ðŽQÆ‚µ‚Ä‚¢‚­)
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®å–å¾— ( ä»¥å¾Œ Link æ§‹é€ ã®å†…éƒ¨ã‚’å‚ç…§ã—ã¦ã„ã)
  *
  * @param	mode	
  *
@@ -1095,10 +1095,10 @@ static const BR_MENU_DATA br_gds_box_dress_end_top[ 5 ] =
 //--------------------------------------------------------------
 const BR_MENU_DATA* BattleRecorder_MenuDataGet( int mode )
 {
-	///< Žw’è‚æ‚è‚Å‚©‚¢ê‡‚ÍA‹­§“I‚É BR_MODE_BROWSE 
+	///< æŒ‡å®šã‚ˆã‚Šã§ã‹ã„å ´åˆã¯ã€å¼·åˆ¶çš„ã« BR_MODE_BROWSE 
 	if ( mode >= BR_MODE_MAX ){
 		
-	//	OS_Printf( "mode Žw’è‚ª‚¨‚©‚µ‚¢B BR_MODE_BROWSE@‚Ìƒf[ƒ^Žæ“¾\n");
+	//	OS_Printf( "mode æŒ‡å®šãŒãŠã‹ã—ã„ã€‚ BR_MODE_BROWSEã€€ã®ãƒ‡ãƒ¼ã‚¿å–å¾—\n");
 		GF_ASSERT( mode < BR_MODE_MAX );
 		
 		return br_brows_menu_base[ BR_MODE_BROWSE ].data;
@@ -1120,7 +1120,7 @@ const BR_MENU_DATA* BattleRecorder_MenuDataGet( int mode )
 //--------------------------------------------------------------
 const BR_MENU_DATA* BattleRecorder_MenuDataGetEx( BR_WORK* wk, int mode )
 {	
-	///< ƒuƒ‰ƒEƒYƒ‚[ƒh•–¢ƒNƒŠƒAŽž
+	///< ãƒ–ãƒ©ã‚¦ã‚ºãƒ¢ãƒ¼ãƒ‰ï¼†æœªã‚¯ãƒªã‚¢æ™‚
 	if ( mode == BR_MODE_BROWSE ){
 		if ( BR_IsGameClear( wk ) == FALSE ){
 			
@@ -1128,7 +1128,7 @@ const BR_MENU_DATA* BattleRecorder_MenuDataGetEx( BR_WORK* wk, int mode )
 		}
 	}
 	
-	///< ƒrƒfƒIƒ‰ƒ“ƒLƒ“ƒO•–¢ƒNƒŠƒA
+	///< ãƒ“ãƒ‡ã‚ªãƒ©ãƒ³ã‚­ãƒ³ã‚°ï¼†æœªã‚¯ãƒªã‚¢
 	if ( mode == BR_MODE_GDS_BV_RANK ){
 		if ( BR_IsGameClear( wk ) == FALSE ){
 			
@@ -1142,7 +1142,7 @@ const BR_MENU_DATA* BattleRecorder_MenuDataGetEx( BR_WORK* wk, int mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒjƒ…[‰æ–Ê‚ÌƒZƒbƒg‚ð‚·‚é
+ * @brief	ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã®ã‚»ãƒƒãƒˆã‚’ã™ã‚‹
  *
  * @param	wk	
  *

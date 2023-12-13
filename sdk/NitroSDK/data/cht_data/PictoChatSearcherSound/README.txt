@@ -1,87 +1,87 @@
-������������������������������������������������������
+■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
-	�s�N�g�`���b�g�T�[�`���[�p�T�E���h�f�[�^
+	ピクトチャットサーチャー用サウンドデータ
     
-������������������������������������������������������
+■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
-���̃p�b�P�[�W�i�t�H���_�j�ɂ̓s�N�g�`���b�g�T�[�`���[��
-�A�C�R�����\������鎞�ɖ炷SE�̃f�[�^�����߂��Ă��܂��B
-����ȊO��SE�i�E�C���h�E���J���A�`���b�g�N����I������Ȃǁj��
-�ւ��ẮA�w���SE�͂���܂���̂ŁA�K�v�ɉ����Ċe�\�t�g��
-�g�p���Ă���SE��炵�Ă��������B
+このパッケージ（フォルダ）にはピクトチャットサーチャーで
+アイコンが表示される時に鳴らすSEのデータが収められています。
+これ以外のSE（ウインドウが開く、チャット起動を選択するなど）に
+関しては、指定のSEはありませんので、必要に応じて各ソフトで
+使用しているSEを鳴らしてください。
 
 
-���t�@�C���̓���
+■ファイルの内訳■
 BankPCS/sePCS.bnk
-�g�p����C���X�g����`���ꂽ�o���N�t�@�C��
+使用するインストが定義されたバンクファイル
 
 SeqPCS/sePCS.mus
-SE�̃V�[�P���X�������ꂽ�V�[�P���X�A�[�J�C�u�t�@�C��
+SEのシーケンスが書かれたシーケンスアーカイブファイル
 
 WavePCS/CelestaPost.32.t.an5.aiff
-���g�`
+元波形
 
 sound_data.sarc
-�T�E���h�A�[�J�C�u
+サウンドアーカイブ
 
 MakeSound.bat
 ReMakeSound.bat
-�T�E���h�f�[�^�����o�b�`�t�@�C���B
+サウンドデータを作るバッチファイル。
 
 
-���g�ݍ��݂ɂ��ā�
-�e�Q�[���v���W�F�N�g���Ƃɑg�ݍ��݂₷�����@������Ǝv���܂��B
-���̎�ȕ��@�͉��L�̂Ƃ���ł��B
-�i����ȊO�̕��@�őg�ݍ���ł��\���܂���B�j
+■組み込みについて■
+各ゲームプロジェクトごとに組み込みやすい方法があると思われます。
+その主な方法は下記のとおりです。
+（これ以外の方法で組み込んでも構いません。）
 
-��������Ԃ̊e���x���͈ȉ��̂Ƃ���ł��B
-�V�[�P���X�A�[�J�C�u�E�E�ESEQARC_SE_PCS
-�o���N�E�E�E�E�E�E�E�E�E�EBANK_SE_PCS
-�g�`�A�[�J�C�u�E�E�E�E�E�EWAVE_SE_PCS
-
-
-���g�ݍ��ݗ�P
-���̃p�b�P�[�W�ō��ꂽ�T�E���h�f�[�^�isound_data.sdat�j���g�p����B
-
-MakeSound.bat���g�p���ăT�E���h�f�[�^�isound_data.sdat�j���쐬���A
-���̃f�[�^��������ɂ����āA�ʏ�̃Q�[���̃T�E���h�f�[�^�ƕ��p���Ė炷
-���@�ł��B
-�f�[�^���Ɨ����Ă��镪�����₷���Ƃ������_������܂����A�Q�[����SE���܂�
-�炷�֐����R�[������O�Ɏg�p����T�E���h�f�[�^��؂�ւ���K�v�����邽�߁A
-�g�ݍ��ݎ��ɂ��̑Ή����K�v�ɂȂ�܂��B
+※初期状態の各ラベルは以下のとおりです。
+シーケンスアーカイブ・・・SEQARC_SE_PCS
+バンク・・・・・・・・・・BANK_SE_PCS
+波形アーカイブ・・・・・・WAVE_SE_PCS
 
 
-���g�ݍ��ݗ�Q
-�o���N�A�V�[�P���X�A�[�J�C�u���e�Q�[���̃T�E���h�A�[�J�C�u�isound_data.sarc�j�ɓo�^����B
+■組み込み例１
+このパッケージで作られたサウンドデータ（sound_data.sdat）を使用する。
 
-�e�Q�[���Ŏg�p���Ă���T�E���h�A�[�J�C�u�ɉ����邱�ƂŁA�Q�[���Ɠ��l��
-�Đ��A�f�[�^�Ǘ����\�ł��B�V�[�P���X�A�[�J�C�u���g�p����o���N��
-�usound_data.sbdl�v���Q�Ƃ���悤�ɂȂ��Ă��܂��̂ŁA���̃t�@�C����
-�V�[�P���X�A�[�J�C�u�isePCS.mus�j�̑��΃p�X���ύX���ꂽ�ꍇ�́A
-�C���N���[�h�p�X�����������K�v������܂��B
-
-
-���g�ݍ��ݗ�R
-�o���N�A�V�[�P���X�A�[�J�C�u�̃e�L�X�g�t�@�C���̓��e���g�p���Ă���t�@�C����
-�R�s�[���y�[�X�g����B
-
-�u���p��Q�v�ł̓Q�[���Ƃ͕ʃf�[�^�ň������߁A�S�̂̃T�C�Y���኱�����܂��B
-������������ꍇ�́A�e�f�[�^�̃e�L�X�g�x�[�X�̃R�s�[���y�[�X�g�i�ڐA�j��
-�s�����ƂőΉ��ł��܂��B
+MakeSound.batを使用してサウンドデータ（sound_data.sdat）を作成し、
+このデータをロム上において、通常のゲームのサウンドデータと併用して鳴らす
+方法です。
+データが独立している分扱いやすいという利点がありますが、ゲームのSEを含め
+鳴らす関数をコールする前に使用するサウンドデータを切り替える必要があるため、
+組み込み時にその対応が必要になります。
 
 
-�����Ӂ�
-���p�����[�^�̕ύX
-�V�[�P���X�A�[�J�C�u�ɂr�d�̃v���C���[�i���o�[��v���C�I���e�B��
-�w�肳��Ă��܂����A�Q�[���̏󋵂ɉ����ĕύX����K�v������܂��B
-�Q�[���Ŏg�p���Ă��Ȃ��v���C���[�i���o�[�ɕύX������A�Q�[����
-�g�p���Ă���v���C�I���e�B�Ƃ̃o�����X�𒲐������肵�Ă��������B
+■組み込み例２
+バンク、シーケンスアーカイブを各ゲームのサウンドアーカイブ（sound_data.sarc）に登録する。
 
-���p�X�̊m�F�ƕύX
-�t�@�C���̃p�X��ύX����ꍇ�́A�e�e�L�X�g�t�@�C���̏C�����K�v�ł��B
+各ゲームで使用しているサウンドアーカイブに加えることで、ゲームと同様の
+再生、データ管理が可能です。シーケンスアーカイブが使用するバンクは
+「sound_data.sbdl」を参照するようになっていますので、このファイルと
+シーケンスアーカイブ（sePCS.mus）の相対パスが変更された場合は、
+インクルードパスを書き直す必要があります。
 
-���{����SE�̊m�F
-�g�ݍ��ݕ����ԈႤ�ƁA�{���̉��Ƃ͈Ⴄ�������s����\��������܂��B
-�K���A��x�͌��̉����A�o�b�`�t�@�C���Ő��������uSoundPlayer.srl�v��
-�N�����Ċm�F���Ă��������B
+
+■組み込み例３
+バンク、シーケンスアーカイブのテキストファイルの内容を使用しているファイルに
+コピー＆ペーストする。
+
+「利用例２」ではゲームとは別データで扱うため、全体のサイズが若干増えます。
+それを回避する場合は、各データのテキストベースのコピー＆ペースト（移植）を
+行うことで対応できます。
+
+
+■注意■
+■パラメータの変更
+シーケンスアーカイブにＳＥのプレイヤーナンバーやプライオリティが
+指定されていますが、ゲームの状況に応じて変更する必要があります。
+ゲームで使用していないプレイヤーナンバーに変更したり、ゲームで
+使用しているプライオリティとのバランスを調整したりしてください。
+
+■パスの確認と変更
+ファイルのパスを変更する場合は、各テキストファイルの修正が必要です。
+
+■本来のSEの確認
+組み込み方を間違うと、本来の音とは違う発音が行われる可能性があります。
+必ず、一度は元の音を、バッチファイルで生成される「SoundPlayer.srl」を
+起動して確認してください。
 

@@ -13,49 +13,49 @@
 #
 # $Log: commondefs.WiFi,v $
 # Revision 1.15  2006/02/28 23:42:16  okubata_ryoma
-# Crypt�؂�o���̂��߂̕ύX
+# Crypt切り出しのための変更
 #
 # Revision 1.14  2006/01/26 01:33:26  seiki_masashi
-# copyright �\�L�̏C��
+# copyright 表記の修正
 #
 # Revision 1.13  2006/01/23 06:49:05  seiki_masashi
-# NWIFI_INSTALL_TOOLSDIR ��ǉ�
+# NWIFI_INSTALL_TOOLSDIR を追加
 #
 # Revision 1.12  2005/12/19 23:21:19  seiki_masashi
-# NitroWiFi �� CRYPT ���C�u������V�݂��A�d�q�������؋@�\��ǉ�
+# NitroWiFi の CRYPT ライブラリを新設し、電子署名検証機能を追加
 #
 # Revision 1.11  2005/11/21 00:35:34  terui
 # Abolish svc stub library.
 #
 # Revision 1.10  2005/10/25 04:17:53  terui
-# SVC_WaitVBlankIntr����V���{��������Ă���ꍇ�Ƀ����N���郉�C�u������ǉ�
+# SVC_WaitVBlankIntrが弱シンボル化されている場合にリンクするライブラリを追加
 #
 # Revision 1.9  2005/09/13 08:57:45  yasu
-# SSL ��L�������ɂ��邽�߂̃X�C�b�`�쐬
+# SSL を有効無効にするためのスイッチ作成
 #
 # Revision 1.8  2005/08/23 04:43:03  yasu
-# NITROWIFI_INSTALL_ROOT �֘A�̏C��
+# NITROWIFI_INSTALL_ROOT 関連の修正
 #
 # Revision 1.7  2005/08/19 12:28:20  yasu
-# add-ins �̃T�|�[�g
+# add-ins のサポート
 #
 # Revision 1.6  2005/07/29 05:11:21  terui
-# �����N���郉�C�u�����Ƃ��� md5 �Ɋւ��郉�b�p�[���C�u������ǉ��B
+# リンクするライブラリとして md5 に関するラッパーライブラリを追加。
 #
 # Revision 1.5  2005/07/15 13:33:25  yasu
-# soc ���C�u�����̒ǉ�
+# soc ライブラリの追加
 #
 # Revision 1.4  2005/07/15 08:38:08  yasu
-# cps, ssl ���C�u�����t�@�C���ǉ�
+# cps, ssl ライブラリファイル追加
 #
 # Revision 1.3  2005/07/12 00:42:24  yasu
-# libssl.a �̃����N����̎d�g�݂�ǉ�
+# libssl.a のリンク制御の仕組みを追加
 #
 # Revision 1.2  2005/07/07 10:47:41  terui
-# NITROWIFI_LIBS �� libwcm.a ��ǉ�
+# NITROWIFI_LIBS に libwcm.a を追加
 #
 # Revision 1.1  2005/06/22 11:07:57  yasu
-# �\�[�X�c���[�e���v���[�g�쐬
+# ソースツリーテンプレート作成
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

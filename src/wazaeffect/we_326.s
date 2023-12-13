@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_326.s
- * @brief	‚¶‚ñ‚Â‚¤‚è‚«			326
+ * @brief	ã˜ã‚“ã¤ã†ã‚Šã			326
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,17 +19,17 @@
 // =============================================================================
 //
 //
-//	¡‚¶‚ñ‚Â‚¤‚è‚«			326
+//	â– ã˜ã‚“ã¤ã†ã‚Šã			326
 //
 //
 // =============================================================================
-// Œõ‚é
+// å…‰ã‚‹
 #define ZINTUURIKI_PAL_FADE_AT	(WE_TOOL_M1)
 #define ZINTUURIKI_PAL_FADE_NUM	(2)
 #define ZINTUURIKI_PAL_RGB		(WE_PAL_BLUE)
 #define ZINTUURIKI_PAL_FADE_MAX	(10)
 
-// OAMŠgk
+// OAMæ‹¡ç¸®
 #define ZINTUURIKI_OAM_AT			(0)
 #define ZINTUURIKI_OAM_ALPHA		(8)
 #define ZINTUURIKI_OAM_SCALE_S		(10)
@@ -46,21 +46,21 @@ WEST_ZINTUURIKI:
 
 	SE_FLOW_LR			SEQ_SE_DP_W020
 	
-	///< ƒp[ƒeƒBƒNƒ‹
+	///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 	ADD_PARTICLE 	0,W_326_326_RING_BURN, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_SP, OPERATOR_AXIS_NONE, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 
-	// ƒ|ƒPƒ‚ƒ“BG€”õ
+	// ãƒã‚±ãƒ¢ãƒ³BGæº–å‚™
 	POKEBG_DROP		1,	WEDEF_POKE_AUTO_OFF
 
-	// ƒ|ƒPƒ‚ƒ“OAM€”õ
+	// ãƒã‚±ãƒ¢ãƒ³OAMæº–å‚™
 	POKEOAM_RES_INIT
 
 	POKEOAM_RES_LOAD	0,
 
 
 	
-	//UŒ‚ƒ|ƒPƒ‚ƒ“Œõ‚é
+	//æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³å…‰ã‚‹
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 5, ZINTUURIKI_PAL_FADE_AT, 0, ZINTUURIKI_PAL_FADE_NUM, ZINTUURIKI_PAL_RGB, ZINTUURIKI_PAL_FADE_MAX, 0,0,0
 	FUNC_CALL		WEST_SP_WE_326, 0,0
 
@@ -73,21 +73,21 @@ WEST_ZINTUURIKI:
 	WAIT	(ZINTUURIKI_PAL_FADE_MAX*4)
 	SE_L			SEQ_SE_DP_W043
 
-	// •`‰æŠJŽn
+	// æç”»é–‹å§‹
 	POKEOAM_DROP		WEDEF_DROP_M1, WEDEF_POKE_AUTO_OFF, WEDEF_POKE_CAP_ID_0, WEDEF_POKE_RES_0,
 	PT_DROP_EX		WEDEF_DROP_M2, WEDEF_DROP_M2,
 
-	//UŒ‚ƒ|ƒPƒ‚ƒ“OAMŠgk
+	//æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³OAMæ‹¡ç¸®
 	FUNC_CALL		WEST_SP_WE_CAP_POKE_SCALE_UPDOWN,  8, ZINTUURIKI_OAM_AT, ZINTUURIKI_OAM_ALPHA, ZINTUURIKI_OAM_SCALE_S, ZINTUURIKI_OAM_SCALE_E, ZINTUURIKI_OAM_SCALE_D, ZINTUURIKI_OAM_SCALE_NUM, ZINTUURIKI_OAM_SYNC, 0,
 
-	WAIT_FLAG	///<TCB‘Ò‚¿
+	WAIT_FLAG	///<TCBå¾…ã¡
 
-	// ƒ|ƒPƒ‚ƒ“OAM”jŠü
+	// ãƒã‚±ãƒ¢ãƒ³OAMç ´æ£„
 	POKEOAM_RES_FREE
 	POKEOAM_DROP_RESET	WEDEF_POKE_CAP_ID_0
 	PT_DROP_RESET_EX
 
-	// ƒ|ƒPƒ‚ƒ“BG@ƒŠƒZƒbƒg
+	// ãƒã‚±ãƒ¢ãƒ³BGã€€ãƒªã‚»ãƒƒãƒˆ
 	POKEBG_DROP_RESET 0
 
 	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 12, 0, WE_PAL_BLACK,

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_glbdata.c
- *	@brief		}ŠÓƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@brief		å›³é‘‘ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@author		tomoya takahashi
  *	@data		2006.01.20
  *
@@ -24,46 +24,46 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define ZKN_SORTDATA_START_IDX	( NARC_zukan_data_zkn_sort_zenkoku_dat )
 #define ZKN_SORTDATA_ONESIZE	( sizeof(u16) )
 enum{
-	// ‘å–{
+	// å¤§æœ¬
 	ZKN_SORTDATA_ZENKOKU,
 	ZKN_SORTDATA_SHINOH,
 	
-	// ƒ\[ƒgÃŞ°À
+	// ã‚½ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
 	ZKN_SORTDATA_AIUEO,
 	ZKN_SORTDATA_HEAVY,
 	ZKN_SORTDATA_LIGHT,
 	ZKN_SORTDATA_TALL,
 	ZKN_SORTDATA_SMALL,
 	
-	// –¼‘OŒŸõ
+	// åå‰æ¤œç´¢
 	ZKN_SORTDATA_NAME_A,
 	ZKN_SORTDATA_NAME_KA,
 	ZKN_SORTDATA_NAME_SA,
@@ -74,7 +74,7 @@ enum{
 	ZKN_SORTDATA_NAME_RA,
 	ZKN_SORTDATA_NAME_YAWA,
 
-	// ƒ^ƒCƒvŒŸõ
+	// ã‚¿ã‚¤ãƒ—æ¤œç´¢
 	ZKN_SORTDATA_TYPE_NORMAL,
 	ZKN_SORTDATA_TYPE_BATTLE,	
 	ZKN_SORTDATA_TYPE_HIKOU,	
@@ -93,7 +93,7 @@ enum{
 	ZKN_SORTDATA_TYPE_DRAGON,	
 	ZKN_SORTDATA_TYPE_AKU,	
 
-	// Œ`ŒŸõ
+	// å½¢æ¤œç´¢
 	ZKN_SORTDATA_FORM_FOUR_LEGS,
 	ZKN_SORTDATA_FORM_TWO_LEGS,
 	ZKN_SORTDATA_FORM_TAIL,
@@ -119,13 +119,13 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static void ZknPokeListTblMakeSortData( u16* p_buff, int* p_count, const ZUKAN_WORK* cp_zukansave_data, const u16* cp_tbl, int num );
@@ -144,7 +144,7 @@ static void ZknPokeListSarchForm_Core( int search_form, u16* p_buff, int* p_coun
 
 //-----------------------------------------------------------------------------
 /**
- *	ƒOƒ[ƒoƒ‹•Ï”
+ *	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
  *
  */
 //-----------------------------------------------------------------------------
@@ -152,11 +152,11 @@ static void ZknPokeListSarchForm_Core( int search_form, u16* p_buff, int* p_coun
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒOƒ[ƒoƒ‹ƒf[ƒ^‰Šú‰»
+ *	@brief	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- *	@param	p_glb				ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	p_init				‰Šú‰»ƒf[ƒ^
- *	@param	heap				ƒq[ƒv
+ *	@param	p_glb				ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_init				åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap				ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -175,13 +175,13 @@ void ZKN_GLBDATA_Init( ZKN_GLB_DATA* p_glb, ZKN_GLB_DATA_INIT* p_init, int heap 
 	
 	memset( p_glb, 0, sizeof(ZKN_GLB_DATA) );
 
-	// }ŠÓƒZ[ƒuƒf[ƒ^İ’è
+	// å›³é‘‘ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_glb->cp_zukansave_data = p_init->cp_zukansave_data;
 
-	// ŠÔ‘Ñ
+	// æ™‚é–“å¸¯
 	p_glb->time_zone = p_init->time_zone;
 
-	// ƒ[ƒ“ƒRƒN}ŠÓ•Ûƒtƒ‰ƒOİ’è
+	// ã‚¼ãƒ³ã‚³ã‚¯å›³é‘‘ä¿æŒãƒ•ãƒ©ã‚°è¨­å®š
 	if( ZukanWork_GetZenkokuZukanFlag( p_glb->cp_zukansave_data ) ){
 		p_glb->zkn_allmap_get = TRUE;
 	}else{
@@ -189,9 +189,9 @@ void ZKN_GLBDATA_Init( ZKN_GLB_DATA* p_glb, ZKN_GLB_DATA_INIT* p_init, int heap 
 	}
 
 
-	// ‘S‘}ŠÓ‚ª‚ ‚é‚È‚ç‘S‘}ŠÓƒ‚[ƒh‚ÅŠJn
+	// å…¨å›½å›³é‘‘ãŒã‚ã‚‹ãªã‚‰å…¨å›½å›³é‘‘ãƒ¢ãƒ¼ãƒ‰ã§é–‹å§‹
 	if( p_init->zkn_mode == ZKN_MODE_NAZO ){
-		// ƒ[ƒ“ƒRƒN
+		// ã‚¼ãƒ³ã‚³ã‚¯
 		if( p_glb->zkn_allmap_get ){
 			zkn_mode = ZKN_MODE_ZENKOKU;
 		}else{
@@ -204,61 +204,61 @@ void ZKN_GLBDATA_Init( ZKN_GLB_DATA* p_glb, ZKN_GLB_DATA_INIT* p_init, int heap 
 	if( zkn_mode == ZKN_MODE_ZENKOKU ){
 		p_glb->zkn_mode = ZKN_MODE_ZENKOKU;
 
-		// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒf[ƒ^ì¬
+		// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		sort_type	= ZKN_POKELIST_SORT_NORMAL;
 		search_name = ZKN_POKELIST_SEARCH_NAME_NONE;
 		search_type1= ZKN_POKELIST_SEARCH_TYPE_NONE;
 		search_type2= ZKN_POKELIST_SEARCH_TYPE_NONE;
 		search_form = ZKN_POKELIST_SEARCH_FORM_NONE;
 	}else{
-		// ƒVƒ“ƒIƒEƒ‚[ƒh‚ÅŠJn
+		// ã‚·ãƒ³ã‚ªã‚¦ãƒ¢ãƒ¼ãƒ‰ã§é–‹å§‹
 		p_glb->zkn_mode = ZKN_MODE_SHINOH;
 
-		// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒf[ƒ^ì¬
+		// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		sort_type	= ZKN_POKELIST_SORT_NORMAL;
 		search_name = ZKN_POKELIST_SEARCH_NAME_NONE;
 		search_type1= ZKN_POKELIST_SEARCH_TYPE_NONE;
 		search_type2= ZKN_POKELIST_SEARCH_TYPE_NONE;
 		search_form = ZKN_POKELIST_SEARCH_FORM_NONE;
 	}
-	// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgì¬
+	// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆä½œæˆ
 	check = ZKN_GLBDATA_PokeListTblMake( p_glb, sort_type, 
 			search_name, search_type1, search_type2, search_form,
 			p_glb->zkn_mode, heap );
-	// ƒŠƒXƒgì¬Œ‹‰Ê‚ª0ŒÂ
+	// ãƒªã‚¹ãƒˆä½œæˆçµæœãŒ0å€‹
 	GF_ASSERT( check );
 
-	// ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ÅƒŠƒXƒgQÆæ‚ğİ’è
+	// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã§ãƒªã‚¹ãƒˆå‚ç…§å…ˆã‚’è¨­å®š
 	ZKN_GLBDATA_PokeListTblNoSet_Monsno( p_glb, p_init->init_list_monsno );
 	ZKN_GLBDATA_PokeTextSeeSetMonsno( p_glb, p_init->init_list_monsno );
 	ZKN_GLBDATA_PokeTextSeeSetZknMode( p_glb, p_init->zkn_mode );
 /*
-	// Œ©‚Â‚¯‚½”æ“¾
+	// è¦‹ã¤ã‘ãŸæ•°å–å¾—
 	p_glb->see_num = ZukanWork_GetPokeSeeCount( p_glb->cp_zukansave_data );
 	
-	// •ßŠl”æ“¾
+	// æ•ç²æ•°å–å¾—
 	p_glb->get_num = ZukanWork_GetPokeGetCount( p_glb->cp_zukansave_data );
 //*/
 
-	// ƒƒ€ƒR[ƒh
+	// ãƒ­ãƒ ã‚³ãƒ¼ãƒ‰
 	p_glb->rom_code = MyStatus_GetRomCode( p_init->cp_hero_data );
 
-	// ålŒö«•Ê
+	// ä¸»äººå…¬æ€§åˆ¥
 	p_glb->hero_sex = MyStatus_GetMySex( p_init->cp_hero_data );	
 
-	// ålŒö–¼‘O
+	// ä¸»äººå…¬åå‰
 	p_glb->hero_name = MyStatus_CreateNameString( p_init->cp_hero_data, heap );
 
-	// ‚‚³d‚³ƒf[ƒ^æ“¾
+	// é«˜ã•é‡ã•ãƒ‡ãƒ¼ã‚¿å–å¾—
 	p_glb->height_gram = ZKN_HEIGHTGRAM_Alloc( heap );
-	// ’j‚©—‚©ƒ`ƒFƒbƒN
+	// ç”·ã‹å¥³ã‹ãƒã‚§ãƒƒã‚¯
 	if( p_glb->hero_sex == 0 ){
 		ZKN_HEIGHTGRAM_Load( p_glb->height_gram, ZKN_HEIGHT_GRAM_TYPE_MAN, heap );
 	}else{
 		ZKN_HEIGHTGRAM_Load( p_glb->height_gram, ZKN_HEIGHT_GRAM_TYPE_GIRL, heap );
 	}
 
-	// ‰B‚µƒ}ƒbƒv
+	// éš ã—ãƒãƒƒãƒ—
 	p_glb->hidemap_id_D15 = p_init->hidemap_id_D15;
 	p_glb->hidemap_id_D30 = p_init->hidemap_id_D30;
 	p_glb->hidemap_id_L04 = p_init->hidemap_id_L04;
@@ -268,9 +268,9 @@ void ZKN_GLBDATA_Init( ZKN_GLB_DATA* p_glb, ZKN_GLB_DATA_INIT* p_init, int heap 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -280,10 +280,10 @@ void ZKN_GLBDATA_Init( ZKN_GLB_DATA* p_glb, ZKN_GLB_DATA_INIT* p_init, int heap 
 void ZKN_GLBDATA_Delete( ZKN_GLB_DATA* p_glb )
 {
 
-	// ålŒö–¼
+	// ä¸»äººå…¬å
 	STRBUF_Delete( p_glb->hero_name );
 	
-	// ‚‚³ƒf[ƒ^
+	// é«˜ã•ãƒ‡ãƒ¼ã‚¿
 	ZKN_HEIGHTGRAM_Release( p_glb->height_gram );
 	ZKN_HEIGHTGRAM_Free( p_glb->height_gram );
 	p_glb->height_gram = NULL;
@@ -291,15 +291,15 @@ void ZKN_GLBDATA_Delete( ZKN_GLB_DATA* p_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚Ìƒ|ƒPƒ‚ƒ“‚ğ•\¦‚·‚é«•Ê‚ğæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã®ãƒã‚±ãƒ¢ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹æ€§åˆ¥ã‚’å–å¾—
  *
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	count		ZUKAN_WORK_SEX_FIRST@ZUKAN_WORK_SEX_SECOND
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	count		ZUKAN_WORK_SEX_FIRSTã€€ZUKAN_WORK_SEX_SECOND
  *
- *	@retval	PARA_MALE		ƒIƒX
- *	@retval	PARA_FEMALE		ƒƒX
- *	@retval	PARA_UNK		•s–¾
+ *	@retval	PARA_MALE		ã‚ªã‚¹
+ *	@retval	PARA_FEMALE		ãƒ¡ã‚¹
+ *	@retval	PARA_UNK		ä¸æ˜
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_SexGet( const ZKN_GLB_DATA* cp_glb, int monsno, int count )
@@ -311,12 +311,12 @@ u32 ZKN_GLBDATA_SaveData_SexGet( const ZKN_GLB_DATA* cp_glb, int monsno, int cou
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒm[ƒ“ƒtƒH[ƒ€‚Ìæ“¾
+ *	@brief	ã‚¢ãƒ³ãƒãƒ¼ãƒ³ãƒ•ã‚©ãƒ¼ãƒ ã®å–å¾—
  *
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	count		(0`27)
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	count		(0ã€œ27)
  *
- *	@return	ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
+ *	@return	ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_AnoonFormGet( const ZKN_GLB_DATA* cp_glb, int count )
@@ -331,12 +331,12 @@ u32 ZKN_GLBDATA_SaveData_AnoonFormGet( const ZKN_GLB_DATA* cp_glb, int count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[ƒEƒV@ƒtƒHƒ‹ƒ€æ“¾
+ *	@brief	ã‚·ãƒ¼ã‚¦ã‚·ã€€ãƒ•ã‚©ãƒ«ãƒ å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	count	‡”Ô	0or1
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	count	é †ç•ª	0or1
  *
- *	@return	ƒtƒHƒ‹ƒ€
+ *	@return	ãƒ•ã‚©ãƒ«ãƒ 
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_SiiusiFormGet( const ZKN_GLB_DATA* cp_glb, int count )
@@ -350,12 +350,12 @@ u32 ZKN_GLBDATA_SaveData_SiiusiFormGet( const ZKN_GLB_DATA* cp_glb, int count )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[ƒhƒ‹ƒS
+ *	@brief	ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	count	‡”Ô	0or1
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	count	é †ç•ª	0or1
  *
- *	@return	ƒtƒHƒ‹ƒ€
+ *	@return	ãƒ•ã‚©ãƒ«ãƒ 
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_SiidorugoFormGet( const ZKN_GLB_DATA* cp_glb, int count )
@@ -369,12 +369,12 @@ u32 ZKN_GLBDATA_SaveData_SiidorugoFormGet( const ZKN_GLB_DATA* cp_glb, int count
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒmƒ€ƒbƒ`
+ *	@brief	ãƒŸãƒãƒ ãƒƒãƒ
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	count	‡”Ô	0or1or2
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	count	é †ç•ª	0or1or2
  *
- *	@return	ƒtƒHƒ‹ƒ€
+ *	@return	ãƒ•ã‚©ãƒ«ãƒ 
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_MinomuttiFormGet( const ZKN_GLB_DATA* cp_glb, int count )
@@ -388,12 +388,12 @@ u32 ZKN_GLBDATA_SaveData_MinomuttiFormGet( const ZKN_GLB_DATA* cp_glb, int count
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒmƒƒX
+ *	@brief	ãƒŸãƒãƒ¡ã‚¹
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	count	‡”Ô	0or1or2
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	count	é †ç•ª	0or1or2
  *
- *	@return	ƒtƒHƒ‹ƒ€
+ *	@return	ãƒ•ã‚©ãƒ«ãƒ 
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_MinomesuFormGet( const ZKN_GLB_DATA* cp_glb, int count )
@@ -407,10 +407,10 @@ u32 ZKN_GLBDATA_SaveData_MinomesuFormGet( const ZKN_GLB_DATA* cp_glb, int count 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Å‰‚ÉŒ©‚½Œ`ó‚ğ•Ô‚·
+ *	@brief	æœ€åˆã«è¦‹ãŸå½¢çŠ¶ã‚’è¿”ã™
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_FirstFormGet( const ZKN_GLB_DATA* cp_glb, u32 monsno )
@@ -454,12 +454,12 @@ u32 ZKN_GLBDATA_SaveData_FirstFormGet( const ZKN_GLB_DATA* cp_glb, u32 monsno )
 
 //----------------------------------------------------------------------------
 /**	
- *	@brief	Œ©‚½«•Ê‚Ì”‚ğæ“¾
+ *	@brief	è¦‹ãŸæ€§åˆ¥ã®æ•°ã‚’å–å¾—
  *
- *	@param	cp_glb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	monsno	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@param	cp_glb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	monsno	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	Œ©‚½«•Ê‚Ì”
+ *	@return	è¦‹ãŸæ€§åˆ¥ã®æ•°
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_SexNumGet( const ZKN_GLB_DATA* cp_glb, int monsno )
@@ -467,7 +467,7 @@ u32 ZKN_GLBDATA_SaveData_SexNumGet( const ZKN_GLB_DATA* cp_glb, int monsno )
 	int sex = ZKN_GLBDATA_SaveData_SexGet( cp_glb, monsno, ZUKAN_WORK_SEX_SECOND );
 	
 	
-	// 2‚Â–Ú‚Ì«•Ê‚ğ‚İ‚½‚©ƒ`ƒFƒbƒN
+	// 2ã¤ç›®ã®æ€§åˆ¥ã‚’ã¿ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if( sex == ZUKAN_WORK_GET_SEX_ERR ){
 		return 1;
 	}
@@ -477,11 +477,11 @@ u32 ZKN_GLBDATA_SaveData_SexNumGet( const ZKN_GLB_DATA* cp_glb, int monsno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒ“ƒm[ƒ“‚Ìí—Ş‚ğŒ©‚Â‚¯‚½”æ“¾
+ *	@brief	ã‚¢ãƒ³ãƒãƒ¼ãƒ³ã®ç¨®é¡ã‚’è¦‹ã¤ã‘ãŸæ•°å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
- *	@return	Œ©‚Â‚¯‚½”
+ *	@return	è¦‹ã¤ã‘ãŸæ•°
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_AnoonNumGet( const ZKN_GLB_DATA* cp_glb )
@@ -491,7 +491,7 @@ u32 ZKN_GLBDATA_SaveData_AnoonNumGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[ƒEƒV@í—Şæ“¾
+ *	@brief	ã‚·ãƒ¼ã‚¦ã‚·ã€€ç¨®é¡å–å¾—
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_SiiusiNumGet( const ZKN_GLB_DATA* cp_glb )
@@ -501,7 +501,7 @@ u32 ZKN_GLBDATA_SaveData_SiiusiNumGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒV[ƒhƒ‹ƒS@í—Şæ“¾
+ *	@brief	ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´ã€€ç¨®é¡å–å¾—
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_SiidorugoNumGet( const ZKN_GLB_DATA* cp_glb )
@@ -511,7 +511,7 @@ u32 ZKN_GLBDATA_SaveData_SiidorugoNumGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒmƒ€ƒbƒ`@í—Şæ“¾
+ *	@brief	ãƒŸãƒãƒ ãƒƒãƒã€€ç¨®é¡å–å¾—
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_MinomuttiNumGet( const ZKN_GLB_DATA* cp_glb )
@@ -521,7 +521,7 @@ u32 ZKN_GLBDATA_SaveData_MinomuttiNumGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒmƒƒX@í—Şæ“¾
+ *	@brief	ãƒŸãƒãƒ¡ã‚¹ã€€ç¨®é¡å–å¾—
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_MinomesuNumGet( const ZKN_GLB_DATA* cp_glb )
@@ -531,11 +531,11 @@ u32 ZKN_GLBDATA_SaveData_MinomesuNumGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒpƒbƒ`[ƒ‹ŒÅ‘Ì—”æ“¾
+ *	@brief	ãƒ‘ãƒƒãƒãƒ¼ãƒ«å›ºä½“ä¹±æ•°å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒ[ƒN
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ŒÅ‘Ì—”
+ *	@return	å›ºä½“ä¹±æ•°
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_PattiruRndGet( const ZKN_GLB_DATA* cp_glb )
@@ -545,11 +545,11 @@ u32 ZKN_GLBDATA_SaveData_PattiruRndGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒIƒLƒVƒXƒtƒHƒ‹ƒ€æ“¾
+ *	@brief	ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãƒ•ã‚©ãƒ«ãƒ å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
+ *	@return	ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_DeokisisuFormGet( const ZKN_GLB_DATA* cp_glb, int count )
@@ -559,11 +559,11 @@ u32 ZKN_GLBDATA_SaveData_DeokisisuFormGet( const ZKN_GLB_DATA* cp_glb, int count
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒfƒIƒLƒVƒXŒ`óŒ©‚½”æ“¾
+ *	@brief	ãƒ‡ã‚ªã‚­ã‚·ã‚¹å½¢çŠ¶è¦‹ãŸæ•°å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒfƒIƒLƒVƒXŒ`óŒ©‚½”
+ *	@return	ãƒ‡ã‚ªã‚­ã‚·ã‚¹å½¢çŠ¶è¦‹ãŸæ•°
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_DeokisisuFormSeeNumGet( const ZKN_GLB_DATA* cp_glb )
@@ -573,13 +573,13 @@ u32 ZKN_GLBDATA_SaveData_DeokisisuFormSeeNumGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚ÌŒ©‚½ƒtƒHƒ‹ƒ€æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã®è¦‹ãŸãƒ•ã‚©ãƒ«ãƒ å–å¾—
  *
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- *	@param	count		ƒJƒEƒ“ƒg
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ *	@param	count		ã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@return	ƒtƒHƒ‹ƒ€ƒiƒ“ƒo[
+ *	@return	ãƒ•ã‚©ãƒ«ãƒ ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_FormGet( const ZKN_GLB_DATA* cp_glb, u32 monsno, int count )
@@ -589,12 +589,12 @@ u32 ZKN_GLBDATA_SaveData_FormGet( const ZKN_GLB_DATA* cp_glb, u32 monsno, int co
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“‚ÌŒ©‚½ƒtƒHƒ‹ƒ€”æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã®è¦‹ãŸãƒ•ã‚©ãƒ«ãƒ æ•°å–å¾—
  *
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	Œ©‚½”
+ *	@return	è¦‹ãŸæ•°
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_SaveData_FormNumGet( const ZKN_GLB_DATA* cp_glb, u32 monsno )
@@ -604,12 +604,12 @@ u32 ZKN_GLBDATA_SaveData_FormNumGet( const ZKN_GLB_DATA* cp_glb, u32 monsno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒ“ƒRƒN}ŠÓŠ®¬‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¼ãƒ³ã‚³ã‚¯å›³é‘‘å®Œæˆã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  * 
- *	@param	cp_glb	ƒ[ƒN
+ *	@param	cp_glb	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	Š®¬
- *	@retval	FALSE	–¢Š®¬
+ *	@retval	TRUE	å®Œæˆ
+ *	@retval	FALSE	æœªå®Œæˆ
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_SaveData_ZenkokuZukanComp( const ZKN_GLB_DATA* cp_glb )
@@ -619,12 +619,12 @@ BOOL ZKN_GLBDATA_SaveData_ZenkokuZukanComp( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ[ƒ“ƒRƒN}ŠÓæ“¾‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	ã‚¼ãƒ³ã‚³ã‚¯å›³é‘‘å–å¾—ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  * 
- *	@param	cp_glb	ƒ[ƒN
+ *	@param	cp_glb	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	æ“¾
- *	@retval	FALSE	–¢æ“¾
+ *	@retval	TRUE	å–å¾—
+ *	@retval	FALSE	æœªå–å¾—
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_SaveData_ZenkokuZukanGet( const ZKN_GLB_DATA* cp_glb )
@@ -636,10 +636,10 @@ BOOL ZKN_GLBDATA_SaveData_ZenkokuZukanGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒeƒLƒXƒgŒ©‚½ƒtƒ‰ƒO
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ†ã‚­ã‚¹ãƒˆè¦‹ãŸãƒ•ãƒ©ã‚°
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 void ZKN_GLBDATA_PokeTextSeeSetMonsno( ZKN_GLB_DATA* p_glb, u32 monsno )
@@ -649,9 +649,9 @@ void ZKN_GLBDATA_PokeTextSeeSetMonsno( ZKN_GLB_DATA* p_glb, u32 monsno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÅŒã‚ÉŒ©‚½ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[æ“¾
+ *	@brief	æœ€å¾Œã«è¦‹ãŸãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_PokeTextSeeGetMonsno( const ZKN_GLB_DATA* cp_glb )
@@ -661,10 +661,10 @@ u32 ZKN_GLBDATA_PokeTextSeeGetMonsno( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒeƒLƒXƒgŒ©‚½ƒtƒ‰ƒO
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ†ã‚­ã‚¹ãƒˆè¦‹ãŸãƒ•ãƒ©ã‚°
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	zkn_mode	}ŠÓÓ°ÄŞ
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_mode	å›³é‘‘ãƒ¢ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 void ZKN_GLBDATA_PokeTextSeeSetZknMode( ZKN_GLB_DATA* p_glb, u32 zkn_mode )
@@ -674,9 +674,9 @@ void ZKN_GLBDATA_PokeTextSeeSetZknMode( ZKN_GLB_DATA* p_glb, u32 zkn_mode )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ÅŒã‚ÉŒ©‚½ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[æ“¾
+ *	@brief	æœ€å¾Œã«è¦‹ãŸãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_PokeTextSeeGetZknMode( const ZKN_GLB_DATA* cp_glb )
@@ -688,12 +688,12 @@ u32 ZKN_GLBDATA_PokeTextSeeGetZknMode( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒo[ƒWƒ‡ƒ“ƒtƒ‰ƒOæ“¾
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
- *	@retval	TRUE	ƒo[ƒWƒ‡ƒ“ƒAƒbƒvŠ®—¹
- *	@retval	FALSE	ƒo[ƒWƒ‡ƒ“ƒAƒbƒv–¢Š®—¹
+ *	@retval	TRUE	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—å®Œäº†
+ *	@retval	FALSE	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—æœªå®Œäº†
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_SaveData_GraModeGet( const ZKN_GLB_DATA* cp_glb )
@@ -703,13 +703,13 @@ BOOL ZKN_GLBDATA_SaveData_GraModeGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ¾Œêƒo[ƒWƒ‡ƒ“ƒtƒ‰ƒOæ“¾
+ *	@brief	è¨€èªãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	country		‘ƒR[ƒh 
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	country		å›½ã‚³ãƒ¼ãƒ‰ 
  *
- *	@retval	TRUE	ƒo[ƒWƒ‡ƒ“ƒAƒbƒvŠ®—¹
- *	@retval	FALSE	ƒo[ƒWƒ‡ƒ“ƒAƒbƒv–¢Š®—¹
+ *	@retval	TRUE	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—å®Œäº†
+ *	@retval	FALSE	ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—æœªå®Œäº†
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_SaveData_TextModeGet( const ZKN_GLB_DATA* cp_glb, int country )
@@ -721,35 +721,35 @@ BOOL ZKN_GLBDATA_SaveData_TextModeGet( const ZKN_GLB_DATA* cp_glb, int country )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹‚Ìì¬
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
  *
- *	@param	p_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	sort_type		ƒ\[ƒgƒ^ƒCƒv
- *	@param	search_name		–¼‘OƒT[ƒ`
- *	@param	search_type1	ƒ^ƒCƒvƒT[ƒ`
- *	@param	search_type2	ƒ^ƒCƒvƒT[ƒ`
- *	@param	search_form		ƒtƒH[ƒ€ƒT[ƒ`
- *	@param	shinoh			ƒVƒ“ƒIƒE}ŠÓ‚È‚çTRUE
- *	@param	heap			g—pƒq[ƒv
- *	@param	dummy_list_cut	ƒ_ƒ~[ƒŠƒXƒgƒJƒbƒgƒtƒ‰ƒO
+ *	@param	p_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	sort_type		ã‚½ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—
+ *	@param	search_name		åå‰ã‚µãƒ¼ãƒ
+ *	@param	search_type1	ã‚¿ã‚¤ãƒ—ã‚µãƒ¼ãƒ
+ *	@param	search_type2	ã‚¿ã‚¤ãƒ—ã‚µãƒ¼ãƒ
+ *	@param	search_form		ãƒ•ã‚©ãƒ¼ãƒ ã‚µãƒ¼ãƒ
+ *	@param	shinoh			ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãªã‚‰TRUE
+ *	@param	heap			ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
+ *	@param	dummy_list_cut	ãƒ€ãƒŸãƒ¼ãƒªã‚¹ãƒˆã‚«ãƒƒãƒˆãƒ•ãƒ©ã‚°
  *	
- *	@retval	TRUE	ì¬¬Œ÷
- *	@retval	FALSE	ì¬Œ‹‰ÊƒŠƒXƒg‚ª‚OŒÂ
+ *	@retval	TRUE	ä½œæˆæˆåŠŸ
+ *	@retval	FALSE	ä½œæˆçµæœãƒªã‚¹ãƒˆãŒï¼å€‹
  *
  *
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_PokeListTblMake_DummyListCutFlg( ZKN_GLB_DATA* p_glb, int sort_type, int search_name, int search_type1, int search_type2, int search_form, int shinoh, int heap, BOOL dummy_list_cut )
 {
-	u16* p_buff0;	// ŒŸõŒ³ÃŞ°À—pƒe[ƒuƒ‹ƒoƒbƒtƒ@
+	u16* p_buff0;	// æ¤œç´¢å…ƒãƒ‡ãƒ¼ã‚¿ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡
 	int count0;
-	u16* p_buff1;	// ŒŸõŒ‹‰Êó‚¯æ‚è—pƒe[ƒuƒ‹ƒoƒbƒtƒ@
+	u16* p_buff1;	// æ¤œç´¢çµæœå—ã‘å–ã‚Šç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ãƒãƒƒãƒ•ã‚¡
 	int count1;
-	u16* p_all_list_data;	// ¿°Ä‘O‘SÎß¹ÓİØ½ÄÃŞ°À
+	u16* p_all_list_data;	// ã‚½ãƒ¼ãƒˆå‰å…¨ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 	int all_list_data_count;
 	BOOL ret;
 
-	// ƒoƒbƒtƒ@—Ìˆæ‚ğŠm•Û
+	// ãƒãƒƒãƒ•ã‚¡é ˜åŸŸã‚’ç¢ºä¿
 	p_buff0 = sys_AllocMemoryLo( heap, sizeof(u16) * POKEMON_LIST_TBL_NUM );
 	GF_ASSERT( p_buff0 );
 	memset( p_buff0, 0, sizeof(u16) * POKEMON_LIST_TBL_NUM );
@@ -759,78 +759,78 @@ BOOL ZKN_GLBDATA_PokeListTblMake_DummyListCutFlg( ZKN_GLB_DATA* p_glb, int sort_
 	memset( p_buff1, 0, sizeof(u16) * POKEMON_LIST_TBL_NUM );
 	count1 = 0;
 
-	// ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğƒVƒ“ƒIƒEƒe[ƒuƒ‹‚©‚ç‚Á‚Ä‚­‚é‚Ì‚©
-	// ‘S‘}ŠÓ‚©‚ç‚à‚Á‚Ä‚­‚é‚Ì‚©
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ã‚·ãƒ³ã‚ªã‚¦ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰æŒã£ã¦ãã‚‹ã®ã‹
+	// å…¨å›½å›³é‘‘ã‹ã‚‰ã‚‚ã£ã¦ãã‚‹ã®ã‹
 	if( shinoh == ZKN_MODE_SHINOH ){
-		// ƒVƒ“ƒIƒE
+		// ã‚·ãƒ³ã‚ªã‚¦
 		p_all_list_data = ZKN_SORTDATA_Get( heap, ZKN_SORTDATA_SHINOH, &all_list_data_count );
 		ZknPokeListTblMakeSortData( p_buff0, &count0, p_glb->cp_zukansave_data, p_all_list_data, all_list_data_count );
 	}else{
-		// ‘S‘
+		// å…¨å›½
 		p_all_list_data = ZKN_SORTDATA_Get( heap, ZKN_SORTDATA_ZENKOKU, &all_list_data_count );
 		ZknPokeListTblMakeSortData( p_buff0, &count0, p_glb->cp_zukansave_data, p_all_list_data, all_list_data_count );
 	}
 	
-	// ¿°Ä
+	// ã‚½ãƒ¼ãƒˆ
 	ZknPokeListSort_Core( sort_type, p_buff1, &count1, p_buff0, count0, heap, p_glb->cp_zukansave_data );
-	memcpy( p_buff0, p_buff1, sizeof(u16) * count1 );	// ƒf[ƒ^ƒRƒs[
+	memcpy( p_buff0, p_buff1, sizeof(u16) * count1 );	// ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 	count0 = count1;
 	memset( p_buff1, 0, sizeof(u16) * count1 );
 	count1 = 0;
 	
-	// ŒŸõˆ—
+	// æ¤œç´¢å‡¦ç†
 	do{
-		// ‚È‚Ü‚¦‚¯‚ñ‚³‚­
+		// ãªã¾ãˆã‘ã‚“ã•ã
 		ZknPokeListSarchName_Core( search_name, p_buff1, &count1, p_buff0, count0, heap, p_glb->cp_zukansave_data );
 		if( count1 == 0 ){
 			ret = FALSE;
 			break;
 		}
-		memcpy( p_buff0, p_buff1, sizeof(u16) * count1 );	// ƒf[ƒ^ƒRƒs[
+		memcpy( p_buff0, p_buff1, sizeof(u16) * count1 );	// ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 		count0 = count1;
 		memset( p_buff1, 0, sizeof(u16) * count1 );
 		count1 = 0;
 
-		// ƒ^ƒCƒv
+		// ã‚¿ã‚¤ãƒ—
 		ZknPokeListSarchType_Core( search_type1, p_buff1, &count1, p_buff0, count0, heap, p_glb->cp_zukansave_data );
 		if( count1 == 0 ){
 			ret = FALSE;
 			break;
 		}
-		memcpy( p_buff0, p_buff1, sizeof(u16) * count1 );	// ƒf[ƒ^ƒRƒs[
+		memcpy( p_buff0, p_buff1, sizeof(u16) * count1 );	// ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 		count0 = count1;
 		memset( p_buff1, 0, sizeof(u16) * count1 );
 		count1 = 0;
 
-		// À²Ìß2
+		// ã‚¿ã‚¤ãƒ—2
 		ZknPokeListSarchType_Core( search_type2, p_buff1, &count1, p_buff0, count0, heap, p_glb->cp_zukansave_data );
 		if( count1 == 0 ){
 			ret = FALSE;
 			break;
 		}
-		memcpy( p_buff0, p_buff1, sizeof(u16) * count1 );	// ƒf[ƒ^ƒRƒs[
+		memcpy( p_buff0, p_buff1, sizeof(u16) * count1 );	// ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 		count0 = count1;
 		memset( p_buff1, 0, sizeof(u16) * count1 );
 		count1 = 0;
 
-		// ‚©‚½‚¿
+		// ã‹ãŸã¡
 		ZknPokeListSarchForm_Core( search_form, p_buff1, &count1, p_buff0, count0, heap, p_glb->cp_zukansave_data );
 		if( count1 == 0 ){
 			ret = FALSE;
 			break;
 		}
-		memcpy( p_buff0, p_buff1, sizeof(u16) * count1 );	// ƒf[ƒ^ƒRƒs[
+		memcpy( p_buff0, p_buff1, sizeof(u16) * count1 );	// ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 		count0 = count1;
 		memset( p_buff1, 0, sizeof(u16) * count1 );
 		count1 = 0;
 
 
-		// ÃŞ°À‚ª‚ ‚Á‚½‚çƒŠƒXƒgì¬
-		// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒf[ƒ^ì¬
+		// ãƒ‡ãƒ¼ã‚¿ãŒã‚ã£ãŸã‚‰ãƒªã‚¹ãƒˆä½œæˆ
+		// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		ZknPokeListTblMake( &p_glb->poke_list, p_glb->cp_zukansave_data, p_buff0, count0 );
 
-		// ŒŸõƒ\[ƒg‚ª‚©‚©‚Á‚½‚Æ‚«‚ÍƒRƒs[‚·‚é‚Ì‚İ
-		// ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ÅƒŠƒXƒgì¬‚µ‚½‚Æ‚«‚Íƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚Å•`‰æƒŠƒXƒg‚ğì¬‚·‚é
+		// æ¤œç´¢ã‚½ãƒ¼ãƒˆãŒã‹ã‹ã£ãŸã¨ãã¯ã‚³ãƒ”ãƒ¼ã™ã‚‹ã®ã¿
+		// ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã§ãƒªã‚¹ãƒˆä½œæˆã—ãŸã¨ãã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã§æç”»ãƒªã‚¹ãƒˆã‚’ä½œæˆã™ã‚‹
 		if( ((sort_type != ZKN_POKELIST_SORT_NORMAL) ||
 			(search_name != ZKN_POKELIST_SEARCH_NAME_NONE) ||
 			(search_type1 != ZKN_POKELIST_SEARCH_TYPE_NONE) ||
@@ -848,11 +848,11 @@ BOOL ZKN_GLBDATA_PokeListTblMake_DummyListCutFlg( ZKN_GLB_DATA* p_glb, int sort_
 	}while(0);
 	
 
-	// ‚İ‚Â‚¯‚½‚©‚¸@•ß‚Ü‚¦‚½”ŒvZ
+	// ã¿ã¤ã‘ãŸã‹ãšã€€æ•ã¾ãˆãŸæ•°è¨ˆç®—
 	ZknPokeListTblSeeGetNumCount( &p_glb->poke_list, &p_glb->see_num, &p_glb->get_num );
 	
 
-	// ƒoƒbƒtƒ@”jŠü
+	// ãƒãƒƒãƒ•ã‚¡ç ´æ£„
 	sys_FreeMemoryEz( p_buff0 );
 	sys_FreeMemoryEz( p_buff1 );
 	sys_FreeMemoryEz( p_all_list_data );
@@ -864,20 +864,20 @@ BOOL ZKN_GLBDATA_PokeListTblMake_DummyListCutFlg( ZKN_GLB_DATA* p_glb, int sort_
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹‚Ìì¬
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
  *
- *	@param	p_glb			ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	sort_type		ƒ\[ƒgƒ^ƒCƒv
- *	@param	search_name		–¼‘OƒT[ƒ`
- *	@param	search_type1	ƒ^ƒCƒvƒT[ƒ`
- *	@param	search_type2	ƒ^ƒCƒvƒT[ƒ`
- *	@param	search_form		ƒtƒH[ƒ€ƒT[ƒ`
- *	@param	shinoh			ƒVƒ“ƒIƒE}ŠÓ‚È‚çTRUE
- *	@param	heap			g—pƒq[ƒv
- *	@param	dummy_list_cut	ƒ_ƒ~[ƒŠƒXƒgƒJƒbƒgƒtƒ‰ƒO
+ *	@param	p_glb			ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	sort_type		ã‚½ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—
+ *	@param	search_name		åå‰ã‚µãƒ¼ãƒ
+ *	@param	search_type1	ã‚¿ã‚¤ãƒ—ã‚µãƒ¼ãƒ
+ *	@param	search_type2	ã‚¿ã‚¤ãƒ—ã‚µãƒ¼ãƒ
+ *	@param	search_form		ãƒ•ã‚©ãƒ¼ãƒ ã‚µãƒ¼ãƒ
+ *	@param	shinoh			ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ãªã‚‰TRUE
+ *	@param	heap			ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
+ *	@param	dummy_list_cut	ãƒ€ãƒŸãƒ¼ãƒªã‚¹ãƒˆã‚«ãƒƒãƒˆãƒ•ãƒ©ã‚°
  *	
- *	@retval	TRUE	ì¬¬Œ÷
- *	@retval	FALSE	ì¬Œ‹‰ÊƒŠƒXƒg‚ª‚OŒÂ
+ *	@retval	TRUE	ä½œæˆæˆåŠŸ
+ *	@retval	FALSE	ä½œæˆçµæœãƒªã‚¹ãƒˆãŒï¼å€‹
  *
  *
  */
@@ -890,23 +890,23 @@ BOOL ZKN_GLBDATA_PokeListTblMake( ZKN_GLB_DATA* p_glb, int sort_type, int search
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘S‘}ŠÓƒ‚[ƒh‚É•ÏX‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	å…¨å›½å›³é‘‘ãƒ¢ãƒ¼ãƒ‰ã«å¤‰æ›´ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	zkn_mode	•ÏX‚·‚é}ŠÓƒ‚[ƒh
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_mode	å¤‰æ›´ã™ã‚‹å›³é‘‘ãƒ¢ãƒ¼ãƒ‰
  *
- *	@retval	TRUE	o—ˆ‚é
- *	@retval FALSE	o—ˆ‚È‚¢
+ *	@retval	TRUE	å‡ºæ¥ã‚‹
+ *	@retval FALSE	å‡ºæ¥ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_PokeZknModeChengeCheck( const ZKN_GLB_DATA* cp_glb, int zkn_mode )
 {
-	// ƒVƒ“ƒIƒE}ŠÓ‚Í–³ğŒ
+	// ã‚·ãƒ³ã‚ªã‚¦å›³é‘‘ã¯ç„¡æ¡ä»¶
 	if( zkn_mode == ZKN_MODE_SHINOH ){
 		return TRUE;
 	}
 
-	// ‘S‘‚Í‘S‘}ŠÓ‚ğ‚Á‚Ä‚¢‚½‚çOK
+	// å…¨å›½ã¯å…¨å›½å›³é‘‘ã‚’æŒã£ã¦ã„ãŸã‚‰OK
 	if( cp_glb->zkn_allmap_get ){
 		return TRUE;
 	}
@@ -916,13 +916,13 @@ BOOL ZKN_GLBDATA_PokeZknModeChengeCheck( const ZKN_GLB_DATA* cp_glb, int zkn_mod
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒ‚[ƒh•ÏX
+ *	@brief	å›³é‘‘ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	zkn_mode	}ŠÓƒ‚[ƒh
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_mode	å›³é‘‘ãƒ¢ãƒ¼ãƒ‰
  *
- *	@retval	TRUE		•ÏX‚Å‚«‚½
- *	@retval	FALSE		•ÏX‚Å‚«‚È‚©‚Á‚½
+ *	@retval	TRUE		å¤‰æ›´ã§ããŸ
+ *	@retval	FALSE		å¤‰æ›´ã§ããªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_PokeZknModeChenge( ZKN_GLB_DATA* p_glb, int zkn_mode )
@@ -941,11 +941,11 @@ BOOL ZKN_GLBDATA_PokeZknModeChenge( ZKN_GLB_DATA* p_glb, int zkn_mode )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓƒ‚[ƒh‚ğæ“¾
+ *	@brief	å›³é‘‘ãƒ¢ãƒ¼ãƒ‰ã‚’å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	}ŠÓƒ‚[ƒh
+ *	@return	å›³é‘‘ãƒ¢ãƒ¼ãƒ‰
  */
 //-----------------------------------------------------------------------------
 int ZKN_GLBDATA_PokeZknModeGet( const ZKN_GLB_DATA* cp_glb )
@@ -955,18 +955,18 @@ int ZKN_GLBDATA_PokeZknModeGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**	
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹ƒiƒ“ƒo[İ’è‰Â”\Áª¯¸
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼è¨­å®šå¯èƒ½ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	no			ƒ`ƒFƒbƒNƒiƒ“ƒo[
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	no			ãƒã‚§ãƒƒã‚¯ãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	TRUE	İ’è‰Â”\
- *	@retval	FALSE	İ’è•s‰Â”\
+ *	@retval	TRUE	è¨­å®šå¯èƒ½
+ *	@retval	FALSE	è¨­å®šä¸å¯èƒ½
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_PokeListTblNoSetCheck( const ZKN_GLB_DATA* cp_glb, int no )
 {
-	// İ’è‰Â”\‚©ƒ`ƒFƒbƒN
+	// è¨­å®šå¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯
 	if( ((no) >= 0) &&
 		((no) < cp_glb->poke_list.tbl_poke_num) ){
 		return TRUE;
@@ -977,18 +977,18 @@ BOOL ZKN_GLBDATA_PokeListTblNoSetCheck( const ZKN_GLB_DATA* cp_glb, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹ƒiƒ“ƒo[İ’è
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼è¨­å®š
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	no			İ’èƒiƒ“ƒo[
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	no			è¨­å®šãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	TRUE	İ’è¬Œ÷
- *	@retval	FALSE	İ’è¸”s	i’l‚ª•s³j
+ *	@retval	TRUE	è¨­å®šæˆåŠŸ
+ *	@retval	FALSE	è¨­å®šå¤±æ•—	ï¼ˆå€¤ãŒä¸æ­£ï¼‰
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_PokeListTblNoSet( ZKN_GLB_DATA* p_glb, int no )
 {
-	// İ’è‰Â”\‚©ƒ`ƒFƒbƒN
+	// è¨­å®šå¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_GLBDATA_PokeListTblNoSetCheck( p_glb, no ) ){
 		p_glb->poke_list.tbl_no = no;
 		return TRUE;
@@ -999,13 +999,13 @@ BOOL ZKN_GLBDATA_PokeListTblNoSet( ZKN_GLB_DATA* p_glb, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘«‚µZ
+ *	@brief	è¶³ã—ç®—
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	no		‘«‚·’l
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	no		è¶³ã™å€¤
  *
- *	@retval	TRUE	İ’è¬Œ÷
- *	@retval	FALSE	İ’è¸”s		0‚©Å‘å”‚É‚È‚Á‚Ä‚¢‚Ü‚·
+ *	@retval	TRUE	è¨­å®šæˆåŠŸ
+ *	@retval	FALSE	è¨­å®šå¤±æ•—		0ã‹æœ€å¤§æ•°ã«ãªã£ã¦ã„ã¾ã™
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_PokeListTblNoAdd( ZKN_GLB_DATA* p_glb, int no )
@@ -1026,11 +1026,11 @@ BOOL ZKN_GLBDATA_PokeListTblNoAdd( ZKN_GLB_DATA* p_glb, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒe[ƒuƒ‹ƒiƒ“ƒo[æ“¾
+ *	@brief	ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	Œ»İ‚Ìƒe[ƒuƒ‹ƒiƒ“ƒo[
+ *	@return	ç¾åœ¨ã®ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 int ZKN_GLBDATA_PokeListTblNoGet( const ZKN_GLB_DATA* cp_glb )
@@ -1040,11 +1040,11 @@ int ZKN_GLBDATA_PokeListTblNoGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹”æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«æ•°å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒe[ƒuƒ‹”
+ *	@return	ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
  */
 //-----------------------------------------------------------------------------
 int ZKN_GLBDATA_PokeListTblNumGet( const ZKN_GLB_DATA* cp_glb )
@@ -1054,12 +1054,12 @@ int ZKN_GLBDATA_PokeListTblNumGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚©‚çƒŠƒXƒgƒe[ƒuƒ‹ƒiƒ“ƒo[‚ğæ“¾
+ *	@brief	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	ƒe[ƒuƒ‹ƒiƒ“ƒo[  ƒe[ƒuƒ‹Å‘å”‚Ì‚Æ‚«‚ÍA–³‚©‚Á‚½‚Æ‚«
+ *	@return	ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼  ãƒ†ãƒ¼ãƒ–ãƒ«æœ€å¤§æ•°ã®ã¨ãã¯ã€ç„¡ã‹ã£ãŸã¨ã
  */
 //-----------------------------------------------------------------------------
 int ZKN_GLBDATA_PokeListTblNoGet_Monsno( const ZKN_GLB_DATA* cp_glb, u32 monsno )
@@ -1079,13 +1079,13 @@ int ZKN_GLBDATA_PokeListTblNoGet_Monsno( const ZKN_GLB_DATA* cp_glb, u32 monsno 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚É‘Î‰‚µ‚½ƒŠƒXƒg‚ğİ’è‚·‚é
+ *	@brief	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã«å¯¾å¿œã—ãŸãƒªã‚¹ãƒˆã‚’è¨­å®šã™ã‚‹
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	monsno	Óİ½À°ÅİÊŞ°
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	monsno	ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	TRUE		İ’è¬Œ÷
- *	@retval	FALSE		İ’è¸”s
+ *	@retval	TRUE		è¨­å®šæˆåŠŸ
+ *	@retval	FALSE		è¨­å®šå¤±æ•—
  */	
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_PokeListTblNoSet_Monsno( ZKN_GLB_DATA* p_glb, int monsno )
@@ -1102,11 +1102,11 @@ BOOL ZKN_GLBDATA_PokeListTblNoSet_Monsno( ZKN_GLB_DATA* p_glb, int monsno )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ *	@return	ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 int ZKN_GLBDATA_PokeMonsNoGet( const ZKN_GLB_DATA* cp_glb )
@@ -1116,13 +1116,13 @@ int ZKN_GLBDATA_PokeMonsNoGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“@•ßŠl@”­Œ©ƒ^ƒCƒvæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã€€æ•ç²ã€€ç™ºè¦‹ã‚¿ã‚¤ãƒ—å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_POKELIST_TYPE_NONE,	// ‚í‚©‚ç‚È‚¢
- *	@retval ZKN_POKELIST_TYPE_SEE,	// Œ©‚Â‚¯‚½
- *	@retval	ZKN_POKELIST_TYPE_GET,	// •ß‚Ü‚¦‚½
+ *	@retval	ZKN_POKELIST_TYPE_NONE,	// ã‚ã‹ã‚‰ãªã„
+ *	@retval ZKN_POKELIST_TYPE_SEE,	// è¦‹ã¤ã‘ãŸ
+ *	@retval	ZKN_POKELIST_TYPE_GET,	// æ•ã¾ãˆãŸ
  */
 //-----------------------------------------------------------------------------
 int ZKN_GLBDATA_PokeMonsTypeGet( const ZKN_GLB_DATA* cp_glb )
@@ -1133,17 +1133,17 @@ int ZKN_GLBDATA_PokeMonsTypeGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
  *
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	tbl_no		ƒe[[ƒuƒ‹ƒiƒ“ƒo[
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	tbl_no		ãƒ†ãƒ¼ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *
- *	@return	ƒe[ƒuƒ‹ƒ|ƒCƒ“ƒ^
+ *	@return	ãƒ†ãƒ¼ãƒ–ãƒ«ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 const ZKN_POKELIST_DATA* ZKN_GLBDATA_PokeListTblGet( const ZKN_GLB_DATA* cp_glb, int tbl_no )
 {
-	//æ“¾‰Â”\‚©Áª¯¸ 
+	//å–å¾—å¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯ 
 	if( ZKN_GLBDATA_PokeListTblNoSetCheck( cp_glb, tbl_no ) ){
 		return &cp_glb->poke_list.zkn_pokelist_tbl[ tbl_no ];
 	}
@@ -1153,13 +1153,13 @@ const ZKN_POKELIST_DATA* ZKN_GLBDATA_PokeListTblGet( const ZKN_GLB_DATA* cp_glb,
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Ìƒe[ƒuƒ‹ƒiƒ“ƒo[İ’èƒ`ƒFƒbƒN
+ *	@brief	æç”»ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼è¨­å®šãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	no		İ’èƒiƒ“ƒo[
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	no		è¨­å®šãƒŠãƒ³ãƒãƒ¼
  *
- *	@retval	TRUE ¬Œ÷
- *	@retval	FALSE ¸”s
+ *	@retval	TRUE æˆåŠŸ
+ *	@retval	FALSE å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_PokeListDrawTblNoSetCheck( const ZKN_GLB_DATA* cp_glb, int no )
@@ -1173,13 +1173,13 @@ BOOL ZKN_GLBDATA_PokeListDrawTblNoSetCheck( const ZKN_GLB_DATA* cp_glb, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒiƒ“ƒo[İ’è
+ *	@brief	æç”»ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼è¨­å®š
  *
- *	@param	p_glb	ƒOƒ[ƒoƒ‹
- *	@param	no		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹ƒiƒ“ƒo[
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	no		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *	
- *	@retval	TRUE ¬Œ÷
- *	@retval	FALSE ¸”s
+ *	@retval	TRUE æˆåŠŸ
+ *	@retval	FALSE å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_PokeListDrawTblNoSet( ZKN_GLB_DATA* p_glb, int no )
@@ -1187,7 +1187,7 @@ BOOL ZKN_GLBDATA_PokeListDrawTblNoSet( ZKN_GLB_DATA* p_glb, int no )
 	if( ZKN_GLBDATA_PokeListDrawTblNoSetCheck( p_glb, no ) ){
 		p_glb->poke_list.draw_tbl_no = no;
 
-		// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚É‚à”½‰f
+		// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã«ã‚‚åæ˜ 
 		ZKN_GLBDATA_PokeListTblNoSet( p_glb, p_glb->poke_list.zkn_pokelistdraw_tbl[ p_glb->poke_list.draw_tbl_no ] );
 		return TRUE;
 	}
@@ -1197,7 +1197,7 @@ BOOL ZKN_GLBDATA_PokeListDrawTblNoSet( ZKN_GLB_DATA* p_glb, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒiƒ“ƒo[‘«‚µZ
+ *	@brief	æç”»ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼è¶³ã—ç®—
  *
  *	@param	p_glb
  *	@param	no 
@@ -1210,7 +1210,7 @@ BOOL ZKN_GLBDATA_PokeListDrawTblNoAdd( ZKN_GLB_DATA* p_glb, int no )
 	if( ZKN_GLBDATA_PokeListDrawTblNoAddCheck( p_glb, no ) ){
 		p_glb->poke_list.draw_tbl_no += no;
 
-		// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚É‚à”½‰f
+		// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã«ã‚‚åæ˜ 
 		ZKN_GLBDATA_PokeListTblNoSet( p_glb, p_glb->poke_list.zkn_pokelistdraw_tbl[ p_glb->poke_list.draw_tbl_no ] );
 		return TRUE;
 	}
@@ -1220,7 +1220,7 @@ BOOL ZKN_GLBDATA_PokeListDrawTblNoAdd( ZKN_GLB_DATA* p_glb, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘«‚µZ‚Å‚«‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	è¶³ã—ç®—ã§ãã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
  *	@param	p_glb
  *	@param	no 
@@ -1238,9 +1238,9 @@ BOOL ZKN_GLBDATA_PokeListDrawTblNoAddCheck( ZKN_GLB_DATA* p_glb, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒe[ƒuƒ‹ƒiƒ“ƒo[æ“¾
+ *	@brief	æç”»ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
- *	@param	cp_glb	Œ»İ•`‰æƒOƒ[ƒoƒ‹ƒiƒ“ƒo[İ’è
+ *	@param	cp_glb	ç¾åœ¨æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒŠãƒ³ãƒãƒ¼è¨­å®š
  *
  *	@return	
  */
@@ -1252,7 +1252,7 @@ int ZKN_GLBDATA_PokeListDrawTblNoGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒe[ƒuƒ‹”æ“¾
+ *	@brief	æç”»ãƒ†ãƒ¼ãƒ–ãƒ«æ•°å–å¾—
  *
  *	@param	cp_glb 
  *
@@ -1266,7 +1266,7 @@ int ZKN_GLBDATA_PokeListDrawTblNumGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•\¦ƒf[ƒ^ƒe[ƒuƒ‹ƒiƒ“ƒo[æ“¾
+ *	@brief	è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼å–å¾—
  *
  *	@param	cp_glb
  *	@param	no 
@@ -1281,9 +1281,9 @@ int ZKN_GLBDATA_PokeListDrawTblDataGet( const ZKN_GLB_DATA* cp_glb, int no )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚Ìƒ|ƒPƒŠƒXƒg‘I‘ğˆÊ’u‚É•`‰æƒŠƒXƒgˆÊ’u‚ğ‡‚í‚¹‚é
+ *	@brief	ä»Šã®ãƒã‚±ãƒªã‚¹ãƒˆé¸æŠä½ç½®ã«æç”»ãƒªã‚¹ãƒˆä½ç½®ã‚’åˆã‚ã›ã‚‹
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return
  */
@@ -1305,11 +1305,11 @@ void ZKN_GLBDATA_PokeListDrawTblSetNowTblNo( ZKN_GLB_DATA* p_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“”­Œ©”æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ç™ºè¦‹æ•°å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	”­Œ©”
+ *	@return	ç™ºè¦‹æ•°
  */
 //-----------------------------------------------------------------------------
 int ZKN_GLBDATA_PokeSeeNumGet( const ZKN_GLB_DATA* cp_glb )
@@ -1319,11 +1319,11 @@ int ZKN_GLBDATA_PokeSeeNumGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“•ßŠl”æ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³æ•ç²æ•°å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^v
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã€
  *
- *	@return	•ßŠl”
+ *	@return	æ•ç²æ•°
  */
 //-----------------------------------------------------------------------------
 int ZKN_GLBDATA_PokeGetNumGet( const ZKN_GLB_DATA* cp_glb )
@@ -1333,11 +1333,11 @@ int ZKN_GLBDATA_PokeGetNumGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒƒ€í—Ş
+ *	@brief	ãƒ­ãƒ ç¨®é¡
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	0ƒ_ƒCƒ„ 1ƒp[ƒ‹
+ *	@return	0ãƒ€ã‚¤ãƒ¤ 1ãƒ‘ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 int ZKN_GLBDATA_RomDataGet( const ZKN_GLB_DATA* cp_glb )
@@ -1347,11 +1347,11 @@ int ZKN_GLBDATA_RomDataGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ålŒö–¼
+ *	@brief	ä¸»äººå…¬å
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	ålŒö–¼
+ *	@return	ä¸»äººå…¬å
  */
 //-----------------------------------------------------------------------------
 STRBUF* ZKN_GLBDATA_HeroNameGet( const ZKN_GLB_DATA* cp_glb )
@@ -1361,11 +1361,11 @@ STRBUF* ZKN_GLBDATA_HeroNameGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ålŒö«•Ê
+ *	@brief	ä¸»äººå…¬æ€§åˆ¥
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@return	«•Ê
+ *	@return	æ€§åˆ¥
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_HeroSexGet( const ZKN_GLB_DATA* cp_glb )
@@ -1375,20 +1375,20 @@ u32 ZKN_GLBDATA_HeroSexGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ŠO‘ŒêƒeƒLƒXƒgƒo[ƒWƒ‡ƒ“ƒtƒ‰ƒOæ“¾
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³å¤–å›½èªãƒ†ã‚­ã‚¹ãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	lang	Œ¾ŒêƒR[ƒh
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	lang	è¨€èªã‚³ãƒ¼ãƒ‰
  *
- *	@retval	TRUE	ƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚é
- *	@retval	FALSE	ƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚È‚¢
+ *	@retval	TRUE	ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹
+ *	@retval	FALSE	ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_PokeTextVersionFlagGet( const ZKN_GLB_DATA* cp_glb, int lang )
 {
 	int monsno = ZKN_GLBDATA_PokeMonsNoGet( cp_glb );
 
-	// •¶šŠO‘Œê}ŠÓƒ}ƒXƒ^[ƒo[ƒWƒ‡ƒ“ƒAƒbƒv‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎAFALSE‚µ‚©•Ô‚³‚È‚¢
+	// æ–‡å­—å¤–å›½èªå›³é‘‘ãƒã‚¹ã‚¿ãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã€FALSEã—ã‹è¿”ã•ãªã„
 	if( ZukanWork_GetTextVersionUpMasterFlag( cp_glb->cp_zukansave_data ) == FALSE ){
 		return FALSE;
 	}
@@ -1397,12 +1397,12 @@ BOOL ZKN_GLBDATA_PokeTextVersionFlagGet( const ZKN_GLB_DATA* cp_glb, int lang )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒNƒo[ƒWƒ‡ƒ“ƒtƒ‰ƒO
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ•ãƒ©ã‚°
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	TRUE ƒo[ƒWƒ‡ƒ“ƒAƒbƒvÏ‚İ
- *	@retval	FALSE ƒo[ƒWƒ‡ƒ“ƒAƒbƒv‚³‚ê‚Ä‚¢‚È‚¢
+ *	@retval	TRUE ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—æ¸ˆã¿
+ *	@retval	FALSE ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚¢ãƒƒãƒ—ã•ã‚Œã¦ã„ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL ZKN_GLBDATA_PokeGraphicVersionFlagGet( const ZKN_GLB_DATA* cp_glb )
@@ -1412,22 +1412,22 @@ BOOL ZKN_GLBDATA_PokeGraphicVersionFlagGet( const ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹@ƒJ[ƒ\ƒ‹ƒtƒ‰ƒO‚ğØ‚è‘Ö‚¦‚é
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã€€ã‚«ãƒ¼ã‚½ãƒ«ãƒ•ãƒ©ã‚°ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ZKN_GLBDATA_TouchCursorFlagSet( ZKN_GLB_DATA* cp_glb )
 {
-	// ƒ^ƒbƒ`ƒpƒlƒ‹—Dæ
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å„ªå…ˆ
 	if( sys.tp_cont ){
 		cp_glb->touch_cursor_flag = ZKN_TCHCUSO_TOUCHPANEL;
 		return ;
 	}
 
-	// ƒL[‚Í—Dæ“x’á‚¢
+	// ã‚­ãƒ¼ã¯å„ªå…ˆåº¦ä½ã„
 	if( sys.trg ){
 		if( cp_glb->touch_cursor_flag == ZKN_TCHCUSO_TOUCHPANEL ){
 			cp_glb->touch_cursor_flag = ZKN_TCHCUSO_CURSOR_FAST;
@@ -1439,13 +1439,13 @@ void ZKN_GLBDATA_TouchCursorFlagSet( ZKN_GLB_DATA* cp_glb )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ^ƒbƒ`ƒpƒlƒ‹ƒJ[ƒ\ƒ‹ƒtƒ‰ƒOæ“¾
+ *	@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚«ãƒ¼ã‚½ãƒ«ãƒ•ãƒ©ã‚°å–å¾—
  *
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_TCHCUSO_TOUCHPANEL		ƒ^ƒbƒ`ƒpƒlƒ‹‚Ås‚¤
- *	@retval ZKN_TCHCUSO_CURSOR			ƒJ[ƒ\ƒ‹‚Ås‚¤
- *	@retval ZKN_TCHCUSO_CURSOR_FAST		ƒJ[ƒ\ƒ‹ŠJn
+ *	@retval	ZKN_TCHCUSO_TOUCHPANEL		ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã§è¡Œã†
+ *	@retval ZKN_TCHCUSO_CURSOR			ã‚«ãƒ¼ã‚½ãƒ«ã§è¡Œã†
+ *	@retval ZKN_TCHCUSO_CURSOR_FAST		ã‚«ãƒ¼ã‚½ãƒ«é–‹å§‹
  */
 //-----------------------------------------------------------------------------
 u32 ZKN_GLBDATA_TouchCursorFlagGet( const ZKN_GLB_DATA* cp_glb )
@@ -1458,20 +1458,20 @@ u32 ZKN_GLBDATA_TouchCursorFlagGet( const ZKN_GLB_DATA* cp_glb )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒVƒ“ƒIƒE@‘S‘@ƒŠƒXƒg‚©‚ç¡•ß‚Ü‚¦‚Ä‚ ‚éƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ğì¬
+ *	@brief	ã‚·ãƒ³ã‚ªã‚¦ã€€å…¨å›½ã€€ãƒªã‚¹ãƒˆã‹ã‚‰ä»Šæ•ã¾ãˆã¦ã‚ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚’ä½œæˆ
  *
- *	@param	p_buff				ƒŠƒXƒgì¬æ		(ƒe[ƒuƒ‹”ˆÈã‚ ‚é‚±‚Æ)
- *	@param	p_count				ƒJƒEƒ“ƒg
- *	@param	cp_zukansave_data	}ŠÓƒZ[ƒuƒf[ƒ^
- *	@param	cp_tbl				ƒ\[ƒgƒe[ƒuƒ‹
- *	@param	num					ƒe[ƒuƒ‹”
+ *	@param	p_buff				ãƒªã‚¹ãƒˆä½œæˆå…ˆ		(ãƒ†ãƒ¼ãƒ–ãƒ«æ•°ä»¥ä¸Šã‚ã‚‹ã“ã¨)
+ *	@param	p_count				ã‚«ã‚¦ãƒ³ãƒˆ
+ *	@param	cp_zukansave_data	å›³é‘‘ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_tbl				ã‚½ãƒ¼ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	num					ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
  *
  *	@return	none
  *
@@ -1480,12 +1480,12 @@ u32 ZKN_GLBDATA_TouchCursorFlagGet( const ZKN_GLB_DATA* cp_glb )
 //-----------------------------------------------------------------------------
 static void ZknPokeListTblMakeSortData( u16* p_buff, int* p_count, const ZUKAN_WORK* cp_zukansave_data, const u16* cp_tbl, int num )
 {
-	int i;			// ƒ‹[ƒv—p
+	int i;			// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	*p_count = 0;
 	for( i=0; i<num; i++ ){
 		
-		// •ß‚Ü‚¦‚½‚±‚Æ‚ ‚é‚©ƒ`ƒFƒbƒN
+		// æ•ã¾ãˆãŸã“ã¨ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( ZukanWork_GetPokeSeeFlag( cp_zukansave_data, cp_tbl[ i ] ) ){
 			p_buff[ *p_count ] = cp_tbl[ i ];
 			(*p_count) ++;
@@ -1497,35 +1497,35 @@ static void ZknPokeListTblMakeSortData( u16* p_buff, int* p_count, const ZUKAN_W
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ\[ƒg‚³‚ê‚Ä‚¢‚éƒe[ƒuƒ‹‚È‚¢‚©‚ç‚³‚ç‚Éi‚è‚Ş
+ *	@brief	ã‚½ãƒ¼ãƒˆã•ã‚Œã¦ã„ã‚‹ãƒ†ãƒ¼ãƒ–ãƒ«ãªã„ã‹ã‚‰ã•ã‚‰ã«çµã‚Šè¾¼ã‚€
  *
- *	@param	p_buff		ƒf[ƒ^Ši”[æ
- *	@param	p_count		ƒJƒEƒ“ƒ^
- *	@param	cp_tbl		ƒ\[ƒgÏ‚İƒf[ƒ^ƒe[ƒuƒ‹
- *	@param	num			ƒe[ƒuƒ‹”
- *	@param	cp_sarch_tbl@ƒT[ƒ`ƒe[ƒuƒ‹
- *	@param	sarch_num	ƒT[ƒ`ƒe[ƒuƒ‹”
- *	@param	see_ok_flg	Œ©‚½‚¾‚¯ƒ|ƒPƒ‚ƒ“‚àOK‚©ƒ`ƒFƒbƒN
- *	@param	cp_zukansave_data	}ŠÓƒZ[ƒuƒf[ƒ^
+ *	@param	p_buff		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	p_count		ã‚«ã‚¦ãƒ³ã‚¿
+ *	@param	cp_tbl		ã‚½ãƒ¼ãƒˆæ¸ˆã¿ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	num			ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+ *	@param	cp_sarch_tblã€€ã‚µãƒ¼ãƒãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	sarch_num	ã‚µãƒ¼ãƒãƒ†ãƒ¼ãƒ–ãƒ«æ•°
+ *	@param	see_ok_flg	è¦‹ãŸã ã‘ãƒã‚±ãƒ¢ãƒ³ã‚‚OKã‹ãƒã‚§ãƒƒã‚¯
+ *	@param	cp_zukansave_data	å›³é‘‘ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
- *		ŒŸõˆ—
+ *		æ¤œç´¢å‡¦ç†
  */
 //-----------------------------------------------------------------------------
 static void ZknPokeListTblMakeSarch( u16* p_buff, int* p_count, const u16* cp_tbl, int num, const u16* cp_sarch_tbl, int sarch_num, BOOL see_ok_flg, const ZUKAN_WORK* cp_zukansave_data )
 {
-	int i,j;			// ƒ‹[ƒv—p
+	int i,j;			// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	*p_count = 0;
 	for( i=0; i<num; i++ ){
 		
 		for( j=0; j<sarch_num; j++ ){
 			if( cp_tbl[i] == cp_sarch_tbl[j] ){
-				if( see_ok_flg == TRUE ){	// Œ©‚½‚¾‚¯‚Å‚àƒŠƒXƒg‚É“ü‚ê‚Ä‚¢‚Æ‚«
+				if( see_ok_flg == TRUE ){	// è¦‹ãŸã ã‘ã§ã‚‚ãƒªã‚¹ãƒˆã«å…¥ã‚Œã¦ã„ã¨ã
 					break;
 				}else{
-					// ‚İ‚½‚¾‚¯‚Í‹–‚³‚ê‚È‚¢‚Æ‚«
-					// •ß‚Ü‚¦‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+					// ã¿ãŸã ã‘ã¯è¨±ã•ã‚Œãªã„ã¨ã
+					// æ•ã¾ãˆã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 					if( ZukanWork_GetPokeGetFlag( cp_zukansave_data, cp_tbl[ i ] ) ){
 						break;
 					}
@@ -1533,7 +1533,7 @@ static void ZknPokeListTblMakeSarch( u16* p_buff, int* p_count, const u16* cp_tb
 			}
 		}
 		
-		// ƒT[ƒ`ƒe[ƒuƒ‹“à‚É‚ ‚Á‚½‚çİ’è
+		// ã‚µãƒ¼ãƒãƒ†ãƒ¼ãƒ–ãƒ«å†…ã«ã‚ã£ãŸã‚‰è¨­å®š
 		if( j < sarch_num ){
 			p_buff[ *p_count ] = cp_tbl[ i ];
 			(*p_count) ++;
@@ -1544,11 +1544,11 @@ static void ZknPokeListTblMakeSarch( u16* p_buff, int* p_count, const u16* cp_tb
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒe[ƒuƒ‹ì¬ŠÖ”
+ *	@brief	å›³é‘‘ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆé–¢æ•°
  *
- *	@param	p_poke_list			ì¬æ
- *	@param	cp_zukansave_data	}ŠÓƒZ[ƒuƒf[ƒ^
- *	@param	cp_tbl				Œ©‚Â‚¯‚½ƒ|ƒPƒ‚ƒ“‚Åƒ\[ƒgÏ‚İƒe[ƒuƒ‹
+ *	@param	p_poke_list			ä½œæˆå…ˆ
+ *	@param	cp_zukansave_data	å›³é‘‘ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_tbl				è¦‹ã¤ã‘ãŸãƒã‚±ãƒ¢ãƒ³ã§ã‚½ãƒ¼ãƒˆæ¸ˆã¿ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  *	@return	none
  *
@@ -1557,12 +1557,12 @@ static void ZknPokeListTblMakeSarch( u16* p_buff, int* p_count, const u16* cp_tb
 //-----------------------------------------------------------------------------
 static void ZknPokeListTblMake( ZKN_POKELIST_TBL* p_poke_list, const ZUKAN_WORK* cp_zukansave_data, const u16* cp_tbl, int tbl_num )
 {
-	int i;	// ƒ‹[ƒv—p
+	int i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	p_poke_list->tbl_poke_num = 0;
 	for( i=0; i<tbl_num; i++ ){
 		
-		// •ß‚Ü‚¦‚½‚±‚Æ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+		// æ•ã¾ãˆãŸã“ã¨ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( ZukanWork_GetPokeGetFlag( cp_zukansave_data, cp_tbl[ i ] ) ){
 			p_poke_list->zkn_pokelist_tbl[ p_poke_list->tbl_poke_num ].type = ZKN_POKELIST_TYPE_GET;
 		}else{
@@ -1579,11 +1579,11 @@ static void ZknPokeListTblMake( ZKN_POKELIST_TBL* p_poke_list, const ZUKAN_WORK*
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•`‰æƒe[ƒuƒ‹ì¬ŠÖ”
+ *	@brief	å›³é‘‘ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆæç”»ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆé–¢æ•°
  *
- *	@param	p_poke_list			ì¬æ
- *	@param	cp_all_tbl			ƒ\[ƒgŒ³ƒf[ƒ^
- *	@param	tbl_num				ƒe[ƒuƒ‹”
+ *	@param	p_poke_list			ä½œæˆå…ˆ
+ *	@param	cp_all_tbl			ã‚½ãƒ¼ãƒˆå…ƒãƒ‡ãƒ¼ã‚¿
+ *	@param	tbl_num				ãƒ†ãƒ¼ãƒ–ãƒ«æ•°
  *
  *	@return	none
  *
@@ -1592,15 +1592,15 @@ static void ZknPokeListTblMake( ZKN_POKELIST_TBL* p_poke_list, const ZUKAN_WORK*
 //-----------------------------------------------------------------------------
 static void ZknPokeListDrawTblMake( ZKN_POKELIST_TBL* p_poke_list, const u16* cp_all_tbl, int all_tbl_num )
 {
-	int i;	// ƒ‹[ƒv—p
+	int i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 	int count;
 
-	// Œ³ƒf[ƒ^‚©‚ç•`‰æƒf[ƒ^ì¬		ã‚ÌÈ‚¢‚½ƒf[ƒ^‚ğƒ_ƒ~[‚Æ‚µ‚ÄŠi”[‚·‚é
+	// å…ƒãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æç”»ãƒ‡ãƒ¼ã‚¿ä½œæˆ		ä¸Šã®çœã„ãŸãƒ‡ãƒ¼ã‚¿ã‚’ãƒ€ãƒŸãƒ¼ã¨ã—ã¦æ ¼ç´ã™ã‚‹
 	count = 0;
 	p_poke_list->draw_tbl_poke_num = 0;
 	for( i=0; i<all_tbl_num; i++ ){
 		
-		// ƒe[ƒuƒ‹ˆÈã‚É‚È‚Á‚½‚çI‚í‚è
+		// ãƒ†ãƒ¼ãƒ–ãƒ«ä»¥ä¸Šã«ãªã£ãŸã‚‰çµ‚ã‚ã‚Š
 		if( count < p_poke_list->tbl_poke_num ){
 			if( p_poke_list->zkn_pokelist_tbl[ count ].mons_no == cp_all_tbl[ i ] ){
 				p_poke_list->zkn_pokelistdraw_tbl[ p_poke_list->draw_tbl_poke_num ] = count;
@@ -1617,16 +1617,16 @@ static void ZknPokeListDrawTblMake( ZKN_POKELIST_TBL* p_poke_list, const u16* cp
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•`‰æƒe[ƒuƒ‹ƒRƒs[
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆæç”»ãƒ†ãƒ¼ãƒ–ãƒ«ã‚³ãƒ”ãƒ¼
  *
- *	@param	p_poke_list		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒf[ƒ^
+ *	@param	p_poke_list		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknPokeListDrawTblCopy( ZKN_POKELIST_TBL* p_poke_list )
 {
-	int i;	// ƒ‹[ƒv—p
+	int i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	p_poke_list->draw_tbl_poke_num = 0;
 	for( i=0; i<p_poke_list->tbl_poke_num; i++ ){
@@ -1639,13 +1639,13 @@ static void ZknPokeListDrawTblCopy( ZKN_POKELIST_TBL* p_poke_list )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ\[ƒgÃŞ°Àæ“¾
+ *	@brief	ã‚½ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	heap		ƒq[ƒv
- *	@param	idx			ÃŞ°À²İÃŞ¯¸½
- *	@param	p_arry_num	”z—ñ—v‘f”æ“¾æ
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	idx			ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	p_arry_num	é…åˆ—è¦ç´ æ•°å–å¾—å…ˆ
  *
- *	@return	ÃŞ°Àƒoƒbƒtƒ@		—v‘f”‚Íp_arry_num‚ÉŠi”[
+ *	@return	ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡		è¦ç´ æ•°ã¯p_arry_numã«æ ¼ç´
  */
 //-----------------------------------------------------------------------------
 static u16* ZKN_SORTDATA_Get( int heap, int idx, int* p_arry_num )
@@ -1658,7 +1658,7 @@ static u16* ZKN_SORTDATA_Get( int heap, int idx, int* p_arry_num )
 	
 	zkn_idx = ZKN_GIRA_GetZukanDataArcIdx();
 
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	p_buf = ArcUtil_LoadEx( zkn_idx, ZKN_SORTDATA_START_IDX + idx, FALSE, heap, ALLOC_TOP, &size );
 
 	*p_arry_num = size / ZKN_SORTDATA_ONESIZE;
@@ -1669,49 +1669,49 @@ static u16* ZKN_SORTDATA_Get( int heap, int idx, int* p_arry_num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¿°Äˆ—@‚ğs‚¤
+ *	@brief	ã‚½ãƒ¼ãƒˆå‡¦ç†ã€€ã‚’è¡Œã†
  *
- *	@param	sort_type		¿°ÄÀ²Ìß
- *	@param	p_buff			Œ‹‰ÊŠi”[æ
- *	@param	p_count			Œ‹‰Ê‚Ì—v‘f”Ši”[æ
- *	@param	cp_tbl			Œ³ÃŞ°À
- *	@param	num				Œ³ÃŞ°À”
+ *	@param	sort_type		ã‚½ãƒ¼ãƒˆã‚¿ã‚¤ãƒ—
+ *	@param	p_buff			çµæœæ ¼ç´å…ˆ
+ *	@param	p_count			çµæœã®è¦ç´ æ•°æ ¼ç´å…ˆ
+ *	@param	cp_tbl			å…ƒãƒ‡ãƒ¼ã‚¿
+ *	@param	num				å…ƒãƒ‡ãƒ¼ã‚¿æ•°
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknPokeListSort_Core( int sort_type, u16* p_buff, int* p_count, const u16* cp_tbl, int num, int heap, const ZUKAN_WORK* cp_zukansave_data )
 {
-	u16* p_sort_data;	// ¿°ÄÃŞ°À
+	u16* p_sort_data;	// ã‚½ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
 	int sort_data_count;
 	BOOL see_ok_flg = FALSE;
 	
 
-	// •À‚Ñ‚©‚ç‘I‘ğ‚·‚é
+	// ä¸¦ã³ã‹ã‚‰é¸æŠã™ã‚‹
 	switch( sort_type ){
-	case ZKN_POKELIST_SORT_NORMAL:		// ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-		// ‚»‚Ì‚Ü‚Ü
+	case ZKN_POKELIST_SORT_NORMAL:		// ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+		// ãã®ã¾ã¾
 		p_sort_data = NULL;
 		break;
 		
-	case ZKN_POKELIST_SORT_GOZYUUON:		// ŒÜ\‰¹
+	case ZKN_POKELIST_SORT_GOZYUUON:		// äº”åéŸ³
 		p_sort_data = ZKN_SORTDATA_Get( heap, ZKN_SORTDATA_AIUEO, &sort_data_count );
 		see_ok_flg = TRUE;
 		break;
 		
-	case ZKN_POKELIST_SORT_GRAM_L:		// d‚¢
+	case ZKN_POKELIST_SORT_GRAM_L:		// é‡ã„
 		p_sort_data = ZKN_SORTDATA_Get( heap, ZKN_SORTDATA_HEAVY, &sort_data_count );
 		break;
 		
-	case ZKN_POKELIST_SORT_GRAM_S:		// Œy‚¢
+	case ZKN_POKELIST_SORT_GRAM_S:		// è»½ã„
 		p_sort_data = ZKN_SORTDATA_Get( heap, ZKN_SORTDATA_LIGHT, &sort_data_count );
 		break;
 		
-	case ZKN_POKELIST_SORT_HIGH_L:		// ‚‚¢
+	case ZKN_POKELIST_SORT_HIGH_L:		// é«˜ã„
 		p_sort_data = ZKN_SORTDATA_Get( heap, ZKN_SORTDATA_TALL, &sort_data_count );
 		break;
 		
-	case ZKN_POKELSIT_SOTT_HIGH_S:		// ’á‚¢
+	case ZKN_POKELSIT_SOTT_HIGH_S:		// ä½ã„
 		p_sort_data = ZKN_SORTDATA_Get( heap, ZKN_SORTDATA_SMALL, &sort_data_count );
 		break;
 		
@@ -1725,7 +1725,7 @@ static void ZknPokeListSort_Core( int sort_type, u16* p_buff, int* p_count, cons
 		sys_FreeMemoryEz( p_sort_data );
 	}else{
 
-		// ‚»‚Ì‚Ü‚ÜƒRƒs[
+		// ãã®ã¾ã¾ã‚³ãƒ”ãƒ¼
 		memcpy( p_buff, cp_tbl, ZKN_SORTDATA_ONESIZE * num );
 		*p_count = num;
 	}
@@ -1733,26 +1733,26 @@ static void ZknPokeListSort_Core( int sort_type, u16* p_buff, int* p_count, cons
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–¼‘OŒŸõ
+ *	@brief	åå‰æ¤œç´¢
  *
- *	@param	search_name		ŒŸõÀ²Ìß
- *	@param	p_buff			Ši”[æƒoƒbƒtƒ@
- *	@param	p_count			ƒoƒbƒtƒ@—v‘f”
- *	@param	cp_tbl			Œ³ÃŞ°À
- *	@param	num				Œ³ÃŞ°À—v‘f”
+ *	@param	search_name		æ¤œç´¢ã‚¿ã‚¤ãƒ—
+ *	@param	p_buff			æ ¼ç´å…ˆãƒãƒƒãƒ•ã‚¡
+ *	@param	p_count			ãƒãƒƒãƒ•ã‚¡è¦ç´ æ•°
+ *	@param	cp_tbl			å…ƒãƒ‡ãƒ¼ã‚¿
+ *	@param	num				å…ƒãƒ‡ãƒ¼ã‚¿è¦ç´ æ•°
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknPokeListSarchName_Core( int search_name, u16* p_buff, int* p_count, const u16* cp_tbl, int num, int heap, const ZUKAN_WORK* cp_zukansave_data )
 {
-	u16* p_sort_data;	// ¿°ÄÃŞ°À
+	u16* p_sort_data;	// ã‚½ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
 	int sort_data_count;
 
-	// ‚È‚Ü‚¦
+	// ãªã¾ãˆ
 	switch( search_name ){
 	case ZKN_POKELIST_SEARCH_NAME_NONE:
-		// ‚»‚Ì‚Ü‚Ü
+		// ãã®ã¾ã¾
 		p_sort_data = NULL;
 		break;
 	case ZKN_POKELIST_SEARCH_NAME_A:
@@ -1792,7 +1792,7 @@ static void ZknPokeListSarchName_Core( int search_name, u16* p_buff, int* p_coun
 		sys_FreeMemoryEz( p_sort_data );
 	}else{
 
-		// ‚»‚Ì‚Ü‚ÜƒRƒs[
+		// ãã®ã¾ã¾ã‚³ãƒ”ãƒ¼
 		memcpy( p_buff, cp_tbl, ZKN_SORTDATA_ONESIZE * num );
 		*p_count = num;
 	}
@@ -1800,23 +1800,23 @@ static void ZknPokeListSarchName_Core( int search_name, u16* p_buff, int* p_coun
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	À²ÌßŒŸõ
+ *	@brief	ã‚¿ã‚¤ãƒ—æ¤œç´¢
  *
- *	@param	search_type		ŒŸõÀ²Ìß
- *	@param	p_buff			Ši”[æƒoƒbƒtƒ@
- *	@param	p_count			ƒoƒbƒtƒ@—v‘f”
- *	@param	cp_tbl			Œ³ÃŞ°À
- *	@param	num				Œ³ÃŞ°À—v‘f”
+ *	@param	search_type		æ¤œç´¢ã‚¿ã‚¤ãƒ—
+ *	@param	p_buff			æ ¼ç´å…ˆãƒãƒƒãƒ•ã‚¡
+ *	@param	p_count			ãƒãƒƒãƒ•ã‚¡è¦ç´ æ•°
+ *	@param	cp_tbl			å…ƒãƒ‡ãƒ¼ã‚¿
+ *	@param	num				å…ƒãƒ‡ãƒ¼ã‚¿è¦ç´ æ•°
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknPokeListSarchType_Core( int search_type, u16* p_buff, int* p_count, const u16* cp_tbl, int num, int heap, const ZUKAN_WORK* cp_zukansave_data )
 {
-	u16* p_sort_data;	// ¿°ÄÃŞ°À
+	u16* p_sort_data;	// ã‚½ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
 	int sort_data_count;
 
-	// À²Ìß
+	// ã‚¿ã‚¤ãƒ—
 	switch( search_type ){
 	case ZKN_POKELIST_SEARCH_TYPE_NONE:
 		p_sort_data = NULL;
@@ -1883,7 +1883,7 @@ static void ZknPokeListSarchType_Core( int search_type, u16* p_buff, int* p_coun
 		sys_FreeMemoryEz( p_sort_data );
 	}else{
 
-		// ‚»‚Ì‚Ü‚ÜƒRƒs[
+		// ãã®ã¾ã¾ã‚³ãƒ”ãƒ¼
 		memcpy( p_buff, cp_tbl, ZKN_SORTDATA_ONESIZE * num );
 		*p_count = num;
 	}
@@ -1891,23 +1891,23 @@ static void ZknPokeListSarchType_Core( int search_type, u16* p_buff, int* p_coun
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ`ŒŸõ
+ *	@brief	å½¢æ¤œç´¢
  *
- *	@param	search_form		ŒŸõÀ²Ìß
- *	@param	p_buff			Ši”[æƒoƒbƒtƒ@
- *	@param	p_count			ƒoƒbƒtƒ@—v‘f”
- *	@param	cp_tbl			Œ³ÃŞ°À
- *	@param	num				Œ³ÃŞ°À—v‘f”
+ *	@param	search_form		æ¤œç´¢ã‚¿ã‚¤ãƒ—
+ *	@param	p_buff			æ ¼ç´å…ˆãƒãƒƒãƒ•ã‚¡
+ *	@param	p_count			ãƒãƒƒãƒ•ã‚¡è¦ç´ æ•°
+ *	@param	cp_tbl			å…ƒãƒ‡ãƒ¼ã‚¿
+ *	@param	num				å…ƒãƒ‡ãƒ¼ã‚¿è¦ç´ æ•°
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknPokeListSarchForm_Core( int search_form, u16* p_buff, int* p_count, const u16* cp_tbl, int num, int heap, const ZUKAN_WORK* cp_zukansave_data )
 {
-	u16* p_sort_data;	// ¿°ÄÃŞ°À
+	u16* p_sort_data;	// ã‚½ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿
 	int sort_data_count;
 
-	// À²Ìß
+	// ã‚¿ã‚¤ãƒ—
 	switch( search_form ){
 	case ZKN_POKELIST_SEARCH_FORM_NONE:
 		p_sort_data = NULL;
@@ -1964,7 +1964,7 @@ static void ZknPokeListSarchForm_Core( int search_form, u16* p_buff, int* p_coun
 		sys_FreeMemoryEz( p_sort_data );
 	}else{
 
-		// ‚»‚Ì‚Ü‚ÜƒRƒs[
+		// ãã®ã¾ã¾ã‚³ãƒ”ãƒ¼
 		memcpy( p_buff, cp_tbl, ZKN_SORTDATA_ONESIZE * num );
 		*p_count = num;
 	}
@@ -1972,18 +1972,18 @@ static void ZknPokeListSarchForm_Core( int search_form, u16* p_buff, int* p_coun
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Îß¹ÓİØ½Ä“à‚ÌŒ©‚Â‚¯‚½”@”­Œ©‚µ‚½”‚ğƒJƒEƒ“ƒg
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå†…ã®è¦‹ã¤ã‘ãŸæ•°ã€€ç™ºè¦‹ã—ãŸæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@param	p_poke_list		Îß¹ÓİØ½Äƒe[ƒuƒ‹
- *	@param	p_see_num		Œ©‚Â‚¯‚½”Ši”[æ
- *	@param	p_get_num		”­Œ©‚µ‚½”Ši”[æ
+ *	@param	p_poke_list		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@param	p_see_num		è¦‹ã¤ã‘ãŸæ•°æ ¼ç´å…ˆ
+ *	@param	p_get_num		ç™ºè¦‹ã—ãŸæ•°æ ¼ç´å…ˆ
  *
  *	@return
  */
 //-----------------------------------------------------------------------------
 static void ZknPokeListTblSeeGetNumCount( ZKN_POKELIST_TBL* p_poke_list, int* p_see_num, int* p_get_num )
 {
-	int i;	// ƒ‹[ƒv—p
+	int i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 
 	*p_see_num = 0;
 	*p_get_num = 0;

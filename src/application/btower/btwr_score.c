@@ -1,6 +1,6 @@
 /**
  *	@file	btwr_score.c
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[¬Ñƒ‚ƒjƒ^
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æˆç¸¾ãƒ¢ãƒ‹ã‚¿
  *	
  */
 
@@ -130,7 +130,7 @@ enum{
 //105
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/04/03
-// Å‰ºs‚É 'g' ‚È‚Ç‚Ì•¶š‚ª‚ ‚é‚Æ‰º‘¤‚ªØ‚ê‚Ä‚µ‚Ü‚¤‚Ì‚ğC³
+// æœ€ä¸‹è¡Œã« 'g' ãªã©ã®æ–‡å­—ãŒã‚ã‚‹ã¨ä¸‹å´ãŒåˆ‡ã‚Œã¦ã—ã¾ã†ã®ã‚’ä¿®æ­£
 //105
 #define BMPL_REC02_PX	(10)
 #define BMPL_REC02_PY	(17)
@@ -181,26 +181,26 @@ enum{
 typedef struct _APP_MSG{
 	MSGDATA_MANAGER*	pMan;
 
-	WORDSET* wset;	//ƒ[ƒN
-	STRBUF*	tmp;	//”Ä—p
-	STRBUF* ebuf;	//‚à‚Ç‚é
-	STRBUF* tbuf;	//ƒ^ƒCƒgƒ‹
-	STRBUF*	nbuf;	//–¼‘O
-	STRBUF*	a1buf;	//’nˆæ(‘–¼‚Æ’nˆæ–¼)
-	STRBUF*	a2buf;	//’nˆæ(‘–¼‚Ì‚İ)
-	STRBUF*	cbuf;	//’nˆæNGƒR[ƒh
+	WORDSET* wset;	//ãƒ¯ãƒ¼ã‚¯
+	STRBUF*	tmp;	//æ±ç”¨
+	STRBUF* ebuf;	//ã‚‚ã©ã‚‹
+	STRBUF* tbuf;	//ã‚¿ã‚¤ãƒˆãƒ«
+	STRBUF*	nbuf;	//åå‰
+	STRBUF*	a1buf;	//åœ°åŸŸ(å›½åã¨åœ°åŸŸå)
+	STRBUF*	a2buf;	//åœ°åŸŸ(å›½åã®ã¿)
+	STRBUF*	cbuf;	//åœ°åŸŸNGã‚³ãƒ¼ãƒ‰
 	STRBUF*	rbuf[6];
-	STRBUF*	def_name[2];	///<ƒfƒtƒHƒ‹ƒgƒl[ƒ€“WŠJ
+	STRBUF*	def_name[2];	///<ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒ¼ãƒ å±•é–‹
 }APP_MSG;
 
-//ƒŠ[ƒ_[ƒf[ƒ^
+//ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
 typedef struct _LEADER_DATA{
-	STRBUF*	name;	//–¼‘O
-	u8		sex;	//«•Ê
-	u8		country;	//‘ƒR[ƒh
-	u8		area;		//’nˆæƒR[ƒh
-	u8		ngname_f;	//NGƒl[ƒ€ƒtƒ‰ƒO
-	PMS_DATA	msg;		//ŠÈˆÕ‰ï˜bƒƒbƒZ[ƒW
+	STRBUF*	name;	//åå‰
+	u8		sex;	//æ€§åˆ¥
+	u8		country;	//å›½ã‚³ãƒ¼ãƒ‰
+	u8		area;		//åœ°åŸŸã‚³ãƒ¼ãƒ‰
+	u8		ngname_f;	//NGãƒãƒ¼ãƒ ãƒ•ãƒ©ã‚°
+	PMS_DATA	msg;		//ç°¡æ˜“ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 }LEADER_DATA;
 
 typedef struct _BTOWER_APP_WORK{
@@ -222,20 +222,20 @@ typedef struct _BTOWER_APP_WORK{
 	BTLTOWER_SCOREWORK	*scoreSave;
 	BTLTOWER_WIFI_DATA	*wifiSave;
 
-	///ƒƒbƒZ[ƒWƒŠƒ\[ƒX
+	///ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚½ãƒ¼ã‚¹
 	APP_MSG			msgDat;
-	GF_BGL_BMPWIN	win[WINS_MAX];	///<BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_BMPWIN	win[WINS_MAX];	///<BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
-	//ƒŠ[ƒ_[ƒf[ƒ^
+	//ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
 	LEADER_DATA		leader[BTOWER_STOCK_WIFI_LEADER_MAX];
 
-	CATS_SYS_PTR	pActSys;	///<ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€
-	CATS_RES_PTR	pActRes;	///<ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX
-	CLACT_WORK_PTR	pAct[ACT_MAX];		///<ƒAƒNƒg
+	CATS_SYS_PTR	pActSys;	///<ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+	CATS_RES_PTR	pActRes;	///<ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹
+	CLACT_WORK_PTR	pAct[ACT_MAX];		///<ã‚¢ã‚¯ãƒˆ
 }BTOWER_APP_WORK;
 
 //=========================================================
-//ƒTƒuƒvƒƒZƒXƒvƒƒgƒ^ƒCƒv
+//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //=========================================================
 static int BTowerApp_InitCommon(BTOWER_APP_WORK* wk);
 static int BTowerApp_ReleaseCommon(BTOWER_APP_WORK* wk);
@@ -274,14 +274,14 @@ static void Act_CursorPosSet(BTOWER_APP_WORK* wk,u8 line,u8 side,u8 viewLine);
 
 
 //--------------------------------------------------
-///ƒvƒƒOƒ‰ƒ€ƒGƒŠƒA
+///ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¨ãƒªã‚¢
 //----------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[ƒAƒvƒŠ ƒvƒƒZƒX‰Šú‰»
- *	@param	proc	ƒvƒƒZƒXƒf[ƒ^
- *	@param	seq		ƒV[ƒPƒ“ƒX
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒª ãƒ—ãƒ­ã‚»ã‚¹åˆæœŸåŒ–
+ *	@param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  */
 PROC_RESULT BTowerAppProc_Init( PROC *proc,int *seq)
 {
@@ -290,17 +290,17 @@ PROC_RESULT BTowerAppProc_Init( PROC *proc,int *seq)
 	
 	sp = (BTOWER_APP_PARAM*)PROC_GetParentWork(proc);
 
-	//ƒ[ƒNƒGƒŠƒAæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢å–å¾—
 	HeapStatePush();
 	
 
-	//ƒq[ƒvì¬
+	//ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap(HEAPID_BASE_APP,HEAPID_BTOWER_APP,0x10000);
 	
 	wk = PROC_AllocWork( proc,sizeof(BTOWER_APP_WORK),HEAPID_BTOWER_APP);
 	memset(wk,0,sizeof(BTOWER_APP_WORK));
 	
-	//ƒpƒ‰ƒ[ƒ^ˆøŒp‚¬
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¼•ç¶™ã
 	wk->mainMode = sp->mainMode;
 	wk->subMode = sp->subMode;
 	wk->configSave = SaveData_GetConfig(sp->save);
@@ -312,24 +312,24 @@ PROC_RESULT BTowerAppProc_Init( PROC *proc,int *seq)
 	
 	wk->heapID = HEAPID_BTOWER_APP;
 
-	// KeyRepeatİ’è
+	// KeyRepeatè¨­å®š
 	sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
 	return PROC_RES_FINISH;
 }
 
 /**
- *	@brief	ƒ^ƒ[ƒAƒvƒŠ ƒvƒƒZƒXI—¹
- *	@param	proc	ƒvƒƒZƒXƒf[ƒ^
- *	@param	seq		ƒV[ƒPƒ“ƒX
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒª ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†
+ *	@param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ *	@param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  */
 PROC_RESULT BTowerAppProc_End( PROC *proc,int *seq)
 {
 	BTOWER_APP_WORK* wk = PROC_GetWork(proc);
 
-	//ƒ[ƒNƒGƒŠƒA‰ğ•ú
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢è§£æ”¾
 	PROC_FreeWork(proc);
 
 	HeapStatePop();
@@ -341,7 +341,7 @@ PROC_RESULT BTowerAppProc_End( PROC *proc,int *seq)
 
 
 /***
- *	@brief	ƒ^ƒ[ƒAƒvƒŠ@ƒƒCƒ“ƒvƒƒZƒX
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒªã€€ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹
  */
 PROC_RESULT	BTowerAppProc_Main( PROC *proc,int* seq)
 {
@@ -399,7 +399,7 @@ PROC_RESULT	BTowerAppProc_Main( PROC *proc,int* seq)
 }
 
 /**
- *	@brief	‰æ–Ê‰Šú‰»
+ *	@brief	ç”»é¢åˆæœŸåŒ–
  */
 static int BTowerApp_InitCommon(BTOWER_APP_WORK* wk)
 {
@@ -413,42 +413,42 @@ static int BTowerApp_InitCommon(BTOWER_APP_WORK* wk)
 		GX_SetVisiblePlane(0);
 		GXS_SetVisiblePlane(0);
 
-		//BankƒZƒbƒg
+		//Bankã‚»ãƒƒãƒˆ
 		BTowerAppVramBankSet();
 		WIPE_ResetWndMask(WIPE_DISP_MAIN);
 		WIPE_ResetWndMask(WIPE_DISP_SUB);
 
-		//BGLƒZƒbƒg
+		//BGLã‚»ãƒƒãƒˆ
 		BTowerAppBGLInit(wk);
 		break;
 	case 1:
-		//2DƒŠƒ\[ƒXæ“¾
+		//2Dãƒªã‚½ãƒ¼ã‚¹å–å¾—
 		BTowerApp_2DGraInit(wk);
-		//ƒƒbƒZ[ƒWƒŠƒ\[ƒXæ“¾
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚½ãƒ¼ã‚¹å–å¾—
 		BTowerApp_MsgManagerGet(wk);
 		break;
 	case 2:
-		//BmpƒEƒBƒ“ƒhƒEæ“¾
+		//Bmpã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å–å¾—
 		BTowerApp_BmpWinAdd(wk);
 		if(wk->mainMode == 0){
-			//ƒƒbƒZ[ƒW‰Šú•`‰æ
+			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆæœŸæç”»
 			BTowerApp_MsgWriteScore(wk);
-			wk->seq++;	//ƒAƒNƒ^[ì¬‚Í”ò‚Î‚·
+			wk->seq++;	//ã‚¢ã‚¯ã‚¿ãƒ¼ä½œæˆã¯é£›ã°ã™
 		}else{
-			//ƒŠ[ƒ_[ƒf[ƒ^æ“¾
+			//ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿å–å¾—
 			BTowerApp_GetLeaderData(wk);
-			//‰ŠúƒƒbƒZ[ƒW•`‰æ
+			//åˆæœŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 			BTowerApp_MsgWriteLeader(wk);
 		}
 		break;
 	case 3:
-		//ƒAƒNƒ^[‰Šú‰»
+		//ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 		BTowerApp_ActorInit(wk);
 		BTowerApp_MakeLeaderViewAct(wk);
 
-		// leaderƒ‚[ƒh‚Å‚à‚Å‚Ì‚İŒÄ‚Ñ‚½‚¢ŠÖ”‚È‚Ì‚Å
-		// ‚±‚±‚ÅŒÄ‚Ô
-		// ƒvƒŒƒCƒ„[‚ÌƒGƒŠƒAƒƒbƒZ[ƒW
+		// leaderãƒ¢ãƒ¼ãƒ‰ã§ã‚‚ã§ã®ã¿å‘¼ã³ãŸã„é–¢æ•°ãªã®ã§
+		// ã“ã“ã§å‘¼ã¶
+		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¨ãƒªã‚¢ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		BTowerApp_PlayerAreaMsgWrite(wk);
 
 		break;
@@ -463,23 +463,23 @@ static int BTowerApp_InitCommon(BTOWER_APP_WORK* wk)
 }
 
 /**
- *	@brief	‰æ–Ê‰ğ•ú
+ *	@brief	ç”»é¢è§£æ”¾
  */
 static int BTowerApp_ReleaseCommon(BTOWER_APP_WORK* wk)
 {
 	switch(wk->seq){
 	case 0:
-		//ƒAƒNƒ^[‰ğ•ú
+		//ã‚¢ã‚¯ã‚¿ãƒ¼è§£æ”¾
 		if(wk->mainMode){
 			BTowerApp_DelLeaderViewAct(wk);
 			BTowerApp_ActorRelease(wk);
 			BTowerApp_ReleaseLeaderData(wk);
 		}
-		//BmpƒEƒBƒ“ƒhƒE‰ğ•ú
+		//Bmpã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
 		BTowerApp_BmpWinRelease(wk);
-		//ƒƒbƒZ[ƒWƒŠƒ\[ƒX‰ğ•ú
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 		BTowerApp_MsgManagerRelease(wk);
-		//2DƒŠƒ\[ƒX‰ğ•ú
+		//2Dãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 		BTowerAppBGLRelease(wk);
 		break;
 	case 1:
@@ -498,28 +498,28 @@ static int BTowerApp_ReleaseCommon(BTOWER_APP_WORK* wk)
 }
 
 /**
- *	@brief	ƒ^ƒ[ƒAƒvƒŠ‰æ–ÊVramBankƒZƒbƒg
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒªç”»é¢VramBankã‚»ãƒƒãƒˆ
  */
 static void BTowerAppVramBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 
 	GF_Disp_SetBank( &vramSetTable );
 }
 
 /**
- *	@brief	ƒ^ƒ[ƒAƒvƒŠ‰æ–ÊVBlank
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒªç”»é¢VBlank
  */
 static void BTowerAppVBlank(void * work)
 {
@@ -527,14 +527,14 @@ static void BTowerAppVBlank(void * work)
 	
 	BTowerApp_ActorTrans();
 
-	NNS_GfdDoVramTransfer();	//VRam“]‘—ƒ}ƒl[ƒWƒƒÀs
-//	CLACT_VBlankSys();	//OAMƒ}ƒl[ƒWƒƒƒŠƒZƒbƒg
+	NNS_GfdDoVramTransfer();	//VRamè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿè¡Œ
+//	CLACT_VBlankSys();	//OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒªã‚»ãƒƒãƒˆ
 	GF_BGL_VBlankFunc( wk->bgl );
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK);
 }
 
 /**
- *	@brief	ƒL[æ“¾
+ *	@brief	ã‚­ãƒ¼å–å¾—
  */
 static int BTowerApp_KeyInScore(BTOWER_APP_WORK* wk)
 {
@@ -574,7 +574,7 @@ static inline u8 line_down(BTOWER_APP_WORK* wk)
 }
 
 #if 0
-//’Êíó‘ÔƒL[æ“¾
+//é€šå¸¸çŠ¶æ…‹ã‚­ãƒ¼å–å¾—
 static int leader_KeyInNormal(BTOWER_APP_WORK *wk)
 {
 	int update = 0;
@@ -585,7 +585,7 @@ static int leader_KeyInNormal(BTOWER_APP_WORK *wk)
 		if(wk->line >= LINE_RET){
 			return TRUE;
 		}
-		//‘I‘ğ‚³‚ê‚½
+		//é¸æŠã•ã‚ŒãŸ
 		wk->state++;
 		BTowerApp_PlayerAreaMsgWrite(wk);
 		return FALSE;
@@ -603,13 +603,13 @@ static int leader_KeyInNormal(BTOWER_APP_WORK *wk)
 		update = 1;
 	}
 	if(wk->line == LINE_RET){
-		wk->side = 2;	//‹­§
+		wk->side = 2;	//å¼·åˆ¶
 	}
 
 	if(!update){
 		return FALSE;
 	}
-	//ƒJ[ƒ\ƒ‹‹y‚ÑƒŠƒXƒgXV
+	//ã‚«ãƒ¼ã‚½ãƒ«åŠã³ãƒªã‚¹ãƒˆæ›´æ–°
 	Act_CursorPosSet(wk,wk->line,wk->side,wk->viewLine);
 	BTowerApp_WritePlayerList(wk->leader,&wk->win[WINL_NAME],
 			wk->msgDat.ebuf,wk->upLine,wk->line,wk->side);
@@ -638,16 +638,16 @@ static int leader_KeyInMsg(BTOWER_APP_WORK* wk)
 }
 
 /**
- *	@brief	ƒL[æ“¾
+ *	@brief	ã‚­ãƒ¼å–å¾—
  */
 static int BTowerApp_KeyInLeader(BTOWER_APP_WORK* wk)	
 {
 	switch(wk->state){
-	case 0:	//ƒm[ƒ}ƒ‹
+	case 0:	//ãƒãƒ¼ãƒãƒ«
 		return leader_KeyInNormal(wk);
-	case 1:	//ƒGƒŠƒA•`‰æ
+	case 1:	//ã‚¨ãƒªã‚¢æç”»
 		return leader_KeyInArea(wk);
-	case 2:	//ƒƒbƒZ[ƒW•`‰æ
+	case 2:	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
 		return leader_KeyInMsg(wk);
 	}
 	return FALSE;
@@ -655,7 +655,7 @@ static int BTowerApp_KeyInLeader(BTOWER_APP_WORK* wk)
 #endif
 
 /**
- *	@brief	ƒL[æ“¾
+ *	@brief	ã‚­ãƒ¼å–å¾—
  */
 static int BTowerApp_KeyInLeader(BTOWER_APP_WORK* wk)	
 {
@@ -669,11 +669,11 @@ static int BTowerApp_KeyInLeader(BTOWER_APP_WORK* wk)
 		if(wk->line >= LINE_RET){
 			return TRUE;
 		}
-		//‘I‘ğ‚³‚ê‚½
+		//é¸æŠã•ã‚ŒãŸ
 		wk->state = (wk->state + 1) % 2;
 		update = 1;
 	}else{
-		//‘I‘ğƒ{ƒ^ƒ“‚ğ—Dæ‚³‚¹‚é
+		//é¸æŠãƒœã‚¿ãƒ³ã‚’å„ªå…ˆã•ã›ã‚‹
 		if(sys.repeat & PAD_KEY_UP){
 			update = line_up(wk);
 			if(update){
@@ -687,18 +687,18 @@ static int BTowerApp_KeyInLeader(BTOWER_APP_WORK* wk)
 		}else if(sys.repeat & PAD_KEY_LEFT){
 			wk->side = (wk->side+2)%3;
 			update = 1;
-			if(wk->line != LINE_RET){					//–³ğŒ‚Åupdate = 1‚É‚È‚é‚½‚ß
+			if(wk->line != LINE_RET){					//ç„¡æ¡ä»¶ã§update = 1ã«ãªã‚‹ãŸã‚
 				Snd_SePlay( SEQ_SE_DP_SELECT );
 			}
 		}else if(sys.repeat & PAD_KEY_RIGHT){
 			wk->side = (wk->side + 1)%3;
 			update = 1;
-			if(wk->line != LINE_RET){					//–³ğŒ‚Åupdate = 1‚É‚È‚é‚½‚ß
+			if(wk->line != LINE_RET){					//ç„¡æ¡ä»¶ã§update = 1ã«ãªã‚‹ãŸã‚
 				Snd_SePlay( SEQ_SE_DP_SELECT );
 			}
 		}
 		if(wk->line == LINE_RET){
-			wk->side = 2;	//‹­§
+			wk->side = 2;	//å¼·åˆ¶
 		}
 	}
 
@@ -706,12 +706,12 @@ static int BTowerApp_KeyInLeader(BTOWER_APP_WORK* wk)
 		return FALSE;
 	}
 
-	//ƒJ[ƒ\ƒ‹‹y‚ÑƒŠƒXƒgXV
+	//ã‚«ãƒ¼ã‚½ãƒ«åŠã³ãƒªã‚¹ãƒˆæ›´æ–°
 	Act_CursorPosSet(wk,wk->line,wk->side,wk->viewLine);
 	BTowerApp_WritePlayerList(wk->leader,&wk->win[WINL_NAME],
 			wk->msgDat.ebuf,wk->upLine,wk->line,wk->side);
 
-	// status‚ÌƒRƒƒ“ƒg‚ğ•\¦
+	// statusã®ã‚³ãƒ¡ãƒ³ãƒˆã‚’è¡¨ç¤º
 	if( wk->line != LINE_RET ){
 		switch( wk->state ){
 		case 0:
@@ -723,7 +723,7 @@ static int BTowerApp_KeyInLeader(BTOWER_APP_WORK* wk)
 			break;
 
 		default:
-			// ‚¨‚©‚µ‚¢
+			// ãŠã‹ã—ã„
 			GF_ASSERT(0);
 			break;
 		}
@@ -735,7 +735,7 @@ static int BTowerApp_KeyInLeader(BTOWER_APP_WORK* wk)
 }
 
 /**
- *	@brief	ƒ^ƒ[‰æ–ÊBGLƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ç”»é¢BGLã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  */
 static void BTowerAppBGLInit(BTOWER_APP_WORK* wk)
 {
@@ -752,15 +752,15 @@ static void BTowerAppBGLInit(BTOWER_APP_WORK* wk)
 	
 	{
 	GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-		{	//MAIN BG0 ÅãˆÊƒeƒLƒXƒg–Ê
+		{	//MAIN BG0 æœ€ä¸Šä½ãƒ†ã‚­ã‚¹ãƒˆé¢
 			0,0,0x800,0,GF_BGL_SCRSIZ_256x256,GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xf800,GX_BG_CHARBASE_0x00000,GX_BG_EXTPLTT_01,
 			0,0,0,FALSE},
-		{	//MAIN BG1 ãˆÊBG–Ê
+		{	//MAIN BG1 ä¸Šä½BGé¢
 			0,0,0x800,0,GF_BGL_SCRSIZ_256x256,GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xf000,GX_BG_CHARBASE_0x00000,GX_BG_EXTPLTT_01,
 			1,0,0,FALSE},
-		{	//MAIN BG2 ‰ºˆÊƒeƒLƒXƒg–Ê
+		{	//MAIN BG2 ä¸‹ä½ãƒ†ã‚­ã‚¹ãƒˆé¢
 			0,0,0x800,0,GF_BGL_SCRSIZ_256x256,GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xe800,GX_BG_CHARBASE_0x10000,GX_BG_EXTPLTT_01,
 			2,0,0,FALSE},
@@ -779,7 +779,7 @@ static void BTowerAppBGLInit(BTOWER_APP_WORK* wk)
 }
 
 /**
- *	@brief	ƒ^ƒ[‰æ–ÊBGLƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ç”»é¢BGLã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  */
 static void BTowerAppBGLRelease(BTOWER_APP_WORK* wk)
 {
@@ -793,27 +793,27 @@ static void BTowerAppBGLRelease(BTOWER_APP_WORK* wk)
 }
 
 /**
- *	@brief	ƒ^ƒ[ƒAƒvƒŠ@2DƒŠƒ\[ƒX‰Šú‰»
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒªã€€2Dãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 static void BTowerApp_2DGraInit(BTOWER_APP_WORK* wk)
 {
 	int id;
 	ARCHANDLE* handle;
 
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹æ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«å–å¾—
 	handle = ArchiveDataHandleOpen(ARC_BTOWER_APP,wk->heapID);
 
-	//ƒLƒƒƒ‰ƒNƒ^“]‘—
+	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è»¢é€
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,
 		handle,ARC_BTOWER_APP,NARC_btower_btwr_bg_ncgr,
 		GF_BGL_FRAME1_M,0,0,0);
 	
-	//ƒpƒŒƒbƒg“]‘—
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,
 		handle,ARC_BTOWER_APP,NARC_btower_btwr_bg_nclr,
 		GF_BGL_FRAME1_M,2,0x20*0x02,0);
 
-	//ƒXƒNƒŠ[ƒ““]‘—
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	if(wk->mainMode == 1){
 		id = NARC_btower_btwr_bg02_nscr;
 	}else{
@@ -826,15 +826,15 @@ static void BTowerApp_2DGraInit(BTOWER_APP_WORK* wk)
 	APP_ArcFileVramLoad(wk->bgl,wk->heapID,handle,ARC_BTOWER_APP,id,
 				GF_BGL_FRAME1_M,1,0,0);
 
-	//ƒnƒ“ƒhƒ‹•Â‚¶‚é
+	//ãƒãƒ³ãƒ‰ãƒ«é–‰ã˜ã‚‹
 	ArchiveDataHandleClose( handle );
 	
-	//ƒXƒNƒŠ[ƒ““]‘—
+	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 	GF_BGL_LoadScreenV_Req(wk->bgl,GF_BGL_FRAME1_M);
 }
 
 /**
- *	@brief	ƒ^ƒ[ƒAƒvƒŠ@BMPWIN‰Šú‰»
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒªã€€BMPWINåˆæœŸåŒ–
  */
 static void BTowerApp_BmpWinAdd(BTOWER_APP_WORK* wk)
 {
@@ -862,7 +862,7 @@ static void BTowerApp_BmpWinAdd(BTOWER_APP_WORK* wk)
 		BMPL_TALK_SX, BMPL_TALK_SY, BMPL_TALK_PAL, BMPL_TALK_CGX },
 	};
 
-	//ƒEƒBƒ“ƒhƒEì¬
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	if(wk->mainMode == 0){
 		for(i = 0;i < WINS_MAX;i++){
 			GF_BGL_BmpWinAddEx(wk->bgl,&(wk->win[i]),&(bmp01[i]));
@@ -874,12 +874,12 @@ static void BTowerApp_BmpWinAdd(BTOWER_APP_WORK* wk)
 			GF_BGL_BmpWinDataFill(&wk->win[i],APP_WINCLR_COL(FBMP_COL_NULL));
 		}
 	}
-	//ƒVƒXƒeƒ€—pƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	//ã‚·ã‚¹ãƒ†ãƒ ç”¨ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	SystemFontPaletteLoad(PALTYPE_MAIN_BG,FONT_SYS_PAL*32,wk->heapID);
 }
 
 /**
- *	@brief	ƒ^ƒ[ƒAƒvƒŠ@BMPƒEƒBƒ“ƒhƒE‰ğ•ú
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒªã€€BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è§£æ”¾
  */
 static void BTowerApp_BmpWinRelease(BTOWER_APP_WORK* wk)
 {
@@ -896,7 +896,7 @@ static void BTowerApp_BmpWinRelease(BTOWER_APP_WORK* wk)
 }
 
 /**
- *	@brief	ƒ^ƒ[ƒAƒvƒŠ@ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‰Šú‰»
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒªã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
  */
 static void BTowerApp_MsgManagerGet(BTOWER_APP_WORK* wk)
 {
@@ -907,7 +907,7 @@ static void BTowerApp_MsgManagerGet(BTOWER_APP_WORK* wk)
 	
 	wk->msgDat.wset = WORDSET_CreateEx(2,WORDSET_BTOWER_APP_BUFLEN,wk->heapID);
 	
-	//ƒfƒtƒHƒ‹ƒg•¶š—ñæ“¾
+	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—åˆ—å–å¾—
 	wk->msgDat.tmp = STRBUF_Create(WORDSET_BTOWER_APP_BUFLEN,wk->heapID);
 
 	for(i = 0;i < 6;i++){
@@ -920,13 +920,13 @@ static void BTowerApp_MsgManagerGet(BTOWER_APP_WORK* wk)
 	wk->msgDat.a2buf = MSGMAN_AllocString(wk->msgDat.pMan,msg_btwr_leader_area02);
 	wk->msgDat.cbuf = MSGMAN_AllocString(wk->msgDat.pMan,msg_btwr_leader_area03);
 
-	//ƒvƒŒƒCƒ„[ƒfƒtƒHƒ‹ƒg–¼“WŠJ
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåå±•é–‹
 	wk->msgDat.def_name[0] = MSGMAN_AllocString(wk->msgDat.pMan,msg_def_player_name01);
 	wk->msgDat.def_name[1] = MSGMAN_AllocString(wk->msgDat.pMan,msg_def_player_name02);
 }
 
 /**
- *	@brief	ƒ^ƒ[ƒAƒvƒŠ@ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‰ğ•ú
+ *	@brief	ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒªã€€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£è§£æ”¾
  */
 static void BTowerApp_MsgManagerRelease(BTOWER_APP_WORK* wk)
 {
@@ -954,11 +954,11 @@ static void tapp_ScoreRenshouWrite(BTOWER_APP_WORK* wk,GF_BGL_BMPWIN* win,u8 mod
 	u16 flag,recmax,recnow;
 	int	xofs;
 
-	//‹L˜^
+	//è¨˜éŒ²
 	recmax = FrontierRecord_Get(wk->frontierSave,recid, FRONTIER_RECORD_NOT_FRIEND);
 	recnow = FrontierRecord_Get(wk->frontierSave,recid+1, FRONTIER_RECORD_NOT_FRIEND);
 	
-	//‘O‰ñorŒ»İ
+	//å‰å›orç¾åœ¨
 	flag = TowerScoreData_SetFlags(wk->scoreSave,
 			BTWR_SFLAG_SINGLE_RECORD+mode,BTWR_DATA_get);
 	
@@ -972,7 +972,7 @@ static void tapp_ScoreRenshouWrite(BTOWER_APP_WORK* wk,GF_BGL_BMPWIN* win,u8 mod
 	GF_STR_PrintColor(win,FONT_SYSTEM,wk->msgDat.tmp,
 						xofs,yofs,MSG_NO_PUT,FCOLA_BLACK,NULL);
 
-	//Å‚
+	//æœ€é«˜
 	yofs += 24;
 	GF_STR_PrintColor(win,FONT_SYSTEM,wk->msgDat.rbuf[2],4,yofs,MSG_NO_PUT,FCOLA_WHITE,NULL);
 	
@@ -987,21 +987,21 @@ static void tapp_ScoreRenshouWrite(BTOWER_APP_WORK* wk,GF_BGL_BMPWIN* win,u8 mod
 }
 
 /**
- *	¬Ñƒ‚ƒjƒ^‰æ–Ê•¶š—ñ•`‰æ
+ *	æˆç¸¾ãƒ¢ãƒ‹ã‚¿ç”»é¢æ–‡å­—åˆ—æç”»
  */
 static void BTowerApp_MsgWriteScore(BTOWER_APP_WORK* wk)
 {
 	int xofs;
 	u16	flag,rec;
 	
-	//ƒ^ƒCƒgƒ‹
+	//ã‚¿ã‚¤ãƒˆãƒ«
 	MSGMAN_GetString(wk->msgDat.pMan,msg_btwr_score_t01+wk->subMode,wk->msgDat.tmp);
 	xofs = FontProc_GetPrintStrWidth(FONT_SYSTEM,wk->msgDat.tmp,0);
 	xofs = (BMPL_TITLE_SX*8)-xofs;
 	GF_STR_PrintColor(&wk->win[WINS_TITLE],FONT_SYSTEM,wk->msgDat.tmp,
 			xofs/2,8,MSG_ALLPUT,FCOLS_WHITE,NULL);
 
-	//ƒTƒuƒ^ƒCƒgƒ‹
+	//ã‚µãƒ–ã‚¿ã‚¤ãƒˆãƒ«
 	MSGMAN_GetString(wk->msgDat.pMan,msg_btwr_score_s01+wk->subMode,wk->msgDat.tmp);
 	GF_STR_PrintColor(&wk->win[WINS_ST01],FONT_SYSTEM,wk->msgDat.tmp,
 						0,0,MSG_ALLPUT,FCOLA_WHITE,NULL);
@@ -1010,18 +1010,18 @@ static void BTowerApp_MsgWriteScore(BTOWER_APP_WORK* wk)
 	GF_STR_PrintColor(&wk->win[WINS_ST02],FONT_SYSTEM,wk->msgDat.tmp,
 						0,3,MSG_ALLPUT,FCOLA_WHITE,NULL);
 
-	//‹L˜^
+	//è¨˜éŒ²
 	switch(wk->subMode){
-	case 0:	//ƒVƒ“ƒOƒ‹Eƒ_ƒuƒ‹
+	case 0:	//ã‚·ãƒ³ã‚°ãƒ«ãƒ»ãƒ€ãƒ–ãƒ«
 		tapp_ScoreRenshouWrite(wk,&wk->win[WINS_REC01],0,FRID_TOWER_SINGLE_RENSHOU,0);
 		tapp_ScoreRenshouWrite(wk,&wk->win[WINS_REC02],1,FRID_TOWER_DOUBLE_RENSHOU,3);
 		break;
-	case 1:	//ƒ}ƒ‹ƒ`E’ÊMƒ}ƒ‹ƒ`
+	case 1:	//ãƒãƒ«ãƒãƒ»é€šä¿¡ãƒãƒ«ãƒ
 		tapp_ScoreRenshouWrite(wk,&wk->win[WINS_REC01],2,FRID_TOWER_MULTI_NPC_RENSHOU,0);
 		tapp_ScoreRenshouWrite(wk,&wk->win[WINS_REC02],3,FRID_TOWER_MULTI_COMM_RENSHOU,3);
 		break;
 	case 2:	//wifi
-		//ƒ‰ƒ“ƒN•\¦
+		//ãƒ©ãƒ³ã‚¯è¡¨ç¤º
 		MSGMAN_GetString(wk->msgDat.pMan,msg_btwr_score_r04,wk->msgDat.tmp);
 		GF_STR_PrintColor(&wk->win[WINS_REC01],FONT_SYSTEM,wk->msgDat.tmp,
 						4,10,MSG_ALLPUT,FCOLA_WHITE,NULL);
@@ -1042,7 +1042,7 @@ static void BTowerApp_MsgWriteScore(BTOWER_APP_WORK* wk)
 }
 
 /**
- *	@brief	—ğ‘ãƒŠ[ƒ_[ƒf[ƒ^æ“¾
+ *	@brief	æ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿å–å¾—
  */
 static void BTowerApp_GetLeaderData(BTOWER_APP_WORK* wk)
 {
@@ -1050,7 +1050,7 @@ static void BTowerApp_GetLeaderData(BTOWER_APP_WORK* wk)
 	B_TOWER_LEADER_DATA* bp;
 	LEADER_DATA* lp;
 	
-	//‚Ü‚¸‚ÍƒŠ[ƒ_[ƒZ[ƒuƒf[ƒ^‚ğæ“¾
+	//ã¾ãšã¯ãƒªãƒ¼ãƒ€ãƒ¼ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	bp = TowerWifiData_GetLeaderDataAlloc(wk->wifiSave,wk->heapID);
 	
 	for(i = 0;i < BTOWER_STOCK_WIFI_LEADER_MAX;i++){
@@ -1063,22 +1063,22 @@ static void BTowerApp_GetLeaderData(BTOWER_APP_WORK* wk)
 	
 		MI_CpuCopy8(bp[i].leader_word,&lp->msg,8);
 
-		//ƒvƒŒƒCƒ„[–¼—pSTRBUFƒIƒuƒWƒFƒNƒg—ÌˆæŠm•Û
+		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åç”¨STRBUFã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé ˜åŸŸç¢ºä¿
 		lp->name = STRBUF_Create(BUFLEN_PERSON_NAME,wk->heapID);
 
-		//‚à‚µ‚àNGƒl[ƒ€‚È‚çƒfƒtƒHƒ‹ƒg–¼‚Å•\¦‚·‚é
+		//ã‚‚ã—ã‚‚NGãƒãƒ¼ãƒ ãªã‚‰ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåã§è¡¨ç¤ºã™ã‚‹
 		if(lp->ngname_f){
 			STRBUF_Copy(lp->name,wk->msgDat.def_name[lp->sex]);
 		}else{
 			STRBUF_SetStringCode( lp->name, bp[i].name);
 		}
 	}
-	//ƒRƒs[‚µ‚½‚ç‚à‚¤—v‚ç‚È‚¢‚Ì‚Å‰ğ•ú
+	//ã‚³ãƒ”ãƒ¼ã—ãŸã‚‰ã‚‚ã†è¦ã‚‰ãªã„ã®ã§è§£æ”¾
 	sys_FreeMemoryEz(bp);
 }
 
 /**
- *	@brief	—ğ‘ãƒŠ[ƒ_[ƒf[ƒ^‰ğ•ú
+ *	@brief	æ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿è§£æ”¾
  */
 static void BTowerApp_ReleaseLeaderData(BTOWER_APP_WORK * wk)
 {
@@ -1090,7 +1090,7 @@ static void BTowerApp_ReleaseLeaderData(BTOWER_APP_WORK * wk)
 }
 
 /**
- *	@brief	—ğ‘ãƒŠ[ƒ_[‰æ–Ê@ƒvƒŒƒCƒ„[ƒŠƒXƒg•`‰æ
+ *	@brief	æ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼ç”»é¢ã€€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒªã‚¹ãƒˆæç”»
  */
 static void BTowerApp_WritePlayerList(LEADER_DATA* leader,
 		GF_BGL_BMPWIN* win,STRBUF* retBuf,u8 up,u8 line,u8 side)
@@ -1126,14 +1126,14 @@ static void BTowerApp_WritePlayerList(LEADER_DATA* leader,
 }
 
 /**
- *	@brief	—ğ‘ãƒŠ[ƒ_[‰æ–Ê•¶š—ñ‰Šú•`‰æ
+ *	@brief	æ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼ç”»é¢æ–‡å­—åˆ—åˆæœŸæç”»
  */
 static void BTowerApp_MsgWriteLeader(BTOWER_APP_WORK* wk)
 {
 	BTOWER_ROOMID roomid;
 	int xofs;
 	
-	//ƒ‰ƒ“ƒN››@ƒ‹[ƒ€››
+	//ãƒ©ãƒ³ã‚¯â—‹â—‹ã€€ãƒ«ãƒ¼ãƒ â—‹â—‹
 	TowerWifiData_GetLeaderDataRoomID(wk->wifiSave,&roomid);
 	
 	STRBUF_Clear(wk->msgDat.tmp);
@@ -1147,36 +1147,36 @@ static void BTowerApp_MsgWriteLeader(BTOWER_APP_WORK* wk)
 	GF_STR_PrintColor(&wk->win[WINL_TITLE],FONT_SYSTEM,wk->msgDat.tmp,
 						xofs/2,4,MSG_NO_PUT,FCOLS_WHITE,NULL);
 	
-	//ƒ^ƒCƒgƒ‹
+	//ã‚¿ã‚¤ãƒˆãƒ«
 	MSGMAN_GetString(wk->msgDat.pMan,msg_btwr_leader_t02+wk->subMode,wk->msgDat.tmp);
 	xofs = BMPL_TITLE_SX*8-FontProc_GetPrintStrWidth(FONT_SYSTEM,wk->msgDat.tmp,0);
 	GF_STR_PrintColor(&wk->win[WINL_TITLE],FONT_SYSTEM,wk->msgDat.tmp,
 						xofs/2,20,MSG_ALLPUT,FCOLS_WHITE,NULL);
 	
-	//–¼‘O•¶š—ñ‰Šú•`‰æ
+	//åå‰æ–‡å­—åˆ—åˆæœŸæç”»
 	BTowerApp_WritePlayerList(wk->leader,&wk->win[WINL_NAME],wk->msgDat.ebuf,0,0,0);
 }
 
 /**
- *	@brief	—ğ‘ãƒŠ[ƒ_[‰æ–Ê ƒvƒŒƒCƒ„[ƒGƒŠƒAƒR[ƒh•`‰æ
+ *	@brief	æ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼ç”»é¢ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¨ãƒªã‚¢ã‚³ãƒ¼ãƒ‰æç”»
  */
 static void BTowerApp_PlayerAreaMsgWrite(BTOWER_APP_WORK* wk)
 {
 	LEADER_DATA* lp = &(wk->leader[wk->line*3+wk->side]);
 
 	GF_BGL_BmpWinDataFill(&wk->win[WINL_TALK],APP_WINCLR_COL(FBMP_COL_NULL));
-	if(lp->country  == 0 ){	//Z‚ñ‚Å‚¢‚éêŠ–¢“o˜^
+	if(lp->country  == 0 ){	//ä½ã‚“ã§ã„ã‚‹å ´æ‰€æœªç™»éŒ²æ™‚
 		GF_STR_PrintColor(&wk->win[WINL_TALK],FONT_SYSTEM,wk->msgDat.cbuf,
 							0,4,MSG_ALLPUT,FCOLS_BLACK,NULL);
 	}else if(lp->area == 0){
-		//‘ƒR[ƒh‚Ì‚İ“o˜^
+		//å›½ã‚³ãƒ¼ãƒ‰ã®ã¿ç™»éŒ²æ™‚
 		WORDSET_RegisterCountryName(wk->msgDat.wset,0,lp->country);
 		WORDSET_ExpandStr(wk->msgDat.wset,wk->msgDat.tmp,wk->msgDat.a2buf);
 		
 		GF_STR_PrintColor(&wk->win[WINL_TALK],FONT_SYSTEM,wk->msgDat.tmp,
 							0,4,MSG_ALLPUT,FCOLS_BLACK,NULL);
 	}else{
-		//‘ƒR[ƒh‚ÆƒGƒŠƒAƒR[ƒh‚ğ“WŠJ
+		//å›½ã‚³ãƒ¼ãƒ‰ã¨ã‚¨ãƒªã‚¢ã‚³ãƒ¼ãƒ‰ã‚’å±•é–‹
 		WORDSET_RegisterCountryName(wk->msgDat.wset,0,lp->country);
 		WORDSET_RegisterLocalPlaceName(wk->msgDat.wset,1,lp->country,lp->area);
 		WORDSET_ExpandStr(wk->msgDat.wset,wk->msgDat.tmp,wk->msgDat.a1buf);
@@ -1186,20 +1186,20 @@ static void BTowerApp_PlayerAreaMsgWrite(BTOWER_APP_WORK* wk)
 	}
 	GF_BGL_BmpWinOn(&wk->win[WINL_TALK]);
 
-	//‘I‘ğƒJ[ƒ\ƒ‹‚ÌƒXƒe[ƒg•ÏX
+	//é¸æŠã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´
 	Act_CursorChg(wk,FALSE);
 	
 }
 
 /**
- *	@brief	—ğ‘ãƒŠ[ƒ_[‰æ–Ê ƒvƒŒƒCƒ„[ƒƒbƒZ[ƒW•`‰æ
+ *	@brief	æ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼ç”»é¢ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
  */
 static void BTowerApp_PlayerMsgWrite(BTOWER_APP_WORK* wk)
 {
 	STRBUF* str;
 	LEADER_DATA* lp = &(wk->leader[wk->line*3+wk->side]);
 	
-	//ŠÈˆÕ‰ï˜b‚ğ“WŠJ
+	//ç°¡æ˜“ä¼šè©±ã‚’å±•é–‹
 	str = PMSDAT_ToString(&lp->msg,wk->heapID);
 	
 	GF_BGL_BmpWinDataFill(&wk->win[WINL_TALK],APP_WINCLR_COL(FBMP_COL_NULL));
@@ -1210,14 +1210,14 @@ static void BTowerApp_PlayerMsgWrite(BTOWER_APP_WORK* wk)
 }
 
 /**
- *	@brief	—ğ‘ãƒŠ[ƒ_[‰æ–Ê@ƒvƒŒƒCƒ„[ƒƒbƒZ[ƒWƒNƒŠƒA
+ *	@brief	æ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼ç”»é¢ã€€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¯ãƒªã‚¢
  */
 static void BTowerApp_PlayerMsgClear(BTOWER_APP_WORK* wk)
 {
 	GF_BGL_BmpWinDataFill(&wk->win[WINL_TALK],APP_WINCLR_COL(FBMP_COL_NULL));
 	GF_BGL_BmpWinOff(&wk->win[WINL_TALK]);
 	
-	//‘I‘ğƒJ[ƒ\ƒ‹‚ÌƒXƒe[ƒg•ÏX
+	//é¸æŠã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¹ãƒ†ãƒ¼ãƒˆå¤‰æ›´
 	Act_CursorChg(wk,TRUE);	
 }
 #if 1
@@ -1226,42 +1226,42 @@ static void BTowerApp_ActorInit(BTOWER_APP_WORK *wk)
 {
 	initVramTransferManagerHeap(32,wk->heapID);
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€‰Šú‰»
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	wk->pActSys = CATS_AllocMemory(wk->heapID);
 	wk->pActRes = CATS_ResourceCreate(wk->pActSys);
 
 	{
 		TCATS_OAM_INIT	coi = {
-			0,128,		///< ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJn/I—¹
-			0,32,		///< ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn/I—¹
-			0,128,		///< ƒTƒu	OAMŠÇ——ÌˆæEŠJn/I—¹
-			0,32,		///< ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn/I—¹
+			0,128,		///< ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			0,32,		///< ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			0,128,		///< ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			0,32,		///< ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
 		};
 		TCATS_CHAR_MANAGER_MAKE ccmm = {
-			BTOWER_APP_ACTRES_MAX,	//ID§Œä”
-			2048,	//ƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
-			2048,	//ƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
-			GX_OBJVRAMMODE_CHAR_1D_32K,	//ƒƒCƒ“OBJƒ‚[ƒhw’è
-			GX_OBJVRAMMODE_CHAR_1D_32K,	//ƒTƒuOBJƒ‚[ƒhw’è
+			BTOWER_APP_ACTRES_MAX,	//IDåˆ¶å¾¡æ•°
+			2048,	//ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
+			2048,	//ã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
+			GX_OBJVRAMMODE_CHAR_1D_32K,	//ãƒ¡ã‚¤ãƒ³OBJãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
+			GX_OBJVRAMMODE_CHAR_1D_32K,	//ã‚µãƒ–OBJãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
 		};
 
 		CATS_SystemInit( wk->pActSys, &coi, &ccmm, 32 );
 		CATS_ClactSetInit( wk->pActSys, wk->pActRes,ACT_MAX );
 
-		//OAM‰Šú‰»
+		//OAMåˆæœŸåŒ–
 		REND_OAM_UtilOamRamClear_Main(wk->heapID);
 		REND_OAM_UtilOamRamClear_Sub(wk->heapID);
 	}
 
 	{
 		TCATS_RESOURCE_FILE_LIST list = {
-			"data/btower_chr.resdat",		// ƒLƒƒƒ‰ƒNƒ^
-			"data/btower_pal.resdat",		// ƒpƒŒƒbƒg
-			"data/btower_cell.resdat",	// ƒZƒ‹
-			"data/btower_canm.resdat",	// ƒZƒ‹ƒAƒjƒ
-			NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹
-			NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
-			"data/btower_celact.cldat"		// ƒwƒbƒ_[		
+			"data/btower_chr.resdat",		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+			"data/btower_pal.resdat",		// ãƒ‘ãƒ¬ãƒƒãƒˆ
+			"data/btower_cell.resdat",	// ã‚»ãƒ«
+			"data/btower_canm.resdat",	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			NULL,						// ãƒãƒ«ãƒã‚»ãƒ«
+			NULL,						// ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			"data/btower_celact.cldat"		// ãƒ˜ãƒƒãƒ€ãƒ¼		
 		};
 		CATS_ResourceLoadBinary( wk->pActSys, wk->pActRes, &list );
 	}
@@ -1290,7 +1290,7 @@ static void BTowerApp_ActorTrans(void)
 }
 
 /**
- *	@brief	—ğ‘ãƒŠ[ƒ_[‰æ–ÊƒAƒNƒ^[“o˜^
+ *	@brief	æ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼ç”»é¢ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  */
 static void BTowerApp_MakeLeaderViewAct(BTOWER_APP_WORK* wk)
 {
@@ -1298,25 +1298,25 @@ static void BTowerApp_MakeLeaderViewAct(BTOWER_APP_WORK* wk)
 	
 	static const TCATS_OBJECT_ADD_PARAM	ActAddParam[] =
 	{
-		{	// ‘I‘ğƒJ[ƒ\ƒ‹
+		{	// é¸æŠã‚«ãƒ¼ã‚½ãƒ«
 			0,	//ID
 			ACT_CUR_PX, ACT_CUR_PY, 0,	//x,y,z
 			ACT_CURSOR, 1, 0, NNS_G2D_VRAM_TYPE_2DMAIN,	//anmNO,pri,pal,d_area
 			0, 0, 0, 0	//prm1,prm2,prm3,prm4
 		},
-		{	// –ß‚éƒpƒlƒ‹ 
+		{	// æˆ»ã‚‹ãƒ‘ãƒãƒ« 
 			0,	//ID
 			ACT_RET_PX, ACT_RET_PY, 0,	//x,y,z
 			ACT_RET, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN,	//anmNO,pri,pal,d_area
 			0, 0, 0, 0	//prm1,prm2,prm3,prm4
 		},
-		{	// ã–îˆó 
+		{	// ä¸ŠçŸ¢å° 
 			0,	//ID
 			ACT_UP_PX, ACT_UP_PY, 0,	//x,y,z
 			ACT_UP, 3, 0, NNS_G2D_VRAM_TYPE_2DMAIN,	//anmNO,pri,pal,d_area
 			0, 0, 0, 0	//prm1,prm2,prm3,prm4
 		},
-		{	// ‰º–îˆó 
+		{	// ä¸‹çŸ¢å° 
 			0,	//ID
 			ACT_DOWN_PX, ACT_DOWN_PY, 0,	//x,y,z
 			ACT_DOWN, 4, 0, NNS_G2D_VRAM_TYPE_2DMAIN,	//anmNO,pri,pal,d_area
@@ -1339,7 +1339,7 @@ static void BTowerApp_MakeLeaderViewAct(BTOWER_APP_WORK* wk)
 }
 
 /**
- *	@brief	—ğ‘ãƒŠ[ƒ_[‰æ–Ê@ƒAƒNƒ^[íœ
+ *	@brief	æ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼ç”»é¢ã€€ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  */
 static void BTowerApp_DelLeaderViewAct(BTOWER_APP_WORK* wk)
 {
@@ -1351,7 +1351,7 @@ static void BTowerApp_DelLeaderViewAct(BTOWER_APP_WORK* wk)
 }
 
 /**
- *	@brief	—ğ‘ãƒŠ[ƒ_[‰æ–Ê@ƒJ[ƒ\ƒ‹ƒAƒNƒ^[ó‘Ôƒ`ƒFƒ“ƒW
+ *	@brief	æ­´ä»£ãƒªãƒ¼ãƒ€ãƒ¼ç”»é¢ã€€ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼çŠ¶æ…‹ãƒã‚§ãƒ³ã‚¸
  */
 static void Act_CursorChg(BTOWER_APP_WORK* wk,BOOL mode)
 {
@@ -1369,7 +1369,7 @@ static void Act_CursorChg(BTOWER_APP_WORK* wk,BOOL mode)
 }
 
 /**
- *	@brief	ƒAƒNƒ^[ƒJ[ƒ\ƒ‹ˆÊ’uƒZƒbƒg
+ *	@brief	ã‚¢ã‚¯ã‚¿ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚»ãƒƒãƒˆ
  */
 static void Act_CursorPosSet(BTOWER_APP_WORK* wk,u8 line,u8 side,u8 viewLine)
 {

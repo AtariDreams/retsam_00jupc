@@ -13,7 +13,7 @@
 #
 # $Log: Makefile,v $
 # Revision 1.2  2005/05/26 02:49:22  terui
-# Makefile.CORE ‚ğ include ‚·‚é‚æ‚¤‚ÉC³
+# Makefile.CORE ã‚’ include ã™ã‚‹ã‚ˆã†ã«ä¿®æ­£
 #
 # Revision 1.1  2004/08/27 08:49:12  yasu
 # Create libspi.a for all version of TS

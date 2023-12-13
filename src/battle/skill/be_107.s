@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_107.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			107�@�G���u�˂ނ�v��Ԃ̎��������ʂ̂���Z�i�u�˂ނ�v��ԂłȂ��ƋZ�͎��s����j�A
- *				 �G�|�P���������ޏ�Ԃɂ���	
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			107　敵が「ねむり」状態の時だけ効果のある技（「ねむり」状態でないと技は失敗する）、
+ *				 敵ポケモンあくむ状態にする	
  *
  *@author	HisashiSogabe
  *@data		2006.01.27
@@ -17,11 +17,11 @@
 
 BE_107:
 #if AFTER_MASTER_070405_BT_FIX
-	//�݂���肪�łĂ�����A���܂����܂��
+	//みがわりがでていたら、うまくきまらん
 	MIGAWARI_CHECK	SIDE_DEFENCE,Umakukimaran
-	//���łɂ����ނɂ������Ă�����A���܂����܂��
+	//すでにあくむにかかっていたら、うまくきまらん
 	IF_PSP			IF_FLAG_BIT,SIDE_DEFENCE,ID_PSP_condition2,CONDITION2_AKUMU,Umakukimaran
-	//�˂ނ��Ă��Ȃ�������A���܂����܂��
+	//ねむっていなかったら、うまくきまらん
 	IF_PSP			IF_FLAG_NBIT,SIDE_DEFENCE,ID_PSP_condition,CONDITION_NEMURI,Umakukimaran
 #endif //AFTER_MASTER_070405_BT_FIX
 	VALUE		VAL_SET,BUF_PARA_ADD_STATUS_DIRECT,ADD_COND2_AKUMU|ADD_STATUS_WAZAKOUKA

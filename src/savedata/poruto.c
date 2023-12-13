@@ -1,6 +1,6 @@
 /**
  *	@file	poruto.c
- *	@brief	ƒ|ƒ‹ƒgƒZ[ƒuƒf[ƒ^ §Œä
+ *	@brief	ãƒãƒ«ãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ åˆ¶å¾¡
  *	@author	Miyuki Iwasawa
  *	@date	06.2.28
  */
@@ -12,7 +12,7 @@
 #include "savedata/poruto_local.h"
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒf[ƒ^ƒTƒCƒYæ“¾
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
  */
 int PorutoData_GetWorkSize(void)
 {
@@ -20,7 +20,7 @@ int PorutoData_GetWorkSize(void)
 }
 
 /**
- *	@brief	‚»‚Ìƒ|ƒ‹ƒgƒf[ƒ^‚ª—LŒø‚©‚Ç‚¤‚©•Ô‚·
+ *	@brief	ãã®ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ãŒæœ‰åŠ¹ã‹ã©ã†ã‹è¿”ã™
  */
 BOOL PorutoData_IsEnable(PORUTO_DATA* dat)
 {
@@ -31,7 +31,7 @@ BOOL PorutoData_IsEnable(PORUTO_DATA* dat)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒf[ƒ^ƒNƒŠƒA
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
  */
 void PorutoData_Clear(PORUTO_DATA* dat)
 {
@@ -49,7 +49,7 @@ void PorutoData_Clear(PORUTO_DATA* dat)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒf[ƒ^ƒ[ƒNì¬
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ä½œæˆ
  */
 PORUTO_DATA* PorutoData_AllocWork(int heapID)
 {
@@ -61,7 +61,7 @@ PORUTO_DATA* PorutoData_AllocWork(int heapID)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒf[ƒ^ƒRƒs[
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
  */
 void PorutoData_Copy(PORUTO_DATA* src,PORUTO_DATA* dest)
 {
@@ -79,12 +79,12 @@ void PorutoData_Copy(PORUTO_DATA* src,PORUTO_DATA* dest)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒg‚Ìƒpƒ‰ƒ[ƒ^‚ğæ“¾
+ *	@brief	ãƒãƒ«ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—
  *
  *	@param	dat
- *	@param	id	enum PORUTO_PARAIDŒ^(poruto_def.hQÆ)
+ *	@param	id	enum PORUTO_PARAIDå‹(poruto_def.hå‚ç…§)
  *
- *	@return	u8:æ“¾‚µ‚½ƒpƒ‰ƒ[ƒ^
+ *	@return	u8:å–å¾—ã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 u8 PorutoData_GetParam(PORUTO_DATA* dat,PORUTO_PARAID id)
 {
@@ -108,11 +108,11 @@ u8 PorutoData_GetParam(PORUTO_DATA* dat,PORUTO_PARAID id)
 }
 	
 /**
- *	@brief	ƒ|ƒ‹ƒg‚Ìƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg
+ *	@brief	ãƒãƒ«ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
  *	@param	dat
- *	@param	value	ƒZƒbƒg‚µ‚½‚¢ƒf[ƒ^
- *	@param	id	enum PORUTO_PARAIDŒ^(poruto_def.hQÆ)
+ *	@param	value	ã‚»ãƒƒãƒˆã—ãŸã„ãƒ‡ãƒ¼ã‚¿
+ *	@param	id	enum PORUTO_PARAIDå‹(poruto_def.hå‚ç…§)
  *
  */
 void PorutoData_SetParam(PORUTO_DATA* dat,u8 valid,PORUTO_PARAID id)
@@ -154,7 +154,7 @@ void PorutoData_SetParam(PORUTO_DATA* dat,u8 valid,PORUTO_PARAID id)
 	return;
 }
 
-//•s–¡‚¢ƒ|ƒ‹ƒg‚ğ¶¬
+//ä¸å‘³ã„ãƒãƒ«ãƒˆã‚’ç”Ÿæˆ
 static void porudata_MakeNoGoodPoruto(PORUTO_DATA *dat,u8 taste)
 {
 	int ct;
@@ -177,14 +177,14 @@ static void porudata_MakeNoGoodPoruto(PORUTO_DATA *dat,u8 taste)
 }
 
 /**
- *	@brief	–¡‚Æ|–¡‚©‚çƒ|ƒ‹ƒg‚Ìí—Ş‚ğŒˆ’è‚µAƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚µ‚Ä•Ô‚·
+ *	@brief	å‘³ã¨æ—¨å‘³ã‹ã‚‰ãƒãƒ«ãƒˆã®ç¨®é¡ã‚’æ±ºå®šã—ã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã—ã¦è¿”ã™
  *
- *	@param	dat	PORUTO_DATA*:ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚éƒ|ƒ‹ƒgƒf[ƒ^Œ^\‘¢‘Ì
- *	@param	prm	u8[5]:5í—Ş‚Ì–¡’l‚ğŠi”[
- *	@param	taste	|–¡’l‚ğŠi”[
- *	@param	mazui	‹­§“I‚É•s–¡‚¢ƒ|ƒ‹ƒg‚É‚È‚é‚©‚Ç‚¤‚©H TRUE‚È‚ç‚Ü‚¸‚¢ƒ|ƒ‹ƒg
+ *	@param	dat	PORUTO_DATA*:ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿å‹æ§‹é€ ä½“
+ *	@param	prm	u8[5]:5ç¨®é¡ã®å‘³å€¤ã‚’æ ¼ç´
+ *	@param	taste	æ—¨å‘³å€¤ã‚’æ ¼ç´
+ *	@param	mazui	å¼·åˆ¶çš„ã«ä¸å‘³ã„ãƒãƒ«ãƒˆã«ãªã‚‹ã‹ã©ã†ã‹ï¼Ÿ TRUEãªã‚‰ã¾ãšã„ãƒãƒ«ãƒˆ
  *
- *	@return	PORUTO_FLAVORID	ì¬‚³‚ê‚½ƒ|ƒ‹ƒg‚ÌƒtƒŒƒo[ID
+ *	@return	PORUTO_FLAVORID	ä½œæˆã•ã‚ŒãŸãƒãƒ«ãƒˆã®ãƒ•ãƒ¬ãƒãƒ¼ID
  */
 PORUTO_FLAVORID PorutoData_CalcParam(PORUTO_DATA* dat,u8 *prm,u8 taste,BOOL mazui)
 {
@@ -195,51 +195,51 @@ PORUTO_FLAVORID PorutoData_CalcParam(PORUTO_DATA* dat,u8 *prm,u8 taste,BOOL mazu
 	fid = PORUTO_FLAVOR_NGOOD;
 
 	if(mazui){
-		//‚Ü‚¸‚¢ƒ|ƒ‹ƒg
+		//ã¾ãšã„ãƒãƒ«ãƒˆ
 		porudata_MakeNoGoodPoruto(dat,taste);
 		return fid;
 	}
 	
-	//‚Á‚Ä‚¢‚é–¡’l‚Ì”‚ğ‰‰Z
+	//æŒã£ã¦ã„ã‚‹å‘³å€¤ã®æ•°ã‚’æ¼”ç®—
 	for(i = 0;i < 5;i++){
 		if(prm[i]){
 			if(prm[i] >=  50){
-				maro_f = 1;	//‚Ü‚ë‚â‚©ƒtƒ‰ƒO
+				maro_f = 1;	//ã¾ã‚ã‚„ã‹ãƒ•ãƒ©ã‚°
 			}
 			kind[fct++] = i;
 		}
 	}
 	
 	switch(fct){
-	case 0:	//‚Ü‚¸‚¢ƒ|ƒ‹ƒg
+	case 0:	//ã¾ãšã„ãƒãƒ«ãƒˆ
 		porudata_MakeNoGoodPoruto(dat,taste);
 		return fid;
-	case 1:	//–¡‚ªˆê‚Â
+	case 1:	//å‘³ãŒä¸€ã¤
 		fid = kind[0]*5+kind[0];
 		break;
-	case 2:	//–¡‚ª“ñ‚Â
+	case 2:	//å‘³ãŒäºŒã¤
 		if(prm[kind[0]] >= prm[kind[1]]){
 			fid = kind[0]*5+kind[1];
 		}else{
 			fid = kind[1]*5+kind[0];
 		}
 		break;
-	case 3:	//‚±‚Á‚Ä‚è
+	case 3:	//ã“ã£ã¦ã‚Š
 		fid = PORUTO_FLAVOR_HEAVY;
 		break;
-	case 4:	//‚­‚Ç‚¢
+	case 4:	//ãã©ã„
 	case 5:
 		fid = PORUTO_FLAVOR_THICK;
 		break;
 	}
-	if(maro_f){	//–¡’l‚ª50‚ğ‰z‚¦‚½‚à‚Ì‚ªˆê‚Â‚Å‚à‚ ‚ê‚Î‚Ü‚ë‚â‚©
+	if(maro_f){	//å‘³å€¤ãŒ50ã‚’è¶ŠãˆãŸã‚‚ã®ãŒä¸€ã¤ã§ã‚‚ã‚ã‚Œã°ã¾ã‚ã‚„ã‹
 		fid = PORUTO_FLAVOR_MILD;
 	}
-	//ƒpƒ‰ƒ[ƒ^Ši”[
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ ¼ç´
 	for(i = 0;i < 5;i++){
 		dat->param[i+1] = prm[i];
 	}
-	//–¡’l‚Æ|–¡’l‚ğŠi”[
+	//å‘³å€¤ã¨æ—¨å‘³å€¤ã‚’æ ¼ç´
 	dat->flavor = fid;
 	dat->taste = taste;
 #if (CRC_LOADCHECK && CRCLOADCHECK_GMDATA_ID_PORUTODATA)
@@ -249,10 +249,10 @@ PORUTO_FLAVORID PorutoData_CalcParam(PORUTO_DATA* dat,u8 *prm,u8 taste,BOOL mazu
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒpƒ‰ƒ[ƒ^æ“¾(”z—ñ”Å)
+ *	@brief	ãƒãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—(é…åˆ—ç‰ˆ)
  *
- *	–ŒÄ‚Ño‚µ‘¤‚Åƒf[ƒ^‚Ìæ“¾êŠ‚ğ—pˆÓ‚·‚éƒo[ƒWƒ‡ƒ“
- *	@u8[PORUTO_PARAID_NUM] •ª‚Ìƒƒ‚ƒŠƒGƒŠƒA‚ª•K—v
+ *	ï¼Šå‘¼ã³å‡ºã—å´ã§ãƒ‡ãƒ¼ã‚¿ã®å–å¾—å ´æ‰€ã‚’ç”¨æ„ã™ã‚‹ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+ *	ã€€u8[PORUTO_PARAID_NUM] åˆ†ã®ãƒ¡ãƒ¢ãƒªã‚¨ãƒªã‚¢ãŒå¿…è¦
  */
 void PorutoData_GetParamArray(PORUTO_DATA* dat,u8* array)
 {
@@ -266,10 +266,10 @@ void PorutoData_GetParamArray(PORUTO_DATA* dat,u8* array)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒpƒ‰ƒ[ƒ^æ“¾(”z—ñ,ƒƒ‚ƒŠŠm•Û”Å)
+ *	@brief	ãƒãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—(é…åˆ—,ãƒ¡ãƒ¢ãƒªç¢ºä¿ç‰ˆ)
  *
- *	–ŠÖ”“à‚Å•K—v‚Èƒoƒbƒtƒ@‚ğæ“¾‚µ‚Ä•Ô‚·ƒo[ƒWƒ‡ƒ“
- *	@ŒÄ‚Ño‚µ‘¤‚Å–¾¦“I‚Èƒƒ‚ƒŠ‰ğ•ú‚ª•K—v
+ *	ï¼Šé–¢æ•°å†…ã§å¿…è¦ãªãƒãƒƒãƒ•ã‚¡ã‚’å–å¾—ã—ã¦è¿”ã™ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+ *	ã€€å‘¼ã³å‡ºã—å´ã§æ˜ç¤ºçš„ãªãƒ¡ãƒ¢ãƒªè§£æ”¾ãŒå¿…è¦
  */
 u8* PorutoData_GetParamArrayMem(PORUTO_DATA* dat,int heapID)
 {
@@ -287,7 +287,7 @@ u8* PorutoData_GetParamArrayMem(PORUTO_DATA* dat,int heapID)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒg‚ÌƒŒƒxƒ‹‚ğæ“¾
+ *	@brief	ãƒãƒ«ãƒˆã®ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
  */
 u8 PorutoData_GetLevel(PORUTO_DATA* dat)
 {
@@ -313,7 +313,7 @@ u8 PorutoData_GetLevel(PORUTO_DATA* dat)
 		break;
 	case PORUTO_FTYPE_MIX:
 	default:
-		//ƒ~ƒbƒNƒXŒn‚Íˆê”Ô‚‚¢ƒpƒ‰ƒ[ƒ^‚ğ’T‚·
+		//ãƒŸãƒƒã‚¯ã‚¹ç³»ã¯ä¸€ç•ªé«˜ã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ¢ã™
 		level = dat->spicy;
 		if(level < dat->astringent){
 			level = dat->astringent;
@@ -336,11 +336,11 @@ u8 PorutoData_GetLevel(PORUTO_DATA* dat)
 }
 
 //=================================================================
-// ƒ|ƒ‹ƒgƒZ[ƒuƒf[ƒ^ƒuƒƒbƒNƒAƒNƒZƒXŒn
+// ãƒãƒ«ãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã‚¢ã‚¯ã‚»ã‚¹ç³»
 //=================================================================
 
 /**
- *	@brief	ƒZ[ƒuƒf[ƒ^ƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ *	@brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  */
 PORUTO_BLOCK* SaveData_GetPorutoBlock(SAVEDATA* sv)
 {
@@ -351,7 +351,7 @@ PORUTO_BLOCK* SaveData_GetPorutoBlock(SAVEDATA* sv)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒZ[ƒuƒf[ƒ^ƒTƒCƒYæ“¾
+ *	@brief	ãƒãƒ«ãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºå–å¾—
  */
 int PORUTO_GetSaveWorkSize(void)
 {
@@ -359,7 +359,7 @@ int PORUTO_GetSaveWorkSize(void)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒf[ƒ^”z—ñ‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿é…åˆ—åˆæœŸåŒ–
  */
 void PORUTO_Init(PORUTO_BLOCK* block)
 {
@@ -370,10 +370,10 @@ void PORUTO_Init(PORUTO_BLOCK* block)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒZ[ƒuƒf[ƒ^‚Ì‹ó‚«—Ìˆæ‚ğ’T‚·
+ *	@brief	ãƒãƒ«ãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ç©ºãé ˜åŸŸã‚’æ¢ã™
  *
- *	@retval	PORUTO_DATA_NULL	‹ó‚«—Ìˆæ‚ª‚È‚¢
- *	@retval "‚»‚Ì‘¼"			‹ó‚«—Ìˆæ‚ÌIndexNo
+ *	@retval	PORUTO_DATA_NULL	ç©ºãé ˜åŸŸãŒãªã„
+ *	@retval "ãã®ä»–"			ç©ºãé ˜åŸŸã®IndexNo
  */
 u16 PORUTO_SearchNullData(PORUTO_BLOCK* block)
 {
@@ -388,10 +388,10 @@ u16 PORUTO_SearchNullData(PORUTO_BLOCK* block)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒf[ƒ^‚ğƒZ[ƒuƒf[ƒ^‹ó‚«—Ìˆæ‚É’Ç‰Á‚·‚é
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ç©ºãé ˜åŸŸã«è¿½åŠ ã™ã‚‹
  *
- *	@retval	PORUTO_DATA_NULL	‹ó‚«—Ìˆæ‚ª‚È‚­‚Ä’Ç‰Á‚Å‚«‚È‚©‚Á‚½
- *	@retval "‚»‚Ì‘¼"			’Ç‰Á‚µ‚½—Ìˆæ‚Ìindex
+ *	@retval	PORUTO_DATA_NULL	ç©ºãé ˜åŸŸãŒãªãã¦è¿½åŠ ã§ããªã‹ã£ãŸ
+ *	@retval "ãã®ä»–"			è¿½åŠ ã—ãŸé ˜åŸŸã®index
  */
 u16 PORUTO_AddData(PORUTO_BLOCK* block,PORUTO_DATA* dat) 
 {
@@ -400,13 +400,13 @@ u16 PORUTO_AddData(PORUTO_BLOCK* block,PORUTO_DATA* dat)
 	if(idx == PORUTO_DATA_NULL){
 		return idx;
 	}
-	//’Ç‰Á
+	//è¿½åŠ 
 	PorutoData_Copy(dat,&block->poruto[idx]);
 	return idx;
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒf[ƒ^‚ğƒZ[ƒuƒf[ƒ^‚©‚çíœ‚·‚é(indexw’è)
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å‰Šé™¤ã™ã‚‹(indexæŒ‡å®š)
  *
  */
 BOOL PORUTO_DelData(PORUTO_BLOCK* block,u16 idx) 
@@ -414,13 +414,13 @@ BOOL PORUTO_DelData(PORUTO_BLOCK* block,u16 idx)
 	if(idx >= PORUTO_STOCK_MAX){
 		return FALSE;
 	}
-	//íœ
+	//å‰Šé™¤
 	PorutoData_Clear(&block->poruto[idx]);
 	return TRUE;
 }
 
 /**
- *	@brief	w’è‚µ‚½indexæ‚ÌŸ‚Ì—LŒøƒf[ƒ^‚Ìindex‚ğ•Ô‚·
+ *	@brief	æŒ‡å®šã—ãŸindexå…ˆã®æ¬¡ã®æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ã®indexã‚’è¿”ã™
  *
  */
 static u16	poruto_GetNextValiableIndex(PORUTO_BLOCK* block,u16 now)
@@ -429,24 +429,24 @@ static u16	poruto_GetNextValiableIndex(PORUTO_BLOCK* block,u16 now)
 
 	for(i = now;i < PORUTO_STOCK_MAX;i++){
 		if(block->poruto[i].flavor != PORUTO_FLAVOR_NULL){
-			//—LŒøƒf[ƒ^”­Œ©
+			//æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ç™ºè¦‹
 			return i;
 		}
 	}
-	//—LŒøƒf[ƒ^‚ÍŒ©‚Â‚©‚ç‚È‚©‚Á‚½
+	//æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ã¯è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ
 	return 0xFFFF;
 }
 /**
- *	@brief	ƒ|ƒ‹ƒgƒZ[ƒuƒf[ƒ^‚ğ®—‚·‚é
+ *	@brief	ãƒãƒ«ãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’æ•´ç†ã™ã‚‹
  *
- *	–ƒf[ƒ^”z—ñ‚ÌŒŠ‹ó‚«‚ğ‹l‚ß‚é
+ *	ï¼Šãƒ‡ãƒ¼ã‚¿é…åˆ—ã®ç©´ç©ºãã‚’è©°ã‚ã‚‹
  */
 void PORUTO_DataAdjust(PORUTO_BLOCK* block)
 {
 	u16 i,j,tmp;
 	u16	s,d,rest;
 
-	//c‚è‚Ì”‰Šú‰»
+	//æ®‹ã‚Šã®æ•°åˆæœŸåŒ–
 	rest = PORUTO_STOCK_MAX;
 
 	for(i = 0;i < rest;i++){
@@ -456,8 +456,8 @@ void PORUTO_DataAdjust(PORUTO_BLOCK* block)
 		s = i;
 		tmp = poruto_GetNextValiableIndex(block,s);
 		if(tmp == 0xFFFF){
-			//‚±‚êˆÈãæ‚É—LŒøƒf[ƒ^‚Í‚È‚¢
-			break;	//I—¹
+			//ã“ã‚Œä»¥ä¸Šå…ˆã«æœ‰åŠ¹ãƒ‡ãƒ¼ã‚¿ã¯ãªã„
+			break;	//çµ‚äº†
 		}
 		d = tmp;
 		tmp = d-s;
@@ -470,9 +470,9 @@ void PORUTO_DataAdjust(PORUTO_BLOCK* block)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒf[ƒ^‚ğƒZ[ƒuƒf[ƒ^‚©‚çæ“¾‚·‚é(indexw’è)
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—ã™ã‚‹(indexæŒ‡å®š)
  *
- *	–ˆø‚«“n‚³‚ê‚½PORUTO_DATA\‘¢‘ÌŒ^—Ìˆæ‚ÖAƒZ[ƒuƒf[ƒ^‚ğƒRƒs[‚µ‚Ä•Ô‚·
+ *	ï¼Šå¼•ãæ¸¡ã•ã‚ŒãŸPORUTO_DATAæ§‹é€ ä½“å‹é ˜åŸŸã¸ã€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã—ã¦è¿”ã™
  */
 void PORUTO_GetData(PORUTO_BLOCK* block,u16 idx,PORUTO_DATA* dest)
 {
@@ -480,16 +480,16 @@ void PORUTO_GetData(PORUTO_BLOCK* block,u16 idx,PORUTO_DATA* dest)
 		PorutoData_Clear(dest);
 		return;
 	}
-	//æ“¾
+	//å–å¾—
 	PorutoData_Copy(&block->poruto[idx],dest);
 	return ;
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒf[ƒ^‚ğƒZ[ƒuƒf[ƒ^‚©‚çæ“¾‚·‚é(indexw’è/ƒƒ‚ƒŠŠm•Û”Å)
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰å–å¾—ã™ã‚‹(indexæŒ‡å®š/ãƒ¡ãƒ¢ãƒªç¢ºä¿ç‰ˆ)
  *
- *	–PORUTO_DATA\‘¢‘ÌŒ^—Ìˆæ‚ğŠm•Û‚µAƒZ[ƒuƒf[ƒ^‚ğƒRƒs[‚µ‚Ä•Ô‚·
- *	@ŒÄ‚Ño‚µ‘¤‚ª–¾¦“I‚É‰ğ•ú‚·‚é‚±‚ÆI
+ *	ï¼ŠPORUTO_DATAæ§‹é€ ä½“å‹é ˜åŸŸã‚’ç¢ºä¿ã—ã€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã—ã¦è¿”ã™
+ *	ã€€å‘¼ã³å‡ºã—å´ãŒæ˜ç¤ºçš„ã«è§£æ”¾ã™ã‚‹ã“ã¨ï¼
  */
 PORUTO_DATA* PORUTO_GetDataAlloc(PORUTO_BLOCK* block,u16 idx,int heapID)
 {
@@ -502,13 +502,13 @@ PORUTO_DATA* PORUTO_GetDataAlloc(PORUTO_BLOCK* block,u16 idx,int heapID)
 		return NULL;
 	}
 	
-	//æ“¾
+	//å–å¾—
 	PorutoData_Copy(&block->poruto[idx],dest);
 	return dest;
 }
 
 /**
- *	@brief	ƒZ[ƒuƒf[ƒ^—Ìˆæ‚É‚ ‚é—LŒø‚Èƒ|ƒ‹ƒgƒf[ƒ^”‚ğ•Ô‚·
+ *	@brief	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã«ã‚ã‚‹æœ‰åŠ¹ãªãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿æ•°ã‚’è¿”ã™
  */
 u16	PORUTO_GetDataNum(PORUTO_BLOCK* block)
 {
@@ -524,7 +524,7 @@ u16	PORUTO_GetDataNum(PORUTO_BLOCK* block)
 
 #ifdef PM_DEBUG
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒoƒbƒO@ƒf[ƒ^‘S•”Á‚·
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒãƒƒã‚°ã€€ãƒ‡ãƒ¼ã‚¿å…¨éƒ¨æ¶ˆã™
  */
 void PorutoDebug_AllDataDelete(PORUTO_BLOCK* block)
 {
@@ -536,7 +536,7 @@ void PorutoDebug_AllDataDelete(PORUTO_BLOCK* block)
 }
 
 /**
- *	“K“–‚Èƒpƒ‰ƒ[ƒ^‚ğƒ‰ƒ“ƒ_ƒ€¶¬‚·‚é
+ *	é©å½“ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒ©ãƒ³ãƒ€ãƒ ç”Ÿæˆã™ã‚‹
  */
 #define PARA_DMYMAX	(99)
 #define PARA_DMYNMAX	(48)
@@ -547,16 +547,16 @@ static void porudeb_CreateRndParam(PORUTO_DATA* dat,u8 level)
 
 	MI_CpuClear8(param,PORUTO_PARAID_NUM);
 
-	//ƒƒCƒ“‚Ì–¡‚ğŒˆ‚ß‚é
+	//ãƒ¡ã‚¤ãƒ³ã®å‘³ã‚’æ±ºã‚ã‚‹
 	main = gf_rand()%PORUTO_FTYPE_MAX;
 
-	//ƒ~ƒbƒNƒX‚·‚é–¡‚ğŒˆ‚ß‚é
+	//ãƒŸãƒƒã‚¯ã‚¹ã™ã‚‹å‘³ã‚’æ±ºã‚ã‚‹
 	sub = gf_rand()%PORUTO_FTYPE_NUM;
 
 	if(main == PORUTO_FTYPE_MIX){
 		u8 i,j,ct;
 		switch(sub){
-		case 0:	//‚Ü‚¸‚¢
+		case 0:	//ã¾ãšã„
 			for(ct = 0;ct < 3;ct++){
 				j = gf_rand()%PORUTO_FTYPE_NUM;
 				for(i = 0;i < PORUTO_FTYPE_NUM;i++){
@@ -569,7 +569,7 @@ static void porudeb_CreateRndParam(PORUTO_DATA* dat,u8 level)
 			}
 			dat->flavor = PORUTO_FLAVOR_NGOOD;
 			break;
-		case 1:	//‚Ü‚ë‚â‚©
+		case 1:	//ã¾ã‚ã‚„ã‹
 			i = gf_rand()%PORUTO_FTYPE_NUM;
 			j = gf_rand()%PORUTO_FTYPE_NUM;
 			param[i] = gf_rand()%(PARA_DMYMAX-PORUTO_MILD_VALUE)+PORUTO_MILD_VALUE;
@@ -595,22 +595,22 @@ static void porudeb_CreateRndParam(PORUTO_DATA* dat,u8 level)
 			break;
 		}
 	}else{
-		//ƒƒCƒ“
+		//ãƒ¡ã‚¤ãƒ³
 		param[main] = gf_rand()%(PARA_DMYNMAX)+2;
-		//ƒTƒu
-		if(sub != main){	//ƒƒCƒ“ˆÈ‰º‚Ì’l‚ğİ’è
+		//ã‚µãƒ–
+		if(sub != main){	//ãƒ¡ã‚¤ãƒ³ä»¥ä¸‹ã®å€¤ã‚’è¨­å®š
 			param[sub] = gf_rand()%(param[main]-1)+1;
 		}
-		dat->flavor = main*PORUTO_FTYPE_NUM+sub;	//–¡Œˆ’è
+		dat->flavor = main*PORUTO_FTYPE_NUM+sub;	//å‘³æ±ºå®š
 	}
-	//|–¡‚ğŒˆ’è
+	//æ—¨å‘³ã‚’æ±ºå®š
 	if(level > 99){
 		dat->taste = 99;//gf_rand()%PARA_DMYMAX;
 	}else{
 		dat->taste = level;
 	}
 
-	//‘¼‚Ìƒpƒ‰ƒ[ƒ^‚ğ‘‚«o‚µ
+	//ä»–ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã—
 	dat->spicy = param[0];
 	dat->astringent = param[1];
 	dat->sweet = param[2];
@@ -619,7 +619,7 @@ static void porudeb_CreateRndParam(PORUTO_DATA* dat,u8 level)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒoƒbƒO@ƒeƒLƒg[‚Èƒ|ƒ‹ƒg‚ğw’è‚µ‚½”’Ç‰Á
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒãƒƒã‚°ã€€ãƒ†ã‚­ãƒˆãƒ¼ãªãƒãƒ«ãƒˆã‚’æŒ‡å®šã—ãŸæ•°è¿½åŠ 
  */
 u16 PorutoDebug_AddRndData(PORUTO_BLOCK* block,u16 num)
 {
@@ -629,7 +629,7 @@ u16 PorutoDebug_AddRndData(PORUTO_BLOCK* block,u16 num)
 		if(PorutoData_IsEnable(&block->poruto[i])){
 			continue;
 		}
-		//ƒ‰ƒ“ƒ_ƒ€‚Èƒpƒ‰ƒ[ƒ^‚ğ“ü‚ê‚é
+		//ãƒ©ãƒ³ãƒ€ãƒ ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹
 		porudeb_CreateRndParam(&block->poruto[i],ret+1);
 		if(++ret >= num){
 			return ret;
@@ -643,11 +643,11 @@ u16 PorutoDebug_AddRndData(PORUTO_BLOCK* block,u16 num)
 #endif	//PM_DEBUG
 
 
-//08.02.19 ’Ç‰Á
+//08.02.19 è¿½åŠ 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒZ[ƒuƒf[ƒ^‚Ì‹ó‚«—Ìˆæ”‚ğæ“¾
+ *	@brief	ãƒãƒ«ãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®ç©ºãé ˜åŸŸæ•°ã‚’å–å¾—
  *
- *	@retval ‹ó‚«—Ìˆæ”
+ *	@retval ç©ºãé ˜åŸŸæ•°
  */
 u16 PORUTO_GetNullDataCount(PORUTO_BLOCK* block)
 {

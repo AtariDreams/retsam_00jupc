@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	fr_wifi.s
- * @brief	uƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒAWiFIŽó•tv
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFIå—ä»˜ã€
  * @author	nohara
  * @date	2007.07.27
  */
@@ -23,29 +23,29 @@
 
 //--------------------------------------------------------------------
 //
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //
-//	FSW_PARAM0		Ž{ÝNo
-//	FSW_PARAM1		’ÊMƒ^ƒCƒv
-//	FSW_PARAM2		ƒXƒe[ƒWŒvŽZ—pAˆø‚«‘±‚«—V‚Ô‚©
+//	FSW_PARAM0		æ–½è¨­No
+//	FSW_PARAM1		é€šä¿¡ã‚¿ã‚¤ãƒ—
+//	FSW_PARAM2		ã‚¹ãƒ†ãƒ¼ã‚¸è¨ˆç®—ç”¨ã€å¼•ãç¶šãéŠã¶ã‹
 //	FSW_PARAM3		***
-//	FSW_PARAM6		—F’B‚Æ˜AŸ‚ªH‚¢ˆá‚Á‚Ä‚¢‚é‚©‚ÌŒ‹‰Ê
+//	FSW_PARAM6		å‹é”ã¨é€£å‹ãŒé£Ÿã„é•ã£ã¦ã„ã‚‹ã‹ã®çµæžœ
 //	FSW_LOCAL0		***
 //	FSW_LOCAL1		***
-//	FSW_LOCAL2		‘I‘ð‚µ‚½ŽèŽ‚¿pos1(LOCALWORK2‚ÉƒRƒs[)
+//	FSW_LOCAL2		é¸æŠžã—ãŸæ‰‹æŒã¡pos1(LOCALWORK2ã«ã‚³ãƒ”ãƒ¼)
 //	FSW_LOCAL3		init
-//	FSW_LOCAL4		‚â‚ß‚é
-//	FSW_LOCAL5		‘I‘ð‚µ‚½ŽèŽ‚¿pos2(LOCALWORK5‚ÉƒRƒs[)
-//	SYS_WORK_WIFI_FR_CLEAR_FLAG	ƒNƒŠƒAƒtƒ‰ƒO‚ðŽæ“¾
+//	FSW_LOCAL4		ã‚„ã‚ã‚‹
+//	FSW_LOCAL5		é¸æŠžã—ãŸæ‰‹æŒã¡pos2(LOCALWORK5ã«ã‚³ãƒ”ãƒ¼)
+//	SYS_WORK_WIFI_FR_CLEAR_FLAG	ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’å–å¾—
 //
 //--------------------------------------------------------------------
-_EVENT_DATA		fss_wifi_counter		//ˆê”Ôã‚ÌEVENT_DATA‚ÍŽ©“®ŽÀs
-_EVENT_DATA		fss_wifi_counter_return	//Ž{Ý‚©‚ç–ß‚Á‚Ä‚«‚½Žž
-_EVENT_DATA_END							//I—¹
+_EVENT_DATA		fss_wifi_counter		//ä¸€ç•ªä¸Šã®EVENT_DATAã¯è‡ªå‹•å®Ÿè¡Œ
+_EVENT_DATA		fss_wifi_counter_return	//æ–½è¨­ã‹ã‚‰æˆ»ã£ã¦ããŸæ™‚
+_EVENT_DATA_END							//çµ‚äº†
 
 
 //--------------------------------------------------------------------
-//							À•W’è‹`
+//							åº§æ¨™å®šç¾©
 //--------------------------------------------------------------------
 //#define PLAYER_X		(8*16)
 //#define PLAYER_X		(8*13)
@@ -65,32 +65,32 @@ _EVENT_DATA_END							//I—¹
 
 /********************************************************************/
 //
-//	SCENEID_WIFI_COUNTER:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//	SCENEID_WIFI_COUNTER:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //
 /********************************************************************/
-//’ÊMƒ}ƒ‹ƒ`
+//é€šä¿¡ãƒžãƒ«ãƒ
 _RESOURCE_LABEL	comm_multi_set_resource
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
-	_SIO_PLAYER_RESOURCE_DATA	//’ÊMƒvƒŒƒCƒ„[‘Sˆõ‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
+	_SIO_PLAYER_RESOURCE_DATA	//é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¨å“¡ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	//_CHAR_RESOURCE_DATA		PCWOMAN2,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 
 //====================================================================
-//	SCENEID_WIFI_COUNTER:ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENEID_WIFI_COUNTER:ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //====================================================================
 #define OBJID_PLAYER				(0)
 //#define OBJID_PCWOMAN2_01			(1)
 #define OBJID_SIO_USER_0			(2)
 #define OBJID_SIO_USER_1			(3)
 
-//ƒXƒNƒŠƒvƒgID(¡Œã‘Î‰ž—\’è)
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID(ä»Šå¾Œå¯¾å¿œäºˆå®š)
 #define EVENTID_TEST_SCR_OBJ1		(1)
 
-//’ÊMƒ}ƒ‹ƒ`
+//é€šä¿¡ãƒžãƒ«ãƒ
 _ACTOR_LABEL	comm_multi_set_actor
 	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_DOWN, \
-							PLAYER_X,PLAYER_Y,OFF	/*Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg*/
+							PLAYER_X,PLAYER_Y,OFF	/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	//_ACTOR_DATA				OBJID_PCWOMAN2_01,PCWOMAN2,WF2DMAP_WAY_C_DOWN, \
 	//						PCWOMAN2_01_X,PCWOMAN2_01_Y,ON,EVENTID_TEST_SCR_OBJ1
 	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_UP, \
@@ -101,14 +101,14 @@ _ACTOR_LABEL	comm_multi_set_actor
 
 
 /********************************************************************/
-/*								ŠJŽn								*/
+/*								é–‹å§‹								*/
 /********************************************************************/
 fss_wifi_counter:
 
-	/*‰ñ•œ*/
+	/*å›žå¾©*/
 	_PC_KAIFUKU
 
-	/*BGM‚ÌƒtƒF[ƒh‚ð“ü‚ê‚È‚¢‚Æƒ_ƒ‚©‚à*/
+	/*BGMã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’å…¥ã‚Œãªã„ã¨ãƒ€ãƒ¡ã‹ã‚‚*/
 	_BGM_PLAY			SEQ_BF_TOWWER
 
 	_FR_WIFI_COUNTER_WORK_ALLOC
@@ -118,13 +118,13 @@ fss_wifi_counter:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_COMM_COMMAND_INITIALIZE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FR_WIFI_COUNTER_INIT_1
 	_COMM_RESET
 
-	_CHAR_RESOURCE_SET	comm_multi_set_resource				/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			comm_multi_set_actor				/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	comm_multi_set_resource				/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			comm_multi_set_actor				/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_JUMP				tower_wayd_common2
 	_END
 
@@ -135,30 +135,30 @@ tower_wayd_common2:
 	_END
 
 bf_no_sel_menu:
-	/*u‚Ç‚ÌŽ{Ý‚É’§í‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã©ã®æ–½è¨­ã«æŒ‘æˆ¦ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_TALKMSG			msg_bf_info_001
 
-	/*ƒƒjƒ…[ì¬*/
-	_BMPLIST_INIT_EX	18,5,0,1,FSW_ANSWER									/*BƒLƒƒƒ“ƒZƒ‹—LŒø*/
-	_BMPLIST_MAKE_LIST	msg_bf_info_choice_01,FSEV_WIN_TALK_MSG_NONE,FRONTIER_NO_TOWER			/*ƒoƒgƒ‹ƒ^ƒ[*/
-	_BMPLIST_MAKE_LIST	msg_bf_info_choice_02,FSEV_WIN_TALK_MSG_NONE,FRONTIER_NO_FACTORY_LV50	/*ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[*/
-	_BMPLIST_MAKE_LIST	msg_bf_info_choice_03,FSEV_WIN_TALK_MSG_NONE,FRONTIER_NO_CASTLE			/*ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹*/
-	_BMPLIST_MAKE_LIST	msg_bf_info_choice_04,FSEV_WIN_TALK_MSG_NONE,FRONTIER_NO_STAGE			/*ƒoƒgƒ‹ƒXƒe[ƒW*/
-	_BMPLIST_MAKE_LIST	msg_bf_info_choice_05,FSEV_WIN_TALK_MSG_NONE,FRONTIER_NO_ROULETTE		/*ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg*/
-	_BMPLIST_MAKE_LIST	msg_bf_info_choice_06,FSEV_WIN_TALK_MSG_NONE,FRONTIER_NO_YAMERU			/*‚â‚ß‚é*/
+	/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ*/
+	_BMPLIST_INIT_EX	18,5,0,1,FSW_ANSWER									/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_bf_info_choice_01,FSEV_WIN_TALK_MSG_NONE,FRONTIER_NO_TOWER			/*ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼*/
+	_BMPLIST_MAKE_LIST	msg_bf_info_choice_02,FSEV_WIN_TALK_MSG_NONE,FRONTIER_NO_FACTORY_LV50	/*ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼*/
+	_BMPLIST_MAKE_LIST	msg_bf_info_choice_03,FSEV_WIN_TALK_MSG_NONE,FRONTIER_NO_CASTLE			/*ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«*/
+	_BMPLIST_MAKE_LIST	msg_bf_info_choice_04,FSEV_WIN_TALK_MSG_NONE,FRONTIER_NO_STAGE			/*ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸*/
+	_BMPLIST_MAKE_LIST	msg_bf_info_choice_05,FSEV_WIN_TALK_MSG_NONE,FRONTIER_NO_ROULETTE		/*ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ*/
+	_BMPLIST_MAKE_LIST	msg_bf_info_choice_06,FSEV_WIN_TALK_MSG_NONE,FRONTIER_NO_YAMERU			/*ã‚„ã‚ã‚‹*/
 	_BMPLIST_START
 
-	_IFVAL_JUMP		FSW_ANSWER,EQ,FRONTIER_NO_TOWER,ev_bf_info_choice_01	/*ƒoƒgƒ‹ƒ^ƒ[*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,FRONTIER_NO_FACTORY_LV50,ev_bf_info_choice_02	/*ƒtƒ@ƒNƒgƒŠ[*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,FRONTIER_NO_CASTLE,ev_bf_info_choice_03	/*ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,FRONTIER_NO_STAGE,ev_bf_info_choice_04	/*ƒoƒgƒ‹ƒXƒe[ƒW*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,FRONTIER_NO_ROULETTE,ev_bf_info_choice_05	/*ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg*/
-	_JUMP			ev_bf_info_choice_06									/*‚â‚ß‚é*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,FRONTIER_NO_TOWER,ev_bf_info_choice_01	/*ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,FRONTIER_NO_FACTORY_LV50,ev_bf_info_choice_02	/*ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,FRONTIER_NO_CASTLE,ev_bf_info_choice_03	/*ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,FRONTIER_NO_STAGE,ev_bf_info_choice_04	/*ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,FRONTIER_NO_ROULETTE,ev_bf_info_choice_05	/*ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ*/
+	_JUMP			ev_bf_info_choice_06									/*ã‚„ã‚ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*							ƒoƒgƒ‹ƒ^ƒ[							*/
+/*							ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼							*/
 /********************************************************************/
 ev_bf_info_choice_01:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_SET_BF_NO,FRONTIER_NO_TOWER,0,FSW_ANSWER
@@ -171,7 +171,7 @@ ev_bf_info_choice_01:
 
 
 /********************************************************************/
-/*							ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[						*/
+/*							ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼						*/
 /********************************************************************/
 ev_bf_info_choice_02:
 	_SAVE_EVENT_WORK_SET	WK_SCENE_FACTORY_TYPE,FACTORY_TYPE_WIFI_MULTI	/*type*/
@@ -180,18 +180,18 @@ ev_bf_info_choice_02:
 	_END
 
 ev_bf_info_choice_factory_level:
-	/*uƒŒƒxƒ‹‚T‚O‚Æ@ƒI[ƒvƒ“ƒŒƒxƒ‹@‚Ç‚¿‚ç‚É’§í‚·‚éHv*/
+	/*ã€Œãƒ¬ãƒ™ãƒ«ï¼•ï¼ã¨ã€€ã‚ªãƒ¼ãƒ—ãƒ³ãƒ¬ãƒ™ãƒ«ã€€ã©ã¡ã‚‰ã«æŒ‘æˆ¦ã™ã‚‹ï¼Ÿã€*/
 	_TALKMSG			msg_bf_info_020
 
-	_BMPMENU_INIT_EX	20,11,0,1,FSW_ANSWER			/*BƒLƒƒƒ“ƒZƒ‹—LŒø*/
-	_BMPMENU_MAKE_LIST	msg_bf_info_choice_07,0			/*ƒŒƒxƒ‹‚T‚O*/
-	_BMPMENU_MAKE_LIST	msg_bf_info_choice_08,1			/*ƒI[ƒvƒ“ƒŒƒxƒ‹*/
-	_BMPMENU_MAKE_LIST	msg_bf_info_choice_06,2			/*‚â‚ß‚é*/
+	_BMPMENU_INIT_EX	20,11,0,1,FSW_ANSWER			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹*/
+	_BMPMENU_MAKE_LIST	msg_bf_info_choice_07,0			/*ãƒ¬ãƒ™ãƒ«ï¼•ï¼*/
+	_BMPMENU_MAKE_LIST	msg_bf_info_choice_08,1			/*ã‚ªãƒ¼ãƒ—ãƒ³ãƒ¬ãƒ™ãƒ«*/
+	_BMPMENU_MAKE_LIST	msg_bf_info_choice_06,2			/*ã‚„ã‚ã‚‹*/
 	_BMPMENU_START
 
 	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_bf_info_choice_07_level
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_bf_info_choice_08_level
-	_JUMP				bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP				bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
 ev_bf_info_choice_07_level:
@@ -216,7 +216,7 @@ ev_bf_info_choice_08_level:
 
 
 /********************************************************************/
-/*							ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹						*/
+/*							ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«						*/
 /********************************************************************/
 ev_bf_info_choice_03:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_SET_BF_NO,FRONTIER_NO_CASTLE,0,FSW_ANSWER
@@ -229,7 +229,7 @@ ev_bf_info_choice_03:
 
 
 /********************************************************************/
-/*							ƒoƒgƒ‹ƒXƒe[ƒW							*/
+/*							ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸							*/
 /********************************************************************/
 ev_bf_info_choice_04:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_SET_BF_NO,FRONTIER_NO_STAGE,0,FSW_ANSWER
@@ -242,7 +242,7 @@ ev_bf_info_choice_04:
 
 
 /********************************************************************/
-/*							ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg						*/
+/*							ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ						*/
 /********************************************************************/
 ev_bf_info_choice_05:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_SET_BF_NO,FRONTIER_NO_ROULETTE,0,FSW_ANSWER
@@ -255,7 +255,7 @@ ev_bf_info_choice_05:
 
 
 /********************************************************************/
-/*								‚â‚ß‚é								*/
+/*								ã‚„ã‚ã‚‹								*/
 /********************************************************************/
 ev_bf_info_choice_06:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_SET_BF_NO,FRONTIER_NO_YAMERU,0,FSW_ANSWER
@@ -265,34 +265,34 @@ ev_bf_info_choice_06:
 
 
 /********************************************************************/
-/*						‚â‚ß‚é‚ð‘I‚ñ‚¾‚©‘—M						*/
+/*						ã‚„ã‚ã‚‹ã‚’é¸ã‚“ã ã‹é€ä¿¡						*/
 /********************************************************************/
 ev_bf_info_send_retire_flag:
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_bf_info_005
 	_JUMP				ev_bf_info_send_retire_flag_retry
 	_END
 
 ev_bf_info_send_retire_flag_retry:
 	_LDVAL				FSW_PARAM1,FRONTIER_COMM_YAMERU
-	_FR_WIFI_COUNTER_SEND_BUF	FSW_PARAM1,FSW_LOCAL4,0,FSW_ANSWER			/*1=‚â‚ß‚é*/
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_bf_info_send_retire_flag_retry	/*‘—MŽ¸”s‚ÍÄ‘—M*/
+	_FR_WIFI_COUNTER_SEND_BUF	FSW_PARAM1,FSW_LOCAL4,0,FSW_ANSWER			/*1=ã‚„ã‚ã‚‹*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_bf_info_send_retire_flag_retry	/*é€ä¿¡å¤±æ•—ã¯å†é€ä¿¡*/
 
 	_FR_WIFI_COUNTER_RECV_BUF	FSW_PARAM1
 	_COMM_RESET
 
-	/*Ž©•ª‚ªu‚â‚ß‚év‘I‚ñ‚¾‚ç*/
+	/*è‡ªåˆ†ãŒã€Œã‚„ã‚ã‚‹ã€é¸ã‚“ã ã‚‰*/
 	//_IFVAL_JUMP			FSW_LOCAL4,EQ,1,ev_bf_info_game_end
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_BF_NO,0,0,FSW_ANSWER
 	_IFVAL_JUMP				FSW_ANSWER,EQ,FRONTIER_NO_YAMERU,ev_bf_info_game_end
 
-	/*‘ŠŽè‚ª‘I‚ñ‚¾ƒƒjƒ…[‚ðŽæ“¾*/
+	/*ç›¸æ‰‹ãŒé¸ã‚“ã ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å–å¾—*/
 	_FR_WIFI_COUNTER_YAMERU_CHECK	FSW_ANSWER
 
-	/*ƒp[ƒgƒi[‚ªu‚â‚ß‚év‚ð‘I‚ñ‚¾‚ç*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒã€Œã‚„ã‚ã‚‹ã€ã‚’é¸ã‚“ã ã‚‰*/
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,bf_no_sel_yameru
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FR_WIFI_COUNTER_YAMERU
 	_COMM_RESET
@@ -302,7 +302,7 @@ ev_bf_info_send_retire_flag_retry:
 
 
 /********************************************************************/
-/*						‚â‚ß‚é‚ª‘I‚Î‚ê‚½							*/
+/*						ã‚„ã‚ã‚‹ãŒé¸ã°ã‚ŒãŸ							*/
 /********************************************************************/
 bf_no_sel_yameru:
 	_JUMP				ev_bf_info_game_end_pair
@@ -310,45 +310,45 @@ bf_no_sel_yameru:
 
 
 /********************************************************************/
-/*					‘I‘ð‚µ‚½Ž{Ý‚ª“¯‚¶‚©ƒ`ƒFƒbƒN					*/
+/*					é¸æŠžã—ãŸæ–½è¨­ãŒåŒã˜ã‹ãƒã‚§ãƒƒã‚¯					*/
 /********************************************************************/
 ev_bf_info_sel_check:
 	_LDVAL				FSW_PARAM1,FRONTIER_COMM_SEL
-	_FR_WIFI_COUNTER_SEND_BUF	FSW_PARAM1,0,0,FSW_ANSWER				/*Ž{ÝNo*/
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_bf_info_sel_check			/*‘—MŽ¸”s‚ÍÄ‘—M*/
+	_FR_WIFI_COUNTER_SEND_BUF	FSW_PARAM1,0,0,FSW_ANSWER				/*æ–½è¨­No*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_bf_info_sel_check			/*é€ä¿¡å¤±æ•—ã¯å†é€ä¿¡*/
 
 	_FR_WIFI_COUNTER_RECV_BUF	FSW_PARAM1
 	_COMM_RESET
 
-	/*‚¨ŒÝ‚¢‚ª‘I‚ñ‚¾Ž{Ýƒiƒ“ƒo[‚ð”äŠr*/
+	/*ãŠäº’ã„ãŒé¸ã‚“ã æ–½è¨­ãƒŠãƒ³ãƒãƒ¼ã‚’æ¯”è¼ƒ*/
 	_FR_WIFI_COUNTER_BFNO_CHECK	FSW_PARAM0,FSW_ANSWER
 
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_bf_info_sel_ok				/*OK*/
 
-	/*u‘I‚ñ‚¾Ž{Ý‚ª‘ŠŽè‚Æˆá‚¢‚Ü‚·v*/
+	/*ã€Œé¸ã‚“ã æ–½è¨­ãŒç›¸æ‰‹ã¨é•ã„ã¾ã™ã€*/
 	_TALKMSG			msg_bf_info_004
-	_JUMP				bf_no_sel_menu									/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP				bf_no_sel_menu									/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
 
 /********************************************************************/
-/*						‘I‘ð‚µ‚½Ž{Ý‚ª“¯‚¶							*/
+/*						é¸æŠžã—ãŸæ–½è¨­ãŒåŒã˜							*/
 /********************************************************************/
 ev_bf_info_sel_ok:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_BF_NO,0,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,FRONTIER_NO_TOWER,ev_bf_info_pokelist_start	/*ƒ^ƒ[*/
-	_IFVAL_JUMP			FSW_ANSWER,EQ,FRONTIER_NO_STAGE,ev_bf_info_pokelist_start	/*ƒXƒe[ƒW*/
-	_IFVAL_JUMP			FSW_ANSWER,EQ,FRONTIER_NO_CASTLE,ev_bf_info_pokelist_start	/*ƒLƒƒƒbƒXƒ‹*/
-	_IFVAL_JUMP			FSW_ANSWER,EQ,FRONTIER_NO_ROULETTE,ev_bf_info_pokelist_start/*ƒ‹[ƒŒƒbƒg*/
-	_JUMP				ev_bf_info_pokelist_after	/*ƒŠƒXƒgŒÄ‚Ño‚µ‚Ì•K—v‚È‚µ*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,FRONTIER_NO_TOWER,ev_bf_info_pokelist_start	/*ã‚¿ãƒ¯ãƒ¼*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,FRONTIER_NO_STAGE,ev_bf_info_pokelist_start	/*ã‚¹ãƒ†ãƒ¼ã‚¸*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,FRONTIER_NO_CASTLE,ev_bf_info_pokelist_start	/*ã‚­ãƒ£ãƒƒã‚¹ãƒ«*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,FRONTIER_NO_ROULETTE,ev_bf_info_pokelist_start/*ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ*/
+	_JUMP				ev_bf_info_pokelist_after	/*ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—ã®å¿…è¦ãªã—*/
 	_END
 
 
 /********************************************************************/
-/*						ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ						*/
+/*						ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—						*/
 /********************************************************************/
 ev_bf_info_pokelist_start:
-	/*uŽQ‰Á‚·‚éƒ|ƒPƒ‚ƒ“‚ð‘I‚ñ‚Å‚­‚¾‚³‚¢v*/
+	/*ã€Œå‚åŠ ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã‚“ã§ãã ã•ã„ã€*/
 	_TALKMSG			msg_bf_info_003
 
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -356,27 +356,27 @@ ev_bf_info_pokelist_start:
 
 	_TALK_CLOSE
 
-	/*ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‘I‘ðî•ñ‚ÌƒNƒŠƒA*/
+	/*ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆé¸æŠžæƒ…å ±ã®ã‚¯ãƒªã‚¢*/
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_POKELIST_SEL_CLEAR,0,0,FSW_ANSWER
 
-	/*ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ*/
+	/*ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—*/
 	_JUMP				ev_bf_info_pokelist_call
 	_END
 
-/*ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX*/
+/*ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹*/
 ev_bf_info_pokestatus_call:
 	_FR_WIFI_COUNTER_POKELIST	FSW_PARAM0,FR_WIFI_POKESEL_PST_CALL,FSW_ANSWER
 	_FR_WIFI_COUNTER_POKELIST	FSW_PARAM0,FR_WIFI_POKESEL_PST_WAIT,FSW_ANSWER
 	_JUMP						ev_bf_info_pokelist_call
 	_END
 
-/*ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg*/
+/*ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ*/
 ev_bf_info_pokelist_call:
 	_FR_WIFI_COUNTER_POKELIST	FSW_PARAM0,FR_WIFI_POKESEL_PLIST_CALL,FSW_ANSWER
 	_FR_WIFI_COUNTER_POKELIST	FSW_PARAM0,FR_WIFI_POKESEL_PLIST_WAIT,FSW_ANSWER
 	_IFVAL_JUMP					FSW_ANSWER,EQ,FR_WIFI_POKESEL_PST_CALL,ev_bf_info_pokestatus_call
 
-	/*‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì•À‚Ñ”Ô†Žæ“¾*/
+	/*é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ä¸¦ã³ç•ªå·å–å¾—*/
 	_FR_WIFI_COUNTER_POKELIST_GET_RESULT	FSW_LOCAL2,FSW_LOCAL5
 	_SAVE_EVENT_WORK_SET	LOCALWORK2,FSW_LOCAL2						/*pos1*/
 	_SAVE_EVENT_WORK_SET	LOCALWORK5,FSW_LOCAL5						/*pos2*/
@@ -388,38 +388,38 @@ ev_bf_info_pokelist_call:
 	_END
 
 /********************************************************************/
-/*				ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ÌŒ‹‰Ê‚ð‘—ŽóM						*/
+/*				ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®çµæžœã‚’é€å—ä¿¡						*/
 /********************************************************************/
 ev_bf_info_send_pokelist_after:
 
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_bf_info_005
 	_JUMP				ev_bf_info_send_pokelist_after2
 	_END
 
 ev_bf_info_send_pokelist_after2:
-	/*ŽèŽ‚¿ˆÊ’u‚ð‘—M‚µ‚ÄAƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ÆƒAƒCƒeƒ€ƒiƒ“ƒo[‚ðƒ`ƒFƒbƒN*/
-	/*ƒŠƒXƒg‚Å‚â‚ß‚é‚ð‘I‚ñ‚¾‚©‚àƒ`ƒFƒbƒN*/
+	/*æ‰‹æŒã¡ä½ç½®ã‚’é€ä¿¡ã—ã¦ã€ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã¨ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚’ãƒã‚§ãƒƒã‚¯*/
+	/*ãƒªã‚¹ãƒˆã§ã‚„ã‚ã‚‹ã‚’é¸ã‚“ã ã‹ã‚‚ãƒã‚§ãƒƒã‚¯*/
 	_LDVAL				FSW_PARAM1,FRONTIER_COMM_MONSNO_ITEMNO
 	_FR_WIFI_COUNTER_SEND_BUF	FSW_PARAM1,FSW_LOCAL2,FSW_LOCAL5,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_bf_info_send_pokelist_after2		/*‘—MŽ¸”s‚ÍÄ‘—M*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_bf_info_send_pokelist_after2		/*é€ä¿¡å¤±æ•—ã¯å†é€ä¿¡*/
 
 	_FR_WIFI_COUNTER_RECV_BUF	FSW_PARAM1
 	_COMM_RESET
 
-	/*ƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒN*/
-	_IFVAL_JUMP			FSW_LOCAL2,EQ,0xff,bf_no_sel_menu				/*Ž{Ý‘I‘ð‚Ö*/
+	/*ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯*/
+	_IFVAL_JUMP			FSW_LOCAL2,EQ,0xff,bf_no_sel_menu				/*æ–½è¨­é¸æŠžã¸*/
 
-	/*ƒp[ƒgƒi[‚ÌƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒN*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯*/
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_PAIR_POKELIST_CANCEL,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_bf_info_pokelist_pair_cancel
 
-	/*ŽèŽ‚¿[„ƒ|ƒPƒ‚ƒ“”Ô†•ÏŠ·@“¯Žž‚Éƒ^ƒ}ƒSƒ`ƒFƒbƒN‚às‚Á‚Ä‚¢‚Ü‚·*/
+	/*æ‰‹æŒã¡ãƒ¼ï¼žãƒã‚±ãƒ¢ãƒ³ç•ªå·å¤‰æ›ã€€åŒæ™‚ã«ã‚¿ãƒžã‚´ãƒã‚§ãƒƒã‚¯ã‚‚è¡Œã£ã¦ã„ã¾ã™*/
 	//_TEMOTI_MONSNO		FSW_LOCAL2,FSW_LOCAL1
-	//_IFVAL_JUMP			FSW_LOCAL1,EQ,0,ev_lobby_choice_04			/*ƒ^ƒ}ƒS*/
-	/*ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚Åƒ^ƒ}ƒS‚ª‘I‘ðo—ˆ‚È‚¢‚Ì‚©‚à*/
+	//_IFVAL_JUMP			FSW_LOCAL1,EQ,0,ev_lobby_choice_04			/*ã‚¿ãƒžã‚´*/
+	/*ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã§ã‚¿ãƒžã‚´ãŒé¸æŠžå‡ºæ¥ãªã„ã®ã‹ã‚‚*/
 
-	/*Ž{Ý‚²‚Æ‚É•ªŠò*/
+	/*æ–½è¨­ã”ã¨ã«åˆ†å²*/
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_BF_NO,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,FRONTIER_NO_TOWER,ev_bf_info_pokelist_tower_result
 	_IFVAL_JUMP			FSW_ANSWER,EQ,FRONTIER_NO_STAGE,ev_bf_info_pokelist_stage_result
@@ -429,49 +429,49 @@ ev_bf_info_send_pokelist_after2:
 
 
 /********************************************************************/
-/*					ƒp[ƒgƒi[‚ÌƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒN					*/
+/*					ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯					*/
 /********************************************************************/
 ev_bf_info_pokelist_pair_cancel:
-	/*u›‚³‚ñ‚Ì“s‡‚ªˆ«‚¢‚æ‚¤‚Å‚·v*/
+	/*ã€Œâ—‹ã•ã‚“ã®éƒ½åˆãŒæ‚ªã„ã‚ˆã†ã§ã™ã€*/
 	_PAIR_NAME			0
 	_TALKMSG			msg_bf_info_002
-	_JUMP				bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP				bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
 
 /********************************************************************/
-/*					ƒ^ƒ[‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒ‹‰Ê‚ðƒ`ƒFƒbƒN			*/
+/*					ã‚¿ãƒ¯ãƒ¼ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµæžœã‚’ãƒã‚§ãƒƒã‚¯			*/
 /********************************************************************/
 ev_bf_info_pokelist_tower_result:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_CHECK_ENTRY,FRONTIER_NO_TOWER,0,FSW_ANSWER
 	_SWITCH				FSW_ANSWER
-	_CASE_JUMP			1,ev_wifi_tower_gate_connect_poke_same01	/*1•C–Ú‚ª”í‚è*/
-	_CASE_JUMP			2,ev_wifi_tower_gate_connect_poke_same02	/*2•C–Ú‚ª”í‚è*/
-	_CASE_JUMP			3,ev_wifi_tower_gate_connect_poke_same03	/*1,2•C‚Æ‚à”í‚è*/
+	_CASE_JUMP			1,ev_wifi_tower_gate_connect_poke_same01	/*1åŒ¹ç›®ãŒè¢«ã‚Š*/
+	_CASE_JUMP			2,ev_wifi_tower_gate_connect_poke_same02	/*2åŒ¹ç›®ãŒè¢«ã‚Š*/
+	_CASE_JUMP			3,ev_wifi_tower_gate_connect_poke_same03	/*1,2åŒ¹ã¨ã‚‚è¢«ã‚Š*/
 	_JUMP				ev_bf_info_pokelist_after
 	_END
 
 
 /********************************************************************/
-/*					ƒ^ƒ[@ƒ|ƒPƒ‚ƒ“‚ª”í‚Á‚Ä‚¢‚é					*/
+/*					ã‚¿ãƒ¯ãƒ¼ã€€ãƒã‚±ãƒ¢ãƒ³ãŒè¢«ã£ã¦ã„ã‚‹					*/
 /********************************************************************/
-/*ƒ|ƒPƒ‚ƒ“‚ªˆê•C”í‚Á‚Ä‚¢‚é‚Æ‚«(ˆê•C–Ú)*/
+/*ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹è¢«ã£ã¦ã„ã‚‹ã¨ã(ä¸€åŒ¹ç›®)*/
 ev_wifi_tower_gate_connect_poke_same01:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_ENTRY_MONSNO,0,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA		0,FSW_ANSWER,0,0
 	_TALKMSG				msg_bf_info_010
-	_JUMP					bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP					bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
-/*ƒ|ƒPƒ‚ƒ“‚ªˆê•C”í‚Á‚Ä‚¢‚é‚Æ‚«(“ñ•C–Ú)*/
+/*ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹è¢«ã£ã¦ã„ã‚‹ã¨ã(äºŒåŒ¹ç›®)*/
 ev_wifi_tower_gate_connect_poke_same02:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_ENTRY_MONSNO,1,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA		0,FSW_ANSWER,0,0
 	_TALKMSG				msg_bf_info_010
-	_JUMP					bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP					bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
-/*ƒ|ƒPƒ‚ƒ“‚ª“ñ•C”í‚Á‚Ä‚¢‚é‚Æ‚«*/
+/*ãƒã‚±ãƒ¢ãƒ³ãŒäºŒåŒ¹è¢«ã£ã¦ã„ã‚‹ã¨ã*/
 ev_wifi_tower_gate_connect_poke_same03:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_ENTRY_MONSNO,0,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA		0,FSW_ANSWER,0,0
@@ -480,151 +480,151 @@ ev_wifi_tower_gate_connect_poke_same03:
 	_POKEMON_NAME_EXTRA		1,FSW_ANSWER,0,0
 
 	_TALKMSG				msg_bf_info_011
-	_JUMP					bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP					bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
 
 /********************************************************************/
-/*				ƒXƒe[ƒW‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒ‹‰Ê‚ðƒ`ƒFƒbƒN				*/
+/*				ã‚¹ãƒ†ãƒ¼ã‚¸ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµæžœã‚’ãƒã‚§ãƒƒã‚¯				*/
 /********************************************************************/
 ev_bf_info_pokelist_stage_result:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_CHECK_ENTRY,FRONTIER_NO_STAGE,0,FSW_ANSWER
-	_IFVAL_JUMP				FSW_ANSWER,EQ,1,ev_wifi_stage_gate_connect_poke_same01	/*ˆá‚¤monsno*/
+	_IFVAL_JUMP				FSW_ANSWER,EQ,1,ev_wifi_stage_gate_connect_poke_same01	/*é•ã†monsno*/
 
 #if 0
-	‘ŠŽè‚ª‹L˜^‚ðÁ‚µ‚Ä’§í‚µ‚Ä‚¢‚é‚ÆA
+	ç›¸æ‰‹ãŒè¨˜éŒ²ã‚’æ¶ˆã—ã¦æŒ‘æˆ¦ã—ã¦ã„ã‚‹ã¨ã€
 
-	Á‚µ‚Ä‚¢‚È‚¢‘¤‚ÍA˜AŸ’†‚ÅA
-	Á‚µ‚½‘¤‚ÍAA‰’§í‚É‚È‚é‚Ì‚ÅA
+	æ¶ˆã—ã¦ã„ãªã„å´ã¯ã€é€£å‹ä¸­ã§ã€
+	æ¶ˆã—ãŸå´ã¯ã€ã€åˆæŒ‘æˆ¦ã«ãªã‚‹ã®ã§ã€
 
-	˜AŸ’†‚Ìƒ|ƒPƒ‚ƒ“‚ª‚¢‚é‚©‚È‚Ç‚Ìƒ`ƒFƒbƒN‚Ì‘O‚ÉA
-	˜AŸ”‚ªH‚¢ˆá‚Á‚Ä‚¢‚é‚©‚ðƒ`ƒFƒbƒN‚·‚é•K—v‚ª‚ ‚é
+	é€£å‹ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ã‹ãªã©ã®ãƒã‚§ãƒƒã‚¯ã®å‰ã«ã€
+	é€£å‹æ•°ãŒé£Ÿã„é•ã£ã¦ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 
-	—F’B‚ÍƒCƒ“ƒfƒbƒNƒX‚Æƒvƒƒtƒ@ƒCƒ‹ID‚ª‚ ‚é‚Ì‚ÅA
-	Ä“x“¯‚¶ƒCƒ“ƒfƒbƒNƒX‚É“¯‚¶—F’B‚ð“o˜^‚µ‚Ä‚àA
-	ˆá‚¤ƒvƒƒtƒ@ƒCƒ‹ID‚É‚È‚é
+	å‹é”ã¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«IDãŒã‚ã‚‹ã®ã§ã€
+	å†åº¦åŒã˜ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«åŒã˜å‹é”ã‚’ç™»éŒ²ã—ã¦ã‚‚ã€
+	é•ã†ãƒ—ãƒ­ãƒ•ã‚¡ã‚¤ãƒ«IDã«ãªã‚‹
 #endif
 
-	/*ƒXƒe[ƒW‚Ì‚Ýæ‚ÉA˜AŸ”‚ªH‚¢ˆá‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*ã‚¹ãƒ†ãƒ¼ã‚¸ã®ã¿å…ˆã«ã€é€£å‹æ•°ãŒé£Ÿã„é•ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_CALL				ev_bf_info_pair_rensyou_ng_check_call
-	_IFVAL_JUMP			FSW_PARAM6,EQ,0,ev_bf_info_pokelist_after_sub	/*H‚¢ˆá‚Á‚Ä‚¢‚½‚çV‹K’§í*/
+	_IFVAL_JUMP			FSW_PARAM6,EQ,0,ev_bf_info_pokelist_after_sub	/*é£Ÿã„é•ã£ã¦ã„ãŸã‚‰æ–°è¦æŒ‘æˆ¦*/
 
-	/*˜AŸ’†‚©ƒ`ƒFƒbƒN*/
+	/*é€£å‹ä¸­ã‹ãƒã‚§ãƒƒã‚¯*/
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_STAGE_GET_CLEAR_FLAG,0,0,FSW_ANSWER
-	_IFVAL_JUMP				FSW_ANSWER,EQ,0,ev_bf_info_pokelist_after				/*V‹K’§í*/
+	_IFVAL_JUMP				FSW_ANSWER,EQ,0,ev_bf_info_pokelist_after				/*æ–°è¦æŒ‘æˆ¦*/
 
-	/*˜AŸ’†‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚Æˆê’v‚·‚é‚©ƒ`ƒFƒbƒN*/
+	/*é€£å‹ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã¨ä¸€è‡´ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_STAGE_GET_CLEAR_MONSNO,0,0,FSW_PARAM2
 	_POKEMON_NAME_EXTRA		0,FSW_PARAM2,0,0
 
-	/*oêƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[Žæ“¾*/
+	/*å‡ºå ´ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼å–å¾—*/
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_ENTRY_MONSNO,0,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA		1,FSW_ANSWER,0,0
-	_IFWK_JUMP				FSW_ANSWER,EQ,FSW_PARAM2,ev_bf_info_pokelist_after		/*˜AŸ’†*/
+	_IFWK_JUMP				FSW_ANSWER,EQ,FSW_PARAM2,ev_bf_info_pokelist_after		/*é€£å‹ä¸­*/
 
-	/*˜AŸ’†‚ÅAV‹Kƒ|ƒPƒ‚ƒ“‚Å’§í‚µ‚æ‚¤‚Æ‚µ‚½Žž*/
+	/*é€£å‹ä¸­ã§ã€æ–°è¦ãƒã‚±ãƒ¢ãƒ³ã§æŒ‘æˆ¦ã—ã‚ˆã†ã¨ã—ãŸæ™‚*/
 	_JUMP			ev_bf_info_stage_new
 	_END
 
 
 /********************************************************************/
-/*					ƒXƒe[ƒW@‹L˜^‚ª‚ ‚é‚¯‚Ç‚Ç‚¤‚·‚éH				*/
+/*					ã‚¹ãƒ†ãƒ¼ã‚¸ã€€è¨˜éŒ²ãŒã‚ã‚‹ã‘ã©ã©ã†ã™ã‚‹ï¼Ÿ				*/
 /********************************************************************/
 ev_bf_info_stage_new:
-	/*u›‚Å‚Ì˜AŸ‹L˜^‚ª‚ ‚è‚Ü‚·‚ªA‹L˜^‚ðÁ‚µ‚Ä ‚ÅV‚½‚É’§í‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œâ—‹ã§ã®é€£å‹è¨˜éŒ²ãŒã‚ã‚Šã¾ã™ãŒã€è¨˜éŒ²ã‚’æ¶ˆã—ã¦â–¡ã§æ–°ãŸã«æŒ‘æˆ¦ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_TALKMSG			msg_bf_info_025
-	_BMPMENU_INIT_EX	25,13,1,1,FSW_ANSWER			/*BƒLƒƒƒ“ƒZƒ‹—LŒø*/
-	_BMPMENU_MAKE_LIST	msg_bf_info_025_01,0			/*‚Í‚¢*/
-	_BMPMENU_MAKE_LIST	msg_bf_info_025_02,1			/*‚¢‚¢‚¦*/
+	_BMPMENU_INIT_EX	25,13,1,1,FSW_ANSWER			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹*/
+	_BMPMENU_MAKE_LIST	msg_bf_info_025_01,0			/*ã¯ã„*/
+	_BMPMENU_MAKE_LIST	msg_bf_info_025_02,1			/*ã„ã„ãˆ*/
 	_BMPMENU_START
 
-	/*u‘ŠŽè‚Ì‘I‘ð‚ð‘Ò‚Á‚Ä‚¢‚Ü‚·I‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œç›¸æ‰‹ã®é¸æŠžã‚’å¾…ã£ã¦ã„ã¾ã™ï¼ã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_bf_info_031
 
-	_LDWK				FSW_PARAM2,FSW_ANSWER			/*‘Þ”ð*/
+	_LDWK				FSW_PARAM2,FSW_ANSWER			/*é€€é¿*/
 	_JUMP				ev_bf_info_stage_new_retry
 	_END
 
 ev_bf_info_stage_new_retry:
 	_LDVAL				FSW_PARAM1,FRONTIER_COMM_STAGE_RECORD_DEL
-	_FR_WIFI_COUNTER_SEND_BUF	FSW_PARAM1,FSW_PARAM2,0,FSW_ANSWER		/*0=‚Í‚¢A1=‚¢‚¢‚¦*/
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_bf_info_stage_new_retry		/*‘—MŽ¸”s‚ÍÄ‘—M*/
+	_FR_WIFI_COUNTER_SEND_BUF	FSW_PARAM1,FSW_PARAM2,0,FSW_ANSWER		/*0=ã¯ã„ã€1=ã„ã„ãˆ*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_bf_info_stage_new_retry		/*é€ä¿¡å¤±æ•—ã¯å†é€ä¿¡*/
 
 	_FR_WIFI_COUNTER_RECV_BUF	FSW_PARAM1
 	_COMM_RESET
 
-	/*‘ŠŽè‚ªu‚¢‚¢‚¦v‚ð‘I‚ñ‚¾Žž*/
+	/*ç›¸æ‰‹ãŒã€Œã„ã„ãˆã€ã‚’é¸ã‚“ã æ™‚*/
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_PAIR_STAGE_RECORD_DEL,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,bf_no_sel_yameru_stage
 	_IFVAL_JUMP			FSW_ANSWER,EQ,FSEV_WIN_B_CANCEL,bf_no_sel_yameru_stage
 
-	/*Ž©•ª‚ªu‚¢‚¢‚¦v‚ð‘I‚ñ‚¾Žž*/
+	/*è‡ªåˆ†ãŒã€Œã„ã„ãˆã€ã‚’é¸ã‚“ã æ™‚*/
 	_IFVAL_JUMP			FSW_PARAM2,EQ,1,bf_no_sel_yameru_stage
 	_IFVAL_JUMP			FSW_PARAM2,EQ,FSEV_WIN_B_CANCEL,bf_no_sel_yameru_stage
 
-	/*‚¨ŒÝ‚¢‚ªu‚Í‚¢v‚ð‘I‚ñ‚¾*/
-	_JUMP				ev_bf_info_stage_new_yes		/*‚Í‚¢*/
+	/*ãŠäº’ã„ãŒã€Œã¯ã„ã€ã‚’é¸ã‚“ã */
+	_JUMP				ev_bf_info_stage_new_yes		/*ã¯ã„*/
 	_END
 
-/*u‚à‚¤ˆê“x‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢v*/
+/*ã€Œã‚‚ã†ä¸€åº¦é¸æŠžã—ã¦ãã ã•ã„ã€*/
 bf_no_sel_yameru_stage:
 	_TALKMSG			msg_bf_info_026
-	_JUMP				bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP				bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
 
 /********************************************************************/
-/*					ƒXƒe[ƒW@‹L˜^‚ðÁ‚·@‚Í‚¢						*/
+/*					ã‚¹ãƒ†ãƒ¼ã‚¸ã€€è¨˜éŒ²ã‚’æ¶ˆã™ã€€ã¯ã„						*/
 /********************************************************************/
 ev_bf_info_stage_new_yes:
-	/*ƒ^ƒCƒv‚²‚Æ‚ÌƒŒƒxƒ‹A7˜AŸ‚µ‚½‚©ƒtƒ‰ƒO‚ÌƒNƒŠƒAAŒ»Ý‚Ì˜AŸ”‚ðƒNƒŠƒA*/
+	/*ã‚¿ã‚¤ãƒ—ã”ã¨ã®ãƒ¬ãƒ™ãƒ«ã€7é€£å‹ã—ãŸã‹ãƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢ã€ç¾åœ¨ã®é€£å‹æ•°ã‚’ã‚¯ãƒªã‚¢*/
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_STAGE_SET_NEW_CHALLENGE,0,0,FSW_ANSWER
 	_JUMP					ev_bf_info_pokelist_after
 	_END
 
 
 /********************************************************************/
-/*					ƒXƒe[ƒW@ƒ|ƒPƒ‚ƒ“‚ª“¯‚¶‚Å‚È‚¢					*/
+/*					ã‚¹ãƒ†ãƒ¼ã‚¸ã€€ãƒã‚±ãƒ¢ãƒ³ãŒåŒã˜ã§ãªã„					*/
 /********************************************************************/
 ev_wifi_stage_gate_connect_poke_same01:
 	_TALKMSG			msg_bf_info_015
-	_JUMP				bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP				bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
 
 /********************************************************************/
-/*				ƒLƒƒƒbƒXƒ‹‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒ‹‰Ê‚ðƒ`ƒFƒbƒN			*/
+/*				ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµæžœã‚’ãƒã‚§ãƒƒã‚¯			*/
 /********************************************************************/
 ev_bf_info_pokelist_castle_result:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_CHECK_ENTRY,FRONTIER_NO_CASTLE,0,FSW_ANSWER
 	_SWITCH				FSW_ANSWER
-	_CASE_JUMP			1,ev_wifi_castle_gate_connect_poke_same01	/*1•C–Ú‚ª”í‚è*/
-	_CASE_JUMP			2,ev_wifi_castle_gate_connect_poke_same02	/*2•C–Ú‚ª”í‚è*/
-	_CASE_JUMP			3,ev_wifi_castle_gate_connect_poke_same03	/*1,2•C‚Æ‚à”í‚è*/
+	_CASE_JUMP			1,ev_wifi_castle_gate_connect_poke_same01	/*1åŒ¹ç›®ãŒè¢«ã‚Š*/
+	_CASE_JUMP			2,ev_wifi_castle_gate_connect_poke_same02	/*2åŒ¹ç›®ãŒè¢«ã‚Š*/
+	_CASE_JUMP			3,ev_wifi_castle_gate_connect_poke_same03	/*1,2åŒ¹ã¨ã‚‚è¢«ã‚Š*/
 	_JUMP				ev_bf_info_pokelist_after
 	_END
 
 
 /********************************************************************/
-/*					ƒLƒƒƒbƒXƒ‹@ƒ|ƒPƒ‚ƒ“‚ª”í‚Á‚Ä‚¢‚é				*/
+/*					ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€€ãƒã‚±ãƒ¢ãƒ³ãŒè¢«ã£ã¦ã„ã‚‹				*/
 /********************************************************************/
-/*ƒ|ƒPƒ‚ƒ“‚ªˆê•C”í‚Á‚Ä‚¢‚é‚Æ‚«(ˆê•C–Ú)*/
+/*ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹è¢«ã£ã¦ã„ã‚‹ã¨ã(ä¸€åŒ¹ç›®)*/
 ev_wifi_castle_gate_connect_poke_same01:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_ENTRY_MONSNO,0,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA		0,FSW_ANSWER,0,0
 	_TALKMSG				msg_bf_info_013
-	_JUMP					bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP					bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
-/*ƒ|ƒPƒ‚ƒ“‚ªˆê•C”í‚Á‚Ä‚¢‚é‚Æ‚«(“ñ•C–Ú)*/
+/*ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹è¢«ã£ã¦ã„ã‚‹ã¨ã(äºŒåŒ¹ç›®)*/
 ev_wifi_castle_gate_connect_poke_same02:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_ENTRY_MONSNO,1,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA		0,FSW_ANSWER,0,0
 	_TALKMSG				msg_bf_info_013
-	_JUMP					bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP					bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
-/*ƒ|ƒPƒ‚ƒ“‚ª“ñ•C”í‚Á‚Ä‚¢‚é‚Æ‚«*/
+/*ãƒã‚±ãƒ¢ãƒ³ãŒäºŒåŒ¹è¢«ã£ã¦ã„ã‚‹ã¨ã*/
 ev_wifi_castle_gate_connect_poke_same03:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_ENTRY_MONSNO,0,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA		0,FSW_ANSWER,0,0
@@ -633,43 +633,43 @@ ev_wifi_castle_gate_connect_poke_same03:
 	_POKEMON_NAME_EXTRA		1,FSW_ANSWER,0,0
 
 	_TALKMSG				msg_bf_info_014
-	_JUMP					bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP					bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
 
 /********************************************************************/
-/*	ƒ‹[ƒŒƒbƒg‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒ‹‰Ê‚ðƒ`ƒFƒbƒN(ƒLƒƒƒbƒXƒ‹‚Æˆ—“¯‚¶)	*/
+/*	ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµæžœã‚’ãƒã‚§ãƒƒã‚¯(ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã¨å‡¦ç†åŒã˜)	*/
 /********************************************************************/
 ev_bf_info_pokelist_roulette_result:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_CHECK_ENTRY,FRONTIER_NO_ROULETTE,0,FSW_ANSWER
 	_SWITCH				FSW_ANSWER
-	_CASE_JUMP			1,ev_wifi_roulette_gate_connect_poke_same01	/*1•C–Ú‚ª”í‚è*/
-	_CASE_JUMP			2,ev_wifi_roulette_gate_connect_poke_same02	/*2•C–Ú‚ª”í‚è*/
-	_CASE_JUMP			3,ev_wifi_roulette_gate_connect_poke_same03	/*1,2•C‚Æ‚à”í‚è*/
+	_CASE_JUMP			1,ev_wifi_roulette_gate_connect_poke_same01	/*1åŒ¹ç›®ãŒè¢«ã‚Š*/
+	_CASE_JUMP			2,ev_wifi_roulette_gate_connect_poke_same02	/*2åŒ¹ç›®ãŒè¢«ã‚Š*/
+	_CASE_JUMP			3,ev_wifi_roulette_gate_connect_poke_same03	/*1,2åŒ¹ã¨ã‚‚è¢«ã‚Š*/
 	_JUMP				ev_bf_info_pokelist_after
 	_END
 
 
 /********************************************************************/
-/*		ƒ‹[ƒŒƒbƒg@ƒ|ƒPƒ‚ƒ“‚ª”í‚Á‚Ä‚¢‚é(ƒLƒƒƒbƒXƒ‹‚Æˆ—“¯‚¶)		*/
+/*		ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã€€ãƒã‚±ãƒ¢ãƒ³ãŒè¢«ã£ã¦ã„ã‚‹(ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã¨å‡¦ç†åŒã˜)		*/
 /********************************************************************/
-/*ƒ|ƒPƒ‚ƒ“‚ªˆê•C”í‚Á‚Ä‚¢‚é‚Æ‚«(ˆê•C–Ú)*/
+/*ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹è¢«ã£ã¦ã„ã‚‹ã¨ã(ä¸€åŒ¹ç›®)*/
 ev_wifi_roulette_gate_connect_poke_same01:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_ENTRY_MONSNO,0,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA		0,FSW_ANSWER,0,0
 	_TALKMSG				msg_bf_info_013
-	_JUMP					bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP					bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
-/*ƒ|ƒPƒ‚ƒ“‚ªˆê•C”í‚Á‚Ä‚¢‚é‚Æ‚«(“ñ•C–Ú)*/
+/*ãƒã‚±ãƒ¢ãƒ³ãŒä¸€åŒ¹è¢«ã£ã¦ã„ã‚‹ã¨ã(äºŒåŒ¹ç›®)*/
 ev_wifi_roulette_gate_connect_poke_same02:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_ENTRY_MONSNO,1,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA		0,FSW_ANSWER,0,0
 	_TALKMSG				msg_bf_info_013
-	_JUMP					bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP					bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
-/*ƒ|ƒPƒ‚ƒ“‚ª“ñ•C”í‚Á‚Ä‚¢‚é‚Æ‚«*/
+/*ãƒã‚±ãƒ¢ãƒ³ãŒäºŒåŒ¹è¢«ã£ã¦ã„ã‚‹ã¨ã*/
 ev_wifi_roulette_gate_connect_poke_same03:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_ENTRY_MONSNO,0,0,FSW_ANSWER
 	_POKEMON_NAME_EXTRA		0,FSW_ANSWER,0,0
@@ -678,16 +678,16 @@ ev_wifi_roulette_gate_connect_poke_same03:
 	_POKEMON_NAME_EXTRA		1,FSW_ANSWER,0,0
 
 	_TALKMSG				msg_bf_info_014
-	_JUMP					bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP					bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
 
 /********************************************************************/
-/*						ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹Œã						*/
+/*						ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å¾Œ						*/
 /********************************************************************/
 ev_bf_info_pokelist_after:
 
-	/*˜AŸ”‚ªH‚¢ˆá‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*é€£å‹æ•°ãŒé£Ÿã„é•ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_CALL				ev_bf_info_pair_rensyou_ng_check_call
 
 	_JUMP				ev_bf_info_pokelist_after_sub
@@ -695,18 +695,18 @@ ev_bf_info_pokelist_after:
 
 ev_bf_info_pokelist_after_sub:
 #if 1
-	/*ƒNƒŠƒAƒtƒ‰ƒO‚ðŽæ“¾‚µ‚ÄƒNƒŠƒA*/
-	/*ƒNƒŠƒAƒtƒ‰ƒO‚ðŽæ“¾‚µ‚ÄA0‚¾‚Á‚½‚çA˜AŸƒŒƒR[ƒh‚ð0‚É‚µ‚Ä‚¨‚­(—F’BŽè’ ‚Ì‹L˜^‚Ì‚½‚ß)*/
+	/*ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã—ã¦ã‚¯ãƒªã‚¢*/
+	/*ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã—ã¦ã€0ã ã£ãŸã‚‰ã€é€£å‹ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’0ã«ã—ã¦ãŠã(å‹é”æ‰‹å¸³ã®è¨˜éŒ²ã®ãŸã‚)*/
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_CLEAR_FLAG,0,0,FSW_ANSWER
 	_SAVE_EVENT_WORK_SET	SYS_WORK_WIFI_FR_CLEAR_FLAG,FSW_ANSWER
 #endif
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FR_WIFI_COUNTER_SAVE
 	_COMM_RESET
 
-	/*uƒŒƒ|[ƒg‚É‘‚«ž‚ñ‚Å‚¢‚Ü‚·@“dŒ¹‚ðØ‚ç‚È‚¢‚Å‰º‚³‚¢v*/
+	/*ã€Œãƒ¬ãƒãƒ¼ãƒˆã«æ›¸ãè¾¼ã‚“ã§ã„ã¾ã™ã€€é›»æºã‚’åˆ‡ã‚‰ãªã„ã§ä¸‹ã•ã„ã€*/
 	_TALKMSG_ALL_PUT	msg_bf_info_028
 	_ADD_WAITICON
 	_REPORT_DIV_SAVE	FSW_ANSWER
@@ -714,11 +714,11 @@ ev_bf_info_pokelist_after_sub:
 	_SE_PLAY			SEQ_SE_DP_SAVE
 	_SE_WAIT			SEQ_SE_DP_SAVE
 
-	/*u‚»‚ê‚Å‚Í‚ª‚ñ‚Î‚Á‚Ä‚­‚¾‚³‚¢v*/
+	/*ã€Œãã‚Œã§ã¯ãŒã‚“ã°ã£ã¦ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_bf_info_027
 	_TIME_WAIT			10, FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FR_WIFI_COUNTER_GO
 	_COMM_RESET
@@ -748,18 +748,18 @@ ev_bf_info_pokelist_after_sub:
 
 
 /********************************************************************/
-/*				˜AŸ”‚ªH‚¢ˆá‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN*/
+/*				é€£å‹æ•°ãŒé£Ÿã„é•ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 /********************************************************************/
 ev_bf_info_pair_rensyou_ng_check_call:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_CHECK_PAIR_RENSYOU,0,0,FSW_ANSWER
 
-	/*Œ‹‰Ê‚ð‘Þ”ð*/
+	/*çµæžœã‚’é€€é¿*/
 	_LDWK				FSW_PARAM6,FSW_ANSWER
 
 	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_bf_info_pair_rensyou_ng
 	_RET
 
-/*˜AŸ”‚ªH‚¢ˆá‚Á‚Ä‚¢‚½‚±‚Æ‚ð“`‚¦‚é*/
+/*é€£å‹æ•°ãŒé£Ÿã„é•ã£ã¦ã„ãŸã“ã¨ã‚’ä¼ãˆã‚‹*/
 ev_bf_info_pair_rensyou_ng:
 	_TALKMSG			msg_bf_info_006
 	_TALKMSG_NOSKIP		msg_bf_info_005
@@ -769,33 +769,33 @@ ev_bf_info_pair_rensyou_ng:
 /********************************************************************/
 /********************************************************************/
 ev_wifi_tower_start:
-	/*ƒ^ƒ[‰æ–ÊŒÄ‚Ño‚µ‘O*/
+	/*ã‚¿ãƒ¯ãƒ¼ç”»é¢å‘¼ã³å‡ºã—å‰*/
 
-	/*“ÁŽê*/
+	/*ç‰¹æ®Š*/
 	//_FR_WIFI_COUNTER_WORK_FREE
-	_FR_WIFI_COUNTER_TOWER_CALL_BEFORE				/*‚±‚Ì’†‚Åƒ[ƒNŠm•Û BTWR_MODE_WIFI_MULTI*/
+	_FR_WIFI_COUNTER_TOWER_CALL_BEFORE				/*ã“ã®ä¸­ã§ãƒ¯ãƒ¼ã‚¯ç¢ºä¿ BTWR_MODE_WIFI_MULTI*/
 
-	/*ƒ}ƒ‹ƒ`ENTRY‚ðÝ’è*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_D31R0206,1		/*new game ƒ}ƒ‹ƒ`*/
+	/*ãƒžãƒ«ãƒENTRYã‚’è¨­å®š*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_D31R0206,1		/*new game ãƒžãƒ«ãƒ*/
 
-	/*ƒ^ƒ[‚Ìƒf[ƒ^ŒðŠ·‘O‚Ì“¯Šú*/
+	/*ã‚¿ãƒ¯ãƒ¼ã®ãƒ‡ãƒ¼ã‚¿äº¤æ›å‰ã®åŒæœŸ*/
 	_CALL				ev_wifi_counter_synchronize_tower
 
 	_JUMP				ev_wifi_tower_tr_data_retry
 	_END
 
-/*‘ÎíƒgƒŒ[ƒi[ƒf[ƒ^‘—M*/
+/*å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿é€ä¿¡*/
 ev_wifi_tower_tr_data_retry:
 	_FR_WIFI_COUNTER_TOWER_SEND_TR_DATA	FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_wifi_tower_tr_data_retry
 
-	/*‘ÎíƒgƒŒ[ƒi[ƒf[ƒ^ŽóM*/
+	/*å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿å—ä¿¡*/
 	_FR_WIFI_COUNTER_TOWER_RECV_TR_DATA
 
-	/*“ÁŽê*/
-	//tower6.s‚Ì’†‚Å_FR_WIFI_COUNTER_TOWER_CALL_AFTER‚ðŒÄ‚ñ‚Å‚¢‚é
+	/*ç‰¹æ®Š*/
+	//tower6.sã®ä¸­ã§_FR_WIFI_COUNTER_TOWER_CALL_AFTERã‚’å‘¼ã‚“ã§ã„ã‚‹
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_CALL				ev_wifi_counter_synchronize
 	_MAP_CHANGE_EX		FSS_SCENEID_TOWER_MULTI_WAY,0
 	_END
@@ -803,10 +803,10 @@ ev_wifi_tower_tr_data_retry:
 ev_wifi_factory_start:
 	_FR_WIFI_COUNTER_WORK_FREE
 
-	/*BGM‚ÌƒtƒF[ƒh‚ð“ü‚ê‚È‚¢‚Æƒ_ƒ‚©‚à*/
+	/*BGMã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’å…¥ã‚Œãªã„ã¨ãƒ€ãƒ¡ã‹ã‚‚*/
 	_BGM_PLAY			SEQ_PL_BF_FACTORY
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_CALL				ev_wifi_counter_synchronize
 	_MAP_CHANGE_EX		FSS_SCENEID_FACTORY,0
 	_END
@@ -814,10 +814,10 @@ ev_wifi_factory_start:
 ev_wifi_stage_start:
 	_FR_WIFI_COUNTER_WORK_FREE
 
-	/*BGM‚ÌƒtƒF[ƒh‚ð“ü‚ê‚È‚¢‚Æƒ_ƒ‚©‚à*/
+	/*BGMã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’å…¥ã‚Œãªã„ã¨ãƒ€ãƒ¡ã‹ã‚‚*/
 	_BGM_PLAY			SEQ_PL_BF_STAGE
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_CALL				ev_wifi_counter_synchronize
 	_MAP_CHANGE_EX		FSS_SCENEID_STAGE_WAY,0
 	_END
@@ -825,10 +825,10 @@ ev_wifi_stage_start:
 ev_wifi_castle_start:
 	_FR_WIFI_COUNTER_WORK_FREE
 
-	/*BGM‚ÌƒtƒF[ƒh‚ð“ü‚ê‚È‚¢‚Æƒ_ƒ‚©‚à*/
+	/*BGMã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’å…¥ã‚Œãªã„ã¨ãƒ€ãƒ¡ã‹ã‚‚*/
 	_BGM_PLAY			SEQ_PL_BF_CASTLE02
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_CALL				ev_wifi_counter_synchronize
 	_MAP_CHANGE_EX		FSS_SCENEID_CASTLE_ROOM,0
 	_END
@@ -836,25 +836,25 @@ ev_wifi_castle_start:
 ev_wifi_roulette_start:
 	_FR_WIFI_COUNTER_WORK_FREE
 
-	/*BGM‚ÌƒtƒF[ƒh‚ð“ü‚ê‚È‚¢‚Æƒ_ƒ‚©‚à*/
+	/*BGMã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’å…¥ã‚Œãªã„ã¨ãƒ€ãƒ¡ã‹ã‚‚*/
 	_BGM_PLAY			SEQ_PL_BF_ROULETTE
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_CALL				ev_wifi_counter_synchronize
 	_MAP_CHANGE_EX		FSS_SCENEID_ROULETTE_WAY,0
 	_END
 
-/*ƒ}ƒbƒv‘JˆÚ‘O‚Ì“¯Šú*/
+/*ãƒžãƒƒãƒ—é·ç§»å‰ã®åŒæœŸ*/
 ev_wifi_counter_synchronize:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FR_WIFI_COUNTER_GO2
 	_COMM_RESET
 	_RET
 
-/*ƒ^ƒ[‚Ìƒf[ƒ^ŒðŠ·‘O‚Ì“¯Šú*/
+/*ã‚¿ãƒ¯ãƒ¼ã®ãƒ‡ãƒ¼ã‚¿äº¤æ›å‰ã®åŒæœŸ*/
 ev_wifi_counter_synchronize_tower:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FR_WIFI_COUNTER_TOWER
 	_COMM_RESET
@@ -862,11 +862,11 @@ ev_wifi_counter_synchronize_tower:
 
 
 /********************************************************************/
-/*						Ž{Ý‚©‚ç–ß‚Á‚Ä‚«‚½Žž						*/
+/*						æ–½è¨­ã‹ã‚‰æˆ»ã£ã¦ããŸæ™‚						*/
 /********************************************************************/
 fss_wifi_counter_return:
 
-	/*“úŽž‚Ì‹L˜^‚ð‚Â‚¯‚é*/
+	/*æ—¥æ™‚ã®è¨˜éŒ²ã‚’ã¤ã‘ã‚‹*/
 	_FR_WIFI_COUNTER_LIST_SET_LAST_PLAY_DATE
 
 	_FR_WIFI_COUNTER_WORK_ALLOC
@@ -876,21 +876,21 @@ fss_wifi_counter_return:
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_COMM_COMMAND_INITIALIZE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FR_WIFI_COUNTER_INIT_2
 	_COMM_RESET
 
-	_CHAR_RESOURCE_SET	comm_multi_set_resource				/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			comm_multi_set_actor				/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	comm_multi_set_resource				/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			comm_multi_set_actor				/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 
-	/*BGM‚ÌƒtƒF[ƒh‚ð“ü‚ê‚È‚¢‚Æƒ_ƒ‚©‚à*/
+	/*BGMã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚’å…¥ã‚Œãªã„ã¨ãƒ€ãƒ¡ã‹ã‚‚*/
 	_BGM_PLAY			SEQ_BF_TOWWER
 
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*u›‚³‚ñ‚Æ‚à‚¤ˆê“x—V‚Ñ‚Ü‚·‚©Hv*/
+	/*ã€Œâ—‹ã•ã‚“ã¨ã‚‚ã†ä¸€åº¦éŠã³ã¾ã™ã‹ï¼Ÿã€*/
 	_PAIR_NAME			0
 	_TALKMSG			msg_bf_info_030
 	_YES_NO_WIN			FSW_ANSWER
@@ -899,14 +899,14 @@ fss_wifi_counter_return:
 	_END
 
 ev_wifi_counter_return_yes:
-	/*u‘ŠŽè‚Ì‘I‘ð‚ð‘Ò‚Á‚Ä‚¢‚Ü‚·I‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œç›¸æ‰‹ã®é¸æŠžã‚’å¾…ã£ã¦ã„ã¾ã™ï¼ã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_bf_info_031
 	_LDVAL				FSW_PARAM2,0
 	_JUMP				ev_bf_info_send_game_continue
 	_END
 	
 ev_wifi_counter_return_no:
-	/*u‘ŠŽè‚Ì‘I‘ð‚ð‘Ò‚Á‚Ä‚¢‚Ü‚·I‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œç›¸æ‰‹ã®é¸æŠžã‚’å¾…ã£ã¦ã„ã¾ã™ï¼ã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_bf_info_031
 	_LDVAL				FSW_PARAM2,1
 	_JUMP				ev_bf_info_send_game_continue
@@ -914,48 +914,48 @@ ev_wifi_counter_return_no:
 
 
 /********************************************************************/
-/*						ˆø‚«‘±‚«—V‚Ô‚©‚ð‘—M						*/
+/*						å¼•ãç¶šãéŠã¶ã‹ã‚’é€ä¿¡						*/
 /********************************************************************/
 ev_bf_info_send_game_continue:
 	_LDVAL				FSW_PARAM1,FRONTIER_COMM_GAME_CONTINUE
-	_FR_WIFI_COUNTER_SEND_BUF	FSW_PARAM1,FSW_PARAM2,0,FSW_ANSWER		/*0=‚Í‚¢A1=‚¢‚¢‚¦*/
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_bf_info_send_game_continue	/*‘—MŽ¸”s‚ÍÄ‘—M*/
+	_FR_WIFI_COUNTER_SEND_BUF	FSW_PARAM1,FSW_PARAM2,0,FSW_ANSWER		/*0=ã¯ã„ã€1=ã„ã„ãˆ*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_bf_info_send_game_continue	/*é€ä¿¡å¤±æ•—ã¯å†é€ä¿¡*/
 
 	_FR_WIFI_COUNTER_RECV_BUF	FSW_PARAM1
 	_COMM_RESET
 
-	/*‘ŠŽè‚ª‘I‚ñ‚¾ƒƒjƒ…[‚ðŽæ“¾*/
+	/*ç›¸æ‰‹ãŒé¸ã‚“ã ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å–å¾—*/
 	_FR_WIFI_COUNTER_YAMERU_CHECK	FSW_ANSWER
 
-	/*ƒp[ƒgƒi[‚ªu‚¢‚¢‚¦v‚ð‘I‚ñ‚¾‚ç*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒã€Œã„ã„ãˆã€ã‚’é¸ã‚“ã ã‚‰*/
 	_FR_WIFI_COUNTER_TOOL	FWIFI_ID_GET_PAIR_GAME_CONTINUE,0,0,FSW_ANSWER
 	_IFVAL_JUMP				FSW_ANSWER,EQ,1,ev_bf_info_game_end_pair
 
-	/*Ž©•ª‚ªu‚¢‚¢‚¦v‚ð‘I‚ñ‚¾‚ç*/
+	/*è‡ªåˆ†ãŒã€Œã„ã„ãˆã€ã‚’é¸ã‚“ã ã‚‰*/
 	_IFVAL_JUMP			FSW_PARAM2,EQ,1,ev_bf_info_game_end
 
-	_JUMP				bf_no_sel_menu					/*Ž{Ý‘I‘ð‚Ö*/
+	_JUMP				bf_no_sel_menu					/*æ–½è¨­é¸æŠžã¸*/
 	_END
 
 
 /********************************************************************/
-/*					(—F’B)ˆø‚«‘±‚«—V‚Î‚È‚¢							*/
+/*					(å‹é”)å¼•ãç¶šãéŠã°ãªã„							*/
 /********************************************************************/
 ev_bf_info_game_end_pair:
 	_PAIR_NAME			0
 	_TALKMSG_NOSKIP		msg_bf_info_032
 
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_bf_info_005
 
 	_JUMP				ev_bf_info_game_end
 	_END
 	
 /********************************************************************/
-/*						ˆø‚«‘±‚«—V‚Î‚È‚¢							*/
+/*						å¼•ãç¶šãéŠã°ãªã„							*/
 /********************************************************************/
 ev_bf_info_game_end:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FR_WIFI_COUNTER_END
 	_COMM_RESET
@@ -966,10 +966,10 @@ ev_bf_info_game_end:
 
 
 /********************************************************************/
-/*						ƒ[ƒNŠJ•ú‚µ‚ÄI—¹							*/
+/*						ãƒ¯ãƒ¼ã‚¯é–‹æ”¾ã—ã¦çµ‚äº†							*/
 /********************************************************************/
 ev_bf_info_end:
-	/*WiFiƒ}ƒbƒ`ƒ“ƒO‰æ–Ê‚Ö*/
+	/*WiFiãƒžãƒƒãƒãƒ³ã‚°ç”»é¢ã¸*/
 	//_END
 
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -977,11 +977,11 @@ ev_bf_info_end:
 
 	_FR_WIFI_COUNTER_WORK_FREE
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_FR_WIFI_COUNTER_END_2
 	_COMM_RESET
 
-	_SCRIPT_FINISH		/*_END‚µ‚Ä2Dƒ}ƒbƒvI—¹*/
+	_SCRIPT_FINISH		/*_ENDã—ã¦2Dãƒžãƒƒãƒ—çµ‚äº†*/
 
 

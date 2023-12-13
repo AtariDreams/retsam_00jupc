@@ -12,38 +12,38 @@
 
   $Log: mi_uncomp_stream.c,v $
   Revision 1.12  2007/11/02 00:52:01  takano_makoto
-  copyright‚Ì”N†C³.
+  copyrightã®å¹´å·ä¿®æ­£.
 
   Revision 1.11  2007/11/02 00:50:38  takano_makoto
-  LZ77Šg’£ˆ³k‚É‘Î‰
-  ƒnƒtƒ}ƒ““WŠJ‚Åˆ³kƒf[ƒ^ƒTƒCƒY‚ª4ƒoƒCƒg‚Ì”{”‚Å‚È‚©‚Á‚½ê‡‚Ì•s‹ï‡‚ğC³
+  LZ77æ‹¡å¼µåœ§ç¸®ã«å¯¾å¿œ
+  ãƒãƒ•ãƒãƒ³å±•é–‹ã§åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºãŒ4ãƒã‚¤ãƒˆã®å€æ•°ã§ãªã‹ã£ãŸå ´åˆã®ä¸å…·åˆã‚’ä¿®æ­£
 
   Revision 1.10  2005/02/28 05:26:25  yosizaki
   do-indent.
 
   Revision 1.9  2005/02/18 06:40:47  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.8  2005/01/19 12:51:31  takano_makoto
-  STRB‚ğg—p‚µ‚Ä‚¢‚½•”•ª‚ğSWPB‚Ö•ÏX
+  STRBã‚’ä½¿ç”¨ã—ã¦ã„ãŸéƒ¨åˆ†ã‚’SWPBã¸å¤‰æ›´
 
   Revision 1.7  2005/01/18 00:18:28  takano_makoto
   fix comment.
 
   Revision 1.6  2004/12/21 03:32:06  takano_makoto
-  ƒpƒCƒvƒ‰ƒCƒ“‚ªƒXƒg[ƒ‹‚µ‚Ä‚¢‚é•”•ª‚ğ‰ğÁ
+  ãƒ‘ã‚¤ãƒ—ãƒ©ã‚¤ãƒ³ãŒã‚¹ãƒˆãƒ¼ãƒ«ã—ã¦ã„ã‚‹éƒ¨åˆ†ã‚’è§£æ¶ˆ
 
   Revision 1.5  2004/12/07 13:18:20  takano_makoto
-  ƒAƒZƒ“ƒuƒ‰‰»‚É‚æ‚Á‚Ä‚‘¬‰»
+  ã‚¢ã‚»ãƒ³ãƒ–ãƒ©åŒ–ã«ã‚ˆã£ã¦é«˜é€ŸåŒ–
 
   Revision 1.4  2004/12/01 00:02:50  takano_makoto
-  ŠÖ”–¼‚ğ MI_UncompReadXX -> MI_ReadUncompXX‚Ö•ÏX
+  é–¢æ•°åã‚’ MI_UncompReadXX -> MI_ReadUncompXXã¸å¤‰æ›´
 
   Revision 1.3  2004/11/30 10:51:41  takano_makoto
-  16bitƒAƒNƒZƒXŠÖ”‚ğ—pˆÓ
+  16bitã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°ã‚’ç”¨æ„
 
   Revision 1.2  2004/11/30 08:30:59  takano_makoto
-  MI_InitUncompContextXXX‚Ì–ß‚è’l‚ğvoid‚É•ÏX
+  MI_InitUncompContextXXXã®æˆ»ã‚Šå€¤ã‚’voidã«å¤‰æ›´
 
   Revision 1.1  2004/11/30 04:18:56  takano_makoto
   Initial update.
@@ -60,14 +60,14 @@
 /*---------------------------------------------------------------------------*
   Name        : MI_InitUncompContextRL
 
-  Description : ƒ‰ƒ“ƒŒƒ“ƒOƒXˆ³kƒf[ƒ^‚ÌƒXƒgƒŠ[ƒ~ƒ“ƒO“WŠJƒRƒ“ƒeƒLƒXƒg‚ğ
-                ‰Šú‰»B
+  Description : ãƒ©ãƒ³ãƒ¬ãƒ³ã‚°ã‚¹åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã®ã‚¹ãƒˆãƒªãƒ¼ãƒŸãƒ³ã‚°å±•é–‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’
+                åˆæœŸåŒ–ã€‚
 
-  Arguments   : context     ƒ‰ƒ“ƒŒƒ“ƒOƒX“WŠJƒRƒ“ƒeƒLƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                dest        “WŠJæƒAƒhƒŒƒX
-                header      ˆ³kƒf[ƒ^‚Ìæ“ªƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments   : context     ãƒ©ãƒ³ãƒ¬ãƒ³ã‚°ã‚¹å±•é–‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                dest        å±•é–‹å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
+                header      åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns     : “WŠJŒã‚Ìƒf[ƒ^ƒTƒCƒY‚ªæ“¾‚Å‚«‚Ü‚·B
+  Returns     : å±•é–‹å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºãŒå–å¾—ã§ãã¾ã™ã€‚
 
  *---------------------------------------------------------------------------*/
 void MI_InitUncompContextRL(MIUncompContextRL *context, u8 *dest, const MICompressionHeader *header)
@@ -84,11 +84,11 @@ void MI_InitUncompContextRL(MIUncompContextRL *context, u8 *dest, const MICompre
 /*---------------------------------------------------------------------------*
   Name        : MI_InitUncompContextLZ
 
-  Description : LZˆ³kƒf[ƒ^‚ÌƒXƒgƒŠ[ƒ~ƒ“ƒO“WŠJƒRƒ“ƒeƒLƒXƒg‚ğ‰Šú‰»B
+  Description : LZåœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã®ã‚¹ãƒˆãƒªãƒ¼ãƒŸãƒ³ã‚°å±•é–‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’åˆæœŸåŒ–ã€‚
 
-  Arguments   : context     LZ“WŠJƒRƒ“ƒeƒLƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                dest        “WŠJæƒAƒhƒŒƒX
-                header      ˆ³kƒf[ƒ^‚Ìæ“ªƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments   : context     LZå±•é–‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                dest        å±•é–‹å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
+                header      åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
  *---------------------------------------------------------------------------*/
 void MI_InitUncompContextLZ(MIUncompContextLZ *context, u8 *dest, const MICompressionHeader *header)
@@ -108,11 +108,11 @@ void MI_InitUncompContextLZ(MIUncompContextLZ *context, u8 *dest, const MICompre
 /*---------------------------------------------------------------------------*
   Name        : MI_InitUncompContextHuffman
 
-  Description : ƒnƒtƒ}ƒ“ˆ³kƒf[ƒ^‚ÌƒXƒgƒŠ[ƒ~ƒ“ƒO“WŠJƒRƒ“ƒeƒLƒXƒg‚ğ‰Šú‰»B
+  Description : ãƒãƒ•ãƒãƒ³åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã®ã‚¹ãƒˆãƒªãƒ¼ãƒŸãƒ³ã‚°å±•é–‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’åˆæœŸåŒ–ã€‚
 
-  Arguments   : context     ƒnƒtƒ}ƒ““WŠJƒRƒ“ƒeƒLƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                dest        “WŠJæƒAƒhƒŒƒX
-                header      ˆ³kƒf[ƒ^‚Ìæ“ªƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments   : context     ãƒãƒ•ãƒãƒ³å±•é–‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                dest        å±•é–‹å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
+                header      åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
  *---------------------------------------------------------------------------*/
 void MI_InitUncompContextHuffman(MIUncompContextHuffman *context, u8 *dest,
@@ -135,14 +135,14 @@ void MI_InitUncompContextHuffman(MIUncompContextHuffman *context, u8 *dest,
 /*---------------------------------------------------------------------------*
   Name        : MI_ReadUncompRL8
 
-  Description : ƒ‰ƒ“ƒŒƒ“ƒOƒXˆ³kƒf[ƒ^‚ğƒXƒgƒŠ[ƒ~ƒ“ƒO“WŠJ‚·‚éŠÖ”B
-                8bit’PˆÊ‚Å‘‚«‚İAVRAM‚Ö’¼Ú“WŠJ‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
+  Description : ãƒ©ãƒ³ãƒ¬ãƒ³ã‚°ã‚¹åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ãƒˆãƒªãƒ¼ãƒŸãƒ³ã‚°å±•é–‹ã™ã‚‹é–¢æ•°ã€‚
+                8bitå˜ä½ã§æ›¸ãè¾¼ã¿ã€VRAMã¸ç›´æ¥å±•é–‹ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“ã€‚
 
-  Arguments   : context ƒ‰ƒ“ƒŒƒ“ƒOƒX“WŠJƒRƒ“ƒeƒLƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    ‘±‚«ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                len     ƒf[ƒ^ƒTƒCƒY
+  Arguments   : context ãƒ©ãƒ³ãƒ¬ãƒ³ã‚°ã‚¹å±•é–‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    ç¶šããƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                len     ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 
-  Returns     : c‚è“WŠJƒf[ƒ^ƒTƒCƒYB
+  Returns     : æ®‹ã‚Šå±•é–‹ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã€‚
 
  *---------------------------------------------------------------------------*/
 asm s32 MI_ReadUncompRL8( register MIUncompContextRL *context, register const u8* data, register u32 len )
@@ -222,15 +222,15 @@ asm s32 MI_ReadUncompRL8( register MIUncompContextRL *context, register const u8
 /*---------------------------------------------------------------------------*
   Name        : MI_ReadUncompRL16
 
-  Description : ƒ‰ƒ“ƒŒƒ“ƒOƒXˆ³kƒf[ƒ^‚ğƒXƒgƒŠ[ƒ~ƒ“ƒO“WŠJ‚·‚éŠÖ”B
-                16bit’PˆÊ‚Å‘‚«‚İVRAM‚Ö’¼Ú“WŠJ‚Å‚«‚Ü‚·‚ªA
-                MI_ReadUncompRL8‚æ‚è‚à’á‘¬‚Å‚·B
+  Description : ãƒ©ãƒ³ãƒ¬ãƒ³ã‚°ã‚¹åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ãƒˆãƒªãƒ¼ãƒŸãƒ³ã‚°å±•é–‹ã™ã‚‹é–¢æ•°ã€‚
+                16bitå˜ä½ã§æ›¸ãè¾¼ã¿VRAMã¸ç›´æ¥å±•é–‹ã§ãã¾ã™ãŒã€
+                MI_ReadUncompRL8ã‚ˆã‚Šã‚‚ä½é€Ÿã§ã™ã€‚
 
-  Arguments   : context ƒ‰ƒ“ƒŒƒ“ƒOƒX“WŠJƒRƒ“ƒeƒLƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    ‘±‚«ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                len     ƒf[ƒ^ƒTƒCƒY
+  Arguments   : context ãƒ©ãƒ³ãƒ¬ãƒ³ã‚°ã‚¹å±•é–‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    ç¶šããƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                len     ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 
-  Returns     : c‚è“WŠJƒf[ƒ^ƒTƒCƒYB
+  Returns     : æ®‹ã‚Šå±•é–‹ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã€‚
 
  *---------------------------------------------------------------------------*/
 asm s32 MI_ReadUncompRL16( register MIUncompContextRL *context, register const u8* data, register u32 len )
@@ -318,14 +318,14 @@ asm s32 MI_ReadUncompRL16( register MIUncompContextRL *context, register const u
 /*---------------------------------------------------------------------------*
   Name        : MI_ReadUncompLZ8
 
-  Description : LZˆ³kƒf[ƒ^‚ğƒXƒgƒŠ[ƒ~ƒ“ƒO“WŠJ‚·‚éŠÖ”
-                8bit’PˆÊ‚Å‘‚«‚İAVRAM‚Ö’¼Ú“WŠJ‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
+  Description : LZåœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ãƒˆãƒªãƒ¼ãƒŸãƒ³ã‚°å±•é–‹ã™ã‚‹é–¢æ•°
+                8bitå˜ä½ã§æ›¸ãè¾¼ã¿ã€VRAMã¸ç›´æ¥å±•é–‹ã™ã‚‹ã“ã¨ã¯ã§ãã¾ã›ã‚“ã€‚
 
-  Arguments   : context LZ“WŠJƒRƒ“ƒeƒLƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    ‘±‚«ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                len     ƒf[ƒ^ƒTƒCƒY
+  Arguments   : context LZå±•é–‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    ç¶šããƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                len     ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 
-  Returns     : c‚è“WŠJƒf[ƒ^ƒTƒCƒYB
+  Returns     : æ®‹ã‚Šå±•é–‹ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã€‚
 
  *---------------------------------------------------------------------------*/
 asm s32 MI_ReadUncompLZ8( register MIUncompContextLZ *context, register const u8* data, register u32 len )
@@ -468,15 +468,15 @@ asm s32 MI_ReadUncompLZ8( register MIUncompContextLZ *context, register const u8
 /*---------------------------------------------------------------------------*
   Name        : MI_ReadUncompLZ16
 
-  Description : LZˆ³kƒf[ƒ^‚ğƒXƒgƒŠ[ƒ~ƒ“ƒO“WŠJ‚·‚éŠÖ”B
-                16bit’PˆÊ‚Å‘‚«‚İAVRAM‚Ö‚à’¼Ú“WŠJ‚Å‚«‚Ü‚·‚ªA
-                MI_ReadUncompLZ8‚æ‚è‚à’á‘¬‚Å‚·B
+  Description : LZåœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ãƒˆãƒªãƒ¼ãƒŸãƒ³ã‚°å±•é–‹ã™ã‚‹é–¢æ•°ã€‚
+                16bitå˜ä½ã§æ›¸ãè¾¼ã¿ã€VRAMã¸ã‚‚ç›´æ¥å±•é–‹ã§ãã¾ã™ãŒã€
+                MI_ReadUncompLZ8ã‚ˆã‚Šã‚‚ä½é€Ÿã§ã™ã€‚
 
-  Arguments   : context LZ“WŠJƒRƒ“ƒeƒLƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    ‘±‚«ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                len     ƒf[ƒ^ƒTƒCƒY
+  Arguments   : context LZå±•é–‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    ç¶šããƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                len     ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 
-  Returns     : c‚è“WŠJƒf[ƒ^ƒTƒCƒYB
+  Returns     : æ®‹ã‚Šå±•é–‹ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã€‚
 
  *---------------------------------------------------------------------------*/
 asm s32 MI_ReadUncompLZ16( register MIUncompContextLZ *context, register const u8* data, register u32 len )
@@ -647,13 +647,13 @@ asm s32 MI_ReadUncompLZ16( register MIUncompContextLZ *context, register const u
 /*---------------------------------------------------------------------------*
   Name        : MI_ReadUncompHuffman
 
-  Description : ƒnƒtƒ}ƒ“ˆ³kƒf[ƒ^‚ğƒXƒgƒŠ[ƒ~ƒ“ƒO“WŠJ‚·‚éŠÖ”
+  Description : ãƒãƒ•ãƒãƒ³åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ãƒˆãƒªãƒ¼ãƒŸãƒ³ã‚°å±•é–‹ã™ã‚‹é–¢æ•°
 
-  Arguments   : context ƒnƒtƒ}ƒ““WŠJƒRƒ“ƒeƒLƒXƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                data    ‘±‚«ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                len     ƒf[ƒ^ƒTƒCƒY
+  Arguments   : context ãƒãƒ•ãƒãƒ³å±•é–‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                data    ç¶šããƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                len     ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 
-  Returns     : c‚è“WŠJƒf[ƒ^ƒTƒCƒYB
+  Returns     : æ®‹ã‚Šå±•é–‹ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã€‚
 
  *---------------------------------------------------------------------------*/
 #define TREE_END_MASK   0x80

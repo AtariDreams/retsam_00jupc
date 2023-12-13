@@ -13,15 +13,15 @@
 #
 #  $Log: xml2env.pl,v $
 #  Revision 1.6  2005/10/27 09:14:50  okubata_ryoma
-#  ”÷C³
+#  å¾®ä¿®æ­£
 #
 #  Revision 1.5  2005/10/27 08:21:25  okubata_ryoma
-#  ”÷C³
+#  å¾®ä¿®æ­£
 #
 #  Revision 1.4  2005/10/27 07:53:19  okubata_ryoma
-#  xml:parser‚ğg—p
+#  xml:parserã‚’ä½¿ç”¨
 #
-#  ‰Šú”Å
+#  åˆæœŸç‰ˆ
 #
 #  $NoKeywords: $
 #---------------------------------------------------------------------------
@@ -29,16 +29,16 @@
 
 use strict;
 
-# XML::Parser‚ªg—p‰Â‚©’²‚×‚é
+# XML::ParserãŒä½¿ç”¨å¯ã‹èª¿ã¹ã‚‹
 if (eval "require XML::Parser; return 1;" != 1){
-    printf "cygwin ‚ÌƒZƒbƒgƒAƒbƒv‚ÅPerl‚ÌÅV”Å‚Æexpatƒ‰ƒCƒuƒ‰ƒŠ‚ğ“ü‚ê‚ÄAXML::Parser‚ğg—p‚Å‚«‚éŠÂ‹«‚É‚µ‚Ä‚©‚ç‚à‚¤ˆê“xÀs‚µ‚Ä‚İ‚Ä‚­‚¾‚³‚¢B\n";
+    printf "cygwin ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã§Perlã®æœ€æ–°ç‰ˆã¨expatãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’å…¥ã‚Œã¦ã€XML::Parserã‚’ä½¿ç”¨ã§ãã‚‹ç’°å¢ƒã«ã—ã¦ã‹ã‚‰ã‚‚ã†ä¸€åº¦å®Ÿè¡Œã—ã¦ã¿ã¦ãã ã•ã„ã€‚\n";
     exit;
 }
 
 require Getopt::Std;
 require XML::Parser;
 
-# ƒnƒ“ƒhƒ‰ƒ‹[ƒ`ƒ“‚Ö‚ÌQÆ‚ğƒpƒ‰ƒ[ƒ^‚Éw’è‚µ‚ÄAƒp[ƒT‚ğ‰Šú‰»‚·‚é
+# ãƒãƒ³ãƒ‰ãƒ©ãƒ«ãƒ¼ãƒãƒ³ã¸ã®å‚ç…§ã‚’ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«æŒ‡å®šã—ã¦ã€ãƒ‘ãƒ¼ã‚µã‚’åˆæœŸåŒ–ã™ã‚‹
 my $parser = XML::Parser -> new(Handlers => {
         Init =>    \&handle_doc_start,
         Final =>   \&handle_doc_end,
@@ -52,28 +52,28 @@ my $c = Getopt::Std::getopts('o:h', \%opts);
 
 my ($src, $tmp, $line, $resource_name, $resource_count);
 
-# ‰½‚ÌƒIƒvƒVƒ‡ƒ“‚à‚Â‚¯‚È‚©‚Á‚½‚Æ‚«‚Ìo—Íƒtƒ@ƒCƒ‹–¼
+# ä½•ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚‚ã¤ã‘ãªã‹ã£ãŸã¨ãã®å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«å
 $tmp = $src . '.result.c';
 
 
-# ‚ˆ‚Åƒwƒ‹ƒv
+# ï½ˆã§ãƒ˜ãƒ«ãƒ—
 if(exists $opts{h} || scalar(@ARGV) < 1){
-    print "ƒRƒ}ƒ“ƒh‚ÌŒã‚Éˆø”‚ğ‚P‚Â(ŒŸõ‚µ‚½‚¢ .xml ƒtƒ@ƒCƒ‹)‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B\n";
-    print "“ü—Í—á) perl xml2env.pl d:/test/main.xml \n";
-    print "ã‚Ì—á‚Íƒtƒ@ƒCƒ‹‚ª d:/test/main.xml ‚É‚ ‚éê‡‚Ì—á‚Å‚·B\n";
-    print "ˆø”‚É\"-o\"‚ğ“ü‚êA‚»‚ÌŒã‚Éƒtƒ@ƒCƒ‹–¼‚ğ“ü—Í‚·‚é‚Æ‚»‚Ìƒtƒ@ƒCƒ‹‚Éo—Í‚³‚ê‚Ü‚·B\n";
-    print "ˆø”‚É\"-h\"‚ğ“ü‚ê‚é‚ÆAŠÈ’P‚È‘€ìà–¾‚ª•\¦‚³‚ê‚Ü‚·B\n";
+    print "ã‚³ãƒãƒ³ãƒ‰ã®å¾Œã«å¼•æ•°ã‚’ï¼‘ã¤(æ¤œç´¢ã—ãŸã„ .xml ãƒ•ã‚¡ã‚¤ãƒ«)ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚\n";
+    print "å…¥åŠ›ä¾‹) perl xml2env.pl d:/test/main.xml \n";
+    print "ä¸Šã®ä¾‹ã¯ãƒ•ã‚¡ã‚¤ãƒ«ãŒ d:/test/main.xml ã«ã‚ã‚‹å ´åˆã®ä¾‹ã§ã™ã€‚\n";
+    print "å¼•æ•°ã«\"-o\"ã‚’å…¥ã‚Œã€ãã®å¾Œã«ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å…¥åŠ›ã™ã‚‹ã¨ãã®ãƒ•ã‚¡ã‚¤ãƒ«ã«å‡ºåŠ›ã•ã‚Œã¾ã™ã€‚\n";
+    print "å¼•æ•°ã«\"-h\"ã‚’å…¥ã‚Œã‚‹ã¨ã€ç°¡å˜ãªæ“ä½œèª¬æ˜ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚\n";
     die "$!";
 }
 
 
 
-# ƒIƒvƒVƒ‡ƒ“-o ‚Ì‚ ‚Æ‚Éo—Íƒtƒ@ƒCƒ‹‚Ì–¼‘O‚ğ“ü‚ê‚é
+# ã‚ªãƒ—ã‚·ãƒ§ãƒ³-o ã®ã‚ã¨ã«å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰ã‚’å…¥ã‚Œã‚‹
 if(exists $opts{o}){
     $tmp = $opts{o};
 }
 
-# ƒIƒvƒVƒ‡ƒ“‚È‚µ‚ÅQÆ‚µ‚½‚¢ƒtƒ@ƒCƒ‹–¼‚ğ“ü‚ê‚é
+# ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãªã—ã§å‚ç…§ã—ãŸã„ãƒ•ã‚¡ã‚¤ãƒ«åã‚’å…¥ã‚Œã‚‹
 if(@ARGV){
     $src = $ARGV[$resource_count];
 }
@@ -101,7 +101,7 @@ $line .= "\n";
 print   FO  $line;
 
 
-# ƒf[ƒ^‚ğ“Ç‚İ‚İƒp[ƒT‚Åˆ—‚·‚é
+# ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿ãƒ‘ãƒ¼ã‚µã§å‡¦ç†ã™ã‚‹
 my $file = $src;
 if($file){
     $parser->parsefile($file);
@@ -117,14 +117,14 @@ exit;
 
 my ($record, $context, $resource_names, $datafile_name);
 
-# ƒnƒ“ƒhƒ‰
+# ãƒãƒ³ãƒ‰ãƒ©
 
-# ˆ—‚ªn‚Ü‚é‚Æ“¯‚ÉAƒtƒ@ƒCƒ‹‚Ìæ“ª‚ğo—Í‚·‚éB
+# å‡¦ç†ãŒå§‹ã¾ã‚‹ã¨åŒæ™‚ã«ã€ãƒ•ã‚¡ã‚¤ãƒ«ã®å…ˆé ­ã‚’å‡ºåŠ›ã™ã‚‹ã€‚
 sub handle_doc_start{
     print "";
 }
 my ($class_name, $class_context);
-# ƒp[ƒT‚ªV‚µ‚¢—v‘f‚ÌŠJn‚Éo‰ï‚¤‚½‚Ñ‚ÉŒÄ‚Î‚ê‚éB
+# ãƒ‘ãƒ¼ã‚µãŒæ–°ã—ã„è¦ç´ ã®é–‹å§‹ã«å‡ºä¼šã†ãŸã³ã«å‘¼ã°ã‚Œã‚‹ã€‚
 sub handle_elem_start{
     my($expat, $name, %atts) = @_;
     $context = $name;
@@ -138,14 +138,14 @@ sub handle_elem_start{
         $class_name = $atts{'name'};
     }
     else{
-        # ƒ‹[ƒv‚Ådefault_type‚É“–‚Ä‚Í‚Ü‚éƒ‚ƒm‚ğ’T‚µ‚Äˆ—
+        # ãƒ«ãƒ¼ãƒ—ã§default_typeã«å½“ã¦ã¯ã¾ã‚‹ãƒ¢ãƒã‚’æ¢ã—ã¦å‡¦ç†
         foreach my $i(keys %default_type){
             if($name =~ /$i/i){
                 $class_context = "\"$class_name\.$atts{'name'}\",\t". "$default_type{$name}";
                 if($name =~ /hexbinary/i){
                     if(exists $atts{'src'}){
                         $datafile_name = $atts{'src'};
-                        # ƒtƒ@ƒCƒ‹“Ç‚İ‚İ—p‚Ì‘®«’l‚Ì‰Šú‰»
+                        # ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ç”¨ã®å±æ€§å€¤ã®åˆæœŸåŒ–
                         $atts{'src'} = undef;
                     }
                 }
@@ -154,7 +154,7 @@ sub handle_elem_start{
     }
 }
 
-# —v‘f“à‚Ì•¶šƒf[ƒ^‚ğÅV—v‘f‚Ìƒoƒbƒtƒ@‚Éû”[‚·‚éB
+# è¦ç´ å†…ã®æ–‡å­—ãƒ‡ãƒ¼ã‚¿ã‚’æœ€æ–°è¦ç´ ã®ãƒãƒƒãƒ•ã‚¡ã«åç´ã™ã‚‹ã€‚
 sub handle_char_data{
     my($expat, $text) = @_;
     
@@ -162,45 +162,45 @@ sub handle_char_data{
     
 }
 my ($line, $filedata, $char);
-# ƒp[ƒT‚ªV‚µ‚¢—v‘f‚ÌI—¹‚Éo‰ï‚¤‚½‚Ñ‚ÉŒÄ‚Î‚ê‚éB
+# ãƒ‘ãƒ¼ã‚µãŒæ–°ã—ã„è¦ç´ ã®çµ‚äº†ã«å‡ºä¼šã†ãŸã³ã«å‘¼ã°ã‚Œã‚‹ã€‚
 sub handle_elem_end{
     my($expat, $name) = @_;
     if($name =~ /resource/i){
         print "    ENV_RESOUCE_END\n};\n\n";
         print   FO  "    ENV_RESOUCE_END\n};\n\n";
     }
-    # —v‘f–¼‚ªclass‚Å‚È‚¢‚Æ‚«
+    # è¦ç´ åãŒclassã§ãªã„ã¨ã
     elsif($name ne 'class'){
         if($name =~ /hexbinary/i){
-            # —v‘f–¼‚ªhexbinary‚Å‚©‚ÂAƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş•K—v‚ª‚ ‚é‚Æ‚«
+            # è¦ç´ åãŒhexbinaryã§ã‹ã¤ã€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€å¿…è¦ãŒã‚ã‚‹ã¨ã
             if($datafile_name){
                 open(FP, "<" . $datafile_name) or die ("cannot open $datafile_name to read.");
                 while(!eof(FP)) {
                     $char = getc FP;
-                    # •¶š‚ğƒAƒXƒL[ƒR[ƒh‚É•ÏŠ·
+                    # æ–‡å­—ã‚’ã‚¢ã‚¹ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›
                     $char = unpack("C", $char);
-                    # ƒAƒXƒL[ƒR[ƒh‚ğ16i‚É•ÏŠ·
+                    # ã‚¢ã‚¹ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’16é€²ã«å¤‰æ›
                     $char = sprintf("%x", $char);
                     $filedata .= '\x' . $char;
                 }
                 print "    $class_context( \"$filedata\" ),\n";
                 print   FO  "    $class_context( \"$filedata\" ),\n";
-                # ƒtƒ@ƒCƒ‹“Ç‚İ‚İƒtƒ‰ƒO‚Ì‰Šú‰»
+                # ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ãƒ•ãƒ©ã‚°ã®åˆæœŸåŒ–
                 $datafile_name = undef;
                 $filedata = "";
             }
             else{
                 my @ascii;
                 my $hexdata;
-                # •¶š‚ğƒAƒXƒL[ƒR[ƒh‚É•ÏŠ·
+                # æ–‡å­—ã‚’ã‚¢ã‚¹ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›
                 @ascii = unpack("C*", $record->{$context});
                 foreach my $i(@ascii){
-                    # ƒAƒXƒL[ƒR[ƒh‚ğ16i‚É•ÏŠ·
+                    # ã‚¢ã‚¹ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’16é€²ã«å¤‰æ›
                     $hexdata .= '\x' . sprintf("%x", $i);
                 }
                 print "    $class_context( \"$hexdata\" ),\n";
                 print   FO  "    $class_context( \"$hexdata\" ),\n";
-                # –ˆ‰ñƒeƒLƒXƒg‚ğ‰Šú‰»‚·‚éB
+                # æ¯å›ãƒ†ã‚­ã‚¹ãƒˆã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
                 $record->{$context} = "";
             }
         }
@@ -210,27 +210,27 @@ sub handle_elem_end{
             $record->{$context} =~ s/[\t]/\\t/g;
             print "    $class_context( \"$record->{$context}\" ),\n";
             print   FO  "    $class_context( \"$record->{$context}\" ),\n";
-            # –ˆ‰ñƒeƒLƒXƒg‚ğ‰Šú‰»‚·‚éB
+            # æ¯å›ãƒ†ã‚­ã‚¹ãƒˆã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
             $record->{$context} = "";
         }
         else{
-            # ƒ‹[ƒv‚Ådefault_type‚É“–‚Ä‚Í‚Ü‚éƒ‚ƒm‚ğ’T‚µ‚Äˆ—
+            # ãƒ«ãƒ¼ãƒ—ã§default_typeã«å½“ã¦ã¯ã¾ã‚‹ãƒ¢ãƒã‚’æ¢ã—ã¦å‡¦ç†
             foreach my $i(keys %default_type){
                 if($name =~ /$i/i){
                     print "    $class_context( $record->{$context} ),\n";
                     print   FO  "    $class_context( $record->{$context} ),\n";
-                    # –ˆ‰ñƒeƒLƒXƒg‚ğ‰Šú‰»‚·‚éB
+                    # æ¯å›ãƒ†ã‚­ã‚¹ãƒˆã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚
                     $record->{$context} = "";
                 }
             }
         }
-        # ƒeƒLƒXƒg‚Ì‰Šú‰»
+        # ãƒ†ã‚­ã‚¹ãƒˆã®åˆæœŸåŒ–
         $class_context = "";
         $context = "";
     }
 }
 
-# ÅŒã‚Éƒtƒ@ƒCƒ‹‚ÌI—¹‚ğo—Í‚·‚éB
+# æœ€å¾Œã«ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚äº†ã‚’å‡ºåŠ›ã™ã‚‹ã€‚
 sub handle_doc_end{
     print "ENVResource* resourceArray\[\]={";
     print   FO  "ENVResource* resourceArray\[\]={";

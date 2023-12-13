@@ -5,7 +5,7 @@
  * @date	2006.04.18
  * @author	tamada GAME FREAK inc.
  *
- * scr_tool.c,field_encount.c‚©‚çƒQ[ƒ€ƒI[ƒo[ˆ—‚ðŽ‚Á‚Ä‚«‚ÄÄ\¬‚µ‚½
+ * scr_tool.c,field_encount.cã‹ã‚‰ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼å‡¦ç†ã‚’æŒã£ã¦ãã¦å†æ§‹æˆã—ãŸ
  */
 //============================================================================================
 
@@ -22,7 +22,7 @@
 #include "system/wipe.h"
 
 #include "mapdata_warp.h"			//WARPDATA_GetRevivalLocation
-#include "situation_local.h"		//Situation_Get`
+#include "situation_local.h"		//Situation_Getã€œ
 #include "system/brightness.h"
 #include "script.h"
 #include "scr_tool.h"
@@ -34,7 +34,7 @@
 
 //==============================================================================================
 //
-//	‘S–ÅŠÖ˜A
+//	å…¨æ»…é–¢é€£
 //
 //==============================================================================================
 #include "system/fontproc.h"						
@@ -50,29 +50,29 @@
 #include "system/font_arc.h"
 
 //----------------------------------------------------------------------------------------------
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //----------------------------------------------------------------------------------------------
 typedef struct{
 	int seq;
 
 	FIELDSYS_WORK* fsys;
 
-	GF_BGL_INI* bgl;								//BGLƒf[ƒ^
+	GF_BGL_INI* bgl;								//BGLãƒ‡ãƒ¼ã‚¿
 
-	GF_BGL_BMPWIN bmpwin;							//BMPƒEƒBƒ“ƒhƒEƒf[ƒ^
+	GF_BGL_BMPWIN bmpwin;							//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 
-	//STRBUF* msg_buf[EV_WIN_MENU_MAX];				//ƒƒbƒZ[ƒWƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
-	MSGDATA_MANAGER* msgman;						//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[
-	WORDSET* wordset;								//’PŒêƒZƒbƒg
+	//STRBUF* msg_buf[EV_WIN_MENU_MAX];				//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+	MSGDATA_MANAGER* msgman;						//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	WORDSET* wordset;								//å˜èªžã‚»ãƒƒãƒˆ
 
-	//PALETTE_FADE_PTR pfd;							//ƒpƒŒƒbƒgƒtƒF[ƒh
+	//PALETTE_FADE_PTR pfd;							//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 }GAME_OVER_WORK;
 
-#define GAME_OVER_MSG_BUF_SIZE		(1024)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
-#define GAME_OVER_FADE_SYNC			(8)				//ƒtƒF[ƒhsync”
+#define GAME_OVER_MSG_BUF_SIZE		(1024)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+#define GAME_OVER_FADE_SYNC			(8)				//ãƒ•ã‚§ãƒ¼ãƒ‰syncæ•°
 
 //----------------------------------------------------------------------------------------------
-//	BMPƒEƒBƒ“ƒhƒE
+//	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //----------------------------------------------------------------------------------------------
 enum{
 	GAME_OVER_BMPWIN_FRAME	= GF_BGL_FRAME3_M,
@@ -89,15 +89,15 @@ enum{
 };
 
 static const BMPWIN_DAT	GameOverWinData = {
-	GAME_OVER_BMPWIN_FRAME,						//ƒEƒCƒ“ƒhƒEŽg—pƒtƒŒ[ƒ€
-	GAME_OVER_BMPWIN_PX1,GAME_OVER_BMPWIN_PY1,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ã‚ÌX,YÀ•WiƒLƒƒƒ‰’PˆÊ‚ÅŽw’èj
-	GAME_OVER_BMPWIN_SX, GAME_OVER_BMPWIN_SY,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌX,YƒTƒCƒYiƒLƒƒƒ‰’PˆÊ‚ÅŽw’èj
-	GAME_OVER_BMPWIN_PL,						//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[	
-	GAME_OVER_BMPWIN_CH							//ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰—Ìˆæ‚ÌŠJŽnƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+	GAME_OVER_BMPWIN_FRAME,						//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	GAME_OVER_BMPWIN_PX1,GAME_OVER_BMPWIN_PY1,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸Šã®X,Yåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©å˜ä½ã§æŒ‡å®šï¼‰
+	GAME_OVER_BMPWIN_SX, GAME_OVER_BMPWIN_SY,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®X,Yã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½ã§æŒ‡å®šï¼‰
+	GAME_OVER_BMPWIN_PL,						//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼	
+	GAME_OVER_BMPWIN_CH							//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é ˜åŸŸã®é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
 };
 
 //----------------------------------------------------------------------------------------------
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //----------------------------------------------------------------------------------------------
 static void GameOverCall( FIELDSYS_WORK* fsys, GMEVENT_CONTROL* event );
 static BOOL GMEVENT_GameOver( GMEVENT_CONTROL* event );
@@ -110,16 +110,16 @@ static void BgExit( GF_BGL_INI * ini );
 static void setup_bg_sys( GF_BGL_INI* bgl )
 {
 	static const GF_BGL_DISPVRAM SetBankData = {
-		GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 
 	static const GF_BGL_SYS_HEADER BGsys_data = {
@@ -143,9 +143,9 @@ static void setup_bg_sys( GF_BGL_INI* bgl )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒI[ƒo[‰æ–ÊŒÄ‚Ño‚µ
+ * @brief	ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ç”»é¢å‘¼ã³å‡ºã—
  *
- * @param	fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys	FIELDSYS_WORKåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -156,7 +156,7 @@ static void GameOverCall( FIELDSYS_WORK* fsys, GMEVENT_CONTROL* event )
 
 	wk = sys_AllocMemory( HEAPID_WORLD, sizeof(GAME_OVER_WORK) );
 	if( wk == NULL ){
-		GF_ASSERT( (0) && "ƒƒ‚ƒŠŠm•Û‚ÉŽ¸”s‚µ‚Ü‚µ‚½I" );
+		GF_ASSERT( (0) && "ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã—ã¾ã—ãŸï¼" );
 	}
 	memset( wk, 0, sizeof(GAME_OVER_WORK) );
 
@@ -166,17 +166,17 @@ static void GameOverCall( FIELDSYS_WORK* fsys, GMEVENT_CONTROL* event )
 
 	setup_bg_sys( wk->bgl );
 
-	//ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 	wk->msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_gameover_dat, HEAPID_WORLD);
 	wk->wordset = WORDSET_Create( HEAPID_WORLD );
 
-	//ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—è¿½åŠ 
 	GF_BGL_BmpWinAddEx( wk->bgl, &wk->bmpwin, &GameOverWinData );
 
-	//ŽålŒö–¼ƒZƒbƒg
+	//ä¸»äººå…¬åã‚»ãƒƒãƒˆ
 	WORDSET_RegisterPlayerName(wk->wordset, 0, SaveData_GetMyStatus(GameSystem_GetSaveData(fsys)));
 
-	//ƒ}ƒbƒvŠÇ—•\‚©‚çBGMƒiƒ“ƒo[‚ð•Ô‚·
+	//ãƒžãƒƒãƒ—ç®¡ç†è¡¨ã‹ã‚‰BGMãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
 	if( fsys->location->zone_id == ZONE_ID_T01R0201 ){
 		OS_Printf( "05 zone_id = %d\n", fsys->location->zone_id );
 		scr_msg_print( wk, msg_all_dead_05, 0, 0 );
@@ -193,10 +193,10 @@ static void GameOverCall( FIELDSYS_WORK* fsys, GMEVENT_CONTROL* event )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒI[ƒo[‰æ–ÊƒƒCƒ“
+ * @brief	ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ç”»é¢ãƒ¡ã‚¤ãƒ³
  *
- * @param	tcb		TCB_PTRŒ^
- * @param	work	ƒ[ƒN
+ * @param	tcb		TCB_PTRåž‹
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @retval	none
  */
@@ -220,7 +220,7 @@ static BOOL GMEVENT_GameOver( GMEVENT_CONTROL* event )
 		}
 		break;
 
-	//ƒL[‘Ò‚¿
+	//ã‚­ãƒ¼å¾…ã¡
 	case 2:
 		if( (sys.trg & PAD_BUTTON_A) || (sys.trg & PAD_BUTTON_B) ){
 			WIPE_SYS_Start(WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT,
@@ -229,17 +229,17 @@ static BOOL GMEVENT_GameOver( GMEVENT_CONTROL* event )
 		}
 		break;
 
-	//ƒƒCƒ“‰æ–Êƒuƒ‰ƒbƒNƒAƒEƒg‘Ò‚¿
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆå¾…ã¡
 	case 3:
 		if (WIPE_SYS_EndCheck()) {
 
-			GF_BGL_BmpWinDataFill( &wk->bmpwin, FBMP_COL_NULL );		//“h‚è‚Â‚Ô‚µ
+			GF_BGL_BmpWinDataFill( &wk->bmpwin, FBMP_COL_NULL );		//å¡—ã‚Šã¤ã¶ã—
 
 			wk->seq++;
 		}
 		break;
 
-	//I—¹ŠJ•ú
+	//çµ‚äº†é–‹æ”¾
 	case 4:
 		BmpTalkWinClear( &wk->bmpwin, WINDOW_TRANS_ON );
 		GF_BGL_BmpWinDel( &wk->bmpwin );
@@ -259,12 +259,12 @@ static BOOL GMEVENT_GameOver( GMEVENT_CONTROL* event )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\Ž¦
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk			EV_WIN_WORKŒ^‚ÌƒAƒhƒŒƒX
- * @param	msg_id		ƒƒbƒZ[ƒWID
- * @param	x			•\Ž¦‚wÀ•W
- * @param	y			•\Ž¦‚xÀ•W
+ * @param	wk			EV_WIN_WORKåž‹ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param	msg_id		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ID
+ * @param	x			è¡¨ç¤ºï¼¸åº§æ¨™
+ * @param	y			è¡¨ç¤ºï¼¹åº§æ¨™
  *
  * @retval	none
  */
@@ -274,17 +274,17 @@ static void scr_msg_print( GAME_OVER_WORK* wk, u16 msg_id, u8 x, u8 y )
 	STRBUF* tmp_buf = STRBUF_Create( GAME_OVER_MSG_BUF_SIZE, HEAPID_WORLD );
 	STRBUF* tmp_buf2= STRBUF_Create( GAME_OVER_MSG_BUF_SIZE, HEAPID_WORLD );
 
-	GF_BGL_BmpWinDataFill( &wk->bmpwin, FBMP_COL_NULL );			//“h‚è‚Â‚Ô‚µ
+	GF_BGL_BmpWinDataFill( &wk->bmpwin, FBMP_COL_NULL );			//å¡—ã‚Šã¤ã¶ã—
 
 	MSGMAN_GetString( wk->msgman, msg_id, tmp_buf );
 	WORDSET_ExpandStr( wk->wordset, tmp_buf2, tmp_buf );
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/06
-	// ƒQ[ƒ€ƒI[ƒo[ƒƒbƒZ[ƒW‚ðŽ©“®‚Å’†‰›‘µ‚¦i“n‚³‚ê‚Ä‚¢‚½ x ‚Ì“à—e‚Í”jŠüj
+	// ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è‡ªå‹•ã§ä¸­å¤®æƒãˆï¼ˆæ¸¡ã•ã‚Œã¦ã„ãŸ x ã®å†…å®¹ã¯ç ´æ£„ï¼‰
 	{
 		u32 width = FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, tmp_buf2, 0);
-		x = (u8)(wk->bmpwin.sizx * 8 - width) / 2 - 4;		// ƒEƒBƒ“ƒhƒE‚ª‰EŠñ‚è
+		x = (u8)(wk->bmpwin.sizx * 8 - width) / 2 - 4;		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒå³å¯„ã‚Š
 	}
 	// ----------------------------------------------------------------------------
 	GF_STR_PrintColor( &wk->bmpwin, FONT_SYSTEM, tmp_buf2, x, y, MSG_NO_PUT, 
@@ -300,10 +300,10 @@ static void scr_msg_print( GAME_OVER_WORK* wk, u16 msg_id, u8 x, u8 y )
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	’Êíí“¬F‘S–ÅƒV[ƒPƒ“ƒX
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE		ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	é€šå¸¸æˆ¦é—˜ï¼šå…¨æ»…ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE		ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  *
  */
 //-----------------------------------------------------------------------------
@@ -316,40 +316,40 @@ BOOL GMEVENT_NormalGameOver(GMEVENT_CONTROL * event)
 
 	switch (*seq) {
 	case 0:
-		//”j‚ê‚½¢ŠE‚Å‚Ì‘S–Å—p‚ÉAŽèŽ‚¿‚ÌƒMƒ‰ƒeƒBƒi‚ÌƒtƒHƒ‹ƒ€‚ð–ß‚·ˆ—
+		//ç ´ã‚ŒãŸä¸–ç•Œã§ã®å…¨æ»…ç”¨ã«ã€æ‰‹æŒã¡ã®ã‚®ãƒ©ãƒ†ã‚£ãƒŠã®ãƒ•ã‚©ãƒ«ãƒ ã‚’æˆ»ã™å‡¦ç†
 		{
-			if(fsys != NULL && fsys->savedata != NULL){	//‚Ç‚±‚Å‚Å‚àŒÄ‚Î‚ê‚é‰Â”\«‚ª‚ ‚é‚Ì‚Åˆê‰ž
+			if(fsys != NULL && fsys->savedata != NULL){	//ã©ã“ã§ã§ã‚‚å‘¼ã°ã‚Œã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ä¸€å¿œ
 				PokePartyGirathinaFormUpdate(SaveData_GetTemotiPokemon( fsys->savedata ), FALSE);
 			}
 		}
 		
-		//ƒ[ƒvID‚ÅŽw’è‚³‚ê‚½–ß‚èæ‚Ö
+		//ãƒ¯ãƒ¼ãƒ—IDã§æŒ‡å®šã•ã‚ŒãŸæˆ»ã‚Šå…ˆã¸
 		{
 			LOCATION_WORK next;
 			SITUATION * sit = SaveData_GetSituation(fsys->savedata);
 			u16 warp_id = Situation_GetWarpID(sit);
 			WARPDATA_GetRevivalLocation(warp_id, &next);
-			//ƒGƒXƒP[ƒvƒ|ƒCƒ“ƒg‚ðƒ[ƒvƒ|ƒCƒ“ƒg‚ÉÄÝ’è
+			//ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ãƒã‚¤ãƒ³ãƒˆã‚’ãƒ¯ãƒ¼ãƒ—ãƒã‚¤ãƒ³ãƒˆã«å†è¨­å®š
 			WARPDATA_GetWarpLocation(warp_id,Situation_GetEscapeLocation(sit));
-			//ƒ}ƒbƒvƒ`ƒFƒ“ƒW
+			//ãƒžãƒƒãƒ—ãƒã‚§ãƒ³ã‚¸
 			EventCmd_MapChangeByLocation(event, &next);
-			//ƒQ[ƒ€ƒI[ƒo[Žž‚Ìƒtƒ‰ƒO‚ÌƒNƒŠƒA
+			//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼æ™‚ã®ãƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢
 			FldFlgInit_GameOver(fsys);
 		}
 		(*seq) ++;
 		break;
 
 	case 1:
-		//BGMƒtƒF[ƒhƒAƒEƒg
+		//BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		Snd_BgmFadeOut( 0, 20 );
 		(*seq) ++;
 		break;
 
 	case 2:
-		//BGMƒtƒF[ƒhƒAƒEƒg‘Ò‚¿
+		//BGMãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå¾…ã¡
 		if( Snd_FadeCheck() == 0 ){
 
-			//ƒTƒEƒ“ƒhƒQ[ƒ€ƒI[ƒo[ˆ—
+			//ã‚µã‚¦ãƒ³ãƒ‰ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼å‡¦ç†
 			Snd_GameOverSet();
 
 			(*seq) ++;
@@ -357,42 +357,42 @@ BOOL GMEVENT_NormalGameOver(GMEVENT_CONTROL * event)
 		break;
 
 	case 3:
-		//ŒxBGˆÈŠO‚ð•\Ž¦ƒIƒt
+		//è­¦å‘ŠBGä»¥å¤–ã‚’è¡¨ç¤ºã‚ªãƒ•
 		SetBrightness( BRIGHTNESS_BLACK, (PLANEMASK_ALL^PLANEMASK_BG3), MASK_MAIN_DISPLAY);
 		SetBrightness( BRIGHTNESS_BLACK, PLANEMASK_ALL, MASK_SUB_DISPLAY);
 
-		//ƒQ[ƒ€ƒI[ƒo[Œx
+		//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼è­¦å‘Š
 		GameOverCall( fsys, event );
 		(*seq) ++;
 		break;
 
 	case 4:
-		//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒžãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
 		EventCmd_StartFieldMap(event);
 		(*seq)++;
 		break;
 
 	case 5:
-		//•\Ž¦ƒIƒt‰ðœ
+		//è¡¨ç¤ºã‚ªãƒ•è§£é™¤
 		SetBrightness( BRIGHTNESS_NORMAL, PLANEMASK_ALL, MASK_DOUBLE_DISPLAY);
 
-		//‹C‚ð‚Â‚¯‚Ä‚ËƒXƒNƒŠƒvƒg
+		//æ°—ã‚’ã¤ã‘ã¦ã­ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 		
-		//˜b‚µ‚©‚¯‘ÎÛ‚ÌOBJ‚ðŽæ“¾‚·‚éˆ—‚ª•K—v‚É‚È‚é
+		//è©±ã—ã‹ã‘å¯¾è±¡ã®OBJã‚’å–å¾—ã™ã‚‹å‡¦ç†ãŒå¿…è¦ã«ãªã‚‹
 		//OS_Printf( "field_encount zone_id = %d\n", fsys->location->zone_id );
 		if(	WARPDATA_GetInitializeID()
 				== Situation_GetWarpID(SaveData_GetSituation(fsys->savedata))) {
-			//‰Šú’l‚Ìƒ[ƒvIDÅ‰‚Ì–ß‚èæ‚È‚Ì‚ÅŽ©•ª‚Ì‰Æ
+			//åˆæœŸå€¤ã®ãƒ¯ãƒ¼ãƒ—IDï¼ï¼æœ€åˆã®æˆ»ã‚Šå…ˆãªã®ã§è‡ªåˆ†ã®å®¶
 			EventCall_Script( event, SCRID_GAME_OVER_RECOVER_MYHOME, NULL, NULL );
 		}else{
-			//‚»‚êˆÈŠOƒ|ƒPƒZƒ“‚Ì‚Í‚¸
+			//ãã‚Œä»¥å¤–ï¼ï¼ãƒã‚±ã‚»ãƒ³ã®ã¯ãš
 			EventCall_Script( event, SCRID_GAME_OVER_RECOVER_PC, NULL, NULL );
 		}
 		(*seq) ++;
 		break;
 
 	case 6:
-		//ƒTƒEƒ“ƒhƒŠƒXƒ^[ƒgˆ—(06/07/10‚¢‚ç‚È‚¢‚Ì‚Åíœ)
+		//ã‚µã‚¦ãƒ³ãƒ‰ãƒªã‚¹ã‚¿ãƒ¼ãƒˆå‡¦ç†(06/07/10ã„ã‚‰ãªã„ã®ã§å‰Šé™¤)
 		//Snd_RestartSet( fsys );
 
 		return TRUE;
@@ -403,8 +403,8 @@ BOOL GMEVENT_NormalGameOver(GMEVENT_CONTROL * event)
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhF’Êí‘S–Åˆ—
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒžãƒ³ãƒ‰ï¼šé€šå¸¸å…¨æ»…å‡¦ç†
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 void EventCmd_NormalLose(GMEVENT_CONTROL * event)

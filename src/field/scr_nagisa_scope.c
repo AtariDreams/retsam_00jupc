@@ -2,7 +2,7 @@
 /**
  *
  *	@file		scr_nagisa_scope.c
- *	@brief		ƒiƒMƒTƒVƒeƒB@“”‘ä–]‰“‹¾
+ *	@brief		ãƒŠã‚®ã‚µã‚·ãƒ†ã‚£ã€€ç¯å°æœ›é é¡
  *	@author		tomoya takahashi
  *	@data		2006.07.10
  *
@@ -29,41 +29,41 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define WAIT_KEY	( PAD_BUTTON_DECIDE | PAD_BUTTON_CANCEL )
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒXƒR[ƒvƒf[ƒ^
+//	ã‚¹ã‚³ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct
 {
 	FIELDSYS_WORK * fsys;
-	u16 pos_x;	// –ß‚èæX
-	u16 pos_z;	// –ß‚èæZ
+	u16 pos_x;	// æˆ»ã‚Šå…ˆX
+	u16 pos_z;	// æˆ»ã‚Šå…ˆZ
 
 	u8 seq;
 	u8 dummy[3];
@@ -71,7 +71,7 @@ typedef struct
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_NagisaScope( GMEVENT_CONTROL * event );
@@ -81,9 +81,9 @@ static void NagisaScope_CameraSet( FIELDSYS_WORK* p_fsys );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒiƒMƒTƒVƒeƒB@–]‰“‹¾@ƒCƒxƒ“ƒgƒR[ƒ‹
+ *	@brief	ãƒŠã‚®ã‚µã‚·ãƒ†ã‚£ã€€æœ›é é¡ã€€ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«
  *
- *	@param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
+ *	@param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void CallNagisaScopeEvent(FIELDSYS_WORK * fsys)
@@ -92,18 +92,18 @@ void CallNagisaScopeEvent(FIELDSYS_WORK * fsys)
 
 	memset( sew, 0, sizeof(SCOPE_EVENT_WORK) );
 	
-	//ƒ}ƒbƒvƒWƒƒƒ“ƒvƒCƒxƒ“ƒg‚ðì¬
+	//ãƒžãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—ã‚¤ãƒ™ãƒ³ãƒˆã‚’ä½œæˆ
 	FieldEvent_Call(fsys->event, GMEVENT_NagisaScope, sew);
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒiƒMƒTƒVƒeƒB[@–]‰“‹¾@ƒCƒxƒ“ƒg
+ *	@brief	ãƒŠã‚®ã‚µã‚·ãƒ†ã‚£ãƒ¼ã€€æœ›é é¡ã€€ã‚¤ãƒ™ãƒ³ãƒˆ
  *
- *	@param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ *	@param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_NagisaScope( GMEVENT_CONTROL * event )
@@ -114,25 +114,25 @@ static BOOL GMEVENT_NagisaScope( GMEVENT_CONTROL * event )
 
 	switch( p_work->seq ){
 	case 0:
-		// Ž©•ª‚ÌˆÊ’u‚ð•Û‘¶
+		// è‡ªåˆ†ã®ä½ç½®ã‚’ä¿å­˜
 		p_work->pos_x = Player_NowGPosXGet( p_fsys->player );
 		p_work->pos_z = Player_NowGPosZGet( p_fsys->player );
 
-		// –]‰“‹¾Ó°ÄÞÝ’è
+		// æœ›é é¡ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 		FldFlg_SetScopeMode( p_fsys, TRUE );
 
-		// ƒtƒF[ƒhƒAƒEƒg
-		EventCmd_FieldFadeOut(event);			//ƒtƒF[ƒhƒAƒEƒg
+		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+		EventCmd_FieldFadeOut(event);			//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		p_work->seq ++;
 		break;
 
-	case 1:	// ƒtƒB[ƒ‹ƒhƒvƒƒZƒX	I—¹
+	case 1:	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ—ãƒ­ã‚»ã‚¹	çµ‚äº†
 		EventCmd_FinishFieldMap(event);
 		p_work->seq ++;
 		break;
 
-	case 2:	// ƒ}ƒbƒv‘JˆÚ
-		// ƒ|ƒPƒbƒ`OFF
+	case 2:	// ãƒžãƒƒãƒ—é·ç§»
+		// ãƒã‚±ãƒƒãƒOFF
 		SysFlag_PoketchHookSet( p_sv_event );
 		{
 			LOCATION_WORK location;
@@ -142,31 +142,31 @@ static BOOL GMEVENT_NagisaScope( GMEVENT_CONTROL * event )
 		p_work->seq ++;
 		break;
 
-	case 3:	// ƒtƒB[ƒ‹ƒhŠJŽn
+	case 3:	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰é–‹å§‹
 		EventCmd_StartFieldMap(event);
 		p_work->seq ++;
 		break;
 
-	case 4:	// ƒƒCƒvIN
+	case 4:	// ãƒ¯ã‚¤ãƒ—IN
 		NagisaScope_PlayerVanish( p_fsys->player, TRUE );
 		NagisaScope_CameraSet( p_fsys );
 		MJUMP_RequestWipe( event,WIPE_PATTERN_M, WIPE_TYPE_HOLEIN,
 					0xffff,0x0000,WIPE_DEF_DIV,WIPE_DEF_SYNC,HEAPID_WORLD);
-		Snd_SePlay( SEQ_SE_DP_KASYA );		//”`‚¢‚½‚Æ‚«‚Ì‰¹
+		Snd_SePlay( SEQ_SE_DP_KASYA );		//è¦—ã„ãŸã¨ãã®éŸ³
 
 		p_work->seq ++;
 		break;
 
-	case 5:	// ƒL[‘Ò‚¿
+	case 5:	// ã‚­ãƒ¼å¾…ã¡
 		if( (sys.trg & WAIT_KEY) ){
 			p_work->seq ++;
 		}
 		break;
 
-	case 6:	// ƒƒCƒvƒAƒEƒg
+	case 6:	// ãƒ¯ã‚¤ãƒ—ã‚¢ã‚¦ãƒˆ
 		MJUMP_RequestWipe( event,WIPE_PATTERN_M, WIPE_TYPE_HOLEOUT,
 					0xffff,0x0000,WIPE_DEF_DIV,WIPE_DEF_SYNC,HEAPID_WORLD);
-		Snd_SePlay( SEQ_SE_DP_KASYA );		//•Â‚¶‚½‚Æ‚«‚Ì‰¹
+		Snd_SePlay( SEQ_SE_DP_KASYA );		//é–‰ã˜ãŸã¨ãã®éŸ³
 
 		p_work->seq ++;
 		break;
@@ -176,8 +176,8 @@ static BOOL GMEVENT_NagisaScope( GMEVENT_CONTROL * event )
 		p_work->seq ++;
 		break;
 
-	case 8:	// ‰æ–Ê•œ‹A
-		// ƒ|ƒPƒbƒ`OFF
+	case 8:	// ç”»é¢å¾©å¸°
+		// ãƒã‚±ãƒƒãƒOFF
 		SysFlag_PoketchHookReset( p_sv_event );
 		{
 			LOCATION_WORK location;
@@ -194,14 +194,14 @@ static BOOL GMEVENT_NagisaScope( GMEVENT_CONTROL * event )
 
 	case 10:
 		NagisaScope_PlayerVanish( p_fsys->player, FALSE );
-		EventCmd_FieldFadeIn(event);		//ƒtƒF[ƒhƒCƒ“
+		EventCmd_FieldFadeIn(event);		//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 		p_work->seq ++;
 		break;
 
-	case 11:	// I—¹ˆ—
+	case 11:	// çµ‚äº†å‡¦ç†
 		sys_FreeMemoryEz( p_work );
 
-		// –]‰“‹¾Ó°ÄÞÝ’è
+		// æœ›é é¡ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 		FldFlg_SetScopeMode( p_fsys, FALSE );
 		return TRUE;
 	}
@@ -211,10 +211,10 @@ static BOOL GMEVENT_NagisaScope( GMEVENT_CONTROL * event )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒvƒŒƒCƒ„[‚ÌƒoƒjƒbƒVƒ…
+ *	@brief	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒãƒ‹ãƒƒã‚·ãƒ¥
  *
- *	@param	jiki	ƒvƒŒƒCƒ„[
- *	@param	vanish	TRUE	”ñ•\Ž¦
+ *	@param	jiki	ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+ *	@param	vanish	TRUE	éžè¡¨ç¤º
  */
 //-----------------------------------------------------------------------------
 static void NagisaScope_PlayerVanish( PLAYER_STATE_PTR jiki, BOOL vanish )
@@ -225,7 +225,7 @@ static void NagisaScope_PlayerVanish( PLAYER_STATE_PTR jiki, BOOL vanish )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJƒƒ‰Ý’è
+ *	@brief	ã‚«ãƒ¡ãƒ©è¨­å®š
  */
 //-----------------------------------------------------------------------------
 static void NagisaScope_CameraSet( FIELDSYS_WORK* p_fsys )
@@ -233,7 +233,7 @@ static void NagisaScope_CameraSet( FIELDSYS_WORK* p_fsys )
 	VecFx32 matrix;
 	CAMERA_ANGLE angle;
 
-	// ƒJƒƒ‰ƒpƒ‰ƒ[ƒ^Ý’è
+	// ã‚«ãƒ¡ãƒ©ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 	GFC_SetCameraPerspWay( 0x8c1, p_fsys->camera_ptr );	
 	GFC_SetCameraDistance( 0xf81b8, p_fsys->camera_ptr );
 	matrix.x = 0x350523d;

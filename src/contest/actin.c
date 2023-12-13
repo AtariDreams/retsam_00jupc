@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	actin.c
- * @brief	‰‰‹Z—Í•”–å
+ * @brief	æ¼”æŠ€åŠ›éƒ¨é–€
  * @author	matsuda
- * @date	2005.11.15(‰Î)
+ * @date	2005.11.15(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -65,26 +65,26 @@ FS_EXTERN_OVERLAY(ol_imageclip);
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///Œ»İ‚Ì“®ìó‘Ô
+///ç¾åœ¨ã®å‹•ä½œçŠ¶æ…‹
 enum{
-	APW_PROC_MODE_INIT,		///<‰Šú‰»’†
-	APW_PROC_MODE_MAIN,		///<ƒƒCƒ“
-	APW_PROC_MODE_ETC,		///<‚»‚êˆÈŠO
+	APW_PROC_MODE_INIT,		///<åˆæœŸåŒ–ä¸­
+	APW_PROC_MODE_MAIN,		///<ãƒ¡ã‚¤ãƒ³
+	APW_PROC_MODE_ETC,		///<ãã‚Œä»¥å¤–
 };
 
-///Vram“]‘—ƒ}ƒl[ƒWƒƒ[ƒ^ƒXƒN”
+///Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚¿ã‚¹ã‚¯æ•°
 #define ACTIN_VRAM_TRANSFER_TASK_NUM	(BATTLE_VRAM_TRANSFER_TASK_NUM)
 
-///‚»‚Ì‚Ü‚Ü‚ÌÀ•Ww’è‚¾‚ÆA256x256‚Ì”ÍˆÍ‚ğ’´‚¦‚½Š‚É‚ÍƒEƒBƒ“ƒhƒE‚ªì¬o—ˆ‚È‚¢B
-///«‚Ì•ªÀ•W‚ğ‚¸‚ç‚·–‚Å2–‡–Ú‚ÌƒXƒNƒŠ[ƒ“‚ğQÆ‚·‚é‚æ‚¤‚É‚È‚éB
+///ãã®ã¾ã¾ã®åº§æ¨™æŒ‡å®šã ã¨ã€256x256ã®ç¯„å›²ã‚’è¶…ãˆãŸæ‰€ã«ã¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒä½œæˆå‡ºæ¥ãªã„ã€‚
+///â†“ã®åˆ†åº§æ¨™ã‚’ãšã‚‰ã™äº‹ã§2æšç›®ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’å‚ç…§ã™ã‚‹ã‚ˆã†ã«ãªã‚‹ã€‚
 #define CONTEST_ADD_BMP_Y		(32)
 
 //--------------------------------------------------------------
-//	BMPƒEƒBƒ“ƒhƒE
+//	BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 //--------------------------------------------------------------
-///BMPƒEƒBƒ“ƒhƒECGXƒGƒŠƒAŠJnˆÊ’u(ƒIƒtƒZƒbƒg)
+///BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦CGXã‚¨ãƒªã‚¢é–‹å§‹ä½ç½®(ã‚ªãƒ•ã‚»ãƒƒãƒˆ)
 #define BMPWIN_CGX_START			((0x8000 - 0x2000) / 32)
 
 #define BMPWIN_TALK_COLOR			(0xd)
@@ -96,63 +96,63 @@ enum{
 #define BMPWIN_DEBUG_CGX_SIZE		(20 * 4)
 
 //--------------------------------------------------------------
-//	CL_ACT—p‚Ì’è”’è‹`
+//	CL_ACTç”¨ã®å®šæ•°å®šç¾©
 //--------------------------------------------------------------
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJn
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define ACTIN_OAM_START_MAIN			(BATTLE_OAM_START_MAIN)
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define ACTIN_OAM_END_MAIN				(BATTLE_OAM_END_MAIN)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define ACTIN_OAM_AFFINE_START_MAIN		(BATTLE_OAM_AFFINE_START_MAIN)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define ACTIN_OAM_AFFINE_END_MAIN		(BATTLE_OAM_AFFINE_END_MAIN)
-///ƒTƒu	OAMŠÇ——ÌˆæEŠJn
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define ACTIN_OAM_START_SUB				(BATTLE_OAM_START_SUB)
-///ƒTƒu	OAMŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define ACTIN_OAM_END_SUB				(BATTLE_OAM_END_SUB)
-///ƒTƒu ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJn
+///ã‚µãƒ– ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define ACTIN_OAM_AFFINE_START_SUB		(BATTLE_OAM_AFFINE_START_SUB)
-///ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define ACTIN_OAM_AFFINE_END_SUB		(BATTLE_OAM_AFFINE_END_SUB)
 
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒLƒƒƒ‰ƒNƒ^IDŠÇ—”(ã‰æ–Ê{‰º‰æ–Ê)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿IDç®¡ç†æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define ACTIN_CHAR_MAX					(BATTLE_CHAR_MAX)
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define ACTIN_CHAR_VRAMSIZE_MAIN		(BATTLE_CHAR_VRAMSIZE_MAIN)
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒãƒãƒ¼ã‚¸ãƒ£ï¼šã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define ACTIN_CHAR_VRAMSIZE_SUB			(BATTLE_CHAR_VRAMSIZE_SUB)
 
-///ƒƒCƒ“‰æ–Ê{ƒTƒu‰æ–Ê‚Åg—p‚·‚éƒAƒNƒ^[‘”
+///ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‹ã‚µãƒ–ç”»é¢ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç·æ•°
 #define ACTIN_ACTOR_MAX					(BATTLE_ACTOR_MAX)
 
-///OBJ‚Åg—p‚·‚éƒpƒŒƒbƒg–{”(ã‰æ–Ê{‰º‰æ–Ê)
+///OBJã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define ACTIN_OAM_PLTT_MAX				(BATTLE_OAM_PLTT_MAX)
 
-///“]‘—ƒ‚[ƒh 3D = 0 main = 1 sub = 2 main/sub = 3
+///è»¢é€ãƒ¢ãƒ¼ãƒ‰ 3D = 0 main = 1 sub = 2 main/sub = 3
 #define ACTIN_OAM_VRAM_TRANS			(BATTLE_OAM_VRAM_TRANS)
 
-///OAMƒŠƒ\[ƒXFƒLƒƒƒ‰“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚­ãƒ£ãƒ©ç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define ACTIN_OAMRESOURCE_CHAR_MAX		(BATTLE_OAMRESOURCE_CHAR_MAX)
-///OAMƒŠƒ\[ƒXFƒpƒŒƒbƒg“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define ACTIN_OAMRESOURCE_PLTT_MAX		(BATTLE_OAMRESOURCE_PLTT_MAX)
-///OAMƒŠƒ\[ƒXFƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define ACTIN_OAMRESOURCE_CELL_MAX		(BATTLE_OAMRESOURCE_CELL_MAX)
-///OAMƒŠƒ\[ƒXFƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define ACTIN_OAMRESOURCE_CELLANM_MAX	(BATTLE_OAMRESOURCE_CELLANM_MAX)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒãƒ«ãƒã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define ACTIN_OAMRESOURCE_MCELL_MAX		(BATTLE_OAMRESOURCE_MCELL_MAX)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define ACTIN_OAMRESOURCE_MCELLANM_MAX	(BATTLE_OAMRESOURCE_MCELLANM_MAX)
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒTƒu‰æ–ÊBG‚ÌƒXƒNƒŠ[ƒ“ƒNƒŠƒAƒR[ƒh
+///ã‚µãƒ–ç”»é¢BGã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
 #define SUB_BG_CLEAR_CODE		(0)
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void ActinSys_VramBankSet(GF_BGL_INI *bgl);
 static void ActinSys_DefaultBmpWinAdd(ACTIN_PROC_WORK *apw);
@@ -190,21 +190,21 @@ static int ActinSeq_DebugWazaEffect(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *loca
 #endif
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 
 //==============================================================================
-//	ƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 //==============================================================================
-///ActinMainSeqTbl‚Ì–ß‚è’l‚Æ‚µ‚Äg—p
+///ActinMainSeqTblã®æˆ»ã‚Šå€¤ã¨ã—ã¦ä½¿ç”¨
 enum{
-	ASRET_CONTINUE,		///<Œ»óˆÛ
-	ASRET_NEXT,			///<Ÿ‚ÌƒV[ƒPƒ“ƒX‚Ö
-	ASRET_SELECT_SEQ,	///<select_seqƒ[ƒN‚É“ü‚Á‚Ä‚¢‚éƒV[ƒPƒ“ƒX‚Öi‚Ş
-	ASRET_END,			///<I—¹
+	ASRET_CONTINUE,		///<ç¾çŠ¶ç¶­æŒ
+	ASRET_NEXT,			///<æ¬¡ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸
+	ASRET_SELECT_SEQ,	///<select_seqãƒ¯ãƒ¼ã‚¯ã«å…¥ã£ã¦ã„ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã¸é€²ã‚€
+	ASRET_END,			///<çµ‚äº†
 };
 
-///‰‰‹Z—Í•”–åƒƒCƒ“ŠÖ”‚ÌƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+///æ¼”æŠ€åŠ›éƒ¨é–€ãƒ¡ã‚¤ãƒ³é–¢æ•°ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 static int (* const ActinMainSeqTbl[])(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local) = {
 	ActinSeq_Init,
 	ActinSeq_Practice_FastTalk,
@@ -227,7 +227,7 @@ static int (* const ActinMainSeqTbl[])(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *l
 	ActinSeq_DebugWazaEffect,
 #endif
 };
-///ActinMainSeqTbl‚ÌƒV[ƒPƒ“ƒX”Ô†	¦ActinMainSeqTbl‚Æ•À‚Ñ‚ğ“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆII
+///ActinMainSeqTblã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·	â€»ActinMainSeqTblã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼ï¼
 enum{
 	ASEQ_INIT,
 	ASEQ_PRACTICE_FAST_TALK,
@@ -252,7 +252,7 @@ enum{
 };
 
 //==============================================================================
-//	CLACT—pƒf[ƒ^
+//	CLACTç”¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 static	const TCATS_OAM_INIT ActinTcats = {
 	ACTIN_OAM_START_MAIN, ACTIN_OAM_END_MAIN,
@@ -282,20 +282,20 @@ static const TCATS_RESOURCE_NUM_LIST ActinResourceList = {
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT ActinProc_Init( PROC * proc, int * seq )
 {
 	ACTIN_PROC_WORK *apw;
 
-	sys_VBlankFuncChange(NULL, NULL);	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -320,7 +320,7 @@ PROC_RESULT ActinProc_Init( PROC * proc, int * seq )
 	apw->sys.c_game = &apw->consys->c_game;
 	ActinSystemWorkInit(apw);
 	
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ì¬
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	apw->sys.pfd = PaletteFadeInit(HEAPID_ACTIN);
 	PaletteTrans_AutoSet(apw->sys.pfd, TRUE);
 	PaletteFadeWorkAllocSet(apw->sys.pfd, FADE_MAIN_BG, 0x200, HEAPID_ACTIN);
@@ -336,23 +336,23 @@ PROC_RESULT ActinProc_Init( PROC * proc, int * seq )
 
 	apw->aip = AINPUT_SystemInit(apw->consys, &apw->sys, &apw->a_game);
 
-	//VRAMŠ„‚è“–‚Äİ’è
+	//VRAMå‰²ã‚Šå½“ã¦è¨­å®š
 	ActinSys_VramBankSet(apw->sys.bgl);
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPSystem();
 	InitTPNoBuff(4);
 
-	// ƒ{ƒ^ƒ“—pƒtƒHƒ“ƒg‚ğ“Ç‚İ‚İ
+	// ãƒœã‚¿ãƒ³ç”¨ãƒ•ã‚©ãƒ³ãƒˆã‚’èª­ã¿è¾¼ã¿
 	FontProc_LoadFont(FONT_BUTTON, HEAPID_ACTIN);
 
-	// ˆø”‚ğ•Û‘¶
+	// å¼•æ•°ã‚’ä¿å­˜
 //	SetActinWorkParameter(apw, (NAMEIN_PARAM*)PROC_GetParentWork(proc));
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€ì¬
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	apw->sys.csp=CATS_AllocMemory(HEAPID_ACTIN);
 	CATS_SystemInit(apw->sys.csp,&ActinTcats,&ActinCcmm,ACTIN_OAM_PLTT_MAX);
-	//’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
 	apw->sys.crp=CATS_ResourceCreate(apw->sys.csp);
@@ -361,11 +361,11 @@ PROC_RESULT ActinProc_Init( PROC * proc, int * seq )
 	CLACT_U_SetSubSurfaceMatrix(CATS_EasyRenderGet(apw->sys.csp), 0, ACTIN_SUB_ACTOR_DISTANCE);
 
 	apw->sys.soft_sprite = SoftSpriteInit(HEAPID_ACTIN);
-	ActinParticleInit();	//ƒp[ƒeƒBƒNƒ‹‰Šú‰»
-	apw->sys.wsp = WES_Create(HEAPID_ACTIN);	//‹ZƒGƒtƒFƒNƒgƒVƒXƒeƒ€ì¬
-	WES_ContestFlag_Set(apw->sys.wsp, TRUE);	//ƒRƒ“ƒeƒXƒgƒtƒ‰ƒOƒZƒbƒg
+	ActinParticleInit();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
+	apw->sys.wsp = WES_Create(HEAPID_ACTIN);	//æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
+	WES_ContestFlag_Set(apw->sys.wsp, TRUE);	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	apw->sys.actin_msg = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_cmsg_acting_dat, 
 		HEAPID_ACTIN);
 	apw->sys.breeder_msg = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_cmsg_breeder_dat, 
@@ -375,34 +375,34 @@ PROC_RESULT ActinProc_Init( PROC * proc, int * seq )
 	apw->sys.wazakouka_msg = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, 
 		NARC_msg_cmsg_wazakouka_dat, HEAPID_ACTIN);
 
-	//ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€ì¬
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	apw->sys.fontoam_sys = FONTOAM_SysInit(ACTIN_FONTOAM_MAX_MAIN, HEAPID_ACTIN);
 
-	apw->sys.wordset = WORDSET_Create(HEAPID_ACTIN);	//’PŒêƒoƒbƒtƒ@ì¬
-	apw->sys.msg_buf = STRBUF_Create(ACTIN_MESSAGE_BUF_SIZE, HEAPID_ACTIN);	//•¶š—ñƒoƒbƒtƒ@ì¬
+	apw->sys.wordset = WORDSET_Create(HEAPID_ACTIN);	//å˜èªãƒãƒƒãƒ•ã‚¡ä½œæˆ
+	apw->sys.msg_buf = STRBUF_Create(ACTIN_MESSAGE_BUF_SIZE, HEAPID_ACTIN);	//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	
 	{
 		ARCHANDLE* hdl_bg;
 		ARCHANDLE* hdl_obj;
 	
-		//ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+		//ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 		hdl_bg  = ArchiveDataHandleOpen(ARC_CONTEST_BG,  HEAPID_ACTIN); 
 		hdl_obj = ArchiveDataHandleOpen(ARC_CONTEST_OBJ, HEAPID_ACTIN);
 	
-		//í’“BGƒZƒbƒg
+		//å¸¸é§BGã‚»ãƒƒãƒˆ
 		ActinDefaultBGSet(apw, hdl_bg);
 		ActinDefaultBGSet_Sub(apw, hdl_bg);
 
-		//BMPƒEƒBƒ“ƒhƒE’Ç‰Á
+		//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
 		ActinSys_DefaultBmpWinAdd(apw);
 		//BreederParamBmpWriteAll(apw);
 		BreederPanelColorChangeAll(apw);
 
-		//í’“OBJƒZƒbƒg
+		//å¸¸é§OBJã‚»ãƒƒãƒˆ
 		ActinDefaultOBJSet(apw, hdl_obj);
 		ActinDefaultOBJSet_Sub(apw, hdl_obj);
 
-		//ƒnƒ“ƒhƒ‹•Â‚¶‚é
+		//ãƒãƒ³ãƒ‰ãƒ«é–‰ã˜ã‚‹
 		ArchiveDataHandleClose( hdl_bg );
 		ArchiveDataHandleClose( hdl_obj );
 	}
@@ -418,12 +418,12 @@ PROC_RESULT ActinProc_Init( PROC * proc, int * seq )
 	}
 	AINPUT_CreateBG(apw->aip, AINPUT_TYPE_WALL, TRUE, NULL);
 	
-	//ƒ|ƒPƒ‚ƒ“ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg¶¬
+	//ãƒã‚±ãƒ¢ãƒ³ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆç”Ÿæˆ
 	AT_SoftSpriteAddAll(&apw->sys);
 	
-	WirelessIconEasy();	//’ÊMƒAƒCƒRƒ“
+	WirelessIconEasy();	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
 	
-	// ‹P“x•ÏXƒZƒbƒg
+	// è¼åº¦å¤‰æ›´ã‚»ãƒƒãƒˆ
 //	ChangeBrightnessRequest(
 //		8, 0, -16, PLANEMASK_ALL, MASK_DOUBLE_DISPLAY );
 	WIPE_SYS_Start(WIPE_PATTERN_FMAS, WIPE_TYPE_BLINDIN_H, WIPE_TYPE_BLINDIN_H, WIPE_FADE_BLACK, 
@@ -436,7 +436,7 @@ PROC_RESULT ActinProc_Init( PROC * proc, int * seq )
 	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 
-	//ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh(ƒRƒ“ƒeƒXƒg)
+	//ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰(ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ)
 	Snd_DataSetByScene( SND_SCENE_CONTEST, SEQ_CON_TEST, 1 );
 	//if(Snd_NowBgmNoGet() != SEQ_CON_TEST){
 	//	Snd_Stop();
@@ -452,12 +452,12 @@ PROC_RESULT ActinProc_Init( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT ActinProc_Main( PROC * proc, int * seq )
@@ -528,12 +528,12 @@ PROC_RESULT ActinProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒƒZƒXŠÖ”FI—¹
+ * @brief   ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param   proc		ƒvƒƒZƒXƒf[ƒ^
- * @param   seq			ƒV[ƒPƒ“ƒX
+ * @param   proc		ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param   seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @retval  ˆ—ó‹µ
+ * @retval  å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------
 PROC_RESULT ActinProc_End( PROC * proc, int * seq )
@@ -544,53 +544,53 @@ PROC_RESULT ActinProc_End( PROC * proc, int * seq )
 	Particle_SystemExitAll();
 	WES_Delete(apw->sys.wsp);
 
-	//í’“OBJíœ
+	//å¸¸é§OBJå‰Šé™¤
 	ActinDefaultOBJDel(apw);
 	ActinDefaultOBJDel_Sub(apw);
-	//í’“BGíœ
+	//å¸¸é§BGå‰Šé™¤
 	ActinDefaultBGDel(apw);
 	ActinDefaultBGDel_Sub(apw);
 
-	//BMPŠJ•ú
+	//BMPé–‹æ”¾
 	for(i = 0; i < ACTIN_BMPWIN_MAX; i++){
 		GF_BGL_BmpWinDel(&apw->sys.win[i]);
 	}
 
-	//ƒƒCƒ“‰æ–ÊBGíœ
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢BGå‰Šé™¤
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
 	GF_BGL_BGControlExit(apw->sys.bgl, ACTIN_FRAME_WIN );
 	GF_BGL_BGControlExit(apw->sys.bgl, ACTIN_FRAME_EFF );
 	GF_BGL_BGControlExit(apw->sys.bgl, ACTIN_FRAME_AUDIENCE );
-	//ƒTƒu‰æ–ÊBGíœ
+	//ã‚µãƒ–ç”»é¢BGå‰Šé™¤
 	AINPUT_FrameExit(apw->sys.bgl);
 	AINPUT_SystemFree(apw->aip);
 
-	//ƒAƒNƒ^[ƒVƒXƒeƒ€íœ
+	//ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	CATS_ResourceDestructor_S(apw->sys.csp,apw->sys.crp);
 	CATS_FreeMemory(apw->sys.csp);
 
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[íœ
+	//Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤
 	DellVramTransferManager();
 
-	//ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgíœ
+	//ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆå‰Šé™¤
 	AT_SoftSpriteDelAll(&apw->sys);
 	SoftSpriteEnd(apw->sys.soft_sprite);
 
-	//ƒtƒHƒ“ƒgíœ
+	//ãƒ•ã‚©ãƒ³ãƒˆå‰Šé™¤
 	FontProc_UnloadFont(FONT_BUTTON);
 
-	//ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€íœ
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	FONTOAM_SysDelete(apw->sys.fontoam_sys);
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€íœ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	PaletteFadeWorkAllocFree(apw->sys.pfd, FADE_MAIN_BG);
 	PaletteFadeWorkAllocFree(apw->sys.pfd, FADE_SUB_BG);
 	PaletteFadeWorkAllocFree(apw->sys.pfd, FADE_MAIN_OBJ);
 	PaletteFadeWorkAllocFree(apw->sys.pfd, FADE_SUB_OBJ);
 	PaletteFadeFree(apw->sys.pfd);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚Ìíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ã®å‰Šé™¤
 	STRBUF_Delete(apw->sys.msg_buf);
 	WORDSET_Delete(apw->sys.wordset);
 	MSGMAN_Delete(apw->sys.actin_msg);
@@ -598,7 +598,7 @@ PROC_RESULT ActinProc_End( PROC * proc, int * seq )
 	MSGMAN_Delete(apw->sys.explain_msg);
 	MSGMAN_Delete(apw->sys.wazakouka_msg);
 
-	//BGLŠJ•ú
+	//BGLé–‹æ”¾
 	sys_FreeMemoryEz(apw->sys.bgl);
 
 	TCB_Delete(apw->update_tcb);
@@ -606,12 +606,12 @@ PROC_RESULT ActinProc_End( PROC * proc, int * seq )
 	//simple_3DBGExit();
 	ADV_Contest_3D_Exit(apw->g3Dman);
 
-	StopTP();		//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌI—¹
+	StopTP();		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµ‚äº†
 
-	PROC_FreeWork(proc);				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork(proc);				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	sys_DeleteHeap(HEAPID_ACTIN);
 
@@ -627,9 +627,9 @@ PROC_RESULT ActinProc_End( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
- * @param	work	‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	work	æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none	
  *
@@ -641,7 +641,7 @@ static void ActinVBlank(void *work)
 	
 	SoftSpriteTextureTrans(apw->sys.soft_sprite);
 
-	DoVramTransferManager();	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	DoVramTransferManager();	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	CATS_RenderOamTrans();
 	PaletteFadeTrans(apw->sys.pfd);
 	
@@ -652,9 +652,9 @@ static void ActinVBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“ƒ‹[ƒv‚ÌÅŒã‚És‚¤ƒVƒXƒeƒ€ŠÖ˜A‚ÌXVˆ—
+ * @brief   ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®æœ€å¾Œã«è¡Œã†ã‚·ã‚¹ãƒ†ãƒ é–¢é€£ã®æ›´æ–°å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		apw
  */
 //--------------------------------------------------------------
@@ -672,14 +672,14 @@ static void ActinUpdate(TCB_PTR tcb, void *work)
 	
 	CommErrorCheck(HEAPID_ACTIN, apw->sys.bgl);
 
-#ifdef PM_DEBUG		//ƒ|ƒŠƒSƒ“‚Ìƒ‰ƒCƒ“ƒYƒI[ƒo[ƒ`ƒFƒbƒN
+#ifdef PM_DEBUG		//ãƒãƒªã‚´ãƒ³ã®ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ãƒã‚§ãƒƒã‚¯
 	if(G3X_IsLineBufferUnderflow() != 0){
-		OS_TPrintf("--------------ƒ‰ƒCƒ“ƒYƒI[ƒo[”­¶II----------\n");
-		//GF_ASSERT(0 && "ƒ‰ƒCƒ“ƒYƒI[ƒo[‚ª”­¶‚µ‚Ü‚µ‚½");
+		OS_TPrintf("--------------ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ç™ºç”Ÿï¼ï¼----------\n");
+		//GF_ASSERT(0 && "ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ");
 		G3X_ResetLineBufferUnderflow();
 	}
 	else if(G3X_GetRenderedLineCount() < 10){
-		OS_TPrintf("========== ƒ‰ƒCƒ“ƒYƒI[ƒo[‚ª”­¶‚µ‚»‚¤‚Å‚·c Count = %d\n", 
+		OS_TPrintf("========== ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ãŒç™ºç”Ÿã—ãã†ã§ã™â€¦ Count = %d\n", 
 			G3X_GetRenderedLineCount());
 	}
 #endif
@@ -687,32 +687,32 @@ static void ActinUpdate(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   Vramƒoƒ“ƒNİ’è‚ğs‚¤
+ * @brief   Vramãƒãƒ³ã‚¯è¨­å®šã‚’è¡Œã†
  *
- * @param   bgl		BGLƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ActinSys_VramBankSet(GF_BGL_INI *bgl)
 {
 	GF_Disp_GX_VisibleControlInit();
 
-	//VRAMİ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -727,23 +727,23 @@ static void ActinSys_VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME1_M	ƒEƒBƒ“ƒhƒE
+			///<FRAME1_M	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 //				0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x04000, GX_BG_EXTPLTT_01,
 				ACTIN_BGPRI_WINDOW, 0, 0, FALSE
 			},
-			///<FRAME2_M	ƒGƒtƒFƒNƒg
+			///<FRAME2_M	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 			{
 				0, 0, 0x2000, 0, GF_BGL_SCRSIZ_512x512, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x0c000, GX_BG_EXTPLTT_01,
 				ACTIN_BGPRI_EFFECT, 0, 0, FALSE
 			},
-			///<FRAME3_M	”wŒi
+			///<FRAME3_M	èƒŒæ™¯
 			{
 				0, 0, 0x1000, 0, GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
@@ -766,7 +766,7 @@ static void ActinSys_VramBankSet(GF_BGL_INI *bgl)
 		G2_SetBG0Priority(ACTIN_3DBG_PRIORITY);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		AINPUT_DefaultFrameSet(bgl);
 	}
@@ -774,9 +774,9 @@ static void ActinSys_VramBankSet(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ŠúBMPƒEƒBƒ“ƒhƒE‚ğİ’è‚·‚é
+ * @brief   åˆæœŸBMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¨­å®šã™ã‚‹
  *
- * @param   apw		‰‰‹Z—ÍŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw		æ¼”æŠ€åŠ›ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ActinSys_DefaultBmpWinAdd(ACTIN_PROC_WORK *apw)
@@ -798,7 +798,7 @@ static void ActinSys_DefaultBmpWinAdd(ACTIN_PROC_WORK *apw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z•”–å—pƒp[ƒeƒBƒNƒ‹‰Šú‰»
+ * @brief   æ¼”æŠ€éƒ¨é–€ç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
  */
 //--------------------------------------------------------------
 static void ActinParticleInit(void)
@@ -807,7 +807,7 @@ static void ActinParticleInit(void)
 	NNSGfdPlttKey pltt_key;
 	u32 tex_addrs, pltt_addrs;
 	
-	//ƒ|ƒPƒ‚ƒ“‚Åg—p‚·‚é•ª‚ğŠm•Û
+	//ãƒã‚±ãƒ¢ãƒ³ã§ä½¿ç”¨ã™ã‚‹åˆ†ã‚’ç¢ºä¿
 	tex_key = NNS_GfdAllocTexVram(0x2000 * CLIENT_MAX, 0, 0);
 	pltt_key = NNS_GfdAllocPlttVram(0x20 * CLIENT_MAX, 0, 0);
 	
@@ -815,17 +815,17 @@ static void ActinParticleInit(void)
 	GF_ASSERT(pltt_key != NNS_GFD_ALLOC_ERROR_PLTTKEY);
 	tex_addrs = NNS_GfdGetTexKeyAddr(tex_key);
 	pltt_addrs = NNS_GfdGetPlttKeyAddr(pltt_key);
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒeƒNƒXƒ`ƒƒVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", tex_addrs);
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒpƒŒƒbƒgVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", pltt_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", tex_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆVramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", pltt_addrs);
 
-	//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‰Šú‰»
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	Particle_SystemWorkInit();
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ì‰Šúƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚·‚é
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ActinSystemWorkInit(ACTIN_PROC_WORK *apw)
@@ -843,17 +843,17 @@ static void ActinSystemWorkInit(ACTIN_PROC_WORK *apw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ì“o˜^‚ğs‚¤
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®ç™»éŒ²ã‚’è¡Œã†
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ActinDefaultOBJSet(ACTIN_PROC_WORK *apw, ARCHANDLE *hdl_obj)
 {
-	//í’“OBJƒpƒŒƒbƒgƒ[ƒh
+	//å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆãƒ­ãƒ¼ãƒ‰
 	CATS_LoadResourcePlttWorkArcH(apw->sys.pfd, FADE_MAIN_OBJ, apw->sys.csp, apw->sys.crp, 
 		hdl_obj, CONTEST_OBJ_NCLR, 0, 
 		ACTIN_COMMON_PAL_NUM, NNS_G2D_VRAM_TYPE_2DMAIN, PLTTID_OBJ_COMMON);
-	//ƒtƒHƒ“ƒgOAMƒpƒŒƒbƒgƒ[ƒh
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMãƒ‘ãƒ¬ãƒƒãƒˆãƒ­ãƒ¼ãƒ‰
 	CATS_LoadResourcePlttWorkArcH(apw->sys.pfd, FADE_MAIN_OBJ, apw->sys.csp, apw->sys.crp, 
 		hdl_obj, CONTEST_FONTOBJ_NCLR, 0, 
 		1, NNS_G2D_VRAM_TYPE_2DMAIN, PLTTID_FONTACT);
@@ -873,8 +873,8 @@ static void ActinDefaultOBJSet(ACTIN_PROC_WORK *apw, ARCHANDLE *hdl_obj)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ìíœ‚ğs‚¤
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®å‰Šé™¤ã‚’è¡Œã†
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ActinDefaultOBJDel(ACTIN_PROC_WORK *apw)
@@ -899,17 +899,17 @@ static void ActinDefaultOBJDel(ACTIN_PROC_WORK *apw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊOBJF‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ì“o˜^‚ğs‚¤
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢OBJï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®ç™»éŒ²ã‚’è¡Œã†
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ActinDefaultOBJSet_Sub(ACTIN_PROC_WORK *apw, ARCHANDLE *hdl_obj)
 {
-	//í’“OBJƒpƒŒƒbƒgƒ[ƒh
+	//å¸¸é§OBJãƒ‘ãƒ¬ãƒƒãƒˆãƒ­ãƒ¼ãƒ‰
 	CATS_LoadResourcePlttWorkArcH(apw->sys.pfd, FADE_SUB_OBJ, apw->sys.csp, apw->sys.crp, 
 		hdl_obj, CONTEST_SUB_OBJ_NCLR, 0, 
 		ACTIN_SUB_COMMON_PAL_NUM, NNS_G2D_VRAM_TYPE_2DSUB, PLTTID_OBJ_COMMON_SUB);
-	//ƒtƒHƒ“ƒgOAMƒpƒŒƒbƒgƒ[ƒh
+	//ãƒ•ã‚©ãƒ³ãƒˆOAMãƒ‘ãƒ¬ãƒƒãƒˆãƒ­ãƒ¼ãƒ‰
 	CATS_LoadResourcePlttWorkArcH(apw->sys.pfd, FADE_SUB_OBJ, apw->sys.csp, apw->sys.crp, 
 		hdl_obj, CONTEST_FONTOBJ_NCLR, 0, 
 		1, NNS_G2D_VRAM_TYPE_2DSUB, PLTTID_SUB_FONTACT);
@@ -938,8 +938,8 @@ static void ActinDefaultOBJSet_Sub(ACTIN_PROC_WORK *apw, ARCHANDLE *hdl_obj)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊOBJF‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{“I‚Èí’“OBJ‚Ìíœ‚ğs‚¤
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢OBJï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬çš„ãªå¸¸é§OBJã®å‰Šé™¤ã‚’è¡Œã†
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ActinDefaultOBJDel_Sub(ACTIN_PROC_WORK *apw)
@@ -960,22 +960,22 @@ static void ActinDefaultOBJDel_Sub(ACTIN_PROC_WORK *apw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒtƒFƒNƒg–Ê‚ÉƒuƒŠ[ƒ_[ƒpƒlƒ‹BG‚ğ“WŠJ‚·‚é
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   eff_bg_type ƒZƒbƒg‚·‚éBG‚Ìƒ^ƒCƒv(EFF_BG_TYPE_???)
- * @param   disp_set	TRUE:DISPCNT‚ÅƒGƒtƒFƒNƒg–Ê‚ğON‚É‚·‚é
+ * @brief   ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã«ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«BGã‚’å±•é–‹ã™ã‚‹
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   eff_bg_type ã‚»ãƒƒãƒˆã™ã‚‹BGã®ã‚¿ã‚¤ãƒ—(EFF_BG_TYPE_???)
+ * @param   disp_set	TRUE:DISPCNTã§ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã‚’ONã«ã™ã‚‹
  */
 //--------------------------------------------------------------
 void ActinBG_BrdPanelSet(ACTIN_PROC_WORK *apw, int eff_bg_type, int disp_set)
 {
 	if(eff_bg_type == EFF_BG_TYPE_BRDPANEL){
-		//ƒLƒƒƒ‰ƒNƒ^F‚Æ‚è‚ ‚¦‚¸ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰‚Æ“¯‚¶‚à‚Ì‚ğ“WŠJ
+		//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ï¼šã¨ã‚Šã‚ãˆãšã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ã¨åŒã˜ã‚‚ã®ã‚’å±•é–‹
 		ArcUtil_BgCharSet(ARC_CONTEST_BG, PANEL_NCGR_BIN, apw->sys.bgl, 
 			ACTIN_FRAME_BRDPANEL, 0, 0x4000, 1, HEAPID_ACTIN);
-		//ƒXƒNƒŠ[ƒ“
+		//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 		ArcUtil_ScrnSet(ARC_CONTEST_BG, BRDPANEL_NSCR_BIN, apw->sys.bgl, 
 			ACTIN_FRAME_BRDPANEL, 0, 0, 1, HEAPID_ACTIN);
-		//BGƒvƒ‰ƒCƒIƒŠƒeƒB
+		//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 		GF_BGL_PrioritySet(ACTIN_FRAME_WIN, ACTIN_BGPRI_EFFECT);
 		GF_BGL_PrioritySet(ACTIN_FRAME_BRDPANEL, ACTIN_BGPRI_WINDOW);
 		
@@ -988,7 +988,7 @@ void ActinBG_BrdPanelSet(ACTIN_PROC_WORK *apw, int eff_bg_type, int disp_set)
 	else{
 		GF_BGL_ClearCharSet(ACTIN_FRAME_BRDPANEL, 0x4000, 0, HEAPID_ACTIN);
 		GF_BGL_ScrClear(apw->sys.bgl, ACTIN_FRAME_BRDPANEL);
-		//BGƒvƒ‰ƒCƒIƒŠƒeƒB
+		//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 		GF_BGL_PrioritySet(ACTIN_FRAME_WIN, ACTIN_BGPRI_WINDOW);
 		GF_BGL_PrioritySet(ACTIN_FRAME_BRDPANEL, ACTIN_BGPRI_EFFECT);
 	}
@@ -996,33 +996,33 @@ void ActinBG_BrdPanelSet(ACTIN_PROC_WORK *apw, int eff_bg_type, int disp_set)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–ÊBGF‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚ÌƒZƒbƒg‚ğs‚¤
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢BGï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚’è¡Œã†
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ActinDefaultBGSet(ACTIN_PROC_WORK *apw, ARCHANDLE *hdl_bg)
 {
-	//ŠÏ‹q
+	//è¦³å®¢
 	ArcUtil_HDL_BgCharSet(hdl_bg, CON_BG_NCGR_BIN, apw->sys.bgl, 
 		ACTIN_FRAME_AUDIENCE, 0, 0, 1, HEAPID_ACTIN);
 	ArcUtil_HDL_ScrnSet(hdl_bg, CON_BG_NSCR_BIN, apw->sys.bgl, 
 		ACTIN_FRAME_AUDIENCE, 0, 0, 1, HEAPID_ACTIN);
 	
-	//ƒEƒBƒ“ƒhƒE
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	ArcUtil_HDL_BgCharSet(hdl_bg, PANEL_NCGR_BIN, apw->sys.bgl, 
 		ACTIN_FRAME_WIN, 0, 0, 1, HEAPID_ACTIN);
 	ArcUtil_HDL_ScrnSet(hdl_bg, PANEL_NSCR_BIN, apw->sys.bgl, 
 		ACTIN_FRAME_WIN, 0, 0, 1, HEAPID_ACTIN);
 	
-	//ƒGƒtƒFƒNƒg
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //	GF_BGL_ScrClear(apw->sys.bgl, ACTIN_FRAME_EFF);
 	ActinBG_BrdPanelSet(apw, EFF_BG_TYPE_BRDPANEL, FALSE);
 	
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 	PaletteWorkSet_Arc(apw->sys.pfd, ARC_CONTEST_BG, CONTEST_BG_NCLR, 
 		HEAPID_ACTIN, FADE_MAIN_BG, 0, 0);
-	//©•ª—p‚ÌƒuƒŠ[ƒ_[ƒpƒlƒ‹‚ÌƒJƒ‰[ƒf[ƒ^‚ğ©•ª‚ÌƒuƒŠ[ƒ_[”Ô†ˆÊ’u‚ÖˆÚ‚µ•Ï‚¦‚é
-	//¦’ÊM‘Îí‚¾‚ÆƒuƒŠ[ƒ_[”Ô†‚ª0ˆÈŠO‚Ì‚à‚Ì‚É‚à‚È‚é‚Ì‚Å
+	//è‡ªåˆ†ç”¨ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãƒ‘ãƒãƒ«ã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’è‡ªåˆ†ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·ä½ç½®ã¸ç§»ã—å¤‰ãˆã‚‹
+	//â€»é€šä¿¡å¯¾æˆ¦ã ã¨ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ç•ªå·ãŒ0ä»¥å¤–ã®ã‚‚ã®ã«ã‚‚ãªã‚‹ã®ã§
 	{
 		u16 *my, *target, *defwk, *transwk;
 		
@@ -1036,7 +1036,7 @@ static void ActinDefaultBGSet(ACTIN_PROC_WORK *apw, ARCHANDLE *hdl_bg)
 		MI_CpuCopy16(my, &defwk[BreederPanelScreenPalNo[apw->consys->c_game.my_breeder_no] * 16],
 			0x20);
 		MI_CpuCopy16(target, &defwk[BreederPanelScreenPalNo[0] * 16], 0x20);
-		//“]‘—ƒpƒŒƒbƒg‚É‚àƒRƒs[
+		//è»¢é€ãƒ‘ãƒ¬ãƒƒãƒˆã«ã‚‚ã‚³ãƒ”ãƒ¼
 		MI_CpuCopy16(my, &transwk[BreederPanelScreenPalNo[apw->consys->c_game.my_breeder_no] * 16],
 			0x20);
 		MI_CpuCopy16(target, &transwk[BreederPanelScreenPalNo[0] * 16], 0x20);
@@ -1047,8 +1047,8 @@ static void ActinDefaultBGSet(ACTIN_PROC_WORK *apw, ARCHANDLE *hdl_bg)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–ÊBGF‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚Ìíœˆ—‚ğs‚¤
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢BGï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†ã‚’è¡Œã†
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ActinDefaultBGDel(ACTIN_PROC_WORK *apw)
@@ -1058,21 +1058,21 @@ static void ActinDefaultBGDel(ACTIN_PROC_WORK *apw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊBGF‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚ÌƒZƒbƒg‚ğs‚¤
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢BGï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‚’è¡Œã†
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ActinDefaultBGSet_Sub(ACTIN_PROC_WORK *apw, ARCHANDLE *hdl_bg)
 {
-	//ƒpƒŒƒbƒg
+	//ãƒ‘ãƒ¬ãƒƒãƒˆ
 //	PaletteWorkSet_Arc(apw->sys.pfd, ARC_CONTEST_BG, CONTEST_SUB_NCLR, 
 //		HEAPID_ACTIN, FADE_SUB_BG, 0, 0);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊBGF‰‰‹Z—Í•”–å‚Åg—p‚·‚éŠî–{BGƒf[ƒ^‚Ìíœˆ—‚ğs‚¤
- * @param   apw		‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚µãƒ–ç”»é¢BGï¼šæ¼”æŠ€åŠ›éƒ¨é–€ã§ä½¿ç”¨ã™ã‚‹åŸºæœ¬BGãƒ‡ãƒ¼ã‚¿ã®å‰Šé™¤å‡¦ç†ã‚’è¡Œã†
+ * @param   apw		æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void ActinDefaultBGDel_Sub(ACTIN_PROC_WORK *apw)
@@ -1085,17 +1085,17 @@ static void ActinDefaultBGDel_Sub(ACTIN_PROC_WORK *apw)
 
 //==============================================================================
 //
-//	ƒV[ƒPƒ“ƒX
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXF‰Šú‰»ˆ—
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šåˆæœŸåŒ–å‡¦ç†
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_Init(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -1127,12 +1127,12 @@ static int ActinSeq_Init(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXF—ûKAÅ‰‚ÌƒƒbƒZ[ƒW•\¦
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šç·´ç¿’ã€æœ€åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_Practice_FastTalk(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -1163,12 +1163,12 @@ static int ActinSeq_Practice_FastTalk(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *lo
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXFÅ‰‚ÌƒƒbƒZ[ƒW•\¦
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæœ€åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_FastTalk(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -1207,12 +1207,12 @@ static int ActinSeq_FastTalk(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXFƒ^[ƒ“ŠJnˆ—
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šã‚¿ãƒ¼ãƒ³é–‹å§‹å‡¦ç†
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_TurnStart(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -1242,12 +1242,12 @@ static int ActinSeq_TurnStart(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXF‹Z‚ÆR”»‚Ì‘I‘ğ
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€ã¨å¯©åˆ¤ã®é¸æŠ
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_UserSelect(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -1266,7 +1266,7 @@ static int ActinSeq_UserSelect(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 		}
 		break;
 	case 2:
-		//CPU‚ÌAIŒvZ
+		//CPUã®AIè¨ˆç®—
 		{
 			ACTIN_AI_ANSWER answer;
 			int i;
@@ -1288,12 +1288,12 @@ static int ActinSeq_UserSelect(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXFê‚Éo‚éƒuƒŠ[ƒ_[‚ğ‘I‘ğ(ŠeƒuƒŠ[ƒ_[‚ª‰‰‹Z‚ğn‚ß‚é‘O‚És‚¤ˆ—)
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šå ´ã«å‡ºã‚‹ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã‚’é¸æŠ(å„ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ãŒæ¼”æŠ€ã‚’å§‹ã‚ã‚‹å‰ã«è¡Œã†å‡¦ç†)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_SelectBreeder(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -1319,9 +1319,9 @@ static int ActinSeq_SelectBreeder(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 	AT_MsgTagParaInitDataSet(apw, &apw->advance.nt.after_a_talk_tagpara, now_breeder);
 
 #if 0
-	//-- ‹ZŒø‰ÊŒvZ --//
+	//-- æŠ€åŠ¹æœè¨ˆç®— --//
 	apw->advance.waza_personal = apw->advance.wazapara.personal[now_breeder];
-	//‹ZŒø‰ÊŒvZŒ‹‰Ê‚ğq‹@‘¤‚Å‚à•K—v‚È‚à‚Ì‚ğ‘ã“ü
+	//æŠ€åŠ¹æœè¨ˆç®—çµæœã‚’å­æ©Ÿå´ã§ã‚‚å¿…è¦ãªã‚‚ã®ã‚’ä»£å…¥
 	for(i = 0; i < BREEDER_MAX; i++){
 		apw->advance.next_sort[i] = apw->advance.wazapara.personal[i].next_sort;
 		apw->advance.next_pos[i] = apw->advance.wazapara.personal[i].next_pos;
@@ -1333,14 +1333,14 @@ static int ActinSeq_SelectBreeder(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 		int ap_point, ap_point_calc, judge_suffer, voltage_addsub, voltage_calc, voltage_now;
 		int voltage_add_ap;
 
-		//Šî–{APæ“¾
+		//åŸºæœ¬APå–å¾—
 		ap_point = ACALC_BaseAppealGet(apw->advance.waza_no);
-		//R”»”í‚èƒ`ƒFƒbƒN
+		//å¯©åˆ¤è¢«ã‚Šãƒã‚§ãƒƒã‚¯
 		judge_suffer = ACALC_JudgeSufferCheck(&apw->a_game, apw->advance.now_breeder);
-		//ƒ{ƒ‹ƒe[ƒWƒ`ƒFƒbƒN
+		//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸ãƒã‚§ãƒƒã‚¯
 		voltage_addsub = ACALC_VoltageUpDownCheck(apw->consys->c_game.type, apw->advance.waza_no,
 			apw->advance.judge_no, apw->consys->c_game.special_judge_no);
-		//ƒ{ƒ‹ƒe[ƒW‰ÁZ
+		//ãƒœãƒ«ãƒ†ãƒ¼ã‚¸åŠ ç®—
 		voltage_now = apw->a_game.voltage_total[apw->advance.judge_no];
 		voltage_calc = ACALC_VoltageAdd(&apw->a_game, apw->advance.judge_no, voltage_addsub);
 		voltage_add_ap = 0;
@@ -1353,7 +1353,7 @@ static int ActinSeq_SelectBreeder(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 			}
 		}
 		
-		//‡ŒvŒvZ
+		//åˆè¨ˆè¨ˆç®—
 		ap_point_calc = ap_point - (judge_suffer * APPEAL_ICON_ONE_POINT);
 		if(ap_point_calc < 0){
 			ap_point_calc = 0;
@@ -1365,7 +1365,7 @@ static int ActinSeq_SelectBreeder(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 		apw->advance.voltage_calc = voltage_calc;
 		apw->advance.voltage_add_ap = voltage_add_ap;
 		apw->advance.ap_point_calc = ap_point_calc;
-		//‡ŒvAP’l‚É‰ÁZ
+		//åˆè¨ˆAPå€¤ã«åŠ ç®—
 		apw->a_game.app_total[apw->advance.now_breeder] += ap_point_calc + voltage_add_ap;
 	}
 #endif
@@ -1375,12 +1375,12 @@ static int ActinSeq_SelectBreeder(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ““oê
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³ç™»å ´
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_PokemonIn(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -1404,12 +1404,12 @@ static int ActinSeq_PokemonIn(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXF‹ZƒGƒtƒFƒNƒg‚ğo‚·‘O‚Ìˆ—
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™å‰ã®å‡¦ç†
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_WazaEffectBefore(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -1435,12 +1435,12 @@ static int ActinSeq_WazaEffectBefore(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *loc
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXF‹ZƒGƒtƒFƒNƒg‚ğo‚·
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å‡ºã™
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_WazaEffect(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -1479,19 +1479,19 @@ static int ActinSeq_WazaEffect(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXFo‚µ‚½‹Z‚Ì•]‰¿‚ğs‚¤(‰‰o)
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šå‡ºã—ãŸæŠ€ã®è©•ä¾¡ã‚’è¡Œã†(æ¼”å‡º)
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_AppealReview(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 {
 #if 0
 	switch(local->seq){
-	case 0:		//Œ‹‰Ê‚ğ‘—M
+	case 0:		//çµæœã‚’é€ä¿¡
 		if(CO_OrderSet(&apw->cow, apw, AORDER_NO_APPEAL_REVIEW, &apw->advance) == TRUE){
 			local->seq++;
 		}
@@ -1605,12 +1605,12 @@ static int ActinSeq_AppealReview(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXFƒ|ƒPƒ‚ƒ“‘Şê
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³é€€å ´
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_PokemonOut(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -1636,12 +1636,12 @@ static int ActinSeq_PokemonOut(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXFŸ‚ÌƒuƒŠ[ƒ_[‚Öi‚Ş‘O‚ÌŒãˆ—
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæ¬¡ã®ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã¸é€²ã‚€å‰ã®å¾Œå‡¦ç†
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_NextBreeder(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -1662,12 +1662,12 @@ static int ActinSeq_NextBreeder(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXF‘Sˆõ‚Ì‰‰‹Z‚ªI‚í‚Á‚½Œã‚É”­¶‚³‚¹‚é‰‰‹ZŒø‰Ê
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šå…¨å“¡ã®æ¼”æŠ€ãŒçµ‚ã‚ã£ãŸå¾Œã«ç™ºç”Ÿã•ã›ã‚‹æ¼”æŠ€åŠ¹æœ
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_AllReviewAfter(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -1758,7 +1758,7 @@ static int ActinSeq_AllReviewAfter(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local
 		local->seq++;
 		break;
 	case ARF_JUDGESUFFER_MAIN:
-		{//R”»‘I‘ğ
+		{//å¯©åˆ¤é¸æŠ
 			int judge_counter[JUDGE_MAX];
 			int judge_sort[JUDGE_MAX];
 			int suffer_breeder[JUDGE_MAX][BREEDER_MAX];
@@ -1782,15 +1782,15 @@ static int ActinSeq_AllReviewAfter(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local
 				}
 			}
 			
-			//”í‚è”‚ª‘½‚¢‡‚Éƒ\[ƒg
+			//è¢«ã‚Šæ•°ãŒå¤šã„é †ã«ã‚½ãƒ¼ãƒˆ
 			for(i = 0; i < JUDGE_MAX - 1; i++){
 				for(j = JUDGE_MAX - 1; j > i; j--){
 					if(judge_counter[j-1] < judge_counter[j]){
-						//”í‚èl”“ü‚ê‘Ö‚¦
+						//è¢«ã‚Šäººæ•°å…¥ã‚Œæ›¿ãˆ
 						t = judge_counter[j];
 						judge_counter[j] = judge_counter[j-1];
 						judge_counter[j-1] = t;
-						//R”»”Ô†“ü‚ê‚©‚¦
+						//å¯©åˆ¤ç•ªå·å…¥ã‚Œã‹ãˆ
 						t = judge_sort[j];
 						judge_sort[j] = judge_sort[j-1];
 						judge_sort[j-1] = t;
@@ -1830,7 +1830,7 @@ static int ActinSeq_AllReviewAfter(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local
 		local->seq++;
 		//break;
 	case ARF_JUDGESUFFER_CALC:
-	#if 0	//¦check R”»”í‚è‹Z‚Í‚Æ‚è‚ ‚¦‚¸–³Œø 2006.03.31(‹à)
+	#if 0	//â€»check å¯©åˆ¤è¢«ã‚ŠæŠ€ã¯ã¨ã‚Šã‚ãˆãšç„¡åŠ¹ 2006.03.31(é‡‘)
 		ret = AWAZA_KoukaJudgeSufferTiming(apw, &apw->advance.wazapara, 
 			apw->advance.now_breeder, apw->advance.now_pos);
 		if(ret == FALSE){
@@ -1965,12 +1965,12 @@ static int ActinSeq_AllReviewAfter(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXF‰‰‹ZI—¹Œã‚ÌR”»ƒRƒƒ“ƒg
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæ¼”æŠ€çµ‚äº†å¾Œã®å¯©åˆ¤ã‚³ãƒ¡ãƒ³ãƒˆ
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_JudgeComment(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -2000,12 +2000,12 @@ static int ActinSeq_JudgeComment(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXFŒ»İ‚Ìƒ^[ƒ“I—¹ˆ—
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šç¾åœ¨ã®ã‚¿ãƒ¼ãƒ³çµ‚äº†å‡¦ç†
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_TurnEnd(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -2013,7 +2013,7 @@ static int ActinSeq_TurnEnd(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 	int i;
 	
 	switch(local->seq){
-	case 0:		//I—¹‚ÌƒGƒtƒFƒNƒg‚ğÀs
+	case 0:		//çµ‚äº†æ™‚ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å®Ÿè¡Œ
 		if(CO_OrderSet(&apw->cow, apw, AORDER_NO_TURNEND_EFF, &apw->advance) == TRUE){
 			local->seq++;
 		}
@@ -2033,7 +2033,7 @@ static int ActinSeq_TurnEnd(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 			sort_waza_check = 0;
 			for(i = 0; i < BREEDER_MAX; i++){
 				if(apw->advance.wazapara.personal[i].next_sort != AWK_SORT_NONE){
-					sort_waza_check++;	//‘Sˆõ‚ªƒ\[ƒg‹Z‚ğg—p‚µ‚Ä‚¢‚éê‡‚ÍƒƒbƒZ[ƒW‚È‚µ
+					sort_waza_check++;	//å…¨å“¡ãŒã‚½ãƒ¼ãƒˆæŠ€ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãªã—
 				}
 			}
 			
@@ -2058,13 +2058,13 @@ static int ActinSeq_TurnEnd(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 		}
 		break;
 	
-	case 4:		//ƒpƒ‰ƒ[ƒ^XV
+	case 4:		//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ›´æ–°
 		AWAZA_WazaParaTurnGameUpdate(apw, &apw->advance.wazapara);
 		
-		//ƒuƒŠ[ƒ_[ƒ\[ƒg
+		//ãƒ–ãƒªãƒ¼ãƒ€ãƒ¼ã‚½ãƒ¼ãƒˆ
 		ACALC_BreederSort(&apw->a_game);
 		
-		//‹Z—š—ğXV
+		//æŠ€å±¥æ­´æ›´æ–°
 		for(i = 0; i < BREEDER_MAX; i++){
 			apw->a_game.waza_history[i] = apw->a_game.waza_no[i];
 		}
@@ -2074,8 +2074,8 @@ static int ActinSeq_TurnEnd(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 		local->seq++;
 		break;
 	
-	case 5:		//XV‚µ‚½ƒpƒ‰ƒ[ƒ^‚ğ‘Sˆõ‚É‘—M
-		//‚Æ‚è‚ ‚¦‚¸a_game‚ğ‘S‚Ä‘—MBŒã‚Å•K—v‚È‚à‚Ì‚¾‚¯‚É•Ï‚¦‚é‚©‚à 2005.12.22(–Ø) ¦check
+	case 5:		//æ›´æ–°ã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å…¨å“¡ã«é€ä¿¡
+		//ã¨ã‚Šã‚ãˆãša_gameã‚’å…¨ã¦é€ä¿¡ã€‚å¾Œã§å¿…è¦ãªã‚‚ã®ã ã‘ã«å¤‰ãˆã‚‹ã‹ã‚‚ 2005.12.22(æœ¨) â€»check
 		if(CO_OrderSet(&apw->cow, apw, AORDER_NO_TURN_PARAM_UPDATE, &apw->a_game) == TRUE){
 			local->seq++;
 		}
@@ -2089,7 +2089,7 @@ static int ActinSeq_TurnEnd(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 		break;
 	
 	default:
-		//ÅIƒ^[ƒ“Šm”F
+		//æœ€çµ‚ã‚¿ãƒ¼ãƒ³ç¢ºèª
 		if(apw->a_game.turn >= ACTIN_END_TURN){
 			local->select_seq = ASEQ_END;
 			return ASRET_SELECT_SEQ;
@@ -2106,12 +2106,12 @@ static int ActinSeq_TurnEnd(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXFI—¹ˆ—
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šçµ‚äº†å‡¦ç†
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_End(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
@@ -2151,7 +2151,7 @@ static int ActinSeq_End(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 //		if(CO_RequestBitNumCheck(&apw->cow) == 0){
 //		if(CO_AnswerCountCheck(&apw->cow, apw->consys->c_game.player_num, 
 //				apw->consys->c_game.my_breeder_no, apw->consys->c_game.server_no) == TRUE){
-		//’ÊMBTS#0467‘Îˆ‚Ìˆ×Aƒvƒ‰ƒ`ƒiq‹@‚Ì‚İI—¹“¯Šú‚ğæ‚é
+		//é€šä¿¡BTS#0467å¯¾å‡¦ã®ç‚ºã€ãƒ—ãƒ©ãƒãƒŠå­æ©Ÿã®ã¿çµ‚äº†åŒæœŸã‚’å–ã‚‹
 		if(CO_AnswerCountCheck(&apw->cow, 
 				apw->consys->c_game.player_num - apw->consys->sio_dp_num - 1, 
 				apw->consys->c_game.my_breeder_no, apw->consys->c_game.server_no) == TRUE){
@@ -2166,12 +2166,12 @@ static int ActinSeq_End(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)
 #ifdef PM_DEBUG //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //--------------------------------------------------------------
 /**
- * @brief   ‰‰‹Z—ÍƒV[ƒPƒ“ƒXF‹ZƒGƒtƒFƒNƒgƒfƒoƒbƒO
+ * @brief   æ¼”æŠ€åŠ›ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼šæŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ‡ãƒãƒƒã‚°
  *
- * @param   apw			‰‰‹Z—Í•”–åŠÇ—ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   local		ƒ[ƒJƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   apw			æ¼”æŠ€åŠ›éƒ¨é–€ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   local		ãƒ­ãƒ¼ã‚«ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  Œp‘±“®ìƒtƒ‰ƒO
+ * @retval  ç¶™ç¶šå‹•ä½œãƒ•ãƒ©ã‚°
  */
 //--------------------------------------------------------------
 static int ActinSeq_DebugWazaEffect(ACTIN_PROC_WORK *apw, ACTIN_LOCAL_WORK *local)

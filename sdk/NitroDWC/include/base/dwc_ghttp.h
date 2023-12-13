@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-// ’ÊMó‘Ô
+// é€šä¿¡çŠ¶æ…‹
 typedef enum  
 {
     DWCGHTTPFalse = -1,                              // Invalid processing
@@ -23,7 +23,7 @@ typedef enum
 	DWCGHTTPReceivingHeaders = GHTTPReceivingHeaders,// Receiving the headers. 
 	DWCGHTTPReceivingFile = GHTTPReceivingFile,		 // Receiving the file. 
 
-    //–½–¼‹K‘¥ƒ~ƒX‚Ì‚½‚ß‚Ìˆ’u
+    //å‘½åè¦å‰‡ãƒŸã‚¹ã®ãŸã‚ã®å‡¦ç½®
     DWC_GHTTP_FALSE = -1,                               // Invalid processing
 	DWC_GHTTP_HOST_LOOKUP = GHTTPHostLookup,			// 0, Resolving hostname to IP. 
 	DWC_GHTTP_CONNECTING = GHTTPConnecting,			    // Waiting for socket connect to complete. 
@@ -36,7 +36,7 @@ typedef enum
 	DWC_GHTTP_RECEIVING_FILE = GHTTPReceivingFile	    // Receiving the file. 
 } DWCGHTTPState;
 
-// ƒŠƒNƒGƒXƒgƒGƒ‰[’l
+// ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¨ãƒ©ãƒ¼å€¤
 typedef enum
 {
     // Possible Error values returned from GHTTP functions.
@@ -49,7 +49,7 @@ typedef enum
 	DWCGHTTPInvalidURL = GHTTPInvalidURL,                // Invalid URL
 	DWCGHTTPUnspecifiedError = GHTTPUnspecifiedError,    // -1, Unspecified error
 
-    //–½–¼‹K‘¥ƒ~ƒX‚Ì‚½‚ß‚Ìˆ’u
+    //å‘½åè¦å‰‡ãƒŸã‚¹ã®ãŸã‚ã®å‡¦ç½®
 	DWC_GHTTP_ERROR_START = GHTTPErrorStart,                // -8,
     DWC_GHTTP_IN_ERROR = DWC_GHTTP_ERROR_START,             // In error condition
 	DWC_GHTTP_FAILED_TO_OPEN_FILE = GHTTPFailedToOpenFile,   // Failed to open file
@@ -63,7 +63,7 @@ typedef enum
 
 } DWCGHTTPRequestError;
 
-// ’ÊMŒ‹‰Ê
+// é€šä¿¡çµæœ
 typedef enum
 {
     // The result of an HTTP request.
@@ -89,7 +89,7 @@ typedef enum
 
     DWCGHTTPMemoryError = DWCGHTTPNum + 1,           // DWC memory allocation failed.
 
-    //–½–¼‹K‘¥ƒ~ƒX‚Ì‚½‚ß‚Ìˆ’u
+    //å‘½åè¦å‰‡ãƒŸã‚¹ã®ãŸã‚ã®å‡¦ç½®
 	DWC_GHTTP_SUCCESS = GHTTPSuccess,                    // 0, Successfully retrieved file.
 	DWC_GHTTP_OUT_OF_MEMORY = GHTTPOutOfMemory,          // A memory allocation failed.
 	DWC_GHTTP_BUFFER_OVERFLOW = GHTTPBufferOverflow,     // The user-supplied buffer was too small to hold the file.
@@ -115,18 +115,18 @@ typedef enum
 
 } DWCGHTTPResult;
  
-// ŠÖ”Œ^éŒ¾
+// é–¢æ•°å‹å®£è¨€
 //---------------------------------------------------------
 typedef void (*DWC_GHTTPCompletedCALLBACK)(const char* buf, int len, DWCGHTTPResult result, void* param);
 typedef void (*DWC_GHTTPProgressCALLBACK)(DWCGHTTPState state, const char* buf, int len, int bytesReceived, int totalSize, void* param);
 typedef GHTTPRequest DWCGHTTPRequest;
 typedef GHTTPPost    DWCGHTTPPost;
 
-//–½–¼‹K‘¥ƒ~ƒX‚Ì‚½‚ß‚Ìˆ’u
+//å‘½åè¦å‰‡ãƒŸã‚¹ã®ãŸã‚ã®å‡¦ç½®
 typedef void (*DWCGHTTPCompletedCallback)(const char* buf, int len, DWCGHTTPResult result, void* param);
 typedef void (*DWCGHTTPProgressCallback)(DWCGHTTPState state, const char* buf, int len, int bytesReceived, int totalSize, void* param);
 
-// \‘¢‘ÌéŒ¾
+// æ§‹é€ ä½“å®£è¨€
 //---------------------------------------------------------
 typedef struct
 {
@@ -137,7 +137,7 @@ typedef struct
 }DWCGHTTPParam;
 
 /**
- * ƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»‚ÆI—¹
+ * ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–ã¨çµ‚äº†
  */
 BOOL	DWC_InitGHTTP(  const char* gamename  );
 BOOL	DWC_ShutdownGHTTP( void );
@@ -148,14 +148,14 @@ BOOL	DWC_ShutdownGHTTP( void );
 BOOL	DWC_ProcessGHTTP( void );
 
 /**
- * postƒIƒuƒWƒFƒNƒg‚Ìì¬
+ * postã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
  */
 void    DWC_GHTTPNewPost( DWCGHTTPPost* post );
 BOOL    DWC_GHTTPPostAddString( DWCGHTTPPost* post, const char* key, const char* value );
 BOOL    DWC_GHTTPPostAddFileFromMemory( DWCGHTTPPost *post, const char *key, const char *buffer, int bufferlen, const char *filename, const char *contentType );
 
 /**
- * ƒf[ƒ^‚Ì‘—óM
+ * ãƒ‡ãƒ¼ã‚¿ã®é€å—ä¿¡
  */
 int  	DWC_PostGHTTPData( const char* url, DWCGHTTPPost* post, DWCGHTTPCompletedCallback completedCallback, void* param );
 int     DWC_GetGHTTPData( const char* url, DWCGHTTPCompletedCallback completedCallback, void* param);
@@ -164,7 +164,7 @@ int 	DWC_GetGHTTPDataEx2( const char* url, int bufferlen, BOOL buffer_clear, DWC
 void    DWC_CancelGHTTPRequest(int req);
 
 /**
- * ’ÊMó‘Ô‚ÌŠm”F
+ * é€šä¿¡çŠ¶æ…‹ã®ç¢ºèª
  */
 DWCGHTTPState DWC_GetGHTTPState( int req );
 

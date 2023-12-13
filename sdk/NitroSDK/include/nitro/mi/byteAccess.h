@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.7  2005/03/01 01:57:00  yosizaki
-  copyright の年を修正.
+  copyright 縺ｮ蟷ｴ繧剃ｿｮ豁｣.
 
   Revision 1.6  2005/02/28 05:26:02  yosizaki
   do-indent.
@@ -33,7 +33,7 @@
   only add comment
 
   Revision 1.1  2004/03/30 11:00:48  yada
-  バイトアクセス関数をARM7専用から共通に
+  繝舌う繝医い繧ｯ繧ｻ繧ｹ髢｢謨ｰ繧但RM7蟆ら畑縺九ｉ蜈ｱ騾壹↓
 
   Revision 1.1  2004/03/23 00:54:26  yada
   first release

@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_051.s
- *@brief	�퓬�V�[�P���X
- *			���΂ꂽ��̂�����ǉ����ʃV�[�P���X
+ *@brief	戦闘シーケンス
+ *			あばれた後のこんらん追加効果シーケンス
  *@author	HisashiSogabe
  *@data		2006.01.17
  *
@@ -15,11 +15,11 @@
 	.include	"waza_seq_def.h"
 
 SUB_051:
-	//�Z���ʂɂ��ǉ����ʃt���O��ݒ�
+	//技効果による追加効果フラグを設定
 	VALUE		VAL_SET,BUF_PARA_TSUIKA_TYPE,ADD_STATUS_WAZA_KOUKA
-	//������ǉ��V�[�P���X���R�[��
+	//こんらん追加シーケンスをコール
 	GOSUB		SUB_SEQ_KONRAN
-	//�����񂵂Ă��Ȃ�������A���b�Z�[�W�\�����Ȃ�
+	//こんらんしていなかったら、メッセージ表示しない
 	IF_PSP		IF_FLAG_NBIT,SIDE_TSUIKA,ID_PSP_condition2,CONDITION2_KONRAN,SUB_051_END
 	MESSAGE		AbareruEndMineMsg,TAG_NICK,SIDE_TSUIKA
 	SERVER_WAIT

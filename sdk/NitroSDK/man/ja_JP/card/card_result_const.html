@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>CARDResult</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">CARDResult</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -34,68 +34,68 @@
   </dd>
 </dl>
 
-<H2>����</H2>
-<P>CARD ROM �f�o�C�X����уo�b�N�A�b�v�f�o�C�X�փA�N�Z�X����֐��̏������ʂ�\���񋓒萔�������܂��B<BR>
-�e�l�̈Ӗ��͈ȉ��̒ʂ�ł��B<BR>
+<H2>説明</H2>
+<P>CARD ROM デバイスおよびバックアップデバイスへアクセスする関数の処理結果を表す列挙定数を示します。<BR>
+各値の意味は以下の通りです。<BR>
 <TABLE border="0">
   <TBODY>
     <TR>
-      <TD>�l</TD>
-      <TD>�Ӗ�</TD>
+      <TD>値</TD>
+      <TD>意味</TD>
     </TR>
     <TR>
       <TD>CARD_RESULT_SUCCESS</TD>
-      <TD>�֐��̏������A�����������������Ƃ�\���܂��B<BR>
-	  �܂��ACARD_VerifyBackup�֐��̂悤�ɏ����̌��ʂ��^���l�œ�����ꍇ�́u�^�v��\���܂��B
+      <TD>関数の処理が、正しく完了したことを表します。<BR>
+	  また、CARD_VerifyBackup関数のように処理の結果が真理値で得られる場合の「真」を表します。
 	  </TD>
     </TR>
     <TR>
       <TD>CARD_RESULT_FAILURE</TD>
-      <TD>�֐��̏������A�\�z�����͈͓��ɂ����Ď��s�������Ƃ�\���܂��B<BR>
-	  ����́ACARD_VerifyBackup�֐��̂悤�ɏ����̌��ʂ��^���l�œ�����ꍇ�́u�U�v��\���܂��B
+      <TD>関数の処理が、予想される範囲内において失敗したことを表します。<BR>
+	  これは、CARD_VerifyBackup関数のように処理の結果が真理値で得られる場合の「偽」を表します。
 	  </TD>
     </TR>
     <TR>
       <TD>CARD_RESULT_INVALID_PARAM</TD>
-      <TD>�֐��ɗ^����ꂽ�������ُ�Ȃ��߂ɏ������s���Ȃ��������Ƃ�\���܂��B
+      <TD>関数に与えられた引数が異常なために処理が行われなかったことを表します。
 	  </TD>
     </TR>
     <TR>
       <TD>CARD_RESULT_UNSUPPORTED</TD>
-      <TD>����CARD_IdentifyBackup�֐��œ��肳��Ă���f�o�C�X�ɓ��ڂ���Ă��Ȃ�<BR>
-	  �@�\���g�p�����֐��̂��߁A�������s���Ȃ��������Ƃ�\���܂��B<BR>
-	  ����́A�f�o�C�X�^�C�v���w�肵�Ă��Ȃ���CARD_BACKUP_TYPE_NOT_USE���w�肵���ꍇ�ɔ������܂��B
+      <TD>現在CARD_IdentifyBackup関数で特定されているデバイスに搭載されていない<BR>
+	  機能を使用した関数のため、処理が行われなかったことを表します。<BR>
+	  これは、デバイスタイプを指定していないかCARD_BACKUP_TYPE_NOT_USEを指定した場合に発生します。
       </TD>
     <TR>
       <TD>CARD_RESULT_TIMEOUT</TD>
-      <TD>�҂����Ԃ𔺂��֐����K��̎��Ԃ��z���Ē��~���ꂽ���Ƃ�\���܂��B<BR>
-	  ����́A���ڃf�o�C�X�̎����܂��͌̏�ɂ���Ĕ�������ꍇ������܂��B<br>
+      <TD>待ち時間を伴う関数が規定の時間を越えて中止されたことを表します。<BR>
+	  これは、搭載デバイスの寿命または故障によって発生する場合があります。<br>
 	  <font color="#800000">
-	  �҂����Ԃ𔺂��S�Ă̊֐��͓����ŏ[���ȉ񐔂̍Ď��s���s���܂��̂ŁA<br>
-	  ���̕Ԃ�l���󂯂ă��[�U�A�v���P�[�V�������ŉ��߂čĎ��s����K�v�͂���܂���B</font>
+	  待ち時間を伴う全ての関数は内部で充分な回数の再試行を行いますので、<br>
+	  この返り値を受けてユーザアプリケーション側で改めて再試行する必要はありません。</font>
 	  </TD>
     </TR>
     <TR>
       <TD>CARD_RESULT_NO_RESPONSE</TD>
-      <TD>���ڃf�o�C�X����ԉ�������Ԃ��Ȃ����߂ɏ��������s�������Ƃ�\���܂��B<BR>
-	  ����́ANITRO-CARD�Ɩ{�̂̊Ԃł̐ڐG�s�ǂ��܂��͓��ڃf�o�C�X�̌̏�ɂ���Ĕ�������ꍇ������܂��B
+      <TD>搭載デバイスが状態応答すら返さないために処理が失敗したことを表します。<BR>
+	  これは、NITRO-CARDと本体の間での接触不良かまたは搭載デバイスの故障によって発生する場合があります。
 	  </TD>
     </TR>
     <TR>
       <TD>CARD_RESULT_CANCELED</TD>
-      <TD>�҂����Ԃ𔺂��֐��̏�����<a href="backup/CARD_CancelBackupAsync.html">CARD_CancelBackupAsync</a>�֐��ɂ���Ē��~���ꂽ���Ƃ�\���܂��B
+      <TD>待ち時間を伴う関数の処理が<a href="backup/CARD_CancelBackupAsync.html">CARD_CancelBackupAsync</a>関数によって中止されたことを表します。
 	  </TD>
     </TR>
     <TR>
       <TD>CARD_RESULT_ERROR</TD>
-      <TD>��L������ɂ��Y�����Ȃ����̑��ُ̈�ŏ��������s�������Ƃ�\���܂��B
+      <TD>上記いずれにも該当しないその他の異常で処理が失敗したことを表します。
 	  </TD>
     </TR>
   </TBODY>
 </TABLE>
 <BR>
 </P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="common/CARD_IdentifyBackup.html">CARD_IdentifyBackup</A> 
 <A href="common/CARD_GetResultCode.html">CARD_GetResultCode</A> 
@@ -107,12 +107,12 @@
 <a href="backup/CARD_CancelBackupAsync.html">CARD_CancelBackupAsync</a> 
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/09/02 CARD_RESULT_NO_RESPONSE�����CARD_RESULT_CANCELED��ǉ�<BR>
-2005/04/05 CARD_RESULT_TIMEOUT�̐�����CARD���̂̐ڐG�s�ǂɂ��Ă̋L�q��ǉ�<BR>
-2004/08/23 ���C�u���������ōĎ��s����|�̐�����ǉ�<BR>
-2004/07/28 ����<BR>
+2005/09/02 CARD_RESULT_NO_RESPONSEおよびCARD_RESULT_CANCELEDを追加<BR>
+2005/04/05 CARD_RESULT_TIMEOUTの説明にCARD自体の接触不良についての記述を追加<BR>
+2004/08/23 ライブラリ内部で再試行する旨の説明を追加<BR>
+2004/07/28 初版<BR>
 </P>
 </body>
 </html>

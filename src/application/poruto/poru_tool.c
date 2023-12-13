@@ -1,6 +1,6 @@
 /**
  *	@file	poru_tool.c
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX•ƒfƒ‚ƒRƒ“ƒgƒ[ƒ‰(í’“)
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ï¼†ãƒ‡ãƒ¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©(å¸¸é§)
  *	@date	06.03.01
  *	@author	Miyuki Iwasawa
  */
@@ -23,7 +23,7 @@
 #include "porusys.h"
 #include "porudemo.h"
 
-//ƒf[ƒ^’è‹`
+//ãƒ‡ãƒ¼ã‚¿å®šç¾©
 #include "porudata.dat"
 
 #define BUFSIZ_PLVMSG	(10)
@@ -40,21 +40,21 @@ typedef enum{
  SEQ_FINISH,
 };
 
-///ƒ|ƒ‹ƒgƒRƒ“ƒgƒ[ƒ‰ƒƒCƒ“ƒ[ƒN
+///ãƒãƒ«ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 typedef struct _PORUTO_MAIN_DAT{
-	int heapID;	///<ƒq[ƒvID
-	int seq;	///<ƒV[ƒPƒ“ƒX§Œä
+	int heapID;	///<ãƒ’ãƒ¼ãƒ—ID
+	int seq;	///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ¶å¾¡
 	
 	u8	pokePos;
 	u8	pokePara;
 	u16	pokeNo;
 	PORUTO_PARAM* param;
 
-	void *app_work;	///<ƒTƒuƒvƒƒZƒX—pƒ[ƒN
-	PROC*	proc;	///<ƒTƒuƒvƒƒZƒXƒ[ƒN
+	void *app_work;	///<ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ç”¨ãƒ¯ãƒ¼ã‚¯
+	PROC*	proc;	///<ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯
 }PORUTO_MAIN_DAT;
 
-///ƒI[ƒo[ƒŒƒCƒvƒƒZƒX’è‹`
+///ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©
 static PROC_RESULT PoruSys_Init(PROC* proc,int* seq);
 static PROC_RESULT PoruSys_Main(PROC* proc,int* seq);
 static PROC_RESULT PoruSys_End(PROC* proc,int* seq);
@@ -68,7 +68,7 @@ const PROC_DATA PorutoSysProcData = {
 
 static void PoruSys_SaveDataPut(PORUTO_MAIN_DAT* wk);
 //==============================================================
-//ƒTƒuƒV[ƒPƒ“ƒXƒvƒƒgƒ^ƒCƒv
+//ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 static int seq_CaseInit(PORUTO_MAIN_DAT* wk);
 static int seq_CaseWait(PORUTO_MAIN_DAT* wk);
 static int seq_PokeListWait(PORUTO_MAIN_DAT* wk);
@@ -79,9 +79,9 @@ static int seq_PokeConditionCall(PORUTO_MAIN_DAT* wk);
 static int seq_PokeConditionWait(PORUTO_MAIN_DAT* wk);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒVƒXƒeƒ€ŒÄ‚Ño‚µƒ[ƒNƒf[ƒ^ì¬
+ *	@brief	ãƒãƒ«ãƒˆã‚·ã‚¹ãƒ†ãƒ å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	–•K‚¸ PorutoSys_ReleaseCallWork()ŠÖ”‚Å‰ğ•ú‚·‚é‚±‚ÆI
+ *	ï¼Šå¿…ãš PorutoSys_ReleaseCallWork()é–¢æ•°ã§è§£æ”¾ã™ã‚‹ã“ã¨ï¼
  */
 PORUTO_PARAM* PorutoSys_CreateCallWork(SAVEDATA* savedata,int heapID)
 {
@@ -97,7 +97,7 @@ PORUTO_PARAM* PorutoSys_CreateCallWork(SAVEDATA* savedata,int heapID)
 	wk = sys_AllocMemory(heapID,sizeof(PORUTO_PARAM));
 	MI_CpuClear8(wk,sizeof(PORUTO_PARAM));
 
-	//ƒZ[ƒuƒf[ƒ^ƒuƒƒbƒNæ“¾
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯å–å¾—
 	wk->poruSave = SaveData_GetPorutoBlock(savedata);
 	wk->mySave = SaveData_GetMyStatus(savedata);
 	wk->ppSave = SaveData_GetTemotiPokemon(savedata);
@@ -117,7 +117,7 @@ PORUTO_PARAM* PorutoSys_CreateCallWork(SAVEDATA* savedata,int heapID)
 	wset = WORDSET_CreateEx(1,WORDSET_DEFAULT_BUFLEN,heapID);	
 
 
-	//ƒ|ƒ‹ƒgƒf[ƒ^æ“¾
+	//ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
 	for(i = 0;i < PORUTO_STOCK_MAX;i++){
 		PORUTO_GetData(wk->poruSave,i,dat);
 
@@ -126,7 +126,7 @@ PORUTO_PARAM* PorutoSys_CreateCallWork(SAVEDATA* savedata,int heapID)
 		}
 		PorutoData_GetParamArray(dat,param);
 
-		//Šeíƒf[ƒ^æ“¾
+		//å„ç¨®ãƒ‡ãƒ¼ã‚¿å–å¾—
 		pl = &(wk->list[ct]);
 		
 		pl->id = i;
@@ -137,7 +137,7 @@ PORUTO_PARAM* PorutoSys_CreateCallWork(SAVEDATA* savedata,int heapID)
 #if 0
 		pl->lvbuf = STRBUF_Create(BUFSIZ_PLVMSG,heapID);
 
-		//ƒ|ƒ‹ƒgƒŒƒxƒ‹•¶š—ñ“WŠJ
+		//ãƒãƒ«ãƒˆãƒ¬ãƒ™ãƒ«æ–‡å­—åˆ—å±•é–‹
 		WORDSET_RegisterNumber(wset,0,pl->level,2,
 				NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );
 		WORDSET_ExpandStr(wset,pl->lvbuf,lvbuf);
@@ -154,18 +154,18 @@ PORUTO_PARAM* PorutoSys_CreateCallWork(SAVEDATA* savedata,int heapID)
 		pl->next = pl->prev = 0xFF;
 	}
 
-	//ƒ[ƒN‰ğ•ú
+	//ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	WORDSET_Delete(wset);
 	sys_FreeMemoryEz(dat);
 //	STRBUF_Delete(lvbuf);
 	
-	wk->porunum = ct;	//ƒ|ƒ‹ƒg‰Šú”æ“¾
-	wk->ret_view = 5;	//ƒ|ƒ‹ƒgƒP[ƒX‰Šúƒ\[ƒgƒ‚[ƒh(‚º‚ñ‚Ô)
+	wk->porunum = ct;	//ãƒãƒ«ãƒˆåˆæœŸæ•°å–å¾—
+	wk->ret_view = 5;	//ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹åˆæœŸã‚½ãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰(ãœã‚“ã¶)
 	return wk;
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒXŒÄ‚Ño‚µƒ[ƒN‚ğ‰ğ•ú‚·‚é
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾ã™ã‚‹
  */
 void PorutoSys_ReleaseCallWork(PORUTO_PARAM* pp)
 {
@@ -183,8 +183,8 @@ void PorutoSys_ReleaseCallWork(PORUTO_PARAM* pp)
 
 //------------------------------------------------------
 /**
- *	@brief	ƒTƒuƒvƒƒZƒXŒÄ‚Ño‚µˆ—
- *	@param	proc	ƒTƒuƒvƒƒZƒXƒ|ƒCƒ“ƒ^
+ *	@brief	ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹å‘¼ã³å‡ºã—å‡¦ç†
+ *	@param	proc	ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------
 static BOOL PorutoSysProcCall(PROC** proc)
@@ -200,17 +200,17 @@ static BOOL PorutoSysProcCall(PROC** proc)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒVƒXƒeƒ€ŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒ«ãƒˆã‚·ã‚¹ãƒ†ãƒ å‘¼ã³å‡ºã—
  **/
 static PROC_RESULT PoruSys_Init(PROC* proc,int* seq)
 {
 	PORUTO_MAIN_DAT* wk = NULL;
 	void* pp = PROC_GetParentWork(proc);
 
-	//ƒ[ƒNƒGƒŠƒAæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢å–å¾—
 	HeapStatePush();
 
-	//ƒq[ƒvì¬
+	//ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap(HEAPID_BASE_APP,HEAPID_PORUTO,0x1000);
 	
 	wk = PROC_AllocWork(proc,sizeof(PORUTO_MAIN_DAT),HEAPID_PORUTO);
@@ -218,14 +218,14 @@ static PROC_RESULT PoruSys_Init(PROC* proc,int* seq)
 
 	//
 	wk->heapID = HEAPID_PORUTO;
-	//ãˆÊƒ[ƒNƒ|ƒCƒ“ƒ^•Û‘¶
+	//ä¸Šä½ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ä¿å­˜
 	wk->param = pp;
 
 	return PROC_RES_FINISH;
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒRƒ“ƒgƒ[ƒ‰ƒƒCƒ“
+ *	@brief	ãƒãƒ«ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¡ã‚¤ãƒ³
  */
 static PROC_RESULT PoruSys_Main(PROC* proc,int* seq)
 {
@@ -264,16 +264,16 @@ static PROC_RESULT PoruSys_Main(PROC* proc,int* seq)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒRƒ“ƒgƒ[ƒ‰I—¹
+ *	@brief	ãƒãƒ«ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©çµ‚äº†
  */
 static PROC_RESULT	PoruSys_End(PROC* proc,int* seq)
 {
 	PORUTO_MAIN_DAT* wk = (PORUTO_MAIN_DAT*)PROC_GetWork(proc);
 
-	//ƒZ[ƒuƒf[ƒ^”½‰f
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿åæ˜ 
 	PoruSys_SaveDataPut(wk);
 
-	//ƒ[ƒN‰ğ•ú
+	//ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	PROC_FreeWork(proc);
 	
 	HeapStatePop();
@@ -284,7 +284,7 @@ static PROC_RESULT	PoruSys_End(PROC* proc,int* seq)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒZ[ƒuƒf[ƒ^‘‚«o‚µ
+ *	@brief	ãƒãƒ«ãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
  */
 static void PoruSys_SaveDataPut(PORUTO_MAIN_DAT* wk)
 {
@@ -294,7 +294,7 @@ static void PoruSys_SaveDataPut(PORUTO_MAIN_DAT* wk)
 	for(i = 0;i < wk->param->porunum;i++){
 		pl = &wk->param->list[i];
 		
-		if(pl->del){	//ƒf[ƒ^íœ
+		if(pl->del){	//ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
 			PORUTO_DelData(wk->param->poruSave,pl->id);
 			flag = 1;
 		}
@@ -302,19 +302,19 @@ static void PoruSys_SaveDataPut(PORUTO_MAIN_DAT* wk)
 	if(!flag){
 		return;
 	}
-	//ƒf[ƒ^®—
+	//ãƒ‡ãƒ¼ã‚¿æ•´ç†
 	PORUTO_DataAdjust(wk->param->poruSave);
 }
 
 //============================================================
-//ƒTƒuƒV[ƒPƒ“ƒX
+//ã‚µãƒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒX‰Šú‰»
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹åˆæœŸåŒ–
  */
 static int seq_CaseInit(PORUTO_MAIN_DAT* wk)
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(porutocase);
 
 	static const PROC_DATA CaseProcData = {
@@ -330,7 +330,7 @@ static int seq_CaseInit(PORUTO_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒXI—¹‘Ò‚¿
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹çµ‚äº†å¾…ã¡
  */
 static int seq_CaseWait(PORUTO_MAIN_DAT* wk)
 {
@@ -338,14 +338,14 @@ static int seq_CaseWait(PORUTO_MAIN_DAT* wk)
 	if(!PorutoSysProcCall(&wk->proc)){
 		return SEQ_CASE_WAIT;
 	}
-	//I—¹•ªŠò
+	//çµ‚äº†åˆ†å²
 	if(wk->param->ret_mode == PCASE_RET_CANCEL){
 		return SEQ_FINISH;
 	}
-	//ƒŠƒ^[ƒ“ƒ‚[ƒh‚ğˆê’UƒNƒŠƒA
+	//ãƒªã‚¿ãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã‚’ä¸€æ—¦ã‚¯ãƒªã‚¢
 	wk->param->ret_mode = 0;
 
-	//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
+	//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
 	pld = sys_AllocMemory( wk->heapID, sizeof(PLIST_DATA) );
 	MI_CpuClear8( pld,sizeof(PLIST_DATA) );
 	pld->pp = wk->param->ppSave;
@@ -361,7 +361,7 @@ static int seq_CaseWait(PORUTO_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹‘Ò‚¿
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å¾…ã¡
  */
 static int seq_PokeListWait(PORUTO_MAIN_DAT* wk)
 {
@@ -369,8 +369,8 @@ static int seq_PokeListWait(PORUTO_MAIN_DAT* wk)
 	PLIST_DATA *pld;
 	PSTATUS_DATA* psd;
 	static const u8 PST_PageTbl[] = {
-		PST_PAGE_CONDITION,	// uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
-		PST_PAGE_RET,			// u‚à‚Ç‚év
+		PST_PAGE_CONDITION,	// ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
+		PST_PAGE_RET,			// ã€Œã‚‚ã©ã‚‹ã€
 		PST_PAGE_MAX
 	};
 	
@@ -378,17 +378,17 @@ static int seq_PokeListWait(PORUTO_MAIN_DAT* wk)
 		return SEQ_PSEL_WAIT;
 	}
 	
-	//–ß‚è’lƒ`ƒFƒbƒN
+	//æˆ»ã‚Šå€¤ãƒã‚§ãƒƒã‚¯
 	pld = (PLIST_DATA*)wk->app_work;
 	pos = pld->ret_sel;
-	wk->pokePos = pos;	///è‚¿ƒiƒ“ƒo[•Û‘¶
+	wk->pokePos = pos;	///æ‰‹æŒã¡ãƒŠãƒ³ãƒãƒ¼ä¿å­˜
 	sys_FreeMemoryEz(wk->app_work);
 	
 	if(pos == PL_SEL_POS_EXIT){
-		return SEQ_CASE_INIT;	//ƒ|ƒ‹ƒgƒP[ƒX‚É–ß‚é
+		return SEQ_CASE_INIT;	//ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã«æˆ»ã‚‹
 	}
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‚ğŒÄ‚Ño‚·
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å‘¼ã³å‡ºã™
 	//
 	psd = sys_AllocMemory( wk->heapID, sizeof(PSTATUS_DATA) );
 
@@ -411,7 +411,7 @@ static int seq_PokeListWait(PORUTO_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXI—¹‘Ò‚¿
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çµ‚äº†å¾…ã¡
  */
 static int seq_PokeStatusWait(PORUTO_MAIN_DAT* wk)
 {
@@ -422,34 +422,34 @@ static int seq_PokeStatusWait(PORUTO_MAIN_DAT* wk)
 		return SEQ_PST_WAIT;
 	}
 	
-	//–ß‚è’lƒ`ƒFƒbƒN
+	//æˆ»ã‚Šå€¤ãƒã‚§ãƒƒã‚¯
 	psd = (PSTATUS_DATA*)wk->app_work;
 	ret = psd->ret_mode;
 	
-	//ƒ|ƒPƒ‚ƒ“‚ªØ‚è‘Ö‚¦‚ç‚ê‚½‚Ì‚ğƒ`ƒFƒbƒN‚·‚é
-	wk->pokePos = psd->pos;	///è‚¿ƒiƒ“ƒo[•Û‘¶
+	//ãƒã‚±ãƒ¢ãƒ³ãŒåˆ‡ã‚Šæ›¿ãˆã‚‰ã‚ŒãŸã®ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+	wk->pokePos = psd->pos;	///æ‰‹æŒã¡ãƒŠãƒ³ãƒãƒ¼ä¿å­˜
 	
 	sys_FreeMemoryEz(wk->app_work);
 	
 	if(ret == PST_RET_CANCEL){
-		return SEQ_CASE_INIT;	//ƒ|ƒ‹ƒgƒP[ƒX‚É–ß‚é
+		return SEQ_CASE_INIT;	//ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹ã«æˆ»ã‚‹
 	}
 
-	//‘I‘ğ‚³‚ê‚½ƒ|ƒ‹ƒg‚ğÁ”ï‚·‚é
+	//é¸æŠã•ã‚ŒãŸãƒãƒ«ãƒˆã‚’æ¶ˆè²»ã™ã‚‹
 	wk->param->list[wk->param->selID].del = 1;
-	//ƒŠƒ^[ƒ“ƒ‚[ƒh‚É1‚ğŠi”[
+	//ãƒªã‚¿ãƒ¼ãƒ³ãƒ¢ãƒ¼ãƒ‰ã«1ã‚’æ ¼ç´
 	wk->param->ret_mode = 1;
-	//ƒ|ƒ‹ƒg‚ğ—^‚¦‚éƒfƒ‚‚ğŒÄ‚Ño‚·
+	//ãƒãƒ«ãƒˆã‚’ä¸ãˆã‚‹ãƒ‡ãƒ¢ã‚’å‘¼ã³å‡ºã™
 	//
 	return SEQ_DEMO_CALL;
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚ŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢å‘¼ã³å‡ºã—
  */
 static int seq_PoruDemoCall(PORUTO_MAIN_DAT* wk)
 {
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(porutocase);
 	static const PROC_DATA DemoProcData = {
 		PoruDemo_Init,
@@ -463,7 +463,7 @@ static int seq_PoruDemoCall(PORUTO_MAIN_DAT* wk)
 	prm = sys_AllocMemory(wk->heapID,sizeof(PORUDEMO_PARAM));
 	MI_CpuClear8(prm,sizeof(PORUDEMO_PARAM));
 	
-	//ˆø“n‚µƒpƒ‰ƒ[ƒ^æ“¾
+	//å¼•æ¸¡ã—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	prm->flavor = wk->param->list[wk->param->selID].flavor;
 	prm->poruto = PORUTO_GetDataAlloc(wk->param->poruSave,
 		wk->param->list[wk->param->selID].id,wk->heapID);
@@ -471,7 +471,7 @@ static int seq_PoruDemoCall(PORUTO_MAIN_DAT* wk)
 	prm->msg_spd = CONFIG_GetMsgPrintSpeed(wk->param->configSave);
 	prm->win_type = CONFIG_GetWindowType(wk->param->configSave);
 
-	//ƒvƒƒZƒXƒR[ƒ‹
+	//ãƒ—ãƒ­ã‚»ã‚¹ã‚³ãƒ¼ãƒ«
 	wk->proc = PROC_Create(&DemoProcData,prm,wk->heapID);
 	wk->app_work = prm;
 
@@ -479,7 +479,7 @@ static int seq_PoruDemoCall(PORUTO_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒfƒ‚I—¹‘Ò‚¿
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¢çµ‚äº†å¾…ã¡
  */
 static int seq_PoruDemoWait(PORUTO_MAIN_DAT* wk)
 {
@@ -488,7 +488,7 @@ static int seq_PoruDemoWait(PORUTO_MAIN_DAT* wk)
 	if(!PorutoSysProcCall(&wk->proc)){
 		return SEQ_DEMO_WAIT;
 	}
-	//ƒ[ƒN‰ğ•ú
+	//ãƒ¯ãƒ¼ã‚¯è§£æ”¾
 	prm = (PORUDEMO_PARAM*)wk->app_work;
 	sys_FreeMemoryEz(prm->poruto);
 	sys_FreeMemoryEz(prm);
@@ -496,7 +496,7 @@ static int seq_PoruDemoWait(PORUTO_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒRƒ“ƒfƒBƒVƒ‡ƒ“ŒÄ‚Ño‚µ
+ *	@brief	ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å‘¼ã³å‡ºã—
  */
 static int seq_PokeConditionCall(PORUTO_MAIN_DAT* wk)
 {
@@ -505,14 +505,14 @@ static int seq_PokeConditionCall(PORUTO_MAIN_DAT* wk)
 	PORUTO_DATA*	dat;
 
 	static const u8 PST_PageTbl[] = {
-		PST_PAGE_CONDITION,	// uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
+		PST_PAGE_CONDITION,	// ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
 		PST_PAGE_MAX
 	};
 	
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‚ğŒÄ‚Ño‚·(ƒRƒ“ƒfƒBƒVƒ‡ƒ“•Ï‰»)
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å‘¼ã³å‡ºã™(ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³å¤‰åŒ–)
 	//
 	psd = sys_AllocMemory( wk->heapID, sizeof(PSTATUS_DATA) );
-	//ƒ|ƒ‹ƒgƒpƒ‰ƒ[ƒ^‚ğƒ|ƒPƒ‚ƒ“‚É”½‰f
+	//ãƒãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒã‚±ãƒ¢ãƒ³ã«åæ˜ 
 	dat = PORUTO_GetDataAlloc(wk->param->poruSave,
 			wk->param->list[wk->param->selID].id,wk->heapID);
 
@@ -536,7 +536,7 @@ static int seq_PokeConditionCall(PORUTO_MAIN_DAT* wk)
 }
 
 /**
- *	@brief	ƒRƒ“ƒfƒBƒVƒ‡ƒ“•\¦I—¹‘Ò‚¿
+ *	@brief	ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³è¡¨ç¤ºçµ‚äº†å¾…ã¡
  */
 static int seq_PokeConditionWait(PORUTO_MAIN_DAT* wk)
 {
@@ -552,7 +552,7 @@ static int seq_PokeConditionWait(PORUTO_MAIN_DAT* wk)
 	sys_FreeMemoryEz(wk->app_work);
 
 #if 0
-	//ƒ|ƒ‹ƒgƒpƒ‰ƒ[ƒ^‚ğƒ|ƒPƒ‚ƒ“‚É”½‰f
+	//ãƒãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒã‚±ãƒ¢ãƒ³ã«åæ˜ 
 	dat = PORUTO_GetDataAlloc(wk->param->poruSave,
 			wk->param->list[wk->param->selID].id,wk->heapID);
 	PoruSys_PoruPara2Poke(dat,
@@ -560,16 +560,16 @@ static int seq_PokeConditionWait(PORUTO_MAIN_DAT* wk)
 	sys_FreeMemoryEz(dat);
 #endif
 
-	//ƒ|ƒ‹ƒgƒŠƒXƒg‚Ö–ß‚é
+	//ãƒãƒ«ãƒˆãƒªã‚¹ãƒˆã¸æˆ»ã‚‹
 	return SEQ_CASE_INIT;
 }
 
 //======================================================
-//ŠO•”ŒöŠJŠÖ”
+//å¤–éƒ¨å…¬é–‹é–¢æ•°
 //======================================================
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒf[ƒ^‚Æ«Ši‚©‚ç‚»‚Ìƒ|ƒ‹ƒg‚ğD‚«‚©Œ™‚¢‚©•Ô‚·
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ã¨æ€§æ ¼ã‹ã‚‰ãã®ãƒãƒ«ãƒˆã‚’å¥½ãã‹å«Œã„ã‹è¿”ã™
  */
 PORU_FAVOLITE PoruSys_IsFavolite(PORUTO_DATA *dat,u8 seikaku)
 {
@@ -581,11 +581,11 @@ PORU_FAVOLITE PoruSys_IsFavolite(PORUTO_DATA *dat,u8 seikaku)
 	kid = poruto_f2char[seikaku][1];
 
 	if(sid == PORUTO_FTYPE_MIX){
-		//D‚«Œ™‚¢‚È‚µ
+		//å¥½ãå«Œã„ãªã—
 		return PORU_FAVOLITE_NRM;
 	}
 
-	//ƒ|ƒ‹ƒgƒpƒ‰ƒ[ƒ^æ“¾
+	//ãƒãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	PorutoData_GetParamArray(dat,prm);
 	flavor = prm[PORUTO_PARAID_FLAVOR];
 
@@ -603,18 +603,18 @@ PORU_FAVOLITE PoruSys_IsFavolite(PORUTO_DATA *dat,u8 seikaku)
 }
 
 /**
- *	@brief	«Ši‚©‚ç‚Ç‚Ì–¡‚ªD‚«‚©Œ™‚¢‚©•Ô‚·
+ *	@brief	æ€§æ ¼ã‹ã‚‰ã©ã®å‘³ãŒå¥½ãã‹å«Œã„ã‹è¿”ã™
  *
- *	@param	ƒ|ƒPƒ‚ƒ“‚Ì«ŠiNo
- *	@param	mode	PORU_FAVOLITE_SUKI:D‚«‚È–¡ƒ^ƒCƒv‚ğ•Ô‚·
- *					PORU_FAVOLITE_KIRAI:ƒLƒ‰ƒC‚È–¡ƒ^ƒCƒv‚ğ•Ô‚·
+ *	@param	ãƒã‚±ãƒ¢ãƒ³ã®æ€§æ ¼No
+ *	@param	mode	PORU_FAVOLITE_SUKI:å¥½ããªå‘³ã‚¿ã‚¤ãƒ—ã‚’è¿”ã™
+ *					PORU_FAVOLITE_KIRAI:ã‚­ãƒ©ã‚¤ãªå‘³ã‚¿ã‚¤ãƒ—ã‚’è¿”ã™
  *
- *	@retval	PORUTO_FTYPE_SPICY	h‚¢
- *	@retval	PORUTO_FTYPE_ASTR	‚µ‚Ô‚¢
- *	@retval	PORUTO_FTYPE_SWEET	‚ ‚Ü‚¢
- *	@retval	PORUTO_FTYPE_BITTER	‹ê‚¢
- *	@retval	PORUTO_FTYPE_SOUR	‚·‚Á‚Ï‚¢
- *	@retval	PORUTO_FTYPE_MIX	D‚«Œ™‚¢‚ª‚È‚¢
+ *	@retval	PORUTO_FTYPE_SPICY	è¾›ã„
+ *	@retval	PORUTO_FTYPE_ASTR	ã—ã¶ã„
+ *	@retval	PORUTO_FTYPE_SWEET	ã‚ã¾ã„
+ *	@retval	PORUTO_FTYPE_BITTER	è‹¦ã„
+ *	@retval	PORUTO_FTYPE_SOUR	ã™ã£ã±ã„
+ *	@retval	PORUTO_FTYPE_MIX	å¥½ãå«Œã„ãŒãªã„
  */
 u8	PoruSys_GetFavolite(u8 seikaku,PORU_FAVOLITE mode)
 {
@@ -627,7 +627,7 @@ u8	PoruSys_GetFavolite(u8 seikaku,PORU_FAVOLITE mode)
 }
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒpƒ‰ƒ[ƒ^‚ğƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚ÉPush‚·‚é
+ *	@brief	ãƒãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«Pushã™ã‚‹
  */
 void PoruSys_PoruPara2Poke(PORUTO_DATA* dat,POKEMON_PARAM* poke)
 {
@@ -639,38 +639,38 @@ void PoruSys_PoruPara2Poke(PORUTO_DATA* dat,POKEMON_PARAM* poke)
 	u8	prm[PORUTO_PARAID_NUM];
 	u8	up[PORUTO_PARAID_NUM];
 	
-	//«ŠiNoæ“¾
+	//æ€§æ ¼Noå–å¾—
 	seikaku = PokeSeikakuGet(poke);
 	sid = poruto_f2char[seikaku][0];
 	kid = poruto_f2char[seikaku][1];
 
-	//Œ»İ’læ“¾
+	//ç¾åœ¨å€¤å–å¾—
 	PorutoData_GetParamArray(dat,prm);
 	
 	for(i = 0;i<6;i++){
 		pokeprm[i] = PokeParaGet(poke,ID_PARA_style+i,NULL);
 	}
 	/*
-	ID_PARA_style,				//‚©‚Á‚±‚æ‚³
-	ID_PARA_beautiful,			//‚¤‚Â‚­‚µ‚³
-	ID_PARA_cute,				//‚©‚í‚¢‚³
-	ID_PARA_clever,				//‚©‚µ‚±‚³
-	ID_PARA_strong,				//‚½‚­‚Ü‚µ‚³
-	ID_PARA_fur,				//–Ñ‰
+	ID_PARA_style,				//ã‹ã£ã“ã‚ˆã•
+	ID_PARA_beautiful,			//ã†ã¤ãã—ã•
+	ID_PARA_cute,				//ã‹ã‚ã„ã•
+	ID_PARA_clever,				//ã‹ã—ã“ã•
+	ID_PARA_strong,				//ãŸãã¾ã—ã•
+	ID_PARA_fur,				//æ¯›è‰¶
 	*/
-	//ã¸’læ“¾
+	//ä¸Šæ˜‡å€¤å–å¾—
 	ct = 0;
 	for(i = PORUTO_PARAID_SPICY;i <= PORUTO_PARAID_TASTE;i++){
 		up[ct++] = prm[i];	
 	}
-	//D‚«Œ™‚¢ƒpƒ‰ƒ[ƒ^•â³
+	//å¥½ãå«Œã„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è£œæ­£
 	if(sid != PORUTO_FTYPE_MIX){
 		ftmp = (float)up[sid]*1.1f;
 		up[sid] = (u8)ftmp;	
 		ftmp = (float)up[kid]*0.9f;
 		up[kid] = (u8)ftmp;
 	}
-	//ƒpƒ‰ƒ[ƒ^‰ÁZ
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿åŠ ç®—
 	for(i = 0;i < 6;i++){
 		pokeprm[i] += up[i];
 		if(pokeprm[i] > 255){
@@ -678,7 +678,7 @@ void PoruSys_PoruPara2Poke(PORUTO_DATA* dat,POKEMON_PARAM* poke)
 		}
 		PokeParaPut(poke,ID_PARA_style+i,&pokeprm[i]);
 	}
-	//‰ù‚«“xã¸(ˆê—¥1+)
+	//æ‡ãåº¦ä¸Šæ˜‡(ä¸€å¾‹1+)
 	friend = PokeParaGet(poke,ID_PARA_friend,NULL);	
 	if(friend < 255){
 		++friend;

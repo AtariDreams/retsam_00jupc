@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_big_sub.c
- *	@brief		‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê
+ *	@brief		ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢
  *	@author		tomoya takahashi 
  *	@data		2006.01.21
  *
@@ -34,27 +34,27 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define ZKN_BIG_SUB_EVENT_NUM ( 2 )	// ƒCƒxƒ“ƒg”
+#define ZKN_BIG_SUB_EVENT_NUM ( 2 )	// ã‚¤ãƒ™ãƒ³ãƒˆæ•°
 #define ZKN_BIG_SUB_EVENT_CHANGE_HEIGHT	(1<<0)
 #define ZKN_BIG_SUB_EVENT_CHANGE_WEIGHT	(1<<1)
 
@@ -79,7 +79,7 @@ enum{
 
 
 //-------------------------------------
-//	ƒ{ƒ^ƒ“í—Ş
+//	ãƒœã‚¿ãƒ³ç¨®é¡
 //=====================================
 enum{
 	ZKN_BIGSUB_BUTTON_HEIGHT,
@@ -110,11 +110,11 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒOƒ[ƒoƒ‹•Ï”
+//	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
 	int* p_event_key;
@@ -123,19 +123,19 @@ typedef struct {
 
 	ZKN_GLB_DATA* p_glb;
 	
-	// }ŠÓƒRƒ‚ƒ“ƒTƒuƒAƒvƒŠƒf[ƒ^
+	// å›³é‘‘ã‚³ãƒ¢ãƒ³ã‚µãƒ–ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 	ZKN_APL_DATA* p_zukan_common_apl;
 } ZKN_BIG_SUB_GLB;
 
 //-------------------------------------
-//	‘å‚«‚³‚®‚ç‚×ƒTƒu‰æ–Ê‰æ–Ê@•`‰æƒOƒ[ƒoƒ‹•Ï”
+//	å¤§ãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ç”»é¢ã€€æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
 	ZKN_GLB_DRAWDATA* p_drawglb;
 } ZKN_BIG_SUB_DRAWGLB;
 
 //-------------------------------------
-//	ƒ{ƒ^ƒ“ƒR[ƒ‹ƒoƒbƒN‚Ö‚Ìƒ[ƒN
+//	ãƒœã‚¿ãƒ³ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¸ã®ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	void* p_glb;
@@ -143,29 +143,29 @@ typedef struct {
 } ZKN_BIG_BUTTON_CALLBACK;
 
 //-------------------------------------
-//	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@“à•”ƒ[ƒN
+//	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒ
+	// ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£
 	BUTTON_MAN* p_button_man;
-	TP_HIT_TBL *hit_tbl;	// ƒ{ƒ^ƒ“ƒf[ƒ^
+	TP_HIT_TBL *hit_tbl;	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
 	ZKN_BIG_BUTTON_CALLBACK callcack;
 
-	// ƒAƒvƒŠƒf[ƒ^
-	int button_event[ ZKN_BIGSUB_BUTTON_NUM ];	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒf[ƒ^
+	// ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
+	int button_event[ ZKN_BIGSUB_BUTTON_NUM ];	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 
 } ZKN_BIG_SUB_WORK;
 
 //-------------------------------------
-//	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê‰æ–Ê@“à•”ƒ[ƒN
+//	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// ƒ{ƒ^ƒ“ƒOƒ‰ƒtƒBƒbƒN
+	// ãƒœã‚¿ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 	CLACT_WORK_PTR button[ ZKN_BIGSUB_BUTTON_NUM ];
 	ZKN_FONTOAM_DATA* p_button_font[ ZKN_BIGSUB_BUTTON_NUM ];
 	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];
 
-	// ƒJ[ƒ\ƒ‹
+	// ã‚«ãƒ¼ã‚½ãƒ«
 	CLACT_WORK_PTR cursor[ ZKN_CURROS_MAT_RECT_NUM ];
 
 	int	bgpltt_no[ ZKN_BIGSUB_BUTTON_NUM ];
@@ -176,12 +176,12 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static ZKN_BIG_SUB_GLB* MakeBigSubGlb( int heap, ZKN_SYS_PTR zkn_sys );
@@ -197,7 +197,7 @@ static int BigSubEventDataNumGet( void );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static int ZknBigSubProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
@@ -207,13 +207,13 @@ static int ZknBigSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dra
 static int ZknBigSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 static int ZknBigSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 
-// ƒtƒF[ƒhˆ—
+// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 static void ZknBigSubOamFadeInit( ZKN_BIG_SUB_DRAW* p_draw );
 static void ZknBigSubOamFadeDelete( ZKN_BIG_SUB_DRAW* p_draw );
 static void ZknBigSubFadeInit( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_drawglb, const ZKN_BIG_SUB_GLB* cp_glb, BOOL fadein_out );
 static BOOL ZknBigSubFadeMain( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_drawglb, const ZKN_BIG_SUB_GLB* cp_glb, BOOL fadein_out );
 
-// ƒ{ƒ^ƒ“§Œä
+// ãƒœã‚¿ãƒ³åˆ¶å¾¡
 static void ZknBigSubButtonMake( ZKN_BIG_SUB_WORK* p_work, ZKN_BIG_SUB_GLB* p_glb, int heap );
 static void ZknBugSubButtonEventBuffInit( ZKN_BIG_SUB_WORK* p_work );
 static void ZknBigSubButtonMove( ZKN_BIG_SUB_WORK* p_work, ZKN_BIG_SUB_GLB* p_glb );
@@ -221,20 +221,20 @@ static void ZknBigSubButtonDelete( ZKN_BIG_SUB_WORK* p_work );
 static void ZknBigSubButtonCallBack( u32 button_no, u32 event, void* p_work );
 
 
-// ƒ{ƒ^ƒ“•`‰æ§Œä
+// ãƒœã‚¿ãƒ³æç”»åˆ¶å¾¡
 static void ZknBigSubButtonControl( ZKN_BIG_SUB_DRAWGLB* p_drawglb, CLACT_WORK_PTR button, ZKN_FONTOAM_DATA* p_fontoam, int event, int def_y, int bgpltt_no, int* p_nowbgpltt_no, int heap, int off_fontoam_pl, int on_fontoam_pl, void** buff );
 static void ZknBigSubFontButtonMove( CLACT_WORK_PTR act, ZKN_FONTOAM_DATA* p_fontoam, int def_y, int off_pltt, int on_pltt );
 static void ZknBigSubButtonDrawMain( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_drawglb, const ZKN_BIG_SUB_WORK* cp_work, int heap );
 
 
-// ƒJ[ƒ\ƒ‹§Œä
+// ã‚«ãƒ¼ã‚½ãƒ«åˆ¶å¾¡
 static void ZknBigSubCursorMove( ZKN_BIG_SUB_WORK* p_work, ZKN_BIG_SUB_GLB* p_glb );
 static void ZknBigSubCursorDraw( ZKN_BIG_SUB_DRAWGLB* p_drawglb, const ZKN_BIG_SUB_GLB* cp_glb );
 static void ZknBigSubCursorMatSet( ZKN_BIG_SUB_DRAWGLB* p_drawglb, int x, int y, int size_x, int size_y );
 
 
 
-// “Ç‚İ‚İ
+// èª­ã¿è¾¼ã¿
 static void ZknBigSubLoadResource( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_drawglb, int heap );
 static void ZknBigSubReleaseResource( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_drawglb, int heap );
 static void ZknBigSubSetUpBg( ZKN_BIG_SUB_DRAWGLB* p_drawglb, int heap );
@@ -248,11 +248,11 @@ static void ZknBigSubDeleteFontOam( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGL
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒAƒvƒŠì¬
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚¢ãƒ—ãƒªä½œæˆ
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		g—pƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -285,9 +285,9 @@ void ZKN_BigSubAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg	ƒTƒu‰æ–Ê@ƒƒjƒ…[ƒAƒvƒŠ”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ	ã‚µãƒ–ç”»é¢ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ãƒ—ãƒªç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -304,12 +304,12 @@ void ZKN_BigSubAplDelete( ZKN_APL_DATA* p_data )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»İ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^æ“¾
+ *	@brief	ç¾åœ¨ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	p_data	ƒAƒvƒŠƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_BIGSUB_CONTROL_HEIGHT	‚‚³”ä‚×
- *	@retval	ZKN_BIGSUB_CONTROL_GRAM		d‚³”ä‚×
+ *	@retval	ZKN_BIGSUB_CONTROL_HEIGHT	é«˜ã•æ¯”ã¹
+ *	@retval	ZKN_BIGSUB_CONTROL_GRAM		é‡ã•æ¯”ã¹
  */
 //-----------------------------------------------------------------------------
 int ZKN_BigSubNowAplTypeGet( ZKN_APL_DATA* p_data )
@@ -322,18 +322,18 @@ int ZKN_BigSubNowAplTypeGet( ZKN_APL_DATA* p_data )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -346,17 +346,17 @@ static ZKN_BIG_SUB_GLB* MakeBigSubGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_BIG_SUB_GLB) );
 
-	// •Ï”‰Šú‰»
-	// ƒCƒxƒ“ƒgƒL[
+	// å¤‰æ•°åˆæœŸåŒ–
+	// ã‚¤ãƒ™ãƒ³ãƒˆã‚­ãƒ¼
 	p_glb->p_event_key = ZKN_SYS_GetEventKeyPtrSub( zkn_sys );		
 
-	// }ŠÓƒRƒ‚ƒ“ƒAƒvƒŠƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// å›³é‘‘ã‚³ãƒ¢ãƒ³ã‚¢ãƒ—ãƒªã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_zukan_common_apl = ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN_COMMON );
 
-	// ¡‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“
+	// ä»Šã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
 	p_glb->now_apply = ZKN_BIGSUB_CONTROL_HEIGHT;
 
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_glb = ZKN_SYS_GetGlbData( zkn_sys );
 	
 	return p_glb;
@@ -365,12 +365,12 @@ static ZKN_BIG_SUB_GLB* MakeBigSubGlb( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -385,7 +385,7 @@ static ZKN_BIG_SUB_DRAWGLB* MakeBigSubDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	memset( p_glb, 0, sizeof(ZKN_BIG_SUB_DRAWGLB) );
 
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_drawglb = ZKN_SYS_GetGlbDrawData( zkn_sys );
 
 	return p_glb;
@@ -394,12 +394,12 @@ static ZKN_BIG_SUB_DRAWGLB* MakeBigSubDrawGlb( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒCƒxƒ“ƒgì¬
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚¤ãƒ™ãƒ³ãƒˆä½œæˆ
  *
- *	@param	heap		g—p‚·‚éƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -409,7 +409,7 @@ static ZKN_EVENT_DATA* MakeBigSubEvent( int heap, ZKN_SYS_PTR zkn_sys )
 	ZKN_EVENT_DATA* p_event_tbl;
 	int event_num = BigSubEventDataNumGet();
 
-	// ƒCƒxƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹ì¬
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_event_tbl = sys_AllocMemory( heap, sizeof(ZKN_EVENT_DATA) * event_num );
 	GF_ASSERT( p_event_tbl );
 	memset( p_event_tbl, 0, sizeof(ZKN_EVENT_DATA) * event_num );
@@ -423,9 +423,9 @@ static ZKN_EVENT_DATA* MakeBigSubEvent( int heap, ZKN_SYS_PTR zkn_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -441,9 +441,9 @@ static void DeleteBigSubGlb( ZKN_BIG_SUB_GLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -459,9 +459,9 @@ static void DeleteBigSubDrawGlb( ZKN_BIG_SUB_DRAWGLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–Ê@ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -481,11 +481,11 @@ static void DeleteBigSubEvent( ZKN_EVENT_DATA* p_event )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–ÊƒAƒvƒŠ@ƒCƒxƒ“ƒg”æ“¾
+ *	@brief	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *	
  *	@param	none	
  *
- *	@return	‚¨‚¨‚«‚³‚­‚ç‚×ƒTƒu‰æ–ÊƒAƒvƒŠ@ƒCƒxƒ“ƒg”
+ *	@return	ãŠãŠãã•ãã‚‰ã¹ã‚µãƒ–ç”»é¢ã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°
  *
  *
  */
@@ -498,19 +498,19 @@ static int BigSubEventDataNumGet( void )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -521,24 +521,24 @@ static int ZknBigSubProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata 
 	ZKN_BIG_SUB_WORK* p_work = p_dodata->p_work;
 	int i;
 
-	// ƒ[ƒN‚Ìì¬
+	// ãƒ¯ãƒ¼ã‚¯ã®ä½œæˆ
 	p_work = sys_AllocMemory( p_dodata->heap, sizeof(ZKN_BIG_SUB_WORK) );
 	memset( p_work, 0, sizeof(ZKN_BIG_SUB_WORK) );
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒf[ƒ^
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 	for( i=0; i<ZKN_BIGSUB_BUTTON_NUM; i++ ){
-		p_work->button_event[ i ] = ZKN_UTIL_BUTTON_PUSH_NONE;	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒf[ƒ^
+		p_work->button_event[ i ] = ZKN_UTIL_BUTTON_PUSH_NONE;	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 	}
 
-	// ¡‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“
+	// ä»Šã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³
 	p_glb->now_apply = ZKN_BIGSUB_CONTROL_HEIGHT;
 
 
-	// ƒ{ƒ^ƒ“‚ğì¬
+	// ãƒœã‚¿ãƒ³ã‚’ä½œæˆ
 	ZknBigSubButtonMake( p_work, p_glb, p_dodata->heap );
 
-	// ƒ{ƒ^ƒ“‚Ìó‘Ô‚ğ‚P‰ñİ’è
-	// ƒ{ƒ^ƒ““®ì
+	// ãƒœã‚¿ãƒ³ã®çŠ¶æ…‹ã‚’ï¼‘å›è¨­å®š
+	// ãƒœã‚¿ãƒ³å‹•ä½œ
 	ZknBigSubButtonMove( p_work, p_glb );
 
 	p_dodata->p_work = p_work;
@@ -548,14 +548,14 @@ static int ZknBigSubProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata 
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -566,7 +566,7 @@ static int ZknBigSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata 
 	ZKN_BIG_SUB_GLB* p_glb = p_glbdata;
 	ZKN_BIG_SUB_WORK* p_work = p_dodata->p_work;
 	
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
 		return ZKN_PROC_TRUE;
 	}
@@ -577,21 +577,21 @@ static int ZknBigSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata 
 		return ZKN_PROC_FALSE;
 	}
 
-	// “®ìƒ`ƒFƒbƒN
+	// å‹•ä½œãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonSubMoveFlagGet( p_glb->p_zukan_common_apl ) ){
 
-		// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒoƒbƒtƒ@‰Šú‰»
+		// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–
 		ZknBugSubButtonEventBuffInit( p_work );
 		
-		// ƒJ[ƒ\ƒ‹“®ì
-		// ƒJ[ƒ\ƒ‹“®ì—LŒø‚ÅAƒTƒuƒAƒvƒŠ‚ÉƒJ[ƒ\ƒ‹“®ì‚ª‹–‚³‚ê‚Ä‚¢‚é‚Æ‚«‚Ì‚İ
+		// ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œ
+		// ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œæœ‰åŠ¹ã§ã€ã‚µãƒ–ã‚¢ãƒ—ãƒªã«ã‚«ãƒ¼ã‚½ãƒ«å‹•ä½œãŒè¨±ã•ã‚Œã¦ã„ã‚‹ã¨ãã®ã¿
 		if( ZKN_ZukanCommonSubCursorFlagGet( p_glb->p_zukan_common_apl ) &&
 			(ZKN_GLBDATA_TouchCursorFlagGet( p_glb->p_glb ) == ZKN_TCHCUSO_CURSOR) ){
 
 			ZknBigSubCursorMove( p_work, p_glb );
 		}
 
-		// ƒ{ƒ^ƒ““®ì
+		// ãƒœã‚¿ãƒ³å‹•ä½œ
 		ZknBigSubButtonMove( p_work, p_glb );
 
 		
@@ -602,14 +602,14 @@ static int ZknBigSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata 
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -619,10 +619,10 @@ static int ZknBigSubProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 	ZKN_BIG_SUB_GLB* p_glb = p_glbdata;
 	ZKN_BIG_SUB_WORK* p_work = p_dodata->p_work;
 
-	// ƒ{ƒ^ƒ“”jŠü
+	// ãƒœã‚¿ãƒ³ç ´æ£„
 	ZknBigSubButtonDelete( p_work );
 
-	// ƒ[ƒN”jŠü
+	// ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_work );
 
 	return ZKN_PROC_TRUE;
@@ -630,17 +630,17 @@ static int ZknBigSubProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -660,10 +660,10 @@ static int ZknBigSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dra
 		break;
 		
 	case ZKN_BIGSUB_SEQINIT_LOAD:
-		// Resource“Ç‚İ‚İ
+		// Resourceèª­ã¿è¾¼ã¿
 		ZknBigSubLoadResource( p_drawwork, p_drawglb, p_drawdata->heap );
 
-		// ƒtƒF[ƒhˆ—
+		// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 		ZknBigSubFadeInit( p_drawwork, p_drawglb, cp_dataglb, TRUE );
 		
 		p_drawdata->seq++;
@@ -677,7 +677,7 @@ static int ZknBigSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dra
 		break;
 		
 	case ZKN_BIGSUB_SEQINIT_END:
-		// ƒJ[ƒ\ƒ‹ƒAƒjƒŠJn
+		// ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒ‹ãƒ¡é–‹å§‹
 		ZKN_UTIL_CursorSetAnimeStopFlag( &p_drawglb->p_drawglb->cursor, FALSE );
 		return ZKN_PROC_TRUE;
 		
@@ -689,17 +689,17 @@ static int ZknBigSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dra
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -711,13 +711,13 @@ static int ZknBigSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dra
 	ZKN_BIG_SUB_DRAWGLB*	p_drawglb = p_glbdraw;
 	ZKN_BIG_SUB_DRAW*		p_drawwork = p_drawdata->p_work;
 
-	// “®ìƒ`ƒFƒbƒN
+	// å‹•ä½œãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonSubMoveFlagGet( cp_dataglb->p_zukan_common_apl ) ){
 		
-		// ƒ{ƒ^ƒ“•`‰æƒƒCƒ“
+		// ãƒœã‚¿ãƒ³æç”»ãƒ¡ã‚¤ãƒ³
 		ZknBigSubButtonDrawMain( p_drawwork, p_drawglb, cp_datawork, p_drawdata->heap );
 
-		// ƒJ[ƒ\ƒ‹•`‰æƒƒCƒ“
+		// ã‚«ãƒ¼ã‚½ãƒ«æç”»ãƒ¡ã‚¤ãƒ³
 		ZknBigSubCursorDraw( p_drawglb, cp_dataglb );
 	}
 
@@ -727,17 +727,17 @@ static int ZknBigSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_dra
 
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -751,10 +751,10 @@ static int ZknBigSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 
 	switch( p_drawdata->seq ){
 	case ZKN_BIGSUB_SEQDELETE_FADEOUT_INIT:
-		// ƒJ[ƒ\ƒ‹ƒAƒjƒ’â~
+		// ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒ‹ãƒ¡åœæ­¢
 		ZKN_UTIL_CursorSetAnimeStopFlag( &p_drawglb->p_drawglb->cursor, TRUE );
 
-		// ƒtƒF[ƒhˆ—
+		// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 		ZknBigSubFadeInit( p_drawwork, p_drawglb, cp_dataglb, FALSE );
 		p_drawdata->seq++;
 		break;
@@ -766,7 +766,7 @@ static int ZknBigSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 		break;
 
 	case ZKN_BIGSUB_SEQDELETE_RELEASE:
-		// Resource“Ç‚İ‚İ
+		// Resourceèª­ã¿è¾¼ã¿
 		ZknBigSubReleaseResource( p_drawwork, p_drawglb, p_drawdata->heap );
 		p_drawdata->seq++;
 		break;
@@ -788,9 +788,9 @@ static int ZknBigSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒhˆ—	‰Šú‰»
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†	åˆæœŸåŒ–
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -798,7 +798,7 @@ static int ZknBigSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 static void ZknBigSubOamFadeInit( ZKN_BIG_SUB_DRAW* p_draw )
 {
 	int i;
-	// OBJMODE‚ğ”¼“§–¾‚É‚·‚é
+	// OBJMODEã‚’åŠé€æ˜ã«ã™ã‚‹
 	for( i=0; i<ZKN_BIGSUB_BUTTON_NUM; i++ ){
 		CLACT_ObjModeSet( p_draw->button[ i ], GX_OAM_MODE_XLU );
 		FONTOAM_ObjModeSet( p_draw->p_button_font[ i ]->p_fontoam, GX_OAM_MODE_XLU );
@@ -807,7 +807,7 @@ static void ZknBigSubOamFadeInit( ZKN_BIG_SUB_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒhˆ—@Œãˆ—
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ã€€å¾Œå‡¦ç†
  *
  *	@param	p_draw 
  *
@@ -817,7 +817,7 @@ static void ZknBigSubOamFadeInit( ZKN_BIG_SUB_DRAW* p_draw )
 static void ZknBigSubOamFadeDelete( ZKN_BIG_SUB_DRAW* p_draw )
 {
 	int i;
-	// OBJMODE‚ğƒm[ƒ}ƒ‹‚É‚·‚é
+	// OBJMODEã‚’ãƒãƒ¼ãƒãƒ«ã«ã™ã‚‹
 	for( i=0; i<ZKN_BIGSUB_BUTTON_NUM; i++ ){
 		CLACT_ObjModeSet( p_draw->button[ i ], GX_OAM_MODE_NORMAL );
 		FONTOAM_ObjModeSet( p_draw->p_button_font[ i ]->p_fontoam, GX_OAM_MODE_NORMAL );
@@ -826,29 +826,29 @@ static void ZknBigSubOamFadeDelete( ZKN_BIG_SUB_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–ÊƒtƒF[ƒhˆ—
+ *	@brief	ã‚µãƒ–ç”»é¢ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“@TRUE@ƒAƒEƒg FALSE	
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€TRUEã€€ã‚¢ã‚¦ãƒˆ FALSE	
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigSubFadeInit( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_drawglb, const ZKN_BIG_SUB_GLB* cp_glb, BOOL fadein_out )
 {
-	// ”¼“§–¾OAMİ’è
+	// åŠé€æ˜OAMè¨­å®š
 	ZknBigSubOamFadeInit( p_draw );
 
-	// ƒuƒ‰ƒCƒgƒlƒXˆ—‚ğs‚Á‚Ä‚æ‚¢‚©
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å‡¦ç†ã‚’è¡Œã£ã¦ã‚ˆã„ã‹
 	if( ZKN_ZukanCommonSubBrightnessOnFlagGet( cp_glb->p_zukan_common_apl ) ){
 		if( fadein_out ){
-			// ƒtƒF[ƒhƒCƒ“
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade_sub, ZKN_FADE_SYNC_COMMON,
 					BRIGHTNESS_BLACK, BRIGHTNESS_NORMAL, 0, 16, ZKN_BIGSUB_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_SUB );
 		}else{
-			// ƒtƒF[ƒhƒAƒEƒg
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade_sub, ZKN_FADE_SYNC_COMMON,
 					BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, 16, 0, ZKN_BIGSUB_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_SUB );
 		}
@@ -857,22 +857,22 @@ static void ZknBigSubFadeInit( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhˆ—@ƒƒCƒ“
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ã€€ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“@TRUE@ƒAƒEƒg@FALSE
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€TRUEã€€ã‚¢ã‚¦ãƒˆã€€FALSE
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknBigSubFadeMain( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_drawglb, const ZKN_BIG_SUB_GLB* cp_glb, BOOL fadein_out )
 {
 	BOOL check;
 
-	// ƒuƒ‰ƒCƒgƒlƒX‚µ‚æ‚¤‹–‰Â‚Å‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã—ã‚ˆã†è¨±å¯ã§ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonSubBrightnessOnFlagGet( cp_glb->p_zukan_common_apl ) ){
 		check = ZKN_GLB_ChangeFadeMain( &p_drawglb->p_drawglb->fade_sub );
 	}else{
@@ -880,10 +880,10 @@ static BOOL ZknBigSubFadeMain( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_
 		check = IsFinishedBrightnessChg( MASK_SUB_DISPLAY );
 	}
 
-	// I‚í‚Á‚½‚çI—¹ˆ—
+	// çµ‚ã‚ã£ãŸã‚‰çµ‚äº†å‡¦ç†
 	if( check ){
 		if( fadein_out ){
-			// ”¼“§–¾OAM”jŠü
+			// åŠé€æ˜OAMç ´æ£„
 			ZknBigSubOamFadeDelete( p_draw );
 		}
 
@@ -897,21 +897,21 @@ static BOOL ZknBigSubFadeMain( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ì¬ŠÖ”
+ *	@brief	ãƒœã‚¿ãƒ³ä½œæˆé–¢æ•°
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹
- *	@param	heap	ƒq[ƒv
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigSubButtonMake( ZKN_BIG_SUB_WORK* p_work, ZKN_BIG_SUB_GLB* p_glb, int heap )
 {
-	// ƒe[ƒuƒ‹ì¬
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_work->hit_tbl = sys_AllocMemory( heap, sizeof(TP_HIT_TBL) * ZKN_BIGSUB_BUTTON_NUM );
 
-	// ƒe[ƒuƒ‹ƒf[ƒ^İ’è
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	ZKN_UTIL_HitTblDataSet( &p_work->hit_tbl[ ZKN_BIGSUB_BUTTON_HEIGHT ],
 			ZKN_BIGSUB_BUTTON_DEF_Y - (ZKN_BIGSUB_BUTTON_SIZE_Y/2),
 			ZKN_BIGSUB_BUTTON_DEF_Y + (ZKN_BIGSUB_BUTTON_SIZE_Y/2),
@@ -927,7 +927,7 @@ static void ZknBigSubButtonMake( ZKN_BIG_SUB_WORK* p_work, ZKN_BIG_SUB_GLB* p_gl
 	p_work->callcack.p_glb = p_glb;
 	p_work->callcack.p_work = p_work;
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒì¬
+	// ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	p_work->p_button_man = BMN_Create( 
 			p_work->hit_tbl,
 			ZKN_BIGSUB_BUTTON_NUM,
@@ -938,7 +938,7 @@ static void ZknBigSubButtonMake( ZKN_BIG_SUB_WORK* p_work, ZKN_BIG_SUB_GLB* p_gl
 
 //----------------------------------------------------------------------------
 /**
- *	@brieuf	ƒ{ƒ^ƒ“ƒoƒbƒtƒ@‰Šú‰»
+ *	@brieuf	ãƒœã‚¿ãƒ³ãƒãƒƒãƒ•ã‚¡åˆæœŸåŒ–
  *
  *	@param	p_work 
  *
@@ -949,7 +949,7 @@ static void ZknBugSubButtonEventBuffInit( ZKN_BIG_SUB_WORK* p_work )
 {
 	int i;
 	
-	// •ú‚³‚ê‚½‚ç‘S‚Ä‚Ìƒ{ƒ^ƒ“‚ªŒ³‚ÌŠG‚É–ß‚é
+	// æ”¾ã•ã‚ŒãŸã‚‰å…¨ã¦ã®ãƒœã‚¿ãƒ³ãŒå…ƒã®çµµã«æˆ»ã‚‹
 	for( i = 0; i < ZKN_BIGSUB_BUTTON_NUM; i++ ){
 		p_work->button_event[ i ] = BMN_EVENT_SLIDEOUT;
 	}
@@ -957,10 +957,10 @@ static void ZknBugSubButtonEventBuffInit( ZKN_BIG_SUB_WORK* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ““®ìˆ—
+ *	@brief	ãƒœã‚¿ãƒ³å‹•ä½œå‡¦ç†
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -970,15 +970,15 @@ static void ZknBigSubButtonMove( ZKN_BIG_SUB_WORK* p_work, ZKN_BIG_SUB_GLB* p_gl
 
 	BMN_Main( p_work->p_button_man );
 
-	// ¡‘I‘ğ’†‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ìƒ{ƒ^ƒ“‚Í‰Ÿ‚µ‚Á‚Ï‚È‚µ‚É‚·‚é
+	// ä»Šé¸æŠä¸­ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒœã‚¿ãƒ³ã¯æŠ¼ã—ã£ã±ãªã—ã«ã™ã‚‹
 	switch( p_glb->now_apply ){
-	case ZKN_BIGSUB_BUTTON_HEIGHT:	//‚‚³”ä‚× 
+	case ZKN_BIGSUB_BUTTON_HEIGHT:	//é«˜ã•æ¯”ã¹ 
 		if( p_work->button_event[ ZKN_BIGSUB_BUTTON_HEIGHT ] != BMN_EVENT_HOLD ){
 			p_work->button_event[ ZKN_BIGSUB_BUTTON_HEIGHT ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_BIGSUB_BUTTON_GRAM:	//d‚³”ä‚×
+	case ZKN_BIGSUB_BUTTON_GRAM:	//é‡ã•æ¯”ã¹
 		if( p_work->button_event[ ZKN_BIGSUB_BUTTON_GRAM ] != BMN_EVENT_HOLD ){
 			p_work->button_event[ ZKN_BIGSUB_BUTTON_GRAM ] = BMN_EVENT_RELEASE;
 		}
@@ -992,9 +992,9 @@ static void ZknBigSubButtonMove( ZKN_BIG_SUB_WORK* p_work, ZKN_BIG_SUB_GLB* p_gl
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“”jŠü
+ *	@brief	ãƒœã‚¿ãƒ³ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1003,18 +1003,18 @@ static void ZknBigSubButtonDelete( ZKN_BIG_SUB_WORK* p_work )
 {
 	BMN_Delete( p_work->p_button_man );
 
-	// ƒe[ƒuƒ‹ƒ[ƒN”jŠü
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_work->hit_tbl );
 	p_work->hit_tbl = NULL;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒR[ƒ‹ƒoƒbƒNŠÖ”
+ *	@brief	ãƒœã‚¿ãƒ³ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- *	@param	button_no	ƒ{ƒ^ƒ“ƒiƒ“ƒo[
- *	@param	event		ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgƒ^ƒCƒv
- *	@param	p_work		ƒ[ƒN
+ *	@param	button_no	ãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param	event		ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1025,18 +1025,18 @@ static void ZknBigSubButtonCallBack( u32 button_no, u32 event, void* p_work )
 	ZKN_BIG_SUB_GLB* p_glb = p_work_data->p_glb;
 	ZKN_BIG_SUB_WORK* p_subwork = p_work_data->p_work;
 
-	// ƒ{ƒ^ƒ“ƒCƒxƒ“ƒgŠi”[
+	// ãƒœã‚¿ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆæ ¼ç´
 	p_subwork->button_event[ button_no ] = event;
 	
 	switch( event ){
 	case BMN_EVENT_HOLD:
 		ZKN_ZukanCommonSubCursorFlagSet( p_glb->p_zukan_common_apl, TRUE );
 		
-		// ƒ{ƒ^ƒ“‚Ì“®ì‚ªƒTƒu‰æ–Ê‚É‘JˆÚ‚µ‚½‚±‚Æ‚ğ“`‚¦‚é
+		// ãƒœã‚¿ãƒ³ã®å‹•ä½œãŒã‚µãƒ–ç”»é¢ã«é·ç§»ã—ãŸã“ã¨ã‚’ä¼ãˆã‚‹
 		switch( button_no ){
 		case ZKN_BIGSUB_BUTTON_HEIGHT:
 			if( p_glb->now_apply != ZKN_BIGSUB_CONTROL_HEIGHT ){
-				// ƒ{ƒ^ƒ“‚Éƒ^ƒbƒ`
+				// ãƒœã‚¿ãƒ³ã«ã‚¿ãƒƒãƒ
 				Snd_SePlay( ZKN_SND_BUTTON );
 				p_glb->now_apply = ZKN_BIGSUB_CONTROL_HEIGHT;
 				*p_glb->p_event_key |= ZKN_BIG_SUB_EVENT_CHANGE_HEIGHT;
@@ -1045,7 +1045,7 @@ static void ZknBigSubButtonCallBack( u32 button_no, u32 event, void* p_work )
 			
 		case ZKN_BIGSUB_BUTTON_GRAM:
 			if( p_glb->now_apply != ZKN_BIGSUB_CONTROL_GRAM ){
-				// ƒ{ƒ^ƒ“‚Éƒ^ƒbƒ`
+				// ãƒœã‚¿ãƒ³ã«ã‚¿ãƒƒãƒ
 				Snd_SePlay( ZKN_SND_BUTTON );
 				p_glb->now_apply = ZKN_BIGSUB_CONTROL_GRAM;
 				*p_glb->p_event_key |= ZKN_BIG_SUB_EVENT_CHANGE_WEIGHT;
@@ -1065,37 +1065,37 @@ static void ZknBigSubButtonCallBack( u32 button_no, u32 event, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»ˆ—
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigSubLoadResource( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_drawglb, int heap )
 {
-	// ”wŒi
+	// èƒŒæ™¯
 	ZknBigSubSetUpBg( p_drawglb, heap );
 
 	// OAM
 	ZknBigSubLoadOamData( p_draw, p_drawglb, heap );
 
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	ZknBigSubAddClact( p_draw, p_drawglb, heap );
 
-	// FONTOAM“o˜^
+	// FONTOAMç™»éŒ²
 	ZknBigSubAddFontOam( p_draw, p_drawglb, heap );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN”jŠüˆ—
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1104,20 +1104,20 @@ static void ZknBigSubReleaseResource( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAW
 {
 	int i;
 	
-	// ƒpƒŒƒbƒg‚ğƒŠƒZƒbƒg
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’ãƒªã‚»ãƒƒãƒˆ
 	ZKN_GLBDATA_PalSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_4_NCLR, PALTYPE_SUB_BG, ZKN_BIGSUB_BUTTON_HEIGHTBG_PLTT_NO*32, 32, heap );
 	ZKN_GLBDATA_PalSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_4_NCLR, PALTYPE_SUB_BG, ZKN_BIGSUB_BUTTON_GRAMBG_PLTT_NO*32, 32, heap );
 	
-	// ƒZƒ‹ƒAƒNƒ^[”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	ZknBigSubDeleteClact( p_draw );
 
-	// FONTOAM”jŠü
+	// FONTOAMç ´æ£„
 	ZknBigSubDeleteFontOam( p_draw, p_drawglb );
 
 	// OAM
 	ZknBigSubReleaseOamData( p_draw, p_drawglb );
 
-	// ƒpƒŒƒbƒgƒoƒbƒtƒ@”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡ç ´æ£„
 	for( i=0;i<ZKN_BIGSUB_BUTTON_NUM; i++ ){
 		if( p_draw->pltt_buff[i] ){
 			sys_FreeMemoryEz( p_draw->pltt_buff[i] );
@@ -1127,10 +1127,10 @@ static void ZknBigSubReleaseResource( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAW
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG–ÊƒZƒbƒgƒAƒbƒv
+ *	@brief	BGé¢ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1140,30 +1140,30 @@ static void ZknBigSubSetUpBg( ZKN_BIG_SUB_DRAWGLB* p_drawglb, int heap )
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	ZKN_GLBDATA_BgCharSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_sub_lzh_NCGR, p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_S, 0, 0, TRUE, heap );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_bg_sub2_b_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_S,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_S );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	OAMãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1173,25 +1173,25 @@ static void ZknBigSubLoadOamData( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB*
 	ZKN_GLB_DRAWDATA* p_draw_glb = p_drawglb->p_drawglb;
 	ARCHANDLE* p_handle = ZKN_GLBDATA_ArcHandlGet( p_drawglb->p_drawglb );
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_sub3_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_data_oam_sub3_lzh_NCGR + ZKN_BIG_SUB_RES_ID,
 			NNS_G2D_VRAM_TYPE_2DSUB, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_sub3_lzh_NCER, TRUE,
 			NARC_zukan_zkn_data_oam_sub3_lzh_NCER + ZKN_BIG_SUB_RES_ID,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_data_oam_sub3_lzh_NANR, TRUE,
@@ -1201,10 +1201,10 @@ static void ZknBigSubLoadOamData( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB*
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒŠƒ\[ƒX”jŠü
+ *	@brief	OAMãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1216,7 +1216,7 @@ static void ZknBigSubReleaseOamData( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWG
 
 	CLACT_U_CharManagerDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj[ CLACT_U_CHAR_RES ] );
@@ -1230,11 +1230,11 @@ static void ZknBigSubReleaseOamData( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWG
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[“o˜^
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1246,7 +1246,7 @@ static void ZknBigSubAddClact( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_
 	ZKN_GLB_DRAWDATA*	p_draw_glb = p_drawglb->p_drawglb;
 	int i;
 	
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_data_oam_sub3_lzh_NCGR + ZKN_BIG_SUB_RES_ID,
 			NARC_zukan_zkn_data_oam_sub_NCLR + ZKN_ZUKAN_COMMON_SUB_RES_ID_OFS, 
@@ -1259,21 +1259,21 @@ static void ZknBigSubAddClact( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ],
 			NULL, NULL );
 
-	// “o˜^‹¤’Ê•”•ª‚ğİ’è
+	// ç™»éŒ²å…±é€šéƒ¨åˆ†ã‚’è¨­å®š
 	add.ClActSet	= p_draw_glb->clact_set;
 	add.ClActHeader = &clact_head;
 	add.pri			= 31;
 	add.DrawArea	= NNS_G2D_VRAM_TYPE_2DSUB;
 	add.heap		= heap;
 	
-	// ‚‚³
+	// é«˜ã•
 	add.mat.x = ZKN_BIGSUB_BUTTON_HEIGHT_X << FX32_SHIFT;
 	add.mat.y = ZKN_BIGSUB_BUTTON_DEF_Y << FX32_SHIFT;
 	add.mat.y += SUB_SURFACE_Y;
 	p_draw->button[ ZKN_BIGSUB_BUTTON_HEIGHT ] = CLACT_AddSimple( &add );
 	CLACT_AnmChg( p_draw->button[ ZKN_BIGSUB_BUTTON_HEIGHT ], ZKN_BIGSUB_BUTTON_ANM_SEQ );	
 
-	// d‚³
+	// é‡ã•
 	add.mat.x = ZKN_BIGSUB_BUTTON_GRAM_X << FX32_SHIFT;
 	add.mat.y = ZKN_BIGSUB_BUTTON_DEF_Y << FX32_SHIFT;
 	add.mat.y += SUB_SURFACE_Y;
@@ -1283,9 +1283,9 @@ static void ZknBigSubAddClact( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1302,42 +1302,42 @@ static void ZknBigSubDeleteClact( ZKN_BIG_SUB_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAMì¬
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆ
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigSubAddFontOam( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_drawglb, int heap )
 {
-	GF_BGL_BMPWIN* win;	// •¶š—ñ‘‚«‚İæ
+	GF_BGL_BMPWIN* win;	// æ–‡å­—åˆ—æ›¸ãè¾¼ã¿å…ˆ
 	ZKN_FONTOAM_INIT fontoam_init;
 	CLACT_U_RES_OBJ_PTR res_obj;
 	ZKN_GLB_DRAWDATA* p_glb_draw = p_drawglb->p_drawglb;
-	int pltt_ofs;	// ƒpƒŒƒbƒgƒAƒhƒŒƒX
+	int pltt_ofs;	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
-	// u‚½‚©‚³‚­‚ç‚×vAu‚¨‚à‚³‚­‚ç‚×v‚ğ©“®‚ÅƒZƒ“ƒ^ƒŠƒ“ƒO‚·‚é‚æ‚¤‚É•ÏX
+	// ã€ŒãŸã‹ã•ãã‚‰ã¹ã€ã€ã€ŒãŠã‚‚ã•ãã‚‰ã¹ã€ã‚’è‡ªå‹•ã§ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 	u32 pixel_width;
 	// ----------------------------------------------------------------------------
 
-	// æ‚ÉCLACT‚ğ“o˜^‚µ‚Ä‚ ‚é•K—v‚ª‚ ‚é
+	// å…ˆã«CLACTã‚’ç™»éŒ²ã—ã¦ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 	GF_ASSERT( p_draw->button[ ZKN_BIGSUB_BUTTON_HEIGHT ] );
 
-	// ƒpƒŒƒbƒg‚ÌƒŠƒ\[ƒXƒf[ƒ^æ“¾
-	// ƒpƒŒƒbƒgƒvƒƒNƒVæ“¾—p
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿å–å¾—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚¯ã‚·å–å¾—ç”¨
 	res_obj = CLACT_U_ResManagerGetIDResObjPtr( p_glb_draw->res_manager[ CLACT_U_PLTT_RES ], NARC_zukan_zkn_data_oam_sub_NCLR + ZKN_ZUKAN_COMMON_SUB_RES_ID_OFS );
 
-	// ‰Šú‰»ƒf[ƒ^‚Ì‹¤’Ê•”•ª‚ğì¬
-	// ‹¤’Êƒf[ƒ^‘ã“ü
+	// åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã®å…±é€šéƒ¨åˆ†ã‚’ä½œæˆ
+	// å…±é€šãƒ‡ãƒ¼ã‚¿ä»£å…¥
 	fontoam_init.zkn_fontoam = p_glb_draw->fontoam_sys;
 	fontoam_init.pltt		 = CLACT_U_PlttManagerGetProxy( res_obj, NULL );
     // ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
-	// u‚½‚©‚³‚­‚ç‚×vAu‚¨‚à‚³‚­‚ç‚×v‚ğ©“®‚ÅƒZƒ“ƒ^ƒŠƒ“ƒO‚·‚é‚æ‚¤‚É•ÏX
+	// ã€ŒãŸã‹ã•ãã‚‰ã¹ã€ã€ã€ŒãŠã‚‚ã•ãã‚‰ã¹ã€ã‚’è‡ªå‹•ã§ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
     // MatchComment: Show removed code
 	//fontoam_init.x			 = ZKN_BIGSUB_BUTTON_FONT_OFS_X;
     // ----------------------------------------------------------------------------
@@ -1347,18 +1347,18 @@ static void ZknBigSubAddFontOam( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* 
 	fontoam_init.draw_area	 = NNS_G2D_VRAM_TYPE_2DSUB;
 	fontoam_init.heap		 = heap;
 
-	// ƒpƒŒƒbƒg“]‘—æƒAƒhƒŒƒXæ“¾
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	pltt_ofs = GetPlttProxyOffset( fontoam_init.pltt, NNS_G2D_VRAM_TYPE_2DSUB );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	win = ZKN_FONTOAM_GetBmp( p_glb_draw->fontoam_sys, 
 			ZKN_BIGSUB_BUTTONFONT_BMP_SIZE_CX,
 			ZKN_BIGSUB_BUTTONFONT_BMP_SIZE_CY );
 
-	// ‚·‚ª‚½
+	// ã™ãŒãŸ
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
-	// u‚½‚©‚³‚­‚ç‚×v‚ğ©“®‚ÅƒZƒ“ƒ^ƒŠƒ“ƒO‚·‚é‚æ‚¤‚É•ÏX
+	// ã€ŒãŸã‹ã•ãã‚‰ã¹ã€ã‚’è‡ªå‹•ã§ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 	pixel_width = ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
 					NARC_msg_zkn_dat, ZNK_BIG_BUTTON_00, 0, 0 );
 	fontoam_init.x			 = -(pixel_width / 2);
@@ -1368,19 +1368,19 @@ static void ZknBigSubAddFontOam( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* 
 	p_draw->p_button_font[ ZKN_BIGSUB_BUTTON_HEIGHT ] = ZKN_FONTOAM_Make( &fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_button_font[ ZKN_BIGSUB_BUTTON_HEIGHT ]->p_fontoam, pltt_ofs + ZKN_BIGSUB_BUTTON_PAL_OFS );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( win );
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒEì¬
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆ
 	win = ZKN_FONTOAM_GetBmp( p_glb_draw->fontoam_sys, 
 			ZKN_BIGSUB_BUTTONFONT_BMP_SIZE_CX,
 			ZKN_BIGSUB_BUTTONFONT_BMP_SIZE_CY );
 
 
-	// ‚¹‚Â‚ß‚¢
+	// ã›ã¤ã‚ã„
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
-	// u‚½‚©‚³‚­‚ç‚×vAu‚¨‚à‚³‚­‚ç‚×v‚ğ©“®‚ÅƒZƒ“ƒ^ƒŠƒ“ƒO‚·‚é‚æ‚¤‚É•ÏX
+	// ã€ŒãŸã‹ã•ãã‚‰ã¹ã€ã€ã€ŒãŠã‚‚ã•ãã‚‰ã¹ã€ã‚’è‡ªå‹•ã§ã‚»ãƒ³ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 	pixel_width = ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
 					NARC_msg_zkn_dat, ZNK_BIG_BUTTON_01, 0, 0 );
 	fontoam_init.x			 = -(pixel_width / 2);
@@ -1391,16 +1391,16 @@ static void ZknBigSubAddFontOam( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* 
 	FONTOAM_SetPaletteNo( p_draw->p_button_font[ ZKN_BIGSUB_BUTTON_GRAM ]->p_fontoam, pltt_ofs + ZKN_BIGSUB_BUTTON_PAL_OFS );
 
 
-	// ƒrƒbƒgƒ}ƒbƒvƒEƒBƒ“ƒhƒE”jŠü
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç ´æ£„
 	ZKN_FONTOAM_DeleteBmp( win );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒHƒ“ƒgOAM”jŠü
+ *	@brief	ãƒ•ã‚©ãƒ³ãƒˆOAMç ´æ£„
  *	
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *	
  *	@return	none
  */
@@ -1416,17 +1416,17 @@ static void ZknBigSubDeleteFontOam( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“•`‰æ§Œä
+ *	@brief	ãƒœã‚¿ãƒ³æç”»åˆ¶å¾¡
  *
- *	@param	button		ƒ{ƒ^ƒ“ƒAƒNƒ^[
- *	@param	event		ƒCƒxƒ“ƒg
- *	@param	p_fontoam	ƒtƒHƒ“ƒgOAM
- *	@param	def_y		Y‹——£
- *	@param	bgpltt_no	BGƒpƒŒƒbƒgNO
- *	@param	heap		ƒq[ƒv
- *	@param	off_fontoam_pl	ƒtƒHƒ“ƒgOAMƒIƒt
- *	@param	on_fontoam_pl	ƒtƒHƒ“ƒgOAMƒIƒ“
- *	@param	ƒpƒŒƒbƒgƒoƒbƒtƒ@	
+ *	@param	button		ãƒœã‚¿ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆ
+ *	@param	p_fontoam	ãƒ•ã‚©ãƒ³ãƒˆOAM
+ *	@param	def_y		Yè·é›¢
+ *	@param	bgpltt_no	BGãƒ‘ãƒ¬ãƒƒãƒˆNO
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	off_fontoam_pl	ãƒ•ã‚©ãƒ³ãƒˆOAMã‚ªãƒ•æ™‚
+ *	@param	on_fontoam_pl	ãƒ•ã‚©ãƒ³ãƒˆOAMã‚ªãƒ³æ™‚
+ *	@param	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒƒãƒ•ã‚¡	
  *
  *	@return	none
  */
@@ -1440,7 +1440,7 @@ static void ZknBigSubButtonControl( ZKN_BIG_SUB_DRAWGLB* p_drawglb, CLACT_WORK_P
 	int arc_data_idx;
 
 	
-	// ƒ{ƒ^ƒ““®ì
+	// ãƒœã‚¿ãƒ³å‹•ä½œ
 	ZKN_UTIL_ButtonMove( button,
 			event );
 
@@ -1451,11 +1451,11 @@ static void ZknBigSubButtonControl( ZKN_BIG_SUB_DRAWGLB* p_drawglb, CLACT_WORK_P
 			off_fontoam_pl,
 			on_fontoam_pl );
 
-	// Œ»İƒtƒŒ[ƒ€æ“¾
+	// ç¾åœ¨ãƒ•ãƒ¬ãƒ¼ãƒ å–å¾—
 	now_frm = CLACT_AnmFrameGet( button );
 
 
-	// ƒJƒ‰[ƒpƒŒƒbƒgİ’è
+	// ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
 	switch( now_frm ){
 	case ZKN_UTIL_BUTTON_FRAME_NONE:
 	case ZKN_UTIL_BUTTON_FRAME_PUSH1:
@@ -1485,18 +1485,18 @@ static void ZknBigSubButtonControl( ZKN_BIG_SUB_DRAWGLB* p_drawglb, CLACT_WORK_P
 		break;
 	}
 	if( chenge ){
-		// ¡‚Ü‚Å‚Ì‚ğ”jŠü
+		// ä»Šã¾ã§ã®ã‚’ç ´æ£„
 		if( *buff ){
 			sys_FreeMemoryEz( *buff );
 		}
 		*buff = ZKN_GLBDATA_PalDataGet( p_drawglb->p_drawglb, arc_data_idx, &p_plt, heap );
-		// TransferManager‚É“o˜^
+		// TransferManagerã«ç™»éŒ²
 		check = AddVramTransferManager(
 				NNS_GFD_DST_2D_BG_PLTT_SUB,
 				bgpltt_no*32,
 				p_plt->pRawData,
 				32);
-		// “]‘—ƒ^ƒXƒN¶¬¸”s
+		// è»¢é€ã‚¿ã‚¹ã‚¯ç”Ÿæˆå¤±æ•—
 		GF_ASSERT( check );
 	}
 }
@@ -1504,13 +1504,13 @@ static void ZknBigSubButtonControl( ZKN_BIG_SUB_DRAWGLB* p_drawglb, CLACT_WORK_P
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg“®ì
+ *	@brief	ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆå‹•ä½œ
  *
- *	@param	act				ƒAƒNƒ^[
- *	@param	p_fontoam		ƒtƒHƒ“ƒgOAM
- *	@param	def_y			ƒfƒtƒHƒ‹ƒgYˆÊ’u
- *	@param	off_pltt		ƒ{ƒ^ƒ“OFF‚ÌƒJƒ‰[ƒpƒŒƒbƒg
- *	@param	on_pltt			ƒ{ƒ^ƒ“ON‚ÌƒJƒ‰[ƒpƒŒƒbƒg
+ *	@param	act				ã‚¢ã‚¯ã‚¿ãƒ¼
+ *	@param	p_fontoam		ãƒ•ã‚©ãƒ³ãƒˆOAM
+ *	@param	def_y			ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆYä½ç½®
+ *	@param	off_pltt		ãƒœã‚¿ãƒ³OFFæ™‚ã®ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
+ *	@param	on_pltt			ãƒœã‚¿ãƒ³ONæ™‚ã®ã‚«ãƒ©ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆ
  *
  *	@return	none
  */
@@ -1522,21 +1522,21 @@ static void ZknBigSubFontButtonMove( CLACT_WORK_PTR act, ZKN_FONTOAM_DATA* p_fon
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ{ƒ^ƒ“•`‰æˆ—ƒƒCƒ“
+ *	@brief	ãƒœã‚¿ãƒ³æç”»å‡¦ç†ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	cp_work	ƒ[ƒN
- *	@parma	heap	ƒq[ƒv
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_work	ãƒ¯ãƒ¼ã‚¯
+ *	@parma	heap	ãƒ’ãƒ¼ãƒ—
  *	
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigSubButtonDrawMain( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWGLB* p_drawglb, const ZKN_BIG_SUB_WORK* cp_work, int heap )
 {
-	int i;	// ƒ‹[ƒv—p
+	int i;	// ãƒ«ãƒ¼ãƒ—ç”¨
 	int bgpltt_no;
 
-	// ƒ{ƒ^ƒ“•\¦“®ì
+	// ãƒœã‚¿ãƒ³è¡¨ç¤ºå‹•ä½œ
 	for( i=0; i<ZKN_BIGSUB_BUTTON_NUM; i++ ){
 
 		if( i == ZKN_BIGSUB_BUTTON_HEIGHT ){
@@ -1558,20 +1558,20 @@ static void ZknBigSubButtonDrawMain( ZKN_BIG_SUB_DRAW* p_draw, ZKN_BIG_SUB_DRAWG
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘å‚«‚³”ä‚×ƒJ[ƒ\ƒ‹§Œä
+ *	@brief	å¤§ãã•æ¯”ã¹ã‚«ãƒ¼ã‚½ãƒ«åˆ¶å¾¡
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknBigSubCursorMove( ZKN_BIG_SUB_WORK* p_work, ZKN_BIG_SUB_GLB* p_glb )
 {
-	// Aƒ{ƒ^ƒ“‚ÅƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğ•ªŠò
+	// Aãƒœã‚¿ãƒ³ã§ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’åˆ†å²
 	if( sys.trg & PAD_BUTTON_A ){
 
-		// ƒAƒvƒŠ‚É‚æ‚è•ªŠò
+		// ã‚¢ãƒ—ãƒªã«ã‚ˆã‚Šåˆ†å²
 		if( p_glb->now_apply == ZKN_BIGSUB_CONTROL_GRAM ){	
 			p_glb->now_apply = ZKN_BIGSUB_CONTROL_HEIGHT;
 			*p_glb->p_event_key |= ZKN_BIG_SUB_EVENT_CHANGE_HEIGHT;
@@ -1583,17 +1583,17 @@ static void ZknBigSubCursorMove( ZKN_BIG_SUB_WORK* p_work, ZKN_BIG_SUB_GLB* p_gl
 
 			p_work->button_event[ ZKN_BIGSUB_BUTTON_GRAM ] = BMN_EVENT_HOLD;
 		}
-		// ƒ{ƒ^ƒ“‚Éƒ^ƒbƒ`
+		// ãƒœã‚¿ãƒ³ã«ã‚¿ãƒƒãƒ
 		Snd_SePlay( ZKN_SND_BUTTON );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‘å‚«‚³”ä‚×ƒJ[ƒ\ƒ‹•`‰æ§Œä
+ *	@brief	å¤§ãã•æ¯”ã¹ã‚«ãƒ¼ã‚½ãƒ«æç”»åˆ¶å¾¡
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒf[ƒ^ƒOƒ[ƒoƒ‹ 
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ãƒ‡ãƒ¼ã‚¿ã‚°ãƒ­ãƒ¼ãƒãƒ« 
  *
  *	@return	none
  */
@@ -1601,10 +1601,10 @@ static void ZknBigSubCursorMove( ZKN_BIG_SUB_WORK* p_work, ZKN_BIG_SUB_GLB* p_gl
 static void ZknBigSubCursorDraw( ZKN_BIG_SUB_DRAWGLB* p_drawglb, const ZKN_BIG_SUB_GLB* cp_glb )
 {
 	
-	// ©•ª‚ÌÀ•W‚ğİ’è‚µ‚Ä‚æ‚¢‚©ƒ`ƒFƒbƒN
+	// è‡ªåˆ†ã®åº§æ¨™ã‚’è¨­å®šã—ã¦ã‚ˆã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonSubCursorFlagGet( cp_glb->p_zukan_common_apl ) == TRUE ){
 
-		// ƒAƒvƒŠ‚É‚æ‚è•ªŠò
+		// ã‚¢ãƒ—ãƒªã«ã‚ˆã‚Šåˆ†å²
 		if( cp_glb->now_apply == ZKN_BIGSUB_CONTROL_HEIGHT ){
 			ZknBigSubCursorMatSet( p_drawglb, ZKN_BIGSUB_BUTTON_GRAM_X, ZKN_BIGSUB_BUTTON_DEF_Y, ZKN_BIGSUB_CURSOR_SIZE_X, ZKN_BIGSUB_CURSOR_SIZE_Y );
 		}else{
@@ -1615,7 +1615,7 @@ static void ZknBigSubCursorDraw( ZKN_BIG_SUB_DRAWGLB* p_drawglb, const ZKN_BIG_S
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹À•Wİ’è
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™è¨­å®š
  *
  *	@param	p_drawglb
  *	@param	x

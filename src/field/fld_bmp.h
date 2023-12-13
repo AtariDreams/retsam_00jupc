@@ -1,6 +1,6 @@
 /**
  *	@file	fld_bmp.h
- *	@brief	ÉtÉBÅ[ÉãÉhÉÅÉbÉZÅ[ÉW&ÉÅÉjÉÖÅ[ï\é¶ÉRÉìÉgÉçÅ[Éã
+ *	@brief	„Éï„Ç£„Éº„É´„Éâ„É°„ÉÉ„Çª„Éº„Ç∏&„É°„Éã„É•„ÉºË°®Á§∫„Ç≥„É≥„Éà„É≠„Éº„É´
  *	@author	GameFreak Inc.
  *	@date	04/12/17
  */
@@ -8,71 +8,71 @@
 #ifndef _H_FLD_BMP_H_
 #define _H_FLD_BMP_H_
 
-///	ÇaÇfÉpÉåÉbÉgíËã` 2005/09/15
+///	Ôº¢Ôºß„Éë„É¨„ÉÉ„ÉàÂÆöÁæ© 2005/09/15
 //
-//	0 Å` 5  : ÉtÉBÅ[ÉãÉhÉ}ÉbÉvÇaÇfóp
-//  6       : ìVåÛ
-//  7       : ínñºÉEÉCÉìÉhÉE
-//  8       : ä≈î¬ÉEÉCÉìÉhÉEÅiÉ}ÉbÉvÅAïWéØÇ»Ç«Åj
-//  9       : ä≈î¬ÉEÉCÉìÉhÉEÅiògÅAÉtÉHÉìÉgÅj
-//  10      : ÉÅÉbÉZÅ[ÉWÉEÉCÉìÉhÉE
-//  11      : ÉÅÉjÉÖÅ[ÉEÉCÉìÉhÉE
-//  12      : ÉÅÉbÉZÅ[ÉWÉtÉHÉìÉg
-//  13      : ÉVÉXÉeÉÄÉtÉHÉìÉg
-//	14		: ñ¢égópÅiÉçÅ[ÉJÉâÉCÉYópÅj
-//	15		: ÉfÉoÉbÉOópÅiêªïiî≈Ç≈ÇÕñ¢égópÅj
-#define FLD_WEATHER_PAL      (  6 )			//  ìVåÛ
-#define FLD_PLACENAME_PAL    (  7 )         //  ínñºÉEÉCÉìÉhÉE
-#define FLD_BOARD1FRAME_PAL  (  8 )         //  ä≈î¬ÉEÉCÉìÉhÉEÅiÉ}ÉbÉvÅAïWéØÇ»Ç«Åj
-#define FLD_BOARD2FRAME_PAL  (  9 )         //  ä≈î¬ÉEÉCÉìÉhÉEÅiògÅAÉtÉHÉìÉgÅj
-#define FLD_MESFRAME_PAL     ( 10 )         //  ÉÅÉbÉZÅ[ÉWÉEÉCÉìÉhÉE
-#define FLD_MENUFRAME_PAL    ( 11 )         //  ÉÅÉjÉÖÅ[ÉEÉCÉìÉhÉE
-#define FLD_MESFONT_PAL      ( 12 )         //  ÉÅÉbÉZÅ[ÉWÉtÉHÉìÉg
-#define FLD_SYSFONT_PAL	     ( 13 )         //  ÉVÉXÉeÉÄÉtÉHÉìÉg
-#define FLD_LOCALIZE_PAL     ( 14 )         //	ñ¢égópÅiÉçÅ[ÉJÉâÉCÉYópÅj
-#define FLD_DEBUG_PAL        ( 15 )         //	ÉfÉoÉbÉOópÅiêªïiî≈Ç≈ÇÕñ¢égópÅj
+//	0 „Äú 5  : „Éï„Ç£„Éº„É´„Éâ„Éû„ÉÉ„ÉóÔº¢ÔºßÁî®
+//  6       : Â§©ÂÄô
+//  7       : Âú∞Âêç„Ç¶„Ç§„É≥„Éâ„Ç¶
+//  8       : ÁúãÊùø„Ç¶„Ç§„É≥„Éâ„Ç¶Ôºà„Éû„ÉÉ„Éó„ÄÅÊ®ôË≠ò„Å™„Å©Ôºâ
+//  9       : ÁúãÊùø„Ç¶„Ç§„É≥„Éâ„Ç¶ÔºàÊû†„ÄÅ„Éï„Ç©„É≥„ÉàÔºâ
+//  10      : „É°„ÉÉ„Çª„Éº„Ç∏„Ç¶„Ç§„É≥„Éâ„Ç¶
+//  11      : „É°„Éã„É•„Éº„Ç¶„Ç§„É≥„Éâ„Ç¶
+//  12      : „É°„ÉÉ„Çª„Éº„Ç∏„Éï„Ç©„É≥„Éà
+//  13      : „Ç∑„Çπ„ÉÜ„É†„Éï„Ç©„É≥„Éà
+//	14		: Êú™‰ΩøÁî®Ôºà„É≠„Éº„Ç´„É©„Ç§„Ç∫Áî®Ôºâ
+//	15		: „Éá„Éê„ÉÉ„Ç∞Áî®ÔºàË£ΩÂìÅÁâà„Åß„ÅØÊú™‰ΩøÁî®Ôºâ
+#define FLD_WEATHER_PAL      (  6 )			//  Â§©ÂÄô
+#define FLD_PLACENAME_PAL    (  7 )         //  Âú∞Âêç„Ç¶„Ç§„É≥„Éâ„Ç¶
+#define FLD_BOARD1FRAME_PAL  (  8 )         //  ÁúãÊùø„Ç¶„Ç§„É≥„Éâ„Ç¶Ôºà„Éû„ÉÉ„Éó„ÄÅÊ®ôË≠ò„Å™„Å©Ôºâ
+#define FLD_BOARD2FRAME_PAL  (  9 )         //  ÁúãÊùø„Ç¶„Ç§„É≥„Éâ„Ç¶ÔºàÊû†„ÄÅ„Éï„Ç©„É≥„ÉàÔºâ
+#define FLD_MESFRAME_PAL     ( 10 )         //  „É°„ÉÉ„Çª„Éº„Ç∏„Ç¶„Ç§„É≥„Éâ„Ç¶
+#define FLD_MENUFRAME_PAL    ( 11 )         //  „É°„Éã„É•„Éº„Ç¶„Ç§„É≥„Éâ„Ç¶
+#define FLD_MESFONT_PAL      ( 12 )         //  „É°„ÉÉ„Çª„Éº„Ç∏„Éï„Ç©„É≥„Éà
+#define FLD_SYSFONT_PAL	     ( 13 )         //  „Ç∑„Çπ„ÉÜ„É†„Éï„Ç©„É≥„Éà
+#define FLD_LOCALIZE_PAL     ( 14 )         //	Êú™‰ΩøÁî®Ôºà„É≠„Éº„Ç´„É©„Ç§„Ç∫Áî®Ôºâ
+#define FLD_DEBUG_PAL        ( 15 )         //	„Éá„Éê„ÉÉ„Ç∞Áî®ÔºàË£ΩÂìÅÁâà„Åß„ÅØÊú™‰ΩøÁî®Ôºâ
 
 /*********************************************************************************************
-	ÉÅÉCÉìâÊñ ÇÃCGXäÑÇËêUÇË		2006/01/12
+	„É°„Ç§„É≥ÁîªÈù¢„ÅÆCGXÂâ≤„ÇäÊåØ„Çä		2006/01/12
 
-		ÉEÉBÉìÉhÉEòg	ÅF	409 - 511
-			âÔòbÅAÉÅÉjÉÖÅ[ÅAínñºÅAä≈î¬
+		„Ç¶„Ç£„É≥„Éâ„Ç¶Êû†	Ôºö	409 - 511
+			‰ºöË©±„ÄÅ„É°„Éã„É•„Éº„ÄÅÂú∞Âêç„ÄÅÁúãÊùø
 
-		BMPÉEÉBÉìÉhÉEÇP	ÅF	297 - 408
-			âÔòbÅiç≈ëÂÅjÅAä≈î¬ÅAécÇËÉ{Å[Éãêî
+		BMP„Ç¶„Ç£„É≥„Éâ„Ç¶Ôºë	Ôºö	297 - 408
+			‰ºöË©±ÔºàÊúÄÂ§ßÔºâ„ÄÅÁúãÊùø„ÄÅÊÆã„Çä„Éú„Éº„É´Êï∞
 
-		BMPÉEÉBÉìÉhÉEÇQ	ÅF	55 - 296
-			ÉÅÉjÉÖÅ[Åiç≈ëÂÅjÅAÇÕÇ¢/Ç¢Ç¢Ç¶ÅAínñº
+		BMP„Ç¶„Ç£„É≥„Éâ„Ç¶Ôºí	Ôºö	55 - 296
+			„É°„Éã„É•„ÉºÔºàÊúÄÂ§ßÔºâ„ÄÅ„ÅØ„ÅÑ/„ÅÑ„ÅÑ„Åà„ÄÅÂú∞Âêç
 
 *********************************************************************************************/
 
 /*********************************************************************************************
-	ÉEÉBÉìÉhÉEòg
+	„Ç¶„Ç£„É≥„Éâ„Ç¶Êû†
 *********************************************************************************************/
-// âÔòbÉEÉBÉìÉhÉEÉLÉÉÉâ
+// ‰ºöË©±„Ç¶„Ç£„É≥„Éâ„Ç¶„Ç≠„É£„É©
 #define	TALK_WIN_CGX_SIZE	( 18+12 )
 #define	TALK_WIN_CGX_NUM	( 1024 - TALK_WIN_CGX_SIZE )
 #define	TALK_WIN_PAL		( 10 )
 
-// ÉÅÉjÉÖÅ[ÉEÉBÉìÉhÉEÉLÉÉÉâ
+// „É°„Éã„É•„Éº„Ç¶„Ç£„É≥„Éâ„Ç¶„Ç≠„É£„É©
 #define	MENU_WIN_CGX_SIZE	( 9 )
 #define	MENU_WIN_CGX_NUM	( TALK_WIN_CGX_NUM - MENU_WIN_CGX_SIZE )
 #define	MENU_WIN_PAL		( 11 )
 
-// ínñºÉEÉBÉìÉhÉEÉLÉÉÉâ
+// Âú∞Âêç„Ç¶„Ç£„É≥„Éâ„Ç¶„Ç≠„É£„É©
 #define	PLACE_WIN_CGX_SIZE	( 32*8 )//( 10 )
 #define	PLACE_WIN_CGX_NUM	( MENU_WIN_CGX_NUM - PLACE_WIN_CGX_SIZE )
 #define	PLACE_WIN_PAL		( 7 )
 
-// ä≈î¬ÉEÉBÉìÉhÉEÉLÉÉÉâ
+// ÁúãÊùø„Ç¶„Ç£„É≥„Éâ„Ç¶„Ç≠„É£„É©
 #define	BOARD_WIN_CGX_SIZE	( 18+12 + 24 )
 #define	BOARD_WIN_CGX_NUM	( PLACE_WIN_CGX_NUM - BOARD_WIN_CGX_SIZE )
 #define	BOARD_WIN_PAL		( FLD_BOARD2FRAME_PAL )
 
 /*********************************************************************************************
-	BMPÉEÉBÉìÉhÉE
+	BMP„Ç¶„Ç£„É≥„Éâ„Ç¶
 *********************************************************************************************/
-// âÔòbÉEÉBÉìÉhÉEÅiÉÅÉCÉìÅj
+// ‰ºöË©±„Ç¶„Ç£„É≥„Éâ„Ç¶Ôºà„É°„Ç§„É≥Ôºâ
 #define	FLD_MSG_WIN_PX		( 2 )
 #define	FLD_MSG_WIN_PY		( 19 )
 #define	FLD_MSG_WIN_SX		( 27 )
@@ -80,7 +80,7 @@
 #define	FLD_MSG_WIN_PAL		( FLD_MESFONT_PAL )
 #define	FLD_MSG_WIN_CGX		( BOARD_WIN_CGX_NUM - ( FLD_MSG_WIN_SX * FLD_MSG_WIN_SY ) )
 
-// ä≈î¬ÉEÉBÉìÉhÉEÅiÉÅÉCÉìÅjÅiâÔòbÇ∆ìØÇ∂à íuÅiâÔòbÇÊÇËè¨Ç≥Ç¢ÅjÅj
+// ÁúãÊùø„Ç¶„Ç£„É≥„Éâ„Ç¶Ôºà„É°„Ç§„É≥ÔºâÔºà‰ºöË©±„Å®Âêå„Åò‰ΩçÁΩÆÔºà‰ºöË©±„Çà„ÇäÂ∞è„Åï„ÅÑÔºâÔºâ
 #define	FLD_BOARD_WIN_PX	( 9 )
 #define	FLD_BOARD_WIN_PY	( 19 )
 #define	FLD_BOARD_WIN_SX	( 20 )
@@ -88,7 +88,7 @@
 #define	FLD_BOARD_WIN_PAL	( FLD_BOARD2FRAME_PAL )
 #define	FLD_BOARD_WIN_CGX	( FLD_MSG_WIN_CGX )
 
-// écÇËÉ{Å[ÉãêîÅiâÔòbÇ∆ìØÇ∂à íuÅiâÔòbÇÊÇËè¨Ç≥Ç¢ÅjÅj
+// ÊÆã„Çä„Éú„Éº„É´Êï∞Ôºà‰ºöË©±„Å®Âêå„Åò‰ΩçÁΩÆÔºà‰ºöË©±„Çà„ÇäÂ∞è„Åï„ÅÑÔºâÔºâ
 #define	FLD_BALL_WIN_PX		( 1 )
 #define	FLD_BALL_WIN_PY		( 1 )
 #define	FLD_BALL_WIN_SX		( 12 )
@@ -96,7 +96,7 @@
 #define	FLD_BALL_WIN_PAL	( FLD_SYSFONT_PAL )
 #define	FLD_BALL_WIN_CGX	( FLD_MSG_WIN_CGX )
 
-// ÉÅÉjÉÖÅ[ÉEÉBÉìÉhÉEÅiÉÅÉCÉìÅj
+// „É°„Éã„É•„Éº„Ç¶„Ç£„É≥„Éâ„Ç¶Ôºà„É°„Ç§„É≥Ôºâ
 #define	FLD_MENU_WIN_PX		( 20 )
 #define	FLD_MENU_WIN_PY		( 1 )
 #define	FLD_MENU_WIN_SX		( 11 )
@@ -104,7 +104,7 @@
 #define	FLD_MENU_WIN_PAL	( FLD_SYSFONT_PAL )
 #define	FLD_MENU_WIN_CGX	( FLD_MSG_WIN_CGX - ( FLD_MENU_WIN_SX * FLD_MENU_WIN_SY ) )
 
-// ÇÕÇ¢/Ç¢Ç¢Ç¶ÉEÉBÉìÉhÉEÅiÉÅÉCÉìÅjÅiÉÅÉjÉÖÅ[Ç∆ìØÇ∂à íuÅiÉÅÉjÉÖÅ[ÇÊÇËè¨Ç≥Ç¢ÅjÅj
+// „ÅØ„ÅÑ/„ÅÑ„ÅÑ„Åà„Ç¶„Ç£„É≥„Éâ„Ç¶Ôºà„É°„Ç§„É≥ÔºâÔºà„É°„Éã„É•„Éº„Å®Âêå„Åò‰ΩçÁΩÆÔºà„É°„Éã„É•„Éº„Çà„ÇäÂ∞è„Åï„ÅÑÔºâÔºâ
 #define	FLD_YESNO_WIN_PX	( 25 )
 #define	FLD_YESNO_WIN_PY	( 13 )
 #define	FLD_YESNO_WIN_SX	( 6 )
@@ -112,7 +112,7 @@
 #define	FLD_YESNO_WIN_PAL	( FLD_SYSFONT_PAL )
 #define	FLD_YESNO_WIN_CGX	( FLD_MSG_WIN_CGX - ( FLD_YESNO_WIN_SX * FLD_YESNO_WIN_SY ) )
 
-// ínñºÉEÉBÉìÉhÉEÅiÉÅÉjÉÖÅ[Ç∆ìØÇ∂à íuÅiÉÅÉjÉÖÅ[ÇÊÇËè¨Ç≥Ç¢ÅjÅj
+// Âú∞Âêç„Ç¶„Ç£„É≥„Éâ„Ç¶Ôºà„É°„Éã„É•„Éº„Å®Âêå„Åò‰ΩçÁΩÆÔºà„É°„Éã„É•„Éº„Çà„ÇäÂ∞è„Åï„ÅÑÔºâÔºâ
 #define FLD_PLACE_WIN_PX	( 0 )
 #define FLD_PLACE_WIN_PY	( 0 )
 #define	FLD_PLACE_WIN_SX	( 32 )
@@ -122,14 +122,14 @@
 
 
 
-// ÉÅÉbÉZÅ[ÉWÉEÉBÉìÉhÉEÅiÉTÉuÅj
+// „É°„ÉÉ„Çª„Éº„Ç∏„Ç¶„Ç£„É≥„Éâ„Ç¶Ôºà„Çµ„ÉñÔºâ
 #define	FLD_MSG_WIN_S_PX	( 2  )
 #define	FLD_MSG_WIN_S_PY	( 19 )
 #define	FLD_MSG_WIN_S_PAL	( FLD_MESFONT_PAL )
 #define	FLD_MSG_WIN_S_CGX	( 512 - ( FLD_MSG_WIN_SX * FLD_MSG_WIN_SY ) )
 //#define	FLD_MSG_WIN_S_CGX	( MENU_WIN_CGX_NUM - ( FLD_MSG_WIN_SX * FLD_MSG_WIN_SY ) )
 
-// ä≈î¬ÉEÉBÉìÉhÉEÅiÉTÉuÅj
+// ÁúãÊùø„Ç¶„Ç£„É≥„Éâ„Ç¶Ôºà„Çµ„ÉñÔºâ
 #define	FLD_BOARD_WIN_S_PX	( 9 )
 #define	FLD_BOARD_WIN_S_PY	( 19 )
 #define	FLD_BOARD_WIN_S_SX	( 21 )
@@ -138,8 +138,8 @@
 #define	FLD_BOARD_WIN_S_CGX	( FLD_MSG_WIN_S_CGX )
 
 /*
-// DP Ç≈ñ¢égópÅ@ÇµÇ©Ç‡ÅAÉTÉuñ Ç»ÇÃÇ…ÉÅÉCÉìÇÃÇbÇfÇwÇmÇtÇlÇ©ÇÁÉ}ÉCÉiÉXÇµÇƒÇÈÇÃÇ≈íçà”
-// ÉÅÉjÉÖÅ[ÉEÉBÉìÉhÉEÅiÉTÉuÅj
+// DP „ÅßÊú™‰ΩøÁî®„ÄÄ„Åó„Åã„ÇÇ„ÄÅ„Çµ„ÉñÈù¢„Å™„ÅÆ„Å´„É°„Ç§„É≥„ÅÆÔº£ÔºßÔº∏ÔºÆÔºµÔº≠„Åã„Çâ„Éû„Ç§„Éä„Çπ„Åó„Å¶„Çã„ÅÆ„ÅßÊ≥®ÊÑè
+// „É°„Éã„É•„Éº„Ç¶„Ç£„É≥„Éâ„Ç¶Ôºà„Çµ„ÉñÔºâ
 #define	FLD_MENU_WIN_S_PX	( 25 )
 #define	FLD_MENU_WIN_S_PY	( 1 )
 #define	FLD_MENU_WIN_S_SX	( 6 )
@@ -149,24 +149,24 @@
 */
 
 
-///	ÉrÉbÉgÉ}ÉbÉvì]ëóä÷êîópíËã`
+///	„Éì„ÉÉ„Éà„Éû„ÉÉ„ÉóËª¢ÈÄÅÈñ¢Êï∞Áî®ÂÆöÁæ©
 //------------------------------------------------------------------
 #define	FBMP_TRANS_OFF	(0)
 #define	FBMP_TRANS_ON	(1)
-///	ï∂éöï\é¶ì]ëóä÷êîópíËã`
+///	ÊñáÂ≠óË°®Á§∫Ëª¢ÈÄÅÈñ¢Êï∞Áî®ÂÆöÁæ©
 //------------------------------------------------------------------
 #define	FBMPMSG_WAITON_SKIPOFF	(0)
 #define	FBMPMSG_WAITON_SKIPON	(1)
 #define	FBMPMSG_WAITOFF			(2)
 
 //-------------------------------------------------------------------------
-///	ï∂éöï\é¶êFíËã`(default)	-> gflib/fntsys.hÇ÷à⁄ìÆ
+///	ÊñáÂ≠óË°®Á§∫Ëâ≤ÂÆöÁæ©(default)	-> gflib/fntsys.h„Å∏ÁßªÂãï
 //------------------------------------------------------------------
 
 #define WINCLR_COL(col)	(((col)<<4)|(col))
 
 //-------------------------------------------------------------------------
-///	ï∂éöï\é¶ÉXÉsÅ[ÉhíËã`(default)
+///	ÊñáÂ≠óË°®Á§∫„Çπ„Éî„Éº„ÉâÂÆöÁæ©(default)
 //------------------------------------------------------------------
 #define	FBMP_MSG_SPEED_SLOW		(8)
 #define	FBMP_MSG_SPEED_NORMAL	(4)

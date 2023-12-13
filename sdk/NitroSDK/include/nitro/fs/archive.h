@@ -31,13 +31,13 @@ extern "C" {
 
 enum
 {
-    /* �A�[�J�C�u���̍ő咷 */
+    /* アーカイブ名の最大長 */
     FS_ARCHIVE_NAME_LEN_MAX = 3
 };
 
 /*
- * �A�[�J�C�u������ԃt���O (�C�����C���֐��p)
- * ���[�U�͂����̒萔�𒼐ڎg�p���邱�Ƃ͂���܂���.
+ * アーカイブ内部状態フラグ (インライン関数用)
+ * ユーザはこれらの定数を直接使用することはありません.
  */
 #define	FS_ARCHIVE_FLAG_REGISTER	0x00000001
 #define	FS_ARCHIVE_FLAG_LOADED		0x00000002
@@ -51,25 +51,25 @@ enum
 #define	FS_ARCHIVE_FLAG_IS_SYNC		0x00000200
 
 /*
- * FSArchive::flag ��, �A�[�J�C�u�����̂��߂�
- * �ȉ��̃r�b�g�̈�����R�ɒ�`���Ďg�����Ƃ��ł��܂�.
+ * FSArchive::flag は, アーカイブ実装のために
+ * 以下のビット領域を自由に定義して使うことができます.
  */
 #define	FS_ARCHIVE_FLAG_USER_RESERVED_BIT	0x00010000
 #define	FS_ARCHIVE_FLAG_USER_RESERVED_MASK	0xFFFF0000
 
 /*
- * �t�@�C���R�}���h����уA�[�J�C�u���b�Z�[�W.
- * �A�[�J�C�u�������Ƀ��[�U�v���V�[�W���Ŏg�p���܂�.
+ * ファイルコマンドおよびアーカイブメッセージ.
+ * アーカイブ実装時にユーザプロシージャで使用します.
  */
 typedef enum
 {
-    /* �񓯊��n�R�}���h. */
+    /* 非同期系コマンド. */
     FS_COMMAND_ASYNC_BEGIN = 0,
     FS_COMMAND_READFILE = FS_COMMAND_ASYNC_BEGIN,
     FS_COMMAND_WRITEFILE,
     FS_COMMAND_ASYNC_END,
 
-    /* �����n�R�}���h. */
+    /* 同期系コマンド. */
     FS_COMMAND_SYNC_BEGIN = FS_COMMAND_ASYNC_END,
     FS_COMMAND_SEEKDIR = FS_COMMAND_SYNC_BEGIN,
     FS_COMMAND_READDIR,
@@ -80,7 +80,7 @@ typedef enum
     FS_COMMAND_CLOSEFILE,
     FS_COMMAND_SYNC_END,
 
-    /* �A�[�J�C�u���b�Z�[�W. */
+    /* アーカイブメッセージ. */
     FS_COMMAND_STATUS_BEGIN = FS_COMMAND_SYNC_END,
     FS_COMMAND_ACTIVATE = FS_COMMAND_STATUS_BEGIN,
     FS_COMMAND_IDLE,
@@ -93,19 +93,19 @@ typedef enum
 FSCommandType;
 
 /*
- * ���[�U�v���V�[�W���ݒ�t���O.
- * FS_SetArchiveProc() �ň��� flags �Ɏw�肵�܂�.
- * �R�[���o�b�N��v��������̂����r�b�g��L���ɂ��܂�.
+ * ユーザプロシージャ設定フラグ.
+ * FS_SetArchiveProc() で引数 flags に指定します.
+ * コールバックを要求するものだけビットを有効にします.
  */
 
-/* �񓯊��n�R�}���h */
+/* 非同期系コマンド */
 #define	FS_ARCHIVE_PROC_READFILE		(1 << FS_COMMAND_READFILE)
 #define	FS_ARCHIVE_PROC_WRITEFILE		(1 << FS_COMMAND_WRITEFILE)
-        /* �񓯊��n�̑S�R�}���h */
+        /* 非同期系の全コマンド */
 #define	FS_ARCHIVE_PROC_ASYNC	\
 	(FS_ARCHIVE_PROC_READFILE | FS_ARCHIVE_PROC_WRITEFILE)
 
-/* �����n�̃R�}���h */
+/* 同期系のコマンド */
 #define	FS_ARCHIVE_PROC_SEEKDIR			(1 << FS_COMMAND_SEEKDIR)
 #define	FS_ARCHIVE_PROC_READDIR			(1 << FS_COMMAND_READDIR)
 #define	FS_ARCHIVE_PROC_FINDPATH		(1 << FS_COMMAND_FINDPATH)
@@ -113,96 +113,96 @@ FSCommandType;
 #define	FS_ARCHIVE_PROC_OPENFILEFAST	(1 << FS_COMMAND_OPENFILEFAST)
 #define	FS_ARCHIVE_PROC_OPENFILEDIRECT	(1 << FS_COMMAND_OPENFILEDIRECT)
 #define	FS_ARCHIVE_PROC_CLOSEFILE		(1 << FS_COMMAND_CLOSEFILE)
-        /* �����n�̑S�R�}���h */
+        /* 同期系の全コマンド */
 #define	FS_ARCHIVE_PROC_SYNC	\
 	(FS_ARCHIVE_PROC_SEEKDIR | FS_ARCHIVE_PROC_READDIR |	\
 	 FS_ARCHIVE_PROC_FINDPATH | FS_ARCHIVE_PROC_GETPATH |	\
 	FS_ARCHIVE_PROC_OPENFILEFAST | FS_ARCHIVE_PROC_OPENFILEDIRECT | FS_ARCHIVE_PROC_CLOSEFILE)
 
-/* ��ԕω����̃��b�Z�[�W */
+/* 状態変化時のメッセージ */
 #define	FS_ARCHIVE_PROC_ACTIVATE		(1 << FS_COMMAND_ACTIVATE)
 #define	FS_ARCHIVE_PROC_IDLE			(1 << FS_COMMAND_IDLE)
 #define	FS_ARCHIVE_PROC_SUSPENDING		(1 << FS_COMMAND_SUSPEND)
 #define	FS_ARCHIVE_PROC_RESUME			(1 << FS_COMMAND_RESUME)
-        /* ��ԕω����̑S���b�Z�[�W */
+        /* 状態変化時の全メッセージ */
 #define	FS_ARCHIVE_PROC_STATUS	\
 	(FS_ARCHIVE_PROC_ACTIVATE | FS_ARCHIVE_PROC_IDLE |	\
 	 FS_ARCHIVE_PROC_SUSPENDING | FS_ARCHIVE_PROC_RESUME)
 
-/* ���ׂẴ��b�Z�[�W */
+/* すべてのメッセージ */
 #define	FS_ARCHIVE_PROC_ALL	(~0)
 
 typedef enum
 {
     /****************************************************************
-	 * ���[�U�G���[�R�[�h
-	 * FS_GetErrorCode() �Ŏ擾���܂�.
+	 * ユーザエラーコード
+	 * FS_GetErrorCode() で取得します.
 	 ****************************************************************/
 
     /*
-     * �����������������ʂƂ��Ă̐����������܂�.
-     * �Ⴆ�� 100 BYTE ���[�h���悤�Ƃ�����
-     * �I�[�ɒB���� 50 BYTE �����ǂ߂Ȃ������ꍇ��
-     * �u�����v�Ƃ��Ĉ����܂�.
+     * 正しく処理した結果としての成功を示します.
+     * 例えば 100 BYTE リードしようとしたが
+     * 終端に達して 50 BYTE しか読めなかった場合も
+     * 「成功」として扱われます.
      */
     FS_RESULT_SUCCESS = 0,
 
     /*
-     * �����������������ʂƂ��Ă̎��s�������܂�.
-     * ReadDir �ŏI�[��ǂ񂾂Ƃ��Ȃ�,
-     * �����Ƃ��ĔF�߂��Ă���z����́u���s�v���w���܂�.
+     * 正しく処理した結果としての失敗を示します.
+     * ReadDir で終端を読んだときなど,
+     * 処理として認められている想定内の「失敗」を指します.
      */
     FS_RESULT_FAILURE,
 
     /*
-     * ���݃R�}���h�������ł��邱�Ƃ������܂�.
-     * �����Ȃ̂�, �����ɂ̓G���[�ł͂���܂���.
+     * 現在コマンド処理中であることを示します.
+     * 未完なので, 厳密にはエラーではありません.
      */
     FS_RESULT_BUSY,
 
     /*
-     * �R�}���h���L�����Z�����ꂽ���Ƃ������܂�.
-     * ���[�U���g�ɂ�閾���I�ȃR�}���h�L�����Z����,
-     * �A�[�J�C�u�A�����[�h���̋����L�����Z��������܂�.
+     * コマンドをキャンセルされたことを示します.
+     * ユーザ自身による明示的なコマンドキャンセルと,
+     * アーカイブアンロード時の強制キャンセルがあります.
      */
     FS_RESULT_CANCELED,
     FS_RESULT_CANCELLED = FS_RESULT_CANCELED,
 
     /*
-     * �A�[�J�C�u���w��R�}���h�ɑΉ����Ȃ��������Ƃ������܂�.
-     * ���̃G���[�̓R�}���h�������Ė�������A�[�J�C�u�����s��,
-     * ���[�U�͑ΏۃA�[�J�C�u�̓���d�l��c�����Ă���K�v������܂�.
+     * アーカイブが指定コマンドに対応しなかったことを示します.
+     * このエラーはコマンドをあえて無視するアーカイブが発行し,
+     * ユーザは対象アーカイブの特殊仕様を把握している必要があります.
      */
     FS_RESULT_UNSUPPORTED,
 
     /*
-     * �t�@�C���V�X�e���܂��̓A�[�J�C�u�̃G���[�ɂ�鎸�s�������܂�.
+     * ファイルシステムまたはアーカイブのエラーによる失敗を示します.
      */
     FS_RESULT_ERROR,
 
     /****************************************************************
-	 * �v���V�[�W�����x�� �G���[�R�[�h
-	 * ���[�U�v���V�[�W�����Ԃ�, FS_GetErrorCode() �ɂ͊܂܂�܂���.
+	 * プロシージャレベル エラーコード
+	 * ユーザプロシージャが返し, FS_GetErrorCode() には含まれません.
 	 ****************************************************************/
 
     /*
-     * �R�}���h�̏�����񓯊��I�ɍs������, �ЂƂ܂������Ԃ��܂�.
-     * ���̒l��Ԃ����ꍇ��, ���[�h�E���C�g�R�[���o�b�N�Ɠ��l��
-     * ������ FS_NotifyArchiveAsyncEnd() �Œʒm����K�v������܂�.
+     * コマンドの処理を非同期的に行うため, ひとまず制御を返します.
+     * この値を返した場合は, リード・ライトコールバックと同様に
+     * 完了を FS_NotifyArchiveAsyncEnd() で通知する必要があります.
      */
     FS_RESULT_PROC_ASYNC,
 
     /*
-     * ���Ȃ��Ƃ����񂾂��̓f�t�H���g�����ɔC���܂�.
-     * ��������Y�R�}���h�ւ̃��[�U�v���V�[�W���͌Ăяo����܂�.
-     * �P�ɃR�}���h���t�b�N�������ꍇ�Ȃǂ͖��񂱂��Ԃ��܂�.
+     * 少なくとも今回だけはデフォルト処理に任せます.
+     * 次回も当該コマンドへのユーザプロシージャは呼び出されます.
+     * 単にコマンドをフックしたい場合などは毎回これを返します.
      */
     FS_RESULT_PROC_DEFAULT,
 
     /*
-     * ����ȍ~�̂��̃R�}���h��S�ăf�t�H���g�����ɔC���܂�.
-     * ���Y�R�}���h�ւ̃v���V�[�W���Ăяo���t���O�͉�������,
-     * ���񂩂�Ăяo����܂���.
+     * 今回以降のこのコマンドを全てデフォルト処理に任せます.
+     * 当該コマンドへのプロシージャ呼び出しフラグは解除され,
+     * 次回から呼び出されません.
      */
     FS_RESULT_PROC_UNKNOWN
 }
@@ -219,29 +219,29 @@ struct FSArchiveFNT;
 struct FSArchive;
 
 /*
- * ���[�U�v���V�[�W��
- * �A�[�J�C�u����ꉻ���邽�߂Ƀ��[�U���ݒ肵�܂�.
+ * ユーザプロシージャ
+ * アーカイブを特殊化するためにユーザが設定します.
  */
 typedef FSResult (*FS_ARCHIVE_PROC_FUNC) (struct FSFile *, FSCommandType);
 
 /*
- * Read/Write �A�N�Z�X�p�R�[���o�b�N
+ * Read/Write アクセス用コールバック
  *
- * �Ăяo���̒��ŃA�N�Z�X����������� FS_RESULT_SUCCESS ��Ԃ��K�v������܂�.
- * �񓯊������Ȃǂŏ������p�������� FS_RESULT_PROC_ASYNC ��Ԃ�,
- * �������� FS_NotifyArchiveAsyncEnd() ���R�[������K�v������܂�.
+ * 呼び出しの中でアクセスが完了すれば FS_RESULT_SUCCESS を返す必要があります.
+ * 非同期処理などで処理が継続されれば FS_RESULT_PROC_ASYNC を返し,
+ * 完了時に FS_NotifyArchiveAsyncEnd() をコールする必要があります.
  *
- * �S�R�}���h�̃f�t�H���g�����͂��̃R�[���o�b�N���g�p����
- * FAT / FNT / �t�@�C���C���[�W�փA�N�Z�X���邱�ƂŎ������܂�.
- * �t��, �K�v�ȑS�ẴR�}���h�����[�U�v���V�[�W�����̏�����
- * �K�؂ɃI�[�o�[���C�h����΂����̃R�[���o�b�N�͌Ă΂�܂���.
+ * 全コマンドのデフォルト処理はこのコールバックを使用して
+ * FAT / FNT / ファイルイメージへアクセスすることで実現します.
+ * 逆に, 必要な全てのコマンドをユーザプロシージャ内の処理で
+ * 適切にオーバーライドすればこれらのコールバックは呼ばれません.
  */
 typedef FSResult (*FS_ARCHIVE_READ_FUNC) (struct FSArchive *p, void *dst, u32 pos, u32 size);
 typedef FSResult (*FS_ARCHIVE_WRITE_FUNC) (struct FSArchive *p, const void *src, u32 pos, u32 size);
 
 /*
- * �ȉ��̍\���̂̓A�[�J�C�u�����҂̗��֐��̂��߂Ɍ��J����Ă��܂�.
- * file system API �Œ��ڂ�����K�v�Ƃ��邱�Ƃ͂���܂���.
+ * 以下の構造体はアーカイブ実装者の利便性のために公開されています.
+ * file system API で直接これらを必要とすることはありません.
  */
 
 typedef struct FSFileLink
@@ -267,69 +267,69 @@ typedef struct FSArchiveFNT
 FSArchiveFNT;
 
 /*
- * �A�[�J�C�u�\����
- * �A�[�J�C�u�����҂͂��̍\���̂̎��̂��ЂƂp�ӂ�,
+ * アーカイブ構造体
+ * アーカイブ実装者はこの構造体の実体をひとつ用意し,
  *
- * (1) FS_InitArchive() �ŏ�����.
- * (2) FS_RegisterArchiveName() �Ŗ��O��o�^.
- * (3) FS_LoadArchive() �ŃV�X�e���Ƀ��[�h.
+ * (1) FS_InitArchive() で初期化.
+ * (2) FS_RegisterArchiveName() で名前を登録.
+ * (3) FS_LoadArchive() でシステムにロード.
  *
- * �̎菇�Ńt�@�C���V�X�e���ɃA�[�J�C�u��ǉ����邱�Ƃ��ł��܂�.
- * �A�[�J�C�u�����I�Ȃ��̂ł���Ȃ��
+ * の手順でファイルシステムにアーカイブを追加することができます.
+ * アーカイブが動的なものであるならば
  *
- * (4) FS_UnloadArchive() �ŃV�X�e������A�����[�h.
+ * (4) FS_UnloadArchive() でシステムからアンロード.
  *
- * �ɂ���ăA�[�J�C�u�����, �ė��p���邱�Ƃ��ł��܂�.
- * �A�[�J�C�u�������I�ɕύX�������ꍇ�ɂ�
+ * によってアーカイブを解放, 再利用することができます.
+ * アーカイブ名も動的に変更したい場合には
  *
- * (5) FS_ReleaseArchiveName() �Ŗ��O�����.
+ * (5) FS_ReleaseArchiveName() で名前を解放.
  *
- * �̂̂��� (2) �����蒼�����Ƃ��ł��܂�.
+ * ののちに (2) からやり直すことができます.
  */
 
 typedef struct FSArchive
 {
 /* private: */
 
-    /* �t�@�C���V�X�e���̊Ǘ��p�ϐ� */
+    /* ファイルシステムの管理用変数 */
     union
     {
-        /* �A�[�J�C�u�����ʂ����ӂ̖��O.
-           �p���� 1�`3 �����ő召��������ʂ��Ȃ� */
+        /* アーカイブを識別する一意の名前.
+           英数字 1〜3 文字で大小文字を区別しない */
         char    ptr[FS_ARCHIVE_NAME_LEN_MAX + 1];
         u32     pack;
     }
     name;
-    /* �V�X�e�����̃A�[�J�C�u�A�����X�g */
+    /* システム内のアーカイブ連結リスト */
     struct FSArchive *next;
     struct FSArchive *prev;
 
-    /* �R�}���h������Ԃ̊Ǘ��p�ϐ� */
-    OSThreadQueue sync_q;              /* �������� (SeekDir ��) */
-    OSThreadQueue stat_q;              /* ��ԕύX (Suspend ��) */
-    u32     flag;                      /* ������ԃt���O (FS_ARCHIVE_FLAG_*) */
+    /* コマンド処理状態の管理用変数 */
+    OSThreadQueue sync_q;              /* 同期処理 (SeekDir 等) */
+    OSThreadQueue stat_q;              /* 状態変更 (Suspend 等) */
+    u32     flag;                      /* 内部状態フラグ (FS_ARCHIVE_FLAG_*) */
 
-    FSFileLink list;                   /* �����҂��̃R�}���h���X�g */
+    FSFileLink list;                   /* 処理待ちのコマンドリスト */
 
-    /* ROM �t�@�C���t�H�[�}�b�g�ɏ�������e��I�t�Z�b�g */
-    u32     base;                      /* �x�[�X�I�t�Z�b�g */
-    u32     fat;                       /* FAT �I�t�Z�b�g */
-    u32     fat_size;                  /* FAT �T�C�Y */
-    u32     fnt;                       /* FNT �I�t�Z�b�g */
-    u32     fnt_size;                  /* FNT �T�C�Y */
-    u32     fat_bak;                   /* �v�����[�h�O�� FAT �x�[�X�I�t�Z�b�g */
-    u32     fnt_bak;                   /* �v�����[�h�O�� FNT �x�[�X�I�t�Z�b�g */
-    void   *load_mem;                  /* ���[�h���ꂽ�e�[�u���̃����� */
+    /* ROM ファイルフォーマットに準拠する各種オフセット */
+    u32     base;                      /* ベースオフセット */
+    u32     fat;                       /* FAT オフセット */
+    u32     fat_size;                  /* FAT サイズ */
+    u32     fnt;                       /* FNT オフセット */
+    u32     fnt_size;                  /* FNT サイズ */
+    u32     fat_bak;                   /* プリロード前の FAT ベースオフセット */
+    u32     fnt_bak;                   /* プリロード前の FNT ベースオフセット */
+    void   *load_mem;                  /* ロードされたテーブルのメモリ */
 
-    /* ��{�I�y���[�V�����R�[���o�b�N */
+    /* 基本オペレーションコールバック */
     FS_ARCHIVE_READ_FUNC read_func;
     FS_ARCHIVE_WRITE_FUNC write_func;
 
-    /* �e�[�u���փA�N�Z�X����ۂ̓����R�[���o�b�N.
-       (�����ł������� FS_IsArchiveTableLoaded() ���g��Ȃ�����) */
+    /* テーブルへアクセスする際の内部コールバック.
+       (内部でいちいち FS_IsArchiveTableLoaded() を使わないため) */
     FS_ARCHIVE_READ_FUNC table_func;
 
-    /* ���[�U�v���V�[�W�� (FS_ARCHIVE_PROC_*) */
+    /* ユーザプロシージャ (FS_ARCHIVE_PROC_*) */
     FS_ARCHIVE_PROC_FUNC proc;
     u32     proc_flag;
 
@@ -343,9 +343,9 @@ FSArchive;
 /*---------------------------------------------------------------------------*
   Name:         FS_InitArchive
 
-  Description:  �A�[�J�C�u�\���̂�������.
+  Description:  アーカイブ構造体を初期化.
 
-  Arguments:    p_arc            ����������A�[�J�C�u.
+  Arguments:    p_arc            初期化するアーカイブ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -354,11 +354,11 @@ void    FS_InitArchive(FSArchive *p_arc);
 /*---------------------------------------------------------------------------*
   Name:         FS_GetArchiveName
 
-  Description:  �A�[�J�C�u�����擾.
+  Description:  アーカイブ名を取得.
 
-  Arguments:    p_arc            ���O���擾����A�[�J�C�u.
+  Arguments:    p_arc            名前を取得するアーカイブ.
 
-  Returns:      �t�@�C���V�X�e���ɓo�^���ꂽ�A�[�J�C�u��.
+  Returns:      ファイルシステムに登録されたアーカイブ名.
  *---------------------------------------------------------------------------*/
 static inline const char *FS_GetArchiveName(const FSArchive *p_arc)
 {
@@ -368,11 +368,11 @@ static inline const char *FS_GetArchiveName(const FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FS_GetArchiveBase
 
-  Description:  �A�[�J�C�u�̃x�[�X�I�t�Z�b�g���擾.
+  Description:  アーカイブのベースオフセットを取得.
 
-  Arguments:    p_arc            �x�[�X�I�t�Z�b�g���擾����A�[�J�C�u.
+  Arguments:    p_arc            ベースオフセットを取得するアーカイブ.
 
-  Returns:      �A�[�J�C�u�̃x�[�X�I�t�Z�b�g.
+  Returns:      アーカイブのベースオフセット.
  *---------------------------------------------------------------------------*/
 static inline u32 FS_GetArchiveBase(const FSArchive *p_arc)
 {
@@ -382,11 +382,11 @@ static inline u32 FS_GetArchiveBase(const FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FS_GetArchiveFAT
 
-  Description:  �A�[�J�C�u�� FAT �I�t�Z�b�g���擾.
+  Description:  アーカイブの FAT オフセットを取得.
 
-  Arguments:    p_arc            FAT �I�t�Z�b�g���擾����A�[�J�C�u.
+  Arguments:    p_arc            FAT オフセットを取得するアーカイブ.
 
-  Returns:      �A�[�J�C�u�� FAT �I�t�Z�b�g.
+  Returns:      アーカイブの FAT オフセット.
  *---------------------------------------------------------------------------*/
 static inline u32 FS_GetArchiveFAT(const FSArchive *p_arc)
 {
@@ -396,26 +396,26 @@ static inline u32 FS_GetArchiveFAT(const FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FS_GetArchiveFNT
 
-  Description:  �A�[�J�C�u�� FNT �I�t�Z�b�g���擾.
+  Description:  アーカイブの FNT オフセットを取得.
 
-  Arguments:    p_arc            FNT �I�t�Z�b�g���擾����A�[�J�C�u.
+  Arguments:    p_arc            FNT オフセットを取得するアーカイブ.
 
-  Returns:      �A�[�J�C�u�� FNT �I�t�Z�b�g.
+  Returns:      アーカイブの FNT オフセット.
  *---------------------------------------------------------------------------*/
 static inline u32 FS_GetArchiveFNT(const FSArchive *p_arc)
 {
     return p_arc->fnt;
 }
 
-/* �A�[�J�C�u�̃x�[�X����̎w��ʒu�I�t�Z�b�g���擾 */
+/* アーカイブのベースからの指定位置オフセットを取得 */
 /*---------------------------------------------------------------------------*
   Name:         FS_GetArchiveOffset
 
-  Description:  �A�[�J�C�u�̃x�[�X����̎w��ʒu�I�t�Z�b�g���擾.
+  Description:  アーカイブのベースからの指定位置オフセットを取得.
 
-  Arguments:    p_arc            �A�[�J�C�u.
+  Arguments:    p_arc            アーカイブ.
 
-  Returns:      �x�[�X�����Z�����w��ʒu�I�t�Z�b�g.
+  Returns:      ベースを加算した指定位置オフセット.
  *---------------------------------------------------------------------------*/
 static inline u32 FS_GetArchiveOffset(const FSArchive *p_arc, u32 pos)
 {
@@ -425,11 +425,11 @@ static inline u32 FS_GetArchiveOffset(const FSArchive *p_arc, u32 pos)
 /*---------------------------------------------------------------------------*
   Name:         FS_IsArchiveLoaded
 
-  Description:  �A�[�J�C�u�����݃t�@�C���V�X�e���Ƀ��[�h�ς݂�����.
+  Description:  アーカイブが現在ファイルシステムにロード済みか判定.
 
-  Arguments:    p_arc            ���肷��A�[�J�C�u.
+  Arguments:    p_arc            判定するアーカイブ.
 
-  Returns:      �t�@�C���V�X�e���Ƀ��[�h�ς݂Ȃ� TRUE.
+  Returns:      ファイルシステムにロード済みなら TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL FS_IsArchiveLoaded(volatile const FSArchive *p_arc)
 {
@@ -439,11 +439,11 @@ static inline BOOL FS_IsArchiveLoaded(volatile const FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FS_IsArchiveTableLoaded
 
-  Description:  �A�[�J�C�u�����݃e�[�u�����v�����[�h�ς݂�����.
+  Description:  アーカイブが現在テーブルをプリロード済みか判定.
 
-  Arguments:    p_arc            ���肷��A�[�J�C�u.
+  Arguments:    p_arc            判定するアーカイブ.
 
-  Returns:      �e�[�u�����v�����[�h�ς݂Ȃ� TRUE.
+  Returns:      テーブルをプリロード済みなら TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL FS_IsArchiveTableLoaded(volatile const FSArchive *p_arc)
 {
@@ -453,11 +453,11 @@ static inline BOOL FS_IsArchiveTableLoaded(volatile const FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FS_IsArchiveSuspended
 
-  Description:  �A�[�J�C�u�����݃T�X�y���h��������.
+  Description:  アーカイブが現在サスペンド中か判定.
 
-  Arguments:    p_arc            ���肷��A�[�J�C�u.
+  Arguments:    p_arc            判定するアーカイブ.
 
-  Returns:      �T�X�y���h���Ȃ� TRUE.
+  Returns:      サスペンド中なら TRUE.
  *---------------------------------------------------------------------------*/
 static inline BOOL FS_IsArchiveSuspended(volatile const FSArchive *p_arc)
 {
@@ -467,26 +467,26 @@ static inline BOOL FS_IsArchiveSuspended(volatile const FSArchive *p_arc)
 /*---------------------------------------------------------------------------*
   Name:         FS_FindArchive
 
-  Description:  �A�[�J�C�u������������.
-                ��v���閼�O��������� NULL ��Ԃ�.
+  Description:  アーカイブ名を検索する.
+                一致する名前が無ければ NULL を返す.
 
-  Arguments:    name             ��������A�[�J�C�u���̕�����.
-                name_len         name �̕�����.
+  Arguments:    name             検索するアーカイブ名の文字列.
+                name_len         name の文字列長.
 
-  Returns:      �������Č��������A�[�J�C�u�̃|�C���^�� NULL.
+  Returns:      検索して見つかったアーカイブのポインタか NULL.
  *---------------------------------------------------------------------------*/
 FSArchive *FS_FindArchive(const char *name, int name_len);
 
 /*---------------------------------------------------------------------------*
   Name:         FS_RegisterArchiveName
 
-  Description:  �A�[�J�C�u�����t�@�C���V�X�e���֓o�^��, �֘A�t����.
-                �A�[�J�C�u���̂͂܂��t�@�C���V�X�e���Ƀ��[�h����Ȃ�.
-                �A�[�J�C�u�� "rom" �̓t�@�C���V�X�e���ɗ\��ς�.
+  Description:  アーカイブ名をファイルシステムへ登録し, 関連付ける.
+                アーカイブ自体はまだファイルシステムにロードされない.
+                アーカイブ名 "rom" はファイルシステムに予約済み.
 
-  Arguments:    p_arc            ���O���֘A�t����A�[�J�C�u.
-                name             �o�^���閼�O�̕�����.
-                name_len         name �̕�����.
+  Arguments:    p_arc            名前を関連付けるアーカイブ.
+                name             登録する名前の文字列.
+                name_len         name の文字列長.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -495,10 +495,10 @@ BOOL    FS_RegisterArchiveName(FSArchive *p_arc, const char *name, u32 name_len)
 /*---------------------------------------------------------------------------*
   Name:         FS_ReleaseArchiveName
 
-  Description:  �o�^�ς݂̃A�[�J�C�u�����������.
-                �t�@�C���V�X�e������A�����[�h����Ă���K�v������.
+  Description:  登録済みのアーカイブ名を解放する.
+                ファイルシステムからアンロードされている必要がある.
 
-  Arguments:    p_arc            ���O���������A�[�J�C�u.
+  Arguments:    p_arc            名前を解放するアーカイブ.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -507,19 +507,19 @@ void    FS_ReleaseArchiveName(FSArchive *p_arc);
 /*---------------------------------------------------------------------------*
   Name:         FS_LoadArchive
 
-  Description:  �A�[�J�C�u���t�@�C���V�X�e���Ƀ��[�h����.
-                ���łɃA�[�J�C�u���X�g�ɖ��O���o�^����Ă���K�v������.
+  Description:  アーカイブをファイルシステムにロードする.
+                すでにアーカイブリストに名前が登録されている必要がある.
 
-  Arguments:    p_arc            ���[�h����A�[�J�C�u.
-                base             �Ǝ��Ɏg�p�\�ȔC�ӂ� u32 �l.
-                fat              FAT �e�[�u���̐擪�I�t�Z�b�g.
-                fat_size         FAT �e�[�u���̃T�C�Y.
-                fnt              FNT �e�[�u���̐擪�I�t�Z�b�g.
-                fnt_size         FNT �e�[�u���̃T�C�Y.
-                read_func        ���[�h�A�N�Z�X�R�[���o�b�N.
-                write_func       ���C�g�A�N�Z�X�R�[���o�b�N.
+  Arguments:    p_arc            ロードするアーカイブ.
+                base             独自に使用可能な任意の u32 値.
+                fat              FAT テーブルの先頭オフセット.
+                fat_size         FAT テーブルのサイズ.
+                fnt              FNT テーブルの先頭オフセット.
+                fnt_size         FNT テーブルのサイズ.
+                read_func        リードアクセスコールバック.
+                write_func       ライトアクセスコールバック.
 
-  Returns:      �A�[�J�C�u�����������[�h������ TRUE.
+  Returns:      アーカイブが正しくロードされれば TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    FS_LoadArchive(FSArchive *p_arc, u32 base,
                        u32 fat, u32 fat_size, u32 fnt, u32 fnt_size,
@@ -528,86 +528,86 @@ BOOL    FS_LoadArchive(FSArchive *p_arc, u32 base,
 /*---------------------------------------------------------------------------*
   Name:         FS_UnloadArchive
 
-  Description:  �A�[�J�C�u���t�@�C���V�X�e������A�����[�h����.
-                ���ݏ������̃^�X�N���S�Ċ�������܂Ńu���b�L���O����.
+  Description:  アーカイブをファイルシステムからアンロードする.
+                現在処理中のタスクが全て完了するまでブロッキングする.
 
-  Arguments:    p_arc            �A�����[�h����A�[�J�C�u.
+  Arguments:    p_arc            アンロードするアーカイブ.
 
-  Returns:      �A�[�J�C�u���������A�����[�h������ TRUE.
+  Returns:      アーカイブが正しくアンロードされれば TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    FS_UnloadArchive(FSArchive *p_arc);
 
 /*---------------------------------------------------------------------------*
   Name:         FS_LoadArchiveTables
 
-  Description:  �A�[�J�C�u�� FAT + FNT ����������Ƀv�����[�h����.
-                �w��T�C�Y�ȓ��̏ꍇ�̂ݓǂݍ��݂����s��, �K�v�T�C�Y��Ԃ�.
+  Description:  アーカイブの FAT + FNT をメモリ上にプリロードする.
+                指定サイズ以内の場合のみ読み込みを実行し, 必要サイズを返す.
 
-  Arguments:    p_arc            �e�[�u�����v�����[�h����A�[�J�C�u.
-                p_mem            �e�[�u���f�[�^�̊i�[��o�b�t�@.
-                max_size         p_mem �̃T�C�Y.
+  Arguments:    p_arc            テーブルをプリロードするアーカイブ.
+                p_mem            テーブルデータの格納先バッファ.
+                max_size         p_mem のサイズ.
 
-  Returns:      ���, ���v�̃e�[�u���T�C�Y��Ԃ�.
+  Returns:      常に, 合計のテーブルサイズを返す.
  *---------------------------------------------------------------------------*/
 u32     FS_LoadArchiveTables(FSArchive *p_arc, void *p_mem, u32 max_size);
 
 /*---------------------------------------------------------------------------*
   Name:         FS_UnloadArchiveTables
 
-  Description:  �A�[�J�C�u�̃v�����[�h���������������.
+  Description:  アーカイブのプリロードメモリを解放する.
 
-  Arguments:    p_arc            �v�����[�h���������������A�[�J�C�u.
+  Arguments:    p_arc            プリロードメモリを解放するアーカイブ.
 
-  Returns:      �v�����[�h�������Ƃ��ă��[�U����^�����Ă����o�b�t�@.
+  Returns:      プリロードメモリとしてユーザから与えられていたバッファ.
  *---------------------------------------------------------------------------*/
 void   *FS_UnloadArchiveTables(FSArchive *p_arc);
 
 /*---------------------------------------------------------------------------*
   Name:         FS_SuspendArchive
 
-  Description:  �A�[�J�C�u�̏����@�\���̂��~����.
-                ���ݎ��s���̏����������, ���̊�����ҋ@.
+  Description:  アーカイブの処理機構自体を停止する.
+                現在実行中の処理があれば, その完了を待機.
 
-  Arguments:    p_arc            ��~����A�[�J�C�u.
+  Arguments:    p_arc            停止するアーカイブ.
 
-  Returns:      �Ăяo���ȑO�ɃT�X�y���h��ԂłȂ���� TRUE.
+  Returns:      呼び出し以前にサスペンド状態でなければ TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    FS_SuspendArchive(FSArchive *p_arc);
 
 /*---------------------------------------------------------------------------*
   Name:         FS_ResumeArchive
 
-  Description:  ��~���Ă����A�[�J�C�u�̏������ĊJ����.
+  Description:  停止していたアーカイブの処理を再開する.
 
-  Arguments:    p_arc            �ĊJ����A�[�J�C�u.
+  Arguments:    p_arc            再開するアーカイブ.
 
-  Returns:      �Ăяo���ȑO�ɃT�X�y���h��ԂłȂ���� TRUE.
+  Returns:      呼び出し以前にサスペンド状態でなければ TRUE.
  *---------------------------------------------------------------------------*/
 BOOL    FS_ResumeArchive(FSArchive *p_arc);
 
 /*---------------------------------------------------------------------------*
   Name:         FS_SetArchiveProc
 
-  Description:  �A�[�J�C�u�̃��[�U�v���V�[�W����ݒ肷��.
-                proc == NULL �܂��� flags = 0 �Ȃ�
-                �P�Ƀ��[�U�v���V�[�W���𖳌��ɂ���.
+  Description:  アーカイブのユーザプロシージャを設定する.
+                proc == NULL または flags = 0 なら
+                単にユーザプロシージャを無効にする.
 
-  Arguments:    p_arc            ���[�U�v���V�[�W����ݒ肷��A�[�J�C�u.
-                proc             ���[�U�v���V�[�W��.
-                flags            �v���V�[�W���փt�b�N����R�}���h�̃r�b�g�W��.
+  Arguments:    p_arc            ユーザプロシージャを設定するアーカイブ.
+                proc             ユーザプロシージャ.
+                flags            プロシージャへフックするコマンドのビット集合.
 
-  Returns:      ���, ���v�̃e�[�u���T�C�Y��Ԃ�.
+  Returns:      常に, 合計のテーブルサイズを返す.
  *---------------------------------------------------------------------------*/
 void    FS_SetArchiveProc(struct FSArchive *p_arc, FS_ARCHIVE_PROC_FUNC proc, u32 flags);
 
 /*---------------------------------------------------------------------------*
   Name:         FS_NotifyArchiveAsyncEnd
 
-  Description:  �񓯊��Ŏ��s���Ă����A�[�J�C�u�����̊�����ʒm���邽�߂�
-                �A�[�J�C�u����������Ăяo��.
+  Description:  非同期で実行していたアーカイブ処理の完了を通知するために
+                アーカイブ実装側から呼び出す.
 
-  Arguments:    p_arc            ������ʒm����A�[�J�C�u.
-                ret              ��������.
+  Arguments:    p_arc            完了を通知するアーカイブ.
+                ret              処理結果.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -616,7 +616,7 @@ void    FS_NotifyArchiveAsyncEnd(FSArchive *p_arc, FSResult ret);
 /*---------------------------------------------------------------------------*
   Name:         FSi_EndArchive
 
-  Description:  �S�ẴA�[�J�C�u���I�������ĉ������.
+  Description:  全てのアーカイブを終了させて解放する.
 
   Arguments:    None.
 
@@ -651,7 +651,7 @@ void    FSi_EndArchive(void);
   add comments.
 
   Revision 1.13  2005/03/01 01:57:00  yosizaki
-  copyright �̔N���C��.
+  copyright の年を修正.
 
   Revision 1.12  2005/02/28 05:26:01  yosizaki
   do-indent.

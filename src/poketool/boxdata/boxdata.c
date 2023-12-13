@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	boxdata.c
- * @brief	ƒ|ƒPƒ‚ƒ“ƒ{ƒbƒNƒXƒf[ƒ^æ‚èˆµ‚¢
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿å–ã‚Šæ‰±ã„
  * @author	taya
  * @date	2005.09.05
  */
@@ -39,7 +39,7 @@ static void boxdata_init( BOX_DATA* boxdat );
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒXƒf[ƒ^‰Šú‰»
+ * ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  */
 //------------------------------------------------------------------
 void BOXDAT_Init( BOX_DATA* boxdat )
@@ -49,9 +49,9 @@ void BOXDAT_Init( BOX_DATA* boxdat )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒXƒf[ƒ^‚Ì‘ƒTƒCƒY‚ğ•Ô‚·
+ * ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ç·ã‚µã‚¤ã‚ºã‚’è¿”ã™
  *
- * @retval  u32		ƒ{ƒbƒNƒXƒf[ƒ^ƒTƒCƒY
+ * @retval  u32		ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  */
 //------------------------------------------------------------------
 u32 BOXDAT_GetTotalSize( void )
@@ -62,7 +62,7 @@ u32 BOXDAT_GetTotalSize( void )
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒXƒf[ƒ^—Ìˆæ‰Šú‰»
+ * ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿é ˜åŸŸåˆæœŸåŒ–
  *
  * @param   boxdat		
  *
@@ -81,7 +81,7 @@ static void boxdata_init( BOX_DATA* boxdat )
 		}
 	}
 
-	// •Ç†ƒiƒ“ƒo[C‚¾‚¢‚·‚«ƒNƒ‰ƒu•Ç†‚Ìæ“¾ƒtƒ‰ƒO
+	// å£ç´™ãƒŠãƒ³ãƒãƒ¼ï¼Œã ã„ã™ãã‚¯ãƒ©ãƒ–å£ç´™ã®å–å¾—ãƒ•ãƒ©ã‚°
 	for(i = 0, p = 0; i < BOX_MAX_TRAY; i++)
 	{
 		boxdat->wallPaper[i] = p++;
@@ -93,7 +93,7 @@ static void boxdata_init( BOX_DATA* boxdat )
 	boxdat->daisukiBitFlag = 0;
 
 
-	// ƒfƒtƒHƒ‹ƒgƒ{ƒbƒNƒX–¼ƒZƒbƒg
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒœãƒƒã‚¯ã‚¹åã‚»ãƒƒãƒˆ
 	msgman = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_boxmenu_dat, HEAPID_BASE_SYSTEM );
 	if( msgman )
 	{
@@ -109,12 +109,12 @@ static void boxdata_init( BOX_DATA* boxdat )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‘S‘Ì‚©‚ç‚©‚ç‹ó‚«—Ìˆæ‚ğ’T‚µ‚Äƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğŠi”[
+ * ãƒœãƒƒã‚¯ã‚¹å…¨ä½“ã‹ã‚‰ã‹ã‚‰ç©ºãé ˜åŸŸã‚’æ¢ã—ã¦ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
  *
- * @param   box			ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   poke		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ * @param   box			ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   poke		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
- * @retval  BOOL		TRUE=Ši”[‚³‚ê‚½^FALSE=‹ó‚«‚ª–³‚¢
+ * @retval  BOOL		TRUE=æ ¼ç´ã•ã‚ŒãŸï¼FALSE=ç©ºããŒç„¡ã„
  */
 //------------------------------------------------------------------
 BOOL BOXDAT_PutPokemon( BOX_DATA* box, POKEMON_PASO_PARAM* poke )
@@ -144,13 +144,13 @@ BOOL BOXDAT_PutPokemon( BOX_DATA* box, POKEMON_PASO_PARAM* poke )
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‚ğw’è‚µ‚Äƒ|ƒPƒ‚ƒ“ƒf[ƒ^Ši”[
+ * ãƒœãƒƒã‚¯ã‚¹ã‚’æŒ‡å®šã—ã¦ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ ¼ç´
  *
- * @param   box			ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   trayNum		‰½”Ô–Ú‚Ìƒ{ƒbƒNƒX‚ÉŠi”[‚·‚é‚©
- * @param   poke		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ * @param   box			ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayNum		ä½•ç•ªç›®ã®ãƒœãƒƒã‚¯ã‚¹ã«æ ¼ç´ã™ã‚‹ã‹
+ * @param   poke		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
- * @retval  BOOL		TRUE=Ši”[‚³‚ê‚½^FALSE=‹ó‚«‚ª–³‚¢
+ * @retval  BOOL		TRUE=æ ¼ç´ã•ã‚ŒãŸï¼FALSE=ç©ºããŒç„¡ã„
  */
 //------------------------------------------------------------------
 BOOL BOXDAT_PutPokemonBox( BOX_DATA* box, u32 trayNum, POKEMON_PASO_PARAM* poke )
@@ -159,7 +159,7 @@ BOOL BOXDAT_PutPokemonBox( BOX_DATA* box, u32 trayNum, POKEMON_PASO_PARAM* poke 
 
 	PokePasoPara_RecoverPP(poke);
 
-	//ƒ{ƒbƒNƒX‚É‚µ‚Ü‚¤‚Æ‚«‚ÍƒVƒFƒCƒ~‚ÌƒtƒHƒ‹ƒ€‚ğ–ß‚·
+	//ãƒœãƒƒã‚¯ã‚¹ã«ã—ã¾ã†ã¨ãã¯ã‚·ã‚§ã‚¤ãƒŸã®ãƒ•ã‚©ãƒ«ãƒ ã‚’æˆ»ã™
 	PokePasoParaSheimiFormChange(poke, FORMNO_SHEIMI_NORMAL);
 
 	if( trayNum == BOXDAT_TRAYNUM_CURRENT )
@@ -181,21 +181,21 @@ BOOL BOXDAT_PutPokemonBox( BOX_DATA* box, u32 trayNum, POKEMON_PASO_PARAM* poke 
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒXAˆÊ’u‚ğw’è‚µ‚Äƒ|ƒPƒ‚ƒ“ƒf[ƒ^Ši”[
+ * ãƒœãƒƒã‚¯ã‚¹ã€ä½ç½®ã‚’æŒ‡å®šã—ã¦ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿æ ¼ç´
  *
- * @param   box			ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   trayNum		‰½”Ô–Ú‚Ìƒ{ƒbƒNƒX‚ÉŠi”[‚·‚é‚©
- * @param   pos			ƒ{ƒbƒNƒX“à‚ÌˆÊ’u
- * @param   poke		ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+ * @param   box			ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayNum		ä½•ç•ªç›®ã®ãƒœãƒƒã‚¯ã‚¹ã«æ ¼ç´ã™ã‚‹ã‹
+ * @param   pos			ãƒœãƒƒã‚¯ã‚¹å†…ã®ä½ç½®
+ * @param   poke		ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
- * @retval  BOOL		TRUE=Ši”[‚³‚ê‚½^FALSE=‹ó‚«‚ª–³‚¢
+ * @retval  BOOL		TRUE=æ ¼ç´ã•ã‚ŒãŸï¼FALSE=ç©ºããŒç„¡ã„
  */
 //------------------------------------------------------------------
 BOOL BOXDAT_PutPokemonPos( BOX_DATA* box, u32 trayNum, u32 pos, POKEMON_PASO_PARAM* poke )
 {
 	PokePasoPara_RecoverPP(poke);
 
-	//ƒ{ƒbƒNƒX‚É‚µ‚Ü‚¤‚Æ‚«‚ÍƒVƒFƒCƒ~‚ÌƒtƒHƒ‹ƒ€‚ğ–ß‚·
+	//ãƒœãƒƒã‚¯ã‚¹ã«ã—ã¾ã†ã¨ãã¯ã‚·ã‚§ã‚¤ãƒŸã®ãƒ•ã‚©ãƒ«ãƒ ã‚’æˆ»ã™
 	PokePasoParaSheimiFormChange(poke, FORMNO_SHEIMI_NORMAL);
 
 	if( trayNum == BOXDAT_TRAYNUM_CURRENT )
@@ -223,11 +223,11 @@ BOOL BOXDAT_PutPokemonPos( BOX_DATA* box, u32 trayNum, u32 pos, POKEMON_PASO_PAR
 
 //------------------------------------------------------------------
 /**
- * ˆÊ’u‚ğw’è‚µ‚Äƒ{ƒbƒNƒX‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒNƒŠƒA
+ * ä½ç½®ã‚’æŒ‡å®šã—ã¦ãƒœãƒƒã‚¯ã‚¹ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚¯ãƒªã‚¢
  *
- * @param   box			ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   trayNum		‰½”Ô–Ú‚Ìƒ{ƒbƒNƒX‚©
- * @param   pos			ƒ{ƒbƒNƒX“à‚ÌˆÊ’u
+ * @param   box			ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayNum		ä½•ç•ªç›®ã®ãƒœãƒƒã‚¯ã‚¹ã‹
+ * @param   pos			ãƒœãƒƒã‚¯ã‚¹å†…ã®ä½ç½®
  *
  */
 //------------------------------------------------------------------
@@ -251,11 +251,11 @@ void BOXDAT_ClearPokemon( BOX_DATA* box, u32 trayNum, u32 pos )
 
 //------------------------------------------------------------------
 /**
- * ƒJƒŒƒ“ƒg‚ÌƒgƒŒƒCƒiƒ“ƒo[‚ğ•Ô‚·
+ * ã‚«ãƒ¬ãƒ³ãƒˆã®ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param   box		ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param   box		ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  u32		ƒJƒŒƒ“ƒgƒgƒŒƒCƒiƒ“ƒo[
+ * @retval  u32		ã‚«ãƒ¬ãƒ³ãƒˆãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 u32 BOXDAT_GetCureentTrayNumber( const BOX_DATA* box )
@@ -264,11 +264,11 @@ u32 BOXDAT_GetCureentTrayNumber( const BOX_DATA* box )
 }
 //------------------------------------------------------------------
 /**
- * ‚P‚Â‚Å‚à‹ó‚«‚Ì‚ ‚éƒgƒŒƒCƒiƒ“ƒo[‚ğ•Ô‚·iƒJƒŒƒ“ƒg‚©‚çŒŸõŠJn‚·‚éj
+ * ï¼‘ã¤ã§ã‚‚ç©ºãã®ã‚ã‚‹ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™ï¼ˆã‚«ãƒ¬ãƒ³ãƒˆã‹ã‚‰æ¤œç´¢é–‹å§‹ã™ã‚‹ï¼‰
  *
- * @param   box		ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param   box		ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  u32		‹ó‚«‚Ì‚ ‚éƒgƒŒƒCƒiƒ“ƒo[^Œ©‚Â‚©‚ç‚È‚¯‚ê‚Î BOXDAT_TRAYNUM_ERROR
+ * @retval  u32		ç©ºãã®ã‚ã‚‹ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼ï¼è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã° BOXDAT_TRAYNUM_ERROR
  */
 //------------------------------------------------------------------
 u32 BOXDAT_GetEmptyTrayNumber( const BOX_DATA* box )
@@ -300,13 +300,13 @@ u32 BOXDAT_GetEmptyTrayNumber( const BOX_DATA* box )
 }
 //------------------------------------------------------------------
 /**
- * ‹ó‚«‚Ì‚ ‚éƒgƒŒƒCƒiƒ“ƒo[‚ÆƒgƒŒƒC“à‚ÌˆÊ’u‚ğŒŸo
+ * ç©ºãã®ã‚ã‚‹ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼ã¨ãƒˆãƒ¬ã‚¤å†…ã®ä½ç½®ã‚’æ¤œå‡º
  *
- * @param   box			[in] ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   trayNum		[in|out] ŒŸoŠJnƒgƒŒƒCƒiƒ“ƒo[‚ğw’è¨Å‰‚É‹ó‚«‚ªŒ©‚Â‚©‚Á‚½ƒgƒŒƒCƒiƒ“ƒo[‚ª“ü‚é
- * @param   pos			[in|out] ŒŸoŠJnˆÊ’u‚ğw’è¨Å‰‚É‹ó‚«‚ªŒ©‚Â‚©‚Á‚½ƒgƒŒƒC“à‚ÌˆÊ’u‚ª“ü‚é
+ * @param   box			[in] ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayNum		[in|out] æ¤œå‡ºé–‹å§‹ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼ã‚’æŒ‡å®šâ†’æœ€åˆã«ç©ºããŒè¦‹ã¤ã‹ã£ãŸãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼ãŒå…¥ã‚‹
+ * @param   pos			[in|out] æ¤œå‡ºé–‹å§‹ä½ç½®ã‚’æŒ‡å®šâ†’æœ€åˆã«ç©ºããŒè¦‹ã¤ã‹ã£ãŸãƒˆãƒ¬ã‚¤å†…ã®ä½ç½®ãŒå…¥ã‚‹
  *
- * @retval	‹ó‚«‚ªŒ©‚Â‚©‚Á‚½‚çTRUE, Œ©‚Â‚©‚ç‚È‚©‚Á‚½‚çFALSE
+ * @retval	ç©ºããŒè¦‹ã¤ã‹ã£ãŸã‚‰TRUE, è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã‚‰FALSE
  *
  */
 //------------------------------------------------------------------
@@ -349,11 +349,11 @@ BOOL BOXDAT_GetEmptyTrayNumberAndPos( const BOX_DATA* box, int* trayNum, int* po
 
 //------------------------------------------------------------------
 /**
- * ‘S‘Ì‚©‚ç‹ó‚«‚Ì”‚ğƒJƒEƒ“ƒg‚µ‚Ä•Ô‚·
+ * å…¨ä½“ã‹ã‚‰ç©ºãã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã—ã¦è¿”ã™
  *
- * @param   box		ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param   box		ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  u32		‹ó‚«‚Ì”
+ * @retval  u32		ç©ºãã®æ•°
  */
 //------------------------------------------------------------------
 u32 BOXDAT_GetEmptySpaceTotal( const BOX_DATA* box )
@@ -378,12 +378,12 @@ u32 BOXDAT_GetEmptySpaceTotal( const BOX_DATA* box )
 }
 //------------------------------------------------------------------
 /**
- * w’èƒgƒŒƒC‚©‚ç‹ó‚«‚Ì”‚ğƒJƒEƒ“ƒg‚µ‚Ä•Ô‚·
+ * æŒ‡å®šãƒˆãƒ¬ã‚¤ã‹ã‚‰ç©ºãã®æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã—ã¦è¿”ã™
  *
- * @param   box		ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   trayNum	ƒgƒŒƒCƒiƒ“ƒo[
+ * @param   box		ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayNum	ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  u32		‹ó‚«‚Ì”
+ * @retval  u32		ç©ºãã®æ•°
  */
 //------------------------------------------------------------------
 u32 BOXDAT_GetEmptySpaceTray( const BOX_DATA* box, u32 trayNum )
@@ -412,10 +412,10 @@ u32 BOXDAT_GetEmptySpaceTray( const BOX_DATA* box, u32 trayNum )
 }
 //------------------------------------------------------------------
 /**
- * ƒJƒŒƒ“ƒg‚ÌƒgƒŒƒCƒiƒ“ƒo[‚ğƒZƒbƒg
+ * ã‚«ãƒ¬ãƒ³ãƒˆã®ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   box		ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   num		ƒJƒŒƒ“ƒgƒgƒŒƒCƒiƒ“ƒo[
+ * @param   box		ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   num		ã‚«ãƒ¬ãƒ³ãƒˆãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 void BOXDAT_SetCureentTrayNumber( BOX_DATA* box, u32 num )
@@ -432,12 +432,12 @@ void BOXDAT_SetCureentTrayNumber( BOX_DATA* box, u32 num )
 }
 //------------------------------------------------------------------
 /**
- * w’èƒgƒŒƒC‚Ì•Ç†ƒiƒ“ƒo[‚ğ•Ô‚·
+ * æŒ‡å®šãƒˆãƒ¬ã‚¤ã®å£ç´™ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param   box				ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   trayNumber		ƒgƒŒƒCƒiƒ“ƒo[
+ * @param   box				ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayNumber		ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  u32		•Ç†ƒiƒ“ƒo[
+ * @retval  u32		å£ç´™ãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 u32 BOXDAT_GetWallPaperNumber( const BOX_DATA* box, u32 trayNum )
@@ -454,11 +454,11 @@ u32 BOXDAT_GetWallPaperNumber( const BOX_DATA* box, u32 trayNum )
 }
 //------------------------------------------------------------------
 /**
- * w’èƒgƒŒƒC‚Ì•Ç†ƒiƒ“ƒo[‚ğƒZƒbƒg
+ * æŒ‡å®šãƒˆãƒ¬ã‚¤ã®å£ç´™ãƒŠãƒ³ãƒãƒ¼ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   box				ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   trayNum			ƒgƒŒƒCƒiƒ“ƒo[
- * @param   wallPaperNumber	•Ç†ƒiƒ“ƒo[
+ * @param   box				ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayNum			ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
+ * @param   wallPaperNumber	å£ç´™ãƒŠãƒ³ãƒãƒ¼
  *
  */
 //------------------------------------------------------------------
@@ -474,7 +474,7 @@ void BOXDAT_SetWallPaperNumber( BOX_DATA* box, u32 trayNum, u32 wallPaperNumber 
 	)
 	{
 		if(wallPaperNumber >= BOX_NORMAL_WALLPAPER_MAX){
-			wallPaperNumber += BOX_EX_WALLPAPER_MAX;	//ƒvƒ‰ƒ`ƒi‚Ì”é–§•Ç†•ª‚Ö‚ÆƒIƒtƒZƒbƒg‚ğ‘«‚·
+			wallPaperNumber += BOX_EX_WALLPAPER_MAX;	//ãƒ—ãƒ©ãƒãƒŠã®ç§˜å¯†å£ç´™åˆ†ã¸ã¨ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¶³ã™
 		}
 		box->wallPaper[trayNum] = wallPaperNumber;
 		SaveData_RequestTotalSave();
@@ -487,11 +487,11 @@ void BOXDAT_SetWallPaperNumber( BOX_DATA* box, u32 trayNum, u32 wallPaperNumber 
 
 //------------------------------------------------------------------
 /**
- * w’èƒgƒŒƒC‚Ì–¼‘Oæ“¾
+ * æŒ‡å®šãƒˆãƒ¬ã‚¤ã®åå‰å–å¾—
  *
- * @param   box				ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   trayNumber		ƒgƒŒƒCƒiƒ“ƒo[
- * @param   buf				•¶š—ñƒRƒs[æƒoƒbƒtƒ@
+ * @param   box				ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayNumber		ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
+ * @param   buf				æ–‡å­—åˆ—ã‚³ãƒ”ãƒ¼å…ˆãƒãƒƒãƒ•ã‚¡
  *
  */
 //------------------------------------------------------------------
@@ -514,11 +514,11 @@ void BOXDAT_GetBoxName( const BOX_DATA* box, u32 trayNumber, STRBUF* buf )
 
 //------------------------------------------------------------------
 /**
- * w’èƒgƒŒƒC‚Ì–¼‘Oİ’è
+ * æŒ‡å®šãƒˆãƒ¬ã‚¤ã®åå‰è¨­å®š
  *
- * @param   box				ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   trayNumber		ƒgƒŒƒCƒiƒ“ƒo[
- * @param   src				–¼‘O
+ * @param   box				ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayNumber		ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
+ * @param   src				åå‰
  *
  */
 //------------------------------------------------------------------
@@ -537,12 +537,12 @@ void BOXDAT_SetBoxName( BOX_DATA* box, u32 trayNumber, const STRBUF* src )
 }
 //------------------------------------------------------------------
 /**
- * w’èƒgƒŒƒC‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“”‚ğ•Ô‚·
+ * æŒ‡å®šãƒˆãƒ¬ã‚¤ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°ã‚’è¿”ã™
  *
- * @param   box				ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   trayNumber		ƒgƒŒƒCƒiƒ“ƒo[
+ * @param   box				ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayNumber		ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  u32		ƒgƒŒƒC‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“”
+ * @retval  u32		ãƒˆãƒ¬ã‚¤ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°
  */
 //------------------------------------------------------------------
 u32 BOXDAT_GetPokeExistCount( const BOX_DATA* box, u32 trayNum )
@@ -574,12 +574,12 @@ u32 BOXDAT_GetPokeExistCount( const BOX_DATA* box, u32 trayNum )
 
 //------------------------------------------------------------------
 /**
- * w’èƒgƒŒƒC‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“”‚ğ•Ô‚·(ƒ^ƒ}ƒSœŠO)
+ * æŒ‡å®šãƒˆãƒ¬ã‚¤ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°ã‚’è¿”ã™(ã‚¿ãƒã‚´é™¤å¤–)
  *
- * @param   box				ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   trayNumber		ƒgƒŒƒCƒiƒ“ƒo[
+ * @param   box				ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayNumber		ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  u32		ƒgƒŒƒC‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“”
+ * @retval  u32		ãƒˆãƒ¬ã‚¤ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°
  */
 //------------------------------------------------------------------
 u32 BOXDAT_GetPokeExistCount2( const BOX_DATA* box, u32 trayNum )
@@ -597,7 +597,7 @@ u32 BOXDAT_GetPokeExistCount2( const BOX_DATA* box, u32 trayNum )
 		{
 			if(PokePasoParaGet( (POKEMON_PASO_PARAM*)(&(box->ppp[trayNum][i])), ID_PARA_poke_exist, NULL ))
 			{
-				if(PokePasoParaGet( (POKEMON_PASO_PARAM*)(&(box->ppp[trayNum][i])), ID_PARA_tamago_flag, NULL ) == 0)	//ƒ^ƒ}ƒSœŠO
+				if(PokePasoParaGet( (POKEMON_PASO_PARAM*)(&(box->ppp[trayNum][i])), ID_PARA_tamago_flag, NULL ) == 0)	//ã‚¿ãƒã‚´é™¤å¤–
 				{
 					cnt++;
 				}
@@ -614,9 +614,9 @@ u32 BOXDAT_GetPokeExistCount2( const BOX_DATA* box, u32 trayNum )
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‘S‘Ì‚ÉŠÜ‚Ü‚ê‚éƒ|ƒPƒ‚ƒ“”‚ğ•Ô‚·
+ * ãƒœãƒƒã‚¯ã‚¹å…¨ä½“ã«å«ã¾ã‚Œã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°ã‚’è¿”ã™
  *
- * @param   box		ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param   box		ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  u32		
  */
@@ -634,9 +634,9 @@ u32 BOXDAT_GetPokeExistCountTotal( const BOX_DATA* box )
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒX‘S‘Ì‚ÉŠÜ‚Ü‚ê‚éƒ|ƒPƒ‚ƒ“”‚ğ•Ô‚·(ƒ^ƒ}ƒSœŠO”Åj
+ * ãƒœãƒƒã‚¯ã‚¹å…¨ä½“ã«å«ã¾ã‚Œã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°ã‚’è¿”ã™(ã‚¿ãƒã‚´é™¤å¤–ç‰ˆï¼‰
  *
- * @param   box		ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param   box		ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  u32		
  */
@@ -654,15 +654,15 @@ u32 BOXDAT_GetPokeExistCount2Total( const BOX_DATA* box )
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒXŠi”[ƒ|ƒPƒ‚ƒ“‚É‘Î‚·‚éPokePasoParaGet
+ * ãƒœãƒƒã‚¯ã‚¹æ ¼ç´ãƒã‚±ãƒ¢ãƒ³ã«å¯¾ã™ã‚‹PokePasoParaGet
  *
- * @param   box			ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   trayNum		ƒgƒŒƒCƒiƒ“ƒo[
- * @param   pos			Ši”[ˆÊ’u
- * @param   param		PokePasoParaGet ƒpƒ‰ƒ[ƒ^
- * @param   buf			PokePasoParaGet ƒoƒbƒtƒ@
+ * @param   box			ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayNum		ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
+ * @param   pos			æ ¼ç´ä½ç½®
+ * @param   param		PokePasoParaGet ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param   buf			PokePasoParaGet ãƒãƒƒãƒ•ã‚¡
  *
- * @retval  u32			PokePasoParaGet –ß‚è’l
+ * @retval  u32			PokePasoParaGet æˆ»ã‚Šå€¤
  */
 //------------------------------------------------------------------
 u32 BOXDAT_PokeParaGet( const BOX_DATA* box, u32 trayNum, u32 pos, int param, void* buf )
@@ -681,13 +681,13 @@ u32 BOXDAT_PokeParaGet( const BOX_DATA* box, u32 trayNum, u32 pos, int param, vo
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒXŠi”[ƒ|ƒPƒ‚ƒ“‚É‘Î‚·‚éPokePasoParaPut
+ * ãƒœãƒƒã‚¯ã‚¹æ ¼ç´ãƒã‚±ãƒ¢ãƒ³ã«å¯¾ã™ã‚‹PokePasoParaPut
  *
- * @param   box			ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   trayNum		ƒgƒŒƒCƒiƒ“ƒo[
- * @param   pos			Ši”[ˆÊ’u
- * @param   param		PokePasoParaGet ƒpƒ‰ƒ[ƒ^
- * @param   buf			PokePasoParaGet ƒoƒbƒtƒ@
+ * @param   box			ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   trayNum		ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
+ * @param   pos			æ ¼ç´ä½ç½®
+ * @param   param		PokePasoParaGet ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param   buf			PokePasoParaGet ãƒãƒƒãƒ•ã‚¡
  *
  */
 //------------------------------------------------------------------
@@ -716,11 +716,11 @@ void BOXDAT_PokeParaPut( BOX_DATA* box, u32 trayNum, u32 pos, int param, void* b
 
 //------------------------------------------------------------------
 /**
- * w’èˆÊ’u‚Ìƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
- *i‚ ‚Ü‚èg‚Á‚Ä‚Ù‚µ‚­‚Í‚È‚¢j
+ * æŒ‡å®šä½ç½®ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
+ *ï¼ˆã‚ã¾ã‚Šä½¿ã£ã¦ã»ã—ãã¯ãªã„ï¼‰
  *
- * @param   box			ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   boxNum		ƒ{ƒbƒNƒXƒiƒ“ƒo[
+ * @param   box			ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   boxNum		ãƒœãƒƒã‚¯ã‚¹ãƒŠãƒ³ãƒãƒ¼
  * @param   pos			
  *
  * @retval  POKEMON_PASO_PARAM*		
@@ -748,15 +748,15 @@ POKEMON_PASO_PARAM* BOXDAT_GetPokeDataAddress( const BOX_DATA* box, u32 trayNum,
 
 
 //==============================================================================================
-// ‚¾‚¢‚·‚«ƒNƒ‰ƒu•Ç†
+// ã ã„ã™ãã‚¯ãƒ©ãƒ–å£ç´™
 //==============================================================================================
 
 //------------------------------------------------------------------
 /**
- * ‚¾‚¢‚·‚«ƒNƒ‰ƒu•Ç†‚ğ‚P–‡A—LŒø‚É‚·‚é
+ * ã ã„ã™ãã‚¯ãƒ©ãƒ–å£ç´™ã‚’ï¼‘æšã€æœ‰åŠ¹ã«ã™ã‚‹
  *
- * @param   box			ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   number		—LŒø‚É‚·‚é•Ç†ƒiƒ“ƒo[
+ * @param   box			ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   number		æœ‰åŠ¹ã«ã™ã‚‹å£ç´™ãƒŠãƒ³ãƒãƒ¼
  *
  */
 //------------------------------------------------------------------
@@ -770,12 +770,12 @@ void BOXDAT_SetDaisukiKabegamiFlag( BOX_DATA* box, u32 number )
 
 //------------------------------------------------------------------
 /**
- * ‚¾‚¢‚·‚«ƒNƒ‰ƒu•Ç†‚ğæ“¾‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * ã ã„ã™ãã‚¯ãƒ©ãƒ–å£ç´™ã‚’å–å¾—ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   box			ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param   number		ƒ`ƒFƒbƒN‚·‚é•Ç†ƒiƒ“ƒo[
+ * @param   box			ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param   number		ãƒã‚§ãƒƒã‚¯ã™ã‚‹å£ç´™ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  BOOL		TRUE‚Åæ“¾‚µ‚Ä‚¢‚é
+ * @retval  BOOL		TRUEã§å–å¾—ã—ã¦ã„ã‚‹
  */
 //------------------------------------------------------------------
 BOOL BOXDAT_GetDaisukiKabegamiFlag( const BOX_DATA* box, u32 number )
@@ -787,9 +787,9 @@ BOOL BOXDAT_GetDaisukiKabegamiFlag( const BOX_DATA* box, u32 number )
 
 //------------------------------------------------------------------
 /**
- * æ“¾‚µ‚½‚¾‚¢‚·‚«ƒNƒ‰ƒu•Ç†‚Ì‘”‚ğæ“¾
+ * å–å¾—ã—ãŸã ã„ã™ãã‚¯ãƒ©ãƒ–å£ç´™ã®ç·æ•°ã‚’å–å¾—
  *
- * @param   box		ƒ{ƒbƒNƒXƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param   box		ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  u32		
  */

@@ -18,7 +18,7 @@
   small fix
 
   Revision 1.1  2006/04/05 10:48:30  okubata_ryoma
-  AGBƒoƒbƒNƒAƒbƒvƒ‰ƒCƒuƒ‰ƒŠ‚ÌSDKû˜^‚Ì‚½‚ß‚Ì•ÏX
+  AGBãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®SDKåéŒ²ã®ãŸã‚ã®å¤‰æ›´
 
 
   $NoKeywords: $
@@ -36,7 +36,7 @@ extern const CTRDGiFlashTypePlus LE39FW512;
 extern const CTRDGiFlashTypePlus AT29LV512_lib;
 extern const CTRDGiFlashTypePlus MN63F805MNP;
 
-/*”r‘¼§Œä*/
+/*æ’ä»–åˆ¶å¾¡*/
 extern u16 ctrdgi_flash_lock_id;
 extern u16 ctrdgi_sram_lock_id;
 
@@ -52,7 +52,7 @@ static const CTRDGiFlashTypePlus *const flash1M_list[] = {
 
 static const CTRDGiFlashTypePlus *const flash512_list[] = {
     &LE39FW512,
-    &AT29LV512_lib,                    //ƒAƒgƒƒ‹
+    &AT29LV512_lib,                    //ã‚¢ãƒˆãƒ¡ãƒ«
     &MN63F805MNP,
     &defaultFlash512,
 };
@@ -81,26 +81,26 @@ u16 CTRDG_IdentifyAgbBackup(CTRDGBackupType type)
 
     if (type == CTRDG_BACKUP_TYPE_FLASH_512K || type == CTRDG_BACKUP_TYPE_FLASH_1M)
     {
-        /*”r‘¼§Œä */
+        /*æ’ä»–åˆ¶å¾¡ */
         ctrdgi_flash_lock_id = (u16)OS_GetLockID();
 
-        /*”r‘¼§ŒäiƒƒbƒNj */
+        /*æ’ä»–åˆ¶å¾¡ï¼ˆãƒ­ãƒƒã‚¯ï¼‰ */
         (void)OS_LockCartridge(ctrdgi_flash_lock_id);
 
-        /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+        /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
         ram_cycle = MI_GetCartridgeRamCycle();
         MI_SetCartridgeRamCycle(MI_CTRDG_RAMCYCLE_18);
 
-        ctrdgi_fl_maxtime = readidtime; //‰¼İ’è‚µ‚Ä‚¨‚©‚È‚¢‚ÆReadflashID“à‚Ìƒ^ƒCƒ}‚ª“®‚©‚È‚¢
+        ctrdgi_fl_maxtime = readidtime; //ä»®è¨­å®šã—ã¦ãŠã‹ãªã„ã¨ReadflashIDå†…ã®ã‚¿ã‚¤ãƒãŒå‹•ã‹ãªã„
         flashID = CTRDGi_ReadFlashID();
         if (type == CTRDG_BACKUP_TYPE_FLASH_512K)
             flp = flash512_list;
         if (type == CTRDG_BACKUP_TYPE_FLASH_1M)
             flp = flash1M_list;
 
-        /*ƒAƒNƒZƒXƒTƒCƒNƒ‹İ’è */
+        /*ã‚¢ã‚¯ã‚»ã‚¹ã‚µã‚¤ã‚¯ãƒ«è¨­å®š */
         MI_SetCartridgeRamCycle(ram_cycle);
-        /*”r‘¼§ŒäiƒAƒ“ƒƒbƒNj */
+        /*æ’ä»–åˆ¶å¾¡ï¼ˆã‚¢ãƒ³ãƒ­ãƒƒã‚¯ï¼‰ */
         (void)OS_UnlockCartridge(ctrdgi_flash_lock_id);
 
         result = 1;

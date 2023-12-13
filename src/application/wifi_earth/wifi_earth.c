@@ -41,24 +41,24 @@
 #include "wifi_earth_snd.h"
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 #ifdef PM_DEBUG
 //#define WIFI_ERATH_DEBUG
 //#define WIFI_ERATH_DEBUG_ALL_DRAW
 #endif
 
-//’n“_“o˜^Å‘å”
-#define WORLD_PLACE_NUM_MAX	(0x400)	//‚¾‚¢‚½‚¢‚P‚O‚O‚O‘‚­‚ç‚¢‚Æ‚é
+//åœ°ç‚¹ç™»éŒ²æœ€å¤§æ•°
+#define WORLD_PLACE_NUM_MAX	(0x400)	//ã ã„ãŸã„ï¼‘ï¼ï¼ï¼å›½ãã‚‰ã„ã¨ã‚‹
 
-//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 #define EARTH_STRBUF_SIZE	(0x400)
 #define EARTH_NAME_SIZE		(64)
 
-//‚a‚f“§–¾ƒpƒŒƒbƒg
+//ï¼¢ï¼§é€æ˜ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define EARTH_NULL_PALETTE		(0x4753)
 
-//‚a‚fƒRƒ“ƒgƒ[ƒ‹’è”
+//ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å®šæ•°
 #define EARTH_TEXT_PLANE		(GF_BGL_FRAME2_S)
 #define EARTH_ICON_PLANE		(GF_BGL_FRAME2_M)
 #define EARTH_BACK_S_PLANE		(GF_BGL_FRAME3_S)
@@ -66,22 +66,22 @@
 #define PALSIZE					(2*16)
 #define DOTSIZE					(8)
 
-// ƒpƒŒƒbƒg“]‘—ˆÊ’u
-#define	EARTH_BACK_PAL			(0)	//‚S–{•ª
+// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ä½ç½®
+#define	EARTH_BACK_PAL			(0)	//ï¼”æœ¬åˆ†
 #define	EARTH_SYSFONT_PAL		(4)
 #define EARTH_ICONWIN_PAL		(5)
 #define EARTH_TALKWIN_PAL		(6)
 #define EARTH_MENUWIN_PAL		(7)
 
-// ‰ï˜bƒEƒBƒ“ƒhƒEƒLƒƒƒ‰iwindow.hQÆj
+// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼ˆwindow.hå‚ç…§ï¼‰
 #define EARTH_TALKWINCHR_SIZ	(TALK_WIN_CGX_SIZ)
 #define EARTH_TALKWINCHR_NUM	(512-EARTH_TALKWINCHR_SIZ)
 
-// ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰iwindow.hQÆj
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼ˆwindow.hå‚ç…§ï¼‰
 #define EARTH_MENUWINCHR_SIZ	(MENU_WIN_CGX_SIZ)
 #define EARTH_MENUWINCHR_NUM	(EARTH_TALKWINCHR_NUM - EARTH_MENUWINCHR_SIZ)
 
-// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒEifldbmp.hQÆA‚b‚f‚wˆÈŠOƒtƒB[ƒ‹ƒh‚Æ“¯‚¶FƒRƒƒ“ƒg‚Í”’lj
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆfldbmp.hå‚ç…§ã€ï¼£ï¼§ï¼¸ä»¥å¤–ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¨åŒã˜ï¼šã‚³ãƒ¡ãƒ³ãƒˆã¯æ•°å€¤ï¼‰
 #define	EARTH_MSG_WIN_PX		(2)
 #define	EARTH_MSG_WIN_PY		(19)
 #define	EARTH_MSG_WIN_SX		(27)
@@ -89,7 +89,7 @@
 #define	EARTH_MSG_WIN_PAL		(EARTH_SYSFONT_PAL)
 #define	EARTH_MSG_WIN_CGX		(EARTH_MENUWINCHR_NUM-(EARTH_MSG_WIN_SX*EARTH_MSG_WIN_SY))
 
-// ‚Í‚¢/‚¢‚¢‚¦ƒEƒBƒ“ƒhƒEifldbmp.hQÆA‚b‚f‚wˆÈŠOƒtƒB[ƒ‹ƒh‚Æ“¯‚¶FƒRƒƒ“ƒg‚Í”’lj
+// ã¯ã„/ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆfldbmp.hå‚ç…§ã€ï¼£ï¼§ï¼¸ä»¥å¤–ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¨åŒã˜ï¼šã‚³ãƒ¡ãƒ³ãƒˆã¯æ•°å€¤ï¼‰
 #define	EARTH_YESNO_WIN_PX		(25)
 #define	EARTH_YESNO_WIN_PY		(13)
 #define	EARTH_YESNO_WIN_SX		(6)
@@ -97,7 +97,7 @@
 #define	EARTH_YESNO_WIN_PAL		(EARTH_SYSFONT_PAL)
 #define	EARTH_YESNO_WIN_CGX		(EARTH_MSG_WIN_CGX-(EARTH_YESNO_WIN_SX*EARTH_YESNO_WIN_SY))
 
-// ƒƒCƒ“ƒƒjƒ…[ƒEƒBƒ“ƒhƒE
+// ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	EARTH_MENU_WIN_PX		(19)
 #define	EARTH_MENU_WIN_PY		(11)
 #define	EARTH_MENU_WIN_SX		(12)
@@ -105,7 +105,7 @@
 #define	EARTH_MENU_WIN_PAL		(EARTH_SYSFONT_PAL)
 #define	EARTH_MENU_WIN_CGX		(EARTH_MSG_WIN_CGX-(EARTH_MENU_WIN_SX*EARTH_MENU_WIN_SY))
 
-// ‘ƒŠƒXƒgƒEƒBƒ“ƒhƒE
+// å›½ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	EARTH_PLACE_WIN_PX		(3)
 #define	EARTH_PLACE_WIN_PY		(2)
 #define	EARTH_PLACE_WIN_SX		(26)
@@ -113,7 +113,7 @@
 #define	EARTH_PLACE_WIN_PAL		(EARTH_SYSFONT_PAL)
 #define	EARTH_PLACE_WIN_CGX		(EARTH_MSG_WIN_CGX-(EARTH_PLACE_WIN_SX*EARTH_PLACE_WIN_SY))
 
-// î•ñƒEƒBƒ“ƒhƒE
+// æƒ…å ±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	EARTH_INFO_WIN_PX		(2)
 #define	EARTH_INFO_WIN_PY		(1)
 #define	EARTH_INFO_WIN_SX		(27)
@@ -121,7 +121,7 @@
 #define	EARTH_INFO_WIN_PAL		(EARTH_SYSFONT_PAL)
 #define	EARTH_INFO_WIN_CGX		(EARTH_YESNO_WIN_CGX-(EARTH_INFO_WIN_SX*EARTH_INFO_WIN_SY))
 
-// ƒAƒCƒRƒ“ƒEƒBƒ“ƒhƒE
+// ã‚¢ã‚¤ã‚³ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	EARTH_ICON_WIN_PX		(25)
 #define	EARTH_ICON_WIN_PY		(21)
 #define	EARTH_ICON_WIN_SX		(6)
@@ -129,7 +129,7 @@
 #define	EARTH_ICON_WIN_PAL		(EARTH_SYSFONT_PAL)
 #define	EARTH_ICON_WIN_CGX		(EARTH_MENUWINCHR_NUM-(EARTH_ICON_WIN_SX*EARTH_ICON_WIN_SY))
 
-//’n‹…ƒ‚ƒfƒ‹‰Šú‰»’è‹`
+//åœ°çƒãƒ¢ãƒ‡ãƒ«åˆæœŸåŒ–å®šç¾©
 #define INIT_EARTH_TRANS_XVAL	(0)
 #define INIT_EARTH_TRANS_YVAL	(0)
 #define INIT_EARTH_TRANS_ZVAL	(0)
@@ -138,30 +138,30 @@
 #define INIT_EARTH_SCALE_ZVAL	(FX32_ONE)
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/18
-// ƒfƒtƒHƒ‹ƒgˆÊ’u‚ğŒ¾Œê‚²‚Æ‚É•ÏX
+// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä½ç½®ã‚’è¨€èªã”ã¨ã«å¤‰æ›´
 #if PM_LANG == LANG_ENGLISH
-#define INIT_EARTH_ROTATE_XVAL	(0x1A40)	// ƒAƒƒŠƒJ‚Ì^‚ñ’†‚ ‚½‚è
+#define INIT_EARTH_ROTATE_XVAL	(0x1A40)	// ã‚¢ãƒ¡ãƒªã‚«ã®çœŸã‚“ä¸­ã‚ãŸã‚Š
 #define INIT_EARTH_ROTATE_YVAL	(0x7C00)
 #elif PM_LANG == LANG_FRANCE
-#define INIT_EARTH_ROTATE_XVAL	(0x2300)	// ƒpƒŠiƒCƒ‹EƒhEƒtƒ‰ƒ“ƒXj
+#define INIT_EARTH_ROTATE_XVAL	(0x2300)	// ãƒ‘ãƒªï¼ˆã‚¤ãƒ«ãƒ»ãƒ‰ãƒ»ãƒ•ãƒ©ãƒ³ã‚¹ï¼‰
 #define INIT_EARTH_ROTATE_YVAL	(0x3100)
 #elif PM_LANG == LANG_GERMANY
-#define INIT_EARTH_ROTATE_XVAL	(0x2580)	// ƒxƒ‹ƒŠƒ“
+#define INIT_EARTH_ROTATE_XVAL	(0x2580)	// ãƒ™ãƒ«ãƒªãƒ³
 #define INIT_EARTH_ROTATE_YVAL	(0x2A00)
 #elif PM_LANG == LANG_ITALY
-#define INIT_EARTH_ROTATE_XVAL	(0x1DE0)	// ƒ[ƒ}iƒ‰ƒcƒBƒIj
+#define INIT_EARTH_ROTATE_XVAL	(0x1DE0)	// ãƒ­ãƒ¼ãƒï¼ˆãƒ©ãƒ„ã‚£ã‚ªï¼‰
 #define INIT_EARTH_ROTATE_YVAL	(0x2A00)
 #elif PM_LANG == LANG_SPENCE
-#define INIT_EARTH_ROTATE_XVAL	(0x1CA0)	// ƒ}ƒhƒŠƒbƒh
+#define INIT_EARTH_ROTATE_XVAL	(0x1CA0)	// ãƒãƒ‰ãƒªãƒƒãƒ‰
 #define INIT_EARTH_ROTATE_YVAL	(0x35E0)
 #else
-#define INIT_EARTH_ROTATE_XVAL	(0x1980)	//“Œ‹‚ğƒfƒtƒHƒ‹ƒgˆÊ’u‚É‚·‚é
-#define INIT_EARTH_ROTATE_YVAL	(0xcfe0)	//“Œ‹‚ğƒfƒtƒHƒ‹ƒgˆÊ’u‚É‚·‚é
+#define INIT_EARTH_ROTATE_XVAL	(0x1980)	//æ±äº¬ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä½ç½®ã«ã™ã‚‹
+#define INIT_EARTH_ROTATE_YVAL	(0xcfe0)	//æ±äº¬ã‚’ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä½ç½®ã«ã™ã‚‹
 #endif
 // ----------------------------------------------------------------------------
 #define INIT_EARTH_ROTATE_ZVAL	(0)
 
-//ƒJƒƒ‰‰Šú‰»’è‹`
+//ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–å®šç¾©
 #define INIT_CAMERA_TARGET_XVAL	(0)
 #define INIT_CAMERA_TARGET_YVAL	(0)
 #define INIT_CAMERA_TARGET_ZVAL	(0)
@@ -176,98 +176,98 @@
 #define CAMERA_ANGLE_MIN		(-0x4000+0x200)
 #define CAMERA_ANGLE_MAX		(0x4000-0x200)
 
-//ƒ‰ƒCƒg‰Šú‰»’è‹`
+//ãƒ©ã‚¤ãƒˆåˆæœŸåŒ–å®šç¾©
 #define USE_LIGHT_NUM			(0)
 #define LIGHT_VECDEF			(FX32_ONE-1)
 #define INIT_LIGHT_ANGLE_XVAL	(0)
 #define INIT_LIGHT_ANGLE_YVAL	(0)
 #define INIT_LIGHT_ANGLE_ZVAL	(-LIGHT_VECDEF)
 
-//“®ìˆ——p’è”
-#define CAMERA_MOVE_SPEED_NEAR	(0x20)	//ƒJƒƒ‰‹ß‹——£ã‰º¶‰EˆÚ“®ƒXƒs[ƒh	
-#define CAMERA_MOVE_SPEED_FAR	(0x200)	//ƒJƒƒ‰‰“‹——£ã‰º¶‰EˆÚ“®ƒXƒs[ƒh
-#define CAMERA_INOUT_SPEED	(0x8000)	//ƒJƒƒ‰‰“‹ßˆÚ“®ƒXƒs[ƒh
-#define MARK_SCALE_INCDEC	(0x80)		//’n“_ƒ}[ƒN‰“‹ßˆÚ“®’†Šgk”ä—¦
-#define EARTH_LIMIT_ROTATE_XMIN	(0x1300)	//“ú–{Šg‘å’n}‚Ìc‰ñ“]ƒŠƒ~ƒbƒg‰ºŒÀi‰«“êj
-#define EARTH_LIMIT_ROTATE_XMAX	(0x2020)	//“ú–{Šg‘å’n}‚Ìc‰ñ“]ƒŠƒ~ƒbƒgãŒÀi–kŠC“¹’t“àj
-#define EARTH_LIMIT_ROTATE_YMIN	(0xcc80)	//“ú–{Šg‘å’n}‚Ì‰¡‰ñ“]ƒŠƒ~ƒbƒg‰ºŒÀi–kŠC“¹‹ú˜Hj
-#define EARTH_LIMIT_ROTATE_YMAX	(0xd820)	//“ú–{Šg‘å’n}‚Ì‰¡‰ñ“]ƒŠƒ~ƒbƒgãŒÀi‰«“êj
+//å‹•ä½œå‡¦ç†ç”¨å®šæ•°
+#define CAMERA_MOVE_SPEED_NEAR	(0x20)	//ã‚«ãƒ¡ãƒ©è¿‘è·é›¢æ™‚ä¸Šä¸‹å·¦å³ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰	
+#define CAMERA_MOVE_SPEED_FAR	(0x200)	//ã‚«ãƒ¡ãƒ©é è·é›¢æ™‚ä¸Šä¸‹å·¦å³ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define CAMERA_INOUT_SPEED	(0x8000)	//ã‚«ãƒ¡ãƒ©é è¿‘ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define MARK_SCALE_INCDEC	(0x80)		//åœ°ç‚¹ãƒãƒ¼ã‚¯é è¿‘ç§»å‹•ä¸­æ‹¡ç¸®æ¯”ç‡
+#define EARTH_LIMIT_ROTATE_XMIN	(0x1300)	//æ—¥æœ¬æ‹¡å¤§åœ°å›³ã®ç¸¦å›è»¢ãƒªãƒŸãƒƒãƒˆä¸‹é™ï¼ˆæ²–ç¸„ï¼‰
+#define EARTH_LIMIT_ROTATE_XMAX	(0x2020)	//æ—¥æœ¬æ‹¡å¤§åœ°å›³ã®ç¸¦å›è»¢ãƒªãƒŸãƒƒãƒˆä¸Šé™ï¼ˆåŒ—æµ·é“ç¨šå†…ï¼‰
+#define EARTH_LIMIT_ROTATE_YMIN	(0xcc80)	//æ—¥æœ¬æ‹¡å¤§åœ°å›³ã®æ¨ªå›è»¢ãƒªãƒŸãƒƒãƒˆä¸‹é™ï¼ˆåŒ—æµ·é“é‡§è·¯ï¼‰
+#define EARTH_LIMIT_ROTATE_YMAX	(0xd820)	//æ—¥æœ¬æ‹¡å¤§åœ°å›³ã®æ¨ªå›è»¢ãƒªãƒŸãƒƒãƒˆä¸Šé™ï¼ˆæ²–ç¸„ï¼‰
 
-//ƒƒCƒ“ŠÖ”ƒV[ƒPƒ“ƒXƒiƒ“ƒo[’è‹`
+//ãƒ¡ã‚¤ãƒ³é–¢æ•°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼å®šç¾©
 enum{
-	EARTHDEMO_SEQ_MODELLOAD = 0,					//ƒ‚ƒfƒ‹ƒf[ƒ^ƒ[ƒh
-	EARTHDEMO_SEQ_DISPON,							//•`‰æ‚n‚m
-	EARTHDEMO_SEQ_WELCOME_MSG,						//u‚æ‚¤‚±‚»v
-	EARTHDEMO_SEQ_MAINMENU,							//ƒƒCƒ“ƒƒjƒ…[İ’è
-	EARTHDEMO_SEQ_MAINMENU_SELECT,					//ƒƒCƒ“ƒƒjƒ…[‘I‘ğƒ‚[ƒh
-	EARTHDEMO_SEQ_REGISTRATIONMENU,					//“o˜^ƒƒjƒ…[İ’è
-	EARTHDEMO_SEQ_REGISTRATIONMENU_SELECT,			//“o˜^ƒƒjƒ…[‘I‘ğƒ‚[ƒh
-	EARTHDEMO_SEQ_REGISTRATIONLIST_NATION,			//‘•Ê“o˜^ƒŠƒXƒgİ’è
-	EARTHDEMO_SEQ_REGISTRATIONLIST_NATION_SELECT,	//‘•Ê“o˜^ƒŠƒXƒg‘I‘ğƒ‚[ƒh
-	EARTHDEMO_SEQ_REGISTRATIONLIST_AREA,			//’nˆæ•Ê“o˜^ƒŠƒXƒgİ’è
-	EARTHDEMO_SEQ_REGISTRATIONLIST_AREA_SELECT,		//’nˆæ•Ê“o˜^ƒŠƒXƒg‘I‘ğƒ‚[ƒh
-	EARTHDEMO_SEQ_FINAL_REGISTRATION,				//“o˜^ÅIŠm”Fİ’è
-	EARTHDEMO_SEQ_FINAL_REGISTRATION_YESNO,			//“o˜^ÅIŠm”F
-	EARTHDEMO_SEQ_FINAL_REGISTRATION_SELECT,		//“o˜^ÅIŠm”F‘I‘ğƒ‚[ƒh
-	EARTHDEMO_SEQ_EARTH_DISPON,						//‚R‚c’n‹…‹Vƒ‚[ƒh‚n‚m
-	EARTHDEMO_SEQ_MOVE_EARTH,						//ƒƒCƒ““®ì
-	EARTHDEMO_SEQ_MOVE_CAMERA,						//ƒJƒƒ‰‰“‹ßˆÚ“®
-	EARTHDEMO_SEQ_END,								//I—¹ˆ—ŠJn
-	EARTHDEMO_SEQ_EXIT,								//I—¹
+	EARTHDEMO_SEQ_MODELLOAD = 0,					//ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
+	EARTHDEMO_SEQ_DISPON,							//æç”»ï¼¯ï¼®
+	EARTHDEMO_SEQ_WELCOME_MSG,						//ã€Œã‚ˆã†ã“ãã€
+	EARTHDEMO_SEQ_MAINMENU,							//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
+	EARTHDEMO_SEQ_MAINMENU_SELECT,					//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠãƒ¢ãƒ¼ãƒ‰
+	EARTHDEMO_SEQ_REGISTRATIONMENU,					//ç™»éŒ²ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
+	EARTHDEMO_SEQ_REGISTRATIONMENU_SELECT,			//ç™»éŒ²ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠãƒ¢ãƒ¼ãƒ‰
+	EARTHDEMO_SEQ_REGISTRATIONLIST_NATION,			//å›½åˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆè¨­å®š
+	EARTHDEMO_SEQ_REGISTRATIONLIST_NATION_SELECT,	//å›½åˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆé¸æŠãƒ¢ãƒ¼ãƒ‰
+	EARTHDEMO_SEQ_REGISTRATIONLIST_AREA,			//åœ°åŸŸåˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆè¨­å®š
+	EARTHDEMO_SEQ_REGISTRATIONLIST_AREA_SELECT,		//åœ°åŸŸåˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆé¸æŠãƒ¢ãƒ¼ãƒ‰
+	EARTHDEMO_SEQ_FINAL_REGISTRATION,				//ç™»éŒ²æœ€çµ‚ç¢ºèªè¨­å®š
+	EARTHDEMO_SEQ_FINAL_REGISTRATION_YESNO,			//ç™»éŒ²æœ€çµ‚ç¢ºèª
+	EARTHDEMO_SEQ_FINAL_REGISTRATION_SELECT,		//ç™»éŒ²æœ€çµ‚ç¢ºèªé¸æŠãƒ¢ãƒ¼ãƒ‰
+	EARTHDEMO_SEQ_EARTH_DISPON,						//ï¼“ï¼¤åœ°çƒå„€ãƒ¢ãƒ¼ãƒ‰ï¼¯ï¼®
+	EARTHDEMO_SEQ_MOVE_EARTH,						//ãƒ¡ã‚¤ãƒ³å‹•ä½œ
+	EARTHDEMO_SEQ_MOVE_CAMERA,						//ã‚«ãƒ¡ãƒ©é è¿‘ç§»å‹•
+	EARTHDEMO_SEQ_END,								//çµ‚äº†å‡¦ç†é–‹å§‹
+	EARTHDEMO_SEQ_EXIT,								//çµ‚äº†
 };
 
-//ƒƒbƒZ[ƒWŠÖ”ƒV[ƒPƒ“ƒXƒiƒ“ƒo[’è‹`
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢æ•°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼å®šç¾©
 enum{
 	MSGSET = 0,
 	MSGDRAW,
 	MSGWAIT,
 };
 
-//ƒƒbƒZ[ƒWŠÖ”“®ìw’è’è‹`
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢æ•°å‹•ä½œæŒ‡å®šå®šç¾©
 enum {
 	A_BUTTON_WAIT = 0,
 	A_BUTTON_NOWAIT,
 };
 
-//“o˜^ƒƒjƒ…[‚h‚cƒiƒ“ƒo[’è‹`
+//ç™»éŒ²ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼©ï¼¤ãƒŠãƒ³ãƒãƒ¼å®šç¾©
 enum{
 	MENU_WORLD = 0,
 	MENU_REGISTRATION,
 	MENU_END,
 };
 
-//’n‹…‰ñ“]ƒ‚[ƒh’è‹`
+//åœ°çƒå›è»¢ãƒ¢ãƒ¼ãƒ‰å®šç¾©
 enum {
 	JAPAN_MODE = 0,
 	GLOBAL_MODE,
 };
 
-//ƒJƒƒ‰‹——£ƒtƒ‰ƒO’è‹`
+//ã‚«ãƒ¡ãƒ©è·é›¢ãƒ•ãƒ©ã‚°å®šç¾©
 enum {
 	CAMERA_FAR = 0,
 	CAMERA_NEAR,
 };
 
-//‚R‚c•`‰æƒtƒ‰ƒO’è‹`
+//ï¼“ï¼¤æç”»ãƒ•ãƒ©ã‚°å®šç¾©
 enum {
 	DRAW3D_DISABLE = 0,
 	DRAW3D_ENABLE,
 	DRAW3D_BANISH,
 };
 
-//’n“_ƒf[ƒ^•\¦ƒJƒ‰[’è‹`iƒ‚ƒfƒ‹‘I‘ğ‚É‚æ‚Á‚ÄF‘Ö‚¦Fwifihistory’è‹`‚É‰ˆ‚¤‡”Ô‚É‚·‚éj
+//åœ°ç‚¹ãƒ‡ãƒ¼ã‚¿è¡¨ç¤ºã‚«ãƒ©ãƒ¼å®šç¾©ï¼ˆãƒ¢ãƒ‡ãƒ«é¸æŠã«ã‚ˆã£ã¦è‰²æ›¿ãˆï¼šwifihistoryå®šç¾©ã«æ²¿ã†é †ç•ªã«ã™ã‚‹ï¼‰
 enum {
-	MARK_NULL = 0,	//–¢’ÊMêŠ
-	MARK_BLUE,		//–{“ú‚Í‚¶‚ß‚Ä’ÊM‚µ‚½
-	MARK_YELLOW,	//’ÊMÏ
-	MARK_RED,		//©•ª‚Ì“o˜^êŠ
-	MARK_GREEN,		//ƒJ[ƒ\ƒ‹
+	MARK_NULL = 0,	//æœªé€šä¿¡å ´æ‰€
+	MARK_BLUE,		//æœ¬æ—¥ã¯ã˜ã‚ã¦é€šä¿¡ã—ãŸ
+	MARK_YELLOW,	//é€šä¿¡æ¸ˆ
+	MARK_RED,		//è‡ªåˆ†ã®ç™»éŒ²å ´æ‰€
+	MARK_GREEN,		//ã‚«ãƒ¼ã‚½ãƒ«
 };
 
 //============================================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //============================================================================================
-//ƒf[ƒ^İ’è\‘¢‘Ìi‘ƒoƒCƒiƒŠƒf[ƒ^j
+//ãƒ‡ãƒ¼ã‚¿è¨­å®šæ§‹é€ ä½“ï¼ˆå›½ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ï¼‰
 typedef struct EARTH_DATA_NATION_tag
 {
 	u16 flag;
@@ -275,14 +275,14 @@ typedef struct EARTH_DATA_NATION_tag
 	s16 y;
 }EARTH_DATA_NATION;
 
-//ƒf[ƒ^İ’è\‘¢‘Ìi’nˆæƒoƒCƒiƒŠƒf[ƒ^j
+//ãƒ‡ãƒ¼ã‚¿è¨­å®šæ§‹é€ ä½“ï¼ˆåœ°åŸŸãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ï¼‰
 typedef struct EARTH_DATA_AREA_tag
 {
 	s16 x;
 	s16 y;
 }EARTH_DATA_AREA;
 
-//ƒf[ƒ^\‘¢‘Ìi‘’nˆæƒe[ƒuƒ‹ƒf[ƒ^j
+//ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ï¼ˆå›½åœ°åŸŸãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ï¼‰
 typedef struct EARTH_AREATABLE_tag
 {
 	u16		nationID;
@@ -290,38 +290,38 @@ typedef struct EARTH_AREATABLE_tag
 	const char* place_dataID;
 }EARTH_AREATABLE;
 
-//ƒŠƒXƒgƒf[ƒ^\‘¢‘ÌiƒoƒCƒiƒŠƒf[ƒ^¨ÀÛ‚Ég—p‚·‚éƒŠƒXƒg—pƒf[ƒ^‚É•ÏŠ·j
+//ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ï¼ˆãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿â†’å®Ÿéš›ã«ä½¿ç”¨ã™ã‚‹ãƒªã‚¹ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›ï¼‰
 typedef struct EARTH_DEMO_LIST_DATA_tag
 {
 	s16 x;
 	s16 y;
-	MtxFx33 rotate;	//‘Š‘Î‰ñ“]s—ñ‚ğ‚ ‚ç‚©‚¶‚ßŒvZ‚µ‚Ä•Û‘¶
+	MtxFx33 rotate;	//ç›¸å¯¾å›è»¢è¡Œåˆ—ã‚’ã‚ã‚‰ã‹ã˜ã‚è¨ˆç®—ã—ã¦ä¿å­˜
 	u16	col;
 	u16	nationID;
 	u16	areaID;
 }EARTH_DEMO_LIST_DATA;
 
-//ƒŠƒXƒgƒf[ƒ^\‘¢‘ÌiƒoƒCƒiƒŠƒf[ƒ^¨ÀÛ‚Ég—p‚·‚éƒŠƒXƒg—pƒf[ƒ^‚É•ÏŠ·j
+//ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ï¼ˆãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿â†’å®Ÿéš›ã«ä½¿ç”¨ã™ã‚‹ãƒªã‚¹ãƒˆç”¨ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›ï¼‰
 typedef struct EARTH_DEMO_LIST_tag
 {
 	u32	listcount;
 	EARTH_DEMO_LIST_DATA	place[WORLD_PLACE_NUM_MAX];
 }EARTH_DEMO_LIST;
 
-//ƒ[ƒN\‘¢‘Ì
+//ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct EARTH_DEMO_WORK_tag
 {
-	//ƒq[ƒvİ’èƒ[ƒN
+	//ãƒ’ãƒ¼ãƒ—è¨­å®šãƒ¯ãƒ¼ã‚¯
 	int	heapID;
 
-	//ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
 	WIFI_HISTORY*	wifi_sv;
 	CONFIG*			config;	
 
-	//’n“_ƒŠƒXƒgƒ[ƒN
+	//åœ°ç‚¹ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
 	EARTH_DEMO_LIST	placelist;
 
-	//‚a‚fƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+	//ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
 	GF_BGL_INI*			bgl;
 	GF_BGL_BMPWIN		msgwin;
 	GF_BGL_BMPWIN		listwin;
@@ -331,45 +331,45 @@ typedef struct EARTH_DEMO_WORK_tag
 	BMP_MENULIST_DATA*	bmplistdata;
 	BMPMENU_WORK*		yesnowin;
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿
 	MSGDATA_MANAGER*	msg_man;
 	int		msgseq;
 	int		msgID;
 	STRBUF* msgstr;
 	WORDSET*			wordset;
 
-	//ƒ‚ƒfƒ‹ƒ[ƒhƒ[ƒN
-	NNSG3dRenderObj			renderobj;			//I—¹—vƒq[ƒvŠJ•ú
+	//ãƒ¢ãƒ‡ãƒ«ãƒ­ãƒ¼ãƒ‰ãƒ¯ãƒ¼ã‚¯
+	NNSG3dRenderObj			renderobj;			//çµ‚äº†æ™‚è¦ãƒ’ãƒ¼ãƒ—é–‹æ”¾
 	NNSG3dResMdl*			resmodel;
 	NNSG3dResFileHeader* 	resfileheader;
 
-	NNSG3dRenderObj			mark_renderobj[5];	//I—¹—vƒq[ƒvŠJ•ú
+	NNSG3dRenderObj			mark_renderobj[5];	//çµ‚äº†æ™‚è¦ãƒ’ãƒ¼ãƒ—é–‹æ”¾
 	NNSG3dResMdl*			mark_resmodel[5];
 	NNSG3dResFileHeader* 	mark_resfileheader[5];
 
-	//ƒ‚ƒfƒ‹İ’èƒ[ƒN
+	//ãƒ¢ãƒ‡ãƒ«è¨­å®šãƒ¯ãƒ¼ã‚¯
 	VecFx32 trans;
 	VecFx32 scale;
 	VecFx32	rotate;
 
 	VecFx32	mark_scale;
 
-	//ƒJƒƒ‰İ’èƒ[ƒN
+	//ã‚«ãƒ¡ãƒ©è¨­å®šãƒ¯ãƒ¼ã‚¯
 	GF_CAMERA_PTR camera_p;
 	CAMERA_ANGLE camera_angle;
 	u16 camera_status;
 
-	//ƒ‰ƒCƒgİ’èƒ[ƒN
+	//ãƒ©ã‚¤ãƒˆè¨­å®šãƒ¯ãƒ¼ã‚¯
 	VecFx32	light_vec;
 
-	//“®ìˆ—ƒ[ƒN
+	//å‹•ä½œå‡¦ç†ãƒ¯ãƒ¼ã‚¯
 	int		Draw3Dsw;
 	BOOL	fade_end_flag;
 	BOOL	Japan_ROM_mode;
 	u16		earth_mode;
 	u16		rotate_speed;
 
-	//ƒ^ƒbƒ`ƒpƒlƒ‹ŒŸo•Û‘¶ƒ[ƒN
+	//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æ¤œå‡ºä¿å­˜ãƒ¯ãƒ¼ã‚¯
 	int tp_result;
 	int tp_seq;
 	int tp_x;
@@ -378,7 +378,7 @@ typedef struct EARTH_DEMO_WORK_tag
 	int tp_leny;
 	int tp_count;
 
-	//’n“_“o˜^ƒeƒ“ƒ|ƒ‰ƒŠ
+	//åœ°ç‚¹ç™»éŒ²ãƒ†ãƒ³ãƒãƒ©ãƒª
 	int		my_nation;
 	int		my_area;
 	int		my_nation_tmp;
@@ -393,7 +393,7 @@ typedef struct EARTH_DEMO_WORK_tag
 
 }EARTH_DEMO_WORK;
 
-//ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒg\‘¢‘Ì
+//ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚¹ãƒˆæ§‹é€ ä½“
 typedef struct EARTH_BMPLIST_tag
 {
 	u32 msgID;
@@ -401,7 +401,7 @@ typedef struct EARTH_BMPLIST_tag
 }EARTH_BMPLIST;
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹ŠÖ”’è‹`
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°å®šç¾©
 //============================================================================================
 void	WIFI_RegistratonInit(SAVEDATA* savedata);
 BOOL	WIFI_NationAreaNameGet(int nationID,int areaID,
@@ -409,7 +409,7 @@ BOOL	WIFI_NationAreaNameGet(int nationID,int areaID,
 BOOL	WIFI_LocalAreaExistCheck(int nationID);
 
 //============================================================================================
-//	ƒ[ƒJƒ‹ŠÖ”’è‹`
+//	ãƒ­ãƒ¼ã‚«ãƒ«é–¢æ•°å®šç¾©
 //============================================================================================
 PROC_RESULT Earth_Demo_Init(PROC * proc, int * seq);
 PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq);
@@ -435,9 +435,9 @@ static void Earth_BmpListAdd( EARTH_DEMO_WORK * wk,
 							const BMPLIST_HEADER* listheader,const EARTH_BMPLIST* list);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/26
-// ’n–¼‚ğƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚Éƒ\[ƒg‚µ‚Ä•\¦‚·‚é‚æ‚¤‚É•ÏX
+// åœ°åã‚’ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«ã‚½ãƒ¼ãƒˆã—ã¦è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 // localize_spec_mark(LANG_ALL) imatake 2007/02/21
-// ’n–¼ƒŠƒXƒg‚Æƒ\[ƒgƒe[ƒuƒ‹‚ÌÀÛ‚Ì—v‘f”‚ªH‚¢ˆá‚¤ê‡‚É‘Î‰
+// åœ°åãƒªã‚¹ãƒˆã¨ã‚½ãƒ¼ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®å®Ÿéš›ã®è¦ç´ æ•°ãŒé£Ÿã„é•ã†å ´åˆã«å¯¾å¿œ
 static void Earth_BmpListAddGmmAll( EARTH_DEMO_WORK * wk,
 							GF_BGL_BMPWIN* win, const BMPWIN_DAT* windata,
 							const BMPLIST_HEADER* listheader,u32 listarcID,
@@ -474,14 +474,14 @@ static void EarthDebugAreaMarkSet( EARTH_DEMO_WORK * wk );
 #endif	
 
 //============================================================================================
-//	ŠO•”ŠÖ”’è‹`
+//	å¤–éƒ¨é–¢æ•°å®šç¾©
 //============================================================================================
 extern void	Main_SetNextProc(FSOverlayID ov_id, const PROC_DATA * proc_data);
 extern u8 MsgSpeedGet(void);
 
-#if	0	//ŒÄ‚Ño‚µ‘¤‚ÖˆÚ“®
+#if	0	//å‘¼ã³å‡ºã—å´ã¸ç§»å‹•
 //============================================================================================
-//	‚o‚q‚n‚b’è‹`ƒf[ƒ^
+//	ï¼°ï¼²ï¼¯ï¼£å®šç¾©ãƒ‡ãƒ¼ã‚¿
 //============================================================================================
 const PROC_DATA Earth_Demo_proc_data = {
 	Earth_Demo_Init,
@@ -493,88 +493,88 @@ const PROC_DATA Earth_Demo_proc_data = {
 
 
 //============================================================================================
-//	‚a‚f’è‹`ƒf[ƒ^
+//	ï¼¢ï¼§å®šç¾©ãƒ‡ãƒ¼ã‚¿
 //============================================================================================
 static const GF_BGL_BGCNT_HEADER Earth_Demo_BGtxt_header = {
-	0,0,					//‰Šú•\¦‚w‚xİ’è
-	0x800,0,				//ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@ƒTƒCƒY(0 = g—p‚µ‚È‚¢)•ƒIƒtƒZƒbƒg
-	GF_BGL_SCRSIZ_256x256,	//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-	GX_BG_COLORMODE_16,		//ƒJƒ‰[ƒ‚[ƒh
-	GX_BG_SCRBASE_0x7000, 	//ƒXƒNƒŠ[ƒ“ƒx[ƒXƒuƒƒbƒN
-	GX_BG_CHARBASE_0x00000,	//ƒLƒƒƒ‰ƒNƒ^ƒx[ƒXƒuƒƒbƒN 
-	GX_BG_EXTPLTT_01,		//Šg’£ƒpƒŒƒbƒg‘I‘ğ(g—p‚µ‚È‚¢İ’è‚Ì‚Æ‚«‚Í–³‹‚³‚ê‚é)
-	0,						//•\¦ƒvƒ‰ƒCƒIƒŠƒeƒB[
-	0,						//ƒGƒŠƒAƒI[ƒo[ƒtƒ‰ƒO
+	0,0,					//åˆæœŸè¡¨ç¤ºï¼¸ï¼¹è¨­å®š
+	0x800,0,				//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º(0 = ä½¿ç”¨ã—ãªã„)ï¼†ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	GF_BGL_SCRSIZ_256x256,	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+	GX_BG_COLORMODE_16,		//ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰
+	GX_BG_SCRBASE_0x7000, 	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ™ãƒ¼ã‚¹ãƒ–ãƒ­ãƒƒã‚¯
+	GX_BG_CHARBASE_0x00000,	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ™ãƒ¼ã‚¹ãƒ–ãƒ­ãƒƒã‚¯ 
+	GX_BG_EXTPLTT_01,		//æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆé¸æŠ(ä½¿ç”¨ã—ãªã„è¨­å®šã®ã¨ãã¯ç„¡è¦–ã•ã‚Œã‚‹)
+	0,						//è¡¨ç¤ºãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼
+	0,						//ã‚¨ãƒªã‚¢ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ©ã‚°
 	0,						//
-	FALSE					//ƒ‚ƒUƒCƒNİ’è
+	FALSE					//ãƒ¢ã‚¶ã‚¤ã‚¯è¨­å®š
 };
 
 static const GF_BGL_BGCNT_HEADER Earth_Demo_Back_header = {
-	0,0,					//‰Šú•\¦‚w‚xİ’è
-	0x800,0,				//ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@ƒTƒCƒY(0 = g—p‚µ‚È‚¢)•ƒIƒtƒZƒbƒg
-	GF_BGL_SCRSIZ_256x256,	//ƒXƒNƒŠ[ƒ“ƒTƒCƒY
-	GX_BG_COLORMODE_16,		//ƒJƒ‰[ƒ‚[ƒh
-	GX_BG_SCRBASE_0x7800, 	//ƒXƒNƒŠ[ƒ“ƒx[ƒXƒuƒƒbƒN
-	GX_BG_CHARBASE_0x04000,	//ƒLƒƒƒ‰ƒNƒ^ƒx[ƒXƒuƒƒbƒN 
-	GX_BG_EXTPLTT_01,		//Šg’£ƒpƒŒƒbƒg‘I‘ğ(g—p‚µ‚È‚¢İ’è‚Ì‚Æ‚«‚Í–³‹‚³‚ê‚é)
-	3,						//•\¦ƒvƒ‰ƒCƒIƒŠƒeƒB[
-	0,						//ƒGƒŠƒAƒI[ƒo[ƒtƒ‰ƒO
+	0,0,					//åˆæœŸè¡¨ç¤ºï¼¸ï¼¹è¨­å®š
+	0x800,0,				//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º(0 = ä½¿ç”¨ã—ãªã„)ï¼†ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	GF_BGL_SCRSIZ_256x256,	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º
+	GX_BG_COLORMODE_16,		//ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰
+	GX_BG_SCRBASE_0x7800, 	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ™ãƒ¼ã‚¹ãƒ–ãƒ­ãƒƒã‚¯
+	GX_BG_CHARBASE_0x04000,	//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ™ãƒ¼ã‚¹ãƒ–ãƒ­ãƒƒã‚¯ 
+	GX_BG_EXTPLTT_01,		//æ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆé¸æŠ(ä½¿ç”¨ã—ãªã„è¨­å®šã®ã¨ãã¯ç„¡è¦–ã•ã‚Œã‚‹)
+	3,						//è¡¨ç¤ºãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼
+	0,						//ã‚¨ãƒªã‚¢ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ©ã‚°
 	0,						//
-	FALSE					//ƒ‚ƒUƒCƒNİ’è
+	FALSE					//ãƒ¢ã‚¶ã‚¤ã‚¯è¨­å®š
 };
 
 static const BMPWIN_DAT EarthMsgWinData =
 {
-	EARTH_TEXT_PLANE,	//ƒEƒCƒ“ƒhƒEg—pƒtƒŒ[ƒ€
-	EARTH_MSG_WIN_PX,EARTH_MSG_WIN_PY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ãXYÀ•WiƒLƒƒƒ‰’PˆÊw’èj
-	EARTH_MSG_WIN_SX,EARTH_MSG_WIN_SY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌXYƒTƒCƒYiƒLƒƒƒ‰’PˆÊw’èj
-	EARTH_MSG_WIN_PAL,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[ 
-	EARTH_MSG_WIN_CGX,	//ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰—Ìˆæ‚ÌŠJnƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+	EARTH_TEXT_PLANE,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	EARTH_MSG_WIN_PX,EARTH_MSG_WIN_PY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸ŠXYåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©å˜ä½æŒ‡å®šï¼‰
+	EARTH_MSG_WIN_SX,EARTH_MSG_WIN_SY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®XYã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½æŒ‡å®šï¼‰
+	EARTH_MSG_WIN_PAL,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ 
+	EARTH_MSG_WIN_CGX,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é ˜åŸŸã®é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
 };
 
 static const BMPWIN_DAT EarthYesNoWinData =
 {
-	EARTH_TEXT_PLANE,	//ƒEƒCƒ“ƒhƒEg—pƒtƒŒ[ƒ€
-	EARTH_YESNO_WIN_PX,EARTH_YESNO_WIN_PY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ãXYÀ•WiƒLƒƒƒ‰’PˆÊw’èj
-	EARTH_YESNO_WIN_SX,EARTH_YESNO_WIN_SY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌXYƒTƒCƒYiƒLƒƒƒ‰’PˆÊw’èj
-	EARTH_YESNO_WIN_PAL,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[ 
-	EARTH_YESNO_WIN_CGX,	//ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰—Ìˆæ‚ÌŠJnƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+	EARTH_TEXT_PLANE,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	EARTH_YESNO_WIN_PX,EARTH_YESNO_WIN_PY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸ŠXYåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©å˜ä½æŒ‡å®šï¼‰
+	EARTH_YESNO_WIN_SX,EARTH_YESNO_WIN_SY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®XYã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½æŒ‡å®šï¼‰
+	EARTH_YESNO_WIN_PAL,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ 
+	EARTH_YESNO_WIN_CGX,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é ˜åŸŸã®é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
 };
 
 static const BMPWIN_DAT EarthMenuWinData =
 {
-	EARTH_TEXT_PLANE,	//ƒEƒCƒ“ƒhƒEg—pƒtƒŒ[ƒ€
-	EARTH_MENU_WIN_PX,EARTH_MENU_WIN_PY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ãXYÀ•WiƒLƒƒƒ‰’PˆÊw’èj
-	EARTH_MENU_WIN_SX,EARTH_MENU_WIN_SY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌXYƒTƒCƒYiƒLƒƒƒ‰’PˆÊw’èj
-	EARTH_MENU_WIN_PAL,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[ 
-	EARTH_MENU_WIN_CGX,	//ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰—Ìˆæ‚ÌŠJnƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+	EARTH_TEXT_PLANE,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	EARTH_MENU_WIN_PX,EARTH_MENU_WIN_PY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸ŠXYåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©å˜ä½æŒ‡å®šï¼‰
+	EARTH_MENU_WIN_SX,EARTH_MENU_WIN_SY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®XYã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½æŒ‡å®šï¼‰
+	EARTH_MENU_WIN_PAL,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ 
+	EARTH_MENU_WIN_CGX,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é ˜åŸŸã®é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
 };
 
 static const BMPWIN_DAT EarthPlaceListWinData =
 {
-	EARTH_TEXT_PLANE,	//ƒEƒCƒ“ƒhƒEg—pƒtƒŒ[ƒ€
-	EARTH_PLACE_WIN_PX,EARTH_PLACE_WIN_PY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ãXYÀ•WiƒLƒƒƒ‰’PˆÊw’èj
-	EARTH_PLACE_WIN_SX,EARTH_PLACE_WIN_SY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌXYƒTƒCƒYiƒLƒƒƒ‰’PˆÊw’èj
-	EARTH_PLACE_WIN_PAL,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[ 
-	EARTH_PLACE_WIN_CGX,	//ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰—Ìˆæ‚ÌŠJnƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+	EARTH_TEXT_PLANE,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	EARTH_PLACE_WIN_PX,EARTH_PLACE_WIN_PY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸ŠXYåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©å˜ä½æŒ‡å®šï¼‰
+	EARTH_PLACE_WIN_SX,EARTH_PLACE_WIN_SY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®XYã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½æŒ‡å®šï¼‰
+	EARTH_PLACE_WIN_PAL,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ 
+	EARTH_PLACE_WIN_CGX,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é ˜åŸŸã®é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
 };
 
 static const BMPWIN_DAT EarthInfoWinData =
 {
-	EARTH_TEXT_PLANE,	//ƒEƒCƒ“ƒhƒEg—pƒtƒŒ[ƒ€
-	EARTH_INFO_WIN_PX,EARTH_INFO_WIN_PY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ãXYÀ•WiƒLƒƒƒ‰’PˆÊw’èj
-	EARTH_INFO_WIN_SX,EARTH_INFO_WIN_SY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌXYƒTƒCƒYiƒLƒƒƒ‰’PˆÊw’èj
-	EARTH_INFO_WIN_PAL,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[ 
-	EARTH_INFO_WIN_CGX,	//ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰—Ìˆæ‚ÌŠJnƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+	EARTH_TEXT_PLANE,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	EARTH_INFO_WIN_PX,EARTH_INFO_WIN_PY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸ŠXYåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©å˜ä½æŒ‡å®šï¼‰
+	EARTH_INFO_WIN_SX,EARTH_INFO_WIN_SY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®XYã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½æŒ‡å®šï¼‰
+	EARTH_INFO_WIN_PAL,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ 
+	EARTH_INFO_WIN_CGX,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é ˜åŸŸã®é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
 };
 
 static const BMPWIN_DAT EarthIconWinData =
 {
-	EARTH_ICON_PLANE,	//ƒEƒCƒ“ƒhƒEg—pƒtƒŒ[ƒ€
-	EARTH_ICON_WIN_PX,EARTH_ICON_WIN_PY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ãXYÀ•WiƒLƒƒƒ‰’PˆÊw’èj
-	EARTH_ICON_WIN_SX,EARTH_ICON_WIN_SY,//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌXYƒTƒCƒYiƒLƒƒƒ‰’PˆÊw’èj
-	EARTH_ICON_WIN_PAL,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[ 
-	EARTH_ICON_WIN_CGX,	//ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰—Ìˆæ‚ÌŠJnƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+	EARTH_ICON_PLANE,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	EARTH_ICON_WIN_PX,EARTH_ICON_WIN_PY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸ŠXYåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©å˜ä½æŒ‡å®šï¼‰
+	EARTH_ICON_WIN_SX,EARTH_ICON_WIN_SY,//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®XYã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½æŒ‡å®šï¼‰
+	EARTH_ICON_WIN_PAL,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ 
+	EARTH_ICON_WIN_CGX,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é ˜åŸŸã®é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
 };
 
 static const EARTH_BMPLIST MenuList[] =
@@ -585,73 +585,73 @@ static const EARTH_BMPLIST MenuList[] =
 };
 
 static const BMPLIST_HEADER MenuListHeader = {
-	/* •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^(ƒvƒƒOƒ‰ƒ€İ’è) */NULL,/* ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ” */NULL,
-	/* ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ” */NULL,/* ‘Î‰ƒrƒbƒgƒ}ƒbƒv(ƒvƒƒOƒ‰ƒ€İ’è) */NULL,
-	/* ƒŠƒXƒg€–Ú” */NELEMS(MenuList),/* •\¦Å‘å€–Ú” */NELEMS(MenuList),		
-	/* ƒ‰ƒxƒ‹•\¦‚wÀ•W */0,/* €–Ú•\¦‚wÀ•W */12,/* ƒJ[ƒ\ƒ‹•\¦‚wÀ•W */0,/* •\¦‚xÀ•W */0,
-	/* •¶šF */FBMP_COL_BLACK,/* ”wŒiF */FBMP_COL_WHITE,/* •¶š‰eF */FBMP_COL_BLK_SDW,		
-	/* •¶šŠÔŠu‚w */0,/* •¶šŠÔŠu‚x */16,/* ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv */BMPLIST_NO_SKIP,		
-	/* •¶šw’è */FONT_SYSTEM,/*‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)*/0,						
+	/* è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿(ãƒ—ãƒ­ã‚°ãƒ©ãƒ è¨­å®š) */NULL,/* ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•° */NULL,
+	/* ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•° */NULL,/* å¯¾å¿œãƒ“ãƒƒãƒˆãƒãƒƒãƒ—(ãƒ—ãƒ­ã‚°ãƒ©ãƒ è¨­å®š) */NULL,
+	/* ãƒªã‚¹ãƒˆé …ç›®æ•° */NELEMS(MenuList),/* è¡¨ç¤ºæœ€å¤§é …ç›®æ•° */NELEMS(MenuList),		
+	/* ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™ */0,/* é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™ */12,/* ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™ */0,/* è¡¨ç¤ºï¼¹åº§æ¨™ */0,
+	/* æ–‡å­—è‰² */FBMP_COL_BLACK,/* èƒŒæ™¯è‰² */FBMP_COL_WHITE,/* æ–‡å­—å½±è‰² */FBMP_COL_BLK_SDW,		
+	/* æ–‡å­—é–“éš”ï¼¸ */0,/* æ–‡å­—é–“éš”ï¼¹ */16,/* ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ— */BMPLIST_NO_SKIP,		
+	/* æ–‡å­—æŒ‡å®š */FONT_SYSTEM,/*ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)*/0,						
 };
 
 static const BMPLIST_HEADER PlaceListHeader = {
-	/* •\¦•¶šƒf[ƒ^ƒ|ƒCƒ“ƒ^(ƒvƒƒOƒ‰ƒ€İ’è) */NULL,/* ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ” */NULL,
-	/* ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ” */NULL,/* ‘Î‰ƒrƒbƒgƒ}ƒbƒv(ƒvƒƒOƒ‰ƒ€İ’è) */NULL,
-	/* ƒŠƒXƒg€–Ú”(ƒvƒƒOƒ‰ƒ€İ’è) */0,/* •\¦Å‘å€–Ú” */7,		
-	/* ƒ‰ƒxƒ‹•\¦‚wÀ•W */0,/* €–Ú•\¦‚wÀ•W */12,/* ƒJ[ƒ\ƒ‹•\¦‚wÀ•W */0,/* •\¦‚xÀ•W */0,
-	/* •¶šF */FBMP_COL_BLACK,/* ”wŒiF */FBMP_COL_WHITE,/* •¶š‰eF */FBMP_COL_BLK_SDW,		
-	/* •¶šŠÔŠu‚w */0,/* •¶šŠÔŠu‚x */16,/* ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv */BMPLIST_LRKEY_SKIP,		
-	/* •¶šw’è */FONT_SYSTEM,/*‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO(0:ON,1:OFF)*/0,						
+	/* è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿(ãƒ—ãƒ­ã‚°ãƒ©ãƒ è¨­å®š) */NULL,/* ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•° */NULL,
+	/* ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•° */NULL,/* å¯¾å¿œãƒ“ãƒƒãƒˆãƒãƒƒãƒ—(ãƒ—ãƒ­ã‚°ãƒ©ãƒ è¨­å®š) */NULL,
+	/* ãƒªã‚¹ãƒˆé …ç›®æ•°(ãƒ—ãƒ­ã‚°ãƒ©ãƒ è¨­å®š) */0,/* è¡¨ç¤ºæœ€å¤§é …ç›®æ•° */7,		
+	/* ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™ */0,/* é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™ */12,/* ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™ */0,/* è¡¨ç¤ºï¼¹åº§æ¨™ */0,
+	/* æ–‡å­—è‰² */FBMP_COL_BLACK,/* èƒŒæ™¯è‰² */FBMP_COL_WHITE,/* æ–‡å­—å½±è‰² */FBMP_COL_BLK_SDW,		
+	/* æ–‡å­—é–“éš”ï¼¸ */0,/* æ–‡å­—é–“éš”ï¼¹ */16,/* ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ— */BMPLIST_LRKEY_SKIP,		
+	/* æ–‡å­—æŒ‡å®š */FONT_SYSTEM,/*ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°(0:ON,1:OFF)*/0,						
 };
 
 //============================================================================================
 //
-//	ƒƒCƒ“ŠÖ”
+//	ãƒ¡ã‚¤ãƒ³é–¢æ•°
 //
 //============================================================================================
 //============================================================================================
-//	‰Šú‰»ƒvƒƒZƒX
+//	åˆæœŸåŒ–ãƒ—ãƒ­ã‚»ã‚¹
 //============================================================================================
 PROC_RESULT Earth_Demo_Init(PROC * proc, int * seq)
 {
 	EARTH_DEMO_WORK * wk;
 	int	heapID = HEAPID_WIFIEARTH;
 
-	//‚u‚gŠÖ”’â~
+	//ï¼¶ï¼¨é–¢æ•°åœæ­¢
 	sys_VBlankFuncChange( NULL, NULL );
 	sys_HBlankIntrSet( NULL,NULL );
 
-	//‚a‚f•\¦’â~
+	//ï¼¢ï¼§è¡¨ç¤ºåœæ­¢
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	GX_SetVisiblePlane( 0 );
 	GXS_SetVisiblePlane( 0 );
 
-	//ƒq[ƒvƒGƒŠƒAì¬
+	//ãƒ’ãƒ¼ãƒ—ã‚¨ãƒªã‚¢ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, heapID, 0x080000 );
 
-	//ƒ[ƒNƒGƒŠƒAæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢å–å¾—
 	wk = PROC_AllocWork( proc, sizeof(EARTH_DEMO_WORK), heapID );
 	memset( wk, 0, sizeof(EARTH_DEMO_WORK) );
 	wk->heapID = heapID;
 
-	//“ú–{Œê”Å‚©‚Ç‚¤‚©‚Ì”»•Êƒtƒ‰ƒO
+	//æ—¥æœ¬èªç‰ˆã‹ã©ã†ã‹ã®åˆ¤åˆ¥ãƒ•ãƒ©ã‚°
 	if( CasetteLanguage == LANG_JAPAN ){
-		// “ú–{Œêƒo[ƒWƒ‡ƒ“‚Å‚Í“ú–{‚µ‚©“o˜^‚Å‚«‚È‚¢
+		// æ—¥æœ¬èªãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã¯æ—¥æœ¬ã—ã‹ç™»éŒ²ã§ããªã„
 		wk->Japan_ROM_mode = TRUE;
 	} else {
-		// “ú–{Œêƒo[ƒWƒ‡ƒ“ˆÈŠO‚ÍÅ‰‚©‚ç’n‹…‹V‚ª‘S•”Œ©‚¦‚é
+		// æ—¥æœ¬èªãƒãƒ¼ã‚¸ãƒ§ãƒ³ä»¥å¤–ã¯æœ€åˆã‹ã‚‰åœ°çƒå„€ãŒå…¨éƒ¨è¦‹ãˆã‚‹
 		wk->Japan_ROM_mode = FALSE;
 	}
 #ifdef PM_DEBUG
-	// ‚kƒ{ƒ^ƒ“‚ğ‚¨‚µ‚Ä‚¢‚é‚Æ“ü—Íî•ñ‚ğƒNƒŠƒA‚µ‚½ã‚Å¢ŠE‚©‚ç“ü—Í‚Å‚«‚é
+	// ï¼¬ãƒœã‚¿ãƒ³ã‚’ãŠã—ã¦ã„ã‚‹ã¨å…¥åŠ›æƒ…å ±ã‚’ã‚¯ãƒªã‚¢ã—ãŸä¸Šã§ä¸–ç•Œã‹ã‚‰å…¥åŠ›ã§ãã‚‹
 	if(sys.cont & PAD_BUTTON_L){
 		SAVEDATA* sv = PROC_GetParentWork( proc );
 		WIFI_RegistratonInit( sv );
 		wk->Japan_ROM_mode = FALSE;
 	}
 #endif
-	//ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^ì¬
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ä½œæˆ
 	{
 		SAVEDATA* sv = PROC_GetParentWork( proc );
 
@@ -662,45 +662,45 @@ PROC_RESULT Earth_Demo_Init(PROC * proc, int * seq)
 		wk->config	= SaveData_GetConfig( sv );	
 	}
 
-	//‚u‚q‚`‚lİ’è
+	//ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
 	Earth_VramBankSet();
 
-	//‚a‚fƒ‰ƒCƒuƒ‰ƒŠİ’è
+	//ï¼¢ï¼§ãƒ©ã‚¤ãƒ–ãƒ©ãƒªè¨­å®š
 	Earth_BGsysSet();
 	simple_3DBGInit( wk->heapID );
 	wk->bgl = GF_BGL_BglIniAlloc( wk->heapID );
 	GF_Disp_DispOn();
 	
-	//ƒƒbƒZ[ƒW•\¦ƒVƒXƒeƒ€‰Šú‰»
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	MSG_PrintInit();
 	wk->wordset = WORDSET_CreateEx( WORDSET_DEFAULT_SETNUM, EARTH_NAME_SIZE, wk->heapID );
 
-	//ƒJƒƒ‰ƒ‰ƒCƒuƒ‰ƒŠİ’è
+	//ã‚«ãƒ¡ãƒ©ãƒ©ã‚¤ãƒ–ãƒ©ãƒªè¨­å®š
 	wk->camera_p = GFC_AllocCamera( wk->heapID );
 
-	//‚R‚c•`‰æƒXƒCƒbƒ`İ’è
+	//ï¼“ï¼¤æç”»ã‚¹ã‚¤ãƒƒãƒè¨­å®š
 	wk->Draw3Dsw = DRAW3D_DISABLE;
 	sys.disp3DSW = DISP_3D_TO_SUB;
 	GF_Disp_DispSelect();
 
-	//ƒL[ƒVƒXƒeƒ€İ’è
+	//ã‚­ãƒ¼ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 	sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
 #if PL_T0864_080714_FIX
-	// ƒƒbƒZ[ƒW•\¦ŠÖŒW‚ğİ’è
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºé–¢ä¿‚ã‚’è¨­å®š
 	MsgPrintSkipFlagSet(MSG_SKIP_ON);
 	MsgPrintAutoFlagSet(MSG_AUTO_OFF);
 	MsgPrintTouchPanelFlagSet(MSG_TP_OFF);
 #endif
 
-	//’nˆæƒŠƒXƒgƒf[ƒ^ì¬
+	//åœ°åŸŸãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	EarthListLoad(wk);
 
 	return	PROC_RES_FINISH;
 }
 
 //============================================================================================
-//	ƒƒCƒ“ƒvƒƒZƒX
+//	ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚»ã‚¹
 //============================================================================================
 PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 {
@@ -710,19 +710,19 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 
 	switch(*seq){
 	//-----------------------------------------------------------
-	case EARTHDEMO_SEQ_MODELLOAD://ƒ‚ƒfƒ‹ƒf[ƒ^ƒ[ƒh
+	case EARTHDEMO_SEQ_MODELLOAD://ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 
-		//ƒƒbƒZ[ƒWƒf[ƒ^“Ç‚İ‚İ
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		wk->msg_man = MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_earth_dat,wk->heapID );
 
 		p_handle = ArchiveDataHandleOpen( ARC_WIFI_EARTH, wk->heapID );
 
-		Earth_ModelLoad(wk, p_handle);	//ƒ‚ƒfƒ‹ƒ[ƒhƒƒCƒ“
-		Earth_BGdataLoad(wk, p_handle);	//‚a‚fƒf[ƒ^ƒ[ƒh
+		Earth_ModelLoad(wk, p_handle);	//ãƒ¢ãƒ‡ãƒ«ãƒ­ãƒ¼ãƒ‰ãƒ¡ã‚¤ãƒ³
+		Earth_BGdataLoad(wk, p_handle);	//ï¼¢ï¼§ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 
 		ArchiveDataHandleClose( p_handle );
 
-		//‹P“x•ÏXƒZƒbƒgi‚h‚mj
+		//è¼åº¦å¤‰æ›´ã‚»ãƒƒãƒˆï¼ˆï¼©ï¼®ï¼‰
 		wk->fade_end_flag = FALSE;
 		WIPE_SYS_Start(	WIPE_PATTERN_WMS,WIPE_TYPE_FADEIN,WIPE_TYPE_FADEIN,
 						WIPE_FADE_BLACK,WIPE_DEF_DIV,WIPE_DEF_SYNC,wk->heapID);
@@ -736,117 +736,117 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 		break;
 
 	//-----------------------------------------------------------
-	case EARTHDEMO_SEQ_DISPON:	//•`‰æ‚n‚m
+	case EARTHDEMO_SEQ_DISPON:	//æç”»ï¼¯ï¼®
 
-		if(WIPE_SYS_EndCheck() == TRUE){	//‹P“x•ÏX‘Ò‚¿
+		if(WIPE_SYS_EndCheck() == TRUE){	//è¼åº¦å¤‰æ›´å¾…ã¡
 			*seq = EARTHDEMO_SEQ_WELCOME_MSG;
 		}
 		break;
 
 	//-----------------------------------------------------------
-	case EARTHDEMO_SEQ_WELCOME_MSG:	//u‚æ‚¤‚±‚»v
+	case EARTHDEMO_SEQ_WELCOME_MSG:	//ã€Œã‚ˆã†ã“ãã€
 
 		if(Earth_MsgPrint(wk,mes_earth_01_01,A_BUTTON_NOWAIT) == TRUE){
-			//Z‚ñ‚Å‚¢‚éêŠ“ü—ÍÏH
+			//ä½ã‚“ã§ã„ã‚‹å ´æ‰€å…¥åŠ›æ¸ˆï¼Ÿ
 			if(wk->my_nation == 0){
-				//–¢“o˜^
-				*seq = EARTHDEMO_SEQ_MAINMENU;	//ƒƒCƒ“ƒƒjƒ…[İ’è‚Ö
+				//æœªç™»éŒ²
+				*seq = EARTHDEMO_SEQ_MAINMENU;	//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®šã¸
 			}else{
-				//“o˜^Ï
-				*seq = EARTHDEMO_SEQ_EARTH_DISPON;	//‚R‚c’n‹…‹Vƒ‚[ƒh‚n‚m‚Ö
+				//ç™»éŒ²æ¸ˆ
+				*seq = EARTHDEMO_SEQ_EARTH_DISPON;	//ï¼“ï¼¤åœ°çƒå„€ãƒ¢ãƒ¼ãƒ‰ï¼¯ï¼®ã¸
 			}
 		}
 		break;
 
 	//-----------------------------------------------------------
-	case EARTHDEMO_SEQ_MAINMENU:	//ƒƒCƒ“ƒƒjƒ…[İ’è
+	case EARTHDEMO_SEQ_MAINMENU:	//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 
 		if(Earth_MsgPrint(wk,mes_earth_01_02,A_BUTTON_NOWAIT) == TRUE){
-			//‘I‘ğƒŠƒXƒg•\¦
+			//é¸æŠãƒªã‚¹ãƒˆè¡¨ç¤º
 			Earth_BmpListAdd(wk,&wk->listwin,&EarthMenuWinData,&MenuListHeader,MenuList);
-			*seq = EARTHDEMO_SEQ_MAINMENU_SELECT;	//‘I‘ğƒ‚[ƒh‚Ö
+			*seq = EARTHDEMO_SEQ_MAINMENU_SELECT;	//é¸æŠãƒ¢ãƒ¼ãƒ‰ã¸
 		}
 		break;
 
-	case EARTHDEMO_SEQ_MAINMENU_SELECT:	//ƒƒCƒ“ƒƒjƒ…[‘I‘ğƒ‚[ƒh
+	case EARTHDEMO_SEQ_MAINMENU_SELECT:	//ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠãƒ¢ãƒ¼ãƒ‰
 		{
 			int list_result = BmpListMain(wk->bmplist);
 
 			if(list_result == BMPLIST_NULL){
 				break;
 			}
-			Earth_BmpListDel(wk);//‘I‘ğƒŠƒXƒgíœˆ—
+			Earth_BmpListDel(wk);//é¸æŠãƒªã‚¹ãƒˆå‰Šé™¤å‡¦ç†
 			Snd_SePlay( WIFIEARTH_SND_SELECT );
 
 			switch(list_result){
 			default:
-			case MENU_WORLD:	//u‚¢‚¿‚ç‚ñv
-				*seq = EARTHDEMO_SEQ_EARTH_DISPON;	//‚R‚c’n‹…‹Vƒ‚[ƒh‚n‚m‚Ö
+			case MENU_WORLD:	//ã€Œã„ã¡ã‚‰ã‚“ã€
+				*seq = EARTHDEMO_SEQ_EARTH_DISPON;	//ï¼“ï¼¤åœ°çƒå„€ãƒ¢ãƒ¼ãƒ‰ï¼¯ï¼®ã¸
 				break;
-			case MENU_REGISTRATION:	//u‚Æ‚¤‚ë‚­v
-				*seq = EARTHDEMO_SEQ_REGISTRATIONMENU;	//“o˜^ƒƒjƒ…[İ’è‚Ö
+			case MENU_REGISTRATION:	//ã€Œã¨ã†ã‚ãã€
+				*seq = EARTHDEMO_SEQ_REGISTRATIONMENU;	//ç™»éŒ²ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®šã¸
 				break;
 			case BMPLIST_CANCEL:
-			case MENU_END:	//u‚â‚ß‚év
-				*seq = EARTHDEMO_SEQ_END;	//I—¹ˆ—‚Ö
+			case MENU_END:	//ã€Œã‚„ã‚ã‚‹ã€
+				*seq = EARTHDEMO_SEQ_END;	//çµ‚äº†å‡¦ç†ã¸
 				break;
 			}
 		}
 		break;
 
 	//-----------------------------------------------------------
-	case EARTHDEMO_SEQ_REGISTRATIONMENU:	//“o˜^ƒƒjƒ…[İ’è
+	case EARTHDEMO_SEQ_REGISTRATIONMENU:	//ç™»éŒ²ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 
 		if(Earth_MsgPrint(wk,mes_earth_01_03,A_BUTTON_NOWAIT) == TRUE){
-			//‚Í‚¢/‚¢‚¢‚¦ƒEƒBƒ“ƒhƒE•\¦
+			//ã¯ã„/ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 			wk->yesnowin = BmpYesNoSelectInit(wk->bgl,&EarthYesNoWinData,
 											EARTH_MENUWINCHR_NUM,EARTH_MENUWIN_PAL,
 											wk->heapID);
-			*seq = EARTHDEMO_SEQ_REGISTRATIONMENU_SELECT;	//‘I‘ğƒ‚[ƒh‚Ö
+			*seq = EARTHDEMO_SEQ_REGISTRATIONMENU_SELECT;	//é¸æŠãƒ¢ãƒ¼ãƒ‰ã¸
 		}
 		break;
 
-	case EARTHDEMO_SEQ_REGISTRATIONMENU_SELECT:	//“o˜^ƒƒjƒ…[‘I‘ğƒ‚[ƒh
+	case EARTHDEMO_SEQ_REGISTRATIONMENU_SELECT:	//ç™»éŒ²ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠãƒ¢ãƒ¼ãƒ‰
 		{
 			u32 list_result = BmpYesNoSelectMain(wk->yesnowin,wk->heapID);
 
 			switch(list_result){
-			case 0:		//u‚Í‚¢v
+			case 0:		//ã€Œã¯ã„ã€
 				if(wk->Japan_ROM_mode == TRUE){
-					wk->my_nation_tmp = country103;	//“ú–{Œê”ÅŒÀ’èˆ—i‘“ü—ÍƒXƒLƒbƒvj
-					*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_AREA;	//’nˆæ•Ê“o˜^ƒŠƒXƒg‘I‘ğ‚Ö
+					wk->my_nation_tmp = country103;	//æ—¥æœ¬èªç‰ˆé™å®šå‡¦ç†ï¼ˆå›½å…¥åŠ›ã‚¹ã‚­ãƒƒãƒ—ï¼‰
+					*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_AREA;	//åœ°åŸŸåˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆé¸æŠã¸
 				}else{
-					*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_NATION;//‘•Ê“o˜^ƒŠƒXƒg‘I‘ğ‚Ö
+					*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_NATION;//å›½åˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆé¸æŠã¸
 				}
 				break;
-			case BMPMENU_CANCEL:	//u‚¢‚¢‚¦v
+			case BMPMENU_CANCEL:	//ã€Œã„ã„ãˆã€
 				*seq = EARTHDEMO_SEQ_MAINMENU;
 				break;
 			}
 		}
 		break;
 
-	case EARTHDEMO_SEQ_REGISTRATIONLIST_NATION:	//‘•Ê“o˜^ƒŠƒXƒgİ’è
+	case EARTHDEMO_SEQ_REGISTRATIONLIST_NATION:	//å›½åˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆè¨­å®š
 
 		if(Earth_MsgPrint(wk,mes_earth_01_04,A_BUTTON_NOWAIT) == TRUE){
 		
-			wk->my_nation_tmp = 0;//“o˜^î•ñƒeƒ“ƒ|ƒ‰ƒŠ‰Šú‰»
+			wk->my_nation_tmp = 0;//ç™»éŒ²æƒ…å ±ãƒ†ãƒ³ãƒãƒ©ãƒªåˆæœŸåŒ–
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2007/01/26
-			// ’n–¼‚ğƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚Éƒ\[ƒg‚µ‚Ä•\¦‚·‚é‚æ‚¤‚É•ÏX
+			// åœ°åã‚’ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«ã‚½ãƒ¼ãƒˆã—ã¦è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 			// localize_spec_mark(LANG_ALL) imatake 2007/02/21
-			// ’n–¼ƒŠƒXƒg‚Æƒ\[ƒgƒe[ƒuƒ‹‚ÌÀÛ‚Ì—v‘f”‚ªH‚¢ˆá‚¤ê‡‚É‘Î‰
+			// åœ°åãƒªã‚¹ãƒˆã¨ã‚½ãƒ¼ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®å®Ÿéš›ã®è¦ç´ æ•°ãŒé£Ÿã„é•ã†å ´åˆã«å¯¾å¿œ
 			Earth_BmpListAddGmmAll(wk,&wk->listwin,&EarthPlaceListWinData,
 								&PlaceListHeader,NARC_msg_wifi_place_msg_world_dat,
 								WIFI_COUNTRY_DataIndexToPlaceSortTable(0),
 								WIFI_COUNTRY_DataIndexToPlaceSortTableSize(0));
 			// ----------------------------------------------------------------------------
 
-			*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_NATION_SELECT;	//‘•Ê“o˜^ƒŠƒXƒg‘I‘ğ‚Ö
+			*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_NATION_SELECT;	//å›½åˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆé¸æŠã¸
 		}
 		break;
 
-	case EARTHDEMO_SEQ_REGISTRATIONLIST_NATION_SELECT:	//‘•Ê“o˜^ƒŠƒXƒg‘I‘ğƒ‚[ƒh
+	case EARTHDEMO_SEQ_REGISTRATIONLIST_NATION_SELECT:	//å›½åˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆé¸æŠãƒ¢ãƒ¼ãƒ‰
 		{
 			int list_result = BmpListMain(wk->bmplist);
 #ifdef WIFI_ERATH_DEBUG
@@ -855,51 +855,51 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 			if(list_result == BMPLIST_NULL){
 				break;
 			}
-			Earth_BmpListDel(wk);//‘I‘ğƒŠƒXƒgíœˆ—
+			Earth_BmpListDel(wk);//é¸æŠãƒªã‚¹ãƒˆå‰Šé™¤å‡¦ç†
 			Snd_SePlay( WIFIEARTH_SND_SELECT );
 
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2007/01/26
-			// ’n–¼‚ğƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚Éƒ\[ƒg‚µ‚Ä•\¦‚·‚é‚æ‚¤‚É•ÏX
+			// åœ°åã‚’ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«ã‚½ãƒ¼ãƒˆã—ã¦è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 			// localize_spec_mark(LANG_ALL) imatake 2007/01/30
-			// ƒLƒƒƒ“ƒZƒ‹‚Í•ÏŠ·‚µ‚È‚¢‚æ‚¤‚ÉC³
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ™‚ã¯å¤‰æ›ã—ãªã„ã‚ˆã†ã«ä¿®æ­£
 			if (list_result != BMPLIST_CANCEL) {
-				list_result = WIFI_COUNTRY_DataIndexToPlaceSortTable(0)[list_result];	// ƒ\[ƒg‚³‚ê‚½‡”Ô‚©‚çgmmã‚Ì‡”Ô‚É
+				list_result = WIFI_COUNTRY_DataIndexToPlaceSortTable(0)[list_result];	// ã‚½ãƒ¼ãƒˆã•ã‚ŒãŸé †ç•ªã‹ã‚‰gmmä¸Šã®é †ç•ªã«
 			}
 			// ----------------------------------------------------------------------------
 
 			switch(list_result){
 			default:
 				{
-					wk->my_nation_tmp = list_result;	//‘“o˜^
+					wk->my_nation_tmp = list_result;	//å›½ç™»éŒ²
 
 					if(WIFI_LocalAreaExistCheck(wk->my_nation_tmp) == TRUE){
-						//’nˆæ‚ª‘¶İ‚·‚éê‡
-						*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_AREA;	//’nˆæ•Ê“o˜^ƒŠƒXƒg‘I‘ğ‚Ö
+						//åœ°åŸŸãŒå­˜åœ¨ã™ã‚‹å ´åˆ
+						*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_AREA;	//åœ°åŸŸåˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆé¸æŠã¸
 					}else{
-						//’nˆæ‚ª‘¶İ‚µ‚È‚¢êŠ‚Ì“o˜^
-						wk->my_area_tmp = 0;				//’nˆæ“o˜^i‚È‚µj
-						*seq = EARTHDEMO_SEQ_FINAL_REGISTRATION;	//‘’nˆæ“o˜^ÅIŠm”F‚Ö
+						//åœ°åŸŸãŒå­˜åœ¨ã—ãªã„å ´æ‰€ã®ç™»éŒ²
+						wk->my_area_tmp = 0;				//åœ°åŸŸç™»éŒ²ï¼ˆãªã—ï¼‰
+						*seq = EARTHDEMO_SEQ_FINAL_REGISTRATION;	//å›½åœ°åŸŸç™»éŒ²æœ€çµ‚ç¢ºèªã¸
 					}
 				}
 				break;
-			case BMPLIST_CANCEL:	//u‚¢‚¢‚¦vƒLƒƒƒ“ƒZƒ‹
-				//*seq = EARTHDEMO_SEQ_REGISTRATIONMENU;	//“o˜^ƒƒjƒ…[‚Ö
+			case BMPLIST_CANCEL:	//ã€Œã„ã„ãˆã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+				//*seq = EARTHDEMO_SEQ_REGISTRATIONMENU;	//ç™»éŒ²ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸
 				*seq = EARTHDEMO_SEQ_MAINMENU;
 				break;
 			}
 		}
 		break;
 
-	case EARTHDEMO_SEQ_REGISTRATIONLIST_AREA:	//’nˆæ•Ê“o˜^ƒŠƒXƒgİ’è
+	case EARTHDEMO_SEQ_REGISTRATIONLIST_AREA:	//åœ°åŸŸåˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆè¨­å®š
 
 		if(Earth_MsgPrint(wk,mes_earth_01_05,A_BUTTON_NOWAIT) == TRUE){
-			wk->my_area_tmp = 0;//“o˜^î•ñƒeƒ“ƒ|ƒ‰ƒŠ‰Šú‰»
+			wk->my_area_tmp = 0;//ç™»éŒ²æƒ…å ±ãƒ†ãƒ³ãƒãƒ©ãƒªåˆæœŸåŒ–
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2007/01/26
-			// ’n–¼‚ğƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚Éƒ\[ƒg‚µ‚Ä•\¦‚·‚é‚æ‚¤‚É•ÏX
+			// åœ°åã‚’ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«ã‚½ãƒ¼ãƒˆã—ã¦è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 			// localize_spec_mark(LANG_ALL) imatake 2007/02/21
-			// ’n–¼ƒŠƒXƒg‚Æƒ\[ƒgƒe[ƒuƒ‹‚ÌÀÛ‚Ì—v‘f”‚ªH‚¢ˆá‚¤ê‡‚É‘Î‰
+			// åœ°åãƒªã‚¹ãƒˆã¨ã‚½ãƒ¼ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®å®Ÿéš›ã®è¦ç´ æ•°ãŒé£Ÿã„é•ã†å ´åˆã«å¯¾å¿œ
 			{
 				u32 dataIndex = WIFI_COUNTRY_CountryCodeToDataIndex(wk->my_nation_tmp);
 				Earth_BmpListAddGmmAll(wk,&wk->listwin,&EarthPlaceListWinData,&PlaceListHeader,
@@ -909,11 +909,11 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 			}
 			// ----------------------------------------------------------------------------
 
-			*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_AREA_SELECT;	//’nˆæ•Ê“o˜^ƒŠƒXƒg‘I‘ğ‚Ö
+			*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_AREA_SELECT;	//åœ°åŸŸåˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆé¸æŠã¸
 		}
 		break;
 
-	case EARTHDEMO_SEQ_REGISTRATIONLIST_AREA_SELECT:	//’nˆæ•Ê“o˜^ƒŠƒXƒg‘I‘ğƒ‚[ƒh
+	case EARTHDEMO_SEQ_REGISTRATIONLIST_AREA_SELECT:	//åœ°åŸŸåˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆé¸æŠãƒ¢ãƒ¼ãƒ‰
 		{
 			int list_result = BmpListMain(wk->bmplist);
 #ifdef WIFI_ERATH_DEBUG
@@ -922,67 +922,67 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 			if(list_result == BMPLIST_NULL){
 				break;
 			}
-			Earth_BmpListDel(wk);//‘I‘ğƒŠƒXƒgíœˆ—
+			Earth_BmpListDel(wk);//é¸æŠãƒªã‚¹ãƒˆå‰Šé™¤å‡¦ç†
 			Snd_SePlay( WIFIEARTH_SND_SELECT );
 
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2007/01/26
-			// ’n–¼‚ğƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚Éƒ\[ƒg‚µ‚Ä•\¦‚·‚é‚æ‚¤‚É•ÏX
+			// åœ°åã‚’ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«ã‚½ãƒ¼ãƒˆã—ã¦è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 			// localize_spec_mark(LANG_ALL) imatake 2007/01/30
-			// ƒLƒƒƒ“ƒZƒ‹‚Í•ÏŠ·‚µ‚È‚¢‚æ‚¤‚ÉC³
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ™‚ã¯å¤‰æ›ã—ãªã„ã‚ˆã†ã«ä¿®æ­£
 			if (list_result != BMPLIST_CANCEL) {
 				u32 dataIndex = WIFI_COUNTRY_CountryCodeToDataIndex(wk->my_nation_tmp);
-				list_result = WIFI_COUNTRY_DataIndexToPlaceSortTable(dataIndex)[list_result];	// ƒ\[ƒg‚³‚ê‚½‡”Ô‚©‚çgmmã‚Ì‡”Ô‚É
+				list_result = WIFI_COUNTRY_DataIndexToPlaceSortTable(dataIndex)[list_result];	// ã‚½ãƒ¼ãƒˆã•ã‚ŒãŸé †ç•ªã‹ã‚‰gmmä¸Šã®é †ç•ªã«
 			}
 			// ----------------------------------------------------------------------------
 
 			switch(list_result){
 			default:
-				wk->my_area_tmp = list_result;			//’nˆæ“o˜^
-				*seq = EARTHDEMO_SEQ_FINAL_REGISTRATION;	//‘’nˆæ“o˜^ÅIŠm”F‚Ö
+				wk->my_area_tmp = list_result;			//åœ°åŸŸç™»éŒ²
+				*seq = EARTHDEMO_SEQ_FINAL_REGISTRATION;	//å›½åœ°åŸŸç™»éŒ²æœ€çµ‚ç¢ºèªã¸
 				break;
-			case BMPLIST_CANCEL://ƒLƒƒƒ“ƒZƒ‹
+			case BMPLIST_CANCEL://ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 				if(wk->Japan_ROM_mode == TRUE){
-					//*seq = EARTHDEMO_SEQ_REGISTRATIONMENU;	//“o˜^ƒƒjƒ…[‚Ö(“ú–{”Å‚Ìê‡)
+					//*seq = EARTHDEMO_SEQ_REGISTRATIONMENU;	//ç™»éŒ²ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸(æ—¥æœ¬ç‰ˆã®å ´åˆ)
 					*seq = EARTHDEMO_SEQ_MAINMENU;
 				} else {
-					*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_NATION;	//‘•Ê“o˜^ƒŠƒXƒgİ’è‚Ö
+					*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_NATION;	//å›½åˆ¥ç™»éŒ²ãƒªã‚¹ãƒˆè¨­å®šã¸
 				}
 			}
 		}
 		break;
 
-	case EARTHDEMO_SEQ_FINAL_REGISTRATION:	//“o˜^ÅIŠm”Fİ’è
-		Earth_MyPlaceInfoWinSet2( wk, wk->my_nation_tmp, wk->my_area_tmp );//“o˜^’n–¼•\¦
-		*seq = EARTHDEMO_SEQ_FINAL_REGISTRATION_YESNO;	//“o˜^ÅIŠm”F‚Ö
+	case EARTHDEMO_SEQ_FINAL_REGISTRATION:	//ç™»éŒ²æœ€çµ‚ç¢ºèªè¨­å®š
+		Earth_MyPlaceInfoWinSet2( wk, wk->my_nation_tmp, wk->my_area_tmp );//ç™»éŒ²åœ°åè¡¨ç¤º
+		*seq = EARTHDEMO_SEQ_FINAL_REGISTRATION_YESNO;	//ç™»éŒ²æœ€çµ‚ç¢ºèªã¸
 		break;
 
-	case EARTHDEMO_SEQ_FINAL_REGISTRATION_YESNO:	//“o˜^ÅIŠm”F
+	case EARTHDEMO_SEQ_FINAL_REGISTRATION_YESNO:	//ç™»éŒ²æœ€çµ‚ç¢ºèª
 
 		if(Earth_MsgPrint(wk,mes_earth_01_06,A_BUTTON_NOWAIT) == TRUE){
-			//‚Í‚¢/‚¢‚¢‚¦ƒEƒBƒ“ƒhƒE•\¦
+			//ã¯ã„/ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 			wk->yesnowin = BmpYesNoSelectInit(wk->bgl,&EarthYesNoWinData,
 											EARTH_MENUWINCHR_NUM,EARTH_MENUWIN_PAL,
 											wk->heapID);
-			*seq = EARTHDEMO_SEQ_FINAL_REGISTRATION_SELECT;	//“o˜^ÅIŠm”F‘I‘ğƒ‚[ƒh‚Ö
+			*seq = EARTHDEMO_SEQ_FINAL_REGISTRATION_SELECT;	//ç™»éŒ²æœ€çµ‚ç¢ºèªé¸æŠãƒ¢ãƒ¼ãƒ‰ã¸
 		}
 		break;
 
-	case EARTHDEMO_SEQ_FINAL_REGISTRATION_SELECT:	//“o˜^ÅIŠm”F‘I‘ğƒ‚[ƒh
+	case EARTHDEMO_SEQ_FINAL_REGISTRATION_SELECT:	//ç™»éŒ²æœ€çµ‚ç¢ºèªé¸æŠãƒ¢ãƒ¼ãƒ‰
 		{
 			u32 list_result = BmpYesNoSelectMain(wk->yesnowin,wk->heapID);
 
 			switch(list_result){
-			case 0:		//u‚Í‚¢v
+			case 0:		//ã€Œã¯ã„ã€
 				Earth_MyPlaceInfoWinRelease( wk );
-				//“o˜^ƒf[ƒ^ƒZ[ƒu
+				//ç™»éŒ²ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 				WIFIHISTORY_SetMyNationArea(wk->wifi_sv,wk->my_nation_tmp,wk->my_area_tmp);
 				wk->my_nation = wk->my_nation_tmp;
 				wk->my_area = wk->my_area_tmp;
 
-				*seq = EARTHDEMO_SEQ_EARTH_DISPON;	//‚R‚c’n‹…‹Vƒ‚[ƒh‚n‚m‚Ö
+				*seq = EARTHDEMO_SEQ_EARTH_DISPON;	//ï¼“ï¼¤åœ°çƒå„€ãƒ¢ãƒ¼ãƒ‰ï¼¯ï¼®ã¸
 				break;
-			case BMPMENU_CANCEL:	//u‚¢‚¢‚¦v
+			case BMPMENU_CANCEL:	//ã€Œã„ã„ãˆã€
 				Earth_MyPlaceInfoWinRelease( wk );
 				*seq = EARTHDEMO_SEQ_MAINMENU;
 				break;
@@ -991,66 +991,66 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 		break;
 
 	//-----------------------------------------------------------
-	case EARTHDEMO_SEQ_EARTH_DISPON:	//‚R‚c’n‹…‹Vƒ‚[ƒh‚n‚m
-		//“ú–{Œê”ÅH
+	case EARTHDEMO_SEQ_EARTH_DISPON:	//ï¼“ï¼¤åœ°çƒå„€ãƒ¢ãƒ¼ãƒ‰ï¼¯ï¼®
+		//æ—¥æœ¬èªç‰ˆï¼Ÿ
 		if((wk->Japan_ROM_mode == TRUE)&&(wk->my_worldopen_flag == FALSE)){
-			//“ú–{Œê”Å‚ÅŠCŠO‚Ìƒ‚[ƒh‚ªŠJ‚¢‚Ä‚¢‚È‚¢ê‡‚Í“ú–{ŒÀ’èƒ}ƒbƒv
+			//æ—¥æœ¬èªç‰ˆã§æµ·å¤–ã®ãƒ¢ãƒ¼ãƒ‰ãŒé–‹ã„ã¦ã„ãªã„å ´åˆã¯æ—¥æœ¬é™å®šãƒãƒƒãƒ—
 			wk->earth_mode = JAPAN_MODE;
 		}else{
-			//‚»‚Ì‘¼A¢ŠEƒ}ƒbƒv
+			//ãã®ä»–ã€ä¸–ç•Œãƒãƒƒãƒ—
 			wk->earth_mode = GLOBAL_MODE;
 		}
 #ifdef WIFI_ERATH_DEBUG_ALL_DRAW
 		wk->earth_mode = GLOBAL_MODE;	// DEBUG
 #endif
-		EarthDataInit(wk);					//’n‹…ƒf[ƒ^‰Šú‰»
-		EarthList_NationAreaListSet(wk);	//“o˜^’nˆæƒf[ƒ^İ’è
-		EarthCameraInit(wk);				//ƒJƒƒ‰‰Šú‰»
-		EarthLightInit(wk);					//ƒ‰ƒCƒg‰Šú‰»
+		EarthDataInit(wk);					//åœ°çƒãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
+		EarthList_NationAreaListSet(wk);	//ç™»éŒ²åœ°åŸŸãƒ‡ãƒ¼ã‚¿è¨­å®š
+		EarthCameraInit(wk);				//ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–
+		EarthLightInit(wk);					//ãƒ©ã‚¤ãƒˆåˆæœŸåŒ–
 
-		//ƒƒbƒZ[ƒW‰æ–ÊƒNƒŠƒA
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”»é¢ã‚¯ãƒªã‚¢
 		GF_BGL_BmpWinFill(&wk->msgwin,FBMP_COL_WHITE,0,0,
 							EARTH_MSG_WIN_SX*DOTSIZE,EARTH_MSG_WIN_SY*DOTSIZE);
-		//u‚â‚ß‚évƒAƒCƒRƒ“‚n‚m
+		//ã€Œã‚„ã‚ã‚‹ã€ã‚¢ã‚¤ã‚³ãƒ³ï¼¯ï¼®
 		BmpMenuWinWrite(&wk->iconwin,WINDOW_TRANS_ON,EARTH_MENUWINCHR_NUM,EARTH_MENUWIN_PAL);
 
-		//Z‚ñ‚Å‚¢‚éêŠ“ü—ÍÏH
+		//ä½ã‚“ã§ã„ã‚‹å ´æ‰€å…¥åŠ›æ¸ˆï¼Ÿ
 		if(wk->my_nation != 0){
-			Earth_MyPlaceInfoWinSet( wk );//“o˜^’n–¼•\¦
+			Earth_MyPlaceInfoWinSet( wk );//ç™»éŒ²åœ°åè¡¨ç¤º
 		}
 		Earth_PosInfoPut( wk );
 		wk->info_mode = 0;
 
-		wk->Draw3Dsw = DRAW3D_ENABLE;//‚R‚c•`‰æƒXƒCƒbƒ`İ’è‚n‚m
+		wk->Draw3Dsw = DRAW3D_ENABLE;//ï¼“ï¼¤æç”»ã‚¹ã‚¤ãƒƒãƒè¨­å®šï¼¯ï¼®
 
 		*seq = EARTHDEMO_SEQ_MOVE_EARTH;
 		break;
 
 	//-----------------------------------------------------------
-	case EARTHDEMO_SEQ_MOVE_EARTH:	//’n‹…‰ñ“]
+	case EARTHDEMO_SEQ_MOVE_EARTH:	//åœ°çƒå›è»¢
 		{
 			u16 camera_status_backup = wk->camera_status;
 
-			//ƒ^ƒbƒ`ƒpƒlƒ‹ƒRƒ“ƒgƒ[ƒ‹
+			//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 			Earth_TouchPanel(wk);
 
-			//I—¹”»’è
+			//çµ‚äº†åˆ¤å®š
 			if((sys.trg & PAD_BUTTON_B)||(wk->tp_result & PAD_BUTTON_B)){
-				//u‚â‚ß‚évƒAƒCƒRƒ“‚n‚e‚e
+				//ã€Œã‚„ã‚ã‚‹ã€ã‚¢ã‚¤ã‚³ãƒ³ï¼¯ï¼¦ï¼¦
 				BmpMenuWinClear(&wk->iconwin,WINDOW_TRANS_ON);
 				Snd_SePlay( WIFIEARTH_SND_YAMERU );
 
 				GF_BGL_BmpWinFill(&wk->msgwin,FBMP_COL_WHITE,0,0,
 							EARTH_MSG_WIN_SX*DOTSIZE,EARTH_MSG_WIN_SY*DOTSIZE);
 
-				//Z‚ñ‚Å‚¢‚éêŠ“ü—ÍÏH
+				//ä½ã‚“ã§ã„ã‚‹å ´æ‰€å…¥åŠ›æ¸ˆï¼Ÿ
 				if(wk->my_nation == 0){
-					//ƒƒjƒ…[‰æ–Ê‚Ö
-					wk->Draw3Dsw = DRAW3D_BANISH;//‚R‚c‰æ–ÊÁ‹¨ƒXƒCƒbƒ`İ’è‚n‚e‚e
+					//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã¸
+					wk->Draw3Dsw = DRAW3D_BANISH;//ï¼“ï¼¤ç”»é¢æ¶ˆå»â†’ã‚¹ã‚¤ãƒƒãƒè¨­å®šï¼¯ï¼¦ï¼¦
 					*seq = EARTHDEMO_SEQ_MAINMENU;
 				}else{
 					Earth_MyPlaceInfoWinRelease( wk );
-					*seq = EARTHDEMO_SEQ_END;//I—¹
+					*seq = EARTHDEMO_SEQ_END;//çµ‚äº†
 				}
 			}else{
 				if( (sys.trg & PAD_BUTTON_X)&&(wk->info_mode == 0) ){
@@ -1068,7 +1068,7 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 				}
 				{
 					BOOL move_flag;
-					//’n‹…‰ñ“]ƒRƒ“ƒgƒ[ƒ‹
+					//åœ°çƒå›è»¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 					move_flag = Earth3D_Control(wk, sys.trg, sys.cont);
 
 					if( (move_flag == TRUE)&&(wk->info_mode == 1) ){
@@ -1076,7 +1076,7 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 						Earth_PosInfoPut( wk );
 					}
 				}
-				//ƒJƒƒ‰‰“‹ßˆÚ“®”»’è
+				//ã‚«ãƒ¡ãƒ©é è¿‘ç§»å‹•åˆ¤å®š
 				if(camera_status_backup != wk->camera_status){
 					*seq = EARTHDEMO_SEQ_MOVE_CAMERA;
 					if( wk->camera_status == CAMERA_FAR ){
@@ -1088,11 +1088,11 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 			}
 		}
 #ifdef WIFI_ERATH_DEBUG
-		EarthDebugWinRotateInfoWrite(wk);//ƒfƒoƒbƒOî•ñ•\¦
+		EarthDebugWinRotateInfoWrite(wk);//ãƒ‡ãƒãƒƒã‚°æƒ…å ±è¡¨ç¤º
 #endif
 		break;
 
-	case EARTHDEMO_SEQ_MOVE_CAMERA:	//ƒJƒƒ‰‹——£ˆÚ“®
+	case EARTHDEMO_SEQ_MOVE_CAMERA:	//ã‚«ãƒ¡ãƒ©è·é›¢ç§»å‹•
 		{
 			BOOL end_flag = Earth3D_CameraMoveNearFar(wk);
 
@@ -1103,37 +1103,37 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 		break;
 
 	//-----------------------------------------------------------
-	case EARTHDEMO_SEQ_END:		//I—¹ˆ—
-		wk->fade_end_flag = FALSE;//‹P“x•ÏX‘Ò‚¿ƒtƒ‰ƒOƒŠƒZƒbƒg
+	case EARTHDEMO_SEQ_END:		//çµ‚äº†å‡¦ç†
+		wk->fade_end_flag = FALSE;//è¼åº¦å¤‰æ›´å¾…ã¡ãƒ•ãƒ©ã‚°ãƒªã‚»ãƒƒãƒˆ
 		WIPE_SYS_Start(	WIPE_PATTERN_WMS,WIPE_TYPE_FADEOUT,WIPE_TYPE_FADEOUT,
 						WIPE_FADE_BLACK,WIPE_DEF_DIV,WIPE_DEF_SYNC,wk->heapID);
 		*seq = EARTHDEMO_SEQ_EXIT;
 		break;
 
-	case EARTHDEMO_SEQ_EXIT:	//I—¹
+	case EARTHDEMO_SEQ_EXIT:	//çµ‚äº†
 
-		if(WIPE_SYS_EndCheck() == TRUE){	//‹P“x•ÏX‘Ò‚¿
+		if(WIPE_SYS_EndCheck() == TRUE){	//è¼åº¦å¤‰æ›´å¾…ã¡
 
-			wk->Draw3Dsw = DRAW3D_ENABLE;//‚R‚c•`‰æƒXƒCƒbƒ`İ’è‚n‚e‚e
-			//‚a‚fƒf[ƒ^”jŠü
+			wk->Draw3Dsw = DRAW3D_ENABLE;//ï¼“ï¼¤æç”»ã‚¹ã‚¤ãƒƒãƒè¨­å®šï¼¯ï¼¦ï¼¦
+			//ï¼¢ï¼§ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 			Earth_BGdataRelease(wk);
-			//ƒ‚ƒfƒ‹ƒf[ƒ^”jŠü
+			//ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 			Earth_ModelRelease(wk);
-			//ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 			MSGMAN_Delete(wk->msg_man);
 
 			(*seq) = 0;
-			sys_result = PROC_RES_FINISH;	//I—¹ƒtƒ‰ƒO
+			sys_result = PROC_RES_FINISH;	//çµ‚äº†ãƒ•ãƒ©ã‚°
 		}
 		break;
 	}
-	Earth3D_Draw(wk);		//‚R‚c•`‰æƒGƒ“ƒWƒ“
+	Earth3D_Draw(wk);		//ï¼“ï¼¤æç”»ã‚¨ãƒ³ã‚¸ãƒ³
 
 	return	sys_result;
 }
 
 //============================================================================================
-//	I—¹ƒvƒƒZƒX
+//	çµ‚äº†ãƒ—ãƒ­ã‚»ã‚¹
 //============================================================================================
 PROC_RESULT Earth_Demo_Exit(PROC * proc, int * seq)
 	
@@ -1141,25 +1141,25 @@ PROC_RESULT Earth_Demo_Exit(PROC * proc, int * seq)
 	EARTH_DEMO_WORK * wk  = PROC_GetWork( proc );
 	int	heapID = wk->heapID;
 
-	//‚a‚f•\¦’â~
+	//ï¼¢ï¼§è¡¨ç¤ºåœæ­¢
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2 , VISIBLE_OFF );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2 , VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG3 , VISIBLE_OFF );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG3 , VISIBLE_OFF );
 
-	//Šeí“à•”Šm•Ûƒ[ƒNŠJ•ú
+	//å„ç¨®å†…éƒ¨ç¢ºä¿ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	GFC_FreeCamera(wk->camera_p);
 	WORDSET_Delete( wk->wordset );
 	simple_3DBGExit();
 	sys_FreeMemoryEz(wk->bgl);
 
-	//‚u‚gŠÖ”’â~
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
+	//ï¼¶ï¼¨é–¢æ•°åœæ­¢
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
 
-	//ƒ[ƒNŠJ•ú
+	//ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	PROC_FreeWork( proc );
 
-	//ƒq[ƒvŠJ•ú
+	//ãƒ’ãƒ¼ãƒ—é–‹æ”¾
 	sys_DeleteHeap( heapID );
 
 	sys.disp3DSW = DISP_3D_TO_MAIN;
@@ -1169,31 +1169,31 @@ PROC_RESULT Earth_Demo_Exit(PROC * proc, int * seq)
 
 //============================================================================================
 //
-//	ƒ[ƒJƒ‹ŠÖ”iƒƒCƒ“ƒVƒXƒeƒ€ŠÖ˜Aj
+//	ãƒ­ãƒ¼ã‚«ãƒ«é–¢æ•°ï¼ˆãƒ¡ã‚¤ãƒ³ã‚·ã‚¹ãƒ†ãƒ é–¢é€£ï¼‰
 //
 //============================================================================================
 //----------------------------------
-//‚u‚q‚`‚lİ’è
+//ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
 //----------------------------------
 static void Earth_VramBankSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_C,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_16_F,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_01_AB,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_0123_E			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_C,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_16_F,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_01_AB,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_0123_E			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 }
 
 //----------------------------------
-//‚a‚fƒVƒXƒeƒ€İ’è
+//ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 //----------------------------------
 static void Earth_BGsysSet(void )
 {
@@ -1205,20 +1205,20 @@ static void Earth_BGsysSet(void )
 
 //============================================================================================
 //
-//	ƒ[ƒJƒ‹ŠÖ”i’nˆæƒf[ƒ^æ“¾ŠÖ˜Aj
+//	ãƒ­ãƒ¼ã‚«ãƒ«é–¢æ•°ï¼ˆåœ°åŸŸãƒ‡ãƒ¼ã‚¿å–å¾—é–¢é€£ï¼‰
 //
 //============================================================================================
 //----------------------------------
-//’n“_ƒŠƒXƒgƒ[ƒh
+//åœ°ç‚¹ãƒªã‚¹ãƒˆãƒ­ãƒ¼ãƒ‰
 //----------------------------------
 static void EarthListLoad( EARTH_DEMO_WORK * wk )
 {
 	ARCHANDLE* p_handle = ArchiveDataHandleOpen( ARC_WIFI_EARCH_PLACE, wk->heapID );
 	
-	//’n“_ƒŠƒXƒg‘”‰Šú‰»
+	//åœ°ç‚¹ãƒªã‚¹ãƒˆç·æ•°åˆæœŸåŒ–
 	wk->placelist.listcount = 0;
 
-	{//’n“_ƒ}[ƒN‰ñ“]‰Šú‰»i‘ƒf[ƒ^ƒoƒCƒiƒŠƒf[ƒ^ƒ[ƒhj
+	{//åœ°ç‚¹ãƒãƒ¼ã‚¯å›è»¢åˆæœŸåŒ–ï¼ˆå›½ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ï¼‰
 		void* filep;
 		EARTH_DATA_NATION* listp;
 		u32	size;
@@ -1227,12 +1227,12 @@ static void EarthListLoad( EARTH_DEMO_WORK * wk )
 		filep = ArcUtil_HDL_LoadEx( p_handle, NARC_wifi_earth_place_place_pos_wrd_dat, 
 								FALSE, wk->heapID, ALLOC_TOP, &size );
 
-		listp = (EARTH_DATA_NATION*)filep;	//ƒtƒ@ƒCƒ‹“Ç‚İ‚İ—p‚É•ÏŠ·
-		listcount = size/6;				//’n“_”æ“¾iƒf[ƒ^’·F‚P’n“_‚É‚Â‚«‚UƒoƒCƒgj
+		listp = (EARTH_DATA_NATION*)filep;	//ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ç”¨ã«å¤‰æ›
+		listcount = size/6;				//åœ°ç‚¹æ•°å–å¾—ï¼ˆãƒ‡ãƒ¼ã‚¿é•·ï¼šï¼‘åœ°ç‚¹ã«ã¤ãï¼–ãƒã‚¤ãƒˆï¼‰
 
-		listp++;	//1origin‚Ì‚½‚ß“Ç‚İ”ò‚Î‚µ
+		listp++;	//1originã®ãŸã‚èª­ã¿é£›ã°ã—
 		for(i=1;i<listcount;i++){
-			if(listp->flag != 2){	//2‚Ìê‡‚Í’nˆæƒŠƒXƒg‚ª‘¶İ‚·‚é
+			if(listp->flag != 2){	//2ã®å ´åˆã¯åœ°åŸŸãƒªã‚¹ãƒˆãŒå­˜åœ¨ã™ã‚‹
 				EarthListSet(wk,wk->placelist.listcount,listp->x,listp->y,i,0);
 				wk->placelist.listcount++;
 			}
@@ -1240,7 +1240,7 @@ static void EarthListLoad( EARTH_DEMO_WORK * wk )
 		}
 		sys_FreeMemoryEz(filep);
 	}
-	{//’n“_ƒ}[ƒN‰ñ“]‰Šú‰»i’nˆæƒf[ƒ^ƒoƒCƒiƒŠƒf[ƒ^ƒ[ƒhj
+	{//åœ°ç‚¹ãƒãƒ¼ã‚¯å›è»¢åˆæœŸåŒ–ï¼ˆåœ°åŸŸãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ï¼‰
 		void* filep;
 		EARTH_DATA_AREA* listp;
 		u32	size, data_id;
@@ -1255,10 +1255,10 @@ static void EarthListLoad( EARTH_DEMO_WORK * wk )
 			filep = ArcUtil_HDL_LoadEx( p_handle, data_id, FALSE, 
 									wk->heapID, ALLOC_TOP, &size );
 
-			listp = (EARTH_DATA_AREA*)filep;	//ƒtƒ@ƒCƒ‹“Ç‚İ‚İ—p‚É•ÏŠ·
-			listcount = size/4;		//’n“_”æ“¾iƒf[ƒ^’·F‚P’n“_‚É‚Â‚«‚SƒoƒCƒgj
+			listp = (EARTH_DATA_AREA*)filep;	//ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ç”¨ã«å¤‰æ›
+			listcount = size/4;		//åœ°ç‚¹æ•°å–å¾—ï¼ˆãƒ‡ãƒ¼ã‚¿é•·ï¼šï¼‘åœ°ç‚¹ã«ã¤ãï¼”ãƒã‚¤ãƒˆï¼‰
 
-			listp++;	//1origin‚Ì‚½‚ß“Ç‚İ”ò‚Î‚µ
+			listp++;	//1originã®ãŸã‚èª­ã¿é£›ã°ã—
 			for(i=1;i<listcount;i++){//1orgin
 				EarthListSet(wk,wk->placelist.listcount,listp->x,listp->y,
 								WIFI_COUNTRY_DataIndexToCountryCode(index),i);
@@ -1274,52 +1274,52 @@ static void EarthListLoad( EARTH_DEMO_WORK * wk )
 }
 
 //----------------------------------
-//ƒŠƒXƒg“o˜^
+//ãƒªã‚¹ãƒˆç™»éŒ²
 //----------------------------------
 static void EarthListSet( EARTH_DEMO_WORK * wk,u32 index,s16 x,s16 y,u16 nationID,u16 areaID )
 {
 	MtxFx33 rotMtx = {FX32_ONE,0,0,0,FX32_ONE,0,0,0,FX32_ONE};
 	VecFx32 rotVec;
 
-	wk->placelist.place[index].x = x;	//‚w‰ñ“]ƒIƒtƒZƒbƒgæ“¾
-	wk->placelist.place[index].y = y;	//‚x‰ñ“]ƒIƒtƒZƒbƒgæ“¾
+	wk->placelist.place[index].x = x;	//ï¼¸å›è»¢ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
+	wk->placelist.place[index].y = y;	//ï¼¹å›è»¢ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
 	
 	rotVec.x = x;
 	rotVec.y = y;
 	rotVec.z = INIT_EARTH_ROTATE_ZVAL;
-	EarthVecFx32_to_MtxFx33_place(&rotMtx,&rotVec);	//‰ŠúˆÊ’u‚©‚ç‚Ì‘Š‘ÎÀ•WŒvZ
+	EarthVecFx32_to_MtxFx33_place(&rotMtx,&rotVec);	//åˆæœŸä½ç½®ã‹ã‚‰ã®ç›¸å¯¾åº§æ¨™è¨ˆç®—
 	wk->placelist.place[index].rotate = rotMtx;
 
-	//ƒ}[ƒNFİ’è(wifihistory’è‹`‚É‰ˆ‚¤‚±‚Æ)
+	//ãƒãƒ¼ã‚¯è‰²è¨­å®š(wifihistoryå®šç¾©ã«æ²¿ã†ã“ã¨)
 	wk->placelist.place[index].col = WIFIHISTORY_GetStat(wk->wifi_sv,nationID,areaID);
 #ifdef WIFI_ERATH_DEBUG_ALL_DRAW
 	wk->placelist.place[index].col = WIFIHIST_STAT_EXIST;	// DEBUG
 #endif
 
-	wk->placelist.place[index].nationID = nationID;	//ŠY“–‘‚h‚c
-	wk->placelist.place[index].areaID = areaID;		//ŠY“–’nˆæ‚h‚c
+	wk->placelist.place[index].nationID = nationID;	//è©²å½“å›½ï¼©ï¼¤
+	wk->placelist.place[index].areaID = areaID;		//è©²å½“åœ°åŸŸï¼©ï¼¤
 }
 
 //----------------------------------
-//“o˜^’nˆæî•ñƒZƒbƒg
+//ç™»éŒ²åœ°åŸŸæƒ…å ±ã‚»ãƒƒãƒˆ
 //----------------------------------
 static void EarthList_NationAreaListSet( EARTH_DEMO_WORK * wk )
 {
 	int	i;
 
 	for(i=0;i<wk->placelist.listcount;i++){
-		if((wk->placelist.place[i].nationID == wk->my_nation)	//ŠY“–‘‚h‚c
-			&&(wk->placelist.place[i].areaID == wk->my_area)){	//ŠY“–’nˆæ‚h‚c
+		if((wk->placelist.place[i].nationID == wk->my_nation)	//è©²å½“å›½ï¼©ï¼¤
+			&&(wk->placelist.place[i].areaID == wk->my_area)){	//è©²å½“åœ°åŸŸï¼©ï¼¤
 
-			wk->placelist.place[i].col = MARK_RED;	//ƒ}[ƒNFİ’è
-			wk->rotate.x  = wk->placelist.place[i].x;	//’n‹…‹V˜A“®
-			wk->rotate.y  = wk->placelist.place[i].y;	//’n‹…‹V˜A“®
+			wk->placelist.place[i].col = MARK_RED;	//ãƒãƒ¼ã‚¯è‰²è¨­å®š
+			wk->rotate.x  = wk->placelist.place[i].x;	//åœ°çƒå„€é€£å‹•
+			wk->rotate.y  = wk->placelist.place[i].y;	//åœ°çƒå„€é€£å‹•
 		}
 	}
 }
 
 //----------------------------------
-//ƒ[ƒJƒ‹ƒGƒŠƒA‘¶İƒ`ƒFƒbƒN
+//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¨ãƒªã‚¢å­˜åœ¨ãƒã‚§ãƒƒã‚¯
 //----------------------------------
 static int	EarthAreaTableGet(int nationID)
 {
@@ -1329,7 +1329,7 @@ static int	EarthAreaTableGet(int nationID)
 
 //============================================================================================
 //
-//	ƒ[ƒJƒ‹ŠÖ”iƒ^ƒbƒ`ƒpƒlƒ‹ŠÖ˜Aj
+//	ãƒ­ãƒ¼ã‚«ãƒ«é–¢æ•°ï¼ˆã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é–¢é€£ï¼‰
 //
 //============================================================================================
 static void Earth_TouchPanel( EARTH_DEMO_WORK * wk )
@@ -1343,7 +1343,7 @@ static void Earth_TouchPanel( EARTH_DEMO_WORK * wk )
 			(sys.tp_x <= ((EARTH_ICON_WIN_PX + EARTH_ICON_WIN_SX) * DOTSIZE))&&
 			(sys.tp_y >= ((EARTH_ICON_WIN_PY) * DOTSIZE))&&
 			(sys.tp_y <= ((EARTH_ICON_WIN_PY + EARTH_ICON_WIN_SY) * DOTSIZE))){
-			//u‚â‚ß‚év
+			//ã€Œã‚„ã‚ã‚‹ã€
 			wk->tp_result = PAD_BUTTON_B;
 			return;
 		} else {
@@ -1352,7 +1352,7 @@ static void Earth_TouchPanel( EARTH_DEMO_WORK * wk )
 			wk->tp_leny = 0;
 			wk->tp_count = 0;
 			wk->tp_result = 0;
-			//‰‰ñ‚ÌŒŸoˆÊ’u‚ğ•Û‘¶
+			//åˆå›ã®æ¤œå‡ºä½ç½®ã‚’ä¿å­˜
 			wk->tp_x = sys.tp_x;
 			wk->tp_y = sys.tp_y;
 			wk->tp_count = 4;
@@ -1361,7 +1361,7 @@ static void Earth_TouchPanel( EARTH_DEMO_WORK * wk )
 	if(sys.tp_cont){
 		switch(wk->tp_seq){
 		case 0:
-			//Å‰‚ÌƒJƒEƒ“ƒg‚ÍƒgƒŠƒK[”F¯—p‚É–³‹
+			//æœ€åˆã®ã‚«ã‚¦ãƒ³ãƒˆã¯ãƒˆãƒªã‚¬ãƒ¼èªè­˜ç”¨ã«ç„¡è¦–
 			if(!wk->tp_count){
 				wk->tp_seq++;
 			}else{
@@ -1395,7 +1395,7 @@ static void Earth_TouchPanelParamGet
 	int x_len = 0;
 	int y_len = 0;
 
-	//‚w•ûŒü•ˆÚ“®•æ“¾
+	//ï¼¸æ–¹å‘ï¼†ç§»å‹•å¹…å–å¾—
 	if(sys.tp_x != 0xffff){
 		x_len = sys.tp_x - prevx;
 		if(x_len < 0){
@@ -1407,11 +1407,11 @@ static void Earth_TouchPanelParamGet
 			}
 		}
 	}
-	x_len &= 0x3f;	//ƒŠƒ~ƒbƒ^[
+	x_len &= 0x3f;	//ãƒªãƒŸãƒƒã‚¿ãƒ¼
 	*dirx_p = x_dir;
 	*lenx_p = x_len;
 
-	//‚x•ûŒü•ˆÚ“®•æ“¾
+	//ï¼¹æ–¹å‘ï¼†ç§»å‹•å¹…å–å¾—
 	if(sys.tp_y != 0xffff){
 		y_len = sys.tp_y - prevy;
 		if(y_len < 0){
@@ -1423,7 +1423,7 @@ static void Earth_TouchPanelParamGet
 			}
 		}
 	}
-	y_len &= 0x3f;	//ƒŠƒ~ƒbƒ^[
+	y_len &= 0x3f;	//ãƒªãƒŸãƒƒã‚¿ãƒ¼
 	*diry_p = y_dir;
 	*leny_p = y_len;
 }
@@ -1431,19 +1431,19 @@ static void Earth_TouchPanelParamGet
 
 //============================================================================================
 //
-//	ƒ[ƒJƒ‹ŠÖ”i‚Q‚cŠÖ˜Aj
+//	ãƒ­ãƒ¼ã‚«ãƒ«é–¢æ•°ï¼ˆï¼’ï¼¤é–¢é€£ï¼‰
 //
 //============================================================================================
 //----------------------------------
-//‚a‚fİ’è
+//ï¼¢ï¼§è¨­å®š
 //----------------------------------
 static void Earth_BGdataLoad( EARTH_DEMO_WORK * wk, ARCHANDLE* p_handle )
 {
-	//--------ƒTƒu‚a‚f–Ê-------------------------------------------
-	//ƒeƒLƒXƒg‚a‚f–ÊƒRƒ“ƒgƒ[ƒ‹İ’è
+	//--------ã‚µãƒ–ï¼¢ï¼§é¢-------------------------------------------
+	//ãƒ†ã‚­ã‚¹ãƒˆï¼¢ï¼§é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
 	GF_BGL_BGControlSet(wk->bgl,EARTH_TEXT_PLANE,&Earth_Demo_BGtxt_header,GF_BGL_MODE_TEXT);
-	GF_BGL_ScrClear(wk->bgl,EARTH_TEXT_PLANE);//ƒeƒLƒXƒg‚a‚f–ÊƒNƒŠƒA
-	//”wŒi‚a‚f–ÊƒRƒ“ƒgƒ[ƒ‹İ’è
+	GF_BGL_ScrClear(wk->bgl,EARTH_TEXT_PLANE);//ãƒ†ã‚­ã‚¹ãƒˆï¼¢ï¼§é¢ã‚¯ãƒªã‚¢
+	//èƒŒæ™¯ï¼¢ï¼§é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
 	GF_BGL_BGControlSet(wk->bgl,EARTH_BACK_S_PLANE,&Earth_Demo_Back_header,GF_BGL_MODE_TEXT);
 	ArcUtil_HDL_BgCharSet(	p_handle,NARC_wifi_earth_earth_bg_NCGR,wk->bgl,
 						EARTH_BACK_S_PLANE,0,0,0,wk->heapID);
@@ -1452,35 +1452,35 @@ static void Earth_BGdataLoad( EARTH_DEMO_WORK * wk, ARCHANDLE* p_handle )
 	ArcUtil_HDL_ScrnSet(	p_handle,NARC_wifi_earth_earth_bg_NSCR,wk->bgl,
 						EARTH_BACK_S_PLANE,0,0,0,wk->heapID);
 
-	//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒEƒLƒƒƒ‰•ƒpƒŒƒbƒg“Ç‚İ‚İiƒEƒCƒ“ƒhƒEŠO‘¤j
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å¤–å´ï¼‰
 	TalkWinGraphicSet(	wk->bgl,EARTH_TEXT_PLANE,
 						EARTH_TALKWINCHR_NUM,EARTH_TALKWIN_PAL,
 						CONFIG_GetWindowType(wk->config),wk->heapID);
-	//ƒƒjƒ…[ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰•ƒpƒŒƒbƒg“Ç‚İ‚İiƒEƒCƒ“ƒhƒEŠO‘¤j
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å¤–å´ï¼‰
 	MenuWinGraphicSet(	wk->bgl,EARTH_TEXT_PLANE,
 						EARTH_MENUWINCHR_NUM,EARTH_MENUWIN_PAL,0,wk->heapID);
 
-	//ƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚İ‚İ
+	//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	SystemFontPaletteLoad( PALTYPE_SUB_BG, EARTH_SYSFONT_PAL*PALSIZE, wk->heapID );
-	//NULLƒLƒƒƒ‰•ƒpƒŒƒbƒgİ’è
+	//NULLã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
 	GF_BGL_ClearCharSet( EARTH_TEXT_PLANE, 32, 0, wk->heapID );
 	GF_BGL_BackGroundColorSet( EARTH_TEXT_PLANE,EARTH_NULL_PALETTE );
 
-	//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒEƒrƒbƒgƒ}ƒbƒvì¬iƒEƒCƒ“ƒhƒE“à‘¤j
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ä½œæˆï¼ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…å´ï¼‰
 	GF_BGL_BmpWinAddEx(wk->bgl,&wk->msgwin,&EarthMsgWinData );
 	GF_BGL_BmpWinFill(&wk->msgwin,FBMP_COL_WHITE,0,0,//bmp,col,startX,startY,sizeX,sizeY
 			EARTH_MSG_WIN_SX*DOTSIZE,EARTH_MSG_WIN_SY*DOTSIZE);
-	//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE‰Šú•\¦
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦åˆæœŸè¡¨ç¤º
 	BmpTalkWinWrite(&wk->msgwin,WINDOW_TRANS_ON,EARTH_TALKWINCHR_NUM,EARTH_TALKWIN_PAL);
 
-	//ƒƒbƒZ[ƒWƒVƒXƒeƒ€‰Šú‰»
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	wk->msgseq = MSGSET;
 
-	//--------ƒƒCƒ“‚a‚f–Ê------------------------------------------
-	//ƒAƒCƒRƒ“‚a‚f–ÊƒRƒ“ƒgƒ[ƒ‹İ’è
+	//--------ãƒ¡ã‚¤ãƒ³ï¼¢ï¼§é¢------------------------------------------
+	//ã‚¢ã‚¤ã‚³ãƒ³ï¼¢ï¼§é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
 	GF_BGL_BGControlSet(wk->bgl,EARTH_ICON_PLANE,&Earth_Demo_BGtxt_header,GF_BGL_MODE_TEXT);
-	GF_BGL_ScrClear(wk->bgl,EARTH_ICON_PLANE);//ƒAƒCƒRƒ“‚a‚f–ÊƒNƒŠƒA
-	//”wŒi‚a‚f–ÊƒRƒ“ƒgƒ[ƒ‹İ’è
+	GF_BGL_ScrClear(wk->bgl,EARTH_ICON_PLANE);//ã‚¢ã‚¤ã‚³ãƒ³ï¼¢ï¼§é¢ã‚¯ãƒªã‚¢
+	//èƒŒæ™¯ï¼¢ï¼§é¢ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«è¨­å®š
 	GF_BGL_BGControlSet(wk->bgl,EARTH_BACK_M_PLANE,&Earth_Demo_Back_header,GF_BGL_MODE_TEXT);
 	ArcUtil_HDL_BgCharSet(	p_handle,NARC_wifi_earth_earth_bg_NCGR,wk->bgl,
 						EARTH_BACK_M_PLANE,0,0,0,wk->heapID);
@@ -1489,22 +1489,22 @@ static void Earth_BGdataLoad( EARTH_DEMO_WORK * wk, ARCHANDLE* p_handle )
 	ArcUtil_HDL_ScrnSet(	p_handle,NARC_wifi_earth_earth_bg_NSCR,wk->bgl,
 						EARTH_BACK_M_PLANE,0,0,0,wk->heapID);
 
-	//ƒƒjƒ…[ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰•ƒpƒŒƒbƒg“Ç‚İ‚İiƒEƒCƒ“ƒhƒEŠO‘¤j
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å¤–å´ï¼‰
 	MenuWinGraphicSet(	wk->bgl,EARTH_ICON_PLANE,
 						EARTH_MENUWINCHR_NUM,EARTH_MENUWIN_PAL,0,wk->heapID);
 
-	//ƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚İ‚İ
+	//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, EARTH_SYSFONT_PAL*PALSIZE, wk->heapID );
-	//NULLƒLƒƒƒ‰•ƒpƒŒƒbƒgİ’è
+	//NULLã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
 	GF_BGL_ClearCharSet( EARTH_ICON_PLANE, 32, 0, wk->heapID );
 	GF_BGL_BackGroundColorSet( EARTH_ICON_PLANE,0x0000 );
 	{
 		STRBUF* back_str = STRBUF_Create(16, wk->heapID);
 
-		//ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg‚Ìƒ[ƒh
+		//ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆã®ãƒ­ãƒ¼ãƒ‰
 		FontProc_LoadFont( FONT_BUTTON, wk->heapID );
-		//ƒ{ƒ^ƒ“ƒtƒHƒ“ƒgƒpƒŒƒbƒg‚Ìƒ[ƒh
-		{//ƒpƒŒƒbƒgƒf[ƒ^‚ª‚È‚¢‚Ì‚Å’¼Úì¬
+		//ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã®ãƒ­ãƒ¼ãƒ‰
+		{//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãŒãªã„ã®ã§ç›´æ¥ä½œæˆ
 			u16 col1 = 0x4e56;
 			u16 col2 = 0x3571;
 			u16 col3 = 0x208c;
@@ -1515,16 +1515,16 @@ static void Earth_BGdataLoad( EARTH_DEMO_WORK * wk, ARCHANDLE* p_handle )
 			GF_BGL_PaletteSet( EARTH_ICON_PLANE, &col3, 2, EARTH_SYSFONT_PAL*PALSIZE+3*2 );
 			GF_BGL_PaletteSet( EARTH_ICON_PLANE, &col4, 2, EARTH_SYSFONT_PAL*PALSIZE+15*2 );
 		}
-		//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒEƒrƒbƒgƒ}ƒbƒvì¬iƒEƒCƒ“ƒhƒE“à‘¤j
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ä½œæˆï¼ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…å´ï¼‰
 		GF_BGL_BmpWinAddEx(wk->bgl,&wk->iconwin,&EarthIconWinData );
 		GF_BGL_BmpWinFill(&wk->iconwin,FBMP_COL_WHITE,0,0,
 				EARTH_MSG_WIN_SX*DOTSIZE,EARTH_MSG_WIN_SY*DOTSIZE);
-		//•¶š—ñ‚Ìæ“¾i‚â‚ß‚éj
+		//æ–‡å­—åˆ—ã®å–å¾—ï¼ˆã‚„ã‚ã‚‹ï¼‰
 		MSGMAN_GetString(wk->msg_man,mes_earth_02_07,back_str);
-		//•¶š—ñ‚Ì•\¦
+		//æ–‡å­—åˆ—ã®è¡¨ç¤º
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-		// u‚â‚ß‚év‚ğ’†‰›‘µ‚¦
+		// ã€Œã‚„ã‚ã‚‹ã€ã‚’ä¸­å¤®æƒãˆ
 		{
 			u32 xofs;
 			xofs = FontProc_GetPrintCenteredPositionX(FONT_BUTTON, back_str, 0, EARTH_ICON_WIN_SX*DOTSIZE );
@@ -1533,7 +1533,7 @@ static void Earth_BGdataLoad( EARTH_DEMO_WORK * wk, ARCHANDLE* p_handle )
 		// ----------------------------------------------------------------------------
 		STRBUF_Delete(back_str);
 
-		//ƒ{ƒ^ƒ“ƒtƒHƒ“ƒg‚Ì”jŠü
+		//ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆã®ç ´æ£„
 		FontProc_UnloadFont( FONT_BUTTON );
 	}
 }
@@ -1549,7 +1549,7 @@ static void Earth_BGdataRelease( EARTH_DEMO_WORK * wk )
 }
 
 //----------------------------------
-//ƒƒbƒZ[ƒW•\¦
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 //----------------------------------
 static BOOL Earth_MsgPrint( EARTH_DEMO_WORK * wk,u32 msgID,int button_mode )
 {
@@ -1557,17 +1557,17 @@ static BOOL Earth_MsgPrint( EARTH_DEMO_WORK * wk,u32 msgID,int button_mode )
 
 	switch(wk->msgseq){
 	case MSGSET:
-		//—ÌˆæƒNƒŠƒA
+		//é ˜åŸŸã‚¯ãƒªã‚¢
 		GF_BGL_BmpWinFill(&wk->msgwin,FBMP_COL_WHITE,0,0,//bmp,col,startX,startY,sizeX,sizeY
 				EARTH_MSG_WIN_SX*DOTSIZE,EARTH_MSG_WIN_SY*DOTSIZE);
 
-		//•¶š—ñƒoƒbƒtƒ@‚Ìì¬
+		//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 		wk->msgstr = STRBUF_Create(EARTH_STRBUF_SIZE, wk->heapID);	
 
-		//•¶š—ñ‚Ìæ“¾
+		//æ–‡å­—åˆ—ã®å–å¾—
 		MSGMAN_GetString(wk->msg_man,msgID,wk->msgstr);
 
-		//•¶š—ñ‚Ì•\¦
+		//æ–‡å­—åˆ—ã®è¡¨ç¤º
 		wk->msgID = GF_STR_PrintSimple(	&wk->msgwin,FONT_TALK,wk->msgstr,0,0,
 										CONFIG_GetMsgPrintSpeed( wk->config ),NULL);
 
@@ -1575,7 +1575,7 @@ static BOOL Earth_MsgPrint( EARTH_DEMO_WORK * wk,u32 msgID,int button_mode )
 		break;
 
 	case MSGDRAW:
-		//•¶š—ñ•`‰æ‘Ò‚¿
+		//æ–‡å­—åˆ—æç”»å¾…ã¡
 		if(!(GF_MSG_PrintEndCheck(wk->msgID))){
 			STRBUF_Delete(wk->msgstr);
 			wk->msgseq = MSGWAIT;
@@ -1583,7 +1583,7 @@ static BOOL Earth_MsgPrint( EARTH_DEMO_WORK * wk,u32 msgID,int button_mode )
 		break;
 
 	case MSGWAIT:
-		//I—¹‘Ò‚¿
+		//çµ‚äº†å¾…ã¡
 		if((button_mode != A_BUTTON_WAIT)||(sys.trg & PAD_BUTTON_A)){
 			wk->msgseq = MSGSET;
 			result = TRUE;
@@ -1593,17 +1593,17 @@ static BOOL Earth_MsgPrint( EARTH_DEMO_WORK * wk,u32 msgID,int button_mode )
 }
 
 //----------------------------------
-//ƒŠƒXƒg•\¦—pƒR[ƒ‹ƒoƒbƒN
+//ãƒªã‚¹ãƒˆè¡¨ç¤ºç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 //----------------------------------
 static void Earth_BmpListMoveSeCall(BMPLIST_WORK * wk,u32 param,u8 mode)
 {
-	if( mode == 0 ){//‰Šú‰»‚Í–Â‚ç‚³‚È‚¢
+	if( mode == 0 ){//åˆæœŸåŒ–æ™‚ã¯é³´ã‚‰ã•ãªã„
 		Snd_SePlay( WIFIEARTH_SND_SELECT );
 	}
 }
 
 //----------------------------------
-//ƒŠƒXƒg•\¦:BmpListİ’èQÆ
+//ãƒªã‚¹ãƒˆè¡¨ç¤º:BmpListè¨­å®šå‚ç…§
 //----------------------------------
 static void Earth_BmpListAdd( EARTH_DEMO_WORK * wk,
 							GF_BGL_BMPWIN* win,const BMPWIN_DAT* windata,
@@ -1612,36 +1612,36 @@ static void Earth_BmpListAdd( EARTH_DEMO_WORK * wk,
 	BMPLIST_HEADER	listheader_tmp;
 	int	i;
 
-	//ƒƒjƒ…[ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
 	GF_BGL_BmpWinAddEx(wk->bgl,win,windata);
-	//ƒƒjƒ…[ƒŠƒXƒg—p•¶š—ñƒoƒbƒtƒ@ì¬
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	wk->bmplistdata = BMP_MENULIST_Create(listheader->count,wk->heapID);
-	//ƒƒjƒ…[ƒŠƒXƒg—p•¶š—ñƒoƒbƒtƒ@æ“¾
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡å–å¾—
 	for( i=0; i<listheader->count; i++ ){
 		BMP_MENULIST_AddArchiveString(wk->bmplistdata,wk->msg_man,list[i].msgID,list[i].retID);
 	}
-	//ƒƒjƒ…[ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgƒwƒbƒ_ì¬
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ä½œæˆ
 	listheader_tmp = *listheader;
 	listheader_tmp.list = wk->bmplistdata;
 	listheader_tmp.win  = win;
 	listheader_tmp.call_back = Earth_BmpListMoveSeCall;
-	//ƒƒjƒ…[ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgì¬
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚¹ãƒˆä½œæˆ
 	wk->bmplist = BmpListSet(&listheader_tmp,0,0,wk->heapID);
 
-	//ƒEƒCƒ“ƒhƒEiŠO˜gj•`‰æ
+	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼ˆå¤–æ ï¼‰æç”»
 	BmpMenuWinWrite(listheader_tmp.win,WINDOW_TRANS_OFF,EARTH_MENUWINCHR_NUM,EARTH_MENUWIN_PAL);
-	//‚u‚q‚`‚l“]‘—
+	//ï¼¶ï¼²ï¼¡ï¼­è»¢é€
 	GF_BGL_BmpWinOn(win);
 }
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/26
-// ’n–¼‚ğƒAƒ‹ƒtƒ@ƒxƒbƒg‡‚Éƒ\[ƒg‚µ‚Ä•\¦‚·‚é‚æ‚¤‚É•ÏX
+// åœ°åã‚’ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆé †ã«ã‚½ãƒ¼ãƒˆã—ã¦è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 // localize_spec_mark(LANG_ALL) imatake 2007/02/21
-// ’n–¼ƒŠƒXƒg‚Æƒ\[ƒgƒe[ƒuƒ‹‚ÌÀÛ‚Ì—v‘f”‚ªH‚¢ˆá‚¤ê‡‚É‘Î‰
+// åœ°åãƒªã‚¹ãƒˆã¨ã‚½ãƒ¼ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã®å®Ÿéš›ã®è¦ç´ æ•°ãŒé£Ÿã„é•ã†å ´åˆã«å¯¾å¿œ
 
 //----------------------------------
-//ƒŠƒXƒg•\¦‚Q:gmmƒtƒ@ƒCƒ‹ˆêŠ‡AƒŠƒXƒg‘I‘ğ•Ô‚è’l‚Íƒ\[ƒgŒã‚ÌƒŠƒXƒg‚Ì‡”Ô‚Æ“¯‚¶
+//ãƒªã‚¹ãƒˆè¡¨ç¤ºï¼’:gmmãƒ•ã‚¡ã‚¤ãƒ«ä¸€æ‹¬ã€ãƒªã‚¹ãƒˆé¸æŠè¿”ã‚Šå€¤ã¯ã‚½ãƒ¼ãƒˆå¾Œã®ãƒªã‚¹ãƒˆã®é †ç•ªã¨åŒã˜
 //----------------------------------
 static void Earth_BmpListAddGmmAll( EARTH_DEMO_WORK * wk,
 							GF_BGL_BMPWIN* win, const BMPWIN_DAT* windata,
@@ -1652,45 +1652,45 @@ static void Earth_BmpListAddGmmAll( EARTH_DEMO_WORK * wk,
 	MSGDATA_MANAGER*	msg_man;
 	int	i;
 
-	//ƒƒjƒ…[ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
 	GF_BGL_BmpWinAddEx(wk->bgl,win,windata);
 		
 	msg_man = MSGMAN_Create(MSGMAN_TYPE_NORMAL,ARC_MSG,listarcID,wk->heapID );
-	//ƒƒbƒZ[ƒW‘”æ“¾
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç·æ•°å–å¾—
 
-	//ƒƒjƒ…[ƒŠƒXƒg—p•¶š—ñƒoƒbƒtƒ@ì¬
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	wk->bmplistdata = BMP_MENULIST_Create(listcount,wk->heapID);
 
-	//ƒƒjƒ…[ƒŠƒXƒg—p•¶š—ñƒoƒbƒtƒ@æ“¾
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡å–å¾—
 	for( i=0; i<listcount; i++ ){
 		BMP_MENULIST_AddArchiveString(wk->bmplistdata,msg_man,sortTable[i],i);//BMP,man,msgID,param
 	}
-	//ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	MSGMAN_Delete(msg_man);
 
-	//ƒƒjƒ…[ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgƒwƒbƒ_ì¬
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ä½œæˆ
 	listheader_tmp = *listheader;
 	listheader_tmp.list = wk->bmplistdata;
 	listheader_tmp.count = listcount;
 	listheader_tmp.win  = win;
 	listheader_tmp.call_back = Earth_BmpListMoveSeCall;
-	//ƒƒjƒ…[ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgì¬
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒªã‚¹ãƒˆä½œæˆ
 	wk->bmplist = BmpListSet(&listheader_tmp,0,0,wk->heapID);
 
-	//ƒEƒCƒ“ƒhƒEiŠO˜gj•`‰æ
+	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼ˆå¤–æ ï¼‰æç”»
 	BmpMenuWinWrite(listheader_tmp.win,WINDOW_TRANS_OFF,EARTH_MENUWINCHR_NUM,EARTH_MENUWIN_PAL);
-	//‚u‚q‚`‚l“]‘—
+	//ï¼¶ï¼²ï¼¡ï¼­è»¢é€
 	GF_BGL_BmpWinOn(win);
 }
 
 // ----------------------------------------------------------------------------
 
 //----------------------------------
-//ƒŠƒXƒgíœ
+//ãƒªã‚¹ãƒˆå‰Šé™¤
 //----------------------------------
 static void Earth_BmpListDel( EARTH_DEMO_WORK* wk )
 {
-	//‘I‘ğƒŠƒXƒgíœˆ—
+	//é¸æŠãƒªã‚¹ãƒˆå‰Šé™¤å‡¦ç†
 	BmpMenuWinClear(&wk->listwin,WINDOW_TRANS_ON);
 	GF_BGL_BmpWinDel(&wk->listwin);
 	BmpListExit(wk->bmplist,NULL,NULL);
@@ -1698,7 +1698,7 @@ static void Earth_BmpListDel( EARTH_DEMO_WORK* wk )
 }
 
 //----------------------------------
-//“o˜^’n–¼•\¦ƒEƒCƒ“ƒhƒE
+//ç™»éŒ²åœ°åè¡¨ç¤ºã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
 //----------------------------------
 static void Earth_MyPlaceInfoWinSet( EARTH_DEMO_WORK* wk )
 {
@@ -1713,11 +1713,11 @@ static void Earth_MyPlaceInfoWinSet( EARTH_DEMO_WORK* wk )
 	WORDSET_RegisterCountryName( wk->wordset, 0, wk->my_nation );
 	WORDSET_RegisterLocalPlaceName( wk->wordset, 1, wk->my_nation, wk->my_area );
 
-	//•¶š—ñ‚Ìæ“¾
+	//æ–‡å­—åˆ—ã®å–å¾—
 	MSGMAN_GetString(wk->msg_man,mes_earth_03_01,msgtmp);
 	WORDSET_ExpandStr( wk->wordset, msgstr, msgtmp );
 
-	//•¶š—ñ‚Ì•\¦
+	//æ–‡å­—åˆ—ã®è¡¨ç¤º
 	GF_STR_PrintSimple(	&wk->infowin, FONT_SYSTEM, msgstr, 0, 0, MSG_ALLPUT, NULL );
 
 	STRBUF_Delete( msgtmp );
@@ -1754,7 +1754,7 @@ static void Earth_MyPlaceInfoWinRelease( EARTH_DEMO_WORK* wk )
 }
 
 //----------------------------------
-//’n–¼•\¦
+//åœ°åè¡¨ç¤º
 //----------------------------------
 static void Earth_PosInfoPut( EARTH_DEMO_WORK* wk )
 {
@@ -1769,8 +1769,8 @@ static void Earth_PosInfoPut( EARTH_DEMO_WORK* wk )
 			STRBUF_Delete( msgstr );
 		}
 	} else {
-		//ƒJ[ƒ\ƒ‹ˆÊ’u’n–¼•\¦	
-		// ˆê”Ô‹ß‚¢’n“_‚ğ•\¦‚·‚é‚æ‚¤‚É•ÏX tomoya 08.04.03
+		//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®åœ°åè¡¨ç¤º	
+		// ä¸€ç•ªè¿‘ã„åœ°ç‚¹ã‚’è¡¨ç¤ºã™ã‚‹ã‚ˆã†ã«å¤‰æ›´ tomoya 08.04.03
 		{	 
 			int		i;
 			BOOL	search_result = FALSE;
@@ -1822,7 +1822,7 @@ static void Earth_PosInfoPut( EARTH_DEMO_WORK* wk )
 				STRBUF_Delete(str1);
 
 
-				// ‚³‚µ‚Ä‚¢‚éˆÊ’u‚ğ’nˆæ‚ÌˆÊ’u‚É‚·‚é
+				// ã•ã—ã¦ã„ã‚‹ä½ç½®ã‚’åœ°åŸŸã®ä½ç½®ã«ã™ã‚‹
 				wk->rotate.x = wk->placelist.place[minindex].x;
 				wk->rotate.y = wk->placelist.place[minindex].y;
 
@@ -1839,37 +1839,37 @@ static void Earth_PosInfoPut( EARTH_DEMO_WORK* wk )
 
 //============================================================================================
 //
-//	ƒ[ƒJƒ‹ŠÖ”i‚R‚cŠÖ˜Aj
+//	ãƒ­ãƒ¼ã‚«ãƒ«é–¢æ•°ï¼ˆï¼“ï¼¤é–¢é€£ï¼‰
 //
 //============================================================================================
 //----------------------------------
-//‚R‚cƒf[ƒ^ƒ[ƒhŠÖ”•‚R‚cƒf[ƒ^ŠJ•úŠÖ”
+//ï¼“ï¼¤ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰é–¢æ•°ï¼†ï¼“ï¼¤ãƒ‡ãƒ¼ã‚¿é–‹æ”¾é–¢æ•°
 //----------------------------------
 static void Earth_ModelLoad( EARTH_DEMO_WORK * wk, ARCHANDLE* p_handle )
 {
-	wk->resfileheader = ArchiveDataLoadAllocByHandle	//’n‹…ƒ‚ƒfƒ‹
+	wk->resfileheader = ArchiveDataLoadAllocByHandle	//åœ°çƒãƒ¢ãƒ‡ãƒ«
 						( p_handle, NARC_wifi_earth_wifi_earth_nsbmd, wk->heapID );
 	simple_3DModelSetResFileAlready( &wk->renderobj, &wk->resmodel, &wk->resfileheader );
 	
-	wk->mark_resfileheader[MARK_RED] = ArchiveDataLoadAllocByHandle	//’n“_ƒ}[ƒNƒ‚ƒfƒ‹iÔj
+	wk->mark_resfileheader[MARK_RED] = ArchiveDataLoadAllocByHandle	//åœ°ç‚¹ãƒãƒ¼ã‚¯ãƒ¢ãƒ‡ãƒ«ï¼ˆèµ¤ï¼‰
 						( p_handle, NARC_wifi_earth_earth_mark_r_nsbmd, wk->heapID );
 	simple_3DModelSetResFileAlready(	&wk->mark_renderobj[MARK_RED],
 										&wk->mark_resmodel[MARK_RED],
 										&wk->mark_resfileheader[MARK_RED]);
 
-	wk->mark_resfileheader[MARK_GREEN] = ArchiveDataLoadAllocByHandle	//’n“_ƒ}[ƒNƒ‚ƒfƒ‹i—Îj
+	wk->mark_resfileheader[MARK_GREEN] = ArchiveDataLoadAllocByHandle	//åœ°ç‚¹ãƒãƒ¼ã‚¯ãƒ¢ãƒ‡ãƒ«ï¼ˆç·‘ï¼‰
 						( p_handle, NARC_wifi_earth_earth_mark_g_nsbmd, wk->heapID );
 	simple_3DModelSetResFileAlready(	&wk->mark_renderobj[MARK_GREEN],
 										&wk->mark_resmodel[MARK_GREEN],
 										&wk->mark_resfileheader[MARK_GREEN]);
 
-	wk->mark_resfileheader[MARK_BLUE] = ArchiveDataLoadAllocByHandle	//’n“_ƒ}[ƒNƒ‚ƒfƒ‹iÂj
+	wk->mark_resfileheader[MARK_BLUE] = ArchiveDataLoadAllocByHandle	//åœ°ç‚¹ãƒãƒ¼ã‚¯ãƒ¢ãƒ‡ãƒ«ï¼ˆé’ï¼‰
 						( p_handle, NARC_wifi_earth_earth_mark_b_nsbmd, wk->heapID );
 	simple_3DModelSetResFileAlready(	&wk->mark_renderobj[MARK_BLUE],
 										&wk->mark_resmodel[MARK_BLUE],
 										&wk->mark_resfileheader[MARK_BLUE]);
 
-	wk->mark_resfileheader[MARK_YELLOW] = ArchiveDataLoadAllocByHandle	//’n“_ƒ}[ƒNƒ‚ƒfƒ‹i‰©j
+	wk->mark_resfileheader[MARK_YELLOW] = ArchiveDataLoadAllocByHandle	//åœ°ç‚¹ãƒãƒ¼ã‚¯ãƒ¢ãƒ‡ãƒ«ï¼ˆé»„ï¼‰
 						( p_handle, NARC_wifi_earth_earth_mark_y_nsbmd, wk->heapID );
 	simple_3DModelSetResFileAlready(	&wk->mark_renderobj[MARK_YELLOW],
 										&wk->mark_resmodel[MARK_YELLOW],
@@ -1886,27 +1886,27 @@ static void Earth_ModelRelease( EARTH_DEMO_WORK * wk )
 }
 
 //----------------------------------
-//ƒ‚ƒfƒ‹ŠÖ˜Aƒf[ƒ^‰Šú‰»i’n“_ƒf[ƒ^ƒ[ƒh‚ ‚èj
+//ãƒ¢ãƒ‡ãƒ«é–¢é€£ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–ï¼ˆåœ°ç‚¹ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ã‚ã‚Šï¼‰
 //----------------------------------
 static void EarthDataInit( EARTH_DEMO_WORK * wk )
 {
-	{//’n‹…‚ÌÀ•W‰Šú‰»i’n“_ƒ}[ƒN‚Æ‹¤—Lj
+	{//åœ°çƒã®åº§æ¨™åˆæœŸåŒ–ï¼ˆåœ°ç‚¹ãƒãƒ¼ã‚¯ã¨å…±æœ‰ï¼‰
 		
 		wk->trans.x	= INIT_EARTH_TRANS_XVAL; 
 		wk->trans.y	= INIT_EARTH_TRANS_YVAL; 
 		wk->trans.z	= INIT_EARTH_TRANS_ZVAL; 
 	}
-	{//’n‹…‚ÌƒXƒP[ƒ‹‰Šú‰»
+	{//åœ°çƒã®ã‚¹ã‚±ãƒ¼ãƒ«åˆæœŸåŒ–
 		wk->scale.x	= INIT_EARTH_SCALE_XVAL;
 		wk->scale.y	= INIT_EARTH_SCALE_YVAL;
 		wk->scale.z	= INIT_EARTH_SCALE_ZVAL;
 	}
-	{//’n‹…‚Ì‰ñ“]‰Šú‰»
+	{//åœ°çƒã®å›è»¢åˆæœŸåŒ–
 		wk->rotate.x  = INIT_EARTH_ROTATE_XVAL;
 		wk->rotate.y  = INIT_EARTH_ROTATE_YVAL;
 		wk->rotate.z  = INIT_EARTH_ROTATE_ZVAL;
 	}
-	{//’n“_ƒ}[ƒNƒXƒP[ƒ‹‰Šú‰»
+	{//åœ°ç‚¹ãƒãƒ¼ã‚¯ã‚¹ã‚±ãƒ¼ãƒ«åˆæœŸåŒ–
 		wk->mark_scale.x  = INIT_EARTH_SCALE_XVAL;
 		wk->mark_scale.y  = INIT_EARTH_SCALE_YVAL;
 		wk->mark_scale.z  = INIT_EARTH_SCALE_ZVAL;
@@ -1914,7 +1914,7 @@ static void EarthDataInit( EARTH_DEMO_WORK * wk )
 }
 
 //----------------------------------
-//ƒJƒƒ‰‰Šú‰»
+//ã‚«ãƒ¡ãƒ©åˆæœŸåŒ–
 //----------------------------------
 static void EarthCameraInit( EARTH_DEMO_WORK * wk )
 {
@@ -1925,27 +1925,27 @@ static void EarthCameraInit( EARTH_DEMO_WORK * wk )
 							  INIT_CAMERA_POS_YVAL,
 							  INIT_CAMERA_POS_ZVAL };
 
-	//ƒJƒƒ‰ƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»
+	//ã‚«ãƒ¡ãƒ©ãƒ©ã‚¤ãƒ–ãƒ©ãƒªåˆæœŸåŒ–
 	GFC_InitCameraTC(	&target_pos,&camera_pos,
 						INIT_CAMERA_PERSPWAY,
 						GF_CAMERA_PERSPECTIV,
 						FALSE,
 						wk->camera_p);
 
-	//ƒNƒŠƒbƒvŠÖ˜Aİ’è
+	//ã‚¯ãƒªãƒƒãƒ—é–¢é€£è¨­å®š
 	GFC_SetCameraClip(INIT_CAMERA_CLIP_NEAR,INIT_CAMERA_CLIP_FAR,wk->camera_p);
 	GFC_SetCameraView(GF_CAMERA_PERSPECTIV,wk->camera_p);
-	//ƒJƒƒ‰‚n‚m
+	//ã‚«ãƒ¡ãƒ©ï¼¯ï¼®
 	GFC_AttachCamera(wk->camera_p);
 
 	if(wk->earth_mode == JAPAN_MODE){
-		//ƒJƒƒ‰‹——£ƒtƒ‰ƒO‰Šú‰»iŠJn‚Í‹ß‹——£j
+		//ã‚«ãƒ¡ãƒ©è·é›¢ãƒ•ãƒ©ã‚°åˆæœŸåŒ–ï¼ˆé–‹å§‹æ™‚ã¯è¿‘è·é›¢ï¼‰
 		wk->camera_status = CAMERA_NEAR;
 	}else{
-		//ƒJƒƒ‰‹——£ƒtƒ‰ƒO‰Šú‰»iŠJn‚Í‰“‹——£j
+		//ã‚«ãƒ¡ãƒ©è·é›¢ãƒ•ãƒ©ã‚°åˆæœŸåŒ–ï¼ˆé–‹å§‹æ™‚ã¯é è·é›¢ï¼‰
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
-		// ‘“y‚ÌL‚¢ƒAƒƒŠƒJ‚Ì‚İ‰“‹——£‚©‚çiƒCƒMƒŠƒX‚Å‚à‰“‹——£‚É‚È‚Á‚¿‚á‚¤‚¯‚Çj
+		// å›½åœŸã®åºƒã„ã‚¢ãƒ¡ãƒªã‚«ã®ã¿é è·é›¢ã‹ã‚‰ï¼ˆã‚¤ã‚®ãƒªã‚¹ã§ã‚‚é è·é›¢ã«ãªã£ã¡ã‚ƒã†ã‘ã©ï¼‰
 		#if PM_LANG == LANG_ENGLISH
 		wk->camera_status = CAMERA_FAR;
 		#else
@@ -1954,7 +1954,7 @@ static void EarthCameraInit( EARTH_DEMO_WORK * wk )
 		// ----------------------------------------------------------------------------
 	}
 	while(1){
-		//ƒJƒƒ‰İ’è
+		//ã‚«ãƒ¡ãƒ©è¨­å®š
 		if(Earth3D_CameraMoveNearFar(wk) == TRUE){
 			break;
 		}
@@ -1962,7 +1962,7 @@ static void EarthCameraInit( EARTH_DEMO_WORK * wk )
 }
 
 //----------------------------------
-//ƒ‰ƒCƒg‰Šú‰»
+//ãƒ©ã‚¤ãƒˆåˆæœŸåŒ–
 //----------------------------------
 static void EarthLightInit( EARTH_DEMO_WORK * wk )
 {
@@ -1974,7 +1974,7 @@ static void EarthLightInit( EARTH_DEMO_WORK * wk )
 }
 
 //----------------------------------
-//‚R‚c‰ñ“]ŒvZ
+//ï¼“ï¼¤å›è»¢è¨ˆç®—
 //----------------------------------
 static void  EarthVecFx32_to_MtxFx33( MtxFx33* dst, VecFx32* src )
 {
@@ -1990,7 +1990,7 @@ static void  EarthVecFx32_to_MtxFx33( MtxFx33* dst, VecFx32* src )
 }
 
 //----------------------------------
-//‚R‚c‰ñ“]ŒvZ(‘Š‘Î)
+//ï¼“ï¼¤å›è»¢è¨ˆç®—(ç›¸å¯¾)
 //----------------------------------
 static void  EarthVecFx32_to_MtxFx33_place( MtxFx33* dst, VecFx32* src )
 {
@@ -2006,7 +2006,7 @@ static void  EarthVecFx32_to_MtxFx33_place( MtxFx33* dst, VecFx32* src )
 }
 
 //----------------------------------
-//’n‹…‘€ìŠÖ”
+//åœ°çƒæ“ä½œé–¢æ•°
 //----------------------------------
 static BOOL Earth3D_Control( EARTH_DEMO_WORK * wk,int keytrg,int keycont )
 {
@@ -2019,7 +2019,7 @@ static BOOL Earth3D_Control( EARTH_DEMO_WORK * wk,int keytrg,int keycont )
 	rotate_x = wk->rotate.x;
 	rotate_y = wk->rotate.y;
 
-	//ƒJƒƒ‰‰“‹ßˆÚ“®”»’èi¢ŠE’n‹…‹Vƒ‚[ƒh‚Ì‚İj
+	//ã‚«ãƒ¡ãƒ©é è¿‘ç§»å‹•åˆ¤å®šï¼ˆä¸–ç•Œåœ°çƒå„€ãƒ¢ãƒ¼ãƒ‰ã®ã¿ï¼‰
 	if((keytrg & PAD_BUTTON_A)||(wk->tp_result & PAD_BUTTON_A)){
 		if(wk->earth_mode == GLOBAL_MODE){
 			if(wk->camera_status == CAMERA_FAR){
@@ -2031,11 +2031,11 @@ static BOOL Earth3D_Control( EARTH_DEMO_WORK * wk,int keytrg,int keycont )
 		result = TRUE;
 		return result;
 	}
-	//ƒJƒƒ‰ˆÚ“®ƒXƒs[ƒh‰Šúİ’è
-	// ƒJƒƒ‰ˆÚ“®ƒXƒs[ƒh‚ğ­‚µ‘‚­•ÏX tomoya 08.04.03
+	//ã‚«ãƒ¡ãƒ©ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰åˆæœŸè¨­å®š
+	// ã‚«ãƒ¡ãƒ©ç§»å‹•ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’å°‘ã—æ—©ãå¤‰æ›´ tomoya 08.04.03
 	if(wk->camera_status == CAMERA_FAR){
-		//‰“‹——£
-		if((wk->tp_lenx)||(wk->tp_leny)){ //ƒ^ƒbƒ`ƒpƒlƒ‹“ü—Í‚ ‚è
+		//é è·é›¢
+		if((wk->tp_lenx)||(wk->tp_leny)){ //ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å…¥åŠ›ã‚ã‚Š
 			rotate_speed_x = CAMERA_MOVE_SPEED_FAR/6 * wk->tp_lenx;
 			rotate_speed_y = CAMERA_MOVE_SPEED_FAR/6 * wk->tp_leny;
 		}else{
@@ -2043,8 +2043,8 @@ static BOOL Earth3D_Control( EARTH_DEMO_WORK * wk,int keytrg,int keycont )
 			rotate_speed_y = CAMERA_MOVE_SPEED_FAR;
 		}
 	}else{
-		//‹ß‹——£
-		if((wk->tp_lenx)||(wk->tp_leny)){ //ƒ^ƒbƒ`ƒpƒlƒ‹“ü—Í‚ ‚è
+		//è¿‘è·é›¢
+		if((wk->tp_lenx)||(wk->tp_leny)){ //ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å…¥åŠ›ã‚ã‚Š
 			rotate_speed_x = CAMERA_MOVE_SPEED_NEAR/3 * wk->tp_lenx;
 			rotate_speed_y = CAMERA_MOVE_SPEED_NEAR/3 * wk->tp_leny;
 		}else{
@@ -2052,7 +2052,7 @@ static BOOL Earth3D_Control( EARTH_DEMO_WORK * wk,int keytrg,int keycont )
 			rotate_speed_y = CAMERA_MOVE_SPEED_NEAR;
 		}
 	}
-	//ƒJƒƒ‰ã‰º¶‰EˆÚ“®”»’è
+	//ã‚«ãƒ¡ãƒ©ä¸Šä¸‹å·¦å³ç§»å‹•åˆ¤å®š
 	if((keycont & PAD_KEY_LEFT)||(wk->tp_result & PAD_KEY_LEFT)){
 		if(wk->earth_mode == GLOBAL_MODE){
 			wk->rotate.y += rotate_speed_x;
@@ -2111,7 +2111,7 @@ static BOOL Earth3D_Control( EARTH_DEMO_WORK * wk,int keytrg,int keycont )
 }
 
 //----------------------------------
-//ƒJƒƒ‰‰“‹ßˆÚ“®ŠÖ”
+//ã‚«ãƒ¡ãƒ©é è¿‘ç§»å‹•é–¢æ•°
 //----------------------------------
 static BOOL Earth3D_CameraMoveNearFar( EARTH_DEMO_WORK * wk )
 {
@@ -2120,7 +2120,7 @@ static BOOL Earth3D_CameraMoveNearFar( EARTH_DEMO_WORK * wk )
 
 	switch(wk->camera_status){
 
-	case CAMERA_NEAR://‹ß‚Ã‚­
+	case CAMERA_NEAR://è¿‘ã¥ã
 		if(distance > (INIT_CAMERA_DISTANCE_NEAR + CAMERA_INOUT_SPEED)){
 			distance -= CAMERA_INOUT_SPEED;
 			wk->mark_scale.x -= MARK_SCALE_INCDEC;
@@ -2131,7 +2131,7 @@ static BOOL Earth3D_CameraMoveNearFar( EARTH_DEMO_WORK * wk )
 		}
 		break;
 
-	case CAMERA_FAR://‰“‚´‚©‚é
+	case CAMERA_FAR://é ã–ã‹ã‚‹
 		if(distance < (INIT_CAMERA_DISTANCE_FAR - CAMERA_INOUT_SPEED)){
 			distance += CAMERA_INOUT_SPEED;
 			wk->mark_scale.x += MARK_SCALE_INCDEC;
@@ -2148,13 +2148,13 @@ static BOOL Earth3D_CameraMoveNearFar( EARTH_DEMO_WORK * wk )
 }
 
 //----------------------------------
-//‚R‚c•`‰æŠÖ”
+//ï¼“ï¼¤æç”»é–¢æ•°
 //----------------------------------
 static void Earth3D_Draw( EARTH_DEMO_WORK * wk )
 {
 	MtxFx33 rotate_world = {FX32_ONE,0,0,0,FX32_ONE,0,0,0,FX32_ONE};
 
-	//•`‰æƒtƒ‰ƒO”»’è
+	//æç”»ãƒ•ãƒ©ã‚°åˆ¤å®š
 	switch(wk->Draw3Dsw){
 
 	case DRAW3D_DISABLE:
@@ -2170,14 +2170,14 @@ static void Earth3D_Draw( EARTH_DEMO_WORK * wk )
 		GF_G3X_Reset();
 		GFC_CameraLookAt();
 		{
-			//ƒOƒ[ƒoƒ‹‰ñ“]s—ñæ“¾
+			//ã‚°ãƒ­ãƒ¼ãƒãƒ«å›è»¢è¡Œåˆ—å–å¾—
 			EarthVecFx32_to_MtxFx33(&rotate_world,&wk->rotate);
 	
-			//’n‹…•`‰æ
+			//åœ°çƒæç”»
 			simple_3DModelDraw(&wk->renderobj,&wk->trans,&rotate_world,&wk->scale);
 			//GF_G3D_Draw_1mat1shape(&wk->renderobj,&wk->trans,&rotate_world,&wk->scale);
 	
-			//’†Sƒ}[ƒN•`‰æiŠî€“_‚Ì‚½‚ß‰ñ“]‚È‚µj
+			//ä¸­å¿ƒãƒãƒ¼ã‚¯æç”»ï¼ˆåŸºæº–ç‚¹ã®ãŸã‚å›è»¢ãªã—ï¼‰
 			{
 				MtxFx33 rotate_tmp = {FX32_ONE,0,0,0,FX32_ONE,0,0,0,FX32_ONE};
 				simple_3DModelDraw(&wk->mark_renderobj[MARK_GREEN],
@@ -2186,7 +2186,7 @@ static void Earth3D_Draw( EARTH_DEMO_WORK * wk )
 				//		&wk->trans,&rotate_tmp,&wk->mark_scale);
 			}
 	
-			//’n“_ƒ}[ƒN•`‰æ
+			//åœ°ç‚¹ãƒãƒ¼ã‚¯æç”»
 			{
 				MtxFx33 rotate_tmp = {FX32_ONE,0,0,0,FX32_ONE,0,0,0,FX32_ONE};
 				int	i;
@@ -2210,12 +2210,12 @@ static void Earth3D_Draw( EARTH_DEMO_WORK * wk )
 	
 //============================================================================================
 //
-//	ƒOƒ[ƒoƒ‹ŠÖ”i’nˆæƒf[ƒ^æ“¾ŠÖ˜Aj
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«é–¢æ•°ï¼ˆåœ°åŸŸãƒ‡ãƒ¼ã‚¿å–å¾—é–¢é€£ï¼‰
 //
 //============================================================================================
 //============================================================================================
 /**
- *	’nˆæƒf[ƒ^‰Šú‰»iƒZ[ƒuƒ[ƒN‚Ì‰Šú‰»j
+ *	åœ°åŸŸãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–ï¼ˆã‚»ãƒ¼ãƒ–ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–ï¼‰
  *
  * @param	
  * @retval
@@ -2231,33 +2231,33 @@ void	WIFI_RegistratonInit(SAVEDATA* savedata)
 
 //============================================================================================
 /**
- *	‘–¼æ“¾
+ *	å›½åå–å¾—
  *
- * @param[in]	nationID	‘‚h‚c
- * @param[in]	areaID		’nˆæ‚h‚c
- * @param[in]	nation_str	‘–¼Ši”[ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
- * @param[in]	area_str	’nˆæ–¼Ši”[ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
- * @param[in]	heapID		ƒeƒ“ƒ|ƒ‰ƒŠƒq[ƒv‚h‚c
+ * @param[in]	nationID	å›½ï¼©ï¼¤
+ * @param[in]	areaID		åœ°åŸŸï¼©ï¼¤
+ * @param[in]	nation_str	å›½åæ ¼ç´ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	area_str	åœ°åŸŸåæ ¼ç´ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
+ * @param[in]	heapID		ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- * @retval	FALSE:’nˆæ‚ª‚È‚¢‘@TRUE:’nˆæ‚ª‚ ‚é‘
+ * @retval	FALSE:åœ°åŸŸãŒãªã„å›½ã€€TRUE:åœ°åŸŸãŒã‚ã‚‹å›½
  */
 //============================================================================================
 BOOL	WIFI_NationAreaNameGet(int nationID,int areaID,
 								STRBUF* nation_str,STRBUF* area_str,int heapID)
 {
 	MSGDATA_MANAGER*	msg_man;
-	int areaIndex = EarthAreaTableGet(nationID);	//’nˆæƒf[ƒ^ƒe[ƒuƒ‹‚h‚m‚c‚d‚wæ“¾
+	int areaIndex = EarthAreaTableGet(nationID);	//åœ°åŸŸãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ï¼©ï¼®ï¼¤ï¼¥ï¼¸å–å¾—
 	BOOL result;
 
 	msg_man = MSGMAN_Create(MSGMAN_TYPE_NORMAL,ARC_MSG,
 							NARC_msg_wifi_place_msg_world_dat,heapID );
 
-	MSGMAN_GetString(msg_man,nationID,nation_str);//‘–¼æ“¾
+	MSGMAN_GetString(msg_man,nationID,nation_str);//å›½åå–å¾—
 
 	MSGMAN_Delete(msg_man);
 
 	if(areaIndex == 0){
-		//’nˆæ‚ª‘¶İ‚µ‚È‚¢‘‚Ìê‡u‚È‚µv‚Æ‚¢‚¤•¶š—ñ‚ğˆê‰ƒZƒbƒg
+		//åœ°åŸŸãŒå­˜åœ¨ã—ãªã„å›½ã®å ´åˆã€Œãªã—ã€ã¨ã„ã†æ–‡å­—åˆ—ã‚’ä¸€å¿œã‚»ãƒƒãƒˆ
 		areaIndex = 1;
 		areaID = 0;
 		result = FALSE;
@@ -2267,7 +2267,7 @@ BOOL	WIFI_NationAreaNameGet(int nationID,int areaID,
 	msg_man = MSGMAN_Create(MSGMAN_TYPE_NORMAL,ARC_MSG,
 							WIFI_COUNTRY_DataIndexToPlaceMsgDataID(areaIndex), heapID );
 
-	MSGMAN_GetString(msg_man,areaID,area_str);//’nˆæ–¼æ“¾
+	MSGMAN_GetString(msg_man,areaID,area_str);//åœ°åŸŸåå–å¾—
 	
 	MSGMAN_Delete(msg_man);
 
@@ -2276,11 +2276,11 @@ BOOL	WIFI_NationAreaNameGet(int nationID,int areaID,
 
 //============================================================================================
 /**
- *	ƒ[ƒJƒ‹ƒGƒŠƒA‘¶İƒ`ƒFƒbƒN
+ *	ãƒ­ãƒ¼ã‚«ãƒ«ã‚¨ãƒªã‚¢å­˜åœ¨ãƒã‚§ãƒƒã‚¯
  *
- * @param[in]	nationID	‘‚h‚c
+ * @param[in]	nationID	å›½ï¼©ï¼¤
  *
- * @retval	FALSE:’nˆæ‚È‚µ@TRUE:’nˆæ‚ ‚è
+ * @retval	FALSE:åœ°åŸŸãªã—ã€€TRUE:åœ°åŸŸã‚ã‚Š
  */
 //============================================================================================
 BOOL	WIFI_LocalAreaExistCheck(int nationID)
@@ -2297,9 +2297,9 @@ BOOL	WIFI_LocalAreaExistCheck(int nationID)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒCƒiƒX‚Ì’l‚Ì‰ñ“]Šp“x‚â‚R‚U‚O“xˆÈã‚Ì‰ñ“]Šp“x‚ğ‚È‚­‚·
+ *	@brief	ãƒã‚¤ãƒŠã‚¹ã®å€¤ã®å›è»¢è§’åº¦ã‚„ï¼“ï¼–ï¼åº¦ä»¥ä¸Šã®å›è»¢è§’åº¦ã‚’ãªãã™
  *
- *	@param	p_rot	‰ñ“]ƒxƒNƒgƒ‹
+ *	@param	p_rot	å›è»¢ãƒ™ã‚¯ãƒˆãƒ«
  */
 //-----------------------------------------------------------------------------
 static void WIFI_MinusRotateChange( Vec2DS32* p_rot )
@@ -2319,12 +2319,12 @@ static void WIFI_MinusRotateChange( Vec2DS32* p_rot )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰ñ“]ƒxƒNƒgƒ‹‚Ì‹——£‚ğ‹‚ß‚é
+ *	@brief	å›è»¢ãƒ™ã‚¯ãƒˆãƒ«ã®è·é›¢ã‚’æ±‚ã‚ã‚‹
  *
- *	@param	cp_earth		’n‹…‹V‚Ì‰ñ“]ƒxƒNƒgƒ‹
- *	@param	cp_place		’nˆæ‚Ì‰ñ“]ƒxƒNƒgƒ‹
+ *	@param	cp_earth		åœ°çƒå„€ã®å›è»¢ãƒ™ã‚¯ãƒˆãƒ«
+ *	@param	cp_place		åœ°åŸŸã®å›è»¢ãƒ™ã‚¯ãƒˆãƒ«
  *
- *	@return	‹——£iu32’PˆÊj
+ *	@return	è·é›¢ï¼ˆu32å˜ä½ï¼‰
  */
 //-----------------------------------------------------------------------------
 static u32 WIFI_EarthGetRotateDist( const Vec2DS32* cp_earth, const Vec2DS32* cp_place )
@@ -2332,7 +2332,7 @@ static u32 WIFI_EarthGetRotateDist( const Vec2DS32* cp_earth, const Vec2DS32* cp
 	s32 dif_x, dif_y;
 	u32 dist;
 
-	// ‹——£‚ª‹ß‚¢‚Ù‚¤‚ğ‘I‚Ô
+	// è·é›¢ãŒè¿‘ã„ã»ã†ã‚’é¸ã¶
 	dif_x = MATH_ABS(cp_earth->x - cp_place->x);
 	dif_y = MATH_ABS(cp_earth->y - cp_place->y);
 	if( dif_x > RotKey(180) ){
@@ -2349,7 +2349,7 @@ static u32 WIFI_EarthGetRotateDist( const Vec2DS32* cp_earth, const Vec2DS32* cp
 
 
 //----------------------------------
-// ƒfƒoƒbƒO
+// ãƒ‡ãƒãƒƒã‚°
 //----------------------------------
 #ifdef WIFI_ERATH_DEBUG
 static void EarthDebugWinRotateInfoWrite( EARTH_DEMO_WORK * wk )
@@ -2435,7 +2435,7 @@ static void EarthDebugNationMarkSet( EARTH_DEMO_WORK * wk )
 	nationID = cursor_pos+1;	//1origin
 
 	if(WIFI_LocalAreaExistCheck(nationID) == FALSE){
-		//’nˆæ‚ª‘¶İ‚µ‚È‚¢ê‡‚Ì‚İİ’è
+		//åœ°åŸŸãŒå­˜åœ¨ã—ãªã„å ´åˆã®ã¿è¨­å®š
 		WIFIHISTORY_SetStat(wk->wifi_sv,nationID,0,pattern_flag);
 	}
 	EarthListLoad(wk);	//reload

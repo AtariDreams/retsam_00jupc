@@ -10,17 +10,17 @@
 #ifndef _AREA_WIN_ID_H_
 #define _AREA_WIN_ID_H_
 
-#define PLACE_WIN_NOTHING	( 0 )	///< “Á‚ÉŽw’è‚È‚µ
+#define PLACE_WIN_NOTHING	( 0 )	///< ç‰¹ã«æŒ‡å®šãªã—
 
-#define PLACE_WIN_CITY		( 1 )	///< ƒVƒeƒB
-#define PLACE_WIN_TOWN		( 2 )	///< ƒ^ƒEƒ“
-#define PLACE_WIN_ROAD		( 3 )	///< “¹˜H
-#define PLACE_WIN_CAVE		( 4 )	///< “´ŒAEŽRE“‡
-#define PLACE_WIN_FOREST	( 5 )	///< X
-#define PLACE_WIN_SEE		( 6 )	///< ŠC
-#define PLACE_WIN_GRASS		( 7 )	///< ‘Œ´
-#define PLACE_WIN_LAKE		( 8 )	///< ŒÎ
-#define PLACE_WIN_ROOM		( 9 )	///< Žº“à
+#define PLACE_WIN_CITY		( 1 )	///< ã‚·ãƒ†ã‚£
+#define PLACE_WIN_TOWN		( 2 )	///< ã‚¿ã‚¦ãƒ³
+#define PLACE_WIN_ROAD		( 3 )	///< é“è·¯
+#define PLACE_WIN_CAVE		( 4 )	///< æ´žçªŸãƒ»å±±ãƒ»å³¶
+#define PLACE_WIN_FOREST	( 5 )	///< æ£®
+#define PLACE_WIN_SEE		( 6 )	///< æµ·
+#define PLACE_WIN_GRASS		( 7 )	///< è‰åŽŸ
+#define PLACE_WIN_LAKE		( 8 )	///< æ¹–
+#define PLACE_WIN_ROOM		( 9 )	///< å®¤å†…
 
 #define PLACE_WIN_MAX		( 10 )
 

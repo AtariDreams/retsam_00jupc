@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_023.s
- *@brief	í“¬ƒV[ƒPƒ“ƒX
- *			‚Ç‚­‚É‚æ‚éƒ_ƒ[ƒWƒV[ƒPƒ“ƒX
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ *			ã©ãã«ã‚ˆã‚‹ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *@author	HisashiSogabe
  *@data		2005.12.02
  *
@@ -15,9 +15,9 @@
 	.include	"waza_seq_def.h"
 
 SUB_023:
-	//“Á«ƒ}ƒWƒbƒNƒK[ƒh‚ÍAƒ_ƒ[ƒW‚È‚µ
+	//ç‰¹æ€§ãƒžã‚¸ãƒƒã‚¯ã‚¬ãƒ¼ãƒ‰ã¯ã€ãƒ€ãƒ¡ãƒ¼ã‚¸ãªã—
 	TOKUSEI_CHECK	TOKUSEI_HAVE,SIDE_WORK,TOKUSYU_MAZIKKUGAADO,SUB_023_END
-	//“Á«ƒ|ƒCƒYƒ“ƒq[ƒ‹‚ÍAHP‚ð‰ñ•œ
+	//ç‰¹æ€§ãƒã‚¤ã‚ºãƒ³ãƒ’ãƒ¼ãƒ«ã¯ã€HPã‚’å›žå¾©
 	TOKUSEI_CHECK	TOKUSEI_NO_HAVE,SIDE_WORK,TOKUSYU_POIZUNHIIRU,SUB_023_NEXT
 	PSP_VALUE_WORK	VAL_GET,SIDE_WORK,ID_PSP_hpmax,BUF_PARA_HP_CALC_WORK
 	IF_PSP_WORK		IF_FLAG_EQ,SIDE_WORK,ID_PSP_hp,BUF_PARA_HP_CALC_WORK,SUB_023_END

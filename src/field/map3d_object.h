@@ -1,10 +1,10 @@
 //============================================================================================
 /**
  * @file	map3d_object.h
- * @bfief	ƒ}ƒbƒv3DƒIƒuƒWƒFƒNƒgi”z’uƒ‚ƒfƒ‹jˆ—
+ * @bfief	ãƒãƒƒãƒ—3Dã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆé…ç½®ãƒ¢ãƒ‡ãƒ«ï¼‰å‡¦ç†
  * @author	Nozomu Saitou
  *
- * 2005.12.18	field_encount.c‚©‚çƒGƒ“ƒJƒEƒ“ƒg”»’è•”•ª‚ğˆÚ“®
+ * 2005.12.18	field_encount.cã‹ã‚‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆåˆ¤å®šéƒ¨åˆ†ã‚’ç§»å‹•
  */
 //============================================================================================
 
@@ -15,7 +15,7 @@
 #include "field_3d_anime.h"
 #include "field_glb_state.h"
 #include "system/arc_tool.h"
-#define MAP_READ_OBJ_3D_MAX (32)	//1ƒuƒƒbƒN32ŒÂ‚Ì‚n‚a‚i
+#define MAP_READ_OBJ_3D_MAX (32)	//1ãƒ–ãƒ­ãƒƒã‚¯32å€‹ã®ï¼¯ï¼¢ï¼ª
 
 typedef struct MAP3D_OBJECT_DATA_tag * M3DO_PTR;
 typedef struct MAP3D_OBJECT_DATA_tag const * M3DO_CONST_PTR;

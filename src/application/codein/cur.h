@@ -3,9 +3,9 @@
  * @file	cur.h
  * @brief	
  * @author	goto
- * @date	2007.07.23(…)
+ * @date	2007.07.23(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -21,17 +21,17 @@
 #define CUR_R_X			( 15 * 1 )
 #define CUR_R_Y			( 15 * 1 )
 
-///< ƒVƒXƒeƒ€
+///< ã‚·ã‚¹ãƒ†ãƒ 
 typedef struct {
 	
-	ARCHANDLE*			p_handle;			///< ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹	
-	CATS_SYS_PTR		csp;				///< OAMƒVƒXƒeƒ€
-	CATS_RES_PTR		crp;				///< ƒŠƒ\[ƒXˆêŠ‡ŠÇ—
-	PALETTE_FADE_PTR	pfd;				///< ƒpƒŒƒbƒgƒtƒF[ƒh	
+	ARCHANDLE*			p_handle;			///< ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«	
+	CATS_SYS_PTR		csp;				///< OAMã‚·ã‚¹ãƒ†ãƒ 
+	CATS_RES_PTR		crp;				///< ãƒªã‚½ãƒ¼ã‚¹ä¸€æ‹¬ç®¡ç†
+	PALETTE_FADE_PTR	pfd;				///< ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰	
 	
 } CURSOR_SYS;
 
-///< ƒpƒ‰ƒ[ƒ^
+///< ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct {
 	
 	int					use;
@@ -42,7 +42,7 @@ typedef struct {
 	
 } CURSOR_PARAM;
 
-///< ƒJ[ƒ\ƒ‹1ŒÂ
+///< ã‚«ãƒ¼ã‚½ãƒ«1å€‹
 typedef struct {
 	
 	CATS_ACT_PTR		cap;
@@ -55,7 +55,7 @@ typedef struct {
 	
 } CURSOR_ONE;
 
-///< ƒ[ƒN
+///< ãƒ¯ãƒ¼ã‚¯
 typedef struct {
 	
 	CURSOR_SYS			sys;

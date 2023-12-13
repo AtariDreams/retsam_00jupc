@@ -39,11 +39,11 @@ static void CARDi_UnlockResource(CARDiOwner owner, CARDTargetMode target);
 /*---------------------------------------------------------------------------*
   Name:         CARDi_SetTask
 
-  Description:  ѓ^ѓXѓNѓXѓЊѓbѓh‚Йѓ^ѓXѓN‚рђЭ’и.
-                (‚·‚Е‚Йѓ^ѓXѓNѓXѓЊѓbѓh‚Є CARDi_WaitTask() ‚Й‚ж‚Б‚Д”r‘јђ§Њд
-                 ‚і‚к‚Д‚ў‚й‚±‚Ж‚Н, ‚±‚МЉЦђ”‚МЊД‚СЏo‚µЊі‚Е•ЫЏШ‚·‚й)
+  Description:  г‚їг‚№г‚Їг‚№гѓ¬гѓѓгѓ‰гЃ«г‚їг‚№г‚Їг‚’иЁ­е®љ.
+                (гЃ™гЃ§гЃ«г‚їг‚№г‚Їг‚№гѓ¬гѓѓгѓ‰гЃЊ CARDi_WaitTask() гЃ«г‚€гЃЈгЃ¦жЋ’д»–е€¶еѕЎ
+                 гЃ•г‚ЊгЃ¦гЃ„г‚‹гЃ“гЃЁгЃЇ, гЃ“гЃ®й–ўж•°гЃ®е‘јгЃіе‡єгЃ—е…ѓгЃ§дїќиЁјгЃ™г‚‹)
 
-  Arguments:    task       ђЭ’и‚·‚йѓ^ѓXѓNЉЦђ”
+  Arguments:    task       иЁ­е®љгЃ™г‚‹г‚їг‚№г‚Їй–ўж•°
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -51,10 +51,10 @@ void CARDi_SetTask(void (*task) (CARDiCommon *))
 {
     CARDiCommon *const p = &cardi_common;
 
-    /* ‚Ь‚ёѓXѓЉЃ[ѓv’†‚Мѓ^ѓXѓNѓXѓЊѓbѓh—Dђж“x‚р•ПЌX */
+    /* гЃѕгЃљг‚№гѓЄгѓјгѓ—дё­гЃ®г‚їг‚№г‚Їг‚№гѓ¬гѓѓгѓ‰е„Єе…€еє¦г‚’е¤‰ж›ґ */
     (void)OS_SetThreadPriority(p->thread, p->priority);
 
-    /* Џ€—ќ‚і‚№‚йѓ^ѓXѓN‚рђЭ’и‚µ, ѓXѓЊѓbѓh‚р‹N‚±‚· */
+    /* е‡¦зђ†гЃ•гЃ›г‚‹г‚їг‚№г‚Їг‚’иЁ­е®љгЃ—, г‚№гѓ¬гѓѓгѓ‰г‚’иµ·гЃ“гЃ™ */
     p->cur_th = p->thread;
     p->task_func = task;
     p->flag |= CARD_STAT_TASK;
@@ -64,10 +64,10 @@ void CARDi_SetTask(void (*task) (CARDiCommon *))
 /*---------------------------------------------------------------------------*
   Name:         CARDi_LockResource
 
-  Description:  ѓЉѓ\Ѓ[ѓX”r‘ј‚МѓЌѓbѓN.
+  Description:  гѓЄг‚Ѕгѓјг‚№жЋ’д»–гЃ®гѓ­гѓѓг‚Ї.
 
-  Arguments:    owner      ѓЌѓbѓN‚МЏЉ—LЋТ‚рЋ¦‚· lock-ID
-                target     ѓЌѓbѓN‚·‚Ч‚«ѓJЃ[ѓhѓoѓXЏг‚МѓЉѓ\Ѓ[ѓXѓ^Ѓ[ѓQѓbѓg
+  Arguments:    owner      гѓ­гѓѓг‚ЇгЃ®ж‰Ђжњ‰иЂ…г‚’з¤єгЃ™ lock-ID
+                target     гѓ­гѓѓг‚ЇгЃ™гЃ№гЃЌг‚«гѓјгѓ‰гѓђг‚№дёЉгЃ®гѓЄг‚Ѕгѓјг‚№г‚їгѓјг‚Ігѓѓгѓ€
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -97,10 +97,10 @@ static void CARDi_LockResource(CARDiOwner owner, CARDTargetMode target)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_UnlockResource
 
-  Description:  ѓЉѓ\Ѓ[ѓX”r‘ј‚МѓAѓ“ѓЌѓbѓN.
+  Description:  гѓЄг‚Ѕгѓјг‚№жЋ’д»–гЃ®г‚ўгѓігѓ­гѓѓг‚Ї.
 
-  Arguments:    owner      ѓЌѓbѓN‚МЏЉ—LЋТ‚рЋ¦‚· lock-ID
-                target     ѓAѓ“ѓЌѓbѓN‚·‚Ч‚«ѓJЃ[ѓhѓoѓXЏг‚МѓЉѓ\Ѓ[ѓXѓ^Ѓ[ѓQѓbѓg
+  Arguments:    owner      гѓ­гѓѓг‚ЇгЃ®ж‰Ђжњ‰иЂ…г‚’з¤єгЃ™ lock-ID
+                target     г‚ўгѓігѓ­гѓѓг‚ЇгЃ™гЃ№гЃЌг‚«гѓјгѓ‰гѓђг‚№дёЉгЃ®гѓЄг‚Ѕгѓјг‚№г‚їгѓјг‚Ігѓѓгѓ€
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -132,7 +132,7 @@ static void CARDi_UnlockResource(CARDiOwner owner, CARDTargetMode target)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_InitCommon
 
-  Description:  CARD ѓ‰ѓCѓuѓ‰ѓЉ‹¤’К•”•Є‚МЏ‰Љъ‰».
+  Description:  CARD гѓ©г‚¤гѓ–гѓ©гѓЄе…±йЂљйѓЁе€†гЃ®е€ќжњџеЊ–.
 
   Arguments:    None.
 
@@ -142,12 +142,12 @@ void CARDi_InitCommon(void)
 {
     CARDiCommon *p = &cardi_common;
 
-    /* ѓЌѓbѓN‘ОЏЫ‚МЏ‰Љъ‰» */
+    /* гѓ­гѓѓг‚ЇеЇѕи±ЎгЃ®е€ќжњџеЊ– */
     p->lock_owner = OS_LOCK_ID_ERROR;
     p->lock_ref = 0;
     p->lock_target = CARD_TARGET_NONE;
 
-    /* ‹¤—LѓЃѓ‚ѓЉ‚МђЭ’и */
+    /* е…±жњ‰гѓЎгѓўгѓЄгЃ®иЁ­е®љ */
 #if defined(SDK_ARM9)
     p->cmd = &cardi_arg;
     MI_CpuFillFast(&cardi_arg, 0x00, sizeof(cardi_arg));
@@ -158,13 +158,13 @@ void CARDi_InitCommon(void)
 #endif
 
 #if defined(SDK_ARM9)
-    /* ѓLѓѓѓbѓVѓ…‘S‘М–іЊш‰»и‡’l‚МђЭ’и. (ѓfѓtѓHѓ‹ѓg‚Е‚Н‘S‘М–іЊш‰»‚р‚µ‚И‚ў) */
+    /* г‚­гѓЈгѓѓг‚·гѓҐе…ЁдЅ“з„ЎеЉ№еЊ–й–ѕеЂ¤гЃ®иЁ­е®љ. (гѓ‡гѓ•г‚©гѓ«гѓ€гЃ§гЃЇе…ЁдЅ“з„ЎеЉ№еЊ–г‚’гЃ—гЃЄгЃ„) */
     p->flush_threshold_ic = 0xFFFFFFFF;
     p->flush_threshold_dc = 0xFFFFFFFF;
 #endif
 
 #if !defined(SDK_SMALL_BUILD) && defined(SDK_ARM9)
-    /* “KђШ‚И CARD-ROM ѓwѓbѓ_Џо•с‚р‘Ю”р */
+    /* йЃ©е€‡гЃЄ CARD-ROM гѓгѓѓгѓЂжѓ…е ±г‚’йЂЂйЃї */
     if (!MB_IsMultiBootChild())
     {
         MI_CpuCopy8((const void *)HW_ROM_HEADER_BUF, (void *)HW_CARD_ROM_HEADER,
@@ -173,7 +173,7 @@ void CARDi_InitCommon(void)
 #endif /* !defined(SDK_SMALL_BUILD) && defined(SDK_ARM9) */
 
 #if !defined(SDK_NO_THREAD)
-    /* ѓ^ѓXѓNѓXѓЊѓbѓh‚р‹N“® */
+    /* г‚їг‚№г‚Їг‚№гѓ¬гѓѓгѓ‰г‚’иµ·е‹• */
     OS_InitThreadQueue(p->lock_queue);
     OS_InitThreadQueue(p->busy_q);
     p->priority = CARD_THREAD_PRIORITY_DEFAULT;
@@ -184,10 +184,10 @@ void CARDi_InitCommon(void)
     OS_WakeupThreadDirect(p->thread);
 #endif
 
-    /* ѓRЃ[ѓ‹ѓoѓbѓN‚р“o^ */
+    /* г‚ігѓјгѓ«гѓђгѓѓг‚Їг‚’з™»йЊІ */
     PXI_SetFifoRecvCallback(PXI_FIFO_TAG_FS, CARDi_OnFifoRecv);
 
-    /* ђe‹@‚И‚зѓJЃ[ѓhѓAѓNѓZѓX‚р—LЊш‚Й‚·‚й */
+    /* и¦Єж©џгЃЄг‚‰г‚«гѓјгѓ‰г‚ўг‚Їг‚»г‚№г‚’жњ‰еЉ№гЃ«гЃ™г‚‹ */
     if (!MB_IsMultiBootChild())
     {
         CARD_Enable(TRUE);
@@ -244,11 +244,11 @@ void CARD_Enable(BOOL enable)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_WaitAsync
 
-  Description:  ”с“ЇЉъЉ®—№‚р‘Т‚В.
+  Description:  йќћеђЊжњџе®Њдє†г‚’еѕ…гЃ¤.
 
   Arguments:    None.
 
-  Returns:      ЌЕђV‚МЏ€—ќЊ‹‰К‚Є CARD_RESULT_SUCCESS ‚Е‚ ‚к‚О TRUE.
+  Returns:      жњЂж–°гЃ®е‡¦зђ†зµђжћњгЃЊ CARD_RESULT_SUCCESS гЃ§гЃ‚г‚ЊгЃ° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL CARDi_WaitAsync(void)
 {
@@ -269,11 +269,11 @@ BOOL CARDi_WaitAsync(void)
 /*---------------------------------------------------------------------------*
   Name:         CARDi_TryWaitAsync
 
-  Description:  ”с“ЇЉъЉ®—№‘Т‹@‚рЋЋЌs‚µ, ђ¬”Ы‚ЙЉЦ‚н‚з‚ё‚Ѕ‚ѕ‚ї‚Йђ§Њд‚р•Ф‚·.
+  Description:  йќћеђЊжњџе®Њдє†еѕ…ж©џг‚’и©¦иЎЊгЃ—, ж€ђеђ¦гЃ«й–ўг‚Џг‚‰гЃљгЃџгЃ гЃЎгЃ«е€¶еѕЎг‚’иї”гЃ™.
 
   Arguments:    None.
 
-  Returns:      ЌЕђV‚М”с“ЇЉъЏ€—ќ‚ЄЉ®—№‚µ‚Д‚ў‚к‚О TRUE.
+  Returns:      жњЂж–°гЃ®йќћеђЊжњџе‡¦зђ†гЃЊе®Њдє†гЃ—гЃ¦гЃ„г‚ЊгЃ° TRUE.
  *---------------------------------------------------------------------------*/
 BOOL CARDi_TryWaitAsync(void)
 {
@@ -372,9 +372,9 @@ void CARD_LockRom(u16 lock_id)
 {
     SDK_ASSERT(CARD_IsAvailable());
 
-    /* ѓЉѓ\Ѓ[ѓX‚рѓЌѓbѓN */
+    /* гѓЄг‚Ѕгѓјг‚№г‚’гѓ­гѓѓг‚Ї */
     CARDi_LockResource(lock_id, CARD_TARGET_ROM);
-    /* ѓJЃ[ѓhѓoѓX‚рѓЌѓbѓN */
+    /* г‚«гѓјгѓ‰гѓђг‚№г‚’гѓ­гѓѓг‚Ї */
 #if defined(SDK_TEG)
     if (!CARDi_IsTrueRom())
         (void)OS_LockCartridge(lock_id);
@@ -399,7 +399,7 @@ void CARD_UnlockRom(u16 lock_id)
     SDK_ASSERT(CARD_IsAvailable());
     SDK_ASSERT(cardi_common.lock_target == CARD_TARGET_ROM);
 
-    /* ѓJЃ[ѓhѓoѓX‚рѓAѓ“ѓЌѓbѓN */
+    /* г‚«гѓјгѓ‰гѓђг‚№г‚’г‚ўгѓігѓ­гѓѓг‚Ї */
 #if defined(SDK_TEG)
     if (!CARDi_IsTrueRom())
         (void)OS_UnLockCartridge(lock_id);
@@ -408,7 +408,7 @@ void CARD_UnlockRom(u16 lock_id)
     {
         (void)OS_UnlockCard(lock_id);
     }
-    /* ѓЉѓ\Ѓ[ѓX‚рѓAѓ“ѓЌѓbѓN */
+    /* гѓЄг‚Ѕгѓјг‚№г‚’г‚ўгѓігѓ­гѓѓг‚Ї */
     CARDi_UnlockResource(lock_id, CARD_TARGET_ROM);
 
 }
@@ -426,9 +426,9 @@ void CARD_LockBackup(u16 lock_id)
 {
     SDK_ASSERT(CARD_IsAvailable());
 
-    /* ѓvѓЌѓZѓbѓT“а‚МROM/ѓoѓbѓNѓAѓbѓv”r‘ј‚рЋж‚й */
+    /* гѓ—гѓ­г‚»гѓѓг‚µе†…гЃ®ROM/гѓђгѓѓг‚Їг‚ўгѓѓгѓ—жЋ’д»–г‚’еЏ–г‚‹ */
     CARDi_LockResource(lock_id, CARD_TARGET_BACKUP);
-    /* Џн‚Й ARM7 ‚ЄѓAѓNѓZѓX */
+    /* еёёгЃ« ARM7 гЃЊг‚ўг‚Їг‚»г‚№ */
 #if defined(SDK_ARM7)
     (void)OS_LockCard(lock_id);
 #endif
@@ -448,30 +448,30 @@ void CARD_UnlockBackup(u16 lock_id)
     SDK_ASSERT(CARD_IsAvailable());
     SDK_ASSERT(cardi_common.lock_target == CARD_TARGET_BACKUP);
 
-    /* ”с“ЇЉъЏ€—ќ‚МЋАЌs’†‚ЙѓoѓX‚р‰р•ъ‚µ‚ж‚¤‚Ж‚µ‚Ѕ‚зѓuѓЌѓbѓLѓ“ѓO */
+    /* йќћеђЊжњџе‡¦зђ†гЃ®е®џиЎЊдё­гЃ«гѓђг‚№г‚’и§Јж”ѕгЃ—г‚€гЃ†гЃЁгЃ—гЃџг‚‰гѓ–гѓ­гѓѓг‚­гѓіг‚° */
     if (!CARD_TryWaitBackupAsync())
     {
         OS_TWarning("called CARD_UnlockBackup() during backup asynchronous operation. (force to wait)\n");
         (void)CARD_WaitBackupAsync();
     }
 
-    /* Џн‚Й ARM7 ‚ЄѓAѓNѓZѓX */
+    /* еёёгЃ« ARM7 гЃЊг‚ўг‚Їг‚»г‚№ */
 #if defined(SDK_ARM7)
     (void)OS_UnlockCard(lock_id);
 #endif
-    /* ѓЉѓ\Ѓ[ѓX‚рѓAѓ“ѓЌѓbѓN */
+    /* гѓЄг‚Ѕгѓјг‚№г‚’г‚ўгѓігѓ­гѓѓг‚Ї */
     CARDi_UnlockResource(lock_id, CARD_TARGET_BACKUP);
 }
 
 /*---------------------------------------------------------------------------*
   Name:         CARD_GetCacheFlushThreshold
 
-  Description:  ѓLѓѓѓbѓVѓ…–іЊш‰»‚р•”•Є“I‚ЙЌs‚¤‚©‘S‘М‚ЦЌs‚¤‚©‚Ми‡’l‚рЋж“ѕ.
+  Description:  г‚­гѓЈгѓѓг‚·гѓҐз„ЎеЉ№еЊ–г‚’йѓЁе€†зљ„гЃ«иЎЊгЃ†гЃ‹е…ЁдЅ“гЃёиЎЊгЃ†гЃ‹гЃ®й–ѕеЂ¤г‚’еЏ–еѕ—.
 
-  Arguments:    icache            –Ѕ—ЯѓLѓѓѓbѓVѓ…‚М–іЊш‰»и‡’l‚рЉi”[‚·‚йѓ|ѓCѓ“ѓ^.
-                                  NULL‚Е‚ ‚к‚О–іЋ‹‚і‚к‚й.
-                dcache            ѓfЃ[ѓ^ѓLѓѓѓbѓVѓ…‚М–іЊш‰»и‡’l‚рЉi”[‚·‚йѓ|ѓCѓ“ѓ^.
-                                  NULL‚Е‚ ‚к‚О–іЋ‹‚і‚к‚й.
+  Arguments:    icache            е‘Ѕд»¤г‚­гѓЈгѓѓг‚·гѓҐгЃ®з„ЎеЉ№еЊ–й–ѕеЂ¤г‚’ж јзґЌгЃ™г‚‹гѓќг‚¤гѓіг‚ї.
+                                  NULLгЃ§гЃ‚г‚ЊгЃ°з„Ўи¦–гЃ•г‚Њг‚‹.
+                dcache            гѓ‡гѓјг‚їг‚­гѓЈгѓѓг‚·гѓҐгЃ®з„ЎеЉ№еЊ–й–ѕеЂ¤г‚’ж јзґЌгЃ™г‚‹гѓќг‚¤гѓіг‚ї.
+                                  NULLгЃ§гЃ‚г‚ЊгЃ°з„Ўи¦–гЃ•г‚Њг‚‹.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -496,10 +496,10 @@ void CARD_GetCacheFlushThreshold(u32 *icache, u32 *dcache)
 /*---------------------------------------------------------------------------*
   Name:         CARD_SetCacheFlushThreshold
 
-  Description:  ѓLѓѓѓbѓVѓ…–іЊш‰»‚р•”•Є“I‚ЙЌs‚¤‚©‘S‘М‚ЦЌs‚¤‚©‚Ми‡’l‚рђЭ’и.
+  Description:  г‚­гѓЈгѓѓг‚·гѓҐз„ЎеЉ№еЊ–г‚’йѓЁе€†зљ„гЃ«иЎЊгЃ†гЃ‹е…ЁдЅ“гЃёиЎЊгЃ†гЃ‹гЃ®й–ѕеЂ¤г‚’иЁ­е®љ.
 
-  Arguments:    icache            –Ѕ—ЯѓLѓѓѓbѓVѓ…‚М–іЊш‰»и‡’l.
-                dcache            ѓfЃ[ѓ^ѓLѓѓѓbѓVѓ…‚М–іЊш‰»и‡’l.
+  Arguments:    icache            е‘Ѕд»¤г‚­гѓЈгѓѓг‚·гѓҐгЃ®з„ЎеЉ№еЊ–й–ѕеЂ¤.
+                dcache            гѓ‡гѓјг‚їг‚­гѓЈгѓѓг‚·гѓҐгЃ®з„ЎеЉ№еЊ–й–ѕеЂ¤.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -569,7 +569,7 @@ const u8 *CARD_GetRomHeader(void)
   do-indent.
 
   Revision 1.16  2004/12/15 09:44:45  yasu
-  CARD ѓAѓNѓZѓXѓCѓlЃ[ѓuѓ‰‹@Ќ\‚М’З‰Б
+  CARD г‚ўг‚Їг‚»г‚№г‚¤гѓЌгѓјгѓ–гѓ©ж©џж§‹гЃ®иїЅеЉ 
 
   Revision 1.15  2004/12/07 10:50:56  yosizaki
   change CARDi_CheckValidity to return TRUE.

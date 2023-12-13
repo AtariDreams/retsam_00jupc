@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	eventdata.c
- * @brief	ƒ][ƒ“–ˆ‚É“Ç‚İ‚ŞƒCƒxƒ“ƒgƒf[ƒ^‚Ìˆ—
+ * @brief	ã‚¾ãƒ¼ãƒ³æ¯ã«èª­ã¿è¾¼ã‚€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®å‡¦ç†
  * @author	tamada	GAME FREAK Inc.
  * @date	2005.10.17
  */
@@ -26,10 +26,10 @@
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒ][ƒ“–ˆ‚ÌƒCƒxƒ“ƒgƒf[ƒ^\‘¢
+ * @brief	ã‚¾ãƒ¼ãƒ³æ¯ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿æ§‹é€ 
  *
- * ƒ][ƒ“–ˆ‚É¶¬‚³‚ê‚Ä‘g‚İ‚Ü‚ê‚éƒCƒxƒ“ƒgƒf[ƒ^ƒoƒCƒiƒŠ‚ğ
- * ‰ğÍ‚µ‚Ä‚±‚Ì\‘¢‘Ì‚É’l‚ğ“ü‚ê‚éB
+ * ã‚¾ãƒ¼ãƒ³æ¯ã«ç”Ÿæˆã•ã‚Œã¦çµ„ã¿è¾¼ã¾ã‚Œã‚‹ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒŠãƒªã‚’
+ * è§£æã—ã¦ã“ã®æ§‹é€ ä½“ã«å€¤ã‚’å…¥ã‚Œã‚‹ã€‚
  */
 //------------------------------------------------------------------
 struct EVENT_DATA{
@@ -57,8 +57,8 @@ static void LoadSpecialScriptData(EVENT_DATA * eventdata, int zone_id);
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒf[ƒ^F¶¬ˆ—
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ï¼šç”Ÿæˆå‡¦ç†
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void EventData_Sys_Create(FIELDSYS_WORK * fsys, int heapID)
@@ -70,8 +70,8 @@ void EventData_Sys_Create(FIELDSYS_WORK * fsys, int heapID)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒf[ƒ^F¶¬ˆ—
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ï¼šç”Ÿæˆå‡¦ç†
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void EventData_Sys_Delete(FIELDSYS_WORK * fsys)
@@ -84,11 +84,11 @@ void EventData_Sys_Delete(FIELDSYS_WORK * fsys)
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒ][ƒ“‚²‚Æ‚ÌƒCƒxƒ“ƒgƒf[ƒ^“Ç‚İ‚İ
- * @param	zone_id		ƒ][ƒ“ID‚Ìw’è
+ * @brief	ã‚¾ãƒ¼ãƒ³ã”ã¨ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
+ * @param	zone_id		ã‚¾ãƒ¼ãƒ³IDã®æŒ‡å®š
  *
- * ƒ][ƒ“‚²‚Æ‚ÌƒCƒxƒ“ƒgƒf[ƒ^ƒoƒCƒiƒŠ‚ğ“Ç‚İ‚ñ‚ÅƒCƒxƒ“ƒgƒf[ƒ^\‘¢‘Ì‚ğ
- * ¶¬‚·‚é
+ * ã‚¾ãƒ¼ãƒ³ã”ã¨ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒŠãƒªã‚’èª­ã¿è¾¼ã‚“ã§ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã‚’
+ * ç”Ÿæˆã™ã‚‹
  */
 //------------------------------------------------------------------
 void EventData_LoadZoneData(FIELDSYS_WORK * fsys, int zone_id)
@@ -114,8 +114,8 @@ static void LoadEventData(EVENT_DATA * eventdata, int zone_id)
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒhNPC‚ÌƒZƒbƒg
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰NPCã®ã‚»ãƒƒãƒˆ
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void EventData_SetFieldOBJ(FIELDSYS_WORK * fsys)
@@ -129,9 +129,9 @@ void EventData_SetFieldOBJ(FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	BG˜b‚µ‚©‚¯ƒCƒxƒ“ƒgƒf[ƒ^‚Ìæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	ƒf[ƒ^æ“ª‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	BGè©±ã—ã‹ã‘ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	ãƒ‡ãƒ¼ã‚¿å…ˆé ­ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 const BG_TALK_DATA * EventData_GetNowBgTalkData(const FIELDSYS_WORK * fsys)
@@ -140,9 +140,9 @@ const BG_TALK_DATA * EventData_GetNowBgTalkData(const FIELDSYS_WORK * fsys)
 }
 //------------------------------------------------------------------
 /**
- * @brief	BG˜b‚µ‚©‚¯ƒCƒxƒ“ƒgƒf[ƒ^”‚Ìæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	ƒf[ƒ^”
+ * @brief	BGè©±ã—ã‹ã‘ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿æ•°ã®å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	ãƒ‡ãƒ¼ã‚¿æ•°
  */
 //------------------------------------------------------------------
 int EventData_GetNowBgTalkDataSize(const FIELDSYS_WORK * fsys)
@@ -152,9 +152,9 @@ int EventData_GetNowBgTalkDataSize(const FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒvÚ‘±ƒf[ƒ^”‚Ìæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	ƒf[ƒ^”
+ * @brief	ãƒãƒƒãƒ—æ¥ç¶šãƒ‡ãƒ¼ã‚¿æ•°ã®å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	ãƒ‡ãƒ¼ã‚¿æ•°
  */
 //------------------------------------------------------------------
 int EventData_GetNowConnectDataSize(const FIELDSYS_WORK * fsys)
@@ -163,11 +163,11 @@ int EventData_GetNowConnectDataSize(const FIELDSYS_WORK * fsys)
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒvÚ‘±ƒf[ƒ^‚Ìæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		o“ü‚èŒûID
- * @retval	NULLˆÈŠO	w’è‚µ‚½ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	NULL		ƒf[ƒ^‚ª‘¶İ‚µ‚È‚¢
+ * @brief	ãƒãƒƒãƒ—æ¥ç¶šãƒ‡ãƒ¼ã‚¿ã®å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		å‡ºå…¥ã‚Šå£ID
+ * @retval	NULLä»¥å¤–	æŒ‡å®šã—ãŸãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	NULL		ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ãªã„
  */
 //------------------------------------------------------------------
 const CONNECT_DATA * EventData_GetNowConnectDataByID(const FIELDSYS_WORK * fsys, int door_id)
@@ -180,12 +180,12 @@ const CONNECT_DATA * EventData_GetNowConnectDataByID(const FIELDSYS_WORK * fsys,
 }
 //------------------------------------------------------------------
 /**
- * @brief	ƒ}ƒbƒvÚ‘±ƒf[ƒ^ID‚Ìæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	x		’T‚·XˆÊ’uiƒOƒŠƒbƒh’PˆÊj
- * @param	z		’T‚·ZˆÊ’uiƒOƒŠƒbƒh’PˆÊj
- * @return	int	o“üŒûID
- * @return	-1	o“üŒû‚ª‘¶İ‚µ‚È‚©‚Á‚½ê‡
+ * @brief	ãƒãƒƒãƒ—æ¥ç¶šãƒ‡ãƒ¼ã‚¿IDã®å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	x		æ¢ã™Xä½ç½®ï¼ˆã‚°ãƒªãƒƒãƒ‰å˜ä½ï¼‰
+ * @param	z		æ¢ã™Zä½ç½®ï¼ˆã‚°ãƒªãƒƒãƒ‰å˜ä½ï¼‰
+ * @return	int	å‡ºå…¥å£ID
+ * @return	-1	å‡ºå…¥å£ãŒå­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆ
  */
 //------------------------------------------------------------------
 int EventData_SearchNowConnectIDByXZ(const FIELDSYS_WORK * fsys, int x, int z)
@@ -203,9 +203,9 @@ int EventData_SearchNowConnectIDByXZ(const FIELDSYS_WORK * fsys, int x, int z)
 
 //------------------------------------------------------------------
 /**
- * @brief	POS”­“®ƒCƒxƒ“ƒg‚Ìƒf[ƒ^”æ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	POS”­“®ƒCƒxƒ“ƒg‚Ìƒf[ƒ^”
+ * @brief	POSç™ºå‹•ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿æ•°å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	POSç™ºå‹•ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿æ•°
  */
 //------------------------------------------------------------------
 int EventData_GetNowPosEventDataSize(const FIELDSYS_WORK * fsys)
@@ -214,9 +214,9 @@ int EventData_GetNowPosEventDataSize(const FIELDSYS_WORK * fsys)
 }
 //------------------------------------------------------------------
 /**
- * @brief	POS”­“®ƒCƒxƒ“ƒg‚Ìƒf[ƒ^æ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	ƒf[ƒ^æ“ª‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	POSç™ºå‹•ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ‡ãƒ¼ã‚¿å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	ãƒ‡ãƒ¼ã‚¿å…ˆé ­ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 const POS_EVENT_DATA * EventData_GetNowPosEventData(const FIELDSYS_WORK * fsys)
@@ -226,8 +226,8 @@ const POS_EVENT_DATA * EventData_GetNowPosEventData(const FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	npc_countæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	npc_countå–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	"npc_count"
  */
 //------------------------------------------------------------------
@@ -238,8 +238,8 @@ u32 EventData_GetNpcCount(const FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	npc_dataæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	npc_dataå–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @return	"npc_data"
  */
 //------------------------------------------------------------------
@@ -250,12 +250,12 @@ const FIELD_OBJ_H* EventData_GetNpcData(const FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * @brief	npc_data‚ÌÀ•W‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	gx		ƒOƒŠƒbƒhX
- * @param	gz		ƒOƒŠƒbƒhZ
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	npc_dataã®åº§æ¨™ã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	gx		ã‚°ãƒªãƒƒãƒ‰X
+ * @param	gz		ã‚°ãƒªãƒƒãƒ‰Z
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 BOOL EventData_NpcDataPosChange(FIELDSYS_WORK * fsys, int id, u16 gx, u16 gz )
@@ -265,24 +265,24 @@ BOOL EventData_NpcDataPosChange(FIELDSYS_WORK * fsys, int id, u16 gx, u16 gz )
 	u32 max			= fsys->eventdata->npc_count;
 
 	for( i=0; i < max ;i++ ){
-		if( p[i].id == id ){		//“¯‚¶ID‚ğŒŸõ
+		if( p[i].id == id ){		//åŒã˜IDã‚’æ¤œç´¢
 			p[i].gx = gx;
 			p[i].gz = gz;
 			return TRUE;
 		}
 	}
 
-	GF_ASSERT( (0) && "“¯‚¶ID‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½I" );
+	GF_ASSERT( (0) && "åŒã˜IDãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸï¼" );
 	return FALSE;
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	npc_data‚Ì•ûŒü‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	dir		•ûŒü
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	npc_dataã®æ–¹å‘ã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	dir		æ–¹å‘
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 BOOL EventData_NpcDataDirChange(FIELDSYS_WORK * fsys, int id, int dir );
@@ -293,23 +293,23 @@ BOOL EventData_NpcDataDirChange(FIELDSYS_WORK * fsys, int id, int dir )
 	u32 max			= fsys->eventdata->npc_count;
 
 	for( i=0; i < max ;i++ ){
-		if( p[i].id == id ){		//“¯‚¶ID‚ğŒŸõ
+		if( p[i].id == id ){		//åŒã˜IDã‚’æ¤œç´¢
 			p[i].dir = dir;
 			return TRUE;
 		}
 	}
 
-	GF_ASSERT( (0) && "“¯‚¶ID‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½I" );
+	GF_ASSERT( (0) && "åŒã˜IDãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸï¼" );
 	return FALSE;
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	npc_data‚Ì“®ìƒR[ƒh‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	mv		“®ìƒR[ƒh
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	npc_dataã®å‹•ä½œã‚³ãƒ¼ãƒ‰ã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	mv		å‹•ä½œã‚³ãƒ¼ãƒ‰
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 BOOL EventData_NpcDataMoveCodeChange(FIELDSYS_WORK * fsys, int id, int mv );
@@ -320,46 +320,46 @@ BOOL EventData_NpcDataMoveCodeChange(FIELDSYS_WORK * fsys, int id, int mv )
 	u32 max			= fsys->eventdata->npc_count;
 
 	for( i=0; i < max ;i++ ){
-		if( p[i].id == id ){		//“¯‚¶ID‚ğŒŸõ
+		if( p[i].id == id ){		//åŒã˜IDã‚’æ¤œç´¢
 			p[i].move_code =mv;
 			return TRUE;
 		}
 	}
 
-	GF_ASSERT( (0) && "“¯‚¶ID‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½I" );
+	GF_ASSERT( (0) && "åŒã˜IDãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸï¼" );
 	return FALSE;
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	connect_data‚ÌÀ•W‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	x		ƒZƒbƒg‚·‚éX
- * @param	z		ƒZƒbƒg‚·‚éZ
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	connect_dataã®åº§æ¨™ã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	x		ã‚»ãƒƒãƒˆã™ã‚‹X
+ * @param	z		ã‚»ãƒƒãƒˆã™ã‚‹Z
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 BOOL EventData_ConnectDataPosChange(FIELDSYS_WORK * fsys, u16 id, u16 x, u16 z );
 BOOL EventData_ConnectDataPosChange(FIELDSYS_WORK * fsys, u16 id, u16 x, u16 z )
 {
 	CONNECT_DATA* p	= (CONNECT_DATA*)fsys->eventdata->connect_data;
-	//OS_Printf( "•ÏX‘O x = %d\n", p[id].x );
-	//OS_Printf( "•ÏX‘O z = %d\n", p[id].z );
+	//OS_Printf( "å¤‰æ›´å‰ x = %d\n", p[id].x );
+	//OS_Printf( "å¤‰æ›´å‰ z = %d\n", p[id].z );
 	p[id].x			= x;
 	p[id].z			= z;
-	//OS_Printf( "•ÏXŒã x = %d\n", p[id].x );
-	//OS_Printf( "•ÏXŒã z = %d\n", p[id].z );
+	//OS_Printf( "å¤‰æ›´å¾Œ x = %d\n", p[id].x );
+	//OS_Printf( "å¤‰æ›´å¾Œ z = %d\n", p[id].z );
 	return TRUE;
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	connect_data‚ÌÚ‘±æƒ][ƒ“ID‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	zone	ƒZƒbƒg‚·‚éƒ][ƒ“
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	connect_dataã®æ¥ç¶šå…ˆã‚¾ãƒ¼ãƒ³IDã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	zone	ã‚»ãƒƒãƒˆã™ã‚‹ã‚¾ãƒ¼ãƒ³
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 BOOL EventData_ConnectDataZoneChange(FIELDSYS_WORK * fsys, u16 id, u16 zone );
@@ -373,11 +373,11 @@ BOOL EventData_ConnectDataZoneChange(FIELDSYS_WORK * fsys, u16 id, u16 zone)
 
 //------------------------------------------------------------------
 /**
- * @brief	connect_data‚ÌÚ‘±æƒhƒAID‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	door	ƒZƒbƒg‚·‚éƒhƒA
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	connect_dataã®æ¥ç¶šå…ˆãƒ‰ã‚¢IDã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	door	ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‰ã‚¢
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 BOOL EventData_ConnectDataDoorChange(FIELDSYS_WORK * fsys, u16 id, u16 door );
@@ -391,12 +391,12 @@ BOOL EventData_ConnectDataDoorChange(FIELDSYS_WORK * fsys, u16 id, u16 door )
 
 //------------------------------------------------------------------
 /**
- * @brief	bg_data‚ÌÀ•W‚ğ‘‚«Š·‚¦‚é
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	id		ŒŸõ‚·‚éID
- * @param	x		ƒZƒbƒg‚·‚éX
- * @param	z		ƒZƒbƒg‚·‚éZ
- * @return	"TRUE=¬Œ÷AFALSE=¸”s"
+ * @brief	bg_dataã®åº§æ¨™ã‚’æ›¸ãæ›ãˆã‚‹
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	id		æ¤œç´¢ã™ã‚‹ID
+ * @param	x		ã‚»ãƒƒãƒˆã™ã‚‹X
+ * @param	z		ã‚»ãƒƒãƒˆã™ã‚‹Z
+ * @return	"TRUE=æˆåŠŸã€FALSE=å¤±æ•—"
  */
 //------------------------------------------------------------------
 BOOL EventData_BgDataPosChange(FIELDSYS_WORK * fsys, u16 id, u16 x, u16 z );
@@ -404,32 +404,32 @@ BOOL EventData_BgDataPosChange(FIELDSYS_WORK * fsys, u16 id, u16 x, u16 z )
 {
 	BG_TALK_DATA* p = (BG_TALK_DATA*)EventData_GetNowBgTalkData( fsys );
 
-	//OS_Printf( "•ÏX‘O p = %d\n", p );
-	//OS_Printf( "•ÏX‘O x = %d\n", p->gx );
-	//OS_Printf( "•ÏX‘O x = %d\n", p->gz );
+	//OS_Printf( "å¤‰æ›´å‰ p = %d\n", p );
+	//OS_Printf( "å¤‰æ›´å‰ x = %d\n", p->gx );
+	//OS_Printf( "å¤‰æ›´å‰ x = %d\n", p->gz );
 	(p)+=id;
 	p->gx = x;
 	p->gz = z;
-	//OS_Printf( "•ÏXŒã p = %d\n", p );
-	//OS_Printf( "•ÏXŒã x = %d\n", p->gx );
-	//OS_Printf( "•ÏXŒã x = %d\n", p->gz );
+	//OS_Printf( "å¤‰æ›´å¾Œ p = %d\n", p );
+	//OS_Printf( "å¤‰æ›´å¾Œ x = %d\n", p->gx );
+	//OS_Printf( "å¤‰æ›´å¾Œ x = %d\n", p->gz );
 	return TRUE;
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒgƒf[ƒ^¶¬ˆ—
- * @param	event_data	EVENT_DATA\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç”Ÿæˆå‡¦ç†
+ * @param	event_data	EVENT_DATAæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * EVENT_DATA::buffer‚É“Ç‚İ‚Ü‚ê‚Ä‚¢‚éƒoƒCƒiƒŠƒf[ƒ^‚ğ
- * ‰ğÍ‚µ‚ÄEVENT_DATA\‘¢‘Ì‚Ì‚Ù‚©‚Ìƒƒ“ƒo[‚ğ¶¬‚·‚éB
+ * EVENT_DATA::bufferã«èª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ãƒã‚¤ãƒŠãƒªãƒ‡ãƒ¼ã‚¿ã‚’
+ * è§£æã—ã¦EVENT_DATAæ§‹é€ ä½“ã®ã»ã‹ã®ãƒ¡ãƒ³ãƒãƒ¼ã‚’ç”Ÿæˆã™ã‚‹ã€‚
  */
 //------------------------------------------------------------------
 static void MakeEventData(EVENT_DATA * event_data)
 {
 	const u8 * buffer = (const u8 *)event_data->buffer;
 
-	//BG˜b‚µ‚©‚¯ƒCƒxƒ“ƒgƒf[ƒ^“Ç‚İ‚İ
+	//BGè©±ã—ã‹ã‘ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	event_data->bg_count = *(u32 *)buffer;
 	buffer += sizeof(u32);
 	if (event_data->bg_count != 0) {
@@ -439,7 +439,7 @@ static void MakeEventData(EVENT_DATA * event_data)
 	}
 	buffer += sizeof(BG_TALK_DATA) * event_data->bg_count;
 
-	//NPC”z’uƒf[ƒ^“Ç‚İ‚İ
+	//NPCé…ç½®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	event_data->npc_count = *(u32 *)buffer;
 	buffer += sizeof(u32);
 	if (event_data->npc_count != 0) {
@@ -449,7 +449,7 @@ static void MakeEventData(EVENT_DATA * event_data)
 	}
 	buffer += sizeof(struct _TAG_FIELD_OBJ_H) * event_data->npc_count;
 
-	//ƒ}ƒbƒvÚ‘±ƒf[ƒ^“Ç‚İ‚İ
+	//ãƒãƒƒãƒ—æ¥ç¶šãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	event_data->connect_count = *(u32 *)buffer;
 	buffer += sizeof(u32);
 	if (event_data->connect_count != 0) {
@@ -459,7 +459,7 @@ static void MakeEventData(EVENT_DATA * event_data)
 	}
 	buffer += sizeof(CONNECT_DATA) * event_data->connect_count;
 
-	//POS”­“®ƒCƒxƒ“ƒgƒf[ƒ^“Ç‚İ‚İ
+	//POSç™ºå‹•ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	event_data->posevent_count = *(u32 *)buffer;
 	buffer += sizeof(u32);
 	if (event_data->posevent_count != 0) {
@@ -475,9 +475,9 @@ static void MakeEventData(EVENT_DATA * event_data)
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒ][ƒ“–ˆ‚ÌƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚Ì“Ç‚İ‚İ
- * @param	zone_id		ƒ][ƒ“ID‚Ìw’è
- * @param	event_data	EVENT_DATA\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¾ãƒ¼ãƒ³æ¯ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
+ * @param	zone_id		ã‚¾ãƒ¼ãƒ³IDã®æŒ‡å®š
+ * @param	event_data	EVENT_DATAæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void EventData_LoadEncountData(ENCOUNT_DATA *enc_data, int zone_id)
@@ -487,7 +487,7 @@ void EventData_LoadEncountData(ENCOUNT_DATA *enc_data, int zone_id)
 	if (ZoneData_GetEncountFlag(zone_id)) {
 		if (PM_VERSION == VERSION_DIAMOND || PM_VERSION == VERSION_PLATINUM){
 		//	arc_version = ARC_D_ENCOUNT;
-			arc_version = ARC_PL_ENCOUNT;		///< ƒvƒ‰ƒ`ƒiƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^
+			arc_version = ARC_PL_ENCOUNT;		///< ãƒ—ãƒ©ãƒãƒŠã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
 		}else{
 			arc_version = ARC_P_ENCOUNT;
 		}
@@ -498,9 +498,9 @@ void EventData_LoadEncountData(ENCOUNT_DATA *enc_data, int zone_id)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚Ìæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	ENCOUNT_DATA * ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚Ìæ“ªƒAƒhƒŒƒX
+ * @brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	ENCOUNT_DATA * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * 
  * 
@@ -515,9 +515,9 @@ const ENCOUNT_DATA * EventData_GetEncountData(const FIELDSYS_WORK * fsys)
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	ƒ][ƒ“–ˆ‚Ì“ÁêƒXƒNƒŠƒvƒgƒf[ƒ^‚Ì“Ç‚İ‚İ
- * @param	zone_id		ƒ][ƒ“ID‚Ìw’è
- * @param	event_data	EVENT_DATA\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚¾ãƒ¼ãƒ³æ¯ã®ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
+ * @param	zone_id		ã‚¾ãƒ¼ãƒ³IDã®æŒ‡å®š
+ * @param	event_data	EVENT_DATAæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static void LoadSpecialScriptData(EVENT_DATA * eventdata, int zone_id)
@@ -531,9 +531,9 @@ static void LoadSpecialScriptData(EVENT_DATA * eventdata, int zone_id)
 
 //------------------------------------------------------------------
 /**
- * @brief	“ÁêƒXƒNƒŠƒvƒgƒf[ƒ^‚Ìæ“¾
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	void * “ÁêƒXƒNƒŠƒvƒgƒf[ƒ^‚Ìæ“ªƒAƒhƒŒƒX
+ * @brief	ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ã®å–å¾—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	void * ç‰¹æ®Šã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -546,13 +546,13 @@ void * EventData_GetSpecialScript(const FIELDSYS_WORK * fsys)
 
 //------------------------------------------------------------------
 /**
- * ’n‰º‚Éö‚é‚±‚Æ‚ªo—ˆ‚éÀ•W‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
+ * åœ°ä¸‹ã«æ½œã‚‹ã“ã¨ãŒå‡ºæ¥ã‚‹åº§æ¨™ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param   fsys		ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   gx			ƒ`ƒFƒbƒN‚·‚é‚wÀ•W
- * @param   gz			ƒ`ƒFƒbƒN‚·‚é‚yÀ•W
+ * @param   fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   gx			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ï¼¸åº§æ¨™
+ * @param   gz			ãƒã‚§ãƒƒã‚¯ã™ã‚‹ï¼ºåº§æ¨™
  *
- * @retval  BOOL		"TRUE=ö‚é‚±‚Æ‚ª‚Å‚«‚é FALSE=‚Å‚«‚È‚¢"
+ * @retval  BOOL		"TRUE=æ½œã‚‹ã“ã¨ãŒã§ãã‚‹ FALSE=ã§ããªã„"
  */
 //------------------------------------------------------------------
 BOOL EventData_CheckIntoUGPos( const FIELDSYS_WORK* fsys, u16 gx, u16 gz )

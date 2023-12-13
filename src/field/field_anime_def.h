@@ -3,7 +3,7 @@
 
 
 
-//“à•”‚ÌŒ©‚¦‚È‚¢ƒtƒB[ƒ‹ƒhƒAƒjƒi“]‘—j\‘¢‘Ì’è‹`
+//å†…éƒ¨ã®è¦‹ãˆãªã„ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¢ãƒ‹ãƒ¡ï¼ˆè»¢é€ï¼‰æ§‹é€ ä½“å®šç¾©
 //typedef  struct _FIELD_ANIME_WORK* FIELD_ANIME_PTR;
 typedef  struct _FIELD_ANIME_CONTROL_WORK* FIELD_ANIME_PTR;
 

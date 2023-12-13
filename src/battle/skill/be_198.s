@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_198.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			198�@�G�ɗ^�����_���[�W�̂R���̂P���������󂯂�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			198　敵に与えたダメージの３分の１を自分が受ける
  *
  *@author	HisashiSogabe
  *@data		2006.02.09
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_198:
-	//�������Ắ݂A�����_���[�W�n���󂯂�Z�̈З͂�2����������
+	//特性すてみは、反動ダメージ系を受ける技の威力を2割増しする
 	TOKUSEI_CHECK	TOKUSEI_NO_HAVE,SIDE_ATTACK,TOKUSYU_SUTEMI,BE_198_NEXT
 	VALUE			VAL_SET,BUF_PARA_DAMAGE_VALUE,12
 BE_198_NEXT:

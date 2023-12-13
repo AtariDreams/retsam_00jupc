@@ -12,10 +12,10 @@
 
   $Log: gx.h,v $
   Revision 1.4  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL �̔��蕔���� SDK_WIN32 �ł̔�����ǉ�
+  SDK_FROM_TOOL の判定部分に SDK_WIN32 での判定も追加
 
   Revision 1.3  2005/08/10 08:57:36  yasu
-  g3b.c g3c.c �� PC ��ŃR���p�C���ł���悤�ɏC��
+  g3b.c g3c.c を PC 上でコンパイルできるように修正
 
   Revision 1.2  2005/02/28 05:26:02  yosizaki
   do-indent.

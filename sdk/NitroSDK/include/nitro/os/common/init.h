@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.6  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.5  2005/02/28 05:26:01  yosizaki
   do-indent.
@@ -30,7 +30,7 @@
   change SDK prefix iris -> nitro
 
   Revision 1.1  2003/12/22 01:35:16  yada
-  OS_Init() İ’u‚É‚Â‚« init.h ì¬
+  OS_Init() è¨­ç½®ã«ã¤ã init.h ä½œæˆ
 
 
   $NoKeywords: $

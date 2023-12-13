@@ -30,8 +30,8 @@ extern "C" {
 /*---------------------------------------------------------------------------*
     NNSG3dGetJointScale
 
-    �W���C���g�̃X�P�[���v�Z���s���֐��ւ̃|�C���^
-    CG�c�[�����ɈႢ�����邽�ߕ������Ă����B
+    ジョイントのスケール計算を行う関数へのポインタ
+    CGツール毎に違いがあるため分離しておく。
 *---------------------------------------------------------------------------*/
 typedef void (*NNSG3dGetJointScale)(NNSG3dJntAnmResult* pResult,
                                     const fx32* p,
@@ -41,9 +41,9 @@ typedef void (*NNSG3dGetJointScale)(NNSG3dJntAnmResult* pResult,
 /*---------------------------------------------------------------------------*
     NNSG3dSendJointSRT
 
-    �W���C���g�s����W�I���g���G���W���ɐݒ肷��B
-    �Ă΂�鎞�_�ł̍s�񃂁[�h��Position/Vector���[�h�ɂȂ��Ă���K�v������B
-    �܂��A���H�Ώۂ̍s��̓J�����g�s��ɓ����Ă���K�v������B
+    ジョイント行列をジオメトリエンジンに設定する。
+    呼ばれる時点での行列モードはPosition/Vectorモードになっている必要がある。
+    また、加工対象の行列はカレント行列に入っている必要がある。
  *---------------------------------------------------------------------------*/
 typedef void (*NNSG3dSendJointSRT)(const NNSG3dJntAnmResult*);
 
@@ -51,8 +51,8 @@ typedef void (*NNSG3dSendJointSRT)(const NNSG3dJntAnmResult*);
 /*---------------------------------------------------------------------------*
     NNSG3dSendTexSRT
 
-    �e�N�X�`��SRT�s����W�I���g���G���W���ɐݒ肷��B
-    ���s��͍s�񃂁[�h��Position/Vector���[�h�ɂȂ��Ă���B
+    テクスチャSRT行列をジオメトリエンジンに設定する。
+    実行後は行列モードがPosition/Vectorモードになっている。
  *---------------------------------------------------------------------------*/
 typedef void (*NNSG3dSendTexSRT)(const NNSG3dMatAnmResult*);
 
@@ -60,9 +60,9 @@ typedef void (*NNSG3dSendTexSRT)(const NNSG3dMatAnmResult*);
 /*---------------------------------------------------------------------------*
     NNS_G3dSendJointSRT_FuncArray
 
-    NNSG3dScalingRule(<model_info>::scaling_rule)�̒l�ɑΉ�����
-    �֐��|�C���^�̔z��B�W���C���g�s��𑗐M����ꍇ�AG3D�����
-    ���̊֐��|�C���^�x�N�^��ʂ��ăA�N�Z�X���Ȃ���΂Ȃ�Ȃ��B
+    NNSG3dScalingRule(<model_info>::scaling_rule)の値に対応する
+    関数ポインタの配列。ジョイント行列を送信する場合、G3Dからは
+    この関数ポインタベクタを通してアクセスしなければならない。
  *---------------------------------------------------------------------------*/
 extern NNSG3dGetJointScale NNS_G3dGetJointScale_FuncArray[NNS_G3D_FUNC_SENDJOINTSRT_MAX];
 extern NNSG3dSendJointSRT NNS_G3dSendJointSRT_FuncArray[NNS_G3D_FUNC_SENDJOINTSRT_MAX];
@@ -71,9 +71,9 @@ extern NNSG3dSendJointSRT NNS_G3dSendJointSRT_FuncArray[NNS_G3D_FUNC_SENDJOINTSR
 /*---------------------------------------------------------------------------*
     NNS_G3dSendTexSRT_FuncArray
 
-    NNSG3dTexMtxMode(<model_info>::tex_matrix_mode)�̒l�ɑΉ�����
-    �֐��|�C���^�̔z��B�e�N�X�`���s��𑗐M����ꍇ�AG3D�����
-    ���̊֐��|�C���^�x�N�^��ʂ��ăA�N�Z�X���Ȃ���΂Ȃ�Ȃ��B
+    NNSG3dTexMtxMode(<model_info>::tex_matrix_mode)の値に対応する
+    関数ポインタの配列。テクスチャ行列を送信する場合、G3Dからは
+    この関数ポインタベクタを通してアクセスしなければならない。
  *---------------------------------------------------------------------------*/
 extern NNSG3dSendTexSRT   NNS_G3dSendTexSRT_FuncArray[NNS_G3D_FUNC_SENDTEXSRT_MAX];
 

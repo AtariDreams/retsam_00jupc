@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_266.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			266�@����̏�ɂ����āA�o�Ă����|�P�����̂g�o�łP/�W���_���[�W�B
- *				 ����͑����{���ɂ��ω�����B1/2�Ȃ�1/16�A1/4�Ȃ�1/32�A�~�Q�Ȃ�1/4�A�~�S�Ȃ�1/2�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			266　相手の場において、出てきたポケモンのＨＰで１/８分ダメージ。
+ *				 分母は相性倍率により変化する。1/2なら1/16、1/4なら1/32、×２なら1/4、×４なら1/2。
  *
  *@author	HisashiSogabe
  *@data		2006.05.05

@@ -1,5 +1,5 @@
 
-// ‰»Î
+// åŒ–çŸ³
 
 
 #ifndef _UG_DIG_FOSSIL_H_
@@ -7,85 +7,85 @@
 
 #include "../fieldsys.h"
 
-/// ‰»Î‰Šú‰»
+/// åŒ–çŸ³åˆæœŸåŒ–
 extern void CommFossilInitialize(void* pWork, FIELDSYS_WORK* pFSys);
-/// ƒ[ƒNƒTƒCƒYæ“¾
+/// ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºå–å¾—
 extern int CommFossilGetWorkSize(void);
-/// ˆê“I‚ÈƒŠƒZƒbƒg
+/// ä¸€æ™‚çš„ãªãƒªã‚»ãƒƒãƒˆ
 extern void CommFossilReset(void);
-/// ˆê“I‚È•œ‹A
+/// ä¸€æ™‚çš„ãªå¾©å¸°
 extern void CommFossilReboot(void);
-/// I—¹ˆ—
+/// çµ‚äº†å‡¦ç†
 extern void CommFossilFinalize(void);
-/// –Ú‚Ì‘O‚Ì‰»Î‚ğŒŸ¸
+/// ç›®ã®å‰ã®åŒ–çŸ³ã‚’æ¤œæŸ»
 extern BOOL CommFossilCheck(int netID, Grid* pTouch);
-/// ‰»Î”­Œ©‚ğƒNƒ‰ƒCƒAƒ“ƒg‚É•\¦{Œ@‚é‚©‚Ç‚¤‚©–â‚¢‡‚í‚¹‚é
+/// åŒ–çŸ³ç™ºè¦‹ã‚’ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«è¡¨ç¤ºï¼‹æ˜ã‚‹ã‹ã©ã†ã‹å•ã„åˆã‚ã›ã‚‹
 extern void CommFossilRecvFind(int netID, int size, void* pData, void* pWork);
-/// ”­Œ@ŠJn—v‹
+/// ç™ºæ˜é–‹å§‹è¦æ±‚
 extern void CommFossilRecvDigStartReq(int netID, int size, void* pData, void* pWork);
-/// ”­Œ@ŠJn
+/// ç™ºæ˜é–‹å§‹
 extern void CommFossilRecvDigStart(int netID, int size, void* pData, void* pWork);
-/// ”­Œ@I—¹—v‹
+/// ç™ºæ˜çµ‚äº†è¦æ±‚
 extern void CommFossilRecvDigEndReq(int netID, int size, void* pData, void* pWork);
-/// ”­Œ@I—¹
+/// ç™ºæ˜çµ‚äº†
 extern void CommFossilRecvDigEnd(int netID, int size, void* pData, void* pWork);
-/// ”­Œ@ˆÊ’u‚ğe‹@‚É‘—‚é
+/// ç™ºæ˜ä½ç½®ã‚’è¦ªæ©Ÿã«é€ã‚‹
 extern void CommFossilRecvDigPos(int netID, int size, void* pData, void* pWork);
-/// ‰»Î”­Œ@‚ÌˆÊ’u‚ğ‘—‚éƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY
+/// åŒ–çŸ³ç™ºæ˜æ™‚ã®ä½ç½®ã‚’é€ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚º
 extern int CommFossilGetDigPosSize(void);
-/// ‰»Î”­Œ@‚ÌˆÊ’u‚ğq‹@‚ÉÄ•ª”z
+/// åŒ–çŸ³ç™ºæ˜æ™‚ã®ä½ç½®ã‚’å­æ©Ÿã«å†åˆ†é…
 extern void CommFossilRecvDigPosReturn(int netID, int size, void* pData, void* pWork);
-/// ‰»Î”­Œ@‚ÌˆÊ’u‚ğe‹@‚©‚ç‘—‚éê‡‚ÌƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY
+/// åŒ–çŸ³ç™ºæ˜æ™‚ã®ä½ç½®ã‚’è¦ªæ©Ÿã‹ã‚‰é€ã‚‹å ´åˆã®ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚º
 extern int CommFossilGetDigPosReturnSize(void);
-/// ‰»ÎƒT[ƒ`ƒ^ƒbƒ`ƒpƒlƒ‹ˆ—
+/// åŒ–çŸ³ã‚µãƒ¼ãƒã‚¿ãƒƒãƒãƒ‘ãƒãƒ«å‡¦ç†
 extern void CommFossilTouch(int netID, Grid* pTouch);
-/// ‰»Î‚ª‚ ‚é‚©‚Ç‚¤‚©’²‚×‚é
+/// åŒ–çŸ³ãŒã‚ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹
 extern BOOL UGFossileCheck(int x,int z);
-/// ƒpƒ\ƒRƒ“‰»ÎƒŒ[ƒ_[ŠJn
+/// ãƒ‘ã‚½ã‚³ãƒ³åŒ–çŸ³ãƒ¬ãƒ¼ãƒ€ãƒ¼é–‹å§‹
 extern void UgFossilPcRadarStart(void);
-/// ƒpƒ\ƒRƒ“‰»ÎƒŒ[ƒ_[I—¹
+/// ãƒ‘ã‚½ã‚³ãƒ³åŒ–çŸ³ãƒ¬ãƒ¼ãƒ€ãƒ¼çµ‚äº†
 extern void UgFossilPcRadarEnd(void);
-/// ƒpƒ\ƒRƒ“‰»ÎƒŒ[ƒ_[‚ÌŠJn‚ª—ˆ‚½
+/// ãƒ‘ã‚½ã‚³ãƒ³åŒ–çŸ³ãƒ¬ãƒ¼ãƒ€ãƒ¼ã®é–‹å§‹ãŒæ¥ãŸ
 extern void UgFossilRecvPcRadar(int netID, int size, void* pData, void* pWork);
-/// ƒpƒ\ƒRƒ“‰»ÎƒŒ[ƒ_[•ÔM
+/// ãƒ‘ã‚½ã‚³ãƒ³åŒ–çŸ³ãƒ¬ãƒ¼ãƒ€ãƒ¼è¿”ä¿¡
 extern void UgFossilRecvPcRadarPos(int netID, int size, void* pData, void* pWork);
-/// ƒpƒ\ƒRƒ“‰»ÎƒŒ[ƒ_[•ÔMƒTƒCƒY
+/// ãƒ‘ã‚½ã‚³ãƒ³åŒ–çŸ³ãƒ¬ãƒ¼ãƒ€ãƒ¼è¿”ä¿¡ã‚µã‚¤ã‚º
 extern int UgFossilGetPcRadarSize(void);
 
-/// –ˆƒtƒŒ[ƒ€s‚¤•K—v‚ª‚ ‚éˆ—
+/// æ¯ãƒ•ãƒ¬ãƒ¼ãƒ è¡Œã†å¿…è¦ãŒã‚ã‚‹å‡¦ç†
 extern void UgFossilProcess(void);
-/// ƒŒ[ƒ_[—p‰»Î‚ÌˆÊ’uXÀ•W‚ğ“¾‚é
+/// ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”¨åŒ–çŸ³ã®ä½ç½®Xåº§æ¨™ã‚’å¾—ã‚‹
 extern int UgFossilGetRadarPointX(int index);
-/// ƒŒ[ƒ_[—p‰»Î‚ÌˆÊ’uZÀ•W‚ğ“¾‚é
+/// ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”¨åŒ–çŸ³ã®ä½ç½®Zåº§æ¨™ã‚’å¾—ã‚‹
 extern int UgFossilGetRadarPointZ(int index);
 
-/// ƒŒ[ƒ_[—p‰»Î‚ÌˆÊ’uXÀ•W‚ğ“¾‚é
+/// ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”¨åŒ–çŸ³ã®ä½ç½®Xåº§æ¨™ã‚’å¾—ã‚‹
 extern int UgFossilGetIntervalRadarPointX(int index);
-/// ƒŒ[ƒ_[—p‰»Î‚ÌˆÊ’uZÀ•W‚ğ“¾‚é
+/// ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”¨åŒ–çŸ³ã®ä½ç½®Zåº§æ¨™ã‚’å¾—ã‚‹
 extern int UgFossilGetIntervalRadarPointZ(int index);
 
-/// ‰»Î‚ğˆêŒÂ‚±‚Ìü•Ó‚É”z’u
+/// åŒ–çŸ³ã‚’ä¸€å€‹ã“ã®å‘¨è¾ºã«é…ç½®
 extern void UgFossilOneSetup(int xbase,int zbase, MATHRandContext16* pRand);
 
-/// ‰»Î‚ÉŠÖ‚·‚éLOG‚ğ•Ô‚·
+/// åŒ–çŸ³ã«é–¢ã™ã‚‹LOGã‚’è¿”ã™
 extern BOOL UgDigFossilGetActionMessage(STRBUF* pStrBuf);
 
 #if AFTER_MASTER_070202_FOSSILLOG_FIX
-///   ‰»Î‚ÌƒƒO‚ğÁ‚·
+///   åŒ–çŸ³ã®ãƒ­ã‚°ã‚’æ¶ˆã™
 extern void UgDigFossilDeleteLog(void);
 #endif
 
 extern BOOL UgDigFossilIsDig(int netID);
-/// —£’EƒvƒŒ[ƒ„[‚Ìƒpƒ‰ƒ[ƒ^[Á‚µ
+/// é›¢è„±ãƒ—ãƒ¬ãƒ¼ãƒ¤ãƒ¼ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼æ¶ˆã—
 extern void UgDigFossilResetPlayer(int netID);
-/// ‚©‚¹‚«Œ@‚è‰Šú‰»ƒf[ƒ^óM
+/// ã‹ã›ãæ˜ã‚ŠåˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿å—ä¿¡
 //extern void CommFossilRecvInit(int netID, int size, void* pData, void* pWork);
-/// ‚©‚¹‚«Œ@‚è‰Šú‰»ƒf[ƒ^‘—M
+/// ã‹ã›ãæ˜ã‚ŠåˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿é€ä¿¡
 //extern void UgDigFossilPlayerInit(void);
 
-// ¡‰»Î‚ğŒ@‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚© ƒNƒ‰ƒCƒAƒ“ƒgó‘Ô
+// ä»ŠåŒ–çŸ³ã‚’æ˜ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆçŠ¶æ…‹
 extern BOOL UgDigFossilIsNow(void);
-// ¡‰»Î‚ğŒ@‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚© ƒT[ƒo[ó‘Ô‚Æ‚µ‚Ä•Û‘¶
+// ä»ŠåŒ–çŸ³ã‚’æ˜ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ ã‚µãƒ¼ãƒãƒ¼çŠ¶æ…‹ã¨ã—ã¦ä¿å­˜
 extern void UgDigFossilSetNow(int netID, int bDig);
 
 

@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_156.s
- *@brief	�퓬�V�[�P���X
- *			���イ��傭�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			じゅうりょくシーケンス
  *@author	HisashiSogabe
  *@data		2006.02.13
  *
@@ -22,24 +22,24 @@ SUB_156:
 	VALUE				VAL_SET,BUF_PARA_CLIENT_NO_AGI,0
 SUB_156_LOOP:
 	CLIENT_NO_GET_AGI	BUF_PARA_CLIENT_WORK
-	//HP0�͖���
+	//HP0は無視
 	IF_PSP				IF_FLAG_EQ,SIDE_WORK,ID_PSP_hp,0,SUB_156_NEXT
-	//�ł񂶂ӂ䂤���H
+	//でんじふゆう中？
 	IF_PSP				IF_FLAG_NE,SIDE_WORK,ID_PSP_wkw_denzihuyuu_count,0,Denzihuyuu
-	//������ƂԒ��H
+	//そらをとぶ中？
 	IF_PSP				IF_FLAG_BIT,SIDE_WORK,ID_PSP_waza_kouka,WAZAKOUKA_SORAWOTOBU,Sorawotobu
-	//�����ӂ䂤�H
-	//���������͖���
+	//特性ふゆう？
+	//いえき中は無視
 	IF_PSP				IF_FLAG_BIT,SIDE_WORK,ID_PSP_waza_kouka,WAZAKOUKA_IEKI,SUB_156_NEXT
-	//�˂��͂钆�͖���
+	//ねをはる中は無視
 	IF_PSP				IF_FLAG_BIT,SIDE_WORK,ID_PSP_waza_kouka,WAZAKOUKA_NEWOHARU,SUB_156_NEXT
 	IF_PSP				IF_FLAG_EQ,SIDE_WORK,ID_PSP_speabino,TOKUSYU_HUYUU,FallMessage
-	//�Ђ����^�C�v�����b�Z�[�W
+	//ひこうタイプもメッセージ
 	IF_PSP				IF_FLAG_EQ,SIDE_WORK,ID_PSP_type1,HIKOU_TYPE,FallMessage
 	IF_PSP				IF_FLAG_EQ,SIDE_WORK,ID_PSP_type2,HIKOU_TYPE,FallMessage
 	BRANCH				SUB_156_NEXT
 Denzihuyuu:
-	//�ł񂶂ӂ䂤�J�E���g�N���A
+	//でんじふゆうカウントクリア
 	PSP_VALUE			VAL_SET,SIDE_WORK,ID_PSP_wkw_denzihuyuu_count,0
 	BRANCH				FallMessage
 Sorawotobu:

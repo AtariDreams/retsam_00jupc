@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	roulette_obj.c
- * @brief	uƒoƒgƒ‹ƒ‹[ƒŒƒbƒgvOBJ(ƒJ[ƒ\ƒ‹AƒAƒCƒRƒ“)
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã€OBJ(ã‚«ãƒ¼ã‚½ãƒ«ã€ã‚¢ã‚¤ã‚³ãƒ³)
  * @author	Satoshi Nohara
  * @date	2007.09.05
  */
@@ -19,27 +19,27 @@
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
-//OBJ(ƒJ[ƒ\ƒ‹AƒAƒCƒRƒ“)
+//OBJ(ã‚«ãƒ¼ã‚½ãƒ«ã€ã‚¢ã‚¤ã‚³ãƒ³)
 struct _ROULETTE_OBJ{
-	u32	pause;						//ƒ|[ƒYƒtƒ‰ƒO
-	u32 work;						//”Ä—pƒ[ƒN
+	u32	pause;						//ãƒãƒ¼ã‚ºãƒ•ãƒ©ã‚°
+	u32 work;						//æ±ç”¨ãƒ¯ãƒ¼ã‚¯
 
-	u16 counter;					//ƒJƒEƒ“ƒ^[
+	u16 counter;					//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 	u8	dummy;
 	u8	disp;
 
 	u16 init_x;
 	u16 init_y;
-	CLACT_WORK_PTR p_clact;			//ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^
+	CLACT_WORK_PTR p_clact;			//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 };
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 ROULETTE_OBJ* RouletteObj_Create( ROULETTE_CLACT* roulette_clact, u32 char_no, u32 pltt_no, u32 cell_no, u32 anm_no, u16 x, u16 y, u32 pri, int bg_pri, u8 disp );
@@ -60,19 +60,19 @@ void RouletteObj_SetAnmFlag( ROULETTE_OBJ* wk, u8 flag );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OBJì¬
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OBJä½œæˆ
  *
- * @param	roulette_clact	ROULETTE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	data_index		ƒf[ƒ^index
- * @param	heapID			ƒq[ƒvID
+ * @param	roulette_clact	ROULETTE_CLACTå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	data_index		ãƒ‡ãƒ¼ã‚¿index
+ * @param	heapID			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	"ROULETTE_OBJƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^"
+ * @retval	"ROULETTE_OBJãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿"
  */
 //--------------------------------------------------------------
 ROULETTE_OBJ* RouletteObj_Create( ROULETTE_CLACT* roulette_clact, u32 char_no, u32 pltt_no, u32 cell_no, u32 anm_no, u16 x, u16 y, u32 pri, int bg_pri, u8 disp )
@@ -80,10 +80,10 @@ ROULETTE_OBJ* RouletteObj_Create( ROULETTE_CLACT* roulette_clact, u32 char_no, u
 	ROULETTE_OBJ* wk;
 	VecFx32	vec;
 
-	wk = sys_AllocMemory( HEAPID_ROULETTE, sizeof(ROULETTE_OBJ) );		//ƒƒ‚ƒŠŠm•Û
+	wk = sys_AllocMemory( HEAPID_ROULETTE, sizeof(ROULETTE_OBJ) );		//ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	memset( wk, 0, sizeof(ROULETTE_OBJ) );
 
-	//ƒAƒjƒƒe[ƒuƒ‹‚Ìw’è‚ª‚ ‚é
+	//ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«ã®æŒ‡å®šãŒã‚ã‚‹æ™‚
 	wk->p_clact = RouletteClact_SetActor(	roulette_clact, char_no, pltt_no, cell_no, anm_no, 
 											pri, bg_pri, disp );
 
@@ -91,12 +91,12 @@ ROULETTE_OBJ* RouletteObj_Create( ROULETTE_CLACT* roulette_clact, u32 char_no, u
 	wk->init_y		= y;
 	wk->disp		= disp;
 
-	//‰ŠúƒJ[ƒ\ƒ‹À•W‚ğƒZƒbƒg
+	//åˆæœŸã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	vec.x = (x * FX32_ONE);
 	vec.y = (y * FX32_ONE);
 
 	if( disp == DISP_SUB ){
-		vec.y += SUB_SURFACE_Y;				//À•W‚ğ•â³
+		vec.y += SUB_SURFACE_Y;				//åº§æ¨™ã‚’è£œæ­£
 	}
 
 	CLACT_SetMatrix( wk->p_clact, &vec );
@@ -106,9 +106,9 @@ ROULETTE_OBJ* RouletteObj_Create( ROULETTE_CLACT* roulette_clact, u32 char_no, u
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OBJƒ[ƒNíœ
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OBJãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param	wk		ROULETTE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	"NULL"
  */
@@ -117,7 +117,7 @@ void* RouletteObj_Delete( ROULETTE_OBJ* wk )
 {
 	CLACT_Delete( wk->p_clact );
 
-	//ROULETTE_OBJ‚Ìƒƒ“ƒo‚Åƒƒ‚ƒŠŠm•Û‚µ‚½‚à‚Ì‚ª‚ ‚Á‚½‚çŠJ•ú‚·‚é
+	//ROULETTE_OBJã®ãƒ¡ãƒ³ãƒã§ãƒ¡ãƒ¢ãƒªç¢ºä¿ã—ãŸã‚‚ã®ãŒã‚ã£ãŸã‚‰é–‹æ”¾ã™ã‚‹
 
 	sys_FreeMemoryEz( wk );
 	return NULL;
@@ -125,10 +125,10 @@ void* RouletteObj_Delete( ROULETTE_OBJ* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒjƒbƒVƒ…‘€ì
+ * @brief	ãƒãƒ‹ãƒƒã‚·ãƒ¥æ“ä½œ
  *
- * @param	wk		ROULETTE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	0:”ñ•`‰æ 1:ƒŒƒ“ƒ_ƒ‰•`‰æ	
+ * @param	wk		ROULETTE_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	0:éæç”» 1:ãƒ¬ãƒ³ãƒ€ãƒ©æç”»	
  *
  * @return	none
  */
@@ -141,10 +141,10 @@ void RouletteObj_Vanish( ROULETTE_OBJ* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|[ƒY
+ * @brief	ãƒãƒ¼ã‚º
  *
- * @param	wk		ROULETTE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	0:ƒ|[ƒY‰ğœ 1:ƒ|[ƒY
+ * @param	wk		ROULETTE_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	0:ãƒãƒ¼ã‚ºè§£é™¤ 1:ãƒãƒ¼ã‚º
  *
  * @return	none
  */
@@ -157,9 +157,9 @@ void RouletteObj_Pause( ROULETTE_OBJ* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹XˆÊ’u‚ğæ“¾
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®ã‚’å–å¾—
  *
- * @param	wk		ROULETTE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"X"
  */
@@ -173,9 +173,9 @@ u16 RouletteObj_GetObjX( ROULETTE_OBJ* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹YˆÊ’u‚ğæ“¾
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®ã‚’å–å¾—
  *
- * @param	wk		ROULETTE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"X"
  */
@@ -189,9 +189,9 @@ u16 RouletteObj_GetObjY( ROULETTE_OBJ* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹ˆÊ’u‚ğƒZƒbƒg
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -200,25 +200,25 @@ void RouletteObj_SetObjPos( ROULETTE_OBJ* wk, u16 x, u16 y )
 {
 	VecFx32	vec;
 
-	//À•W‚ğæ“¾
+	//åº§æ¨™ã‚’å–å¾—
 	vec = *( CLACT_GetMatrix(wk->p_clact) );
 	vec.x = (x * FX32_ONE);
 	vec.y = (y * FX32_ONE);
 
 	if( wk->disp == DISP_SUB ){
-		vec.y += SUB_SURFACE_Y;				//À•W‚ğ•â³
+		vec.y += SUB_SURFACE_Y;				//åº§æ¨™ã‚’è£œæ­£
 	}
 
-	//À•W‚ğİ’è
+	//åº§æ¨™ã‚’è¨­å®š
 	CLACT_SetMatrix( wk->p_clact, &vec );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒØ‚è‘Ö‚¦
+ * @brief	ã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ROULETTE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	"NULL"
  */
@@ -226,36 +226,36 @@ void RouletteObj_SetObjPos( ROULETTE_OBJ* wk, u16 x, u16 y )
 void RouletteObj_AnmChg( ROULETTE_OBJ* wk, u32 num )
 {
 	CLACT_SetAnmFrame( wk->p_clact, FX32_ONE );
-	//CLACT_AnmFrameSet( wk->p_clact, 0 );		//ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ğƒZƒbƒg
-	CLACT_AnmChgCheck( wk->p_clact, num );		//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒV[ƒPƒ“ƒX‚ğƒ`ƒFƒ“ƒW‚·‚é(Check)
+	//CLACT_AnmFrameSet( wk->p_clact, 0 );		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆ
+	CLACT_AnmChgCheck( wk->p_clact, num );		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒã‚§ãƒ³ã‚¸ã™ã‚‹(Check)
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒRƒ“ƒAƒjƒ
+ * @brief	ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk		ROULETTE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	pp		POKEMON_PARAMƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pp		POKEMON_PARAMãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 void RouletteObj_IconPalChg( ROULETTE_OBJ* wk, POKEMON_PARAM* pp )
 {
-	//ƒpƒŒƒbƒgØ‚è‘Ö‚¦
-	//CLACT_PaletteOffsetChgŠÖ”‚ÌŒ‹‰Ê‚ÉƒpƒŒƒbƒg‚Ì“]‘—ææ“ªƒpƒŒƒbƒgƒiƒ“ƒo[‚ğ‰ÁZ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
+	//CLACT_PaletteOffsetChgé–¢æ•°ã®çµæœã«ãƒ‘ãƒ¬ãƒƒãƒˆã®è»¢é€å…ˆå…ˆé ­ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’åŠ ç®—
 	CLACT_PaletteOffsetChgAddTransPlttNo( wk->p_clact, PokeIconPalNumGetByPP(pp) );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒƒtƒŒ[ƒ€æ“¾
+ * @brief	ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ å–å¾—
  *
- * @param	wk		ROULETTE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"ƒAƒjƒƒtƒŒ[ƒ€"
+ * @retval	"ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ "
  */
 //--------------------------------------------------------------
 u16 RouletteObj_GetAnmFrame( ROULETTE_OBJ* wk )
@@ -265,9 +265,9 @@ u16 RouletteObj_GetAnmFrame( ROULETTE_OBJ* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ŠúÀ•W‚Éw’è‚µ‚½ƒIƒtƒZƒbƒg‚ğ‘«‚µ‚ÄÀ•WƒZƒbƒg
+ * @brief	åˆæœŸåº§æ¨™ã«æŒ‡å®šã—ãŸã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¶³ã—ã¦åº§æ¨™ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ROULETTE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -279,11 +279,11 @@ void RouletteObj_SetInitPosOffset( ROULETTE_OBJ* wk, int offset_x, int offset_y 
 }
 
 //--------------------------------------------------------------
-///	Šg‘å—¦
+///	æ‹¡å¤§ç‡
 //--------------------------------------------------------------
 static const VecFx32 scale_tbl[] =
 {
-	{ FX32_ONE,				FX32_ONE, FX32_ONE },				//“™”{
+	{ FX32_ONE,				FX32_ONE, FX32_ONE },				//ç­‰å€
 	
 	//{ FX32_ONE*2,			FX32_ONE*2,				FX32_ONE*2	},
 	{ FX32_ONE+(FX32_ONE/2),FX32_ONE+(FX32_ONE/2),	FX32_ONE+(FX32_ONE/2) },
@@ -299,9 +299,9 @@ static const VecFx32 scale_tbl[] =
 
 //--------------------------------------------------------------
 /**
- * @brief	Šg‘åk¬
+ * @brief	æ‹¡å¤§ç¸®å°
  *
- * @param	wk		ROULETTE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		ROULETTE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -313,7 +313,7 @@ void RouletteObj_SetScaleAffine( ROULETTE_OBJ* wk, u32 no )
 
 #if 0
 	if( sys.cont & PAD_BUTTON_L ){
-		//Šg‘å
+		//æ‹¡å¤§
 		if( sys.cont & PAD_KEY_UP ){
 			tbl_no = 1;
 		}else if( sys.cont & PAD_KEY_LEFT ){
@@ -326,7 +326,7 @@ void RouletteObj_SetScaleAffine( ROULETTE_OBJ* wk, u32 no )
 			tbl_no = 0;
 		}
 	}else{
-		//k¬
+		//ç¸®å°
 		if( sys.cont & PAD_KEY_UP ){
 			tbl_no = 5;
 		}else if( sys.cont & PAD_KEY_LEFT ){
@@ -349,10 +349,10 @@ void RouletteObj_SetScaleAffine( ROULETTE_OBJ* wk, u32 no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒI[ƒgƒAƒjƒƒtƒ‰ƒOİ’è
+ * @brief	ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°è¨­å®š
  *
- * @param	wk		ROULETTE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	0=”ñƒAƒjƒA1=ƒAƒjƒ
+ * @param	wk		ROULETTE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	0=éã‚¢ãƒ‹ãƒ¡ã€1=ã‚¢ãƒ‹ãƒ¡
  *
  * @retval	none
  */

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	hill_back_poke.c
- * @brief	— ŽRƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“ŠÖ˜Aˆ—
+ * @brief	è£å±±ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³é–¢é€£å‡¦ç†
  * @author	Nozomu Saito
  * @date	2006.05.25
  */
@@ -17,8 +17,8 @@
 
 //------------------------------------------------------------------
 /**
- * @brief	— ŽRƒ|ƒPƒ‚ƒ“‚ÌƒZƒbƒg(‰Ÿ‚µo‚µŽ®‚ÅƒZƒbƒg)
- * @param	sv		ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^	
+ * @brief	è£å±±ãƒã‚±ãƒ¢ãƒ³ã®ã‚»ãƒƒãƒˆ(æŠ¼ã—å‡ºã—å¼ã§ã‚»ãƒƒãƒˆ)
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿	
  * @return	none
  */
 //------------------------------------------------------------------
@@ -29,11 +29,11 @@ void HillBack_SetEncPokemon(SAVEDATA* sv)
 	int monsno[2];
 	int *tbl;
 
-	//— ŽRƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹Žæ“¾
+	//è£å±±ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 	tbl = ArchiveDataLoadMallocLo(ARC_ENCDATA_EX, NARC_encdata_ex_mnt_af_bin, HEAPID_FIELD);
-	//“ÁŽê˜gƒ|ƒPƒ‚ƒ“ƒCƒ“ƒfƒbƒNƒXŽæ“¾i2‘Ìj
+	//ç‰¹æ®Šæž ãƒã‚±ãƒ¢ãƒ³ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—ï¼ˆ2ä½“ï¼‰
 	EncDataSave_GetHillBackPokeIdx(sv, &idx1, &idx2);
-	//ƒCƒ“ƒfƒbƒNƒX‚Æƒe[ƒuƒ‹‚©‚çƒ|ƒPƒ‚ƒ“Žæ“¾
+	//ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ãƒã‚±ãƒ¢ãƒ³å–å¾—
 	if (idx1 != HILL_BACK_POKE_NONE){
 		monsno[0] = tbl[idx1];
 	}else{
@@ -46,13 +46,13 @@ void HillBack_SetEncPokemon(SAVEDATA* sv)
 	}
 
 	while(1){
-		//ƒ|ƒPƒ‚ƒ“ƒ‰ƒ“ƒ_ƒ€‘Io
+		//ãƒã‚±ãƒ¢ãƒ³ãƒ©ãƒ³ãƒ€ãƒ é¸å‡º
 		idx = gf_p_rand(HILL_BACK_ENC_MONS_MAX);
 				
-		//‘Io‚µ‚½ƒ|ƒPƒ‚ƒ“‚Í“ÁŽê˜g‚É“o˜^Ï‚Ý‚©H
+		//é¸å‡ºã—ãŸãƒã‚±ãƒ¢ãƒ³ã¯ç‰¹æ®Šæž ã«ç™»éŒ²æ¸ˆã¿ã‹ï¼Ÿ
 		if ( (monsno[0]!=tbl[idx])&&
 			 (monsno[1]!=tbl[idx]) ){
-			//“o˜^Ï‚Ý‚Å‚È‚¯‚ê‚ÎA‰Ÿ‚µo‚µŽ®‚Å“o˜^
+			//ç™»éŒ²æ¸ˆã¿ã§ãªã‘ã‚Œã°ã€æŠ¼ã—å‡ºã—å¼ã§ç™»éŒ²
 			EncDataSave_SetHillBackPokeIdx(sv, idx);
 			break;
 		}
@@ -62,9 +62,9 @@ void HillBack_SetEncPokemon(SAVEDATA* sv)
 
 //------------------------------------------------------------------
 /**
- * @brief	‰ï˜b‚Éo‚Ä‚­‚éƒ|ƒPƒ‚ƒ“‚Ìƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚ð•Ô‚·
- * @param	sv		ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @return	int		ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
+ * @brief	ä¼šè©±ã«å‡ºã¦ãã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  */
 //------------------------------------------------------------------
 int HillBack_GetMonsNo(SAVEDATA* sv)
@@ -76,7 +76,7 @@ int HillBack_GetMonsNo(SAVEDATA* sv)
 
 	GF_ASSERT(idx1!=HILL_BACK_POKE_NONE);
 
-	//— ŽRƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹Žæ“¾
+	//è£å±±ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 	tbl = ArchiveDataLoadMallocLo(ARC_ENCDATA_EX, NARC_encdata_ex_mnt_af_bin, HEAPID_FIELD);
 	monsno = tbl[idx1];
 

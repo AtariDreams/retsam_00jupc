@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_243.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			243�@����̍U���Ɠ��U�̃A�b�v��ԁi�㏸�E���~�ǂ�����j�Ǝ����̏�Ԃ����ꂩ����B
- *				 �����N���A�{�f�B�₵�낢����̓G�ɂ����팏�œ���ւ���B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			243　相手の攻撃と特攻のアップ状態（上昇・下降どちらも）と自分の状態をいれかえる。
+ *				 特性クリアボディやしろいきりの敵にも無常件で入れ替える。
  *
  *@author	HisashiSogabe
  *@data		2006.02.15

@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_vsroom.c
- * @bfief	‘Îí•”‰®‚ÌƒCƒxƒ“ƒg
+ * @bfief	å¯¾æˆ¦éƒ¨å±‹ã®ã‚¤ãƒ™ãƒ³ãƒˆ
  * @author	katsumi ohno
  * @date	06/05/13
  */
@@ -48,19 +48,19 @@
 
 #include "comm_vsroom.h"
 
-#define _EVWIN_MSG_BUF_SIZE		(100*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define _EVWIN_MSG_BUF_SIZE		(100*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
 typedef struct{
     PSTATUS_DATA* pPokeStatus;
     PLIST_DATA* pPokeList;
     StartLineCallBack* pCallBack;
-	STRBUF* TalkString;							// ‰ï˜bƒƒbƒZ[ƒW—p
-	STRBUF* TalkStringEx;						// ‰ï˜bƒƒbƒZ[ƒW“WŠJ—p
-	GF_BGL_BMPWIN MsgWin;									// ‰ï˜bƒEƒCƒ“ƒhƒE
+	STRBUF* TalkString;							// ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨
+	STRBUF* TalkStringEx;						// ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹ç”¨
+	GF_BGL_BMPWIN MsgWin;									// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
     FIELDSYS_WORK* pFSys;
-	WORDSET* WordSet;					// ƒƒbƒZ[ƒW“WŠJ—pƒ[ƒNƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER* MsgManager;				// –¼‘O“ü—ÍƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-	int	msgIndex;								// I—¹ŒŸo—pƒ[ƒN
+	WORDSET* WordSet;					// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹ç”¨ãƒ¯ãƒ¼ã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER* MsgManager;				// åå‰å…¥åŠ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	int	msgIndex;								// çµ‚äº†æ¤œå‡ºç”¨ãƒ¯ãƒ¼ã‚¯
     int seq;
     int ret_val;
 	u8	pos;
@@ -90,7 +90,7 @@ typedef struct{
 } EV_STARTLINE_WORK;
 
 
-// --------------------------‚±‚±‚©‚ç‘Îí•”‰®
+// --------------------------ã“ã“ã‹ã‚‰å¯¾æˆ¦éƒ¨å±‹
 
 static void _initWork(EV_STARTLINE_WORK* wk);
 
@@ -152,7 +152,7 @@ enum {
 
 
 /**
- *	ƒ}ƒ‹ƒ`ƒoƒgƒ‹—pƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXŒÄ‚Ño‚µ
+ *	ãƒãƒ«ãƒãƒãƒˆãƒ«ç”¨ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—
  */
 static void _PokeStatusCall(EV_STARTLINE_WORK* wk,FIELDSYS_WORK* fsys, POKEPARTY* party, int pos, int psd_mode, int heapID )
 {
@@ -160,20 +160,20 @@ static void _PokeStatusCall(EV_STARTLINE_WORK* wk,FIELDSYS_WORK* fsys, POKEPARTY
 	SAVEDATA	*sv;
 
 	static const u8 PST_PageTbl[] = {
-		PST_PAGE_INFO,			// uƒ|ƒPƒ‚ƒ“‚¶‚å‚¤‚Ù‚¤v
-		PST_PAGE_MEMO,			// uƒgƒŒ[ƒi[ƒƒ‚v
-		PST_PAGE_PARAM,			// uƒ|ƒPƒ‚ƒ“‚Ì‚¤‚è‚å‚­v
-		PST_PAGE_CONDITION,		// uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
-		PST_PAGE_B_SKILL,		// u‚½‚½‚©‚¤‚í‚´v
-		PST_PAGE_C_SKILL,		// uƒRƒ“ƒeƒXƒg‚í‚´v
-		PST_PAGE_RIBBON,		// u‚«‚Ë‚ñƒŠƒ{ƒ“v
-		PST_PAGE_RET,			// u‚à‚Ç‚év
+		PST_PAGE_INFO,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã˜ã‚‡ã†ã»ã†ã€
+		PST_PAGE_MEMO,			// ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã€
+		PST_PAGE_PARAM,			// ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã†ã‚Šã‚‡ãã€
+		PST_PAGE_CONDITION,		// ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
+		PST_PAGE_B_SKILL,		// ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+		PST_PAGE_C_SKILL,		// ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
+		PST_PAGE_RIBBON,		// ã€Œãã­ã‚“ãƒªãƒœãƒ³ã€
+		PST_PAGE_RET,			// ã€Œã‚‚ã©ã‚‹ã€
 		PST_PAGE_MAX
 	};
 	
 	sv = fsys->savedata;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‚ğŒÄ‚Ño‚·
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å‘¼ã³å‡ºã™
 	//
 	psd = sys_AllocMemoryLo(heapID, sizeof(PSTATUS_DATA));
 	MI_CpuClear8(psd,sizeof(PSTATUS_DATA));
@@ -196,9 +196,9 @@ static void _PokeStatusCall(EV_STARTLINE_WORK* wk,FIELDSYS_WORK* fsys, POKEPARTY
 }
 
 /**
- *	@brief	ƒ}ƒ‹ƒ`ƒoƒgƒ‹—pƒ|ƒPƒ‚ƒ“‘I‘ğŒÄo‚µ
- *	@param	num	‘I‘ğ‚³‚¹‚éƒ|ƒPƒ‚ƒ“”
- *	@param	savedata	ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@brief	ãƒãƒ«ãƒãƒãƒˆãƒ«ç”¨ãƒã‚±ãƒ¢ãƒ³é¸æŠå‘¼å‡ºã—
+ *	@param	num	é¸æŠã•ã›ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°
+ *	@param	savedata	ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 static void _SelectPoke(EV_STARTLINE_WORK* wk,int heapID)
 {
@@ -232,33 +232,33 @@ static void _SelectPoke(EV_STARTLINE_WORK* wk,int heapID)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹‘Ò‚¿
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å¾…ã¡
  */
 static BOOL _PokeListWait(EV_STARTLINE_WORK* wk,FIELDSYS_WORK* fsys)
 {
 	int	ret;
 
-	// ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+	// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 	if( FieldEvent_Cmd_WaitSubProcEnd( fsys ) ) {
 		return FALSE;
 	}
 
-	//Œ»İ‘I‚Î‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ğ•Û‘¶
+	//ç¾åœ¨é¸ã°ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ä¿å­˜
 	MI_CpuCopy8(wk->pPokeList->in_num, wk->sel, 6);
 
-	//ƒf[ƒ^æ“¾
+	//ãƒ‡ãƒ¼ã‚¿å–å¾—
 	switch(wk->pPokeList->ret_sel){
-	case PL_SEL_POS_EXIT:	//‚â‚ß‚é
+	case PL_SEL_POS_EXIT:	//ã‚„ã‚ã‚‹
 		wk->ret_val = _STARTLINE_POKELIST_RESULT_CANCEL;
 		break;
-	case PL_SEL_POS_ENTER:	//Œˆ’è
+	case PL_SEL_POS_ENTER:	//æ±ºå®š
 		wk->ret_val = _STARTLINE_POKELIST_RESULT_DECIDE;
 		break;
-	default:	//‚Â‚æ‚³‚ğ‚İ‚é
+	default:	//ã¤ã‚ˆã•ã‚’ã¿ã‚‹
 		wk->ret_val = _STARTLINE_POKELIST_RESULT_STATUS;
 		break;
 	}
-	//ƒ|ƒWƒVƒ‡ƒ“‚ğ•Û‘¶
+	//ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’ä¿å­˜
 	wk->pos = wk->pPokeList->ret_sel;
 	sys_FreeMemoryEz(wk->pPokeList);
 	wk->pPokeList = NULL;
@@ -267,18 +267,18 @@ static BOOL _PokeListWait(EV_STARTLINE_WORK* wk,FIELDSYS_WORK* fsys)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXI—¹‘Ò‚¿
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çµ‚äº†å¾…ã¡
  */
 static BOOL _PokeStatusWait(EV_STARTLINE_WORK* wk,FIELDSYS_WORK* fsys)
 {
 	PSTATUS_DATA* psd;
 
-	// ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+	// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 	if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ) {
 		return FALSE;
 	}
 
-	//Ø‚è‘Ö‚¦‚ç‚ê‚½ƒJƒŒƒ“ƒg‚ğ•Û‘¶‚·‚é
+	//åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚ŒãŸã‚«ãƒ¬ãƒ³ãƒˆã‚’ä¿å­˜ã™ã‚‹
 	wk->pos = wk->pPokeStatus->pos;
 
 	sys_FreeMemoryEz(wk->pPokeStatus);
@@ -306,7 +306,7 @@ static BOOL _mapChangeWait( EV_STARTLINE_WORK* wk )
 
 
 enum {
-	MIXBATTLE_POKE_COUNT = 3,		///< Q‰Á‚³‚¹‚éƒ|ƒPƒ‚ƒ“”
+	MIXBATTLE_POKE_COUNT = 3,		///< å‚åŠ ã•ã›ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°
 
 	MIX_COMMFLG_FREE = 0,
 	MIX_COMMFLG_SEND = 1,
@@ -357,11 +357,11 @@ enum {
 
 //--------------------------------------------------
 /**
- *  ƒ~ƒbƒNƒXƒoƒgƒ‹ŒğŠ·ƒ|ƒPƒ‚ƒ“ƒf[ƒ^•t‘®î•ñ
+ *  ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«äº¤æ›ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ä»˜å±æƒ…å ±
  */
 //--------------------------------------------------
 typedef struct {
-	u32     decideFlag;		///< TRUE‚È‚ç’ÊíI—¹BFALSE‚È‚çƒLƒƒƒ“ƒZƒ‹I—¹B
+	u32     decideFlag;		///< TRUEãªã‚‰é€šå¸¸çµ‚äº†ã€‚FALSEãªã‚‰ã‚­ãƒ£ãƒ³ã‚»ãƒ«çµ‚äº†ã€‚
 }MIXBATTLE_POKEDATA_PARAM;
 
 
@@ -386,7 +386,7 @@ static BOOL get_rivals_pokeselect_flag( EV_STARTLINE_WORK* wk );
 
 //------------------------------------------------------------------
 /**
- * ‘Îí‘Šè‚ª•”‰®‚ğo‚Ä‚µ‚Ü‚Á‚½‚©ƒ`ƒFƒbƒN
+ * å¯¾æˆ¦ç›¸æ‰‹ãŒéƒ¨å±‹ã‚’å‡ºã¦ã—ã¾ã£ãŸã‹ãƒã‚§ãƒƒã‚¯
  *
  * @retval  BOOL		
  */
@@ -409,10 +409,10 @@ static BOOL IsPartnerExit( void )
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‘Îí•”‰®ƒXƒ^[ƒgƒ‰ƒCƒ“ã‚Å‚ÌƒCƒxƒ“ƒg
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		ƒCƒxƒ“ƒgI—¹
- * @retval	FALSE		ƒCƒxƒ“ƒgŒp‘±’†
+ * @brief	å¯¾æˆ¦éƒ¨å±‹ã‚¹ã‚¿ãƒ¼ãƒˆãƒ©ã‚¤ãƒ³ä¸Šã§ã®ã‚¤ãƒ™ãƒ³ãƒˆ
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
+ * @retval	FALSE		ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶šä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
@@ -472,7 +472,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
         CommPlayerHoldEnd();
         return TRUE;
       case _STARTLINE_EXIT:
-        if(CommIsTimingSync(DBC_TIM_BATTLE_START)){  // ‚±‚ÌuŠÔƒXƒ^[ƒg‚ª‚«‚½‚çƒXƒ^[ƒg‚·‚é
+        if(CommIsTimingSync(DBC_TIM_BATTLE_START)){  // ã“ã®ç¬é–“ã‚¹ã‚¿ãƒ¼ãƒˆãŒããŸã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆã™ã‚‹
             wk->seq = _STARTLINE_END;
             wk->pCallBack(TRUE, wk->mixPokeParty);
         }
@@ -597,11 +597,11 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
         break;
 
 	//-----------------------------------------------------------------------------
-	// ‚±‚±‚©‚ç‰º‚Íƒ~ƒbƒNƒXƒoƒgƒ‹—pˆ—
+	// ã“ã“ã‹ã‚‰ä¸‹ã¯ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«ç”¨å‡¦ç†
 	//-----------------------------------------------------------------------------
 
 	//-----------------------------------------------------------------------------
-	// u‚R‚Ğ‚«‚¦‚ç‚ñ‚Å‚­‚¾‚³‚¢vƒƒbƒZ[ƒW•\¦
+	// ã€Œï¼“ã²ããˆã‚‰ã‚“ã§ãã ã•ã„ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	//-----------------------------------------------------------------------------
 	case _MIXBATTLE_START_POKESELECT_MESSAGE:
         wk->timer2--;
@@ -617,7 +617,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//-----------------------------------------------------------------------------
-	// u‚R‚Ğ‚«‚¦‚ç‚ñ‚Å‚­‚¾‚³‚¢vƒƒbƒZ[ƒWI—¹ŒãA‘I‘ğ‰æ–Ê‚Ö
+	// ã€Œï¼“ã²ããˆã‚‰ã‚“ã§ãã ã•ã„ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†å¾Œã€é¸æŠç”»é¢ã¸
 	//-----------------------------------------------------------------------------
 	case _MIXBATTLE_WAIT_POKESELECT_MESSAGE:
 		if( FldTalkMsgEndCheck(wk->msgIndex) )
@@ -627,7 +627,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//-----------------------------------------------------------------------------
-	// ‘—M‚·‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ğì¬‚µ‚Ä‚¨‚«A’ÊM“¯Šú‚ğŠJnB
+	// é€ä¿¡ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦ãŠãã€é€šä¿¡åŒæœŸã‚’é–‹å§‹ã€‚
 	//-----------------------------------------------------------------------------
     case _MIXBATTLE_START_COMM_POKEDATA:
 		if( _mapChangeWait(wk) )
@@ -651,7 +651,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//-----------------------------------------------------------------------------
-	// ƒƒbƒZ[ƒW‚ª—¬‚ê‚½ŒãA’ÊM“¯Šú‚ğ‘Ò‚Á‚Ä‚©‚ç‘—MŠJn
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒæµã‚ŒãŸå¾Œã€é€šä¿¡åŒæœŸã‚’å¾…ã£ã¦ã‹ã‚‰é€ä¿¡é–‹å§‹
 	//-----------------------------------------------------------------------------
 	case _MIXBATTLE_WAIT_SYNC_POKE_SELECT:
 		if( FldTalkMsgEndCheck(wk->msgIndex) )
@@ -669,7 +669,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//-----------------------------------------------------------------------------
-	// ƒf[ƒ^‘—óMŠ®—¹‚µ‚½‚ç’ÊM“¯ŠúŠJn
+	// ãƒ‡ãƒ¼ã‚¿é€å—ä¿¡å®Œäº†ã—ãŸã‚‰é€šä¿¡åŒæœŸé–‹å§‹
 	//-----------------------------------------------------------------------------
 	case _MIXBATTLE_WAIT_SEND_POKE:
 		if( wait_mixbattle_send_pokemon( wk ) )
@@ -680,9 +680,9 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//-----------------------------------------------------------------------------
-	// ’ÊM“¯Šú‚ğ‘Ò‚Á‚½ŒãA
-	// Œİ‚¢‚Éƒ|ƒPƒ‚ƒ“‚ğ‚R‘Ì‘I‚ñ‚Å‚¢‚½‚çƒ~ƒbƒNƒXƒoƒgƒ‹à–¾•\¦‚Ö
-	// ‚Ç‚¿‚ç‚©‚ªƒLƒƒƒ“ƒZƒ‹‚µ‚Ä‚¢‚½‚çAƒLƒƒƒ“ƒZƒ‹ˆ—‚Ö
+	// é€šä¿¡åŒæœŸã‚’å¾…ã£ãŸå¾Œã€
+	// äº’ã„ã«ãƒã‚±ãƒ¢ãƒ³ã‚’ï¼“ä½“é¸ã‚“ã§ã„ãŸã‚‰ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«èª¬æ˜è¡¨ç¤ºã¸
+	// ã©ã¡ã‚‰ã‹ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¦ã„ãŸã‚‰ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†ã¸
 	//-----------------------------------------------------------------------------
 	case _MIXBATTLE_WAIT_SYNC_POKESEND:
 		if( CommIsTimingSync(MIX_SYNC_POKE_SEND) )
@@ -703,7 +703,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//-----------------------------------------------------------------------------
-	// ƒ~ƒbƒNƒXƒoƒgƒ‹à–¾ƒƒbƒZ[ƒW•\¦ŒãAƒƒjƒ…[‘I‘ğƒƒbƒZ[ƒW•\¦
+	// ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«èª¬æ˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾Œã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	//------------------------------------------------------------------------------
 	case _MIXBATTLE_WAIT_TRADEINFO_MESSAGE:
 		if( FldTalkMsgEndCheck(wk->msgIndex) )
@@ -717,7 +717,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//-----------------------------------------------------------------------------
-	// ƒƒbƒZ[ƒW•\¦ŒãAƒƒjƒ…[‘I‘ğˆ—‚Ö
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾Œã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠå‡¦ç†ã¸
 	//------------------------------------------------------------------------------
 	case _MIXBATTLE_START_TRADE_POKELIST:
 		if( FldTalkMsgEndCheck(wk->msgIndex) )
@@ -729,7 +729,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//-----------------------------------------------------------------------------
-	// ƒƒjƒ…[‘I‘ği‘Šè‚Ìƒ|ƒPƒ‚ƒ“‚©‚ç‚Ç‚ê‚ğ‘I‚Ô‚©Hj
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠï¼ˆç›¸æ‰‹ã®ãƒã‚±ãƒ¢ãƒ³ã‹ã‚‰ã©ã‚Œã‚’é¸ã¶ã‹ï¼Ÿï¼‰
 	//-----------------------------------------------------------------------------
 	case _MIXBATTLE_CTRL_TRADE_POKELIST:
 		switch( ctrl_mixbattle_list(wk) ){
@@ -751,7 +751,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//-----------------------------------------------------------------------------
-	// u›››i‘I‘ğ‚³‚ê‚½ƒ|ƒPƒ‚ƒ“j‚Å‚¢‚¢‚Å‚·‚©HvƒƒbƒZ[ƒW•\¦
+	// ã€Œâ—‹â—‹â—‹ï¼ˆé¸æŠã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ï¼‰ã§ã„ã„ã§ã™ã‹ï¼Ÿã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	//-----------------------------------------------------------------------------
 	case _MIXBATTLE_START_MENU_ACTION:
 		WORDSET_RegisterPokeMonsName( wk->WordSet, 1, PPPPointerGet( PokeParty_GetMemberPointer(wk->mixPokeParty, wk->MyTradePokePos) ) );
@@ -762,7 +762,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//-----------------------------------------------------------------------------
-	// ƒƒbƒZ[ƒW•\¦ŒãA‚¯‚Á‚Ä‚¢E‚Â‚æ‚³‚ğŒ©‚éE‚à‚Ç‚é‚Ìƒƒjƒ…[ˆ—‚Ö
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾Œã€ã‘ã£ã¦ã„ãƒ»ã¤ã‚ˆã•ã‚’è¦‹ã‚‹ãƒ»ã‚‚ã©ã‚‹ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†ã¸
 	//-----------------------------------------------------------------------------
 	case _MIXBATTLE_WAIT_SYNC_TRADESELECT:
 		if(FldTalkMsgEndCheck(wk->msgIndex))
@@ -773,12 +773,12 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//-----------------------------------------------------------------------------
-	// ‚¯‚Á‚Ä‚¢E‚Â‚æ‚³‚ğŒ©‚éE‚à‚Ç‚é‚Ìƒƒjƒ…[ˆ—
+	// ã‘ã£ã¦ã„ãƒ»ã¤ã‚ˆã•ã‚’è¦‹ã‚‹ãƒ»ã‚‚ã©ã‚‹ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‡¦ç†
 	//-----------------------------------------------------------------------------
 	case _MIXBATTLE_CTRL_MENU_ACTION:
 		switch( ctrl_mixbattle_list(wk) ){
 		case MIX_TRADELIST_CANCEL:
-			// ‚à‚Ç‚é¨ƒ|ƒPƒ‚ƒ“‘I‘ğƒƒjƒ…[‚Ö
+			// ã‚‚ã©ã‚‹â†’ãƒã‚±ãƒ¢ãƒ³é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸
 			clear_mixbattle_list(wk);
 			MSGMAN_GetString( wk->MsgManager, msg_mixbattle_04, wk->TalkString );
 			wk->msgIndex = startline_event_print_message( wk, wk->TalkString );
@@ -787,7 +787,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 			break;
 
 		case MIX_TRADELIST_DECIDE:
-			// ‚¯‚Á‚Ä‚¢¨Œˆ’èƒCƒ“ƒfƒbƒNƒX‚Ì’ÊMŒğŠ·ˆ—‚Ö
+			// ã‘ã£ã¦ã„â†’æ±ºå®šã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®é€šä¿¡äº¤æ›å‡¦ç†ã¸
 			if( wk->listPos == MIX_ACTIONMENU_DECIDE )
 			{
 				clear_mixbattle_list(wk);
@@ -797,7 +797,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 				CommTimingSyncStart( MIX_SYNC_TRADE_SELECT );
 				wk->seq = _MIXBATTLE_WAIT_SYNC_TRADEPOS_SELECT;
 			}
-			// ‚Â‚æ‚³‚ğ‚İ‚é¨ƒXƒe[ƒ^ƒX‰æ–Ê‚Ö
+			// ã¤ã‚ˆã•ã‚’ã¿ã‚‹â†’ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã¸
 			else
 			{
 		        FieldFadeWipeSet(FLD_DISP_BRIGHT_BLACKOUT);
@@ -817,7 +817,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//--------------------------------------------------------------------------
-	// ƒXƒe[ƒ^ƒX‰æ–Ê‚©‚ç‚Ì•œ‹A‚ğ‘Ò‚¿AƒtƒB[ƒ‹ƒhÄ\’z
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢ã‹ã‚‰ã®å¾©å¸°ã‚’å¾…ã¡ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å†æ§‹ç¯‰
 	//--------------------------------------------------------------------------
 	case _MIXBATTLE_WAIT_POKESTATUS:
 		if( _PokeStatusWait(wk, wk->pFSys) )
@@ -828,7 +828,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//--------------------------------------------------------------------------
-	// ƒtƒB[ƒ‹ƒhÄ\’z‚ğ‘Ò‚¿Au›››i‘I‘ğ‚³‚ê‚½ƒ|ƒPƒ‚ƒ“j‚Å‚¢‚¢‚Å‚·‚©HvƒƒbƒZ[ƒW•\¦‚Ö
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å†æ§‹ç¯‰ã‚’å¾…ã¡ã€ã€Œâ—‹â—‹â—‹ï¼ˆé¸æŠã•ã‚ŒãŸãƒã‚±ãƒ¢ãƒ³ï¼‰ã§ã„ã„ã§ã™ã‹ï¼Ÿã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã¸
 	//--------------------------------------------------------------------------
 	case _MIXBATTLE_WAIT_FIELD_RETURN:
 		if( _mapChangeWait(wk) )
@@ -838,7 +838,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//--------------------------------------------------------------------------
-	// ‘Šè‚Ì‘I‘ğ‘Ò‚¿ƒƒbƒZ[ƒW‚ğ•\¦ŒãA’ÊM“¯Šú‚ğ‘Ò‚Â
+	// ç›¸æ‰‹ã®é¸æŠå¾…ã¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºå¾Œã€é€šä¿¡åŒæœŸã‚’å¾…ã¤
 	//--------------------------------------------------------------------------
 	case _MIXBATTLE_WAIT_SYNC_TRADEPOS_SELECT:
 		if(FldTalkMsgEndCheck(wk->msgIndex))
@@ -873,7 +873,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//--------------------------------------------------------------------------
-	// ‘ÎíƒLƒƒƒ“ƒZƒ‹ƒƒbƒZ[ƒW‚ğ—¬‚·
+	// å¯¾æˆ¦ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æµã™
 	//--------------------------------------------------------------------------
 	case _MIXBATTLE_START_CANCEL_MESSAGE:
 		MSGMAN_GetString( wk->MsgManager, msg_mixbattle_02, wk->TalkString );
@@ -883,7 +883,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//--------------------------------------------------------------------------
-	// ‘ÎíƒLƒƒƒ“ƒZƒ‹ƒƒbƒZ[ƒW•\¦ŒãAˆê’èŠÔƒEƒFƒCƒg‚µ‚ÄA“¯Šú‘Ò‚¿
+	// å¯¾æˆ¦ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºå¾Œã€ä¸€å®šæ™‚é–“ã‚¦ã‚§ã‚¤ãƒˆã—ã¦ã€åŒæœŸå¾…ã¡
 	//--------------------------------------------------------------------------
 	case _MIXBATTLE_WAIT_CANCEL_MESSAGE:
 		if(FldTalkMsgEndCheck(wk->msgIndex))
@@ -897,7 +897,7 @@ static BOOL GMEVENT_StartLine(GMEVENT_CONTROL * event)
 		break;
 
 	//--------------------------------------------------------------------------
-	// ƒLƒƒƒ“ƒZƒ‹ƒƒbƒZ[ƒWŒã‚Ì’ÊM“¯Šú‚ğ‘Ò‚¿AƒCƒxƒ“ƒgI—¹
+	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å¾Œã®é€šä¿¡åŒæœŸã‚’å¾…ã¡ã€ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
 	//--------------------------------------------------------------------------
 	case _MIXBATTLE_WAIT_SYNC_CANCEL:
 		if( CommIsTimingSync(MIX_SYNC_CANCEL) )
@@ -955,7 +955,7 @@ static void startline_event_delete_bmpwin( EV_STARTLINE_WORK* wk,BOOL bDispClear
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	‘Îí•”‰®ƒXƒ^[ƒgƒ‰ƒCƒ“ã‚Å‚ÌƒCƒxƒ“ƒgƒZƒbƒg
+ * @brief	å¯¾æˆ¦éƒ¨å±‹ã‚¹ã‚¿ãƒ¼ãƒˆãƒ©ã‚¤ãƒ³ä¸Šã§ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚»ãƒƒãƒˆ
  * @param	FIELDSYS_WORK
  * @retval	none
  */
@@ -1048,11 +1048,11 @@ static void free_startline_work( EV_STARTLINE_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒ[ƒNƒ|ƒCƒ“ƒ^æ“¾
+ * ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿å–å¾—
  *
- * @param   fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ[ƒN
+ * @param   fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- * @retval  EV_STARTLINE_WORK*		ƒCƒxƒ“ƒgƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @retval  EV_STARTLINE_WORK*		ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static EV_STARTLINE_WORK* get_startline_work( FIELDSYS_WORK* fsys )
@@ -1061,9 +1061,9 @@ static EV_STARTLINE_WORK* get_startline_work( FIELDSYS_WORK* fsys )
 }
 //------------------------------------------------------------------
 /**
- * ƒ~ƒbƒNƒXƒoƒgƒ‹Q‰Áƒ|ƒPƒ‚ƒ“‘—Mƒf[ƒ^‚ğƒoƒbƒtƒ@‚Éì¬
+ * ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«å‚åŠ ãƒã‚±ãƒ¢ãƒ³é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«ä½œæˆ
  *
- * @param   wk				ƒCƒxƒ“ƒgƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk				ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -1093,11 +1093,11 @@ static void setup_mixbattle_send_pokemon( EV_STARTLINE_WORK* wk, BOOL decideFlag
 
 //------------------------------------------------------------------
 /**
- * ƒŠƒXƒg‚Å‘I‚ñ‚¾ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚Ì‘—óM‚ğŠJn
+ * ãƒªã‚¹ãƒˆã§é¸ã‚“ã ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã®é€å—ä¿¡ã‚’é–‹å§‹
  *
- * @param   wk			ƒCƒxƒ“ƒgƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚Å¬Œ÷
+ * @retval  BOOL		TRUEã§æˆåŠŸ
  */
 //------------------------------------------------------------------
 static BOOL start_mixbattle_send_pokemon( EV_STARTLINE_WORK* wk )
@@ -1135,11 +1135,11 @@ static BOOL start_mixbattle_send_pokemon( EV_STARTLINE_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‘—óM‚ÌI—¹‘Ò‚¿
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿é€å—ä¿¡ã®çµ‚äº†å¾…ã¡
  *
- * @param   wk		ƒCƒxƒ“ƒgƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 static BOOL wait_mixbattle_send_pokemon( EV_STARTLINE_WORK* wk )
@@ -1154,11 +1154,11 @@ static BOOL wait_mixbattle_send_pokemon( EV_STARTLINE_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ‘Îí‘Šè‚ªƒ|ƒPƒ‚ƒ“‚ğ‚R‘Ì‘I‚ñ‚¾‚©AƒLƒƒƒ“ƒZƒ‹‚µ‚½‚©ƒtƒ‰ƒO‚ğæ“¾
+ * å¯¾æˆ¦ç›¸æ‰‹ãŒãƒã‚±ãƒ¢ãƒ³ã‚’ï¼“ä½“é¸ã‚“ã ã‹ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸã‹ãƒ•ãƒ©ã‚°ã‚’å–å¾—
  *
- * @param   wk			ƒCƒxƒ“ƒgƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk			ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL		TRUE‚È‚ç‚R‘Ì‘I‚ñ‚¾BFALSE‚¾‚ÆƒLƒƒƒ“ƒZƒ‹‚µ‚½B
+ * @retval  BOOL		TRUEãªã‚‰ï¼“ä½“é¸ã‚“ã ã€‚FALSEã ã¨ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ãŸã€‚
  */
 //------------------------------------------------------------------
 static BOOL get_rivals_pokeselect_flag( EV_STARTLINE_WORK* wk )
@@ -1239,7 +1239,7 @@ static void setup_mixbattle_party( EV_STARTLINE_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ö
+ * ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã¸
  *
  * @param   wk		
  *
@@ -1291,7 +1291,7 @@ static void start_mixbattle_trade_pokelist( EV_STARTLINE_WORK* wk, int pos )
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“‘I‘ğŒã‚ÌƒŠƒXƒgƒƒjƒ…[•\¦
+ * ãƒã‚±ãƒ¢ãƒ³é¸æŠå¾Œã®ãƒªã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -1331,7 +1331,7 @@ static void start_mixbattle_menu_action( EV_STARTLINE_WORK* wk, int pos )
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹‘Ò‚¿
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å¾…ã¡
  */
 static int ctrl_mixbattle_list( EV_STARTLINE_WORK* wk )
 {
@@ -1424,19 +1424,19 @@ void CommMixBattleTradeRecv( int netID, int size, void* pBuff, void* pWork )
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒgƒŒ[ƒi[ƒJ[ƒh
+ * @brief	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚«ãƒ¼ãƒ‰
  * @param	FIELDSYS_WORK
  * @retval	none
  */
 //-----------------------------------------------------------------------------
 
 typedef struct{
-	STRBUF* TalkString;							// ‰ï˜bƒƒbƒZ[ƒW—p
-	STRBUF* TalkStringEx;							// ‰ï˜bƒƒbƒZ[ƒWExpand—p
-	GF_BGL_BMPWIN MsgWin;									// ‰ï˜bƒEƒCƒ“ƒhƒE
-	WORDSET* WordSet;					// ƒƒbƒZ[ƒW“WŠJ—pƒ[ƒNƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER* MsgManager;				// –¼‘O“ü—ÍƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-	int	msgIndex;								// I—¹ŒŸo—pƒ[ƒN
+	STRBUF* TalkString;							// ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨
+	STRBUF* TalkStringEx;							// ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸Expandç”¨
+	GF_BGL_BMPWIN MsgWin;									// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	WORDSET* WordSet;					// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹ç”¨ãƒ¯ãƒ¼ã‚¯ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER* MsgManager;				// åå‰å…¥åŠ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	int	msgIndex;								// çµ‚äº†æ¤œå‡ºç”¨ãƒ¯ãƒ¼ã‚¯
     int targetID;
     int seq;
 } _EV_TRCARD_WORK;
@@ -1538,7 +1538,7 @@ void EventCmd_VSRoomTrainer(FIELDSYS_WORK * pFSys)
     
     for(i = 0;i < CommGetConnectNum();i++){
         if(i == myID){
-            continue;  // ©•ª‚ª’T‚¹‚é‚Í‚¸‚Í–³‚¢‚ª”O‚Ì‚½‚ß
+            continue;  // è‡ªåˆ†ãŒæ¢ã›ã‚‹ã¯ãšã¯ç„¡ã„ãŒå¿µã®ãŸã‚
         }
         if((x ==CommPlayerGetPosX(i)) && (z ==CommPlayerGetPosZ(i))){
             _EV_TRCARD_WORK *wk = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(_EV_TRCARD_WORK));

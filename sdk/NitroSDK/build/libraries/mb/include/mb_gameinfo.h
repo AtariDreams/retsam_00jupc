@@ -18,44 +18,44 @@
   do-indent
 
   Revision 1.10  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.9  2005/02/28 05:26:25  yosizaki
   do-indent.
 
   Revision 1.8  2004/11/22 12:50:31  takano_makoto
-  MBGameInfoRecvList, MBGameInfoRecvStatus‚ğmb_child.h‚©‚çˆÚ“®
+  MBGameInfoRecvList, MBGameInfoRecvStatusã‚’mb_child.hã‹ã‚‰ç§»å‹•
 
   Revision 1.7  2004/11/10 07:42:51  takano_makoto
-  mb_gameinfo.c‚Ì’†‚Ìq‹@‘¤‚Ìˆ—‚©‚çMBwŠÖ”‚ğ”rœ
+  mb_gameinfo.cã®ä¸­ã®å­æ©Ÿå´ã®å‡¦ç†ã‹ã‚‰MBwé–¢æ•°ã‚’æ’é™¤
 
   Revision 1.5  2004/09/14 23:55:48  yosizaki
   disable MB_CHANGE_TO_UNICODE
       (change MBGameregistry's member to Unicode)
 
   Revision 1.4  2004/09/13 09:24:39  yosiokat
-  EƒXƒLƒƒƒ“ƒƒbƒN‚ÉƒƒbƒN‘ÎÛ‚ª‘S‚­Œ©‚Â‚©‚ç‚È‚¢ó‘Ô‚Ì‘Îô‚Ì‚½‚ßAMB_CountGameInfoLifetime‚Ìˆø”‚ÉwmTypeEvent‚ğ’Ç‰ÁB
+  ãƒ»ã‚¹ã‚­ãƒ£ãƒ³ãƒ­ãƒƒã‚¯æ™‚ã«ãƒ­ãƒƒã‚¯å¯¾è±¡ãŒå…¨ãè¦‹ã¤ã‹ã‚‰ãªã„çŠ¶æ…‹ã®å¯¾ç­–ã®ãŸã‚ã€MB_CountGameInfoLifetimeã®å¼•æ•°ã«wmTypeEventã‚’è¿½åŠ ã€‚
 
   Revision 1.3  2004/09/09 14:02:23  sato_masaki
-  mb_gameinfo.c‚É‚¨‚¯‚éAPlayerFlag‚ÌƒtƒH[ƒ}ƒbƒg•ÏXBiì‹Æ’†j
+  mb_gameinfo.cã«ãŠã‘ã‚‹ã€PlayerFlagã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå¤‰æ›´ã€‚ï¼ˆä½œæ¥­ä¸­ï¼‰
 
   Revision 1.2  2004/09/08 04:34:47  sato_masaki
   small fix
 
   Revision 1.1  2004/09/03 07:06:28  sato_masaki
-  ƒtƒ@ƒCƒ‹‚ğ‹@”\•Ê‚É•ªŠ„B
+  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ©Ÿèƒ½åˆ¥ã«åˆ†å‰²ã€‚
 
   Revision 1.6  2004/09/01 09:40:51  sato_masaki
-  MB_AUTHCODE_SIZE‚Ì’l•ÏXB
+  MB_AUTHCODE_SIZEã®å€¤å¤‰æ›´ã€‚
 
   Revision 1.5  2004/08/30 06:31:38  sato_masaki
-  MBDownloadFileInfo‚É”FØ—pƒR[ƒhauth_code‚ğ’Ç‰ÁB
+  MBDownloadFileInfoã«èªè¨¼ç”¨ã‚³ãƒ¼ãƒ‰auth_codeã‚’è¿½åŠ ã€‚
 
   Revision 1.4  2004/08/19 07:43:11  sato_masaki
-  GameInfo‚Ìƒtƒ‰ƒO‚ÉŠÖ‚·‚éƒ}ƒNƒ’è‹`‚ğ’Ç‰Á
+  GameInfoã®ãƒ•ãƒ©ã‚°ã«é–¢ã™ã‚‹ãƒã‚¯ãƒ­å®šç¾©ã‚’è¿½åŠ 
 
   Revision 1.3  2004/08/12 09:15:52  yosiokat
-  EMbBeaconRecvStatus‚ÉƒXƒLƒƒƒ“ƒƒbƒNŠúŒÀƒJƒEƒ“ƒg—pnowLockTimeCount‚ÆlockTimeMaxCount‚ğ’Ç‰ÁB
+  ãƒ»MbBeaconRecvStatusã«ã‚¹ã‚­ãƒ£ãƒ³ãƒ­ãƒƒã‚¯æœŸé™ã‚«ã‚¦ãƒ³ãƒˆç”¨nowLockTimeCountã¨lockTimeMaxCountã‚’è¿½åŠ ã€‚
 
   Revision 1.2  2004/08/09 14:55:22  yosizaki
   format all the symbol for API
@@ -68,8 +68,8 @@
 
 
 /*
- * ‚±‚Ìƒwƒbƒ_ƒtƒ@ƒCƒ‹‚Í“à•”À‘•‹y‚Ñq‹@‘¤‚Å‚Ì‚İg—p‚µ‚Ü‚·.
- * ’Êí‚Ìƒ}ƒ‹ƒ`ƒu[ƒge‹@‚ğì¬‚·‚éã‚Å‚Í•K—v‚ ‚è‚Ü‚¹‚ñ.
+ * ã“ã®ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã¯å†…éƒ¨å®Ÿè£…åŠã³å­æ©Ÿå´ã§ã®ã¿ä½¿ç”¨ã—ã¾ã™.
+ * é€šå¸¸ã®ãƒãƒ«ãƒãƒ–ãƒ¼ãƒˆè¦ªæ©Ÿã‚’ä½œæˆã™ã‚‹ä¸Šã§ã¯å¿…è¦ã‚ã‚Šã¾ã›ã‚“.
  */
 
 
@@ -88,7 +88,7 @@ extern "C" {
 
 //=============================================================================
 // 
-// ƒf[ƒ^Œ^@’è‹`
+// ãƒ‡ãƒ¼ã‚¿å‹ã€€å®šç¾©
 //
 //=============================================================================
 
@@ -96,55 +96,55 @@ extern "C" {
 #define MB_GAMEINFO_CHILD_FLAG( __child_aid__ )     ( 1 << ( __child_aid__ ) )
 
 //---------------------------------------------------------
-// e‹@‚©‚çq‹@‚Éƒr[ƒRƒ“‚Å”zM‚·‚éƒQ[ƒ€î•ñ
+// è¦ªæ©Ÿã‹ã‚‰å­æ©Ÿã«ãƒ“ãƒ¼ã‚³ãƒ³ã§é…ä¿¡ã™ã‚‹ã‚²ãƒ¼ãƒ æƒ…å ±
 //---------------------------------------------------------
 
 /*
- * q‹@‘¤ƒQ[ƒ€î•ñóMƒŠƒXƒg\‘¢‘Ì.
+ * å­æ©Ÿå´ã‚²ãƒ¼ãƒ æƒ…å ±å—ä¿¡ãƒªã‚¹ãƒˆæ§‹é€ ä½“.
  */
 typedef struct MBGameInfoRecvList
 {
-    MBGameInfo gameInfo;               // e‹@ƒQ[ƒ€î•ñ
-    WMBssDesc bssDesc;                 // e‹@Ú‘±—pî•ñ
-    u32     getFlagmentFlag;           // Œ»İóM‚µ‚½’f•Ğƒr[ƒRƒ“‚ğƒrƒbƒg‚Å¦‚·B
-    u32     allFlagmentFlag;           // flagmentMaxNum‚ğƒrƒbƒg‚ÉŠ·Z‚µ‚½’l
-    u16     getPlayerFlag;             // Œ»İóMÏ‚İ‚ÌƒvƒŒƒCƒ„[ƒtƒ‰ƒO‚ğƒrƒbƒg‚Å¦‚·B
-    s16     lifetimeCount;             // ‚±‚Ìî•ñ‚É‘Î‚·‚éõ–½ƒJƒEƒ“ƒ^i‚±‚Ìe‹@‚Ìƒr[ƒRƒ“‚ğóM‚µ‚½‚çAõ–½‚ª‰„‚Ñ‚éj
-    u16     linkLevel;                 /* e‹@‚©‚ç‚ÌBeaconóM‹­“x‚ğ¦‚·A4’iŠK‚Ì’l. */
-    u8      beaconNo;                  // ÅŒã‚ÉóM‚µ‚½ƒr[ƒRƒ“”Ô†
-    u8      sameBeaconRecvCount;       // “¯‚¶ƒr[ƒRƒ“”Ô†‚ğ˜A‘±‚µ‚ÄóM‚µ‚½‰ñ”
+    MBGameInfo gameInfo;               // è¦ªæ©Ÿã‚²ãƒ¼ãƒ æƒ…å ±
+    WMBssDesc bssDesc;                 // è¦ªæ©Ÿæ¥ç¶šç”¨æƒ…å ±
+    u32     getFlagmentFlag;           // ç¾åœ¨å—ä¿¡ã—ãŸæ–­ç‰‡ãƒ“ãƒ¼ã‚³ãƒ³ã‚’ãƒ“ãƒƒãƒˆã§ç¤ºã™ã€‚
+    u32     allFlagmentFlag;           // flagmentMaxNumã‚’ãƒ“ãƒƒãƒˆã«æ›ç®—ã—ãŸå€¤
+    u16     getPlayerFlag;             // ç¾åœ¨å—ä¿¡æ¸ˆã¿ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ•ãƒ©ã‚°ã‚’ãƒ“ãƒƒãƒˆã§ç¤ºã™ã€‚
+    s16     lifetimeCount;             // ã“ã®æƒ…å ±ã«å¯¾ã™ã‚‹å¯¿å‘½ã‚«ã‚¦ãƒ³ã‚¿ï¼ˆã“ã®è¦ªæ©Ÿã®ãƒ“ãƒ¼ã‚³ãƒ³ã‚’å—ä¿¡ã—ãŸã‚‰ã€å¯¿å‘½ãŒå»¶ã³ã‚‹ï¼‰
+    u16     linkLevel;                 /* è¦ªæ©Ÿã‹ã‚‰ã®Beaconå—ä¿¡å¼·åº¦ã‚’ç¤ºã™ã€4æ®µéšã®å€¤. */
+    u8      beaconNo;                  // æœ€å¾Œã«å—ä¿¡ã—ãŸãƒ“ãƒ¼ã‚³ãƒ³ç•ªå·
+    u8      sameBeaconRecvCount;       // åŒã˜ãƒ“ãƒ¼ã‚³ãƒ³ç•ªå·ã‚’é€£ç¶šã—ã¦å—ä¿¡ã—ãŸå›æ•°
 }
 MBGameInfoRecvList, MbGameInfoRecvList;
 
 
 /*
- * q‹@‘¤ƒr[ƒRƒ“óMƒXƒe[ƒ^ƒX\‘¢‘Ì
+ * å­æ©Ÿå´ãƒ“ãƒ¼ã‚³ãƒ³å—ä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ§‹é€ ä½“
  */
 typedef struct MbBeaconRecvStatus
 {
-    u16     usingGameInfoFlag;         // ƒQ[ƒ€î•ñ‚ÌóM‚Ég—p’†‚ÌgameInfo”z—ñ—v‘f‚ğƒrƒbƒg‚Å¦‚·B
-    u16     usefulGameInfoFlag;        // ˆê’U‚Í‘S‚Ä‚Ìƒr[ƒRƒ“‚ğóM‚µ‚ÄAvalidGameInfoFlag‚ª—§‚Á‚½ƒQ[ƒ€î•ñ‚ğ¦‚·B
-    // i’ÊMƒƒ“ƒo[‚ÌXV“™‚ÅAvalidGameInfoFlag‚Íˆê“I‚É—‚¿‚éê‡‚ª‚ ‚é‚Ì‚ÅA•\¦‚âÚ‘±‚É‚Í‚±‚¿‚ç‚Ìƒtƒ‰ƒO‚ğg—p‚µ‚Ä”»’f‚·‚éBj
-    u16     validGameInfoFlag;         // ƒQ[ƒ€î•ñ‚ğŠ®‘S‚ÉóM‚µ‚Ä‚¢‚égameInfo”z—ñ—v‘f‚ğƒrƒbƒg‚Å¦‚·B
-    u16     nowScanTargetFlag;         // Œ»İ‚ÌScanƒ^[ƒQƒbƒg‚ğƒrƒbƒg‚Å¦‚·B
-    s16     nowLockTimeCount;          // Œ»İ‚ÌScanƒ^[ƒQƒbƒg‚Ìc‚èƒƒbƒNŠÔB
-    s16     notFoundLockTargetCount;   // Œ»İ‚ÌScanTarget‚ª˜A‘±‚ÅŒ©‚Â‚©‚ç‚È‚©‚Á‚½‰ñ”
-    u16     scanCountUnit;             // Œ»İ‚ÌƒXƒLƒƒƒ“ŠÔ‚ğƒJƒEƒ“ƒg”‚ÉŠ·Z‚µ‚½’l
+    u16     usingGameInfoFlag;         // ã‚²ãƒ¼ãƒ æƒ…å ±ã®å—ä¿¡ã«ä½¿ç”¨ä¸­ã®gameInfoé…åˆ—è¦ç´ ã‚’ãƒ“ãƒƒãƒˆã§ç¤ºã™ã€‚
+    u16     usefulGameInfoFlag;        // ä¸€æ—¦ã¯å…¨ã¦ã®ãƒ“ãƒ¼ã‚³ãƒ³ã‚’å—ä¿¡ã—ã¦ã€validGameInfoFlagãŒç«‹ã£ãŸã‚²ãƒ¼ãƒ æƒ…å ±ã‚’ç¤ºã™ã€‚
+    // ï¼ˆé€šä¿¡ãƒ¡ãƒ³ãƒãƒ¼ã®æ›´æ–°ç­‰ã§ã€validGameInfoFlagã¯ä¸€æ™‚çš„ã«è½ã¡ã‚‹å ´åˆãŒã‚ã‚‹ã®ã§ã€è¡¨ç¤ºã‚„æ¥ç¶šã«ã¯ã“ã¡ã‚‰ã®ãƒ•ãƒ©ã‚°ã‚’ä½¿ç”¨ã—ã¦åˆ¤æ–­ã™ã‚‹ã€‚ï¼‰
+    u16     validGameInfoFlag;         // ã‚²ãƒ¼ãƒ æƒ…å ±ã‚’å®Œå…¨ã«å—ä¿¡ã—ã¦ã„ã‚‹gameInfoé…åˆ—è¦ç´ ã‚’ãƒ“ãƒƒãƒˆã§ç¤ºã™ã€‚
+    u16     nowScanTargetFlag;         // ç¾åœ¨ã®Scanã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’ãƒ“ãƒƒãƒˆã§ç¤ºã™ã€‚
+    s16     nowLockTimeCount;          // ç¾åœ¨ã®Scanã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®æ®‹ã‚Šãƒ­ãƒƒã‚¯æ™‚é–“ã€‚
+    s16     notFoundLockTargetCount;   // ç¾åœ¨ã®ScanTargetãŒé€£ç¶šã§è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸå›æ•°
+    u16     scanCountUnit;             // ç¾åœ¨ã®ã‚¹ã‚­ãƒ£ãƒ³æ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆæ•°ã«æ›ç®—ã—ãŸå€¤
     u8      pad[2];
-    MBGameInfoRecvList list[MB_GAME_INFO_RECV_LIST_NUM];        // ƒQ[ƒ€î•ñóMƒŠƒXƒg
+    MBGameInfoRecvList list[MB_GAME_INFO_RECV_LIST_NUM];        // ã‚²ãƒ¼ãƒ æƒ…å ±å—ä¿¡ãƒªã‚¹ãƒˆ
 }
 MbBeaconRecvStatus;
 /*
- * ¦q‹@‘¤‚ÍA
- * getFlagmentFlag == allFlagmentFlag@‚©‚Â@
+ * â€»å­æ©Ÿå´ã¯ã€
+ * getFlagmentFlag == allFlagmentFlagã€€ã‹ã¤ã€€
  * getPlayerFlag   == gameInfo.volat.nowPlayerFlag
- * ‚ÅAe‹@î•ñæ“¾Š®—¹‚Æ‚È‚éB
+ * ã§ã€è¦ªæ©Ÿæƒ…å ±å–å¾—å®Œäº†ã¨ãªã‚‹ã€‚
  */
 
 
 /*
- * MB_RecvGameInfoBeacon, MB_CountGameInfoLifetime ‚Ì
- * ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Å•Ô‚³‚ê‚émsg.
+ * MB_RecvGameInfoBeacon, MB_CountGameInfoLifetime ã®
+ * ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã§è¿”ã•ã‚Œã‚‹msg.
  */
 typedef enum MbBeaconMsg
 {
@@ -162,66 +162,66 @@ typedef void (*MbScanLockFunc) (u8 *macAddress);
 typedef void (*MbScanUnlockFunc) (void);
 
 /******************************************************************************/
-/* ˆÈ‰º‚Í“à•”g—p */
+/* ä»¥ä¸‹ã¯å†…éƒ¨ä½¿ç”¨ */
 
 
 //------------------
-// e‹@‘¤ŠÖ”
+// è¦ªæ©Ÿå´é–¢æ•°
 //------------------
 
-    // ‘—MƒXƒe[ƒ^ƒX‚Ì‰Šú‰»B
+    // é€ä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®åˆæœŸåŒ–ã€‚
 void    MB_InitSendGameInfoStatus(void);
 
-    // MbGameRegistry‚©‚çMbGameInfo‚ğì¬‚·‚éB
+    // MbGameRegistryã‹ã‚‰MbGameInfoã‚’ä½œæˆã™ã‚‹ã€‚
 void    MBi_MakeGameInfo(MBGameInfo *gameInfop,
                          const MBGameRegistry *mbGameRegp, const MBUserInfo *parent);
 
-    // MBGameInfo‚Ìq‹@ƒƒ“ƒo[î•ñ‚ğXV‚·‚éB
+    // MBGameInfoã®å­æ©Ÿãƒ¡ãƒ³ãƒãƒ¼æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹ã€‚
 void    MB_UpdateGameInfoMember(MBGameInfo *gameInfop,
                                 const MBUserInfo *member, u16 nowPlayerFlag, u16 changePlayerFlag);
 
-    // ¶¬‚µ‚½MBGameInfo‚ğƒr[ƒRƒ“‚Å”­M‚·‚é‚æ‚¤‘—MƒŠƒXƒg‚É’Ç‰Á‚·‚éB
+    // ç”Ÿæˆã—ãŸMBGameInfoã‚’ãƒ“ãƒ¼ã‚³ãƒ³ã§ç™ºä¿¡ã™ã‚‹ã‚ˆã†é€ä¿¡ãƒªã‚¹ãƒˆã«è¿½åŠ ã™ã‚‹ã€‚
 void    MB_AddGameInfo(MBGameInfo *newGameInfop);
 
-    // ‘—MƒŠƒXƒg‚É’Ç‰Á‚µ‚Ä‚¢‚éMBGameInfo‚ğíœ‚·‚éB
+    // é€ä¿¡ãƒªã‚¹ãƒˆã«è¿½åŠ ã—ã¦ã„ã‚‹MBGameInfoã‚’å‰Šé™¤ã™ã‚‹ã€‚
 BOOL    MB_DeleteGameInfo(MBGameInfo *gameInfop);
 
-    // ‘—MƒŠƒXƒg‚É“o˜^‚³‚ê‚Ä‚¢‚éMBGameInfo‚ğƒr[ƒRƒ“‚Éæ‚¹‚Ä”­M‚·‚éB
+    // é€ä¿¡ãƒªã‚¹ãƒˆã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹MBGameInfoã‚’ãƒ“ãƒ¼ã‚³ãƒ³ã«ä¹—ã›ã¦ç™ºä¿¡ã™ã‚‹ã€‚
 void    MB_SendGameInfoBeacon(u32 ggid, u16 tgid, u8 attribute);
 
 
 //------------------
-// q‹@‘¤ŠÖ”
+// å­æ©Ÿå´é–¢æ•°
 //------------------
-    // ƒr[ƒRƒ“óMƒXƒe[ƒ^ƒXƒoƒbƒtƒ@‚ğstatic‚ÉŠm•Û
+    // ãƒ“ãƒ¼ã‚³ãƒ³å—ä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’staticã«ç¢ºä¿
 void    MBi_SetBeaconRecvStatusBufferDefault(void);
-    // ƒr[ƒRƒ“óMƒXƒe[ƒ^ƒXƒoƒbƒtƒ@‚ğİ’è
+    // ãƒ“ãƒ¼ã‚³ãƒ³å—ä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒƒãƒ•ã‚¡ã‚’è¨­å®š
 void    MBi_SetBeaconRecvStatusBuffer(MbBeaconRecvStatus * buf);
 
-    // óMƒXƒe[ƒ^ƒX‚Ì‰Šú‰»
+    // å—ä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®åˆæœŸåŒ–
 void    MB_InitRecvGameInfoStatus(void);
 
-    // óM‚µ‚½ƒr[ƒRƒ“‚©‚çMBGameInfo‚ğæ‚èo‚·B
+    // å—ä¿¡ã—ãŸãƒ“ãƒ¼ã‚³ãƒ³ã‹ã‚‰MBGameInfoã‚’å–ã‚Šå‡ºã™ã€‚
 BOOL    MB_RecvGameInfoBeacon(MBBeaconMsgCallback Callbackp, u16 linkLevel, WMBssDesc *bssDescp);
 
-    // e‹@î•ñƒŠƒXƒg‚Ìõ–½ƒJƒEƒ“ƒg
+    // è¦ªæ©Ÿæƒ…å ±ãƒªã‚¹ãƒˆã®å¯¿å‘½ã‚«ã‚¦ãƒ³ãƒˆ
 void    MB_CountGameInfoLifetime(MBBeaconMsgCallback Callbackp, BOOL found_parent);
 
-    // ƒXƒLƒƒƒ“ƒƒbƒNŠÖ”‚ğİ’è
+    // ã‚¹ã‚­ãƒ£ãƒ³ãƒ­ãƒƒã‚¯é–¢æ•°ã‚’è¨­å®š
 void    MBi_SetScanLockFunc(MbScanLockFunc lockFunc, MbScanUnlockFunc unlockFunc);
 
-    // óM‚µ‚½e‹@î•ñ\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
+    // å—ä¿¡ã—ãŸè¦ªæ©Ÿæƒ…å ±æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
 MBGameInfoRecvList *MB_GetGameInfoRecvList(int index);
 
-/* ƒr[ƒRƒ“óMó‘Ô‚ğæ“¾ */
+/* ãƒ“ãƒ¼ã‚³ãƒ³å—ä¿¡çŠ¶æ…‹ã‚’å–å¾— */
 const MbBeaconRecvStatus *MB_GetBeaconRecvStatus(void);
 
-/* w’è‚³‚ê‚½ƒQ[ƒ€î•ñ‚Ìíœ */
+/* æŒ‡å®šã•ã‚ŒãŸã‚²ãƒ¼ãƒ æƒ…å ±ã®å‰Šé™¤ */
 void    MB_DeleteRecvGameInfo(int index);
 void    MB_DeleteRecvGameInfoWithoutBssdesc(int index);
 
 //------------------
-// Unicode ˆÚs—pƒVƒ“ƒ{ƒ‹.
+// Unicode ç§»è¡Œç”¨ã‚·ãƒ³ãƒœãƒ«.
 //------------------
 //#define   MB_CHANGE_TO_UNICODE
 

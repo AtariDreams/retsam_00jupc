@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	cb_seal.c
- * @brief	ƒV[ƒ‹
+ * @brief	ã‚·ãƒ¼ãƒ«
  * @author	goto
- * @date	2006.04.13(–Ø)
+ * @date	2006.04.13(æœ¨)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -64,7 +64,7 @@ static void NitroStaticInit(void)
 #define SEAL_32x32_NCER		(CB__SEAL_01_NCER_BIN)
 #define SEAL_32x32_NANR		(CB__SEAL_01_NANR_BIN)
 
-///< ƒvƒƒgƒ^ƒCƒv
+///< ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 
 static const RECT_HIT_TBL default_hit_rect = {
 	SEAL_DEF_POS_X-16, SEAL_DEF_POS_Y-16,
@@ -130,7 +130,7 @@ void CBS_Seal_EditPosSet(CB_MAIN_WORK* cbmw)
 	}
 }
 
-///< ƒ[ƒh•‰Šú‰»
+///< ãƒ­ãƒ¼ãƒ‰ï¼†åˆæœŸåŒ–
 void CBS_LoadInit(CB_MAIN_WORK* cbmw)
 {
 	int i;
@@ -142,7 +142,7 @@ void CBS_LoadInit(CB_MAIN_WORK* cbmw)
 	for (i = 0; i < CB_DEF_SEAL_MAX; i++){
 		
 		if (core->cb_seal[i].seal_id != 0){
-			cbmw->seal[i].id  = core->cb_seal[i].seal_id;	///< ƒZ[ƒu‚©‚çˆøŒp‚¬
+			cbmw->seal[i].id  = core->cb_seal[i].seal_id;	///< ã‚»ãƒ¼ãƒ–ã‹ã‚‰å¼•ç¶™ã
 			cbmw->seal[i].x   = core->cb_seal[i].x;
 			cbmw->seal[i].y	  = core->cb_seal[i].y;
 
@@ -151,7 +151,7 @@ void CBS_LoadInit(CB_MAIN_WORK* cbmw)
 		//	CATS_ObjectEnableCap(cbmw->seal[i].cap, CATS_ENABLE_TRUE);
 		//	CATS_ObjectUpdateCap(cbmw->seal[i].cap);
 
-			cbmw->seal[i].pop = TRUE;						///< OBJ“o˜^ŒãPOP‚³‚¹‚é
+			cbmw->seal[i].pop = TRUE;						///< OBJç™»éŒ²å¾ŒPOPã•ã›ã‚‹
 		}
 		else {		
 			cbmw->seal[i].pop = FALSE;
@@ -160,7 +160,7 @@ void CBS_LoadInit(CB_MAIN_WORK* cbmw)
 	}
 }
 
-///< ‹ó‚«‚ğ’T‚·
+///< ç©ºãã‚’æ¢ã™
 int CBS_SearchPop(CB_MAIN_WORK* cbmw, u8 id)
 {
 	int i;
@@ -243,7 +243,7 @@ void CBS_ResLoad(CB_MAIN_WORK* cbmw, u8 one_id, u8 id)
 	crp = cbmw->sys.crp;
 	pfd = cbmw->sys.pfd;	
 
-	///< ƒpƒŒƒbƒg
+	///< ãƒ‘ãƒ¬ãƒƒãƒˆ
 	CATS_LoadResourcePlttWorkArc(pfd, FADE_SUB_OBJ, csp, crp,
 								 ARC_CUSTOM_BALL_GRA, CB_SEAL_NCLR, FALSE,
 								 1, NNS_G2D_VRAM_TYPE_2DSUB,
@@ -444,13 +444,13 @@ void CBS_SVSort(CB_MAIN_WORK* cbmw)
 			
 			CATS_ObjectPriSetCap(cbmw->seal[ idx[i] ].cap, i);
 			
-//			CATS_ObjectPosSetCap(cbmw->seal[i].cap, cbmw->seal[i].x, cbmw->seal[i].y);		///< ’Ç‰Á
-//			HitTable_Create(cbmw->seal[i].hit, cbmw->seal[i].x, cbmw->seal[i].y);			///< ’Ç‰Á
+//			CATS_ObjectPosSetCap(cbmw->seal[i].cap, cbmw->seal[i].x, cbmw->seal[i].y);		///< è¿½åŠ 
+//			HitTable_Create(cbmw->seal[i].hit, cbmw->seal[i].x, cbmw->seal[i].y);			///< è¿½åŠ 
 		}
 	}
 }
 
-///< ƒV[ƒ‹OBJ‚ğ’Ç‰Á
+///< ã‚·ãƒ¼ãƒ«OBJã‚’è¿½åŠ 
 BOOL CBS_Add(CB_MAIN_WORK* cbmw, u8 id)
 {
 	int char_id;
@@ -552,7 +552,7 @@ BOOL CBS_SealHold(CB_MAIN_WORK* cbmw, u32 event, u8 id)
 	return TRUE;
 }
 
-///< ‘S‘Ìíœ
+///< å…¨ä½“å‰Šé™¤
 void CBS_Delete(CB_MAIN_WORK* cbmw)
 {
 	int i;
@@ -571,7 +571,7 @@ void CBS_Delete(CB_MAIN_WORK* cbmw)
 	}
 }
 
-///< ”ñ•\¦
+///< éè¡¨ç¤º
 void CBS_Enable(CB_MAIN_WORK* cbmw, int flag)
 {
 	int i;
@@ -585,7 +585,7 @@ void CBS_Enable(CB_MAIN_WORK* cbmw, int flag)
 	}	
 }
 
-///< ‚Ä‚ñ‚Æ‚Ä‚ñ‚Ì‹——£
+///< ã¦ã‚“ã¨ã¦ã‚“ã®è·é›¢
 int  CBS_PtoP(s16 x1, s16 y1, s16 x2, s16 y2)
 {
 	int range;
@@ -598,7 +598,7 @@ int  CBS_PtoP(s16 x1, s16 y1, s16 x2, s16 y2)
 	return range;
 }
 
-///< ’†S‚©‚ç‚Ì‹——£‚ªƒŠƒŠ[ƒXƒ|ƒCƒ“ƒg‰»ƒ`ƒFƒbƒN
+///< ä¸­å¿ƒã‹ã‚‰ã®è·é›¢ãŒãƒªãƒªãƒ¼ã‚¹ãƒã‚¤ãƒ³ãƒˆåŒ–ãƒã‚§ãƒƒã‚¯
 BOOL CBS_ReleasePointCheck(CB_MAIN_WORK* cbmw, int id)
 {
 	int range;
@@ -618,7 +618,7 @@ BOOL CBS_ReleasePointCheck(CB_MAIN_WORK* cbmw, int id)
 }
 
 
-///< ‰ğ•ú
+///< è§£æ”¾
 void CBS_Release(CB_MAIN_WORK* cbmw, int id)
 {
 	int char_id;
@@ -639,7 +639,7 @@ void CBS_Release(CB_MAIN_WORK* cbmw, int id)
 	HitTable_Create(cbmw->seal[id].hit, 0, 0);
 }
 
-///< ‰ğ•úˆÊ’u‚É‚«‚Ä‚é‚Æ‚«‚É”¼“§–¾
+///< è§£æ”¾ä½ç½®ã«ãã¦ã‚‹ã¨ãã«åŠé€æ˜
 void CBS_ReleasePointCheckTypeSet(CB_MAIN_WORK* cbmw, int id)
 {
 	BOOL range;
@@ -654,7 +654,7 @@ void CBS_ReleasePointCheckTypeSet(CB_MAIN_WORK* cbmw, int id)
 	}
 }
 
-///< Œ³ƒf[ƒ^‚Æ‚Ìƒ`ƒFƒbƒN
+///< å…ƒãƒ‡ãƒ¼ã‚¿ã¨ã®ãƒã‚§ãƒƒã‚¯
 BOOL CBS_CheckEditData(CB_MAIN_WORK* cbmw)
 {
 	int i;
@@ -724,7 +724,7 @@ void CBS_EditData_Save(CB_MAIN_WORK* cbmw)
 	CB_SaveData_CoreDataSet(cbmw->cb_pw->save_data, &core, cbmw->select[0]);
 }
 
-///< ƒeƒXƒgƒf[ƒ^ì¬
+///< ãƒ†ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 void CBS_TestCoreData_Create(CB_CORE* core, CB_MAIN_WORK* cbmw)
 {
 	int i;

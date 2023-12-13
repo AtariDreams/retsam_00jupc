@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_range.h
- *	@brief		•ª•z}
+ *	@brief		åˆ†å¸ƒå›³
  *	@author		tomoya takahashi	
  *	@data		2006.01.21
  *
@@ -22,29 +22,29 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	•ª•zƒ^ƒCƒv
+//	åˆ†å¸ƒã‚¿ã‚¤ãƒ—
 //=====================================
 enum{
-	ZKN_RANGE_TYPE_MORNING,	// ’©
-	ZKN_RANGE_TYPE_NOON,	// ’‹
-	ZKN_RANGE_TYPE_NIGHT,	// –é
+	ZKN_RANGE_TYPE_MORNING,	// æœ
+	ZKN_RANGE_TYPE_NOON,	// æ˜¼
+	ZKN_RANGE_TYPE_NIGHT,	// å¤œ
 	ZKN_RANGE_TYPE_NUM,
 };
 
 
 //-------------------------------------
-//	ƒ|ƒPƒOƒ‰•\¦ˆÊ’u
+//	ãƒã‚±ã‚°ãƒ©è¡¨ç¤ºä½ç½®
 //=====================================
 #define ZKN_RANGE_POKEGRA_DRAW_X	( 40 )
 #define ZKN_RANGE_POKEGRA_DRAW_Y	( 120 )
 
 
 //-------------------------------------
-//	ƒtƒF[ƒhƒ‚[ƒh
+//	ãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
 //=====================================
 enum{
 	ZKN_RANGE_FADE_MODE_MY,
@@ -54,24 +54,24 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL void ZKN_RangeAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap );
 GLOBAL void ZKN_RangeAplDelete( ZKN_APL_DATA* p_data );
 
 
-// •ª•zƒ^ƒCƒvİ’è
+// åˆ†å¸ƒã‚¿ã‚¤ãƒ—è¨­å®š
 GLOBAL int ZKN_RangeTypeGet( const ZKN_APL_DATA* p_data );
 GLOBAL void ZKN_RangeTypeSet( ZKN_APL_DATA* p_data, int type );
 
-// ƒtƒF[ƒhƒAƒEƒg‚Ìƒ|ƒPƒOƒ‰ˆÚ“®æ
+// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆæ™‚ã®ãƒã‚±ã‚°ãƒ©ç§»å‹•å…ˆ
 GLOBAL void ZKN_RangePokeGraFadeOutSet( ZKN_APL_DATA* p_data, int x, int y );
 GLOBAL void ZKN_RangeFadeModeSet( ZKN_APL_DATA* p_data, int fade_mode );
 GLOBAL void ZKN_RangeFadeModeSync( ZKN_APL_DATA* p_data, int fade_sync );

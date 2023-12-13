@@ -1,6 +1,6 @@
 /**
  *	@file	mail.c
- *	@brief	ƒ[ƒ‹ƒVƒXƒeƒ€
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
  *	@author	Miyuki Iwasaw
  *	@date	06.02.07
  */
@@ -35,30 +35,30 @@ enum{
 	WORDCASE_END,
 };
 
-//ƒ[ƒ‹ƒVƒXƒeƒ€ƒƒCƒ“ƒ[ƒN
+//ãƒ¡ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
 typedef struct _MAIL_MAIN_DAT{
-	int	heapID;	///<ƒq[ƒvID
-	u16	ret_val;	///<ƒŠƒ^[ƒ“’l
-	u16	ret_no;		///<ƒŠƒ^[ƒ“•ÒWNO
+	int	heapID;	///<ãƒ’ãƒ¼ãƒ—ID
+	u16	ret_val;	///<ãƒªã‚¿ãƒ¼ãƒ³å€¤
+	u16	ret_no;		///<ãƒªã‚¿ãƒ¼ãƒ³ç·¨é›†NO
 
-	void	*app_wk;	///<ŠÈˆÕ‰ï˜bƒ‚ƒWƒ…[ƒ‹ƒ[ƒN‚Ì•Û‘¶
-	PROC*	proc;		///<ƒTƒuƒvƒƒZƒXƒ[ƒN
-	MAIL_TMP_DATA *dat;	///<ƒ[ƒ‹ƒf[ƒ^ƒeƒ“ƒ|ƒ‰ƒŠ
+	void	*app_wk;	///<ç°¡æ˜“ä¼šè©±ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯ã®ä¿å­˜
+	PROC*	proc;		///<ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ãƒ¯ãƒ¼ã‚¯
+	MAIL_TMP_DATA *dat;	///<ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ³ãƒãƒ©ãƒª
 
-	PMS_DATA	tmpPms;	//<ŠÈˆÕ‰ï˜bƒeƒ“ƒ|ƒ‰ƒŠ
+	PMS_DATA	tmpPms;	//<ç°¡æ˜“ä¼šè©±ãƒ†ãƒ³ãƒãƒ©ãƒª
 }MAIL_MAIN_DAT;
 
-//ƒvƒƒgƒ^ƒCƒvéŒ¾@ƒ[ƒJƒ‹
+//ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€ã€€ãƒ­ãƒ¼ã‚«ãƒ«
 //================================================================
-///ƒI[ƒo[ƒŒƒCƒvƒƒZƒX
+///ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚»ã‚¹
 static PROC_RESULT MailSysProc_Init( PROC *proc,int *seq);
 static PROC_RESULT MailSysProc_Main( PROC *proc,int *seq);
 static PROC_RESULT MailSysProc_End( PROC *proc,int *seq);
 
 //================================================================
-///ƒf[ƒ^’è‹`ƒGƒŠƒA
+///ãƒ‡ãƒ¼ã‚¿å®šç¾©ã‚¨ãƒªã‚¢
 //================================================================
-///ƒI[ƒo[ƒŒƒCƒvƒƒZƒX’è‹`ƒf[ƒ^
+///ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 const PROC_DATA MailSysProcData = {
 	MailSysProc_Init,
 	MailSysProc_Main,
@@ -87,10 +87,10 @@ void MailSys_SetTmpData(MAIL_DATA* org,MAIL_TMP_DATA* tmp);
 
 
 /**
- *	@brief	ƒ[ƒ‹‰æ–ÊŒÄ‚Ño‚µƒ[ƒNì¬(Create)
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ç”»é¢å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ä½œæˆ(Create)
  *
- *	@retval	NULL	V‹Kì¬—Ìˆæ‚ª‚È‚¢
- *	@retval ƒ[ƒNƒ|ƒCƒ“ƒ^	ƒ[ƒ‹ì¬‰æ–ÊŒÄ‚Ño‚µ
+ *	@retval	NULL	æ–°è¦ä½œæˆé ˜åŸŸãŒãªã„
+ *	@retval ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿	ãƒ¡ãƒ¼ãƒ«ä½œæˆç”»é¢å‘¼ã³å‡ºã—
  */
 MAIL_PARAM* MailSys_GetWorkCreate(SAVEDATA* savedata,
 		MAILBLOCK_ID blockID,u8 poke_pos,u8 design,int heapID)
@@ -99,10 +99,10 @@ MAIL_PARAM* MailSys_GetWorkCreate(SAVEDATA* savedata,
 	MAIL_BLOCK* pBlock;
 	int id;
 	
-	//ƒ[ƒ‹ƒZ[ƒuƒf[ƒ^ƒuƒƒbƒNæ“¾
+	//ãƒ¡ãƒ¼ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯å–å¾—
 	pBlock = SaveData_GetMailBlock(savedata); 
 
-	//ƒ‚ƒWƒ…[ƒ‹ŒÄ‚Ño‚µ—p‚Ìƒ[ƒN‚ğì¬
+	//ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‘¼ã³å‡ºã—ç”¨ã®ãƒ¯ãƒ¼ã‚¯ã‚’ä½œæˆ
 	wk = sys_AllocMemoryLo(heapID,sizeof(MAIL_PARAM));
 
 	MI_CpuClear8(wk,sizeof(MAIL_PARAM));
@@ -110,26 +110,26 @@ MAIL_PARAM* MailSys_GetWorkCreate(SAVEDATA* savedata,
 	wk->poke_pos = poke_pos;
 	wk->pBlock = pBlock;
 
-	//ŒÄ‚Ño‚µƒ‚[ƒhİ’è
+	//å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 	wk->mode = MAIL_MODE_CREATE;
-	wk->blockID = blockID;	//ƒf[ƒ^ƒuƒƒbƒNIDæ“¾
-	wk->dataID = 0;	//ID‚Í0‰Šú‰»
+	wk->blockID = blockID;	//ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯IDå–å¾—
+	wk->dataID = 0;	//IDã¯0åˆæœŸåŒ–
 	wk->savedata = savedata;
 
-	//ƒf[ƒ^ƒeƒ“ƒ|ƒ‰ƒŠì¬
+	//ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ³ãƒãƒ©ãƒªä½œæˆ
 	wk->pDat = MailData_CreateWork(heapID);
 	MailData_Clear(wk->pDat);
 
-	//‰Šúƒf[ƒ^Ši”[(ƒfƒUƒCƒ“No‚Í–³Œø‚É‚µ‚ÄŒÄ‚Ño‚·)
+	//åˆæœŸãƒ‡ãƒ¼ã‚¿æ ¼ç´(ãƒ‡ã‚¶ã‚¤ãƒ³Noã¯ç„¡åŠ¹ã«ã—ã¦å‘¼ã³å‡ºã™)
 	MailData_CreateFromSaveData(wk->pDat,MAIL_DESIGN_NULL,poke_pos,savedata);
 	return wk;
 }
 
 /**
- *	@brief	ƒ[ƒ‹‰æ–ÊŒÄ‚Ño‚µƒ[ƒNì¬(View)
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ç”»é¢å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ä½œæˆ(View)
  *
- *	@retval	NULL	V‹Kì¬—Ìˆæ‚ª‚È‚¢
- *	@retval ƒ[ƒNƒ|ƒCƒ“ƒ^	ƒ[ƒ‹•`‰æ‰æ–ÊŒÄ‚Ño‚µ
+ *	@retval	NULL	æ–°è¦ä½œæˆé ˜åŸŸãŒãªã„
+ *	@retval ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿	ãƒ¡ãƒ¼ãƒ«æç”»ç”»é¢å‘¼ã³å‡ºã—
  */
 MAIL_PARAM* MailSys_GetWorkView(SAVEDATA* savedata,MAILBLOCK_ID blockID,u16 dataID,int heapID)
 {
@@ -139,23 +139,23 @@ MAIL_PARAM* MailSys_GetWorkView(SAVEDATA* savedata,MAILBLOCK_ID blockID,u16 data
 	wk = sys_AllocMemoryLo(heapID,sizeof(MAIL_PARAM));
 	MI_CpuClear8(wk,sizeof(MAIL_PARAM));
 
-	//ŒÄ‚Ño‚µƒ‚[ƒhİ’è
+	//å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 	wk->mode = MAIL_MODE_VIEW;
 	wk->blockID = blockID;
 	wk->dataID = dataID;
 	wk->savedata = savedata;
 	
-	//ƒ[ƒ‹ƒZ[ƒuƒf[ƒ^ƒuƒƒbƒNæ“¾
+	//ãƒ¡ãƒ¼ãƒ«ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯å–å¾—
 	pBlock = SaveData_GetMailBlock(savedata); 
 	wk->pBlock = pBlock;
 	
-	//ƒZ[ƒuƒf[ƒ^æ“¾
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿å–å¾—
 	wk->pDat = MAIL_AllocMailData(pBlock,blockID,dataID,heapID);
 	return wk;
 }
 
 /**
- *	@brief	ƒ[ƒ‹‰æ–ÊŒÄ‚Ño‚µƒ[ƒNì¬(View/POKEMON_PARAM)
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ç”»é¢å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ä½œæˆ(View/POKEMON_PARAM)
  */
 MAIL_PARAM* MailSys_GetWorkViewPoke(SAVEDATA* savedata,POKEMON_PARAM* poke,int heapID)
 {
@@ -164,19 +164,19 @@ MAIL_PARAM* MailSys_GetWorkViewPoke(SAVEDATA* savedata,POKEMON_PARAM* poke,int h
 	wk = sys_AllocMemoryLo(heapID,sizeof(MAIL_PARAM));
 	MI_CpuClear8(wk,sizeof(MAIL_PARAM));
 	
-	//ŒÄ‚Ño‚µƒ‚[ƒhİ’è
+	//å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 	wk->mode = MAIL_MODE_VIEW;
 	wk->savedata = savedata;
 	
-	//ƒ[ƒN‚ğæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
 	wk->pDat = MailData_CreateWork(heapID);
-	//ƒ[ƒ‹ƒf[ƒ^æ“¾
+	//ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
 	PokeParaGet(poke,ID_PARA_mail_data,wk->pDat);
 	return wk;
 }
 
 /**
- *	@brief	ƒ[ƒ‹‰æ–ÊŒÄ‚Ño‚µƒ[ƒNì¬(View/‹óƒ[ƒ‹ƒvƒŒƒrƒ…[)
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ç”»é¢å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ä½œæˆ(View/ç©ºãƒ¡ãƒ¼ãƒ«ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼)
  */
 MAIL_PARAM* MailSys_GetWorkViewPrev(SAVEDATA* savedata,u8 designNo,int heapID)
 {
@@ -185,20 +185,20 @@ MAIL_PARAM* MailSys_GetWorkViewPrev(SAVEDATA* savedata,u8 designNo,int heapID)
 	wk = sys_AllocMemoryLo(heapID,sizeof(MAIL_PARAM));
 	MI_CpuClear8(wk,sizeof(MAIL_PARAM));
 	
-	//ŒÄ‚Ño‚µƒ‚[ƒhİ’è
+	//å‘¼ã³å‡ºã—ãƒ¢ãƒ¼ãƒ‰è¨­å®š
 	wk->mode = MAIL_MODE_VIEW;
 	wk->savedata = savedata;
 
-	//ƒ[ƒN‚ğæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚’å–å¾—
 	wk->pDat = MailData_CreateWork(heapID);
 
-	//ƒfƒUƒCƒ“No‚Ì‚İİ’è
+	//ãƒ‡ã‚¶ã‚¤ãƒ³Noã®ã¿è¨­å®š
 	MailData_SetDesignNo(wk->pDat,designNo);	
 	return wk;
 }
 
 /**
- *	@brief	’¼‘O‚Ìƒ‚ƒWƒ…[ƒ‹ŒÄ‚Ño‚µ‚Åƒf[ƒ^‚ªì¬‚³‚ê‚½‚©‚Ç‚¤‚©H
+ *	@brief	ç›´å‰ã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‘¼ã³å‡ºã—ã§ãƒ‡ãƒ¼ã‚¿ãŒä½œæˆã•ã‚ŒãŸã‹ã©ã†ã‹ï¼Ÿ
  */
 BOOL MailSys_IsDataCreate(MAIL_PARAM* wk)
 {
@@ -206,35 +206,35 @@ BOOL MailSys_IsDataCreate(MAIL_PARAM* wk)
 }
 
 /**
- *	@brief	’¼‘O‚Ìƒ‚ƒWƒ…[ƒ‹ŒÄ‚Ño‚µ‚Åì¬‚³‚ê‚½ƒf[ƒ^‚ğƒZ[ƒuƒf[ƒ^‚É”½‰f
+ *	@brief	ç›´å‰ã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‘¼ã³å‡ºã—ã§ä½œæˆã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
  */
 int MailSys_PushDataToSave(MAIL_PARAM* wk,MAILBLOCK_ID blockID,u8 dataID)
 {
 	if(!MailSys_IsDataCreate(wk)){
-		return 0;	//ì¬‚³‚ê‚Ä‚¢‚È‚¢
+		return 0;	//ä½œæˆã•ã‚Œã¦ã„ãªã„
 	}
 	MAIL_AddMailFormWork(wk->pBlock,blockID,dataID,wk->pDat);
 	return 1;
 }
 
 /**
- *	@brief	’¼‘O‚Ìƒ‚ƒWƒ…[ƒ‹ŒÄ‚Ño‚µ‚Åì¬‚³‚ê‚½ƒf[ƒ^‚ğƒZ[ƒuƒf[ƒ^‚É”½‰f(Poke)
+ *	@brief	ç›´å‰ã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‘¼ã³å‡ºã—ã§ä½œæˆã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«åæ˜ (Poke)
  */
 int MailSys_PushDataToSavePoke(MAIL_PARAM* wk,POKEMON_PARAM* poke)
 {
 	if(!MailSys_IsDataCreate(wk)){
-		return 0;	//ì¬‚³‚ê‚Ä‚¢‚È‚¢
+		return 0;	//ä½œæˆã•ã‚Œã¦ã„ãªã„
 	}
 	PokeParaPut(poke,ID_PARA_mail_data,wk->pDat);
 	return 1;
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒ‚ƒWƒ…[ƒ‹ŒÄ‚Ño‚µƒ[ƒN‚ğ‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾
  */
 void MailSys_ReleaseCallWork(MAIL_PARAM* wk)
 {
-	//ƒf[ƒ^ƒeƒ“ƒ|ƒ‰ƒŠ‚ğŠm•Û‚µ‚Ä‚¢‚½ê‡‚Í‰ğ•ú
+	//ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ³ãƒãƒ©ãƒªã‚’ç¢ºä¿ã—ã¦ã„ãŸå ´åˆã¯è§£æ”¾
 	if(wk->pDat != NULL){
 		sys_FreeMemoryEz(wk->pDat);
 	}
@@ -242,10 +242,10 @@ void MailSys_ReleaseCallWork(MAIL_PARAM* wk)
 }
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒ[ƒ‹‚ğƒpƒ\ƒ[ƒ‹‚ÉˆÚ“®
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ¡ãƒ¼ãƒ«ã‚’ãƒ‘ã‚½ãƒ¡ãƒ¼ãƒ«ã«ç§»å‹•
  *
- *	@retval	MAILDATA_NULLID	‹ó‚«‚ª‚È‚¢‚Ì‚Å“]‘—‚Å‚«‚È‚¢
- *	@retval	"‚»‚Ì‘¼"@“]‘—‚µ‚½ƒf[ƒ^ID
+ *	@retval	MAILDATA_NULLID	ç©ºããŒãªã„ã®ã§è»¢é€ã§ããªã„
+ *	@retval	"ãã®ä»–"ã€€è»¢é€ã—ãŸãƒ‡ãƒ¼ã‚¿ID
  */
 int	MailSys_MoveMailPoke2Paso(MAIL_BLOCK* block,POKEMON_PARAM* poke,int heapID)
 {
@@ -253,67 +253,67 @@ int	MailSys_MoveMailPoke2Paso(MAIL_BLOCK* block,POKEMON_PARAM* poke,int heapID)
 	int itemno = ITEM_DUMMY_DATA;
 	MAIL_DATA* src = NULL;
 
-	//‹ó‚«—ÌˆæŒŸõ
+	//ç©ºãé ˜åŸŸæ¤œç´¢
 	id = MAIL_SearchNullID(block,MAILBLOCK_PASOCOM);
 	if(id == MAILDATA_NULLID){
 		return MAILDATA_NULLID;
 	}
-	//ƒ[ƒNì¬
+	//ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	src = MailData_CreateWork(heapID);
 
-	//ƒ|ƒPƒ‚ƒ“‚©‚çƒ[ƒ‹‚ğæ“¾
+	//ãƒã‚±ãƒ¢ãƒ³ã‹ã‚‰ãƒ¡ãƒ¼ãƒ«ã‚’å–å¾—
 	PokeParaGet(poke,ID_PARA_mail_data,src);
 
-	//ƒpƒ\ƒRƒ“—Ìˆæ‚Éƒf[ƒ^ƒRƒs[
+	//ãƒ‘ã‚½ã‚³ãƒ³é ˜åŸŸã«ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 	MAIL_AddMailFormWork(block,MAILBLOCK_PASOCOM,id,src);
 
-	//ƒ|ƒPƒ‚ƒ“‚©‚çƒ[ƒ‹‚ğŠO‚·
+	//ãƒã‚±ãƒ¢ãƒ³ã‹ã‚‰ãƒ¡ãƒ¼ãƒ«ã‚’å¤–ã™
 	MailData_Clear(src);
 	PokeParaPut(poke,ID_PARA_mail_data,src);
 	PokeParaPut(poke,ID_PARA_item,&itemno);
 
-	//—Ìˆæ‰ğ•ú
+	//é ˜åŸŸè§£æ”¾
 	sys_FreeMemoryEz(src);
 
 	return id;
 }
 
 /**
- *	@brief	ƒpƒ\ƒ[ƒ‹‚ğƒ|ƒPƒ‚ƒ“‚ÉˆÚ“®
+ *	@brief	ãƒ‘ã‚½ãƒ¡ãƒ¼ãƒ«ã‚’ãƒã‚±ãƒ¢ãƒ³ã«ç§»å‹•
  *
- *	@retval	MAILDATA_NULLID ID‚ª•s³‚È‚Ì‚Å‚È‚É‚à‚µ‚È‚©‚Á‚½
- *	@retval	"‚»‚Ì‘¼"@“]‘—‚µ‚½ƒf[ƒ^ID
+ *	@retval	MAILDATA_NULLID IDãŒä¸æ­£ãªã®ã§ãªã«ã‚‚ã—ãªã‹ã£ãŸ
+ *	@retval	"ãã®ä»–"ã€€è»¢é€ã—ãŸãƒ‡ãƒ¼ã‚¿ID
  */
 int	MailSys_MoveMailPaso2Poke(MAIL_BLOCK* block,u16 id,POKEMON_PARAM* poke,int heapID)
 {
 	int itemno = ITEM_DUMMY_DATA;
 	MAIL_DATA* src = NULL;
 
-	//ƒ[ƒ‹ƒf[ƒ^‚ğæ“¾
+	//ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	src = MAIL_AllocMailData(block,MAILBLOCK_PASOCOM,id,heapID);
 	if(src == NULL){
 		return MAILDATA_NULLID;
 	}
-	//ƒ[ƒ‹‚ÌƒfƒUƒCƒ“No‚©‚çƒAƒCƒeƒ€No‚É•œŒ³
+	//ãƒ¡ãƒ¼ãƒ«ã®ãƒ‡ã‚¶ã‚¤ãƒ³Noã‹ã‚‰ã‚¢ã‚¤ãƒ†ãƒ Noã«å¾©å…ƒ
 	itemno = MailItemNumGet(MailData_GetDesignNo(src));
-	//ƒ|ƒPƒ‚ƒ“‚Éƒ[ƒ‹‚ğˆÚ‚·
+	//ãƒã‚±ãƒ¢ãƒ³ã«ãƒ¡ãƒ¼ãƒ«ã‚’ç§»ã™
 	PokeParaPut(poke,ID_PARA_mail_data,src);
 	PokeParaPut(poke,ID_PARA_item,&itemno);
 
-	//ƒpƒ\ƒRƒ“—Ìˆæ‚Ìƒf[ƒ^‚ğÁ‚·
+	//ãƒ‘ã‚½ã‚³ãƒ³é ˜åŸŸã®ãƒ‡ãƒ¼ã‚¿ã‚’æ¶ˆã™
 	MAIL_DelMailData(block,MAILBLOCK_PASOCOM,id);
 
-	//—Ìˆæ‰ğ•ú
+	//é ˜åŸŸè§£æ”¾
 	sys_FreeMemoryEz(src);
 	return id;
 }
 
 
 /**
- *	@brief	ƒ[ƒ‹ƒf[ƒ^@ƒeƒ“ƒ|ƒ‰ƒŠì¬
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã€€ãƒ†ãƒ³ãƒãƒ©ãƒªä½œæˆ
  *
- *	–“à•”‚Åƒƒ‚ƒŠ‚ğƒAƒƒP[ƒg‚·‚é‚Ì‚Å•K‚¸ŒÄ‚Ño‚µ‘¤‚ª
- *	@MailSys_ReleaseTmpData()‚Å‰ğ•ú‚·‚é‚±‚Æ
+ *	ï¼Šå†…éƒ¨ã§ãƒ¡ãƒ¢ãƒªã‚’ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã™ã‚‹ã®ã§å¿…ãšå‘¼ã³å‡ºã—å´ãŒ
+ *	ã€€MailSys_ReleaseTmpData()ã§è§£æ”¾ã™ã‚‹ã“ã¨
  */
 MAIL_TMP_DATA* MailSys_AllocTmpData(const MAIL_DATA* org,int heapID)
 {
@@ -342,9 +342,9 @@ MAIL_TMP_DATA* MailSys_AllocTmpData(const MAIL_DATA* org,int heapID)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒf[ƒ^@ƒeƒ“ƒ|ƒ‰ƒŠ‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã€€ãƒ†ãƒ³ãƒãƒ©ãƒªè§£æ”¾
  *
- *	–MailSys_AllocTmpData()‚ÅŠm•Û‚µ‚½ƒƒ‚ƒŠ—Ìˆæ‚ğŠJ•ú‚·‚é
+ *	ï¼ŠMailSys_AllocTmpData()ã§ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚’é–‹æ”¾ã™ã‚‹
  */
 void MailSys_ReleaseTmpData(MAIL_TMP_DATA* tmp)
 {
@@ -355,25 +355,25 @@ void MailSys_ReleaseTmpData(MAIL_TMP_DATA* tmp)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ƒf[ƒ^@ƒeƒ“ƒ|ƒ‰ƒŠƒf[ƒ^‘‚«o‚µ
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã€€ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ‡ãƒ¼ã‚¿æ›¸ãå‡ºã—
  */
 void MailSys_SetTmpData(MAIL_DATA* org,MAIL_TMP_DATA* tmp)
 {
 	u16	i;
 
-	//ŠÈˆÕ•¶ƒRƒs[
+	//ç°¡æ˜“æ–‡ã‚³ãƒ”ãƒ¼
 	for(i = 0;i < MAILDAT_MSGMAX;i++){
 		MailData_SetMsgByIndex(org,&tmp->msg[i],i);
 	}
 
-	//ƒf[ƒ^‚ğ—LŒø‰»‚·‚é‚½‚ß‚ÉƒfƒUƒCƒ“NO‚ğİ’è
+	//ãƒ‡ãƒ¼ã‚¿ã‚’æœ‰åŠ¹åŒ–ã™ã‚‹ãŸã‚ã«ãƒ‡ã‚¶ã‚¤ãƒ³NOã‚’è¨­å®š
 	MailData_SetDesignNo(org,tmp->design);
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒTƒuƒvƒƒZƒXŒÄ‚Ño‚µˆ—
- * @param	proc	ƒTƒuƒvƒƒZƒXƒ|ƒCƒ“ƒ^‚ğ•Û‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹å‘¼ã³å‡ºã—å‡¦ç†
+ * @param	proc	ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿æŒã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 static BOOL MailSysProcCall(PROC ** proc)
@@ -389,31 +389,31 @@ static BOOL MailSysProcCall(PROC ** proc)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ì¬ŒÄ‚Ño‚µ@‰Šú‰»
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ä½œæˆå‘¼ã³å‡ºã—ã€€åˆæœŸåŒ–
  */
 static PROC_RESULT MailSysProc_Init(PROC* proc,int* seq)
 {
 	MAIL_MAIN_DAT* wk = NULL;
 	MAIL_PARAM* pp = (MAIL_PARAM*)PROC_GetParentWork(proc);
 	
-	//ƒ[ƒNƒGƒŠƒAæ“¾
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢å–å¾—
 	HeapStatePush();
 
-	//ƒq[ƒvì¬
+	//ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap(HEAPID_BASE_APP,HEAPID_MAILSYS,0x1000);
 	wk = PROC_AllocWork(proc,sizeof(MAIL_MAIN_DAT),HEAPID_MAILSYS);
 	MI_CpuClear8(wk,sizeof(MAIL_MAIN_DAT));
 
-	//ƒq[ƒvID•Û‘¶
+	//ãƒ’ãƒ¼ãƒ—IDä¿å­˜
 	wk->heapID = HEAPID_MAILSYS;
 
-	//ƒf[ƒ^ƒeƒ“ƒ|ƒ‰ƒŠì¬
+	//ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ³ãƒãƒ©ãƒªä½œæˆ
 	wk->dat = MailSys_AllocTmpData(pp->pDat,wk->heapID);
 	wk->dat->configSave = SaveData_GetConfig(pp->savedata);
 
 	if(pp->mode == MAIL_MODE_CREATE){
-		//–³Œøƒiƒ“ƒo[‚ªŠi”[‚³‚ê‚Ä‚¢‚é‚Ì‚ÅAãˆÊƒ[ƒN‚©‚çæ“¾‚·‚é
-		wk->dat->design = pp->designNo;	//ƒfƒUƒCƒ“No“K—p
+		//ç„¡åŠ¹ãƒŠãƒ³ãƒãƒ¼ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã®ã§ã€ä¸Šä½ãƒ¯ãƒ¼ã‚¯ã‹ã‚‰å–å¾—ã™ã‚‹
+		wk->dat->design = pp->designNo;	//ãƒ‡ã‚¶ã‚¤ãƒ³Noé©ç”¨
 	}
 	if(wk->dat->design >= MAIL_DESIGN_MAX){
 		wk->dat->design = 0;
@@ -424,18 +424,18 @@ static PROC_RESULT MailSysProc_Init(PROC* proc,int* seq)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ì¬ƒƒCƒ“
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ä½œæˆãƒ¡ã‚¤ãƒ³
  */
 static PROC_RESULT MailSysProc_Main(PROC *proc,int* seq)
 {
 	MAIL_MAIN_DAT* wk = PROC_GetWork(proc);
 	MAIL_PARAM* pp = (MAIL_PARAM*)PROC_GetParentWork(proc);
 
-	// ƒI[ƒo[ƒŒƒCIDéŒ¾
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 	FS_EXTERN_OVERLAY(mailview);
 	FS_EXTERN_OVERLAY(overlay_pmsi);
 	
-	// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+	// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 	static const PROC_DATA MailViewProcData = {
 		MailViewProc_Init,
 		MailViewProc_Main,
@@ -451,7 +451,7 @@ static PROC_RESULT MailSysProc_Main(PROC *proc,int* seq)
 
 	switch(*seq){
 	case MAILCASE_INIT:
-		wk->dat->val = pp->mode;	//“®ìƒ‚[ƒh’l•œ‹A
+		wk->dat->val = pp->mode;	//å‹•ä½œãƒ¢ãƒ¼ãƒ‰å€¤å¾©å¸°
 		wk->proc = PROC_Create(&MailViewProcData,wk->dat,wk->heapID);
 		*seq = MAILCASE_WAIT;
 		break;
@@ -472,16 +472,16 @@ static PROC_RESULT MailSysProc_Main(PROC *proc,int* seq)
 		}
 		break;
 	case MAILCASE_END:
-		//ƒf[ƒ^æ“¾
+		//ãƒ‡ãƒ¼ã‚¿å–å¾—
 		if(	pp->mode == MAIL_MODE_CREATE){
 			if(	wk->dat->val == VIEW_END_DECIDE){
-				MailSys_SetTmpData(pp->pDat,wk->dat);	//ƒ[ƒ‹ƒf[ƒ^‚ğ‘‚«Š·‚¦
-				//ƒXƒRƒA‰ÁZˆ—
+				MailSys_SetTmpData(pp->pDat,wk->dat);	//ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãæ›ãˆ
+				//ã‚¹ã‚³ã‚¢åŠ ç®—å‡¦ç†
 				RECORD_Score_Add(SaveData_GetRecord(pp->savedata),SCORE_ID_WRITE_MAIL);
 				RECORD_Inc(SaveData_GetRecord(pp->savedata), RECID_MAIL_WRITE );
-				pp->ret_val = 1;	//–ß‚è’lİ’è
+				pp->ret_val = 1;	//æˆ»ã‚Šå€¤è¨­å®š
 			}else{
-				pp->ret_val = 0;	//–ß‚è’lİ’è
+				pp->ret_val = 0;	//æˆ»ã‚Šå€¤è¨­å®š
 			}
 		}
 		return PROC_RES_FINISH;
@@ -489,12 +489,12 @@ static PROC_RESULT MailSysProc_Main(PROC *proc,int* seq)
 		wk->app_wk = PMSI_PARAM_Create( PMSI_MODE_SENTENCE,
 				PMSI_GUIDANCE_DEFAULT,pp->savedata, wk->heapID);
 
-		//‰Šúƒf[ƒ^ƒZƒbƒg
+		//åˆæœŸãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 		if(PMSDAT_IsEnabled(&(wk->dat->msg[wk->dat->cntNo]))){
-			//Šù‚É“ü—Í•¶‚ª‚ ‚é
+			//æ—¢ã«å…¥åŠ›æ–‡ãŒã‚ã‚‹
 			PMSDAT_Copy(&(wk->tmpPms),&(wk->dat->msg[wk->dat->cntNo]));
 		}else{
-			//‚Ü‚¾‹ó
+			//ã¾ã ç©º
 			PMSDAT_Init(&(wk->tmpPms),PMS_TYPE_MAIL);	
 		}
 		PMSI_PARAM_SetInitializeDataSentence(wk->app_wk,&(wk->tmpPms));
@@ -506,11 +506,11 @@ static PROC_RESULT MailSysProc_Main(PROC *proc,int* seq)
 		if(!MailSysProcCall(&wk->proc)){
 			break;
 		}
-		// ŠÈˆÕ‰ï˜bæ“¾
+		// ç°¡æ˜“ä¼šè©±å–å¾—
 		if(	PMSI_PARAM_CheckCanceled(wk->app_wk) == FALSE)
 //			&& PMSI_PARAM_CheckModified(wk->app_wk) == TRUE)
 		{
-			//•ÏX‚ª‚ ‚ê‚Î‘‚«–ß‚µ
+			//å¤‰æ›´ãŒã‚ã‚Œã°æ›¸ãæˆ»ã—
 			PMSI_PARAM_GetInputDataSentence( wk->app_wk,  &(wk->dat->msg[wk->dat->cntNo]));
 		}
 		PMSI_PARAM_Delete(wk->app_wk);
@@ -521,16 +521,16 @@ static PROC_RESULT MailSysProc_Main(PROC *proc,int* seq)
 }
 
 /**
- *	@brief	ƒ[ƒ‹ì¬I—¹
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ä½œæˆçµ‚äº†
  */
 static PROC_RESULT MailSysProc_End(PROC *proc,int* seq)
 {
 	MAIL_MAIN_DAT	*wk = PROC_GetWork(proc);
 
-	//ƒ[ƒ‹ƒf[ƒ^ƒeƒ“ƒ|ƒ‰ƒŠ—Ìˆæ‰ğ•ú
+	//ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ³ãƒãƒ©ãƒªé ˜åŸŸè§£æ”¾
 	MailSys_ReleaseTmpData(wk->dat);
 
-	//ƒ[ƒNƒGƒŠƒA‰ğ•ú
+	//ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢è§£æ”¾
 	PROC_FreeWork(proc);
 	
 	HeapStatePop();
@@ -542,5 +542,5 @@ static PROC_RESULT MailSysProc_End(PROC *proc,int* seq)
 }
 
 //===========================================================================
-//ƒfƒoƒbƒO—pƒ‹[ƒ`ƒ“
+//ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ«ãƒ¼ãƒãƒ³
 //===========================================================================

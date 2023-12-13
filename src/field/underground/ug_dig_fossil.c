@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	comm_dig_fossil.c
- * @brief	‰»Î‚Æƒ~ƒjƒQ[ƒ€‚ÌƒNƒ‰ƒX
+ * @brief	åŒ–çŸ³ã¨ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®ã‚¯ãƒ©ã‚¹
  * @author	Katsumi Ohno
  * @date    2005.12.06
  */
@@ -11,7 +11,7 @@
 #include <nitro/os.h>
 #include "common.h"
 //
-//‰»Î
+//åŒ–çŸ³
 //
 #include "communication/communication.h"
 #include "../comm_field_state.h"
@@ -40,29 +40,29 @@
 #include "../tv_topic.h"
 
 //==============================================================================
-// ’è‹`
+// å®šç¾©
 //==============================================================================
 
 #define _PICTTEST (0)
 
-#define _FOSSIL_NUM_MAX  (250)  ///< ‰»Îƒ|ƒCƒ“ƒg‘”
-#define _SETUP_NUM_MAX   (25)   ///< ‚P‚O‘gƒZƒbƒg‚·‚é
+#define _FOSSIL_NUM_MAX  (250)  ///< åŒ–çŸ³ãƒã‚¤ãƒ³ãƒˆç·æ•°
+#define _SETUP_NUM_MAX   (25)   ///< ï¼‘ï¼çµ„ã‚»ãƒƒãƒˆã™ã‚‹
 #define _UG_BLOCK_MAX (30)
 
-#define _PARTS_NUM_MAX   (8)          ///< –„‚Ü‚Á‚Ä‚¢‚é‚à‚Ì‚ÌŒÀŠE
-#define _PARTS_TREASURE_NUM_MAX (4)  ///< •ó‚ÌŒÀŠE c‚è‚Íd‚¢Šâ
-#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define _PARTS_NUM_MAX   (8)          ///< åŸ‹ã¾ã£ã¦ã„ã‚‹ã‚‚ã®ã®é™ç•Œ
+#define _PARTS_TREASURE_NUM_MAX (4)  ///< å®ã®é™ç•Œ æ®‹ã‚Šã¯ç¡¬ã„å²©
+#define _EVWIN_MSG_BUF_SIZE		(50*2)			//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-#define _DIGMAP_WIDTH    (13)    ///< ‰¡•
-#define _DIGMAP_HEIGHT   (10)    ///< ‰¡•
-#define _DIGMAP_INVALID  (0xff)   ///< Œ@‚é‚±‚Æ‚ª‚Å‚«‚È‚¢êŠ
-#define _FRIEND_DIG_AREA  (10)   ///< ‚Ç‚Ì‚­‚ç‚¢‹ß‚¯‚ê‚Îè“`‚Á‚Ä‚­‚ê‚é‚Ì‚©
+#define _DIGMAP_WIDTH    (13)    ///< æ¨ªå¹…
+#define _DIGMAP_HEIGHT   (10)    ///< æ¨ªå¹…
+#define _DIGMAP_INVALID  (0xff)   ///< æ˜ã‚‹ã“ã¨ãŒã§ããªã„å ´æ‰€
+#define _FRIEND_DIG_AREA  (10)   ///< ã©ã®ãã‚‰ã„è¿‘ã‘ã‚Œã°æ‰‹ä¼ã£ã¦ãã‚Œã‚‹ã®ã‹
 
-#define _DIG_GAUGE_START (200-4)   ///< Œ@‚èƒQ[ƒW‚ÌƒXƒ^[ƒg
+#define _DIG_GAUGE_START (200-4)   ///< æ˜ã‚Šã‚²ãƒ¼ã‚¸ã®ã‚¹ã‚¿ãƒ¼ãƒˆ
 
 #define _PUSH_START (2)
 
-#define _FAILED_BRIGHTNESS_SYNC   (15)  // ‰»ÎŒ@‚è¸”s
+#define _FAILED_BRIGHTNESS_SYNC   (15)  // åŒ–çŸ³æ˜ã‚Šå¤±æ•—
 
 typedef enum {
     _HUMMER_BUTTON,
@@ -70,10 +70,10 @@ typedef enum {
     _END_BUTTON,
 };
 
-#define _COST_DIG_HUMMER   (8)   ///< ƒnƒ“ƒ}[‚ÌÁ”ï—Ê
-#define _COST_DIG_PIC   (4)   ///< ƒmƒ~‚ÌÁ”ï—Ê
+#define _COST_DIG_HUMMER   (8)   ///< ãƒãƒ³ãƒãƒ¼ã®æ¶ˆè²»é‡
+#define _COST_DIG_PIC   (4)   ///< ãƒãƒŸã®æ¶ˆè²»é‡
 
-// CellActor‚Éˆ—‚³‚¹‚éƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ‚Ìí—Ş‚Ì”
+// CellActorã«å‡¦ç†ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ã®ç¨®é¡ã®æ•°
 #define CLACT_OBJ_NUM (2)
 #define CLACT_RESOURCE_NUM		(  4*CLACT_OBJ_NUM )
 #define SUB_LCD  (1)
@@ -99,10 +99,10 @@ typedef enum{
 } _ClactWorkType_e;
 
 //==============================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //==============================================================================
 
-typedef struct{  // ƒXƒNƒŠ[ƒ“—pRECT\‘¢‘Ì
+typedef struct{  // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ç”¨RECTæ§‹é€ ä½“
     u8 lt_x;
     u8 lt_y;
     u8 rb_x;
@@ -122,13 +122,13 @@ typedef struct{
     int _PARTS_TREASURE_NUM;
     FIELDSYS_WORK* pFSys;
     int kiraTimer;
-    void* pPalBuff[_PARTS_TREASURE_NUM_MAX];  // ƒpƒŒƒbƒgŠ·‚¦‚ğs‚¤‚Ì‚Å
+    void* pPalBuff[_PARTS_TREASURE_NUM_MAX];  // ãƒ‘ãƒ¬ãƒƒãƒˆæ›ãˆã‚’è¡Œã†ã®ã§
     NNSG2dPaletteData* palData[_PARTS_TREASURE_NUM_MAX];
     int digTimer[_PARTS_TREASURE_NUM_MAX];
     int digCarat;
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/24
-// ‚©‚¹‚«‚Ù‚è‚ÉˆÃ“]‚µ‚½‚Ü‚Ü‚É‚È‚é•s‹ï‡‚Ì‘Îˆ
+// ã‹ã›ãã»ã‚Šæ™‚ã«æš—è»¢ã—ãŸã¾ã¾ã«ãªã‚‹ä¸å…·åˆã®å¯¾å‡¦
 #if AFTER_MASTER_070122_FOSSILMSG_FIX
     int msgtimer;
 #endif// AFTER_MASTER_070122_FOSSILMSG_FIX
@@ -144,22 +144,22 @@ typedef struct{
 } FossilPoint;
 
 typedef struct{
-    void* attribute;     // ƒAƒgƒŠƒrƒ…[ƒgƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^  –³‚¢‚ÍNULL
+    void* attribute;     // ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿  ç„¡ã„æ™‚ã¯NULL
     u16 random;
     u16 random1;
     u16 random2;
     u16 random3;
     u8 width;
     u8 height;
-    u8 partsType;           // ƒp[ƒcí—Ş
+    u8 partsType;           // ãƒ‘ãƒ¼ãƒ„ç¨®é¡
     u16 ncg;
     u16 ncl;
 } FossilParts;
 
 
 typedef struct{
-    FossilParts* pParts;  // Œ³ƒf[ƒ^QÆƒ|ƒCƒ“ƒ^
-    u8 partsType;           // ƒp[ƒcí—Ş
+    FossilParts* pParts;  // å…ƒãƒ‡ãƒ¼ã‚¿å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+    u8 partsType;           // ãƒ‘ãƒ¼ãƒ„ç¨®é¡
     u8 x;
     u8 y;
     u8 dir;
@@ -167,66 +167,66 @@ typedef struct{
 } FossilPartsData;
 
 typedef struct{
-    _RESULT_RADAR pcRadar[_FOSSIL_NUM_MAX]; // ƒpƒ\ƒRƒ“ƒŒ[ƒ_[—p
-    u8 pcRadarIndex;  //ƒpƒ\ƒRƒ“ƒŒ[ƒ_[óM—p
-    u16 pcRadarTimer;  //ƒpƒ\ƒRƒ“ƒŒ[ƒ_[•\¦—p
+    _RESULT_RADAR pcRadar[_FOSSIL_NUM_MAX]; // ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”¨
+    u8 pcRadarIndex;  //ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼å—ä¿¡ç”¨
+    u16 pcRadarTimer;  //ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼è¡¨ç¤ºç”¨
 } _EVENT_PCRADAR_WORK;
 
-// ‰»Î‘S‘Ì
+// åŒ–çŸ³å…¨ä½“
 typedef struct{
     FIELDSYS_WORK* pFSys;   //
-    GF_BGL_INI* bgl;   // ‰»Îƒ~ƒjƒQ[ƒ€—pBGL
+    GF_BGL_INI* bgl;   // åŒ–çŸ³ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ç”¨BGL
     MATHRandContext32 sRand;
-	CLACT_SET_PTR 			clactSet;								// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_EASYRENDER_DATA	renddata;								// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^
-	CLACT_U_RES_MANAGER_PTR	resMan[4];				// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
-	CLACT_U_RES_OBJ_PTR 	resObjTbl[CLACT_RESOURCE_NUM];// ƒŠƒ\[ƒXƒIƒuƒWƒFƒe[ƒuƒ‹
-	CLACT_HEADER			clActHeader_m;							// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
-	CLACT_HEADER			clActHeader_s[CLACT_OBJ_NUM];	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_[
-    CLACT_WORK_PTR			clActWork[_CLACT_MAX];          // ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^”z—ñ
+	CLACT_SET_PTR 			clactSet;								// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_EASYRENDER_DATA	renddata;								// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_U_RES_MANAGER_PTR	resMan[4];				// ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£
+	CLACT_U_RES_OBJ_PTR 	resObjTbl[CLACT_RESOURCE_NUM];// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§ãƒ†ãƒ¼ãƒ–ãƒ«
+	CLACT_HEADER			clActHeader_m;							// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+	CLACT_HEADER			clActHeader_s[CLACT_OBJ_NUM];	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼
+    CLACT_WORK_PTR			clActWork[_CLACT_MAX];          // ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿é…åˆ—
 
     FossilPoint aFossilPoint[_FOSSIL_NUM_MAX];  //
     BMPMENU_WORK* pYesNoWork;
-    FossilPoint* pEntryFossil[COMM_MACHINE_MAX]; ///< Œ@‚è—\–ñ’†‚Ì‰»Î
-    u8 bEntryFossil[COMM_MACHINE_MAX]; ///< Œ@‚è—\–ñ’†‚Ì‰»Î
-    FossilPartsData aDeposit[_PARTS_NUM_MAX];  // –„‘ •¨ _partsData ‚Ìƒ|ƒCƒ“ƒ^
+    FossilPoint* pEntryFossil[COMM_MACHINE_MAX]; ///< æ˜ã‚Šäºˆç´„ä¸­ã®åŒ–çŸ³
+    u8 bEntryFossil[COMM_MACHINE_MAX]; ///< æ˜ã‚Šäºˆç´„ä¸­ã®åŒ–çŸ³
+    FossilPartsData aDeposit[_PARTS_NUM_MAX];  // åŸ‹è”µç‰© _partsData ã®ãƒã‚¤ãƒ³ã‚¿
     u8 radarIndex[COMM_MACHINE_MAX];
     TCB_PTR pPcRadar;
     TCB_PTR pDigStart;
     TCB_PTR pDFETCB;
     _EVENT_PCRADAR_WORK* pPcRadarWork;
-    _RESULT_RADAR pcRadarInter[8];   //5x5ƒOƒŠƒbƒh‰»Î•\¦—p
+    _RESULT_RADAR pcRadarInter[8];   //5x5ã‚°ãƒªãƒƒãƒ‰åŒ–çŸ³è¡¨ç¤ºç”¨
     u8 radarIntervalTimer[COMM_MACHINE_MAX];
-    void* pAlloc;  // ƒAƒƒP[ƒ^[
+    void* pAlloc;  // ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ãƒ¼
     u8 logMsgFossil[COMM_MACHINE_MAX];
     u8 friendDigPointX[COMM_MACHINE_MAX];
     u8 friendDigPointZ[COMM_MACHINE_MAX];
-    u8 depositMap[ _DIGMAP_HEIGHT ][ _DIGMAP_WIDTH ];   // –„‘ MAP  –„‘ •¨‚Ìindex+1‚ª“ü‚é 0‚Í–„‘ ‚µ‚Ä‚¢‚È‚¢
-    u8 buildupMap[ _DIGMAP_HEIGHT ][ _DIGMAP_WIDTH ];   // ‘ÍÏMAP
+    u8 depositMap[ _DIGMAP_HEIGHT ][ _DIGMAP_WIDTH ];   // åŸ‹è”µMAP  åŸ‹è”µç‰©ã®index+1ãŒå…¥ã‚‹ 0ã¯åŸ‹è”µã—ã¦ã„ãªã„
+    u8 buildupMap[ _DIGMAP_HEIGHT ][ _DIGMAP_WIDTH ];   // å †ç©MAP
     int winIndex;
-    u8 bPic;   // ‚Ì‚İ‚©‚Ç‚¤‚©
-    u8 touchPanelRelease; // ƒ^ƒbƒ`ƒpƒlƒ‹‚ğ—£‚µ‚½ 1
+    u8 bPic;   // ã®ã¿ã‹ã©ã†ã‹
+    u8 touchPanelRelease; // ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚’é›¢ã—ãŸæ™‚ 1
     u8 touchButton;
-    u8 digGauge;   // Œ@‚èƒQ[ƒW
-    u8 shakeCount; // ‰æ–Ê—h‚ç‚µ
+    u8 digGauge;   // æ˜ã‚Šã‚²ãƒ¼ã‚¸
+    u8 shakeCount; // ç”»é¢æºã‚‰ã—
     s8 shakeX;
     s8 shakeZ;
     u8 resObjCount;
-    u8 setNumT;   // TRAP‚ğ–„‚ß‚½”
+    u8 setNumT;   // TRAPã‚’åŸ‹ã‚ãŸæ•°
 } CommFossilWork;
 
 
 //==============================================================================
-// ƒ[ƒN
+// ãƒ¯ãƒ¼ã‚¯
 //==============================================================================
-// ƒVƒ“ƒOƒ‹ƒgƒ“
+// ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³
 static CommFossilWork* _pCommFossilWork = NULL;
 
 //==============================================================================
-// staticéŒ¾
+// staticå®£è¨€
 //==============================================================================
 
-// ”²‚«‚ª‚ ‚é‚©‚Ç‚¤‚©‚ÌMAP  ”‚ª­‚È‚¢‚Ì‚Åè‘‚«@‚±‚±‚É–³‚¢‚Ì‚ÍlŠpŒ`‘S•”‚ ‚½‚è
+// æŠœããŒã‚ã‚‹ã‹ã©ã†ã‹ã®MAP  æ•°ãŒå°‘ãªã„ã®ã§æ‰‹æ›¸ãã€€ã“ã“ã«ç„¡ã„ã®ã¯å››è§’å½¢å…¨éƒ¨ã‚ãŸã‚Š
 
 
 static u8 _attribute_bone[6][3]={
@@ -511,347 +511,347 @@ static u8 _attribute_wet[3][4]={
 };
 
     
-// ‰»Îƒp[ƒc
+// åŒ–çŸ³ãƒ‘ãƒ¼ãƒ„
 static FossilParts _partsData[]={
-    //‚±‚ñ‚²‚¤‚¾‚Ü	kaseki_kongou_s    
+    //ã“ã‚“ã”ã†ã ã¾	kaseki_kongou_s    
     {NULL, 45-15, 35-13, 40-13, 30-10, 4,4, DIG_PARTS_KONGOU_S,
         NARC_ug_parts_kaseki_kongou_s_NCGR,
         NARC_ug_parts_kaseki_kongou_NCLR},
-    //‚µ‚ç‚½‚Ü	kaseki_siratama_s
+    //ã—ã‚‰ãŸã¾	kaseki_siratama_s
     {NULL, 35-13, 45-15, 30-10, 40-13, 4,4, DIG_PARTS_SIRATAMA_S,
         NARC_ug_parts_kaseki_siratama_s_NCGR,
         NARC_ug_parts_kaseki_siratama_NCLR},
-    //‚ ‚©‚¢‚½‚Ü
+    //ã‚ã‹ã„ãŸã¾
     {NULL, 250-83,290-96,185-75,225-61, 4,4, DIG_PARTS_RED_S,
         NARC_ug_parts_kaseki_akatama_s_NCGR,
         NARC_ug_parts_kaseki_akatama_NCLR},
-    //‚ ‚¨‚¢‚½‚Ü
+    //ã‚ãŠã„ãŸã¾
     {NULL, 290-96,250-83,225-75,185-61, 4,4,  DIG_PARTS_BLUE_S,
         NARC_ug_parts_kaseki_aotama_s_NCGR,
         NARC_ug_parts_kaseki_aotama_NCLR},
-    //‚İ‚Ç‚è‚Ì‚½‚Ü
+    //ã¿ã©ã‚Šã®ãŸã¾
     {NULL, 225-75,225-75,160-53,160-53, 4,4, DIG_PARTS_GREEN_S,
         NARC_ug_parts_kaseki_midotama_s_NCGR,
         NARC_ug_parts_kaseki_midotama_NCLR},
-    //‚¾‚¢‚±‚ñ‚²‚¤‚¾‚Ü	kaseki_kongou_l
+    //ã ã„ã“ã‚“ã”ã†ã ã¾	kaseki_kongou_l
     {NULL, 15, 13, 13, 10, 6,6, DIG_PARTS_KONGOU_L,
         NARC_ug_parts_kaseki_kongou_l_NCGR,
         NARC_ug_parts_kaseki_kongou_NCLR},
-    //‚¾‚¢‚µ‚ç‚½‚Ü	kaseki_siratama_l
+    //ã ã„ã—ã‚‰ãŸã¾	kaseki_siratama_l
     {NULL, 13, 15, 10, 13, 6,6, DIG_PARTS_SIRATAMA_L,
         NARC_ug_parts_kaseki_siratama_l_NCGR,
         NARC_ug_parts_kaseki_siratama_NCLR},
-    //‚¾‚¢‚ ‚©‚¾‚Ü	kaseki_akatama_l
+    //ã ã„ã‚ã‹ã ã¾	kaseki_akatama_l
     {NULL, 83, 96, 61, 75, 6,6, DIG_PARTS_RED_L,
         NARC_ug_parts_kaseki_akatama_l_NCGR,
         NARC_ug_parts_kaseki_akatama_NCLR},
-    //‚¾‚¢‚ ‚¨‚½‚Ü	kaseki_aotama_l
+    //ã ã„ã‚ãŠãŸã¾	kaseki_aotama_l
     {NULL, 96, 83, 75, 61, 6,6, DIG_PARTS_BLUE_L,
         NARC_ug_parts_kaseki_aotama_l_NCGR,
         NARC_ug_parts_kaseki_aotama_NCLR},
-    //‚¾‚¢‚İ‚Ç‚è‚½‚Ü	kaseki_midotama_l
+    //ã ã„ã¿ã©ã‚ŠãŸã¾	kaseki_midotama_l
     {NULL, 75, 75, 53, 53, 6,6, DIG_PARTS_GREEN_L,
         NARC_ug_parts_kaseki_midotama_l_NCGR,
         NARC_ug_parts_kaseki_midotama_NCLR},
-    //‚Ü‚ñ‚Ü‚é	kaseki_manmaru
+    //ã¾ã‚“ã¾ã‚‹	kaseki_manmaru
     {NULL,  0,0,0,0, 6,6, DIG_PARTS_CIRCLE,
         NARC_ug_parts_kaseki_manmaru_NCGR,
         NARC_ug_parts_kaseki_manmaru_NCLR},
-    //‚©‚È‚ß	kaseki_kaname                              
+    //ã‹ãªã‚	kaseki_kaname                              
     {NULL,  0,0,2,2, 8,8, DIG_PARTS_KEYSTONE,
         NARC_ug_parts_kaseki_kaname_NCGR,
         NARC_ug_parts_kaseki_kaname_NCLR},
-    //‚½‚¢‚æ‚¤‚Ì‚¢‚µ	kaseki_sun
+    //ãŸã„ã‚ˆã†ã®ã„ã—	kaseki_sun
     {_attribute_sun, 4,1,15,3, 6,6, DIG_PARTS_SUN,
         NARC_ug_parts_kaseki_sun_NCGR,
         NARC_ug_parts_kaseki_sun_NCLR},
-    //‚Ù‚µ‚Ì‚©‚¯‚ç	kaseki_star                            ¥
+    //ã»ã—ã®ã‹ã‘ã‚‰	kaseki_star                            â–¼
     {_attribute_star, 2,2,10,10, 6,6, DIG_PARTS_STAR,
         NARC_ug_parts_kaseki_star_NCGR,
         NARC_ug_parts_kaseki_star_NCLR},
-    //‚Â‚«‚Ì‚¢‚µ	kaseki_moon                            ¥
+    //ã¤ãã®ã„ã—	kaseki_moon                            â–¼
     {_attribute_moon, 1,2,1,8, 8,4, DIG_PARTS_MOON,
         NARC_ug_parts_kaseki_moon_NCGR,
         NARC_ug_parts_kaseki_moon_NCLR},
-    //‚Â‚«‚Ì‚¢‚µ90	kaseki_moon90
+    //ã¤ãã®ã„ã—90	kaseki_moon90
     {_attribute_moon90, 1,2,2,7, 4,8, DIG_PARTS_MOON,
         NARC_ug_parts_kaseki_moon90_NCGR,
         NARC_ug_parts_kaseki_moon_NCLR},
-    //‚©‚½‚¢‚¢‚µ	kaseki_hard
+    //ã‹ãŸã„ã„ã—	kaseki_hard
     {NULL, 4,4,20,20, 4,4, DIG_PARTS_HARD,
         NARC_ug_parts_kaseki_hard_NCGR,
         NARC_ug_parts_kaseki_hard_NCLR},
-    //‚©‚İ‚È‚è‚Ì‚¢‚µ	kaseki_kaminari                   ¥
+    //ã‹ã¿ãªã‚Šã®ã„ã—	kaseki_kaminari                   â–¼
     {_attribute_kaminari, 4,1,30,5, 6,6,DIG_PARTS_KAMINARI,
         NARC_ug_parts_kaseki_kaminari_NCGR,
         NARC_ug_parts_kaseki_kaminari_NCLR},
-    //‚©‚í‚ç‚¸‚Ì‚¢‚µ	kaseki_kawarazu
+    //ã‹ã‚ã‚‰ãšã®ã„ã—	kaseki_kawarazu
     {NULL, 4,4,20,20, 8,4, DIG_PARTS_KAWARAZU,
         NARC_ug_parts_kaseki_kawarazu_NCGR,
         NARC_ug_parts_kaseki_kawarazu_NCLR},
-    //‚Ù‚Ì‚¨‚Ì‚¢‚µ	kaseki_honoo                          
+    //ã»ã®ãŠã®ã„ã—	kaseki_honoo                          
     {NULL, 4,1,30,5, 6,6, DIG_PARTS_HONOO,
         NARC_ug_parts_kaseki_honoo_NCGR,
         NARC_ug_parts_kaseki_honoo_NCLR},
-    //‚İ‚¸‚Ì‚¢‚µ	kaseki_mizu
+    //ã¿ãšã®ã„ã—	kaseki_mizu
     {_attribute_mizu, 1,4,5,30, 6,6, DIG_PARTS_MIZU,
         NARC_ug_parts_kaseki_mizu_NCGR,
         NARC_ug_parts_kaseki_mizu_NCLR},
-    //ƒŠ[ƒt‚Ì‚¢‚µ	kaseki_reaf                       
+    //ãƒªãƒ¼ãƒ•ã®ã„ã—	kaseki_reaf                       
     {_attribute_reaf, 1,2,3,15, 6,8, DIG_PARTS_REAF,
         NARC_ug_parts_kaseki_reaf_NCGR,
         NARC_ug_parts_kaseki_reaf_NCLR},
-    //ƒŠ[ƒt‚Ì‚¢‚µ	kaseki_reaf
+    //ãƒªãƒ¼ãƒ•ã®ã„ã—	kaseki_reaf
     {_attribute_reaf90, 1,2,2,15, 8,6, DIG_PARTS_REAF,
         NARC_ug_parts_kaseki_reaf90_NCGR,
         NARC_ug_parts_kaseki_reaf_NCLR},
-    //‚©‚¢‚ÌƒJƒZƒL	kaseki_kai
+    //ã‹ã„ã®ã‚«ã‚»ã‚­	kaseki_kai
     {_attribute_kai, 0,0,3,1, 8,8, DIG_PARTS_KAI,
         NARC_ug_parts_kaseki_kai_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //‚©‚¢‚ÌƒJƒZƒL	kaseki_kai90
+    //ã‹ã„ã®ã‚«ã‚»ã‚­	kaseki_kai90
     {_attribute_kai90, 0,0,3,1, 8,8, DIG_PARTS_KAI,
         NARC_ug_parts_kaseki_kai90_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //‚©‚¢‚ÌƒJƒZƒL	kaseki_kai180
+    //ã‹ã„ã®ã‚«ã‚»ã‚­	kaseki_kai180
     {_attribute_kai, 0,0,3,1, 8,8, DIG_PARTS_KAI,
         NARC_ug_parts_kaseki_kai180_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //‚©‚¢‚ÌƒJƒZƒL	kaseki_kai270
+    //ã‹ã„ã®ã‚«ã‚»ã‚­	kaseki_kai270
     {_attribute_kai90, 0,0,3,1, 8,8, DIG_PARTS_KAI,
         NARC_ug_parts_kaseki_kai270_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //‚±‚¤‚ç‚ÌƒJƒZƒL	kaseki_koura
+    //ã“ã†ã‚‰ã®ã‚«ã‚»ã‚­	kaseki_koura
     {_attribute_koura, 0,0,1,13, 10,8, DIG_PARTS_KOURA,
         NARC_ug_parts_kaseki_koura_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //ƒcƒ‚ÌƒJƒZƒL	kaseki_tsume
+    //ãƒ„ãƒ¡ã®ã‚«ã‚»ã‚­	kaseki_tsume
     {_attribute_tsume, 0,0,3,1, 8,10, DIG_PARTS_TSUME,
         NARC_ug_parts_kaseki_tsume_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //ƒcƒ‚ÌƒJƒZƒL	kaseki_tsume90
+    //ãƒ„ãƒ¡ã®ã‚«ã‚»ã‚­	kaseki_tsume90
     {_attribute_tsume90, 0,0,3,1, 10,8, DIG_PARTS_TSUME,
         NARC_ug_parts_kaseki_tsume90_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //ƒcƒ‚ÌƒJƒZƒL	kaseki_tsume180
+    //ãƒ„ãƒ¡ã®ã‚«ã‚»ã‚­	kaseki_tsume180
     {_attribute_tsume180, 0,0,3,1, 8,10, DIG_PARTS_TSUME,
         NARC_ug_parts_kaseki_tsume180_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //ƒcƒ‚ÌƒJƒZƒL	kaseki_tsume270
+    //ãƒ„ãƒ¡ã®ã‚«ã‚»ã‚­	kaseki_tsume270
     {_attribute_tsume270, 0,0,3,1, 10,8, DIG_PARTS_TSUME,
         NARC_ug_parts_kaseki_tsume270_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //‚Ë‚Á‚±‚ÌƒJƒZƒL	kaseki_nekko
+    //ã­ã£ã“ã®ã‚«ã‚»ã‚­	kaseki_nekko
     {_attribute_nekko, 0,0,1,3, 10,10, DIG_PARTS_NEKKO,
         NARC_ug_parts_kaseki_nekko_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //‚Ë‚Á‚±‚ÌƒJƒZƒL	kaseki_nekko90
+    //ã­ã£ã“ã®ã‚«ã‚»ã‚­	kaseki_nekko90
     {_attribute_nekko90, 0,0,1,3, 10,10, DIG_PARTS_NEKKO,
         NARC_ug_parts_kaseki_nekko90_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //‚Ë‚Á‚±‚ÌƒJƒZƒL	kaseki_nekko180
+    //ã­ã£ã“ã®ã‚«ã‚»ã‚­	kaseki_nekko180
     {_attribute_nekko180, 0,0,1,3, 10,10, DIG_PARTS_NEKKO,
         NARC_ug_parts_kaseki_nekko180_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //‚Ë‚Á‚±‚ÌƒJƒZƒL	kaseki_nekko270
+    //ã­ã£ã“ã®ã‚«ã‚»ã‚­	kaseki_nekko270
     {_attribute_nekko270, 0,0,1,3, 10,10, DIG_PARTS_NEKKO,
         NARC_ug_parts_kaseki_nekko270_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //‚Ğ‚İ‚Â‚ÌƒRƒnƒN	kaseki_kohaku
+    //ã²ã¿ã¤ã®ã‚³ãƒã‚¯	kaseki_kohaku
     {_attribute_kohaku, 0,0,2,2, 8,8, DIG_PARTS_KOHAKU,
         NARC_ug_parts_kaseki_kohaku_NCGR,
         NARC_ug_parts_kaseki_kohaku_NCLR},
-    //‚Ğ‚İ‚Â‚ÌƒRƒnƒN	kaseki_kohaku90
+    //ã²ã¿ã¤ã®ã‚³ãƒã‚¯	kaseki_kohaku90
     {_attribute_kohaku90, 0,0,3,3, 8,8, DIG_PARTS_KOHAKU,
         NARC_ug_parts_kaseki_kohaku90_NCGR,
         NARC_ug_parts_kaseki_kohaku_NCLR},
-    //‚«‚¿‚å‚¤‚È‚Ù‚Ë	kaseki_bone                           ¥
+    //ãã¡ã‚‡ã†ãªã»ã­	kaseki_bone                           â–¼
     {_attribute_bone, 1,1,5,5, 6,12, DIG_PARTS_BONE,
         NARC_ug_parts_kaseki_bone_NCGR,
         NARC_ug_parts_kaseki_bone_NCLR},
-    //‚«‚¿‚å‚¤‚È‚Ù‚Ë	kaseki_bone90
+    //ãã¡ã‚‡ã†ãªã»ã­	kaseki_bone90
     {_attribute_bone90, 1,1,5,5, 12,6, DIG_PARTS_BONE,
         NARC_ug_parts_kaseki_bone90_NCGR,
         NARC_ug_parts_kaseki_bone_NCLR},
-//‚°‚ñ‚«‚Ì‚©‚¯‚ç
+//ã’ã‚“ãã®ã‹ã‘ã‚‰
     {_attribute_star, 8,8,10,10, 6,6, DIG_PARTS_GENKI_S,
         NARC_ug_parts_kaseki_genki_s_NCGR,
         NARC_ug_parts_kaseki_genki_NCLR},
-//‚°‚ñ‚«‚Ì‚©‚½‚Ü‚è
+//ã’ã‚“ãã®ã‹ãŸã¾ã‚Š
     {NULL, 1,1,2,2, 6,6, DIG_PARTS_GENKI_L,
         NARC_ug_parts_kaseki_genki_l_NCGR,
         NARC_ug_parts_kaseki_genki_NCLR},
-    //‚ ‚©‚¢‚©‚¯‚ç
+    //ã‚ã‹ã„ã‹ã‘ã‚‰
     {_attribute_kakera_red, 13,13,17,17, 6,6, DIG_PARTS_PLA_RED,
         NARC_ug_parts_kaseki_pla_r_NCGR,
         NARC_ug_parts_kaseki_pla_fire_NCLR},
-    //‚ ‚¨‚¢‚©‚¯‚ç
+    //ã‚ãŠã„ã‹ã‘ã‚‰
     {_attribute_kakera_blue, 13,13,17,17, 6,6, DIG_PARTS_PLA_BLUE,
         NARC_ug_parts_kaseki_pla_b_NCGR,
         NARC_ug_parts_kaseki_pla_water_NCLR},
-    //‚«‚¢‚ë‚¢‚©‚¯‚ç
+    //ãã„ã‚ã„ã‹ã‘ã‚‰
     {_attribute_kakera_yellow, 13,13,17,17, 8,6, DIG_PARTS_PLA_YELLOW,
         NARC_ug_parts_kaseki_pla_y_NCGR,
         NARC_ug_parts_kaseki_pla_thunder_NCLR},
-    //‚İ‚Ç‚è‚Ì‚©‚¯‚ç
+    //ã¿ã©ã‚Šã®ã‹ã‘ã‚‰
     {_attribute_kakera_green, 13,13,17,17, 8,6, DIG_PARTS_PLA_GREEN,
         NARC_ug_parts_kaseki_pla_g_NCGR,
         NARC_ug_parts_kaseki_pla_reef_NCLR},
-    //ƒn[ƒg‚ÌƒEƒƒR
+    //ãƒãƒ¼ãƒˆã®ã‚¦ãƒ­ã‚³
     {_attribute_heart, 33,33,30,30, 4,4, DIG_PARTS_HEART,
         NARC_ug_parts_kaseki_hart_NCGR,
         NARC_ug_parts_kaseki_hart_NCLR},
-    //‚½‚Ä‚ÌƒJƒZƒL
+    //ãŸã¦ã®ã‚«ã‚»ã‚­
     {_attribute_shield, 0,25,0,12, 10,8, DIG_PARTS_SHIELD,
         NARC_ug_parts_kaseki_tate_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //‚¸‚ª‚¢‚ÌƒJƒZƒL
+    //ãšãŒã„ã®ã‚«ã‚»ã‚­
     {_attribute_zugai, 25,0,12,0, 8, 8, DIG_PARTS_ZUGAI,
         NARC_ug_parts_kaseki_zugai_NCGR,
         NARC_ug_parts_kaseki_kaseki_NCLR},
-    //‚Ğ‚©‚è‚Ì‚Ë‚ñ‚Ç
+    //ã²ã‹ã‚Šã®ã­ã‚“ã©
     {_attribute_cray, 1,1,5,2, 8, 8, DIG_PARTS_CRAY,
         NARC_ug_parts_kaseki_nendo_NCGR,
         NARC_ug_parts_kaseki_nendo_NCLR},
-    //‚­‚ë‚¢‚Ä‚Á‚«‚ã‚¤
+    //ãã‚ã„ã¦ã£ãã‚…ã†
     {NULL, 1,1,2,5, 6, 6, DIG_PARTS_IRONBALL,
         NARC_ug_parts_kaseki_black_NCGR,
         NARC_ug_parts_kaseki_black_NCLR},
-    //‚Â‚ß‚½‚¢‚¢‚í
+    //ã¤ã‚ãŸã„ã„ã‚
     {_attribute_cold, 2,1,11,5, 8, 8, DIG_PARTS_COLD,
         NARC_ug_parts_kaseki_cold_NCGR,
         NARC_ug_parts_kaseki_cold_NCLR},
-    //‚³‚ç‚³‚ç‚¢‚í
+    //ã•ã‚‰ã•ã‚‰ã„ã‚
     {_attribute_sara, 1,2,5,11, 8, 8, DIG_PARTS_SARA,
         NARC_ug_parts_kaseki_sara_NCGR,
         NARC_ug_parts_kaseki_sara_NCLR},
-    //‚ ‚Â‚¢‚¢‚í
+    //ã‚ã¤ã„ã„ã‚
     {_attribute_heat, 2,1,11,5, 8, 6, DIG_PARTS_HEAT,
         NARC_ug_parts_kaseki_heet_NCGR,
         NARC_ug_parts_kaseki_heet_NCLR},
-    //‚µ‚ß‚Á‚½‚¢‚í
+    //ã—ã‚ã£ãŸã„ã‚
     {_attribute_wet, 1,2,5,11, 6, 6, DIG_PARTS_WET,
         NARC_ug_parts_kaseki_wet_NCGR,
         NARC_ug_parts_kaseki_wet_NCLR},
-//‚Ğ‚Ì‚½‚ÜƒvƒŒ[ƒg
+//ã²ã®ãŸã¾ãƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_FIRE,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_fire_NCLR},
-//‚µ‚¸‚­ƒvƒŒ[ƒg
+//ã—ãšããƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_WATER,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_water_NCLR},
-//‚¢‚©‚Ã‚¿ƒvƒŒ[ƒg
+//ã„ã‹ã¥ã¡ãƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_THUNDER,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_thunder_NCLR},
-//‚İ‚Ç‚è‚ÌƒvƒŒ[ƒg
+//ã¿ã©ã‚Šã®ãƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_GREEN,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_reef_NCLR},
-//‚Â‚ç‚ç‚ÌƒvƒŒ[ƒg
+//ã¤ã‚‰ã‚‰ã®ãƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_ICICLE ,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_ice_NCLR},
-//‚±‚Ô‚µ‚ÌƒvƒŒ[ƒg
+//ã“ã¶ã—ã®ãƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_KNUCKLE ,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_fist_NCLR},
-//‚à‚¤‚Ç‚­ƒvƒŒ[ƒg
+//ã‚‚ã†ã©ããƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_POISON,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_poison_NCLR},
-//‚¾‚¢‚¿‚ÌƒvƒŒ[ƒg
+//ã ã„ã¡ã®ãƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_GROUND,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_ground_NCLR},
-//‚ ‚¨‚¼‚çƒvƒŒ[ƒg
+//ã‚ãŠãã‚‰ãƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_SKY,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_sky_NCLR},
-//‚Ó‚µ‚¬‚ÌƒvƒŒ[ƒg
+//ãµã—ãã®ãƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_WONDER,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_wonder_NCLR},
-//‚½‚Ü‚Ş‚µƒvƒŒ[ƒg
+//ãŸã¾ã‚€ã—ãƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_IRIDESCENCE ,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_beetle_NCLR},
-//‚ª‚ñ‚¹‚«ƒvƒŒ[ƒg
+//ãŒã‚“ã›ããƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_ROCK,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_rock_NCLR},
-//‚à‚Ì‚Ì‚¯ƒvƒŒ[ƒg
+//ã‚‚ã®ã®ã‘ãƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_GHOST,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_ghost_NCLR},
-//‚è‚ã‚¤‚ÌƒvƒŒ[ƒg
+//ã‚Šã‚…ã†ã®ãƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_DRAGON,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_dragon_NCLR},
-//‚±‚í‚à‚ÄƒvƒŒ[ƒg
+//ã“ã‚ã‚‚ã¦ãƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_DARK,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_dark_NCLR},
-//‚±‚¤‚Ä‚ÂƒvƒŒ[ƒg
+//ã“ã†ã¦ã¤ãƒ—ãƒ¬ãƒ¼ãƒˆ
     {NULL, 1,1,1,1, 8, 6, DIG_PARTS_PLATE_IRON,
         NARC_ug_parts_kaseki_pla_n_NCGR,
         NARC_ug_parts_kaseki_pla_iron_NCLR},
 
     
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa01	–ÊÏ‚ª‚Sƒ}ƒX	–_Œ`‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa01	é¢ç©ãŒï¼”ãƒã‚¹	æ£’å½¢ã®çœŸã£é»’ã®çŸ³
     {NULL, 1,1,1,1, 8, 2, DIG_PARTS_NODIG1,
         NARC_ug_parts_kaseki_iwa01_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa01	–ÊÏ‚ª‚Sƒ}ƒX	–_Œ`‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa01	é¢ç©ãŒï¼”ãƒã‚¹	æ£’å½¢ã®çœŸã£é»’ã®çŸ³
     {NULL, 1,1,1,1, 2, 8, DIG_PARTS_NODIG1,
         NARC_ug_parts_kaseki_iwa0190_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa02	–ÊÏ‚ª‚Sƒ}ƒX	lŠpŒ^‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa02	é¢ç©ãŒï¼”ãƒã‚¹	å››è§’å‹ã®çœŸã£é»’ã®çŸ³
     {NULL, 1,1,1,1, 4, 4, DIG_PARTS_NODIG2,
         NARC_ug_parts_kaseki_iwa02_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa03	–ÊÏ‚ª‚Sƒ}ƒX	TŒ^‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa03	é¢ç©ãŒï¼”ãƒã‚¹	Tå‹ã®çœŸã£é»’ã®çŸ³
     {_attribute_iwa03, 1,1,1,1, 6, 4, DIG_PARTS_NODIG3,
         NARC_ug_parts_kaseki_iwa03_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa0390	–ÊÏ‚ª‚Sƒ}ƒX	TŒ^‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa0390	é¢ç©ãŒï¼”ãƒã‚¹	Tå‹ã®çœŸã£é»’ã®çŸ³
     {_attribute_iwa0390, 1,1,1,1, 4, 6, DIG_PARTS_NODIG3,
         NARC_ug_parts_kaseki_iwa0390_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa03180	–ÊÏ‚ª‚Sƒ}ƒX	TŒ^‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa03180	é¢ç©ãŒï¼”ãƒã‚¹	Tå‹ã®çœŸã£é»’ã®çŸ³
     {_attribute_iwa03180, 1,1,1,1, 6, 4, DIG_PARTS_NODIG3,
         NARC_ug_parts_kaseki_iwa03180_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa03270	–ÊÏ‚ª‚Sƒ}ƒX	TŒ^‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa03270	é¢ç©ãŒï¼”ãƒã‚¹	Tå‹ã®çœŸã£é»’ã®çŸ³
     {_attribute_iwa03270, 1,1,1,1, 4, 6, DIG_PARTS_NODIG3,
         NARC_ug_parts_kaseki_iwa03270_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa04	–ÊÏ‚ª‚Sƒ}ƒX	ZŒ^‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa04	é¢ç©ãŒï¼”ãƒã‚¹	Zå‹ã®çœŸã£é»’ã®çŸ³
     {_attribute_iwa04, 1,1,1,1, 6, 4, DIG_PARTS_NODIG4,
         NARC_ug_parts_kaseki_iwa04_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa0490	–ÊÏ‚ª‚Sƒ}ƒX	ZŒ^‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa0490	é¢ç©ãŒï¼”ãƒã‚¹	Zå‹ã®çœŸã£é»’ã®çŸ³
     {_attribute_iwa0490, 1,1,1,1, 4, 6, DIG_PARTS_NODIG4,
         NARC_ug_parts_kaseki_iwa0490_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa05	–ÊÏ‚ª‚Sƒ}ƒX	SŒ^‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa05	é¢ç©ãŒï¼”ãƒã‚¹	Så‹ã®çœŸã£é»’ã®çŸ³
     {_attribute_iwa05, 1,1,1,1, 6, 4, DIG_PARTS_NODIG5,
         NARC_ug_parts_kaseki_iwa05_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa0590	–ÊÏ‚ª‚Sƒ}ƒX	SŒ^‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa0590	é¢ç©ãŒï¼”ãƒã‚¹	Så‹ã®çœŸã£é»’ã®çŸ³
     {_attribute_iwa0590, 1,1,1,1, 4, 6, DIG_PARTS_NODIG5,
         NARC_ug_parts_kaseki_iwa0590_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa06	–ÊÏ‚ª‚Xƒ}ƒX	lŠpŒ^‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa06	é¢ç©ãŒï¼™ãƒã‚¹	å››è§’å‹ã®çœŸã£é»’ã®çŸ³
     {NULL, 1,1,1,1, 6, 6, DIG_PARTS_NODIG6,
         NARC_ug_parts_kaseki_iwa06_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa07	–ÊÏ‚ª‚Wƒ}ƒX	–_Œ`‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa07	é¢ç©ãŒï¼˜ãƒã‚¹	æ£’å½¢ã®çœŸã£é»’ã®çŸ³
     {NULL, 1,1,1,1, 4, 8, DIG_PARTS_NODIG7,
         NARC_ug_parts_kaseki_iwa07_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
-    //Œ@‚ê‚È‚¢Šâ	kaseki_iwa07	–ÊÏ‚ª‚Wƒ}ƒX	–_Œ`‚Ì^‚Á•‚ÌÎ
+    //æ˜ã‚Œãªã„å²©	kaseki_iwa07	é¢ç©ãŒï¼˜ãƒã‚¹	æ£’å½¢ã®çœŸã£é»’ã®çŸ³
     {NULL, 1,1,1,1, 8, 4, DIG_PARTS_NODIG7,
         NARC_ug_parts_kaseki_iwa0790_NCGR,
         NARC_ug_parts_kaseki_iwa_NCLR},
@@ -896,12 +896,12 @@ static const BMPWIN_DAT _yesNoBmpDat = {
 
 
 //==============================================================================
-// ŠÖ”
+// é–¢æ•°
 //==============================================================================
 
 //==============================================================================
 /**
- * ‰»ÎŒ@‚èƒQ[ƒ€‚É•K—v‚È‚à‚Ì‚Ì‰Šú‰»
+ * åŒ–çŸ³æ˜ã‚Šã‚²ãƒ¼ãƒ ã«å¿…è¦ãªã‚‚ã®ã®åˆæœŸåŒ–
  * @param   none
  * @retval  none
  */
@@ -932,8 +932,8 @@ static void _initializeDigGame(void)
 
 //==============================================================================
 /**
- * ‰»ÎŒ@‚èŠÇ—‚Ì‰Šú‰»
- * @param   pWork   ì‹Æƒƒ‚ƒŠ[
+ * åŒ–çŸ³æ˜ã‚Šç®¡ç†ã®åˆæœŸåŒ–
+ * @param   pWork   ä½œæ¥­ãƒ¡ãƒ¢ãƒªãƒ¼
  * @retval  none
  */
 //==============================================================================
@@ -961,24 +961,24 @@ void CommFossilInitialize(void* pWork, FIELDSYS_WORK* pFSys)
     
     pUGData = SaveData_GetUnderGroundData(_pCommFossilWork->pFSys->savedata);
 
-    // ƒfƒtƒHƒ‹ƒg‚Å‰»Î”z’u
+    // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§åŒ–çŸ³é…ç½®
     if(UnderGroundIsNewDay(pUGData)){
         MATHRandContext16 sRand;
 
-        OHNO_PRINT("‰»ÎÄ”z’u %d \n",UnderGroundGetDayRandSeed(pUGData));
+        OHNO_PRINT("åŒ–çŸ³å†é…ç½® %d \n",UnderGroundGetDayRandSeed(pUGData));
         MATH_InitRand16(&sRand, UnderGroundGetDayRandSeed(pUGData));
         for(i = 0; i < UG_FOSSIL_PLACE_NUM_MAX; i++){
-            UnderGroundDelFossilGroundItem(pUGData, i);  // ‘S‚¯‚µ
+            UnderGroundDelFossilGroundItem(pUGData, i);  // å…¨ã‘ã—
         }
         for(i = 0; i < UG_NATURETRAP_PLACE_NUM_MAX; i++){
             UnderGroundAddNatureTrapGroundItem(pUGData, 0, i, 0, 0);
         }
-        num = UgDigStoneSetOneFossil(&sRand);// Î‚Ì‹ß‚­‚É‰»Î‚ğ’u‚­
+        num = UgDigStoneSetOneFossil(&sRand);// çŸ³ã®è¿‘ãã«åŒ–çŸ³ã‚’ç½®ã
         num = _SETUP_NUM_MAX - (num / 10) - 1;
-        for(i = 0; i < num; i++){   // numƒZƒbƒg‰»Î”z’u
+        for(i = 0; i < num; i++){   // numã‚»ãƒƒãƒˆåŒ–çŸ³é…ç½®
             _setSetup(&sRand, i);
         }
-        UnderGroundResetNewDay(pUGData);  // ˆê“ú•ÏX‚µ‚È‚¢ƒtƒ‰ƒO‚ğƒZƒbƒg
+        UnderGroundResetNewDay(pUGData);  // ä¸€æ—¥å¤‰æ›´ã—ãªã„ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 
     }
     else{
@@ -989,9 +989,9 @@ void CommFossilInitialize(void* pWork, FIELDSYS_WORK* pFSys)
 
 //==============================================================================
 /**
- * ÎŒ@‚è‚Ìƒ[ƒNƒTƒCƒY‚ğ“¾‚é
+ * çŸ³æ˜ã‚Šã®ãƒ¯ãƒ¼ã‚¯ã‚µã‚¤ã‚ºã‚’å¾—ã‚‹
  * @param   none
- * @retval  ƒTƒCƒY
+ * @retval  ã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1002,7 +1002,7 @@ int CommFossilGetWorkSize(void)
 
 //==============================================================================
 /**
- * ÎŒ@‚è‚ÌƒŠƒZƒbƒg
+ * çŸ³æ˜ã‚Šã®ãƒªã‚»ãƒƒãƒˆ
  * @param   none
  * @retval  none
  */
@@ -1014,7 +1014,7 @@ void CommFossilReset(void)
 
 //==============================================================================
 /**
- * ÎŒ@‚è‚Ì•œ‹Aˆ—
+ * çŸ³æ˜ã‚Šã®å¾©å¸°å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -1026,7 +1026,7 @@ void CommFossilReboot(void)
 
 //==============================================================================
 /**
- * ÎŒ@‚è‚ÌI—¹
+ * çŸ³æ˜ã‚Šã®çµ‚äº†
  * @param   none
  * @retval  none
  */
@@ -1051,10 +1051,10 @@ void CommFossilFinalize(void)
 
 //==============================================================================
 /**
- * ‰»Î‚Ìƒ`ƒFƒbƒN‚Ìˆ—
+ * åŒ–çŸ³ã®ãƒã‚§ãƒƒã‚¯ã®å‡¦ç†
  * @param   netID   netID
- * @param   pTouch    ŒŸ¸ˆÊ’u
- * @retval  ‰»Î‚ª‚ ‚Á‚½‚çTRUE
+ * @param   pTouch    æ¤œæŸ»ä½ç½®
+ * @retval  åŒ–çŸ³ãŒã‚ã£ãŸã‚‰TRUE
  */
 //==============================================================================
 
@@ -1065,10 +1065,10 @@ BOOL CommFossilCheck(int netID, Grid* pTouch)
     data = netID;
 
     if((pFP != NULL) && (pFP->digCreatureNetID==INVALID_NETID)){
-        if(CommPlayerFlagDigCheck(netID)){   // ©•ª‚ÌŠøŒŸ¸
+        if(CommPlayerFlagDigCheck(netID)){   // è‡ªåˆ†ã®æ——æ¤œæŸ»
             return TRUE;
         }
-        OHNO_PRINT("‚Ü‚¾Œ@‚Á‚Ä‚¢‚È‚¢ê‡ ”­Œ©M†‚ğ‘—‚é %d\n",pFP->savedataPos);
+        OHNO_PRINT("ã¾ã æ˜ã£ã¦ã„ãªã„å ´åˆ ç™ºè¦‹ä¿¡å·ã‚’é€ã‚‹ %d\n",pFP->savedataPos);
         CommSendData_ServerSide(CF_FIND_FOSSIL, &data, 1);
         CommPlayerSetMoveControl_Server(netID,FALSE);
         _pCommFossilWork->pEntryFossil[netID] = pFP;
@@ -1079,7 +1079,7 @@ BOOL CommFossilCheck(int netID, Grid* pTouch)
 
 //--------------------------------------------------------------
 /**
- * ‰»Î‚ğ–„‚ß‚Ä‚¢‚¢êŠ‚©‚Ç‚¤‚©
+ * åŒ–çŸ³ã‚’åŸ‹ã‚ã¦ã„ã„å ´æ‰€ã‹ã©ã†ã‹
  * @param    none
  * @retval   none
  */
@@ -1088,15 +1088,15 @@ BOOL CommFossilCheck(int netID, Grid* pTouch)
 static BOOL _isFillUpPoint(FIELDSYS_WORK* pFSys, int xpos, int zpos)
 {
     if(UgSecretBaseIsSecretBasePlace(xpos,zpos)){
-        OHNO_PRINT("‰»Î”z’u‚µ‚È‚¢ %d %d\n",xpos,zpos);
+        OHNO_PRINT("åŒ–çŸ³é…ç½®ã—ãªã„ %d %d\n",xpos,zpos);
         return FALSE;
     }
     if(zpos > 478){
-        OHNO_PRINT("‰»Î”z’u‚µ‚È‚¢ %d %d\n",xpos,zpos);
+        OHNO_PRINT("åŒ–çŸ³é…ç½®ã—ãªã„ %d %d\n",xpos,zpos);
         return FALSE;
     }
     if(xpos > 478){
-        OHNO_PRINT("‰»Î”z’u‚µ‚È‚¢ %d %d\n",xpos,zpos);
+        OHNO_PRINT("åŒ–çŸ³é…ç½®ã—ãªã„ %d %d\n",xpos,zpos);
         return FALSE;
     }
     if(GetHitAttr(pFSys, xpos, zpos)){
@@ -1118,7 +1118,7 @@ static BOOL _isFillUpPoint(FIELDSYS_WORK* pFSys, int xpos, int zpos)
 
 //--------------------------------------------------------------
 /**
- * ‰»Î‚PƒZƒbƒg‚ğ”z’u‚·‚é
+ * åŒ–çŸ³ï¼‘ã‚»ãƒƒãƒˆã‚’é…ç½®ã™ã‚‹
  * @param    none
  * @retval   none
  */
@@ -1134,12 +1134,12 @@ static void _setSetup(MATHRandContext16* pRand,int setIndex)
 
     xbase = (GetWorldMapMatrixW(_pCommFossilWork->pFSys->World)-2)*BLOCK_GRID_W;
     zbase = (GetWorldMapMatrixH(_pCommFossilWork->pFSys->World)-2)*BLOCK_GRID_H;
-    do{  // ŠJ‚¢‚Ä‚¢‚éêŠ‚ğŒ©‚Â‚¯‚é
+    do{  // é–‹ã„ã¦ã„ã‚‹å ´æ‰€ã‚’è¦‹ã¤ã‘ã‚‹
         xpos = MATH_Rand16(pRand, xbase)+BLOCK_GRID_W;
         zpos = MATH_Rand16(pRand, zbase)+BLOCK_GRID_H*2;
     } while(_isFillUpPoint(_pCommFossilWork->pFSys, xpos, zpos)==FALSE);
 
-    digNum = MATH_Rand16(pRand, 6) + 6;  // ‰»Î‚ğ¡‰ñ–„‚ß‚é”
+    digNum = MATH_Rand16(pRand, 6) + 6;  // åŒ–çŸ³ã‚’ä»Šå›åŸ‹ã‚ã‚‹æ•°
     for(i = 0; i < digNum; i++){
         flg = FALSE;
         for(try = 0 ; try < 100; try++){
@@ -1153,14 +1153,14 @@ static void _setSetup(MATHRandContext16* pRand,int setIndex)
         if( flg ){
             pFP = _getFreeFossilPoint();
             if( pFP == NULL){
-                break;  // ‚à‚¤‚Í‚¢‚ç‚È‚¢
+                break;  // ã‚‚ã†ã¯ã„ã‚‰ãªã„
             }
             pFP = _addFossil(xpos2,zpos2);
             pFP->savedataPos = UnderGroundAddFossilGroundItem(pUGData, xpos2, zpos2);
         }
     }
 
-    digNum = MATH_Rand16(pRand, 6);  // ã©‚ğ¡‰ñ–„‚ß‚é”
+    digNum = MATH_Rand16(pRand, 6);  // ç½ ã‚’ä»Šå›åŸ‹ã‚ã‚‹æ•°
 
     for(i = 0; i < digNum; i++){
         for(try = 0 ; try < 100; try++){
@@ -1179,7 +1179,7 @@ static void _setSetup(MATHRandContext16* pRand,int setIndex)
 
 //--------------------------------------------------------------
 /**
- * ‰»Î‚P‚±‚ğ”z’u‚·‚é
+ * åŒ–çŸ³ï¼‘ã“ã‚’é…ç½®ã™ã‚‹
  * @param    none
  * @retval   none
  */
@@ -1205,7 +1205,7 @@ void UgFossilOneSetup(int xbase,int zbase,MATHRandContext16* pRand)
         pFP = _getFreeFossilPoint();
         if( pFP ){
             pFP = _addFossil(xpos2,zpos2);
-            OHNO_SP_PRINT("‚©‚¹‚«‚¤‚ß %d %d \n",xpos2,zpos2);
+            OHNO_SP_PRINT("ã‹ã›ãã†ã‚ %d %d \n",xpos2,zpos2);
             pFP->savedataPos = UnderGroundAddFossilGroundItem(pUGData, xpos2, zpos2);
         }
     }
@@ -1213,9 +1213,9 @@ void UgFossilOneSetup(int xbase,int zbase,MATHRandContext16* pRand)
 
 //--------------------------------------------------------------
 /**
- * ŠJ‚¢‚Ä‚¢‚é‰»Î\‘¢‘ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * é–‹ã„ã¦ã„ã‚‹åŒ–çŸ³æ§‹é€ ä½“ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  * @param    none
- * @retval   ‰»Î\‘¢‘ÌƒAƒhƒŒƒX
+ * @retval   åŒ–çŸ³æ§‹é€ ä½“ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------
 
@@ -1235,9 +1235,9 @@ static FossilPoint* _getFreeFossilPoint(void)
 
 //--------------------------------------------------------------
 /**
- * í‚ÉXY‚ğ‚Â‚ß‚Äû”[‚·‚é
+ * å¸¸ã«XYã‚’ã¤ã‚ã¦åç´ã™ã‚‹
  * @param    none
- * @retval   ‰»Î\‘¢‘ÌƒAƒhƒŒƒX
+ * @retval   åŒ–çŸ³æ§‹é€ ä½“ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------
 
@@ -1286,7 +1286,7 @@ void DebugUGDigFossilAddFossil(void)
 
 //==============================================================================
 /**
- *  ƒZ[ƒuƒf[ƒ^‚ğ—p‚¢‚Ä–„‚ß‚È‚¨‚·
+ *  ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‚’ç”¨ã„ã¦åŸ‹ã‚ãªãŠã™
  * @param   none
  * @retval  none
  */
@@ -1313,7 +1313,7 @@ static void _reload(void)
 
 //==============================================================================
 /**
- *  –ˆƒtƒŒ[ƒ€s‚¤“à•”ˆ—
+ *  æ¯ãƒ•ãƒ¬ãƒ¼ãƒ è¡Œã†å†…éƒ¨å‡¦ç†
  * @param   none
  * @retval  none
  */
@@ -1324,16 +1324,16 @@ void UgFossilProcess(void)
     int i;
 
     if(CommGetCurrentID() == COMM_PARENT_ID){
-        _turnAroundSignalSend();// e‹@‚È‚ç256üŠú‚Åƒf[ƒ^“]‘—
-        _pcRadarFunc(); // ƒpƒ\ƒRƒ“‚©‚ç–â‚¢‡‚í‚¹‚Ì‚ ‚Á‚½‰»Î‘—M
+        _turnAroundSignalSend();// è¦ªæ©Ÿãªã‚‰256å‘¨æœŸã§ãƒ‡ãƒ¼ã‚¿è»¢é€
+        _pcRadarFunc(); // ãƒ‘ã‚½ã‚³ãƒ³ã‹ã‚‰å•ã„åˆã‚ã›ã®ã‚ã£ãŸåŒ–çŸ³é€ä¿¡
     }
 }
 
 //--------------------------------------------------------------
 /**
- * ‚±‚ÌêŠ‚É‚ ‚é‰»Î\‘¢‘ÌƒAƒhƒŒƒX‚ğ•Ô‚·
+ * ã“ã®å ´æ‰€ã«ã‚ã‚‹åŒ–çŸ³æ§‹é€ ä½“ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
  * @param    none
- * @retval   ‰»Î\‘¢‘ÌƒAƒhƒŒƒX
+ * @retval   åŒ–çŸ³æ§‹é€ ä½“ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------
 
@@ -1344,7 +1344,7 @@ static FossilPoint* _searchFossilPoint(u16 xpos, u16 zpos)
     for(i = 0; i < _FOSSIL_NUM_MAX; i++){
         if((_pCommFossilWork->aFossilPoint[i].xpos == xpos) &&
            (_pCommFossilWork->aFossilPoint[i].zpos == zpos)){
-            OHNO_PRINT("‰»Î”­Œ© %d %d %d\n",xpos, zpos, _pCommFossilWork->aFossilPoint[i].savedataPos);
+            OHNO_PRINT("åŒ–çŸ³ç™ºè¦‹ %d %d %d\n",xpos, zpos, _pCommFossilWork->aFossilPoint[i].savedataPos);
             return &_pCommFossilWork->aFossilPoint[i];
         }
     }
@@ -1355,10 +1355,10 @@ static FossilPoint* _searchFossilPoint(u16 xpos, u16 zpos)
 
 //--------------------------------------------------------------
 /**
- * ‚P‚U‚O‚˜‚P‚U‚O‚Ì”ÍˆÍ‚Å‰»Î‚ğ’T‚µo‚· Œ©‚Â‚©‚Á‚½‚çƒ‰ƒ“ƒ_ƒ€‚Å•Ô‚·
- * @param    xpos,zpos  ˆÊ’u
+ * ï¼‘ï¼–ï¼ï½˜ï¼‘ï¼–ï¼ã®ç¯„å›²ã§åŒ–çŸ³ã‚’æ¢ã—å‡ºã™ è¦‹ã¤ã‹ã£ãŸã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã§è¿”ã™
+ * @param    xpos,zpos  ä½ç½®
  * @param    
- * @retval   Œ©‚Â‚©‚Á‚½‚çaFossilPoint‚Ìindex
+ * @retval   è¦‹ã¤ã‹ã£ãŸã‚‰aFossilPointã®index
  */
 //--------------------------------------------------------------
 
@@ -1413,8 +1413,8 @@ static int _searchFossilRadarPoint(u16 xpos, u16 zpos)
 
 //==============================================================================
 /**
- * ‰»Î”­Œ©‚ğƒNƒ‰ƒCƒAƒ“ƒg‚É•\¦{Œ@‚é‚©‚Ç‚¤‚©–â‚¢‡‚í‚¹‚éƒ^ƒXƒN‚ğÁ‚·
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
+ * åŒ–çŸ³ç™ºè¦‹ã‚’ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«è¡¨ç¤ºï¼‹æ˜ã‚‹ã‹ã©ã†ã‹å•ã„åˆã‚ã›ã‚‹ã‚¿ã‚¹ã‚¯ã‚’æ¶ˆã™
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
  * @retval  none
  */
 //==============================================================================
@@ -1431,8 +1431,8 @@ static void _forceDeleteFossilFind(TCB_PTR tcb,void* work)
 
 //==============================================================================
 /**
- * ‰»Î”­Œ©‚ğƒNƒ‰ƒCƒAƒ“ƒg‚É•\¦{Œ@‚é‚©‚Ç‚¤‚©–â‚¢‡‚í‚¹‚é CF_FIND_FOSSIL
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
+ * åŒ–çŸ³ç™ºè¦‹ã‚’ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«è¡¨ç¤ºï¼‹æ˜ã‚‹ã‹ã©ã†ã‹å•ã„åˆã‚ã›ã‚‹ CF_FIND_FOSSIL
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
  * @retval  none
  */
 //==============================================================================
@@ -1446,7 +1446,7 @@ void CommFossilRecvFind(int netID, int size, void* pData, void* pWork)
             CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(),
                                    msg_underworld_20, FALSE, NULL);
         _pCommFossilWork->pDigStart = TCB_Add(_yesnoMenuFunc, _pCommFossilWork, 0);
-        // ƒtƒB[ƒ‹ƒh‚Ì“®‚«‚ğ~‚ß‚é
+        // ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®å‹•ãã‚’æ­¢ã‚ã‚‹
 
         UgMgrSetNowTCB(NULL,_pCommFossilWork->pDigStart,_forceDeleteFossilFind);
 
@@ -1456,9 +1456,9 @@ void CommFossilRecvFind(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * Œ@‚é‚©‚Ç‚¤‚©–â‚¢‡‚í‚¹
- * @param   tcb  ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
- * @param   work  ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * æ˜ã‚‹ã‹ã©ã†ã‹å•ã„åˆã‚ã›
+ * @param   tcb  ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   work  ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @retval  none
  */
 //==============================================================================
@@ -1469,7 +1469,7 @@ static void _yesnoMenuFunc(TCB_PTR tcb, void* work)
     
     if(_pCommFossilWork->winIndex != -1){
         if( GF_MSG_PrintEndCheck( _pCommFossilWork->winIndex ) == 0 ){
-            // ‚Í‚¢‚¢‚¢‚¦ƒEƒCƒ“ƒhƒE‚ğo‚·
+            // ã¯ã„ã„ã„ãˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™
             _pCommFossilWork->pYesNoWork =
                 BmpYesNoSelectInit( _pCommFossilWork->pFSys->bgl,
                                     &_yesNoBmpDat,
@@ -1480,16 +1480,16 @@ static void _yesnoMenuFunc(TCB_PTR tcb, void* work)
     }
     else{
         int ret = BmpYesNoSelectMain(_pCommFossilWork->pYesNoWork, HEAPID_FIELD);
-        if(ret == BMPMENU_NULL){  // ‚Ü‚¾‘I‘ğ’†
+        if(ret == BMPMENU_NULL){  // ã¾ã é¸æŠä¸­
             return;
-        }else if(ret == 0){ // ‚Í‚¢‚ğ‘I‘ğ‚µ‚½ê‡
-            flg = TRUE;  // ƒT[ƒo[‚ÉŠm”F‚ğæ‚é
+        }else if(ret == 0){ // ã¯ã„ã‚’é¸æŠã—ãŸå ´åˆ
+            flg = TRUE;  // ã‚µãƒ¼ãƒãƒ¼ã«ç¢ºèªã‚’å–ã‚‹
         }
-        else{  // ‚¢‚¢‚¦‚ğ‘I‘ğ‚µ‚½ê‡
+        else{  // ã„ã„ãˆã‚’é¸æŠã—ãŸå ´åˆ
             flg = FALSE;
-            CommPlayerHoldEnd();  // ‚±‚±‚ÅI—¹
+            CommPlayerHoldEnd();  // ã“ã“ã§çµ‚äº†
         }
-        CommSendFixSizeData(CF_DIG_FOSSIL_START_REQ,&flg);  // ƒT[ƒo[‚ÉŠm”F‚ğæ‚é
+        CommSendFixSizeData(CF_DIG_FOSSIL_START_REQ,&flg);  // ã‚µãƒ¼ãƒãƒ¼ã«ç¢ºèªã‚’å–ã‚‹
         _pCommFossilWork->pYesNoWork = NULL;
         CommMsgTalkWindowEnd(CommUnderGetMsgUnderWorld());
         TCB_Delete(tcb);
@@ -1500,8 +1500,8 @@ static void _yesnoMenuFunc(TCB_PTR tcb, void* work)
 
 //==============================================================================
 /**
- * ‰»Î”­Œ©‚ğƒNƒ‰ƒCƒAƒ“ƒg‚É•\¦{Œ@‚é‚©‚Ç‚¤‚©–â‚¢‡‚í‚¹‚é CF_DIG_FOSSIL_START_REQ
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
+ * åŒ–çŸ³ç™ºè¦‹ã‚’ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã«è¡¨ç¤ºï¼‹æ˜ã‚‹ã‹ã©ã†ã‹å•ã„åˆã‚ã›ã‚‹ CF_DIG_FOSSIL_START_REQ
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
  * @retval  none
  */
 //==============================================================================
@@ -1532,8 +1532,8 @@ void CommFossilRecvDigStartReq(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * ‰»Î”­Œ@ŠJn
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
+ * åŒ–çŸ³ç™ºæ˜é–‹å§‹
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
  * @retval  none
  */
 //==============================================================================
@@ -1543,17 +1543,17 @@ void CommFossilRecvDigStart(int netID, int size, void* pData, void* pWork)
     u8* pBuff = pData;
     
     if(pBuff[0] == CommGetCurrentID()){
-        OHNO_PRINT("‰»ÎƒXƒ^[ƒg\n");
+        OHNO_PRINT("åŒ–çŸ³ã‚¹ã‚¿ãƒ¼ãƒˆ\n");
         CommPlayerHold();
         _digFossilEventStart(_pCommFossilWork->pFSys);
     }
-    _pCommFossilWork->logMsgFossil[pBuff[0]] = TRUE;  // Œ@‚èo‚µ‚½
+    _pCommFossilWork->logMsgFossil[pBuff[0]] = TRUE;  // æ˜ã‚Šå‡ºã—ãŸ
 }
 
 //==============================================================================
 /**
- * ‰»Î”­Œ@I—¹‚ªq‚©‚ç‘—‚ç‚ê‚Ä‚«‚½
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
+ * åŒ–çŸ³ç™ºæ˜çµ‚äº†ãŒå­ã‹ã‚‰é€ã‚‰ã‚Œã¦ããŸ
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
  * @retval  none
  */
 //==============================================================================
@@ -1562,14 +1562,14 @@ void CommFossilRecvDigEndReq(int netID, int size, void* pData, void* pWork)
 {
     _pCommFossilWork->bEntryFossil[netID]=FALSE;
 #if AFTER_MASTER_070410_UNDERGROUND_N13_EUR_FIX
-    _pCommFossilWork->radarIntervalTimer[netID] = 0;  //‰»Î–xŒã‚ÍƒŒ[ƒ_[XV
+    _pCommFossilWork->radarIntervalTimer[netID] = 0;  //åŒ–çŸ³å €å¾Œã¯ãƒ¬ãƒ¼ãƒ€ãƒ¼æ›´æ–°
 #endif
 }
 
 //==============================================================================
 /**
- * ‰»Î”­Œ@‚ÌˆÊ’u‚ª‘—‚ç‚ê‚Ä‚«‚½
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
+ * åŒ–çŸ³ç™ºæ˜æ™‚ã®ä½ç½®ãŒé€ã‚‰ã‚Œã¦ããŸ
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
  * @retval  none
  */
 //==============================================================================
@@ -1589,9 +1589,9 @@ void CommFossilRecvDigPos(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * ‰»Î”­Œ@‚ÌˆÊ’u‚ğ‘—‚éƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY
+ * åŒ–çŸ³ç™ºæ˜æ™‚ã®ä½ç½®ã‚’é€ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚º
  * @param   none
- * @retval  ƒpƒPƒbƒgƒTƒCƒY
+ * @retval  ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1602,8 +1602,8 @@ int CommFossilGetDigPosSize(void)
 
 //==============================================================================
 /**
- * ‰»Î”­Œ@‚ÌˆÊ’u‚ªq‹@‚É‘—‚ç‚ê‚Ä‚«‚½  CF_DIG_FOSSIL_POS_RETURN
- * @param   netID    ‘—M‚µ‚Ä‚«‚½ID
+ * åŒ–çŸ³ç™ºæ˜æ™‚ã®ä½ç½®ãŒå­æ©Ÿã«é€ã‚‰ã‚Œã¦ããŸ  CF_DIG_FOSSIL_POS_RETURN
+ * @param   netID    é€ä¿¡ã—ã¦ããŸID
  * @retval  none
  */
 //==============================================================================
@@ -1615,7 +1615,7 @@ void CommFossilRecvDigPosReturn(int netID, int size, void* pData, void* pWork)
     int i;
 
     if(pBuff[0] == CommGetCurrentID()){
-        return;  // ©•ª©g
+        return;  // è‡ªåˆ†è‡ªèº«
     }
 
     _pCommFossilWork->friendDigPointX[pBuff[0]] = pBuff[1];
@@ -1624,9 +1624,9 @@ void CommFossilRecvDigPosReturn(int netID, int size, void* pData, void* pWork)
 
 //==============================================================================
 /**
- * ‰»Î”­Œ@‚ÌˆÊ’u‚ğe‹@‚©‚ç‘—‚éê‡‚ÌƒRƒ}ƒ“ƒh‚ÌƒTƒCƒY
+ * åŒ–çŸ³ç™ºæ˜æ™‚ã®ä½ç½®ã‚’è¦ªæ©Ÿã‹ã‚‰é€ã‚‹å ´åˆã®ã‚³ãƒãƒ³ãƒ‰ã®ã‚µã‚¤ã‚º
  * @param   none
- * @retval  ƒpƒPƒbƒgƒTƒCƒY
+ * @retval  ãƒ‘ã‚±ãƒƒãƒˆã‚µã‚¤ã‚º
  */
 //==============================================================================
 
@@ -1637,28 +1637,28 @@ int CommFossilGetDigPosReturnSize(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGİ’è
+ * BGè¨­å®š
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void _fossilBgSet( GF_BGL_INI * ini )
 {
-    //VRAMİ’è
+    //VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 	}
@@ -1700,7 +1700,7 @@ static void _fossilBgSet( GF_BGL_INI * ini )
 		GF_BGL_ClearCharSet( FLD_MBGFRM_EFFECT2, 32, 0, HEAPID_DIGFOSSIL);
 		GF_BGL_ScrClear( ini, FLD_MBGFRM_EFFECT2 );
 	}
-	{	// MAIN DISPiƒƒbƒZ[ƒWj
+	{	// MAIN DISPï¼ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼‰
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xf800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_23,
@@ -1718,7 +1718,7 @@ static void _fossilBgSet( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒnƒ“ƒ}[animŠJn
+ * @brief   ãƒãƒ³ãƒãƒ¼animé–‹å§‹
  * @param   none
  * @return  none
  */
@@ -1730,7 +1730,7 @@ static void _hammerStart(int x,int y, BOOL bPic, BOOL bHard, BOOL bFossil)
 	void *resource;
     VecFx32 tmpVex;
 
-    // animŠJn
+    // animé–‹å§‹
     if(bPic){
         CLACT_AnmChg( _pCommFossilWork->clActWork[_CLACT_HUMMER], 0 );
     }
@@ -1767,8 +1767,8 @@ static void _hammerStart(int x,int y, BOOL bPic, BOOL bHard, BOOL bFossil)
 
 //--------------------------------------------------------------
 /**
- * ‰»ÎŒ@‚èƒtƒŒ[ƒ€‚Ì‰Šú‰»
- * @param    GF_BGL_INI bgl”Ô†
+ * åŒ–çŸ³æ˜ã‚Šãƒ•ãƒ¬ãƒ¼ãƒ ã®åˆæœŸåŒ–
+ * @param    GF_BGL_INI bglç•ªå·
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -1796,7 +1796,7 @@ static void _commFossilGameInitialize1(FossilEventTask* pFET)
     
 	bgl = GF_BGL_BglIniAlloc( HEAPID_DIGFOSSIL );
     _pCommFossilWork->bgl = bgl;
- 	//Vƒuƒ‰ƒ“ƒNŠÖ”ƒZƒbƒg
+ 	//Vãƒ–ãƒ©ãƒ³ã‚¯é–¢æ•°ã‚»ãƒƒãƒˆ
 	sys_VBlankFuncChange(vBlankFunc, bgl);
 
     CommMsgSetBgl(CommUnderGetMsgUnderWorld(),bgl, ( 512 - COMM_TALK_WIN_CGX_SIZE), ( (( 512 - COMM_TALK_WIN_CGX_SIZE) - 73) - ( COMM_MSG_WIN_SX * COMM_MSG_WIN_SY ) ));
@@ -1810,7 +1810,7 @@ static void _commFossilGameInitialize1(FossilEventTask* pFET)
         bgl, GF_BGL_FRAME3_M, ( 512 - COMM_TALK_WIN_CGX_SIZE),
         COMM_MESFRAME_PAL, WINTYPE_01, HEAPID_DIGFOSSIL );
 
-    // ‰º’n 32+108+1
+    // ä¸‹åœ° 32+108+1
     {
 		ARCHANDLE* hdl;
 		
@@ -1830,13 +1830,13 @@ static void _commFossilGameInitialize1(FossilEventTask* pFET)
 	
     ArcUtil_PalSet(ARC_UG_TRAP_GRA, NARC_ug_trap_ug_menu_NCLR, PALTYPE_MAIN_BG, FLD_MESFRAME_PAL*0x20, 4*0x20,  HEAPID_DIGFOSSIL);
 
-    _randomDeposit(bgl,charByte,pFET);  // ”z’u•¨‚ğ—”‚ÅŒˆ‚ß‚é
+    _randomDeposit(bgl,charByte,pFET);  // é…ç½®ç‰©ã‚’ä¹±æ•°ã§æ±ºã‚ã‚‹
 }
 
 //--------------------------------------------------------------
 /**
- * ‰»ÎŒ@‚èƒtƒŒ[ƒ€‚Ì‰Šú‰»
- * @param    GF_BGL_INI bgl”Ô†
+ * åŒ–çŸ³æ˜ã‚Šãƒ•ãƒ¬ãƒ¼ãƒ ã®åˆæœŸåŒ–
+ * @param    GF_BGL_INI bglç•ªå·
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -1853,7 +1853,7 @@ static void _commFossilGameInitialize2(void)
     _touchButtonInitialize(_pCommFossilWork->bgl);
     GF_BGL_LoadScreenReq(_pCommFossilWork->bgl, GF_BGL_FRAME1_M);
 
-    _randomBuildup(_pCommFossilWork->bgl);  // ‘ÍÏ•¨‚ğ—”‚ÅŒˆ‚ß‚é
+    _randomBuildup(_pCommFossilWork->bgl);  // å †ç©ç‰©ã‚’ä¹±æ•°ã§æ±ºã‚ã‚‹
 
 //    ArcUtil_PalSet( ARC_UG_PARTS_GRA, NARC_ug_parts_kaseki_board_NCLR,
 //                    PALTYPE_MAIN_BG, 14*32, 32,  HEAPID_DIGFOSSIL);
@@ -1861,21 +1861,21 @@ static void _commFossilGameInitialize2(void)
                        _pCommFossilWork->bgl, GF_BGL_FRAME2_M, 1, 0, 0, HEAPID_DIGFOSSIL);
     _buildupBGDraw(_pCommFossilWork->bgl);
 
-    GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //‚Í‚¢‚¯‚¢
-    GF_BGL_PrioritySet(GF_BGL_FRAME1_M , 2);   // ‰»Î ‚Ú‚½‚ñ
-    GF_BGL_PrioritySet(GF_BGL_FRAME2_M , 1);   // •Ç
-    GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ƒƒbƒZ[ƒW
+    GF_BGL_PrioritySet(GF_BGL_FRAME0_M , 3);  //ã¯ã„ã‘ã„
+    GF_BGL_PrioritySet(GF_BGL_FRAME1_M , 2);   // åŒ–çŸ³ ã¼ãŸã‚“
+    GF_BGL_PrioritySet(GF_BGL_FRAME2_M , 1);   // å£
+    GF_BGL_PrioritySet(GF_BGL_FRAME3_M , 0);  // ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 
     _initCellActor();
     _setCellActor();
-    _gaugeDisp(_pCommFossilWork->bgl);//ƒQ[ƒWÅ‰•\¦
+    _gaugeDisp(_pCommFossilWork->bgl);//ã‚²ãƒ¼ã‚¸æœ€åˆè¡¨ç¤º
 
 }
 
 //--------------------------------------------------------------
 /**
- * ‰»ÎŒ@‚èƒtƒŒ[ƒ€‚ÌŠJ•ú
- * @param    GF_BGL_INI bgl”Ô†
+ * åŒ–çŸ³æ˜ã‚Šãƒ•ãƒ¬ãƒ¼ãƒ ã®é–‹æ”¾
+ * @param    GF_BGL_INI bglç•ªå·
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -1889,16 +1889,16 @@ static void _commFossilGameFinalize(FossilEventTask* pFET)
     GF_BGL_BGControlExit( _pCommFossilWork->bgl, GF_BGL_FRAME1_M );
 	GF_BGL_BGControlExit( _pCommFossilWork->bgl, GF_BGL_FRAME2_M );
 	GF_BGL_BGControlExit( _pCommFossilWork->bgl, GF_BGL_FRAME3_M );
-	// ƒZƒ‹ƒAƒNƒ^[ƒŠƒ\[ƒX‰ğ•ú
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 
-	// ƒLƒƒƒ‰“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ã‚­ãƒ£ãƒ©è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_CharManagerDelete(_pCommFossilWork->resObjTbl[0]);
 	CLACT_U_CharManagerDelete(_pCommFossilWork->resObjTbl[4]);
-	// ƒpƒŒƒbƒg“]‘—ƒ}ƒl[ƒWƒƒ[”jŠü
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„
 	CLACT_U_PlttManagerDelete(_pCommFossilWork->resObjTbl[1]);
 	CLACT_U_PlttManagerDelete(_pCommFossilWork->resObjTbl[5]);
 		
-	// ƒLƒƒƒ‰EƒpƒŒƒbƒgEƒZƒ‹EƒZƒ‹ƒAƒjƒ‚ÌƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[”jŠü ƒ}ƒ‹ƒ`‚Í–³‚¢
+	// ã‚­ãƒ£ãƒ©ãƒ»ãƒ‘ãƒ¬ãƒƒãƒˆãƒ»ã‚»ãƒ«ãƒ»ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã®ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç ´æ£„ ãƒãƒ«ãƒã¯ç„¡ã„
 	for(i=0;i < 4;i++){
 		CLACT_U_ResManagerDelete(_pCommFossilWork->resMan[i]);
 	}
@@ -1909,9 +1909,9 @@ static void _commFossilGameFinalize(FossilEventTask* pFET)
             pFET->pPalBuff[i]=NULL;
         }
     }
-	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆç ´æ£„
 	CLACT_DestSet(_pCommFossilWork->clactSet);
-	//OAMƒŒƒ“ƒ_ƒ‰[”jŠü
+	//OAMãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ç ´æ£„
 	REND_OAM_Delete();
 
     DeleteCharManager();
@@ -1927,9 +1927,9 @@ static void _commFossilGameFinalize(FossilEventTask* pFET)
 
 //--------------------------------------------------------------
 /**
- * ‰»ÎŒ@‚èƒCƒxƒ“ƒgˆ— SEQ
- * @param    GMEVENT_CONTROL * event ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‹
- * @retval   ˆ—‚ªI‚í‚é‚ÆTRUE
+ * åŒ–çŸ³æ˜ã‚Šã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç† SEQ
+ * @param    GMEVENT_CONTROL * event ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
+ * @retval   å‡¦ç†ãŒçµ‚ã‚ã‚‹ã¨TRUE
  */
 //--------------------------------------------------------------
 
@@ -1997,12 +1997,12 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
         }
         break;
       case _SEQ_FIELD_FADEOUT:
-        if(!GameSystem_CheckFieldProcExists(fsys)){		// ƒvƒƒbƒNChange
+        if(!GameSystem_CheckFieldProcExists(fsys)){		// ãƒ—ãƒ­ãƒƒã‚¯Change
             WirelessIconEasyEnd();
             (pFET->seq) ++;
         }
 		break;
-      case _SEQ_GAME_INIT1:    // ‰Šú‰»‚ªd‚½‚¢‚Ì‚Å•¡”‰ñ‚É•ª—£
+      case _SEQ_GAME_INIT1:    // åˆæœŸåŒ–ãŒé‡ãŸã„ã®ã§è¤‡æ•°å›ã«åˆ†é›¢
         _commFossilGameInitialize1(pFET);
         (pFET->seq) ++;
         break;
@@ -2083,11 +2083,11 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
         _gameProcess(pFET);
         _shakeProcess(_pCommFossilWork->bgl);
         _partsDigColor(pFET);
-        CLACT_Draw( _pCommFossilWork->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+        CLACT_Draw( _pCommFossilWork->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
         break;
-      case _SEQ_SUCCESS_WAIT: // ‰»ÎƒQ[ƒ€I—¹‘Ò‚¿
+      case _SEQ_SUCCESS_WAIT: // åŒ–çŸ³ã‚²ãƒ¼ãƒ çµ‚äº†å¾…ã¡
         _partsDigColor(pFET);
-        CLACT_Draw( _pCommFossilWork->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+        CLACT_Draw( _pCommFossilWork->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
         pFET->timer--;
         if(pFET->timer==0){
             _pCommFossilWork->winIndex =
@@ -2095,7 +2095,7 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
             Snd_SePlay(UG_SE_FOSSIL_CLEAR);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/24
-// ‚©‚¹‚«‚Ù‚è‚ÉˆÃ“]‚µ‚½‚Ü‚Ü‚É‚È‚é•s‹ï‡‚Ì‘Îˆ
+// ã‹ã›ãã»ã‚Šæ™‚ã«æš—è»¢ã—ãŸã¾ã¾ã«ãªã‚‹ä¸å…·åˆã®å¯¾å‡¦
 #if AFTER_MASTER_070122_FOSSILMSG_FIX
             pFET->msgtimer = _MSGWAIT_TIME;
 #endif// AFTER_MASTER_070122_FOSSILMSG_FIX
@@ -2104,13 +2104,13 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
         }
         break;
       case _SEQ_KEY_WAIT:
-        CLACT_Draw( _pCommFossilWork->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
-        // AƒL[orTouch‘Ò‚¿
+        CLACT_Draw( _pCommFossilWork->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
+        // Aã‚­ãƒ¼orTouchå¾…ã¡
 //        if(Snd_MePlayCheckBgmPlay() == 0){
         if( GF_MSG_PrintEndCheck( _pCommFossilWork->winIndex ) == 0 ){
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/24
-// ‚©‚¹‚«‚Ù‚è‚ÉˆÃ“]‚µ‚½‚Ü‚Ü‚É‚È‚é•s‹ï‡‚Ì‘Îˆ
+// ã‹ã›ãã»ã‚Šæ™‚ã«æš—è»¢ã—ãŸã¾ã¾ã«ãªã‚‹ä¸å…·åˆã®å¯¾å‡¦
 #if AFTER_MASTER_070122_FOSSILMSG_FIX
             pFET->msgtimer--;
             if( sys.tp_trg || (sys.trg & PAD_BUTTON_DECIDE) || (pFET->msgtimer==0)) {
@@ -2125,7 +2125,7 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
         //        }
         break;
       case _SEQ_RESULT_MSG:
-        CLACT_Draw( _pCommFossilWork->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+        CLACT_Draw( _pCommFossilWork->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
         if(_fossilGetMessage(pFET)){
             pFET->seq = _SEQ_KEY_WAIT2;
 #if AFTERMASTER_070410_UNDERGROUND_N23_EUR_FIX
@@ -2137,8 +2137,8 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
         }
         break;
       case _SEQ_KEY_WAIT2:
-        CLACT_Draw( _pCommFossilWork->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
-        // AƒL[orTouch‘Ò‚¿
+        CLACT_Draw( _pCommFossilWork->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
+        // Aã‚­ãƒ¼orTouchå¾…ã¡
         if( GF_MSG_PrintEndCheck( _pCommFossilWork->winIndex ) == 0 ){
 #if AFTERMASTER_070410_UNDERGROUND_N23_EUR_FIX
             pFET->msgtimer--;
@@ -2149,7 +2149,7 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
                 if(_fossilGetMessageBagIn(pFET)){
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/24
-// ‚©‚¹‚«‚Ù‚è‚ÉˆÃ“]‚µ‚½‚Ü‚Ü‚É‚È‚é•s‹ï‡‚Ì‘Îˆ
+// ã‹ã›ãã»ã‚Šæ™‚ã«æš—è»¢ã—ãŸã¾ã¾ã«ãªã‚‹ä¸å…·åˆã®å¯¾å‡¦
 #if AFTER_MASTER_070122_FOSSILMSG_FIX
                     pFET->msgtimer = _MSGWAIT_TIME;
 #endif// AFTER_MASTER_070122_FOSSILMSG_FIX
@@ -2163,7 +2163,7 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
         }
         break;
       case _SEQ_FAINALIZE:
-        CLACT_Draw( _pCommFossilWork->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+        CLACT_Draw( _pCommFossilWork->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
         CommMsgTalkWindowEnd(CommUnderGetMsgUnderWorld());
         WIPE_SYS_Start(WIPE_PATTERN_M,
                    WIPE_TYPE_HOLEOUT,
@@ -2173,8 +2173,8 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
         (pFET->seq) ++;
         break;
       case _SEQ_UG_REBOOT:
-        CLACT_Draw( _pCommFossilWork->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
-        if(WIPE_SYS_EndCheck()){         //ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+        CLACT_Draw( _pCommFossilWork->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
+        if(WIPE_SYS_EndCheck()){         //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
             WirelessIconEasyEnd();
             _commFossilGameFinalize(pFET);
             FieldEvent_Cmd_SetMapProc( fsys );
@@ -2182,10 +2182,10 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
         }
         break;
       case _SEQ_UG_REBOOT_WAIT:
-        //ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXŠJn‘Ò‚¿
-        OHNO_PRINT("ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒXŠJn‘Ò‚¿\n");
+        //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹å¾…ã¡
+        OHNO_PRINT("ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹é–‹å§‹å¾…ã¡\n");
         if (FieldEvent_Cmd_WaitMapProcStart(fsys)) {
-            fsys->UnderGroundRadar = UnderGround_RadarInit(fsys);		//’YzƒŒ[ƒ_[‰æ–Ê‚n‚m
+            fsys->UnderGroundRadar = UnderGround_RadarInit(fsys);		//ç‚­é‰±ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”»é¢ï¼¯ï¼®
             WirelessIconEasy();
             CommPlayerHold();
             FLDHBLANK_SYS_Stop(pFET->pFSys->fldmap->hblanksys);
@@ -2199,21 +2199,21 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
 		break;
       case _SEQ_END:
         WIPE_ResetBrightness(WIPE_DISP_MAIN);
-        if(WIPE_SYS_EndCheck()){         //ƒtƒB[ƒ‹ƒhƒ}ƒbƒvƒvƒƒZƒX•œ‹A
+        if(WIPE_SYS_EndCheck()){         //ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ãƒ—ãƒ­ã‚»ã‚¹å¾©å¸°
             FLDHBLANK_SYS_Stop(pFET->pFSys->fldmap->hblanksys);
             FLDHBLANK_SYS_Start(pFET->pFSys->fldmap->hblanksys);
-            // ˆÃ‚¢ƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+            // æš—ã„ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
             ArcUtil_PalSet(ARC_UG_TRAP_GRA, NARC_ug_trap_ug_menu_NCLR, PALTYPE_MAIN_BG, FLD_MESFRAME_PAL*0x20, 4*0x20,  HEAPID_FIELD);
             MenuWinGraphicSet(
                 pFET->pFSys->bgl, GF_BGL_FRAME3_M, MENU_WIN_CGX_NUM,
                 MENU_WIN_PAL, MENU_TYPE_UG, HEAPID_FIELD );
             
-            //CommStateJumpEndUnderGround(); // ˆÚ“®I—¹‚·‚éê‡‚Ì’ÊMŠÖ˜Aˆ—
+            //CommStateJumpEndUnderGround(); // ç§»å‹•çµ‚äº†ã™ã‚‹å ´åˆã®é€šä¿¡é–¢é€£å‡¦ç†
             CommPlayerManagerReboot();
             CommSecretBaseInfoReboot();
             CommDigStoneManagerReboot();
 
-            CommSendFixSizeData(CF_DIG_FOSSIL_END_REQ,&pFET->bSuccess);  // ‰»Î–x‚ªI‚í‚Á‚½–‚ğe‚É’Ê’m
+            CommSendFixSizeData(CF_DIG_FOSSIL_END_REQ,&pFET->bSuccess);  // åŒ–çŸ³å €ãŒçµ‚ã‚ã£ãŸäº‹ã‚’è¦ªã«é€šçŸ¥
             CommPlayerHoldEnd();
             _pCommFossilWork->pDFETCB = NULL;
             sys_FreeMemoryEz(pFET);
@@ -2231,10 +2231,10 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
             pFET->seq = _SEQ_WIPE;
         }
         _shakeProcess(_pCommFossilWork->bgl);
-        CLACT_Draw( _pCommFossilWork->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+        CLACT_Draw( _pCommFossilWork->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
         break;
       case _SEQ_WIPE:
-        CLACT_Draw( _pCommFossilWork->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+        CLACT_Draw( _pCommFossilWork->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
         WIPE_SYS_Start(WIPE_PATTERN_M,
                    WIPE_TYPE_SHUTTEROUT_DOWN,
                    WIPE_TYPE_SHUTTEROUT_DOWN, WIPE_FADE_BLACK,_FAILED_BRIGHTNESS_SYNC,
@@ -2251,7 +2251,7 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
             pFET->seq = _SEQ_WIPE_CHANGE2;
         }
         else{
-            CLACT_Draw( _pCommFossilWork->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
+            CLACT_Draw( _pCommFossilWork->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
         }
         break;
       case _SEQ_WIPE_CHANGE2:
@@ -2268,7 +2268,7 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
                                    msg_underworld_63,FALSE,NULL);
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/24
-// ‚©‚¹‚«‚Ù‚è‚ÉˆÃ“]‚µ‚½‚Ü‚Ü‚É‚È‚é•s‹ï‡‚Ì‘Îˆ
+// ã‹ã›ãã»ã‚Šæ™‚ã«æš—è»¢ã—ãŸã¾ã¾ã«ãªã‚‹ä¸å…·åˆã®å¯¾å‡¦
 #if AFTER_MASTER_070122_FOSSILMSG_FIX
         pFET->msgtimer = _MSGWAIT_TIME;
 #endif// AFTER_MASTER_070122_FOSSILMSG_FIX
@@ -2295,8 +2295,8 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * ‰»ÎŒ@‚èƒCƒxƒ“ƒgŠJn
- * @param    GF_BGL_INI bgl”Ô†
+ * åŒ–çŸ³æ˜ã‚Šã‚¤ãƒ™ãƒ³ãƒˆé–‹å§‹
+ * @param    GF_BGL_INI bglç•ªå·
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -2332,11 +2332,11 @@ static BOOL _isFreeDiposit(void)
 
 //--------------------------------------------------------------
 /**
- * ‹ó‚«\‘¢‘Ì‚É–„‚ß‚éƒp[ƒcƒf[ƒ^‚ğ“ü‚ê‚é
- * @param    parts   ƒp[ƒc
- * @param    x  ’²‚×‚éˆÊ’u
+ * ç©ºãæ§‹é€ ä½“ã«åŸ‹ã‚ã‚‹ãƒ‘ãƒ¼ãƒ„ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹
+ * @param    parts   ãƒ‘ãƒ¼ãƒ„
+ * @param    x  èª¿ã¹ã‚‹ä½ç½®
  * @param    y  
- * @retval   ‚ ‚½‚è‚ª‚ ‚éê‡TRUE  –³‚¢ê‡FALSE
+ * @retval   ã‚ãŸã‚ŠãŒã‚ã‚‹å ´åˆTRUE  ç„¡ã„å ´åˆFALSE
  */
 //--------------------------------------------------------------
 
@@ -2354,17 +2354,17 @@ static int _setDiposit(int partsIndex, int x, int y)
             return i+1;
         }
     }
-    GF_ASSERT(0 && "‹ó‚«Šm”F‚µ‚Ä‚È‚¢");
+    GF_ASSERT(0 && "ç©ºãç¢ºèªã—ã¦ãªã„");
     return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * ‚ ‚½‚è‚ª‚ ‚é‚©‚Ç‚¤‚©ŒŸ¸‚·‚é
- * @param    parts   ƒp[ƒc
- * @param    x  ’²‚×‚éˆÊ’u
+ * ã‚ãŸã‚ŠãŒã‚ã‚‹ã‹ã©ã†ã‹æ¤œæŸ»ã™ã‚‹
+ * @param    parts   ãƒ‘ãƒ¼ãƒ„
+ * @param    x  èª¿ã¹ã‚‹ä½ç½®
  * @param    y  
- * @retval   ‚ ‚½‚è‚ª‚ ‚éê‡TRUE  –³‚¢ê‡FALSE
+ * @retval   ã‚ãŸã‚ŠãŒã‚ã‚‹å ´åˆTRUE  ç„¡ã„å ´åˆFALSE
  */
 //--------------------------------------------------------------
 static BOOL _isAttribute(FossilParts* pParts, int x, int y)
@@ -2373,7 +2373,7 @@ static BOOL _isAttribute(FossilParts* pParts, int x, int y)
     int xpos,ypos,width;
 
     if(attr==NULL){
-        return TRUE;  // ‘S–Ê‚ ‚½‚è‚Ì‚İ
+        return TRUE;  // å…¨é¢ã‚ãŸã‚Šã®ã¿
     }
     ypos = y / 2;
     xpos = x / 2;
@@ -2385,11 +2385,11 @@ static BOOL _isAttribute(FossilParts* pParts, int x, int y)
 }
 
 /**
- * ƒp[ƒc‚ğ–„‚ß‚éid‚¢‚©‚Ç‚¤‚©ŠÖŒW‚È‚µj
- * @param    partsIndex   –„‚ß‚éƒp[ƒcƒe[ƒuƒ‹‚h‚m‚c‚d‚w
- * @param    x  ¶ãX
- * @param    y  ¶ãY
- * @param    dir ã‰º¶‰E ->  ‰ñ“]  
+ * ãƒ‘ãƒ¼ãƒ„ã‚’åŸ‹ã‚ã‚‹ï¼ˆç¡¬ã„ã‹ã©ã†ã‹é–¢ä¿‚ãªã—ï¼‰
+ * @param    partsIndex   åŸ‹ã‚ã‚‹ãƒ‘ãƒ¼ãƒ„ãƒ†ãƒ¼ãƒ–ãƒ«ï¼©ï¼®ï¼¤ï¼¥ï¼¸
+ * @param    x  å·¦ä¸ŠX
+ * @param    y  å·¦ä¸ŠY
+ * @param    dir ä¸Šä¸‹å·¦å³ ->  å›è»¢  
  * @retval   none
  */
 
@@ -2405,10 +2405,10 @@ static BOOL _partsDeposit(int partsIndex, int x, int y)
     yParts = _partsData[partsIndex].height / 2 + y;
 
 
-    if(xParts > _DIGMAP_WIDTH){  // ‚Í‚İ‚¾‚µ‚Ä‚Ü‚·
+    if(xParts > _DIGMAP_WIDTH){  // ã¯ã¿ã ã—ã¦ã¾ã™
         return FALSE;
     }
-    if(yParts > _DIGMAP_HEIGHT){  // ‚Í‚İ‚¾‚µ‚Ä‚Ü‚·
+    if(yParts > _DIGMAP_HEIGHT){  // ã¯ã¿ã ã—ã¦ã¾ã™
         return FALSE;
     }
 
@@ -2425,7 +2425,7 @@ static BOOL _partsDeposit(int partsIndex, int x, int y)
     idx = _setDiposit(partsIndex, x, y);
     for(i = x; i < xParts; i++){
         for(j = y; j < yParts; j++){
-            // ”z’u‚l‚`‚oì¬
+            // é…ç½®ï¼­ï¼¡ï¼°ä½œæˆ
             if(_isAttribute(&_partsData[partsIndex], (i - x) * 2, (j - y) * 2) ){
                 _pCommFossilWork->depositMap[j][i] = idx;
             }
@@ -2437,8 +2437,8 @@ static BOOL _partsDeposit(int partsIndex, int x, int y)
 
 
 /**
- * ğŒ‚É‡‚í‚¹‚½‚©‚­‚è‚Â‚¿‚ğ‚¦‚é
- * @retval   ‚©‚­‚è‚Â‚¿
+ * æ¡ä»¶ã«åˆã‚ã›ãŸã‹ãã‚Šã¤ã¡ã‚’ãˆã‚‹
+ * @retval   ã‹ãã‚Šã¤ã¡
  */
 
 
@@ -2516,9 +2516,9 @@ static int _fossilRandGet(FossilParts* pParts)
 
 //--------------------------------------------------------------
 /**
- * •ó•¨‚ÌoŒ»—”‡Œv’l
+ * å®ç‰©ã®å‡ºç¾ä¹±æ•°åˆè¨ˆå€¤
  * @param    none
- * @retval   •ó•¨‚ÌoŒ»—”‡Œv’l
+ * @retval   å®ç‰©ã®å‡ºç¾ä¹±æ•°åˆè¨ˆå€¤
  */
 //--------------------------------------------------------------
 
@@ -2537,9 +2537,9 @@ static int _getTreasurePartsRandomMax(void)
 
 //--------------------------------------------------------------
 /**
- * •ó•¨‚Ì—”‚É‚æ‚é‘Io
+ * å®ç‰©ã®ä¹±æ•°ã«ã‚ˆã‚‹é¸å‡º
  * @param    none
- * @retval   •ó•¨no
+ * @retval   å®ç‰©no
  */
 //--------------------------------------------------------------
 
@@ -2556,15 +2556,15 @@ static int _getTreasurePartsRandom(int random)
             return i;
         }
     }
-    GF_ASSERT(0 && "‚±‚±‚É‚Í‚±‚È‚¢‚Í‚¸ —vC³");
+    GF_ASSERT(0 && "ã“ã“ã«ã¯ã“ãªã„ã¯ãš è¦ä¿®æ­£");
     return 0;
 }
 
 //--------------------------------------------------------------
 /**
- * ”z’uƒf[ƒ^‚©‚ç‚Ù‚ê‚È‚¢ƒp[ƒc‚Ìƒf[ƒ^”‚ğ“¾‚é
+ * é…ç½®ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã»ã‚Œãªã„ãƒ‘ãƒ¼ãƒ„ã®ãƒ‡ãƒ¼ã‚¿æ•°ã‚’å¾—ã‚‹
  * @param    none
- * @retval   •ó•¨‚ÌoŒ»—”‡Œv’l
+ * @retval   å®ç‰©ã®å‡ºç¾ä¹±æ•°åˆè¨ˆå€¤
  */
 //--------------------------------------------------------------
 
@@ -2584,7 +2584,7 @@ static int _getTreasurePartsNoDigNum(void)
 #if _PICTTEST
 //--------------------------------------------------------------
 /**
- * ‚Å‚«‚é‚¾‚¯ƒp[ƒc‚ğ–„‚ß‚é  ŠG‚ÌŠm”F—pƒfƒoƒbƒO
+ * ã§ãã‚‹ã ã‘ãƒ‘ãƒ¼ãƒ„ã‚’åŸ‹ã‚ã‚‹  çµµã®ç¢ºèªç”¨ãƒ‡ãƒãƒƒã‚°
  * @param    none
  * @retval   none
  */
@@ -2602,7 +2602,7 @@ static void _randomDeposit(GF_BGL_INI* bgl, int charByte,FossilEventTask* pFET)
 
     pFET->_PARTS_TREASURE_NUM = _PARTS_TREASURE_NUM_MAX;
     for(i = dummy; i < dummy+_PARTS_TREASURE_NUM_MAX; ){
-//        rand = MATH_Rand32(&sRand, treasureRand);  // ‚¨•ó‚Ì‰½‚ğ–„‚ß‚é‚©Œˆ‚ß‚é
+//        rand = MATH_Rand32(&sRand, treasureRand);  // ãŠå®ã®ä½•ã‚’åŸ‹ã‚ã‚‹ã‹æ±ºã‚ã‚‹
         partsIndex = i;
         x = MATH_Rand32(&_pCommFossilWork->sRand, _DIGMAP_WIDTH);
         y = MATH_Rand32(&_pCommFossilWork->sRand, _DIGMAP_HEIGHT);
@@ -2615,7 +2615,7 @@ static void _randomDeposit(GF_BGL_INI* bgl, int charByte,FossilEventTask* pFET)
     _depositBGInit(_PARTS_TREASURE_NUM_MAX, bgl, charByte, pFET);
     dummy+=_PARTS_TREASURE_NUM_MAX;
 #ifdef PM_DEBUG
-    OHNO_PRINT("”z’uMAP \n");
+    OHNO_PRINT("é…ç½®MAP \n");
     for(y = 0; y < _DIGMAP_HEIGHT; y++){
         for(x = 0; x < _DIGMAP_WIDTH ; x++){
             OHNO_PRINT("%2d ", _pCommFossilWork->depositMap[y][x]);
@@ -2627,7 +2627,7 @@ static void _randomDeposit(GF_BGL_INI* bgl, int charByte,FossilEventTask* pFET)
 #else
 //--------------------------------------------------------------
 /**
- * ‚Å‚«‚é‚¾‚¯ƒp[ƒc‚ğ–„‚ß‚é
+ * ã§ãã‚‹ã ã‘ãƒ‘ãƒ¼ãƒ„ã‚’åŸ‹ã‚ã‚‹
  * @param    none
  * @retval   none
  */
@@ -2649,23 +2649,23 @@ static void _randomDeposit(GF_BGL_INI* bgl, int charByte,FossilEventTask* pFET)
         pFET->_PARTS_TREASURE_NUM=3;
     }
     for(i = 0; i < pFET->_PARTS_TREASURE_NUM; ){
-        rand = MATH_Rand32(&_pCommFossilWork->sRand, treasureRand);  // ‚¨•ó‚Ì‰½‚ğ–„‚ß‚é‚©Œˆ‚ß‚é
+        rand = MATH_Rand32(&_pCommFossilWork->sRand, treasureRand);  // ãŠå®ã®ä½•ã‚’åŸ‹ã‚ã‚‹ã‹æ±ºã‚ã‚‹
         partsIndex = _getTreasurePartsRandom(rand);
         type = _partsData[partsIndex].partsType;
         if(!UnderGroundIsFossilAdvent(pUGData,_partsData[partsIndex].partsType)){
-            OHNO_PRINT("%d‚ÍƒŒƒA‚Å‚¤‚ß‚ê‚Ü‚¹‚ñ\n",type);
+            OHNO_PRINT("%dã¯ãƒ¬ã‚¢ã§ã†ã‚ã‚Œã¾ã›ã‚“\n",type);
             continue;
         }
         if((DIG_PARTS_PLATE_FIRE <= type) && (type <= DIG_PARTS_PLATE_IRON)){
             BOOL dbl = FALSE;
-            plate[i] = type;  //ƒŒƒA“o˜^
+            plate[i] = type;  //ãƒ¬ã‚¢ç™»éŒ²
             for(j = 0;j < i;j++){
                 if(plate[j] == type){
                     dbl = TRUE;
                 }
             }
             if(dbl){
-                OHNO_PRINT("%d‚Ídouble‚Å‚¤‚ß‚ê‚Ü‚¹‚ñ\n",type);
+                OHNO_PRINT("%dã¯doubleã§ã†ã‚ã‚Œã¾ã›ã‚“\n",type);
                 continue;
             }
         }
@@ -2683,7 +2683,7 @@ static void _randomDeposit(GF_BGL_INI* bgl, int charByte,FossilEventTask* pFET)
     }
     if(!UnderGroundIsFirstFossil(pUGData)){
         for(limit = 0; limit < 100 ; limit++){
-            partsIndex = MATH_Rand32(&_pCommFossilWork->sRand, noDigNum);  // ×–‚‚·‚éd‚¢Î‚ğ–„‚ß‚é
+            partsIndex = MATH_Rand32(&_pCommFossilWork->sRand, noDigNum);  // é‚ªé­”ã™ã‚‹ç¡¬ã„çŸ³ã‚’åŸ‹ã‚ã‚‹
             partsIndex += NELEMS(_partsData) - noDigNum;
             x = MATH_Rand32(&_pCommFossilWork->sRand, _DIGMAP_WIDTH);
             y = MATH_Rand32(&_pCommFossilWork->sRand, _DIGMAP_HEIGHT);
@@ -2699,7 +2699,7 @@ static void _randomDeposit(GF_BGL_INI* bgl, int charByte,FossilEventTask* pFET)
     _depositBGInit(i, bgl, charByte, pFET);
 
 #ifdef PM_DEBUG
-    OHNO_SP_PRINT("”z’uMAP \n");
+    OHNO_SP_PRINT("é…ç½®MAP \n");
     for(y = 0; y < _DIGMAP_HEIGHT; y++){
         for(x = 0; x < _DIGMAP_WIDTH ; x++){
             OHNO_SP_PRINT("%2d ", _pCommFossilWork->depositMap[y][x]);
@@ -2712,7 +2712,7 @@ static void _randomDeposit(GF_BGL_INI* bgl, int charByte,FossilEventTask* pFET)
 
 //--------------------------------------------------------------
 /**
- * ‚¨‚­ƒp[ƒc‚É]‚¢ƒLƒƒƒ‰“]‘— + BG‚ğ‘‚«Š·‚¦
+ * ãŠããƒ‘ãƒ¼ãƒ„ã«å¾“ã„ã‚­ãƒ£ãƒ©è»¢é€ + BGã‚’æ›¸ãæ›ãˆ
  * @param    none
  * @retval   nextCharOffset
  */
@@ -2734,10 +2734,10 @@ static int _depositBGInitParts(int idx, GF_BGL_INI* bgl, int charOffset, FossilE
     
     hdl = ArchiveDataHandleOpen( ARC_UG_PARTS_GRA, HEAPID_DIGFOSSIL );
 
-    if(idx >= pFET->_PARTS_TREASURE_NUM){   // d‚¢Î‚Ì§ŒÀ
-        pidx = _PARTS_TREASURE_NUM_MAX;  // d‚¢Î‚ÌƒpƒŒƒbƒgˆÊ’u‚ª‚±‚±‚É‚È‚é
+    if(idx >= pFET->_PARTS_TREASURE_NUM){   // ç¡¬ã„çŸ³ã®åˆ¶é™
+        pidx = _PARTS_TREASURE_NUM_MAX;  // ç¡¬ã„çŸ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆä½ç½®ãŒã“ã“ã«ãªã‚‹
     }
-    if(idx >= pFET->_PARTS_TREASURE_NUM){   // d‚¢Î‚Ì§ŒÀ
+    if(idx >= pFET->_PARTS_TREASURE_NUM){   // ç¡¬ã„çŸ³ã®åˆ¶é™
         ArcUtil_HDL_PalSet( hdl, pFPD->pParts->ncl, PALTYPE_MAIN_BG, (pidx + _PALLET_INDEX)*32, 32,  HEAPID_DIGFOSSIL);
     }
     else{
@@ -2769,7 +2769,7 @@ static int _depositBGInitParts(int idx, GF_BGL_INI* bgl, int charOffset, FossilE
 
 //--------------------------------------------------------------
 /**
- * ƒp[ƒc‚ÌBGƒJƒ‰[ƒAƒjƒˆ—
+ * ãƒ‘ãƒ¼ãƒ„ã®BGã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡å‡¦ç†
  * @param    none
  * @retval   none
  */
@@ -2783,7 +2783,7 @@ static void _partsDigColor(FossilEventTask* pFET)
     VecFx32 tmpVex;
 //    MATHRandContext32 sRand;
 
-    // Œ@‚è‚Í‚¶‚ß‚ÉSE‚ÆƒAƒjƒ‚ğİ’è
+    // æ˜ã‚Šã¯ã˜ã‚ã«SEã¨ã‚¢ãƒ‹ãƒ¡ã‚’è¨­å®š
     for(i = 0 ; i < _PARTS_TREASURE_NUM_MAX;i++){
         if(pFET->digTimer[i]==1){
             Snd_SePlay(UG_SE_DIG_FOSSIL);
@@ -2793,7 +2793,7 @@ static void _partsDigColor(FossilEventTask* pFET)
                 x += _pCommFossilWork->aDeposit[i].x*2*8;
                 y += _pCommFossilWork->aDeposit[i].y*2*8;
                 y += 8*4;
-                OHNO_SP_PRINT("•`‰æêŠ  %d %d \n",x,y);
+                OHNO_SP_PRINT("æç”»å ´æ‰€  %d %d \n",x,y);
                 tmpVex.x = FX32_ONE * x;
                 tmpVex.y = FX32_ONE * y;
                 CLACT_AnmChg( _pCommFossilWork->clActWork[_CLACT_KIRA_P1+j], 8+j );
@@ -2822,7 +2822,7 @@ static void _partsDigColor(FossilEventTask* pFET)
 
 //--------------------------------------------------------------
 /**
- * ‚¨‚­ƒp[ƒc‚É]‚¢ƒLƒƒƒ‰“]‘— + BG‚ğ‘‚«Š·‚¦
+ * ãŠããƒ‘ãƒ¼ãƒ„ã«å¾“ã„ã‚­ãƒ£ãƒ©è»¢é€ + BGã‚’æ›¸ãæ›ãˆ
  * @param    none
  * @retval   none
  */
@@ -2841,7 +2841,7 @@ static void _depositBGInit(int partsMax, GF_BGL_INI* bgl, int charByte, FossilEv
 
 //--------------------------------------------------------------
 /**
- * ‘ÍÏ•¨‚ğ—”‚ÅŒˆ‚ß‚é
+ * å †ç©ç‰©ã‚’ä¹±æ•°ã§æ±ºã‚ã‚‹
  * @param    none
  * @retval   none
  */
@@ -2860,7 +2860,7 @@ static void _randomBuildup(GF_BGL_INI* bgl)
     BOOL bBuildup = TRUE;
     
 //    CommRandSeedInitialize(&sRand);
-    for(i = 0; i < 10; i++){   // A“y‚ğ‚P‚O‰ñd‚Ë‚é
+    for(i = 0; i < 10; i++){   // AåœŸã‚’ï¼‘ï¼å›é‡ã­ã‚‹
         xini = MATH_Rand32(&_pCommFossilWork->sRand, _DIGMAP_WIDTH+B1MAX)-B1MAX;
         yini = MATH_Rand32(&_pCommFossilWork->sRand, _DIGMAP_HEIGHT+B1MAX)-B2MAX;
         for(y = yini; y < yini+B1MAX; y++){
@@ -2878,7 +2878,7 @@ static void _randomBuildup(GF_BGL_INI* bgl)
             }
         }
     }
-    for(i = 0; i < 15; i++){   // B“y15‰ñd‚Ë‚é
+    for(i = 0; i < 15; i++){   // BåœŸ15å›é‡ã­ã‚‹
         xini = MATH_Rand32(&_pCommFossilWork->sRand, _DIGMAP_WIDTH+B2MAX)-B2MAX;
         yini = MATH_Rand32(&_pCommFossilWork->sRand, _DIGMAP_HEIGHT+B2MAX)-B2MAX;
         bBuildup = TRUE;
@@ -2923,7 +2923,7 @@ static void _randomBuildup(GF_BGL_INI* bgl)
 
 
 #if 1
-    OHNO_PRINT("‘ÍÏMAP \n");
+    OHNO_PRINT("å †ç©MAP \n");
     for(y = 0; y < _DIGMAP_HEIGHT; y++){
         for(x = 0; x < _DIGMAP_WIDTH ; x++){
             OHNO_PRINT("%2d ", _pCommFossilWork->buildupMap[y][x]);
@@ -2936,7 +2936,7 @@ static void _randomBuildup(GF_BGL_INI* bgl)
 
 //--------------------------------------------------------------
 /**
- * “y‚ğ·‚éBG‚ğƒŒƒ“ƒ_ƒŠƒ“ƒO
+ * åœŸã‚’ç››ã‚‹BGã‚’ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°
  * @param    none
  * @retval   nextCharOffset
  */
@@ -2970,9 +2970,9 @@ static void _buildupBGDraw(GF_BGL_INI* bgl)
 
 //--------------------------------------------------------------
 /**
- * ‰»Î‚©‚Ç‚¤‚©H
- * @param    x,y   Œ@‚éˆÊ’u
- * @retval   ‰»Î‚ÍTRUE
+ * åŒ–çŸ³ã‹ã©ã†ã‹ï¼Ÿ
+ * @param    x,y   æ˜ã‚‹ä½ç½®
+ * @retval   åŒ–çŸ³ã¯TRUE
  */
 //--------------------------------------------------------------
 
@@ -2984,7 +2984,7 @@ static BOOL _isFossil(int x, int y)
         return FALSE;
     }
     type = _pCommFossilWork->aDeposit[idx-1].partsType;
-    if((type != DIG_PARTS_NONE) && (type < DIG_PARTS_TREASURE_MAX)){  //d‚¢Î
+    if((type != DIG_PARTS_NONE) && (type < DIG_PARTS_TREASURE_MAX)){  //ç¡¬ã„çŸ³
         return TRUE;
     }
     return FALSE;
@@ -2992,9 +2992,9 @@ static BOOL _isFossil(int x, int y)
 
 //--------------------------------------------------------------
 /**
- * d‚¢Î‚©‚Ç‚¤‚©H
- * @param    x,y   Œ@‚éˆÊ’u
- * @retval   d‚¢Šâ‚ÍTRUE
+ * ç¡¬ã„çŸ³ã‹ã©ã†ã‹ï¼Ÿ
+ * @param    x,y   æ˜ã‚‹ä½ç½®
+ * @retval   ç¡¬ã„å²©ã¯TRUE
  */
 //--------------------------------------------------------------
 
@@ -3004,7 +3004,7 @@ static BOOL _isHardStone(int x, int y)
     if(idx==0){
         return FALSE;
     }
-    if(_pCommFossilWork->aDeposit[idx-1].partsType >= DIG_PARTS_TREASURE_MAX){  //d‚¢Î
+    if(_pCommFossilWork->aDeposit[idx-1].partsType >= DIG_PARTS_TREASURE_MAX){  //ç¡¬ã„çŸ³
         return TRUE;
     }
     return FALSE;
@@ -3012,23 +3012,23 @@ static BOOL _isHardStone(int x, int y)
 
 //--------------------------------------------------------------
 /**
- * “y‚ğŒ@‚é
- * @param    x,y   Œ@‚éˆÊ’u
- * @param    bPic   Œ@‚étype
- * @retval   Œ@‚Á‚½ƒRƒXƒg
+ * åœŸã‚’æ˜ã‚‹
+ * @param    x,y   æ˜ã‚‹ä½ç½®
+ * @param    bPic   æ˜ã‚‹type
+ * @retval   æ˜ã£ãŸã‚³ã‚¹ãƒˆ
  */
 //--------------------------------------------------------------
 
 static void _digWall(int x, int y,BOOL bPic,FossilEventTask* pFET)
 {
-    static s8 ham1X[]={1,-1,-1, 1};  // ƒnƒ“ƒ}[ˆê‰ñŒ@‚è
+    static s8 ham1X[]={1,-1,-1, 1};  // ãƒãƒ³ãƒãƒ¼ä¸€å›æ˜ã‚Š
     static s8 ham1Y[]={1,-1, 1,-1};
-    static s8 picX[]={0,0,-1,1};   // ƒnƒ“ƒ}[‚È‚ç‚Q‰ñ‚Ù‚ê‚é
+    static s8 picX[]={0,0,-1,1};   // ãƒãƒ³ãƒãƒ¼ãªã‚‰ï¼’å›ã»ã‚Œã‚‹
     static s8 picY[]={1,-1,0,0};
     int mapX,mapY,idx,i;
     BOOL bHard = FALSE, bFossil = FALSE;
 
-    // Œ@‚éMAPÀ•W‚Ö•ÏŠ·
+    // æ˜ã‚‹MAPåº§æ¨™ã¸å¤‰æ›
     mapX = x / 16;
     mapY = y / 16 - 2;
 
@@ -3041,7 +3041,7 @@ static void _digWall(int x, int y,BOOL bPic,FossilEventTask* pFET)
     if(_pCommFossilWork->buildupMap[mapY][mapX] != 0){
         _pCommFossilWork->buildupMap[mapY][mapX] -= 1;
     }
-    if(_isHardStone(mapX, mapY) && (_pCommFossilWork->buildupMap[mapY][mapX]==0)){  //d‚¢Î‚Ìê‡
+    if(_isHardStone(mapX, mapY) && (_pCommFossilWork->buildupMap[mapY][mapX]==0)){  //ç¡¬ã„çŸ³ã®å ´åˆ
         bHard = TRUE;
     }
     if(_isFossil(mapX, mapY) && (_pCommFossilWork->buildupMap[mapY][mapX]==0) ){
@@ -3085,10 +3085,10 @@ static void _digWall(int x, int y,BOOL bPic,FossilEventTask* pFET)
 
 //--------------------------------------------------------------
 /**
- * w’è”ÍˆÍ‚ÌƒXƒNƒŠ[ƒ“‚ğ—^‚¦‚ç‚ê‚½’l‚Å‘«‚µ‚±‚Ş
- * @param    pScrTop    ƒXƒNƒŠ[ƒ“‚Ìƒ|ƒCƒ“ƒ^
- * @param    xIni,yIni,xEnd,yEnd  ‘‚«Š·‚¦‚éƒXƒNƒŠ[ƒ“‚ÌÀ•W
- * @param    bPush  ‰Ÿ‚µ‚½‚Ì‚©—£‚µ‚½‚Ì‚©
+ * æŒ‡å®šç¯„å›²ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ä¸ãˆã‚‰ã‚ŒãŸå€¤ã§è¶³ã—ã“ã‚€
+ * @param    pScrTop    ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param    xIni,yIni,xEnd,yEnd  æ›¸ãæ›ãˆã‚‹ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®åº§æ¨™
+ * @param    bPush  æŠ¼ã—ãŸã®ã‹é›¢ã—ãŸã®ã‹
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -3110,7 +3110,7 @@ static void _scrDataChange(u16* pScrTop,_SCR_RECT* pRect,int changeNum, int plus
 
 //--------------------------------------------------------------
 /**
- * ‰E‘¤‚Ìƒ^ƒbƒ`ƒpƒlƒ‹ƒ{ƒ^ƒ“ˆ—
+ * å³å´ã®ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ãƒœã‚¿ãƒ³å‡¦ç†
  * @param    none
  * @retval   nextCharOffset
  */
@@ -3128,8 +3128,8 @@ static void _touchButtonInitialize(GF_BGL_INI* bgl)
     _pCommFossilWork->touchButton = _PIC_BUTTON;
     _pCommFossilWork->bPic = TRUE;
     pScrAddr = GF_BGL_ScreenAdrsGet( bgl, GF_BGL_FRAME1_M );
-    _scrDataChange(pScrAddr, picPos, 0x30, 54);  // ‰Ÿ‚µ‚½ŠG
-    // ƒXƒNƒŠ[ƒ“‚Ö‚Ì“]‘—‚ÍŒã‚Å‚Ü‚Æ‚ß‚Ä
+    _scrDataChange(pScrAddr, picPos, 0x30, 54);  // æŠ¼ã—ãŸçµµ
+    // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã¸ã®è»¢é€ã¯å¾Œã§ã¾ã¨ã‚ã¦
 }
 
 static void _touchButtonProcess(GF_BGL_INI* bgl,int x, int y, int level)
@@ -3141,13 +3141,13 @@ static void _touchButtonProcess(GF_BGL_INI* bgl,int x, int y, int level)
     if(level < _PUSH_START){
         return;
     }
-    if(level == _PUSH_START){   // ‰Ÿ‚³‚ê‚½‚ÍˆÊ’u‚©‚çƒ{ƒ^ƒ“í—Ş‚ğŒˆ‚ß‚é
+    if(level == _PUSH_START){   // æŠ¼ã•ã‚ŒãŸæ™‚ã¯ä½ç½®ã‹ã‚‰ãƒœã‚¿ãƒ³ç¨®é¡ã‚’æ±ºã‚ã‚‹
         if((x > (0x1a*8+6)) &&  ((0x1f*8+4) > x)){
-            if((y > (5*8+3)) && ((0xd*8+6) > y)){  //ƒnƒ“ƒ}[
+            if((y > (5*8+3)) && ((0xd*8+6) > y)){  //ãƒãƒ³ãƒãƒ¼
                 _pCommFossilWork->touchButton = _HUMMER_BUTTON;
                 _pCommFossilWork->bPic = FALSE;
             }
-            else if((y > (0xe*8+2)) && ((0x15*8+6) > y)){  //‚Ì‚İ
+            else if((y > (0xe*8+2)) && ((0x15*8+6) > y)){  //ã®ã¿
                 _pCommFossilWork->touchButton = _PIC_BUTTON;
                 _pCommFossilWork->bPic = TRUE;
             }
@@ -3165,11 +3165,11 @@ static void _touchButtonProcess(GF_BGL_INI* bgl,int x, int y, int level)
       case _HUMMER_BUTTON:
         if(_PUSH_START == level){
             _scrDataChange(pScrAddr, hummerPos, 0x18, 54);  // level1
-            _scrDataChange(pScrAddr, picPos, 0x24, 54);  // –ß‚·ŠG
+            _scrDataChange(pScrAddr, picPos, 0x24, 54);  // æˆ»ã™çµµ
             Snd_SePlay(UG_SE_TOUCH_BUTTON);
         }
         else if(_PUSH_START+1 == level){
-            _scrDataChange(pScrAddr, hummerPos, 0x1e, 54);  // ‰Ÿ‚µ‚½ŠG
+            _scrDataChange(pScrAddr, hummerPos, 0x1e, 54);  // æŠ¼ã—ãŸçµµ
         }
         if(_PUSH_START == level){
             CLACT_AnmChg( _pCommFossilWork->clActWork[_CLACT_EFFECT], 6 );
@@ -3181,12 +3181,12 @@ static void _touchButtonProcess(GF_BGL_INI* bgl,int x, int y, int level)
         break;
       case _PIC_BUTTON:
         if(_PUSH_START == level){
-            _scrDataChange(pScrAddr, hummerPos, 0x12, 54);  // –ß‚·ŠG
-            _scrDataChange(pScrAddr, picPos, 0x2a, 54);  // ‰Ÿ‚·ŠG
+            _scrDataChange(pScrAddr, hummerPos, 0x12, 54);  // æˆ»ã™çµµ
+            _scrDataChange(pScrAddr, picPos, 0x2a, 54);  // æŠ¼ã™çµµ
             Snd_SePlay(UG_SE_TOUCH_BUTTON);
         }
         else if(_PUSH_START+1 == level){
-            _scrDataChange(pScrAddr, picPos, 0x30, 54);  // ‰Ÿ‚µ‚½ŠG
+            _scrDataChange(pScrAddr, picPos, 0x30, 54);  // æŠ¼ã—ãŸçµµ
         }
         if(_PUSH_START == level){
             CLACT_AnmChg( _pCommFossilWork->clActWork[_CLACT_EFFECT], 7 );
@@ -3197,12 +3197,12 @@ static void _touchButtonProcess(GF_BGL_INI* bgl,int x, int y, int level)
         }
         break;
     }
-    GF_BGL_LoadScreenReq(bgl, GF_BGL_FRAME1_M);  // ƒXƒNƒŠ[ƒ“‚ÉXV
+    GF_BGL_LoadScreenReq(bgl, GF_BGL_FRAME1_M);  // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æ›´æ–°
 }
 
 //--------------------------------------------------------------
 /**
- * ƒqƒrƒQ[ƒW‚ÌˆÊ’u‚ğo‚·
+ * ãƒ’ãƒ“ã‚²ãƒ¼ã‚¸ã®ä½ç½®ã‚’å‡ºã™
  * @param    none
  * @retval   nextCharOffset
  */
@@ -3213,7 +3213,7 @@ static void _setHibiMatrix(VecFx32* mtx)
     int i;
     int gauge = _pCommFossilWork->digGauge;
 
-    gauge = (gauge / 4) * 4;  //gauge‚Í‚S‚Ì”{”
+    gauge = (gauge / 4) * 4;  //gaugeã¯ï¼”ã®å€æ•°
     gauge = gauge+8;
     mtx->x = FX32_ONE * ((gauge+8));
     mtx->y = FX32_ONE * (16);
@@ -3221,7 +3221,7 @@ static void _setHibiMatrix(VecFx32* mtx)
 
 //--------------------------------------------------------------
 /**
- * •ÇŒ@‚èƒQ[ƒW‚Ì•\¦
+ * å£æ˜ã‚Šã‚²ãƒ¼ã‚¸ã®è¡¨ç¤º
  * @param    none
  * @retval   nextCharOffset
  */
@@ -3234,7 +3234,7 @@ static void _gaugeDisp(GF_BGL_INI* bgl)
     int changeBlock,i,pattern;
     u16* pScrAddr = GF_BGL_ScreenAdrsGet( bgl, GF_BGL_FRAME0_M );
 
-    gauge = (gauge / 4) * 4;  //gauge‚Í‚S‚Ì”{”
+    gauge = (gauge / 4) * 4;  //gaugeã¯ï¼”ã®å€æ•°
     pattern = 6 - (gauge % 24) / 4;
     _setHibiMatrix(&tmpVex);
     CLACT_AnmChg( _pCommFossilWork->clActWork[_CLACT_HIBI], pattern );
@@ -3250,14 +3250,14 @@ static void _gaugeDisp(GF_BGL_INI* bgl)
         pScrAddr[0x79-i] = (pScrAddr[0x79-i]&0xfc00) + 0xad - (i % 3);
     }
 
-    GF_BGL_LoadScreenReq(bgl, GF_BGL_FRAME0_M);  // ƒXƒNƒŠ[ƒ“‚ÉXV
+    GF_BGL_LoadScreenReq(bgl, GF_BGL_FRAME0_M);  // ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«æ›´æ–°
     
 
 }
 
 //--------------------------------------------------------------
 /**
- * —Fl‚Ìè“`‚¢‚ÅŒ@‚èi‚ß‚ç‚ê‚é
+ * å‹äººã®æ‰‹ä¼ã„ã§æ˜ã‚Šé€²ã‚ã‚‰ã‚Œã‚‹
  * @param    none
  * @retval   none
  */
@@ -3293,9 +3293,9 @@ static void _friendDig(FossilEventTask* pFET)
 
 //--------------------------------------------------------------
 /**
- * Œ@‚Á‚½‚à‚Ì‚ÌƒJƒ‰ƒbƒgŒvZ
- * @param    type   Œ@‚Á‚½í—Ş
- * @retval   carat‚Ì‘å‚«‚³
+ * æ˜ã£ãŸã‚‚ã®ã®ã‚«ãƒ©ãƒƒãƒˆè¨ˆç®—
+ * @param    type   æ˜ã£ãŸç¨®é¡
+ * @retval   caratã®å¤§ãã•
  */
 //--------------------------------------------------------------
 
@@ -3320,7 +3320,7 @@ static int _calcDigStoneCarat(int no)
             carat += 10;
         }
         carat += _pCommFossilWork->digGauge / (_DIG_GAUGE_START / 5);
-        if(_pCommFossilWork->digGauge != 0){  // ƒQ[ƒW‚ªc‚Á‚Ä‚¢‚éãè‚É‚Ù‚ê‚½
+        if(_pCommFossilWork->digGauge != 0){  // ã‚²ãƒ¼ã‚¸ãŒæ®‹ã£ã¦ã„ã‚‹ï¼ä¸Šæ‰‹ã«ã»ã‚ŒãŸ
             carat += 5;
         }
     }
@@ -3329,9 +3329,9 @@ static int _calcDigStoneCarat(int no)
 
 //--------------------------------------------------------------
 /**
- * Œ@‚Á‚½‚à‚Ì‚ğƒoƒbƒO‚É“ü‚ê‚é
- * @param    type   Œ@‚Á‚½í—Ş
- * @retval   carat‚Ì‘å‚«‚³
+ * æ˜ã£ãŸã‚‚ã®ã‚’ãƒãƒƒã‚°ã«å…¥ã‚Œã‚‹
+ * @param    type   æ˜ã£ãŸç¨®é¡
+ * @retval   caratã®å¤§ãã•
  */
 //--------------------------------------------------------------
 
@@ -3354,8 +3354,8 @@ static void _bagAddFossil(int no, int carat)
 
 //--------------------------------------------------------------
 /**
- * Œ@‚Á‚½‚à‚Ì‚ªƒoƒbƒO‚É“ü‚é‚©ŒŸ¸
- * @param    type   Œ@‚Á‚½í—Ş
+ * æ˜ã£ãŸã‚‚ã®ãŒãƒãƒƒã‚°ã«å…¥ã‚‹ã‹æ¤œæŸ»
+ * @param    type   æ˜ã£ãŸç¨®é¡
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -3381,9 +3381,9 @@ static BOOL _bagIsIn(int no)
 
 //--------------------------------------------------------------
 /**
- * ‰»Î”­Œ@”»’è  ƒƒbƒZ[ƒW‚Í•Ê‚Éˆ—‚·‚é•K—v‚ª‚ ‚é
+ * åŒ–çŸ³ç™ºæ˜åˆ¤å®š  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯åˆ¥ã«å‡¦ç†ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
  * @param    none
- * @retval   ‘S•”‚Ù‚ê‚½ê‡TRUE
+ * @retval   å…¨éƒ¨ã»ã‚ŒãŸå ´åˆTRUE
  */
 //--------------------------------------------------------------
 
@@ -3393,15 +3393,15 @@ static BOOL _treasureCheck(FossilEventTask* pFET)
     BOOL bTreasure[_PARTS_TREASURE_NUM_MAX];
     BOOL bRet = TRUE;
 
-    //depositMap‚Ì1‚©‚ç_PARTS_TREASURE_NUM‚Ü‚Å‚ª•ó•¨
-    // ‚±‚Ì”Ô†‚Ìã‚É‘ÍÏ•¨‚ª‚ ‚Á‚½‚çŒ@‚ê‚Ä‚È‚¢
+    //depositMapã®1ã‹ã‚‰_PARTS_TREASURE_NUMã¾ã§ãŒå®ç‰©
+    // ã“ã®ç•ªå·ã®ä¸Šã«å †ç©ç‰©ãŒã‚ã£ãŸã‚‰æ˜ã‚Œã¦ãªã„
     for(i = 0; i < pFET->_PARTS_TREASURE_NUM; i++){
         bTreasure[i] = TRUE;
     }
     for(y = 0; y < _DIGMAP_HEIGHT; y++){
         for(x = 0; x < _DIGMAP_WIDTH; x++){
             i = _pCommFossilWork->depositMap[ y ][ x ];
-            if((i <= pFET->_PARTS_TREASURE_NUM) && (i != 0)){   // –„‘ MAP  –„‘ •¨‚Ìindex+1‚ª“ü‚é 0‚Í–„‘ ‚µ‚Ä‚¢‚È‚¢
+            if((i <= pFET->_PARTS_TREASURE_NUM) && (i != 0)){   // åŸ‹è”µMAP  åŸ‹è”µç‰©ã®index+1ãŒå…¥ã‚‹ 0ã¯åŸ‹è”µã—ã¦ã„ãªã„
                 if(_pCommFossilWork->buildupMap[ y ][ x ] != 0){
                     bTreasure[i-1] = FALSE;
                 }
@@ -3414,7 +3414,7 @@ static BOOL _treasureCheck(FossilEventTask* pFET)
             bRet = FALSE;
         }
         else if(_pCommFossilWork->aDeposit[i].bGetItem==FALSE){
-            // Œ@‚ê‚½
+            // æ˜ã‚ŒãŸ
             pFET->digTimer[i] = 1;
             _pCommFossilWork->aDeposit[i].bGetItem = TRUE;
         }
@@ -3424,9 +3424,9 @@ static BOOL _treasureCheck(FossilEventTask* pFET)
 
 //--------------------------------------------------------------
 /**
- * ‰»Î¬‰Ê•¨ƒƒbƒZ[ƒW
+ * åŒ–çŸ³æˆæœç‰©ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  * @param    none
- * @retval   ‚à‚¤ƒƒbƒZ[ƒW‚ª–³‚¢ê‡FALSE
+ * @retval   ã‚‚ã†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒç„¡ã„å ´åˆFALSE
  */
 //--------------------------------------------------------------
 
@@ -3439,7 +3439,7 @@ static BOOL _fossilGetMessage(FossilEventTask* pFET)
             pFET->digCarat = _calcDigStoneCarat(_pCommFossilWork->aDeposit[i].partsType);
             // ----------------------------------------------------------------------------
             // localize_spec_mark(LANG_ALL) imatake 2006/11/28
-            // ‘ã“ü‚·‚é’n‰ºƒAƒCƒeƒ€–¼‚ğ•s’èŠ¥Œ•t‚«‚É•ÏX
+            // ä»£å…¥ã™ã‚‹åœ°ä¸‹ã‚¢ã‚¤ãƒ†ãƒ åã‚’ä¸å®šå† è©ä»˜ãã«å¤‰æ›´
             CommMsgRegisterUGItemNameIndefinate(CommUnderGetMsgUnderWorld(),
                                                 _pCommFossilWork->aDeposit[i].partsType);
             if(CommDigIsStone(_pCommFossilWork->aDeposit[i].partsType)){
@@ -3462,9 +3462,9 @@ static BOOL _fossilGetMessage(FossilEventTask* pFET)
 
 //--------------------------------------------------------------
 /**
- * ‰»Î¬‰Ê•¨ƒƒbƒZ[ƒW
+ * åŒ–çŸ³æˆæœç‰©ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
  * @param    none
- * @retval   ‚à‚¤ƒƒbƒZ[ƒW‚ª–³‚¢ê‡FALSE
+ * @retval   ã‚‚ã†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒç„¡ã„å ´åˆFALSE
  */
 //--------------------------------------------------------------
 
@@ -3477,10 +3477,10 @@ static BOOL _fossilGetMessageBagIn(FossilEventTask* pFET)
     for(i = 0; i < pFET->_PARTS_TREASURE_NUM; i++){
         if(_pCommFossilWork->aDeposit[i].bGetItem == TRUE){
             _pCommFossilWork->aDeposit[i].bGetItem = FALSE;
-            // Œ@‚Á‚½‚à‚Ì‚ğˆêŒÂ‚¸‚Â“ü‚ê‚é
+            // æ˜ã£ãŸã‚‚ã®ã‚’ä¸€å€‹ãšã¤å…¥ã‚Œã‚‹
             type = _pCommFossilWork->aDeposit[i].partsType;
 
-            // ‰»ÎŒ@‚Á‚½‰ñ”‚ÍƒoƒbƒO‚É“ü‚ê‚½‚©‚Ç‚¤‚©‚ÍŠÖŒW‚È‚µ‚ÅƒJƒEƒ“ƒg
+            // åŒ–çŸ³æ˜ã£ãŸå›æ•°ã¯ãƒãƒƒã‚°ã«å…¥ã‚ŒãŸã‹ã©ã†ã‹ã¯é–¢ä¿‚ãªã—ã§ã‚«ã‚¦ãƒ³ãƒˆ
             if(CommDigIsStone(type)){
                 SecretBaseRecordSetStoneNum(pRec ,1);
             }
@@ -3490,17 +3490,17 @@ static BOOL _fossilGetMessageBagIn(FossilEventTask* pFET)
                 if((type >= DIG_PARTS_TYPE_FOSSIL_MIN) && (DIG_PARTS_TYPE_FOSSIL_MAX > type) ||
                    (type == DIG_PARTS_SHIELD) || (type == DIG_PARTS_ZUGAI)){
                     SecretBaseRecordSetFossilNum(pRec ,1);
-                    {  // ‰»ÎŒ@‚Á‚½‰ñ”ƒJƒEƒ“ƒg
+                    {  // åŒ–çŸ³æ˜ã£ãŸå›æ•°ã‚«ã‚¦ãƒ³ãƒˆ
                         EVENTWORK* pEV = SaveData_GetEventWork( _pCommFossilWork->pFSys->savedata );
                         SysWork_UGKasekiDigCountSet(pEV,SysWork_UGKasekiDigCountGet(pEV)+1);
                     }
                 }
                 else{
-                    SecretBaseRecordSetTreasureNum(pRec ,1); //Œ@‚Á‚½”‚Æ‚µ‚ÄƒJƒEƒ“ƒg
+                    SecretBaseRecordSetTreasureNum(pRec ,1); //æ˜ã£ãŸæ•°ã¨ã—ã¦ã‚«ã‚¦ãƒ³ãƒˆ
                 }
             }
 
-            if(_bagIsIn(type)){  // ‚©‚Î‚ñ‚É“ü‚éê‡
+            if(_bagIsIn(type)){  // ã‹ã°ã‚“ã«å…¥ã‚‹å ´åˆ
                 _bagAddFossil(type, pFET->digCarat);
                 break;
             }
@@ -3517,9 +3517,9 @@ static BOOL _fossilGetMessageBagIn(FossilEventTask* pFET)
 
 //--------------------------------------------------------------
 /**
- * ‰æ–Ê‚ğ—h‚ç‚·
+ * ç”»é¢ã‚’æºã‚‰ã™
  * @param    bgl      GF_BGL_INI
- * @param    bVBlank  ŒÄ‚Ño‚µæ‚ª“ñ‰ÓŠ‚ ‚è ƒuƒ‰ƒ“ƒNŒÄ‚Ño‚µ‚©‚Ç‚¤‚©
+ * @param    bVBlank  å‘¼ã³å‡ºã—å…ˆãŒäºŒç®‡æ‰€ã‚ã‚Š ãƒ–ãƒ©ãƒ³ã‚¯å‘¼ã³å‡ºã—ã‹ã©ã†ã‹
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -3554,9 +3554,9 @@ static void _shakeProcess(GF_BGL_INI* bgl)
 
 //--------------------------------------------------------------
 /**
- * ‰æ–Ê‚ğ—h‚ç‚·
+ * ç”»é¢ã‚’æºã‚‰ã™
  * @param    bgl      GF_BGL_INI
- * @param    bVBlank  ŒÄ‚Ño‚µæ‚ª“ñ‰ÓŠ‚ ‚è ƒuƒ‰ƒ“ƒNŒÄ‚Ño‚µ‚©‚Ç‚¤‚©
+ * @param    bVBlank  å‘¼ã³å‡ºã—å…ˆãŒäºŒç®‡æ‰€ã‚ã‚Š ãƒ–ãƒ©ãƒ³ã‚¯å‘¼ã³å‡ºã—ã‹ã©ã†ã‹
  * @retval   none
  */
 //--------------------------------------------------------------
@@ -3582,7 +3582,7 @@ static void _shakeProcessVBlank(GF_BGL_INI* bgl)
 
 //--------------------------------------------------------------
 /**
- * ƒ~ƒjƒQ[ƒ€‚ÌƒvƒƒZƒX
+ * ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®ãƒ—ãƒ­ã‚»ã‚¹
  * @param    none
  * @retval   nextCharOffset
  */
@@ -3630,13 +3630,13 @@ static BOOL _gameProcess(FossilEventTask* pFET)
         }
     }
     _touchButtonProcess(_pCommFossilWork->bgl,
-                        sys.tp_x, sys.tp_y, _pCommFossilWork->touchPanelRelease);  // ƒ{ƒ^ƒ“ˆ—
+                        sys.tp_x, sys.tp_y, _pCommFossilWork->touchPanelRelease);  // ãƒœã‚¿ãƒ³å‡¦ç†
     if(_pCommFossilWork->touchPanelRelease >= 2){
         _pCommFossilWork->touchPanelRelease++;
     }
     _friendDig(pFET);
-//	CLACT_Draw( _pCommFossilWork->clactSet );									// ƒZƒ‹ƒAƒNƒ^[í’“ŠÖ”
-    if(_treasureCheck(pFET)){  // ‘S•”Œ@‚Á‚½
+//	CLACT_Draw( _pCommFossilWork->clactSet );									// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å¸¸é§é–¢æ•°
+    if(_treasureCheck(pFET)){  // å…¨éƒ¨æ˜ã£ãŸ
         UnderGroundSetFirstFossil(pUGData);
         RECORD_Score_Add(SaveData_GetRecord(_pCommFossilWork->pFSys->savedata), SCORE_ID_GET_FOSSIL);
 //        _pCommFossilWork->logMsgFossil[CommGetCurrentID()] = TRUE;
@@ -3645,7 +3645,7 @@ static BOOL _gameProcess(FossilEventTask* pFET)
         pFET->bSuccess = TRUE;
         return TRUE;
     }
-    else if((_pCommFossilWork->digGauge == 0)){  // ƒQ[ƒW‚ª–³‚­‚È‚Á‚½
+    else if((_pCommFossilWork->digGauge == 0)){  // ã‚²ãƒ¼ã‚¸ãŒç„¡ããªã£ãŸ
 
         UnderGroundSetFirstFossil(pUGData);
 
@@ -3665,7 +3665,7 @@ static void _setResObjTbl(CLACT_U_RES_OBJ_PTR pRes)
 
 //------------------------------------------------------------------
 /**
- * ƒnƒ“ƒ}—pƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+ * ãƒãƒ³ãƒç”¨ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
  * @param   none
  * @retval  none		
  */
@@ -3678,31 +3678,31 @@ static void _initCellActor(void)
     ARCHANDLE* hdl;
 
     _pCommFossilWork->resObjCount = 0;
-    // OAMƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+    // OAMãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 	NNS_G2dInitOamManagerModule();
-	// ‹¤—LOAMƒ}ƒl[ƒWƒƒì¬
-	// ƒŒƒ“ƒ_ƒ‰—pOAMƒ}ƒl[ƒWƒƒì¬
-	// ‚±‚±‚Åì¬‚µ‚½OAMƒ}ƒl[ƒWƒƒ‚ğ‚İ‚ñ‚È‚Å‹¤—L‚·‚é
+	// å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ãƒ¬ãƒ³ãƒ€ãƒ©ç”¨OAMãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
+	// ã“ã“ã§ä½œæˆã—ãŸOAMãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ã¿ã‚“ãªã§å…±æœ‰ã™ã‚‹
 	REND_OAMInit( 
-			0, 124,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 31,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 124,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 31,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 124,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 31,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 124,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 31,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			HEAPID_DIGFOSSIL);
 /*	REND_OAMInit(
-			0, 128,		// ƒƒCƒ“‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒƒCƒ“‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
-			0, 128,		// ƒTƒu‰æ–ÊOAMŠÇ——Ìˆæ
-			0, 32,		// ƒTƒu‰æ–ÊƒAƒtƒBƒ“ŠÇ——Ìˆæ
+			0, 128,		// ãƒ¡ã‚¤ãƒ³ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
+			0, 128,		// ã‚µãƒ–ç”»é¢OAMç®¡ç†é ˜åŸŸ
+			0, 32,		// ã‚µãƒ–ç”»é¢ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸ
 			HEAPID_DIGFOSSIL); */
     char_pltt_manager_init();
-	// ƒZƒ‹ƒAƒNƒ^[‰Šú‰»
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–
 	_pCommFossilWork->clactSet = CLACT_U_SetEasyInit( 26, &_pCommFossilWork->renddata, HEAPID_DIGFOSSIL );
 
     CLACT_U_SetSubSurfaceMatrix( &_pCommFossilWork->renddata, SUB_SURFACE_X, SUB_SURFACE_Y*2 );
     
-	//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
-	for(i = 0; i < 4; i++){		//ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[ì¬
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
+	for(i = 0; i < 4; i++){		//ãƒªã‚½ãƒ¼ã‚¹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ä½œæˆ
 		_pCommFossilWork->resMan[i] = CLACT_U_ResManagerInit(CLACT_OBJ_NUM, i, HEAPID_DIGFOSSIL);
 	}
 	
@@ -3712,13 +3712,13 @@ static void _initCellActor(void)
         CLACT_U_ResManagerResAddArcChar_ArcHandle(_pCommFossilWork->resMan[CLACT_U_CHAR_RES], 
                                         hdl, NARC_ug_anim_kaseki_obj_NCGR,
                                         0, _CLACT_HUMMER, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_DIGFOSSIL));
-	// Chara“]‘—
+	// Charaè»¢é€
 	CLACT_U_CharManagerSet( _pCommFossilWork->resObjTbl[_pCommFossilWork->resObjCount-1] );
     _setResObjTbl(
         CLACT_U_ResManagerResAddArcPltt_ArcHandle(_pCommFossilWork->resMan[CLACT_U_PLTT_RES],
                                         hdl, NARC_ug_anim_kaseki_obj_NCLR,
                                         0, _CLACT_HUMMER, NNS_G2D_VRAM_TYPE_2DMAIN, 1, HEAPID_DIGFOSSIL));
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	CLACT_U_PlttManagerSetCleanArea( _pCommFossilWork->resObjTbl[_pCommFossilWork->resObjCount-1] );
 	_setResObjTbl(
         CLACT_U_ResManagerResAddArcKindCell_ArcHandle(_pCommFossilWork->resMan[CLACT_U_CELL_RES],
@@ -3731,12 +3731,12 @@ static void _initCellActor(void)
     _setResObjTbl(
         CLACT_U_ResManagerResAddArcChar_ArcHandle(_pCommFossilWork->resMan[CLACT_U_CHAR_RES], 
                                         hdl, NARC_ug_anim_kaseki_hibi_NCGR, 0, _CLACT_HIBI, NNS_G2D_VRAM_TYPE_2DMAIN, HEAPID_DIGFOSSIL));
-	// Chara“]‘—
+	// Charaè»¢é€
 	CLACT_U_CharManagerSet( _pCommFossilWork->resObjTbl[_pCommFossilWork->resObjCount-1] );
     _setResObjTbl(
         CLACT_U_ResManagerResAddArcPltt(_pCommFossilWork->resMan[CLACT_U_PLTT_RES],
                                         ARC_UG_FOSSIL_GRA, NARC_ug_fossil_kaseki_board_NCLR, 0, _CLACT_HIBI, NNS_G2D_VRAM_TYPE_2DMAIN, 3, HEAPID_DIGFOSSIL));
-	// ƒpƒŒƒbƒg“]‘—
+	// ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	CLACT_U_PlttManagerSetCleanArea( _pCommFossilWork->resObjTbl[_pCommFossilWork->resObjCount-1] );
     _setResObjTbl(
         CLACT_U_ResManagerResAddArcKindCell_ArcHandle(_pCommFossilWork->resMan[CLACT_U_CELL_RES],
@@ -3750,16 +3750,16 @@ static void _initCellActor(void)
 
 //------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[“o˜^
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  * @param   none
  * @retval  none		
  */
 //------------------------------------------------------------------
 static void _setCellActor(void)
 {
-	// ƒZƒ‹ƒAƒNƒ^[ƒwƒbƒ_ì¬
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ä½œæˆ
     int i,j;
-    //“o˜^î•ñŠi”[
+    //ç™»éŒ²æƒ…å ±æ ¼ç´
     CLACT_ADD add;
 
     for(i = 0; i < CLACT_OBJ_NUM;i++){
@@ -3776,7 +3776,7 @@ static void _setCellActor(void)
 		add.ClActHeader	= &_pCommFossilWork->clActHeader_s[i];
 
 		add.mat.x		= FX32_CONST(32) ;
-		add.mat.y		= FX32_CONST(96) ;		//‰æ–Ê‚Íã‰º˜A‘±‚µ‚Ä‚¢‚éiMAIN‚ªãASUB‚ª‰ºj
+		add.mat.y		= FX32_CONST(96) ;		//ç”»é¢ã¯ä¸Šä¸‹é€£ç¶šã—ã¦ã„ã‚‹ï¼ˆMAINãŒä¸Šã€SUBãŒä¸‹ï¼‰
 		add.mat.z		= 0;
 		add.sca.x		= FX32_ONE;
 		add.sca.y		= FX32_ONE;
@@ -3786,9 +3786,9 @@ static void _setCellActor(void)
 		add.DrawArea	= NNS_G2D_VRAM_TYPE_2DMAIN;
 		add.heap		= HEAPID_DIGFOSSIL;
 
-		//ƒZƒ‹ƒAƒNƒ^[•\¦ŠJn
+		//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºé–‹å§‹
 
-		// ã‰æ–Ê—p
+		// ä¸Šç”»é¢ç”¨
         add.mat.x = FX32_ONE * 0;
         add.mat.y = FX32_ONE * 240;
         if(i == _CLACT_HUMMER){
@@ -3800,12 +3800,12 @@ static void _setCellActor(void)
         _pCommFossilWork->clActWork[i] = CLACT_Add(&add);
         CLACT_SetAnmFlag(_pCommFossilWork->clActWork[i],1);
 	}
-	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJ–Ê‚n‚m
-	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJ–Ê‚n‚m
+	GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ,  VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
+	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);	//OBJé¢ï¼¯ï¼®
 	
 }
 
-//** CharManager PlttManager—p **//
+//** CharManager PlttManagerç”¨ **//
 #define _CHAR_CONT_NUM				(20)
 #define _CHAR_VRAMTRANS_MAIN_SIZE		(2048*2)
 #define _CHAR_VRAMTRANS_SUB_SIZE		(2048*2)
@@ -3814,13 +3814,13 @@ static void _setCellActor(void)
 
 //-------------------------------------
 //
-//	ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[
-//	ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+//	ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
 //
 //=====================================
 static void char_pltt_manager_init(void)
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒ}ƒl[ƒWƒƒ[‰Šú‰»
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	{
 		CHAR_MANAGER_MAKE cm = {
 			_CHAR_CONT_NUM,
@@ -3830,20 +3830,20 @@ static void char_pltt_manager_init(void)
 		};
 		InitCharManagerReg(&cm, GX_OBJVRAMMODE_CHAR_1D_128K, GX_OBJVRAMMODE_CHAR_1D_128K );
 	}
-    // ƒpƒŒƒbƒgƒ}ƒl[ƒWƒƒ[‰Šú‰»
+    // ãƒ‘ãƒ¬ãƒƒãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
 	InitPlttManager(_PLTT_CONT_NUM, HEAPID_DIGFOSSIL);
 
-	// “Ç‚İ‚İŠJnˆÊ’u‚ğ‰Šú‰»
+	// èª­ã¿è¾¼ã¿é–‹å§‹ä½ç½®ã‚’åˆæœŸåŒ–
 	CharLoadStartAll();
 	PlttLoadStartAll();
-	//’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
 }
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒtƒB[ƒ‹ƒh—pVBLANKŠÖ”
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç”¨VBLANKé–¢æ•°
  * @param	work
  */
 //------------------------------------------------------------------
@@ -3852,23 +3852,23 @@ static void vBlankFunc(void * work)
 	GF_BGL_INI * bgl = work;
 
     _shakeProcessVBlank(bgl);
-	// BG‘‚«Š·‚¦
+	// BGæ›¸ãæ›ãˆ
 	GF_BGL_VBlankFunc( bgl );
 
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	DoVramTransferManager();
 
-	// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	REND_OAMTrans();	
 }
 
 
 //------------------------------------------------------------------
 /**
- * @brief	‰»Î‚ª‚ ‚é‚©‚Ç‚¤‚©’²‚×‚é
- * @param   ’²‚×‚½‚¢À•W‚ÌXÀ•W
-   @param   ’²‚×‚½‚¢À•W‚ÌZÀ•W
- * @retval  ‚ ‚Á‚½‚©‚Ç‚¤‚©
+ * @brief	åŒ–çŸ³ãŒã‚ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹
+ * @param   èª¿ã¹ãŸã„åº§æ¨™ã®Xåº§æ¨™
+   @param   èª¿ã¹ãŸã„åº§æ¨™ã®Zåº§æ¨™
+ * @retval  ã‚ã£ãŸã‹ã©ã†ã‹
  */
 //------------------------------------------------------------------
 BOOL UGFossileCheck(int x,int z)
@@ -3897,13 +3897,13 @@ int UgFossilGetIntervalRadarPointZ(int index)
 }
 
 
-#define _DTIME  (1)  // ƒŒ[ƒ_[‚ğ‘‚­Œ©‚¹‚éˆ×‚ÌŠÔŠu
+#define _DTIME  (1)  // ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚’æ—©ãè¦‹ã›ã‚‹ç‚ºã®é–“éš”
 
 //--------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[—p‰»Î‚ÌˆÊ’uXÀ•W‚ğ“¾‚é
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”¨åŒ–çŸ³ã®ä½ç½®Xåº§æ¨™ã‚’å¾—ã‚‹
  * @param    index
- * @retval   XÀ•W
+ * @retval   Xåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -3919,9 +3919,9 @@ int UgFossilGetRadarPointX(int index)
 
 //--------------------------------------------------------------
 /**
- * ƒŒ[ƒ_[—p‰»Î‚ÌˆÊ’uZÀ•W‚ğ“¾‚é
+ * ãƒ¬ãƒ¼ãƒ€ãƒ¼ç”¨åŒ–çŸ³ã®ä½ç½®Zåº§æ¨™ã‚’å¾—ã‚‹
  * @param    index
- * @retval   ZÀ•W
+ * @retval   Zåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -3937,7 +3937,7 @@ int UgFossilGetRadarPointZ(int index)
 
 //--------------------------------------------------------------
 /**
- * ƒpƒ\ƒRƒ“ƒŒ[ƒ_[ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒXƒN
+ * ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¹ã‚¯
  * @param    tcb   tcb
  * @param    work   _EVENT_PCRADAR_WORK
  * @retval   none
@@ -3957,7 +3957,7 @@ static void _GMEVENT_PcRadar(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * ƒpƒ\ƒRƒ“ƒŒ[ƒ_[ƒXƒ^[ƒg
+ * ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒˆ
  * @param    none
  * @retval   none
  */
@@ -3966,13 +3966,13 @@ static void _GMEVENT_PcRadar(TCB_PTR tcb, void *work)
 void UgFossilPcRadarStart(void)
 {
     _EVENT_PCRADAR_WORK* mdw;
-    GF_ASSERT_RETURN(!_pCommFossilWork->pPcRadarWork,);  // “ñd‹N“®‹Ö~
+    GF_ASSERT_RETURN(!_pCommFossilWork->pPcRadarWork,);  // äºŒé‡èµ·å‹•ç¦æ­¢
     GF_ASSERT_RETURN(!_pCommFossilWork->pPcRadar,);
 
     mdw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(_EVENT_PCRADAR_WORK));
     MI_CpuFill8(mdw, 0, sizeof(_EVENT_PCRADAR_WORK));
-    CommSendFixData(CF_DIG_FOSSIL_PCRADAR);  // ƒT[ƒo[‚ÉÀ•W‚ğˆË—Š
-    mdw->pcRadarTimer = _FOSSIL_NUM_MAX/3-10; // ­‚µ’x‚ç‚¹‚Ä‹N“®
+    CommSendFixData(CF_DIG_FOSSIL_PCRADAR);  // ã‚µãƒ¼ãƒãƒ¼ã«åº§æ¨™ã‚’ä¾é ¼
+    mdw->pcRadarTimer = _FOSSIL_NUM_MAX/3-10; // å°‘ã—é…ã‚‰ã›ã¦èµ·å‹•
     _pCommFossilWork->pPcRadarWork = mdw;
     _pCommFossilWork->pPcRadar = TCB_Add(_GMEVENT_PcRadar , mdw,TCB_PRIORITY_NORMAL);
 
@@ -3981,7 +3981,7 @@ void UgFossilPcRadarStart(void)
 
 //--------------------------------------------------------------
 /**
- * ƒpƒ\ƒRƒ“ƒŒ[ƒ_[ƒGƒ“ƒh
+ * ãƒ‘ã‚½ã‚³ãƒ³ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚¨ãƒ³ãƒ‰
  * @param    none
  * @retval   none
  */
@@ -3999,9 +3999,9 @@ void UgFossilPcRadarEnd(void)
 
 //--------------------------------------------------------------
 /**
- * ƒpƒ\ƒRƒ“‚©‚ç‰»ÎƒŒ[ƒ_[‚Ì–â‚¢‡‚í‚¹‚ª—ˆ‚½ CF_DIG_FOSSIL_PCRADAR
+ * ãƒ‘ã‚½ã‚³ãƒ³ã‹ã‚‰åŒ–çŸ³ãƒ¬ãƒ¼ãƒ€ãƒ¼ã®å•ã„åˆã‚ã›ãŒæ¥ãŸ CF_DIG_FOSSIL_PCRADAR
  * @param    index
- * @retval   ZÀ•W
+ * @retval   Zåº§æ¨™
  */
 //--------------------------------------------------------------
 
@@ -4021,7 +4021,7 @@ void UgFossilRecvPcRadar(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * ‰»ÎƒŒ[ƒ_[‚ğ‘—M‚·‚é
+ * åŒ–çŸ³ãƒ¬ãƒ¼ãƒ€ãƒ¼ã‚’é€ä¿¡ã™ã‚‹
  * @param    none
  * @retval   none
  */
@@ -4050,7 +4050,7 @@ static void _pcRadarFunc(void)
                 index++;
                 index++;
                 if(index >= _FOSSIL_NUM_MAX){
-                    _pCommFossilWork->radarIndex[i] = 0; // ‘—MI—¹
+                    _pCommFossilWork->radarIndex[i] = 0; // é€ä¿¡çµ‚äº†
                     break;
                 }
             }
@@ -4060,7 +4060,7 @@ static void _pcRadarFunc(void)
 
 //--------------------------------------------------------------
 /**
- * ƒT[ƒo‚©‚çˆêŒÂ‚¸‚Âã©À•W‚ğ‘—‚è•Ô‚µ‚Ä‚à‚ç‚¤ CF_DIG_FOSSIL_PCRADAR_ANS
+ * ã‚µãƒ¼ãƒã‹ã‚‰ä¸€å€‹ãšã¤ç½ åº§æ¨™ã‚’é€ã‚Šè¿”ã—ã¦ã‚‚ã‚‰ã† CF_DIG_FOSSIL_PCRADAR_ANS
  * @param    pData   _RESULT_TRAP_RADAR
  * @retval   none
  */
@@ -4098,9 +4098,9 @@ void UgFossilRecvPcRadarPos(int netID, int size, void* pData, void* pWork)
 
 //--------------------------------------------------------------
 /**
- * ƒT[ƒo‚©‚çˆêŒÂ‚¸‚Âã©À•W‚ğ‘—‚è•Ô‚µ‚Ä‚à‚ç‚¤‚ÌƒTƒCƒY
+ * ã‚µãƒ¼ãƒã‹ã‚‰ä¸€å€‹ãšã¤ç½ åº§æ¨™ã‚’é€ã‚Šè¿”ã—ã¦ã‚‚ã‚‰ã†æ™‚ã®ã‚µã‚¤ã‚º
  * @param    none
- * @retval   _RESULT_TRAP_RADAR‚Ì‚³‚¢‚¸
+ * @retval   _RESULT_TRAP_RADARã®ã•ã„ãš
  */
 //--------------------------------------------------------------
 
@@ -4111,8 +4111,8 @@ int UgFossilGetPcRadarSize(void)
 
 //==============================================================================
 /**
- * e‹@‘¤‚ÌƒvƒƒOƒ‰ƒ€
- *    ˆÚ“®’â~ó‘Ô‚Ìê‡ ‰»ÎˆÊ’u‚ğ‚T‚˜‚TƒOƒŠƒbƒh’†ƒ‰ƒ“ƒ_ƒ€‚Å•Ô‚·
+ * è¦ªæ©Ÿå´ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+ *    ç§»å‹•åœæ­¢çŠ¶æ…‹ã®å ´åˆ åŒ–çŸ³ä½ç½®ã‚’ï¼•ï½˜ï¼•ã‚°ãƒªãƒƒãƒ‰ä¸­ãƒ©ãƒ³ãƒ€ãƒ ã§è¿”ã™
  * @param   none
  * @retval  none
  */
@@ -4165,9 +4165,9 @@ static void _turnAroundSignalSend(void)
 
 //==============================================================================
 /**
- * ‰»ÎlogƒƒbƒZ[ƒW‚ğ•Ô‚·
- * @param   message   ƒƒbƒZ[ƒW
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ * åŒ–çŸ³logãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿”ã™
+ * @param   message   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
@@ -4194,14 +4194,14 @@ BOOL UgDigFossilGetActionMessage(STRBUF* pStrBuf)
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/02/10
-// ‚©‚¹‚«‚ğŒ@‚Á‚Ä‚¢‚È‚¢e‚ÉA‚©‚¹‚«‚ğŒ@‚èo‚µ‚½|‚ÌƒƒbƒZ[ƒW‚ªo‚é‚±‚Æ‚ª
-// ‚ ‚Á‚½•s‹ï‡‚ÌC³‚ğ”½‰f
+// ã‹ã›ãã‚’æ˜ã£ã¦ã„ãªã„è¦ªã«ã€ã‹ã›ãã‚’æ˜ã‚Šå‡ºã—ãŸæ—¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒå‡ºã‚‹ã“ã¨ãŒ
+// ã‚ã£ãŸä¸å…·åˆã®ä¿®æ­£ã‚’åæ˜ 
 
 #if AFTER_MASTER_070202_FOSSILLOG_FIX
 
 //==============================================================================
 /**
- * @brief   ‰»Î‚ÌƒƒO‚ğÁ‚·
+ * @brief   åŒ–çŸ³ã®ãƒ­ã‚°ã‚’æ¶ˆã™
  * @retval  none
  */
 //==============================================================================
@@ -4219,9 +4219,9 @@ void UgDigFossilDeleteLog(void)
 
 //==============================================================================
 /**
- * Œ@‚Á‚Ä‚é‚©‚Ç‚¤‚©
- * @param   message   ƒƒbƒZ[ƒW
- * @retval  ƒƒbƒZ[ƒW‚ª‚ ‚éê‡TRUE
+ * æ˜ã£ã¦ã‚‹ã‹ã©ã†ã‹
+ * @param   message   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @retval  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒã‚ã‚‹å ´åˆTRUE
  */
 //==============================================================================
 
@@ -4235,7 +4235,7 @@ BOOL UgDigFossilIsDig(int netID)
 
 //==============================================================================
 /**
- * —£’E‚µ‚½q‹@‚Ì•Ï”‚ğƒŠƒZƒbƒg
+ * é›¢è„±ã—ãŸå­æ©Ÿã®å¤‰æ•°ã‚’ãƒªã‚»ãƒƒãƒˆ
  * @param   netID  ID
  * @retval  none
  */
@@ -4253,7 +4253,7 @@ void UgDigFossilResetPlayer(int netID)
 
 //==============================================================================
 /**
- * q‹@‚©‚ç‰»ÎŒ@‚Á‚Ä‚¢‚é‚±‚Æ‚ª’Ê’m
+ * å­æ©Ÿã‹ã‚‰åŒ–çŸ³æ˜ã£ã¦ã„ã‚‹ã“ã¨ãŒé€šçŸ¥
  * @param   netID  ID
  * @retval  none
  */
@@ -4261,10 +4261,10 @@ void UgDigFossilResetPlayer(int netID)
 /*
 void CommFossilRecvInit(int netID, int size, void* pData, void* pWork)
 {
-    OHNO_PRINT("‚¢‚Ü‚©‚¹‚«‚Ù‚Á‚Ä‚Ü‚· óM\n");
+    OHNO_PRINT("ã„ã¾ã‹ã›ãã»ã£ã¦ã¾ã™ å—ä¿¡\n");
     if(_pCommFossilWork){
         _pCommFossilWork->bEntryFossil[netID] = TRUE;
-        OHNO_PRINT("‚¢‚Ü‚©‚¹‚«‚Ù‚Á‚Ä‚Ü‚· óM%d\n",netID);
+        OHNO_PRINT("ã„ã¾ã‹ã›ãã»ã£ã¦ã¾ã™ å—ä¿¡%d\n",netID);
     }
 }
 */
@@ -4280,7 +4280,7 @@ void UgDigFossilPlayerInit(void)
 {
     if(_pCommFossilWork){
         if(_pCommFossilWork->pDFETCB){
-            OHNO_PRINT("‚¢‚Ü‚©‚¹‚«‚Ù‚Á‚Ä‚Ü‚· ‚»‚¤‚µ‚ñ%d\n",(u32)_pCommFossilWork);
+            OHNO_PRINT("ã„ã¾ã‹ã›ãã»ã£ã¦ã¾ã™ ãã†ã—ã‚“%d\n",(u32)_pCommFossilWork);
             CommSendFixData(CF_DIG_FOSSIL_INIT);
         }
     }
@@ -4288,7 +4288,7 @@ void UgDigFossilPlayerInit(void)
 */
 //==============================================================================
 /**
- * ¡‰»Î‚ğŒ@‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚© ƒNƒ‰ƒCƒAƒ“ƒgó‘Ô
+ * ä»ŠåŒ–çŸ³ã‚’æ˜ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆçŠ¶æ…‹
  * @param   netID  ID
  * @retval  none
  */
@@ -4298,7 +4298,7 @@ BOOL UgDigFossilIsNow(void)
 {
     if(_pCommFossilWork){
         if(_pCommFossilWork->pDFETCB){
-            OHNO_PRINT("‚¢‚Ü‚©‚¹‚«‚Ù‚Á‚Ä‚Ü‚· \n");
+            OHNO_PRINT("ã„ã¾ã‹ã›ãã»ã£ã¦ã¾ã™ \n");
             return TRUE;
         }
     }
@@ -4307,7 +4307,7 @@ BOOL UgDigFossilIsNow(void)
 
 //==============================================================================
 /**
- * ¡‰»Î‚ğŒ@‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚© ƒT[ƒo[ó‘Ô‚Æ‚µ‚Ä•Û‘¶
+ * ä»ŠåŒ–çŸ³ã‚’æ˜ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ ã‚µãƒ¼ãƒãƒ¼çŠ¶æ…‹ã¨ã—ã¦ä¿å­˜
  * @param   netID  ID
  * @retval  none
  */

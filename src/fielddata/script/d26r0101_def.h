@@ -1,7 +1,7 @@
 #ifndef _D26R0101_DEF_H_
 #define _D26R0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D26R0101_FLAG_CHANGE		(1)
 #define	SCRID_D26R0101_GINGAW		(2)
 #define	SCRID_D26R0101_GINGAM1		(3)
@@ -10,6 +10,6 @@
 #define	SCRID_D26R0101_DOOR		(6)
 #define	SCRID_D26R0101_PAPER1		(7)
 #define	SCRID_D26R0101_GKANBU		(8)
-#define	SCRID_D26R0101_DATA_MAX		(8)		//最大数
+#define	SCRID_D26R0101_DATA_MAX		(8)		//譛螟ｧ謨ｰ
 
 #endif //_D26R0101_DEF_H_

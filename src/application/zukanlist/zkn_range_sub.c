@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_range_sub.c
- *	@brief		•ª•z}ƒTƒu‰æ–Ê
+ *	@brief		åˆ†å¸ƒå›³ã‚µãƒ–ç”»é¢
  *	@author		tomoya takahashi 
  *	@data		2006.01.21
  *
@@ -35,27 +35,27 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
-#define ZKN_RANGE_SUB_EVENT_NUM ( 0 )	// ƒCƒxƒ“ƒg”
+#define ZKN_RANGE_SUB_EVENT_NUM ( 0 )	// ã‚¤ãƒ™ãƒ³ãƒˆæ•°
 
 #define ZKN_RANGE_SUB_OAM_BG_PRI	( 1 )
 #define ZKN_RANGE_SUB_OAM_SOFT_PRI	( 31 )
@@ -74,22 +74,22 @@ enum{
 	ZKN_RANGESUB_SEQDELETE_END,
 };
 
-// ƒ{ƒ^ƒ“
+// ãƒœã‚¿ãƒ³
 enum{
 	ZKN_RANGESUB_BUTTON_CURSOR,
 	ZKN_RANGESUB_BUTTON_NUM,
 };
 
 
-// ŠÔƒe[ƒuƒ‹
+// æ™‚é–“ãƒ†ãƒ¼ãƒ–ãƒ«
 #define ZKN_RANGE_SUB_TIME_LIMIT	( 85 )
 
-//BGƒpƒŒƒbƒgƒtƒF[ƒh
+//BGãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 #define ZKN_RANGE_SUB_TIMEPLTT_LIMIT	( 51 )
 #define ZKN_RANGE_SUB_PLTT_NUM			( 5 )
 #define ZKN_RANGE_SUB_PLTT_NO			( 2 )
 
-// ƒpƒŒƒbƒgƒAƒjƒ
+// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 #define ZKN_RANGE_SUB_PLTT_ANM_WAIT	( 0 )
 enum{
 	ZKN_RANGESUB_PLTTANM_SEQ_NOW_PLTT_0,
@@ -100,7 +100,7 @@ enum{
 };
 	
 
-// ƒJ[ƒ\ƒ‹ˆÊ’u
+// ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 #define ZKN_RANGE_SUB_CURSOR_MORNING_X	( 32 )
 #define ZKN_RANGE_SUB_CURSOR_MORNING_Y	( 128 )
 #define ZKN_RANGE_SUB_CURSOR_NOON_X		( 128 )
@@ -114,42 +114,42 @@ enum{
 #define ZKN_RANGE_SUB_CURSOR_LIMIT_Y	( 64 )
 #define ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX	( 132 )
 #define ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_DIS	( 48 )
-#define ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_SUB_X	( 40 )	// —¼’[‚©‚çŒ¸‚ç‚·XÀ•W’l
-#define ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_SUB_X_CALC_DIS	( 256 - (ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_SUB_X * 2) )	// —¼’[‚©‚çŒ¸‚ç‚·XÀ•W’l‚ğ‚Ö‚ç‚µ‚½‰¡size
+#define ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_SUB_X	( 40 )	// ä¸¡ç«¯ã‹ã‚‰æ¸›ã‚‰ã™Xåº§æ¨™å€¤
+#define ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_SUB_X_CALC_DIS	( 256 - (ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_SUB_X * 2) )	// ä¸¡ç«¯ã‹ã‚‰æ¸›ã‚‰ã™Xåº§æ¨™å€¤ã‚’ã¸ã‚‰ã—ãŸæ¨ªsize
 #define ZKN_RANGE_SUB_CURSOR_MARK_SIZE_X		( 32 )
 #define ZKN_RANGE_SUB_CURSOR_MARK_SIZE_Y		( 32 )
 
 
-// ƒtƒF[ƒh
+// ãƒ•ã‚§ãƒ¼ãƒ‰
 #define ZKN_RANGESUB_FADE_PLANEMSK	( GX_BLEND_PLANEMASK_BG2|GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_BD )
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	•ª•z}ƒTƒu‰æ–Ê‰æ–Ê@ƒOƒ[ƒoƒ‹•Ï”
+//	åˆ†å¸ƒå›³ã‚µãƒ–ç”»é¢ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
-	// •ª•z}ƒTƒuƒAƒvƒŠƒf[ƒ^
+	// åˆ†å¸ƒå›³ã‚µãƒ–ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 	ZKN_APL_DATA* p_range_apl;
 
 	ZKN_GLB_DATA* p_glb;
 	
-	// }ŠÓƒRƒ‚ƒ“ƒTƒuƒAƒvƒŠƒf[ƒ^
+	// å›³é‘‘ã‚³ãƒ¢ãƒ³ã‚µãƒ–ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 	ZKN_APL_DATA* p_zukan_common_apl;
 } ZKN_RANGE_SUB_GLB;
 
 //-------------------------------------
-//	•ª•z}ƒTƒu‰æ–Ê‰æ–Ê@•`‰æƒOƒ[ƒoƒ‹•Ï”
+//	åˆ†å¸ƒå›³ã‚µãƒ–ç”»é¢ç”»é¢ã€€æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //=====================================
 typedef struct {
 	ZKN_GLB_DRAWDATA* p_drawglb;
 } ZKN_RANGE_SUB_DRAWGLB;
 
 //-------------------------------------
-//	ƒ{ƒ^ƒ“ƒR[ƒ‹ƒoƒbƒN—pƒ[ƒN
+//	ãƒœã‚¿ãƒ³ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	void* p_glb;
@@ -158,17 +158,17 @@ typedef struct {
 
 
 //-------------------------------------
-//	•ª•z}ƒTƒu‰æ–Ê‰æ–Ê@“à•”ƒ[ƒN
+//	åˆ†å¸ƒå›³ã‚µãƒ–ç”»é¢ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	// ƒ^ƒbƒ`À•W
+	// ã‚¿ãƒƒãƒåº§æ¨™
 	int x;
 	int y;
-	int ofs_x;	// —}‚¦‚ç‚ê‚½‚Æ‚«‚Ì’†S‚©‚ç‚Ì—£‚ê‚½À•W
+	int ofs_x;	// æŠ‘ãˆã‚‰ã‚ŒãŸã¨ãã®ä¸­å¿ƒã‹ã‚‰ã®é›¢ã‚ŒãŸåº§æ¨™
 	int ofs_y;
 
 	BUTTON_MAN* p_button_man;
-	TP_HIT_TBL *hit_tbl;	// ƒ{ƒ^ƒ“ƒf[ƒ^
+	TP_HIT_TBL *hit_tbl;	// ãƒœã‚¿ãƒ³ãƒ‡ãƒ¼ã‚¿
 	ZKN_RANGE_SUB_CALLBACK_WORK button_work;
 	int touch;
 
@@ -177,10 +177,10 @@ typedef struct {
 } ZKN_RANGE_SUB_WORK;
 
 //-------------------------------------
-//	•ª•z}ƒTƒu‰æ–Ê‰æ–Ê@“à•”ƒ[ƒN
+//	åˆ†å¸ƒå›³ã‚µãƒ–ç”»é¢ç”»é¢ã€€å†…éƒ¨ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	CLACT_WORK_PTR cursor;	// ƒJ[ƒ\ƒ‹
+	CLACT_WORK_PTR cursor;	// ã‚«ãƒ¼ã‚½ãƒ«
 	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];
 
 	void* pltt_buff;
@@ -193,12 +193,12 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^ì¬ŠÖŒW
+ *		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ä½œæˆé–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static ZKN_RANGE_SUB_GLB* MakeRangeSubGlb( int heap, ZKN_SYS_PTR zkn_sys );
@@ -214,7 +214,7 @@ static int RangeSubEventDataNumGet( void );
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 static int ZknRangeSubProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdata );
@@ -224,13 +224,13 @@ static int ZknRangeSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 static int ZknRangeSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 static int ZknRangeSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_drawdata, const void* cp_glbdata, const ZKN_PROC_DO_DATA* cp_dodata );
 
-// ƒtƒF[ƒhˆ—
+// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 static void ZknRangeSubOamFadeInit( ZKN_RANGE_SUB_DRAW* p_draw );
 static void ZknRangeSubOamFadeDelete( ZKN_RANGE_SUB_DRAW* p_draw );
 static void ZknRangeSubFadeInit( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWGLB* p_drawglb, const ZKN_RANGE_SUB_GLB* cp_glb, BOOL fadein_out );
 static BOOL ZknRangeSubFadeMain( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWGLB* p_drawglb, const ZKN_RANGE_SUB_GLB* cp_glb, BOOL fadein_out );
 
-// ƒ{ƒ^ƒ“§Œä
+// ãƒœã‚¿ãƒ³åˆ¶å¾¡
 static void ZknRangeSubCursorInit( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB* p_glb, int heap );
 
 static void ZknRangeSubCursorMain( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB* p_glb );
@@ -239,13 +239,13 @@ static void ZknRangeSubCursorDelete( ZKN_RANGE_SUB_WORK* p_work );
 static void ZknRangeSubCursorMove( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB* p_glb );
 static void ZknRangeSubCursorDefMatSet( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB* p_glb );
 
-// ƒL[‚É‚æ‚éƒJ[ƒ\ƒ‹‘€ì
+// ã‚­ãƒ¼ã«ã‚ˆã‚‹ã‚«ãƒ¼ã‚½ãƒ«æ“ä½œ
 static void ZknRangeSubCursorMoveKey( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB* p_glb );
 
 static void ZknRangeSubCursorMoveKey_CorsorDrawSet( ZKN_RANGE_SUB_DRAWGLB* p_drawglb, const ZKN_RANGE_SUB_WORK* cp_work, const ZKN_RANGE_SUB_GLB* cp_glb );
 
 
-// “Ç‚İ‚İˆ—
+// èª­ã¿è¾¼ã¿å‡¦ç†
 static void ZknRangeSubLoadResource( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWGLB* p_drawglb, int heap );
 static void ZknRangeSubReleaseResource( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWGLB* p_drawglb, int heap );
 static void ZknRangeSubSetUpBg( ZKN_RANGE_SUB_DRAWGLB* p_drawglb, int heap );
@@ -254,22 +254,22 @@ static void ZknRangeSubReleaseOamData( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB
 static void ZknRangeSubAddClact( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWGLB* p_drawglb, int heap );
 static void ZknRangeSubDeleteClact( ZKN_RANGE_SUB_DRAW* p_draw );
 
-// CURSOR•`‰æ§Œä
+// CURSORæç”»åˆ¶å¾¡
 static void ZknRangeSubCursorDraw( ZKN_RANGE_SUB_DRAW* p_draw, const ZKN_RANGE_SUB_GLB* cp_glb, const ZKN_RANGE_SUB_WORK* cp_work );
 
 static int ZknRangeSubCursorMoveMaxDisGet( int x );
 
-// BGƒpƒŒƒbƒg§Œä
+// BGãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶å¾¡
 static void ZknRangeSubBgPlttDraw( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWGLB* p_drawglb, const ZKN_RANGE_SUB_GLB* cp_glb, int heap );
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}ƒTƒu‰æ–Ê@ƒAƒvƒŠì¬
+ *	@brief	åˆ†å¸ƒå›³ã‚µãƒ–ç”»é¢ã€€ã‚¢ãƒ—ãƒªä½œæˆ
  *
- *	@param	p_data		ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
- *	@param	heap		g—pƒq[ƒv
+ *	@param	p_data		ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heap		ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  *
@@ -302,9 +302,9 @@ void ZKN_RangeSubAplMake( ZKN_APL_DATA* p_data, ZKN_SYS_PTR zkn_sys, int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg	ƒTƒu‰æ–Ê@ƒƒjƒ…[ƒAƒvƒŠ”jŠü
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆ	ã‚µãƒ–ç”»é¢ã€€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¢ãƒ—ãƒªç ´æ£„
  *
- *	@param	p_data	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒf[ƒ^
+ *	@param	p_data	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -322,18 +322,18 @@ void ZKN_RangeSubAplDelete( ZKN_APL_DATA* p_data )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *		ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}ƒTƒu‰æ–Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^ì¬
+ *	@brief	åˆ†å¸ƒå›³ã‚µãƒ–ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@return	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *
  */
@@ -346,13 +346,13 @@ static ZKN_RANGE_SUB_GLB* MakeRangeSubGlb( int heap, ZKN_SYS_PTR zkn_sys )
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_RANGE_SUB_GLB) );
 
-	// •ª•z}ƒAƒvƒŠƒf[ƒ^
+	// åˆ†å¸ƒå›³ã‚¢ãƒ—ãƒªãƒ‡ãƒ¼ã‚¿
 	p_glb->p_range_apl = ZKN_GetAplDataMain( zkn_sys, ZKN_SYS_APLMAIN_RANGE );
 
-	// }ŠÓƒTƒuƒRƒ‚ƒ“ƒf[ƒ^
+	// å›³é‘‘ã‚µãƒ–ã‚³ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_zukan_common_apl = ZKN_GetAplDataSub( zkn_sys, ZKN_SYS_APLSUB_ZUKAN_COMMON );
 
-	// ƒOƒ[ƒoƒ‹ƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_glb = ZKN_SYS_GetGlbData( zkn_sys );
 
 	return p_glb;
@@ -360,10 +360,10 @@ static ZKN_RANGE_SUB_GLB* MakeRangeSubGlb( int heap, ZKN_SYS_PTR zkn_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•`‰æƒOƒ[ƒoƒ‹
+ *	@brief	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
- *	@param	heap		ƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
  *	@return	none
  */
@@ -376,7 +376,7 @@ static ZKN_RANGE_SUB_DRAWGLB* MakeRangeSubDrawGlb( int heap, ZKN_SYS_PTR zkn_sys
 	GF_ASSERT( p_glb );
 	memset( p_glb, 0, sizeof(ZKN_RANGE_SUB_DRAWGLB) );
 
-	// •`‰æƒf[ƒ^
+	// æç”»ãƒ‡ãƒ¼ã‚¿
 	p_glb->p_drawglb = ZKN_SYS_GetGlbDrawData( zkn_sys );
 
 
@@ -386,27 +386,27 @@ static ZKN_RANGE_SUB_DRAWGLB* MakeRangeSubDrawGlb( int heap, ZKN_SYS_PTR zkn_sys
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}ƒTƒu‰æ–Ê@ƒCƒxƒ“ƒgì¬
+ *	@brief	åˆ†å¸ƒå›³ã‚µãƒ–ç”»é¢ã€€ã‚¤ãƒ™ãƒ³ãƒˆä½œæˆ
  *
- *	@param	heap		g—p‚·‚éƒq[ƒv
- *	@param	zkn_sys		}ŠÓƒVƒXƒeƒ€
+ *	@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
+ *	@param	zkn_sys		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *
- *	@return	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@return	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *
  */
 //-----------------------------------------------------------------------------
 static ZKN_EVENT_DATA* MakeRangeSubEvent( int heap, ZKN_SYS_PTR zkn_sys )
 {
-	return NULL;	// ¡‚Í‚È‚µ
+	return NULL;	// ä»Šã¯ãªã—
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}ƒTƒu‰æ–Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	åˆ†å¸ƒå›³ã‚µãƒ–ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -422,9 +422,9 @@ static void DeleteRangeSubGlb( ZKN_RANGE_SUB_GLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}ƒTƒu‰æ–Ê@ƒOƒ[ƒoƒ‹ƒf[ƒ^”jŠü
+ *	@brief	åˆ†å¸ƒå›³ã‚µãƒ–ç”»é¢ã€€ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -440,9 +440,9 @@ static void DeleteRangeSubDrawGlb( ZKN_RANGE_SUB_DRAWGLB* p_glb )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}ƒTƒu‰æ–Ê@ƒCƒxƒ“ƒgƒf[ƒ^”jŠü
+ *	@brief	åˆ†å¸ƒå›³ã‚µãƒ–ç”»é¢ã€€ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_event	ƒCƒxƒ“ƒgƒf[ƒ^
+ *	@param	p_event	ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  *
@@ -451,17 +451,17 @@ static void DeleteRangeSubDrawGlb( ZKN_RANGE_SUB_DRAWGLB* p_glb )
 //-----------------------------------------------------------------------------
 static void DeleteRangeSubEvent( ZKN_EVENT_DATA* p_event )
 {
-	// ¡‚Í‚È‚µ
+	// ä»Šã¯ãªã—
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	•ª•z}ƒTƒu‰æ–ÊƒAƒvƒŠ@ƒCƒxƒ“ƒg”æ“¾
+ *	@brief	åˆ†å¸ƒå›³ã‚µãƒ–ç”»é¢ã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°å–å¾—
  *	
  *	@param	none	
  *
- *	@return	•ª•z}ƒTƒu‰æ–ÊƒAƒvƒŠ@ƒCƒxƒ“ƒg”
+ *	@return	åˆ†å¸ƒå›³ã‚µãƒ–ç”»é¢ã‚¢ãƒ—ãƒªã€€ã‚¤ãƒ™ãƒ³ãƒˆæ•°
  *
  *
  */
@@ -474,19 +474,19 @@ static int RangeSubEventDataNumGet( void )
 
 //-----------------------------------------------------------------------------
 /**
- *		ƒvƒƒZƒXŠÖŒW
+ *		ãƒ—ãƒ­ã‚»ã‚¹é–¢ä¿‚
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	[‰Šú‰»]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[åˆæœŸåŒ–]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -496,17 +496,17 @@ static int ZknRangeSubProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 	ZKN_RANGE_SUB_GLB* p_glb = p_glbdata;
 	ZKN_RANGE_SUB_WORK* p_work;
 
-	// ƒƒ‚ƒŠŠm•Û
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	p_work = sys_AllocMemory( p_dodata->heap, sizeof(ZKN_RANGE_SUB_WORK) );
 	GF_ASSERT( p_work );
 	memset( p_work, 0, sizeof(ZKN_RANGE_SUB_WORK) );
 	p_dodata->p_work = p_work;
 
-	// CURSORƒfƒtƒHˆÊ’uİ’è
+	// CURSORãƒ‡ãƒ•ã‚©ä½ç½®è¨­å®š
 	ZknRangeSubCursorDefMatSet( p_work, p_glb );
 
-	// ƒ{ƒ^ƒ“ì¬
-	// CURSORƒfƒtƒHˆÊ’uİ’è‚ÌŒã‚Ì•K—v‚ ‚è
+	// ãƒœã‚¿ãƒ³ä½œæˆ
+	// CURSORãƒ‡ãƒ•ã‚©ä½ç½®è¨­å®šã®å¾Œã®å¿…è¦ã‚ã‚Š
 	ZknRangeSubCursorInit( p_work, p_glb, p_dodata->heap );
 	
 	return ZKN_PROC_TRUE;
@@ -515,14 +515,14 @@ static int ZknRangeSubProcDoFuncInit( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 
 //----------------------------------------------------------------------------
 /**
- *	[ƒƒCƒ“]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ãƒ¡ã‚¤ãƒ³]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -532,7 +532,7 @@ static int ZknRangeSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 	ZKN_RANGE_SUB_GLB* p_glb = p_glbdata;
 	ZKN_RANGE_SUB_WORK* p_work = p_dodata->p_work;
 
-	// I—¹‚Ö
+	// çµ‚äº†ã¸
 	if( p_dodata->end_req == TRUE ){
 		return ZKN_PROC_TRUE;
 	}
@@ -542,9 +542,9 @@ static int ZknRangeSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 		return ZKN_PROC_FALSE;
 	}
 
-	// “®ìƒ`ƒFƒbƒN
+	// å‹•ä½œãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonSubMoveFlagGet( p_glb->p_zukan_common_apl ) ){
-		// CURSOR“®ì
+		// CURSORå‹•ä½œ
 		ZknRangeSubCursorMain( p_work, p_glb );	
 	}
 
@@ -553,14 +553,14 @@ static int ZknRangeSubProcDoFuncMain( ZKN_PROC_DO_DATA* p_dodata, void* p_glbdat
 
 //----------------------------------------------------------------------------
 /**
- *	[”jŠü]
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	ƒf[ƒ^•ÏX
+ *	[ç ´æ£„]
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	ãƒ‡ãƒ¼ã‚¿å¤‰æ›´
  *
  *	@param	p_dodata	ZKN_PROC_DO_DATA
- *	@param	p_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
+ *	@param	p_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -571,7 +571,7 @@ static int ZknRangeSubProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbd
 	ZKN_RANGE_SUB_WORK* p_work = p_dodata->p_work;
 
 
-	// ƒ{ƒ^ƒ“”jŠü
+	// ãƒœã‚¿ãƒ³ç ´æ£„
 	ZknRangeSubCursorDelete( p_work );
 	
 	sys_FreeMemoryEz( p_work );
@@ -582,17 +582,17 @@ static int ZknRangeSubProcDoFuncDelete( ZKN_PROC_DO_DATA* p_dodata, void* p_glbd
 
 //----------------------------------------------------------------------------
 /**
- * [‰Šú‰»]
+ * [åˆæœŸåŒ–]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -613,20 +613,20 @@ static int ZknRangeSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 		break;
 		
 	case ZKN_RANGESUB_SEQINIT_LOAD:
-		// Resource“Ç‚İ‚İ
+		// Resourceèª­ã¿è¾¼ã¿
 		ZknRangeSubLoadResource( p_drawwork, p_drawglb, p_drawdata->heap );
-		// À•Wİ’è
+		// åº§æ¨™è¨­å®š
 		ZknRangeSubCursorDraw( p_drawwork, cp_dataglb, cp_datawork );
 		ZknRangeSubBgPlttDraw( p_drawwork, p_drawglb, cp_dataglb, p_drawdata->heap );
 
-		// ƒtƒF[ƒhˆ—
+		// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 		ZknRangeSubFadeInit( p_drawwork, p_drawglb, cp_dataglb, TRUE );
 		
 		p_drawdata->seq++;
 		break;
 		
 	case ZKN_RANGESUB_SEQINIT_FADEIN:
-		// ƒAƒjƒ‚·‚é‚Ì‚Å‚¸‚Á‚ÆŒÄ‚Ô
+		// ã‚¢ãƒ‹ãƒ¡ã™ã‚‹ã®ã§ãšã£ã¨å‘¼ã¶
 		ZknRangeSubBgPlttDraw( p_drawwork, p_drawglb, cp_dataglb, p_drawdata->heap );
 
 
@@ -636,10 +636,10 @@ static int ZknRangeSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 		break;
 		
 	case ZKN_RANGESUB_SEQINIT_END:
-		// ƒAƒjƒ‚·‚é‚Ì‚Å‚¸‚Á‚ÆŒÄ‚Ô
+		// ã‚¢ãƒ‹ãƒ¡ã™ã‚‹ã®ã§ãšã£ã¨å‘¼ã¶
 		ZknRangeSubBgPlttDraw( p_drawwork, p_drawglb, cp_dataglb, p_drawdata->heap );
 
-		// ƒJ[ƒ\ƒ‹ƒAƒjƒŠJn
+		// ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒ‹ãƒ¡é–‹å§‹
 		ZKN_UTIL_CursorSetAnimeStopFlag( &p_drawglb->p_drawglb->cursor, FALSE );
 		return ZKN_PROC_TRUE;
 		
@@ -651,17 +651,17 @@ static int ZknRangeSubProcDrawFuncInit( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 
 //----------------------------------------------------------------------------
 /**
- * [ƒƒCƒ“]
+ * [ãƒ¡ã‚¤ãƒ³]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -673,13 +673,13 @@ static int ZknRangeSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 	ZKN_RANGE_SUB_DRAWGLB*	p_drawglb = p_glbdraw;
 	ZKN_RANGE_SUB_DRAW*		p_drawwork = p_drawdata->p_work;
 
-	// CURSOR“®ì
+	// CURSORå‹•ä½œ
 	ZknRangeSubCursorDraw( p_drawwork, cp_dataglb, cp_datawork );
 
-	// ƒJ[ƒ\ƒ‹MARK•`‰æ
+	// ã‚«ãƒ¼ã‚½ãƒ«MARKæç”»
 	ZknRangeSubCursorMoveKey_CorsorDrawSet( p_drawglb, cp_datawork, cp_dataglb );
 
-	// ƒpƒŒƒbƒgƒtƒF[ƒh
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 	ZknRangeSubBgPlttDraw( p_drawwork, p_drawglb, cp_dataglb, p_drawdata->heap );
 
 	return ZKN_PROC_FALSE;
@@ -687,17 +687,17 @@ static int ZknRangeSubProcDrawFuncMain( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p_d
 
 //----------------------------------------------------------------------------
 /**
- * [”jŠü]
+ * [ç ´æ£„]
  *
- *	@brief	ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒvƒƒZƒX	•`‰æ
+ *	@brief	ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ—ãƒ­ã‚»ã‚¹	æç”»
  *
- *	@param	p_glbdraw	•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_glbdraw	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@param	p_drawdata	ZKN_PROC_DRAW_DATA
- *	@param	cp_glbdata	ŠÇ—Ò‚©‚çó‚¯æ‚éƒf[ƒ^@i•Û‘¶‚µ‚Ä‚¨‚«‚½‚¢ƒf[ƒ^j
- *	@param	cp_dodata	¡‚Ìˆ—‚Ì“à•”ƒ[ƒNƒf[ƒ^
+ *	@param	cp_glbdata	ç®¡ç†è€…ã‹ã‚‰å—ã‘å–ã‚‹ãƒ‡ãƒ¼ã‚¿ã€€ï¼ˆä¿å­˜ã—ã¦ãŠããŸã„ãƒ‡ãƒ¼ã‚¿ï¼‰
+ *	@param	cp_dodata	ä»Šã®å‡¦ç†ã®å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
  *
- *	@retval	ZKN_PROC_TRUE		Ÿ‚Ìˆ—‚Öi‚İ‚Ü‚·B
- *	@retval	ZKN_PROC_FALSE		‚Ü‚¾i‚İ‚Ü‚¹‚ñB
+ *	@retval	ZKN_PROC_TRUE		æ¬¡ã®å‡¦ç†ã¸é€²ã¿ã¾ã™ã€‚
+ *	@retval	ZKN_PROC_FALSE		ã¾ã é€²ã¿ã¾ã›ã‚“ã€‚
  *
  *
  */
@@ -712,10 +712,10 @@ static int ZknRangeSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 	switch( p_drawdata->seq ){
 	case ZKN_RANGESUB_SEQDELETE_FADEOUT_INIT:
 
-		// ƒJ[ƒ\ƒ‹ƒAƒjƒ’â~
+		// ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒ‹ãƒ¡åœæ­¢
 		ZKN_UTIL_CursorSetAnimeStopFlag( &p_drawglb->p_drawglb->cursor, TRUE );
 		
-		// ƒtƒF[ƒhˆ—
+		// ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
 		ZknRangeSubFadeInit( p_drawwork, p_drawglb, cp_dataglb, FALSE );
 		p_drawdata->seq++;
 		break;
@@ -727,7 +727,7 @@ static int ZknRangeSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 		break;
 
 	case ZKN_RANGESUB_SEQDELETE_RELEASE:
-		// Resource“Ç‚İ‚İ
+		// Resourceèª­ã¿è¾¼ã¿
 		ZknRangeSubReleaseResource( p_drawwork, p_drawglb, p_drawdata->heap );
 		p_drawdata->seq++;
 		break;
@@ -751,9 +751,9 @@ static int ZknRangeSubProcDrawFuncDelete( void* p_glbdraw, ZKN_PROC_DRAW_DATA* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒhˆ—	‰Šú‰»
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†	åˆæœŸåŒ–
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -765,7 +765,7 @@ static void ZknRangeSubOamFadeInit( ZKN_RANGE_SUB_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒtƒF[ƒhˆ—@Œãˆ—
+ *	@brief	OAMãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ã€€å¾Œå‡¦ç†
  *
  *	@param	p_draw 
  *
@@ -779,29 +779,29 @@ static void ZknRangeSubOamFadeDelete( ZKN_RANGE_SUB_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒu‰æ–ÊƒtƒF[ƒhˆ—
+ *	@brief	ã‚µãƒ–ç”»é¢ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“@TRUE@ƒAƒEƒg FALSE	
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€TRUEã€€ã‚¢ã‚¦ãƒˆ FALSE	
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeSubFadeInit( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWGLB* p_drawglb, const ZKN_RANGE_SUB_GLB* cp_glb, BOOL fadein_out )
 {
-	// ”¼“§–¾OAMİ’è
+	// åŠé€æ˜OAMè¨­å®š
 	ZknRangeSubOamFadeInit( p_draw );
 
-	// ƒuƒ‰ƒCƒgƒlƒXˆ—‚ğs‚Á‚Ä‚æ‚¢‚©
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹å‡¦ç†ã‚’è¡Œã£ã¦ã‚ˆã„ã‹
 	if( ZKN_ZukanCommonSubBrightnessOnFlagGet( cp_glb->p_zukan_common_apl ) ){
 		if( fadein_out ){
-			// ƒtƒF[ƒhƒCƒ“
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade_sub, ZKN_FADE_SYNC_COMMON,
 					BRIGHTNESS_BLACK, BRIGHTNESS_NORMAL, 0, 16, ZKN_RANGESUB_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_SUB );
 		}else{
-			// ƒtƒF[ƒhƒAƒEƒg
+			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 			ZKN_GLB_ChangeFadeRequest( &p_drawglb->p_drawglb->fade_sub, ZKN_FADE_SYNC_COMMON,
 					BRIGHTNESS_NORMAL, BRIGHTNESS_BLACK, 16, 0, ZKN_RANGESUB_FADE_PLANEMSK, ZKN_BRIGHTNESS_MSK_PLANE2DEF, ZKN_UTIL_FADE_SUB );
 		}
@@ -810,22 +810,22 @@ static void ZknRangeSubFadeInit( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWG
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒtƒF[ƒhˆ—@ƒƒCƒ“
+ *	@brief	ãƒ•ã‚§ãƒ¼ãƒ‰å‡¦ç†ã€€ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹
- *	@param	fadein_out	ƒtƒF[ƒhƒCƒ“@TRUE@ƒAƒEƒg@FALSE
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	fadein_out	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€€TRUEã€€ã‚¢ã‚¦ãƒˆã€€FALSE
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL ZknRangeSubFadeMain( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWGLB* p_drawglb, const ZKN_RANGE_SUB_GLB* cp_glb, BOOL fadein_out )
 {
 	BOOL check;
 
-	// ƒuƒ‰ƒCƒgƒlƒX‚µ‚æ‚¤‹–‰Â‚Å‚Ä‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹ã—ã‚ˆã†è¨±å¯ã§ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonSubBrightnessOnFlagGet( cp_glb->p_zukan_common_apl ) ){
 		check = ZKN_GLB_ChangeFadeMain( &p_drawglb->p_drawglb->fade_sub );
 	}else{
@@ -833,10 +833,10 @@ static BOOL ZknRangeSubFadeMain( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWG
 		check = IsFinishedBrightnessChg( MASK_SUB_DISPLAY );
 	}
 
-	// I‚í‚Á‚½‚çI—¹ˆ—
+	// çµ‚ã‚ã£ãŸã‚‰çµ‚äº†å‡¦ç†
 	if( check ){
 		if( fadein_out ){
-			// ”¼“§–¾OAM”jŠü
+			// åŠé€æ˜OAMç ´æ£„
 			ZknRangeSubOamFadeDelete( p_draw );
 		}
 
@@ -849,24 +849,24 @@ static BOOL ZknRangeSubFadeMain( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWG
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»ˆ—
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeSubLoadResource( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWGLB* p_drawglb, int heap )
 {
-	// ”wŒi
+	// èƒŒæ™¯
 	ZknRangeSubSetUpBg( p_drawglb, heap );
 
 	// OAM
 	ZknRangeSubLoadOamData( p_draw, p_drawglb, heap );
 
-	// ƒZƒ‹ƒAƒNƒ^[“o˜^
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	ZknRangeSubAddClact( p_draw, p_drawglb, heap );
 
 
@@ -874,18 +874,18 @@ static void ZknRangeSubLoadResource( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_D
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒOƒ‰ƒtƒBƒbƒN”jŠüˆ—
+ *	@brief	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„å‡¦ç†
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeSubReleaseResource( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWGLB* p_drawglb, int heap )
 {
-	// ƒZƒ‹ƒAƒNƒ^[”jŠü
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
 	ZknRangeSubDeleteClact( p_draw );
 
 	// OAM
@@ -894,10 +894,10 @@ static void ZknRangeSubReleaseResource( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SU
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BG–ÊƒZƒbƒgƒAƒbƒv
+ *	@brief	BGé¢ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -907,30 +907,30 @@ static void ZknRangeSubSetUpBg( ZKN_RANGE_SUB_DRAWGLB* p_drawglb, int heap )
 	void* buff;
 	NNSG2dScreenData* p_scrn;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“]‘—
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿è»¢é€
 	ZKN_GLBDATA_BgCharSet( p_drawglb->p_drawglb, NARC_zukan_zkn_data_sub_lzh_NCGR, p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_S, 0, 0, TRUE, heap );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	buff = ZKN_GLBDATA_ScrnDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_map_bg_sub_lzh_NSCR, TRUE, &p_scrn, heap );
 	
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
 	GF_BGL_ScrWrite( p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_S,
 			p_scrn->rawData, 0, 0,
 			p_scrn->screenWidth / 8, p_scrn->screenHeight / 8 );
 
 	sys_FreeMemoryEz( buff );
 
-	// ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—
+	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€
 	GF_BGL_LoadScreenV_Req(p_drawglb->p_drawglb->p_bg, ZKN_BG_FRM_BACK_S );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒŠƒ\[ƒX“Ç‚İ‚İ
+ *	@brief	OAMãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -940,25 +940,25 @@ static void ZknRangeSubLoadOamData( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DR
 	ZKN_GLB_DRAWDATA* p_draw_glb = p_drawglb->p_drawglb;
 	ARCHANDLE* p_handle = ZKN_GLBDATA_ArcHandlGet( p_drawglb->p_drawglb );
 	
-	// ƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CHAR_RES ] = CLACT_U_ResManagerResAddArcChar_ArcHandle( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_sub4_lzh_NCGR, TRUE,
 			NARC_zukan_zkn_data_oam_sub4_lzh_NCGR + ZKN_RANGE_RES_ID,
 			NNS_G2D_VRAM_TYPE_2DSUB, heap );
-	// “]‘—
+	// è»¢é€
 	CLACT_U_CharManagerSetAreaCont( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚¾‚¯”jŠü
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã ã‘ç ´æ£„
 	CLACT_U_ResManagerResOnlyDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒZƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELL_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELL_RES ], p_handle,
 			NARC_zukan_zkn_data_oam_sub4_lzh_NCER, TRUE,
 			NARC_zukan_zkn_data_oam_sub4_lzh_NCER + ZKN_RANGE_RES_ID,
 			CLACT_U_CELL_RES, heap );
 
-	// ƒZƒ‹ƒAƒjƒƒf[ƒ^“Ç‚İ‚İ
+	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_draw->res_obj[ CLACT_U_CELLANM_RES ] = CLACT_U_ResManagerResAddArcKindCell_ArcHandle(
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ], p_handle, 
 			NARC_zukan_zkn_data_oam_sub4_lzh_NANR, TRUE,
@@ -968,10 +968,10 @@ static void ZknRangeSubLoadOamData( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DR
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAMƒŠƒ\[ƒX”jŠü
+ *	@brief	OAMãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
  *
- *	@param	p_draw			•`‰æƒ[ƒN
- *	@param	p_drawglb		•`‰æƒOƒ[ƒoƒ‹
+ *	@param	p_draw			æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb		æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -983,7 +983,7 @@ static void ZknRangeSubReleaseOamData( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB
 
 	CLACT_U_CharManagerDelete( p_draw->res_obj[ CLACT_U_CHAR_RES ] );
 
-	// ƒŠƒ\[ƒX”jŠü
+	// ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 	CLACT_U_ResManagerResDelete( 
 			p_draw_glb->res_manager[ CLACT_U_CHAR_RES ],
 			p_draw->res_obj[ CLACT_U_CHAR_RES ] );
@@ -997,11 +997,11 @@ static void ZknRangeSubReleaseOamData( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[“o˜^
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	p_drawglb	•`‰æƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_drawglb	æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1012,7 +1012,7 @@ static void ZknRangeSubAddClact( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWG
 	CLACT_ADD_SIMPLE	add;
 	ZKN_GLB_DRAWDATA*	p_draw_glb = p_drawglb->p_drawglb;
 	
-	// ƒAƒNƒ^[ƒwƒbƒ_[ì¬
+	// ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒ¼ä½œæˆ
 	CLACT_U_MakeHeader( &clact_head,
 			NARC_zukan_zkn_data_oam_sub4_lzh_NCGR + ZKN_RANGE_RES_ID,
 			NARC_zukan_zkn_data_oam_sub_NCLR + ZKN_ZUKAN_COMMON_SUB_RES_ID_OFS, 
@@ -1025,7 +1025,7 @@ static void ZknRangeSubAddClact( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWG
 			p_draw_glb->res_manager[ CLACT_U_CELLANM_RES ],
 			NULL, NULL );
 
-	// “o˜^‹¤’Ê•”•ª‚ğİ’è
+	// ç™»éŒ²å…±é€šéƒ¨åˆ†ã‚’è¨­å®š
 	add.ClActSet	= p_draw_glb->clact_set;
 	add.ClActHeader = &clact_head;
 	add.pri			= ZKN_RANGE_SUB_OAM_SOFT_PRI;
@@ -1043,9 +1043,9 @@ static void ZknRangeSubAddClact( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRAWG
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒZƒ‹ƒAƒNƒ^[”jŠü
+ *	@brief	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ç ´æ£„
  *
- *	@param	p_draw	•`‰æƒ[ƒN
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1057,21 +1057,21 @@ static void ZknRangeSubDeleteClact( ZKN_RANGE_SUB_DRAW* p_draw )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CURSOR—pƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒì¬
+ *	@brief	CURSORç”¨ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	p_glb		ƒOƒ[ƒoƒ‹
- *	@param	heap		ƒq[ƒv
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
+ *	@param	heap		ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeSubCursorInit( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB* p_glb, int heap )
 {
-	// ƒe[ƒuƒ‹ì¬
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	p_work->hit_tbl = sys_AllocMemory( heap, sizeof(TP_HIT_TBL) * ZKN_RANGESUB_BUTTON_NUM );
 
-	// ƒe[ƒuƒ‹ƒf[ƒ^İ’è
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	p_work->hit_tbl[ 0 ].circle.code = TP_USE_CIRCLE;
 	p_work->hit_tbl[ 0 ].circle.x	 = p_work->x;
 	p_work->hit_tbl[ 0 ].circle.y	 = p_work->y;
@@ -1080,7 +1080,7 @@ static void ZknRangeSubCursorInit( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB
 	p_work->button_work.p_glb = p_glb;
 	p_work->button_work.p_work = p_work;
 
-	// ƒ{ƒ^ƒ“ƒ}ƒl[ƒWƒƒì¬
+	// ãƒœã‚¿ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	p_work->p_button_man = BMN_Create( 
 			p_work->hit_tbl,
 			ZKN_RANGESUB_BUTTON_NUM,
@@ -1091,10 +1091,10 @@ static void ZknRangeSubCursorInit( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CURSOR“®ìƒƒCƒ“ŠÖ”
+ *	@brief	CURSORå‹•ä½œãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	p_work		ƒ[ƒN
- *	@param	p_glb		ƒOƒ[ƒoƒ‹
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1102,22 +1102,22 @@ static void ZknRangeSubCursorInit( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB
 static void ZknRangeSubCursorMain( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB* p_glb )
 {
 	
-	// ƒ{ƒ^ƒ“”ÍˆÍ“à‚É“ü‚Á‚½‚©
+	// ãƒœã‚¿ãƒ³ç¯„å›²å†…ã«å…¥ã£ãŸã‹
 	BMN_Main( p_work->p_button_man );
 
 	ZknRangeSubCursorMove( p_work, p_glb );
 
-	// “–‚½‚è”»’è—Ìˆæ‚Éİ’è
+	// å½“ãŸã‚Šåˆ¤å®šé ˜åŸŸã«è¨­å®š
 	p_work->hit_tbl[ 0 ].circle.x = p_work->x;
 	p_work->hit_tbl[ 0 ].circle.y = p_work->y;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒL[“ü—Í“®‚³
+ *	@brief	ã‚­ãƒ¼å…¥åŠ›å‹•ã•
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void ZknRangeSubCursorMoveKey( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB* p_glb )
@@ -1136,10 +1136,10 @@ static void ZknRangeSubCursorMoveKey( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_
 			if( type < 0 ){
 				type = 0;
 			}
-			// ‚»‚ÌÀ•W‚Ì‚¶‚©‚ñ‘ã“ü
+			// ãã®åº§æ¨™ã®ã˜ã‹ã‚“ä»£å…¥
 			ZKN_RangeTypeSet( p_glb->p_range_apl, type );
 
-			// ‚»‚ÌŠÔ‚ÌÀ•W‚ğƒJ[ƒ\ƒ‹‚Éİ’è
+			// ãã®æ™‚é–“ã®åº§æ¨™ã‚’ã‚«ãƒ¼ã‚½ãƒ«ã«è¨­å®š
 			ZknRangeSubCursorDefMatSet( p_work, p_glb );
 			p_work->key_set = TRUE;
 			
@@ -1149,9 +1149,9 @@ static void ZknRangeSubCursorMoveKey( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_
 			if( type >= ZKN_RANGE_TYPE_NUM ){
 				type = ZKN_RANGE_TYPE_NUM - 1;
 			}
-			// ‚»‚ÌÀ•W‚Ì‚¶‚©‚ñ‘ã“ü
+			// ãã®åº§æ¨™ã®ã˜ã‹ã‚“ä»£å…¥
 			ZKN_RangeTypeSet( p_glb->p_range_apl, type );
-			// ‚»‚ÌŠÔ‚ÌÀ•W‚ğƒJ[ƒ\ƒ‹‚Éİ’è
+			// ãã®æ™‚é–“ã®åº§æ¨™ã‚’ã‚«ãƒ¼ã‚½ãƒ«ã«è¨­å®š
 			ZknRangeSubCursorDefMatSet( p_work, p_glb );
 			p_work->key_set = TRUE;
 		}
@@ -1161,10 +1161,10 @@ static void ZknRangeSubCursorMoveKey( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CURSOR§Œä
+ *	@brief	CURSORåˆ¶å¾¡
  *
- *	@param	p_work	ƒ[ƒNƒf[ƒ^
- *	@param	p_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *
  *	@return	none
  */
@@ -1178,8 +1178,8 @@ static void ZknRangeSubCursorMove( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB
 	
 	if( p_work->touch ){
 
-		// ƒ^ƒbƒ`‚µ‚Ä‚¢‚½‚ç‚»‚ÌÀ•W‚ğ•Û‘¶‚µ
-		// ‚»‚ÌÀ•WˆÊ’u‚ÌŠÔ‚ğİ’èb
+		// ã‚¿ãƒƒãƒã—ã¦ã„ãŸã‚‰ãã®åº§æ¨™ã‚’ä¿å­˜ã—
+		// ãã®åº§æ¨™ä½ç½®ã®æ™‚é–“ã‚’è¨­å®šb
 		if( sys.tp_cont ){
 			p_work->x = sys.tp_x - p_work->ofs_x;
 			p_work->y = sys.tp_y - p_work->ofs_y;
@@ -1195,7 +1195,7 @@ static void ZknRangeSubCursorMove( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB
 				p_work->y = ZKN_RANGE_SUB_CURSOR_LIMIT_Y;
 			}
 
-			// Y•ûŒüÅ‘å’l‚ğ‹‚ß‚é
+			// Yæ–¹å‘æœ€å¤§å€¤ã‚’æ±‚ã‚ã‚‹
 			y_max_dis = ZknRangeSubCursorMoveMaxDisGet( p_work->x );
 			if( p_work->y > (ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX + y_max_dis) ){
 				p_work->y = (ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX + y_max_dis);
@@ -1208,7 +1208,7 @@ static void ZknRangeSubCursorMove( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB
 				type = ZKN_RANGE_TYPE_NIGHT;
 			}
 			
-			// ‚»‚ÌÀ•W‚Ì‚¶‚©‚ñ‘ã“ü
+			// ãã®åº§æ¨™ã®ã˜ã‹ã‚“ä»£å…¥
 			ZKN_RangeTypeSet( p_glb->p_range_apl, type );
 		}else{
 			p_work->touch = 0;
@@ -1220,11 +1220,11 @@ static void ZknRangeSubCursorMove( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SUB_GLB
 
 //----------------------------------------------------------------------------
 /**	
- *	@brief	}ŠÓƒ{ƒ^ƒ“ƒR[ƒ‹‚Î‚Á‚­ŠÖ”
+ *	@brief	å›³é‘‘ãƒœã‚¿ãƒ³ã‚³ãƒ¼ãƒ«ã°ã£ãé–¢æ•°
  *
- *	@param	button_no	ƒ{ƒ^ƒ“ƒiƒ“ƒo[
- *	@param	event		ƒCƒxƒ“ƒgƒiƒ“ƒo[
- *	@param	p_work		ƒ[ƒN
+ *	@param	button_no	ãƒœã‚¿ãƒ³ãƒŠãƒ³ãƒãƒ¼
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼
+ *	@param	p_work		ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1238,14 +1238,14 @@ static void ZknRangeSubButtonCallBack( u32 button_no, u32 event, void* p_work )
 	switch( event ){
 	case BMN_EVENT_TOUCH:
 
-		// ƒJ[ƒ\ƒ‹‚ªƒTƒu‰æ–Ê‚É—ˆ‚Ä‚¢‚é‚±‚Æ‚É‚·‚é
+		// ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚µãƒ–ç”»é¢ã«æ¥ã¦ã„ã‚‹ã“ã¨ã«ã™ã‚‹
 		ZKN_ZukanCommonSubCursorFlagSet( p_glb->p_zukan_common_apl, TRUE );
 		
-		// ƒ{ƒ^ƒ“‚Éƒ^ƒbƒ`
+		// ãƒœã‚¿ãƒ³ã«ã‚¿ãƒƒãƒ
 		Snd_SePlay( ZKN_SND_BUTTON );
-		p_subwork->touch = 1;	// ƒ^ƒbƒ`
+		p_subwork->touch = 1;	// ã‚¿ãƒƒãƒ
 
-		// ’†S‚©‚ç‚ÌÀ•W‚ğæ“¾
+		// ä¸­å¿ƒã‹ã‚‰ã®åº§æ¨™ã‚’å–å¾—
 		p_subwork->ofs_x = sys.tp_x - p_subwork->x;
 		p_subwork->ofs_y = sys.tp_y - p_subwork->y;
 		break;
@@ -1257,9 +1257,9 @@ static void ZknRangeSubButtonCallBack( u32 button_no, u32 event, void* p_work )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CURSORƒf[ƒ^”jŠü
+ *	@brief	CURSORãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1268,18 +1268,18 @@ static void ZknRangeSubCursorDelete( ZKN_RANGE_SUB_WORK* p_work )
 {
 	BMN_Delete( p_work->p_button_man );
 
-	// ƒe[ƒuƒ‹ƒ[ƒN”jŠü
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ¯ãƒ¼ã‚¯ç ´æ£„
 	sys_FreeMemoryEz( p_work->hit_tbl );
 	p_work->hit_tbl = NULL;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CURSOR•`‰æ§Œä
+ *	@brief	CURSORæç”»åˆ¶å¾¡
  *
- *	@param	p_draw		•`‰æƒ[ƒN
- *	@param	cp_glb		ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	cp_work		ƒf[ƒ^ƒ[ƒN
+ *	@param	p_draw		æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb		ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	cp_work		ãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -1288,25 +1288,25 @@ static void ZknRangeSubCursorDraw( ZKN_RANGE_SUB_DRAW* p_draw, const ZKN_RANGE_S
 {
 	VecFx32 mat;
 	
-	// CURSORÀ•W‚ğİ’è
+	// CURSORåº§æ¨™ã‚’è¨­å®š
 	mat.x = cp_work->x << FX32_SHIFT;
 	mat.y = cp_work->y << FX32_SHIFT;
 	mat.y += SUB_SURFACE_Y;
 
 	CLACT_SetMatrix( p_draw->cursor, &mat );
 
-	// ŠÔ‚É‚æ‚Á‚ÄŠG‚ğ•ÏX
+	// æ™‚é–“ã«ã‚ˆã£ã¦çµµã‚’å¤‰æ›´
 	CLACT_AnmChg( p_draw->cursor, ZKN_RangeTypeGet( cp_glb->p_range_apl ) );
 }
 
-// BGƒpƒŒƒbƒg§Œä
+// BGãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶å¾¡
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGƒpƒŒƒbƒg§Œä
+ *	@brief	BGãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶å¾¡
  *
- *	@param	p_draw	•`‰æƒ[ƒN
- *	@param	cp_glb	ƒOƒ[ƒoƒ‹ƒf[ƒ^
- *	@param	heap	ƒq[ƒv
+ *	@param	p_draw	æç”»ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
  *	@return	none
  */
@@ -1317,39 +1317,39 @@ static void ZknRangeSubBgPlttDraw( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRA
 	int pltt_anm = 0;
 	BOOL check;
 	
-	// ƒpƒŒƒbƒgƒ^ƒCƒvƒiƒ“ƒo[
+	// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¿ã‚¤ãƒ—ãƒŠãƒ³ãƒãƒ¼
 	pltt_no = ZKN_RangeTypeGet( cp_glb->p_range_apl );
 
-	// ƒpƒŒƒbƒgƒiƒ“ƒo[‚ªˆá‚¤‚©ƒoƒbƒtƒ@‚ªNULL‚Ì‚Æ‚«İ’è
+	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ãŒé•ã†ã‹ãƒãƒƒãƒ•ã‚¡ãŒNULLã®ã¨ãè¨­å®š
 	if( (p_draw->pltt_no != pltt_no) || ( p_draw->pltt_buff == NULL ) ||
 		(p_draw->next_pltt_no != p_draw->pltt_no) ){
 
-		// ¡İ’è’†‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[‚ªˆá‚¤‚à‚Ì‚É‚È‚Á‚Ä‚µ‚Ü‚Á‚½‚ç
-		// Äİ’è
+		// ä»Šè¨­å®šä¸­ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ãŒé•ã†ã‚‚ã®ã«ãªã£ã¦ã—ã¾ã£ãŸã‚‰
+		// å†è¨­å®š
 		if( p_draw->next_pltt_no != pltt_no ){
 			p_draw->pltt_no = p_draw->next_pltt_no;
 			p_draw->pltt_anm_seq = 0;
 		}
 		
-		// ƒpƒŒƒbƒgƒAƒjƒ‚³‚¹‚é
+		// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹
 		switch( p_draw->pltt_anm_seq ){
 		case ZKN_RANGESUB_PLTTANM_SEQ_NOW_PLTT_0:
-			// Ÿ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[İ’è
+			// æ¬¡ã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼è¨­å®š
 			p_draw->next_pltt_no = pltt_no;
 			
-			// ¡‚Ü‚Å‚Ì‚ğ”jŠü
+			// ä»Šã¾ã§ã®ã‚’ç ´æ£„
 			if( p_draw->pltt_buff ){
 				sys_FreeMemoryEz( p_draw->pltt_buff );
 			}
-			// ƒpƒŒƒbƒg“Ç‚İ‚İ
+			// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 			p_draw->pltt_buff = ZKN_GLBDATA_PalDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_map_00_NCLR + p_draw->pltt_no, &p_draw->p_plt, heap );
 			p_draw->pltt_anm_count = ZKN_RANGE_SUB_PLTT_ANM_WAIT;
 
-			// ƒpƒŒƒbƒgƒAƒjƒƒZƒbƒg
+			// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 			if( p_draw->pltt_no > pltt_no ){
-				pltt_anm = 1;	// ’©[„’‹@’‹[„–é
+				pltt_anm = 1;	// æœãƒ¼ï¼æ˜¼ã€€æ˜¼ãƒ¼ï¼å¤œ
 			}else{
-				pltt_anm = 2;	// –é[„’‹@’‹[„’©
+				pltt_anm = 2;	// å¤œãƒ¼ï¼æ˜¼ã€€æ˜¼ãƒ¼ï¼æœ
 			}
 			p_draw->pltt_anm_seq ++;
 			break;
@@ -1362,19 +1362,19 @@ static void ZknRangeSubBgPlttDraw( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRA
 			return ;//*/
 
 		case ZKN_RANGESUB_PLTTANM_SEQ_NEXT_PLTT_0:
-			// ¡‚Ü‚Å‚Ì‚ğ”jŠü
+			// ä»Šã¾ã§ã®ã‚’ç ´æ£„
 			if( p_draw->pltt_buff ){
 				sys_FreeMemoryEz( p_draw->pltt_buff );
 			}
-			// ƒpƒŒƒbƒg“Ç‚İ‚İ
+			// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 			p_draw->pltt_buff = ZKN_GLBDATA_PalDataGet( p_drawglb->p_drawglb, NARC_zukan_zkn_map_00_NCLR + p_draw->next_pltt_no, &p_draw->p_plt, heap );
 			p_draw->pltt_anm_count = ZKN_RANGE_SUB_PLTT_ANM_WAIT;
 
-			// ƒpƒŒƒbƒgƒAƒjƒƒZƒbƒg
+			// ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 			if( p_draw->pltt_no < p_draw->next_pltt_no ){
-				pltt_anm = 1;	// ’©[„’‹@’‹[„–é
+				pltt_anm = 1;	// æœãƒ¼ï¼æ˜¼ã€€æ˜¼ãƒ¼ï¼å¤œ
 			}else{
-				pltt_anm = 2;	// –é[„’‹@’‹[„’©
+				pltt_anm = 2;	// å¤œãƒ¼ï¼æ˜¼ã€€æ˜¼ãƒ¼ï¼æœ
 			}
 			p_draw->pltt_anm_seq ++;
 			break;
@@ -1387,30 +1387,30 @@ static void ZknRangeSubBgPlttDraw( ZKN_RANGE_SUB_DRAW* p_draw, ZKN_RANGE_SUB_DRA
 			return ;//*/
 			
 		case ZKN_RANGESUB_PLTTANM_SEQ_NEXT_PLTT_1:
-			pltt_anm = 0;		// ’Êí
+			pltt_anm = 0;		// é€šå¸¸
 			p_draw->pltt_anm_seq = 0;
 			p_draw->pltt_no = p_draw->next_pltt_no;
 			break;
 
 		}
 
-		// TransferManager‚É“o˜^
+		// TransferManagerã«ç™»éŒ²
 		check = AddVramTransferManager(
 				NNS_GFD_DST_2D_BG_PLTT_SUB,
 				ZKN_RANGE_SUB_PLTT_NO*32,
 				&((u8*)(p_draw->p_plt->pRawData))[(pltt_anm*32)],
 				32 );
-		// “]‘—ƒ^ƒXƒN¶¬¸”s
+		// è»¢é€ã‚¿ã‚¹ã‚¯ç”Ÿæˆå¤±æ•—
 		GF_ASSERT( check );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CURSORƒfƒtƒHƒ‹ƒgˆÊ’uİ’è
+ *	@brief	CURSORãƒ‡ãƒ•ã‚©ãƒ«ãƒˆä½ç½®è¨­å®š
  *
- *	@param	p_work	“®ìƒ[ƒN
- *	@param	p_glb	ƒOƒ[ƒoƒ‹
+ *	@param	p_work	å‹•ä½œãƒ¯ãƒ¼ã‚¯
+ *	@param	p_glb	ã‚°ãƒ­ãƒ¼ãƒãƒ«
  *
  *	@return	none
  */
@@ -1419,19 +1419,19 @@ static void ZknRangeSubCursorDefMatSet( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SU
 {
 	int type = ZKN_RangeTypeGet( p_glb->p_range_apl );
 	
-	// Å‰‚ÌƒJ[ƒ\ƒ‹ˆÊ’uİ’è
+	// æœ€åˆã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®è¨­å®š
 	switch( type ){
-	case ZKN_RANGE_TYPE_MORNING:	// ’©
+	case ZKN_RANGE_TYPE_MORNING:	// æœ
 		p_work->x = ZKN_RANGE_SUB_CURSOR_MORNING_X;
 		p_work->y = ZKN_RANGE_SUB_CURSOR_MORNING_Y;
 		break;
 		
-	case ZKN_RANGE_TYPE_NOON:	// ’‹
+	case ZKN_RANGE_TYPE_NOON:	// æ˜¼
 		p_work->x = ZKN_RANGE_SUB_CURSOR_NOON_X;
 		p_work->y = ZKN_RANGE_SUB_CURSOR_NOON_Y;
 		break;
 		
-	case ZKN_RANGE_TYPE_NIGHT:	// –é
+	case ZKN_RANGE_TYPE_NIGHT:	// å¤œ
 		p_work->x = ZKN_RANGE_SUB_CURSOR_NIGHT_X;
 		p_work->y = ZKN_RANGE_SUB_CURSOR_NIGHT_Y;
 		break;
@@ -1441,7 +1441,7 @@ static void ZknRangeSubCursorDefMatSet( ZKN_RANGE_SUB_WORK* p_work, ZKN_RANGE_SU
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Y²‚ÉˆÚ“®‚·‚éÅ‘å’l‚ÌXÀ•W‚É‚æ‚é•Ï“®’l‚ğ‹‚ß‚é
+ *	@brief	Yè»¸ã«ç§»å‹•ã™ã‚‹æœ€å¤§å€¤ã®Xåº§æ¨™ã«ã‚ˆã‚‹å¤‰å‹•å€¤ã‚’æ±‚ã‚ã‚‹
  *
  *	@param	x 
  *
@@ -1453,25 +1453,25 @@ static int ZknRangeSubCursorMoveMaxDisGet( int x )
 	int rota_num;
 	int ret_num;
 	
-	// Å‘å‚Ì•”•ª‚ÍŒvZ‚µ‚È‚­‚Ä‚à‚í‚©‚é
+	// æœ€å¤§ã®éƒ¨åˆ†ã¯è¨ˆç®—ã—ãªãã¦ã‚‚ã‚ã‹ã‚‹
 	if( (x < ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_SUB_X) ||
 		( (256 - ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_SUB_X) < x ) ){
 
 		return ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_DIS;
 	}
 	
-	// ‚â‚Á‚Ä‚¢‚é‚±‚Æ‚Í‚˜À•W‚©‚ç¡‚ÌÀ•W‚ÌsinƒJ[ƒu‰ñ“]Šp
-	// ‚ğæ“¾‚µ‚ÄA‚»‚Ì’l‚ÅYÀ•WƒŠƒ~ƒbƒg•ÏX’l
-	// ‚©‚ç‚¢‚­‚ÂŒ¸‚ç‚·‚Æ¡‚ÌƒŠƒ~ƒbƒg•ÏX’l‚É‚È‚é‚©‚ğ‹‚ß‚Ä‚¢‚é
+	// ã‚„ã£ã¦ã„ã‚‹ã“ã¨ã¯ï½˜åº§æ¨™ã‹ã‚‰ä»Šã®åº§æ¨™ã®sinã‚«ãƒ¼ãƒ–å›è»¢è§’
+	// ã‚’å–å¾—ã—ã¦ã€ãã®å€¤ã§Yåº§æ¨™ãƒªãƒŸãƒƒãƒˆå¤‰æ›´å€¤
+	// ã‹ã‚‰ã„ãã¤æ¸›ã‚‰ã™ã¨ä»Šã®ãƒªãƒŸãƒƒãƒˆå¤‰æ›´å€¤ã«ãªã‚‹ã‹ã‚’æ±‚ã‚ã¦ã„ã‚‹
 	x -= ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_SUB_X;
 
 	rota_num = FX_GET_ROTA_NUM( 180 ) * x;
 	rota_num = rota_num / ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_SUB_X_CALC_DIS;
-	// ¡‚ÌƒŠƒ~ƒbƒgÀ•W‚Ì‚©‚çŒ¸‚ç‚·’l‚ğ‹‚ß‚é
+	// ä»Šã®ãƒªãƒŸãƒƒãƒˆåº§æ¨™ã®ã‹ã‚‰æ¸›ã‚‰ã™å€¤ã‚’æ±‚ã‚ã‚‹
 	ret_num = FX_Mul( FX_SinIdx( (u16)rota_num ), ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_DIS << FX32_SHIFT );
 	ret_num >>= FX32_SHIFT;
 
-	// ˆø‚­
+	// å¼•ã
 	ret_num = ZKN_RANGE_SUB_CURSOR_LIMIT_Y_MAX_DIS - ret_num;
 
 	return ret_num;
@@ -1479,7 +1479,7 @@ static int ZknRangeSubCursorMoveMaxDisGet( int x )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹@À•W‚ğİ’è
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ã€€åº§æ¨™ã‚’è¨­å®š
  *
  *	@param	p_drawglb
  *	@param	p_drawwork
@@ -1491,7 +1491,7 @@ static void ZknRangeSubCursorMoveKey_CorsorDrawSet( ZKN_RANGE_SUB_DRAWGLB* p_dra
 {
 	ZKN_GLB_DRAWDATA* p_draw = p_drawglb->p_drawglb;
 
-	// ©•ª‚ÌÀ•W‚ğİ’è‚µ‚Ä‚æ‚¢‚©ƒ`ƒFƒbƒN
+	// è‡ªåˆ†ã®åº§æ¨™ã‚’è¨­å®šã—ã¦ã‚ˆã„ã‹ãƒã‚§ãƒƒã‚¯
 	if( ZKN_ZukanCommonSubCursorFlagGet( cp_glb->p_zukan_common_apl ) == TRUE ){
 
 		if( cp_work->key_set == FALSE ){

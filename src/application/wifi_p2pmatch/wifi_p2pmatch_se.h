@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	wifi_p2pmatch_se.h
- * @brief	ƒTƒEƒ“ƒh’è‹`’u‚«Š·‚¦ƒtƒ@ƒCƒ‹
+ * @brief	ã‚µã‚¦ãƒ³ãƒ‰å®šç¾©ç½®ãæ›ãˆãƒ•ã‚¡ã‚¤ãƒ«
  * @author	k.ohno
  * @date    2006.6.7
  */
@@ -16,14 +16,14 @@
 //-----------------------------------------------------------------------------
 //
 //-----------------------------------------------------------------------------
-#define _SE_CURSOR			(SEQ_SE_DP_SELECT)		// ƒJ[ƒ\ƒ‹
-#define _SE_DESIDE   		(SEQ_SE_DP_DECIDE)		// Œˆ’è&ƒLƒƒƒ“ƒZƒ‹
-#define _SE_OFFER       	(SEQ_SE_DP_UG_020)		// ‚à‚¤‚µ‚±‚Ý
+#define _SE_CURSOR			(SEQ_SE_DP_SELECT)		// ã‚«ãƒ¼ã‚½ãƒ«
+#define _SE_DESIDE   		(SEQ_SE_DP_DECIDE)		// æ±ºå®š&ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+#define _SE_OFFER       	(SEQ_SE_DP_UG_020)		// ã‚‚ã†ã—ã“ã¿
 
-//#define _SE_TBLCHANGE    	(SEQ_SE_DP_UG_020)		// °‚Ì•ÏX
-#define _SE_TBLCHANGE    	(SEQ_SE_DP_SELECT5)		// °‚Ì•ÏX
+//#define _SE_TBLCHANGE    	(SEQ_SE_DP_UG_020)		// åºŠã®å¤‰æ›´
+#define _SE_TBLCHANGE    	(SEQ_SE_DP_SELECT5)		// åºŠã®å¤‰æ›´
 
-#define _SE_INOUT			(SEQ_SE_DP_TELE2)		// “ü‘ÞŽº
+#define _SE_INOUT			(SEQ_SE_DP_TELE2)		// å…¥é€€å®¤
 
 #define _BGM_MAIN           (SEQ_WIFILOBBY)			// BGM
 

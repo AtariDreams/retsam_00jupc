@@ -1,45 +1,45 @@
 #include "system/numfont.h"
 
-// ƒƒCƒ“ƒV[ƒPƒ“ƒX
+// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
-	SHOP_SEQ_INIT = 0,		// ‰Šú‰»
-	SHOP_SEQ_MENU,			// ƒƒjƒ…[‘I‘ð
+	SHOP_SEQ_INIT = 0,		// åˆæœŸåŒ–
+	SHOP_SEQ_MENU,			// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠž
 
-	SHOP_SEQ_BUY_INIT,		// w“ü‰æ–Ê‰Šú‰»
-	SHOP_SEQ_BUY_SCROLL,	// w“üˆÊ’u‚ÖƒXƒNƒ[ƒ‹
-	SHOP_SEQ_BUY_SELECT,	// ƒAƒCƒeƒ€‘I‘ð
-	SHOP_SEQ_BUYSEL_WAIT,	// u‚¢‚­‚Â`v•\Ž¦ƒEƒFƒCƒg
-	SHOP_SEQ_BUYNUM_SEL,	// ŒÂ”‘I‘ð
-	SHOP_SEQ_BUYNUM_WAIT,	// u‡Œv`‚È‚è‚Ü‚·‚ªv•\Ž¦ƒEƒFƒCƒg
-	SHOP_SEQ_BUY_YESNO,		// ‚Í‚¢E‚¢‚¢‚¦‘I‘ð
-	SHOP_SEQ_BUY_CMP,		// w“ü
-	SHOP_SEQ_BUYCMP_WAIT,	// ƒAƒCƒeƒ€‘I‘ð‚Ö
-	SHOP_SEQ_BUYOMAKE_WAIT,	// ƒvƒŒƒ~ƒAƒ{[ƒ‹‘Ò‚¿
-	SHOP_SEQ_BUY_END,		// w“ü‰æ–ÊI—¹
+	SHOP_SEQ_BUY_INIT,		// è³¼å…¥ç”»é¢åˆæœŸåŒ–
+	SHOP_SEQ_BUY_SCROLL,	// è³¼å…¥ä½ç½®ã¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
+	SHOP_SEQ_BUY_SELECT,	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠž
+	SHOP_SEQ_BUYSEL_WAIT,	// ã€Œã„ãã¤ã€œã€è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
+	SHOP_SEQ_BUYNUM_SEL,	// å€‹æ•°é¸æŠž
+	SHOP_SEQ_BUYNUM_WAIT,	// ã€Œåˆè¨ˆã€œãªã‚Šã¾ã™ãŒã€è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
+	SHOP_SEQ_BUY_YESNO,		// ã¯ã„ãƒ»ã„ã„ãˆé¸æŠž
+	SHOP_SEQ_BUY_CMP,		// è³¼å…¥
+	SHOP_SEQ_BUYCMP_WAIT,	// ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžã¸
+	SHOP_SEQ_BUYOMAKE_WAIT,	// ãƒ—ãƒ¬ãƒŸã‚¢ãƒœãƒ¼ãƒ«å¾…ã¡
+	SHOP_SEQ_BUY_END,		// è³¼å…¥ç”»é¢çµ‚äº†
 
-	SHOP_SEQ_MENU_RET,		// ƒƒjƒ…[‘I‘ð‚Ö–ß‚è‘Ò‚¿
+	SHOP_SEQ_MENU_RET,		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é¸æŠžã¸æˆ»ã‚Šå¾…ã¡
 
-	SHOP_SEQ_SALE_INIT,		// u”„‚év‰Šú‰»
-	SHOP_SEQ_SALE_CALL,		// u”„‚évŒÄ‚Ño‚µ
-	SHOP_SEQ_SALE_WAIT,		// u”„‚évI—¹‘Ò‚¿
-	SHOP_SEQ_SALE_RET,		// u”„‚évI—¹ -> ƒtƒF[ƒhƒCƒ“
-	SHOP_SEQ_SALE_MENU_RET,	// ƒtƒF[ƒhƒCƒ“ -> ƒƒjƒ…[‚Ö
+	SHOP_SEQ_SALE_INIT,		// ã€Œå£²ã‚‹ã€åˆæœŸåŒ–
+	SHOP_SEQ_SALE_CALL,		// ã€Œå£²ã‚‹ã€å‘¼ã³å‡ºã—
+	SHOP_SEQ_SALE_WAIT,		// ã€Œå£²ã‚‹ã€çµ‚äº†å¾…ã¡
+	SHOP_SEQ_SALE_RET,		// ã€Œå£²ã‚‹ã€çµ‚äº† -> ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+	SHOP_SEQ_SALE_MENU_RET,	// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ -> ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸
 
 	SHOP_SEQ_EXIT,
 	SHOP_SEQ_END
 };
 
-// ƒEƒBƒ“ƒhƒEƒCƒ“ƒfƒbƒNƒX
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 enum {
-	WIN_IDX_NENU = 0,	// ƒƒjƒ…[
-	WIN_IDX_FLDTALK,	// ƒtƒB[ƒ‹ƒh‰ï˜b
+	WIN_IDX_NENU = 0,	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+	WIN_IDX_FLDTALK,	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¼šè©±
 
-	WIN_IDX_LIST = 0,	// ƒAƒCƒeƒ€ƒŠƒXƒg
-	WIN_IDX_INFO,		// ƒAƒCƒeƒ€à–¾
-	WIN_IDX_GOLD,		// ‚¨‚±‚¸‚©‚¢
-	WIN_IDX_NUM,		// ŒÂ”‘I‘ð
-	WIN_IDX_MINE,		// Ž‚Á‚Ä‚¢‚é”
-	WIN_IDX_TALK,		// ‰ï˜b
+	WIN_IDX_LIST = 0,	// ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆ
+	WIN_IDX_INFO,		// ã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Ž
+	WIN_IDX_GOLD,		// ãŠã“ãšã‹ã„
+	WIN_IDX_NUM,		// å€‹æ•°é¸æŠž
+	WIN_IDX_MINE,		// æŒã£ã¦ã„ã‚‹æ•°
+	WIN_IDX_TALK,		// ä¼šè©±
 
 	WIN_IDX_MAX
 };
@@ -53,21 +53,21 @@ enum {
 };
 
 typedef struct {
-	GF_BGL_INI * bgl;		// BGLƒf[ƒ^
+	GF_BGL_INI * bgl;		// BGLãƒ‡ãƒ¼ã‚¿
 
-	void * bag_wk;			// ƒoƒbƒO‚Ìƒ[ƒN
+	void * bag_wk;			// ãƒãƒƒã‚°ã®ãƒ¯ãƒ¼ã‚¯
 
-	GF_BGL_BMPWIN	win[WIN_IDX_MAX];	// BMPƒEƒBƒ“ƒhƒE
-	GF_BGL_BMPWIN	yn_win;				// BMPƒEƒBƒ“ƒhƒEi‚Í‚¢E‚¢‚¢‚¦j
+	GF_BGL_BMPWIN	win[WIN_IDX_MAX];	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN	yn_win;				// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆã¯ã„ãƒ»ã„ã„ãˆï¼‰
 
-	BMPLIST_WORK * lw;		// BMPƒƒjƒ…[ƒ[ƒN
-	BMP_MENULIST_DATA * ld;	// BMPƒŠƒXƒgƒf[ƒ^
+	BMPLIST_WORK * lw;		// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	BMP_MENULIST_DATA * ld;	// BMPãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 
-	BMPMENU_WORK * mw;		// BMPƒƒjƒ…[ƒ[ƒN
-	BMP_MENULIST_DATA * md;	// BMPƒƒjƒ…[ƒf[ƒ^
+	BMPMENU_WORK * mw;		// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ¯ãƒ¼ã‚¯
+	BMP_MENULIST_DATA * md;	// BMPãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ‡ãƒ¼ã‚¿
 
-	MSGDATA_MANAGER * mman;	// ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ
-	WORDSET * wset;			// ’PŒêƒZƒbƒg
+	MSGDATA_MANAGER * mman;	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£
+	WORDSET * wset;			// å˜èªžã‚»ãƒƒãƒˆ
 
 	GF_CAMERA_PTR	camera;
 
@@ -83,10 +83,10 @@ typedef struct {
 
 	RECORD * rec;
 	
-	SAVEDATA * sv;		// BPŽæ“¾‚É‚Ç‚¤‚µ‚Ä‚à•K—v
+	SAVEDATA * sv;		// BPå–å¾—ã«ã©ã†ã—ã¦ã‚‚å¿…è¦
 
-	EVENTWORK * evwk;	// ƒCƒxƒ“ƒgƒ[ƒN
-	BOOL	dp_flg;		// ƒfƒp[ƒgƒtƒ‰ƒO
+	EVENTWORK * evwk;	// ã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
+	BOOL	dp_flg;		// ãƒ‡ãƒ‘ãƒ¼ãƒˆãƒ•ãƒ©ã‚°
 
 	u16 * item;
 	u8	max;
@@ -94,17 +94,17 @@ typedef struct {
 	u8	scr;
 	u8	seq;
 
-	STRBUF * msgb;	// ‰ï˜b—Ìˆæ
+	STRBUF * msgb;	// ä¼šè©±é ˜åŸŸ
 	u8	pri[4];
 	int	disp;
-	u8	midx;		// ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX
-	u8	cm_cnt;		// ƒJƒƒ‰ˆÚ“®ƒJƒEƒ“ƒ^
-	u8	cm_max;		// ƒJƒƒ‰ˆÚ“®ƒJƒEƒ“ƒg”
+	u8	midx;		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8	cm_cnt;		// ã‚«ãƒ¡ãƒ©ç§»å‹•ã‚«ã‚¦ãƒ³ã‚¿
+	u8	cm_max;		// ã‚«ãƒ¡ãƒ©ç§»å‹•ã‚«ã‚¦ãƒ³ãƒˆæ•°
 
 	u8	fnote_buy_cnt;
 	u8	fnote_sale_cnt;
 
-	u8	shop_type;	// ƒVƒ‡ƒbƒvƒ^ƒCƒv
+	u8	shop_type;	// ã‚·ãƒ§ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
 
 	u16	sel_item;
 	s16	sel_num;

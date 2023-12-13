@@ -1,7 +1,7 @@
 //=============================================================================================
 /**
  * @file	bg_sys.c                                                  
- * @brief	‚a‚f•`‰æƒVƒXƒeƒ€ƒvƒƒOƒ‰ƒ€(frame_sys Šg’£)
+ * @brief	ï¼¢ï¼§æç”»ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ã‚°ãƒ©ãƒ (frame_sys æ‹¡å¼µ)
  * @author	tetsu.w
  * @date	2003/2/10
  */
@@ -20,7 +20,7 @@
 
 #define DMA_USE (1)
 //=============================================================================================
-//	Œ^éŒ¾
+//	å‹å®£è¨€
 //=============================================================================================
 #define	GF_BGL_FRAME_MAX	(8)
 #define	GF_BGL_BMPWIN_MAX	(32)
@@ -30,9 +30,9 @@
 
 #define GF_BGL_8BITCHRSIZ	(0x40)
 //------------------------------------------------------------------
-///ƒtƒŒ[ƒ€İ’è\‘¢‘Ì
+///ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®šæ§‹é€ ä½“
 typedef	struct	{
-	void*	screen_buf;	//ƒXƒNƒŠ[ƒ“ƒf[ƒ^“]‘—ƒoƒbƒtƒ@ƒ|ƒCƒ“ƒ^
+	void*	screen_buf;	//ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿è»¢é€ãƒãƒƒãƒ•ã‚¡ãƒã‚¤ãƒ³ã‚¿
 	u32		screen_buf_siz;
 	u32		screen_buf_ofs;
 	int		scroll_x;
@@ -53,17 +53,17 @@ typedef	struct	{
 }GF_BGL_SYS_INI;
 
 //------------------------------------------------------------------
-///ƒVƒXƒeƒ€İ’è\‘¢‘ÌiƒVƒXƒeƒ€ƒ[ƒNj
+///ã‚·ã‚¹ãƒ†ãƒ è¨­å®šæ§‹é€ ä½“ï¼ˆã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ï¼‰
 struct _GF_BGL_INI {
 	u32		heapID;
-	u16		scroll_req;		// ƒXƒNƒ[ƒ‹ƒŠƒNƒGƒXƒgƒtƒ‰ƒO s3/s2/s1/s0_m3/m2/m1/m0
-	u16		loadscrn_req;	// ƒXƒNƒŠ[ƒ““]‘—ƒŠƒNƒGƒXƒgƒtƒ‰ƒO s3/s2/s1/s0_m3/m2/m1/m0
+	u16		scroll_req;		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚° s3/s2/s1/s0_m3/m2/m1/m0
+	u16		loadscrn_req;	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚° s3/s2/s1/s0_m3/m2/m1/m0
 	GF_BGL_SYS_INI	bgsys[GF_BGL_FRAME_MAX];
 };
 
 //------------------------------------------------------------------
 
-// ƒƒ‚ƒŠŠm•Ûƒ‚[ƒh
+// ãƒ¡ãƒ¢ãƒªç¢ºä¿ãƒ¢ãƒ¼ãƒ‰
 enum {
 	MS_ALLOC_WORK = 0,
 	MS_ALLOC_GRAPHIC
@@ -71,7 +71,7 @@ enum {
 
 
 //=============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //=============================================================================================
 static u8 BgScreenSizeConv( u8 type, u8 mode );
 static void ScrollParamSet( GF_BGL_SYS_INI * ini, u8 mode, int value );
@@ -115,17 +115,17 @@ static void CenterParamSet( GF_BGL_SYS_INI * ini, u8 mode, int value );
 
 //=============================================================================================
 //=============================================================================================
-//	İ’èŠÖ”
+//	è¨­å®šé–¢æ•°
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒVƒXƒeƒ€ƒ[ƒNƒGƒŠƒAæ“¾
+ * ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢å–å¾—
  *
- * @param	heapID	ƒq[ƒv‚h‚c
+ * @param	heapID	ãƒ’ãƒ¼ãƒ—ï¼©ï¼¤
  *
- * @return	æ“¾‚µ‚½ƒƒ‚ƒŠ‚ÌƒAƒhƒŒƒX
+ * @return	å–å¾—ã—ãŸãƒ¡ãƒ¢ãƒªã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 GF_BGL_INI*  GF_BGL_BglIniAlloc( u32 heapID )
@@ -142,11 +142,11 @@ GF_BGL_INI*  GF_BGL_BglIniAlloc( u32 heapID )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒq[ƒvIDæ“¾
+ * ãƒ’ãƒ¼ãƒ—IDå–å¾—
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
- * @return	BGL‚Ìƒq[ƒvID
+ * @return	BGLã®ãƒ’ãƒ¼ãƒ—ID
  */
 //--------------------------------------------------------------------------------------------
 u32	GF_BGL_HeapIDGet( GF_BGL_INI * ini )
@@ -156,9 +156,9 @@ u32	GF_BGL_HeapIDGet( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚a‚fƒ‚[ƒhİ’è
+ * ï¼¢ï¼§ãƒ¢ãƒ¼ãƒ‰è¨­å®š
  *
- * @param	data	‚a‚fƒ‚[ƒhİ’èƒf[ƒ^
+ * @param	data	ï¼¢ï¼§ãƒ¢ãƒ¼ãƒ‰è¨­å®šãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -177,15 +177,15 @@ void	GF_BGL_InitBG( const GF_BGL_SYS_HEADER* data )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚a‚fƒ‚[ƒhİ’èi‰æ–Ê‚²‚Æj
+ * ï¼¢ï¼§ãƒ¢ãƒ¼ãƒ‰è¨­å®šï¼ˆç”»é¢ã”ã¨ï¼‰
  *
- * @param	data	‚a‚fƒ‚[ƒhİ’èƒf[ƒ^
- * @param	flg		İ’è‚·‚é‰æ–Ê
+ * @param	data	ï¼¢ï¼§ãƒ¢ãƒ¼ãƒ‰è¨­å®šãƒ‡ãƒ¼ã‚¿
+ * @param	flg		è¨­å®šã™ã‚‹ç”»é¢
  *
  * @return	none
  *
- * @li	flg = GF_BGL_MAIN_DISP : ƒƒCƒ“‰æ–Ê
- * @li	flg = GF_BGL_SUB_DISP : ƒTƒu‰æ–Ê
+ * @li	flg = GF_BGL_MAIN_DISP : ãƒ¡ã‚¤ãƒ³ç”»é¢
+ * @li	flg = GF_BGL_SUB_DISP : ã‚µãƒ–ç”»é¢
  */
 //--------------------------------------------------------------------------------------------
 void	GF_BGL_InitBGDisp( const GF_BGL_SYS_HEADER * data, u8 flg )
@@ -201,18 +201,18 @@ void	GF_BGL_InitBGDisp( const GF_BGL_SYS_HEADER * data, u8 flg )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚a‚f–Êİ’è
+ * ï¼¢ï¼§é¢è¨­å®š
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		‚a‚fƒtƒŒ[ƒ€”Ô†
- * @param	data		‚a‚fƒRƒ“ƒgƒ[ƒ‹ƒf[ƒ^
- * @param	mode		‚a‚fƒ‚[ƒh
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		ï¼¢ï¼§ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	data		ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
+ * @param	mode		ï¼¢ï¼§ãƒ¢ãƒ¼ãƒ‰
  * 
  * @return	none
  *
- * @li	mode = GF_BGL_MODE_TEXT		: ƒeƒLƒXƒg
- * @li	mode = GF_BGL_MODE_AFFINE	: ƒAƒtƒBƒ“
- * @li	mode = GF_BGL_MODE_256X16	: ƒAƒtƒBƒ“Šg’£BG
+ * @li	mode = GF_BGL_MODE_TEXT		: ãƒ†ã‚­ã‚¹ãƒˆ
+ * @li	mode = GF_BGL_MODE_AFFINE	: ã‚¢ãƒ•ã‚£ãƒ³
+ * @li	mode = GF_BGL_MODE_256X16	: ã‚¢ãƒ•ã‚£ãƒ³æ‹¡å¼µBG
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_BGControlSet( GF_BGL_INI * ini, u8 frmnum, const GF_BGL_BGCNT_HEADER* data, u8 mode )
@@ -398,17 +398,17 @@ void GF_BGL_BGControlSet( GF_BGL_INI * ini, u8 frmnum, const GF_BGL_BGCNT_HEADER
 	if( data->scrbufferSiz ){
 		ini->bgsys[frmnum].screen_buf = sys_AllocMemory( ini->heapID, data->scrbufferSiz );
 
-#ifdef	OSP_ERR_BGL_SCRBUF_GET		// ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@Šm•Û¸”s
+#ifdef	OSP_ERR_BGL_SCRBUF_GET		// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ç¢ºä¿å¤±æ•—
 		if( ini->bgsys[frmnum].screen_buf == NULL ){
-			OS_Printf("—ÌˆæŠm•Û¸”s\n");
+			OS_Printf("é ˜åŸŸç¢ºä¿å¤±æ•—\n");
 		}
 #endif	// OSP_ERR_BGL_SCRBUF_GET
 
 		MI_CpuClear16( ini->bgsys[frmnum].screen_buf, data->scrbufferSiz );
 		ini->bgsys[frmnum].screen_buf_siz = data->scrbufferSiz;
 		ini->bgsys[frmnum].screen_buf_ofs = data->scrbufferOfs;
-#ifdef	OSP_BGL_SCRBUF_GET_SIZ		// Šm•Û‚µ‚½ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ÌƒTƒCƒY
-		OS_Printf("‚r‚b‚q—Ìˆæ=%x\n",ini->bgsys[frmnum].screen_buf);
+#ifdef	OSP_BGL_SCRBUF_GET_SIZ		// ç¢ºä¿ã—ãŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+		OS_Printf("ï¼³ï¼£ï¼²é ˜åŸŸ=%x\n",ini->bgsys[frmnum].screen_buf);
 #endif	// OSP_BGL_SCRBUF_GET_SIZ
 	}else{
 		ini->bgsys[frmnum].screen_buf = NULL;
@@ -431,12 +431,12 @@ void GF_BGL_BGControlSet( GF_BGL_INI * ini, u8 frmnum, const GF_BGL_BGCNT_HEADER
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚a‚fÄ–Êİ’è
+ * ï¼¢ï¼§å†é¢è¨­å®š
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		‚a‚fƒtƒŒ[ƒ€”Ô†
- * @param	flg			•ÏXƒpƒ‰ƒ[ƒ^
- * @param	prm			•ÏX’l
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		ï¼¢ï¼§ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	flg			å¤‰æ›´ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param	prm			å¤‰æ›´å€¤
  * 
  * @return	none
  */
@@ -724,30 +724,30 @@ void GF_BGL_BGControlReset( GF_BGL_INI * ini, u8 frm, u8 flg, u8 prm )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒTƒCƒY•ÏŠ· ( GFLIB -> NitroSDK )
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚ºå¤‰æ› ( GFLIB -> NitroSDK )
  *
- * @param	type	ƒXƒNƒŠ[ƒ“ƒTƒCƒY ( GFLIB )
- * @param	mode	‚a‚fƒ‚[ƒh
+ * @param	type	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º ( GFLIB )
+ * @param	mode	ï¼¢ï¼§ãƒ¢ãƒ¼ãƒ‰
  *
- * @return	ƒXƒNƒŠ[ƒ“ƒTƒCƒY ( NitroSDK )
+ * @return	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º ( NitroSDK )
  */
 //--------------------------------------------------------------------------------------------
 static u8 BgScreenSizeConv( u8 type, u8 mode )
 {
 	switch( mode ){
-	case GF_BGL_MODE_TEXT:		// ƒeƒLƒXƒg
+	case GF_BGL_MODE_TEXT:		// ãƒ†ã‚­ã‚¹ãƒˆ
 		if( type == GF_BGL_SCRSIZ_256x256 ){ return GX_BG_SCRSIZE_TEXT_256x256; }
 		if( type == GF_BGL_SCRSIZ_256x512 ){ return GX_BG_SCRSIZE_TEXT_256x512; }
 		if( type == GF_BGL_SCRSIZ_512x256 ){ return GX_BG_SCRSIZE_TEXT_512x256; }
 		if( type == GF_BGL_SCRSIZ_512x512 ){ return GX_BG_SCRSIZE_TEXT_512x512; }
 		break;
-	case GF_BGL_MODE_AFFINE:	// ƒAƒtƒBƒ“
+	case GF_BGL_MODE_AFFINE:	// ã‚¢ãƒ•ã‚£ãƒ³
 		if( type == GF_BGL_SCRSIZ_128x128 ){ return GX_BG_SCRSIZE_AFFINE_128x128; }
 		if( type == GF_BGL_SCRSIZ_256x256 ){ return GX_BG_SCRSIZE_AFFINE_256x256; }
 		if( type == GF_BGL_SCRSIZ_512x512 ){ return GX_BG_SCRSIZE_AFFINE_512x512; }
 		if( type == GF_BGL_SCRSIZ_1024x1024 ){ return GX_BG_SCRSIZE_AFFINE_1024x1024; }
 		break;
-	case GF_BGL_MODE_256X16:	// ƒAƒtƒBƒ“Šg’£BG
+	case GF_BGL_MODE_256X16:	// ã‚¢ãƒ•ã‚£ãƒ³æ‹¡å¼µBG
 		if( type == GF_BGL_SCRSIZ_128x128 ){ return GX_BG_SCRSIZE_256x16PLTT_128x128; }
 		if( type == GF_BGL_SCRSIZ_256x256 ){ return GX_BG_SCRSIZE_256x16PLTT_256x256; }
 		if( type == GF_BGL_SCRSIZ_512x512 ){ return GX_BG_SCRSIZE_256x16PLTT_512x512; }
@@ -759,11 +759,11 @@ static u8 BgScreenSizeConv( u8 type, u8 mode )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰’PˆÊ‚ÌƒXƒNƒŠ[ƒ“ƒTƒCƒYæ“¾
+ * ã‚­ãƒ£ãƒ©å˜ä½ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚ºå–å¾—
  *
- * @param	type	ƒXƒNƒŠ[ƒ“ƒTƒCƒY ( GFLIB )
- * @param	x		X•ûŒü‚ÌƒTƒCƒYŠi”[êŠ
- * @param	y		Y•ûŒü‚ÌƒTƒCƒYŠi”[êŠ
+ * @param	type	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚µã‚¤ã‚º ( GFLIB )
+ * @param	x		Xæ–¹å‘ã®ã‚µã‚¤ã‚ºæ ¼ç´å ´æ‰€
+ * @param	y		Yæ–¹å‘ã®ã‚µã‚¤ã‚ºæ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -800,10 +800,10 @@ static void BgScreenSizeGet( u8 type, u8 * x, u8 * y )
 
 //--------------------------------------------------------------------------------------------
 /**
- * GF_BGL_BGControlSet‚Åæ“¾‚µ‚½ƒƒ‚ƒŠ‚ğŠJ•ú
+ * GF_BGL_BGControlSetã§å–å¾—ã—ãŸãƒ¡ãƒ¢ãƒªã‚’é–‹æ”¾
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ 
  *
  * @return	none
  */
@@ -819,10 +819,10 @@ void GF_BGL_BGControlExit( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •\¦ƒvƒ‰ƒCƒIƒŠƒeƒBİ’è
+ * è¡¨ç¤ºãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£è¨­å®š
  *
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	priority	ƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	priority	ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  *
  * @return	none
  */
@@ -859,9 +859,9 @@ void GF_BGL_PrioritySet( u8 frmnum, u8 priority )
 
 //--------------------------------------------------------------------------------------------
 /**
- * •\¦ONEOFFİ’è
+ * è¡¨ç¤ºONãƒ»OFFè¨­å®š
  *
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  * @param	visible		VISIBLE_ON or VISIBLE_OFF
  *
  * @return	none
@@ -900,22 +900,22 @@ void GF_BGL_VisibleSet( u8 frmnum, u8 visible )
 
 //=============================================================================================
 //=============================================================================================
-//	ƒXƒNƒ[ƒ‹ŠÖ”
+//	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é–¢æ•°
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒ[ƒ‹ˆ—
+ * ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	mode		ƒXƒNƒ[ƒ‹ƒ‚[ƒh
- * @param	value		ƒXƒNƒ[ƒ‹’l
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	mode		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+ * @param	value		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤
  *
  * @return	none
  *
- * @li	Šgk–Ê‚ªŠgkE‰ñ“]‚·‚éê‡‚ÍGF_BGL_AffineScrollSet(...)‚ğg—p‚·‚é‚±‚Æ
+ * @li	æ‹¡ç¸®é¢ãŒæ‹¡ç¸®ãƒ»å›è»¢ã™ã‚‹å ´åˆã¯GF_BGL_AffineScrollSet(...)ã‚’ä½¿ç”¨ã™ã‚‹ã“ã¨
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_ScrollSet( GF_BGL_INI * ini, u8 frmnum, u8 mode, int value )
@@ -972,12 +972,12 @@ void GF_BGL_ScrollSet( GF_BGL_INI * ini, u8 frmnum, u8 mode, int value )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒ[ƒ‹’l‚wæ“¾
+ * ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤ï¼¸å–å¾—
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	int			ƒXƒNƒ[ƒ‹’l‚w
+ * @return	int			ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤ï¼¸
  */
 //--------------------------------------------------------------------------------------------
 int GF_BGL_ScrollGetX( GF_BGL_INI * ini, u32 frmnum )
@@ -986,12 +986,12 @@ int GF_BGL_ScrollGetX( GF_BGL_INI * ini, u32 frmnum )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒ[ƒ‹’l‚xæ“¾
+ * ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤ï¼¹å–å¾—
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	int			ƒXƒNƒ[ƒ‹’l‚x
+ * @return	int			ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤ï¼¹
  */
 //--------------------------------------------------------------------------------------------
 int GF_BGL_ScrollGetY( GF_BGL_INI * ini, u32 frmnum )
@@ -1001,15 +1001,15 @@ int GF_BGL_ScrollGetY( GF_BGL_INI * ini, u32 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šgk–Ê‚ÌŠgkE‰ñ“]EƒXƒNƒ[ƒ‹ˆ—
+ * æ‹¡ç¸®é¢ã®æ‹¡ç¸®ãƒ»å›è»¢ãƒ»ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	mode		ƒXƒNƒ[ƒ‹ƒ‚[ƒh
- * @param	value		ƒXƒNƒ[ƒ‹’l
- * @param	mtx			•ÏŠ·s—ñ
- * @param	cx			‰ñ“]’†SXÀ•W
- * @param	cy			‰ñ“]’†SYÀ•W
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	mode		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+ * @param	value		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤
+ * @param	mtx			å¤‰æ›è¡Œåˆ—
+ * @param	cx			å›è»¢ä¸­å¿ƒXåº§æ¨™
+ * @param	cy			å›è»¢ä¸­å¿ƒYåº§æ¨™
  *
  * @return	none
  */
@@ -1023,10 +1023,10 @@ void GF_BGL_AffineScrollSet(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	mode		ƒXƒNƒ[ƒ‹ƒ‚[ƒh
- * @param	value		ƒXƒNƒ[ƒ‹’l
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	mode		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+ * @param	value		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤
  *
  * @return	none
  */
@@ -1057,13 +1057,13 @@ static void ScrollParamSet( GF_BGL_SYS_INI * ini, u8 mode, int value )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠgkE‰ñ“]ˆ—
+ * æ‹¡ç¸®ãƒ»å›è»¢å‡¦ç†
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	mtx			•ÏŠ·s—ñ
- * @param	cx			‰ñ“]’†SXÀ•W
- * @param	cy			‰ñ“]’†SYÀ•W
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	mtx			å¤‰æ›è¡Œåˆ—
+ * @param	cx			å›è»¢ä¸­å¿ƒXåº§æ¨™
+ * @param	cy			å›è»¢ä¸­å¿ƒYåº§æ¨™
  *
  * @return	none
  */
@@ -1092,10 +1092,10 @@ void GF_BGL_AffineSet( GF_BGL_INI * ini, u8 frmnum, const MtxFx22 * mtx, int cx,
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šgk–Ê‚ÌƒXƒNƒ[ƒ‹ˆ—iŠgkE‰ñ“]‚µ‚Ä‚¢‚È‚¢ê‡‚Ìˆ—j
+ * æ‹¡ç¸®é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‡¦ç†ï¼ˆæ‹¡ç¸®ãƒ»å›è»¢ã—ã¦ã„ãªã„å ´åˆã®å‡¦ç†ï¼‰
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
  * @return	none
  */
@@ -1113,21 +1113,21 @@ static void AffineScrollSetMtxFix( GF_BGL_INI * ini, u8 frmnum )
 
 //=============================================================================================
 //=============================================================================================
-//	“WŠJŠÖ”
+//	å±•é–‹é–¢æ•°
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒf[ƒ^“WŠJ
+ * ãƒ‡ãƒ¼ã‚¿å±•é–‹
  *
- * @param	src			“WŠJŒ³
- * @param	dst			“WŠJæ
- * @param	datasiz		ƒTƒCƒY
+ * @param	src			å±•é–‹å…ƒ
+ * @param	dst			å±•é–‹å…ˆ
+ * @param	datasiz		ã‚µã‚¤ã‚º
  *
  * @return	none
  *
- * @li	datasiz = GF_BGL_DATA_LZH : ˆ³kƒf[ƒ^
+ * @li	datasiz = GF_BGL_DATA_LZH : åœ§ç¸®ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 void	GF_BGL_DataDecord( const void* src, void* dst, u32 datasiz )
@@ -1147,16 +1147,16 @@ void	GF_BGL_DataDecord( const void* src, void* dst, u32 datasiz )
 
 //=============================================================================================
 //=============================================================================================
-//	“]‘—ŠÖ”
+//	è»¢é€é–¢æ•°
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒŒ[ƒ€‚Éİ’è‚³‚ê‚½ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ğ‘S“]‘—
+ * ãƒ•ãƒ¬ãƒ¼ãƒ ã«è¨­å®šã•ã‚ŒãŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’å…¨è»¢é€
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
  * @return	none
  */
@@ -1170,21 +1170,21 @@ void GF_BGL_LoadScreenReq( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w’èƒf[ƒ^‚ğƒXƒNƒŠ[ƒ“‚É“]‘—
+ * æŒ‡å®šãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«è»¢é€
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	src			“]‘—‚·‚éƒf[ƒ^
- * @param	datasiz		“]‘—ƒTƒCƒY
- * @param	offs		ƒIƒtƒZƒbƒg
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	src			è»¢é€ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ * @param	datasiz		è»¢é€ã‚µã‚¤ã‚º
+ * @param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  * @return	none
  *
- * @li	datasiz = GF_BGL_DATA_LZH : ˆ³kƒf[ƒ^
+ * @li	datasiz = GF_BGL_DATA_LZH : åœ§ç¸®ãƒ‡ãƒ¼ã‚¿
  *
- *	ˆ³k‚³‚ê‚½ƒf[ƒ^‚Í‰ğ“€êŠ‚Éini->bgsys[frmnum].screen_buf‚ğg—p‚·‚é‚½‚ß
- *	ini->bgsys[frmnum].screen_buf‚Éƒf[ƒ^‚ªƒZƒbƒg‚³‚ê‚é‚ªA”ñˆ³k‚Ìê‡‚ÍA
- *	ƒZƒbƒg‚³‚ê‚È‚¢‚Ì‚ÅA’ˆÓ‚·‚é‚±‚ÆB
+ *	åœ§ç¸®ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã¯è§£å‡å ´æ‰€ã«ini->bgsys[frmnum].screen_bufã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚
+ *	ini->bgsys[frmnum].screen_bufã«ãƒ‡ãƒ¼ã‚¿ãŒã‚»ãƒƒãƒˆã•ã‚Œã‚‹ãŒã€éåœ§ç¸®ã®å ´åˆã¯ã€
+ *	ã‚»ãƒƒãƒˆã•ã‚Œãªã„ã®ã§ã€æ³¨æ„ã™ã‚‹ã“ã¨ã€‚
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_LoadScreen( GF_BGL_INI * ini, u8 frmnum, const void* src, u32 datasiz, u32 offs )
@@ -1206,9 +1206,9 @@ void GF_BGL_LoadScreen( GF_BGL_INI * ini, u8 frmnum, const void* src, u32 datasi
 			alloc_siz	= ((*(u32*)src) >> 8);
 			decode_buf = sys_AllocMemoryLo( ini->heapID, alloc_siz );
 
-#ifdef	OSP_ERR_BGL_DECODEBUF_GET		// “WŠJ—ÌˆæŠm•Û¸”s
+#ifdef	OSP_ERR_BGL_DECODEBUF_GET		// å±•é–‹é ˜åŸŸç¢ºä¿å¤±æ•—
 			if(decode_buf == NULL){
-				OS_Printf("—ÌˆæŠm•Û¸”s\n");
+				OS_Printf("é ˜åŸŸç¢ºä¿å¤±æ•—\n");
 			}
 #endif	// OSP_ERR_BGL_DECODEBUF_GET
 
@@ -1223,16 +1223,16 @@ void GF_BGL_LoadScreen( GF_BGL_INI * ini, u8 frmnum, const void* src, u32 datasi
 }
 //--------------------------------------------------------------------------------------------
 /**
- * w’èƒf[ƒ^‚ğƒXƒNƒŠ[ƒ“‚É“]‘—iƒtƒ@ƒCƒ‹QÆj
+ * æŒ‡å®šãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«è»¢é€ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«å‚ç…§ï¼‰
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	path		ƒtƒ@ƒCƒ‹‚ÌƒpƒX–¼
- * @param	offs		ƒIƒtƒZƒbƒg
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	path		ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹å
+ * @param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  * @return	none
  *
- *	ˆ³k–¢‘Î‰
+ *	åœ§ç¸®æœªå¯¾å¿œ
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_LoadScreenFile( GF_BGL_INI * ini, u8 frmnum, const char * path, u32 offs )
@@ -1243,7 +1243,7 @@ void GF_BGL_LoadScreenFile( GF_BGL_INI * ini, u8 frmnum, const char * path, u32 
 
 	mem = sys_LoadFileEx( ini->heapID, path, &size );
 	if( mem == NULL ){
-		return;	//ƒGƒ‰[
+		return;	//ã‚¨ãƒ©ãƒ¼
 	}
 	GF_BGL_ScreenBufSet( ini, frmnum, mem, size );
 	GF_BGL_LoadScreen( ini, frmnum, mem, size, offs );
@@ -1252,12 +1252,12 @@ void GF_BGL_LoadScreenFile( GF_BGL_INI * ini, u8 frmnum, const char * path, u32 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ““]‘—
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
  *
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	src			“]‘—‚·‚éƒf[ƒ^
- * @param	offs		ƒIƒtƒZƒbƒg
- * @param	siz			“]‘—ƒTƒCƒY
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	src			è»¢é€ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ * @param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param	siz			è»¢é€ã‚µã‚¤ã‚º
  *
  * @return	none
  */
@@ -1325,12 +1325,12 @@ static void GF_BGL_LoadScreenSub( u8 frmnum, void* src, u32 ofs, u32 siz )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	ƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ğƒoƒbƒtƒ@‚ÉƒRƒs[
+ *	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚³ãƒ”ãƒ¼
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€
- * @param	dat			w’èƒf[ƒ^
- * @param	datasizpx	ƒf[ƒ^ƒTƒCƒY
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	dat			æŒ‡å®šãƒ‡ãƒ¼ã‚¿
+ * @param	datasizpx	ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  *
  * @retrn	none
  */
@@ -1343,17 +1343,17 @@ void GF_BGL_ScreenBufSet( GF_BGL_INI * ini, u8 frmnum, const void * dat, u32 dat
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰ƒNƒ^[“]‘—
+ * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è»¢é€
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	src			“]‘—‚·‚éƒf[ƒ^
- * @param	datasiz		“]‘—ƒTƒCƒY
- * @param	offs		ƒIƒtƒZƒbƒg
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	src			è»¢é€ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ * @param	datasiz		è»¢é€ã‚µã‚¤ã‚º
+ * @param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  * @return	none
  *
- * @li	datasiz = GF_BGL_DATA_LZH : ˆ³kƒf[ƒ^
+ * @li	datasiz = GF_BGL_DATA_LZH : åœ§ç¸®ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_LoadCharacter( GF_BGL_INI * ini, u8 frmnum, const void * src, u32 datasiz, u32 offs )
@@ -1367,17 +1367,17 @@ void GF_BGL_LoadCharacter( GF_BGL_INI * ini, u8 frmnum, const void * src, u32 da
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰ƒNƒ^[“]‘—iƒtƒ@ƒCƒ‹QÆj
+ * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è»¢é€ï¼ˆãƒ•ã‚¡ã‚¤ãƒ«å‚ç…§ï¼‰
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	src			“]‘—‚·‚éƒf[ƒ^
- * @param	datasiz		“]‘—ƒTƒCƒY
- * @param	offs		ƒIƒtƒZƒbƒg
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	src			è»¢é€ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ * @param	datasiz		è»¢é€ã‚µã‚¤ã‚º
+ * @param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  * @return	none
  *
- *	ˆ³k–¢‘Î‰
+ *	åœ§ç¸®æœªå¯¾å¿œ
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_LoadCharacterFile( GF_BGL_INI * ini, u8 frmnum, const char * path, u32 offs )
@@ -1387,7 +1387,7 @@ void GF_BGL_LoadCharacterFile( GF_BGL_INI * ini, u8 frmnum, const char * path, u
 
 	mem = sys_LoadFileEx( ini->heapID, path, &size );
 	if(mem == NULL){
-		return;	//ƒGƒ‰[
+		return;	//ã‚¨ãƒ©ãƒ¼
 	}
 	GF_BGL_LoadCharacter( ini, frmnum, mem, size, offs );
 	sys_FreeMemory( ini->heapID, mem );
@@ -1396,16 +1396,16 @@ void GF_BGL_LoadCharacterFile( GF_BGL_INI * ini, u8 frmnum, const char * path, u
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰ƒf[ƒ^“WŠJ
+ * ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿å±•é–‹
  *
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	src			“]‘—‚·‚éƒf[ƒ^
- * @param	datasiz		“]‘—ƒTƒCƒY
- * @param	offs		ƒIƒtƒZƒbƒg
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	src			è»¢é€ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ * @param	datasiz		è»¢é€ã‚µã‚¤ã‚º
+ * @param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  * @return	none
  *
- * @li	datasiz = GF_BGL_DATA_LZH : ˆ³kƒf[ƒ^
+ * @li	datasiz = GF_BGL_DATA_LZH : åœ§ç¸®ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static void LoadCharacter( GF_BGL_INI* ini, u8 frmnum, const void * src, u32 datasiz, u32 offs )
@@ -1418,9 +1418,9 @@ static void LoadCharacter( GF_BGL_INI* ini, u8 frmnum, const void * src, u32 dat
 		alloc_siz  = ((*(u32*)src) >> 8);
 		decode_buf = sys_AllocMemoryLo( ini->heapID, alloc_siz );
 
-#ifdef	OSP_ERR_BGL_DECODEBUF_GET		// “WŠJ—ÌˆæŠm•Û¸”s
+#ifdef	OSP_ERR_BGL_DECODEBUF_GET		// å±•é–‹é ˜åŸŸç¢ºä¿å¤±æ•—
 		if( decode_buf == NULL ){
-			OS_Printf( "—ÌˆæŠm•Û¸”s\n" );
+			OS_Printf( "é ˜åŸŸç¢ºä¿å¤±æ•—\n" );
 		}
 #endif	// OSP_ERR_BGL_DECODEBUF_GET
 
@@ -1436,12 +1436,12 @@ static void LoadCharacter( GF_BGL_INI* ini, u8 frmnum, const void * src, u32 dat
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰ƒNƒ^[“]‘—
+ * ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è»¢é€
  *
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	src			“]‘—‚·‚éƒf[ƒ^
- * @param	offs		ƒIƒtƒZƒbƒg
- * @param	siz			“]‘—ƒTƒCƒY
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	src			è»¢é€ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
+ * @param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param	siz			è»¢é€ã‚µã‚¤ã‚º
  *
  * @return	none
  */
@@ -1509,11 +1509,11 @@ static void GF_BGL_LoadCharacterSub( u8 frmnum, void* src, u32 ofs, u32 siz )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‚OƒNƒŠƒA‚³‚ê‚½ƒLƒƒƒ‰‚ğƒZƒbƒg
+ * ï¼ã‚¯ãƒªã‚¢ã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	datasiz		“]‘—ƒTƒCƒY
- * @param	offs		ƒIƒtƒZƒbƒg
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	datasiz		è»¢é€ã‚µã‚¤ã‚º
+ * @param	offs		ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  * @return	none
  */
@@ -1530,13 +1530,13 @@ void GF_BGL_ClearCharSet( u8 frmnum, u32 datasiz, u32 offs, u32 heap )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w’è’l‚ÅƒNƒŠƒA‚³‚ê‚½ƒLƒƒƒ‰‚ğƒZƒbƒg
+ * æŒ‡å®šå€¤ã§ã‚¯ãƒªã‚¢ã•ã‚ŒãŸã‚­ãƒ£ãƒ©ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	clear_code	ƒNƒŠƒAƒR[ƒh
- * @param	charcnt		ƒNƒŠƒA‚·‚éƒLƒƒƒ‰”
- * @param	offs		ƒLƒƒƒ‰—Ìˆææ“ª‚©‚ç‚ÌƒIƒtƒZƒbƒgiƒLƒƒƒ‰”j
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	clear_code	ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
+ * @param	charcnt		ã‚¯ãƒªã‚¢ã™ã‚‹ã‚­ãƒ£ãƒ©æ•°
+ * @param	offs		ã‚­ãƒ£ãƒ©é ˜åŸŸå…ˆé ­ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆã‚­ãƒ£ãƒ©æ•°ï¼‰
  *
  * @return	none
  */
@@ -1567,12 +1567,12 @@ void GF_BGL_CharFill( GF_BGL_INI * ini, u32 frmnum, u32 clear_code, u32 charcnt,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒg“]‘—
+ * ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
  *
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	buf			ƒpƒŒƒbƒgƒf[ƒ^
- * @param	siz			“]‘—ƒTƒCƒYiƒoƒCƒg’PˆÊj
- * @param	ofs			ƒIƒtƒZƒbƒgiƒoƒCƒg’PˆÊj
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	buf			ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+ * @param	siz			è»¢é€ã‚µã‚¤ã‚ºï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
+ * @param	ofs			ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆãƒã‚¤ãƒˆå˜ä½ï¼‰
  *
  * @return	none
  */
@@ -1597,10 +1597,10 @@ void GF_BGL_PaletteSet( u8 frmnum, void * buf, u16 siz, u16 ofs )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒJƒ‰[“]‘—iƒpƒŒƒbƒg‚O‚ÌƒJƒ‰[w’èj
+ * ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ã‚«ãƒ©ãƒ¼è»¢é€ï¼ˆãƒ‘ãƒ¬ãƒƒãƒˆï¼ã®ã‚«ãƒ©ãƒ¼æŒ‡å®šï¼‰
  *
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	col			ƒJƒ‰[
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	col			ã‚«ãƒ©ãƒ¼
  *
  * @return	none
  */
@@ -1613,21 +1613,21 @@ void GF_BGL_BackGroundColorSet( u8 frmnum, u16 col )
 
 //=============================================================================================
 //=============================================================================================
-//	ƒXƒNƒŠ[ƒ“ŠÖ˜A
+//	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³é–¢é€£
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒf[ƒ^ˆÊ’uæ“¾
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ä½ç½®å–å¾—
  *
- * @param	px		‚wÀ•W
- * @param	py		‚xÀ•W
- * @param	size	ƒXƒNƒŠ[ƒ“ƒf[ƒ^ƒTƒCƒY
+ * @param	px		ï¼¸åº§æ¨™
+ * @param	py		ï¼¹åº§æ¨™
+ * @param	size	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
  *
- * @return	u16:ƒXƒNƒŠ[ƒ“À•Windex
+ * @return	u16:ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™index
  *
- * @li	size = GF_BGL_SCRSIZ_128x128 ` GF_BGL_SCRSIZ_1024x1024
+ * @li	size = GF_BGL_SCRSIZ_128x128 ã€œ GF_BGL_SCRSIZ_1024x1024
  */
 //--------------------------------------------------------------------------------------------
 static u16 GetScreenPos( u8 px, u8 py, u8 size )
@@ -1650,23 +1650,23 @@ static u16 GetScreenPos( u8 px, u8 py, u8 size )
 		pos *= 1024;
 		pos += ( py & 0x1f )  * 32 + ( px & 0x1f );
 		break;
-	case GF_BGL_SCRSIZ_1024x1024:	// –¢‘Î‰
+	case GF_BGL_SCRSIZ_1024x1024:	// æœªå¯¾å¿œ
 		pos = 0;
 	}
 	return pos;
 }
 //--------------------------------------------------------------------------------------------
 /**
- * Ü‚è•Ô‚µ—L‚èƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@ƒf[ƒ^ˆÊ’uæ“¾
+ * æŠ˜ã‚Šè¿”ã—æœ‰ã‚Šã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ãƒ‡ãƒ¼ã‚¿ä½ç½®å–å¾—
  *
- * @param	px		‚wÀ•W
- * @param	py		‚xÀ•W
- * @param	sx		ƒXƒNƒŠ[ƒ“ƒf[ƒ^ƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)
- * @param	sy		ƒXƒNƒŠ[ƒ“ƒf[ƒ^ƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)
+ * @param	px		ï¼¸åº§æ¨™
+ * @param	py		ï¼¹åº§æ¨™
+ * @param	sx		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)
+ * @param	sy		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)
  *
  * @retrn	none
  *
- * @li	1x1`64x64charƒTƒCƒY‚Ü‚Å‘Î‰
+ * @li	1x1ã€œ64x64charã‚µã‚¤ã‚ºã¾ã§å¯¾å¿œ
  */
 //--------------------------------------------------------------------------------------------
 static u16 GetScrBufferPos(u8 px,u8 py,u8 sx,u8 sy)
@@ -1715,15 +1715,15 @@ static u16 GetScrBufferPos(u8 px,u8 py,u8 sx,u8 sy)
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€
- * @param	buf			‘‚«‚Şƒf[ƒ^
- * @param	px			‘‚«‚İŠJn‚wÀ•W
- * @param	py			‘‚«‚İŠJn‚xÀ•W
- * @param	sx			‘‚«‚İ‚wƒTƒCƒY
- * @param	sy			‘‚«‚İ‚xƒTƒCƒY
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	buf			æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿
+ * @param	px			æ›¸ãè¾¼ã¿é–‹å§‹ï¼¸åº§æ¨™
+ * @param	py			æ›¸ãè¾¼ã¿é–‹å§‹ï¼¹åº§æ¨™
+ * @param	sx			æ›¸ãè¾¼ã¿ï¼¸ã‚µã‚¤ã‚º
+ * @param	sy			æ›¸ãè¾¼ã¿ï¼¹ã‚µã‚¤ã‚º
  *
  * @retrn	none
  */
@@ -1736,19 +1736,19 @@ void GF_BGL_ScrWrite(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İiŠg’£”Åj
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿ï¼ˆæ‹¡å¼µç‰ˆï¼‰
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€
- * @param	write_px	‘‚«‚İŠJn‚wÀ•W
- * @param	write_px	‘‚«‚İŠJn‚xÀ•W
- * @param	write_sx	‘‚«‚İ‚wƒTƒCƒY
- * @param	write_sy	‘‚«‚İ‚xƒTƒCƒY
- * @param	buf			“Ç‚İ‚İƒf[ƒ^
- * @param	buf_px		“Ç‚İ‚İŠJn‚wÀ•W
- * @param	buf_py		“Ç‚İ‚İŠJn‚xÀ•W
- * @param	buf_sx		“Ç‚İ‚İƒf[ƒ^‚wƒTƒCƒYiwrite_sx,sy‚Æ‚Íˆá‚¢A“Ç‚İ‚İƒf[ƒ^‚Ì
- * @param	buf_sy		“Ç‚İ‚İƒf[ƒ^‚xƒTƒCƒY@‘S‘Ì‚Ì‘å‚«‚³‚»‚Ì‚à‚Ì‚ğ‘ã“ü‚·‚éj
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	write_px	æ›¸ãè¾¼ã¿é–‹å§‹ï¼¸åº§æ¨™
+ * @param	write_px	æ›¸ãè¾¼ã¿é–‹å§‹ï¼¹åº§æ¨™
+ * @param	write_sx	æ›¸ãè¾¼ã¿ï¼¸ã‚µã‚¤ã‚º
+ * @param	write_sy	æ›¸ãè¾¼ã¿ï¼¹ã‚µã‚¤ã‚º
+ * @param	buf			èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿
+ * @param	buf_px		èª­ã¿è¾¼ã¿é–‹å§‹ï¼¸åº§æ¨™
+ * @param	buf_py		èª­ã¿è¾¼ã¿é–‹å§‹ï¼¹åº§æ¨™
+ * @param	buf_sx		èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ï¼¸ã‚µã‚¤ã‚ºï¼ˆwrite_sx,syã¨ã¯é•ã„ã€èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®
+ * @param	buf_sy		èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ï¼¹ã‚µã‚¤ã‚ºã€€å…¨ä½“ã®å¤§ãã•ãã®ã‚‚ã®ã‚’ä»£å…¥ã™ã‚‹ï¼‰
  *
  * @retrn	none
  */
@@ -1770,23 +1770,23 @@ void GF_BGL_ScrWriteExpand(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İ(Ü‚è•Ô‚µ‚ ‚èƒf[ƒ^”Å)
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿(æŠ˜ã‚Šè¿”ã—ã‚ã‚Šãƒ‡ãƒ¼ã‚¿ç‰ˆ)
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€
- * @param	write_px	‘‚«‚İŠJn‚wÀ•W
- * @param	write_px	‘‚«‚İŠJn‚xÀ•W
- * @param	write_sx	‘‚«‚İ‚wƒTƒCƒY
- * @param	write_sy	‘‚«‚İ‚xƒTƒCƒY
- * @param	buf			“Ç‚İ‚İƒf[ƒ^
- * @param	buf_px		“Ç‚İ‚İŠJn‚wÀ•W
- * @param	buf_py		“Ç‚İ‚İŠJn‚xÀ•W
- * @param	buf_sx		“Ç‚İ‚İƒf[ƒ^‚wƒTƒCƒYiwrite_sx,sy‚Æ‚Íˆá‚¢A“Ç‚İ‚İƒf[ƒ^‚Ì
- * @param	buf_sy		“Ç‚İ‚İƒf[ƒ^‚xƒTƒCƒY@‘S‘Ì‚Ì‘å‚«‚³‚»‚Ì‚à‚Ì‚ğ‘ã“ü‚·‚éj
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	write_px	æ›¸ãè¾¼ã¿é–‹å§‹ï¼¸åº§æ¨™
+ * @param	write_px	æ›¸ãè¾¼ã¿é–‹å§‹ï¼¹åº§æ¨™
+ * @param	write_sx	æ›¸ãè¾¼ã¿ï¼¸ã‚µã‚¤ã‚º
+ * @param	write_sy	æ›¸ãè¾¼ã¿ï¼¹ã‚µã‚¤ã‚º
+ * @param	buf			èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿
+ * @param	buf_px		èª­ã¿è¾¼ã¿é–‹å§‹ï¼¸åº§æ¨™
+ * @param	buf_py		èª­ã¿è¾¼ã¿é–‹å§‹ï¼¹åº§æ¨™
+ * @param	buf_sx		èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ï¼¸ã‚µã‚¤ã‚ºï¼ˆwrite_sx,syã¨ã¯é•ã„ã€èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ã®
+ * @param	buf_sy		èª­ã¿è¾¼ã¿ãƒ‡ãƒ¼ã‚¿ï¼¹ã‚µã‚¤ã‚ºã€€å…¨ä½“ã®å¤§ãã•ãã®ã‚‚ã®ã‚’ä»£å…¥ã™ã‚‹ï¼‰
  *
  * @retrn	none
  *
- * @li	Ü‚è•Ô‚µ—L‚è1x1`64x64ƒLƒƒƒ‰‚ÌƒtƒŠ[ƒTƒCƒYƒXƒNƒŠ[ƒ“ƒf[ƒ^‚Ì‹éŒ`‘‚«‚İ
+ * @li	æŠ˜ã‚Šè¿”ã—æœ‰ã‚Š1x1ã€œ64x64ã‚­ãƒ£ãƒ©ã®ãƒ•ãƒªãƒ¼ã‚µã‚¤ã‚ºã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã®çŸ©å½¢æ›¸ãè¾¼ã¿
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_ScrWriteFree(
@@ -1807,12 +1807,12 @@ void GF_BGL_ScrWriteFree(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İiƒeƒLƒXƒg–ÊAƒAƒtƒBƒ“Šg’£–Ê—pj
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿ï¼ˆãƒ†ã‚­ã‚¹ãƒˆé¢ã€ã‚¢ãƒ•ã‚£ãƒ³æ‹¡å¼µé¢ç”¨ï¼‰
  *
  * @param	GF_BGL_ScrWriteExpand+
- * @param	mode	u8:ƒoƒbƒtƒ@‚Ìƒf[ƒ^ƒ‚[ƒh
- *					0:GF_BGL_MODE_1DBUF(ˆêŸŒ³”z—ñƒf[ƒ^)
- *					1:GF_BGL_MODE_2DBUF(Ü‚è•Ô‚µ—L‚è‚Ìƒf[ƒ^)
+ * @param	mode	u8:ãƒãƒƒãƒ•ã‚¡ã®ãƒ‡ãƒ¼ã‚¿ãƒ¢ãƒ¼ãƒ‰
+ *					0:GF_BGL_MODE_1DBUF(ä¸€æ¬¡å…ƒé…åˆ—ãƒ‡ãƒ¼ã‚¿)
+ *					1:GF_BGL_MODE_2DBUF(æŠ˜ã‚Šè¿”ã—æœ‰ã‚Šã®ãƒ‡ãƒ¼ã‚¿)
  *
  * @return	none
  */
@@ -1832,7 +1832,7 @@ static void GF_BGL_ScrWrite_Normal(
 
 	BgScreenSizeGet( ini->screen_siz, &scr_sx, &scr_sy );
 
-	if(mode == GF_BGL_MODE_1DBUF){	//Ü‚è•Ô‚µ‚È‚µƒf[ƒ^ˆ—
+	if(mode == GF_BGL_MODE_1DBUF){	//æŠ˜ã‚Šè¿”ã—ãªã—ãƒ‡ãƒ¼ã‚¿å‡¦ç†
 		for( i=0; i<write_sy; i++ ){
 			if( (write_py+i) >= scr_sy || (buf_py+i) >= buf_sy ){ break; }
 			for( j=0; j<write_sx; j++ ){
@@ -1842,7 +1842,7 @@ static void GF_BGL_ScrWrite_Normal(
 														buf[ (buf_py+i)*buf_sx+buf_px+j ];
 			}
 		}
-	}else{	//Ü‚è•Ô‚µ—L‚èƒf[ƒ^ˆ—
+	}else{	//æŠ˜ã‚Šè¿”ã—æœ‰ã‚Šãƒ‡ãƒ¼ã‚¿å‡¦ç†
 		for( i=0; i<write_sy; i++ ){
 			if( (write_py+i) >= scr_sy || (buf_py+i) >= buf_sy ){ break; }
 			for( j=0; j<write_sx; j++ ){
@@ -1856,12 +1856,12 @@ static void GF_BGL_ScrWrite_Normal(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒf[ƒ^‘‚«‚İiŠgk–Ê—pj
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿ï¼ˆæ‹¡ç¸®é¢ç”¨ï¼‰
  *
- * @param	GF_BGL_ScrWriteExpand@{
- * @param	mode	u8:ƒoƒbƒtƒ@‚Ìƒf[ƒ^ƒ‚[ƒh
- *					0:GF_BGL_MODE_1DBUF(ˆêŸŒ³”z—ñƒf[ƒ^)
- *					1:GF_BGL_MODE_2DBUF(Ü‚è•Ô‚µ—L‚è‚Ìƒf[ƒ^)
+ * @param	GF_BGL_ScrWriteExpandã€€ï¼‹
+ * @param	mode	u8:ãƒãƒƒãƒ•ã‚¡ã®ãƒ‡ãƒ¼ã‚¿ãƒ¢ãƒ¼ãƒ‰
+ *					0:GF_BGL_MODE_1DBUF(ä¸€æ¬¡å…ƒé…åˆ—ãƒ‡ãƒ¼ã‚¿)
+ *					1:GF_BGL_MODE_2DBUF(æŠ˜ã‚Šè¿”ã—æœ‰ã‚Šã®ãƒ‡ãƒ¼ã‚¿)
  *
  * @retrn	none
  */
@@ -1881,7 +1881,7 @@ static void GF_BGL_ScrWrite_Affine(
 
 	BgScreenSizeGet( ini->screen_siz, &scr_sx, &scr_sy );
 
-	if(mode == GF_BGL_MODE_1DBUF){	//Ü‚è•Ô‚µ‚È‚µƒf[ƒ^ˆ—
+	if(mode == GF_BGL_MODE_1DBUF){	//æŠ˜ã‚Šè¿”ã—ãªã—ãƒ‡ãƒ¼ã‚¿å‡¦ç†
 		for( i=0; i<write_sy; i++ ){
 			if( (write_py+i) >= scr_sy || (buf_py+i) >= buf_sy ){ break; }
 			for( j=0; j<write_sx; j++ ){
@@ -1891,7 +1891,7 @@ static void GF_BGL_ScrWrite_Affine(
 														buf[ (buf_py+i)*buf_sx + buf_px+j ];
 			}
 		}
-	}else{	//Ü‚è•Ô‚µ‚ ‚èƒf[ƒ^ˆ—
+	}else{	//æŠ˜ã‚Šè¿”ã—ã‚ã‚Šãƒ‡ãƒ¼ã‚¿å‡¦ç†
 		for( i=0; i<write_sy; i++ ){
 			if( (write_py+i) >= scr_sy || (buf_py+i) >= buf_sy ){ break; }
 			for( j=0; j<write_sx; j++ ){
@@ -1906,22 +1906,22 @@ static void GF_BGL_ScrWrite_Affine(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒf[ƒ^ƒoƒbƒtƒ@–„‚ßs‚­‚µ
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡åŸ‹ã‚å°½ãã—
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€
- * @param	dat			w’èƒf[ƒ^
- * @param	px			‘‚«‚İŠJn‚wÀ•W
- * @param	py			‘‚«‚İŠJn‚xÀ•W
- * @param	sx			‘‚«‚İ‚wƒTƒCƒY
- * @param	sy			‘‚«‚İ‚xƒTƒCƒY
- * @param	mode		ƒpƒŒƒbƒg”Ô†‚È‚Ç
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ 
+ * @param	dat			æŒ‡å®šãƒ‡ãƒ¼ã‚¿
+ * @param	px			æ›¸ãè¾¼ã¿é–‹å§‹ï¼¸åº§æ¨™
+ * @param	py			æ›¸ãè¾¼ã¿é–‹å§‹ï¼¹åº§æ¨™
+ * @param	sx			æ›¸ãè¾¼ã¿ï¼¸ã‚µã‚¤ã‚º
+ * @param	sy			æ›¸ãè¾¼ã¿ï¼¹ã‚µã‚¤ã‚º
+ * @param	mode		ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ãªã©
  *
  * @retrn	none
  *
- * @li	mode = GF_BGL_SCRWRT_PALNL : Œ»İ‚ÌƒXƒNƒŠ[ƒ“‚ÌƒpƒŒƒbƒg‚ğˆø‚«Œp‚®
- * @li	mode = GF_BGL_SCRWRT_PALIN : dat‚ÉƒpƒŒƒbƒgƒf[ƒ^‚ğŠÜ‚Ş
- * @li	mode = 0 ` 15 : ƒpƒŒƒbƒg”Ô†
+ * @li	mode = GF_BGL_SCRWRT_PALNL : ç¾åœ¨ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¼•ãç¶™ã
+ * @li	mode = GF_BGL_SCRWRT_PALIN : datã«ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å«ã‚€
+ * @li	mode = 0 ã€œ 15 : ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_ScrFill( GF_BGL_INI * ini, u8 frmnum, u16 dat, u8 px, u8 py, u8 sx, u8 sy, u8 mode )
@@ -1935,9 +1935,9 @@ void GF_BGL_ScrFill( GF_BGL_INI * ini, u8 frmnum, u16 dat, u8 px, u8 py, u8 sx, 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒf[ƒ^ƒoƒbƒtƒ@–„‚ßs‚­‚µiƒeƒLƒXƒg–ÊAƒAƒtƒBƒ“Šg’£–Ê—pj
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡åŸ‹ã‚å°½ãã—ï¼ˆãƒ†ã‚­ã‚¹ãƒˆé¢ã€ã‚¢ãƒ•ã‚£ãƒ³æ‹¡å¼µé¢ç”¨ï¼‰
  *
- * @param	GF_BGL_ScrFill‚Æ“¯‚¶
+ * @param	GF_BGL_ScrFillã¨åŒã˜
  *
  * @retrn	none
  */
@@ -1977,9 +1977,9 @@ static void GF_BGL_ScrFill_Normal(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒf[ƒ^ƒoƒbƒtƒ@–„‚ßs‚­‚µiŠgk–Ê—pj
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡åŸ‹ã‚å°½ãã—ï¼ˆæ‹¡ç¸®é¢ç”¨ï¼‰
  *
- * @param	GF_BGL_ScrFill‚Æ“¯‚¶
+ * @param	GF_BGL_ScrFillã¨åŒã˜
  *
  * @retrn	none
  */
@@ -2008,15 +2008,15 @@ static void GF_BGL_ScrFill_Affine( GF_BGL_SYS_INI * ini, u8 dat, u8 px, u8 py, u
 
 //--------------------------------------------------------------------------------------------
 /**
- * w’èƒtƒŒ[ƒ€‚ÌƒXƒNƒŠ[ƒ“‚Ìw’èˆÊ’u‚ÌƒpƒŒƒbƒg‚ğ•ÏX‚·‚é
+ * æŒ‡å®šãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®æŒ‡å®šä½ç½®ã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰æ›´ã™ã‚‹
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
- * @param	px		ŠJnXˆÊ’u
- * @param	py		ŠJnYˆÊ’u
- * @param	sx		XƒTƒCƒY
- * @param	sy		YƒTƒCƒY
- * @param	pal		ƒpƒŒƒbƒg”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	px		é–‹å§‹Xä½ç½®
+ * @param	py		é–‹å§‹Yä½ç½®
+ * @param	sx		Xã‚µã‚¤ã‚º
+ * @param	sy		Yã‚µã‚¤ã‚º
+ * @param	pal		ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  *
  * @return	none
  */
@@ -2050,10 +2050,10 @@ void GF_BGL_ScrPalChange( GF_BGL_INI * ini, u8 frmnum, u8 px, u8 py, u8 sx, u8 s
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ğƒNƒŠƒA‚µ‚Ä“]‘—
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢ã—ã¦è»¢é€
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
  * @return	none
  */
@@ -2069,11 +2069,11 @@ void GF_BGL_ScrClear( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ğw’èƒR[ƒh‚ÅƒNƒŠƒA‚µ‚Ä“]‘—
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã‚³ãƒ¼ãƒ‰ã§ã‚¯ãƒªã‚¢ã—ã¦è»¢é€
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
- * @param   clear_code	ƒNƒŠƒAƒR[ƒh
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param   clear_code	ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
  *
  * @return	none
  */
@@ -2089,15 +2089,15 @@ void GF_BGL_ScrClearCode( GF_BGL_INI * ini, u8 frmnum, u16 clear_code )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚ğw’èƒR[ƒh‚ÅƒNƒŠƒA‚µ‚Ä“]‘—ƒŠƒNƒGƒXƒg
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã‚³ãƒ¼ãƒ‰ã§ã‚¯ãƒªã‚¢ã—ã¦è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
- * @param   clear_code	ƒNƒŠƒAƒR[ƒh
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param   clear_code	ã‚¯ãƒªã‚¢ã‚³ãƒ¼ãƒ‰
  *
  * @return	none
  *
- * @li	“]‘—‚ÍVBlank‚Å
+ * @li	è»¢é€ã¯VBlankã§
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_ScrClearCodeVReq( GF_BGL_INI * ini, u8 frmnum, u16 clear_code )
@@ -2112,17 +2112,17 @@ void GF_BGL_ScrClearCodeVReq( GF_BGL_INI * ini, u8 frmnum, u16 clear_code )
 
 //=============================================================================================
 //=============================================================================================
-//	ƒLƒƒƒ‰ƒNƒ^[ŠÖ˜A
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼é–¢é€£
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒLƒƒƒ‰ƒf[ƒ^‚ğæ“¾
+ * ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	ƒLƒƒƒ‰ƒf[ƒ^‚ÌƒAƒhƒŒƒX
+ * @return	ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 void * GF_BGL_CgxGet( u8 frmnum )
@@ -2151,12 +2151,12 @@ void * GF_BGL_CgxGet( u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * 4bit‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ğ8bit‚É•ÏŠ·‚·‚éi•ÏŠ·æw’èj
+ * 4bitã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’8bitã«å¤‰æ›ã™ã‚‹ï¼ˆå¤‰æ›å…ˆæŒ‡å®šï¼‰
  *
- * @param	chr			•ÏŠ·Œ³ƒf[ƒ^i4bitƒLƒƒƒ‰j
- * @param	chr_size	•ÏŠ·Œ³ƒf[ƒ^‚ÌƒTƒCƒY
- * @param	buf			•ÏŠ·æ
- * @param	pal_ofs		Œ³ƒpƒŒƒbƒg”Ô† ( 0 ` 16 )
+ * @param	chr			å¤‰æ›å…ƒãƒ‡ãƒ¼ã‚¿ï¼ˆ4bitã‚­ãƒ£ãƒ©ï¼‰
+ * @param	chr_size	å¤‰æ›å…ƒãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+ * @param	buf			å¤‰æ›å…ˆ
+ * @param	pal_ofs		å…ƒãƒ‘ãƒ¬ãƒƒãƒˆç•ªå· ( 0 ã€œ 16 )
  *
  * @return	none
  */
@@ -2177,14 +2177,14 @@ void GF_BGL_4BitCgxChange8BitMain( const u8 * chr, u32 chr_size, u8 * buf, u8 pa
 
 //--------------------------------------------------------------------------------------------
 /**
- * 4bit‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ğ8bit‚É•ÏŠ·‚·‚éi•ÏŠ·ææ“¾j
+ * 4bitã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’8bitã«å¤‰æ›ã™ã‚‹ï¼ˆå¤‰æ›å…ˆå–å¾—ï¼‰
  *
- * @param	chr			•ÏŠ·Œ³ƒf[ƒ^i4bitƒLƒƒƒ‰j
- * @param	chr_size	•ÏŠ·Œ³ƒf[ƒ^‚ÌƒTƒCƒY
- * @param	pal_ofs		Œ³ƒpƒŒƒbƒg”Ô† ( 0 ` 16 )
- * @param	heap		ƒq[ƒvID
+ * @param	chr			å¤‰æ›å…ƒãƒ‡ãƒ¼ã‚¿ï¼ˆ4bitã‚­ãƒ£ãƒ©ï¼‰
+ * @param	chr_size	å¤‰æ›å…ƒãƒ‡ãƒ¼ã‚¿ã®ã‚µã‚¤ã‚º
+ * @param	pal_ofs		å…ƒãƒ‘ãƒ¬ãƒƒãƒˆç•ªå· ( 0 ã€œ 16 )
+ * @param	heap		ãƒ’ãƒ¼ãƒ—ID
  *
- * @return	æ“¾‚µ‚½ƒƒ‚ƒŠ‚ÌƒAƒhƒŒƒX
+ * @return	å–å¾—ã—ãŸãƒ¡ãƒ¢ãƒªã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 void * GF_BGL_4BitCgxChange8Bit( const u8 * chr, u32 chr_size, u8 pal_ofs, u32 heap )
@@ -2199,18 +2199,18 @@ void * GF_BGL_4BitCgxChange8Bit( const u8 * chr, u32 chr_size, u8 pal_ofs, u32 h
 
 //=============================================================================================
 //=============================================================================================
-//	BGLƒXƒe[ƒ^ƒXæ“¾
+//	BGLã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGLƒXƒe[ƒ^ƒXæ“¾iƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@ƒAƒhƒŒƒXj
+ * BGLã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—ï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@ƒAƒhƒŒƒX
+ * @return	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 void * GF_BGL_ScreenAdrsGet( GF_BGL_INI * ini, u8 frmnum )
@@ -2220,12 +2220,12 @@ void * GF_BGL_ScreenAdrsGet( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGLƒXƒe[ƒ^ƒXæ“¾iƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@ƒTƒCƒYj
+ * BGLã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—ï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	ƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@ƒTƒCƒY
+ * @return	ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
  */
 //--------------------------------------------------------------------------------------------
 u32 GF_BGL_ScreenSizGet( GF_BGL_INI * ini, u8 frmnum )
@@ -2235,12 +2235,12 @@ u32 GF_BGL_ScreenSizGet( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGLƒXƒe[ƒ^ƒXæ“¾iƒXƒNƒŠ[ƒ“ƒ^ƒCƒvæ“¾j
+ * BGLã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—ï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¿ã‚¤ãƒ—å–å¾—ï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	GF_BGL_SCRSIZ_128x128 “™
+ * @return	GF_BGL_SCRSIZ_128x128 ç­‰
  */
 //--------------------------------------------------------------------------------------------
 u32 GF_BGL_ScreenTypeGet( GF_BGL_INI * ini, u8 frmnum )
@@ -2250,12 +2250,12 @@ u32 GF_BGL_ScreenTypeGet( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGLƒXƒe[ƒ^ƒXæ“¾iƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^Xj
+ * BGLã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—ï¼ˆã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿Xï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	ƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^X
+ * @return	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿X
  */
 //--------------------------------------------------------------------------------------------
 int GF_BGL_ScreenScrollXGet( GF_BGL_INI * ini, u8 frmnum )
@@ -2265,12 +2265,12 @@ int GF_BGL_ScreenScrollXGet( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGLƒXƒe[ƒ^ƒXæ“¾iƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^Yj
+ * BGLã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—ï¼ˆã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿Yï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	ƒXƒNƒ[ƒ‹ƒJƒEƒ“ƒ^Y
+ * @return	ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚«ã‚¦ãƒ³ã‚¿Y
  */
 //--------------------------------------------------------------------------------------------
 int GF_BGL_ScreenScrollYGet( GF_BGL_INI * ini, u8 frmnum )
@@ -2280,12 +2280,12 @@ int GF_BGL_ScreenScrollYGet( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGLƒXƒe[ƒ^ƒXæ“¾iƒJƒ‰[ƒ‚[ƒhj
+ * BGLã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—ï¼ˆã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰ï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	ƒJƒ‰[ƒ‚[ƒh
+ * @return	ã‚«ãƒ©ãƒ¼ãƒ¢ãƒ¼ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 u8 GF_BGL_ScreenColorModeGet( GF_BGL_INI * ini, u8 frmnum )
@@ -2295,12 +2295,12 @@ u8 GF_BGL_ScreenColorModeGet( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGLƒXƒe[ƒ^ƒXæ“¾i‰ñ“]Šp“xj
+ * BGLã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—ï¼ˆå›è»¢è§’åº¦ï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	‰ñ“]Šp“x
+ * @return	å›è»¢è§’åº¦
  */
 //--------------------------------------------------------------------------------------------
 u16 GF_BGL_RadianGet( GF_BGL_INI * ini, u8 frmnum )
@@ -2310,12 +2310,12 @@ u16 GF_BGL_RadianGet( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGLƒXƒe[ƒ^ƒXæ“¾iX•ûŒü‚ÌŠgkƒpƒ‰ƒ[ƒ^j
+ * BGLã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—ï¼ˆXæ–¹å‘ã®æ‹¡ç¸®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	X•ûŒü‚ÌŠgkƒpƒ‰ƒ[ƒ^
+ * @return	Xæ–¹å‘ã®æ‹¡ç¸®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 fx32 GF_BGL_ScaleXGet( GF_BGL_INI * ini, u8 frmnum )
@@ -2325,12 +2325,12 @@ fx32 GF_BGL_ScaleXGet( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGLƒXƒe[ƒ^ƒXæ“¾iY•ûŒü‚ÌŠgkƒpƒ‰ƒ[ƒ^j
+ * BGLã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—ï¼ˆYæ–¹å‘ã®æ‹¡ç¸®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	Y•ûŒü‚ÌŠgkƒpƒ‰ƒ[ƒ^
+ * @return	Yæ–¹å‘ã®æ‹¡ç¸®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 fx32 GF_BGL_ScaleYGet( GF_BGL_INI * ini, u8 frmnum )
@@ -2340,12 +2340,12 @@ fx32 GF_BGL_ScaleYGet( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGLƒXƒe[ƒ^ƒXæ“¾i‰ñ“]’†SXÀ•Wj
+ * BGLã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—ï¼ˆå›è»¢ä¸­å¿ƒXåº§æ¨™ï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	‰ñ“]’†SXÀ•W
+ * @return	å›è»¢ä¸­å¿ƒXåº§æ¨™
  */
 //--------------------------------------------------------------------------------------------
 int GF_BGL_CenterXGet( GF_BGL_INI * ini, u8 frmnum )
@@ -2355,12 +2355,12 @@ int GF_BGL_CenterXGet( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGLƒXƒe[ƒ^ƒXæ“¾i‰ñ“]’†SYÀ•Wj
+ * BGLã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—ï¼ˆå›è»¢ä¸­å¿ƒYåº§æ¨™ï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	‰ñ“]’†SYÀ•W
+ * @return	å›è»¢ä¸­å¿ƒYåº§æ¨™
  */
 //--------------------------------------------------------------------------------------------
 int GF_BGL_CenterYGet( GF_BGL_INI * ini, u8 frmnum )
@@ -2370,12 +2370,12 @@ int GF_BGL_CenterYGet( GF_BGL_INI * ini, u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGƒvƒ‰ƒCƒIƒŠƒeƒBæ“¾
+ * BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å–å¾—
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @return	ƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @return	ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  */
 //--------------------------------------------------------------------------------------------
 u8 GF_BGL_PriorityGet( GF_BGL_INI * ini, u8 frm )
@@ -2486,27 +2486,27 @@ u8 GF_BGL_PriorityGet( GF_BGL_INI * ini, u8 frm )
 
 //=============================================================================================
 //=============================================================================================
-//	ƒrƒbƒgƒ}ƒbƒvŠÖ˜A
+//	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—é–¢é€£
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * “Ç‚İ‚İ‚Æ‘‚«‚İ‚ÌƒAƒhƒŒƒX‚Æ”ÍˆÍ‚ğw’è‚µ‚ÄƒLƒƒƒ‰‚ğ•`‰æ(“§–¾Fw’è‚ ‚èj
+ * èª­ã¿è¾¼ã¿ã¨æ›¸ãè¾¼ã¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ç¯„å›²ã‚’æŒ‡å®šã—ã¦ã‚­ãƒ£ãƒ©ã‚’æç”»(é€æ˜è‰²æŒ‡å®šã‚ã‚Šï¼‰
  *
- * @param	src			“Ç‚İ‚İŒ³ƒLƒƒƒ‰ƒf[ƒ^ƒwƒbƒ_[\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	dest		‘‚«‚İæƒLƒƒƒ‰ƒf[ƒ^ƒwƒbƒ_[\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	pos_sx		“Ç‚İ‚İŒ³“Ç‚İ‚İŠJnXÀ•W
- * @param	pos_sy		“Ç‚İ‚İŒ³“Ç‚İ‚İŠJnYÀ•W
- * @param	pos_dx		‘‚«‚İæ‘‚«‚İŠJnXÀ•W
- * @param	pos_dy		‘‚«‚İæ‘‚«‚İŠJnYÀ•W
- * @param	size_x		•`‰æ”ÍˆÍXƒTƒCƒY
- * @param	size_y		•`‰æ”ÍˆÍYƒTƒCƒY
- * @param	nuki_col	“§–¾Fw’èi0`15 0xff:“§–¾Fw’è‚È‚µj
+ * @param	src			èª­ã¿è¾¼ã¿å…ƒã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ãƒ¼æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	dest		æ›¸ãè¾¼ã¿å…ˆã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ãƒ¼æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	pos_sx		èª­ã¿è¾¼ã¿å…ƒèª­ã¿è¾¼ã¿é–‹å§‹Xåº§æ¨™
+ * @param	pos_sy		èª­ã¿è¾¼ã¿å…ƒèª­ã¿è¾¼ã¿é–‹å§‹Yåº§æ¨™
+ * @param	pos_dx		æ›¸ãè¾¼ã¿å…ˆæ›¸ãè¾¼ã¿é–‹å§‹Xåº§æ¨™
+ * @param	pos_dy		æ›¸ãè¾¼ã¿å…ˆæ›¸ãè¾¼ã¿é–‹å§‹Yåº§æ¨™
+ * @param	size_x		æç”»ç¯„å›²Xã‚µã‚¤ã‚º
+ * @param	size_y		æç”»ç¯„å›²Yã‚µã‚¤ã‚º
+ * @param	nuki_col	é€æ˜è‰²æŒ‡å®šï¼ˆ0ã€œ15 0xff:é€æ˜è‰²æŒ‡å®šãªã—ï¼‰
  *
  * @return	none
  *
- * @li	‚P‚UF—p
+ * @li	ï¼‘ï¼–è‰²ç”¨
  */
 //--------------------------------------------------------------------------------------------
 #define	NULLPAL_L	(nuki_col)
@@ -2586,7 +2586,7 @@ void GF_BMP_PrintMain(
 	srcxarg = SRC_XARG;
 	dstxarg = DST_XARG;
 
-	if(nuki_col==GF_BGL_BMPPRT_NOTNUKI){	//”²‚«Fw’è‚È‚µ
+	if(nuki_col==GF_BGL_BMPPRT_NOTNUKI){	//æŠœãè‰²æŒ‡å®šãªã—
 		for(sy=SRC_POSY, dy=DST_POSY; sy < y_max; sy++, dy++){
 			for(sx=SRC_POSX, dx=DST_POSX; sx < x_max; sx++, dx++){
 				srcadrs	= DPPCALC(SRC_ADRS, sx, sy, srcxarg);
@@ -2597,7 +2597,7 @@ void GF_BMP_PrintMain(
 				*dstadrs = (u8)((src_dat << shiftval)|(*dstadrs & (0xf0 >> shiftval)));
 			}
 		}
-	}else{				//”²‚«Fw’è‚ ‚è
+	}else{				//æŠœãè‰²æŒ‡å®šã‚ã‚Š
 		for(sy=SRC_POSY, dy=DST_POSY; sy < y_max; sy++, dy++){
 			for(sx=SRC_POSX, dx=DST_POSX; sx < x_max; sx++, dx++){
 				srcadrs	= DPPCALC(SRC_ADRS, sx, sy, srcxarg);
@@ -2616,21 +2616,21 @@ void GF_BMP_PrintMain(
 
 //--------------------------------------------------------------------------------------------
 /**
- * “Ç‚İ‚İ‚Æ‘‚«‚İ‚ÌƒAƒhƒŒƒX‚Æ”ÍˆÍ‚ğw’è‚µ‚ÄƒLƒƒƒ‰‚ğ•`‰æ(“§–¾Fw’è‚ ‚èj
+ * èª­ã¿è¾¼ã¿ã¨æ›¸ãè¾¼ã¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ç¯„å›²ã‚’æŒ‡å®šã—ã¦ã‚­ãƒ£ãƒ©ã‚’æç”»(é€æ˜è‰²æŒ‡å®šã‚ã‚Šï¼‰
  *
- * @param	src			“Ç‚İ‚İŒ³ƒLƒƒƒ‰ƒf[ƒ^ƒwƒbƒ_[\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	dest		‘‚«‚İæƒLƒƒƒ‰ƒf[ƒ^ƒwƒbƒ_[\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	pos_sx		“Ç‚İ‚İŒ³“Ç‚İ‚İŠJnXÀ•W
- * @param	pos_sy		“Ç‚İ‚İŒ³“Ç‚İ‚İŠJnYÀ•W
- * @param	pos_dx		‘‚«‚İæ‘‚«‚İŠJnXÀ•W
- * @param	pos_dy		‘‚«‚İæ‘‚«‚İŠJnYÀ•W
- * @param	size_x		•`‰æ”ÍˆÍXƒTƒCƒY
- * @param	size_y		•`‰æ”ÍˆÍYƒTƒCƒY
- * @param	nuki_col	“§–¾Fw’èi0`15 0xff:“§–¾Fw’è‚È‚µj
+ * @param	src			èª­ã¿è¾¼ã¿å…ƒã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ãƒ¼æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	dest		æ›¸ãè¾¼ã¿å…ˆã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ãƒ¼æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	pos_sx		èª­ã¿è¾¼ã¿å…ƒèª­ã¿è¾¼ã¿é–‹å§‹Xåº§æ¨™
+ * @param	pos_sy		èª­ã¿è¾¼ã¿å…ƒèª­ã¿è¾¼ã¿é–‹å§‹Yåº§æ¨™
+ * @param	pos_dx		æ›¸ãè¾¼ã¿å…ˆæ›¸ãè¾¼ã¿é–‹å§‹Xåº§æ¨™
+ * @param	pos_dy		æ›¸ãè¾¼ã¿å…ˆæ›¸ãè¾¼ã¿é–‹å§‹Yåº§æ¨™
+ * @param	size_x		æç”»ç¯„å›²Xã‚µã‚¤ã‚º
+ * @param	size_y		æç”»ç¯„å›²Yã‚µã‚¤ã‚º
+ * @param	nuki_col	é€æ˜è‰²æŒ‡å®šï¼ˆ0ã€œ15 0xff:é€æ˜è‰²æŒ‡å®šãªã—ï¼‰
  *
  * @return	none
  *
- * @li	‚Q‚T‚UF—p
+ * @li	ï¼’ï¼•ï¼–è‰²ç”¨
  */
 //--------------------------------------------------------------------------------------------
 void GF_BMP_PrintMain256(
@@ -2656,7 +2656,7 @@ void GF_BMP_PrintMain256(
 	srcxarg = SRC_XARG;
 	dstxarg = DST_XARG;
 
-	if( nuki_col == GF_BGL_BMPPRT_NOTNUKI ){	//”²‚«Fw’è‚È‚µ
+	if( nuki_col == GF_BGL_BMPPRT_NOTNUKI ){	//æŠœãè‰²æŒ‡å®šãªã—
 		for( sy=SRC_POSY, dy=DST_POSY; sy<y_max; sy++, dy++ ){
 			for( sx=SRC_POSX, dx=DST_POSX; sx<x_max; sx++, dx++ ){
 				srcadrs	= DPPCALC_256( SRC_ADRS, sx, sy, srcxarg );
@@ -2664,7 +2664,7 @@ void GF_BMP_PrintMain256(
 				*dstadrs = *srcadrs;
 			}
 		}
-	}else{				//”²‚«Fw’è‚ ‚è
+	}else{				//æŠœãè‰²æŒ‡å®šã‚ã‚Š
 		for( sy=SRC_POSY, dy=DST_POSY; sy<y_max; sy++, dy++ ){
 			for( sx=SRC_POSX, dx=DST_POSX; sx<x_max; sx++, dx++ ){
 				srcadrs	= DPPCALC_256( SRC_ADRS, sx, sy, srcxarg );
@@ -2679,18 +2679,18 @@ void GF_BMP_PrintMain256(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”ÍˆÍ‚ğw’è‚µ‚Äw’è‚³‚ê‚½FƒR[ƒh‚Å“h‚è‚Â‚Ô‚µ
+ * ç¯„å›²ã‚’æŒ‡å®šã—ã¦æŒ‡å®šã•ã‚ŒãŸè‰²ã‚³ãƒ¼ãƒ‰ã§å¡—ã‚Šã¤ã¶ã—
  *
- * @param	dest		‘‚«‚İæƒLƒƒƒ‰ƒf[ƒ^ƒwƒbƒ_[\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	pos_dx		‘‚«‚İæ‘‚«‚İŠJnXÀ•W
- * @param	pos_dy		‘‚«‚İæ‘‚«‚İŠJnYÀ•W
- * @param	size_x		•`‰æ”ÍˆÍXƒTƒCƒY
- * @param	size_y		•`‰æ”ÍˆÍYƒTƒCƒY
- * @param	col_code	“h‚è‚Â‚Ô‚µFƒR[ƒh
+ * @param	dest		æ›¸ãè¾¼ã¿å…ˆã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ãƒ¼æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	pos_dx		æ›¸ãè¾¼ã¿å…ˆæ›¸ãè¾¼ã¿é–‹å§‹Xåº§æ¨™
+ * @param	pos_dy		æ›¸ãè¾¼ã¿å…ˆæ›¸ãè¾¼ã¿é–‹å§‹Yåº§æ¨™
+ * @param	size_x		æç”»ç¯„å›²Xã‚µã‚¤ã‚º
+ * @param	size_y		æç”»ç¯„å›²Yã‚µã‚¤ã‚º
+ * @param	col_code	å¡—ã‚Šã¤ã¶ã—è‰²ã‚³ãƒ¼ãƒ‰
  *
  * @return	none
  *
- * @li	‚P‚UF—p
+ * @li	ï¼‘ï¼–è‰²ç”¨
  */
 //--------------------------------------------------------------------------------------------
 void	GF_BGL_BmpFill(	const BMPPRT_HEADER *dest,
@@ -2729,18 +2729,18 @@ void	GF_BGL_BmpFill(	const BMPPRT_HEADER *dest,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”ÍˆÍ‚ğw’è‚µ‚Äw’è‚³‚ê‚½FƒR[ƒh‚Å“h‚è‚Â‚Ô‚µ
+ * ç¯„å›²ã‚’æŒ‡å®šã—ã¦æŒ‡å®šã•ã‚ŒãŸè‰²ã‚³ãƒ¼ãƒ‰ã§å¡—ã‚Šã¤ã¶ã—
  *
- * @param	dest		‘‚«‚İæƒLƒƒƒ‰ƒf[ƒ^ƒwƒbƒ_[\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	pos_dx		‘‚«‚İæ‘‚«‚İŠJnXÀ•W
- * @param	pos_dy		‘‚«‚İæ‘‚«‚İŠJnYÀ•W
- * @param	size_x		•`‰æ”ÍˆÍXƒTƒCƒY
- * @param	size_y		•`‰æ”ÍˆÍYƒTƒCƒY
- * @param	col_code	“h‚è‚Â‚Ô‚µFƒR[ƒh
+ * @param	dest		æ›¸ãè¾¼ã¿å…ˆã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€ãƒ¼æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	pos_dx		æ›¸ãè¾¼ã¿å…ˆæ›¸ãè¾¼ã¿é–‹å§‹Xåº§æ¨™
+ * @param	pos_dy		æ›¸ãè¾¼ã¿å…ˆæ›¸ãè¾¼ã¿é–‹å§‹Yåº§æ¨™
+ * @param	size_x		æç”»ç¯„å›²Xã‚µã‚¤ã‚º
+ * @param	size_y		æç”»ç¯„å›²Yã‚µã‚¤ã‚º
+ * @param	col_code	å¡—ã‚Šã¤ã¶ã—è‰²ã‚³ãƒ¼ãƒ‰
  *
  * @return	none
  *
- * @li	‚Q‚T‚UF—p
+ * @li	ï¼’ï¼•ï¼–è‰²ç”¨
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_BmpFill256(
@@ -2772,13 +2772,13 @@ void GF_BGL_BmpFill256(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^Šm•Û
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç¢ºä¿
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	mode	ƒƒ‚ƒŠŠm•Ûƒ‚[ƒh
- * @param	num		Šm•Û‚·‚éBMPƒEƒBƒ“ƒhƒE‚Ì”
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	mode	ãƒ¡ãƒ¢ãƒªç¢ºä¿ãƒ¢ãƒ¼ãƒ‰
+ * @param	num		ç¢ºä¿ã™ã‚‹BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ•°
  *
- * @return	Šm•Û‚µ‚½ƒf[ƒ^‚ÌƒAƒhƒŒƒX
+ * @return	ç¢ºä¿ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 GF_BGL_BMPWIN * GF_BGL_BmpWinAllocGet( u32 heapID, u8 num )
@@ -2797,9 +2797,9 @@ GF_BGL_BMPWIN * GF_BGL_BmpWinAllocGet( u32 heapID, u8 num )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‰Šú‰»
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
  *
- * @param	wk		BMPƒf[ƒ^
+ * @param	wk		BMPãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -2815,17 +2815,17 @@ void GF_BGL_BmpWinInit( GF_BGL_BMPWIN * wk )
 	wk->palnum = 0;
 	wk->chrofs = 0;
 	wk->chrbuf = NULL;
-	wk->bitmode = GF_BGL_BMPWIN_BITMODE_4;		// ”O‚Ì‚½‚ß—Ç‚­g‚¤•û‚Å‰Šú‰»‚µ‚Ä‚¨‚­
+	wk->bitmode = GF_BGL_BMPWIN_BITMODE_4;		// å¿µã®ãŸã‚è‰¯ãä½¿ã†æ–¹ã§åˆæœŸåŒ–ã—ã¦ãŠã
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv“o˜^ƒ`ƒFƒbƒN
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç™»éŒ²ãƒã‚§ãƒƒã‚¯
  *
- * @param	win		BMPƒf[ƒ^
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿
  *
- * @retval	"TRUE = “o˜^Ï‚İ"
- * @retval	"FALSE = –¢“o˜^"
+ * @retval	"TRUE = ç™»éŒ²æ¸ˆã¿"
+ * @retval	"FALSE = æœªç™»éŒ²"
  */
 //--------------------------------------------------------------------------------------------
 u8 GF_BGL_BmpWinAddCheck( GF_BGL_BMPWIN * win )
@@ -2838,17 +2838,17 @@ u8 GF_BGL_BmpWinAddCheck( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ 
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
- * @param	posx	XÀ•WiƒLƒƒƒ‰’PˆÊj
- * @param	posy	YÀ•WiƒLƒƒƒ‰’PˆÊj
- * @param	sizx	XƒTƒCƒYiƒLƒƒƒ‰’PˆÊj
- * @param	sizy	XƒTƒCƒYiƒLƒƒƒ‰’PˆÊj
- * @param	palnum	g—pƒpƒŒƒbƒg”Ô†
- * @param	chrofs	g—pCGXƒIƒtƒZƒbƒg
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	posx	Xåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+ * @param	posy	Yåº§æ¨™ï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+ * @param	sizx	Xã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+ * @param	sizy	Xã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+ * @param	palnum	ä½¿ç”¨ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+ * @param	chrofs	ä½¿ç”¨CGXã‚ªãƒ•ã‚»ãƒƒãƒˆ
  *
  * @return	none
  */
@@ -2861,34 +2861,34 @@ void GF_BGL_BmpWinAdd(
 	u32	chrvsiz;
 
 /*
-	// Ši”[êŠƒT[ƒ`
+	// æ ¼ç´å ´æ‰€ã‚µãƒ¼ãƒ
 	if( win->frmnum != GF_BGL_BITMAP_NULL ){
-#ifdef	OSP_ERR_BGL_BMPADD		// BMP“o˜^Ï‚İ
-		OS_Printf( "‚a‚l‚o“o˜^Ï‚İ\n" );
+#ifdef	OSP_ERR_BGL_BMPADD		// BMPç™»éŒ²æ¸ˆã¿
+		OS_Printf( "ï¼¢ï¼­ï¼°ç™»éŒ²æ¸ˆã¿\n" );
 #endif	// OSP_ERR_BGL_BMPADD
 		return;
 	}
 */
-	// g—pƒtƒŒ[ƒ€ó‹µ‚Ì”»’èiƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@Šm•Û‚³‚ê‚Ä‚¢‚é‚©j
+	// ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ çŠ¶æ³ã®åˆ¤å®šï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ç¢ºä¿ã•ã‚Œã¦ã„ã‚‹ã‹ï¼‰
 	if( ini->bgsys[frmnum].screen_buf == NULL ){
-#ifdef	OSP_ERR_BGL_BMPADD		// BMP“o˜^¸”s
-		OS_Printf( "‚a‚l‚o“o˜^¸”s\n" );
+#ifdef	OSP_ERR_BGL_BMPADD		// BMPç™»éŒ²å¤±æ•—
+		OS_Printf( "ï¼¢ï¼­ï¼°ç™»éŒ²å¤±æ•—\n" );
 #endif	// OSP_ERR_BGL_BMPADD
 		return;
 	}
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒoƒbƒtƒ@‚ÌŠm•Û
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ•ã‚¡ã®ç¢ºä¿
 	chrvsiz = sizx * sizy * ini->bgsys[frmnum].base_char_size;
 	chrvbuf = sys_AllocMemory( ini->heapID, chrvsiz );
 
 	if( chrvbuf == NULL ){
-#ifdef	OSP_ERR_BGL_BMPADD		// BMP“o˜^¸”s
-		OS_Printf( "‚a‚l‚o—ÌˆæŠm•Û¸”s\n" );
+#ifdef	OSP_ERR_BGL_BMPADD		// BMPç™»éŒ²å¤±æ•—
+		OS_Printf( "ï¼¢ï¼­ï¼°é ˜åŸŸç¢ºä¿å¤±æ•—\n" );
 #endif	// OSP_ERR_BGL_BMPADD
 		return;
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒv‚Ìİ’è
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®è¨­å®š
 	win->ini    = ini;
 	win->frmnum = frmnum;
 	win->posx   = posx;
@@ -2900,21 +2900,21 @@ void GF_BGL_BmpWinAdd(
 	win->chrbuf = chrvbuf;
 	win->bitmode = (ini->bgsys[ frmnum ].col_mode == GX_BG_COLORMODE_16)? GF_BGL_BMPWIN_BITMODE_4 : GF_BGL_BMPWIN_BITMODE_8;
 
-#ifdef	OSP_BGL_BMP_SIZ		// BMPƒTƒCƒY
-	OS_Printf( "‚a‚l‚o‚b‚f‚w—Ìˆæ=%x\n", chrvbuf );
+#ifdef	OSP_BGL_BMP_SIZ		// BMPã‚µã‚¤ã‚º
+	OS_Printf( "ï¼¢ï¼­ï¼°ï¼£ï¼§ï¼¸é ˜åŸŸ=%x\n", chrvbuf );
 #endif	// OSP_BGL_BMP_SIZ
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv’Ç‰ÁiOBJ—p‚ÉƒLƒƒƒ‰—Ìˆæ‚¾‚¯‚ğŠm•ÛB4bitê—pBj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ ï¼ˆOBJç”¨ã«ã‚­ãƒ£ãƒ©é ˜åŸŸã ã‘ã‚’ç¢ºä¿ã€‚4bitå°‚ç”¨ã€‚ï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
- * @param	sizx	XƒTƒCƒYiƒLƒƒƒ‰’PˆÊj
- * @param	sizy	XƒTƒCƒYiƒLƒƒƒ‰’PˆÊj
- * @param	chrofs	g—pCGXƒIƒtƒZƒbƒg
- * @param   fill_color	–„‚ßs‚­‚µƒJƒ‰[”Ô†(0`0xf)
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
+ * @param	sizx	Xã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+ * @param	sizy	Xã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+ * @param	chrofs	ä½¿ç”¨CGXã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   fill_color	åŸ‹ã‚å°½ãã—ã‚«ãƒ©ãƒ¼ç•ªå·(0ã€œ0xf)
  *
  * @return	none
  */
@@ -2932,13 +2932,13 @@ void GF_BGL_BmpWinObjAdd(GF_BGL_INI * ini, GF_BGL_BMPWIN * win, u8 sizx, u8 sizy
 	memset(chrvbuf, fill_color, chrvsiz );
 	
 	if( chrvbuf == NULL ){
-#ifdef	OSP_ERR_BGL_BMPADD		// BMP“o˜^¸”s
-		OS_Printf( "BMPOBJ—ÌˆæŠm•Û¸”s\n" );
+#ifdef	OSP_ERR_BGL_BMPADD		// BMPç™»éŒ²å¤±æ•—
+		OS_Printf( "BMPOBJé ˜åŸŸç¢ºä¿å¤±æ•—\n" );
 #endif	// OSP_ERR_BGL_BMPADD
 		return;
 	}
 
-	// ƒrƒbƒgƒ}ƒbƒv‚Ìİ’è
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã®è¨­å®š
 	win->ini    = ini;
 	win->sizx   = sizx;
 	win->sizy   = sizy;
@@ -2946,18 +2946,18 @@ void GF_BGL_BmpWinObjAdd(GF_BGL_INI * ini, GF_BGL_BMPWIN * win, u8 sizx, u8 sizy
 	win->chrbuf = chrvbuf;
 	win->bitmode = GF_BGL_BMPWIN_BITMODE_4;
 
-#ifdef	OSP_BGL_BMP_SIZ		// BMPƒTƒCƒY
-	OS_Printf( "BMPOBJCGX—Ìˆæ=%x\n", chrvbuf );
+#ifdef	OSP_BGL_BMP_SIZ		// BMPã‚µã‚¤ã‚º
+	OS_Printf( "BMPOBJCGXé ˜åŸŸ=%x\n", chrvbuf );
 #endif	// OSP_BGL_BMP_SIZ
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv’Ç‰Áiƒf[ƒ^w’èj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¿½åŠ ï¼ˆãƒ‡ãƒ¼ã‚¿æŒ‡å®šï¼‰
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
- * @param	dat		BMPWIN_DAT\‘¢‘ÌŒ^ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
+ * @param	dat		BMPWIN_DATæ§‹é€ ä½“å‹ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2971,16 +2971,16 @@ void GF_BGL_BmpWinAddEx( GF_BGL_INI * ini, GF_BGL_BMPWIN * win, const BMPWIN_DAT
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒvíœ
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å‰Šé™¤
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_BmpWinDel( GF_BGL_BMPWIN * win )
 {
-	// ƒLƒƒƒ‰ƒNƒ^ƒoƒbƒtƒ@Š„‚è“–‚ÄŠJ•ú
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ•ã‚¡å‰²ã‚Šå½“ã¦é–‹æ”¾
 	sys_FreeMemoryEz( win->chrbuf );
 
 	win->ini    = NULL;
@@ -2996,14 +2996,14 @@ void GF_BGL_BmpWinDel( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒvíœiBMPƒf[ƒ^‚àŠJ•új
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å‰Šé™¤ï¼ˆBMPãƒ‡ãƒ¼ã‚¿ã‚‚é–‹æ”¾ï¼‰
  *
- * @param	win		BMPƒf[ƒ^
- * @param	num		ŒÂ”
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿
+ * @param	num		å€‹æ•°
  *
  * @return	none
  *
- *	GF_BGL_BmpWinAllocGet()‚ÅŠm•Û‚µ‚½ê‡‚Ég—p‚µ‚Ä‰º‚³‚¢
+ *	GF_BGL_BmpWinAllocGet()ã§ç¢ºä¿ã—ãŸå ´åˆã«ä½¿ç”¨ã—ã¦ä¸‹ã•ã„
  *	
  */
 //--------------------------------------------------------------------------------------------
@@ -3011,32 +3011,32 @@ void GF_BGL_BmpWinFree( GF_BGL_BMPWIN * win, u8 num )
 {
 	u16	i;
 
-	// ƒLƒƒƒ‰ƒNƒ^ƒoƒbƒtƒ@Š„‚è“–‚ÄŠJ•ú
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒãƒƒãƒ•ã‚¡å‰²ã‚Šå½“ã¦é–‹æ”¾
 	for( i=0; i<num; i++ ){
 		if( win[i].chrbuf == NULL ){ continue; }
 		sys_FreeMemoryEz( win[i].chrbuf );
 	}
 
-	// BMPƒf[ƒ^—ÌˆæŠJ•ú
+	// BMPãƒ‡ãƒ¼ã‚¿é ˜åŸŸé–‹æ”¾
 	sys_FreeMemoryEz( win );
 }
 
 
 //*------------------------------------------*/
-/**   ƒEƒBƒ“ƒhƒEƒf[ƒ^ì¬•“]‘—ŠÖ”         */
+/**   ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ä½œæˆï¼†è»¢é€é–¢æ•°         */
 //*------------------------------------------*/
 static void (* const WinOnFunc[])(GF_BGL_BMPWIN*) = {
-	GF_BGL_BmpWinOn_Normal,		// ƒeƒLƒXƒg
-	GF_BGL_BmpWinOn_Affine,		// ƒAƒtƒBƒ“
-	GF_BGL_BmpWinOn_Normal,		// Šg’£ƒAƒtƒBƒ“
+	GF_BGL_BmpWinOn_Normal,		// ãƒ†ã‚­ã‚¹ãƒˆ
+	GF_BGL_BmpWinOn_Affine,		// ã‚¢ãƒ•ã‚£ãƒ³
+	GF_BGL_BmpWinOn_Normal,		// æ‹¡å¼µã‚¢ãƒ•ã‚£ãƒ³
 };
 static void (* const WinOnVReqFunc[])(GF_BGL_BMPWIN*) = {
-	GF_BGL_BmpWinOnVReq_Normal,		// ƒeƒLƒXƒg
-	GF_BGL_BmpWinOnVReq_Affine,		// ƒAƒtƒBƒ“
-	GF_BGL_BmpWinOnVReq_Normal,		// Šg’£ƒAƒtƒBƒ“
+	GF_BGL_BmpWinOnVReq_Normal,		// ãƒ†ã‚­ã‚¹ãƒˆ
+	GF_BGL_BmpWinOnVReq_Affine,		// ã‚¢ãƒ•ã‚£ãƒ³
+	GF_BGL_BmpWinOnVReq_Normal,		// æ‹¡å¼µã‚¢ãƒ•ã‚£ãƒ³
 };
 //*------------------------------------------*/
-/**   ƒEƒBƒ“ƒhƒE•\¦ƒIƒt•“]‘—ŠÖ”           */
+/**   ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã‚ªãƒ•ï¼†è»¢é€é–¢æ•°           */
 //*------------------------------------------*/
 static void (* const WinOffFunc[])(GF_BGL_BMPWIN*) = {
 	GF_BGL_BmpWinOff_Normal,
@@ -3050,21 +3050,21 @@ static void (* const WinOffVReqFunc[])(GF_BGL_BMPWIN*) = {
 };
 
 //*------------------------------------------*/
-/**   ƒEƒBƒ“ƒhƒEƒXƒNƒŠ[ƒ“ì¬ŠÖ”ƒe[ƒuƒ‹   */
+/**   ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½œæˆé–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«   */
 //*------------------------------------------*/
 static void (* const WinScrnMakeFunc[])(GF_BGL_BMPWIN*) = {
-	MakeWinScrnText,		// ƒeƒLƒXƒg
-	MakeWinScrnAffine,		// ƒAƒtƒBƒ“
-	MakeWinScrnText,		// Šg’£ƒAƒtƒBƒ“
+	MakeWinScrnText,		// ãƒ†ã‚­ã‚¹ãƒˆ
+	MakeWinScrnAffine,		// ã‚¢ãƒ•ã‚£ãƒ³
+	MakeWinScrnText,		// æ‹¡å¼µã‚¢ãƒ•ã‚£ãƒ³
 };
 
 //*------------------------------------------*/
-/**   ƒEƒBƒ“ƒhƒEƒXƒNƒŠ[ƒ“ƒNƒŠƒAŠÖ”ƒe[ƒuƒ‹ */
+/**   ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ« */
 //*------------------------------------------*/
 static void (* const WinScrnClearFunc[])(GF_BGL_BMPWIN*) = {
-	ClearWinScrnText,		// ƒeƒLƒXƒg
-	ClearWinScrnAffine,		// ƒAƒtƒBƒ“
-	ClearWinScrnText,		// Šg’£ƒAƒtƒBƒ“
+	ClearWinScrnText,		// ãƒ†ã‚­ã‚¹ãƒˆ
+	ClearWinScrnAffine,		// ã‚¢ãƒ•ã‚£ãƒ³
+	ClearWinScrnText,		// æ‹¡å¼µã‚¢ãƒ•ã‚£ãƒ³
 };
 
 
@@ -3081,9 +3081,9 @@ static const u8 ScreenXElems[] =  {
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv•\¦iƒXƒNƒŠ[ƒ“AƒLƒƒƒ‰“]‘—j
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¡¨ç¤ºï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã€ã‚­ãƒ£ãƒ©è»¢é€ï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -3098,9 +3098,9 @@ void GF_BGL_BmpWinOn( GF_BGL_BMPWIN * win )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv•\¦iƒXƒNƒŠ[ƒ““]‘—ƒŠƒNƒGƒXƒgAƒLƒƒƒ‰“]‘—j
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¡¨ç¤ºï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã€ã‚­ãƒ£ãƒ©è»¢é€ï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -3115,7 +3115,7 @@ void GF_BGL_BmpWinOnVReq( GF_BGL_BMPWIN * win )
 }
 //------------------------------------------------------------------
 /**
- * Window—ÌˆæƒXƒNƒŠ[ƒ“‚ğŠÖ˜ABG“à•”ƒoƒbƒtƒ@‚Éì¬‚·‚é
+ * Windowé ˜åŸŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’é–¢é€£BGå†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã«ä½œæˆã™ã‚‹
  *
  * @param   win		
  *
@@ -3127,12 +3127,12 @@ void GF_BGL_BmpWinMakeScrn( GF_BGL_BMPWIN* win )
 }
 //------------------------------------------------------------------
 /**
- * Window—ÌˆæƒXƒNƒŠ[ƒ“‚ğŠÖ˜ABG“à•”ƒoƒbƒtƒ@‚Éì¬‚·‚é
- * iƒTƒCƒYw’è‰ÂBBitmapWindowì¬‚æ‚è‚à¬‚³‚¢—Ìˆæ‚ÌƒXƒNƒŠ[ƒ“ì¬‚ª‰Â”\B‘å‚«‚¢‚Ì‚Í‚m‚fBj
+ * Windowé ˜åŸŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’é–¢é€£BGå†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã«ä½œæˆã™ã‚‹
+ * ï¼ˆã‚µã‚¤ã‚ºæŒ‡å®šå¯ã€‚BitmapWindowä½œæˆæ™‚ã‚ˆã‚Šã‚‚å°ã•ã„é ˜åŸŸã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½œæˆãŒå¯èƒ½ã€‚å¤§ãã„ã®ã¯ï¼®ï¼§ã€‚ï¼‰
  *
- * @param   win			BitmapWindow ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   width		ƒXƒNƒŠ[ƒ“ì¬—Ìˆæ‚Ì•iƒLƒƒƒ‰’PˆÊj
- * @param   height		ƒXƒNƒŠ[ƒ“ì¬—Ìˆæ‚Ì‚‚³iƒLƒƒƒ‰’PˆÊj
+ * @param   win			BitmapWindow ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   width		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½œæˆé ˜åŸŸã®å¹…ï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+ * @param   height		ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½œæˆé ˜åŸŸã®é«˜ã•ï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
  *
  */
 //------------------------------------------------------------------
@@ -3153,7 +3153,7 @@ void GF_BGL_BmpWinMakeScrnLimited( GF_BGL_BMPWIN* win, u32 width, u32 height )
 }
 //------------------------------------------------------------------
 /**
- * ŠÖ˜ABG“à•”ƒoƒbƒtƒ@‚ÌWindow—ÌˆæƒXƒNƒŠ[ƒ“‚ğƒNƒŠƒA‚·‚é
+ * é–¢é€£BGå†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã®Windowé ˜åŸŸã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
  *
  * @param   win		
  *
@@ -3166,7 +3166,7 @@ void GF_BGL_BmpWinClearScrn( GF_BGL_BMPWIN* win )
 
 //------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ì¬iƒeƒLƒXƒgEŠg’£ƒAƒtƒBƒ“—pj
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½œæˆï¼ˆãƒ†ã‚­ã‚¹ãƒˆãƒ»æ‹¡å¼µã‚¢ãƒ•ã‚£ãƒ³ç”¨ï¼‰
  *
  * @param   win		
  *
@@ -3201,7 +3201,7 @@ static void MakeWinScrnText( GF_BGL_BMPWIN* win )
 }
 //------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ì¬iƒAƒtƒBƒ“BG—pj
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä½œæˆï¼ˆã‚¢ãƒ•ã‚£ãƒ³BGç”¨ï¼‰
  *
  * @param   win		
  *
@@ -3233,7 +3233,7 @@ static void MakeWinScrnAffine( GF_BGL_BMPWIN* win )
 }
 //------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒNƒŠƒAiƒeƒLƒXƒgEŠg’£ƒAƒtƒBƒ“—pj
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢ï¼ˆãƒ†ã‚­ã‚¹ãƒˆãƒ»æ‹¡å¼µã‚¢ãƒ•ã‚£ãƒ³ç”¨ï¼‰
  *
  * @param   win		
  *
@@ -3264,7 +3264,7 @@ static void ClearWinScrnText( GF_BGL_BMPWIN* win )
 }
 //------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ“ƒNƒŠƒAiƒAƒtƒBƒ“BG—pj
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢ï¼ˆã‚¢ãƒ•ã‚£ãƒ³BGç”¨ï¼‰
  *
  * @param   win		
  *
@@ -3295,9 +3295,9 @@ static void ClearWinScrnAffine( GF_BGL_BMPWIN* win )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv•\¦iƒXƒNƒŠ[ƒ“AƒLƒƒƒ‰“]‘—iƒeƒLƒXƒgAƒAƒtƒBƒ“Šg’£BGjj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¡¨ç¤ºï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã€ã‚­ãƒ£ãƒ©è»¢é€ï¼ˆãƒ†ã‚­ã‚¹ãƒˆã€ã‚¢ãƒ•ã‚£ãƒ³æ‹¡å¼µBGï¼‰ï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -3308,7 +3308,7 @@ static void GF_BGL_BmpWinOn_Normal( GF_BGL_BMPWIN * win )
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/09
-	// ƒLƒƒƒ‰ƒNƒ^[“]‘—‚ğƒXƒNƒŠ[ƒ““]‘—‚æ‚èæ‚Éi‘O‚Ì•`‚«c‚µ‚ªˆêu‰f‚ç‚È‚¢‚æ‚¤‚Éj
+	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼è»¢é€ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ã‚ˆã‚Šå…ˆã«ï¼ˆå‰ã®æãæ®‹ã—ãŒä¸€ç¬æ˜ ã‚‰ãªã„ã‚ˆã†ã«ï¼‰
 
 	GF_BGL_BmpWinCgxOn( win );
 
@@ -3322,9 +3322,9 @@ static void GF_BGL_BmpWinOn_Normal( GF_BGL_BMPWIN * win )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv•\¦iƒXƒNƒŠ[ƒ““]‘—ƒŠƒNƒGƒXƒgAƒLƒƒƒ‰“]‘—iƒeƒLƒXƒgAƒAƒtƒBƒ“Šg’£BGjj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¡¨ç¤ºï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã€ã‚­ãƒ£ãƒ©è»¢é€ï¼ˆãƒ†ã‚­ã‚¹ãƒˆã€ã‚¢ãƒ•ã‚£ãƒ³æ‹¡å¼µBGï¼‰ï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -3338,9 +3338,9 @@ static void GF_BGL_BmpWinOnVReq_Normal( GF_BGL_BMPWIN * win )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv•\¦iƒXƒNƒŠ[ƒ“AƒLƒƒƒ‰“]‘—iŠgk–Êjj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¡¨ç¤ºï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã€ã‚­ãƒ£ãƒ©è»¢é€ï¼ˆæ‹¡ç¸®é¢ï¼‰ï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -3361,9 +3361,9 @@ static void GF_BGL_BmpWinOn_Affine( GF_BGL_BMPWIN * win )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv•\¦iƒXƒNƒŠ[ƒ““]‘—ƒŠƒNƒGƒXƒgAƒLƒƒƒ‰“]‘—iŠgk–Êjj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¡¨ç¤ºï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã€ã‚­ãƒ£ãƒ©è»¢é€ï¼ˆæ‹¡ç¸®é¢ï¼‰ï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -3380,9 +3380,9 @@ static void GF_BGL_BmpWinOnVReq_Affine( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv•\¦iƒLƒƒƒ‰“]‘—‚Ì‚İj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¡¨ç¤ºï¼ˆã‚­ãƒ£ãƒ©è»¢é€ã®ã¿ï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -3396,9 +3396,9 @@ void GF_BGL_BmpWinCgxOn( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv”ñ•\¦iƒXƒNƒŠ[ƒ“ƒNƒŠƒA•“]‘—j
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—éè¡¨ç¤ºï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢ï¼†è»¢é€ï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  */
 //--------------------------------------------------------------------------------------------
@@ -3408,9 +3408,9 @@ void GF_BGL_BmpWinOff( GF_BGL_BMPWIN * win )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv”ñ•\¦iƒXƒNƒŠ[ƒ“ƒNƒŠƒA•“]‘—ƒŠƒNƒGƒXƒgj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—éè¡¨ç¤ºï¼ˆã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¯ãƒªã‚¢ï¼†è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  */
 //--------------------------------------------------------------------------------------------
@@ -3421,7 +3421,7 @@ void GF_BGL_BmpWinOffVReq( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv”ñ•\¦iƒeƒLƒXƒgAƒAƒtƒBƒ“Šg’£BGj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—éè¡¨ç¤ºï¼ˆãƒ†ã‚­ã‚¹ãƒˆã€ã‚¢ãƒ•ã‚£ãƒ³æ‹¡å¼µBGï¼‰
  *
  * @param	win
  *
@@ -3438,7 +3438,7 @@ static void GF_BGL_BmpWinOff_Normal( GF_BGL_BMPWIN * win )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv”ñ•\¦ƒŠƒNƒGƒXƒgiƒeƒLƒXƒgAƒAƒtƒBƒ“Šg’£BGj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—éè¡¨ç¤ºãƒªã‚¯ã‚¨ã‚¹ãƒˆï¼ˆãƒ†ã‚­ã‚¹ãƒˆã€ã‚¢ãƒ•ã‚£ãƒ³æ‹¡å¼µBGï¼‰
  *
  * @param	win
  *
@@ -3452,9 +3452,9 @@ static void GF_BGL_BmpWinOffVReq_Normal( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv”ñ•\¦iŠgk–Êj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—éè¡¨ç¤ºï¼ˆæ‹¡ç¸®é¢ï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -3470,9 +3470,9 @@ static void GF_BGL_BmpWinOff_Affine( GF_BGL_BMPWIN * win )
 }
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv”ñ•\¦ƒŠƒNƒGƒXƒgiŠgk–Êj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—éè¡¨ç¤ºãƒªã‚¯ã‚¨ã‚¹ãƒˆï¼ˆæ‹¡ç¸®é¢ï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -3485,10 +3485,10 @@ static void GF_BGL_BmpWinOffVReq_Affine( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w’èƒJƒ‰[‚Å‘S‘Ì‚ğ“h‚è‚Â‚Ô‚·
+ * æŒ‡å®šã‚«ãƒ©ãƒ¼ã§å…¨ä½“ã‚’å¡—ã‚Šã¤ã¶ã™
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
- * @param	col		ƒJƒ‰[ƒiƒ“ƒo[
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
+ * @param	col		ã‚«ãƒ©ãƒ¼ãƒŠãƒ³ãƒãƒ¼
  *
  * @return	none
  */
@@ -3510,23 +3510,23 @@ void GF_BGL_BmpWinDataFill( GF_BGL_BMPWIN * win, u8 col )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒv•`‰æ
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æç”»
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
- * @param	src		ƒrƒbƒgƒ}ƒbƒv•\¦ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	src_x	ƒrƒbƒgƒ}ƒbƒv•\¦ŠJnˆÊ’u‚w
- * @param	src_y	ƒrƒbƒgƒ}ƒbƒv•\¦ŠJnˆÊ’u‚x
- * @param	src_dx	ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^ƒTƒCƒY‚w
- * @param	src_dy	ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^ƒTƒCƒY‚w
- * @param	win_x	ƒEƒCƒ“ƒhƒE•\¦ŠJnˆÊ’u‚w
- * @param	win_y	ƒEƒCƒ“ƒhƒE•\¦ŠJnˆÊ’u‚x
- * @param	win_dx	ƒEƒCƒ“ƒhƒEƒf[ƒ^ƒTƒCƒY‚w
- * @param	win_dy	ƒEƒCƒ“ƒhƒEƒf[ƒ^ƒTƒCƒY‚x
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
+ * @param	src		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	src_x	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¡¨ç¤ºé–‹å§‹ä½ç½®ï¼¸
+ * @param	src_y	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¡¨ç¤ºé–‹å§‹ä½ç½®ï¼¹
+ * @param	src_dx	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼¸
+ * @param	src_dy	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼¸
+ * @param	win_x	ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºé–‹å§‹ä½ç½®ï¼¸
+ * @param	win_y	ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºé–‹å§‹ä½ç½®ï¼¹
+ * @param	win_dx	ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼¸
+ * @param	win_dy	ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼¹
  *
- * @retval	‚È‚µ
+ * @retval	ãªã—
  *
- * ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚Ì‘‚«‚İ‚ğÀs
- * ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚ÌØ‚èæ‚è‚ğ‰Â”\‚É‚µ‚½‚à‚Ì
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿ã‚’å®Ÿè¡Œ
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®åˆ‡ã‚Šå–ã‚Šã‚’å¯èƒ½ã«ã—ãŸã‚‚ã®
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_BmpWinPrint(
@@ -3540,24 +3540,24 @@ void GF_BGL_BmpWinPrint(
 
 //--------------------------------------------------------------------------------------------
 /**
- *	ƒrƒbƒgƒ}ƒbƒv•`‰æiŠg’£”Åj
+ *	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æç”»ï¼ˆæ‹¡å¼µç‰ˆï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
- * @param	src		ƒrƒbƒgƒ}ƒbƒv•\¦ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	src_x	ƒrƒbƒgƒ}ƒbƒv•\¦ŠJnˆÊ’u‚w
- * @param	src_y	ƒrƒbƒgƒ}ƒbƒv•\¦ŠJnˆÊ’u‚x
- * @param	src_dx	ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^ƒTƒCƒY‚w
- * @param	src_dy	ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^ƒTƒCƒY‚w
- * @param	win_x	ƒEƒCƒ“ƒhƒE•\¦ŠJnˆÊ’u‚w
- * @param	win_y	ƒEƒCƒ“ƒhƒE•\¦ŠJnˆÊ’u‚x
- * @param	win_dx	ƒEƒCƒ“ƒhƒEƒf[ƒ^ƒTƒCƒY‚w
- * @param	win_dy	ƒEƒCƒ“ƒhƒEƒf[ƒ^ƒTƒCƒY‚x
- * @param	nuki	“§–¾Fw’èi0`15 0xff:“§–¾Fw’è‚È‚µj
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
+ * @param	src		ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¡¨ç¤ºãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	src_x	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¡¨ç¤ºé–‹å§‹ä½ç½®ï¼¸
+ * @param	src_y	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—è¡¨ç¤ºé–‹å§‹ä½ç½®ï¼¹
+ * @param	src_dx	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼¸
+ * @param	src_dy	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼¸
+ * @param	win_x	ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºé–‹å§‹ä½ç½®ï¼¸
+ * @param	win_y	ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºé–‹å§‹ä½ç½®ï¼¹
+ * @param	win_dx	ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼¸
+ * @param	win_dy	ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼¹
+ * @param	nuki	é€æ˜è‰²æŒ‡å®šï¼ˆ0ã€œ15 0xff:é€æ˜è‰²æŒ‡å®šãªã—ï¼‰
  *
- * @retval	‚È‚µ
+ * @retval	ãªã—
  *
- * ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚Ì‘‚«‚İ‚ğÀs
- * ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚ÌØ‚èæ‚è‚ğ‰Â”\‚É‚µ‚½‚à‚Ì
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿ã‚’å®Ÿè¡Œ
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®åˆ‡ã‚Šå–ã‚Šã‚’å¯èƒ½ã«ã—ãŸã‚‚ã®
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_BmpWinPrintEx(
@@ -3587,14 +3587,14 @@ void GF_BGL_BmpWinPrintEx(
 
 //--------------------------------------------------------------------------------------------
 /**
- * w’è”ÍˆÍ‚ğ“h‚è‚Â‚Ô‚·
+ * æŒ‡å®šç¯„å›²ã‚’å¡—ã‚Šã¤ã¶ã™
  *
- * @param	win			BMPƒf[ƒ^
- * @param	col			“h‚è‚Â‚Ô‚µƒJƒ‰[
- * @param	px			ŠJnXÀ•W
- * @param	py			ŠJnYÀ•W
- * @param	sx			XƒTƒCƒY
- * @param	sy			YƒTƒCƒY
+ * @param	win			BMPãƒ‡ãƒ¼ã‚¿
+ * @param	col			å¡—ã‚Šã¤ã¶ã—ã‚«ãƒ©ãƒ¼
+ * @param	px			é–‹å§‹Xåº§æ¨™
+ * @param	py			é–‹å§‹Yåº§æ¨™
+ * @param	sx			Xã‚µã‚¤ã‚º
+ * @param	sy			Yã‚µã‚¤ã‚º
  *
  * @return	none
  */
@@ -3616,14 +3616,14 @@ void GF_BGL_BmpWinFill( GF_BGL_BMPWIN * win, u8 col, u16 px, u16 py, u16 sx, u16
 
 //---------------------------------------------------------------------------------------------
 /**
- * •¶š•\¦ê—pˆ—Œø—¦ƒAƒbƒv”Å
+ * æ–‡å­—è¡¨ç¤ºå°‚ç”¨å‡¦ç†åŠ¹ç‡ã‚¢ãƒƒãƒ—ç‰ˆ
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
- * @param	src		ƒLƒƒƒ‰ƒf[ƒ^
- * @param	ssx		ƒtƒHƒ“ƒgXƒTƒCƒY
- * @param	ssy		ƒtƒHƒ“ƒgYƒTƒCƒY
- * @param	wx		‘‚«‚İXÀ•W
- * @param	wy		‘‚«‚İYÀ•W
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
+ * @param	src		ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿
+ * @param	ssx		ãƒ•ã‚©ãƒ³ãƒˆXã‚µã‚¤ã‚º
+ * @param	ssy		ãƒ•ã‚©ãƒ³ãƒˆYã‚µã‚¤ã‚º
+ * @param	wx		æ›¸ãè¾¼ã¿Xåº§æ¨™
+ * @param	wy		æ›¸ãè¾¼ã¿Yåº§æ¨™
  *
  * @return	none
  */
@@ -3726,18 +3726,18 @@ void GF_BGL_BmpWinPrintMsg(
 
 	if( win->bitmode == GF_BGL_BMPWIN_BITMODE_4 ){
 		switch( print_pat ){
-		case 0:	//‚PƒLƒƒƒ‰(8x8)
+		case 0:	//ï¼‘ã‚­ãƒ£ãƒ©(8x8)
 			DOT_PUT( 0, 0, x_max,	y_max,	 M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG );
 			return;
-		case 1:	//‚QƒLƒƒƒ‰(16x8)
+		case 1:	//ï¼’ã‚­ãƒ£ãƒ©(16x8)
 			DOT_PUT( 0, 0, 8,		y_max,	 M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG );
 			DOT_PUT( 8, 0, x_max-8,	y_max,	 M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG );
 			return;
-		case 2:	//‚QƒLƒƒƒ‰(8x16)
+		case 2:	//ï¼’ã‚­ãƒ£ãƒ©(8x16)
 			DOT_PUT( 0, 0, x_max,	8,		 M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG );
 			DOT_PUT( 0, 8, x_max,	y_max-8, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG );
 			return;
-		case 3:	//‚SƒLƒƒƒ‰(16x16)
+		case 3:	//ï¼”ã‚­ãƒ£ãƒ©(16x16)
 			DOT_PUT( 0, 0, 8,		8,		 M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG );
 			DOT_PUT( 8, 0, x_max-8,	8,		 M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG );
 			DOT_PUT( 0, 8, 8,		y_max-8, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG );
@@ -3746,18 +3746,18 @@ void GF_BGL_BmpWinPrintMsg(
 		}
 	}else{
 		switch( print_pat ){
-		case 0:	//‚PƒLƒƒƒ‰(8x8)
+		case 0:	//ï¼‘ã‚­ãƒ£ãƒ©(8x8)
 			DOT_PUT_256( 0, 0, x_max,	y_max,	 M_DST_ADRS,M_DST_POSX,M_DST_POSY,M_DST_XARG);
 			return;
-		case 1:	//‚QƒLƒƒƒ‰(16x8)
+		case 1:	//ï¼’ã‚­ãƒ£ãƒ©(16x8)
 			DOT_PUT_256( 0, 0, 8,		y_max,	 M_DST_ADRS,M_DST_POSX,M_DST_POSY,M_DST_XARG);
 			DOT_PUT_256( 8, 0, x_max-8,	y_max,	 M_DST_ADRS,M_DST_POSX,M_DST_POSY,M_DST_XARG);
 			return;
-		case 2:	//‚QƒLƒƒƒ‰(8x16)
+		case 2:	//ï¼’ã‚­ãƒ£ãƒ©(8x16)
 			DOT_PUT_256( 0, 0, x_max,	8,		 M_DST_ADRS,M_DST_POSX,M_DST_POSY,M_DST_XARG);
 			DOT_PUT_256( 0, 8, x_max,	y_max-8, M_DST_ADRS,M_DST_POSX,M_DST_POSY,M_DST_XARG);
 			return;
-		case 3:	//‚SƒLƒƒƒ‰(16x16)
+		case 3:	//ï¼”ã‚­ãƒ£ãƒ©(16x16)
 			DOT_PUT_256( 0, 0, 8,		8,		 M_DST_ADRS,M_DST_POSX,M_DST_POSY,M_DST_XARG);
 			DOT_PUT_256( 8, 0, x_max-8,	8,		 M_DST_ADRS,M_DST_POSX,M_DST_POSY,M_DST_XARG);
 			DOT_PUT_256( 0, 8, 8,		y_max-8, M_DST_ADRS,M_DST_POSX,M_DST_POSY,M_DST_XARG);
@@ -3956,18 +3956,18 @@ void GF_BGL_BmpWinPrintMsgWide(
 
 	if( win->bitmode == GF_BGL_BMPWIN_BITMODE_4 ){
 		switch( print_pat ){
-		case 0:	//‚PƒLƒƒƒ‰(8x8)
+		case 0:	//ï¼‘ã‚­ãƒ£ãƒ©(8x8)
 			DOT_PUT_W( 0, 0, x_max,	y_max, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			return;
-		case 1:	//‚QƒLƒƒƒ‰(16x8)
+		case 1:	//ï¼’ã‚­ãƒ£ãƒ©(16x8)
 			DOT_PUT_W( 0, 0, 8, y_max, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			DOT_PUT_W( 8, 0, x_max-8, y_max, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			return;
-		case 2:	//‚QƒLƒƒƒ‰(8x16)
+		case 2:	//ï¼’ã‚­ãƒ£ãƒ©(8x16)
 			DOT_PUT_W( 0, 0, x_max,	8, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			DOT_PUT_W( 0, 8, x_max,	y_max-8, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			return;
-		case 3:	//‚SƒLƒƒƒ‰(16x16)
+		case 3:	//ï¼”ã‚­ãƒ£ãƒ©(16x16)
 			DOT_PUT_W( 0, 0, 8, 8, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			DOT_PUT_W( 8, 0, x_max-8, 8, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			DOT_PUT_W( 0, 8, 8, y_max-8, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
@@ -3979,18 +3979,18 @@ void GF_BGL_BmpWinPrintMsgWide(
 							src, ssx*4*ssy*8, win->palnum, win->ini->heapID );
 
 		switch( print_pat ){
-		case 0:	//‚PƒLƒƒƒ‰(8x8)
+		case 0:	//ï¼‘ã‚­ãƒ£ãƒ©(8x8)
 			DOT_PUT_W_256( 0, 0, x_max,	y_max, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			break;
-		case 1:	//‚QƒLƒƒƒ‰(16x8)
+		case 1:	//ï¼’ã‚­ãƒ£ãƒ©(16x8)
 			DOT_PUT_W_256( 0, 0, 8, y_max, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			DOT_PUT_W_256( 8, 0, x_max-8, y_max, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			break;
-		case 2:	//‚QƒLƒƒƒ‰(8x16)
+		case 2:	//ï¼’ã‚­ãƒ£ãƒ©(8x16)
 			DOT_PUT_W_256( 0, 0, x_max,	8, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			DOT_PUT_W_256( 0, 8, x_max,	y_max-8, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			break;
-		case 3:	//‚SƒLƒƒƒ‰(16x16)
+		case 3:	//ï¼”ã‚­ãƒ£ãƒ©(16x16)
 			DOT_PUT_W_256( 0, 0, 8, 8, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			DOT_PUT_W_256( 8, 0, x_max-8, 8, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
 			DOT_PUT_W_256( 0, 8, 8, y_max-8, M_DST_ADRS, M_DST_POSX, M_DST_POSY, M_DST_XARG, M_PUT_TBL );
@@ -4004,16 +4004,16 @@ void GF_BGL_BmpWinPrintMsgWide(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒEƒCƒ“ƒhƒEƒf[ƒ^ƒVƒtƒg
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ã‚·ãƒ•ãƒˆ
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
- * @param	direct	•ûŒü
- * @param	offset	ƒVƒtƒg•
- * @param	data	‹ó”’‚É‚È‚Á‚½—Ìˆæ‚ğ–„‚ß‚éƒf[ƒ^
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
+ * @param	direct	æ–¹å‘
+ * @param	offset	ã‚·ãƒ•ãƒˆå¹…
+ * @param	data	ç©ºç™½ã«ãªã£ãŸé ˜åŸŸã‚’åŸ‹ã‚ã‚‹ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  *
- * ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^(‘S—Ìˆæ)‚ÌƒVƒtƒg‚ğÀs
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿(å…¨é ˜åŸŸ)ã®ã‚·ãƒ•ãƒˆã‚’å®Ÿè¡Œ
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_BmpWinShift( GF_BGL_BMPWIN * win, u8 direct, u8 offset, u8 data )
@@ -4027,12 +4027,12 @@ void GF_BGL_BmpWinShift( GF_BGL_BMPWIN * win, u8 direct, u8 offset, u8 data )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒEƒCƒ“ƒhƒEƒf[ƒ^ƒVƒtƒgi‚P‚UF—pj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ã‚·ãƒ•ãƒˆï¼ˆï¼‘ï¼–è‰²ç”¨ï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
- * @param	direct	•ûŒü
- * @param	offset	ƒVƒtƒg•
- * @param	data	‹ó”’‚É‚È‚Á‚½—Ìˆæ‚ğ–„‚ß‚éƒf[ƒ^
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
+ * @param	direct	æ–¹å‘
+ * @param	offset	ã‚·ãƒ•ãƒˆå¹…
+ * @param	data	ç©ºç™½ã«ãªã£ãŸé ˜åŸŸã‚’åŸ‹ã‚ã‚‹ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -4094,12 +4094,12 @@ static void GF_BGL_BmpWinShift16( GF_BGL_BMPWIN * win, u8 direct, u8 offset, u8 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒrƒbƒgƒ}ƒbƒvƒEƒCƒ“ƒhƒEƒf[ƒ^ƒVƒtƒgi‚Q‚T‚UF—pj
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿ã‚·ãƒ•ãƒˆï¼ˆï¼’ï¼•ï¼–è‰²ç”¨ï¼‰
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
- * @param	direct	•ûŒü
- * @param	offset	ƒVƒtƒg•
- * @param	data	‹ó”’‚É‚È‚Á‚½—Ìˆæ‚ğ–„‚ß‚éƒf[ƒ^
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
+ * @param	direct	æ–¹å‘
+ * @param	offset	ã‚·ãƒ•ãƒˆå¹…
+ * @param	data	ç©ºç™½ã«ãªã£ãŸé ˜åŸŸã‚’åŸ‹ã‚ã‚‹ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -4179,15 +4179,15 @@ static void GF_BGL_BmpWinShift256( GF_BGL_BMPWIN * win, u8 direct, u8 offset, u8
 
 //=============================================================================================
 //=============================================================================================
-//	BMPƒf[ƒ^‘€ì
+//	BMPãƒ‡ãƒ¼ã‚¿æ“ä½œ
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒf[ƒ^æ“¾FBGLƒf[ƒ^
+ * BMPãƒ‡ãƒ¼ã‚¿å–å¾—ï¼šBGLãƒ‡ãƒ¼ã‚¿
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	win->ini
  */
@@ -4199,9 +4199,9 @@ GF_BGL_INI * GF_BGL_BmpWinGet_BglIni( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒf[ƒ^æ“¾FBGƒtƒŒ[ƒ€”Ô†
+ * BMPãƒ‡ãƒ¼ã‚¿å–å¾—ï¼šBGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	win->frmnum
  */
@@ -4213,9 +4213,9 @@ u8 GF_BGL_BmpWinGet_Frame( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒf[ƒ^æ“¾FXƒTƒCƒY
+ * BMPãƒ‡ãƒ¼ã‚¿å–å¾—ï¼šXã‚µã‚¤ã‚º
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	win->sizx
  */
@@ -4227,9 +4227,9 @@ u8 GF_BGL_BmpWinGet_SizeX( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒf[ƒ^æ“¾FYƒTƒCƒY
+ * BMPãƒ‡ãƒ¼ã‚¿å–å¾—ï¼šYã‚µã‚¤ã‚º
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	win->sizy
  */
@@ -4241,10 +4241,10 @@ u8 GF_BGL_BmpWinGet_SizeY( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒf[ƒ^æ“¾FXÀ•W
+ * BMPãƒ‡ãƒ¼ã‚¿å–å¾—ï¼šXåº§æ¨™
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
- * @param	index	ƒrƒbƒgƒ}ƒbƒvg—pİ’èƒwƒbƒ_INDEX
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
+ * @param	index	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ä½¿ç”¨è¨­å®šãƒ˜ãƒƒãƒ€INDEX
  *
  * @return	win->posx
  */
@@ -4256,9 +4256,9 @@ u8 GF_BGL_BmpWinGet_PosX( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒf[ƒ^æ“¾FYÀ•W
+ * BMPãƒ‡ãƒ¼ã‚¿å–å¾—ï¼šYåº§æ¨™
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	win->posy
  */
@@ -4270,9 +4270,9 @@ u8 GF_BGL_BmpWinGet_PosY( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒf[ƒ^æ“¾FƒLƒƒƒ‰”Ô†
+ * BMPãƒ‡ãƒ¼ã‚¿å–å¾—ï¼šã‚­ãƒ£ãƒ©ç•ªå·
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	win->chrofs
  */
@@ -4284,9 +4284,9 @@ u16 GF_BGL_BmpWinGet_Chrofs( GF_BGL_BMPWIN * win )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒf[ƒ^İ’èFXÀ•W
+ * BMPãƒ‡ãƒ¼ã‚¿è¨­å®šï¼šXåº§æ¨™
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -4298,9 +4298,9 @@ void GF_BGL_BmpWinSet_PosX( GF_BGL_BMPWIN * win, u8 px )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒf[ƒ^İ’èFYÀ•W
+ * BMPãƒ‡ãƒ¼ã‚¿è¨­å®šï¼šYåº§æ¨™
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
  *
  * @return	none
  */
@@ -4312,10 +4312,10 @@ void GF_BGL_BmpWinSet_PosY( GF_BGL_BMPWIN * win, u8 py )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒf[ƒ^İ’èFƒpƒŒƒbƒg”Ô†
+ * BMPãƒ‡ãƒ¼ã‚¿è¨­å®šï¼šãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  *
- * @param	win		BMPƒf[ƒ^Ši”[êŠ
- * @param   palnum	ƒpƒŒƒbƒg”Ô†
+ * @param	win		BMPãƒ‡ãƒ¼ã‚¿æ ¼ç´å ´æ‰€
+ * @param   palnum	ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
  *
  * @return	none
  */
@@ -4328,7 +4328,7 @@ void GF_BGL_BmpWinSet_Pal( GF_BGL_BMPWIN * win, u8 palnum )
 
 //=============================================================================================
 //=============================================================================================
-//	NITRO-CHARACTERƒf[ƒ^“WŠJˆ—
+//	NITRO-CHARACTERãƒ‡ãƒ¼ã‚¿å±•é–‹å‡¦ç†
 //=============================================================================================
 //=============================================================================================
 
@@ -4340,7 +4340,7 @@ void GF_BGL_NTRCHR_CharLoadEx(
 
 	buf = sys_LoadFile( ini->heapID, path );
 
-#ifdef	OSP_ERR_BGL_NTRCHR_LOAD		// NITRO-CHARACTER‚Ìƒf[ƒ^æ“¾—ÌˆæŠm•Û¸”s
+#ifdef	OSP_ERR_BGL_NTRCHR_LOAD		// NITRO-CHARACTERã®ãƒ‡ãƒ¼ã‚¿å–å¾—é ˜åŸŸç¢ºä¿å¤±æ•—
 	if( buf == NULL ){
 		OS_Printf( "ERROR : GF_GBL_NTRCHR_CharLoad -load\n" );
 		return;
@@ -4349,12 +4349,12 @@ void GF_BGL_NTRCHR_CharLoadEx(
 
 	if( NNS_G2dGetUnpackedBGCharacterData( buf, &dat ) == TRUE ){
 		if( size == 0xffffffff ){
-#ifdef	OSP_BGL_NTRCHR_LOAD		// NITRO-CHARACTER‚Ìƒf[ƒ^ƒTƒCƒY
+#ifdef	OSP_BGL_NTRCHR_LOAD		// NITRO-CHARACTERã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 			OS_Printf( "GF_GBL_NTRCHR_CharLoad -size %d\n", dat->szByte );
 #endif	// OSP_BGL_NTRCHR_LOAD
 			GF_BGL_LoadCharacter( ini, frmnum, dat->pRawData, dat->szByte, offs );
 		}else{
-#ifdef	OSP_BGL_NTRCHR_LOAD		// NITRO-CHARACTER‚Ìƒf[ƒ^ƒTƒCƒY
+#ifdef	OSP_BGL_NTRCHR_LOAD		// NITRO-CHARACTERã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 			OS_Printf( "GF_GBL_NTRCHR_CharLoad -size %d\n", size );
 #endif	// OSP_BGL_NTRCHR_LOAD
 			GF_BGL_LoadCharacter( ini, frmnum, dat->pRawData, size, offs );
@@ -4366,12 +4366,12 @@ void GF_BGL_NTRCHR_CharLoadEx(
 
 //--------------------------------------------------------------------------------------------
 /**
- * NITRO-CHARACTER‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+ * NITRO-CHARACTERã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
- * @param	path	ƒtƒ@ƒCƒ‹ƒpƒX
- * @param	offs	ƒIƒtƒZƒbƒgiƒLƒƒƒ‰’PˆÊj
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	path	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
  *
  * @return	none
  */
@@ -4383,7 +4383,7 @@ void GF_BGL_NTRCHR_CharLoad( GF_BGL_INI * ini, u8 frmnum, const char * path, u32
 
 	buf = sys_LoadFile( ini->heapID, path );
 
-#ifdef	OSP_ERR_BGL_NTRCHR_LOAD		// NITRO-CHARACTER‚Ìƒf[ƒ^æ“¾—ÌˆæŠm•Û¸”s
+#ifdef	OSP_ERR_BGL_NTRCHR_LOAD		// NITRO-CHARACTERã®ãƒ‡ãƒ¼ã‚¿å–å¾—é ˜åŸŸç¢ºä¿å¤±æ•—
 	if( buf == NULL ){
 		OS_Printf( "ERROR : GF_GBL_NTRCHR_CharLoad -load\n" );
 		return;
@@ -4391,7 +4391,7 @@ void GF_BGL_NTRCHR_CharLoad( GF_BGL_INI * ini, u8 frmnum, const char * path, u32
 #endif	// OSP_ERR_BGL_NTRCHR_LOAD
 
 	if( NNS_G2dGetUnpackedBGCharacterData( buf, &dat ) == TRUE ){
-#ifdef	OSP_BGL_NTRCHR_LOAD		// NITRO-CHARACTER‚Ìƒf[ƒ^ƒTƒCƒY
+#ifdef	OSP_BGL_NTRCHR_LOAD		// NITRO-CHARACTERã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 		OS_Printf( "GF_GBL_NTRCHR_CharLoad -size %d\n", dat->szByte );
 #endif	// OSP_BGL_NTRCHR_LOAD
 		GF_BGL_LoadCharacter( ini, frmnum, dat->pRawData, dat->szByte, offs );
@@ -4405,13 +4405,13 @@ void GF_BGL_NTRCHR_CharLoad( GF_BGL_INI * ini, u8 frmnum, const char * path, u32
 
 //--------------------------------------------------------------------------------------------
 /**
- * NITRO-CHARACTER‚ÌƒLƒƒƒ‰ƒf[ƒ^‚ğæ“¾
+ * NITRO-CHARACTERã®ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	buf		“WŠJ—pƒoƒbƒtƒ@
- * @param	mode	w’èƒq[ƒv—Ìˆæ’è‹`
- * @param	path	ƒtƒ@ƒCƒ‹ƒpƒX
+ * @param	buf		å±•é–‹ç”¨ãƒãƒƒãƒ•ã‚¡
+ * @param	mode	æŒ‡å®šãƒ’ãƒ¼ãƒ—é ˜åŸŸå®šç¾©
+ * @param	path	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
  *
- * @return	ƒLƒƒƒ‰ƒf[ƒ^‚Ì\‘¢‘Ì
+ * @return	ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®æ§‹é€ ä½“
  */
 //--------------------------------------------------------------------------------------------
 NNSG2dCharacterData * GF_BGL_NTRCHR_CharGet( void ** buf, int mode, const char * path )
@@ -4420,7 +4420,7 @@ NNSG2dCharacterData * GF_BGL_NTRCHR_CharGet( void ** buf, int mode, const char *
 
 	*buf = sys_LoadFile( mode, path );
 
-#ifdef	OSP_ERR_BGL_NTRCHR_LOAD		// NITRO-CHARACTER‚Ìƒf[ƒ^æ“¾—ÌˆæŠm•Û¸”s
+#ifdef	OSP_ERR_BGL_NTRCHR_LOAD		// NITRO-CHARACTERã®ãƒ‡ãƒ¼ã‚¿å–å¾—é ˜åŸŸç¢ºä¿å¤±æ•—
 	if( buf == NULL ){
 		OS_Printf( "ERROR : GF_GBL_NTRCHR_CharLoad -load\n" );
 		return NULL;
@@ -4428,7 +4428,7 @@ NNSG2dCharacterData * GF_BGL_NTRCHR_CharGet( void ** buf, int mode, const char *
 #endif	// OSP_ERR_BGL_NTRCHR_LOAD
 
 	if( NNS_G2dGetUnpackedBGCharacterData( *buf, &dat ) == TRUE ){
-#ifdef	OSP_BGL_NTRCHR_LOAD		// NITRO-CHARACTER‚Ìƒf[ƒ^ƒTƒCƒY
+#ifdef	OSP_BGL_NTRCHR_LOAD		// NITRO-CHARACTERã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 		OS_Printf( "GF_GBL_NTRCHR_CharLoad -size %d\n", dat->szByte );
 #endif	// OSP_BGL_NTRCHR_LOAD
 	}
@@ -4438,16 +4438,16 @@ NNSG2dCharacterData * GF_BGL_NTRCHR_CharGet( void ** buf, int mode, const char *
 
 //--------------------------------------------------------------------------------------------
 /**
- * NITRO-CHARACTER‚ÌƒpƒŒƒbƒgƒf[ƒ^‚ğ“WŠJ
+ * NITRO-CHARACTERã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’å±•é–‹
  *
- * @param	mem		“WŠJêŠ
- * @param	mode	w’èƒq[ƒv—Ìˆæ’è‹`
- * @param	path	ƒtƒ@ƒCƒ‹ƒpƒX
+ * @param	mem		å±•é–‹å ´æ‰€
+ * @param	mode	æŒ‡å®šãƒ’ãƒ¼ãƒ—é ˜åŸŸå®šç¾©
+ * @param	path	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
  *
- * @return	ƒpƒŒƒbƒgƒf[ƒ^
+ * @return	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  *
- * @li		pal->pRawData = ƒpƒŒƒbƒgƒf[ƒ^
- * @li		pal->szByte   = ƒTƒCƒY
+ * @li		pal->pRawData = ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
+ * @li		pal->szByte   = ã‚µã‚¤ã‚º
  */
 //--------------------------------------------------------------------------------------------
 NNSG2dPaletteData * GF_BGL_NTRCHR_PalLoad( void ** mem, int mode, const char * path )
@@ -4456,7 +4456,7 @@ NNSG2dPaletteData * GF_BGL_NTRCHR_PalLoad( void ** mem, int mode, const char * p
 
 	*mem = sys_LoadFile( mode, path );
 
-#ifdef	OSP_ERR_BGL_NTRCHR_LOAD		// NITRO-CHARACTER‚Ìƒf[ƒ^æ“¾—ÌˆæŠm•Û¸”s
+#ifdef	OSP_ERR_BGL_NTRCHR_LOAD		// NITRO-CHARACTERã®ãƒ‡ãƒ¼ã‚¿å–å¾—é ˜åŸŸç¢ºä¿å¤±æ•—
 	if( mem == NULL ){
 		OS_Printf( "ERROR : GF_GBL_NTRCHR_PalLoad -load\n" );
 		return NULL;
@@ -4464,7 +4464,7 @@ NNSG2dPaletteData * GF_BGL_NTRCHR_PalLoad( void ** mem, int mode, const char * p
 #endif	// OSP_ERR_BGL_NTRCHR_LOAD
 
 	if( NNS_G2dGetUnpackedPaletteData( *mem, &pal ) == TRUE ){
-#ifdef	OSP_BGL_NTRCHR_LOAD		// NITRO-CHARACTER‚Ìƒf[ƒ^ƒTƒCƒY
+#ifdef	OSP_BGL_NTRCHR_LOAD		// NITRO-CHARACTERã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 		OS_Printf( "GF_GBL_NTRCHR_PalLoad -size %d\n", pal->szByte );
 #endif	// OSP_BGL_NTRCHR_LOAD
 	}
@@ -4473,12 +4473,12 @@ NNSG2dPaletteData * GF_BGL_NTRCHR_PalLoad( void ** mem, int mode, const char * p
 
 //--------------------------------------------------------------------------------------------
 /**
- * NITRO-CHARACTER‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+ * NITRO-CHARACTERã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
- * @param	path	ƒtƒ@ƒCƒ‹ƒpƒX
- * @param	offs	ƒIƒtƒZƒbƒgiƒLƒƒƒ‰’PˆÊj
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	path	ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+ * @param	offs	ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
  *
  * @return	none
  */
@@ -4490,7 +4490,7 @@ void GF_BGL_NTRCHR_ScrnLoad( GF_BGL_INI * ini, u8 frmnum, const char * path, u32
 
 	buf = sys_LoadFile( ini->heapID, path );
 
-#ifdef	OSP_ERR_BGL_NTRCHR_LOAD		// NITRO-CHARACTER‚Ìƒf[ƒ^æ“¾—ÌˆæŠm•Û¸”s
+#ifdef	OSP_ERR_BGL_NTRCHR_LOAD		// NITRO-CHARACTERã®ãƒ‡ãƒ¼ã‚¿å–å¾—é ˜åŸŸç¢ºä¿å¤±æ•—
 	if( buf == NULL ){
 		OS_Printf( "ERROR : GF_GBL_NTRCHR_ScrnLoad -load\n" );
 		return;
@@ -4498,7 +4498,7 @@ void GF_BGL_NTRCHR_ScrnLoad( GF_BGL_INI * ini, u8 frmnum, const char * path, u32
 #endif	// OSP_ERR_BGL_NTRCHR_LOAD
 
 	if( NNS_G2dGetUnpackedScreenData( buf, &dat ) == TRUE ){
-#ifdef	OSP_BGL_NTRCHR_LOAD		// NITRO-CHARACTER‚Ìƒf[ƒ^ƒTƒCƒY
+#ifdef	OSP_BGL_NTRCHR_LOAD		// NITRO-CHARACTERã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
 		OS_Printf( "GF_GBL_NTRCHR_ScrnLoad -size %d\n", dat->szByte );
 #endif	// OSP_BGL_NTRCHR_LOAD
 		GF_BGL_ScreenBufSet( ini, frmnum, dat->rawData, dat->szByte );
@@ -4511,7 +4511,7 @@ void GF_BGL_NTRCHR_ScrnLoad( GF_BGL_INI * ini, u8 frmnum, const char * path, u32
 
 //=============================================================================================
 //=============================================================================================
-//	VBlankŠÖ˜A
+//	VBlanké–¢é€£
 //=============================================================================================
 //=============================================================================================
 #define	SCROLL_REQ_M0	( 1 )			// Bit Flag ( Main Disp BG0 )
@@ -4528,19 +4528,19 @@ static void VBlankLoadScreen( GF_BGL_INI * ini );
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlank“]‘—
+ * VBlankè»¢é€
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  *
- * @li	VBlank“à‚ÅŒÄ‚ñ‚Å‰º‚³‚¢
+ * @li	VBlankå†…ã§å‘¼ã‚“ã§ä¸‹ã•ã„
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_VBlankFunc( GF_BGL_INI * ini )
 {
-	VBlankScroll( ini );		// ƒXƒNƒ[ƒ‹
-	VBlankLoadScreen( ini );	// ƒXƒNƒŠ[ƒ““]‘—
+	VBlankScroll( ini );		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
+	VBlankLoadScreen( ini );	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€
 
 	ini->scroll_req = 0;
 	ini->loadscrn_req = 0;
@@ -4548,9 +4548,9 @@ void GF_BGL_VBlankFunc( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ““]‘— ( VBlank )
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ ( VBlank )
  *
- * @param	ini			BGLƒf[ƒ^
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -4617,14 +4617,14 @@ static void VBlankLoadScreen( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠ[ƒ““]‘—ƒŠƒNƒGƒXƒg ( VBlank )
+ * ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆ ( VBlank )
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
  *
  * @return	none
  *
- * @li	VBlank“à‚ÅGF_BGL_VBlankFunc(...)‚ğŒÄ‚Ô‚±‚Æ
+ * @li	VBlankå†…ã§GF_BGL_VBlankFunc(...)ã‚’å‘¼ã¶ã“ã¨
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_LoadScreenV_Req( GF_BGL_INI * ini , u8 frmnum )
@@ -4634,9 +4634,9 @@ void GF_BGL_LoadScreenV_Req( GF_BGL_INI * ini , u8 frmnum )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankƒXƒNƒ[ƒ‹
+ * VBlankã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
  *
- * @param	ini			BGLƒf[ƒ^
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -4761,16 +4761,16 @@ static void VBlankScroll( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒ[ƒ‹ƒŠƒNƒGƒXƒg
+ * ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	mode		ƒXƒNƒ[ƒ‹ƒ‚[ƒh
- * @param	value		ƒXƒNƒ[ƒ‹’l
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	mode		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰
+ * @param	value		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å€¤
  *
  * @return	none
  *
- * @li	VBlank“à‚ÅGF_BGL_VBlankFunc(...)‚ğŒÄ‚Ô‚±‚Æ
+ * @li	VBlankå†…ã§GF_BGL_VBlankFunc(...)ã‚’å‘¼ã¶ã“ã¨
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_ScrollReq( GF_BGL_INI * ini, u8 frmnum, u8 mode, int value )
@@ -4781,16 +4781,16 @@ void GF_BGL_ScrollReq( GF_BGL_INI * ini, u8 frmnum, u8 mode, int value )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ñ“]Šp“x•ÏXƒŠƒNƒGƒXƒg
+ * å›è»¢è§’åº¦å¤‰æ›´ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	mode		Šp“x•ÏXƒ‚[ƒh
- * @param	value		‰ñ“]’l
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	mode		è§’åº¦å¤‰æ›´ãƒ¢ãƒ¼ãƒ‰
+ * @param	value		å›è»¢å€¤
  *
  * @return	none
  *
- * @li	VBlank“à‚ÅGF_BGL_VBlankFunc(...)‚ğŒÄ‚Ô‚±‚Æ
+ * @li	VBlankå†…ã§GF_BGL_VBlankFunc(...)ã‚’å‘¼ã¶ã“ã¨
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_RadianSetReq( GF_BGL_INI * ini, u8 frmnum, u8 mode, u16 value )
@@ -4801,11 +4801,11 @@ void GF_BGL_RadianSetReq( GF_BGL_INI * ini, u8 frmnum, u8 mode, u16 value )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ñ“]Šp“xƒZƒbƒg
+ * å›è»¢è§’åº¦ã‚»ãƒƒãƒˆ
  *
- * @param	ini			BGLƒtƒŒ[ƒ€ƒf[ƒ^
- * @param	mode		Šp“x•ÏXƒ‚[ƒh
- * @param	value		‰ñ“]’l
+ * @param	ini			BGLãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
+ * @param	mode		è§’åº¦å¤‰æ›´ãƒ¢ãƒ¼ãƒ‰
+ * @param	value		å›è»¢å€¤
  *
  * @return	none
  */
@@ -4827,16 +4827,16 @@ static void RadianParamSet( GF_BGL_SYS_INI * ini, u8 mode, u16 value )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šgk•ÏXƒŠƒNƒGƒXƒg
+ * æ‹¡ç¸®å¤‰æ›´ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	mode		Šgk•ÏXƒ‚[ƒh
- * @param	value		•ÏX’l
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	mode		æ‹¡ç¸®å¤‰æ›´ãƒ¢ãƒ¼ãƒ‰
+ * @param	value		å¤‰æ›´å€¤
  *
  * @return	none
  *
- * @li	VBlank“à‚ÅGF_BGL_VBlankFunc(...)‚ğŒÄ‚Ô‚±‚Æ
+ * @li	VBlankå†…ã§GF_BGL_VBlankFunc(...)ã‚’å‘¼ã¶ã“ã¨
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_ScaleSetReq( GF_BGL_INI * ini, u8 frmnum, u8 mode, fx32 value )
@@ -4847,11 +4847,11 @@ void GF_BGL_ScaleSetReq( GF_BGL_INI * ini, u8 frmnum, u8 mode, fx32 value )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Šgk•ÏXƒZƒbƒg
+ * æ‹¡ç¸®å¤‰æ›´ã‚»ãƒƒãƒˆ
  *
- * @param	ini			BGLƒtƒŒ[ƒ€ƒf[ƒ^
- * @param	mode		Šgk•ÏXƒ‚[ƒh
- * @param	value		•ÏX’l
+ * @param	ini			BGLãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
+ * @param	mode		æ‹¡ç¸®å¤‰æ›´ãƒ¢ãƒ¼ãƒ‰
+ * @param	value		å¤‰æ›´å€¤
  *
  * @return	none
  */
@@ -4882,16 +4882,16 @@ static void ScaleParamSet( GF_BGL_SYS_INI * ini, u8 mode, fx32 value )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ñ“]’†SÀ•W•ÏXƒŠƒNƒGƒXƒg
+ * å›è»¢ä¸­å¿ƒåº§æ¨™å¤‰æ›´ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param	ini			BGLƒf[ƒ^
- * @param	frmnum		BGƒtƒŒ[ƒ€”Ô†
- * @param	mode		•ÏXƒ‚[ƒh
- * @param	value		•ÏX’l
+ * @param	ini			BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum		BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	mode		å¤‰æ›´ãƒ¢ãƒ¼ãƒ‰
+ * @param	value		å¤‰æ›´å€¤
  *
  * @return	none
  *
- * @li	VBlank“à‚ÅGF_BGL_VBlankFunc(...)‚ğŒÄ‚Ô‚±‚Æ
+ * @li	VBlankå†…ã§GF_BGL_VBlankFunc(...)ã‚’å‘¼ã¶ã“ã¨
  */
 //--------------------------------------------------------------------------------------------
 void GF_BGL_RotateCenterSetReq( GF_BGL_INI * ini, u8 frmnum, u8 mode, int value )
@@ -4902,11 +4902,11 @@ void GF_BGL_RotateCenterSetReq( GF_BGL_INI * ini, u8 frmnum, u8 mode, int value 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ñ“]’†SÀ•W•ÏXƒZƒbƒg
+ * å›è»¢ä¸­å¿ƒåº§æ¨™å¤‰æ›´ã‚»ãƒƒãƒˆ
  *
- * @param	ini			BGLƒtƒŒ[ƒ€ƒf[ƒ^
- * @param	mode		•ÏXƒ‚[ƒh
- * @param	value		•ÏX’l
+ * @param	ini			BGLãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
+ * @param	mode		å¤‰æ›´ãƒ¢ãƒ¼ãƒ‰
+ * @param	value		å¤‰æ›´å€¤
  *
  * @return	none
  */
@@ -4938,30 +4938,30 @@ static void CenterParamSet( GF_BGL_SYS_INI * ini, u8 mode, int value )
 
 //=============================================================================================
 //=============================================================================================
-//	‚»‚Ì‘¼
+//	ãã®ä»–
 //=============================================================================================
 //=============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * w’èÀ•W‚Ìƒhƒbƒg‚ğƒ`ƒFƒbƒN
+ * æŒ‡å®šåº§æ¨™ã®ãƒ‰ãƒƒãƒˆã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param	ini		BGLƒf[ƒ^
- * @param	frmnum	BGƒtƒŒ[ƒ€”Ô†
- * @param	px		XÀ•W
- * @param	py		YÀ•W
- * @param	pat		”»’èƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
+ * @param	frmnum	BGãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
+ * @param	px		Xåº§æ¨™
+ * @param	py		Yåº§æ¨™
+ * @param	pat		åˆ¤å®šãƒ‡ãƒ¼ã‚¿
  *
- * @retval	"TRUE = ”»’èƒf[ƒ^(pat)‚É‚ ‚è"
- * @retval	"FALSE = ”»’èƒf[ƒ^(pat)‚É‚È‚µ"
+ * @retval	"TRUE = åˆ¤å®šãƒ‡ãƒ¼ã‚¿(pat)ã«ã‚ã‚Š"
+ * @retval	"FALSE = åˆ¤å®šãƒ‡ãƒ¼ã‚¿(pat)ã«ãªã—"
  *
- * @li	‚P‚UF‚Ìê‡Apat‚Íƒrƒbƒg‚Åƒ`ƒFƒbƒN
- *			—áj*pat = 0xfffd;
- *				ƒJƒ‰[0‚Æ1‚Ìê‡AFALSE‚ª•Ô‚é
+ * @li	ï¼‘ï¼–è‰²ã®å ´åˆã€patã¯ãƒ“ãƒƒãƒˆã§ãƒã‚§ãƒƒã‚¯
+ *			ä¾‹ï¼‰*pat = 0xfffd;
+ *				ã‚«ãƒ©ãƒ¼0ã¨1ã®å ´åˆã€FALSEãŒè¿”ã‚‹
  *
- * @li	‚Q‚T‚UF‚Ìê‡Apat‚ÌÅŒã‚É0xffff‚ğ•t‰Á
- *			—ájpat[] = { 88, 124, 223, 0xffff };
- *				ƒJƒ‰[88, 124, 223ˆÈŠO‚ÍFALSE‚ª•Ô‚é
+ * @li	ï¼’ï¼•ï¼–è‰²ã®å ´åˆã€patã®æœ€å¾Œã«0xffffã‚’ä»˜åŠ 
+ *			ä¾‹ï¼‰pat[] = { 88, 124, 223, 0xffff };
+ *				ã‚«ãƒ©ãƒ¼88, 124, 223ä»¥å¤–ã¯FALSEãŒè¿”ã‚‹
  */
 //--------------------------------------------------------------------------------------------
 u8 GF_BGL_DotCheck( GF_BGL_INI * ini, u8 frmnum, u16 px, u16 py, u16 * pat )

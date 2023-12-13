@@ -6,7 +6,7 @@
 #include "../../field/comm_command_field.h"
 
 
-// �T�l�ڑ��ʐM�̎��Ƀ��[�U�[���q�@�Ƃ��đ��M�ł���ő��M�o�C�g��
+// ５人接続通信の時にユーザーが子機として送信できる最大受信バイト数
 #define COMM_SEND_5TH_PACKET_MAX	(10)
 
 

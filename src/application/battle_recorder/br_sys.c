@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_sys.c
- * @brief	ƒoƒgƒ‹ƒŒƒR[ƒ_[
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
  * @author	goto
- * @date	2007.07.26(–Ø)
+ * @date	2007.07.26(æœ¨)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -44,14 +44,14 @@
 // =============================================================================
 //
 //
-//	¦¦¦¦¦@ƒoƒgƒ‹ƒŒƒR[ƒ_[‚Í 60fps ‚Å•`‰æXV‚ª‚©‚©‚è‚Ü‚· ¦¦¦¦¦
+//	â€»â€»â€»â€»â€»ã€€ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼ã¯ 60fps ã§æç”»æ›´æ–°ãŒã‹ã‹ã‚Šã¾ã™ â€»â€»â€»â€»â€»
 //
 //
 // =============================================================================
 
 // ----------------------------------------
 //
-//	ƒvƒƒZƒX’è‹`
+//	ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©
 //
 // ----------------------------------------
 static PROC_RESULT BR_Proc_InitBrowse( PROC * proc, int * seq );
@@ -62,7 +62,7 @@ static PROC_RESULT BR_Proc_Exit( PROC * proc, int * seq );
 
 FS_EXTERN_OVERLAY( battle_recorder );
 
-///< ƒŒƒR[ƒ_[ƒ‚[ƒh
+///< ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼ãƒ¢ãƒ¼ãƒ‰
 const PROC_DATA BattleRecorder_BrowseProcData = {
 	BR_Proc_InitBrowse,
 	BR_Proc_Main,
@@ -71,7 +71,7 @@ const PROC_DATA BattleRecorder_BrowseProcData = {
 	FS_OVERLAY_ID( battle_recorder ),	
 };
 
-///< ‚f‚c‚rƒ‚[ƒh
+///< ï¼§ï¼¤ï¼³ãƒ¢ãƒ¼ãƒ‰
 const PROC_DATA BattleRecorder_GDSProcData = {
 	BR_Proc_InitGDS,
 	BR_Proc_Main,
@@ -83,7 +83,7 @@ const PROC_DATA BattleRecorder_GDSProcData = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒbƒN‚Ì‰Šú‰»
+ * @brief	ãƒ—ãƒ­ãƒƒã‚¯ã®åˆæœŸåŒ–
  *
  * @param	proc	
  * @param	seq	
@@ -100,16 +100,16 @@ static PROC_RESULT BR_Proc_Init( PROC * proc, int * seq, int mode )
 
 	wk = BR_PROC_GetWork( proc );
 	
-//	wk->mode	  = mode;	‚±‚±‚Å—v‚ç‚È‚¢
+//	wk->mode	  = mode;	ã“ã“ã§è¦ã‚‰ãªã„
 
 	BR_Stack_Menu_Back( wk );	
 	Snd_PlayerSetPlayerVolume( PLAYER_FIELD, BGM_VOL_BR );
 	if(mode != 0){
-		Snd_DataSetByScene( SND_SCENE_FIELD, SEQ_PL_WIFITOWER, 1 );	//GDS‚Ì‹È‚ğ–Â‚ç‚·
+		Snd_DataSetByScene( SND_SCENE_FIELD, SEQ_PL_WIFITOWER, 1 );	//GDSã®æ›²ã‚’é³´ã‚‰ã™
 	}
 	
 	if ( mode == BR_MODE_BROWSE ){
-		///< ƒŒƒR[ƒ_[ƒJƒ‰[‚Ìæ“¾
+		///< ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼ã‚«ãƒ©ãƒ¼ã®å–å¾—
 		{
 			MISC* misc = SaveData_GetMisc( wk->save );
 			MISC_GetBattleRecoderColor( misc, &wk->sys.color_type );
@@ -126,13 +126,13 @@ static PROC_RESULT BR_Proc_Init( PROC * proc, int * seq, int mode )
 		
 	BR_SystemInit( wk );
 	
-// 	OS_Printf( "‰Šú‰»\n");	
+// 	OS_Printf( "åˆæœŸåŒ–\n");	
 	return PROC_RES_FINISH;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒuƒ‰ƒEƒU[‰Šú‰»
+ * @brief	ãƒ–ãƒ©ã‚¦ã‚¶ãƒ¼åˆæœŸåŒ–
  *
  * @param	proc	
  * @param	seq	
@@ -151,7 +151,7 @@ static PROC_RESULT BR_Proc_InitBrowse( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	GDS‰Šú‰»
+ * @brief	GDSåˆæœŸåŒ–
  *
  * @param	proc	
  * @param	seq	
@@ -170,7 +170,7 @@ static PROC_RESULT BR_Proc_InitGDS( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒbƒN
+ * @brief	ãƒ—ãƒ­ãƒƒã‚¯
  *
  * @param	proc	
  * @param	seq	
@@ -193,7 +193,7 @@ static PROC_RESULT BR_Proc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒvƒƒbƒN‚ÌI—¹
+ * @brief	ãƒ—ãƒ­ãƒƒã‚¯ã®çµ‚äº†
  *
  * @param	proc	
  * @param	seq	
@@ -208,13 +208,13 @@ static PROC_RESULT BR_Proc_Exit( PROC * proc, int * seq )
 	
 	switch ( *seq ){
 	case 0:
-		///< TCB Œn‚Ì’â~
+		///< TCB ç³»ã®åœæ­¢
 		BR_SideBar_TCB_Delete( wk );
 		( *seq )++;
 		break;
 	
 	case 1:
-		///< ƒOƒ‰ƒtƒBƒbƒN”jŠü
+		///< ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ç ´æ£„
 		BR_SideBar_Delete( wk );
 		BR_Tag_Delete( wk );
 		BR_disp_FontOam_Delete( wk );
@@ -241,7 +241,7 @@ static PROC_RESULT BR_Proc_Exit( PROC * proc, int * seq )
 		
 	
 	default:
-		///< system ŠJ•ú
+		///< system é–‹æ”¾
 		BR_SystemExit( wk );
 		sys_DeleteHeap( HEAPID_BR );		
 		
@@ -252,7 +252,7 @@ static PROC_RESULT BR_Proc_Exit( PROC * proc, int * seq )
 		
 	//	Snd_PlayerSetPlayerVolume( PLAYER_FIELD, BGM_VOL_MAX );
 		
-	//	OS_Printf( "I—¹\n");
+	//	OS_Printf( "çµ‚äº†\n");
 		return PROC_RES_FINISH;
 	}
 	

@@ -1,23 +1,23 @@
 //============================================================================================
 /**
  * @file	plist_snd_def.h
- * @brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊSE’è‹`
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢SEå®šç¾©
  * @author	Hiroyuki Nakamura
  * @date	2006.04.06
  */
 //============================================================================================
 #include "system/snd_tool.h"
 
-#define	PLIST_SE_CURSOR		( SEQ_SE_DP_SELECT )	// ƒJ[ƒ\ƒ‹ˆÚ“®
-#define	PLIST_SE_ENTER		( SEQ_SE_DP_SELECT )	// Œˆ’è
-#define	PLIST_SE_CANCEL		( SEQ_SE_DP_SELECT )	// ƒLƒƒƒ“ƒZƒ‹
+#define	PLIST_SE_CURSOR		( SEQ_SE_DP_SELECT )	// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+#define	PLIST_SE_ENTER		( SEQ_SE_DP_SELECT )	// æ±ºå®š
+#define	PLIST_SE_CANCEL		( SEQ_SE_DP_SELECT )	// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 
-#define	PLIST_SE_ERROR		( SEQ_SE_DP_CUSTOM06 )	// ƒGƒ‰[
+#define	PLIST_SE_ERROR		( SEQ_SE_DP_CUSTOM06 )	// ã‚¨ãƒ©ãƒ¼
 
-//#define	PLIST_SE_MV_OUT	( SEQ_SE_DP_SYU02 )			// •À‚Ñ‘Ö‚¦EŠO‚Ö
-#define	PLIST_SE_MV_OUT		( SEQ_SE_DP_POKELIST_001 )	// •À‚Ñ‘Ö‚¦EŠO‚Ö
+//#define	PLIST_SE_MV_OUT	( SEQ_SE_DP_SYU02 )			// ä¸¦ã³æ›¿ãˆãƒ»å¤–ã¸
+#define	PLIST_SE_MV_OUT		( SEQ_SE_DP_POKELIST_001 )	// ä¸¦ã³æ›¿ãˆãƒ»å¤–ã¸
 
-//#define	PLIST_SE_MV_IN	( SEQ_SE_DP_SYU02 )			// •À‚Ñ‘Ö‚¦E’†‚Ö
-#define	PLIST_SE_MV_IN		( SEQ_SE_DP_POKELIST_001 )	// •À‚Ñ‘Ö‚¦E’†‚Ö
+//#define	PLIST_SE_MV_IN	( SEQ_SE_DP_SYU02 )			// ä¸¦ã³æ›¿ãˆãƒ»ä¸­ã¸
+#define	PLIST_SE_MV_IN		( SEQ_SE_DP_POKELIST_001 )	// ä¸¦ã³æ›¿ãˆãƒ»ä¸­ã¸
 
-#define	PLIST_SE_TP_BALL	( SEQ_SE_DP_BUTTON9 )	// ‰º‰æ–Êƒ{ƒ^ƒ“ƒ^ƒbƒ`
+#define	PLIST_SE_TP_BALL	( SEQ_SE_DP_BUTTON9 )	// ä¸‹ç”»é¢ãƒœã‚¿ãƒ³ã‚¿ãƒƒãƒ

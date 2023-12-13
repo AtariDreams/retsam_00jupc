@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief ƒ|ƒPƒ‚ƒ“ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ ƒƒbƒZ[ƒWƒp[ƒT[ƒwƒbƒ_
+ * @brief ãƒã‚±ãƒ¢ãƒ³ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‘ãƒ¼ã‚µãƒ¼ãƒ˜ãƒƒãƒ€
  */
 
 #ifndef PPW_PARSER_H_
@@ -23,8 +23,8 @@
 #include "dwci_lobbyUtil.h"
 #include "ppwlobby/ppw_lobby.h"
 
-#define PPW_LOBBY_MESSAGE_HEADER_BLOCK_SEPALATOR " "    // ƒXƒy[ƒX1ŒÂ
-#define PPW_LOBBY_MESSAGE_HEADER_BODY_SEPALATOR "  "    // ƒXƒy[ƒX2ŒÂ
+#define PPW_LOBBY_MESSAGE_HEADER_BLOCK_SEPALATOR " "    // ã‚¹ãƒšãƒ¼ã‚¹1å€‹
+#define PPW_LOBBY_MESSAGE_HEADER_BODY_SEPALATOR "  "    // ã‚¹ãƒšãƒ¼ã‚¹2å€‹
 #define PPW_LOBBY_MESSAGE_NO_OPTION "_"
 
 template <class T>

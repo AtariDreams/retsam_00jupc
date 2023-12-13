@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	balloon_tool.c
- * @brief	•—‘DŠ„‚èFƒc[ƒ‹—Þ
+ * @brief	é¢¨èˆ¹å‰²ã‚Šï¼šãƒ„ãƒ¼ãƒ«é¡ž
  * @author	matsuda
- * @date	2007.11.25(“ú)
+ * @date	2007.11.25(æ—¥)
  */
 //==============================================================================
 #include "common.h"
@@ -45,113 +45,113 @@
 
 
 //==============================================================================
-//	•—‘D‚Ì‘Ï‹v—Í
+//	é¢¨èˆ¹ã®è€ä¹…åŠ›
 //==============================================================================
-///•—‘DoŒ»ˆÊ’uX
+///é¢¨èˆ¹å‡ºç¾ä½ç½®X
 #define BALLOON_APPEAR_POS_X	(128)
-///•—‘DoŒ»ˆÊ’uY
+///é¢¨èˆ¹å‡ºç¾ä½ç½®Y
 #define BALLOON_APPEAR_POS_Y	(96)
 
-///•—‘D‚ÌÅ’áŠgk—¦(‘Ï‹v—Í‚ª0‚Å‚àAÅ’á‚±‚Ì‘å‚«‚³‚ÍˆÛŽ‚·‚é)
+///é¢¨èˆ¹ã®æœ€ä½Žæ‹¡ç¸®çŽ‡(è€ä¹…åŠ›ãŒ0ã§ã‚‚ã€æœ€ä½Žã“ã®å¤§ãã•ã¯ç¶­æŒã™ã‚‹)
 #define BALLOON_SCALE_MIN	(0x0300)
-///‚±‚ÌƒXƒP[ƒ‹’l‚æ‚è‘å‚«‚­‚È‚Á‚½‚çX‚ð˜c‚Ü‚¹Žn‚ß‚é
+///ã“ã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã‚ˆã‚Šå¤§ãããªã£ãŸã‚‰Xã‚’æ­ªã¾ã›å§‹ã‚ã‚‹
 #define BALLOON_SCALE_DISTORTION_START	(FX32_ONE)
-///•—‘D‚ð˜c‚Ü‚¹‚éˆ×‚ÉæŽZ‚·‚é
+///é¢¨èˆ¹ã‚’æ­ªã¾ã›ã‚‹ç‚ºã«ä¹—ç®—ã™ã‚‹
 #define BALLOON_SCALE_DISTORTION_X		(FX32_CONST(1.1))
 
-///Ž©•ª‚Ì‹ó‹C‚Ìê‡A‰º‰æ–Ê‚Ì‹ó‹C‚ªã‚É“ž’…‚µ‚Ä‚©‚ço‚·‚Ì‚ÅA‚»‚Ì•ª“oê‚Ü‚ÅƒEƒFƒCƒg‚ð“ü‚ê‚é
+///è‡ªåˆ†ã®ç©ºæ°—ã®å ´åˆã€ä¸‹ç”»é¢ã®ç©ºæ°—ãŒä¸Šã«åˆ°ç€ã—ã¦ã‹ã‚‰å‡ºã™ã®ã§ã€ãã®åˆ†ç™»å ´ã¾ã§ã‚¦ã‚§ã‚¤ãƒˆã‚’å…¥ã‚Œã‚‹
 #define MY_AIR_2D_APPEAR_WAIT		(25)
-///‹ó‹CƒAƒNƒ^[‚ÌˆÚ“®‘¬“x(fx32)
+///ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼ã®ç§»å‹•é€Ÿåº¦(fx32)
 #define AIR_MOVE_SPEED		(FX32_CONST(5.0))
 
-///ãˆÚ“®‚Ì‹ó‹CƒAƒNƒ^[‚ªÁ‚¦‚éˆÊ’uFY
+///ä¸Šç§»å‹•ã®ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼ãŒæ¶ˆãˆã‚‹ä½ç½®ï¼šY
 #define AIR_MOVE_UP_DELETE_Y	(98+16)// + 16/2)
-///‰EˆÚ“®‚Ì‹ó‹CƒAƒNƒ^[‚ªÁ‚¦‚éˆÊ’uFY
+///å³ç§»å‹•ã®ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼ãŒæ¶ˆãˆã‚‹ä½ç½®ï¼šY
 #define AIR_MOVE_RIGHT_DELETE_X	(128-24)// - 16/2)
-///‰ºˆÚ“®‚Ì‹ó‹CƒAƒNƒ^[‚ªÁ‚¦‚éˆÊ’uFY
+///ä¸‹ç§»å‹•ã®ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼ãŒæ¶ˆãˆã‚‹ä½ç½®ï¼šY
 #define AIR_MOVE_DOWN_DELETE_Y	(98-24)// - 16/2)
-///¶ˆÚ“®‚Ì‹ó‹CƒAƒNƒ^[‚ªÁ‚¦‚éˆÊ’uFX
+///å·¦ç§»å‹•ã®ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼ãŒæ¶ˆãˆã‚‹ä½ç½®ï¼šX
 #define AIR_MOVE_LEFT_DELETE_X	(128+24)// + 16/2)
 
-///ƒWƒ‡ƒCƒ“ƒg‚Ì‰½ƒhƒbƒgŽè‘O‚©‚çk¬‚ðŽn‚ß‚é‚©
-#define AIR_REDUCE_DOT_OFFSET		(24/2 + 2)	//‹ó‹COBJ‚ª’¼Œa–ñ24ƒhƒbƒg‚È‚Ì‚ÅB+2=”÷’²®
+///ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®ä½•ãƒ‰ãƒƒãƒˆæ‰‹å‰ã‹ã‚‰ç¸®å°ã‚’å§‹ã‚ã‚‹ã‹
+#define AIR_REDUCE_DOT_OFFSET		(24/2 + 2)	//ç©ºæ°—OBJãŒç›´å¾„ç´„24ãƒ‰ãƒƒãƒˆãªã®ã§ã€‚+2=å¾®èª¿æ•´
 
-///•—‘DƒAƒCƒRƒ“‚Ì•\Ž¦À•WX(ˆê”Ô‰E’[‚ÉˆÊ’u‚µ‚½Žž‚ÌXÀ•W)
+///é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºåº§æ¨™X(ä¸€ç•ªå³ç«¯ã«ä½ç½®ã—ãŸæ™‚ã®Xåº§æ¨™)
 #define ICON_BALLOON_POS_RIGHT_X	(9 * 8)
-///•—‘DƒAƒCƒRƒ“‚Ì•\Ž¦À•WY
+///é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã®è¡¨ç¤ºåº§æ¨™Y
 #define ICON_BALLOON_POS_Y			(4 * 8)
-///•—‘DƒAƒCƒRƒ“‚Ì”z’uŠÔŠuFX
+///é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã®é…ç½®é–“éš”ï¼šX
 #define ICON_BALLOON_POS_OFFSET_X	(16)
 
-///•—‘DƒAƒCƒRƒ“‚ÌˆÚ“®‘¬“xX
+///é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã®ç§»å‹•é€Ÿåº¦X
 #define ICON_BALLOON_MOVE_SP_X		(2)
-///•—‘D‚Ì‘Ï‹v—Í‚Ì‚±‚Ìƒp[ƒZƒ“ƒe[ƒWˆÈã(100%Š·ŽZ)‚É‚È‚é‚Æ•—‘DƒAƒCƒRƒ“‚Íƒsƒ“ƒ`ó‘Ô‚É‚È‚é
+///é¢¨èˆ¹ã®è€ä¹…åŠ›ã®ã“ã®ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸ä»¥ä¸Š(100%æ›ç®—)ã«ãªã‚‹ã¨é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã¯ãƒ”ãƒ³ãƒçŠ¶æ…‹ã«ãªã‚‹
 #define ICON_BALLOON_PINCH_PARCENT	(75)
 
-///•—‘D‚Ì‚²‚¿‚á¬‚ºƒZƒ‹‚É“ü‚Á‚Ä‚¢‚éƒAƒjƒƒV[ƒPƒ“ƒX
+///é¢¨èˆ¹ã®ã”ã¡ã‚ƒæ··ãœã‚»ãƒ«ã«å…¥ã£ã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum{
-	MIXOBJ_ANMSEQ_ICON_BALLOON_1,	//•—‘DƒAƒCƒRƒ“FƒŒƒxƒ‹‚Piƒm[ƒ}ƒ‹)
-	MIXOBJ_ANMSEQ_ICON_BALLOON_2,	//•—‘DƒAƒCƒRƒ“FƒŒƒxƒ‹‚Qiƒm[ƒ}ƒ‹)
-	MIXOBJ_ANMSEQ_ICON_BALLOON_3,	//•—‘DƒAƒCƒRƒ“FƒŒƒxƒ‹‚Riƒm[ƒ}ƒ‹)
-	MIXOBJ_ANMSEQ_ICON_BALLOON_1_PINCH,		//•—‘DƒAƒCƒRƒ“FƒŒƒxƒ‹1i”j—ô‚µ‚»‚¤)
-	MIXOBJ_ANMSEQ_ICON_BALLOON_2_PINCH,		//•—‘DƒAƒCƒRƒ“FƒŒƒxƒ‹2i”j—ô‚µ‚»‚¤)
-	MIXOBJ_ANMSEQ_ICON_BALLOON_3_PINCH,		//•—‘DƒAƒCƒRƒ“FƒŒƒxƒ‹3i”j—ô‚µ‚»‚¤)
-	MIXOBJ_ANMSEQ_ICON_BALLOON_EXPLODED,	//•—‘DƒAƒCƒRƒ“F”j—ôƒAƒjƒ
-	MIXOBJ_ANMSEQ_AIR_0,			//‹ó‹C1l–Ú
-	MIXOBJ_ANMSEQ_AIR_1,			//‹ó‹C2l–Ú
-	MIXOBJ_ANMSEQ_AIR_2,			//‹ó‹C3l–Ú
-	MIXOBJ_ANMSEQ_AIR_3,			//‹ó‹C4l–Ú
+	MIXOBJ_ANMSEQ_ICON_BALLOON_1,	//é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ï¼šãƒ¬ãƒ™ãƒ«ï¼‘ï¼ˆãƒŽãƒ¼ãƒžãƒ«)
+	MIXOBJ_ANMSEQ_ICON_BALLOON_2,	//é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ï¼šãƒ¬ãƒ™ãƒ«ï¼’ï¼ˆãƒŽãƒ¼ãƒžãƒ«)
+	MIXOBJ_ANMSEQ_ICON_BALLOON_3,	//é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ï¼šãƒ¬ãƒ™ãƒ«ï¼“ï¼ˆãƒŽãƒ¼ãƒžãƒ«)
+	MIXOBJ_ANMSEQ_ICON_BALLOON_1_PINCH,		//é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ï¼šãƒ¬ãƒ™ãƒ«1ï¼ˆç ´è£‚ã—ãã†)
+	MIXOBJ_ANMSEQ_ICON_BALLOON_2_PINCH,		//é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ï¼šãƒ¬ãƒ™ãƒ«2ï¼ˆç ´è£‚ã—ãã†)
+	MIXOBJ_ANMSEQ_ICON_BALLOON_3_PINCH,		//é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ï¼šãƒ¬ãƒ™ãƒ«3ï¼ˆç ´è£‚ã—ãã†)
+	MIXOBJ_ANMSEQ_ICON_BALLOON_EXPLODED,	//é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ï¼šç ´è£‚ã‚¢ãƒ‹ãƒ¡
+	MIXOBJ_ANMSEQ_AIR_0,			//ç©ºæ°—1äººç›®
+	MIXOBJ_ANMSEQ_AIR_1,			//ç©ºæ°—2äººç›®
+	MIXOBJ_ANMSEQ_AIR_2,			//ç©ºæ°—3äººç›®
+	MIXOBJ_ANMSEQ_AIR_3,			//ç©ºæ°—4äººç›®
 	
-	MIXOBJ_ANMSEQ_BALLOON_EXPLODED = 11,	//•—‘D‚Ì”j—ôƒAƒjƒ
+	MIXOBJ_ANMSEQ_BALLOON_EXPLODED = 11,	//é¢¨èˆ¹ã®ç ´è£‚ã‚¢ãƒ‹ãƒ¡
 
-	MIXOBJ_ANMSEQ_BOOSTER_1P_JUMP = 12,			//ƒu[ƒXƒ^[(Â)FƒWƒƒƒ“ƒv
-	MIXOBJ_ANMSEQ_BOOSTER_1P_SWELLING,			//ƒu[ƒXƒ^[(Â)F–c‚ç‚Þ
-	MIXOBJ_ANMSEQ_BOOSTER_1P_SHRIVEL,			//ƒu[ƒXƒ^[(Â)F‚µ‚Ú‚Þ
-	MIXOBJ_ANMSEQ_BOOSTER_1P_WEAK_JUMP,			//ƒu[ƒXƒ^[(Â:Žã)FƒWƒƒƒ“ƒv
-	MIXOBJ_ANMSEQ_BOOSTER_1P_WEAK_SWELLING,		//ƒu[ƒXƒ^[(Â:Žã)F–c‚ç‚Þ
-	MIXOBJ_ANMSEQ_BOOSTER_1P_WEAK_SHRIVEL,		//ƒu[ƒXƒ^[(Â:Žã)F‚µ‚Ú‚Þ
-	MIXOBJ_ANMSEQ_BOOSTER_1P_HARD_JUMP,			//ƒu[ƒXƒ^[(Â:‹­)FƒWƒƒƒ“ƒv
-	MIXOBJ_ANMSEQ_BOOSTER_1P_HARD_SWELLING,		//ƒu[ƒXƒ^[(Â:‹­)F–c‚ç‚Þ
-	MIXOBJ_ANMSEQ_BOOSTER_1P_HARD_SHRIVEL,		//ƒu[ƒXƒ^[(Â:‹­)F‚µ‚Ú‚Þ
+	MIXOBJ_ANMSEQ_BOOSTER_1P_JUMP = 12,			//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(é’)ï¼šã‚¸ãƒ£ãƒ³ãƒ—
+	MIXOBJ_ANMSEQ_BOOSTER_1P_SWELLING,			//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(é’)ï¼šè†¨ã‚‰ã‚€
+	MIXOBJ_ANMSEQ_BOOSTER_1P_SHRIVEL,			//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(é’)ï¼šã—ã¼ã‚€
+	MIXOBJ_ANMSEQ_BOOSTER_1P_WEAK_JUMP,			//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(é’:å¼±)ï¼šã‚¸ãƒ£ãƒ³ãƒ—
+	MIXOBJ_ANMSEQ_BOOSTER_1P_WEAK_SWELLING,		//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(é’:å¼±)ï¼šè†¨ã‚‰ã‚€
+	MIXOBJ_ANMSEQ_BOOSTER_1P_WEAK_SHRIVEL,		//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(é’:å¼±)ï¼šã—ã¼ã‚€
+	MIXOBJ_ANMSEQ_BOOSTER_1P_HARD_JUMP,			//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(é’:å¼·)ï¼šã‚¸ãƒ£ãƒ³ãƒ—
+	MIXOBJ_ANMSEQ_BOOSTER_1P_HARD_SWELLING,		//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(é’:å¼·)ï¼šè†¨ã‚‰ã‚€
+	MIXOBJ_ANMSEQ_BOOSTER_1P_HARD_SHRIVEL,		//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(é’:å¼·)ï¼šã—ã¼ã‚€
 
-	MIXOBJ_ANMSEQ_BOOSTER_HIT_EFF = 33,			//ƒu[ƒXƒ^[ƒqƒbƒgƒGƒtƒFƒNƒg
-	MIXOBJ_ANMSEQ_BOOSTER_SHADOW = 34,			//ƒu[ƒXƒ^[‰e
+	MIXOBJ_ANMSEQ_BOOSTER_HIT_EFF = 33,			//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒ’ãƒƒãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+	MIXOBJ_ANMSEQ_BOOSTER_SHADOW = 34,			//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å½±
 	MIXOBJ_ANMSEQ_BOOSTER_SHADOW_SMALL,
 	MIXOBJ_ANMSEQ_BOOSTER_SHADOW_BIG,
-	MIXOBJ_ANMSEQ_BOOSTER_LAND_SMOKE = 27,			//ƒu[ƒXƒ^[ƒqƒbƒgƒGƒtƒFƒNƒg
+	MIXOBJ_ANMSEQ_BOOSTER_LAND_SMOKE = 27,			//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒ’ãƒƒãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
-	MIXOBJ_ANMSEQ_KAMI_STORM_GREEN = 21,		//Ž†‚Ó‚Ô‚«(—Î)
-	MIXOBJ_ANMSEQ_KAMI_STORM_RED,				//Ž†‚Ó‚Ô‚«(Ô)
-	MIXOBJ_ANMSEQ_KAMI_STORM_BLUE,				//Ž†‚Ó‚Ô‚«(Â)
-	MIXOBJ_ANMSEQ_KAMI_STORM_YELLOW,			//Ž†‚Ó‚Ô‚«(‰©)
+	MIXOBJ_ANMSEQ_KAMI_STORM_GREEN = 21,		//ç´™ãµã¶ã(ç·‘)
+	MIXOBJ_ANMSEQ_KAMI_STORM_RED,				//ç´™ãµã¶ã(èµ¤)
+	MIXOBJ_ANMSEQ_KAMI_STORM_BLUE,				//ç´™ãµã¶ã(é’)
+	MIXOBJ_ANMSEQ_KAMI_STORM_YELLOW,			//ç´™ãµã¶ã(é»„)
 
-	MIXOBJ_ANMSEQ_EXPLODED_SMOKE_1 = 28,		//”š”­‚Ì‰Œ(¬)
-	MIXOBJ_ANMSEQ_EXPLODED_SMOKE_2,				//”š”­‚Ì‰Œ(’†)
-	MIXOBJ_ANMSEQ_EXPLODED_SMOKE_3,				//”š”­‚Ì‰Œ(‘å)
+	MIXOBJ_ANMSEQ_EXPLODED_SMOKE_1 = 28,		//çˆ†ç™ºã®ç…™(å°)
+	MIXOBJ_ANMSEQ_EXPLODED_SMOKE_2,				//çˆ†ç™ºã®ç…™(ä¸­)
+	MIXOBJ_ANMSEQ_EXPLODED_SMOKE_3,				//çˆ†ç™ºã®ç…™(å¤§)
 
-	MIXOBJ_ANMSEQ_JOINT_UD = 31,	//ƒWƒ‡ƒCƒ“ƒgã‰º
-	MIXOBJ_ANMSEQ_JOINT_LR,			//ƒWƒ‡ƒCƒ“ƒg¶‰E
+	MIXOBJ_ANMSEQ_JOINT_UD = 31,	//ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆä¸Šä¸‹
+	MIXOBJ_ANMSEQ_JOINT_LR,			//ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆå·¦å³
 };
 
-///ƒu[ƒXƒ^[‚ÌƒAƒjƒƒV[ƒPƒ“ƒX”
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹æ•°
 #define BOOSTER_ANMSEQ_PATERN		(3)
-///ƒu[ƒXƒ^[‚ÌƒAƒjƒƒV[ƒPƒ“ƒXŠJŽnˆÊ’u‚©‚ç‚ÌƒIƒtƒZƒbƒgID
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–‹å§‹ä½ç½®ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆID
 enum{
-	OFFSET_ANMID_BOOSTER_JUMP,			//ƒWƒƒƒ“ƒv
-	OFFSET_ANMID_BOOSTER_SWELLING,		//–c‚ç‚Þ
-	OFFSET_ANMID_BOOSTER_SHRIVEL,		//‚µ‚Ú‚Þ
+	OFFSET_ANMID_BOOSTER_JUMP,			//ã‚¸ãƒ£ãƒ³ãƒ—
+	OFFSET_ANMID_BOOSTER_SWELLING,		//è†¨ã‚‰ã‚€
+	OFFSET_ANMID_BOOSTER_SHRIVEL,		//ã—ã¼ã‚€
 };
 
 //--------------------------------------------------------------
-//	ƒpƒCƒvŠW
+//	ãƒ‘ã‚¤ãƒ—è“‹
 //--------------------------------------------------------------
-///ƒpƒCƒv‚ÌŠWFNCGã‚ÌãŠWƒLƒƒƒ‰ƒNƒ^ŠJŽnˆÊ’u
+///ãƒ‘ã‚¤ãƒ—ã®è“‹ï¼šNCGä¸Šã®ä¸Šè“‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿é–‹å§‹ä½ç½®
 #define PIPE_FUTA_UP_NCG_NO			(0x60)
-///ƒpƒCƒv‚ÌŠWFX•
+///ãƒ‘ã‚¤ãƒ—ã®è“‹ï¼šXå¹…
 #define PIPE_FUTA_UP_LEN_X			(4)
-///ƒpƒCƒv‚ÌŠWFY•
+///ãƒ‘ã‚¤ãƒ—ã®è“‹ï¼šYå¹…
 #define PIPE_FUTA_UP_LEN_Y			(2)
-///ƒpƒCƒv‚ÌŠWFƒXƒNƒŠ[ƒ“ŠJŽnˆÊ’u
+///ãƒ‘ã‚¤ãƒ—ã®è“‹ï¼šã‚¹ã‚¯ãƒªãƒ¼ãƒ³é–‹å§‹ä½ç½®
 #define PIPE_FUTA_UP_SCRN_POS		(8*32 + 14)	//Y+X
 
 #define PIPE_FUTA_LEFT_NCG_NO		(0x10)
@@ -165,25 +165,25 @@ enum{
 #define PIPE_FUTA_RIGHT_SCRN_POS	(10*32 + 19)
 
 //--------------------------------------------------------------
-//	ƒu[ƒXƒ^[
+//	ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼
 //--------------------------------------------------------------
-///ƒu[ƒXƒ^[FˆÚ“®‚Ó‚è•X
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ï¼šç§»å‹•ãµã‚Šå¹…X
 #define BOOSTER_FURIHABA_X		(76)
-///ƒu[ƒXƒ^[FˆÚ“®‚Ó‚è•Y
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ï¼šç§»å‹•ãµã‚Šå¹…Y
 #define BOOSTER_FURIHABA_Y		(64+4)
-///ƒu[ƒXƒ^[FƒIƒtƒZƒbƒgY
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ï¼šã‚ªãƒ•ã‚»ãƒƒãƒˆY
 #define BOOSTER_OFFSET_Y		(-24)
-///ƒu[ƒXƒ^[FƒWƒƒƒ“ƒvˆÚ“®‚Ó‚è•
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ï¼šã‚¸ãƒ£ãƒ³ãƒ—ç§»å‹•ãµã‚Šå¹…
 #define BOOSTER_JUMP_FURIHABA_Y	(12 << FX32_SHIFT)
 
-///ƒu[ƒXƒ^[F’âŽ~‰ÓŠ‚ÌŒÂ”
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ï¼šåœæ­¢ç®‡æ‰€ã®å€‹æ•°
 #define BOOSTER_STOP_PART_NUM		(12)
 
-///ƒu[ƒXƒ^[FƒWƒƒƒ“ƒvƒAƒjƒ‚Ì‡ŒvƒtƒŒ[ƒ€”(NITRO-CHARACTER‚ÅÝ’è‚µ‚Ä‚¢‚éƒWƒƒƒ“ƒvƒAƒjƒ‚Ì
-///ƒtƒŒ[ƒ€”‚Ì‡Œv‚ð‘‚­)
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ï¼šã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒ‹ãƒ¡ã®åˆè¨ˆãƒ•ãƒ¬ãƒ¼ãƒ æ•°(NITRO-CHARACTERã§è¨­å®šã—ã¦ã„ã‚‹ã‚¸ãƒ£ãƒ³ãƒ—ã‚¢ãƒ‹ãƒ¡ã®
+///ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã®åˆè¨ˆã‚’æ›¸ã)
 #define BOOSTER_ANIME_FRAME_JUMP_TOTAL		(8+8+12+8+8)
 
-//ƒu[ƒXƒ^[‚Ì“oêŽž‚ÌA“oêÀ•W
+//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®ç™»å ´æ™‚ã®ã€ç™»å ´åº§æ¨™
 #define BOOSTER_APPEAR_START_X_0		(128)
 #define BOOSTER_APPEAR_START_Y_0		(-32)
 #define BOOSTER_APPEAR_START_X_90		(256+32)
@@ -193,96 +193,96 @@ enum{
 #define BOOSTER_APPEAR_START_X_270		(-32)
 #define BOOSTER_APPEAR_START_Y_270		(96)
 
-///ƒu[ƒXƒ^[ƒqƒbƒgƒGƒtƒFƒNƒgF–{‘Ì‚©‚ç‚ÌƒIƒtƒZƒbƒgY
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒ’ãƒƒãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šæœ¬ä½“ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆY
 #define BOOSTER_HIT_OFFSET_Y		(-32)
-///ƒu[ƒXƒ^[ƒqƒbƒgƒGƒtƒFƒNƒgFŽŸ‚ÌƒAƒjƒƒpƒ^[ƒ“‚Ü‚Å‚ÌƒtƒŒ[ƒ€”
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒ’ãƒƒãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šæ¬¡ã®ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³ã¾ã§ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
 #define BOOSTER_HITEFF_NEXT_ANM_FRAME	(4 * FX32_ONE)
 
-///ƒu[ƒXƒ^[‰eF–{‘Ì‚©‚ç‚ÌƒIƒtƒZƒbƒgY
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å½±ï¼šæœ¬ä½“ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆY
 #define BOOSTER_SHADOW_OFFSET_Y		(24)
-///ƒu[ƒXƒ^[’…’n‚Ì‰ŒF–{‘Ì‚©‚ç‚ÌƒIƒtƒZƒbƒgY
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç€åœ°ã®ç…™ï¼šæœ¬ä½“ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆY
 #define BOOSTER_LAND_SMOKE_OFFSET_Y		(28)
 
 //--------------------------------------------------------------
-//	SIOƒu[ƒXƒ^[
+//	SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼
 //--------------------------------------------------------------
-///SIOƒu[ƒXƒ^[“oêŽž‚ÌƒIƒtƒZƒbƒgY
+///SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç™»å ´æ™‚ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆY
 #define SIO_BOOSTER_APPEAR_OFFSET_Y		(-96)
-///SIOƒu[ƒXƒ^[“oêŽž‚ÌIN‘¬“x(fx32)
+///SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç™»å ´æ™‚ã®INé€Ÿåº¦(fx32)
 #define SIO_BOOSTER_IN_SPEED		(0x08000)
-///SIOƒu[ƒXƒ^[‘ÞêŽž‚ÌOUT‘¬“x(fx32)
+///SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼é€€å ´æ™‚ã®OUTé€Ÿåº¦(fx32)
 #define SIO_BOOSTER_OUT_SPEED		(SIO_BOOSTER_IN_SPEED)
 
 //--------------------------------------------------------------
-//	ƒ^ƒbƒ`ƒyƒ“ƒfƒ‚
+//	ã‚¿ãƒƒãƒãƒšãƒ³ãƒ‡ãƒ¢
 //--------------------------------------------------------------
-///ƒ^ƒbƒ`ƒyƒ“ƒfƒ‚Fƒyƒ“ƒAƒNƒ^[‚ÌÀ•WX
+///ã‚¿ãƒƒãƒãƒšãƒ³ãƒ‡ãƒ¢ï¼šãƒšãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã®åº§æ¨™X
 #define DEMO_PEN_X				(128)
-///ƒ^ƒbƒ`ƒyƒ“ƒfƒ‚Fƒyƒ“ƒAƒNƒ^[‚ÌÀ•WY
+///ã‚¿ãƒƒãƒãƒšãƒ³ãƒ‡ãƒ¢ï¼šãƒšãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã®åº§æ¨™Y
 #define DEMO_PEN_Y				(16)
-///ƒ^ƒbƒ`ƒyƒ“ƒfƒ‚Fƒyƒ“‚Ì‘¬“x
+///ã‚¿ãƒƒãƒãƒšãƒ³ãƒ‡ãƒ¢ï¼šãƒšãƒ³ã®é€Ÿåº¦
 #define DEMO_PEN_SPEED			(6)
-///ƒ^ƒbƒ`ƒyƒ“ƒfƒ‚Fƒyƒ“‚ª“®‚«o‚·‘O‚ÌƒEƒFƒCƒg
+///ã‚¿ãƒƒãƒãƒšãƒ³ãƒ‡ãƒ¢ï¼šãƒšãƒ³ãŒå‹•ãå‡ºã™å‰ã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define DEMO_PEN_START_WAIT		(15)
-///ƒ^ƒbƒ`ƒyƒ“ƒfƒ‚Fƒyƒ“‚ª“®‚¢‚½Œã‚ÌƒEƒFƒCƒg
+///ã‚¿ãƒƒãƒãƒšãƒ³ãƒ‡ãƒ¢ï¼šãƒšãƒ³ãŒå‹•ã„ãŸå¾Œã®ã‚¦ã‚§ã‚¤ãƒˆ
 #define DEMO_PEN_AFTER_WAIT		(30)
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///•—‘DƒŒƒxƒ‹–ˆ‚É’è‚Ü‚Á‚Ä‚¢‚éƒf[ƒ^
+///é¢¨èˆ¹ãƒ¬ãƒ™ãƒ«æ¯Žã«å®šã¾ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	u16 ncgr_id;		///<ƒLƒƒƒ‰ƒNƒ^ƒA[ƒJƒCƒuID
-	u16 nscr_id;		///<ƒXƒNƒŠ[ƒ“ƒA[ƒJƒCƒuID
-	fx32 max_scale;		///<Å‘åƒXƒP[ƒ‹
+	u16 ncgr_id;		///<ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+	u16 nscr_id;		///<ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ID
+	fx32 max_scale;		///<æœ€å¤§ã‚¹ã‚±ãƒ¼ãƒ«
 }BALLOON_LEVEL_DATA;
 
-///ŽQ‰Ál”–ˆ‚É’è‚Ü‚Á‚Ä‚¢‚éƒf[ƒ^
+///å‚åŠ äººæ•°æ¯Žã«å®šã¾ã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	s32 max_air[BALLOON_LEVEL_MAX];	///<•—‘D‚ÌƒŒƒxƒ‹–ˆ‚Ì‘Ï‹v—Í
+	s32 max_air[BALLOON_LEVEL_MAX];	///<é¢¨èˆ¹ã®ãƒ¬ãƒ™ãƒ«æ¯Žã®è€ä¹…åŠ›
 }BALLOON_NUM_PARTICIPATION_DATA;
 
 //--------------------------------------------------------------
-//	ƒu[ƒXƒ^[
+//	ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼
 //--------------------------------------------------------------
-//‰½ƒtƒŒ[ƒ€‚ÅŽŸ‚ÌŽž‚ÖˆÚ“®‚³‚¹‚é‚©
-//Žž‚Ö“ž’B‚µ‚½ŒãA‰½ƒtƒŒ[ƒ€‘Ò‚½‚¹‚é‚©
-//‰Á‘¬—Í(ˆêT‚²‚Æ‚ÉƒAƒbƒv‚·‚é‘¬“x
+//ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ã§æ¬¡ã®æ™‚åˆ»ã¸ç§»å‹•ã•ã›ã‚‹ã‹
+//æ™‚åˆ»ã¸åˆ°é”ã—ãŸå¾Œã€ä½•ãƒ•ãƒ¬ãƒ¼ãƒ å¾…ãŸã›ã‚‹ã‹
+//åŠ é€ŸåŠ›(ä¸€é€±ã”ã¨ã«ã‚¢ãƒƒãƒ—ã™ã‚‹é€Ÿåº¦
 typedef struct{
-	u8 move_frame;		///<ŽŸ‚Ì’âŽ~‰ÓŠ‚ÖˆÚ“®‚·‚éŽžA‰½ƒtƒŒ[ƒ€‚©‚¯‚ÄˆÚ“®‚·‚é‚©
-	u8 wait_frame;		///<’…’nŒãA‘Ò‚ÂƒtƒŒ[ƒ€ŽžŠÔ
-	u8 hit_anime_time;	///<ƒqƒbƒg‚µ‚½Žž‚ÌƒAƒjƒ‚É‚©‚¯‚éƒtƒŒ[ƒ€”(¦•K‚¸move_frame‚æ‚è‚à¬‚³‚¢•K—v‚ª‚ ‚éI)
+	u8 move_frame;		///<æ¬¡ã®åœæ­¢ç®‡æ‰€ã¸ç§»å‹•ã™ã‚‹æ™‚ã€ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‘ã¦ç§»å‹•ã™ã‚‹ã‹
+	u8 wait_frame;		///<ç€åœ°å¾Œã€å¾…ã¤ãƒ•ãƒ¬ãƒ¼ãƒ æ™‚é–“
+	u8 hit_anime_time;	///<ãƒ’ãƒƒãƒˆã—ãŸæ™‚ã®ã‚¢ãƒ‹ãƒ¡ã«ã‹ã‘ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°(â€»å¿…ãšmove_frameã‚ˆã‚Šã‚‚å°ã•ã„å¿…è¦ãŒã‚ã‚‹ï¼)
 	
 	u8 padding;
 }BOOSTER_MOVE_DATA;
 
 //--------------------------------------------------------------
-//	”j—ô
+//	ç ´è£‚
 //--------------------------------------------------------------
-///”j—ôŽ†‚Ó‚Ô‚«(ƒTƒu‰æ–Ê)FƒvƒŒƒCƒ„[ˆÊ’u–ˆ‚ÌŽ†‚Ó‚Ô‚«‚ÌƒAƒjƒƒV[ƒPƒ“ƒX”Ô†
+///ç ´è£‚ç´™ãµã¶ã(ã‚µãƒ–ç”»é¢)ï¼šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®æ¯Žã®ç´™ãµã¶ãã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 static const u16 PlayerNoAnmSeq_Storm[][WFLBY_MINIGAME_MAX] = {
-	{//0lŽQ‰Á(ƒ_ƒ~[)
+	{//0äººå‚åŠ (ãƒ€ãƒŸãƒ¼)
 		MIXOBJ_ANMSEQ_KAMI_STORM_RED,
 		MIXOBJ_ANMSEQ_KAMI_STORM_GREEN,
 		MIXOBJ_ANMSEQ_KAMI_STORM_BLUE,
 		MIXOBJ_ANMSEQ_KAMI_STORM_YELLOW,
 	},
-	{//1lŽQ‰Á	(‰ºA¶AãA‰E)FƒfƒoƒbƒO—p
+	{//1äººå‚åŠ 	(ä¸‹ã€å·¦ã€ä¸Šã€å³)ï¼šãƒ‡ãƒãƒƒã‚°ç”¨
 		MIXOBJ_ANMSEQ_KAMI_STORM_RED,
 		MIXOBJ_ANMSEQ_KAMI_STORM_GREEN,
 		MIXOBJ_ANMSEQ_KAMI_STORM_BLUE,
 		MIXOBJ_ANMSEQ_KAMI_STORM_YELLOW,
 	},
-	{//2lŽQ‰Á	(‰ºAã)
+	{//2äººå‚åŠ 	(ä¸‹ã€ä¸Š)
 		MIXOBJ_ANMSEQ_KAMI_STORM_RED,
 		MIXOBJ_ANMSEQ_KAMI_STORM_BLUE,
 	},
-	{//3lŽQ‰Á	(‰ºA¶A‰E)
+	{//3äººå‚åŠ 	(ä¸‹ã€å·¦ã€å³)
 		MIXOBJ_ANMSEQ_KAMI_STORM_RED,
 		MIXOBJ_ANMSEQ_KAMI_STORM_YELLOW,
 		MIXOBJ_ANMSEQ_KAMI_STORM_BLUE,
 	},
-	{//4lŽQ‰Á	(‰ºA¶AãA‰E)
+	{//4äººå‚åŠ 	(ä¸‹ã€å·¦ã€ä¸Šã€å³)
 		MIXOBJ_ANMSEQ_KAMI_STORM_RED,
 		MIXOBJ_ANMSEQ_KAMI_STORM_GREEN,
 		MIXOBJ_ANMSEQ_KAMI_STORM_BLUE,
@@ -290,7 +290,7 @@ static const u16 PlayerNoAnmSeq_Storm[][WFLBY_MINIGAME_MAX] = {
 	},
 };
 
-///”j•Ð‚ÌƒpƒŒƒbƒg”Ô†	¦•—‘DƒŒƒxƒ‹‡
+///ç ´ç‰‡ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·	â€»é¢¨èˆ¹ãƒ¬ãƒ™ãƒ«é †
 ALIGN4 static const u16 ExplodedChipPalNo[] = {
 	PALOFS_SUB_EXPLODED_CHIP_BLUE,
 	PALOFS_SUB_EXPLODED_CHIP_YELLOW,
@@ -298,212 +298,212 @@ ALIGN4 static const u16 ExplodedChipPalNo[] = {
 };
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 //--------------------------------------------------------------
-//	‹ó‹C
+//	ç©ºæ°—
 //--------------------------------------------------------------
-///‹ó‹CƒAƒNƒ^[‚ÌoŒ»À•W(ã‰æ–Ê)
-///BalloonPlayerSort‚Æ“¯‚¶•À‚Ñ‡(‰º‚ðŠJŽnˆÊ’u‚É‚µ‚Ä¶‰ñ‚è)
+///ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼ã®å‡ºç¾åº§æ¨™(ä¸Šç”»é¢)
+///BalloonPlayerSortã¨åŒã˜ä¸¦ã³é †(ä¸‹ã‚’é–‹å§‹ä½ç½®ã«ã—ã¦å·¦å›žã‚Š)
 static const AIR_POSITION_DATA AirPositionDataTbl[][WFLBY_MINIGAME_MAX] = {
-	{//player_max‚»‚Ì‚Ü‚Ü‚ÅƒAƒNƒZƒX‚Å‚«‚é‚æ‚¤‚É1origin‰»‚Ìˆ×‚Ìƒ_ƒ~[
-		{128, 192+16,	MIXOBJ_ANMSEQ_AIR_0, PALOFS_SUB_AIR_RED,	DIR_UP},		//‰º
+	{//player_maxãã®ã¾ã¾ã§ã‚¢ã‚¯ã‚»ã‚¹ã§ãã‚‹ã‚ˆã†ã«1originåŒ–ã®ç‚ºã®ãƒ€ãƒŸãƒ¼
+		{128, 192+16,	MIXOBJ_ANMSEQ_AIR_0, PALOFS_SUB_AIR_RED,	DIR_UP},		//ä¸‹
 	},
 	
-	{//ŽQ‰Ál”1l(ƒfƒoƒbƒO—p)
-		{128, 192+16,	MIXOBJ_ANMSEQ_AIR_0, PALOFS_SUB_AIR_RED,	DIR_UP},		//‰º
+	{//å‚åŠ äººæ•°1äºº(ãƒ‡ãƒãƒƒã‚°ç”¨)
+		{128, 192+16,	MIXOBJ_ANMSEQ_AIR_0, PALOFS_SUB_AIR_RED,	DIR_UP},		//ä¸‹
 	},
-	{//ŽQ‰Ál”2l
-		{128, 192+16,	MIXOBJ_ANMSEQ_AIR_0, PALOFS_SUB_AIR_RED,	DIR_UP},		//‰º
-		{128, 0-16,	MIXOBJ_ANMSEQ_AIR_3, PALOFS_SUB_AIR_BLUE,	DIR_DOWN},		//ã
+	{//å‚åŠ äººæ•°2äºº
+		{128, 192+16,	MIXOBJ_ANMSEQ_AIR_0, PALOFS_SUB_AIR_RED,	DIR_UP},		//ä¸‹
+		{128, 0-16,	MIXOBJ_ANMSEQ_AIR_3, PALOFS_SUB_AIR_BLUE,	DIR_DOWN},		//ä¸Š
 	},
-	{//ŽQ‰Ál”3l
-		{128, 192+16,	MIXOBJ_ANMSEQ_AIR_0, PALOFS_SUB_AIR_RED,	DIR_UP},		//‰º
-		{0-16, 192/2,	MIXOBJ_ANMSEQ_AIR_2, PALOFS_SUB_AIR_YELLOW,	DIR_RIGHT},		//¶
-		{256+16, 192/2,	MIXOBJ_ANMSEQ_AIR_1, PALOFS_SUB_AIR_BLUE,	DIR_LEFT},	//‰E
+	{//å‚åŠ äººæ•°3äºº
+		{128, 192+16,	MIXOBJ_ANMSEQ_AIR_0, PALOFS_SUB_AIR_RED,	DIR_UP},		//ä¸‹
+		{0-16, 192/2,	MIXOBJ_ANMSEQ_AIR_2, PALOFS_SUB_AIR_YELLOW,	DIR_RIGHT},		//å·¦
+		{256+16, 192/2,	MIXOBJ_ANMSEQ_AIR_1, PALOFS_SUB_AIR_BLUE,	DIR_LEFT},	//å³
 	},
-	{//ŽQ‰Ál”4l
-		{128, 192+16,	MIXOBJ_ANMSEQ_AIR_0, PALOFS_SUB_AIR_RED,	DIR_UP},		//‰º
-		{0-16, 192/2,	MIXOBJ_ANMSEQ_AIR_2, PALOFS_SUB_AIR_GREEN,	DIR_RIGHT},		//¶
-		{128, 0-16,	MIXOBJ_ANMSEQ_AIR_3, PALOFS_SUB_AIR_BLUE,	DIR_DOWN},		//ã
-		{256, 192/2,	MIXOBJ_ANMSEQ_AIR_1, PALOFS_SUB_AIR_YELLOW,	DIR_LEFT},	//‰E
+	{//å‚åŠ äººæ•°4äºº
+		{128, 192+16,	MIXOBJ_ANMSEQ_AIR_0, PALOFS_SUB_AIR_RED,	DIR_UP},		//ä¸‹
+		{0-16, 192/2,	MIXOBJ_ANMSEQ_AIR_2, PALOFS_SUB_AIR_GREEN,	DIR_RIGHT},		//å·¦
+		{128, 0-16,	MIXOBJ_ANMSEQ_AIR_3, PALOFS_SUB_AIR_BLUE,	DIR_DOWN},		//ä¸Š
+		{256, 192/2,	MIXOBJ_ANMSEQ_AIR_1, PALOFS_SUB_AIR_YELLOW,	DIR_LEFT},	//å³
 	},
 };
 
-///‹ó‹C‚ÌƒAƒNƒ^[ƒwƒbƒ_(ƒTƒu‰æ–Ê—p)
+///ç©ºæ°—ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ã‚µãƒ–ç”»é¢ç”¨)
 static const TCATS_OBJECT_ADD_PARAM_S AirObjParam = {
 	0, 0, 0,		//x, y, z
-	0, BALLOONSUB_SOFTPRI_AIR, PALOFS_SUB_AIR_BLUE,	//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_BALLOON_MIX,			//ƒLƒƒƒ‰
-		PLTTID_SUB_OBJ_COMMON,			//ƒpƒŒƒbƒg
-		CELLID_SUB_BALLOON_MIX,			//ƒZƒ‹
-		CELLANMID_SUB_BALLOON_MIX,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, BALLOONSUB_SOFTPRI_AIR, PALOFS_SUB_AIR_BLUE,	//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_BALLOON_MIX,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_OBJ_COMMON,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_BALLOON_MIX,			//ã‚»ãƒ«
+		CELLANMID_SUB_BALLOON_MIX,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	BALLOONSUB_BGPRI_AIR,				//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,									//Vram“]‘—ƒtƒ‰ƒO
+	BALLOONSUB_BGPRI_AIR,				//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,									//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///Ž†‚Ó‚Ô‚«‚ÌƒAƒNƒ^[ƒwƒbƒ_(ƒTƒu‰æ–Ê—p)
+///ç´™ãµã¶ãã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ã‚µãƒ–ç”»é¢ç”¨)
 static const TCATS_OBJECT_ADD_PARAM_S ExplodedStormObjParam = {
 	BALLOON_APPEAR_POS_X, BALLOON_APPEAR_POS_Y, 0,		//x, y, z
-	0, BALLOONSUB_SOFTPRI_EXPLODED_STORM, PALOFS_SUB_EXPLODED,//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_BALLOON_MIX,			//ƒLƒƒƒ‰
-		PLTTID_SUB_OBJ_COMMON,			//ƒpƒŒƒbƒg
-		CELLID_SUB_BALLOON_MIX,			//ƒZƒ‹
-		CELLANMID_SUB_BALLOON_MIX,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, BALLOONSUB_SOFTPRI_EXPLODED_STORM, PALOFS_SUB_EXPLODED,//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_BALLOON_MIX,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_OBJ_COMMON,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_BALLOON_MIX,			//ã‚»ãƒ«
+		CELLANMID_SUB_BALLOON_MIX,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	BALLOONSUB_BGPRI_EXPLODED,				//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,									//Vram“]‘—ƒtƒ‰ƒO
+	BALLOONSUB_BGPRI_EXPLODED,				//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,									//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///•—‘DƒAƒCƒRƒ“‚ÌƒAƒNƒ^[ƒwƒbƒ_(ƒTƒu‰æ–Ê—p)
+///é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ã‚µãƒ–ç”»é¢ç”¨)
 static const TCATS_OBJECT_ADD_PARAM_S IconBalloonObjParam = {
 	0, 0, 0,		//x, y, z
-	0, BALLOONSUB_SOFTPRI_ICON_BALLOON,PALOFS_SUB_ICON_BALLOON,//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_BALLOON_MIX,			//ƒLƒƒƒ‰
-		PLTTID_SUB_OBJ_COMMON,			//ƒpƒŒƒbƒg
-		CELLID_SUB_BALLOON_MIX,			//ƒZƒ‹
-		CELLANMID_SUB_BALLOON_MIX,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, BALLOONSUB_SOFTPRI_ICON_BALLOON,PALOFS_SUB_ICON_BALLOON,//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_BALLOON_MIX,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_OBJ_COMMON,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_BALLOON_MIX,			//ã‚»ãƒ«
+		CELLANMID_SUB_BALLOON_MIX,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	BALLOONSUB_BGPRI_ICON_BALLOON,				//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,									//Vram“]‘—ƒtƒ‰ƒO
+	BALLOONSUB_BGPRI_ICON_BALLOON,				//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,									//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒWƒ‡ƒCƒ“ƒg‚ÌƒAƒNƒ^[ƒwƒbƒ_(ƒTƒu‰æ–Ê—p)
+///ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ã‚µãƒ–ç”»é¢ç”¨)
 static const TCATS_OBJECT_ADD_PARAM_S JointObjParam = {
 	0, 0, 0,		//x, y, z
-	0, BALLOONSUB_SOFTPRI_JOINT, PALOFS_SUB_JOINT,//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_BALLOON_MIX,			//ƒLƒƒƒ‰
-		PLTTID_SUB_OBJ_COMMON,			//ƒpƒŒƒbƒg
-		CELLID_SUB_BALLOON_MIX,			//ƒZƒ‹
-		CELLANMID_SUB_BALLOON_MIX,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, BALLOONSUB_SOFTPRI_JOINT, PALOFS_SUB_JOINT,//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_BALLOON_MIX,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_OBJ_COMMON,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_BALLOON_MIX,			//ã‚»ãƒ«
+		CELLANMID_SUB_BALLOON_MIX,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	BALLOONSUB_BGPRI_JOINT,				//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,									//Vram“]‘—ƒtƒ‰ƒO
+	BALLOONSUB_BGPRI_JOINT,				//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,									//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒu[ƒXƒ^[(ƒ\[ƒiƒm)‚ÌƒAƒNƒ^[ƒwƒbƒ_(ƒTƒu‰æ–Ê—p)
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼(ã‚½ãƒ¼ãƒŠãƒŽ)ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ã‚µãƒ–ç”»é¢ç”¨)
 static const TCATS_OBJECT_ADD_PARAM_S BoosterObjParam = {
 	0, 0, 0,		//x, y, z
-	0, BALLOONSUB_SOFTPRI_BOOSTER, PALOFS_SUB_BOOSTER_RED,//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_BALLOON_MIX,			//ƒLƒƒƒ‰
-		PLTTID_SUB_OBJ_COMMON,			//ƒpƒŒƒbƒg
-		CELLID_SUB_BALLOON_MIX,			//ƒZƒ‹
-		CELLANMID_SUB_BALLOON_MIX,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, BALLOONSUB_SOFTPRI_BOOSTER, PALOFS_SUB_BOOSTER_RED,//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_BALLOON_MIX,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_OBJ_COMMON,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_BALLOON_MIX,			//ã‚»ãƒ«
+		CELLANMID_SUB_BALLOON_MIX,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	BALLOONSUB_BGPRI_BOOSTER,				//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,									//Vram“]‘—ƒtƒ‰ƒO
+	BALLOONSUB_BGPRI_BOOSTER,				//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,									//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒu[ƒXƒ^[ƒqƒbƒgŽž‚Éo‚éƒGƒtƒFƒNƒg‚ÌƒAƒNƒ^[ƒwƒbƒ_(ƒTƒu‰æ–Ê—p)
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒ’ãƒƒãƒˆæ™‚ã«å‡ºã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ã‚µãƒ–ç”»é¢ç”¨)
 static const TCATS_OBJECT_ADD_PARAM_S BoosterHitObjParam = {
 	0, 0, 0,		//x, y, z
-	0, BALLOONSUB_SOFTPRI_BOOSTER_HIT, PALOFS_SUB_BOOSTER_HIT,//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_BALLOON_MIX,			//ƒLƒƒƒ‰
-		PLTTID_SUB_OBJ_COMMON,			//ƒpƒŒƒbƒg
-		CELLID_SUB_BALLOON_MIX,			//ƒZƒ‹
-		CELLANMID_SUB_BALLOON_MIX,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, BALLOONSUB_SOFTPRI_BOOSTER_HIT, PALOFS_SUB_BOOSTER_HIT,//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_BALLOON_MIX,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_OBJ_COMMON,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_BALLOON_MIX,			//ã‚»ãƒ«
+		CELLANMID_SUB_BALLOON_MIX,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	BALLOONSUB_BGPRI_BOOSTER,				//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,									//Vram“]‘—ƒtƒ‰ƒO
+	BALLOONSUB_BGPRI_BOOSTER,				//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,									//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒu[ƒXƒ^[‚Ì‰e‚ÌƒAƒNƒ^[ƒwƒbƒ_(ƒTƒu‰æ–Ê—p)
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®å½±ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ã‚µãƒ–ç”»é¢ç”¨)
 static const TCATS_OBJECT_ADD_PARAM_S BoosterShadowObjParam = {
 	0, 0, 0,		//x, y, z
-	0, BALLOONSUB_SOFTPRI_BOOSTER_SHADOW, PALOFS_SUB_BOOSTER_SHADOW,//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_BALLOON_MIX,			//ƒLƒƒƒ‰
-		PLTTID_SUB_OBJ_COMMON,			//ƒpƒŒƒbƒg
-		CELLID_SUB_BALLOON_MIX,			//ƒZƒ‹
-		CELLANMID_SUB_BALLOON_MIX,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, BALLOONSUB_SOFTPRI_BOOSTER_SHADOW, PALOFS_SUB_BOOSTER_SHADOW,//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_BALLOON_MIX,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_OBJ_COMMON,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_BALLOON_MIX,			//ã‚»ãƒ«
+		CELLANMID_SUB_BALLOON_MIX,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	BALLOONSUB_BGPRI_BOOSTER,				//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,									//Vram“]‘—ƒtƒ‰ƒO
+	BALLOONSUB_BGPRI_BOOSTER,				//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,									//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒu[ƒXƒ^[‚Ì’…’n‚Ì‰Œ‚ÌƒAƒNƒ^[ƒwƒbƒ_(ƒTƒu‰æ–Ê—p)
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®ç€åœ°ã®ç…™ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ã‚µãƒ–ç”»é¢ç”¨)
 static const TCATS_OBJECT_ADD_PARAM_S BoosterLandSmokeObjParam = {
 	0, 0, 0,		//x, y, z
-	0, BALLOONSUB_SOFTPRI_BOOSTER_LAND_SMOKE, PALOFS_SUB_BOOSTER_LAND_SMOKE,//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_SUB_BALLOON_MIX,			//ƒLƒƒƒ‰
-		PLTTID_SUB_OBJ_COMMON,			//ƒpƒŒƒbƒg
-		CELLID_SUB_BALLOON_MIX,			//ƒZƒ‹
-		CELLANMID_SUB_BALLOON_MIX,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, BALLOONSUB_SOFTPRI_BOOSTER_LAND_SMOKE, PALOFS_SUB_BOOSTER_LAND_SMOKE,//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_SUB_BALLOON_MIX,			//ã‚­ãƒ£ãƒ©
+		PLTTID_SUB_OBJ_COMMON,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_SUB_BALLOON_MIX,			//ã‚»ãƒ«
+		CELLANMID_SUB_BALLOON_MIX,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	BALLOONSUB_BGPRI_BOOSTER,				//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,									//Vram“]‘—ƒtƒ‰ƒO
+	BALLOONSUB_BGPRI_BOOSTER,				//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,									//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒJƒEƒ“ƒ^[ƒEƒBƒ“ƒhƒE‚ÌƒAƒNƒ^[ƒwƒbƒ_(ƒƒCƒ“‰æ–Ê—p)
+///ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨)
 static const TCATS_OBJECT_ADD_PARAM_S CounterWindowObjParam = {
 	8*5, 192-16, 0,		//x, y, z
-	0, BALLOON_SOFTPRI_COUNTER_WIN, 0,//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_COUNTER_WIN,			//ƒLƒƒƒ‰
-		PLTTID_COUNTER_WIN,			//ƒpƒŒƒbƒg
-		CELLID_COUNTER_WIN,			//ƒZƒ‹
-		CELLANMID_COUNTER_WIN,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, BALLOON_SOFTPRI_COUNTER_WIN, 0,//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_COUNTER_WIN,			//ã‚­ãƒ£ãƒ©
+		PLTTID_COUNTER_WIN,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_COUNTER_WIN,			//ã‚»ãƒ«
+		CELLANMID_COUNTER_WIN,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	BALLOON_BGPRI_COUNTER,				//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,									//Vram“]‘—ƒtƒ‰ƒO
+	BALLOON_BGPRI_COUNTER,				//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,									//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒ^ƒbƒ`ƒyƒ“‚ÌƒAƒNƒ^[ƒwƒbƒ_(ƒƒCƒ“‰æ–Ê—p)
+///ã‚¿ãƒƒãƒãƒšãƒ³ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€(ãƒ¡ã‚¤ãƒ³ç”»é¢ç”¨)
 static const TCATS_OBJECT_ADD_PARAM_S TouchPenObjParam = {
 	0, 0, 0,		//x, y, z
-	0, BALLOON_SOFTPRI_TOUCH_PEN, 0,//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//Žg—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		CHARID_TOUCH_PEN,			//ƒLƒƒƒ‰
-		PLTTID_TOUCH_PEN,			//ƒpƒŒƒbƒg
-		CELLID_TOUCH_PEN,			//ƒZƒ‹
-		CELLANMID_TOUCH_PEN,		//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, BALLOON_SOFTPRI_TOUCH_PEN, 0,//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		CHARID_TOUCH_PEN,			//ã‚­ãƒ£ãƒ©
+		PLTTID_TOUCH_PEN,			//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		CELLID_TOUCH_PEN,			//ã‚»ãƒ«
+		CELLANMID_TOUCH_PEN,		//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	BALLOON_BGPRI_TOUCH_PEN,				//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,									//Vram“]‘—ƒtƒ‰ƒO
+	BALLOON_BGPRI_TOUCH_PEN,				//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,									//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 //--------------------------------------------------------------
-//	ƒJƒ‰[ƒXƒƒbƒv
+//	ã‚«ãƒ©ãƒ¼ã‚¹ãƒ¯ãƒƒãƒ—
 //--------------------------------------------------------------
-///–¼‘OƒEƒBƒ“ƒhƒE‚ÌƒpƒŒƒbƒg”Ô†
+///åå‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 enum{
 	NAME_WIN_PALNO_RED = 1,
 	NAME_WIN_PALNO_BLUE = 0,
@@ -511,49 +511,49 @@ enum{
 	NAME_WIN_PALNO_GREEN = 2,
 };
 
-//ƒfƒtƒHƒ‹ƒgƒpƒŒƒbƒg‚Å‚Ì2P‚ÌƒJƒ‰[ŠJŽnˆÊ’u
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã§ã®2Pã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define PIPE_BG_COLOR_START_NO_RED		(1*16 + 0xd)
-//ƒfƒtƒHƒ‹ƒgƒpƒŒƒbƒg‚Å‚Ì1P‚ÌƒJƒ‰[ŠJŽnˆÊ’u
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã§ã®1Pã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define PIPE_BG_COLOR_START_NO_BLUE		(0*16 + 0xd)
-//ƒfƒtƒHƒ‹ƒgƒpƒŒƒbƒg‚Å‚Ì4P‚ÌƒJƒ‰[ŠJŽnˆÊ’u
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã§ã®4Pã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define PIPE_BG_COLOR_START_NO_YELLOW		(3*16 + 0xd)
-//ƒfƒtƒHƒ‹ƒgƒpƒŒƒbƒg‚Å‚Ì3P‚ÌƒJƒ‰[ŠJŽnˆÊ’u
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã§ã®3Pã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define PIPE_BG_COLOR_START_NO_GREEN		(2*16 + 0xd)
 
-///ƒpƒCƒvBGFƒvƒŒƒCƒ„[ˆÊ’u–ˆ‚ÌƒpƒŒƒbƒgƒJƒ‰[ŠJŽnˆÊ’u
+///ãƒ‘ã‚¤ãƒ—BGï¼šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®æ¯Žã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 static const u16 PlayerNoPaletteSwapTbl_Pipe[][WFLBY_MINIGAME_MAX] = {
-	{//0lŽQ‰Á(ƒ_ƒ~[)
+	{//0äººå‚åŠ (ãƒ€ãƒŸãƒ¼)
 		PIPE_BG_COLOR_START_NO_RED,
 		PIPE_BG_COLOR_START_NO_GREEN,
 		PIPE_BG_COLOR_START_NO_BLUE,
 		PIPE_BG_COLOR_START_NO_YELLOW,
 	},
-	{//1lŽQ‰Á	(‰ºA¶AãA‰E)FƒfƒoƒbƒO—p
+	{//1äººå‚åŠ 	(ä¸‹ã€å·¦ã€ä¸Šã€å³)ï¼šãƒ‡ãƒãƒƒã‚°ç”¨
 		PIPE_BG_COLOR_START_NO_RED,
 		PIPE_BG_COLOR_START_NO_GREEN,
 		PIPE_BG_COLOR_START_NO_BLUE,
 		PIPE_BG_COLOR_START_NO_YELLOW,
 	},
-	{//2lŽQ‰Á	(‰ºAã)
+	{//2äººå‚åŠ 	(ä¸‹ã€ä¸Š)
 		PIPE_BG_COLOR_START_NO_RED,
 		PIPE_BG_COLOR_START_NO_BLUE,
 	},
-	{//3lŽQ‰Á	(‰ºA¶A‰E)
+	{//3äººå‚åŠ 	(ä¸‹ã€å·¦ã€å³)
 		PIPE_BG_COLOR_START_NO_RED,
 		PIPE_BG_COLOR_START_NO_YELLOW,
 		PIPE_BG_COLOR_START_NO_BLUE,
 	},
-	{//4lŽQ‰Á	(‰ºA¶AãA‰E)
+	{//4äººå‚åŠ 	(ä¸‹ã€å·¦ã€ä¸Šã€å³)
 		PIPE_BG_COLOR_START_NO_RED,
 		PIPE_BG_COLOR_START_NO_GREEN,
 		PIPE_BG_COLOR_START_NO_BLUE,
 		PIPE_BG_COLOR_START_NO_YELLOW,
 	},
 };
-///ƒpƒCƒvBGFƒvƒŒƒCƒ„[ƒJƒ‰[‚ªƒpƒŒƒbƒgŠJŽnˆÊ’u‚©‚ç‚¢‚­‚Â“ü‚Á‚Ä‚¢‚é‚©
+///ãƒ‘ã‚¤ãƒ—BGï¼šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚«ãƒ©ãƒ¼ãŒãƒ‘ãƒ¬ãƒƒãƒˆé–‹å§‹ä½ç½®ã‹ã‚‰ã„ãã¤å…¥ã£ã¦ã„ã‚‹ã‹
 #define PLAYER_NO_PALETTE_COLOR_NUM_PIPE		(3)
 
-///ƒpƒCƒvBGFƒvƒŒƒCƒ„[ˆÊ’u–ˆ‚ÌƒXƒƒbƒv‚µ‚½ƒpƒŒƒbƒg‘‚«ž‚ÝˆÊ’u
+///ãƒ‘ã‚¤ãƒ—BGï¼šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®æ¯Žã®ã‚¹ãƒ¯ãƒƒãƒ—ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆæ›¸ãè¾¼ã¿ä½ç½®
 static const u16 PlayerNoPaletteWritePosTbl_Pipe[WFLBY_MINIGAME_MAX] = {
 	PIPE_BG_COLOR_START_NO_RED,
 	PIPE_BG_COLOR_START_NO_BLUE,
@@ -561,49 +561,49 @@ static const u16 PlayerNoPaletteWritePosTbl_Pipe[WFLBY_MINIGAME_MAX] = {
 	PIPE_BG_COLOR_START_NO_GREEN,
 };
 
-//ƒfƒtƒHƒ‹ƒgƒpƒŒƒbƒg‚Å‚Ì2P‚ÌƒJƒ‰[ŠJŽnˆÊ’u
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã§ã®2Pã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define OBJ_COLOR_START_NO_RED		(2*16 + 0)
-//ƒfƒtƒHƒ‹ƒgƒpƒŒƒbƒg‚Å‚Ì1P‚ÌƒJƒ‰[ŠJŽnˆÊ’u
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã§ã®1Pã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define OBJ_COLOR_START_NO_BLUE		(1*16 + 0)
-//ƒfƒtƒHƒ‹ƒgƒpƒŒƒbƒg‚Å‚Ì4P‚ÌƒJƒ‰[ŠJŽnˆÊ’u
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã§ã®4Pã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define OBJ_COLOR_START_NO_YELLOW		(3*16 + 0)
-//ƒfƒtƒHƒ‹ƒgƒpƒŒƒbƒg‚Å‚Ì3P‚ÌƒJƒ‰[ŠJŽnˆÊ’u
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã§ã®3Pã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define OBJ_COLOR_START_NO_GREEN		(4*16 + 0)
 
-///ƒvƒŒƒCƒ„[OBJ(ƒTƒu‰æ–Ê)FƒvƒŒƒCƒ„[ˆÊ’u–ˆ‚ÌƒpƒŒƒbƒgƒJƒ‰[ŠJŽnˆÊ’u(PLTTID_SUB_OBJ_COMMON‚©‚ç‚Ìoffset)
+///ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼OBJ(ã‚µãƒ–ç”»é¢)ï¼šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®æ¯Žã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®(PLTTID_SUB_OBJ_COMMONã‹ã‚‰ã®offset)
 static const u16 PlayerNoPaletteSwapTbl_Obj[][WFLBY_MINIGAME_MAX] = {
-	{//0lŽQ‰Á(ƒ_ƒ~[)
+	{//0äººå‚åŠ (ãƒ€ãƒŸãƒ¼)
 		OBJ_COLOR_START_NO_RED,
 		OBJ_COLOR_START_NO_BLUE,
 		OBJ_COLOR_START_NO_YELLOW,
 		OBJ_COLOR_START_NO_GREEN,
 	},
-	{//1lŽQ‰Á	(‰ºA¶AãA‰E)FƒfƒoƒbƒO—p
+	{//1äººå‚åŠ 	(ä¸‹ã€å·¦ã€ä¸Šã€å³)ï¼šãƒ‡ãƒãƒƒã‚°ç”¨
 		OBJ_COLOR_START_NO_RED,
 		OBJ_COLOR_START_NO_BLUE,
 		OBJ_COLOR_START_NO_YELLOW,
 		OBJ_COLOR_START_NO_GREEN,
 	},
-	{//2lŽQ‰Á	(‰ºAã)
+	{//2äººå‚åŠ 	(ä¸‹ã€ä¸Š)
 		OBJ_COLOR_START_NO_RED,
 		OBJ_COLOR_START_NO_BLUE,
 	},
-	{//3lŽQ‰Á	(‰ºA¶A‰E)
+	{//3äººå‚åŠ 	(ä¸‹ã€å·¦ã€å³)
 		OBJ_COLOR_START_NO_RED,
 		OBJ_COLOR_START_NO_YELLOW,
 		OBJ_COLOR_START_NO_BLUE,
 	},
-	{//4lŽQ‰Á	(‰ºA¶AãA‰E)
+	{//4äººå‚åŠ 	(ä¸‹ã€å·¦ã€ä¸Šã€å³)
 		OBJ_COLOR_START_NO_RED,
 		OBJ_COLOR_START_NO_GREEN,
 		OBJ_COLOR_START_NO_BLUE,
 		OBJ_COLOR_START_NO_YELLOW,
 	},
 };
-///ƒvƒŒƒCƒ„[OBJFƒvƒŒƒCƒ„[ƒJƒ‰[‚ªƒpƒŒƒbƒgŠJŽnˆÊ’u‚©‚ç‚¢‚­‚Â“ü‚Á‚Ä‚¢‚é‚©
+///ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼OBJï¼šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚«ãƒ©ãƒ¼ãŒãƒ‘ãƒ¬ãƒƒãƒˆé–‹å§‹ä½ç½®ã‹ã‚‰ã„ãã¤å…¥ã£ã¦ã„ã‚‹ã‹
 #define PLAYER_NO_PALETTE_COLOR_NUM_AIR		(16)
 
-///ƒvƒŒƒCƒ„[OBJFƒvƒŒƒCƒ„[ˆÊ’u–ˆ‚ÌƒXƒƒbƒv‚µ‚½ƒpƒŒƒbƒg‘‚«ž‚ÝˆÊ’u
+///ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼OBJï¼šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®æ¯Žã®ã‚¹ãƒ¯ãƒƒãƒ—ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆæ›¸ãè¾¼ã¿ä½ç½®
 static const u16 PlayerNoPaletteWritePosTbl_Obj[WFLBY_MINIGAME_MAX] = {
 	OBJ_COLOR_START_NO_RED,
 	OBJ_COLOR_START_NO_BLUE,
@@ -612,7 +612,7 @@ static const u16 PlayerNoPaletteWritePosTbl_Obj[WFLBY_MINIGAME_MAX] = {
 };
 
 
-///ƒGƒA[OBJ‚ÌƒXƒP[ƒ‹’l(ƒu[ƒXƒ^[ƒ^ƒCƒv‡)
+///ã‚¨ã‚¢ãƒ¼OBJã®ã‚¹ã‚±ãƒ¼ãƒ«å€¤(ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚¿ã‚¤ãƒ—é †)
 static const fx32 Air_BoosterScale[] = {
 	FX32_ONE, 			//BOOSTER_TYPE_NONE
 	0x1800,				//BOOSTER_TYPE_NORMAL
@@ -620,49 +620,49 @@ static const fx32 Air_BoosterScale[] = {
 	0x2000,				//BOOSTER_TYPE_HARD
 };
 
-//ƒfƒtƒHƒ‹ƒgƒpƒŒƒbƒg‚Å‚Ì2P‚ÌƒJƒ‰[ŠJŽnˆÊ’u
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã§ã®2Pã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define STORM_COLOR_START_NO_RED		(5*16 + 0x2)
-//ƒfƒtƒHƒ‹ƒgƒpƒŒƒbƒg‚Å‚Ì1P‚ÌƒJƒ‰[ŠJŽnˆÊ’u
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã§ã®1Pã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define STORM_COLOR_START_NO_BLUE		(5*16 + 0x1)
-//ƒfƒtƒHƒ‹ƒgƒpƒŒƒbƒg‚Å‚Ì4P‚ÌƒJƒ‰[ŠJŽnˆÊ’u
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã§ã®4Pã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define STORM_COLOR_START_NO_YELLOW		(5*16 + 0x3)
-//ƒfƒtƒHƒ‹ƒgƒpƒŒƒbƒg‚Å‚Ì3P‚ÌƒJƒ‰[ŠJŽnˆÊ’u
+//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆã§ã®3Pã®ã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 #define STORM_COLOR_START_NO_GREEN		(5*16 + 0x4)
 
-///Ž†‚Ó‚Ô‚«FƒvƒŒƒCƒ„[ˆÊ’u–ˆ‚ÌƒpƒŒƒbƒgƒJƒ‰[ŠJŽnˆÊ’u
+///ç´™ãµã¶ãï¼šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®æ¯Žã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼é–‹å§‹ä½ç½®
 static const u16 PlayerNoPaletteSwapTbl_Storm[][WFLBY_MINIGAME_MAX] = {
-	{//0lŽQ‰Á(ƒ_ƒ~[)
+	{//0äººå‚åŠ (ãƒ€ãƒŸãƒ¼)
 		STORM_COLOR_START_NO_RED,
 		STORM_COLOR_START_NO_BLUE,
 		STORM_COLOR_START_NO_YELLOW,
 		STORM_COLOR_START_NO_GREEN,
 	},
-	{//1lŽQ‰Á	(‰ºA¶AãA‰E)FƒfƒoƒbƒO—p
+	{//1äººå‚åŠ 	(ä¸‹ã€å·¦ã€ä¸Šã€å³)ï¼šãƒ‡ãƒãƒƒã‚°ç”¨
 		STORM_COLOR_START_NO_RED,
 		STORM_COLOR_START_NO_BLUE,
 		STORM_COLOR_START_NO_YELLOW,
 		STORM_COLOR_START_NO_GREEN,
 	},
-	{//2lŽQ‰Á	(‰ºAã)
+	{//2äººå‚åŠ 	(ä¸‹ã€ä¸Š)
 		STORM_COLOR_START_NO_RED,
 		STORM_COLOR_START_NO_BLUE,
 	},
-	{//3lŽQ‰Á	(‰ºA¶A‰E)
+	{//3äººå‚åŠ 	(ä¸‹ã€å·¦ã€å³)
 		STORM_COLOR_START_NO_RED,
 		STORM_COLOR_START_NO_YELLOW,
 		STORM_COLOR_START_NO_BLUE,
 	},
-	{//4lŽQ‰Á	(‰ºA¶AãA‰E)
+	{//4äººå‚åŠ 	(ä¸‹ã€å·¦ã€ä¸Šã€å³)
 		STORM_COLOR_START_NO_RED,
 		STORM_COLOR_START_NO_GREEN,
 		STORM_COLOR_START_NO_BLUE,
 		STORM_COLOR_START_NO_YELLOW,
 	},
 };
-///ƒpƒCƒvBGFƒvƒŒƒCƒ„[ƒJƒ‰[‚ªƒpƒŒƒbƒgŠJŽnˆÊ’u‚©‚ç‚¢‚­‚Â“ü‚Á‚Ä‚¢‚é‚©
+///ãƒ‘ã‚¤ãƒ—BGï¼šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚«ãƒ©ãƒ¼ãŒãƒ‘ãƒ¬ãƒƒãƒˆé–‹å§‹ä½ç½®ã‹ã‚‰ã„ãã¤å…¥ã£ã¦ã„ã‚‹ã‹
 #define PLAYER_NO_PALETTE_COLOR_NUM_STORM		(1)
 
-///Ž†‚Ó‚Ô‚«FƒvƒŒƒCƒ„[ˆÊ’u–ˆ‚ÌƒXƒƒbƒv‚µ‚½ƒpƒŒƒbƒg‘‚«ž‚ÝˆÊ’u
+///ç´™ãµã¶ãï¼šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®æ¯Žã®ã‚¹ãƒ¯ãƒƒãƒ—ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆæ›¸ãè¾¼ã¿ä½ç½®
 static const u16 PlayerNoPaletteWritePosTbl_Storm[WFLBY_MINIGAME_MAX] = {
 	STORM_COLOR_START_NO_RED,
 	STORM_COLOR_START_NO_BLUE,
@@ -671,9 +671,9 @@ static const u16 PlayerNoPaletteWritePosTbl_Storm[WFLBY_MINIGAME_MAX] = {
 };
 
 //--------------------------------------------------------------
-//	ƒWƒ‡ƒCƒ“ƒg
+//	ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆ
 //--------------------------------------------------------------
-///ƒWƒ‡ƒCƒ“ƒg‚ÌƒAƒNƒ^[À•W
+///ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®ã‚¢ã‚¯ã‚¿ãƒ¼åº§æ¨™
 static const struct{
 	s16 x;
 	s16 y;
@@ -685,9 +685,9 @@ static const struct{
 };
 
 //--------------------------------------------------------------
-//	ƒu[ƒXƒ^[
+//	ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼
 //--------------------------------------------------------------
-///ƒu[ƒXƒ^[ƒ^ƒCƒv–ˆ‚ÌƒAƒjƒƒV[ƒPƒ“ƒXŠJŽn”Ô†
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚¿ã‚¤ãƒ—æ¯Žã®ã‚¢ãƒ‹ãƒ¡ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–‹å§‹ç•ªå·
 static const u16 BoosterType_StartSeqAnimeNo[] = {
 	MIXOBJ_ANMSEQ_BOOSTER_1P_JUMP,		//NONE
 	MIXOBJ_ANMSEQ_BOOSTER_1P_JUMP,
@@ -695,30 +695,30 @@ static const u16 BoosterType_StartSeqAnimeNo[] = {
 	MIXOBJ_ANMSEQ_BOOSTER_1P_HARD_JUMP,
 };
 
-///ƒu[ƒXƒ^[OBJ(ƒTƒu‰æ–Ê)FƒvƒŒƒCƒ„[ˆÊ’u–ˆ‚Ìƒu[ƒXƒ^[ƒpƒŒƒbƒgƒIƒtƒZƒbƒg”Ô†
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼OBJ(ã‚µãƒ–ç”»é¢)ï¼šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®æ¯Žã®ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒ‘ãƒ¬ãƒƒãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆç•ªå·
 static const u16 PlayerNoPalOfs_Booster[][WFLBY_MINIGAME_MAX] = {
-	{//0lŽQ‰Á(ƒ_ƒ~[)
+	{//0äººå‚åŠ (ãƒ€ãƒŸãƒ¼)
 		PALOFS_SUB_BOOSTER_RED,
 		PALOFS_SUB_BOOSTER_GREEN,
 		PALOFS_SUB_BOOSTER_BLUE,
 		PALOFS_SUB_BOOSTER_YELLOW,
 	},
-	{//1lŽQ‰Á	(‰ºA¶AãA‰E)FƒfƒoƒbƒO—p
+	{//1äººå‚åŠ 	(ä¸‹ã€å·¦ã€ä¸Šã€å³)ï¼šãƒ‡ãƒãƒƒã‚°ç”¨
 		PALOFS_SUB_BOOSTER_RED,
 		PALOFS_SUB_BOOSTER_GREEN,
 		PALOFS_SUB_BOOSTER_BLUE,
 		PALOFS_SUB_BOOSTER_YELLOW,
 	},
-	{//2lŽQ‰Á	(‰ºAã)
+	{//2äººå‚åŠ 	(ä¸‹ã€ä¸Š)
 		PALOFS_SUB_BOOSTER_RED,
 		PALOFS_SUB_BOOSTER_BLUE,
 	},
-	{//3lŽQ‰Á	(‰ºA¶A‰E)
+	{//3äººå‚åŠ 	(ä¸‹ã€å·¦ã€å³)
 		PALOFS_SUB_BOOSTER_RED,
 		PALOFS_SUB_BOOSTER_YELLOW,
 		PALOFS_SUB_BOOSTER_BLUE,
 	},
-	{//4lŽQ‰Á	(‰ºA¶AãA‰E)
+	{//4äººå‚åŠ 	(ä¸‹ã€å·¦ã€ä¸Šã€å³)
 		PALOFS_SUB_BOOSTER_RED,
 		PALOFS_SUB_BOOSTER_GREEN,
 		PALOFS_SUB_BOOSTER_BLUE,
@@ -726,27 +726,27 @@ static const u16 PlayerNoPalOfs_Booster[][WFLBY_MINIGAME_MAX] = {
 	},
 };
 
-///SIOƒu[ƒXƒ^[OBJ(ƒTƒu‰æ–Ê)FƒvƒŒƒCƒ„[ˆÊ’u–ˆ‚ÌƒWƒ‡ƒCƒ“ƒg‘Î‰ž”Ô†
+///SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼OBJ(ã‚µãƒ–ç”»é¢)ï¼šãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®æ¯Žã®ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆå¯¾å¿œç•ªå·
 static const u8 PlayerNoJointNo_SioBooster[][WFLBY_MINIGAME_MAX] = {
-	{//player_max‚»‚Ì‚Ü‚Ü‚ÅƒAƒNƒZƒX‚Å‚«‚é‚æ‚¤‚É1origin‰»‚Ìˆ×‚Ìƒ_ƒ~[
+	{//player_maxãã®ã¾ã¾ã§ã‚¢ã‚¯ã‚»ã‚¹ã§ãã‚‹ã‚ˆã†ã«1originåŒ–ã®ç‚ºã®ãƒ€ãƒŸãƒ¼
 		JOINT_ACTOR_D,
 	},
-	{//1lŽQ‰Á	(‰ºA¶AãA‰E)FƒfƒoƒbƒO—p
+	{//1äººå‚åŠ 	(ä¸‹ã€å·¦ã€ä¸Šã€å³)ï¼šãƒ‡ãƒãƒƒã‚°ç”¨
 		JOINT_ACTOR_D,
 		JOINT_ACTOR_L,
 		JOINT_ACTOR_U,
 		JOINT_ACTOR_R,
 	},
-	{//2lŽQ‰Á	(‰ºAã)
+	{//2äººå‚åŠ 	(ä¸‹ã€ä¸Š)
 		JOINT_ACTOR_D,
 		JOINT_ACTOR_U,
 	},
-	{//3lŽQ‰Á	(‰ºA¶A‰E)
+	{//3äººå‚åŠ 	(ä¸‹ã€å·¦ã€å³)
 		JOINT_ACTOR_D,
 		JOINT_ACTOR_L,
 		JOINT_ACTOR_R,
 	},
-	{//4lŽQ‰Á	(‰ºA¶AãA‰E)
+	{//4äººå‚åŠ 	(ä¸‹ã€å·¦ã€ä¸Šã€å³)
 		JOINT_ACTOR_D,
 		JOINT_ACTOR_L,
 		JOINT_ACTOR_U,
@@ -756,13 +756,13 @@ static const u8 PlayerNoJointNo_SioBooster[][WFLBY_MINIGAME_MAX] = {
 
 
 //==============================================================================
-//	ŠO•”ƒf[ƒ^
+//	å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 #include "balloon_control.dat"
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void BalloonTool_BalloonAffineScaleUpdate(
 	GF_BGL_INI *bgl, BALLOON_STATUS *bst, int player_max);
@@ -802,17 +802,17 @@ static void BoosterLandSmoke_Update(BALLOON_GAME_PTR game, BOOSTER_MOVE *move, B
 
 
 //==============================================================================
-//	ƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 //==============================================================================
-///ƒu[ƒXƒ^[‚Ì“®ìƒ‚[ƒh	¦BoosterMoveSeqTbl‚Æ•À‚Ñ‚ð“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆI
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®å‹•ä½œãƒ¢ãƒ¼ãƒ‰	â€»BoosterMoveSeqTblã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼
 enum{
-	BOOSTER_MODE_WAIT,			///<‘Ò‹@’†
-	BOOSTER_MODE_APPEAR,		///<“oêˆÚ“®
-	BOOSTER_MODE_NORMAL,		///<’Êí
-	BOOSTER_MODE_HIT,			///<ƒqƒbƒg
+	BOOSTER_MODE_WAIT,			///<å¾…æ©Ÿä¸­
+	BOOSTER_MODE_APPEAR,		///<ç™»å ´ç§»å‹•
+	BOOSTER_MODE_NORMAL,		///<é€šå¸¸
+	BOOSTER_MODE_HIT,			///<ãƒ’ãƒƒãƒˆ
 };
 
-///ƒu[ƒXƒ^[“®ìŠÖ”‚ÌƒV[ƒPƒ“ƒXƒe[ƒuƒ‹	¦BOOSTER_MODE_???‚Æ•À‚Ñ‚ð“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆI
+///ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œé–¢æ•°ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«	â€»BOOSTER_MODE_???ã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼
 static int (* const BoosterMoveSeqTbl[])(BALLOON_GAME_PTR, BOOSTER_WORK *, BOOSTER_MOVE *) = {
 	BoosterMove_Wait,
 	BoosterMove_Appear,
@@ -824,12 +824,12 @@ static int (* const BoosterMoveSeqTbl[])(BALLOON_GAME_PTR, BOOSTER_WORK *, BOOST
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DBG‚ð“WŠJ‚·‚é
+ * @brief   é¢¨èˆ¹BGã‚’å±•é–‹ã™ã‚‹
  *
- * @param   bgl				BGƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   player_max		ŽQ‰Ál”
- * @param   level			•—‘D‚ÌƒŒƒxƒ‹(BALLOON_LEVEL_???)
- * @param   bst				“WŠJ‚µ‚½•—‘D‚Ìƒpƒ‰ƒ[ƒ^ƒZƒbƒgæ
+ * @param   bgl				BGã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   player_max		å‚åŠ äººæ•°
+ * @param   level			é¢¨èˆ¹ã®ãƒ¬ãƒ™ãƒ«(BALLOON_LEVEL_???)
+ * @param   bst				å±•é–‹ã—ãŸé¢¨èˆ¹ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆå…ˆ
  */
 //--------------------------------------------------------------
 void BalloonTool_BalloonBGSet(GF_BGL_INI *bgl, int player_max, int level, BALLOON_STATUS *bst)
@@ -838,7 +838,7 @@ void BalloonTool_BalloonBGSet(GF_BGL_INI *bgl, int player_max, int level, BALLOO
 
 	OS_TPrintf("balloon level = %d\n", level);
 	
-	//ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	//ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	hdl  = ArchiveDataHandleOpen(ARC_BALLOON_GRA,  HEAPID_BALLOON); 
 
 	ArcUtil_HDL_BgCharSet(hdl, BalloonLevelData[level].ncgr_id, bgl, 
@@ -846,18 +846,18 @@ void BalloonTool_BalloonBGSet(GF_BGL_INI *bgl, int player_max, int level, BALLOO
 	ArcUtil_HDL_ScrnSet(hdl, BalloonLevelData[level].nscr_id, bgl, 
 		BALLOON_SUBFRAME_BALLOON, 0, 0, 0, HEAPID_BALLOON);
 
-	//ƒnƒ“ƒhƒ‹•Â‚¶‚é
+	//ãƒãƒ³ãƒ‰ãƒ«é–‰ã˜ã‚‹
 	ArchiveDataHandleClose( hdl );
 	
 	
-	//ƒXƒe[ƒ^ƒXƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	MI_CpuClear8(bst, sizeof(BALLOON_STATUS));
 	bst->max_air = BalloonParicipationData[player_max].max_air[level];
 	bst->level = level;
 	bst->occ = TRUE;
 	bst->bg_on_req = TRUE;
 	
-	//Šgk—¦Ý’è
+	//æ‹¡ç¸®çŽ‡è¨­å®š
 	BalloonTool_BalloonAffineScaleUpdate(bgl, bst, player_max);
 	
 	Snd_SePlay(SE_BALLOON_APPEAR);
@@ -865,10 +865,10 @@ void BalloonTool_BalloonBGSet(GF_BGL_INI *bgl, int player_max, int level, BALLOO
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DBG‚ðÁ‹Ž‚·‚é
+ * @brief   é¢¨èˆ¹BGã‚’æ¶ˆåŽ»ã™ã‚‹
  *
- * @param   bgl		BGƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   bst		•—‘Dƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   bst		é¢¨èˆ¹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BalloonTool_BalloonBGErase(GF_BGL_INI *bgl, BALLOON_STATUS *bst)
@@ -880,11 +880,11 @@ static void BalloonTool_BalloonBGErase(GF_BGL_INI *bgl, BALLOON_STATUS *bst)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D‚ÌŠgk—¦‚ðŒ»Ý‚Ì‹ó‹C—Ê‚ÅXV
+ * @brief   é¢¨èˆ¹ã®æ‹¡ç¸®çŽ‡ã‚’ç¾åœ¨ã®ç©ºæ°—é‡ã§æ›´æ–°
  *
- * @param   bgl			BGƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   bst			•—‘Dƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   player_max	ŽQ‰Ál”
+ * @param   bgl			BGã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   bst			é¢¨èˆ¹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   player_max	å‚åŠ äººæ•°
  */
 //--------------------------------------------------------------
 static void BalloonTool_BalloonAffineScaleUpdate(GF_BGL_INI *bgl, BALLOON_STATUS *bst, int player_max)
@@ -898,7 +898,7 @@ static void BalloonTool_BalloonAffineScaleUpdate(GF_BGL_INI *bgl, BALLOON_STATUS
 	
 	BalloonTool_BalloonAffineParamGet(player_max, bst->level, bst->air, &scale_x, &scale_y);
 	
-	//BG‚Ì•\Ž¦‚ð’†S‚ðˆÛŽ‚·‚éˆ×AƒXƒP[ƒ‹’l‚É‰ž‚¶‚ÄX,YÀ•W‚ÌƒIƒtƒZƒbƒg‚ð‘«‚µ‚±‚Þ
+	//BGã®è¡¨ç¤ºã‚’ä¸­å¿ƒã‚’ç¶­æŒã™ã‚‹ç‚ºã€ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã«å¿œã˜ã¦X,Yåº§æ¨™ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¶³ã—ã“ã‚€
 	x_offset = 0;
 	y_offset = 0;
 	if(scale_x == FX32_ONE){
@@ -968,9 +968,9 @@ static void BalloonTool_BalloonAffineScaleUpdate(GF_BGL_INI *bgl, BALLOON_STATUS
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D‚ÌŒ»Ý‚Ì‹ó‹C—Ê‚©‚ç•—‘DBG‚ÌŠgk—¦‚ðŽZo‚·‚é
- * @param   air		•—‘D‚ÌŒ»Ý‹ó‹C—Ê
- * @retval  Šgk—¦
+ * @brief   é¢¨èˆ¹ã®ç¾åœ¨ã®ç©ºæ°—é‡ã‹ã‚‰é¢¨èˆ¹BGã®æ‹¡ç¸®çŽ‡ã‚’ç®—å‡ºã™ã‚‹
+ * @param   air		é¢¨èˆ¹ã®ç¾åœ¨ç©ºæ°—é‡
+ * @retval  æ‹¡ç¸®çŽ‡
  */
 //--------------------------------------------------------------
 static void BalloonTool_BalloonAffineParamGet(int player_max, int balloon_lv, int air, fx32 *scale_x, fx32 *scale_y)
@@ -983,20 +983,20 @@ static void BalloonTool_BalloonAffineParamGet(int player_max, int balloon_lv, in
 	*scale_x = scale;
 	*scale_y = scale;
 	
-	//‚ ‚é’ö“x‘å‚«‚­‚È‚Á‚½Š‚Å•—‘D‚ð˜c‚Ü‚¹‚éˆ×AX•ûŒü‚ÌƒXƒP[ƒ‹‚ð‘å‚«‚­‚·‚é
+	//ã‚ã‚‹ç¨‹åº¦å¤§ãããªã£ãŸæ‰€ã§é¢¨èˆ¹ã‚’æ­ªã¾ã›ã‚‹ç‚ºã€Xæ–¹å‘ã®ã‚¹ã‚±ãƒ¼ãƒ«ã‚’å¤§ããã™ã‚‹
 	if(scale > BALLOON_SCALE_DISTORTION_START){
 		*scale_x += FX_Mul((scale - BALLOON_SCALE_DISTORTION_START), BALLOON_SCALE_DISTORTION_X);
 	}
 	
-//	scale = BALLOON_SCALE_MAX - scale;	//”Žš‚ª¬‚³‚¢•û‚ª‘å‚«‚­‚È‚é‚Ì‚Å”½“]
+//	scale = BALLOON_SCALE_MAX - scale;	//æ•°å­—ãŒå°ã•ã„æ–¹ãŒå¤§ãããªã‚‹ã®ã§åè»¢
 //	return scale;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D”Ô†‚©‚ç•—‘D‚ÌƒŒƒxƒ‹‚ðŽæ“¾‚·‚é
- * @param   balloon_no		•—‘D”Ô†
- * @retval  •—‘D‚ÌƒŒƒxƒ‹(BALLOON_LEVEL_???)
+ * @brief   é¢¨èˆ¹ç•ªå·ã‹ã‚‰é¢¨èˆ¹ã®ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—ã™ã‚‹
+ * @param   balloon_no		é¢¨èˆ¹ç•ªå·
+ * @retval  é¢¨èˆ¹ã®ãƒ¬ãƒ™ãƒ«(BALLOON_LEVEL_???)
  */
 //--------------------------------------------------------------
 int BalloonTool_BalloonLevelGet(int balloon_no)
@@ -1012,14 +1012,14 @@ int BalloonTool_BalloonLevelGet(int balloon_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D‚É’“ü‚·‚é‹ó‹C‚ðƒXƒ^ƒbƒN‚·‚é
+ * @brief   é¢¨èˆ¹ã«æ³¨å…¥ã™ã‚‹ç©ºæ°—ã‚’ã‚¹ã‚¿ãƒƒã‚¯ã™ã‚‹
  *
- * @param   bst		•—‘Dƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   air		‰ÁŽZ‚·‚é‹ó‹C—Ê
- * @param   net_id	ƒlƒbƒgID
- * @param   booster_type	ƒu[ƒXƒ^[ƒ^ƒCƒv
+ * @param   bst		é¢¨èˆ¹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   air		åŠ ç®—ã™ã‚‹ç©ºæ°—é‡
+ * @param   net_id	ãƒãƒƒãƒˆID
+ * @param   booster_type	ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚¿ã‚¤ãƒ—
  *
- * @retval  ‰ÁŽZŒã‚ÌƒXƒ^ƒbƒN‹ó‹C—Ê
+ * @retval  åŠ ç®—å¾Œã®ã‚¹ã‚¿ãƒƒã‚¯ç©ºæ°—é‡
  */
 //--------------------------------------------------------------
 static int BalloonTool_AirStackAdd(BALLOON_GAME_PTR game, BALLOON_STATUS *bst, int air, int net_id, int booster_type)
@@ -1027,7 +1027,7 @@ static int BalloonTool_AirStackAdd(BALLOON_GAME_PTR game, BALLOON_STATUS *bst, i
 	bst->air_stack += air;
 	bst->add_air = bst->air_stack / AIR_ADD_FRAME;
 	bst->player_air[Balloon_NetID_to_PlayerPos(game, net_id)] += air;
-	OS_TPrintf("’Ç‰Á‚³‚ê‚½air = %d, add_air = %d, stack = %d, net_id = %d, booster_type = %d, main_frame = %d(%dsec)\n", air, bst->add_air, bst->air_stack, net_id, booster_type, game->main_frame, game->main_frame/30);
+	OS_TPrintf("è¿½åŠ ã•ã‚ŒãŸair = %d, add_air = %d, stack = %d, net_id = %d, booster_type = %d, main_frame = %d(%dsec)\n", air, bst->add_air, bst->air_stack, net_id, booster_type, game->main_frame, game->main_frame/30);
 	
 	if(net_id == CommGetCurrentID()){
 		game->my_total_air += air;
@@ -1039,11 +1039,11 @@ static int BalloonTool_AirStackAdd(BALLOON_GAME_PTR game, BALLOON_STATUS *bst, i
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D‚ÉƒXƒ^ƒbƒN‚³‚ê‚Ä‚¢‚é‹ó‹C‚ð’“ü‚·‚é
+ * @brief   é¢¨èˆ¹ã«ã‚¹ã‚¿ãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ç©ºæ°—ã‚’æ³¨å…¥ã™ã‚‹
  *
- * @param   bst		•—‘Dƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bst		é¢¨èˆ¹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:’“ü‚³‚ê‚½B@FALSE:‚³‚ê‚Ä‚¢‚È‚¢
+ * @retval  TRUE:æ³¨å…¥ã•ã‚ŒãŸã€‚ã€€FALSE:ã•ã‚Œã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 static int BalloonTool_AirUpdate(BALLOON_STATUS *bst)
@@ -1067,10 +1067,10 @@ static int BalloonTool_AirUpdate(BALLOON_STATUS *bst)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DXVˆ—
+ * @brief   é¢¨èˆ¹æ›´æ–°å‡¦ç†
  *
- * @param   bgl		BGƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   bst		•—‘Dƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   bst		é¢¨èˆ¹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BalloonTool_BalloonUpdate(BALLOON_GAME_PTR game, GF_BGL_INI *bgl, BALLOON_STATUS *bst)
@@ -1084,11 +1084,11 @@ void BalloonTool_BalloonUpdate(BALLOON_GAME_PTR game, GF_BGL_INI *bgl, BALLOON_S
 
 //--------------------------------------------------------------
 /**
- * @brief   Œ»Ý‚Ì•—‘D‘Ï‹v—Í‚ðƒp[ƒZƒ“ƒe[ƒW‚ÅŽæ“¾‚·‚é
+ * @brief   ç¾åœ¨ã®é¢¨èˆ¹è€ä¹…åŠ›ã‚’ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸ã§å–å¾—ã™ã‚‹
  *
  * @param   game		
  *
- * @retval  •—‘D‘Ï‹v—Í‚ðƒp[ƒZƒ“ƒe[ƒWŠ·ŽZ‚µ‚½‚à‚Ì(100%MAX)
+ * @retval  é¢¨èˆ¹è€ä¹…åŠ›ã‚’ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸æ›ç®—ã—ãŸã‚‚ã®(100%MAX)
  */
 //--------------------------------------------------------------
 int BalloonTool_AirParcentGet(BALLOON_GAME_PTR game)
@@ -1100,11 +1100,11 @@ int BalloonTool_AirParcentGet(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒƒCƒ„[‚ª¶¬‚µ‚½‹ó‹Cî•ñ‚ðƒpƒ‰ƒ[ƒ^“o˜^‚·‚é
+ * @brief   ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒç”Ÿæˆã—ãŸç©ºæ°—æƒ…å ±ã‚’ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç™»éŒ²ã™ã‚‹
  *
- * @param   air_data		‹ó‹Cƒf[ƒ^
+ * @param   air_data		ç©ºæ°—ãƒ‡ãƒ¼ã‚¿
  *
- * @retval  TRUE:“o˜^¬Œ÷B@FALSE:Ž¸”s
+ * @retval  TRUE:ç™»éŒ²æˆåŠŸã€‚ã€€FALSE:å¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL BalloonTool_PlayerAirParamAdd(BALLOON_GAME_PTR game, const BALLOON_AIR_DATA *air_data)
@@ -1112,8 +1112,8 @@ BOOL BalloonTool_PlayerAirParamAdd(BALLOON_GAME_PTR game, const BALLOON_AIR_DATA
 	int i, arrival_frame;
 	
 	if(game->balloon_no != air_data->no){
-//		OS_TPrintf("ˆá‚¤•—‘D”Ô†‚ÌƒGƒA[‚Ìˆ×A–³Œø\n");
-//		return FALSE;	//ˆá‚¤•—‘D”Ô†‚ÌƒGƒA[‚Ìˆ×A–³Œø
+//		OS_TPrintf("é•ã†é¢¨èˆ¹ç•ªå·ã®ã‚¨ã‚¢ãƒ¼ã®ç‚ºã€ç„¡åŠ¹\n");
+//		return FALSE;	//é•ã†é¢¨èˆ¹ç•ªå·ã®ã‚¨ã‚¢ãƒ¼ã®ç‚ºã€ç„¡åŠ¹
 	}
 	
 	for(i = 0; i < PLAYER_AIR_PARAM_MAX; i++){
@@ -1125,22 +1125,22 @@ BOOL BalloonTool_PlayerAirParamAdd(BALLOON_GAME_PTR game, const BALLOON_AIR_DATA
 		}
 	}
 	
-	//»•i”Å‚Å‚Íƒ[ƒN‚ª‚¢‚Á‚Ï‚¢‚¾‚Á‚½Žž‚ÍA‚»‚Ìƒf[ƒ^‚Í–³Œø‚ÆŒ©‚È‚·
-	//ƒfƒoƒbƒO’†‚Íƒpƒ‰ƒ[ƒ^‚ª‚Ç‚Ì’ö“x‚Ì•p“x‚ÅƒI[ƒo[ƒtƒ[‚ð‹N‚±‚·‚©ŒŸØ‚·‚éˆ×
-	//assert‚ÅŽ~‚ß‚é
+	//è£½å“ç‰ˆã§ã¯ãƒ¯ãƒ¼ã‚¯ãŒã„ã£ã±ã„ã ã£ãŸæ™‚ã¯ã€ãã®ãƒ‡ãƒ¼ã‚¿ã¯ç„¡åŠ¹ã¨è¦‹ãªã™
+	//ãƒ‡ãƒãƒƒã‚°ä¸­ã¯ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒã©ã®ç¨‹åº¦ã®é »åº¦ã§ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ã‚’èµ·ã“ã™ã‹æ¤œè¨¼ã™ã‚‹ç‚º
+	//assertã§æ­¢ã‚ã‚‹
 	GF_ASSERT(0);
-	return FALSE;	//ƒpƒ‰ƒ[ƒ^ƒ[ƒN‚ª‚¢‚Á‚Ï‚¢‚ÅV‹K’Ç‰Á‚ªo—ˆ‚È‚¢
+	return FALSE;	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ãŒã„ã£ã±ã„ã§æ–°è¦è¿½åŠ ãŒå‡ºæ¥ãªã„
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ó‹Cƒpƒ‰ƒ[ƒ^ƒ[ƒN‚ð¶¬
+ * @brief   ç©ºæ°—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã‚’ç”Ÿæˆ
  *
  * @param   game			
- * @param   air_data		‹ó‹Cƒf[ƒ^
- * @param   air_param		ƒpƒ‰ƒ[ƒ^ƒZƒbƒgæ
+ * @param   air_data		ç©ºæ°—ãƒ‡ãƒ¼ã‚¿
+ * @param   air_param		ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆå…ˆ
  * 
- * @retval  ƒWƒ‡ƒCƒ“ƒg“ž’…‚Ü‚Å‚ÌƒtƒŒ[ƒ€”
+ * @retval  ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆåˆ°ç€ã¾ã§ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  */
 //--------------------------------------------------------------
 static int Air_ParamCreate(BALLOON_GAME_PTR game, const BALLOON_AIR_DATA * air_data, PLAYER_AIR_PARAM *air_param)
@@ -1171,7 +1171,7 @@ static int Air_ParamCreate(BALLOON_GAME_PTR game, const BALLOON_AIR_DATA * air_d
 	
 	air_param->occ = TRUE;
 
-	{//ƒWƒ‡ƒCƒ“ƒg“ž’…‚Ü‚Å‚ÌƒtƒŒ[ƒ€”‚ð•Ô‚·
+	{//ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆåˆ°ç€ã¾ã§ã®ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã‚’è¿”ã™
 		s16 before_x, before_y;
 		s32 before_joint_offset = 0;
 		
@@ -1198,7 +1198,7 @@ static int Air_ParamCreate(BALLOON_GAME_PTR game, const BALLOON_AIR_DATA * air_d
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ó‹CƒAƒNƒ^[XVˆ—
+ * @brief   ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼æ›´æ–°å‡¦ç†
  *
  * @param   game		
  */
@@ -1220,7 +1220,7 @@ void Air_Update(BALLOON_GAME_PTR game)
 			else if(Air_Move(game, air_param) == TRUE){
 				if(game->balloon_occ == TRUE //&& game->balloon_no == air_param->balloon_no
 						&& game->game_finish == FALSE){
-					//•—‘D”Ô†‚ªˆê’v‚µ‚Ä‚¢‚é‚È‚ç‚Î‹ó‹C’“ü
+					//é¢¨èˆ¹ç•ªå·ãŒä¸€è‡´ã—ã¦ã„ã‚‹ãªã‚‰ã°ç©ºæ°—æ³¨å…¥
 					BalloonTool_AirStackAdd(game, 
 						&game->bst, air_param->air, air_param->net_id, air_param->booster_type);
 				}
@@ -1234,18 +1234,18 @@ void Air_Update(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ó‹CƒAƒNƒ^[ˆÚ“®
+ * @brief   ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼ç§»å‹•
  *
- * @param   air_param		‹ó‹Cƒpƒ‰ƒ[ƒ^
+ * @param   air_param		ç©ºæ°—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- * @retval  TRUE:–Ú•W’n“_‚É“ž’B
+ * @retval  TRUE:ç›®æ¨™åœ°ç‚¹ã«åˆ°é”
  */
 //--------------------------------------------------------------
 static BOOL Air_Move(BALLOON_GAME_PTR game, PLAYER_AIR_PARAM *air_param)
 {
 	s16 x, y, before_x, before_y;
 	int del_flag = FALSE;
-	s32 joint_offset, before_joint_offset;	//+‚ÍƒWƒ‡ƒCƒ“ƒgŽè‘OA-‚ÍƒWƒ‡ƒCƒ“ƒg’Ê‰ßŒã
+	s32 joint_offset, before_joint_offset;	//+ã¯ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆæ‰‹å‰ã€-ã¯ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆé€šéŽå¾Œ
 	f32 scale_xy;
 	fx32 check_scale_xy;
 	
@@ -1295,7 +1295,7 @@ static BOOL Air_Move(BALLOON_GAME_PTR game, PLAYER_AIR_PARAM *air_param)
 		break;
 	}
 	
-	if(joint_offset >= 0){	//ƒWƒ‡ƒCƒ“ƒgŽè‘O
+	if(joint_offset >= 0){	//ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆæ‰‹å‰
 		if(joint_offset < AIR_REDUCE_DOT_OFFSET){
 			check_scale_xy = FX32_ONE * joint_offset / AIR_REDUCE_DOT_OFFSET;
 			if(check_scale_xy < 0x400){
@@ -1305,7 +1305,7 @@ static BOOL Air_Move(BALLOON_GAME_PTR game, PLAYER_AIR_PARAM *air_param)
 			CATS_ObjectScaleSetCap(air_param->cap, scale_xy, scale_xy);
 		}
 	}
-	else{	//ƒWƒ‡ƒCƒ“ƒg’Ê‰ßŒã@ƒu[ƒXƒ^[‚Å‚Ì‘å‚«‚³‚ðŒ³‚ÉŠgk—¦‚ðÝ’è‚·‚é
+	else{	//ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆé€šéŽå¾Œã€€ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã§ã®å¤§ãã•ã‚’å…ƒã«æ‹¡ç¸®çŽ‡ã‚’è¨­å®šã™ã‚‹
 		if(joint_offset > -AIR_REDUCE_DOT_OFFSET){
 			check_scale_xy = Air_BoosterScale[air_param->booster_type] 
 				* (-joint_offset) / AIR_REDUCE_DOT_OFFSET;
@@ -1317,7 +1317,7 @@ static BOOL Air_Move(BALLOON_GAME_PTR game, PLAYER_AIR_PARAM *air_param)
 		}
 	}
 	
-	//ƒWƒ‡ƒCƒ“ƒg‚ÌƒZƒ“ƒ^[‚ð’Ê‰ß‚µ‚½Žž‚Ìƒu[ƒXƒ^[”­¶ƒ`ƒFƒbƒN
+	//ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã®ã‚»ãƒ³ã‚¿ãƒ¼ã‚’é€šéŽã—ãŸæ™‚ã®ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç™ºç”Ÿãƒã‚§ãƒƒã‚¯
 	if(air_param->net_id == CommGetCurrentID() && before_joint_offset >= 0 && joint_offset <= 0){
 		BOOSTER_MOVE *hit_move;
 		air_param->booster_type = Booster_HitCheckNow(game, &hit_move);
@@ -1337,7 +1337,7 @@ static BOOL Air_Move(BALLOON_GAME_PTR game, PLAYER_AIR_PARAM *air_param)
 			BoosterMoveModeChange(hit_move, BOOSTER_MODE_HIT);
 		}
 
-		//ƒu[ƒXƒ^[’Ê‰ßƒ^ƒCƒ~ƒ“ƒO‚ÅƒXƒ^ƒbƒN‚³‚ê‚Ä‚¢‚é‹ó‹Cƒf[ƒ^‚ð‘—Mƒoƒbƒtƒ@‚Ö‘—‚è‚±‚Þ
+		//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼é€šéŽã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ã‚¹ã‚¿ãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ç©ºæ°—ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã¸é€ã‚Šã“ã‚€
 		{
 			BALLOON_AIR_DATA *air_data;
 			
@@ -1346,7 +1346,7 @@ static BOOL Air_Move(BALLOON_GAME_PTR game, PLAYER_AIR_PARAM *air_param)
 				SendBalloon_Air(game, air_data);
 			}
 			else{
-				OS_TPrintf("AirƒXƒ^ƒbƒN‚©‚ç‚à‚ê‚½‹ó‹C‚ªƒu[ƒXƒ^[’Ê‰ß\n");
+				OS_TPrintf("Airã‚¹ã‚¿ãƒƒã‚¯ã‹ã‚‰ã‚‚ã‚ŒãŸç©ºæ°—ãŒãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼é€šéŽ\n");
 			}
 		}
 	}
@@ -1359,12 +1359,12 @@ static BOOL Air_Move(BALLOON_GAME_PTR game, PLAYER_AIR_PARAM *air_param)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ó‹CƒAƒNƒ^[¶¬
+ * @brief   ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
  *
  * @param   game			
- * @param   air_posdata		‹ó‹Cƒf[ƒ^
+ * @param   air_posdata		ç©ºæ°—ãƒ‡ãƒ¼ã‚¿
  *
- * @retval  ¶¬‚µ‚½ƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static CATS_ACT_PTR Air_ActorCreate(BALLOON_GAME_PTR game, const AIR_POSITION_DATA *air_posdata)
@@ -1372,7 +1372,7 @@ static CATS_ACT_PTR Air_ActorCreate(BALLOON_GAME_PTR game, const AIR_POSITION_DA
 	CATS_ACT_PTR cap;
 	TCATS_OBJECT_ADD_PARAM_S act_head;
 	
-	//-- ƒAƒNƒ^[¶¬ --//
+	//-- ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ --//
 	act_head = AirObjParam;
 	act_head.x = air_posdata->x;
 	act_head.y = air_posdata->y;
@@ -1391,7 +1391,7 @@ static CATS_ACT_PTR Air_ActorCreate(BALLOON_GAME_PTR game, const AIR_POSITION_DA
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DƒAƒNƒ^[‚ð‘S‚Äíœ
+ * @brief   é¢¨èˆ¹ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å…¨ã¦å‰Šé™¤
  *
  * @param   game		
  *
@@ -1414,11 +1414,11 @@ void Air_ActorAllDelete(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”j—ôƒAƒNƒ^[¶¬
+ * @brief   ç ´è£‚ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
  *
  * @param   game		
  *
- * @retval  ¶¬‚µ‚½”j—ôƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸç ´è£‚ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Exploded_ActorCreate(BALLOON_GAME_PTR game, EXPLODED_PARAM *exploded, BALLOON_STATUS *bst)
@@ -1432,12 +1432,12 @@ static void Exploded_ActorCreate(BALLOON_GAME_PTR game, EXPLODED_PARAM *exploded
 	int i, s;
 	
 	act_head = ExplodedStormObjParam;
-	total_air = bst->air + bst->air_stack;	//ƒXƒ^ƒbƒN‚ÌŽc‚è‚àž‚Ý‚ÅŠ„‡‚ðo‚·
+	total_air = bst->air + bst->air_stack;	//ã‚¹ã‚¿ãƒƒã‚¯ã®æ®‹ã‚Šã‚‚è¾¼ã¿ã§å‰²åˆã‚’å‡ºã™
 	for(i = 0; i < game->bsw->player_max; i++){
 		player_pos = Balloon_NetID_to_PlayerPos(game, game->bsw->player_netid[i]);
 		act_num[i] = bst->player_air[player_pos] * EXPLODED_STORM_ACTOR_MAX / total_air;
 		anmseq = PlayerNoAnmSeq_Storm[game->bsw->player_max][player_pos];
-		OS_TPrintf("Ž†‚Ó‚Ô‚«@player_pos = %d, num = %d, anmseq = %d\n", player_pos, act_num[i], anmseq);
+		OS_TPrintf("ç´™ãµã¶ãã€€player_pos = %d, num = %d, anmseq = %d\n", player_pos, act_num[i], anmseq);
 		for(s = 0; s < act_num[i]; s++){
 			STORM_WORK *storm = &exploded->storm[act_index];
 			
@@ -1460,7 +1460,7 @@ static void Exploded_ActorCreate(BALLOON_GAME_PTR game, EXPLODED_PARAM *exploded
 		}
 	}
 	
-	//-- •—ˆ³ --//
+	//-- é¢¨åœ§ --//
 	act_head.pri = BALLOONSUB_SOFTPRI_EXPLODED_SMOKE;
 	act_head.pal = PALOFS_SUB_EXPLODED_SMOKE;
 	for(i = 0; i < EXPLODED_SMOKE_ACTOR_MAX; i++){
@@ -1483,7 +1483,7 @@ static void Exploded_ActorCreate(BALLOON_GAME_PTR game, EXPLODED_PARAM *exploded
 		exploded->smoke[i].cap = cap;
 	}
 	
-	//-- ”j•Ð --//
+	//-- ç ´ç‰‡ --//
 	act_head.pri = BALLOONSUB_SOFTPRI_EXPLODED_CHIP;
 	act_head.pal = ExplodedChipPalNo[bst->level];
 	for(i = 0; i < EXPLODED_CHIP_ACTOR_MAX; i++){
@@ -1509,7 +1509,7 @@ static void Exploded_ActorCreate(BALLOON_GAME_PTR game, EXPLODED_PARAM *exploded
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D”j—ôƒAƒNƒ^[‚ðíœ‚·‚é
+ * @brief   é¢¨èˆ¹ç ´è£‚ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
  *
  * @param   game		
  *
@@ -1547,11 +1547,11 @@ void Exploded_AllDelete(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D”j—ôƒAƒNƒ^[XVˆ—
+ * @brief   é¢¨èˆ¹ç ´è£‚ã‚¢ã‚¯ã‚¿ãƒ¼æ›´æ–°å‡¦ç†
  *
  * @param   game		
  *
- * @retval  TRUE:ƒAƒNƒ^[“®ì’†B@FALSE:‰½‚à“®ì–³‚µ
+ * @retval  TRUE:ã‚¢ã‚¯ã‚¿ãƒ¼å‹•ä½œä¸­ã€‚ã€€FALSE:ä½•ã‚‚å‹•ä½œç„¡ã—
  */
 //--------------------------------------------------------------
 BOOL Exploded_Update(BALLOON_GAME_PTR game)
@@ -1566,7 +1566,7 @@ BOOL Exploded_Update(BALLOON_GAME_PTR game)
 		return FALSE;
 	}
 	
-	//-- Ž†‚Ó‚Ô‚« --//
+	//-- ç´™ãµã¶ã --//
 	for(i = 0; i < EXPLODED_STORM_ACTOR_MAX; i++){
 		storm = &exploded->storm[i];
 		if(storm->cap != NULL){
@@ -1588,7 +1588,7 @@ BOOL Exploded_Update(BALLOON_GAME_PTR game)
 		}
 	}
 
-	//-- ‰Œ --//
+	//-- ç…™ --//
 	for(i = 0; i < EXPLODED_SMOKE_ACTOR_MAX; i++){
 		smoke = &exploded->smoke[i];
 		if(smoke->cap != NULL){
@@ -1610,7 +1610,7 @@ BOOL Exploded_Update(BALLOON_GAME_PTR game)
 		}
 	}
 	
-	//-- ”j•Ð --//
+	//-- ç ´ç‰‡ --//
 	for(i = 0; i < EXPLODED_CHIP_ACTOR_MAX; i++){
 		chip = &exploded->chip[i];
 		if(chip->cap != NULL){
@@ -1640,7 +1640,7 @@ BOOL Exploded_Update(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ”j—ôƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+ * @brief   ç ´è£‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
  * @param   game		
  * @param   exploded		
@@ -1661,17 +1661,17 @@ BOOL BalloonTool_ExplodedParamAdd(BALLOON_GAME_PTR game)
 	
 	MI_CpuClear8(exploded, sizeof(EXPLODED_PARAM));
 	
-	//”š”­ƒAƒNƒ^[¶¬@Ž©•ª‚Ì‰æ–Êó‹µ‚ð”½‰f‚³‚¹‚éˆ×bst‚ÍŒÂX‚Ìƒ[ƒJƒ‹‚Ì‚ðŽg—p
+	//çˆ†ç™ºã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆã€€è‡ªåˆ†ã®ç”»é¢çŠ¶æ³ã‚’åæ˜ ã•ã›ã‚‹ç‚ºbstã¯å€‹ã€…ã®ãƒ­ãƒ¼ã‚«ãƒ«ã®ã‚’ä½¿ç”¨
 	Exploded_ActorCreate(game, &game->exploded_param, &game->bst);
 	
-	//•—‘DBGÁ‹Ž
+	//é¢¨èˆ¹BGæ¶ˆåŽ»
 	BalloonTool_BalloonBGErase(game->bgl, &game->bst);
 	
-	//•—‘DƒAƒCƒRƒ“”š”­ƒAƒjƒ
+	//é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³çˆ†ç™ºã‚¢ãƒ‹ãƒ¡
 	IconBalloon_ExplodedReq(game);
 	
 	
-	//-- bstƒNƒŠƒA --//
+	//-- bstã‚¯ãƒªã‚¢ --//
 	game->balloon_occ = FALSE;
 	game->bst.air = 0;
 	game->bst.air_stack = 0;
@@ -1687,11 +1687,11 @@ BOOL BalloonTool_ExplodedParamAdd(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DƒAƒCƒRƒ“ƒAƒNƒ^[¶¬
+ * @brief   é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
  *
  * @param   game		
  *
- * @retval  ¶¬‚µ‚½”j—ôƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸç ´è£‚ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static CATS_ACT_PTR IconBalloon_ActorCreate(BALLOON_GAME_PTR game, int icon_type, int pos)
@@ -1699,7 +1699,7 @@ static CATS_ACT_PTR IconBalloon_ActorCreate(BALLOON_GAME_PTR game, int icon_type
 	CATS_ACT_PTR cap;
 	TCATS_OBJECT_ADD_PARAM_S act_head;
 
-	//-- ƒAƒNƒ^[¶¬ --//
+	//-- ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ --//
 	act_head = IconBalloonObjParam;
 	cap = CATS_ObjectAdd_S(game->csp, game->crp, &act_head);
 	
@@ -1709,13 +1709,13 @@ static CATS_ACT_PTR IconBalloon_ActorCreate(BALLOON_GAME_PTR game, int icon_type
 	CATS_ObjectAnimeSeqSetCap(cap, MIXOBJ_ANMSEQ_ICON_BALLOON_1 + icon_type);
 	
 	CATS_ObjectUpdate(cap->act);
-	CATS_ObjectAutoAnimeSetCap(cap, TRUE);	//ƒI[ƒgƒAƒjƒÝ’è
+	CATS_ObjectAutoAnimeSetCap(cap, TRUE);	//ã‚ªãƒ¼ãƒˆã‚¢ãƒ‹ãƒ¡è¨­å®š
 	return cap;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DƒAƒCƒRƒ“‚ð‘S‚Äì¬‚·‚é
+ * @brief   é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦ä½œæˆã™ã‚‹
  *
  * @param   game		
  */
@@ -1728,13 +1728,13 @@ void IconBalloon_AllCreate(BALLOON_GAME_PTR game)
 	for(i = 0; i < ICON_BALLOON_PARAM_MAX; i++){
 		ibp = &game->iconballoon_param[i];
 		BalloonTool_IconBalloonParamAdd(game, ibp, i, i);
-		CATS_ObjectUpdateNumCap(ibp->cap, FX32_ONE*4 * i);	//Å‰‚ÌƒAƒjƒ‚ðƒoƒ‰‚¯‚³‚¹‚é
+		CATS_ObjectUpdateNumCap(ibp->cap, FX32_ONE*4 * i);	//æœ€åˆã®ã‚¢ãƒ‹ãƒ¡ã‚’ãƒãƒ©ã‘ã•ã›ã‚‹
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DƒAƒCƒRƒ“‚ð‘S‚Äíœ‚·‚é
+ * @brief   é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
  *
  * @param   game		
  */
@@ -1752,11 +1752,11 @@ void IconBalloon_AllDelete(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D”j—ôƒAƒNƒ^[XVˆ—
+ * @brief   é¢¨èˆ¹ç ´è£‚ã‚¢ã‚¯ã‚¿ãƒ¼æ›´æ–°å‡¦ç†
  *
  * @param   game		
  *
- * @retval  TRUE:ƒAƒNƒ^[“®ì’†B@FALSE:‰½‚à“®ì–³‚µ
+ * @retval  TRUE:ã‚¢ã‚¯ã‚¿ãƒ¼å‹•ä½œä¸­ã€‚ã€€FALSE:ä½•ã‚‚å‹•ä½œç„¡ã—
  */
 //--------------------------------------------------------------
 BOOL IconBalloon_Update(BALLOON_GAME_PTR game)
@@ -1775,14 +1775,14 @@ BOOL IconBalloon_Update(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DƒAƒCƒRƒ“ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+ * @brief   é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
  * @param   game		
- * @param   ibp				‘ã“üæ
- * @param   pos				ˆÊ’u
- * @param   balloon_no		’S“–‚·‚é•—‘D”Ô†
+ * @param   ibp				ä»£å…¥å…ˆ
+ * @param   pos				ä½ç½®
+ * @param   balloon_no		æ‹…å½“ã™ã‚‹é¢¨èˆ¹ç•ªå·
  *
- * @retval  TRUE:ƒZƒbƒg¬Œ÷
+ * @retval  TRUE:ã‚»ãƒƒãƒˆæˆåŠŸ
  */
 //--------------------------------------------------------------
 static BOOL BalloonTool_IconBalloonParamAdd(BALLOON_GAME_PTR game, ICONBALLOON_PARAM *ibp, int pos, int balloon_no)
@@ -1800,9 +1800,9 @@ static BOOL BalloonTool_IconBalloonParamAdd(BALLOON_GAME_PTR game, ICONBALLOON_P
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DƒAƒCƒRƒ“‚ÌÀ•WXVˆ—
+ * @brief   é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã®åº§æ¨™æ›´æ–°å‡¦ç†
  *
- * @param   ibp		•—‘DƒAƒCƒRƒ“ƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ibp		é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void IconBalloon_PosMove(ICONBALLOON_PARAM *ibp)
@@ -1823,7 +1823,7 @@ static void IconBalloon_PosMove(ICONBALLOON_PARAM *ibp)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DƒAƒCƒRƒ“‚ÌƒXƒe[ƒ^ƒXXV
+ * @brief   é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°
  *
  * @param   game		
  * @param   ibp		
@@ -1839,22 +1839,22 @@ static void IconBalloon_StatusUpdate(BALLOON_GAME_PTR game, ICONBALLOON_PARAM *i
 	ICONBALLOON_PARAM *get_ibp;
 	
 	if(ibp->pos != 0){
-		return;	//ˆê”Ô‰E’[ˆÈŠO‚ÍŠÖŒW‚È‚µ
+		return;	//ä¸€ç•ªå³ç«¯ä»¥å¤–ã¯é–¢ä¿‚ãªã—
 	}
 	
 	switch(ibp->status){
-	//”š”­ƒAƒjƒI—¹ƒ`ƒFƒbƒN
+	//çˆ†ç™ºã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	case ICON_BALLOON_STATUS_EXPLODED:
 		if(CATS_ObjectAnimeActiveCheckCap(ibp->cap) == FALSE){
-			//”š”­‚µ‚½•—‘DƒAƒCƒRƒ“‚ð¶‚©‚çV‚µ‚­“oê‚·‚éƒAƒCƒRƒ“‚Æ‚µ‚ÄÄ—˜—p‚·‚é
-			ibp->balloon_no += ICON_BALLOON_PARAM_MAX;	//•—‘D”Ô†XV
+			//çˆ†ç™ºã—ãŸé¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã‚’å·¦ã‹ã‚‰æ–°ã—ãç™»å ´ã™ã‚‹ã‚¢ã‚¤ã‚³ãƒ³ã¨ã—ã¦å†åˆ©ç”¨ã™ã‚‹
+			ibp->balloon_no += ICON_BALLOON_PARAM_MAX;	//é¢¨èˆ¹ç•ªå·æ›´æ–°
 			ibp->type = IconBalloon_TypeGet(ibp->balloon_no);
 			ibp->status = ICON_BALLOON_STATUS_NORMAL;
 			CATS_ObjectAnimeSeqSetCap(ibp->cap, MIXOBJ_ANMSEQ_ICON_BALLOON_1 + ibp->type);
 			CATS_ObjectPosSetCap_SubSurface(ibp->cap, 
 				ICON_BALLOON_POS_RIGHT_X - ICON_BALLOON_PARAM_MAX * ICON_BALLOON_POS_OFFSET_X, 
 				ICON_BALLOON_POS_Y, BALLOON_SUB_ACTOR_DISTANCE);
-			//‘S‚Ä‚Ì•—‘DƒAƒCƒRƒ“‚Ìpos‚ð‹l‚ß‚é
+			//å…¨ã¦ã®é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã®posã‚’è©°ã‚ã‚‹
 			for(i = 0; i < ICON_BALLOON_PARAM_MAX; i++){
 				get_ibp = &game->iconballoon_param[i];
 				if(get_ibp->pos == 0){
@@ -1866,7 +1866,7 @@ static void IconBalloon_StatusUpdate(BALLOON_GAME_PTR game, ICONBALLOON_PARAM *i
 			}
 		}
 		break;
-	//ƒsƒ“ƒ`ó‘Ôƒ`ƒFƒbƒN
+	//ãƒ”ãƒ³ãƒçŠ¶æ…‹ãƒã‚§ãƒƒã‚¯
 	case ICON_BALLOON_STATUS_NORMAL:
 		parcent = BalloonTool_AirParcentGet(game);
 		if(ibp->status == ICON_BALLOON_STATUS_NORMAL && parcent > ICON_BALLOON_PINCH_PARCENT){
@@ -1880,9 +1880,9 @@ static void IconBalloon_StatusUpdate(BALLOON_GAME_PTR game, ICONBALLOON_PARAM *i
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘D”Ô†‚©‚ç•—‘D‚ÌƒŒƒxƒ‹ƒ^ƒCƒv‚ðŽæ“¾‚·‚é
- * @param   balloon_no		•—‘D”Ô†
- * @retval  ƒŒƒxƒ‹ƒ^ƒCƒv
+ * @brief   é¢¨èˆ¹ç•ªå·ã‹ã‚‰é¢¨èˆ¹ã®ãƒ¬ãƒ™ãƒ«ã‚¿ã‚¤ãƒ—ã‚’å–å¾—ã™ã‚‹
+ * @param   balloon_no		é¢¨èˆ¹ç•ªå·
+ * @retval  ãƒ¬ãƒ™ãƒ«ã‚¿ã‚¤ãƒ—
  */
 //--------------------------------------------------------------
 static int IconBalloon_TypeGet(int balloon_no)
@@ -1898,7 +1898,7 @@ static int IconBalloon_TypeGet(int balloon_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DƒAƒCƒRƒ“‚É”š”­ƒAƒjƒƒŠƒNƒGƒXƒg‚ðÝ’è‚·‚é
+ * @brief   é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã«çˆ†ç™ºã‚¢ãƒ‹ãƒ¡ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¨­å®šã™ã‚‹
  *
  * @param   game		
  */
@@ -1920,7 +1920,7 @@ static void IconBalloon_ExplodedReq(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽQ‰Ál”‚É‰ž‚¶‚Ä–¼‘OƒEƒBƒ“ƒhƒE‚ÌƒpƒŒƒbƒg”Ô†‚ð‘‚«Š·‚¦‚é
+ * @brief   å‚åŠ äººæ•°ã«å¿œã˜ã¦åå‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚’æ›¸ãæ›ãˆã‚‹
  *
  * @param   game		
  */
@@ -1930,7 +1930,7 @@ void BalloonTool_NameWindowPalNoSwap(BALLOON_GAME_PTR game)
 	int i;
 	
 	switch(game->bsw->player_max){
-	case 3:	//–â‘è‚ª‚ ‚é‚Ì‚Í3l‚ÌŽž‚¾‚¯B(2lA4l‚ÍŒ³ƒf[ƒ^‚Ì‚Ü‚Ü‚ÅOK)
+	case 3:	//å•é¡ŒãŒã‚ã‚‹ã®ã¯3äººã®æ™‚ã ã‘ã€‚(2äººã€4äººã¯å…ƒãƒ‡ãƒ¼ã‚¿ã®ã¾ã¾ã§OK)
 		GF_BGL_ScrPalChange(game->bgl, BALLOON_SUBFRAME_WIN, 0, 13, 12, 4, NAME_WIN_PALNO_YELLOW);
 		GF_BGL_ScrPalChange(game->bgl, BALLOON_SUBFRAME_WIN, 0x14, 13, 12, 4, NAME_WIN_PALNO_BLUE);
 		break;
@@ -1939,7 +1939,7 @@ void BalloonTool_NameWindowPalNoSwap(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒƒCƒ„[ˆÊ’u‚É]‚Á‚ÄƒpƒCƒv‚ÌƒJƒ‰[‚ÌƒXƒƒbƒv‚ðs‚¤
+ * @brief   ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®ã«å¾“ã£ã¦ãƒ‘ã‚¤ãƒ—ã®ã‚«ãƒ©ãƒ¼ã®ã‚¹ãƒ¯ãƒƒãƒ—ã‚’è¡Œã†
  *
  * @param   game		
  */
@@ -1952,7 +1952,7 @@ void BalloonTool_PaletteSwap_Pipe(BALLOON_GAME_PTR game)
 	int read_pos, write_pos, k, current_id;
 	u16 *plttbuf, *transbuf;
 	
-	//ŠeƒvƒŒƒCƒ„[‚ÌƒJƒ‰[ƒf[ƒ^‚ðƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@‚ÖƒRƒs[
+	//å„ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ã¸ã‚³ãƒ”ãƒ¼
 	for(player = 0; player < game->bsw->player_max; player++){
 		read_pos = PlayerNoPaletteWritePosTbl_Pipe[player];
 		for(i = 0; i < PLAYER_NO_PALETTE_COLOR_NUM_PIPE; i++){
@@ -1961,7 +1961,7 @@ void BalloonTool_PaletteSwap_Pipe(BALLOON_GAME_PTR game)
 		}
 	}
 	
-	//Ž©•ª‚ÌƒvƒŒƒCƒ„[ˆÊ’u‚ðŽæ“¾
+	//è‡ªåˆ†ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®ã‚’å–å¾—
 	current_id = CommGetCurrentID();
 	for(my_player = 0; my_player < game->bsw->player_max; my_player++){
 		if(game->bsw->player_netid[my_player] == current_id){
@@ -1969,7 +1969,7 @@ void BalloonTool_PaletteSwap_Pipe(BALLOON_GAME_PTR game)
 		}
 	}
 	
-	//Ž©•ª‚ÌƒvƒŒƒCƒ„[ˆÊ’u‚ðŠî€‚ÉƒJƒ‰[‚ðƒZƒbƒg‚µ‚È‚¨‚·
+	//è‡ªåˆ†ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®ã‚’åŸºæº–ã«ã‚«ãƒ©ãƒ¼ã‚’ã‚»ãƒƒãƒˆã—ãªãŠã™
 	plttbuf = PaletteWorkDefaultWorkGet(game->pfd, FADE_SUB_BG);
 	transbuf = PaletteWorkTransWorkGet(game->pfd, FADE_SUB_BG);
 	for(i = 0; i < game->bsw->player_max; i++){
@@ -1984,7 +1984,7 @@ void BalloonTool_PaletteSwap_Pipe(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒƒCƒ„[ˆÊ’u‚É]‚Á‚ÄƒvƒŒƒCƒ„[–ˆ‚ÌOBJ(ƒu[ƒXƒ^[‚â‹ó‹C)‚ÌƒJƒ‰[‚ÌƒXƒƒbƒv‚ðs‚¤
+ * @brief   ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®ã«å¾“ã£ã¦ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ¯Žã®OBJ(ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚„ç©ºæ°—)ã®ã‚«ãƒ©ãƒ¼ã®ã‚¹ãƒ¯ãƒƒãƒ—ã‚’è¡Œã†
  *
  * @param   game		
  */
@@ -2000,7 +2000,7 @@ void BalloonTool_PaletteSwap_PlayerOBJ(BALLOON_GAME_PTR game)
 	
 	common_palno = CATS_PlttID_NoGet(game->crp, PLTTID_SUB_OBJ_COMMON, NNS_G2D_VRAM_TYPE_2DSUB);
 	
-	//ŠeƒvƒŒƒCƒ„[‚ÌƒJƒ‰[ƒf[ƒ^‚ðƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@‚ÖƒRƒs[
+	//å„ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ã¸ã‚³ãƒ”ãƒ¼
 	for(player = 0; player < game->bsw->player_max; player++){
 		read_pos = PlayerNoPaletteWritePosTbl_Obj[player];
 		for(i = 0; i < PLAYER_NO_PALETTE_COLOR_NUM_AIR; i++){
@@ -2009,7 +2009,7 @@ void BalloonTool_PaletteSwap_PlayerOBJ(BALLOON_GAME_PTR game)
 		}
 	}
 	
-	//Ž©•ª‚ÌƒvƒŒƒCƒ„[ˆÊ’u‚ðŽæ“¾
+	//è‡ªåˆ†ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®ã‚’å–å¾—
 	current_id = CommGetCurrentID();
 	for(my_player = 0; my_player < game->bsw->player_max; my_player++){
 		if(game->bsw->player_netid[my_player] == current_id){
@@ -2017,7 +2017,7 @@ void BalloonTool_PaletteSwap_PlayerOBJ(BALLOON_GAME_PTR game)
 		}
 	}
 	
-	//Ž©•ª‚ÌƒvƒŒƒCƒ„[ˆÊ’u‚ðŠî€‚ÉƒJƒ‰[‚ðƒZƒbƒg‚µ‚È‚¨‚·
+	//è‡ªåˆ†ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®ã‚’åŸºæº–ã«ã‚«ãƒ©ãƒ¼ã‚’ã‚»ãƒƒãƒˆã—ãªãŠã™
 	plttbuf = PaletteWorkDefaultWorkGet(game->pfd, FADE_SUB_OBJ);
 	transbuf = PaletteWorkTransWorkGet(game->pfd, FADE_SUB_OBJ);
 	for(i = 0; i < game->bsw->player_max; i++){
@@ -2032,7 +2032,7 @@ void BalloonTool_PaletteSwap_PlayerOBJ(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒvƒŒƒCƒ„[ˆÊ’u‚É]‚Á‚ÄŽ†‚Ó‚Ô‚«‚ÌƒJƒ‰[‚ÌƒXƒƒbƒv‚ðs‚¤
+ * @brief   ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®ã«å¾“ã£ã¦ç´™ãµã¶ãã®ã‚«ãƒ©ãƒ¼ã®ã‚¹ãƒ¯ãƒƒãƒ—ã‚’è¡Œã†
  *
  * @param   game		
  */
@@ -2048,7 +2048,7 @@ void BalloonTool_PaletteSwap_Storm(BALLOON_GAME_PTR game)
 	
 	common_palno = CATS_PlttID_NoGet(game->crp, PLTTID_SUB_OBJ_COMMON, NNS_G2D_VRAM_TYPE_2DSUB);
 	
-	//ŠeƒvƒŒƒCƒ„[‚ÌƒJƒ‰[ƒf[ƒ^‚ðƒeƒ“ƒ|ƒ‰ƒŠƒoƒbƒtƒ@‚ÖƒRƒs[
+	//å„ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚«ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ†ãƒ³ãƒãƒ©ãƒªãƒãƒƒãƒ•ã‚¡ã¸ã‚³ãƒ”ãƒ¼
 	for(player = 0; player < game->bsw->player_max; player++){
 		read_pos = PlayerNoPaletteWritePosTbl_Storm[player];
 		for(i = 0; i < PLAYER_NO_PALETTE_COLOR_NUM_STORM; i++){
@@ -2057,7 +2057,7 @@ void BalloonTool_PaletteSwap_Storm(BALLOON_GAME_PTR game)
 		}
 	}
 	
-	//Ž©•ª‚ÌƒvƒŒƒCƒ„[ˆÊ’u‚ðŽæ“¾
+	//è‡ªåˆ†ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®ã‚’å–å¾—
 	current_id = CommGetCurrentID();
 	for(my_player = 0; my_player < game->bsw->player_max; my_player++){
 		if(game->bsw->player_netid[my_player] == current_id){
@@ -2065,7 +2065,7 @@ void BalloonTool_PaletteSwap_Storm(BALLOON_GAME_PTR game)
 		}
 	}
 	
-	//Ž©•ª‚ÌƒvƒŒƒCƒ„[ˆÊ’u‚ðŠî€‚ÉƒJƒ‰[‚ðƒZƒbƒg‚µ‚È‚¨‚·
+	//è‡ªåˆ†ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®ã‚’åŸºæº–ã«ã‚«ãƒ©ãƒ¼ã‚’ã‚»ãƒƒãƒˆã—ãªãŠã™
 	plttbuf = PaletteWorkDefaultWorkGet(game->pfd, FADE_SUB_OBJ);
 	transbuf = PaletteWorkTransWorkGet(game->pfd, FADE_SUB_OBJ);
 	for(i = 0; i < game->bsw->player_max; i++){
@@ -2080,12 +2080,12 @@ void BalloonTool_PaletteSwap_Storm(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒGƒA[ƒf[ƒ^‚ðì¬‚·‚é
+ * @brief   ã‚¨ã‚¢ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã™ã‚‹
  *
  * @param   game			
- * @param   balloon_no		•—‘D”Ô†
- * @param   air				‹ó‹C—Ê(•â³‚âƒu[ƒXƒ^[‘O‚Ìƒˆ‚È‹ó‹C—Ê)
- * @param   air_data		ƒZƒbƒgæ
+ * @param   balloon_no		é¢¨èˆ¹ç•ªå·
+ * @param   air				ç©ºæ°—é‡(è£œæ­£ã‚„ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‰ã®ç´”ç²‹ãªç©ºæ°—é‡)
+ * @param   air_data		ã‚»ãƒƒãƒˆå…ˆ
  */
 //--------------------------------------------------------------
 void BalloonTool_AirDataCreate(BALLOON_GAME_PTR game, int balloon_no, s32 air, BALLOON_AIR_DATA *air_data)
@@ -2101,15 +2101,15 @@ void BalloonTool_AirDataCreate(BALLOON_GAME_PTR game, int balloon_no, s32 air, B
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ó‹Cƒf[ƒ^‚ð‘—Mƒoƒbƒtƒ@‚ÉƒXƒ^ƒbƒN‚·‚é
+ * @brief   ç©ºæ°—ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ã‚¹ã‚¿ãƒƒã‚¯ã™ã‚‹
  *
  * @param   game		
- * @param   air_data	‹ó‹Cƒf[ƒ^
+ * @param   air_data	ç©ºæ°—ãƒ‡ãƒ¼ã‚¿
  *
- * @retval  TRUE:‘—Mƒoƒbƒtƒ@‚ÉƒXƒ^ƒbƒN‚³‚ê‚½
- * @retval  FALSE:‘—Mƒoƒbƒtƒ@‚ª‚¢‚Á‚Ï‚¢‚¾‚Á‚½ˆ×Žó‚¯Žæ‚ê‚È‚©‚Á‚½
+ * @retval  TRUE:é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ã‚¹ã‚¿ãƒƒã‚¯ã•ã‚ŒãŸ
+ * @retval  FALSE:é€ä¿¡ãƒãƒƒãƒ•ã‚¡ãŒã„ã£ã±ã„ã ã£ãŸç‚ºå—ã‘å–ã‚Œãªã‹ã£ãŸ
  *
- * FALSE‚ª•Ô‚Á‚Ä‚«‚Ä‚àŠî–{A‰‰oƒf[ƒ^‚È‚Ì‚Å–³Ž‹‚µ‚Ä‚µ‚Ü‚Á‚Ä‚æ‚¢
+ * FALSEãŒè¿”ã£ã¦ãã¦ã‚‚åŸºæœ¬ã€æ¼”å‡ºãƒ‡ãƒ¼ã‚¿ãªã®ã§ç„¡è¦–ã—ã¦ã—ã¾ã£ã¦ã‚ˆã„
  */
 //--------------------------------------------------------------
 BOOL BalloonTool_SendAirPush(BALLOON_GAME_PTR game, BALLOON_AIR_DATA *air_data)
@@ -2124,11 +2124,11 @@ BOOL BalloonTool_SendAirPush(BALLOON_GAME_PTR game, BALLOON_AIR_DATA *air_data)
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹ó‹Cƒf[ƒ^‚ð‘—Mƒoƒbƒtƒ@‚©‚çŽæ‚èo‚·
+ * @brief   ç©ºæ°—ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰å–ã‚Šå‡ºã™
  *
  * @param   game		
  *
- * @retval  ‹ó‹Cƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^(ƒf[ƒ^‚ª–³‚¢ê‡‚ÍNULL)
+ * @retval  ç©ºæ°—ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿(ãƒ‡ãƒ¼ã‚¿ãŒç„¡ã„å ´åˆã¯NULL)
  */
 //--------------------------------------------------------------
 BALLOON_AIR_DATA * BalloonTool_SendAirPop(BALLOON_GAME_PTR game)
@@ -2145,12 +2145,12 @@ BALLOON_AIR_DATA * BalloonTool_SendAirPop(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   æ“ª‚ÉƒXƒ^ƒbƒN‚³‚ê‚Ä‚¢‚é‹ó‹Cƒf[ƒ^‚Éƒu[ƒXƒ^[ƒ^ƒCƒv‚ðÝ’è‚·‚é
+ * @brief   å…ˆé ­ã«ã‚¹ã‚¿ãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ç©ºæ°—ãƒ‡ãƒ¼ã‚¿ã«ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚¿ã‚¤ãƒ—ã‚’è¨­å®šã™ã‚‹
  *
  * @param   game		
  *
- * @retval  TRUE:ƒZƒbƒg‚µ‚½
- * @retval  FALSE:ƒZƒbƒgo—ˆ‚È‚©‚Á‚½(ƒXƒ^ƒbƒN‚³‚ê‚Ä‚¢‚é‹ó‹C‚ª–³‚©‚Á‚½)
+ * @retval  TRUE:ã‚»ãƒƒãƒˆã—ãŸ
+ * @retval  FALSE:ã‚»ãƒƒãƒˆå‡ºæ¥ãªã‹ã£ãŸ(ã‚¹ã‚¿ãƒƒã‚¯ã•ã‚Œã¦ã„ã‚‹ç©ºæ°—ãŒç„¡ã‹ã£ãŸ)
  */
 //--------------------------------------------------------------
 BOOL BalloonTool_SendAirBoosterSet(BALLOON_GAME_PTR game, int booster_type)
@@ -2190,7 +2190,7 @@ BOOL BalloonTool_SendAirBoosterSet(BALLOON_GAME_PTR game, int booster_type)
 		}
 	}
 	if(air_data == NULL){
-		GF_ASSERT(0);		//ƒu[ƒXƒ^[–¢Ý’è‚ÌƒGƒA[ƒf[ƒ^‚ª1‚Â‚à–³‚¢
+		GF_ASSERT(0);		//ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼æœªè¨­å®šã®ã‚¨ã‚¢ãƒ¼ãƒ‡ãƒ¼ã‚¿ãŒ1ã¤ã‚‚ç„¡ã„
 		return FALSE;
 	}
 	
@@ -2214,7 +2214,7 @@ BOOL BalloonTool_SendAirBoosterSet(BALLOON_GAME_PTR game, int booster_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒWƒ‡ƒCƒ“ƒgƒAƒNƒ^[¶¬
+ * @brief   ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
  *
  * @param   game		
  */
@@ -2247,7 +2247,7 @@ void Joint_ActorCreateAll(BALLOON_GAME_PTR game, JOINT_WORK *joint)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒWƒ‡ƒCƒ“ƒgƒAƒNƒ^[‚ð‘S‚Äíœ‚·‚é
+ * @brief   ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
  *
  * @param   game		
  */
@@ -2263,10 +2263,10 @@ void Joint_ActorDeleteAll(BALLOON_GAME_PTR game, JOINT_WORK *joint)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[ƒAƒNƒ^[¶¬
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
  *
  * @param   game		
- * @param   booster		ƒu[ƒXƒ^[ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   booster		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Booster_ActorCreateAll(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
@@ -2293,7 +2293,7 @@ void Booster_ActorCreateAll(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
 		CATS_ObjectUpdate(booster->move[i].cap->act);
 		CATS_ObjectEnableCap(booster->move[i].cap, CATS_ENABLE_FALSE);
 		
-		//ƒqƒbƒgƒGƒtƒFƒNƒg
+		//ãƒ’ãƒƒãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 		booster->move[i].hit_cap = CATS_ObjectAdd_S(game->csp, game->crp, &BoosterHitObjParam);
 		CATS_ObjectPosSetCap_SubSurface(booster->move[i].hit_cap, 
 			0, 0, BALLOON_SUB_ACTOR_DISTANCE);
@@ -2301,20 +2301,20 @@ void Booster_ActorCreateAll(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
 		CATS_ObjectUpdate(booster->move[i].hit_cap->act);
 		CATS_ObjectEnableCap(booster->move[i].hit_cap, CATS_ENABLE_FALSE);
 		
-		//‰e
+		//å½±
 		booster->move[i].shadow_cap 
 			= CATS_ObjectAdd_S(game->csp, game->crp, &BoosterShadowObjParam);
 		CATS_ObjectPosSetCap_SubSurface(booster->move[i].shadow_cap, 
 			base_x, base_y + BOOSTER_OFFSET_Y + BOOSTER_SHADOW_OFFSET_Y, 
 			BALLOON_SUB_ACTOR_DISTANCE);
-		CATS_ObjectObjModeSetCap(booster->move[i].shadow_cap, GX_OAM_MODE_XLU);	//”¼“§–¾ON
-		CATS_ObjectAffineSetCap(booster->move[i].shadow_cap, CLACT_AFFINE_NORMAL);	//ŠgkON
+		CATS_ObjectObjModeSetCap(booster->move[i].shadow_cap, GX_OAM_MODE_XLU);	//åŠé€æ˜ŽON
+		CATS_ObjectAffineSetCap(booster->move[i].shadow_cap, CLACT_AFFINE_NORMAL);	//æ‹¡ç¸®ON
 		CATS_ObjectScaleSetCap(booster->move[i].shadow_cap, 1.0f, 1.0f);
 		CATS_ObjectAnimeSeqSetCap(booster->move[i].shadow_cap, MIXOBJ_ANMSEQ_BOOSTER_SHADOW + i);
 		CATS_ObjectUpdate(booster->move[i].shadow_cap->act);
 		CATS_ObjectEnableCap(booster->move[i].shadow_cap, CATS_ENABLE_FALSE);
 		
-		//’…’n‚Ì‰Œ
+		//ç€åœ°ã®ç…™
 		BoosterLandSmoke_ActorCreate(game, &booster->move[i].land_smoke);
 	}
 	
@@ -2324,10 +2324,10 @@ void Booster_ActorCreateAll(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[ƒAƒNƒ^[‚ð‘S‚Äíœ‚·‚é
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
  *
  * @param   game		
- * @param   booster		ƒu[ƒXƒ^[ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   booster		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Booster_ActorDeleteAll(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
@@ -2344,10 +2344,10 @@ void Booster_ActorDeleteAll(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[“®ì§Œäƒ[ƒN‰Šú‰»
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
  *
  * @param   game		
- * @param   booster		ƒu[ƒXƒ^[“®ì§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   booster		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Booster_Init(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
@@ -2366,10 +2366,10 @@ void Booster_Init(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[XVˆ—
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼æ›´æ–°å‡¦ç†
  *
  * @param   game		
- * @param   booster		ƒu[ƒXƒ^[“®ì§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   booster		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Booster_Update(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
@@ -2383,7 +2383,7 @@ void Booster_Update(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
 	booster->world_frame++;
 	
 	if(booster->wait == 0){
-		//•bj‚ði‚ß‚é
+		//ç§’é‡ã‚’é€²ã‚ã‚‹
 		booster->theta += booster->add_theta;
 		booster->frame++;
 		if(booster->frame >= BoosterMoveDataTbl[booster->lap].move_frame){
@@ -2393,10 +2393,10 @@ void Booster_Update(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
 			booster->wait = BoosterMoveDataTbl[booster->lap].wait_frame;
 		}
 	}
-	else{	//‘Ò‚¿ŽžŠÔ
+	else{	//å¾…ã¡æ™‚é–“
 		booster->wait--;
 		if(booster->wait == 0){
-			if(booster->byousin_pos >= BOOSTER_STOP_PART_NUM){	//1Žü‚µ‚½
+			if(booster->byousin_pos >= BOOSTER_STOP_PART_NUM){	//1å‘¨ã—ãŸ
 				booster->byousin_pos = 0;
 				booster->lap++;
 				if(booster->lap >= NELEMS(BoosterMoveDataTbl)){
@@ -2407,7 +2407,7 @@ void Booster_Update(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
 		}
 	}
 
-	//V‚µ‚¢ƒu[ƒXƒ^[‚Ì“oêƒ`ƒFƒbƒN
+	//æ–°ã—ã„ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®ç™»å ´ãƒã‚§ãƒƒã‚¯
 	if(booster->lap == BOOSTER_2ND_APPEAR_LAP - 1){
 		for(i = 0; i < BOOSTER_2ND_APPEAR_LAP; i++){
 			end_frame += BoosterMoveDataTbl[i].move_frame * BOOSTER_STOP_PART_NUM
@@ -2427,7 +2427,7 @@ void Booster_Update(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
 		}
 	}
 	
-	//Šeƒu[ƒXƒ^[‚Ì“®ì
+	//å„ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®å‹•ä½œ
 	for(i = 0; i < BOOSTER_ACTOR_MAX; i++){
 		Booster_Move(game, booster, &booster->move[i]);
 		BoosterLandSmoke_Update(game, &booster->move[i], &booster->move[i].land_smoke);
@@ -2436,12 +2436,12 @@ void Booster_Update(BALLOON_GAME_PTR game, BOOSTER_WORK *booster)
 
 //--------------------------------------------------------------
 /**
- * @brief   ¡‚Ìƒ^ƒCƒ~ƒ“ƒO‚Åƒu[ƒXƒ^[‚Æƒqƒbƒg‰Â”\‚©ƒ`ƒFƒbƒN
+ * @brief   ä»Šã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã¨ãƒ’ãƒƒãƒˆå¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param   game					
- * @param   ret_move		ƒqƒbƒg‚µ‚½ƒu[ƒXƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ª‘ã“ü‚³‚ê‚é
+ * @param   ret_move		ãƒ’ãƒƒãƒˆã—ãŸãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒä»£å…¥ã•ã‚Œã‚‹
  * 
- * @retval  ƒu[ƒXƒ^[ƒ^ƒCƒv
+ * @retval  ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚¿ã‚¤ãƒ—
  */
 //--------------------------------------------------------------
 static int Booster_HitCheckNow(BALLOON_GAME_PTR game, BOOSTER_MOVE **ret_move)
@@ -2478,16 +2478,16 @@ static int Booster_HitCheck(BALLOON_GAME_PTR game, PLAYER_AIR_PARAM)
 	if(FX_Mod(joint_len_y, AIR_MOVE_SPEED)){
 		arrival_frame++;
 	}
-	arrival_frame += MY_AIR_2D_APPEAR_WAIT;		//‰½ƒtƒŒ[ƒ€Œã‚É‹ó‹C‚ªƒWƒ‡ƒCƒ“ƒg‚ð’Ê‰ß‚·‚é‚©
+	arrival_frame += MY_AIR_2D_APPEAR_WAIT;		//ä½•ãƒ•ãƒ¬ãƒ¼ãƒ å¾Œã«ç©ºæ°—ãŒã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚’é€šéŽã™ã‚‹ã‹
 	
-	//arrival_frame‚É’B‚µ‚½‚Æ‚«Aƒu[ƒXƒ^[‚ªHIT‰ÂAí‘Ô‚©ƒ`ƒFƒbƒN
+	//arrival_frameã«é”ã—ãŸã¨ãã€ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãŒHITå¯ã€å¸¸æ…‹ã‹ãƒã‚§ãƒƒã‚¯
 	for(i = 0; i < 
 }
 #endif
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[‚Ìƒ‚[ƒhØ‘Ö
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®ãƒ¢ãƒ¼ãƒ‰åˆ‡æ›¿
  *
  * @param   move		
  * @param   mode		BOOSTER_MODE_???
@@ -2504,11 +2504,11 @@ static void BoosterMoveModeChange(BOOSTER_MOVE *move, int mode)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[‚ÌˆÚ“®ˆ—
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®ç§»å‹•å‡¦ç†
  *
  * @param   game		
- * @param   booster		ƒu[ƒXƒ^[“®ì§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒu[ƒXƒ^[“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   booster		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Booster_Move(BALLOON_GAME_PTR game, BOOSTER_WORK *booster, BOOSTER_MOVE *move)
@@ -2518,11 +2518,11 @@ static void Booster_Move(BALLOON_GAME_PTR game, BOOSTER_WORK *booster, BOOSTER_M
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[“®ìF‘Ò‹@’†
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œï¼šå¾…æ©Ÿä¸­
  *
  * @param   game		
- * @param   booster		ƒu[ƒXƒ^[“®ì§Œäƒ[ƒNH
- * @param   move		ƒu[ƒXƒ^[“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   booster		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯H
+ * @param   move		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  
  */
@@ -2535,11 +2535,11 @@ static int BoosterMove_Wait(BALLOON_GAME_PTR game, BOOSTER_WORK *booster, BOOSTE
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[“®ìF“oê
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œï¼šç™»å ´
  *
  * @param   game		
- * @param   booster		ƒu[ƒXƒ^[“®ì§Œäƒ[ƒNH
- * @param   move		ƒu[ƒXƒ^[“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   booster		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯H
+ * @param   move		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  
  */
@@ -2621,11 +2621,11 @@ static int BoosterMove_Appear(BALLOON_GAME_PTR game, BOOSTER_WORK *booster, BOOS
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[“®ìF’Êí
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œï¼šé€šå¸¸
  *
  * @param   game		
- * @param   booster		ƒu[ƒXƒ^[“®ì§Œäƒ[ƒNH
- * @param   move		ƒu[ƒXƒ^[“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   booster		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯H
+ * @param   move		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  
  */
@@ -2657,7 +2657,7 @@ static int BoosterMove_Normal(BALLOON_GAME_PTR game, BOOSTER_WORK *booster, BOOS
 	CATS_ObjectPosSetCap_SubSurface(move->cap, base_x, base_y + BOOSTER_OFFSET_Y + offset_y, 
 		BALLOON_SUB_ACTOR_DISTANCE);
 	
-	//‰e
+	//å½±
 	CATS_ObjectPosSetCap_SubSurface(move->shadow_cap, 
 		base_x, base_y + BOOSTER_OFFSET_Y + BOOSTER_SHADOW_OFFSET_Y, 
 		BALLOON_SUB_ACTOR_DISTANCE);
@@ -2681,11 +2681,11 @@ static int BoosterMove_Normal(BALLOON_GAME_PTR game, BOOSTER_WORK *booster, BOOS
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[“®ìFƒqƒbƒg
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œï¼šãƒ’ãƒƒãƒˆ
  *
  * @param   game		
- * @param   booster		ƒu[ƒXƒ^[“®ì§Œäƒ[ƒNH
- * @param   move		ƒu[ƒXƒ^[“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   booster		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯H
+ * @param   move		ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  
  */
@@ -2704,11 +2704,11 @@ static int BoosterMove_Hit(BALLOON_GAME_PTR game, BOOSTER_WORK *booster, BOOSTER
 		CATS_ObjectPosGetCap_SubSurface(move->cap, &x, &y, BALLOON_SUB_ACTOR_DISTANCE);
 		CATS_ObjectPosSetCap_SubSurface(move->hit_cap, x, y + BOOSTER_HIT_OFFSET_Y, 
 			BALLOON_SUB_ACTOR_DISTANCE);
-		CATS_ObjectAnimeSeqSetCap(move->hit_cap, MIXOBJ_ANMSEQ_BOOSTER_HIT_EFF);//ƒAƒjƒƒŠƒZƒbƒg
+		CATS_ObjectAnimeSeqSetCap(move->hit_cap, MIXOBJ_ANMSEQ_BOOSTER_HIT_EFF);//ã‚¢ãƒ‹ãƒ¡ãƒªã‚»ãƒƒãƒˆ
 		CATS_ObjectEnableCap(move->hit_cap, CATS_ENABLE_TRUE);
 		
-		//–{‘Ì‚ÌƒAƒjƒ‚ð•ÏX
-		CATS_ObjectAnimeSeqSetCap(move->cap, 	//1–‡–Ú‚ª–c‚ç‚ñ‚Å‚¢‚éŠG‚È‚Ì‚Å
+		//æœ¬ä½“ã®ã‚¢ãƒ‹ãƒ¡ã‚’å¤‰æ›´
+		CATS_ObjectAnimeSeqSetCap(move->cap, 	//1æžšç›®ãŒè†¨ã‚‰ã‚“ã§ã„ã‚‹çµµãªã®ã§
 			BoosterType_StartSeqAnimeNo[move->booster_type] + OFFSET_ANMID_BOOSTER_SHRIVEL);
 		
 		move->local_frame = BoosterMoveDataTbl[booster->lap].hit_anime_time;
@@ -2717,15 +2717,15 @@ static int BoosterMove_Hit(BALLOON_GAME_PTR game, BOOSTER_WORK *booster, BOOSTER
 		break;
 	case 1:
 		if(move->local_frame == move->local_wait){
-			CATS_ObjectAnimeSeqSetCap(move->cap, 	//1–‡–Ú‚ª‰š‚ñ‚Å‚¢‚éŠG‚È‚Ì‚Å
+			CATS_ObjectAnimeSeqSetCap(move->cap, 	//1æžšç›®ãŒå‡¹ã‚“ã§ã„ã‚‹çµµãªã®ã§
 				BoosterType_StartSeqAnimeNo[move->booster_type] + OFFSET_ANMID_BOOSTER_SWELLING);
 			CATS_ObjectEnableCap(move->hit_cap, CATS_ENABLE_FALSE);
 			CATS_ObjectUpdateNumCap(move->hit_cap, BOOSTER_HITEFF_NEXT_ANM_FRAME);
 		}
 		if(move->local_frame == 0){
-			CATS_ObjectEnableCap(move->hit_cap, CATS_ENABLE_FALSE);	//ˆê‰ž‚±‚±‚Å‚à
-			//1–‡–Ú‚ª‚µ‚Ú‚ñ‚Å‚¢‚éŠG‚È‚Ì‚Å
-			CATS_ObjectAnimeSeqSetCap(move->cap, 	//1–‡–Ú‚ª–c‚ç‚ñ‚Å‚¢‚éŠG‚È‚Ì‚Å
+			CATS_ObjectEnableCap(move->hit_cap, CATS_ENABLE_FALSE);	//ä¸€å¿œã“ã“ã§ã‚‚
+			//1æžšç›®ãŒã—ã¼ã‚“ã§ã„ã‚‹çµµãªã®ã§
+			CATS_ObjectAnimeSeqSetCap(move->cap, 	//1æžšç›®ãŒè†¨ã‚‰ã‚“ã§ã„ã‚‹çµµãªã®ã§
 //				BoosterType_StartSeqAnimeNo[move->booster_type] + OFFSET_ANMID_BOOSTER_SWELLING);
 				BoosterType_StartSeqAnimeNo[move->booster_type] + OFFSET_ANMID_BOOSTER_JUMP);
 			
@@ -2787,7 +2787,7 @@ static int BoosterMove_Hit(BALLOON_GAME_PTR game, BOOSTER_WORK *booster, BOOSTER
 			BALLOON_SUB_ACTOR_DISTANCE);
 		CATS_ObjectUpdateNumCap(move->cap, (BOOSTER_ANIME_FRAME_JUMP_TOTAL << FX32_SHIFT) / move->local_work);
 
-		//‰e
+		//å½±
 		CATS_ObjectPosSetCap_SubSurface(move->shadow_cap, 
 			move->local_fx_x / FX32_ONE, 
 			move->local_fx_y / FX32_ONE + BOOSTER_OFFSET_Y + BOOSTER_SHADOW_OFFSET_Y, 
@@ -2808,7 +2808,7 @@ static int BoosterMove_Hit(BALLOON_GAME_PTR game, BOOSTER_WORK *booster, BOOSTER
 
 //--------------------------------------------------------------
 /**
- * @brief   SIOƒu[ƒXƒ^[ƒAƒNƒ^[¶¬
+ * @brief   SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
  *
  * @param   game		
  * @param   sio_booster		
@@ -2830,7 +2830,7 @@ void SioBooster_ActorCreateAll(BALLOON_GAME_PTR game, SIO_BOOSTER_WORK *sio_boos
 			0, 0, BALLOON_SUB_ACTOR_DISTANCE);
 		CATS_ObjectEnableCap(sio_booster->move[i].cap, CATS_ENABLE_FALSE);
 		
-		//ƒqƒbƒgƒGƒtƒFƒNƒg
+		//ãƒ’ãƒƒãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 		sio_booster->move[i].hit_cap = CATS_ObjectAdd_S(game->csp, game->crp, &BoosterHitObjParam);
 		CATS_ObjectPosSetCap_SubSurface(sio_booster->move[i].hit_cap, 
 			0, 0, BALLOON_SUB_ACTOR_DISTANCE);
@@ -2842,10 +2842,10 @@ void SioBooster_ActorCreateAll(BALLOON_GAME_PTR game, SIO_BOOSTER_WORK *sio_boos
 
 //--------------------------------------------------------------
 /**
- * @brief   SIOƒu[ƒXƒ^[ƒAƒNƒ^[‚ð‘S‚Äíœ‚·‚é
+ * @brief   SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
  *
  * @param   game		
- * @param   sio_booster		SIOƒu[ƒXƒ^[ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sio_booster		SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void SioBooster_ActorDeleteAll(BALLOON_GAME_PTR game, SIO_BOOSTER_WORK *sio_booster)
@@ -2860,13 +2860,13 @@ void SioBooster_ActorDeleteAll(BALLOON_GAME_PTR game, SIO_BOOSTER_WORK *sio_boos
 
 //--------------------------------------------------------------
 /**
- * @brief   SIOƒu[ƒXƒ^[“oê
+ * @brief   SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç™»å ´
  *
  * @param   game		
- * @param   sio_booster		SIOƒu[ƒXƒ^[ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   booster_type	ƒu[ƒXƒ^[ƒ^ƒCƒv
- * @param   net_id			‘ÎÛ‚ÌƒlƒbƒgID
- * @param   arrival_frame	‹ó‹CƒAƒNƒ^[‚ªƒWƒ‡ƒCƒ“ƒg“ž’…‚Ü‚Å‚É‚©‚©‚éƒtƒŒ[ƒ€”
+ * @param   sio_booster		SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   booster_type	ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã‚¿ã‚¤ãƒ—
+ * @param   net_id			å¯¾è±¡ã®ãƒãƒƒãƒˆID
+ * @param   arrival_frame	ç©ºæ°—ã‚¢ã‚¯ã‚¿ãƒ¼ãŒã‚¸ãƒ§ã‚¤ãƒ³ãƒˆåˆ°ç€ã¾ã§ã«ã‹ã‹ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  */
 //--------------------------------------------------------------
 void SioBooster_Appear(BALLOON_GAME_PTR game, SIO_BOOSTER_WORK *sio_booster, int booster_type, int net_id, int arrival_frame)
@@ -2887,17 +2887,17 @@ void SioBooster_Appear(BALLOON_GAME_PTR game, SIO_BOOSTER_WORK *sio_booster, int
 		return;
 	}
 	
-	//ƒpƒŒƒbƒgÝ’è
+	//ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š
 	player_pos = Balloon_NetID_to_PlayerPos(game, net_id);
 	pal_ofs = PlayerNoPalOfs_Booster[game->bsw->player_max][player_pos];
 //	CATS_ObjectPaletteOffsetSetCap(sio_move->cap, pal_ofs);
 	CATS_ObjectPaletteSetCap(sio_move->cap, pal_ofs);
 	
-	//ƒAƒjƒÝ’è
+	//ã‚¢ãƒ‹ãƒ¡è¨­å®š
 	CATS_ObjectAnimeSeqSetCap(sio_move->cap, 
 		BoosterType_StartSeqAnimeNo[booster_type] + OFFSET_ANMID_BOOSTER_JUMP);
 	
-	//À•WÝ’è
+	//åº§æ¨™è¨­å®š
 	joint_no = PlayerNoJointNo_SioBooster[game->bsw->player_max][player_pos];
 	sio_move->end_y = JointActorPosTbl[joint_no].y + BOOSTER_OFFSET_Y;
 	CATS_ObjectPosSetCap_SubSurface(sio_move->cap, 
@@ -2913,10 +2913,10 @@ void SioBooster_Appear(BALLOON_GAME_PTR game, SIO_BOOSTER_WORK *sio_booster, int
 
 //--------------------------------------------------------------
 /**
- * @brief   SIOƒu[ƒXƒ^[XVˆ—
+ * @brief   SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼æ›´æ–°å‡¦ç†
  *
  * @param   game		
- * @param   sio_booster		SIOƒu[ƒXƒ^[ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sio_booster		SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void SioBooster_Update(BALLOON_GAME_PTR game, SIO_BOOSTER_WORK *sio_booster)
@@ -2934,12 +2934,12 @@ void SioBooster_Update(BALLOON_GAME_PTR game, SIO_BOOSTER_WORK *sio_booster)
 
 //--------------------------------------------------------------
 /**
- * @brief   SIOƒu[ƒXƒ^[“®ìF“oê
+ * @brief   SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œï¼šç™»å ´
  *
- * @param   sio_booster		SIOƒu[ƒXƒ^[ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sio_move		SIOƒu[ƒXƒ^[“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   sio_booster		SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sio_move		SIOãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:ˆ—Œp‘±’†A@FALSE:ˆ—I—¹
+ * @retval  TRUE:å‡¦ç†ç¶™ç¶šä¸­ã€ã€€FALSE:å‡¦ç†çµ‚äº†
  */
 //--------------------------------------------------------------
 static BOOL SioBoosterMove_Appear(SIO_BOOSTER_WORK *sio_booster, SIO_BOOSTER_MOVE *sio_move)
@@ -2947,13 +2947,13 @@ static BOOL SioBoosterMove_Appear(SIO_BOOSTER_WORK *sio_booster, SIO_BOOSTER_MOV
 	s16 x, y;
 	
 	switch(sio_move->seq){
-	case 0:		//ƒ[ƒN‰Šú‰»
+	case 0:		//ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 		CATS_ObjectPosGetCap_SubSurface(sio_move->cap, &x, &y, BALLOON_SUB_ACTOR_DISTANCE);
 		sio_move->local_fx_x = x * FX32_ONE;
 		sio_move->local_fx_y = y * FX32_ONE;
 		sio_move->seq++;
 		//break;
-	case 1:		//—Ž‰º
+	case 1:		//è½ä¸‹
 		if(sio_move->start_wait > 0){
 			sio_move->start_wait--;
 			break;
@@ -2965,7 +2965,7 @@ static BOOL SioBoosterMove_Appear(SIO_BOOSTER_WORK *sio_booster, SIO_BOOSTER_MOV
 			sio_move->seq++;
 		}
 		break;
-	case 2:		//ƒAƒjƒ
+	case 2:		//ã‚¢ãƒ‹ãƒ¡
 		CATS_ObjectPosGetCap_SubSurface(sio_move->cap, &x, &y, BALLOON_SUB_ACTOR_DISTANCE);
 		CATS_ObjectPosSetCap_SubSurface(sio_move->hit_cap, x, y + BOOSTER_HIT_OFFSET_Y, 
 			BALLOON_SUB_ACTOR_DISTANCE);
@@ -2973,8 +2973,8 @@ static BOOL SioBoosterMove_Appear(SIO_BOOSTER_WORK *sio_booster, SIO_BOOSTER_MOV
 		CATS_ObjectEnableCap(sio_move->hit_cap, CATS_ENABLE_TRUE);
 		Snd_SePlay(SE_BALLOON_BOOSTER_HIT);
 
-		//–{‘Ì‚ÌƒAƒjƒ‚ð•ÏX
-		CATS_ObjectAnimeSeqSetCap(sio_move->cap, 	//1–‡–Ú‚ª–c‚ç‚ñ‚Å‚¢‚éŠG‚È‚Ì‚Å
+		//æœ¬ä½“ã®ã‚¢ãƒ‹ãƒ¡ã‚’å¤‰æ›´
+		CATS_ObjectAnimeSeqSetCap(sio_move->cap, 	//1æžšç›®ãŒè†¨ã‚‰ã‚“ã§ã„ã‚‹çµµãªã®ã§
 			BoosterType_StartSeqAnimeNo[sio_move->booster_type] + OFFSET_ANMID_BOOSTER_SHRIVEL);
 		sio_move->local_frame = 8;
 		sio_move->seq++;
@@ -2986,12 +2986,12 @@ static BOOL SioBoosterMove_Appear(SIO_BOOSTER_WORK *sio_booster, SIO_BOOSTER_MOV
 		}
 		if(sio_move->local_frame == 0){
 			CATS_ObjectEnableCap(sio_move->hit_cap, CATS_ENABLE_FALSE);
-			CATS_ObjectAnimeSeqSetCap(sio_move->cap,	//1–‡–Ú‚ª‚µ‚Ú‚ñ‚Å‚¢‚éŠG‚È‚Ì‚Å
+			CATS_ObjectAnimeSeqSetCap(sio_move->cap,	//1æžšç›®ãŒã—ã¼ã‚“ã§ã„ã‚‹çµµãªã®ã§
 				BoosterType_StartSeqAnimeNo[sio_move->booster_type] + OFFSET_ANMID_BOOSTER_JUMP);
 			sio_move->seq++;
 		}
 		break;
-	case 4:		//ã¸
+	case 4:		//ä¸Šæ˜‡
 		sio_move->local_fx_y -= SIO_BOOSTER_OUT_SPEED;
 		if((sio_move->local_fx_y / FX32_ONE) <= sio_move->end_y + SIO_BOOSTER_APPEAR_OFFSET_Y){
 			CATS_ObjectEnableCap(sio_move->cap, CATS_ENABLE_FALSE);
@@ -3009,24 +3009,24 @@ static BOOL SioBoosterMove_Appear(SIO_BOOSTER_WORK *sio_booster, SIO_BOOSTER_MOV
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“‰æ–Ê‚ÌƒtƒHƒ“ƒgOAM‚ðì¬‚·‚é
+ * @brief   ãƒ¡ã‚¤ãƒ³ç”»é¢ã®ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’ä½œæˆã™ã‚‹
  *
- * @param   bgl				BGL‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   crp				crp‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   fontoam_sys		ƒtƒHƒ“ƒgƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   ret_fontoam		¶¬‚µ‚½ƒtƒHƒ“ƒgOAM‘ã“üæ
- * @param   ret_cma			¶¬‚µ‚½ƒtƒHƒ“ƒgOAM‚ÌƒLƒƒƒ‰—Ìˆæî•ñ‘ã“üæ
- * @param   str				•¶Žš—ñ
- * @param   font_type		ƒtƒHƒ“ƒgƒ^ƒCƒv(FONT_SYSTEM“™)
- * @param   color			ƒtƒHƒ“ƒgƒJƒ‰[\¬
- * @param   pal_offset		ƒpƒŒƒbƒg”Ô†ƒIƒtƒZƒbƒg
- * @param   pal_id			“o˜^ŠJŽnƒpƒŒƒbƒgID
- * @param   x				À•WX
- * @param   y				À•WY
- * @param   pos_center  	FALSE(X¶’[À•W) or TRUE(X’†SÀ•W)
- * @param   bg_pri			BGƒvƒ‰ƒCƒIƒŠƒeƒB
- * @param   soft_pri		ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
- * @param   y_char_len		BMP‚ÌYƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)
+ * @param   bgl				BGLã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   crp				crpã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   fontoam_sys		ãƒ•ã‚©ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   ret_fontoam		ç”Ÿæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆOAMä»£å…¥å…ˆ
+ * @param   ret_cma			ç”Ÿæˆã—ãŸãƒ•ã‚©ãƒ³ãƒˆOAMã®ã‚­ãƒ£ãƒ©é ˜åŸŸæƒ…å ±ä»£å…¥å…ˆ
+ * @param   str				æ–‡å­—åˆ—
+ * @param   font_type		ãƒ•ã‚©ãƒ³ãƒˆã‚¿ã‚¤ãƒ—(FONT_SYSTEMç­‰)
+ * @param   color			ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼æ§‹æˆ
+ * @param   pal_offset		ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param   pal_id			ç™»éŒ²é–‹å§‹ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param   x				åº§æ¨™X
+ * @param   y				åº§æ¨™Y
+ * @param   pos_center  	FALSE(Xå·¦ç«¯åº§æ¨™) or TRUE(Xä¸­å¿ƒåº§æ¨™)
+ * @param   bg_pri			BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @param   soft_pri		ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @param   y_char_len		BMPã®Yã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)
  */
 //--------------------------------------------------------------
 void BalloonTool_FontOamCreate(GF_BGL_INI *bgl, CATS_RES_PTR crp, 
@@ -3042,7 +3042,7 @@ void BalloonTool_FontOamCreate(GF_BGL_INI *bgl, CATS_RES_PTR crp,
 	int font_len, char_len;
 	int margin = 0;
 	
-	//•¶Žš—ñ‚Ìƒhƒbƒg•‚©‚çAŽg—p‚·‚éƒLƒƒƒ‰”‚ðŽZo‚·‚é
+	//æ–‡å­—åˆ—ã®ãƒ‰ãƒƒãƒˆå¹…ã‹ã‚‰ã€ä½¿ç”¨ã™ã‚‹ã‚­ãƒ£ãƒ©æ•°ã‚’ç®—å‡ºã™ã‚‹
 	{
 		font_len = FontProc_GetPrintMaxLineWidth(font_type, str, margin);
 		char_len = font_len / 8;
@@ -3051,7 +3051,7 @@ void BalloonTool_FontOamCreate(GF_BGL_INI *bgl, CATS_RES_PTR crp,
 		}
 	}
 
-	//BMPì¬
+	//BMPä½œæˆ
 	{
 		GF_BGL_BmpWinInit(&bmpwin);
 		GF_BGL_BmpWinObjAdd(bgl, &bmpwin, char_len, y_char_len, 0, 0);
@@ -3063,7 +3063,7 @@ void BalloonTool_FontOamCreate(GF_BGL_INI *bgl, CATS_RES_PTR crp,
 	vram_size = FONTOAM_NeedCharSize(&bmpwin, NNS_G2D_VRAM_TYPE_2DMAIN,  HEAPID_BALLOON);
 	CharVramAreaAlloc(vram_size, CHARM_CONT_AREACONT, NNS_G2D_VRAM_TYPE_2DMAIN, &cma);
 	
-	//À•WˆÊ’uC³
+	//åº§æ¨™ä½ç½®ä¿®æ­£
 	if(pos_center == TRUE){
 		x -= font_len / 2;
 	}
@@ -3088,7 +3088,7 @@ void BalloonTool_FontOamCreate(GF_BGL_INI *bgl, CATS_RES_PTR crp,
 	}
 	FONTOAM_SetMat(fontoam, x, y);
 	
-	//‰ð•úˆ—
+	//è§£æ”¾å‡¦ç†
 	GF_BGL_BmpWinDel(&bmpwin);
 	
 	fontact->fontoam = fontoam;
@@ -3098,8 +3098,8 @@ void BalloonTool_FontOamCreate(GF_BGL_INI *bgl, CATS_RES_PTR crp,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒtƒHƒ“ƒgOAM‚ðíœ‚·‚é
- * @param   fontact		ƒtƒHƒ“ƒgƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ãƒ•ã‚©ãƒ³ãƒˆOAMã‚’å‰Šé™¤ã™ã‚‹
+ * @param   fontact		ãƒ•ã‚©ãƒ³ãƒˆã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Balloon_FontOamDelete(BALLOON_FONTACT *fontact)
@@ -3112,15 +3112,15 @@ void Balloon_FontOamDelete(BALLOON_FONTACT *fontact)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒEƒ“ƒ^[‚ÌÀ•WXV
+ * @brief   ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®åº§æ¨™æ›´æ–°
  *
- * @param   counter		ƒJƒEƒ“ƒ^[“®ì§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   counter		ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Balloon_CounterPosUpdate(BALLOON_COUNTER *counter)
 {
 	int i, dot_pos;
-	int act_len = 16*5;	//1‚Â‚ÌƒAƒNƒ^[‚Ì’·‚³
+	int act_len = 16*5;	//1ã¤ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã®é•·ã•
 	int x, y, y0, y1;
 	
 	for(i = 0; i < BALLOON_COUNTER_KETA_MAX; i++){
@@ -3149,10 +3149,10 @@ void Balloon_CounterPosUpdate(BALLOON_COUNTER *counter)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒEƒ“ƒ^[XVˆ—
+ * @brief   ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼æ›´æ–°å‡¦ç†
  *
  * @param   game		
- * @param   counter		ƒJƒEƒ“ƒ^[“®ì§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   counter		ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Balloon_CounterUpdate(BALLOON_GAME_PTR game, BALLOON_COUNTER *counter)
@@ -3188,10 +3188,10 @@ void Balloon_CounterUpdate(BALLOON_GAME_PTR game, BALLOON_COUNTER *counter)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒEƒ“ƒ^[‚ÌŽŸ‚É•\Ž¦‚³‚¹‚é”’l‚ðƒŠƒNƒGƒXƒg‚µ‚Ä‚¨‚­
+ * @brief   ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®æ¬¡ã«è¡¨ç¤ºã•ã›ã‚‹æ•°å€¤ã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆã—ã¦ãŠã
  *
  * @param   counter		
- * @param   next_number		”’l
+ * @param   next_number		æ•°å€¤
  */
 //--------------------------------------------------------------
 void Balloon_CounterNextNumberSet(BALLOON_COUNTER *counter, int next_number)
@@ -3199,7 +3199,7 @@ void Balloon_CounterNextNumberSet(BALLOON_COUNTER *counter, int next_number)
 	int i, div_num, number;
 	
 	div_num = 100000;
-	GF_ASSERT(BALLOON_COUNTER_KETA_MAX == 6);	//keta‚ª•Ï‚í‚Á‚Ä‚¢‚½‚çdiv_num‚Ì‰Šú’l‚à•ÏX
+	GF_ASSERT(BALLOON_COUNTER_KETA_MAX == 6);	//ketaãŒå¤‰ã‚ã£ã¦ã„ãŸã‚‰div_numã®åˆæœŸå€¤ã‚‚å¤‰æ›´
 	
 	for(i = 0; i < BALLOON_COUNTER_KETA_MAX; i++){
 		number = next_number / div_num;
@@ -3211,7 +3211,7 @@ void Balloon_CounterNextNumberSet(BALLOON_COUNTER *counter, int next_number)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒEƒ“ƒ^[‚Ì•\Ž¦‚³‚¹‚é”’l‚ðƒŠƒNƒGƒXƒg‚ª‚©‚©‚Á‚Ä‚¢‚é”’l‚ÅXV‚·‚é
+ * @brief   ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®è¡¨ç¤ºã•ã›ã‚‹æ•°å€¤ã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‹ã‹ã£ã¦ã„ã‚‹æ•°å€¤ã§æ›´æ–°ã™ã‚‹
  *
  * @param   counter		
  */
@@ -3230,11 +3230,11 @@ static void Balloon_CounterLastNumberSet(BALLOON_COUNTER *counter)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒEƒ“ƒ^[‚Ì”’l‚ª•\Ž¦”’l‚Æˆê’v‚µ‚Ä‚¢‚é‚©Šm”F
+ * @brief   ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®æ•°å€¤ãŒè¡¨ç¤ºæ•°å€¤ã¨ä¸€è‡´ã—ã¦ã„ã‚‹ã‹ç¢ºèª
  *
  * @param   counter		
  *
- * @retval  TRUE:ˆê’vB@FALSEF•sˆê’v
+ * @retval  TRUE:ä¸€è‡´ã€‚ã€€FALSEï¼šä¸ä¸€è‡´
  */
 //--------------------------------------------------------------
 static BOOL Balloon_CounterAgreeCheck(BALLOON_COUNTER *counter)
@@ -3251,12 +3251,12 @@ static BOOL Balloon_CounterAgreeCheck(BALLOON_COUNTER *counter)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒEƒ“ƒ^[‰ñ“]ˆ—
+ * @brief   ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼å›žè»¢å‡¦ç†
  *
  * @param   counter		
  *
- * @retval  TRUEF‰ñ“]“®ìI—¹
- * @retval  FALSEF‰ñ“]“®ìŒp‘±’†
+ * @retval  TRUEï¼šå›žè»¢å‹•ä½œçµ‚äº†
+ * @retval  FALSEï¼šå›žè»¢å‹•ä½œç¶™ç¶šä¸­
  */
 //--------------------------------------------------------------
 static BOOL Balloon_CounterRotate(BALLOON_COUNTER *counter)
@@ -3289,13 +3289,13 @@ static BOOL Balloon_CounterRotate(BALLOON_COUNTER *counter)
 		
 		before_number = counter->number[pos];
 		counter->number[pos] += COUNTER_SPEED;
-		over_last_number = counter->last_number[pos] + 16*10;	//Œ…ã‚ª‚èƒ`ƒFƒbƒN—p
+		over_last_number = counter->last_number[pos] + 16*10;	//æ¡ä¸ŠãŒã‚Šãƒã‚§ãƒƒã‚¯ç”¨
 
 		if((before_number <= counter->last_number[pos] 
 				&& counter->number[pos] >= counter->last_number[pos])
 				|| (before_number <= over_last_number 
 				&& counter->number[pos] >= over_last_number)){
-			//ˆêŽü‚µ‚½
+			//ä¸€å‘¨ã—ãŸ
 			if(counter->rotate_count[pos] < COUNTER_ROTATE_NUM){
 				counter->rotate_count[pos]++;
 			}
@@ -3316,18 +3316,18 @@ static BOOL Balloon_CounterRotate(BALLOON_COUNTER *counter)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒEƒ“ƒ^[ƒEƒBƒ“ƒhƒEƒAƒNƒ^[¶¬
+ * @brief   ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
  *
  * @param   game		
  *
- * @retval  ¶¬‚µ‚½”j—ôƒAƒNƒ^[‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã—ãŸç ´è£‚ã‚¢ã‚¯ã‚¿ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 CATS_ACT_PTR CounterWindow_ActorCreate(BALLOON_GAME_PTR game)
 {
 	CATS_ACT_PTR cap;
 
-	//-- ƒAƒNƒ^[¶¬ --//
+	//-- ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ --//
 	cap = CATS_ObjectAdd_S(game->csp, game->crp, &CounterWindowObjParam);
 	CATS_ObjectUpdate(cap->act);
 	return cap;
@@ -3335,14 +3335,14 @@ CATS_ACT_PTR CounterWindow_ActorCreate(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒEƒ“ƒ^[ƒ_ƒ~[ƒAƒNƒ^[¶¬
+ * @brief   ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
  *
  * @param   game		
  */
 //--------------------------------------------------------------
 void CounterDummyNumber_ActorCreate(BALLOON_GAME_PTR game)
 {
-	//-- ƒJƒEƒ“ƒ^[ --//
+	//-- ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ --//
 	STRBUF *str0;
 	int i, x, y;
 	u32 number;
@@ -3365,7 +3365,7 @@ void CounterDummyNumber_ActorCreate(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJƒEƒ“ƒ^[ƒ_ƒ~[ƒAƒNƒ^[íœ
+ * @brief   ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãƒ€ãƒŸãƒ¼ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  *
  * @param   game		
  */
@@ -3383,7 +3383,7 @@ void CounterDummyNumber_ActorDelete(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   •—‘DƒAƒCƒRƒ“‚ð‘S‚Äíœ‚·‚é
+ * @brief   é¢¨èˆ¹ã‚¢ã‚¤ã‚³ãƒ³ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
  *
  * @param   game		
  */
@@ -3395,7 +3395,7 @@ void CounterWindow_ActorDelete(BALLOON_GAME_PTR game, CATS_ACT_PTR cap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒyƒ“ƒAƒNƒ^[¶¬
+ * @brief   ã‚¿ãƒƒãƒãƒšãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
  *
  * @param   game		
  */
@@ -3413,7 +3413,7 @@ CATS_ACT_PTR TouchPen_ActorCreate(BALLOON_GAME_PTR game)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒyƒ“ƒAƒNƒ^[‚ð‘S‚Äíœ‚·‚é
+ * @brief   ã‚¿ãƒƒãƒãƒšãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹
  *
  * @param   game		
  */
@@ -3425,13 +3425,13 @@ void TouchPen_ActorDelete(BALLOON_GAME_PTR game, CATS_ACT_PTR cap)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ^ƒbƒ`ƒyƒ“ƒfƒ‚“®ì
+ * @brief   ã‚¿ãƒƒãƒãƒšãƒ³ãƒ‡ãƒ¢å‹•ä½œ
  *
  * @param   game		
- * @param   pen			ƒ^ƒbƒ`ƒyƒ““®ì§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   pen			ã‚¿ãƒƒãƒãƒšãƒ³å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:ƒfƒ‚I—¹
- * @retval  FALSE:ƒfƒ‚Œp‘±’†
+ * @retval  TRUE:ãƒ‡ãƒ¢çµ‚äº†
+ * @retval  FALSE:ãƒ‡ãƒ¢ç¶™ç¶šä¸­
  */
 //--------------------------------------------------------------
 BOOL BalloonTool_TouchPenDemoMove(BALLOON_GAME_PTR game, BALLOON_PEN *pen)
@@ -3488,7 +3488,7 @@ BOOL BalloonTool_TouchPenDemoMove(BALLOON_GAME_PTR game, BALLOON_PEN *pen)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[‚Ì’…’nŽž‚Ì‰ŒƒAƒNƒ^[¶¬
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®ç€åœ°æ™‚ã®ç…™ã‚¢ã‚¯ã‚¿ãƒ¼ç”Ÿæˆ
  *
  * @param   game		
  */
@@ -3502,7 +3502,7 @@ static void BoosterLandSmoke_ActorCreate(BALLOON_GAME_PTR game, BOOSTER_LAND_SMO
 		cap = CATS_ObjectAdd_S(game->csp, game->crp, &BoosterLandSmokeObjParam);
 	//	CATS_ObjectPosSetCap_SubSurface(cap, x, y, BALLOON_SUB_ACTOR_DISTANCE);
 		CATS_ObjectAnimeSeqSetCap(cap, MIXOBJ_ANMSEQ_BOOSTER_LAND_SMOKE);
-		CATS_ObjectObjModeSetCap(cap, GX_OAM_MODE_XLU);	//”¼“§–¾ON
+		CATS_ObjectObjModeSetCap(cap, GX_OAM_MODE_XLU);	//åŠé€æ˜ŽON
 		CATS_ObjectEnableCap(cap, CATS_ENABLE_FALSE);
 		CATS_ObjectUpdate(cap->act);
 		
@@ -3512,7 +3512,7 @@ static void BoosterLandSmoke_ActorCreate(BALLOON_GAME_PTR game, BOOSTER_LAND_SMO
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[‚Ì’…’nŽž‚Ì‰ŒƒAƒNƒ^[íœ
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ã®ç€åœ°æ™‚ã®ç…™ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤
  *
  * @param   game		
  */
@@ -3528,11 +3528,11 @@ static void BoosterLandSmoke_ActorDelete(BALLOON_GAME_PTR game, BOOSTER_LAND_SMO
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[’…’n‰Œ‚Ì“®ì‚ðƒŠƒNƒGƒXƒg
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç€åœ°ç…™ã®å‹•ä½œã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
  * @param   game		
- * @param   move			ƒu[ƒXƒ^[“®ì§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   land_smoke		’…’n‰Œ“®ì§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   move			ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   land_smoke		ç€åœ°ç…™å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BoosterLandSmoke_SmokeReq(BALLOON_GAME_PTR game, BOOSTER_MOVE *move, BOOSTER_LAND_SMOKE *land_smoke)
@@ -3548,7 +3548,7 @@ static void BoosterLandSmoke_SmokeReq(BALLOON_GAME_PTR game, BOOSTER_MOVE *move,
 		CATS_ObjectAnimeSeqSetCap(land_smoke->cap[i], 
 			//MIXOBJ_ANMSEQ_BOOSTER_LAND_SMOKE + gf_rand() % BOOSTER_LAND_SMOKE_ANM_PATERN);
 			MIXOBJ_ANMSEQ_BOOSTER_LAND_SMOKE);
-		CATS_ObjectObjModeSetCap(land_smoke->cap[i], GX_OAM_MODE_XLU);	//”¼“§–¾ON
+		CATS_ObjectObjModeSetCap(land_smoke->cap[i], GX_OAM_MODE_XLU);	//åŠé€æ˜ŽON
 		CATS_ObjectEnableCap(land_smoke->cap[i], CATS_ENABLE_TRUE);
 		//CATS_ObjectUpdate(land_smoke->cap[i]->act);
 
@@ -3564,11 +3564,11 @@ static void BoosterLandSmoke_SmokeReq(BALLOON_GAME_PTR game, BOOSTER_MOVE *move,
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒu[ƒXƒ^[’…’n‰Œ‚ÌXVˆ—
+ * @brief   ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼ç€åœ°ç…™ã®æ›´æ–°å‡¦ç†
  *
  * @param   game			
- * @param   move			ƒu[ƒXƒ^[“®ì§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   land_smoke		’…’n‰Œ“®ì§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   move			ãƒ–ãƒ¼ã‚¹ã‚¿ãƒ¼å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   land_smoke		ç€åœ°ç…™å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BoosterLandSmoke_Update(BALLOON_GAME_PTR game, BOOSTER_MOVE *move, BOOSTER_LAND_SMOKE *land_smoke)

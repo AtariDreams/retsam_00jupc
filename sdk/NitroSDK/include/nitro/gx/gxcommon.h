@@ -15,10 +15,10 @@
   Copyright fix
 
   Revision 1.41  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL В╠Ф╗ТшХФХкВ╔ SDK_WIN32 В┼В╠Ф╗ТшВрТ╟Й┴
+  SDK_FROM_TOOL уБохИдхоЪщГихИЖуБл SDK_WIN32 уБзуБохИдхоЪуВВш┐╜хКа
 
   Revision 1.40  2005/03/01 01:57:00  yosizaki
-  copyright В╠ФNВЁПCР│.
+  copyright уБох╣┤уВТф┐оцнг.
 
   Revision 1.39  2005/02/28 05:26:13  yosizaki
   do-indent.

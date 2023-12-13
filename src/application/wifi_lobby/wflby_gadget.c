@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_gadget.c
- *	@brief		ƒKƒWƒFƒbƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒVƒXƒeƒ€
+ *	@brief		ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2008.01.21
  *
@@ -24,80 +24,80 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 #ifdef PM_DEBUG
-//#define WFLBY_DEBUG_GADGET_ALL_PUT	// R‚ð‰Ÿ‚·‚Æ‘Sˆõ‚ªƒ^ƒbƒ`ƒgƒC‚ð–Â‚ç‚·
+//#define WFLBY_DEBUG_GADGET_ALL_PUT	// Rã‚’æŠ¼ã™ã¨å…¨å“¡ãŒã‚¿ãƒƒãƒãƒˆã‚¤ã‚’é³´ã‚‰ã™
 #endif
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒgƒIƒuƒWƒFƒf[ƒ^
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
 //=====================================
 enum {
-	WFLBY_GADGET_OBJ_RIPPLE00,	// ƒŠƒbƒvƒ‹Ô
-	WFLBY_GADGET_OBJ_RIPPLE01,	// ƒŠƒbƒvƒ‹‰©
-	WFLBY_GADGET_OBJ_RIPPLE02,	// ƒŠƒbƒvƒ‹Â
-	WFLBY_GADGET_OBJ_SIGNAL00,	// ƒVƒOƒiƒ‹
-	WFLBY_GADGET_OBJ_SIGNAL01,	// ƒVƒOƒiƒ‹
-	WFLBY_GADGET_OBJ_SIGNAL02,	// ƒVƒOƒiƒ‹
-	WFLBY_GADGET_OBJ_SWING00,	// ƒXƒEƒBƒ“ƒO
-	WFLBY_GADGET_OBJ_SWING01,	// ƒXƒEƒBƒ“ƒO
-	WFLBY_GADGET_OBJ_SWING02,	// ƒXƒEƒBƒ“ƒO
-	WFLBY_GADGET_OBJ_CRACLCER00,// ƒNƒ‰ƒbƒJ[
-	WFLBY_GADGET_OBJ_CRACLCER01,// ƒNƒ‰ƒbƒJ[
-	WFLBY_GADGET_OBJ_CRACLCER02,// ƒNƒ‰ƒbƒJ[
-	WFLBY_GADGET_OBJ_FLASH00,	// ƒtƒ‰ƒbƒVƒ…
-	WFLBY_GADGET_OBJ_SPARKLE00,	// ƒXƒp[ƒNƒ‹Ô
-	WFLBY_GADGET_OBJ_SPARKLE01,	// ƒXƒp[ƒNƒ‹‰©
-	WFLBY_GADGET_OBJ_SPARKLE02,	// ƒXƒp[ƒNƒ‹Â
-	WFLBY_GADGET_OBJ_BALLOON00,	// •—‘DÔ
-	WFLBY_GADGET_OBJ_BALLOON01,	// •—‘D‰©
-	WFLBY_GADGET_OBJ_BALLOON02,	// •—‘DÂ
-	WFLBY_GADGET_OBJ_ONPU00_R,	// ‰¹•„A
-	WFLBY_GADGET_OBJ_ONPU01_R,	// ‰¹•„B
-	WFLBY_GADGET_OBJ_ONPU02_R,	// ‰¹•„C
-	WFLBY_GADGET_OBJ_ONPU03_R,	// ‰¹•„D
-	WFLBY_GADGET_OBJ_ONPU04_R,	// ‰¹•„E
-	WFLBY_GADGET_OBJ_ONPU05_R,	// ‰¹•„F
-	WFLBY_GADGET_OBJ_ONPU00_Y,	// ‰¹•„A
-	WFLBY_GADGET_OBJ_ONPU01_Y,	// ‰¹•„B
-	WFLBY_GADGET_OBJ_ONPU02_Y,	// ‰¹•„C
-	WFLBY_GADGET_OBJ_ONPU03_Y,	// ‰¹•„D
-	WFLBY_GADGET_OBJ_ONPU04_Y,	// ‰¹•„E
-	WFLBY_GADGET_OBJ_ONPU05_Y,	// ‰¹•„F
-	WFLBY_GADGET_OBJ_ONPU00_B,	// ‰¹•„A
-	WFLBY_GADGET_OBJ_ONPU01_B,	// ‰¹•„B
-	WFLBY_GADGET_OBJ_ONPU02_B,	// ‰¹•„C
-	WFLBY_GADGET_OBJ_ONPU03_B,	// ‰¹•„D
-	WFLBY_GADGET_OBJ_ONPU04_B,	// ‰¹•„E
-	WFLBY_GADGET_OBJ_ONPU05_B,	// ‰¹•„F
-	WFLBY_GADGET_OBJ_SPARK00,	// ‚¢‚È‚¸‚Ü¶
-	WFLBY_GADGET_OBJ_SPARK01,	// ‚¢‚È‚¸‚Ü‰E
+	WFLBY_GADGET_OBJ_RIPPLE00,	// ãƒªãƒƒãƒ—ãƒ«èµ¤
+	WFLBY_GADGET_OBJ_RIPPLE01,	// ãƒªãƒƒãƒ—ãƒ«é»„
+	WFLBY_GADGET_OBJ_RIPPLE02,	// ãƒªãƒƒãƒ—ãƒ«é’
+	WFLBY_GADGET_OBJ_SIGNAL00,	// ã‚·ã‚°ãƒŠãƒ«
+	WFLBY_GADGET_OBJ_SIGNAL01,	// ã‚·ã‚°ãƒŠãƒ«
+	WFLBY_GADGET_OBJ_SIGNAL02,	// ã‚·ã‚°ãƒŠãƒ«
+	WFLBY_GADGET_OBJ_SWING00,	// ã‚¹ã‚¦ã‚£ãƒ³ã‚°
+	WFLBY_GADGET_OBJ_SWING01,	// ã‚¹ã‚¦ã‚£ãƒ³ã‚°
+	WFLBY_GADGET_OBJ_SWING02,	// ã‚¹ã‚¦ã‚£ãƒ³ã‚°
+	WFLBY_GADGET_OBJ_CRACLCER00,// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼
+	WFLBY_GADGET_OBJ_CRACLCER01,// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼
+	WFLBY_GADGET_OBJ_CRACLCER02,// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼
+	WFLBY_GADGET_OBJ_FLASH00,	// ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
+	WFLBY_GADGET_OBJ_SPARKLE00,	// ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«èµ¤
+	WFLBY_GADGET_OBJ_SPARKLE01,	// ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«é»„
+	WFLBY_GADGET_OBJ_SPARKLE02,	// ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«é’
+	WFLBY_GADGET_OBJ_BALLOON00,	// é¢¨èˆ¹èµ¤
+	WFLBY_GADGET_OBJ_BALLOON01,	// é¢¨èˆ¹é»„
+	WFLBY_GADGET_OBJ_BALLOON02,	// é¢¨èˆ¹é’
+	WFLBY_GADGET_OBJ_ONPU00_R,	// éŸ³ç¬¦A
+	WFLBY_GADGET_OBJ_ONPU01_R,	// éŸ³ç¬¦B
+	WFLBY_GADGET_OBJ_ONPU02_R,	// éŸ³ç¬¦C
+	WFLBY_GADGET_OBJ_ONPU03_R,	// éŸ³ç¬¦D
+	WFLBY_GADGET_OBJ_ONPU04_R,	// éŸ³ç¬¦E
+	WFLBY_GADGET_OBJ_ONPU05_R,	// éŸ³ç¬¦F
+	WFLBY_GADGET_OBJ_ONPU00_Y,	// éŸ³ç¬¦A
+	WFLBY_GADGET_OBJ_ONPU01_Y,	// éŸ³ç¬¦B
+	WFLBY_GADGET_OBJ_ONPU02_Y,	// éŸ³ç¬¦C
+	WFLBY_GADGET_OBJ_ONPU03_Y,	// éŸ³ç¬¦D
+	WFLBY_GADGET_OBJ_ONPU04_Y,	// éŸ³ç¬¦E
+	WFLBY_GADGET_OBJ_ONPU05_Y,	// éŸ³ç¬¦F
+	WFLBY_GADGET_OBJ_ONPU00_B,	// éŸ³ç¬¦A
+	WFLBY_GADGET_OBJ_ONPU01_B,	// éŸ³ç¬¦B
+	WFLBY_GADGET_OBJ_ONPU02_B,	// éŸ³ç¬¦C
+	WFLBY_GADGET_OBJ_ONPU03_B,	// éŸ³ç¬¦D
+	WFLBY_GADGET_OBJ_ONPU04_B,	// éŸ³ç¬¦E
+	WFLBY_GADGET_OBJ_ONPU05_B,	// éŸ³ç¬¦F
+	WFLBY_GADGET_OBJ_SPARK00,	// ã„ãªãšã¾å·¦
+	WFLBY_GADGET_OBJ_SPARK01,	// ã„ãªãšã¾å³
 	WFLBY_GADGET_OBJ_NUM,
 } ;
 
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒgƒ‚ƒfƒ‹”
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¢ãƒ‡ãƒ«æ•°
 //=====================================
 enum {
 	WFLBY_GADGET_MDL_RIPPLER64x64,
@@ -120,7 +120,7 @@ enum {
 #define WFLBY_GADGET_MDL_FILE_START		(NARC_wifi_lobby_other_ripple_r_nsbmd)
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒgƒeƒNƒXƒ`ƒƒ”
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£æ•°
 //=====================================
 enum {
 	WFLBY_GADGET_TEX_RIPPLE0,
@@ -167,7 +167,7 @@ enum {
 #define WFLBY_GADGET_TEX_FILE_START		(NARC_wifi_lobby_other_ripple_r_nsbtx)
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒgƒAƒjƒ”
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡æ•°
 //=====================================
 enum {
 	WFLBY_GADGET_ANM_RIPPLE1_ICA,
@@ -194,7 +194,7 @@ enum {
 
 
 //-------------------------------------
-///	‚RDMDLƒIƒuƒWƒFIDŠJŽn”Ô†
+///	ï¼“DMDLã‚ªãƒ–ã‚¸ã‚§IDé–‹å§‹ç•ªå·
 //=====================================
 #define WFLBY_GADGET_3DMDL_OBJID	( 40 )
 
@@ -204,27 +204,27 @@ enum {
 
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒgƒAƒjƒÅ‘å”
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡æœ€å¤§æ•°
 //=====================================
 #define WFLBY_GADGET_ANM_MAX	( 2 )
 
 #define WFLBY_GADGET_ANM_SPEED	( FX32_ONE*2 )
 
 //-------------------------------------
-///	‚PƒKƒWƒFƒbƒg‚Å“¯Žž‚É•\Ž¦‚·‚éƒIƒuƒWƒFƒNƒg‚ÌÅ‘å’l
+///	ï¼‘ã‚¬ã‚¸ã‚§ãƒƒãƒˆã§åŒæ™‚ã«è¡¨ç¤ºã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æœ€å¤§å€¤
 //=====================================
 #define WFLBY_GADGET_OBJ_MAX	( 18 )
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒg‚ÌY‚‚³
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã®Yé«˜ã•
 //=====================================
-#define WFLBY_GADGET_FLOOR_Y	( FX32_CONST(8) )	// °
-#define WFLBY_GADGET_AIR_Y		( FX32_CONST(16) )	// ‹ó’†
+#define WFLBY_GADGET_FLOOR_Y	( FX32_CONST(8) )	// åºŠ
+#define WFLBY_GADGET_AIR_Y		( FX32_CONST(16) )	// ç©ºä¸­
 
 
 
 //-------------------------------------
-///	ƒNƒ‰ƒbƒJ[
+///	ã‚¯ãƒ©ãƒƒã‚«ãƒ¼
 //=====================================
 enum{
 	WFLBY_GADGET_CRACKEROBJ_FLASH,
@@ -252,7 +252,7 @@ enum{
 
 
 //-------------------------------------
-///	•—‘D
+///	é¢¨èˆ¹
 //=====================================
 enum{
 	WFLBY_GADGET_BALLOON_INIT,
@@ -266,50 +266,50 @@ enum{
 	WFLBY_GADGET_BALLOON_OBJ_NUM,
 };
 enum{
-	WFLBY_GADGET_BALLOON_DOWNSEQ_BATA_WAIT,		// ƒoƒ^ƒoƒ^ŠJŽn‚Ü‚¿
-	WFLBY_GADGET_BALLOON_DOWNSEQ_BATA_START,	// ƒoƒ^ƒoƒ^ŠJŽn
-	WFLBY_GADGET_BALLOON_DOWNSEQ_BATA_MAIN,		// ƒoƒ^ƒoƒ^ƒƒCƒ“
-	WFLBY_GADGET_BALLOON_DOWNSEQ_DOWN,			// —Ž‚¿‚é
-	WFLBY_GADGET_BALLOON_DOWNSEQ_DON_MAIN,		// ƒhƒ“ƒƒCƒ“
+	WFLBY_GADGET_BALLOON_DOWNSEQ_BATA_WAIT,		// ãƒã‚¿ãƒã‚¿é–‹å§‹ã¾ã¡
+	WFLBY_GADGET_BALLOON_DOWNSEQ_BATA_START,	// ãƒã‚¿ãƒã‚¿é–‹å§‹
+	WFLBY_GADGET_BALLOON_DOWNSEQ_BATA_MAIN,		// ãƒã‚¿ãƒã‚¿ãƒ¡ã‚¤ãƒ³
+	WFLBY_GADGET_BALLOON_DOWNSEQ_DOWN,			// è½ã¡ã‚‹
+	WFLBY_GADGET_BALLOON_DOWNSEQ_DON_MAIN,		// ãƒ‰ãƒ³ãƒ¡ã‚¤ãƒ³
 };
 enum{
-	WFLBY_GADGET_BALLOON_SEQ_UP,		// ã‚è
-	WFLBY_GADGET_BALLOON_SEQ_DOWN,		// ‚­‚¾‚è
+	WFLBY_GADGET_BALLOON_SEQ_UP,		// ä¸Šã‚Š
+	WFLBY_GADGET_BALLOON_SEQ_DOWN,		// ãã ã‚Š
 };
 
-// ‚‚³‚ÌˆÚ“®‹——£
+// é«˜ã•ã®ç§»å‹•è·é›¢
 static const u8	sc_WFLBY_GADGET_BALLOON_OBJ_UPDIS[ WFLBY_GADGET_BALLOON_OBJ_NUM ] = {
 	48, 84,	128, 
 };
-#define WFLBY_GADGET_BALLOON_OBJ_UPSIDEDIS		( 8 )	// —h‚ê•
-#define WFLBY_GADGET_BALLOON_OBJ_UPROTSPEED		( 10*182 )// ‰ñ“]ƒXƒs[ƒh
-#define WFLBY_GADGET_BALLOON_OBJ_UP_SYNC		( 108 )	// ˆÚ“®ƒVƒ“ƒN”
-#define WFLBY_GADGET_BALLOON_OBJ_DOWN_SYNC		( 10 )	// ˆÚ“®ƒVƒ“ƒN”
-#define WFLBY_GADGET_BALLOON_OBJ_BATA_SWAIT		( 8 )	// ƒoƒ^ƒoƒ^‚·‚é‚Ì‚ªŽn‚Ü‚é‚Ü‚Å‚ÌƒVƒ“ƒN”
-#define WFLBY_GADGET_BALLOON_OBJ_BATA_WAIT		( 16 )	// ƒoƒ^ƒoƒ^‚·‚éƒVƒ“ƒN”
-#define WFLBY_GADGET_BALLOON_OBJ_DON_DIS		( FX32_CONST(8) )	//@DON‚ÆˆÚ“®‚·‚é‹——£ 
-#define WFLBY_GADGET_BALLOON_OBJ_DON_SYNC		( 10 )	// ƒoƒ^ƒoƒ^‚·‚éƒVƒ“ƒN”
+#define WFLBY_GADGET_BALLOON_OBJ_UPSIDEDIS		( 8 )	// æºã‚Œå¹…
+#define WFLBY_GADGET_BALLOON_OBJ_UPROTSPEED		( 10*182 )// å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define WFLBY_GADGET_BALLOON_OBJ_UP_SYNC		( 108 )	// ç§»å‹•ã‚·ãƒ³ã‚¯æ•°
+#define WFLBY_GADGET_BALLOON_OBJ_DOWN_SYNC		( 10 )	// ç§»å‹•ã‚·ãƒ³ã‚¯æ•°
+#define WFLBY_GADGET_BALLOON_OBJ_BATA_SWAIT		( 8 )	// ãƒã‚¿ãƒã‚¿ã™ã‚‹ã®ãŒå§‹ã¾ã‚‹ã¾ã§ã®ã‚·ãƒ³ã‚¯æ•°
+#define WFLBY_GADGET_BALLOON_OBJ_BATA_WAIT		( 16 )	// ãƒã‚¿ãƒã‚¿ã™ã‚‹ã‚·ãƒ³ã‚¯æ•°
+#define WFLBY_GADGET_BALLOON_OBJ_DON_DIS		( FX32_CONST(8) )	//ã€€DONã¨ç§»å‹•ã™ã‚‹è·é›¢ 
+#define WFLBY_GADGET_BALLOON_OBJ_DON_SYNC		( 10 )	// ãƒã‚¿ãƒã‚¿ã™ã‚‹ã‚·ãƒ³ã‚¯æ•°
 static const WF2DMAP_POS sc_WFLBY_GADGET_BALLOON_OBJ_POS[ WFLBY_GADGET_BALLOON_OBJ_NUM ] = {
-	{  2, 56 },		// ¶
-	{  14, 56 },	// ‰E
-	{   8, 60 },	// ^‚ñ’†
+	{  2, 56 },		// å·¦
+	{  14, 56 },	// å³
+	{   8, 60 },	// çœŸã‚“ä¸­
 };
 #define WFLBY_GADGET_BALLOON_OBJ_POS_Z		( FX32_CONST(1) )
-// ‚‚³‚ÌˆÚ“®‹——£	‰®ª‚ ‚è‚Ìê‡
-#define WFLBY_GADGET_BALLOON_OBJ_ROOF_UPDIS			( 2 )	// ã‚é‹——£
-#define WFLBY_GADGET_BALLOON_OBJ_ROOF_UPSIDEDIS		( 0 )	// —h‚ê•
-#define WFLBY_GADGET_BALLOON_OBJ_ROOF_UPROTSPEED	( 10*182 )// ‰ñ“]ƒXƒs[ƒh
-#define WFLBY_GADGET_BALLOON_OBJ_ROOF_UP_SYNC		( 2 )	// ˆÚ“®ƒVƒ“ƒN”
-#define WFLBY_GADGET_BALLOON_OBJ_ROOF_DOWN_SYNC		( 1 )	// ˆÚ“®ƒVƒ“ƒN”
-#define WFLBY_GADGET_BALLOON_OBJ_ROOF_BATA_WAIT		( 8 )	// ƒoƒ^ƒoƒ^‚·‚éƒVƒ“ƒN”
+// é«˜ã•ã®ç§»å‹•è·é›¢	å±‹æ ¹ã‚ã‚Šã®å ´åˆ
+#define WFLBY_GADGET_BALLOON_OBJ_ROOF_UPDIS			( 2 )	// ä¸Šã‚‹è·é›¢
+#define WFLBY_GADGET_BALLOON_OBJ_ROOF_UPSIDEDIS		( 0 )	// æºã‚Œå¹…
+#define WFLBY_GADGET_BALLOON_OBJ_ROOF_UPROTSPEED	( 10*182 )// å›žè»¢ã‚¹ãƒ”ãƒ¼ãƒ‰
+#define WFLBY_GADGET_BALLOON_OBJ_ROOF_UP_SYNC		( 2 )	// ç§»å‹•ã‚·ãƒ³ã‚¯æ•°
+#define WFLBY_GADGET_BALLOON_OBJ_ROOF_DOWN_SYNC		( 1 )	// ç§»å‹•ã‚·ãƒ³ã‚¯æ•°
+#define WFLBY_GADGET_BALLOON_OBJ_ROOF_BATA_WAIT		( 8 )	// ãƒã‚¿ãƒã‚¿ã™ã‚‹ã‚·ãƒ³ã‚¯æ•°
 
 static const WF2DMAP_POS sc_WFLBY_GADGET_BALLOON_OBJ_ROOF_POS[ WFLBY_GADGET_BALLOON_OBJ_NUM ] = {
-	{  2, 44 },		// ¶
-	{  14, 44 },	// ‰E
-	{   8, 48 },	// ^‚ñ’†
+	{  2, 44 },		// å·¦
+	{  14, 44 },	// å³
+	{   8, 48 },	// çœŸã‚“ä¸­
 };
 #define WFLBY_GADGET_BALLOON_OBJ_ROOF_POS_Z		( -FX32_CONST(8) )
-// ƒKƒWƒFƒbƒgƒAƒjƒ’è”
+// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡å®šæ•°
 enum {
 	WFLBY_GADGET_BALLOON_ANM_CENTER,
 	WFLBY_GADGET_BALLOON_ANM_RIGHT,
@@ -321,7 +321,7 @@ enum {
 #define WFLBY_GADGET_BALLOON_ANM_WAIT	( 8 )
 #define WFLBY_GADGET_BALLOON_ANM_ONEFR	( FX32_ONE*2 )
 
-// •—‘D”ò‚ñ‚Å‚¢‚­‚Æ‚«‚Ì’è”
+// é¢¨èˆ¹é£›ã‚“ã§ã„ãã¨ãã®å®šæ•°
 #define WFLBY_GADGET_BALLOON_OBJ_WAIT	( WFLBY_GADGET_BALLOON_OBJ_DOWN_SYNC + WFLBY_GADGET_BALLOON_OBJ_BATA_WAIT )
 #define WFLBY_GADGET_BALLOON_OBJ_MOVE_Y	( FX32_CONST( 64 ) )
 #define WFLBY_GADGET_BALLOON_OBJ_MOVE_X	( FX32_CONST( 64 ) )
@@ -331,26 +331,26 @@ enum {
 
 
 //-------------------------------------
-///	ƒXƒp[ƒNƒ‹
+///	ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«
 //=====================================
-#define WFLBY_GADGET_SPARKLE_1ROOP_OBJNUM	(4)	// ‚P‰ñ‚Ì‰ñ“]‚Åo‚·ƒIƒuƒWƒF‚Ì”
-#define WFLBY_GADGET_SPARKLE_1ROOP_MAX		(4)	// ‰ñ“]‚ÌÅ‘å”
+#define WFLBY_GADGET_SPARKLE_1ROOP_OBJNUM	(4)	// ï¼‘å›žã®å›žè»¢ã§å‡ºã™ã‚ªãƒ–ã‚¸ã‚§ã®æ•°
+#define WFLBY_GADGET_SPARKLE_1ROOP_MAX		(4)	// å›žè»¢ã®æœ€å¤§æ•°
 #define WFLBY_GADGET_SPARKLE_OBJ_MAX		( WFLBY_GADGET_SPARKLE_1ROOP_MAX*WFLBY_GADGET_SPARKLE_1ROOP_OBJNUM )
 #define WFLBY_GADGET_SPARKLE_1ROOP_SYNC		(8)
-#define WFLBY_GADGET_SPARKLE_OFFS			( 10*FX32_ONE )	// Ž†‚Ó‚Ô‚«‚ª”ò‚ÔˆÊ’u
-#define WFLBY_GADGET_SPARKLE_CENTER_X		( 8*FX32_ONE )	// Ž†‚Ó‚Ô‚«‚ª”ò‚ÔˆÊ’u
-#define WFLBY_GADGET_SPARKLE_CENTER_Z		( -8*FX32_ONE )	// Ž†‚Ó‚Ô‚«‚ª”ò‚ÔˆÊ’u
-#define WFLBY_GADGET_SPARKLE_ANM_SYNC		( 14 )			// ‚PŽ†‚Ó‚Ô‚«ƒAƒjƒƒVƒ“ƒN”
-//  ŽålŒö‚©‚ç‚Ì‰ŠúˆÊ’u
+#define WFLBY_GADGET_SPARKLE_OFFS			( 10*FX32_ONE )	// ç´™ãµã¶ããŒé£›ã¶ä½ç½®
+#define WFLBY_GADGET_SPARKLE_CENTER_X		( 8*FX32_ONE )	// ç´™ãµã¶ããŒé£›ã¶ä½ç½®
+#define WFLBY_GADGET_SPARKLE_CENTER_Z		( -8*FX32_ONE )	// ç´™ãµã¶ããŒé£›ã¶ä½ç½®
+#define WFLBY_GADGET_SPARKLE_ANM_SYNC		( 14 )			// ï¼‘ç´™ãµã¶ãã‚¢ãƒ‹ãƒ¡ã‚·ãƒ³ã‚¯æ•°
+//  ä¸»äººå…¬ã‹ã‚‰ã®åˆæœŸä½ç½®
 static const VecFx32 sc_WFLBY_GADGET_SPARKLE_OFFS[ WFLBY_GADGET_SPARKLE_1ROOP_OBJNUM ] = {
 	{ WFLBY_GADGET_SPARKLE_CENTER_X, WFLBY_GADGET_AIR_Y, WFLBY_GADGET_SPARKLE_CENTER_Z+WFLBY_GADGET_SPARKLE_OFFS },
 	{ WFLBY_GADGET_SPARKLE_CENTER_X+WFLBY_GADGET_SPARKLE_OFFS, WFLBY_GADGET_AIR_Y, WFLBY_GADGET_SPARKLE_CENTER_Z },
 	{ WFLBY_GADGET_SPARKLE_CENTER_X, WFLBY_GADGET_AIR_Y, WFLBY_GADGET_SPARKLE_CENTER_Z-WFLBY_GADGET_SPARKLE_OFFS },
 	{ WFLBY_GADGET_SPARKLE_CENTER_X-WFLBY_GADGET_SPARKLE_OFFS, WFLBY_GADGET_AIR_Y, WFLBY_GADGET_SPARKLE_CENTER_Z },
 };
-//  ŽålŒö‚©‚ç‚ÌˆÚ“®’l
-#define WFLBY_GADGET_SPARKLE_MOVE_Y		( -FX32_CONST( 8 ) )	// Y•ûŒüˆÚ“®’l
-#define WFLBY_GADGET_SPARKLE_MOVE_DIS	( FX32_CONST( 8 ) )	// •½–ÊˆÚ“®’l
+//  ä¸»äººå…¬ã‹ã‚‰ã®ç§»å‹•å€¤
+#define WFLBY_GADGET_SPARKLE_MOVE_Y		( -FX32_CONST( 8 ) )	// Yæ–¹å‘ç§»å‹•å€¤
+#define WFLBY_GADGET_SPARKLE_MOVE_DIS	( FX32_CONST( 8 ) )	// å¹³é¢ç§»å‹•å€¤
 static const VecFx32 sc_WFLBY_GADGET_SPARKLE_MOVE[ WFLBY_GADGET_SPARKLE_1ROOP_OBJNUM ] = {
 	{ 0, WFLBY_GADGET_SPARKLE_MOVE_Y, WFLBY_GADGET_SPARKLE_MOVE_DIS },
 	{ WFLBY_GADGET_SPARKLE_MOVE_DIS, WFLBY_GADGET_SPARKLE_MOVE_Y, 0 },
@@ -361,20 +361,20 @@ static const VecFx32 sc_WFLBY_GADGET_SPARKLE_MOVE[ WFLBY_GADGET_SPARKLE_1ROOP_OB
 
 
 //-------------------------------------
-///	ƒŠƒbƒvƒ‹
+///	ãƒªãƒƒãƒ—ãƒ«
 //=====================================
 #define WFLBY_GADGET_RIPPLE_NUM				( 3 )
 #define WFLBY_GADGET_RIPPLE_ROOP_NUM		( 2 )
-#define WFLBY_GADGET_RIPPLE_ROOP_START		( 6 )	// ‚»‚¤”­ŽË”
-#define WFLBY_GADGET_RIPPLE_ROOP_SYNC		( 54 )	// ”­ŽËŠ®—¹ƒVƒ“ƒN”
-#define WFLBY_GADGET_RIPPLE_MAT_Z			( FX32_CONST(6) )	// ZƒIƒtƒZƒbƒgÀ•W
+#define WFLBY_GADGET_RIPPLE_ROOP_START		( 6 )	// ãã†ç™ºå°„æ•°
+#define WFLBY_GADGET_RIPPLE_ROOP_SYNC		( 54 )	// ç™ºå°„å®Œäº†ã‚·ãƒ³ã‚¯æ•°
+#define WFLBY_GADGET_RIPPLE_MAT_Z			( FX32_CONST(6) )	// Zã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™
 
 
 
 //-------------------------------------
-///	ƒVƒOƒiƒ‹
+///	ã‚·ã‚°ãƒŠãƒ«
 //=====================================
-//1‚Â‚ÌƒAƒjƒ‚Ì’è”
+//1ã¤ã®ã‚¢ãƒ‹ãƒ¡ã®å®šæ•°
 #define WFLBY_GADGET_SIGNAL_ANM_MOVE_X			(FX32_CONST(0))
 #define WFLBY_GADGET_SIGNAL_ANM_MOVE_Y			(FX32_CONST(0))
 #define WFLBY_GADGET_SIGNAL_ANM_MOVE_Z			(FX32_CONST(0))
@@ -438,7 +438,7 @@ static const WFLBY_GADGET_SINGNAL_ANMDATA sc_WFLBY_GADGET_SIGNAL_ANMSEQ[3][WFLBY
 
 
 //-------------------------------------
-///	ƒXƒEƒBƒ“ƒO
+///	ã‚¹ã‚¦ã‚£ãƒ³ã‚°
 //=====================================
 #define WFLBY_GADGET_SWING_ANM_SYNC		( 32 )
 #define	WFLBY_GADGET_SWING_OBJ_NUM		( 3 )
@@ -446,21 +446,21 @@ static const WFLBY_GADGET_SINGNAL_ANMDATA sc_WFLBY_GADGET_SIGNAL_ANMSEQ[3][WFLBY
 
 
 //-------------------------------------
-///	‰¹•„“®ì
+///	éŸ³ç¬¦å‹•ä½œ
 //=====================================
 typedef enum{
-	WFLBY_GADGET_ONPU_MAIN_PLAY,		// Ä¶’†
-	WFLBY_GADGET_ONPU_MAIN_START,		// Ä¶’†‚Å‰¹•„‚ð”­ŽË‚µ‚½
-	WFLBY_GADGET_ONPU_MAIN_ALLEND,		// ‘S•”I‚í‚Á‚½
+	WFLBY_GADGET_ONPU_MAIN_PLAY,		// å†ç”Ÿä¸­
+	WFLBY_GADGET_ONPU_MAIN_START,		// å†ç”Ÿä¸­ã§éŸ³ç¬¦ã‚’ç™ºå°„ã—ãŸ
+	WFLBY_GADGET_ONPU_MAIN_ALLEND,		// å…¨éƒ¨çµ‚ã‚ã£ãŸ
 } WFLBY_GADGET_ONPU_MAIN_RET;
 enum{
-	WFLBY_GADGET_ONPU_MOVE_BELL,	// ‰¹•„ƒxƒ‹“®ì
-	WFLBY_GADGET_ONPU_MOVE_DRUM,	// ‰¹•„ƒhƒ‰ƒ€“®ì
-	WFLBY_GADGET_ONPU_MOVE_CYMBALS,	// ‰¹•„ƒVƒ“ƒoƒ‹“®ì
-	WFLBY_GADGET_ONPU_MOVE_NUM,		//	‰¹•„“®ìƒ^ƒCƒv”
+	WFLBY_GADGET_ONPU_MOVE_BELL,	// éŸ³ç¬¦ãƒ™ãƒ«å‹•ä½œ
+	WFLBY_GADGET_ONPU_MOVE_DRUM,	// éŸ³ç¬¦ãƒ‰ãƒ©ãƒ å‹•ä½œ
+	WFLBY_GADGET_ONPU_MOVE_CYMBALS,	// éŸ³ç¬¦ã‚·ãƒ³ãƒãƒ«å‹•ä½œ
+	WFLBY_GADGET_ONPU_MOVE_NUM,		//	éŸ³ç¬¦å‹•ä½œã‚¿ã‚¤ãƒ—æ•°
 };
 #define WFLBY_GADGET_ONPU_OBJWK_NUM	( 16 )
-// ‰¹•„\¬ƒf[ƒ^
+// éŸ³ç¬¦æ§‹æˆãƒ‡ãƒ¼ã‚¿
 static const u8 sc_WFLBY_LEVEL_00ADDOBJ[ WFLBY_GADGET_ONPU_OBJWK_NUM ] = {
 	WFLBY_GADGET_OBJ_ONPU00_R,
 	WFLBY_GADGET_OBJ_ONPU01_R,
@@ -515,11 +515,11 @@ static const u8 sc_WFLBY_LEVEL_02ADDOBJ[ WFLBY_GADGET_ONPU_OBJWK_NUM ] = {
 	WFLBY_GADGET_OBJ_ONPU03_B,
 	WFLBY_GADGET_OBJ_ONPU00_B,
 };
-// “®ìƒf[ƒ^
+// å‹•ä½œãƒ‡ãƒ¼ã‚¿
 #define WFLBY_GADGET_ONPU_OBJ_NUM		( 4 )
 #define WFLBY_GADGET_ONPU_X_OFS			( FX32_CONST(8) )
 #define WFLBY_GADGET_ONPU_Z_OFS			( -FX32_CONST(8) )
-//  ƒxƒ‹“®ì
+//  ãƒ™ãƒ«å‹•ä½œ
 #define WFLBY_GADGET_ONPU_MOVE_BELL_SYNC	( 18 )
 #define WFLBY_GADGET_ONPU_MOVE_BELL_Y		( FX32_CONST(16) )
 #define WFLBY_GADGET_ONPU_MOVE_BELL_X0		( FX32_CONST(8) )
@@ -527,7 +527,7 @@ static const u8 sc_WFLBY_LEVEL_02ADDOBJ[ WFLBY_GADGET_ONPU_OBJWK_NUM ] = {
 #define WFLBY_GADGET_ONPU_MOVE_BELL_Z		( FX32_CONST(6) )
 #define WFLBY_GADGET_ONPU_MOVE_BELL_CVX		( FX32_CONST(6) )
 #define WFLBY_GADGET_ONPU_MOVE_BELL_CVSP	( FX_GET_ROTA_NUM(18) )
-// ƒhƒ‰ƒ€“®ì
+// ãƒ‰ãƒ©ãƒ å‹•ä½œ
 #define WFLBY_GADGET_ONPU_MOVE_DRUM_DOWN_SYNC	( 14 )
 #define WFLBY_GADGET_ONPU_MOVE_DRUM_UP_SYNC		( 8 )
 #define WFLBY_GADGET_ONPU_MOVE_DRUM_XZ_SYNC		( 19 )
@@ -540,7 +540,7 @@ static const u8 sc_WFLBY_LEVEL_02ADDOBJ[ WFLBY_GADGET_ONPU_OBJWK_NUM ] = {
 #define WFLBY_GADGET_ONPU_MOVE_DRUM_UP_SP		( FX_GET_ROTA_NUM(20) )
 #define WFLBY_GADGET_ONPU_MOVE_DRUM_X			( FX32_CONST(16) )
 #define WFLBY_GADGET_ONPU_MOVE_DRUM_Z			( FX32_CONST(16) )
-// ƒVƒ“ƒoƒ‹
+// ã‚·ãƒ³ãƒãƒ«
 #define WFLBY_GADGET_ONPU_MOVE_CYMBALS_SEQ_NUM			(3)
 #define WFLBY_GADGET_ONPU_MOVE_CYMBALS_START_Y			( FX32_CONST(4) )
 
@@ -565,7 +565,7 @@ static const u8 sc_WFLBY_LEVEL_02ADDOBJ[ WFLBY_GADGET_ONPU_OBJWK_NUM ] = {
 
 
 //-------------------------------------
-///	‰¹•„“®ì
+///	éŸ³ç¬¦å‹•ä½œ
 //=====================================
 #define WFLBY_GADGET_MOVE_ONPU_WK_NUM		(4)
 typedef struct {
@@ -573,7 +573,7 @@ typedef struct {
 	u8	anmidx;
 	u8	mvnum;
 } WFLBY_GADGET_MOVE_ONPU_DATA;
-// ƒxƒ‹
+// ãƒ™ãƒ«
 #define WFLBY_GADGET_MOVE_ONPU_BELL00_SYSNC		(33)
 static const WFLBY_GADGET_MOVE_ONPU_DATA sc_WFLBY_GADGET_MOVE_ONPU_DATA_BELL00[]={
 	{ 0, 0, 2 },
@@ -594,7 +594,7 @@ static const WFLBY_GADGET_MOVE_ONPU_DATA sc_WFLBY_GADGET_MOVE_ONPU_DATA_BELL02[]
 //	{ 24, 3, 4 },
 	{ 32, 0, 4 },
 };
-// ƒhƒ‰ƒ€
+// ãƒ‰ãƒ©ãƒ 
 #define WFLBY_GADGET_MOVE_ONPU_DRUM00_SYSNC		(33)
 static const WFLBY_GADGET_MOVE_ONPU_DATA sc_WFLBY_GADGET_MOVE_ONPU_DATA_DRUM00[]={
 	{ 0, 0, 2 },
@@ -619,7 +619,7 @@ static const WFLBY_GADGET_MOVE_ONPU_DATA sc_WFLBY_GADGET_MOVE_ONPU_DATA_DRUM02[]
 	{ 35, 0, 4 },
 };
 
-// ƒVƒ“ƒoƒ‹
+// ã‚·ãƒ³ãƒãƒ«
 #define WFLBY_GADGET_MOVE_ONPU_CYMBALS00_SYSNC		(33)
 static const WFLBY_GADGET_MOVE_ONPU_DATA sc_WFLBY_GADGET_MOVE_ONPU_DATA_CYMBALS00[]={
 	{ 0, 0, 2 },
@@ -643,7 +643,7 @@ static const WFLBY_GADGET_MOVE_ONPU_DATA sc_WFLBY_GADGET_MOVE_ONPU_DATA_CYMBALS0
 
 
 //-------------------------------------
-///	ƒVƒ“ƒoƒ‹ˆîÈ“®ì
+///	ã‚·ãƒ³ãƒãƒ«ç¨²å¦»å‹•ä½œ
 //=====================================
 enum{
 	WFLBY_GADGET_CYMBALS_INAZUMA_00 = 16,
@@ -659,14 +659,14 @@ enum{
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-------------------------------------
-///	”Ä—p“®ìƒVƒXƒeƒ€
-//	’¼üˆÚ“®
+///	æ±Žç”¨å‹•ä½œã‚·ã‚¹ãƒ†ãƒ 
+//	ç›´ç·šç§»å‹•
 //=====================================
 typedef struct {
 	s32	count_max;
@@ -683,8 +683,8 @@ typedef struct {
 
 
 //-------------------------------------
-///	”Ä—p“®ìƒVƒXƒeƒ€
-//	SinƒJ[ƒuˆÚ“®
+///	æ±Žç”¨å‹•ä½œã‚·ã‚¹ãƒ†ãƒ 
+//	Sinã‚«ãƒ¼ãƒ–ç§»å‹•
 //=====================================
 typedef struct {
 	u16		rota_num;
@@ -696,7 +696,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒgƒŠƒ\[ƒX\¬ƒf[ƒ^
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒªã‚½ãƒ¼ã‚¹æ§‹æˆãƒ‡ãƒ¼ã‚¿
 //	4byte
 //=====================================
 typedef struct {
@@ -707,8 +707,8 @@ typedef struct {
 
 
 //-------------------------------------
-///	‰¹•„“®ìƒ[ƒN
-//	4‚Â‰¹•„‚ªƒOƒ‹[ƒv‚ð‚­‚ñ‚Å“®ì‚·‚é
+///	éŸ³ç¬¦å‹•ä½œãƒ¯ãƒ¼ã‚¯
+//	4ã¤éŸ³ç¬¦ãŒã‚°ãƒ«ãƒ¼ãƒ—ã‚’ãã‚“ã§å‹•ä½œã™ã‚‹
 //=====================================
 typedef struct {
 	s16 count;
@@ -726,30 +726,30 @@ typedef struct {
 
 
 //-------------------------------------
-///	•`‰æƒIƒuƒWƒF“®ìƒ[ƒN
+///	æç”»ã‚ªãƒ–ã‚¸ã‚§å‹•ä½œãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef union {
 	struct{
 		s8 bl_seq;
-		// •—‘D‚Ì‚©‚¸
+		// é¢¨èˆ¹ã®ã‹ãš
 		s8	balloon_num;
 		s16 count;
-		// DONƒAƒjƒ—p
+		// DONã‚¢ãƒ‹ãƒ¡ç”¨
 		fx32 don_start_y;
-		// ƒAƒjƒƒEƒGƒCƒg
+		// ã‚¢ãƒ‹ãƒ¡ã‚¦ã‚¨ã‚¤ãƒˆ
 		u8 anm_wait[ WFLBY_GADGET_BALLOON_OBJ_NUM ];
 		u8 pad0;
 		u8 anmidx[ WFLBY_GADGET_BALLOON_OBJ_NUM ];
 		u8 pad1;
-		// •—‘D”òsƒJƒEƒ“ƒ^
+		// é¢¨èˆ¹é£›è¡Œã‚«ã‚¦ãƒ³ã‚¿
 		u8 balloon_fly_count;
-		// ã‚É‰®ª‚Ì‚æ‚¤‚È‚à‚Ì‚ª‚ ‚é‚Ì‚©ƒtƒ‰ƒO
+		// ä¸Šã«å±‹æ ¹ã®ã‚ˆã†ãªã‚‚ã®ãŒã‚ã‚‹ã®ã‹ãƒ•ãƒ©ã‚°
 		u8 roof_flag;
 		u8 pad2[2];
-		// •—‘D“®ì
+		// é¢¨èˆ¹å‹•ä½œ
 		WFLBY_GADGET_MV_SINCURVE	sincurve[WFLBY_GADGET_BALLOON_OBJ_NUM];
 		WFLBY_GADGET_MV_STRAIGHT	straight[WFLBY_GADGET_BALLOON_OBJ_NUM];
-		// ŽålŒö“®ì
+		// ä¸»äººå…¬å‹•ä½œ
 		WFLBY_GADGET_MV_STRAIGHT	straightobj;
 		WFLBY_GADGET_MV_SINCURVE	sincurveobj;
 	} balloon;
@@ -760,12 +760,12 @@ typedef union {
 	} cracker;
 
 	struct {
-		s8 count;			// “®ìƒJƒEƒ“ƒ^
-		s8 roop_count;		// ƒ‹[ƒv”ƒJƒEƒ“ƒ^
-		u8 roop_num;		// ‘S‘Ìƒ‹[ƒv”
-		u8 buff_num;		// ƒIƒuƒWƒF“®ì”
+		s8 count;			// å‹•ä½œã‚«ã‚¦ãƒ³ã‚¿
+		s8 roop_count;		// ãƒ«ãƒ¼ãƒ—æ•°ã‚«ã‚¦ãƒ³ã‚¿
+		u8 roop_num;		// å…¨ä½“ãƒ«ãƒ¼ãƒ—æ•°
+		u8 buff_num;		// ã‚ªãƒ–ã‚¸ã‚§å‹•ä½œæ•°
 
-		// ’¼ü“®ì
+		// ç›´ç·šå‹•ä½œ
 		s8							objcount[WFLBY_GADGET_SPARKLE_OBJ_MAX];
 		WFLBY_GADGET_MV_STRAIGHT	objstraight[WFLBY_GADGET_SPARKLE_OBJ_MAX];
 	} sparkle;
@@ -791,7 +791,7 @@ typedef union {
 		u16									data_num;
 		u16									count_max;
 
-		// ²Å½ÞÏ—p
+		// ã‚¤ãƒŠã‚ºãƒžç”¨
 		u16 inazuma_move;
 		u16	inazuma_count;
 	} onpu;
@@ -799,51 +799,51 @@ typedef union {
 
 
 //-------------------------------------
-///	•`‰æƒIƒuƒWƒF
+///	æç”»ã‚ªãƒ–ã‚¸ã‚§
 //=====================================
 typedef struct {
-	u8			gadget_type;				// ƒKƒWƒFƒbƒgƒ^ƒCƒv
-	u8			seq;						// ƒV[ƒPƒ“ƒX
-	s16			count;						// ƒJƒEƒ“ƒ^
-	u32			mdl_objid;					// ƒ‚ƒfƒ‹‚ÉÝ’è‚·‚éƒIƒuƒWƒFID
+	u8			gadget_type;				// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚¿ã‚¤ãƒ—
+	u8			seq;						// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	s16			count;						// ã‚«ã‚¦ãƒ³ã‚¿
+	u32			mdl_objid;					// ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ID
 
-	// ƒIƒuƒWƒFƒf[ƒ^
+	// ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
 	WFLBY_3DPERSON* p_person;
 
 	
 	//-------------------------------------
-	///	‚»‚ê‚¼‚ê‚Ì‰Šú‰»ŠÖ”‚ÅÝ’è‚·‚éƒf[ƒ^
+	///	ãã‚Œãžã‚Œã®åˆæœŸåŒ–é–¢æ•°ã§è¨­å®šã™ã‚‹ãƒ‡ãƒ¼ã‚¿
 	//=====================================
-	// •`‰æƒIƒuƒWƒF
+	// æç”»ã‚ªãƒ–ã‚¸ã‚§
 	D3DOBJ		obj[ WFLBY_GADGET_OBJ_MAX ];
-	// “®ì’†‚ÌƒIƒuƒWƒFƒf[ƒ^
+	// å‹•ä½œä¸­ã®ã‚ªãƒ–ã‚¸ã‚§ãƒ‡ãƒ¼ã‚¿
 	const WFLBY_GADGET_RES*	cp_objres[ WFLBY_GADGET_OBJ_MAX ];
-	// ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ 
 	fx32		anm_frame[ WFLBY_GADGET_OBJ_MAX ][ WFLBY_GADGET_ANM_MAX ];	
-	// ‚»‚ê‚¼‚ê‚Ì“®ì—p‚Ìƒ[ƒN
+	// ãã‚Œãžã‚Œã®å‹•ä½œç”¨ã®ãƒ¯ãƒ¼ã‚¯
 	WFLBY_GADGET_OBJWK	mvwk;
 } WFLBY_GADGET_OBJ;
 
 
 //-------------------------------------
-///	ƒKƒWƒFƒbƒgƒVƒXƒeƒ€
+///	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _WFLBY_GADGET{
-	WFLBY_SYSTEM*		p_system;	// ƒVƒXƒeƒ€
-	WFLBY_3DOBJCONT*	p_objcont;	// ƒIƒuƒWƒF
-	WFLBY_CAMERA*		p_camera;	// ƒJƒƒ‰ƒIƒuƒWƒF
-	WFLBY_MAPCONT*		p_mapcont;	// ƒ}ƒbƒvŠÇ—ƒVƒXƒeƒ€
+	WFLBY_SYSTEM*		p_system;	// ã‚·ã‚¹ãƒ†ãƒ 
+	WFLBY_3DOBJCONT*	p_objcont;	// ã‚ªãƒ–ã‚¸ã‚§
+	WFLBY_CAMERA*		p_camera;	// ã‚«ãƒ¡ãƒ©ã‚ªãƒ–ã‚¸ã‚§
+	WFLBY_MAPCONT*		p_mapcont;	// ãƒžãƒƒãƒ—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 	
-	// ƒKƒWƒFƒbƒg“®ìƒIƒuƒWƒF
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆå‹•ä½œã‚ªãƒ–ã‚¸ã‚§
 	WFLBY_GADGET_OBJ	obj[ WFLBY_PLAYER_MAX ];	
 
 
-	// ŠeƒŠƒ\[ƒX
-	D3DOBJ_MDL	mdl[ WFLBY_GADGET_MDL_NUM ];		// ƒ‚ƒfƒ‹
-	void*		p_texres[ WFLBY_GADGET_TEX_NUM ];	// ƒeƒNƒXƒ`ƒƒ
-	D3DOBJ_ANM	anm[ WFLBY_GADGET_ANM_NUM ];		// ƒAƒjƒ
+	// å„ãƒªã‚½ãƒ¼ã‚¹
+	D3DOBJ_MDL	mdl[ WFLBY_GADGET_MDL_NUM ];		// ãƒ¢ãƒ‡ãƒ«
+	void*		p_texres[ WFLBY_GADGET_TEX_NUM ];	// ãƒ†ã‚¯ã‚¹ãƒãƒ£
+	D3DOBJ_ANM	anm[ WFLBY_GADGET_ANM_NUM ];		// ã‚¢ãƒ‹ãƒ¡
 
-	// ƒAƒƒP[ƒ^
+	// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
 	NNSFndAllocator		allocator;
 	
 } WFLBY_GADGET;
@@ -852,11 +852,11 @@ typedef struct _WFLBY_GADGET{
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒKƒWƒFƒbƒg\¬ƒf[ƒ^
+ *			ã‚¬ã‚¸ã‚§ãƒƒãƒˆæ§‹æˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
-	// ƒŠƒbƒvƒ‹
+	// ãƒªãƒƒãƒ—ãƒ«
 	{
 		WFLBY_GADGET_MDL_RIPPLER64x64,
 		WFLBY_GADGET_TEX_RIPPLE0,
@@ -866,7 +866,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	// ƒŠƒbƒvƒ‹
+	// ãƒªãƒƒãƒ—ãƒ«
 	{
 		WFLBY_GADGET_MDL_RIPPLER64x64,
 		WFLBY_GADGET_TEX_RIPPLE1,
@@ -876,7 +876,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	// ƒŠƒbƒvƒ‹
+	// ãƒªãƒƒãƒ—ãƒ«
 	{
 		WFLBY_GADGET_MDL_RIPPLER64x64,
 		WFLBY_GADGET_TEX_RIPPLE2,
@@ -886,7 +886,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	// ƒVƒOƒiƒ‹
+	// ã‚·ã‚°ãƒŠãƒ«
 	{
 		WFLBY_GADGET_MDL_SWING64x64,
 		WFLBY_GADGET_TEX_SIGNAL_R,
@@ -896,7 +896,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	// ƒVƒOƒiƒ‹
+	// ã‚·ã‚°ãƒŠãƒ«
 	{
 		WFLBY_GADGET_MDL_SWING64x64,
 		WFLBY_GADGET_TEX_SIGNAL_Y,
@@ -906,7 +906,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	// ƒVƒOƒiƒ‹
+	// ã‚·ã‚°ãƒŠãƒ«
 	{
 		WFLBY_GADGET_MDL_SWING64x64,
 		WFLBY_GADGET_TEX_SIGNAL_B,
@@ -916,7 +916,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	// ƒXƒCƒ“ƒO
+	// ã‚¹ã‚¤ãƒ³ã‚°
 	{
 		WFLBY_GADGET_MDL_SWING64x64,
 		WFLBY_GADGET_TEX_SWING_R,
@@ -926,7 +926,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	// ƒXƒCƒ“ƒO
+	// ã‚¹ã‚¤ãƒ³ã‚°
 	{
 		WFLBY_GADGET_MDL_SWING64x64,
 		WFLBY_GADGET_TEX_SWING_Y,
@@ -936,7 +936,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	// ƒXƒCƒ“ƒO
+	// ã‚¹ã‚¤ãƒ³ã‚°
 	{
 		WFLBY_GADGET_MDL_SWING64x64,
 		WFLBY_GADGET_TEX_SWING_B,
@@ -946,7 +946,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ƒNƒ‰ƒbƒJ[00
+	//  ã‚¯ãƒ©ãƒƒã‚«ãƒ¼00
 	{
 		WFLBY_GADGET_MDL_CRACKER0232x32,
 		WFLBY_GADGET_TEX_CRACLCER_R,
@@ -957,7 +957,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 	},
 
 
-	//  ƒNƒ‰ƒbƒJ[01
+	//  ã‚¯ãƒ©ãƒƒã‚«ãƒ¼01
 	{
 		WFLBY_GADGET_MDL_CRACKER32x32,
 		WFLBY_GADGET_TEX_CRACLCER_X,
@@ -967,7 +967,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ƒNƒ‰ƒbƒJ[02
+	//  ã‚¯ãƒ©ãƒƒã‚«ãƒ¼02
 	{
 		WFLBY_GADGET_MDL_CRACKER0132x32,
 		WFLBY_GADGET_TEX_CRACLCER_B,
@@ -977,7 +977,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ƒtƒ‰ƒbƒVƒ…
+	//  ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 	{
 		WFLBY_GADGET_MDL_FLASH32x32,
 		WFLBY_GADGET_TEX_FLASH,
@@ -987,7 +987,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ƒXƒp[ƒNƒ‹WFLBY_GADGET_OBJ_SPARKLE00
+	//  ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«WFLBY_GADGET_OBJ_SPARKLE00
 	{
 		WFLBY_GADGET_MDL_SPARKLE_R32x32,
 		WFLBY_GADGET_TEX_SPARKLE_R,
@@ -997,7 +997,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ƒXƒp[ƒNƒ‹WFLBY_GADGET_OBJ_SPARKLE01
+	//  ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«WFLBY_GADGET_OBJ_SPARKLE01
 	{
 		WFLBY_GADGET_MDL_SPARKLE_Y32x32,
 		WFLBY_GADGET_TEX_SPARKLE_Y,
@@ -1007,7 +1007,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ƒXƒp[ƒNƒ‹WFLBY_GADGET_OBJ_SPARKLE02
+	//  ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«WFLBY_GADGET_OBJ_SPARKLE02
 	{
 		WFLBY_GADGET_MDL_SPARKLE_B32x32,
 		WFLBY_GADGET_TEX_SPARKLE_B,
@@ -1017,7 +1017,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ƒoƒ‹[ƒ“Ô
+	//  ãƒãƒ«ãƒ¼ãƒ³èµ¤
 	{
 		WFLBY_GADGET_MDL_BALLOON_R32x32,
 		WFLBY_GADGET_TEX_BALLOON_R,
@@ -1027,7 +1027,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ƒoƒ‹[ƒ“‰©F
+	//  ãƒãƒ«ãƒ¼ãƒ³é»„è‰²
 	{
 		WFLBY_GADGET_MDL_BALLOON_Y32x32,
 		WFLBY_GADGET_TEX_BALLOON_Y,
@@ -1037,7 +1037,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ƒoƒ‹[ƒ“Â
+	//  ãƒãƒ«ãƒ¼ãƒ³é’
 	{
 		WFLBY_GADGET_MDL_BALLOON_B32x32,
 		WFLBY_GADGET_TEX_BALLOON_B,
@@ -1047,7 +1047,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„A	Ô
+	//  éŸ³ç¬¦A	èµ¤
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_A_R,
@@ -1057,7 +1057,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„B	Ô
+	//  éŸ³ç¬¦B	èµ¤
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_B_R,
@@ -1067,7 +1067,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„C	Ô
+	//  éŸ³ç¬¦C	èµ¤
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_C_R,
@@ -1077,7 +1077,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„D	Ô
+	//  éŸ³ç¬¦D	èµ¤
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_D_R,
@@ -1087,7 +1087,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„E	Ô
+	//  éŸ³ç¬¦E	èµ¤
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_E_R,
@@ -1097,7 +1097,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„F	Ô
+	//  éŸ³ç¬¦F	èµ¤
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_F_R,
@@ -1107,7 +1107,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„A	‰©
+	//  éŸ³ç¬¦A	é»„
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_A_Y,
@@ -1117,7 +1117,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„B	‰©
+	//  éŸ³ç¬¦B	é»„
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_B_Y,
@@ -1127,7 +1127,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„C	‰©
+	//  éŸ³ç¬¦C	é»„
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_C_Y,
@@ -1137,7 +1137,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„D	‰©
+	//  éŸ³ç¬¦D	é»„
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_D_Y,
@@ -1147,7 +1147,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„E	‰©
+	//  éŸ³ç¬¦E	é»„
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_E_Y,
@@ -1157,7 +1157,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„F	‰©
+	//  éŸ³ç¬¦F	é»„
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_F_Y,
@@ -1167,7 +1167,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„A	Â
+	//  éŸ³ç¬¦A	é’
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_A_B,
@@ -1177,7 +1177,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„B	Â
+	//  éŸ³ç¬¦B	é’
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_B_B,
@@ -1187,7 +1187,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„C	Â
+	//  éŸ³ç¬¦C	é’
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_C_B,
@@ -1197,7 +1197,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„D	Â
+	//  éŸ³ç¬¦D	é’
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_D_B,
@@ -1207,7 +1207,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„E	Â
+	//  éŸ³ç¬¦E	é’
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_E_B,
@@ -1217,7 +1217,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	//  ‰¹•„F	Â
+	//  éŸ³ç¬¦F	é’
 	{
 		WFLBY_GADGET_MDL_16x16,
 		WFLBY_GADGET_TEX_ONPU_F_B,
@@ -1228,7 +1228,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 	},
 
 
-	// ‚¢‚È‚¸‚Ü¶
+	// ã„ãªãšã¾å·¦
 	{
 		WFLBY_GADGET_MDL_SPARKA16x16,
 		WFLBY_GADGET_TEX_SPARK_A,
@@ -1238,7 +1238,7 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 		},
 	},
 
-	// ‚¢‚È‚¸‚Ü‰E
+	// ã„ãªãšã¾å³
 	{
 		WFLBY_GADGET_MDL_SPARKB16x16,
 		WFLBY_GADGET_TEX_SPARK_B,
@@ -1253,36 +1253,36 @@ static const WFLBY_GADGET_RES sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_NUM ] = {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
-// ”Ä—p“®ìŠÖ”
-// ’¼üˆÚ“®
+// æ±Žç”¨å‹•ä½œé–¢æ•°
+// ç›´ç·šç§»å‹•
 static void WFLBY_GADGET_MV_Straight_Init( WFLBY_GADGET_MV_STRAIGHT* p_wk, fx32 s_x, fx32 e_x, fx32 s_y, fx32 e_y, fx32 s_z, fx32 e_z, s32 count_max );
 static BOOL WFLBY_GADGET_MV_Straight_Main( WFLBY_GADGET_MV_STRAIGHT* p_wk, s32 count );
 static void WFLBY_GADGET_MV_Straight_GetNum( const WFLBY_GADGET_MV_STRAIGHT* cp_wk, fx32* p_x, fx32* p_y, fx32* p_z );
-// SinƒJ[ƒuˆÚ“®
+// Sinã‚«ãƒ¼ãƒ–ç§»å‹•
 static void WFLBY_GADGET_MV_SinCurve_Init( WFLBY_GADGET_MV_SINCURVE* p_wk, u16 s_rota, u16 speed, fx32 dis );
 static void WFLBY_GADGET_MV_SinCurve_Main( WFLBY_GADGET_MV_SINCURVE* p_wk );
 static void WFLBY_GADGET_MV_SinCurve_GetNum( const WFLBY_GADGET_MV_SINCURVE* cp_wk, fx32* p_num );
 
-// SEÄ¶
+// SEå†ç”Ÿ
 static void WFLBY_GADGET_SePlay( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 seno );
 
 
-// ƒ‚ƒfƒ‹ƒf[ƒ^
+// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿
 static void WFLBY_GADGET_LoadMdl( WFLBY_GADGET* p_sys, ARCHANDLE* p_handle, u32 gheapID );
 static void WFLBY_GADGET_DeleteMdl( WFLBY_GADGET* p_sys );
-// ƒeƒNƒXƒ`ƒƒƒf[ƒ^
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿
 static void WFLBY_GADGET_LoadTex( WFLBY_GADGET* p_sys, ARCHANDLE* p_handle, u32 gheapID );
 static void WFLBY_GADGET_DeleteTex( WFLBY_GADGET* p_sys );
-// ƒAƒjƒƒf[ƒ^
+// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 static void WFLBY_GADGET_LoadAnm( WFLBY_GADGET* p_sys, ARCHANDLE* p_handle, u32 gheapID );
 static void WFLBY_GADGET_DeleteAnm( WFLBY_GADGET* p_sys );
 
 
-// ƒKƒWƒFƒbƒgƒIƒuƒWƒF
+// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§
 static void WFLBY_GADGET_OBJ_Start( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, WFLBY_3DPERSON* p_person, WFLBY_ITEMTYPE gadget );
 static void WFLBY_GADGET_OBJ_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk );
 static BOOL WFLBY_GADGET_OBJ_Draw( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk );
@@ -1300,7 +1300,7 @@ static void WFLBY_GADGET_OBJ_SetFrame( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_
 static fx32 WFLBY_GADGET_OBJ_GetFrame( const WFLBY_GADGET* cp_sys, const WFLBY_GADGET_OBJ* cp_wk, u32 objidx, u32 anmidx );
 
 
-// ŠeƒKƒWƒFƒbƒgƒ^ƒCƒv‚ÌƒAƒjƒƒf[ƒ^
+// å„ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚¿ã‚¤ãƒ—ã®ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
 static void WFLBY_GADGET_ANM_Init_Rippru00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk );
 static void WFLBY_GADGET_ANM_Init_Rippru01( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk );
 static void WFLBY_GADGET_ANM_Init_Rippru02( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk );
@@ -1346,7 +1346,7 @@ static BOOL WFLBY_GADGET_ANM_Draw_Obj( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_
 
 
 
-// •—‘D“®ì
+// é¢¨èˆ¹å‹•ä½œ
 static void WFLBY_GADGET_Balloon_InitUp( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk, u32 balloon_num );
 static void WFLBY_GADGET_Balloon_InitUp_Normal( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk );
 static void WFLBY_GADGET_Balloon_InitUp_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk );
@@ -1364,86 +1364,86 @@ static void WFLBY_GADGET_Balloon_SetObjPos_Roof( WFLBY_GADGET_OBJ*  p_wk );
 static BOOL WFLBY_GADGET_Balloon_SetAnm( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk, u32 balloon_idx, u32 anmidx );
 static void WFLBY_GADGET_Balloon_Anm( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk, u32 balloon_idx );
 
-// ‚·‚Ï[‚­‚é
+// ã™ã±ãƒ¼ãã‚‹
 static void WFLBY_GADGET_Sparkle_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 roop_num );
 static BOOL WFLBY_GADGET_Sparkle_OneObj_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 objidx );
 
 
-// ƒŠƒbƒvƒ‹
+// ãƒªãƒƒãƒ—ãƒ«
 static void WFLBY_GADGET_Ripple_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 ripple_num );
 
 
-// ƒVƒOƒiƒ‹
+// ã‚·ã‚°ãƒŠãƒ«
 static BOOL WFLBY_GADGET_Signal_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 num );
 
-// ƒXƒEƒBƒ“ƒO
+// ã‚¹ã‚¦ã‚£ãƒ³ã‚°
 static void WFLBY_GADGET_Swing_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 num );
 
-// ²Å½ÞÏ
+// ã‚¤ãƒŠã‚ºãƒž
 static void WFLBY_GADGET_Inazuma_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk );
 static void WFLBY_GADGET_Inazuma_Start( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk );
 static void WFLBY_GADGET_Inazuma_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk );
 
-// ‰¹•„”­ŽËƒVƒXƒeƒ€
+// éŸ³ç¬¦ç™ºå°„ã‚·ã‚¹ãƒ†ãƒ 
 static void WFLBY_GADGET_ONPU_Cont_Init( WFLBY_GADGET_OBJWK* p_wk, const WFLBY_GADGET_MOVE_ONPU_DATA* cp_data, u32 data_num, u32 count_max, u32 anm_type, WFLBY_GADGET_OBJ* p_gadget );
 static WFLBY_GADGET_ONPU_MAIN_RET WFLBY_GADGET_ONPU_Cont_Main( WFLBY_GADGET_OBJWK* p_wk, u32 count );
 
-// ‰¹•„‚±‚±‚Ì“®‚«
+// éŸ³ç¬¦ã“ã“ã®å‹•ã
 static void WFLBY_GADGET_OnpuMove_Init( WFLBY_GADGET_ONPU* p_wk, D3DOBJ* p_obj0, D3DOBJ* p_obj1, D3DOBJ* p_obj2, D3DOBJ* p_obj3, const WFLBY_3DPERSON* cp_person, u32 anm_type );
 static void WFLBY_GADGET_OnpuMove_Start( WFLBY_GADGET_ONPU* p_wk, u32 num );
 static BOOL WFLBY_GADGET_OnpuMove_Main( WFLBY_GADGET_ONPU* p_wk );
-//ƒxƒ‹
+//ãƒ™ãƒ«
 static void WFLBY_GADGET_OnpuMove_InitBell( WFLBY_GADGET_ONPU* p_wk, const WFLBY_3DPERSON* cp_person );
 static BOOL WFLBY_GADGET_OnpuMove_MainBell( WFLBY_GADGET_ONPU* p_wk );
-//ƒhƒ‰ƒ€
+//ãƒ‰ãƒ©ãƒ 
 static void WFLBY_GADGET_OnpuMove_InitDram( WFLBY_GADGET_ONPU* p_wk, const WFLBY_3DPERSON* cp_person );
 static BOOL WFLBY_GADGET_OnpuMove_MainDram( WFLBY_GADGET_ONPU* p_wk );
-//ƒVƒ“ƒoƒ‹
+//ã‚·ãƒ³ãƒãƒ«
 static void WFLBY_GADGET_OnpuMove_InitCymbals( WFLBY_GADGET_ONPU* p_wk, const WFLBY_3DPERSON* cp_person );
 static BOOL WFLBY_GADGET_OnpuMove_MainCymbals( WFLBY_GADGET_ONPU* p_wk );
 static void WFLBY_GADGET_OnpuMove_SetCymbalsStParam( WFLBY_GADGET_ONPU* p_wk, u32 idx, const VecFx32* cp_def_matrix, fx32 ofs_x0, fx32 ofs_y0, fx32 ofs_x1, fx32 ofs_y1, u32 sync );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	p_system		ƒƒr[ƒVƒXƒeƒ€
- *	@param	p_mapcont		ƒ}ƒbƒvŠÇ—ƒVƒXƒeƒ€
- *	@param	p_camera		ƒJƒƒ‰ŠÇ—ƒVƒXƒeƒ€
- *	@param	p_objcont		ƒIƒuƒWƒFŠÇ—ƒVƒXƒeƒ€	
- *	@param	heapID			ƒq[ƒvID
- *	@param	gheapID			ƒOƒ‰ƒtƒBƒbƒNƒq[ƒvID
+ *	@param	p_system		ãƒ­ãƒ“ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_mapcont		ãƒžãƒƒãƒ—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_camera		ã‚«ãƒ¡ãƒ©ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_objcont		ã‚ªãƒ–ã‚¸ã‚§ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 	
+ *	@param	heapID			ãƒ’ãƒ¼ãƒ—ID
+ *	@param	gheapID			ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 WFLBY_GADGET* WFLBY_GADGET_Init( WFLBY_SYSTEM* p_system, WFLBY_MAPCONT* p_mapcont, WFLBY_CAMERA* p_camera, WFLBY_3DOBJCONT* p_objcont, u32 heapID, u32 gheapID )
 {
 	WFLBY_GADGET* p_sys;
 
-	// ƒVƒXƒeƒ€ƒ[ƒNì¬
+	// ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	p_sys = sys_AllocMemory( heapID, sizeof(WFLBY_GADGET) );
 	memset( p_sys, 0, sizeof(WFLBY_GADGET) );
 
-	// ƒIƒuƒWƒFŠÇ—ƒVƒXƒeƒ€•Û‘¶
+	// ã‚ªãƒ–ã‚¸ã‚§ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ä¿å­˜
 	p_sys->p_system		= p_system;
 	p_sys->p_objcont	= p_objcont;
 	p_sys->p_camera		= p_camera;
 	p_sys->p_mapcont	= p_mapcont;
 
-	// ƒŠƒ\[ƒX“Ç‚Ýž‚Ý
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	{
 		ARCHANDLE* p_handle;
 		p_handle = ArchiveDataHandleOpen( ARC_WIFILOBBY_OTHER_GRA, heapID );
 
-		// ƒAƒƒP[ƒ^ì¬
+		// ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ä½œæˆ
 		sys_InitAllocator( &p_sys->allocator, gheapID, 4 );
 
-		// ƒ‚ƒfƒ‹“Ç‚Ýž‚Ý
+		// ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿
 		WFLBY_GADGET_LoadMdl( p_sys, p_handle, gheapID );
 
-		// ƒeƒNƒXƒ`ƒƒ“Ç‚Ýž‚Ý
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿
 		WFLBY_GADGET_LoadTex( p_sys, p_handle, gheapID );
 
-		// ƒAƒjƒ“Ç‚Ýž‚Ý
+		// ã‚¢ãƒ‹ãƒ¡èª­ã¿è¾¼ã¿
 		WFLBY_GADGET_LoadAnm( p_sys, p_handle, gheapID );
 
 		ArchiveDataHandleClose( p_handle );
@@ -1454,34 +1454,34 @@ WFLBY_GADGET* WFLBY_GADGET_Init( WFLBY_SYSTEM* p_system, WFLBY_MAPCONT* p_mapcon
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒVƒXƒeƒ€”jŠü
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 void WFLBY_GADGET_Exit( WFLBY_GADGET* p_sys )
 {
-	// ƒAƒjƒƒf[ƒ^”jŠü
+	// ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	{
-		// ƒ‚ƒfƒ‹“Ç‚Ýž‚Ý
+		// ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿
 		WFLBY_GADGET_DeleteMdl( p_sys );
 
-		// ƒeƒNƒXƒ`ƒƒ“Ç‚Ýž‚Ý
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿
 		WFLBY_GADGET_DeleteTex( p_sys );
 
-		// ƒAƒjƒ“Ç‚Ýž‚Ý
+		// ã‚¢ãƒ‹ãƒ¡èª­ã¿è¾¼ã¿
 		WFLBY_GADGET_DeleteAnm( p_sys );
 	}
 
-	// ŽÀ‘Ô‚Ì”jŠü
+	// å®Ÿæ…‹ã®ç ´æ£„
 	sys_FreeMemoryEz( p_sys );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒƒCƒ“
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_sys	ƒKƒWƒFƒbƒgƒVƒXƒeƒ€
+ *	@param	p_sys	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WFLBY_GADGET_Main( WFLBY_GADGET* p_sys )
@@ -1494,7 +1494,7 @@ void WFLBY_GADGET_Main( WFLBY_GADGET* p_sys )
 		cp_profile = WFLBY_SYSTEM_GetMyProfileLocal( p_sys->p_system );
 		for( i=0; i<WFLBY_PLAYER_MAX; i++ ){
 
-			// ‚»‚Ìl‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+			// ãã®äººãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( WFLBY_3DOBJCONT_GetPlIDWk( p_sys->p_objcont, i ) != NULL ){
 				if( WFLBY_GADGET_EndWait( p_sys, i ) == TRUE ){
 //					WFLBY_GADGET_Start( p_sys, i, (gf_mtRand() % WFLBY_ITEM_NUM) );
@@ -1506,7 +1506,7 @@ void WFLBY_GADGET_Main( WFLBY_GADGET* p_sys )
 #endif
 	
 	
-	// “®ì’†‚ÌƒIƒuƒWƒF‚ð“®‚©‚·
+	// å‹•ä½œä¸­ã®ã‚ªãƒ–ã‚¸ã‚§ã‚’å‹•ã‹ã™
 	for( i=0; i<WFLBY_PLAYER_MAX; i++ ){
 		WFLBY_GADGET_OBJ_Main( p_sys, &p_sys->obj[i] );
 	}
@@ -1514,9 +1514,9 @@ void WFLBY_GADGET_Main( WFLBY_GADGET* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒg	•`‰æ
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆ	æç”»
  *
- *	@param	p_sys	ƒKƒWƒFƒbƒgƒVƒXƒeƒ€
+ *	@param	p_sys	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WFLBY_GADGET_Draw( WFLBY_GADGET* p_sys )
@@ -1527,7 +1527,7 @@ void WFLBY_GADGET_Draw( WFLBY_GADGET* p_sys )
 
 	p_player = WFLBY_3DOBJCONT_GetPlayer( p_sys->p_objcont );
 
-	// “®ì’†‚ÌƒIƒuƒWƒF‚ð•`‰æ
+	// å‹•ä½œä¸­ã®ã‚ªãƒ–ã‚¸ã‚§ã‚’æç”»
 	for( i=0; i<WFLBY_PLAYER_MAX; i++ ){
 		WFLBY_GADGET_OBJ_Draw( p_sys, &p_sys->obj[i] );
 	}
@@ -1535,11 +1535,11 @@ void WFLBY_GADGET_Draw( WFLBY_GADGET* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒg	ŠJŽn
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆ	é–‹å§‹
  *
- *	@param	p_sys	ƒKƒWƒFƒbƒgƒVƒXƒeƒ€
- *	@param	idx		ƒ†[ƒUID
- *	@param	gadget	ƒKƒWƒFƒbƒgƒ^ƒCƒv
+ *	@param	p_sys	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx		ãƒ¦ãƒ¼ã‚¶ID
+ *	@param	gadget	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 void WFLBY_GADGET_Start( WFLBY_GADGET* p_sys, u32 idx, WFLBY_ITEMTYPE gadget )
@@ -1548,7 +1548,7 @@ void WFLBY_GADGET_Start( WFLBY_GADGET* p_sys, u32 idx, WFLBY_ITEMTYPE gadget )
 	
 	GF_ASSERT( idx < WFLBY_PLAYER_MAX );
 	
-	// ŠJŽn
+	// é–‹å§‹
 	p_person = WFLBY_3DOBJCONT_GetPlIDWk( p_sys->p_objcont, idx );
 	if( p_person == NULL ){
 		OS_TPrintf( "gadget start err person none\n" );
@@ -1559,13 +1559,13 @@ void WFLBY_GADGET_Start( WFLBY_GADGET* p_sys, u32 idx, WFLBY_ITEMTYPE gadget )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒg	I—¹‘Ò‚¿
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆ	çµ‚äº†å¾…ã¡
  *
- *	@param	cp_sys	ƒKƒWƒFƒbƒgƒVƒXƒeƒ€
- *	@param	idx		ƒ†[ƒUID
+ *	@param	cp_sys	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	idx		ãƒ¦ãƒ¼ã‚¶ID
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_GADGET_EndWait( const WFLBY_GADGET* cp_sys, u32 idx )
@@ -1582,21 +1582,21 @@ BOOL WFLBY_GADGET_EndWait( const WFLBY_GADGET* cp_sys, u32 idx )
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	’¼iˆÚ“®
+ *	@brief	ç›´é€²ç§»å‹•
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	s_x			ŠJŽn‚˜À•W	
- *	@param	e_x			I—¹‚˜À•W
- *	@param	s_y			ŠJŽn‚™À•W
- *	@param	e_y			I—¹‚™À•W
- *	@param	s_z			ŠJŽn‚šÀ•W
- *	@param	e_z			I—¹‚šÀ•W
- *	@param	count_max	Å‘åƒJƒEƒ“ƒg”
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x			é–‹å§‹ï½˜åº§æ¨™	
+ *	@param	e_x			çµ‚äº†ï½˜åº§æ¨™
+ *	@param	s_y			é–‹å§‹ï½™åº§æ¨™
+ *	@param	e_y			çµ‚äº†ï½™åº§æ¨™
+ *	@param	s_z			é–‹å§‹ï½šåº§æ¨™
+ *	@param	e_z			çµ‚äº†ï½šåº§æ¨™
+ *	@param	count_max	æœ€å¤§ã‚«ã‚¦ãƒ³ãƒˆæ•°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_MV_Straight_Init( WFLBY_GADGET_MV_STRAIGHT* p_wk, fx32 s_x, fx32 e_x, fx32 s_y, fx32 e_y, fx32 s_z, fx32 e_z, s32 count_max )
@@ -1615,13 +1615,13 @@ static void WFLBY_GADGET_MV_Straight_Init( WFLBY_GADGET_MV_STRAIGHT* p_wk, fx32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’¼iˆÚ“®	ƒƒCƒ“
+ *	@brief	ç›´é€²ç§»å‹•	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	count		ƒJƒEƒ“ƒg’l
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	count		ã‚«ã‚¦ãƒ³ãƒˆå€¤
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_MV_Straight_Main( WFLBY_GADGET_MV_STRAIGHT* p_wk, s32 count )
@@ -1629,7 +1629,7 @@ static BOOL WFLBY_GADGET_MV_Straight_Main( WFLBY_GADGET_MV_STRAIGHT* p_wk, s32 c
 	s32 count_num;	
 	BOOL ret = FALSE;
 
-	// ƒJƒEƒ“ƒg’l‚ÌÅ‘å’lƒI[ƒo[ƒ`ƒFƒbƒN
+	// ã‚«ã‚¦ãƒ³ãƒˆå€¤ã®æœ€å¤§å€¤ã‚ªãƒ¼ãƒãƒ¼ãƒã‚§ãƒƒã‚¯
 	if( count > p_wk->count_max ){
 		count_num = p_wk->count_max;
 		ret = TRUE;
@@ -1651,12 +1651,12 @@ static BOOL WFLBY_GADGET_MV_Straight_Main( WFLBY_GADGET_MV_STRAIGHT* p_wk, s32 c
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	’¼iˆÚ“®	’l‚ðŽæ“¾
+ *	@brief	ç›´é€²ç§»å‹•	å€¤ã‚’å–å¾—
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	p_x			‚˜À•W
- *	@param	p_y			‚™À•W
- *	@param	p_z			‚šÀ•W
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_x			ï½˜åº§æ¨™
+ *	@param	p_y			ï½™åº§æ¨™
+ *	@param	p_z			ï½šåº§æ¨™
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_MV_Straight_GetNum( const WFLBY_GADGET_MV_STRAIGHT* cp_wk, fx32* p_x, fx32* p_y, fx32* p_z )
@@ -1669,12 +1669,12 @@ static void WFLBY_GADGET_MV_Straight_GetNum( const WFLBY_GADGET_MV_STRAIGHT* cp_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒCƒ“ƒJ[ƒu“®ì	‰Šú‰»
+ *	@brief	ã‚µã‚¤ãƒ³ã‚«ãƒ¼ãƒ–å‹•ä½œ	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	s_rota		ŠJŽn‰ñ“]Šp“x
- *	@param	speed		ƒXƒs[ƒh
- *	@param	dis			‹——£
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_rota		é–‹å§‹å›žè»¢è§’åº¦
+ *	@param	speed		ã‚¹ãƒ”ãƒ¼ãƒ‰
+ *	@param	dis			è·é›¢
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_MV_SinCurve_Init( WFLBY_GADGET_MV_SINCURVE* p_wk, u16 s_rota, u16 speed, fx32 dis )
@@ -1687,9 +1687,9 @@ static void WFLBY_GADGET_MV_SinCurve_Init( WFLBY_GADGET_MV_SINCURVE* p_wk, u16 s
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒCƒ“ƒJ[ƒu“®ì	ƒƒCƒ“
+ *	@brief	ã‚µã‚¤ãƒ³ã‚«ãƒ¼ãƒ–å‹•ä½œ	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_MV_SinCurve_Main( WFLBY_GADGET_MV_SINCURVE* p_wk )
@@ -1700,10 +1700,10 @@ static void WFLBY_GADGET_MV_SinCurve_Main( WFLBY_GADGET_MV_SINCURVE* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒCƒ“ƒJ[ƒu“®ì	’lŽæ“¾
+ *	@brief	ã‚µã‚¤ãƒ³ã‚«ãƒ¼ãƒ–å‹•ä½œ	å€¤å–å¾—
  *
- *	@param	cp_wk	ƒ[ƒN
- *	@param	p_num	ˆÚ“®’l
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_num	ç§»å‹•å€¤
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_MV_SinCurve_GetNum( const WFLBY_GADGET_MV_SINCURVE* cp_wk, fx32* p_num )
@@ -1713,18 +1713,18 @@ static void WFLBY_GADGET_MV_SinCurve_GetNum( const WFLBY_GADGET_MV_SINCURVE* cp_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgSEÄ¶
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆSEå†ç”Ÿ
  *
- *	@param	p_sys		ƒKƒWƒFƒbƒgƒVƒXƒeƒ€
- *	@param	p_wk		ƒ[ƒN
- *	@param	seno		SEƒiƒ“ƒo[
+ *	@param	p_sys		ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	seno		SEãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_SePlay( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 seno )
 {
-	// Ž©•ª‚Æ‘¼l‚ÅÄ¶•û–@‚ð•ÏX
+	// è‡ªåˆ†ã¨ä»–äººã§å†ç”Ÿæ–¹æ³•ã‚’å¤‰æ›´
 	if( p_wk->p_person == WFLBY_3DOBJCONT_GetPlayer( p_sys->p_objcont ) ){
-		Snd_SePlayEx( seno, SND_PLAYER_NO_WIFI_HIROBA );	//Ž©•ªê—p‚ÌƒvƒŒƒCƒ„[ƒiƒ“ƒo[‚ÅÄ¶
+		Snd_SePlayEx( seno, SND_PLAYER_NO_WIFI_HIROBA );	//è‡ªåˆ†å°‚ç”¨ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã§å†ç”Ÿ
 	}else{
 		if( WFLBY_3DOBJCONT_GetCullingFlag( p_wk->p_person ) == FALSE ){
 			Snd_SePlay( seno );
@@ -1736,10 +1736,10 @@ static void WFLBY_GADGET_SePlay( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚Ýž‚Ý
+ *	@brief	ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	gheapID		ƒOƒ‰ƒtƒBƒbƒNƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	gheapID		ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_LoadMdl( WFLBY_GADGET* p_sys, ARCHANDLE* p_handle, u32 gheapID )
@@ -1753,19 +1753,19 @@ static void WFLBY_GADGET_LoadMdl( WFLBY_GADGET* p_sys, ARCHANDLE* p_handle, u32 
 		p_sys->mdl[i].pModelSet	= NNS_G3dGetMdlSet( p_sys->mdl[i].pResMdl );
 		p_sys->mdl[i].pModel	= NNS_G3dGetMdlByIdx( p_sys->mdl[i].pModelSet, 0 );
 
-		// ƒeƒNƒXƒ`ƒƒ‚ÍŒã‚ÅƒoƒCƒ“ƒh‚·‚é
+		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¯å¾Œã§ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹
 		p_sys->mdl[i].pMdlTex = NULL;
 
-		// ƒGƒ~ƒbƒVƒ‡ƒ“‚ð–¾‚é‚­‚·‚é
+		// ã‚¨ãƒŸãƒƒã‚·ãƒ§ãƒ³ã‚’æ˜Žã‚‹ãã™ã‚‹
 		NNS_G3dMdlSetMdlEmiAll( p_sys->mdl[i].pModel, GX_RGB( 31,31,31 ) );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‚ƒfƒ‹ƒf[ƒ^”jŠü
+ *	@brief	ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ç ´æ£„
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_DeleteMdl( WFLBY_GADGET* p_sys )
@@ -1779,11 +1779,11 @@ static void WFLBY_GADGET_DeleteMdl( WFLBY_GADGET* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒNƒXƒ`ƒƒ“Ç‚Ýž‚Ý
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	gheapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	gheapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_LoadTex( WFLBY_GADGET* p_sys, ARCHANDLE* p_handle, u32 gheapID )
@@ -1798,9 +1798,9 @@ static void WFLBY_GADGET_LoadTex( WFLBY_GADGET* p_sys, ARCHANDLE* p_handle, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒeƒNƒXƒ`ƒƒ”jŠü
+ *	@brief	ãƒ†ã‚¯ã‚¹ãƒãƒ£ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_DeleteTex( WFLBY_GADGET* p_sys )
@@ -1814,7 +1814,7 @@ static void WFLBY_GADGET_DeleteTex( WFLBY_GADGET* p_sys )
 	for( i=0; i<WFLBY_GADGET_TEX_NUM; i++ ){
 
 		p_tex = NNS_G3dGetTex( p_sys->p_texres[i] );
-		//VramKey”jŠü
+		//VramKeyç ´æ£„
 		NNS_G3dTexReleaseTexKey( p_tex, &texKey, &tex4x4Key );
 		NNS_GfdFreeTexVram( texKey );	
 		NNS_GfdFreeTexVram( tex4x4Key );	
@@ -1828,26 +1828,26 @@ static void WFLBY_GADGET_DeleteTex( WFLBY_GADGET* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒf[ƒ^“Ç‚Ýž‚Ý
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_handle	ƒnƒ“ƒhƒ‹
- *	@param	gheapID		ƒq[ƒvID
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_handle	ãƒãƒ³ãƒ‰ãƒ«
+ *	@param	gheapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_LoadAnm( WFLBY_GADGET* p_sys, ARCHANDLE* p_handle, u32 gheapID )
 {
 	int i, j;
 
-	// ƒAƒjƒ‚Íƒ‚ƒfƒ‹ƒf[ƒ^‚ª•K—v‚È‚½‚ßsc_WFLBY_GADGET_RES‚ð‚µ‚æ‚¤‚µ‚Ä‰Šú‰»‚·‚éB
-	// sc_WFLBY_GADGET_RES‚Éd•¡‚µ‚ÄƒAƒjƒ’è”‚ðŽw’è‚µ‚½‚Æ‚«‚ÍA
-	// Å‰‚Ì‚P‰ñ‚¾‚¯ƒƒ‚ƒŠ‚ðŠm•Û‚·‚é
+	// ã‚¢ãƒ‹ãƒ¡ã¯ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãŒå¿…è¦ãªãŸã‚sc_WFLBY_GADGET_RESã‚’ã—ã‚ˆã†ã—ã¦åˆæœŸåŒ–ã™ã‚‹ã€‚
+	// sc_WFLBY_GADGET_RESã«é‡è¤‡ã—ã¦ã‚¢ãƒ‹ãƒ¡å®šæ•°ã‚’æŒ‡å®šã—ãŸã¨ãã¯ã€
+	// æœ€åˆã®ï¼‘å›žã ã‘ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹
 	for( i=0; i<WFLBY_GADGET_OBJ_NUM; i++ ){
 		for( j=0; j<WFLBY_GADGET_ANM_MAX; j++ ){
 			if( sc_WFLBY_GADGET_RES[i].anm[j] != WFLBY_GADGET_ANM_NONE ){
 				if( p_sys->anm[ sc_WFLBY_GADGET_RES[i].anm[j] ].pResAnm == NULL ){
 
-					// ƒeƒNƒXƒ`ƒƒƒAƒjƒ—p‚É‘Î‰ž‚·‚éƒeƒNƒXƒ`ƒƒ‚ðƒ‚ƒfƒ‹‚ÉÝ’è‚·‚é
+					// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¢ãƒ‹ãƒ¡ç”¨ã«å¯¾å¿œã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã™ã‚‹
 					p_sys->mdl[ sc_WFLBY_GADGET_RES[i].mdl ].pMdlTex = NNS_G3dGetTex( p_sys->p_texres[sc_WFLBY_GADGET_RES[i].tex] );
 					
 					D3DOBJ_AnmLoadH( &p_sys->anm[ sc_WFLBY_GADGET_RES[i].anm[j] ], 
@@ -1862,9 +1862,9 @@ static void WFLBY_GADGET_LoadAnm( WFLBY_GADGET* p_sys, ARCHANDLE* p_handle, u32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒŠƒ\[ƒX‚Ì”jŠü
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_DeleteAnm( WFLBY_GADGET* p_sys )
@@ -1882,44 +1882,44 @@ static void WFLBY_GADGET_DeleteAnm( WFLBY_GADGET* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒAƒjƒŠJŽn
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¢ãƒ‹ãƒ¡é–‹å§‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_person	l•¨ƒ[ƒN
- *	@param	gadget		ƒKƒWƒFƒbƒg
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_person	äººç‰©ãƒ¯ãƒ¼ã‚¯
+ *	@param	gadget		ã‚¬ã‚¸ã‚§ãƒƒãƒˆ
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_OBJ_Start( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, WFLBY_3DPERSON* p_person, WFLBY_ITEMTYPE gadget )
 {
 	static void (* const pFunc[ WFLBY_ITEM_NUM ])( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk ) = {
-		WFLBY_GADGET_ANM_Init_Bell00,		// ƒxƒ‹¬
-		WFLBY_GADGET_ANM_Init_Bell01,		// ƒxƒ‹’†
-		WFLBY_GADGET_ANM_Init_Bell02,		// ƒxƒ‹‘å
-		WFLBY_GADGET_ANM_Init_Drum00,       // ƒhƒ‰ƒ€¬
-		WFLBY_GADGET_ANM_Init_Drum01,       // ƒhƒ‰ƒ€’†
-		WFLBY_GADGET_ANM_Init_Drum02,       // ƒhƒ‰ƒ€‘å
-		WFLBY_GADGET_ANM_Init_Cymbals00,	// ƒVƒ“ƒoƒ‹¬
-		WFLBY_GADGET_ANM_Init_Cymbals01,	// ƒVƒ“ƒoƒ‹’†
-		WFLBY_GADGET_ANM_Init_Cymbals02,	// ƒVƒ“ƒoƒ‹‘å
-		WFLBY_GADGET_ANM_Init_Rippru00,     // ƒŠƒbƒvƒ‹¬
-		WFLBY_GADGET_ANM_Init_Rippru01,     // ƒŠƒbƒvƒ‹’†
-		WFLBY_GADGET_ANM_Init_Rippru02,     // ƒŠƒbƒvƒ‹‘å
-		WFLBY_GADGET_ANM_Init_Signal00,     // ƒVƒOƒiƒ‹¬
-		WFLBY_GADGET_ANM_Init_Signal00,     // ƒVƒOƒiƒ‹’†
-		WFLBY_GADGET_ANM_Init_Signal00,     // ƒVƒOƒiƒ‹‘å
-		WFLBY_GADGET_ANM_Init_Swing00,   	// ƒXƒEƒBƒ“ƒO¬
-		WFLBY_GADGET_ANM_Init_Swing01,       // ƒXƒEƒBƒ“ƒO’†
-		WFLBY_GADGET_ANM_Init_Swing02,       // ƒXƒEƒBƒ“ƒO‘å
-		WFLBY_GADGET_ANM_Init_Cracker00,     // ƒNƒ‰ƒbƒJ[¬
-		WFLBY_GADGET_ANM_Init_Cracker01,     // ƒNƒ‰ƒbƒJ[’†
-		WFLBY_GADGET_ANM_Init_Cracker02,     // ƒNƒ‰ƒbƒJ[‘å
-		WFLBY_GADGET_ANM_Init_Sparkle00,     // ƒXƒp[ƒNƒ‹¬
-		WFLBY_GADGET_ANM_Init_Sparkle01,     // ƒXƒp[ƒNƒ‹’†
-		WFLBY_GADGET_ANM_Init_Sparkle02,     // ƒXƒp[ƒNƒ‹‘å
-		WFLBY_GADGET_ANM_Init_Balloon00,   // ƒoƒ‹[ƒ“¬
-		WFLBY_GADGET_ANM_Init_Balloon01,   // ƒoƒ‹[ƒ“’†
-		WFLBY_GADGET_ANM_Init_Balloon02,   // ƒoƒ‹[ƒ“‘å
+		WFLBY_GADGET_ANM_Init_Bell00,		// ãƒ™ãƒ«å°
+		WFLBY_GADGET_ANM_Init_Bell01,		// ãƒ™ãƒ«ä¸­
+		WFLBY_GADGET_ANM_Init_Bell02,		// ãƒ™ãƒ«å¤§
+		WFLBY_GADGET_ANM_Init_Drum00,       // ãƒ‰ãƒ©ãƒ å°
+		WFLBY_GADGET_ANM_Init_Drum01,       // ãƒ‰ãƒ©ãƒ ä¸­
+		WFLBY_GADGET_ANM_Init_Drum02,       // ãƒ‰ãƒ©ãƒ å¤§
+		WFLBY_GADGET_ANM_Init_Cymbals00,	// ã‚·ãƒ³ãƒãƒ«å°
+		WFLBY_GADGET_ANM_Init_Cymbals01,	// ã‚·ãƒ³ãƒãƒ«ä¸­
+		WFLBY_GADGET_ANM_Init_Cymbals02,	// ã‚·ãƒ³ãƒãƒ«å¤§
+		WFLBY_GADGET_ANM_Init_Rippru00,     // ãƒªãƒƒãƒ—ãƒ«å°
+		WFLBY_GADGET_ANM_Init_Rippru01,     // ãƒªãƒƒãƒ—ãƒ«ä¸­
+		WFLBY_GADGET_ANM_Init_Rippru02,     // ãƒªãƒƒãƒ—ãƒ«å¤§
+		WFLBY_GADGET_ANM_Init_Signal00,     // ã‚·ã‚°ãƒŠãƒ«å°
+		WFLBY_GADGET_ANM_Init_Signal00,     // ã‚·ã‚°ãƒŠãƒ«ä¸­
+		WFLBY_GADGET_ANM_Init_Signal00,     // ã‚·ã‚°ãƒŠãƒ«å¤§
+		WFLBY_GADGET_ANM_Init_Swing00,   	// ã‚¹ã‚¦ã‚£ãƒ³ã‚°å°
+		WFLBY_GADGET_ANM_Init_Swing01,       // ã‚¹ã‚¦ã‚£ãƒ³ã‚°ä¸­
+		WFLBY_GADGET_ANM_Init_Swing02,       // ã‚¹ã‚¦ã‚£ãƒ³ã‚°å¤§
+		WFLBY_GADGET_ANM_Init_Cracker00,     // ã‚¯ãƒ©ãƒƒã‚«ãƒ¼å°
+		WFLBY_GADGET_ANM_Init_Cracker01,     // ã‚¯ãƒ©ãƒƒã‚«ãƒ¼ä¸­
+		WFLBY_GADGET_ANM_Init_Cracker02,     // ã‚¯ãƒ©ãƒƒã‚«ãƒ¼å¤§
+		WFLBY_GADGET_ANM_Init_Sparkle00,     // ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«å°
+		WFLBY_GADGET_ANM_Init_Sparkle01,     // ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«ä¸­
+		WFLBY_GADGET_ANM_Init_Sparkle02,     // ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«å¤§
+		WFLBY_GADGET_ANM_Init_Balloon00,   // ãƒãƒ«ãƒ¼ãƒ³å°
+		WFLBY_GADGET_ANM_Init_Balloon01,   // ãƒãƒ«ãƒ¼ãƒ³ä¸­
+		WFLBY_GADGET_ANM_Init_Balloon02,   // ãƒãƒ«ãƒ¼ãƒ³å¤§
 	};
 	static const u32 sc_SndData[ WFLBY_ITEM_NUM ] = {
 		WFLBY_SND_TOUCH_TOY01_1,
@@ -1952,66 +1952,66 @@ static void WFLBY_GADGET_OBJ_Start( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk,
 	};
 	GF_ASSERT( gadget < WFLBY_ITEM_NUM );
 
-	// “®ì’†‚È‚ç‚»‚Ìƒf[ƒ^”jŠü
+	// å‹•ä½œä¸­ãªã‚‰ãã®ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	WFLBY_GADGET_OBJ_End( p_sys, p_wk );
 	
-	// l•¨ƒ[ƒNÝ’è
+	// äººç‰©ãƒ¯ãƒ¼ã‚¯è¨­å®š
 	p_wk->p_person		= p_person;
 
-	// ƒKƒWƒFƒbƒgƒ^ƒCƒvÝ’è
+	// ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚¿ã‚¤ãƒ—è¨­å®š
 	p_wk->gadget_type	= gadget;
 
-	// ƒ‚ƒfƒ‹‚ÉÝ’è‚·‚éƒIƒuƒWƒFID
+	// ãƒ¢ãƒ‡ãƒ«ã«è¨­å®šã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ID
 	p_wk->mdl_objid		= WFLBY_GADGET_3DMDL_OBJID + WFLBY_3DOBJCONT_GetWkObjData( p_person, WF2DMAP_OBJPM_ST );
 
-	// •`‰æƒf[ƒ^Ý’è
+	// æç”»ãƒ‡ãƒ¼ã‚¿è¨­å®š
 	pFunc[ p_wk->gadget_type ]( p_sys, p_wk );
 
-	// ‰æ–Ê“à‚Él‚ª‚¢‚½‚ç‰¹‚ð–Â‚ç‚·
+	// ç”»é¢å†…ã«äººãŒã„ãŸã‚‰éŸ³ã‚’é³´ã‚‰ã™
 	WFLBY_GADGET_SePlay( p_sys, p_wk, sc_SndData[ p_wk->gadget_type ] );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒIƒuƒWƒF“®ìƒƒCƒ“
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§å‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_OBJ_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	static BOOL (* const pFunc[ WFLBY_ITEM_NUM ])( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk ) = {
-		WFLBY_GADGET_ANM_Main_Onpu00,		// ƒxƒ‹¬
-		WFLBY_GADGET_ANM_Main_Onpu00,		// ƒxƒ‹’†
-		WFLBY_GADGET_ANM_Main_Onpu00,		// ƒxƒ‹‘å
-		WFLBY_GADGET_ANM_Main_Onpu00,		// ƒhƒ‰ƒ€¬
-		WFLBY_GADGET_ANM_Main_Onpu00,		// ƒhƒ‰ƒ€’†
-		WFLBY_GADGET_ANM_Main_Onpu00,		// ƒhƒ‰ƒ€‘å
-		WFLBY_GADGET_ANM_Main_Cymbals,		// ƒVƒ“ƒoƒ‹¬
-		WFLBY_GADGET_ANM_Main_Cymbals,		// ƒVƒ“ƒoƒ‹’†
-		WFLBY_GADGET_ANM_Main_Cymbals,		// ƒVƒ“ƒoƒ‹‘å
-		WFLBY_GADGET_ANM_Main_Rippru00,		// ƒŠƒbƒvƒ‹¬
-		WFLBY_GADGET_ANM_Main_Rippru00,		// ƒŠƒbƒvƒ‹’†
-		WFLBY_GADGET_ANM_Main_Rippru00,		// ƒŠƒbƒvƒ‹‘å
-		WFLBY_GADGET_ANM_Main_Signal00,		// ƒVƒOƒiƒ‹¬
-		WFLBY_GADGET_ANM_Main_Signal01,	    // ƒVƒOƒiƒ‹’†
-		WFLBY_GADGET_ANM_Main_Signal02,	    // ƒVƒOƒiƒ‹‘å
-		WFLBY_GADGET_ANM_Main_Swing00,		// ƒXƒEƒBƒ“ƒO¬
-		WFLBY_GADGET_ANM_Main_Swing00,		// ƒXƒEƒBƒ“ƒO’†
-		WFLBY_GADGET_ANM_Main_Swing00,		// ƒXƒEƒBƒ“ƒO‘å
-		WFLBY_GADGET_ANM_Main_Cracker00,	// ƒNƒ‰ƒbƒJ[¬
-		WFLBY_GADGET_ANM_Main_Cracker00,	// ƒNƒ‰ƒbƒJ[’†
-		WFLBY_GADGET_ANM_Main_Cracker00,	// ƒNƒ‰ƒbƒJ[‘å
-		WFLBY_GADGET_ANM_Main_Sparkle00,	// ƒXƒp[ƒNƒ‹¬
-		WFLBY_GADGET_ANM_Main_Sparkle00,	// ƒXƒp[ƒNƒ‹’†
-		WFLBY_GADGET_ANM_Main_Sparkle00,	// ƒXƒp[ƒNƒ‹‘å
-		WFLBY_GADGET_ANM_Main_Balloon00,	// ƒoƒ‹[ƒ“¬
-		WFLBY_GADGET_ANM_Main_Balloon00,	// ƒoƒ‹[ƒ“’†
-		WFLBY_GADGET_ANM_Main_Balloon00,	// ƒoƒ‹[ƒ“‘å
+		WFLBY_GADGET_ANM_Main_Onpu00,		// ãƒ™ãƒ«å°
+		WFLBY_GADGET_ANM_Main_Onpu00,		// ãƒ™ãƒ«ä¸­
+		WFLBY_GADGET_ANM_Main_Onpu00,		// ãƒ™ãƒ«å¤§
+		WFLBY_GADGET_ANM_Main_Onpu00,		// ãƒ‰ãƒ©ãƒ å°
+		WFLBY_GADGET_ANM_Main_Onpu00,		// ãƒ‰ãƒ©ãƒ ä¸­
+		WFLBY_GADGET_ANM_Main_Onpu00,		// ãƒ‰ãƒ©ãƒ å¤§
+		WFLBY_GADGET_ANM_Main_Cymbals,		// ã‚·ãƒ³ãƒãƒ«å°
+		WFLBY_GADGET_ANM_Main_Cymbals,		// ã‚·ãƒ³ãƒãƒ«ä¸­
+		WFLBY_GADGET_ANM_Main_Cymbals,		// ã‚·ãƒ³ãƒãƒ«å¤§
+		WFLBY_GADGET_ANM_Main_Rippru00,		// ãƒªãƒƒãƒ—ãƒ«å°
+		WFLBY_GADGET_ANM_Main_Rippru00,		// ãƒªãƒƒãƒ—ãƒ«ä¸­
+		WFLBY_GADGET_ANM_Main_Rippru00,		// ãƒªãƒƒãƒ—ãƒ«å¤§
+		WFLBY_GADGET_ANM_Main_Signal00,		// ã‚·ã‚°ãƒŠãƒ«å°
+		WFLBY_GADGET_ANM_Main_Signal01,	    // ã‚·ã‚°ãƒŠãƒ«ä¸­
+		WFLBY_GADGET_ANM_Main_Signal02,	    // ã‚·ã‚°ãƒŠãƒ«å¤§
+		WFLBY_GADGET_ANM_Main_Swing00,		// ã‚¹ã‚¦ã‚£ãƒ³ã‚°å°
+		WFLBY_GADGET_ANM_Main_Swing00,		// ã‚¹ã‚¦ã‚£ãƒ³ã‚°ä¸­
+		WFLBY_GADGET_ANM_Main_Swing00,		// ã‚¹ã‚¦ã‚£ãƒ³ã‚°å¤§
+		WFLBY_GADGET_ANM_Main_Cracker00,	// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼å°
+		WFLBY_GADGET_ANM_Main_Cracker00,	// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼ä¸­
+		WFLBY_GADGET_ANM_Main_Cracker00,	// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼å¤§
+		WFLBY_GADGET_ANM_Main_Sparkle00,	// ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«å°
+		WFLBY_GADGET_ANM_Main_Sparkle00,	// ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«ä¸­
+		WFLBY_GADGET_ANM_Main_Sparkle00,	// ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«å¤§
+		WFLBY_GADGET_ANM_Main_Balloon00,	// ãƒãƒ«ãƒ¼ãƒ³å°
+		WFLBY_GADGET_ANM_Main_Balloon00,	// ãƒãƒ«ãƒ¼ãƒ³ä¸­
+		WFLBY_GADGET_ANM_Main_Balloon00,	// ãƒãƒ«ãƒ¼ãƒ³å¤§
 	};
 
-	// ƒf[ƒ^‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( WFLBY_GADGET_OBJ_CheckMove( p_wk ) == FALSE ){
 		return ;
 	}
@@ -2019,56 +2019,56 @@ static void WFLBY_GADGET_OBJ_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 	GF_ASSERT( p_wk->gadget_type < WFLBY_ITEM_NUM );
 
 	if( pFunc[ p_wk->gadget_type ]( p_sys, p_wk ) == TRUE ){
-		WFLBY_GADGET_OBJ_End( p_sys, p_wk );	// I—¹
+		WFLBY_GADGET_OBJ_End( p_sys, p_wk );	// çµ‚äº†
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒIƒuƒWƒF•`‰æ
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§æç”»
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	•`‰æ‚µ‚½
- *	@retval	FALSE	•`‰æ‚µ‚Ä‚È‚¢
+ *	@retval	TRUE	æç”»ã—ãŸ
+ *	@retval	FALSE	æç”»ã—ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_OBJ_Draw( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	/*
 	static void (* const pFunc[ WFLBY_ITEM_NUM ])( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk ) = {
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒxƒ‹¬
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒxƒ‹’†
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒxƒ‹‘å
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒhƒ‰ƒ€¬
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒhƒ‰ƒ€’†
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒhƒ‰ƒ€‘å
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒVƒ“ƒoƒ‹¬
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒVƒ“ƒoƒ‹’†
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒVƒ“ƒoƒ‹‘å
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒŠƒbƒvƒ‹¬
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒŠƒbƒvƒ‹’†
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒŠƒbƒvƒ‹‘å
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒVƒOƒiƒ‹¬
-		WFLBY_GADGET_ANM_Draw_Obj,	    // ƒVƒOƒiƒ‹’†
-		WFLBY_GADGET_ANM_Draw_Obj,	    // ƒVƒOƒiƒ‹‘å
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒXƒEƒBƒ“ƒO¬
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒXƒEƒBƒ“ƒO’†
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒXƒEƒBƒ“ƒO‘å
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒNƒ‰ƒbƒJ[¬
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒNƒ‰ƒbƒJ[’†
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒNƒ‰ƒbƒJ[‘å
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒXƒp[ƒNƒ‹¬
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒXƒp[ƒNƒ‹’†
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒXƒp[ƒNƒ‹‘å
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒoƒ‹[ƒ“¬
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒoƒ‹[ƒ“’†
-		WFLBY_GADGET_ANM_Draw_Obj,		// ƒoƒ‹[ƒ“‘å
+		WFLBY_GADGET_ANM_Draw_Obj,		// ãƒ™ãƒ«å°
+		WFLBY_GADGET_ANM_Draw_Obj,		// ãƒ™ãƒ«ä¸­
+		WFLBY_GADGET_ANM_Draw_Obj,		// ãƒ™ãƒ«å¤§
+		WFLBY_GADGET_ANM_Draw_Obj,		// ãƒ‰ãƒ©ãƒ å°
+		WFLBY_GADGET_ANM_Draw_Obj,		// ãƒ‰ãƒ©ãƒ ä¸­
+		WFLBY_GADGET_ANM_Draw_Obj,		// ãƒ‰ãƒ©ãƒ å¤§
+		WFLBY_GADGET_ANM_Draw_Obj,		// ã‚·ãƒ³ãƒãƒ«å°
+		WFLBY_GADGET_ANM_Draw_Obj,		// ã‚·ãƒ³ãƒãƒ«ä¸­
+		WFLBY_GADGET_ANM_Draw_Obj,		// ã‚·ãƒ³ãƒãƒ«å¤§
+		WFLBY_GADGET_ANM_Draw_Obj,		// ãƒªãƒƒãƒ—ãƒ«å°
+		WFLBY_GADGET_ANM_Draw_Obj,		// ãƒªãƒƒãƒ—ãƒ«ä¸­
+		WFLBY_GADGET_ANM_Draw_Obj,		// ãƒªãƒƒãƒ—ãƒ«å¤§
+		WFLBY_GADGET_ANM_Draw_Obj,		// ã‚·ã‚°ãƒŠãƒ«å°
+		WFLBY_GADGET_ANM_Draw_Obj,	    // ã‚·ã‚°ãƒŠãƒ«ä¸­
+		WFLBY_GADGET_ANM_Draw_Obj,	    // ã‚·ã‚°ãƒŠãƒ«å¤§
+		WFLBY_GADGET_ANM_Draw_Obj,		// ã‚¹ã‚¦ã‚£ãƒ³ã‚°å°
+		WFLBY_GADGET_ANM_Draw_Obj,		// ã‚¹ã‚¦ã‚£ãƒ³ã‚°ä¸­
+		WFLBY_GADGET_ANM_Draw_Obj,		// ã‚¹ã‚¦ã‚£ãƒ³ã‚°å¤§
+		WFLBY_GADGET_ANM_Draw_Obj,		// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼å°
+		WFLBY_GADGET_ANM_Draw_Obj,		// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼ä¸­
+		WFLBY_GADGET_ANM_Draw_Obj,		// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼å¤§
+		WFLBY_GADGET_ANM_Draw_Obj,		// ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«å°
+		WFLBY_GADGET_ANM_Draw_Obj,		// ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«ä¸­
+		WFLBY_GADGET_ANM_Draw_Obj,		// ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«å¤§
+		WFLBY_GADGET_ANM_Draw_Obj,		// ãƒãƒ«ãƒ¼ãƒ³å°
+		WFLBY_GADGET_ANM_Draw_Obj,		// ãƒãƒ«ãƒ¼ãƒ³ä¸­
+		WFLBY_GADGET_ANM_Draw_Obj,		// ãƒãƒ«ãƒ¼ãƒ³å¤§
 	};
 	*/
 
-	// ƒf[ƒ^‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+	// ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if( WFLBY_GADGET_OBJ_CheckMove( p_wk ) == FALSE ){
 		return FALSE;
 	}
@@ -2076,31 +2076,31 @@ static BOOL WFLBY_GADGET_OBJ_Draw( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 	GF_ASSERT( p_wk->gadget_type < WFLBY_ITEM_NUM );
 
 //	pFunc[ p_wk->gadget_type ]( p_sys, p_wk );
-	return WFLBY_GADGET_ANM_Draw_Obj( p_sys, p_wk );		// Šî–{‚±‚ê‚Å‘S•”‚¢‚¯‚é
+	return WFLBY_GADGET_ANM_Draw_Obj( p_sys, p_wk );		// åŸºæœ¬ã“ã‚Œã§å…¨éƒ¨ã„ã‘ã‚‹
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒIƒuƒWƒF“®ìI—¹
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§å‹•ä½œçµ‚äº†
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_OBJ_End( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
-	// ‘Sƒ[ƒN‚Ì‰Šú‰»
+	// å…¨ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
 	memset( p_wk, 0, sizeof(WFLBY_GADGET_OBJ) );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒIƒuƒWƒF‚ª“®ì’†‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§ãŒå‹•ä½œä¸­ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_wk	ƒ[ƒN
+ *	@param	cp_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	“®ì’†
- *	@retval	FALSE	’âŽ~’†
+ *	@retval	TRUE	å‹•ä½œä¸­
+ *	@retval	FALSE	åœæ­¢ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_OBJ_CheckMove( const WFLBY_GADGET_OBJ* cp_wk )
@@ -2115,13 +2115,13 @@ static BOOL WFLBY_GADGET_OBJ_CheckMove( const WFLBY_GADGET_OBJ* cp_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	IDX‚Ì•`‰æƒIƒuƒWƒF‚ª“®‚¢‚Ä‚é‚©ƒ`ƒFƒbƒN‚·‚é
+ *	@brief	IDXã®æç”»ã‚ªãƒ–ã‚¸ã‚§ãŒå‹•ã„ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
  *
- *	@param	cp_wk		ƒ[ƒN
- *	@param	idx			ƒCƒ“ƒfƒbƒNƒX
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	‚»‚ÌIDX‚Ì•`‰æƒIƒuƒWƒF‚ª“®‚¢‚Ä‚¢‚é
- *	@retval	FALSE	‚¤‚²‚¢‚Ä‚È‚¢
+ *	@retval	TRUE	ãã®IDXã®æç”»ã‚ªãƒ–ã‚¸ã‚§ãŒå‹•ã„ã¦ã„ã‚‹
+ *	@retval	FALSE	ã†ã”ã„ã¦ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_OBJ_CheckRes( const WFLBY_GADGET_OBJ* cp_wk, u32 idx )
@@ -2135,12 +2135,12 @@ static BOOL WFLBY_GADGET_OBJ_CheckRes( const WFLBY_GADGET_OBJ* cp_wk, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒKƒWƒFƒbƒgƒIƒuƒWƒF	ƒŠƒ\[ƒXÝ’è
+ *	@brief	ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚ªãƒ–ã‚¸ã‚§	ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
- *	@param	idx			D3DOBJ@ƒCƒ“ƒfƒbƒNƒX
- *	@param	cp_resdata	ƒŠƒ\[ƒX\¬ƒf[ƒ^
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx			D3DOBJã€€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	cp_resdata	ãƒªã‚½ãƒ¼ã‚¹æ§‹æˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_OBJ_SetRes( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 idx, const WFLBY_GADGET_RES* cp_resdata )
@@ -2148,30 +2148,30 @@ static void WFLBY_GADGET_OBJ_SetRes( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk
 	int i;
 	
 	GF_ASSERT( idx < WFLBY_GADGET_OBJ_MAX );
-	// ƒIƒuƒWƒFÝ’è‚¸‚Ý‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ã‚ªãƒ–ã‚¸ã‚§è¨­å®šãšã¿ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	GF_ASSERT( p_wk->cp_objres[idx] == NULL );
 
 
-	// ‰Šú‰»î•ño—Í
+	// åˆæœŸåŒ–æƒ…å ±å‡ºåŠ›
 	{
 //		OS_TPrintf( "init mdl %d  tex %d anm [%d] [%d]\n", cp_resdata->mdl, cp_resdata->tex, cp_resdata->anm[0], cp_resdata->anm[1] );
 	}
 	
 	
-	// ƒIƒuƒWƒF\¬ƒf[ƒ^‚ð•Û‘¶
+	// ã‚ªãƒ–ã‚¸ã‚§æ§‹æˆãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
 	p_wk->cp_objres[idx] = cp_resdata;
 	
-	// ƒ‚ƒfƒ‹‚ÌÝ’è
+	// ãƒ¢ãƒ‡ãƒ«ã®è¨­å®š
 	D3DOBJ_Init( &p_wk->obj[idx], &p_sys->mdl[cp_resdata->mdl] );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚PD3DOBJ‚Ì•`‰æˆ—
+ *	@brief	ï¼‘D3DOBJã®æç”»å‡¦ç†
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk	ƒ[ƒN
- *	@param	idx		ƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx		ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_OBJ_DrawRes( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 idx )
@@ -2188,38 +2188,38 @@ static void WFLBY_GADGET_OBJ_DrawRes( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_w
 		return ;
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ‚Æƒ‚ƒfƒ‹Žæ“¾
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¨ãƒ¢ãƒ‡ãƒ«å–å¾—
 	p_tex = p_sys->p_texres[ p_wk->cp_objres[idx]->tex ];
 	p_mdl = &p_sys->mdl[ p_wk->cp_objres[idx]->mdl ];
 	
-	// ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰
 	p_mdl->pMdlTex = NNS_G3dGetTex( p_tex );
-	// –³—‚â‚è“\‚è•t‚¯‚Ä‚Ý‚é
+	// ç„¡ç†ã‚„ã‚Šè²¼ã‚Šä»˜ã‘ã¦ã¿ã‚‹
 	result = NNS_G3dForceBindMdlTex( p_mdl->pModel, p_mdl->pMdlTex, 0, 0 );
 	GF_ASSERT( result );
-	// –³—‚â‚è“\‚è•t‚¯‚Ä‚Ý‚é
+	// ç„¡ç†ã‚„ã‚Šè²¼ã‚Šä»˜ã‘ã¦ã¿ã‚‹
 	result = NNS_G3dForceBindMdlPltt( p_mdl->pModel, p_mdl->pMdlTex, 0, 0 );
 	GF_ASSERT( result );
 
-	// ƒAƒjƒ‚Ì“K—p
+	// ã‚¢ãƒ‹ãƒ¡ã®é©ç”¨
 	for( i=0; i<WFLBY_GADGET_ANM_MAX; i++ ){
 		if( p_wk->cp_objres[idx]->anm[i] != WFLBY_GADGET_ANM_NONE ){
 			p_anm = &p_sys->anm[ p_wk->cp_objres[idx]->anm[i] ];
 			D3DOBJ_AddAnm( &p_wk->obj[idx], p_anm );
-			// ƒtƒŒ[ƒ€‚ð‚ ‚í‚¹‚é
+			// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚ã‚ã›ã‚‹
 			D3DOBJ_AnmSet( p_anm, p_wk->anm_frame[idx][i] );
 		}else{
 			break;
 		}
 	}
 
-	// OBJID‚ÌÝ’è
+	// OBJIDã®è¨­å®š
 	NNS_G3dMdlSetMdlPolygonIDAll( p_mdl->pModel, p_wk->mdl_objid );
 
-	// •`‰æ
+	// æç”»
 	D3DOBJ_Draw( &p_wk->obj[idx] );	
 
-	// ƒAƒjƒ‚ð”jŠü
+	// ã‚¢ãƒ‹ãƒ¡ã‚’ç ´æ£„
 	for( i=0; i<WFLBY_GADGET_ANM_MAX; i++ ){
 		if( p_wk->cp_objres[idx]->anm[i] != WFLBY_GADGET_ANM_NONE ){
 			p_anm = &p_sys->anm[ p_wk->cp_objres[idx]->anm[i] ];
@@ -2229,7 +2229,7 @@ static void WFLBY_GADGET_OBJ_DrawRes( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_w
 		}
 	}
 
-	// ƒoƒCƒ“ƒh‰ðœ
+	// ãƒã‚¤ãƒ³ãƒ‰è§£é™¤
 	NNS_G3dReleaseMdlTex( p_mdl->pModel );
 	NNS_G3dReleaseMdlPltt( p_mdl->pModel );
 //	NNS_G3dReleaseMdlSet(p_mdl->pModelSet );
@@ -2238,12 +2238,12 @@ static void WFLBY_GADGET_OBJ_DrawRes( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_w
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‹[ƒvƒAƒjƒ
+ *	@brief	ãƒ«ãƒ¼ãƒ—ã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
- *	@param	objidx		ƒIƒuƒWƒFIDX
- *	@param	anmidx		ƒAƒjƒIDX
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	objidx		ã‚ªãƒ–ã‚¸ã‚§IDX
+ *	@param	anmidx		ã‚¢ãƒ‹ãƒ¡IDX
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_OBJ_LoopAnm( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 objidx, u32 anmidx )
@@ -2253,12 +2253,12 @@ static void WFLBY_GADGET_OBJ_LoopAnm( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_w
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‹[‚Õ‚µ‚È‚¢ƒAƒjƒ
+ *	@brief	ãƒ«ãƒ¼ã·ã—ãªã„ã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
- *	@param	objidx		ƒIƒuƒWƒFIDX
- *	@param	anmidx		ƒAƒjƒIDX
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	objidx		ã‚ªãƒ–ã‚¸ã‚§IDX
+ *	@param	anmidx		ã‚¢ãƒ‹ãƒ¡IDX
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_OBJ_NoLoopAnm( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 objidx, u32 anmidx )
@@ -2267,7 +2267,7 @@ static BOOL WFLBY_GADGET_OBJ_NoLoopAnm( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ‹[ƒvÄ¶	ƒXƒs[ƒhŽw’è”Å
+ *	@brief	ãƒ«ãƒ¼ãƒ—å†ç”Ÿ	ã‚¹ãƒ”ãƒ¼ãƒ‰æŒ‡å®šç‰ˆ
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_OBJ_LoopAnm_Sp( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 objidx, u32 anmidx, fx32 speed )
@@ -2275,12 +2275,12 @@ static void WFLBY_GADGET_OBJ_LoopAnm_Sp( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* 
 	fx32 end_frame;
 	D3DOBJ_ANM* p_anm;
 
-	// ƒAƒjƒƒIƒuƒWƒFŽæ“¾
+	// ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§å–å¾—
 	p_anm = &p_sys->anm[ p_wk->cp_objres[ objidx ]->anm[ anmidx ] ];
 
 	end_frame = D3DOBJ_AnmGetFrameNum( p_anm );
 
-	// ƒAƒjƒ‚ði‚ß‚é
+	// ã‚¢ãƒ‹ãƒ¡ã‚’é€²ã‚ã‚‹
 	if( (p_wk->anm_frame[objidx][anmidx] + speed) < end_frame ){
 		p_wk->anm_frame[objidx][anmidx] += speed;
 	}else{
@@ -2290,7 +2290,7 @@ static void WFLBY_GADGET_OBJ_LoopAnm_Sp( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	NOƒ‹[ƒvÄ¶	ƒXƒs[ƒhŽw’è”Å
+ *	@brief	NOãƒ«ãƒ¼ãƒ—å†ç”Ÿ	ã‚¹ãƒ”ãƒ¼ãƒ‰æŒ‡å®šç‰ˆ
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_OBJ_NoLoopAnm_Sp( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 objidx, u32 anmidx, fx32 speed )
@@ -2299,12 +2299,12 @@ static BOOL WFLBY_GADGET_OBJ_NoLoopAnm_Sp( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ
 	BOOL ret;
 	D3DOBJ_ANM* p_anm;
 
-	// ƒAƒjƒƒIƒuƒWƒFŽæ“¾
+	// ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§å–å¾—
 	p_anm = &p_sys->anm[ p_wk->cp_objres[ objidx ]->anm[ anmidx ] ];
 
 	end_frame = D3DOBJ_AnmGetFrameNum( p_anm );
 
-	// ƒAƒjƒ‚ði‚ß‚é
+	// ã‚¢ãƒ‹ãƒ¡ã‚’é€²ã‚ã‚‹
 	if( (p_wk->anm_frame[objidx][anmidx] + speed) < end_frame ){
 		p_wk->anm_frame[objidx][anmidx] += speed;
 		ret = FALSE;
@@ -2316,13 +2316,13 @@ static BOOL WFLBY_GADGET_OBJ_NoLoopAnm_Sp( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ
 	return ret;
 }
 
-// ƒtƒŒ[ƒ€”‚ÌÝ’è
+// ãƒ•ãƒ¬ãƒ¼ãƒ æ•°ã®è¨­å®š
 static void WFLBY_GADGET_OBJ_SetFrame( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 objidx, u32 anmidx, fx32 frame )
 {
 	fx32 end_frame;
 	D3DOBJ_ANM* p_anm;
 
-	// ƒAƒjƒƒIƒuƒWƒFŽæ“¾
+	// ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§å–å¾—
 	p_anm = &p_sys->anm[ p_wk->cp_objres[ objidx ]->anm[ anmidx ] ];
 
 	end_frame = D3DOBJ_AnmGetFrameNum( p_anm );
@@ -2335,14 +2335,14 @@ static void WFLBY_GADGET_OBJ_SetFrame( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒƒtƒŒ[ƒ€‚ðŽæ“¾‚·‚é
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å–å¾—ã™ã‚‹
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€
- *	@param	cp_wk		ƒ[ƒN
- *	@param	objidx		ƒIƒuƒWƒFIDX
- *	@param	anmidx		ƒAƒjƒIDX
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	cp_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	objidx		ã‚ªãƒ–ã‚¸ã‚§IDX
+ *	@param	anmidx		ã‚¢ãƒ‹ãƒ¡IDX
  *
- *	@return	ƒtƒŒ[ƒ€
+ *	@return	ãƒ•ãƒ¬ãƒ¼ãƒ 
  */
 //-----------------------------------------------------------------------------
 static fx32 WFLBY_GADGET_OBJ_GetFrame( const WFLBY_GADGET* cp_sys, const WFLBY_GADGET_OBJ* cp_wk, u32 objidx, u32 anmidx )
@@ -2350,7 +2350,7 @@ static fx32 WFLBY_GADGET_OBJ_GetFrame( const WFLBY_GADGET* cp_sys, const WFLBY_G
 	fx32 end_frame;
 	const D3DOBJ_ANM* cp_anm;
 
-	// ƒAƒjƒƒIƒuƒWƒFŽæ“¾
+	// ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§å–å¾—
 	cp_anm = &cp_sys->anm[ cp_wk->cp_objres[ objidx ]->anm[ anmidx ] ];
 
 	return D3DOBJ_AnmGet( cp_anm );
@@ -2359,13 +2359,13 @@ static fx32 WFLBY_GADGET_OBJ_GetFrame( const WFLBY_GADGET* cp_sys, const WFLBY_G
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ‚Ì‰Šú‰»
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ã®åˆæœŸåŒ–
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
-// ƒŠƒbƒvƒ‹
+// ãƒªãƒƒãƒ—ãƒ«
 static void WFLBY_GADGET_ANM_Init_Rippru00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	WFLBY_GADGET_Ripple_Init( p_sys, p_wk, 1 );
@@ -2378,7 +2378,7 @@ static void WFLBY_GADGET_ANM_Init_Rippru02( WFLBY_GADGET* p_sys, WFLBY_GADGET_OB
 {
 	WFLBY_GADGET_Ripple_Init( p_sys, p_wk, 3 );
 }
-// ƒEƒCƒ“ƒN
+// ã‚¦ã‚¤ãƒ³ã‚¯
 static void WFLBY_GADGET_ANM_Init_Swing00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	WFLBY_GADGET_Swing_Init( p_sys, p_wk, 1 );
@@ -2391,7 +2391,7 @@ static void WFLBY_GADGET_ANM_Init_Swing02( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ
 {
 	WFLBY_GADGET_Swing_Init( p_sys, p_wk, 3 );
 }
-// ƒVƒOƒiƒ‹
+// ã‚·ã‚°ãƒŠãƒ«
 static void WFLBY_GADGET_ANM_Init_Signal00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	int i;
@@ -2401,22 +2401,22 @@ static void WFLBY_GADGET_ANM_Init_Signal00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OB
 	for( i=0; i<WFLBY_GADGET_SIGNAL_OBJ_NUM; i++ ){
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, i, &sc_WFLBY_GADGET_RES[WFLBY_GADGET_OBJ_SIGNAL00 + i] );
 
-		// À•W‚ð‚ ‚í‚¹‚é
+		// åº§æ¨™ã‚’ã‚ã‚ã›ã‚‹
 		WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
-		// Ý’è
+		// è¨­å®š
 		matrix.x += WFLBY_GADGET_SIGNAL_ANM_MOVE_X;
 		matrix.z += WFLBY_GADGET_SIGNAL_ANM_MOVE_Z;
 		matrix.y += WFLBY_GADGET_FLOOR_Y + (FX_Mul( FX32_ONE*i, WFLBY_GADGET_SIGNAL_ANM_MOVE_Y ));
 		D3DOBJ_SetMatrix( &p_wk->obj[i], matrix.x, matrix.y, matrix.z );
 
-		// ”ñ•\Ž¦
+		// éžè¡¨ç¤º
 		D3DOBJ_SetDraw( &p_wk->obj[i], FALSE );
 	}
 
 	p_wk->mvwk.signal.lastnum = 0xff;
 }
 
-// ƒNƒ‰ƒbƒJ[
+// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼
 static void WFLBY_GADGET_ANM_Init_Cracker00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	VecFx32 matrix, flash_matrix;
@@ -2425,10 +2425,10 @@ static void WFLBY_GADGET_ANM_Init_Cracker00( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 	WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, WFLBY_GADGET_CRACKEROBJ_CRACKER, &sc_WFLBY_GADGET_RES[WFLBY_GADGET_OBJ_CRACLCER00] );
 	WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, WFLBY_GADGET_CRACKEROBJ_FLASH, &sc_WFLBY_GADGET_RES[WFLBY_GADGET_OBJ_FLASH00] );
 
-	// ƒNƒ‰ƒbƒJ[‚Ì•`‰æOFF
+	// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼ã®æç”»OFF
 	D3DOBJ_SetDraw( &p_wk->obj[WFLBY_GADGET_CRACKEROBJ_CRACKER], FALSE );
 
-	// À•W‚ð‚ ‚í‚¹‚é
+	// åº§æ¨™ã‚’ã‚ã‚ã›ã‚‹
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 	matrix.y		+= WFLBY_GADGET_AIR_Y;
 	matrix.x		+= WFLBY_GADGET_CRACKER_CENTER_X;
@@ -2436,10 +2436,10 @@ static void WFLBY_GADGET_ANM_Init_Cracker00( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 	flash_matrix.y	+= WFLBY_GADGET_FLASH_Y;
 
 
-	// ƒAƒ‹ƒtƒ@ƒJƒEƒ“ƒ^‰Šú‰»
+	// ã‚¢ãƒ«ãƒ•ã‚¡ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 	p_wk->mvwk.cracker.alpha_count[0] = WFLBY_GADGET_CRACKER_ALPHA_OUT_SYNC;
 
-	// ‰ñ“]Šp“x
+	// å›žè»¢è§’åº¦
 	way = WFLBY_3DOBJCONT_GetWkObjData( p_wk->p_person, WF2DMAP_OBJPM_WAY );
 	switch( way ){
 	case WF2DMAP_WAY_UP:
@@ -2472,11 +2472,11 @@ static void WFLBY_GADGET_ANM_Init_Cracker00( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 		break;
 	}
 
-	// Ý’è
+	// è¨­å®š
 	D3DOBJ_SetMatrix( &p_wk->obj[WFLBY_GADGET_CRACKEROBJ_CRACKER], matrix.x, matrix.y, matrix.z );
 	D3DOBJ_SetMatrix( &p_wk->obj[WFLBY_GADGET_CRACKEROBJ_FLASH], flash_matrix.x, flash_matrix.y, flash_matrix.z );
 }
-// ƒNƒ‰ƒbƒJ[‚Q‚±
+// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼ï¼’ã“
 static void WFLBY_GADGET_ANM_Init_Cracker01( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	VecFx32 matrix, flash_matrix;
@@ -2486,21 +2486,21 @@ static void WFLBY_GADGET_ANM_Init_Cracker01( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 	WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, WFLBY_GADGET_CRACKEROBJ_FLASH, &sc_WFLBY_GADGET_RES[WFLBY_GADGET_OBJ_FLASH00] );
 	WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, WFLBY_GADGET_CRACKEROBJ_CRACKER01, &sc_WFLBY_GADGET_RES[WFLBY_GADGET_OBJ_CRACLCER01] );
 
-	// ƒNƒ‰ƒbƒJ[‚Ì•`‰æOFF
+	// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼ã®æç”»OFF
 	D3DOBJ_SetDraw( &p_wk->obj[WFLBY_GADGET_CRACKEROBJ_CRACKER], FALSE );
 
-	// À•W‚ð‚ ‚í‚¹‚é
+	// åº§æ¨™ã‚’ã‚ã‚ã›ã‚‹
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 	matrix.y		+= WFLBY_GADGET_AIR_Y;
 	matrix.x		+= WFLBY_GADGET_CRACKER_CENTER_X;
 	flash_matrix	= matrix;
 	flash_matrix.y	+= WFLBY_GADGET_FLASH_Y;
 
-	// ƒAƒ‹ƒtƒ@ƒJƒEƒ“ƒ^‰Šú‰»
+	// ã‚¢ãƒ«ãƒ•ã‚¡ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 	p_wk->mvwk.cracker.alpha_count[0] = WFLBY_GADGET_CRACKER_ALPHA_OUT_SYNC;
 	p_wk->mvwk.cracker.alpha_count[1] = WFLBY_GADGET_CRACKER_ALPHA_OUT_SYNC;
 
-	// ‰ñ“]Šp“x
+	// å›žè»¢è§’åº¦
 	way = WFLBY_3DOBJCONT_GetWkObjData( p_wk->p_person, WF2DMAP_OBJPM_WAY );
 	switch( way ){
 	case WF2DMAP_WAY_UP:
@@ -2565,10 +2565,10 @@ static void WFLBY_GADGET_ANM_Init_Cracker01( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 		break;
 	}
 
-	// Ý’è
+	// è¨­å®š
 	D3DOBJ_SetMatrix( &p_wk->obj[WFLBY_GADGET_CRACKEROBJ_FLASH], flash_matrix.x, flash_matrix.y, flash_matrix.z );
 }
-// ƒNƒ‰ƒbƒJ[‚R‚±
+// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼ï¼“ã“
 static void WFLBY_GADGET_ANM_Init_Cracker02( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	VecFx32 matrix, flash_matrix;
@@ -2579,22 +2579,22 @@ static void WFLBY_GADGET_ANM_Init_Cracker02( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 	WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, WFLBY_GADGET_CRACKEROBJ_CRACKER01, &sc_WFLBY_GADGET_RES[WFLBY_GADGET_OBJ_CRACLCER01] );
 	WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, WFLBY_GADGET_CRACKEROBJ_CRACKER02, &sc_WFLBY_GADGET_RES[WFLBY_GADGET_OBJ_CRACLCER02] );
 
-	// ƒNƒ‰ƒbƒJ[‚Ì•`‰æOFF
+	// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼ã®æç”»OFF
 	D3DOBJ_SetDraw( &p_wk->obj[WFLBY_GADGET_CRACKEROBJ_CRACKER], FALSE );
 
-	// ƒAƒ‹ƒtƒ@ƒJƒEƒ“ƒ^‰Šú‰»
+	// ã‚¢ãƒ«ãƒ•ã‚¡ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 	p_wk->mvwk.cracker.alpha_count[0] = WFLBY_GADGET_CRACKER_ALPHA_OUT_SYNC;
 	p_wk->mvwk.cracker.alpha_count[1] = WFLBY_GADGET_CRACKER_ALPHA_OUT_SYNC;
 	p_wk->mvwk.cracker.alpha_count[2] = WFLBY_GADGET_CRACKER_ALPHA_OUT_SYNC;
 
-	// À•W‚ð‚ ‚í‚¹‚é
+	// åº§æ¨™ã‚’ã‚ã‚ã›ã‚‹
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 	matrix.y		+= WFLBY_GADGET_AIR_Y;
 	matrix.x		+= WFLBY_GADGET_CRACKER_CENTER_X;
 	flash_matrix	= matrix;
 	flash_matrix.y	+= WFLBY_GADGET_FLASH_Y;
 
-	// ‰ñ“]Šp“x
+	// å›žè»¢è§’åº¦
 	way = WFLBY_3DOBJCONT_GetWkObjData( p_wk->p_person, WF2DMAP_OBJPM_WAY );
 	switch( way ){
 	case WF2DMAP_WAY_UP:
@@ -2671,55 +2671,55 @@ static void WFLBY_GADGET_ANM_Init_Cracker02( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 		break;
 	}
 
-	// Ý’è
+	// è¨­å®š
 	D3DOBJ_SetMatrix( &p_wk->obj[WFLBY_GADGET_CRACKEROBJ_FLASH], flash_matrix.x, flash_matrix.y, flash_matrix.z );
 }
 
 
-// •—‘D‚P‚±
+// é¢¨èˆ¹ï¼‘ã“
 static void WFLBY_GADGET_ANM_Init_Balloon00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	WFLBY_GADGET_Balloon_InitUp( p_sys, p_wk, 1 );
 }
 
-// •—‘D‚Q‚±
+// é¢¨èˆ¹ï¼’ã“
 static void WFLBY_GADGET_ANM_Init_Balloon01( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	WFLBY_GADGET_Balloon_InitUp( p_sys, p_wk, 2 );
 }
 
-// •—‘D‚R‚±
+// é¢¨èˆ¹ï¼“ã“
 static void WFLBY_GADGET_ANM_Init_Balloon02( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	WFLBY_GADGET_Balloon_InitUp( p_sys, p_wk, 3 );
 }
 
-// Ž†‚Ó‚Ô‚«1Žü
+// ç´™ãµã¶ã1å‘¨
 static void WFLBY_GADGET_ANM_Init_Sparkle00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	WFLBY_GADGET_Sparkle_Init( p_sys, p_wk, 1 );
 }
-// Ž†‚Ó‚Ô‚«2Žü
+// ç´™ãµã¶ã2å‘¨
 static void WFLBY_GADGET_ANM_Init_Sparkle01( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	WFLBY_GADGET_Sparkle_Init( p_sys, p_wk, 2 );
 }
-// Ž†‚Ó‚Ô‚«4Žü
+// ç´™ãµã¶ã4å‘¨
 static void WFLBY_GADGET_ANM_Init_Sparkle02( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	WFLBY_GADGET_Sparkle_Init( p_sys, p_wk, 4 );
 }
-// ƒxƒ‹
+// ãƒ™ãƒ«
 static void WFLBY_GADGET_ANM_Init_Bell00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	int i;
 	
-	// ƒIƒuƒWƒFì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
 	for( i=0; i<WFLBY_GADGET_ONPU_OBJWK_NUM; i++ ){
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, i, &sc_WFLBY_GADGET_RES[ sc_WFLBY_LEVEL_00ADDOBJ[i] ] );
 	}
 
-	// “®ìƒpƒ‰ƒ[ƒ^ì¬
+	// å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½œæˆ
 	WFLBY_GADGET_ONPU_Cont_Init( &p_wk->mvwk, sc_WFLBY_GADGET_MOVE_ONPU_DATA_BELL00, 
 			NELEMS(sc_WFLBY_GADGET_MOVE_ONPU_DATA_BELL00), 
 			WFLBY_GADGET_MOVE_ONPU_BELL00_SYSNC, 
@@ -2730,12 +2730,12 @@ static void WFLBY_GADGET_ANM_Init_Bell01( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*
 {
 	int i;
 	
-	// ƒIƒuƒWƒFì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
 	for( i=0; i<WFLBY_GADGET_ONPU_OBJWK_NUM; i++ ){
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, i, &sc_WFLBY_GADGET_RES[ sc_WFLBY_LEVEL_01ADDOBJ[i] ] );
 	}
 
-	// “®ìƒpƒ‰ƒ[ƒ^ì¬
+	// å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½œæˆ
 	WFLBY_GADGET_ONPU_Cont_Init( &p_wk->mvwk, sc_WFLBY_GADGET_MOVE_ONPU_DATA_BELL01, 
 			NELEMS(sc_WFLBY_GADGET_MOVE_ONPU_DATA_BELL01), 
 			WFLBY_GADGET_MOVE_ONPU_BELL01_SYSNC, 
@@ -2746,12 +2746,12 @@ static void WFLBY_GADGET_ANM_Init_Bell02( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*
 {
 	int i;
 	
-	// ƒIƒuƒWƒFì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
 	for( i=0; i<WFLBY_GADGET_ONPU_OBJWK_NUM; i++ ){
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, i, &sc_WFLBY_GADGET_RES[ sc_WFLBY_LEVEL_02ADDOBJ[i] ] );
 	}
 
-	// “®ìƒpƒ‰ƒ[ƒ^ì¬
+	// å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½œæˆ
 	WFLBY_GADGET_ONPU_Cont_Init( &p_wk->mvwk, sc_WFLBY_GADGET_MOVE_ONPU_DATA_BELL02, 
 			NELEMS(sc_WFLBY_GADGET_MOVE_ONPU_DATA_BELL02), 
 			WFLBY_GADGET_MOVE_ONPU_BELL02_SYSNC, 
@@ -2759,17 +2759,17 @@ static void WFLBY_GADGET_ANM_Init_Bell02( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*
 			p_wk );
 }
 
-// ƒhƒ‰ƒ€
+// ãƒ‰ãƒ©ãƒ 
 static void WFLBY_GADGET_ANM_Init_Drum00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	int i;
 	
-	// ƒIƒuƒWƒFì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
 	for( i=0; i<WFLBY_GADGET_ONPU_OBJWK_NUM; i++ ){
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, i, &sc_WFLBY_GADGET_RES[ sc_WFLBY_LEVEL_00ADDOBJ[i] ] );
 	}
 
-	// “®ìƒpƒ‰ƒ[ƒ^ì¬
+	// å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½œæˆ
 	WFLBY_GADGET_ONPU_Cont_Init( &p_wk->mvwk, sc_WFLBY_GADGET_MOVE_ONPU_DATA_DRUM00, 
 			NELEMS(sc_WFLBY_GADGET_MOVE_ONPU_DATA_DRUM00), 
 			WFLBY_GADGET_MOVE_ONPU_DRUM00_SYSNC, 
@@ -2780,12 +2780,12 @@ static void WFLBY_GADGET_ANM_Init_Drum01( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*
 {
 	int i;
 	
-	// ƒIƒuƒWƒFì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
 	for( i=0; i<WFLBY_GADGET_ONPU_OBJWK_NUM; i++ ){
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, i, &sc_WFLBY_GADGET_RES[ sc_WFLBY_LEVEL_01ADDOBJ[i] ] );
 	}
 
-	// “®ìƒpƒ‰ƒ[ƒ^ì¬
+	// å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½œæˆ
 	WFLBY_GADGET_ONPU_Cont_Init( &p_wk->mvwk, sc_WFLBY_GADGET_MOVE_ONPU_DATA_DRUM01, 
 			NELEMS(sc_WFLBY_GADGET_MOVE_ONPU_DATA_DRUM01), 
 			WFLBY_GADGET_MOVE_ONPU_DRUM01_SYSNC, 
@@ -2796,37 +2796,37 @@ static void WFLBY_GADGET_ANM_Init_Drum02( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*
 {
 	int i;
 	
-	// ƒIƒuƒWƒFì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
 	for( i=0; i<WFLBY_GADGET_ONPU_OBJWK_NUM; i++ ){
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, i, &sc_WFLBY_GADGET_RES[ sc_WFLBY_LEVEL_02ADDOBJ[i] ] );
 	}
 
-	// “®ìƒpƒ‰ƒ[ƒ^ì¬
+	// å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½œæˆ
 	WFLBY_GADGET_ONPU_Cont_Init( &p_wk->mvwk, sc_WFLBY_GADGET_MOVE_ONPU_DATA_DRUM02, 
 			NELEMS(sc_WFLBY_GADGET_MOVE_ONPU_DATA_DRUM02), 
 			WFLBY_GADGET_MOVE_ONPU_DRUM02_SYSNC, 
 			WFLBY_GADGET_ONPU_MOVE_DRUM,
 			p_wk );
 }
-// ƒVƒ“ƒoƒ‹
+// ã‚·ãƒ³ãƒãƒ«
 static void WFLBY_GADGET_ANM_Init_Cymbals00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	int i;
 	VecFx32 matrix;
 	
-	// ƒIƒuƒWƒFì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
 	for( i=0; i<WFLBY_GADGET_ONPU_OBJWK_NUM; i++ ){
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, i, &sc_WFLBY_GADGET_RES[ sc_WFLBY_LEVEL_00ADDOBJ[i] ] );
 	}
 
-	// “®ìƒpƒ‰ƒ[ƒ^ì¬
+	// å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½œæˆ
 	WFLBY_GADGET_ONPU_Cont_Init( &p_wk->mvwk, sc_WFLBY_GADGET_MOVE_ONPU_DATA_CYMBALS00, 
 			NELEMS(sc_WFLBY_GADGET_MOVE_ONPU_DATA_CYMBALS00), 
 			WFLBY_GADGET_MOVE_ONPU_CYMBALS00_SYSNC, 
 			WFLBY_GADGET_ONPU_MOVE_CYMBALS,
 			p_wk );
 
-	// ²Å½ÞÏ‰Šú‰»
+	// ã‚¤ãƒŠã‚ºãƒžåˆæœŸåŒ–
 	WFLBY_GADGET_Inazuma_Init( p_sys, p_wk );
 }
 static void WFLBY_GADGET_ANM_Init_Cymbals01( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
@@ -2834,12 +2834,12 @@ static void WFLBY_GADGET_ANM_Init_Cymbals01( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 	int i;
 	VecFx32 matrix;
 	
-	// ƒIƒuƒWƒFì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
 	for( i=0; i<WFLBY_GADGET_ONPU_OBJWK_NUM; i++ ){
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, i, &sc_WFLBY_GADGET_RES[ sc_WFLBY_LEVEL_01ADDOBJ[i] ] );
 	}
 
-	// “®ìƒpƒ‰ƒ[ƒ^ì¬
+	// å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½œæˆ
 	WFLBY_GADGET_ONPU_Cont_Init( &p_wk->mvwk, sc_WFLBY_GADGET_MOVE_ONPU_DATA_CYMBALS01, 
 			NELEMS(sc_WFLBY_GADGET_MOVE_ONPU_DATA_CYMBALS01), 
 			WFLBY_GADGET_MOVE_ONPU_CYMBALS01_SYSNC, 
@@ -2847,26 +2847,26 @@ static void WFLBY_GADGET_ANM_Init_Cymbals01( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 			p_wk );
 
 
-	// ²Å½ÞÏ‰Šú‰»
+	// ã‚¤ãƒŠã‚ºãƒžåˆæœŸåŒ–
 	WFLBY_GADGET_Inazuma_Init( p_sys, p_wk );
 }
 static void WFLBY_GADGET_ANM_Init_Cymbals02( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	int i;
 	
-	// ƒIƒuƒWƒFì¬
+	// ã‚ªãƒ–ã‚¸ã‚§ä½œæˆ
 	for( i=0; i<WFLBY_GADGET_ONPU_OBJWK_NUM; i++ ){
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, i, &sc_WFLBY_GADGET_RES[ sc_WFLBY_LEVEL_02ADDOBJ[i] ] );
 	}
 
-	// “®ìƒpƒ‰ƒ[ƒ^ì¬
+	// å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä½œæˆ
 	WFLBY_GADGET_ONPU_Cont_Init( &p_wk->mvwk, sc_WFLBY_GADGET_MOVE_ONPU_DATA_CYMBALS02, 
 			NELEMS(sc_WFLBY_GADGET_MOVE_ONPU_DATA_CYMBALS02), 
 			WFLBY_GADGET_MOVE_ONPU_CYMBALS02_SYSNC, 
 			WFLBY_GADGET_ONPU_MOVE_CYMBALS,
 			p_wk );
 
-	// ²Å½ÞÏ‰Šú‰»
+	// ã‚¤ãƒŠã‚ºãƒžåˆæœŸåŒ–
 	WFLBY_GADGET_Inazuma_Init( p_sys, p_wk );
 }
 
@@ -2875,25 +2875,25 @@ static void WFLBY_GADGET_ANM_Init_Cymbals02( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ‚ÌƒƒCƒ“
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ã®ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_sys	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
-// 2‚Â‚ÌƒAƒjƒ‚ð“®‚©‚·
+// 2ã¤ã®ã‚¢ãƒ‹ãƒ¡ã‚’å‹•ã‹ã™
 static BOOL WFLBY_GADGET_ANM_Main_AnmTwo( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	int i;
 	BOOL ret = TRUE;
 	BOOL result;
 	
-	// 2‚Â‚ÌƒAƒjƒ‚ð“®‚©‚·
+	// 2ã¤ã®ã‚¢ãƒ‹ãƒ¡ã‚’å‹•ã‹ã™
 	for( i=0; i<2; i++ ){
-		// ƒAƒjƒ‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+		// ã‚¢ãƒ‹ãƒ¡ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( p_wk->cp_objres[0]->anm[i] != WFLBY_GADGET_ANM_NONE ){
 			result = WFLBY_GADGET_OBJ_NoLoopAnm( p_sys, p_wk, 0, i );
 			if( result == FALSE ){
@@ -2904,13 +2904,13 @@ static BOOL WFLBY_GADGET_ANM_Main_AnmTwo( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*
 
 	return ret;
 }
-// 1‚Â‚ÌƒAƒjƒ‚ð“®‚©‚·
+// 1ã¤ã®ã‚¢ãƒ‹ãƒ¡ã‚’å‹•ã‹ã™
 static BOOL WFLBY_GADGET_ANM_Main_AnmOne( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	GF_ASSERT( p_wk->cp_objres[0]->anm[0] != WFLBY_GADGET_ANM_NONE );
 	return WFLBY_GADGET_OBJ_NoLoopAnm( p_sys, p_wk, 0, 0 );
 }
-// ƒŠƒbƒvƒ‹
+// ãƒªãƒƒãƒ—ãƒ«
 static BOOL WFLBY_GADGET_ANM_Main_Rippru00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	int i;
@@ -2922,18 +2922,18 @@ static BOOL WFLBY_GADGET_ANM_Main_Rippru00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OB
 		p_wk->count ++;
 	}
 	
-	// ƒIƒuƒWƒF”­ŽËŠÇ—•”•ª
-	// ‡Œv‚U‚©‚¢ƒŠƒbƒvƒ‹‚ÌÄ¶‚ðŠJŽn‚·‚é
+	// ã‚ªãƒ–ã‚¸ã‚§ç™ºå°„ç®¡ç†éƒ¨åˆ†
+	// åˆè¨ˆï¼–ã‹ã„ãƒªãƒƒãƒ—ãƒ«ã®å†ç”Ÿã‚’é–‹å§‹ã™ã‚‹
 	move_num = (p_wk->count * WFLBY_GADGET_RIPPLE_ROOP_START) / WFLBY_GADGET_RIPPLE_ROOP_SYNC;
 	for( i=p_wk->mvwk.ripple.move_num; i<move_num; i++ ){
 		objidx = i % WFLBY_GADGET_RIPPLE_NUM;
-		if( objidx < p_wk->mvwk.ripple.ripple_num ){	// ‚»‚ÌƒIƒuƒWƒF‚Í¶¬‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		if( objidx < p_wk->mvwk.ripple.ripple_num ){	// ãã®ã‚ªãƒ–ã‚¸ã‚§ã¯ç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			D3DOBJ_SetDraw( &p_wk->obj[objidx], TRUE );
 		}
 	}
 	p_wk->mvwk.ripple.move_num = move_num;
 
-	// ƒAƒjƒÄ¶•”•ª
+	// ã‚¢ãƒ‹ãƒ¡å†ç”Ÿéƒ¨åˆ†
 	result = TRUE;
 	for( i=0; i<p_wk->mvwk.ripple.ripple_num; i++ ){
 		if( D3DOBJ_GetDraw( &p_wk->obj[i] ) == TRUE ){
@@ -2946,15 +2946,15 @@ static BOOL WFLBY_GADGET_ANM_Main_Rippru00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OB
 	}
 
 
-	// I—¹ƒ`ƒFƒbƒN
-	// ‘SƒŠƒbƒvƒ‹‚ð”­ŽË‚µ‚Ä‚¢‚ÄA‘SƒAƒjƒ‚ªI‚í‚Á‚Ä‚¢‚½‚çI—¹
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
+	// å…¨ãƒªãƒƒãƒ—ãƒ«ã‚’ç™ºå°„ã—ã¦ã„ã¦ã€å…¨ã‚¢ãƒ‹ãƒ¡ãŒçµ‚ã‚ã£ã¦ã„ãŸã‚‰çµ‚äº†
 	if( (p_wk->mvwk.ripple.move_num >= WFLBY_GADGET_RIPPLE_ROOP_START) &&
 		(result == TRUE) ){
 		return TRUE;
 	}
 	return FALSE;
 }
-// ‚µ‚®‚È‚é
+// ã—ããªã‚‹
 static BOOL WFLBY_GADGET_ANM_Main_Signal00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	return WFLBY_GADGET_Signal_Main( p_sys, p_wk, 0 );
@@ -2967,7 +2967,7 @@ static BOOL WFLBY_GADGET_ANM_Main_Signal02( WFLBY_GADGET* p_sys, WFLBY_GADGET_OB
 {
 	return WFLBY_GADGET_Signal_Main( p_sys, p_wk, 2 );
 }
-// ƒXƒEƒBƒ“ƒO
+// ã‚¹ã‚¦ã‚£ãƒ³ã‚°
 static BOOL WFLBY_GADGET_ANM_Main_Swing00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	u32 move_num;
@@ -2981,11 +2981,11 @@ static BOOL WFLBY_GADGET_ANM_Main_Swing00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ
 
 		if( p_wk->mvwk.swing.objnum > move_num ){
 
-			// ¡‚Ü‚Å“®‚¢‚Ä‚½‚â‚Â‚ð”ñ•\Ž¦
+			// ä»Šã¾ã§å‹•ã„ã¦ãŸã‚„ã¤ã‚’éžè¡¨ç¤º
 			if( move_num > 0 ){
 				D3DOBJ_SetDraw( &p_wk->obj[move_num-1], FALSE );
 			}
-			// “®ìŠJŽn
+			// å‹•ä½œé–‹å§‹
 			D3DOBJ_SetDraw( &p_wk->obj[move_num], TRUE );
 		}
 	}
@@ -2994,7 +2994,7 @@ static BOOL WFLBY_GADGET_ANM_Main_Swing00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ
 		p_wk->count ++;
 	}
 
-	// •\Ž¦’†‚ÌƒIƒuƒWƒF‚ÌƒAƒjƒ‚ði‚ß‚é
+	// è¡¨ç¤ºä¸­ã®ã‚ªãƒ–ã‚¸ã‚§ã®ã‚¢ãƒ‹ãƒ¡ã‚’é€²ã‚ã‚‹
 	result = FALSE;
 	for( i=0; i<p_wk->mvwk.swing.objnum; i++ ){
 		if( D3DOBJ_GetDraw( &p_wk->obj[i] ) ){
@@ -3009,7 +3009,7 @@ static BOOL WFLBY_GADGET_ANM_Main_Swing00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ
 	return result;
 }
 
-// ƒNƒ‰ƒbƒJ[
+// ã‚¯ãƒ©ãƒƒã‚«ãƒ¼
 static BOOL WFLBY_GADGET_ANM_Main_Cracker00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	BOOL result;
@@ -3017,8 +3017,8 @@ static BOOL WFLBY_GADGET_ANM_Main_Cracker00( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 	int i;
 	GF_ASSERT( p_wk->cp_objres[0]->anm[0] != WFLBY_GADGET_ANM_NONE );
 
-	// Œõ‚ðo‚·
-	// Œõ‚ªo‚«‚Á‚½‚çƒNƒ‰ƒbƒJ[‚à‚È‚é
+	// å…‰ã‚’å‡ºã™
+	// å…‰ãŒå‡ºãã£ãŸã‚‰ã‚¯ãƒ©ãƒƒã‚«ãƒ¼ã‚‚ãªã‚‹
 	if( p_wk->mvwk.cracker.wait > 0 ){
 		p_wk->mvwk.cracker.wait --;
 		D3DOBJ_SetDraw( &p_wk->obj[WFLBY_GADGET_CRACKEROBJ_FLASH], FALSE );			
@@ -3031,7 +3031,7 @@ static BOOL WFLBY_GADGET_ANM_Main_Cracker00( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 					p_wk->count ++;
 					p_wk->mvwk.cracker.wait = WFLBY_GADGET_CRACKER_START_WAIT;
 					if( p_wk->count < WFLBY_GADGET_CRACKEROBJ_CRACKER_MAX ){
-						// ƒAƒjƒƒtƒŒ[ƒ€‚ðŒ³‚É–ß‚·
+						// ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å…ƒã«æˆ»ã™
 						WFLBY_GADGET_OBJ_SetFrame( p_sys, p_wk, WFLBY_GADGET_CRACKEROBJ_FLASH, 0, 0 );
 					}else{
 						D3DOBJ_SetDraw( &p_wk->obj[WFLBY_GADGET_CRACKEROBJ_FLASH], FALSE );			
@@ -3040,19 +3040,19 @@ static BOOL WFLBY_GADGET_ANM_Main_Cracker00( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 			}
 		}
 	}
-	// ‘S•”“®‚©‚·
+	// å…¨éƒ¨å‹•ã‹ã™
 	ret = TRUE;
 	for( i=WFLBY_GADGET_CRACKEROBJ_CRACKER; i<=WFLBY_GADGET_CRACKEROBJ_CRACKER02; i++ ){
 
-		// ‚»‚ÌƒIƒuƒWƒF‚ª‚ ‚é‚©ƒ`ƒFƒbƒN
+		// ãã®ã‚ªãƒ–ã‚¸ã‚§ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( WFLBY_GADGET_OBJ_CheckRes( p_wk, i ) == TRUE ){
-			//  ”­ŽËƒ^ƒCƒ~ƒ“ƒOƒ`ƒFƒbƒN
+			//  ç™ºå°„ã‚¿ã‚¤ãƒŸãƒ³ã‚°ãƒã‚§ãƒƒã‚¯
 			if( p_wk->count > (i-WFLBY_GADGET_CRACKEROBJ_CRACKER) ){
 				D3DOBJ_SetDraw( &p_wk->obj[i], TRUE );
 				result = WFLBY_GADGET_OBJ_NoLoopAnm_Sp( p_sys, p_wk, i, 0, FX32_CONST( 2.50f ) );
 				if( result == FALSE ){
 
-					// “®ì’†
+					// å‹•ä½œä¸­
 					ret = FALSE;
 				}else{
 					s32 alpha;
@@ -3060,27 +3060,27 @@ static BOOL WFLBY_GADGET_ANM_Main_Cracker00( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 
 					alpha_idx = i-WFLBY_GADGET_CRACKEROBJ_CRACKER;
 
-					// ƒAƒjƒ‚ªI—¹‚µ‚½‚çƒAƒ‹ƒtƒ@‚ðOFF‚É‚·‚é
+					// ã‚¢ãƒ‹ãƒ¡ãŒçµ‚äº†ã—ãŸã‚‰ã‚¢ãƒ«ãƒ•ã‚¡ã‚’OFFã«ã™ã‚‹
 
-					// ƒAƒ‹ƒtƒ@•ÏX
+					// ã‚¢ãƒ«ãƒ•ã‚¡å¤‰æ›´
 					if( p_wk->mvwk.cracker.alpha_count[alpha_idx] == 0 ){
 
-						// I—¹
+						// çµ‚äº†
 						D3DOBJ_SetDraw( &p_wk->obj[i], FALSE );
 
-						// ƒAƒ‹ƒtƒ@‚ðŒ³‚É–ß‚·
+						// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’å…ƒã«æˆ»ã™
 						NNS_G3dMdlSetMdlAlphaAll( p_sys->mdl[ p_wk->cp_objres[i]->mdl ].pModel, 31 );
 
 					}else{
-						// ƒAƒjƒ‚ªI‚í‚Á‚½‚çƒAƒ‹ƒtƒ@ƒtƒF[ƒh‚³‚¹‚é
+						// ã‚¢ãƒ‹ãƒ¡ãŒçµ‚ã‚ã£ãŸã‚‰ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰ã•ã›ã‚‹
 						p_wk->mvwk.cracker.alpha_count[alpha_idx]	--;
 
 						alpha = (p_wk->mvwk.cracker.alpha_count[alpha_idx] * WFLBY_GADGET_CRACKER_ALPHA_OUT_S) / WFLBY_GADGET_CRACKER_ALPHA_OUT_SYNC;
 
-						// ƒAƒ‹ƒtƒ@‚ðÝ’è
+						// ã‚¢ãƒ«ãƒ•ã‚¡ã‚’è¨­å®š
 						NNS_G3dMdlSetMdlAlphaAll( p_sys->mdl[p_wk->cp_objres[i]->mdl].pModel, alpha );
 
-						// “®ì’†
+						// å‹•ä½œä¸­
 						ret = FALSE;
 					}
 				}
@@ -3092,13 +3092,13 @@ static BOOL WFLBY_GADGET_ANM_Main_Cracker00( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 
 	return ret;
 }
-// •—‘D
+// é¢¨èˆ¹
 static BOOL WFLBY_GADGET_ANM_Main_Balloon00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	BOOL result;
 	
 	switch( p_wk->seq ){
-	case WFLBY_GADGET_BALLOON_SEQ_UP:		// ã‚è
+	case WFLBY_GADGET_BALLOON_SEQ_UP:		// ä¸Šã‚Š
 		result = WFLBY_GADGET_Balloon_MainUp( p_sys, p_wk );
 		if( result ){
 			p_wk->seq = WFLBY_GADGET_BALLOON_SEQ_DOWN;
@@ -3106,7 +3106,7 @@ static BOOL WFLBY_GADGET_ANM_Main_Balloon00( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 		}
 		break;
 		
-	case WFLBY_GADGET_BALLOON_SEQ_DOWN:		// ‚­‚¾‚è
+	case WFLBY_GADGET_BALLOON_SEQ_DOWN:		// ãã ã‚Š
 		result = WFLBY_GADGET_Balloon_MainDown( p_sys, p_wk );
 		if( result ){
 			return TRUE;
@@ -3124,10 +3124,10 @@ static BOOL WFLBY_GADGET_ANM_Main_Sparkle00( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 	int i;
 
 	
-	// ƒJƒEƒ“ƒg‚Æ“®ìŠJŽnˆ—‚ÍAƒ‹[ƒv”‚ªÅ‘å’lˆÈ‰º‚Ì‚Æ‚«‚És‚¤
+	// ã‚«ã‚¦ãƒ³ãƒˆã¨å‹•ä½œé–‹å§‹å‡¦ç†ã¯ã€ãƒ«ãƒ¼ãƒ—æ•°ãŒæœ€å¤§å€¤ä»¥ä¸‹ã®ã¨ãã«è¡Œã†
 	if( (p_wk->mvwk.sparkle.roop_count < p_wk->mvwk.sparkle.roop_num) ){
 		
-		// ƒJƒEƒ“ƒgˆ—
+		// ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 		p_wk->mvwk.sparkle.count ++;
 		if( p_wk->mvwk.sparkle.count >= WFLBY_GADGET_SPARKLE_1ROOP_SYNC ){
 			p_wk->mvwk.sparkle.count = 0;
@@ -3135,30 +3135,30 @@ static BOOL WFLBY_GADGET_ANM_Main_Sparkle00( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 		}
 
 		
-		// “®ìŠJŽnÝ’è
-		// Œ»Ý‚ÌƒJƒEƒ“ƒg’l‚Å‚Ì“®ì”‚É‚È‚é‚Ü‚ÅAƒIƒuƒWƒF‚ÌƒAƒjƒ‚ðŠJŽn‚³‚¹‚é
+		// å‹•ä½œé–‹å§‹è¨­å®š
+		// ç¾åœ¨ã®ã‚«ã‚¦ãƒ³ãƒˆå€¤ã§ã®å‹•ä½œæ•°ã«ãªã‚‹ã¾ã§ã€ã‚ªãƒ–ã‚¸ã‚§ã®ã‚¢ãƒ‹ãƒ¡ã‚’é–‹å§‹ã•ã›ã‚‹
 		move_num = (p_wk->mvwk.sparkle.count * WFLBY_GADGET_SPARKLE_1ROOP_OBJNUM) / WFLBY_GADGET_SPARKLE_1ROOP_SYNC;
 		move_num += p_wk->mvwk.sparkle.roop_count * WFLBY_GADGET_SPARKLE_1ROOP_OBJNUM;
 		for( i=p_wk->mvwk.sparkle.buff_num; i<move_num; i++ ){
-			D3DOBJ_SetDraw( &p_wk->obj[i], TRUE );	// •`‰æŠJŽn
+			D3DOBJ_SetDraw( &p_wk->obj[i], TRUE );	// æç”»é–‹å§‹
 		}
 		p_wk->mvwk.sparkle.buff_num	= move_num; 
 	}
 
 
-	// “®ì
+	// å‹•ä½œ
 	for( i=0; i<p_wk->mvwk.sparkle.buff_num; i++ ){
 		if( D3DOBJ_GetDraw( &p_wk->obj[i] ) == TRUE ){
 			result = WFLBY_GADGET_Sparkle_OneObj_Main( p_sys, p_wk, i );
-			// ƒAƒjƒI—¹Œã”ñ•\Ž¦
+			// ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾Œéžè¡¨ç¤º
 			if( result == TRUE ){
 				D3DOBJ_SetDraw( &p_wk->obj[i], FALSE );
 			}
 		}
 	}
 
-	// I—¹ƒ`ƒFƒbƒN
-	// ƒIƒuƒWƒF‚ªÅŒã‚Ü‚Åo‚ÄAƒAƒjƒ‚àI‚í‚Á‚½‚çI—¹
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
+	// ã‚ªãƒ–ã‚¸ã‚§ãŒæœ€å¾Œã¾ã§å‡ºã¦ã€ã‚¢ãƒ‹ãƒ¡ã‚‚çµ‚ã‚ã£ãŸã‚‰çµ‚äº†
 	if( (p_wk->mvwk.sparkle.roop_count == p_wk->mvwk.sparkle.roop_num) &&
 		(result == TRUE) ){
 		return TRUE;
@@ -3166,7 +3166,7 @@ static BOOL WFLBY_GADGET_ANM_Main_Sparkle00( WFLBY_GADGET* p_sys, WFLBY_GADGET_O
 	return FALSE;
 }
 
-// ‰¹•„‘S”Ê
+// éŸ³ç¬¦å…¨èˆ¬
 static BOOL WFLBY_GADGET_ANM_Main_Onpu00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	u32 result;
@@ -3177,7 +3177,7 @@ static BOOL WFLBY_GADGET_ANM_Main_Onpu00( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*
 	}
 	return FALSE;
 }
-// ƒVƒ“ƒoƒ‹ƒƒCƒ“
+// ã‚·ãƒ³ãƒãƒ«ãƒ¡ã‚¤ãƒ³
 static BOOL WFLBY_GADGET_ANM_Main_Cymbals( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	u32 result;
@@ -3186,12 +3186,12 @@ static BOOL WFLBY_GADGET_ANM_Main_Cymbals( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ
 	result =  WFLBY_GADGET_ONPU_Cont_Main( &p_wk->mvwk, p_wk->count );
 	p_wk->count ++;
 
-	// ƒAƒjƒŠJŽnƒ`ƒFƒbƒN
+	// ã‚¢ãƒ‹ãƒ¡é–‹å§‹ãƒã‚§ãƒƒã‚¯
 	if( result == WFLBY_GADGET_ONPU_MAIN_START ){
 		WFLBY_GADGET_Inazuma_Start( p_sys, p_wk );
 	}
 
-	// ²Å½ÞÏƒAƒjƒƒƒCƒ“
+	// ã‚¤ãƒŠã‚ºãƒžã‚¢ãƒ‹ãƒ¡ãƒ¡ã‚¤ãƒ³
 	WFLBY_GADGET_Inazuma_Main( p_sys, p_wk );
 
 	if( result == WFLBY_GADGET_ONPU_MAIN_ALLEND ){
@@ -3203,22 +3203,22 @@ static BOOL WFLBY_GADGET_ANM_Main_Cymbals( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒ‚Ì•`‰æ
+ *	@brief	ã‚¢ãƒ‹ãƒ¡ã®æç”»
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	¬Œ÷
- *	@retval	FALSE	Ž¸”s
+ *	@retval	TRUE	æˆåŠŸ
+ *	@retval	FALSE	å¤±æ•—
  */	
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_ANM_Draw_Obj( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
 {
 	int i;
 
-	// ƒŠƒ\[ƒX‚ÍƒCƒ“ƒfƒbƒNƒX‚O‚©‚ç‚Â‚ß‚Ä“ü‚ê‚ç‚ê‚Ä‚¢‚é
+	// ãƒªã‚½ãƒ¼ã‚¹ã¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ã‹ã‚‰ã¤ã‚ã¦å…¥ã‚Œã‚‰ã‚Œã¦ã„ã‚‹
 	if( WFLBY_3DOBJCONT_GetCullingFlag( p_wk->p_person ) == TRUE ){
-		// ‹éŒ`“à‚É‚¢‚È‚¢‚È‚çAo‚³‚È‚¢
+		// çŸ©å½¢å†…ã«ã„ãªã„ãªã‚‰ã€å‡ºã•ãªã„
 		return FALSE;
 	}
 
@@ -3239,26 +3239,26 @@ static BOOL WFLBY_GADGET_ANM_Draw_Obj( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•—‘D“®ì	ã¸
+ *	@brief	é¢¨èˆ¹å‹•ä½œ	ä¸Šæ˜‡
  *
- *	@param	p_sys			ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk			ƒ[ƒN
- *	@param	balloon_num		•—‘D‚Ì”
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	balloon_num		é¢¨èˆ¹ã®æ•°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_Balloon_InitUp( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk, u32 balloon_num )
 {
 	VecFx32		matrix;
 
-	// ŽålŒö‚©ƒ`ƒFƒbƒN
+	// ä¸»äººå…¬ã‹ãƒã‚§ãƒƒã‚¯
 	{
 		if( p_wk->p_person == WFLBY_3DOBJCONT_GetPlayer( p_sys->p_objcont ) ){
-			// ƒJƒƒ‰‚ð‚Í‚ª‚·
+			// ã‚«ãƒ¡ãƒ©ã‚’ã¯ãŒã™
 			WFLBY_CAMERA_ResetTargetPerson( p_sys->p_camera );
 		}
 	}
 
-	// ã‚É‰®ªó‚Ì‚à‚Ì‚ª‚È‚¢‚©ƒ`ƒFƒbƒN
+	// ä¸Šã«å±‹æ ¹çŠ¶ã®ã‚‚ã®ãŒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 	{
 		WF2DMAP_POS pos;
 		u32 ev_data;
@@ -3271,7 +3271,7 @@ static void WFLBY_GADGET_Balloon_InitUp( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* 
 		}
 	}
 
-	// ƒ‚ƒfƒ‹‚ð“Ç‚Ýž‚Þ
+	// ãƒ¢ãƒ‡ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 	switch(balloon_num){
 	case 1:
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, 0, &sc_WFLBY_GADGET_RES[WFLBY_GADGET_OBJ_BALLOON00] );
@@ -3299,12 +3299,12 @@ static void WFLBY_GADGET_Balloon_InitUp( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* 
 	//
 	p_wk->mvwk.balloon.balloon_num	= balloon_num;
 
-	// ŽålŒö“®ìXV‚È‚µ
+	// ä¸»äººå…¬å‹•ä½œæ›´æ–°ãªã—
 	WFLBY_3DOBJCONT_DRAW_SetUpdata( p_wk->p_person, FALSE );	
 	
-	// ‰®ª‚ ‚é‚È‚µ‚Å“®ì‚ð•Ï‚¦‚é
-	// ‚È‚¢[„’Êí“®ì
-	// ‚ ‚é[„‚·‚®‚ÉŠ„‚ê‚é
+	// å±‹æ ¹ã‚ã‚‹ãªã—ã§å‹•ä½œã‚’å¤‰ãˆã‚‹
+	// ãªã„ãƒ¼ï¼žé€šå¸¸å‹•ä½œ
+	// ã‚ã‚‹ãƒ¼ï¼žã™ãã«å‰²ã‚Œã‚‹
 	if( p_wk->mvwk.balloon.roof_flag == FALSE ){
 		WFLBY_GADGET_Balloon_InitUp_Normal( p_sys, p_wk );
 	}else{
@@ -3312,15 +3312,15 @@ static void WFLBY_GADGET_Balloon_InitUp( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* 
 	}
 	
 }
-// ’Êí‚Ì‰Šú‰»
+// é€šå¸¸ã®åˆæœŸåŒ–
 static void WFLBY_GADGET_Balloon_InitUp_Normal( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk )
 {
 	VecFx32 matrix;
 
-	// À•W‚ðŽæ“¾
+	// åº§æ¨™ã‚’å–å¾—
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 	
-	// ŽålŒö“®ì‰Šú‰»
+	// ä¸»äººå…¬å‹•ä½œåˆæœŸåŒ–
 	WFLBY_GADGET_MV_Straight_Init( &p_wk->mvwk.balloon.straightobj,
 			matrix.x, matrix.x, 
 			matrix.y, 
@@ -3333,20 +3333,20 @@ static void WFLBY_GADGET_Balloon_InitUp_Normal( WFLBY_GADGET* p_sys, WFLBY_GADGE
 			FX32_CONST( WFLBY_GADGET_BALLOON_OBJ_UPSIDEDIS ) );
 
 
-	// À•W‚ðÝ’è
+	// åº§æ¨™ã‚’è¨­å®š
 	WFLBY_GADGET_Balloon_SetObjPos( p_wk );
 
 	p_wk->mvwk.balloon.count = 0;
 }
-// ã‚É‰®ª‚ª‚ ‚é‚Æ‚«‚Ì‰Šú‰»
+// ä¸Šã«å±‹æ ¹ãŒã‚ã‚‹ã¨ãã®åˆæœŸåŒ–
 static void WFLBY_GADGET_Balloon_InitUp_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk )
 {
 	VecFx32		matrix;
 
-	// À•W‚ðŽæ“¾
+	// åº§æ¨™ã‚’å–å¾—
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 	
-	// ŽålŒö“®ì‰Šú‰»
+	// ä¸»äººå…¬å‹•ä½œåˆæœŸåŒ–
 	WFLBY_GADGET_MV_Straight_Init( &p_wk->mvwk.balloon.straightobj,
 			matrix.x, matrix.x, 
 			matrix.y, 
@@ -3359,7 +3359,7 @@ static void WFLBY_GADGET_Balloon_InitUp_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGET_
 			FX32_CONST( WFLBY_GADGET_BALLOON_OBJ_ROOF_UPSIDEDIS ) );
 
 
-	// À•W‚ðÝ’è
+	// åº§æ¨™ã‚’è¨­å®š
 	WFLBY_GADGET_Balloon_SetObjPos_Roof( p_wk );
 
 	p_wk->mvwk.balloon.count = 0;
@@ -3367,12 +3367,12 @@ static void WFLBY_GADGET_Balloon_InitUp_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGET_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•—‘D“®ì	ƒƒCƒ“
+ *	@brief	é¢¨èˆ¹å‹•ä½œ	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_Balloon_MainUp( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk )
@@ -3386,7 +3386,7 @@ static BOOL WFLBY_GADGET_Balloon_MainUp( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* 
 	}
 	return ret;
 }
-// ’Êí“®ì
+// é€šå¸¸å‹•ä½œ
 static BOOL WFLBY_GADGET_Balloon_MainUp_Normal( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk )
 {
 	BOOL		ret;
@@ -3399,7 +3399,7 @@ static BOOL WFLBY_GADGET_Balloon_MainUp_Normal( WFLBY_GADGET* p_sys, WFLBY_GADGE
 	WFLBY_GADGET_MV_SinCurve_Main( &p_wk->mvwk.balloon.sincurveobj );
 	p_wk->mvwk.balloon.count ++;
 	
-	//  ’l‚ðÝ’è
+	//  å€¤ã‚’è¨­å®š
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 	WFLBY_GADGET_MV_Straight_GetNum( &p_wk->mvwk.balloon.straightobj, &matrix.x, &matrix.y, &matrix.z );
 	WFLBY_GADGET_MV_SinCurve_GetNum( &p_wk->mvwk.balloon.sincurveobj, &carve_x );
@@ -3411,16 +3411,16 @@ static BOOL WFLBY_GADGET_Balloon_MainUp_Normal( WFLBY_GADGET* p_sys, WFLBY_GADGE
 	WFLBY_3DOBJCONT_DRAW_Set3DMatrix( p_wk->p_person, &matrix );
 
 
-	// À•W‚ðÝ’è
+	// åº§æ¨™ã‚’è¨­å®š
 	WFLBY_GADGET_Balloon_SetObjPos( p_wk );
 
-	// ƒoƒ‹[ƒ“ƒAƒjƒ
+	// ãƒãƒ«ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡
 	for( i=0;  i<p_wk->mvwk.balloon.balloon_num; i++ ){
 
 		WFLBY_GADGET_Balloon_Anm( p_sys, p_wk, i );
 	}
 
-	// ƒL[‚Å•ûŒü‚ð•Ï‚¦‚é
+	// ã‚­ãƒ¼ã§æ–¹å‘ã‚’å¤‰ãˆã‚‹
 	if( p_wk->p_person == WFLBY_3DOBJCONT_GetPlayer( p_sys->p_objcont ) ){
 		u32 way = WF2DMAP_WAY_NUM;
 		if( sys.trg & PAD_KEY_UP ){
@@ -3444,7 +3444,7 @@ static BOOL WFLBY_GADGET_Balloon_MainUp_Normal( WFLBY_GADGET* p_sys, WFLBY_GADGE
 
 	return ret;
 }
-// ‰®ª‚ª‚ ‚é‚Æ‚«‚Ì“®ì
+// å±‹æ ¹ãŒã‚ã‚‹ã¨ãã®å‹•ä½œ
 static BOOL WFLBY_GADGET_Balloon_MainUp_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk )
 {
 	BOOL		ret;
@@ -3456,17 +3456,17 @@ static BOOL WFLBY_GADGET_Balloon_MainUp_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGET_
 	WFLBY_GADGET_MV_SinCurve_Main( &p_wk->mvwk.balloon.sincurveobj );
 	p_wk->mvwk.balloon.count ++;
 	
-	//  ’l‚ðÝ’è
+	//  å€¤ã‚’è¨­å®š
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 	WFLBY_GADGET_MV_Straight_GetNum( &p_wk->mvwk.balloon.straightobj, &matrix.x, &matrix.y, &matrix.z );
 
 	WFLBY_3DOBJCONT_DRAW_Set3DMatrix( p_wk->p_person, &matrix );
 
 
-	// À•W‚ðÝ’è
+	// åº§æ¨™ã‚’è¨­å®š
 	WFLBY_GADGET_Balloon_SetObjPos_Roof( p_wk );
 
-	// ƒoƒ‹[ƒ“ƒAƒjƒ
+	// ãƒãƒ«ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡
 	for( i=0;  i<p_wk->mvwk.balloon.balloon_num; i++ ){
 
 		WFLBY_GADGET_Balloon_Anm( p_sys, p_wk, i );
@@ -3477,10 +3477,10 @@ static BOOL WFLBY_GADGET_Balloon_MainUp_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGET_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰º~“®ì	‰Šú‰»
+ *	@brief	ä¸‹é™å‹•ä½œ	åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_Balloon_InitDown( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk )
@@ -3491,7 +3491,7 @@ static void WFLBY_GADGET_Balloon_InitDown( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ
 		WFLBY_GADGET_Balloon_InitDown_Roof( p_sys, p_wk );
 	}
 }
-// ’Êí“®ì
+// é€šå¸¸å‹•ä½œ
 static void WFLBY_GADGET_Balloon_InitDown_Normal( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk )
 {
 	VecFx32		matrix;
@@ -3499,10 +3499,10 @@ static void WFLBY_GADGET_Balloon_InitDown_Normal( WFLBY_GADGET* p_sys, WFLBY_GAD
 	int i;
 	u32 anmidx;
 
-	// À•W‚ðŽæ“¾
+	// åº§æ¨™ã‚’å–å¾—
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 	
-	// ŽålŒö“®ì‰Šú‰»
+	// ä¸»äººå…¬å‹•ä½œåˆæœŸåŒ–
 	WFLBY_GADGET_MV_Straight_Init( &p_wk->mvwk.balloon.straightobj,
 			matrix.x, matrix.x, 
 			matrix.y, 
@@ -3512,7 +3512,7 @@ static void WFLBY_GADGET_Balloon_InitDown_Normal( WFLBY_GADGET* p_sys, WFLBY_GAD
 	p_wk->mvwk.balloon.count = 0;
 	p_wk->mvwk.balloon.bl_seq	= 0;
 
-	// •—‘D‚Ì“®‚«Ý’è
+	// é¢¨èˆ¹ã®å‹•ãè¨­å®š
 	for( i=0; i<p_wk->mvwk.balloon.balloon_num; i++ ){
 		D3DOBJ_GetMatrix( &p_wk->obj[i], &matrix.x, &matrix.y, &matrix.z );
 
@@ -3543,28 +3543,28 @@ static void WFLBY_GADGET_Balloon_InitDown_Normal( WFLBY_GADGET* p_sys, WFLBY_GAD
 				matrix.z, move_matrix.z, 
 				WFLBY_GADGET_BALLOON_OBJ_WAIT );
 
-		// ‚ä‚êƒAƒjƒ
+		// ã‚†ã‚Œã‚¢ãƒ‹ãƒ¡
 		WFLBY_GADGET_MV_SinCurve_Init( &p_wk->mvwk.balloon.sincurve[i], 0, 
 				WFLBY_GADGET_BALLOON_OBJ_ROT_S, 
 				WFLBY_GADGET_BALLOON_OBJ_ROT_DIS );
 
-		// ƒAƒjƒ•ÏX
+		// ã‚¢ãƒ‹ãƒ¡å¤‰æ›´
 		WFLBY_GADGET_Balloon_SetAnm( p_sys, p_wk, i, WFLBY_GADGET_BALLOON_ANM_OTHER );
 	}
 
 	p_wk->mvwk.balloon.balloon_fly_count = 0;
 	
 }
-// ‰®ª‚ ‚è“®ì
+// å±‹æ ¹ã‚ã‚Šå‹•ä½œ
 static void WFLBY_GADGET_Balloon_InitDown_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk )
 {
 	VecFx32		matrix;
 	VecFx32		move_matrix;
 
-	// À•W‚ðŽæ“¾
+	// åº§æ¨™ã‚’å–å¾—
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 	
-	// ŽålŒö“®ì‰Šú‰»
+	// ä¸»äººå…¬å‹•ä½œåˆæœŸåŒ–
 	WFLBY_GADGET_MV_Straight_Init( &p_wk->mvwk.balloon.straightobj,
 			matrix.x, matrix.x, 
 			matrix.y, 
@@ -3577,12 +3577,12 @@ static void WFLBY_GADGET_Balloon_InitDown_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰º~“®ì	ƒƒCƒ“
+ *	@brief	ä¸‹é™å‹•ä½œ	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_Balloon_MainDown( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk )
@@ -3596,13 +3596,13 @@ static BOOL WFLBY_GADGET_Balloon_MainDown( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ
 	}
 	return ret;
 }
-// ’Êí“®ì
+// é€šå¸¸å‹•ä½œ
 static BOOL WFLBY_GADGET_Balloon_MainDown_Normal( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk )
 {
 	int i;
 
 	switch( p_wk->mvwk.balloon.bl_seq ){
-	case WFLBY_GADGET_BALLOON_DOWNSEQ_BATA_WAIT:		// ƒoƒ^ƒoƒ^ŠJŽn‚Ü‚¿
+	case WFLBY_GADGET_BALLOON_DOWNSEQ_BATA_WAIT:		// ãƒã‚¿ãƒã‚¿é–‹å§‹ã¾ã¡
 		p_wk->mvwk.balloon.count ++;
 		if( p_wk->mvwk.balloon.count >= WFLBY_GADGET_BALLOON_OBJ_BATA_SWAIT ){
 			p_wk->mvwk.balloon.bl_seq = WFLBY_GADGET_BALLOON_DOWNSEQ_BATA_START;
@@ -3623,7 +3623,7 @@ static BOOL WFLBY_GADGET_Balloon_MainDown_Normal( WFLBY_GADGET* p_sys, WFLBY_GAD
 			p_wk->mvwk.balloon.bl_seq = WFLBY_GADGET_BALLOON_DOWNSEQ_DOWN;
 			p_wk->mvwk.balloon.count = 0;
 
-			// Œü‚¢‚Ä‚¢‚é•ûŒü‚ðŒü‚©‚¹‚é
+			// å‘ã„ã¦ã„ã‚‹æ–¹å‘ã‚’å‘ã‹ã›ã‚‹
 			{
 				u32 way;
 
@@ -3642,7 +3642,7 @@ static BOOL WFLBY_GADGET_Balloon_MainDown_Normal( WFLBY_GADGET* p_sys, WFLBY_GAD
 					p_wk->mvwk.balloon.count );
 			p_wk->mvwk.balloon.count ++;
 			
-			//  ’l‚ðÝ’è
+			//  å€¤ã‚’è¨­å®š
 			WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 			WFLBY_GADGET_MV_Straight_GetNum( &p_wk->mvwk.balloon.straightobj, &matrix.x, &matrix.y, &matrix.z );
 			WFLBY_3DOBJCONT_DRAW_Set3DMatrix( p_wk->p_person, &matrix );
@@ -3652,7 +3652,7 @@ static BOOL WFLBY_GADGET_Balloon_MainDown_Normal( WFLBY_GADGET* p_sys, WFLBY_GAD
 				p_wk->mvwk.balloon.count		= 0;
 				p_wk->mvwk.balloon.don_start_y	= matrix.y;
 
-				// ’…’n‰¹
+				// ç€åœ°éŸ³
 				WFLBY_GADGET_SePlay( p_sys, p_wk, WFLBY_SND_BALLOON_02 );
 			}
 		}
@@ -3673,14 +3673,14 @@ static BOOL WFLBY_GADGET_Balloon_MainDown_Normal( WFLBY_GADGET* p_sys, WFLBY_GAD
 
 			if( (p_wk->mvwk.balloon.count + 1) > WFLBY_GADGET_BALLOON_OBJ_DON_SYNC ){
 
-				// ŽålŒö“®ìXV‚ ‚è
+				// ä¸»äººå…¬å‹•ä½œæ›´æ–°ã‚ã‚Š
 				WFLBY_3DOBJCONT_DRAW_SetUpdata( p_wk->p_person, TRUE );	
 
 
-				// ŽålŒö‚©ƒ`ƒFƒbƒN
+				// ä¸»äººå…¬ã‹ãƒã‚§ãƒƒã‚¯
 				{
 					if( p_wk->p_person == WFLBY_3DOBJCONT_GetPlayer( p_sys->p_objcont ) ){
-						// ƒJƒƒ‰‚ð‚¹‚Á‚Æ
+						// ã‚«ãƒ¡ãƒ©ã‚’ã›ã£ã¨
 						WFLBY_CAMERA_SetTargetPerson( p_sys->p_camera, p_wk->p_person );
 					}
 				}
@@ -3693,11 +3693,11 @@ static BOOL WFLBY_GADGET_Balloon_MainDown_Normal( WFLBY_GADGET* p_sys, WFLBY_GAD
 		break;
 	}
 
-	// ƒoƒ‹[ƒ“ƒAƒjƒ
+	// ãƒãƒ«ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡
 	p_wk->mvwk.balloon.balloon_fly_count++;
 	for( i=0;  i<p_wk->mvwk.balloon.balloon_num; i++ ){
 
-		// À•WÝ’è
+		// åº§æ¨™è¨­å®š
 		{
 			BOOL		ret;
 			VecFx32		matrix;
@@ -3709,7 +3709,7 @@ static BOOL WFLBY_GADGET_Balloon_MainDown_Normal( WFLBY_GADGET* p_sys, WFLBY_GAD
 			if( ret == FALSE ){
 				WFLBY_GADGET_MV_SinCurve_Main( &p_wk->mvwk.balloon.sincurve[i] );
 
-				//  ’l‚ðÝ’è
+				//  å€¤ã‚’è¨­å®š
 				D3DOBJ_GetMatrix( &p_wk->obj[i], &matrix.x, &matrix.y, &matrix.z );
 				WFLBY_GADGET_MV_Straight_GetNum( &p_wk->mvwk.balloon.straight[i], &matrix.x, &matrix.y, &matrix.z );
 				WFLBY_GADGET_MV_SinCurve_GetNum( &p_wk->mvwk.balloon.sincurve[i], &carve_x );
@@ -3718,10 +3718,10 @@ static BOOL WFLBY_GADGET_Balloon_MainDown_Normal( WFLBY_GADGET* p_sys, WFLBY_GAD
 
 				D3DOBJ_SetMatrix( &p_wk->obj[i], matrix.x, matrix.y,  matrix.z );
 			}else{
-				// ”j—ô
+				// ç ´è£‚
 				result = WFLBY_GADGET_Balloon_SetAnm( p_sys, p_wk, i, WFLBY_GADGET_BALLOON_ANM_CRASH );
 
-				// ”j—ô‰¹
+				// ç ´è£‚éŸ³
 				if( result == TRUE ){
 					WFLBY_GADGET_SePlay( p_sys, p_wk, WFLBY_SND_BALLOON_01 );
 				}
@@ -3733,19 +3733,19 @@ static BOOL WFLBY_GADGET_Balloon_MainDown_Normal( WFLBY_GADGET* p_sys, WFLBY_GAD
 
 	return FALSE;
 }
-// ‰®ª‚ª‚ ‚é‚Æ‚«‚Ì“®ì
+// å±‹æ ¹ãŒã‚ã‚‹ã¨ãã®å‹•ä½œ
 static BOOL WFLBY_GADGET_Balloon_MainDown_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk )
 {
 	int i;
 	
-	// •—‘DƒAƒjƒ‚Íí‚É“®‚©‚·
+	// é¢¨èˆ¹ã‚¢ãƒ‹ãƒ¡ã¯å¸¸ã«å‹•ã‹ã™
 	for( i=0;  i<p_wk->mvwk.balloon.balloon_num; i++ ){
 		WFLBY_GADGET_Balloon_Anm( p_sys, p_wk, i );
 	}
 	
 	switch( p_wk->mvwk.balloon.bl_seq ){
-	case WFLBY_GADGET_BALLOON_DOWNSEQ_BATA_WAIT:		// ƒoƒ^ƒoƒ^ŠJŽn‚Ü‚¿‚Í‚È‚µ
-		WFLBY_GADGET_SePlay( p_sys, p_wk, WFLBY_SND_BALLOON_01 );	// •—‘D‚ªŠ„‚ê‚½‰¹‚Æ•—‘D‚ðŠ„‚é
+	case WFLBY_GADGET_BALLOON_DOWNSEQ_BATA_WAIT:		// ãƒã‚¿ãƒã‚¿é–‹å§‹ã¾ã¡ã¯ãªã—
+		WFLBY_GADGET_SePlay( p_sys, p_wk, WFLBY_SND_BALLOON_01 );	// é¢¨èˆ¹ãŒå‰²ã‚ŒãŸéŸ³ã¨é¢¨èˆ¹ã‚’å‰²ã‚‹
 		for( i=0; i<p_wk->mvwk.balloon.balloon_num; i++ ){
 			WFLBY_GADGET_Balloon_SetAnm( p_sys, p_wk, i, WFLBY_GADGET_BALLOON_ANM_CRASH );
 		}
@@ -3766,7 +3766,7 @@ static BOOL WFLBY_GADGET_Balloon_MainDown_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGE
 			p_wk->mvwk.balloon.bl_seq = WFLBY_GADGET_BALLOON_DOWNSEQ_DOWN;
 			p_wk->mvwk.balloon.count = 0;
 
-			// Œü‚¢‚Ä‚¢‚é•ûŒü‚ðŒü‚©‚¹‚é
+			// å‘ã„ã¦ã„ã‚‹æ–¹å‘ã‚’å‘ã‹ã›ã‚‹
 			{
 				u32 way;
 
@@ -3785,7 +3785,7 @@ static BOOL WFLBY_GADGET_Balloon_MainDown_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGE
 					p_wk->mvwk.balloon.count );
 			p_wk->mvwk.balloon.count ++;
 			
-			//  ’l‚ðÝ’è
+			//  å€¤ã‚’è¨­å®š
 			WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 			WFLBY_GADGET_MV_Straight_GetNum( &p_wk->mvwk.balloon.straightobj, &matrix.x, &matrix.y, &matrix.z );
 			WFLBY_3DOBJCONT_DRAW_Set3DMatrix( p_wk->p_person, &matrix );
@@ -3794,17 +3794,17 @@ static BOOL WFLBY_GADGET_Balloon_MainDown_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGE
 				p_wk->mvwk.balloon.count		= 0;
 				p_wk->mvwk.balloon.don_start_y	= matrix.y;
 
-				// ’…’n‰¹
+				// ç€åœ°éŸ³
 				WFLBY_GADGET_SePlay( p_sys, p_wk, WFLBY_SND_BALLOON_02 );
 
-				// ŽålŒö“®ìXV‚ ‚è
+				// ä¸»äººå…¬å‹•ä½œæ›´æ–°ã‚ã‚Š
 				WFLBY_3DOBJCONT_DRAW_SetUpdata( p_wk->p_person, TRUE );	
 
 
-				// ŽålŒö‚©ƒ`ƒFƒbƒN
+				// ä¸»äººå…¬ã‹ãƒã‚§ãƒƒã‚¯
 				{
 					if( p_wk->p_person == WFLBY_3DOBJCONT_GetPlayer( p_sys->p_objcont ) ){
-						// ƒJƒƒ‰‚ð‚¹‚Á‚Æ
+						// ã‚«ãƒ¡ãƒ©ã‚’ã›ã£ã¨
 						WFLBY_CAMERA_SetTargetPerson( p_sys->p_camera, p_wk->p_person );
 					}
 				}
@@ -3821,16 +3821,16 @@ static BOOL WFLBY_GADGET_Balloon_MainDown_Roof( WFLBY_GADGET* p_sys, WFLBY_GADGE
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽålŒö‚ÌˆÊ’u‚É•—‘D‚ð•`‰æ
+ *	@brief	ä¸»äººå…¬ã®ä½ç½®ã«é¢¨èˆ¹ã‚’æç”»
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_Balloon_SetObjPos( WFLBY_GADGET_OBJ*  p_wk )
 {
 	VecFx32 matrix;
 
-	// À•W‚ðŽæ“¾
+	// åº§æ¨™ã‚’å–å¾—
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 	
 	switch( p_wk->mvwk.balloon.balloon_num ){
@@ -3877,16 +3877,16 @@ static void WFLBY_GADGET_Balloon_SetObjPos( WFLBY_GADGET_OBJ*  p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ŽålŒö‚ÌˆÊ’u‚É•—‘D‚ð•`‰æ	‰®ª‚ ‚èƒo[ƒWƒ‡ƒ“
+ *	@brief	ä¸»äººå…¬ã®ä½ç½®ã«é¢¨èˆ¹ã‚’æç”»	å±‹æ ¹ã‚ã‚Šãƒãƒ¼ã‚¸ãƒ§ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_Balloon_SetObjPos_Roof( WFLBY_GADGET_OBJ*  p_wk )
 {
 	VecFx32 matrix;
 
-	// À•W‚ðŽæ“¾
+	// åº§æ¨™ã‚’å–å¾—
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 	
 	switch( p_wk->mvwk.balloon.balloon_num ){
@@ -3931,15 +3931,15 @@ static void WFLBY_GADGET_Balloon_SetObjPos_Roof( WFLBY_GADGET_OBJ*  p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒAƒjƒÝ’è
+ *	@brief	ã‚¢ãƒ‹ãƒ¡è¨­å®š
  *
- *	@param	p_sys			ƒKƒWƒFƒbƒgƒVƒXƒeƒ€
- *	@param	p_wk			ƒ[ƒN
- *	@param	balloon_idx		•—‘DƒCƒ“ƒfƒbƒNƒX
- *	@param	anmidx			ƒAƒjƒƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_sys			ã‚¬ã‚¸ã‚§ãƒƒãƒˆã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	balloon_idx		é¢¨èˆ¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	anmidx			ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	Ý’è‚µ‚½
- *	@retval	FALSE	Ý’è‚µ‚È‚©‚Á‚½
+ *	@retval	TRUE	è¨­å®šã—ãŸ
+ *	@retval	FALSE	è¨­å®šã—ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_Balloon_SetAnm( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk, u32 balloon_idx, u32 anmidx )
@@ -3955,11 +3955,11 @@ static BOOL WFLBY_GADGET_Balloon_SetAnm( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	•—‘DƒAƒjƒ
+ *	@brief	é¢¨èˆ¹ã‚¢ãƒ‹ãƒ¡
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
- *	@param	balloon_idx	•—‘DƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	balloon_idx	é¢¨èˆ¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_Balloon_Anm( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_wk, u32 balloon_idx )
@@ -3975,7 +3975,7 @@ static void WFLBY_GADGET_Balloon_Anm( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_
 			frame = (anmidx*WFLBY_GADGET_BALLOON_ANM_ONEFR) + FX32_ONE;
 		}else{
 
-			// ”j—ôƒAƒjƒ‚ÍAI‚í‚Á‚½‚çÁ‚·
+			// ç ´è£‚ã‚¢ãƒ‹ãƒ¡ã¯ã€çµ‚ã‚ã£ãŸã‚‰æ¶ˆã™
 			if( anmidx != WFLBY_GADGET_BALLOON_ANM_CRASH ){
 			
 				frame = (anmidx*WFLBY_GADGET_BALLOON_ANM_ONEFR);
@@ -3994,11 +3994,11 @@ static void WFLBY_GADGET_Balloon_Anm( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ*  p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚·‚Ï[‚­‚é	‰Šú‰»
+ *	@brief	ã™ã±ãƒ¼ãã‚‹	åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
- *	@param	roop_num	ƒ‹[ƒv”
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	roop_num	ãƒ«ãƒ¼ãƒ—æ•°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_Sparkle_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 roop_num )
@@ -4010,7 +4010,7 @@ static void WFLBY_GADGET_Sparkle_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_
 	u32 idx;
 	u32 objidx;
 	
-	// ŽålŒöÀ•W‚ðŽæ“¾
+	// ä¸»äººå…¬åº§æ¨™ã‚’å–å¾—
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 
 
@@ -4035,7 +4035,7 @@ static void WFLBY_GADGET_Sparkle_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_
 
 			D3DOBJ_SetDraw( &p_wk->obj[idx], FALSE );
 
-			// ˆÚ“®ƒpƒ‰ƒ[ƒ^Ý’è
+			// ç§»å‹•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š
 			p_wk->mvwk.sparkle.objcount[idx] = 0;
 			WFLBY_GADGET_MV_Straight_Init( &p_wk->mvwk.sparkle.objstraight[idx],
 					set_matrix.x, end_matrix.x, 
@@ -4054,14 +4054,14 @@ static void WFLBY_GADGET_Sparkle_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒp[ƒNƒ‹	‚PƒIƒuƒWƒF“®ì
+ *	@brief	ã‚¹ãƒ‘ãƒ¼ã‚¯ãƒ«	ï¼‘ã‚ªãƒ–ã‚¸ã‚§å‹•ä½œ
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_wk		ƒ[ƒN
- *	@param	objidx		ƒIƒuƒWƒFƒCƒ“ƒfƒbƒNƒX
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	objidx		ã‚ªãƒ–ã‚¸ã‚§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_Sparkle_OneObj_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 objidx )
@@ -4071,17 +4071,17 @@ static BOOL WFLBY_GADGET_Sparkle_OneObj_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_
 
 	p_wk->mvwk.sparkle.objcount[objidx]++;
 		
-	// ˆÚ“®“®ì
+	// ç§»å‹•å‹•ä½œ
 	result = WFLBY_GADGET_MV_Straight_Main( &p_wk->mvwk.sparkle.objstraight[objidx],
 			p_wk->mvwk.sparkle.objcount[objidx]	);
 
-	// ˆÚ“®’lÝ’è
+	// ç§»å‹•å€¤è¨­å®š
 	WFLBY_GADGET_MV_Straight_GetNum( &p_wk->mvwk.sparkle.objstraight[objidx], 
 			&move.x, &move.y, &move.z );
 
 	D3DOBJ_SetMatrix( &p_wk->obj[objidx], move.x, move.y, move.z );
 
-	//  ƒAƒjƒƒ‹[ƒv
+	//  ã‚¢ãƒ‹ãƒ¡ãƒ«ãƒ¼ãƒ—
 	WFLBY_GADGET_OBJ_LoopAnm( p_sys, p_wk, objidx, 0 );
 
 	return result;
@@ -4090,11 +4090,11 @@ static BOOL WFLBY_GADGET_Sparkle_OneObj_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒŠƒbƒvƒ‹“®ì‚Ì‰Šú‰»
+ *	@brief	ãƒªãƒƒãƒ—ãƒ«å‹•ä½œã®åˆæœŸåŒ–
  *
- *	@param	p_sys			ƒVƒXƒeƒ€
- *	@param	p_wk			ƒ[ƒN
- *	@param	ripple_num		ƒŠƒbƒvƒ‹”
+ *	@param	p_sys			ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	ripple_num		ãƒªãƒƒãƒ—ãƒ«æ•°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_Ripple_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 ripple_num )
@@ -4106,14 +4106,14 @@ static void WFLBY_GADGET_Ripple_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_w
 	for( i=0; i<ripple_num; i++ ){
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, i, &sc_WFLBY_GADGET_RES[WFLBY_GADGET_OBJ_RIPPLE00 + i] );
 
-		// À•W‚ð‚ ‚í‚¹‚é
+		// åº§æ¨™ã‚’ã‚ã‚ã›ã‚‹
 		WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
-		// Ý’è
+		// è¨­å®š
 		matrix.y += WFLBY_GADGET_FLOOR_Y;
 		matrix.z += WFLBY_GADGET_RIPPLE_MAT_Z;
 		D3DOBJ_SetMatrix( &p_wk->obj[i], matrix.x, matrix.y, matrix.z );
 
-		// ”ñ•\Ž¦
+		// éžè¡¨ç¤º
 		D3DOBJ_SetDraw( &p_wk->obj[i], FALSE );
 	}
 
@@ -4123,14 +4123,14 @@ static void WFLBY_GADGET_Ripple_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_w
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒOƒiƒ‹ƒIƒuƒWƒF	ƒƒCƒ““®ì
+ *	@brief	ã‚·ã‚°ãƒŠãƒ«ã‚ªãƒ–ã‚¸ã‚§	ãƒ¡ã‚¤ãƒ³å‹•ä½œ
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_wk		ƒ[ƒN
- *	@param	num			•\Ž¦‚·‚éƒIƒuƒWƒF‚ÌŽí—Þ
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	num			è¡¨ç¤ºã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®ç¨®é¡ž
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALS	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALS	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_Signal_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 num )
@@ -4139,12 +4139,12 @@ static BOOL WFLBY_GADGET_Signal_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_w
 	u32	move_num;
 	WFLBY_GADGET_SINGNAL_ANMDATA	data;
 
-	// ”­ŽË
+	// ç™ºå°„
 	move_num = (p_wk->count * WFLBY_GADGET_SIGNAL_ANM_FRAME_NUM) / WFLBY_GADGET_SIGNAL_ANM_SYNC;
 	if( move_num != p_wk->mvwk.signal.lastnum ){
 		p_wk->mvwk.signal.lastnum = move_num;
 
-		// ¡‚Ü‚Å•\Ž¦‚µ‚Ä‚½‚Ì‚ð”ñ•\Ž¦‚É‚·‚é
+		// ä»Šã¾ã§è¡¨ç¤ºã—ã¦ãŸã®ã‚’éžè¡¨ç¤ºã«ã™ã‚‹
 		if( move_num > 0 ){
 			data = sc_WFLBY_GADGET_SIGNAL_ANMSEQ[ num ][ move_num-1 ];
 			D3DOBJ_SetDraw( &p_wk->obj[data.objidx], FALSE );
@@ -4152,7 +4152,7 @@ static BOOL WFLBY_GADGET_Signal_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_w
 
 		data = sc_WFLBY_GADGET_SIGNAL_ANMSEQ[ num ][ move_num ];
 
-		// ƒAƒjƒÄ¶
+		// ã‚¢ãƒ‹ãƒ¡å†ç”Ÿ
 		if( WFLBY_GADGET_SINGNAL_ANM_OFF != data.anm_data ){
 			WFLBY_GADGET_OBJ_SetFrame( p_sys, p_wk, data.objidx, 0, 
 					FX32_CONST( data.anm_data ) );
@@ -4165,12 +4165,12 @@ static BOOL WFLBY_GADGET_Signal_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_w
 		}
 	}
 	
-	// ƒJƒEƒ“ƒg
+	// ã‚«ã‚¦ãƒ³ãƒˆ
 	if( p_wk->count < WFLBY_GADGET_SIGNAL_ANM_SYNC ){
 		p_wk->count ++;
 	}
 
-	// I—¹ƒ`ƒFƒbƒN
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( (p_wk->count >= WFLBY_GADGET_SIGNAL_ANM_SYNC) ){
 		return TRUE;
 	}
@@ -4180,11 +4180,11 @@ static BOOL WFLBY_GADGET_Signal_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_w
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒXƒEƒBƒ“ƒO	‰Šú‰»
+ *	@brief	ã‚¹ã‚¦ã‚£ãƒ³ã‚°	åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_wk		ƒ[ƒN
- *	@param	num			ƒIƒuƒWƒF”
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	num			ã‚ªãƒ–ã‚¸ã‚§æ•°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_Swing_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk, u32 num )
@@ -4196,13 +4196,13 @@ static void WFLBY_GADGET_Swing_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk
 	for( i=0; i<num; i++ ){
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, i, &sc_WFLBY_GADGET_RES[WFLBY_GADGET_OBJ_SWING00 + i] );
 
-		// À•W‚ð‚ ‚í‚¹‚é
+		// åº§æ¨™ã‚’ã‚ã‚ã›ã‚‹
 		WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
-		// Ý’è
+		// è¨­å®š
 		matrix.y += WFLBY_GADGET_FLOOR_Y;
 		D3DOBJ_SetMatrix( &p_wk->obj[i], matrix.x, matrix.y, matrix.z );
 
-		// ”ñ•\Ž¦
+		// éžè¡¨ç¤º
 		D3DOBJ_SetDraw( &p_wk->obj[i], FALSE );
 	}
 
@@ -4213,10 +4213,10 @@ static void WFLBY_GADGET_Swing_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒ“ƒoƒ‹²Å½ÞÏ	‰Šú‰»
+ *	@brief	ã‚·ãƒ³ãƒãƒ«ã‚¤ãƒŠã‚ºãƒž	åˆæœŸåŒ–
  *
- *	@param	p_sys		ƒVƒXƒeƒ€
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_Inazuma_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
@@ -4224,7 +4224,7 @@ static void WFLBY_GADGET_Inazuma_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_
 	VecFx32 matrix;
 	int i;
 
-	// ˆîÈì¬
+	// ç¨²å¦»ä½œæˆ
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( p_wk->p_person, &matrix );
 	matrix.z += WFLBY_GADGET_CYMBALS_INAZUMA_OFS_Z;
 	matrix.x += WFLBY_GADGET_CYMBALS_INAZUMA_OFS_X;
@@ -4233,7 +4233,7 @@ static void WFLBY_GADGET_Inazuma_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_
 		WFLBY_GADGET_OBJ_SetRes( p_sys, p_wk, 
 				WFLBY_GADGET_CYMBALS_INAZUMA_00+i, &sc_WFLBY_GADGET_RES[ WFLBY_GADGET_OBJ_SPARK00+i ] );
 
-		// À•WÝ’è
+		// åº§æ¨™è¨­å®š
 		D3DOBJ_SetMatrix( &p_wk->obj[i+WFLBY_GADGET_CYMBALS_INAZUMA_00], 
 				matrix.x + (i*WFLBY_GADGET_CYMBALS_INAZUMA_DIS_X),
 				matrix.y, matrix.z );
@@ -4242,10 +4242,10 @@ static void WFLBY_GADGET_Inazuma_Init( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	²Å½ÞÏƒAƒjƒ	ŠJŽn
+ *	@brief	ã‚¤ãƒŠã‚ºãƒžã‚¢ãƒ‹ãƒ¡	é–‹å§‹
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_Inazuma_Start( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
@@ -4263,10 +4263,10 @@ static void WFLBY_GADGET_Inazuma_Start( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	²Å½ÞÏƒAƒjƒ	ƒƒCƒ“
+ *	@brief	ã‚¤ãƒŠã‚ºãƒžã‚¢ãƒ‹ãƒ¡	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_Inazuma_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_wk )
@@ -4277,15 +4277,15 @@ static void WFLBY_GADGET_Inazuma_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_
 		return ;
 	}
 
-	// ƒJƒEƒ“ƒgˆ—
+	// ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†
 	if( p_wk->mvwk.onpu.inazuma_count < WFLBY_GADGET_CYMBALS_INAZUMA_ANM_SYNC ){
 		p_wk->mvwk.onpu.inazuma_count++;
 	}else{
-		// “®ì’âŽ~
+		// å‹•ä½œåœæ­¢
 		p_wk->mvwk.onpu.inazuma_move = FALSE;
 	}
 
-	// ƒ‹[ƒvƒAƒjƒ
+	// ãƒ«ãƒ¼ãƒ—ã‚¢ãƒ‹ãƒ¡
 	for( i=0; i<WFLBY_GADGET_CYMBALS_INAZUMA_NUM; i++ ){
 		if( p_wk->mvwk.onpu.inazuma_count < WFLBY_GADGET_CYMBALS_INAZUMA_ANM_SYNC ){
 			WFLBY_GADGET_OBJ_LoopAnm( p_sys, p_wk, i+WFLBY_GADGET_CYMBALS_INAZUMA_00, 0 );
@@ -4299,14 +4299,14 @@ static void WFLBY_GADGET_Inazuma_Main( WFLBY_GADGET* p_sys, WFLBY_GADGET_OBJ* p_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰¹•„”­ŽËƒVƒXƒeƒ€	‰Šú‰»
+ *	@brief	éŸ³ç¬¦ç™ºå°„ã‚·ã‚¹ãƒ†ãƒ 	åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_data		ƒf[ƒ^
- *	@param	data_num	ƒf[ƒ^”
- *	@param	count_max	ƒJƒEƒ“ƒgÅ‘å’l
- *	@param	anm_type	ƒAƒjƒƒ^ƒCƒv
- *	@param	p_gadget	ƒKƒWƒFƒbƒgƒf[ƒ^
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		ãƒ‡ãƒ¼ã‚¿
+ *	@param	data_num	ãƒ‡ãƒ¼ã‚¿æ•°
+ *	@param	count_max	ã‚«ã‚¦ãƒ³ãƒˆæœ€å¤§å€¤
+ *	@param	anm_type	ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
+ *	@param	p_gadget	ã‚¬ã‚¸ã‚§ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_ONPU_Cont_Init( WFLBY_GADGET_OBJWK* p_wk, const WFLBY_GADGET_MOVE_ONPU_DATA* cp_data, u32 data_num, u32 count_max, u32 anm_type, WFLBY_GADGET_OBJ* p_gadget )
@@ -4317,7 +4317,7 @@ static void WFLBY_GADGET_ONPU_Cont_Init( WFLBY_GADGET_OBJWK* p_wk, const WFLBY_G
 	p_wk->onpu.data_num		= data_num;
 	p_wk->onpu.count_max	= count_max;
 
-	// “®ìƒpƒ‰ƒ[ƒ^‚Ì‰Šú‰»
+	// å‹•ä½œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®åˆæœŸåŒ–
 	for( i=0; i<WFLBY_GADGET_MOVE_ONPU_WK_NUM; i++ ){
 		WFLBY_GADGET_OnpuMove_Init( &p_wk->onpu.move[i], 
 				&p_gadget->obj[(i*WFLBY_GADGET_ONPU_OBJ_NUM)+0],
@@ -4330,14 +4330,14 @@ static void WFLBY_GADGET_ONPU_Cont_Init( WFLBY_GADGET_OBJWK* p_wk, const WFLBY_G
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰¹•„”­ŽËƒVƒXƒeƒ€	ƒƒCƒ“
+ *	@brief	éŸ³ç¬¦ç™ºå°„ã‚·ã‚¹ãƒ†ãƒ 	ãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	count		ƒJƒEƒ“ƒg
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	count		ã‚«ã‚¦ãƒ³ãƒˆ
  *
- *	@retval	WFLBY_GADGET_ONPU_MAIN_PLAY,		// Ä¶’†
- *	@retval	WFLBY_GADGET_ONPU_MAIN_START,		// Ä¶’†‚Å‰¹•„‚ð”­ŽË‚µ‚½
- *	@retval	WFLBY_GADGET_ONPU_MAIN_ALLEND,		// ‘S•”I‚í‚Á‚½
+ *	@retval	WFLBY_GADGET_ONPU_MAIN_PLAY,		// å†ç”Ÿä¸­
+ *	@retval	WFLBY_GADGET_ONPU_MAIN_START,		// å†ç”Ÿä¸­ã§éŸ³ç¬¦ã‚’ç™ºå°„ã—ãŸ
+ *	@retval	WFLBY_GADGET_ONPU_MAIN_ALLEND,		// å…¨éƒ¨çµ‚ã‚ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 static WFLBY_GADGET_ONPU_MAIN_RET WFLBY_GADGET_ONPU_Cont_Main( WFLBY_GADGET_OBJWK* p_wk, u32 count )
@@ -4348,7 +4348,7 @@ static WFLBY_GADGET_ONPU_MAIN_RET WFLBY_GADGET_ONPU_Cont_Main( WFLBY_GADGET_OBJW
 	BOOL all_end;
 	BOOL ret = WFLBY_GADGET_ONPU_MAIN_PLAY;
 	
-	// count‚ÌƒJƒEƒ“ƒg’l‚Å“®ì‚ðŠJŽn‚·‚éƒf[ƒ^‚ª‚ ‚Á‚½‚ç“®‚©‚·
+	// countã®ã‚«ã‚¦ãƒ³ãƒˆå€¤ã§å‹•ä½œã‚’é–‹å§‹ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒã‚ã£ãŸã‚‰å‹•ã‹ã™
 	for( i=0; i<p_wk->onpu.data_num; i++ ){
 		data = p_wk->onpu.cp_data[i];
 		if( data.count == count ){
@@ -4359,18 +4359,18 @@ static WFLBY_GADGET_ONPU_MAIN_RET WFLBY_GADGET_ONPU_Cont_Main( WFLBY_GADGET_OBJW
 		}
 	}
 
-	// “®ìƒƒCƒ“
+	// å‹•ä½œãƒ¡ã‚¤ãƒ³
 	all_end = TRUE;
 	for( i=0; i<WFLBY_GADGET_MOVE_ONPU_WK_NUM; i++ ){
 		result = WFLBY_GADGET_OnpuMove_Main( &p_wk->onpu.move[ i ] );
-		if( result == FALSE ){	// “®‚¢‚Ä‚¢‚é‚Ì‚ª‚¢‚é‚Ì‚Å‚Ü‚¾I‚í‚Á‚¿‚á‚¢‚¢‚¯‚È‚¢
+		if( result == FALSE ){	// å‹•ã„ã¦ã„ã‚‹ã®ãŒã„ã‚‹ã®ã§ã¾ã çµ‚ã‚ã£ã¡ã‚ƒã„ã„ã‘ãªã„
 			all_end = FALSE;
 			
 		}
 	}
 
 
-	// I—¹ƒ`ƒFƒbƒN
+	// çµ‚äº†ãƒã‚§ãƒƒã‚¯
 	if( (p_wk->onpu.count_max <= count) && (all_end == TRUE) ){
 		ret = WFLBY_GADGET_ONPU_MAIN_ALLEND;
 	}
@@ -4381,22 +4381,22 @@ static WFLBY_GADGET_ONPU_MAIN_RET WFLBY_GADGET_ONPU_Cont_Main( WFLBY_GADGET_OBJW
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“®ì‚ÌŠJŽnŠÖ”
+ *	@brief	å‹•ä½œã®é–‹å§‹é–¢æ•°
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	p_obj0		•`‰æƒIƒuƒWƒF‚O
- *	@param	p_obj1		•`‰æƒIƒuƒWƒF‚P
- *	@param	p_obj2		•`‰æƒIƒuƒWƒF‚Q
- *	@param	p_obj3		•`‰æƒIƒuƒWƒF‚R
- *	@param	cp_person	ŽålŒö
- *	@param	anm_type	ƒAƒjƒƒ^ƒCƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_obj0		æç”»ã‚ªãƒ–ã‚¸ã‚§ï¼
+ *	@param	p_obj1		æç”»ã‚ªãƒ–ã‚¸ã‚§ï¼‘
+ *	@param	p_obj2		æç”»ã‚ªãƒ–ã‚¸ã‚§ï¼’
+ *	@param	p_obj3		æç”»ã‚ªãƒ–ã‚¸ã‚§ï¼“
+ *	@param	cp_person	ä¸»äººå…¬
+ *	@param	anm_type	ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_OnpuMove_Init( WFLBY_GADGET_ONPU* p_wk, D3DOBJ* p_obj0, D3DOBJ* p_obj1, D3DOBJ* p_obj2, D3DOBJ* p_obj3, const WFLBY_3DPERSON* cp_person, u32 anm_type )
 {
 	GF_ASSERT( anm_type < WFLBY_GADGET_ONPU_MOVE_NUM );
 
-	// •\Ž¦‚·‚éƒIƒuƒWƒF‚Ì•\Ž¦ƒtƒ‰ƒO‚ðÝ’è
+	// è¡¨ç¤ºã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã®è¡¨ç¤ºãƒ•ãƒ©ã‚°ã‚’è¨­å®š
 	p_wk->p_obj[0] = p_obj0;
 	p_wk->p_obj[1] = p_obj1;
 	p_wk->p_obj[2] = p_obj2;
@@ -4405,16 +4405,16 @@ static void WFLBY_GADGET_OnpuMove_Init( WFLBY_GADGET_ONPU* p_wk, D3DOBJ* p_obj0,
 	p_wk->cp_person = cp_person;
 
 	
-	// ƒxƒ‹“®ì‰Šú‰»
+	// ãƒ™ãƒ«å‹•ä½œåˆæœŸåŒ–
 	p_wk->type	= anm_type;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰¹•„“®ì	ŠJŽn
+ *	@brief	éŸ³ç¬¦å‹•ä½œ	é–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	num			”
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	num			æ•°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_OnpuMove_Start( WFLBY_GADGET_ONPU* p_wk, u32 num )
@@ -4426,7 +4426,7 @@ static void WFLBY_GADGET_OnpuMove_Start( WFLBY_GADGET_ONPU* p_wk, u32 num )
 		WFLBY_GADGET_OnpuMove_InitCymbals,
 	};
 
-	// •\Ž¦ŠJŽn
+	// è¡¨ç¤ºé–‹å§‹
 	for( i=0; i<num; i++ ){
 		D3DOBJ_SetDraw( p_wk->p_obj[i], TRUE );
 	}
@@ -4440,12 +4440,12 @@ static void WFLBY_GADGET_OnpuMove_Start( WFLBY_GADGET_ONPU* p_wk, u32 num )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰¹•„“®ìƒƒCƒ“ŠÖ”
+ *	@brief	éŸ³ç¬¦å‹•ä½œãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_OnpuMove_Main( WFLBY_GADGET_ONPU* p_wk )
@@ -4462,15 +4462,15 @@ static BOOL WFLBY_GADGET_OnpuMove_Main( WFLBY_GADGET_ONPU* p_wk )
 		return TRUE;
 	}
 
-	// ƒƒCƒ““®ì
+	// ãƒ¡ã‚¤ãƒ³å‹•ä½œ
 	result = p_Func[ p_wk->type ]( p_wk );
 
-	// ƒJƒEƒ“ƒg
+	// ã‚«ã‚¦ãƒ³ãƒˆ
 	p_wk->count ++;
 
-	// I—¹‚É‚È‚Á‚½‚çˆ—‚ðI—¹
+	// çµ‚äº†ã«ãªã£ãŸã‚‰å‡¦ç†ã‚’çµ‚äº†
 	if( result == TRUE ){
-		// •\Ž¦OFF
+		// è¡¨ç¤ºOFF
 		for( i=0; i<p_wk->mvnum; i++ ){
 			D3DOBJ_SetDraw( p_wk->p_obj[i], FALSE );
 		}
@@ -4483,10 +4483,10 @@ static BOOL WFLBY_GADGET_OnpuMove_Main( WFLBY_GADGET_ONPU* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒxƒ‹“®ì‚ÌŠJŽn
+ *	@brief	ãƒ™ãƒ«å‹•ä½œã®é–‹å§‹
  *	
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_person	ŽålŒö
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_person	ä¸»äººå…¬
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_OnpuMove_InitBell( WFLBY_GADGET_ONPU* p_wk, const WFLBY_3DPERSON* cp_person )
@@ -4496,7 +4496,7 @@ static void WFLBY_GADGET_OnpuMove_InitBell( WFLBY_GADGET_ONPU* p_wk, const WFLBY
 	VecFx32 end_matrix;
 	u16	start_rot;
 
-	// ŽålŒö‚ÌÀ•W‚ðŽæ“¾
+	// ä¸»äººå…¬ã®åº§æ¨™ã‚’å–å¾—
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( cp_person, &matrix );
 	matrix.x += WFLBY_GADGET_ONPU_X_OFS;
 	matrix.y += WFLBY_GADGET_AIR_Y;
@@ -4543,12 +4543,12 @@ static void WFLBY_GADGET_OnpuMove_InitBell( WFLBY_GADGET_ONPU* p_wk, const WFLBY
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒxƒ‹“®ìƒƒCƒ“ŠÖ”
+ *	@brief	ãƒ™ãƒ«å‹•ä½œãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_OnpuMove_MainBell( WFLBY_GADGET_ONPU* p_wk )
@@ -4559,13 +4559,13 @@ static BOOL WFLBY_GADGET_OnpuMove_MainBell( WFLBY_GADGET_ONPU* p_wk )
 	fx32	cv_num;
 
 	for( i=0; i<p_wk->mvnum; i++ ){
-		// ƒJ[ƒuˆÚ“®
+		// ã‚«ãƒ¼ãƒ–ç§»å‹•
 		WFLBY_GADGET_MV_SinCurve_Main( &p_wk->cv[i] );
 		
-		// ’¼üˆÚ“®
+		// ç›´ç·šç§»å‹•
 		result = WFLBY_GADGET_MV_Straight_Main( &p_wk->st[i], p_wk->count );
 
-		// À•W‚ÌÝ’è
+		// åº§æ¨™ã®è¨­å®š
 		WFLBY_GADGET_MV_SinCurve_GetNum( &p_wk->cv[i], &cv_num );
 		WFLBY_GADGET_MV_Straight_GetNum( &p_wk->st[i], &matrix.x, &matrix.y, &matrix.z );
 		matrix.x += cv_num;
@@ -4577,10 +4577,10 @@ static BOOL WFLBY_GADGET_OnpuMove_MainBell( WFLBY_GADGET_ONPU* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒhƒ‰ƒ€“®ìŠJŽn
+ *	@brief	ãƒ‰ãƒ©ãƒ å‹•ä½œé–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_person	ŽålŒö
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_person	ä¸»äººå…¬
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_OnpuMove_InitDram( WFLBY_GADGET_ONPU* p_wk, const WFLBY_3DPERSON* cp_person )
@@ -4589,7 +4589,7 @@ static void WFLBY_GADGET_OnpuMove_InitDram( WFLBY_GADGET_ONPU* p_wk, const WFLBY
 	VecFx32 matrix;
 	VecFx32 end_matrix;
 
-	// ŽålŒö‚ÌÀ•W‚ðŽæ“¾
+	// ä¸»äººå…¬ã®åº§æ¨™ã‚’å–å¾—
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( cp_person, &matrix );
 	matrix.x += WFLBY_GADGET_ONPU_X_OFS;
 	matrix.y += WFLBY_GADGET_FLOOR_Y;
@@ -4635,18 +4635,18 @@ static void WFLBY_GADGET_OnpuMove_InitDram( WFLBY_GADGET_ONPU* p_wk, const WFLBY
 				WFLBY_GADGET_ONPU_MOVE_DRUM_DOWN_Y );
 	}
 
-	// À•WÝ’è	
+	// åº§æ¨™è¨­å®š	
 	WFLBY_GADGET_OnpuMove_MainDram( p_wk );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒhƒ‰ƒ€“®ìƒƒCƒ“ŠÖ”
+ *	@brief	ãƒ‰ãƒ©ãƒ å‹•ä½œãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_OnpuMove_MainDram( WFLBY_GADGET_ONPU* p_wk )
@@ -4658,7 +4658,7 @@ static BOOL WFLBY_GADGET_OnpuMove_MainDram( WFLBY_GADGET_ONPU* p_wk )
 
 	for( i=0; i<p_wk->mvnum; i++ ){
 
-		// ƒJƒEƒ“ƒ^‚ªWFLBY_GADGET_ONPU_MOVE_DRUM_DOWN_SYNC‚É‚È‚Á‚½‚ç‰ñ“]ˆÚ“®‚Ìƒpƒ‰ƒ[ƒ^•ÏX
+		// ã‚«ã‚¦ãƒ³ã‚¿ãŒWFLBY_GADGET_ONPU_MOVE_DRUM_DOWN_SYNCã«ãªã£ãŸã‚‰å›žè»¢ç§»å‹•ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰æ›´
 		if( p_wk->count == WFLBY_GADGET_ONPU_MOVE_DRUM_DOWN_SYNC ){
 			WFLBY_GADGET_MV_SinCurve_Init( &p_wk->cv[i], 
 					WFLBY_GADGET_ONPU_MOVE_DRUM_UP_ROT, 
@@ -4666,14 +4666,14 @@ static BOOL WFLBY_GADGET_OnpuMove_MainDram( WFLBY_GADGET_ONPU* p_wk )
 					WFLBY_GADGET_ONPU_MOVE_DRUM_UP_Y );
 		}else{
 
-			// ƒJ[ƒuˆÚ“®
+			// ã‚«ãƒ¼ãƒ–ç§»å‹•
 			WFLBY_GADGET_MV_SinCurve_Main( &p_wk->cv[i] );
 		}
 		
-		// ’¼üˆÚ“®
+		// ç›´ç·šç§»å‹•
 		WFLBY_GADGET_MV_Straight_Main( &p_wk->st[i], p_wk->count );
 
-		// À•W‚ÌÝ’è
+		// åº§æ¨™ã®è¨­å®š
 		WFLBY_GADGET_MV_SinCurve_GetNum( &p_wk->cv[i], &cv_num );
 		WFLBY_GADGET_MV_Straight_GetNum( &p_wk->st[i], &matrix.x, &matrix.y, &matrix.z );
 		matrix.y += cv_num;
@@ -4690,10 +4690,10 @@ static BOOL WFLBY_GADGET_OnpuMove_MainDram( WFLBY_GADGET_ONPU* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒ“ƒoƒ‹“®ìŠJŽn
+ *	@brief	ã‚·ãƒ³ãƒãƒ«å‹•ä½œé–‹å§‹
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	cp_person	ŽålŒö
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_person	ä¸»äººå…¬
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_OnpuMove_InitCymbals( WFLBY_GADGET_ONPU* p_wk, const WFLBY_3DPERSON* cp_person )
@@ -4702,7 +4702,7 @@ static void WFLBY_GADGET_OnpuMove_InitCymbals( WFLBY_GADGET_ONPU* p_wk, const WF
 	VecFx32 matrix;
 	VecFx32 end_matrix;
 
-	// ŽålŒö‚ÌÀ•W‚ðŽæ“¾
+	// ä¸»äººå…¬ã®åº§æ¨™ã‚’å–å¾—
 	WFLBY_3DOBJCONT_DRAW_Get3DMatrix( cp_person, &matrix );
 	matrix.x += WFLBY_GADGET_ONPU_X_OFS;
 	matrix.y += WFLBY_GADGET_AIR_Y + WFLBY_GADGET_ONPU_MOVE_CYMBALS_START_Y;
@@ -4720,12 +4720,12 @@ static void WFLBY_GADGET_OnpuMove_InitCymbals( WFLBY_GADGET_ONPU* p_wk, const WF
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒVƒ“ƒoƒ‹“®ìƒƒCƒ“ŠÖ”
+ *	@brief	ã‚·ãƒ³ãƒãƒ«å‹•ä½œãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- *	@param	p_wk		ƒ[ƒN
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_GADGET_OnpuMove_MainCymbals( WFLBY_GADGET_ONPU* p_wk )
@@ -4736,14 +4736,14 @@ static BOOL WFLBY_GADGET_OnpuMove_MainCymbals( WFLBY_GADGET_ONPU* p_wk )
 
 	for( i=0; i<p_wk->mvnum; i++ ){
 		
-		// ’¼üˆÚ“®
+		// ç›´ç·šç§»å‹•
 		result = WFLBY_GADGET_MV_Straight_Main( &p_wk->st[i], p_wk->count );
 
-		// À•W‚ÌÝ’è
+		// åº§æ¨™ã®è¨­å®š
 		WFLBY_GADGET_MV_Straight_GetNum( &p_wk->st[i], &matrix.x, &matrix.y, &matrix.z );
 		D3DOBJ_SetMatrix( p_wk->p_obj[i], matrix.x, matrix.y, matrix.z );
 
-		// I—¹‚µ‚½‚çŽŸ‚Ìˆ—
+		// çµ‚äº†ã—ãŸã‚‰æ¬¡ã®å‡¦ç†
 		if( result == TRUE ){
 
 			if( p_wk->seq == 0 ){
@@ -4767,9 +4767,9 @@ static BOOL WFLBY_GADGET_OnpuMove_MainCymbals( WFLBY_GADGET_ONPU* p_wk )
 	if( result == TRUE ){
 		if( (p_wk->seq + 1) < WFLBY_GADGET_ONPU_MOVE_CYMBALS_SEQ_NUM ){
 			p_wk->seq ++;
-			p_wk->count = 0;	// ƒJƒEƒ“ƒ^‰Šú‰»
+			p_wk->count = 0;	// ã‚«ã‚¦ãƒ³ã‚¿åˆæœŸåŒ–
 		}else{
-			// I—¹
+			// çµ‚äº†
 			return TRUE;
 		}
 	}
@@ -4779,16 +4779,16 @@ static BOOL WFLBY_GADGET_OnpuMove_MainCymbals( WFLBY_GADGET_ONPU* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	CYMBALS“®ì’lÝ’è
+ *	@brief	CYMBALSå‹•ä½œå€¤è¨­å®š
  *
- *	@param	p_wk			ƒ[ƒN
- *	@param	idx				ƒCƒ“ƒfƒbƒNƒX
- *	@param	cp_def_matrix	Šî–{À•W
- *	@param	ofs_x0			ƒIƒtƒZƒbƒgX
- *	@param	ofs_y0			ƒIƒtƒZƒbƒgY
- *	@param	ofs_x1			ƒIƒtƒZƒbƒgX
- *	@param	ofs_y1			ƒIƒtƒZƒbƒgY
- *	@param	sync			ƒVƒ“ƒN”
+ *	@param	p_wk			ãƒ¯ãƒ¼ã‚¯
+ *	@param	idx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ *	@param	cp_def_matrix	åŸºæœ¬åº§æ¨™
+ *	@param	ofs_x0			ã‚ªãƒ•ã‚»ãƒƒãƒˆX
+ *	@param	ofs_y0			ã‚ªãƒ•ã‚»ãƒƒãƒˆY
+ *	@param	ofs_x1			ã‚ªãƒ•ã‚»ãƒƒãƒˆX
+ *	@param	ofs_y1			ã‚ªãƒ•ã‚»ãƒƒãƒˆY
+ *	@param	sync			ã‚·ãƒ³ã‚¯æ•°
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_GADGET_OnpuMove_SetCymbalsStParam( WFLBY_GADGET_ONPU* p_wk, u32 idx, const VecFx32* cp_def_matrix, fx32 ofs_x0, fx32 ofs_y0, fx32 ofs_x1, fx32 ofs_y1, u32 sync )

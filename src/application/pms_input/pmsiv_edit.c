@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pmsiv_edit.c
- * @bfief	�ȈՉ�b���͉�ʁi�`�扺�����F�ҏW���j
+ * @bfief	簡易会話入力画面（描画下請け：編集欄）
  * @author	taya
  * @date	06.02.07
  */
@@ -28,7 +28,7 @@
 enum {
 	INPUTAREA_PALTYPE_MAX = 10,
 
-	STR_TMPBUF_LEN = 128,	// �\���O�̃e���|�����Ƃ��Ďg�p�B�ő啶�����B
+	STR_TMPBUF_LEN = 128,	// 表示前のテンポラリとして使用。最大文字数。
 };
 
 enum {
@@ -50,7 +50,7 @@ enum {
 	YESNO_WIN_HEIGHT = 4,
 	YESNO_WIN_CHARSIZE = YESNO_WIN_WIDTH*YESNO_WIN_HEIGHT,
 
-	// �P��̈�ʒu���i�h�b�g�P�ʁA���S�_�j
+	// 単語領域位置情報（ドット単位、中心点）
 	WORDAREA_SINGLE_X = (128- EDITAREA_WIN_X*8),
 	WORDAREA_SINGLE_Y = 16,
 	WORDAREA_DOUBLE_X1 = 48,
@@ -58,7 +58,7 @@ enum {
 	WORDAREA_DOUBLE_X2 = 160,
 	WORDAREA_DOUBLE_Y2 = WORDAREA_DOUBLE_Y1,
 
-	WORDAREA_X_MARGIN = 2,	// �O�㕶����Ƃ̗]���i�h�b�g�j
+	WORDAREA_X_MARGIN = 2,	// 前後文字列との余白（ドット）
 
 
 	WORDAREA_WIDTH = 96,
@@ -107,7 +107,7 @@ enum {
 
 //--------------------------------------------------------------
 /**
- *	���͉�̓��[�`���̖߂�l
+ *	文章解析ルーチンの戻り値
  */
 //--------------------------------------------------------------
 enum {
@@ -324,7 +324,7 @@ void PMSIV_EDIT_SetupGraphicDatas( PMSIV_EDIT* wk, ARCHANDLE* p_handle )
 	PMSIV_EDIT_UpdateEditArea( wk );
 	PMSIV_EDIT_SetSystemMessage( wk, PMSIV_MSG_GUIDANCE );
 
-	// PMSIV_EDIT_UpdateEditArea �ŒP�ꐔ���m�肷��̂ŁA���̌�ɁB
+	// PMSIV_EDIT_UpdateEditArea で単語数が確定するので、その後に。
 	setup_obj( wk );
 
 	GF_BGL_LoadScreenReq( bgl, FRM_MAIN_EDITAREA );
@@ -343,11 +343,11 @@ static void setup_pal_datas( PMSIV_EDIT* wk, ARCHANDLE* p_handle )
 	NNSG2dPaletteData*  palDat;
 	void*   data_ptr;
 
-	// ��x�S��VRAM�]������
+	// 一度全てVRAM転送する
 	ArcUtil_HDL_PalSet( p_handle, NARC_pmsi_bg_main_nclr, PALTYPE_MAIN_BG,
 		 0, 14*0x20, HEAPID_PMS_INPUT_VIEW );
 
-	// ��̐F�ς��p�Ƀq�[�v�ɂ��ǂݍ���ł���
+	// 後の色変え用にヒープにも読み込んでおく
 	data_ptr = ArcUtil_HDL_PalDataGet( p_handle, NARC_pmsi_bg_main_nclr, &palDat, HEAPID_PMS_INPUT_VIEW );
 
 	MI_CpuCopy16( palDat->pRawData, wk->pal_data, sizeof(wk->pal_data) );
@@ -391,8 +391,8 @@ static void setup_wordarea_pos( PMSIV_EDIT* wk )
 		break;
 
 	case PMSI_MODE_SENTENCE:
-		// ���̓��[�h�̏ꍇ�A���͓��e�ɂ���Ĉʒu���ς��̂�
-		// �����ł͉������Ȃ�
+		// 文章モードの場合、文章内容によって位置が変わるので
+		// ここでは何もしない
 		wk->word_pos_max = 0;
 		break;
 	}
@@ -475,8 +475,8 @@ void PMSIV_EDIT_UpdateEditArea( PMSIV_EDIT* wk )
 
 //------------------------------------------------------------------
 /**
- * �I������Ă��镶�͂���́A���`���ăv�����g����B
- * ��͎��ɔ��肵�ĕK�v�ȒP�ꐔ��Ԃ�
+ * 選択されている文章を解析、整形してプリントする。
+ * 解析時に判定して必要な単語数を返す
  *
  * @param   wk		
  *

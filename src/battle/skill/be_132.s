@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_132.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			132�@�g�o���񕜂��邪���ʂ͓V�C�ŕς��A���{����=�Q�^�R�A�ʏ�=�P�^�Q�A�J�A�����A�����=�P�^�S
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			132　ＨＰを回復するが効果は天気で変わる、日本晴れ=２／３、通常=１／２、雨、砂嵐、あられ=１／４
  *
  *@author	HisashiSogabe
  *@data		2006.02.02
@@ -16,10 +16,10 @@
 
 BE_132:
 	WEATHER_KAIFUKU
-	//HP����Ώۂ�AttackClient��
+	//HP操作対象をAttackClientに
 	VALUE_WORK		VAL_SET,BUF_PARA_CLIENT_WORK,BUF_PARA_ATTACK_CLIENT
-	//�v���[���g�̉񕜓���Ɠ����Ȃ̂ŁA�v���[���g�̒ǉ����ʈ����ɂ���
+	//プレゼントの回復動作と同じなので、プレゼントの追加効果扱いにする
 	VALUE			VAL_SET,BUF_PARA_ADD_STATUS_DIRECT,ADD_COND2_PRESENT|ADD_STATUS_WAZAKOUKA
-	//�񕜃G�t�F�N�g���o��悤�Ƀt���O�𗧂Ă�
+	//回復エフェクトが出るようにフラグを立てる
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG2,SERVER_STATUS_FLAG2_KAIFUKU_EFFECT
 	SEQ_END

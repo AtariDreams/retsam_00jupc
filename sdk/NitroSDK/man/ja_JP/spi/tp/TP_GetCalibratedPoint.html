@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>TP_GetCalibratedPoint</title>
@@ -12,36 +12,36 @@
 <body>
 
 <h1 align="left">TP_GetCalibratedPoint</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
 <CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
   <PRE><CODE>void TP_GetCalibratedPoint( TPData * disp, const TPData * raw );</CODE></PRE>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="300"><em><strong><font face="Courier New">disp</font></strong></em></TD>
-      <TD width="700">��ʍ��W�ɕϊ����ꂽ�l���擾���邽�߂̃|�C���^�B</TD>
+      <TD width="700">画面座標に変換された値を取得するためのポインタ。</TD>
     </TR>
     <TR>
       <TD><em><strong><font face="Courier New">raw</font></strong></em></TD>
-      <TD>�ϊ����̍��W�f�[�^�ւ̃|�C���^�B�L�����u���[�V��������Ă��Ȃ����̃^�b�`�p�l���l���i�[����B</TD>
+      <TD>変換元の座標データへのポインタ。キャリブレーションされていない生のタッチパネル値を格納する。</TD>
     </TR>
   </TBODY>
 </TABLE>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
-<H2>����</H2>
-<P><A href="TP_SetCalibrateParam.html">TP_SetCalibrateParam</A>�ɂ���Đݒ肳�ꂽ�L�����u���[�V�����l���g�p���āA���̃^�b�`�p�l���l�����ʍ��W�ւ̕ϊ����s���܂��B<BR>
-���̊֐��ł�touch��validity�̒l���R�s�[����A�ϊ����f�[�^��touch�t���O��OFF�̏ꍇ�ɂ͍��W(0,0)���Ԃ���܂��B<BR>
-�܂��A�L�����u���[�V�����p�����[�^���ݒ肳��Ă��Ȃ��ꍇ�ɂ̓^�b�`�p�l���l�����̂܂܏o�͂���܂��B<BR>
-����disp��raw�ɂ͓����|�C���^��n���Ă�����Ă��\���܂���B</P>
-<h2>�Q��</h2>
-<P><A href="TP_GetUnCalibratedPoint.html">TP_GetUnCalibratedPoint</A>�A<A href="TP_SetCalibrateParam.html">TP_SetCalibrateParam</A>�A<A href="TPData.html">TPData</A></P>
-<H2>����</H2>
-<P>Ver. 2004/04/16 ����</P>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P><A href="TP_SetCalibrateParam.html">TP_SetCalibrateParam</A>によって設定されたキャリブレーション値を使用して、生のタッチパネル値から画面座標への変換を行います。<BR>
+この関数ではtouchやvalidityの値もコピーされ、変換元データのtouchフラグがOFFの場合には座標(0,0)が返されます。<BR>
+また、キャリブレーションパラメータが設定されていない場合にはタッチパネル値がそのまま出力されます。<BR>
+引数dispとrawには同じポインタを渡してもらっても構いません。</P>
+<h2>参照</h2>
+<P><A href="TP_GetUnCalibratedPoint.html">TP_GetUnCalibratedPoint</A>、<A href="TP_SetCalibrateParam.html">TP_SetCalibrateParam</A>、<A href="TPData.html">TPData</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/04/16 初版</P>
 </body>
 </html>

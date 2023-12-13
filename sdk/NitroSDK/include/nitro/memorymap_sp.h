@@ -27,13 +27,13 @@
   change SDK prefix iris -> nitro
 
   Revision 1.1  2003/12/22 14:05:31  yasu
-  V‹K’Ç‰Á
+  æ–°è¦è¿½åŠ 
 
   Revision 1.2  2003/12/17 06:05:39  yasu
-  mmap_reserved.h ‚ğ mmap_tcm.h ‚Æ mmap_shared.h ‚É•ªŠ„
+  mmap_reserved.h ã‚’ mmap_tcm.h ã¨ mmap_shared.h ã«åˆ†å‰²
 
   Revision 1.1  2003/12/09 08:35:26  yasu
-  ƒƒ‚ƒŠƒ}ƒbƒvü‚è‚ğüV
+  ãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—å‘¨ã‚Šã‚’åˆ·æ–°
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

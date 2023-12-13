@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_realnum.c
- * @bfief	ƒ|ƒPƒbƒ`“d‘ì—p”’lŒvZ
+ * @bfief	ãƒã‚±ãƒƒãƒé›»å“ç”¨æ•°å€¤è¨ˆç®—
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -16,8 +16,8 @@
 
 
 enum {
-	DECIMAL_POINT_MAX = 8,		// ¬”“_ˆÈ‰º‚Ì—LŒøŒ…
-	DECIMAL_MAX = 99999999,		// ¬”“_•”‚ÌÅ‘å’l
+	DECIMAL_POINT_MAX = 8,		// å°æ•°ç‚¹ä»¥ä¸‹ã®æœ‰åŠ¹æ¡
+	DECIMAL_MAX = 99999999,		// å°æ•°ç‚¹éƒ¨ã®æœ€å¤§å€¤
 
 	INTEGER_BIT = 64,
 };
@@ -28,11 +28,11 @@ enum {
 };
 
 struct _REAL_NUMBER {
-	u64		number	;	// ”’l
-	u8		point;		// ¬”“_ˆÊ’u
-	u8		sign;		// •„†
-	u8		column_max;	// Å‘åŒ…”
-	u8		illegal;	// •s³‚Èó‘Ô
+	u64		number	;	// æ•°å€¤
+	u8		point;		// å°æ•°ç‚¹ä½ç½®
+	u8		sign;		// ç¬¦å·
+	u8		column_max;	// æœ€å¤§æ¡æ•°
+	u8		illegal;	// ä¸æ­£ãªçŠ¶æ…‹
 };
 
 static const u64 PointRatio[] = {
@@ -63,7 +63,7 @@ static void PointAdjust( const REAL_NUMBER *cn1, const REAL_NUMBER *cn2, REAL_NU
 
 //------------------------------------------------------------------
 /**
- * ì¬
+ * ä½œæˆ
  *
  * @param   rn		
  *
@@ -82,7 +82,7 @@ BOOL RNUM_Create( REAL_NUMBER **rn, u32 column_max )
 }
 //------------------------------------------------------------------
 /**
- * íœ
+ * å‰Šé™¤
  *
  * @param   rn		
  *
@@ -94,7 +94,7 @@ void RNUM_Delete( REAL_NUMBER *rn )
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒ‚É‚·‚é
+ * ã‚¼ãƒ­ã«ã™ã‚‹
  *
  * @param   rn		
  *
@@ -122,7 +122,7 @@ void RNUM_Set( REAL_NUMBER *lhs, const REAL_NUMBER *rhs )
 }
 //------------------------------------------------------------------
 /**
- * ”’lw’è‚Å‰Šú‰»‚·‚éi®”‚Ì‚İj
+ * æ•°å€¤æŒ‡å®šã§åˆæœŸåŒ–ã™ã‚‹ï¼ˆæ•´æ•°ã®ã¿ï¼‰
  *
  * @param   rn		
  * @param   num		
@@ -138,7 +138,7 @@ void RNUM_SetByInt( REAL_NUMBER *rn, s32 num )
 }
 //------------------------------------------------------------------
 /**
- * ‘«‚µZ  a + b = c
+ * è¶³ã—ç®—  a + b = c
  *
  * @param   lhs		a
  * @param   rhs		b
@@ -148,7 +148,7 @@ void RNUM_SetByInt( REAL_NUMBER *rn, s32 num )
 //------------------------------------------------------------------
 void RNUM_Add( const REAL_NUMBER *lhs, const REAL_NUMBER *rhs, REAL_NUMBER *ans )
 {
-	// •„†‚ª‹t‚È‚çˆø‚«Z‚É‚·‚é
+	// ç¬¦å·ãŒé€†ãªã‚‰å¼•ãç®—ã«ã™ã‚‹
 	if( (lhs->sign == PLUS) && (rhs->sign == MINUS) )
 	{
 		REAL_NUMBER  n = *rhs;
@@ -179,7 +179,7 @@ void RNUM_Add( const REAL_NUMBER *lhs, const REAL_NUMBER *rhs, REAL_NUMBER *ans 
 }
 //------------------------------------------------------------------
 /**
- * ˆø‚«Z  a - b = c
+ * å¼•ãç®—  a - b = c
  *
  * @param   lhs		a
  * @param   rhs		b
@@ -189,7 +189,7 @@ void RNUM_Add( const REAL_NUMBER *lhs, const REAL_NUMBER *rhs, REAL_NUMBER *ans 
 //------------------------------------------------------------------
 void RNUM_Sub( const REAL_NUMBER *lhs, const REAL_NUMBER *rhs, REAL_NUMBER *ans )
 {
-	// •„†‚ª‹t‚È‚ç‘«‚µZ‚É‚·‚é
+	// ç¬¦å·ãŒé€†ãªã‚‰è¶³ã—ç®—ã«ã™ã‚‹
 	if( ( (lhs->sign == PLUS) && (rhs->sign == MINUS) )
 	||	( (lhs->sign == MINUS) && (rhs->sign == PLUS) )
 	){
@@ -199,7 +199,7 @@ void RNUM_Sub( const REAL_NUMBER *lhs, const REAL_NUMBER *rhs, REAL_NUMBER *ans 
 		return;
 	}
 
-	// ‘S‚­“¯‚¶‚È‚çƒ[ƒ
+	// å…¨ãåŒã˜ãªã‚‰ã‚¼ãƒ­
 	if( RNUM_IsEqual( lhs, rhs ) ){
 		RNUM_SetZero( ans );
 		return;
@@ -212,8 +212,8 @@ void RNUM_Sub( const REAL_NUMBER *lhs, const REAL_NUMBER *rhs, REAL_NUMBER *ans 
 		lhs = &l;
 		rhs = &r;
 
-		// ¶•Ó‚Ì•û‚ª¬‚³‚­‚Ä•„†‚ªƒvƒ‰ƒX
-		// ‚Ü‚½‚Í¶•Ó‚Ì•û‚ª‘å‚«‚­‚Ä•„†‚ªƒ}ƒCƒiƒX‚È‚ç”½“]‚·‚é
+		// å·¦è¾ºã®æ–¹ãŒå°ã•ãã¦ç¬¦å·ãŒãƒ—ãƒ©ã‚¹
+		// ã¾ãŸã¯å·¦è¾ºã®æ–¹ãŒå¤§ããã¦ç¬¦å·ãŒãƒã‚¤ãƒŠã‚¹ãªã‚‰åè»¢ã™ã‚‹
 		if( (lhs->number < rhs->number) ^ (lhs->sign) )
 		{
 			const REAL_NUMBER *tmp = lhs;
@@ -234,7 +234,7 @@ void RNUM_Sub( const REAL_NUMBER *lhs, const REAL_NUMBER *rhs, REAL_NUMBER *ans 
 }
 //------------------------------------------------------------------
 /**
- * Š|‚¯Z  a * b = c
+ * æ›ã‘ç®—  a * b = c
  *
  * @param   lhs		a
  * @param   rhs		b
@@ -252,7 +252,7 @@ void RNUM_Mul( const REAL_NUMBER *lhs, const REAL_NUMBER *rhs, REAL_NUMBER *ans 
 }
 //------------------------------------------------------------------
 /**
- * Š„‚èZ  a / b = c
+ * å‰²ã‚Šç®—  a / b = c
  *
  * @param   lhs		a
  * @param   rhs		b
@@ -302,12 +302,12 @@ void RNUM_Div( const REAL_NUMBER *lhs, const REAL_NUMBER *rhs, REAL_NUMBER *ans 
 }
 //------------------------------------------------------------------
 /**
- * ®”Å‰ºŒ…‚Æ‚µ‚Ä”’l‚ğ“ü—Í
+ * æ•´æ•°æœ€ä¸‹æ¡ã¨ã—ã¦æ•°å€¤ã‚’å…¥åŠ›
  *
  * @param   rn		
  * @param   num		
  *
- * @retval  BOOL		TRUE‚Å¬Œ÷BŒ…ˆê”t‚È‚çFALSE
+ * @retval  BOOL		TRUEã§æˆåŠŸã€‚æ¡ä¸€æ¯ãªã‚‰FALSE
  */
 //------------------------------------------------------------------
 BOOL RNUM_ShiftInteger( REAL_NUMBER *rn, u32 num )
@@ -327,11 +327,11 @@ BOOL RNUM_ShiftInteger( REAL_NUMBER *rn, u32 num )
 }
 //------------------------------------------------------------------
 /**
- * ¬”“_Å‰ºŒ…‚Æ‚µ‚Ä”’l‚ğ“ü—Í
+ * å°æ•°ç‚¹æœ€ä¸‹æ¡ã¨ã—ã¦æ•°å€¤ã‚’å…¥åŠ›
  *
  * @param   btn		
  *
- * @retval  BOOL		TRUE‚Å¬Œ÷BŒ…ˆê”t‚È‚çFALSE
+ * @retval  BOOL		TRUEã§æˆåŠŸã€‚æ¡ä¸€æ¯ãªã‚‰FALSE
  */
 //------------------------------------------------------------------
 BOOL RNUM_ShiftDechimal( REAL_NUMBER *rn, u32 num )
@@ -351,12 +351,12 @@ BOOL RNUM_ShiftDechimal( REAL_NUMBER *rn, u32 num )
 
 //------------------------------------------------------------------
 /**
- * “¯‚¶’l‚©‚Ç‚¤‚©’²‚×‚é
+ * åŒã˜å€¤ã‹ã©ã†ã‹èª¿ã¹ã‚‹
  *
- * @param   lhs		¶•Ó
- * @param   rhs		‰E•Ó
+ * @param   lhs		å·¦è¾º
+ * @param   rhs		å³è¾º
  *
- * @retval  BOOL		lhs == rhs ‚È‚çTRUE
+ * @retval  BOOL		lhs == rhs ãªã‚‰TRUE
  */
 //------------------------------------------------------------------
 BOOL RNUM_IsEqual( const REAL_NUMBER *lhs, const REAL_NUMBER *rhs )
@@ -376,12 +376,12 @@ BOOL RNUM_IsEqual( const REAL_NUMBER *lhs, const REAL_NUMBER *rhs )
 }
 //------------------------------------------------------------------
 /**
- * •\¦‰Â”\‚È”’l‚©‚Ç‚¤‚©‚ğ’²‚×‚é
+ * è¡¨ç¤ºå¯èƒ½ãªæ•°å€¤ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
  *
  * @param   rn			
- * @param   col_max		•\¦Œ…Å‘å
+ * @param   col_max		è¡¨ç¤ºæ¡æœ€å¤§
  *
- * @retval  BOOL		TRUE‚Å•\¦‰Â”\
+ * @retval  BOOL		TRUEã§è¡¨ç¤ºå¯èƒ½
  */
 //------------------------------------------------------------------
 BOOL RNUM_CheckDisable( const REAL_NUMBER *rn, u32 col_max )
@@ -406,12 +406,12 @@ BOOL RNUM_CheckDisable( const REAL_NUMBER *rn, u32 col_max )
 }
 //------------------------------------------------------------------
 /**
- * ƒoƒbƒtƒ@‚É•¶š—ñ‚Æ‚µ‚ÄƒRƒs[
+ * ãƒãƒƒãƒ•ã‚¡ã«æ–‡å­—åˆ—ã¨ã—ã¦ã‚³ãƒ”ãƒ¼
  *
  * @param   rn		
- * @param   buf				ƒoƒbƒtƒ@
+ * @param   buf				ãƒãƒƒãƒ•ã‚¡
  *
- * @retval  BOOL			ƒTƒCƒYƒI[ƒo[‚ª‚È‚¯‚ê‚ÎTRUE
+ * @retval  BOOL			ã‚µã‚¤ã‚ºã‚ªãƒ¼ãƒãƒ¼ãŒãªã‘ã‚Œã°TRUE
  */
 //------------------------------------------------------------------
 BOOL RNUM_PrintBuf( const REAL_NUMBER *rn, u16 *buf )
@@ -501,7 +501,7 @@ BOOL RNUM_PrintBuf( const REAL_NUMBER *rn, u16 *buf )
 
 //------------------------------------------------------------------
 /**
- * ®”•”‚ğ”’l‚É‚µ‚Äæ“¾
+ * æ•´æ•°éƒ¨ã‚’æ•°å€¤ã«ã—ã¦å–å¾—
  *
  * @param   rn		
  *
@@ -521,11 +521,11 @@ s64 RNUM_GetInt( const REAL_NUMBER* rn )
 
 //------------------------------------------------------------------
 /**
- * ®”•”‚ÌŒ…”‚ğæ“¾
+ * æ•´æ•°éƒ¨ã®æ¡æ•°ã‚’å–å¾—
  *
  * @param   rn		
  *
- * @retval  u32		®”•”Œ…”
+ * @retval  u32		æ•´æ•°éƒ¨æ¡æ•°
  */
 //------------------------------------------------------------------
 static u32 IntColumns( const REAL_NUMBER *rn )
@@ -555,11 +555,11 @@ static u32 IntColumns( const REAL_NUMBER *rn )
 
 //------------------------------------------------------------------
 /**
- * •\¦Œ…”‚ğŒvZ
+ * è¡¨ç¤ºæ¡æ•°ã‚’è¨ˆç®—
  *
  * @param   rn		
  *
- * @retval  u32		•\¦Œ…”
+ * @retval  u32		è¡¨ç¤ºæ¡æ•°
  */
 //------------------------------------------------------------------
 static u32 TotalColumns(const REAL_NUMBER *rn )
@@ -574,7 +574,7 @@ static u32 TotalColumns(const REAL_NUMBER *rn )
 
 //------------------------------------------------------------------
 /**
- * •\¦‚Å‚«‚éŒ…”‚É‡‚í‚¹‚Ä¬”“_ˆÈ‰º‚ğƒJƒbƒg‚·‚é
+ * è¡¨ç¤ºã§ãã‚‹æ¡æ•°ã«åˆã‚ã›ã¦å°æ•°ç‚¹ä»¥ä¸‹ã‚’ã‚«ãƒƒãƒˆã™ã‚‹
  *
  * @param   rn		
  *
@@ -586,7 +586,7 @@ static void DecimalCutoff( REAL_NUMBER *rn )
 
 	OS_TPrintf("CUT  number:%d, point:%d, colmax:%d\n", rn->number, rn->point, rn->column_max);
 
-	// ‚Ü‚¸‚ÍÅ‰ºŒ…‚Éƒ[ƒ‚ª‘±‚¢‚Ä‚¢‚ê‚Î‚»‚ê‚ğƒJƒbƒg
+	// ã¾ãšã¯æœ€ä¸‹æ¡ã«ã‚¼ãƒ­ãŒç¶šã„ã¦ã„ã‚Œã°ãã‚Œã‚’ã‚«ãƒƒãƒˆ
 	if(rn->point)
 	{
 		CP_SetDiv64_32( rn->number, 10 );
@@ -624,12 +624,12 @@ static void DecimalCutoff( REAL_NUMBER *rn )
 }
 //------------------------------------------------------------------
 /**
- * ‚Q‚Â‚ÌÀ”‚ğ“¯‚¶¬”“_ˆÊ’u‚É‚»‚ë‚¦A”ñconst‚ÈƒIƒuƒWƒFƒNƒg‚É“ü‚ê‚é
+ * ï¼’ã¤ã®å®Ÿæ•°ã‚’åŒã˜å°æ•°ç‚¹ä½ç½®ã«ãã‚ãˆã€éconstãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å…¥ã‚Œã‚‹
  *
- * @param   cn1		Œ…‡‚í‚¹‘ÎÛ‚P
- * @param   cn2		Œ…‡‚í‚¹‘ÎÛ‚Q
- * @param   n1		cn1‚ÌŒ…‡‚í‚¹Œã‚ğ“ü‚ê‚é
- * @param   n2		cn2‚ÌŒ…‡‚í‚¹Œã‚ğ“ü‚ê‚é
+ * @param   cn1		æ¡åˆã‚ã›å¯¾è±¡ï¼‘
+ * @param   cn2		æ¡åˆã‚ã›å¯¾è±¡ï¼’
+ * @param   n1		cn1ã®æ¡åˆã‚ã›å¾Œã‚’å…¥ã‚Œã‚‹
+ * @param   n2		cn2ã®æ¡åˆã‚ã›å¾Œã‚’å…¥ã‚Œã‚‹
  */
 //------------------------------------------------------------------
 static void PointAdjust( const REAL_NUMBER *cn1, const REAL_NUMBER *cn2, REAL_NUMBER *n1, REAL_NUMBER *n2 )

@@ -15,13 +15,13 @@
   update copyright date.
 
   Revision 1.50  2007/08/09 08:28:17  takano_makoto
-  MBi_CommBeaconRecvCallback‚Å‚ÌNULLƒ|ƒCƒ“ƒ^ƒAƒNƒZƒX‚ğC³
+  MBi_CommBeaconRecvCallbackã§ã®NULLãƒã‚¤ãƒ³ã‚¿ã‚¢ã‚¯ã‚»ã‚¹ã‚’ä¿®æ­£
 
   Revision 1.49  2006/03/08 10:29:53  kitase_hirotake
-  MB_ReadMultiBootParentBssDesc ŠÖ”‚Å magicNumber, ver ‚ğ‰Šú‰»‚·‚é‚æ‚¤‚É•ÏX
+  MB_ReadMultiBootParentBssDesc é–¢æ•°ã§ magicNumber, ver ã‚’åˆæœŸåŒ–ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.48  2006/02/20 02:30:49  seiki_masashi
-  WMGameInfo.gameNameCount_attribute ‚ğ attribute ‚É–¼‘O•ÏX
+  WMGameInfo.gameNameCount_attribute ã‚’ attribute ã«åå‰å¤‰æ›´
 
   Revision 1.47  2006/01/18 02:11:29  kitase_hirotake
   do-indent
@@ -36,10 +36,10 @@
   fix around hidden warnings.
 
   Revision 1.43  2004/11/22 12:40:02  takano_makoto
-  •ªŠ„ƒŠƒNƒGƒXƒg‘—M‚Ìˆ—‚ğmb_block‚Æ‚µ‚Ä•ª—£
+  åˆ†å‰²ãƒªã‚¯ã‚¨ã‚¹ãƒˆé€ä¿¡ã®å‡¦ç†ã‚’mb_blockã¨ã—ã¦åˆ†é›¢
 
   Revision 1.42  2004/11/10 07:42:00  takano_makoto
-  mb_gameinfo.c‚Ì’†‚©‚çMBwŠÖ”‚ğ”rœ‚µAWM‚ğ‹ì“®‚·‚éˆ—‚Æ•ªŠ„ƒr[ƒRƒ“‚ğ‘€ì‚·‚éˆ—‚ÌØ‚è•ª‚¯‚ğ‚¨‚±‚È‚¤
+  mb_gameinfo.cã®ä¸­ã‹ã‚‰MBwé–¢æ•°ã‚’æ’é™¤ã—ã€WMã‚’é§†å‹•ã™ã‚‹å‡¦ç†ã¨åˆ†å‰²ãƒ“ãƒ¼ã‚³ãƒ³ã‚’æ“ä½œã™ã‚‹å‡¦ç†ã®åˆ‡ã‚Šåˆ†ã‘ã‚’ãŠã“ãªã†
 
   Revision 1.41  2004/11/02 18:15:36  takano_makoto
   fix comments.
@@ -48,129 +48,129 @@
   just fix comment
 
   Revision 1.38  2004/10/12 05:39:21  sato_masaki
-  WM_APIID_RESET, WM_APIID_END ‚ÉŠÖ‚·‚éCallbackƒGƒ‰[‚ğMB_ERRCODE_WM_FAILURE‚É•ÏXB
+  WM_APIID_RESET, WM_APIID_END ã«é–¢ã™ã‚‹Callbackã‚¨ãƒ©ãƒ¼ã‚’MB_ERRCODE_WM_FAILUREã«å¤‰æ›´ã€‚
 
   Revision 1.37  2004/10/05 10:05:43  sato_masaki
-  BOOT_REQ‚ğó‚¯‚½‚ÌMBI—¹ˆ—‚ğ¯•Ê‚·‚éˆ—‚Ì’Ç‰ÁB
+  BOOT_REQã‚’å—ã‘ãŸæ™‚ã®MBçµ‚äº†å‡¦ç†ã‚’è­˜åˆ¥ã™ã‚‹å‡¦ç†ã®è¿½åŠ ã€‚
 
   Revision 1.36  2004/10/04 13:40:25  terui
-  ƒQ[ƒ€ƒOƒ‹[ƒvID‚ğu32Œ^‚É“ˆêB
+  ã‚²ãƒ¼ãƒ ã‚°ãƒ«ãƒ¼ãƒ—IDã‚’u32å‹ã«çµ±ä¸€ã€‚
 
   Revision 1.35  2004/09/28 08:53:10  sato_masaki
-  - MB_GetChildProgressPercentage()‚ÉAŠ„‚è‚İ§Œä‚ğ’Ç‰ÁB
-  - Warning‚ğŠ‚É’Ç‰ÁB
+  - MB_GetChildProgressPercentage()ã«ã€å‰²ã‚Šè¾¼ã¿åˆ¶å¾¡ã‚’è¿½åŠ ã€‚
+  - Warningã‚’éšæ‰€ã«è¿½åŠ ã€‚
 
   Revision 1.34  2004/09/25 12:12:50  sato_masaki
-  IsAbleToRecv()‚ğMBi_IsAbleToRecv()‚ÉƒŠƒl[ƒ€‚µAmb_fileinfo.c‚ÖˆÚ“®B
+  IsAbleToRecv()ã‚’MBi_IsAbleToRecv()ã«ãƒªãƒãƒ¼ãƒ ã—ã€mb_fileinfo.cã¸ç§»å‹•ã€‚
 
   Revision 1.33  2004/09/25 05:30:28  sato_masaki
-  ƒƒCƒ“ƒ‹[ƒv‚É‚¨‚¢‚ÄŒÄ‚Î‚ê“¾‚éAPIÀs’†‚ÉAŠ„‚è‚İ‹Ö~‚ğ‚·‚éˆ—‚ğ’Ç‰ÁB
+  ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã«ãŠã„ã¦å‘¼ã°ã‚Œå¾—ã‚‹APIå®Ÿè¡Œä¸­ã«ã€å‰²ã‚Šè¾¼ã¿ç¦æ­¢ã‚’ã™ã‚‹å‡¦ç†ã‚’è¿½åŠ ã€‚
 
   Revision 1.32  2004/09/25 04:40:09  sato_masaki
-  NitroSDK_IPL_branch 1.24.2.8@‚Æƒ}[ƒW
+  NitroSDK_IPL_branch 1.24.2.8ã€€ã¨ãƒãƒ¼ã‚¸
 
   Revision 1.31  2004/09/22 09:42:00  sato_masaki
-  IPL_branch 1.24.2.6‚Æƒ}[ƒW
+  IPL_branch 1.24.2.6ã¨ãƒãƒ¼ã‚¸
   - rename get_minimum_blockno to get_next_blockno
   - optimize for code-size around MBi_CommChildRecvData().
-  - –¢óMƒf[ƒ^ŒŸõ•û–@•ÏX
+  - æœªå—ä¿¡ãƒ‡ãƒ¼ã‚¿æ¤œç´¢æ–¹æ³•å¤‰æ›´
 
   Revision 1.30  2004/09/21 01:39:15  sato_masaki
-  WM‚É‹Nˆö‚·‚éƒGƒ‰[‚ğAMB_ERRCODE_WM_FAILURE‚É“ˆêBMB_ERRCODE_MP_SENT_FAILURE‚ğ”p~B
+  WMã«èµ·å› ã™ã‚‹ã‚¨ãƒ©ãƒ¼ã‚’ã€MB_ERRCODE_WM_FAILUREã«çµ±ä¸€ã€‚MB_ERRCODE_MP_SENT_FAILUREã‚’å»ƒæ­¢ã€‚
 
   Revision 1.29  2004/09/20 13:11:10  sato_masaki
-  - MB_COMM_PSTATE_ERROR@‚ÉŠÖ‚µ‚ÄAMBErrCode—ñ‹“q‚Ì’l‚ğarg‚É“n‚·‚æ‚¤‚É•ÏXB
-  - ‘—M—pŠÖ”‚ÅA—p‚¢‚Ä‚¢‚½MB_ERROR‚ğAMB_SENDFUNC_STATE_ERR(ƒ‰ƒCƒuƒ‰ƒŠ“à•”‚Ì’è‹`)‚É•ÏXB
+  - MB_COMM_PSTATE_ERRORã€€ã«é–¢ã—ã¦ã€MBErrCodeåˆ—æŒ™å­ã®å€¤ã‚’argã«æ¸¡ã™ã‚ˆã†ã«å¤‰æ›´ã€‚
+  - é€ä¿¡ç”¨é–¢æ•°ã§ã€ç”¨ã„ã¦ã„ãŸMB_ERRORã‚’ã€MB_SENDFUNC_STATE_ERR(ãƒ©ã‚¤ãƒ–ãƒ©ãƒªå†…éƒ¨ã®å®šç¾©)ã«å¤‰æ›´ã€‚
 
   Revision 1.28  2004/09/18 12:01:11  sato_masaki
-  q‹@‘—Mƒwƒbƒ_’è‹`‚ÉAreserved‚ğİ‚¯‚éB
+  å­æ©Ÿé€ä¿¡ãƒ˜ãƒƒãƒ€å®šç¾©ã«ã€reservedã‚’è¨­ã‘ã‚‹ã€‚
 
   Revision 1.27  2004/09/17 04:43:31  sato_masaki
   add function MB_ReadMultiBootParentBssDesc()
 
   Revision 1.26  2004/09/17 04:02:04  miya
-  •s—v‚È•”•ª‚Ìíœ
+  ä¸è¦ãªéƒ¨åˆ†ã®å‰Šé™¤
 
   Revision 1.25  2004/09/16 12:49:27  sato_masaki
-  mb.h‚É‚ÄAMBi_***‚Å’è‹`‚µ‚Ä‚¢‚½ŠÖ”AŒ^‚ğAMB_***‚É•ÏXB
+  mb.hã«ã¦ã€MBi_***ã§å®šç¾©ã—ã¦ã„ãŸé–¢æ•°ã€å‹ã‚’ã€MB_***ã«å¤‰æ›´ã€‚
 
   Revision 1.24  2004/09/15 06:51:59  sato_masaki
-  WBT’è‹`‚É“Z‚í‚éˆ—‚ğíœB
+  WBTå®šç¾©ã«çºã‚ã‚‹å‡¦ç†ã‚’å‰Šé™¤ã€‚
 
   Revision 1.23  2004/09/15 06:25:29  sato_masaki
-  MB_COMM_P_SENDLEN, MB_COMM_C_SENDLEN ‚Ì’è‹`‚ÉˆË‘¶‚µ‚Ä‚¢‚½•”•ª‚ğ•Ï”‰»B
+  MB_COMM_P_SENDLEN, MB_COMM_C_SENDLEN ã®å®šç¾©ã«ä¾å­˜ã—ã¦ã„ãŸéƒ¨åˆ†ã‚’å¤‰æ•°åŒ–ã€‚
 
   Revision 1.22  2004/09/15 00:59:04  sato_masaki
   modify Recv Region check.
 
   Revision 1.21  2004/09/14 13:19:44  sato_masaki
-  ƒŠƒNƒGƒXƒgƒf[ƒ^‚ğ’f•Ğ‰»‚µ‚Ä‘—‚é‚æ‚¤‚É•ÏXB
+  ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æ–­ç‰‡åŒ–ã—ã¦é€ã‚‹ã‚ˆã†ã«å¤‰æ›´ã€‚
 
   Revision 1.20  2004/09/14 06:16:19  sato_masaki
-  ƒ[ƒNƒNƒŠƒA‚ğ#ifdef SDK_FINALROM‚Ì‚ÉŒÀ’èB
+  ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢ã‚’#ifdef SDK_FINALROMã®æ™‚ã«é™å®šã€‚
 
   Revision 1.19  2004/09/13 13:14:05  sato_masaki
   - remove member word from MB_CommBlockHeader
   - change cast (WMmpRecvBuf*) -> (WMPortRecvCallback*) in MBi_CommChildRecvData()
 
   Revision 1.18  2004/09/13 09:26:56  yosiokat
-  EƒXƒLƒƒƒ“ƒƒbƒN‚ÉƒƒbƒN‘ÎÛ‚ª‘S‚­Œ©‚Â‚©‚ç‚È‚¢ó‘Ô‚Ì‘Îô‚Ì‚½‚ßAMB_CountGameInfoLifetime‚Ìˆø”‚ÉwmTypeEvent‚ğ’Ç‰ÁB
+  ãƒ»ã‚¹ã‚­ãƒ£ãƒ³ãƒ­ãƒƒã‚¯æ™‚ã«ãƒ­ãƒƒã‚¯å¯¾è±¡ãŒå…¨ãè¦‹ã¤ã‹ã‚‰ãªã„çŠ¶æ…‹ã®å¯¾ç­–ã®ãŸã‚ã€MB_CountGameInfoLifetimeã®å¼•æ•°ã«wmTypeEventã‚’è¿½åŠ ã€‚
 
   Revision 1.17  2004/09/13 08:10:41  sato_masaki
-  - MBi_CommCallError() -> MBi_CommCallChildError()‚ÉƒŠƒl[ƒ€B
-  - MBi_CommRequestFile() ‚Ìˆø”‚ÉGGID‚ğ’Ç‰ÁB
+  - MBi_CommCallError() -> MBi_CommCallChildError()ã«ãƒªãƒãƒ¼ãƒ ã€‚
+  - MBi_CommRequestFile() ã®å¼•æ•°ã«GGIDã‚’è¿½åŠ ã€‚
 
   Revision 1.16  2004/09/13 02:58:40  sato_masaki
-  ƒGƒ‰[ƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚ÔŠÖ”AMBi_CommCallError()’Ç‰ÁB
+  ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã¶é–¢æ•°ã€MBi_CommCallError()è¿½åŠ ã€‚
 
   Revision 1.15  2004/09/11 11:17:59  sato_masaki
   change mbc to pCwork
 
   Revision 1.14  2004/09/10 05:26:51  sato_masaki
-  “à•”ó‘Ô‚ğ•Ï‚¦‚¸‚ÉƒR[ƒ‹ƒoƒbƒN‚Ì‚İ‚ğ‘—‚éŠÖ”MBi_CommChangeChildStateCallbackOnly()’Ç‰ÁB
-  ƒGƒ‰[‚Ì’Ê’m“™‚Ég—pB
+  å†…éƒ¨çŠ¶æ…‹ã‚’å¤‰ãˆãšã«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®ã¿ã‚’é€ã‚‹é–¢æ•°MBi_CommChangeChildStateCallbackOnly()è¿½åŠ ã€‚
+  ã‚¨ãƒ©ãƒ¼ã®é€šçŸ¥ç­‰ã«ä½¿ç”¨ã€‚
 
   Revision 1.13  2004/09/10 02:54:44  sato_masaki
   small fix
 
   Revision 1.12  2004/09/10 02:54:06  sato_masaki
-  CALLBACK_WM_STATE’è‹`‚ÉŠÖ‚·‚é•ÏXB
+  CALLBACK_WM_STATEå®šç¾©ã«é–¢ã™ã‚‹å¤‰æ›´ã€‚
 
   Revision 1.11  2004/09/10 01:58:17  sato_masaki
-  mbc->user.playerNo‚ÌŠ„‚è“–‚ÄAƒNƒŠƒAˆ—‚ğ’Ç‰ÁB
+  mbc->user.playerNoã®å‰²ã‚Šå½“ã¦ã€ã‚¯ãƒªã‚¢å‡¦ç†ã‚’è¿½åŠ ã€‚
 
   Revision 1.10  2004/09/09 14:01:47  sato_masaki
-  mb_gameinfo.c‚É‚¨‚¯‚éAPlayerFlag‚ÌƒtƒH[ƒ}ƒbƒg•ÏXBiì‹Æ’†j
+  mb_gameinfo.cã«ãŠã‘ã‚‹ã€PlayerFlagã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå¤‰æ›´ã€‚ï¼ˆä½œæ¥­ä¸­ï¼‰
 
   Revision 1.9  2004/09/09 10:06:21  sato_masaki
-  MBCommCState‚ÉGameInfoŠÖ˜A‚Ì€–Ú’Ç‰ÁB
+  MBCommCStateã«GameInfoé–¢é€£ã®é …ç›®è¿½åŠ ã€‚
 
   Revision 1.8  2004/09/08 04:36:14  sato_masaki
-  MB_CommBlockHeader‚©‚çAfileid‚ğíœ(mb_common.h)B‚»‚ê‚É”º‚¤ˆ—•ÏXB
+  MB_CommBlockHeaderã‹ã‚‰ã€fileidã‚’å‰Šé™¤(mb_common.h)ã€‚ãã‚Œã«ä¼´ã†å‡¦ç†å¤‰æ›´ã€‚
 
   Revision 1.7  2004/09/07 06:50:12  sato_masaki
-  ˆê•”‚ÌƒR[ƒ‹ƒoƒbƒN‚Éargˆø”‚ğ“n‚·‚æ‚¤‚É•ÏXB
-  ƒuƒƒbƒNóæ‚è‚ÉAIsAbleToRecv()‚Åóæƒoƒbƒtƒ@ƒAƒhƒŒƒX‚Ì³“–«•]‰¿‚·‚é‹@”\‚ğ’Ç‰ÁB
+  ä¸€éƒ¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«argå¼•æ•°ã‚’æ¸¡ã™ã‚ˆã†ã«å¤‰æ›´ã€‚
+  ãƒ–ãƒ­ãƒƒã‚¯å—å–ã‚Šæ™‚ã«ã€IsAbleToRecv()ã§å—å–ãƒãƒƒãƒ•ã‚¡ã‚¢ãƒ‰ãƒ¬ã‚¹ã®æ­£å½“æ€§è©•ä¾¡ã™ã‚‹æ©Ÿèƒ½ã‚’è¿½åŠ ã€‚
 
   Revision 1.6  2004/09/07 04:40:16  sato_masaki
-  ˆê•”‚ÌƒR[ƒ‹ƒoƒbƒN‚É‚ÄAˆø”‚ğ“n‚·‚æ‚¤‚É‚µ‚½B
-  MB_CommStartDownload()‚Éƒ`ƒFƒbƒN•¶‚ğ’Ç‰ÁB
+  ä¸€éƒ¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«ã¦ã€å¼•æ•°ã‚’æ¸¡ã™ã‚ˆã†ã«ã—ãŸã€‚
+  MB_CommStartDownload()ã«ãƒã‚§ãƒƒã‚¯æ–‡ã‚’è¿½åŠ ã€‚
 
   Revision 1.5  2004/09/06 09:52:39  sato_masaki
   small fix
 
   Revision 1.4  2004/09/04 11:02:02  sato_masaki
-  ƒLƒƒƒ“ƒZƒ‹‚ÉAƒR[ƒh‚ğƒ[ƒh‚³‚ê“¾‚é—Ìˆæ‚ÌƒNƒŠƒA‚ğ‚·‚é‹@”\’Ç‰ÁB
+  ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ™‚ã«ã€ã‚³ãƒ¼ãƒ‰ã‚’ãƒ­ãƒ¼ãƒ‰ã•ã‚Œå¾—ã‚‹é ˜åŸŸã®ã‚¯ãƒªã‚¢ã‚’ã™ã‚‹æ©Ÿèƒ½è¿½åŠ ã€‚
 
   Revision 1.3  2004/09/04 09:54:13  sato_masaki
-  MB_COMM_CSTATE_DLINFO_ACCEPTED‚ÌƒR[ƒ‹ƒoƒbƒNˆø”‚É
-  óM‚µ‚½MBDownloadFileInfo‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğw’è‚·‚é‚æ‚¤‚É‚µ‚½B(å‚ÉƒfƒoƒbƒO—p“r)
+  MB_COMM_CSTATE_DLINFO_ACCEPTEDã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°ã«
+  å—ä¿¡ã—ãŸMBDownloadFileInfoã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’æŒ‡å®šã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚(ä¸»ã«ãƒ‡ãƒãƒƒã‚°ç”¨é€”)
   
   Revision 1.2  2004/09/04 06:46:15  sato_masaki
-  ’èˆõ’´‰ß‚ÌƒR[ƒ‹ƒoƒbƒNƒXƒe[ƒg(MB_COMM_*STATE_MEMBER_FULL)‚ğİ‚¯‚éB
+  å®šå“¡è¶…éæ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¹ãƒ†ãƒ¼ãƒˆ(MB_COMM_*STATE_MEMBER_FULL)ã‚’è¨­ã‘ã‚‹ã€‚
 
   Revision 1.1  2004/09/03 07:04:36  sato_masaki
-  ƒtƒ@ƒCƒ‹‚ğ‹@”\•Ê‚É•ªŠ„B
+  ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ©Ÿèƒ½åˆ¥ã«åˆ†å‰²ã€‚
 
 
   $NoKeywords: $
@@ -204,46 +204,46 @@ static void MBi_CommCallChildError(u16 errcode);
 
 /*  ============================================================================
 
-    q‹@—pŠÖ”
+    å­æ©Ÿç”¨é–¢æ•°
 
     ============================================================================*/
 
 /*---------------------------------------------------------------------------*
   Name:         MB_CommDownloadRequest
 
-  Description:  ƒ_ƒEƒ“ƒ[ƒh—v‹‚ğo‚·ie‹@Ú‘±¨File—v‹¨ƒ_ƒEƒ“ƒ[ƒh‚Æ‚¢‚Á‚½A
-                ˆê˜A‚Ì“®ì‚ÌƒgƒŠƒK‚Æ‚È‚éŠÖ”j
-                ‰º‚ÌMB_CommDownloadRequest‚ğƒpƒbƒN‚µ‚ÄAmbrsƒŠƒXƒg‚ÌƒCƒ“ƒfƒbƒNƒX
-                ”Ô†‚ÅÚ‘±—v‹‚ğ‚·‚é‚à‚ÌB
-                ƒCƒ“ƒfƒbƒNƒX”Ô†‚ğŠo‚¦‚Ä‚¨‚­‚±‚Æ‚ÅAÚ‘±‚É¸”s‚µ‚½‚É“à•”‚Å‚»‚Ì
-                e‹@î•ñ‚ğƒNƒŠƒA‚Å‚«‚éB
+  Description:  ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰è¦æ±‚ã‚’å‡ºã™ï¼ˆè¦ªæ©Ÿæ¥ç¶šâ†’Fileè¦æ±‚â†’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã¨ã„ã£ãŸã€
+                ä¸€é€£ã®å‹•ä½œã®ãƒˆãƒªã‚¬ã¨ãªã‚‹é–¢æ•°ï¼‰
+                ä¸‹ã®MB_CommDownloadRequestã‚’ãƒ‘ãƒƒã‚¯ã—ã¦ã€mbrsãƒªã‚¹ãƒˆã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+                ç•ªå·ã§æ¥ç¶šè¦æ±‚ã‚’ã™ã‚‹ã‚‚ã®ã€‚
+                ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·ã‚’è¦šãˆã¦ãŠãã“ã¨ã§ã€æ¥ç¶šã«å¤±æ•—ã—ãŸæ™‚ã«å†…éƒ¨ã§ãã®
+                è¦ªæ©Ÿæƒ…å ±ã‚’ã‚¯ãƒªã‚¢ã§ãã‚‹ã€‚
 
-  Arguments:    index - —v‹‚·‚éMbBeaconRecvStatus‚ÌƒŠƒXƒgƒCƒ“ƒfƒbƒNƒX”Ô†
+  Arguments:    index - è¦æ±‚ã™ã‚‹MbBeaconRecvStatusã®ãƒªã‚¹ãƒˆã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç•ªå·
 
   Returns:      
  *---------------------------------------------------------------------------*/
 
 int MB_CommDownloadRequest(int index)
 {
-    const MbBeaconRecvStatus *mbrsp;   // e‹@î•ñóMƒXƒe[ƒ^ƒX
-    const WMBssDesc *bssDescp;         // Ú‘±æ‚Ìe‹@î•ñ‚Ìƒ|ƒCƒ“ƒ^
-    u8      fileNo;                    // @V        ‚É—v‹‚·‚éƒtƒ@ƒCƒ‹No.
+    const MbBeaconRecvStatus *mbrsp;   // è¦ªæ©Ÿæƒ…å ±å—ä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+    const WMBssDesc *bssDescp;         // æ¥ç¶šå…ˆã®è¦ªæ©Ÿæƒ…å ±ã®ãƒã‚¤ãƒ³ã‚¿
+    u8      fileNo;                    // ã€€ã€ƒ        ã«è¦æ±‚ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«No.
     int     ret;
-    OSIntrMode enabled = OS_DisableInterrupts();        /* Š„‚è‚İ‹Ö~ */
+    OSIntrMode enabled = OS_DisableInterrupts();        /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢ */
 
-    mbrsp = MB_GetBeaconRecvStatus();  // e‹@î•ñóMƒXƒe[ƒ^ƒX
+    mbrsp = MB_GetBeaconRecvStatus();  // è¦ªæ©Ÿæƒ…å ±å—ä¿¡ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
     bssDescp = &(mbrsp->list[index].bssDesc);
     fileNo = mbrsp->list[index].gameInfo.fileNo;
 
-    pCwork->connectTargetNo = index;   // Ú‘±‚ğ‚İ‚ée‹@‚ÌƒŠƒXƒgNo.‚ğ•Û‘¶B
-    pCwork->fileid = fileNo;           // ƒŠƒNƒGƒXƒgƒtƒ@ƒCƒ‹ID‚ğ—\‚ß“o˜^
-    pCwork->last_recv_seq_no = -1;     //ÅIóMƒuƒƒbƒNƒV[ƒPƒ“ƒX”Ô†‰Šú‰»
+    pCwork->connectTargetNo = index;   // æ¥ç¶šã‚’è©¦ã¿ã‚‹è¦ªæ©Ÿã®ãƒªã‚¹ãƒˆNo.ã‚’ä¿å­˜ã€‚
+    pCwork->fileid = fileNo;           // ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«IDã‚’äºˆã‚ç™»éŒ²
+    pCwork->last_recv_seq_no = -1;     //æœ€çµ‚å—ä¿¡ãƒ–ãƒ­ãƒƒã‚¯ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·åˆæœŸåŒ–
 
-    // bssDescription‚ğƒ[ƒN“à‚ÉƒRƒs[
+    // bssDescriptionã‚’ãƒ¯ãƒ¼ã‚¯å†…ã«ã‚³ãƒ”ãƒ¼
     MI_CpuCopy16(bssDescp, &pCwork->bssDescbuf, WM_BSS_DESC_SIZE);
 
-    ret = MBi_CommConnectToParent((const WMBssDesc *)&pCwork->bssDescbuf);      // ‚Ü‚¸‚ÍÚ‘±‚É“ü‚é
-    (void)OS_RestoreInterrupts(enabled);        /* Š„‚è‚İ‹Ö~‰ğœ */
+    ret = MBi_CommConnectToParent((const WMBssDesc *)&pCwork->bssDescbuf);      // ã¾ãšã¯æ¥ç¶šã«å…¥ã‚‹
+    (void)OS_RestoreInterrupts(enabled);        /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
 
     return ret;
 }
@@ -251,7 +251,7 @@ int MB_CommDownloadRequest(int index)
 /*---------------------------------------------------------------------------*
   Name:         MBi_CommRequestFile
 
-  Description:  ƒtƒ@ƒCƒ‹ƒiƒ“ƒo[‚ğw’è‚µ‚ÄA—v‹‚ğo‚·
+  Description:  ãƒ•ã‚¡ã‚¤ãƒ«ãƒŠãƒ³ãƒãƒ¼ã‚’æŒ‡å®šã—ã¦ã€è¦æ±‚ã‚’å‡ºã™
 
   Arguments:    file_no
 
@@ -265,14 +265,14 @@ static int MBi_CommRequestFile(u8 file_no, u32 ggid)
     u8     *databuf;
     MBCommRequestData req_data;
 
-    /* ƒŠƒNƒGƒXƒg‚·‚éƒQ[ƒ€‚ÌGGIDAUserInfoAVersion‚ğ“o˜^ */
+    /* ãƒªã‚¯ã‚¨ã‚¹ãƒˆã™ã‚‹ã‚²ãƒ¼ãƒ ã®GGIDã€UserInfoã€Versionã‚’ç™»éŒ² */
     req_data.ggid = ggid;
     MI_CpuCopy8(&pCwork->common.user, &req_data.userinfo, sizeof(MBUserInfo));
     req_data.version = MB_IPL_VERSION;
     req_data.fileid = file_no;
 
     hd.type = MB_COMM_TYPE_CHILD_FILEREQ;
-    // ‘—Mƒoƒbƒtƒ@‚Éƒf[ƒ^‚ğƒRƒs[
+    // é€ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
     hd.req_data.piece = MBi_SendRequestDataPiece(hd.req_data.data, &req_data);
 
     databuf = MBi_MakeChildSendBuffer(&hd, (u8 *)pCwork->common.sendbuf);
@@ -288,7 +288,7 @@ static int MBi_CommRequestFile(u8 file_no, u32 ggid)
 /*---------------------------------------------------------------------------*
   Name:         MB_CommSetChildStateCallback
 
-  Description:  q‹@ƒCƒxƒ“ƒgƒR[ƒ‹ƒoƒbƒN‚Ìİ’è
+  Description:  å­æ©Ÿã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®è¨­å®š
 
   Arguments:    
 
@@ -301,17 +301,17 @@ void MB_CommSetChildStateCallback(MBCommCStateCallbackFunc callback)
 
     SDK_ASSERT(pCwork != 0);
 
-    enabled = OS_DisableInterrupts();  /* Š„‚è‚İ‹Ö~ */
+    enabled = OS_DisableInterrupts();  /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢ */
 
     pCwork->child_callback = callback;
 
-    (void)OS_RestoreInterrupts(enabled);        /* Š„‚è‚İ‹Ö~‰ğœ */
+    (void)OS_RestoreInterrupts(enabled);        /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
 }
 
 /*---------------------------------------------------------------------------*
   Name:         MB_CommGetChildState
 
-  Description:  Downloadó‘Ô‚Ìæ“¾
+  Description:  DownloadçŠ¶æ…‹ã®å–å¾—
 
   Arguments:    
 
@@ -330,7 +330,7 @@ int MB_CommGetChildState(void)
 /*---------------------------------------------------------------------------*
   Name:         MB_GetChildProgressPercentage
 
-  Description:  Downloadi’»ƒp[ƒZƒ“ƒe[ƒW‚Ìæ“¾
+  Description:  Downloadé€²æ—ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸ã®å–å¾—
 
   Arguments:    
 
@@ -342,23 +342,23 @@ u16 MB_GetChildProgressPercentage(void)
     OSIntrMode enabled;
     u16     ret = 0;
 
-    enabled = OS_DisableInterrupts();  /* Š„‚è‚İ‹Ö~ */
+    enabled = OS_DisableInterrupts();  /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢ */
 
     if (pCwork->total_block > 0)
     {
         ret = (u16)((u32)(pCwork->got_block * 100) / pCwork->total_block);
     }
 
-    (void)OS_RestoreInterrupts(enabled);        /* Š„‚è‚İ‹Ö~‰ğœ */
+    (void)OS_RestoreInterrupts(enabled);        /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
 
-    return ret;                        // TotalBlock”‚ª0‚Ì‚Æ‚«‚ÍA0%‚ğ•Ô‚µ‚Ä‚¨‚­
+    return ret;                        // TotalBlockæ•°ãŒ0ã®ã¨ãã¯ã€0%ã‚’è¿”ã—ã¦ãŠã
 }
 
 
 /*---------------------------------------------------------------------------*
   Name:         MB_CommStartDownload
 
-  Description:  ƒ_ƒEƒ“ƒ[ƒh‚ğŠJn‚·‚é
+  Description:  ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚’é–‹å§‹ã™ã‚‹
 
   Arguments:    
 
@@ -370,7 +370,7 @@ BOOL MB_CommStartDownload(void)
     OSIntrMode enabled;
     BOOL    ret = FALSE;
 
-    enabled = OS_DisableInterrupts();  /* Š„‚è‚İ‹Ö~ */
+    enabled = OS_DisableInterrupts();  /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢ */
 
     if (pCwork
         && pCwork->c_comm_state == MB_COMM_CSTATE_DLINFO_ACCEPTED
@@ -382,7 +382,7 @@ BOOL MB_CommStartDownload(void)
         ret = TRUE;
     }
 
-    (void)OS_RestoreInterrupts(enabled);        /* Š„‚è‚İ‹Ö~‰ğœ */
+    (void)OS_RestoreInterrupts(enabled);        /* å‰²ã‚Šè¾¼ã¿ç¦æ­¢è§£é™¤ */
     return ret;
 }
 
@@ -390,7 +390,7 @@ BOOL MB_CommStartDownload(void)
 /*---------------------------------------------------------------------------*
   Name:         MBi_CommChangeChildState
 
-  Description:  q‹@ó‘Ô‚Ì•ÏX•ƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ
+  Description:  å­æ©ŸçŠ¶æ…‹ã®å¤‰æ›´ï¼†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—
 
   Arguments:    
 
@@ -408,8 +408,8 @@ static void MBi_CommChangeChildState(int state, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_CommChangeChildStateCallbackOnly
 
-  Description:  q‹@ó‘Ô’Ê’m‚ğƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ‚Ì‚İ‚Ås‚¤
-                “à•”‚Ìó‘Ô‚Í•ÏX‚¹‚¸
+  Description:  å­æ©ŸçŠ¶æ…‹é€šçŸ¥ã‚’ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—ã®ã¿ã§è¡Œã†
+                å†…éƒ¨ã®çŠ¶æ…‹ã¯å¤‰æ›´ã›ãš
 
   Arguments:    
 
@@ -418,7 +418,7 @@ static void MBi_CommChangeChildState(int state, void *arg)
 
 static void MBi_CommChangeChildStateCallbackOnly(int state, void *arg)
 {
-    if (pCwork->child_callback)        // ó‘Ô‘JˆÚƒR[ƒ‹ƒoƒbƒN
+    if (pCwork->child_callback)        // çŠ¶æ…‹é·ç§»ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
     {
         (*pCwork->child_callback) ((u32)state, arg);
     }
@@ -428,7 +428,7 @@ static void MBi_CommChangeChildStateCallbackOnly(int state, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_CommChildCallback
 
-  Description:  q‹@ƒR[ƒ‹ƒoƒbƒN–{‘Ì
+  Description:  å­æ©Ÿã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯æœ¬ä½“
 
   Arguments:    type:WM_TYPE event arg:callback argument
 
@@ -441,7 +441,7 @@ void MBi_CommChildCallback(u16 type, void *arg)
     switch (type)
     {
     case MB_CALLBACK_INIT_COMPLETE:
-        /* ‰Šú‰»Š®—¹ */
+        /* åˆæœŸåŒ–å®Œäº† */
         MBi_CommChangeChildState(MB_COMM_CSTATE_INIT_COMPLETE, arg);
 
         break;
@@ -452,15 +452,15 @@ void MBi_CommChildCallback(u16 type, void *arg)
             int     parent_no = MBi_GetLastFountParent();
             WMBssDesc *bssDescp = MBi_GetParentBssDesc(parent_no);
 
-            /* e‹@”­Œ© */
-            /* ƒr[ƒRƒ“Œo—R‚Åe‹@ƒQ[ƒ€î•ñ‚ğæ“¾ */
+            /* è¦ªæ©Ÿç™ºè¦‹ */
+            /* ãƒ“ãƒ¼ã‚³ãƒ³çµŒç”±ã§è¦ªæ©Ÿã‚²ãƒ¼ãƒ æƒ…å ±ã‚’å–å¾— */
             (void)MB_RecvGameInfoBeacon(MBi_CommBeaconRecvCallback, pSsc->linkLevel, bssDescp);
 
             MB_CountGameInfoLifetime(MBi_CommBeaconRecvCallback, TRUE);
         }
         break;
     case MB_CALLBACK_PARENT_NOT_FOUND:
-        /* e‹@ƒQ[ƒ€î•ñ‚Ìõ–½ƒJƒEƒ“ƒg */
+        /* è¦ªæ©Ÿã‚²ãƒ¼ãƒ æƒ…å ±ã®å¯¿å‘½ã‚«ã‚¦ãƒ³ãƒˆ */
         MB_CountGameInfoLifetime(MBi_CommBeaconRecvCallback, FALSE);
         break;
 
@@ -477,23 +477,23 @@ void MBi_CommChildCallback(u16 type, void *arg)
         break;
 
     case MB_CALLBACK_END_COMPLETE:
-        /* I—¹Š®—¹ */
+        /* çµ‚äº†å®Œäº† */
 
-        /* BOOTƒŠƒNƒGƒXƒgóMó‘Ô‚ÅAMBi_CommEnd()‚ªŒÄ‚Î‚ê‚½ê‡ */
+        /* BOOTãƒªã‚¯ã‚¨ã‚¹ãƒˆå—ä¿¡çŠ¶æ…‹ã§ã€MBi_CommEnd()ãŒå‘¼ã°ã‚ŒãŸå ´åˆ */
         if (pCwork->c_comm_state == MB_COMM_CSTATE_BOOTREQ_ACCEPTED && pCwork->boot_end_flag == 1)
         {
-            // Š’è‚Ì—Ìˆæ‚ÉDownloadFileInfo, bssDesc‚ğƒZƒbƒg¨ƒ[ƒ_[‚Å—p‚¢‚é
+            // æ‰€å®šã®é ˜åŸŸã«DownloadFileInfo, bssDescã‚’ã‚»ãƒƒãƒˆâ†’ãƒ­ãƒ¼ãƒ€ãƒ¼ã§ç”¨ã„ã‚‹
             MI_CpuCopy16(&pCwork->dl_fileinfo,
                          (void *)MB_DOWNLOAD_FILEINFO_ADDRESS, sizeof(MBDownloadFileInfo));
             MI_CpuCopy16(&pCwork->bssDescbuf, (void *)MB_BSSDESC_ADDRESS, MB_BSSDESC_SIZE);
-            MBi_CommChangeChildState(MB_COMM_CSTATE_BOOT_READY, NULL);  // ƒu[ƒg€”õŠ®—¹
+            MBi_CommChangeChildState(MB_COMM_CSTATE_BOOT_READY, NULL);  // ãƒ–ãƒ¼ãƒˆæº–å‚™å®Œäº†
         }
-        /* ‚»‚êˆÈŠO‚Ìê‡(ƒLƒƒƒ“ƒZƒ‹) */
+        /* ãã‚Œä»¥å¤–ã®å ´åˆ(ã‚­ãƒ£ãƒ³ã‚»ãƒ«) */
         else
         {
-            MBi_CommChangeChildState(MB_COMM_CSTATE_CANCELLED, NULL);   // ƒLƒƒƒ“ƒZƒ‹
+            MBi_CommChangeChildState(MB_COMM_CSTATE_CANCELLED, NULL);   // ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 
-            /* PlayerNo ‚ğ0ƒNƒŠƒA */
+            /* PlayerNo ã‚’0ã‚¯ãƒªã‚¢ */
             pCwork->common.user.playerNo = 0;
             clearRecvRegion();
 
@@ -503,26 +503,26 @@ void MBi_CommChildCallback(u16 type, void *arg)
         break;
 
     case MB_CALLBACK_CONNECT_FAILED:
-        /* Ú‘±¸”s */
-        /* Callbackˆø”‚ÉAWMstartConnectCallbackŒ^‚Ìarg‚ğ“n‚·B */
+        /* æ¥ç¶šå¤±æ•— */
+        /* Callbackå¼•æ•°ã«ã€WMstartConnectCallbackå‹ã®argã‚’æ¸¡ã™ã€‚ */
         MBi_CommChangeChildState(MB_COMM_CSTATE_CONNECT_FAILED, arg);
-        MB_DeleteRecvGameInfo(pCwork->connectTargetNo); // Ú‘±‚É¸”s‚µ‚½e‹@‚ÌƒQ[ƒ€î•ñ‚ğíœB
+        MB_DeleteRecvGameInfo(pCwork->connectTargetNo); // æ¥ç¶šã«å¤±æ•—ã—ãŸè¦ªæ©Ÿã®ã‚²ãƒ¼ãƒ æƒ…å ±ã‚’å‰Šé™¤ã€‚
         pCwork->connectTargetNo = 0;
-        (void)MBi_RestartScan();       // ƒR[ƒ‹ƒoƒbƒN’Ê’mŒã‚ÉƒXƒLƒƒƒ“ÄŠJ
+        (void)MBi_RestartScan();       // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é€šçŸ¥å¾Œã«ã‚¹ã‚­ãƒ£ãƒ³å†é–‹
         (void)MBi_CommEnd();
 
         break;
 
     case MB_CALLBACK_DISCONNECTED_FROM_PARENT:
-        /* Ø’f’Ê’m */
-        /* Callbackˆø”‚ÉAWMstartConnectCallbackŒ^‚Ìarg‚ğ“n‚·B */
+        /* åˆ‡æ–­é€šçŸ¥ */
+        /* Callbackå¼•æ•°ã«ã€WMstartConnectCallbackå‹ã®argã‚’æ¸¡ã™ã€‚ */
         MBi_CommChangeChildState(MB_COMM_CSTATE_DISCONNECTED_BY_PARENT, arg);
-        (void)MBi_RestartScan();       // ƒR[ƒ‹ƒoƒbƒN’Ê’mŒã‚ÉƒXƒLƒƒƒ“ÄŠJ
+        (void)MBi_RestartScan();       // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é€šçŸ¥å¾Œã«ã‚¹ã‚­ãƒ£ãƒ³å†é–‹
         (void)MBi_CommEnd();
         break;
 
     case MB_CALLBACK_API_ERROR:
-        /* ARM9‚ÅWM API‚ğƒR[ƒ‹‚µ‚½“_‚Å‚Ì•Ô‚è’lƒGƒ‰[ */
+        /* ARM9ã§WM APIã‚’ã‚³ãƒ¼ãƒ«ã—ãŸæ™‚ç‚¹ã§ã®è¿”ã‚Šå€¤ã‚¨ãƒ©ãƒ¼ */
         {
             u16     apiid, errcode;
 
@@ -556,7 +556,7 @@ void MBi_CommChildCallback(u16 type, void *arg)
         break;
     case MB_CALLBACK_ERROR:
         {
-            /* WM APIƒR[ƒ‹Œã‚É•Ô‚Á‚Ä‚«‚½ƒR[ƒ‹ƒoƒbƒN‚É‚¨‚¯‚éƒGƒ‰[ */
+            /* WM APIã‚³ãƒ¼ãƒ«å¾Œã«è¿”ã£ã¦ããŸã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«ãŠã‘ã‚‹ã‚¨ãƒ©ãƒ¼ */
             WMCallback *pWmcb = (WMCallback *)arg;
             switch (pWmcb->apiid)
             {
@@ -571,13 +571,13 @@ void MBi_CommChildCallback(u16 type, void *arg)
             case WM_APIID_SET_DCF_DATA:
             case WM_APIID_DISCONNECT:
             case WM_APIID_START_KS:
-                /* ˆÈã‚ÌƒGƒ‰[‚ÍAWMÅ‰Šú‰»‚Ì•K—v‚ÈƒGƒ‰[ */
+                /* ä»¥ä¸Šã®ã‚¨ãƒ©ãƒ¼ã¯ã€WMæœ€åˆæœŸåŒ–ã®å¿…è¦ãªã‚¨ãƒ©ãƒ¼ */
                 MBi_CommCallChildError(MB_ERRCODE_FATAL);
                 break;
             case WM_APIID_RESET:
             case WM_APIID_END:
             default:
-                /* ‚»‚Ì‘¼‚ÌƒGƒ‰[‚É‚Â‚¢‚Ä‚ÍAƒR[ƒ‹ƒoƒbƒNƒGƒ‰[‚Æ‚µ‚Ä•Ô‚· */
+                /* ãã®ä»–ã®ã‚¨ãƒ©ãƒ¼ã«ã¤ã„ã¦ã¯ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚¨ãƒ©ãƒ¼ã¨ã—ã¦è¿”ã™ */
                 MBi_CommCallChildError(MB_ERRCODE_WM_FAILURE);
                 break;
             }
@@ -597,7 +597,7 @@ void MBi_CommChildCallback(u16 type, void *arg)
 
     if (type == MB_CALLBACK_END_COMPLETE)
     {
-        // ƒ[ƒN‚ÌŠJ•ú
+        // ãƒ¯ãƒ¼ã‚¯ã®é–‹æ”¾
         MI_CpuClear16(pCwork, sizeof(MB_CommCWork));
         pCwork = NULL;
     }
@@ -607,7 +607,7 @@ void MBi_CommChildCallback(u16 type, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_CommChildRecvData
 
-  Description:  q‹@ƒf[ƒ^óM
+  Description:  å­æ©Ÿãƒ‡ãƒ¼ã‚¿å—ä¿¡
 
   Arguments:    arg : pointer to callback argument
 
@@ -622,7 +622,7 @@ static void MBi_CommChildRecvData(void *arg)
     u8     *databuf;
     u16     aid = MBi_GetAid();
 
-    // óMƒoƒbƒtƒ@‚ÌƒLƒƒƒbƒVƒ…‚ğ”jŠü
+    // å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’ç ´æ£„
 //  DC_InvalidateRange( bufp->data, MY_ROUND(bufp->length, 32) );
 
     databuf = MBi_SetRecvBufferFromParent(&hd, (u8 *)bufp->data);
@@ -630,10 +630,10 @@ static void MBi_CommChildRecvData(void *arg)
     MB_DEBUG_OUTPUT("RECV ");
     MB_COMM_TYPE_OUTPUT(hd.type);
 
-    switch (hd.type)                   // óMBlockƒ^ƒCƒv‚É‚æ‚éó‘Ô‘JˆÚ
+    switch (hd.type)                   // å—ä¿¡Blockã‚¿ã‚¤ãƒ—ã«ã‚ˆã‚‹çŠ¶æ…‹é·ç§»
     {
     case MB_COMM_TYPE_PARENT_SENDSTART:
-        // e‹@‚©‚ç‚Ì‘—MŠJnƒƒbƒZ[ƒW
+        // è¦ªæ©Ÿã‹ã‚‰ã®é€ä¿¡é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
         if (p_child->c_comm_state == MB_COMM_CSTATE_CONNECT)
         {
             MB_DEBUG_OUTPUT("Allowed to request file from parent!\n");
@@ -641,7 +641,7 @@ static void MBi_CommChildRecvData(void *arg)
         }
         break;
 
-    case MB_COMM_TYPE_PARENT_KICKREQ: // e‹@‚©‚ç‚ÌKickƒƒbƒZ[ƒW
+    case MB_COMM_TYPE_PARENT_KICKREQ: // è¦ªæ©Ÿã‹ã‚‰ã®Kickãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
         if (p_child->c_comm_state == MB_COMM_CSTATE_REQ_ENABLE)
         {
             MB_DEBUG_OUTPUT("Kicked from parent!\n");
@@ -649,7 +649,7 @@ static void MBi_CommChildRecvData(void *arg)
         }
         break;
 
-    case MB_COMM_TYPE_PARENT_MEMBER_FULL:      // e‹@‚©‚ç‚Ìƒƒ“ƒo[’´‰ßƒƒbƒZ[ƒW
+    case MB_COMM_TYPE_PARENT_MEMBER_FULL:      // è¦ªæ©Ÿã‹ã‚‰ã®ãƒ¡ãƒ³ãƒãƒ¼è¶…éãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
         if (p_child->c_comm_state == MB_COMM_CSTATE_REQ_ENABLE)
         {
             MB_DEBUG_OUTPUT("Member full!\n");
@@ -658,11 +658,11 @@ static void MBi_CommChildRecvData(void *arg)
         break;
 
     case MB_COMM_TYPE_PARENT_DL_FILEINFO:
-        // MbDownloadFileInfoHeader‚ÌóM
+        // MbDownloadFileInfoHeaderã®å—ä¿¡
         if (p_child->c_comm_state == MB_COMM_CSTATE_REQ_ENABLE)
         {
 
-            // MbDownloadFileInfoHeader‚ğê—pƒoƒbƒtƒ@‚ÉŠi”[
+            // MbDownloadFileInfoHeaderã‚’å°‚ç”¨ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´
             MI_CpuCopy8(databuf, &p_child->dl_fileinfo, sizeof(MBDownloadFileInfo));
 
             MB_DEBUG_OUTPUT("Download File Info has received (Total block num = %d)\n",
@@ -670,32 +670,32 @@ static void MBi_CommChildRecvData(void *arg)
             if (!MBi_MakeBlockInfoTable(&p_child->blockinfo_table,
                                         (MbDownloadFileInfoHeader *) & p_child->dl_fileinfo))
             {
-                /* ó‚¯æ‚Á‚½DownloadFileInfo‚ª•s³‚È‚à‚Ì‚Å‚ ‚Á‚½ */
+                /* å—ã‘å–ã£ãŸDownloadFileInfoãŒä¸æ­£ãªã‚‚ã®ã§ã‚ã£ãŸ */
                 MBi_CommCallChildError(MB_ERRCODE_INVALID_DLFILEINFO);
                 OS_TWarning("The received DownloadFileInfo is illegal.\n");
                 return;
             }
 
-            /* PlayerNo ‚ğŠ„‚è“–‚Ä‚é */
+            /* PlayerNo ã‚’å‰²ã‚Šå½“ã¦ã‚‹ */
             p_child->common.user.playerNo = aid;
 
-            // ‘ƒuƒƒbƒN”‚ğŠi”[
+            // ç·ãƒ–ãƒ­ãƒƒã‚¯æ•°ã‚’æ ¼ç´
             p_child->total_block = MBi_get_blocknum(&p_child->blockinfo_table);
 
-            /* óM‚µ‚½MbDownloadFileInfo‚ğˆø”‚Æ‚µ‚Ä“n‚·B */
+            /* å—ä¿¡ã—ãŸMbDownloadFileInfoã‚’å¼•æ•°ã¨ã—ã¦æ¸¡ã™ã€‚ */
             MBi_CommChangeChildState(MB_COMM_CSTATE_DLINFO_ACCEPTED, (void *)&p_child->dl_fileinfo);
         }
 
         break;
 
     case MB_COMM_TYPE_PARENT_DATA:
-        /* ƒuƒƒbƒNƒf[ƒ^‚ÌóM */
+        /* ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡ */
         if (p_child->c_comm_state == MB_COMM_CSTATE_DLINFO_ACCEPTED
             && p_child->user_req == MB_COMM_USER_REQ_DL_START)
         {
             MBi_CommChangeChildState(MB_COMM_CSTATE_RECV_PROCEED, NULL);
             p_child->user_req = MB_COMM_USER_REQ_NONE;
-            /* State‚ğ•ÏX‚µ‚½‚ç‘¦óMƒf[ƒ^æ“¾‰Â */
+            /* Stateã‚’å¤‰æ›´ã—ãŸã‚‰å³å—ä¿¡ãƒ‡ãƒ¼ã‚¿å–å¾—å¯ */
         }
 
         if (p_child->c_comm_state == MB_COMM_CSTATE_RECV_PROCEED)
@@ -703,7 +703,7 @@ static void MBi_CommChildRecvData(void *arg)
             u16     block_num;
             MB_BlockInfo bi;
 
-            // MB_COMM_TYPE_DATA‚Ì‚Ì‚İ‚Ìˆ—
+            // MB_COMM_TYPE_DATAã®æ™‚ã®ã¿ã®å‡¦ç†
             block_num = p_child->total_block;
 
             if (block_num == 0 || block_num >= MB_MAX_BLOCK)
@@ -715,13 +715,13 @@ static void MBi_CommChildRecvData(void *arg)
                 return;
             }
 
-            /* ƒuƒƒbƒNNo.‚ÉŠÖ‚·‚é•]‰¿ */
+            /* ãƒ–ãƒ­ãƒƒã‚¯No.ã«é–¢ã™ã‚‹è©•ä¾¡ */
             if (hd.seqno < 0 ||
                 hd.seqno >= block_num ||
                 MBi_get_blockinfo(&bi, &p_child->blockinfo_table, hd.seqno,
                                   &p_child->dl_fileinfo.header) == FALSE)
             {
-                /* ƒuƒƒbƒN”Ô†‚ª•s³ */
+                /* ãƒ–ãƒ­ãƒƒã‚¯ç•ªå·ãŒä¸æ­£ */
                 MBi_CommCallChildError(MB_ERRCODE_INVALID_BLOCK_NO);
                 OS_TWarning("The illegal block No.[%d] has been received! (maxnum %d)\n",
                             hd.seqno, block_num);
@@ -730,7 +730,7 @@ static void MBi_CommChildRecvData(void *arg)
 
             if (hd.fid != p_child->fileid)
             {
-                /* FileID‚ª—v‹‚µ‚Ä‚¢‚é‚à‚Ì‚ÆˆÙ‚È‚é */
+                /* FileIDãŒè¦æ±‚ã—ã¦ã„ã‚‹ã‚‚ã®ã¨ç•°ãªã‚‹ */
                 MBi_CommCallChildError(MB_ERRCODE_INVALID_FILE);
                 OS_TWarning("Received File ID [%d] differs from what was requested!\n", hd.fid);
                 goto CheckRemainBlock;
@@ -738,14 +738,14 @@ static void MBi_CommChildRecvData(void *arg)
 
             if (!MBi_IsAbleToRecv(bi.segment_no, bi.child_address, bi.size))
             {
-                /* óMƒAƒhƒŒƒX‚ª•s³ */
+                /* å—ä¿¡ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒä¸æ­£ */
                 MBi_CommCallChildError(MB_ERRCODE_INVALID_RECV_ADDR);
                 OS_TWarning("The receive address of Block No.%d is illegal. [%08x - %08x]\n",
                             hd.seqno, bi.child_address, bi.child_address + bi.size);
                 goto CheckRemainBlock;
             }
 
-            /* óMƒAƒhƒŒƒXƒ`ƒFƒbƒNŒãAw’èƒAƒhƒŒƒX‚ÖƒRƒs[ */
+            /* å—ä¿¡ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒã‚§ãƒƒã‚¯å¾Œã€æŒ‡å®šã‚¢ãƒ‰ãƒ¬ã‚¹ã¸ã‚³ãƒ”ãƒ¼ */
             if (checkRecvFlag(hd.seqno) == FALSE)
             {
                 MB_DEBUG_OUTPUT("DATA : BLOCK(%d)/REMAIN(%d), Recv address[%x] size[%x]\n",
@@ -756,10 +756,10 @@ static void MBi_CommChildRecvData(void *arg)
             }
 
           CheckRemainBlock:
-            /* ‘S‚Ä‚ÌƒuƒƒbƒN‚ªó‚¯æ‚ê‚½‚©H */
+            /* å…¨ã¦ã®ãƒ–ãƒ­ãƒƒã‚¯ãŒå—ã‘å–ã‚ŒãŸã‹ï¼Ÿ */
             if (0 == countRemainingblocks())
             {
-                MBi_CommChangeChildState(MB_COMM_CSTATE_RECV_COMPLETE, NULL);   // óMŠ®—¹
+                MBi_CommChangeChildState(MB_COMM_CSTATE_RECV_COMPLETE, NULL);   // å—ä¿¡å®Œäº†
             }
         }
         break;
@@ -772,7 +772,7 @@ static void MBi_CommChildRecvData(void *arg)
         else if (p_child->c_comm_state == MB_COMM_CSTATE_BOOTREQ_ACCEPTED)
         {
             p_child->boot_end_flag = 1;
-            (void)MBi_CommEnd();       // ’ÊM‚ğI—¹‚³‚¹‚é
+            (void)MBi_CommEnd();       // é€šä¿¡ã‚’çµ‚äº†ã•ã›ã‚‹
         }
         break;
     default:
@@ -784,7 +784,7 @@ static void MBi_CommChildRecvData(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         MBi_CommChildSendData
 
-  Description:  q‹@ƒf[ƒ^‘—M
+  Description:  å­æ©Ÿãƒ‡ãƒ¼ã‚¿é€ä¿¡
 
   Arguments:    None.
 
@@ -801,7 +801,7 @@ static int MBi_CommChildSendData(void)
     switch (pCwork->c_comm_state)
     {
     default:
-        // MP’ÊMŠm—§‚Ì‚½‚ßADUMMY MP‚ğ‘—M
+        // MPé€šä¿¡ç¢ºç«‹ã®ãŸã‚ã€DUMMY MPã‚’é€ä¿¡
         hd.type = MB_COMM_TYPE_DUMMY;
         (void)MBi_MakeChildSendBuffer(&hd, (u8 *)pCwork->common.sendbuf);
         errcode = MBi_BlockHeaderEnd(MB_COMM_CHILD_HEADER_SIZE, pollbmp, pCwork->common.sendbuf);
@@ -810,23 +810,23 @@ static int MBi_CommChildSendData(void)
     case MB_COMM_CSTATE_REQ_ENABLE:
         {
             const MbBeaconRecvStatus *mbrsp = MB_GetBeaconRecvStatus();
-            // FileRequest‚Ì‘—M
+            // FileRequestã®é€ä¿¡
             errcode = MBi_CommRequestFile(pCwork->fileid,
                                           mbrsp->list[pCwork->connectTargetNo].gameInfo.ggid);
             MB_DEBUG_OUTPUT("Requested File (errcode:%d)\n", errcode);
-            // RequestFile‚ÅMP‚ğƒZƒbƒg‚µ‚Ä‚¢‚é
+            // RequestFileã§MPã‚’ã‚»ãƒƒãƒˆã—ã¦ã„ã‚‹
         }
         break;
 
     case MB_COMM_CSTATE_DLINFO_ACCEPTED:
-        // DownloadInfoó—ÌƒƒbƒZ[ƒW
+        // DownloadInfoå—é ˜ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
         hd.type = MB_COMM_TYPE_CHILD_ACCEPT_FILEINFO;
         (void)MBi_MakeChildSendBuffer(&hd, (u8 *)pCwork->common.sendbuf);
         errcode = MBi_BlockHeaderEnd(MB_COMM_CHILD_HEADER_SIZE, pollbmp, pCwork->common.sendbuf);
         break;
 
     case MB_COMM_CSTATE_RECV_PROCEED:
-        // ƒuƒƒbƒN“]‘—Œp‘±ƒƒbƒZ[ƒW
+        // ãƒ–ãƒ­ãƒƒã‚¯è»¢é€ç¶™ç¶šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
         MI_CpuClear8(&hd, sizeof(MBCommChildBlockHeader));
         hd.type = MB_COMM_TYPE_CHILD_CONTINUE;
         hd.data.req = get_next_blockno();
@@ -837,7 +837,7 @@ static int MBi_CommChildSendData(void)
         break;
 
     case MB_COMM_CSTATE_RECV_COMPLETE:
-        // ƒuƒƒbƒN“]‘—’â~ƒƒbƒZ[ƒW(e‚©‚çBOOTREQ‚ª—ˆ‚é‚Ü‚Å‘—‚è‚Â‚Ã‚¯‚é)
+        // ãƒ–ãƒ­ãƒƒã‚¯è»¢é€åœæ­¢ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(è¦ªã‹ã‚‰BOOTREQãŒæ¥ã‚‹ã¾ã§é€ã‚Šã¤ã¥ã‘ã‚‹)
         hd.type = MB_COMM_TYPE_CHILD_STOPREQ;
         (void)MBi_MakeChildSendBuffer(&hd, (u8 *)pCwork->common.sendbuf);
         errcode = MBi_BlockHeaderEnd(MB_COMM_CHILD_HEADER_SIZE, pollbmp, pCwork->common.sendbuf);
@@ -856,11 +856,11 @@ static int MBi_CommChildSendData(void)
 /*---------------------------------------------------------------------------*
   Name:         MBi_CommBeaconRecvCallback
 
-  Description:  q‹@‚Ìƒr[ƒRƒ“óMƒR[ƒ‹ƒoƒbƒN
+  Description:  å­æ©Ÿã®ãƒ“ãƒ¼ã‚³ãƒ³å—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
-  Arguments:    msg    : ƒr[ƒRƒ“óMƒƒbƒZ[ƒW
-                gInfop : e‹@ƒQ[ƒ€î•ñ
-                index  : ƒr[ƒRƒ“ƒCƒ“ƒfƒNƒX
+  Arguments:    msg    : ãƒ“ãƒ¼ã‚³ãƒ³å—ä¿¡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+                gInfop : è¦ªæ©Ÿã‚²ãƒ¼ãƒ æƒ…å ±
+                index  : ãƒ“ãƒ¼ã‚³ãƒ³ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -1008,7 +1008,7 @@ static u16 get_next_blockno(void)
     }
 }
 
-// pollbmp‚Éw’è‚µ‚½q‹@AID‚Ìƒrƒbƒg‚ª—§‚Á‚Ä‚¢‚é‚©‚ğƒ`ƒFƒbƒN
+// pollbmpã«æŒ‡å®šã—ãŸå­æ©ŸAIDã®ãƒ“ãƒƒãƒˆãŒç«‹ã£ã¦ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 static BOOL checkPollbmp(u16 pollbmp, u16 child_aid)
 {
     if (pollbmp & (u16)(1 << child_aid))
@@ -1018,19 +1018,19 @@ static BOOL checkPollbmp(u16 pollbmp, u16 child_aid)
     return FALSE;
 }
 
-/* óM—Ìˆæ‚ğƒNƒŠƒA */
+/* å—ä¿¡é ˜åŸŸã‚’ã‚¯ãƒªã‚¢ */
 static void clearRecvRegion(void)
 {
-    /* FINALROMˆÈŠO‚Ì‚ÍAƒ_ƒEƒ“ƒ[ƒh‰Â”\—Ìˆæ‚ğƒNƒŠƒA‚µ‚È‚¢‚æ‚¤‚É‚·‚éD */
+    /* FINALROMä»¥å¤–ã®æ™‚ã¯ã€ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å¯èƒ½é ˜åŸŸã‚’ã‚¯ãƒªã‚¢ã—ãªã„ã‚ˆã†ã«ã™ã‚‹ï¼ */
 #ifdef SDK_FINALROM
-    /* ARM9ƒ[ƒh‰Â”\—Ìˆæ‚ğƒNƒŠƒA */
+    /* ARM9ãƒ­ãƒ¼ãƒ‰å¯èƒ½é ˜åŸŸã‚’ã‚¯ãƒªã‚¢ */
     MI_CpuClearFast((void *)MB_LOAD_AREA_LO, MB_LOAD_MAX_SIZE);
-    /* ARM7ƒ[ƒhƒoƒbƒtƒ@ƒAƒhƒŒƒX—Ìˆæ‚ğƒNƒŠƒA */
+    /* ARM7ãƒ­ãƒ¼ãƒ‰ãƒãƒƒãƒ•ã‚¡ã‚¢ãƒ‰ãƒ¬ã‚¹é ˜åŸŸã‚’ã‚¯ãƒªã‚¢ */
     MI_CpuClearFast((void *)MB_ARM7_STATIC_RECV_BUFFER, MB_ARM7_STATIC_RECV_BUFFER_SIZE);
-    /* MBbssDesc, MBDownloadFileInfo —Ìˆæ‚ğƒNƒŠƒA */
+    /* MBbssDesc, MBDownloadFileInfo é ˜åŸŸã‚’ã‚¯ãƒªã‚¢ */
     MI_CpuClear16((void *)MB_BSSDESC_ADDRESS,
                   MB_DOWNLOAD_FILEINFO_ADDRESS + MB_DOWNLOAD_FILEINFO_SIZE - MB_BSSDESC_ADDRESS);
-    /* ROM Header —Ìˆæ‚ğƒNƒŠƒA */
+    /* ROM Header é ˜åŸŸã‚’ã‚¯ãƒªã‚¢ */
     MI_CpuClear16((void *)MB_ROM_HEADER_ADDRESS, ROM_HEADER_SIZE_FULL);
 #endif
 

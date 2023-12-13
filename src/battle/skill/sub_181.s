@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_181.s
- *@brief	戦闘シーケンス
- *			ぼうおんシーケンス
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			縺ｼ縺�縺翫ｓ繧ｷ繝ｼ繧ｱ繝ｳ繧ｹ
  *@author	HisashiSogabe
  *@data		2006.02.20
  *

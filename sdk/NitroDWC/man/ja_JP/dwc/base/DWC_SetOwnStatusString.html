@@ -1,6 +1,6 @@
 <HTML>
   <HEAD>
-    <META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <META http-equiv="Content-Style-Type" content="text/css">
     <TITLE>DWC_SetOwnStatusString</TITLE>
     <LINK rel="stylesheet" href="../../css/function.css">
@@ -9,7 +9,7 @@
   <BODY>
     <H1>DWC_SetOwnStatusString</H1>
 
-    <H2>�\��</H2>
+    <H2>構文</H2>
     <DL>
       <DD>
         <PRE><CODE>#include &lt;dwc.h&gt;
@@ -18,57 +18,57 @@ BOOL DWC_SetOwnStatusString( const char* statusString );</CODE></PRE>
       </DD>
     </DL>
 
-    <H2>����</H2>
+    <H2>説明</H2>
     <P>
-      �����̒ʐM��Ԃ̂����Astatus��������Z�b�g���܂��B
+      自分の通信状態のうち、status文字列をセットします。
 	</P>
 	<P>
-	  �v���C���[�̒ʐM��Ԃ́A�v���C���[�̃I�����C���A�I�t���C�����̏�Ԃ�\��status�t���O�ƁA�A�v���P�[�V�������ݒ�ł���status�����񂩂琬���Ă���AGameSpy�T�[�o��ŊǗ�����Ă��܂��B
-	  status�t���O�̎�ʂɂ��Ă�<a href="DWC_GetFriendStatus.html">DWC_GetFriendStatus</a>�֐��̕Ԃ�l�̗����Q�Ƃ��Ă��������B
+	  プレイヤーの通信状態は、プレイヤーのオンライン、オフライン等の状態を表すstatusフラグと、アプリケーションが設定できるstatus文字列から成っており、GameSpyサーバ上で管理されています。
+	  statusフラグの種別については<a href="DWC_GetFriendStatus.html">DWC_GetFriendStatus</a>関数の返り値の欄を参照してください。
 	</P>
 	<P>
-	  ���̊֐����g�����߂ɂ́A<A href="DWC_LoginAsync.html">DWC_LoginAsync</A>�֐��ɂ�郍�O�C���܂ł����������Ă����K�v������܂��B
+	  この関数を使うためには、<A href="DWC_LoginAsync.html">DWC_LoginAsync</A>関数によるログインまでを完了させておく必要があります。
 	</P>
 	<P>
-      �Z�b�g���ꂽ������́A���̃z�X�g����<a href="DWC_GetFriendStatus.html">DWC_GetFriendStatus</a>*�֐��Ŏ擾���邱�Ƃ��ł��܂��B
+      セットされた文字列は、他のホストから<a href="DWC_GetFriendStatus.html">DWC_GetFriendStatus</a>*関数で取得することができます。
     </P>
     <P>
-      '/'��'\\'�͎��ʕ����Ƃ��ă��C�u�������g���̂ŁAstatus�����񒆂Ɏg�p���Ȃ��ŉ������B�����̕�������g�p�������ꍇ�́A
-      <a href="DWC_SetOwnStatusData.html">DWC_SetOwnStatusData</a>�֐���p���āA�o�C�i���f�[�^�Ƃ��ĕۑ����Ă��������B
+      '/'と'\\'は識別文字としてライブラリが使うので、status文字列中に使用しないで下さい。これらの文字列を使用したい場合は、
+      <a href="DWC_SetOwnStatusData.html">DWC_SetOwnStatusData</a>関数を用いて、バイナリデータとして保存してください。
     </P>
     <P>
-      �Z�b�g���ꂽ������́A<a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>�֐����Ăяo�������ɃN���A����܂��B
+      セットされた文字列は、<a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>関数を呼び出した時にクリアされます。
     </P>
 
-    <H2>����</H2>
+    <H2>引数</H2>
     <TABLE border="1">
       <TBODY>
         <TR>
           <TD width="25%"><EM><STRONG><CODE>statusString</CODE></STRONG></EM></TD>
           <TD>
-			status������ɃZ�b�g���镶����B255�����{�k�������I�[�܂ŁB<BR>
-			����ȏ�̒����̕�������w�肵���ꍇ�́A256�����ڈȍ~�͐؂�̂Ă��܂��B
+			status文字列にセットする文字列。255文字＋ヌル文字終端まで。<BR>
+			これ以上の長さの文字列を指定した場合は、256文字目以降は切り捨てられます。
 		  </TD>
         </TR>
       </TBODY>
     </TABLE>
 
 
-    <H2>�Ԃ�l</H2>
+    <H2>返り値</H2>
     <TABLE border="1">
       <TBODY>
         <TR>
           <TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
-          <TD>�Z�b�g����</TD>
+          <TD>セット成功</TD>
         </TR>
         <TR>
           <TD width="25%"><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
-          <TD>���O�C���O�Ȃǂ̗��R�ŃZ�b�g���s</TD>
+          <TD>ログイン前などの理由でセット失敗</TD>
         </TR>
       </TBODY>
     </TABLE>
 
-    <H2>�Q��</H2>
+    <H2>参照</H2>
     <P>
       <code>
         <a href="DWC_GetFriendStatus.html">DWC_GetFriendStatus</a>,
@@ -78,10 +78,10 @@ BOOL DWC_SetOwnStatusString( const char* statusString );</CODE></PRE>
       </code>
     </P>
 
-    <H2>����</H2>
+    <H2>履歴</H2>
     <P>
-	  2005/12/16 �ʐM��Ԃɂ��Ă̐�����ǉ��B<BR>
-      2005/11/07 ����<BR>
+	  2005/12/16 通信状態についての説明を追加。<BR>
+      2005/11/07 初版<BR>
     </P>
 
   </BODY>

@@ -1,7 +1,7 @@
 //===========================================================================
 /**
  * @file	mapdefine.h
- * @brief	ƒ}ƒbƒvƒf[ƒ^ƒAƒNƒZƒXID’è‹`
+ * @brief	ãƒžãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã‚¢ã‚¯ã‚»ã‚¹IDå®šç¾©
  * @date	2005.08.05
  * @author	tamada
  *
@@ -12,13 +12,13 @@
 #define	__MAPDEFINE_H__
 
 
-//ƒ}ƒbƒvƒ}ƒgƒŠƒNƒXŠÇ—•\‚©‚çŽ©“®¶¬‚µ‚½ID’è‹`
+//ãƒžãƒƒãƒ—ãƒžãƒˆãƒªã‚¯ã‚¹ç®¡ç†è¡¨ã‹ã‚‰è‡ªå‹•ç”Ÿæˆã—ãŸIDå®šç¾©
 #include "../fielddata/mapmatrix/map_matrix_id.h"
 
-//ƒGƒŠƒAŠÇ—•\‚©‚çŽ©“®¶¬‚µ‚½ƒGƒŠƒAID’è‹`
+//ã‚¨ãƒªã‚¢ç®¡ç†è¡¨ã‹ã‚‰è‡ªå‹•ç”Ÿæˆã—ãŸã‚¨ãƒªã‚¢IDå®šç¾©
 #include "../fielddata/areadata/area_id.h"
 
-//ƒ}ƒbƒvŠÇ—•\‚©‚çŽ©“®¶¬‚µ‚½ƒ][ƒ“ID’è‹`
+//ãƒžãƒƒãƒ—ç®¡ç†è¡¨ã‹ã‚‰è‡ªå‹•ç”Ÿæˆã—ãŸã‚¾ãƒ¼ãƒ³IDå®šç¾©
 #include "../fielddata/maptable/zone_id.h"
 
 #endif	/*	__MAPDEFINE_H__ */

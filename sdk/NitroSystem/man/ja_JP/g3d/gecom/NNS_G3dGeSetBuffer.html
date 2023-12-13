@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 	<TITLE>NNS_G3dGeSetBuffer</TITLE>
@@ -12,7 +12,7 @@
 
 <H1 align="left">NNS_G3dGeSetBuffer</H1>
 
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nnsys/g3d/gecom.h&gt;</CODE></PRE>
@@ -22,32 +22,32 @@ NNS_G3dGeSetBuffer(
 );</CODE></PRE>
 </DL>
 
-<H2>����</H2>
+<H2>引数</H2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>p</STRONG></EM></TD>
-      <TD width="87%">�R�}���h�o�b�t�@�ւ̃|�C���^</TD>
+      <TD width="87%">コマンドバッファへのポインタ</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<H2>�Ԃ�l</H2>
-<P>�Ȃ��B</P>
+<H2>返り値</H2>
+<P>なし。</P>
 
-<H2>����</H2>
-<P>�W�I���g���R�}���h�o�b�t�@���ݒ肳��Ă��Ȃ��ꍇ�A�W�I���g���R�}���h�o�b�t�@��<B><I>p</I></B>�Ŏ������o�b�t�@��ݒ肵�܂��B�W�I���g���R�}���h�o�b�t�@�����ɐݒ肳��Ă���ꍇ�ɂ͂Ȃɂ����܂���B�W�I���g���R�}���h�o�b�t�@�́A<CODE>NNS_G3dGeSendDL</CODE>�֐��ɂ���ăW�I���g���R�}���h��DMA�]������Ă���Œ��ɃW�I���g���R�}���h�̑��M�v�����������ꍇ�A�W�I���g���R�}���h���o�b�t�@�����O���邱�Ƃɂ��b�o�t���~�������ɏ������ɐi�߂邽�߂Ɏg�p�����o�b�t�@�ł��B�T�C�Y�̑傫�ȃf�B�X�v���C���X�g�����A�P���łȂ����f���̕`��ɍۂ��ėL���ɓ����X��������܂��B�o�b�t�@���̂́A���[�U�[�ɂ����DTCM(�X�^�b�N)�̈�Ɋm�ۂ���̂��悢�ł��傤�B</P>
+<H2>説明</H2>
+<P>ジオメトリコマンドバッファが設定されていない場合、ジオメトリコマンドバッファに<B><I>p</I></B>で示されるバッファを設定します。ジオメトリコマンドバッファが既に設定されている場合にはなにもしません。ジオメトリコマンドバッファは、<CODE>NNS_G3dGeSendDL</CODE>関数によってジオメトリコマンドがDMA転送されている最中にジオメトリコマンドの送信要求があった場合、ジオメトリコマンドをバッファリングすることによりＣＰＵを停止させずに処理を先に進めるために使用されるバッファです。サイズの大きなディスプレイリストを持つ、単純でないモデルの描画に際して有効に働く傾向があります。バッファ自体は、ユーザーによってDTCM(スタック)領域に確保するのがよいでしょう。</P>
 
-<H2>�Q��</H2>
+<H2>参照</H2>
 <P><CODE>
 <A href="NNS_G3dGeIsBufferExist.html">NNS_G3dGeIsBufferExist</A>,
 <A href="NNS_G3dGeReleaseBuffer.html">NNS_G3dGeReleaseBuffer</A>
 </CODE></P>
 
-<H2>����</H2>
-<P>2004/10/15 �L�q�̒ǉ�<BR>
-2004/09/16 �o�b�t�@�ɂ��Ă̐�����ǉ�<BR>
-2004/08/02 ����</P>
+<H2>履歴</H2>
+<P>2004/10/15 記述の追加<BR>
+2004/09/16 バッファについての説明を追加<BR>
+2004/08/02 初版</P>
 </BODY>
 
 </HTML>

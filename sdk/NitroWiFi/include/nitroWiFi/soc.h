@@ -15,73 +15,73 @@
   INDENT SOURCE
 
   Revision 1.23  2005/12/21 13:55:24  seiki_masashi
-  SSL ŠÖ˜A‚Ì’è‹`‚ğ SOCL ‚©‚çƒRƒs[
+  SSL é–¢é€£ã®å®šç¾©ã‚’ SOCL ã‹ã‚‰ã‚³ãƒ”ãƒ¼
 
   Revision 1.22  2005/12/20 04:05:07  adachi_hiroaki
-  SSLŠÖ˜A‚Ìˆ—‚ğSOC‚©‚çŒÄ‚×‚é‚æ‚¤‚É‚µ‚½
+  SSLé–¢é€£ã®å‡¦ç†ã‚’SOCã‹ã‚‰å‘¼ã¹ã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.21  2005/09/17 09:05:27  yasu
-  ƒŠƒ“ƒNØ‚ê‚Ìƒnƒ“ƒhƒŠƒ“ƒO‚É‚Æ‚à‚È‚¤ DHCPü‚è‚ÌC³
+  ãƒªãƒ³ã‚¯åˆ‡ã‚Œã®ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã«ã¨ã‚‚ãªã† DHCPå‘¨ã‚Šã®ä¿®æ­£
 
   Revision 1.20  2005/09/08 05:35:45  yasu
-  ƒ\ƒPƒbƒgƒfƒXƒNƒŠƒvƒ^‚ª—LŒø’l‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ì”»’è‚ğ SOCL ‘¤‚Ås‚È‚¤‚±‚Æ‚É‚·‚é
+  ã‚½ã‚±ãƒƒãƒˆãƒ‡ã‚¹ã‚¯ãƒªãƒ—ã‚¿ãŒæœ‰åŠ¹å€¤ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šã‚’ SOCL å´ã§è¡Œãªã†ã“ã¨ã«ã™ã‚‹
 
   Revision 1.19  2005/08/19 12:56:07  yada
   add SOC_MAXDNAME
 
   Revision 1.18  2005/08/19 05:06:37  yasu
-  mtu/rwin ‘Î‰
+  mtu/rwin å¯¾å¿œ
 
   Revision 1.17  2005/08/17 04:10:39  yasu
-  SOC_Poll ‚Ì‹@”\’Ç‰Á
+  SOC_Poll ã®æ©Ÿèƒ½è¿½åŠ 
 
   Revision 1.16  2005/08/13 09:38:38  yasu
-  SOC_GetSockOpt ‚Å•Ô’l‚É 0 ‚ğ–„‚ß‚é‚æ‚¤‚ÉC³
+  SOC_GetSockOpt ã§è¿”å€¤ã« 0 ã‚’åŸ‹ã‚ã‚‹ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.15  2005/08/10 01:07:36  yasu
-  SOC_GetMtu@‚Ì’Ç‰Á
+  SOC_GetMtuã€€ã®è¿½åŠ 
 
   Revision 1.14  2005/08/02 06:18:19  yasu
-  SOC_GetHostID ‚©‚ç SOCL_GetHostID ‚ğŒÄ‚Ño‚·‚æ‚¤‚ÉC³
+  SOC_GetHostID ã‹ã‚‰ SOCL_GetHostID ã‚’å‘¼ã³å‡ºã™ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.13  2005/08/02 05:42:58  yasu
-  SOC_GetAddr ‚Å‚Ì sleep ˆ—‚ğ’Ç‰Á
+  SOC_GetAddr ã§ã® sleep å‡¦ç†ã‚’è¿½åŠ 
 
   Revision 1.12  2005/07/30 15:35:18  yasu
-  Œy‚¢•¶–@C³
+  è»½ã„æ–‡æ³•ä¿®æ­£
 
   Revision 1.11  2005/07/28 14:14:40  seiki_masashi
-  SOC_InetNtoP, SOC_InetPtoN ‚Ì’Ç‰Á
+  SOC_InetNtoP, SOC_InetPtoN ã®è¿½åŠ 
 
   Revision 1.10  2005/07/28 13:52:25  seiki_masashi
-  IP_ERR_* ’è”‚Ì’Ç‰Á
+  IP_ERR_* å®šæ•°ã®è¿½åŠ 
 
   Revision 1.9  2005/07/28 13:32:44  seiki_masashi
-  IP_GetConfigError, IP_ClearConfigError ‚ğ’Ç‰Á
+  IP_GetConfigError, IP_ClearConfigError ã‚’è¿½åŠ 
 
   Revision 1.8  2005/07/28 11:15:17  yasu
-  SOC_Poll ‚ÌÀ‘•
+  SOC_Poll ã®å®Ÿè£…
 
   Revision 1.7  2005/07/27 14:05:03  yasu
-  gctest “à‚Åg—p‚µ‚Ä‚¢‚é•Ï”‚Ì’Ç‰Á
+  gctest å†…ã§ä½¿ç”¨ã—ã¦ã„ã‚‹å¤‰æ•°ã®è¿½åŠ 
 
   Revision 1.6  2005/07/27 13:18:22  yasu
-  SOC_GetHostByAddr@‚Ì’Ç‰Á
+  SOC_GetHostByAddrã€€ã®è¿½åŠ 
 
   Revision 1.5  2005/07/27 12:22:38  yasu
-  IP_AtoN Œn‚Ì’è‹`Œë‚èC³
+  IP_AtoN ç³»ã®å®šç¾©èª¤ã‚Šä¿®æ­£
 
   Revision 1.4  2005/07/27 11:59:48  yasu
-  SOC ŠÖ”’Ç‰Á
+  SOC é–¢æ•°è¿½åŠ 
 
   Revision 1.3  2005/07/26 00:08:01  yasu
-  SOC_Startup ‚Æ SOCL_Startup ‚Ì˜AŒ‹
+  SOC_Startup ã¨ SOCL_Startup ã®é€£çµ
 
   Revision 1.2  2005/07/25 10:15:01  yasu
-  SOC ƒ‰ƒCƒuƒ‰ƒŠ‚Ì’Ç‰Á
+  SOC ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®è¿½åŠ 
 
   Revision 1.1  2005/07/15 13:32:51  yasu
-  soc ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒwƒbƒ_‚ğ’²®
+  soc ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ãƒ˜ãƒƒãƒ€ã‚’èª¿æ•´
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -396,19 +396,19 @@ int SOC_Poll(SOCPollFD fds[], unsigned nfds, OSTick timeout);
 /*---------------------------------------------------------------------------*
   Name:         SOC_EnableSsl
 
-  Description:  ƒ\ƒPƒbƒg‚ğ SSL ƒ‚[ƒh‚É‚·‚éB
-                bind ‘O‚ÉŒÄ‚Ño‚³‚Ë‚Î‚È‚ç‚È‚¢B
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‚’ SSL ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ã€‚
+                bind å‰ã«å‘¼ã³å‡ºã•ã­ã°ãªã‚‰ãªã„ã€‚
   
-  Arguments:    s    ƒ\ƒPƒbƒg
-                con  SOCSslConnection \‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                     NULL ‚Å SSL ƒ‚[ƒh‚©‚ç’Êí‚É–ß‚·
+  Arguments:    s    ã‚½ã‚±ãƒƒãƒˆ
+                con  SOCSslConnection æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                     NULL ã§ SSL ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰é€šå¸¸ã«æˆ»ã™
   
-  Returns:      ³ or 0: ¬Œ÷
-                •‰     : ƒGƒ‰[
-                  Œ»óƒTƒ|[ƒg‚µ‚Ä‚¢‚éƒGƒ‰[’l‚ÍˆÈ‰º
+  Returns:      æ­£ or 0: æˆåŠŸ
+                è²      : ã‚¨ãƒ©ãƒ¼
+                  ç¾çŠ¶ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã‚¨ãƒ©ãƒ¼å€¤ã¯ä»¥ä¸‹
                     - :  
-                  ƒGƒ‰[’l‚Í’Ç‰Á‚³‚ê‚éê‡‚ª‚ ‚é‚½‚ßA‘¼‚Ì•‰‚Ì’l‚à‘S‚Ä”Ä—p
-                  ƒGƒ‰[‚Æ‚µ‚Äˆµ‚¤‚±‚ÆD
+                  ã‚¨ãƒ©ãƒ¼å€¤ã¯è¿½åŠ ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚‹ãŸã‚ã€ä»–ã®è² ã®å€¤ã‚‚å…¨ã¦æ±ç”¨
+                  ã‚¨ãƒ©ãƒ¼ã¨ã—ã¦æ‰±ã†ã“ã¨ï¼
  *---------------------------------------------------------------------------*/
 static inline int SOC_EnableSsl(int s, SOCSslConnection* con)
 {
@@ -418,14 +418,14 @@ static inline int SOC_EnableSsl(int s, SOCSslConnection* con)
 /*---------------------------------------------------------------------------*
   Name:         SOC_AddRandomSeed
 
-  Description:  SSL ‚Åg—p‚·‚é—”—p‚Ìí‚ğ˜a‚·‚éB
-                OS_GetLowEntropyData ŠÖ”‚Ì•Ô‚è’l‚ğ’èŠú“I‚É—^‚¦‚é‚×‚«‚Å‚ ‚éB
-                SOCL ‚Ì‰Šú‰»‘O‚Å‚àŒÄ‚Ño‚µ‰Â”\B
+  Description:  SSL ã§ä½¿ç”¨ã™ã‚‹ä¹±æ•°ç”¨ã®ç¨®ã‚’æ”ªæ‹Œã™ã‚‹ã€‚
+                OS_GetLowEntropyData é–¢æ•°ã®è¿”ã‚Šå€¤ã‚’å®šæœŸçš„ã«ä¸ãˆã‚‹ã¹ãã§ã‚ã‚‹ã€‚
+                SOCL ã®åˆæœŸåŒ–å‰ã§ã‚‚å‘¼ã³å‡ºã—å¯èƒ½ã€‚
   
-  Arguments:    seed —”˜a‚Ì‚½‚ß‚Ìí‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                len  seed ‚Åw’è‚µ‚½í‚Ì’·‚³
+  Arguments:    seed ä¹±æ•°æ”ªæ‹Œã®ãŸã‚ã®ç¨®ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                len  seed ã§æŒ‡å®šã—ãŸç¨®ã®é•·ã•
   
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
  *---------------------------------------------------------------------------*/
 static inline void SOC_AddRandomSeed(void* seed, u32 len)
 {
@@ -472,7 +472,7 @@ static inline int SOC_Reset(int final)
 /*---------------------------------------------------------------------------*
   Name:         SOC_GetMacAddr/SOC_GetAddr/SOC_GetGateway/SOC_GetNetmask
 
-  Description:  HOST ‚Ìİ’è‚ğæ“¾‚·‚é
+  Description:  HOST ã®è¨­å®šã‚’å–å¾—ã™ã‚‹
  *---------------------------------------------------------------------------*/
 void        SOC_U32to4U8(u32 adr_u32, u8* adr_4u8);
 
@@ -537,10 +537,10 @@ s32     SOC_GetConfigError(SOCInterface* interface);
 /*---------------------------------------------------------------------------*
   Name:         SOC_DHCPGetStatus
 
-  Description:  DHCP ‚Ìó‘Ô‚ğæ“¾‚·‚é
-                ‚±‚±‚Å‚Í©ƒzƒXƒg‚Ì IP ƒAƒhƒŒƒX‚ªİ’è‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©’²¸‚µ
-                ’l‚ªİ’è‚³‚ê‚Ä‚¢‚½‚ç SOC_DHCP_STATE_BOUND ‚ğ‚»‚¤‚Å‚È‚¢‚È‚ç
-                SOC_DHCP_STATE_REQUESTING ‚ğ•Ô‚·
+  Description:  DHCP ã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
+                ã“ã“ã§ã¯è‡ªãƒ›ã‚¹ãƒˆã® IP ã‚¢ãƒ‰ãƒ¬ã‚¹ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹èª¿æŸ»ã—
+                å€¤ãŒè¨­å®šã•ã‚Œã¦ã„ãŸã‚‰ SOC_DHCP_STATE_BOUND ã‚’ãã†ã§ãªã„ãªã‚‰
+                SOC_DHCP_STATE_REQUESTING ã‚’è¿”ã™
  *---------------------------------------------------------------------------*/
 typedef struct
 {

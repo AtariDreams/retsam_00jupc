@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	vs_demo.c
- * @brief	’ÊM‘Îíƒfƒ‚
+ * @brief	é€šä¿¡å¯¾æˆ¦ãƒ‡ãƒ¢
  * @author	Hiroyuki Nakamura
  * @date	06.04.26
  */
@@ -60,104 +60,104 @@
 
 
 //============================================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //============================================================================================
 typedef struct _VSD_WORK	VSD_WORK;
 typedef u8 (*VSD_FUNC)(VSD_WORK*);
 
-// ƒ}ƒ‹ƒ`Šm”F—pƒ|ƒPƒ‚ƒ“ƒ[ƒN
+// ãƒžãƒ«ãƒç¢ºèªç”¨ãƒã‚±ãƒ¢ãƒ³ãƒ¯ãƒ¼ã‚¯
 typedef struct {
-	u32	chr_arc;	// ƒLƒƒƒ‰ƒf[ƒ^‚ÌƒA[ƒNID
-	u16 mons;		// ƒ|ƒPƒ‚ƒ“”Ô†
+	u32	chr_arc;	// ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ã®ã‚¢ãƒ¼ã‚¯ID
+	u16 mons;		// ãƒã‚±ãƒ¢ãƒ³ç•ªå·
 	u16	hp;			// HP
 	u16	mhp;		// MHP
-	u16	item;		// ƒAƒCƒeƒ€
-	u8	lv;			// ƒŒƒxƒ‹
-	u8	sex;		// «•Ê
-	u8	sex_put;	// «•Ê•\Ž¦
-	u8	egg;		// ƒ^ƒ}ƒSƒtƒ‰ƒO
-	u8	cb;			// ƒJƒXƒ^ƒ€ƒ{[ƒ‹
-	u8	form;		// ƒtƒHƒ‹ƒ€No
-	u32	st;			// ó‘ÔˆÙí
+	u16	item;		// ã‚¢ã‚¤ãƒ†ãƒ 
+	u8	lv;			// ãƒ¬ãƒ™ãƒ«
+	u8	sex;		// æ€§åˆ¥
+	u8	sex_put;	// æ€§åˆ¥è¡¨ç¤º
+	u8	egg;		// ã‚¿ãƒžã‚´ãƒ•ãƒ©ã‚°
+	u8	cb;			// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
+	u8	form;		// ãƒ•ã‚©ãƒ«ãƒ No
+	u32	st;			// çŠ¶æ…‹ç•°å¸¸
 }VSD_POKE;
 
-// ƒfƒ‚‰æ–Êƒ[ƒN
+// ãƒ‡ãƒ¢ç”»é¢ãƒ¯ãƒ¼ã‚¯
 struct _VSD_WORK {
-	VS_DEMO_DATA * dat;		// ŠO•”Ý’èƒf[ƒ^
-	const VSD_FUNC * func;	// ˆ—ƒe[ƒuƒ‹
+	VS_DEMO_DATA * dat;		// å¤–éƒ¨è¨­å®šãƒ‡ãƒ¼ã‚¿
+	const VSD_FUNC * func;	// å‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«
 
-	PALETTE_FADE_PTR pfd;	// ƒpƒŒƒbƒgƒtƒF[ƒhƒf[ƒ^
+	PALETTE_FADE_PTR pfd;	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
 
-	GF_BGL_INI * bgl;					// BGLƒf[ƒ^
-	GF_BGL_BMPWIN	win[VSD_BMP_MAX];	// BMPƒEƒBƒ“ƒhƒE
+	GF_BGL_INI * bgl;					// BGLãƒ‡ãƒ¼ã‚¿
+	GF_BGL_BMPWIN	win[VSD_BMP_MAX];	// BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 
-	// ƒZƒ‹ƒAƒNƒ^[
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
 	CATS_SYS_PTR	csp;
 	CATS_RES_PTR	crp;
 	CATS_ACT_PTR	cap[VS_CLA_PLMAX];
-	u32	cap_max;				// Žg—p‚µ‚Ä‚¢‚éƒZƒ‹ƒAƒNƒ^[”
+	u32	cap_max;				// ä½¿ç”¨ã—ã¦ã„ã‚‹ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼æ•°
 
-	/******************************* ƒ}ƒ‹ƒ`Šm”F—p *************************************/
-	VSD_POKE	poke[6];	// ƒ|ƒPƒ‚ƒ“ƒ[ƒN
+	/******************************* ãƒžãƒ«ãƒç¢ºèªç”¨ *************************************/
+	VSD_POKE	poke[6];	// ãƒã‚±ãƒ¢ãƒ³ãƒ¯ãƒ¼ã‚¯
 
-	u16	plate_top[PL_PANEL_SX*PL_PANEL_SY];		// æ“ª‚ÌƒvƒŒ[ƒg‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^
-	u16	plate_normal[PL_PANEL_SX*PL_PANEL_SY];	// ’Êí‚ÌƒvƒŒ[ƒg‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^
-	u16	plate_none[PL_PANEL_SX*PL_PANEL_SY];	// ‚¢‚È‚¢ê‡‚ÌƒvƒŒ[ƒg‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^
+	u16	plate_top[PL_PANEL_SX*PL_PANEL_SY];		// å…ˆé ­ã®ãƒ—ãƒ¬ãƒ¼ãƒˆã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16	plate_normal[PL_PANEL_SX*PL_PANEL_SY];	// é€šå¸¸ã®ãƒ—ãƒ¬ãƒ¼ãƒˆã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
+	u16	plate_none[PL_PANEL_SX*PL_PANEL_SY];	// ã„ãªã„å ´åˆã®ãƒ—ãƒ¬ãƒ¼ãƒˆã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿
 
-	u16	pal[16*3];						// ƒpƒŒƒbƒg•Û‘¶
-	u16	plate_bg[2][PL_PANEL_SX*24];	// ƒXƒNƒ[ƒ‹‚Ì‚½‚ß‚ÌBGƒXƒNƒŠ[ƒ“•Û‘¶—Ìˆæ
+	u16	pal[16*3];						// ãƒ‘ãƒ¬ãƒƒãƒˆä¿å­˜
+	u16	plate_bg[2][PL_PANEL_SX*24];	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã®ãŸã‚ã®BGã‚¹ã‚¯ãƒªãƒ¼ãƒ³ä¿å­˜é ˜åŸŸ
 
-	/******************************* VS‰æ–Ê—p *************************************/
-	FONTOAM_SYS_PTR fsp;		// ƒtƒHƒ“ƒgOAMƒVƒXƒeƒ€
-	FONTOAM_OBJ_PTR	fop[4];		// ƒtƒHƒ“ƒgOAMƒf[ƒ^
+	/******************************* VSç”»é¢ç”¨ *************************************/
+	FONTOAM_SYS_PTR fsp;		// ãƒ•ã‚©ãƒ³ãƒˆOAMã‚·ã‚¹ãƒ†ãƒ 
+	FONTOAM_OBJ_PTR	fop[4];		// ãƒ•ã‚©ãƒ³ãƒˆOAMãƒ‡ãƒ¼ã‚¿
 
 	GF_G3DMAN * g3dm;
-	PTC_PTR	ptc;		// ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€
-	void * ptm;			// ƒp[ƒeƒBƒNƒ‹‚ÅŽg—p‚·‚éƒq[ƒvƒGƒŠƒA
+	PTC_PTR	ptc;		// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
+	void * ptm;			// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã§ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã‚¨ãƒªã‚¢
 
-	u8	ball_gx[4];		// ŽèŽ‚¿ƒ{[ƒ‹‚ÌŠî–{XÀ•W(0,1=Ž©•ª‘¤A2,3=“G‘¤)
-	u8	ball_gy[4];		// ŽèŽ‚¿ƒ{[ƒ‹‚ÌŠî–{YÀ•W(0,1=Ž©•ª‘¤A2,3=“G‘¤)
-	u8	name_gx[4];		// ƒgƒŒ[ƒi[–¼‚ÌŠî–{XÀ•W(0,1=Ž©•ª‘¤A2,3=“G‘¤)
-	u8	name_gy[4];		// ƒgƒŒ[ƒi[–¼‚ÌŠî–{YÀ•W(0,1=Ž©•ª‘¤A2,3=“G‘¤)
+	u8	ball_gx[4];		// æ‰‹æŒã¡ãƒœãƒ¼ãƒ«ã®åŸºæœ¬Xåº§æ¨™(0,1=è‡ªåˆ†å´ã€2,3=æ•µå´)
+	u8	ball_gy[4];		// æ‰‹æŒã¡ãƒœãƒ¼ãƒ«ã®åŸºæœ¬Yåº§æ¨™(0,1=è‡ªåˆ†å´ã€2,3=æ•µå´)
+	u8	name_gx[4];		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã®åŸºæœ¬Xåº§æ¨™(0,1=è‡ªåˆ†å´ã€2,3=æ•µå´)
+	u8	name_gy[4];		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åã®åŸºæœ¬Yåº§æ¨™(0,1=è‡ªåˆ†å´ã€2,3=æ•µå´)
 
-	s32	scr_spd;		// ƒXƒNƒ[ƒ‹‘¬“x
+	s32	scr_spd;		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«é€Ÿåº¦
 
-	s16	old_sx;			// ‰æ–Ê‚ÌX—h‚ê•‹L‰¯
-	s16	old_sy;			// ‰æ–Ê‚ÌY—h‚ê•‹L‰¯
+	s16	old_sx;			// ç”»é¢ã®Xæºã‚Œå¹…è¨˜æ†¶
+	s16	old_sy;			// ç”»é¢ã®Yæºã‚Œå¹…è¨˜æ†¶
 
-	s8	shake_x;		// ‰æ–Ê‚ÌX—h‚ê•
-	s8	shake_y;		// ‰æ–Ê‚ÌY—h‚ê•
+	s8	shake_x;		// ç”»é¢ã®Xæºã‚Œå¹…
+	s8	shake_y;		// ç”»é¢ã®Yæºã‚Œå¹…
 
-	u8	push_mv;		// ƒvƒŒ[ƒg‰Ÿ‚µo‚µ•ûŒü
+	u8	push_mv;		// ãƒ—ãƒ¬ãƒ¼ãƒˆæŠ¼ã—å‡ºã—æ–¹å‘
 
 	/******************************************************************************/
 
-	u8	seq;		// ƒƒCƒ“ƒV[ƒPƒ“ƒX
-	u8	func_seq;	// ˆ—ƒV[ƒPƒ“ƒX
-	u8	wait;		// ƒEƒFƒCƒg
-	u8	cnt;		// ”Ä—pƒJƒEƒ“ƒ^
+	u8	seq;		// ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	func_seq;	// å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	wait;		// ã‚¦ã‚§ã‚¤ãƒˆ
+	u8	cnt;		// æ±Žç”¨ã‚«ã‚¦ãƒ³ã‚¿
 	
 	u16 save_seq0;
 	u16 save_seq1;
 
 //--------------------------------------------------------------
-//	‚±‚±‚©‚çƒvƒ‰ƒ`ƒi—p‚É’Ç‰Á
+//	ã“ã“ã‹ã‚‰ãƒ—ãƒ©ãƒãƒŠç”¨ã«è¿½åŠ 
 //--------------------------------------------------------------
-	GF_BGL_BMPWIN	talk_win;			//‰ï˜bƒEƒBƒ“ƒhƒE
-	GF_BGL_BMPWIN	sub_talk_win;		//‰ï˜bƒEƒBƒ“ƒhƒE(‰¡‚Éu‚Í‚¢/‚¢‚¢‚¦vƒEƒBƒ“ƒhƒE‚ðo‚·Žž)
-	GXBG0As bg_2d3d;	// BG0–Ê‚ÌŽg—p
+	GF_BGL_BMPWIN	talk_win;			//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN	sub_talk_win;		//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦(æ¨ªã«ã€Œã¯ã„/ã„ã„ãˆã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™æ™‚)
+	GXBG0As bg_2d3d;	// BG0é¢ã®ä½¿ç”¨
 
 	MSGDATA_MANAGER *rec_msgman;
 	WORDSET *rec_wordset;
-	STRBUF *rec_talkmsg_buf;			///<Alloc‚µ‚½•¶Žš—ñƒoƒbƒtƒ@‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	STRBUF *rec_talkmsg_buf;			///<Allocã—ãŸæ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	int talk_msgid;
-	int rec_win_mode;					///<í“¬˜^‰æŠÄŽ‹ŠÖ”‚Ìƒ‚[ƒh
+	int rec_win_mode;					///<æˆ¦é—˜éŒ²ç”»ç›£è¦–é–¢æ•°ã®ãƒ¢ãƒ¼ãƒ‰
 	BMPMENU_WORK *yesno_menu;
-	void *time_icon;					///<ŽžŒvƒAƒCƒRƒ“
+	void *time_icon;					///<æ™‚è¨ˆã‚¢ã‚¤ã‚³ãƒ³
 	
-	int rec_occ;						///<TRUE:˜^‰æƒZ[ƒu‰Â”\  FALSE:‹ÖŽ~
-	LOAD_RESULT load_result;			///<Šù‚É˜^‰æƒf[ƒ^‚ª‘¶Ý‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
-	BOOL dp_entry;						///<TRUE:DP‚ª¬‚´‚Á‚Ä‚¢‚é
+	int rec_occ;						///<TRUE:éŒ²ç”»ã‚»ãƒ¼ãƒ–å¯èƒ½  FALSE:ç¦æ­¢
+	LOAD_RESULT load_result;			///<æ—¢ã«éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
+	BOOL dp_entry;						///<TRUE:DPãŒæ··ã–ã£ã¦ã„ã‚‹
 };
 
 
@@ -176,7 +176,7 @@ struct _VSD_WORK {
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
 static void VSDemo_Main( TCB_PTR tcb, void * work );
 static void VSD_VramSet(void);
@@ -264,9 +264,9 @@ static void VSD_TimeIconDelete(VSD_WORK *wk);
 
 
 //============================================================================================
-//	ƒOƒ[ƒoƒ‹•Ï”
+//	ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 //============================================================================================
-// VS‰æ–ÊAŸ”s‰æ–Ê‚ÌƒZƒ‹ƒAƒNƒ^[ƒpƒ‰ƒ[ƒ^
+// VSç”»é¢ã€å‹æ•—ç”»é¢ã®ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 static const u32 VS_ClactParam[][7] =
 {	// chr_id, pal_id, cell_id, anm_id, bg_pri, obj_pri, pal_num
 	{ VS_CHR_ID_BALL, VS_PAL_ID_BALL, VS_CEL_ID_BALL, VS_ANM_ID_BALL, 2, 0, 0 },
@@ -287,30 +287,30 @@ static const u32 VS_ClactParam[][7] =
 	{ VS_CHR_ID_RESULT, VS_PAL_ID_BALL, VS_CEL_ID_RESULT, VS_ANM_ID_RESULT, 1, 0, 1 },
 };
 
-// ˆ—ƒe[ƒuƒ‹Fƒ|ƒPƒ‚ƒ“Šm”F‰æ–Ê
+// å‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«ï¼šãƒã‚±ãƒ¢ãƒ³ç¢ºèªç”»é¢
 static const VSD_FUNC PokeCheckFuncTable[] = {
 	VSD_SeqPokeCheckInit,
-	VSD_SeqWait,			// ƒEƒFƒCƒg
+	VSD_SeqWait,			// ã‚¦ã‚§ã‚¤ãƒˆ
 	VSD_PokeCheckMove,
-	VSD_SeqWait,			// ƒEƒFƒCƒg
+	VSD_SeqWait,			// ã‚¦ã‚§ã‚¤ãƒˆ
 	VSD_SeqEndSet,
 };
 
-// ˆ—ƒe[ƒuƒ‹FVS‰æ–Ê
+// å‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«ï¼šVSç”»é¢
 static const VSD_FUNC VsStartFuncTable[] = {
 	VSD_SeqVsStartInit,
-	VSD_SeqWait,			// ƒEƒFƒCƒg
-	VSD_SeqScrInMain,		// ƒXƒNƒ[ƒ‹ƒCƒ“ƒƒCƒ“
-	VSD_SeqShake,			// —h‚ç‚·
-	VSD_SeqScrOut,			// ƒXƒNƒ[ƒ‹ƒAƒEƒg
+	VSD_SeqWait,			// ã‚¦ã‚§ã‚¤ãƒˆ
+	VSD_SeqScrInMain,		// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³ãƒ¡ã‚¤ãƒ³
+	VSD_SeqShake,			// æºã‚‰ã™
+	VSD_SeqScrOut,			// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¢ã‚¦ãƒˆ
 };
 
-// ˆ—ƒe[ƒuƒ‹FŸ”s‚ ‚è
+// å‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«ï¼šå‹æ•—ã‚ã‚Š
 static const VSD_FUNC VsEndWinFuncTable[] = {
 	VSD_SeqVsEndInit,
-	VSD_SeqWait,		// ƒEƒFƒCƒg
-	VSD_SeqScrInMain,	// ƒXƒNƒ[ƒ‹ƒCƒ“ƒƒCƒ“
-	VSD_SeqShake,		// —h‚ç‚·
+	VSD_SeqWait,		// ã‚¦ã‚§ã‚¤ãƒˆ
+	VSD_SeqScrInMain,	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³ãƒ¡ã‚¤ãƒ³
+	VSD_SeqShake,		// æºã‚‰ã™
 	VSD_SeqShakeWaitSet,
 	VSD_SeqWait,
 	VSD_SeqPushCheck,
@@ -328,12 +328,12 @@ static const VSD_FUNC VsEndWinFuncTable[] = {
 	VSD_SeqEndSet,
 };
 
-// ˆ—ƒe[ƒuƒ‹Fˆø‚«•ª‚¯
+// å‡¦ç†ãƒ†ãƒ¼ãƒ–ãƒ«ï¼šå¼•ãåˆ†ã‘
 static const VSD_FUNC VsEndDrawFuncTable[] = {
 	VSD_SeqVsEndInit,
-	VSD_SeqWait,		// ƒEƒFƒCƒg
-	VSD_SeqScrInMain,	// ƒXƒNƒ[ƒ‹ƒCƒ“ƒƒCƒ“
-	VSD_SeqShake,		// —h‚ç‚·
+	VSD_SeqWait,		// ã‚¦ã‚§ã‚¤ãƒˆ
+	VSD_SeqScrInMain,	// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³ãƒ¡ã‚¤ãƒ³
+	VSD_SeqShake,		// æºã‚‰ã™
 	VSD_SeqPuchWaitSet,
 	VSD_SeqResultOpen,
 	VSD_SeqWait,
@@ -345,7 +345,7 @@ static const VSD_FUNC VsEndDrawFuncTable[] = {
 	VSD_SeqEndSet,
 };
 
-// Ÿ”s‰æ–ÊFƒvƒŒ[ƒg‰Ÿ‚µo‚µƒe[ƒuƒ‹
+// å‹æ•—ç”»é¢ï¼šãƒ—ãƒ¬ãƒ¼ãƒˆæŠ¼ã—å‡ºã—ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 VSD_PushMoveTbl[][2] =
 {
 	// BG, OBJ
@@ -353,11 +353,11 @@ static const u8 VSD_PushMoveTbl[][2] =
 	{ 6, 6 }, { 0, 6 }, { 0, 6 }, { 4, 10 }, { 0, 10 }, { 0, 10 },
 };
 
-// Šm”F‰æ–ÊFBMPƒEƒBƒ“ƒhƒE’è‹`
+// ç¢ºèªç”»é¢ï¼šBMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å®šç¾©
 static const BMPWIN_DAT PokePanelBmpData[] =
 {
-	// ‚P‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼‘ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME1_PX, WIN_NAME1_PY,
 		WIN_NAME1_SX, WIN_NAME1_SY, WIN_NAME1_PAL, WIN_NAME1_CGX
 	},
@@ -369,13 +369,13 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP1_PX, WIN_HP1_PY,
 		WIN_HP1_SX, WIN_HP1_SY, WIN_HP1_PAL, WIN_HP1_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR1_PX, WIN_HPBAR1_PY,
 		WIN_HPBAR1_SX, WIN_HPBAR1_SY, WIN_HPBAR1_PAL, WIN_HPBAR1_CGX
 	},
 
-	// ‚Q‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼’ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME2_PX, WIN_NAME2_PY,
 		WIN_NAME2_SX, WIN_NAME2_SY, WIN_NAME2_PAL, WIN_NAME2_CGX
 	},
@@ -387,13 +387,13 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP2_PX, WIN_HP2_PY,
 		WIN_HP2_SX, WIN_HP2_SY, WIN_HP2_PAL, WIN_HP2_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR2_PX, WIN_HPBAR2_PY,
 		WIN_HPBAR2_SX, WIN_HPBAR2_SY, WIN_HPBAR2_PAL, WIN_HPBAR2_CGX
 	},
 
-	// ‚R‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼“ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME3_PX, WIN_NAME3_PY,
 		WIN_NAME3_SX, WIN_NAME3_SY, WIN_NAME3_PAL, WIN_NAME3_CGX
 	},
@@ -405,13 +405,13 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP3_PX, WIN_HP3_PY,
 		WIN_HP3_SX, WIN_HP3_SY, WIN_HP3_PAL, WIN_HP3_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR3_PX, WIN_HPBAR3_PY,
 		WIN_HPBAR3_SX, WIN_HPBAR3_SY, WIN_HPBAR3_PAL, WIN_HPBAR3_CGX
 	},
 
-	// ‚S‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼”ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME4_PX, WIN_NAME4_PY,
 		WIN_NAME4_SX, WIN_NAME4_SY, WIN_NAME4_PAL, WIN_NAME4_CGX
 	},
@@ -423,13 +423,13 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP4_PX, WIN_HP4_PY,
 		WIN_HP4_SX, WIN_HP4_SY, WIN_HP4_PAL, WIN_HP4_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR4_PX, WIN_HPBAR4_PY,
 		WIN_HPBAR4_SX, WIN_HPBAR4_SY, WIN_HPBAR4_PAL, WIN_HPBAR4_CGX
 	},
 
-	// ‚T‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼•ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME5_PX, WIN_NAME5_PY,
 		WIN_NAME5_SX, WIN_NAME5_SY, WIN_NAME5_PAL, WIN_NAME5_CGX
 	},
@@ -441,13 +441,13 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP5_PX, WIN_HP5_PY,
 		WIN_HP5_SX, WIN_HP5_SY, WIN_HP5_PAL, WIN_HP5_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR5_PX, WIN_HPBAR5_PY,
 		WIN_HPBAR5_SX, WIN_HPBAR5_SY, WIN_HPBAR5_PAL, WIN_HPBAR5_CGX
 	},
 
-	// ‚U‘Ì–Ú‚Ìƒ|ƒPƒ‚ƒ“
-	{	// –¼‘O
+	// ï¼–ä½“ç›®ã®ãƒã‚±ãƒ¢ãƒ³
+	{	// åå‰
 		GF_BGL_FRAME1_M, WIN_NAME6_PX, WIN_NAME6_PY,
 		WIN_NAME6_SX, WIN_NAME6_SY, WIN_NAME6_PAL, WIN_NAME6_CGX
 	},
@@ -459,30 +459,30 @@ static const BMPWIN_DAT PokePanelBmpData[] =
 		GF_BGL_FRAME1_M, WIN_HP6_PX, WIN_HP6_PY,
 		WIN_HP6_SX, WIN_HP6_SY, WIN_HP6_PAL, WIN_HP6_CGX
 	},
-	{	// HPƒo[
+	{	// HPãƒãƒ¼
 		GF_BGL_FRAME1_M, WIN_HPBAR6_PX, WIN_HPBAR6_PY,
 		WIN_HPBAR6_SX, WIN_HPBAR6_SY, WIN_HPBAR6_PAL, WIN_HPBAR6_CGX
 	},
 };
 
-// Šm”F‰æ–ÊFƒvƒŒ[ƒgBG•\Ž¦ˆÊ’u
+// ç¢ºèªç”»é¢ï¼šãƒ—ãƒ¬ãƒ¼ãƒˆBGè¡¨ç¤ºä½ç½®
 static const u8 PokeCheckBgPos[][2] =
 {	// LTX, LTY
 	{ 0, 0 }, { 0, 6 }, { 0, 12 }, { 16, 1 }, { 16, 7 }, { 16, 13 }
 };
 
-// Šm”F‰æ–ÊFOBJ•\Ž¦À•Wƒe[ƒuƒ‹
+// ç¢ºèªç”»é¢ï¼šOBJè¡¨ç¤ºåº§æ¨™ãƒ†ãƒ¼ãƒ–ãƒ«
 static const u8 PokeCheckObjPosTable[][10] =
-{	// ƒ|ƒPƒ‚ƒ“AƒAƒCƒeƒ€AƒJƒXƒ^ƒ€ƒ{[ƒ‹Aó‘ÔˆÙíAƒ{[ƒ‹
-	{  30,  16,  38,  24,  46,  24,  36,  44,  16,  14 },	// ‚P•C–Ú
-	{  30,  64,  38,  72,  46,  72,  36,  92,  16,  62 },	// ‚Q•C–Ú
-	{  30, 112,  38, 120,  46, 120,  36, 140,  16, 110 },	// ‚R•C–Ú
-	{ 158,  24, 166,  32, 174,  32, 164,  52, 144,  22 },	// ‚S•C–Ú
-	{ 158,  72, 166,  80, 174,  80, 164, 100, 144,  70 },	// ‚T•C–Ú
-	{ 158, 120, 166, 128, 174, 128, 164, 148, 144, 118 }	// ‚U•C–Ú
+{	// ãƒã‚±ãƒ¢ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ ã€ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã€çŠ¶æ…‹ç•°å¸¸ã€ãƒœãƒ¼ãƒ«
+	{  30,  16,  38,  24,  46,  24,  36,  44,  16,  14 },	// ï¼‘åŒ¹ç›®
+	{  30,  64,  38,  72,  46,  72,  36,  92,  16,  62 },	// ï¼’åŒ¹ç›®
+	{  30, 112,  38, 120,  46, 120,  36, 140,  16, 110 },	// ï¼“åŒ¹ç›®
+	{ 158,  24, 166,  32, 174,  32, 164,  52, 144,  22 },	// ï¼”åŒ¹ç›®
+	{ 158,  72, 166,  80, 174,  80, 164, 100, 144,  70 },	// ï¼•åŒ¹ç›®
+	{ 158, 120, 166, 128, 174, 128, 164, 148, 144, 118 }	// ï¼–åŒ¹ç›®
 };
 
-// Šm”F‰æ–Ê‚ÌƒZƒ‹ƒAƒNƒ^[ƒpƒ‰ƒ[ƒ^
+// ç¢ºèªç”»é¢ã®ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 static const u32 PokeCheck_ClactParam[][7] =
 {	// chr_id, pal_id, cell_id, anm_id, bg_pri, obj_pri, pal_num
 	{ VS_CHR_ID_POKE1, VS_PAL_ID_POKE, VS_CEL_ID_POKE, VS_ANM_ID_POKE, 1, 1, 0 },
@@ -527,97 +527,97 @@ static const u32 PokeCheck_ClactParam[][7] =
 //	
 //==============================================================================
 //--------------------------------------------------------------
-//	À•W
+//	åº§æ¨™
 //--------------------------------------------------------------
-///‰ï˜bƒEƒBƒ“ƒhƒEˆÊ’uF¶’[
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®ï¼šå·¦ç«¯
 #define VS_DEMO_BMPWIN_TALK_POS_X			(0x2)
-///‰ï˜bƒEƒBƒ“ƒhƒEˆÊ’uFã’[
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®ï¼šä¸Šç«¯
 #define VS_DEMO_BMPWIN_TALK_POS_Y			(0x13)
-///‰ï˜bƒEƒBƒ“ƒhƒE‚Ì‰¡•
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…
 #define VS_DEMO_BMPWIN_TALK_SIZE_X			(27)
-///‰ï˜bƒEƒBƒ“ƒhƒE‚Ìc•
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…
 #define VS_DEMO_BMPWIN_TALK_SIZE_Y			(4)
 
-///ƒEƒBƒ“ƒhƒE‚Ì‰¡‚Éu‚Í‚¢/‚¢‚¢‚¦vƒEƒBƒ“ƒhƒE‚ðo‚·ê‡‚Ì‰ï˜bƒEƒBƒ“ƒhƒE‚Ì‰¡•
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªã«ã€Œã¯ã„/ã„ã„ãˆã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™å ´åˆã®ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…
 #define VS_DEMO_BMPWIN_TALK_YESNO_SET_SIZE_X			(27)	//(27-8)
-///ƒEƒBƒ“ƒhƒE‚Ì‰¡‚Éu‚Í‚¢/‚¢‚¢‚¦vƒEƒBƒ“ƒhƒE‚ðo‚·ê‡‚Ì‰ï˜bƒEƒBƒ“ƒhƒE‚Ìc•
+///ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªã«ã€Œã¯ã„/ã„ã„ãˆã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å‡ºã™å ´åˆã®ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…
 #define VS_DEMO_BMPWIN_TALK_YESNO_SET_SIZE_Y			(4)
 
-///u‚Í‚¢/‚¢‚¢‚¦vƒEƒBƒ“ƒhƒEˆÊ’uF¶’[
+///ã€Œã¯ã„/ã„ã„ãˆã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®ï¼šå·¦ç«¯
 #define VS_DEMO_BMPWIN_YESNO_POS_X			(25)
-///u‚Í‚¢/‚¢‚¢‚¦vƒEƒBƒ“ƒhƒEˆÊ’uFã’[
+///ã€Œã¯ã„/ã„ã„ãˆã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½ç½®ï¼šä¸Šç«¯
 #define VS_DEMO_BMPWIN_YESNO_POS_Y			(13)
-///u‚Í‚¢/‚¢‚¢‚¦vƒEƒBƒ“ƒhƒE‚Ì‰¡•
+///ã€Œã¯ã„/ã„ã„ãˆã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…
 #define VS_DEMO_BMPWIN_YESNO_SIZE_X			(6)
-///u‚Í‚¢/‚¢‚¢‚¦vƒEƒBƒ“ƒhƒE‚Ìc•
+///ã€Œã¯ã„/ã„ã„ãˆã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…
 #define VS_DEMO_BMPWIN_YESNO_SIZE_Y			(4)
 
 //--------------------------------------------------------------
-//	ƒLƒƒƒ‰ƒNƒ^“WŠJˆÊ’u‚âƒpƒŒƒbƒgˆÊ’u
+//	ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å±•é–‹ä½ç½®ã‚„ãƒ‘ãƒ¬ãƒƒãƒˆä½ç½®
 //--------------------------------------------------------------
-///‰ï˜bƒEƒBƒ“ƒhƒE‚ÌƒLƒƒƒ‰ƒNƒ^“WŠJˆÊ’u
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å±•é–‹ä½ç½®
 #define VS_DEMO_TALKWIN_CGX_OFFSET	(1)
-///‰ï˜bƒEƒBƒ“ƒhƒE‚ÌƒpƒŒƒbƒg”Ô†
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 #define VS_DEMO_TALKWIN_PALNO		(15)
 
-///ƒVƒXƒeƒ€ƒEƒBƒ“ƒhƒE‚ÌƒLƒƒƒ‰ƒNƒ^“WŠJˆÊ’u
+///ã‚·ã‚¹ãƒ†ãƒ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿å±•é–‹ä½ç½®
 #define VS_DEMO_SYSWIN_CGX_OFFSET	(VS_DEMO_TALKWIN_CGX_OFFSET + TALK_WIN_CGX_SIZ)
 #define VS_DEMO_SYSWIN_PALNO		(14)
 
-///ƒVƒXƒeƒ€ƒtƒHƒ“ƒg‚ÌƒpƒŒƒbƒg”Ô†
+///ã‚·ã‚¹ãƒ†ãƒ ãƒ•ã‚©ãƒ³ãƒˆã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
 #define VS_DEMO_SYSFONT_PALNO		(13)
 
-///‰ï˜bƒEƒBƒ“ƒhƒE“à‚ÌƒtƒHƒ“ƒgƒLƒƒƒ‰ƒNƒ^ŠJŽnˆÊ’u
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã®ãƒ•ã‚©ãƒ³ãƒˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿é–‹å§‹ä½ç½®
 #define VS_DEMO_TALK_STR_CGX_START	(VS_DEMO_SYSWIN_CGX_OFFSET + MENU_WIN_CGX_SIZ)
-///u‚Í‚¢/‚¢‚¢‚¦vƒEƒBƒ“ƒhƒE“à‚ÌƒtƒHƒ“ƒgƒLƒƒƒ‰ƒNƒ^ŠJŽnˆÊ’u
+///ã€Œã¯ã„/ã„ã„ãˆã€ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã®ãƒ•ã‚©ãƒ³ãƒˆã‚­ãƒ£ãƒ©ã‚¯ã‚¿é–‹å§‹ä½ç½®
 #define VS_DEMO_YESNO_STR_CGX_START	(VS_DEMO_TALK_STR_CGX_START + (VS_DEMO_BMPWIN_TALK_SIZE_X * VS_DEMO_BMPWIN_TALK_SIZE_Y))
 
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///‰ï˜bƒEƒBƒ“ƒhƒE“à‚Ì•¶Žš—ñƒoƒbƒtƒ@‚ÌƒTƒCƒY
-#define VS_DEMO_TALK_MESSAGE_BUF_SIZE	(2*160)		///<‘½‚ß‚É‚P‚U‚O•¶Žš•ª
+///ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å†…ã®æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+#define VS_DEMO_TALK_MESSAGE_BUF_SIZE	(2*160)		///<å¤šã‚ã«ï¼‘ï¼–ï¼æ–‡å­—åˆ†
 
-///ƒZ[ƒuI—¹Œã‚Ì‘Ò‚¿ŽžŠÔ(ƒZ[ƒuŠ®—¹ƒƒbƒZ[ƒW‚ðŒ©‚¹‚éŽžŠÔ)
+///ã‚»ãƒ¼ãƒ–çµ‚äº†å¾Œã®å¾…ã¡æ™‚é–“(ã‚»ãƒ¼ãƒ–å®Œäº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¦‹ã›ã‚‹æ™‚é–“)
 #define VSD_SAVE_AFTER_WAIT				(30)
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-//u‚Í‚¢/‚¢‚¢‚¦v‘I‘ðƒEƒBƒ“ƒhƒE‚ÌÝ’èƒf[ƒ^
+//ã€Œã¯ã„/ã„ã„ãˆã€é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¨­å®šãƒ‡ãƒ¼ã‚¿
 static const BMPWIN_DAT VsDemoYesNoWinData =
 {
-	GF_BGL_FRAME0_M,				//ƒEƒCƒ“ƒhƒEŽg—pƒtƒŒ[ƒ€
-	25, 13,							//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ãXYÀ•W
-//	25, 19,							//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ãXYÀ•W
-	6, 4,							//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌXYƒTƒCƒY
-	VS_DEMO_SYSFONT_PALNO,			//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[ 
-	VS_DEMO_YESNO_STR_CGX_START,	//ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰—Ìˆæ‚ÌŠJŽnƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+	GF_BGL_FRAME0_M,				//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	25, 13,							//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸ŠXYåº§æ¨™
+//	25, 19,							//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸ŠXYåº§æ¨™
+	6, 4,							//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®XYã‚µã‚¤ã‚º
+	VS_DEMO_SYSFONT_PALNO,			//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ 
+	VS_DEMO_YESNO_STR_CGX_START,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é ˜åŸŸã®é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
 };
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///í“¬˜^‰æ‚ÌŠÄŽ‹ƒ‚[ƒh
+///æˆ¦é—˜éŒ²ç”»ã®ç›£è¦–ãƒ¢ãƒ¼ãƒ‰
 enum{
-	REC_WIN_MODE_STOP,			///<‰½‚à‚µ‚È‚¢
-	REC_WIN_MODE_FIRST_MSG,		///<Å‰‚ÌƒƒbƒZ[ƒW•\Ž¦
-	REC_WIN_MODE_FIRST_KEY,		///<Å‰‚ÌƒƒbƒZ[ƒW•\Ž¦ó‘Ô‚ÅƒL[‘Ò‚¿
-	REC_WIN_MODE_SELECT_MSG,	///<‘I‘ðƒƒbƒZ[ƒW•\Ž¦
-	REC_WIN_MODE_SELECT_KEY,	///<‘I‘ðƒƒbƒZ[ƒW•\Ž¦ó‘Ô‚ÅƒL[‘Ò‚¿
-	REC_WIN_MODE_DECIDE_MSG,	///<Œˆ’èƒƒbƒZ[ƒW•\Ž¦
-	REC_WIN_MODE_DECIDE_END,	///<ƒZ[ƒuŒˆ’è‚Å‘Ò‹@ó‘Ô
-	REC_WIN_MODE_CLEAR,			///<ƒƒbƒZ[ƒW‚ðƒNƒŠƒA‚µ‚Ä‘Ò‚¿ó‘Ô‚É‚·‚é
-	REC_WIN_MODE_CLEAR_END,		///<‘Ò‚¿ó‘Ô
+	REC_WIN_MODE_STOP,			///<ä½•ã‚‚ã—ãªã„
+	REC_WIN_MODE_FIRST_MSG,		///<æœ€åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	REC_WIN_MODE_FIRST_KEY,		///<æœ€åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºçŠ¶æ…‹ã§ã‚­ãƒ¼å¾…ã¡
+	REC_WIN_MODE_SELECT_MSG,	///<é¸æŠžãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	REC_WIN_MODE_SELECT_KEY,	///<é¸æŠžãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºçŠ¶æ…‹ã§ã‚­ãƒ¼å¾…ã¡
+	REC_WIN_MODE_DECIDE_MSG,	///<æ±ºå®šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	REC_WIN_MODE_DECIDE_END,	///<ã‚»ãƒ¼ãƒ–æ±ºå®šã§å¾…æ©ŸçŠ¶æ…‹
+	REC_WIN_MODE_CLEAR,			///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ã‚¯ãƒªã‚¢ã—ã¦å¾…ã¡çŠ¶æ…‹ã«ã™ã‚‹
+	REC_WIN_MODE_CLEAR_END,		///<å¾…ã¡çŠ¶æ…‹
 };
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ^ƒXƒN’Ç‰Á
+ * ã‚¿ã‚¹ã‚¯è¿½åŠ 
  *
- * @param	dat		ƒoƒbƒOƒf[ƒ^
+ * @param	dat		ãƒãƒƒã‚°ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -642,7 +642,7 @@ void VSDemo_TaskAdd( VS_DEMO_DATA * dat )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒ^ƒXƒN
+ * ãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
  *
  * @param	tcb
  * @param	work
@@ -655,7 +655,7 @@ static void VSDemo_Main( TCB_PTR tcb, void * work )
 	VSD_WORK * wk = work;
 
 	switch( wk->seq ){
-	case SEQ_VSD_INIT:		// ‰Šú‰»
+	case SEQ_VSD_INIT:		// åˆæœŸåŒ–
 		wk->seq = VSD_SeqInit( wk );
 		break;
 
@@ -670,20 +670,20 @@ static void VSDemo_Main( TCB_PTR tcb, void * work )
 			}
 		}
 
-		//‘Îí˜^‰æŠÄŽ‹ˆ—
+		//å¯¾æˆ¦éŒ²ç”»ç›£è¦–å‡¦ç†
 		if(wk->dat->mode == VSD_MODE_END){
 			VSD_RecSelectCheck(wk);
 		}
 		
 		break;
 
-	case SEQ_VSD_END:		// I—¹
+	case SEQ_VSD_END:		// çµ‚äº†
 		if( VSD_SeqEnd( tcb, wk ) == TRUE ){
 			return;
 		}
 	}
 
-	if( wk->func_seq != 0 ){	// ‰Šú‰»’†ˆÈŠO
+	if( wk->func_seq != 0 ){	// åˆæœŸåŒ–ä¸­ä»¥å¤–
 		VSD_ObjAnm( wk );
 		CATS_Draw( wk->crp );
 	}
@@ -694,7 +694,7 @@ static void VSDemo_Main( TCB_PTR tcb, void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * VRAMÝ’è
+ * VRAMè¨­å®š
  *
  * @param	none
  *
@@ -704,28 +704,28 @@ static void VSDemo_Main( TCB_PTR tcb, void * work )
 static void VSD_VramSet(void)
 {
 	GF_BGL_DISPVRAM vramSetTable = {
-		GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 	GF_Disp_SetBank( &vramSetTable );
 
-	//VRAMƒNƒŠƒA
+	//VRAMã‚¯ãƒªã‚¢
 	MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬˜^‰æ‚Ì ‚·‚éE‚µ‚È‚¢ ‚ðŠÄŽ‹
+ * @brief   æˆ¦é—˜éŒ²ç”»ã® ã™ã‚‹ãƒ»ã—ãªã„ ã‚’ç›£è¦–
  *
- * @param   wk		ƒ[ƒN
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 static void VSD_RecSelectCheck(VSD_WORK *wk)
@@ -737,11 +737,11 @@ static void VSD_RecSelectCheck(VSD_WORK *wk)
 	switch(wk->rec_win_mode){
 	case REC_WIN_MODE_STOP:
 		break;
-	case REC_WIN_MODE_FIRST_MSG:	//u‘Îí˜^‰æƒZ[ƒu‚µ‚Ü‚·‚©vƒƒbƒZ[ƒW•\Ž¦
+	case REC_WIN_MODE_FIRST_MSG:	//ã€Œå¯¾æˆ¦éŒ²ç”»ã‚»ãƒ¼ãƒ–ã—ã¾ã™ã‹ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		VSD_TalkWindowPut(wk);
-		//•¶Žš—ñ‚ÌŽæ“¾
+		//æ–‡å­—åˆ—ã®å–å¾—
 		MSGMAN_GetString(wk->rec_msgman, msg_taisen_rokuga01_01, wk->rec_talkmsg_buf);
-		//•¶Žš—ñ‚Ì•\Ž¦
+		//æ–‡å­—åˆ—ã®è¡¨ç¤º
 		wk->talk_msgid = GF_STR_PrintSimple(&wk->talk_win, FONT_TALK, wk->rec_talkmsg_buf, 0,0, 
 			MSG_ALLPUT, NULL);
 
@@ -755,52 +755,52 @@ static void VSD_RecSelectCheck(VSD_WORK *wk)
 			}
 		}
 		break;
-	case REC_WIN_MODE_SELECT_MSG:	//u‚³‚«‚Ù‚Ç‚Ì@‚½‚½‚©‚¢‚ð@‚«‚ë‚­‚µ‚Ü‚·‚©HvƒƒbƒZ[ƒW•\Ž¦
-		//•¶Žš—ñ‚ÌŽæ“¾
+	case REC_WIN_MODE_SELECT_MSG:	//ã€Œã•ãã»ã©ã®ã€€ãŸãŸã‹ã„ã‚’ã€€ãã‚ãã—ã¾ã™ã‹ï¼Ÿã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+		//æ–‡å­—åˆ—ã®å–å¾—
 		if(wk->load_result == RECLOAD_RESULT_OK){
 			MSGMAN_GetString(wk->rec_msgman, msg_taisen_rokuga01_09, wk->rec_talkmsg_buf);
 		}
 		else{
 			MSGMAN_GetString(wk->rec_msgman, msg_taisen_rokuga01_02, wk->rec_talkmsg_buf);
 		}
-		//—ÌˆæƒNƒŠƒA•ƒEƒBƒ“ƒhƒE•`‰æ
+		//é ˜åŸŸã‚¯ãƒªã‚¢ï¼†ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 		GF_BGL_BmpWinFill( &wk->sub_talk_win, FBMP_COL_WHITE, 0, 0,
 						VS_DEMO_BMPWIN_TALK_YESNO_SET_SIZE_X * 8, 
 						VS_DEMO_BMPWIN_TALK_YESNO_SET_SIZE_Y * 8 );
 		BmpTalkWinWrite( &wk->sub_talk_win, WINDOW_TRANS_ON,
 						VS_DEMO_TALKWIN_CGX_OFFSET, VS_DEMO_TALKWIN_PALNO );
-		//•¶Žš—ñ‚Ì•\Ž¦
+		//æ–‡å­—åˆ—ã®è¡¨ç¤º
 		wk->talk_msgid = GF_STR_PrintSimple(&wk->sub_talk_win, FONT_TALK, 
 			wk->rec_talkmsg_buf, 0,0, MSG_ALLPUT, NULL);
 
-		//‚Í‚¢E‚¢‚¢‚¦ƒEƒBƒ“ƒhƒE•\Ž¦
+		//ã¯ã„ãƒ»ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
 		wk->yesno_menu = BmpYesNoSelectInitEx(wk->bgl,&VsDemoYesNoWinData,
 			VS_DEMO_SYSWIN_CGX_OFFSET, VS_DEMO_SYSWIN_PALNO, 1, wk->dat->heap);
 
 		GF_BGL_LoadScreenV_Req(wk->bgl, GF_BGL_FRAME0_M);
 		wk->rec_win_mode = REC_WIN_MODE_SELECT_KEY;
 		break;
-	case REC_WIN_MODE_SELECT_KEY:	//u‚Í‚¢/‚¢‚¢‚¦v‘I‘ð‘Ò‚¿
+	case REC_WIN_MODE_SELECT_KEY:	//ã€Œã¯ã„/ã„ã„ãˆã€é¸æŠžå¾…ã¡
 		{
 			u32 list_result = BmpYesNoSelectMain(wk->yesno_menu, wk->dat->heap);
 
 			switch(list_result){
-			case 0:		//u‚Í‚¢v
+			case 0:		//ã€Œã¯ã„ã€
 				wk->rec_win_mode = REC_WIN_MODE_DECIDE_MSG;
 				wk->yesno_menu = NULL;
 				break;
-			case BMPMENU_CANCEL:	//u‚¢‚¢‚¦v
+			case BMPMENU_CANCEL:	//ã€Œã„ã„ãˆã€
 				wk->rec_win_mode = REC_WIN_MODE_FIRST_MSG;
 				wk->yesno_menu = NULL;
 				break;
 			}
 		}
 		break;
-	case REC_WIN_MODE_DECIDE_MSG:	//u‚µ‚Î‚ç‚­@‚¨‚Ü‚¿‚­‚¾‚³‚¢vƒƒbƒZ[ƒW•\Ž¦
+	case REC_WIN_MODE_DECIDE_MSG:	//ã€Œã—ã°ã‚‰ãã€€ãŠã¾ã¡ãã ã•ã„ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		VSD_TalkWindowPut(wk);
-		//•¶Žš—ñ‚ÌŽæ“¾
+		//æ–‡å­—åˆ—ã®å–å¾—
 		MSGMAN_GetString(wk->rec_msgman, msg_taisen_rokuga01_05, wk->rec_talkmsg_buf);
-		//•¶Žš—ñ‚Ì•\Ž¦
+		//æ–‡å­—åˆ—ã®è¡¨ç¤º
 		wk->talk_msgid = GF_STR_PrintSimple(&wk->talk_win, FONT_TALK, wk->rec_talkmsg_buf, 0,0, 
 			MSG_ALLPUT, NULL);
 
@@ -827,19 +827,19 @@ static void VSD_RecSelectCheck(VSD_WORK *wk)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰Šú‰»ƒV[ƒPƒ“ƒX
+ * åˆæœŸåŒ–ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆÚs‚·‚éƒV[ƒPƒ“ƒX
+ * @return	ç§»è¡Œã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqInit( VSD_WORK * wk )
 {
 	G2_BlendNone();
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();				// HBlank’âŽ~
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();				// HBlankåœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -885,11 +885,11 @@ static u8 VSD_SeqInit( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŠm”F‰æ–Ê‚Ì‰Šú‰»
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šç¢ºèªç”»é¢ã®åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqPokeCheckInit( VSD_WORK * wk )
@@ -912,7 +912,7 @@ static u8 VSD_SeqPokeCheckInit( VSD_WORK * wk )
 		VSD_PokeCheckBgCopy( wk );
 		WirelessIconEasy();
 		APP_WipeStart( APP_WIPE_IN, wk->dat->heap );
-		sys_VBlankFuncChange( VSD_VsVBlank, wk );	// VBlankƒZƒbƒg
+		sys_VBlankFuncChange( VSD_VsVBlank, wk );	// VBlankã‚»ãƒƒãƒˆ
 		return VSD_FUNC_NEXT;
 	}
 	wk->cnt++;
@@ -921,11 +921,11 @@ static u8 VSD_SeqPokeCheckInit( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FVS‰æ–Ê‚Ì‰Šú‰»
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šVSç”»é¢ã®åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqVsStartInit( VSD_WORK * wk )
@@ -944,7 +944,7 @@ static u8 VSD_SeqVsStartInit( VSD_WORK * wk )
 		break;
 	case 2:
 		APP_WipeStart( APP_WIPE_IN, wk->dat->heap );
-		sys_VBlankFuncChange( VSD_VsVBlank, wk );	// VBlankƒZƒbƒg
+		sys_VBlankFuncChange( VSD_VsVBlank, wk );	// VBlankã‚»ãƒƒãƒˆ
 		wk->cnt = 0;
 		wk->shake_x = START_SHAKE_X;
 		wk->shake_y = START_SHAKE_Y;
@@ -957,11 +957,11 @@ static u8 VSD_SeqVsStartInit( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŸ”s‰æ–Ê‚Ì‰Šú‰»
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šå‹æ•—ç”»é¢ã®åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqVsEndInit( VSD_WORK * wk )
@@ -972,7 +972,7 @@ static u8 VSD_SeqVsEndInit( VSD_WORK * wk )
 		VSD_VsBgGraphicSet( wk );
 		VSD_VsMessageWindowSet(wk);
 		VSD_VsAlphaSet();
-		{//Šù‚É˜^‰æƒf[ƒ^‚ª‘¶Ý‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
+		{//æ—¢ã«éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹
 			BOOL rec_load_ret;
 			LOAD_RESULT load_result;
 			
@@ -980,7 +980,7 @@ static u8 VSD_SeqVsEndInit( VSD_WORK * wk )
 				wk->dat->bp->savedata, wk->dat->heap, &load_result, LOADDATA_MYREC);
 			wk->load_result = load_result;
 		}
-		{//DP‚ª¬‚´‚Á‚Ä‚¢‚é‚©
+		{//DPãŒæ··ã–ã£ã¦ã„ã‚‹ã‹
 			int i;
 			MYSTATUS *myst;
 			
@@ -1005,18 +1005,18 @@ static u8 VSD_SeqVsEndInit( VSD_WORK * wk )
 		break;
 	case 2:
 		APP_WipeStart( APP_WIPE_IN, wk->dat->heap );
-		sys_VBlankFuncChange( VSD_VsVBlank, wk );	// VBlankƒZƒbƒg
+		sys_VBlankFuncChange( VSD_VsVBlank, wk );	// VBlankã‚»ãƒƒãƒˆ
 		wk->cnt = 0;
 		wk->shake_x = END_SHAKE_X;
 		wk->shake_y = END_SHAKE_Y;
 		wk->scr_spd = END_SCROLL_SPEED;
 
-		//‘Îí˜^‰æŠm”FƒƒbƒZ[ƒW—p‚ÌƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+		//å¯¾æˆ¦éŒ²ç”»ç¢ºèªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 		wk->rec_msgman = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, 
 			NARC_msg_taisen_rokuga_dat, wk->dat->heap);
 		wk->rec_wordset = WORDSET_Create(wk->dat->heap);
 		wk->rec_talkmsg_buf = STRBUF_Create(VS_DEMO_TALK_MESSAGE_BUF_SIZE, wk->dat->heap);
-		//‘Îí˜^‰æŠÄŽ‹ŠÖ”‚Ì“®ìŠJŽn
+		//å¯¾æˆ¦éŒ²ç”»ç›£è¦–é–¢æ•°ã®å‹•ä½œé–‹å§‹
 		wk->rec_win_mode = REC_WIN_MODE_FIRST_MSG;
 
 		return VSD_FUNC_NEXT;
@@ -1028,11 +1028,11 @@ static u8 VSD_SeqVsEndInit( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FƒEƒFƒCƒg
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šã‚¦ã‚§ã‚¤ãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqWait( VSD_WORK * wk )
@@ -1049,11 +1049,11 @@ static u8 VSD_SeqWait( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FVS‰æ–ÊEŠm”F‰æ–Ê‚ÌƒXƒNƒ[ƒ‹ƒCƒ“ˆ—
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šVSç”»é¢ãƒ»ç¢ºèªç”»é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¤ãƒ³å‡¦ç†
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqScrInMain( VSD_WORK * wk )
@@ -1099,11 +1099,11 @@ static u8 VSD_SeqScrInMain( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FVS‰æ–ÊEŠm”F‰æ–Ê‚Ì—h‚ç‚·ˆ—
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šVSç”»é¢ãƒ»ç¢ºèªç”»é¢ã®æºã‚‰ã™å‡¦ç†
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqShake( VSD_WORK * wk )
@@ -1177,11 +1177,11 @@ static u8 VSD_SeqShake( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FVS‰æ–Ê‚ÌƒXƒNƒ[ƒ‹ƒAƒEƒgˆ—
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šVSç”»é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã‚¢ã‚¦ãƒˆå‡¦ç†
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqScrOut( VSD_WORK * wk )
@@ -1221,11 +1221,11 @@ static u8 VSD_SeqScrOut( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŸ”s‰æ–Ê‚Ì—h‚ç‚µ‚½Œã‚ÌƒEƒFƒCƒgÝ’è
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šå‹æ•—ç”»é¢ã®æºã‚‰ã—ãŸå¾Œã®ã‚¦ã‚§ã‚¤ãƒˆè¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqShakeWaitSet( VSD_WORK * wk )
@@ -1236,11 +1236,11 @@ static u8 VSD_SeqShakeWaitSet( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŸ”s‰æ–Ê‚ÌƒvƒŒ[ƒg‰Ÿ‚µo‚µ•ûŒüÝ’è
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šå‹æ•—ç”»é¢ã®ãƒ—ãƒ¬ãƒ¼ãƒˆæŠ¼ã—å‡ºã—æ–¹å‘è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqPushCheck( VSD_WORK * wk )
@@ -1263,11 +1263,11 @@ static u8 VSD_SeqPushCheck( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŸ”s‰æ–Ê‚ÌƒvƒŒ[ƒg‰Ÿ‚µo‚µˆ—i‘‡j
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šå‹æ•—ç”»é¢ã®ãƒ—ãƒ¬ãƒ¼ãƒˆæŠ¼ã—å‡ºã—å‡¦ç†ï¼ˆç·åˆï¼‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqPush( VSD_WORK * wk )
@@ -1280,11 +1280,11 @@ static u8 VSD_SeqPush( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŸ”s‰æ–Ê‚ÌƒvƒŒ[ƒg‰Ÿ‚µo‚µˆ—i¶‚ª‰Ÿ‚·j
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šå‹æ•—ç”»é¢ã®ãƒ—ãƒ¬ãƒ¼ãƒˆæŠ¼ã—å‡ºã—å‡¦ç†ï¼ˆå·¦ãŒæŠ¼ã™ï¼‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqLeftPush( VSD_WORK * wk )
@@ -1316,11 +1316,11 @@ static u8 VSD_SeqLeftPush( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŸ”s‰æ–Ê‚ÌƒvƒŒ[ƒg‰Ÿ‚µo‚µˆ—i‰E‚ª‰Ÿ‚·j
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šå‹æ•—ç”»é¢ã®ãƒ—ãƒ¬ãƒ¼ãƒˆæŠ¼ã—å‡ºã—å‡¦ç†ï¼ˆå³ãŒæŠ¼ã™ï¼‰
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqRightPush( VSD_WORK * wk )
@@ -1352,11 +1352,11 @@ static u8 VSD_SeqRightPush( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŸ”s‰æ–Ê‚ÌƒvƒŒ[ƒg‰Ÿ‚µo‚µŒã‚ÌƒEƒFƒCƒgÝ’è
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šå‹æ•—ç”»é¢ã®ãƒ—ãƒ¬ãƒ¼ãƒˆæŠ¼ã—å‡ºã—å¾Œã®ã‚¦ã‚§ã‚¤ãƒˆè¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqPuchWaitSet( VSD_WORK * wk )
@@ -1367,11 +1367,11 @@ static u8 VSD_SeqPuchWaitSet( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŸ”s‰æ–Ê‚ÌŸ”sƒEƒBƒ“ƒhƒEƒI[ƒvƒ“
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šå‹æ•—ç”»é¢ã®å‹æ•—ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ¼ãƒ—ãƒ³
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqResultOpen( VSD_WORK * wk )
@@ -1404,11 +1404,11 @@ static u8 VSD_SeqResultOpen( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŸ”s‰æ–Ê‚ÌŸ”s•\Ž¦
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šå‹æ•—ç”»é¢ã®å‹æ•—è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqResultPut( VSD_WORK * wk )
@@ -1424,11 +1424,11 @@ static u8 VSD_SeqResultPut( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŸ”s‰æ–Ê‚Ìˆø‚«•ª‚¯•\Ž¦
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šå‹æ•—ç”»é¢ã®å¼•ãåˆ†ã‘è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqDrawPut( VSD_WORK * wk )
@@ -1442,17 +1442,17 @@ static u8 VSD_SeqDrawPut( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—Fí“¬˜^‰æuƒZ[ƒu‚µ‚Ü‚·‚©Hv
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šæˆ¦é—˜éŒ²ç”»ã€Œã‚»ãƒ¼ãƒ–ã—ã¾ã™ã‹ï¼Ÿã€
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqRecSaveSelect( VSD_WORK * wk )
 {
 	if(VSD_RecModeCheck(wk) == FALSE){
-		//ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^‚ðŽ‚Á‚Ä‚¢‚È‚¢‚È‚ç‚ÎƒXƒLƒbƒv
+		//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿ã‚’æŒã£ã¦ã„ãªã„ãªã‚‰ã°ã‚¹ã‚­ãƒƒãƒ—
 		wk->wait = 1;
 		return VSD_FUNC_NEXT;
 	}
@@ -1474,25 +1474,25 @@ static u8 VSD_SeqRecSaveSelect( VSD_WORK * wk )
 	}
 	
 	switch(wk->cnt){
-	case 0:	//ƒZ[ƒuŽÀs’†ƒƒbƒZ[ƒW•\Ž¦
+	case 0:	//ã‚»ãƒ¼ãƒ–å®Ÿè¡Œä¸­ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 		VSD_TalkWindowPut(wk);
-		//•¶Žš—ñ‚ÌŽæ“¾
+		//æ–‡å­—åˆ—ã®å–å¾—
 		MSGMAN_GetString(wk->rec_msgman, msg_taisen_rokuga01_08, wk->rec_talkmsg_buf);
-		//•¶Žš—ñ‚Ì•\Ž¦
+		//æ–‡å­—åˆ—ã®è¡¨ç¤º
 		wk->talk_msgid = GF_STR_PrintSimple(&wk->talk_win, FONT_TALK, wk->rec_talkmsg_buf, 0,0, 
 			MSG_ALLPUT, NULL);
 		VSD_TimeIconAdd(wk);
 		
 		wk->cnt++;
 		break;
-	case 1:	//ƒZ[ƒuŽÀs
+	case 1:	//ã‚»ãƒ¼ãƒ–å®Ÿè¡Œ
 		{
 			SAVE_RESULT save_result;
 			
 			save_result = BattleRec_Save(wk->dat->bp->savedata, wk->dat->rec_mode, 0, 
 				LOADDATA_MYREC, &wk->save_seq0, &wk->save_seq1);
 
-			//uƒZ[ƒu‚µ‚Ü‚µ‚½Iv or uƒZ[ƒuŽ¸”sIv
+			//ã€Œã‚»ãƒ¼ãƒ–ã—ã¾ã—ãŸï¼ã€ or ã€Œã‚»ãƒ¼ãƒ–å¤±æ•—ï¼ã€
 			if(save_result == SAVE_RESULT_OK){
 				MSGMAN_GetString(wk->rec_msgman, msg_taisen_rokuga01_06, wk->rec_talkmsg_buf);
 				Snd_SePlay(SEQ_SE_DP_SAVE);
@@ -1507,7 +1507,7 @@ static u8 VSD_SeqRecSaveSelect( VSD_WORK * wk )
 			VSD_TimeIconDelete(wk);
 			GF_BGL_BmpWinFill( &wk->talk_win, FBMP_COL_WHITE, 0, 0,
 				VS_DEMO_BMPWIN_TALK_SIZE_X * 8, VS_DEMO_BMPWIN_TALK_SIZE_Y * 8 );
-			//•¶Žš—ñ‚Ì•\Ž¦
+			//æ–‡å­—åˆ—ã®è¡¨ç¤º
 			wk->talk_msgid = GF_STR_PrintSimple(&wk->talk_win, FONT_TALK, 
 				wk->rec_talkmsg_buf, 0,0, MSG_ALLPUT, NULL);
 		}
@@ -1527,7 +1527,7 @@ static u8 VSD_SeqRecSaveSelect( VSD_WORK * wk )
 		GF_BGL_LoadScreenV_Req(wk->bgl, GF_BGL_FRAME0_M);
 		
 		wk->cnt = 0;
-		wk->wait = RESULT_END_WAIT / 3;	//ƒZ[ƒu‚µ‚Ä‚¢‚½•ªAƒEƒFƒCƒg’Z‚ß‚É‚·‚é
+		wk->wait = RESULT_END_WAIT / 3;	//ã‚»ãƒ¼ãƒ–ã—ã¦ã„ãŸåˆ†ã€ã‚¦ã‚§ã‚¤ãƒˆçŸ­ã‚ã«ã™ã‚‹
 		return VSD_FUNC_NEXT;
 	}
 	GF_BGL_LoadScreenV_Req(wk->bgl, GF_BGL_FRAME0_M);
@@ -1536,11 +1536,11 @@ static u8 VSD_SeqRecSaveSelect( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŸ”s‰æ–ÊI—¹Žž‚Ì“¯ŠúŽæ‚è
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šå‹æ•—ç”»é¢çµ‚äº†æ™‚ã®åŒæœŸå–ã‚Š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqTimingWait( VSD_WORK * wk )
@@ -1548,9 +1548,9 @@ static u8 VSD_SeqTimingWait( VSD_WORK * wk )
 	switch(wk->cnt){
 	case 0:
 		VSD_TalkWindowPut(wk);
-		//•¶Žš—ñ‚ÌŽæ“¾
+		//æ–‡å­—åˆ—ã®å–å¾—
 		MSGMAN_GetString(wk->rec_msgman, msg_taisen_rokuga01_10, wk->rec_talkmsg_buf);
-		//•¶Žš—ñ‚Ì•\Ž¦
+		//æ–‡å­—åˆ—ã®è¡¨ç¤º
 		wk->talk_msgid = GF_STR_PrintSimple(&wk->talk_win, FONT_TALK, wk->rec_talkmsg_buf, 0,0, 
 			MSG_ALLPUT, NULL);
 
@@ -1562,7 +1562,7 @@ static u8 VSD_SeqTimingWait( VSD_WORK * wk )
 
 		wk->cnt++;
 		break;
-	case 1:	//ƒZ[ƒuŽÀs
+	case 1:	//ã‚»ãƒ¼ãƒ–å®Ÿè¡Œ
 		if(CommIsTimingSync( COMM_BATTLE_WIN_LOSE_WAIT_NUM )){
 			wk->cnt = 0;
 			return VSD_FUNC_NEXT;
@@ -1578,11 +1578,11 @@ static u8 VSD_SeqTimingWait( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŸ”s‰æ–Ê‚ÌƒpƒŒƒbƒg•ÏX
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šå‹æ•—ç”»é¢ã®ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqPlatePalChg( VSD_WORK * wk )
@@ -1616,11 +1616,11 @@ static u8 VSD_SeqPlatePalChg( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FŠm”F‰æ–Ê‚Ì‰ŠúˆÚ“®ˆ—
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šç¢ºèªç”»é¢ã®åˆæœŸç§»å‹•å‡¦ç†
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_PokeCheckMove( VSD_WORK * wk )
@@ -1644,11 +1644,11 @@ static u8 VSD_PokeCheckMove( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FI—¹ƒZƒbƒg
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šçµ‚äº†ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqEndSet( VSD_WORK * wk )
@@ -1660,18 +1660,18 @@ static u8 VSD_SeqEndSet( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ˆ—FI—¹ˆ—
+ * ãƒ¡ã‚¤ãƒ³å‡¦ç†ï¼šçµ‚äº†å‡¦ç†
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @return	ˆ—ƒRƒ}ƒ“ƒh
+ * @return	å‡¦ç†ã‚³ãƒžãƒ³ãƒ‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_SeqEnd( TCB_PTR tcb, VSD_WORK * wk )
 {
 	if( WIPE_SYS_EndCheck() == FALSE ){ return FALSE; }
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
 
 	VSD_TimeIconDelete(wk);
 	
@@ -1700,12 +1700,12 @@ static u8 VSD_SeqEnd( TCB_PTR tcb, VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * —§‚¿ˆÊ’uŽæ“¾
+ * ç«‹ã¡ä½ç½®å–å¾—
  *
  * @param	none
  *
- * @retval	"TRUE = ¶"
- * @retval	"FALSE = ‰E"
+ * @retval	"TRUE = å·¦"
+ * @retval	"FALSE = å³"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL VSD_GetStandID(void)
@@ -1723,9 +1723,9 @@ static BOOL VSD_GetStandID(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ[‰Šú‰»
+ * ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1761,13 +1761,13 @@ static void VSD_ClactResManInit( VSD_WORK * wk, TCATS_RESOURCE_NUM_LIST * crnl, 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[’Ç‰ÁiŒÂ•Êj
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ï¼ˆå€‹åˆ¥ï¼‰
  *
- * @param	wk		ƒ[ƒN
- * @param	id		’Ç‰Á‚·‚éƒZƒ‹ƒAƒNƒ^[‚ÌID
- * @param	pri		BG‚Æ‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	id		è¿½åŠ ã™ã‚‹ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ID
+ * @param	pri		BGã¨ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  *
- * @return	ƒZƒ‹ƒAƒNƒ^[ƒf[ƒ^
+ * @return	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static CATS_ACT_PTR VSD_ClactAdd( VSD_WORK * wk, const u32 * id )
@@ -1796,9 +1796,9 @@ static CATS_ACT_PTR VSD_ClactAdd( VSD_WORK * wk, const u32 * id )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[‰ð•ú
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è§£æ”¾
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1816,9 +1816,9 @@ static void VSD_ObjFree( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[ƒAƒjƒ
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1834,14 +1834,14 @@ static void VSD_ObjAnm( VSD_WORK * wk )
 
 
 //============================================================================================
-//	VS‰æ–Ê/Ÿ”s‰æ–Ê
+//	VSç”»é¢/å‹æ•—ç”»é¢
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * VBlankŠÖ”
+ * VBlanké–¢æ•°
  *
- * @param	work	ƒ[ƒN
+ * @param	work	ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1853,8 +1853,8 @@ static void VSD_VsVBlank( void * work )
 	GF_BGL_VBlankFunc( wk->bgl );
 	PaletteFadeTrans( wk->pfd );
 
-	// ƒZƒ‹ƒAƒNƒ^[
-	DoVramTransferManager();	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[ŽÀs
+	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼
+	DoVramTransferManager();	// Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	CATS_RenderOamTrans();
 	
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
@@ -1862,10 +1862,10 @@ static void VSD_VsVBlank( void * work )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰Šú‰»
+ * BGåˆæœŸåŒ–
  *
- * @param	wk	ƒ[ƒN
- * @param   end_flag	TRUE:‘ÎíŒã‚Ì‰æ–Ê@FALSE:‘Îí‘O‚Ì‰æ–Ê
+ * @param	wk	ãƒ¯ãƒ¼ã‚¯
+ * @param   end_flag	TRUE:å¯¾æˆ¦å¾Œã®ç”»é¢ã€€FALSE:å¯¾æˆ¦å‰ã®ç”»é¢
  *
  * @return	none
  */
@@ -1919,7 +1919,7 @@ static void VSD_3DBgInit( VSD_WORK * wk, GXBG0As bg_2d3d, int end_flag )
 	}
 
 	if(bg_2d3d == GX_BG0_AS_2D){
-		//ƒEƒBƒ“ƒhƒE–Ê(u‚±‚Ìí“¬‚ð‹L˜^‚µ‚Ü‚·‚©Hv)
+		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢(ã€Œã“ã®æˆ¦é—˜ã‚’è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€)
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01,
@@ -1939,9 +1939,9 @@ static void VSD_3DBgInit( VSD_WORK * wk, GXBG0As bg_2d3d, int end_flag )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPíœ
+ * BMPå‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1958,9 +1958,9 @@ static void VSD_VsBmpExit( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒíœ
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -1980,9 +1980,9 @@ static void VSD_VsMsgmanExit( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ð•ú
+ * BGè§£æ”¾
  *
- * @param	wk	ƒ[ƒN
+ * @param	wk	ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2005,9 +2005,9 @@ static void VSD_3DBgExit( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+ * BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
  *
- * @param	wk	ƒ[ƒN
+ * @param	wk	ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2042,9 +2042,9 @@ static void VSD_VsBgGraphicSet( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE“o˜^
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç™»éŒ²
  *
- * @param	wk	ƒ[ƒN
+ * @param	wk	ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2055,22 +2055,22 @@ static void VSD_VsMessageWindowSet( VSD_WORK * wk )
 
 	GF_ASSERT(wk->bg_2d3d == GX_BG0_AS_2D && wk->dat != NULL && wk->dat->bp != NULL && wk->dat->bp->config != NULL);
 	
-	//‰ï˜bƒEƒBƒ“ƒhƒE
+	//ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	win_type = CONFIG_GetWindowType(wk->dat->bp->config);
 	TalkWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, VS_DEMO_TALKWIN_CGX_OFFSET, 
 		VS_DEMO_TALKWIN_PALNO, win_type, wk->dat->heap);
 	PaletteWorkSet_VramCopy( wk->pfd, FADE_MAIN_BG, VS_DEMO_TALKWIN_PALNO * 16, 0x20*1 );
 
-	//ƒƒjƒ…[ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰•ƒpƒŒƒbƒg“Ç‚Ýž‚ÝiƒEƒCƒ“ƒhƒEŠO‘¤j
+	//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å¤–å´ï¼‰
 	MenuWinGraphicSet(wk->bgl, GF_BGL_FRAME0_M, 
 		VS_DEMO_SYSWIN_CGX_OFFSET, VS_DEMO_SYSWIN_PALNO, MENU_TYPE_SYSTEM, wk->dat->heap);
 	PaletteWorkSet_VramCopy(wk->pfd, FADE_MAIN_BG, VS_DEMO_SYSWIN_PALNO * 16, 0x20*1 );
 
-	//ƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚ÝiƒVƒXƒeƒ€j
+	//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚·ã‚¹ãƒ†ãƒ ï¼‰
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, VS_DEMO_SYSFONT_PALNO * 0x20, wk->dat->heap);
 	PaletteWorkSet_VramCopy(wk->pfd, FADE_MAIN_BG, VS_DEMO_SYSFONT_PALNO * 16, 0x20*1 );
 	
-	//BMPƒEƒBƒ“ƒhƒE’Ç‰Á
+	//BMPã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¿½åŠ 
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->talk_win, GF_BGL_FRAME0_M, 
 		VS_DEMO_BMPWIN_TALK_POS_X, VS_DEMO_BMPWIN_TALK_POS_Y,
 		VS_DEMO_BMPWIN_TALK_SIZE_X, VS_DEMO_BMPWIN_TALK_SIZE_Y,
@@ -2083,7 +2083,7 @@ static void VSD_VsMessageWindowSet( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ”¼“§–¾Ý’è
+ * åŠé€æ˜Žè¨­å®š
  *
  * @param	none
  *
@@ -2102,9 +2102,9 @@ static void VSD_VsAlphaSet(void)
 
 //--------------------------------------------------------------------------------------------
 /**
- * VS‰æ–ÊFOBJ’Ç‰Á
+ * VSç”»é¢ï¼šOBJè¿½åŠ 
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2140,9 +2140,9 @@ static void VSD_VsObjMake( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{[ƒ‹OBJƒŠƒ\[ƒXÝ’è
+ * ãƒœãƒ¼ãƒ«OBJãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2175,12 +2175,12 @@ static void VSD_VsBallObjMake( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{[ƒ‹OBJˆÚ“®
+ * ãƒœãƒ¼ãƒ«OBJç§»å‹•
  *
- * @param	wk		ƒ[ƒN
- * @param	flg		0=Ž©•ª‘¤‘O”¼, 1=Ž©•ª‘¤Œã”¼, 2=“G‘¤‘O”¼, 3=“G‘¤Œã”¼
- * @param	px		XˆÚ“®’l
- * @param	py		YˆÚ“®’l
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	flg		0=è‡ªåˆ†å´å‰åŠ, 1=è‡ªåˆ†å´å¾ŒåŠ, 2=æ•µå´å‰åŠ, 3=æ•µå´å¾ŒåŠ
+ * @param	px		Xç§»å‹•å€¤
+ * @param	py		Yç§»å‹•å€¤
  *
  * @return	none
  */
@@ -2199,12 +2199,12 @@ static void VSD_VsBallObjMove( VSD_WORK * wk, u8 flg, s16 px, s16 py )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{[ƒ‹ƒAƒjƒØ‚è‘Ö‚¦ƒƒCƒ“
+ * ãƒœãƒ¼ãƒ«ã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		ƒ[ƒN
- * @param	party	ƒ|ƒPƒp[ƒeƒB
- * @param	max		ƒ{[ƒ‹‚Ì”
- * @param	cla_id	ƒZƒ‹ƒAƒNƒ^[‚ÌID
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	party	ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£
+ * @param	max		ãƒœãƒ¼ãƒ«ã®æ•°
+ * @param	cla_id	ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã®ID
  *
  * @return	none
  */
@@ -2245,9 +2245,9 @@ static void VSD_VsPartyBallAnmChg( VSD_WORK * wk, POKEPARTY * party, u16 max, u1
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{[ƒ‹ƒAƒjƒØ‚è‘Ö‚¦
+ * ãƒœãƒ¼ãƒ«ã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2269,11 +2269,11 @@ static void VSD_VsBallAnmChg( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒgOAMì¬iŒÂ•Êj
+ * ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆï¼ˆå€‹åˆ¥ï¼‰
  *
- * @param	wk		ƒ[ƒN
- * @param	id		ì¬ID
- * @param	str		•¶Žš—ñ
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	id		ä½œæˆID
+ * @param	str		æ–‡å­—åˆ—
  *
  * @return	none
  */
@@ -2306,14 +2306,14 @@ static void VSD_VsFontOamMakeMain( VSD_WORK * wk, u32 id, STRBUF * str )
 	wk->fop[id] = FONTOAM_Init( &init );
 	FONTOAM_SetPaletteNo( wk->fop[id], 0 );
 	
-	GF_BGL_BmpWinDel( win );	// ‰ð•úˆ—
+	GF_BGL_BmpWinDel( win );	// è§£æ”¾å‡¦ç†
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒgOAMì¬
+ * ãƒ•ã‚©ãƒ³ãƒˆOAMä½œæˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2329,8 +2329,8 @@ static void VSD_VsFontOamMake( VSD_WORK * wk )
 		VSD_VsFontOamMakeMain( wk, 1, wk->dat->name[VSD_PARTY_LEFT2] );
 		VSD_VsFontOamMakeMain( wk, 3, wk->dat->name[VSD_PARTY_RIGHT2] );
 	}else{
-		VSD_VsFontOamMakeMain( wk, 1, wk->dat->name[VSD_PARTY_LEFT1] );		// ƒ_ƒ~[
-		VSD_VsFontOamMakeMain( wk, 3, wk->dat->name[VSD_PARTY_RIGHT1] );	// ƒ_ƒ~[
+		VSD_VsFontOamMakeMain( wk, 1, wk->dat->name[VSD_PARTY_LEFT1] );		// ãƒ€ãƒŸãƒ¼
+		VSD_VsFontOamMakeMain( wk, 3, wk->dat->name[VSD_PARTY_RIGHT1] );	// ãƒ€ãƒŸãƒ¼
 		FONTOAM_SetDrawFlag( wk->fop[1], FALSE );
 		FONTOAM_SetDrawFlag( wk->fop[3], FALSE );
 	}
@@ -2338,12 +2338,12 @@ static void VSD_VsFontOamMake( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒgOAMˆÚ“®
+ * ãƒ•ã‚©ãƒ³ãƒˆOAMç§»å‹•
  *
- * @param	wk		ƒ[ƒN
- * @param	id		0=Ž©•ª‘¤‘O”¼, 1=Ž©•ª‘¤Œã”¼, 2=“G‘¤‘O”¼, 3=“G‘¤Œã”¼
- * @param	px		XˆÚ“®’l
- * @param	py		YˆÚ“®’l
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	id		0=è‡ªåˆ†å´å‰åŠ, 1=è‡ªåˆ†å´å¾ŒåŠ, 2=æ•µå´å‰åŠ, 3=æ•µå´å¾ŒåŠ
+ * @param	px		Xç§»å‹•å€¤
+ * @param	py		Yç§»å‹•å€¤
  *
  * @return	none
  */
@@ -2355,9 +2355,9 @@ static void VSD_VsFontOamMove( VSD_WORK * wk, u32 id, s16 x, s16 y )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒHƒ“ƒgOAMíœ
+ * ãƒ•ã‚©ãƒ³ãƒˆOAMå‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2376,11 +2376,11 @@ static void VSD_VsFontOamDelete( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJ‚ð‰ŠúˆÊ’u‚ÖˆÚ“®
+ * OBJã‚’åˆæœŸä½ç½®ã¸ç§»å‹•
  *
- * @param	wk		ƒ[ƒN
- * @param   offset_left_y	ƒIƒtƒZƒbƒgY(¶‘¤)
- * @param   offset_right_y	ƒIƒtƒZƒbƒgY(‰E‘¤)
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param   offset_left_y	ã‚ªãƒ•ã‚»ãƒƒãƒˆY(å·¦å´)
+ * @param   offset_right_y	ã‚ªãƒ•ã‚»ãƒƒãƒˆY(å³å´)
  *
  * @return	none
  */
@@ -2424,9 +2424,9 @@ static void VSD_VsObjGlobalPosSet( VSD_WORK * wk, int offset_left_y, int offset_
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ÿ”s‰æ–ÊFOBJ’Ç‰Á
+ * å‹æ•—ç”»é¢ï¼šOBJè¿½åŠ 
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2467,9 +2467,9 @@ static void VSD_VsEndObjMake( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ÿ”sOBJƒŠƒ\[ƒXÝ’è
+ * å‹æ•—OBJãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2496,9 +2496,9 @@ static void VSD_VsResultObjMake( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * Ÿ”sOBJ•\Ž¦ˆÊ’uƒZƒbƒg
+ * å‹æ•—OBJè¡¨ç¤ºä½ç½®ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2558,14 +2558,14 @@ static void VSD_VsResultMove( VSD_WORK * wk )
 
 
 //============================================================================================
-//	ƒp[ƒeƒBƒNƒ‹
+//	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒp[ƒeƒBƒNƒ‹‰Šú‰»
+ * ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2581,22 +2581,22 @@ static void VSD_VsParticleInit( VSD_WORK * wk )
 
 	G3X_AlphaBlend( TRUE );
 
-	// ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	Particle_SystemWorkInit();
 
-	// ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ì¬
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	wk->ptm = sys_AllocMemory( wk->dat->heap, PARTICLE_LIB_HEAP_SIZE );
 	wk->ptc = Particle_SystemCreate(
 				sAllocTex, sAllocTexPalette, wk->ptm, PARTICLE_LIB_HEAP_SIZE, TRUE, wk->dat->heap );
 	camera  = Particle_GetCameraPtr( wk->ptc );
 	GFC_SetCameraClip( BP_NEAR, BP_FAR, camera );
 
-	// ƒŠƒ\[ƒX“Ç‚Ýž‚Ý•“o˜^
+	// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿ï¼†ç™»éŒ²
 	res = Particle_ArcResourceLoad(
 			ARC_PARTICLE_DATA, NARC_particledata_vs_battle_spa, wk->dat->heap );
 	Particle_ResourceSet( wk->ptc, res, PTC_AUTOTEX_LNK | PTC_AUTOPLTT_LNK, TRUE );
 
-	// ƒp[ƒeƒBƒNƒ‹¶¬
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç”Ÿæˆ
 	Particle_CreateEmitterCallback( wk->ptc, VS_BATTLE_T_BUTTLE01, NULL, NULL );
 	Particle_CreateEmitterCallback( wk->ptc, VS_BATTLE_T_BUTTLE01A, NULL, NULL );
 	Particle_CreateEmitterCallback( wk->ptc, VS_BATTLE_T_BUTTLE01B, NULL, NULL );
@@ -2606,9 +2606,9 @@ static void VSD_VsParticleInit( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒp[ƒeƒBƒNƒ‹•`‰æ
+ * ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æç”»
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2624,17 +2624,17 @@ static int VSD_VsParticleMain( VSD_WORK * wk )
 
 	if( Particle_GetEmitterNum( wk->ptc ) == 0 ){ return FALSE; }
 
-	Particle_DrawAll();		// ƒp[ƒeƒBƒNƒ‹•`‰æ
-	Particle_CalcAll();		// ƒp[ƒeƒBƒNƒ‹ŒvŽZ
+	Particle_DrawAll();		// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æç”»
+	Particle_CalcAll();		// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«è¨ˆç®—
 
 	return TRUE;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒp[ƒeƒBƒNƒ‹íœ
+ * ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«å‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2651,12 +2651,12 @@ static void VSD_VsParticleDelete( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒVRAMƒAƒhƒŒƒX‚ð•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param   size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param   is4x4comp	4x4ˆ³kƒeƒNƒXƒ`ƒƒ‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO(TRUE=ˆ³kƒeƒNƒXƒ`ƒƒ)
+ * @param   size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param   is4x4comp	4x4åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°(TRUE=åœ§ç¸®ãƒ†ã‚¯ã‚¹ãƒãƒ£)
  *
- * @return  “Ç‚Ýž‚Ý‚ðŠJŽn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @return  èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u32 sAllocTex( u32 size, BOOL is4x4comp )
@@ -2665,7 +2665,7 @@ static u32 sAllocTex( u32 size, BOOL is4x4comp )
 	NNSGfdTexKey key;
 	
 	key = NNS_GfdAllocTexVram(size, is4x4comp, 0);
-	Particle_LnkTexKeySet(key);		//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ðŽg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ðƒZƒbƒg
+	Particle_LnkTexKeySet(key);		//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	GF_ASSERT(key != NNS_GFD_ALLOC_ERROR_TEXKEY);
 	
 	address = NNS_GfdGetTexKeyAddr(key);
@@ -2677,15 +2677,15 @@ static u32 sAllocTex( u32 size, BOOL is4x4comp )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgVRAMƒAƒhƒŒƒX‚ð•Ô‚·‚½‚ß‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆVRAMã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ãŸã‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
  *
- * @param	size		ƒeƒNƒXƒ`ƒƒƒTƒCƒY
- * @param	is4pltt		4FƒpƒŒƒbƒg‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+ * @param	size		ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+ * @param	is4pltt		4è‰²ãƒ‘ãƒ¬ãƒƒãƒˆã§ã‚ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
  *
- * @retval	“Ç‚Ýž‚Ý‚ðŠJŽn‚·‚éVRAM‚ÌƒAƒhƒŒƒX
+ * @retval	èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã™ã‚‹VRAMã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * directŒ`Ž®‚ÌƒeƒNƒXƒ`ƒƒ‚Ìê‡ASPL_LoadTexPlttByCallbackFunction‚Í
- * ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ðŒÄ‚Ño‚µ‚Ü‚¹‚ñB
+ * directå½¢å¼ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å ´åˆã€SPL_LoadTexPlttByCallbackFunctionã¯
+ * ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¾ã›ã‚“ã€‚
  */
 //--------------------------------------------------------------------------------------------
 static u32 sAllocTexPalette( u32 size, BOOL is4pltt )
@@ -2694,9 +2694,9 @@ static u32 sAllocTexPalette( u32 size, BOOL is4pltt )
 	u32 address;
 	
 	key = NNS_GfdAllocPlttVram(size, is4pltt, NNS_GFD_ALLOC_FROM_LOW);
-	Particle_PlttLnkTexKeySet(key);	//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ðŽg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ðƒZƒbƒg
+	Particle_PlttLnkTexKeySet(key);	//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	if(key == NNS_GFD_ALLOC_ERROR_PLTTKEY){
-		GF_ASSERT(0);// && "ƒp[ƒeƒBƒNƒ‹‚ÅƒpƒŒƒbƒg‚ÌŠm•Û‚ªo—ˆ‚Ü‚¹‚ñI\n");
+		GF_ASSERT(0);// && "ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã§ãƒ‘ãƒ¬ãƒƒãƒˆã®ç¢ºä¿ãŒå‡ºæ¥ã¾ã›ã‚“ï¼\n");
 	}
 	address = NNS_GfdGetPlttKeyAddr(key);
 #ifdef OSP_VSDEMO_ON
@@ -2707,14 +2707,14 @@ static u32 sAllocTexPalette( u32 size, BOOL is4pltt )
 
 
 //============================================================================================
-//	ƒ|ƒPƒ‚ƒ“Šm”F‰æ–Ê
+//	ãƒã‚±ãƒ¢ãƒ³ç¢ºèªç”»é¢
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰Šú‰»
+ * BGåˆæœŸåŒ–
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2760,9 +2760,9 @@ static void VSD_PokeCheckBgInit( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGíœ
+ * BGå‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2781,9 +2781,9 @@ static void VSD_PokeCheckBgExit( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGƒOƒ‰ƒtƒBƒbƒNƒZƒbƒg
+ * BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2822,9 +2822,9 @@ static void VSD_PokeCheckBgGraphicSet( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGƒvƒŒ[ƒgƒZƒbƒg
+ * BGãƒ—ãƒ¬ãƒ¼ãƒˆã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2866,11 +2866,11 @@ static void VSD_PokeCheckBgPut( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒCƒ“‚µ‚Ä‚­‚éBGƒvƒŒ[ƒg‚ðƒRƒs[iƒƒCƒ“j
+ * ã‚¤ãƒ³ã—ã¦ãã‚‹BGãƒ—ãƒ¬ãƒ¼ãƒˆã‚’ã‚³ãƒ”ãƒ¼ï¼ˆãƒ¡ã‚¤ãƒ³ï¼‰
  *
- * @param	wk		ƒ[ƒN
- * @param	cpy		ƒRƒs[æ
- * @param	frm		ƒRƒs[Œ³‚ÌBGƒtƒŒ[ƒ€
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	cpy		ã‚³ãƒ”ãƒ¼å…ˆ
+ * @param	frm		ã‚³ãƒ”ãƒ¼å…ƒã®BGãƒ•ãƒ¬ãƒ¼ãƒ 
  *
  * @return	none
  */
@@ -2894,9 +2894,9 @@ static void VSD_PokeCheckBgCopyMain( VSD_WORK * wk, u16 * cpy, u8 frm )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒCƒ“‚µ‚Ä‚­‚éBGƒvƒŒ[ƒg‚ðƒRƒs[
+ * ã‚¤ãƒ³ã—ã¦ãã‚‹BGãƒ—ãƒ¬ãƒ¼ãƒˆã‚’ã‚³ãƒ”ãƒ¼
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -2911,10 +2911,10 @@ static void VSD_PokeCheckBgCopy( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BGƒvƒŒ[ƒgˆÚ“®
+ * BGãƒ—ãƒ¬ãƒ¼ãƒˆç§»å‹•
  *
- * @param	wk		ƒ[ƒN
- * @param	cnt		ˆÚ“®ƒJƒEƒ“ƒg
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	cnt		ç§»å‹•ã‚«ã‚¦ãƒ³ãƒˆ
  *
  * @return	none
  */
@@ -2942,11 +2942,11 @@ static void VSD_PokeCheckBgMove( VSD_WORK * wk, u8 cnt )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^Žæ“¾ƒƒCƒ“
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—ãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		ƒ[ƒN
- * @param	party	ƒ|ƒPƒp[ƒeƒB
- * @param	start	ŠJŽnˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	party	ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£
+ * @param	start	é–‹å§‹ä½ç½®
  *
  * @return	none
  */
@@ -2993,9 +2993,9 @@ static void VSD_PokePartyParamGet( VSD_WORK * wk, POKEPARTY * party, u8 start )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^Žæ“¾
+ * ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -3010,12 +3010,12 @@ static void VSD_PokeParamGet( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒjƒŽæ“¾
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡å–å¾—
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½ç½®
  *
- * @return	ƒAƒjƒ”Ô†
+ * @return	ã‚¢ãƒ‹ãƒ¡ç•ªå·
  */
 //--------------------------------------------------------------------------------------------
 static u8 VSD_PokeIconAnmGet( VSD_WORK * wk, u32 pos )
@@ -3031,11 +3031,11 @@ static u8 VSD_PokeIconAnmGet( VSD_WORK * wk, u32 pos )
 	switch( GetHPGaugeDottoColor(wk->poke[pos].hp,wk->poke[pos].mhp,HPGAUGE_DOTTO_MAX) ){
 	case HP_DOTTO_MAX:
 		return POKEICON_ANM_HPMAX;
-	case HP_DOTTO_GREEN:	// —Î
+	case HP_DOTTO_GREEN:	// ç·‘
 		return POKEICON_ANM_HPGREEN;
-	case HP_DOTTO_YELLOW:	// ‰©
+	case HP_DOTTO_YELLOW:	// é»„
 		return POKEICON_ANM_HPYERROW;
-	case HP_DOTTO_RED:		// Ô
+	case HP_DOTTO_RED:		// èµ¤
 		return POKEICON_ANM_HPRED;
 	}
 
@@ -3044,10 +3044,10 @@ static u8 VSD_PokeIconAnmGet( VSD_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[’Ç‰Á
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½ç½®
  *
  * @return	none
  */
@@ -3066,14 +3066,14 @@ static void VSD_PokeClactAdd( VSD_WORK * wk, u32 pos )
 			CATS_ObjectEnableCap( wk->cap[pos*5+i], 0 );
 		}
 	}else{
-		// ƒ|ƒPƒAƒCƒRƒ“
+		// ãƒã‚±ã‚¢ã‚¤ã‚³ãƒ³
 		CATS_ObjectPaletteSetCap(
 			wk->cap[pos*5+0],
 			PokeIconPalNumGet(wk->poke[pos].mons,wk->poke[pos].form,wk->poke[pos].egg) );
 		CATS_ObjectAnimeSeqSetCap(
 			wk->cap[pos*5+0], VSD_PokeIconAnmGet( wk, pos ) );
 
-		// ƒAƒCƒeƒ€ƒAƒCƒRƒ“
+		// ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³
 		if( wk->poke[pos].item == 0 ){
 			CATS_ObjectEnableCap( wk->cap[pos*5+1], 0 );
 		}else if( ItemMailCheck( wk->poke[pos].item ) == TRUE ){
@@ -3081,13 +3081,13 @@ static void VSD_PokeClactAdd( VSD_WORK * wk, u32 pos )
 		}else{
 			CATS_ObjectAnimeSeqSetCap( wk->cap[pos*5+1], 0 );
 		}
-		// ƒJƒXƒ^ƒ€ƒ{[ƒ‹
+		// ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«
 		if( wk->poke[pos].cb == 0 ){
 			CATS_ObjectEnableCap( wk->cap[pos*5+2], 0 );
 		}else{
 			CATS_ObjectAnimeSeqSetCap( wk->cap[pos*5+2], 2 );
 		}
-		// ó‘ÔˆÙíƒAƒCƒRƒ“
+		// çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³
 		if( wk->poke[pos].st == ST_ICON_NONE ){
 			CATS_ObjectEnableCap( wk->cap[pos*5+3], 0 );
 		}else{
@@ -3098,9 +3098,9 @@ static void VSD_PokeClactAdd( VSD_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒZƒ‹ƒAƒNƒ^[Ý’è
+ * ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -3130,9 +3130,9 @@ static void VSD_PokeCheckObjMake( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒXÝ’è
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -3166,9 +3166,9 @@ static void VSD_PokeCheckPokeIconMake( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒXÝ’è
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -3199,9 +3199,9 @@ static void VSD_PokeCheckItemIconMake( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ó‘ÔˆÙíƒAƒCƒRƒ“‚ÌƒŠƒ\[ƒXÝ’è
+ * çŠ¶æ…‹ç•°å¸¸ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -3232,9 +3232,9 @@ static void VSD_PokeCheckStIconMake( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ{[ƒ‹‚ÌƒŠƒ\[ƒXÝ’è
+ * ãƒœãƒ¼ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹è¨­å®š
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -3265,10 +3265,10 @@ static void VSD_PokeCheckBallMake( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * OBJ‚ÌˆÚ“®
+ * OBJã®ç§»å‹•
  *
- * @param	wk		ƒ[ƒN
- * @param	mv		ˆÚ“®ƒJƒEƒ“ƒg
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	mv		ç§»å‹•ã‚«ã‚¦ãƒ³ãƒˆ
  *
  * @return	none
  */
@@ -3297,9 +3297,9 @@ static void VSD_PokeCheckObjMove( VSD_WORK * wk, s16 mv )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒZƒbƒg
+ * BMPã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -3315,9 +3315,9 @@ static void VSD_PokeCheckBmpAdd( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPíœ
+ * BMPå‰Šé™¤
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -3333,14 +3333,14 @@ static void VSD_PokeCheckBmpExit( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒjƒbƒNƒl[ƒ€•\Ž¦
+ * ãƒ‹ãƒƒã‚¯ãƒãƒ¼ãƒ è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	mman	ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
- * @param	nfont	8x8ƒtƒHƒ“ƒg
- * @param	wset	ƒ[ƒhƒZƒbƒg
- * @param	buf		•¶Žš—ñ“WŠJƒoƒbƒtƒ@
- * @param	pos		ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	mman	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£
+ * @param	nfont	8x8ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param	wset	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ * @param	buf		æ–‡å­—åˆ—å±•é–‹ãƒãƒƒãƒ•ã‚¡
+ * @param	pos		ä½ç½®
  *
  * @return	none
  */
@@ -3355,7 +3355,7 @@ static void VSD_PokeCheckPutName(
 
 	win = &wk->win[pos*4+WIN_NAME1];
 
-	// –¼‘O
+	// åå‰
 	if( pos < 3 ){
 		pp = PokeParty_GetMemberPointer( wk->dat->pp[VSD_PARTY_LEFT1], pos );
 	}else{
@@ -3368,7 +3368,7 @@ static void VSD_PokeCheckPutName(
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, buf,
 		PRM_NICKNAME_PX, PRM_NICKNAME_PY, MSG_NO_PUT, PCOL_N_WHITE, NULL );
-	// «•Ê
+	// æ€§åˆ¥
 	if( wk->poke[pos].sex_put == 0 ){
 		if( wk->poke[pos].sex == PARA_MALE ){
 			MSGMAN_GetString( mman, mes_pokelist_01_28, buf );
@@ -3386,14 +3386,14 @@ static void VSD_PokeCheckPutName(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹•\Ž¦
+ * ãƒ¬ãƒ™ãƒ«è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	mman	ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
- * @param	nfont	8x8ƒtƒHƒ“ƒg
- * @param	wset	ƒ[ƒhƒZƒbƒg
- * @param	buf		•¶Žš—ñ“WŠJƒoƒbƒtƒ@
- * @param	pos		ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	mman	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£
+ * @param	nfont	8x8ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param	wset	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ * @param	buf		æ–‡å­—åˆ—å±•é–‹ãƒãƒƒãƒ•ã‚¡
+ * @param	pos		ä½ç½®
  *
  * @return	none
  */
@@ -3424,14 +3424,14 @@ static void VSD_PokeCheckPutLv(
 
 //--------------------------------------------------------------------------------------------
 /**
- * HP•\Ž¦
+ * HPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	mman	ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
- * @param	nfont	8x8ƒtƒHƒ“ƒg
- * @param	wset	ƒ[ƒhƒZƒbƒg
- * @param	buf		•¶Žš—ñ“WŠJƒoƒbƒtƒ@
- * @param	pos		ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	mman	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£
+ * @param	nfont	8x8ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param	wset	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ * @param	buf		æ–‡å­—åˆ—å±•é–‹ãƒãƒƒãƒ•ã‚¡
+ * @param	pos		ä½ç½®
  *
  * @return	none
  */
@@ -3467,7 +3467,7 @@ static void VSD_PokeCheckPutHP(
 	siz = FontProc_GetPrintStrWidth( FONT_SYSTEM, buf, 0 );
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, buf, STR_SLASH_PX-siz, STR_SLASH_PY, MSG_NO_PUT, PCOL_N_WHITE, NULL );
-	// ƒXƒ‰ƒbƒVƒ…
+	// ã‚¹ãƒ©ãƒƒã‚·ãƒ¥
 	MSGMAN_GetString( mman, mes_pokelist_01_27, buf );
 	GF_STR_PrintColor(
 		win, FONT_SYSTEM, buf, STR_SLASH_PX, STR_SLASH_PY, MSG_NO_PUT, PCOL_N_WHITE, NULL );
@@ -3485,10 +3485,10 @@ static void VSD_PokeCheckPutHP(
 
 //--------------------------------------------------------------------------------------------
 /**
- * HPƒQ[ƒW•\Ž¦
+ * HPã‚²ãƒ¼ã‚¸è¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
- * @param	pos		ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½ç½®
  *
  * @return	none
  */
@@ -3500,7 +3500,7 @@ static void VSD_PokeCheckPutGage( VSD_WORK * wk, u32 pos )
 
 	win = &wk->win[pos*4+WIN_HPBAR1];
 
-	// HPƒQ[ƒW
+	// HPã‚²ãƒ¼ã‚¸
 	siz = GetHPGaugeDottoColor( wk->poke[pos].hp, wk->poke[pos].mhp, HPGAUGE_DOTTO_MAX );
 #ifdef OSP_VSDEMO_ON
 	OS_Printf( "HP COLLOR : %d\n", siz );
@@ -3508,18 +3508,18 @@ static void VSD_PokeCheckPutGage( VSD_WORK * wk, u32 pos )
 	switch( siz ){
 	case HP_DOTTO_NULL:
 		break;
-	case HP_DOTTO_MAX:		// —Î
+	case HP_DOTTO_MAX:		// ç·‘
 	case HP_DOTTO_GREEN:
 		GF_BGL_PaletteSet(
 			GF_BGL_FRAME1_M, &wk->pal[PALPOS_GREEN],
 			2*2, (win->palnum*16+HPGAUGE_COL1)*2 );
 		break;
-	case HP_DOTTO_YELLOW:	// ‰©
+	case HP_DOTTO_YELLOW:	// é»„
 		GF_BGL_PaletteSet(
 			GF_BGL_FRAME1_M, &wk->pal[PALPOS_YELLOW],
 			2*2, (win->palnum*16+HPGAUGE_COL1)*2 );
 		break;
-	case HP_DOTTO_RED:		// Ô
+	case HP_DOTTO_RED:		// èµ¤
 		GF_BGL_PaletteSet(
 			GF_BGL_FRAME1_M, &wk->pal[PALPOS_RED],
 			2*2, (win->palnum*16+HPGAUGE_COL1)*2 );
@@ -3534,14 +3534,14 @@ static void VSD_PokeCheckPutGage( VSD_WORK * wk, u32 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMP•\Ž¦ƒƒCƒ“
+ * BMPè¡¨ç¤ºãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		ƒ[ƒN
- * @param	mman	ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ
- * @param	nfont	8x8ƒtƒHƒ“ƒg
- * @param	wset	ƒ[ƒhƒZƒbƒg
- * @param	buf		•¶Žš—ñ“WŠJƒoƒbƒtƒ@
- * @param	pos		ˆÊ’u
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
+ * @param	mman	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£
+ * @param	nfont	8x8ãƒ•ã‚©ãƒ³ãƒˆ
+ * @param	wset	ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+ * @param	buf		æ–‡å­—åˆ—å±•é–‹ãƒãƒƒãƒ•ã‚¡
+ * @param	pos		ä½ç½®
  *
  * @return	none
  */
@@ -3575,18 +3575,18 @@ static void VSD_PokeCheckBmpPutMain(
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMP•\Ž¦
+ * BMPè¡¨ç¤º
  *
- * @param	wk		ƒ[ƒN
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 static void VSD_PokeCheckBmpPut( VSD_WORK * wk )
 {
-	MSGDATA_MANAGER * mman;		// ƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ
-	NUMFONT * nfnt;				// 8x8ƒtƒHƒ“ƒg
-	WORDSET * wset;				// ’PŒêƒZƒbƒg
+	MSGDATA_MANAGER * mman;		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£
+	NUMFONT * nfnt;				// 8x8ãƒ•ã‚©ãƒ³ãƒˆ
+	WORDSET * wset;				// å˜èªžã‚»ãƒƒãƒˆ
 	STRBUF * buf;
 	u32	i;
 
@@ -3610,9 +3610,9 @@ static void VSD_PokeCheckBmpPut( VSD_WORK * wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * –`Œ¯ƒm[ƒgƒf[ƒ^ì¬
+ * å†’é™ºãƒŽãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- * @param	dat		VSƒfƒ‚ƒf[ƒ^
+ * @param	dat		VSãƒ‡ãƒ¢ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -3629,25 +3629,25 @@ static void VSD_FnoteMake( VS_DEMO_DATA * dat )
 
 	if( dat->bp == NULL ){ return; }
 
-	sio_id = CommGetCurrentID();	// Ž©•ª‚Ì’ÊMID
-	result = dat->result - 1;		// –`Œ¯ƒm[ƒg‚ÌŸ”s‚É•ÏŠ·
+	sio_id = CommGetCurrentID();	// è‡ªåˆ†ã®é€šä¿¡ID
+	result = dat->result - 1;		// å†’é™ºãƒŽãƒ¼ãƒˆã®å‹æ•—ã«å¤‰æ›
 
 #ifdef OSP_VSDEMO_ON
 	OS_Printf( "VSD_RESULT (1) : %d\n", dat->result );
 	OS_Printf( "VSD_RESULT (2) : %d\n", result );
 #endif
 
-	// ƒ†ƒjƒIƒ“
+	// ãƒ¦ãƒ‹ã‚ªãƒ³
 	if( ZoneData_IsUnionRoom( dat->bp->zone_id ) == TRUE ){
 		sex1  = TT_TrainerTypeSexGet( dat->bp->trainer_data[sio_id^1].tr_type );
 		name1 = sys_AllocMemory( dat->heap, sizeof(STRCODE)*BUFLEN_PERSON_NAME );
 		STRBUF_GetStringCode( dat->name[CommGetStandNo(sio_id^1)], name1, BUFLEN_PERSON_NAME );
 		buf = FNOTE_SioUnionBattleDataMake( name1, sex1, result, dat->heap );
 		sys_FreeMemoryEz( name1 );
-	// ’ÊM‘Îí
+	// é€šä¿¡å¯¾æˆ¦
 	}else{
 		switch( CommStateGetServiceNo() ){
-		case COMM_MODE_BATTLE_SINGLE:	// 1vs1 ƒoƒgƒ‹
+		case COMM_MODE_BATTLE_SINGLE:	// 1vs1 ãƒãƒˆãƒ«
 			sex1  = TT_TrainerTypeSexGet( dat->bp->trainer_data[sio_id^1].tr_type );
 			name1 = sys_AllocMemory( dat->heap, sizeof(STRCODE)*BUFLEN_PERSON_NAME );
 			STRBUF_GetStringCode( dat->name[CommGetStandNo(sio_id^1)], name1, BUFLEN_PERSON_NAME );
@@ -3655,7 +3655,7 @@ static void VSD_FnoteMake( VS_DEMO_DATA * dat )
 			sys_FreeMemoryEz( name1 );
 			break;
 
-		case COMM_MODE_BATTLE_DOUBLE:	// 1vs1 ƒ_ƒuƒ‹ƒoƒgƒ‹
+		case COMM_MODE_BATTLE_DOUBLE:	// 1vs1 ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
 			sex1  = TT_TrainerTypeSexGet( dat->bp->trainer_data[sio_id^1].tr_type );
 			name1 = sys_AllocMemory( dat->heap, sizeof(STRCODE)*BUFLEN_PERSON_NAME );
 			STRBUF_GetStringCode( dat->name[CommGetStandNo(sio_id^1)], name1, BUFLEN_PERSON_NAME );
@@ -3663,7 +3663,7 @@ static void VSD_FnoteMake( VS_DEMO_DATA * dat )
 			sys_FreeMemoryEz( name1 );
 			break;
 
-		case COMM_MODE_BATTLE_MIX_1ON1:	// 1vs1 ƒ~ƒbƒNƒXƒoƒgƒ‹
+		case COMM_MODE_BATTLE_MIX_1ON1:	// 1vs1 ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«
 			sex1  = TT_TrainerTypeSexGet( dat->bp->trainer_data[sio_id^1].tr_type );
 			name1 = sys_AllocMemory( dat->heap, sizeof(STRCODE)*BUFLEN_PERSON_NAME );
 			STRBUF_GetStringCode( dat->name[CommGetStandNo(sio_id^1)], name1, BUFLEN_PERSON_NAME );
@@ -3671,7 +3671,7 @@ static void VSD_FnoteMake( VS_DEMO_DATA * dat )
 			sys_FreeMemoryEz( name1 );
 			break;
 
-		case COMM_MODE_BATTLE_MULTI:	// 2vs2 ƒ}ƒ‹ƒ`ƒoƒgƒ‹
+		case COMM_MODE_BATTLE_MULTI:	// 2vs2 ãƒžãƒ«ãƒãƒãƒˆãƒ«
 			name1 = sys_AllocMemory( dat->heap, sizeof(STRCODE)*BUFLEN_PERSON_NAME );
 			name2 = sys_AllocMemory( dat->heap, sizeof(STRCODE)*BUFLEN_PERSON_NAME );
 //			if( sio_id == 0 || sio_id == 2 ){
@@ -3701,14 +3701,14 @@ static void VSD_FnoteMake( VS_DEMO_DATA * dat )
 
 //--------------------------------------------------------------
 /**
- * @brief   ‰ï˜bƒEƒBƒ“ƒhƒE‚ð•`‰æ
+ * @brief   ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æç”»
  *
- * @param   wk		ƒ[ƒN
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 static void VSD_TalkWindowPut(VSD_WORK *wk)
 {
-	//—ÌˆæƒNƒŠƒA•ƒEƒBƒ“ƒhƒE•`‰æ
+	//é ˜åŸŸã‚¯ãƒªã‚¢ï¼†ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»
 	GF_BGL_BmpWinFill( &wk->talk_win, FBMP_COL_WHITE, 0, 0,
 					VS_DEMO_BMPWIN_TALK_SIZE_X * 8, VS_DEMO_BMPWIN_TALK_SIZE_Y * 8 );
 	BmpTalkWinWrite( &wk->talk_win, WINDOW_TRANS_ON,
@@ -3717,11 +3717,11 @@ static void VSD_TalkWindowPut(VSD_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬˜^‰æ‰Â”\‚©ƒ`ƒFƒbƒN
+ * @brief   æˆ¦é—˜éŒ²ç”»å¯èƒ½ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   wk		ƒ[ƒN
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯
  *
- * @retval  TRUE:˜^‰æ‰Â”\B@FALSE:˜^‰æ•s‰Â
+ * @retval  TRUE:éŒ²ç”»å¯èƒ½ã€‚ã€€FALSE:éŒ²ç”»ä¸å¯
  */
 //--------------------------------------------------------------
 static BOOL VSD_RecModeCheck(VSD_WORK *wk)
@@ -3734,9 +3734,9 @@ static BOOL VSD_RecModeCheck(VSD_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽžŒvƒAƒCƒRƒ“¶¬
+ * @brief   æ™‚è¨ˆã‚¢ã‚¤ã‚³ãƒ³ç”Ÿæˆ
  *
- * @param   wk		ƒ[ƒN
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 static void VSD_TimeIconAdd(VSD_WORK *wk)
@@ -3748,7 +3748,7 @@ static void VSD_TimeIconAdd(VSD_WORK *wk)
 
 //--------------------------------------------------------------
 /**
- * @brief   ŽžŒvƒAƒCƒRƒ“‚ðíœ
+ * @brief   æ™‚è¨ˆã‚¢ã‚¤ã‚³ãƒ³ã‚’å‰Šé™¤
  *
  * @param   wk		
  */
@@ -3779,7 +3779,7 @@ static void VSD_TimeIconDelete(VSD_WORK *wk)
 //============================================================================================
 //============================================================================================
 //============================================================================================
-//	ƒfƒoƒbƒOˆ—
+//	ãƒ‡ãƒãƒƒã‚°å‡¦ç†
 //============================================================================================
 #include "msgdata/msg.naix"
 #include "msgdata/msg_debug_nakahiro.h"
@@ -3804,12 +3804,12 @@ static STRBUF * vsstr[4];
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”F‰Šú‰»
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šåˆæœŸåŒ–
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 static PROC_RESULT D_VsDemoProc_Init( PROC * proc, int * seq, u8 mode, u8 type, u8 result )
@@ -3829,7 +3829,7 @@ static PROC_RESULT D_VsDemoProc_Init( PROC * proc, int * seq, u8 mode, u8 type, 
 
 	dat->bp = NULL;
 
-	// ƒ|ƒPƒ‚ƒ“ì¬
+	// ãƒã‚±ãƒ¢ãƒ³ä½œæˆ
 	dat->pp[0] = PokeParty_AllocPartyWork( HEAPID_BAG );
 	dat->pp[1] = PokeParty_AllocPartyWork( HEAPID_BAG );
 	dat->pp[2] = PokeParty_AllocPartyWork( HEAPID_BAG );
@@ -3860,7 +3860,7 @@ static PROC_RESULT D_VsDemoProc_Init( PROC * proc, int * seq, u8 mode, u8 type, 
 	PokeParaSet( vspp[3], 3, 50, POW_RND, RND_SET, 0, ID_SET, 0 );
 	PokeParty_Add( dat->pp[3], vspp[3] );
 */
-	// –¼‘Oì¬
+	// åå‰ä½œæˆ
 	{
 		MSGDATA_MANAGER * man;
 
@@ -3883,9 +3883,9 @@ static PROC_RESULT D_VsDemoProc_Init( PROC * proc, int * seq, u8 mode, u8 type, 
 
 //	D_VSDemoVramSet();
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
 
-	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );	// ƒoƒgƒ‹‹ÈÄ¶
+	Snd_DataSetByScene( SND_SCENE_BATTLE, SEQ_BA_TRAIN, 1 );	// ãƒãƒˆãƒ«æ›²å†ç”Ÿ
 
 	return PROC_RES_FINISH;
 }
@@ -3923,12 +3923,12 @@ PROC_RESULT D_VSDemoProc_Init22( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FƒƒCƒ“
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šãƒ¡ã‚¤ãƒ³
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT D_VsDemoProc_Main( PROC * proc, int * seq )
@@ -3943,12 +3943,12 @@ PROC_RESULT D_VsDemoProc_Main( PROC * proc, int * seq )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒvƒƒZƒXŠÖ”FI—¹
+ * ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°ï¼šçµ‚äº†
  *
- * @param	proc	ƒvƒƒZƒXƒf[ƒ^
- * @param	seq		ƒV[ƒPƒ“ƒX
+ * @param	proc	ãƒ—ãƒ­ã‚»ã‚¹ãƒ‡ãƒ¼ã‚¿
+ * @param	seq		ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- * @return	ˆ—ó‹µ
+ * @return	å‡¦ç†çŠ¶æ³
  */
 //--------------------------------------------------------------------------------------------
 PROC_RESULT D_VsDemoProc_End( PROC * proc, int * seq )
@@ -3968,9 +3968,9 @@ PROC_RESULT D_VsDemoProc_End( PROC * proc, int * seq )
 		if( vsstr[i] != NULL ){ STRBUF_Delete( vsstr[i] ); }
 	}
 
-	PROC_FreeWork( proc );				// ƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// ãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
 
 	sys_DeleteHeap( HEAPID_BAG );
 

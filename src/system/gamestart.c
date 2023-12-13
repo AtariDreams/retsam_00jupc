@@ -1,12 +1,12 @@
 //============================================================================================
 /**
  * @file	gamestart.c
- * @brief	ƒQ[ƒ€ŠJnˆ—
+ * @brief	ã‚²ãƒ¼ãƒ é–‹å§‹å‡¦ç†
  * @author	tamada GAME FREAK inc.
  * @date	2006.05.10
  *
  *
- * À¿“I“à—e‚ÍƒI[ƒo[ƒŒƒC—Ìˆæ‚É‚ ‚é‰Šú‰»ˆ—‚ğŒÄ‚Ñ‚¾‚µ‚Ä‚¢‚é‚¾‚¯‚Å‚·
+ * å®Ÿè³ªçš„å†…å®¹ã¯ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸã«ã‚ã‚‹åˆæœŸåŒ–å‡¦ç†ã‚’å‘¼ã³ã ã—ã¦ã„ã‚‹ã ã‘ã§ã™
  */
 //============================================================================================
 
@@ -108,7 +108,7 @@ const PROC_DATA ContinueGameStartProcData = {
 
 //============================================================================================
 //
-//		V‹K‚ÅƒQ[ƒ€ŠJniƒI[ƒvƒjƒ“ƒO‚Öj
+//		æ–°è¦ã§ã‚²ãƒ¼ãƒ é–‹å§‹ï¼ˆã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã¸ï¼‰
 //
 //============================================================================================
 //--------------------------------------------------------------------------------------------
@@ -141,7 +141,7 @@ static PROC_RESULT NewGameStart_ProcEnd(PROC * proc, int * seq)
 
 //============================================================================================
 //
-//		ƒI[ƒvƒjƒ“ƒO‚©‚çƒQ[ƒ€‚Ö
+//		ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‹ã‚‰ã‚²ãƒ¼ãƒ ã¸
 //
 //============================================================================================
 //--------------------------------------------------------------------------------------------
@@ -174,7 +174,7 @@ static PROC_RESULT AfterOpening_ProcEnd(PROC * proc, int * seq)
 
 //============================================================================================
 //
-//		ƒRƒ“ƒeƒBƒjƒ…[‚ÅƒQ[ƒ€ŠJn
+//		ã‚³ãƒ³ãƒ†ã‚£ãƒ‹ãƒ¥ãƒ¼ã§ã‚²ãƒ¼ãƒ é–‹å§‹
 //
 //============================================================================================
 //--------------------------------------------------------------------------------------------
@@ -198,12 +198,12 @@ static PROC_RESULT ContinueGameStart_ProcMain(PROC * proc, int * seq)
 	GameData_SetContinueData(HEAPID_GAMEINIT, savedata);
 	CONFIG_SetKeyConfigFormSave(savedata);
 	if (!SYSTEMDATA_IdentifyMACAddress(sysdt) || !SYSTEMDATA_IdentifyRTCOffset(sysdt)) {
-		//ƒyƒiƒ‹ƒeƒBŠÔ‚ğİ’è
+		//ãƒšãƒŠãƒ«ãƒ†ã‚£æ™‚é–“ã‚’è¨­å®š
 		GMTIME_SetPenaltyTime(SaveData_GetGameTime(savedata));
-		//Œ»İ‚Ì‚c‚r‚Ìİ’è‚ğ¡Œã‚Ìİ’è‚Æ‚·‚é
+		//ç¾åœ¨ã®ï¼¤ï¼³ã®è¨­å®šã‚’ä»Šå¾Œã®è¨­å®šã¨ã™ã‚‹
 		SYSTEMDATA_Update(sysdt);
-		//ƒVƒFƒCƒ~‚ªè‚¿‚É‚¢‚éê‡‚Í‘S‚Äƒm[ƒ}ƒ‹ƒtƒHƒ‹ƒ€‚É‚·‚é
-		//(ƒyƒiƒ‹ƒeƒB‚É‚æ‚èƒZ[ƒu‚ªŒ»İ‚Ì‚ÅXV‚³‚ê‚éˆ×A–é‚ğ‰z‚µ‚Ä‚¢‚é‚©”»’èo—ˆ‚È‚­‚È‚é)
+		//ã‚·ã‚§ã‚¤ãƒŸãŒæ‰‹æŒã¡ã«ã„ã‚‹å ´åˆã¯å…¨ã¦ãƒãƒ¼ãƒãƒ«ãƒ•ã‚©ãƒ«ãƒ ã«ã™ã‚‹
+		//(ãƒšãƒŠãƒ«ãƒ†ã‚£ã«ã‚ˆã‚Šã‚»ãƒ¼ãƒ–æ™‚åˆ»ãŒç¾åœ¨ã®æ™‚åˆ»ã§æ›´æ–°ã•ã‚Œã‚‹ç‚ºã€å¤œã‚’è¶Šã—ã¦ã„ã‚‹ã‹åˆ¤å®šå‡ºæ¥ãªããªã‚‹)
 		PokePartySheimiNormalFormChange(SaveData_GetTemotiPokemon(savedata));
 	}
 	PlayTimeCtrl_Start( SaveData_GetPlayTime(savedata) );
@@ -220,7 +220,7 @@ static PROC_RESULT ContinueGameStart_ProcEnd(PROC * proc, int * seq)
 
 //============================================================================================
 //
-//		ƒfƒoƒbƒOƒQ[ƒ€ŠJn
+//		ãƒ‡ãƒãƒƒã‚°ã‚²ãƒ¼ãƒ é–‹å§‹
 //
 //============================================================================================
 #ifdef	PM_DEBUG
@@ -288,8 +288,8 @@ static void Debug_SetRandomGroup(SAVEDATA * sv)
 #include "../fielddata/setting/kinomi_init.c"
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒI[ƒvƒjƒ“ƒOŒã‚Ìİ’è
- * @param	sv		ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°å¾Œã®è¨­å®š
+ * @param	sv		ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 static void AfterOpeningSetting(int heapID, SAVEDATA * sv, BOOL set_id)
@@ -300,18 +300,18 @@ static void AfterOpeningSetting(int heapID, SAVEDATA * sv, BOOL set_id)
 	GMTIME * gt;
 	RANDOM_GROUP * rg;
 
-	//‚c‚r–{‘Ìî•ñ‚ÌƒZƒbƒg
+	//ï¼¤ï¼³æœ¬ä½“æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 	SYSTEMDATA_Update(SaveData_GetSystemData(sv));
 
-	//ƒQ[ƒ€“àŠÔ‰Šú‰»
+	//ã‚²ãƒ¼ãƒ å†…æ™‚é–“åˆæœŸåŒ–
 	gt = SaveData_GetGameTime(sv);
 	GMTIME_Init(gt);
 
-	//ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒv‚ÌƒfƒtƒHƒ‹ƒgQÆ‰ÓŠ‚Ì’l‚ğ—”‚Å‰Šú‰»‚·‚é
+	//ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‚ç…§ç®‡æ‰€ã®å€¤ã‚’ä¹±æ•°ã§åˆæœŸåŒ–ã™ã‚‹
 	rg = SaveData_GetRandomGroup(sv);
 	RandomGroup_SetRandomSeed(rg, RANDOMGROUP_MYUSE, gf_mtRand());
 
-	//ƒ^ƒ[ƒ‰ƒ“ƒ_ƒ€ƒV[ƒhXV
+	//ã‚¿ãƒ¯ãƒ¼ãƒ©ãƒ³ãƒ€ãƒ ã‚·ãƒ¼ãƒ‰æ›´æ–°
 	BtlTower_UpdateDayRndSeed(sv);
 
 	my = SaveData_GetMyStatus(sv);
@@ -319,10 +319,10 @@ static void AfterOpeningSetting(int heapID, SAVEDATA * sv, BOOL set_id)
 	if (set_id) {
 		MyStatus_SetID(my, id);
 	}
-	// ƒ†ƒjƒIƒ“ƒ‹[ƒ€“à‚Å‚ÌŒ©‚½–Ú‚ğID‚©‚ç¶¬
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ å†…ã§ã®è¦‹ãŸç›®ã‚’IDã‹ã‚‰ç”Ÿæˆ
 	MyStatus_SetTrainerView(my, UnionView_GetTrainerType( id, MyStatus_GetMySex(my), 0 ));	
 
-	//‚«‚Ì‚İ”z’u‰Šú‰»
+	//ãã®ã¿é…ç½®åˆæœŸåŒ–
 	sbed = SaveData_GetSeedBed(sv);
 	SEEDBED_SetDefaultData(sbed, heapID, KinomiInitTable, NELEMS(KinomiInitTable)/2);
 }

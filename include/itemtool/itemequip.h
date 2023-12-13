@@ -8,7 +8,7 @@
 #ifndef ITEMEQUIP_H
 #define ITEMEQUIP_H
 
-// ‘•”õŒø‰Ê
+// è£…å‚™åŠ¹æžœ
 #define	SOUBI_HPKAIHUKU		( 1 )
 #define	SOUBI_DORAGONGHOSTUP		( 2 )
 #define	SOUBI_DORAGONHAGANEUP		( 3 )
@@ -156,7 +156,7 @@
 #define	SOUBI_PORIGON2SINKA		( 145 )
 #define	SOUBI_SAMAYORUSINKA		( 146 )
 
-// ‹Zu‚È‚°‚Â‚¯‚évŒø‰Ê
+// æŠ€ã€Œãªã’ã¤ã‘ã‚‹ã€åŠ¹æžœ
 #define	NAGETUKERU_MAHINAOSI		( 1 )
 #define	NAGETUKERU_NEMUKEZAMASI		( 2 )
 #define	NAGETUKERU_DOKUKESI		( 3 )
@@ -188,7 +188,7 @@
 #define	NAGETUKERU_MOUDOKUNISURU		( 29 )
 #define	NAGETUKERU_YAKEDONISURU		( 30 )
 
-// ‹Zu‚Â‚¢‚Î‚ÞvŒø‰Ê
+// æŠ€ã€Œã¤ã„ã°ã‚€ã€åŠ¹æžœ
 #define	TUIBAMU_MAHINAOSI		( 1 )
 #define	TUIBAMU_NEMUKEZAMASI		( 2 )
 #define	TUIBAMU_DOKUKESI		( 3 )

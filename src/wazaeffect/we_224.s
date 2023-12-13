@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_224.s
- * @brief	ƒƒKƒz[ƒ“			224
+ * @brief	ãƒ¡ã‚¬ãƒ›ãƒ¼ãƒ³			224
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡ƒƒKƒz[ƒ“			224
+//	â– ãƒ¡ã‚¬ãƒ›ãƒ¼ãƒ³			224
 //
 //
 // =============================================================================
@@ -33,7 +33,7 @@ WEST_MEGAHOON:
 	
 	LOAD_PARTICLE_DROP	0,W_224_SPA
 
-	///<UŒ‚“®ìŠJŽn	
+	///<æ”»æ’ƒå‹•ä½œé–‹å§‹	
 	FUNC_CALL			WEST_SP_WE_224AT, 0, 0,
 
 	SE_L			SEQ_SE_DP_W082
@@ -50,13 +50,13 @@ WEST_MEGAHOON:
 	ADD_PARTICLE 	0,W_224_224_MEGA_SHOOT2, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_SP, OPERATOR_AXIS_AT, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 	
-	///< ƒp[ƒeƒBƒNƒ‹
+	///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 	ADD_PARTICLE 	0,W_224_224_MEGA_HIT1, EMTFUNC_DEFENCE_POS
 	ADD_PARTICLE 	0,W_224_224_MEGA_HIT2, EMTFUNC_DEFENCE_POS
 	ADD_PARTICLE 	0,W_224_224_MEGA_HIT3, EMTFUNC_DEFENCE_POS
 	SE_R			SEQ_SE_DP_W011
 
-	///< –hŒä“®ì
+	///< é˜²å¾¡å‹•ä½œ
 	FUNC_CALL			WEST_SP_WE_224DF, 0, 0,
 	
 	WAIT			5

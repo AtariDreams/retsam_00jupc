@@ -1,13 +1,13 @@
 ###############################################################
 #
-#		ƒ}ƒbƒvƒAƒgƒŠƒrƒ…[ƒg•\ƒRƒ“ƒo[ƒ^
+#		ãƒãƒƒãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆè¡¨ã‚³ãƒ³ãƒãƒ¼ã‚¿
 #
 #		sousuke tamada GAME FREAK inc.
 #
-#		2005.12.16	ì¬
+#		2005.12.16	ä½œæˆ
 #
-#		ƒ}ƒbƒvƒAƒgƒŠƒrƒ…[ƒgŠÇ—•\‚©‚çƒAƒgƒŠƒrƒ…[ƒg‚Ì’è‹`‚ğ
-#		¶¬‚·‚éB
+#		ãƒãƒƒãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆç®¡ç†è¡¨ã‹ã‚‰ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã®å®šç¾©ã‚’
+#		ç”Ÿæˆã™ã‚‹ã€‚
 #
 ###############################################################
 
@@ -31,7 +31,7 @@ class Converter
 		@code = {}
 		@defs = {}
 		@fp = File.open fname, "r"
-		@fp.gets		#ˆês–Ú‚Í€–Ú–¼‚¾‚¯‚È‚Ì‚Å“Ç‚İ‚İ
+		@fp.gets		#ä¸€è¡Œç›®ã¯é …ç›®åã ã‘ãªã®ã§èª­ã¿è¾¼ã¿
 	end
 
 	def init_line
@@ -47,12 +47,12 @@ class Converter
 	#------------------------------------------------
 	def entry_code code_str
 		if !(code_str =~ /[0-9a-f][0-9a-f]h/) then
-			STDERR.puts "[#{@count}][#{code_str}]Code‚ª‚È‚¢I\n"
+			STDERR.puts "[#{@count}][#{code_str}]CodeãŒãªã„ï¼\n"
 			exit 1
 		end
 		val = "0x#{code_str.sub(/h$/,"")}"
 		if @code.has_key? val then
-			STDERR.puts "[#{@count}][#{@code[val]}][#{val}]Code‚ªd•¡‚µ‚Ä‚¢‚Ü‚·I\n"
+			STDERR.puts "[#{@count}][#{@code[val]}][#{val}]CodeãŒé‡è¤‡ã—ã¦ã„ã¾ã™ï¼\n"
 			exit 1
 		end
 		@value = val
@@ -68,7 +68,7 @@ class Converter
 		end
 		df = "MATTR_#{def_str.upcase}"
 		if @defs.has_key? df then
-			STDERR.puts "[#{@count}][#{@defs[df]}][#{df}]’è‹`–¼‚ªd•¡‚µ‚Ä‚¢‚Ü‚·I\n"
+			STDERR.puts "[#{@count}][#{@defs[df]}][#{df}]å®šç¾©åãŒé‡è¤‡ã—ã¦ã„ã¾ã™ï¼\n"
 			exit 1
 		end
 		@define = df
@@ -78,13 +78,13 @@ class Converter
 	#------------------------------------------------
 	#------------------------------------------------
 	def entry_water water_str
-		@water = if water_str == "›" then true else false end
+		@water = if water_str == "â—‹" then true else false end
 	end
 
 	#------------------------------------------------
 	#------------------------------------------------
 	def entry_encount encount_str
-		@encount = if encount_str == "›" then true else false end
+		@encount = if encount_str == "â—‹" then true else false end
 	end
 
 

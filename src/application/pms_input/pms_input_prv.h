@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pms_input_prv.h
- * @bfief	ŠÈˆÕ‰ï˜b“ü—Í‰æ–Êiprivate ƒwƒbƒ_j
+ * @bfief	ç°¡æ˜“ä¼šè©±å…¥åŠ›ç”»é¢ï¼ˆprivate ãƒ˜ãƒƒãƒ€ï¼‰
  * @author	taya
  * @date	06.01.24
  */
@@ -15,39 +15,39 @@
 
 //------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh
+ * æç”»ã‚³ãƒãƒ³ãƒ‰
  */
 //------------------------------------------------------
 enum {
-	VCMD_INIT,					///< ‰æ–Ê‰Šú\’z
-	VCMD_QUIT,					///< •`‰æI—¹
-	VCMD_FADEIN,				///< ƒtƒF[ƒhƒCƒ“
+	VCMD_INIT,					///< ç”»é¢åˆæœŸæ§‹ç¯‰
+	VCMD_QUIT,					///< æç”»çµ‚äº†
+	VCMD_FADEIN,				///< ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
 
-	VCMD_UPDATE_EDITAREA,		///< •ÒW—ÌˆæXV
-	VCMD_EDITAREA_TO_BUTTON,	///< •ÒW—Ìˆæ‚©‚çƒRƒ}ƒ“ƒhƒ{ƒ^ƒ“‚Ö
-	VCMD_BUTTON_TO_EDITAREA,	///< ƒRƒ}ƒ“ƒhƒ{ƒ^ƒ“‚©‚ç•ÒW—Ìˆæ‚Ö
-	VCMD_EDITAREA_TO_CATEGORY,	///< •ÒW—Ìˆæ‚©‚çƒJƒeƒSƒŠ‘I‘ğ‚Ö
-	VCMD_CATEGORY_TO_EDITAREA,	///< ƒJƒeƒSƒŠ‘I‘ğ‚©‚ç•ÒW—Ìˆæ‚Ö
-	VCMD_CATEGORY_TO_WORDWIN,	///< ƒJƒeƒSƒŠ‘I‘ğ‚©‚ç’PŒê‘I‘ğ‚Ö
-	VCMD_WORDWIN_TO_CATEGORY,	///< ’PŒê‘I‘ğ‚©‚çƒJƒeƒSƒŠ‘I‘ğ‚Öi’PŒê‘I‘ğƒLƒƒƒ“ƒZƒ‹Œãj
-	VCMD_WORDTIN_TO_EDITAREA,	///< ’PŒê‘I‘ğ‚©‚ç•ÒW—Ìˆæ‚Öi’PŒêŒˆ’èŒãj
-	VCMD_WORDTIN_TO_BUTTON,		///< ’PŒê‘I‘ğ‚©‚çƒRƒ}ƒ“ƒhƒ{ƒ^ƒ“‚Öi’PŒêŒˆ’èŒãj
+	VCMD_UPDATE_EDITAREA,		///< ç·¨é›†é ˜åŸŸæ›´æ–°
+	VCMD_EDITAREA_TO_BUTTON,	///< ç·¨é›†é ˜åŸŸã‹ã‚‰ã‚³ãƒãƒ³ãƒ‰ãƒœã‚¿ãƒ³ã¸
+	VCMD_BUTTON_TO_EDITAREA,	///< ã‚³ãƒãƒ³ãƒ‰ãƒœã‚¿ãƒ³ã‹ã‚‰ç·¨é›†é ˜åŸŸã¸
+	VCMD_EDITAREA_TO_CATEGORY,	///< ç·¨é›†é ˜åŸŸã‹ã‚‰ã‚«ãƒ†ã‚´ãƒªé¸æŠã¸
+	VCMD_CATEGORY_TO_EDITAREA,	///< ã‚«ãƒ†ã‚´ãƒªé¸æŠã‹ã‚‰ç·¨é›†é ˜åŸŸã¸
+	VCMD_CATEGORY_TO_WORDWIN,	///< ã‚«ãƒ†ã‚´ãƒªé¸æŠã‹ã‚‰å˜èªé¸æŠã¸
+	VCMD_WORDWIN_TO_CATEGORY,	///< å˜èªé¸æŠã‹ã‚‰ã‚«ãƒ†ã‚´ãƒªé¸æŠã¸ï¼ˆå˜èªé¸æŠã‚­ãƒ£ãƒ³ã‚»ãƒ«å¾Œï¼‰
+	VCMD_WORDTIN_TO_EDITAREA,	///< å˜èªé¸æŠã‹ã‚‰ç·¨é›†é ˜åŸŸã¸ï¼ˆå˜èªæ±ºå®šå¾Œï¼‰
+	VCMD_WORDTIN_TO_BUTTON,		///< å˜èªé¸æŠã‹ã‚‰ã‚³ãƒãƒ³ãƒ‰ãƒœã‚¿ãƒ³ã¸ï¼ˆå˜èªæ±ºå®šå¾Œï¼‰
 
-	VCMD_MOVE_EDITAREA_CURSOR,	///< •ÒW—ÌˆæƒJ[ƒ\ƒ‹ˆÚ“®
-	VCMD_MOVE_BUTTON_CURSOR,	///< ƒ{ƒ^ƒ“ƒJ[ƒ\ƒ‹ˆÚ“®
-	VCMD_MOVE_CATEGORY_CURSOR,	///< ƒJƒeƒSƒŠ‘I‘ğƒJ[ƒ\ƒ‹ˆÚ“®
-	VCMD_MOVE_WORDWIN_CURSOR,	///< ’PŒê‘I‘ğƒJ[ƒ\ƒ‹ˆÚ“®
-	VCMD_SCROLL_WORDWIN,		///< ’PŒêƒEƒBƒ“ƒhƒEƒXƒNƒ[ƒ‹
+	VCMD_MOVE_EDITAREA_CURSOR,	///< ç·¨é›†é ˜åŸŸã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+	VCMD_MOVE_BUTTON_CURSOR,	///< ãƒœã‚¿ãƒ³ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+	VCMD_MOVE_CATEGORY_CURSOR,	///< ã‚«ãƒ†ã‚´ãƒªé¸æŠã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+	VCMD_MOVE_WORDWIN_CURSOR,	///< å˜èªé¸æŠã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+	VCMD_SCROLL_WORDWIN,		///< å˜èªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 
-	VCMD_DISP_MESSAGE_DEFAULT,	///< ‰ŠúƒƒbƒZ[ƒW•\¦
-	VCMD_DISP_MESSAGE_OK,		///< ‚±‚ê‚Å‚¢‚¢‚Å‚·‚©HƒƒbƒZ[ƒW•ƒƒjƒ…[
-	VCMD_DISP_MESSAGE_CANCEL,	///< ‚â‚ß‚Ü‚·‚©HƒƒbƒZ[ƒW•ƒƒjƒ…[
-	VCMD_DISP_MESSAGE_WARN,		///< ‚È‚É‚©‚±‚Æ‚Î‚ğ‚¢‚ê‚Ä‚­‚¾‚³‚¢IƒƒbƒZ[ƒW
-	VCMD_MOVE_MENU_CURSOR,		///< ƒƒjƒ…[ƒJ[ƒ\ƒ‹ˆÚ“®
-	VCMD_ERASE_MENU,			///< ƒƒjƒ…[•\¦Á‹
+	VCMD_DISP_MESSAGE_DEFAULT,	///< åˆæœŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+	VCMD_DISP_MESSAGE_OK,		///< ã“ã‚Œã§ã„ã„ã§ã™ã‹ï¼Ÿãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼†ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+	VCMD_DISP_MESSAGE_CANCEL,	///< ã‚„ã‚ã¾ã™ã‹ï¼Ÿãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼†ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+	VCMD_DISP_MESSAGE_WARN,		///< ãªã«ã‹ã“ã¨ã°ã‚’ã„ã‚Œã¦ãã ã•ã„ï¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	VCMD_MOVE_MENU_CURSOR,		///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+	VCMD_ERASE_MENU,			///< ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºæ¶ˆå»
 
-	VCMD_CHANGE_CATEGORY_MODE_DISABLE,	///< ƒJƒeƒSƒŠƒ‚[ƒhØ‘Ö‚¦AƒJƒeƒSƒŠ‘I‘ğó‘Ô‚ÖˆÚs‚µ‚È‚¢
-	VCMD_CHANGE_CATEGORY_MODE_ENABLE,	///< ƒJƒeƒSƒŠƒ‚[ƒhØ‘Ö‚¦AƒJƒeƒSƒŠ‘I‘ğó‘Ô‚ÖˆÚs‚·‚é
+	VCMD_CHANGE_CATEGORY_MODE_DISABLE,	///< ã‚«ãƒ†ã‚´ãƒªãƒ¢ãƒ¼ãƒ‰åˆ‡æ›¿ãˆã€ã‚«ãƒ†ã‚´ãƒªé¸æŠçŠ¶æ…‹ã¸ç§»è¡Œã—ãªã„
+	VCMD_CHANGE_CATEGORY_MODE_ENABLE,	///< ã‚«ãƒ†ã‚´ãƒªãƒ¢ãƒ¼ãƒ‰åˆ‡æ›¿ãˆã€ã‚«ãƒ†ã‚´ãƒªé¸æŠçŠ¶æ…‹ã¸ç§»è¡Œã™ã‚‹
 
 	VCMD_BUTTON_UP_HOLD,
 	VCMD_BUTTON_DOWN_HOLD,
@@ -60,7 +60,7 @@ enum {
 
 //------------------------------------------------------
 /**
- * ƒ{ƒ^ƒ“ƒAƒNƒ^[ƒŒƒCƒAƒEƒg
+ * ãƒœã‚¿ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
  */
 //------------------------------------------------------
 enum {
@@ -115,21 +115,21 @@ enum {
 
 //------------------------------------------------------
 /**
- * ƒƒCƒ“ƒ[ƒNŒ^éŒ¾
+ * ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯å‹å®£è¨€
  */
 //------------------------------------------------------
 typedef struct _PMS_INPUT_WORK	PMS_INPUT_WORK;
 
 //------------------------------------------------------
 /**
- * •`‰æƒ[ƒNŒ^éŒ¾
+ * æç”»ãƒ¯ãƒ¼ã‚¯å‹å®£è¨€
  */
 //------------------------------------------------------
 typedef struct _PMS_INPUT_VIEW	PMS_INPUT_VIEW;
 
 //------------------------------------------------------
 /**
- * ƒ^ƒXƒNƒvƒ‰ƒCƒIƒŠƒeƒB
+ * ã‚¿ã‚¹ã‚¯ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  */
 //------------------------------------------------------
 enum {
@@ -162,7 +162,7 @@ enum {
 
 //------------------------------------------------------
 /**
- * ƒVƒXƒeƒ€ŠÖ˜AŠÖ”ƒvƒƒgƒ^ƒCƒv
+ * ã‚·ã‚¹ãƒ†ãƒ é–¢é€£é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
  */
 //------------------------------------------------------
 extern u32 PMSI_GetInputMode( const PMS_INPUT_WORK* wk );
@@ -185,7 +185,7 @@ extern u32 PMSI_GetMenuCursorPos( const PMS_INPUT_WORK* wk );
 
 //------------------------------------------------------
 /**
- * •`‰æŠÖ˜AŠÖ”ƒvƒƒgƒ^ƒCƒv
+ * æç”»é–¢é€£é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
  */
 //------------------------------------------------------
 extern PMS_INPUT_VIEW*  PMSIView_Create(const PMS_INPUT_WORK* wk, const PMS_INPUT_DATA* dwk);

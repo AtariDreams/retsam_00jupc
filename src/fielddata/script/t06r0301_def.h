@@ -1,10 +1,10 @@
 #ifndef _T06R0301_DEF_H_
 #define _T06R0301_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T06R0301_MYSTERY		(1)
 #define	SCRID_T06R0301_MOUNT		(2)
 #define	SCRID_T06R0301_POSTER		(3)
-#define	SCRID_T06R0301_DATA_MAX		(3)		//最大数
+#define	SCRID_T06R0301_DATA_MAX		(3)		//譛螟ｧ謨ｰ
 
 #endif //_T06R0301_DEF_H_

@@ -1,18 +1,18 @@
 //=============================================================================
 /**
  * @file	comm_union_view.c
- * @brief	ƒ†ƒjƒIƒ“ƒ‹[ƒ€§Œäˆ—
+ * @brief	ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ åˆ¶å¾¡å‡¦ç†
  * @author	Akito Mori
  * @date    2005.12.15
  */
 //=============================================================================
 
 #ifdef PM_DEBUG
-// —LŒø‚É‚·‚é‚ÆDEBUGƒ{ƒ^ƒ“‚Åƒr[ƒRƒ“‚O”Ô‚ÌID‚ğ‘‚«Š·‚¦‚ç‚ê‚é
+// æœ‰åŠ¹ã«ã™ã‚‹ã¨DEBUGãƒœã‚¿ãƒ³ã§ãƒ“ãƒ¼ã‚³ãƒ³ï¼ç•ªã®IDã‚’æ›¸ãæ›ãˆã‚‰ã‚Œã‚‹
 //#define UNION_VIEW_DEBUG
 #endif
 
-// WMBssDec‚Ì“à–ó‚Ícommuniocation.h‚É‚ ‚é
+// WMBssDecã®å†…è¨³ã¯communiocation.hã«ã‚ã‚‹
 
 #include "common.h"
 #include "communication/communication.h"
@@ -35,11 +35,11 @@
 
 #define _TCB_UNIONVIEW_PRT	( 11 )
 
-// ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚É‘¶İ‚·‚é’ÊMe‚ÌÅ‘åiƒOƒ‹[ƒv‚Ì’†S‚É‚È‚éOBJ‚ÌÅ‘å”j
+// ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã«å­˜åœ¨ã™ã‚‹é€šä¿¡è¦ªã®æœ€å¤§ï¼ˆã‚°ãƒ«ãƒ¼ãƒ—ã®ä¸­å¿ƒã«ãªã‚‹OBJã®æœ€å¤§æ•°ï¼‰
 #define UNIONROOM_PARENT_NUM	( 10 )
 
 
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 static void commUnionViewTask( TCB_PTR tcb, void* work);
 static void UnionObjView_Control( COMM_UNIONROOM_VIEW *view, COMM_UNIONROOM_WORK *cuw, FIELD_OBJ_SYS_PTR fldobjsys, FRIEND_LIST *friendlist );
 static int  UnionObjView_ChildControl( COMM_UNIONROOM_VIEW *view, int no, WMBssDesc *beacon,  FRIEND_LIST *friendlist);
@@ -70,7 +70,7 @@ static void UnionChatInit(UNION_CHAT *chat);
 //COMM_UNIONROOM_VIEW *debug_view;
 //==============================================================================
 /**
- * OBJ§Œäˆ—‰Šú‰»
+ * OBJåˆ¶å¾¡å‡¦ç†åˆæœŸåŒ–
  *
  * @param   cuw		
  *
@@ -88,7 +88,7 @@ COMM_UNIONROOM_VIEW *Comm_UnionRoomViewInit(COMM_UNIONROOM_WORK *cuw)
 	view->viewTask       = TCB_Add(commUnionViewTask, view, _TCB_UNIONVIEW_PRT);
 	view->fsys           = Union_FielsSysPtrGet(cuw);
 	view->friendlist     = SaveData_Get(view->fsys->savedata, GMDATA_ID_FRIEND);
-	view->jiki			 = view->fsys->player;	//tomoya 080701	‚±‚±‚Åİ’èŒãAMapChange‚ª“®‚¢‚Ä‚µ‚Ü‚¤‚Ì‚ÅAplayer‚Ìƒ|ƒCƒ“ƒ^‚ª•Ï‚í‚é‰Â”\«‚ª‚ ‚é
+	view->jiki			 = view->fsys->player;	//tomoya 080701	ã“ã“ã§è¨­å®šå¾Œã€MapChangeãŒå‹•ã„ã¦ã—ã¾ã†ã®ã§ã€playerã®ãƒã‚¤ãƒ³ã‚¿ãŒå¤‰ã‚ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹
  
 	sys_CreateHeapLo( HEAPID_WORLD, HEAPID_UNIONBOARD, 10000 );
 	view->unionBoardChat = UnionBoard_ChatAllocInit(HEAPID_UNIONBOARD);
@@ -104,7 +104,7 @@ COMM_UNIONROOM_VIEW *Comm_UnionRoomViewInit(COMM_UNIONROOM_WORK *cuw)
 
 //==============================================================================
 /**
- * @brief   ˆê’U‘Sˆõ“o‚é
+ * @brief   ä¸€æ—¦å…¨å“¡ç™»ã‚‹
  *
  * @param   view		
  *
@@ -124,7 +124,7 @@ void UnionRoomView_ObjAllRise( COMM_UNIONROOM_VIEW *view )
 
 //==============================================================================
 /**
- * $brief   •\¦OBJî•ñ‚ğƒNƒŠƒA‚·‚é
+ * $brief   è¡¨ç¤ºOBJæƒ…å ±ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
  *
  * @param   view		
  *
@@ -150,7 +150,7 @@ void UnionRoomView_ObjInit( COMM_UNIONROOM_VIEW *view )
 
 //==============================================================================
 /**
- * ƒ†ƒjƒIƒ“ƒ‹[ƒ€•`‰æˆ—ƒ[ƒN‚ğ‰ğ•ú‚·‚é
+ * ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ æç”»å‡¦ç†ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾ã™ã‚‹
  *
  * @param   view		
  *
@@ -171,7 +171,7 @@ void Comm_UnionRoomViewEnd(COMM_UNIONROOM_VIEW *view)
 
 //==============================================================================
 /**
- * $brief   ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚ğŒ©‚½–Ú•œ‹A‚ğs‚¤
+ * $brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã‚’è¦‹ãŸç›®å¾©å¸°ã‚’è¡Œã†
  *
  * @param   cuw		
  * @param   view		
@@ -201,7 +201,7 @@ static const arrowtbl[]={AC_WARP_UP, AC_WARP_DOWN};
 
 //------------------------------------------------------------------
 /**
- * ƒr[ƒRƒ“‚ªŒ©‚Â‚©‚Á‚½‚çOBJ‚ğoŒ»A‚¢‚È‚­‚È‚Á‚½‚çÁ¸‚³‚¹‚éˆ—
+ * ãƒ“ãƒ¼ã‚³ãƒ³ãŒè¦‹ã¤ã‹ã£ãŸã‚‰OBJã‚’å‡ºç¾ã€ã„ãªããªã£ãŸã‚‰æ¶ˆå¤±ã•ã›ã‚‹å‡¦ç†
  *
  * @param   tcb		
  * @param   work		
@@ -217,12 +217,12 @@ static void commUnionViewTask(TCB_PTR tcb, void* work)
 	FIELD_OBJ_PTR fldobj;
 	int i;
 	
-	// ƒCƒxƒ“ƒg’†‚Å‚È‚¢‚±‚Æ‚ğŠm”F
+	// ã‚¤ãƒ™ãƒ³ãƒˆä¸­ã§ãªã„ã“ã¨ã‚’ç¢ºèª
 	if(!FieldEvent_Check(view->fsys)){
 
 		//tomoya 080701	
-		//‚±‚±‚Åplayer‚Ìƒ|ƒCƒ“ƒ^‚ğİ’è
-		//ˆÈ‘O‚ÌêŠ‚¾‚ÆMapChange‚ª“®‚¢‚ÄAplayer‚Ìƒ|ƒCƒ“ƒ^‚ª‚©‚í‚é‰Â”\«‚ ‚è
+		//ã“ã“ã§playerã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¨­å®š
+		//ä»¥å‰ã®å ´æ‰€ã ã¨MapChangeãŒå‹•ã„ã¦ã€playerã®ãƒã‚¤ãƒ³ã‚¿ãŒã‹ã‚ã‚‹å¯èƒ½æ€§ã‚ã‚Š
 		view->jiki = view->fsys->player;
 
 //		DebugObjFall(fsys->fldobjsys);
@@ -232,16 +232,16 @@ static void commUnionViewTask(TCB_PTR tcb, void* work)
 			view->objwork[0].trainerId = 0x12345667;
 		}
 #endif
-		// ƒr[ƒRƒ“Šm”FoŒ»ƒŠƒNƒGƒXƒg”­sˆ—
+		// ãƒ“ãƒ¼ã‚³ãƒ³ç¢ºèªå‡ºç¾ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºè¡Œå‡¦ç†
 		UnionObjView_Control( view, cuw, view->fsys->fldobjsys, view->friendlist );
 		
-		// OBJ•`‰æE˜b‚µ‚©‚¯”»’èONˆ—
+		// OBJæç”»ãƒ»è©±ã—ã‹ã‘åˆ¤å®šONå‡¦ç†
 		UnionObjView_Draw( view, view->fsys->fldobjsys );
 		
 		
 		
 	}
-//	}else{	// ƒCƒxƒ“ƒg’†‚Íƒ[ƒN‚ğƒNƒŠƒA‚·‚é
+//	}else{	// ã‚¤ãƒ™ãƒ³ãƒˆä¸­ã¯ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 //		UnionRoomView_ObjInit( work );
 //	}
 
@@ -250,13 +250,13 @@ static void commUnionViewTask(TCB_PTR tcb, void* work)
 
 //------------------------------------------------------------------
 /**
- * $brief   q‹@ƒRƒ“ƒgƒ[ƒ‹EOBJƒRƒ“ƒgƒ‹[ƒ‹
+ * $brief   å­æ©Ÿã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ»OBJã‚³ãƒ³ãƒˆãƒ«ãƒ¼ãƒ«
  *
  * @param   view		
  * @param   no		
  * @param   beacon		
  *
- * @retval  int			1:q‹@‚ğ—‚Æ‚µ‚½	0:—‚Æ‚³‚È‚©‚Á‚½
+ * @retval  int			1:å­æ©Ÿã‚’è½ã¨ã—ãŸ	0:è½ã¨ã•ãªã‹ã£ãŸ
  */
 //------------------------------------------------------------------
 static int UnionObjView_ChildControl( COMM_UNIONROOM_VIEW *view, int no, WMBssDesc *beacon,  FRIEND_LIST *friendlist)
@@ -267,7 +267,7 @@ static int UnionObjView_ChildControl( COMM_UNIONROOM_VIEW *view, int no, WMBssDe
 	FIELD_OBJ_PTR fldobj;
 	
 	
-	// ƒr[ƒRƒ“‚ª–³‚­‚È‚Á‚Ä‚¢‚é‚©A“à—e‚ª‘‚«Š·‚í‚Á‚Ä‚¢‚éê‡‚Íq‹@‚Í‘S‚Äˆø‚«ã‚°‚é
+	// ãƒ“ãƒ¼ã‚³ãƒ³ãŒç„¡ããªã£ã¦ã„ã‚‹ã‹ã€å†…å®¹ãŒæ›¸ãæ›ã‚ã£ã¦ã„ã‚‹å ´åˆã¯å­æ©Ÿã¯å…¨ã¦å¼•ãä¸Šã’ã‚‹
 	if(beacon==NULL ){
 		for(i=0;i<4;i++){
 			r = Union_GroupObjTable[no]+i;
@@ -287,26 +287,26 @@ static int UnionObjView_ChildControl( COMM_UNIONROOM_VIEW *view, int no, WMBssDe
 		return 0;
 	}
 
-	// e‚ªƒr[ƒRƒ““à‚Éq‹@‚Ì‘¶İ‚ğ‚¤‚ß‚±‚ñ‚Å‚¢‚½‚ç•\¦‚³‚¹‚é
+	// è¦ªãŒãƒ“ãƒ¼ã‚³ãƒ³å†…ã«å­æ©Ÿã®å­˜åœ¨ã‚’ã†ã‚ã“ã‚“ã§ã„ãŸã‚‰è¡¨ç¤ºã•ã›ã‚‹
 	for(i=0;i<4;i++){
 		r = Union_GroupObjTable[no]+i;
 		switch(view->objwork[r].appear){
 
-		// ‚Å‚Ä‚¢‚È‚¢
+		// ã§ã¦ã„ãªã„
 		case OBJ_NO_APPEAR:
 			if(beaconState->c_face[i]!=0){
 				view->objwork[r].request = OBJ_REQ_FALL_NOMOVE;
-				view->objwork[r].view    = (beaconState->c_face[i] & 0x7f);	// ÅãˆÊƒrƒbƒg‚Í«•Ê‚È‚Ì‚Åƒ}ƒXƒN‚·‚é
+				view->objwork[r].view    = (beaconState->c_face[i] & 0x7f);	// æœ€ä¸Šä½ãƒ“ãƒƒãƒˆã¯æ€§åˆ¥ãªã®ã§ãƒã‚¹ã‚¯ã™ã‚‹
 				view->objwork[r].friend  = FriendList_IdFullCheck( friendlist, beaconState->c_id[i] );
-				OS_Printf("q‹@“oê %d  OBJNO %d ‚İ‚½‚ß %d\n", i, r,beaconState->c_face[i]&0x7f);
-//				OS_Printf("q‹@ %d”ÔƒŠƒNƒGƒXƒg objno = %d\n",i,view->objwork[r].friend );
-				ret = 1;	// q‹@‚ğ‚­‚Á‚Â‚¯‚½
+				OS_Printf("å­æ©Ÿç™»å ´ %d  OBJNO %d ã¿ãŸã‚ %d\n", i, r,beaconState->c_face[i]&0x7f);
+//				OS_Printf("å­æ©Ÿ %dç•ªãƒªã‚¯ã‚¨ã‚¹ãƒˆ objno = %d\n",i,view->objwork[r].friend );
+				ret = 1;	// å­æ©Ÿã‚’ãã£ã¤ã‘ãŸ
 			}
 			break;
 
-		// oŒ»‚µ‚½
+		// å‡ºç¾ã—ãŸ
 		case OBJ_OK:
-			// ƒr[ƒRƒ““à‚Ìq‹@î•ñ‚ª‚È‚­‚È‚Á‚Ä‚¢‚½‚ç
+			// ãƒ“ãƒ¼ã‚³ãƒ³å†…ã®å­æ©Ÿæƒ…å ±ãŒãªããªã£ã¦ã„ãŸã‚‰
 			if(beaconState->c_face[i]==0){
 				UnionObjRequest( view->objwork, r, OBJ_REQ_RISE );
 				{
@@ -317,14 +317,14 @@ static int UnionObjView_ChildControl( COMM_UNIONROOM_VIEW *view, int no, WMBssDe
 					}
 					OS_Printf("\n");
 				}
-				OS_Printf("—£’E %d  OBJNO %d\n", i, r);
+				OS_Printf("é›¢è„± %d  OBJNO %d\n", i, r);
 //				view->objwork[r].request = OBJ_REQ_RISE;
 			}else{
 				ret = 1;
 			}
 			break;
 
-		// “o‚è‚«‚Á‚½
+		// ç™»ã‚Šãã£ãŸ
 		case OBJ_RISED:
 			view->objwork[r].request = OBJ_REQ_NO;
 			break;
@@ -336,7 +336,7 @@ static int UnionObjView_ChildControl( COMM_UNIONROOM_VIEW *view, int no, WMBssDe
 
 //------------------------------------------------------------------
 /**
- * @brief   OBJŠÇ—\‘¢‘Ì‚É—\–ñéŒ¾‚ğ“ü‚ê‚é
+ * @brief   OBJç®¡ç†æ§‹é€ ä½“ã«äºˆç´„å®£è¨€ã‚’å…¥ã‚Œã‚‹
  *
  * @param   objwork[]		
  * @param   idx		
@@ -361,7 +361,7 @@ static void UnionObjRequest( OBJ_VIEW_WORK objwork[], int idx,  int request  )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ†ƒjƒIƒ“e‹@EOBJƒRƒ“ƒgƒ‹[ƒ‹
+ * $brief   ãƒ¦ãƒ‹ã‚ªãƒ³è¦ªæ©Ÿãƒ»OBJã‚³ãƒ³ãƒˆãƒ«ãƒ¼ãƒ«
  *
  * @param   view		
  * @param   cuw		
@@ -379,7 +379,7 @@ static void UnionObjView_Control( COMM_UNIONROOM_VIEW *view, COMM_UNIONROOM_WORK
 	for(i=0;i<UNIONROOM_PARENT_NUM;i++){
 		beacon    = Union_BeaconPtrGet(cuw,i);
 		
-		// NULLQÆ‚µ‚Ä‚¢‚½‚Ì‚ÅAC³
+		// NULLå‚ç…§ã—ã¦ã„ãŸã®ã§ã€ä¿®æ­£
 		// 080615 tomoya
 //		gfbssdata = (_GF_BSS_DATA_INFO *)beacon->gameInfo.userGameInfo;
 //		status    = (MYSTATUS*)gfbssdata->myStatusBuff;
@@ -392,28 +392,28 @@ static void UnionObjView_Control( COMM_UNIONROOM_VIEW *view, COMM_UNIONROOM_WORK
 		}
 
 		switch(view->objwork[i].appear){
-		// OBJ‚ª‚¢‚È‚¢êŠ‚Ìƒr[ƒRƒ“‚ğó‚¯æ‚Á‚½‚çoŒ»‚³‚¹‚é
+		// OBJãŒã„ãªã„å ´æ‰€ã®ãƒ“ãƒ¼ã‚³ãƒ³ã‚’å—ã‘å–ã£ãŸã‚‰å‡ºç¾ã•ã›ã‚‹
 		case OBJ_NO_APPEAR:
 			if(beacon!=NULL){
 				view->objwork[i].view      = MyStatus_GetTrainerView( status );
 				view->objwork[i].friend    = FriendList_IdFullCheck( friendlist, MyStatus_GetID( status ) );
 				view->objwork[i].trainerId = gfbssdata->pokeID;
 
-				// ƒr[ƒRƒ“‚Åq‹@î•ñ‚ğ‚Á‚Ä‚¢‚é‚©ŠÄ‹
+				// ãƒ“ãƒ¼ã‚³ãƒ³ã§å­æ©Ÿæƒ…å ±ã‚’æŒã£ã¦ã„ã‚‹ã‹ç›£è¦–
 				if(UnionObjView_ChildControl( view, i, beacon, friendlist )){
-						OS_Printf("%d “®‚©‚È‚¢“oê\n",i);
-						view->objwork[i].request = OBJ_REQ_FALL_NOMOVE;	// “®‚©‚È‚¢
+						OS_Printf("%d å‹•ã‹ãªã„ç™»å ´\n",i);
+						view->objwork[i].request = OBJ_REQ_FALL_NOMOVE;	// å‹•ã‹ãªã„
 				}else{
-					OS_Printf("%d “®‚­“oê‚ğŠú‘Ò\n",i);
-					view->objwork[i].request = OBJ_REQ_FALL;		// “®‚­
+					OS_Printf("%d å‹•ãç™»å ´ã‚’æœŸå¾…\n",i);
+					view->objwork[i].request = OBJ_REQ_FALL;		// å‹•ã
 				}
-				OS_TPrintf("e‹@%d ƒŠƒNƒGƒXƒg\n", i);
+				OS_TPrintf("è¦ªæ©Ÿ%d ãƒªã‚¯ã‚¨ã‚¹ãƒˆ\n", i);
 			}
 			break;
-		// —‚¿‚«‚Á‚½
+		// è½ã¡ãã£ãŸ
 		case OBJ_OK:
 			
-		// NULLQÆ‚µ‚Ä‚¢‚½‚Ì‚ÅAC³
+		// NULLå‚ç…§ã—ã¦ã„ãŸã®ã§ã€ä¿®æ­£
 		// 080615 tomoya
 //			if(beacon==NULL || view->objwork[i].trainerId!=gfbssdata->pokeID){
 //				UnionObjRequest( view->objwork, i, OBJ_REQ_RISE );
@@ -431,8 +431,8 @@ static void UnionObjView_Control( COMM_UNIONROOM_VIEW *view, COMM_UNIONROOM_WORK
 
 			if(UnionObjView_ChildControl( view, i, beacon, friendlist )){
 				if(view->objwork[i].appearmode==OBJ_MOVE_WALK){
-						OS_Printf("%d “®‚©‚È‚­‚È‚Á‚ÄÄ“oê‚ğŠú‘Ò\n",i);
-						view->objwork[i].request = OBJ_REQ_RISE;	// “®‚©‚È‚¢‚É‚È‚Á‚Ä‚­‚ê‚é–‚ğŠú‘Ò
+						OS_Printf("%d å‹•ã‹ãªããªã£ã¦å†ç™»å ´ã‚’æœŸå¾…\n",i);
+						view->objwork[i].request = OBJ_REQ_RISE;	// å‹•ã‹ãªã„ã«ãªã£ã¦ãã‚Œã‚‹äº‹ã‚’æœŸå¾…
 				}
 			}
 			break;
@@ -447,7 +447,7 @@ static void UnionObjView_Control( COMM_UNIONROOM_VIEW *view, COMM_UNIONROOM_WORK
 }
 //------------------------------------------------------------------
 /**
- * $brief   ƒ†ƒjƒIƒ“ƒ‹[ƒ€“à˜b‚µ‚©‚¯OBJ•\¦§Œä
+ * $brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ å†…è©±ã—ã‹ã‘OBJè¡¨ç¤ºåˆ¶å¾¡
  *
  * @param   view		
  * @param   fldobj		
@@ -465,16 +465,16 @@ static void UnionObjView_Draw( COMM_UNIONROOM_VIEW *view, FIELD_OBJ_SYS_PTR  fld
 	x = Player_NowGPosXGet( view->jiki );
 	z = Player_NowGPosZGet( view->jiki );
 	
-		// 50l‘Sˆõ•ª‚®‚é‚®‚é‰ñ‚·
+		// 50äººå…¨å“¡åˆ†ãã‚‹ãã‚‹å›ã™
 		for(i=0;i<50;i++){
 			fldobj = FieldOBJSys_OBJIDSearch( fldobjsys, i+1);
 			if( fldobj == NULL ){
-				OS_Printf( "ŠY“–‚ÌID‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ ID=0x%x\n", i );
+				OS_Printf( "è©²å½“ã®IDãŒç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“ ID=0x%x\n", i );
 				GF_ASSERT( 0 );
 			}
 
 			switch(view->objwork[i].appear){
-			// OBJ‚ª‚¢‚È‚¢êŠ‚Ìƒr[ƒRƒ“‚ğó‚¯æ‚Á‚½‚çoŒ»‚³‚¹‚é
+			// OBJãŒã„ãªã„å ´æ‰€ã®ãƒ“ãƒ¼ã‚³ãƒ³ã‚’å—ã‘å–ã£ãŸã‚‰å‡ºç¾ã•ã›ã‚‹
 			case OBJ_NO_APPEAR:
 				if(FieldOBJ_AcmdSetCheck(fldobj)==TRUE){
 					int request = view->objwork[i].request;
@@ -484,13 +484,13 @@ static void UnionObjView_Draw( COMM_UNIONROOM_VIEW *view, FIELD_OBJ_SYS_PTR  fld
 					}
 				}
 				break;
-			// —‚¿‚Ä‚é
+			// è½ã¡ã¦ã‚‹
 			case OBJ_FALL_WAIT:
-				if(FieldOBJ_AcmdSetCheck(fldobj)==TRUE){			// —‚¿‚«‚Á‚½‚ç’†‚É
+				if(FieldOBJ_AcmdSetCheck(fldobj)==TRUE){			// è½ã¡ãã£ãŸã‚‰ä¸­ã«
 
-					// ƒƒjƒ…[ŒÄ‚Ño‚µ“™‚Åu—‚¿‚«‚Á‚½v‚Í‚¸‚È‚Ì‚ÉOBJ_REQ_RISE‚ª“ü‚Á‚Ä‚¢‚é
+					// ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—ç­‰ã§ã€Œè½ã¡ãã£ãŸã€ã¯ãšãªã®ã«OBJ_REQ_RISEãŒå…¥ã£ã¦ã„ã‚‹
 					if(view->objwork[i].request==OBJ_REQ_RISE){
-						// NO_APPEAR‚©‚ç‚â‚è‚È‚¨‚µ
+						// NO_APPEARã‹ã‚‰ã‚„ã‚ŠãªãŠã—
 						view->objwork[i].appear  = OBJ_NO_APPEAR;
 						view->objwork[i].request = OBJ_REQ_NO;
 						Delete_Effect( &view->objwork[i], 1 );
@@ -499,58 +499,58 @@ static void UnionObjView_Draw( COMM_UNIONROOM_VIEW *view, FIELD_OBJ_SYS_PTR  fld
 					}
 
 					FieldOBJ_AcmdEnd(fldobj);
-					FieldOBJ_StatusBitSet_TalkOFF( fldobj, FALSE );	// ˜b‚µ‚©‚¯‚ç‚ê‚é‚æ‚¤‚Éƒtƒ‰ƒO•ÏX
+					FieldOBJ_StatusBitSet_TalkOFF( fldobj, FALSE );	// è©±ã—ã‹ã‘ã‚‰ã‚Œã‚‹ã‚ˆã†ã«ãƒ•ãƒ©ã‚°å¤‰æ›´
 			
-					// ˆêl‚Å~‚è‚Ä‚­‚é‚Æ‚«‚ÍA‚»‚ÌŒã•à‚­
+					// ä¸€äººã§é™ã‚Šã¦ãã‚‹ã¨ãã¯ã€ãã®å¾Œæ­©ã
 					if(view->objwork[i].request==OBJ_REQ_FALL && view->objwork[i].appearmode==OBJ_MOVE_STAND){
-						OS_Printf("%d ‚ ‚é‚©‚¹‚é\n",i);
-					 	FieldOBJ_MoveCodeChange( fldobj, MV_RND );		// ˆÚ“®ŠJn
-					 	FieldOBJ_MoveLimitXSet( fldobj, 1);				// 3x3‚Ì”ÍˆÍ‚Å
+						OS_Printf("%d ã‚ã‚‹ã‹ã›ã‚‹\n",i);
+					 	FieldOBJ_MoveCodeChange( fldobj, MV_RND );		// ç§»å‹•é–‹å§‹
+					 	FieldOBJ_MoveLimitXSet( fldobj, 1);				// 3x3ã®ç¯„å›²ã§
 					 	FieldOBJ_MoveLimitZSet( fldobj, 1);
 					 	view->objwork[i].appearmode = OBJ_MOVE_WALK;
 					}
 
-					// —‰ºƒŠƒNƒGƒXƒg‰ğœ
+					// è½ä¸‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆè§£é™¤
 					view->objwork[i].appear  = OBJ_OK;
 					view->objwork[i].request = OBJ_REQ_NO;
 
 				}
 				break;
-			// ˜b‚µ‚©‚¯‚ç‚ê‚é
+			// è©±ã—ã‹ã‘ã‚‰ã‚Œã‚‹
 			case OBJ_OK:
 				if(FieldOBJ_AcmdSetCheck(fldobj)==TRUE){
 //					if(sys.trg&PAD_BUTTON_A){
-					// ƒTƒu‰æ–Ê‚Åƒ`ƒƒƒbƒg‚ğƒ^ƒbƒ`‚³‚ê‚½‚çÔ˜g‚ğo‚·
+					// ã‚µãƒ–ç”»é¢ã§ãƒãƒ£ãƒƒãƒˆã‚’ã‚¿ãƒƒãƒã•ã‚ŒãŸã‚‰èµ¤æ ã‚’å‡ºã™
 					UnionObj_EffectCheck(&view->objwork[i], fldobj);
 					
-					// ‚³‚æ‚È‚çƒŠƒNƒGƒXƒg
+					// ã•ã‚ˆãªã‚‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 					if(view->objwork[i].request==OBJ_REQ_RISE){
-						OS_Printf("ã‚Ö‚Ì‚Ú‚ç‚¹‚éƒŠƒNƒGƒXƒg %d\n",i);
+						OS_Printf("ä¸Šã¸ã®ã¼ã‚‰ã›ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆ %d\n",i);
 						UnionObjRise_Req( &view->objwork[i], fldobj );
 					}
-					// ƒGƒtƒFƒNƒgŠÇ—
+					// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç®¡ç†
 					EffectControl( &view->objwork[i] );
 				}
 				break;
-			// “o‚Á‚Ä‚é
+			// ç™»ã£ã¦ã‚‹
 			case OBJ_RISE_WAIT:
-				if(FieldOBJ_AcmdSetCheck(fldobj)==TRUE){			// “o‚è‚«‚Á‚½
+				if(FieldOBJ_AcmdSetCheck(fldobj)==TRUE){			// ç™»ã‚Šãã£ãŸ
 					FieldOBJ_AcmdEnd(fldobj);
 					view->objwork[i].appear  = OBJ_RISED;
 					view->objwork[i].request = OBJ_REQ_NO;
 					view->objwork[i].appearmode = OBJ_MOVE_STAND;
-					FieldOBJ_StatusBitSet_Vanish(fldobj,TRUE);		// ‰B‚·
-					FieldOBJ_StatusBitSet_FellowHit(fldobj,FALSE);	// “–‚½‚è”»’è‚à‚È‚­‚·
+					FieldOBJ_StatusBitSet_Vanish(fldobj,TRUE);		// éš ã™
+					FieldOBJ_StatusBitSet_FellowHit(fldobj,FALSE);	// å½“ãŸã‚Šåˆ¤å®šã‚‚ãªãã™
 				}
 				break;
-			// “o‚è‚«‚Á‚½
+			// ç™»ã‚Šãã£ãŸ
 			case OBJ_RISED:
 				view->objwork[i].appear = OBJ_NO_APPEAR;
 				break;
 
 			}
 		}
-	// ålŒö—p‚Ìˆ—
+	// ä¸»äººå…¬ç”¨ã®å‡¦ç†
 	UnionObj_EffectCheck( &view->objwork[50], Player_FieldOBJGet(view->jiki) );
 	EffectControl( &view->objwork[50] );
 
@@ -558,7 +558,7 @@ static void UnionObjView_Draw( COMM_UNIONROOM_VIEW *view, FIELD_OBJ_SYS_PTR  fld
 
 //------------------------------------------------------------------
 /**
- * $brief   OBJ•\¦ŠÇ—ƒ[ƒNƒNƒŠƒA
+ * $brief   OBJè¡¨ç¤ºç®¡ç†ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢
  *
  * @param   view		
  *
@@ -575,7 +575,7 @@ static void UnionViewObjWorkClear( COMM_UNIONROOM_VIEW *view)
 }
 //------------------------------------------------------------------
 /**
- * $brief   l•¨‚Ìü‚è‚É‚¾‚µ‚Ä‚¢‚éƒGƒtƒFƒNƒg‚ğÁ‚·
+ * $brief   äººç‰©ã®å‘¨ã‚Šã«ã ã—ã¦ã„ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æ¶ˆã™
  *
  * @param   effect_ptr		
  *
@@ -584,7 +584,7 @@ static void UnionViewObjWorkClear( COMM_UNIONROOM_VIEW *view)
 //------------------------------------------------------------------
 static void Delete_Effect( OBJ_VIEW_WORK *objwork, int shadow_flag )
 {
-	// Ô˜gÁ‹
+	// èµ¤æ æ¶ˆå»
 	if( objwork->effect_ptr != NULL){
 		if(EOA_StatusBit_UseCheck( objwork->effect_ptr )){
 			EOA_Delete( objwork->effect_ptr );
@@ -592,7 +592,7 @@ static void Delete_Effect( OBJ_VIEW_WORK *objwork, int shadow_flag )
 		objwork->effect_ptr = NULL;
 	}
 	
-	// Ô‰eEÂ‰eÁ‹
+	// èµ¤å½±ãƒ»é’å½±æ¶ˆå»
 	if(shadow_flag){
 		if( objwork->shadow_ptr != NULL){
 			if(EOA_StatusBit_UseCheck( objwork->shadow_ptr )){
@@ -605,7 +605,7 @@ static void Delete_Effect( OBJ_VIEW_WORK *objwork, int shadow_flag )
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒGƒtƒFƒNƒg‚ÌŠÇ—
+ * $brief   ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ç®¡ç†
  *
  * @param   objwork		
  *
@@ -614,12 +614,12 @@ static void Delete_Effect( OBJ_VIEW_WORK *objwork, int shadow_flag )
 //------------------------------------------------------------------
 static void EffectControl( OBJ_VIEW_WORK *objwork)
 {
-	// ƒGƒtƒFƒNƒg‚ğ‘Ñ‚Ñ‚Ä‚¢‚éê‡
+	// ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å¸¯ã³ã¦ã„ã‚‹å ´åˆ
 	if(objwork->effect_onflag){
-		objwork->wait--;		// ƒEƒFƒCƒg‚ğŒ¸‚ç‚·
+		objwork->wait--;		// ã‚¦ã‚§ã‚¤ãƒˆã‚’æ¸›ã‚‰ã™
 		if(objwork->wait==0){	
-			// I—¹‚ÉƒGƒtƒFƒNƒgÁ‹
-			OS_Printf( "Ô˜gÁ‹ objwork = %08x, effect = %08x\n",  objwork, objwork->effect_ptr);
+			// çµ‚äº†æ™‚ã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ¶ˆå»
+			OS_Printf( "èµ¤æ æ¶ˆå» objwork = %08x, effect = %08x\n",  objwork, objwork->effect_ptr);
 			Delete_Effect( objwork, 0 );
 			objwork->effect_onflag=0;
 			
@@ -631,7 +631,7 @@ static void EffectControl( OBJ_VIEW_WORK *objwork)
 
 //------------------------------------------------------------------
 /**
- * $brief   OBJ‚ğ—‚Æ‚·ˆ—
+ * $brief   OBJã‚’è½ã¨ã™å‡¦ç†
  *
  * @param   view		
  * @param   fldobjsys		
@@ -645,26 +645,26 @@ static void EffectControl( OBJ_VIEW_WORK *objwork)
 static void UnionObjFall_Req( OBJ_VIEW_WORK *objview, FIELD_OBJ_PTR fldobj, int jiki_x, int jiki_z )
 {
 	int x,y,z;
-	// “oêêŠ‚ğƒ}ƒbƒv‰Šú“o˜^À•W‚Éİ’è‚µ‚È‚¨‚·
+	// ç™»å ´å ´æ‰€ã‚’ãƒãƒƒãƒ—åˆæœŸç™»éŒ²åº§æ¨™ã«è¨­å®šã—ãªãŠã™
 	x = FieldOBJ_InitPosGX_Get( fldobj );
 	y = FieldOBJ_InitPosGY_Get( fldobj );
 	z = FieldOBJ_InitPosGZ_Get( fldobj );
 
-	// ©‹@‚ÌÀ•W‚Æ—‰ºÀ•W‚ªˆê’v‚µ‚Ä‚¢‚é‚È‚ç¡‰ñ‚Í—‰º‚³‚¹‚È‚¢
+	// è‡ªæ©Ÿã®åº§æ¨™ã¨è½ä¸‹åº§æ¨™ãŒä¸€è‡´ã—ã¦ã„ã‚‹ãªã‚‰ä»Šå›ã¯è½ä¸‹ã•ã›ãªã„
 	if(x==jiki_x && z==jiki_z){
 		return;
 	}
 
-	// —‚¿‚Ä‚«‚½SE
+	// è½ã¡ã¦ããŸSE
 	Snd_SePlay(SE_UNION_FALL);
 
-	// —‰ºİ’è
+	// è½ä¸‹è¨­å®š
 	FieldOBJ_DrawReset( fldobj, objview->view );
 
-	OS_Printf("Ä“o˜^ Á‹˜g=%08x\n", objview->effect_ptr);
+	OS_Printf("å†ç™»éŒ² æ¶ˆå»æ =%08x\n", objview->effect_ptr);
 	Delete_Effect( objview, 0 );
 
-	// “oê‰ŠúˆÊ’uæ“¾
+	// ç™»å ´åˆæœŸä½ç½®å–å¾—
 	FieldOBJ_GPosDirInit( fldobj, x, y, z, DIR_DOWN );
 	
 	FieldOBJ_DirDispSetForce( fldobj, DIR_DOWN     );
@@ -673,9 +673,9 @@ static void UnionObjFall_Req( OBJ_VIEW_WORK *objview, FIELD_OBJ_PTR fldobj, int 
 	FieldOBJ_StatusBitSet_FellowHit( fldobj, TRUE  );
 	objview->appear = OBJ_FALL_WAIT;
 
-	// ’m‚è‡‚¢‚È‚çÔ‚¢‰eA’m‚è‡‚¢‚Ì’m‚è‡‚¢‚È‚çÂ‚¢‰e‚ğ‚Â‚¯‚é
+	// çŸ¥ã‚Šåˆã„ãªã‚‰èµ¤ã„å½±ã€çŸ¥ã‚Šåˆã„ã®çŸ¥ã‚Šåˆã„ãªã‚‰é’ã„å½±ã‚’ã¤ã‘ã‚‹
 	if(objview->friend!=0){
-		// SHADOW_REDESHADOW_BLUE‚Ífldeff_shadow.h‚ğQÆ
+		// SHADOW_REDãƒ»SHADOW_BLUEã¯fldeff_shadow.hã‚’å‚ç…§
 		if(objview->friend==DIRECT_FRIEND){
 			objview->shadow_ptr = FE_FldOBJShadowSet( fldobj, SHADOW_RED );
 		}else if(objview->friend>=INDIRECT_FRIEND){
@@ -689,7 +689,7 @@ static void UnionObjFall_Req( OBJ_VIEW_WORK *objview, FIELD_OBJ_PTR fldobj, int 
 
 //------------------------------------------------------------------
 /**
- * $brief   OBJ‚ğ“o‚ç‚¹‚éˆ—
+ * $brief   OBJã‚’ç™»ã‚‰ã›ã‚‹å‡¦ç†
  *
  * @param   view		
  * @param   fldobjsys		
@@ -705,9 +705,9 @@ static void UnionObjRise_Req( OBJ_VIEW_WORK *objview, FIELD_OBJ_PTR fldobj )
 
 	FieldOBJ_AcmdSet(              fldobj, AC_WARP_UP );
 	FieldOBJ_StatusBitSet_TalkOFF( fldobj, TRUE       );
- 	FieldOBJ_MoveCodeChange(       fldobj, MV_DMY     );	// ˆÚ“®ƒXƒgƒbƒv
+ 	FieldOBJ_MoveCodeChange(       fldobj, MV_DMY     );	// ç§»å‹•ã‚¹ãƒˆãƒƒãƒ—
 
-	// I—¹‚ÉƒGƒtƒFƒNƒgÁ‹
+	// çµ‚äº†æ™‚ã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ¶ˆå»
 	Delete_Effect( objview, 1 );
 	objview->effect_onflag=0;
 	objview->wait = 0;
@@ -718,7 +718,7 @@ static void UnionObjRise_Req( OBJ_VIEW_WORK *objview, FIELD_OBJ_PTR fldobj )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰º‰æ–Ê‚Åƒ^ƒbƒ`‚³‚ê‚½‚ÉÔ˜g‚ğo‚·
+ * $brief   ä¸‹ç”»é¢ã§ã‚¿ãƒƒãƒã•ã‚ŒãŸæ™‚ã«èµ¤æ ã‚’å‡ºã™
  *
  * @param   objwork		
  * @param   fldobj		
@@ -728,15 +728,15 @@ static void UnionObjRise_Req( OBJ_VIEW_WORK *objview, FIELD_OBJ_PTR fldobj )
 //------------------------------------------------------------------
 static void UnionObj_EffectCheck(OBJ_VIEW_WORK *objwork, FIELD_OBJ_PTR fldobj)
 {
-	// ‰º‰æ–Ê‚Åƒtƒ‰ƒO‚ğ—§‚Ä‚ç‚ê‚Ä‚¢‚½‚ç
+	// ä¸‹ç”»é¢ã§ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‰ã‚Œã¦ã„ãŸã‚‰
 	if(objwork->effect==1){
 
-		// Šù‚ÉƒGƒtƒFƒNƒg‹N“®‚µ‚Ä‚¢‚È‚¯‚ê‚ÎÔ˜gƒGƒtƒFƒNƒgON
+		// æ—¢ã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆèµ·å‹•ã—ã¦ã„ãªã‘ã‚Œã°èµ¤æ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆON
 		if(objwork->effect_onflag==0){
 
-			// Ô˜g•\¦ŠJn
+			// èµ¤æ è¡¨ç¤ºé–‹å§‹
 			objwork->effect_ptr   = FE_FldOBJRedFrame_Add( fldobj );
-			OS_Printf( "Ô˜g”­¶ objwork = %08x, effect = %08x\n",  fldobj, objwork->effect_ptr);
+			OS_Printf( "èµ¤æ ç™ºç”Ÿ objwork = %08x, effect = %08x\n",  fldobj, objwork->effect_ptr);
 
 //			objwork->effect_ptr   = FE_FldOBJShadowSet( fldobj, SHADOW_RED );
 //			FieldOBJ_AcmdSet(fldobj, AC_MARK_GYOE);
@@ -752,7 +752,7 @@ static void UnionObj_EffectCheck(OBJ_VIEW_WORK *objwork, FIELD_OBJ_PTR fldobj)
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒ†ƒjƒIƒ“‚n‚a‚i‚Ì•\¦Ï‚İî•ñ‚ğ‚·‚×‚Ä‰Šú‰»‚·‚é
+ * @brief   ãƒ¦ãƒ‹ã‚ªãƒ³ï¼¯ï¼¢ï¼ªã®è¡¨ç¤ºæ¸ˆã¿æƒ…å ±ã‚’ã™ã¹ã¦åˆæœŸåŒ–ã™ã‚‹
  *
  * @param   fldobjsys	
  * @param   start		
@@ -769,23 +769,23 @@ static void FieldObjVanish( FIELD_OBJ_SYS_PTR fldobjsys, int start, int end )
 	for(i=start; i<end;i++){
 		fldobj = FieldOBJSys_OBJIDSearch(fldobjsys, i);
 		if( fldobj == NULL ){
-			OS_Printf( "ŠY“–‚ÌID‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ ID=0x%x\n", i );
+			OS_Printf( "è©²å½“ã®IDãŒç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“ ID=0x%x\n", i );
 			GF_ASSERT( 0 );
 		}
 
 
-		// •\¦‚ğOFF
+		// è¡¨ç¤ºã‚’OFF
 		FieldOBJ_StatusBitSet_Vanish(fldobj,TRUE);
-		// “–‚½‚è”»’è‚ğOFF
+		// å½“ãŸã‚Šåˆ¤å®šã‚’OFF
 		FieldOBJ_StatusBitSet_FellowHit(fldobj,FALSE);
-		// ˜b‚µ‚©‚¯”»’è‚ğOFF
+		// è©±ã—ã‹ã‘åˆ¤å®šã‚’OFF
 		FieldOBJ_StatusBitSet_TalkOFF( fldobj, TRUE );
 	}
 }
 
 //==============================================================================
 /**
- * ‰Šú‰»‚É‚·‚×‚Ä‚ÌOBJ‚ğ‰B‚·
+ * åˆæœŸåŒ–æ™‚ã«ã™ã¹ã¦ã®OBJã‚’éš ã™
  *
  * @param   fldobj		
  *
@@ -804,7 +804,7 @@ void Union_BeaconObjAllVanish( FIELD_OBJ_SYS_PTR fldobjsys, COMM_UNIONROOM_VIEW 
 
 	if(FieldOBJ_AcmdSetCheck(fldobj)==TRUE){
 
-		// ’ÊM‚Í‚µ‚Ä‚¢‚È‚¢
+		// é€šä¿¡ã¯ã—ã¦ã„ãªã„æ™‚
 		if(CommStateIsUnionParentConnectSuccess() || CommStateIsUnionConnectSuccess()){
 			int i;
 			for(i=0;i<UNIONROOM_PARENT_NUM;i++){
@@ -814,12 +814,12 @@ void Union_BeaconObjAllVanish( FIELD_OBJ_SYS_PTR fldobjsys, COMM_UNIONROOM_VIEW 
 				}
 				fldobj = FieldOBJSys_OBJIDSearch(fldobjsys, i+1);
 				if( fldobj == NULL ){
-					OS_Printf( "ŠY“–‚ÌID‚ª“o˜^‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ ID=0x%x\n", i );
+					OS_Printf( "è©²å½“ã®IDãŒç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“ ID=0x%x\n", i );
 					GF_ASSERT( 0 );
 				}
 
-				// —‰ºİ’è
-				//Œ©‚½–Ú•ÏX
+				// è½ä¸‹è¨­å®š
+				//è¦‹ãŸç›®å¤‰æ›´
 				FieldOBJ_DrawReset( fldobj, objview->view );
 	
 				FieldOBJ_DirDispSetForce( fldobj, DIR_DOWN     );
@@ -828,9 +828,9 @@ void Union_BeaconObjAllVanish( FIELD_OBJ_SYS_PTR fldobjsys, COMM_UNIONROOM_VIEW 
 				FieldOBJ_StatusBitSet_FellowHit( fldobj, TRUE  );
 				objview->appear = OBJ_FALL_WAIT;
 
-				// ’m‚è‡‚¢‚È‚çÔ‚¢‰eA’m‚è‡‚¢‚Ì’m‚è‡‚¢‚È‚çÂ‚¢‰e‚ğ‚Â‚¯‚é
+				// çŸ¥ã‚Šåˆã„ãªã‚‰èµ¤ã„å½±ã€çŸ¥ã‚Šåˆã„ã®çŸ¥ã‚Šåˆã„ãªã‚‰é’ã„å½±ã‚’ã¤ã‘ã‚‹
 				if(objview->friend!=0){
-					// SHADOW_REDESHADOW_BLUE‚Ífldeff_shadow.h‚ğQÆ
+					// SHADOW_REDãƒ»SHADOW_BLUEã¯fldeff_shadow.hã‚’å‚ç…§
 					if(objview->friend==DIRECT_FRIEND){
 						objview->shadow_ptr = FE_FldOBJShadowSet( fldobj, SHADOW_RED );
 					}else if(objview->friend>=INDIRECT_FRIEND){
@@ -848,9 +848,9 @@ void Union_BeaconObjAllVanish( FIELD_OBJ_SYS_PTR fldobjsys, COMM_UNIONROOM_VIEW 
 
 //------------------------------------------------------------------
 /**
- * ƒ†ƒjƒIƒ“ƒƒbƒZ[ƒW‰Šú‰»
+ * ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸åˆæœŸåŒ–
  *
- * @param   fifo	UNION_CHAT\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fifo	UNION_CHATæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none	
  */
@@ -867,7 +867,7 @@ static void UnionChatInit(UNION_CHAT *chat)
 
 //------------------------------------------------------------------
 /**
- * $brief   ‚Ü‚Æ‚ß‚Ä‰Šú‰»
+ * $brief   ã¾ã¨ã‚ã¦åˆæœŸåŒ–
  *
  * @param   chatbuf 
  *
@@ -887,7 +887,7 @@ static void UnionChatAllocInit( UNION_CHAT_RINGBUF *chatbuf)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒƒbƒZ[ƒW—pSTRBUF‰ğ•ú
+ * $brief   ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨STRBUFè§£æ”¾
  *
  * @param   message		
  *
@@ -896,10 +896,10 @@ static void UnionChatAllocInit( UNION_CHAT_RINGBUF *chatbuf)
 //------------------------------------------------------------------
 static void UnionChatFree(UNION_CHAT *chat)
 {
-	// –¼‘O—Ìˆæ‚Í•K‚¸Šm•Û‚µ‚Ä‚¢‚é‚Ì‚Å‰ğ•ú
+	// åå‰é ˜åŸŸã¯å¿…ãšç¢ºä¿ã—ã¦ã„ã‚‹ã®ã§è§£æ”¾
 	sys_FreeMemoryEz( chat->name );
 
-	// •¶š—ñƒoƒbƒtƒ@‚ğŠm•Û‚µ‚Ä‚¢‚éê‡‚Í‰ğ•ú‚·‚é
+	// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã—ã¦ã„ã‚‹å ´åˆã¯è§£æ”¾ã™ã‚‹
 	if(chat->message!=NULL){
 		STRBUF_Delete(chat->message);
 	}
@@ -910,7 +910,7 @@ static void UnionChatFree(UNION_CHAT *chat)
 
 //------------------------------------------------------------------
 /**
- * $brief   ƒ†ƒjƒIƒ“ƒ`ƒƒƒbƒgƒŠƒ“ƒOƒoƒbƒtƒ@‚ğ‚Ü‚Æ‚ß‚Ä‰ğ•ú
+ * $brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒãƒ£ãƒƒãƒˆãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã‚’ã¾ã¨ã‚ã¦è§£æ”¾
  *
  * @param   messages		
  *
@@ -930,7 +930,7 @@ static void UnionChatAllFree( UNION_CHAT_RINGBUF *chatbuf)
 
 //==============================================================================
 /**
- * @brief   ƒ†ƒjƒIƒ“ƒ`ƒƒƒbƒg—ÌˆæŠm•Ûicomm_union_view.c‚ÅŒÄ‚Î‚ê‚éj
+ * @brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒãƒ£ãƒƒãƒˆé ˜åŸŸç¢ºä¿ï¼ˆcomm_union_view.cã§å‘¼ã°ã‚Œã‚‹ï¼‰
  *
  * @param   heapID		
  *
@@ -939,10 +939,10 @@ static void UnionChatAllFree( UNION_CHAT_RINGBUF *chatbuf)
 //==============================================================================
 UNION_CHAT_RINGBUF *UnionBoard_ChatAllocInit( int heapID )
 {
-	// —ÌˆæŠm•Û
+	// é ˜åŸŸç¢ºä¿
 	UNION_CHAT_RINGBUF *ucr = sys_AllocMemory( heapID, sizeof(UNION_CHAT_RINGBUF) );
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	UnionChatAllocInit( ucr );
 
 	return ucr;
@@ -950,7 +950,7 @@ UNION_CHAT_RINGBUF *UnionBoard_ChatAllocInit( int heapID )
 
 //==============================================================================
 /**
- * @brief   ƒ†ƒjƒIƒ“ƒ`ƒƒƒbƒg—Ìˆæ‰ğ•úicomm_union_view.c‚ÅŒÄ‚Î‚ê‚éj
+ * @brief   ãƒ¦ãƒ‹ã‚ªãƒ³ãƒãƒ£ãƒƒãƒˆé ˜åŸŸè§£æ”¾ï¼ˆcomm_union_view.cã§å‘¼ã°ã‚Œã‚‹ï¼‰
  *
  * @param   ucr		
  *
@@ -959,10 +959,10 @@ UNION_CHAT_RINGBUF *UnionBoard_ChatAllocInit( int heapID )
 //==============================================================================
 void UnionBoard_ChatDataDelete( UNION_CHAT_RINGBUF *ucr )
 {
-	// ƒ`ƒƒƒbƒgƒf[ƒ^ŒÂ•Ê‰ğ•ú
+	// ãƒãƒ£ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿å€‹åˆ¥è§£æ”¾
 	UnionChatAllFree( ucr );
 
-	// ƒ`ƒƒƒbƒg—Ìˆæ‰ğ•ú
+	// ãƒãƒ£ãƒƒãƒˆé ˜åŸŸè§£æ”¾
 	sys_FreeMemoryEz( ucr );
 }
 

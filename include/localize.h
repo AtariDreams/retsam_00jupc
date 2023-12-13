@@ -1,12 +1,12 @@
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/28
-// ���[�J���C�Y�ŗp����}�N���Ȃǂ��`����w�b�_�t�@�C��
+// ローカライズで用いるマクロなどを定義するヘッダファイル
 
 #ifndef	__LOCALIZE_H__
 #define	__LOCALIZE_H__
 
-#define PG5_CM_TO_INCH(cm)		(((cm * 1000) / 254 + 5) / 10)		// cm �� inch �ɕϊ��i�[���͎l�̌ܓ��j
-#define PG5_KG_TO_POUND(kg)		(((kg * 220462) + 50000) / 100000)	// kg �� pound �ɕϊ��i�[���͎l�̌ܓ��j
+#define PG5_CM_TO_INCH(cm)		(((cm * 1000) / 254 + 5) / 10)		// cm を inch に変換（端数は四捨五入）
+#define PG5_KG_TO_POUND(kg)		(((kg * 220462) + 50000) / 100000)	// kg を pound に変換（端数は四捨五入）
 #endif
 
 // ----------------------------------------------------------------------------

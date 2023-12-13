@@ -2,7 +2,7 @@
 /**
  *
  * @file	fieldobj_draw_0.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ Šî–{•`‰æŒn‚»‚Ì0
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ åŸºæœ¬æç”»ç³»ãã®0
  * @author	kagaya
  * @data	05.07.25
  *
@@ -23,7 +23,7 @@
 //	typedef
 //==============================================================================
 //--------------------------------------------------------------
-///	BLACT00_WORK\‘¢‘Ì	16
+///	BLACT00_WORKæ§‹é€ ä½“	16
 //--------------------------------------------------------------
 typedef struct
 {
@@ -37,7 +37,7 @@ typedef struct
 #define BLACT00_WORK_SIZE (sizeof(BLACT00_WORK))
 
 //--------------------------------------------------------------
-///	BLACTKOIKING_WORK\‘¢‘Ì
+///	BLACTKOIKING_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -52,7 +52,7 @@ typedef struct
 #define BLACTKOIKING_WORK_SIZE (sizeof(BLACTKOIKING_WORK))
 
 //--------------------------------------------------------------
-///	BLACTHERO_WORK\‘¢‘Ì
+///	BLACTHERO_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -69,7 +69,7 @@ typedef struct
 #define BLACTHERO_WORK_SIZE (sizeof(BLACTHERO_WORK))
 
 //--------------------------------------------------------------
-///	MODEL00_WORK\‘¢‘Ì
+///	MODEL00_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -79,7 +79,7 @@ typedef struct
 #define MODEL00_WORK_SIZE (sizeof(MODEL00_WORK))
 
 //--------------------------------------------------------------
-///	BOFF_WORK\‘¢‘Ì	28
+///	BOFF_WORKæ§‹é€ ä½“	28
 //--------------------------------------------------------------
 typedef struct
 {
@@ -94,7 +94,7 @@ typedef struct
 #define BOFF_WORK_SIZE (sizeof(BOFF_WORK))
 
 //--------------------------------------------------------------
-///	BLACT00BLD_WORK\‘¢‘Ì	20
+///	BLACT00BLD_WORKæ§‹é€ ä½“	20
 //--------------------------------------------------------------
 typedef struct
 {
@@ -109,7 +109,7 @@ typedef struct
 #define BLACT00BLD_WORK_SIZE (sizeof(BLACT00BLD_WORK))
 
 //--------------------------------------------------------------
-///	BLACTTWSPPOKE_WORK\‘¢‘Ì	20
+///	BLACTTWSPPOKE_WORKæ§‹é€ ä½“	20
 //--------------------------------------------------------------
 typedef struct
 {
@@ -122,7 +122,7 @@ typedef struct
 #define BLACTTWSPPOKE_WORK_SIZE (sizeof(BLACTTWSPPOKE_WORK))
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 void FieldOBJ_DrawBlAct00_Init( FIELD_OBJ_PTR fldobj );
 void FieldOBJ_DrawBlAct00_Delete( FIELD_OBJ_PTR fldobj );
@@ -189,7 +189,7 @@ static void Draw_BlActFlagVanishSet( FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR act );
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒrƒ‹ƒ{[ƒhƒAƒNƒ^[ƒ|ƒCƒ“ƒ^æ“¾
+ * ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿å–å¾—
  * @param
  * @retval
  */
@@ -283,8 +283,8 @@ BLACT_WORK_PTR FieldOBJ_DrawBlAct00_BlActPtrGet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlAct00 ‰Šú‰»B
- * •`‰æ‚Ìˆ×‚Ì‰Šú‰»‚ğs‚¤B
+ * BlAct00 åˆæœŸåŒ–ã€‚
+ * æç”»ã®ç‚ºã®åˆæœŸåŒ–ã‚’è¡Œã†ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -304,8 +304,8 @@ void FieldOBJ_DrawBlAct00_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlAct00 íœŠÖ”B
- * •`‰æ‚Åg—p‚µ‚½ƒ‚ƒm‚ğíœ
+ * BlAct00 å‰Šé™¤é–¢æ•°ã€‚
+ * æç”»ã§ä½¿ç”¨ã—ãŸãƒ¢ãƒã‚’å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -320,10 +320,10 @@ void FieldOBJ_DrawBlAct00_Delete( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlAct00 ‘Ş”ğB
- * •`‰æ‚É•K—v‚Èî•ñ‚ğ‘Ş”ğ‚µA•`‰æ‚Åg—p‚µ‚½ƒ‚ƒm‚ğíœ
+ * BlAct00 é€€é¿ã€‚
+ * æç”»ã«å¿…è¦ãªæƒ…å ±ã‚’é€€é¿ã—ã€æç”»ã§ä½¿ç”¨ã—ãŸãƒ¢ãƒã‚’å‰Šé™¤
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawBlAct00_Push( FIELD_OBJ_PTR fldobj )
@@ -342,10 +342,10 @@ void FieldOBJ_DrawBlAct00_Push( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlAct00 •œ‹A
- * ‘Ş”ğ‚µ‚½î•ñ‚ğŒ³‚ÉÄ•`‰æB
+ * BlAct00 å¾©å¸°
+ * é€€é¿ã—ãŸæƒ…å ±ã‚’å…ƒã«å†æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawBlAct00_Pop( FIELD_OBJ_PTR fldobj )
@@ -371,12 +371,12 @@ void FieldOBJ_DrawBlAct00_Pop( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	BlAct00	•`‰æ
+//	BlAct00	æç”»
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * BlAct00 •`‰æB
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚ç•`‰æ‚É•K—v‚Èî•ñ‚ğæ“¾‚µA•`‰æ‚·‚éB
+ * BlAct00 æç”»ã€‚
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰æç”»ã«å¿…è¦ãªæƒ…å ±ã‚’å–å¾—ã—ã€æç”»ã™ã‚‹ã€‚
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -389,7 +389,7 @@ void FieldOBJ_DrawBlAct00_Draw( FIELD_OBJ_PTR fldobj )
 	
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -400,7 +400,7 @@ void FieldOBJ_DrawBlAct00_Draw( FIELD_OBJ_PTR fldobj )
 	dir = FieldOBJ_DirDispGet( fldobj );
 	state = FieldOBJ_DrawStatusGet( fldobj );
 	
-	GF_ASSERT( state < DRAW_STA_MAX && "FieldOBJ_DrawBlAct00_Draw()•`‰æƒXƒe[ƒ^ƒXˆÙí" );
+	GF_ASSERT( state < DRAW_STA_MAX && "FieldOBJ_DrawBlAct00_Draw()æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç•°å¸¸" );
 	DATA_DrawBlAct00_DrawTbl[state]( fldobj, act, work, dir );
 	
 	work->old_dir = dir;
@@ -412,8 +412,8 @@ void FieldOBJ_DrawBlAct00_Draw( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlAct00 •`‰æBƒAƒjƒ‚È‚µ
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚ç•`‰æ‚É•K—v‚Èî•ñ‚ğæ“¾‚µA•`‰æ‚·‚éB
+ * BlAct00 æç”»ã€‚ã‚¢ãƒ‹ãƒ¡ãªã—
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰æç”»ã«å¿…è¦ãªæƒ…å ±ã‚’å–å¾—ã—ã€æç”»ã™ã‚‹ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -427,7 +427,7 @@ void FieldOBJ_DrawBlAct00AnmNon_Draw( FIELD_OBJ_PTR fldobj )
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
 	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){
-		return;													//’Ç‰Á’†
+		return;													//è¿½åŠ ä¸­
 	}
 	
 	act = work->act;
@@ -442,8 +442,8 @@ void FieldOBJ_DrawBlAct00AnmNon_Draw( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlAct00 •`‰æB‚Pƒpƒ^[ƒ“ƒAƒjƒ
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚ç•`‰æ‚É•K—v‚Èî•ñ‚ğæ“¾‚µA•`‰æ‚·‚éB
+ * BlAct00 æç”»ã€‚ï¼‘ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰æç”»ã«å¿…è¦ãªæƒ…å ±ã‚’å–å¾—ã—ã€æç”»ã™ã‚‹ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -457,7 +457,7 @@ void FieldOBJ_DrawBlAct00AnmOneP_Draw( FIELD_OBJ_PTR fldobj )
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
 	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){
-		return;													//’Ç‰Á’†
+		return;													//è¿½åŠ ä¸­
 	}
 	
 	act = work->act;
@@ -479,7 +479,7 @@ void FieldOBJ_DrawBlAct00AnmOneP_Draw( FIELD_OBJ_PTR fldobj )
  * BlAct00 DRAW_STA_STOP
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -494,7 +494,7 @@ static void DrawBlAct00Draw_STA_STOP(
 		Draw_BlActAnmFrameStopSet( act );
 	}
 	
-	BLACT_AnmFrameChg( act, 0 );	//‰æ–Ê”½‰f
+	BLACT_AnmFrameChg( act, 0 );	//ç”»é¢åæ˜ 
 }
 
 //--------------------------------------------------------------
@@ -503,7 +503,7 @@ static void DrawBlAct00Draw_STA_STOP(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACT00_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -527,7 +527,7 @@ static void DrawBlAct00Draw_STA_WALK_32F_16F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACT00_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -551,7 +551,7 @@ static void DrawBlAct00Draw_STA_WALK_8F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACT00_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -575,7 +575,7 @@ static void DrawBlAct00Draw_STA_WALK_4F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACT00_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -599,7 +599,7 @@ static void DrawBlAct00Draw_STA_WALK_2F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACT00_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -642,7 +642,7 @@ static void DrawBlAct00Draw_STA_WALK_6F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACT00_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -681,7 +681,7 @@ static void DrawBlAct00Draw_STA_WALK_3F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACT00_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -720,7 +720,7 @@ static void DrawBlAct00Draw_STA_WALK_7F(
 }
 
 //--------------------------------------------------------------
-///	BlAct00 •`‰æƒe[ƒuƒ‹
+///	BlAct00 æç”»ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static void (* const DATA_DrawBlAct00_DrawTbl[])(
 		FIELD_OBJ_PTR, BLACT_WORK_PTR, BLACT00_WORK *, int ) =
@@ -741,7 +741,7 @@ static void (* const DATA_DrawBlAct00_DrawTbl[])(
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * BlActPcwoman •`‰æB
+ * BlActPcwoman æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -754,7 +754,7 @@ void FieldOBJ_DrawBlActPcWoman_Draw( FIELD_OBJ_PTR fldobj )
 	
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -766,7 +766,7 @@ void FieldOBJ_DrawBlActPcWoman_Draw( FIELD_OBJ_PTR fldobj )
 	state = FieldOBJ_DrawStatusGet( fldobj );
 	
 	GF_ASSERT( state < DRAW_STA_PCWOMAN_MAX &&
-			"FieldOBJ_DrawBlActPcwoman_Draw()•`‰æƒXƒe[ƒ^ƒXˆÙí" );
+			"FieldOBJ_DrawBlActPcwoman_Draw()æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç•°å¸¸" );
 	DATA_DrawBlActPcwoman_DrawTbl[state]( fldobj, act, work, dir );
 	
 	work->old_dir = dir;
@@ -781,7 +781,7 @@ void FieldOBJ_DrawBlActPcWoman_Draw( FIELD_OBJ_PTR fldobj )
  * BlActPcwoman DRAW_STA_STOP
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -796,7 +796,7 @@ static void DrawBlActPcwoman_STA_STOP(
 		Draw_BlActAnmFrameStopSet( act );
 	}
 	
-	BLACT_AnmFrameChg( act, 0 );	//‰æ–Ê”½‰f
+	BLACT_AnmFrameChg( act, 0 );	//ç”»é¢åæ˜ 
 }
 
 //--------------------------------------------------------------
@@ -804,7 +804,7 @@ static void DrawBlActPcwoman_STA_STOP(
  * BlActPcwoman DRAW_STA_PC_BOW
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -820,7 +820,7 @@ static void DrawBlActPcwoman_STA_PC_BOW(
 }
 
 //--------------------------------------------------------------
-///	BlActPcwoman •`‰æƒe[ƒuƒ‹
+///	BlActPcwoman æç”»ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static void (* const DATA_DrawBlActPcwoman_DrawTbl[])(
 		FIELD_OBJ_PTR, BLACT_WORK_PTR, BLACT00_WORK *, int ) =
@@ -843,8 +843,8 @@ static void (* const DATA_DrawBlActPcwoman_DrawTbl[])(
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * BlActKoiking ‰Šú‰»B
- * •`‰æ‚Ìˆ×‚Ì‰Šú‰»‚ğs‚¤B
+ * BlActKoiking åˆæœŸåŒ–ã€‚
+ * æç”»ã®ç‚ºã®åˆæœŸåŒ–ã‚’è¡Œã†ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -865,8 +865,8 @@ void FieldOBJ_DrawBlActKoiking_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActKoiking íœŠÖ”B
- * •`‰æ‚Åg—p‚µ‚½ƒ‚ƒm‚ğíœ
+ * BlActKoiking å‰Šé™¤é–¢æ•°ã€‚
+ * æç”»ã§ä½¿ç”¨ã—ãŸãƒ¢ãƒã‚’å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -880,10 +880,10 @@ void FieldOBJ_DrawBlActKoiking_Delete( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActKoiking ‘Ş”ğB
- * •`‰æ‚É•K—v‚Èî•ñ‚ğ‘Ş”ğ‚µA•`‰æ‚Åg—p‚µ‚½ƒ‚ƒm‚ğíœ
+ * BlActKoiking é€€é¿ã€‚
+ * æç”»ã«å¿…è¦ãªæƒ…å ±ã‚’é€€é¿ã—ã€æç”»ã§ä½¿ç”¨ã—ãŸãƒ¢ãƒã‚’å‰Šé™¤
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawBlActKoiking_Push( FIELD_OBJ_PTR fldobj )
@@ -902,10 +902,10 @@ void FieldOBJ_DrawBlActKoiking_Push( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActKoiking •œ‹A
- * ‘Ş”ğ‚µ‚½î•ñ‚ğŒ³‚ÉÄ•`‰æB
+ * BlActKoiking å¾©å¸°
+ * é€€é¿ã—ãŸæƒ…å ±ã‚’å…ƒã«å†æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawBlActKoiking_Pop( FIELD_OBJ_PTR fldobj )
@@ -932,7 +932,7 @@ void FieldOBJ_DrawBlActKoiking_Pop( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActKoiking •`‰æBí‚É‚Ò‚¿‚Ò‚¿
+ * BlActKoiking æç”»ã€‚å¸¸ã«ã´ã¡ã´ã¡
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -945,7 +945,7 @@ void FieldOBJ_DrawBlActKoiking_Draw( FIELD_OBJ_PTR fldobj )
 	
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -981,7 +981,7 @@ void FieldOBJ_DrawBlActKoiking_Draw( FIELD_OBJ_PTR fldobj )
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * BlActBird •`‰æB
+ * BlActBird æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -994,7 +994,7 @@ void FieldOBJ_DrawBlActBird_Draw( FIELD_OBJ_PTR fldobj )
 	
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -1059,7 +1059,7 @@ void FieldOBJ_DrawBlActBird_Draw( FIELD_OBJ_PTR fldobj )
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * BlActHero ‰Šú‰»B
+ * BlActHero åˆæœŸåŒ–ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -1079,8 +1079,8 @@ void FieldOBJ_DrawBlActHero_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActHero íœŠÖ”B
- * •`‰æ‚Åg—p‚µ‚½ƒ‚ƒm‚ğíœ
+ * BlActHero å‰Šé™¤é–¢æ•°ã€‚
+ * æç”»ã§ä½¿ç”¨ã—ãŸãƒ¢ãƒã‚’å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -1097,9 +1097,9 @@ void FieldOBJ_DrawBlActHero_Delete( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActHero ‘Ş”ğB
+ * BlActHero é€€é¿ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawBlActHero_Push( FIELD_OBJ_PTR fldobj )
@@ -1118,10 +1118,10 @@ void FieldOBJ_DrawBlActHero_Push( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActHero •œ‹A
- * ‘Ş”ğ‚µ‚½î•ñ‚ğŒ³‚ÉÄ•`‰æB
+ * BlActHero å¾©å¸°
+ * é€€é¿ã—ãŸæƒ…å ±ã‚’å…ƒã«å†æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawBlActHero_Pop( FIELD_OBJ_PTR fldobj )
@@ -1147,11 +1147,11 @@ void FieldOBJ_DrawBlActHero_Pop( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	BlActHero •`‰æ
+//	BlActHero æç”»
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * BlActHero ©‹@•`‰æ
+ * BlActHero è‡ªæ©Ÿæç”»
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -1164,7 +1164,7 @@ void FieldOBJ_DrawBlActHero_Draw( FIELD_OBJ_PTR fldobj )
 	
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -1175,7 +1175,7 @@ void FieldOBJ_DrawBlActHero_Draw( FIELD_OBJ_PTR fldobj )
 	dir = FieldOBJ_DirDispGet( fldobj );
 	state = FieldOBJ_DrawStatusGet( fldobj );
 	
-	GF_ASSERT( state < DRAW_STA_MAX_HERO && "FieldOBJ_DrawBlActHero_Draw()•`‰æƒXƒe[ƒ^ƒXˆÙí" );
+	GF_ASSERT( state < DRAW_STA_MAX_HERO && "FieldOBJ_DrawBlActHero_Draw()æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç•°å¸¸" );
 	DATA_DrawBlActHero_DrawTbl[state]( fldobj, act, work, dir );
 	
 	work->old_dir = dir;
@@ -1190,7 +1190,7 @@ void FieldOBJ_DrawBlActHero_Draw( FIELD_OBJ_PTR fldobj )
  * BlActHero DRAW_STA_STOP
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1203,7 +1203,7 @@ static void DrawBlActHeroDraw_STA_STOP(
 		BLACT_AnmFrameSetOffs( act, 0 );
 		work->be_dash_bit = FALSE;
 	}else if( work->old_state == DRAW_STA_DASH_4F ){
-		//Ÿ‚ÌƒtƒŒ[ƒ€‚Å’â~ŠG‚É•Ï‚¦‚é
+		//æ¬¡ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã§åœæ­¢çµµã«å¤‰ãˆã‚‹
 		work->be_dash_bit = TRUE;
 	}else if( work->be_dash_bit == TRUE ){
 		Draw_BlActAnmFrameStopSetOffsChg( act, FieldOBJ_BlActAnmOffsNo_DirWalkGet(dir) );
@@ -1219,7 +1219,7 @@ static void DrawBlActHeroDraw_STA_STOP(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1251,7 +1251,7 @@ static void DrawBlActHeroDraw_STA_WALK_32F_16F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1279,7 +1279,7 @@ static void DrawBlActHeroDraw_STA_WALK_8F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1305,7 +1305,7 @@ static void DrawBlActHeroDraw_STA_WALK_4F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1331,7 +1331,7 @@ static void DrawBlActHeroDraw_STA_WALK_2F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1371,7 +1371,7 @@ static void DrawBlActHeroDraw_STA_WALK_6F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1410,7 +1410,7 @@ static void DrawBlActHeroDraw_STA_WALK_3F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1450,7 +1450,7 @@ static void DrawBlActHeroDraw_STA_WALK_7F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1474,7 +1474,7 @@ static void DrawBlActHeroDraw_STA_DASH_4F(
 }
 
 //--------------------------------------------------------------
-///	BlActHero •`‰æƒe[ƒuƒ‹
+///	BlActHero æç”»ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static void (* const DATA_DrawBlActHero_DrawTbl[])(
 		FIELD_OBJ_PTR, BLACT_WORK_PTR, BLACTHERO_WORK *, int ) =
@@ -1496,7 +1496,7 @@ static void (* const DATA_DrawBlActHero_DrawTbl[])(
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * BlActHeroCycle •`‰æB
+ * BlActHeroCycle æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -1509,7 +1509,7 @@ void FieldOBJ_DrawBlActHeroCycle_Draw( FIELD_OBJ_PTR fldobj )
 	
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -1521,7 +1521,7 @@ void FieldOBJ_DrawBlActHeroCycle_Draw( FIELD_OBJ_PTR fldobj )
 	state = FieldOBJ_DrawStatusGet( fldobj );
 	
 	GF_ASSERT( state < DRAW_STA_MAX_CYCLEHERO &&
-			"FieldOBJ_DrawBlActHero_Draw()•`‰æƒXƒe[ƒ^ƒXˆÙí" );
+			"FieldOBJ_DrawBlActHero_Draw()æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç•°å¸¸" );
 	
 	if( work->old_state == DRAW_STA_STOP &&
 		state != work->old_state && work->be_dash_bit == FALSE ){
@@ -1542,7 +1542,7 @@ void FieldOBJ_DrawBlActHeroCycle_Draw( FIELD_OBJ_PTR fldobj )
  * BlActHeroCycle DRAW_STA_STOP
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1574,7 +1574,7 @@ static void DrawBlActHeroCycleDraw_STA_STOP(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1607,7 +1607,7 @@ static void DrawBlActHeroDraw_STA_TAKE_OFF_16F(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1635,7 +1635,7 @@ static void DrawBlActHeroDraw_STA_TAKE_OFF_8F(
 }
 
 //--------------------------------------------------------------
-///	BlActHeroCycle •`‰æƒe[ƒuƒ‹
+///	BlActHeroCycle æç”»ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 #if 0	//old
 static void (* const DATA_DrawBlActHeroCycle_DrawTbl[])(
@@ -1678,14 +1678,14 @@ void (* const DATA_DrawBlActHeroFishing_DrawTbl[])(
 static void DrawBlActHeroFishOffset( FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR act, int dir );
 
 //--------------------------------------------------------------
-///	’Ş‚èƒAƒjƒƒIƒtƒZƒbƒg”Ô†@•ûŒü
+///	é‡£ã‚Šã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆç•ªå·ã€€æ–¹å‘
 //--------------------------------------------------------------
 static const int DATA_FishAnmOffsNoDirTbl[] =
 { 0, 1, 2, 3 };
 
 //--------------------------------------------------------------
 /**
- * BlActHeroFishing •`‰æB
+ * BlActHeroFishing æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -1699,7 +1699,7 @@ void FieldOBJ_DrawBlActHeroFishing_Draw( FIELD_OBJ_PTR fldobj )
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
 	if( act == NULL ||
-		FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+		FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -1707,7 +1707,7 @@ void FieldOBJ_DrawBlActHeroFishing_Draw( FIELD_OBJ_PTR fldobj )
 	state = FieldOBJ_DrawStatusGet( fldobj );
 	
 	GF_ASSERT( state < DRAW_STA_MAX_FISH &&
-			"FieldOBJ_DrawBlActHero_Draw()•`‰æƒXƒe[ƒ^ƒXˆÙí" );
+			"FieldOBJ_DrawBlActHero_Draw()æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç•°å¸¸" );
 	DATA_DrawBlActHeroFishing_DrawTbl[state]( fldobj, act, work, dir );
 	DrawBlActHeroFishOffset( fldobj, act, dir );
 	
@@ -1724,7 +1724,7 @@ void FieldOBJ_DrawBlActHeroFishing_Draw( FIELD_OBJ_PTR fldobj )
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1751,7 +1751,7 @@ static void DrawBlActHeroFishDraw_STA_FISH_END(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1774,7 +1774,7 @@ static void DrawBlActHeroFishDraw_STA_FISH_START(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1815,7 +1815,7 @@ static void DrawBlActHeroFishDraw_STA_FISH_ON(
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @param	work	BLACTHERO_WORK *
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1837,10 +1837,10 @@ static void DrawBlActHeroFishDraw_STA_FISH_HIT(
 
 //--------------------------------------------------------------
 /**
- * ’Ş‚èƒAƒjƒ”Ô†•Ê‚ÉƒIƒtƒZƒbƒgƒZƒbƒg
+ * é‡£ã‚Šã‚¢ãƒ‹ãƒ¡ç•ªå·åˆ¥ã«ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
- * @param	dir		•\¦•ûŒüDIR_UP“™
+ * @param	dir		è¡¨ç¤ºæ–¹å‘DIR_UPç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1869,7 +1869,7 @@ static void DrawBlActHeroFishOffset( FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR act, i
 }
 
 //--------------------------------------------------------------
-///	BlActHero •`‰æƒe[ƒuƒ‹
+///	BlActHero æç”»ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static void (* const DATA_DrawBlActHeroFishing_DrawTbl[])(
 		FIELD_OBJ_PTR, BLACT_WORK_PTR, BLACTHERO_WORK *, int ) =
@@ -1881,11 +1881,11 @@ static void (* const DATA_DrawBlActHeroFishing_DrawTbl[])(
 };
 
 //==============================================================================
-//	BlActHero@‚»‚Ì‘¼
+//	BlActHeroã€€ãã®ä»–
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * BlActHeroSwim •`‰æB
+ * BlActHeroSwim æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -1898,7 +1898,7 @@ void FieldOBJ_DrawBlActHeroSwim_Draw( FIELD_OBJ_PTR fldobj )
 	
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -1924,7 +1924,7 @@ void FieldOBJ_DrawBlActHeroSwim_Draw( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActHeroSp •`‰æ
+ * BlActHeroSp æç”»
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -1937,7 +1937,7 @@ void FieldOBJ_DrawBlActHeroSp_Draw( FIELD_OBJ_PTR fldobj )
 	
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -1963,7 +1963,7 @@ void FieldOBJ_DrawBlActHeroSp_Draw( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActHeroWater •`‰æB
+ * BlActHeroWater æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -1976,7 +1976,7 @@ void FieldOBJ_DrawBlActHeroWater_Draw( FIELD_OBJ_PTR fldobj )
 	
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -2014,7 +2014,7 @@ void FieldOBJ_DrawBlActHeroWater_Draw( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActHeroPoketch •`‰æ
+ * BlActHeroPoketch æç”»
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2027,7 +2027,7 @@ void FieldOBJ_DrawBlActHeroPoketch_Draw( FIELD_OBJ_PTR fldobj )
 	
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -2053,7 +2053,7 @@ void FieldOBJ_DrawBlActHeroPoketch_Draw( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActHeroBanzai •`‰æ
+ * BlActHeroBanzai æç”»
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2066,7 +2066,7 @@ void FieldOBJ_DrawBlActHeroBanzai_Draw( FIELD_OBJ_PTR fldobj )
 	
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
-	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//’Ç‰Á’†
+	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){		//è¿½åŠ ä¸­
 		return;
 	}
 	
@@ -2097,14 +2097,14 @@ void FieldOBJ_DrawBlActHeroBanzai_Draw( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	ƒrƒ‹ƒ{[ƒhƒp[ƒc
+//	ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ˆê•à’â~ƒtƒŒ[ƒ€ƒZƒbƒgB
- * —]•ªƒtƒŒ[ƒ€‚ğíœ‚µA’â~ƒAƒjƒ‚É”½‰fB
+ * ä¸€æ­©åœæ­¢ãƒ•ãƒ¬ãƒ¼ãƒ ã‚»ãƒƒãƒˆã€‚
+ * ä½™åˆ†ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å‰Šé™¤ã—ã€åœæ­¢ã‚¢ãƒ‹ãƒ¡ã«åæ˜ ã€‚
  * @param	act		BLACT_WORK_PTR
- * @param	step_frame	ˆê•à•ª‚ÌƒtƒŒ[ƒ€
+ * @param	step_frame	ä¸€æ­©åˆ†ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2119,13 +2119,13 @@ static void Draw_BlActAnmFrameStepSet( BLACT_WORK_PTR act, int step_frame )
 	frame *= FX32_ONE;
 	
 	BLACT_AnmFrameSetOffs( act, frame );
-	BLACT_AnmFrameChg( act, 0 );	//‰æ–Ê”½‰f‚Ì‚İ
+	BLACT_AnmFrameChg( act, 0 );	//ç”»é¢åæ˜ ã®ã¿
 }
 
 //--------------------------------------------------------------
 /**
- * •W€’â~ƒtƒŒ[ƒ€ƒZƒbƒgB
- * —]•ªƒtƒŒ[ƒ€‚ğíœ‚µA’â~ƒAƒjƒ‚É”½‰fB
+ * æ¨™æº–åœæ­¢ãƒ•ãƒ¬ãƒ¼ãƒ ã‚»ãƒƒãƒˆã€‚
+ * ä½™åˆ†ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å‰Šé™¤ã—ã€åœæ­¢ã‚¢ãƒ‹ãƒ¡ã«åæ˜ ã€‚
  * @param	act		BLACT_WORK_PTR
  * @retval	nothing
  */
@@ -2137,10 +2137,10 @@ static void Draw_BlActAnmFrameStopSet( BLACT_WORK_PTR act )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ‚Ì’â~ƒtƒŒ[ƒ€‚ğ‡‚í‚¹‚½•ÊƒIƒtƒZƒbƒg’â~
+ * ç¾åœ¨ã®åœæ­¢ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’åˆã‚ã›ãŸåˆ¥ã‚ªãƒ•ã‚»ãƒƒãƒˆåœæ­¢
  * @param	act		BLACT_WORK_PTR
- * @param	offs	ƒAƒjƒƒIƒtƒZƒbƒg
- * @param	step_frame	ˆê•à•ª‚ÌƒtƒŒ[ƒ€
+ * @param	offs	ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param	step_frame	ä¸€æ­©åˆ†ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2156,9 +2156,9 @@ static void Draw_BlActAnmFrameStepSetOffsChg( BLACT_WORK_PTR act, int offs, int 
 
 //--------------------------------------------------------------
 /**
- * Œ»İ‚Ì•W€’â~ƒtƒŒ[ƒ€‚ğ‡‚í‚¹‚½•ÊƒIƒtƒZƒbƒg’â~
+ * ç¾åœ¨ã®æ¨™æº–åœæ­¢ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’åˆã‚ã›ãŸåˆ¥ã‚ªãƒ•ã‚»ãƒƒãƒˆåœæ­¢
  * @param	act		BLACT_WORK_PTR
- * @param	offs	ƒAƒjƒƒIƒtƒZƒbƒg
+ * @param	offs	ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2174,7 +2174,7 @@ static void Draw_BlActAnmFrameStopSetOffsChg( BLACT_WORK_PTR act, int offs )
 
 //--------------------------------------------------------------
 /**
- * •\¦A”ñ•\¦
+ * è¡¨ç¤ºã€éè¡¨ç¤º
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	act		BLACT_WORK_PTR
  * @retval	nothing
@@ -2202,7 +2202,7 @@ static void Draw_BlActFlagVanishSet( FIELD_OBJ_PTR fldobj, BLACT_WORK_PTR act )
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * •\¦ƒR[ƒh->ƒIƒtƒZƒbƒg
+ * è¡¨ç¤ºã‚³ãƒ¼ãƒ‰->ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  * @param
  * @retval
  */
@@ -2224,7 +2224,7 @@ static void DrawModelOffsetGet( u32 code, VecFx32 *mtx )
 
 //--------------------------------------------------------------
 /**
- * Model00 ‰Šú‰»B•`‰æ‚Ìˆ×‚Ì‰Šú‰»‚ğs‚¤B
+ * Model00 åˆæœŸåŒ–ã€‚æç”»ã®ç‚ºã®åˆæœŸåŒ–ã‚’è¡Œã†ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2240,7 +2240,7 @@ void FieldOBJ_DrawModel00_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Model00 •`‰æBƒtƒB[ƒ‹ƒhOBJ‚©‚ç•`‰æ‚É•K—v‚Èî•ñ‚ğæ“¾‚µA•`‰æ‚·‚éB
+ * Model00 æç”»ã€‚ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰æç”»ã«å¿…è¦ãªæƒ…å ±ã‚’å–å¾—ã—ã€æç”»ã™ã‚‹ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2251,8 +2251,8 @@ void FieldOBJ_DrawModel00_Draw( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Model00 íœŠÖ”B
- * •`‰æ‚Åg—p‚µ‚½ƒ‚ƒm‚ğíœ
+ * Model00 å‰Šé™¤é–¢æ•°ã€‚
+ * æç”»ã§ä½¿ç”¨ã—ãŸãƒ¢ãƒã‚’å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2271,10 +2271,10 @@ void FieldOBJ_DrawModel00_Delete( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Model00 ‘Ş”ğB
- * •`‰æ‚É•K—v‚Èî•ñ‚ğ‘Ş”ğ‚µA•`‰æ‚Åg—p‚µ‚½ƒ‚ƒm‚ğíœ
+ * Model00 é€€é¿ã€‚
+ * æç”»ã«å¿…è¦ãªæƒ…å ±ã‚’é€€é¿ã—ã€æç”»ã§ä½¿ç”¨ã—ãŸãƒ¢ãƒã‚’å‰Šé™¤
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawModel00_Push( FIELD_OBJ_PTR fldobj )
@@ -2291,10 +2291,10 @@ void FieldOBJ_DrawModel00_Push( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Model00 •œ‹A
- * ‘Ş”ğ‚µ‚½î•ñ‚ğŒ³‚ÉÄ•`‰æB
+ * Model00 å¾©å¸°
+ * é€€é¿ã—ãŸæƒ…å ±ã‚’å…ƒã«å†æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawModel00_Pop( FIELD_OBJ_PTR fldobj )
@@ -2308,7 +2308,7 @@ void FieldOBJ_DrawModel00_Pop( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Model00 á‹Ê@‰Šú‰»B
+ * Model00 é›ªç‰ã€€åˆæœŸåŒ–ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2323,9 +2323,9 @@ void FieldOBJ_DrawModel00_SnowBall_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Model00 á‹Ê@•œ‹A
+ * Model00 é›ªç‰ã€€å¾©å¸°
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawModel00_SnowBall_Pop( FIELD_OBJ_PTR fldobj )
@@ -2333,13 +2333,13 @@ void FieldOBJ_DrawModel00_SnowBall_Pop( FIELD_OBJ_PTR fldobj )
 	MODEL00_WORK *work;
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	GF_ASSERT( work->eoa == NULL &&
-			"FieldOBJ_DrawModel00_Pop()ƒAƒNƒ^[‰Šú‰»‚ªo—ˆ‚Ä‚¢‚È‚¢\n" );
+			"FieldOBJ_DrawModel00_Pop()ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–ãŒå‡ºæ¥ã¦ã„ãªã„\n" );
 	work->eoa = FE_FldOBJSnowBall_Add( fldobj );
 }
 
 //--------------------------------------------------------------
 /**
- * á‹…”j‰óŠJn@á‹…ê—p
+ * é›ªçƒç ´å£Šé–‹å§‹ã€€é›ªçƒå°‚ç”¨
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -2357,9 +2357,9 @@ void FieldOBJ_DrawSnowBallBreakSet( FIELD_OBJ_PTR fldobj )
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * BlActOff ‰ñ“]Šp“xXæ“¾
+ * BlActOff å›è»¢è§’åº¦Xå–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	u16		‰ñ“]Šp“x
+ * @retval	u16		å›è»¢è§’åº¦
  */
 //--------------------------------------------------------------
 u16 FieldOBJ_DrawBlActOff_RotateXGet( FIELD_OBJ_PTR fldobj )
@@ -2370,9 +2370,9 @@ u16 FieldOBJ_DrawBlActOff_RotateXGet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActOff ‰ñ“]Šp“xXƒZƒbƒg
+ * BlActOff å›è»¢è§’åº¦Xã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	rx	‰ñ“]Šp“x
+ * @param	rx	å›è»¢è§’åº¦
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2384,9 +2384,9 @@ void FieldOBJ_DrawBlActOff_RotateXSet( FIELD_OBJ_PTR fldobj, u16 rx )
 
 //--------------------------------------------------------------
 /**
- * BlActOff ‰ñ“]Šp“xYæ“¾
+ * BlActOff å›è»¢è§’åº¦Yå–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	u16		‰ñ“]Šp“x
+ * @retval	u16		å›è»¢è§’åº¦
  */
 //--------------------------------------------------------------
 u16 FieldOBJ_DrawBlActOff_RotateYGet( FIELD_OBJ_PTR fldobj )
@@ -2397,9 +2397,9 @@ u16 FieldOBJ_DrawBlActOff_RotateYGet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActOff ‰ñ“]Šp“xYƒZƒbƒg
+ * BlActOff å›è»¢è§’åº¦Yã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	ry	‰ñ“]Šp“x
+ * @param	ry	å›è»¢è§’åº¦
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2411,9 +2411,9 @@ void FieldOBJ_DrawBlActOff_RotateYSet( FIELD_OBJ_PTR fldobj, u16 ry )
 
 //--------------------------------------------------------------
 /**
- * BlActOff ‰ñ“]Šp“xzæ“¾
+ * BlActOff å›è»¢è§’åº¦zå–å¾—
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	u16		‰ñ“]Šp“x
+ * @retval	u16		å›è»¢è§’åº¦
  */
 //--------------------------------------------------------------
 u16 FieldOBJ_DrawBlActOff_RotateZGet( FIELD_OBJ_PTR fldobj )
@@ -2424,9 +2424,9 @@ u16 FieldOBJ_DrawBlActOff_RotateZGet( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActOff ‰ñ“]Šp“xZƒZƒbƒg
+ * BlActOff å›è»¢è§’åº¦Zã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	rz	‰ñ“]Šp“x
+ * @param	rz	å›è»¢è§’åº¦
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -2438,7 +2438,7 @@ void FieldOBJ_DrawBlActOff_RotateZSet( FIELD_OBJ_PTR fldobj, u16 rz )
 
 //--------------------------------------------------------------
 /**
- * BlActOff ‰Šú‰»
+ * BlActOff åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -2467,7 +2467,7 @@ void FieldOBJ_DrawBlActOff_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActOff íœ
+ * BlActOff å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -2485,7 +2485,7 @@ void FieldOBJ_DrawBlActOff_Delete( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActOff ‘Ş”ğ
+ * BlActOff é€€é¿
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -2511,7 +2511,7 @@ void FieldOBJ_DrawBlActOff_Push( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActOff •œ‹A
+ * BlActOff å¾©å¸°
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -2547,7 +2547,7 @@ void FieldOBJ_DrawBlActOff_Pop( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * BlActOff •`‰æ
+ * BlActOff æç”»
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -2591,11 +2591,11 @@ void FieldOBJ_DrawBlActOff_Draw( FIELD_OBJ_PTR fldobj )
 
 
 //==============================================================================
-//	”j‚ê‚½¢ŠEê—p@ƒAƒOƒmƒ€
+//	ç ´ã‚ŒãŸä¸–ç•Œå°‚ç”¨ã€€ã‚¢ã‚°ãƒãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒAƒOƒmƒ€@ƒrƒ‹ƒ{[ƒh•`‰æ‘OŠÖ”
+ * ã‚¢ã‚°ãƒãƒ ã€€ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰æç”»å‰é–¢æ•°
  * @param	act
  * @param	wk
  * @retval	nothing
@@ -2612,8 +2612,8 @@ static void BldAgunomu_DrawBefore( BLACT_WORK_PTR blact, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒOƒmƒ€@‰Šú‰»B
- * •`‰æ‚Ìˆ×‚Ì‰Šú‰»‚ğs‚¤B
+ * ã‚¢ã‚°ãƒãƒ ã€€åˆæœŸåŒ–ã€‚
+ * æç”»ã®ç‚ºã®åˆæœŸåŒ–ã‚’è¡Œã†ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2634,8 +2634,8 @@ void FieldOBJ_DrawBlActBldAgunomu_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒOƒmƒ€@íœŠÖ”B
- * •`‰æ‚Åg—p‚µ‚½ƒ‚ƒm‚ğíœ
+ * ã‚¢ã‚°ãƒãƒ ã€€å‰Šé™¤é–¢æ•°ã€‚
+ * æç”»ã§ä½¿ç”¨ã—ãŸãƒ¢ãƒã‚’å‰Šé™¤
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2650,10 +2650,10 @@ void FieldOBJ_DrawBlActBldAgunomu_Delete( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒOƒmƒ€@‘Ş”ğB
- * •`‰æ‚É•K—v‚Èî•ñ‚ğ‘Ş”ğ‚µA•`‰æ‚Åg—p‚µ‚½ƒ‚ƒm‚ğíœ
+ * ã‚¢ã‚°ãƒãƒ ã€€é€€é¿ã€‚
+ * æç”»ã«å¿…è¦ãªæƒ…å ±ã‚’é€€é¿ã—ã€æç”»ã§ä½¿ç”¨ã—ãŸãƒ¢ãƒã‚’å‰Šé™¤
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawBlActBldAgunomu_Push( FIELD_OBJ_PTR fldobj )
@@ -2672,10 +2672,10 @@ void FieldOBJ_DrawBlActBldAgunomu_Push( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒOƒmƒ€@•œ‹A
- * ‘Ş”ğ‚µ‚½î•ñ‚ğŒ³‚ÉÄ•`‰æB
+ * ã‚¢ã‚°ãƒãƒ ã€€å¾©å¸°
+ * é€€é¿ã—ãŸæƒ…å ±ã‚’å…ƒã«å†æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawBlActBldAgunomu_Pop( FIELD_OBJ_PTR fldobj )
@@ -2703,8 +2703,8 @@ void FieldOBJ_DrawBlActBldAgunomu_Pop( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒOƒmƒ€@•`‰æB
- * ƒtƒB[ƒ‹ƒhOBJ‚©‚ç•`‰æ‚É•K—v‚Èî•ñ‚ğæ“¾‚µA•`‰æ‚·‚éB
+ * ã‚¢ã‚°ãƒãƒ ã€€æç”»ã€‚
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã‹ã‚‰æç”»ã«å¿…è¦ãªæƒ…å ±ã‚’å–å¾—ã—ã€æç”»ã™ã‚‹ã€‚
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -2718,7 +2718,7 @@ void FieldOBJ_DrawBlActAgunomu_Draw( FIELD_OBJ_PTR fldobj )
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
 	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){
-		return;													//’Ç‰Á’†
+		return;													//è¿½åŠ ä¸­
 	}
 	
 	act = work->act;
@@ -2740,11 +2740,11 @@ void FieldOBJ_DrawBlActAgunomu_Draw( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	”j‚ê‚½¢ŠE@‘æµŠK‘w“`àƒ|ƒPƒ‚ƒ“ê—p
+//	ç ´ã‚ŒãŸä¸–ç•Œã€€ç¬¬ä¸ƒéšå±¤ä¼èª¬ãƒã‚±ãƒ¢ãƒ³å°‚ç”¨
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@‘æµŠK‘w“`àƒ|ƒPƒ‚ƒ“ê—p ‰Šú‰»B
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€ç¬¬ä¸ƒéšå±¤ä¼èª¬ãƒã‚±ãƒ¢ãƒ³å°‚ç”¨ åˆæœŸåŒ–ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2763,7 +2763,7 @@ void FieldOBJ_DrawBlActTw7SpPoke_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@‘æµŠK‘w“`àƒ|ƒPƒ‚ƒ“ê—p íœŠÖ”B
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€ç¬¬ä¸ƒéšå±¤ä¼èª¬ãƒã‚±ãƒ¢ãƒ³å°‚ç”¨ å‰Šé™¤é–¢æ•°ã€‚
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2778,9 +2778,9 @@ void FieldOBJ_DrawBlActTw7SpPoke_Delete( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@‘æµŠK‘w“`àƒ|ƒPƒ‚ƒ“ê—p ‘Ş”ğ
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€ç¬¬ä¸ƒéšå±¤ä¼èª¬ãƒã‚±ãƒ¢ãƒ³å°‚ç”¨ é€€é¿
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawBlActTw7SpPoke_Push( FIELD_OBJ_PTR fldobj )
@@ -2799,9 +2799,9 @@ void FieldOBJ_DrawBlActTw7SpPoke_Push( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@‘æµŠK‘w“`àƒ|ƒPƒ‚ƒ“ê—p •œ‹A
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€ç¬¬ä¸ƒéšå±¤ä¼èª¬ãƒã‚±ãƒ¢ãƒ³å°‚ç”¨ å¾©å¸°
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawBlActTw7SpPoke_Pop( FIELD_OBJ_PTR fldobj )
@@ -2828,7 +2828,7 @@ void FieldOBJ_DrawBlActTw7SpPoke_Pop( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ”j‚ê‚½¢ŠE@‘æµŠK‘w“`àƒ|ƒPƒ‚ƒ“ê—p •`‰æ
+ * ç ´ã‚ŒãŸä¸–ç•Œã€€ç¬¬ä¸ƒéšå±¤ä¼èª¬ãƒã‚±ãƒ¢ãƒ³å°‚ç”¨ æç”»
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2842,7 +2842,7 @@ void FieldOBJ_DrawBlActTw7SpPoke_Draw( FIELD_OBJ_PTR fldobj )
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
 	if( FieldOBJ_BlActAddPracFlagCheck(fldobj) == TRUE ){
-		return;													//’Ç‰Á’†
+		return;													//è¿½åŠ ä¸­
 	}
 	
 	act = work->act;
@@ -2886,10 +2886,10 @@ void FieldOBJ_DrawBlActTw7SpPoke_Draw( FIELD_OBJ_PTR fldobj )
 //----
 //--------------------------------------------------------------
 /**
- * Model00 ŠÅ”Â@•œ‹A
- * ‘Ş”ğ‚µ‚½î•ñ‚ğŒ³‚ÉÄ•`‰æB
+ * Model00 çœ‹æ¿ã€€å¾©å¸°
+ * é€€é¿ã—ãŸæƒ…å ±ã‚’å…ƒã«å†æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawModel00_Board_Pop( FIELD_OBJ_PTR fldobj )
@@ -2899,15 +2899,15 @@ void FieldOBJ_DrawModel00_Board_Pop( FIELD_OBJ_PTR fldobj )
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
 	GF_ASSERT( work->eoa == NULL &&
-			"FieldOBJ_DrawModel00_Pop()ƒAƒNƒ^[‰Šú‰»‚ªo—ˆ‚Ä‚¢‚È‚¢\n" );
+			"FieldOBJ_DrawModel00_Pop()ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–ãŒå‡ºæ¥ã¦ã„ãªã„\n" );
 	
 	work->eoa = FE_FldOBJBoard_Add( fldobj );
 }
 
 //--------------------------------------------------------------
 /**
- * Model00 ŠÅ”Â@‰Šú‰»B
- * •`‰æ‚Ìˆ×‚Ì‰Šú‰»‚ğs‚¤B
+ * Model00 çœ‹æ¿ã€€åˆæœŸåŒ–ã€‚
+ * æç”»ã®ç‚ºã®åˆæœŸåŒ–ã‚’è¡Œã†ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2921,8 +2921,8 @@ void FieldOBJ_DrawModel00_Board_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Model00 –{@‰Šú‰»B
- * •`‰æ‚Ìˆ×‚Ì‰Šú‰»‚ğs‚¤B
+ * Model00 æœ¬ã€€åˆæœŸåŒ–ã€‚
+ * æç”»ã®ç‚ºã®åˆæœŸåŒ–ã‚’è¡Œã†ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2937,8 +2937,8 @@ void FieldOBJ_DrawModel00_Book_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Model00 ƒhƒA‚Q@‰Šú‰»B
- * •`‰æ‚Ìˆ×‚Ì‰Šú‰»‚ğs‚¤B
+ * Model00 ãƒ‰ã‚¢ï¼’ã€€åˆæœŸåŒ–ã€‚
+ * æç”»ã®ç‚ºã®åˆæœŸåŒ–ã‚’è¡Œã†ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -2953,10 +2953,10 @@ void FieldOBJ_DrawModel00_Door2_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * Model00 –{@•œ‹A
- * ‘Ş”ğ‚µ‚½î•ñ‚ğŒ³‚ÉÄ•`‰æB
+ * Model00 æœ¬ã€€å¾©å¸°
+ * é€€é¿ã—ãŸæƒ…å ±ã‚’å…ƒã«å†æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawModel00_Book_Pop( FIELD_OBJ_PTR fldobj )
@@ -2966,17 +2966,17 @@ void FieldOBJ_DrawModel00_Book_Pop( FIELD_OBJ_PTR fldobj )
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
 	GF_ASSERT( work->eoa == NULL &&
-			"FieldOBJ_DrawModel00_Pop()ƒAƒNƒ^[‰Šú‰»‚ªo—ˆ‚Ä‚¢‚È‚¢\n" );
+			"FieldOBJ_DrawModel00_Pop()ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–ãŒå‡ºæ¥ã¦ã„ãªã„\n" );
 	
 	work->eoa = FE_FldOBJBook_Add( fldobj );
 }
 
 //--------------------------------------------------------------
 /**
- * Model00 ƒhƒA‚Q@•œ‹A
- * ‘Ş”ğ‚µ‚½î•ñ‚ğŒ³‚ÉÄ•`‰æB
+ * Model00 ãƒ‰ã‚¢ï¼’ã€€å¾©å¸°
+ * é€€é¿ã—ãŸæƒ…å ±ã‚’å…ƒã«å†æç”»ã€‚
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_DrawModel00_Door2_Pop( FIELD_OBJ_PTR fldobj )
@@ -2986,7 +2986,7 @@ void FieldOBJ_DrawModel00_Door2_Pop( FIELD_OBJ_PTR fldobj )
 	work = FieldOBJ_DrawProcWorkGet( fldobj );
 	
 	GF_ASSERT( work->eoa == NULL &&
-			"FieldOBJ_DrawModel00_Pop()ƒAƒNƒ^[‰Šú‰»‚ªo—ˆ‚Ä‚¢‚È‚¢\n" );
+			"FieldOBJ_DrawModel00_Pop()ã‚¢ã‚¯ã‚¿ãƒ¼åˆæœŸåŒ–ãŒå‡ºæ¥ã¦ã„ãªã„\n" );
 	
 	work->eoa = FE_FldOBJDoor2_Add( fldobj );
 }

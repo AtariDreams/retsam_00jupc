@@ -15,13 +15,13 @@
   do-indent
 
   Revision 1.4  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.3  2005/02/28 05:26:25  yosizaki
   do-indent.
 
   Revision 1.2  2004/11/24 13:03:22  takano_makoto
-  MBCommParentBlockHeader‚ÆMBCommChildBlockHeader‚ğmb_common.h‚©‚çˆÚ“®
+  MBCommParentBlockHeaderã¨MBCommChildBlockHeaderã‚’mb_common.hã‹ã‚‰ç§»å‹•
 
   Revision 1.1  2004/11/22 12:47:52  takano_makoto
   Initial update.
@@ -43,51 +43,51 @@ extern "C" {
 
 
 /* ----------------------------------------------------------------------- *
- *  \‘¢‘Ì’è‹`
+ *  æ§‹é€ ä½“å®šç¾©
  * ----------------------------------------------------------------------- */
 
 /*
- * “]‘—ƒuƒƒbƒNƒwƒbƒ_(ŠeƒuƒƒbƒN‚É•t‰Á‚·‚éƒwƒbƒ_)
-   ÀÛ‚É‚ÍPadding•ª‚ğ‹l‚ß‚½Œ`‚Å‘—óM‚µ‚Ü‚·B
+ * è»¢é€ãƒ–ãƒ­ãƒƒã‚¯ãƒ˜ãƒƒãƒ€(å„ãƒ–ãƒ­ãƒƒã‚¯ã«ä»˜åŠ ã™ã‚‹ãƒ˜ãƒƒãƒ€)
+   å®Ÿéš›ã«ã¯Paddingåˆ†ã‚’è©°ã‚ãŸå½¢ã§é€å—ä¿¡ã—ã¾ã™ã€‚
  */
 typedef struct
 {
-    u8      type;                      // ƒf[ƒ^ƒ^ƒCƒv                              1B
+    u8      type;                      // ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—                              1B
     u8      pad1[1];
-    u16     fid;                       // ƒtƒ@ƒCƒ‹”Ô†’l                            4B
-    u16     seqno;                     // e‹@g—p                                  6B
+    u16     fid;                       // ãƒ•ã‚¡ã‚¤ãƒ«ç•ªå·å€¤                            4B
+    u16     seqno;                     // è¦ªæ©Ÿä½¿ç”¨                                  6B
 }
 MBCommParentBlockHeader;
 
 
 typedef struct
 {
-    u8      type;                      // ƒf[ƒ^ƒ^ƒCƒv                             1B
+    u8      type;                      // ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—                             1B
     u8      pad1[1];                   //                                          1B
-    union                              //                              union‚Ì‡Œv 16B
+    union                              //                              unionã®åˆè¨ˆ 16B
     {
         struct
         {
-            u16     req;               // ƒuƒƒbƒN”Ô†—v‹’l                       2B
+            u16     req;               // ãƒ–ãƒ­ãƒƒã‚¯ç•ªå·è¦æ±‚å€¤                       2B
             u8      reserved[MB_COMM_CALC_REQ_DATA_PIECE_SIZE(MB_COMM_P_RECVLEN_MAX)];  // 14B
         }
         data;
 
         struct
         {
-            u8      piece;             //  ’f•Ğ‰»‚³‚ê‚½ƒf[ƒ^‚Ì”Ô†                1B
-            //  ’f•Ğ‰»‚³‚ê‚½ƒf[ƒ^‚ğŠi”[‚·‚éƒoƒbƒtƒ@
+            u8      piece;             //  æ–­ç‰‡åŒ–ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã®ç•ªå·                1B
+            //  æ–­ç‰‡åŒ–ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
             u8      data[MB_COMM_CALC_REQ_DATA_PIECE_SIZE(MB_COMM_P_RECVLEN_MAX)];      //  14B
             u8      pad2[1];           //  1B
         }
         req_data;
     };
-    // Œv18B
+    // è¨ˆ18B
 }
 MBCommChildBlockHeader;
 
 
-// •ªŠ„ƒŠƒNƒGƒXƒg‚ÌóMƒoƒbƒtƒ@
+// åˆ†å‰²ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®å—ä¿¡ãƒãƒƒãƒ•ã‚¡
 typedef struct
 {
     u32     data_buf[MB_MAX_CHILD][MB_COMM_CALC_REQ_DATA_BUF_SIZE(MB_COMM_P_RECVLEN_MAX) /
@@ -97,26 +97,26 @@ typedef struct
 MbRequestPieceBuf;
 
 /* ----------------------------------------------------------------------- *
- *  ŠÖ”éŒ¾
+ *  é–¢æ•°å®£è¨€
  * ----------------------------------------------------------------------- */
 
-/* q‹@MP‘—MƒTƒCƒY‚Ìİ’è */
+/* å­æ©ŸMPé€ä¿¡ã‚µã‚¤ã‚ºã®è¨­å®š */
 void    MBi_SetChildMPMaxSize(u16 childMaxSize);
-/* e‹@‚Å‚Ì•ªŠ„ƒŠƒNƒGƒXƒgóM—pƒoƒbƒtƒ@‚Ìİ’è */
+/* è¦ªæ©Ÿã§ã®åˆ†å‰²ãƒªã‚¯ã‚¨ã‚¹ãƒˆå—ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡ã®è¨­å®š */
 void    MBi_SetParentPieceBuffer(MbRequestPieceBuf * buf);
-/* •ªŠ„ƒŠƒNƒGƒXƒgóM—pƒoƒbƒtƒ@‚ğƒNƒŠƒA */
+/* åˆ†å‰²ãƒªã‚¯ã‚¨ã‚¹ãƒˆå—ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢ */
 void    MBi_ClearParentPieceBuffer(u16 child_aid);
 
-/* e‹@‚Ì‘—Mƒwƒbƒ_î•ñ‚©‚çAÀÛ‚É‘—M‚·‚éƒf[ƒ^‚ğ\’z */
+/* è¦ªæ©Ÿã®é€ä¿¡ãƒ˜ãƒƒãƒ€æƒ…å ±ã‹ã‚‰ã€å®Ÿéš›ã«é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ */
 u8     *MBi_MakeParentSendBuffer(const MBCommParentBlockHeader * hdr, u8 *sendbuf);
-/* q‹@‚©‚çóM‚µ‚½ƒf[ƒ^ƒoƒbƒtƒ@‚©‚ç\‘¢‘Ì‚ğ\’z */
+/* å­æ©Ÿã‹ã‚‰å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰æ§‹é€ ä½“ã‚’æ§‹ç¯‰ */
 u8     *MBi_SetRecvBufferFromChild(const u8 *recvbuf, MBCommChildBlockHeader * hdr, u16 child_id);
 
-/* q‹@‚Ì‘—Mƒwƒbƒ_î•ñ‚©‚çAÀÛ‚É‘—M‚·‚éƒf[ƒ^‚ğ\’z */
+/* å­æ©Ÿã®é€ä¿¡ãƒ˜ãƒƒãƒ€æƒ…å ±ã‹ã‚‰ã€å®Ÿéš›ã«é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’æ§‹ç¯‰ */
 u8     *MBi_MakeChildSendBuffer(const MBCommChildBlockHeader * hdr, u8 *sendbuf);
-/* q‹@‚©‚ç‘—M‚·‚éƒŠƒNƒGƒXƒgƒf[ƒ^‚ğ•ªŠ„‚µ‚Ü‚·B */
+/* å­æ©Ÿã‹ã‚‰é€ä¿¡ã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’åˆ†å‰²ã—ã¾ã™ã€‚ */
 u8      MBi_SendRequestDataPiece(u8 *pData, const MBCommRequestData *pReq);
-/* e‹@‚©‚çóM‚µ‚½ƒpƒPƒbƒg‚©‚çƒwƒbƒ_•”‚ğæ“¾‚µAƒf[ƒ^•”‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚µ‚Ü‚·B */
+/* è¦ªæ©Ÿã‹ã‚‰å—ä¿¡ã—ãŸãƒ‘ã‚±ãƒƒãƒˆã‹ã‚‰ãƒ˜ãƒƒãƒ€éƒ¨ã‚’å–å¾—ã—ã€ãƒ‡ãƒ¼ã‚¿éƒ¨ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã—ã¾ã™ã€‚ */
 u8     *MBi_SetRecvBufferFromParent(MBCommParentBlockHeader * hdr, const u8 *recvbuf);
 
 

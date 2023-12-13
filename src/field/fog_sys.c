@@ -2,7 +2,7 @@
 /**
  *
  *@file		fog_sys.c
- *@brief	�t�H�O�V�X�e��
+ *@brief	フォグシステム
  *@author	tomoya takahashi
  *@data		2005.04.27
  *
@@ -15,53 +15,53 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
  */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	�t�H�O�f�[�^�\����
+//	フォグデータ構造体
 //=====================================
 typedef struct _FOG_DATA{
-	BOOL	flag;		// on/off�t���O----(TRUE / FALSE)
-	s32		fog_mode;	// �t�H�O���[�h----�J���[�ƃA���t�@�ɂ�����/�A���t�@�݂̂�����(0 / 1)
-	s32		fog_slope;	// �����肮����----(0�`10)	0<10�ŔZ���ł�
-	int		offset;		// �ǂ̃f�v�X�l���炩���邩
+	BOOL	flag;		// on/offフラグ----(TRUE / FALSE)
+	s32		fog_mode;	// フォグモード----カラーとアルファにかける/アルファのみかける(0 / 1)
+	s32		fog_slope;	// かかりぐあい----(0〜10)	0<10で濃いです
+	int		offset;		// どのデプス値からかけるか
 
-	GXRgb	color;		// �t�H�O�J���[
-	int alpha;			// ��(0�`31)	BG�ւ̓��ߓx
+	GXRgb	color;		// フォグカラー
+	int alpha;			// α(0〜31)	BGへの透過度
 
-	char	fog_tbl_data[32];		// �R�Q�i�K�̃t�H�O�e�[�u��	(�Z�x��0�`127)
+	char	fog_tbl_data[32];		// ３２段階のフォグテーブル	(濃度は0〜127)
 }FOG_DATA;
 
 
 //----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
  */
 //-----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
- *					�O���[�o���ϐ��錾
+ *					グローバル変数宣言
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	�t�H�O�f�[�^�ۑ��̈���쐬
+//	フォグデータ保存領域を作成
 //-------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�t�H�O�f�[�^�ۑ��̈���쐬
+ *@brief	フォグデータ保存領域を作成
  *
  *@param	none
  *
- *@return	FOG_DATA_PTR	�쐬���ꂽ�t�H�O�f�[�^�ۑ��̈�
+ *@return	FOG_DATA_PTR	作成されたフォグデータ保存領域
  *
  *
  */
@@ -78,9 +78,9 @@ FOG_DATA_PTR FogSys_Init(void)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�t�H�O�f�[�^�ۑ��̈��j��
+ *@brief	フォグデータ保存領域を破棄
  *
- *@param	pFogData	�t�H�O�f�[�^�ۑ��̈�̃|�C���^���w���A�h���X
+ *@param	pFogData	フォグデータ保存領域のポインタを指すアドレス
  *
  *@return	none
  *
@@ -94,14 +94,14 @@ void FogSys_Delete(FOG_DATA_PTR* pFogData)
 }
 
 //-------------------------------------
-//	���̃t�H�O�̏�Ԃ��擾
+//	今のフォグの状態を取得
 //-------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ON/OFF�t���O���擾
+ *@brief	ON/OFFフラグを取得
  *
- *@param	FogData		�t�H�O�f�[�^�ۑ��̈�
+ *@param	FogData		フォグデータ保存領域
  *
  *@return	BOOL	ON:TRUE		OFF:FALSE
  *
@@ -116,11 +116,11 @@ BOOL GetFogFlag(FOG_DATA_PTR FogData)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�t�H�O���[�h���擾
+ *@brief	フォグモードを取得
  *
- *@param	FogData		�t�H�O�f�[�^�ۑ��̈�
+ *@param	FogData		フォグデータ保存領域
  *
- *@return	int			�t�H�O���[�h
+ *@return	int			フォグモード
  *
  *
  */
@@ -133,11 +133,11 @@ int GetFogMode(FOG_DATA_PTR FogData)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�t�H�O�̂��������擾
+ *@brief	フォグのかかり具合を取得
  *
- *@param	FogData		�t�H�O�f�[�^�ۑ��̈�
+ *@param	FogData		フォグデータ保存領域
  *
- *@return	int			�t�H�O�̂������l
+ *@return	int			フォグのかかり具合値
  *
  *
  */
@@ -150,11 +150,11 @@ int GetFogSlope(FOG_DATA_PTR FogData)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�t�H�O�̂�����n�߂�f�v�X�l�擾
+ *@brief	フォグのかかり始めるデプス値取得
  *
- *@param	FogData		�t�H�O�f�[�^�ۑ��̈�
+ *@param	FogData		フォグデータ保存領域
  *
- *@return	int			�t�H�O�̂�����n�߂�f�v�X�l
+ *@return	int			フォグのかかり始めるデプス値
  *
  *
  */
@@ -167,11 +167,11 @@ int GetFogOffset(FOG_DATA_PTR FogData)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�t�H�O�J���[�擾
+ *@brief	フォグカラー取得
  *
- *@param	FogData		�t�H�O�f�[�^�ۑ��̈�
+ *@param	FogData		フォグデータ保存領域
  *
- *@return	GXRgb		�t�H�O�J���[
+ *@return	GXRgb		フォグカラー
  *
  *
  */
@@ -184,11 +184,11 @@ GXRgb GetFogColor(FOG_DATA_PTR FogData)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�t�H�O�̃��l���擾
+ *@brief	フォグのα値を取得
  *
- *@param	FogData		�t�H�O�f�[�^�ۑ���
+ *@param	FogData		フォグデータ保存先
  *
- *@return	int			���l
+ *@return	int			α値
  *
  *
  */
@@ -200,11 +200,11 @@ int GetFogAlpha(FOG_DATA_PTR FogData)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�t�H�O�e�[�u���擾
+ *@brief	フォグテーブル取得
  *
- *@param	FogData		�t�H�O�f�[�^�ۑ��̈�
+ *@param	FogData		フォグデータ保存領域
  *
- *@return	const char*	�t�H�O�e�[�u���|�C���^	(�v�f����32�ł�)
+ *@return	const char*	フォグテーブルポインタ	(要素数は32です)
  *
  *
  */
@@ -215,19 +215,19 @@ const char* GetFogTbl(FOG_DATA_PTR FogData)
 }
 
 //-------------------------------------
-//	�t�H�O�f�[�^��ݒ�
+//	フォグデータを設定
 //-------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�t�H�O�f�[�^��ۑ��̈�ɐݒ肵�A�`��ɔ��f������
+ *@brief	フォグデータを保存領域に設定し、描画に反映させる
  *
- *@param	FogData		�t�H�O�f�[�^�ۑ��̈�
- *@param	cont		����t���O			�l��ύX�������f�[�^��ނ̒萔���b�Ŏw�肷��FOG_SYS_ALL�͑S�Đݒ�
- *@param	flag		�t�H�O�t���O
- *@param	fogMode		�t�H�O���[�h
- *@param	fogSlope	�t�H�O�̂�����
- *@param	offset		�t�H�O�̂�����n�߂�f�v�X�l
+ *@param	FogData		フォグデータ保存領域
+ *@param	cont		制御フラグ			値を変更したいデータ種類の定数を｜で指定するFOG_SYS_ALLは全て設定
+ *@param	flag		フォグフラグ
+ *@param	fogMode		フォグモード
+ *@param	fogSlope	フォグのかかり具合
+ *@param	offset		フォグのかかり始めるデプス値
  *
  *@return	none
  *
@@ -257,12 +257,12 @@ void SetFogData(FOG_DATA_PTR FogData, int cont, BOOL flag, int fogMode, int fogS
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�t�H�O�J���[��ۑ��̈�ɐݒ肵�A�`��ɔ��f
+ *@brief	フォグカラーを保存領域に設定し、描画に反映
  *
- *@param	FogData		�t�H�O�f�[�^�ۑ��̈�
- *@param	cont		����t���O			�l��ύX�������f�[�^��ނ̒萔���b�Ŏw�肷��FOG_SYS_ALL�͑S�Đݒ�
- *@param	color		�J���[
- *@param	alpha		���l
+ *@param	FogData		フォグデータ保存領域
+ *@param	cont		制御フラグ			値を変更したいデータ種類の定数を｜で指定するFOG_SYS_ALLは全て設定
+ *@param	color		カラー
+ *@param	alpha		α値
  *
  *@return	none
  *
@@ -283,10 +283,10 @@ void SetFogColor(FOG_DATA_PTR FogData,int cont,  GXRgb color, int alpha)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�t�H�O�e�[�u����ۑ��̈�ɐݒ肵�A�`��ɔ��f
+ *@brief	フォグテーブルを保存領域に設定し、描画に反映
  *
- *@param	FogData			�t�H�O�f�[�^�ۑ��̈�
- *@param	char* fog_tbl	�t�H�O�e�[�u��
+ *@param	FogData			フォグデータ保存領域
+ *@param	char* fog_tbl	フォグテーブル
  *
  *@return	none
  *

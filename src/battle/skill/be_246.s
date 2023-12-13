@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_246.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			246�@�З͍͂������A���̂R�̋Z���o���Ă��Ȃ��ƊO���B
- *				 �R�o������͏�ɂ���ԁA�L���B���݂̎莝���̋Z��S�ďo���؂�ΗL���B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			246　威力は高いが、他の３つの技を出していないと外れる。
+ *				 ３つ出した後は場にいる間、有効。現在の手持ちの技を全て出し切れば有効。
  *
  *@author	HisashiSogabe
  *@data		2006.02.16

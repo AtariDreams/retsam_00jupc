@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wf2dmap_obj.h
- *	@brief		ƒIƒuƒWƒFƒNƒgƒf[ƒ^ŠÇ—
+ *	@brief		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ç®¡ç†
  *	@author		tomoya takahashi
  *	@data		2007.03.14
  *
@@ -23,11 +23,11 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ó‘Ô’è”
+///	çŠ¶æ…‹å®šæ•°
 //=====================================
 typedef enum {
 	WF2DMAP_OBJST_NONE = WF2DMAP_OBJST_C_NONE,
@@ -46,81 +46,81 @@ typedef enum {
 } WF2DMAP_OBJST;
 
 //-------------------------------------
-///	ƒ[ƒN‚Ì’l’è”
+///	ãƒ¯ãƒ¼ã‚¯ã®å€¤å®šæ•°
 //=====================================
 typedef enum {
-	WF2DMAP_OBJPM_X,		// xÀ•W
-	WF2DMAP_OBJPM_Y,		// yÀ•W
-	WF2DMAP_OBJPM_LX,		// ‘O‚ÌxÀ•W
-	WF2DMAP_OBJPM_LY,		// ‘O‚ÌyÀ•W
-	WF2DMAP_OBJPM_PLID,		// ƒvƒŒƒCƒ„[ID
-	WF2DMAP_OBJPM_ST,		// ó‘Ô
-	WF2DMAP_OBJPM_WAY,		// •ûŒü
-	WF2DMAP_OBJPM_CHARA,	// ƒLƒƒƒ‰ƒNƒ^[
-	WF2DMAP_OBJPM_FRAME,	// “®ìƒtƒŒ[ƒ€
-	WF2DMAP_OBJPM_ENDFRAME,	// I—¹“®ìƒtƒŒ[ƒ€
-	WF2DMAP_OBJPM_STFRAME,	// ¡‚Ìó‘Ô‚É‚È‚Á‚Ä‰½ƒtƒŒ[ƒ€‚½‚Á‚Ä‚¢‚é‚©
+	WF2DMAP_OBJPM_X,		// xåº§æ¨™
+	WF2DMAP_OBJPM_Y,		// yåº§æ¨™
+	WF2DMAP_OBJPM_LX,		// å‰ã®xåº§æ¨™
+	WF2DMAP_OBJPM_LY,		// å‰ã®yåº§æ¨™
+	WF2DMAP_OBJPM_PLID,		// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ID
+	WF2DMAP_OBJPM_ST,		// çŠ¶æ…‹
+	WF2DMAP_OBJPM_WAY,		// æ–¹å‘
+	WF2DMAP_OBJPM_CHARA,	// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼
+	WF2DMAP_OBJPM_FRAME,	// å‹•ä½œãƒ•ãƒ¬ãƒ¼ãƒ 
+	WF2DMAP_OBJPM_ENDFRAME,	// çµ‚äº†å‹•ä½œãƒ•ãƒ¬ãƒ¼ãƒ 
+	WF2DMAP_OBJPM_STFRAME,	// ä»Šã®çŠ¶æ…‹ã«ãªã£ã¦ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ãŸã£ã¦ã„ã‚‹ã‹
 } WF2DMAP_OBJPARAM;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒIƒuƒWƒFƒNƒgƒ[ƒN
+///	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WF2DMAP_OBJWK WF2DMAP_OBJWK;
 
 //-------------------------------------
-///	ƒIƒuƒWƒFƒNƒgƒf[ƒ^ŠÇ—ƒVƒXƒeƒ€
+///	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _WF2DMAP_OBJSYS WF2DMAP_OBJSYS;
 
 
 //-------------------------------------
-///	ƒIƒuƒWƒFƒNƒg“o˜^ƒf[ƒ^
+///	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç™»éŒ²ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	s16 x;		// xÀ•W
-	s16 y;		// yÀ•W
-	u16 playid;	// ƒvƒŒƒCƒ„[Ž¯•ÊID	iAID‚È‚Ç‚ðŽw’èj
-	u16 status;	// ‰Šú‰»ó‘Ô(WF2DMAP_OBJST)
-	u16 way;		// •ûŒü(WF2DMAP_WAY)
-	u16 charaid;// ƒLƒƒƒ‰ƒNƒ^[ID
+	s16 x;		// xåº§æ¨™
+	s16 y;		// yåº§æ¨™
+	u16 playid;	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è­˜åˆ¥ID	ï¼ˆAIDãªã©ã‚’æŒ‡å®šï¼‰
+	u16 status;	// åˆæœŸåŒ–çŠ¶æ…‹(WF2DMAP_OBJST)
+	u16 way;		// æ–¹å‘(WF2DMAP_WAY)
+	u16 charaid;// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ID
 } WF2DMAP_OBJDATA;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
-// ƒVƒXƒeƒ€ŠÇ—
+// ã‚·ã‚¹ãƒ†ãƒ ç®¡ç†
 GLOBAL WF2DMAP_OBJSYS* WF2DMAP_OBJSysInit( u32 objnum, u32 heapID );
 GLOBAL void WF2DMAP_OBJSysExit( WF2DMAP_OBJSYS* p_sys );
 
-// “®ìƒƒCƒ“
+// å‹•ä½œãƒ¡ã‚¤ãƒ³
 GLOBAL void WF2DMAP_OBJSysCmdSet( WF2DMAP_OBJSYS* p_objsys, const WF2DMAP_ACTCMD* cp_cmd );
 GLOBAL void WF2DMAP_OBJSysMain( WF2DMAP_OBJSYS* p_objsys );
 
 
 GLOBAL u32 WF2DMAP_OBJSysObjNumGet( const WF2DMAP_OBJSYS* cp_sys );
 
-// ƒ[ƒNì¬”jŠü
+// ãƒ¯ãƒ¼ã‚¯ä½œæˆç ´æ£„
 GLOBAL WF2DMAP_OBJWK* WF2DMAP_OBJWkNew( WF2DMAP_OBJSYS* p_sys, const WF2DMAP_OBJDATA* cp_data );
 GLOBAL void WF2DMAP_OBJWkDel( WF2DMAP_OBJWK* p_wk );
 
 
-// ƒvƒŒƒCƒ„[ID‚ÌƒIƒuƒWƒFƒNƒgŽæ“¾
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼IDã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå–å¾—
 GLOBAL WF2DMAP_OBJWK* WF2DMAP_OBJWkGet( WF2DMAP_OBJSYS* p_sys, u16 playid );
 GLOBAL WF2DMAP_OBJWK* WF2DMAP_OBJWkIdxGet( WF2DMAP_OBJSYS* p_sys, u16 idx );
 GLOBAL const WF2DMAP_OBJWK* WF2DMAP_OBJWkConstGet( const WF2DMAP_OBJSYS* cp_sys, u16 playid );
 GLOBAL const WF2DMAP_OBJWK* WF2DMAP_OBJWkConstIdxGet( const WF2DMAP_OBJSYS* cp_sys, u16 idx );
 
-// ƒf[ƒ^Žæ“¾Ý’è
+// ãƒ‡ãƒ¼ã‚¿å–å¾—è¨­å®š
 GLOBAL s32 WF2DMAP_OBJWkDataGet( const WF2DMAP_OBJWK* cp_wk, WF2DMAP_OBJPARAM id );
 GLOBAL void WF2DMAP_OBJWkDataSet( WF2DMAP_OBJWK* p_wk, WF2DMAP_OBJPARAM id, s32 data );
 GLOBAL void WF2DMAP_OBJWkDataAdd( WF2DMAP_OBJWK* p_wk, WF2DMAP_OBJPARAM id, s32 data );
@@ -130,12 +130,12 @@ GLOBAL WF2DMAP_POS WF2DMAP_OBJWkFrameMatrixGet( const WF2DMAP_OBJWK* cp_wk );
 GLOBAL void WF2DMAP_OBJWkMatrixSet( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos );
 GLOBAL void WF2DMAP_OBJWkLastMatrixSet( WF2DMAP_OBJWK* p_wk, WF2DMAP_POS pos );
 
-// “–‚½‚è”»’èŠÖŒW
+// å½“ãŸã‚Šåˆ¤å®šé–¢ä¿‚
 GLOBAL const WF2DMAP_OBJWK* WF2DMAP_OBJSysHitCheck( const WF2DMAP_OBJWK* cp_wk, const WF2DMAP_OBJSYS* cp_objsys, WF2DMAP_WAY way );
 GLOBAL const WF2DMAP_OBJWK* WF2DMAP_OBJSysPosHitCheck( const WF2DMAP_OBJSYS* cp_objsys, WF2DMAP_POS pos );
 
 
-// ƒc[ƒ‹—Þ
+// ãƒ„ãƒ¼ãƒ«é¡ž
 GLOBAL WF2DMAP_POS WF2DMAP_OBJToolWayPosGet( WF2DMAP_POS pos, WF2DMAP_WAY way );
 GLOBAL WF2DMAP_WAY WF2DMPA_OBJToolRetWayGet( WF2DMAP_WAY way );
 

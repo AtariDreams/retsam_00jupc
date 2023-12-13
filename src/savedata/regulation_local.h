@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	regulation_local.h
- * @brief	ƒoƒgƒ‹ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒwƒbƒ_[(‚±‚ÌƒfƒBƒŒƒNƒgƒŠ‚Ì‚İ‚Å‚Ì‚İQÆ‰Â)
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ˜ãƒƒãƒ€ãƒ¼(ã“ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ã¿ã§ã®ã¿å‚ç…§å¯)
  * @author	k.ohno
  * @date	2006.1.20
  */
@@ -15,24 +15,24 @@
 #include "savedata/regulation.h"
 
 
-// Å‘å”‚ÌƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“Šm•Û
+// æœ€å¤§æ•°ã®ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ç¢ºä¿
 struct _REGULATION_DATA {
   REGULATION regulation_buff[REGULATION_MAX_NUM];
 };
 
 //----------------------------------------------------------
 /**
- * @brief	Šeƒf[ƒ^‚Ì‹–‚·”ÍˆÍ
+ * @brief	å„ãƒ‡ãƒ¼ã‚¿ã®è¨±ã™ç¯„å›²
  */
 //----------------------------------------------------------
-#define _REG_NUM_MAX   (6)    // Q‰Ál”Å‘å
-#define _REG_NUM_MIN   (1)    // Q‰Ál”Å¬
-#define _REG_LEVEL_MAX   (100)    // levelÅ‘å
-#define _REG_LEVEL_MIN   (1)    // levelÅ¬
-#define _REG_TOTAL_LEVEL_MAX   (_REG_NUM_MAX*_REG_LEVEL_MAX)    // totallevelÅ‘å
-#define _REG_TOTAL_LEVEL_MIN   (_REG_NUM_MIN*_REG_LEVEL_MIN)    // totallevelÅ¬
-#define _REG_WEIGHT_MAX   (99)    // weightÅ‘å
-#define _REG_WEIGHT_MIN   (-99)    // weightÅ¬
+#define _REG_NUM_MAX   (6)    // å‚åŠ äººæ•°æœ€å¤§
+#define _REG_NUM_MIN   (1)    // å‚åŠ äººæ•°æœ€å°
+#define _REG_LEVEL_MAX   (100)    // levelæœ€å¤§
+#define _REG_LEVEL_MIN   (1)    // levelæœ€å°
+#define _REG_TOTAL_LEVEL_MAX   (_REG_NUM_MAX*_REG_LEVEL_MAX)    // totallevelæœ€å¤§
+#define _REG_TOTAL_LEVEL_MIN   (_REG_NUM_MIN*_REG_LEVEL_MIN)    // totallevelæœ€å°
+#define _REG_WEIGHT_MAX   (99)    // weightæœ€å¤§
+#define _REG_WEIGHT_MIN   (-99)    // weightæœ€å°
 
 
 //============================================================================================

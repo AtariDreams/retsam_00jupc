@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ‹ZƒGƒtƒFƒNƒg
+# Project:  æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -16,12 +16,12 @@ RES_DIR	= .
 include	sourcefile.lst
 
 #----------------------------------------------------------------------------
-#	‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·‚ğ‰Â”\‚É‚·‚é‚½‚ß‚Ìİ’è
+#	ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã‚’å¯èƒ½ã«ã™ã‚‹ãŸã‚ã®è¨­å®š
 #----------------------------------------------------------------------------
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#‹¤’Ê•Ï”’è‹`
+#å…±é€šå¤‰æ•°å®šç¾©
 include $(DP_ROOT)/commondefs.GF
 
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
@@ -42,17 +42,17 @@ LINCLUDES	+= $(dir $<)
 #--------------------------------------------------------------
 #	
 #--------------------------------------------------------------
-#ƒc[ƒ‹’è‹`
+#ãƒ„ãƒ¼ãƒ«å®šç¾©
 ELF2BIN	=	$(DP_ROOT)/convert/eventdata/celf2bin.exe
 LISTMK		= $(DP_ROOT)/convert/eventdata/listmk.exe
 
 
 
 #-------------------------------
-#	Às‡
-#		ƒŠƒ\[ƒXƒRƒs[
-#		ƒŠƒ\[ƒXƒA[ƒJƒCƒu
-#		‹ZƒGƒtƒFƒNƒgƒA[ƒJƒCƒu
+#	å®Ÿè¡Œé †
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚³ãƒ”ãƒ¼
+#		ãƒªã‚½ãƒ¼ã‚¹ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
+#		æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 #-------------------------------
 
 do-build: res_cp
@@ -81,29 +81,29 @@ shinzukan.bin: pokezukan.txt
 	-rm shinzukan.o temp.c temp.d
 	-rm shinzukan.elf
 
-#----------- ƒA[ƒJƒCƒu‚·‚é -----------
+#----------- ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã™ã‚‹ -----------
 do-build: pl_pokezukan.narc
 pl_pokezukan.narc: pokezukan.bin
-#	$(MAKE) mklst				#ˆê——‚ğì¬‚µ‚Ä
-#	$(MAKE) makebin				#‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·‚µ‚Ä
-	$(MAKE) makearc				#ƒA[ƒJƒCƒu‚É‚Ü‚Æ‚ß‚é
+#	$(MAKE) mklst				#ä¸€è¦§ã‚’ä½œæˆã—ã¦
+#	$(MAKE) makebin				#ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã—ã¦
+	$(MAKE) makearc				#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«ã¾ã¨ã‚ã‚‹
 
 do-build: shinzukan.narc
 shinzukan.narc: shinzukan.bin
-#	$(MAKE) mklst				#ˆê——‚ğì¬‚µ‚Ä
-#	$(MAKE) makebin				#‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·‚µ‚Ä
-	$(MAKE) makearc				#ƒA[ƒJƒCƒu‚É‚Ü‚Æ‚ß‚é
+#	$(MAKE) mklst				#ä¸€è¦§ã‚’ä½œæˆã—ã¦
+#	$(MAKE) makebin				#ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã—ã¦
+	$(MAKE) makearc				#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«ã¾ã¨ã‚ã‚‹
 
-#‘ÎÛƒ\[ƒXˆê——ì¬
+#å¯¾è±¡ã‚½ãƒ¼ã‚¹ä¸€è¦§ä½œæˆ
 #mklst:
 #	ls -1 *.dat > temp
 #	$(LISTMK) temp sourcefile.lst CONVSRCS
 #	rm temp
 
-#‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·
+#ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›
 #makebin: $(CONVSRCS:.dat=.bin)
 
-#ƒA[ƒJƒCƒuì¬
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä½œæˆ
 makearc:
 	nnsarc -c -l -n -i pl_pokezukan.narc pokezukan.bin
 	nnsarc -c -l -n -i shinzukan.narc shinzukan.bin

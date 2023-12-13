@@ -1,7 +1,7 @@
 #ifndef _R221R0101_DEF_H_
 #define _R221R0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_R221R0101_FLAG_CHANGE		(1)
 #define	SCRID_R221R0101_ADMIN		(2)
 #define	SCRID_R221R0101_COMEBACK		(3)
@@ -15,6 +15,6 @@
 #define	SCRID_R221R0101_POKETCH		(11)
 #define	SCRID_R221R0101_RETIRE		(12)
 #define	SCRID_R221R0101_GORGGEOUSW		(13)
-#define	SCRID_R221R0101_DATA_MAX		(13)		//最大数
+#define	SCRID_R221R0101_DATA_MAX		(13)		//譛螟ｧ謨ｰ
 
 #endif //_R221R0101_DEF_H_

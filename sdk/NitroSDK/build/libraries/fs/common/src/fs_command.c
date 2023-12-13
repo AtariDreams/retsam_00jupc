@@ -18,7 +18,7 @@
 #include "../include/command.h"
 
 
-/* ƒA[ƒJƒCƒu‚ÍŠî–{“I‚É ARM7 ‚ÉŠÜ‚Ü‚È‚¢ */
+/* ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã¯åŸºæœ¬çš„ã« ARM7 ã«å«ã¾ãªã„ */
 #if defined(FS_IMPLEMENT)
 
 
@@ -28,11 +28,11 @@
 /*---------------------------------------------------------------------------*
   Name:         FSi_ReleaseCommand
 
-  Description:  “à•”ŠÖ”.
-                ƒRƒ}ƒ“ƒh‚ğŠ®—¹‚µ‘Ò‹@ƒXƒŒƒbƒh‚ª‚ ‚ê‚Î•œ‹A‚·‚é.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ã‚³ãƒãƒ³ãƒ‰ã‚’å®Œäº†ã—å¾…æ©Ÿã‚¹ãƒ¬ãƒƒãƒ‰ãŒã‚ã‚Œã°å¾©å¸°ã™ã‚‹.
 
-  Arguments:    p_file           Š®—¹‚µ‚½ƒRƒ}ƒ“ƒh‚ğŠi”[‚·‚é FSFile \‘¢‘Ì.
-                ret              ƒRƒ}ƒ“ƒh‚ÌŒ‹‰Ê’l.
+  Arguments:    p_file           å®Œäº†ã—ãŸã‚³ãƒãƒ³ãƒ‰ã‚’æ ¼ç´ã™ã‚‹ FSFile æ§‹é€ ä½“.
+                ret              ã‚³ãƒãƒ³ãƒ‰ã®çµæœå€¤.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -53,15 +53,15 @@ void FSi_ReleaseCommand(FSFile *p_file, FSResult ret)
 /*---------------------------------------------------------------------------*
   Name:         FSi_TranslateCommand
 
-  Description:  “à•”ŠÖ”.
-                ƒ†[ƒUƒvƒƒV[ƒWƒƒ‚Ü‚½‚ÍƒfƒtƒHƒ‹ƒgˆ—‚ğŒÄ‚Ño‚µ, Œ‹‰Ê‚ğ•Ô‚·.
-                “¯ŠúŒnƒRƒ}ƒ“ƒh‚ª”ñ“¯Šú“I‰“š‚ğ•Ô‚µ‚½ê‡‚Í“à•”‚ÅŠ®—¹‚ğ‘Ò‚Â.
-                ”ñ“¯ŠúŒnƒRƒ}ƒ“ƒh‚ª”ñ“¯Šú“I‰“š‚ğ•Ô‚µ‚½ê‡‚Í‚»‚Ì‚Ü‚Ü•Ô‚·.
+  Description:  å†…éƒ¨é–¢æ•°.
+                ãƒ¦ãƒ¼ã‚¶ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã¾ãŸã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå‡¦ç†ã‚’å‘¼ã³å‡ºã—, çµæœã‚’è¿”ã™.
+                åŒæœŸç³»ã‚³ãƒãƒ³ãƒ‰ãŒéåŒæœŸçš„å¿œç­”ã‚’è¿”ã—ãŸå ´åˆã¯å†…éƒ¨ã§å®Œäº†ã‚’å¾…ã¤.
+                éåŒæœŸç³»ã‚³ãƒãƒ³ãƒ‰ãŒéåŒæœŸçš„å¿œç­”ã‚’è¿”ã—ãŸå ´åˆã¯ãã®ã¾ã¾è¿”ã™.
 
-  Arguments:    p_file           Às‚·‚éƒRƒ}ƒ“ƒh‚ğŠi”[‚µ‚½ FSFile \‘¢‘Ì.
-                command          ƒRƒ}ƒ“ƒh ID.
+  Arguments:    p_file           å®Ÿè¡Œã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã‚’æ ¼ç´ã—ãŸ FSFile æ§‹é€ ä½“.
+                command          ã‚³ãƒãƒ³ãƒ‰ ID.
 
-  Returns:      ƒRƒ}ƒ“ƒh‚Ìˆ—Œ‹‰Ê.
+  Returns:      ã‚³ãƒãƒ³ãƒ‰ã®å‡¦ç†çµæœ.
  *---------------------------------------------------------------------------*/
 FSResult FSi_TranslateCommand(FSFile *p_file, FSCommandType command)
 {
@@ -70,13 +70,13 @@ FSResult FSi_TranslateCommand(FSFile *p_file, FSCommandType command)
     FSArchive *const p_arc = p_file->arc;
     const int bit = (1 << command);
 
-    /* “¯Šú / ”ñ“¯Šúˆ—‚Ìƒtƒ‰ƒO‚ğ—§‚Ä‚é */
+    /* åŒæœŸ / éåŒæœŸå‡¦ç†ã®ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹ */
     if (FS_IsFileSyncMode(p_file))
         p_arc->flag |= FS_ARCHIVE_FLAG_IS_SYNC;
     else
         p_arc->flag |= FS_ARCHIVE_FLAG_IS_ASYNC;
 
-    /* ƒvƒƒV[ƒWƒƒ‚ª‘Î‰‚µ‚Ä‚¢‚ê‚ÎŒÄ‚Ño‚µ‚Ä‰“š‚ğŠm”F‚·‚é */
+    /* ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ãŒå¯¾å¿œã—ã¦ã„ã‚Œã°å‘¼ã³å‡ºã—ã¦å¿œç­”ã‚’ç¢ºèªã™ã‚‹ */
     if ((p_arc->proc_flag & bit) != 0)
     {
         switch (ret = (*p_arc->proc) (p_file, command))
@@ -84,14 +84,14 @@ FSResult FSi_TranslateCommand(FSFile *p_file, FSCommandType command)
         case FS_RESULT_SUCCESS:
         case FS_RESULT_FAILURE:
         case FS_RESULT_UNSUPPORTED:
-            /* ƒvƒƒV[ƒWƒƒ‘¤‚ÅƒRƒ}ƒ“ƒh‚ğˆ—Š®—¹ */
+            /* ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£å´ã§ã‚³ãƒãƒ³ãƒ‰ã‚’å‡¦ç†å®Œäº† */
             p_file->error = ret;
             break;
         case FS_RESULT_PROC_ASYNC:
-            /* ”ñ“¯Šúˆ—‚Ìˆµ‚¢‚ÍŒã‚Å×‚©‚­§Œä */
+            /* éåŒæœŸå‡¦ç†ã®æ‰±ã„ã¯å¾Œã§ç´°ã‹ãåˆ¶å¾¡ */
             break;
         case FS_RESULT_PROC_UNKNOWN:
-            /* –¢’m‚ÌƒRƒ}ƒ“ƒh‚È‚Ì‚Å¡‰ñˆÈ~ƒfƒtƒHƒ‹ƒg‚ÉØ‚è‘Ö‚¦‚é */
+            /* æœªçŸ¥ã®ã‚³ãƒãƒ³ãƒ‰ãªã®ã§ä»Šå›ä»¥é™ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«åˆ‡ã‚Šæ›¿ãˆã‚‹ */
             ret = FS_RESULT_PROC_DEFAULT;
             p_arc->proc_flag &= ~bit;
             break;
@@ -101,12 +101,12 @@ FSResult FSi_TranslateCommand(FSFile *p_file, FSCommandType command)
     {
         ret = FS_RESULT_PROC_DEFAULT;
     }
-    /* •K—v‚È‚çƒfƒtƒHƒ‹ƒg‚Ìˆ—‚ğŒÄ‚Ño‚· */
+    /* å¿…è¦ãªã‚‰ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å‡¦ç†ã‚’å‘¼ã³å‡ºã™ */
     if (ret == FS_RESULT_PROC_DEFAULT)
     {
         ret = (*fsi_default_command[command]) (p_file);
     }
-    /* ”ñ“¯Šúˆ—‚É“ü‚Á‚½ê‡, “¯Šúƒ‚[ƒh‚È‚çƒuƒƒbƒLƒ“ƒO */
+    /* éåŒæœŸå‡¦ç†ã«å…¥ã£ãŸå ´åˆ, åŒæœŸãƒ¢ãƒ¼ãƒ‰ãªã‚‰ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚° */
     if (ret == FS_RESULT_PROC_ASYNC)
     {
         if (FS_IsFileSyncMode(p_file))
@@ -118,19 +118,19 @@ FSResult FSi_TranslateCommand(FSFile *p_file, FSCommandType command)
             (void)OS_RestoreInterrupts(bak_psr);
         }
     }
-    /* ”ñ“¯Šúƒ‚[ƒh‚Å“¯ŠúŠ®—¹‚µ‚½ê‡‚Í‚±‚±‚Å‰ğ•ú */
+    /* éåŒæœŸãƒ¢ãƒ¼ãƒ‰ã§åŒæœŸå®Œäº†ã—ãŸå ´åˆã¯ã“ã“ã§è§£æ”¾ */
     else if (!FS_IsFileSyncMode(p_file))
     {
         p_arc->flag &= ~FS_ARCHIVE_FLAG_IS_ASYNC;
         FSi_ReleaseCommand(p_file, ret);
     }
-    /* “¯ŠúŒnƒRƒ}ƒ“ƒh‚ª“¯ŠúŠ®—¹‚µ‚½ê‡‚Í‚»‚Ì‚Ü‚ÜŒ‹‰Ê‚ğŠi”[ */
+    /* åŒæœŸç³»ã‚³ãƒãƒ³ãƒ‰ãŒåŒæœŸå®Œäº†ã—ãŸå ´åˆã¯ãã®ã¾ã¾çµæœã‚’æ ¼ç´ */
     else
     {
         p_arc->flag &= ~FS_ARCHIVE_FLAG_IS_SYNC;
         p_file->error = ret;
     }
-    /* Œ‹‰Ê‚ğ•Ô‚·. (”ñ“¯ŠúŒn‚Ì”ñ“¯Šúˆ—‚Ì‚İ FS_RESULT_PROC_ASYNC) */
+    /* çµæœã‚’è¿”ã™. (éåŒæœŸç³»ã®éåŒæœŸå‡¦ç†ã®ã¿ FS_RESULT_PROC_ASYNC) */
     return ret;
 }
 
@@ -153,7 +153,7 @@ FSResult FSi_TranslateCommand(FSFile *p_file, FSCommandType command)
   do-indent.
 
   Revision 1.10  2005/02/18 07:26:49  yasu
-  Signed/Unsigned •ÏŠ·Œx—}§
+  Signed/Unsigned å¤‰æ›è­¦å‘ŠæŠ‘åˆ¶
 
   Revision 1.9  2004/10/22 13:06:52  yosizaki
 

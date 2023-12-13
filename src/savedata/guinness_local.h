@@ -1,26 +1,26 @@
 /**
- *	@brief	ƒMƒlƒXƒz[ƒ‹@ƒZ[ƒuƒf[ƒ^Œ^
+ *	@brief	ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ã€€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿åž‹
  */
 
 #include "savedata/guinness.h"
-///ƒMƒlƒXƒf[ƒ^Œ^
+///ã‚®ãƒã‚¹ãƒ‡ãƒ¼ã‚¿åž‹
 struct _GUINNESS_DATA{
 	u32	groupID;
 	u32	record;
 	STRCODE	name[PERSON_NAME_SIZE+EOM_SIZE];
 };
 
-///ƒMƒlƒXƒf[ƒ^ƒuƒƒbƒNŒ^
+///ã‚®ãƒã‚¹ãƒ‡ãƒ¼ã‚¿ãƒ–ãƒ­ãƒƒã‚¯åž‹
 struct _GUINNESS_BLOCK{
 	struct _GUINNESS_DATA	dat[GNS_DATA_NUM];
 };
 
-///ƒMƒlƒXƒŒƒR[ƒhƒf[ƒ^Œ^(ƒŒƒR[ƒhŒðŠ·Žž‚ÉŽg—p)
+///ã‚®ãƒã‚¹ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿åž‹(ãƒ¬ã‚³ãƒ¼ãƒ‰äº¤æ›æ™‚ã«ä½¿ç”¨)
 struct _GUINNESS_RECORD{
 	struct	_GUINNESS_DATA	dat[GNS_RECORD_NUM];
 };
 
-///ƒMƒlƒXƒz[ƒ‹ƒf[ƒ^Œ^
+///ã‚®ãƒã‚¹ãƒ›ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿åž‹
 struct _GUINNESS{
 	struct _GUINNESS_BLOCK	block[GNS_BLOCK_NUM];
 };

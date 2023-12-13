@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>PRC_GetEntryStrokes</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">PRC_GetEntryStrokes</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
   <dd><PRE><CODE>#include &lt;nitro/prc.h&gt;
 
@@ -23,34 +23,34 @@ void* PRC_GetEntryStrokes(
 </CODE></PRE></dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 <table border="1" width="100%">
   <tbody>
     <tr>
       <td width="13%"><em><strong><font face="Courier New">strokes</font></strong></em></td>
-      <td width="87%">�_���ۑ����� <A href="../stroke/PRCStrokes.html">PRCStrokes</A> �\���̂ւ̃|�C���^</td>
+      <td width="87%">点列を保存する <A href="../stroke/PRCStrokes.html">PRCStrokes</A> 構造体へのポインタ</td>
     </tr>
     <tr>
       <td width="13%"><em><strong><font face="Courier New">prototypeList</font></strong></em></td>
-      <td width="87%">���{�p�^�[���̈ꗗ�ւ̃|�C���^</td>
+      <td width="87%">見本パターンの一覧へのポインタ</td>
     </tr>
     <tr>
       <td width="13%"><em><strong><font face="Courier New">entry</font></strong></em></td>
-      <td width="87%">���{DB�G���g���ւ̃|�C���^</td>
+      <td width="87%">見本DBエントリへのポインタ</td>
     </tr>
   </tbody>
 </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B</p>
+<h2>返り値</h2>
+<p>なし。</p>
 
-<H2>����</H2>
-<P>���{DB�G���g���̓_����𓾂܂��B���ʂ� <CODE>strokes</CODE> ��������͌��{DB�G���g�����\������_����ւ̃|�C���^�������܂��̂ŁA<CODE>strokes</CODE> �̓_��f�[�^��ύX���Ă͂����܂���B</P>
+<H2>説明</H2>
+<P>見本DBエントリの点列情報を得ます。結果の <CODE>strokes</CODE> 内部からは見本DBエントリを構成する点列情報へのポインタが張られますので、<CODE>strokes</CODE> の点列データを変更してはいけません。</P>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="PRC_GetRecognizedEntry.html">PRC_GetRecognizedEntry*</A><br>
 </CODE></p>
 
-<H2>����</H2>
-<P>2004/06/23 ����</P>
+<H2>履歴</H2>
+<P>2004/06/23 初版</P>
 </body>
 </html>

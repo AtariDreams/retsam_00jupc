@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	battle_input_type.h
- * @brief	í“¬“ü—Í‰æ–Ê‚ÌŠO‘¤‚Åg—p‚³‚ê‚é\‘¢‘Ì‚Ì’è‹`‚È‚Ç
+ * @brief	æˆ¦é—˜å…¥åŠ›ç”»é¢ã®å¤–å´ã§ä½¿ç”¨ã•ã‚Œã‚‹æ§‹é€ ä½“ã®å®šç¾©ãªã©
  * @author	matsuda
- * @date	2006.05.11(–Ø)
+ * @date	2006.05.11(æœ¨)
  */
 //==============================================================================
 #ifndef __BATTLE_INPUT_TYPE_H__
@@ -11,26 +11,26 @@
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
-//	SCENEƒ[ƒN
+//	SCENEãƒ¯ãƒ¼ã‚¯
 //--------------------------------------------------------------
-///ƒRƒ}ƒ“ƒh‘I‘ğ‰æ–Ê\¬—p‚ÌSceneƒ[ƒN
+///ã‚³ãƒãƒ³ãƒ‰é¸æŠç”»é¢æ§‹æˆç”¨ã®Sceneãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	u8 client_type;
 	u8 client_no;
 	u8 sel_mons_no;
 	u8		icon_status;
 
-	s16		icon_hp;				//Œ»İ‚ÌHP
-	u16		icon_hpmax;				//Œ»İ‚ÌHPMAX
+	s16		icon_hp;				//ç¾åœ¨ã®HP
+	u16		icon_hpmax;				//ç¾åœ¨ã®HPMAX
 	
-	u8 cancel_escape;				///<u‚à‚Ç‚évoru‚É‚°‚év
+	u8 cancel_escape;				///<ã€Œã‚‚ã©ã‚‹ã€orã€Œã«ã’ã‚‹ã€
 	u8 padding[3];
 }BINPUT_SCENE_COMMAND;
 
-///‹Z‘I‘ğ‰æ–Ê\¬—p‚ÌSceneƒ[ƒN
+///æŠ€é¸æŠç”»é¢æ§‹æˆç”¨ã®Sceneãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	u16			wazano[WAZA_TEMOTI_MAX];		//wazano
 	u8			pp[WAZA_TEMOTI_MAX];			//pp
@@ -38,18 +38,18 @@ typedef struct{
 	u8			client_type;					//
 }BINPUT_SCENE_WAZA;
 
-///ƒ|ƒPƒ‚ƒ“‘I‘ğ‰æ–Ê\¬—p‚ÌSceneƒ[ƒN
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠç”»é¢æ§‹æˆç”¨ã®Sceneãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	DIR_SELECT_POKE_PARAM	dspp[CLIENT_MAX];
 	u8			client_type;
-	u8			pokesele_type;	///<‘ÎÛ‘I‘ğƒ^ƒCƒv
+	u8			pokesele_type;	///<å¯¾è±¡é¸æŠã‚¿ã‚¤ãƒ—
 }BINPUT_SCENE_POKE;
 
-///u‚Í‚¢E‚¢‚¢‚¦v‘I‘ğ‰æ–Ê\¬—p‚ÌSceneƒ[ƒN
+///ã€Œã¯ã„ãƒ»ã„ã„ãˆã€é¸æŠç”»é¢æ§‹æˆç”¨ã®Sceneãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	u16 waza_no;
 	
-	u16 dummy;		///<4ƒoƒCƒg‹«ŠEƒ_ƒ~[
+	u16 dummy;		///<4ãƒã‚¤ãƒˆå¢ƒç•Œãƒ€ãƒŸãƒ¼
 }BINPUT_SCENE_YESNO;
 
 

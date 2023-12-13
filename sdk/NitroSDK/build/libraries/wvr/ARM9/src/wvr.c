@@ -16,28 +16,28 @@
 
   Revision 1.8  2005/05/09 08:30:20  terui
   Fix comment.
-  ‹­§I—¹¬Œ÷‚ÉPXIƒR[ƒ‹ƒoƒbƒNæ‚ğNULLƒNƒŠƒA‚·‚é‚æ‚¤C³
+  å¼·åˆ¶çµ‚äº†æˆåŠŸæ™‚ã«PXIã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å…ˆã‚’NULLã‚¯ãƒªã‚¢ã™ã‚‹ã‚ˆã†ä¿®æ­£
 
   Revision 1.7  2005/02/28 05:26:35  yosizaki
   do-indent.
 
   Revision 1.6  2005/02/17 00:01:51  terui
-  PXIóMƒR[ƒ‹ƒoƒbƒN‚Ìİ’è‚Í‰‰ñ‚Ì‚İ‚ÉŒÀ’è‚·‚é‚æ‚¤C³B
+  PXIå—ä¿¡ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®è¨­å®šã¯åˆå›ã®ã¿ã«é™å®šã™ã‚‹ã‚ˆã†ä¿®æ­£ã€‚
 
   Revision 1.5  2005/02/16 10:36:18  terui
-  ƒCƒ“ƒfƒ“ƒgC³‚Ì‚İB
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆä¿®æ­£ã®ã¿ã€‚
 
   Revision 1.4  2005/02/09 09:21:47  terui
-  VRAMƒoƒ“ƒN‚Ì”r‘¼‹@”\‚ğ’Ç‰ÁB
+  VRAMãƒãƒ³ã‚¯ã®æ’ä»–æ©Ÿèƒ½ã‚’è¿½åŠ ã€‚
 
   Revision 1.3  2005/01/11 07:46:42  takano_makoto
   fix copyright header.
 
   Revision 1.2  2005/01/05 07:30:37  terui
-  wvrƒ‰ƒCƒuƒ‰ƒŠ‚ÌincludeƒpƒX‚ğ–¾‹L‚·‚é‚æ‚¤C³B
+  wvrãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®includeãƒ‘ã‚¹ã‚’æ˜è¨˜ã™ã‚‹ã‚ˆã†ä¿®æ­£ã€‚
 
   Revision 1.1  2004/12/20 00:52:43  terui
-  b’è”Å‚Å‚Í‚ ‚é‚ªA“®ì‚Í‚·‚éó‘Ô‚ÅV‹K“o˜^B
+  æš«å®šç‰ˆã§ã¯ã‚ã‚‹ãŒã€å‹•ä½œã¯ã™ã‚‹çŠ¶æ…‹ã§æ–°è¦ç™»éŒ²ã€‚
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -51,14 +51,14 @@
 
 
 /*---------------------------------------------------------------------------*
-    “à•”ŠÖ”’è‹`
+    å†…éƒ¨é–¢æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 static void WvrReceiveCallback(PXIFifoTag tag, u32 data, BOOL err);
 static void WvrDummyAsyncCallback(void *arg, WVRResult result);
 
 
 /*---------------------------------------------------------------------------*
-    “à•”•Ï”’è‹`
+    å†…éƒ¨å¤‰æ•°å®šç¾©
  *---------------------------------------------------------------------------*/
 static WVRCallbackFunc wvrCallback = NULL;
 static void *wvrArg = NULL;
@@ -69,27 +69,27 @@ static vu16 wvrLockId = 0;
 /*---------------------------------------------------------------------------*
   Name:         WVR_StartUpAsync
 
-  Description:  –³üƒ‰ƒCƒuƒ‰ƒŠ‚ğ‹ì“®ŠJn‚·‚éB
-                ‹­§’â~‚·‚é‚Ü‚ÅAw’è‚µ‚½VRAM( C or D )‚Ö‚ÌƒAƒNƒZƒX‚Í‹Ö~‚É‚È‚éB
+  Description:  ç„¡ç·šãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’é§†å‹•é–‹å§‹ã™ã‚‹ã€‚
+                å¼·åˆ¶åœæ­¢ã™ã‚‹ã¾ã§ã€æŒ‡å®šã—ãŸVRAM( C or D )ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã¯ç¦æ­¢ã«ãªã‚‹ã€‚
 
-  Arguments:    vram        -   ARM7‚ÉŠ„‚è“–‚Ä‚éVRAMƒoƒ“ƒN‚ğw’èB
-                callback    -   ˆ—Š®—¹‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğw’èB
-                arg         -   ƒR[ƒ‹ƒoƒbƒNŠÖ”‚É“n‚·ˆø”‚ğw’èB
+  Arguments:    vram        -   ARM7ã«å‰²ã‚Šå½“ã¦ã‚‹VRAMãƒãƒ³ã‚¯ã‚’æŒ‡å®šã€‚
+                callback    -   å‡¦ç†å®Œäº†æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg         -   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã«æ¸¡ã™å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      ˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 WVRResult WVR_StartUpAsync(GXVRamARM7 vram, WVRCallbackFunc callback, void *arg)
 {
     OSIntrMode e;
 
-    // ƒRƒ“ƒ|[ƒlƒ“ƒg‚ªWVR‚É‘Î‰‚µ‚Ä‚¢‚é‚©Šm”F
+    // ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆãŒWVRã«å¯¾å¿œã—ã¦ã„ã‚‹ã‹ç¢ºèª
     PXI_Init();
     if (!PXI_IsCallbackReady(PXI_FIFO_TAG_WVR, PXI_PROC_ARM7))
     {
         return WVR_RESULT_DISABLE;
     }
 
-    // ”r‘¼—pID‚ğæ“¾‚µ‚Ä‚¢‚È‚¯‚ê‚Îæ“¾
+    // æ’ä»–ç”¨IDã‚’å–å¾—ã—ã¦ã„ãªã‘ã‚Œã°å–å¾—
     while (wvrLockId == 0)
     {
         s32     result = OS_GetLockID();
@@ -101,61 +101,61 @@ WVRResult WVR_StartUpAsync(GXVRamARM7 vram, WVRCallbackFunc callback, void *arg)
         wvrLockId = (u16)result;
     }
 
-    // Š„‚İ‹Ö~
+    // å‰²è¾¼ã¿ç¦æ­¢
     e = OS_DisableInterrupts();
 
-    // WVR”ñ“¯ŠúŠÖ”‚ª“®ì’†‚Å‚È‚¢‚©Šm”F
+    // WVRéåŒæœŸé–¢æ•°ãŒå‹•ä½œä¸­ã§ãªã„ã‹ç¢ºèª
     if (wvrCallback != NULL)
     {
         (void)OS_RestoreInterrupts(e);
         return WVR_RESULT_ILLEGAL_STATUS;
     }
 
-    // VRAM”r‘¼ó‘Ô‚ğƒ`ƒFƒbƒN
+    // VRAMæ’ä»–çŠ¶æ…‹ã‚’ãƒã‚§ãƒƒã‚¯
     if (wvrVRam)
     {
-        // ‚·‚Å‚É”r‘¼Ï‚İ
+        // ã™ã§ã«æ’ä»–æ¸ˆã¿
         (void)OS_RestoreInterrupts(e);
         return WVR_RESULT_ILLEGAL_STATUS;
     }
     switch (vram)
     {
     case GX_VRAM_ARM7_128_C:
-        // VRAM-C ‚ğ”r‘¼ƒƒbƒN
+        // VRAM-C ã‚’æ’ä»–ãƒ­ãƒƒã‚¯
         if (!OSi_TryLockVram(OS_VRAM_BANK_ID_C, wvrLockId))
         {
-            // VRAM-C ‚ÌƒƒbƒN‚É¸”s
+            // VRAM-C ã®ãƒ­ãƒƒã‚¯ã«å¤±æ•—
             (void)OS_RestoreInterrupts(e);
             return WVR_RESULT_VRAM_LOCKED;
         }
         wvrVRam = OS_VRAM_BANK_ID_C;
-        // GX_SetBankForARM7( GX_VRAM_ARM7_128_C ) ‚É‘Š“–‚·‚éƒŒƒWƒXƒ^İ’èˆ—
+        // GX_SetBankForARM7( GX_VRAM_ARM7_128_C ) ã«ç›¸å½“ã™ã‚‹ãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®šå‡¦ç†
         reg_GX_VRAMCNT_C = ((2 << REG_GX_VRAMCNT_C_MST_SHIFT) |
                             (0 << REG_GX_VRAMCNT_C_OFS_SHIFT) | (1 << REG_GX_VRAMCNT_C_E_SHIFT));
         break;
     case GX_VRAM_ARM7_128_D:
-        // VRAM-D ‚ğ”r‘¼ƒƒbƒN
+        // VRAM-D ã‚’æ’ä»–ãƒ­ãƒƒã‚¯
         if (!OSi_TryLockVram(OS_VRAM_BANK_ID_D, wvrLockId))
         {
-            // VRAM-D ‚ÌƒƒbƒN‚É¸”s
+            // VRAM-D ã®ãƒ­ãƒƒã‚¯ã«å¤±æ•—
             (void)OS_RestoreInterrupts(e);
             return WVR_RESULT_VRAM_LOCKED;
         }
         wvrVRam = OS_VRAM_BANK_ID_D;
-        // GX_SetBankForARM7( GX_VRAM_ARM7_128_D ) ‚É‘Š“–‚·‚éƒŒƒWƒXƒ^İ’èˆ—
+        // GX_SetBankForARM7( GX_VRAM_ARM7_128_D ) ã«ç›¸å½“ã™ã‚‹ãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®šå‡¦ç†
         reg_GX_VRAMCNT_D = ((2 << REG_GX_VRAMCNT_D_MST_SHIFT) |
                             (0 << REG_GX_VRAMCNT_D_OFS_SHIFT) | (1 << REG_GX_VRAMCNT_D_E_SHIFT));
         break;
     case GX_VRAM_ARM7_256_CD:
-        // VRAM-C/D ‚ğ”r‘¼ƒƒbƒN
+        // VRAM-C/D ã‚’æ’ä»–ãƒ­ãƒƒã‚¯
         if (!OSi_TryLockVram((OS_VRAM_BANK_ID_C | OS_VRAM_BANK_ID_D), wvrLockId))
         {
-            // VRAM-C/D ‚ÌƒƒbƒN‚É¸”s
+            // VRAM-C/D ã®ãƒ­ãƒƒã‚¯ã«å¤±æ•—
             (void)OS_RestoreInterrupts(e);
             return WVR_RESULT_VRAM_LOCKED;
         }
         wvrVRam = OS_VRAM_BANK_ID_C | OS_VRAM_BANK_ID_D;
-        // GX_SetBankForARM7( GX_VRAM_ARM7_256_CD ) ‚É‘Š“–‚·‚éƒŒƒWƒXƒ^İ’èˆ—
+        // GX_SetBankForARM7( GX_VRAM_ARM7_256_CD ) ã«ç›¸å½“ã™ã‚‹ãƒ¬ã‚¸ã‚¹ã‚¿è¨­å®šå‡¦ç†
         reg_GX_VRAMCNT_C = ((2 << REG_GX_VRAMCNT_C_MST_SHIFT) |
                             (0 << REG_GX_VRAMCNT_C_OFS_SHIFT) | (1 << REG_GX_VRAMCNT_C_E_SHIFT));
         reg_GX_VRAMCNT_D = ((2 << REG_GX_VRAMCNT_D_MST_SHIFT) |
@@ -166,13 +166,13 @@ WVRResult WVR_StartUpAsync(GXVRamARM7 vram, WVRCallbackFunc callback, void *arg)
         return WVR_RESULT_INVALID_PARAM;
     }
 
-    // PXIƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è
+    // PXIã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®š
     if (!PXI_IsCallbackReady(PXI_FIFO_TAG_WVR, PXI_PROC_ARM9))
     {
         PXI_SetFifoRecvCallback(PXI_FIFO_TAG_WVR, WvrReceiveCallback);
     }
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ‘Ş”ğ
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’é€€é¿
     if (callback == NULL)
     {
         wvrCallback = WvrDummyAsyncCallback;
@@ -183,10 +183,10 @@ WVRResult WVR_StartUpAsync(GXVRamARM7 vram, WVRCallbackFunc callback, void *arg)
     }
     wvrArg = arg;
 
-    // PXIŒo—R‚ÅStartUp‚ğ’Ê’m
+    // PXIçµŒç”±ã§StartUpã‚’é€šçŸ¥
     if (0 > PXI_SendWordByFifo(PXI_FIFO_TAG_WVR, WVR_PXI_COMMAND_STARTUP, FALSE))
     {
-        // ˆê’U”r‘¼ƒƒbƒN‚µ‚½ VRAM ‚ğ”r‘¼‰ğœ
+        // ä¸€æ—¦æ’ä»–ãƒ­ãƒƒã‚¯ã—ãŸ VRAM ã‚’æ’ä»–è§£é™¤
         OSi_UnlockVram(wvrVRam, wvrLockId);
         wvrVRam = 0;
         wvrCallback = NULL;
@@ -194,7 +194,7 @@ WVRResult WVR_StartUpAsync(GXVRamARM7 vram, WVRCallbackFunc callback, void *arg)
         return WVR_RESULT_FIFO_ERROR;
     }
 
-    // ”ñ“¯Šúˆ—‚ğ³í‚ÉŠJnŠ®—¹
+    // éåŒæœŸå‡¦ç†ã‚’æ­£å¸¸ã«é–‹å§‹å®Œäº†
     (void)OS_RestoreInterrupts(e);
     return WVR_RESULT_OPERATING;
 }
@@ -202,42 +202,42 @@ WVRResult WVR_StartUpAsync(GXVRamARM7 vram, WVRCallbackFunc callback, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         WVR_TerminateAsync
 
-  Description:  –³üƒ‰ƒCƒuƒ‰ƒŠ‚ğ‹­§’â~‚·‚éB
-                ”ñ“¯Šúˆ—Š®—¹ŒãAVRAM( C or D )‚Ö‚ÌƒAƒNƒZƒX‚Í‹–‰Â‚³‚ê‚éB
+  Description:  ç„¡ç·šãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’å¼·åˆ¶åœæ­¢ã™ã‚‹ã€‚
+                éåŒæœŸå‡¦ç†å®Œäº†å¾Œã€VRAM( C or D )ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã¯è¨±å¯ã•ã‚Œã‚‹ã€‚
 
-  Arguments:    callback    -   ˆ—Š®—¹‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğw’èB
-                arg         -   ƒR[ƒ‹ƒoƒbƒNŠÖ”‚É“n‚·ˆø”‚ğw’èB
+  Arguments:    callback    -   å‡¦ç†å®Œäº†æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’æŒ‡å®šã€‚
+                arg         -   ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã«æ¸¡ã™å¼•æ•°ã‚’æŒ‡å®šã€‚
 
-  Returns:      ˆ—Œ‹‰Ê‚ğ•Ô‚·B
+  Returns:      å‡¦ç†çµæœã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 WVRResult WVR_TerminateAsync(WVRCallbackFunc callback, void *arg)
 {
     OSIntrMode e;
 
-    // ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‘Î‰‚ğŠm”F
+    // ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®å¯¾å¿œã‚’ç¢ºèª
     PXI_Init();
     if (!PXI_IsCallbackReady(PXI_FIFO_TAG_WVR, PXI_PROC_ARM7))
     {
         return WVR_RESULT_DISABLE;
     }
 
-    // Š„‚İ‹Ö~
+    // å‰²è¾¼ã¿ç¦æ­¢
     e = OS_DisableInterrupts();
 
-    // WVR”ñ“¯ŠúŠÖ”‚ª“®ì’†‚Å‚È‚¢‚©Šm”F
+    // WVRéåŒæœŸé–¢æ•°ãŒå‹•ä½œä¸­ã§ãªã„ã‹ç¢ºèª
     if (wvrCallback != NULL)
     {
         (void)OS_RestoreInterrupts(e);
         return WVR_RESULT_ILLEGAL_STATUS;
     }
 
-    // PXIƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è
+    // PXIã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®š
     if (!PXI_IsCallbackReady(PXI_FIFO_TAG_WVR, PXI_PROC_ARM9))
     {
         PXI_SetFifoRecvCallback(PXI_FIFO_TAG_WVR, WvrReceiveCallback);
     }
 
-    // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğ‘Ş”ğ
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’é€€é¿
     if (callback == NULL)
     {
         wvrCallback = WvrDummyAsyncCallback;
@@ -248,7 +248,7 @@ WVRResult WVR_TerminateAsync(WVRCallbackFunc callback, void *arg)
     }
     wvrArg = arg;
 
-    // PXIŒo—R‚ÅTerminate‚ğ’Ê’m
+    // PXIçµŒç”±ã§Terminateã‚’é€šçŸ¥
     if (0 > PXI_SendWordByFifo(PXI_FIFO_TAG_WVR, WVR_PXI_COMMAND_TERMINATE, FALSE))
     {
         wvrCallback = NULL;
@@ -256,7 +256,7 @@ WVRResult WVR_TerminateAsync(WVRCallbackFunc callback, void *arg)
         return WVR_RESULT_FIFO_ERROR;
     }
 
-    // ”ñ“¯Šúˆ—‚ğ³í‚ÉŠJnŠ®—¹
+    // éåŒæœŸå‡¦ç†ã‚’æ­£å¸¸ã«é–‹å§‹å®Œäº†
     (void)OS_RestoreInterrupts(e);
     return WVR_RESULT_OPERATING;
 }
@@ -264,11 +264,11 @@ WVRResult WVR_TerminateAsync(WVRCallbackFunc callback, void *arg)
 /*---------------------------------------------------------------------------*
   Name:         WvrReceiveCallback
 
-  Description:  FIFO‚ğ‰î‚µ‚½ARM7‚©‚ç‚ÌƒR[ƒ‹ƒoƒbƒN‚ğóM‚·‚éB
+  Description:  FIFOã‚’ä»‹ã—ãŸARM7ã‹ã‚‰ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å—ä¿¡ã™ã‚‹ã€‚
 
-  Arguments:    tag          - –¢g—pB
-                data         - ARM7‚©‚çóM‚µ‚½ƒf[ƒ^B
-                err          - –¢g—pB
+  Arguments:    tag          - æœªä½¿ç”¨ã€‚
+                data         - ARM7ã‹ã‚‰å—ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã€‚
+                err          - æœªä½¿ç”¨ã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -280,14 +280,14 @@ static void WvrReceiveCallback(PXIFifoTag tag, u32 data, BOOL err)
     void   *cbArg = wvrArg;
     WVRResult result = (WVRResult)(data & 0x000000ff);
 
-    // ƒRƒ}ƒ“ƒhí•Ê‚É‚æ‚èˆ—‚ğU‚è•ª‚¯
+    // ã‚³ãƒãƒ³ãƒ‰ç¨®åˆ¥ã«ã‚ˆã‚Šå‡¦ç†ã‚’æŒ¯ã‚Šåˆ†ã‘
     switch (data & 0xffff0000)
     {
     case WVR_PXI_COMMAND_STARTUP:
         switch (result)
         {
         case WVR_RESULT_FATAL_ERROR:
-            // VRAM ‚ğ”r‘¼‰ğœ
+            // VRAM ã‚’æ’ä»–è§£é™¤
             if ((wvrVRam != 0) && (wvrLockId != 0))
             {
                 OSi_UnlockVram(wvrVRam, wvrLockId);
@@ -300,7 +300,7 @@ static void WvrReceiveCallback(PXIFifoTag tag, u32 data, BOOL err)
         switch (result)
         {
         case WVR_RESULT_SUCCESS:
-            // VRAM ‚ğ”r‘¼‰ğœ
+            // VRAM ã‚’æ’ä»–è§£é™¤
             if ((wvrVRam != 0) && (wvrLockId != 0))
             {
                 OSi_UnlockVram(wvrVRam, wvrLockId);
@@ -308,12 +308,12 @@ static void WvrReceiveCallback(PXIFifoTag tag, u32 data, BOOL err)
             }
             break;
         }
-        // PXI ƒR[ƒ‹ƒoƒbƒNæİ’è‚ğ NULL ƒNƒŠƒA
+        // PXI ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å…ˆè¨­å®šã‚’ NULL ã‚¯ãƒªã‚¢
         PXI_SetFifoRecvCallback(PXI_FIFO_TAG_WVR, NULL);
         break;
     }
 
-    // ƒ†[ƒU[ƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ
+    // ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—
     if (cb != NULL)
     {
         wvrCallback = NULL;
@@ -325,10 +325,10 @@ static void WvrReceiveCallback(PXIFifoTag tag, u32 data, BOOL err)
 /*---------------------------------------------------------------------------*
   Name:         WvrDummyAsyncCallback
 
-  Description:  ”ñ“¯ŠúŠÖ”‚Éİ’è‚·‚éƒ_ƒ~[‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”B
+  Description:  éåŒæœŸé–¢æ•°ã«è¨­å®šã™ã‚‹ãƒ€ãƒŸãƒ¼ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã€‚
 
-  Arguments:    arg     -   –¢g—pB
-                result  -   ”ñ“¯Šúˆ—‚Ìˆ—Œ‹‰ÊB
+  Arguments:    arg     -   æœªä½¿ç”¨ã€‚
+                result  -   éåŒæœŸå‡¦ç†ã®å‡¦ç†çµæœã€‚
 
   Returns:      None.
  *---------------------------------------------------------------------------*/

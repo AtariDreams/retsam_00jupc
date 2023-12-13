@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_140.s
- *@brief	戦闘シーケンス
- *			かわらわり発動シーケンス
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			縺九ｏ繧峨ｏ繧顔匱蜍輔す繝ｼ繧ｱ繝ｳ繧ｹ
  *@author	HisashiSogabe
  *@data		2006.02.08
  *
@@ -16,7 +16,7 @@
 
 SUB_140:
 	KAWARAWARI	SUB_140_NEXT
-	//かべ系を破壊するエフェクトをセット
+	//縺九∋邉ｻ繧堤ｴ螢翫☆繧九お繝輔ぉ繧ｯ繝医ｒ繧ｻ繝�繝�
 	VALUE		VAL_SET,BUF_PARA_WAZA_EFF_CNT,1
 	GOSUB		SUB_SEQ_WAZA_OUT_EFF
 	MESSAGE		KawarawariMsg,TAG_NONE

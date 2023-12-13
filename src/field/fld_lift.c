@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	fld_lift.c
- * @bfief	ƒŠƒtƒg‘€ì(ƒWƒ€œ‚­)
+ * @bfief	ãƒªãƒ•ãƒˆæ“ä½œ(ã‚¸ãƒ é™¤ã)
  * @author	Nozomu Saito
  *
  */
@@ -18,10 +18,10 @@
 
 #include "fld_lift.h"
 
-#define FLD_LIFT_DATA_HRIGHT_ID	(0)		//Šg’£‚‚³ƒCƒ“ƒfƒbƒNƒX
+#define FLD_LIFT_DATA_HRIGHT_ID	(0)		//æ‹¡å¼µé«˜ã•ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-#define NORM_LIFT_DIF	(FX32_ONE)		//‚‚³•Ï“®’l
-#define REAGE_LIFT_DIF	(FX32_ONE*2)		//‚‚³•Ï“®’l
+#define NORM_LIFT_DIF	(FX32_ONE)		//é«˜ã•å¤‰å‹•å€¤
+#define REAGE_LIFT_DIF	(FX32_ONE*2)		//é«˜ã•å¤‰å‹•å€¤
 #define LIFT_BOTTOM	(0)
 #define LIFT_TOP	(1)
 
@@ -56,20 +56,20 @@
 #define LIFT_W	(3)
 #define LIFT_H	(2)
 
-#define MINE_LIFT_LV1		(FX32_ONE*16*1)		//zŽR‰ºƒtƒƒA
-#define MINE_LIFT_LV2		(FX32_ONE*16*9)		//zŽRãƒtƒƒA
-#define REAGE01_LIFT_LV1	(0)					//Žl“V‰¤1‰ºƒtƒƒA
-#define REAGE01_LIFT_LV2	(FX32_ONE*16*10)	//Žl“V‰¤1ãƒtƒƒA
-#define REAGE02_LIFT_LV1	(0)					//Žl“V‰¤2‰ºƒtƒƒA
-#define REAGE02_LIFT_LV2	(FX32_ONE*16*5)		//Žl“V‰¤2ãƒtƒƒA
-#define REAGE03_LIFT_LV1	(0)					//Žl“V‰¤3‰ºƒtƒƒA
-#define REAGE03_LIFT_LV2	(FX32_ONE*16*5)		//Žl“V‰¤3ãƒtƒƒA
-#define REAGE04_LIFT_LV1	(0)					//Žl“V‰¤4‰ºƒtƒƒA
-#define REAGE04_LIFT_LV2	(FX32_ONE*16*5)		//Žl“V‰¤4ãƒtƒƒA
-#define CHAMP_LIFT_LV1		(0)					//ƒ`ƒƒƒ“ƒsƒIƒ“’Ê˜H‰ºƒtƒƒA
-#define CHAMP_LIFT_LV2		(FX32_ONE*16*5)		//ƒ`ƒƒƒ“ƒsƒIƒ“’Ê˜HãƒtƒƒA
-#define CHAMP_ROOM_LIFT_LV1	(0)					//ƒ`ƒƒƒ“ƒsƒIƒ“•”‰®‰ºƒtƒƒA
-#define CHAMP_ROOM_LIFT_LV2	(FX32_ONE*16*15)	//ƒ`ƒƒƒ“ƒsƒIƒ“•”‰®ãƒtƒƒA
+#define MINE_LIFT_LV1		(FX32_ONE*16*1)		//é‰±å±±ä¸‹ãƒ•ãƒ­ã‚¢
+#define MINE_LIFT_LV2		(FX32_ONE*16*9)		//é‰±å±±ä¸Šãƒ•ãƒ­ã‚¢
+#define REAGE01_LIFT_LV1	(0)					//å››å¤©çŽ‹1ä¸‹ãƒ•ãƒ­ã‚¢
+#define REAGE01_LIFT_LV2	(FX32_ONE*16*10)	//å››å¤©çŽ‹1ä¸Šãƒ•ãƒ­ã‚¢
+#define REAGE02_LIFT_LV1	(0)					//å››å¤©çŽ‹2ä¸‹ãƒ•ãƒ­ã‚¢
+#define REAGE02_LIFT_LV2	(FX32_ONE*16*5)		//å››å¤©çŽ‹2ä¸Šãƒ•ãƒ­ã‚¢
+#define REAGE03_LIFT_LV1	(0)					//å››å¤©çŽ‹3ä¸‹ãƒ•ãƒ­ã‚¢
+#define REAGE03_LIFT_LV2	(FX32_ONE*16*5)		//å››å¤©çŽ‹3ä¸Šãƒ•ãƒ­ã‚¢
+#define REAGE04_LIFT_LV1	(0)					//å››å¤©çŽ‹4ä¸‹ãƒ•ãƒ­ã‚¢
+#define REAGE04_LIFT_LV2	(FX32_ONE*16*5)		//å››å¤©çŽ‹4ä¸Šãƒ•ãƒ­ã‚¢
+#define CHAMP_LIFT_LV1		(0)					//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³é€šè·¯ä¸‹ãƒ•ãƒ­ã‚¢
+#define CHAMP_LIFT_LV2		(FX32_ONE*16*5)		//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³é€šè·¯ä¸Šãƒ•ãƒ­ã‚¢
+#define CHAMP_ROOM_LIFT_LV1	(0)					//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³éƒ¨å±‹ä¸‹ãƒ•ãƒ­ã‚¢
+#define CHAMP_ROOM_LIFT_LV2	(FX32_ONE*16*15)	//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³éƒ¨å±‹ä¸Šãƒ•ãƒ­ã‚¢
 
 #define EX_LIFT_POS_X	( FX32_ONE*(16*19+8) )
 #define EX_LIFT_POS_Y	( FX32_ONE*16 )
@@ -99,24 +99,24 @@ typedef struct LIFT_DATA_tag
 	fx32	BottomTop[2];
 	int		X;
 	int		Z;
-	BOOL	Stop;	//ã‚É‚ ‚ª‚Á‚½‚çA”½‰ž‚µ‚È‚­‚È‚é‚©‚Ç‚¤‚©@TRUEF”½‰ž‚µ‚È‚¢
-	BOOL	ExpObj;	//Šg’£‚n‚a‚i‚©‚Ç‚¤‚©@TRUE:Šg’£‚n‚a‚i
+	BOOL	Stop;	//ä¸Šã«ã‚ãŒã£ãŸã‚‰ã€åå¿œã—ãªããªã‚‹ã‹ã©ã†ã‹ã€€TRUEï¼šåå¿œã—ãªã„
+	BOOL	ExpObj;	//æ‹¡å¼µï¼¯ï¼¢ï¼ªã‹ã©ã†ã‹ã€€TRUE:æ‹¡å¼µï¼¯ï¼¢ï¼ª
 }LIFT_DATA;
 
 typedef struct LIFT_WORK_tag
 {
-	u16		Lift;		//ƒŠƒtƒg‚ÌˆÊ’uiã‚©‰º‚©j
+	u16		Lift;		//ãƒªãƒ•ãƒˆã®ä½ç½®ï¼ˆä¸Šã‹ä¸‹ã‹ï¼‰
 	u16		Location;
-	BOOL	LiftValid;	//ƒŠƒtƒg”½‰ž‚·‚é‚©H	TRUE:”½‰ž‚·‚é
-	int		Type;		//‚r‚d	TYPE_NORMAL:’ÊíƒŠƒtƒg@TYPE_REAGE:ƒŠ[ƒOƒŠƒtƒg 
-	//Type‚ÍƒZ[ƒu‚·‚é•K—v‚Í‚È‚¢‚¯‚ÇAƒCƒxƒ“ƒg‚Éˆø‚«Œp‚®‚½‚ß‚±‚±‚ÉŠm•Û‚·‚é
+	BOOL	LiftValid;	//ãƒªãƒ•ãƒˆåå¿œã™ã‚‹ã‹ï¼Ÿ	TRUE:åå¿œã™ã‚‹
+	int		Type;		//ï¼³ï¼¥	TYPE_NORMAL:é€šå¸¸ãƒªãƒ•ãƒˆã€€TYPE_REAGE:ãƒªãƒ¼ã‚°ãƒªãƒ•ãƒˆ 
+	//Typeã¯ã‚»ãƒ¼ãƒ–ã™ã‚‹å¿…è¦ã¯ãªã„ã‘ã©ã€ã‚¤ãƒ™ãƒ³ãƒˆã«å¼•ãç¶™ããŸã‚ã“ã“ã«ç¢ºä¿ã™ã‚‹
 }LIFT_WORK;
 
 typedef struct {
-	int seq;	///<ƒV[ƒPƒ“ƒX•ÛŽƒ[ƒN
-	fx32 DstHeight;	//–Ú“I‚‚³
-	BOOL Exp;	//Šg’£‚n‚a‚i‚©‚Ç‚¤‚©@TRUE:Šg’£‚n‚a‚i
-	int Type;	//	LIFT_WORK‚ÌType‚ðˆø‚«Œp‚®
+	int seq;	///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ä¿æŒãƒ¯ãƒ¼ã‚¯
+	fx32 DstHeight;	//ç›®çš„é«˜ã•
+	BOOL Exp;	//æ‹¡å¼µï¼¯ï¼¢ï¼ªã‹ã©ã†ã‹ã€€TRUE:æ‹¡å¼µï¼¯ï¼¢ï¼ª
+	int Type;	//	LIFT_WORKã®Typeã‚’å¼•ãç¶™ã
 }EVENT_FLIFT_WORK;
 
 
@@ -141,9 +141,9 @@ static const LIFT_DATA LiftData[LIFT_MAX] =
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒŠƒtƒg:ƒZƒbƒgƒAƒbƒv
+ * @brief	ãƒªãƒ•ãƒˆ:ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -157,7 +157,7 @@ void FLIFT_Setup(FIELDSYS_WORK *fsys)
 	const LIFT_DATA *lift_data;
 	fx32 height;
 
-	//‚±‚±‚ÅƒMƒ~ƒbƒNƒ[ƒN‚Ì’†g‚ðŒ©‚é
+	//ã“ã“ã§ã‚®ãƒŸãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯ã®ä¸­èº«ã‚’è¦‹ã‚‹
 	work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
 	lift_work = (LIFT_WORK*)GIMMICKWORK_Get(work, FLD_GIMMICK_FLD_LIFT);
 
@@ -165,23 +165,23 @@ void FLIFT_Setup(FIELDSYS_WORK *fsys)
 	height = lift_data->BottomTop[lift_work->Lift];
 
 	if(lift_data->ExpObj){
-		//ƒŠƒtƒg‚Ìì¬
+		//ãƒªãƒ•ãƒˆã®ä½œæˆ
 		VecFx32 vec = {EX_LIFT_POS_X, 0,EX_LIFT_POS_Z};
 		vec.y = height;
 		M3DO_SetMap3DObjExp(fsys->Map3DObjExp,
 							fsys->MapResource,
 							BMID_LIFT_BASE01,
 							&vec, NULL,
-							fsys->field_3d_anime );//<ƒŠƒtƒg
+							fsys->field_3d_anime );//<ãƒªãƒ•ãƒˆ
 		ptr = M3DO_GetMap3DObjDataFromID(fsys->Map3DObjExp, BMID_LIFT_BASE01);
 	}else{
-		//ƒŠƒtƒg’T‚·
+		//ãƒªãƒ•ãƒˆæŽ¢ã™
 		const int list[2] = {BMID_LIFT_BASE01,BMID_LEAGE_LIFT};
 		rc = MPTL_CheckPluralMap3DObj( fsys, list, 2, &ptr, NULL);
 		GF_ASSERT(rc);
 	}
 	
-	//ƒ‚ƒfƒ‹‚ÌyÀ•W•ÏX
+	//ãƒ¢ãƒ‡ãƒ«ã®yåº§æ¨™å¤‰æ›´
 	{
 		VecFx32 vec;
 		vec = M3DO_GetGlobalVec(ptr);
@@ -189,7 +189,7 @@ void FLIFT_Setup(FIELDSYS_WORK *fsys)
 		M3DO_SetGlobalVec(ptr, &vec);
 	}
 	//
-	//‚‚³ƒf[ƒ^ì¬
+	//é«˜ã•ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	EXH_SetUpExHeightData(	FLD_LIFT_DATA_HRIGHT_ID,
 							lift_data->X, lift_data->Z, LIFT_W, LIFT_H,
 							height,
@@ -199,9 +199,9 @@ void FLIFT_Setup(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒŠƒtƒg:‰Šú‰»
+ * @brief	ãƒªãƒ•ãƒˆ:åˆæœŸåŒ–
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -218,8 +218,8 @@ void FLIFT_Init(FIELDSYS_WORK *fsys)
 	lift_work->LiftValid = TRUE;
 	lift_work->Type = TYPE_NORMAL;
 
-	//“ü‚Á‚Ä‚«‚½êŠ‚ÌZÀ•W‚ÅAƒŠƒtƒg‚ÌˆÊ’u‚ðŒˆ’èi‚·‚é‚±‚Æ‚É‚·‚éj
-	//¦’nŒ`‚ÉˆË‘¶‚µ‚½”»’è‚È‚Ì‚ÅA’nŒ`‚ª•Ï‚í‚Á‚½ê‡‚Í’ˆÓ‚ª•K—v
+	//å…¥ã£ã¦ããŸå ´æ‰€ã®Zåº§æ¨™ã§ã€ãƒªãƒ•ãƒˆã®ä½ç½®ã‚’æ±ºå®šï¼ˆã™ã‚‹ã“ã¨ã«ã™ã‚‹ï¼‰
+	//â€»åœ°å½¢ã«ä¾å­˜ã—ãŸåˆ¤å®šãªã®ã§ã€åœ°å½¢ãŒå¤‰ã‚ã£ãŸå ´åˆã¯æ³¨æ„ãŒå¿…è¦
 	switch(fsys->location->zone_id){
 	case ZONE_ID_D24R0103:
 		if (fsys->location->grid_z == MINE_LIFT_START_Z_D24R0103){
@@ -250,7 +250,7 @@ void FLIFT_Init(FIELDSYS_WORK *fsys)
 			lift_work->Lift = LIFT_BOTTOM;
 		}else{
 			lift_work->Lift = LIFT_TOP;
-			lift_work->LiftValid = FALSE;	//ƒŠƒtƒg–³”½‰ž
+			lift_work->LiftValid = FALSE;	//ãƒªãƒ•ãƒˆç„¡åå¿œ
 		}
 		lift_work->Location = LIFT_REAGE01;
 		lift_work->Type = TYPE_REAGE;
@@ -260,7 +260,7 @@ void FLIFT_Init(FIELDSYS_WORK *fsys)
 			lift_work->Lift = LIFT_BOTTOM;
 		}else{
 			lift_work->Lift = LIFT_TOP;
-			lift_work->LiftValid = FALSE;	//ƒŠƒtƒg–³”½‰ž
+			lift_work->LiftValid = FALSE;	//ãƒªãƒ•ãƒˆç„¡åå¿œ
 		}
 		lift_work->Location = LIFT_REAGE02;
 		lift_work->Type = TYPE_REAGE;
@@ -270,7 +270,7 @@ void FLIFT_Init(FIELDSYS_WORK *fsys)
 			lift_work->Lift = LIFT_BOTTOM;
 		}else{
 			lift_work->Lift = LIFT_TOP;
-			lift_work->LiftValid = FALSE;	//ƒŠƒtƒg–³”½‰ž
+			lift_work->LiftValid = FALSE;	//ãƒªãƒ•ãƒˆç„¡åå¿œ
 		}
 		lift_work->Location = LIFT_REAGE03;
 		lift_work->Type = TYPE_REAGE;
@@ -280,7 +280,7 @@ void FLIFT_Init(FIELDSYS_WORK *fsys)
 			lift_work->Lift = LIFT_BOTTOM;
 		}else{
 			lift_work->Lift = LIFT_TOP;
-			lift_work->LiftValid = FALSE;	//ƒŠƒtƒg–³”½‰ž
+			lift_work->LiftValid = FALSE;	//ãƒªãƒ•ãƒˆç„¡åå¿œ
 		}
 		lift_work->Location = LIFT_REAGE04;
 		lift_work->Type = TYPE_REAGE;
@@ -290,7 +290,7 @@ void FLIFT_Init(FIELDSYS_WORK *fsys)
 			lift_work->Lift = LIFT_BOTTOM;
 		}else{
 			lift_work->Lift = LIFT_TOP;
-			lift_work->LiftValid = FALSE;	//ƒŠƒtƒg–³”½‰ž
+			lift_work->LiftValid = FALSE;	//ãƒªãƒ•ãƒˆç„¡åå¿œ
 		}
 		lift_work->Location = LIFT_CHAMP;
 		lift_work->Type = TYPE_REAGE;
@@ -300,7 +300,7 @@ void FLIFT_Init(FIELDSYS_WORK *fsys)
 			lift_work->Lift = LIFT_BOTTOM;
 		}else{
 			lift_work->Lift = LIFT_TOP;
-			lift_work->LiftValid = FALSE;	//ƒŠƒtƒg–³”½‰ž
+			lift_work->LiftValid = FALSE;	//ãƒªãƒ•ãƒˆç„¡åå¿œ
 		}
 		lift_work->Location = LIFT_CHAMP_ROOM;
 		lift_work->Type = TYPE_REAGE;
@@ -312,11 +312,11 @@ void FLIFT_Init(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒŠƒtƒg‚Ì—LŒø«ƒ`ƒFƒbƒN
+ * @brief	ãƒªãƒ•ãƒˆã®æœ‰åŠ¹æ€§ãƒã‚§ãƒƒã‚¯
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	u8		0:ƒŠƒtƒg–³Œø	1:ƒŠƒtƒg—LŒø
+ * @return	u8		0:ãƒªãƒ•ãƒˆç„¡åŠ¹	1:ãƒªãƒ•ãƒˆæœ‰åŠ¹
  */
 //---------------------------------------------------------------------------
 u8 FLIFT_CheckValid(FIELDSYS_WORK *fsys)
@@ -335,9 +335,9 @@ u8 FLIFT_CheckValid(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒŠƒtƒg:ˆÚ“®
+ * @brief	ãƒªãƒ•ãƒˆ:ç§»å‹•
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -351,23 +351,23 @@ void FLIFT_MoveLift(FIELDSYS_WORK *fsys)
 	work = SaveData_GetGimmickWork(GameSystem_GetSaveData(fsys));
 	lift_work = (LIFT_WORK*)GIMMICKWORK_Get(work, FLD_GIMMICK_FLD_LIFT);
 
-	//ˆê•û’ÊsƒŠƒtƒg‚©‚ðƒ`ƒFƒbƒN(ƒŠƒtƒg‚ªã‚É‚ ‚éê‡‚Í”½‰ž‚µ‚È‚­‚È‚é)
+	//ä¸€æ–¹é€šè¡Œãƒªãƒ•ãƒˆã‹ã‚’ãƒã‚§ãƒƒã‚¯(ãƒªãƒ•ãƒˆãŒä¸Šã«ã‚ã‚‹å ´åˆã¯åå¿œã—ãªããªã‚‹)
 	if ( (LiftData[lift_work->Location].Stop)&&(lift_work->Lift == LIFT_TOP) ){
 		return;
 	}
 	
-	//ƒCƒxƒ“ƒgƒR[ƒ‹
+	//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ¼ãƒ«
 	eflw = sys_AllocMemoryLo(HEAPID_WORLD, sizeof(EVENT_FLIFT_WORK));
 	eflw->seq = 0;
 
 	{
 		eflw->Exp = LiftData[ lift_work->Location ].ExpObj;
 		eflw->Type = lift_work->Type;
-		if (lift_work->Lift == LIFT_BOTTOM){		//ã‚És‚­
+		if (lift_work->Lift == LIFT_BOTTOM){		//ä¸Šã«è¡Œã
 			eflw->DstHeight = LiftData[lift_work->Location].BottomTop[LIFT_TOP];
 			FieldEvent_Call(fsys->event, GMEVENT_MoveUpLift, eflw);
 			lift_work->Lift = LIFT_TOP;
-		}else{											//‰º‚És‚­
+		}else{											//ä¸‹ã«è¡Œã
 			eflw->DstHeight = LiftData[lift_work->Location].BottomTop[LIFT_BOTTOM];
 			FieldEvent_Call(fsys->event, GMEVENT_MoveDownLift, eflw);
 			lift_work->Lift = LIFT_BOTTOM;
@@ -377,11 +377,11 @@ void FLIFT_MoveLift(FIELDSYS_WORK *fsys)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒŠƒtƒg‚ðã‚°‚é
+ * @brief	ãƒªãƒ•ãƒˆã‚’ä¸Šã’ã‚‹
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GMEVENT_MoveUpLift(GMEVENT_CONTROL * event)
@@ -392,23 +392,23 @@ static BOOL GMEVENT_MoveUpLift(GMEVENT_CONTROL * event)
 
 	switch (eflw->seq) {
 	case 0:
-		Player_HeightGet_ON_OFF( fsys->player, FALSE );//Ž©‹@‚Ì‚‚³Ž©“®Žæ“¾‚ðƒIƒt
+		Player_HeightGet_ON_OFF( fsys->player, FALSE );//è‡ªæ©Ÿã®é«˜ã•è‡ªå‹•å–å¾—ã‚’ã‚ªãƒ•
 
-		//ƒŠƒtƒg‰¹Ä¶
+		//ãƒªãƒ•ãƒˆéŸ³å†ç”Ÿ
 		FldLiftSePlay(eflw->Type);
 		(eflw->seq) ++;
 		break;
-	case 1:	//ƒŠƒtƒg‚ðã¸
+	case 1:	//ãƒªãƒ•ãƒˆã‚’ä¸Šæ˜‡
 		{
 			if (eflw->Exp){
-				//ƒŠƒtƒgOBJ‚ðŽæ“¾
+				//ãƒªãƒ•ãƒˆOBJã‚’å–å¾—
 				ptr = M3DO_GetMap3DObjDataFromID(fsys->Map3DObjExp, BMID_LIFT_BASE01);
 			}else{
 				const int list[2] = {BMID_LIFT_BASE01,BMID_LEAGE_LIFT};
 				BOOL rc = MPTL_CheckPluralMap3DObj( fsys, list, 2, &ptr, NULL);
 				GF_ASSERT(rc);
 			}
-			//yÀ•W•ÏX
+			//yåº§æ¨™å¤‰æ›´
 			{
 				fx32 dif;
 				VecFx32 vec;
@@ -420,22 +420,22 @@ static BOOL GMEVENT_MoveUpLift(GMEVENT_CONTROL * event)
 				}
 				vec.y += dif;
 
-				if (vec.y >= eflw->DstHeight){	//ƒZƒbƒgI—¹
+				if (vec.y >= eflw->DstHeight){	//ã‚»ãƒƒãƒˆçµ‚äº†
 					vec.y = eflw->DstHeight;
-					//ƒŠƒtƒg‰¹’âŽ~
+					//ãƒªãƒ•ãƒˆéŸ³åœæ­¢
 					FldLiftSeStop(eflw->Type);
 					(eflw->seq) ++;
 				}
-				Player_VecPosYSet( fsys->player, vec.y );	//Ž©‹@‚‚³•ÏX
+				Player_VecPosYSet( fsys->player, vec.y );	//è‡ªæ©Ÿé«˜ã•å¤‰æ›´
 				M3DO_SetGlobalVec(ptr, &vec);
 			}
 		}
 		break;
-	case 2:	//‚‚³ƒZƒbƒg
+	case 2:	//é«˜ã•ã‚»ãƒƒãƒˆ
 		EXH_SetExHeight( FLD_LIFT_DATA_HRIGHT_ID, eflw->DstHeight, fsys->ExHeightList );
-		//Ž©‹@‚Ì‚‚³Ž©“®Žæ“¾‚ðƒIƒ“
+		//è‡ªæ©Ÿã®é«˜ã•è‡ªå‹•å–å¾—ã‚’ã‚ªãƒ³
 		Player_HeightGetSet_ON_OFF( fsys->player, TRUE );
-		//ƒŠƒtƒgˆÚ“®I—¹‰¹
+		//ãƒªãƒ•ãƒˆç§»å‹•çµ‚äº†éŸ³
 		Snd_SePlay( SE_YOSUGA_GYM_LIFT );
 		(eflw->seq) ++;
 		break;
@@ -448,11 +448,11 @@ static BOOL GMEVENT_MoveUpLift(GMEVENT_CONTROL * event)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒŠƒtƒg‚ð‰º‚°‚é
+ * @brief	ãƒªãƒ•ãƒˆã‚’ä¸‹ã’ã‚‹
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  * 
- * @return	BOOL TRUE:ƒCƒxƒ“ƒgI—¹	FALSE:ƒCƒxƒ“ƒgŒp‘±
+ * @return	BOOL TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†	FALSE:ã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //---------------------------------------------------------------------------
 static BOOL GMEVENT_MoveDownLift(GMEVENT_CONTROL * event)
@@ -463,44 +463,44 @@ static BOOL GMEVENT_MoveDownLift(GMEVENT_CONTROL * event)
 
 	switch (eflw->seq) {
 	case 0:
-		Player_HeightGet_ON_OFF( fsys->player, FALSE );//Ž©‹@‚Ì‚‚³Ž©“®Žæ“¾‚ðƒIƒt
+		Player_HeightGet_ON_OFF( fsys->player, FALSE );//è‡ªæ©Ÿã®é«˜ã•è‡ªå‹•å–å¾—ã‚’ã‚ªãƒ•
 
-		//ƒŠƒtƒg‰¹Ä¶
+		//ãƒªãƒ•ãƒˆéŸ³å†ç”Ÿ
 		FldLiftSePlay(eflw->Type);
 		(eflw->seq)	++;
 		break;
-	case 1:	//ƒŠƒtƒg‚ð‰º~
+	case 1:	//ãƒªãƒ•ãƒˆã‚’ä¸‹é™
 		{
 			if (eflw->Exp){
-				//ƒŠƒtƒgOBJ‚ðŽæ“¾
+				//ãƒªãƒ•ãƒˆOBJã‚’å–å¾—
 				ptr = M3DO_GetMap3DObjDataFromID(fsys->Map3DObjExp, BMID_LIFT_BASE01);
 			}else{
 				const int list[2] = {BMID_LIFT_BASE01,BMID_LEAGE_LIFT};
 				BOOL rc = MPTL_CheckPluralMap3DObj( fsys, list, 2, &ptr, NULL);
 				GF_ASSERT(rc);
 			}
-			//yÀ•W•ÏX
+			//yåº§æ¨™å¤‰æ›´
 			{
 				VecFx32 vec;
 				vec = M3DO_GetGlobalVec(ptr);
 				vec.y -= NORM_LIFT_DIF;
 				
-				if (vec.y <= eflw->DstHeight){	//ƒZƒbƒgI—¹
+				if (vec.y <= eflw->DstHeight){	//ã‚»ãƒƒãƒˆçµ‚äº†
 					vec.y = eflw->DstHeight;
-					//ƒŠƒtƒg‰¹’âŽ~
+					//ãƒªãƒ•ãƒˆéŸ³åœæ­¢
 					FldLiftSeStop(eflw->Type);
 					(eflw->seq) ++;
 				}
-				Player_VecPosYSet( fsys->player, vec.y );	//Ž©‹@‚‚³•ÏX
+				Player_VecPosYSet( fsys->player, vec.y );	//è‡ªæ©Ÿé«˜ã•å¤‰æ›´
 				M3DO_SetGlobalVec(ptr, &vec);
 			}
 		}
 		break;
-	case 2:	//‚‚³ƒZƒbƒg
+	case 2:	//é«˜ã•ã‚»ãƒƒãƒˆ
 		EXH_SetExHeight( FLD_LIFT_DATA_HRIGHT_ID, eflw->DstHeight, fsys->ExHeightList );
-		//Ž©‹@‚Ì‚‚³Ž©“®Žæ“¾‚ðƒIƒ“
+		//è‡ªæ©Ÿã®é«˜ã•è‡ªå‹•å–å¾—ã‚’ã‚ªãƒ³
 		Player_HeightGetSet_ON_OFF( fsys->player, TRUE );
-		//ƒŠƒtƒgˆÚ“®I—¹‰¹
+		//ãƒªãƒ•ãƒˆç§»å‹•çµ‚äº†éŸ³
 		Snd_SePlay( SE_YOSUGA_GYM_LIFT );
 		(eflw->seq) ++;
 		break;
@@ -513,9 +513,9 @@ static BOOL GMEVENT_MoveDownLift(GMEVENT_CONTROL * event)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒŠƒtƒg‰¹
+ * @brief	ãƒªãƒ•ãƒˆéŸ³
  * 
- * @param	inType		ƒŠƒtƒgƒ^ƒCƒv
+ * @param	inType		ãƒªãƒ•ãƒˆã‚¿ã‚¤ãƒ—
  * 
  * @return	none
  */
@@ -531,9 +531,9 @@ static void FldLiftSePlay(const int inType)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	ƒŠƒt‰¹’âŽ~
+ * @brief	ãƒªãƒ•éŸ³åœæ­¢
  * 
- * @param	inType		ƒŠƒtƒgƒ^ƒCƒv 
+ * @param	inType		ãƒªãƒ•ãƒˆã‚¿ã‚¤ãƒ— 
  *
  * @return	none
  */

@@ -2,12 +2,12 @@
 /**
  *
  *	@file		fld_encount_data.c
- *	@brief		ƒtƒB[ƒ‹ƒhƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^
+ *	@brief		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
  *	@author		tomoya takahashi
  *	@data		2006.06.08
  *	
- *	ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚©‚ç
- *	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg@BGM‚ð‚¯‚Á‚Ä‚¢‚·‚éƒ‹[ƒ`ƒ“
+ *	ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰
+ *	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆã€€BGMã‚’ã‘ã£ã¦ã„ã™ã‚‹ãƒ«ãƒ¼ãƒãƒ³
  *
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -34,97 +34,97 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶Žš–Ú‚Í‘å•¶Žš‚»‚êˆÈ~‚Í¬•¶Žš‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ð•t‚¯‚é
- *						static‚É‚Í s_ ‚ð•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ð•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶Žš–Ú‚Í‘å•¶Žš
- *				EŠÖ”“à•Ï”
- *						¬•¶Žš‚ÆhQh‚Æ”Žš‚ðŽg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	“ÁŽêƒGƒ“ƒJƒEƒ“ƒgƒ^ƒCƒv’è”
+//	ç‰¹æ®Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¿ã‚¤ãƒ—å®šæ•°
 //
-//	’ÊíƒGƒ“ƒJƒEƒ“ƒg
-//		ƒtƒB[ƒ‹ƒhAƒgƒŒ[ƒi[ˆÈŠO‚Ì
-//		“ÆŽ©‚ÌƒGƒtƒFƒNƒg‰¹‚ðŽg—p‚·‚éƒGƒtƒFƒNƒg
+//	é€šå¸¸ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
+//		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ä»¥å¤–ã®
+//		ç‹¬è‡ªã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆéŸ³ã‚’ä½¿ç”¨ã™ã‚‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //=====================================
 enum{
 	// GYM
-	FLD_ENCEFF_SP_GYM_KUROGANE,			// ƒNƒƒKƒlƒWƒ€
-	FLD_ENCEFF_SP_GYM_HAKUTAI,			// ƒnƒNƒ^ƒCƒWƒ€
-	FLD_ENCEFF_SP_GYM_NOMOSE,			// ƒmƒ‚ƒZƒWƒ€
-	FLD_ENCEFF_SP_GYM_TOBARI,			// ƒgƒoƒŠƒWƒ€
-	FLD_ENCEFF_SP_GYM_YOSUGA,			// ƒˆƒXƒKƒgƒWƒ€
-	FLD_ENCEFF_SP_GYM_KISSAKI,			// ƒLƒbƒTƒLƒWƒ€
-	FLD_ENCEFF_SP_GYM_MIO,				// ƒ~ƒIƒWƒ€
-	FLD_ENCEFF_SP_GYM_NAGISA,			// ƒiƒMƒTƒWƒ€
-	// Žl“V‰¤
+	FLD_ENCEFF_SP_GYM_KUROGANE,			// ã‚¯ãƒ­ã‚¬ãƒã‚¸ãƒ 
+	FLD_ENCEFF_SP_GYM_HAKUTAI,			// ãƒã‚¯ã‚¿ã‚¤ã‚¸ãƒ 
+	FLD_ENCEFF_SP_GYM_NOMOSE,			// ãƒŽãƒ¢ã‚»ã‚¸ãƒ 
+	FLD_ENCEFF_SP_GYM_TOBARI,			// ãƒˆãƒãƒªã‚¸ãƒ 
+	FLD_ENCEFF_SP_GYM_YOSUGA,			// ãƒ¨ã‚¹ã‚¬ãƒˆã‚¸ãƒ 
+	FLD_ENCEFF_SP_GYM_KISSAKI,			// ã‚­ãƒƒã‚µã‚­ã‚¸ãƒ 
+	FLD_ENCEFF_SP_GYM_MIO,				// ãƒŸã‚ªã‚¸ãƒ 
+	FLD_ENCEFF_SP_GYM_NAGISA,			// ãƒŠã‚®ã‚µã‚¸ãƒ 
+	// å››å¤©çŽ‹
 	FLD_ENCEFF_SP_BIGFOUR_00,
 	FLD_ENCEFF_SP_BIGFOUR_01,
 	FLD_ENCEFF_SP_BIGFOUR_02,
 	FLD_ENCEFF_SP_BIGFOUR_03,
-	// ƒ`ƒƒƒ“ƒsƒIƒ“
+	// ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
 	FLD_ENCEFF_SP_CHANPION,
-	// ƒ‰ƒCƒoƒ‹
+	// ãƒ©ã‚¤ãƒãƒ«
 	FLD_ENCEFF_SP_RIVAL,
-	// “ÁŽêƒ|ƒPƒ‚ƒ“
-	FLD_ENCEFF_SP_LEGEND_POKE00,	// ƒVƒFƒCƒ~
-	FLD_ENCEFF_SP_PACKAGE_POKE00,	// ƒCƒAAƒGƒA
-	FLD_ENCEFF_SP_REIHAI_POKE00,	// ƒŒƒC@ƒnƒC
-	FLD_ENCEFF_SP_AI_POKE00,		// ƒAƒC
-	FLD_ENCEFF_SP_ARUSEUSU,			// ƒAƒ‹ƒZƒEƒX
-	FLD_ENCEFF_SP_LEGEND_POKE01,	// Ú¼Þ·Þ¶Þ½Aƒq[ƒhƒ‰ƒ“Aƒ_[‚­‚ç‚¢
-	FLD_ENCEFF_SP_LEGEND_POKE02,	// ƒNƒŒƒZƒŠƒA
-	FLD_ENCEFF_SP_PACKAGE_POKE01,	// ƒtƒ@ƒCƒA[AƒTƒ“ƒ_[AƒtƒŠ[ƒU[
-	FLD_ENCEFF_SP_LEGEND_POKE03,	// ƒLƒ}ƒCƒ‰ƒ“
-	FLD_ENCEFF_SP_LEGEND_POKE04,	// ƒŒƒWƒXƒ`ƒ‹AƒŒƒWƒAƒCƒXAƒŒƒWƒƒbƒN
+	// ç‰¹æ®Šãƒã‚±ãƒ¢ãƒ³
+	FLD_ENCEFF_SP_LEGEND_POKE00,	// ã‚·ã‚§ã‚¤ãƒŸ
+	FLD_ENCEFF_SP_PACKAGE_POKE00,	// ã‚¤ã‚¢ã€ã‚¨ã‚¢
+	FLD_ENCEFF_SP_REIHAI_POKE00,	// ãƒ¬ã‚¤ã€€ãƒã‚¤
+	FLD_ENCEFF_SP_AI_POKE00,		// ã‚¢ã‚¤
+	FLD_ENCEFF_SP_ARUSEUSU,			// ã‚¢ãƒ«ã‚»ã‚¦ã‚¹
+	FLD_ENCEFF_SP_LEGEND_POKE01,	// ãƒ¬ã‚¸ã‚®ã‚¬ã‚¹ã€ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³ã€ãƒ€ãƒ¼ãã‚‰ã„
+	FLD_ENCEFF_SP_LEGEND_POKE02,	// ã‚¯ãƒ¬ã‚»ãƒªã‚¢
+	FLD_ENCEFF_SP_PACKAGE_POKE01,	// ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼ã€ã‚µãƒ³ãƒ€ãƒ¼ã€ãƒ•ãƒªãƒ¼ã‚¶ãƒ¼
+	FLD_ENCEFF_SP_LEGEND_POKE03,	// ã‚­ãƒžã‚¤ãƒ©ãƒ³
+	FLD_ENCEFF_SP_LEGEND_POKE04,	// ãƒ¬ã‚¸ã‚¹ãƒãƒ«ã€ãƒ¬ã‚¸ã‚¢ã‚¤ã‚¹ã€ãƒ¬ã‚¸ãƒ­ãƒƒã‚¯
 	
-	// ‹â‰Í’c
-	FLD_ENCEFF_SP_GINGA_NORMAL,		// ’Êíƒƒ“ƒo[
-	FLD_ENCEFF_SP_GINGA_SPECIAL,	// Š²•”ƒNƒ‰ƒX
-	FLD_ENCEFF_SP_GINGA_BOSU,	// ƒ{ƒX
-	// ‚»‚Ì‘¼“ÁŽêƒoƒgƒ‹
-	FLD_ENCEFF_SP_BATTLE_TOWER,		// ƒoƒgƒ‹ƒ^ƒ[
-	FLD_ENCEFF_SP_BATTLE_COMMU,		// ’ÊMƒoƒgƒ‹
-	FLD_ENCEFF_SP_BATTLE_DOUBLE,		// ƒ_ƒuƒ‹ƒoƒgƒ‹ƒgƒŒ[ƒi[
-	FLD_ENCEFF_SP_BATTLE_DOUBLE_YASEI,	// ƒ_ƒuƒ‹ƒoƒgƒ‹‚â‚¹‚¢
-//	FLD_ENCEFF_SP_BATTLE_TOWER_TAIKUUN,	// ƒ^ƒ[ƒ^ƒCƒN[ƒ“
-	FLD_ENCEFF_SP_BATTLE_FRONTIER_BRAIN,// ƒtƒƒ“ƒeƒBƒAƒuƒŒ[ƒ“
-	FLD_ENCEFF_SP_BATTLE_DOUBLE_GYM,	// ƒ_ƒuƒ‹ƒoƒgƒ‹ƒWƒ€
+	// éŠ€æ²³å›£
+	FLD_ENCEFF_SP_GINGA_NORMAL,		// é€šå¸¸ãƒ¡ãƒ³ãƒãƒ¼
+	FLD_ENCEFF_SP_GINGA_SPECIAL,	// å¹¹éƒ¨ã‚¯ãƒ©ã‚¹
+	FLD_ENCEFF_SP_GINGA_BOSU,	// ãƒœã‚¹
+	// ãã®ä»–ç‰¹æ®Šãƒãƒˆãƒ«
+	FLD_ENCEFF_SP_BATTLE_TOWER,		// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+	FLD_ENCEFF_SP_BATTLE_COMMU,		// é€šä¿¡ãƒãƒˆãƒ«
+	FLD_ENCEFF_SP_BATTLE_DOUBLE,		// ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
+	FLD_ENCEFF_SP_BATTLE_DOUBLE_YASEI,	// ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã‚„ã›ã„
+//	FLD_ENCEFF_SP_BATTLE_TOWER_TAIKUUN,	// ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³
+	FLD_ENCEFF_SP_BATTLE_FRONTIER_BRAIN,// ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ–ãƒ¬ãƒ¼ãƒ³
+	FLD_ENCEFF_SP_BATTLE_DOUBLE_GYM,	// ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã‚¸ãƒ 
 
-	// ƒm[ƒ}ƒ‹	
-	FLD_ENCEFF_SP_NORMAL_TRAINER,	// ƒgƒŒ[ƒi[
-	FLD_ENCEFF_SP_NORMAL_FIELD,		// –ì¶
+	// ãƒŽãƒ¼ãƒžãƒ«	
+	FLD_ENCEFF_SP_NORMAL_TRAINER,	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
+	FLD_ENCEFF_SP_NORMAL_FIELD,		// é‡Žç”Ÿ
 
-	FLD_ENCEFF_SP_MAX,	// “ÁŽêƒGƒ“ƒJƒEƒ“ƒg”
+	FLD_ENCEFF_SP_MAX,	// ç‰¹æ®Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæ•°
 };
 
 //-------------------------------------
-///	ƒpƒ‹ƒp[ƒNƒ][ƒ“ID
+///	ãƒ‘ãƒ«ãƒ‘ãƒ¼ã‚¯ã‚¾ãƒ¼ãƒ³ID
 //=====================================
 #define FLD_ENCEFF_PALPARK_ZONEID	( ZONE_ID_D10R0101 )
 
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	“ÁŽêƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ[ƒN
+//	ç‰¹æ®Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	u16 effect_no;
@@ -134,70 +134,70 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *		“ÁŽêƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒe[ƒuƒ‹
- *			y“ÁŽêƒGƒ“ƒJƒEƒ“ƒgƒ^ƒCƒv’è”z‚Ì‚È‚ç‚Ñ‚É
- *			‚ ‚í‚¹‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ *		ç‰¹æ®Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+ *			ã€ç‰¹æ®Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¿ã‚¤ãƒ—å®šæ•°ã€‘ã®ãªã‚‰ã³ã«
+ *			ã‚ã‚ã›ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 */
 //-----------------------------------------------------------------------------
-// ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg‚ðƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚©‚çSEARCH‚·‚é
+// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰SEARCHã™ã‚‹
 #define ENCOUNT_EFFECT_SEARCH	( 0xffff )
 
 
 static const FLD_ENCEFF_SP_DATA FLD_EncEffSpData[ FLD_ENCEFF_SP_MAX ] = {
 	// GYM
-	{ ENCOUNT_SPTR_KUROGANE_GYM,	SEQ_BA_GYM },	// ƒNƒƒKƒlƒWƒ€
-	{ ENCOUNT_SPTR_HAKUTAI_GYM,		SEQ_BA_GYM },	// ƒnƒNƒ^ƒCƒWƒ€
-	{ ENCOUNT_SPTR_NOMOSE_GYM,		SEQ_BA_GYM },	// ƒmƒ‚ƒZƒWƒ€
-	{ ENCOUNT_SPTR_TOBARI_GYM,		SEQ_BA_GYM },	// ƒgƒoƒŠƒWƒ€
-	{ ENCOUNT_SPTR_YOSUGA_GYM,		SEQ_BA_GYM },	// ƒˆƒXƒKƒgƒWƒ€
-	{ ENCOUNT_SPTR_KISSAKI_GYM,		SEQ_BA_GYM },	// ƒLƒbƒTƒLƒWƒ€
-	{ ENCOUNT_SPTR_MIO_GYM,			SEQ_BA_GYM },	// ƒ~ƒIƒWƒ€
-	{ ENCOUNT_SPTR_NAGISA_GYM,		SEQ_BA_GYM },	// ƒiƒMƒTƒWƒ€
-	// Žl“V‰¤
+	{ ENCOUNT_SPTR_KUROGANE_GYM,	SEQ_BA_GYM },	// ã‚¯ãƒ­ã‚¬ãƒã‚¸ãƒ 
+	{ ENCOUNT_SPTR_HAKUTAI_GYM,		SEQ_BA_GYM },	// ãƒã‚¯ã‚¿ã‚¤ã‚¸ãƒ 
+	{ ENCOUNT_SPTR_NOMOSE_GYM,		SEQ_BA_GYM },	// ãƒŽãƒ¢ã‚»ã‚¸ãƒ 
+	{ ENCOUNT_SPTR_TOBARI_GYM,		SEQ_BA_GYM },	// ãƒˆãƒãƒªã‚¸ãƒ 
+	{ ENCOUNT_SPTR_YOSUGA_GYM,		SEQ_BA_GYM },	// ãƒ¨ã‚¹ã‚¬ãƒˆã‚¸ãƒ 
+	{ ENCOUNT_SPTR_KISSAKI_GYM,		SEQ_BA_GYM },	// ã‚­ãƒƒã‚µã‚­ã‚¸ãƒ 
+	{ ENCOUNT_SPTR_MIO_GYM,			SEQ_BA_GYM },	// ãƒŸã‚ªã‚¸ãƒ 
+	{ ENCOUNT_SPTR_NAGISA_GYM,		SEQ_BA_GYM },	// ãƒŠã‚®ã‚µã‚¸ãƒ 
+	// å››å¤©çŽ‹
 	{ ENCOUNT_SPTR_SITEN_00,	SEQ_BA_TENNO },
 	{ ENCOUNT_SPTR_SITEN_01,	SEQ_BA_TENNO },
 	{ ENCOUNT_SPTR_SITEN_02,	SEQ_BA_TENNO },
 	{ ENCOUNT_SPTR_SITEN_03,	SEQ_BA_TENNO },
-	// ƒ`ƒƒƒ“ƒsƒIƒ“
+	// ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
 	{ ENCOUNT_SPTR_CHANPION,	SEQ_BA_CHANP },
-	// ƒ‰ƒCƒoƒ‹
+	// ãƒ©ã‚¤ãƒãƒ«
 	{ ENCOUNT_EFFECT_SEARCH,	SEQ_BA_RIVAL },
-	// “ÁŽêƒ|ƒPƒ‚ƒ“
-	{ ENCOUNT_LEGEND_NORMAL,	SEQ_BA_POKE },	// ƒVƒFƒCƒ~
-	{ ENCOUNT_LEGEND_PACKAGE,	SEQ_BA_DPOKE2 },	// ƒCƒAAƒGƒA
-	{ ENCOUNT_LEGEND_PACKAGE,	SEQ_BA_DPOKE1 },	// ƒŒƒC@ƒnƒC@
-	{ ENCOUNT_EFFECT_SEARCH,	SEQ_BA_DPOKE1 },	// ƒAƒC
-	{ ENCOUNT_LEGEND_PACKAGE,	SEQ_BA_SECRET1 },	// ƒAƒ‹ƒZƒEƒX
-	{ ENCOUNT_LEGEND_NORMAL,	SEQ_BA_SECRET2 },	// ƒŒƒWƒMƒKƒXAƒq[ƒhƒ‰ƒ“A
-	{ ENCOUNT_EFFECT_SEARCH,	SEQ_BA_POKE },	// ƒNƒŒƒZƒŠƒA
-	{ ENCOUNT_EFFECT_SEARCH,	SEQ_BA_SECRET2 },	// ƒtƒ@ƒCƒA[AƒTƒ“ƒ_[AƒtƒŠ[ƒU[
-	{ ENCOUNT_LEGEND_NORMAL,	SEQ_PL_BA_GIRA },	// ƒLƒ}ƒCƒ‰ƒ“
-	{ ENCOUNT_LEGEND_NORMAL,	SEQ_PL_BA_REGI },	// ƒŒƒWƒXƒ`ƒ‹AƒŒƒWƒAƒCƒXAƒŒƒWƒƒbƒN
+	// ç‰¹æ®Šãƒã‚±ãƒ¢ãƒ³
+	{ ENCOUNT_LEGEND_NORMAL,	SEQ_BA_POKE },	// ã‚·ã‚§ã‚¤ãƒŸ
+	{ ENCOUNT_LEGEND_PACKAGE,	SEQ_BA_DPOKE2 },	// ã‚¤ã‚¢ã€ã‚¨ã‚¢
+	{ ENCOUNT_LEGEND_PACKAGE,	SEQ_BA_DPOKE1 },	// ãƒ¬ã‚¤ã€€ãƒã‚¤ã€€
+	{ ENCOUNT_EFFECT_SEARCH,	SEQ_BA_DPOKE1 },	// ã‚¢ã‚¤
+	{ ENCOUNT_LEGEND_PACKAGE,	SEQ_BA_SECRET1 },	// ã‚¢ãƒ«ã‚»ã‚¦ã‚¹
+	{ ENCOUNT_LEGEND_NORMAL,	SEQ_BA_SECRET2 },	// ãƒ¬ã‚¸ã‚®ã‚¬ã‚¹ã€ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³ã€
+	{ ENCOUNT_EFFECT_SEARCH,	SEQ_BA_POKE },	// ã‚¯ãƒ¬ã‚»ãƒªã‚¢
+	{ ENCOUNT_EFFECT_SEARCH,	SEQ_BA_SECRET2 },	// ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼ã€ã‚µãƒ³ãƒ€ãƒ¼ã€ãƒ•ãƒªãƒ¼ã‚¶ãƒ¼
+	{ ENCOUNT_LEGEND_NORMAL,	SEQ_PL_BA_GIRA },	// ã‚­ãƒžã‚¤ãƒ©ãƒ³
+	{ ENCOUNT_LEGEND_NORMAL,	SEQ_PL_BA_REGI },	// ãƒ¬ã‚¸ã‚¹ãƒãƒ«ã€ãƒ¬ã‚¸ã‚¢ã‚¤ã‚¹ã€ãƒ¬ã‚¸ãƒ­ãƒƒã‚¯
 
-	// ‹â‰Í’c
-	{ ENCOUNT_GINGA_NORMAL,		SEQ_BA_GINGA },	// ’Êíƒƒ“ƒo[
-	{ ENCOUNT_GINGA_SPECIAL,	SEQ_BA_GINGA3},	// Š²•”ƒNƒ‰ƒX
-	{ ENCOUNT_GINGA_SPECIAL,	SEQ_BA_AKAGI },	// ƒ{ƒX
-	// ‚»‚Ì‘¼“ÁŽêƒoƒgƒ‹
-	{ ENCOUNT_SPECIAL_TOWER,	SEQ_BA_TRAIN },	// ƒoƒgƒ‹ƒ^ƒ[
-	{ ENCOUNT_SPECIAL_TOWER,	SEQ_BA_TRAIN },	// ’ÊMƒoƒgƒ‹
-	{ ENCOUNT_SPECIAL_DOUBLE,	SEQ_BA_TRAIN },	// ƒ_ƒuƒ‹ƒoƒgƒ‹
-	{ ENCOUNT_SPECIAL_DOUBLE,	SEQ_BA_POKE },	// ƒ_ƒuƒ‹ƒoƒgƒ‹‚â‚¹‚¢
-//	{ ENCOUNT_SPECIAL_TOWER,	SEQ_BA_CHANP },	// ƒoƒgƒ‹ƒ^ƒ[ƒ^ƒCƒN[ƒ“‚ð
-	{ ENCOUNT_SPECIAL_TOWER,	SEQ_PL_BA_BRAIN },	// ƒtƒƒ“ƒeƒBƒAƒuƒŒ[ƒ“iƒ^ƒ[ƒ^ƒCƒN[ƒ“‚ð•ÏXj
-	{ ENCOUNT_SPECIAL_DOUBLE,	SEQ_BA_GYM },	// ƒ_ƒuƒ‹ƒoƒgƒ‹ƒWƒ€
+	// éŠ€æ²³å›£
+	{ ENCOUNT_GINGA_NORMAL,		SEQ_BA_GINGA },	// é€šå¸¸ãƒ¡ãƒ³ãƒãƒ¼
+	{ ENCOUNT_GINGA_SPECIAL,	SEQ_BA_GINGA3},	// å¹¹éƒ¨ã‚¯ãƒ©ã‚¹
+	{ ENCOUNT_GINGA_SPECIAL,	SEQ_BA_AKAGI },	// ãƒœã‚¹
+	// ãã®ä»–ç‰¹æ®Šãƒãƒˆãƒ«
+	{ ENCOUNT_SPECIAL_TOWER,	SEQ_BA_TRAIN },	// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+	{ ENCOUNT_SPECIAL_TOWER,	SEQ_BA_TRAIN },	// é€šä¿¡ãƒãƒˆãƒ«
+	{ ENCOUNT_SPECIAL_DOUBLE,	SEQ_BA_TRAIN },	// ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
+	{ ENCOUNT_SPECIAL_DOUBLE,	SEQ_BA_POKE },	// ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã‚„ã›ã„
+//	{ ENCOUNT_SPECIAL_TOWER,	SEQ_BA_CHANP },	// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³ã‚’
+	{ ENCOUNT_SPECIAL_TOWER,	SEQ_PL_BA_BRAIN },	// ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ–ãƒ¬ãƒ¼ãƒ³ï¼ˆã‚¿ãƒ¯ãƒ¼ã‚¿ã‚¤ã‚¯ãƒ¼ãƒ³ã‚’å¤‰æ›´ï¼‰
+	{ ENCOUNT_SPECIAL_DOUBLE,	SEQ_BA_GYM },	// ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã‚¸ãƒ 
 
-	// ƒm[ƒ}ƒ‹
-	{ ENCOUNT_EFFECT_SEARCH,	SEQ_BA_TRAIN },	// ƒgƒŒ[ƒi[
-	{ ENCOUNT_EFFECT_SEARCH,	SEQ_BA_POKE },	// –ì¶
+	// ãƒŽãƒ¼ãƒžãƒ«
+	{ ENCOUNT_EFFECT_SEARCH,	SEQ_BA_TRAIN },	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
+	{ ENCOUNT_EFFECT_SEARCH,	SEQ_BA_POKE },	// é‡Žç”Ÿ
 
-//	{ ƒGƒtƒFƒNƒg,BGM },	
+//	{ ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ,BGM },	
 };
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static u32 FLD_EncEffSpDataTypeGetTrainer( u32 tr_type );
@@ -212,16 +212,16 @@ static u32 FLD_EncEffSpDataBgmNoGet( u32 type, const BATTLE_PARAM* p_bp );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“ÁŽêƒGƒ“ƒJƒEƒ“ƒgƒ^ƒCƒv@Žæ“¾
+ *	@brief	ç‰¹æ®Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã€€å–å¾—
  *	
  *	@param	BATTLE_PARAM* p_bp 
- *	@retval	“ÁŽêƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹
- *	@retval	FLD_ENCEFF_SP_MAX	“ÁŽêƒe[ƒuƒ‹‚É‚È‚¢
+ *	@retval	ç‰¹æ®Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@retval	FLD_ENCEFF_SP_MAX	ç‰¹æ®Šãƒ†ãƒ¼ãƒ–ãƒ«ã«ãªã„
  *
- *	* —Dæ‡ˆÊ
- *		“ÁŽêƒgƒŒ[ƒi[
- *		“ÁŽêƒ|ƒPƒ‚ƒ“‚Í@ƒoƒgƒ‹ƒ^ƒ[@’ÊM@ƒ_ƒuƒ‹‚Å‚Í
- *		o‚Ä‚±‚È‚¢‚Æl‚¦‚Äì¬
+ *	* å„ªå…ˆé †ä½
+ *		ç‰¹æ®Šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼
+ *		ç‰¹æ®Šãƒã‚±ãƒ¢ãƒ³ã¯ã€€ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã€€é€šä¿¡ã€€ãƒ€ãƒ–ãƒ«ã§ã¯
+ *		å‡ºã¦ã“ãªã„ã¨è€ƒãˆã¦ä½œæˆ
  */
 //-----------------------------------------------------------------------------
 static u32 FLD_EncEffSpDataTypeGet( const BATTLE_PARAM* p_bp )
@@ -231,40 +231,40 @@ static u32 FLD_EncEffSpDataTypeGet( const BATTLE_PARAM* p_bp )
 	u32 mons_sp;
 	
 
-	// ƒgƒŒ[ƒi[íƒ`ƒFƒbƒN
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦ãƒã‚§ãƒƒã‚¯
 	if( (fight_type & FIGHT_TYPE_TRAINER) ){
 
-		// ƒgƒŒ[ƒi[ƒ`ƒFƒbƒN
+		// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒã‚§ãƒƒã‚¯
 		trainer_sp = FLD_EncEffSpDataTypeGetTrainer( p_bp->trainer_data[ CLIENT_NO_ENEMY ].tr_type );
 
-		// ƒoƒgƒ‹ƒ^ƒ[‚ÍA“ÁŽêƒgƒŒ[ƒi[ID‚È‚Ì‚Å
-		// æ‚É”»’f‚·‚é
+		// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã¯ã€ç‰¹æ®Šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDãªã®ã§
+		// å…ˆã«åˆ¤æ–­ã™ã‚‹
 		if( fight_type & FIGHT_TYPE_TOWER ){
 
-			// ƒtƒƒ“ƒeƒBƒAƒuƒŒƒCƒ“‚ðÅ—Dæ
+			// ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ–ãƒ¬ã‚¤ãƒ³ã‚’æœ€å„ªå…ˆ
 			if( trainer_sp == FLD_ENCEFF_SP_BATTLE_FRONTIER_BRAIN ){
 				return trainer_sp;
 			}
 
-			// ƒ_ƒuƒ‹ƒoƒgƒ‹ƒ`ƒFƒbƒN
+			// ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ãƒã‚§ãƒƒã‚¯
 			if( fight_type & FIGHT_TYPE_2vs2 ){
 				return FLD_ENCEFF_SP_BATTLE_DOUBLE;
 			}
 			return FLD_ENCEFF_SP_BATTLE_TOWER;
 		}
 
-		// ‹â‰Í’c‚ð—Dæ‚·‚é
+		// éŠ€æ²³å›£ã‚’å„ªå…ˆã™ã‚‹
 		if( (trainer_sp == FLD_ENCEFF_SP_GINGA_NORMAL) || 
 			(trainer_sp == FLD_ENCEFF_SP_GINGA_SPECIAL) ||
 			(trainer_sp == FLD_ENCEFF_SP_GINGA_BOSU) ){
 			return trainer_sp;
 		}
 
-		// ƒ_ƒuƒ‹ƒoƒgƒ‹ƒ`ƒFƒbƒN
+		// ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ãƒã‚§ãƒƒã‚¯
 		if( fight_type & FIGHT_TYPE_2vs2 ){
 
 #if 1
-			// ƒfƒ“ƒW‚ÆƒI[ƒoí‚Ìƒ_ƒuƒ‹ƒoƒgƒ‹‚ÍƒWƒ€íBGM(08.06.24)
+			// ãƒ‡ãƒ³ã‚¸ã¨ã‚ªãƒ¼ãƒæˆ¦ã®ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ã¯ã‚¸ãƒ æˆ¦BGM(08.06.24)
 			if( trainer_sp == FLD_ENCEFF_SP_GYM_NAGISA ){
 				return FLD_ENCEFF_SP_BATTLE_DOUBLE_GYM;
 			}
@@ -273,7 +273,7 @@ static u32 FLD_EncEffSpDataTypeGet( const BATTLE_PARAM* p_bp )
 			return FLD_ENCEFF_SP_BATTLE_DOUBLE;
 		}
 
-		// ’ÊMƒoƒgƒ‹ƒ`ƒFƒbƒN
+		// é€šä¿¡ãƒãƒˆãƒ«ãƒã‚§ãƒƒã‚¯
 		if( fight_type & FIGHT_TYPE_SIO ){
 			return FLD_ENCEFF_SP_BATTLE_COMMU;
 		}
@@ -281,30 +281,30 @@ static u32 FLD_EncEffSpDataTypeGet( const BATTLE_PARAM* p_bp )
 		return trainer_sp;
 	}
 
-	// “ÁŽêƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN
+	// ç‰¹æ®Šãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯
 	mons_sp = FLD_EncEffSpDataTypeGetPokemon( p_bp->poke_party[ CLIENT_NO_ENEMY ], p_bp->zone_id );
 
-	// ƒtƒB[ƒ‹ƒhˆÈ‰º‚Ì“ÁŽêƒ|ƒPƒ‚ƒ“‚È‚ç•Ô‚·
+	// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä»¥ä¸‹ã®ç‰¹æ®Šãƒã‚±ãƒ¢ãƒ³ãªã‚‰è¿”ã™
 	if( mons_sp < FLD_ENCEFF_SP_NORMAL_FIELD ){
 		return mons_sp;
 	}
 
-	// ƒ_ƒuƒ‹ƒoƒgƒ‹ƒ`ƒFƒbƒN
+	// ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«ãƒã‚§ãƒƒã‚¯
 	if( fight_type & FIGHT_TYPE_2vs2 ){
 		return FLD_ENCEFF_SP_BATTLE_DOUBLE_YASEI;
 	}
 
-	// –ì¶
+	// é‡Žç”Ÿ
 	return mons_sp;
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒiƒ“ƒo[‚ÌŽæ“¾
- *	@param	type	y“ÁŽêƒGƒ“ƒJƒEƒ“ƒgƒ^ƒCƒv’è”z
- *	@param	p_bp	ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^
- *	@return	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒiƒ“ƒo[
+ *	@brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼ã®å–å¾—
+ *	@param	type	ã€ç‰¹æ®Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¿ã‚¤ãƒ—å®šæ•°ã€‘
+ *	@param	p_bp	ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@return	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static u32 FLD_EncEffSpDataEffectNoGet( u32 type, const BATTLE_PARAM* p_bp )
@@ -312,7 +312,7 @@ static u32 FLD_EncEffSpDataEffectNoGet( u32 type, const BATTLE_PARAM* p_bp )
 	GF_ASSERT( type < FLD_ENCEFF_SP_MAX );
 	
 	if( FLD_EncEffSpData[ type ].effect_no == ENCOUNT_EFFECT_SEARCH ){
-		// ƒŒƒxƒ‹·‚È‚Ç‚ðŒ©‚ÄŒˆ‚ß‚é
+		// ãƒ¬ãƒ™ãƒ«å·®ãªã©ã‚’è¦‹ã¦æ±ºã‚ã‚‹
 		return ENCEFF_GetEffectNo( p_bp );
 	}else{
 
@@ -322,10 +322,10 @@ static u32 FLD_EncEffSpDataEffectNoGet( u32 type, const BATTLE_PARAM* p_bp )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	BGMƒiƒ“ƒo[‚ÌŽæ“¾
- *	@param	type	y“ÁŽêƒGƒ“ƒJƒEƒ“ƒgƒ^ƒCƒv’è”z
- *	@param	p_bp	ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^
- *	@return	BGMƒiƒ“ƒo[
+ *	@brief	BGMãƒŠãƒ³ãƒãƒ¼ã®å–å¾—
+ *	@param	type	ã€ç‰¹æ®Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¿ã‚¤ãƒ—å®šæ•°ã€‘
+ *	@param	p_bp	ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@return	BGMãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static u32 FLD_EncEffSpDataBgmNoGet( u32 type, const BATTLE_PARAM* p_bp )
@@ -336,10 +336,10 @@ static u32 FLD_EncEffSpDataBgmNoGet( u32 type, const BATTLE_PARAM* p_bp )
 
 //----------------------------------------------------------------------------
 /**
- *	[type ‚ÌŽæ“¾‚Í“à•”‚Ås‚¤]
- *	@brief	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒiƒ“ƒo[‚ÌŽæ“¾
- *	@param	p_bp	ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^
- *	@return	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒiƒ“ƒo[
+ *	[type ã®å–å¾—ã¯å†…éƒ¨ã§è¡Œã†]
+ *	@brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼ã®å–å¾—
+ *	@param	p_bp	ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@return	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 FLD_EncEffSpDataEffectNoPackGet( const BATTLE_PARAM* p_bp )
@@ -351,10 +351,10 @@ u32 FLD_EncEffSpDataEffectNoPackGet( const BATTLE_PARAM* p_bp )
 
 //----------------------------------------------------------------------------
 /**
- *	[type ‚ÌŽæ“¾‚Í“à•”‚Ås‚¤]
- *	@brief	BGMƒiƒ“ƒo[‚ÌŽæ“¾
- *	@param	p_bp	ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^
- *	@return	BGMƒiƒ“ƒo[
+ *	[type ã®å–å¾—ã¯å†…éƒ¨ã§è¡Œã†]
+ *	@brief	BGMãƒŠãƒ³ãƒãƒ¼ã®å–å¾—
+ *	@param	p_bp	ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ *	@return	BGMãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 u32 FLD_EncEffSpDataBgmNoPackGet( const BATTLE_PARAM* p_bp )
@@ -368,20 +368,20 @@ u32 FLD_EncEffSpDataBgmNoPackGet( const BATTLE_PARAM* p_bp )
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *			ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgƒf[ƒ^Žæ“¾
+ *	@brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ‡ãƒ¼ã‚¿å–å¾—
  *
- *	@param	p_data		ƒf[ƒ^Ši”[æ
- *	@param	type		y“ÁŽêƒGƒ“ƒJƒEƒ“ƒgƒ^ƒCƒv’è”z
+ *	@param	p_data		ãƒ‡ãƒ¼ã‚¿æ ¼ç´å…ˆ
+ *	@param	type		ã€ç‰¹æ®Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¿ã‚¤ãƒ—å®šæ•°ã€‘
  */
 //-----------------------------------------------------------------------------
 static void FLD_EncEffSpDataGet( FLD_ENCEFF_SP_DATA* p_data, u32 type )
 {
-	// ƒ^ƒCƒv‚ª•s³
+	// ã‚¿ã‚¤ãƒ—ãŒä¸æ­£
 	GF_ASSERT( type < FLD_ENCEFF_SP_MAX );
 	*p_data = FLD_EncEffSpData[ type ];
 }
@@ -389,12 +389,12 @@ static void FLD_EncEffSpDataGet( FLD_ENCEFF_SP_DATA* p_data, u32 type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“ÁŽêƒgƒŒ[ƒi[‚©‚çƒGƒ“ƒJƒEƒ“ƒgƒ^ƒCƒv‘Io
+ *	@brief	ç‰¹æ®Šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‹ã‚‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¿ã‚¤ãƒ—é¸å‡º
  *
- *	@param	tr_type	ƒgƒŒ[ƒi[TYPE
+ *	@param	tr_type	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼TYPE
  *
- *	@retval	“ÁŽêƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹
- *	@retval	FLD_ENCEFF_SP_MAX	“ÁŽêƒe[ƒuƒ‹‚É‚È‚¢
+ *	@retval	ç‰¹æ®Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@retval	FLD_ENCEFF_SP_MAX	ç‰¹æ®Šãƒ†ãƒ¼ãƒ–ãƒ«ã«ãªã„
  */
 //-----------------------------------------------------------------------------
 static u32 FLD_EncEffSpDataTypeGetTrainer( u32 tr_type )
@@ -402,36 +402,36 @@ static u32 FLD_EncEffSpDataTypeGetTrainer( u32 tr_type )
 	u32 retval = FLD_ENCEFF_SP_NORMAL_TRAINER;
 	
 	
-	// tr_type‚ª‚«‚¿‚ñ‚Æ˜A”Ô‚Å•À‚ñ‚Å‚¢‚È‚¢‚Ì‚Å
-	// ‘S•”case‚Å‚Æ‚é•K—v‚ª‚ ‚é
+	// tr_typeãŒãã¡ã‚“ã¨é€£ç•ªã§ä¸¦ã‚“ã§ã„ãªã„ã®ã§
+	// å…¨éƒ¨caseã§ã¨ã‚‹å¿…è¦ãŒã‚ã‚‹
 	switch( tr_type ){
 	// GYM
-	case TRTYPE_LEADER1:		// ƒNƒƒKƒlƒWƒ€
+	case TRTYPE_LEADER1:		// ã‚¯ãƒ­ã‚¬ãƒã‚¸ãƒ 
 		retval = FLD_ENCEFF_SP_GYM_KUROGANE;
 		break;
-	case TRTYPE_LEADER2:		// ƒnƒNƒ^ƒCƒWƒ€
+	case TRTYPE_LEADER2:		// ãƒã‚¯ã‚¿ã‚¤ã‚¸ãƒ 
 		retval = FLD_ENCEFF_SP_GYM_HAKUTAI;
 		break;
-	case TRTYPE_LEADER3:		// ƒmƒ‚ƒZƒWƒ€
+	case TRTYPE_LEADER3:		// ãƒŽãƒ¢ã‚»ã‚¸ãƒ 
 		retval = FLD_ENCEFF_SP_GYM_NOMOSE;
 		break;
-	case TRTYPE_LEADER4:		// ƒgƒoƒŠƒWƒ€
+	case TRTYPE_LEADER4:		// ãƒˆãƒãƒªã‚¸ãƒ 
 		retval = FLD_ENCEFF_SP_GYM_TOBARI;
 		break;
-	case TRTYPE_LEADER5:		// ƒˆƒXƒKƒgƒWƒ€
+	case TRTYPE_LEADER5:		// ãƒ¨ã‚¹ã‚¬ãƒˆã‚¸ãƒ 
 		retval = FLD_ENCEFF_SP_GYM_YOSUGA;
 		break;
-	case TRTYPE_LEADER6:		// ƒLƒbƒTƒLƒWƒ€
+	case TRTYPE_LEADER6:		// ã‚­ãƒƒã‚µã‚­ã‚¸ãƒ 
 		retval = FLD_ENCEFF_SP_GYM_KISSAKI;
 		break;
-	case TRTYPE_LEADER7:		// ƒ~ƒIƒWƒ€
+	case TRTYPE_LEADER7:		// ãƒŸã‚ªã‚¸ãƒ 
 		retval = FLD_ENCEFF_SP_GYM_MIO;
 		break;
-	case TRTYPE_LEADER8:		// ƒiƒMƒTƒWƒ€
+	case TRTYPE_LEADER8:		// ãƒŠã‚®ã‚µã‚¸ãƒ 
 		retval = FLD_ENCEFF_SP_GYM_NAGISA;
 		break;
 		
-	// Žl“V‰¤
+	// å››å¤©çŽ‹
 	case TRTYPE_BIGFOUR1:
 		retval = FLD_ENCEFF_SP_BIGFOUR_00;
 		break;
@@ -445,17 +445,17 @@ static u32 FLD_EncEffSpDataTypeGetTrainer( u32 tr_type )
 		retval = FLD_ENCEFF_SP_BIGFOUR_03;
 		break;
 		
-	// ƒ`ƒƒƒ“ƒsƒIƒ“
+	// ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
 	case TRTYPE_CHAMPION:
 		retval = FLD_ENCEFF_SP_CHANPION;
 		break;
 
-	// ƒ‰ƒCƒoƒ‹
+	// ãƒ©ã‚¤ãƒãƒ«
 	case TRTYPE_RIVAL:
 		retval = FLD_ENCEFF_SP_RIVAL;
 		break;
 		
-	// ‹â‰Í’c
+	// éŠ€æ²³å›£
 	case TRTYPE_GINGALBOSS:
 		retval = FLD_ENCEFF_SP_GINGA_BOSU;
 		break;
@@ -470,8 +470,8 @@ static u32 FLD_EncEffSpDataTypeGetTrainer( u32 tr_type )
 		retval = FLD_ENCEFF_SP_GINGA_NORMAL;
 		break;
 
-	// ƒoƒgƒ‹ƒ^ƒ[
-	// ƒtƒƒ“ƒeƒBƒAƒuƒŒƒCƒ“
+	// ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+	// ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ–ãƒ¬ã‚¤ãƒ³
 	case TRTYPE_KUROTUGU:
 	case TRTYPE_FBOSS1:
 	case TRTYPE_FBOSS2:
@@ -489,13 +489,13 @@ static u32 FLD_EncEffSpDataTypeGetTrainer( u32 tr_type )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“ÁŽêƒ|ƒPƒ‚ƒ“@ƒ`ƒFƒbƒN
+ *	@brief	ç‰¹æ®Šãƒã‚±ãƒ¢ãƒ³ã€€ãƒã‚§ãƒƒã‚¯
  *
- *	@param	p_poke_party	ƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB
- *	@param	zoneid			ƒ][ƒ“ID
+ *	@param	p_poke_party	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£
+ *	@param	zoneid			ã‚¾ãƒ¼ãƒ³ID
  *
- *	@retval	“ÁŽêƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹
- *	@retval	FLD_ENCEFF_SP_MAX	“ÁŽêƒe[ƒuƒ‹‚É‚È‚¢
+ *	@retval	ç‰¹æ®Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+ *	@retval	FLD_ENCEFF_SP_MAX	ç‰¹æ®Šãƒ†ãƒ¼ãƒ–ãƒ«ã«ãªã„
  */
 //-----------------------------------------------------------------------------
 static u32 FLD_EncEffSpDataTypeGetPokemon( POKEPARTY* p_poke_party, int zoneid )
@@ -504,59 +504,59 @@ static u32 FLD_EncEffSpDataTypeGetPokemon( POKEPARTY* p_poke_party, int zoneid )
 	u32 monsno;
 	u32 retval = FLD_ENCEFF_SP_NORMAL_FIELD;
 
-	// ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^Žæ“¾
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
 	p_enemy_poke = EvPoke_GetLivingPokemonTop( p_poke_party );
 	monsno = PokeParaGet( p_enemy_poke, ID_PARA_monsno, NULL );
 
 	switch( monsno ){
-	case MONSNO_EURISU:	// ƒVƒFƒCƒ~A
+	case MONSNO_EURISU:	// ã‚·ã‚§ã‚¤ãƒŸã€
 		retval = FLD_ENCEFF_SP_LEGEND_POKE00;
 		break;
 
-	case MONSNO_MUUBASU:	// ƒNƒŒƒZƒŠƒA
+	case MONSNO_MUUBASU:	// ã‚¯ãƒ¬ã‚»ãƒªã‚¢
 		retval = FLD_ENCEFF_SP_LEGEND_POKE02;
 		break;
 
-	case MONSNO_KIMAIRAN:	// ƒLƒ}ƒCƒ‰ƒ“
+	case MONSNO_KIMAIRAN:	// ã‚­ãƒžã‚¤ãƒ©ãƒ³
 		retval = FLD_ENCEFF_SP_LEGEND_POKE03;
 		break;
 		
-	case MONSNO_REZISUTIRU:	// ƒŒƒWƒXƒ`ƒ‹
-	case MONSNO_REZIAISU:	// ƒŒƒWƒAƒCƒX
-	case MONSNO_REZIROKKU:	// ƒŒƒWƒƒbƒN
+	case MONSNO_REZISUTIRU:	// ãƒ¬ã‚¸ã‚¹ãƒãƒ«
+	case MONSNO_REZIAISU:	// ãƒ¬ã‚¸ã‚¢ã‚¤ã‚¹
+	case MONSNO_REZIROKKU:	// ãƒ¬ã‚¸ãƒ­ãƒƒã‚¯
 		if( zoneid != FLD_ENCEFF_PALPARK_ZONEID ){
 			retval = FLD_ENCEFF_SP_LEGEND_POKE04;
 		}
 		break;
 
-	case MONSNO_REZIKINGU:	// ƒŒƒWƒMƒKƒX@ƒq[ƒhƒ‰ƒ“@ƒ_[ƒNƒ‰ƒC
+	case MONSNO_REZIKINGU:	// ãƒ¬ã‚¸ã‚®ã‚¬ã‚¹ã€€ãƒ’ãƒ¼ãƒ‰ãƒ©ãƒ³ã€€ãƒ€ãƒ¼ã‚¯ãƒ©ã‚¤
 	case MONSNO_HIIDORAN:
 	case MONSNO_DAAKU:
 	case MONSNO_PURAZUMA:
 		retval = FLD_ENCEFF_SP_LEGEND_POKE01;
 		break;
 		
-	case MONSNO_AI:	// ƒAƒC
+	case MONSNO_AI:	// ã‚¢ã‚¤
 		retval = FLD_ENCEFF_SP_AI_POKE00;
 		break;
 
-	case MONSNO_REI:	// ƒŒƒC@ƒnƒC
+	case MONSNO_REI:	// ãƒ¬ã‚¤ã€€ãƒã‚¤
 	case MONSNO_HAI:
 		retval = FLD_ENCEFF_SP_REIHAI_POKE00;
 		break;
 		
-	case MONSNO_IA:	// ƒCƒAAƒGƒAAƒAƒEƒX
+	case MONSNO_IA:	// ã‚¤ã‚¢ã€ã‚¨ã‚¢ã€ã‚¢ã‚¦ã‚¹
 	case MONSNO_EA:
 		retval = FLD_ENCEFF_SP_PACKAGE_POKE00;
 		break;
 
-	case MONSNO_AUSU:	// ƒAƒ‹ƒZƒEƒX
+	case MONSNO_AUSU:	// ã‚¢ãƒ«ã‚»ã‚¦ã‚¹
 		retval = FLD_ENCEFF_SP_ARUSEUSU;
 		break;
 
-	case MONSNO_FAIYAA:		// ƒtƒ@ƒCƒA[
-	case MONSNO_HURIIZAA:	// ƒtƒŠ[ƒU[
-	case MONSNO_SANDAA:		// ƒTƒ“ƒ_[
+	case MONSNO_FAIYAA:		// ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼
+	case MONSNO_HURIIZAA:	// ãƒ•ãƒªãƒ¼ã‚¶ãƒ¼
+	case MONSNO_SANDAA:		// ã‚µãƒ³ãƒ€ãƒ¼
 		if( zoneid != FLD_ENCEFF_PALPARK_ZONEID ){
 			retval = FLD_ENCEFF_SP_PACKAGE_POKE01;
 		}

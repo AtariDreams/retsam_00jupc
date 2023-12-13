@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_McsFindFirstFile</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">NNS_McsFindFirstFile</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -24,28 +24,28 @@
         NNSMcsFileFindData* pFindData,
         const char*         pattern);</CODE></pre>
 	</dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
  <tr> 
   <td width="13%"><em><strong><font face="Courier New">pFile</font></strong></em></td>
-  <td width="87%">�t�@�C�����\���̂ւ̃|�C���^�B</td>
+  <td width="87%">ファイル情報構造体へのポインタ。</td>
  </tr>
  <tr> 
   <td width="13%"><em><strong><font face="Courier New">pFindData</font></strong></em></td>
-  <td width="87%">���������t�@�C���Ɋւ�������i�[����\���̂ւ̃|�C���^�B</td>
+  <td width="87%">見つかったファイルに関する情報を格納する構造体へのポインタ。</td>
  </tr>
  <tr> 
   <td width="13%"><em><strong><font face="Courier New">pattern</font></strong></em></td>
-  <td width="87%">��������t�@�C�����p�^�[���B</td>
+  <td width="87%">検索するファイル名パターン。</td>
  </tr>
 </table>
-<h2>�Ԃ�l</h2>
-<p>�t�@�C���̌����ɐ��������� 0�A ���s������ 0�ȊO�̒l��Ԃ��܂��B�Ԃ�l�̏ڍׂ͐������Q�Ƃ��Ă��������B</p>
-<H2>����</H2>
-<p>�w�肳�ꂽ�t�@�C�����p�^�[���Ɉ�v����PC��̃t�@�C�����A�f�B���N�g�����Ō������܂��B���������ꍇ�A�ŏ��Ɍ��������t�@�C���Ɋւ������pFindData�Ŏw�肵��NNSMcsFileFindData�\���̂̕ϐ��Ɋi�[���܂��B�c��̃t�@�C������������ɂ�NNS_McsFindNextFile()���Ăяo���܂��B�������I������Ƃ��ɂ�NNS_McsCloseFind()���Ăяo���Ă��������B</p>
-<p>�t�@�C�����p�^�[���ɂ́A�u*�v�܂��́u?�v�̃��C���h�J�[�h�������܂߂邱�Ƃ��ł��܂��B�܂��A�u%�v�ň͂ނ��Ƃɂ���āu%NITROSYSTEM_ROOT%\include\*.h�v�̂悤��PC�̊��ϐ����܂߂邱�Ƃ��o���܂��B</p>
-<p><code>NNSMcsFileFindData</code>�\���͎̂��̂悤�ɒ�`����Ă��܂��B</p>
+<h2>返り値</h2>
+<p>ファイルの検索に成功したら 0、 失敗したら 0以外の値を返します。返り値の詳細は説明を参照してください。</p>
+<H2>説明</H2>
+<p>指定されたファイル名パターンに一致するPC上のファイルを、ディレクトリ内で検索します。見つかった場合、最初に見つかったファイルに関する情報をpFindDataで指定したNNSMcsFileFindData構造体の変数に格納します。残りのファイルを検索するにはNNS_McsFindNextFile()を呼び出します。検索を終了するときにはNNS_McsCloseFind()を呼び出してください。</p>
+<p>ファイル名パターンには、「*」または「?」のワイルドカード文字を含めることができます。また、「%」で囲むことによって「%NITROSYSTEM_ROOT%\include\*.h」のようにPCの環境変数を含めることが出来ます。</p>
+<p><code>NNSMcsFileFindData</code>構造体は次のように定義されています。</p>
 <dl>
   <dd>
   <pre><code>#define NNS_MCS_FILEIO_PATH_MAX 260
@@ -58,83 +58,83 @@ struct NNSMcsFileFindData
     char        name[NNS_MCS_FILEIO_PATH_MAX];
 };</code></pre>
 </dd></dl>
-<p>�e�����o�̓��e�͎��̂Ƃ���ł��B </p>
+<p>各メンバの内容は次のとおりです。 </p>
 <table>
  <tr> 
   <td><em><strong><font face="Courier New">attribute</font></strong></em></td>
-  <td>�t�@�C���̑����B�ڍׂ͉��L���Q�ƁB</td>
+  <td>ファイルの属性。詳細は下記を参照。</td>
  </tr>
  <tr> 
   <td><em><strong><font face="Courier New">size</font></strong></em></td>
-  <td>�t�@�C���̃T�C�Y(�o�C�g��)�B</td>
+  <td>ファイルのサイズ(バイト数)。</td>
  </tr>
  <tr> 
   <td><em><strong><font face="Courier New">name</font></strong></em></td>
-  <td>�t�@�C�����B</td>
+  <td>ファイル名。</td>
  </tr>
 </table>
-<p>�t�@�C�������͎��̒l�̑g�ݍ��킹�ƂȂ�܂��B</p>
+<p>ファイル属性は次の値の組み合わせとなります。</p>
 <table>
   <tbody>
     <tr>
       <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ATTRIBUTE_DIRECTORY</font></strong></em></td>
-      <td>�f�B���N�g���B</td>
+      <td>ディレクトリ。</td>
     </tr>
     <tr>
       <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ATTRIBUTE_ARCHIVE</font></strong></em></td>
-      <td>�A�[�J�C�u�B</td>
+      <td>アーカイブ。</td>
     </tr>
     <tr>
       <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ATTRIBUTE_READONLY</font></strong></em></td>
-      <td>�ǂݎ���p�B</td>
+      <td>読み取り専用。</td>
     </tr>
     <tr>
       <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ATTRIBUTE_HIDDEN</font></strong></em></td>
-      <td>�B���t�@�C���B</td>
+      <td>隠しファイル。</td>
     </tr>
     <tr>
       <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ATTRIBUTE_SYSTEM</font></strong></em></td>
-      <td>�V�X�e���t�@�C���B</td>
+      <td>システムファイル。</td>
     </tr>
     <tr>
       <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ATTRIBUTE_NORMAL</font></strong></em></td>
-      <td>�����������t�@�C���B</td>
+      <td>属性が無いファイル。</td>
     </tr>
   </tbody>
 </table>
-<p>�Ԃ�l�͎��̂����ꂩ�̒l���Ƃ�܂��B</p>
+<p>返り値は次のいずれかの値をとります。</p>
 <table>
   <tbody>
     <tr>
       <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_SUCCESS</font></strong></em> (0)</td>
-      <td>�֐��͐������܂����B</td>
+      <td>関数は成功しました。</td>
     </tr>
     <tr>
       <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_COMERROR</font></strong></em></td>
-      <td>�ʐM�G���[���������܂����B</td>
+      <td>通信エラーが発生しました。</td>
     </tr>
     <tr>
       <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_NOTCONNECT</font></strong></em></td>
-      <td>mcs�T�[�o�Ɛڑ�����Ă��܂���B</td>
+      <td>mcsサーバと接続されていません。</td>
     </tr>
     <tr>
       <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_SERVERERROR</font></strong></em></td>
-      <td>mcs�T�[�o���Ńt�@�C������Ɋ�Â��G���[���������܂����B���̃G���[�R�[�h��Win32�V�X�e���̃G���[�R�[�h�ł���A�֐�<code>NNS_McsGetServerErrorCode</code>�Ŏ擾�ł��܂��B</td>
+      <td>mcsサーバ側でファイル操作に基づくエラーが発生しました。このエラーコードはWin32システムのエラーコードであり、関数<code>NNS_McsGetServerErrorCode</code>で取得できます。</td>
     </tr>
     <tr>
       <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_NOMOREFILES</font></strong></em></td>
-      <td>�p�^�[���Ɉ�v����t�@�C����������܂���B</td>
+      <td>パターンに一致するファイルが見つかりません。</td>
     </tr>
   </tbody>
 </table>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE><A href="NNS_McsFindNextFile.html">NNS_McsFindNextFile</A>, 
 <A href="NNS_McsCloseFind.html">NNS_McsCloseFind</A>
 </CODE></p>
-<H2>����</H2>
-<P>2005/01/24 �t�@�C�������ƃG���[�R�[�h�ɂ��Ă̐�����ǉ��B<br>
-2004/10/28 �t�@�C�����p�^�[���ɂ��Ẳ����ǉ������B<br>
- 2004/10/19 NNS_McsCloseFind�ւ̃����N���Ԉ���Ă����̂��C�������B<br>
- 2004/07/01 ����</P>
+<H2>履歴</H2>
+<P>2005/01/24 ファイル属性とエラーコードについての説明を追加。<br>
+2004/10/28 ファイル名パターンについての解説を追加した。<br>
+ 2004/10/19 NNS_McsCloseFindへのリンクが間違っていたのを修正した。<br>
+ 2004/07/01 初版</P>
 </body>
 </html>

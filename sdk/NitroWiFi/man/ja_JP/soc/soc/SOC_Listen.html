@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SO_Listen</title>
 <link rel="stylesheet" href="../../css/nitro.css" type="text/css">
 </head>
@@ -11,7 +11,7 @@
 <h1 align="left">SOC_Listen</h1>
 
 
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
@@ -20,57 +20,57 @@
   </dd>
 </dl>
 
-<h2>����</h2>
+<h2>引数</h2>
 
 <table width="100%">
   <tr>
     <td><code><em><strong>s</strong></em></code></td>
-    <td>�\�P�b�g�L�q�q�B</td>
+    <td>ソケット記述子。</td>
   </tr>
   <tr>
     <td><code><em><strong>backlog</strong></em></code></td>
-    <td>�\�P�b�g�̃��b�X�� �o�b�N���O �L���[�ɕێ����関�����̐ڑ��̍ő吔���w�肵�܂��B<!-- <code><strong><em>backlog</em></strong></code>�� 
-    0 �܂��͕��̏ꍇ�A�ő吔�� 1 �ɐݒ肳��܂��B--> </td>
+    <td>ソケットのリッスン バックログ キューに保持する未処理の接続の最大数を指定します。<!-- <code><strong><em>backlog</em></strong></code>が 
+    0 または負の場合、最大数は 1 に設定されます。--> </td>
   </tr>
 </table>
 
-<h2>�Ԃ�l</h2>
+<h2>返り値</h2>
 
 <table width="100%">
   <tr>
     <td>0</td>
-    <td>�����B</td>
+    <td>成功。</td>
   </tr>
   <tr>
     <td><code>SOC_EINVAL</code></td>
-    <td>�����ȏ����B(�ڑ��������J�n���Ă��܂��ATCP�\�P�b�g�ł͂���܂���A�Ȃ�)</td>
+    <td>無効な処理。(接続処理を開始しています、TCPソケットではありません、など)</td>
   </tr>
   <tr>
     <td><code>SOC_ENETRESET</code></td>
-    <td>�\�P�b�g���C�u����������������Ă��܂���B</td>
+    <td>ソケットライブラリが初期化されていません。</td>
   </tr>
   <tr>
     <td><code>SOC_EWOULDBLOCK</code></td>
-    <td>�v����������͕������Ȃ��Ǝ��s�ł��܂���B</td>
+    <td>要求した操作は封鎖しないと実行できません。</td>
   </tr>
 </table>
 
-<p><strong><em>����</em></strong>�F�ǉ��̃G���[������̃��C�u���������[�X�Ő�������Ԃ���邱�Ƃ�����܂��B���ׂĂ̕��̕Ԃ�l�͔ėp�̃G���[�Ƃ��Ĉ����Ă��������B</p>
+<p><strong><em>注意</em></strong>：追加のエラーが今後のライブラリリリースで生じたり返されることがあります。すべての負の返り値は汎用のエラーとして扱ってください。</p>
 
-<h2>����</h2>
+<h2>説明</h2>
 
-<p>���̊֐��͌݊����̂��ߗp�ӂ���Ă���A���ۂɂ̓R�l�N�V�������[�h�̃\�P�b�g��ڑ���t���ɂ��܂���B</p>
+<p>この関数は互換性のため用意されており、実際にはコネクションモードのソケットを接続受付中にしません。</p>
 
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <code><a href="SOC_Socket.html">SOC_Socket</a></code>,
 <code><a href="SOC_Bind.html">SOC_Bind</a></code>,
 <code><a href="SOC_Connect.html">SOC_Connect</a></code>,
 <code><a href="SOC_Accept.html">SOC_Accept</a></code></p>
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2005/12/12 �����A�Ԃ�l�̋L�q�ύX<BR>
-2005/09/13 ����</P>
+2005/12/12 説明、返り値の記述変更<BR>
+2005/09/13 初版</P>
 </body>
 </html>

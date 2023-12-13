@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	bmp_list.c	
- * @brief	ƒrƒbƒgƒ}ƒbƒv‚a‚fã‚Å‚ÌƒŠƒXƒg•\¦ƒVƒXƒeƒ€
+ * @brief	ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ï¼¢ï¼§ä¸Šã§ã®ãƒªã‚¹ãƒˆè¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ 
  * @author	GAME FREAK inc.
  * @date	tetsu
  */
@@ -19,7 +19,7 @@
 
 /********************************************************************/
 /*                                                                  */
-/*				g—p’è‹`											*/
+/*				ä½¿ç”¨å®šç¾©											*/
 /*                                                                  */
 /********************************************************************/
 enum {
@@ -29,38 +29,38 @@ enum {
 
 
 typedef struct {
-	u8	f_col:4;		// •\¦•¶šF
-	u8	b_col:4;		// •\¦”wŒiF
-	u8	s_col:4;		// •\¦•¶š‰eF
-	u8	msg_spc:6;		// •¶šŠÔŠu‚w
-	u8	dummy:6;		// –¢g—p
-	u8	font:7;			// •¶šw’è
-	u8	sw:1;			// ˆê•ÏXƒXƒCƒbƒ`
+	u8	f_col:4;		// è¡¨ç¤ºæ–‡å­—è‰²
+	u8	b_col:4;		// è¡¨ç¤ºèƒŒæ™¯è‰²
+	u8	s_col:4;		// è¡¨ç¤ºæ–‡å­—å½±è‰²
+	u8	msg_spc:6;		// æ–‡å­—é–“éš”ï¼¸
+	u8	dummy:6;		// æœªä½¿ç”¨
+	u8	font:7;			// æ–‡å­—æŒ‡å®š
+	u8	sw:1;			// ä¸€æ™‚å¤‰æ›´ã‚¹ã‚¤ãƒƒãƒ
 }BMPLIST_TMP;
 
-///ƒŠƒXƒgƒ[ƒN\‘¢‘Ì
+///ãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 struct _BMPLIST_WORK {
 
-	BMPLIST_HEADER	hed;	//•\¦•¶šƒf[ƒ^ƒwƒbƒ_
+	BMPLIST_HEADER	hed;	//è¡¨ç¤ºæ–‡å­—ãƒ‡ãƒ¼ã‚¿ãƒ˜ãƒƒãƒ€
 
-	BMPLIST_TMP		tmp;	// ˆê•ÏXƒf[ƒ^
+	BMPLIST_TMP		tmp;	// ä¸€æ™‚å¤‰æ›´ãƒ‡ãƒ¼ã‚¿
 
-	BMPCURSOR * cursor;		// BMPƒJ[ƒ\ƒ‹ƒf[ƒ^
+	BMPCURSOR * cursor;		// BMPã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
 
-	u16	lp;			//ƒŠƒXƒgˆÊ’u
-	u16	cp;			//ƒJ[ƒ\ƒ‹ˆÊ’u
-	u8	seq;		//ˆ—ƒV[ƒPƒ“ƒX
-	u8	scrwork;	//ƒXƒNƒ[ƒ‹ƒ[ƒN
+	u16	lp;			//ãƒªã‚¹ãƒˆä½ç½®
+	u16	cp;			//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8	seq;		//å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+	u8	scrwork;	//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
 	u8	cur_actID;	//
-	u8	work;		//ˆÚ“®•ûŒüig‚Á‚Ä‚È‚¢‚æ‚¤‚È‚Ì‚Åj
+	u8	work;		//ç§»å‹•æ–¹å‘ï¼ˆä½¿ã£ã¦ãªã„ã‚ˆã†ãªã®ã§ï¼‰
 
-	u8	mode;		// ƒƒ‚ƒŠæ“¾ƒ‚[ƒh
+	u8	mode;		// ãƒ¡ãƒ¢ãƒªå–å¾—ãƒ¢ãƒ¼ãƒ‰
 };
 
 
 /********************************************************************/
 /*                                                                  */
-/*				ƒ[ƒJƒ‹ŠÖ”éŒ¾									*/
+/*				ãƒ­ãƒ¼ã‚«ãƒ«é–¢æ•°å®£è¨€									*/
 /*                                                                  */
 /********************************************************************/
 static void LocalMsgPrint( BMPLIST_WORK * lw, void * msg, u8 x, u8 y );
@@ -76,16 +76,16 @@ static void CallBackSet( BMPLIST_WORK * lw, u8 mode );
 
 //--------------------------------------------------------------------------------------------
 /**
- * İ’èŠÖ”
+ * è¨­å®šé–¢æ•°
  *
- * @param	bmplist		•\¦ƒŠƒXƒgƒwƒbƒ_ƒ|ƒCƒ“ƒ^
- * @param	list_p		ƒŠƒXƒg‰ŠúˆÊ’u
- * @param	cursor_p	ƒJ[ƒ\ƒ‹‰ŠúˆÊ’u
- * @param	mode		ƒƒ‚ƒŠæ“¾ƒ‚[ƒh
+ * @param	bmplist		è¡¨ç¤ºãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒã‚¤ãƒ³ã‚¿
+ * @param	list_p		ãƒªã‚¹ãƒˆåˆæœŸä½ç½®
+ * @param	cursor_p	ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸä½ç½®
+ * @param	mode		ãƒ¡ãƒ¢ãƒªå–å¾—ãƒ¢ãƒ¼ãƒ‰
  *
- * @return	BMPƒŠƒXƒgƒ[ƒN
+ * @return	BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- * @li	BMPƒŠƒXƒgƒ[ƒN‚Ísys_AllocMemory‚ÅŠm•Û
+ * @li	BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯ã¯sys_AllocMemoryã§ç¢ºä¿
  */
 //--------------------------------------------------------------------------------------------
 BMPLIST_WORK * BmpListSet(
@@ -93,7 +93,7 @@ BMPLIST_WORK * BmpListSet(
 {
 	BMPLIST_WORK * lw = (BMPLIST_WORK *)sys_AllocMemory( mode, sizeof(BMPLIST_WORK) );
 
-	// Šî–{İ’è
+	// åŸºæœ¬è¨­å®š
 	lw->hed       = *bmplist;
 	lw->cursor    = BMPCURSOR_Create( mode );
 	lw->lp        = list_p;
@@ -104,27 +104,27 @@ BMPLIST_WORK * BmpListSet(
 	lw->work      = 0;
 	lw->mode      = mode;
 
-	// ƒeƒ“ƒ|ƒ‰ƒŠ‰Šú‰»
-	lw->tmp.f_col   = lw->hed.f_col;	// •\¦•¶šF
-	lw->tmp.b_col   = lw->hed.b_col;	// •\¦”wŒiF
-	lw->tmp.s_col   = lw->hed.s_col;	// •\¦•¶š‰eF
-	lw->tmp.msg_spc = lw->hed.msg_spc;	// •¶šŠÔŠu‚w
-	lw->tmp.font    = lw->hed.font;		// •¶šw’è
-	lw->tmp.sw      = 0;				// ˆê•ÏXƒXƒCƒbƒ`
+	// ãƒ†ãƒ³ãƒãƒ©ãƒªåˆæœŸåŒ–
+	lw->tmp.f_col   = lw->hed.f_col;	// è¡¨ç¤ºæ–‡å­—è‰²
+	lw->tmp.b_col   = lw->hed.b_col;	// è¡¨ç¤ºèƒŒæ™¯è‰²
+	lw->tmp.s_col   = lw->hed.s_col;	// è¡¨ç¤ºæ–‡å­—å½±è‰²
+	lw->tmp.msg_spc = lw->hed.msg_spc;	// æ–‡å­—é–“éš”ï¼¸
+	lw->tmp.font    = lw->hed.font;		// æ–‡å­—æŒ‡å®š
+	lw->tmp.sw      = 0;				// ä¸€æ™‚å¤‰æ›´ã‚¹ã‚¤ãƒƒãƒ
 
-	// €–Ú”‚ª•\¦w’èƒ‰ƒCƒ“”‚æ‚è­‚È‚¢ê‡‚ÍA•\¦w’èƒ‰ƒCƒ“”‚ğ€–Ú”‚É‚ ‚í‚¹‚é
+	// é …ç›®æ•°ãŒè¡¨ç¤ºæŒ‡å®šãƒ©ã‚¤ãƒ³æ•°ã‚ˆã‚Šå°‘ãªã„å ´åˆã¯ã€è¡¨ç¤ºæŒ‡å®šãƒ©ã‚¤ãƒ³æ•°ã‚’é …ç›®æ•°ã«ã‚ã‚ã›ã‚‹
 	if( lw->hed.count < lw->hed.line ){
 		lw->hed.line = lw->hed.count;
 	}
 
-	// BMPƒJ[ƒ\ƒ‹F•ÏX
+	// BMPã‚«ãƒ¼ã‚½ãƒ«è‰²å¤‰æ›´
 	BMPCURSOR_ChangeColor(
 		lw->cursor, GF_PRINTCOLOR_MAKE(lw->hed.f_col,lw->hed.s_col,lw->hed.b_col) );
 
-	// ƒŠƒXƒgƒLƒƒƒ‰ƒf[ƒ^‰Šú‰»
+	// ãƒªã‚¹ãƒˆã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	GF_BGL_BmpWinDataFill( lw->hed.win, lw->hed.b_col );
-	ListScreenPut( lw, lw->lp, 0, lw->hed.line );		// ‘S‘ÌƒŠƒXƒg•`‰æ
-	ListCursorPut( lw );								// ƒJ[ƒ\ƒ‹•`‰æ
+	ListScreenPut( lw, lw->lp, 0, lw->hed.line );		// å…¨ä½“ãƒªã‚¹ãƒˆæç”»
+	ListCursorPut( lw );								// ã‚«ãƒ¼ã‚½ãƒ«æç”»
 
 	CallBackSet( lw, 1 );
 
@@ -135,13 +135,13 @@ BMPLIST_WORK * BmpListSet(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ŠÖ”
+ * ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- * @param	lw		BMPƒŠƒXƒgƒ[ƒN
+ * @param	lw		BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- * @retval	"param = ‘I‘ğƒpƒ‰ƒ[ƒ^"
- * @retval	"BMPLIST_NULL = ‘I‘ğ’†"
- * @retval	"BMPLIST_CANCEL	= ƒLƒƒƒ“ƒZƒ‹(‚aƒ{ƒ^ƒ“)"
+ * @retval	"param = é¸æŠãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿"
+ * @retval	"BMPLIST_NULL = é¸æŠä¸­"
+ * @retval	"BMPLIST_CANCEL	= ã‚­ãƒ£ãƒ³ã‚»ãƒ«(ï¼¢ãƒœã‚¿ãƒ³)"
  */
 //--------------------------------------------------------------------------------------------
 u32 BmpListMain( BMPLIST_WORK * lw )
@@ -168,7 +168,7 @@ u32 BmpListMain( BMPLIST_WORK * lw )
 		}
 		return BMPLIST_NULL;
 	}
-	//ƒXƒLƒbƒvƒtƒ‰ƒO”»’è
+	//ã‚¹ã‚­ãƒƒãƒ—ãƒ•ãƒ©ã‚°åˆ¤å®š
 	switch( lw->hed.page_skip ){
 	default:
 	case BMPLIST_NO_SKIP:
@@ -203,16 +203,16 @@ u32 BmpListMain( BMPLIST_WORK * lw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * I—¹ŠÖ”
+ * çµ‚äº†é–¢æ•°
  *
- * @param	lw			BMPƒŠƒXƒgƒ[ƒN
- * @param	list_bak	ƒŠƒXƒgˆÊ’uƒoƒbƒNƒAƒbƒvƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	cursor_bak	ƒJ[ƒ\ƒ‹ˆÊ’uƒoƒbƒNƒAƒbƒvƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param	lw			BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	list_bak	ãƒªã‚¹ãƒˆä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	cursor_bak	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  *
- * @li	lw‚ğsys_FreeMemory‚ÅŠJ•ú
- * @li	ƒoƒbƒNƒAƒbƒvƒ[ƒN‚ÍANULLw’è‚Å•Û‘¶‚µ‚È‚¢
+ * @li	lwã‚’sys_FreeMemoryã§é–‹æ”¾
+ * @li	ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ã¯ã€NULLæŒ‡å®šã§ä¿å­˜ã—ãªã„
  */
 //--------------------------------------------------------------------------------------------
 void BmpListExit( BMPLIST_WORK * lw, u16 * list_bak, u16 * cursor_bak )
@@ -234,50 +234,50 @@ void BmpListExit( BMPLIST_WORK * lw, u16 * list_bak, u16 * cursor_bak )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŠƒXƒgÄ•`‰æ
+ * ãƒªã‚¹ãƒˆå†æç”»
  *
- * @param	lw		BMPƒŠƒXƒgƒ[ƒN
+ * @param	lw		BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 void BmpListRewrite( BMPLIST_WORK * lw )
 {
-	// ƒŠƒXƒgƒLƒƒƒ‰ƒf[ƒ^‰Šú‰»
+	// ãƒªã‚¹ãƒˆã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–
 	GF_BGL_BmpWinDataFill( lw->hed.win, lw->hed.b_col );
 
-	ListScreenPut( lw, lw->lp, 0, lw->hed.line );	// ‘S‘ÌƒŠƒXƒg•`‰æ
-	ListCursorPut( lw );							// ƒJ[ƒ\ƒ‹•`‰æ
+	ListScreenPut( lw, lw->lp, 0, lw->hed.line );	// å…¨ä½“ãƒªã‚¹ãƒˆæç”»
+	ListCursorPut( lw );							// ã‚«ãƒ¼ã‚½ãƒ«æç”»
 	GF_BGL_BmpWinOn( lw->hed.win );
 }
 
 
 //--------------------------------------------------------------------------------------------
 /**
- * •¶šF•ÏXŠÖ”
+ * æ–‡å­—è‰²å¤‰æ›´é–¢æ•°
  *
- * @param	lw			BMPƒŠƒXƒgƒ[ƒN
- * @param	f_col		•¶šF
- * @param	b_col		”wŒiF
- * @param	s_col		‰eF
+ * @param	lw			BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	f_col		æ–‡å­—è‰²
+ * @param	b_col		èƒŒæ™¯è‰²
+ * @param	s_col		å½±è‰²
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 void BmpListColorControl( BMPLIST_WORK * lw, u8 f_col, u8 b_col, u8 s_col )
 {
-	lw->hed.f_col = f_col;	//•¶šFƒiƒ“ƒo[
-	lw->hed.b_col = b_col;	//”wŒiFƒiƒ“ƒo[
-	lw->hed.s_col = s_col;	//‰eF@ƒiƒ“ƒo[
+	lw->hed.f_col = f_col;	//æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼
+	lw->hed.b_col = b_col;	//èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+	lw->hed.s_col = s_col;	//å½±è‰²ã€€ãƒŠãƒ³ãƒãƒ¼
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * •\¦ˆÊ’u•ÏXŠÖ”
+ * è¡¨ç¤ºä½ç½®å¤‰æ›´é–¢æ•°
  *
- * @param	lw			BMPƒŠƒXƒgƒ[ƒN
- * @param	x			•\¦‚wÀ•W(ƒLƒƒƒ‰’PˆÊ)
- * @param	y			•\¦‚xÀ•W(ƒLƒƒƒ‰’PˆÊ)
+ * @param	lw			BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	x			è¡¨ç¤ºï¼¸åº§æ¨™(ã‚­ãƒ£ãƒ©å˜ä½)
+ * @param	y			è¡¨ç¤ºï¼¹åº§æ¨™(ã‚­ãƒ£ãƒ©å˜ä½)
  *
  * @return	none
  */
@@ -291,21 +291,21 @@ void BmpListMoveControl( BMPLIST_WORK * lw, u8 x, u8 y )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠO•”ƒRƒ“ƒgƒ[ƒ‹ŠÖ”(•`‰æEƒR[ƒ‹ƒoƒbƒNw’è)
+ * å¤–éƒ¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é–¢æ•°(æç”»ãƒ»ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯æŒ‡å®š)
  *
- * @param	lw			BMPƒŠƒXƒgƒ[ƒN
- * @param	lh			•\¦ƒŠƒXƒgƒwƒbƒ_ƒ|ƒCƒ“ƒ^
- * @param	list_p		ƒŠƒXƒg‰ŠúˆÊ’u
- * @param	cursor_p	ƒJ[ƒ\ƒ‹‰ŠúˆÊ’u
- * @param	print		•`‰æƒtƒ‰ƒO
- * @param	direct		w’è•ûŒü(ƒL[’è‹`)
- * @param	list_bak	ƒŠƒXƒgˆÊ’uƒoƒbƒNƒAƒbƒvƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	cursor_bak	ƒJ[ƒ\ƒ‹ˆÊ’uƒoƒbƒNƒAƒbƒvƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param	lw			BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	lh			è¡¨ç¤ºãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒã‚¤ãƒ³ã‚¿
+ * @param	list_p		ãƒªã‚¹ãƒˆåˆæœŸä½ç½®
+ * @param	cursor_p	ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸä½ç½®
+ * @param	print		æç”»ãƒ•ãƒ©ã‚°
+ * @param	direct		æŒ‡å®šæ–¹å‘(ã‚­ãƒ¼å®šç¾©)
+ * @param	list_bak	ãƒªã‚¹ãƒˆä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	cursor_bak	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	BMPLIST_NULL	
  *
- * ƒŠƒXƒgŠÖ”‚ª“®ì‚µ‚Ä‚¢‚È‚¢‚Æ‚«AŠO•”‚©‚ç‚Ìw’è‚É‚æ‚è
- * ƒJ[ƒ\ƒ‹ˆÊ’u‚Ì•Ï“®‚ğƒ`ƒFƒbƒN‚µAw’èƒoƒbƒNƒAƒbƒvƒ[ƒN‚É•Û‘¶
+ * ãƒªã‚¹ãƒˆé–¢æ•°ãŒå‹•ä½œã—ã¦ã„ãªã„ã¨ãã€å¤–éƒ¨ã‹ã‚‰ã®æŒ‡å®šã«ã‚ˆã‚Š
+ * ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã®å¤‰å‹•ã‚’ãƒã‚§ãƒƒã‚¯ã—ã€æŒ‡å®šãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ã«ä¿å­˜
  */
 //--------------------------------------------------------------------------------------------
 u32 BmpListMainOutControlEx(
@@ -337,20 +337,20 @@ u32 BmpListMainOutControlEx(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ŠO•”ƒRƒ“ƒgƒ[ƒ‹ŠÖ”(ƒJ[ƒ\ƒ‹ˆÚ“®”»’è)
+ * å¤–éƒ¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«é–¢æ•°(ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•åˆ¤å®š)
  *
- * @param	lw			BMPƒŠƒXƒgƒ[ƒN
- * @param	bmplist		•\¦ƒŠƒXƒgƒwƒbƒ_ƒ|ƒCƒ“ƒ^
- * @param	list_p		ƒŠƒXƒg‰ŠúˆÊ’u
- * @param	cursor_p	ƒJ[ƒ\ƒ‹‰ŠúˆÊ’u
- * @param	direct		w’è•ûŒü(ƒL[’è‹`)
- * @param	list_bak	ƒŠƒXƒgˆÊ’uƒoƒbƒNƒAƒbƒvƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	cursor_bak	ƒJ[ƒ\ƒ‹ˆÊ’uƒoƒbƒNƒAƒbƒvƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param	lw			BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	bmplist		è¡¨ç¤ºãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒã‚¤ãƒ³ã‚¿
+ * @param	list_p		ãƒªã‚¹ãƒˆåˆæœŸä½ç½®
+ * @param	cursor_p	ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸä½ç½®
+ * @param	direct		æŒ‡å®šæ–¹å‘(ã‚­ãƒ¼å®šç¾©)
+ * @param	list_bak	ãƒªã‚¹ãƒˆä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	cursor_bak	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	BMPLIST_NULL	
  *
- * ƒŠƒXƒgŠÖ”‚ª“®ì‚µ‚Ä‚¢‚È‚¢‚Æ‚«AŠO•”‚©‚ç‚Ìw’è‚É‚æ‚è
- * ƒJ[ƒ\ƒ‹ˆÊ’u‚Ì•Ï“®‚ğƒ`ƒFƒbƒN‚µAw’èƒoƒbƒNƒAƒbƒvƒ[ƒN‚É•Û‘¶
+ * ãƒªã‚¹ãƒˆé–¢æ•°ãŒå‹•ä½œã—ã¦ã„ãªã„ã¨ãã€å¤–éƒ¨ã‹ã‚‰ã®æŒ‡å®šã«ã‚ˆã‚Š
+ * ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã®å¤‰å‹•ã‚’ãƒã‚§ãƒƒã‚¯ã—ã€æŒ‡å®šãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ã«ä¿å­˜
  */
 //--------------------------------------------------------------------------------------------
 u32 BmpListMainOutControl(
@@ -385,30 +385,30 @@ u32 BmpListMainOutControl(
 
 //--------------------------------------------------------------------------------------------
 /**
- * •¶šFˆê•ÏX
+ * æ–‡å­—è‰²ä¸€æ™‚å¤‰æ›´
  *
- * @param	lw		BMPƒŠƒXƒgƒ[ƒN
- * @param	f_col	•¶šF
- * @param	b_col	”wŒiF
- * @param	s_col	‰eF
+ * @param	lw		BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	f_col	æ–‡å­—è‰²
+ * @param	b_col	èƒŒæ™¯è‰²
+ * @param	s_col	å½±è‰²
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 void BmpListTmpColorChange( BMPLIST_WORK * lw, u8 f_col, u8 b_col, u8 s_col )
 {
-	lw->tmp.f_col = f_col;		// •¶šFƒiƒ“ƒo[
-	lw->tmp.b_col = b_col;		// ”wŒiFƒiƒ“ƒo[
-	lw->tmp.s_col = s_col;		// ‰eF@ƒiƒ“ƒo[
+	lw->tmp.f_col = f_col;		// æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼
+	lw->tmp.b_col = b_col;		// èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+	lw->tmp.s_col = s_col;		// å½±è‰²ã€€ãƒŠãƒ³ãƒãƒ¼
 	lw->tmp.sw = 1;	
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒŠƒXƒg‚Ì‘S‘ÌˆÊ’u‚ğæ“¾
+ * BMPãƒªã‚¹ãƒˆã®å…¨ä½“ä½ç½®ã‚’å–å¾—
  *
- * @param	lw			BMPƒŠƒXƒgƒ[ƒN
- * @param	pos_bak		‘S‘ÌƒŠƒXƒgˆÊ’uƒoƒbƒNƒAƒbƒvƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param	lw			BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos_bak		å…¨ä½“ãƒªã‚¹ãƒˆä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -420,11 +420,11 @@ void BmpListDirectPosGet( BMPLIST_WORK * lw, u16 * pos_bak )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒŠƒXƒg‚ÌƒŠƒXƒgˆÊ’uAƒJ[ƒ\ƒ‹ˆÊ’u‚ğæ“¾
+ * BMPãƒªã‚¹ãƒˆã®ãƒªã‚¹ãƒˆä½ç½®ã€ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å–å¾—
  *
- * @param	lw			BMPƒŠƒXƒgƒ[ƒN
- * @param	list_bak	ƒŠƒXƒgˆÊ’uƒoƒbƒNƒAƒbƒvƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	cursor_bak	ƒJ[ƒ\ƒ‹ˆÊ’uƒoƒbƒNƒAƒbƒvƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param	lw			BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	list_bak	ãƒªã‚¹ãƒˆä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	cursor_bak	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -441,11 +441,11 @@ void BmpListPosGet( BMPLIST_WORK * lw, u16 * list_bak, u16 * cursor_bak )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹YÀ•W‚ğæ“¾
+ * BMPãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«Yåº§æ¨™ã‚’å–å¾—
  *
- * @param	lw		BMPƒŠƒXƒgƒ[ƒN
+ * @param	lw		BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- * @return	ƒJ[ƒ\ƒ‹YÀ•W
+ * @return	ã‚«ãƒ¼ã‚½ãƒ«Yåº§æ¨™
  */
 //--------------------------------------------------------------------------------------------
 u16 BmpListCursorYGet( BMPLIST_WORK * lw )
@@ -456,11 +456,11 @@ u16 BmpListCursorYGet( BMPLIST_WORK * lw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMPƒŠƒXƒg‚ÌƒJ[ƒ\ƒ‹ˆÚ“®•ûŒüæ“¾
+ * BMPãƒªã‚¹ãƒˆã®ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•æ–¹å‘å–å¾—
  *
- * @param	lw		BMPƒŠƒXƒgƒ[ƒN
+ * @param	lw		BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
  *
- * @return	ƒJ[ƒ\ƒ‹ˆÚ“®•ûŒüæ“¾
+ * @return	ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•æ–¹å‘å–å¾—
  */
 //--------------------------------------------------------------------------------------------
 u8 BmpListMoveSiteGet( BMPLIST_WORK * lw )
@@ -470,12 +470,12 @@ u8 BmpListMoveSiteGet( BMPLIST_WORK * lw )
 
 //--------------------------------------------------------------------------------------------
 /**
- * w’èˆÊ’u‚Ìƒpƒ‰ƒ[ƒ^æ“¾
+ * æŒ‡å®šä½ç½®ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—
  *
- * @param	lw		BMPƒŠƒXƒgƒ[ƒN
- * @param	pos		ˆÊ’u
+ * @param	lw		BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	pos		ä½ç½®
  *
- * @return	ƒpƒ‰ƒ[ƒ^
+ * @return	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  */
 //--------------------------------------------------------------------------------------------
 u32 BmpListPosParamGet( BMPLIST_WORK * lw, u16 pos )
@@ -485,13 +485,13 @@ u32 BmpListPosParamGet( BMPLIST_WORK * lw, u16 pos )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒ‰ƒ[ƒ^æ“¾ŠÖ”
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—é–¢æ•°
  *
- * @param	lw		BMPƒŠƒXƒgƒ[ƒN
- * @param	mode	ƒpƒ‰ƒ[ƒ^æ“¾‚h‚c
+ * @param	lw		BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	mode	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—ï¼©ï¼¤
  *
- * @retval	"0xffffffff = ƒGƒ‰["
- * @retval	"0xffffffff != ƒpƒ‰ƒ[ƒ^"
+ * @retval	"0xffffffff = ã‚¨ãƒ©ãƒ¼"
+ * @retval	"0xffffffff != ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿"
  */
 //--------------------------------------------------------------------------------------------
 u32	BmpListParamGet( BMPLIST_WORK * lw, u8 mode )
@@ -499,61 +499,61 @@ u32	BmpListParamGet( BMPLIST_WORK * lw, u8 mode )
 	u32	ret;
 
 	switch( mode ){
-	case BMPLIST_ID_CALLBACK:	// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	case BMPLIST_ID_CALLBACK:	// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 		ret = (u32)lw->hed.call_back;
 		break;
-	case BMPLIST_ID_ICONFUNC:	// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	case BMPLIST_ID_ICONFUNC:	// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 		ret = (u32)lw->hed.icon;
 		break;
-	case BMPLIST_ID_COUNT:		// ƒŠƒXƒg€–Ú”
+	case BMPLIST_ID_COUNT:		// ãƒªã‚¹ãƒˆé …ç›®æ•°
 		ret = (u32)lw->hed.count;
 		break;
-	case BMPLIST_ID_LINE:		// •\¦Å‘å€–Ú”
+	case BMPLIST_ID_LINE:		// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 		ret = (u32)lw->hed.line;
 		break;
-	case BMPLIST_ID_RABEL_X:	// ƒ‰ƒxƒ‹•\¦‚wÀ•W
+	case BMPLIST_ID_RABEL_X:	// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
 		ret = (u32)lw->hed.rabel_x;
 		break;
-	case BMPLIST_ID_DATA_X:		// €–Ú•\¦‚wÀ•W
+	case BMPLIST_ID_DATA_X:		// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
 		ret = (u32)lw->hed.data_x;
 		break;
-	case BMPLIST_ID_CURSOR_X:	// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
+	case BMPLIST_ID_CURSOR_X:	// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
 		ret = (u32)lw->hed.cursor_x;
 		break;
-	case BMPLIST_ID_LINE_Y:		// •\¦‚xÀ•W
+	case BMPLIST_ID_LINE_Y:		// è¡¨ç¤ºï¼¹åº§æ¨™
 		ret = (u32)lw->hed.line_y;
 		break;
-	case BMPLIST_ID_LINE_YBLK:		//‚Ps•ªƒVƒtƒg—Êæ“¾(ƒtƒHƒ“ƒg‚Ì‘å‚«‚³{‚xŠÔŠu)
+	case BMPLIST_ID_LINE_YBLK:		//ï¼‘è¡Œåˆ†ã‚·ãƒ•ãƒˆé‡å–å¾—(ãƒ•ã‚©ãƒ³ãƒˆã®å¤§ãã•ï¼‹ï¼¹é–“éš”)
 		ret = (u32)FontHeaderGet( lw->hed.font, FONT_HEADER_SIZE_Y ) + lw->hed.line_spc;
 		break;
-	case BMPLIST_ID_F_COL:		// •\¦•¶šF
+	case BMPLIST_ID_F_COL:		// è¡¨ç¤ºæ–‡å­—è‰²
 		ret = (u32)lw->hed.f_col;
 		break;
-	case BMPLIST_ID_B_COL:		// •\¦”wŒiF
+	case BMPLIST_ID_B_COL:		// è¡¨ç¤ºèƒŒæ™¯è‰²
 		ret = (u32)lw->hed.b_col;
 		break;
-	case BMPLIST_ID_S_COL:		// •\¦•¶š‰eF
+	case BMPLIST_ID_S_COL:		// è¡¨ç¤ºæ–‡å­—å½±è‰²
 		ret = (u32)lw->hed.s_col;
 		break;
-	case BMPLIST_ID_MSG_SPC:	// •¶šŠÔŠu‚w
+	case BMPLIST_ID_MSG_SPC:	// æ–‡å­—é–“éš”ï¼¸
 		ret = (u32)lw->hed.msg_spc;
 		break;
-	case BMPLIST_ID_LINE_SPC:	// •¶šŠÔŠu‚x
+	case BMPLIST_ID_LINE_SPC:	// æ–‡å­—é–“éš”ï¼¹
 		ret = (u32)lw->hed.line_spc;
 		break;
-	case BMPLIST_ID_PAGE_SKIP:	// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
+	case BMPLIST_ID_PAGE_SKIP:	// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
 		ret = (u32)lw->hed.page_skip;
 		break;
-	case BMPLIST_ID_FONT:		// •¶šw’è
+	case BMPLIST_ID_FONT:		// æ–‡å­—æŒ‡å®š
 		ret = (u32)lw->hed.font;
 		break;
-	case BMPLIST_ID_C_DISP_F:	// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO
+	case BMPLIST_ID_C_DISP_F:	// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°
 		ret = (u32)lw->hed.c_disp_f;
 		break;
-	case BMPLIST_ID_WIN:		// ƒEƒBƒ“ƒhƒEƒf[ƒ^
+	case BMPLIST_ID_WIN:		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 		ret = (u32)lw->hed.win;
 		break;
-	case BMPLIST_ID_WORK:		// ƒ[ƒN
+	case BMPLIST_ID_WORK:		// ãƒ¯ãƒ¼ã‚¯
 		ret = (u32)lw->hed.work;
 		break;
 
@@ -565,11 +565,11 @@ u32	BmpListParamGet( BMPLIST_WORK * lw, u8 mode )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒpƒ‰ƒ[ƒ^•ÏXŠÖ”
+ * ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰æ›´é–¢æ•°
  *
- * @param	lw		BMPƒŠƒXƒgƒ[ƒN
- * @param	mode	ƒpƒ‰ƒ[ƒ^æ“¾‚h‚c
- * @param	param	•ÏX’l
+ * @param	lw		BMPãƒªã‚¹ãƒˆãƒ¯ãƒ¼ã‚¯
+ * @param	mode	ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å–å¾—ï¼©ï¼¤
+ * @param	param	å¤‰æ›´å€¤
  *
  * @return	none
  */
@@ -577,58 +577,58 @@ u32	BmpListParamGet( BMPLIST_WORK * lw, u8 mode )
 void BmpListParamSet( BMPLIST_WORK * lw, u8 mode, u32 param )
 {
 	switch( mode ){
-	case BMPLIST_ID_CALLBACK:	// ƒJ[ƒ\ƒ‹ˆÚ“®‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	case BMPLIST_ID_CALLBACK:	// ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•ã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 		lw->hed.call_back = (void *)param;
 		break;
-	case BMPLIST_ID_ICONFUNC:	// ˆê—ñ•\¦‚²‚Æ‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”
+	case BMPLIST_ID_ICONFUNC:	// ä¸€åˆ—è¡¨ç¤ºã”ã¨ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 		lw->hed.icon = (void *)param;
 		break;
-	case BMPLIST_ID_COUNT:		// ƒŠƒXƒg€–Ú”
+	case BMPLIST_ID_COUNT:		// ãƒªã‚¹ãƒˆé …ç›®æ•°
 		lw->hed.count = (u16)param;
 		break;
-	case BMPLIST_ID_LINE:		// •\¦Å‘å€–Ú”
+	case BMPLIST_ID_LINE:		// è¡¨ç¤ºæœ€å¤§é …ç›®æ•°
 		lw->hed.line = (u16)param;
 		break;
-	case BMPLIST_ID_RABEL_X:	// ƒ‰ƒxƒ‹•\¦‚wÀ•W
+	case BMPLIST_ID_RABEL_X:	// ãƒ©ãƒ™ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
 		lw->hed.rabel_x = (u8)param;
 		break;
-	case BMPLIST_ID_DATA_X:		// €–Ú•\¦‚wÀ•W
+	case BMPLIST_ID_DATA_X:		// é …ç›®è¡¨ç¤ºï¼¸åº§æ¨™
 		lw->hed.data_x = (u8)param;
 		break;
-	case BMPLIST_ID_CURSOR_X:	// ƒJ[ƒ\ƒ‹•\¦‚wÀ•W
+	case BMPLIST_ID_CURSOR_X:	// ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤ºï¼¸åº§æ¨™
 		lw->hed.cursor_x = (u8)param;
 		break;
-	case BMPLIST_ID_LINE_Y:		// •\¦‚xÀ•W
+	case BMPLIST_ID_LINE_Y:		// è¡¨ç¤ºï¼¹åº§æ¨™
 		lw->hed.line_y = (u8)param;
 		break;
-	case BMPLIST_ID_F_COL:		// •\¦•¶šF
+	case BMPLIST_ID_F_COL:		// è¡¨ç¤ºæ–‡å­—è‰²
 		lw->hed.f_col = (u8)param;
 		break;
-	case BMPLIST_ID_B_COL:		// •\¦”wŒiF
+	case BMPLIST_ID_B_COL:		// è¡¨ç¤ºèƒŒæ™¯è‰²
 		lw->hed.b_col = (u8)param;
 		break;
-	case BMPLIST_ID_S_COL:		// •\¦•¶š‰eF
+	case BMPLIST_ID_S_COL:		// è¡¨ç¤ºæ–‡å­—å½±è‰²
 		lw->hed.s_col = (u8)param;
 		break;
-	case BMPLIST_ID_MSG_SPC:	// •¶šŠÔŠu‚w
+	case BMPLIST_ID_MSG_SPC:	// æ–‡å­—é–“éš”ï¼¸
 		lw->hed.msg_spc = (u8)param;
 		break;
-	case BMPLIST_ID_LINE_SPC:	// •¶šŠÔŠu‚x
+	case BMPLIST_ID_LINE_SPC:	// æ–‡å­—é–“éš”ï¼¹
 		lw->hed.line_spc = (u8)param;
 		break;
-	case BMPLIST_ID_PAGE_SKIP:	// ƒy[ƒWƒXƒLƒbƒvƒ^ƒCƒv
+	case BMPLIST_ID_PAGE_SKIP:	// ãƒšãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—ã‚¿ã‚¤ãƒ—
 		lw->hed.page_skip = (u8)param;
 		break;
-	case BMPLIST_ID_FONT:		// •¶šw’è
+	case BMPLIST_ID_FONT:		// æ–‡å­—æŒ‡å®š
 		lw->hed.font = (u8)param;
 		break;
-	case BMPLIST_ID_C_DISP_F:	// ‚a‚fƒJ[ƒ\ƒ‹(allow)•\¦ƒtƒ‰ƒO
+	case BMPLIST_ID_C_DISP_F:	// ï¼¢ï¼§ã‚«ãƒ¼ã‚½ãƒ«(allow)è¡¨ç¤ºãƒ•ãƒ©ã‚°
 		lw->hed.c_disp_f = (u8)param;
 		break;
-	case BMPLIST_ID_WIN:		// ƒEƒBƒ“ƒhƒEƒf[ƒ^
+	case BMPLIST_ID_WIN:		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‡ãƒ¼ã‚¿
 		lw->hed.win = (GF_BGL_BMPWIN *)param;
 		break;
-	case BMPLIST_ID_WORK:		// ƒ[ƒN
+	case BMPLIST_ID_WORK:		// ãƒ¯ãƒ¼ã‚¯
 		lw->hed.work = (void *)param;
 		break;
 	}
@@ -636,9 +636,9 @@ void BmpListParamSet( BMPLIST_WORK * lw, u8 mode, u32 param )
 
 //--------------------------------------------------------------------------------------------
 /**
- * BMP_MENULIST_DATA‚ğÄ“xİ’è‚·‚é
+ * BMP_MENULIST_DATAã‚’å†åº¦è¨­å®šã™ã‚‹
  *
- * @param	BMP_MENULIST_DATA			BMPMENUƒŠƒXƒgƒ|ƒCƒ“ƒ^
+ * @param	BMP_MENULIST_DATA			BMPMENUãƒªã‚¹ãƒˆãƒã‚¤ãƒ³ã‚¿
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
@@ -653,14 +653,14 @@ void BmpListSetMenuListData(BMPLIST_WORK * lw, BMP_MENULIST_DATA* pList)
 /********************************************************************/
 /*                                                                  */
 /*                                                                  */
-/*					“à•”ˆ—ŠÖ”									*/
+/*					å†…éƒ¨å‡¦ç†é–¢æ•°									*/
 /*                                                                  */
 /*                                                                  */
 /********************************************************************/
 #include "gflib/strbuf.h"
 
 //------------------------------------------------------------------
-//		ƒƒbƒZ[ƒW•\¦
+//		ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 //------------------------------------------------------------------
 static void LocalMsgPrint( BMPLIST_WORK * lw, void * msg, u8 x, u8 y )
 {
@@ -668,7 +668,7 @@ static void LocalMsgPrint( BMPLIST_WORK * lw, void * msg, u8 x, u8 y )
         return;
     }
     
-	if( lw->tmp.sw )					// ˆê•ÏXƒXƒCƒbƒ`
+	if( lw->tmp.sw )					// ä¸€æ™‚å¤‰æ›´ã‚¹ã‚¤ãƒƒãƒ
 	{
 		GF_STR_PrintExpand( lw->hed.win, lw->tmp.font, msg, x, y, MSG_NO_PUT, 
 				GF_PRINTCOLOR_MAKE(lw->tmp.f_col, lw->tmp.s_col, lw->tmp.b_col),
@@ -684,7 +684,7 @@ static void LocalMsgPrint( BMPLIST_WORK * lw, void * msg, u8 x, u8 y )
 
 
 //------------------------------------------------------------------
-//		ƒŠƒXƒg•\¦
+//		ãƒªã‚¹ãƒˆè¡¨ç¤º
 //------------------------------------------------------------------
 static void ListScreenPut( BMPLIST_WORK * lw, u16 print_p, u16 line, u16 len )
 {
@@ -695,11 +695,11 @@ static void ListScreenPut( BMPLIST_WORK * lw, u16 print_p, u16 line, u16 len )
 
 	for( i=0; i<len ;i++ ){
 		if( lw->hed.list[print_p].param != BMPLIST_RABEL ){
-			x = lw->hed.data_x;		// •`‰æ‚wƒIƒtƒZƒbƒg
+			x = lw->hed.data_x;		// æç”»ï¼¸ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		}else{
-			x = lw->hed.rabel_x;	// •`‰æ‚wƒIƒtƒZƒbƒg
+			x = lw->hed.rabel_x;	// æç”»ï¼¸ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		}
-		y = (u8)(((i + line) * yblk) + lw->hed.line_y);//•`‰æ‚xƒIƒtƒZƒbƒg
+		y = (u8)(((i + line) * yblk) + lw->hed.line_y);//æç”»ï¼¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 		if( lw->hed.icon != NULL ){
 			lw->hed.icon( lw, lw->hed.list[print_p].param,y );
 		}
@@ -710,7 +710,7 @@ static void ListScreenPut( BMPLIST_WORK * lw, u16 print_p, u16 line, u16 len )
 
 
 //------------------------------------------------------------------
-//		ƒJ[ƒ\ƒ‹•\¦
+//		ã‚«ãƒ¼ã‚½ãƒ«è¡¨ç¤º
 //static u8 ListCursorActorSet(BMPLIST_WORK* lw,int mode);
 //------------------------------------------------------------------
 static void ListCursorPut( BMPLIST_WORK * lw )
@@ -718,8 +718,8 @@ static void ListCursorPut( BMPLIST_WORK * lw )
 	u8	x,y,yblk;
 
 	yblk = FontHeaderGet(lw->hed.font,FONT_HEADER_SIZE_Y) + lw->hed.line_spc;
-	x = lw->hed.cursor_x;	//•`‰æ‚wƒIƒtƒZƒbƒg
-	y = (u8)((lw->cp * yblk) + lw->hed.line_y);//•`‰æ‚xƒIƒtƒZƒbƒg
+	x = lw->hed.cursor_x;	//æç”»ï¼¸ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	y = (u8)((lw->cp * yblk) + lw->hed.line_y);//æç”»ï¼¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 	switch(lw->hed.c_disp_f){
 	case 0:
@@ -730,7 +730,7 @@ static void ListCursorPut( BMPLIST_WORK * lw )
 	case 2:
 /*
 		if(lw->cur_actID == 0xff){
-			//‰Šú‰»(V‹Kİ’è)
+			//åˆæœŸåŒ–(æ–°è¦è¨­å®š)
 			lw->cur_actID = ListCursorActorSet(lw,0);
 		}
 		CursorListActorPosSet(	lw->cur_actID,
@@ -742,7 +742,7 @@ static void ListCursorPut( BMPLIST_WORK * lw )
 	case 3:
 /*
 		if(lw->cur_actID == 0xff){
-			//‰Šú‰»(V‹Kİ’è)
+			//åˆæœŸåŒ–(æ–°è¦è¨­å®š)
 			lw->cur_actID = ListCursorActorSet(lw,1);
 		}
 		CursorListActorPosSet(	lw->cur_actID,
@@ -759,13 +759,13 @@ static u8 ListCursorActorSet(BMPLIST_WORK* lw,int mode)
 {
 	ACT_CURSORLIST_HEADER header;
 
-	header.x		= 0;		//•\¦ˆÊ’u‚w
-	header.y		= 160;		//•\¦ˆÊ’u‚x
-	header.xsize	= BMPWIN_StatusGet(lw->lh.index,BMPWIN_GET_SIZ_X) * 8 + 2;	//•\¦ƒTƒCƒY‚w
-	header.ysize	= FontHeaderGet(lw->lh.font,FONT_HEADER_SIZE_Y) + 2;		//•\¦ƒTƒCƒY‚x
-	header.cellID	= 0x4000;		//ƒJ[ƒ\ƒ‹ƒZƒ‹‚h‚c
-	header.palID	= ACT_OAMPAL;	//ƒJ[ƒ\ƒ‹ƒpƒŒƒbƒg‚h‚c
-	header.palnum	= 15;			//ƒJ[ƒ\ƒ‹ƒpƒŒƒbƒgw’è‚Ìê‡‚Ég—p
+	header.x		= 0;		//è¡¨ç¤ºä½ç½®ï¼¸
+	header.y		= 160;		//è¡¨ç¤ºä½ç½®ï¼¹
+	header.xsize	= BMPWIN_StatusGet(lw->lh.index,BMPWIN_GET_SIZ_X) * 8 + 2;	//è¡¨ç¤ºã‚µã‚¤ã‚ºï¼¸
+	header.ysize	= FontHeaderGet(lw->lh.font,FONT_HEADER_SIZE_Y) + 2;		//è¡¨ç¤ºã‚µã‚¤ã‚ºï¼¹
+	header.cellID	= 0x4000;		//ã‚«ãƒ¼ã‚½ãƒ«ã‚»ãƒ«ï¼©ï¼¤
+	header.palID	= ACT_OAMPAL;	//ã‚«ãƒ¼ã‚½ãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆï¼©ï¼¤
+	header.palnum	= 15;			//ã‚«ãƒ¼ã‚½ãƒ«ãƒ‘ãƒ¬ãƒƒãƒˆæŒ‡å®šã®å ´åˆã«ä½¿ç”¨
 
 	return CursorListActorSet(&header,mode);
 
@@ -774,7 +774,7 @@ static u8 ListCursorActorSet(BMPLIST_WORK* lw,int mode)
 */
 
 //------------------------------------------------------------------
-//		ƒJ[ƒ\ƒ‹Á‹
+//		ã‚«ãƒ¼ã‚½ãƒ«æ¶ˆå»
 //------------------------------------------------------------------
 static void ListCursorCls( BMPLIST_WORK * lw, u16 p )
 {
@@ -785,10 +785,10 @@ static void ListCursorCls( BMPLIST_WORK * lw, u16 p )
 		yblk = FontHeaderGet(lw->hed.font,FONT_HEADER_SIZE_Y) + lw->hed.line_spc;
 
 		GF_BGL_BmpWinFill(
-				lw->hed.win,						//•\¦ƒEƒCƒ“ƒhƒEINDEX
-				(u8)lw->hed.b_col,					//”wŒiFƒf[ƒ^
-				lw->hed.cursor_x,					//‚wÀ•W
-				(u16)(p * yblk + lw->hed.line_y),	//‚xÀ•W
+				lw->hed.win,						//è¡¨ç¤ºã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦INDEX
+				(u8)lw->hed.b_col,					//èƒŒæ™¯è‰²ãƒ‡ãƒ¼ã‚¿
+				lw->hed.cursor_x,					//ï¼¸åº§æ¨™
+				(u16)(p * yblk + lw->hed.line_y),	//ï¼¹åº§æ¨™
 				8, 16 );
 		break;
 	case 1:
@@ -799,7 +799,7 @@ static void ListCursorCls( BMPLIST_WORK * lw, u16 p )
 }
 
 //------------------------------------------------------------------
-//		ƒJ[ƒ\ƒ‹ˆÚ“®
+//		ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 //------------------------------------------------------------------
 static u8 ListCursorMoveUpDown( BMPLIST_WORK * lw, u8 mode )
 {
@@ -810,7 +810,7 @@ static u8 ListCursorMoveUpDown( BMPLIST_WORK * lw, u8 mode )
 
 	if(mode == LIST_UP){
 
-		//ƒXƒNƒ[ƒ‹”»’è’n“_(ƒŠƒXƒg‚Ì”¼•ª‚ğ‰ß‚¬‚½‚ç)
+		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åˆ¤å®šåœ°ç‚¹(ãƒªã‚¹ãƒˆã®åŠåˆ†ã‚’éããŸã‚‰)
 		if(lw->hed.line == 1){
 			check_p = 0;
 		}else{
@@ -824,7 +824,7 @@ static u8 ListCursorMoveUpDown( BMPLIST_WORK * lw, u8 mode )
 */
 		}
 
-		if(list_p == 0){	//ƒŠƒXƒgÅ‰‚Ì•”•ª
+		if(list_p == 0){	//ãƒªã‚¹ãƒˆæœ€åˆã®éƒ¨åˆ†
 			while(cursor_p > 0){
 				cursor_p--;
 				if(lw->hed.list[list_p + cursor_p].param != BMPLIST_RABEL){
@@ -847,7 +847,7 @@ static u8 ListCursorMoveUpDown( BMPLIST_WORK * lw, u8 mode )
 
 	}else{
 
-		//ƒXƒNƒ[ƒ‹”»’è’n“_(ƒŠƒXƒg‚Ì”¼•ª‚ğ‰ß‚¬‚½‚ç)
+		//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åˆ¤å®šåœ°ç‚¹(ãƒªã‚¹ãƒˆã®åŠåˆ†ã‚’éããŸã‚‰)
 		if(lw->hed.line == 1){
 			check_p = 0;
 		}else{
@@ -861,7 +861,7 @@ static u8 ListCursorMoveUpDown( BMPLIST_WORK * lw, u8 mode )
 */
 		}
 
-		if(list_p == (lw->hed.count - lw->hed.line)){//ƒŠƒXƒgÅŒã‚Ì•”•ª
+		if(list_p == (lw->hed.count - lw->hed.line)){//ãƒªã‚¹ãƒˆæœ€å¾Œã®éƒ¨åˆ†
 			while(cursor_p < (lw->hed.line - 1)){
 				cursor_p++;
 				if(lw->hed.list[list_p + cursor_p].param != BMPLIST_RABEL){
@@ -888,7 +888,7 @@ static u8 ListCursorMoveUpDown( BMPLIST_WORK * lw, u8 mode )
 }
 
 //------------------------------------------------------------------
-//		‰æ–ÊƒXƒNƒ[ƒ‹ˆÚ“®
+//		ç”»é¢ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ç§»å‹•
 //------------------------------------------------------------------
 static void ListScrollMoveUpDown( BMPLIST_WORK * lw, u8 len, u8 mode )
 {
@@ -897,42 +897,42 @@ static void ListScrollMoveUpDown( BMPLIST_WORK * lw, u8 len, u8 mode )
 
 	if( len >= lw->hed.line ){
 		GF_BGL_BmpWinDataFill( lw->hed.win, lw->hed.b_col );
-		ListScreenPut( lw, lw->lp, 0, lw->hed.line );	//ƒ‰ƒCƒ“•`‰æ
+		ListScreenPut( lw, lw->lp, 0, lw->hed.line );	//ãƒ©ã‚¤ãƒ³æç”»
 		return;
 	}
-	//‚Ps•ªƒVƒtƒg—Êæ“¾(ƒtƒHƒ“ƒg‚Ì‘å‚«‚³{‚xŠÔŠu)
+	//ï¼‘è¡Œåˆ†ã‚·ãƒ•ãƒˆé‡å–å¾—(ãƒ•ã‚©ãƒ³ãƒˆã®å¤§ãã•ï¼‹ï¼¹é–“éš”)
 	yblk = FontHeaderGet( lw->hed.font, FONT_HEADER_SIZE_Y ) + lw->hed.line_spc;
 
 	if( mode == LIST_UP ){
-		//ƒf[ƒ^ƒVƒtƒg
+		//ãƒ‡ãƒ¼ã‚¿ã‚·ãƒ•ãƒˆ
 		GF_BGL_BmpWinShift(
 			lw->hed.win, GF_BGL_BMPWIN_SHIFT_D,
 			(u8)(len * yblk), (u8)((lw->hed.b_col<<4)|lw->hed.b_col) );
 
-		ListScreenPut( lw, lw->lp, 0, len );	//’Ç‰Áƒ‰ƒCƒ“•`‰æ
+		ListScreenPut( lw, lw->lp, 0, len );	//è¿½åŠ ãƒ©ã‚¤ãƒ³æç”»
 
 		ypos = (u16)( lw->hed.line * yblk + lw->hed.line_y );
 
-		//‰º•”‚ğÁ‚·
+		//ä¸‹éƒ¨ã‚’æ¶ˆã™
 		GF_BGL_BmpWinFill(
-			lw->hed.win,					//•\¦ƒEƒCƒ“ƒhƒEINDEX
-			(u8)lw->hed.b_col,				//”wŒiFƒf[ƒ^
+			lw->hed.win,					//è¡¨ç¤ºã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦INDEX
+			(u8)lw->hed.b_col,				//èƒŒæ™¯è‰²ãƒ‡ãƒ¼ã‚¿
 			0, ypos,
 			(u16)(GF_BGL_BmpWinGet_SizeX( lw->hed.win ) * 8),
 			(u16)(GF_BGL_BmpWinGet_SizeY( lw->hed.win ) * 8 - ypos) );
 
 	}else{
-		//ƒf[ƒ^ƒVƒtƒg
+		//ãƒ‡ãƒ¼ã‚¿ã‚·ãƒ•ãƒˆ
 		GF_BGL_BmpWinShift(
 				lw->hed.win, GF_BGL_BMPWIN_SHIFT_U,
 				(u8)(len * yblk), (u8)((lw->hed.b_col<<4)|lw->hed.b_col) );
-		//’Ç‰Áƒ‰ƒCƒ“•`‰æ
+		//è¿½åŠ ãƒ©ã‚¤ãƒ³æç”»
 		ListScreenPut(
 			lw, (u16)(lw->lp + (lw->hed.line-len)), (u16)(lw->hed.line - len), (u16)len );
-		//ã•”‚ğÁ‚·
+		//ä¸Šéƒ¨ã‚’æ¶ˆã™
 		GF_BGL_BmpWinFill(
 			lw->hed.win,
-			(u8)lw->hed.b_col,				//”wŒiFƒf[ƒ^
+			(u8)lw->hed.b_col,				//èƒŒæ™¯è‰²ãƒ‡ãƒ¼ã‚¿
 			0, 0,
 			(u16)(GF_BGL_BmpWinGet_SizeX( lw->hed.win ) * 8),
 			(u16)lw->hed.line_y );
@@ -942,46 +942,46 @@ static void ListScrollMoveUpDown( BMPLIST_WORK * lw, u8 len, u8 mode )
 
 
 //------------------------------------------------------------------
-//		ƒŠƒXƒgˆÚ“®”»’è
+//		ãƒªã‚¹ãƒˆç§»å‹•åˆ¤å®š
 //------------------------------------------------------------------
 static u8 ListMoveUpDownCheck( BMPLIST_WORK * lw, u8 print_f, u8 req_line, u8 mode )
 {
-	u16	cursor_bak;	//Á‹ƒJ[ƒ\ƒ‹ˆÊ’u
-	u8	write_flg,write_req;	//“]‘—ƒtƒ‰ƒO
-	u8	reqcount,linecount;		//ˆ—ƒJƒEƒ“ƒg
+	u16	cursor_bak;	//æ¶ˆå»ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8	write_flg,write_req;	//è»¢é€ãƒ•ãƒ©ã‚°
+	u8	reqcount,linecount;		//å‡¦ç†ã‚«ã‚¦ãƒ³ãƒˆ
 
-	cursor_bak	= lw->cp;	//ƒJ[ƒ\ƒ‹ˆÊ’u•Û‘¶
+	cursor_bak	= lw->cp;	//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ä¿å­˜
 	linecount = 0;
 	write_req = 0;
 
 	for(reqcount=0;reqcount<req_line;reqcount++){
 		do{
-			write_flg = ListCursorMoveUpDown( lw, mode );	//ˆÚ“®”»’è
+			write_flg = ListCursorMoveUpDown( lw, mode );	//ç§»å‹•åˆ¤å®š
 			write_req |= write_flg;
 			if(write_flg != 2){
 				break;
 			}
 			linecount++;
-		//ƒJ[ƒ\ƒ‹ˆÊ’u‚ªƒ‰ƒxƒ‹‚É‚©‚©‚ç‚È‚­‚È‚é‚Ü‚ÅˆÚ“®
+		//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ãŒãƒ©ãƒ™ãƒ«ã«ã‹ã‹ã‚‰ãªããªã‚‹ã¾ã§ç§»å‹•
 		}while(lw->hed.list[lw->lp + lw->cp].param == BMPLIST_RABEL);
 	}
 
-	if(print_f){	//•\¦ƒXƒCƒbƒ`
-		//ƒLƒƒƒ‰ƒf[ƒ^ì¬
+	if(print_f){	//è¡¨ç¤ºã‚¹ã‚¤ãƒƒãƒ
+		//ã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		switch(write_req){
-		//ˆÚ“®•s‰Â
+		//ç§»å‹•ä¸å¯
 		default:
 		case 0:
 			return 1;
 			break;
-		//ƒJ[ƒ\ƒ‹‚Ì‚İˆÚ“®
+		//ã‚«ãƒ¼ã‚½ãƒ«ã®ã¿ç§»å‹•
 		case 1:
 			ListCursorCls( lw, cursor_bak );
 			ListCursorPut( lw );
 			CallBackSet( lw, 0 );
 			GF_BGL_BmpWinOn( lw->hed.win );
 			break;
-		//•\¦ƒŠƒXƒgˆÚ“® or ƒŠƒXƒg{ƒJ[ƒ\ƒ‹ˆÚ“®
+		//è¡¨ç¤ºãƒªã‚¹ãƒˆç§»å‹• or ãƒªã‚¹ãƒˆï¼‹ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
 		case 2:
 		case 3:
 			ListCursorCls( lw, cursor_bak );
@@ -999,7 +999,7 @@ static u8 ListMoveUpDownCheck( BMPLIST_WORK * lw, u8 print_f, u8 req_line, u8 mo
 
 
 //------------------------------------------------------------------
-//		ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ(‰Šú‰» mode = 1,’Êí“®ì mode = 0)
+//		ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—(åˆæœŸåŒ–æ™‚ mode = 1,é€šå¸¸å‹•ä½œæ™‚ mode = 0)
 //------------------------------------------------------------------
 static void CallBackSet( BMPLIST_WORK * lw, u8 mode )
 {

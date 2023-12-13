@@ -1,42 +1,42 @@
-REM �O���t�B�b�J�[���֘A�Â��ݒ������Ă���t�@�C�����R���o�[�g�����
-REM cell���g�p���Ȃ�BG�̓I�v�V�����w��(-bg)������
+REM グラフィッカーが関連づけ設定をされているファイルもコンバートされる
+REM cellを使用しないBGはオプション指定(-bg)をつける
 REM
-REM nsc���w�肷��ƁAncg�����킹�ăR���o�[�g�����
-REM nce���w�肷��ƁAncg,ncl�����킹�ăR���o�[�g�����
+REM nscを指定すると、ncgも合わせてコンバートされる
+REM nceを指定すると、ncg,nclも合わせてコンバートされる
 REM 
-REM -br�I�v�V�����ŁA��`�̈�������Z�������o�͂��܂�(nec�ɂ͂��Ă���)
-REM �o�g���X�e�[�W**************************************
+REM -brオプションで、矩形領域情報を持つセル情報を出力します(necにはつけておく)
+REM バトルステージ**************************************
 
 del *.N*R
 
 g2dcvtr bs_select_cursor.nce -br
 
-REM �o�g���L���b�X��**************************************
+REM バトルキャッスル**************************************
 g2dcvtr bc_obj.nce -br
 
-REM �o�g���t�@�N�g���[**************************************
+REM バトルファクトリー**************************************
 g2dcvtr bf_rental_oam.nce -br
 g2dcvtr bf_rental_obj.nce -br
 g2dcvtr bf_rental_obj_start.nce -br
 g2dcvtr bf_rental_obj_3poke.nce -br
 g2dcvtr bf_rental_obj_multi.nce -br
 
-REM �o�g�����[���b�g**************************************
+REM バトルルーレット**************************************
 g2dcvtr br_obj.nce -br
 g2dcvtr br_button.nce -br
 g2dcvtr br_ramp.nce -br
 g2dcvtr br_pokepanel.nce -br
 g2dcvtr br_pokepanel2.nce -br
 
-REM �o�g���^���[**************************************
+REM バトルタワー**************************************
 g2dcvtr bt_obj_door.nce -br
 
-REM �֌W�Ȃ����ŏ��ɑS��del���Ă�̂ŃR���o�[�g�Ώۂɓ���Ă���************************
+REM 関係ないが最初に全てdelしてるのでコンバート対象に入れておく************************
 REM g2dcvtr hero_ine_kage.nce -br
 REM g2dcvtr pl_boy01.ncl -br
 
 
 
-REM .lst�ɒǉ����鎞�͍Ō�ɉ��s������ƃG���[�ɂȂ�̂Œ��ӁI
+REM .lstに追加する時は最後に改行を入れるとエラーになるので注意！
 
 

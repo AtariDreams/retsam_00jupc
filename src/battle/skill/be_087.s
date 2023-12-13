@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_087.s
- *@brief	í“¬ƒV[ƒPƒ“ƒXiBattleEffectj
- *			087@“G‚Ìu‚Ú‚¤‚¬‚åv‚âAŽ©•ª‚Ìu‚±‚¤‚°‚«v‚ÉŠÖŒW‚È‚­ƒŒƒxƒ‹‚Æ“¯‚¶”’l‚ÌŒÅ’èƒ_ƒ[ƒW‚ð—^‚¦‚é
+ *@brief	æˆ¦é—˜ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼ˆBattleEffectï¼‰
+ *			087ã€€æ•µã®ã€Œã¼ã†ãŽã‚‡ã€ã‚„ã€è‡ªåˆ†ã®ã€Œã“ã†ã’ãã€ã«é–¢ä¿‚ãªããƒ¬ãƒ™ãƒ«ã¨åŒã˜æ•°å€¤ã®å›ºå®šãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸Žãˆã‚‹
  *
  *@author	HisashiSogabe
  *@data		2006.01.20
@@ -15,9 +15,9 @@
 	.include	"waza_seq_def.h"
 
 BE_087:
-	//ƒ^ƒCƒv•â³ŒvŽZ‚ð–³Ž‹‚·‚é
+	//ã‚¿ã‚¤ãƒ—è£œæ­£è¨ˆç®—ã‚’ç„¡è¦–ã™ã‚‹
 	VALUE			VAL_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_TYPE_FLAT
-	//ƒ_ƒ[ƒW‚ðŽ©•ª‚ÌƒŒƒxƒ‹‚É
+	//ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’è‡ªåˆ†ã®ãƒ¬ãƒ™ãƒ«ã«
 	PSP_VALUE_WORK	VAL_GET,SIDE_ATTACK,ID_PSP_level,BUF_PARA_DAMAGE
 	VALUE			VAL_MUL,BUF_PARA_DAMAGE,-1
 	SEQ_END

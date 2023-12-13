@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_sys_def.h
- * @brief	ƒoƒgƒ‹ƒŒƒR[ƒ_[
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
  * @author	matsuda
- * @date	2008.01.18(‹à)
+ * @date	2008.01.18(é‡‘)
  *
- * ƒAƒZƒ“ƒuƒ‰ƒtƒ@ƒCƒ‹‚©‚ç‚àinclude‚³‚ê‚Ä–â‘è‚È‚¢‚à‚Ì‚¾‚¯’è‹`
+ * ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã‚‚includeã•ã‚Œã¦å•é¡Œãªã„ã‚‚ã®ã ã‘å®šç¾©
  *
  */
 //==============================================================================
@@ -13,20 +13,20 @@
 #define __BR_SYS_DEF_H__
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 // -------------------------------------
 //
-//	ƒ‚[ƒh
+//	ãƒ¢ãƒ¼ãƒ‰
 //
 // -------------------------------------
-#define BR_MODE_BROWSE		( 0 )		///< ƒuƒ‰ƒEƒU
+#define BR_MODE_BROWSE		( 0 )		///< ãƒ–ãƒ©ã‚¦ã‚¶
 #define BR_MODE_GDS			( 1 )		///< GDS
-#define BR_MODE_GDS_BV		( 2 )		///< GDSƒoƒgƒ‹ƒrƒfƒI
-#define BR_MODE_GDS_BV_RANK	( 3 )		///< GDSƒoƒgƒ‹ƒrƒfƒIƒ‰ƒ“ƒLƒ“ƒO
-#define BR_MODE_GDS_RANK	( 4 )		///< GDSƒgƒŒ[ƒi[ƒ‰ƒ“ƒLƒ“ƒO
-#define BR_MODE_GDS_DRESS	( 5 )		///< GDSƒhƒŒƒXƒAƒbƒvƒVƒ‡ƒbƒg
-#define BR_MODE_GDS_BOX		( 6 )		///< GDSƒ{ƒbƒNƒXƒVƒ‡ƒbƒg
+#define BR_MODE_GDS_BV		( 2 )		///< GDSãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ª
+#define BR_MODE_GDS_BV_RANK	( 3 )		///< GDSãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãƒ©ãƒ³ã‚­ãƒ³ã‚°
+#define BR_MODE_GDS_RANK	( 4 )		///< GDSãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ©ãƒ³ã‚­ãƒ³ã‚°
+#define BR_MODE_GDS_DRESS	( 5 )		///< GDSãƒ‰ãƒ¬ã‚¹ã‚¢ãƒƒãƒ—ã‚·ãƒ§ãƒƒãƒˆ
+#define BR_MODE_GDS_BOX		( 6 )		///< GDSãƒœãƒƒã‚¯ã‚¹ã‚·ãƒ§ãƒƒãƒˆ
 
 #define BR_MODE_MAX			( BR_MODE_GDS_BOX + 1 )
 

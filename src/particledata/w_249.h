@@ -3,7 +3,7 @@
 
 #define W_249_IWA_BREAK01		0
 
-//w_249.spa“à‚ÌƒŠƒ\[ƒXŒÂ”
+//w_249.spaå†…ã®ãƒªã‚½ãƒ¼ã‚¹å€‹æ•°
 #define W_249_SPAMAX	(1)
 
 #endif

@@ -1,7 +1,7 @@
 #ifndef _D32R0401_DEF_H_
 #define _D32R0401_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_STAGE_LOBBY		(1)
 #define	SCRID_STAGE_LOBBY_CONTINUE		(2)
 #define	SCRID_STAGE_LOBBY_CONTINUE_NG		(3)
@@ -24,6 +24,6 @@
 #define	SCRID_D32R0401_OUEN		(20)
 #define	SCRID_D32R0401_INIT_CHANGE		(21)
 #define	SCRID_D32R0401_OBJ_CHANGE		(22)
-#define	SCRID_D32R0401_DATA_MAX		(22)		//最大数
+#define	SCRID_D32R0401_DATA_MAX		(22)		//譛螟ｧ謨ｰ
 
 #endif //_D32R0401_DEF_H_

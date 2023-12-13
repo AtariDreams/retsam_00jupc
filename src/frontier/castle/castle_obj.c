@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	castle_obj.c
- * @brief	uƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹vOBJ(ƒJ[ƒ\ƒ‹AƒAƒCƒRƒ“)
+ * @brief	ã€Œãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã€OBJ(ã‚«ãƒ¼ã‚½ãƒ«ã€ã‚¢ã‚¤ã‚³ãƒ³)
  * @author	Satoshi Nohara
  * @date	2007.07.05
  */
@@ -21,19 +21,19 @@
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
-//OBJ(ƒJ[ƒ\ƒ‹AƒAƒCƒRƒ“)
+//OBJ(ã‚«ãƒ¼ã‚½ãƒ«ã€ã‚¢ã‚¤ã‚³ãƒ³)
 struct _CASTLE_OBJ{
 	//u16 init_x;
 	//u16 init_y;
 	s16 init_x;
 	s16 init_y;
-	CLACT_WORK_PTR p_clact;			//ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^
+	CLACT_WORK_PTR p_clact;			//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 };
 
-//ƒJ[ƒ\ƒ‹‚ÌƒpƒŒƒbƒg
+//ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒ‘ãƒ¬ãƒƒãƒˆ
 enum{
 	PAL_OBJ_MOVE = 0,
 	PAL_OBJ_STOP,
@@ -42,7 +42,7 @@ enum{
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 CASTLE_OBJ* CastleObj_Create( CASTLE_CLACT* castle_clact, u32 char_no, u32 pltt_no, u32 cell_no, u32 anm_no, s16 x, s16 y, int bg_pri, const u8* anm_tbl );
@@ -65,19 +65,19 @@ void CastleObj_RankUpEff( CASTLE_OBJ* wk, u16 x, u16 y );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OBJì¬
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OBJä½œæˆ
  *
- * @param	castle_clact	CASTLE_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	data_index		ƒf[ƒ^index
- * @param	heapID			ƒq[ƒvID
+ * @param	castle_clact	CASTLE_CLACTå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	data_index		ãƒ‡ãƒ¼ã‚¿index
+ * @param	heapID			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	"CASTLE_OBJƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^"
+ * @retval	"CASTLE_OBJãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿"
  */
 //--------------------------------------------------------------
 CASTLE_OBJ* CastleObj_Create( CASTLE_CLACT* castle_clact, u32 char_no, u32 pltt_no, u32 cell_no, u32 anm_no, s16 x, s16 y, int bg_pri, const u8* anm_tbl )
@@ -85,7 +85,7 @@ CASTLE_OBJ* CastleObj_Create( CASTLE_CLACT* castle_clact, u32 char_no, u32 pltt_
 	CASTLE_OBJ* wk;
 	VecFx32	vec;
 
-	wk = sys_AllocMemory( HEAPID_CASTLE, sizeof(CASTLE_OBJ) );		//ƒƒ‚ƒŠŠm•Û
+	wk = sys_AllocMemory( HEAPID_CASTLE, sizeof(CASTLE_OBJ) );		//ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	memset( wk, 0, sizeof(CASTLE_OBJ) );
 
 	wk->init_x		= x;
@@ -94,7 +94,7 @@ CASTLE_OBJ* CastleObj_Create( CASTLE_CLACT* castle_clact, u32 char_no, u32 pltt_
 	wk->p_clact = CastleClact_SetActor( castle_clact, char_no, pltt_no, cell_no, anm_no, 
 										0, bg_pri, DISP_MAIN );
 
-	//‰ŠúƒJ[ƒ\ƒ‹À•W‚ğƒZƒbƒg
+	//åˆæœŸã‚«ãƒ¼ã‚½ãƒ«åº§æ¨™ã‚’ã‚»ãƒƒãƒˆ
 	vec.x = (x * FX32_ONE);
 	vec.y = (y * FX32_ONE);
 	CLACT_SetMatrix( wk->p_clact, &vec );
@@ -104,9 +104,9 @@ CASTLE_OBJ* CastleObj_Create( CASTLE_CLACT* castle_clact, u32 char_no, u32 pltt_
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OBJƒ[ƒNíœ
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OBJãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param	wk		CASTLE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	"NULL"
  */
@@ -114,14 +114,14 @@ CASTLE_OBJ* CastleObj_Create( CASTLE_CLACT* castle_clact, u32 char_no, u32 pltt_
 void* CastleObj_Delete( CASTLE_OBJ* wk )
 {
 	if( wk == NULL ){
-		OS_Printf( "CastleObj_Delete ˆø”‚ªNULL\n" );
+		OS_Printf( "CastleObj_Delete å¼•æ•°ãŒNULL\n" );
 		GF_ASSERT( 0 );
 		return NULL;
 	}
 
 	CLACT_Delete( wk->p_clact );
 
-	//CASTLE_OBJ‚Ìƒƒ“ƒo‚Åƒƒ‚ƒŠŠm•Û‚µ‚½‚à‚Ì‚ª‚ ‚Á‚½‚çŠJ•ú‚·‚é
+	//CASTLE_OBJã®ãƒ¡ãƒ³ãƒã§ãƒ¡ãƒ¢ãƒªç¢ºä¿ã—ãŸã‚‚ã®ãŒã‚ã£ãŸã‚‰é–‹æ”¾ã™ã‚‹
 
 	sys_FreeMemoryEz( wk );
 	return NULL;
@@ -129,10 +129,10 @@ void* CastleObj_Delete( CASTLE_OBJ* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒjƒbƒVƒ…‘€ì
+ * @brief	ãƒãƒ‹ãƒƒã‚·ãƒ¥æ“ä½œ
  *
- * @param	wk		CASTLE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	0:”ñ•`‰æ 1:ƒŒƒ“ƒ_ƒ‰•`‰æ	
+ * @param	wk		CASTLE_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	0:éæç”» 1:ãƒ¬ãƒ³ãƒ€ãƒ©æç”»	
  *
  * @return	none
  */
@@ -145,9 +145,9 @@ void CastleObj_Vanish( CASTLE_OBJ* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹XˆÊ’u‚ğæ“¾
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«Xä½ç½®ã‚’å–å¾—
  *
- * @param	wk		CASTLE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"X"
  */
@@ -161,9 +161,9 @@ u16 CastleObj_GetObjX( CASTLE_OBJ* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹YˆÊ’u‚ğæ“¾
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«Yä½ç½®ã‚’å–å¾—
  *
- * @param	wk		CASTLE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"X"
  */
@@ -177,9 +177,9 @@ u16 CastleObj_GetObjY( CASTLE_OBJ* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹ˆÊ’u‚ğƒZƒbƒg
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -188,21 +188,21 @@ void CastleObj_SetObjPos( CASTLE_OBJ* wk, u16 x, u16 y )
 {
 	VecFx32	vec;
 
-	//À•W‚ğæ“¾
+	//åº§æ¨™ã‚’å–å¾—
 	vec = *( CLACT_GetMatrix(wk->p_clact) );
 	vec.x = (x * FX32_ONE);
 	vec.y = (y * FX32_ONE);
 
-	//À•W‚ğİ’è
+	//åº§æ¨™ã‚’è¨­å®š
 	CLACT_SetMatrix( wk->p_clact, &vec );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒØ‚è‘Ö‚¦
+ * @brief	ã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		CASTLE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	"NULL"
  */
@@ -210,38 +210,38 @@ void CastleObj_SetObjPos( CASTLE_OBJ* wk, u16 x, u16 y )
 void CastleObj_AnmChg( CASTLE_OBJ* wk, u32 num )
 {
 	CLACT_SetAnmFrame( wk->p_clact, FX32_ONE );
-	//CLACT_AnmFrameSet( wk->p_clact, 0 );		//ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ğƒZƒbƒg
-	//CLACT_AnmChgCheck( wk->p_clact, num );		//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒV[ƒPƒ“ƒX‚ğƒ`ƒFƒ“ƒW‚·‚é
-	//•K‚¸•ÏX(07.11.28)
-	CLACT_AnmChg( wk->p_clact, num );			//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒV[ƒPƒ“ƒX‚ğƒ`ƒFƒ“ƒW‚·‚é
+	//CLACT_AnmFrameSet( wk->p_clact, 0 );		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆ
+	//CLACT_AnmChgCheck( wk->p_clact, num );		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒã‚§ãƒ³ã‚¸ã™ã‚‹
+	//å¿…ãšå¤‰æ›´(07.11.28)
+	CLACT_AnmChg( wk->p_clact, num );			//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒã‚§ãƒ³ã‚¸ã™ã‚‹
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒCƒRƒ“ƒAƒjƒ
+ * @brief	ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡
  *
- * @param	wk		CASTLE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	pp		POKEMON_PARAMƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pp		POKEMON_PARAMãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
 //--------------------------------------------------------------
 void CastleObj_IconPalChg( CASTLE_OBJ* wk, POKEMON_PARAM* pp )
 {
-	//ƒpƒŒƒbƒgØ‚è‘Ö‚¦
-	//CLACT_PaletteOffsetChgŠÖ”‚ÌŒ‹‰Ê‚ÉƒpƒŒƒbƒg‚Ì“]‘—ææ“ªƒpƒŒƒbƒgƒiƒ“ƒo[‚ğ‰ÁZ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
+	//CLACT_PaletteOffsetChgé–¢æ•°ã®çµæœã«ãƒ‘ãƒ¬ãƒƒãƒˆã®è»¢é€å…ˆå…ˆé ­ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’åŠ ç®—
 	CLACT_PaletteOffsetChgAddTransPlttNo( wk->p_clact, PokeIconPalNumGetByPP(pp) );
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒƒtƒŒ[ƒ€æ“¾
+ * @brief	ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ å–å¾—
  *
- * @param	wk		CASTLE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"ƒAƒjƒƒtƒŒ[ƒ€"
+ * @retval	"ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ¬ãƒ¼ãƒ "
  */
 //--------------------------------------------------------------
 u16 CastleObj_GetAnmFrame( CASTLE_OBJ* wk )
@@ -251,9 +251,9 @@ u16 CastleObj_GetAnmFrame( CASTLE_OBJ* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ŠúÀ•W‚Éw’è‚µ‚½ƒIƒtƒZƒbƒg‚ğ‘«‚µ‚ÄÀ•WƒZƒbƒg
+ * @brief	åˆæœŸåº§æ¨™ã«æŒ‡å®šã—ãŸã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¶³ã—ã¦åº§æ¨™ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_OBJƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_OBJãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -266,10 +266,10 @@ void CastleObj_SetInitPosOffset( CASTLE_OBJ* wk, int offset_x, int offset_y )
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒjƒØ‚è‘Ö‚¦
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	awk		ƒAƒNƒ^[ƒ[ƒN
- * @param	anm		ƒAƒjƒ”Ô†
+ * @param	awk		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ * @param	anm		ã‚¢ãƒ‹ãƒ¡ç•ªå·
  *
  * @return	none
  */
@@ -282,10 +282,10 @@ void CastleObj_PokeIconAnmChg( CASTLE_OBJ* wk, u8 anm )
 
 //--------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“ƒAƒjƒØ‚è‘Ö‚¦
+ * ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	awk		ƒAƒNƒ^[ƒ[ƒN
- * @param	flag	1=‘I‘ğ‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“
+ * @param	awk		ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯
+ * @param	flag	1=é¸æŠã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³
  *
  * @return	none
  */
@@ -298,12 +298,12 @@ void CastleObj_PokeIconPosSet( CASTLE_OBJ* wk, u8 flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒ[ƒVƒ‡ƒ“’†‚©ƒ`ƒFƒbƒN
+ * @brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä¸­ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		CASTLE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	TRUE	ƒAƒjƒ[ƒVƒ‡ƒ“’†
- * @retval	FALSE	ƒXƒgƒbƒv
+ * @retval	TRUE	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä¸­
+ * @retval	FALSE	ã‚¹ãƒˆãƒƒãƒ—
  */
 //--------------------------------------------------------------
 BOOL CastleObj_AnmActiveCheck( CASTLE_OBJ* wk )
@@ -313,10 +313,10 @@ BOOL CastleObj_AnmActiveCheck( CASTLE_OBJ* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BG–Ê‚Æ‚Ì—Dæ“x‚ğ•ÏX
+ * @brief	BGé¢ã¨ã®å„ªå…ˆåº¦ã‚’å¤‰æ›´
  *
- * @param	wk		CASTLE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	pri		—Dæ“x
+ * @param	wk		CASTLE_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pri		å„ªå…ˆåº¦
  *
  * @retval	none
  */
@@ -329,10 +329,10 @@ void CastleObj_PriorityChg( CASTLE_OBJ* wk, u8 pri )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰ŠúXY‚ğƒZƒbƒg
+ * @brief	åˆæœŸXYã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	wk		CASTLE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	pri		—Dæ“x
+ * @param	wk		CASTLE_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	pri		å„ªå…ˆåº¦
  *
  * @retval	none
  */
@@ -346,9 +346,9 @@ void CastleObj_SetInitXY( CASTLE_OBJ* wk, s16 x, s16 y )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒNƒAƒbƒvƒGƒtƒFƒNƒg•\¦
+ * @brief	ãƒ©ãƒ³ã‚¯ã‚¢ãƒƒãƒ—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆè¡¨ç¤º
  *
- * @param	wk		CASTLE_OBJŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		CASTLE_OBJå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -357,7 +357,7 @@ void CastleObj_RankUpEff( CASTLE_OBJ* wk, u16 x, u16 y )
 {
 	CastleObj_AnmChg( wk, CASTLE_ANM_RANK_UP );
 	CastleObj_SetObjPos( wk, x, y );
-	CastleObj_Vanish( wk, CASTLE_VANISH_OFF );				//•\¦
+	CastleObj_Vanish( wk, CASTLE_VANISH_OFF );				//è¡¨ç¤º
 	Snd_SePlay( SEQ_SE_DP_PIRORIRO2 );
 	Snd_SePlay( SEQ_SE_DP_DANSA4 );
 	return;

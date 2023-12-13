@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	egg_disp.c
- * @brief	‰æ–Êü‚è‚ÌƒVƒXƒeƒ€
+ * @brief	ç”»é¢å‘¨ã‚Šã®ã‚·ã‚¹ãƒ†ãƒ 
  * @author	goto
- * @date	2006.05.20(“y)
+ * @date	2006.05.20(åœŸ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -39,13 +39,13 @@
 
 #include "shinka_def.h"
 
-#define SHINKA_DEMO_NEAR		(FX32_ONE)			///< ƒJƒƒ‰
+#define SHINKA_DEMO_NEAR		(FX32_ONE)			///< ã‚«ãƒ¡ãƒ©
 #define SHINKA_DEMO_FAR			(FX32_ONE * 900)
 
 // =============================================================================
 //
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //
 // =============================================================================
@@ -70,13 +70,13 @@ static	void		ShinkaParticle_CallBack(EMIT_PTR emit);
 // =============================================================================
 //
 //
-//	  •`‰æƒVƒXƒeƒ€ŠÖ˜A
+//	â–¡ æç”»ã‚·ã‚¹ãƒ†ãƒ é–¢é€£
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€‰Šú‰»
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
  * @param	none	
  *
@@ -94,7 +94,7 @@ void ShinkaDisp_SystemInit(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	Šî–{ƒ¿İ’è
+ * @brief	åŸºæœ¬Î±è¨­å®š
  *
  * @param	none	
  *
@@ -113,7 +113,7 @@ void ShinkaDisp_DefaultBlendSet(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	3D‰Šú‰»
+ * @brief	3DåˆæœŸåŒ–
  *
  * @param	none	
  *
@@ -137,7 +137,7 @@ GF_G3DMAN* ShinkaDisp_3D_Init(int heapID)
 
 //--------------------------------------------------------------
 /**
- * @brief	3DƒZƒbƒgƒAƒbƒv
+ * @brief	3Dã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
  * @param	none	
  *
@@ -164,7 +164,7 @@ void ShinkaDisp_3DSetUp(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	3DVram‰Šú‰»
+ * @brief	3DVramåˆæœŸåŒ–
  *
  * @param	none	
  *
@@ -187,15 +187,15 @@ void ShinkaDisp_3DVramInit(void)
 	tex_addrs	= NNS_GfdGetTexKeyAddr(tex_key);
 	pltt_addrs	= NNS_GfdGetPlttKeyAddr(pltt_key);
 	
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ ƒeƒNƒXƒ`ƒƒVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", tex_addrs);
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ @ƒpƒŒƒbƒgVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", pltt_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸ ãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", tex_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸ ã€€ãƒ‘ãƒ¬ãƒƒãƒˆVramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", pltt_addrs);
 
 	Particle_SystemWorkInit();		
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒeƒBƒNƒ‹ƒƒCƒ“
+ * @brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ¡ã‚¤ãƒ³
  *
  * @param	none	
  *
@@ -224,7 +224,7 @@ void ShinkaDisp_ParticleMain(void)
 #if 0
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒvƒtƒF[ƒhƒCƒ“
+ * @brief	ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
  *
  * @param	none	
  *
@@ -241,7 +241,7 @@ void ShinkaDisp_WipeFadeIn(void)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒvƒtƒF[ƒhƒAƒEƒg
+ * @brief	ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
  *
  * @param	none	
  *
@@ -260,13 +260,13 @@ void ShinkaDisp_WipeFadeOut(void)
 // =============================================================================
 //
 //
-//	  ƒp[ƒeƒBƒNƒ‹
+//	â–¡ ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 //
 //
 // =============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	—ÌˆæŠm•Û
+ * @brief	é ˜åŸŸç¢ºä¿
  *
  * @param	size	
  * @param	is4x4comp	
@@ -281,17 +281,17 @@ static u32 sAllocTex(u32 size, BOOL is4x4comp)
 	u32 address;
 	
 	key = NNS_GfdAllocTexVram(size, is4x4comp, 0);
-	Particle_LnkTexKeySet(key);		//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_LnkTexKeySet(key);		//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	
 	address = NNS_GfdGetTexKeyAddr(key);
-	OS_Printf("ƒeƒNƒXƒ`ƒƒVramƒAƒhƒŒƒX%#x\n", address);
+	OS_Printf("ãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%#x\n", address);
 	return address;
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	—ÌˆæŠm•Û
+ * @brief	é ˜åŸŸç¢ºä¿
  *
  * @param	size	
  * @param	is4pltt	
@@ -306,17 +306,17 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
 	u32 address;
 	
 	key = NNS_GfdAllocPlttVram(size, is4pltt, 0);
-	Particle_PlttLnkTexKeySet(key);	//ƒŠƒ“ƒNƒhƒŠƒXƒg‚ğg—p‚µ‚Ä‚¢‚é‚Ì‚ÅƒL[î•ñ‚ğƒZƒbƒg
+	Particle_PlttLnkTexKeySet(key);	//ãƒªãƒ³ã‚¯ãƒ‰ãƒªã‚¹ãƒˆã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã®ã§ã‚­ãƒ¼æƒ…å ±ã‚’ã‚»ãƒƒãƒˆ
 	
 	address = NNS_GfdGetPlttKeyAddr(key);
-	OS_Printf("ƒpƒŒƒbƒgVramƒAƒhƒŒƒX%#x\n", address);
+	OS_Printf("ãƒ‘ãƒ¬ãƒƒãƒˆVramã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%#x\n", address);
 	return address;
 }
 
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒXƒeƒ€ƒZƒbƒg
+ * @brief	ã‚·ã‚¹ãƒ†ãƒ ã‚»ãƒƒãƒˆ
  *
  * @param	heap_id	
  *
@@ -343,7 +343,7 @@ static PTC_PTR ShinkaParticle_SystemSet(int heap_id)
 
 //--------------------------------------------------------------
 /**
- * @brief	PTC‰Šú‰»
+ * @brief	PTCåˆæœŸåŒ–
  *
  * @param	heap_id	
  * @param	arc_id	
@@ -368,7 +368,7 @@ static PTC_PTR ShinkaParticle_PtcInit(int heap_id, int arc_id, int data_no)
 
 //--------------------------------------------------------------
 /**
- * @brief	PTCI—¹
+ * @brief	PTCçµ‚äº†
  *
  * @param	ptc	
  *
@@ -388,7 +388,7 @@ void ShinkaParticle_PtcExit(PTC_PTR ptc)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒR[ƒ‹ƒoƒbƒN
+ * @brief	ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param	emit	
  *
@@ -408,7 +408,7 @@ static void ShinkaParticle_CallBack(EMIT_PTR emit)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€‰Šú‰»
+ * @brief	ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
  * @param	param	
  *
@@ -439,7 +439,7 @@ SHINKA_PARTICLE_SYS* ShinkaParticle_Init(SHINKA_PARTICLE_PARAM* param)
 
 //--------------------------------------------------------------
 /**
- * @brief	SPA“o˜^
+ * @brief	SPAç™»éŒ²
  *
  * @param	sps	
  * @param	no	
@@ -464,7 +464,7 @@ void ShinkaParticle_SprSet(SHINKA_PARTICLE_SYS* sps, int no)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
  * @param	sps	
  *
@@ -486,7 +486,7 @@ BOOL ShinkaParticle_Main(SHINKA_PARTICLE_SYS* sps)
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹
+ * @brief	çµ‚äº†
  *
  * @param	sps	
  *

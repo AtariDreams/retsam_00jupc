@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_003.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			003�@�G�ɗ^�����_���[�W�̔����̐��l�����g�o���񕜂���
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			003　敵に与えたダメージの半分の数値だけＨＰが回復する
  *
  *@author	HisashiSogabe
  *@data		2005.12.05
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_003:
-	//�Z���ʂ�ǉ����ăV�[�P���X�𔭓�
+	//技効果を追加してシーケンスを発動
 	VALUE			VAL_SET,BUF_PARA_ADD_STATUS_INDIRECT,ADD_COND2_SUITORI|ADD_STATUS_WAZAKOUKA
 	CRITICAL_CHECK
 	DAMAGE_CALC

@@ -12,19 +12,19 @@
 #
 #  $Log: ARM9-TS-cloneboot-C.lcf.template,v $
 #  Revision 1.3  2006/07/20 07:29:12  kitase_hirotake
-#  .version �Z�N�V�����Ɋւ�������R�����g�̒ǉ�
+#  .version セクションに関する説明コメントの追加
 #
 #  Revision 1.2  2006/03/30 00:31:29  yasu
-#  NUMBER_OVERLAYS �� NUMBER.OVERLAYS �ɏC��
+#  NUMBER_OVERLAYS を NUMBER.OVERLAYS に修正
 #
 #  Revision 1.1  2005/09/05 01:38:31  yasu
-#  �^�O�̏C���O�� template �����^
+#  タグの修正前の template を収録
 #
 #  Revision 1.8  2005/08/26 11:22:16  yasu
-#  ITCM/DTCM �ւ� overlay �̑Ή�
+#  ITCM/DTCM への overlay の対応
 #
 #  Revision 1.7  2005/06/20 12:29:20  yasu
-#  Surffix -> Suffix �C��
+#  Surffix -> Suffix 修正
 #
 #  Revision 1.6  2005/06/14 09:03:42  yada
 #  fix around minus value of SDK_STACKSIZE
@@ -114,9 +114,9 @@ SECTIONS
 					crt0.o (.text)
 					crt0.o (.rodata)
 					#
-					# .version �Z�N�V������ǉ����Ă��܂��B
-					# ���̃Z�N�V�����Ɋ܂܂����̓��b�g�`�F�b�N�̍ۂ�
-					# �K�v�ƂȂ�܂��̂ŁA�K�����̈ʒu�Ɏc���悤�ɂ��ĉ������B
+					# .version セクションを追加しています。
+					# このセクションに含まれる情報はロットチェックの際に
+					# 必要となりますので、必ずこの位置に残すようにして下さい。
 					#
 					* (.version)
 	SDK_STATIC_TEXT_COMMON_END	=.;
@@ -125,8 +125,8 @@ SECTIONS
 					#:: Parent Only -- 8KB
 	SDK_STATIC_TEXT_PARENT_START	=.;
 	#
-	# .parent�Z�N�V�����̃R�[�h���W�߂�
-	# .bss, .data �Z�N�V�����̃R�[�h������Ȃ��悤���ӁI
+	# .parentセクションのコードを集める
+	# .bss, .data セクションのコードが入らないよう注意！
 					* (.parent)
 	#
 	SDK_STATIC_TEXT_PARENT_END	=.;

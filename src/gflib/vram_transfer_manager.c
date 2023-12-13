@@ -2,7 +2,7 @@
 /**
  *	H16/11/08		Tomoya Takahashi
  *
- *		Vram“]‘—ƒ}ƒl[ƒWƒƒ[‚Ìƒ^ƒXƒN‚ğŠÇ—‚·‚é
+ *		Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ã‚¿ã‚¹ã‚¯ã‚’ç®¡ç†ã™ã‚‹
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 #include <nitro.h>
@@ -13,18 +13,18 @@
 
 
 //-------------------------------------
-//	Vram“]‘—ƒ}ƒl[ƒWƒƒ
+//	Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£
 //=====================================
 typedef struct _VRAM_TRANSFER_MANAGER{
-	u32						tasksNum;			// “o˜^‰Â”\ƒ^ƒXƒN”
-	u32						add_task_num;		// ƒ^ƒXƒN“o˜^”
-	NNSGfdVramTransferTask*	pTaskArray;			// ƒ^ƒXƒN•Ï”
+	u32						tasksNum;			// ç™»éŒ²å¯èƒ½ã‚¿ã‚¹ã‚¯æ•°
+	u32						add_task_num;		// ã‚¿ã‚¹ã‚¯ç™»éŒ²æ•°
+	NNSGfdVramTransferTask*	pTaskArray;			// ã‚¿ã‚¹ã‚¯å¤‰æ•°
 } VRAM_TRANSFER_MANAGER;
 
 
 //----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 static VRAM_TRANSFER_MANAGER* pVramTransferManager;
@@ -34,46 +34,46 @@ static BOOL CallbackRegistTransferTask( NNS_GFD_DST_TYPE type, u32 dstAddr, void
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Vram“]‘—ƒ}ƒl[ƒWƒƒ[‚Ì‰Šú‰»
+ *@brief	Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®åˆæœŸåŒ–
  *
- *@param	tasks_numF“o˜^‰Â”\ƒ^ƒXƒN”
- *@param	heap		g—p‚·‚éƒq[ƒv
+ *@param	tasks_numï¼šç™»éŒ²å¯èƒ½ã‚¿ã‚¹ã‚¯æ•°
+ *@param	heap		ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—
  *
  *@return	none
  *
- *‚±‚êˆÈŠO‚ÍƒfƒtƒHƒ‹ƒg‚ÌŠÖ”‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢B
+ *ã“ã‚Œä»¥å¤–ã¯ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®é–¢æ•°ã‚’ä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚
  *
  */
 //-----------------------------------------------------------------------------
 void initVramTransferManagerHeap( u32 tasks_num, int heap )
 {
-	// ‰ŠúÏ‚İ
+	// åˆæœŸæ¸ˆã¿
 	GF_ASSERT( pVramTransferManager == NULL );
 
 
-	// À‘Ìì¬
+	// å®Ÿä½“ä½œæˆ
 	pVramTransferManager = sys_AllocMemory( heap, sizeof(VRAM_TRANSFER_MANAGER) );
-	// ƒƒ‚ƒŠŠm•Û¸”s
+	// ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—
 	GF_ASSERT( pVramTransferManager );
 	
 	//
-	// ƒ^ƒXƒN—Ìˆæ‚ğŠm•Û‚µAVram“]‘—ƒ}ƒl[ƒWƒƒ[‚ğ‰Šú‰» 
+	// ã‚¿ã‚¹ã‚¯é ˜åŸŸã‚’ç¢ºä¿ã—ã€Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’åˆæœŸåŒ– 
 	//
-	// —Ìˆæ‚ğŠm•Û
+	// é ˜åŸŸã‚’ç¢ºä¿
 	pVramTransferManager->pTaskArray = (NNSGfdVramTransferTask*)sys_AllocMemory( heap, sizeof(NNSGfdVramTransferTask) * tasks_num );
 
-	// ƒ^ƒXƒN”‚ğ‘ã“ü
+	// ã‚¿ã‚¹ã‚¯æ•°ã‚’ä»£å…¥
 	pVramTransferManager->tasksNum = tasks_num;
 	pVramTransferManager->add_task_num = 0;
 
-	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[‚ğ‰Šú‰»
+	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’åˆæœŸåŒ–
 	NNS_GfdInitVramTransferManager( pVramTransferManager->pTaskArray, pVramTransferManager->tasksNum );
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Vram“]‘—ƒ}ƒl[ƒWƒƒ[‚Ì”jŠü
+ *@brief	Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ç ´æ£„
  *
  *@param	none
  *
@@ -84,12 +84,12 @@ void initVramTransferManagerHeap( u32 tasks_num, int heap )
 //-----------------------------------------------------------------------------
 void DellVramTransferManager( void )
 {
-	// ”jŠüÏ‚İ
+	// ç ´æ£„æ¸ˆã¿
 	GF_ASSERT( pVramTransferManager != NULL );
 	//
-	//ƒ^ƒXƒN—Ìˆæ‚ğ”jŠü 
+	//ã‚¿ã‚¹ã‚¯é ˜åŸŸã‚’ç ´æ£„ 
 	//
-	// —Ìˆæ‚ğ”jŠü
+	// é ˜åŸŸã‚’ç ´æ£„
 	sys_FreeMemoryEz( pVramTransferManager->pTaskArray );
 
 	sys_FreeMemoryEz( pVramTransferManager );
@@ -100,27 +100,27 @@ void DellVramTransferManager( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	Vram“]‘—ƒ}ƒl[ƒWƒƒ[ƒ^ƒXƒN‚ğ“o˜^
+ *@brief	Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚¿ã‚¹ã‚¯ã‚’ç™»éŒ²
  *
- *@param	type		ƒf[ƒ^“]‘—æ‚Ìí—Ş
- *@param	dstAddr		“]‘—æƒAƒhƒŒƒX
- *@param	pSrc		“]‘—Œ³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *@param	szByte		“]‘—ƒTƒCƒY
+ *@param	type		ãƒ‡ãƒ¼ã‚¿è»¢é€å…ˆã®ç¨®é¡
+ *@param	dstAddr		è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
+ *@param	pSrc		è»¢é€å…ƒãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *@param	szByte		è»¢é€ã‚µã‚¤ã‚º
  *
- *@retval	TRUE		¬Œ÷	
- *@retval	FALSE		¸”s
+ *@retval	TRUE		æˆåŠŸ	
+ *@retval	FALSE		å¤±æ•—
  *
  *
  */
 //-----------------------------------------------------------------------------
 BOOL AddVramTransferManager( NNS_GFD_DST_TYPE type, u32 dstAddr, void* pSrc, u32 szByte )
 {	
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
 	GF_ASSERT( pVramTransferManager );
-	pVramTransferManager->add_task_num++;		// ƒ^ƒXƒN”‰ÁZ
+	pVramTransferManager->add_task_num++;		// ã‚¿ã‚¹ã‚¯æ•°åŠ ç®—
 
-	if(pVramTransferManager->add_task_num >= pVramTransferManager->tasksNum){	// ƒ^ƒXƒNƒI[ƒo[ƒ`ƒFƒbƒN
-		GF_ASSERT(0&&("VramTransferManagerƒ^ƒXƒNƒI[ƒo["));
+	if(pVramTransferManager->add_task_num >= pVramTransferManager->tasksNum){	// ã‚¿ã‚¹ã‚¯ã‚ªãƒ¼ãƒãƒ¼ãƒã‚§ãƒƒã‚¯
+		GF_ASSERT(0&&("VramTransferManagerã‚¿ã‚¹ã‚¯ã‚ªãƒ¼ãƒãƒ¼"));
 		return FALSE;
 	}
 
@@ -130,7 +130,7 @@ BOOL AddVramTransferManager( NNS_GFD_DST_TYPE type, u32 dstAddr, void* pSrc, u32
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ÀÛ‚É“]‘—‚·‚é
+ *@brief	å®Ÿéš›ã«è»¢é€ã™ã‚‹
  *
  *@param	none
  *
@@ -150,18 +150,18 @@ void DoVramTransferManager( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	¡‚Ìƒ^ƒXƒN“o˜^”‚ğæ“¾
+ *@brief	ä»Šã®ã‚¿ã‚¹ã‚¯ç™»éŒ²æ•°ã‚’å–å¾—
  *
  *@param	none
  *
- *@return	int		ƒ^ƒXƒN“o˜^”
+ *@return	int		ã‚¿ã‚¹ã‚¯ç™»éŒ²æ•°
  *
  *
  */
 //-----------------------------------------------------------------------------
 int GetVramTransferManagerAddNum( void )
 {
-	// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+	// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
 	GF_ASSERT( pVramTransferManager );
 	return pVramTransferManager->add_task_num;
 }
@@ -170,12 +170,12 @@ int GetVramTransferManagerAddNum( void )
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹“]‘—ƒ}ƒl[ƒWƒƒ‚Ì‰Šú‰»
+ *@brief	ã‚»ãƒ«è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ã®åˆæœŸåŒ–
  *
- *@param	num		Å‘åƒZƒ‹“o˜^”
- *@param	heap	g—pƒq[ƒv
+ *@param	num		æœ€å¤§ã‚»ãƒ«ç™»éŒ²æ•°
+ *@param	heap	ä½¿ç”¨ãƒ’ãƒ¼ãƒ—
  *	
- *@return	NNSG2dCellTransferState*	Šm•Û‚µ‚½ƒZƒ‹“]‘—ƒoƒbƒtƒ@
+ *@return	NNSG2dCellTransferState*	ç¢ºä¿ã—ãŸã‚»ãƒ«è»¢é€ãƒãƒƒãƒ•ã‚¡
  *
  *
  */
@@ -184,7 +184,7 @@ NNSG2dCellTransferState* InitCellTransfer(int num, int heap)
 {
 	NNSG2dCellTransferState* buff;
 
-	// CellVram“]‘—‰Šú‰»
+	// CellVramè»¢é€åˆæœŸåŒ–
 	buff = sys_AllocMemory(heap, sizeof(NNSG2dCellTransferState)*num);
 	
 	NNS_G2dInitCellTransferStateManager(
@@ -199,7 +199,7 @@ NNSG2dCellTransferState* InitCellTransfer(int num, int heap)
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹‚Ìƒf[ƒ^‚ğVram“]‘—ƒ^ƒXƒN‚Éİ’è‚·‚é
+ *@brief	ã‚»ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚’Vramè»¢é€ã‚¿ã‚¹ã‚¯ã«è¨­å®šã™ã‚‹
  *
  *@param	none
  *
@@ -210,16 +210,16 @@ NNSG2dCellTransferState* InitCellTransfer(int num, int heap)
 //-----------------------------------------------------------------------------
 void UpdateCellTransfer(void)
 {
-	// Vram“]‘—ƒ^ƒXƒN‚ğİ’è
+	// Vramè»¢é€ã‚¿ã‚¹ã‚¯ã‚’è¨­å®š
 	NNS_G2dUpdateCellTransferStateManager();
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	ƒZƒ‹“]‘—ƒ}ƒl[ƒWƒƒ‚ğ”jŠü
+ *@brief	ã‚»ãƒ«è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ã‚’ç ´æ£„
  *
- *@param	data		ƒZƒ‹“]‘—ƒf[ƒ^ƒoƒbƒtƒ@
+ *@param	data		ã‚»ãƒ«è»¢é€ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
  *
  *@return	none
  *
@@ -233,22 +233,22 @@ void DeleteCellTransfer(NNSG2dCellTransferState* data)
 
 //-----------------------------------------------------------------------------
 /**
- *@brief				NNS_G2dDrawŠÖ”“à•”‚ÅƒLƒƒƒ‰ƒNƒ^ƒf[ƒ^‚Ì“]‘—ƒ^ƒXƒN‚ğ
- *							“o˜^‚·‚é‚½‚ß‚ÉŒÄ‚Î‚ê‚éŠÖ”
+ *@brief				NNS_G2dDrawé–¢æ•°å†…éƒ¨ã§ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ‡ãƒ¼ã‚¿ã®è»¢é€ã‚¿ã‚¹ã‚¯ã‚’
+ *							ç™»éŒ²ã™ã‚‹ãŸã‚ã«å‘¼ã°ã‚Œã‚‹é–¢æ•°
  *
- *@param	typeF“]‘—æVram—Ìˆæí•Ê
- *@param	dstAddrF“]‘—æƒIƒtƒZƒbƒg
- *@param	pStrF“]‘—Œ³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *@param	szByteF“]‘—ƒTƒCƒY
+ *@param	typeï¼šè»¢é€å…ˆVramé ˜åŸŸç¨®åˆ¥
+ *@param	dstAddrï¼šè»¢é€å…ˆã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ *@param	pStrï¼šè»¢é€å…ƒãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *@param	szByteï¼šè»¢é€ã‚µã‚¤ã‚º
  *
- *@retval	¬Œ÷FTRUE
- *@retval	¸”sFFALSE
+ *@retval	æˆåŠŸï¼šTRUE
+ *@retval	å¤±æ•—ï¼šFALSE
  *
  */
  //----------------------------------------------------------------------------
 static BOOL CallbackRegistTransferTask( NNS_GFD_DST_TYPE type, u32 dstAddr, void* pSrc, u32 szByte )
 {
-	// VRAM “]‘—ƒ}ƒl[ƒWƒƒ‚É‚»‚Ì‚Ü‚Ü“n‚·
+	// VRAM è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ã«ãã®ã¾ã¾æ¸¡ã™
     return AddVramTransferManager(
                 type,
                 dstAddr,

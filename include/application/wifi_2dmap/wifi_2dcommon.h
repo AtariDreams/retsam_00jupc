@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wifi_2dcommon.h
- *	@brief		wifi_2dƒVƒXƒeƒ€‹¤’Êƒwƒbƒ_
+ *	@brief		wifi_2dã‚·ã‚¹ãƒ†ãƒ å…±é€šãƒ˜ãƒƒãƒ€
  *	@author		tomoya takahashi
  *	@data		2007.03.06
  *
@@ -20,11 +20,11 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	Œü‚¢‚Ä‚¢‚é•ûŒü
+///	å‘ã„ã¦ã„ã‚‹æ–¹å‘
 typedef enum {
 	WF_COMMON_TOP,
 	WF_COMMON_BOTTOM,
@@ -33,23 +33,23 @@ typedef enum {
 	WF_COMMON_WAYNUM
 } WF_COMMON_WAY;
 
-#define WF_COMMON_WALK_FRAME	(8)		// •à‚«ƒtƒŒ[ƒ€”
-#define WF_COMMON_TURN_FRAME	(2)		// U‚èŒü‚«ƒtƒŒ[ƒ€”
-#define WF_COMMON_RUN_FRAME		(4)		// ‘–‚èƒtƒŒ[ƒ€”
-#define WF_COMMON_WALLWALK_FRAME (16)	// •Ç•à‚«ƒtƒŒ[ƒ€”
-#define WF_COMMON_SLOWWALK_FRAME (16)	// ‚ä‚Á‚­‚è‚ ‚é‚«ƒtƒŒ[ƒ€”
-#define WF_COMMON_HIGHWALK2_FRAME (2)	// ‚‘¬‚ ‚é‚«ƒtƒŒ[ƒ€”
-#define WF_COMMON_HIGHWALK4_FRAME (4)	// ‚‘¬‚ ‚é‚«ƒtƒŒ[ƒ€”
+#define WF_COMMON_WALK_FRAME	(8)		// æ­©ããƒ•ãƒ¬ãƒ¼ãƒ æ•°
+#define WF_COMMON_TURN_FRAME	(2)		// æŒ¯ã‚Šå‘ããƒ•ãƒ¬ãƒ¼ãƒ æ•°
+#define WF_COMMON_RUN_FRAME		(4)		// èµ°ã‚Šãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+#define WF_COMMON_WALLWALK_FRAME (16)	// å£æ­©ããƒ•ãƒ¬ãƒ¼ãƒ æ•°
+#define WF_COMMON_SLOWWALK_FRAME (16)	// ã‚†ã£ãã‚Šã‚ã‚‹ããƒ•ãƒ¬ãƒ¼ãƒ æ•°
+#define WF_COMMON_HIGHWALK2_FRAME (2)	// é«˜é€Ÿã‚ã‚‹ããƒ•ãƒ¬ãƒ¼ãƒ æ•°
+#define WF_COMMON_HIGHWALK4_FRAME (4)	// é«˜é€Ÿã‚ã‚‹ããƒ•ãƒ¬ãƒ¼ãƒ æ•°
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #undef	GLOBAL

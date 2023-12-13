@@ -1,6 +1,6 @@
 //====================================================================
-//						tv.ev(TV•ú‘—)
-//						ƒeƒŒƒr—pƒXƒNƒŠƒvƒgEƒf[ƒ^
+//						tv.ev(TVæ”¾é€)
+//						ãƒ†ãƒ¬ãƒ“ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ»ãƒ‡ãƒ¼ã‚¿
 //====================================================================
 
 	.text
@@ -14,24 +14,24 @@
 //============================================================================================
 //============================================================================================
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgŒÄ‚Ño‚µƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‘¼ã³å‡ºã—ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 
 _EVENT_DATA		ev_tv
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 //============================================================================================
 //
 //
-//			ƒeƒŒƒr—pƒRƒ}ƒ“ƒh’è‹`
+//			ãƒ†ãƒ¬ãƒ“ç”¨ã‚³ãƒžãƒ³ãƒ‰å®šç¾©
 //
-//	EV_SEQ_TV(TV•ú‘—ˆ— scr_tv.c EvCmdBroadcastTV)
+//	EV_SEQ_TV(TVæ”¾é€å‡¦ç† scr_tv.c EvCmdBroadcastTV)
 //
 //============================================================================================
 
 //--------------------------------------------------------------------
-//	ƒRƒ}[ƒVƒƒƒ‹ƒƒbƒZ[ƒWŽæ“¾
+//	ã‚³ãƒžãƒ¼ã‚·ãƒ£ãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—
 //--------------------------------------------------------------------
 	.macro	_TV_GET_CM_MSG	arc_wk, msg_wk
 	.short	EV_SEQ_TV
@@ -41,7 +41,7 @@ _EVENT_DATA_END						//I—¹
 	.endm
 
 //--------------------------------------------------------------------
-//	Œˆ‚Ü‚è•¶‹å‚ÌƒZƒbƒg
+//	æ±ºã¾ã‚Šæ–‡å¥ã®ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------------
 	.macro	_TV_GET_PROG_MSG	msg_id, arc_wk, msg_wk
 	.short	EV_SEQ_TV
@@ -52,7 +52,7 @@ _EVENT_DATA_END						//I—¹
 	.endm
 
 //--------------------------------------------------------------------
-//	ó‘ÔŽæ“¾
+//	çŠ¶æ…‹å–å¾—
 //--------------------------------------------------------------------
 	.macro	_TV_GET_STATUS		ret_wk
 	.short	EV_SEQ_TV
@@ -61,7 +61,7 @@ _EVENT_DATA_END						//I—¹
 	.endm
 
 //--------------------------------------------------------------------
-//	I—¹ƒtƒ‰ƒOƒZƒbƒg
+//	çµ‚äº†ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
 //--------------------------------------------------------------------
 	.macro	_TV_SET_ENDFLAG
 	.short	EV_SEQ_TV
@@ -69,7 +69,7 @@ _EVENT_DATA_END						//I—¹
 	.endm
 
 //--------------------------------------------------------------------
-//	ƒƒbƒZ[ƒWƒf[ƒ^¶¬
+//	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ
 //--------------------------------------------------------------------
 	.macro	_TV_MAKE_MSG	idx,	arc_wk,	msg_wk
 	.short	EV_SEQ_TV
@@ -80,7 +80,7 @@ _EVENT_DATA_END						//I—¹
 	.endm
 
 //--------------------------------------------------------------------
-//	Žw’èƒf[ƒ^Žæ“¾(‘Sƒpƒ^[ƒ“)
+//	æŒ‡å®šãƒ‡ãƒ¼ã‚¿å–å¾—(å…¨ãƒ‘ã‚¿ãƒ¼ãƒ³)
 //--------------------------------------------------------------------
 	.macro	_TV_GET_DATA_TOTAL	ret_wk
 	.short	EV_SEQ_TV
@@ -92,37 +92,37 @@ _EVENT_DATA_END						//I—¹
 //============================================================================================
 //
 //
-//			ƒeƒŒƒr—pƒXƒNƒŠƒvƒg–{‘Ì
+//			ãƒ†ãƒ¬ãƒ“ç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //
 //
 //============================================================================================
 //--------------------------------------------------------------------
-//		ŠJŽn(ƒ}ƒbƒvƒAƒgƒŠƒrƒ…[ƒg‚Í‚È‚µ‚©‚¯ ev_check.c)
+//		é–‹å§‹(ãƒžãƒƒãƒ—ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã¯ãªã—ã‹ã‘ ev_check.c)
 //--------------------------------------------------------------------
 ev_tv:
 	_TALK_START
 
 	_RECORD_INC		RECID_TV_COUNT
 
-	//‚±‚±‚ÉƒCƒxƒ“ƒg‚Ìê‡‚Ì•ªŠò‚ð“ü‚ê‚é
+	//ã“ã“ã«ã‚¤ãƒ™ãƒ³ãƒˆã®å ´åˆã®åˆ†å²ã‚’å…¥ã‚Œã‚‹
 
-	/*ó‘ÔŽæ“¾*/
+	/*çŠ¶æ…‹å–å¾—*/
 	_TV_GET_STATUS	SCWK_ANSWER
 	_DEBUG_WATCH_WORK	SCWK_ANSWER
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		TV_STATUS_PROGRAM_END,	ev_tv_cm		//”Ô‘gI—¹ó‘Ô
-	_CASE_JUMP		TV_STATUS_TOPIC_END,	ev_tv_topic_end	//‚S‚ÂƒgƒsƒbƒN‚ð•ú‘—‚µ‚½
-	_CASE_JUMP		TV_STATUS_START,		ev_tv_start		//”Ô‘gŠJŽn’¼Œã
-	_CASE_JUMP		TV_STATUS_ONAIR,		ev_tv_onair		//”Ô‘g•ú‘—’†i2‚Â–ÚˆÈ~j
+	_CASE_JUMP		TV_STATUS_PROGRAM_END,	ev_tv_cm		//ç•ªçµ„çµ‚äº†çŠ¶æ…‹
+	_CASE_JUMP		TV_STATUS_TOPIC_END,	ev_tv_topic_end	//ï¼”ã¤ãƒˆãƒ”ãƒƒã‚¯ã‚’æ”¾é€ã—ãŸ
+	_CASE_JUMP		TV_STATUS_START,		ev_tv_start		//ç•ªçµ„é–‹å§‹ç›´å¾Œ
+	_CASE_JUMP		TV_STATUS_ONAIR,		ev_tv_onair		//ç•ªçµ„æ”¾é€ä¸­ï¼ˆ2ã¤ç›®ä»¥é™ï¼‰
 
 	_JUMP			ev_tv_cm
 	_END
 
 //--------------------------------------------------------------------
-//		CM(”Ô‘gI—¹ó‘Ô)
+//		CM(ç•ªçµ„çµ‚äº†çŠ¶æ…‹)
 //--------------------------------------------------------------------
 ev_tv_cm:
-	/*ƒRƒ}[ƒVƒƒƒ‹ƒƒbƒZ[ƒWŽæ“¾*/
+	/*ã‚³ãƒžãƒ¼ã‚·ãƒ£ãƒ«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å–å¾—*/
 	_TV_GET_CM_MSG	SCWK_TEMP0, SCWK_TEMP1
 	_TALKMSG_ARC	SCWK_TEMP0, SCWK_TEMP1
 	_LAST_KEYWAIT
@@ -131,63 +131,63 @@ ev_tv_cm:
 
 
 //--------------------------------------------------------------------
-//		ƒgƒsƒbƒN‚S‚Â•ú‘—Œã¨I—¹ƒƒbƒZ[ƒW
+//		ãƒˆãƒ”ãƒƒã‚¯ï¼”ã¤æ”¾é€å¾Œâ†’çµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 //--------------------------------------------------------------------
 ev_tv_topic_end:
-	/*(Œˆ‚Ü‚è•¶‹å)I—¹MSG•\Ž¦06*/
+	/*(æ±ºã¾ã‚Šæ–‡å¥)çµ‚äº†MSGè¡¨ç¤º06*/
 	_TV_GET_PROG_MSG	TV_PROG_MSG_ENDING, SCWK_TEMP0, SCWK_TEMP1
 	_TALKMSG_ARC		SCWK_TEMP0, SCWK_TEMP1
 	_LAST_KEYWAIT
 
-	//I—¹ƒtƒ‰ƒO‚ðƒZƒbƒg
+	//çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	_TV_SET_ENDFLAG
 	_JUMP				ev_tv_end
 	_END
 
 
 //--------------------------------------------------------------------
-//		•ú‘—ŠJŽn¨ŠJŽnƒƒbƒZ[ƒW
+//		æ”¾é€é–‹å§‹â†’é–‹å§‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 //--------------------------------------------------------------------
 ev_tv_start:
-	/*(Œˆ‚Ü‚è•¶‹å)ŠJŽnMSG•\Ž¦i’©01A’‹02A”Ó03ŽO‘ðj*/
+	/*(æ±ºã¾ã‚Šæ–‡å¥)é–‹å§‹MSGè¡¨ç¤ºï¼ˆæœ01ã€æ˜¼02ã€æ™©03ä¸‰æŠžï¼‰*/
 	_TV_GET_PROG_MSG		TV_PROG_MSG_OPENING, SCWK_TEMP0, SCWK_TEMP1
 	_TALKMSG_ARC			SCWK_TEMP0, SCWK_TEMP1
 
-	/*•ú‘—’†‚Ö*/
+	/*æ”¾é€ä¸­ã¸*/
 	_JUMP				ev_tv_onair
 	_END
 
 
 //--------------------------------------------------------------------
-//		•ú‘—’†
+//		æ”¾é€ä¸­
 //--------------------------------------------------------------------
 ev_tv_onair:
-	/*Žw’èƒf[ƒ^Žæ“¾(‘Sƒpƒ^[ƒ“)*/
+	/*æŒ‡å®šãƒ‡ãƒ¼ã‚¿å–å¾—(å…¨ãƒ‘ã‚¿ãƒ¼ãƒ³)*/
 	_TV_GET_DATA_TOTAL		SCWK_TEMP2
-	_IFVAL_JUMP				SCWK_TEMP2,NE,0, ev_tv_topic	/*ƒf[ƒ^‚ª‚ ‚é*/
+	_IFVAL_JUMP				SCWK_TEMP2,NE,0, ev_tv_topic	/*ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹*/
 	_JUMP					ev_tv_no_topic
 	_END
 
 ev_tv_no_topic:
-	/*ƒf[ƒ^‚ðì‚Á‚Ä‚ËMSG•\Ž¦07*/
+	/*ãƒ‡ãƒ¼ã‚¿ã‚’ä½œã£ã¦ã­MSGè¡¨ç¤º07*/
 	_TV_GET_PROG_MSG		TV_PROG_MSG_PLEASE, SCWK_TEMP0, SCWK_TEMP1
 	_DEBUG_WATCH_WORK		SCWK_TEMP0
 	_DEBUG_WATCH_WORK		SCWK_TEMP1
 	_TALKMSG_ARC			SCWK_TEMP0, SCWK_TEMP1
-	//I—¹ƒtƒ‰ƒO‚ðƒZƒbƒg
+	//çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆ
 	_TV_SET_ENDFLAG
 	_LAST_KEYWAIT
 	_JUMP					ev_tv_end
 	_END
 
 ev_tv_topic:
-	//(Œˆ‚Ü‚è•¶‹å)‘OƒtƒŠMSG
+	//(æ±ºã¾ã‚Šæ–‡å¥)å‰ãƒ•ãƒªMSG
 	_TV_GET_PROG_MSG		TV_PROG_MSG_INTRO, SCWK_TEMP0, SCWK_TEMP1
 	_DEBUG_WATCH_WORK		SCWK_TEMP0
 	_DEBUG_WATCH_WORK		SCWK_TEMP1
 	_TALKMSG_ARC			SCWK_TEMP0, SCWK_TEMP1
 
-	//(ƒƒbƒZ[ƒWƒf[ƒ^¶¬)‹LŽ–‚ÌƒƒbƒZ[ƒW
+	//(ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç”Ÿæˆ)è¨˜äº‹ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	_TV_MAKE_MSG			SCWK_TEMP2, SCWK_TEMP0, SCWK_TEMP1
 	_DEBUG_WATCH_WORK		SCWK_TEMP2
 	_DEBUG_WATCH_WORK		SCWK_TEMP0
@@ -199,7 +199,7 @@ ev_tv_topic:
 
 
 //--------------------------------------------------------------------
-//	‹¤’ÊI—¹
+//	å…±é€šçµ‚äº†
 //--------------------------------------------------------------------
 ev_tv_end:
 	_TALK_CLOSE

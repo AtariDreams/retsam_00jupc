@@ -7,7 +7,7 @@
 #include <base/dwc_memfunc.h>
 #include <base/dwc_ghttp.h>
 
-// \‘¢‘ÌéŒ¾
+// æ§‹é€ ä½“å®£è¨€
 //---------------------------------------------------------
 typedef struct DWCGHTTPParamEntry {
 	DWCGHTTPParam param;
@@ -16,12 +16,12 @@ typedef struct DWCGHTTPParamEntry {
 	struct DWCGHTTPParamEntry *nextentry;
 }DWCGHTTPParamEntry;
 
-// “à•”•Ï”éŒ¾
+// å†…éƒ¨å¤‰æ•°å®£è¨€
 //---------------------------------------------------------
 static DWCGHTTPParamEntry *paramhead = NULL;
 static int ghttpinitcount = 0;
 
-// ƒvƒƒgƒ^ƒCƒvéŒ¾
+// ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //---------------------------------------------------------
 static GHTTPBool GHTTPCompletedCallback( GHTTPRequest   request,
 										 GHTTPResult	result,
@@ -46,12 +46,12 @@ static DWCGHTTPParamEntry *DWCi_FindDWCGHTTPParamEntryByReq(int req);
 
 //=============================================================================
 /*!
- *	@brief	ƒ‰ƒCƒuƒ‰ƒŠ‚Ì‰Šú‰»
+ *	@brief	ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–
  *
- *	@param	gamename	[in] ƒQ[ƒ€–¼
+ *	@param	gamename	[in] ã‚²ãƒ¼ãƒ å
  *
- *	@retval	TRUE		¬Œ÷
- *	@retval FALSE   	Ž¸”s
+ *	@retval	TRUE		æˆåŠŸ
+ *	@retval FALSE   	å¤±æ•—
  */
 //=============================================================================
 BOOL	DWC_InitGHTTP( const char* gamename ){
@@ -60,7 +60,7 @@ BOOL	DWC_InitGHTTP( const char* gamename ){
     DWC_Printf(DWC_REPORTFLAG_DEBUG, "DWC_InitGHTTP\n");
 
     //
-	// GHTTP ‚ÌŠJŽn
+	// GHTTP ã®é–‹å§‹
 	//
 	ghttpStartup();
 	
@@ -72,10 +72,10 @@ BOOL	DWC_InitGHTTP( const char* gamename ){
 
 //=============================================================================
 /*!
- *	@brief	ƒ‰ƒCƒuƒ‰ƒŠ‚ÌƒVƒƒƒbƒgƒ_ƒEƒ“
+ *	@brief	ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³
  *
- *	@retval	TRUE		¬Œ÷
- *	@retval	FALSE   	Ž¸”s
+ *	@retval	TRUE		æˆåŠŸ
+ *	@retval	FALSE   	å¤±æ•—
  */
 //=============================================================================
 BOOL	DWC_ShutdownGHTTP( void )
@@ -85,12 +85,12 @@ BOOL	DWC_ShutdownGHTTP( void )
 		return TRUE;
 	
 	//
-	// GHTTP ‚ÌI—¹
+	// GHTTP ã®çµ‚äº†
 	//
 	ghttpCleanup();
 	
 	//
-	// ƒpƒ‰ƒ[ƒ^‚ð‰ð•ú
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è§£æ”¾
 	//
 	ghttpinitcount--;
 	if(ghttpinitcount == 0)
@@ -102,10 +102,10 @@ BOOL	DWC_ShutdownGHTTP( void )
 
 //=============================================================================
 /*!
- *	@brief	ƒf[ƒ^’ÊM
+ *	@brief	ãƒ‡ãƒ¼ã‚¿é€šä¿¡
  *
- *	@retval	TRUE		¬Œ÷
- *	@retval	FALSE   	Ž¸”s
+ *	@retval	TRUE		æˆåŠŸ
+ *	@retval	FALSE   	å¤±æ•—
  */
 //=============================================================================
 BOOL	DWC_ProcessGHTTP( void ){
@@ -113,7 +113,7 @@ BOOL	DWC_ProcessGHTTP( void ){
     if (DWCi_IsError()) return FALSE;
 
 	//
-	// GHTTP ‚ÌƒŒƒXƒ|ƒ“ƒX‘Ò‚¿
+	// GHTTP ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹å¾…ã¡
 	//
 	ghttpThink();
 
@@ -123,10 +123,10 @@ BOOL	DWC_ProcessGHTTP( void ){
 
 //=============================================================================
 /*!
- *	@brief	HTTPƒŠƒNƒGƒXƒg‚ÌƒR[ƒ‹ƒoƒbƒN
+ *	@brief	HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
- *	@retval	GHTTPTrue		ƒoƒbƒtƒ@ŠJ•ú
- *	@retval	GHTTPFalse   	ƒoƒbƒtƒ@ŠJ•ú‚¹‚¸
+ *	@retval	GHTTPTrue		ãƒãƒƒãƒ•ã‚¡é–‹æ”¾
+ *	@retval	GHTTPFalse   	ãƒãƒƒãƒ•ã‚¡é–‹æ”¾ã›ãš
  */
 //=============================================================================
 static GHTTPBool GHTTPCompletedCallback( GHTTPRequest   request,
@@ -140,7 +140,7 @@ static GHTTPBool GHTTPCompletedCallback( GHTTPRequest   request,
     DWCGHTTPParamEntry *entry = (DWCGHTTPParamEntry *)param;
 	DWCGHTTPParam *parameter = &entry->param;
 
-	// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 	DWCGHTTPCompletedCallback callback = (DWCGHTTPCompletedCallback)parameter->completedCallback;
 
     BOOL buffer_clear = parameter->buffer_clear;
@@ -159,9 +159,9 @@ static GHTTPBool GHTTPCompletedCallback( GHTTPRequest   request,
         DWC_Printf(DWC_REPORTFLAG_DEBUG, "Callback is NULL\n");
     }
 	
-	// ƒoƒbƒtƒ@‚ªƒ‰ƒbƒp‚ÅŠm•Û‚³‚ê‚½‚à‚Ì‚È‚ç‰ð•ú‚·‚é
-	if(result != GHTTPSuccess || // GHTTPŽ¸”s‚Ìê‡‚Íƒoƒbƒtƒ@‚ð–³ðŒ‚ÅŽ©“®“I‚ÉŠJ•ú‚·‚é(ƒR[ƒ‹ƒoƒbƒN‚Ìbuf‚ªNULL‚Ì‚½‚ß)
-	   buffer_clear == TRUE // ƒoƒbƒtƒ@ƒNƒŠƒAƒtƒ‰ƒO‚ªTRUE‚Ìê‡‚ÍŽ©“®“I‚É‰ð•ú‚·‚é
+	// ãƒãƒƒãƒ•ã‚¡ãŒãƒ©ãƒƒãƒ‘ã§ç¢ºä¿ã•ã‚ŒãŸã‚‚ã®ãªã‚‰è§£æ”¾ã™ã‚‹
+	if(result != GHTTPSuccess || // GHTTPå¤±æ•—ã®å ´åˆã¯ãƒãƒƒãƒ•ã‚¡ã‚’ç„¡æ¡ä»¶ã§è‡ªå‹•çš„ã«é–‹æ”¾ã™ã‚‹(ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®bufãŒNULLã®ãŸã‚)
+	   buffer_clear == TRUE // ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢ãƒ•ãƒ©ã‚°ãŒTRUEã®å ´åˆã¯è‡ªå‹•çš„ã«è§£æ”¾ã™ã‚‹
 	  ) {
 		if(entry->buf)
 			DWC_Free(DWC_ALLOCTYPE_BASE, (void*)entry->buf, 0);
@@ -181,7 +181,7 @@ static GHTTPBool GHTTPCompletedCallback( GHTTPRequest   request,
 
 //=============================================================================
 /*!
- *	@brief	HTTPƒŠƒNƒGƒXƒg’†‚ÌƒR[ƒ‹ƒoƒbƒN
+ *	@brief	HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆä¸­ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  */
 //=============================================================================
 static void GHTTPProgressCallback(GHTTPRequest   request, 
@@ -196,7 +196,7 @@ static void GHTTPProgressCallback(GHTTPRequest   request,
 
     DWCGHTTPParam* parameter = &((DWCGHTTPParamEntry *)param)->param;
 
-	// ƒR[ƒ‹ƒoƒbƒNŠÖ”‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾
+	// ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
 	DWCGHTTPProgressCallback callback = (DWCGHTTPProgressCallback)parameter->progressCallback;
 
     if(callback){
@@ -207,9 +207,9 @@ static void GHTTPProgressCallback(GHTTPRequest   request,
 
 //=============================================================================
 /*!
- *	@brief	post‚·‚éƒIƒuƒWƒFƒNƒg‚Ìì¬
+ *	@brief	postã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
  *
- *	@param	post	  [in] ì¬‚³‚ê‚éƒIƒuƒWƒFƒNƒg
+ *	@param	post	  [in] ä½œæˆã•ã‚Œã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
  *
  */
 //=============================================================================
@@ -227,14 +227,14 @@ void    DWC_GHTTPNewPost( DWCGHTTPPost* post ){
 
 //=============================================================================
 /*!
- *	@brief	Addpost—p
+ *	@brief	Addpostç”¨
  *
- *	@param	post	  [in] Add‚³‚ê‚éƒIƒuƒWƒFƒNƒg
- *	@param	key 	  [in] post‚·‚éƒf[ƒ^‚Ìkey–¼
- *	@param	buf 	  [in] post‚·‚éƒf[ƒ^‚Ì“à—e
+ *	@param	post	  [in] Addã•ã‚Œã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	key 	  [in] postã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®keyå
+ *	@param	buf 	  [in] postã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®å†…å®¹
  *
- *	@retval	TRUE		¬Œ÷
- *	@retval	FALSE   	Ž¸”s
+ *	@retval	TRUE		æˆåŠŸ
+ *	@retval	FALSE   	å¤±æ•—
  */
 //=============================================================================
 BOOL    DWC_GHTTPPostAddString( DWCGHTTPPost* post, const char* key, const char* value ){
@@ -250,17 +250,17 @@ BOOL    DWC_GHTTPPostAddString( DWCGHTTPPost* post, const char* key, const char*
 
 //=============================================================================
 /*!
- *	@brief	Addpost—p
+ *	@brief	Addpostç”¨
  *
- *	@param	post	    [in] Add‚³‚ê‚éƒIƒuƒWƒFƒNƒg
- *	@param	key 	    [in] post‚·‚éƒf[ƒ^‚Ìkey–¼
- *	@param	buffer 	    [in] post‚·‚éƒf[ƒ^‚Ì“à—e
- *	@param  bufferlen   [in] post‚·‚éƒf[ƒ^‚Ì’·‚³
- *	@param  filename    [in] post‚·‚éƒf[ƒ^‚Ìƒtƒ@ƒCƒ‹ƒl[ƒ€(ƒT[ƒo‘¤‚ÅŽæ“¾‚Å‚«‚é)
- *	@param  contentType [in] post‚·‚éƒf[ƒ^‚ÌƒRƒ“ƒeƒ“ƒgƒ^ƒCƒv(ƒT[ƒo‘¤‚ÅŽæ“¾‚Å‚«‚é)
+ *	@param	post	    [in] Addã•ã‚Œã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	key 	    [in] postã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®keyå
+ *	@param	buffer 	    [in] postã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®å†…å®¹
+ *	@param  bufferlen   [in] postã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+ *	@param  filename    [in] postã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ (ã‚µãƒ¼ãƒå´ã§å–å¾—ã§ãã‚‹)
+ *	@param  contentType [in] postã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ³ãƒ†ãƒ³ãƒˆã‚¿ã‚¤ãƒ—(ã‚µãƒ¼ãƒå´ã§å–å¾—ã§ãã‚‹)
  *
- *	@retval	TRUE		¬Œ÷
- *	@retval	FALSE   	Ž¸”s
+ *	@retval	TRUE		æˆåŠŸ
+ *	@retval	FALSE   	å¤±æ•—
  */
 //=============================================================================
 BOOL    DWC_GHTTPPostAddFileFromMemory( DWCGHTTPPost *post, const char *key, const char *buffer, int bufferlen, const char *filename, const char *contentType ){
@@ -277,15 +277,15 @@ BOOL    DWC_GHTTPPostAddFileFromMemory( DWCGHTTPPost *post, const char *key, con
 
 //=============================================================================
 /*!
- *	@brief	ƒf[ƒ^‚Ì‘—M
+ *	@brief	ãƒ‡ãƒ¼ã‚¿ã®é€ä¿¡
  *
- *	@param	url		[in] ƒŠƒXƒgŽæ“¾æ‚Ì‚t‚q‚k
- *	@param	post	[in] post‚·‚éƒIƒuƒWƒFƒNƒg
- *	@param	proc	[in] ƒŒƒXƒ|ƒ“ƒX‚ðˆ—‚·‚éƒR[ƒ‹ƒoƒbƒN
- *	@param	param	[in] ƒR[ƒ‹ƒoƒbƒN—pƒpƒ‰ƒ[ƒ^
+ *	@param	url		[in] ãƒªã‚¹ãƒˆå–å¾—å…ˆã®ï¼µï¼²ï¼¬
+ *	@param	post	[in] postã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	proc	[in] ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’å‡¦ç†ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ *	@param	param	[in] ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- *	@retval	req		 0ˆÈã ƒŠƒNƒGƒXƒgŽ¯•ÊŽqi¬Œ÷j
- *                  -1ˆÈ‰º ƒŠƒNƒGƒXƒgƒGƒ‰[’l
+ *	@retval	req		 0ä»¥ä¸Š ãƒªã‚¯ã‚¨ã‚¹ãƒˆè­˜åˆ¥å­ï¼ˆæˆåŠŸï¼‰
+ *                  -1ä»¥ä¸‹ ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¨ãƒ©ãƒ¼å€¤
  */
 //=============================================================================
 int 	DWC_PostGHTTPData( const char* url, GHTTPPost* post, DWCGHTTPCompletedCallback completedCallback, void* param){
@@ -335,14 +335,14 @@ int 	DWC_PostGHTTPData( const char* url, GHTTPPost* post, DWCGHTTPCompletedCallb
 
 //=============================================================================
 /*!
- *	@brief	ƒf[ƒ^‚ÌŽóM
+ *	@brief	ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡
  *
- *	@param	url		[in] ƒŠƒXƒgŽæ“¾æ‚Ì‚t‚q‚k
- *	@param	proc	[in] ƒŒƒXƒ|ƒ“ƒX‚ðˆ—‚·‚éƒR[ƒ‹ƒoƒbƒN
- *	@param	param	[in] ƒR[ƒ‹ƒoƒbƒN—pƒpƒ‰ƒ[ƒ^
+ *	@param	url		[in] ãƒªã‚¹ãƒˆå–å¾—å…ˆã®ï¼µï¼²ï¼¬
+ *	@param	proc	[in] ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’å‡¦ç†ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ *	@param	param	[in] ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- *	@retval	req		 0ˆÈã ƒŠƒNƒGƒXƒgŽ¯•ÊŽqi¬Œ÷j
- *                  -1ˆÈ‰º ƒŠƒNƒGƒXƒgƒGƒ‰[’l
+ *	@retval	req		 0ä»¥ä¸Š ãƒªã‚¯ã‚¨ã‚¹ãƒˆè­˜åˆ¥å­ï¼ˆæˆåŠŸï¼‰
+ *                  -1ä»¥ä¸‹ ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¨ãƒ©ãƒ¼å€¤
  */
 //=============================================================================
 int 	DWC_GetGHTTPData( const char* url, DWCGHTTPCompletedCallback completedCallback, void* param ){
@@ -385,17 +385,17 @@ int 	DWC_GetGHTTPData( const char* url, DWCGHTTPCompletedCallback completedCallb
 
 //=============================================================================
 /*!
- *	@brief	ƒf[ƒ^‚ÌŽóM(ƒoƒbƒtƒ@ƒTƒCƒYŽw’èAProgressCallbackŽw’è)
+ *	@brief	ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡(ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºæŒ‡å®šã€ProgressCallbackæŒ‡å®š)
  *
- *	@param	url		            [in] ƒŠƒXƒgŽæ“¾æ‚Ì‚t‚q‚k
- *	@param	bufferlen           [in] ŽóMƒoƒbƒtƒ@‚ÌƒTƒCƒY
- *	@param	post	[in] post‚·‚éƒIƒuƒWƒFƒNƒg
- *	@param	progressCallback	[in] ˆ—’†‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
- *  @param  completedCallback   [in] ƒŒƒXƒ|ƒ“ƒX‚ðˆ—‚·‚éƒR[ƒ‹ƒoƒbƒN
- *	@param	param	            [in] ƒR[ƒ‹ƒoƒbƒN—pƒpƒ‰ƒ[ƒ^
+ *	@param	url		            [in] ãƒªã‚¹ãƒˆå–å¾—å…ˆã®ï¼µï¼²ï¼¬
+ *	@param	bufferlen           [in] å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+ *	@param	post	[in] postã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	progressCallback	[in] å‡¦ç†ä¸­ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ *  @param  completedCallback   [in] ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’å‡¦ç†ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ *	@param	param	            [in] ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- *	@retval	req		 0ˆÈã ƒŠƒNƒGƒXƒgŽ¯•ÊŽqi¬Œ÷j
- *                  -1ˆÈ‰º ƒŠƒNƒGƒXƒgƒGƒ‰[’l
+ *	@retval	req		 0ä»¥ä¸Š ãƒªã‚¯ã‚¨ã‚¹ãƒˆè­˜åˆ¥å­ï¼ˆæˆåŠŸï¼‰
+ *                  -1ä»¥ä¸‹ ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¨ãƒ©ãƒ¼å€¤
  */
 //=============================================================================
 static int 	DWCi_GHTTPGetEx( const char* url, int bufferlen, BOOL buffer_clear, DWCGHTTPPost *post, DWCGHTTPProgressCallback progressCallback, DWCGHTTPCompletedCallback completedCallback, void* param ){
@@ -433,7 +433,7 @@ static int 	DWCi_GHTTPGetEx( const char* url, int bufferlen, BOOL buffer_clear, 
             return (int)DWC_GHTTP_INSUFFICIENT_MEMORY;
         }
 		
-		// entry‚Éƒ‰ƒbƒp‚É‚æ‚Á‚Äƒoƒbƒtƒ@‚ªŠm•Û‚³‚ê‚½‚±‚Æ‚ð‹L˜^
+		// entryã«ãƒ©ãƒƒãƒ‘ã«ã‚ˆã£ã¦ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿ã•ã‚ŒãŸã“ã¨ã‚’è¨˜éŒ²
 		entry->buf = buffer;
     }
 
@@ -465,16 +465,16 @@ static int 	DWCi_GHTTPGetEx( const char* url, int bufferlen, BOOL buffer_clear, 
 
 //=============================================================================
 /*!
- *	@brief	ƒf[ƒ^‚ÌŽóM(ƒoƒbƒtƒ@ƒTƒCƒYŽw’èAProgressCallbackŽw’è)
+ *	@brief	ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡(ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºæŒ‡å®šã€ProgressCallbackæŒ‡å®š)
  *
- *	@param	url		            [in] ƒŠƒXƒgŽæ“¾æ‚Ì‚t‚q‚k
- *	@param	bufferlen           [in] ŽóMƒoƒbƒtƒ@‚ÌƒTƒCƒY
- *	@param	progressCallback	[in] ˆ—’†‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
- *  @param  completedCallback   [in] ƒŒƒXƒ|ƒ“ƒX‚ðˆ—‚·‚éƒR[ƒ‹ƒoƒbƒN
- *	@param	param	            [in] ƒR[ƒ‹ƒoƒbƒN—pƒpƒ‰ƒ[ƒ^
+ *	@param	url		            [in] ãƒªã‚¹ãƒˆå–å¾—å…ˆã®ï¼µï¼²ï¼¬
+ *	@param	bufferlen           [in] å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+ *	@param	progressCallback	[in] å‡¦ç†ä¸­ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ *  @param  completedCallback   [in] ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’å‡¦ç†ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ *	@param	param	            [in] ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- *	@retval	req		 0ˆÈã ƒŠƒNƒGƒXƒgŽ¯•ÊŽqi¬Œ÷j
- *                  -1ˆÈ‰º ƒŠƒNƒGƒXƒgƒGƒ‰[’l
+ *	@retval	req		 0ä»¥ä¸Š ãƒªã‚¯ã‚¨ã‚¹ãƒˆè­˜åˆ¥å­ï¼ˆæˆåŠŸï¼‰
+ *                  -1ä»¥ä¸‹ ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¨ãƒ©ãƒ¼å€¤
  */
 //=============================================================================
 int DWC_GetGHTTPDataEx( const char* url, int bufferlen, BOOL buffer_clear, DWCGHTTPProgressCallback progressCallback, DWCGHTTPCompletedCallback completedCallback, void* param ){
@@ -485,17 +485,17 @@ int DWC_GetGHTTPDataEx( const char* url, int bufferlen, BOOL buffer_clear, DWCGH
 
 //=============================================================================
 /*!
- *	@brief	ƒf[ƒ^‚ÌŽóM(ƒoƒbƒtƒ@ƒTƒCƒYŽw’èAProgressCallbackŽw’è)
+ *	@brief	ãƒ‡ãƒ¼ã‚¿ã®å—ä¿¡(ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºæŒ‡å®šã€ProgressCallbackæŒ‡å®š)
  *
- *	@param	url		            [in] ƒŠƒXƒgŽæ“¾æ‚Ì‚t‚q‚k
- *	@param	bufferlen           [in] ŽóMƒoƒbƒtƒ@‚ÌƒTƒCƒY
- *	@param	post	[in] post‚·‚éƒIƒuƒWƒFƒNƒg
- *	@param	progressCallback	[in] ˆ—’†‚ÉŒÄ‚Î‚ê‚éƒR[ƒ‹ƒoƒbƒN
- *  @param  completedCallback   [in] ƒŒƒXƒ|ƒ“ƒX‚ðˆ—‚·‚éƒR[ƒ‹ƒoƒbƒN
- *	@param	param	            [in] ƒR[ƒ‹ƒoƒbƒN—pƒpƒ‰ƒ[ƒ^
+ *	@param	url		            [in] ãƒªã‚¹ãƒˆå–å¾—å…ˆã®ï¼µï¼²ï¼¬
+ *	@param	bufferlen           [in] å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+ *	@param	post	[in] postã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+ *	@param	progressCallback	[in] å‡¦ç†ä¸­ã«å‘¼ã°ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ *  @param  completedCallback   [in] ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’å‡¦ç†ã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ *	@param	param	            [in] ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
  *
- *	@retval	req		 0ˆÈã ƒŠƒNƒGƒXƒgŽ¯•ÊŽqi¬Œ÷j
- *                  -1ˆÈ‰º ƒŠƒNƒGƒXƒgƒGƒ‰[’l
+ *	@retval	req		 0ä»¥ä¸Š ãƒªã‚¯ã‚¨ã‚¹ãƒˆè­˜åˆ¥å­ï¼ˆæˆåŠŸï¼‰
+ *                  -1ä»¥ä¸‹ ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¨ãƒ©ãƒ¼å€¤
  */
 //=============================================================================
 int DWC_GetGHTTPDataEx2( const char* url, int bufferlen, BOOL buffer_clear, DWCGHTTPPost *post, DWCGHTTPProgressCallback progressCallback, DWCGHTTPCompletedCallback completedCallback, void* param ){
@@ -506,11 +506,11 @@ int DWC_GetGHTTPDataEx2( const char* url, int bufferlen, BOOL buffer_clear, DWCG
 
 //=============================================================================
 /*!
- *	@brief	HTTPƒŠƒNƒGƒXƒg‚ÌƒLƒƒƒ“ƒZƒ‹
+ *	@brief	HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ã‚­ãƒ£ãƒ³ã‚»ãƒ«
  *
- *	@param	req		[in] ’âŽ~‚·‚éHTTPƒŠƒNƒGƒXƒg‚ÌID(DWC_GetGHTTPDataEx‚Ì•Ô‚è’l)
+ *	@param	req		[in] åœæ­¢ã™ã‚‹HTTPãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ID(DWC_GetGHTTPDataExã®è¿”ã‚Šå€¤)
  *
- *	@retval	‚È‚µ
+ *	@retval	ãªã—
  */
 //=============================================================================
 void DWC_CancelGHTTPRequest(int req)
@@ -528,12 +528,12 @@ void DWC_CancelGHTTPRequest(int req)
 
 //=============================================================================
 /*!
- *	@brief	’ÊMó‘Ô‚ÌŠm”F
+ *	@brief	é€šä¿¡çŠ¶æ…‹ã®ç¢ºèª
  *
- *	@param	req		[in] ƒŠƒNƒGƒXƒgŽ¯•ÊŽq
+ *	@param	req		[in] ãƒªã‚¯ã‚¨ã‚¹ãƒˆè­˜åˆ¥å­
  *
- *	@retval	state	’ÊMó‘Ô
- *  @retval False   Ž¸”s
+ *	@retval	state	é€šä¿¡çŠ¶æ…‹
+ *  @retval False   å¤±æ•—
  */
 //=============================================================================
 DWCGHTTPState DWC_GetGHTTPState( int req )
@@ -548,11 +548,11 @@ DWCGHTTPState DWC_GetGHTTPState( int req )
 
 //=============================================================================
 /*!
- *	@brief	GHTTP‘Î‰žƒGƒ‰[ˆ—ŠÖ”
+ *	@brief	GHTTPå¯¾å¿œã‚¨ãƒ©ãƒ¼å‡¦ç†é–¢æ•°
  *
- *	@param	result	[in] GHTTP‚Ìˆ—Œ‹‰Ê
+ *	@param	result	[in] GHTTPã®å‡¦ç†çµæžœ
  *
- *	@retval	state	GHTTP‚Ìˆ—Œ‹‰ÊŒ^iˆø”‚ð‚»‚Ì‚Ü‚Ü•Ô‚·j
+ *	@retval	state	GHTTPã®å‡¦ç†çµæžœåž‹ï¼ˆå¼•æ•°ã‚’ãã®ã¾ã¾è¿”ã™ï¼‰
  */
 //=============================================================================
 static DWCGHTTPResult DWCi_HandleGHTTPError(DWCGHTTPResult result)
@@ -640,37 +640,37 @@ static DWCGHTTPResult DWCi_HandleGHTTPError(DWCGHTTPResult result)
 
 //=============================================================================
 /*!
- *	@brief	GHTTPƒpƒ‰ƒ[ƒ^ƒŠƒXƒgƒGƒ“ƒgƒŠ‚ð’Ç‰Á
+ *	@brief	GHTTPãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‚¨ãƒ³ãƒˆãƒªã‚’è¿½åŠ 
  *
- *	@param	param	[in] ’Ç‰Á‚·‚éDWCGHTTPParam‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	param	[in] è¿½åŠ ã™ã‚‹DWCGHTTPParamã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	NULLˆÈŠO	Šm•Û‚³‚ê‚½DWCGHTTPParamEntry‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *	@retval	NULL   		Ž¸”s(ƒƒ‚ƒŠŠm•ÛŽ¸”sˆµ‚¢‚ÌƒGƒ‰[ˆ—‚ðs‚¤‚±‚Æ)
+ *	@retval	NULLä»¥å¤–	ç¢ºä¿ã•ã‚ŒãŸDWCGHTTPParamEntryã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *	@retval	NULL   		å¤±æ•—(ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—æ‰±ã„ã®ã‚¨ãƒ©ãƒ¼å‡¦ç†ã‚’è¡Œã†ã“ã¨)
  */
 //=============================================================================
 static DWCGHTTPParamEntry *DWCi_AppendDWCGHTTPParam(const DWCGHTTPParam *param)
 {
 	DWCGHTTPParamEntry *entry;
 	
-	// ƒŠƒ“ƒNƒŠƒXƒg‚É‰Á‚¦‚éƒGƒ“ƒgƒŠ‚ðì¬
+	// ãƒªãƒ³ã‚¯ãƒªã‚¹ãƒˆã«åŠ ãˆã‚‹ã‚¨ãƒ³ãƒˆãƒªã‚’ä½œæˆ
 	entry = DWC_Alloc(DWC_ALLOCTYPE_BASE, sizeof(DWCGHTTPParamEntry));
 	if(entry == NULL)
 		return NULL;
 	
-	// ˆø”‚Æ‚µ‚Ä—^‚¦‚ç‚ê‚½param‚ðƒRƒs[
+	// å¼•æ•°ã¨ã—ã¦ä¸Žãˆã‚‰ã‚ŒãŸparamã‚’ã‚³ãƒ”ãƒ¼
 	entry->param = *param;
 	
-	// ParamEntry“ÆŽ©‚Ìƒƒ“ƒo‚ð‰Šú‰»
+	// ParamEntryç‹¬è‡ªã®ãƒ¡ãƒ³ãƒã‚’åˆæœŸåŒ–
 	entry->nextentry = NULL;
 	entry->buf = NULL;
 	
-	// æ“ª‚ª‚¢‚È‚¢ê‡
+	// å…ˆé ­ãŒã„ãªã„å ´åˆ
 	if(paramhead == NULL) {
 		paramhead = entry;
 		return entry;
 	}
 	
-	// æ“ª‚ª‚¢‚éê‡‚Íæ“ª‚É•t‚¯‰Á‚¦‚é
+	// å…ˆé ­ãŒã„ã‚‹å ´åˆã¯å…ˆé ­ã«ä»˜ã‘åŠ ãˆã‚‹
 	entry->nextentry = paramhead;
 	paramhead = entry;
 	
@@ -679,22 +679,22 @@ static DWCGHTTPParamEntry *DWCi_AppendDWCGHTTPParam(const DWCGHTTPParam *param)
 
 //=============================================================================
 /*!
- *	@brief	GHTTPƒpƒ‰ƒ[ƒ^ƒŠƒXƒgƒGƒ“ƒgƒŠ‚ðíœ
+ *	@brief	GHTTPãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‚¨ãƒ³ãƒˆãƒªã‚’å‰Šé™¤
  *
- *	@param	param	[in] íœ‚·‚éDWCGHTTPParam‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ *	@param	param	[in] å‰Šé™¤ã™ã‚‹DWCGHTTPParamã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- *	@retval	‚È‚µ
+ *	@retval	ãªã—
  */
 //=============================================================================
 static void DWCi_RemoveDWCGHTTPParamEntry(DWCGHTTPParamEntry *entry)
 {
 	DWCGHTTPParamEntry *cursor, *target;
 	
-	// æ“ª‚ª‚¢‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢
+	// å…ˆé ­ãŒã„ãªã„å ´åˆã¯ä½•ã‚‚ã—ãªã„
 	if(paramhead == NULL)
 		return;
 	
-	// æ“ª‚ªíœ‘ÎÛ‚Ìê‡‚Í“Á•Ê‚Èíœ•û–@‚ðŽg‚¤•K—v‚ª‚ ‚é
+	// å…ˆé ­ãŒå‰Šé™¤å¯¾è±¡ã®å ´åˆã¯ç‰¹åˆ¥ãªå‰Šé™¤æ–¹æ³•ã‚’ä½¿ã†å¿…è¦ãŒã‚ã‚‹
 	if(paramhead == entry) {
 		cursor = paramhead->nextentry;
 		DWC_Free(DWC_ALLOCTYPE_BASE, (void*)paramhead, 0);
@@ -702,7 +702,7 @@ static void DWCi_RemoveDWCGHTTPParamEntry(DWCGHTTPParamEntry *entry)
 		return;
 	}
 	
-	// ƒJ[ƒ\ƒ‹‚ÌŽŸ‚ªíœ‘ÎÛ‚È‚ç‚Îc
+	// ã‚«ãƒ¼ã‚½ãƒ«ã®æ¬¡ãŒå‰Šé™¤å¯¾è±¡ãªã‚‰ã°â€¦
 	cursor = paramhead;
 	while(cursor->nextentry != NULL) {
 		if(cursor->nextentry != entry) {
@@ -721,18 +721,18 @@ static void DWCi_RemoveDWCGHTTPParamEntry(DWCGHTTPParamEntry *entry)
 
 //=============================================================================
 /*!
- *	@brief	req‚Ì’l‚©‚çGHTTPƒpƒ‰ƒ[ƒ^ƒŠƒXƒgƒGƒ“ƒgƒŠ‚ðŒŸõ
+ *	@brief	reqã®å€¤ã‹ã‚‰GHTTPãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‚¨ãƒ³ãƒˆãƒªã‚’æ¤œç´¢
  *
- *	@param	req	[in] ŒŸõ‘ÎÛ‚ÌDWCGHTTPParam‚ÌŽ‚Âreqid
+ *	@param	req	[in] æ¤œç´¢å¯¾è±¡ã®DWCGHTTPParamã®æŒã¤reqid
  *
- *	@retval	‚È‚µ
+ *	@retval	ãªã—
  */
 //=============================================================================
 static DWCGHTTPParamEntry *DWCi_FindDWCGHTTPParamEntryByReq(int req)
 {
 	DWCGHTTPParamEntry *cursor;
 	
-	// ƒJ[ƒ\ƒ‹‚ÌŽŸ‚ªŒŸõ‘ÎÛ‚È‚ç‚Îc
+	// ã‚«ãƒ¼ã‚½ãƒ«ã®æ¬¡ãŒæ¤œç´¢å¯¾è±¡ãªã‚‰ã°â€¦
 	cursor = paramhead;
 	while(cursor != NULL && cursor->req != req)
 		cursor = cursor->nextentry;
@@ -742,11 +742,11 @@ static DWCGHTTPParamEntry *DWCi_FindDWCGHTTPParamEntryByReq(int req)
 
 //=============================================================================
 /*!
- *	@brief	GHTTPƒpƒ‰ƒ[ƒ^ƒŠƒXƒgƒGƒ“ƒgƒŠ‚ð‘Síœ
+ *	@brief	GHTTPãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆã‚¨ãƒ³ãƒˆãƒªã‚’å…¨å‰Šé™¤
  *
- *	@param	‚È‚µ
+ *	@param	ãªã—
  *
- *	@retval	‚È‚µ
+ *	@retval	ãªã—
  */
 //=============================================================================
 static void DWCi_RemoveAllDWCGHTTPParamEntry(void)
@@ -758,10 +758,10 @@ static void DWCi_RemoveAllDWCGHTTPParamEntry(void)
 		target = cursor;
 		cursor = cursor->nextentry;
 		
-		// ƒ‰ƒbƒp‚ªƒoƒbƒtƒ@‚ðŠm•Û‚µ‚Ä‚¢‚½ê‡‚Í‰ð•ú
+		// ãƒ©ãƒƒãƒ‘ãŒãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã—ã¦ã„ãŸå ´åˆã¯è§£æ”¾
 		if(target->buf != NULL)
 			DWC_Free(DWC_ALLOCTYPE_BASE, (void*)target->buf, 0);
-		// ƒGƒ“ƒgƒŠ‚»‚Ì‚à‚Ì‚ð‰ð•ú
+		// ã‚¨ãƒ³ãƒˆãƒªãã®ã‚‚ã®ã‚’è§£æ”¾
 		DWC_Free(DWC_ALLOCTYPE_BASE, (void*)target, 0);
 	}
 	

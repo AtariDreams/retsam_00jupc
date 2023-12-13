@@ -12,7 +12,7 @@
 
   $Log: ctrdg.h,v $
   Revision 1.4  2006/04/05 10:30:06  okubata_ryoma
-  AGBバックアップライブラリのSDK収録のための変更
+  AGB繝舌ャ繧ｯ繧｢繝�繝励Λ繧､繝悶Λ繝ｪ縺ｮSDK蜿朱鹸縺ｮ縺溘ａ縺ｮ螟画峩
 
   Revision 1.3  2005/04/05 23:52:58  yosizaki
   fix copyright date.

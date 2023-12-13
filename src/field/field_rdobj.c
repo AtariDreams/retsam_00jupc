@@ -2,7 +2,7 @@
 /**
  * 
  * @file	field_rdobj.c
- * @brief	ƒtƒB[ƒ‹ƒh@ƒŒƒ“ƒ_ƒŠƒ“ƒOOBJ
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã€€ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°OBJ
  * @author	kagaya
  * @data	05.07.13
  */
@@ -26,7 +26,7 @@
 //--------------------------------------------------------------
 //	debug
 //--------------------------------------------------------------
-//#define DEBUG_MDL_VINTR_BUG_PASS	//’è‹`‚Åƒ‚ƒfƒ‹“]‘—ƒ^ƒXƒNƒoƒO‚ğ‰ñ”ğ
+//#define DEBUG_MDL_VINTR_BUG_PASS	//å®šç¾©ã§ãƒ¢ãƒ‡ãƒ«è»¢é€ã‚¿ã‚¹ã‚¯ãƒã‚°ã‚’å›é¿
 
 //==============================================================================
 //	typedef
@@ -54,7 +54,7 @@ static const MtxFx33 DATA_ZeroRotateFx33 =
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * FRO_MDL	ƒNƒŠƒA
+ * FRO_MDL	ã‚¯ãƒªã‚¢
  * @param	rmdl	FRO_MDL
  * @retval	nothing
  */
@@ -66,11 +66,11 @@ void FRO_MDL_Clear( FRO_MDL *rmdl )
 
 //--------------------------------------------------------------
 /**
- * ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹ƒwƒbƒ_[‚©‚çFRO_MDLİ’è
- * ƒwƒbƒ_[“à‚©‚çƒ‚ƒfƒ‹AƒeƒNƒXƒ`ƒƒ‚ğæ‚èo‚·B
+ * ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ãƒ¼ã‹ã‚‰FRO_MDLè¨­å®š
+ * ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã‹ã‚‰ãƒ¢ãƒ‡ãƒ«ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å–ã‚Šå‡ºã™ã€‚
  * @param	rmdl	FRO_MDL
- * @param	head	ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹ƒf[ƒ^
- * @param	idx	æ“¾‚·‚éƒ‚ƒfƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @param	head	ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿
+ * @param	idx	å–å¾—ã™ã‚‹ãƒ¢ãƒ‡ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -86,13 +86,13 @@ void FRO_MDL_ResSetFileHeader( FRO_MDL *rmdl, NNSG3dResFileHeader *head, u32 idx
 
 //--------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒu‚©‚çimdƒtƒ@ƒCƒ‹ƒwƒbƒ_[‚ğƒ[ƒhŒãA
- * ƒwƒbƒ_[“à‚©‚çƒ‚ƒfƒ‹AƒeƒNƒXƒ`ƒƒ‚ğæ‚èo‚·B
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰imdãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ãƒ¼ã‚’ãƒ­ãƒ¼ãƒ‰å¾Œã€
+ * ãƒ˜ãƒƒãƒ€ãƒ¼å†…ã‹ã‚‰ãƒ¢ãƒ‡ãƒ«ã€ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’å–ã‚Šå‡ºã™ã€‚
  * @param	rmdl	FRO_MDL
- * @param	idx		æ“¾‚·‚éƒ‚ƒfƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param	handle	ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- * @param	arc_idx	ƒA[ƒJƒCƒu“àimdƒtƒ@ƒCƒ‹ƒwƒbƒ_[ƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id	ƒq[ƒvID
+ * @param	idx		å–å¾—ã™ã‚‹ãƒ¢ãƒ‡ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	handle	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ * @param	arc_idx	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…imdãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ãƒ¼ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id	ãƒ’ãƒ¼ãƒ—ID
  * @param	alloc_type	ALLOC_TYPE
  * @retval	nothing
  */
@@ -107,7 +107,7 @@ void FRO_MDL_ResSetArcLoad( FRO_MDL *rmdl, u32 idx,
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒ VRAM‚Ö“]‘—‚µƒ‚ƒfƒ‹‚ÆƒoƒCƒ“ƒh
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ VRAMã¸è»¢é€ã—ãƒ¢ãƒ‡ãƒ«ã¨ãƒã‚¤ãƒ³ãƒ‰
  * @param	rmdl	FRO_MDL
  * @retval	nothing
  */
@@ -121,7 +121,7 @@ void FRO_MDL_TexTransBind( FRO_MDL *rmdl )
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒ VRAM‚Ö“]‘—‚µƒ‚ƒfƒ‹‚ÆƒoƒCƒ“ƒh TCB
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£ VRAMã¸è»¢é€ã—ãƒ¢ãƒ‡ãƒ«ã¨ãƒã‚¤ãƒ³ãƒ‰ TCB
  * @param	rmdl	FRO_MDL
  * @retval	nothing
  */
@@ -149,8 +149,8 @@ static void VIntrTCB_MDL_TexTransBind( TCB_PTR tcb, void *wk )
 
 //--------------------------------------------------------------
 /**
- * ƒeƒNƒXƒ`ƒƒ“]‘—VBlankƒ^ƒXƒN‚ğ’Ç‰Á
- * VBlank’†‚ÉFRO_MDL_TexTransBind()‚ğÀs‚µ©“®Á–Å‚·‚éƒ^ƒXƒNB
+ * ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€VBlankã‚¿ã‚¹ã‚¯ã‚’è¿½åŠ 
+ * VBlankä¸­ã«FRO_MDL_TexTransBind()ã‚’å®Ÿè¡Œã—è‡ªå‹•æ¶ˆæ»…ã™ã‚‹ã‚¿ã‚¹ã‚¯ã€‚
  * @param	rmdl	FRO_MDL
  * @retval	nothing
  */
@@ -206,7 +206,7 @@ void FRO_MDL_TexTransBindVTaskAdd( FRO_MDL *rmdl )
 
 //--------------------------------------------------------------
 /**
- * FRO_MDL ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹ŠJ•ú
+ * FRO_MDL ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«é–‹æ”¾
  * @param	rmdl	FRO_MDL
  * @retval	nothing
  */
@@ -220,7 +220,7 @@ void FRO_MDL_ResHeaderFree( FRO_MDL *rmdl )
 
 //--------------------------------------------------------------
 /**
- * FRO_MDL@ƒeƒNƒXƒ`ƒƒŠJ•ú
+ * FRO_MDLã€€ãƒ†ã‚¯ã‚¹ãƒãƒ£é–‹æ”¾
  * @param	rmdl	FRO_MDL
  * @retval	nothing
  */
@@ -244,7 +244,7 @@ void FRO_MDL_TexFree( FRO_MDL *rmdl )
 
 //--------------------------------------------------------------
 /**
- * FRO_MDL ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹ŠJ•ú•ƒeƒNƒXƒ`ƒƒŠJ•ú•ƒ[ƒNƒNƒŠƒA
+ * FRO_MDL ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«é–‹æ”¾ï¼†ãƒ†ã‚¯ã‚¹ãƒãƒ£é–‹æ”¾ï¼†ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢
  * @param	rmdl	FRO_MDL
  * @retval	nothing
  */
@@ -258,9 +258,9 @@ void FRO_MDL_DeleteAll( FRO_MDL *rmdl )
 
 //--------------------------------------------------------------
 /**
- * FRO_MDL	ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒhƒ`ƒFƒbƒN
+ * FRO_MDL	ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰ãƒã‚§ãƒƒã‚¯
  * @param	rmdl
- * @retval	BOOL	TRUE=ƒoƒCƒ“ƒhÏ‚İ
+ * @retval	BOOL	TRUE=ãƒã‚¤ãƒ³ãƒ‰æ¸ˆã¿
  */
 //--------------------------------------------------------------
 BOOL FRO_MDL_TexBindCheck( FRO_MDL *rmdl )
@@ -273,7 +273,7 @@ BOOL FRO_MDL_TexBindCheck( FRO_MDL *rmdl )
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * FRO_ANM ƒNƒŠƒA
+ * FRO_ANM ã‚¯ãƒªã‚¢
  * @param	ranm	FRO_ANM
  * @retval	nothing
  */
@@ -285,10 +285,10 @@ void FRO_ANM_Clear( FRO_ANM *ranm )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒX‚ğƒZƒbƒg@ƒŠƒ\[ƒXƒƒCƒ“
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã€€ãƒªã‚½ãƒ¼ã‚¹ãƒ¡ã‚¤ãƒ³
  * @param	ranm	FRO_ANM
- * @param	pRes	ƒAƒjƒƒŠƒ\[ƒX
- * @param	idx		QÆƒŠƒ\[ƒXƒCƒ“ƒfƒbƒNƒX
+ * @param	pRes	ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
+ * @param	idx		å‚ç…§ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -300,10 +300,10 @@ void FRO_ANM_AnmResSetMain( FRO_ANM *ranm, void *pRes, u32 idx )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒX‚ğƒZƒbƒg@ƒŠƒ\[ƒX—¬—p
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã€€ãƒªã‚½ãƒ¼ã‚¹æµç”¨
  * @param	ranm	FRO_ANM
- * @param	pRes	ƒAƒjƒƒŠƒ\[ƒX
- * @param	idx		QÆƒŠƒ\[ƒXƒCƒ“ƒfƒbƒNƒX
+ * @param	pRes	ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
+ * @param	idx		å‚ç…§ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -315,11 +315,11 @@ void FRO_ANM_AnmResSetSub( FRO_ANM *ranm, void *pRes, u32 idx )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒX‚ğƒZƒbƒgB
- * Šù‚ÉƒZƒbƒgÏ‚İFRO_ANM“à‚ÌƒŠƒ\[ƒX—¬—p‚µFRO_ANM_AnmResSetSub()
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã€‚
+ * æ—¢ã«ã‚»ãƒƒãƒˆæ¸ˆã¿FRO_ANMå†…ã®ãƒªã‚½ãƒ¼ã‚¹æµç”¨ã—FRO_ANM_AnmResSetSub()
  * @param	ranm	FRO_ANM
- * @param	m_ranm	ƒŠƒ\[ƒXƒZƒbƒgÏ‚İFRO_ANM
- * @param	idx		QÆƒŠƒ\[ƒXƒCƒ“ƒfƒbƒNƒX
+ * @param	m_ranm	ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆæ¸ˆã¿FRO_ANM
+ * @param	idx		å‚ç…§ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -331,12 +331,12 @@ void FRO_ANM_AnmResSetSame( FRO_ANM *ranm, FRO_ANM *m_ranm, u32 idx )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒX‚ğƒA[ƒJƒCƒu‚©‚ç“Ç‚İ‚İAFRO_ANM_AnmResSetMain()‚ÅƒZƒbƒg
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‹ã‚‰èª­ã¿è¾¼ã¿ã€FRO_ANM_AnmResSetMain()ã§ã‚»ãƒƒãƒˆ
  * @param	ranm	FRO_ANM
- * @param	idx		æ“¾‚·‚éƒAƒjƒƒŠƒ\[ƒXƒCƒ“ƒfƒbƒNƒX
- * @param	handle	ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- * @param	arc_idx	ƒA[ƒJƒCƒu“àƒAƒjƒƒŠƒ\[ƒXƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id	ƒq[ƒvID
+ * @param	idx		å–å¾—ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	handle	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ * @param	arc_idx	ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å†…ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id	ãƒ’ãƒ¼ãƒ—ID
  * @param	alloc_type	ALLOC_TYPE
  * @retval	nothing
  */
@@ -351,10 +351,10 @@ void FRO_ANM_AnmResSetArcLoad( FRO_ANM *ranm, u32 idx,
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒXƒZƒbƒg
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆ
  * @param	ranm	FRO_ANM
- * @param	pRes	ƒAƒjƒƒŠƒ\[ƒX
- * @param	idx		QÆƒŠƒ\[ƒXƒCƒ“ƒfƒbƒNƒX
+ * @param	pRes	ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
+ * @param	idx		å‚ç…§ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  * @retval
  */
 //--------------------------------------------------------------
@@ -367,8 +367,8 @@ static void FROAnm_AnmResSet( FRO_ANM *ranm, void *pRes, u32 idx )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒXŠJ•úB
- * FRO_ANM_AnmResSetMain()‚ÅŠm•Û‚µ‚½ê‡AƒŠƒ\[ƒXŒ³‚ğ•¹‚¹‚ÄŠJ•ú
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾ã€‚
+ * FRO_ANM_AnmResSetMain()ã§ç¢ºä¿ã—ãŸå ´åˆã€ãƒªã‚½ãƒ¼ã‚¹å…ƒã‚’ä½µã›ã¦é–‹æ”¾
  * @param	ranm	FRO_ANM
  * @retval	nothing
  */
@@ -386,10 +386,10 @@ void FRO_ANM_AnmResFree( FRO_ANM *ranm )
 
 //--------------------------------------------------------------
 /**
- * ƒIƒuƒWƒFƒŠƒ\[ƒXŠm•Û
+ * ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹ç¢ºä¿
  * @param	ranm	FRO_ANM
  * @param	pMdl	NNSG3dResMdl
- * @param	heap_id	ƒq[ƒvID
+ * @param	heap_id	ãƒ’ãƒ¼ãƒ—ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -402,10 +402,10 @@ void FRO_ANM_AllocAnmObj( FRO_ANM *ranm, const NNSG3dResMdl *pMdl, u32 heap_id )
 
 //--------------------------------------------------------------
 /**
- * ƒIƒuƒWƒFƒŠƒ\[ƒXŠm•Û rmdl“à‚Ìƒ‚ƒfƒ‹‚ğg—p‚µƒŠƒ\[ƒXŠm•Û
+ * ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹ç¢ºä¿ rmdlå†…ã®ãƒ¢ãƒ‡ãƒ«ã‚’ä½¿ç”¨ã—ãƒªã‚½ãƒ¼ã‚¹ç¢ºä¿
  * @param	ranm	FRO_ANM
  * @param	rmdl	FRO_MDL
- * @param	heap_id	ƒq[ƒvID
+ * @param	heap_id	ãƒ’ãƒ¼ãƒ—ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -416,7 +416,7 @@ void FRO_ANM_AllocAnmObjInMdl( FRO_ANM *ranm, const FRO_MDL *rmdl, u32 heap_id )
 
 //--------------------------------------------------------------
 /**
- * ƒIƒuƒWƒFƒŠƒ\[ƒX‰Šú‰»
+ * ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ–
  * @param	ranm	FRO_ANM
  * @param	pResMdl	NNSG3dResMdl
  * @param	pResTex NNSG3dResTex
@@ -431,7 +431,7 @@ void FRO_ANM_AnmObjInit( FRO_ANM *ranm,
 
 //--------------------------------------------------------------
 /**
- * ƒIƒuƒWƒFƒŠƒ\[ƒX‰Šú‰» FRO_MDL“àƒŠƒ\[ƒXg—p
+ * ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹åˆæœŸåŒ– FRO_MDLå†…ãƒªã‚½ãƒ¼ã‚¹ä½¿ç”¨
  * @param	ranm	FRO_ANM
  * @param	rmdl	FRO_MDL
  * @retval	nothing
@@ -444,15 +444,15 @@ void FRO_ANM_AnmObjInitInMdl( FRO_ANM *ranm, const FRO_MDL *rmdl )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒX•ƒIƒuƒWƒFƒŠƒ\[ƒX‚ÌˆêŠ‡‰Šú‰»BƒŠƒ\[ƒXƒƒCƒ“
- * FRO_ANM_AnmResSetMain()‚ÅƒŠƒ\[ƒX‚ğƒZƒbƒg‚µ
- * FRO_ANM_AllocAnmObjInMdlAlloc()‚ÅƒAƒƒP[ƒ^ì¬Œã‚ÉƒIƒuƒWƒFƒŠƒ\[ƒXƒZƒbƒgŒã
- * FRO_ANM_AnmObjInitInMdl()‚ÅƒIƒuƒWƒF‚Éƒ‚ƒfƒ‹‚ğƒZƒbƒg
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ï¼†ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹ã®ä¸€æ‹¬åˆæœŸåŒ–ã€‚ãƒªã‚½ãƒ¼ã‚¹ãƒ¡ã‚¤ãƒ³
+ * FRO_ANM_AnmResSetMain()ã§ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã—
+ * FRO_ANM_AllocAnmObjInMdlAlloc()ã§ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ä½œæˆå¾Œã«ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆå¾Œ
+ * FRO_ANM_AnmObjInitInMdl()ã§ã‚ªãƒ–ã‚¸ã‚§ã«ãƒ¢ãƒ‡ãƒ«ã‚’ã‚»ãƒƒãƒˆ
  * @param	ranm	FRO_ANM
  * @param	rmdl	FRO_MDL
- * @param	pRes	ƒAƒjƒƒŠƒ\[ƒX
- * @param	idx		QÆƒŠƒ\[ƒXƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id	ƒq[ƒvID
+ * @param	pRes	ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
+ * @param	idx		å‚ç…§ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id	ãƒ’ãƒ¼ãƒ—ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -466,15 +466,15 @@ void FRO_ANM_AnmResObjInitMain( FRO_ANM *ranm, const FRO_MDL *rmdl,
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒX•ƒIƒuƒWƒFƒŠƒ\[ƒX‚ÌˆêŠ‡‰Šú‰»BƒŠƒ\[ƒXƒTƒu
- * FRO_ANM_AnmResSetSub()‚ÅƒŠƒ\[ƒX‚ğƒZƒbƒg‚µ
- * FRO_ANM_AllocAnmObjInMdlAlloc()‚ÅƒAƒƒP[ƒ^ì¬Œã‚ÉƒIƒuƒWƒFƒŠƒ\[ƒXƒZƒbƒgŒã
- * FRO_ANM_AnmObjInitInMdl()‚ÅƒIƒuƒWƒF‚Éƒ‚ƒfƒ‹‚ğƒZƒbƒg
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ï¼†ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹ã®ä¸€æ‹¬åˆæœŸåŒ–ã€‚ãƒªã‚½ãƒ¼ã‚¹ã‚µãƒ–
+ * FRO_ANM_AnmResSetSub()ã§ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã—
+ * FRO_ANM_AllocAnmObjInMdlAlloc()ã§ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ä½œæˆå¾Œã«ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆå¾Œ
+ * FRO_ANM_AnmObjInitInMdl()ã§ã‚ªãƒ–ã‚¸ã‚§ã«ãƒ¢ãƒ‡ãƒ«ã‚’ã‚»ãƒƒãƒˆ
  * @param	ranm	FRO_ANM
  * @param	rmdl	FRO_MDL
- * @param	pRes	ƒAƒjƒƒŠƒ\[ƒX
- * @param	idx		QÆƒŠƒ\[ƒXƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id	ƒq[ƒvID
+ * @param	pRes	ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹
+ * @param	idx		å‚ç…§ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id	ãƒ’ãƒ¼ãƒ—ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -488,15 +488,15 @@ void FRO_ANM_AnmResObjInitSub( FRO_ANM *ranm, const FRO_MDL *rmdl,
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒX•ƒIƒuƒWƒFƒŠƒ\[ƒX‚ÌˆêŠ‡‰Šú‰»BƒŠƒ\[ƒXƒTƒu
- * FRO_ANM_AnmResSetSame()‚ÅƒŠƒ\[ƒX‚ğƒZƒbƒg‚µ
- * FRO_ANM_AllocAnmObjInMdlAlloc()‚ÅƒAƒƒP[ƒ^ì¬Œã‚ÉƒIƒuƒWƒFƒŠƒ\[ƒXƒZƒbƒgŒã
- * FRO_ANM_AnmObjInitInMdl()‚ÅƒIƒuƒWƒF‚Éƒ‚ƒfƒ‹‚ğƒZƒbƒg
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ï¼†ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹ã®ä¸€æ‹¬åˆæœŸåŒ–ã€‚ãƒªã‚½ãƒ¼ã‚¹ã‚µãƒ–
+ * FRO_ANM_AnmResSetSame()ã§ãƒªã‚½ãƒ¼ã‚¹ã‚’ã‚»ãƒƒãƒˆã—
+ * FRO_ANM_AllocAnmObjInMdlAlloc()ã§ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ä½œæˆå¾Œã«ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆå¾Œ
+ * FRO_ANM_AnmObjInitInMdl()ã§ã‚ªãƒ–ã‚¸ã‚§ã«ãƒ¢ãƒ‡ãƒ«ã‚’ã‚»ãƒƒãƒˆ
  * @param	ranm	FRO_ANM
  * @param	rmdl	FRO_MDL
- * @param	m_ranm	ƒŠƒ\[ƒXƒZƒbƒgÏ‚İFRO_ANM
- * @param	idx		QÆƒŠƒ\[ƒXƒCƒ“ƒfƒbƒNƒX
- * @param	heap_id	ƒq[ƒvID
+ * @param	m_ranm	ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆæ¸ˆã¿FRO_ANM
+ * @param	idx		å‚ç…§ãƒªã‚½ãƒ¼ã‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	heap_id	ãƒ’ãƒ¼ãƒ—ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -510,7 +510,7 @@ void FRO_ANM_AnmResObjInitSame( FRO_ANM *ranm, const FRO_MDL *rmdl,
 
 //--------------------------------------------------------------
 /**
- * ƒIƒuƒWƒFƒŠƒ\[ƒXŠJ•ú
+ * ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾
  * @param	ranm	FRO_ANM
  * @retval	nothing
  */
@@ -525,8 +525,8 @@ void FRO_ANM_AnmObjFree( FRO_ANM *ranm )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒƒŠƒ\[ƒX•ƒIƒuƒWƒFƒŠƒ\[ƒXŠJ•ú‚Æƒ[ƒNƒNƒŠƒAB
- * FRO_ANM_AnmObjFree()‚ÆFRO_ANM_AnmResFree()‚ğŒÄ‚Ñ‚µAƒ[ƒNƒNƒŠƒA
+ * ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ï¼†ã‚ªãƒ–ã‚¸ã‚§ãƒªã‚½ãƒ¼ã‚¹é–‹æ”¾ã¨ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢ã€‚
+ * FRO_ANM_AnmObjFree()ã¨FRO_ANM_AnmResFree()ã‚’å‘¼ã³ã—ã€ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢
  * @param	ranm	FRO_ANM
  * @retval	nothing
  */
@@ -542,11 +542,11 @@ void FRO_ANM_DeleteAll( FRO_ANM *ranm )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒÄ¶
+ * ã‚¢ãƒ‹ãƒ¡å†ç”Ÿ
  * @param	ranm	FRO_ANM
- * @param	speed	Ä¶‘¬“x -speed=‹tÄ¶
+ * @param	speed	å†ç”Ÿé€Ÿåº¦ -speed=é€†å†ç”Ÿ
  * @param	loop	LOOPTYPE
- * @retval	BOOL	TRUE=I’[‚Ü‚ÅÄ¶ -spped=æ“ª‚Ü‚ÅÄ¶
+ * @retval	BOOL	TRUE=çµ‚ç«¯ã¾ã§å†ç”Ÿ -spped=å…ˆé ­ã¾ã§å†ç”Ÿ
  */
 //--------------------------------------------------------------
 BOOL FRO_ANM_Play( FRO_ANM *ranm, fx32 speed, ANMLOOPTYPE loop )
@@ -591,9 +591,9 @@ BOOL FRO_ANM_Play( FRO_ANM *ranm, fx32 speed, ANMLOOPTYPE loop )
 
 //--------------------------------------------------------------
 /**
- * Ä¶ƒtƒŒ[ƒ€ƒZƒbƒg
+ * å†ç”Ÿãƒ•ãƒ¬ãƒ¼ãƒ ã‚»ãƒƒãƒˆ
  * @param	ranm	FRO_ANM
- * @param	frame	ƒtƒŒ[ƒ€”
+ * @param	frame	ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -604,9 +604,9 @@ void FRO_ANM_FrameSet( FRO_ANM *ranm, fx32 frame )
 
 //--------------------------------------------------------------
 /**
- * Œ»İ‚ÌÄ¶ƒtƒŒ[ƒ€æ“¾
+ * ç¾åœ¨ã®å†ç”Ÿãƒ•ãƒ¬ãƒ¼ãƒ å–å¾—
  * @param	ranm	FRO_ANM
- * @retval	fx32	ƒtƒŒ[ƒ€”
+ * @retval	fx32	ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  */
 //--------------------------------------------------------------
 fx32 FRO_ANM_FrameGet( const FRO_ANM *ranm )
@@ -616,9 +616,9 @@ fx32 FRO_ANM_FrameGet( const FRO_ANM *ranm )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ‚ÌÅ‘åƒtƒŒ[ƒ€”æ“¾
+ * ã‚¢ãƒ‹ãƒ¡ã®æœ€å¤§ãƒ•ãƒ¬ãƒ¼ãƒ æ•°å–å¾—
  * @param	ranm	FRO_ANM
- * @retval	fx32	ƒtƒŒ[ƒ€”
+ * @retval	fx32	ãƒ•ãƒ¬ãƒ¼ãƒ æ•°
  */
 //--------------------------------------------------------------
 fx32 FRO_ANM_MaxFrameGet( const FRO_ANM *ranm )
@@ -632,9 +632,9 @@ fx32 FRO_ANM_MaxFrameGet( const FRO_ANM *ranm )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒI—¹ƒtƒ‰ƒOƒ`ƒFƒbƒN
+ * ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
  * @param	ranm	FRO_ANM
- * @retval	BOOL	TRUE=ƒAƒjƒI—¹
+ * @retval	BOOL	TRUE=ã‚¢ãƒ‹ãƒ¡çµ‚äº†
  */
 //--------------------------------------------------------------
 BOOL FRO_ANM_AnmEndCheck( const FRO_ANM *ranm )
@@ -647,7 +647,7 @@ BOOL FRO_ANM_AnmEndCheck( const FRO_ANM *ranm )
 
 //--------------------------------------------------------------
 /**
- * FRO_ANM ƒAƒjƒƒŠƒ\[ƒX‚ğ•Ô‚·
+ * FRO_ANM ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã‚’è¿”ã™
  * @param	ranm FRO_ANM
  * @param	pResAnmData
  * @retval	nothing
@@ -663,7 +663,7 @@ void * FRO_ANM_ResAnmGet( FRO_ANM *ranm )
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * FRO_OBJ ƒ[ƒNƒNƒŠƒA
+ * FRO_OBJ ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢
  * @param	robj	FRO_OBJ
  * @retval	nothing
  */
@@ -675,7 +675,7 @@ void FRO_OBJ_Clear( FRO_OBJ *robj )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_ƒŠƒ“ƒOOBJ‰Šú‰»
+ * ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°OBJåˆæœŸåŒ–
  * @param	robj	FRO_OBJ
  * @param	pResMdl	NNSG3dResMdl
  * @retval	nothing
@@ -695,7 +695,7 @@ void FRO_OBJ_Init( FRO_OBJ *robj, NNSG3dResMdl *pResMdl )
 
 //--------------------------------------------------------------
 /**
- * ƒŒƒ“ƒ_ƒŠƒ“ƒOOBJ‰Šú‰» FRO_MDL“àƒ‚ƒfƒ‹‚ÆƒŠƒ“ƒN
+ * ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°OBJåˆæœŸåŒ– FRO_MDLå†…ãƒ¢ãƒ‡ãƒ«ã¨ãƒªãƒ³ã‚¯
  * @param	robj	FRO_OBJ
  * @param	rmdl	FRO_MDL
  * @retval	nothing
@@ -708,7 +708,7 @@ void FRO_OBJ_InitInMdl( FRO_OBJ *robj, FRO_MDL *rmdl )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ’Ç‰Á
+ * ã‚¢ãƒ‹ãƒ¡è¿½åŠ 
  * @param	robj	FRO_OBJ
  * @param	pAnmObj	NNSG3dAnmObj
  * @retval	nothing
@@ -721,7 +721,7 @@ void FRO_OBJ_AddAnm( FRO_OBJ *robj, NNSG3dAnmObj *pAnmObj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒíœ
+ * ã‚¢ãƒ‹ãƒ¡å‰Šé™¤
  * @param	robj	FRO_OBJ
  * @param	pAnmObj	NNSG3dAnmObj
  * @retval	nothing
@@ -734,7 +734,7 @@ void FRO_OBJ_DelAnm( FRO_OBJ *robj, NNSG3dAnmObj *pAnmObj )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒ’Ç‰Á@FRO_ANM“àƒAƒjƒƒIƒuƒWƒFg—p
+ * ã‚¢ãƒ‹ãƒ¡è¿½åŠ ã€€FRO_ANMå†…ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§ä½¿ç”¨
  * @param	robj	FRO_OBJ
  * @param	ranm	FRO_ANM
  * @retval	nothing
@@ -747,7 +747,7 @@ void FRO_OBJ_AddAnmInAnm( FRO_OBJ *robj, FRO_ANM *ranm )
 
 //--------------------------------------------------------------
 /**
- * ƒAƒjƒíœ@FRO_ANM“àƒAƒjƒƒIƒuƒWƒFg—p
+ * ã‚¢ãƒ‹ãƒ¡å‰Šé™¤ã€€FRO_ANMå†…ã‚¢ãƒ‹ãƒ¡ã‚ªãƒ–ã‚¸ã‚§ä½¿ç”¨
  * @param	robj	FRO_OBJ
  * @param	ranm	FRO_ANM
  * @retval	nothing
@@ -760,7 +760,7 @@ void FRO_OBJ_DelAnmInAnm( FRO_OBJ *robj, FRO_ANM *ranm )
 
 //--------------------------------------------------------------
 /**
- * OBJ‰Šú‰»•ƒAƒjƒ’Ç‰ÁBFRO_MDL,FRO_ANM“àƒŠƒ\[ƒX‚ğQÆ‚µ
+ * OBJåˆæœŸåŒ–ï¼†ã‚¢ãƒ‹ãƒ¡è¿½åŠ ã€‚FRO_MDL,FRO_ANMå†…ãƒªã‚½ãƒ¼ã‚¹ã‚’å‚ç…§ã—
  * FRO_OBJ_InitInMdl(),FRO_OBJ_AddAnmInAnm()
  * @param	robj	FRO_OBJ
  * @param	rmdl	FRO_MDL
@@ -776,7 +776,7 @@ void FRO_OBJ_InitAll( FRO_OBJ *robj, FRO_MDL *rmdl, FRO_ANM *ranm )
 
 //--------------------------------------------------------------
 /**
- * OBJ•`‰æ
+ * OBJæç”»
  * @param	robj	FRO_OBJ
  * @retval	nothing
  */
@@ -789,7 +789,7 @@ void FRO_OBJ_Draw( FRO_OBJ *robj,
 
 //--------------------------------------------------------------
 /**
- * OBJ•`‰æ@À•Ww’è‚Ì‚İ
+ * OBJæç”»ã€€åº§æ¨™æŒ‡å®šã®ã¿
  * @param	robj	FRO_OBJ
  * @retval	nothing
  */
@@ -825,7 +825,7 @@ void FRO_OBJ_DrawPos( FRO_OBJ *robj, VecFx32 *pos )
 
 //--------------------------------------------------------------
 /**
- * OBJ•`‰æ@Šgk—¦As—ñŠp“xw’è
+ * OBJæç”»ã€€æ‹¡ç¸®ç‡ã€è¡Œåˆ—è§’åº¦æŒ‡å®š
  * @param	robj	FRO_OBJ
  * @retval	nothing
  */
@@ -840,7 +840,7 @@ void FRO_OBJ_DrawScaleRotate( FRO_OBJ *robj,
 
 //--------------------------------------------------------------
 /**
- * OBJ•`‰æ@‰ñ“]s—ñw’è
+ * OBJæç”»ã€€å›è»¢è¡Œåˆ—æŒ‡å®š
  * @param	robj	FRO_OBJ
  * @retval	nothing
  */
@@ -853,7 +853,7 @@ void FRO_OBJ_DrawRotate33(
 
 //--------------------------------------------------------------
 /**
- * OBJ•`‰æ@s—ñŠp“xw’è
+ * OBJæç”»ã€€è¡Œåˆ—è§’åº¦æŒ‡å®š
  * @param	robj	FRO_OBJ
  * @retval	nothing
  */
@@ -877,7 +877,7 @@ void FRO_OBJ_DrawRotate( FRO_OBJ *robj, VecFx32 *pos, VecFx32 *scale, const ROTA
 
 //--------------------------------------------------------------
 /**
- * OBJ•`‰æ
+ * OBJæç”»
  * @param	robj	FRO_OBJ
  * @retval	nothing
  */
@@ -888,12 +888,12 @@ void FRO_OBJ_Draw1Mat1Shape( FRO_OBJ *robj, const VecFx32 *pos, const VecFx32 *s
 }
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 #if 0
 //--------------------------------------------------------------
 /**
- * ‰ñ“]Šp“x0-360‚©‚ç‰ñ“]s—ñƒZƒbƒg
+ * å›è»¢è§’åº¦0-360ã‹ã‚‰å›è»¢è¡Œåˆ—ã‚»ãƒƒãƒˆ
  * @param	robj	FRO_OBJ
  * @retval
  */
@@ -913,7 +913,7 @@ void FRO_RotateMtx( MtxFx33 *, u32 x, u32 y, u32 z )
 //----
 //--------------------------------------------------------------
 /**
- * VecFx32Œ^‚Ì•\¦À•Wƒ|ƒCƒ“ƒ^æ“¾
+ * VecFx32å‹ã®è¡¨ç¤ºåº§æ¨™ãƒã‚¤ãƒ³ã‚¿å–å¾—
  * @param	robj	FRO_OBJ
  * @retval	VecFx32*
  */
@@ -925,9 +925,9 @@ VecFx32 * FRO_OBJ_pMatrixGet( FRO_OBJ *robj )
 
 //--------------------------------------------------------------
 /**
- * •\¦À•WƒZƒbƒg
+ * è¡¨ç¤ºåº§æ¨™ã‚»ãƒƒãƒˆ
  * @param	robbj	FRO_OBJ
- * @param	mtx		•\¦À•W
+ * @param	mtx		è¡¨ç¤ºåº§æ¨™
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -938,9 +938,9 @@ void FRO_OBJ_MatrixSet( FRO_OBJ *robj, const VecFx32 *mtx )
 
 //--------------------------------------------------------------
 /**
- * ”ñ•\¦ƒtƒ‰ƒOƒ`ƒFƒbƒN
+ * éè¡¨ç¤ºãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯
  * @param	robj	FRO_OBJ
- * @retval	flag	TRUE=”ñ•\¦
+ * @retval	flag	TRUE=éè¡¨ç¤º
  */
 //--------------------------------------------------------------
 BOOL FRO_OBJ_VanishCheck( const FRO_OBJ *robj )
@@ -950,9 +950,9 @@ BOOL FRO_OBJ_VanishCheck( const FRO_OBJ *robj )
 
 //--------------------------------------------------------------
 /**
- * ”ñ•\¦ƒtƒ‰ƒOƒZƒbƒg
+ * éè¡¨ç¤ºãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  * @param	robj	FRO_OBJ
- * @param	flag	TRUE=”ñ•\¦
+ * @param	flag	TRUE=éè¡¨ç¤º
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -963,7 +963,7 @@ void FRO_OBJ_VanishSet( FRO_OBJ *robj, BOOL flag )
 
 //--------------------------------------------------------------
 /**
- * Šgk—¦ƒ|ƒCƒ“ƒ^æ“¾
+ * æ‹¡ç¸®ç‡ãƒã‚¤ãƒ³ã‚¿å–å¾—
  * @param	robj	FRO_OBJ
  * @retval	VecFx32*
  */
@@ -975,7 +975,7 @@ VecFx32 * FRO_OBJ_pScaleGet( FRO_OBJ *robj )
 
 //--------------------------------------------------------------
 /**
- * Šgk—¦ƒZƒbƒg
+ * æ‹¡ç¸®ç‡ã‚»ãƒƒãƒˆ
  * @param	robj	FRO_OBJ
  * @param	scale
  * @retval	nothing
@@ -988,7 +988,7 @@ void FRO_OBJ_ScaleSet( FRO_OBJ *robj, const VecFx32 *scale )
 
 //--------------------------------------------------------------
 /**
- * ‰ñ“]s—ñƒ|ƒCƒ“ƒ^æ“¾
+ * å›è»¢è¡Œåˆ—ãƒã‚¤ãƒ³ã‚¿å–å¾—
  * @param	robj	FRO_OBJ
  * @retval	ROTET
  */
@@ -1000,7 +1000,7 @@ MtxFx33 * FRO_OBJ_pRotateGet( FRO_OBJ *robj )
 
 //--------------------------------------------------------------
 /**
- * ‰ñ“]s—ñƒZƒbƒg
+ * å›è»¢è¡Œåˆ—ã‚»ãƒƒãƒˆ
  * @param	robj	FRO_OBJ
  * @retval
  */
@@ -1012,7 +1012,7 @@ void FRO_OBJ_RotateSet( FRO_OBJ *robj, const MtxFx33 *rotate )
 
 //--------------------------------------------------------------
 /**
- * ‰ñ“]Šp“x0-360‚©‚ç‰ñ“]s—ñƒZƒbƒg
+ * å›è»¢è§’åº¦0-360ã‹ã‚‰å›è»¢è¡Œåˆ—ã‚»ãƒƒãƒˆ
  * @param	robj	FRO_OBJ
  * @retval
  */

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	boxv.c
- * @brief	ƒ{ƒbƒNƒX‘€ì‰æ–Ê@•`‰æƒƒCƒ“
+ * @brief	ãƒœãƒƒã‚¯ã‚¹æ“ä½œç”»é¢ã€€æç”»ãƒ¡ã‚¤ãƒ³
  * @author	taya
  * @date	2005.09.09
  */
@@ -22,20 +22,20 @@
 //==============================================================
 // BG 
 //==============================================================
-#define BG1_CHARBASE	(GX_BG_CHARBASE_0x18000)	// BG1 = ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE“™
+#define BG1_CHARBASE	(GX_BG_CHARBASE_0x18000)	// BG1 = ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç­‰
 #define BG1_SCRBASE		(GX_BG_SCRBASE_0xe000)
-#define BG2_CHARBASE	(GX_BG_CHARBASE_0x00000)	// BG2 = ƒXƒe[ƒ^ƒX–Ê“™
+#define BG2_CHARBASE	(GX_BG_CHARBASE_0x00000)	// BG2 = ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹é¢ç­‰
 #define BG2_SCRBASE		(GX_BG_SCRBASE_0xe800)
-#define BG3_CHARBASE	(GX_BG_CHARBASE_0x10000)	// BG3 = ƒgƒŒƒC
+#define BG3_CHARBASE	(GX_BG_CHARBASE_0x10000)	// BG3 = ãƒˆãƒ¬ã‚¤
 #define BG3_SCRBASE		(GX_BG_SCRBASE_0xf000)
 
-#define SUB_BG0_CHARBASE	(GX_BG_CHARBASE_0x10000)	// Sub BG0 = ƒ{ƒbƒNƒX–¼•`‰æƒEƒBƒ“ƒhƒE
+#define SUB_BG0_CHARBASE	(GX_BG_CHARBASE_0x10000)	// Sub BG0 = ãƒœãƒƒã‚¯ã‚¹åæç”»ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define SUB_BG0_SCRBASE		(GX_BG_SCRBASE_0xf000)
-#define SUB_BG1_CHARBASE	(GX_BG_CHARBASE_0x00000)	// Sub BG1 = ¶‰EƒŠ[ƒ‹ƒZƒŒƒNƒ^
+#define SUB_BG1_CHARBASE	(GX_BG_CHARBASE_0x00000)	// Sub BG1 = å·¦å³ãƒªãƒ¼ãƒ«ã‚»ãƒ¬ã‚¯ã‚¿
 #define SUB_BG1_SCRBASE		(GX_BG_SCRBASE_0xd000)
-#define SUB_BG2_CHARBASE	(GX_BG_CHARBASE_0x00000)	// Sub BG2 = ƒAƒCƒRƒ“•\Ž¦—Ìˆæ‚Ì‘Ñ
+#define SUB_BG2_CHARBASE	(GX_BG_CHARBASE_0x00000)	// Sub BG2 = ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºé ˜åŸŸã®å¸¯
 #define SUB_BG2_SCRBASE		(GX_BG_SCRBASE_0xe000)
-#define SUB_BG3_CHARBASE	(GX_BG_CHARBASE_0x00000)	// Sub BG3 = ”wŒi
+#define SUB_BG3_CHARBASE	(GX_BG_CHARBASE_0x00000)	// Sub BG3 = èƒŒæ™¯
 #define SUB_BG3_SCRBASE		(GX_BG_SCRBASE_0xf800)
 
 
@@ -51,7 +51,7 @@
 //==============================================================
 
 enum {
-	STORE_COMMAND_MAX = 4,		///< “¯Žž‚É“®‚©‚¹‚éƒRƒ}ƒ“ƒh”
+	STORE_COMMAND_MAX = 4,		///< åŒæ™‚ã«å‹•ã‹ã›ã‚‹ã‚³ãƒžãƒ³ãƒ‰æ•°
 };
 
 
@@ -62,7 +62,7 @@ struct _BOXAPP_VIEW_WORK {
 
 
 	CLACT_SET_PTR				clactSys;
-	CLACT_U_EASYRENDER_DATA		renddata;		// ŠÈˆÕƒŒƒ“ƒ_[ƒf[ƒ^ŽÀ‘Ì
+	CLACT_U_EASYRENDER_DATA		renddata;		// ç°¡æ˜“ãƒ¬ãƒ³ãƒ€ãƒ¼ãƒ‡ãƒ¼ã‚¿å®Ÿä½“
 	NNSG2dImagePaletteProxy		plttProxy;
 
 	SOFT_SPRITE_MANAGER*		spriteManager;
@@ -87,7 +87,7 @@ struct _BOXAPP_VIEW_WORK {
 
 //----------------------------------------------------
 /**
- *  ƒRƒ}ƒ“ƒhƒ^ƒXƒN‚ª•K‚¸Ž‚Âƒ[ƒNƒwƒbƒ_
+ *  ã‚³ãƒžãƒ³ãƒ‰ã‚¿ã‚¹ã‚¯ãŒå¿…ãšæŒã¤ãƒ¯ãƒ¼ã‚¯ãƒ˜ãƒƒãƒ€
  */
 //----------------------------------------------------
 typedef struct {
@@ -171,11 +171,11 @@ static void FreeMemoryFlush( void );
 
 //------------------------------------------------------------------
 /**
- * •`‰æ‰Šú‰»
+ * æç”»åˆæœŸåŒ–
  *
- * @param   vwk		ƒ[ƒNƒ|ƒCƒ“ƒ^‚ÌƒAƒhƒŒƒX
+ * @param   vwk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * @retval  BOOL	TRUE‚Å¬Œ÷
+ * @retval  BOOL	TRUEã§æˆåŠŸ
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_Init( BOXAPP_VIEW_WORK** vwk, const BOXAPP_VPARAM* vpara, const BOXAPP_WORK* mainwk )
@@ -193,11 +193,11 @@ BOOL BoxAppView_Init( BOXAPP_VIEW_WORK** vwk, const BOXAPP_VPARAM* vpara, const 
 			BOOL flg = 1;
 			ARCHANDLE* p_handle;
 
-			// ƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+			// ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 			p_handle = ArchiveDataHandleOpen( ARC_BOX_GRA, HEAPID_BOX_VIEW );
 
 			sys_VBlankFuncChange( NULL, NULL );
-			sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+			sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 			GF_Disp_GX_VisibleControlInit();
 			GF_Disp_GXS_VisibleControlInit();
@@ -246,7 +246,7 @@ BOOL BoxAppView_Init( BOXAPP_VIEW_WORK** vwk, const BOXAPP_VPARAM* vpara, const 
 			wk->mainTask = TCB_Add( BoxAppView_MainTask, wk, TASKPRI_VIEW_TRANS );
 			wk->vintrTask = BoxAppView_VTaskAdd( BoxVBlankTask, wk, TASKPRI_V_MAIN );
 
-			// ƒnƒ“ƒhƒ‹‚ð•Â‚¶‚é
+			// ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã‚‹
 			ArchiveDataHandleClose( p_handle );
 			
 			return flg;
@@ -256,7 +256,7 @@ BOOL BoxAppView_Init( BOXAPP_VIEW_WORK** vwk, const BOXAPP_VPARAM* vpara, const 
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒƒCƒ“ƒ^ƒXƒN
+ * æç”»ãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
  *
  * @param   wk		
  */
@@ -277,7 +277,7 @@ static void BoxAppView_MainTask( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æI—¹
+ * æç”»çµ‚äº†
  *
  * @param   wk		
  *
@@ -319,10 +319,10 @@ void BoxAppView_End( BOXAPP_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhƒZƒbƒg
+ * ã‚³ãƒžãƒ³ãƒ‰ã‚»ãƒƒãƒˆ
  *
- * @param   vwk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   cmd		ƒRƒ}ƒ“ƒh
+ * @param   vwk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   cmd		ã‚³ãƒžãƒ³ãƒ‰
  *
  */
 //------------------------------------------------------------------
@@ -435,12 +435,12 @@ void BoxAppView_SetCommand( BOXAPP_VIEW_WORK* vwk,  u32 cmd )
 }
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒh’P”­I—¹‘Ò‚¿
+ * ã‚³ãƒžãƒ³ãƒ‰å˜ç™ºçµ‚äº†å¾…ã¡
  *
- * @param   vwk		ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   cmd		ƒRƒ}ƒ“ƒh
+ * @param   vwk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   cmd		ã‚³ãƒžãƒ³ãƒ‰
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_WaitCommand( BOXAPP_VIEW_WORK* vwk, u32 cmd )
@@ -463,11 +463,11 @@ BOOL BoxAppView_WaitCommand( BOXAPP_VIEW_WORK* vwk, u32 cmd )
 }
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhŠ®‘SI—¹‘Ò‚¿
+ * ã‚³ãƒžãƒ³ãƒ‰å®Œå…¨çµ‚äº†å¾…ã¡
  *
- * @param   vwk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   vwk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE‚ÅI—¹
+ * @retval  BOOL	TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_WaitCommandAll( BOXAPP_VIEW_WORK* vwk )
@@ -486,7 +486,7 @@ BOOL BoxAppView_WaitCommandAll( BOXAPP_VIEW_WORK* vwk )
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhíœiƒRƒ}ƒ“ƒhƒ^ƒXƒN‚©‚çŒÄ‚Î‚ê‚éj
+ * ã‚³ãƒžãƒ³ãƒ‰å‰Šé™¤ï¼ˆã‚³ãƒžãƒ³ãƒ‰ã‚¿ã‚¹ã‚¯ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ï¼‰
  *
  * @param   header		
  *
@@ -514,14 +514,14 @@ static void BoxVBlankTask(TCB_PTR tcb, void* wk_adrs)
 	BoxAppView_StatusVBlank( &wk->statusWork );
 
 	CLACT_Draw( wk->clactSys );
-	REND_OAMTrans();		// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	REND_OAMTrans();		// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒžãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
 
 }
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhF‰æ–Ê‰Šú‰»
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šç”»é¢åˆæœŸåŒ–
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -542,12 +542,12 @@ static void CmdInit(TCB_PTR tcb, void* wk_adrs)
 	switch( header->seq ){
 	case 0:
 		{
-			// ƒnƒ“ƒhƒ‹ŠJ‚­
+			// ãƒãƒ³ãƒ‰ãƒ«é–‹ã
 			ARCHANDLE* p_handle = ArchiveDataHandleOpen( ARC_BOX_GRA, HEAPID_BOX_VIEW );
 			SetupBGRegistParam( vwk, vpara );
 			SetupBGGraphicData( vwk, vpara, p_handle );
 			InitMainOBJ( vwk, vpara, p_handle );
-			// ƒnƒ“ƒhƒ‹‚ð•Â‚¶‚é
+			// ãƒãƒ³ãƒ‰ãƒ«ã‚’é–‰ã˜ã‚‹
 			ArchiveDataHandleClose( p_handle );
 		}
 		if( BoxAppVPara_GetBoxMode(vpara) != BOX_MODE_COMPARE )
@@ -573,7 +573,7 @@ static void CmdInit(TCB_PTR tcb, void* wk_adrs)
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhF‰æ–Ê•\Ž¦ŠJŽnƒGƒtƒFƒNƒg
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šç”»é¢è¡¨ç¤ºé–‹å§‹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -613,7 +613,7 @@ static void CmdNormalIn( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhF‘¼‰æ–Ê‚©‚ç•œ‹A‚·‚éŽž‚ÌƒtƒF[ƒhƒCƒ“ƒGƒtƒFƒNƒg
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šä»–ç”»é¢ã‹ã‚‰å¾©å¸°ã™ã‚‹æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -652,7 +652,7 @@ static void CmdFadeIn( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhF‘¼‰æ–Ê‘JˆÚ‘O‚ÌƒtƒF[ƒhƒAƒEƒgƒGƒtƒFƒNƒg
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šä»–ç”»é¢é·ç§»å‰ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -690,7 +690,7 @@ static void CmdFadeOut( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒgƒŒƒCØ‚è‘Ö‚¦
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒˆãƒ¬ã‚¤åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -748,7 +748,7 @@ static void CmdTrayChange( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒJ[ƒ\ƒ‹ˆÚ“®
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -784,7 +784,7 @@ static void CmdCursorMove( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒXƒe[ƒ^ƒXXV
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -836,7 +836,7 @@ static void CmdStatusUpdate( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒXƒe[ƒ^ƒX‚Ìƒ}[ƒLƒ“ƒO•\Ž¦‚Ì‚ÝXV
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ãƒžãƒ¼ã‚­ãƒ³ã‚°è¡¨ç¤ºã®ã¿æ›´æ–°
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -853,7 +853,7 @@ static void CmdStatusMarkingUpdate( TCB_PTR tcb, void* wk_adrs )
 	vwk = header->vwk;
 	vpara = vwk->vpara;
 
-	// ƒXƒe[ƒ^ƒX•\Ž¦’†ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ìƒ}[ƒLƒ“ƒO—pƒXƒe[ƒ^ƒX‚ðXV
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºä¸­ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒžãƒ¼ã‚­ãƒ³ã‚°ç”¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’æ›´æ–°
 	if( BoxAppVPara_GetCursorCatchPokeFlag( vpara ) == CURSOR_CATCH_SINGLE )
 	{
 		BoxAppView_CursorIconMarkUpdate( &vwk->cursorWork );
@@ -875,7 +875,7 @@ static void CmdStatusMarkingUpdate( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒXƒe[ƒ^ƒX•\Ž¦ƒNƒŠƒA
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºã‚¯ãƒªã‚¢
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -896,7 +896,7 @@ static void CmdStatusClear( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒ|ƒPƒ‚ƒ“‚Â‚©‚Þ“®ì
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒã‚±ãƒ¢ãƒ³ã¤ã‹ã‚€å‹•ä½œ
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -929,7 +929,7 @@ static void CmdPokemonCatch( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒ|ƒPƒ‚ƒ“‚¨‚­“®ì
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒã‚±ãƒ¢ãƒ³ãŠãå‹•ä½œ
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -961,7 +961,7 @@ static void CmdPokemonPut( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒ|ƒPƒ‚ƒ“‚¢‚ê‚©‚¦‚é“®ì
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒã‚±ãƒ¢ãƒ³ã„ã‚Œã‹ãˆã‚‹å‹•ä½œ
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -993,7 +993,7 @@ static void CmdPokemonChange( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhF‚Â‚©‚ñ‚Å‚¢‚éƒ|ƒPƒ‚ƒ“‚ð‚ ‚¸‚¯‚é“®ì
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã¤ã‹ã‚“ã§ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚ãšã‘ã‚‹å‹•ä½œ
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1023,7 +1023,7 @@ static void CmdCatchPokeAzukeru( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFŽw‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ð‚ ‚¸‚¯‚é“®ì
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šæŒ‡ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚ãšã‘ã‚‹å‹•ä½œ
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1059,7 +1059,7 @@ static void CmdPointPokeAzukeru( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhF‚Â‚©‚ñ‚Å‚¢‚éƒ|ƒPƒ‚ƒ“‚ð“¦‚ª‚·
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã¤ã‹ã‚“ã§ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’é€ƒãŒã™
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1091,7 +1091,7 @@ static void CmdCatchPokeNigasu( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒ{ƒbƒNƒXƒgƒŒƒC‚ÌƒJ[ƒ\ƒ‹‚ªŽw‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ð“¦‚ª‚·
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒœãƒƒã‚¯ã‚¹ãƒˆãƒ¬ã‚¤ã®ã‚«ãƒ¼ã‚½ãƒ«ãŒæŒ‡ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’é€ƒãŒã™
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1123,7 +1123,7 @@ static void CmdTrayPokeNigasu( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFŽèŽ‚¿ƒgƒŒƒC‚ÌƒJ[ƒ\ƒ‹‚ªŽw‚µ‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ð“¦‚ª‚·
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šæ‰‹æŒã¡ãƒˆãƒ¬ã‚¤ã®ã‚«ãƒ¼ã‚½ãƒ«ãŒæŒ‡ã—ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’é€ƒãŒã™
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1155,7 +1155,7 @@ static void CmdPartyPokeNigasu( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒAƒCƒeƒ€à–¾‚Ì•\Ž¦
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žã®è¡¨ç¤º
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1187,7 +1187,7 @@ static void CmdItemInfoDisp( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒAƒCƒeƒ€à–¾‚ÌÁ‹Ž
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¢ã‚¤ãƒ†ãƒ èª¬æ˜Žã®æ¶ˆåŽ»
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1220,7 +1220,7 @@ static void CmdItemInfoClear( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒAƒCƒeƒ€u‚ ‚¸‚©‚év
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¢ã‚¤ãƒ†ãƒ ã€Œã‚ãšã‹ã‚‹ã€
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1254,7 +1254,7 @@ static void CmdItemWithDraw( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒAƒCƒeƒ€u‚à‚½‚¹‚évi’Í‚ñ‚Å‚¢‚éƒAƒCƒeƒ€‚ð‚à‚½‚¹‚éj
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¢ã‚¤ãƒ†ãƒ ã€Œã‚‚ãŸã›ã‚‹ã€ï¼ˆæŽ´ã‚“ã§ã„ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚‚ãŸã›ã‚‹ï¼‰
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1287,7 +1287,7 @@ static void CmdItemSet( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒAƒCƒeƒ€u‚Æ‚è‚©‚¦‚év
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¢ã‚¤ãƒ†ãƒ ã€Œã¨ã‚Šã‹ãˆã‚‹ã€
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1320,7 +1320,7 @@ static void CmdItemSwap( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒXƒe[ƒ^ƒXƒ|ƒPƒ‚ƒ“‚ÌƒAƒCƒeƒ€Š—Ló‘Ô‚É‰ž‚¶‚ÄƒAƒCƒRƒ“•\Ž¦Ø‚è‘Ö‚¦
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒã‚±ãƒ¢ãƒ³ã®ã‚¢ã‚¤ãƒ†ãƒ æ‰€æœ‰çŠ¶æ…‹ã«å¿œã˜ã¦ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤ºåˆ‡ã‚Šæ›¿ãˆ
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1359,7 +1359,7 @@ static void CmdItemPokeUpdate( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒAƒCƒeƒ€ƒAƒCƒRƒ“‚ðƒoƒbƒO‚É–ß‚·ƒGƒtƒFƒNƒg
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³ã‚’ãƒãƒƒã‚°ã«æˆ»ã™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1398,7 +1398,7 @@ static void CmdItemIconRestore( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒƒbƒZ[ƒW•`‰æ
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1421,7 +1421,7 @@ static void CmdMsgDisp( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒƒbƒZ[ƒW•ƒƒjƒ…[•`‰æ
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼†ãƒ¡ãƒ‹ãƒ¥ãƒ¼æç”»
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1445,7 +1445,7 @@ static void CmdMenuDisp( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒƒbƒZ[ƒWEƒƒjƒ…[‘SƒNƒŠƒA
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ»ãƒ¡ãƒ‹ãƒ¥ãƒ¼å…¨ã‚¯ãƒªã‚¢
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1465,7 +1465,7 @@ static void CmdMsgClear( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒƒjƒ…[‚Ì‚ÝƒNƒŠƒA
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã¿ã‚¯ãƒªã‚¢
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1485,7 +1485,7 @@ static void CmdMenuClear( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒƒjƒ…[ƒJ[ƒ\ƒ‹ˆÊ’uXV
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®æ›´æ–°
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1508,7 +1508,7 @@ static void CmdMenuCursorUpdate( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒƒjƒ…[ƒ}[ƒLƒ“ƒO•\Ž¦XV
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒžãƒ¼ã‚­ãƒ³ã‚°è¡¨ç¤ºæ›´æ–°
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1531,7 +1531,7 @@ static void CmdMenuMarkUpdate( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒ{ƒbƒNƒX‘I‘ðƒEƒBƒ“ƒhƒE•\Ž¦
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒœãƒƒã‚¯ã‚¹é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1562,7 +1562,7 @@ static void CmdJumpWinDisp( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒ{ƒbƒNƒX‘I‘ðƒEƒBƒ“ƒhƒE•\Ž¦XV
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒœãƒƒã‚¯ã‚¹é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºæ›´æ–°
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1591,7 +1591,7 @@ static void CmdJumpWinUpdate( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒ{ƒbƒNƒX‘I‘ðƒEƒBƒ“ƒhƒE•\Ž¦ƒIƒt
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒœãƒƒã‚¯ã‚¹é¸æŠžã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã‚ªãƒ•
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1622,7 +1622,7 @@ static void CmdJumpWinClear( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒJƒŒƒ“ƒg‚Ì•ÇŽ†•ÏX
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚«ãƒ¬ãƒ³ãƒˆã®å£ç´™å¤‰æ›´
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1655,7 +1655,7 @@ static void CmdWallPaperChange( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒJ[ƒ\ƒ‹‚ª’¼‰º‚Ìƒ{ƒ^ƒ“‚ð‰Ÿ‚·“®ì
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚«ãƒ¼ã‚½ãƒ«ãŒç›´ä¸‹ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™å‹•ä½œ
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1717,7 +1717,7 @@ static void CmdButtonPushAction( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFŽèŽ‚¿ƒgƒŒƒCŠJ‚­
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šæ‰‹æŒã¡ãƒˆãƒ¬ã‚¤é–‹ã
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1751,7 +1751,7 @@ static void CmdPartyTrayOpen(TCB_PTR tcb, void* wk_adrs)
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFŽèŽ‚¿ƒgƒŒƒC•Â‚¶‚é
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šæ‰‹æŒã¡ãƒˆãƒ¬ã‚¤é–‰ã˜ã‚‹
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1796,7 +1796,7 @@ static void CmdPartyTrayClose(TCB_PTR tcb, void* wk_adrs)
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFŽèŽ‚¿ƒgƒŒƒCã‚ÌƒAƒCƒRƒ“‹ó‚«‹l‚ßi’Í‚ñ‚¾Œãj
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šæ‰‹æŒã¡ãƒˆãƒ¬ã‚¤ä¸Šã®ã‚¢ã‚¤ã‚³ãƒ³ç©ºãè©°ã‚ï¼ˆæŽ´ã‚“ã å¾Œï¼‰
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1828,7 +1828,7 @@ static void CmdPartyIconCloseup(TCB_PTR tcb, void* wk_adrs)
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFŽèŽ‚¿ƒgƒŒƒCã‚ÌƒAƒCƒRƒ“‹ó‚«‹l‚ßi’u‚¢‚½Œãj
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šæ‰‹æŒã¡ãƒˆãƒ¬ã‚¤ä¸Šã®ã‚¢ã‚¤ã‚³ãƒ³ç©ºãè©°ã‚ï¼ˆç½®ã„ãŸå¾Œï¼‰
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1847,7 +1847,7 @@ static void CmdPartyLastIconCloseup( TCB_PTR tcb, void* wk_adrs )
 
 	switch( header->seq ){
 	case 0:
-		// ŽèŽ‚¿ƒgƒŒƒC‚É’u‚¢‚½ƒAƒCƒRƒ“‚ðA‹ó‚«‚ªo—ˆ‚È‚¢‚æ‚¤‚É‹l‚ß‚é•K—v‚ª‚ ‚é
+		// æ‰‹æŒã¡ãƒˆãƒ¬ã‚¤ã«ç½®ã„ãŸã‚¢ã‚¤ã‚³ãƒ³ã‚’ã€ç©ºããŒå‡ºæ¥ãªã„ã‚ˆã†ã«è©°ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 		if( BoxAppVPara_GetCursorArea( vpara ) == CURSOR_AREA_PARTY )
 		{
 			BoxAppView_PartyLastIconCloseupStart( &vwk->partyWork );
@@ -1867,7 +1867,7 @@ static void CmdPartyLastIconCloseup( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒAƒCƒRƒ“‚ði‚èž‚Ýƒ‚[ƒh•\Ž¦‚É‘Î‰ž‚³‚¹‚é
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚¢ã‚¤ã‚³ãƒ³ã‚’çµžã‚Šè¾¼ã¿ãƒ¢ãƒ¼ãƒ‰è¡¨ç¤ºã«å¯¾å¿œã•ã›ã‚‹
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -1893,7 +1893,7 @@ static void CmdIconLimitModeUpdate( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒTƒuLCDƒgƒŒƒC‘I‘ðƒ‚[ƒh‰æ–Ê\’zˆ—
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚µãƒ–LCDãƒˆãƒ¬ã‚¤é¸æŠžãƒ¢ãƒ¼ãƒ‰ç”»é¢æ§‹ç¯‰å‡¦ç†
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1939,7 +1939,7 @@ static void CmdSubLCD_ModeChange( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒTƒuLCDƒgƒŒƒC‘I‘ðƒ‚[ƒh‰æ–ÊI—¹ˆ—
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã‚µãƒ–LCDãƒˆãƒ¬ã‚¤é¸æŠžãƒ¢ãƒ¼ãƒ‰ç”»é¢çµ‚äº†å‡¦ç†
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1971,7 +1971,7 @@ static void CmdSubLCD_MoveIcon( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFi‚èž‚ÝƒAƒCƒRƒ“ó‘ÔXV
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šçµžã‚Šè¾¼ã¿ã‚¢ã‚¤ã‚³ãƒ³çŠ¶æ…‹æ›´æ–°
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -1993,7 +1993,7 @@ static void CmdSubLCD_MarkIconUpdate( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFŠµ‚ê‚Ä‚élƒ‚[ƒhØ‚è‘Ö‚¦
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šæ…£ã‚Œã¦ã‚‹äººãƒ¢ãƒ¼ãƒ‰åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -2015,7 +2015,7 @@ static void CmdChangeExpertMode( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì”ÍˆÍ‘I‘ðŠJŽn
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ç¯„å›²é¸æŠžé–‹å§‹
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -2038,7 +2038,7 @@ static void CmdStartAreaSelect( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì”ÍˆÍ‘I‘ðŠJŽn
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ç¯„å›²é¸æŠžé–‹å§‹
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -2060,7 +2060,7 @@ static void CmdEndAreaSelect( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Ì”ÍˆÍ‘I‘ðó‘ÔXV
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã®ç¯„å›²é¸æŠžçŠ¶æ…‹æ›´æ–°
  *
  * @param   tcb			
  * @param   wk_adrs		
@@ -2082,7 +2082,7 @@ static void CmdUpdateAreaSelect( TCB_PTR tcb, void* wk_adrs )
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhF”ÍˆÍ‘I‘ð’†‚Ìƒ|ƒPƒ‚ƒ“‚ð’Í‚Þ“®ì
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šç¯„å›²é¸æŠžä¸­ã®ãƒã‚±ãƒ¢ãƒ³ã‚’æŽ´ã‚€å‹•ä½œ
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -2115,7 +2115,7 @@ static void CmdCatchAreaSelectPoke( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhF‚Â‚æ‚³‚­‚ç‚×ƒ‚[ƒhFƒTƒCƒh•ÏX
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã¤ã‚ˆã•ãã‚‰ã¹ãƒ¢ãƒ¼ãƒ‰ï¼šã‚µã‚¤ãƒ‰å¤‰æ›´
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -2139,7 +2139,7 @@ static void CmdSwitchCompareSide( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhF‚Â‚æ‚³‚­‚ç‚×ƒ‚[ƒhFƒTƒCƒh•ÏX
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã¤ã‚ˆã•ãã‚‰ã¹ãƒ¢ãƒ¼ãƒ‰ï¼šã‚µã‚¤ãƒ‰å¤‰æ›´
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -2163,7 +2163,7 @@ static void CmdSwitchCompareSideByButton( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhF‚Â‚æ‚³‚­‚ç‚×ƒ‚[ƒhFƒy[ƒWØ‚è‘Ö‚¦
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šã¤ã‚ˆã•ãã‚‰ã¹ãƒ¢ãƒ¼ãƒ‰ï¼šãƒšãƒ¼ã‚¸åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -2199,7 +2199,7 @@ static void CmdChangeComparePage( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒhFƒ{ƒbƒNƒX‰æ–Ê‚ð•Â‚¶‚é‰‰o
+ * æç”»ã‚³ãƒžãƒ³ãƒ‰ï¼šãƒœãƒƒã‚¯ã‚¹ç”»é¢ã‚’é–‰ã˜ã‚‹æ¼”å‡º
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -2243,7 +2243,7 @@ static void CmdClose( TCB_PTR tcb, void* wk_adrs )
 
 //------------------------------------------------------------------
 /**
- * BG •\Ž¦ƒŒƒWƒXƒ^ŠÖ˜A‰Šú‰»
+ * BG è¡¨ç¤ºãƒ¬ã‚¸ã‚¹ã‚¿é–¢é€£åˆæœŸåŒ–
  *
  * @param   vwk		
  * @param   vpara		
@@ -2253,16 +2253,16 @@ static void CmdClose( TCB_PTR tcb, void* wk_adrs )
 static void SetupBGRegistParam( BOXAPP_VIEW_WORK* vwk, const BOXAPP_VPARAM* vpara )
 {
 	static const GF_BGL_DISPVRAM SetBankData = {
-		GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-		GX_VRAM_TEX_0_A,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-		GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+		GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+		GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+		GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+		GX_VRAM_TEX_0_A,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+		GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 	};
 
 	static const GF_BGL_SYS_HEADER BGsys_data = {
@@ -2344,10 +2344,10 @@ static void SetupBGRegistParam( BOXAPP_VIEW_WORK* vwk, const BOXAPP_VPARAM* vpar
 	GF_BGL_InitBG
 
 typedef struct {
-	GXDispMode 	dispMode;		//•\Ž¦ƒ‚[ƒhŽw’è
-	GXBGMode	bgMode;			//‚a‚fƒ‚[ƒhŽw’è(ƒƒCƒ“ƒXƒNƒŠ[ƒ“)
-	GXBGMode	bgModeSub;		//‚a‚fƒ‚[ƒhŽw’è(ƒTƒuƒXƒNƒŠ[ƒ“)
-	GXBG0As		bg0_2Dor3D;		//‚a‚f‚O‚Ì‚Q‚cA‚R‚cƒ‚[ƒh‘I‘ð
+	GXDispMode 	dispMode;		//è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
+	GXBGMode	bgMode;			//ï¼¢ï¼§ãƒ¢ãƒ¼ãƒ‰æŒ‡å®š(ãƒ¡ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³)
+	GXBGMode	bgModeSub;		//ï¼¢ï¼§ãƒ¢ãƒ¼ãƒ‰æŒ‡å®š(ã‚µãƒ–ã‚¹ã‚¯ãƒªãƒ¼ãƒ³)
+	GXBG0As		bg0_2Dor3D;		//ï¼¢ï¼§ï¼ã®ï¼’ï¼¤ã€ï¼“ï¼¤ãƒ¢ãƒ¼ãƒ‰é¸æŠž
 }GF_BGL_SYS_HEADER;
 */
 
@@ -2438,24 +2438,24 @@ static void SetupBGGraphicData( BOXAPP_VIEW_WORK* vwk, const BOXAPP_VPARAM* vpar
 //------------------------------------------------------------------
 static void Box3D_BGInit(void)
 {
-	// NitroSystem:‚R‚cƒGƒ“ƒWƒ“‚Ì‰Šú‰»
+	// NitroSystem:ï¼“ï¼¤ã‚¨ãƒ³ã‚¸ãƒ³ã®åˆæœŸåŒ–
 	NNS_G3dInit();
-	// ƒ}ƒgƒŠƒNƒXƒXƒ^ƒbƒN‚Ì‰Šú‰»
+	// ãƒžãƒˆãƒªã‚¯ã‚¹ã‚¹ã‚¿ãƒƒã‚¯ã®åˆæœŸåŒ–
     G3X_InitMtxStack();
 
-	// ‚R‚cŽg—p–Ê‚ÌÝ’è(•\Ž¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 //    GX_SetVisiblePlane(GX_PLANEMASK_BG0);
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(1);
 
-	// ŠeŽí•`‰æƒ‚[ƒh‚ÌÝ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜Ž)
     G3X_SetShading(GX_SHADING_TOON);
     G3X_AntiAlias(TRUE);
 //    G2_BlendNone(); 
-	G3X_AlphaTest(FALSE, 0);	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend(TRUE);		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest(FALSE, 0);	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend(TRUE);		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 
-	// ƒNƒŠƒAƒJƒ‰[‚ÌÝ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0, 0, 0),	// clear color
                       0,				// clear alpha
                       0x7fff,			// clear depth
@@ -2463,15 +2463,15 @@ static void Box3D_BGInit(void)
                       FALSE				// fog
                       );
 
-	// ƒWƒIƒƒgƒŠƒGƒ“ƒWƒ“‹N“®Œã•K‚¸ŒÄ‚Î‚ê‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+	// ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚¨ãƒ³ã‚¸ãƒ³èµ·å‹•å¾Œå¿…ãšå‘¼ã°ã‚Œãªã‘ã‚Œã°ãªã‚‰ãªã„
     G3_SwapBuffers(GX_SORTMODE_AUTO, GX_BUFFERMODE_W);
 
-	// ƒrƒ…[ƒ|[ƒg‚ÌÝ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 //------------------------------------------------------------------
 /**
- * ƒƒCƒ“‚n‚a‚i‰Šú‰»
+ * ãƒ¡ã‚¤ãƒ³ï¼¯ï¼¢ï¼ªåˆæœŸåŒ–
  *
  * @param   vwk		
  * @param   vpara		
@@ -2488,12 +2488,12 @@ static void InitMainOBJ( BOXAPP_VIEW_WORK* vwk, const BOXAPP_VPARAM* vpara, ARCH
 
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒCƒXƒNƒ[ƒ‹•ûŒü‚ðŒˆ‚ß‚é
+ * ãƒˆãƒ¬ã‚¤ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ–¹å‘ã‚’æ±ºã‚ã‚‹
  *
- * @param   from		ƒXƒNƒ[ƒ‹‘O‚ÌƒgƒŒƒCƒiƒ“ƒo[
- * @param   to			ƒXƒNƒ[ƒ‹Œã‚ÌƒgƒŒƒCƒiƒ“ƒo[
+ * @param   from		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å‰ã®ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
+ * @param   to			ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å¾Œã®ãƒˆãƒ¬ã‚¤ãƒŠãƒ³ãƒãƒ¼
  *
- * @retval  int		1:‰E‚Ö -1:¶‚Ö
+ * @retval  int		1:å³ã¸ -1:å·¦ã¸
  */
 //------------------------------------------------------------------
 static int calc_tray_direction( u32 from, u32 to )
@@ -2518,13 +2518,13 @@ static int calc_tray_direction( u32 from, u32 to )
 
 //------------------------------------------------------------------
 /**
- * VBlank‚Åƒ^ƒCƒ~ƒ“ƒO‚ð‡‚í‚¹‚é‚½‚ß‚Ìƒ^ƒXƒN“o˜^
+ * VBlankã§ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’åˆã‚ã›ã‚‹ãŸã‚ã®ã‚¿ã‚¹ã‚¯ç™»éŒ²
  *
- * @param   func		ƒ^ƒXƒNŠÖ”
- * @param   wk_adrs		ƒ^ƒXƒNƒ[ƒN
- * @param   pri			ƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param   func		ã‚¿ã‚¹ã‚¯é–¢æ•°
+ * @param   wk_adrs		ã‚¿ã‚¹ã‚¯ãƒ¯ãƒ¼ã‚¯
+ * @param   pri			ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  *
- * @retval  TCB_PTR		ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
+ * @retval  TCB_PTR		ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 TCB_PTR BoxAppView_VTaskAdd(TCB_FUNC func, void* wk_adrs, u32 pri )
@@ -2537,7 +2537,7 @@ TCB_PTR BoxAppView_VTaskAdd(TCB_FUNC func, void* wk_adrs, u32 pri )
 }
 //------------------------------------------------------------------
 /**
- * ‚n‚a‚iƒpƒŒƒbƒgƒvƒƒLƒV‚ð•Ô‚·BŠeŽí‰º¿‚¯ƒ‚ƒWƒ…[ƒ‹‚©‚çŒÄ‚Î‚ê‚é
+ * ï¼¯ï¼¢ï¼ªãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚­ã‚·ã‚’è¿”ã™ã€‚å„ç¨®ä¸‹è«‹ã‘ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‹ã‚‰å‘¼ã°ã‚Œã‚‹
  *
  * @param   vwk		
  *
@@ -2553,8 +2553,8 @@ NNSG2dImagePaletteProxy* BoxAppView_GetObjPlttProxy( BOXAPP_VIEW_WORK* vwk )
 
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒXƒAƒCƒRƒ“•`‰æƒVƒXƒeƒ€‚ÌƒƒCƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^‚ð•Ô‚·B
- * ŠeŽí‰º¿‚¯ƒ‚ƒWƒ…[ƒ‹‚©‚ç•K—v‚É‰ž‚¶‚ÄŒÄ‚Î‚ê‚éB
+ * ãƒœãƒƒã‚¯ã‚¹ã‚¢ã‚¤ã‚³ãƒ³æç”»ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™ã€‚
+ * å„ç¨®ä¸‹è«‹ã‘ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‹ã‚‰å¿…è¦ã«å¿œã˜ã¦å‘¼ã°ã‚Œã‚‹ã€‚
  *
  * @param   vwk		
  *
@@ -2567,8 +2567,8 @@ BOX_ICON_SYS* BoxAppView_GetIconSysWork( BOXAPP_VIEW_WORK* vwk )
 }
 //------------------------------------------------------------------
 /**
- * ƒ{ƒbƒNƒXƒgƒŒƒC•`‰æƒ[ƒNƒ|ƒCƒ“ƒ^‚ð•Ô‚·B
- * ŠeŽí‰º¿‚¯ƒ‚ƒWƒ…[ƒ‹‚©‚ç•K—v‚É‰ž‚¶‚ÄŒÄ‚Î‚ê‚éB
+ * ãƒœãƒƒã‚¯ã‚¹ãƒˆãƒ¬ã‚¤æç”»ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™ã€‚
+ * å„ç¨®ä¸‹è«‹ã‘ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‹ã‚‰å¿…è¦ã«å¿œã˜ã¦å‘¼ã°ã‚Œã‚‹ã€‚
  *
  * @param   vwk		
  *
@@ -2581,8 +2581,8 @@ TRAY_VIEW_WORK* BoxAppView_GetTrayViewWork( BOXAPP_VIEW_WORK* vwk )
 }
 //------------------------------------------------------------------
 /**
- * ƒp[ƒeƒBƒgƒŒƒC•`‰æƒ[ƒNƒ|ƒCƒ“ƒ^‚ð•Ô‚·B
- * ŠeŽí‰º¿‚¯ƒ‚ƒWƒ…[ƒ‹‚©‚ç•K—v‚É‰ž‚¶‚ÄŒÄ‚Î‚ê‚éB
+ * ãƒ‘ãƒ¼ãƒ†ã‚£ãƒˆãƒ¬ã‚¤æç”»ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™ã€‚
+ * å„ç¨®ä¸‹è«‹ã‘ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‹ã‚‰å¿…è¦ã«å¿œã˜ã¦å‘¼ã°ã‚Œã‚‹ã€‚
  *
  * @param   vwk		
  *
@@ -2595,8 +2595,8 @@ PARTY_VIEW_WORK* BoxAppView_GetPartyViewWork( BOXAPP_VIEW_WORK* vwk )
 }
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹•`‰æƒ[ƒNƒ|ƒCƒ“ƒ^‚ð•Ô‚·B
- * ŠeŽí‰º¿‚¯ƒ‚ƒWƒ…[ƒ‹‚©‚ç•K—v‚É‰ž‚¶‚ÄŒÄ‚Î‚ê‚éB
+ * ã‚«ãƒ¼ã‚½ãƒ«æç”»ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™ã€‚
+ * å„ç¨®ä¸‹è«‹ã‘ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‹ã‚‰å¿…è¦ã«å¿œã˜ã¦å‘¼ã°ã‚Œã‚‹ã€‚
  *
  * @param   vwk		
  *
@@ -2609,8 +2609,8 @@ CURSOR_VIEW_WORK* BoxAppView_GetCursorWork( BOXAPP_VIEW_WORK* vwk )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒeƒ€ƒAƒCƒRƒ“•`‰æƒ[ƒNƒ|ƒCƒ“ƒ^‚ð•Ô‚·B
- * ŠeŽí‰º¿‚¯ƒ‚ƒWƒ…[ƒ‹‚©‚ç•K—v‚É‰ž‚¶‚ÄŒÄ‚Î‚ê‚éB
+ * ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ã‚¤ã‚³ãƒ³æç”»ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™ã€‚
+ * å„ç¨®ä¸‹è«‹ã‘ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‹ã‚‰å¿…è¦ã«å¿œã˜ã¦å‘¼ã°ã‚Œã‚‹ã€‚
  *
  * @param   vwk		
  *
@@ -2623,8 +2623,8 @@ ITEMICON_VIEW_WORK* BoxAppView_GetItemIconWork( BOXAPP_VIEW_WORK* vwk )
 }
 //------------------------------------------------------------------
 /**
- * “ÁŽêƒEƒBƒ“ƒhƒE•`‰æƒ[ƒNƒ|ƒCƒ“ƒ^‚ð•Ô‚·B
- * ŠeŽí‰º¿‚¯ƒ‚ƒWƒ…[ƒ‹‚©‚ç•K—v‚É‰ž‚¶‚ÄŒÄ‚Î‚ê‚éB
+ * ç‰¹æ®Šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™ã€‚
+ * å„ç¨®ä¸‹è«‹ã‘ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‹ã‚‰å¿…è¦ã«å¿œã˜ã¦å‘¼ã°ã‚Œã‚‹ã€‚
  *
  * @param   vwk		
  *
@@ -2638,8 +2638,8 @@ EXWIN_VIEW_WORK* BoxAppView_GetExWinViewWork( BOXAPP_VIEW_WORK* vwk )
 
 //------------------------------------------------------------------
 /**
- * ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ‚ð•Ô‚·B
- * ŠeŽí‰º¿‚¯ƒ‚ƒWƒ…[ƒ‹‚©‚ç•K—v‚É‰ž‚¶‚ÄŒÄ‚Î‚ê‚éB
+ * ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ã‚’è¿”ã™ã€‚
+ * å„ç¨®ä¸‹è«‹ã‘ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‹ã‚‰å¿…è¦ã«å¿œã˜ã¦å‘¼ã°ã‚Œã‚‹ã€‚
  *
  * @param   vwk		
  *
@@ -2653,7 +2653,7 @@ SOFT_SPRITE_MANAGER* BoxAppView_GetSpriteManager( BOXAPP_VIEW_WORK* vwk )
 
 //------------------------------------------------------------------
 /**
- * ƒgƒŒƒC‚ÌƒXƒNƒ[ƒ‹ƒfƒtƒHƒ‹ƒgƒIƒtƒZƒbƒg’l‚ð•Ô‚·
+ * ãƒˆãƒ¬ã‚¤ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ã‚’è¿”ã™
  *
  * @param   vwk		
  *
@@ -2678,14 +2678,14 @@ int BoxAppView_GetTrayScrollOfs( BOXAPP_VIEW_WORK* vwk )
 
 //------------------------------------------------------------------
 /**
- * CLACT_HEADER‚Ì‰Šú‰»
+ * CLACT_HEADERã®åˆæœŸåŒ–
  *
- * @param   header		[out] ì¬‚µ‚½ƒwƒbƒ_ƒf[ƒ^‚ÌŠi”[æ
- * @param   imgProxy	[in]  ƒwƒbƒ_‚ÉƒZƒbƒg‚·‚éƒCƒ[ƒWƒvƒƒLƒV
- * @param   pltProxy	[in]  ƒwƒbƒ_‚ÉƒZƒbƒg‚·‚éƒpƒŒƒbƒgƒvƒƒLƒV
- * @param   cellBank	[in]  ƒwƒbƒ_‚ÉƒZƒbƒg‚·‚éƒZƒ‹ƒoƒ“ƒNƒf[ƒ^
- * @param   anmBank		[in]  ƒwƒbƒ_‚ÉƒZƒbƒg‚·‚éƒAƒjƒƒoƒ“ƒNƒf[ƒ^
- * @param   bgPri		[in]  ƒwƒbƒ_‚ÉƒZƒbƒg‚·‚éBGƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param   header		[out] ä½œæˆã—ãŸãƒ˜ãƒƒãƒ€ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å…ˆ
+ * @param   imgProxy	[in]  ãƒ˜ãƒƒãƒ€ã«ã‚»ãƒƒãƒˆã™ã‚‹ã‚¤ãƒ¡ãƒ¼ã‚¸ãƒ—ãƒ­ã‚­ã‚·
+ * @param   pltProxy	[in]  ãƒ˜ãƒƒãƒ€ã«ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆãƒ—ãƒ­ã‚­ã‚·
+ * @param   cellBank	[in]  ãƒ˜ãƒƒãƒ€ã«ã‚»ãƒƒãƒˆã™ã‚‹ã‚»ãƒ«ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿
+ * @param   anmBank		[in]  ãƒ˜ãƒƒãƒ€ã«ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒãƒ³ã‚¯ãƒ‡ãƒ¼ã‚¿
+ * @param   bgPri		[in]  ãƒ˜ãƒƒãƒ€ã«ã‚»ãƒƒãƒˆã™ã‚‹BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  *
  */
 //------------------------------------------------------------------
@@ -2707,7 +2707,7 @@ void BoxAppView_SetActHeader( CLACT_HEADER* header, NNSG2dImageProxy* imgProxy, 
 
 //------------------------------------------------------------------
 /**
- * ƒAƒNƒ^[’Ç‰Á
+ * ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  *
  * @param   actSys		
  * @param   actHeader		
@@ -2733,7 +2733,7 @@ CLACT_WORK_PTR BoxAppView_AddActor( CLACT_SET_PTR  actSys, CLACT_HEADER_PTR  act
 	add.DrawArea = drawArea;
 	add.heap = HEAPID_BOX_VIEW;
 
-	{	// ƒAƒNƒ^[‚ÌAdd’†‚ÉŠ„‚èž‚Ý‚ÅƒAƒNƒ^[•`‰æ‚ª”­¶‚·‚é‚Æƒ}ƒY‚¢‚Ì‚Å
+	{	// ã‚¢ã‚¯ã‚¿ãƒ¼ã®Addä¸­ã«å‰²ã‚Šè¾¼ã¿ã§ã‚¢ã‚¯ã‚¿ãƒ¼æç”»ãŒç™ºç”Ÿã™ã‚‹ã¨ãƒžã‚ºã„ã®ã§
 	    OSIntrMode	oldIntr = OS_DisableInterrupts();
 		act = CLACT_AddSimple( &add );
 		OS_RestoreInterrupts( oldIntr );
@@ -2751,7 +2751,7 @@ CLACT_WORK_PTR BoxAppView_AddActor( CLACT_SET_PTR  actSys, CLACT_HEADER_PTR  act
 
 //------------------------------------------------------------------
 /**
- * ƒAƒNƒ^[‚Ì•`‰æƒvƒ‰ƒCƒIƒŠƒeƒB•ÏX
+ * ã‚¢ã‚¯ã‚¿ãƒ¼ã®æç”»ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å¤‰æ›´
  *
  * @param   act		
  * @param   pri		
@@ -2768,13 +2768,13 @@ void BoxAppView_ChangeDrawPriority( CLACT_WORK_PTR act, u32 pri )
 
 //------------------------------------------------------------------
 /**
- * ƒpƒŒƒbƒgƒtƒF[ƒhŒvŽZ
+ * ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰è¨ˆç®—
  *
- * @param   src			ŽQÆæƒpƒŒƒbƒgƒAƒhƒŒƒX
- * @param   dst			ƒtƒF[ƒhŒãƒpƒŒƒbƒgƒf[ƒ^‘‚«ž‚ÝƒAƒhƒŒƒX
- * @param   colNum		ŒvŽZ‚·‚éF”
- * @param   colCode		ƒtƒF[ƒhƒJƒ‰[istep==16‚ÅA‘SF‚ª‚±‚ÌF‚É‚È‚éj
- * @param   step		ƒtƒF[ƒh’iŠK
+ * @param   src			å‚ç…§å…ˆãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   dst			ãƒ•ã‚§ãƒ¼ãƒ‰å¾Œãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   colNum		è¨ˆç®—ã™ã‚‹è‰²æ•°
+ * @param   colCode		ãƒ•ã‚§ãƒ¼ãƒ‰ã‚«ãƒ©ãƒ¼ï¼ˆstep==16ã§ã€å…¨è‰²ãŒã“ã®è‰²ã«ãªã‚‹ï¼‰
+ * @param   step		ãƒ•ã‚§ãƒ¼ãƒ‰æ®µéšŽ
  *
  */
 //------------------------------------------------------------------
@@ -2850,7 +2850,7 @@ static struct {
 
 //------------------------------------------------------------------
 /**
- * Š„‚èž‚Ý’†ƒƒ‚ƒŠ‰ð•úƒVƒXƒeƒ€‰Šú‰»
+ * å‰²ã‚Šè¾¼ã¿ä¸­ãƒ¡ãƒ¢ãƒªè§£æ”¾ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  */
 //------------------------------------------------------------------
 static void FreeMemoryWorkInit( void )
@@ -2860,7 +2860,7 @@ static void FreeMemoryWorkInit( void )
 
 //------------------------------------------------------------------
 /**
- * ƒŠƒNƒGƒXƒg‚ðŽó‚¯‚½ƒƒ‚ƒŠ‚Ì‰ð•úˆ—
+ * ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å—ã‘ãŸãƒ¡ãƒ¢ãƒªã®è§£æ”¾å‡¦ç†
  */
 //------------------------------------------------------------------
 static void FreeMemoryFlush( void )
@@ -2884,11 +2884,11 @@ static void FreeMemoryFlush( void )
 
 //------------------------------------------------------------------
 /**
- * Š„‚èž‚Ý’†ƒƒ‚ƒŠ‰ð•úƒŠƒNƒGƒXƒg
+ * å‰²ã‚Šè¾¼ã¿ä¸­ãƒ¡ãƒ¢ãƒªè§£æ”¾ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param   memory			Free‚µ‚½‚¢ƒƒ‚ƒŠƒuƒƒbƒNƒAƒhƒŒƒX
- * @param   callback		FreeŒãAŒÄ‚Ño‚µ‚½‚¢ƒR[ƒ‹ƒoƒbƒN
- * @param   arg				ƒR[ƒ‹ƒoƒbƒNˆø”
+ * @param   memory			Freeã—ãŸã„ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param   callback		Freeå¾Œã€å‘¼ã³å‡ºã—ãŸã„ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ * @param   arg				ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å¼•æ•°
  *
  */
 //------------------------------------------------------------------

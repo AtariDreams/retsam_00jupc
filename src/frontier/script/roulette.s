@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	roulette.s
- * @brief	uƒ‹[ƒŒƒbƒgvƒtƒƒ“ƒeƒBƒAƒXƒNƒŠƒvƒg
+ * @brief	ã€Œãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã€ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
  * @author	nohara
  * @date	2007.09.05
  */
@@ -21,52 +21,52 @@
 	.include	"../../particledata/pl_frontier/frontier_particle_lst.h"	//EMIT
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //
-//	FSW_PARAM0	˜^‰æˆ—‚ÅŽg—p
-//	FSW_PARAM1	ƒŠƒXƒgˆ—‚ÉŽg—p
-//	FSW_PARAM2	“GƒgƒŒ[ƒi[1‚ÌOBJƒR[ƒh
-//	FSW_PARAM3	“GƒgƒŒ[ƒi[2‚ÌOBJƒR[ƒh
-//	FSW_PARAM4	1=‰ñ•œƒV[ƒPƒ“ƒX‚ð”ò‚Î‚·(‹L˜^‚·‚é‚à”ò‚Î‚·)
-//	FSW_PARAM5	ƒpƒlƒ‹ˆ—‚ÅŽg—p
-//	FSW_PARAM6	ˆÄ“àlŒ©‚½–Ú
-//	FSW_LOCAL2	’ÊM’è‹`
-//	FSW_LOCAL3	‹L˜^‚µ‚½‚©
-//	FSW_LOCAL5	ƒpƒlƒ‹ˆ—‚ÅŽg—p
-//	FSW_LOCAL6	ƒpƒlƒ‹ˆ—‚ÅŽg—p
-//	FSW_LOCAL7	ŽålŒö‚ÌŒ©‚½–Ú
+//	FSW_PARAM0	éŒ²ç”»å‡¦ç†ã§ä½¿ç”¨
+//	FSW_PARAM1	ãƒªã‚¹ãƒˆå‡¦ç†ã«ä½¿ç”¨
+//	FSW_PARAM2	æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼1ã®OBJã‚³ãƒ¼ãƒ‰
+//	FSW_PARAM3	æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼2ã®OBJã‚³ãƒ¼ãƒ‰
+//	FSW_PARAM4	1=å›žå¾©ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’é£›ã°ã™(è¨˜éŒ²ã™ã‚‹ã‚‚é£›ã°ã™)
+//	FSW_PARAM5	ãƒ‘ãƒãƒ«å‡¦ç†ã§ä½¿ç”¨
+//	FSW_PARAM6	æ¡ˆå†…äººè¦‹ãŸç›®
+//	FSW_LOCAL2	é€šä¿¡å®šç¾©
+//	FSW_LOCAL3	è¨˜éŒ²ã—ãŸã‹
+//	FSW_LOCAL5	ãƒ‘ãƒãƒ«å‡¦ç†ã§ä½¿ç”¨
+//	FSW_LOCAL6	ãƒ‘ãƒãƒ«å‡¦ç†ã§ä½¿ç”¨
+//	FSW_LOCAL7	ä¸»äººå…¬ã®è¦‹ãŸç›®
 //
 //--------------------------------------------------------------------
-_EVENT_DATA		fss_roulette_start	//ˆê”Ôã‚ÌEVENT_DATA‚ÍŽ©“®ŽÀs
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA		fss_roulette_start	//ä¸€ç•ªä¸Šã®EVENT_DATAã¯è‡ªå‹•å®Ÿè¡Œ
+_EVENT_DATA_END						//çµ‚äº†
 
-#define PARTICLE_PANEL_EFF_WAIT		(60)	//‰‰oƒp[ƒeƒBƒNƒ‹‚Ì‹¤’ÊƒEƒFƒCƒg
+#define PARTICLE_PANEL_EFF_WAIT		(60)	//æ¼”å‡ºãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®å…±é€šã‚¦ã‚§ã‚¤ãƒˆ
 
 //--------------------------------------------------------------------
-//					     ƒfƒoƒbƒN’è‹`
+//					     ãƒ‡ãƒãƒƒã‚¯å®šç¾©
 //--------------------------------------------------------------------
-//#define DEBUG_BTL_OFF				//ƒoƒgƒ‹ƒIƒtƒfƒoƒbƒN
-//#define DEBUG_BTL_LOSE_OFF			//ƒoƒgƒ‹”s–kƒIƒtƒfƒoƒbƒN
-//#define DEBUG_7BTL_OFF				//ƒoƒgƒ‹7‰ñƒIƒtƒfƒoƒbƒN
+//#define DEBUG_BTL_OFF				//ãƒãƒˆãƒ«ã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
+//#define DEBUG_BTL_LOSE_OFF			//ãƒãƒˆãƒ«æ•—åŒ—ã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
+//#define DEBUG_7BTL_OFF				//ãƒãƒˆãƒ«7å›žã‚ªãƒ•ãƒ‡ãƒãƒƒã‚¯
 
 /********************************************************************/
 //
-//		SCENE_ROULETTE:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//		SCENE_ROULETTE:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //
 /********************************************************************/
 _RESOURCE_LABEL	default_set_resource
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		FSW_PARAM6,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 _RESOURCE_LABEL	default_set_resource_multi
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
-	_SIO_PLAYER_RESOURCE_DATA	//’ÊMƒvƒŒƒCƒ„[‘Sˆõ‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
+	_SIO_PLAYER_RESOURCE_DATA	//é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¨å“¡ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		FSW_PARAM6,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 //====================================================================
-//	SCENE_ROULETTE:ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENE_ROULETTE:ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //====================================================================
 #define OBJID_PLAYER				(0)
 #define OBJID_SIO_USER_0			(1)
@@ -92,12 +92,12 @@ _RESOURCE_LABEL	default_set_resource_multi
 #define OBJID_ETC					(98)
 #define OBJID_ETC2					(99)
 
-//ƒXƒNƒŠƒvƒgID(¡Œã‘Î‰ž—\’è)
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆID(ä»Šå¾Œå¯¾å¿œäºˆå®š)
 #define EVENTID_TEST_SCR_OBJ1		(1)
 
-//’Ê˜HƒAƒNƒ^[
+//é€šè·¯ã‚¢ã‚¯ã‚¿ãƒ¼
 _ACTOR_LABEL	way_set_actor
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*16,OFF	/*Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*16,OFF	/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	_ACTOR_DATA				OBJID_PCWOMAN2,FSW_PARAM6,WF2DMAP_WAY_C_UP, \
 							8*23,8*24,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_MINE,FSW_LOCAL7,WF2DMAP_WAY_C_UP, \
@@ -105,7 +105,7 @@ _ACTOR_LABEL	way_set_actor
 	_ACTOR_DATA_END
 
 _ACTOR_LABEL	way_set_actor_multi
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*16,OFF	/*Ž©•ªŽ©g‚ÌƒAƒNƒ^[ƒZƒbƒg*/
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,8*16,OFF	/*è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_UP,8*23,8*24,OFF
 	_SIO_PLAYER_ACTOR_DATA	1,OBJID_SIO_USER_1,WF2DMAP_WAY_C_UP,8*23,8*24,OFF
 	_ACTOR_DATA				OBJID_PCWOMAN2,FSW_PARAM6,WF2DMAP_WAY_C_UP, \
@@ -115,18 +115,18 @@ _ACTOR_LABEL	way_set_actor_multi
 
 /********************************************************************/
 //
-//	SCENE_ROULETTE_BTL:ƒŠƒ\[ƒXƒ‰ƒxƒ‹(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒŠƒ\[ƒXŒQ)
+//	SCENE_ROULETTE_BTL:ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ãƒªã‚½ãƒ¼ã‚¹ç¾¤)
 //
 /********************************************************************/
 _RESOURCE_LABEL	default_scene2_resource
-	//_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg	//’Ê˜H‚©‚ç‚ ‚é‚Ì‚Å‚¢‚ç‚È‚¢
-	//_CHAR_RESOURCE_DATA		FSW_LOCAL7, WF2DC_C_MOVENORMAL			//‚·‚Å‚É‚¢‚é‚Ì‚Å‚¢‚ç‚È‚¢
+	//_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ	//é€šè·¯ã‹ã‚‰ã‚ã‚‹ã®ã§ã„ã‚‰ãªã„
+	//_CHAR_RESOURCE_DATA		FSW_LOCAL7, WF2DC_C_MOVENORMAL			//ã™ã§ã«ã„ã‚‹ã®ã§ã„ã‚‰ãªã„
 	_CHAR_RESOURCE_DATA		SUNGLASSES,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
 
 _RESOURCE_LABEL	default_scene2_resource_multi
-	_PLAYER_RESOURCE_DATA		//Ž©•ªŽ©g(HEROorHEROINE)‚ÌƒLƒƒƒ‰ƒZƒbƒg
-	_SIO_PLAYER_RESOURCE_DATA	//’ÊMƒvƒŒƒCƒ„[‘Sˆõ‚ÌƒLƒƒƒ‰ƒZƒbƒg
+	_PLAYER_RESOURCE_DATA		//è‡ªåˆ†è‡ªèº«(HEROorHEROINE)ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
+	_SIO_PLAYER_RESOURCE_DATA	//é€šä¿¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å…¨å“¡ã®ã‚­ãƒ£ãƒ©ã‚»ãƒƒãƒˆ
 	_CHAR_RESOURCE_DATA		FSW_LOCAL7, WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA		SUNGLASSES,WF2DC_C_MOVENORMAL
 	_CHAR_RESOURCE_DATA_END
@@ -144,13 +144,13 @@ _RESOURCE_LABEL	pcwoman2_scene2_resource
 	_CHAR_RESOURCE_DATA_END
 
 //====================================================================
-//	SCENE_ROULETTE_BTL:ƒAƒNƒ^[(‰æ–ÊINŽž‚Éí’“‚³‚¹‚éƒAƒNƒ^[ŒQ)
+//	SCENE_ROULETTE_BTL:ã‚¢ã‚¯ã‚¿ãƒ¼(ç”»é¢INæ™‚ã«å¸¸é§ã•ã›ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç¾¤)
 //====================================================================
 #define PLAYER_Y	(8*38-4)	//(8*38-4)
 #define MINE_Y		(8*38)		//(8*38-4)
 
 _ACTOR_LABEL	default_scene2_actor
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,PLAYER_Y,OFF	//Ž©•ªŽ©g‚ÌƒAƒNƒ^ƒZƒbƒg
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,PLAYER_Y,OFF	//è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ã‚»ãƒƒãƒˆ
 	_ACTOR_DATA				OBJID_MINE,FSW_LOCAL7,WF2DMAP_WAY_C_UP, \
 							8*16,MINE_Y,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_MAN,SUNGLASSES,WF2DMAP_WAY_C_UP, \
@@ -158,7 +158,7 @@ _ACTOR_LABEL	default_scene2_actor
 	_ACTOR_DATA_END
 
 _ACTOR_LABEL	default_scene2_actor_multi
-	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,PLAYER_Y,OFF	//Ž©•ªŽ©g‚ÌƒAƒNƒ^ƒZƒbƒg
+	_PLAYER_ACTOR_DATA		OBJID_PLAYER,WF2DMAP_WAY_C_UP,8*15,PLAYER_Y,OFF	//è‡ªåˆ†è‡ªèº«ã®ã‚¢ã‚¯ã‚¿ã‚»ãƒƒãƒˆ
 	_SIO_PLAYER_ACTOR_DATA	0,OBJID_SIO_USER_0,WF2DMAP_WAY_C_UP,8*16,MINE_Y,ON
 	_SIO_PLAYER_ACTOR_DATA	1,OBJID_SIO_USER_1,WF2DMAP_WAY_C_UP,8*18,MINE_Y,ON
 	_ACTOR_DATA				OBJID_MAN,SUNGLASSES,WF2DMAP_WAY_C_UP, \
@@ -171,7 +171,7 @@ _ACTOR_LABEL	pcwoman2_scene2_actor
 	_ACTOR_DATA_END
 
 //--------------------------------------------------------------------
-//	ŠÏ‹qƒAƒNƒ^[
+//	è¦³å®¢ã‚¢ã‚¯ã‚¿ãƒ¼
 //--------------------------------------------------------------------
 _ACTOR_LABEL	default_scene3_actor
 	_ACTOR_DATA				OBJID_PEOPLE1,MAN1,WF2DMAP_WAY_C_RIGHT, \
@@ -190,7 +190,7 @@ _ACTOR_LABEL	default_scene3_actor
 							8*24,8*30,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_PEOPLE8,MAN1,WF2DMAP_WAY_C_DOWN, \
 							8*26,8*30,ON,EVENTID_TEST_SCR_OBJ1
-	/*“¯‚¶ƒLƒƒƒ‰‚ð•¡””z’u*/
+	/*åŒã˜ã‚­ãƒ£ãƒ©ã‚’è¤‡æ•°é…ç½®*/
 	_ACTOR_DATA				OBJID_PEOPLE11,MAN1,WF2DMAP_WAY_C_RIGHT, \
 							8*8,8*32,ON,EVENTID_TEST_SCR_OBJ1
 	_ACTOR_DATA				OBJID_PEOPLE12,IDOL,WF2DMAP_WAY_C_LEFT, \
@@ -206,7 +206,7 @@ _ACTOR_LABEL	default_scene3_actor
 	_ACTOR_DATA_END
 
 //--------------------------------------------------------------------
-//	ó‹µ‚É‚æ‚Á‚Ä•Ï‚¦‚éƒŠƒ\[ƒX
+//	çŠ¶æ³ã«ã‚ˆã£ã¦å¤‰ãˆã‚‹ãƒªã‚½ãƒ¼ã‚¹
 // LOCAL0 = OBJCODE
 //--------------------------------------------------------------------
 _RESOURCE_LABEL	etc_set_resource
@@ -219,7 +219,7 @@ _RESOURCE_LABEL	etc_set_resource2
 	_CHAR_RESOURCE_DATA_END
 
 //--------------------------------------------------------------------
-//	ó‹µ‚É‚æ‚Á‚Ä•Ï‚¦‚éƒAƒNƒ^[
+//	çŠ¶æ³ã«ã‚ˆã£ã¦å¤‰ãˆã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼
 // LOCAL0 = OBJCODE
 //--------------------------------------------------------------------
 _ACTOR_LABEL	etc_set_actor
@@ -243,7 +243,7 @@ _ACTOR_LABEL	etc_set_actor2
 
 /********************************************************************/
 //
-//		‰ñ•œ‚µ‚Ä‚­‚ê‚éƒXƒ^ƒbƒt
+//		å›žå¾©ã—ã¦ãã‚Œã‚‹ã‚¹ã‚¿ãƒƒãƒ•
 //
 /********************************************************************/
 _RESOURCE_LABEL	kaihuku_set_resource
@@ -259,17 +259,17 @@ _ACTOR_LABEL	kaihuku_set_actor
 
 
 //====================================================================
-//	”z’u•¨ƒAƒNƒ^[
+//	é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼
 //====================================================================
 //--------------------------------------------------------------
-//	ƒ‰ƒ“ƒv”z’u•¨ƒŠƒ\[ƒXƒ‰ƒxƒ‹
+//	ãƒ©ãƒ³ãƒ—é…ç½®ç‰©ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«
 //--------------------------------------------------------------
 _ARTICLE_RESOURCE_LABEL	article_ramp_resource
 	_ARTICLE_RESOURCE_DATA	ACTID_ROULETTE_RAMP
 	_ARTICLE_RESOURCE_DATA_END
 
 //--------------------------------------------------------------
-//	ƒ‰ƒ“ƒv”z’u•¨ƒAƒNƒ^[
+//	ãƒ©ãƒ³ãƒ—é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼
 //--------------------------------------------------------------
 #define RAMP_L_X			(24)
 #define RAMP_R_X			(257)
@@ -277,41 +277,41 @@ _ARTICLE_RESOURCE_LABEL	article_ramp_resource
 
 #define RAMP_WAIT			(45)
 
-/*ƒVƒ“ƒOƒ‹L*/
+/*ã‚·ãƒ³ã‚°ãƒ«L*/
 _ARTICLE_ACTOR_LABEL	article_ramp_single_l_actor
 	//id,x,y,visible,anm_start,act_work
 	_ARTICLE_ACTOR_DATA		ACTID_ROULETTE_RAMP, RAMP_L_X, RAMP_SINGLE_Y1, ON, OFF, ACTWORK_0
 	_ARTICLE_ACTOR_DATA_END
 
-/*ƒVƒ“ƒOƒ‹R*/
+/*ã‚·ãƒ³ã‚°ãƒ«R*/
 _ARTICLE_ACTOR_LABEL	article_ramp_single_r_actor
 	//id,x,y,visible,anm_start,act_work
 	_ARTICLE_ACTOR_DATA		ACTID_ROULETTE_RAMP, RAMP_R_X, RAMP_SINGLE_Y1, ON, OFF, ACTWORK_1
 	_ARTICLE_ACTOR_DATA_END
 
 //--------------------------------------------------------------
-//	ƒ|ƒPƒpƒlƒ‹”z’u•¨ƒŠƒ\[ƒXƒ‰ƒxƒ‹
+//	ãƒã‚±ãƒ‘ãƒãƒ«é…ç½®ç‰©ãƒªã‚½ãƒ¼ã‚¹ãƒ©ãƒ™ãƒ«
 //--------------------------------------------------------------
 _ARTICLE_RESOURCE_LABEL	article_pokepanel_resource
 	_ARTICLE_RESOURCE_DATA	ACTID_ROULETTE_POKEPANEL
 	_ARTICLE_RESOURCE_DATA_END
 
 //--------------------------------------------------------------
-//	ƒ|ƒPƒpƒlƒ‹”z’u•¨ƒAƒNƒ^[
+//	ãƒã‚±ãƒ‘ãƒãƒ«é…ç½®ç‰©ã‚¢ã‚¯ã‚¿ãƒ¼
 //--------------------------------------------------------------
 #define POKEPANEL_L_X			(44)
 #define POKEPANEL_R_X			(212)
 #define POKEPANEL_SINGLE_Y1		(42)
 #define POKEPANEL_SINGLE_Y2		(82)
 
-/*ƒVƒ“ƒOƒ‹L*/
+/*ã‚·ãƒ³ã‚°ãƒ«L*/
 _ARTICLE_ACTOR_LABEL	article_pokepanel_single_l_actor
 	//id,x,y,visible,anm_start,act_work
 	_ARTICLE_ACTOR_DATA		ACTID_ROULETTE_POKEPANEL, POKEPANEL_L_X, POKEPANEL_SINGLE_Y1, ON, OFF, ACTWORK_4
 	_ARTICLE_ACTOR_DATA		ACTID_ROULETTE_POKEPANEL, POKEPANEL_L_X, POKEPANEL_SINGLE_Y2, ON, OFF, ACTWORK_5
 	_ARTICLE_ACTOR_DATA_END
 
-/*ƒVƒ“ƒOƒ‹R*/
+/*ã‚·ãƒ³ã‚°ãƒ«R*/
 _ARTICLE_ACTOR_LABEL	article_pokepanel_single_r_actor
 	//id,x,y,visible,anm_start,act_work
 	_ARTICLE_ACTOR_DATA		ACTID_ROULETTE_POKEPANEL, POKEPANEL_R_X, POKEPANEL_SINGLE_Y1, ON, OFF, ACTWORK_6
@@ -321,48 +321,48 @@ _ARTICLE_ACTOR_LABEL	article_pokepanel_single_r_actor
 
 /********************************************************************/
 //
-//					ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+//					ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 //
 /********************************************************************/
 
 //--------------------------------------------------------------------
-//‘Îí•”‰®‚Ü‚ÅˆÚ“®
+//å¯¾æˆ¦éƒ¨å±‹ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_top
 	_ANIME_DATA	FC_WAIT_8F,1
-	_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1		/*•\Ž¦*/
+	_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1		/*è¡¨ç¤º*/
 	_ANIME_DATA	FC_WALK_U_8F,4
 	_ANIME_DATA	FC_WALK_L_8F,7
 	_ANIME_DATA	FC_WALK_U_8F,4
-	_ANIME_DATA	FC_SYSCMD_VISIBLE_OFF,1		/*”ñ•\Ž¦*/
+	_ANIME_DATA	FC_SYSCMD_VISIBLE_OFF,1		/*éžè¡¨ç¤º*/
 	_ANIME_DATA_END
 
 _ANIME_LABEL anm_player_go_top_multi
 	_ANIME_DATA	FC_WAIT_8F,1
 	_ANIME_DATA	FC_WAIT_8F,1
-	_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1		/*•\Ž¦*/
+	_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1		/*è¡¨ç¤º*/
 	_ANIME_DATA	FC_WALK_U_8F,4
 	_ANIME_DATA	FC_WALK_L_8F,7
 	_ANIME_DATA	FC_WALK_U_8F,4
-	_ANIME_DATA	FC_SYSCMD_VISIBLE_OFF,1		/*”ñ•\Ž¦*/
+	_ANIME_DATA	FC_SYSCMD_VISIBLE_OFF,1		/*éžè¡¨ç¤º*/
 	_ANIME_DATA_END
 
 _ANIME_LABEL anm_man_go_top
 	_ANIME_DATA	FC_WALK_U_8F,4
 	_ANIME_DATA	FC_WALK_L_8F,7
 	_ANIME_DATA	FC_WALK_U_8F,4
-	_ANIME_DATA	FC_SYSCMD_VISIBLE_OFF,1		/*”ñ•\Ž¦*/
+	_ANIME_DATA	FC_SYSCMD_VISIBLE_OFF,1		/*éžè¡¨ç¤º*/
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//˜b‚·“®ì
+//è©±ã™å‹•ä½œ
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_stay_walk_left
 	_ANIME_DATA	FC_STAY_WALK_L_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ŠJŽnˆÊ’u‚Ü‚ÅˆÚ“®
+//é–‹å§‹ä½ç½®ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_player_go_center_scroll
 	_ANIME_DATA	FC_WALK_U_8F,11
@@ -384,7 +384,7 @@ _ANIME_LABEL anm_player_go_center_multi
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//Œ©‘—‚é
+//è¦‹é€ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_pcwoman2_go_center
 	_ANIME_DATA	FC_WAIT_8F,1
@@ -393,7 +393,7 @@ _ANIME_LABEL anm_pcwoman2_go_center
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//“GƒgƒŒ[ƒi[‚ªƒoƒgƒ‹ƒ‹[ƒ€‚Ì’†‰›‚Ü‚ÅˆÚ“®
+//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã®ä¸­å¤®ã¾ã§ç§»å‹•
 //--------------------------------------------------------------------
 _ANIME_LABEL etc_anime_room_in_single
 	//_ANIME_DATA	FC_WALK_L_8F,3
@@ -431,14 +431,14 @@ _ANIME_LABEL anm_go_btl_walk_right
 	_ANIME_DATA_END
 
 _ANIME_LABEL etc_anime_room_in_brain
-	//_ANIME_DATA	FC_SYSCMD_VISIBLE_OFF,1		/*”ñ•\Ž¦*/
+	//_ANIME_DATA	FC_SYSCMD_VISIBLE_OFF,1		/*éžè¡¨ç¤º*/
 	//_ANIME_DATA	FC_WALK_L_8F,7
 	//_ANIME_DATA	FC_WALK_D_8F,7
-	//_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1		/*•\Ž¦*/
+	//_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1		/*è¡¨ç¤º*/
 	//_ANIME_DATA_END
-	_ANIME_DATA	FC_SYSCMD_VISIBLE_OFF,1		/*”ñ•\Ž¦*/
+	_ANIME_DATA	FC_SYSCMD_VISIBLE_OFF,1		/*éžè¡¨ç¤º*/
 	_ANIME_DATA	FC_WALK_D_8F,3
-	_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1		/*•\Ž¦*/
+	_ANIME_DATA	FC_SYSCMD_VISIBLE_ON,1		/*è¡¨ç¤º*/
 	_ANIME_DATA_END
 
 _ANIME_LABEL etc_anime_room_in_brain_12
@@ -493,7 +493,7 @@ _ANIME_LABEL anm_player_go_center_scroll_brain2
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ŽålŒö@ƒuƒŒ[ƒ“‚ðŒ©‚é
+//ä¸»äººå…¬ã€€ãƒ–ãƒ¬ãƒ¼ãƒ³ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_mine_brain_down
 	_ANIME_DATA	FC_STAY_WALK_D_8F,1
@@ -508,7 +508,7 @@ _ANIME_LABEL anm_mine_brain_down2
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//“GƒgƒŒ[ƒi[‚ªƒoƒgƒ‹ƒ‹[ƒ€‚©‚ço‚Äs‚­
+//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã‹ã‚‰å‡ºã¦è¡Œã
 //--------------------------------------------------------------------
 _ANIME_LABEL etc_anime_go_out
 	//_ANIME_DATA	FC_WALK_R_8F,8
@@ -525,7 +525,7 @@ _ANIME_LABEL etc_anime_go_out_multi
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//“GƒgƒŒ[ƒi[‚ªƒoƒgƒ‹ƒ‹[ƒ€‚©‚ço‚Äs‚­(í“¬‚µ‚È‚¢Žž)
+//æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã‹ã‚‰å‡ºã¦è¡Œã(æˆ¦é—˜ã—ãªã„æ™‚)
 //--------------------------------------------------------------------
 _ANIME_LABEL etc_anime_go_out_btl_off
 	_ANIME_DATA	FC_WALK_R_8F,1
@@ -533,7 +533,7 @@ _ANIME_LABEL etc_anime_go_out_btl_off
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒvƒŒƒCƒ„[‚ªˆê•à‰º‚ª‚é
+//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒä¸€æ­©ä¸‹ãŒã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL mine_anime_go_out
 	_ANIME_DATA	FC_WALK_L_8F,1
@@ -541,7 +541,7 @@ _ANIME_LABEL mine_anime_go_out
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ƒpƒlƒ‹‚ðŒ©‚é
+//ãƒ‘ãƒãƒ«ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_panel_see_01
 	_ANIME_DATA	FC_STAY_WALK_U_8F,1
@@ -556,7 +556,7 @@ _ANIME_LABEL anm_panel_see_03
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ŠÏ‹q	’†S‚ðŒ©‚é
+//è¦³å®¢	ä¸­å¿ƒã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL people_anime_11
 	_ANIME_DATA	FC_DIR_R,1
@@ -595,7 +595,7 @@ _ANIME_LABEL people_anime_18_2
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ŠÏ‹q‚ªW‚Ü‚é
+//è¦³å®¢ãŒé›†ã¾ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL people_anime_01
 	_ANIME_DATA	FC_WALK_R_8F,2
@@ -650,7 +650,7 @@ _ANIME_LABEL people_anime_16_5
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ŠÏ‹q	ã‚ðŒ©‚é
+//è¦³å®¢	ä¸Šã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL people_anime_up_01
 	_ANIME_DATA	FC_WAIT_8F,1
@@ -673,7 +673,7 @@ _ANIME_LABEL people_anime_up_03
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ŠÏ‹q	“üêŽž‚Ì“®‚«
+//è¦³å®¢	å…¥å ´æ™‚ã®å‹•ã
 //--------------------------------------------------------------------
 _ANIME_LABEL people_anime_40
 	_ANIME_DATA	FC_WALK_D_8F,1
@@ -713,7 +713,7 @@ _ANIME_LABEL people_anime_42
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//Ži‰ï	‚»‚ê‚Å‚Íƒ‹[ƒŒƒbƒg‚¢‚Á‚Ä‚Ý‚æ[
+//å¸ä¼š	ãã‚Œã§ã¯ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã„ã£ã¦ã¿ã‚ˆãƒ¼
 //--------------------------------------------------------------------
 _ANIME_LABEL pcwoman2_anime_50
 #if 0
@@ -726,7 +726,7 @@ _ANIME_LABEL pcwoman2_anime_50
 #endif
 	_ANIME_DATA_END
 
-/*Œ³‚ÌˆÊ’u‚É–ß‚·*/
+/*å…ƒã®ä½ç½®ã«æˆ»ã™*/
 _ANIME_LABEL pcwoman2_anime_55
 	_ANIME_DATA	FC_WALK_U_8F,1
 	_ANIME_DATA	FC_STAY_WALK_D_8F,1
@@ -746,21 +746,21 @@ _ANIME_LABEL pcwoman2_anime_57
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//Ži‰ï	‰E‚ðŒü‚­
+//å¸ä¼š	å³ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL pcwoman2_anime_80
 	_ANIME_DATA	FC_STAY_WALK_R_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//Ži‰ï	¶‚ðŒü‚­
+//å¸ä¼š	å·¦ã‚’å‘ã
 //--------------------------------------------------------------------
 _ANIME_LABEL pcwoman2_anime_90
 	_ANIME_DATA	FC_STAY_WALK_L_8F,1
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//Ži‰ï	˜b‚·
+//å¸ä¼š	è©±ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL pcwoman2_anime_60
 	_ANIME_DATA	FC_STAY_WALK_D_8F,1
@@ -776,7 +776,7 @@ _ANIME_LABEL pcwoman2_anime_65
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//Ži‰ï	‚«‚Ì‚ÝAƒAƒCƒeƒ€‚ð“n‚·
+//å¸ä¼š	ãã®ã¿ã€ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ¸¡ã™
 //--------------------------------------------------------------------
 _ANIME_LABEL pcwoman2_anime_70
 	_ANIME_DATA	FC_WALK_D_8F,1
@@ -789,7 +789,7 @@ _ANIME_LABEL pcwoman2_anime_72
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//Ži‰ï	‚«‚Ì‚ÝAƒAƒCƒeƒ€‚ð“n‚µ‚Ä–ß‚é
+//å¸ä¼š	ãã®ã¿ã€ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ¸¡ã—ã¦æˆ»ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL pcwoman2_anime_75				/*BP*/
 	_ANIME_DATA	FC_WALK_R_8F,3
@@ -799,7 +799,7 @@ _ANIME_LABEL pcwoman2_anime_75				/*BP*/
 	_ANIME_DATA	FC_STAY_WALK_D_8F,1
 	_ANIME_DATA_END
 
-_ANIME_LABEL pcwoman2_anime_75_item			/*ƒAƒCƒeƒ€A‚«‚Ì‚Ý*/
+_ANIME_LABEL pcwoman2_anime_75_item			/*ã‚¢ã‚¤ãƒ†ãƒ ã€ãã®ã¿*/
 	_ANIME_DATA	FC_WALK_R_8F,3
 	//_ANIME_DATA	FC_WALK_U_8F,1
 	_ANIME_DATA	FC_WALK_U_8F,1
@@ -814,7 +814,7 @@ _ANIME_LABEL pcwoman2_anime_77
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//‰ñ•œ	‹ß‚Ã‚¢‚Ä‚­‚é
+//å›žå¾©	è¿‘ã¥ã„ã¦ãã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL kaihuku_anime_10
 	_ANIME_DATA	FC_WALK_U_4F,5
@@ -826,7 +826,7 @@ _ANIME_LABEL kaihuku_anime_15
 	_ANIME_DATA_END
 
 //--------------------------------------------------------------------
-//ŽålŒö	‰ñ•œ‚ðŒ©‚é
+//ä¸»äººå…¬	å›žå¾©ã‚’è¦‹ã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL player_kaihuku_anime_10
 	_ANIME_DATA	FC_STAY_WALK_L_8F,1
@@ -839,24 +839,24 @@ _ANIME_LABEL player_kaihuku_anime_15
 
 /********************************************************************/
 //
-//							’Ê˜H
+//							é€šè·¯
 //
 /********************************************************************/
 fss_roulette_start:
 	//_EVENT_START
 
-	/*lobby‚Å‘I‘ð‚µ‚½ƒ^ƒCƒv‚ÆƒŒƒxƒ‹‚ª•K—v*/
+	/*lobbyã§é¸æŠžã—ãŸã‚¿ã‚¤ãƒ—ã¨ãƒ¬ãƒ™ãƒ«ãŒå¿…è¦*/
 	_SAVE_EVENT_WORK_GET	WK_SCENE_ROULETTE_TYPE,FSW_LOCAL1	/*type*/
 	_SAVE_EVENT_WORK_GET	LOCALWORK3,FSW_LOCAL3				/*init*/
 	_SAVE_EVENT_WORK_GET	LOCALWORK2,FSW_LOCAL4				/*pos1*/
 	_SAVE_EVENT_WORK_GET	LOCALWORK5,FSW_LOCAL5				/*pos2*/
 	_SAVE_EVENT_WORK_GET	LOCALWORK6,FSW_LOCAL6				/*pos3*/
 
-	/*ƒ[ƒNŠm•Û*/
+	/*ãƒ¯ãƒ¼ã‚¯ç¢ºä¿*/
 	_BATTLE_REC_INIT
 	_ROULETTE_WORK_ALLOC	FSW_LOCAL3,FSW_LOCAL1,FSW_LOCAL4,FSW_LOCAL5,FSW_LOCAL6,FSW_ANSWER
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	_GET_MINE_OBJ		FSW_LOCAL7
 
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
@@ -870,7 +870,7 @@ fss_roulette_start:
 ev_roulette_start_multi_way:
 	_CALL				ev_roulette_comm_command_initialize_1
 
-	/*Ÿ”s‚ÉŠÖŒW‚È‚­’ÊMƒtƒƒ“ƒeƒBƒA‚É’§í(’ÊM‚Í’†’f‚ª‚È‚¢‚Ì‚Åæ“ª‚Åˆ—‚µ‚Ä‚à‘åä•v)*/
+	/*å‹æ•—ã«é–¢ä¿‚ãªãé€šä¿¡ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ã«æŒ‘æˆ¦(é€šä¿¡ã¯ä¸­æ–­ãŒãªã„ã®ã§å…ˆé ­ã§å‡¦ç†ã—ã¦ã‚‚å¤§ä¸ˆå¤«)*/
 	_SCORE_ADD			SCORE_ID_FRONTIER_COMM
 
 	_LDVAL				FSW_PARAM6,BFSW1
@@ -879,21 +879,21 @@ ev_roulette_start_multi_way:
 	_END
 
 ev_roulette_start_data_set_way:
-	_CALL				ev_roulette_rouka_pal_black							/*ˆÃ‚­‚·‚é*/
+	_CALL				ev_roulette_rouka_pal_black							/*æš—ãã™ã‚‹*/
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_go_btl_multi_way
 
-	/*‘Îí•”‰®‚Ü‚Å•à‚­*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_PCWOMAN2,anm_man_go_top
 	_OBJ_ANIME			OBJID_MINE,anm_player_go_top
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí•”‰®‚Öƒ}ƒbƒvØ‚è‘Ö‚¦*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã¸ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆ*/
 	_SE_PLAY			SEQ_SE_DP_KAIDAN2
 	_SE_WAIT			SEQ_SE_DP_KAIDAN2
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -907,13 +907,13 @@ ev_roulette_start_data_set_way:
 	_END
 
 ev_roulette_go_btl_multi_way:
-	/*‘Îí•”‰®‚Ü‚Å•à‚­*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_PCWOMAN2,anm_man_go_top
 	_OBJ_ANIME			OBJID_SIO_USER_0,anm_player_go_top
 	_OBJ_ANIME			OBJID_SIO_USER_1,anm_player_go_top_multi
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí•”‰®‚Öƒ}ƒbƒvØ‚è‘Ö‚¦*/
+	/*å¯¾æˆ¦éƒ¨å±‹ã¸ãƒžãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆ*/
 	_SE_PLAY			SEQ_SE_DP_KAIDAN2
 	_SE_WAIT			SEQ_SE_DP_KAIDAN2
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
@@ -929,13 +929,13 @@ ev_roulette_go_btl_multi_way:
 
 /********************************************************************/
 //
-//							‘Îí•”‰®
+//							å¯¾æˆ¦éƒ¨å±‹
 //
 /********************************************************************/
 ev_roulette_go_btl_sub:
 	_MAP_CHANGE			FSS_SCENEID_ROULETTE_BTL
 
-	_LDVAL				FSW_PARAM4,0					/*‰ñ•œƒV[ƒPƒ“ƒX”»’fƒ[ƒNƒNƒŠƒA*/
+	_LDVAL				FSW_PARAM4,0					/*å›žå¾©ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ¤æ–­ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢*/
 
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_start_multi
@@ -946,7 +946,7 @@ ev_roulette_go_btl_sub:
 	_END
 
 ev_roulette_start_multi:
-	_ROULETTE_TOOL		FR_ID_SET_MAIN_BG,0,0,FSW_ANSWER/*”wŒi•ÏX(“à•”‚Å’ÊMƒ^ƒCƒv‚©ƒ`ƒFƒbƒN)*/
+	_ROULETTE_TOOL		FR_ID_SET_MAIN_BG,0,0,FSW_ANSWER/*èƒŒæ™¯å¤‰æ›´(å†…éƒ¨ã§é€šä¿¡ã‚¿ã‚¤ãƒ—ã‹ãƒã‚§ãƒƒã‚¯)*/
 
 	_LDVAL				FSW_PARAM6,BFSW1
 	_CALL				ev_roulette_actor_set_btl_multi
@@ -963,31 +963,31 @@ ev_roulette_start_data_set:
 	_CALL				ev_roulette_actor_set_btl_pcwoman
 	_CALL				ev_roulette_actor_set_btl_people
 
-	/*ƒ|ƒPƒpƒlƒ‹ƒŠƒ\[ƒX{ƒAƒNƒ^[ƒZƒbƒg*/
+	/*ãƒã‚±ãƒ‘ãƒãƒ«ãƒªã‚½ãƒ¼ã‚¹ï¼‹ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	_CALL				ev_pokepanel_set
 
-	_CALL				ev_roulette_btl_pal_black				/*ˆÃ‚­‚·‚é*/
+	_CALL				ev_roulette_btl_pal_black				/*æš—ãã™ã‚‹*/
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_multi_comm_basic
 
 	_JUMP				ev_roulette_start_2
 	_END
 
-/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 ev_roulette_multi_comm_basic:
-	/*’Ê˜H‚É“ü‚Á‚Ä‚·‚®‚ÉˆÚ“®*/
+	/*é€šè·¯ã«å…¥ã£ã¦ã™ãã«ç§»å‹•*/
 	//_CALL				ev_roulette_comm_command_initialize_1
 
 //	_JUMP				ev_roulette_multi_comm_basic_retry
 //	_END
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_BASIC
 	_COMM_RESET
@@ -999,7 +999,7 @@ ev_roulette_multi_comm_basic:
 ev_roulette_multi_comm_basic_retry:
 	_LDVAL				FSW_LOCAL2,ROULETTE_COMM_BASIC
 	_ROULETTE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_multi_comm_basic_retry	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_multi_comm_basic_retry	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_ROULETTE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
@@ -1010,11 +1010,11 @@ ev_roulette_multi_comm_basic_retry:
 /********************************************************************/
 //
 /********************************************************************/
-/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 ev_roulette_multi_comm_basic_call:
 	_LDVAL				FSW_LOCAL2,ROULETTE_COMM_BASIC
 	_ROULETTE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_multi_comm_basic_call	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_multi_comm_basic_call	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_ROULETTE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
@@ -1025,10 +1025,10 @@ ev_roulette_multi_comm_basic_call:
 //
 /********************************************************************/
 ev_roulette_start_2:
-	/*ƒ[ƒN‰Šú‰»*/
+	/*ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–*/
 	_ROULETTE_WORK_INIT	FSW_LOCAL3
 
-	/*’ÊMFƒgƒŒ[ƒi[î•ñ‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_multi_comm_tr_2
 
@@ -1037,7 +1037,7 @@ ev_roulette_start_2:
 
 ev_roulette_multi_comm_tr_2:
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_TR
 	_COMM_RESET
@@ -1045,39 +1045,39 @@ ev_roulette_multi_comm_tr_2:
 	_JUMP				ev_roulette_multi_comm_tr
 	_END
 
-/*’ÊMFƒgƒŒ[ƒi[î•ñ‚â‚è‚Æ‚è*/
+/*é€šä¿¡ï¼šãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 ev_roulette_multi_comm_tr:
 	_LDVAL				FSW_LOCAL2,ROULETTE_COMM_TR
 	_ROULETTE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_multi_comm_tr	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_multi_comm_tr	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_ROULETTE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_POKE_DATA
 	_COMM_RESET
 
-	_COMM_SET_WIFI_BOTH_NET	1										/*‘å—Êƒf[ƒ^ON*/
+	_COMM_SET_WIFI_BOTH_NET	1										/*å¤§é‡ãƒ‡ãƒ¼ã‚¿ON*/
 	_JUMP				ev_roulette_multi_comm_poke
 	_END
 
 ev_roulette_multi_comm_poke:
-	/*’ÊMFŽèŽ‚¿‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šæ‰‹æŒã¡ã‚„ã‚Šã¨ã‚Š*/
 	_LDVAL				FSW_LOCAL2,ROULETTE_COMM_TEMOTI
 	_ROULETTE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_multi_comm_poke	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_multi_comm_poke	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_ROULETTE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 	
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_BOTH_0
 	_COMM_RESET
 
-	_COMM_SET_WIFI_BOTH_NET	0										/*‘å—Êƒf[ƒ^OFF*/
+	_COMM_SET_WIFI_BOTH_NET	0										/*å¤§é‡ãƒ‡ãƒ¼ã‚¿OFF*/
 	_JUMP				ev_roulette_start_3
 	_END
 
@@ -1086,34 +1086,34 @@ ev_roulette_multi_comm_poke:
 //
 /********************************************************************/
 ev_roulette_start_3:
-	/*u‚«‚ë‚­‚·‚év‚ÅŽg—p‚·‚éƒ[ƒN‚È‚Ì‚ÅƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	/*ã€Œãã‚ãã™ã‚‹ã€ã§ä½¿ç”¨ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ãªã®ã§ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 	_LDVAL				FSW_LOCAL3,0
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_start_3_multi
 
-	/*ŠJŽnˆÊ’u‚Ü‚Å•à‚­*/
+	/*é–‹å§‹ä½ç½®ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_center_scroll
 	_OBJ_ANIME			OBJID_MINE,anm_player_go_center
 	_OBJ_ANIME			OBJID_PCWOMAN2,anm_pcwoman2_go_center
-	_OBJ_ANIME			OBJID_PEOPLE2,people_anime_40			/*bigman ã‰º‚ÉˆÚ“®A¶‰EŒ©‚é*/
-	_OBJ_ANIME			OBJID_PEOPLE5,people_anime_41			/*mount ‚»‚Ìê•à‚«*/
-	_OBJ_ANIME			OBJID_PEOPLE7,people_anime_42			/*idol ¶‰E‚ÉƒLƒ‡ƒƒLƒ‡ƒ*/
+	_OBJ_ANIME			OBJID_PEOPLE2,people_anime_40			/*bigman ä¸Šä¸‹ã«ç§»å‹•ã€å·¦å³è¦‹ã‚‹*/
+	_OBJ_ANIME			OBJID_PEOPLE5,people_anime_41			/*mount ãã®å ´æ­©ã*/
+	_OBJ_ANIME			OBJID_PEOPLE7,people_anime_42			/*idol å·¦å³ã«ã‚­ãƒ§ãƒ­ã‚­ãƒ§ãƒ­*/
 	_OBJ_ANIME_WAIT
 
 	_JUMP				ev_roulette_room_start
 	_END
 
 ev_roulette_start_3_multi:
-	/*ŠJŽnˆÊ’u‚Ü‚Å•à‚­*/
+	/*é–‹å§‹ä½ç½®ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_center_scroll
 	_OBJ_ANIME			OBJID_SIO_USER_0,anm_player_go_center
 	_OBJ_ANIME			OBJID_SIO_USER_1,anm_player_go_center_multi
 	_OBJ_ANIME			OBJID_PCWOMAN2,anm_pcwoman2_go_center
-	_OBJ_ANIME			OBJID_PEOPLE2,people_anime_40			/*bigman ã‰º‚ÉˆÚ“®A¶‰EŒ©‚é*/
-	_OBJ_ANIME			OBJID_PEOPLE5,people_anime_41			/*mount ‚»‚Ìê•à‚«*/
-	_OBJ_ANIME			OBJID_PEOPLE7,people_anime_42			/*idol ¶‰E‚ÉƒLƒ‡ƒƒLƒ‡ƒ*/
+	_OBJ_ANIME			OBJID_PEOPLE2,people_anime_40			/*bigman ä¸Šä¸‹ã«ç§»å‹•ã€å·¦å³è¦‹ã‚‹*/
+	_OBJ_ANIME			OBJID_PEOPLE5,people_anime_41			/*mount ãã®å ´æ­©ã*/
+	_OBJ_ANIME			OBJID_PEOPLE7,people_anime_42			/*idol å·¦å³ã«ã‚­ãƒ§ãƒ­ã‚­ãƒ§ãƒ­*/
 	_OBJ_ANIME_WAIT
 	_JUMP				ev_roulette_room_start
 	_END
@@ -1124,31 +1124,31 @@ ev_roulette_start_3_multi:
 /********************************************************************/
 ev_roulette_room_start:
 	
-	/*—U“±ˆõíœ*/
+	/*èª˜å°Žå“¡å‰Šé™¤*/
 	_ACTOR_FREE			OBJID_PCWOMAN2
 	_CHAR_RESOURCE_FREE	FSW_PARAM6
 
-	/*ŠÏ‹qíœ*/
+	/*è¦³å®¢å‰Šé™¤*/
 	_CALL				ev_roulette_people_del
 
-	/*¡‰½l–Ú‚©Žæ“¾*/
+	/*ä»Šä½•äººç›®ã‹å–å¾—*/
 	_ROULETTE_TOOL		FR_ID_GET_ROUND,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_room_renshou_0		/*0	*/
 
 	_CALL				ev_roulette_room_set_sub
 
-	/*ÄŠJ‚µ‚½Žž‚ÉŽi‰ï‚ÌŒü‚«‚ð‰º‚É‚·‚é*/
+	/*å†é–‹ã—ãŸæ™‚ã«å¸ä¼šã®å‘ãã‚’ä¸‹ã«ã™ã‚‹*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_65
 	_OBJ_ANIME_WAIT
 
-	/*‹L˜^‚µ‚½ƒ[ƒN‚Éƒf[ƒ^‚ª‘‚«ž‚Ü‚ê‚Ä‚¢‚È‚¢‚Ì‚Åƒƒjƒ…[•\Ž¦‚µ‚È‚¢*/
+	/*è¨˜éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã«ãƒ‡ãƒ¼ã‚¿ãŒæ›¸ãè¾¼ã¾ã‚Œã¦ã„ãªã„ã®ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºã—ãªã„*/
 	_LDVAL				FSW_LOCAL3,1
 	_JUMP				ev_roulette_room_saikai							/*1-7*/
 	_END
 
 
 /********************************************************************/
-/*							0l–Ú									*/
+/*							0äººç›®									*/
 /********************************************************************/
 ev_roulette_room_renshou_0:
 	_CALL			ev_roulette_room_set_sub
@@ -1158,24 +1158,24 @@ ev_roulette_room_renshou_0:
 ev_roulette_room_set_sub:
 	_TIME_WAIT		1,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL	FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_roulette_multi_room_enemy_poke_send2
 
-	/*(ƒVƒ“ƒOƒ‹Aƒ}ƒ‹ƒ`e—p)“G‚ÌPOKEPARTYƒZƒbƒg*/
+	/*(ã‚·ãƒ³ã‚°ãƒ«ã€ãƒžãƒ«ãƒè¦ªç”¨)æ•µã®POKEPARTYã‚»ãƒƒãƒˆ*/
 	_ROULETTE_BTL_BEFORE_PARTY_SET
 
-	_CALL			ev_roulette_poke_itemkeep_icon_add_mine			/*(MINE)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“’Ç‰Á*/
+	_CALL			ev_roulette_poke_itemkeep_icon_add_mine			/*(MINE)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ */
 	_RET
 
 
 /********************************************************************/
-/*					“Gƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ð’ÊM							*/
+/*					æ•µãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’é€šä¿¡							*/
 /********************************************************************/
 ev_roulette_multi_room_enemy_poke_send2:
 
-	/*recieve_count‚ðƒNƒŠƒA‚µ‚Ä‚¨‚­(08.06.18 •ÛŒ¯ˆ—)*/
-	/*“¯ŠúŒã‚Éˆ—‚·‚é‚ÆA•Ð•û‚ªæ‚Éi‚ñ‚ÅŽóM‚ð‚µ‚½‚ ‚Æ‚ÉAƒNƒŠƒA‚ª“ü‚é‚©‚à’m‚ê‚È‚¢‚Ì‚Åƒ_ƒI*/
+	/*recieve_countã‚’ã‚¯ãƒªã‚¢ã—ã¦ãŠã(08.06.18 ä¿é™ºå‡¦ç†)*/
+	/*åŒæœŸå¾Œã«å‡¦ç†ã™ã‚‹ã¨ã€ç‰‡æ–¹ãŒå…ˆã«é€²ã‚“ã§å—ä¿¡ã‚’ã—ãŸã‚ã¨ã«ã€ã‚¯ãƒªã‚¢ãŒå…¥ã‚‹ã‹ã‚‚çŸ¥ã‚Œãªã„ã®ã§ãƒ€ãƒ¡ï¼*/
 	_ROULETTE_TOOL	FR_ID_RECIEVE_COUNT_CLEAR,0,0,FSW_ANSWER
 
 	_COMM_RESET
@@ -1186,10 +1186,10 @@ ev_roulette_multi_room_enemy_poke_send2:
 	_END
 
 ev_roulette_multi_room_enemy_poke_send2_retry:
-	/*’ÊMF“Gƒ|ƒPƒ‚ƒ“‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šæ•µãƒã‚±ãƒ¢ãƒ³ã‚„ã‚Šã¨ã‚Š*/
 	_LDVAL				FSW_LOCAL2,ROULETTE_COMM_ENEMY
 	_ROULETTE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_multi_room_enemy_poke_send2_retry/*Ž¸”sÄ‘—M*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_multi_room_enemy_poke_send2_retry/*å¤±æ•—å†é€ä¿¡*/
 
 	_ROULETTE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
@@ -1198,7 +1198,7 @@ ev_roulette_multi_room_enemy_poke_send2_retry:
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_ENEMY_AFTER
 	_COMM_RESET	
 
-	/*“Gƒ|ƒPƒ‚ƒ“‚ð¶¬*/
+	/*æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ç”Ÿæˆ*/
 	_ROULETTE_TOOL		FR_ID_ENEMY_POKE_CREATE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
@@ -1211,17 +1211,17 @@ ev_roulette_multi_room_enemy_poke_send2_retry:
 /*																	*/
 /********************************************************************/
 ev_roulette_room_go_rental:
-	/*u‚æ‚¤‚±‚»ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg‚ÖIv*/
+	/*ã€Œã‚ˆã†ã“ããƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆã¸ï¼ã€*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_65
 	_OBJ_ANIME_WAIT
 	_TALKMSG			msg_roulette_room_20
-	_SE_PLAY			SEQ_SE_DP_DENDOU				/*Š½º*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU				/*æ­“å£°*/
 
-	/*1l–Ú‚ÌŽž‚ÍA“¹‹ï—a‚©‚èƒƒbƒZ[ƒW•\Ž¦*/
+	/*1äººç›®ã®æ™‚ã¯ã€é“å…·é ã‹ã‚Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º*/
 	_ROULETTE_TOOL		FR_ID_GET_ROUND,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_roulette_room_first_msg
 
-//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]ƒfƒoƒbƒN]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]ãƒ‡ãƒãƒƒã‚¯]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 #if 0
 
 /*
@@ -1292,7 +1292,7 @@ ev_roulette_room_go_rental:
 #endif
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_multi_room_go_rental
 
@@ -1300,20 +1300,20 @@ ev_roulette_room_go_rental:
 	_END
 
 ev_roulette_multi_room_go_rental:
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_roulette_room_wait
 	_JUMP				ev_roulette_multi_room_go_rental_retry
 	_END
 
 ev_roulette_multi_room_go_rental_retry:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_RENTAL
-	_COMM_RESET			/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET			/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 	_JUMP				ev_roulette_room_go_rental_2
 	_END
 
-/*ƒfƒoƒbƒN(FSW_LOCAL5,6Žg—p)*/
+/*ãƒ‡ãƒãƒƒã‚¯(FSW_LOCAL5,6ä½¿ç”¨)*/
 debug_particle_test:
 	_PARTICLE_SPA_LOAD	SPAWORK_0, ROULETTE_SPA, FSS_CAMERA_ORTHO
 
@@ -1322,24 +1322,24 @@ debug_particle_test:
 
 	_PARTICLE_SPA_EXIT	SPAWORK_0
 	_TIME_WAIT			60,FSW_ANSWER
-	_ADD_WK				FSW_LOCAL5,1		/*emit_noƒCƒ“ƒNƒŠƒƒ“ƒg*/
+	_ADD_WK				FSW_LOCAL5,1		/*emit_noã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ*/
 	_RET
 
-/*1l–Ú‚ÌŽž‚ÍA“¹‹ï—a‚©‚èƒƒbƒZ[ƒW•\Ž¦*/
+/*1äººç›®ã®æ™‚ã¯ã€é“å…·é ã‹ã‚Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º*/
 ev_roulette_room_first_msg:
 	_TALKMSG			msg_roulette_room_1
 	_RET
 
 
 /********************************************************************/
-/*		u›‰ñ–Ú‚ÌƒQ[ƒ€‚Å‚·I‚³‚ Iƒ`ƒƒƒŒƒ“ƒWƒƒ[‚Í’N‚¾Iv		*/
+/*		ã€Œâ—‹å›žç›®ã®ã‚²ãƒ¼ãƒ ã§ã™ï¼ã•ã‚ï¼ãƒãƒ£ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ã¯èª°ã ï¼ã€		*/
 /********************************************************************/
 ev_roulette_room_go_rental_2:
-	/*˜AŸ”Žæ“¾*/
+	/*é€£å‹æ•°å–å¾—*/
 	_CALL				ev_roulette_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_msg_01_single
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_msg_01_multi
@@ -1353,9 +1353,9 @@ ev_roulette_msg_01_single:
 	_TALKMSG			msg_roulette_room_21
 	_AB_KEYWAIT
 	_TALK_CLOSE
-	_CALL				ev_room_choice_24				/*ƒgƒŒ[ƒi[“oê*/
+	_CALL				ev_room_choice_24				/*ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç™»å ´*/
 
-	/*ƒŠƒ“ƒOƒfƒ‚*/
+	/*ãƒªãƒ³ã‚°ãƒ‡ãƒ¢*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_50
 	_OBJ_ANIME_WAIT
 
@@ -1372,127 +1372,127 @@ ev_roulette_msg_01_multi:
 	_TALKMSG_NOSKIP		msg_roulette_room_21
 	_TIME_WAIT			FRONTIER_COMMON_WAIT,FSW_ANSWER
 	_TALK_CLOSE
-	_CALL				ev_room_choice_24				/*ƒgƒŒ[ƒi[“oê*/
+	_CALL				ev_room_choice_24				/*ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç™»å ´*/
 
-	/*ƒŠƒ“ƒOƒfƒ‚*/
+	/*ãƒªãƒ³ã‚°ãƒ‡ãƒ¢*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_50
 	_OBJ_ANIME_WAIT
 
 	_TALKMSG_NOSKIP		msg_roulette_room_21_01
 	_TIME_WAIT			FRONTIER_COMMON_WAIT,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_CALL
-	_COMM_RESET			/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET			/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 	_JUMP				ev_roulette_rank_go
 	_END
 
 
 /********************************************************************/
-/*						ƒ‹[ƒŒƒbƒg‰æ–Ê‚Ö							*/
+/*						ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆç”»é¢ã¸							*/
 /********************************************************************/
 ev_roulette_rank_go:
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	_TALK_CLOSE
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_ROULETTE_TOOL		FR_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_roulette_leader_1st_12
 	_IFVAL_CALL			FSW_ANSWER,EQ,2,ev_roulette_leader_2nd_12
 
-	/*˜AŸ”‚ðŽæ“¾(ƒuƒŒ[ƒ“ƒ`ƒFƒbƒN—p)(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(ãƒ–ãƒ¬ãƒ¼ãƒ³ãƒã‚§ãƒƒã‚¯ç”¨)(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_roulette_rensyou_get
 
-	/*Ži‰ï‚ðŒ³‚ÌˆÊ’u‚É–ß‚µ‚Ä‚¨‚­*/
+	/*å¸ä¼šã‚’å…ƒã®ä½ç½®ã«æˆ»ã—ã¦ãŠã*/
 	//_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_55
 	//_OBJ_ANIME_WAIT
 
-	_CALL				ev_roulette_poke_itemkeep_icon_del		/*ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“íœ*/
-	_CALL				ev_roulette_poke_itemkeep_icon_resource_del	/*ƒŠƒ\[ƒXíœ*/
+	_CALL				ev_roulette_poke_itemkeep_icon_del		/*ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤*/
+	_CALL				ev_roulette_poke_itemkeep_icon_resource_del	/*ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤*/
 
-	/*ƒ|ƒPƒpƒlƒ‹ƒŠƒ\[ƒX{ƒAƒNƒ^[íœ*/
+	/*ãƒã‚±ãƒ‘ãƒãƒ«ãƒªã‚½ãƒ¼ã‚¹ï¼‹ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤*/
 	_CALL				ev_pokepanel_del
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_roulette_rank_go_multi
 
 	_ROULETTE_CALL
 	//_SET_MAP_PROC
 
-	/*ƒ‰ƒ“ƒvƒŠƒ\[ƒX*/
+	/*ãƒ©ãƒ³ãƒ—ãƒªã‚½ãƒ¼ã‚¹*/
 	_ARTICLE_RESOURCE_SET	article_ramp_resource
 
-	/*ƒ|ƒPƒpƒlƒ‹ƒŠƒ\[ƒX{ƒAƒNƒ^[ƒZƒbƒg*/
+	/*ãƒã‚±ãƒ‘ãƒãƒ«ãƒªã‚½ãƒ¼ã‚¹ï¼‹ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	_CALL					ev_pokepanel_set
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	//_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL5
 	//_IFVAL_CALL			FSW_LOCAL5,EQ,0,ev_roulette_single_ramp_set
 	//_IFVAL_CALL			FSW_LOCAL5,EQ,1,ev_roulette_multi_ramp_set
 
-	_CALL				ev_roulette_poke_itemkeep_icon_add		/*ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“’Ç‰Á*/
+	_CALL				ev_roulette_poke_itemkeep_icon_add		/*ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ */
 
-	_ROULETTE_TOOL		FR_ID_SET_PANEL_BG,0,0,FSW_ANSWER		/*ƒpƒlƒ‹•ÏX*/
+	_ROULETTE_TOOL		FR_ID_SET_PANEL_BG,0,0,FSW_ANSWER		/*ãƒ‘ãƒãƒ«å¤‰æ›´*/
 
-	/*Œˆ’è‚µ‚½ƒCƒxƒ“ƒgƒpƒlƒ‹‚ðŽÀs*/
+	/*æ±ºå®šã—ãŸã‚¤ãƒ™ãƒ³ãƒˆãƒ‘ãƒãƒ«ã‚’å®Ÿè¡Œ*/
 	_ROULETTE_DECIDE_EV_NO_FUNC
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_roulette_comm_command_initialize_2
 
-	/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_roulette_multi_comm_basic_call
 
-	_CALL				ev_roulette_btl_pal_black				/*BGˆÃ‚­‚·‚é*/
-	_CALL				ev_roulette_obj_pal_black				/*OBJˆÃ‚­‚·‚é*/
+	_CALL				ev_roulette_btl_pal_black				/*BGæš—ãã™ã‚‹*/
+	_CALL				ev_roulette_obj_pal_black				/*OBJæš—ãã™ã‚‹*/
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	_JUMP				ev_room_choice_23
 	_END
 
-/*ƒp[ƒeƒBƒNƒ‹íœ(ƒuƒŒ[ƒ“ê—p)*/
+/*ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«å‰Šé™¤(ãƒ–ãƒ¬ãƒ¼ãƒ³å°‚ç”¨)*/
 ev_roulette_leader_1st_12:
 ev_roulette_leader_2nd_12:
 	_PARTICLE_SPA_EXIT	SPAWORK_3
 	_RET
 
-/*“¯Šú*/
+/*åŒæœŸ*/
 ev_roulette_rank_go_multi:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_CALL_2
-	_COMM_RESET			/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET			/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 	_RET
 
 
 /********************************************************************/
-/*						ƒ‰ƒ“ƒvƒAƒNƒ^[“o˜^							*/
+/*						ãƒ©ãƒ³ãƒ—ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²							*/
 /********************************************************************/
 ev_roulette_single_l_ramp_actor_set:
 	_ARTICLE_ACTOR_SET		article_ramp_single_l_actor
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_0,0		//0”Ô‚ÌƒAƒjƒŽÀs
-	//_ARTICLE_ACTOR_ANIME_STOP	ACTWORK_0		//ƒAƒjƒ’âŽ~
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_0,0		//0ç•ªã®ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œ
+	//_ARTICLE_ACTOR_ANIME_STOP	ACTWORK_0		//ã‚¢ãƒ‹ãƒ¡åœæ­¢
 	_RET
 
 ev_roulette_single_r_ramp_actor_set:
 	_ARTICLE_ACTOR_SET		article_ramp_single_r_actor
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_1,1		//1”Ô‚ÌƒAƒjƒŽÀs
-	//_ARTICLE_ACTOR_ANIME_STOP	ACTWORK_1		//ƒAƒjƒ’âŽ~
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_1,1		//1ç•ªã®ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œ
+	//_ARTICLE_ACTOR_ANIME_STOP	ACTWORK_1		//ã‚¢ãƒ‹ãƒ¡åœæ­¢
 	_RET
 
 
 /********************************************************************/
-/*						ƒ‰ƒ“ƒvƒAƒNƒ^[íœ							*/
+/*						ãƒ©ãƒ³ãƒ—ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤							*/
 /********************************************************************/
 ev_roulette_single_l_ramp_actor_free:
 	_ARTICLE_ACTOR_FREE		ACTWORK_0
@@ -1504,18 +1504,18 @@ ev_roulette_single_r_ramp_actor_free:
 
 
 /********************************************************************/
-/*					Œˆ’è‚µ‚½ƒCƒxƒ“ƒg‰‰o							*/
+/*					æ±ºå®šã—ãŸã‚¤ãƒ™ãƒ³ãƒˆæ¼”å‡º							*/
 /********************************************************************/
 ev_room_choice_23:
 	_PARTICLE_SPA_LOAD	SPAWORK_0, ROULETTE_SPA, FSS_CAMERA_ORTHO
 
-	/*Œˆ’è‚µ‚½ƒCƒxƒ“ƒgƒiƒ“ƒo[‚ðŽæ“¾*/
+	/*æ±ºå®šã—ãŸã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—*/
 	_ROULETTE_TOOL		FR_ID_GET_DECIDE_EV_NO,0,0,FSW_ANSWER
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU								/*Š½º*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU								/*æ­“å£°*/
 
 	_SWITCH				FSW_ANSWER
-	_CASE_JUMP			ROULETTE_EV_ENEMY_HP_DOWN,ev_roulette_seq00		//“G
+	_CASE_JUMP			ROULETTE_EV_ENEMY_HP_DOWN,ev_roulette_seq00		//æ•µ
 	_CASE_JUMP			ROULETTE_EV_ENEMY_DOKU,ev_roulette_seq01
 	_CASE_JUMP			ROULETTE_EV_ENEMY_MAHI,ev_roulette_seq02
 	_CASE_JUMP			ROULETTE_EV_ENEMY_YAKEDO,ev_roulette_seq03
@@ -1524,7 +1524,7 @@ ev_room_choice_23:
 	_CASE_JUMP			ROULETTE_EV_ENEMY_SEED_GET,ev_roulette_seq06
 	_CASE_JUMP			ROULETTE_EV_ENEMY_ITEM_GET,ev_roulette_seq07
 	_CASE_JUMP			ROULETTE_EV_ENEMY_LV_UP,ev_roulette_seq08
-	_CASE_JUMP			ROULETTE_EV_MINE_HP_DOWN,ev_roulette_seq09		//–¡•û
+	_CASE_JUMP			ROULETTE_EV_MINE_HP_DOWN,ev_roulette_seq09		//å‘³æ–¹
 	_CASE_JUMP			ROULETTE_EV_MINE_DOKU,ev_roulette_seq10
 	_CASE_JUMP			ROULETTE_EV_MINE_MAHI,ev_roulette_seq11
 	_CASE_JUMP			ROULETTE_EV_MINE_YAKEDO,ev_roulette_seq12
@@ -1533,7 +1533,7 @@ ev_room_choice_23:
 	_CASE_JUMP			ROULETTE_EV_MINE_SEED_GET,ev_roulette_seq15
 	_CASE_JUMP			ROULETTE_EV_MINE_ITEM_GET,ev_roulette_seq16
 	_CASE_JUMP			ROULETTE_EV_MINE_LV_UP,ev_roulette_seq17
-	_CASE_JUMP			ROULETTE_EV_PLACE_HARE,ev_roulette_seq18		//ê‚É‹N‚«‚é
+	_CASE_JUMP			ROULETTE_EV_PLACE_HARE,ev_roulette_seq18		//å ´ã«èµ·ãã‚‹
 	_CASE_JUMP			ROULETTE_EV_PLACE_AME,ev_roulette_seq19
 	_CASE_JUMP			ROULETTE_EV_PLACE_SUNAARASI,ev_roulette_seq20
 	_CASE_JUMP			ROULETTE_EV_PLACE_ARARE,ev_roulette_seq21
@@ -1542,7 +1542,7 @@ ev_room_choice_23:
 	_CASE_JUMP			ROULETTE_EV_PLACE_SPEED_UP,ev_roulette_seq25
 	_CASE_JUMP			ROULETTE_EV_PLACE_SPEED_DOWN,ev_roulette_seq26
 	_CASE_JUMP			ROULETTE_EV_PLACE_RANDOM,ev_roulette_seq27
-	_CASE_JUMP			ROULETTE_EV_EX_POKE_CHANGE,ev_roulette_seq24	//“ÁŽê
+	_CASE_JUMP			ROULETTE_EV_EX_POKE_CHANGE,ev_roulette_seq24	//ç‰¹æ®Š
 	_CASE_JUMP			ROULETTE_EV_EX_BP_GET,ev_roulette_seq28
 	_CASE_JUMP			ROULETTE_EV_EX_BTL_WIN,ev_roulette_seq29
 	_CASE_JUMP			ROULETTE_EV_EX_SUKA	,ev_roulette_seq30
@@ -1551,41 +1551,41 @@ ev_room_choice_23:
 
 
 /********************************************************************/
-/*							“GHPƒCƒxƒ“ƒg							*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							æ•µHPã‚¤ãƒ™ãƒ³ãƒˆ							*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq00:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï‰E‚ðŒü‚­*/
+	/*å¸ä¼šå³ã‚’å‘ã*/
 	_CALL				ev_roulette_man_right
 
 	_CALL				se_ramp_enemy
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_JUMP			FSW_LOCAL6,EQ,0,ev_roulette_seq00_single_02
 	_IFVAL_JUMP			FSW_LOCAL6,EQ,1,ev_roulette_seq00_multi_02
 	_END
 
 ev_roulette_seq00_sub:
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_CALL				se_spot_01
 
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq00_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq00_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq00_single_02:
@@ -1612,18 +1612,18 @@ ev_roulette_seq00_multi:
 
 
 /********************************************************************/
-/*							“G‚Ç‚­ƒCƒxƒ“ƒg							*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							æ•µã©ãã‚¤ãƒ™ãƒ³ãƒˆ							*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq01:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï‰E‚ðŒü‚­*/
+	/*å¸ä¼šå³ã‚’å‘ã*/
 	_CALL				ev_roulette_man_right
 
 	_CALL				se_ramp_enemy
 
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_LDVAL				FSW_LOCAL5,ROULETTE_BS_LASOR_PURPLE03
 	_LDVAL				FSW_LOCAL6,ROULETTE_BS_LASOR_PURPLE04
 	_CALL				se_laser_01
@@ -1631,17 +1631,17 @@ ev_roulette_seq01:
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq01_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq01_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq01_single:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq01_single_safe
 
@@ -1649,37 +1649,37 @@ ev_roulette_seq01_single:
 	_RET
 
 ev_roulette_seq01_multi:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq01_multi_safe
 
 	_TALKMSG			msg_roulette_room_28
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq01_single_safe:
 	_TALKMSG			msg_roulette_room_30_23
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq01_multi_safe:
 	_TALKMSG			msg_roulette_room_30_24
 	_RET
 
 
 /********************************************************************/
-/*							“G‚Ü‚ÐƒCƒxƒ“ƒg							*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							æ•µã¾ã²ã‚¤ãƒ™ãƒ³ãƒˆ							*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq02:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï‰E‚ðŒü‚­*/
+	/*å¸ä¼šå³ã‚’å‘ã*/
 	_CALL				ev_roulette_man_right
 
 	_CALL				se_ramp_enemy
 
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_LDVAL				FSW_LOCAL5,ROULETTE_BS_LASOR_YELLOW03
 	_LDVAL				FSW_LOCAL6,ROULETTE_BS_LASOR_YELLOW04
 	_CALL				se_laser_01
@@ -1687,21 +1687,21 @@ ev_roulette_seq02:
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq02_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq02_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq02_single:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq02_single_safe
 
@@ -1709,37 +1709,37 @@ ev_roulette_seq02_single:
 	_RET
 
 ev_roulette_seq02_multi:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq02_multi_safe
 
 	_TALKMSG			msg_roulette_room_30
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq02_single_safe:
 	_TALKMSG			msg_roulette_room_30_25
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq02_multi_safe:
 	_TALKMSG			msg_roulette_room_30_26
 	_RET
 
 
 /********************************************************************/
-/*							“G‚â‚¯‚ÇƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							æ•µã‚„ã‘ã©ã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq03:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï‰E‚ðŒü‚­*/
+	/*å¸ä¼šå³ã‚’å‘ã*/
 	_CALL				ev_roulette_man_right
 
 	_CALL				se_ramp_enemy
 
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_LDVAL				FSW_LOCAL5,ROULETTE_BS_LASOR_RED03
 	_LDVAL				FSW_LOCAL6,ROULETTE_BS_LASOR_RED04
 	_CALL				se_laser_01
@@ -1747,17 +1747,17 @@ ev_roulette_seq03:
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq03_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq03_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq03_single:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq03_single_safe
 
@@ -1765,37 +1765,37 @@ ev_roulette_seq03_single:
 	_RET
 
 ev_roulette_seq03_multi:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq03_multi_safe
 
 	_TALKMSG			msg_roulette_room_30_02
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq03_single_safe:
 	_TALKMSG			msg_roulette_room_30_27
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq03_multi_safe:
 	_TALKMSG			msg_roulette_room_30_28
 	_RET
 
 
 /********************************************************************/
-/*							“G‚Ë‚Þ‚èƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							æ•µã­ã‚€ã‚Šã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq04:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï‰E‚ðŒü‚­*/
+	/*å¸ä¼šå³ã‚’å‘ã*/
 	_CALL				ev_roulette_man_right
 
 	_CALL				se_ramp_enemy
 
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_LDVAL				FSW_LOCAL5,ROULETTE_BS_LASOR_WHITE03
 	_LDVAL				FSW_LOCAL6,ROULETTE_BS_LASOR_WHITE04
 	_CALL				se_laser_01
@@ -1803,21 +1803,21 @@ ev_roulette_seq04:
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq04_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq04_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq04_single:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq04_single_safe
 
@@ -1825,37 +1825,37 @@ ev_roulette_seq04_single:
 	_RET
 
 ev_roulette_seq04_multi:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq04_multi_safe
 
 	_TALKMSG			msg_roulette_room_30_04
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq04_single_safe:
 	_TALKMSG			msg_roulette_room_30_29
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq04_multi_safe:
 	_TALKMSG			msg_roulette_room_30_30
 	_RET
 
 
 /********************************************************************/
-/*							“G‚±‚¨‚èƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							æ•µã“ãŠã‚Šã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq05:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï‰E‚ðŒü‚­*/
+	/*å¸ä¼šå³ã‚’å‘ã*/
 	_CALL				ev_roulette_man_right
 
 	_CALL				se_ramp_enemy
 
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_LDVAL				FSW_LOCAL5,ROULETTE_BS_LASOR_AO03
 	_LDVAL				FSW_LOCAL6,ROULETTE_BS_LASOR_AO04
 	_CALL				se_laser_01
@@ -1863,17 +1863,17 @@ ev_roulette_seq05:
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq05_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq05_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq05_single:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq05_single_safe
 
@@ -1881,30 +1881,30 @@ ev_roulette_seq05_single:
 	_RET
 
 ev_roulette_seq05_multi:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq05_multi_safe
 
 	_TALKMSG			msg_roulette_room_30_06
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq05_single_safe:
 	_TALKMSG			msg_roulette_room_30_31
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq05_multi_safe:
 	_TALKMSG			msg_roulette_room_30_32
 	_RET
 
 
 /********************************************************************/
-/*							“G‚«‚Ì‚ÝƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							æ•µãã®ã¿ã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq06:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_enemy
 
@@ -1913,13 +1913,13 @@ ev_roulette_seq06:
 
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_GET_ITEM,1,0,FSW_ANSWER
-	_ITEM_NAME			2,FSW_ANSWER										/*ƒAƒCƒeƒ€–¼ƒZƒbƒg*/
+	_ITEM_NAME			2,FSW_ANSWER										/*ã‚¢ã‚¤ãƒ†ãƒ åã‚»ãƒƒãƒˆ*/
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	//_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	//_OBJ_ANIME_WAIT
 
-	/*ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“•\Ž¦*/
+	/*ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º*/
 	_ROULETTE_CHG_ITEMKEEP_VANISH	1,0,1
 	_ROULETTE_CHG_ITEMKEEP_VANISH	1,1,1
 	_ROULETTE_CHG_ITEMKEEP_VANISH	1,2,1
@@ -1929,13 +1929,13 @@ ev_roulette_seq06:
 	_TALK_CLOSE
 	_CALL				staff_anm_04
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq06_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq06_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq06_single:
@@ -1949,11 +1949,11 @@ ev_roulette_seq06_multi:
 
 
 /********************************************************************/
-/*							“GƒAƒCƒeƒ€ƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							æ•µã‚¢ã‚¤ãƒ†ãƒ ã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq07:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_enemy
 
@@ -1962,9 +1962,9 @@ ev_roulette_seq07:
 
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_GET_ITEM,1,0,FSW_ANSWER
-	_ITEM_NAME			2,FSW_ANSWER										/*ƒAƒCƒeƒ€–¼ƒZƒbƒg*/
+	_ITEM_NAME			2,FSW_ANSWER										/*ã‚¢ã‚¤ãƒ†ãƒ åã‚»ãƒƒãƒˆ*/
 
-	/*ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“•\Ž¦*/
+	/*ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º*/
 	_ROULETTE_CHG_ITEMKEEP_VANISH	1,0,1
 	_ROULETTE_CHG_ITEMKEEP_VANISH	1,1,1
 	_ROULETTE_CHG_ITEMKEEP_VANISH	1,2,1
@@ -1974,13 +1974,13 @@ ev_roulette_seq07:
 	_TALK_CLOSE
 	_CALL				staff_anm_04
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq07_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq07_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq07_single:
@@ -1994,37 +1994,37 @@ ev_roulette_seq07_multi:
 
 
 /********************************************************************/
-/*							“GƒŒƒxƒ‹ƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							æ•µãƒ¬ãƒ™ãƒ«ã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq08:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï‰E‚ðŒü‚­*/
+	/*å¸ä¼šå³ã‚’å‘ã*/
 	_CALL				ev_roulette_man_right
 
 	_CALL				se_ramp_enemy
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_JUMP			FSW_LOCAL6,EQ,0,ev_roulette_seq08_single_02
 	_IFVAL_JUMP			FSW_LOCAL6,EQ,1,ev_roulette_seq08_multi_02
 	_END
 
 ev_roulette_seq08_sub:
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_CALL				se_spot_01
 
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq08_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq08_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq08_single_02:
@@ -2051,38 +2051,38 @@ ev_roulette_seq08_multi:
 
 
 /********************************************************************/
-/*							–¡•û‚g‚oƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							å‘³æ–¹ï¼¨ï¼°ã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq09:
 	//_SE_PLAY			SEQ_SE_PL_FR01
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï¶‚ðŒü‚­*/
+	/*å¸ä¼šå·¦ã‚’å‘ã*/
 	_CALL				ev_roulette_man_left
 
 	_CALL				se_ramp_mine
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_JUMP			FSW_LOCAL6,EQ,0,ev_roulette_seq09_single_02
 	_IFVAL_JUMP			FSW_LOCAL6,EQ,1,ev_roulette_seq09_multi_02
 	_END
 
 ev_roulette_seq09_sub:
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_CALL				se_spot_01
 
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq09_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq09_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq09_single_02:
@@ -2109,19 +2109,19 @@ ev_roulette_seq09_multi:
 
 
 /********************************************************************/
-/*							–¡•û‚Ç‚­ƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							å‘³æ–¹ã©ãã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq10:
 	//_SE_PLAY			SEQ_SE_PL_FR01
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï¶‚ðŒü‚­*/
+	/*å¸ä¼šå·¦ã‚’å‘ã*/
 	_CALL				ev_roulette_man_left
 
 	_CALL				se_ramp_mine
 
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_LDVAL				FSW_LOCAL5,ROULETTE_BS_LASOR_PURPLE01
 	_LDVAL				FSW_LOCAL6,ROULETTE_BS_LASOR_PURPLE02
 	_CALL				se_laser_01
@@ -2129,21 +2129,21 @@ ev_roulette_seq10:
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq10_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq10_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq10_single:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq10_single_safe
 
@@ -2151,38 +2151,38 @@ ev_roulette_seq10_single:
 	_RET
 
 ev_roulette_seq10_multi:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq10_multi_safe
 
 	_TALKMSG			msg_roulette_room_28
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq10_single_safe:
 	_TALKMSG			msg_roulette_room_30_23
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq10_multi_safe:
 	_TALKMSG			msg_roulette_room_30_24
 	_RET
 
 
 /********************************************************************/
-/*							–¡•û‚Ü‚ÐƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							å‘³æ–¹ã¾ã²ã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq11:
 	//_SE_PLAY			SEQ_SE_PL_FR01
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï¶‚ðŒü‚­*/
+	/*å¸ä¼šå·¦ã‚’å‘ã*/
 	_CALL				ev_roulette_man_left
 
 	_CALL				se_ramp_mine
 
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_LDVAL				FSW_LOCAL5,ROULETTE_BS_LASOR_YELLOW01
 	_LDVAL				FSW_LOCAL6,ROULETTE_BS_LASOR_YELLOW02
 	_CALL				se_laser_01
@@ -2190,17 +2190,17 @@ ev_roulette_seq11:
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq11_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq11_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq11_single:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq11_single_safe
 
@@ -2208,38 +2208,38 @@ ev_roulette_seq11_single:
 	_RET
 
 ev_roulette_seq11_multi:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq11_multi_safe
 
 	_TALKMSG			msg_roulette_room_30
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq11_single_safe:
 	_TALKMSG			msg_roulette_room_30_25
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq11_multi_safe:
 	_TALKMSG			msg_roulette_room_30_26
 	_RET
 
 
 /********************************************************************/
-/*						–¡•û‚â‚¯‚ÇƒCƒxƒ“ƒg							*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*						å‘³æ–¹ã‚„ã‘ã©ã‚¤ãƒ™ãƒ³ãƒˆ							*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq12:
 	//_SE_PLAY			SEQ_SE_PL_FR01
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï¶‚ðŒü‚­*/
+	/*å¸ä¼šå·¦ã‚’å‘ã*/
 	_CALL				ev_roulette_man_left
 
 	_CALL				se_ramp_mine
 
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_LDVAL				FSW_LOCAL5,ROULETTE_BS_LASOR_RED01
 	_LDVAL				FSW_LOCAL6,ROULETTE_BS_LASOR_RED02
 	_CALL				se_laser_01
@@ -2247,21 +2247,21 @@ ev_roulette_seq12:
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq12_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq12_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq12_single:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq12_single_safe
 
@@ -2269,38 +2269,38 @@ ev_roulette_seq12_single:
 	_RET
 
 ev_roulette_seq12_multi:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq12_multi_safe
 
 	_TALKMSG			msg_roulette_room_30_02
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq12_single_safe:
 	_TALKMSG			msg_roulette_room_30_27
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq12_multi_safe:
 	_TALKMSG			msg_roulette_room_30_28
 	_RET
 
 
 /********************************************************************/
-/*							–¡•û‚Ë‚Þ‚èƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							å‘³æ–¹ã­ã‚€ã‚Šã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq13:
 	//_SE_PLAY			SEQ_SE_PL_FR01
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï¶‚ðŒü‚­*/
+	/*å¸ä¼šå·¦ã‚’å‘ã*/
 	_CALL				ev_roulette_man_left
 
 	_CALL				se_ramp_mine
 
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_LDVAL				FSW_LOCAL5,ROULETTE_BS_LASOR_WHITE01
 	_LDVAL				FSW_LOCAL6,ROULETTE_BS_LASOR_WHITE02
 	_CALL				se_laser_01
@@ -2308,17 +2308,17 @@ ev_roulette_seq13:
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq13_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq13_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq13_single:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq13_single_safe
 
@@ -2326,38 +2326,38 @@ ev_roulette_seq13_single:
 	_RET
 
 ev_roulette_seq13_multi:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq13_multi_safe
 
 	_TALKMSG			msg_roulette_room_30_04
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq13_single_safe:
 	_TALKMSG			msg_roulette_room_30_29
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq13_multi_safe:
 	_TALKMSG			msg_roulette_room_30_30
 	_RET
 
 
 /********************************************************************/
-/*							–¡•û‚±‚¨‚èƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							å‘³æ–¹ã“ãŠã‚Šã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq14:
 	//_SE_PLAY			SEQ_SE_PL_FR01
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï¶‚ðŒü‚­*/
+	/*å¸ä¼šå·¦ã‚’å‘ã*/
 	_CALL				ev_roulette_man_left
 
 	_CALL				se_ramp_mine
 
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_LDVAL				FSW_LOCAL5,ROULETTE_BS_LASOR_AO01
 	_LDVAL				FSW_LOCAL6,ROULETTE_BS_LASOR_AO02
 	_CALL				se_laser_01
@@ -2365,21 +2365,21 @@ ev_roulette_seq14:
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq14_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq14_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq14_single:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq14_single_safe
 
@@ -2387,30 +2387,30 @@ ev_roulette_seq14_single:
 	_RET
 
 ev_roulette_seq14_multi:
-	/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+	/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 	_ROULETTE_TOOL		FR_ID_GET_POKE_SAFE_FLAG,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_seq14_multi_safe
 
 	_TALKMSG			msg_roulette_room_30_06
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq14_single_safe:
 	_TALKMSG			msg_roulette_room_30_31
 	_RET
 
-/*’N‚àŒø‰Ê‚ð”­Šö‚µ‚È‚©‚Á‚½Žž*/
+/*èª°ã‚‚åŠ¹æžœã‚’ç™ºæ®ã—ãªã‹ã£ãŸæ™‚*/
 ev_roulette_seq14_multi_safe:
 	_TALKMSG			msg_roulette_room_30_32
 	_RET
 
 
 /********************************************************************/
-/*							–¡•û–Ø‚ÌŽÀƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							å‘³æ–¹æœ¨ã®å®Ÿã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq15:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_mine
 
@@ -2419,9 +2419,9 @@ ev_roulette_seq15:
 
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_GET_ITEM,0,0,FSW_ANSWER
-	_ITEM_NAME			2,FSW_ANSWER										/*ƒAƒCƒeƒ€–¼ƒZƒbƒg*/
+	_ITEM_NAME			2,FSW_ANSWER										/*ã‚¢ã‚¤ãƒ†ãƒ åã‚»ãƒƒãƒˆ*/
 
-	/*ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“•\Ž¦*/
+	/*ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º*/
 	_ROULETTE_CHG_ITEMKEEP_VANISH	0,0,1
 	_ROULETTE_CHG_ITEMKEEP_VANISH	0,1,1
 	_ROULETTE_CHG_ITEMKEEP_VANISH	0,2,1
@@ -2431,13 +2431,13 @@ ev_roulette_seq15:
 	_TALK_CLOSE
 	_CALL				staff_anm_02_item
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq15_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq15_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq15_single:
@@ -2451,11 +2451,11 @@ ev_roulette_seq15_multi:
 
 
 /********************************************************************/
-/*							–¡•ûƒAƒCƒeƒ€ƒCƒxƒ“ƒg					*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							å‘³æ–¹ã‚¢ã‚¤ãƒ†ãƒ ã‚¤ãƒ™ãƒ³ãƒˆ					*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq16:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_mine
 
@@ -2464,9 +2464,9 @@ ev_roulette_seq16:
 
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_GET_ITEM,0,0,FSW_ANSWER
-	_ITEM_NAME			2,FSW_ANSWER										/*ƒAƒCƒeƒ€–¼ƒZƒbƒg*/
+	_ITEM_NAME			2,FSW_ANSWER										/*ã‚¢ã‚¤ãƒ†ãƒ åã‚»ãƒƒãƒˆ*/
 
-	/*ƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒCƒRƒ“•\Ž¦*/
+	/*ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º*/
 	_ROULETTE_CHG_ITEMKEEP_VANISH	0,0,1
 	_ROULETTE_CHG_ITEMKEEP_VANISH	0,1,1
 	_ROULETTE_CHG_ITEMKEEP_VANISH	0,2,1
@@ -2476,13 +2476,13 @@ ev_roulette_seq16:
 	_TALK_CLOSE
 	_CALL				staff_anm_02_item
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq16_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq16_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq16_single:
@@ -2496,41 +2496,41 @@ ev_roulette_seq16_multi:
 
 
 /********************************************************************/
-/*							–¡•ûƒŒƒxƒ‹ƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							å‘³æ–¹ãƒ¬ãƒ™ãƒ«ã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq17:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
-	/*Ži‰ï¶‚ðŒü‚­*/
+	/*å¸ä¼šå·¦ã‚’å‘ã*/
 	_CALL				ev_roulette_man_left
 
 	_CALL				se_ramp_mine
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_JUMP			FSW_LOCAL6,EQ,0,ev_roulette_seq17_single_02
 	_IFVAL_JUMP			FSW_LOCAL6,EQ,1,ev_roulette_seq17_multi_02
 	_END
 
 ev_roulette_seq17_sub:
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_CALL				se_spot_01
 
 	_ROULETTE_TOOL		FR_ID_TR_NAME,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq17_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq17_multi
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq17_single_02:
@@ -2557,163 +2557,163 @@ ev_roulette_seq17_multi:
 
 
 /********************************************************************/
-/*							°‚êƒCƒxƒ“ƒg							*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							æ™´ã‚Œã‚¤ãƒ™ãƒ³ãƒˆ							*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq18:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_all
 
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_CALL				se_mirror_red
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	_TALKMSG			msg_roulette_room_30_09								/*°‚ê*/
+	_TALKMSG			msg_roulette_room_30_09								/*æ™´ã‚Œ*/
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 
 /********************************************************************/
-/*							‰JƒCƒxƒ“ƒg								*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							é›¨ã‚¤ãƒ™ãƒ³ãƒˆ								*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq19:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_all
 
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_CALL				se_mirror_blue
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	_TALKMSG			msg_roulette_room_30_10								/*‰J*/
+	_TALKMSG			msg_roulette_room_30_10								/*é›¨*/
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 
 /********************************************************************/
-/*							»—’ƒCƒxƒ“ƒg							*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							ç ‚åµã‚¤ãƒ™ãƒ³ãƒˆ							*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq20:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_all
 
 	_CALL				se_smoke_01
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	_TALKMSG			msg_roulette_room_30_11								/*»—’*/
+	_TALKMSG			msg_roulette_room_30_11								/*ç ‚åµ*/
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 
 /********************************************************************/
-/*							‚ ‚ç‚êƒCƒxƒ“ƒg							*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							ã‚ã‚‰ã‚Œã‚¤ãƒ™ãƒ³ãƒˆ							*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq21:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_all
 
-	_CALL				ev_roulette_btl_pal_white							/*Œ³‚É–ß‚·*/
+	_CALL				ev_roulette_btl_pal_white							/*å…ƒã«æˆ»ã™*/
 	_CALL				se_mirror_white
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	_TALKMSG			msg_roulette_room_30_12								/*‚ ‚ç‚ê*/
+	_TALKMSG			msg_roulette_room_30_12								/*ã‚ã‚‰ã‚Œ*/
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 
 /********************************************************************/
-/*							–¶ƒCƒxƒ“ƒg								*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							éœ§ã‚¤ãƒ™ãƒ³ãƒˆ								*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq22:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_all
 
 	_CALL				se_smoke_02
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	_TALKMSG			msg_roulette_room_30_13								/*–¶*/
+	_TALKMSG			msg_roulette_room_30_13								/*éœ§*/
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 
 /********************************************************************/
-/*							ƒgƒŠƒbƒNƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							ãƒˆãƒªãƒƒã‚¯ã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq23:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_all
 
 	_CALL				se_smoke_03
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	_TALKMSG			msg_roulette_room_30_14								/*ƒgƒŠƒbƒN*/
+	_TALKMSG			msg_roulette_room_30_14								/*ãƒˆãƒªãƒƒã‚¯*/
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 
 /********************************************************************/
-/*							ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒ“ƒWƒCƒxƒ“ƒg				*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¤ãƒ™ãƒ³ãƒˆ				*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq24:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_all
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq24_single
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq24_multi
 
-	/*‘–¸ü‚ðÔ‚­“_–Å‚É•ÏX*/
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_4,2		//2”Ô‚ÌƒAƒjƒŽÀs
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_5,6		//6”Ô‚ÌƒAƒjƒŽÀs
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_6,3		//3”Ô‚ÌƒAƒjƒŽÀs
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_7,7		//7”Ô‚ÌƒAƒjƒŽÀs
+	/*èµ°æŸ»ç·šã‚’èµ¤ãç‚¹æ»…ã«å¤‰æ›´*/
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_4,2		//2ç•ªã®ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œ
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_5,6		//6ç•ªã®ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œ
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_6,3		//3ç•ªã®ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œ
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_7,7		//7ç•ªã®ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œ
 
-	_SE_PLAY			SEQ_SE_DP_Z_SEARCH									/*ƒ`ƒFƒ“ƒW‰¹*/
+	_SE_PLAY			SEQ_SE_DP_Z_SEARCH									/*ãƒã‚§ãƒ³ã‚¸éŸ³*/
 
-	/*‡”Ô‚ÉÁ‚µ‚Ä‚¢‚­*/
+	/*é †ç•ªã«æ¶ˆã—ã¦ã„ã*/
 	_ROULETTE_TOOL		FR_ID_MINE_CHG_POKE_ICON_VANISH,0,3,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_ENEMY_CHG_POKE_ICON_VANISH,0,3,FSW_ANSWER
 	_ROULETTE_CHG_ITEMKEEP_VANISH	0,3,0
@@ -2738,11 +2738,11 @@ ev_roulette_seq24:
 	_ROULETTE_CHG_ITEMKEEP_VANISH	1,0,0
 	_TIME_WAIT			14,FSW_ANSWER
 
-	_ROULETTE_TOOL		FR_ID_ICON_CHANGE,0,0,FSW_ANSWER					/*•\Ž¦ˆÊ’u•ÏX*/
+	_ROULETTE_TOOL		FR_ID_ICON_CHANGE,0,0,FSW_ANSWER					/*è¡¨ç¤ºä½ç½®å¤‰æ›´*/
 
-	_SE_PLAY			SEQ_SE_DP_Z_SEARCH									/*ƒ`ƒFƒ“ƒW‰¹*/
+	_SE_PLAY			SEQ_SE_DP_Z_SEARCH									/*ãƒã‚§ãƒ³ã‚¸éŸ³*/
 
-	/*‡”Ô‚É•\Ž¦‚µ‚Ä‚¢‚­*/
+	/*é †ç•ªã«è¡¨ç¤ºã—ã¦ã„ã*/
 	_ROULETTE_TOOL		FR_ID_MINE_CHG_POKE_ICON_VANISH,1,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_ENEMY_CHG_POKE_ICON_VANISH,1,0,FSW_ANSWER
 	_ROULETTE_CHG_ITEMKEEP_VANISH	0,0,1
@@ -2767,23 +2767,23 @@ ev_roulette_seq24:
 	_ROULETTE_CHG_ITEMKEEP_VANISH	1,3,1
 	_TIME_WAIT			14,FSW_ANSWER
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	_TALKMSG			msg_roulette_room_30_15								/*ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒ“ƒW*/
-	_SE_STOP			SEQ_SE_DP_Z_SEARCH									/*ƒ`ƒFƒ“ƒW‰¹*/
+	_TALKMSG			msg_roulette_room_30_15								/*ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒ³ã‚¸*/
+	_SE_STOP			SEQ_SE_DP_Z_SEARCH									/*ãƒã‚§ãƒ³ã‚¸éŸ³*/
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
 	_IFVAL_CALL			FSW_LOCAL6,EQ,0,ev_roulette_seq24_single_2
 	_IFVAL_CALL			FSW_LOCAL6,EQ,1,ev_roulette_seq24_multi_2
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
-/*ƒpƒlƒ‹‚ðŒ©‚é*/
+/*ãƒ‘ãƒãƒ«ã‚’è¦‹ã‚‹*/
 ev_roulette_seq24_single:
 	_OBJ_ANIME			OBJID_MINE,anm_panel_see_01
 	_OBJ_ANIME			OBJID_ETC,anm_panel_see_01
@@ -2798,7 +2798,7 @@ ev_roulette_seq24_multi:
 	_OBJ_ANIME_WAIT
 	_RET
 
-/*Œ³‚ÌŒü‚«‚É–ß‚·*/
+/*å…ƒã®å‘ãã«æˆ»ã™*/
 ev_roulette_seq24_single_2:
 	_OBJ_ANIME			OBJID_MINE,anm_panel_see_02
 	_OBJ_ANIME			OBJID_ETC,anm_panel_see_03
@@ -2815,77 +2815,77 @@ ev_roulette_seq24_multi_2:
 
 
 /********************************************************************/
-/*							‘¬“xUPƒCƒxƒ“ƒg							*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							é€Ÿåº¦UPã‚¤ãƒ™ãƒ³ãƒˆ							*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq25:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_mine
 
 	_CALL				se_monitor_01
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	_TALKMSG			msg_roulette_room_30_16								/*ƒ‹[ƒŒƒbƒg‘¬“xUP*/
+	_TALKMSG			msg_roulette_room_30_16								/*ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé€Ÿåº¦UP*/
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 
 /********************************************************************/
-/*							‘¬“xDOWNƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							é€Ÿåº¦DOWNã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq26:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_mine
 
 	_CALL				se_monitor_01
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	_TALKMSG			msg_roulette_room_30_17								/*ƒ‹[ƒŒƒbƒg‘¬“xDOWN*/
+	_TALKMSG			msg_roulette_room_30_17								/*ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆé€Ÿåº¦DOWN*/
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 
 /********************************************************************/
-/*							‘¬“xRANDOMƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							é€Ÿåº¦RANDOMã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq27:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_mine
 
 	_CALL				se_monitor_01
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
-	_TALKMSG			msg_roulette_room_30_18								/*ƒ‹[ƒŒƒbƒg‹““®RANDOM*/
+	_TALKMSG			msg_roulette_room_30_18								/*ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆæŒ™å‹•RANDOM*/
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 
 /********************************************************************/
-/*							BP’Ç‰ÁƒCƒxƒ“ƒg							*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							BPè¿½åŠ ã‚¤ãƒ™ãƒ³ãƒˆ							*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq28:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_mine
 	_TALK_CLOSE
@@ -2896,11 +2896,11 @@ ev_roulette_seq28:
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_GET_PANEL_BP,0,0,FSW_ANSWER
 	_RECORD_ADD			RECID_ROULETTE_BP,FSW_ANSWER
-	_BTL_POINT_ADD		FSW_ANSWER											/*ƒoƒgƒ‹ƒ|ƒCƒ“ƒg’Ç‰Á*/
+	_BTL_POINT_ADD		FSW_ANSWER											/*ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆè¿½åŠ */
 	_NUMBER_NAME		2,FSW_ANSWER
 
-	/*u›‚³‚ñ‚É›BP‚ðƒvƒŒƒ[ƒ“ƒg‚µ‚Ü‚·v*/
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*ã€Œâ—‹ã•ã‚“ã«â—‹BPã‚’ãƒ—ãƒ¬ã‚¼ãƒ³ãƒˆã—ã¾ã™ã€*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_SE_STOP			SEQ_SE_DP_DENDOU
 	_ME_PLAY			ME_ROULETTE_BP_GET
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
@@ -2909,17 +2909,17 @@ ev_roulette_seq28:
 	_ME_WAIT
 	_TALK_CLOSE
 
-	/*Œ³‚ÌˆÊ’u‚É–ß‚é*/
+	/*å…ƒã®ä½ç½®ã«æˆ»ã‚‹*/
 	_CALL				staff_anm_02
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
 	_TALKMSG			msg_roulette_room_30_19_02
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 ev_roulette_seq28_single:
@@ -2932,11 +2932,11 @@ ev_roulette_seq28_multi:
 
 
 /********************************************************************/
-/*							BP‘å’Ç‰ÁƒCƒxƒ“ƒg						*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							BPå¤§è¿½åŠ ã‚¤ãƒ™ãƒ³ãƒˆ						*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq31:
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_mine
 	_TALK_CLOSE
@@ -2947,10 +2947,10 @@ ev_roulette_seq31:
 	_ROULETTE_TOOL		FR_ID_TR_NAME,1,1,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_GET_PANEL_BP,0,0,FSW_ANSWER
 	_RECORD_ADD			RECID_ROULETTE_BP,FSW_ANSWER
-	_BTL_POINT_ADD		FSW_ANSWER											/*ƒoƒgƒ‹ƒ|ƒCƒ“ƒg’Ç‰Á*/
+	_BTL_POINT_ADD		FSW_ANSWER											/*ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆè¿½åŠ */
 	_NUMBER_NAME		2,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_SE_STOP			SEQ_SE_DP_DENDOU
 	_ME_PLAY			ME_ROULETTE_BP_GET
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL6
@@ -2961,39 +2961,39 @@ ev_roulette_seq31:
 
 	_CALL				staff_anm_02
 
-	/*˜b‚·*/
+	/*è©±ã™*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_60
 	_OBJ_ANIME_WAIT
 
 	_TALKMSG			msg_roulette_room_30_19_02
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU									/*Š½º*/
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU									/*æ­“å£°*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 
 /********************************************************************/
-/*							ší“¬ƒXƒ‹[ƒCƒxƒ“ƒg					*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							â˜…æˆ¦é—˜ã‚¹ãƒ«ãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆ					*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq29:
-	/*‰ñ•œƒV[ƒPƒ“ƒX‚ð”ò‚Î‚·*/
+	/*å›žå¾©ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’é£›ã°ã™*/
 	_LDVAL				FSW_PARAM4,1
 
-	_TALKMSG			msg_roulette_room_22								/*¡‰ñ‚ÌƒCƒxƒ“ƒg‚±‚¿‚ç*/
+	_TALKMSG			msg_roulette_room_22								/*ä»Šå›žã®ã‚¤ãƒ™ãƒ³ãƒˆã“ã¡ã‚‰*/
 
 	_CALL				se_ramp_enemy
 	_TALK_CLOSE
 
-	/*“G‚ÌƒAƒCƒRƒ“ƒAƒNƒ^[‚Ì‚Ýíœ*/
+	/*æ•µã®ã‚¢ã‚¤ã‚³ãƒ³ã‚¢ã‚¯ã‚¿ãƒ¼ã®ã¿å‰Šé™¤*/
 	_CALL				ev_roulette_poke_itemkeep_icon_del_enemy
 
-	_CALL				ev_roulette_battle_btl_off							/*í“¬‚È‚µ‘Þê*/
+	_CALL				ev_roulette_battle_btl_off							/*æˆ¦é—˜ãªã—é€€å ´*/
 
-	/*Ži‰ï‰E‚ðŒü‚­*/
+	/*å¸ä¼šå³ã‚’å‘ã*/
 	_CALL				ev_roulette_man_right
 
-	_TALKMSG			msg_roulette_room_30_20								/*í“¬ƒXƒ‹[*/
+	_TALKMSG			msg_roulette_room_30_20								/*æˆ¦é—˜ã‚¹ãƒ«ãƒ¼*/
 
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_seq29_single
@@ -3009,7 +3009,7 @@ ev_roulette_seq29_multi:
 	_TIME_WAIT			FRONTIER_COMMON_WAIT,FSW_ANSWER
 	//_AB_KEYWAIT
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_BTL_WIN_PANEL
 	_COMM_RESET
@@ -3020,44 +3020,44 @@ ev_roulette_seq29_multi:
 ev_roulette_seq29_sub:
 	_TALK_CLOSE
 
-	/*ƒu[ƒCƒ“ƒOSE*/
+	/*ãƒ–ãƒ¼ã‚¤ãƒ³ã‚°SE*/
 	//_SE_PLAY			SEQ_SE_DP_SELECT
 	//_SE_WAIT			SEQ_SE_DP_SELECT
 
-	/*Ži‰ï‚ðŒ³‚ÌˆÊ’u‚É–ß‚µ‚Ä‚¨‚­*/
+	/*å¸ä¼šã‚’å…ƒã®ä½ç½®ã«æˆ»ã—ã¦ãŠã*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_55
 	_OBJ_ANIME_WAIT
 
-	_ROULETTE_TOOL		FR_ID_PANEL_BG_OFF,0,0,FSW_ANSWER					/*ƒpƒlƒ‹”ñ•\Ž¦*/
+	_ROULETTE_TOOL		FR_ID_PANEL_BG_OFF,0,0,FSW_ANSWER					/*ãƒ‘ãƒãƒ«éžè¡¨ç¤º*/
 
-	_JUMP				ev_roulette_battle_3								/*í“¬Ÿ—˜Œã‚Ì—¬‚ê‚Ö*/
+	_JUMP				ev_roulette_battle_3								/*æˆ¦é—˜å‹åˆ©å¾Œã®æµã‚Œã¸*/
 	_END
 
 
 /********************************************************************/
-/*							šƒXƒJƒCƒxƒ“ƒg							*/
-/*	FSW_LOCAL5,6Žg—p												*/
+/*							â˜…ã‚¹ã‚«ã‚¤ãƒ™ãƒ³ãƒˆ							*/
+/*	FSW_LOCAL5,6ä½¿ç”¨												*/
 /********************************************************************/
 ev_roulette_seq30:
-	_TALKMSG			msg_roulette_room_30_21								/*‚´‚ñ‚Ë‚ñ*/
+	_TALKMSG			msg_roulette_room_30_21								/*ã–ã‚“ã­ã‚“*/
 
-	/*ƒu[ƒCƒ“ƒOSE*/
+	/*ãƒ–ãƒ¼ã‚¤ãƒ³ã‚°SE*/
 	//_SE_PLAY			SEQ_SE_DP_SELECT
 	//_SE_WAIT			SEQ_SE_DP_SELECT
 
-	_JUMP				ev_roulette_room_go_2								/*‚½‚¢‚¹‚ñ‚Ö*/
+	_JUMP				ev_roulette_room_go_2								/*ãŸã„ã›ã‚“ã¸*/
 	_END
 
 
 /********************************************************************/
-/*					SE+ƒ‰ƒ“ƒv‰‰o(FSW_LOCAL5Žg—p)					*/
+/*					SE+ãƒ©ãƒ³ãƒ—æ¼”å‡º(FSW_LOCAL5ä½¿ç”¨)					*/
 /********************************************************************/
 se_ramp_mine:
 	_CALL				ev_roulette_single_l_ramp_actor_set
 
 	_SE_PLAY			SEQ_SE_PL_FR05
 	//_SE_WAIT			SEQ_SE_PL_FR05
-	//_ARTICLE_ACTOR_ANIME_WAIT	ACTWORK_0		//ƒAƒjƒI—¹‘Ò‚¿
+	//_ARTICLE_ACTOR_ANIME_WAIT	ACTWORK_0		//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	_TIME_WAIT			RAMP_WAIT,FSW_ANSWER
 
 	_CALL				ev_roulette_single_l_ramp_actor_free
@@ -3069,7 +3069,7 @@ se_ramp_enemy:
 
 	_SE_PLAY			SEQ_SE_PL_FR05
 	//_SE_WAIT			SEQ_SE_PL_FR05
-	//_ARTICLE_ACTOR_ANIME_WAIT	ACTWORK_1		//ƒAƒjƒI—¹‘Ò‚¿
+	//_ARTICLE_ACTOR_ANIME_WAIT	ACTWORK_1		//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	_TIME_WAIT			RAMP_WAIT,FSW_ANSWER
 
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_LOCAL5
@@ -3083,7 +3083,7 @@ se_ramp_all:
 
 	_SE_PLAY			SEQ_SE_PL_FR05
 	//_SE_WAIT			SEQ_SE_PL_FR05
-	//_ARTICLE_ACTOR_ANIME_WAIT	ACTWORK_0		//ƒAƒjƒI—¹‘Ò‚¿
+	//_ARTICLE_ACTOR_ANIME_WAIT	ACTWORK_0		//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	_TIME_WAIT			RAMP_WAIT,FSW_ANSWER
 
 	_CALL				ev_roulette_single_l_ramp_actor_free
@@ -3092,7 +3092,7 @@ se_ramp_all:
 
 
 /********************************************************************/
-/*						SE+ƒ~ƒ‰[ƒ{[ƒ‹‰‰o							*/
+/*						SE+ãƒŸãƒ©ãƒ¼ãƒœãƒ¼ãƒ«æ¼”å‡º							*/
 /********************************************************************/
 se_mirror_blue:
 	_SE_PLAY			SEQ_SE_PL_FR04
@@ -3123,7 +3123,7 @@ se_mirror_white:
 
 
 /********************************************************************/
-/*						SE+ƒXƒ‚[ƒN‰‰o								*/
+/*						SE+ã‚¹ãƒ¢ãƒ¼ã‚¯æ¼”å‡º								*/
 /********************************************************************/
 se_smoke_01:
 	_SE_PLAY			SEQ_SE_PL_FR03
@@ -3154,7 +3154,7 @@ se_smoke_03:
 
 
 /********************************************************************/
-/*SE+ƒŒ[ƒU[‰‰o(FSW_LOCAL5,6Žg—p ƒtƒ@ƒCƒ‹–¼‚ª‚È‚º‚©"BS"‚È‚Ì‚Å’ˆÓ)*/
+/*SE+ãƒ¬ãƒ¼ã‚¶ãƒ¼æ¼”å‡º(FSW_LOCAL5,6ä½¿ç”¨ ãƒ•ã‚¡ã‚¤ãƒ«åãŒãªãœã‹"BS"ãªã®ã§æ³¨æ„)*/
 /********************************************************************/
 se_laser_01:
 	_SE_PLAY			SEQ_SE_PL_FR04
@@ -3167,7 +3167,7 @@ se_laser_01:
 
 
 /********************************************************************/
-/*			SE+ƒXƒ|ƒbƒgƒ‰ƒCƒg‰‰o(FSW_LOCAL5,6,FSW_PARAM5Žg—p)		*/
+/*			SE+ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆæ¼”å‡º(FSW_LOCAL5,6,FSW_PARAM5ä½¿ç”¨)		*/
 /********************************************************************/
 se_spot_01:
 	_SE_PLAY			SEQ_SE_PL_FR04
@@ -3182,7 +3182,7 @@ se_spot_01:
 
 
 /********************************************************************/
-/*						SE+ƒ‚ƒjƒ^[“_–Å								*/
+/*						SE+ãƒ¢ãƒ‹ã‚¿ãƒ¼ç‚¹æ»…								*/
 /********************************************************************/
 se_monitor_01:
 	_SE_PLAY			SEQ_SE_PL_FR05
@@ -3191,9 +3191,9 @@ se_monitor_01:
 
 
 /********************************************************************/
-/*					Žó•t‚ÉŽè“n‚³‚ê‚éƒAƒjƒ							*/
+/*					å—ä»˜ã«æ‰‹æ¸¡ã•ã‚Œã‚‹ã‚¢ãƒ‹ãƒ¡							*/
 /********************************************************************/
-/*–¡•û‘¤*/
+/*å‘³æ–¹å´*/
 staff_anm_01:
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_70
 	_OBJ_ANIME_WAIT
@@ -3209,7 +3209,7 @@ staff_anm_02:
 	_OBJ_ANIME_WAIT
 	_RET
 
-/*“G‘¤*/
+/*æ•µå´*/
 staff_anm_03:
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_72
 	_OBJ_ANIME_WAIT
@@ -3222,10 +3222,10 @@ staff_anm_04:
 
 
 /********************************************************************/
-/*						ƒgƒŒ[ƒi[“oê								*/
+/*						ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç™»å ´								*/
 /********************************************************************/
 ev_room_choice_24:
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_send_sel_taisen
 	_JUMP				ev_roulette_taisen_go
@@ -3236,12 +3236,12 @@ ev_roulette_taisen_go:
 	_END
 
 ev_roulette_send_sel_taisen:
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	//_TALKMSG_NOSKIP	msg_roulette_room_wait
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_CHANGE
-	_COMM_RESET			/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET			/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 
 	//_TALK_CLOSE
 	_JUMP				ev_roulette_room_etc_add
@@ -3256,7 +3256,7 @@ ev_roulette_comm_command_initialize_1:
 	_ROULETTE_TOOL		FR_ID_COMM_COMMAND_INITIALIZE,0,0,FSW_ANSWER
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_INIT_1
 	_COMM_RESET
@@ -3294,38 +3294,38 @@ ev_roulette_comm_command_initialize_4:
 
 
 /********************************************************************/
-/*						ƒgƒŒ[ƒi[“oê2								*/
+/*						ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ç™»å ´2								*/
 /********************************************************************/
 ev_roulette_room_etc_add:
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_room_go_multi
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_ROULETTE_TOOL		FR_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_leader_1st_02
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_roulette_leader_2nd_02
 
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_roulette_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*“GƒgƒŒ[ƒi[‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_CALL				ev_roulette_trainer_set_1
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_single
 	_OBJ_ANIME_WAIT
 
-	_CALL				ev_roulette_poke_itemkeep_icon_add_enemy	/*(ENEMY)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“’Ç‰Á*/
+	_CALL				ev_roulette_poke_itemkeep_icon_add_enemy	/*(ENEMY)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ */
 	_RET
 
 ev_roulette_room_go_multi:
-	/*“GƒgƒŒ[ƒi[‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_CALL				ev_roulette_trainer_set_2
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in
 	_OBJ_ANIME			OBJID_ETC2,etc_anime_room_in_multi
 	_OBJ_ANIME_WAIT
 
-	_CALL				ev_roulette_poke_itemkeep_icon_add_enemy	/*(ENEMY)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“’Ç‰Á*/
+	_CALL				ev_roulette_poke_itemkeep_icon_add_enemy	/*(ENEMY)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ */
 	_RET
 
 
@@ -3333,7 +3333,7 @@ ev_roulette_room_go_multi:
 /*																	*/
 /********************************************************************/
 ev_roulette_room_go_2:
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_msg_02_single
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_msg_02_multi
@@ -3343,11 +3343,11 @@ ev_roulette_msg_02_single:
 	_AB_KEYWAIT
 	_TALK_CLOSE
 
-	/*Ži‰ï‚ðŒ³‚ÌˆÊ’u‚É–ß‚µ‚Ä‚¨‚­*/
+	/*å¸ä¼šã‚’å…ƒã®ä½ç½®ã«æˆ»ã—ã¦ãŠã*/
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_55
 	_OBJ_ANIME_WAIT
 
-	/*u‚»‚ê‚Å‚Íƒoƒgƒ‹ƒXƒ^[ƒgIv*/
+	/*ã€Œãã‚Œã§ã¯ãƒãƒˆãƒ«ã‚¹ã‚¿ãƒ¼ãƒˆï¼ã€*/
 	_TALKMSG			msg_roulette_room_30_22
 	_AB_KEYWAIT
 	_TALK_CLOSE
@@ -3357,13 +3357,13 @@ ev_roulette_msg_02_single:
 	_OBJ_ANIME			OBJID_ETC,anm_stay_walk_left
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí‘O‘äŽŒ*/
+	/*å¯¾æˆ¦å‰å°è©ž*/
 	_ROULETTE_TOOL	FR_ID_SET_B_TOWER_PARTNER_DATA,0,0,FSW_ANSWER
 	_TALKMSG_ROULETTE_APPEAR	0
 	_AB_KEYWAIT
 	_TALK_CLOSE
 
-	/*ˆê•à‘O‚Ö*/
+	/*ä¸€æ­©å‰ã¸*/
 	_OBJ_ANIME			OBJID_MINE,anm_go_btl_walk_left
 	_OBJ_ANIME			OBJID_ETC,anm_go_btl_walk_right
 	_OBJ_ANIME_WAIT
@@ -3372,27 +3372,27 @@ ev_roulette_msg_02_single:
 	_END
 
 ev_roulette_msg_02_multi:
-	/*“r’†‚É•¶Žš‘—‚è‚ª‚ ‚é‚Ì‚ÅAƒEƒFƒCƒg‚Å‚Í‚È‚­AƒL[‘Ò‚¿‚ð“ü‚ê‚Ä‚µ‚Ü‚¤*/
+	/*é€”ä¸­ã«æ–‡å­—é€ã‚ŠãŒã‚ã‚‹ã®ã§ã€ã‚¦ã‚§ã‚¤ãƒˆã§ã¯ãªãã€ã‚­ãƒ¼å¾…ã¡ã‚’å…¥ã‚Œã¦ã—ã¾ã†*/
 	//_TIME_WAIT			FRONTIER_COMMON_WAIT,FSW_ANSWER
 	_AB_KEYWAIT
 
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_roulette_room_wait
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_PANEL_INFO
-	_COMM_RESET			/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET			/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 
 	//_AB_KEYWAIT
 	//_TIME_WAIT			FRONTIER_COMMON_WAIT,FSW_ANSWER
 
-	/*Ži‰ï‚ðŒ³‚ÌˆÊ’u‚É–ß‚µ‚Ä‚¨‚­*/
+	/*å¸ä¼šã‚’å…ƒã®ä½ç½®ã«æˆ»ã—ã¦ãŠã*/
 	_TALK_CLOSE
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_55
 	_OBJ_ANIME_WAIT
 
-	/*u‚»‚ê‚Å‚Íƒoƒgƒ‹ƒXƒ^[ƒgIv*/
+	/*ã€Œãã‚Œã§ã¯ãƒãƒˆãƒ«ã‚¹ã‚¿ãƒ¼ãƒˆï¼ã€*/
 	_TALKMSG_NOSKIP		msg_roulette_room_30_22
 	_TIME_WAIT			FRONTIER_COMMON_WAIT,FSW_ANSWER
 	_TALK_CLOSE
@@ -3402,7 +3402,7 @@ ev_roulette_msg_02_multi:
 	_OBJ_ANIME			OBJID_ETC,anm_stay_walk_left
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí‘O‘äŽŒ*/
+	/*å¯¾æˆ¦å‰å°è©ž*/
 	_ROULETTE_TOOL	FR_ID_SET_B_TOWER_PARTNER_DATA,0,0,FSW_ANSWER
 	_TALKMSG_ROULETTE_APPEAR	0
 	_TIME_WAIT		30,FSW_ANSWER
@@ -3411,20 +3411,20 @@ ev_roulette_msg_02_multi:
 	_OBJ_ANIME			OBJID_ETC2,anm_stay_walk_left
 	_OBJ_ANIME_WAIT
 
-	/*‘Îí‘O‘äŽŒ*/
+	/*å¯¾æˆ¦å‰å°è©ž*/
 	_ROULETTE_TOOL	FR_ID_SET_B_TOWER_PARTNER_DATA,0,0,FSW_ANSWER
 	_TALKMSG_ROULETTE_APPEAR	1
 	_TIME_WAIT		30,FSW_ANSWER
 	_TALK_CLOSE
 
-	/*ˆê•à‘O‚Ö*/
+	/*ä¸€æ­©å‰ã¸*/
 	_OBJ_ANIME		OBJID_SIO_USER_0,anm_go_btl_walk_left
 	_OBJ_ANIME		OBJID_SIO_USER_1,anm_go_btl_walk_left
 	_OBJ_ANIME		OBJID_ETC,anm_go_btl_walk_right
 	_OBJ_ANIME		OBJID_ETC2,anm_go_btl_walk_right
 	_OBJ_ANIME_WAIT
 
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_roulette_room_wait
 
 	_JUMP				ev_roulette_battle
@@ -3432,7 +3432,7 @@ ev_roulette_msg_02_multi:
 
 
 /********************************************************************/
-/*					ƒgƒŒ[ƒi[‚ÌŒ©‚½–ÚƒZƒbƒg						*/
+/*					ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®è¦‹ãŸç›®ã‚»ãƒƒãƒˆ						*/
 /********************************************************************/
 ev_roulette_trainer_set_1:
 	_ROULETTE_TOOL		FR_ID_GET_TR_OBJ_CODE,0,0,FSW_ANSWER
@@ -3455,18 +3455,18 @@ ev_roulette_trainer_set_brain:
 
 
 /********************************************************************/
-/*						‚¨ŒÝ‚¢ˆê•à‘O‚Ö								*/
+/*						ãŠäº’ã„ä¸€æ­©å‰ã¸								*/
 /********************************************************************/
 ev_roulette_battle:
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	//_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	//_WIPE_FADE_END_CHECK
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_multi_battle_2
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_ROULETTE_TOOL		FR_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_leader_1st_33
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_roulette_leader_2nd_33
@@ -3477,7 +3477,7 @@ ev_roulette_battle:
 
 ev_roulette_leader_1st_33:
 ev_roulette_leader_2nd_33:
-	_PARTICLE_SPA_EXIT	SPAWORK_0					/*ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg‘O‚Éƒp[ƒeƒBƒNƒ‹íœ*/
+	_PARTICLE_SPA_EXIT	SPAWORK_0					/*ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‰ã«ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«å‰Šé™¤*/
 
 	_RECORD_INC			RECID_FRONTIER_BRAIN
 	_BRAIN_ENCOUNT_EFFECT	FRONTIER_NO_ROULETTE
@@ -3485,9 +3485,9 @@ ev_roulette_leader_2nd_33:
 	_END
 
 
-/*’ÊMƒ}ƒ‹ƒ`*/
+/*é€šä¿¡ãƒžãƒ«ãƒ*/
 ev_roulette_multi_battle_2:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_BATTLE
 	_COMM_RESET
@@ -3502,82 +3502,82 @@ ev_roulette_multi_battle_2:
 //
 /********************************************************************/
 ev_roulette_battle_2:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_roulette_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	_CALL				ev_roulette_poke_itemkeep_icon_del			/*ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“íœ*/
-	_CALL				ev_roulette_poke_itemkeep_icon_resource_del	/*ƒŠƒ\[ƒXíœ*/
+	_CALL				ev_roulette_poke_itemkeep_icon_del			/*ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤*/
+	_CALL				ev_roulette_poke_itemkeep_icon_resource_del	/*ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤*/
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_ROULETTE_TOOL		FR_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_battle_2_0
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_roulette_battle_2_0
 
-	/*ƒuƒŒ[ƒ“ˆÈŠO‚ÍA‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚Åƒp[ƒeƒBƒNƒ‹‚ðíœ‚·‚é*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ä»¥å¤–ã¯ã€ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’å‰Šé™¤ã™ã‚‹*/
 	_PARTICLE_SPA_EXIT	SPAWORK_0
 	_JUMP				ev_roulette_battle_2_0
 	_END
 
 ev_roulette_battle_2_0:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_roulette_rensyou_get
 
-	/*ƒŠƒ\[ƒX‰ð•ú(ƒAƒNƒ^[‚Íƒ[ƒN”Ô†AƒŠƒ\[ƒX‚ÍACTID‚Å‰ð•ú‚·‚éŽ–‚É’ˆÓ)*/
+	/*ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾(ã‚¢ã‚¯ã‚¿ãƒ¼ã¯ãƒ¯ãƒ¼ã‚¯ç•ªå·ã€ãƒªã‚½ãƒ¼ã‚¹ã¯ACTIDã§è§£æ”¾ã™ã‚‹äº‹ã«æ³¨æ„)*/
 	_ARTICLE_RESOURCE_FREE	ACTID_ROULETTE_RAMP
 
-	/*ƒ|ƒPƒpƒlƒ‹ƒŠƒ\[ƒX{ƒAƒNƒ^[íœ*/
+	/*ãƒã‚±ãƒ‘ãƒãƒ«ãƒªã‚½ãƒ¼ã‚¹ï¼‹ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤*/
 	_CALL				ev_pokepanel_del
 
 #ifndef DEBUG_FRONTIER_LOOP
 
 #ifndef DEBUG_BTL_OFF	/************************************************/
-	/*í“¬ŒÄ‚Ño‚µ*/
+	/*æˆ¦é—˜å‘¼ã³å‡ºã—*/
 	_ROULETTE_BATTLE_CALL
 	_ROULETTE_CALL_GET_RESULT
 #endif	/****************************************************************/
 
 #endif	//DEBUG_FRONTIER_LOOP
 
-	/*‚Æ‚è‚ ‚¦‚¸“G‚ÌƒAƒCƒRƒ“‚Í•\Ž¦‚µ‚È‚¢*/
-	_CALL			ev_roulette_poke_itemkeep_icon_add_mine			/*(MINE)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“’Ç‰Á*/
-	//_CALL				ev_roulette_poke_itemkeep_icon_add		/*ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“’Ç‰Á*/
+	/*ã¨ã‚Šã‚ãˆãšæ•µã®ã‚¢ã‚¤ã‚³ãƒ³ã¯è¡¨ç¤ºã—ãªã„*/
+	_CALL			ev_roulette_poke_itemkeep_icon_add_mine			/*(MINE)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ */
+	//_CALL				ev_roulette_poke_itemkeep_icon_add		/*ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ */
 
-	_ROULETTE_TOOL		FR_ID_SET_MAIN_BG,0,0,FSW_ANSWER/*”wŒi•ÏX(“à•”‚Å’ÊMƒ^ƒCƒv‚©ƒ`ƒFƒbƒN)*/
+	_ROULETTE_TOOL		FR_ID_SET_MAIN_BG,0,0,FSW_ANSWER/*èƒŒæ™¯å¤‰æ›´(å†…éƒ¨ã§é€šä¿¡ã‚¿ã‚¤ãƒ—ã‹ãƒã‚§ãƒƒã‚¯)*/
 
-	/*ƒ|ƒPƒpƒlƒ‹ƒŠƒ\[ƒX{ƒAƒNƒ^[ƒZƒbƒg*/
+	/*ãƒã‚±ãƒ‘ãƒãƒ«ãƒªã‚½ãƒ¼ã‚¹ï¼‹ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ*/
 	_CALL					ev_pokepanel_set
 
-	_CALL				ev_roulette_btl_pal_black					/*ˆÃ‚­‚·‚é*/
-	_CALL				ev_roulette_obj_pal_black					/*OBJˆÃ‚­‚·‚é*/
+	_CALL				ev_roulette_btl_pal_black					/*æš—ãã™ã‚‹*/
+	_CALL				ev_roulette_obj_pal_black					/*OBJæš—ãã™ã‚‹*/
 
-	/*ƒtƒF[ƒhƒCƒ“*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³*/
 	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 #ifndef DEBUG_FRONTIER_LOOP
 
 #ifndef DEBUG_BTL_LOSE_OFF	/********************************************/
-	/*í“¬Œ‹‰Ê‚Å•ªŠò*/
+	/*æˆ¦é—˜çµæžœã§åˆ†å²*/
 	_ROULETTE_LOSE_CHECK	FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_lose		/*”s–k*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_lose		/*æ•—åŒ—*/
 #endif	/****************************************************************/
 
 #endif	//DEBUG_FRONTIER_LOOP
 
 	_RECORD_INC			RECID_ROULETTE
 
-	/*ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒ“ƒWƒCƒxƒ“ƒg‚ÌŽž‚ÍƒAƒCƒRƒ“‚ð‹t‚É‚µ‚Ä‚©‚çÁ‚·•K—v‚ª‚ ‚é‚©‚àH*/
-	/*Œˆ’è‚µ‚½ƒCƒxƒ“ƒgƒiƒ“ƒo[‚ðŽæ“¾*/
+	/*ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¤ãƒ™ãƒ³ãƒˆã®æ™‚ã¯ã‚¢ã‚¤ã‚³ãƒ³ã‚’é€†ã«ã—ã¦ã‹ã‚‰æ¶ˆã™å¿…è¦ãŒã‚ã‚‹ã‹ã‚‚ï¼Ÿ*/
+	/*æ±ºå®šã—ãŸã‚¤ãƒ™ãƒ³ãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—*/
 	//_ROULETTE_TOOL		FR_ID_GET_DECIDE_EV_NO,0,0,FSW_ANSWER
 	//_IFVAL_CALL			FSW_ANSWER,EQ,ROULETTE_EV_PLACE_POKE_CHANGE,ev_btl_after_poke_icon_sub
 
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_ROULETTE_TOOL		FR_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_leader_1st_03
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_roulette_leader_2nd_03
 
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_roulette_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
@@ -3585,20 +3585,20 @@ ev_roulette_battle_2_0:
 	_END
 
 ev_roulette_battle_2_sub:
-	_CALL				ev_roulette_battle_2_2								/*‘Þê*/
-	_JUMP				ev_roulette_battle_3								/*í“¬Ÿ—˜Œã‚Ì—¬‚ê‚Ö*/
+	_CALL				ev_roulette_battle_2_2								/*é€€å ´*/
+	_JUMP				ev_roulette_battle_3								/*æˆ¦é—˜å‹åˆ©å¾Œã®æµã‚Œã¸*/
 	_END
 
 
 /********************************************************************/
-/*								Ÿ—˜								*/
+/*								å‹åˆ©								*/
 /********************************************************************/
 ev_roulette_battle_2_2:
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_battle_2_multi
 
-	/*“GƒgƒŒ[ƒi[‘Þê*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´*/
 	_OBJ_ANIME			OBJID_ETC,etc_anime_go_out
 	_OBJ_ANIME			OBJID_MINE,mine_anime_go_out
 	_OBJ_ANIME_WAIT
@@ -3609,7 +3609,7 @@ ev_roulette_battle_2_2:
 ev_roulette_battle_2_multi:
 	_CALL				ev_roulette_comm_command_initialize_3
 
-	/*“GƒgƒŒ[ƒi[‘Þê*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´*/
 	_OBJ_ANIME			OBJID_ETC,etc_anime_go_out
 	_OBJ_ANIME			OBJID_ETC2,etc_anime_go_out_multi
 	_OBJ_ANIME			OBJID_SIO_USER_0,mine_anime_go_out
@@ -3623,14 +3623,14 @@ ev_roulette_battle_2_multi:
 
 
 /********************************************************************/
-/*						í“¬‚ðƒXƒ‹[‚µ‚½Žž‚Ì‘Þê					*/
+/*						æˆ¦é—˜ã‚’ã‚¹ãƒ«ãƒ¼ã—ãŸæ™‚ã®é€€å ´					*/
 /********************************************************************/
 ev_roulette_battle_btl_off:
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_battle_2_multi_btl_off
 
-	/*“GƒgƒŒ[ƒi[‘Þê*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´*/
 	_OBJ_ANIME			OBJID_ETC,etc_anime_go_out_btl_off
 	_OBJ_ANIME_WAIT
 	_ACTOR_FREE			OBJID_ETC
@@ -3640,7 +3640,7 @@ ev_roulette_battle_btl_off:
 ev_roulette_battle_2_multi_btl_off:
 	_CALL				ev_roulette_comm_command_initialize_4
 
-	/*“GƒgƒŒ[ƒi[‘Þê*/
+	/*æ•µãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼é€€å ´*/
 	_OBJ_ANIME			OBJID_ETC,etc_anime_go_out_btl_off
 	_OBJ_ANIME			OBJID_ETC2,etc_anime_go_out_btl_off
 	_OBJ_ANIME_WAIT
@@ -3662,10 +3662,10 @@ ev_roulette_battle_3_multi:
 	//_ACTOR_FREE			OBJID_SIO_USER_0
 	//_ACTOR_FREE			OBJID_SIO_USER_1
 
-	/*ŽålŒö‚ÌŒ©‚½–ÚŠi”[*/
+	/*ä¸»äººå…¬ã®è¦‹ãŸç›®æ ¼ç´*/
 	//_GET_MINE_OBJ		FSW_LOCAL7
 
-	//_CHAR_RESOURCE_SET	default_set_resource_multi	/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
+	//_CHAR_RESOURCE_SET	default_set_resource_multi	/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
 	_JUMP				ev_roulette_battle_4
 	_END
 
@@ -3685,15 +3685,15 @@ ev_roulette_battle_5:
 	_RET
 #endif	//DEBUG_FRONTIER_LOOP
 
-	/*¡‰½l–Ú+1*/
+	/*ä»Šä½•äººç›®+1*/
 	_ROULETTE_TOOL		FR_ID_INC_ROUND,1,0,FSW_ANSWER
 
-	/*˜AŸ”+1*/
+	/*é€£å‹æ•°+1*/
 	_ROULETTE_TOOL		FR_ID_INC_RENSYOU,0,0,FSW_ANSWER
 	_RET
 
 ev_roulette_battle_6:
-	/*’ÊMFŠî–{î•ñ‚â‚è‚Æ‚è*/
+	/*é€šä¿¡ï¼šåŸºæœ¬æƒ…å ±ã‚„ã‚Šã¨ã‚Š*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_roulette_multi_comm_basic_call
 	_RET
@@ -3701,9 +3701,9 @@ ev_roulette_battle_6:
 ev_roulette_battle_7:
 
 #ifndef DEBUG_7BTL_OFF	/********************************************/
-	/*¡7l–Ú‚Å‚È‚¢Žž‚Í“ª‚É–ß‚é*/
+	/*ä»Š7äººç›®ã§ãªã„æ™‚ã¯é ­ã«æˆ»ã‚‹*/
 	_ROULETTE_TOOL		FR_ID_GET_ROUND,0,0,FSW_ANSWER
-	_IFVAL_JUMP			FSW_ANSWER,NE,7,ev_roulette_room_renshou_17		/*˜AŸ”‚ª1-6‚ÌŽž*/
+	_IFVAL_JUMP			FSW_ANSWER,NE,7,ev_roulette_room_renshou_17		/*é€£å‹æ•°ãŒ1-6ã®æ™‚*/
 #endif	/************************************************************/
 
 	_JUMP				ev_roulette_room_7_win
@@ -3711,23 +3711,23 @@ ev_roulette_battle_7:
 
 
 /********************************************************************/
-/*							7˜AŸ‚µ‚½(‹L˜^)							*/
+/*							7é€£å‹ã—ãŸ(è¨˜éŒ²)							*/
 /********************************************************************/
 ev_roulette_room_7_win:
 
-	/*í“¬‚ª‚È‚¢ƒpƒlƒ‹‚ÌŽž‚Í”ò‚Î‚·*/
+	/*æˆ¦é—˜ãŒãªã„ãƒ‘ãƒãƒ«ã®æ™‚ã¯é£›ã°ã™*/
 	_IFVAL_JUMP			FSW_PARAM4,GE,1,ev_roulette_room_7_win_bp
 
-	/*Ž©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚Å“®‚¢‚Ä‚¢‚½Žž‚Íu‚«‚ë‚­‚·‚évo‚³‚È‚¢*/
+	/*è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ã„ã¦ã„ãŸæ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€å‡ºã•ãªã„*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_roulette_room_7_win_bp_sub
 
-	/*u‚³‚«‚Ù‚Ç‚Ì@í‚¢‚ð@‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã•ãã»ã©ã®ã€€æˆ¦ã„ã‚’ã€€è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_roulette_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_roulette_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_roulette_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_roulette_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX		FSW_ANSWER										/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
+	_YES_NO_WIN_EX		FSW_ANSWER										/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_room_7_win_bp
 	_JUMP				ev_roulette_room_7_win_rec_yes
 	_END
@@ -3737,35 +3737,35 @@ ev_roulette_room_7_win_bp_sub:
 	_JUMP				ev_roulette_room_7_win_bp
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_roulette_room_7_win_rec_yes:
-	_CALL				ev_roulette_room_rec_win		/*Ÿ—˜‚Ì‹L˜^*/
+	_CALL				ev_roulette_room_rec_win		/*å‹åˆ©ã®è¨˜éŒ²*/
 	_JUMP				ev_roulette_room_7_win_bp
 	_END
 
 
 /********************************************************************/
-/*							7˜AŸ‚µ‚½(BPŽæ“¾)						*/
+/*							7é€£å‹ã—ãŸ(BPå–å¾—)						*/
 /********************************************************************/
 ev_roulette_room_7_win_bp:
-	//7˜AŸ(ƒNƒŠƒA)ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//7é€£å‹(ã‚¯ãƒªã‚¢)ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_ROULETTE_TOOL		FR_ID_SET_CLEAR,0,0,FSW_ANSWER
 
-	/*7˜AŸ‚µ‚½‚Ì‚ÅI—¹‚Ö*/
-	//_LDVAL			WK_SCENE_ROULETTE_LOBBY,1				/*7˜AŸ‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_ROULETTE_LOBBY,1			/*7˜AŸ‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	/*7é€£å‹ã—ãŸã®ã§çµ‚äº†ã¸*/
+	//_LDVAL			WK_SCENE_ROULETTE_LOBBY,1				/*7é€£å‹ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_ROULETTE_LOBBY,1			/*7é€£å‹ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
-	/*u‚V‚¹‚ñ@‚Æ‚Á‚Ï@‚¨‚ß‚Å‚Æ‚¤v*/
+	/*ã€Œï¼—ã›ã‚“ã€€ã¨ã£ã±ã€€ãŠã‚ã§ã¨ã†ã€*/
 	_TALKMSG			msg_roulette_room_31
 
-	_PLAYER_NAME		0										/*ƒvƒŒƒCƒ„[–¼ƒZƒbƒg*/
+	_PLAYER_NAME		0										/*ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åã‚»ãƒƒãƒˆ*/
 
-	/*ƒoƒgƒ‹ƒ|ƒCƒ“ƒg’Ç‰Á*/
+	/*ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆè¿½åŠ */
 	_ROULETTE_TOOL		FR_ID_GET_BP_POINT,0,0,FSW_ANSWER
-	_NUMBER_NAME		1,FSW_ANSWER								/*”’lƒZƒbƒg*/
+	_NUMBER_NAME		1,FSW_ANSWER								/*æ•°å€¤ã‚»ãƒƒãƒˆ*/
 	_BTL_POINT_ADD		FSW_ANSWER
 
-	/*u‚a‚o‚ð‚à‚ç‚Á‚½v*/
+	/*ã€Œï¼¢ï¼°ã‚’ã‚‚ã‚‰ã£ãŸã€*/
 	_TALKMSG			msg_roulette_room_32
 	_ME_PLAY			ME_BP_GET
 	_ME_WAIT
@@ -3775,7 +3775,7 @@ ev_roulette_room_7_win_bp:
 
 
 /********************************************************************/
-/*							7˜AŸ‚µ‚½I—¹							*/
+/*							7é€£å‹ã—ãŸçµ‚äº†							*/
 /********************************************************************/
 ev_roulette_room_bp_end:
 	_JUMP				ev_roulette_lose_timing
@@ -3783,19 +3783,19 @@ ev_roulette_room_bp_end:
 
 
 /********************************************************************/
-/*							˜AŸ” 1-7								*/
+/*							é€£å‹æ•° 1-7								*/
 /********************************************************************/
 ev_roulette_room_renshou_17:
 
-	/*‰ñ•œƒV[ƒPƒ“ƒX‚ð”ò‚Î‚·*/
+	/*å›žå¾©ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’é£›ã°ã™*/
 	_IFVAL_JUMP			FSW_PARAM4,GE,1,ev_roulette_room_renshou_17_sub
 
-	/*‰ñ•œ‚Ìl“oê*/
+	/*å›žå¾©ã®äººç™»å ´*/
 	_CALL				ev_roulette_actor_set_btl_kaihuku
 	_OBJ_ANIME			OBJID_KAIHUKU,kaihuku_anime_10
 	_OBJ_ANIME_WAIT
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_room_renshou_17_multi
 
@@ -3804,7 +3804,7 @@ ev_roulette_room_renshou_17:
 	_JUMP				ev_roulette_room_renshou_17_common
 	_END
 
-/*ƒ}ƒ‹ƒ`@‰ñ•œ‚Ì•û‚ðŒ©‚é*/
+/*ãƒžãƒ«ãƒã€€å›žå¾©ã®æ–¹ã‚’è¦‹ã‚‹*/
 ev_roulette_room_renshou_17_multi:
 	_OBJ_ANIME			OBJID_SIO_USER_0,player_kaihuku_anime_10
 	_OBJ_ANIME			OBJID_SIO_USER_1,player_kaihuku_anime_10
@@ -3813,7 +3813,7 @@ ev_roulette_room_renshou_17_multi:
 	_END
 
 ev_roulette_room_renshou_17_common:
-	/*uƒ|ƒPƒ‚ƒ“‚Ìó‘Ô‚ðŽ¡‚µ‚Ü‚·v*/
+	/*ã€Œãƒã‚±ãƒ¢ãƒ³ã®çŠ¶æ…‹ã‚’æ²»ã—ã¾ã™ã€*/
 	_TALKMSG			msg_roulette_room_3
 	_ME_PLAY			SEQ_ASA
 	_ME_WAIT
@@ -3821,11 +3821,11 @@ ev_roulette_room_renshou_17_common:
 
 	_PC_KAIFUKU
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_room_renshou_17_multi2
 
-	/*‰ñ•œ‚Ìl‹Ž‚Á‚Ä‚¢‚­*/
+	/*å›žå¾©ã®äººåŽ»ã£ã¦ã„ã*/
 	_OBJ_ANIME			OBJID_KAIHUKU,kaihuku_anime_15
 	_OBJ_ANIME			OBJID_MINE,player_kaihuku_anime_15
 	_OBJ_ANIME_WAIT
@@ -3852,10 +3852,10 @@ ev_roulette_room_renshou_17_sub:
 
 
 /********************************************************************/
-/*						’†’fƒZ[ƒu‚©‚ç‚ÌÄŠJ						*/
+/*						ä¸­æ–­ã‚»ãƒ¼ãƒ–ã‹ã‚‰ã®å†é–‹						*/
 /********************************************************************/
 ev_roulette_room_saikai:
-	/*ƒuƒŒ[ƒ““oê‚©ƒ`ƒFƒbƒN*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ã‹ãƒã‚§ãƒƒã‚¯*/
 	_ROULETTE_TOOL		FR_ID_CHECK_BRAIN,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_leader_1st_01
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_roulette_leader_2nd_01
@@ -3864,7 +3864,7 @@ ev_roulette_room_saikai:
 	_END
 
 ev_roulette_room_saikai_00:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_roulette_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
@@ -3872,11 +3872,11 @@ ev_roulette_room_saikai_00:
 	_END
 
 ev_roulette_room_saikai_02:
-	/*˜AŸ”‚ðƒZƒbƒg*/
+	/*é€£å‹æ•°ã‚’ã‚»ãƒƒãƒˆ*/
 	_CALL				ev_roulette_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*uŽŸ‚Í@›í–Ú‚Å‚·‚æv*/
+	/*ã€Œæ¬¡ã¯ã€€â—‹æˆ¦ç›®ã§ã™ã‚ˆã€*/
 	_ROULETTE_TOOL		FR_ID_GET_ROUND,0,0,FSW_ANSWER
 	_ADD_WK				FSW_ANSWER,1
 	_NUMBER_NAME		0,FSW_ANSWER
@@ -3887,33 +3887,33 @@ ev_roulette_room_saikai_02:
 
 
 /********************************************************************/
-/*							ƒƒjƒ…[¶¬							*/
+/*							ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”Ÿæˆ							*/
 /********************************************************************/
 ev_roulette_room_menu_make:
 
 	_ROULETTE_TOOL	FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_roulette_room_menu_make_comm
 
-	/*í“¬‚ª‚È‚¢ƒpƒlƒ‹‚ÌŽž‚Íu‚«‚ë‚­‚·‚évƒƒjƒ…[‚È‚µ*/
+	/*æˆ¦é—˜ãŒãªã„ãƒ‘ãƒãƒ«ã®æ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãªã—*/
 	_IFVAL_JUMP		FSW_PARAM4,EQ,1,ev_roulette_room_menu_make_03_set
 
-	/*‚Ü‚¾‹L˜^‚µ‚Ä‚¢‚È‚¢A’†’f•œ‹A‚Å‚Í‚È‚¢Žž‚Íu‚«‚ë‚­‚·‚évƒƒjƒ…[’Ç‰Á*/
+	/*ã¾ã è¨˜éŒ²ã—ã¦ã„ãªã„ã€ä¸­æ–­å¾©å¸°ã§ã¯ãªã„æ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ */
 	_IFVAL_JUMP		FSW_LOCAL3,EQ,0,ev_roulette_room_menu_make_04_set
 
 	_JUMP			ev_roulette_room_menu_make_03_set
 	_END
 
-/*’ÊM‚ÌŽž‚Ìƒƒjƒ…[*/
+/*é€šä¿¡ã®æ™‚ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼*/
 ev_roulette_room_menu_make_comm:
 
-	/*Ž©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚Å“®‚¢‚Ä‚¢‚½Žž‚Íu‚«‚ë‚­‚·‚évo‚³‚È‚¢*/
+	/*è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ã„ã¦ã„ãŸæ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€å‡ºã•ãªã„*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_roulette_room_menu_make_01_set
 
-	/*í“¬‚ª‚È‚¢ƒpƒlƒ‹‚ÌŽž‚Íu‚«‚ë‚­‚·‚évƒƒjƒ…[‚È‚µ*/
+	/*æˆ¦é—˜ãŒãªã„ãƒ‘ãƒãƒ«ã®æ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãªã—*/
 	_IFVAL_JUMP		FSW_PARAM4,EQ,1,ev_roulette_room_menu_make_01_set
 
-	/*‚Ü‚¾‹L˜^‚µ‚Ä‚¢‚È‚¢A’†’f•œ‹A‚Å‚Í‚È‚¢Žž‚Íu‚«‚ë‚­‚·‚évƒƒjƒ…[’Ç‰Á*/
+	/*ã¾ã è¨˜éŒ²ã—ã¦ã„ãªã„ã€ä¸­æ–­å¾©å¸°ã§ã¯ãªã„æ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¿½åŠ */
 	_IFVAL_JUMP		FSW_LOCAL3,EQ,0,ev_roulette_room_menu_make_02_set
 
 	_JUMP			ev_roulette_room_menu_make_01_set
@@ -3939,7 +3939,7 @@ ev_roulette_room_menu_make_04_set:
 	_JUMP				ev_roulette_room_menu_make_sub
 	_END
 
-/*‚Ç‚Ìƒƒjƒ…[Œ`Ž®‚É‚·‚é‚©*/
+/*ã©ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼å½¢å¼ã«ã™ã‚‹ã‹*/
 ev_roulette_room_menu_make_sub:
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_room_menu_make_01
 	_IFVAL_JUMP			FSW_ANSWER,EQ,2,ev_roulette_room_menu_make_02
@@ -3948,42 +3948,42 @@ ev_roulette_room_menu_make_sub:
 	_END
 
 ev_roulette_room_menu_make_01:
-	_BMPLIST_INIT_EX	24,13,0,0,FSW_PARAM1			/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*‚Â‚Ã‚¯‚é*/
+	_BMPLIST_INIT_EX	24,13,0,0,FSW_PARAM1			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*ã¤ã¥ã‘ã‚‹*/
 	_JUMP			ev_roulette_room_yasumu_next
 	_END
 
 ev_roulette_room_menu_make_02:
-	_BMPLIST_INIT_EX	23,11,0,0,FSW_PARAM1			/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*‚Â‚Ã‚¯‚é*/
-	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1	/*‚«‚ë‚­‚·‚é*/
+	_BMPLIST_INIT_EX	23,11,0,0,FSW_PARAM1			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*ã¤ã¥ã‘ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1	/*ãã‚ãã™ã‚‹*/
 	_JUMP			ev_roulette_room_yasumu_next
 	_END
 
 ev_roulette_room_menu_make_03:
-	_BMPLIST_INIT_EX	24,11,0,0,FSW_PARAM1			/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*‚Â‚Ã‚¯‚é*/
-	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2	/*‚â‚·‚Þ*/
+	_BMPLIST_INIT_EX	24,11,0,0,FSW_PARAM1			/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*ã¤ã¥ã‘ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2	/*ã‚„ã™ã‚€*/
 	_JUMP			ev_roulette_room_yasumu_next
 	_END
 
 ev_roulette_room_menu_make_04:
-	_BMPLIST_INIT_EX	23,9,0,0,FSW_PARAM1				/*BƒLƒƒƒ“ƒZƒ‹–³Œø*/
-	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*‚Â‚Ã‚¯‚é*/
-	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1	/*‚«‚ë‚­‚·‚é*/
-	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2	/*‚â‚·‚Þ*/
+	_BMPLIST_INIT_EX	23,9,0,0,FSW_PARAM1				/*Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹*/
+	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_01,FSEV_WIN_TALK_MSG_NONE,0	/*ã¤ã¥ã‘ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_02,FSEV_WIN_TALK_MSG_NONE,1	/*ãã‚ãã™ã‚‹*/
+	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_03,FSEV_WIN_TALK_MSG_NONE,2	/*ã‚„ã™ã‚€*/
 	_JUMP			ev_roulette_room_yasumu_next
 	_END
 
 ev_roulette_room_yasumu_next:
-	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_04,FSEV_WIN_TALK_MSG_NONE,3	/*ƒŠƒ^ƒCƒA*/
+	_BMPLIST_MAKE_LIST	msg_roulette_room_choice_04,FSEV_WIN_TALK_MSG_NONE,3	/*ãƒªã‚¿ã‚¤ã‚¢*/
 	_BMPLIST_START
 	_JUMP			ev_roulette_room_menu_sel
 	_END
 
 
 /********************************************************************/
-/*							ƒƒjƒ…[Œ‹‰Ê							*/
+/*							ãƒ¡ãƒ‹ãƒ¥ãƒ¼çµæžœ							*/
 /********************************************************************/
 ev_roulette_room_menu_sel:
 
@@ -3991,29 +3991,29 @@ ev_roulette_room_menu_sel:
 	_JUMP			ev_room_choice_01
 #endif	//DEBUG_FRONTIER_LOOP
 
-	_IFVAL_JUMP			FSW_PARAM1,EQ,0,ev_room_choice_01	/*‚Â‚Ã‚¯‚é*/
-	_IFVAL_JUMP			FSW_PARAM1,EQ,1,ev_room_choice_02	/*‚«‚ë‚­‚·‚é*/
-	_IFVAL_JUMP			FSW_PARAM1,EQ,2,ev_room_choice_03	/*‚â‚·‚Þ*/
-	_IFVAL_JUMP			FSW_PARAM1,EQ,3,ev_room_choice_04	/*ƒŠƒ^ƒCƒA*/
+	_IFVAL_JUMP			FSW_PARAM1,EQ,0,ev_room_choice_01	/*ã¤ã¥ã‘ã‚‹*/
+	_IFVAL_JUMP			FSW_PARAM1,EQ,1,ev_room_choice_02	/*ãã‚ãã™ã‚‹*/
+	_IFVAL_JUMP			FSW_PARAM1,EQ,2,ev_room_choice_03	/*ã‚„ã™ã‚€*/
+	_IFVAL_JUMP			FSW_PARAM1,EQ,3,ev_room_choice_04	/*ãƒªã‚¿ã‚¤ã‚¢*/
 	_JUMP				ev_room_choice_04
 	_END
 
 
 /********************************************************************/
-/*						u‚Â‚Ã‚¯‚év								*/
+/*						ã€Œã¤ã¥ã‘ã‚‹ã€								*/
 /********************************************************************/
 ev_room_choice_01:
-	_LDVAL				FSW_PARAM4,0				/*‰ñ•œƒV[ƒPƒ“ƒX”»’fƒ[ƒNƒNƒŠƒA*/
+	_LDVAL				FSW_PARAM4,0				/*å›žå¾©ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ¤æ–­ãƒ¯ãƒ¼ã‚¯ã‚¯ãƒªã‚¢*/
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_room_choice_01_multi
 	_JUMP				ev_room_choice_01_2
 	_END
 
-/*’ÊMƒ}ƒ‹ƒ`*/
+/*é€šä¿¡ãƒžãƒ«ãƒ*/
 ev_room_choice_01_multi:
-	/*ƒp[ƒgƒi[–¼‚ð•\Ž¦*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º*/
 	_PAIR_NAME			0
 	_TALKMSG			msg_roulette_room_10
 	_JUMP				ev_room_choice_01_multi_retry
@@ -4021,19 +4021,19 @@ ev_room_choice_01_multi:
 
 ev_room_choice_01_multi_retry:
 	_LDVAL				FSW_LOCAL2,ROULETTE_COMM_RETIRE
-	_ROULETTE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER							/*0=‚Â‚Ã‚¯‚é*/
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_room_choice_01_multi_retry	/*‘—MŽ¸”s‚ÍAÄ‘—M‚Ö*/
+	_ROULETTE_SEND_BUF	FSW_LOCAL2,0,FSW_ANSWER							/*0=ã¤ã¥ã‘ã‚‹*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_room_choice_01_multi_retry	/*é€ä¿¡å¤±æ•—ã¯ã€å†é€ä¿¡ã¸*/
 
 	_ROULETTE_RECV_BUF	FSW_LOCAL2
 	_COMM_RESET
 
-	/*‘ŠŽè‚ª‘I‚ñ‚¾ƒƒjƒ…[‚ðŽæ“¾*/
+	/*ç›¸æ‰‹ãŒé¸ã‚“ã ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å–å¾—*/
 	_ROULETTE_TOOL		FR_ID_GET_RETIRE_FLAG,0,0,FSW_ANSWER
 
-	/*ƒp[ƒgƒi[‚ªƒŠƒ^ƒCƒA‚µ‚½‚ç*/
-	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_room_giveup_yes_multi	/*ƒŠƒ^ƒCƒA*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒãƒªã‚¿ã‚¤ã‚¢ã—ãŸã‚‰*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_room_giveup_yes_multi	/*ãƒªã‚¿ã‚¤ã‚¢*/
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_MENU
 	_COMM_RESET
@@ -4041,9 +4041,9 @@ ev_room_choice_01_multi_retry:
 	_JUMP				ev_room_choice_01_2
 	_END
 
-/*ƒp[ƒgƒi[‚ªƒŠƒ^ƒCƒA‚µ‚½‚ç*/
+/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒãƒªã‚¿ã‚¤ã‚¢ã—ãŸã‚‰*/
 ev_roulette_room_giveup_yes_multi:
-	/*ƒp[ƒgƒi[–¼‚ð•\Ž¦*/
+	/*ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼åã‚’è¡¨ç¤º*/
 	_PAIR_NAME			0
 	_TALKMSG_NOSKIP		msg_roulette_room_12
 	_TIME_WAIT			FRONTIER_COMMON_WAIT,FSW_ANSWER
@@ -4055,15 +4055,15 @@ ev_roulette_room_giveup_yes_multi:
 /**/
 /********************************************************************/
 ev_room_choice_01_2:
-	/*ƒ[ƒN‚ðƒNƒŠƒA‚µ‚Ä‚¨‚­*/
+	/*ãƒ¯ãƒ¼ã‚¯ã‚’ã‚¯ãƒªã‚¢ã—ã¦ãŠã*/
 	_LDVAL				FSW_LOCAL3,0
 
-	/*ŽŸ‚Ì“Gƒ|ƒPƒ‚ƒ“‚ð¶¬*/
-	_ROULETTE_BTL_AFTER_PARTY_SET		/*ƒoƒgƒ‹Œã‚ÌPOKEPARTY‚ÌƒZƒbƒg*/
+	/*æ¬¡ã®æ•µãƒã‚±ãƒ¢ãƒ³ã‚’ç”Ÿæˆ*/
+	_ROULETTE_BTL_AFTER_PARTY_SET		/*ãƒãƒˆãƒ«å¾Œã®POKEPARTYã®ã‚»ãƒƒãƒˆ*/
 
 	_TIME_WAIT			1,FSW_ANSWER
 
-	/*’ÊMƒ}ƒ‹ƒ`*/
+	/*é€šä¿¡ãƒžãƒ«ãƒ*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_roulette_multi_room_enemy_poke_send2
 
@@ -4072,52 +4072,52 @@ ev_room_choice_01_2:
 
 
 /********************************************************************/
-/*							‹L˜^‚·‚é*/
+/*							è¨˜éŒ²ã™ã‚‹*/
 /********************************************************************/
 ev_room_choice_02:
-	/*u‚³‚«‚Ù‚Ç‚Ì@í‚¢‚ð@‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã•ãã»ã©ã®ã€€æˆ¦ã„ã‚’ã€€è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_roulette_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_roulette_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,0,ev_roulette_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL			FSW_ANSWER,EQ,1,ev_roulette_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX		FSW_ANSWER										/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
+	_YES_NO_WIN_EX		FSW_ANSWER										/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_room_rec_no
 	_JUMP				ev_roulette_room_rec_yes
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_roulette_room_rec_yes:
-	_CALL				ev_roulette_room_rec_win	/*Ÿ—˜‚Ì‹L˜^*/
-	_JUMP				ev_roulette_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_CALL				ev_roulette_room_rec_win	/*å‹åˆ©ã®è¨˜éŒ²*/
+	_JUMP				ev_roulette_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_roulette_room_rec_no:
-	_JUMP				ev_roulette_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_JUMP				ev_roulette_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*							‹¤’Ê‹L˜^*/
+/*							å…±é€šè¨˜éŒ²*/
 /********************************************************************/
-/*Ÿ‚¿*/
+/*å‹ã¡*/
 ev_roulette_room_rec_win:
-	_CALL				ev_roulette_room_rec_common		/*ANSWER,PARAM0Žg—p’†*/
+	_CALL				ev_roulette_room_rec_common		/*ANSWER,PARAM0ä½¿ç”¨ä¸­*/
 	//_ADD_WK			FSW_PARAM0,1
-	//_SUB_WK			FSW_PARAM0,1					/*ƒ‰ƒEƒ“ƒh”‚Å‚Í‚È‚­Ÿ—˜”‚È‚Ì‚Å*/
+	//_SUB_WK			FSW_PARAM0,1					/*ãƒ©ã‚¦ãƒ³ãƒ‰æ•°ã§ã¯ãªãå‹åˆ©æ•°ãªã®ã§*/
 	_JUMP				ev_roulette_room_rec
 	_END
 
-/*•‰‚¯*/
+/*è² ã‘*/
 ev_roulette_room_rec_lose:
-	_CALL				ev_roulette_room_rec_common		/*ANSWER,PARAM0Žg—p’†*/
+	_CALL				ev_roulette_room_rec_common		/*ANSWER,PARAM0ä½¿ç”¨ä¸­*/
 	_ADD_WK				FSW_PARAM0,1
 	_JUMP				ev_roulette_room_rec
 	_END
 
-/*‹¤’Ê•”•ª*/
+/*å…±é€šéƒ¨åˆ†*/
 ev_roulette_room_rec_common:
-	/*˜^‰æƒf[ƒ^ƒZ[ƒu*/
+	/*éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–*/
 	_ROULETTE_TOOL		FR_ID_GET_RENSYOU,0,0,FSW_PARAM0
 	_RET
 
@@ -4126,7 +4126,7 @@ ev_roulette_room_rec:
 	_END
 
 ev_roulette_room_rec_sub:
-	/*‹L˜^‚µ‚½ƒ[ƒNƒZƒbƒg*/
+	/*è¨˜éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚»ãƒƒãƒˆ*/
 	_LDVAL				FSW_LOCAL3,1
 
 	_TALKMSG_ALL_PUT	msg_roulette_room_6_4
@@ -4139,88 +4139,88 @@ ev_roulette_room_rec_sub:
 
 	_IFVAL_JUMP			FSW_PARAM0,EQ,1,ev_roulette_room_rec_true
 
-	/*u‹L˜^o—ˆ‚Ü‚¹‚ñ‚Å‚µ‚½v*/
+	/*ã€Œè¨˜éŒ²å‡ºæ¥ã¾ã›ã‚“ã§ã—ãŸã€*/
 	_TALKMSG			msg_roulette_room_6_2
 	_RET
 
 ev_roulette_room_rec_true:
 	_SE_PLAY			SEQ_SE_DP_SAVE
-	/*u‹L˜^‚³‚ê‚Ü‚µ‚½v*/
+	/*ã€Œè¨˜éŒ²ã•ã‚Œã¾ã—ãŸã€*/
 	_PLAYER_NAME		0
 	_TALKMSG			msg_roulette_room_6_1
 	_RET
 
-/*˜^‰æƒf[ƒ^‚ª‚È‚¢ŽžƒƒbƒZ[ƒW*/
+/*éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒãªã„æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_roulette_room_rec_msg1:
 	_TALKMSG			msg_roulette_room_6
 	_RET
 
-/*‚·‚Å‚É˜^‰æƒf[ƒ^‚ª‚ ‚éŽžƒƒbƒZ[ƒW*/
+/*ã™ã§ã«éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸*/
 ev_roulette_room_rec_msg2:
 	_TALKMSG			msg_roulette_room_6_3
 	_RET
 
 
 /********************************************************************/
-/*							‚â‚·‚Þ*/
+/*							ã‚„ã™ã‚€*/
 /********************************************************************/
 ev_room_choice_03:
-	/*uƒŒƒ|[ƒg‚ð‚©‚¢‚ÄI—¹‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œãƒ¬ãƒãƒ¼ãƒˆã‚’ã‹ã„ã¦çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_TALKMSG			msg_roulette_room_7
 	_YES_NO_WIN			FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_room_rest_no
 	_JUMP				ev_roulette_room_rest_yes
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_roulette_room_rest_yes:
-	//_LDVAL			WK_SCENE_ROULETTE_LOBBY,2			/*‘±‚«‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_ROULETTE_LOBBY,2		/*‘±‚«‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	//_LDVAL			WK_SCENE_ROULETTE_LOBBY,2			/*ç¶šãã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_ROULETTE_LOBBY,2		/*ç¶šãã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
-	//ƒvƒŒƒCƒf[ƒ^ƒZ[ƒu
+	//ãƒ—ãƒ¬ã‚¤ãƒ‡ãƒ¼ã‚¿ã‚»ãƒ¼ãƒ–
 	_ROULETTE_TOOL		FR_ID_SAVE_REST_PLAY_DATA,0,0,FSW_ANSWER
 
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 	_ROULETTE_WORK_FREE
 
-	_CALL				ev_roulette_save			/*07.08.24 _CALL‚É’u‚«Š·‚¦‚½*/
+	_CALL				ev_roulette_save			/*07.08.24 _CALLã«ç½®ãæ›ãˆãŸ*/
 
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
 	_TALK_CLOSE
 
-	//ƒŠƒZƒbƒgƒRƒ}ƒ“ƒh
+	//ãƒªã‚»ãƒƒãƒˆã‚³ãƒžãƒ³ãƒ‰
 	_ROULETTE_TOOL		FR_ID_SYSTEM_RESET,0,0,FSW_ANSWER
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_roulette_room_rest_no:
-	_JUMP				ev_roulette_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_JUMP				ev_roulette_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*							ƒŠƒ^ƒCƒA*/
+/*							ãƒªã‚¿ã‚¤ã‚¢*/
 /********************************************************************/
 ev_room_choice_04:
-	/*uƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹‚Ì’§í‚ð’†Ž~‚·‚éHv*/
+	/*ã€Œãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«ã®æŒ‘æˆ¦ã‚’ä¸­æ­¢ã™ã‚‹ï¼Ÿã€*/
 	_TALKMSG			msg_roulette_room_8
 	_YES_NO_WIN_EX		FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_room_giveup_no
 
-	/*’ÊM*/
+	/*é€šä¿¡*/
 	_ROULETTE_TOOL		FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,1,ev_roulette_room_giveup_yes_multi_wait_msg
 
-	/*u‚¨—a‚©‚è‚µ‚Ä‚¢‚½“¹‹ï‚ð@‚¨•Ô‚µ‚µ‚Ü‚·Iv*/
+	/*ã€ŒãŠé ã‹ã‚Šã—ã¦ã„ãŸé“å…·ã‚’ã€€ãŠè¿”ã—ã—ã¾ã™ï¼ã€*/
 	_TALKMSG			msg_roulette_room_34
 
 	_JUMP				ev_roulette_room_giveup_yes
 	_END
 
-/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 ev_roulette_room_giveup_yes_multi_wait_msg:
 	_TALKMSG_NOSKIP		msg_roulette_room_wait
 	_JUMP				ev_roulette_room_giveup_yes_multi_retry
@@ -4228,8 +4228,8 @@ ev_roulette_room_giveup_yes_multi_wait_msg:
 
 ev_roulette_room_giveup_yes_multi_retry:
 	_LDVAL				FSW_LOCAL2,ROULETTE_COMM_RETIRE
-	_ROULETTE_SEND_BUF	FSW_LOCAL2,1,FSW_ANSWER									/*1=ƒŠƒ^ƒCƒ„*/
-	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_room_giveup_yes_multi_retry	/*‘—MŽ¸”s‚ÍÄ‘—M*/
+	_ROULETTE_SEND_BUF	FSW_LOCAL2,1,FSW_ANSWER									/*1=ãƒªã‚¿ã‚¤ãƒ¤*/
+	_IFVAL_JUMP			FSW_ANSWER,EQ,0,ev_roulette_room_giveup_yes_multi_retry	/*é€ä¿¡å¤±æ•—ã¯å†é€ä¿¡*/
 
 	//_ROULETTE_RECV_BUF	FSW_LOCAL2
 	//_COMM_RESET
@@ -4237,13 +4237,13 @@ ev_roulette_room_giveup_yes_multi_retry:
 	_END
 
 ev_roulette_room_giveup_yes_multi_sync:
-	/*u‚¨—a‚©‚è‚µ‚Ä‚¢‚½“¹‹ï‚ð@‚¨•Ô‚µ‚µ‚Ü‚·Iv*/
+	/*ã€ŒãŠé ã‹ã‚Šã—ã¦ã„ãŸé“å…·ã‚’ã€€ãŠè¿”ã—ã—ã¾ã™ï¼ã€*/
 	_TALKMSG			msg_roulette_room_34
 
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP		msg_roulette_room_wait
 
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_GIVE
 	//_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_MENU
@@ -4251,40 +4251,40 @@ ev_roulette_room_giveup_yes_multi_sync:
 	_JUMP				ev_roulette_room_giveup_yes
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_roulette_room_giveup_yes:
-	//”síƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//æ•—æˆ¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_ROULETTE_TOOL		FR_ID_SET_LOSE,0,0,FSW_ANSWER
 
-	//_LDVAL			WK_SCENE_ROULETTE_LOBBY,3			/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_ROULETTE_LOBBY,3		/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	//_LDVAL			WK_SCENE_ROULETTE_LOBBY,3			/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_ROULETTE_LOBBY,3		/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
 	_JUMP				ev_roulette_room_end_save
 	_END
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_roulette_room_giveup_no:
-	_JUMP				ev_roulette_room_saikai		/*ƒƒjƒ…[‚Ö–ß‚é*/
+	_JUMP				ev_roulette_room_saikai		/*ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æˆ»ã‚‹*/
 	_END
 
 
 /********************************************************************/
-/*								”s–k*/
+/*								æ•—åŒ—*/
 /********************************************************************/
 ev_roulette_lose:
-	/*Ž©•ª‚ÌROM‚æ‚è‚à‚‚¢ƒT[ƒo[ƒo[ƒWƒ‡ƒ“‚Å“®‚¢‚Ä‚¢‚½Žž‚Íu‚«‚ë‚­‚·‚évo‚³‚È‚¢*/
+	/*è‡ªåˆ†ã®ROMã‚ˆã‚Šã‚‚é«˜ã„ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§å‹•ã„ã¦ã„ãŸæ™‚ã¯ã€Œãã‚ãã™ã‚‹ã€å‡ºã•ãªã„*/
 	_BATTLE_REC_SERVER_VER_CHK	FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,0,ev_roulette_lose_timing_sub
 
-	/*u‚³‚«‚Ù‚Ç‚Ì@í‚¢‚ð@‹L˜^‚µ‚Ü‚·‚©Hv*/
+	/*ã€Œã•ãã»ã©ã®ã€€æˆ¦ã„ã‚’ã€€è¨˜éŒ²ã—ã¾ã™ã‹ï¼Ÿã€*/
 	_BATTLE_REC_DATA_OCC_CHECK	FSW_ANSWER
-	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_roulette_room_rec_msg1		/*‚È‚¢Žž*/
-	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_roulette_room_rec_msg2		/*‚ ‚éŽž*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,0,ev_roulette_room_rec_msg1		/*ãªã„æ™‚*/
+	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_roulette_room_rec_msg2		/*ã‚ã‚‹æ™‚*/
 
-	_YES_NO_WIN_EX	FSW_ANSWER								/*‚¢‚¢‚¦ƒfƒtƒHƒ‹ƒg*/
-	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_roulette_lose_rec_no	/*u‚¢‚¢‚¦v*/
-	_JUMP			ev_roulette_lose_rec_yes				/*u‚Í‚¢v*/
+	_YES_NO_WIN_EX	FSW_ANSWER								/*ã„ã„ãˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ*/
+	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_roulette_lose_rec_no	/*ã€Œã„ã„ãˆã€*/
+	_JUMP			ev_roulette_lose_rec_yes				/*ã€Œã¯ã„ã€*/
 	_END
 
 ev_roulette_lose_timing_sub:
@@ -4292,29 +4292,29 @@ ev_roulette_lose_timing_sub:
 	_JUMP			ev_roulette_lose_timing_call
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 ev_roulette_lose_rec_yes:
-	_CALL			ev_roulette_room_rec_lose				/*”s–k‚Ì‹L˜^*/
+	_CALL			ev_roulette_room_rec_lose				/*æ•—åŒ—ã®è¨˜éŒ²*/
 	_JUMP			ev_roulette_lose_timing_call
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 ev_roulette_lose_rec_no:
 	_JUMP			ev_roulette_lose_timing_call
 	_END
 
 ev_roulette_lose_timing_call:
-	//”síƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//æ•—æˆ¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	_ROULETTE_TOOL		FR_ID_SET_LOSE,0,0,FSW_ANSWER
 
-	//_LDVAL			WK_SCENE_ROULETTE_LOBBY,3			/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
-	_SAVE_EVENT_WORK_SET	WK_SCENE_ROULETTE_LOBBY,3		/*ƒŠƒ^ƒCƒ„‚©‚çŽn‚Ü‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­*/
+	//_LDVAL			WK_SCENE_ROULETTE_LOBBY,3			/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
+	_SAVE_EVENT_WORK_SET	WK_SCENE_ROULETTE_LOBBY,3		/*ãƒªã‚¿ã‚¤ãƒ¤ã‹ã‚‰å§‹ã¾ã‚‹ã‚ˆã†ã«ã—ã¦ãŠã*/
 
 	_JUMP			ev_roulette_lose_timing
 	_END
 
 ev_roulette_lose_timing:
-	/*u‚¨—a‚©‚è‚µ‚Ä‚¢‚½“¹‹ï‚ð@‚¨•Ô‚µ‚µ‚Ü‚·Iv*/
+	/*ã€ŒãŠé ã‹ã‚Šã—ã¦ã„ãŸé“å…·ã‚’ã€€ãŠè¿”ã—ã—ã¾ã™ï¼ã€*/
 	_TALKMSG		msg_roulette_room_34
 
 	_ROULETTE_TOOL	FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
@@ -4322,9 +4322,9 @@ ev_roulette_lose_timing:
 	_JUMP			ev_roulette_room_end_save
 	_END
 
-/*’ÊM“¯Šú*/
+/*é€šä¿¡åŒæœŸ*/
 ev_roulette_multi_lose_timing:
-	/*u‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢v*/
+	/*ã€Œã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€*/
 	_TALKMSG_NOSKIP	msg_roulette_room_wait
 
 	_COMM_RESET
@@ -4334,31 +4334,31 @@ ev_roulette_multi_lose_timing:
 	_END
 
 ev_roulette_room_end_save:
-	_CALL				ev_roulette_save			/*07.08.24 _CALL‚É’u‚«Š·‚¦‚½*/
+	_CALL				ev_roulette_save			/*07.08.24 _CALLã«ç½®ãæ›ãˆãŸ*/
 	_TALK_CLOSE
 	_JUMP				ev_roulette_room_end
 	_END
 
 
 /********************************************************************/
-/*							‹¤’ÊI—¹								*/
+/*							å…±é€šçµ‚äº†								*/
 /********************************************************************/
 ev_roulette_room_end:
 
-	/*ƒZ[ƒuŒã‚É“¯Šú‚³‚¹‚é*/
+	/*ã‚»ãƒ¼ãƒ–å¾Œã«åŒæœŸã•ã›ã‚‹*/
 	_ROULETTE_TOOL	FR_ID_CHECK_COMM_TYPE,0,0,FSW_ANSWER
 	_IFVAL_CALL		FSW_ANSWER,EQ,1,ev_roulette_multi_end_timing
 
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	/*‚±‚Ìƒ^ƒCƒ~ƒ“ƒO‚Å‚ÍMINE‚ÌƒAƒCƒRƒ“‚ªo‚Ä‚¢‚é—\’è*/
-	_CALL				ev_roulette_poke_itemkeep_icon_del_mine	/*MINEƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“íœ*/
-	//_CALL				ev_roulette_poke_itemkeep_icon_del		/*ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“íœ*/
-	_CALL				ev_roulette_poke_itemkeep_icon_resource_del	/*ƒŠƒ\[ƒXíœ*/
+	/*ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ã¯MINEã®ã‚¢ã‚¤ã‚³ãƒ³ãŒå‡ºã¦ã„ã‚‹äºˆå®š*/
+	_CALL				ev_roulette_poke_itemkeep_icon_del_mine	/*MINEãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤*/
+	//_CALL				ev_roulette_poke_itemkeep_icon_del		/*ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³å‰Šé™¤*/
+	_CALL				ev_roulette_poke_itemkeep_icon_resource_del	/*ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤*/
 
-	/*ƒ|ƒPƒpƒlƒ‹ƒŠƒ\[ƒX{ƒAƒNƒ^[íœ*/
+	/*ãƒã‚±ãƒ‘ãƒãƒ«ãƒªã‚½ãƒ¼ã‚¹ï¼‹ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤*/
 	_CALL				ev_pokepanel_del
 
 	_ROULETTE_TOOL		FR_ID_GET_TYPE,0,0,FSW_ANSWER
@@ -4367,43 +4367,43 @@ ev_roulette_room_end:
 	_ROULETTE_TOOL		FR_ID_GET_TYPE,0,0,FSW_ANSWER
 	_IFVAL_JUMP			FSW_ANSWER,EQ,ROULETTE_TYPE_WIFI_MULTI,ev_roulette_room_end_wifi
 
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 	_ROULETTE_WORK_FREE
 
-	/*2Dƒ}ƒbƒvT‚¦Žº‚Ö*/
+	/*2Dãƒžãƒƒãƒ—æŽ§ãˆå®¤ã¸*/
 	//
 
 	//_END
-	_SCRIPT_FINISH			/*_END‚µ‚Ä2Dƒ}ƒbƒvI—¹*/
+	_SCRIPT_FINISH			/*_ENDã—ã¦2Dãƒžãƒƒãƒ—çµ‚äº†*/
 
-/*ƒ}ƒ‹ƒ`‚Ì‚Ý*/
+/*ãƒžãƒ«ãƒã®ã¿*/
 ev_roulette_room_multi_tv:
-	/*TVˆ—*/
+	/*TVå‡¦ç†*/
 	_TV_TEMP_FRIEND_SET	FRONTIER_NO_ROULETTE
 	_RET
 
 
 /********************************************************************/
-/*						ƒZ[ƒuŒã‚É“¯Šú‚³‚¹‚é						*/	
+/*						ã‚»ãƒ¼ãƒ–å¾Œã«åŒæœŸã•ã›ã‚‹						*/	
 /********************************************************************/
 ev_roulette_multi_end_timing:
-	/*’ÊM“¯Šú*/
+	/*é€šä¿¡åŒæœŸ*/
 	_COMM_RESET
 	_COMM_SYNCHRONIZE	DBC_TIM_ROULETTE_SAVE_AFTER
-	_COMM_RESET			/*‰æ–ÊØ‚è‘Ö‚¦‘O‚É‰Šú‰»*/
+	_COMM_RESET			/*ç”»é¢åˆ‡ã‚Šæ›¿ãˆå‰ã«åˆæœŸåŒ–*/
 	_RET
 
 
 /********************************************************************/
-/*						WIFI‚Í‘Ò‚¿‡‚í‚¹‰æ–Ê‚Ö–ß‚é					*/	
+/*						WIFIã¯å¾…ã¡åˆã‚ã›ç”»é¢ã¸æˆ»ã‚‹					*/	
 /********************************************************************/
 ev_roulette_room_end_wifi:
-	/*ƒtƒF[ƒhƒAƒEƒg*/
+	/*ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ*/
 	//_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
 	//_WIPE_FADE_END_CHECK
 
-	/*ƒ[ƒNŠJ•ú*/
+	/*ãƒ¯ãƒ¼ã‚¯é–‹æ”¾*/
 	_BATTLE_REC_EXIT
 	_ROULETTE_WORK_FREE
 
@@ -4412,10 +4412,10 @@ ev_roulette_room_end_wifi:
 
 
 /********************************************************************/
-//							‹¤’ÊƒZ[ƒu	
+//							å…±é€šã‚»ãƒ¼ãƒ–	
 /********************************************************************/
 ev_roulette_save:
-	/*uƒŒƒ|[ƒg‚É‘‚«ž‚ñ‚Å‚¢‚Ü‚·@“dŒ¹‚ðØ‚ç‚È‚¢‚Å‰º‚³‚¢v*/
+	/*ã€Œãƒ¬ãƒãƒ¼ãƒˆã«æ›¸ãè¾¼ã‚“ã§ã„ã¾ã™ã€€é›»æºã‚’åˆ‡ã‚‰ãªã„ã§ä¸‹ã•ã„ã€*/
 	_TALKMSG_ALL_PUT	msg_roulette_room_36
 	_ADD_WAITICON
 	_REPORT_DIV_SAVE	FSW_ANSWER
@@ -4426,38 +4426,38 @@ ev_roulette_save:
 
 
 /********************************************************************/
-/*(MINE)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒNƒ^[’Ç‰ÁAƒŠƒ\[ƒX’Ç‰Á(CALL)*/	
+/*(MINE)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ã€ãƒªã‚½ãƒ¼ã‚¹è¿½åŠ (CALL)*/	
 /********************************************************************/
 ev_roulette_poke_itemkeep_icon_add_mine:
-	/*ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒŠƒ\[ƒXƒZƒbƒg*/
+	/*ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆ*/
 	_ROULETTE_TOOL		FR_ID_RESOURCE_SET_POKE_ICON,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_RESOURCE_SET_ITEMKEEP_ICON,0,0,FSW_ANSWER
 
-	/*ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒNƒ^[’Ç‰Á*/
+	/*ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ */
 	_ROULETTE_TOOL		FR_ID_ADD_ITEMKEEP_ICON,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_ADD_POKE_ICON,0,0,FSW_ANSWER
 	_RET
 
 
 /********************************************************************/
-/*(ENEMY)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒNƒ^[’Ç‰Á(CALL)		*/	
+/*(ENEMY)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ (CALL)		*/	
 /********************************************************************/
 ev_roulette_poke_itemkeep_icon_add_enemy:
-	/*ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒNƒ^[’Ç‰Á*/
+	/*ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ */
 	_ROULETTE_TOOL		FR_ID_ADD_ITEMKEEP_ICON,1,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_ADD_POKE_ICON,1,0,FSW_ANSWER
 	_RET
 
 
 /********************************************************************/
-/*(ALL)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒNƒ^[’Ç‰ÁAƒŠƒ\[ƒX’Ç‰Á(CALL)*/	
+/*(ALL)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ ã€ãƒªã‚½ãƒ¼ã‚¹è¿½åŠ (CALL)*/	
 /********************************************************************/
 ev_roulette_poke_itemkeep_icon_add:
-	/*ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒŠƒ\[ƒXƒZƒbƒg*/
+	/*ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆ*/
 	_ROULETTE_TOOL		FR_ID_RESOURCE_SET_POKE_ICON,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_RESOURCE_SET_ITEMKEEP_ICON,0,0,FSW_ANSWER
 
-	/*ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒNƒ^[’Ç‰Á*/
+	/*ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ */
 	_ROULETTE_TOOL		FR_ID_ADD_ITEMKEEP_ICON,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_ADD_ITEMKEEP_ICON,1,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_ADD_POKE_ICON,0,0,FSW_ANSWER
@@ -4466,10 +4466,10 @@ ev_roulette_poke_itemkeep_icon_add:
 
 
 /********************************************************************/
-/*	(ALL)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒNƒ^[íœ(CALL)		*/	
+/*	(ALL)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤(CALL)		*/	
 /********************************************************************/
 ev_roulette_poke_itemkeep_icon_del:
-	/*ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒNƒ^[íœ*/
+	/*ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤*/
 	_ROULETTE_TOOL		FR_ID_DEL_ITEMKEEP_ICON,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_DEL_ITEMKEEP_ICON,1,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_DEL_POKE_ICON,0,0,FSW_ANSWER
@@ -4478,7 +4478,7 @@ ev_roulette_poke_itemkeep_icon_del:
 
 
 /********************************************************************/
-/*	(ALL)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒŠƒ\[ƒXíœ(CALL)		*/	
+/*	(ALL)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ãƒªã‚½ãƒ¼ã‚¹å‰Šé™¤(CALL)		*/	
 /********************************************************************/
 ev_roulette_poke_itemkeep_icon_resource_del:
 	_ROULETTE_TOOL		FR_ID_RESOURCE_FREE_POKE_ICON,0,0,FSW_ANSWER
@@ -4487,82 +4487,82 @@ ev_roulette_poke_itemkeep_icon_resource_del:
 
 
 /********************************************************************/
-/*(MINE)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒNƒ^[íœ(CALL)		*/	
+/*(MINE)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤(CALL)		*/	
 /********************************************************************/
 ev_roulette_poke_itemkeep_icon_del_mine:
-	/*ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒNƒ^[íœ*/
+	/*ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤*/
 	_ROULETTE_TOOL		FR_ID_DEL_ITEMKEEP_ICON,0,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_DEL_POKE_ICON,0,0,FSW_ANSWER
 	_RET
 
 
 /********************************************************************/
-/*(ENEMY)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒNƒ^[íœ(CALL)		*/	
+/*(ENEMY)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤(CALL)		*/	
 /********************************************************************/
 ev_roulette_poke_itemkeep_icon_del_enemy:
-	/*ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“AƒAƒCƒeƒ€Ž‚Á‚Ä‚¢‚éƒAƒNƒ^[íœ*/
+	/*ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã€ã‚¢ã‚¤ãƒ†ãƒ æŒã£ã¦ã„ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤*/
 	_ROULETTE_TOOL		FR_ID_DEL_ITEMKEEP_ICON,1,0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_DEL_POKE_ICON,1,0,FSW_ANSWER
 	_RET
 
 
 /********************************************************************/
-/*						ƒuƒŒ[ƒ“‚Ì—¬‚ê								*/
+/*						ãƒ–ãƒ¬ãƒ¼ãƒ³ã®æµã‚Œ								*/
 /********************************************************************/
 ev_roulette_leader_1st_01:
 ev_roulette_leader_2nd_01:
 
-	/*‹L˜^‚µ‚½ƒ[ƒN‚Éƒf[ƒ^‚ª‘‚«ž‚Ü‚ê‚Ä‚¢‚È‚¢ = ’†’f•œ‹A‚Æ‚µ‚Äl‚¦‚é*/
-	/*“oê‚µ‚Ü‚·‚æƒƒbƒZ[ƒW‚Í•\Ž¦‚µ‚È‚¢*/
+	/*è¨˜éŒ²ã—ãŸãƒ¯ãƒ¼ã‚¯ã«ãƒ‡ãƒ¼ã‚¿ãŒæ›¸ãè¾¼ã¾ã‚Œã¦ã„ãªã„ = ä¸­æ–­å¾©å¸°ã¨ã—ã¦è€ƒãˆã‚‹*/
+	/*ç™»å ´ã—ã¾ã™ã‚ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¯è¡¨ç¤ºã—ãªã„*/
 	_IFVAL_JUMP		FSW_LOCAL3,EQ,1,ev_roulette_room_saikai_00
 
-	/*ˆê“xƒuƒŒ[ƒ““oêƒƒbƒZ[ƒW‚ð•\Ž¦‚µ‚½‚©*/
+	/*ä¸€åº¦ãƒ–ãƒ¬ãƒ¼ãƒ³ç™»å ´ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã—ãŸã‹*/
 	_ROULETTE_TOOL	FR_ID_BRAIN_APPEAR_MSG_CHK,0,0,FSW_ANSWER
 	_IFVAL_JUMP		FSW_ANSWER,EQ,1,ev_roulette_room_saikai_00
 
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_roulette_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*uƒuƒŒ[ƒ“‚Æ‚ÌŸ•‰‚É‚È‚è‚Ü‚·IŠoŒå‚Í‚¢‚¢‚Å‚·‚©Hv*/
+	/*ã€Œãƒ–ãƒ¬ãƒ¼ãƒ³ã¨ã®å‹è² ã«ãªã‚Šã¾ã™ï¼è¦šæ‚Ÿã¯ã„ã„ã§ã™ã‹ï¼Ÿã€*/
 	_TALKMSG			msg_roulette_room_boss_01
 	_JUMP				ev_roulette_room_saikai_02
 	_END
 
 ev_roulette_leader_1st_02:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_roulette_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*“oê*/
+	/*ç™»å ´*/
 	_CALL				ev_roulette_leader_appear
 
-	/*í“¬‘O‚ÌƒƒbƒZ[ƒW(1Žü–Ú)*/
+	/*æˆ¦é—˜å‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(1å‘¨ç›®)*/
 	_TALKMSG			msg_roulette_room_boss_02
 	_TALK_CLOSE
 	_RET
 
 ev_roulette_leader_2nd_02:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_roulette_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*“oê*/
+	/*ç™»å ´*/
 	_CALL				ev_roulette_leader_appear
 
-	/*í“¬‘O‚ÌƒƒbƒZ[ƒW(2Žü–Ú)*/
+	/*æˆ¦é—˜å‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(2å‘¨ç›®)*/
 	_TALKMSG			msg_roulette_room_boss_03
 	_TALK_CLOSE
 	_RET
 
-/*“oê*/
+/*ç™»å ´*/
 ev_roulette_leader_appear:
 
 	_CALL				ev_roulette_actor_set_btl_people
 
-	/*ŠÏ‹q ’†S‚ðŒ©‚é*/
-	_OBJ_ANIME			OBJID_PEOPLE1,people_anime_11			/*¶ã*/
-	_OBJ_ANIME			OBJID_PEOPLE2,people_anime_12			/*¶ã*/
+	/*è¦³å®¢ ä¸­å¿ƒã‚’è¦‹ã‚‹*/
+	_OBJ_ANIME			OBJID_PEOPLE1,people_anime_11			/*å·¦ä¸Š*/
+	_OBJ_ANIME			OBJID_PEOPLE2,people_anime_12			/*å·¦ä¸Š*/
 	_OBJ_ANIME			OBJID_PEOPLE3,people_anime_13
 	_OBJ_ANIME			OBJID_PEOPLE4,people_anime_14
 	_OBJ_ANIME			OBJID_PEOPLE5,people_anime_15
@@ -4581,21 +4581,21 @@ ev_roulette_leader_appear:
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_brain
 	_OBJ_ANIME_WAIT
 
-	/*ƒp[ƒeƒBƒNƒ‹’Ç‰Á(ƒuƒŒ[ƒ“ê—p) 08.03.08*/
+	/*ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«è¿½åŠ (ãƒ–ãƒ¬ãƒ¼ãƒ³å°‚ç”¨) 08.03.08*/
 	_SE_PLAY			SEQ_SE_PL_FR04
 	_PARTICLE_SPA_LOAD	SPAWORK_3, ROULETTE_BRAIN_SPA, FSS_CAMERA_ORTHO
 	_PARTICLE_ADD_EMITTER	SPAWORK_3,ROULETTE_BRAIN_BR_MIRROR_YELLOW
 	_PARTICLE_ADD_EMITTER	SPAWORK_3,ROULETTE_BRAIN_BR_MIRROR_YELLOWBG
 	//_PARTICLE_WAIT
 
-	/*ƒXƒNƒ[ƒ‹*/
+	/*ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«*/
 	_OBJ_ANIME			OBJID_MINE,anm_mine_brain_down
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_center_scroll_brain
 	_OBJ_ANIME_WAIT
 
-	/*Žü‚èW‚Ü‚é*/
-	_OBJ_ANIME			OBJID_PEOPLE1,people_anime_01			/*¶ã*/
-	_OBJ_ANIME			OBJID_PEOPLE2,people_anime_02			/*¶ã*/
+	/*å‘¨ã‚Šé›†ã¾ã‚‹*/
+	_OBJ_ANIME			OBJID_PEOPLE1,people_anime_01			/*å·¦ä¸Š*/
+	_OBJ_ANIME			OBJID_PEOPLE2,people_anime_02			/*å·¦ä¸Š*/
 	_OBJ_ANIME			OBJID_PEOPLE3,people_anime_03
 	_OBJ_ANIME			OBJID_PEOPLE4,people_anime_04
 	_OBJ_ANIME			OBJID_PEOPLE5,people_anime_05
@@ -4605,17 +4605,17 @@ ev_roulette_leader_appear:
 	_OBJ_ANIME			OBJID_PEOPLE11,people_anime_01
 	_OBJ_ANIME			OBJID_PEOPLE12,people_anime_02_2
 	_OBJ_ANIME			OBJID_PEOPLE13,people_anime_03
-	//_OBJ_ANIME			OBJID_PEOPLE14,people_anime_03		/*“®‚©‚³‚È‚¢*/
+	//_OBJ_ANIME			OBJID_PEOPLE14,people_anime_03		/*å‹•ã‹ã•ãªã„*/
 	_OBJ_ANIME			OBJID_PEOPLE15,people_anime_15_5
 	_OBJ_ANIME			OBJID_PEOPLE16,people_anime_16_5
 	_OBJ_ANIME_WAIT
 
-	_SE_PLAY			SEQ_SE_DP_DENDOU						/*Š½º*/
+	_SE_PLAY			SEQ_SE_DP_DENDOU						/*æ­“å£°*/
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_brain_12
 	_OBJ_ANIME_WAIT
 	_SE_WAIT			SEQ_SE_DP_DENDOU
 
-	/*ƒuƒŒ[ƒ“‚ª’†‰›‚Ü‚Å•à‚­*/
+	/*ãƒ–ãƒ¬ãƒ¼ãƒ³ãŒä¸­å¤®ã¾ã§æ­©ã*/
 	_OBJ_ANIME			OBJID_ETC,etc_anime_room_in_brain_2
 	_OBJ_ANIME			OBJID_MINE,anm_mine_brain_down2
 	_OBJ_ANIME			OBJID_PLAYER,anm_player_go_center_scroll_brain2
@@ -4635,10 +4635,10 @@ ev_roulette_leader_appear:
 	_OBJ_ANIME			OBJID_PEOPLE16,people_anime_up_01
 	_OBJ_ANIME_WAIT
 
-	/*ŠÏ‹qíœ*/
+	/*è¦³å®¢å‰Šé™¤*/
 	_CALL				ev_roulette_people_del
 
-	_CALL				ev_roulette_poke_itemkeep_icon_add_enemy	/*(ENEMY)ƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“’Ç‰Á*/
+	_CALL				ev_roulette_poke_itemkeep_icon_add_enemy	/*(ENEMY)ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³è¿½åŠ */
 	_RET
 
 ev_roulette_people_del:
@@ -4665,65 +4665,65 @@ ev_roulette_people_del:
 
 
 /********************************************************************/
-/*						ƒuƒŒ[ƒ“‚ÉŸ—˜Œã‚Ìmsg						*/
+/*						ãƒ–ãƒ¬ãƒ¼ãƒ³ã«å‹åˆ©å¾Œã®msg						*/
 /********************************************************************/
 ev_roulette_leader_1st_03:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_roulette_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*Œ»Ý‚Ì‹L”OƒvƒŠƒ“ƒgó‘Ô‚ðŽæ“¾*/
+	/*ç¾åœ¨ã®è¨˜å¿µãƒ—ãƒªãƒ³ãƒˆçŠ¶æ…‹ã‚’å–å¾—*/
 	_SAVE_EVENT_WORK_GET	SYS_WORK_MEMORY_PRINT_ROULETTE,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,MEMORY_PRINT_NONE,ev_roulette_meory_print_put_1st
 
-	/*í“¬Œã‚ÌƒƒbƒZ[ƒW(1Žü–Ú)*/
+	/*æˆ¦é—˜å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(1å‘¨ç›®)*/
 	_TALKMSG			msg_roulette_room_boss_04
 	_TALK_CLOSE
 	_JUMP				ev_roulette_battle_2_sub
 	_END
 
-/*Žó•t‚Å1st‹L”OƒvƒŠƒ“ƒg‚ð–á‚¦‚é‚æ‚¤‚É‚·‚é*/
+/*å—ä»˜ã§1stè¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’è²°ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 ev_roulette_meory_print_put_1st:
 	_SAVE_EVENT_WORK_SET	SYS_WORK_MEMORY_PRINT_ROULETTE,MEMORY_PRINT_PUT_1ST
 	_RET
 
 ev_roulette_leader_2nd_03:
-	/*˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)*/
+	/*é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)*/
 	_CALL				ev_roulette_rensyou_get
 	_NUMBER_NAME		0,FSW_ANSWER
 
-	/*Œ»Ý‚Ì‹L”OƒvƒŠƒ“ƒgó‘Ô‚ðŽæ“¾*/
+	/*ç¾åœ¨ã®è¨˜å¿µãƒ—ãƒªãƒ³ãƒˆçŠ¶æ…‹ã‚’å–å¾—*/
 	_SAVE_EVENT_WORK_GET	SYS_WORK_MEMORY_PRINT_ROULETTE,FSW_ANSWER
 	_IFVAL_CALL			FSW_ANSWER,EQ,MEMORY_PRINT_PUT_OK_1ST,ev_roulette_meory_print_put_2nd
 
-	/*í“¬Œã‚ÌƒƒbƒZ[ƒW(2Žü–Ú)*/
+	/*æˆ¦é—˜å¾Œã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(2å‘¨ç›®)*/
 	_TALKMSG			msg_roulette_room_boss_05
 	_TALK_CLOSE
 	_JUMP				ev_roulette_battle_2_sub
 	_END
 
-/*Žó•t‚Å2nd‹L”OƒvƒŠƒ“ƒg‚ð–á‚¦‚é‚æ‚¤‚É‚·‚é*/
+/*å—ä»˜ã§2ndè¨˜å¿µãƒ—ãƒªãƒ³ãƒˆã‚’è²°ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹*/
 ev_roulette_meory_print_put_2nd:
 	_SAVE_EVENT_WORK_SET	SYS_WORK_MEMORY_PRINT_ROULETTE,MEMORY_PRINT_PUT_2ND
 	_RET
 
 
 /********************************************************************/
-/*				ƒ|ƒPƒpƒlƒ‹ƒŠƒ\[ƒX{ƒAƒNƒ^[ƒZƒbƒg					*/
+/*				ãƒã‚±ãƒ‘ãƒãƒ«ãƒªã‚½ãƒ¼ã‚¹ï¼‹ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ					*/
 /********************************************************************/
 ev_pokepanel_set:
 	_ARTICLE_RESOURCE_SET	article_pokepanel_resource
 
 	_ARTICLE_ACTOR_SET		article_pokepanel_single_l_actor
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_4,0		//0”Ô‚ÌƒAƒjƒŽÀs
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_5,4		//4”Ô‚ÌƒAƒjƒŽÀs
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_4,0		//0ç•ªã®ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œ
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_5,4		//4ç•ªã®ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œ
 
 	_ARTICLE_ACTOR_SET		article_pokepanel_single_r_actor
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_6,1		//1”Ô‚ÌƒAƒjƒŽÀs
-	_ARTICLE_ACTOR_ANIME_START	ACTWORK_7,5		//5”Ô‚ÌƒAƒjƒŽÀs
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_6,1		//1ç•ªã®ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œ
+	_ARTICLE_ACTOR_ANIME_START	ACTWORK_7,5		//5ç•ªã®ã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œ
 
 #if 0
-	/*”¼“§–¾Ý’è*/
+	/*åŠé€æ˜Žè¨­å®š*/
 	_ARTICLE_ACTOR_OBJ_MODE_SET	ACTWORK_4,1
 	_ARTICLE_ACTOR_OBJ_MODE_SET	ACTWORK_5,1
 	_ARTICLE_ACTOR_OBJ_MODE_SET	ACTWORK_6,1
@@ -4733,22 +4733,22 @@ ev_pokepanel_set:
 	_RET
 
 /********************************************************************/
-/*				ƒ|ƒPƒpƒlƒ‹ƒŠƒ\[ƒX{ƒAƒNƒ^[íœ					*/
+/*				ãƒã‚±ãƒ‘ãƒãƒ«ãƒªã‚½ãƒ¼ã‚¹ï¼‹ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤					*/
 /********************************************************************/
 ev_pokepanel_del:
-	/*ƒ|ƒPƒpƒlƒ‹ƒAƒNƒ^[íœ*/
+	/*ãƒã‚±ãƒ‘ãƒãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤*/
 	_ARTICLE_ACTOR_FREE		ACTWORK_4
 	_ARTICLE_ACTOR_FREE		ACTWORK_5
 	_ARTICLE_ACTOR_FREE		ACTWORK_6
 	_ARTICLE_ACTOR_FREE		ACTWORK_7
 
-	/*ƒŠƒ\[ƒX‰ð•ú(ƒAƒNƒ^[‚Íƒ[ƒN”Ô†AƒŠƒ\[ƒX‚ÍACTID‚Å‰ð•ú‚·‚éŽ–‚É’ˆÓ)*/
+	/*ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾(ã‚¢ã‚¯ã‚¿ãƒ¼ã¯ãƒ¯ãƒ¼ã‚¯ç•ªå·ã€ãƒªã‚½ãƒ¼ã‚¹ã¯ACTIDã§è§£æ”¾ã™ã‚‹äº‹ã«æ³¨æ„)*/
 	_ARTICLE_RESOURCE_FREE	ACTID_ROULETTE_POKEPANEL
 	_RET
 
 
 /********************************************************************/
-/*							Ži‰ï‰E‚ðŒü‚­							*/
+/*							å¸ä¼šå³ã‚’å‘ã							*/
 /********************************************************************/
 ev_roulette_man_right:
 	_OBJ_ANIME			OBJID_MAN,pcwoman2_anime_80
@@ -4762,12 +4762,12 @@ ev_roulette_man_left:
 
 
 /********************************************************************/
-/*					˜AŸ”‚ðŽæ“¾(FSW_ANSWERŽg—p)					*/
+/*					é€£å‹æ•°ã‚’å–å¾—(FSW_ANSWERä½¿ç”¨)					*/
 /********************************************************************/
 ev_roulette_rensyou_get:
 	_ROULETTE_TOOL		FR_ID_GET_RENSYOU,0,0,FSW_ANSWER
 
-	/*‚·‚Å‚É9999‚ÌŽž‚ÍA0 ƒIƒŠƒWƒ“‚Ì•â³‚ð‚©‚¯‚È‚¢*/
+	/*ã™ã§ã«9999ã®æ™‚ã¯ã€0 ã‚ªãƒªã‚¸ãƒ³ã®è£œæ­£ã‚’ã‹ã‘ãªã„*/
 	_IFVAL_JUMP			FSW_ANSWER,GE,ROULETTE_RENSYOU_MAX,ev_roulette_rensyou_ret
 
 	_ADD_WK				FSW_ANSWER,1
@@ -4778,7 +4778,7 @@ ev_roulette_rensyou_ret:
 
 
 /********************************************************************/
-/*						ƒpƒŒƒbƒg‘€ì(ˆÃ‚­‚·‚é)						*/
+/*						ãƒ‘ãƒ¬ãƒƒãƒˆæ“ä½œ(æš—ãã™ã‚‹)						*/
 /********************************************************************/
 ev_roulette_rouka_pal_black:
 	_ROULETTE_TOOL		FR_ID_EFF_PAL_CHG,8,0,FSW_ANSWER
@@ -4789,7 +4789,7 @@ ev_roulette_btl_pal_black:
 	_RET
 
 /********************************************************************/
-/*						ƒpƒŒƒbƒg‘€ì(Œ³‚É–ß‚·)						*/
+/*						ãƒ‘ãƒ¬ãƒƒãƒˆæ“ä½œ(å…ƒã«æˆ»ã™)						*/
 /********************************************************************/
 ev_roulette_btl_pal_white:
 	_ROULETTE_TOOL		FR_ID_EFF_PAL_CHG,0,1,FSW_ANSWER
@@ -4798,11 +4798,11 @@ ev_roulette_btl_pal_white:
 
 
 /********************************************************************/
-/*ƒ‹[ƒŒƒbƒg‰æ–ÊAí“¬‰æ–Ê‚©‚ç•œ‹A‚µ‚½Žž‚ÉOBJƒpƒŒƒbƒg‘€ì(ˆÃ‚­‚·‚é)	*/
+/*ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆç”»é¢ã€æˆ¦é—˜ç”»é¢ã‹ã‚‰å¾©å¸°ã—ãŸæ™‚ã«OBJãƒ‘ãƒ¬ãƒƒãƒˆæ“ä½œ(æš—ãã™ã‚‹)	*/
 //
-//	Ži‰ï
-//	‘ÎíƒgƒŒ[ƒi[(ƒp[ƒgƒi[)
-//	ŽålŒö(ƒp[ƒgƒi[)
+//	å¸ä¼š
+//	å¯¾æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼(ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼)
+//	ä¸»äººå…¬(ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼)
 /********************************************************************/
 ev_roulette_obj_pal_black:
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_MAN,FSW_ANSWER
@@ -4822,47 +4822,47 @@ ev_roulette_obj_pal_black_multi:
 
 
 /********************************************************************/
-/*			ƒŠƒ\[ƒX“o˜^‚ÆƒAƒNƒ^[“o˜^‚ÆƒpƒŒƒbƒg‘€ì				*/
+/*			ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²ã¨ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ã¨ãƒ‘ãƒ¬ãƒƒãƒˆæ“ä½œ				*/
 /********************************************************************/
 ev_roulette_actor_set_way:
-	_CHAR_RESOURCE_SET	default_set_resource			/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			way_set_actor					/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_set_resource			/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			way_set_actor					/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_PCWOMAN2,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_MINE,FSW_ANSWER
 	_RET
 
 ev_roulette_actor_set_way_multi:
-	_CHAR_RESOURCE_SET	default_set_resource_multi		/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			way_set_actor_multi				/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_set_resource_multi		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			way_set_actor_multi				/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_PCWOMAN2,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_SIO_USER_0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_SIO_USER_1,FSW_ANSWER
 	_RET
 
 ev_roulette_actor_set_btl:
-	_CHAR_RESOURCE_SET	default_scene2_resource			/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_scene2_actor			/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_scene2_resource			/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_scene2_actor			/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_MINE,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_MAN,FSW_ANSWER
 	_RET
 
 ev_roulette_actor_set_btl_multi:
-	_CHAR_RESOURCE_SET	default_scene2_resource_multi	/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			default_scene2_actor_multi		/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	default_scene2_resource_multi	/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			default_scene2_actor_multi		/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_MAN,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_SIO_USER_0,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_SIO_USER_1,FSW_ANSWER
 	_RET
 
 ev_roulette_actor_set_btl_pcwoman:
-	_CHAR_RESOURCE_SET	pcwoman2_scene2_resource		/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			pcwoman2_scene2_actor			/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	pcwoman2_scene2_resource		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			pcwoman2_scene2_actor			/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_PCWOMAN2,FSW_ANSWER
 	_RET
 
 ev_roulette_actor_set_btl_people:
-	_CHAR_RESOURCE_SET	people_scene_resource			/*ŠÏ‹q*/
-	_ACTOR_SET			default_scene3_actor			/*ŠÏ‹qƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	people_scene_resource			/*è¦³å®¢*/
+	_ACTOR_SET			default_scene3_actor			/*è¦³å®¢ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_PEOPLE1,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_PEOPLE2,FSW_ANSWER
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_PEOPLE3,FSW_ANSWER
@@ -4893,8 +4893,8 @@ ev_roulette_actor_set_btl_tr_multi:
 	_RET
 
 ev_roulette_actor_set_btl_kaihuku:
-	_CHAR_RESOURCE_SET	kaihuku_set_resource			/*ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^*/
-	_ACTOR_SET			kaihuku_set_actor				/*ƒAƒNƒ^[“o˜^*/
+	_CHAR_RESOURCE_SET	kaihuku_set_resource			/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²*/
+	_ACTOR_SET			kaihuku_set_actor				/*ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²*/
 	_ROULETTE_TOOL		FR_ID_OBJ_PAL_CHG,8,OBJID_KAIHUKU,FSW_ANSWER
 	_RET
 

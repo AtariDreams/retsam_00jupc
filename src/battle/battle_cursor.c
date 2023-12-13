@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	battle_cursor.c
- * @brief	í“¬‰º‰æ–Ê—pƒJ[ƒ\ƒ‹
+ * @brief	æˆ¦é—˜ä¸‹ç”»é¢ç”¨ã‚«ãƒ¼ã‚½ãƒ«
  * @author	matsuda
- * @date	2006.03.27(Œ)
+ * @date	2006.03.27(æœˆ)
  */
 //==============================================================================
 #include "common.h"
@@ -19,51 +19,51 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///í“¬ƒJ[ƒ\ƒ‹‚ÌƒAƒNƒ^[ƒ|ƒCƒ“ƒ^”z—ñ”Ô†
+///æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒã‚¤ãƒ³ã‚¿é…åˆ—ç•ªå·
 enum{
-	BCURSOR_ACT_LU,		///<¶ãƒJ[ƒ\ƒ‹
-	BCURSOR_ACT_RU,		///<‰EãƒJ[ƒ\ƒ‹
-	BCURSOR_ACT_LD,		///<¶‰ºƒJ[ƒ\ƒ‹
-	BCURSOR_ACT_RD,		///<‰E‰ºƒJ[ƒ\ƒ‹
+	BCURSOR_ACT_LU,		///<å·¦ä¸Šã‚«ãƒ¼ã‚½ãƒ«
+	BCURSOR_ACT_RU,		///<å³ä¸Šã‚«ãƒ¼ã‚½ãƒ«
+	BCURSOR_ACT_LD,		///<å·¦ä¸‹ã‚«ãƒ¼ã‚½ãƒ«
+	BCURSOR_ACT_RD,		///<å³ä¸‹ã‚«ãƒ¼ã‚½ãƒ«
 	
-	BCURSOR_ACT_EX,		///<“Á•ÊƒJ[ƒ\ƒ‹
+	BCURSOR_ACT_EX,		///<ç‰¹åˆ¥ã‚«ãƒ¼ã‚½ãƒ«
 	
-	BCURSOR_ACT_NUM,	///<í“¬ƒJ[ƒ\ƒ‹‚ÌƒAƒNƒ^[g—p”
+	BCURSOR_ACT_NUM,	///<æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ä½¿ç”¨æ•°
 };
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///í“¬ƒJ[ƒ\ƒ‹ƒ[ƒN
+///æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯
 typedef struct _BCURSOR_WORK{
 	CATS_ACT_PTR cap[BCURSOR_ACT_NUM];
 	TCB_PTR update_tcb;
 }BCURSOR_WORK;
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///AA—pƒQ[ƒWƒAƒNƒ^[ƒwƒbƒ_
+///AAç”¨ã‚²ãƒ¼ã‚¸ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S BCursorObjParam = {
 	0, 0, 0,		//x, y, z
-	0, 0, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DSUB,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		0,	//ƒLƒƒƒ‰
-		0,	//ƒpƒŒƒbƒg
-		0,	//ƒZƒ‹
-		0,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, 0, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DSUB,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		0,	//ã‚­ãƒ£ãƒ©
+		0,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		0,	//ã‚»ãƒ«
+		0,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	0,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	0,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void BCURSOR_ObjectUpdate(TCB_PTR tcb, void *work);
 void BCURSOR_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, PALETTE_FADE_PTR pfd, int heap_id,
@@ -80,15 +80,15 @@ void BCURSOR_OFF(BCURSOR_PTR cursor);
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬ƒJ[ƒ\ƒ‹‚ÌƒŠƒ\[ƒX‚ğƒ[ƒh‚·‚é
+ * @brief   æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
  *
  * @param   csp			
  * @param   crp			
  * @param   pfd			
- * @param   char_id		ƒLƒƒƒ‰ID
- * @param   pal_id		ƒpƒŒƒbƒgID
- * @param   cell_id		ƒZƒ‹ID
- * @param   anm_id		ƒAƒjƒID
+ * @param   char_id		ã‚­ãƒ£ãƒ©ID
+ * @param   pal_id		ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param   cell_id		ã‚»ãƒ«ID
+ * @param   anm_id		ã‚¢ãƒ‹ãƒ¡ID
  */
 //--------------------------------------------------------------
 void BCURSOR_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, PALETTE_FADE_PTR pfd, int heap_id, 
@@ -113,13 +113,13 @@ void BCURSOR_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, PALETTE_FADE_PTR p
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬ƒJ[ƒ\ƒ‹‚ÌƒŠƒ\[ƒX‚ğ‰ğ•ú‚·‚é
+ * @brief   æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
  *
  * @param   crp			
- * @param   char_id		ƒLƒƒƒ‰ID
- * @param   pal_id		ƒpƒŒƒbƒgID
- * @param   cell_id		ƒZƒ‹ID
- * @param   anm_id		ƒAƒjƒID
+ * @param   char_id		ã‚­ãƒ£ãƒ©ID
+ * @param   pal_id		ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param   cell_id		ã‚»ãƒ«ID
+ * @param   anm_id		ã‚¢ãƒ‹ãƒ¡ID
  */
 //--------------------------------------------------------------
 void BCURSOR_ResourceFree(CATS_RES_PTR crp, u32 char_id, u32 pal_id, u32 cell_id, u32 anm_id)
@@ -132,22 +132,22 @@ void BCURSOR_ResourceFree(CATS_RES_PTR crp, u32 char_id, u32 pal_id, u32 cell_id
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬ƒJ[ƒ\ƒ‹‚ÌƒAƒNƒ^[‚ğ¶¬‚µ‚Ü‚·
+ * @brief   æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã—ã¾ã™
  *
  * @param   csp		
  * @param   crp		
- * @param   heap_id		ƒq[ƒvID
- * @param   char_id		ƒLƒƒƒ‰ID
- * @param   pal_id		ƒpƒŒƒbƒgID
- * @param   cell_id		ƒZƒ‹ID
- * @param   anm_id		ƒAƒjƒID
- * @param   soft_pri	ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
- * @param   bg_pri		BGƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param   heap_id		ãƒ’ãƒ¼ãƒ—ID
+ * @param   char_id		ã‚­ãƒ£ãƒ©ID
+ * @param   pal_id		ãƒ‘ãƒ¬ãƒƒãƒˆID
+ * @param   cell_id		ã‚»ãƒ«ID
+ * @param   anm_id		ã‚¢ãƒ‹ãƒ¡ID
+ * @param   soft_pri	ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+ * @param   bg_pri		BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  *
- * @retval  ¶¬‚³‚ê‚½í“¬ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @retval  ç”Ÿæˆã•ã‚ŒãŸæˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * í“¬ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ì¶¬‚ÆUpdate—pTCB‚Ì¶¬‚à“¯‚És‚¢‚Ü‚·
- * ¶¬‚Í•\¦OFF‚É‚È‚Á‚Ä‚¢‚Ü‚·B
+ * æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã®ç”Ÿæˆã¨Updateç”¨TCBã®ç”Ÿæˆã‚‚åŒæ™‚ã«è¡Œã„ã¾ã™
+ * ç”Ÿæˆæ™‚ã¯è¡¨ç¤ºOFFã«ãªã£ã¦ã„ã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 BCURSOR_PTR BCURSOR_ActorCreate(CATS_SYS_PTR csp, CATS_RES_PTR crp, int heap_id,
@@ -179,11 +179,11 @@ BCURSOR_PTR BCURSOR_ActorCreate(CATS_SYS_PTR csp, CATS_RES_PTR crp, int heap_id,
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬ƒJ[ƒ\ƒ‹ƒAƒNƒ^[‚ğíœ‚µ‚Ü‚·
+ * @brief   æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã—ã¾ã™
  *
- * @param   cursor		í“¬ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   cursor		æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * í“¬ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ì‰ğ•ú‚ÆAUpdate—pTCB‚Ìíœ‚às‚¢‚Ü‚·
+ * æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã®è§£æ”¾ã¨ã€Updateç”¨TCBã®å‰Šé™¤ã‚‚è¡Œã„ã¾ã™
  */
 //--------------------------------------------------------------
 void BCURSOR_ActorDelete(BCURSOR_PTR cursor)
@@ -200,13 +200,13 @@ void BCURSOR_ActorDelete(BCURSOR_PTR cursor)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬ƒJ[ƒ\ƒ‹‚ÌÀ•WƒZƒbƒg‚Æ•\¦‚ÌON‚ğs‚¢‚Ü‚·(‘S‚ÄŒÂ•Ê‚Éw’è)
+ * @brief   æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®åº§æ¨™ã‚»ãƒƒãƒˆã¨è¡¨ç¤ºã®ONã‚’è¡Œã„ã¾ã™(å…¨ã¦å€‹åˆ¥ã«æŒ‡å®š)
  *
- * @param   cursor		í“¬ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   left		¶À•W
- * @param   right		‰EÀ•W
- * @param   top			ãÀ•W
- * @param   bottom		‰ºÀ•W
+ * @param   cursor		æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   left		å·¦åº§æ¨™
+ * @param   right		å³åº§æ¨™
+ * @param   top			ä¸Šåº§æ¨™
+ * @param   bottom		ä¸‹åº§æ¨™
  */
 //--------------------------------------------------------------
 void BCURSOR_IndividualPosSetON_Surface(BCURSOR_PTR cursor, int lu_x, int lu_y, int ru_x, int ru_y,
@@ -231,13 +231,13 @@ void BCURSOR_IndividualPosSetON_Surface(BCURSOR_PTR cursor, int lu_x, int lu_y, 
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬ƒJ[ƒ\ƒ‹‚ÌÀ•WƒZƒbƒg‚Æ•\¦‚ÌON‚ğs‚¢‚Ü‚·(‘S‚ÄŒÂ•Ê‚Éw’è)
+ * @brief   æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®åº§æ¨™ã‚»ãƒƒãƒˆã¨è¡¨ç¤ºã®ONã‚’è¡Œã„ã¾ã™(å…¨ã¦å€‹åˆ¥ã«æŒ‡å®š)
  *
- * @param   cursor		í“¬ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   left		¶À•W
- * @param   right		‰EÀ•W
- * @param   top			ãÀ•W
- * @param   bottom		‰ºÀ•W
+ * @param   cursor		æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   left		å·¦åº§æ¨™
+ * @param   right		å³åº§æ¨™
+ * @param   top			ä¸Šåº§æ¨™
+ * @param   bottom		ä¸‹åº§æ¨™
  */
 //--------------------------------------------------------------
 void BCURSOR_IndividualPosSetON(BCURSOR_PTR cursor, int lu_x, int lu_y, int ru_x, int ru_y,
@@ -249,13 +249,13 @@ void BCURSOR_IndividualPosSetON(BCURSOR_PTR cursor, int lu_x, int lu_y, int ru_x
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬ƒJ[ƒ\ƒ‹‚ÌÀ•WƒZƒbƒg‚Æ•\¦‚ÌON‚ğs‚¢‚Ü‚·(‹éŒ`‚Åw’è)
+ * @brief   æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®åº§æ¨™ã‚»ãƒƒãƒˆã¨è¡¨ç¤ºã®ONã‚’è¡Œã„ã¾ã™(çŸ©å½¢ã§æŒ‡å®š)
  *
- * @param   cursor		í“¬ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   left		¶À•W
- * @param   right		‰EÀ•W
- * @param   top			ãÀ•W
- * @param   bottom		‰ºÀ•W
+ * @param   cursor		æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   left		å·¦åº§æ¨™
+ * @param   right		å³åº§æ¨™
+ * @param   top			ä¸Šåº§æ¨™
+ * @param   bottom		ä¸‹åº§æ¨™
  */
 //--------------------------------------------------------------
 void BCURSOR_PosSetON(BCURSOR_PTR cursor, int left, int right, int top, int bottom)
@@ -265,13 +265,13 @@ void BCURSOR_PosSetON(BCURSOR_PTR cursor, int left, int right, int top, int bott
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬ƒJ[ƒ\ƒ‹‚ÌÀ•WƒZƒbƒg‚Æ•\¦‚ÌON‚ğs‚¢‚Ü‚·(‹éŒ`‚Åw’è)
+ * @brief   æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®åº§æ¨™ã‚»ãƒƒãƒˆã¨è¡¨ç¤ºã®ONã‚’è¡Œã„ã¾ã™(çŸ©å½¢ã§æŒ‡å®š)
  *
- * @param   cursor		í“¬ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   left		¶À•W
- * @param   right		‰EÀ•W
- * @param   top			ãÀ•W
- * @param   bottom		‰ºÀ•W
+ * @param   cursor		æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   left		å·¦åº§æ¨™
+ * @param   right		å³åº§æ¨™
+ * @param   top			ä¸Šåº§æ¨™
+ * @param   bottom		ä¸‹åº§æ¨™
  */
 //--------------------------------------------------------------
 void BCURSOR_PosSetON_Surface(BCURSOR_PTR cursor, int left, int right, int top, int bottom,
@@ -283,12 +283,12 @@ void BCURSOR_PosSetON_Surface(BCURSOR_PTR cursor, int left, int right, int top, 
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬ƒJ[ƒ\ƒ‹‚Ì“Á•ÊƒJ[ƒ\ƒ‹‚ÌÀ•WƒZƒbƒg‚Æ•\¦‚ÌON‚ğs‚¢‚Ü‚·
+ * @brief   æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®ç‰¹åˆ¥ã‚«ãƒ¼ã‚½ãƒ«ã®åº§æ¨™ã‚»ãƒƒãƒˆã¨è¡¨ç¤ºã®ONã‚’è¡Œã„ã¾ã™
  *
- * @param   cursor			í“¬ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   x				À•WX
- * @param   y				À•WY
- * @param   anm_type		ƒAƒjƒƒ^ƒCƒv(BCURSOR_ANMTYPE_???)
+ * @param   cursor			æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   x				åº§æ¨™X
+ * @param   y				åº§æ¨™Y
+ * @param   anm_type		ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—(BCURSOR_ANMTYPE_???)
  */
 //--------------------------------------------------------------
 void BCURSOR_ExPosSetON_Surface(BCURSOR_PTR cursor, int x, int y, BCURSOR_ANMTYPE anm_type,
@@ -301,12 +301,12 @@ void BCURSOR_ExPosSetON_Surface(BCURSOR_PTR cursor, int x, int y, BCURSOR_ANMTYP
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬ƒJ[ƒ\ƒ‹‚Ì“Á•ÊƒJ[ƒ\ƒ‹‚ÌÀ•WƒZƒbƒg‚Æ•\¦‚ÌON‚ğs‚¢‚Ü‚·
+ * @brief   æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®ç‰¹åˆ¥ã‚«ãƒ¼ã‚½ãƒ«ã®åº§æ¨™ã‚»ãƒƒãƒˆã¨è¡¨ç¤ºã®ONã‚’è¡Œã„ã¾ã™
  *
- * @param   cursor			í“¬ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   x				À•WX
- * @param   y				À•WY
- * @param   anm_type		ƒAƒjƒƒ^ƒCƒv(BCURSOR_ANMTYPE_???)
+ * @param   cursor			æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   x				åº§æ¨™X
+ * @param   y				åº§æ¨™Y
+ * @param   anm_type		ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—(BCURSOR_ANMTYPE_???)
  */
 //--------------------------------------------------------------
 void BCURSOR_ExPosSetON(BCURSOR_PTR cursor, int x, int y, BCURSOR_ANMTYPE anm_type)
@@ -316,8 +316,8 @@ void BCURSOR_ExPosSetON(BCURSOR_PTR cursor, int x, int y, BCURSOR_ANMTYPE anm_ty
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬ƒJ[ƒ\ƒ‹‚ğ‘S‚Ä•\¦OFF‚·‚é
- * @param   cursor		í“¬ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã‚’å…¨ã¦è¡¨ç¤ºOFFã™ã‚‹
+ * @param   cursor		æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BCURSOR_OFF(BCURSOR_PTR cursor)
@@ -331,8 +331,8 @@ void BCURSOR_OFF(BCURSOR_PTR cursor)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬ƒJ[ƒ\ƒ‹‚Ì“Á•ÊƒJ[ƒ\ƒ‹‚Ì‚İ•\¦OFF‚·‚é
- * @param   cursor		í“¬ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã®ç‰¹åˆ¥ã‚«ãƒ¼ã‚½ãƒ«ã®ã¿è¡¨ç¤ºOFFã™ã‚‹
+ * @param   cursor		æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void BCURSOR_ExOFF(BCURSOR_PTR cursor)
@@ -342,9 +342,9 @@ void BCURSOR_ExOFF(BCURSOR_PTR cursor)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒJ[ƒ\ƒ‹ƒAƒjƒUpdateˆ—
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒJ[ƒ\ƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚«ãƒ¼ã‚½ãƒ«ã‚¢ãƒ‹ãƒ¡Updateå‡¦ç†
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ã‚«ãƒ¼ã‚½ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void BCURSOR_ObjectUpdate(TCB_PTR tcb, void *work)

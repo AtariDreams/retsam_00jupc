@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	plist_demo_snd_def.h
- * @brief	フォルムチェンジデモSE定義ファイル
+ * @brief	繝輔か繝ｫ繝繝√ぉ繝ｳ繧ｸ繝�繝｢SE螳夂ｾｩ繝輔ぃ繧､繝ｫ
  * @author	matsuda
- * @date	2008.01.08(火)
+ * @date	2008.01.08(轣ｫ)
  */
 //==============================================================================
 #ifndef __PLIST_DEMO_SND_DEF_H__
@@ -12,12 +12,12 @@
 #include "system/snd_tool.h"
 
 
-///ギラティナフォルムチェンジSE
+///繧ｮ繝ｩ繝�繧｣繝翫ヵ繧ｩ繝ｫ繝繝√ぉ繝ｳ繧ｸSE
 //#define SE_FORM_CHANGE_GIRATHINA	(SEQ_SE_PL_W467_2)
 //#define SE_FORM_CHANGE_GIRATHINA2	(SEQ_SE_PL_W109)
 #define SE_FORM_CHANGE_GIRATHINA	(SEQ_SE_PL_W467109)
 
-///シェイミフォルムチェンジSE
+///繧ｷ繧ｧ繧､繝溘ヵ繧ｩ繝ｫ繝繝√ぉ繝ｳ繧ｸSE
 #define SE_FORM_CHANGE_SHEIMI		(SEQ_SE_PL_W363)
 
 

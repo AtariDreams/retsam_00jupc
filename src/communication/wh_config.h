@@ -15,7 +15,7 @@
   do-indent.
 
   Revision 1.1  2004/12/20 07:17:48  takano_makoto
-  �A�v���P�[�V�������̖����ʐM�p�����[�^��wh_config.h�Ƃ��ĕ���
+  アプリケーション毎の無線通信パラメータをwh_config.hとして分離
 
  */
 
@@ -25,26 +25,26 @@
 #include "communication/comm_def.h"
 
 
-// �����Ŏg�p����DMA�ԍ�
+// 無線で使用するDMA番号
 #define WH_DMA_NO                 COMM_DMA_NO
 
-// �ʏ�� MP �ʐM�Ŏg�p����|�[�g
+// 通常の MP 通信で使用するポート
 #define WH_DATA_PORT              (4)  //14
 
-// �ʏ�� MP �ʐM�Ŏg�p����D��x
+// 通常の MP 通信で使用する優先度
 #define WH_DATA_PRIO              WM_PRIORITY_NORMAL
 
-// �f�[�^�V�F�A�����O�Ŏg�p����|�[�g
+// データシェアリングで使用するポート
 #define WH_DS_PORT                13
 
-// MP�ʐM�݂̂̏ꍇ�̃f�[�^�T�C�Y
+// MP通信のみの場合のデータサイズ
 #define WH_MP_PARENT_DATA_SIZE           (192)
 #define WH_MP_CHILD_DATA_SIZE           (12)
 
-// �q�@���M�ʂ𑝂₷���ڂ̎q�@�{�e�@��
+// 子機送信量を増やす境目の子機＋親機数
 #define COMM_WIDE_BYTE_SEND_CHILDNUM   (5) //
 
-#define WH_MP_4CHILD_DATA_SIZE         (38)  // �ܐl  //  (192/COMM_WIDE_BYTE_SEND_CHILDNUM) 
+#define WH_MP_4CHILD_DATA_SIZE         (38)  // 五人  //  (192/COMM_WIDE_BYTE_SEND_CHILDNUM) 
 
 
 #endif // __WH_CONFIGH_H__

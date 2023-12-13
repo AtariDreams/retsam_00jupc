@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_trap.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ ã©
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJ ç½ 
  * @author	k.ohno
  * @data	05.11.29
  *
@@ -17,21 +17,21 @@
 //==============================================================================
 //	define
 //==============================================================================
-//#define DEBUG_TRAP_WRITE_OFF	//’è‹`‚Åã©•`‰æOFF
+//#define DEBUG_TRAP_WRITE_OFF	//å®šç¾©ã§ç½ æç”»OFF
 
 //#define TRAP_DRAW_Z_OFFSET (FX32_ONE*(3))
-#define TRAP_DRAW_Z_OFFSET (FX32_ONE*(5))			///<ã©•`‰æƒIƒtƒZƒbƒgZ²
+#define TRAP_DRAW_Z_OFFSET (FX32_ONE*(5))			///<ç½ æç”»ã‚ªãƒ•ã‚»ãƒƒãƒˆZè»¸
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_TRAPŒ^
+///	FE_TRAPå‹
 //--------------------------------------------------------------
 typedef struct _TAG_FE_TRAP * FE_TRAP_PTR;
 
 //--------------------------------------------------------------
-///	FE_TRAP\‘¢‘Ì
+///	FE_TRAPæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_TRAP
 {
@@ -40,10 +40,10 @@ typedef struct _TAG_FE_TRAP
 	FRO_OBJ robj;
 }FE_TRAP;
 
-#define FE_TRAP_SIZE (sizeof(FE_TRAP)) ///<FE_TRAPƒTƒCƒY
+#define FE_TRAP_SIZE (sizeof(FE_TRAP)) ///<FE_TRAPã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	TRAP_ADD_H\‘¢‘Ì
+///	TRAP_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -54,24 +54,24 @@ typedef struct
 	FE_TRAP_PTR trap;						///<FE_TRAP_PTR
 }TRAP_ADD_H;
 
-#define TRAP_ADD_H_SIZE (sizeof(TRAP_ADD_H)) ///<TRAP_ADD_HƒTƒCƒY
+#define TRAP_ADD_H_SIZE (sizeof(TRAP_ADD_H)) ///<TRAP_ADD_Hã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	TRAP_WORK\‘¢‘Ì
+///	TRAP_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-    int counter;    // ¶‘¶ŠÔ
-	int obj_id;									///<ã©‘ÎÛOBJID
-	int zone_id;								///<ã©‘ÎÛƒ][ƒ“ID
-	int vanish_sw;								///<”ñ•\¦SW
-	TRAP_ADD_H head;							///<’Ç‰Á‚ÌTRAP_ADD_H
+    int counter;    // ç”Ÿå­˜æ™‚é–“
+	int obj_id;									///<ç½ å¯¾è±¡OBJID
+	int zone_id;								///<ç½ å¯¾è±¡ã‚¾ãƒ¼ãƒ³ID
+	int vanish_sw;								///<éè¡¨ç¤ºSW
+	TRAP_ADD_H head;							///<è¿½åŠ æ™‚ã®TRAP_ADD_H
 }TRAP_WORK;
 
-#define TRAP_WORK_SIZE (sizeof(TRAP_WORK))	///<TRAP_WORKƒTƒCƒY
+#define TRAP_WORK_SIZE (sizeof(TRAP_WORK))	///<TRAP_WORKã‚µã‚¤ã‚º
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void Trap_GraphicInit( FE_TRAP_PTR sd );
 static void Trap_GraphicDelete( FE_TRAP_PTR sd );
@@ -79,11 +79,11 @@ static void Trap_GraphicDelete( FE_TRAP_PTR sd );
 static const EOA_H_NPP DATA_EoaH_Trap;
 
 //==============================================================================
-//	ã©@ƒVƒXƒeƒ€
+//	ç½ ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ã©‰Šú‰»
+ * ç½ åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
  * @retval	void*	FE_TRAP_PTR
  */
@@ -102,7 +102,7 @@ void * FE_Trap_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * ã©íœ
+ * ç½ å‰Šé™¤
  * @param	sd		FE_TRAP_PTR
  * @retval	nothing
  */
@@ -115,15 +115,15 @@ void FE_Trap_Delete( void *work )
 }
 
 //==============================================================================
-//	ã©	ƒp[ƒc
+//	ç½ 	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 
 //==============================================================================
-//	ã©@ƒOƒ‰ƒtƒBƒbƒN
+//	ç½ ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ã© ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * ç½  ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	sd	FE_TRAP_PTR
  * @retval	nothing
  */
@@ -137,7 +137,7 @@ static void Trap_GraphicInit( FE_TRAP_PTR sd )
 
 //--------------------------------------------------------------
 /**
- * ã© ƒOƒ‰ƒtƒBƒbƒNíœ
+ * ç½  ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šé™¤
  * @param	sd	FE_TRAP_PTR
  * @retval	nothing
  */
@@ -148,11 +148,11 @@ static void Trap_GraphicDelete( FE_TRAP_PTR sd )
 }
 
 //==============================================================================
-//	ã©@EOA
+//	ç½ ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒgƒ‰ƒbƒv’Ç‰Á
+ * ãƒˆãƒ©ãƒƒãƒ—è¿½åŠ 
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	EOA_PTR
  */
@@ -184,10 +184,10 @@ EOA_PTR FE_Trap_Add(  FIELDSYS_WORK *fsys, int x, int z, int liveTime )
 
 //--------------------------------------------------------------
 /**
- * EOA ã©@‰Šú‰»
+ * EOA ç½ ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaTrap_Init( EOA_PTR eoa, void *wk )
@@ -213,7 +213,7 @@ static int EoaTrap_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ã©@íœ
+ * EOA ç½ ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -225,7 +225,7 @@ static void EoaTrap_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ã©@“®ì
+ * EOA ç½ ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -246,7 +246,7 @@ static void EoaTrap_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA ã©@•`‰æ
+ * EOA ç½ ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -269,7 +269,7 @@ static void EoaTrap_Draw( EOA_PTR eoa, void *wk )
 }
 
 //--------------------------------------------------------------
-///	ã©EOA_H
+///	ç½ EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_Trap =
 {

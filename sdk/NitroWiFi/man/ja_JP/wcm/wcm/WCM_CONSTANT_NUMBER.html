@@ -13,8 +13,8 @@
 
   $Log: WCM_CONSTANT_NUMBER.html,v $
   Revision 1.2  2005/07/22 13:00:24  terui
-  "�t�F�[�Y"��"���"�ɗp�ꓝ��
-  �����̏��œ��𓝈�
+  "フェーズ"を"状態"に用語統一
+  履歴の初版日を統一
 
   Revision 1.1  2005/07/20 13:11:10  terui
   Initial upload
@@ -23,16 +23,16 @@
  ==========================================================================-->
 <HTML>
 	<HEAD>
-		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<META http-equiv="Content-Style-Type" content="text/css">
-		<TITLE>WCM ���C�u�����萔</TITLE>
+		<TITLE>WCM ライブラリ定数</TITLE>
 		<LINK rel="stylesheet" href="../../css/nitro.css">
 		<BASE target="main">
 	</HEAD>
 	<BODY>
-		<H1>WCM ���C�u�����萔</H1>
+		<H1>WCM ライブラリ定数</H1>
 
-		<H2>��`</H2>
+		<H2>定義</H2>
 		<DL>
 			<DD>
 				<PRE><CODE>
@@ -84,204 +84,204 @@
 			</DD>
 		</DL>
 
-		<H2><A name="result">�������ʒ萔</A></H2>
+		<H2><A name="result">処理結果定数</A></H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>WCM_RESULT_SUCCESS</CODE></STRONG></EM></TD>
-					<TD width="75%">�����I�ȏ������ʁA�񓯊��I�ȏ������ʂ̗����ɕԂ��ꂤ�錋�ʂł���A�����ɐ����������Ƃ������܂��B</TD>
+					<TD width="75%">同期的な処理結果、非同期的な処理結果の両方に返されうる結果であり、処理に成功したことを示します。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_RESULT_FAILURE</CODE></STRONG></EM></TD>
-					<TD>�����I�ȏ������ʁA�񓯊��I�ȏ������ʂ̗����ɕԂ��ꂤ�錋�ʂł���A�Ȃ�炩�̗��R�ŏ����Ɏ��s�������Ƃ������܂��B<BR>
-					�֐��Ăяo�����̈������s���ł������ꍇ��A�s���ȓ�����Ԃł̔񓯊��֐��Ăяo���A������Ԃ�ύX����񓯊����������s���Ă����g���C�ł��Ȃ��ꍇ�Ȃǂ�
-					���̌��ʂ������܂��B</TD>
+					<TD>同期的な処理結果、非同期的な処理結果の両方に返されうる結果であり、なんらかの理由で処理に失敗したことを示します。<BR>
+					関数呼び出し時の引数が不正であった場合や、不正な内部状態での非同期関数呼び出し、内部状態を変更する非同期処理が失敗してかつリトライできない場合などに
+					この結果が得られます。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_RESULT_PROGRESS</CODE></STRONG></EM></TD>
-					<TD>�����I�ȏ������ʂɂ̂ݕԂ��ꂤ�錋�ʂł���A�v�����������Ƃ܂����������v�����󂯕t���Ď��s���ł��邱�Ƃ������܂��B</TD>
+					<TD>同期的な処理結果にのみ返されうる結果であり、要求した処理とまったく同じ要求を受け付けて実行中であることを示します。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_RESULT_ACCEPT</CODE></STRONG></EM></TD>
-					<TD>�����I�ȏ������ʂɂ̂ݕԂ��ꂤ�錋�ʂł���A�񓯊��I�ȏ����̊J�n�v��������Ɏ󂯕t����ꂽ���Ƃ������܂��B<BR>
-					�񓯊������I������A�Ή�����񓯊������ʒm���K����񔭐����܂��B</TD>
+					<TD>同期的な処理結果にのみ返されうる結果であり、非同期的な処理の開始要求が正常に受け付けられたことを示します。<BR>
+					非同期処理終了次第、対応する非同期処理通知が必ず一回発生します。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_RESULT_REJECT</CODE></STRONG></EM></TD>
-					<TD>�����I�ȏ������ʂɂ̂ݕԂ��ꂤ�錋�ʂł���A�񓯊��I�ȏ����̊J�n�v�����󂯕t�����ۂ��ꂽ���Ƃ������܂��B<BR>
-					ARM7 �ւ� PXI �����v���ւ̔��s�Ɏ��s�������Ƃ������ł��̂ŁA�����҂��Ă��烊�g���C�����݂邱�Ƃ��ł��܂��B</TD>
+					<TD>同期的な処理結果にのみ返されうる結果であり、非同期的な処理の開始要求が受け付け拒否されたことを示します。<BR>
+					ARM7 への PXI 処理要求への発行に失敗したことが原因ですので、少し待ってからリトライを試みることができます。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_RESULT_WMDISABLE</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_StartupAsync.html"><CODE>WCM_StartupAsync</CODE> �֐�</A>�̓����I�ȏ������ʂƂ��Ă̂ݕԂ��ꂤ�錋�ʂł���AARM7 ���Ŗ����h���C�o�����삵�Ă��Ȃ����Ƃ������܂��B<BR>
-					ARM7 �R���|�[�l���g�� ichneumon �ł���ꍇ�́AWVR ���C�u�����ɂ���Ė����h���C�o��������~����Ă���\��������܂��B</TD>
+					<TD><A href="WCM_StartupAsync.html"><CODE>WCM_StartupAsync</CODE> 関数</A>の同期的な処理結果としてのみ返されうる結果であり、ARM7 側で無線ドライバが動作していないことを示します。<BR>
+					ARM7 コンポーネントが ichneumon である場合は、WVR ライブラリによって無線ドライバが強制停止されている可能性があります。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_RESULT_NOT_ENOUGH_MEM</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_Init.html"><CODE>WCM_Init</CODE> �֐�</A>�ɂ̂ݕԂ��ꂤ�錋�ʂł���A���[�N�o�b�t�@�T�C�Y���s�\���ł��������Ƃ������܂��B</TD>
+					<TD><A href="WCM_Init.html"><CODE>WCM_Init</CODE> 関数</A>にのみ返されうる結果であり、ワークバッファサイズが不十分であったことを示します。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_RESULT_FATAL_ERROR</CODE></STRONG></EM></TD>
-					<TD>�����I�ȏ������ʁA�񓯊��I�ȏ������ʂ̗����ɕԂ��ꂤ�錋�ʂł���A���C�u���������ŕ����s�\�ȃG���[�������������Ƃ������܂��B<BR>
-					���̃G���[�̓��C�u���������őz�肳��Ȃ����ۂ������������Ƃ��������̂ł���A�Ⴆ�Γ������[�N���������j�󂳂ꂽ�ꍇ��A
-					�O������ WM ���C�u������ WVR ���C�u�����𒼐ڎg�p���邱�Ƃɂ�� WCM ���C�u�����̓�����ԊǗ����j�]�����ꍇ�Ȃǂɔ������܂��B<BR>
-					�{���������Ă͂����Ȃ��G���[�ł����A���ꔭ�����Ă��܂����ꍇ�ɂ͕����s�\�ł��̂ŁA�G���h���[�U�[�ɓd���f�𑣂���ʕ\�������邩
-					�d���������Ă���Ԃ͖����ʐM���s�����Ƃ���߂�K�v������܂��B</TD>
+					<TD>同期的な処理結果、非同期的な処理結果の両方に返されうる結果であり、ライブラリ内部で復旧不可能なエラーが発生したことを示します。<BR>
+					このエラーはライブラリ内部で想定されない現象が発生したことを示すものであり、例えば内部ワークメモリが破壊された場合や、
+					外部から WM ライブラリや WVR ライブラリを直接使用することにより WCM ライブラリの内部状態管理が破綻した場合などに発生します。<BR>
+					本来発生してはいけないエラーですが、万一発生してしまった場合には復旧不可能ですので、エンドユーザーに電源断を促す画面表示をするか
+					電源が入っている間は無線通信を行うことを諦める必要があります。</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2><A name="phase">������Ԓ萔</A></H2>
+		<H2><A name="phase">内部状態定数</A></H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>WCM_PHASE_NULL</CODE></STRONG></EM></TD>
-					<TD width="75%"><A href="WCM_Init.html"><CODE>WCM_Init</CODE> �֐�</A>�ɂ���� WCM ���C�u�����������������O�A
-					�������� <A href="WCM_Finish.html"><CODE>WCM_Finish</CODE> �֐�</A>�ɂ���� WCM ���C�u�������I�����ꂽ��̏�Ԃł��B</TD>
+					<TD width="75%"><A href="WCM_Init.html"><CODE>WCM_Init</CODE> 関数</A>によって WCM ライブラリが初期化される前、
+					もしくは <A href="WCM_Finish.html"><CODE>WCM_Finish</CODE> 関数</A>によって WCM ライブラリが終了された後の状態です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_PHASE_WAIT</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_Init.html"><CODE>WCM_Init</CODE> �֐�</A>�ɂ���ď��������ꂽ����A�������� <A href="WCM_CleanupAsync.html"><CODE>WCM_CleanupAsync</CODE> �֐�</A>��
-					<A href="WCM_TerminateAsync.html"><CODE>WCM_TerminateAsync</CODE> �֐�</A>�ɂ���Ė����@�\����~���ꂽ��̏�Ԃł��B</TD>
+					<TD><A href="WCM_Init.html"><CODE>WCM_Init</CODE> 関数</A>によって初期化された直後、もしくは <A href="WCM_CleanupAsync.html"><CODE>WCM_CleanupAsync</CODE> 関数</A>や
+					<A href="WCM_TerminateAsync.html"><CODE>WCM_TerminateAsync</CODE> 関数</A>によって無線機能が停止された後の状態です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_PHASE_WAIT_TO_IDLE</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_StartupAsync.html"><CODE>WCM_StartupAsync</CODE> �֐�</A>�ɂ���Ė����@�\�̋N�����ł����Ԃł��B</TD>
+					<TD><A href="WCM_StartupAsync.html"><CODE>WCM_StartupAsync</CODE> 関数</A>によって無線機能の起動中である状態です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_PHASE_IDLE</CODE></STRONG></EM></TD>
-					<TD>�����@�\���N������Ă���A�����A�N�Z�X�|�C���g��T�������薳���A�N�Z�X�|�C���g�ɐڑ������肷�鏈���҂��̏�Ԃł��B</TD>
+					<TD>無線機能が起動されており、無線アクセスポイントを探索したり無線アクセスポイントに接続したりする処理待ちの状態です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_PHASE_IDLE_TO_WAIT</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_CleanupAsync.html"><CODE>WCM_CleanupAsync</CODE> �֐�</A>�ɂ���Ė����@�\�̒�~���ł����Ԃł��B</TD>
+					<TD><A href="WCM_CleanupAsync.html"><CODE>WCM_CleanupAsync</CODE> 関数</A>によって無線機能の停止中である状態です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_PHASE_IDLE_TO_SEARCH</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_BeginSearchAsync.html"><CODE>WCM_BeginSearchAsync</CODE> �֐�</A>�ɂ���Ė����A�N�Z�X�|�C���g�̎����T�����J�n���ł����Ԃł��B</TD>
+					<TD><A href="WCM_BeginSearchAsync.html"><CODE>WCM_BeginSearchAsync</CODE> 関数</A>によって無線アクセスポイントの自動探索を開始中である状態です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_PHASE_SEARCH</CODE></STRONG></EM></TD>
-					<TD>�����A�N�Z�X�|�C���g�̎����T�������s���ł����Ԃł��B</TD>
+					<TD>無線アクセスポイントの自動探索を実行中である状態です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_PHASE_SEARCH_TO_IDLE</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_EndSearchAsync.html"><CODE>WCM_EndSearchAsync</CODE> �֐�</A>�ɂ���Ė����A�N�Z�X�|�C���g�̎����T�����~���ł����Ԃł��B</TD>
+					<TD><A href="WCM_EndSearchAsync.html"><CODE>WCM_EndSearchAsync</CODE> 関数</A>によって無線アクセスポイントの自動探索を停止中である状態です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_PHASE_IDLE_TO_DCF</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_ConnectAsync.html"><CODE>WCM_ConnectAsync</CODE> �֐�</A>�ɂ���Ė����A�N�Z�X�|�C���g�ւ̐ڑ��������ł����Ԃł��B</TD>
+					<TD><A href="WCM_ConnectAsync.html"><CODE>WCM_ConnectAsync</CODE> 関数</A>によって無線アクセスポイントへの接続処理中である状態です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_PHASE_DCF</CODE></STRONG></EM></TD>
-					<TD>�����A�N�Z�X�|�C���g�֐ڑ����ꂽ��Ԃł���ADCF �ʐM�\�ȏ�Ԃł��B</TD>
+					<TD>無線アクセスポイントへ接続された状態であり、DCF 通信可能な状態です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_PHASE_DCF_TO_IDLE</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_DisconnectAsync.html"><CODE>WCM_DisconnectAsync</CODE> �֐�</A>�ɂ���Ė����A�N�Z�X�|�C���g�Ƃ̐ڑ���ؒf���ł����Ԃł��B</TD>
+					<TD><A href="WCM_DisconnectAsync.html"><CODE>WCM_DisconnectAsync</CODE> 関数</A>によって無線アクセスポイントとの接続を切断中である状態です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_PHASE_FATAL_ERROR</CODE></STRONG></EM></TD>
-					<TD>WCM ���C�u���������őz��O�̌��ۂ������������Ƃ�������Ԃł��B��U���̏�ԂɂȂ�ƈȌ��Ԃ͕ύX����܂���B</TD>
+					<TD>WCM ライブラリ内部で想定外の現象が発生したことを示す状態です。一旦この状態になると以後状態は変更されません。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_PHASE_IRREGULAR</CODE></STRONG></EM></TD>
-					<TD>WCM ���C�u���������ōs����񓯊������̓r���łȂ�炩�̃G���[���������A�񓯊��������p�����邱�Ƃ��ł��Ȃ��Ȃ�����Ԃł��B<BR>
-					���̏�Ԃ���� <A href="WCM_TerminateAsync.html"><CODE>WCM_TerminateAsync</CODE> �֐�</A>�ɂ���Ă̂ݕ��������݂邱�Ƃ��ł��܂��B</TD>
+					<TD>WCM ライブラリ内部で行われる非同期処理の途中でなんらかのエラーが発生し、非同期処理を継続することができなくなった状態です。<BR>
+					この状態からは <A href="WCM_TerminateAsync.html"><CODE>WCM_TerminateAsync</CODE> 関数</A>によってのみ復旧を試みることができます。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_PHASE_TERMINATING</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_TerminateAsync.html"><CODE>WCM_TerminateAsync</CODE> �֐�</A>�ɂ���� WCM ���C�u�����̋�����~���ł����Ԃł��B</TD>
+					<TD><A href="WCM_TerminateAsync.html"><CODE>WCM_TerminateAsync</CODE> 関数</A>によって WCM ライブラリの強制停止中である状態です。</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2><A name="notify">�ʒm��ʒ萔</A></H2>
+		<H2><A name="notify">通知種別定数</A></H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>WCM_NOTIFY_COMMON</CODE></STRONG></EM></TD>
-					<TD width="75%">�f�t�H���g�̒ʒm��ʂł��B�f�o�b�O�p�r�ɗp�ӂ���Ă���A���̎�ʂŒʒm���s��ꂽ�ꍇ�̓������j�󓙂̑z��O�̌��ۂ��������Ă��܂��B</TD>
+					<TD width="75%">デフォルトの通知種別です。デバッグ用途に用意されており、この種別で通知が行われた場合はメモリ破壊等の想定外の現象が発生しています。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_NOTIFY_STARTUP</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_StartupAsync.html"><CODE>WCM_StartupAsync</CODE> �֐�</A>�ɂ��J�n�����񓯊������̌��ʒʒm���̒ʒm��ʂł��B</TD>
+					<TD><A href="WCM_StartupAsync.html"><CODE>WCM_StartupAsync</CODE> 関数</A>により開始した非同期処理の結果通知時の通知種別です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_NOTIFY_CLEANUP</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_CleanupAsync.html"><CODE>WCM_CleanupAsync</CODE> �֐�</A>�ɂ��J�n�����񓯊������̌��ʒʒm���̒ʒm��ʂł��B</TD>
+					<TD><A href="WCM_CleanupAsync.html"><CODE>WCM_CleanupAsync</CODE> 関数</A>により開始した非同期処理の結果通知時の通知種別です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_NOTIFY_BEGIN_SEARCH</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_BeginSearchAsync.html"><CODE>WCM_BeginSearchAsync</CODE> �֐�</A>�ɂ��J�n�����񓯊������̌��ʒʒm���̒ʒm��ʂł��B</TD>
+					<TD><A href="WCM_BeginSearchAsync.html"><CODE>WCM_BeginSearchAsync</CODE> 関数</A>により開始した非同期処理の結果通知時の通知種別です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_NOTIFY_END_SEARCH</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_EndSearchAsync.html"><CODE>WCM_EndSearchAsync</CODE> �֐�</A>�ɂ��J�n�����񓯊������̌��ʒʒm���̒ʒm��ʂł��B</TD>
+					<TD><A href="WCM_EndSearchAsync.html"><CODE>WCM_EndSearchAsync</CODE> 関数</A>により開始した非同期処理の結果通知時の通知種別です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_NOTIFY_CONNECT</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_ConnectAsync.html"><CODE>WCM_ConnectAsync</CODE> �֐�</A>�ɂ��J�n�����񓯊������̌��ʒʒm���̒ʒm��ʂł��B</TD>
+					<TD><A href="WCM_ConnectAsync.html"><CODE>WCM_ConnectAsync</CODE> 関数</A>により開始した非同期処理の結果通知時の通知種別です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_NOTIFY_DISCONNECT</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_DisconnectAsync.html"><CODE>WCM_DisconnectAsync</CODE> �֐�</A>�ɂ��J�n�����񓯊������̌��ʒʒm���̒ʒm��ʂł���A
-					�����A�N�Z�X�|�C���g�ɐڑ����ꂽ��Ԃł̓r���o�ߒʒm ( ��ؒf�ʒm ) ���̒ʒm��ʂł�����܂��B</TD>
+					<TD><A href="WCM_DisconnectAsync.html"><CODE>WCM_DisconnectAsync</CODE> 関数</A>により開始した非同期処理の結果通知時の通知種別であり、
+					無線アクセスポイントに接続された状態での途中経過通知 ( 被切断通知 ) 時の通知種別でもあります。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_NOTIFY_FOUND_AP</CODE></STRONG></EM></TD>
-					<TD>�����A�N�Z�X�|�C���g�̎����T���ɂ�����r���o�ߒʒm���̒ʒm��ʂł��B</TD>
+					<TD>無線アクセスポイントの自動探索における途中経過通知時の通知種別です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_NOTIFY_SEARCH_AROUND</CODE></STRONG></EM></TD>
-					<TD>�����A�N�Z�X�|�C���g�̎����T���ɂ����鏄��T�����ꏄ�������Ƃ������ʒm���̒ʒm��ʂł��B</TD>
+					<TD>無線アクセスポイントの自動探索における巡回探索が一巡したことを示す通知時の通知種別です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_NOTIFY_TERMINAME</CODE></STRONG></EM></TD>
-					<TD><A href="WCM_TerminateAsync.html"><CODE>WCM_TerminateAsync</CODE> �֐�</A>�ɂ��J�n�����񓯊������̌��ʒʒm���̒ʒm��ʂł��B</TD>
+					<TD><A href="WCM_TerminateAsync.html"><CODE>WCM_TerminateAsync</CODE> 関数</A>により開始した非同期処理の結果通知時の通知種別です。</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2><A name="wep">WEP �Í�����ʒ萔</A></H2>
+		<H2><A name="wep">WEP 暗号化種別定数</A></H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>WCM_WEPMODE_NONE</CODE></STRONG></EM></TD>
-					<TD width="75%">WEP �Í������s��Ȃ��ꍇ�̈Í�����ʂł��B</TD>
+					<TD width="75%">WEP 暗号化を行わない場合の暗号化種別です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_WEPMODE_40</CODE></STRONG></EM></TD>
-					<TD>40 �r�b�g ( 5 �o�C�g ) WEP �Í������s���ꍇ�̈Í�����ʂł��B</TD>
+					<TD>40 ビット ( 5 バイト ) WEP 暗号化を行う場合の暗号化種別です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_WEPMODE_104</CODE></STRONG></EM></TD>
-					<TD>104 �r�b�g ( 13 �o�C�g ) WEP �Í������s���ꍇ�̈Í�����ʂł��B</TD>
+					<TD>104 ビット ( 13 バイト ) WEP 暗号化を行う場合の暗号化種別です。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_WEPMODE_128</CODE></STRONG></EM></TD>
-					<TD>128 �r�b�g ( 16 �o�C�g ) WEP �Í������s���ꍇ�̈Í�����ʂł��B</TD>
+					<TD>128 ビット ( 16 バイト ) WEP 暗号化を行う場合の暗号化種別です。</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2><A name="any">�T�����̔C�Ӄt�B���^�[�萔</A></H2>
+		<H2><A name="any">探索時の任意フィルター定数</A></H2>
 		<TABLE border="1">
 			<TBODY>
 				<TR>
 					<TD width="25%"><EM><STRONG><CODE>WCM_BSSID_ANY</CODE></STRONG></EM></TD>
-					<TD width="75%">�C�ӂ� BSS-ID �ł��邱�Ƃ������萔�ł��B���̂͑S�� <CODE>0xff</CODE> �ł��� 6 �o�C�g�̃f�[�^��ւ̃|�C���^�ł��B</TD>
+					<TD width="75%">任意の BSS-ID であることを示す定数です。実体は全て <CODE>0xff</CODE> である 6 バイトのデータ列へのポインタです。</TD>
 				</TR>
 				<TR>
 					<TD><EM><STRONG><CODE>WCM_ESSID_ANY</CODE></STRONG></EM></TD>
-					<TD>�C�ӂ� ESS-ID �ł��邱�Ƃ������萔�ł��B���̂͑S�� <CODE>0xff</CODE> �ł��� 32 �o�C�g�̃f�[�^��ւ̃|�C���^�ł��B</TD>
+					<TD>任意の ESS-ID であることを示す定数です。実体は全て <CODE>0xff</CODE> である 32 バイトのデータ列へのポインタです。</TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 
-		<H2>����</H2>
+		<H2>履歴</H2>
 		<P>
-			2005/07/22 ����<BR>
+			2005/07/22 初版<BR>
 		</P>
 
 		<TABLE border="0" height="100%"><TR><TD style="background-color : white;"></TD></TR></TABLE>

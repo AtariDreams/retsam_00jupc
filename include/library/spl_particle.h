@@ -2,12 +2,12 @@
   Project:  simple particle library
   File:     spl_particle.h
 
-  ƒp[ƒeƒBƒNƒ‹’PˆÊ‚Ìˆ—ŠÖŒW
+  ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«å˜ä½ã®å‡¦ç†é–¢ä¿‚
 
   $Id: spl_particle.h,v 1.3 2005/11/09 09:53:26 matsuda Exp $
   $Log: spl_particle.h,v $
   Revision 1.3  2005/11/09 09:53:26  matsuda
-  SPLƒ‰ƒCƒuƒ‰ƒŠ‚ªXV‚³‚ê‚½‚Ì‚ÅXV
+  SPLãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒæ›´æ–°ã•ã‚ŒãŸã®ã§æ›´æ–°
 
   Revision 1.12  2005/09/01 00:57:23  okane_shinji
   (none)
@@ -19,37 +19,37 @@
   ver.1.20
 
   Revision 1.10.2.1  2005/02/07 01:18:22  okane_shinji
-  ŒvZƒTƒCƒNƒ‹w’è‚ª‰Â”\‚Èƒo[ƒWƒ‡ƒ“
+  è¨ˆç®—ã‚µã‚¤ã‚¯ãƒ«æŒ‡å®šãŒå¯èƒ½ãªãƒãƒ¼ã‚¸ãƒ§ãƒ³
 
   Revision 1.10  2004/11/26 06:07:31  okane_shinji
-  ‹@”\’Ç‰Á
+  æ©Ÿèƒ½è¿½åŠ 
 
   Revision 1.9  2004/09/01 01:32:22  okane_shinji
-  SPL_GetParticleAge@SPL_GetParticleLife’Ç‰Á
+  SPL_GetParticleAgeã€€SPL_GetParticleLifeè¿½åŠ 
 
   Revision 1.8  2004/08/04 05:55:42  okane_shinji
-  \‘¢‘Ì‚ÌƒpƒfƒBƒ“ƒO‚ğ®‚¦‚Ü‚µ‚½B
+  æ§‹é€ ä½“ã®ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°ã‚’æ•´ãˆã¾ã—ãŸã€‚
 
   Revision 1.7  2004/07/15 02:47:37  okane_shinji
-  ƒGƒ~ƒbƒ^‚Ì•ûŒü‚ğ•ÏX‚Å‚«‚é‚æ‚¤‚É•ÏX
+  ã‚¨ãƒŸãƒƒã‚¿ã®æ–¹å‘ã‚’å¤‰æ›´ã§ãã‚‹ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.6  2004/07/13 05:12:23  okane_shinji
-  ƒp[ƒeƒBƒNƒ‹‚ÌŠî–{ƒXƒP[ƒ‹‚ğfx32‚Å‚Â‚æ‚¤‚É•ÏX
+  ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®åŸºæœ¬ã‚¹ã‚±ãƒ¼ãƒ«ã‚’fx32ã§æŒã¤ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.5  2004/06/23 07:21:21  okane_shinji
-  ƒJƒ‰[ƒAƒjƒAƒ‹[ƒvÄ¶Aƒ|ƒŠƒSƒ“AƒfƒBƒŒƒNƒVƒ‡ƒiƒ‹ƒrƒ‹ƒ{[ƒh‚Ì‰ü—Ç
+  ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ã€ãƒ«ãƒ¼ãƒ—å†ç”Ÿã€ãƒãƒªã‚´ãƒ³ã€ãƒ‡ã‚£ãƒ¬ã‚¯ã‚·ãƒ§ãƒŠãƒ«ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ã®æ”¹è‰¯
 
   Revision 1.4  2004/06/15 05:18:19  konoh
-  ¡ƒ‰ƒCƒtƒŒ[ƒg‚ÌŒvZ•û–@‚ğŠ„‚èZ‚©‚ç‘•ªæZ‚Ö•ÏX
+  â– ãƒ©ã‚¤ãƒ•ãƒ¬ãƒ¼ãƒˆã®è¨ˆç®—æ–¹æ³•ã‚’å‰²ã‚Šç®—ã‹ã‚‰å¢—åˆ†ä¹—ç®—ã¸å¤‰æ›´
 
   Revision 1.3  2004/06/15 01:40:14  okane_shinji
-  ƒp[ƒeƒBƒNƒ‹EƒGƒ~ƒbƒ^‚Ìó‘Ôæ“¾ŠÖ”‚ğ’Ç‰Á
+  ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ»ã‚¨ãƒŸãƒƒã‚¿ã®çŠ¶æ…‹å–å¾—é–¢æ•°ã‚’è¿½åŠ 
 
   Revision 1.2  2004/05/11 04:38:18  konoh
   (none)
 
   Revision 1.1.2.1  2004/04/14 05:09:27  konoh
-  ¡ƒeƒNƒXƒ`ƒƒ‚ğƒp[ƒeƒBƒNƒ‹–ˆ‚Éw’è‚·‚é‚æ‚¤‚É
+  â– ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æ¯ã«æŒ‡å®šã™ã‚‹ã‚ˆã†ã«
 
   Revision 1.1  2004/04/08 00:23:26  konoh
   (none)
@@ -59,11 +59,11 @@
 #ifndef __SPL_PARTICLE_H__
 #define __SPL_PARTICLE_H__
 
-/* \‘¢‘Ì ------------------------------------------------------------------ */
+/* æ§‹é€ ä½“ ------------------------------------------------------------------ */
 
-// ƒp[ƒeƒBƒNƒ‹\‘¢‘Ì
-// •À‚Ñ‚ª‚¢‚Á‚¯‚ñ‚®‚¿‚á‚®‚¿‚á‚Å‚ ‚é‚ªAƒLƒƒƒbƒVƒ…‚ğl—¶‚µ‚Ä
-// söŒë“I‚É‚±‚Ì”z’u‚É‚µ‚½‚çˆê”Ô‘¬‚©‚Á‚½i‚Ù‚ñ‚Ü‚©‚¢‚ÈBBj
+// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æ§‹é€ ä½“
+// ä¸¦ã³ãŒã„ã£ã‘ã‚“ãã¡ã‚ƒãã¡ã‚ƒã§ã‚ã‚‹ãŒã€ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’è€ƒæ…®ã—ã¦
+// è©¦è¡ŒéŒ¯èª¤çš„ã«ã“ã®é…ç½®ã«ã—ãŸã‚‰ä¸€ç•ªé€Ÿã‹ã£ãŸï¼ˆã»ã‚“ã¾ã‹ã„ãªã€‚ã€‚ï¼‰
 typedef struct SPLParticle
 {
     struct SPLParticle* p_next; // for SPLNode
@@ -97,13 +97,13 @@ typedef struct SPLParticle
     fx32 base_scl ;
     fx16 anm_scl;
 
-    GXRgb clr; // ƒx[ƒX‚ÆƒAƒjƒ‚É•ª‚¯‚é•K—v‚ª‚ ‚é‚©H (:KHTODO:)
+    GXRgb clr; // ãƒ™ãƒ¼ã‚¹ã¨ã‚¢ãƒ‹ãƒ¡ã«åˆ†ã‘ã‚‹å¿…è¦ãŒã‚ã‚‹ã‹ï¼Ÿ (:KHTODO:)
 
     VecFx32 emtr_pos;
 
 } SPLParticle;
 
-// ƒp[ƒeƒBƒNƒ‹ƒŠƒXƒg
+// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒªã‚¹ãƒˆ
 typedef struct SPLParticleList
 {
     SPLParticle* p_begin; // for SPLList
@@ -111,21 +111,21 @@ typedef struct SPLParticleList
     SPLParticle* p_end;   // for SPLList
 } SPLParticleList;
 
-// ŠÖ”---------------------------------------------------------------------
+// é–¢æ•°---------------------------------------------------------------------
 
-// Ÿ‚Ìƒp[ƒeƒBƒNƒ‹‚ğ•Ô‚·
+// æ¬¡ã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’è¿”ã™
 static inline SPLParticle* SPL_GetNextParticle( const SPLParticle* ptcl )
 {
     return ptcl->p_next ;
 }
 
-// ‘O‚Ìƒp[ƒeƒBƒNƒ‹‚ğ•Ô‚·
+// å‰ã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚’è¿”ã™
 static inline SPLParticle* SPL_GetPrevParticle( const SPLParticle* ptcl )
 {
     return ptcl->p_prev ;
 }
 
-// ƒp[ƒeƒBƒNƒ‹‚ÌˆÊ’u‚ğ•Ô‚·iƒGƒ~ƒbƒ^‚ÌˆÊ’u‚ğŠÜ‚ß‚½â‘ÎˆÊ’ujB
+// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ä½ç½®ã‚’è¿”ã™ï¼ˆã‚¨ãƒŸãƒƒã‚¿ã®ä½ç½®ã‚’å«ã‚ãŸçµ¶å¯¾ä½ç½®ï¼‰ã€‚
 static inline void SPL_GetParticlePos( const SPLParticle* ptcl, VecFx32 *pos )
 {
     pos->x = ptcl->ptcl_pos.x + ptcl->emtr_pos.x ;
@@ -133,19 +133,19 @@ static inline void SPL_GetParticlePos( const SPLParticle* ptcl, VecFx32 *pos )
     pos->z = ptcl->ptcl_pos.z + ptcl->emtr_pos.z ;
 }
 
-// ƒp[ƒeƒBƒNƒ‹‚Ìõ–½‚ğI—¹‚³‚¹‚éB
+// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®å¯¿å‘½ã‚’çµ‚äº†ã•ã›ã‚‹ã€‚
 static inline void SPL_TerminateParticleLife( SPLParticle* ptcl )
 {
     ptcl->age = ptcl->life ;
 }
 
-// ƒp[ƒeƒBƒNƒ‹‚Ì”N—î‚ğæ“¾
+// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®å¹´é½¢ã‚’å–å¾—
 static inline u16 SPL_GetParticleAge( const SPLParticle* ptcl )
 {
     return ptcl->age ;
 }
 
-// ƒp[ƒeƒBƒNƒ‹‚Ìõ–½‚ğæ“¾
+// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®å¯¿å‘½ã‚’å–å¾—
 static inline u16 SPL_GetParticleLife( const SPLParticle* ptcl )
 {
     return ptcl->life ;

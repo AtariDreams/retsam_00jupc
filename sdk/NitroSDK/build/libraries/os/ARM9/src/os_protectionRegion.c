@@ -30,7 +30,7 @@
   fix small bug
 
   Revision 1.5  2004/03/24 00:36:19  yada
-  SDK_BB ”pŽ~‚É‚Â‚«C³
+  SDK_BB å»ƒæ­¢ã«ã¤ãä¿®æ­£
 
   Revision 1.4  2004/02/09 11:17:22  yasu
   include code32.h
@@ -39,10 +39,10 @@
   change SDK prefix iris -> nitro
 
   Revision 1.2  2004/01/18 02:25:37  yada
-  ƒCƒ“ƒfƒ“ƒg“™‚Ì®Œ`
+  ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆç­‰ã®æ•´å½¢
 
   Revision 1.1  2004/01/16 07:57:15  yada
-  protectionUnit ‹Lq
+  protectionUnit è¨˜è¿°
 
 
   $NoKeywords: $

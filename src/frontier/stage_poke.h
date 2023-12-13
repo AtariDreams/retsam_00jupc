@@ -1,27 +1,27 @@
-//include/battle/battle_common.h‚æ‚è”²ˆ
+//include/battle/battle_common.hã‚ˆã‚ŠæŠœç²‹
 
-//’ˆÓIuƒm[ƒ}ƒ‹v			ƒnƒCƒtƒ“
-//’ˆÓIuƒS|ƒXƒgvuƒGƒXƒp|vƒ}ƒCƒiƒX
+//æ³¨æ„ï¼ã€Œãƒãƒ¼ãƒãƒ«ã€			ãƒã‚¤ãƒ•ãƒ³
+//æ³¨æ„ï¼ã€Œã‚´âˆ’ã‚¹ãƒˆã€ã€Œã‚¨ã‚¹ãƒ‘âˆ’ã€ãƒã‚¤ãƒŠã‚¹
 
-//ƒ|ƒPƒ‚ƒ“‚â‹Z‚Ìƒ^ƒCƒv’è‹`
-#define	NORMAL_TYPE			(0)		ƒm[ƒ}ƒ‹
-#define	BATTLE_TYPE			(1)		Ši“¬
-#define	HIKOU_TYPE			(2)		”òs
-#define	POISON_TYPE			(3)		“Å
-#define	JIMEN_TYPE			(4)		’n–Ê
-#define	IWA_TYPE			(5)		Šâ
-#define	MUSHI_TYPE			(6)		’
-#define	GHOST_TYPE			(7)		ƒS|ƒXƒg
-#define	METAL_TYPE			(8)		|
-#define	HATE_TYPE			(9)		H
-#define	FIRE_TYPE			(10)	‰Š
-#define	WATER_TYPE			(11)	…
-#define	KUSA_TYPE			(12)	‘
-#define	ELECTRIC_TYPE		(13)	“d‹C
-#define	SP_TYPE				(14)	ƒGƒXƒp|
-#define	KOORI_TYPE			(15)	•X
-#define	DRAGON_TYPE			(16)	ƒhƒ‰ƒSƒ“
-#define	AKU_TYPE			(17)	ˆ«
+//ãƒã‚±ãƒ¢ãƒ³ã‚„æŠ€ã®ã‚¿ã‚¤ãƒ—å®šç¾©
+#define	NORMAL_TYPE			(0)		ãƒãƒ¼ãƒãƒ«
+#define	BATTLE_TYPE			(1)		æ ¼é—˜
+#define	HIKOU_TYPE			(2)		é£›è¡Œ
+#define	POISON_TYPE			(3)		æ¯’
+#define	JIMEN_TYPE			(4)		åœ°é¢
+#define	IWA_TYPE			(5)		å²©
+#define	MUSHI_TYPE			(6)		è™«
+#define	GHOST_TYPE			(7)		ã‚´âˆ’ã‚¹ãƒˆ
+#define	METAL_TYPE			(8)		é‹¼
+#define	HATE_TYPE			(9)		ï¼Ÿ
+#define	FIRE_TYPE			(10)	ç‚
+#define	WATER_TYPE			(11)	æ°´
+#define	KUSA_TYPE			(12)	è‰
+#define	ELECTRIC_TYPE		(13)	é›»æ°—
+#define	SP_TYPE				(14)	ã‚¨ã‚¹ãƒ‘âˆ’
+#define	KOORI_TYPE			(15)	æ°·
+#define	DRAGON_TYPE			(16)	ãƒ‰ãƒ©ã‚´ãƒ³
+#define	AKU_TYPE			(17)	æ‚ª
 
 #define	POKE_WAZA_TYPE_MAX	(17)
 

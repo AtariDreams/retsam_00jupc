@@ -25,8 +25,8 @@
 /*---------------------------------------------------------------------------*
     NNSi_G3dAnmObjInitNsBca
 
-    NNSG3dAnmObj‚ğ.nsbcaƒŠƒ\[ƒX—p‚ÉƒCƒjƒVƒƒƒ‰ƒCƒY‚µ‚Ü‚·B
-    NNS_G3dInitAnmObj‚©‚çŒÄ‚Ño‚³‚ê‚Ü‚·B
+    NNSG3dAnmObjã‚’.nsbcaãƒªã‚½ãƒ¼ã‚¹ç”¨ã«ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚ºã—ã¾ã™ã€‚
+    NNS_G3dInitAnmObjã‹ã‚‰å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
  *---------------------------------------------------------------------------*/
 void
 NNSi_G3dAnmObjInitNsBca(NNSG3dAnmObj* pAnmObj,
@@ -49,20 +49,20 @@ NNSi_G3dAnmObjInitNsBca(NNSG3dAnmObj* pAnmObj,
     pAnmObj->numMapData = pResMdl->info.numNode;
 
     
-    // ‚Ü‚¸‚ÍmapData‚ğƒ[ƒƒNƒŠƒA
+    // ã¾ãšã¯mapDataã‚’ã‚¼ãƒ­ã‚¯ãƒªã‚¢
     MI_CpuClear16(&pAnmObj->mapData[0], sizeof(u16) * pAnmObj->numMapData);
 
     //
-    // NNSG3dJntAnmSRTTag“à‚Éƒ‚ƒfƒ‹‚Ìƒm[ƒhID‚ªŠi”[‚³‚ê‚Ä‚¢‚éB
+    // NNSG3dJntAnmSRTTagå†…ã«ãƒ¢ãƒ‡ãƒ«ã®ãƒãƒ¼ãƒ‰IDãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹ã€‚
     //
     ofsArray = (u16*)((u8*)jntAnm + sizeof(NNSG3dResJntAnm));
 
-    // ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚ÅŠm•Û‚³‚ê‚½mapData”z—ñ‚ÌƒTƒCƒY‚ğ’´‚¦‚È‚¢‚©ƒ`ƒFƒbƒN
+    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§ç¢ºä¿ã•ã‚ŒãŸmapDataé…åˆ—ã®ã‚µã‚¤ã‚ºã‚’è¶…ãˆãªã„ã‹ãƒã‚§ãƒƒã‚¯
     NNS_G3D_ASSERT(jntAnm->numNode <= pAnmObj->numMapData);
     
     for (i = 0; i < jntAnm->numNode; ++i)
     {
-        // .nsbca‚Ìê‡‚ÍAŒ»İƒŠƒ\[ƒX‚ÌƒCƒ“ƒfƒbƒNƒX‚Æƒ‚ƒfƒ‹‚Ìƒm[ƒhID‚ªˆê’v‚·‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚é.
+        // .nsbcaã®å ´åˆã¯ã€ç¾åœ¨ãƒªã‚½ãƒ¼ã‚¹ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ãƒ¢ãƒ‡ãƒ«ã®ãƒãƒ¼ãƒ‰IDãŒä¸€è‡´ã™ã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã‚‹.
         NNSG3dResJntAnmSRTTag* pTag =
             (NNSG3dResJntAnmSRTTag*)((u8*)jntAnm + ofsArray[i]);
         pAnmObj->mapData[i] = (u16)((pTag->tag >> NNS_G3D_JNTANM_SRTINFO_NODE_SHIFT) |
@@ -124,9 +124,9 @@ getRotDataByIdx_(MtxFx33* pRot,
 /*---------------------------------------------------------------------------*
     NNSi_G3dAnmCalcNsBca
 
-    pResult: ƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŒ‹‰Ê‚ğŠi”[‚µ‚Ü‚·B
+    pResult: ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®çµæœã‚’æ ¼ç´ã—ã¾ã™ã€‚
     pAnmObj:
-    dataIdx: ƒŠƒ\[ƒX“àƒf[ƒ^‚ÌŠi”[êŠ‚ğ¦‚·ƒCƒ“ƒfƒbƒNƒX‚Å‚·
+    dataIdx: ãƒªã‚½ãƒ¼ã‚¹å†…ãƒ‡ãƒ¼ã‚¿ã®æ ¼ç´å ´æ‰€ã‚’ç¤ºã™ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§ã™
  *---------------------------------------------------------------------------*/
 void NNSi_G3dAnmCalcNsBca(NNSG3dJntAnmResult* pResult,
                           const NNSG3dAnmObj* pAnmObj,
@@ -136,38 +136,38 @@ void NNSi_G3dAnmCalcNsBca(NNSG3dJntAnmResult* pResult,
     NNS_G3D_NULL_ASSERT(pAnmObj);
 
     //
-    // ƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÀ‘••û–@
+    // ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å®Ÿè£…æ–¹æ³•
     // 
-    // ‚±‚ÌŠÖ”©‘Ì‚Å‚ÍA
+    // ã“ã®é–¢æ•°è‡ªä½“ã§ã¯ã€
     // pResult->flag,
     // pResult->trans,
     // pResult->rot,
-    // ‚ğİ’è‚·‚é‚±‚Æ‚É‚È‚è‚Ü‚·B
-    // pResult->flag‚ÉŠÖ‚µ‚Ä‚Í
+    // ã‚’è¨­å®šã™ã‚‹ã“ã¨ã«ãªã‚Šã¾ã™ã€‚
+    // pResult->flagã«é–¢ã—ã¦ã¯
     // NNS_G3D_JNTANM_RESULTFLAG_ROT_ZERO
     // NNS_G3D_JNTANM_RESULTFLAG_TRANS_ZERO
     // NNS_G3D_JNTANM_RESULTFLAG_SCALE_ONE
-    // ‚ğ‚»‚ê‚¼‚êA‰ñ“]‚µ‚È‚¢‚Æ‚«AˆÚ“®‚µ‚È‚¢‚Æ‚«‚ÉƒZƒbƒg‚µ‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢B
+    // ã‚’ãã‚Œãã‚Œã€å›è»¢ã—ãªã„ã¨ãã€ç§»å‹•ã—ãªã„ã¨ãã«ã‚»ãƒƒãƒˆã—ã¦ãŠã„ã¦ãã ã•ã„ã€‚
     //
-    // pResult->scale, pResult->scaleEx0, pResult->scaleEx1‚ÉŠÖ‚µ‚Ä‚ÍA
-    // ˆø”‚ğ—pˆÓ‚µ‚ÄA(*NNS_G3dRS->funcJntScale)‚ğƒR[ƒ‹‚·‚é‚±‚Æ‚ÅŒvZ‚Å‚«‚Ü‚·B
-    // pResult->flag‚Ìc‚è‚Ìƒtƒ‰ƒO‚à‚±‚±‚Åİ’è‚³‚ê‚Ü‚·B
-    // CGƒc[ƒ‹–ˆ‚É•Ê‚ÌŒvZ‚ğ‚µ‚È‚­‚Ä‚Í‚È‚ç‚È‚¢‚Ì‚ÅA‚±‚¤‚È‚Á‚Ä‚Ü‚·B‹ï‘Ì“I‚É‚ÍA
+    // pResult->scale, pResult->scaleEx0, pResult->scaleEx1ã«é–¢ã—ã¦ã¯ã€
+    // å¼•æ•°ã‚’ç”¨æ„ã—ã¦ã€(*NNS_G3dRS->funcJntScale)ã‚’ã‚³ãƒ¼ãƒ«ã™ã‚‹ã“ã¨ã§è¨ˆç®—ã§ãã¾ã™ã€‚
+    // pResult->flagã®æ®‹ã‚Šã®ãƒ•ãƒ©ã‚°ã‚‚ã“ã“ã§è¨­å®šã•ã‚Œã¾ã™ã€‚
+    // CGãƒ„ãƒ¼ãƒ«æ¯ã«åˆ¥ã®è¨ˆç®—ã‚’ã—ãªãã¦ã¯ãªã‚‰ãªã„ã®ã§ã€ã“ã†ãªã£ã¦ã¾ã™ã€‚å…·ä½“çš„ã«ã¯ã€
     // NNS_G3dGetJointScaleBasic,
     // NNS_G3dGetJointScaleMaya,
     // NNS_G3dGetJointScaleSi3d
-    // ‚Ì‚Ç‚ê‚©‚ªŒÄ‚Î‚ê‚Ü‚·B
-    // ˆø”‚ÍA
+    // ã®ã©ã‚Œã‹ãŒå‘¼ã°ã‚Œã¾ã™ã€‚
+    // å¼•æ•°ã¯ã€
     // void NNS_G3dGetJointScaleBasic(NNSG3dJntAnmResult* pResult,
     //                                const fx32* p,
     //                                const u8* cmd,
     //                                u32 srtflag)
-    // ‚ÈŠ´‚¶‚É‚È‚Á‚Ä‚¢‚ÄApResult‚ğ‰ÁH‚·‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B
-    // 2”Ô–ÚˆÈ~‚Ìˆø”‚É‚Â‚¢‚Äà–¾‚µ‚Ä‚¨‚«‚Ü‚·B
-    // p‚ÍAƒWƒ‡ƒCƒ“ƒg‚ÉŠÖ‚·‚éƒXƒP[ƒ‹‚ÆƒXƒP[ƒ‹‚Ì‹t”‚ª“ü‚Á‚½6ƒ[ƒh‚Ì”z—ñ‚É‚È‚è‚Ü‚·B
-    // cmd‚É‚ÍNNS_G3dRS->c‚ğ“ü‚ê‚Ü‚·B
-    // srtflag‚É‚ÍANNSG3dSRTFlag(res_struct.h‚Å’è‹`)‚É‡’v‚·‚é‚æ‚¤‚È
-    // ƒtƒ‰ƒO‚ğ\¬‚µ‚Ä“ü‚ê‚Ä‚­‚¾‚³‚¢B
+    // ãªæ„Ÿã˜ã«ãªã£ã¦ã„ã¦ã€pResultã‚’åŠ å·¥ã™ã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ã¾ã™ã€‚
+    // 2ç•ªç›®ä»¥é™ã®å¼•æ•°ã«ã¤ã„ã¦èª¬æ˜ã—ã¦ãŠãã¾ã™ã€‚
+    // pã¯ã€ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã«é–¢ã™ã‚‹ã‚¹ã‚±ãƒ¼ãƒ«ã¨ã‚¹ã‚±ãƒ¼ãƒ«ã®é€†æ•°ãŒå…¥ã£ãŸ6ãƒ¯ãƒ¼ãƒ‰ã®é…åˆ—ã«ãªã‚Šã¾ã™ã€‚
+    // cmdã«ã¯NNS_G3dRS->cã‚’å…¥ã‚Œã¾ã™ã€‚
+    // srtflagã«ã¯ã€NNSG3dSRTFlag(res_struct.hã§å®šç¾©)ã«åˆè‡´ã™ã‚‹ã‚ˆã†ãª
+    // ãƒ•ãƒ©ã‚°ã‚’æ§‹æˆã—ã¦å…¥ã‚Œã¦ãã ã•ã„ã€‚
     
     {
         fx32 frame;
@@ -181,8 +181,8 @@ void NNSi_G3dAnmCalcNsBca(NNSG3dJntAnmResult* pResult,
             frame = pAnmObj->frame;
         
         //
-        // ƒWƒ‡ƒCƒ“ƒgƒAƒjƒƒŠƒ\[ƒXpAnm‚ÌdataIdx”Ô–Ú‚ÌƒŠƒ\[ƒX‚Ìframe–Ú‚Ì
-        // Œ‹‰Ê‚ğresult‚É“ü‚ê‚é
+        // ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹pAnmã®dataIdxç•ªç›®ã®ãƒªã‚½ãƒ¼ã‚¹ã®frameç›®ã®
+        // çµæœã‚’resultã«å…¥ã‚Œã‚‹
         //
 
         getJntSRTAnmResult_(anm,
@@ -197,8 +197,8 @@ void NNSi_G3dAnmCalcNsBca(NNSG3dJntAnmResult* pResult,
 /*---------------------------------------------------------------------------*
     vecCross_
 
-    ‰ñ“]s—ñ‚Ìê‡Aâ‘Î’l‚ÍFX32_ONEˆÈã‚É‚È‚ç‚È‚¢‚Ì‚ÅA
-    ŠOÏ‚àfx64‚ÉƒLƒƒƒXƒg‚·‚é•K—v‚ª‚È‚¢B
+    å›è»¢è¡Œåˆ—ã®å ´åˆã€çµ¶å¯¾å€¤ã¯FX32_ONEä»¥ä¸Šã«ãªã‚‰ãªã„ã®ã§ã€
+    å¤–ç©ã‚‚fx64ã«ã‚­ãƒ£ã‚¹ãƒˆã™ã‚‹å¿…è¦ãŒãªã„ã€‚
  *---------------------------------------------------------------------------*/
 #include <nitro/code32.h>
 static NNS_G3D_INLINE void
@@ -223,7 +223,7 @@ vecCross_(const VecFx32 * a, const VecFx32 * b, VecFx32 * axb)
 /*---------------------------------------------------------------------------*
     getMdlTrans_
 
-    ƒ‚ƒfƒ‹‚Ìtranslation‚ğg—p‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ã®translationã‚’ä½¿ç”¨ã™ã‚‹
  *---------------------------------------------------------------------------*/
 static void 
 getMdlTrans_(NNSG3dJntAnmResult* pResult)
@@ -233,7 +233,7 @@ getMdlTrans_(NNSG3dJntAnmResult* pResult)
     NNS_G3D_NULL_ASSERT(NNS_G3dRS);
 
     // HACK ALLERT
-    // NODEDESCƒRƒ}ƒ“ƒh“à‚È‚Ì‚Å‚»‚±‚©‚çƒf[ƒ^‚ğ‚Æ‚Á‚Ä‚­‚é
+    // NODEDESCã‚³ãƒãƒ³ãƒ‰å†…ãªã®ã§ãã“ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’ã¨ã£ã¦ãã‚‹
     NNS_G3D_ASSERT(NNS_G3D_GET_SBCCMD(*NNS_G3dRS->c) == NNS_G3D_SBC_NODEDESC);
     idxNode = *(NNS_G3dRS->c + 1);
     pNd = NNS_G3dGetNodeDataByIdx(NNS_G3dRS->pResNodeInfo, idxNode);
@@ -241,14 +241,14 @@ getMdlTrans_(NNSG3dJntAnmResult* pResult)
     // Translation
     if (pNd->flag & NNS_G3D_SRTFLAG_TRANS_ZERO)
     {
-        // pResult->trans‚É‘‚«‚Ş‘ã‚í‚è‚Éƒtƒ‰ƒO‚ğ—§‚Ä‚é‚¾‚¯‚É‚µ‚Ä
-        // ƒƒ‚ƒŠƒAƒNƒZƒX‚Æ‚»‚ÌŒã‚Ìˆ—ƒRƒXƒg‚ğ—}§‚·‚éB
+        // pResult->transã«æ›¸ãè¾¼ã‚€ä»£ã‚ã‚Šã«ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹ã ã‘ã«ã—ã¦
+        // ãƒ¡ãƒ¢ãƒªã‚¢ã‚¯ã‚»ã‚¹ã¨ãã®å¾Œã®å‡¦ç†ã‚³ã‚¹ãƒˆã‚’æŠ‘åˆ¶ã™ã‚‹ã€‚
         pResult->flag |= NNS_G3D_JNTANM_RESULTFLAG_TRANS_ZERO;
     }
     else
     {
-        // NNSG3dResNodeData‚Íflag‚Ì’l‚É]‚Á‚Ä––”ö‚Éƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é
-        // res_struct.h“à‚ÌNNSG3dResNodeData‚Ì’è‹`‚ğQÆ‚Ì‚±‚Æ
+        // NNSG3dResNodeDataã¯flagã®å€¤ã«å¾“ã£ã¦æœ«å°¾ã«ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹
+        // res_struct.hå†…ã®NNSG3dResNodeDataã®å®šç¾©ã‚’å‚ç…§ã®ã“ã¨
         const fx32* p_fx32 = (const fx32*)((const u8*)pNd + sizeof(NNSG3dResNodeData));
         
         pResult->trans.x = *(p_fx32 + 0);
@@ -261,7 +261,7 @@ getMdlTrans_(NNSG3dJntAnmResult* pResult)
 /*---------------------------------------------------------------------------*
     getMdlScale_
 
-    ƒ‚ƒfƒ‹‚Ìscale‚ğg—p‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ã®scaleã‚’ä½¿ç”¨ã™ã‚‹
  *---------------------------------------------------------------------------*/
 static void
 getMdlScale_(NNSG3dJntAnmResult* pResult)
@@ -273,34 +273,34 @@ getMdlScale_(NNSG3dJntAnmResult* pResult)
     NNS_G3D_NULL_ASSERT(NNS_G3dRS->funcJntScale);
 
     // HACK ALLERT
-    // NODEDESCƒRƒ}ƒ“ƒh“à‚È‚Ì‚Å‚»‚±‚©‚çƒf[ƒ^‚ğ‚Æ‚Á‚Ä‚­‚é
+    // NODEDESCã‚³ãƒãƒ³ãƒ‰å†…ãªã®ã§ãã“ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’ã¨ã£ã¦ãã‚‹
     NNS_G3D_ASSERT(NNS_G3D_GET_SBCCMD(*NNS_G3dRS->c) == NNS_G3D_SBC_NODEDESC);
     idxNode = *(NNS_G3dRS->c + 1);
 
-    // NNSG3dResNodeData‚Íflag‚Ì’l‚É]‚Á‚Ä––”ö‚Éƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é
-    // res_struct.h“à‚ÌNNSG3dResNodeData‚Ì’è‹`‚ğQÆ‚Ì‚±‚Æ
+    // NNSG3dResNodeDataã¯flagã®å€¤ã«å¾“ã£ã¦æœ«å°¾ã«ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹
+    // res_struct.hå†…ã®NNSG3dResNodeDataã®å®šç¾©ã‚’å‚ç…§ã®ã“ã¨
     pNd = NNS_G3dGetNodeDataByIdx(NNS_G3dRS->pResNodeInfo, idxNode);
     p = (const u8*)pNd + sizeof(*pNd);
     
     // Translation
     if (!(pNd->flag & NNS_G3D_SRTFLAG_TRANS_ZERO))
     {
-        // Tx, Ty, Tz‚ğƒXƒLƒbƒv‚·‚é
+        // Tx, Ty, Tzã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
         p += 3 * sizeof(fx32);
     }
 
     // Rotation
     if (!(pNd->flag & NNS_G3D_SRTFLAG_ROT_ZERO))
     {
-        // ‰ñ“]ƒf[ƒ^‚ğƒXƒLƒbƒv‚·‚é
+        // å›è»¢ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
         if (pNd->flag & NNS_G3D_SRTFLAG_PIVOT_EXIST)
         {
-            // ƒsƒ{ƒbƒgŒ`®‚È‚Ì‚ÅA, B‚ğƒXƒLƒbƒv‚·‚é
+            // ãƒ”ãƒœãƒƒãƒˆå½¢å¼ãªã®ã§A, Bã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
             p += 2 * sizeof(fx16);
         }
         else
         {
-            // _01, _02, ...., ‚ğƒXƒLƒbƒv‚·‚é
+            // _01, _02, ...., ã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
             p += 8 * sizeof(fx16);
         }
     }
@@ -310,9 +310,9 @@ getMdlScale_(NNSG3dJntAnmResult* pResult)
 }
 
 
-// Rot3‚©‚çƒf[ƒ^‚ğˆø‚¢‚Ä‚­‚é
-// ”ñ0A”ñpivot‚Ì—v‘f‚ÌˆÊ’u‚ªŠi”[‚³‚ê‚Ä‚¢‚é
-// ”z—ñ‚ÌÅ‰‚Ìindex‚ªpivot‚ÌˆÊ’u‚Æ‚È‚éB
+// Rot3ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å¼•ã„ã¦ãã‚‹
+// é0ã€épivotã®è¦ç´ ã®ä½ç½®ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹
+// é…åˆ—ã®æœ€åˆã®indexãŒpivotã®ä½ç½®ã¨ãªã‚‹ã€‚
 static const u8 pivotUtil_[9][4] =
 {
     {4, 5, 7, 8},
@@ -332,7 +332,7 @@ static const u8 pivotUtil_[9][4] =
 /*---------------------------------------------------------------------------*
     getMdlRot_
 
-    ƒ‚ƒfƒ‹‚Ìrotation‚ğg—p‚·‚é
+    ãƒ¢ãƒ‡ãƒ«ã®rotationã‚’ä½¿ç”¨ã™ã‚‹
  *---------------------------------------------------------------------------*/
 static void
 getMdlRot_(NNSG3dJntAnmResult* pResult)
@@ -343,19 +343,19 @@ getMdlRot_(NNSG3dJntAnmResult* pResult)
     NNS_G3D_NULL_ASSERT(NNS_G3dRS);
 
     // HACK ALLERT
-    // NODEDESCƒRƒ}ƒ“ƒh“à‚È‚Ì‚Å‚»‚±‚©‚çƒf[ƒ^‚ğ‚Æ‚Á‚Ä‚­‚é
+    // NODEDESCã‚³ãƒãƒ³ãƒ‰å†…ãªã®ã§ãã“ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’ã¨ã£ã¦ãã‚‹
     NNS_G3D_ASSERT(NNS_G3D_GET_SBCCMD(*NNS_G3dRS->c) == NNS_G3D_SBC_NODEDESC);
     idxNode = *(NNS_G3dRS->c + 1);
 
-    // NNSG3dResNodeData‚Íflag‚Ì’l‚É]‚Á‚Ä––”ö‚Éƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é
-    // res_struct.h“à‚ÌNNSG3dResNodeData‚Ì’è‹`‚ğQÆ‚Ì‚±‚Æ
+    // NNSG3dResNodeDataã¯flagã®å€¤ã«å¾“ã£ã¦æœ«å°¾ã«ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹
+    // res_struct.hå†…ã®NNSG3dResNodeDataã®å®šç¾©ã‚’å‚ç…§ã®ã“ã¨
     pNd = NNS_G3dGetNodeDataByIdx(NNS_G3dRS->pResNodeInfo, idxNode);
     p = (const u8*)pNd + sizeof(*pNd);
     
     // Translation
     if (!(pNd->flag & NNS_G3D_SRTFLAG_TRANS_ZERO))
     {
-        // Tx, Ty, Tz‚ğƒXƒLƒbƒv‚·‚é
+        // Tx, Ty, Tzã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹
         p += 3 * sizeof(fx32);
     }
 
@@ -364,13 +364,13 @@ getMdlRot_(NNSG3dJntAnmResult* pResult)
     {
         if (pNd->flag & NNS_G3D_SRTFLAG_PIVOT_EXIST)
         {
-            // ˆ³k‚³‚ê‚Ä‚¢‚éê‡(å‚Éˆê²‰ñ“])‚Í
-            // ˆ³k‚³‚ê‚½s—ñ‚ğŒ³‚É–ß‚·
+            // åœ§ç¸®ã•ã‚Œã¦ã„ã‚‹å ´åˆ(ä¸»ã«ä¸€è»¸å›è»¢)ã¯
+            // åœ§ç¸®ã•ã‚ŒãŸè¡Œåˆ—ã‚’å…ƒã«æˆ»ã™
             fx32 A = *(fx16*)(p + 0);
             fx32 B = *(fx16*)(p + sizeof(fx16));
             u32 idxPivot = (u32)( (pNd->flag & NNS_G3D_SRTFLAG_IDXPIVOT_MASK) >> 
                                             NNS_G3D_SRTFLAG_IDXPIVOT_SHIFT );
-            // anmResult.rot‚ğƒNƒŠƒA
+            // anmResult.rotã‚’ã‚¯ãƒªã‚¢
             MI_Zero36B(&pResult->rot);
             
             pResult->rot.a[idxPivot] =
@@ -390,12 +390,12 @@ getMdlRot_(NNSG3dJntAnmResult* pResult)
         else
         {
             // NOTICE:
-            // ƒƒ‚ƒŠƒRƒs[API‚É’u‚«Š·‚¦‚È‚¢‚±‚Æ
-            // fx16‚©‚çfx32‚Ö‚ÌˆÃ–Ù‚ÌƒLƒƒƒXƒg‚ğs‚Á‚Ä‚¢‚é‚©‚ç
+            // ãƒ¡ãƒ¢ãƒªã‚³ãƒ”ãƒ¼APIã«ç½®ãæ›ãˆãªã„ã“ã¨
+            // fx16ã‹ã‚‰fx32ã¸ã®æš—é»™ã®ã‚­ãƒ£ã‚¹ãƒˆã‚’è¡Œã£ã¦ã„ã‚‹ã‹ã‚‰
 
             const fx16* pp = (const fx16*)p;
 
-            // pResult‚Ì3x3‰ñ“]s—ñ‚Éƒf[ƒ^‚ğƒZƒbƒg‚µ‚Ä‚¢‚­B
+            // pResultã®3x3å›è»¢è¡Œåˆ—ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã—ã¦ã„ãã€‚
             pResult->rot.a[0] = pNd->_00;
             pResult->rot.a[1] = *(pp + 0);
             pResult->rot.a[2] = *(pp + 1);
@@ -409,8 +409,8 @@ getMdlRot_(NNSG3dJntAnmResult* pResult)
     }
     else
     {
-        // pResult->rot‚Ö‘‚«‚Ş‘ã‚í‚è‚Éƒtƒ‰ƒO‚ğ—§‚Ä‚é‚¾‚¯‚É‚µ‚Ä
-        // ƒƒ‚ƒŠƒAƒNƒZƒX‚Æ‚»‚ÌŒã‚Ìˆ—ƒRƒXƒg‚ğ—}§‚·‚éB
+        // pResult->rotã¸æ›¸ãè¾¼ã‚€ä»£ã‚ã‚Šã«ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹ã ã‘ã«ã—ã¦
+        // ãƒ¡ãƒ¢ãƒªã‚¢ã‚¯ã‚»ã‚¹ã¨ãã®å¾Œã®å‡¦ç†ã‚³ã‚¹ãƒˆã‚’æŠ‘åˆ¶ã™ã‚‹ã€‚
         pResult->flag |= NNS_G3D_JNTANM_RESULTFLAG_ROT_ZERO;
     }
 }
@@ -419,8 +419,8 @@ getMdlRot_(NNSG3dJntAnmResult* pResult)
 /*---------------------------------------------------------------------------*
     getJntSRTAnmResult_
 
-    pResult‚Érotation, translation, flag‚ğƒZƒbƒg
-    pS_invS‚ÉƒXƒP[ƒ‹‚ÆƒXƒP[ƒ‹‚Ì‹t”‚ğƒZƒbƒg
+    pResultã«rotation, translation, flagã‚’ã‚»ãƒƒãƒˆ
+    pS_invSã«ã‚¹ã‚±ãƒ¼ãƒ«ã¨ã‚¹ã‚±ãƒ¼ãƒ«ã®é€†æ•°ã‚’ã‚»ãƒƒãƒˆ
  *---------------------------------------------------------------------------*/
 static void
 getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm, 
@@ -432,9 +432,9 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
     NNSG3dJntAnmSRTTag     tag;
     const u32*             pData;
     BOOL                   IsDecimalFrame;
-    fx32                   pS_invS[6]; // ƒ|ƒCƒ“ƒ^ˆø”‚©‚çƒ[ƒJƒ‹”z—ñ‚É•ÏX
+    fx32                   pS_invS[6]; // ãƒã‚¤ãƒ³ã‚¿å¼•æ•°ã‹ã‚‰ãƒ­ãƒ¼ã‚«ãƒ«é…åˆ—ã«å¤‰æ›´
 
-    // “ü—ÍŒŸ¸
+    // å…¥åŠ›æ¤œæŸ»
     NNS_G3D_NULL_ASSERT(pJntAnm);
     NNS_G3D_NULL_ASSERT(pResult);
     NNS_G3D_ASSERT(dataIdx < pJntAnm->numNode);
@@ -444,13 +444,13 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
 
     {
         const u16* ofsTag = (const u16*)((u8*) pJntAnm + sizeof(NNSG3dResJntAnm));
-        // ƒAƒjƒƒŠƒ\[ƒX“à‚ÌdataIdx”Ô–Ú‚Ìƒf[ƒ^‚ÌSRTƒ^ƒO‚ğæ“¾
+        // ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹å†…ã®dataIdxç•ªç›®ã®ãƒ‡ãƒ¼ã‚¿ã®SRTã‚¿ã‚°ã‚’å–å¾—
         pAnmSRTTag = (NNSG3dResJntAnmSRTTag*)((u8*) pJntAnm + ofsTag[dataIdx]);
 
         tag = (NNSG3dJntAnmSRTTag)pAnmSRTTag->tag;
     }
 
-    // ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ª‘¶İ‚µ‚È‚¢ê‡‚ğƒ`ƒFƒbƒN
+    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ãªã„å ´åˆã‚’ãƒã‚§ãƒƒã‚¯
     if (tag & NNS_G3D_JNTANM_SRTINFO_IDENTITY)
     {
         pResult->flag = (NNSG3dJntAnmResultFlag)(NNS_G3D_JNTANM_RESULTFLAG_SCALE_ONE |
@@ -459,29 +459,29 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
         goto GET_JOINTSCALE;
     }
 
-    // pAnmSRTTag‚É‘±‚­—Ìˆæ‚ÉpAnmSRTTag‚Ì’l‚É]‚Á‚½‰Â•Ï’·‚Ìƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚é
+    // pAnmSRTTagã«ç¶šãé ˜åŸŸã«pAnmSRTTagã®å€¤ã«å¾“ã£ãŸå¯å¤‰é•·ã®ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹
     pData = (const u32*)((const u8*)pAnmSRTTag + sizeof(NNSG3dResJntAnmSRTTag));
 
     IsDecimalFrame = (BOOL)((Frame & (FX32_ONE - 1)) &&
                             (pJntAnm->flag & NNS_G3D_JNTANM_OPTION_INTERPOLATION));
 
-    // ‚Ü‚¸ƒŠƒZƒbƒg
+    // ã¾ãšãƒªã‚»ãƒƒãƒˆ
     pResult->flag = (NNSG3dJntAnmResultFlag) 0;
 
     //
-    // res_struct.h‚ÌNNSG3dResJntAnmSRT‚É‚Â‚¢‚Ä‚ÌƒRƒƒ“ƒg‚ğQÆ‚Ì‚±‚Æ
+    // res_struct.hã®NNSG3dResJntAnmSRTã«ã¤ã„ã¦ã®ã‚³ãƒ¡ãƒ³ãƒˆã‚’å‚ç…§ã®ã“ã¨
     //
     
     //
-    // Translation‚Ìæ“¾
+    // Translationã®å–å¾—
     //
     if (!(tag & (NNS_G3D_JNTANM_SRTINFO_IDENTITY_T | NNS_G3D_JNTANM_SRTINFO_BASE_T)))
     {
         // TX
         if (!(tag & NNS_G3D_JNTANM_SRTINFO_CONST_TX))
         {
-            // TX‚ğæ‚èo‚·ŠÖ”ŒÄ‚Ño‚µ
-            // ƒf[ƒ^‚ÌƒIƒtƒZƒbƒg‚ÍpAnmSRTTag‚©‚ç‚Ì‚à‚Ì‚É‚È‚é
+            // TXã‚’å–ã‚Šå‡ºã™é–¢æ•°å‘¼ã³å‡ºã—
+            // ãƒ‡ãƒ¼ã‚¿ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã¯pAnmSRTTagã‹ã‚‰ã®ã‚‚ã®ã«ãªã‚‹
             if (IsDecimalFrame)
             {
                 getTransDataEx_(&pResult->trans.x,
@@ -497,22 +497,22 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
                               pJntAnm);
             }
 
-            // NNSG3dJntAnmTInfo‚Æ”z—ñ‚Ö‚ÌƒIƒtƒZƒbƒgƒf[ƒ^‚Ì•ª
+            // NNSG3dJntAnmTInfoã¨é…åˆ—ã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®åˆ†
             pData += 2;
         }
         else
         {
             pResult->trans.x = *(fx32*)pData;
 
-            // ’è”ƒf[ƒ^‚Ì•ª
+            // å®šæ•°ãƒ‡ãƒ¼ã‚¿ã®åˆ†
             pData += 1;
         }
 
         // TY
         if (!(tag & NNS_G3D_JNTANM_SRTINFO_CONST_TY))
         {
-            // TY‚ğæ‚èo‚·ŠÖ”ŒÄ‚Ño‚µ
-            // ƒf[ƒ^‚ÌƒIƒtƒZƒbƒg‚ÍpAnmSRTTag‚©‚ç‚Ì‚à‚Ì‚É‚È‚é
+            // TYã‚’å–ã‚Šå‡ºã™é–¢æ•°å‘¼ã³å‡ºã—
+            // ãƒ‡ãƒ¼ã‚¿ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã¯pAnmSRTTagã‹ã‚‰ã®ã‚‚ã®ã«ãªã‚‹
             if (IsDecimalFrame)
             {
                 getTransDataEx_(&pResult->trans.y,
@@ -528,22 +528,22 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
                               pJntAnm);
             }
 
-            // NNSG3dJntAnmTInfo‚Æ”z—ñ‚Ö‚ÌƒIƒtƒZƒbƒgƒf[ƒ^‚Ì•ª
+            // NNSG3dJntAnmTInfoã¨é…åˆ—ã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®åˆ†
             pData += 2;
         }
         else
         {
             pResult->trans.y = *(fx32*)pData;
 
-            // ’è”ƒf[ƒ^‚Ì•ª
+            // å®šæ•°ãƒ‡ãƒ¼ã‚¿ã®åˆ†
             pData += 1;
         }
 
         // TZ
         if (!(tag & NNS_G3D_JNTANM_SRTINFO_CONST_TZ))
         {
-            // TZ‚ğæ‚èo‚·ŠÖ”ŒÄ‚Ño‚µ
-            // ƒf[ƒ^‚ÌƒIƒtƒZƒbƒg‚ÍpAnmSRTTag‚©‚ç‚Ì‚à‚Ì‚É‚È‚é
+            // TZã‚’å–ã‚Šå‡ºã™é–¢æ•°å‘¼ã³å‡ºã—
+            // ãƒ‡ãƒ¼ã‚¿ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã¯pAnmSRTTagã‹ã‚‰ã®ã‚‚ã®ã«ãªã‚‹
             if (IsDecimalFrame)
             {
                 getTransDataEx_(&pResult->trans.z,
@@ -559,14 +559,14 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
                               pJntAnm);
             }
 
-            // NNSG3dJntAnmTInfo‚Æ”z—ñ‚Ö‚ÌƒIƒtƒZƒbƒgƒf[ƒ^‚Ì•ª
+            // NNSG3dJntAnmTInfoã¨é…åˆ—ã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®åˆ†
             pData += 2;
         }
         else
         {
             pResult->trans.z = *(fx32*)pData;
 
-            // ’è”ƒf[ƒ^‚Ì•ª
+            // å®šæ•°ãƒ‡ãƒ¼ã‚¿ã®åˆ†
             pData += 1;
         }
     }
@@ -577,25 +577,25 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
             // Trans = (0, 0, 0)
             pResult->flag |= NNS_G3D_JNTANM_RESULTFLAG_TRANS_ZERO;
 
-            // Œã‘±ƒf[ƒ^‚Í‘¶İ‚µ‚È‚¢‚Ì‚ÅpData‚ği‚ß‚é•K—v‚Í‚È‚¢
+            // å¾Œç¶šãƒ‡ãƒ¼ã‚¿ã¯å­˜åœ¨ã—ãªã„ã®ã§pDataã‚’é€²ã‚ã‚‹å¿…è¦ã¯ãªã„
         }
         else
         {
-            // ƒ‚ƒfƒ‹‚ÌTrans‚ğæ“¾
+            // ãƒ¢ãƒ‡ãƒ«ã®Transã‚’å–å¾—
             getMdlTrans_(pResult);
         }
     }
 
     //
-    // Rotation‚Ìæ“¾
+    // Rotationã®å–å¾—
     //
     if (!(tag & (NNS_G3D_JNTANM_SRTINFO_IDENTITY_R | NNS_G3D_JNTANM_SRTINFO_BASE_R)))
     {
         if (!(tag & NNS_G3D_JNTANM_SRTINFO_CONST_R))
         {
-            // R‚ğæ‚èo‚·ŠÖ”ŒÄ‚Ño‚µ
-            // ƒf[ƒ^‚ÌƒIƒtƒZƒbƒg‚ÍpJntAnm->ofsRot3,
-            // ‚Ü‚½‚ÍpJntAnm->ofsRot5‚©‚ç‚Ì‚à‚Ì‚É‚È‚é
+            // Rã‚’å–ã‚Šå‡ºã™é–¢æ•°å‘¼ã³å‡ºã—
+            // ãƒ‡ãƒ¼ã‚¿ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã¯pJntAnm->ofsRot3,
+            // ã¾ãŸã¯pJntAnm->ofsRot5ã‹ã‚‰ã®ã‚‚ã®ã«ãªã‚‹
             if (IsDecimalFrame)
             {
                 getRotDataEx_(&pResult->rot,
@@ -611,12 +611,12 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
                             pJntAnm);
             }
 
-            // NNSG3dJntAnmRInfo‚Æ”z—ñ‚Ö‚ÌƒIƒtƒZƒbƒgƒf[ƒ^‚Ì•ª
+            // NNSG3dJntAnmRInfoã¨é…åˆ—ã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®åˆ†
             pData += 2;
         }
         else
         {
-            // const‚ÌR‚ğæ‚èo‚·ƒR[ƒh
+            // constã®Rã‚’å–ã‚Šå‡ºã™ã‚³ãƒ¼ãƒ‰
             if (getRotDataByIdx_(&pResult->rot,
                                  (void*)((u8*)pJntAnm + pJntAnm->ofsRot3),
                                  (void*)((u8*)pJntAnm + pJntAnm->ofsRot5),
@@ -627,7 +627,7 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
                           (VecFx32*)&pResult->rot._20);
             }
 
-            // ’è”ƒf[ƒ^‚Ì•ª
+            // å®šæ•°ãƒ‡ãƒ¼ã‚¿ã®åˆ†
             pData += 1;
         }
     }
@@ -638,24 +638,24 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
             // Rot = Identity
             pResult->flag |= NNS_G3D_JNTANM_RESULTFLAG_ROT_ZERO;
 
-            // Œã‘±ƒf[ƒ^‚Í‘¶İ‚µ‚È‚¢‚Ì‚ÅpData‚ği‚ß‚é•K—v‚Í‚È‚¢
+            // å¾Œç¶šãƒ‡ãƒ¼ã‚¿ã¯å­˜åœ¨ã—ãªã„ã®ã§pDataã‚’é€²ã‚ã‚‹å¿…è¦ã¯ãªã„
         }
         else
         {
-            // ƒ‚ƒfƒ‹‚ÌRot‚ğæ“¾
+            // ãƒ¢ãƒ‡ãƒ«ã®Rotã‚’å–å¾—
             getMdlRot_(pResult);
         }
     }
 
     //
-    // Scale‚Ìæ“¾
+    // Scaleã®å–å¾—
     //
     if (!(tag & (NNS_G3D_JNTANM_SRTINFO_IDENTITY_S | NNS_G3D_JNTANM_SRTINFO_BASE_S)))
     {
         if (!(tag & NNS_G3D_JNTANM_SRTINFO_CONST_SX))
         {
-            // SX‚ğæ‚èo‚·ŠÖ”ŒÄ‚Ño‚µ
-            // ƒf[ƒ^‚ÌƒIƒtƒZƒbƒg‚ÍpAnmSRTTag‚©‚ç‚Ì‚à‚Ì‚É‚È‚éB
+            // SXã‚’å–ã‚Šå‡ºã™é–¢æ•°å‘¼ã³å‡ºã—
+            // ãƒ‡ãƒ¼ã‚¿ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã¯pAnmSRTTagã‹ã‚‰ã®ã‚‚ã®ã«ãªã‚‹ã€‚
             fx32 sx_invsx[2];
             if (IsDecimalFrame)
             {
@@ -682,13 +682,13 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
             *(pS_invS + 3) = *(p_fx32 + 1);
         }
 
-        // NNSG3dJntAnmSInfo‚Æ”z—ñ‚Ö‚ÌƒIƒtƒZƒbƒgƒf[ƒ^‚Ì•ª
+        // NNSG3dJntAnmSInfoã¨é…åˆ—ã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®åˆ†
         pData += 2;
 
         if (!(tag & NNS_G3D_JNTANM_SRTINFO_CONST_SY))
         {
-            // SY‚ğæ‚èo‚·ŠÖ”ŒÄ‚Ño‚µ
-            // ƒf[ƒ^‚ÌƒIƒtƒZƒbƒg‚ÍpAnmSRTTag‚©‚ç‚Ì‚à‚Ì‚É‚È‚éB
+            // SYã‚’å–ã‚Šå‡ºã™é–¢æ•°å‘¼ã³å‡ºã—
+            // ãƒ‡ãƒ¼ã‚¿ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã¯pAnmSRTTagã‹ã‚‰ã®ã‚‚ã®ã«ãªã‚‹ã€‚
             fx32 sy_invsy[2];
             if (IsDecimalFrame)
             {
@@ -716,13 +716,13 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
 
         }
 
-        // NNSG3dJntAnmSInfo‚Æ”z—ñ‚Ö‚ÌƒIƒtƒZƒbƒgƒf[ƒ^‚Ì•ª
+        // NNSG3dJntAnmSInfoã¨é…åˆ—ã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®åˆ†
         pData += 2;
 
         if (!(tag & NNS_G3D_JNTANM_SRTINFO_CONST_SZ))
         {
-            // SZ‚ğæ‚èo‚·ŠÖ”ŒÄ‚Ño‚µ
-            // ƒf[ƒ^‚ÌƒIƒtƒZƒbƒg‚ÍpAnmSRTTag‚©‚ç‚Ì‚à‚Ì‚É‚È‚éB
+            // SZã‚’å–ã‚Šå‡ºã™é–¢æ•°å‘¼ã³å‡ºã—
+            // ãƒ‡ãƒ¼ã‚¿ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã¯pAnmSRTTagã‹ã‚‰ã®ã‚‚ã®ã«ãªã‚‹ã€‚
             fx32 sz_invsz[2];
             if (IsDecimalFrame)
             {
@@ -749,7 +749,7 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
             *(pS_invS + 5) = *(p_fx32 + 1);
         }
 
-        // NNSG3dJntAnmSInfo‚Æ”z—ñ‚Ö‚ÌƒIƒtƒZƒbƒgƒf[ƒ^‚Ì•ª
+        // NNSG3dJntAnmSInfoã¨é…åˆ—ã¸ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã®åˆ†
         pData += 2;
     }
     else
@@ -759,21 +759,21 @@ getJntSRTAnmResult_(const NNSG3dResJntAnm* pJntAnm,
             // Scale = (1, 1, 1)
             pResult->flag |= NNS_G3D_JNTANM_RESULTFLAG_SCALE_ONE;
 
-            // Œã‘±ƒf[ƒ^‚Í‘¶İ‚µ‚È‚¢‚Ì‚ÅpData‚ği‚ß‚é•K—v‚Í‚È‚¢
+            // å¾Œç¶šãƒ‡ãƒ¼ã‚¿ã¯å­˜åœ¨ã—ãªã„ã®ã§pDataã‚’é€²ã‚ã‚‹å¿…è¦ã¯ãªã„
         }
         else
         {
-            // ƒ‚ƒfƒ‹‚ÌScale‚ğæ“¾
+            // ãƒ¢ãƒ‡ãƒ«ã®Scaleã‚’å–å¾—
             getMdlScale_(pResult);
 
-            // getMdlScale_“à•”‚ÅNNSG3dJntAnmResult‚ÌƒXƒP[ƒŠƒ“ƒO
-            // î•ñ‚ğİ’è‚µ‚Ä‚¢‚é‚Ì‚ÅƒŠƒ^[ƒ“‚·‚é
+            // getMdlScale_å†…éƒ¨ã§NNSG3dJntAnmResultã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°
+            // æƒ…å ±ã‚’è¨­å®šã—ã¦ã„ã‚‹ã®ã§ãƒªã‚¿ãƒ¼ãƒ³ã™ã‚‹
             return;
         }
     }
 GET_JOINTSCALE:
     //
-    // NNSG3dJntAnmResult‚ÌƒXƒP[ƒŠƒ“ƒOî•ñ‚ğİ’è‚·‚é
+    // NNSG3dJntAnmResultã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°æƒ…å ±ã‚’è¨­å®šã™ã‚‹
     //
     (*NNS_G3dRS->funcJntScale)(
         pResult, 
@@ -781,7 +781,7 @@ GET_JOINTSCALE:
         NNS_G3dRS->c,
         ((pResult->flag & NNS_G3D_JNTANM_RESULTFLAG_SCALE_ONE) ?
                 NNS_G3D_SRTFLAG_SCALE_ONE :
-                0) // ƒtƒ‰ƒO‚Í•ÏŠ·‚·‚é•K—v‚ª‚ ‚é
+                0) // ãƒ•ãƒ©ã‚°ã¯å¤‰æ›ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
     );
 }
 
@@ -789,7 +789,7 @@ GET_JOINTSCALE:
 /*---------------------------------------------------------------------------*
     getTransData_
 
-    translationƒf[ƒ^‚ğæ“¾‚µA*pVal‚É“ü‚ê‚é
+    translationãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ã€*pValã«å…¥ã‚Œã‚‹
  *---------------------------------------------------------------------------*/
 static void
 getTransData_(fx32* pVal,
@@ -809,44 +809,44 @@ getTransData_(fx32* pVal,
 
     if (!(info & NNS_G3D_JNTANM_TINFO_STEP_MASK))
     {
-        // NNS_G3D_JNTANM_TINFO_STEP1‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_TINFO_STEP1ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         idx = frame;
         goto TRANS_NONINTERP;
     }
 
-    // last_interpˆÈ~‚Í1ƒRƒ}‚¸‚Âƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é
-    // last_interp‚Í2‚Ì”{”‚©4‚Ì”{”‚Å‚ ‚éB
+    // last_interpä»¥é™ã¯1ã‚³ãƒãšã¤ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹
+    // last_interpã¯2ã®å€æ•°ã‹4ã®å€æ•°ã§ã‚ã‚‹ã€‚
     last_interp = ((u32)info & NNS_G3D_JNTANM_TINFO_LAST_INTERP_MASK) >>
                                     NNS_G3D_JNTANM_TINFO_LAST_INTERP_SHIFT;
 
     if (info & NNS_G3D_JNTANM_TINFO_STEP_2)
     {
-        // NNS_G3D_JNTANM_TINFO_STEP_2‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_TINFO_STEP_2ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         if (frame & 1)
         {
             if (frame > last_interp)
             {
-                // ÅIƒtƒŒ[ƒ€ˆÈŠO‚ ‚è‚¦‚È‚¢
+                // æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥å¤–ã‚ã‚Šãˆãªã„
                 idx = (last_interp >> 1) + 1;
                 goto TRANS_NONINTERP;
             }
             else
             {
-                // Šï”‚ÅÅIƒtƒŒ[ƒ€‚Å‚È‚¢‚Ì‚Å50:50‚Ì•âŠÔˆ—‚ª‚¢‚éB
+                // å¥‡æ•°ã§æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ã§ãªã„ã®ã§50:50ã®è£œé–“å‡¦ç†ãŒã„ã‚‹ã€‚
                 idx = frame >> 1;
                 goto TRANS_INTERP_2;
             }
         }
         else
         {
-            // ‹ô”ƒtƒŒ[ƒ€‚È‚Ì‚Å•âŠÔˆ—‚Í‚¢‚ç‚È‚¢
+            // å¶æ•°ãƒ•ãƒ¬ãƒ¼ãƒ ãªã®ã§è£œé–“å‡¦ç†ã¯ã„ã‚‰ãªã„
             idx = frame >> 1;
             goto TRANS_NONINTERP;
         }
     }
     else
     {
-        // NNS_G3D_JNTANM_TINFO_STEP_4‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_TINFO_STEP_4ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         if (frame & 3)
         {
             if (frame > last_interp)
@@ -855,31 +855,31 @@ getTransData_(fx32* pVal,
                 goto TRANS_NONINTERP;
             }
 
-            // •âŠÔˆ—‚ ‚è
+            // è£œé–“å‡¦ç†ã‚ã‚Š
             if (frame & 1)
             {
                 fx32 v, v_sub;
                 if (frame & 2)
                 {
-                    // 3:1‚ÌˆÊ’u‚Å•âŠÔ
+                    // 3:1ã®ä½ç½®ã§è£œé–“
                     idx_sub = (frame >> 2);
                     idx = idx_sub + 1;
                 }
                 else
                 {
-                    // 1:3‚ÌˆÊ’u‚Å•âŠÔ
+                    // 1:3ã®ä½ç½®ã§è£œé–“
                     idx = (frame >> 2);
                     idx_sub = idx + 1;
                 }
                 
-                // 1:3, 3:1‚Ìê‡‚Ì•âŠÔ
+                // 1:3, 3:1ã®å ´åˆã®è£œé–“
                 if (info & NNS_G3D_JNTANM_TINFO_FX16ARRAY)
                 {
                     const fx16* p_fx16 = (const fx16*)pArray;
 
                     v = *(p_fx16 + idx);
                     v_sub = *(p_fx16 + idx_sub);
-                    *pVal = (v + v + v + v_sub) >> 2; // v:v_sub‚ğ3:1‚ÅƒuƒŒƒ“ƒh
+                    *pVal = (v + v + v + v_sub) >> 2; // v:v_subã‚’3:1ã§ãƒ–ãƒ¬ãƒ³ãƒ‰
                 }
                 else
                 {
@@ -887,21 +887,21 @@ getTransData_(fx32* pVal,
 
                     v = *(p_fx32 + idx);
                     v_sub = *(p_fx32 + idx_sub);
-                    // v:v_sub‚ğ3:1‚ÅƒuƒŒƒ“ƒhBƒI[ƒo[ƒtƒ[‚ğ”ğ‚¯‚é‚½‚ßfx64‚ÅŒvZ
+                    // v:v_subã‚’3:1ã§ãƒ–ãƒ¬ãƒ³ãƒ‰ã€‚ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ã‚’é¿ã‘ã‚‹ãŸã‚fx64ã§è¨ˆç®—
                     *pVal = (fx32)(((fx64)v + v + v + v_sub) >> 2);
                 }
                 return;
             }
             else
             {
-                // 50:50‚Ì•âŠÔ‚É‚È‚é
+                // 50:50ã®è£œé–“ã«ãªã‚‹
                 idx = frame >> 2;
                 goto TRANS_INTERP_2;
             }
         }
         else
         {
-            // ƒtƒŒ[ƒ€‚Í’š“x4‚Ì”{”‚É‚È‚Á‚Ä‚¢‚éB
+            // ãƒ•ãƒ¬ãƒ¼ãƒ ã¯ä¸åº¦4ã®å€æ•°ã«ãªã£ã¦ã„ã‚‹ã€‚
             idx = frame >> 2;
             goto TRANS_NONINTERP;
         }
@@ -939,8 +939,8 @@ TRANS_NONINTERP:
 /*---------------------------------------------------------------------------*
     getTransDataEx_
 
-    translationƒf[ƒ^‚ğæ“¾‚µA*pVal‚É“ü‚ê‚éB
-    ¬”“_ˆÈ‰º‚Ìê‡‚Í•âŠÔ‚ğs‚¤B
+    translationãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ã€*pValã«å…¥ã‚Œã‚‹ã€‚
+    å°æ•°ç‚¹ä»¥ä¸‹ã®å ´åˆã¯è£œé–“ã‚’è¡Œã†ã€‚
  *---------------------------------------------------------------------------*/
 static void
 getTransDataEx_(fx32* pVal,
@@ -948,8 +948,8 @@ getTransDataEx_(fx32* pVal,
                 const u32* pData,
                 const NNSG3dResJntAnm* pJntAnm)
 {
-    // ‚±‚ÌŠÖ”‚É‚ÍA
-    // 0 < Frame < numFrame‚Æ‚È‚é‚æ‚¤‚ÈFrame‚µ‚©—ˆ‚È‚¢‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B
+    // ã“ã®é–¢æ•°ã«ã¯ã€
+    // 0 < Frame < numFrameã¨ãªã‚‹ã‚ˆã†ãªFrameã—ã‹æ¥ãªã„ã‚ˆã†ã«ãªã£ã¦ã„ã¾ã™ã€‚
     const void* pArray = (const void*)((const u8*)pJntAnm + *(pData + 1));
     NNSG3dJntAnmTInfo info = (NNSG3dJntAnmTInfo)*pData;
 
@@ -968,12 +968,12 @@ getTransDataEx_(fx32* pVal,
     if (frame == pJntAnm->numFrame - 1)
     {
         //
-        // Frame‚ªnumFrame - 1‚ÆnumFrame‚ÌŠÔ‚Ìê‡
-        // ‚¿‚å‚¤‚ÇÅIƒtƒŒ[ƒ€‚©‚çÅ‰‚ÌƒtƒŒ[ƒ€‚ÌŠÔ‚É‚ ‚éê‡
+        // FrameãŒnumFrame - 1ã¨numFrameã®é–“ã®å ´åˆ
+        // ã¡ã‚‡ã†ã©æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰æœ€åˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®é–“ã«ã‚ã‚‹å ´åˆ
         //
 
         //
-        // Å‰‚ÉÅIƒtƒŒ[ƒ€ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+        // æœ€åˆã«æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
         //
         if (!(info & NNS_G3D_JNTANM_TINFO_STEP_MASK))
         {
@@ -989,11 +989,11 @@ getTransDataEx_(fx32* pVal,
         }
 
         //
-        // •âŠO‚·‚é‚©ÅI‚Ìƒf[ƒ^‚ğ•Ô‚·‚©‚Íƒtƒ‰ƒO‚ÅŒˆ‚Ü‚Á‚Ä‚¢‚éB
+        // è£œå¤–ã™ã‚‹ã‹æœ€çµ‚ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™ã‹ã¯ãƒ•ãƒ©ã‚°ã§æ±ºã¾ã£ã¦ã„ã‚‹ã€‚
         //
         if (pJntAnm->flag & NNS_G3D_JNTANM_OPTION_END_TO_START_INTERPOLATION)
         {
-            // •âŠO‚·‚éê‡‚ÍÅIƒf[ƒ^‚ÆÅ‰‚Ìƒf[ƒ^‚Ås‚¤(ƒ‹[ƒv)
+            // è£œå¤–ã™ã‚‹å ´åˆã¯æœ€çµ‚ãƒ‡ãƒ¼ã‚¿ã¨æœ€åˆã®ãƒ‡ãƒ¼ã‚¿ã§è¡Œã†(ãƒ«ãƒ¼ãƒ—)
             fx32 v0, v1;
             remainder = Frame & (FX32_ONE - 1);
 
@@ -1017,7 +1017,7 @@ getTransDataEx_(fx32* pVal,
         }
         else
         {
-            // ÅI‚Ìƒf[ƒ^‚ğ•Ô‚·ê‡
+            // æœ€çµ‚ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™å ´åˆ
             if (info & NNS_G3D_JNTANM_TINFO_FX16ARRAY)
             {
                 *pVal = *((const fx16*)pArray + idx);
@@ -1032,22 +1032,22 @@ getTransDataEx_(fx32* pVal,
 
     if (!(info & NNS_G3D_JNTANM_TINFO_STEP_MASK))
     {
-        // NNS_G3D_JNTANM_TINFO_STEP1‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_TINFO_STEP1ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         goto TRANS_EX_0;
     }
 
-    // last_interpˆÈ~‚Í1ƒRƒ}‚¸‚Âƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é
-    // last_interp‚Í2‚Ì”{”‚©4‚Ì”{”‚Å‚ ‚éB
+    // last_interpä»¥é™ã¯1ã‚³ãƒãšã¤ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹
+    // last_interpã¯2ã®å€æ•°ã‹4ã®å€æ•°ã§ã‚ã‚‹ã€‚
     last_interp = ((u32)info & NNS_G3D_JNTANM_TINFO_LAST_INTERP_MASK) >>
                                     NNS_G3D_JNTANM_TINFO_LAST_INTERP_SHIFT;
     
     if (info & NNS_G3D_JNTANM_TINFO_STEP_2)
     {
-        // NNS_G3D_JNTANM_TINFO_STEP_2‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
-        // “™†‚ªŠÜ‚Ü‚ê‚é‚Ì‚ÍØ‚èÌ‚Ä‚ç‚ê‚½ƒf[ƒ^‚ğl—¶‚·‚é‚©‚ç
+        // NNS_G3D_JNTANM_TINFO_STEP_2ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
+        // ç­‰å·ãŒå«ã¾ã‚Œã‚‹ã®ã¯åˆ‡ã‚Šæ¨ã¦ã‚‰ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’è€ƒæ…®ã™ã‚‹ã‹ã‚‰
         if (frame >= last_interp)
         {
-            // ÅIƒtƒŒ[ƒ€ˆÈŠO‚ ‚è‚¦‚È‚¢
+            // æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥å¤–ã‚ã‚Šãˆãªã„
             idx = (last_interp >> 1);
             goto TRANS_EX_0_1;
         }
@@ -1062,11 +1062,11 @@ getTransDataEx_(fx32* pVal,
     }
     else
     {
-        // NNS_G3D_JNTANM_TINFO_STEP_4‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_TINFO_STEP_4ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         if (frame >= last_interp)
         {
-            // ‚±‚ÌŠÖ”‚ªŒÄ‚Ño‚³‚ê‚éğŒ‚É‚æ‚èAframe‚ªÅIƒf[ƒ^‚Å‚ ‚é‚±‚Æ‚Í‚È‚¢
-            // ‚Ì‚ÅˆÈ‰º‚ÌƒR[ƒh‚Å‹«ŠE‚ğ‚Í‚İo‚é‚±‚Æ‚Í‚È‚¢B
+            // ã“ã®é–¢æ•°ãŒå‘¼ã³å‡ºã•ã‚Œã‚‹æ¡ä»¶ã«ã‚ˆã‚Šã€frameãŒæœ€çµ‚ãƒ‡ãƒ¼ã‚¿ã§ã‚ã‚‹ã“ã¨ã¯ãªã„
+            // ã®ã§ä»¥ä¸‹ã®ã‚³ãƒ¼ãƒ‰ã§å¢ƒç•Œã‚’ã¯ã¿å‡ºã‚‹ã“ã¨ã¯ãªã„ã€‚
             idx = (frame >> 2) + (frame & 3);
             goto TRANS_EX_0_1;
         }
@@ -1113,7 +1113,7 @@ TRANS_EX:
 /*---------------------------------------------------------------------------*
     getScaleData_
 
-    scale‚Æ‚»‚Ì‹t”‚ğæ“¾‚µAs_invs[0], s_invs[1]‚É“ü‚ê‚é
+    scaleã¨ãã®é€†æ•°ã‚’å–å¾—ã—ã€s_invs[0], s_invs[1]ã«å…¥ã‚Œã‚‹
  *---------------------------------------------------------------------------*/
 static void
 getScaleData_(fx32* s_invs,
@@ -1133,66 +1133,66 @@ getScaleData_(fx32* s_invs,
 
     if (!(info & NNS_G3D_JNTANM_SINFO_STEP_MASK))
     {
-        // NNS_G3D_JNTANM_SINFO_STEP_1‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_SINFO_STEP_1ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         idx = frame;
         goto SCALE_NONINTERP;
     }
 
-    // last_interpˆÈ~‚Í1ƒRƒ}‚¸‚Âƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚é
-    // last_interp‚Í2‚Ì”{”‚©4‚Ì”{”‚Å‚ ‚éB
+    // last_interpä»¥é™ã¯1ã‚³ãƒãšã¤ãƒ‡ãƒ¼ã‚¿ãŒå…¥ã£ã¦ã„ã‚‹
+    // last_interpã¯2ã®å€æ•°ã‹4ã®å€æ•°ã§ã‚ã‚‹ã€‚
     last_interp = ((u32)info & NNS_G3D_JNTANM_SINFO_LAST_INTERP_MASK) >>
                                     NNS_G3D_JNTANM_SINFO_LAST_INTERP_SHIFT;
 
     if (info & NNS_G3D_JNTANM_SINFO_STEP_2)
     {
-        // NNS_G3D_JNTANM_SINFO_STEP_2‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_SINFO_STEP_2ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         if (frame & 1)
         {
             if (frame > last_interp)
             {
-                // ÅIƒtƒŒ[ƒ€ˆÈŠO‚ ‚è‚¦‚È‚¢
+                // æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥å¤–ã‚ã‚Šãˆãªã„
                 idx = (last_interp >> 1) + 1;
                 goto SCALE_NONINTERP;
             }
             else
             {
-                // Šï”‚ÅÅIƒtƒŒ[ƒ€‚Å‚È‚¢‚Ì‚Å50:50‚Ì•âŠÔˆ—‚ª‚¢‚éB
+                // å¥‡æ•°ã§æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ã§ãªã„ã®ã§50:50ã®è£œé–“å‡¦ç†ãŒã„ã‚‹ã€‚
                 idx = frame >> 1;
                 goto SCALE_INTERP_2;
             }
         }
         else
         {
-            // ‹ô”ƒtƒŒ[ƒ€‚È‚Ì‚Å•âŠÔˆ—‚Í‚¢‚ç‚È‚¢
+            // å¶æ•°ãƒ•ãƒ¬ãƒ¼ãƒ ãªã®ã§è£œé–“å‡¦ç†ã¯ã„ã‚‰ãªã„
             idx = frame >> 1;
             goto SCALE_NONINTERP;
         }
     }
     else
     {
-        // NNS_G3D_JNTANM_TINFO_STEP_4‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_TINFO_STEP_4ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         if (frame & 3)
         {
             if (frame > last_interp)
             {
-                // last_interpˆÈ~‚Í•âŠÔˆ—‚È‚µ
+                // last_interpä»¥é™ã¯è£œé–“å‡¦ç†ãªã—
                 idx = (last_interp >> 2) + (frame & 3);
                 goto SCALE_NONINTERP;
             }
 
-            // •âŠÔˆ—‚ ‚è
+            // è£œé–“å‡¦ç†ã‚ã‚Š
             if (frame & 1)
             {
                 fx32 v, v_sub;
                 if (frame & 2)
                 {
-                    // 3:1‚ÌˆÊ’u‚Å•âŠÔ
+                    // 3:1ã®ä½ç½®ã§è£œé–“
                     idx_sub = (frame >> 2);
                     idx = idx_sub + 1;
                 }
                 else
                 {
-                    // 1:3‚ÌˆÊ’u‚Å•âŠÔ
+                    // 1:3ã®ä½ç½®ã§è£œé–“
                     idx = (frame >> 2);
                     idx_sub = idx + 1;
                 }
@@ -1201,44 +1201,44 @@ getScaleData_(fx32* s_invs,
                 {
                     const fx16* p_fx16 = (const fx16*)pArray;
 
-                    // scale‚ÌŒvZ
+                    // scaleã®è¨ˆç®—
                     v = *(p_fx16 + 2 * idx);
                     v_sub = *(p_fx16 + 2 * idx_sub);
-                    s_invs[0] = (v + (v << 1) + v_sub) >> 2; // v:v_sub‚ğ3:1‚ÅƒuƒŒƒ“ƒh
+                    s_invs[0] = (v + (v << 1) + v_sub) >> 2; // v:v_subã‚’3:1ã§ãƒ–ãƒ¬ãƒ³ãƒ‰
 
-                    // inverse scale‚ÌŒvZ
+                    // inverse scaleã®è¨ˆç®—
                     v = *(p_fx16 + 2 * idx + 1);
                     v_sub = *(p_fx16 + 2 * idx_sub + 1);
-                    s_invs[1] = (v + (v << 1) + v_sub) >> 2; // v:v_sub‚ğ3:1‚ÅƒuƒŒƒ“ƒh
+                    s_invs[1] = (v + (v << 1) + v_sub) >> 2; // v:v_subã‚’3:1ã§ãƒ–ãƒ¬ãƒ³ãƒ‰
                 }
                 else
                 {
                     const fx32* p_fx32 = (const fx32*)pArray;
 
-                    // scale‚ÌŒvZ
+                    // scaleã®è¨ˆç®—
                     v = *(p_fx32 + 2 * idx);
                     v_sub = *(p_fx32 + 2 * idx_sub);
-                    // v:v_sub‚ğ3:1‚ÅƒuƒŒƒ“ƒhBƒI[ƒo[ƒtƒ[‚ğ”ğ‚¯‚é‚½‚ßfx64‚ÅŒvZ
+                    // v:v_subã‚’3:1ã§ãƒ–ãƒ¬ãƒ³ãƒ‰ã€‚ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ã‚’é¿ã‘ã‚‹ãŸã‚fx64ã§è¨ˆç®—
                     s_invs[0] = (fx32)(((fx64)v + v + v + v_sub) >> 2);
 
-                    // inverse scale‚ÌŒvZ
+                    // inverse scaleã®è¨ˆç®—
                     v = *(p_fx32 + 2 * idx + 1);
                     v_sub = *(p_fx32 + 2 * idx_sub + 1);
-                    // v:v_sub‚ğ3:1‚ÅƒuƒŒƒ“ƒhBƒI[ƒo[ƒtƒ[‚ğ”ğ‚¯‚é‚½‚ßfx64‚ÅŒvZ
+                    // v:v_subã‚’3:1ã§ãƒ–ãƒ¬ãƒ³ãƒ‰ã€‚ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ã‚’é¿ã‘ã‚‹ãŸã‚fx64ã§è¨ˆç®—
                     s_invs[1] = (fx32)(((fx64)v + v + v + v_sub) >> 2);
                 }
                 return;
             }
             else
             {
-                // 50:50‚Ì•âŠÔ‚É‚È‚é
+                // 50:50ã®è£œé–“ã«ãªã‚‹
                 idx = frame >> 2;
                 goto SCALE_INTERP_2;
             }
         }
         else
         {
-            // ƒtƒŒ[ƒ€‚Í’š“x4‚Ì”{”‚É‚È‚Á‚Ä‚¢‚éB
+            // ãƒ•ãƒ¬ãƒ¼ãƒ ã¯ä¸åº¦4ã®å€æ•°ã«ãªã£ã¦ã„ã‚‹ã€‚
             idx = frame >> 2;
             goto SCALE_NONINTERP;
         }
@@ -1281,8 +1281,8 @@ SCALE_INTERP_2:
 /*---------------------------------------------------------------------------*
     getScaleDataEx_
 
-    scale‚Æ‚»‚Ì‹t”‚ğæ“¾‚µAs_invs[0], s_invs[1]‚É“ü‚ê‚é
-    ¬”“_ˆÈ‰º‚Ìê‡‚Í•âŠÔ‚ğs‚¤B
+    scaleã¨ãã®é€†æ•°ã‚’å–å¾—ã—ã€s_invs[0], s_invs[1]ã«å…¥ã‚Œã‚‹
+    å°æ•°ç‚¹ä»¥ä¸‹ã®å ´åˆã¯è£œé–“ã‚’è¡Œã†ã€‚
  *---------------------------------------------------------------------------*/
 static void
 getScaleDataEx_(fx32* s_invs,
@@ -1304,12 +1304,12 @@ getScaleDataEx_(fx32* s_invs,
     if (frame == pJntAnm->numFrame - 1)
     {
         //
-        // Frame‚ªnumFrame - 1‚ÆnumFrame‚ÌŠÔ‚Ìê‡
-        // ‚¿‚å‚¤‚ÇÅIƒtƒŒ[ƒ€‚©‚çÅ‰‚ÌƒtƒŒ[ƒ€‚ÌŠÔ‚É‚ ‚éê‡
+        // FrameãŒnumFrame - 1ã¨numFrameã®é–“ã®å ´åˆ
+        // ã¡ã‚‡ã†ã©æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰æœ€åˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®é–“ã«ã‚ã‚‹å ´åˆ
         //
 
         //
-        // Å‰‚ÉÅIƒtƒŒ[ƒ€ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+        // æœ€åˆã«æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
         //
         if (!(info & NNS_G3D_JNTANM_SINFO_STEP_MASK))
         {
@@ -1325,7 +1325,7 @@ getScaleDataEx_(fx32* s_invs,
         }
 
         //
-        // •âŠO‚·‚é‚©ÅI‚Ìƒf[ƒ^‚ğ•Ô‚·‚©‚Íƒtƒ‰ƒO‚ÅŒˆ‚Ü‚Á‚Ä‚¢‚éB
+        // è£œå¤–ã™ã‚‹ã‹æœ€çµ‚ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™ã‹ã¯ãƒ•ãƒ©ã‚°ã§æ±ºã¾ã£ã¦ã„ã‚‹ã€‚
         //
         if (pJntAnm->flag & NNS_G3D_JNTANM_OPTION_END_TO_START_INTERPOLATION)
         {
@@ -1354,7 +1354,7 @@ getScaleDataEx_(fx32* s_invs,
 
     if (!(info & NNS_G3D_JNTANM_SINFO_STEP_MASK))
     {
-        // NNS_G3D_JNTANM_SINFO_STEP_1‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_SINFO_STEP_1ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         goto SCALE_EX_0;
     }
 
@@ -1363,11 +1363,11 @@ getScaleDataEx_(fx32* s_invs,
 
     if (info & NNS_G3D_JNTANM_SINFO_STEP_2)
     {
-        // NNS_G3D_JNTANM_SINFO_STEP_2‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
-        // “™†‚ªŠÜ‚Ü‚ê‚é‚Ì‚ÍØ‚èÌ‚Ä‚ç‚ê‚½ƒf[ƒ^‚ğl—¶‚·‚é‚©‚ç
+        // NNS_G3D_JNTANM_SINFO_STEP_2ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
+        // ç­‰å·ãŒå«ã¾ã‚Œã‚‹ã®ã¯åˆ‡ã‚Šæ¨ã¦ã‚‰ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’è€ƒæ…®ã™ã‚‹ã‹ã‚‰
         if (frame >= last_interp)
         {
-            // ÅIƒtƒŒ[ƒ€ˆÈŠO‚ ‚è‚¦‚È‚¢
+            // æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥å¤–ã‚ã‚Šãˆãªã„
             idx0 = (last_interp >> 1);
             idx1 = idx0 + 1;
             goto SCALE_EX_0_1;
@@ -1384,11 +1384,11 @@ getScaleDataEx_(fx32* s_invs,
     }
     else
     {
-        // NNS_G3D_JNTANM_SINFO_STEP_4‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_SINFO_STEP_4ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         if (frame >= last_interp)
         {
-            // ‚±‚ÌŠÖ”‚ªŒÄ‚Ño‚³‚ê‚éğŒ‚É‚æ‚èAframe‚ªÅIƒf[ƒ^‚Å‚ ‚é‚±‚Æ‚Í‚È‚¢
-            // ‚Ì‚ÅˆÈ‰º‚ÌƒR[ƒh‚Å‹«ŠE‚ğ‚Í‚İo‚é‚±‚Æ‚Í‚È‚¢B
+            // ã“ã®é–¢æ•°ãŒå‘¼ã³å‡ºã•ã‚Œã‚‹æ¡ä»¶ã«ã‚ˆã‚Šã€frameãŒæœ€çµ‚ãƒ‡ãƒ¼ã‚¿ã§ã‚ã‚‹ã“ã¨ã¯ãªã„
+            // ã®ã§ä»¥ä¸‹ã®ã‚³ãƒ¼ãƒ‰ã§å¢ƒç•Œã‚’ã¯ã¿å‡ºã‚‹ã“ã¨ã¯ãªã„ã€‚
             idx0 = (frame >> 2) + (frame & 3);
             idx1 = idx0 + 1;
             goto SCALE_EX_0_1;
@@ -1446,11 +1446,11 @@ SCALE_EX:
 
 
 
-// ƒtƒŒ[ƒ€ŠÔ‚Ì•âŠÔˆ—‚ª•K—v‚Æ‚È‚éê‡‚ÉAG3D_NORMALIZE_ROT_MTX‚ª 
-// –³Œø‚É‚È‚Á‚Ä‚¢‚é‚Æ’P‚È‚és—ñ‚ÌüŒ`•âŠÔ‚µ‚©s‚È‚í‚È‚¢‚½‚ßAƒL[ƒtƒŒ[ƒ€ŠÔ‚Ì
-// ‰ñ“]Šp‚ª‘å‚«‚¢ê‡‚É‚Íƒ‚ƒfƒ‹‚ÌŒ`ó‚ª˜c‚Şê‡‚ª‚ ‚è‚Ü‚·B
-// G3D_NORMALIZE_ROT_MTX‚ª—LŒø‚Å‚ ‚éê‡‚É‚ÍA³‹K‰»ˆ—‚ğs‚È‚¤‚½‚ß
-// ƒ‚ƒfƒ‹‚Ì˜c‚İ‚ğ—}‚¦‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+// ãƒ•ãƒ¬ãƒ¼ãƒ é–“ã®è£œé–“å‡¦ç†ãŒå¿…è¦ã¨ãªã‚‹å ´åˆã«ã€G3D_NORMALIZE_ROT_MTXãŒ 
+// ç„¡åŠ¹ã«ãªã£ã¦ã„ã‚‹ã¨å˜ãªã‚‹è¡Œåˆ—ã®ç·šå½¢è£œé–“ã—ã‹è¡Œãªã‚ãªã„ãŸã‚ã€ã‚­ãƒ¼ãƒ•ãƒ¬ãƒ¼ãƒ é–“ã®
+// å›è»¢è§’ãŒå¤§ãã„å ´åˆã«ã¯ãƒ¢ãƒ‡ãƒ«ã®å½¢çŠ¶ãŒæ­ªã‚€å ´åˆãŒã‚ã‚Šã¾ã™ã€‚
+// G3D_NORMALIZE_ROT_MTXãŒæœ‰åŠ¹ã§ã‚ã‚‹å ´åˆã«ã¯ã€æ­£è¦åŒ–å‡¦ç†ã‚’è¡Œãªã†ãŸã‚
+// ãƒ¢ãƒ‡ãƒ«ã®æ­ªã¿ã‚’æŠ‘ãˆã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
 #define G3D_NORMALIZE_ROT_MTX
 
 #ifdef G3D_NORMALIZE_ROT_MTX
@@ -1462,7 +1462,7 @@ SCALE_EX:
 /*---------------------------------------------------------------------------*
     getRotData_
 
-    ‰ñ“]s—ñ‚ğæ“¾‚µA*pRot‚ÉƒZƒbƒg‚·‚é
+    å›è»¢è¡Œåˆ—ã‚’å–å¾—ã—ã€*pRotã«ã‚»ãƒƒãƒˆã™ã‚‹
  *---------------------------------------------------------------------------*/
 static void
 getRotData_(MtxFx33* pRot,
@@ -1483,7 +1483,7 @@ getRotData_(MtxFx33* pRot,
 
     if (!(info & NNS_G3D_JNTANM_RINFO_STEP_MASK))
     {
-        // NNS_G3D_JNTANM_RINFO_STEP_1‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_RINFO_STEP_1ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         idx = frame;
         goto ROT_NONINTERP;
     }
@@ -1493,32 +1493,32 @@ getRotData_(MtxFx33* pRot,
 
     if (info & NNS_G3D_JNTANM_RINFO_STEP_2)
     {
-        // NNS_G3D_JNTANM_RINFO_STEP_2‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_RINFO_STEP_2ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         if (frame & 1)
         {
             if (frame > last_interp)
             {
-                // ÅIƒtƒŒ[ƒ€ˆÈŠO‚ ‚è‚¦‚È‚¢
+                // æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥å¤–ã‚ã‚Šãˆãªã„
                 idx = (last_interp >> 1) + 1;
                 goto ROT_NONINTERP;
             }
             else
             {
-                // Šï”‚ÅÅIƒtƒŒ[ƒ€‚Å‚È‚¢‚Ì‚Å50:50‚Ì•âŠÔˆ—‚ª‚¢‚éB
+                // å¥‡æ•°ã§æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ã§ãªã„ã®ã§50:50ã®è£œé–“å‡¦ç†ãŒã„ã‚‹ã€‚
                 idx = frame >> 1;
                 goto ROT_INTERP_2;
             }
         }
         else
         {
-            // ‹ô”ƒtƒŒ[ƒ€‚È‚Ì‚Å•âŠÔˆ—‚Í‚¢‚ç‚È‚¢
+            // å¶æ•°ãƒ•ãƒ¬ãƒ¼ãƒ ãªã®ã§è£œé–“å‡¦ç†ã¯ã„ã‚‰ãªã„
             idx = frame >> 1;
             goto ROT_NONINTERP;
         }
     }
     else
     {
-        // NNS_G3D_JNTANM_RINFO_STEP_4‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_RINFO_STEP_4ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         if (frame & 3)
         {
             if (frame > last_interp)
@@ -1527,20 +1527,20 @@ getRotData_(MtxFx33* pRot,
                 goto ROT_NONINTERP;
             }
 
-            // •âŠÔˆ—‚ ‚è
+            // è£œé–“å‡¦ç†ã‚ã‚Š
             if (frame & 1)
             {
                 MtxFx33 tmp;
                 BOOL    doCross = FALSE;
                 if (frame & 2)
                 {
-                    // 3:1‚ÌˆÊ’u‚Å•âŠÔ
+                    // 3:1ã®ä½ç½®ã§è£œé–“
                     idx_sub = (frame >> 2);
                     idx = idx_sub + 1;
                 }
                 else
                 {
-                    // 1:3‚ÌˆÊ’u‚Å•âŠÔ
+                    // 1:3ã®ä½ç½®ã§è£œé–“
                     idx = (frame >> 2);
                     idx_sub = idx + 1;
                 }
@@ -1566,8 +1566,8 @@ getRotData_(MtxFx33* pRot,
                 
                 if (!doCross)
                 {
-                    // —¼•û‚Æ‚àRot3Œ`®‚Ìƒf[ƒ^‚¾‚Á‚½ê‡‚Í
-                    // ŠOÏ‚ÌŒvZ‚ğ”ğ‚¯‚é‚±‚Æ‚É‚·‚é
+                    // ä¸¡æ–¹ã¨ã‚‚Rot3å½¢å¼ã®ãƒ‡ãƒ¼ã‚¿ã ã£ãŸå ´åˆã¯
+                    // å¤–ç©ã®è¨ˆç®—ã‚’é¿ã‘ã‚‹ã“ã¨ã«ã™ã‚‹
                     pRot->_20 = (pRot->_20 * 3 + tmp._20) >> (2 * ROT_FILTER_SHIFT);
                     pRot->_21 = (pRot->_21 * 3 + tmp._21) >> (2 * ROT_FILTER_SHIFT);
                     pRot->_22 = (pRot->_22 * 3 + tmp._22) >> (2 * ROT_FILTER_SHIFT);
@@ -1586,7 +1586,7 @@ getRotData_(MtxFx33* pRot,
             }
             else
             {
-                // 50:50‚Ì•âŠÔ‚É‚È‚é
+                // 50:50ã®è£œé–“ã«ãªã‚‹
                 idx = frame >> 2;
                 goto ROT_INTERP_2;
             }
@@ -1662,8 +1662,8 @@ ROT_NONINTERP:
 /*---------------------------------------------------------------------------*
     getRotData_
 
-    ‰ñ“]s—ñ‚ğæ“¾‚µA*pRot‚ÉƒZƒbƒg‚·‚éB
-    ¬”“_ˆÈ‰º‚Ìê‡‚Í•âŠÔ‚ğs‚¤B
+    å›è»¢è¡Œåˆ—ã‚’å–å¾—ã—ã€*pRotã«ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
+    å°æ•°ç‚¹ä»¥ä¸‹ã®å ´åˆã¯è£œé–“ã‚’è¡Œã†ã€‚
  *---------------------------------------------------------------------------*/
 static void
 getRotDataEx_(MtxFx33* pRot,
@@ -1671,8 +1671,8 @@ getRotDataEx_(MtxFx33* pRot,
               const u32* pData,
               const NNSG3dResJntAnm* pJntAnm)
 {
-    // ‚±‚ÌŠÖ”‚É‚ÍA
-    // 0 < Frame < numFrame‚Æ‚È‚é‚æ‚¤‚ÈFrame‚µ‚©—ˆ‚È‚¢‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·B
+    // ã“ã®é–¢æ•°ã«ã¯ã€
+    // 0 < Frame < numFrameã¨ãªã‚‹ã‚ˆã†ãªFrameã—ã‹æ¥ãªã„ã‚ˆã†ã«ãªã£ã¦ã„ã¾ã™ã€‚
 
     const void* pArray = (const void*)((const u8*)pJntAnm + *(pData + 1));
     const void* pArrayRot3 = (const void*)((const u8*)pJntAnm + pJntAnm->ofsRot3);
@@ -1692,12 +1692,12 @@ getRotDataEx_(MtxFx33* pRot,
     if (frame == pJntAnm->numFrame - 1)
     {
         //
-        // Frame‚ªnumFrame - 1‚ÆnumFrame‚ÌŠÔ‚Ìê‡
-        // ‚¿‚å‚¤‚ÇÅIƒtƒŒ[ƒ€‚©‚çÅ‰‚ÌƒtƒŒ[ƒ€‚ÌŠÔ‚É‚ ‚éê‡
+        // FrameãŒnumFrame - 1ã¨numFrameã®é–“ã®å ´åˆ
+        // ã¡ã‚‡ã†ã©æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚‰æœ€åˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®é–“ã«ã‚ã‚‹å ´åˆ
         //
 
         //
-        // Å‰‚ÉÅIƒtƒŒ[ƒ€ƒf[ƒ^‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+        // æœ€åˆã«æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
         //
         if (!(info & NNS_G3D_JNTANM_RINFO_STEP_MASK))
         {
@@ -1713,17 +1713,17 @@ getRotDataEx_(MtxFx33* pRot,
         }
 
         //
-        // •âŠO‚·‚é‚©ÅI‚Ìƒf[ƒ^‚ğ•Ô‚·‚©‚Íƒtƒ‰ƒO‚ÅŒˆ‚Ü‚Á‚Ä‚¢‚éB
+        // è£œå¤–ã™ã‚‹ã‹æœ€çµ‚ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™ã‹ã¯ãƒ•ãƒ©ã‚°ã§æ±ºã¾ã£ã¦ã„ã‚‹ã€‚
         //
         if (pJntAnm->flag & NNS_G3D_JNTANM_OPTION_END_TO_START_INTERPOLATION)
         {
-            // •âŠO‚·‚éê‡‚ÍÅIƒf[ƒ^‚ÆÅ‰‚Ìƒf[ƒ^‚Ås‚¤(ƒ‹[ƒv)
+            // è£œå¤–ã™ã‚‹å ´åˆã¯æœ€çµ‚ãƒ‡ãƒ¼ã‚¿ã¨æœ€åˆã®ãƒ‡ãƒ¼ã‚¿ã§è¡Œã†(ãƒ«ãƒ¼ãƒ—)
             idx1 = 0;
             goto ROT_EX_0_1;
         }
         else
         {
-            // ÅI‚Ìƒf[ƒ^‚ğ•Ô‚·ê‡
+            // æœ€çµ‚ã®ãƒ‡ãƒ¼ã‚¿ã‚’è¿”ã™å ´åˆ
             if (getRotDataByIdx_(pRot,
                                  pArrayRot3,
                                  pArrayRot5,
@@ -1745,7 +1745,7 @@ getRotDataEx_(MtxFx33* pRot,
 
     if (!(info & NNS_G3D_JNTANM_RINFO_STEP_MASK))
     {
-        // NNS_G3D_JNTANM_RINFO_STEP_1‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_RINFO_STEP_1ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         goto ROT_EX_0;
     }
 
@@ -1754,11 +1754,11 @@ getRotDataEx_(MtxFx33* pRot,
 
     if (info & NNS_G3D_JNTANM_RINFO_STEP_2)
     {
-        // NNS_G3D_JNTANM_RINFO_STEP_2‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
-        // “™†‚ªŠÜ‚Ü‚ê‚é‚Ì‚ÍØ‚èÌ‚Ä‚ç‚ê‚½ƒf[ƒ^‚ğl—¶‚·‚é‚©‚ç
+        // NNS_G3D_JNTANM_RINFO_STEP_2ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
+        // ç­‰å·ãŒå«ã¾ã‚Œã‚‹ã®ã¯åˆ‡ã‚Šæ¨ã¦ã‚‰ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’è€ƒæ…®ã™ã‚‹ã‹ã‚‰
         if (frame >= last_interp)
         {
-            // ÅIƒtƒŒ[ƒ€ˆÈŠO‚ ‚è‚¦‚È‚¢
+            // æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥å¤–ã‚ã‚Šãˆãªã„
             idx0 = (last_interp >> 1);
             idx1 = idx0 + 1;
             goto ROT_EX_0_1;
@@ -1775,11 +1775,11 @@ getRotDataEx_(MtxFx33* pRot,
     }
     else
     {
-        // NNS_G3D_JNTANM_RINFO_STEP_4‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚é
+        // NNS_G3D_JNTANM_RINFO_STEP_4ãŒé¸æŠã•ã‚Œã¦ã„ã‚‹
         if (frame >= last_interp)
         {
-            // ‚±‚ÌŠÖ”‚ªŒÄ‚Ño‚³‚ê‚éğŒ‚É‚æ‚èAframe‚ªÅIƒf[ƒ^‚Å‚ ‚é‚±‚Æ‚Í‚È‚¢
-            // ‚Ì‚ÅˆÈ‰º‚ÌƒR[ƒh‚Å‹«ŠE‚ğ‚Í‚İo‚é‚±‚Æ‚Í‚È‚¢B
+            // ã“ã®é–¢æ•°ãŒå‘¼ã³å‡ºã•ã‚Œã‚‹æ¡ä»¶ã«ã‚ˆã‚Šã€frameãŒæœ€çµ‚ãƒ‡ãƒ¼ã‚¿ã§ã‚ã‚‹ã“ã¨ã¯ãªã„
+            // ã®ã§ä»¥ä¸‹ã®ã‚³ãƒ¼ãƒ‰ã§å¢ƒç•Œã‚’ã¯ã¿å‡ºã‚‹ã“ã¨ã¯ãªã„ã€‚
             idx0 = (frame >> 2) + (frame & 3);
             idx1 = idx0 + 1;
             goto ROT_EX_0_1;
@@ -1829,8 +1829,8 @@ ROT_EX:
 
         if (!doCross)
         {
-            // —¼•û‚Æ‚àRot3Œ`®‚Ìƒf[ƒ^‚¾‚Á‚½ê‡‚Í
-            // ŠOÏ‚ÌŒvZ‚ğ”ğ‚¯‚é‚±‚Æ‚É‚·‚é
+            // ä¸¡æ–¹ã¨ã‚‚Rot3å½¢å¼ã®ãƒ‡ãƒ¼ã‚¿ã ã£ãŸå ´åˆã¯
+            // å¤–ç©ã®è¨ˆç®—ã‚’é¿ã‘ã‚‹ã“ã¨ã«ã™ã‚‹
             pRot->_20 = ((r0._20 * step) + (((r1._20 - r0._20) * remainder) >> FX32_SHIFT)) >> (step_shift * ROT_FILTER_SHIFT);
             pRot->_21 = ((r0._21 * step) + (((r1._21 - r0._21) * remainder) >> FX32_SHIFT)) >> (step_shift * ROT_FILTER_SHIFT);
             pRot->_22 = ((r0._22 * step) + (((r1._22 - r0._22) * remainder) >> FX32_SHIFT)) >> (step_shift * ROT_FILTER_SHIFT);
@@ -1853,7 +1853,7 @@ ROT_EX:
 /*---------------------------------------------------------------------------*
     getRotDataByIdx_
 
-    ƒCƒ“ƒfƒbƒNƒX‚©‚çRot3,Rot5‚¢‚¸‚ê‚©‚Ìƒf[ƒ^‚ğæ‚èo‚µApRot‚ÉŠi”[‚·‚éB
+    ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰Rot3,Rot5ã„ãšã‚Œã‹ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã—ã€pRotã«æ ¼ç´ã™ã‚‹ã€‚
  *---------------------------------------------------------------------------*/
 static BOOL
 getRotDataByIdx_(MtxFx33* pRot,
@@ -1871,8 +1871,8 @@ getRotDataByIdx_(MtxFx33* pRot,
         pRot->_10 = pRot->_11 = pRot->_12 =
         pRot->_20 = pRot->_21 = pRot->_22 = 0;
 
-        // data[0] NNSG3dJntAnmPivotInfo‚Ìƒtƒ‰ƒOƒf[ƒ^
-        // data[1], data[2] s—ñ‚Ì”ñ0—v‘f
+        // data[0] NNSG3dJntAnmPivotInfoã®ãƒ•ãƒ©ã‚°ãƒ‡ãƒ¼ã‚¿
+        // data[1], data[2] è¡Œåˆ—ã®é0è¦ç´ 
         data = (const fx16*)pArrayRot3 + ((info & NNS_G3D_JNTANM_RIDX_IDXDATA_MASK) * 3);
         A = *(data + 1);
         B = *(data + 2);
@@ -1890,12 +1890,12 @@ getRotDataByIdx_(MtxFx33* pRot,
         pRot->a[pivotUtil_[idxPivot][3]] =
             (*data & NNS_G3D_JNTANM_PIVOTINFO_SIGN_REVD) ? -A : A;
 
-        // 3s–Ú‚Ü‚Å–„‚Ü‚Á‚Ä‚é
+        // 3è¡Œç›®ã¾ã§åŸ‹ã¾ã£ã¦ã‚‹
         return FALSE;
     }
     else
     {
-        // Rot5‚©‚çƒf[ƒ^‚ğˆø‚¢‚Ä‚­‚é
+        // Rot5ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å¼•ã„ã¦ãã‚‹
         const fx16* data = (fx16*)pArrayRot5 +
                            ((info & NNS_G3D_JNTANM_RIDX_IDXDATA_MASK) * 5);
         fx16 _12;
@@ -1915,11 +1915,11 @@ getRotDataByIdx_(MtxFx33* pRot,
         _12 = (fx16)((_12 << 3) | (data[3] & 7));
         pRot->_10 = (data[3] >> 3);
 
-        // •„†Šg’£‚³‚ê‚é‚æ‚¤‚ÉƒVƒtƒg‚µ‚½’l‚ğfx16‚ÉƒLƒƒƒXƒg‚µ‚Ä‚©‚ç
-        // fx32‚ÉˆÃ–ÙƒLƒƒƒXƒg‚·‚é
+        // ç¬¦å·æ‹¡å¼µã•ã‚Œã‚‹ã‚ˆã†ã«ã‚·ãƒ•ãƒˆã—ãŸå€¤ã‚’fx16ã«ã‚­ãƒ£ã‚¹ãƒˆã—ã¦ã‹ã‚‰
+        // fx32ã«æš—é»™ã‚­ãƒ£ã‚¹ãƒˆã™ã‚‹
         pRot->_12 = ((fx16)(_12 << 3) >> 3);
 
-        // 3s–Ú‚ÍŠOÏ‚Å‹‚ß‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+        // 3è¡Œç›®ã¯å¤–ç©ã§æ±‚ã‚ãªã‘ã‚Œã°ãªã‚‰ãªã„
         return TRUE;
     }
 }

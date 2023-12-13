@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_002.s
- *@brief	�퓬�V�[�P���X
- *			�|�P����HP�v�Z�V�[�P���X
+ *@brief	戦闘シーケンス
+ *			ポケモンHP計算シーケンス
  *@author	HisashiSogabe
  *@data		2005.07.29
  *
@@ -15,24 +15,24 @@
 	.include	"waza_seq_def.h"
 
 SUB_002:
-	//�u�����N�G�t�F�N�g���邩���Ȃ����`�F�b�N
+	//ブリンクエフェクトするかしないかチェック
 	IF				IF_FLAG_BIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_BLINK,NoBlinkEffect
 	WAZAKOUKA_SE	SIDE_WORK
 	POKEMON_BLINK	SIDE_WORK
 	SERVER_WAIT
-	//�������̃N���C�A���g�����Ȃ��Ƃ��́A�Z�̉��V�ł͂Ȃ��A�^�[���I����̏����ł�HP�����Ȃ̂ŁA
-	//�З͎�߂�`�F�b�N�͂��Ȃ�
+	//未処理のクライアントがいないときは、技の応酬ではなく、ターン終了後の処理でのHP増減なので、
+	//威力弱めるチェックはしない
 	IF				IF_FLAG_EQ,BUF_PARA_CLIENT_WORKING_COUNT,0,NoBlinkEffect
-	//���Q�̈З͂���߂鑕�����ʂ̃`�F�b�N
+	//抜群の威力を弱める装備効果のチェック
 	GOSUB			SUB_SEQ_SOUBI_BATSUGUN_DOWN_CHECK
 NoBlinkEffect:
-	//�t���O�͗��Ƃ��Ă���
+	//フラグは落としておく
 	VALUE			VAL_NBIT,BUF_PARA_SERVER_STATUS_FLAG,SERVER_STATUS_FLAG_NO_BLINK
 	HP_GAUGE_CALC	SIDE_WORK
 	SERVER_WAIT
 	HP_CALC			SIDE_WORK
 	KIZETSU_CHECK	SIDE_WORK
-	//�_���[�W�́A���߂������[�N�Ɋi�[
+	//ダメージは、だめおしワークに格納
 	IF				IF_FLAG_C,BUF_PARA_HP_CALC_WORK,0,SUB_002_END
 	VALUE_WORK		VAL_SET,BUF_PARA_DAMEOSHI_DAMAGE,BUF_PARA_HP_CALC_WORK
 SUB_002_END:

@@ -1,6 +1,6 @@
 /**
  *	@file	poru_tool.h
- *	@brief	ƒ|ƒ‹ƒgƒc[ƒ‹
+ *	@brief	ãƒãƒ«ãƒˆãƒ„ãƒ¼ãƒ«
  *	@author	Miyuki Iwasawa
  *	@date	06.03.14
  */
@@ -18,28 +18,28 @@
 #include "application/pokelist.h"
 
 typedef enum{
- PORU_FAVOLITE_SUKI,	///<D‚«
- PORU_FAVOLITE_KIRAI,	///<ƒLƒ‰ƒC
- PORU_FAVOLITE_NRM,		///<•’Ê
+ PORU_FAVOLITE_SUKI,	///<å¥½ã
+ PORU_FAVOLITE_KIRAI,	///<ã‚­ãƒ©ã‚¤
+ PORU_FAVOLITE_NRM,		///<æ™®é€š
 }PORU_FAVOLITE;
 
-///ƒ|ƒ‹ƒgƒf[ƒ^ƒŠƒXƒg\‘¢
+///ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆæ§‹é€ 
 typedef struct _PORU_LIST{
-	u8	id;			///ƒf[ƒ^ID
-	u8	level;		///<ƒ|ƒ‹ƒg‚ÌƒŒƒxƒ‹
-	u8	flavor;		///<ƒ|ƒ‹ƒg‚Ìí—Ş
-	u8	taste;		///<‚È‚ß‚ç‚©‚³
+	u8	id;			///ãƒ‡ãƒ¼ã‚¿ID
+	u8	level;		///<ãƒãƒ«ãƒˆã®ãƒ¬ãƒ™ãƒ«
+	u8	flavor;		///<ãƒãƒ«ãƒˆã®ç¨®é¡
+	u8	taste;		///<ãªã‚ã‚‰ã‹ã•
 
 	union{
 		struct{
-		u8	spicy:1;	///<‚Á‚Ä‚¢‚é–¡
+		u8	spicy:1;	///<æŒã£ã¦ã„ã‚‹å‘³
 		u8	astr:1;
 		u8	sweet:1;
 		u8	bitter:1;
 		u8	sour:1;
-		u8	view:1;	///<•`‰æƒtƒ‰ƒO
-		u8	del:1;		///<íœƒtƒ‰ƒO
-		u8	valid:1;	///<—LŒø/–³Œøƒtƒ‰ƒO
+		u8	view:1;	///<æç”»ãƒ•ãƒ©ã‚°
+		u8	del:1;		///<å‰Šé™¤ãƒ•ãƒ©ã‚°
+		u8	valid:1;	///<æœ‰åŠ¹/ç„¡åŠ¹ãƒ•ãƒ©ã‚°
 		};
 		u8 flags;
 	};
@@ -50,62 +50,62 @@ typedef struct _PORU_LIST{
 //	STRBUF	*lvbuf;
 }PORU_LIST;
 
-///ƒ|ƒ‹ƒgŒÄ‚Ño‚µƒ[ƒN
+///ãƒãƒ«ãƒˆå‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯
 typedef struct _PORUTO_PARAM{
-	u8		porunum;	///<ŒÄ‚Ño‚µ‚Ìƒ|ƒ‹ƒg‚Ì”
+	u8		porunum;	///<å‘¼ã³å‡ºã—æ™‚ã®ãƒãƒ«ãƒˆã®æ•°
 	u8		selID;
-	u8		ret_mode;	///<ƒŠƒ^[ƒ“’l
-	u8		ret_view;	///<ƒŠƒ^[ƒ“viewƒ‚[ƒh
-	u16		listPos;	///<‰ŠúƒŠƒXƒgƒ|ƒWƒVƒ‡ƒ“
-	u16		curPos;		///<‰ŠúƒJ[ƒ\ƒ‹ƒ|ƒWƒVƒ‡ƒ“
+	u8		ret_mode;	///<ãƒªã‚¿ãƒ¼ãƒ³å€¤
+	u8		ret_view;	///<ãƒªã‚¿ãƒ¼ãƒ³viewãƒ¢ãƒ¼ãƒ‰
+	u16		listPos;	///<åˆæœŸãƒªã‚¹ãƒˆãƒã‚¸ã‚·ãƒ§ãƒ³
+	u16		curPos;		///<åˆæœŸã‚«ãƒ¼ã‚½ãƒ«ãƒã‚¸ã‚·ãƒ§ãƒ³
 	
-	PORUTO_BLOCK* poruSave;	///<ƒ|ƒ‹ƒgƒZ[ƒuƒf[ƒ^
-	MYSTATUS	*mySave;	///<ƒXƒe[ƒ^ƒX
-	POKEPARTY	*ppSave;	///<ƒ|ƒPƒp[ƒeƒB
-	MYITEM		*itemSave;	///<ƒAƒCƒeƒ€
-	CONFIG		*configSave;	///<ƒRƒ“ƒtƒBƒO
+	PORUTO_BLOCK* poruSave;	///<ãƒãƒ«ãƒˆã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+	MYSTATUS	*mySave;	///<ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	POKEPARTY	*ppSave;	///<ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£
+	MYITEM		*itemSave;	///<ã‚¢ã‚¤ãƒ†ãƒ 
+	CONFIG		*configSave;	///<ã‚³ãƒ³ãƒ•ã‚£ã‚°
 
-	PORU_LIST	list[PORUTO_STOCK_MAX];	///<‘€ìƒf[ƒ^—ñ
+	PORU_LIST	list[PORUTO_STOCK_MAX];	///<æ“ä½œãƒ‡ãƒ¼ã‚¿åˆ—
 }PORUTO_PARAM;
 
-///ƒI[ƒo[ƒŒƒCƒvƒƒZƒXŠO•”QÆéŒ¾
+///ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ—ãƒ­ã‚»ã‚¹å¤–éƒ¨å‚ç…§å®£è¨€
 extern const PROC_DATA PorutoSysProcData;
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒVƒXƒeƒ€ŒÄ‚Ño‚µƒ[ƒNƒf[ƒ^ì¬
+ *	@brief	ãƒãƒ«ãƒˆã‚·ã‚¹ãƒ†ãƒ å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ä½œæˆ
  *
- *	–•K‚¸ PorutoSys_ReleaseCallWork()ŠÖ”‚Å‰ğ•ú‚·‚é‚±‚ÆI
+ *	ï¼Šå¿…ãš PorutoSys_ReleaseCallWork()é–¢æ•°ã§è§£æ”¾ã™ã‚‹ã“ã¨ï¼
  */
 extern PORUTO_PARAM* PorutoSys_CreateCallWork(SAVEDATA* savedata,int heapID);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒXŒÄ‚Ño‚µƒ[ƒN‚ğ‰ğ•ú‚·‚é
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾ã™ã‚‹
  */
 extern void PorutoSys_ReleaseCallWork(PORUTO_PARAM* pp);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒf[ƒ^‚Æ«Ši‚©‚ç‚»‚Ìƒ|ƒ‹ƒg‚ğD‚«‚©Œ™‚¢‚©•Ô‚·
+ *	@brief	ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ã¨æ€§æ ¼ã‹ã‚‰ãã®ãƒãƒ«ãƒˆã‚’å¥½ãã‹å«Œã„ã‹è¿”ã™
  */
 extern PORU_FAVOLITE PoruSys_IsFavolite(PORUTO_DATA *dat,u8 seikaku);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒpƒ‰ƒ[ƒ^‚ğƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^‚ÉPush‚·‚é
+ *	@brief	ãƒãƒ«ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã«Pushã™ã‚‹
  */
 extern void PoruSys_PoruPara2Poke(PORUTO_DATA* dat,POKEMON_PARAM* poke);
 
 /**
- *	@brief	«Ši‚©‚ç‚Ç‚Ì–¡‚ªD‚«‚©Œ™‚¢‚©•Ô‚·
+ *	@brief	æ€§æ ¼ã‹ã‚‰ã©ã®å‘³ãŒå¥½ãã‹å«Œã„ã‹è¿”ã™
  *
- *	@param	ƒ|ƒPƒ‚ƒ“‚Ì«ŠiNo
- *	@param	mode	PORU_FAVOLITE_SUKI:D‚«‚È–¡ƒ^ƒCƒv‚ğ•Ô‚·
- *					PORU_FAVOLITE_KIRAI:ƒLƒ‰ƒC‚È–¡ƒ^ƒCƒv‚ğ•Ô‚·
+ *	@param	ãƒã‚±ãƒ¢ãƒ³ã®æ€§æ ¼No
+ *	@param	mode	PORU_FAVOLITE_SUKI:å¥½ããªå‘³ã‚¿ã‚¤ãƒ—ã‚’è¿”ã™
+ *					PORU_FAVOLITE_KIRAI:ã‚­ãƒ©ã‚¤ãªå‘³ã‚¿ã‚¤ãƒ—ã‚’è¿”ã™
  *
- *	@retval	PORUTO_FTYPE_SPICY	h‚¢
- *	@retval	PORUTO_FTYPE_ASTR	‚µ‚Ô‚¢
- *	@retval	PORUTO_FTYPE_SWEET	‚ ‚Ü‚¢
- *	@retval	PORUTO_FTYPE_BITTER	‹ê‚¢
- *	@retval	PORUTO_FTYPE_SOUR	‚·‚Á‚Ï‚¢
- *	@retval	PORUTO_FTYPE_MIX	D‚«Œ™‚¢‚ª‚È‚¢
+ *	@retval	PORUTO_FTYPE_SPICY	è¾›ã„
+ *	@retval	PORUTO_FTYPE_ASTR	ã—ã¶ã„
+ *	@retval	PORUTO_FTYPE_SWEET	ã‚ã¾ã„
+ *	@retval	PORUTO_FTYPE_BITTER	è‹¦ã„
+ *	@retval	PORUTO_FTYPE_SOUR	ã™ã£ã±ã„
+ *	@retval	PORUTO_FTYPE_MIX	å¥½ãå«Œã„ãŒãªã„
  */
 extern u8	PoruSys_GetFavolite(u8 seikaku,PORU_FAVOLITE mode);
 

@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_091.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			091�@�G�̂g�o�Ǝ����̂g�o�𑫂��āA����𔼕��ɂ��Ă��ꂼ��ɕ�����
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			091　敵のＨＰと自分のＨＰを足して、それを半分にしてそれぞれに分ける
  *
  *@author	HisashiSogabe
  *@data		2005.10.03

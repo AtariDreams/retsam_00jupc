@@ -1,6 +1,6 @@
 //====================================================================
 //						r229
-//					ƒtƒB[ƒ‹ƒhEƒ[ƒh229
+//					ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ»ãƒ­ãƒ¼ãƒ‰229
 //====================================================================
 
 	.text
@@ -10,11 +10,11 @@
 	//.include	"../eventdata/zone_r229evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r229_middleman1
 _EVENT_DATA		ev_r229_sign1
@@ -29,50 +29,50 @@ _EVENT_DATA_END
 
 
 /********************************************************************/
-/*							‚¨‚¶‚³‚ñ								*/
+/*							ãŠã˜ã•ã‚“								*/
 /********************************************************************/
 ev_r229_middleman1:
 	_TALK_OBJ_START
 
-	/*‚·‚Å‚ÉƒAƒCƒeƒ€“üŽè‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_R229_ITEM_GET,ev_r229_middleman1_02
 
-	/*u‚ ‚°‚¿‚á‚¤‚æv*/
+	/*ã€Œã‚ã’ã¡ã‚ƒã†ã‚ˆã€*/
 	_TALK_KEYWAIT	msg_r229_middleman1_01
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_KINNOTAMA
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r229_middleman1_item_event_fail
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
 	_FLAG_SET		FE_R229_ITEM_GET
 
-	/*‚à‚¤1‚Â‚ ‚°‚é—¬‚ê*/
+	/*ã‚‚ã†1ã¤ã‚ã’ã‚‹æµã‚Œ*/
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_KINNOTAMA
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r229_middleman1_02		/*‚à‚¤1‚Â“n‚¹‚È‚¢Žž‚ÍI—¹‚Å‚æ‚¢*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r229_middleman1_02		/*ã‚‚ã†1ã¤æ¸¡ã›ãªã„æ™‚ã¯çµ‚äº†ã§ã‚ˆã„*/
 
-	/*u‚à‚¤‚¢‚Á‚±‚ ‚°‚æ‚¤v*/
+	/*ã€Œã‚‚ã†ã„ã£ã“ã‚ã’ã‚ˆã†ã€*/
 	_TALK_KEYWAIT	msg_r229_middleman1_02
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
 	_JUMP			ev_r229_middleman1_02
 	_END
 
-/*‚·‚Å‚ÉƒAƒCƒeƒ€“üŽè‚µ‚Ä‚¢‚½‚ç*/
+/*ã™ã§ã«ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 ev_r229_middleman1_02:
 	_TALKMSG		msg_r229_middleman1_03
 	_LAST_KEYWAIT
@@ -80,9 +80,9 @@ ev_r229_middleman1_02:
 	_TALK_OBJ_END
 	_END
 
-/*ƒAƒCƒeƒ€“üŽèŽ¸”s*/
+/*ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹å¤±æ•—*/
 ev_r229_middleman1_item_event_fail:
-	//ƒAƒCƒeƒ€Žæ“¾Ž¸”sƒCƒxƒ“ƒg(‹¤’ÊƒƒbƒZ[ƒW‚ðo‚·Aê—p‚ðŽg—p‚·‚é‚Æ‚«‚Í‚¢‚ç‚È‚¢)
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å¤±æ•—ã‚¤ãƒ™ãƒ³ãƒˆ(å…±é€šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™ã€å°‚ç”¨ã‚’ä½¿ç”¨ã™ã‚‹ã¨ãã¯ã„ã‚‰ãªã„)
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
 	_TALK_CLOSE
 	_TALK_OBJ_END
@@ -90,7 +90,7 @@ ev_r229_middleman1_item_event_fail:
 
 
 /********************************************************************/
-/*							“¹˜HŠÅ”Â								*/
+/*							é“è·¯çœ‹æ¿								*/
 /********************************************************************/
 ev_r229_sign1:
 	_EASY_BOARD_MSG	msg_r229_sign1_01,BOARD_TYPE_ROAD,0

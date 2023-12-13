@@ -1,5 +1,5 @@
-//NcgOutCharTextコンバータ Version:1.01
-//キャラクタ数 = 0x4e(78)
+//NcgOutCharText繧ｳ繝ｳ繝舌�ｼ繧ｿ Version:1.01
+//繧ｭ繝｣繝ｩ繧ｯ繧ｿ謨ｰ = 0x4e(78)
 ALIGN4 const u8 gage_parts[] = {
 //0x0
 	0xff,0xff,0xff,0xff,0x33,0x33,0x33,0x33,

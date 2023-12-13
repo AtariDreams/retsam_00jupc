@@ -24,9 +24,9 @@ extern "C" {
 
 typedef struct NNSiG2dBitReader
 {
-    const u8* src;          // “Ç‚ÝŽæ‚èˆÊ’u‚Ö‚Ìƒ|ƒCƒ“ƒ^
-    s8 availableBits;       // bits’†‚Ì–¢“Ç‚ÝŽæ‚èƒrƒbƒg”
-    u8 bits;                // ƒoƒCƒgƒLƒƒƒbƒVƒ…
+    const u8* src;          // èª­ã¿å–ã‚Šä½ç½®ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+    s8 availableBits;       // bitsä¸­ã®æœªèª­ã¿å–ã‚Šãƒ“ãƒƒãƒˆæ•°
+    u8 bits;                // ãƒã‚¤ãƒˆã‚­ãƒ£ãƒƒã‚·ãƒ¥
     u8 padding_[2];         //
 }
 NNSiG2dBitReader;
@@ -36,12 +36,12 @@ NNSiG2dBitReader;
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dBitReaderInit
 
-  Description:  BitReader ‚ð‰Šú‰»‚µ‚Ü‚·B
+  Description:  BitReader ã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚
 
-  Arguments:    reader: ‰Šú‰»‚·‚é BitReader ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                src:    ƒrƒbƒg‚ð“Ç‚ÝŽæ‚éƒoƒCƒg—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    reader: åˆæœŸåŒ–ã™ã‚‹ BitReader ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                src:    ãƒ“ãƒƒãƒˆã‚’èª­ã¿å–ã‚‹ãƒã‚¤ãƒˆåˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNSi_G2dBitReaderInit(NNSiG2dBitReader* reader, const void* src)
 {
@@ -55,12 +55,12 @@ NNS_G2D_INLINE void NNSi_G2dBitReaderInit(NNSiG2dBitReader* reader, const void* 
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dBitReaderRead
 
-  Description:  ƒrƒbƒg—ñ‚ð“Ç‚ÝŽæ‚è‚Ü‚·B
+  Description:  ãƒ“ãƒƒãƒˆåˆ—ã‚’èª­ã¿å–ã‚Šã¾ã™ã€‚
 
-  Arguments:    reader: BitReader ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
-                nBits:  “Ç‚ÝŽæ‚éƒrƒbƒg”B8ˆÈ‰º‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
+  Arguments:    reader: BitReader ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+                nBits:  èª­ã¿å–ã‚‹ãƒ“ãƒƒãƒˆæ•°ã€‚8ä»¥ä¸‹ã§ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚
 
-  Returns:      “Ç‚ÝŽæ‚Á‚½ƒrƒbƒg—ñB
+  Returns:      èª­ã¿å–ã£ãŸãƒ“ãƒƒãƒˆåˆ—ã€‚
  *---------------------------------------------------------------------------*/
 u32 NNSi_G2dBitReaderRead(NNSiG2dBitReader* reader, int nBits);
 
@@ -69,18 +69,18 @@ u32 NNSi_G2dBitReaderRead(NNSiG2dBitReader* reader, int nBits);
 /*---------------------------------------------------------------------------*
   Name:         NNSi_G2dBitReaderAlignByte
 
-  Description:  ƒoƒCƒgƒoƒbƒtƒ@“à‚Ì—]‚è‚Ìƒrƒbƒg‚ðŽÌ‚Ä‚Ü‚·B
-                ‚±‚ê‚É‚æ‚èŽŸ‚É“Ç‚Ýž‚Ü‚ê‚éƒrƒbƒg‚Í“Ç‚Ýž‚ÝŒ³‚Ì
-                ŠeƒoƒCƒgæ“ª‚É‚È‚è‚Ü‚·B
+  Description:  ãƒã‚¤ãƒˆãƒãƒƒãƒ•ã‚¡å†…ã®ä½™ã‚Šã®ãƒ“ãƒƒãƒˆã‚’æ¨ã¦ã¾ã™ã€‚
+                ã“ã‚Œã«ã‚ˆã‚Šæ¬¡ã«èª­ã¿è¾¼ã¾ã‚Œã‚‹ãƒ“ãƒƒãƒˆã¯èª­ã¿è¾¼ã¿å…ƒã®
+                å„ãƒã‚¤ãƒˆå…ˆé ­ã«ãªã‚Šã¾ã™ã€‚
 
-  Arguments:    reader: BitReader ‚Ö‚Ìƒ|ƒCƒ“ƒ^B
+  Arguments:    reader: BitReader ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
 
-  Returns:      ‚È‚µB
+  Returns:      ãªã—ã€‚
  *---------------------------------------------------------------------------*/
 NNS_G2D_INLINE void NNSi_G2dBitReaderAlignByte(NNSiG2dBitReader* reader)
 {
-    // availableBits ‚ª 8 ‚Å‚È‚¯‚ê‚Î 0 ‚É‚·‚é
-    // availableBits ‚ª 8 ˆÈ‰º‚Å‚ ‚é‚±‚Æ‚ð‰¼’è
+    // availableBits ãŒ 8 ã§ãªã‘ã‚Œã° 0 ã«ã™ã‚‹
+    // availableBits ãŒ 8 ä»¥ä¸‹ã§ã‚ã‚‹ã“ã¨ã‚’ä»®å®š
     reader->availableBits &= 8;
 }
 

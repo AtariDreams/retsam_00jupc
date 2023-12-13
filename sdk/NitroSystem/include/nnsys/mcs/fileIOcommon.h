@@ -22,7 +22,7 @@ extern "C" {
 
 
 /* ========================================================================
-    定数定義
+    螳壽焚螳夂ｾｩ
    ======================================================================== */
 
 enum
@@ -47,7 +47,7 @@ enum
     NNS_MCS_FILEIO_FLAG_CREATEDIR = 1 << 5
 };
 
-//  windef.h の MAX_PATH と同じ
+//  windef.h 縺ｮ MAX_PATH 縺ｨ蜷後§
 #define NNS_MCS_FILEIO_PATH_MAX 260
 
 enum
@@ -57,7 +57,7 @@ enum
     NNS_MCS_FILEIO_SEEK_END
 };
 
-// winnt.h で定義されているファイル属性の値と同じ
+// winnt.h 縺ｧ螳夂ｾｩ縺輔ｌ縺ｦ縺�繧九ヵ繧｡繧､繝ｫ螻樊ｧ縺ｮ蛟､縺ｨ蜷後§
 enum
 {
     NNS_MCS_FILEIO_ATTRIBUTE_READONLY             = 0x00000001,

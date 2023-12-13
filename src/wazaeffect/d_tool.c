@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	d_tool.h
- * @brief	í“¬—pƒfƒoƒbƒO‰æ–Ê
+ * @brief	æˆ¦é—˜ç”¨ãƒ‡ãƒãƒƒã‚°ç”»é¢
  * @author	goto
- * @date	2005.10.25(‰Î)
+ * @date	2005.10.25(ç«)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -32,7 +32,7 @@
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒEƒBƒ“ƒhƒE‚Ìì¬
+ * @brief	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½œæˆ
  *
  * @param	bgl	
  * @param	win	
@@ -56,7 +56,7 @@ void DT_WinAdd(GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, u8 frm, u8 x, u8 y, u8 sx, u
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW—Ìˆæ‰Šú‰»
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é ˜åŸŸåˆæœŸåŒ–
  *
  * @param	bgl	
  * @param	index
@@ -74,7 +74,7 @@ void DT_MsgClear(GF_BGL_INI* bgl, GF_BGL_BMPWIN* win)
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒbƒZ[ƒW•\¦
+ * @brief	ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
  *
  * @param	bgl
  * @param	index	
@@ -91,35 +91,35 @@ void DT_MsgPrint(GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, STRBUF* str, u16 x, u16 y,
 	MSG_PRINT_HEADER	mph;
 	STRBUF* strbuf = (STRBUF*)str;
 	
-	mph.msg			= (const u16*)strbuf;	///< •¶š—ñ
-	mph.bmpwin		= win;					///< •`‰æƒEƒBƒ“ƒhƒE
-	mph.msg_index	= 0;					///< ƒƒbƒZ[ƒWƒCƒ“ƒfƒbƒNƒX(ƒCƒ}ƒCƒ`“ä
-	mph.fnt_index	= FONT_SYSTEM;			///< ƒtƒHƒ“ƒg
+	mph.msg			= (const u16*)strbuf;	///< æ–‡å­—åˆ—
+	mph.bmpwin		= win;					///< æç”»ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+	mph.msg_index	= 0;					///< ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(ã‚¤ãƒã‚¤ãƒè¬
+	mph.fnt_index	= FONT_SYSTEM;			///< ãƒ•ã‚©ãƒ³ãƒˆ
 
-	mph.start_x		= x;					///< ƒEƒCƒ“ƒhƒE“à•\¦ŠJn‚wƒIƒtƒZƒbƒg
-	mph.start_y		= y;					///< ƒEƒCƒ“ƒhƒE“à•\¦ŠJn‚xƒIƒtƒZƒbƒg
-	mph.write_x		= x;					///< ƒEƒCƒ“ƒhƒE“à•`‰æ‚wƒIƒtƒZƒbƒg(‰Šú’l‚Ístart_x‚Æ“¯‚¶)
-	mph.write_y		= y;					///< ƒEƒCƒ“ƒhƒE“à•`‰æ‚xƒIƒtƒZƒbƒg(‰Šú’l‚Ístart_y‚Æ“¯‚¶)
-	mph.space_x		= 0;					///< •¶šŠÔŠu‚w
-	mph.space_y		= 0;					///< •¶šŠÔŠu‚x
-	mph.style		= 0;					///< ƒtƒHƒ“ƒgƒXƒ^ƒCƒ‹
+	mph.start_x		= x;					///< ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹ï¼¸ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.start_y		= y;					///< ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…è¡¨ç¤ºé–‹å§‹ï¼¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	mph.write_x		= x;					///< ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…æç”»ï¼¸ã‚ªãƒ•ã‚»ãƒƒãƒˆ(åˆæœŸå€¤ã¯start_xã¨åŒã˜)
+	mph.write_y		= y;					///< ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…æç”»ï¼¹ã‚ªãƒ•ã‚»ãƒƒãƒˆ(åˆæœŸå€¤ã¯start_yã¨åŒã˜)
+	mph.space_x		= 0;					///< æ–‡å­—é–“éš”ï¼¸
+	mph.space_y		= 0;					///< æ–‡å­—é–“éš”ï¼¹
+	mph.style		= 0;					///< ãƒ•ã‚©ãƒ³ãƒˆã‚¹ã‚¿ã‚¤ãƒ«
 	if (flag == 1){
-		mph.f_col	= 4;					///< •¶šFƒiƒ“ƒo[
-		mph.b_col	= 1;					///< ”wŒiFƒiƒ“ƒo[
-		mph.s_col	= 2;					///< ‰eF@ƒiƒ“ƒo[
+		mph.f_col	= 4;					///< æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼
+		mph.b_col	= 1;					///< èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+		mph.s_col	= 2;					///< å½±è‰²ã€€ãƒŠãƒ³ãƒãƒ¼
 	}
 	else if (flag == 2){
-		mph.f_col	= 6;					///< •¶šFƒiƒ“ƒo[
-		mph.b_col	= 1;					///< ”wŒiFƒiƒ“ƒo[
-		mph.s_col	= 1;					///< ‰eF@ƒiƒ“ƒo[
+		mph.f_col	= 6;					///< æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼
+		mph.b_col	= 1;					///< èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+		mph.s_col	= 1;					///< å½±è‰²ã€€ãƒŠãƒ³ãƒãƒ¼
 	}
 	else {
-		mph.f_col	= 3;					///< •¶šFƒiƒ“ƒo[
-		mph.b_col	= 1;					///< ”wŒiFƒiƒ“ƒo[
-		mph.s_col	= 1;					///< ‰eF@ƒiƒ“ƒo[
+		mph.f_col	= 3;					///< æ–‡å­—è‰²ãƒŠãƒ³ãƒãƒ¼
+		mph.b_col	= 1;					///< èƒŒæ™¯è‰²ãƒŠãƒ³ãƒãƒ¼
+		mph.s_col	= 1;					///< å½±è‰²ã€€ãƒŠãƒ³ãƒãƒ¼
 	}
-	mph.dot_tbl		= 0;					///< Šg‘å—pƒhƒbƒgƒe[ƒuƒ‹
-	mph.dot_wy		= 0;					///< Šg‘å‚ÌYÀ•W‚Ì•`‰æ•â³’l	
+	mph.dot_tbl		= 0;					///< æ‹¡å¤§ç”¨ãƒ‰ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
+	mph.dot_wy		= 0;					///< æ‹¡å¤§æ™‚ã®Yåº§æ¨™ã®æç”»è£œæ­£å€¤	
 
 	GF_STR_Print( &mph, 0, NULL );
 }

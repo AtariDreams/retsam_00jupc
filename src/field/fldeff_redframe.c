@@ -2,7 +2,7 @@
 /**
  * 
  * @file	fldeff_redframe.c
- * @brief	ÉtÉBÅ[ÉãÉhOBJ ê‘òg
+ * @brief	„Éï„Ç£„Éº„É´„ÉâOBJ Ëµ§Êû†
  * @author	kagaya
  * @data	05.07.13
  *
@@ -19,23 +19,23 @@
 //==============================================================================
 //	define
 //==============================================================================
-#define REDFRAME_ANIME_FRAME (1)				///<É}Å[ÉNÉAÉjÉÅÉtÉåÅ[ÉÄ
+#define REDFRAME_ANIME_FRAME (1)				///<„Éû„Éº„ÇØ„Ç¢„Éã„É°„Éï„É¨„Éº„É†
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_REDFRAMEç\ë¢ëÃ
+///	FE_REDFRAMEÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct _TAG_FE_REDFRAME
 {
 	FE_SYS *fes;
 }FE_REDFRAME;
 
-#define FE_REDFRAME_SIZE (sizeof(FE_REDFRAME))	///<FE_REDFRAMEÉTÉCÉY
+#define FE_REDFRAME_SIZE (sizeof(FE_REDFRAME))	///<FE_REDFRAME„Çµ„Ç§„Ç∫
 
 //--------------------------------------------------------------
-///	REDFRAME_ADD_Hç\ë¢ëÃ
+///	REDFRAME_ADD_HÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct
 {
@@ -46,7 +46,7 @@ typedef struct
 }REDFRAME_ADD_H;
 
 //--------------------------------------------------------------
-///	REDFRAME_WORKç\ë¢ëÃ
+///	REDFRAME_WORKÊßãÈÄ†‰Ωì
 //--------------------------------------------------------------
 typedef struct
 {
@@ -61,7 +61,7 @@ typedef struct
 #define REDFRAME_WORK_SIZE (sizeof(REDFRAME_WORK))
 
 //==============================================================================
-//	ÉvÉçÉgÉ^ÉCÉv
+//	„Éó„É≠„Éà„Çø„Ç§„Éó
 //==============================================================================
 static void RedFrame_GraphicInit( FE_REDFRAME_PTR red );
 static void RedFrame_GraphicDelete( FE_REDFRAME_PTR red );
@@ -70,11 +70,11 @@ static const EOA_H_NPP DATA_EoaH_RedFrame;
 const BLACT_ANIME_TBL DATA_BlActAnmTbl_RedFrame[];
 
 //==============================================================================
-//	É}Å[ÉN	ÉVÉXÉeÉÄ
+//	„Éû„Éº„ÇØ	„Ç∑„Çπ„ÉÜ„É†
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * É}Å[ÉNèâä˙âª
+ * „Éû„Éº„ÇØÂàùÊúüÂåñ
  * @param	fes		FE_SYS_PTR
  * @retval	FE_REDFRAME_PTR FE_REDFRAME_PTR
  */
@@ -92,7 +92,7 @@ void * FE_RedFrame_Init( FE_SYS *fes )
 
 //--------------------------------------------------------------
 /**
- * É}Å[ÉNçÌèú
+ * „Éû„Éº„ÇØÂâäÈô§
  * @param	kusa		FE_REDFRAME_PTR
  * @retval	nothing
  */
@@ -105,11 +105,11 @@ void FE_RedFrame_Delete( void *work )
 }
 
 //==============================================================================
-//	É}Å[ÉNÅ@ÉOÉâÉtÉBÉbÉN
+//	„Éû„Éº„ÇØ„ÄÄ„Ç∞„É©„Éï„Ç£„ÉÉ„ÇØ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * É}Å[ÉNÅ@ÉOÉâÉtÉBÉbÉNèâä˙âª
+ * „Éû„Éº„ÇØ„ÄÄ„Ç∞„É©„Éï„Ç£„ÉÉ„ÇØÂàùÊúüÂåñ
  * @param	red	FE_GRASS_PTR
  * @retval	nothing
  */
@@ -128,7 +128,7 @@ static void RedFrame_GraphicInit( FE_REDFRAME_PTR red )
 
 //--------------------------------------------------------------
 /**
- * É}Å[ÉNÅ@ÉOÉâÉtÉBÉbÉNçÌèú
+ * „Éû„Éº„ÇØ„ÄÄ„Ç∞„É©„Éï„Ç£„ÉÉ„ÇØÂâäÈô§
  * @param	red	FE_REDFRAME_PTR
  * @retval	nothing
  */
@@ -142,11 +142,11 @@ static void RedFrame_GraphicDelete( FE_REDFRAME_PTR red )
 }
 
 //==============================================================================
-//	EOA É}Å[ÉN
+//	EOA „Éû„Éº„ÇØ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ÉtÉBÅ[ÉãÉhOBJópê‘ògí«â¡
+ * „Éï„Ç£„Éº„É´„ÉâOBJÁî®Ëµ§Êû†ËøΩÂä†
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	eoa			EOA_PTR
  */
@@ -175,10 +175,10 @@ EOA_PTR FE_FldOBJRedFrame_Add( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * EOA É}Å[ÉNÅ@èâä˙âª
+ * EOA „Éû„Éº„ÇØ„ÄÄÂàùÊúüÂåñ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=ê≥èÌèIóπÅBFALSE=àŸèÌèIóπ
+ * @retval	int		TRUE=Ê≠£Â∏∏ÁµÇ‰∫Ü„ÄÇFALSE=Áï∞Â∏∏ÁµÇ‰∫Ü
  */
 //--------------------------------------------------------------
 static int EoaRedFrame_Init( EOA_PTR eoa, void *wk )
@@ -202,7 +202,7 @@ static int EoaRedFrame_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA É}Å[ÉNÅ@çÌèú
+ * EOA „Éû„Éº„ÇØ„ÄÄÂâäÈô§
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -218,7 +218,7 @@ static void EoaRedFrame_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA É}Å[ÉNÅ@ìÆçÏ
+ * EOA „Éû„Éº„ÇØ„ÄÄÂãï‰Ωú
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -240,7 +240,7 @@ static void EoaRedFrame_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA É}Å[ÉNÅ@ï`âÊ
+ * EOA „Éû„Éº„ÇØ„ÄÄÊèèÁîª
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -274,7 +274,7 @@ static void EoaRedFrame_Draw( EOA_PTR eoa, void *wk )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	É}Å[ÉNEOA_H
+///	„Éû„Éº„ÇØEOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_RedFrame =
 {
@@ -286,7 +286,7 @@ static const EOA_H_NPP DATA_EoaH_RedFrame =
 };
 
 //--------------------------------------------------------------
-///	É}Å[ÉNÉAÉjÉÅ
+///	„Éû„Éº„ÇØ„Ç¢„Éã„É°
 //--------------------------------------------------------------
 static const BLACT_ANIME_TBL DATA_BlActAnmTbl_RedFrame[] =
 {

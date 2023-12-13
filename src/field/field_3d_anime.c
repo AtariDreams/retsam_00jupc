@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	field_3d_anime.c
- * @bfief	ƒtƒB[ƒ‹ƒh3DƒAƒjƒ[ƒVƒ‡ƒ“ŠÖ˜Aˆ—
+ * @bfief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰3Dã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–¢é€£å‡¦ç†
  * @author	Nozomu Saito
  *
  */
@@ -19,19 +19,19 @@
 
 #include "fielddata/build_model/build_model_id.h"
 
-#define ONE_MODEL_ANM_NUM_MAX	(4)	//‚P‚Â‚Ìƒ‚ƒfƒ‹‚É‘Î‚µ‚ÄÅ‘å‚S‚Â‚Ü‚ÅƒAƒjƒ‚ª‚Ä‚é‚Æ‚·‚é
+#define ONE_MODEL_ANM_NUM_MAX	(4)	//ï¼‘ã¤ã®ãƒ¢ãƒ‡ãƒ«ã«å¯¾ã—ã¦æœ€å¤§ï¼”ã¤ã¾ã§ã‚¢ãƒ‹ãƒ¡ãŒæŒã¦ã‚‹ã¨ã™ã‚‹
 #define NO_ANIME		(0)
 #define NO_ENTRY		(0)
-#define ANIME_CONT_MAX	(16)	//16ŒÂ‚Ü‚Å“¯ŠÇ—
-#define CONT_RENDER_OBJ_MAX	(6)	//ƒAƒjƒŠÇ—ƒf[ƒ^‚ª‚Ä‚éÅ‘åƒŒƒ“ƒ_[‚n‚a‚i”
+#define ANIME_CONT_MAX	(16)	//16å€‹ã¾ã§åŒæ™‚ç®¡ç†
+#define CONT_RENDER_OBJ_MAX	(6)	//ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãŒæŒã¦ã‚‹æœ€å¤§ãƒ¬ãƒ³ãƒ€ãƒ¼ï¼¯ï¼¢ï¼ªæ•°
 
-#define SUICIDE_ANIME_MAX	(2)	//©EƒAƒjƒŠÇ—Å‘å”
+#define SUICIDE_ANIME_MAX	(2)	//è‡ªæ®ºã‚¢ãƒ‹ãƒ¡ç®¡ç†æœ€å¤§æ•°
 
 #define ANIME_NONE_CODE		(0xffffffff)
 
 typedef enum{
-	STATE_END,	//I—¹
-	STATE_MOVE,	//‰Ò“®’†
+	STATE_END,	//çµ‚äº†
+	STATE_MOVE,	//ç¨¼å‹•ä¸­
 }ANIME_STATE;
 
 typedef enum{
@@ -39,14 +39,14 @@ typedef enum{
 	DATA_VALID,
 }DATA_VAL_STATE;
 
-//©EƒAƒjƒŠÇ—\‘¢‘Ì
+//è‡ªæ®ºã‚¢ãƒ‹ãƒ¡ç®¡ç†æ§‹é€ ä½“
 typedef struct SUICIDE_ANIME_DATA_tag
 {
-	BOOL Valid;						//ƒf[ƒ^—LŒøƒtƒ‰ƒO
-	NNSG3dRenderObj *RenderObj;		//ƒAƒjƒ‚ª“K—p‚³‚ê‚éƒŒƒ“ƒ_[OBJ
-	FLD_3D_ANM_DAT_PTR AnimePtr;	//‘ÎÛƒAƒjƒƒ|ƒCƒ“ƒ^
+	BOOL Valid;						//ãƒ‡ãƒ¼ã‚¿æœ‰åŠ¹ãƒ•ãƒ©ã‚°
+	NNSG3dRenderObj *RenderObj;		//ã‚¢ãƒ‹ãƒ¡ãŒé©ç”¨ã•ã‚Œã‚‹ãƒ¬ãƒ³ãƒ€ãƒ¼OBJ
+	FLD_3D_ANM_DAT_PTR AnimePtr;	//å¯¾è±¡ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
 //	int ObjID;						//OBJID
-	int AnimeCode;					//‘ÎÛƒAƒjƒƒR[ƒh
+	int AnimeCode;					//å¯¾è±¡ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰
 }SUICIDE_ANIME_DATA;
 
 typedef struct FLD_3D_ANIME_DATA_tag{
@@ -66,11 +66,11 @@ typedef struct FLD_3D_ANIME_DATA_tag{
 
 typedef struct ANIME_INFO_tag
 {
-	u8 Flg;			//ƒAƒjƒ‚·‚é‚©‚Ç‚¤‚©
-	u8 Type;		//ƒAƒjƒƒ^ƒCƒv
-	u8 Suicide;		//©Eƒtƒ‰ƒO
-	u8 dummy;		//ƒ_ƒ~[
-	int Code[4];	//ƒAƒjƒƒR[ƒh
+	u8 Flg;			//ã‚¢ãƒ‹ãƒ¡ã™ã‚‹ã‹ã©ã†ã‹
+	u8 Type;		//ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
+	u8 Suicide;		//è‡ªæ®ºãƒ•ãƒ©ã‚°
+	u8 dummy;		//ãƒ€ãƒŸãƒ¼
+	int Code[4];	//ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰
 }ANIME_INFO;
 
 typedef struct FLD_3D_ANIME_MANAGER_tag{
@@ -82,17 +82,17 @@ typedef struct FLD_3D_ANIME_MANAGER_tag{
 }FLD_3D_ANIME_MANAGER;
 
 typedef struct ANIME_DATA_LIST_tag{
-	FLD_3D_ANM_DAT_PTR Data[ONE_MODEL_ANM_NUM_MAX];	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒŠƒXƒgƒ|ƒCƒ“ƒ^
-	int AnimeNum;						//ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ì”;
+	FLD_3D_ANM_DAT_PTR Data[ONE_MODEL_ANM_NUM_MAX];	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆãƒã‚¤ãƒ³ã‚¿
+	int AnimeNum;						//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã®æ•°;
 }ANIME_DATA_LIST;
 
 typedef struct ANIME_CONT_tag
 {
-	ANIME_DATA_LIST	AnimeList;			//ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^ƒŠƒXƒg
-	NNSG3dRenderObj *RenderObj[CONT_RENDER_OBJ_MAX];			//ƒAƒjƒ‚ª“K—p‚³‚ê‚éƒŒƒ“ƒ_[OBJ
-	FLD_3D_ANM_DAT_PTR BindAnime;			//ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚éƒAƒjƒ
+	ANIME_DATA_LIST	AnimeList;			//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒªã‚¹ãƒˆ
+	NNSG3dRenderObj *RenderObj[CONT_RENDER_OBJ_MAX];			//ã‚¢ãƒ‹ãƒ¡ãŒé©ç”¨ã•ã‚Œã‚‹ãƒ¬ãƒ³ãƒ€ãƒ¼OBJ
+	FLD_3D_ANM_DAT_PTR BindAnime;			//ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡
 	int ObjID;							//OBJID
-	u8 EntryID;							//“o˜^ID
+	u8 EntryID;							//ç™»éŒ²ID
 }ANIME_CONT;
 
 typedef struct ANIME_CONT_MNG_tag
@@ -107,14 +107,14 @@ typedef struct ANIME_TABLE_tag
 
 //==============================================================================
 /**
- * ©EƒAƒjƒƒGƒ“ƒgƒŠ[
+ * è‡ªæ®ºã‚¢ãƒ‹ãƒ¡ã‚¨ãƒ³ãƒˆãƒªãƒ¼
  *
- * @param	*ioSuicideData				©EƒAƒjƒŠÇ—\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	*objectdata					‘ÎÛƒŒƒ“ƒ_[OBJ
- * @param	anime						ƒAƒjƒƒ|ƒCƒ“ƒ^
- * @param	inAnimeCode					‘ÎÛƒAƒjƒƒR[ƒh
+ * @param	*ioSuicideData				è‡ªæ®ºã‚¢ãƒ‹ãƒ¡ç®¡ç†æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	*objectdata					å¯¾è±¡ãƒ¬ãƒ³ãƒ€ãƒ¼OBJ
+ * @param	anime						ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
+ * @param	inAnimeCode					å¯¾è±¡ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰
  *
- * @return	BOOL	TRUE:©EÏ‚İ‚Å“o˜^‰Â	FALSE:‚Ü‚¾¶‚«‚Ä‚é
+ * @return	BOOL	TRUE:è‡ªæ®ºæ¸ˆã¿ã§ç™»éŒ²å¯	FALSE:ã¾ã ç”Ÿãã¦ã‚‹
  */
 //==============================================================================
 static BOOL EntrySuicideAnime(	SUICIDE_ANIME_DATA *ioSuicideData,
@@ -123,19 +123,19 @@ static BOOL EntrySuicideAnime(	SUICIDE_ANIME_DATA *ioSuicideData,
 								const u8 inAnimeCode	)
 {
 	int i;
-	GF_ASSERT(anime->LoopMax!=LOOP_INFINIT&&"ƒ‹[ƒv‰ñ”‚É§ŒÀ‚ª–³‚¢‚à‚Ì‚ÍA‘ÎÛŠO‚Å‚·");
+	GF_ASSERT(anime->LoopMax!=LOOP_INFINIT&&"ãƒ«ãƒ¼ãƒ—å›æ•°ã«åˆ¶é™ãŒç„¡ã„ã‚‚ã®ã¯ã€å¯¾è±¡å¤–ã§ã™");
 	
-	//“¯ˆêƒGƒ“ƒgƒŠ[ŒŸõ
+	//åŒä¸€ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ¤œç´¢
 	for(i=0;i<SUICIDE_ANIME_MAX;i++){
 		if (ioSuicideData[i].Valid){
 			if ( (ioSuicideData[i].AnimeCode == inAnimeCode)&&
 					(ioSuicideData[i].RenderObj == objectdata) ){
-///				OS_Printf("“¯‚¶‚à‚Ì‚ª‚·‚Å‚ÉƒGƒ“ƒgƒŠ‚³‚ê‚Ä‚¢‚é\n");
+///				OS_Printf("åŒã˜ã‚‚ã®ãŒã™ã§ã«ã‚¨ãƒ³ãƒˆãƒªã•ã‚Œã¦ã„ã‚‹\n");
 				return FALSE;
 			}
 		}
 	}
-	//ƒGƒ“ƒgƒŠ[
+	//ã‚¨ãƒ³ãƒˆãƒªãƒ¼
 	for(i=0;i<SUICIDE_ANIME_MAX;i++){
 		if (!ioSuicideData[i].Valid){
 			ioSuicideData[i].Valid = TRUE;
@@ -151,16 +151,16 @@ static BOOL EntrySuicideAnime(	SUICIDE_ANIME_DATA *ioSuicideData,
 
 //==============================================================================
 /**
- * ƒAƒjƒæ“¾
+ * ã‚¢ãƒ‹ãƒ¡å–å¾—
  *
- * @param	inHandle			ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- * @param	inID				ƒA[ƒJƒCƒu‚h‚c
- * @param	pModel				ƒ‚ƒfƒ‹ƒŠƒ\[ƒX
- * @param	pAnmObj				ƒAƒjƒOBJ
- * @param	pTex				ƒeƒNƒXƒ`ƒƒ
- * @param	allocator			ƒAƒƒP[ƒ^
+ * @param	inHandle			ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ * @param	inID				ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ï¼©ï¼¤
+ * @param	pModel				ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹
+ * @param	pAnmObj				ã‚¢ãƒ‹ãƒ¡OBJ
+ * @param	pTex				ãƒ†ã‚¯ã‚¹ãƒãƒ£
+ * @param	allocator			ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
  *
- * @return	void*				ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @return	void*				ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 static void *GetField3DAnimeByArc(	ARCHANDLE *inHandle,
@@ -182,31 +182,31 @@ static void *GetField3DAnimeByArc(	ARCHANDLE *inHandle,
         pAnmRes = NNS_G3dGetAnmByIdx(mem, 0);
         GF_ASSERT(pAnmRes != NULL);
 
-        // •K—v—Ê‚Ìƒƒ‚ƒŠ‚ğƒAƒƒP[ƒg‚·‚éBƒCƒjƒVƒƒƒ‰ƒCƒY‚Í•Ê“r•K—v‚É‚È‚éB
-        *pAnmObj = NNS_G3dAllocAnmObj(allocator, // g—p‚·‚éƒAƒƒP[ƒ^‚ğw’è
-                                     pAnmRes,    // ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ\[ƒX‚ğw’è
-                                     pModel);    // ƒ‚ƒfƒ‹ƒŠƒ\[ƒX‚ğw’è
+        // å¿…è¦é‡ã®ãƒ¡ãƒ¢ãƒªã‚’ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆã™ã‚‹ã€‚ã‚¤ãƒ‹ã‚·ãƒ£ãƒ©ã‚¤ã‚ºã¯åˆ¥é€”å¿…è¦ã«ãªã‚‹ã€‚
+        *pAnmObj = NNS_G3dAllocAnmObj(allocator, // ä½¿ç”¨ã™ã‚‹ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿ã‚’æŒ‡å®š
+                                     pAnmRes,    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã‚’æŒ‡å®š
+                                     pModel);    // ãƒ¢ãƒ‡ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã‚’æŒ‡å®š
 		GF_ASSERT(pAnmObj != NULL);
 
         //
-        // AnmObj ‚ğ‰Šú‰»‚·‚éBƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ˆÈŠO‚à“¯—l
+        // AnmObj ã‚’åˆæœŸåŒ–ã™ã‚‹ã€‚ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä»¥å¤–ã‚‚åŒæ§˜
         //
-        NNS_G3dAnmObjInit(*pAnmObj, // ƒAƒjƒ[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                          pAnmRes, // ƒAƒjƒƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                          pModel,  // NNSG3dResMdl‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                          pTex );  // NNSG3dResTex‚Ö‚Ìƒ|ƒCƒ“ƒ^(ƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒˆÈŠO‚È‚ç‚ÎNULL‚Å‚à‚æ‚¢)
+        NNS_G3dAnmObjInit(*pAnmObj, // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                          pAnmRes, // ã‚¢ãƒ‹ãƒ¡ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                          pModel,  // NNSG3dResMdlã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                          pTex );  // NNSG3dResTexã¸ã®ãƒã‚¤ãƒ³ã‚¿(ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ä»¥å¤–ãªã‚‰ã°NULLã§ã‚‚ã‚ˆã„)
 		return mem;
     }
 }
 
 //==============================================================================
 /**
- * ƒAƒjƒƒŠƒ€[ƒu
+ * ã‚¢ãƒ‹ãƒ¡ãƒªãƒ ãƒ¼ãƒ–
  *
- * @param	inRenderObj				ƒŒƒ“ƒ_[OBJ
- * @param	inAnmObj				ƒAƒjƒOBJ
+ * @param	inRenderObj				ãƒ¬ãƒ³ãƒ€ãƒ¼OBJ
+ * @param	inAnmObj				ã‚¢ãƒ‹ãƒ¡OBJ
  *
- * @return	BOOL				TRUE:ƒŠƒ€[ƒu‚µ‚½	FALSE:ƒŠƒ€[ƒu‚µ‚È‚©‚Á‚½		
+ * @return	BOOL				TRUE:ãƒªãƒ ãƒ¼ãƒ–ã—ãŸ	FALSE:ãƒªãƒ ãƒ¼ãƒ–ã—ãªã‹ã£ãŸ		
  */
 //==============================================================================
 static const BOOL RemoveAnime(NNSG3dRenderObj *inRenderObj, NNSG3dAnmObj *inAnmObj)
@@ -218,18 +218,18 @@ static const BOOL RemoveAnime(NNSG3dRenderObj *inRenderObj, NNSG3dAnmObj *inAnmO
 		return FALSE;
 	}
 
-	//Œ»s‚Å‚ÍAƒŠƒ€[ƒu‚·‚é‘ÎÛ‚ª–³‚­‚Ä‚à‚±‚ÌŠÖ”‚ğ’Ê‚·(‚»‚Ìê‡A“à•”‚Å‚ÍƒŠƒ€[ƒu‚¹‚¸‚É–ß‚é)
+	//ç¾è¡Œã§ã¯ã€ãƒªãƒ ãƒ¼ãƒ–ã™ã‚‹å¯¾è±¡ãŒç„¡ãã¦ã‚‚ã“ã®é–¢æ•°ã‚’é€šã™(ãã®å ´åˆã€å†…éƒ¨ã§ã¯ãƒªãƒ ãƒ¼ãƒ–ã›ãšã«æˆ»ã‚‹)
 	NNS_G3dRenderObjRemoveAnmObj( inRenderObj, inAnmObj );
 	return TRUE;
 }
 
 //==============================================================================
 /**
- * ©EƒAƒjƒŠÄ‹
+ * è‡ªæ®ºã‚¢ãƒ‹ãƒ¡ç›£è¦–
  *
- * @param	*ioSuicideData				©EƒAƒjƒŠÇ—\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	*objectdata					‘ÎÛƒŒƒ“ƒ_[OBJ
- * @param	inAnimeCode					‘ÎÛƒAƒjƒƒR[ƒh
+ * @param	*ioSuicideData				è‡ªæ®ºã‚¢ãƒ‹ãƒ¡ç®¡ç†æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	*objectdata					å¯¾è±¡ãƒ¬ãƒ³ãƒ€ãƒ¼OBJ
+ * @param	inAnimeCode					å¯¾è±¡ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰
  *
  * @return	none
  */
@@ -239,9 +239,9 @@ static void SuicideAnimeMain(SUICIDE_ANIME_DATA *ioSuicideData)
 	int i;
 	for(i=0;i<SUICIDE_ANIME_MAX;i++){
 		if (ioSuicideData[i].Valid){
-			//ƒAƒjƒI—¹‚ğƒ`ƒFƒbƒN
+			//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ã‚’ãƒã‚§ãƒƒã‚¯
 			if (F3DA_IsAnimeEnd(ioSuicideData[i].AnimePtr)){
-				//I—¹‚µ‚Ä‚¢‚½‚çƒAƒjƒƒp[ƒW
+				//çµ‚äº†ã—ã¦ã„ãŸã‚‰ã‚¢ãƒ‹ãƒ¡ãƒ‘ãƒ¼ã‚¸
 				RemoveAnime(ioSuicideData[i].RenderObj, ioSuicideData[i].AnimePtr->pAnmObj);
 				ioSuicideData[i].Valid = FALSE;
 				ioSuicideData[i].AnimeCode = 0;
@@ -254,9 +254,9 @@ static void SuicideAnimeMain(SUICIDE_ANIME_DATA *ioSuicideData)
 
 //==============================================================================
 /**
- * 3DƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ìƒƒ‚ƒŠƒAƒƒP[ƒVƒ‡ƒ“
+ * 3Dã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒ¡ãƒ¢ãƒªã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³
  *
- * @return	FLD_3D_ANM_MNG_PTR				ƒAƒjƒŠÇ—\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @return	FLD_3D_ANM_MNG_PTR				ã‚¢ãƒ‹ãƒ¡ç®¡ç†æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 FLD_3D_ANM_MNG_PTR F3DA_Field3DAnimeInit(void)
@@ -264,7 +264,7 @@ FLD_3D_ANM_MNG_PTR F3DA_Field3DAnimeInit(void)
 	int i;
 	FLD_3D_ANM_MNG_PTR field_3d_anime_ptr;
 	field_3d_anime_ptr = sys_AllocMemory( HEAPID_FIELD, sizeof(FLD_3D_ANIME_MANAGER) );
-	//‹ó‚¢‚Ä‚éƒAƒjƒ”z—ñ‚ğŒŸõ
+	//ç©ºã„ã¦ã‚‹ã‚¢ãƒ‹ãƒ¡é…åˆ—ã‚’æ¤œç´¢
 	for(i=0;i<FLD_3D_ANIME_MAX;i++){
 		field_3d_anime_ptr->Fld3DAnimeData[i].Valid = DATA_INVALID;
 		field_3d_anime_ptr->Fld3DAnimeData[i].StopFlg = FALSE;
@@ -284,11 +284,11 @@ FLD_3D_ANM_MNG_PTR F3DA_Field3DAnimeInit(void)
 		field_3d_anime_ptr->SuicideData[i].AnimePtr = NULL;
 		field_3d_anime_ptr->SuicideData[i].AnimeCode = 0;
 	}
-	//ƒAƒjƒƒAƒƒP[ƒ^
+	//ã‚¢ãƒ‹ãƒ¡ã‚¢ãƒ­ã‚±ãƒ¼ã‚¿
 	sys_InitAllocator(&field_3d_anime_ptr->AnimeAllocator,HEAPID_FIELD,4);
-	//ƒAƒjƒƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	//ã‚¢ãƒ‹ãƒ¡ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	field_3d_anime_ptr->AnimeHandle = ArchiveDataHandleOpen( ARC_BM_ANM, HEAPID_FIELD );
-	//ƒAƒjƒî•ñƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒI[ƒvƒ“
+	//ã‚¢ãƒ‹ãƒ¡æƒ…å ±ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	field_3d_anime_ptr->AnmInfoHandle = ArchiveDataHandleOpen( ARC_BM_ANM_LIST, HEAPID_FIELD );	
 //	field_3d_anime_ptr->EndFlg = FALSE;
 	return field_3d_anime_ptr;
@@ -297,10 +297,10 @@ FLD_3D_ANM_MNG_PTR F3DA_Field3DAnimeInit(void)
 
 //==============================================================================
 /**
- * ƒAƒjƒOBJæ“¾
- * @param	inFld3DAnmDat			ƒAƒjƒƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * ã‚¢ãƒ‹ãƒ¡OBJå–å¾—
+ * @param	inFld3DAnmDat			ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	NNSG3dAnmObj			ƒAƒjƒOBJ
+ * @return	NNSG3dAnmObj			ã‚¢ãƒ‹ãƒ¡OBJ
  */
 //==============================================================================
 static NNSG3dAnmObj *GetAnmObj(FLD_3D_ANM_DAT_PTR inFld3DAnmDat)
@@ -313,69 +313,69 @@ static NNSG3dAnmObj *GetAnmObj(FLD_3D_ANM_DAT_PTR inFld3DAnmDat)
 
 //==============================================================================
 /**
- * ’Ç‰Á‚ÉğŒ‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
- * @param	inType			ƒAƒjƒƒ^ƒCƒv
+ * è¿½åŠ ã«æ¡ä»¶ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
+ * @param	inType			ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
  *
- * @return	BOOL			TRUE:‚ ‚é	FALSE:‚È‚¢
+ * @return	BOOL			TRUE:ã‚ã‚‹	FALSE:ãªã„
  */
 //==============================================================================
 static BOOL CheckAddConditional(const u8 inType)
 {
 	if ( (inType&0x01) == 0x01 ){
-		return TRUE;		//ğŒ‚ ‚è
+		return TRUE;		//æ¡ä»¶ã‚ã‚Š
 	}else{
-		return FALSE;		//ğŒ–³‚µ
+		return FALSE;		//æ¡ä»¶ç„¡ã—
 	}
 }
 
 //==============================================================================
 /**
- * ƒZƒbƒg‚ÉğŒ‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN
- * @param	inType			ƒAƒjƒƒ^ƒCƒv
+ * ã‚»ãƒƒãƒˆã«æ¡ä»¶ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
+ * @param	inType			ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
  *
- * @return	BOOL			TRUE:‚ ‚é	FALSE:‚È‚¢
+ * @return	BOOL			TRUE:ã‚ã‚‹	FALSE:ãªã„
  */
 //==============================================================================
 static BOOL CheckSetConditional(const u8 inType)
 {
 	if ( ((inType>>1)&0x01) == 0x01){
-		return TRUE;		//ğŒ‚ ‚è
+		return TRUE;		//æ¡ä»¶ã‚ã‚Š
 	}else{
-		return FALSE;		//ğŒ–³‚µ
+		return FALSE;		//æ¡ä»¶ç„¡ã—
 	}
 }
 
 //==============================================================================
 /**
- * ƒAƒjƒƒXƒe[ƒg‚Ìæ“¾
+ * ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ†ãƒ¼ãƒˆã®å–å¾—
  *
- * @param	inAnimeData				ƒAƒjƒƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inAnimeData				ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	int						ƒAƒjƒƒXƒe[ƒg
+ * @return	int						ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒ†ãƒ¼ãƒˆ
  */
 //==============================================================================
 static int GetAnimeState(const FLD_3D_ANM_DAT_PTR inAnimeData)
 {
-	GF_ASSERT((inAnimeData->Valid == DATA_VALID)&&"ƒf[ƒ^‚Í–³Œø‚Å‚·");
+	GF_ASSERT((inAnimeData->Valid == DATA_VALID)&&"ãƒ‡ãƒ¼ã‚¿ã¯ç„¡åŠ¹ã§ã™");
 	return inAnimeData->State;
 }
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“’Ç‰Á
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¿½åŠ 
  *
  * @param	inObjCode				OBJID
- * @param	inAnimeNo				Ä¶‚·‚éƒAƒjƒƒiƒ“ƒo[
- * @param	inLoopCount				ŒJ‚è•Ô‚µ‰ñ”
- * @param	inCode					§ŒäƒR[ƒh
- * @param	inReverse				‹tÄ¶ƒtƒ‰ƒO
- * @param	inStopFlg				’â~ƒtƒ‰ƒO
- * @param	inAnimeType				’Ç‰Á‚·‚éƒAƒjƒƒ^ƒCƒv
- * @param	objectmodel				ƒŠƒ\[ƒXƒ‚ƒfƒ‹
- * @oaram	pTex					ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXiƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ—pj
- * @param	field_3d_anime_ptr		ƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inAnimeNo				å†ç”Ÿã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+ * @param	inLoopCount				ç¹°ã‚Šè¿”ã—å›æ•°
+ * @param	inCode					åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰
+ * @param	inReverse				é€†å†ç”Ÿãƒ•ãƒ©ã‚°
+ * @param	inStopFlg				åœæ­¢ãƒ•ãƒ©ã‚°
+ * @param	inAnimeType				è¿½åŠ ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ã‚¿ã‚¤ãƒ—
+ * @param	objectmodel				ãƒªã‚½ãƒ¼ã‚¹ãƒ¢ãƒ‡ãƒ«
+ * @oaram	pTex					ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ç”¨ï¼‰
+ * @param	field_3d_anime_ptr		ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	ANIME_CONT_PTR	ƒAƒjƒƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	ANIME_CONT_PTR	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 FLD_3D_ANM_DAT_PTR F3DA_AddField3DAnime(const int inObjCode,
@@ -394,7 +394,7 @@ FLD_3D_ANM_DAT_PTR F3DA_AddField3DAnime(const int inObjCode,
 	int anime_code;
 	ANIME_INFO info;
 
-	//w’è‚n‚a‚iƒAƒjƒî•ñ‚ğƒA[ƒJƒCƒo‚©‚ç“üè
+	//æŒ‡å®šï¼¯ï¼¢ï¼ªã‚¢ãƒ‹ãƒ¡æƒ…å ±ã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒã‹ã‚‰å…¥æ‰‹
 	ArchiveDataLoadByHandle(field_3d_anime_ptr->AnmInfoHandle, inObjCode, &info);
 
 	GF_ASSERT(inAnimeNo<ONE_MODEL_ANM_NUM_MAX);
@@ -405,20 +405,20 @@ FLD_3D_ANM_DAT_PTR F3DA_AddField3DAnime(const int inObjCode,
 	}
 
 	if ( CheckAddConditional(info.Type) != inConditional){
-///		OS_Printf("ğŒ‚ğŒ©‚½‚µ‚Ä‚¢‚È‚¢:%d\n",anime_code);
+///		OS_Printf("æ¡ä»¶ã‚’è¦‹ãŸã—ã¦ã„ãªã„:%d\n",anime_code);
 		return NULL;
 	}
 	
-	//§ŒäƒR[ƒhd•¡ƒ`ƒFƒbƒN
+	//åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰é‡è¤‡ãƒã‚§ãƒƒã‚¯
 	for(i=0;i<FLD_3D_ANIME_MAX;i++){
 		if ((inCode != 0)&&
 				(field_3d_anime_ptr->Fld3DAnimeData[i].ControlCode == inCode)){
-///			OS_Printf("%d:d•¡“o˜^‚Å‚·\n",inCode);
+///			OS_Printf("%d:é‡è¤‡ç™»éŒ²ã§ã™\n",inCode);
 			GF_ASSERT(0);
 		}
 	}
 
-	//‹ó‚¢‚Ä‚éƒAƒjƒ”z—ñ‚ğŒŸõ
+	//ç©ºã„ã¦ã‚‹ã‚¢ãƒ‹ãƒ¡é…åˆ—ã‚’æ¤œç´¢
 	for(i=0;i<FLD_3D_ANIME_MAX;i++){
 		if (field_3d_anime_ptr->Fld3DAnimeData[i].Valid == DATA_INVALID){
 			field_3d_anime_ptr->Fld3DAnimeData[i].Valid = DATA_VALID;
@@ -440,24 +440,24 @@ FLD_3D_ANM_DAT_PTR F3DA_AddField3DAnime(const int inObjCode,
 			field_3d_anime_ptr->Fld3DAnimeData[i].LoopMax = inLoopCount;
 			field_3d_anime_ptr->Fld3DAnimeData[i].State = STATE_MOVE;
 			data = &(field_3d_anime_ptr->Fld3DAnimeData[i]);
-			//Ä¶•ûŒü‚ğŒ©‚ÄAŠJnƒtƒŒ[ƒ€‚ğƒZƒbƒg
+			//å†ç”Ÿæ–¹å‘ã‚’è¦‹ã¦ã€é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆ
 			F3DA_SetStartFrame(&field_3d_anime_ptr->Fld3DAnimeData[i]);
 			return data;
 		}
 	}
-	//’Ç‰Á‚Å‚«‚È‚¢ê‡
-	GF_ASSERT(0&&"3DƒAƒjƒ’Ç‰Á‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½");
+	//è¿½åŠ ã§ããªã„å ´åˆ
+	GF_ASSERT(0&&"3Dã‚¢ãƒ‹ãƒ¡è¿½åŠ ã§ãã¾ã›ã‚“ã§ã—ãŸ");
 	return NULL;
 }
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“’Ç‰Á(Ú×‚Èİ’è‚Ís‚í‚È‚¢Aí’“ƒAƒjƒ‚³‚¹‚é‚â‚Â—p)
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¿½åŠ (è©³ç´°ãªè¨­å®šã¯è¡Œã‚ãªã„ã€å¸¸é§ã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹ã‚„ã¤ç”¨)
  *
  * @param	inObjCode				OBJID
- * @param	objectmodel				ƒŠƒ\[ƒXƒ‚ƒfƒ‹
- * @oaram	pTex					ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒXiƒeƒNƒXƒ`ƒƒƒpƒ^[ƒ“ƒAƒjƒ—pj
- * @param	field_3d_anime_ptr		ƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	objectmodel				ãƒªã‚½ãƒ¼ã‚¹ãƒ¢ãƒ‡ãƒ«
+ * @oaram	pTex					ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ï¼ˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‹ãƒ¡ç”¨ï¼‰
+ * @param	field_3d_anime_ptr		ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -472,10 +472,10 @@ void F3DA_AddField3DAnimeEasy(	const int inObjCode,
 	int i;
 
 	ANIME_INFO info;
-	//w’è‚n‚a‚iƒAƒjƒî•ñ‚ğƒA[ƒJƒCƒo‚©‚ç“üè
+	//æŒ‡å®šï¼¯ï¼¢ï¼ªã‚¢ãƒ‹ãƒ¡æƒ…å ±ã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒã‹ã‚‰å…¥æ‰‹
 	ArchiveDataLoadByHandle(field_3d_anime_ptr->AnmInfoHandle, inObjCode, &info);
 
-	//ƒAƒjƒ‚µ‚È‚¢‚à‚Ì‚Íˆ—‚µ‚È‚¢
+	//ã‚¢ãƒ‹ãƒ¡ã—ãªã„ã‚‚ã®ã¯å‡¦ç†ã—ãªã„
 	if (!info.Flg){
 		return;
 	}
@@ -483,15 +483,15 @@ void F3DA_AddField3DAnimeEasy(	const int inObjCode,
 	for(n=0;n<ONE_MODEL_ANM_NUM_MAX;n++){
 		anime_code = info.Code[n];
 		if (anime_code == ANIME_NONE_CODE){
-			return;//ˆ—‚ğ”²‚¯‚é
+			return;//å‡¦ç†ã‚’æŠœã‘ã‚‹
 		}
 		
 		if ( CheckAddConditional(info.Type) != FALSE){
-///				OS_Printf("ğŒ‚ğŒ©‚½‚µ‚Ä‚¢‚È‚¢:%d\n",anime_code);
+///				OS_Printf("æ¡ä»¶ã‚’è¦‹ãŸã—ã¦ã„ãªã„:%d\n",anime_code);
 				return;
 		}
 
-		//‹ó‚¢‚Ä‚éƒAƒjƒ”z—ñ‚ğŒŸõ
+		//ç©ºã„ã¦ã‚‹ã‚¢ãƒ‹ãƒ¡é…åˆ—ã‚’æ¤œç´¢
 		for(i=0;i<FLD_3D_ANIME_MAX;i++){
 			if (field_3d_anime_ptr->Fld3DAnimeData[i].Valid == DATA_INVALID){
 				field_3d_anime_ptr->Fld3DAnimeData[i].Valid = DATA_VALID;
@@ -512,33 +512,33 @@ void F3DA_AddField3DAnimeEasy(	const int inObjCode,
 																&field_3d_anime_ptr->AnimeAllocator);
 				field_3d_anime_ptr->Fld3DAnimeData[i].LoopMax = LOOP_INFINIT;
 				field_3d_anime_ptr->Fld3DAnimeData[i].State = STATE_MOVE;
-				//Ä¶•ûŒü‚ğŒ©‚ÄAŠJnƒtƒŒ[ƒ€‚ğƒZƒbƒg
+				//å†ç”Ÿæ–¹å‘ã‚’è¦‹ã¦ã€é–‹å§‹ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆ
 				F3DA_SetStartFrame(&field_3d_anime_ptr->Fld3DAnimeData[i]);
 	
-				//©EƒAƒjƒ‚ÍŠJn‚Í‚Æ‚ß‚Ä‚¨‚­i¡‚Ì‚Æ‚±‚ë‘ÎÛ‚Í—¬»j
+				//è‡ªæ®ºã‚¢ãƒ‹ãƒ¡ã¯é–‹å§‹æ™‚ã¯ã¨ã‚ã¦ãŠãï¼ˆä»Šã®ã¨ã“ã‚å¯¾è±¡ã¯æµç ‚ï¼‰
 				if ( info.Suicide/*(inObjCode == BMID_CY_SLOPE) || (inObjCode == BMID_CY_SLOPE_DUN)*/ ){	
 					field_3d_anime_ptr->Fld3DAnimeData[i].StopFlg = TRUE;
 					field_3d_anime_ptr->Fld3DAnimeData[i].LoopMax = 1;
 				}
-				break;//Ÿ‚Ì“o˜^‚Ö
+				break;//æ¬¡ã®ç™»éŒ²ã¸
 			}
 		}//end for(i)
 		
-		//’Ç‰Á‚Å‚«‚È‚¢ê‡
-		GF_ASSERT((i!=FLD_3D_ANIME_MAX)&&"3DƒAƒjƒ’Ç‰Á‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½");
+		//è¿½åŠ ã§ããªã„å ´åˆ
+		GF_ASSERT((i!=FLD_3D_ANIME_MAX)&&"3Dã‚¢ãƒ‹ãƒ¡è¿½åŠ ã§ãã¾ã›ã‚“ã§ã—ãŸ");
 	}// end for(n)
 }
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
  *
  * @param	inObjCode				OBJID
- * @param	inAnimeNo				Ä¶‚·‚éƒAƒjƒƒiƒ“ƒo[
- * @param	objectdata				ƒŒƒ“ƒ_[OBJ
- * @param	field_3d_anime_ptr		ƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inAnimeNo				å†ç”Ÿã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+ * @param	objectdata				ãƒ¬ãƒ³ãƒ€ãƒ¼OBJ
+ * @param	field_3d_anime_ptr		ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL	TRUE:ƒZƒbƒg‚Å‚«‚½	FALSE:ƒZƒbƒg‚Å‚«‚È‚©‚Á‚½
+ * @return	BOOL	TRUE:ã‚»ãƒƒãƒˆã§ããŸ	FALSE:ã‚»ãƒƒãƒˆã§ããªã‹ã£ãŸ
  */
 //==============================================================================
 BOOL F3DA_SetFld3DAnime(const int inObjCode,
@@ -553,7 +553,7 @@ BOOL F3DA_SetFld3DAnime(const int inObjCode,
 	
 	BOOL rc;
 	if (field_3d_anime_ptr==NULL){
-		GF_ASSERT_MSG(0,"ƒAƒjƒƒ}ƒl[ƒWƒƒ‚ªNULL‚Å‚·");
+		GF_ASSERT_MSG(0,"ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ãŒNULLã§ã™");
 		return FALSE;
 	}
 
@@ -561,7 +561,7 @@ BOOL F3DA_SetFld3DAnime(const int inObjCode,
 		return FALSE;
 	}
 		
-	//w’è‚n‚a‚iƒAƒjƒî•ñ‚ğƒA[ƒJƒCƒo‚©‚ç“üè
+	//æŒ‡å®šï¼¯ï¼¢ï¼ªã‚¢ãƒ‹ãƒ¡æƒ…å ±ã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒã‹ã‚‰å…¥æ‰‹
 	ArchiveDataLoadByHandle(field_3d_anime_ptr->AnmInfoHandle, inObjCode, &info);
 
 	GF_ASSERT(inAnimeNo<ONE_MODEL_ANM_NUM_MAX);
@@ -572,14 +572,14 @@ BOOL F3DA_SetFld3DAnime(const int inObjCode,
 	}
 
 	if ( CheckSetConditional(info.Type) != inConditional){
-///		OS_Printf("ğŒ‚ğ–‚½‚µ‚Ä‚¢‚È‚¢:%d\n",anime_code);
+///		OS_Printf("æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ãªã„:%d\n",anime_code);
 		return FALSE;
 	}
 
-	//w’èƒAƒjƒ‚ğOBJ‚ÉƒZƒbƒg
+	//æŒ‡å®šã‚¢ãƒ‹ãƒ¡ã‚’OBJã«ã‚»ãƒƒãƒˆ
 	for(i=0;i<FLD_3D_ANIME_MAX;i++){
 		if(anime_code == field_3d_anime_ptr->Fld3DAnimeData[i].AnimeCode){
-			//©EƒAƒjƒ[ƒVƒ‡ƒ“ƒGƒ“ƒgƒŠ[
+			//è‡ªæ®ºã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¨ãƒ³ãƒˆãƒªãƒ¼
 			if (info.Suicide){
 				rc = EntrySuicideAnime(	field_3d_anime_ptr->SuicideData,
 										objectdata,
@@ -596,20 +596,20 @@ BOOL F3DA_SetFld3DAnime(const int inObjCode,
 			return TRUE;
 		}
 	}
-	//ƒAƒjƒ‚ª‚È‚¢ê‡
-///	OS_Printf("ObjID=%d:3DƒAƒjƒ‚ ‚è‚Ü‚¹‚ñ\n",inObjCode);
+	//ã‚¢ãƒ‹ãƒ¡ãŒãªã„å ´åˆ
+///	OS_Printf("ObjID=%d:3Dã‚¢ãƒ‹ãƒ¡ã‚ã‚Šã¾ã›ã‚“\n",inObjCode);
 	return FALSE;
 }
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒg
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆ
  *
  * @param	inObjCode				OBJID
- * @param	objectdata				ƒŒƒ“ƒ_[OBJ
- * @param	field_3d_anime_ptr		ƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	objectdata				ãƒ¬ãƒ³ãƒ€ãƒ¼OBJ
+ * @param	field_3d_anime_ptr		ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL	TRUE:ƒZƒbƒg‚Å‚«‚½	FALSE:ƒZƒbƒg‚Å‚«‚È‚©‚Á‚½
+ * @return	BOOL	TRUE:ã‚»ãƒƒãƒˆã§ããŸ	FALSE:ã‚»ãƒƒãƒˆã§ããªã‹ã£ãŸ
  */
 //==============================================================================
 BOOL F3DA_SetFld3DAnimeEasy(const int inObjCode,
@@ -627,31 +627,31 @@ BOOL F3DA_SetFld3DAnimeEasy(const int inObjCode,
 	set_flg = FALSE;
 	
 	if (field_3d_anime_ptr==NULL){
-		GF_ASSERT(0&&"ƒAƒjƒƒ}ƒl[ƒWƒƒ‚ªNULL‚Å‚·");
+		GF_ASSERT(0&&"ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ãŒNULLã§ã™");
 	}
 
 	if (inObjCode >= F3DA_GetAnimeArcObjNum(field_3d_anime_ptr)){
 		return FALSE;
 	}
 		
-	//w’è‚n‚a‚iƒAƒjƒî•ñ‚ğƒA[ƒJƒCƒo‚©‚ç“üè
+	//æŒ‡å®šï¼¯ï¼¢ï¼ªã‚¢ãƒ‹ãƒ¡æƒ…å ±ã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒã‹ã‚‰å…¥æ‰‹
 	ArchiveDataLoadByHandle(field_3d_anime_ptr->AnmInfoHandle, inObjCode, &info);
 
 	if ( CheckSetConditional(info.Type) != FALSE){
-///		OS_Printf("ğŒ‚ğ–‚½‚µ‚Ä‚¢‚È‚¢:%d\n",anime_code);
+///		OS_Printf("æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ãªã„:%d\n",anime_code);
 		return FALSE;
 	}
 	
 	for(n=0;n<ONE_MODEL_ANM_NUM_MAX;n++){
 		anime_code = info.Code[n];
 		if (anime_code == ANIME_NONE_CODE){
-			return set_flg;//ˆ—‚ğ”²‚¯‚é
+			return set_flg;//å‡¦ç†ã‚’æŠœã‘ã‚‹
 		}
 
-		//w’èƒAƒjƒ‚ğOBJ‚ÉƒZƒbƒg
+		//æŒ‡å®šã‚¢ãƒ‹ãƒ¡ã‚’OBJã«ã‚»ãƒƒãƒˆ
 		for(i=0;i<FLD_3D_ANIME_MAX;i++){
 			if(anime_code == field_3d_anime_ptr->Fld3DAnimeData[i].AnimeCode){
-				//©EƒAƒjƒ[ƒVƒ‡ƒ“ƒGƒ“ƒgƒŠ[
+				//è‡ªæ®ºã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¨ãƒ³ãƒˆãƒªãƒ¼
 				if (info.Suicide){
 					rc = EntrySuicideAnime(	field_3d_anime_ptr->SuicideData,
 											objectdata,
@@ -669,8 +669,8 @@ BOOL F3DA_SetFld3DAnimeEasy(const int inObjCode,
 				break;
 			}
 		}
-		//ƒAƒjƒ‚ª‚È‚¢ê‡
-///		OS_Printf("ObjID=%d:3DƒAƒjƒ‚ ‚è‚Ü‚¹‚ñ\n",inObjCode);
+		//ã‚¢ãƒ‹ãƒ¡ãŒãªã„å ´åˆ
+///		OS_Printf("ObjID=%d:3Dã‚¢ãƒ‹ãƒ¡ã‚ã‚Šã¾ã›ã‚“\n",inObjCode);
 	}
 	
 	return set_flg;
@@ -678,9 +678,9 @@ BOOL F3DA_SetFld3DAnimeEasy(const int inObjCode,
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“‘S‰ğ•ú
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å…¨è§£æ”¾
  *
- * @param	field_3d_anime_ptr		ƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	field_3d_anime_ptr		ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -705,10 +705,10 @@ void RereaseFld3DAnimeAll(FLD_3D_ANM_MNG_PTR field_3d_anime_ptr)
 
 //==============================================================================
 /**
- * ƒCƒ“ƒfƒbƒNƒX‚É‚æ‚éƒAƒjƒ[ƒVƒ‡ƒ“‰ğ•ú
+ * ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã‚ˆã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è§£æ”¾
  *
- * @param	inIdx				ƒCƒ“ƒfƒbƒNƒX
- * @param	field_3d_anime_ptr		ƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inIdx				ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	field_3d_anime_ptr		ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -733,10 +733,10 @@ void RereaseFld3DAnimeByIdx(const u8 inIdx, FLD_3D_ANM_MNG_PTR field_3d_anime_pt
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“‰ğ•ú
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è§£æ”¾
  *
- * @param	outAnimePtr				ƒAƒjƒƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	field_3d_anime_ptr		ƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	outAnimePtr				ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	field_3d_anime_ptr		ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -745,7 +745,7 @@ void F3DA_RereaseFld3DAnime(FLD_3D_ANM_DAT_PTR outAnimePtr, FLD_3D_ANM_MNG_PTR f
 {
 	if (field_3d_anime_ptr==NULL) return;
 	
-	GF_ASSERT(outAnimePtr!=NULL&&"NULL‰ğ•ú‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·");
+	GF_ASSERT(outAnimePtr!=NULL&&"NULLè§£æ”¾ã—ã‚ˆã†ã¨ã—ã¦ã„ã¾ã™");
 	
 	if (outAnimePtr->Valid != DATA_INVALID){
 		if (outAnimePtr->Valid == DATA_VALID){
@@ -761,12 +761,12 @@ void F3DA_RereaseFld3DAnime(FLD_3D_ANM_DAT_PTR outAnimePtr, FLD_3D_ANM_MNG_PTR f
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒŠƒ€[ƒu
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒªãƒ ãƒ¼ãƒ–
  *
- * @param	field_3d_anime_ptr		ƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inRenderObj				ƒŒƒ“ƒ_[OBJ
+ * @param	field_3d_anime_ptr		ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inRenderObj				ãƒ¬ãƒ³ãƒ€ãƒ¼OBJ
  * @param	inObjCode				OBJID
- * @param	inAnimeNo				ƒŠƒ€[ƒu‚·‚éƒAƒjƒƒiƒ“ƒo[
+ * @param	inAnimeNo				ãƒªãƒ ãƒ¼ãƒ–ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
  * 
  * @return	none
  */
@@ -779,7 +779,7 @@ void F3DA_RemoveFld3DAnime(	FLD_3D_ANM_MNG_PTR field_3d_anime_ptr,
 	u8 i;
 	int anime_code;
 	ANIME_INFO info;
-	//w’è‚n‚a‚iƒAƒjƒî•ñ‚ğƒA[ƒJƒCƒo‚©‚ç“üè
+	//æŒ‡å®šï¼¯ï¼¢ï¼ªã‚¢ãƒ‹ãƒ¡æƒ…å ±ã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒã‹ã‚‰å…¥æ‰‹
 	ArchiveDataLoadByHandle(field_3d_anime_ptr->AnmInfoHandle, inObjCode, &info);
 	GF_ASSERT(inAnimeNo<ONE_MODEL_ANM_NUM_MAX);
 	anime_code = info.Code[inAnimeNo];
@@ -796,9 +796,9 @@ void F3DA_RemoveFld3DAnime(	FLD_3D_ANM_MNG_PTR field_3d_anime_ptr,
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒ}ƒl[ƒWƒƒ‰ğ•ú
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£è§£æ”¾
  *
- * @param	field_3d_anime_ptr		ƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	field_3d_anime_ptr		ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -807,7 +807,7 @@ void FreeFld3DAnimeManager(FLD_3D_ANM_MNG_PTR field_3d_anime_ptr)
 {
 	if (field_3d_anime_ptr==NULL) return;
 	
-	//ƒnƒ“ƒhƒ‹ƒNƒ[ƒY
+	//ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
 	ArchiveDataHandleClose( field_3d_anime_ptr->AnimeHandle );
 	ArchiveDataHandleClose( field_3d_anime_ptr->AnmInfoHandle );
 	
@@ -817,10 +817,10 @@ void FreeFld3DAnimeManager(FLD_3D_ANM_MNG_PTR field_3d_anime_ptr)
 
 //==============================================================================
 /**
- * ƒ}ƒl[ƒWƒƒŠÇ—ƒCƒ“ƒfƒbƒNƒX‚ÅƒAƒjƒƒf[ƒ^‚ğæ“¾
+ * ãƒãƒãƒ¼ã‚¸ãƒ£ç®¡ç†ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã§ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	inIndex					ƒCƒ“ƒfƒbƒNƒX
- * @param	field_3d_anime_ptr		ƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inIndex					ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	field_3d_anime_ptr		ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -833,17 +833,17 @@ FLD_3D_ANM_DAT_PTR F3DA_GetFld3DAnmPtrByIdx(const int inIndex,
 	GF_ASSERT(inIndex<FLD_3D_ANIME_MAX);
 	data = &(field_3d_anime_ptr->Fld3DAnimeData[inIndex]);
 
-	GF_ASSERT(data->Valid!=DATA_INVALID&&"w’èƒf[ƒ^‚Í–³Œøó‘Ô‚Å‚·");
+	GF_ASSERT(data->Valid!=DATA_INVALID&&"æŒ‡å®šãƒ‡ãƒ¼ã‚¿ã¯ç„¡åŠ¹çŠ¶æ…‹ã§ã™");
 	
 	return data;
 }
 
 //==============================================================================
 /**
- * §ŒäƒR[ƒh‚ÅƒAƒjƒƒf[ƒ^‚ğæ“¾
+ * åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰ã§ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	inCode					§ŒäƒR[ƒh
- * @param	field_3d_anime_ptr		ƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inCode					åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰
+ * @param	field_3d_anime_ptr		ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -853,27 +853,27 @@ FLD_3D_ANM_DAT_PTR F3DA_GetFld3DAnmPtrByCode(	const int inCode,
 {
 	FLD_3D_ANM_DAT_PTR data;
 	int i;
-	GF_ASSERT(inCode!=0&&"§ŒäƒR[ƒh‚ª‚Ó‚ç‚ê‚Ä‚¢‚È‚¢ƒAƒjƒ‚Íæ“¾‘ÎÛŠO‚Å‚·");
+	GF_ASSERT(inCode!=0&&"åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰ãŒãµã‚‰ã‚Œã¦ã„ãªã„ã‚¢ãƒ‹ãƒ¡ã¯å–å¾—å¯¾è±¡å¤–ã§ã™");
 	data = NULL;
-	//ŒŸõ
+	//æ¤œç´¢
 	for(i=0;i<FLD_3D_ANIME_MAX;i++){
 		if (field_3d_anime_ptr->Fld3DAnimeData[i].ControlCode == inCode){
 			data = &(field_3d_anime_ptr->Fld3DAnimeData[i]);
-			GF_ASSERT(data->Valid!=DATA_INVALID&&"w’èƒf[ƒ^‚Í–³Œøó‘Ô‚Å‚·");
+			GF_ASSERT(data->Valid!=DATA_INVALID&&"æŒ‡å®šãƒ‡ãƒ¼ã‚¿ã¯ç„¡åŠ¹çŠ¶æ…‹ã§ã™");
 			break;
 		}
 	}
-	GF_ASSERT(data!=NULL&&"ƒAƒjƒ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½");
+	GF_ASSERT(data!=NULL&&"ã‚¢ãƒ‹ãƒ¡ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ");
 	return data;
 }
 
 //==============================================================================
 /**
- * ƒAƒjƒƒf[ƒ^‚ğæ“¾
+ * ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param	inObjID					‚n‚a‚i‚h‚c
- * @param	inAnimeNo				ƒAƒjƒƒiƒ“ƒo[
- * @param	field_3d_anime_ptr		ƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inObjID					ï¼¯ï¼¢ï¼ªï¼©ï¼¤
+ * @param	inAnimeNo				ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+ * @param	field_3d_anime_ptr		ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -886,7 +886,7 @@ FLD_3D_ANM_DAT_PTR F3DA_GetFld3DAnmPtr(	const int inObjID,
 	int anime_code;
 	int i;
 	ANIME_INFO info;
-	//w’è‚n‚a‚iƒAƒjƒî•ñ‚ğƒA[ƒJƒCƒo‚©‚ç“üè
+	//æŒ‡å®šï¼¯ï¼¢ï¼ªã‚¢ãƒ‹ãƒ¡æƒ…å ±ã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒã‹ã‚‰å…¥æ‰‹
 	ArchiveDataLoadByHandle(field_3d_anime_ptr->AnmInfoHandle, inObjID, &info);
 
 	GF_ASSERT(inAnimeNo<ONE_MODEL_ANM_NUM_MAX);
@@ -895,25 +895,25 @@ FLD_3D_ANM_DAT_PTR F3DA_GetFld3DAnmPtr(	const int inObjID,
 
 	data = NULL;
 	
-	//ŒŸõ
+	//æ¤œç´¢
 	for(i=0;i<FLD_3D_ANIME_MAX;i++){
 		if (field_3d_anime_ptr->Fld3DAnimeData[i].AnimeCode == anime_code){
 			data = &(field_3d_anime_ptr->Fld3DAnimeData[i]);
-			GF_ASSERT(data->Valid!=DATA_INVALID&&"w’èƒf[ƒ^‚Í–³Œøó‘Ô‚Å‚·");
+			GF_ASSERT(data->Valid!=DATA_INVALID&&"æŒ‡å®šãƒ‡ãƒ¼ã‚¿ã¯ç„¡åŠ¹çŠ¶æ…‹ã§ã™");
 			break;
 		}
 	}
-	GF_ASSERT(data!=NULL&&"ƒAƒjƒ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½");
+	GF_ASSERT(data!=NULL&&"ã‚¢ãƒ‹ãƒ¡ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ");
 	return data;
 }
 
 //==============================================================================
 /**
- * ƒCƒ“ƒfƒbƒNƒX‚É‚æ‚éƒXƒgƒbƒvƒtƒ‰ƒO‚ÌØ‚è‘Ö‚¦
+ * ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ã‚ˆã‚‹ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°ã®åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	inIdx					ƒCƒ“ƒfƒbƒNƒX
- * @param	inFlg					ƒXƒgƒbƒvƒtƒ‰ƒO
- * @param	field_3d_anime_ptr		ƒAƒjƒ[ƒVƒ‡ƒ“ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inIdx					ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inFlg					ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°
+ * @param	field_3d_anime_ptr		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -926,10 +926,10 @@ void F3DA_SetStopFlgByIdx(const u8 inIdx, const BOOL inFlg, FLD_3D_ANM_MNG_PTR f
 
 //==============================================================================
 /**
- * ƒXƒgƒbƒvƒtƒ‰ƒO‚ÌØ‚è‘Ö‚¦
+ * ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°ã®åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	inAnimePtr				ƒAƒjƒƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inFlg					ƒXƒgƒbƒvƒtƒ‰ƒO
+ * @param	inAnimePtr				ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inFlg					ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°
  * 
  * @return	none
  */
@@ -941,9 +941,9 @@ void F3DA_SetStopFlg(FLD_3D_ANM_DAT_PTR inAnimePtr, const BOOL inFlg)
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒXƒe[ƒg‚ğ“®ì’†‚É‚·‚é
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å‹•ä½œä¸­ã«ã™ã‚‹
  *
- * @param	inAnimePtr				ƒAƒjƒƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inAnimePtr				ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return	none
  */
@@ -955,24 +955,24 @@ void F3DA_MoveAnime(FLD_3D_ANM_DAT_PTR inAnimePtr)
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“‚ªÅIƒtƒŒ[ƒ€‚©‚ğ•Ô‚·
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒæœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ã‚’è¿”ã™
  *
- * @param	inAnimeData	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inAnimeData	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL TRUE:ÅIƒtƒŒ[ƒ€	FALSE:ÅIƒtƒŒ[ƒ€ˆÈŠO
+ * @return	BOOL TRUE:æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ 	FALSE:æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ä»¥å¤–
  */
 //==============================================================================
 BOOL F3DA_IsLastFrame(FLD_3D_ANM_DAT_PTR	inAnimeData)
 {
 	BOOL rc;
-	if (!inAnimeData->Reverse){	//’Êí‚Ü‚í‚µ
+	if (!inAnimeData->Reverse){	//é€šå¸¸ã¾ã‚ã—
 		if (inAnimeData->pAnmObj->frame >= 
 				NNS_G3dAnmObjGetNumFrame(inAnimeData->pAnmObj)-(FX32_ONE)){
 			rc = TRUE;
 		}else{
 			rc = FALSE;
 		}
-	}else{						//‹t‚Ü‚í‚µ
+	}else{						//é€†ã¾ã‚ã—
 		if (inAnimeData->pAnmObj->frame == 0){
 			rc = TRUE;
 		}else{
@@ -984,58 +984,58 @@ BOOL F3DA_IsLastFrame(FLD_3D_ANM_DAT_PTR	inAnimeData)
 
 //==============================================================================
 /**
- * ŠJnƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€ƒZƒbƒg
+ * é–‹å§‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚»ãƒƒãƒˆ
  *
- * @param	outAnimeData	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	outAnimeData	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //==============================================================================
 void F3DA_SetStartFrame(FLD_3D_ANM_DAT_PTR	outAnimeData)
 {
-	if (!outAnimeData->Reverse){	//’Êí‚Ü‚í‚µ
+	if (!outAnimeData->Reverse){	//é€šå¸¸ã¾ã‚ã—
 		outAnimeData->pAnmObj->frame = 0;
-	}else{						//‹t‚Ü‚í‚µ
+	}else{						//é€†ã¾ã‚ã—
 		outAnimeData->pAnmObj->frame = NNS_G3dAnmObjGetNumFrame(outAnimeData->pAnmObj)-(FX32_ONE);
 	}
 }
 
 //==============================================================================
 /**
- * ŠJnƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€ƒZƒbƒg
+ * é–‹å§‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚»ãƒƒãƒˆ
  *
- * @param	outAnimeData	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	outAnimeData	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //==============================================================================
 void F3DA_SetLastFrame(FLD_3D_ANM_DAT_PTR	outAnimeData)
 {
-	if (!outAnimeData->Reverse){	//’Êí‚Ü‚í‚µ
+	if (!outAnimeData->Reverse){	//é€šå¸¸ã¾ã‚ã—
 		outAnimeData->pAnmObj->frame = NNS_G3dAnmObjGetNumFrame(outAnimeData->pAnmObj)-(FX32_ONE);
-	}else{						//‹t‚Ü‚í‚µ
+	}else{						//é€†ã¾ã‚ã—
 		outAnimeData->pAnmObj->frame = 0;
 	}
 }
 
 //==============================================================================
 /**
- * ŠJnƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€•ÏX
+ * é–‹å§‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ å¤‰æ›´
  *
- * @param	outAnimeData	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	outAnimeData	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //==============================================================================
 void F3DA_ChangeFrame(FLD_3D_ANM_DAT_PTR	outAnimeData)
 {
-	if (!outAnimeData->Reverse){	//’Êí‚Ü‚í‚µ
+	if (!outAnimeData->Reverse){	//é€šå¸¸ã¾ã‚ã—
 		outAnimeData->pAnmObj->frame += (FX32_ONE);
 		if (outAnimeData->pAnmObj->frame == NNS_G3dAnmObjGetNumFrame(outAnimeData->pAnmObj)){
 			outAnimeData->pAnmObj->frame = 0;
 		}
 
-	}else{						//‹t‚Ü‚í‚µ
+	}else{						//é€†ã¾ã‚ã—
 		if (outAnimeData->pAnmObj->frame <= 0){
 			outAnimeData->pAnmObj->frame =
 				NNS_G3dAnmObjGetNumFrame(outAnimeData->pAnmObj)-(FX32_ONE);
@@ -1047,17 +1047,17 @@ void F3DA_ChangeFrame(FLD_3D_ANM_DAT_PTR	outAnimeData)
 
 //==============================================================================
 /**
- * w’èƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶•ûŒü‚ğ‹t‚É‚·‚é
+ * æŒ‡å®šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿæ–¹å‘ã‚’é€†ã«ã™ã‚‹
  *
- * @param	outAnimeData	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	outAnimeData	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //==============================================================================
 void F3DA_SetAnimeReverse(FLD_3D_ANM_DAT_PTR	outAnimeData)
 {
-	//‰ñ”w’èƒAƒjƒ‚Ìê‡‚ÍƒAƒT[ƒg‚ğ”­s
-	///GF_ASSERT(outAnimeData->LoopMax != LOOP_INFINIT && "‰ñ”w’èƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‹t‰ñ‚µ‚ÍƒTƒ|[ƒg‚µ‚Ä‚¢‚Ü‚¹‚ñ");
+	//å›æ•°æŒ‡å®šã‚¢ãƒ‹ãƒ¡ã®å ´åˆã¯ã‚¢ã‚µãƒ¼ãƒˆã‚’ç™ºè¡Œ
+	///GF_ASSERT(outAnimeData->LoopMax != LOOP_INFINIT && "å›æ•°æŒ‡å®šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®é€†å›ã—ã¯ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã¾ã›ã‚“");
 	if (outAnimeData->Reverse){
 		outAnimeData->Reverse = FALSE;
 	}else{
@@ -1067,26 +1067,26 @@ void F3DA_SetAnimeReverse(FLD_3D_ANM_DAT_PTR	outAnimeData)
 
 //==============================================================================
 /**
- * w’èƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶•ûŒü‚ğ‹t‚É‚·‚é(’¼Úw’è)
+ * æŒ‡å®šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿæ–¹å‘ã‚’é€†ã«ã™ã‚‹(ç›´æ¥æŒ‡å®š)
  *
- * @param	outAnimeData	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	outAnimeData	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //==============================================================================
 void F3DA_SetAnimeReverseDirect(FLD_3D_ANM_DAT_PTR	outAnimeData, const BOOL inReverse)
 {
-	//‰ñ”w’èƒAƒjƒ‚Ìê‡‚ÍƒAƒT[ƒg‚ğ”­s
-	///GF_ASSERT(outAnimeData->LoopMax != LOOP_INFINIT && "‰ñ”w’èƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‹t‰ñ‚µ‚ÍƒTƒ|[ƒg‚µ‚Ä‚¢‚Ü‚¹‚ñ");
+	//å›æ•°æŒ‡å®šã‚¢ãƒ‹ãƒ¡ã®å ´åˆã¯ã‚¢ã‚µãƒ¼ãƒˆã‚’ç™ºè¡Œ
+	///GF_ASSERT(outAnimeData->LoopMax != LOOP_INFINIT && "å›æ•°æŒ‡å®šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®é€†å›ã—ã¯ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã¾ã›ã‚“");
 	outAnimeData->Reverse = inReverse;
 }
 
 //==============================================================================
 /**
- * w’èƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÅ‘åƒ‹[ƒv”‚ğƒZƒbƒg
+ * æŒ‡å®šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æœ€å¤§ãƒ«ãƒ¼ãƒ—æ•°ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	outAnimeData	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inLoopMax		ƒ‹[ƒv”
+ * @param	outAnimeData	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inLoopMax		ãƒ«ãƒ¼ãƒ—æ•°
  *
  * @return	none
  */
@@ -1098,10 +1098,10 @@ void F3DA_SetAnimeLoopMax(FLD_3D_ANM_DAT_PTR	outAnimeData, const int inLoopMax)
 
 //==============================================================================
 /**
- * w’èƒAƒjƒ[ƒVƒ‡ƒ“‚Ì§ŒäƒR[ƒh‚ğƒZƒbƒg
+ * æŒ‡å®šã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param	outAnimeData	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inControlCode	§ŒäƒR[ƒh
+ * @param	outAnimeData	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inControlCode	åˆ¶å¾¡ã‚³ãƒ¼ãƒ‰
  *
  * @return	none
  */
@@ -1113,9 +1113,9 @@ void F3DA_SetControlCode(FLD_3D_ANM_DAT_PTR	outAnimeData, const int inControlCod
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒƒCƒ“ŠÖ”
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¡ã‚¤ãƒ³é–¢æ•°
  *
- * @param	field_3d_anime_ptr	3DƒAƒjƒ[ƒVƒ‡ƒ“ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	field_3d_anime_ptr	3Dã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1127,38 +1127,38 @@ void F3DA_Main(FLD_3D_ANM_MNG_PTR field_3d_anime_ptr)
 	if (field_3d_anime_ptr==NULL) return;
 	for(i=0;i<FLD_3D_ANIME_MAX;i++){
 		anime_data = &(field_3d_anime_ptr->Fld3DAnimeData[i]);
-		//ƒAƒjƒ‚Í—LŒø‚©‚Ç‚¤‚©
+		//ã‚¢ãƒ‹ãƒ¡ã¯æœ‰åŠ¹ã‹ã©ã†ã‹
 		if (anime_data->Valid == DATA_VALID){
-			//ƒAƒjƒ[ƒVƒ‡ƒ“‚ª’â~‚µ‚Ä‚¢‚éA‚à‚µ‚­‚ÍƒAƒjƒ‚ªI—¹‚µ‚Ä‚¢‚éê‡‚Íˆ—‚ğ”ò‚Î‚·
+			//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒåœæ­¢ã—ã¦ã„ã‚‹ã€ã‚‚ã—ãã¯ã‚¢ãƒ‹ãƒ¡ãŒçµ‚äº†ã—ã¦ã„ã‚‹å ´åˆã¯å‡¦ç†ã‚’é£›ã°ã™
 			if ((anime_data->StopFlg == TRUE)||(anime_data->State == STATE_END)){
 				continue;
 			}
 
-			F3DA_ChangeFrame(anime_data);	//ƒtƒŒ[ƒ€Ø‚è‘Ö‚¦
+			F3DA_ChangeFrame(anime_data);	//ãƒ•ãƒ¬ãƒ¼ãƒ åˆ‡ã‚Šæ›¿ãˆ
 			
-			if ( anime_data->LoopMax != LOOP_INFINIT ){	//ƒ‹[ƒvw’è‰ñ”‚ ‚è
-				if (F3DA_IsLastFrame(anime_data)){			//ÅIƒtƒŒ[ƒ€‚©H
-					if (anime_data->LoopCount+1 >= anime_data->LoopMax){//ÅIw’èƒ‹[ƒv‰ñ”–Ú‚©H
-						//ƒAƒjƒI—¹
+			if ( anime_data->LoopMax != LOOP_INFINIT ){	//ãƒ«ãƒ¼ãƒ—æŒ‡å®šå›æ•°ã‚ã‚Š
+				if (F3DA_IsLastFrame(anime_data)){			//æœ€çµ‚ãƒ•ãƒ¬ãƒ¼ãƒ ã‹ï¼Ÿ
+					if (anime_data->LoopCount+1 >= anime_data->LoopMax){//æœ€çµ‚æŒ‡å®šãƒ«ãƒ¼ãƒ—å›æ•°ç›®ã‹ï¼Ÿ
+						//ã‚¢ãƒ‹ãƒ¡çµ‚äº†
 						anime_data->State = STATE_END;
 					}else{
-						anime_data->LoopCount++;	//ƒ‹[ƒv”‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+						anime_data->LoopCount++;	//ãƒ«ãƒ¼ãƒ—æ•°ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 					}
 				}
 			}
 		}
 	}// end for
-	//©EŠÄ‹
+	//è‡ªæ®ºç›£è¦–
 	SuicideAnimeMain(field_3d_anime_ptr->SuicideData);
 
 }
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“‚ªI—¹‚µ‚Ä‚¢‚é‚©‚ğ•Ô‚·
- * @param	inAnimeData	ƒAƒjƒƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™
+ * @param	inAnimeData	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL	TRUE:I—¹@FALSE:NO Œp‘±
+ * @return	BOOL	TRUE:çµ‚äº†ã€€FALSE:NO ç¶™ç¶š
  */
 //==============================================================================
 BOOL F3DA_IsAnimeEnd(const FLD_3D_ANM_DAT_PTR inAnimeData)
@@ -1174,11 +1174,11 @@ BOOL F3DA_IsAnimeEnd(const FLD_3D_ANM_DAT_PTR inAnimeData)
 
 //==============================================================================
 /**
- * ƒAƒjƒƒA[ƒJƒCƒu‚ª•Û‚µ‚Ä‚¢‚é‚n‚a‚i‚Ì”‚ğ•Ô‚·
+ * ã‚¢ãƒ‹ãƒ¡ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒä¿æŒã—ã¦ã„ã‚‹ï¼¯ï¼¢ï¼ªã®æ•°ã‚’è¿”ã™
  * 
- * @param	field_3d_anime_ptr	3DƒAƒjƒ[ƒVƒ‡ƒ“ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	field_3d_anime_ptr	3Dã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	u16 ƒtƒ@ƒCƒ‹”
+ * @return	u16 ãƒ•ã‚¡ã‚¤ãƒ«æ•°
  */
 //==============================================================================
 u16 F3DA_GetAnimeArcObjNum(FLD_3D_ANM_MNG_PTR field_3d_anime_ptr)
@@ -1188,21 +1188,21 @@ u16 F3DA_GetAnimeArcObjNum(FLD_3D_ANM_MNG_PTR field_3d_anime_ptr)
 
 //==============================================================================
 /**
- * w’è‚n‚a‚i‚h‚c‚ÌƒAƒjƒ”‚ğ•Ô‚·
+ * æŒ‡å®šï¼¯ï¼¢ï¼ªï¼©ï¼¤ã®ã‚¢ãƒ‹ãƒ¡æ•°ã‚’è¿”ã™
  * 
- * @param	field_3d_anime_ptr	3DƒAƒjƒ[ƒVƒ‡ƒ“ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	field_3d_anime_ptr	3Dã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	u16 ƒAƒjƒ”
+ * @return	u16 ã‚¢ãƒ‹ãƒ¡æ•°
  */
 //==============================================================================
 const u8 F3DA_GetAnimeNum(FLD_3D_ANM_MNG_PTR field_3d_anime_ptr, const int inObjCode)
 {
 	u8 n;
 	ANIME_INFO info;
-	//w’è‚n‚a‚iƒAƒjƒî•ñ‚ğƒA[ƒJƒCƒo‚©‚ç“üè
+	//æŒ‡å®šï¼¯ï¼¢ï¼ªã‚¢ãƒ‹ãƒ¡æƒ…å ±ã‚’ã‚¢ãƒ¼ã‚«ã‚¤ãƒã‹ã‚‰å…¥æ‰‹
 	ArchiveDataLoadByHandle(field_3d_anime_ptr->AnmInfoHandle, inObjCode, &info);
 
-	//ƒAƒjƒ‚µ‚È‚¢‚à‚Ì‚Ì”‚Í0
+	//ã‚¢ãƒ‹ãƒ¡ã—ãªã„ã‚‚ã®ã®æ•°ã¯0
 	if (!info.Flg){
 		return 0;
 	}
@@ -1219,12 +1219,12 @@ const u8 F3DA_GetAnimeNum(FLD_3D_ANM_MNG_PTR field_3d_anime_ptr, const int inObj
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“ƒGƒ“ƒgƒŠ[
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¨ãƒ³ãƒˆãƒªãƒ¼
  *
- * @param	inAnimeContMng	ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inEntryID		“o˜^ID
+ * @param	inAnimeContMng	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inEntryID		ç™»éŒ²ID
  *
- * @return	ANIME_CONT_PTR	ƒAƒjƒŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	ANIME_CONT_PTR	ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 static ANIME_CONT_PTR EntryAnimeCont(ANIME_CONT_MNG_PTR inAnimeContMng, const u8 inEntryID)
@@ -1235,13 +1235,13 @@ static ANIME_CONT_PTR EntryAnimeCont(ANIME_CONT_MNG_PTR inAnimeContMng, const u8
 	
 	data = NULL;
 	
-	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0‚Íw’è‚Å‚«‚Ü‚¹‚ñ");
+	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0ã¯æŒ‡å®šã§ãã¾ã›ã‚“");
 	idx = ANIME_CONT_MAX;
-	//‹ó‚¢‚Ä‚¢‚é‚Æ‚±‚ë‚ğŒŸõ‚µ‚Â‚ÂA—\–ñID‚ª‚·‚Å‚É‚ ‚é‚©‚ğ’T‚·
+	//ç©ºã„ã¦ã„ã‚‹ã¨ã“ã‚ã‚’æ¤œç´¢ã—ã¤ã¤ã€äºˆç´„IDãŒã™ã§ã«ã‚ã‚‹ã‹ã‚’æ¢ã™
 	for(i=0;i<ANIME_CONT_MAX;i++){
 #ifdef PM_DEBUG		
 		if (inAnimeContMng->AnimeCont[i].EntryID == inEntryID ){
-			OS_Printf("ID=%d:w’è‚³‚ê‚½ID‚Í“o˜^Ï‚İ‚Å‚·\n",inEntryID);
+			OS_Printf("ID=%d:æŒ‡å®šã•ã‚ŒãŸIDã¯ç™»éŒ²æ¸ˆã¿ã§ã™\n",inEntryID);
 			GF_ASSERT(0);
 		}
 #endif		
@@ -1263,9 +1263,9 @@ static ANIME_CONT_PTR EntryAnimeCont(ANIME_CONT_MNG_PTR inAnimeContMng, const u8
 
 //==============================================================================
 /**
- *	ƒGƒ“ƒgƒŠ[ƒNƒŠƒA
+ *	ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã‚¯ãƒªã‚¢
  * 
- * @param	outData	ƒAƒjƒŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	outData	ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1283,12 +1283,12 @@ static void EntryClearAnimeCont(ANIME_CONT_PTR outData)
 
 //==============================================================================
 /**
- *	“o˜^ID‚ÅƒAƒjƒŠÇ—ƒf[ƒ^‚ğæ“¾
+ *	ç™»éŒ²IDã§ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  * 
- * @param	inAnimeContMng	ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inEntryID		ƒGƒ“ƒgƒŠ[‚h‚c
+ * @param	inAnimeContMng	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inEntryID		ã‚¨ãƒ³ãƒˆãƒªãƒ¼ï¼©ï¼¤
  *
- * @return	ƒAƒjƒŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 static ANIME_CONT_PTR GetAnmContPtrFromEntryID(	ANIME_CONT_MNG_PTR inAnimeContMng,
@@ -1297,7 +1297,7 @@ static ANIME_CONT_PTR GetAnmContPtrFromEntryID(	ANIME_CONT_MNG_PTR inAnimeContMn
 	int i;
 	ANIME_CONT_PTR data;
 	data = NULL;
-	//—\–ñ‚³‚ê‚Ä‚¢‚éêŠ‚ğŒŸõ
+	//äºˆç´„ã•ã‚Œã¦ã„ã‚‹å ´æ‰€ã‚’æ¤œç´¢
 	for(i=0;i<ANIME_CONT_MAX;i++){
 		if (inAnimeContMng->AnimeCont[i].EntryID == inEntryID){
 			data = &(inAnimeContMng->AnimeCont[i]);
@@ -1306,7 +1306,7 @@ static ANIME_CONT_PTR GetAnmContPtrFromEntryID(	ANIME_CONT_MNG_PTR inAnimeContMn
 	}
 #ifdef PM_DEBUG
 	if (i==ANIME_CONT_MAX){
-		OS_Printf("%d:w’è‚³‚ê‚½“o˜^ID‚ğ‚ÂƒAƒjƒ[ƒVƒ‡ƒ“‚ğæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½",inEntryID);
+		OS_Printf("%d:æŒ‡å®šã•ã‚ŒãŸç™»éŒ²IDã‚’æŒã¤ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å–å¾—ã§ãã¾ã›ã‚“ã§ã—ãŸ",inEntryID);
 		GF_ASSERT(0);
 	}
 #endif
@@ -1315,11 +1315,11 @@ static ANIME_CONT_PTR GetAnmContPtrFromEntryID(	ANIME_CONT_MNG_PTR inAnimeContMn
 
 //==============================================================================
 /**
- *	“o˜^ID‚ÅƒAƒjƒŠÇ—ƒf[ƒ^‚ğæ“¾
+ *	ç™»éŒ²IDã§ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  * 
- * @param	*pRenderObj		ƒŒƒ“ƒ_[‚n‚a‚i
- * @param	inNum			ƒAƒjƒ”
- * @param	outData			ƒAƒjƒŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	*pRenderObj		ãƒ¬ãƒ³ãƒ€ãƒ¼ï¼¯ï¼¢ï¼ª
+ * @param	inNum			ã‚¢ãƒ‹ãƒ¡æ•°
+ * @param	outData			ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1328,20 +1328,20 @@ static void SetAnimeCont(	NNSG3dRenderObj *pRenderObj,
 							const int inNum,
 							ANIME_CONT_PTR	outData	)
 {
-	GF_ASSERT(inNum<=ONE_MODEL_ANM_NUM_MAX&&"1‚Â‚Ìƒ‚ƒfƒ‹‚ª‚Ä‚éƒAƒjƒ”‚ğƒI[ƒo[‚µ‚Ä‚Ü‚·");
+	GF_ASSERT(inNum<=ONE_MODEL_ANM_NUM_MAX&&"1ã¤ã®ãƒ¢ãƒ‡ãƒ«ãŒæŒã¦ã‚‹ã‚¢ãƒ‹ãƒ¡æ•°ã‚’ã‚ªãƒ¼ãƒãƒ¼ã—ã¦ã¾ã™");
 	if (pRenderObj != NULL){
-		outData->RenderObj[0] = pRenderObj;	//ƒŒƒ“ƒ_[‚n‚a‚i‚Ìw’è‚ª‚ ‚éê‡‚Í0”Ô–Ú‚É“o˜^‚·‚é
+		outData->RenderObj[0] = pRenderObj;	//ãƒ¬ãƒ³ãƒ€ãƒ¼ï¼¯ï¼¢ï¼ªã®æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯0ç•ªç›®ã«ç™»éŒ²ã™ã‚‹
 	}
 	outData->AnimeList.AnimeNum = inNum;
 }
 
 //==============================================================================
 /**
- *	ƒAƒjƒƒf[ƒ^ƒZƒbƒg
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  * 
- * @param	inAnimeContPtr	ƒAƒjƒŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inIndex			ƒCƒ“ƒfƒbƒNƒX
- * @param	inAnimePtr		ƒAƒjƒƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inAnimeContPtr	ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inIndex			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inAnimePtr		ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1350,32 +1350,32 @@ static void SetAnimePtr(ANIME_CONT_PTR inAnimeContPtr,
 						const int inIndex,
 						FLD_3D_ANM_DAT_PTR inAnimePtr)
 {
-	GF_ASSERT(inIndex<inAnimeContPtr->AnimeList.AnimeNum&&"ƒCƒ“ƒfƒbƒNƒX‚ªƒI[ƒo[‚µ‚Ä‚Ü‚·");
+	GF_ASSERT(inIndex<inAnimeContPtr->AnimeList.AnimeNum&&"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒã‚ªãƒ¼ãƒãƒ¼ã—ã¦ã¾ã™");
 	inAnimeContPtr->AnimeList.Data[inIndex] = inAnimePtr;
 }
 
 //==============================================================================
 /**
- *	ƒAƒjƒƒf[ƒ^æ“¾
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿å–å¾—
  * 
- * @param	inAnimeContPtr	ƒAƒjƒŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inIndex			ƒCƒ“ƒfƒbƒNƒX
+ * @param	inAnimeContPtr	ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inIndex			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @return	FLD_3D_ANM_DAT_PTR	ƒAƒjƒƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @return	FLD_3D_ANM_DAT_PTR	ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 static FLD_3D_ANM_DAT_PTR GetAnimePtr(ANIME_CONT_PTR inAnimeContPtr, const int inIndex)
 {
-	GF_ASSERT(inIndex<inAnimeContPtr->AnimeList.AnimeNum&&"ƒCƒ“ƒfƒbƒNƒX‚ªƒI[ƒo[‚µ‚Ä‚Ü‚·");
+	GF_ASSERT(inIndex<inAnimeContPtr->AnimeList.AnimeNum&&"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒã‚ªãƒ¼ãƒãƒ¼ã—ã¦ã¾ã™");
 	return inAnimeContPtr->AnimeList.Data[inIndex];
 }
 
 //==============================================================================
 /**
- *	ƒAƒjƒƒoƒCƒ“ƒh
+ *	ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ãƒ‰
  * 
- * @param	ioAnimeContPtr	ƒAƒjƒŠÇ—ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	inIndex			ƒCƒ“ƒfƒbƒNƒX
+ * @param	ioAnimeContPtr	ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	inIndex			ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
  */
 //==============================================================================
@@ -1385,16 +1385,16 @@ static FLD_3D_ANM_DAT_PTR BindAnimation(ANIME_CONT_PTR ioAnimeContPtr, const int
 	FLD_3D_ANM_DAT_PTR anime;
 	NNSG3dAnmObj *anm_obj;
 	NNSG3dAnmObj *bind_anmobj;
-	GF_ASSERT(inIndex<ioAnimeContPtr->AnimeList.AnimeNum&&"ƒCƒ“ƒfƒbƒNƒX‚ªƒI[ƒo[‚µ‚Ä‚Ü‚·");
+	GF_ASSERT(inIndex<ioAnimeContPtr->AnimeList.AnimeNum&&"ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒã‚ªãƒ¼ãƒãƒ¼ã—ã¦ã¾ã™");
 	anime = ioAnimeContPtr->AnimeList.Data[inIndex];
 	anm_obj = GetAnmObj(anime);
 
 	bind_anmobj = GetAnmObj(ioAnimeContPtr->BindAnime);
 	for(i=0;i<CONT_RENDER_OBJ_MAX;i++){
 		if (ioAnimeContPtr->RenderObj[i] != NULL){
-			//‚·‚Å‚ÉƒAƒjƒ‚ª‚Â‚¢‚Ä‚¢‚éê‡‚ÍƒŠƒ€[ƒu‚·‚é
+			//ã™ã§ã«ã‚¢ãƒ‹ãƒ¡ãŒã¤ã„ã¦ã„ã‚‹å ´åˆã¯ãƒªãƒ ãƒ¼ãƒ–ã™ã‚‹
 			RemoveAnime(ioAnimeContPtr->RenderObj[i], bind_anmobj);
-			// RenderObj ‚É AnmObj ‚ğ’Ç‰Á‚·‚éBƒWƒ‡ƒCƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ˆÈŠO‚à“¯—l
+			// RenderObj ã« AnmObj ã‚’è¿½åŠ ã™ã‚‹ã€‚ã‚¸ãƒ§ã‚¤ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä»¥å¤–ã‚‚åŒæ§˜
 			NNS_G3dRenderObjAddAnmObj(ioAnimeContPtr->RenderObj[i], anm_obj );
 		}
 	}
@@ -1404,16 +1404,16 @@ static FLD_3D_ANM_DAT_PTR BindAnimation(ANIME_CONT_PTR ioAnimeContPtr, const int
 
 //==============================================================================
 /**
- *	ƒAƒjƒ[ƒVƒ‡ƒ“’Ç‰Á@”ñí’“ƒAƒjƒ‚Ì‚İ‘Î‰
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è¿½åŠ ã€€éå¸¸é§ã‚¢ãƒ‹ãƒ¡ã®ã¿å¯¾å¿œ
  * 
  * @param		inObjID				OBJID
- * @param		inObjectModel		ƒŠƒ\[ƒXƒ‚ƒfƒ‹
- * @param		inTex				ƒeƒNƒXƒ`ƒƒ
- * @param		inAnimeNum			ƒAƒjƒ”
- * @param		inLoopCount			ƒ‹[ƒv”
- * @param		inReverse			‹tÄ¶ƒtƒ‰ƒO
- * @param		field_3d_anime_ptr	3DƒAƒjƒ[ƒVƒ‡ƒ“ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		outData				ƒAƒjƒƒf[ƒ^
+ * @param		inObjectModel		ãƒªã‚½ãƒ¼ã‚¹ãƒ¢ãƒ‡ãƒ«
+ * @param		inTex				ãƒ†ã‚¯ã‚¹ãƒãƒ£
+ * @param		inAnimeNum			ã‚¢ãƒ‹ãƒ¡æ•°
+ * @param		inLoopCount			ãƒ«ãƒ¼ãƒ—æ•°
+ * @param		inReverse			é€†å†ç”Ÿãƒ•ãƒ©ã‚°
+ * @param		field_3d_anime_ptr	3Dã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		outData				ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
  *
  * @retrun		none
  *
@@ -1434,26 +1434,26 @@ static void AddField3DAnime(const int inObjID,
 		anm_data = F3DA_AddField3DAnime(inObjID,
 										i,
 										inLoopCount,
-										0,		//ŠO•”§Œä‚µ‚È‚¢
-										inReverse,	//Œü‚«
-										TRUE,	//n‚ß‚Í’â~
-										TRUE,	//ğŒ•t
+										0,		//å¤–éƒ¨åˆ¶å¾¡ã—ãªã„
+										inReverse,	//å‘ã
+										TRUE,	//å§‹ã‚ã¯åœæ­¢
+										TRUE,	//æ¡ä»¶ä»˜
 										inObjectModel,
 										inTex,
 										field_3d_anime_ptr);
-		GF_ASSERT(anm_data!=NULL&&"“o˜^¸”s");
+		GF_ASSERT(anm_data!=NULL&&"ç™»éŒ²å¤±æ•—");
 
-		//ƒAƒjƒŠÇ—ƒŠƒXƒg‚É“o˜^‚µ‚½ƒAƒjƒƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚Ä‚¨‚­
-		SetAnimePtr( outData, i, anm_data);	//ƒAƒjƒ“o˜^
+		//ã‚¢ãƒ‹ãƒ¡ç®¡ç†ãƒªã‚¹ãƒˆã«ç™»éŒ²ã—ãŸã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¦ãŠã
+		SetAnimePtr( outData, i, anm_data);	//ã‚¢ãƒ‹ãƒ¡ç™»éŒ²
 	}
 }
 
 //==============================================================================
 /**
- *	ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒŠƒŠ[ƒX
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒªãƒªãƒ¼ã‚¹
  * 
- * @param		field_3d_anime_ptr	3DƒAƒjƒ[ƒVƒ‡ƒ“ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		outData				ƒAƒjƒƒf[ƒ^
+ * @param		field_3d_anime_ptr	3Dã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		outData				ã‚¢ãƒ‹ãƒ¡ãƒ‡ãƒ¼ã‚¿
  *
  * @retrun		none
  *
@@ -1465,7 +1465,7 @@ static void RereaseField3DAnime(FLD_3D_ANM_MNG_PTR field_3d_anime_ptr,
 	int i;
 	NNSG3dAnmObj *anmobj;
 	anmobj = GetAnmObj(outData->BindAnime);
-	//‚·‚Å‚ÉƒAƒjƒ‚ª‚Â‚¢‚Ä‚¢‚éê‡‚ÍƒŠƒ€[ƒu‚·‚é
+	//ã™ã§ã«ã‚¢ãƒ‹ãƒ¡ãŒã¤ã„ã¦ã„ã‚‹å ´åˆã¯ãƒªãƒ ãƒ¼ãƒ–ã™ã‚‹
 	for(i=0;i<CONT_RENDER_OBJ_MAX;i++){
 		if (outData->RenderObj[i] != NULL){
 			RemoveAnime(outData->RenderObj[i], anmobj);
@@ -1483,10 +1483,10 @@ static void RereaseField3DAnime(FLD_3D_ANM_MNG_PTR field_3d_anime_ptr,
 
 //==============================================================================
 /**
- *	3DƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ìƒƒ‚ƒŠƒAƒƒP[ƒVƒ‡ƒ“
+ *	3Dã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã®ãƒ¡ãƒ¢ãƒªã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³
  * 
  *
- * @retrun		ANIME_CONT_MNG_PTR		ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @retrun		ANIME_CONT_MNG_PTR		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //==============================================================================
@@ -1507,10 +1507,10 @@ ANIME_CONT_MNG_PTR F3DASub_InitField3DAnimeCont(void)
 
 //==============================================================================
 /**
- *	3DƒAƒjƒƒ}ƒl[ƒWƒƒ‚Ì‰ğ•ú
+ *	3Dã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ã®è§£æ”¾
  * 
  *
- * @param		outAnimeContMng		ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param		outAnimeContMng		ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return		none
  *
@@ -1525,7 +1525,7 @@ void F3DASub_FreeAnimeContManager(ANIME_CONT_MNG_PTR *outAnimeContMng)
 		int i;
 		for(i=0;i<ANIME_CONT_MAX;i++){
 			if ((*outAnimeContMng)->AnimeCont[i].EntryID != NO_ENTRY ){
-				OS_Printf("EntryID:%d “o˜^‚Ì‰ğœ‚ª‚³‚ê‚È‚¢‚Ü‚Ü‰ğ•ú‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·\n",
+				OS_Printf("EntryID:%d ç™»éŒ²ã®è§£é™¤ãŒã•ã‚Œãªã„ã¾ã¾è§£æ”¾ã—ã‚ˆã†ã¨ã—ã¦ã„ã¾ã™\n",
 						(*outAnimeContMng)->AnimeCont[i].EntryID);
 				GF_ASSERT(0);
 			}
@@ -1539,19 +1539,19 @@ void F3DASub_FreeAnimeContManager(ANIME_CONT_MNG_PTR *outAnimeContMng)
 
 //==============================================================================
 /**
- *	ƒAƒjƒ[ƒVƒ‡ƒ“ƒZƒbƒgƒAƒbƒv
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * 
  *
- * @param		field_3d_anime_ptr		3DƒAƒjƒ[ƒVƒ‡ƒ“ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		inAnimeContMng			ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		inEntryID				ƒGƒ“ƒgƒŠ[‚h‚c
- * @param		inObjID					‚n‚a‚i‚h‚c
- * @param		inRenderObj				ƒŒƒ“ƒ_[‚n‚a‚i
- * @param		inObjectModel			‚n‚a‚iƒ‚ƒfƒ‹
- * @param		inTex					ƒeƒNƒXƒ`ƒƒ
- * @param		inAnimeNum				ƒAƒjƒ”
- * @param		inLoop					ƒ‹[ƒv”
- * @param		inReverse				‹tÄ¶ƒtƒ‰ƒO
+ * @param		field_3d_anime_ptr		3Dã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		inAnimeContMng			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		inEntryID				ã‚¨ãƒ³ãƒˆãƒªãƒ¼ï¼©ï¼¤
+ * @param		inObjID					ï¼¯ï¼¢ï¼ªï¼©ï¼¤
+ * @param		inRenderObj				ãƒ¬ãƒ³ãƒ€ãƒ¼ï¼¯ï¼¢ï¼ª
+ * @param		inObjectModel			ï¼¯ï¼¢ï¼ªãƒ¢ãƒ‡ãƒ«
+ * @param		inTex					ãƒ†ã‚¯ã‚¹ãƒãƒ£
+ * @param		inAnimeNum				ã‚¢ãƒ‹ãƒ¡æ•°
+ * @param		inLoop					ãƒ«ãƒ¼ãƒ—æ•°
+ * @param		inReverse				é€†å†ç”Ÿãƒ•ãƒ©ã‚°
  *
  * @return		none
  *
@@ -1571,39 +1571,39 @@ void F3DASub_SetUpAnimation(FLD_3D_ANM_MNG_PTR field_3d_anime_ptr,
 	int i;
 	u8 loop;
 	ANIME_CONT_PTR		cont_data = NULL;
-	//ƒAƒjƒƒGƒ“ƒgƒŠ[
+	//ã‚¢ãƒ‹ãƒ¡ã‚¨ãƒ³ãƒˆãƒªãƒ¼
 	cont_data = EntryAnimeCont(inAnimeContMng, inEntryID);
 	if (!cont_data){
 		GF_ASSERT_MSG(0,"FAIL_ANIME_ENTRY");
 		return ;
 	}
 
-	//g—p‚·‚éƒAƒjƒ”•ªŠÇ——pƒAƒjƒƒ|ƒCƒ“ƒ^ƒŠƒXƒg‚ğŠm•Û
+	//ä½¿ç”¨ã™ã‚‹ã‚¢ãƒ‹ãƒ¡æ•°åˆ†ç®¡ç†ç”¨ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿ãƒªã‚¹ãƒˆã‚’ç¢ºä¿
 	SetAnimeCont(inRenderObj, inAnimeNum, cont_data);
 	loop = inLoop;
 	GF_ASSERT(loop != 0);
 	if (loop == 0){
-		loop = 1;	//0ƒZƒbƒg–h~
+		loop = 1;	//0ã‚»ãƒƒãƒˆé˜²æ­¢
 	}
 	
-	//ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì’Ç‰Á
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®è¿½åŠ 
 	AddField3DAnime(inObjID, inObjectModel, inTex, inAnimeNum, loop, inReverse,
 					field_3d_anime_ptr, cont_data);
-	//OBJID‹L‰¯(‚Ù‚ÚƒTƒEƒ“ƒh—p)
+	//OBJIDè¨˜æ†¶(ã»ã¼ã‚µã‚¦ãƒ³ãƒ‰ç”¨)
 	cont_data->ObjID = inObjID;
 }
 
 //==============================================================================
 /**
- *	ƒŒƒ“ƒ_[‚n‚a‚i‚ÌƒGƒ“ƒgƒŠ[
- *	“¯‚¶ƒAƒjƒ‚ğ•¡”‚Ì‚n‚a‚i‚ªg‚¤ê‡‚Ég—p
- *	F3DASub_SetUpAnimation‚ÅƒŒƒ“ƒ_[‚n‚a‚iw’è‚µ‚È‚©‚Á‚½‚Æ‚«‚É
- *	Œã‚Å‚±‚ê‚ğg‚Á‚ÄƒGƒ“ƒgƒŠ‚·‚é
+ *	ãƒ¬ãƒ³ãƒ€ãƒ¼ï¼¯ï¼¢ï¼ªã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼
+ *	åŒã˜ã‚¢ãƒ‹ãƒ¡ã‚’è¤‡æ•°ã®ï¼¯ï¼¢ï¼ªãŒä½¿ã†å ´åˆã«ä½¿ç”¨
+ *	F3DASub_SetUpAnimationã§ãƒ¬ãƒ³ãƒ€ãƒ¼ï¼¯ï¼¢ï¼ªæŒ‡å®šã—ãªã‹ã£ãŸã¨ãã«
+ *	å¾Œã§ã“ã‚Œã‚’ä½¿ã£ã¦ã‚¨ãƒ³ãƒˆãƒªã™ã‚‹
  * 
- * @param		inAnimeContMng			ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		inEntryID				ƒGƒ“ƒgƒŠ[‚h‚c
- * @param		inEntryIndex			ƒGƒ“ƒgƒŠƒCƒ“ƒfƒbƒNƒX
- * @param		inRenderObj				ƒŒƒ“ƒ_[‚n‚a‚i
+ * @param		inAnimeContMng			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		inEntryID				ã‚¨ãƒ³ãƒˆãƒªãƒ¼ï¼©ï¼¤
+ * @param		inEntryIndex			ã‚¨ãƒ³ãƒˆãƒªã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param		inRenderObj				ãƒ¬ãƒ³ãƒ€ãƒ¼ï¼¯ï¼¢ï¼ª
  *
  * @return		none
  *
@@ -1617,17 +1617,17 @@ void F3DASub_EntryRenderObj(const ANIME_CONT_MNG_PTR inAnimeContMng,
 	ANIME_CONT_PTR cont_ptr;
 	GF_ASSERT(inEntryIndex<CONT_RENDER_OBJ_MAX);
 	cont_ptr = GetAnmContPtrFromEntryID( inAnimeContMng, inEntryID);
-	GF_ASSERT_MSG((cont_ptr->RenderObj[inEntryIndex]==NULL),"ƒŒƒ“ƒ_[OBJ‚ª‚·‚Å‚É‚ ‚è‚Ü‚·");
+	GF_ASSERT_MSG((cont_ptr->RenderObj[inEntryIndex]==NULL),"ãƒ¬ãƒ³ãƒ€ãƒ¼OBJãŒã™ã§ã«ã‚ã‚Šã¾ã™");
 	cont_ptr->RenderObj[inEntryIndex] = inRenderObj;
 }
 
 //==============================================================================
 /**
- *	ƒAƒjƒŠJn
+ *	ã‚¢ãƒ‹ãƒ¡é–‹å§‹
  * 
- * @param		inAnimeContMng			ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		inEntryID				ƒGƒ“ƒgƒŠ[‚h‚c
- * @param		inAnimeNo				ƒAƒjƒƒiƒ“ƒo[
+ * @param		inAnimeContMng			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		inEntryID				ã‚¨ãƒ³ãƒˆãƒªãƒ¼ï¼©ï¼¤
+ * @param		inAnimeNo				ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
  *
  * @return		none
  *
@@ -1639,22 +1639,22 @@ void F3DASub_StartAnimation(const ANIME_CONT_MNG_PTR inAnimeContMng,
 {
 	ANIME_CONT_PTR cont_ptr;
 	FLD_3D_ANM_DAT_PTR anime;
-	GF_ASSERT_MSG((inEntryID!=NO_ENTRY),"ID=0‚Íw’è‚Å‚«‚Ü‚¹‚ñ");
+	GF_ASSERT_MSG((inEntryID!=NO_ENTRY),"ID=0ã¯æŒ‡å®šã§ãã¾ã›ã‚“");
 	cont_ptr = GetAnmContPtrFromEntryID(inAnimeContMng, inEntryID);
 
-	anime = BindAnimation(cont_ptr, inAnimeNo);	//ƒAƒjƒ‚ğƒoƒCƒ“ƒh
-	//ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒXƒ^[ƒg
+	anime = BindAnimation(cont_ptr, inAnimeNo);	//ã‚¢ãƒ‹ãƒ¡ã‚’ãƒã‚¤ãƒ³ãƒ‰
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚¹ã‚¿ãƒ¼ãƒˆ
 	F3DA_SetStopFlg(anime, FALSE);
 }
 
 //==============================================================================
 /**
- *	ƒAƒjƒŠJni‰¹‚Â‚«j
+ *	ã‚¢ãƒ‹ãƒ¡é–‹å§‹ï¼ˆéŸ³ã¤ãï¼‰
  * 
- * @param		inAnimeContMng			ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		inEntryID				ƒGƒ“ƒgƒŠ[‚h‚c
- * @param		inAnimeNo				ƒAƒjƒƒiƒ“ƒo[
- * @param		inSound					‚r‚d”Ô†
+ * @param		inAnimeContMng			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		inEntryID				ã‚¨ãƒ³ãƒˆãƒªãƒ¼ï¼©ï¼¤
+ * @param		inAnimeNo				ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+ * @param		inSound					ï¼³ï¼¥ç•ªå·
  *
  * @return		none
  *
@@ -1667,27 +1667,27 @@ void F3DASub_StartAnimeSnd(const ANIME_CONT_MNG_PTR inAnimeContMng,
 {
 	ANIME_CONT_PTR cont_ptr;
 	FLD_3D_ANM_DAT_PTR anime;
-	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0‚Íw’è‚Å‚«‚Ü‚¹‚ñ");
+	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0ã¯æŒ‡å®šã§ãã¾ã›ã‚“");
 	cont_ptr = GetAnmContPtrFromEntryID(inAnimeContMng, inEntryID);
 
-	anime = BindAnimation(cont_ptr, inAnimeNo);	//ƒAƒjƒ‚ğƒoƒCƒ“ƒh
+	anime = BindAnimation(cont_ptr, inAnimeNo);	//ã‚¢ãƒ‹ãƒ¡ã‚’ãƒã‚¤ãƒ³ãƒ‰
 
-	//©“®ƒhƒA•Â‚¶‚é‰¹ˆÈŠO‚¾‚Á‚½‚çSEÄ¶
+	//è‡ªå‹•ãƒ‰ã‚¢é–‰ã˜ã‚‹éŸ³ä»¥å¤–ã ã£ãŸã‚‰SEå†ç”Ÿ
 	if( inSound != SE_JIDO_DOOR_CLOSE ){
 		Snd_SePlay(inSound);
 	}
 
-	//ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒXƒ^[ƒg
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚¹ã‚¿ãƒ¼ãƒˆ
 	F3DA_SetStopFlg(anime, FALSE);
 }
 
 //==============================================================================
 /**
- *	ƒAƒjƒƒoƒCƒ“ƒh
+ *	ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ãƒ‰
  * 
- * @param		inAnimeContMng			ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		inEntryID				ƒGƒ“ƒgƒŠ[‚h‚c
- * @param		inAnimeNo				ƒAƒjƒƒiƒ“ƒo[
+ * @param		inAnimeContMng			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		inEntryID				ã‚¨ãƒ³ãƒˆãƒªãƒ¼ï¼©ï¼¤
+ * @param		inAnimeNo				ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
  *
  * @return		none
  *
@@ -1699,20 +1699,20 @@ void F3DASub_BindAnimation( const ANIME_CONT_MNG_PTR inAnimeContMng,
 {
 	ANIME_CONT_PTR cont_ptr;
 	FLD_3D_ANM_DAT_PTR anime;
-	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0‚Íw’è‚Å‚«‚Ü‚¹‚ñ");
+	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0ã¯æŒ‡å®šã§ãã¾ã›ã‚“");
 	cont_ptr = GetAnmContPtrFromEntryID(inAnimeContMng, inEntryID);
 
-	anime = BindAnimation(cont_ptr, inAnimeNo);	//ƒAƒjƒ‚ğƒoƒCƒ“ƒh
+	anime = BindAnimation(cont_ptr, inAnimeNo);	//ã‚¢ãƒ‹ãƒ¡ã‚’ãƒã‚¤ãƒ³ãƒ‰
 }
 
 //==============================================================================
 /**
- *	ƒAƒjƒƒXƒgƒbƒvƒtƒ‰ƒOƒIƒ“ƒIƒt
+ *	ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°ã‚ªãƒ³ã‚ªãƒ•
  * 
- * @param		inAnimeContMng			ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		inEntryID				ƒGƒ“ƒgƒŠ[‚h‚c
- * @param		inAnimeNo				ƒAƒjƒƒiƒ“ƒo[
- * @param		inFlg					’â~ƒtƒ‰ƒOƒXƒCƒbƒ`
+ * @param		inAnimeContMng			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		inEntryID				ã‚¨ãƒ³ãƒˆãƒªãƒ¼ï¼©ï¼¤
+ * @param		inAnimeNo				ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+ * @param		inFlg					åœæ­¢ãƒ•ãƒ©ã‚°ã‚¹ã‚¤ãƒƒãƒ
  *
  * @return		none
  *
@@ -1725,21 +1725,21 @@ void F3DASub_SetStopFlg( const ANIME_CONT_MNG_PTR inAnimeContMng,
 {
 	ANIME_CONT_PTR cont_ptr;
 	FLD_3D_ANM_DAT_PTR anime;
-	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0‚Íw’è‚Å‚«‚Ü‚¹‚ñ");
+	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0ã¯æŒ‡å®šã§ãã¾ã›ã‚“");
 	cont_ptr = GetAnmContPtrFromEntryID(inAnimeContMng, inEntryID);
 
-	anime = BindAnimation(cont_ptr, inAnimeNo);	//ƒAƒjƒ‚ğƒoƒCƒ“ƒh
-	//ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒXƒ^[ƒg
+	anime = BindAnimation(cont_ptr, inAnimeNo);	//ã‚¢ãƒ‹ãƒ¡ã‚’ãƒã‚¤ãƒ³ãƒ‰
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚¹ã‚¿ãƒ¼ãƒˆ
 	F3DA_SetStopFlg(anime, inFlg);
 }
 
 //==============================================================================
 /**
- *	‰ğ•úˆ—
+ *	è§£æ”¾å‡¦ç†
  * 
- * @param		field_3d_anime_ptr		3DƒAƒjƒ[ƒVƒ‡ƒ“ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		inAnimeContMng			ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		inEntryID				ƒGƒ“ƒgƒŠ[‚h‚c
+ * @param		field_3d_anime_ptr		3Dã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		inAnimeContMng			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		inEntryID				ã‚¨ãƒ³ãƒˆãƒªãƒ¼ï¼©ï¼¤
  *
  * @return		none
  *
@@ -1750,23 +1750,23 @@ void F3DASub_RereaseAnimation(	FLD_3D_ANM_MNG_PTR field_3d_anime_ptr,
 								const int inEntryID)
 {
 	ANIME_CONT_PTR data;
-	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0‚Íw’è‚Å‚«‚Ü‚¹‚ñ");
+	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0ã¯æŒ‡å®šã§ãã¾ã›ã‚“");
 	data = GetAnmContPtrFromEntryID(inAnimeContMng, inEntryID);
-	//ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‰ğ•ú
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®è§£æ”¾
 	RereaseField3DAnime(field_3d_anime_ptr, data);
-	//ƒGƒ“ƒgƒŠ[ƒNƒŠƒA
+	//ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã‚¯ãƒªã‚¢
 	EntryClearAnimeCont(data);
 }
 
 //==============================================================================
 /**
- *	ƒAƒjƒæ“¾
+ *	ã‚¢ãƒ‹ãƒ¡å–å¾—
  * 
- * @param		inAnimeContMng			ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		inEntryID				ƒGƒ“ƒgƒŠ[‚h‚c
- * @param		inAnimeNo				ƒAƒjƒƒiƒ“ƒo[
+ * @param		inAnimeContMng			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		inEntryID				ã‚¨ãƒ³ãƒˆãƒªãƒ¼ï¼©ï¼¤
+ * @param		inAnimeNo				ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
  *
- * @return		FLD_3D_ANM_DAT_PTR		ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @return		FLD_3D_ANM_DAT_PTR		ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //==============================================================================
@@ -1776,7 +1776,7 @@ FLD_3D_ANM_DAT_PTR F3DASub_GetFld3DAnmPtr(	const ANIME_CONT_MNG_PTR inAnimeContM
 {
 	ANIME_CONT_PTR cont_data;
 	FLD_3D_ANM_DAT_PTR anime;
-	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0‚Íw’è‚Å‚«‚Ü‚¹‚ñ");
+	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0ã¯æŒ‡å®šã§ãã¾ã›ã‚“");
 	cont_data =  GetAnmContPtrFromEntryID(inAnimeContMng, inEntryID);
 	anime = GetAnimePtr(cont_data, inAnimeNo);
 	return anime;
@@ -1784,12 +1784,12 @@ FLD_3D_ANM_DAT_PTR F3DASub_GetFld3DAnmPtr(	const ANIME_CONT_MNG_PTR inAnimeContM
 
 //==============================================================================
 /**
- *	Œ»İƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚éƒAƒjƒ‚ğæ“¾
+ *	ç¾åœ¨ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹ã‚¢ãƒ‹ãƒ¡ã‚’å–å¾—
  * 
- * @param		inAnimeContMng			ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		inEntryID				ƒGƒ“ƒgƒŠ[‚h‚c
+ * @param		inAnimeContMng			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		inEntryID				ã‚¨ãƒ³ãƒˆãƒªãƒ¼ï¼©ï¼¤
  *
- * @return		FLD_3D_ANM_DAT_PTR		ƒAƒjƒƒ|ƒCƒ“ƒ^
+ * @return		FLD_3D_ANM_DAT_PTR		ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //==============================================================================
@@ -1798,7 +1798,7 @@ FLD_3D_ANM_DAT_PTR F3DASub_GetFld3DBindAnmPtr(	const ANIME_CONT_MNG_PTR inAnimeC
 {
 	ANIME_CONT_PTR cont_data;
 	FLD_3D_ANM_DAT_PTR anime;
-	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0‚Íw’è‚Å‚«‚Ü‚¹‚ñ");
+	GF_ASSERT(inEntryID!=NO_ENTRY&&"ID=0ã¯æŒ‡å®šã§ãã¾ã›ã‚“");
 	cont_data =  GetAnmContPtrFromEntryID(inAnimeContMng, inEntryID);
 	anime = cont_data->BindAnime;
 	return anime;
@@ -1806,12 +1806,12 @@ FLD_3D_ANM_DAT_PTR F3DASub_GetFld3DBindAnmPtr(	const ANIME_CONT_MNG_PTR inAnimeC
 
 //==============================================================================
 /**
- *	ƒAƒjƒ[ƒVƒ‡ƒ“I—¹‘Ò‚¿
+ *	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†å¾…ã¡
  * 
- * @param		inAnimeContMng			ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		inEntryID				ƒGƒ“ƒgƒŠ[‚h‚c
+ * @param		inAnimeContMng			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		inEntryID				ã‚¨ãƒ³ãƒˆãƒªãƒ¼ï¼©ï¼¤
  *
- * @return		BOOL		TRUE:ƒAƒjƒI—¹		FALSE:ƒAƒjƒŒp‘±
+ * @return		BOOL		TRUE:ã‚¢ãƒ‹ãƒ¡çµ‚äº†		FALSE:ã‚¢ãƒ‹ãƒ¡ç¶™ç¶š
  *
  */
 //==============================================================================
@@ -1821,7 +1821,7 @@ const BOOL F3DASub_WaitAnimation(	const ANIME_CONT_MNG_PTR inAnimeContMng,
 	FLD_3D_ANM_DAT_PTR data;
 	data = F3DASub_GetFld3DBindAnmPtr(inAnimeContMng, inEntryID);
 
-	GF_ASSERT_MSG((data!=NULL),"ƒAƒjƒ‚ªƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚È‚¢");
+	GF_ASSERT_MSG((data!=NULL),"ã‚¢ãƒ‹ãƒ¡ãŒãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ãªã„");
 	
 	if ( F3DA_IsAnimeEnd(data) ){
 		return TRUE;
@@ -1832,12 +1832,12 @@ const BOOL F3DASub_WaitAnimation(	const ANIME_CONT_MNG_PTR inAnimeContMng,
 
 //==============================================================================
 /**
- *	ƒAƒjƒ‚ÉƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚é‚n‚a‚i‚ÌOBJID‚ğæ“¾
+ *	ã‚¢ãƒ‹ãƒ¡ã«ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹ï¼¯ï¼¢ï¼ªã®OBJIDã‚’å–å¾—
  * 
- * @param		inAnimeContMng			ƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒ}ƒl[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param		inEntryID				ƒGƒ“ƒgƒŠ[‚h‚c
+ * @param		inAnimeContMng			ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ãƒãƒãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param		inEntryID				ã‚¨ãƒ³ãƒˆãƒªãƒ¼ï¼©ï¼¤
  *
- * @return		BOOL		TRUE:ƒAƒjƒI—¹		FALSE:ƒAƒjƒŒp‘±
+ * @return		BOOL		TRUE:ã‚¢ãƒ‹ãƒ¡çµ‚äº†		FALSE:ã‚¢ãƒ‹ãƒ¡ç¶™ç¶š
  *
  */
 //==============================================================================

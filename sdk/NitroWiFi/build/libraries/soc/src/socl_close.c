@@ -12,72 +12,72 @@
 
   $Log: socl_close.c,v $
   Revision 1.22  2006/05/18 11:35:44  yasu
-  ���荞�݋֎~��Ԃ̏C��
+  割り込み禁止区間の修正
 
   Revision 1.21  2006/03/10 09:22:19  kitase_hirotake
   INDENT SOURCE
 
   Revision 1.20  2005/10/14 06:48:19  yasu
-  ����p�C�v�ւ� close �ʒm���� response �L���[���N���A���Ă��Ȃ������̂��C��
+  制御パイプへの close 通知時に response キューをクリアしていなかったのを修正
 
   Revision 1.19  2005/10/14 03:48:57  yasu
-  warning �΍�
+  warning 対策
 
   Revision 1.18  2005/10/14 01:56:53  yasu
-  �R�}���h�L���[����t�������Ƃ��� Close �������s���S�ȏ�ԂɂȂ邱�Ƃ��C��
+  コマンドキューが一杯だったときに Close 処理が不完全な状態になることを修正
 
   Revision 1.17  2005/09/29 03:05:50  yasu
-  Unregister/Register �֘A�̃o�O FIX
+  Unregister/Register 関連のバグ FIX
 
   Revision 1.16  2005/09/28 11:44:37  yasu
-  �R�[�h�𐮗�
-  SOCL_CalmDown() ��ǉ�
-  CPS ���C�u�����̐����Ή����܂��Ȃ̂� SOC ���ŏ������J�o�[���Ă���
+  コードを整理
+  SOCL_CalmDown() を追加
+  CPS ライブラリの正式対応がまだなので SOC 側で処理をカバーしている
 
   Revision 1.15  2005/09/28 04:11:56  kitase_hirotake
-  Write �̏I����҂悤�ɏC��
+  Write の終了を待つように修正
 
   Revision 1.14  2005/09/27 14:18:09  yasu
-  SOC_Close �̔񓯊�����T�|�[�g
+  SOC_Close の非同期動作サポート
 
   Revision 1.13  2005/09/19 15:11:37  yasu
-  Closing ��Ԃ�ǉ����������̔�����
+  Closing 状態を追加した部分の微調整
 
   Revision 1.12  2005/09/19 14:08:29  yasu
-  Closing ��Ԃ�ǉ�����
+  Closing 状態を追加した
 
   Revision 1.11  2005/09/01 06:42:55  yasu
-  �\�P�b�g�������Ă��邩�ǂ����̔�����ꌳ��
+  ソケットが生きているかどうかの判定を一元化
 
   Revision 1.10  2005/09/01 06:12:20  yasu
-  �\�P�b�g�������Ă��邩�ǂ����̔�����ꌳ��
+  ソケットが生きているかどうかの判定を一元化
 
   Revision 1.9  2005/08/25 08:27:38  yasu
-  UDP ��M�ɂ�����o�b�t�@�����O�����ǉ�
+  UDP 受信におけるバッファリング処理追加
 
   Revision 1.8  2005/08/24 09:25:13  yasu
-  SOCL_SocketIsInvalid �ǉ�
+  SOCL_SocketIsInvalid 追加
 
   Revision 1.7  2005/08/19 05:06:16  yasu
-  DEBUG �r���h���ɕ����\�P�b�g���̃f�[�^��h��Ԃ��Ă���
+  DEBUG ビルド時に閉じたソケット内のデータを塗りつぶしておく
 
   Revision 1.6  2005/08/18 13:52:11  yasu
-  close �������� send �p�C�v�Ƃ̓��������
+  close 処理時に send パイプとの同期を取る
 
   Revision 1.5  2005/08/18 13:18:49  yasu
-  �\�P�b�g�����N���X�g�ɂ�� cleanup �����̒ǉ�
+  ソケットリンクリストによる cleanup 処理の追加
 
   Revision 1.4  2005/08/18 08:53:36  yasu
-  CPS �֐��ł� Close ���ɖ����I�� Shutdown ���Ăяo���K�v������_�ɑΉ�
+  CPS 関数では Close 時に明示的に Shutdown を呼び出す必要がある点に対応
 
   Revision 1.3  2005/07/30 22:30:14  yasu
-  �f���������悤�ɏC��
+  デモが動くように修正
 
   Revision 1.2  2005/07/30 15:30:52  yasu
-  �R�}���h�p�C�v�����ɂƂ��Ȃ��C��
+  コマンドパイプ分離にともなう修正
 
   Revision 1.1  2005/07/22 12:44:56  yasu
-  �񓯊�����������
+  非同期処理仮実装
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -89,21 +89,21 @@ static void SOCLi_FreeCommandPipe(SOCLiSocketCommandPipe* pipe);
 /*---------------------------------------------------------------------------*
   Name:         SOCL_IsClosed
 
-  Description:  �\�P�b�g�� Close ���ꂽ���ǂ������肷��
-                SOCL_Close �͔񓯊��I�ɃN���[�Y�������s�Ȃ��D
-                ���̏����������������ǂ������̊֐��Ŕ���ł���D
+  Description:  ソケットが Close されたかどうか判定する
+                SOCL_Close は非同期的にクローズ処理を行なう．
+                この処理が完了したかどうかこの関数で判定できる．
   
-  Arguments:    s		�\�P�b�g
+  Arguments:    s		ソケット
   
-  Returns:      TRUE : �N���[�Y���ꂽ
-                FALSE: �s���ȃ\�P�b�g�܂��̓N���[�Y����Ă��Ȃ�
+  Returns:      TRUE : クローズされた
+                FALSE: 不正なソケットまたはクローズされていない
  *---------------------------------------------------------------------------*/
 int SOCL_IsClosed(int s)
 {
     SOCLSocket*     socket = (SOCLSocket*)s;
 
-    // �K����̃n���h���l�ł���
-    // �\�P�b�g���L���ȃG���g���łȂ��������p���G���g���ɂ��Ȃ��Ȃ�N���[�Y�����Ƃ݂Ȃ�
+    // 規定内のハンドル値であり
+    // ソケットが有効なエントリでなくしかも廃棄エントリにもないならクローズ完了とみなす
     if ((int)socket >= 0 && SOCL_SocketIsInvalid(socket) && !SOCL_SocketIsInTrash(socket))
     {
         return TRUE;
@@ -115,33 +115,33 @@ int SOCL_IsClosed(int s)
 /*---------------------------------------------------------------------------*
   Name:         SOCL_Close
 
-  Description:  �\�P�b�g�� Close �������s�Ȃ��D
+  Description:  ソケットの Close 処理を行なう．
   
-  Arguments:    s		�\�P�b�g
+  Arguments:    s		ソケット
   
-  Returns:      0  : ���� (��x�ڂ� Close �Ăяo���� Close �������� 0 ���Ԃ�)
-                �� : �G���[
-                  ����T�|�[�g���Ă���G���[�l�͈ȉ�
-                  SOCL_EINPROGRESS �N���[�Y�������p����
+  Returns:      0  : 成功 (一度目の Close 呼び出しと Close 完了時に 0 が返る)
+                負 : エラー
+                  現状サポートしているエラー値は以下
+                  SOCL_EINPROGRESS クローズ処理が継続中
  *---------------------------------------------------------------------------*/
 int SOCL_Close(int s)
 {
     SOCLSocket*         socket = (SOCLSocket*)s;
     SOCLiCommandPacket*     command;
 
-    // �K��O�̒l�Ȃ�G���[
+    // 規定外の値ならエラー
     if ((int)socket <= 0)
     {
         return SOCL_EINVAL;
     }
 
-    // �\�P�b�g���p���G���g���ɂ���Ȃ�N���[�Y���Ƃ݂Ȃ�
+    // ソケットが廃棄エントリにあるならクローズ中とみなす
     if (SOCL_SocketIsInTrash(socket))
     {
         return SOCL_EINPROGRESS;
     }
 
-    // �\�P�b�g���G���g���ɂȂ��Ȃ���ɃN���[�Y���ꂽ�Ƃ݂Ȃ�
+    // ソケットがエントリにないなら既にクローズされたとみなす
     if (SOCL_SocketIsInvalid(socket))
     {
         return SOCL_ESUCCESS;
@@ -149,10 +149,10 @@ int SOCL_Close(int s)
 
     if (!SOCL_SocketIsCreated(socket))
     {
-        return SOCL_ENETRESET;  // ����������Ă��Ȃ�
+        return SOCL_ENETRESET;  // 初期化されていない
     }
 
-    // �\�P�b�g�̃t���O�� WAIT_CLOSE �Ȃ�N���[�Y��
+    // ソケットのフラグが WAIT_CLOSE ならクローズ中
     if (SOCL_SocketIsWaitingClose(socket))
     {
         return SOCL_EINPROGRESS;
@@ -160,31 +160,31 @@ int SOCL_Close(int s)
 
     socket->state |= (SOCL_STATUS_CLOSING | SOCL_STATUS_WAIT_CLOSE);
 
-    // TCP �Ȃ瑗�M�X���b�h�� NULL �R�}���h�𓊂��A�S�Ẵf�[�^�𑗐M��A���M�X���b�h���I��������
-    // NULL �R�}���h�� BLOCK �œ�������
+    // TCP なら送信スレッドに NULL コマンドを投げ、全てのデータを送信後、送信スレッドを終了させる
+    // NULL コマンドは BLOCK で投げられる
     if (SOCL_SocketIsTCP(socket))
     {
         (void)SOCLi_SendCommandPacket(&socket->send_pipe->h, NULL);
     }
 
-    // ����X���b�h�ɃR�}���h�𓊂��A�R�[���o�b�N�֐������� CPS_Close ��
-    // �N������D�R�}���h�̑��M�Ɋւ��Ă� BLOCK �ōs�Ȃ��� CLOSE �������̂̏I���͑҂��Ȃ�
+    // 制御スレッドにコマンドを投げ、コールバック関数内部で CPS_Close を
+    // 起動する．コマンドの送信に関しては BLOCK で行なうが CLOSE 処理自体の終了は待たない
     command = SOCLi_CreateCommandPacket(SOCLi_CloseCallBack, socket, SOCL_FLAGBLOCK_BLOCK);
-    command->h.response = NULL; // Close �����I���ʒm�͕K�v�Ȃ�
+    command->h.response = NULL; // Close 処理終了通知は必要なし
     (void)SOCLi_SendCommandPacketToCtrlPipe(socket, command);
 
-    // ��x�ڂ̃N���[�Y�� 0 ��Ԃ��D
+    // 一度目のクローズに 0 を返す．
     return SOCL_ESUCCESS;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_CloseCallBack
 
-  Description:  Close �����̃R�[���o�b�N
+  Description:  Close 処理のコールバック
   
-  Arguments:    arg  �R�}���h�u���b�N�ւ̃|�C���^
+  Arguments:    arg  コマンドブロックへのポインタ
   
-  Returns:      SOCLi_ExecCommand* �ɓn�����l(BLOCK���[�h�̂Ƃ�)
+  Returns:      SOCLi_ExecCommand* に渡される値(BLOCKモードのとき)
  *---------------------------------------------------------------------------*/
 static int SOCLi_CloseCallBack(void* arg)
 {
@@ -194,10 +194,10 @@ static int SOCLi_CloseCallBack(void* arg)
 
     if (SOCL_SocketIsTCP(socket))
     {
-        // send pipe ���̃f�[�^�����M�����܂ő҂�
+        // send pipe 内のデータが送信されるまで待つ
         OS_JoinThread(&socket->send_pipe->h.thread);
 
-        // �\�P�b�g�̃N���[�Y����
+        // ソケットのクローズ処理
         CPS_TcpShutdown();
         CPS_TcpClose();
         CPS_SocRelease();
@@ -207,10 +207,10 @@ static int SOCLi_CloseCallBack(void* arg)
 
     socket->state &= ~(SOCL_STATUS_CONNECTING | SOCL_STATUS_CONNECTED);
 
-    // ���̃X���b�h�ɑ΂��ďI���ʒm���s�Ȃ��D���̎��_�ł̓L���[���󂢂Ă���̂Ńf�b�h���b�N�͋N����Ȃ�
+    // このスレッドに対して終了通知を行なう．この時点ではキューが空いているのでデッドロックは起こらない
     (void)SOCLi_SendCommandPacket(SOCL_SocketIsUDPSend(socket) ? &socket->send_pipe->h : &socket->recv_pipe->h, NULL);
 
-    // �X���b�h��p�����X�g�ɍڂ���
+    // スレッドを廃棄リストに載せる
     enable = OS_DisableInterrupts();
     SOCLi_SocketUnregister(socket);
     SOCLi_SocketRegisterTrash(socket);
@@ -218,25 +218,25 @@ static int SOCLi_CloseCallBack(void* arg)
 
     socket->state |= SOCL_STATUS_WAIT_RELEASE;
 
-    return SOCL_ESUCCESS;   // ����
+    return SOCL_ESUCCESS;   // 成功
 }
 
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_CleanupSocket
 
-  Description:  �\�P�b�g�p�̗̈���J������
-                �ȉ��̗̈�����ɊJ�����Ă���
+  Description:  ソケット用の領域を開放する
+                以下の領域を順に開放していく
   
-                �̈�
+                領域
                 --------------------------------------------------------
-                ���M�p�X���b�h�̃o�b�t�@
-                ��M�p�X���b�h�̃o�b�t�@
-                CPS  �\�P�b�g�p�̃o�b�t�@
-                SOCL �\�P�b�g�̈�
+                送信用スレッドのバッファ
+                受信用スレッドのバッファ
+                CPS  ソケット用のバッファ
+                SOCL ソケット領域
 
-  Arguments:    socket  �\�P�b�g�p�����[�^
+  Arguments:    socket  ソケットパラメータ
   
-  Returns:      �Ȃ�
+  Returns:      なし
  *---------------------------------------------------------------------------*/
 void SOCLi_CleanupSocket(SOCLSocket* socket)
 {
@@ -246,7 +246,7 @@ void SOCLi_CleanupSocket(SOCLSocket* socket)
     {
         socket->state = 0;
 
-        // �e�p�[�c�����ɊJ������
+        // 各パーツを順に開放する
         if (SOCL_SocketIsTCP(socket))
         {
             SOCLi_FreeCommandPipe(&socket->send_pipe->h);
@@ -254,7 +254,7 @@ void SOCLi_CleanupSocket(SOCLSocket* socket)
         }
         else if (SOCL_SocketIsUDP(socket))
         {
-            // UDP ��M�f�[�^���J�����Ă���
+            // UDP 受信データを開放しておく
             SOCLiSocketUdpData*     udpdata = socket->recv_pipe->udpdata.out;
             SOCLiSocketUdpData*     udpdata_next;
 
@@ -295,11 +295,11 @@ void SOCLi_CleanupSocket(SOCLSocket* socket)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_FreeCommandPipe
 
-  Description:  �\�P�b�g�̃R�}���h�p�C�v�̈���J������
+  Description:  ソケットのコマンドパイプ領域を開放する
 
-  Arguments:    pipe  �R�}���h�p�C�v
+  Arguments:    pipe  コマンドパイプ
   
-  Returns:      �Ȃ�
+  Returns:      なし
  *---------------------------------------------------------------------------*/
 
 //
@@ -317,21 +317,21 @@ static void SOCLi_FreeCommandPipe(SOCLiSocketCommandPipe* pipe)
     SDK_ASSERT(OS_GetCurrentThread() != &pipe->thread);
 
     //
-    // �\�P�b�g�X���b�h�̏I�����܂�
-    // ���ɏI�����Ă���Ƃ��͉������������ɕԂ��Ă���
+    // ソケットスレッドの終了をまつ
+    // 既に終了しているときは何もせず直ぐに返ってくる
     //
     OS_JoinThread(&pipe->thread);
 
     //
-    // �\�P�b�g�X���b�h�̏����҂��ɂȂ��Ă��鑼�̃X���b�h���N��������
-    //     - �R�}���h�����҂��̃X���b�h�� SOCL_ECANCELED ���b�Z�[�W�𑗐M
-    //     - �R�}���h�p�P�b�g�����
-    // ���̊֘A�����S�Ă��܂Ƃ߂ăA�g�~�b�N�ɂ��Ă���D
-    // �����̃��b�Z�[�W�֘A�����S�Ă� NOBLOCK �łȂ��ƃn���O����\��
-    // ������̂Œ��ӁD
+    // ソケットスレッドの処理待ちになっている他のスレッドを起動させる
+    //     - コマンド処理待ちのスレッドへ SOCL_ECANCELED メッセージを送信
+    //     - コマンドパケットを回収
+    // この関連処理全てをまとめてアトミックにしている．
+    // 内部のメッセージ関連処理全てが NOBLOCK でないとハングする可能性
+    // があるので注意．
     //
 
-    // �X���b�h�؂�ւ����~�߂�
+    // スレッド切り替えを止める
     enable = OS_DisableInterrupts();
     (void)OS_DisableScheduler();
     
@@ -348,8 +348,8 @@ static void SOCLi_FreeCommandPipe(SOCLiSocketCommandPipe* pipe)
         }
     }
     
-    // ��L�̃��b�Z�[�W���M�����ɂ���ċN���������̗D��x�̍���
-    // �X���b�h�Ɏ��s�����Ϗ�����
+    // 上記のメッセージ送信処理によって起動した他の優先度の高い
+    // スレッドに実行権を委譲する
     (void)OS_EnableScheduler();
     OS_RescheduleThread();
     (void)OS_RestoreInterrupts(enable);
@@ -360,12 +360,12 @@ static void SOCLi_FreeCommandPipe(SOCLiSocketCommandPipe* pipe)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_TrashSocket
 
-  Description:  �p�����X�g�ɓo�^����Ă���\�P�b�g�̗̈���J������
-                CPS ���C�u�����������I�ɌĂяo�����
+  Description:  廃棄リストに登録されているソケットの領域を開放する
+                CPS ライブラリから定期的に呼び出される
   
-  Arguments:    �Ȃ�
+  Arguments:    なし
   
-  Returns:      �Ȃ�
+  Returns:      なし
  *---------------------------------------------------------------------------*/
 void SOCLi_TrashSocket(void)
 {

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	worldtrade_sublcd.c
- * @bfief	¢ŠEŒğŠ·ƒTƒu‰æ–Êˆ—
+ * @bfief	ä¸–ç•Œäº¤æ›ã‚µãƒ–ç”»é¢å‡¦ç†
  * @author	Akito Mori
  * @date	06.04.16
  */
@@ -37,11 +37,11 @@
 #include "application/worldtrade.h"
 #include "worldtrade_local.h"
 
-#include "../record/record.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "../record/record.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 
 
 //==============================================================================
-// \‘¢‘Ì’è‹`
+// æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 typedef struct{
 	int seq;
@@ -52,7 +52,7 @@ typedef struct{
 
 
 //==============================================================================
-// ƒvƒƒgƒ^ƒCƒvéŒ¾
+// ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static void HeroDemoTask(  TCB_PTR tcb, void *work  );
 static void HeroReturnDemoTask(  TCB_PTR tcb, void *work  );
@@ -65,7 +65,7 @@ static int ObjAppearNoGet( int objno );
 
 
 //==============================================================================
-// ’è”’è‹`
+// å®šæ•°å®šç¾©
 //==============================================================================
 
 #define HERO_START_POSX	( 128 )
@@ -92,11 +92,11 @@ static int ObjAppearNoGet( int objno );
 #define FIELD_OBJ_NO_START			( 14 )
 #define FIELD_OBJ_STAND_NO_START	( 17 )
 
-// l•¨OBJƒLƒƒƒ‰ƒOƒ‰ƒtƒBƒbƒNƒtƒ@ƒCƒ‹‚ÌƒoƒCƒg”
+// äººç‰©OBJã‚­ãƒ£ãƒ©ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒã‚¤ãƒˆæ•°
 #define FIELDOBJ_NCG_SIZE	(256*256/2)
 
 //==============================================================================
-// ŒŸõŒ‹‰Ê‚n‚a‚i‚ÌÀ•W
+// æ¤œç´¢çµæœï¼¯ï¼¢ï¼ªã®åº§æ¨™
 //==============================================================================
 static const u16 obj_postable[][2]={
 	{ OBJPOS1_X,  OBJPOS1_Y },
@@ -111,7 +111,7 @@ static const u16 obj_postable[][2]={
 
 //==============================================================================
 /**
- * @brief   ‰º‰æ–ÊƒZƒ‹ƒAƒNƒ^[•\¦“o˜^
+ * @brief   ä¸‹ç”»é¢ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼è¡¨ç¤ºç™»éŒ²
  *
  * @param   wk		
  *
@@ -124,23 +124,23 @@ void WorldTrade_SubLcdActorAdd( WORLDTRADE_WORK *wk, int sex )
 	int i;
 
 	
-	// ‚Â‚¢‚Å‚ÉƒtƒB[ƒ‹ƒh‚n‚a‚iƒOƒ‰ƒtƒBƒbƒN“Ç‚İ‚İ
+	// ã¤ã„ã§ã«ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ï¼¯ï¼¢ï¼ªã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿
 	LoadFieldObjData( wk );
 
 	WorldTrade_MakeCLACT( &add,  wk, &wk->clActHeader_sub, NNS_G2D_VRAM_TYPE_2DSUB );
 
-	// ålŒöƒAƒNƒ^[“o˜^
+	// ä¸»äººå…¬ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²
 	add.DrawArea	= NNS_G2D_VRAM_TYPE_2DSUB;
 	add.mat.x = FX32_ONE *   HERO_START_POSX;
 	add.mat.y = FX32_ONE * ( 130 ) + NAMEIN_SUB_ACTOR_DISTANCE;
 	wk->SubActWork[0] = CLACT_Add(&add);
 	CLACT_SetAnmFlag(wk->SubActWork[0],1);
 
-	// ã‚ğŒü‚¢‚Ä—§‚Â
+	// ä¸Šã‚’å‘ã„ã¦ç«‹ã¤
 	CLACT_AnmChg( wk->SubActWork[0], 3+sex*7 );
 	CLACT_SetDrawFlag( wk->SubActWork[0], 1 );
 	
-	// ŒŸõŒ‹‰Ê‚n‚a‚i“o˜^•‰B‚·
+	// æ¤œç´¢çµæœï¼¯ï¼¢ï¼ªç™»éŒ²ï¼†éš ã™
 	for(i=0;i<7;i++){
 		wk->SubActWork[i+1] = CLACT_Add(&add);
 		CLACT_SetAnmFlag(wk->SubActWork[i+1],1);
@@ -153,7 +153,7 @@ void WorldTrade_SubLcdActorAdd( WORLDTRADE_WORK *wk, int sex )
 
 //==============================================================================
 /**
- * @brief   ålŒö“oêƒfƒ‚
+ * @brief   ä¸»äººå…¬ç™»å ´ãƒ‡ãƒ¢
  *
  * @param   wk		
  *
@@ -163,10 +163,10 @@ void WorldTrade_SubLcdActorAdd( WORLDTRADE_WORK *wk, int sex )
 void WorldTrade_HeroDemo( WORLDTRADE_WORK *wk, int sex )
 {
 	
-	// ålŒö•ŒŸõŒ‹‰Ê‚n‚a‚i“o˜^
+	// ä¸»äººå…¬ï¼†æ¤œç´¢çµæœï¼¯ï¼¢ï¼ªç™»éŒ²
 	WorldTrade_SubLcdActorAdd( wk, sex );
 	
-	// ƒfƒ‚ƒ^ƒXƒN“o˜^
+	// ãƒ‡ãƒ¢ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	{
 		HERO_DEMO_WORK *hdw;
 
@@ -177,7 +177,7 @@ void WorldTrade_HeroDemo( WORLDTRADE_WORK *wk, int sex )
 		hdw->sex     = sex;
 		hdw->wk      = wk;
 
-		// ‚­‚é‚­‚é‰ñ‚é
+		// ãã‚‹ãã‚‹å›ã‚‹
 		HeroAnimeChange( hdw, 0 );
 		Snd_SePlay( SE_GTC_PLAYER_IN );
 	}
@@ -186,7 +186,7 @@ void WorldTrade_HeroDemo( WORLDTRADE_WORK *wk, int sex )
 
 //------------------------------------------------------------------
 /**
- * @brief   ålŒö‚Ì«•Ê‚É‡‚í‚¹‚ÄƒAƒjƒ•ÏX‚ğ‚©‚¯‚é
+ * @brief   ä¸»äººå…¬ã®æ€§åˆ¥ã«åˆã‚ã›ã¦ã‚¢ãƒ‹ãƒ¡å¤‰æ›´ã‚’ã‹ã‘ã‚‹
  *
  * @param   wk		
  * @param   animeno		
@@ -208,8 +208,8 @@ enum{
 
 //------------------------------------------------------------------
 /**
- * @brief   ålŒö‚Ì“®‚«ƒ^ƒXƒN
- *          (‚­‚é‚­‚é~‚è‚Ä‚­‚é¨‚ä‚Á‚­‚è~‚Ü‚é¨ã‚É‚Ş‚©‚Á‚Ä•à‚­j
+ * @brief   ä¸»äººå…¬ã®å‹•ãã‚¿ã‚¹ã‚¯
+ *          (ãã‚‹ãã‚‹é™ã‚Šã¦ãã‚‹â†’ã‚†ã£ãã‚Šæ­¢ã¾ã‚‹â†’ä¸Šã«ã‚€ã‹ã£ã¦æ­©ãï¼‰
  *
  * @param   tcb		
  * @param   work		
@@ -224,19 +224,19 @@ static void HeroDemoTask(  TCB_PTR tcb, void *work  )
 	WORLDTRADE_WORK *wk = hdw->wk;
 
 	switch(hdw->seq){
-	// ålŒö—‚¿‚Ä‚­‚é
+	// ä¸»äººå…¬è½ã¡ã¦ãã‚‹
 	case HERO_DEMO_FALL:
 		if( hdw->heroy > HERO_LAND_POSY ){
 			hdw->heroy = HERO_LAND_POSY;
 			hdw->seq = HERO_DEMO_FALL_STOP;
-			// ‰ñ“]‚ª‚ä‚Á‚­‚è‚É‚È‚Á‚Ä~‚Ü‚é
+			// å›è»¢ãŒã‚†ã£ãã‚Šã«ãªã£ã¦æ­¢ã¾ã‚‹
 			HeroAnimeChange( hdw, 1 );
 		}
 		hdw->heroy+=5;
 		SetSubLcdObj_Pos( wk->SubActWork[0], HERO_START_POSX, hdw->heroy );
 		break;
 
-	// ålŒö‰ñ“]I—¹
+	// ä¸»äººå…¬å›è»¢çµ‚äº†
 	case HERO_DEMO_FALL_STOP:
 		if( !CLACT_AnmActiveCheck( wk->SubActWork[0] ) ){
 			HeroAnimeChange( hdw, 2 );
@@ -244,12 +244,12 @@ static void HeroDemoTask(  TCB_PTR tcb, void *work  )
 		}
 		break;
 
-	// ã‚ÉŒü‚©‚Á‚Ä•à‚­
+	// ä¸Šã«å‘ã‹ã£ã¦æ­©ã
 	case HERO_DEMO_WALK:
 		if( hdw->heroy <HERO_STOP_POSY ){
 			hdw->heroy = HERO_STOP_POSY;
 			hdw->seq = HERO_DEMO_WALK_STOP;
-			// ‰ñ“]‚ª‚ä‚Á‚­‚è‚É‚È‚Á‚Ä~‚Ü‚é
+			// å›è»¢ãŒã‚†ã£ãã‚Šã«ãªã£ã¦æ­¢ã¾ã‚‹
 			HeroAnimeChange( hdw, 3 );
 
 		}
@@ -258,7 +258,7 @@ static void HeroDemoTask(  TCB_PTR tcb, void *work  )
 		
 		break;
 
-	// ƒfƒ‚I—¹i‚½‚Ô‚ñ‹@ŠB‚ÌƒXƒCƒbƒ`‚n‚m‚Æ‚©‚ª‘–‚éj
+	// ãƒ‡ãƒ¢çµ‚äº†ï¼ˆãŸã¶ã‚“æ©Ÿæ¢°ã®ã‚¹ã‚¤ãƒƒãƒï¼¯ï¼®ã¨ã‹ãŒèµ°ã‚‹ï¼‰
 	case HERO_DEMO_WALK_STOP:
 
 		Snd_SePlay( SE_GTC_ON );
@@ -272,7 +272,7 @@ static void HeroDemoTask(  TCB_PTR tcb, void *work  )
 
 //==============================================================================
 /**
- * @brief   ålŒö‚³‚æ‚¤‚È‚çƒfƒ‚
+ * @brief   ä¸»äººå…¬ã•ã‚ˆã†ãªã‚‰ãƒ‡ãƒ¢
  *
  * @param   wk		
  *
@@ -282,7 +282,7 @@ static void HeroDemoTask(  TCB_PTR tcb, void *work  )
 void WorldTrade_ReturnHeroDemo( WORLDTRADE_WORK *wk, int sex )
 {
 
-	// ƒfƒ‚ƒ^ƒXƒN“o˜^
+	// ãƒ‡ãƒ¢ã‚¿ã‚¹ã‚¯ç™»éŒ²
 	{
 		HERO_DEMO_WORK *hdw;
 
@@ -293,7 +293,7 @@ void WorldTrade_ReturnHeroDemo( WORLDTRADE_WORK *wk, int sex )
 		hdw->sex     = sex;
 		hdw->wk      = wk;
 
-		// ‰º‚ÉŒü‚©‚Á‚Ä•à‚­
+		// ä¸‹ã«å‘ã‹ã£ã¦æ­©ã
 		HeroAnimeChange( hdw, 5 );
 		Snd_SePlay( SE_GTC_OFF );
 
@@ -310,8 +310,8 @@ enum{
 
 //------------------------------------------------------------------
 /**
- * @brief   ålŒö‚Ì“®‚«ƒ^ƒXƒN
- *          (‚­‚é‚­‚é~‚è‚Ä‚­‚é¨‚ä‚Á‚­‚è~‚Ü‚é¨ã‚É‚Ş‚©‚Á‚Ä•à‚­j
+ * @brief   ä¸»äººå…¬ã®å‹•ãã‚¿ã‚¹ã‚¯
+ *          (ãã‚‹ãã‚‹é™ã‚Šã¦ãã‚‹â†’ã‚†ã£ãã‚Šæ­¢ã¾ã‚‹â†’ä¸Šã«ã‚€ã‹ã£ã¦æ­©ãï¼‰
  *
  * @param   tcb		
  * @param   work		
@@ -326,19 +326,19 @@ static void HeroReturnDemoTask(  TCB_PTR tcb, void *work  )
 	WORLDTRADE_WORK *wk = hdw->wk;
 
 	switch(hdw->seq){
-	// ålŒö‰º‚ÉŒü‚©‚Á‚Ä•à‚­
+	// ä¸»äººå…¬ä¸‹ã«å‘ã‹ã£ã¦æ­©ã
 	case R_HERO_DEMO_WALK:
 		if( hdw->heroy > HERO_LAND_POSY ){
 			hdw->heroy = HERO_LAND_POSY;
 			hdw->seq = R_HERO_DEMO_WALK_STOP;
-			// ‰ñ“]‚µn‚ß‚é
+			// å›è»¢ã—å§‹ã‚ã‚‹
 			HeroAnimeChange( hdw, 6 );
 		}
 		hdw->heroy+=2;
 		SetSubLcdObj_Pos( wk->SubActWork[0], HERO_START_POSX, hdw->heroy );
 		break;
 
-	// ålŒö‰ñ“]‚µn‚ß‚é
+	// ä¸»äººå…¬å›è»¢ã—å§‹ã‚ã‚‹
 	case R_HERO_DEMO_WALK_STOP:
 		if( !CLACT_AnmActiveCheck( wk->SubActWork[0] ) ){
 			HeroAnimeChange( hdw, 0 );
@@ -347,11 +347,11 @@ static void HeroReturnDemoTask(  TCB_PTR tcb, void *work  )
 		}
 		break;
 
-	// ålŒö“o‚Á‚Ä‚¢‚­
+	// ä¸»äººå…¬ç™»ã£ã¦ã„ã
 	case R_HERO_DEMO_RISE:
 		if( hdw->heroy <-20 ){
 			hdw->seq = R_HERO_DEMO_RISE_END;
-			// ‚à‚¤‰æ–ÊŠO‚È‚Ì‚Å‚È‚ñ‚Å‚à‚¢‚¢
+			// ã‚‚ã†ç”»é¢å¤–ãªã®ã§ãªã‚“ã§ã‚‚ã„ã„
 			HeroAnimeChange( hdw, 3 );
 		}
 		hdw->heroy-=5;
@@ -359,7 +359,7 @@ static void HeroReturnDemoTask(  TCB_PTR tcb, void *work  )
 		
 		break;
 
-	// ‰æ–Ê‚©‚çÁ‚¦‚½‚ç‰B‚µ‚ÄI—¹
+	// ç”»é¢ã‹ã‚‰æ¶ˆãˆãŸã‚‰éš ã—ã¦çµ‚äº†
 	case R_HERO_DEMO_RISE_END:
 
 		hdw->wk->demo_end = 1;
@@ -374,9 +374,9 @@ static void HeroReturnDemoTask(  TCB_PTR tcb, void *work  )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒTƒu‰æ–ÊƒAƒNƒ^[‚ÌÀ•W‚ğ‘ã“ü‚·‚é
+ * @brief   ã‚µãƒ–ç”»é¢ã‚¢ã‚¯ã‚¿ãƒ¼ã®åº§æ¨™ã‚’ä»£å…¥ã™ã‚‹
  *
- * @param   act		ƒAƒNƒ^[‚Ìƒ|ƒCƒ“ƒ^
+ * @param   act		ã‚¢ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   x		
  * @param   y		
  *
@@ -394,7 +394,7 @@ static void SetSubLcdObj_Pos( CLACT_WORK_PTR act, int x, int y )
 
 }
 
-// ŒŸõŒ‹‰Ê‚n‚a‚i‚ğƒ^ƒbƒ`‚·‚é‚½‚ß‚ÌÀ•Wƒe[ƒuƒ‹
+// æ¤œç´¢çµæœï¼¯ï¼¢ï¼ªã‚’ã‚¿ãƒƒãƒã™ã‚‹ãŸã‚ã®åº§æ¨™ãƒ†ãƒ¼ãƒ–ãƒ«
 static const RECT_HIT_TBL obj_touchtbl[]={
 	{	OBJPOS1_Y-16, OBJPOS1_Y+16, OBJPOS1_X-16, OBJPOS1_X+16,},
 	{	OBJPOS2_Y-16, OBJPOS2_Y+16, OBJPOS2_X-16, OBJPOS2_X+16,},
@@ -403,12 +403,12 @@ static const RECT_HIT_TBL obj_touchtbl[]={
 	{	OBJPOS3_Y-16, OBJPOS3_Y+16, OBJPOS5_X-16, OBJPOS5_X+16,},
 	{	OBJPOS4_Y-16, OBJPOS4_Y+16, OBJPOS6_X-16, OBJPOS6_X+16,},
 	{	OBJPOS4_Y-16, OBJPOS4_Y+16, OBJPOS7_X-16, OBJPOS7_X+16,},
-	{RECT_HIT_END,0,0,0},		// I—¹ƒf[ƒ^
+	{RECT_HIT_END,0,0,0},		// çµ‚äº†ãƒ‡ãƒ¼ã‚¿
 };
 
 //------------------------------------------------------------------
 /**
- * @brief   ‰º‰æ–Ê‚Ì‚n‚a‚iƒ^ƒbƒ`ƒ`ƒFƒbƒN
+ * @brief   ä¸‹ç”»é¢ã®ï¼¯ï¼¢ï¼ªã‚¿ãƒƒãƒãƒã‚§ãƒƒã‚¯
  *
  * @param   max		
  *
@@ -430,11 +430,11 @@ int WorldTrade_SubLcdObjHitCheck( int max )
 
 //==============================================================================
 /**
- * @brief   ŒŸõŒ‹‰Ê‚Ì”‚¾‚¯‚n‚a‚i‚ğ•\¦‚³‚¹‚é
+ * @brief   æ¤œç´¢çµæœã®æ•°ã ã‘ï¼¯ï¼¢ï¼ªã‚’è¡¨ç¤ºã•ã›ã‚‹
  *
  * @param   wk		
- * @param   num		ŒŸõHit‚µ‚½l”
- * @param   flag	0:“oêƒAƒjƒ‚¢‚ç‚È‚¢	1:“oêƒAƒjƒ‚³‚¹‚é
+ * @param   num		æ¤œç´¢Hitã—ãŸäººæ•°
+ * @param   flag	0:ç™»å ´ã‚¢ãƒ‹ãƒ¡ã„ã‚‰ãªã„	1:ç™»å ´ã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹
  *
  * @retval  none		
  */
@@ -443,24 +443,24 @@ void WorldTrade_SubLcdMatchObjAppear( WORLDTRADE_WORK *wk, int num, int flag )
 {
 	int i;
 
-	// “oêSE
+	// ç™»å ´SE
 	if(num!=0 && flag==1){
 		Snd_SePlay( SE_GTC_APPEAR );
 	}
 
-	// ŒŸõl”•ª
+	// æ¤œç´¢äººæ•°åˆ†
 	for(i=0;i<SEARCH_POKE_MAX;i++){
 
 		if(i<num){
-			// HIT‚µ‚½•û‚ğ“oê‚³‚¹‚é
+			// HITã—ãŸæ–¹ã‚’ç™»å ´ã•ã›ã‚‹
 			int view = wk->DownloadPokemonData[i].trainerType;
 			int sex  = wk->DownloadPokemonData[i].gender;
 
-			OS_TPrintf("OBJ“oê view=%02x, sex=%d\n", view, sex);
+			OS_TPrintf("OBJç™»å ´ view=%02x, sex=%d\n", view, sex);
 		
 			TransFieldObjData( wk->FieldObjCharaData, wk->FieldObjPalData, i, view, sex );
 
-			// ƒAƒjƒ‚³‚¹‚é‚©‚³‚¹‚È‚¢‚©
+			// ã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹ã‹ã•ã›ãªã„ã‹
 			if(flag){
 				CLACT_AnmChg( wk->SubActWork[i+1], FIELD_OBJ_NO_START+i*4 );
 			}else{
@@ -469,7 +469,7 @@ void WorldTrade_SubLcdMatchObjAppear( WORLDTRADE_WORK *wk, int num, int flag )
 			CLACT_SetDrawFlag( wk->SubActWork[i+1], 1 );
 		}else{
 
-			// •\¦OFF
+			// è¡¨ç¤ºOFF
 			CLACT_SetDrawFlag( wk->SubActWork[i+1], 0 );
 		}
 	}
@@ -479,7 +479,7 @@ void WorldTrade_SubLcdMatchObjAppear( WORLDTRADE_WORK *wk, int num, int flag )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒjƒgƒƒLƒƒƒ‰ƒNƒ^[ã‚ÅOBJ‚ª—§‚Á‚Ä‚¢‚éƒZƒ‹ƒAƒjƒ‚Í‰½”Ô‚©H
+ * @brief   ãƒ‹ãƒˆãƒ­ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ä¸Šã§OBJãŒç«‹ã£ã¦ã„ã‚‹ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ã¯ä½•ç•ªã‹ï¼Ÿ
  *
  * @param   objno		
  *
@@ -493,7 +493,7 @@ static int ObjAppearNoGet( int objno )
 
 //==============================================================================
 /**
- * @brief   ŒŸõŒ‹‰Ê‚n‚a‚i‚ğ‘S‚Ä‚Ğ‚Á‚±‚ß‚é
+ * @brief   æ¤œç´¢çµæœï¼¯ï¼¢ï¼ªã‚’å…¨ã¦ã²ã£ã“ã‚ã‚‹
  *
  * @param   none		
  *
@@ -515,7 +515,7 @@ void WorldTrade_SubLcdMatchObjHide( WORLDTRADE_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒtƒB[ƒ‹ƒhOBJ‰æ‘œ“Ç‚İ‚İiƒ†ƒjƒIƒ“‚Æ©‹@j
+ * @brief   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”»åƒèª­ã¿è¾¼ã¿ï¼ˆãƒ¦ãƒ‹ã‚ªãƒ³ã¨è‡ªæ©Ÿï¼‰
  *
  * @param   wk		
  *
@@ -524,10 +524,10 @@ void WorldTrade_SubLcdMatchObjHide( WORLDTRADE_WORK *wk )
 //------------------------------------------------------------------
 static void LoadFieldObjData( WORLDTRADE_WORK *wk )
 {
-	// ƒpƒŒƒbƒg“Ç‚İ‚İ
+	// ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	wk->FieldObjPalBuf = ArcUtil_PalDataGet( ARC_RECORD_GRA, NARC_record_union_chara_nclr, &(wk->FieldObjPalData), HEAPID_WORLDTRADE );
 
-	// ‰æ‘œ“Ç‚İ‚İ
+	// ç”»åƒèª­ã¿è¾¼ã¿
 	wk->FieldObjCharaBuf = ArcUtil_CharDataGet( ARC_RECORD_GRA, NARC_record_union_chara_lz_ncgr,  1, &(wk->FieldObjCharaData), HEAPID_WORLDTRADE );
 	DC_FlushRange( wk->FieldObjCharaData, FIELDOBJ_NCG_SIZE );
 
@@ -547,7 +547,7 @@ static const u16 obj_offset[]={
 
 //------------------------------------------------------------------
 /**
- * @brief   “n‚³‚ê‚½ƒ†ƒjƒIƒ“Œ©‚½–ÚƒR[ƒh‚©‚çƒtƒB[ƒ‹ƒhOBJ‚ÌƒLƒƒƒ‰‚ğ“]‘—‚·‚é
+ * @brief   æ¸¡ã•ã‚ŒãŸãƒ¦ãƒ‹ã‚ªãƒ³è¦‹ãŸç›®ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ã‚­ãƒ£ãƒ©ã‚’è»¢é€ã™ã‚‹
  *
  * @param   id		
  * @param   view		
@@ -561,7 +561,7 @@ static void TransFieldObjData( NNSG2dCharacterData *CharaData, NNSG2dPaletteData
 	int pos;
 	u8 *chara, *pal;
 	
-	// ƒ†ƒjƒIƒ“ƒLƒƒƒ‰‚ğ“]‘—
+	// ãƒ¦ãƒ‹ã‚ªãƒ³ã‚­ãƒ£ãƒ©ã‚’è»¢é€
 
 	pos   = UnionView_GetCharaNo( sex, view );
 
@@ -571,7 +571,7 @@ static void TransFieldObjData( NNSG2dCharacterData *CharaData, NNSG2dPaletteData
 	GXS_LoadOBJ( &chara[(OBJ_TRANS_SIZE*3)*pos*0x20], obj_offset[id], OBJ_TRANS_SIZE*0x20 );
 	GXS_LoadOBJPltt( &pal[pos*32], (id+2)*32, 32 );
 
-	OS_Printf("ID=%d ‚Ìƒ†ƒjƒIƒ“Œ©‚½–Ú‚Í %d ƒAƒCƒRƒ“”Ô†‚Í %d\n", id, view, pos);
+	OS_Printf("ID=%d ã®ãƒ¦ãƒ‹ã‚ªãƒ³è¦‹ãŸç›®ã¯ %d ã‚¢ã‚¤ã‚³ãƒ³ç•ªå·ã¯ %d\n", id, view, pos);
 
 
 
@@ -581,7 +581,7 @@ static void TransFieldObjData( NNSG2dCharacterData *CharaData, NNSG2dPaletteData
 
 //------------------------------------------------------------------
 /**
- * @brief   ƒtƒB[ƒ‹ƒhOBJ‰æ‘œ‰ğ•ú
+ * @brief   ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJç”»åƒè§£æ”¾
  *
  * @param   wk		
  *

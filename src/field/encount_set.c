@@ -1,11 +1,11 @@
 //============================================================================================
 /**
  * @file	encount_set.c
- * @brief	ƒGƒ“ƒJƒEƒ“ƒgŠÖ˜A
+ * @brief	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£
 
  * @author	saitou
  *
- * 2005.12.18	field_encount.c‚©‚çƒGƒ“ƒJƒEƒ“ƒg”»’è•”•ª‚ğˆÚ“®
+ * 2005.12.18	field_encount.cã‹ã‚‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆåˆ¤å®šéƒ¨åˆ†ã‚’ç§»å‹•
  */
 //============================================================================================
 #include "encount_set.h"
@@ -47,31 +47,31 @@
 
 #include "battle/battle_server.h"	//for	FormChange
 #include "ev_pokemon.h"
-#include "itemtool/itemsym.h"		//for ITEM_KIYOMENOOHUDAEITEM_KIYOMENOOKOU
+#include "itemtool/itemsym.h"		//for ITEM_KIYOMENOOHUDAãƒ»ITEM_KIYOMENOOKOU
 #include "savedata/vidro_type.h"
 
 #include "safari_enc.h"
 #include "agb_slot_enc.h"
 
 #include "poketool/tr_tool.h"
-#include "battle/trno_def.h"		//BTFIVE‚Ì‘ã“ü‚Ì‚½‚ß‚Ìb’è‚È‚Í‚¸ by soga
+#include "battle/trno_def.h"		//BTFIVEã®ä»£å…¥ã®ãŸã‚ã®æš«å®šãªã¯ãš by soga
 
 //============================================================================================
 //============================================================================================
 
 
-#define	WALK_COUNT_GLOBAL	( 8 )		// ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢•à”‚ÌŠî–{’l
-#define	WALK_NEXT_PERCENT	( 5 )		// •à”ƒJƒEƒ“ƒg¸”s‚ÅŸ‚Ìˆ—‚Éi‚ŞŠm—¦
-#define	NEXT_PERCENT	( 40 )		// ƒGƒ“ƒJƒEƒ“ƒgˆ—‚ÉˆÚs‚·‚éŠî–{Šm—¦
-#define CYCLE_PERCENT		( 30 )	//©“]Ô‚Éæ‚Á‚Ä‚¢‚é‚Æ‚«‚Ì‰ÁZŠm—¦
-#define LONG_GRASS_PERCENT		( 30 )	//’·‚¢‘‚Ì’†‚É‚¢‚é‚Æ‚«‚Ì‰ÁZŠm—¦
+#define	WALK_COUNT_GLOBAL	( 8 )		// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„æ­©æ•°ã®åŸºæœ¬å€¤
+#define	WALK_NEXT_PERCENT	( 5 )		// æ­©æ•°ã‚«ã‚¦ãƒ³ãƒˆå¤±æ•—ã§æ¬¡ã®å‡¦ç†ã«é€²ã‚€ç¢ºç‡
+#define	NEXT_PERCENT	( 40 )		// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå‡¦ç†ã«ç§»è¡Œã™ã‚‹åŸºæœ¬ç¢ºç‡
+#define CYCLE_PERCENT		( 30 )	//è‡ªè»¢è»Šã«ä¹—ã£ã¦ã„ã‚‹ã¨ãã®åŠ ç®—ç¢ºç‡
+#define LONG_GRASS_PERCENT		( 30 )	//é•·ã„è‰ã®ä¸­ã«ã„ã‚‹ã¨ãã®åŠ ç®—ç¢ºç‡
 
-#define	CALC_SHIFT			( 8 )		// ŒvZƒVƒtƒg’l
+#define	CALC_SHIFT			( 8 )		// è¨ˆç®—ã‚·ãƒ•ãƒˆå€¤
 
 #define ENC_MONS_NUM_MAX	ENC_MONS_NUM_NORMAL
 
-#define ROD_TYPE_NONE	(0xff)		//Šm—¦ƒe[ƒuƒ‹w’è–³‚µ
-#define WEATHER_NONE	(0xff)		//“V‹Cw’è–³‚µ
+#define ROD_TYPE_NONE	(0xff)		//ç¢ºç‡ãƒ†ãƒ¼ãƒ–ãƒ«æŒ‡å®šç„¡ã—
+#define WEATHER_NONE	(0xff)		//å¤©æ°—æŒ‡å®šç„¡ã—
 
 #ifdef PM_DEBUG
 
@@ -96,14 +96,14 @@ typedef struct ENC_COMMON_DATA_tag
 
 typedef struct ENC_FLD_SPA_tag
 {
-	u32 TrainerID;			//ƒgƒŒ[ƒi[‚h‚c
-	BOOL SprayCheck;		//ƒXƒvƒŒ[ƒ`ƒFƒbƒN‚·‚é‚©‚Ìƒtƒ‰ƒO	TRUE:ƒ`ƒFƒbƒN‚·‚é
-	BOOL EncCancelSpInvalid;//í“¬‰ñ”ğ“Á«–³Œø	TRUE:–³Œø	FALSE:—LŒø		(Œ»ó‚Å‚ÍA‚ ‚Ü‚¢‚©‚¨‚èE‚ ‚Ü‚¢ƒ~ƒc—p)
-	u8	 SpMyLv;			//ƒXƒvƒŒ[ƒ`ƒFƒbƒN‚Ég‚¤ƒŒƒxƒ‹
-	u8	 Egg;				//ƒ^ƒ}ƒSƒtƒ‰ƒO
-	u8	 Spa;				//“Á«
-	u8   FormProb[2];		//ƒV[ƒEƒVEƒV[ƒhƒ‹ƒS—pƒtƒHƒ‹ƒ€•ÏXŠm—¦@0FƒV[ƒEƒV@1FƒV[ƒhƒ‹ƒS
-	u8	 AnnoonTblType;		//ƒAƒ“ƒm[ƒ“ƒe[ƒuƒ‹ƒ^ƒCƒv
+	u32 TrainerID;			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤
+	BOOL SprayCheck;		//ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°	TRUE:ãƒã‚§ãƒƒã‚¯ã™ã‚‹
+	BOOL EncCancelSpInvalid;//æˆ¦é—˜å›é¿ç‰¹æ€§ç„¡åŠ¹	TRUE:ç„¡åŠ¹	FALSE:æœ‰åŠ¹		(ç¾çŠ¶ã§ã¯ã€ã‚ã¾ã„ã‹ãŠã‚Šãƒ»ã‚ã¾ã„ãƒŸãƒ„ç”¨)
+	u8	 SpMyLv;			//ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ã«ä½¿ã†ãƒ¬ãƒ™ãƒ«
+	u8	 Egg;				//ã‚¿ãƒã‚´ãƒ•ãƒ©ã‚°
+	u8	 Spa;				//ç‰¹æ€§
+	u8   FormProb[2];		//ã‚·ãƒ¼ã‚¦ã‚·ãƒ»ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´ç”¨ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç¢ºç‡ã€€0ï¼šã‚·ãƒ¼ã‚¦ã‚·ã€€1ï¼šã‚·ãƒ¼ãƒ‰ãƒ«ã‚´
+	u8	 AnnoonTblType;		//ã‚¢ãƒ³ãƒãƒ¼ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¿ã‚¤ãƒ—
 }ENC_FLD_SPA;
 
 static BOOL MapEncountCheck( FIELDSYS_WORK * fsys, const u32 map_encount, const u8 attr );
@@ -238,11 +238,11 @@ static const ANNOON_TABLE ANNOON_Table[] = {
 
 //-----------------------------------------------------------------------------
 /**
- * ŠÔ‘ÑƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹·‚µ‘Ö‚¦
+ * æ™‚é–“å¸¯ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å·®ã—æ›¿ãˆ
  *
- * @param	inEncData			ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	*outTZEncMonsNo1	ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“1‘Ì–Ú
- * @param	*outTZEncMonsNo2	ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“2‘Ì–Ú
+ * @param	inEncData			ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	*outTZEncMonsNo1	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³1ä½“ç›®
+ * @param	*outTZEncMonsNo2	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³2ä½“ç›®
  *
  * @return	none
  */
@@ -262,12 +262,12 @@ void EncSet_SetTimeZoneEnc(const ENCOUNT_DATA *inEncData, int *outTZEncMonsNo1, 
 #if 0
 //-----------------------------------------------------------------------------
 /**
- * ƒTƒtƒ@ƒŠƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹·‚µ‘Ö‚¦
+ * ã‚µãƒ•ã‚¡ãƒªã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å·®ã—æ›¿ãˆ
  *
- * @param	inRandomSeed		ƒ‰ƒ“ƒ_ƒ€‚Ìí
- * @param	inBookComp			‘S‘}ŠÓŠ®¬ƒtƒ‰ƒO
- * @param	*outSafEncMonsNo1	ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“1‘Ì–Ú
- * @param	*outSafEncMonsNo2	ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“2‘Ì–Ú
+ * @param	inRandomSeed		ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®
+ * @param	inBookComp			å…¨å›½å›³é‘‘å®Œæˆãƒ•ãƒ©ã‚°
+ * @param	*outSafEncMonsNo1	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³1ä½“ç›®
+ * @param	*outSafEncMonsNo2	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³2ä½“ç›®
  *
  * @return	none
  */
@@ -279,21 +279,21 @@ void EncSet_SetSafariEnc(	const int inRandomSeed, const BOOL inBookComp,
 	int arc_idx;
 	u16 tblno1,tblno2;
 	
-	//‘S‘}ŠÓŠ®¬‚©‚Ç‚¤‚©‚ÅAƒe[ƒuƒ‹‚ğ•Ï‚¦‚é
+	//å…¨å›½å›³é‘‘å®Œæˆã‹ã©ã†ã‹ã§ã€ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å¤‰ãˆã‚‹
 	if(inBookComp){
 		arc_idx = NARC_encdata_ex_safari_af_bin;
 	}else{
 		arc_idx = NARC_encdata_ex_safari_bef_bin;
 	}
-	//ƒTƒtƒ@ƒŠƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹æ“¾
+	//ã‚µãƒ•ã‚¡ãƒªã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 	tbl = ArchiveDataLoadMallocLo(ARC_ENCDATA_EX, arc_idx, HEAPID_FIELD);
-	//ƒ‰ƒ“ƒ_ƒ€‚Ìí‚ğŒ³‚ÉƒTƒtƒ@ƒŠƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹‚©‚ç2‘Ì‘Io
+	//ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã‚’å…ƒã«ã‚µãƒ•ã‚¡ãƒªã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰2ä½“é¸å‡º
 	
-	/* ---‘Io•û–@--- */
-	/*ƒTƒtƒ@ƒŠƒ‰ƒ“ƒ_ƒ€‚Ìí‚ÌãˆÊ2ƒoƒCƒg‚Æ‰ºˆÊ2ƒoƒCƒg‚ğ*/
-	/*ƒTƒtƒ@ƒŠ“Áêƒe[ƒuƒ‹”‚ÅŠ„‚Á‚½—]‚è‚ğ‘Ioƒ|ƒPƒ‚ƒ“ƒe[ƒuƒ‹”Ô†‚Æ‚·‚é*/
-	/*‚»‚ÌŒ‹‰ÊA2‚Â‚Ì’l‚ª“¯‚¶ê‡‚ÍA’l‚É1‚ğ‰Á‚¦‚½’l‚ğ2‚Â–Ú‚Ìƒe[ƒuƒ‹”Ô†‚Æ‚·‚é*/
-	/*‘Io‚µ‚½2‚Â‚Ì”Ô†‚ªƒe[ƒuƒ‹‚ÌÅŒã‚Ì”Ô†‚¾‚Á‚½ê‡A•Ğ•û‚ÍAƒe[ƒuƒ‹‚Ìn‚ß‚Ì”Ô†‚Æ‚È‚é*/
+	/* ---é¸å‡ºæ–¹æ³•--- */
+	/*ã‚µãƒ•ã‚¡ãƒªãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã®ä¸Šä½2ãƒã‚¤ãƒˆã¨ä¸‹ä½2ãƒã‚¤ãƒˆã‚’*/
+	/*ã‚µãƒ•ã‚¡ãƒªç‰¹æ®Šãƒ†ãƒ¼ãƒ–ãƒ«æ•°ã§å‰²ã£ãŸä½™ã‚Šã‚’é¸å‡ºãƒã‚±ãƒ¢ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·ã¨ã™ã‚‹*/
+	/*ãã®çµæœã€2ã¤ã®å€¤ãŒåŒã˜å ´åˆã¯ã€å€¤ã«1ã‚’åŠ ãˆãŸå€¤ã‚’2ã¤ç›®ã®ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·ã¨ã™ã‚‹*/
+	/*é¸å‡ºã—ãŸ2ã¤ã®ç•ªå·ãŒãƒ†ãƒ¼ãƒ–ãƒ«ã®æœ€å¾Œã®ç•ªå·ã ã£ãŸå ´åˆã€ç‰‡æ–¹ã¯ã€ãƒ†ãƒ¼ãƒ–ãƒ«ã®å§‹ã‚ã®ç•ªå·ã¨ãªã‚‹*/
 	
 	tblno1 = ( (inRandomSeed >> 16) & 0xffff );
 	tblno2 = ( inRandomSeed & 0xffff );
@@ -314,12 +314,12 @@ void EncSet_SetSafariEnc(	const int inRandomSeed, const BOOL inBookComp,
 
 //-----------------------------------------------------------------------------
 /**
- * ‘å—Ê”­¶ƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹·‚µ‘Ö‚¦
+ * å¤§é‡ç™ºç”Ÿã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å·®ã—æ›¿ãˆ
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inEncData			ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	*outGeneEncMonsNo1	ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“1‘Ì–Ú
- * @param	*outGeneEncMonsNo2	ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“2‘Ì–Ú
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inEncData			ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	*outGeneEncMonsNo1	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³1ä½“ç›®
+ * @param	*outGeneEncMonsNo2	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³2ä½“ç›®
  *
  * @return	none
  */
@@ -332,9 +332,9 @@ static void EncSet_SetGeneEnc(	FIELDSYS_WORK * fsys,
 	ENC_SV_PTR data;
 	data = EncDataSave_GetSaveDataPtr(fsys->savedata);
 	
-	//‘å—Ê”­¶”­“®’†H
+	//å¤§é‡ç™ºç”Ÿç™ºå‹•ä¸­ï¼Ÿ
 	if ( EncDataSave_IsGenerate( data ) ){
-		//ƒ‰ƒ“ƒ_ƒ€‚Ìí‚ğŒ³‚É‘å—Ê”­¶‚·‚éêŠ‚ğŠ„‚èo‚µ2‘Ì·‚µ‘Ö‚¦
+		//ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã‚’å…ƒã«å¤§é‡ç™ºç”Ÿã™ã‚‹å ´æ‰€ã‚’å‰²ã‚Šå‡ºã—2ä½“å·®ã—æ›¿ãˆ
 		rnd_seed = EncDataSave_GetRandSeed(data, ENC_RND_SEED_GENERATE);
 		if ( fsys->location->zone_id == GenerateZone_GetZone(rnd_seed)){
 			(*outGeneEncMonsNo1) = inEncData->GenerateEnc[0];
@@ -345,12 +345,12 @@ static void EncSet_SetGeneEnc(	FIELDSYS_WORK * fsys,
 
 //-----------------------------------------------------------------------------
 /**
- * — RƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹·‚µ‘Ö‚¦
+ * è£å±±ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å·®ã—æ›¿ãˆ
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inBookGet			‘S‘}ŠÓ“üèƒtƒ‰ƒO
- * @param	*outHillEncMonsNo1	ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“1‘Ì–Ú
- * @param	*outHillEncMonsNo2	ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“2‘Ì–Ú
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inBookGet			å…¨å›½å›³é‘‘å…¥æ‰‹ãƒ•ãƒ©ã‚°
+ * @param	*outHillEncMonsNo1	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³1ä½“ç›®
+ * @param	*outHillEncMonsNo2	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³2ä½“ç›®
  *
  * @return	none
  */
@@ -361,15 +361,15 @@ static void EncSet_SetHillBackEnc(	FIELDSYS_WORK * fsys, const BOOL inBookGet,
 	int *tbl;
 	u16 idx1,idx2;
 	
-	//— RH
+	//è£å±±ï¼Ÿ
 	if ( ZoneData_IsHillBackZone( fsys->location->zone_id ) ){
 		EncDataSave_GetHillBackPokeIdx(fsys->savedata, &idx1, &idx2);
-		//‘S‘}ŠÓ“üè‚µ‚Ä‚é‚©H
+		//å…¨å›½å›³é‘‘å…¥æ‰‹ã—ã¦ã‚‹ã‹ï¼Ÿ
 		if ( inBookGet ){
-			//— RƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹æ“¾
+			//è£å±±ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å–å¾—
 			tbl = ArchiveDataLoadMallocLo(ARC_ENCDATA_EX, NARC_encdata_ex_mnt_af_bin, HEAPID_FIELD);
 		
-			//2‘Ì·‚µ‘Ö‚¦
+			//2ä½“å·®ã—æ›¿ãˆ
 			if (idx1 != HILL_BACK_POKE_NONE){
 				(*outHillEncMonsNo1) = tbl[idx1];
 			}
@@ -383,17 +383,17 @@ static void EncSet_SetHillBackEnc(	FIELDSYS_WORK * fsys, const BOOL inBookGet,
 //============================================================================================
 //
 //
-//					ƒGƒ“ƒJƒEƒ“ƒg”»’èˆ—
+//					ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆåˆ¤å®šå‡¦ç†
 //
 //
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * ‚Q‘Î‚Q–ì¶í‚Ì‚Æ‚«‚Í—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg‚Í‚È‚¢d—l‚¾‚ªAƒ`ƒFƒbƒN‚Í’Ê‚µ‚Ä‚Ü‚·
+ * ï¼’å¯¾ï¼’é‡ç”Ÿæˆ¦ã®ã¨ãã¯æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã¯ãªã„ä»•æ§˜ã ãŒã€ãƒã‚§ãƒƒã‚¯ã¯é€šã—ã¦ã¾ã™
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL			TRUE:ƒGƒ“ƒJƒEƒ“ƒg‚·‚é		FALSE:ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+ * @return	BOOL			TRUE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹		FALSE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL FieldEncount_Check(FIELDSYS_WORK * fsys)
@@ -402,11 +402,11 @@ BOOL FieldEncount_Check(FIELDSYS_WORK * fsys)
 	POKEMON_PARAM *poke_param;
 	int x, z;
 	u8	attr;
-	u8 enc_location;	//ƒGƒ“ƒJƒEƒ“ƒg‚·‚é’nŒ`i’nã‚©…ã‚©j
+	u8 enc_location;	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹åœ°å½¢ï¼ˆåœ°ä¸Šã‹æ°´ä¸Šã‹ï¼‰
 	BOOL rc;
 	BOOL result;
 	BOOL companion;
-	BOOL safari_flg;	//ƒTƒtƒ@ƒŠƒtƒ‰ƒO
+	BOOL safari_flg;	//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°
 
 	SWAY_ENC_INFO sway_enc_info;
 	
@@ -423,41 +423,41 @@ BOOL FieldEncount_Check(FIELDSYS_WORK * fsys)
 
 	{
 		u8	prob;
-		// ƒGƒ“ƒJƒEƒ“ƒgƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN
+		// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
 		prob = EncountAttributeCheck( fsys, attr, &enc_location );
 		if( prob == 0 ){
-			return FALSE;		//ƒGƒ“ƒJƒEƒ“ƒg‚·‚éƒAƒgƒŠƒrƒ…[ƒg‚Å‚Í‚È‚¢ ‚à‚µ‚­‚ÍŠm—¦‚ª0
+			return FALSE;		//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã§ã¯ãªã„ ã‚‚ã—ãã¯ç¢ºç‡ãŒ0
 		}
 
-		//è‚¿ƒp[ƒeƒBæ“¾
+		//æ‰‹æŒã¡ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 		my_party = SaveData_GetTemotiPokemon(fsys->savedata);
 		
 		data = (ENCOUNT_DATA*)EventData_GetEncountData(fsys);
-		poke_param = PokeParty_GetMemberPointer(my_party, 0);	//æ“ªƒ|ƒPƒ‚ƒ“æ“¾
+		poke_param = PokeParty_GetMemberPointer(my_party, 0);	//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³å–å¾—
 		
 		SetSpaStruct(fsys, poke_param, data, &f_spa  );
 
 		{
-			//ƒXƒvƒŒ[g—p’†‚È‚ç‚ÎƒXƒvƒŒ[ƒ`ƒFƒbƒN‚·‚é
+			//ã‚¹ãƒ—ãƒ¬ãƒ¼ä½¿ç”¨ä¸­ãªã‚‰ã°ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 			if ( !EncDataSave_CanUseSpray( EncDataSave_GetSaveDataPtr(fsys->savedata) ) ){
 				POKEMON_PARAM *spray_poke_param;
 				OS_Printf("supure-chekku\n");
 				spray_poke_param = EvPoke_GetLivingPokemonTop(my_party);
-				//ƒXƒvƒŒ[ƒ`ƒFƒbƒN‚·‚é
+				//ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 				f_spa.SprayCheck = TRUE;
-				//ƒXƒvƒŒ[ƒ`ƒFƒbƒN‚Ég‚¤ƒŒƒxƒ‹‚ğæ“¾
+				//ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ã«ä½¿ã†ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
 				f_spa.SpMyLv = PokeParaGet(spray_poke_param, ID_PARA_level, NULL);
 			}
 		}
 		
-		//“Á«‚É‚æ‚Á‚ÄƒGƒ“ƒJƒEƒ“ƒgŠm—¦•ÏX
+		//ç‰¹æ€§ã«ã‚ˆã£ã¦ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç¢ºç‡å¤‰æ›´
 		prob = ChangeEncProb(	FALSE, prob, &f_spa,
 								Situation_GetWeatherID(SaveData_GetSituation(fsys->savedata)),
 								poke_param	);
-		//ƒr[ƒhƒ‚É‚æ‚éŠm—¦•ÏX
+		//ãƒ“ãƒ¼ãƒ‰ãƒ­ã«ã‚ˆã‚‹ç¢ºç‡å¤‰æ›´
 		ChangeEncProbByVidro( fsys, &prob );
 		
-		//‘•”õƒAƒCƒeƒ€i‚«‚æ‚ß‚Ì‚¨‚Ó‚¾j‚É‚æ‚éŠm—¦•Ï“®
+		//è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ï¼ˆãã‚ˆã‚ã®ãŠãµã ï¼‰ã«ã‚ˆã‚‹ç¢ºç‡å¤‰å‹•
 		ChangeEncProbByEquipItem( poke_param, &prob );
 		
 		if( MapEncountCheck( fsys, prob, attr ) == FALSE ){
@@ -469,15 +469,15 @@ BOOL FieldEncount_Check(FIELDSYS_WORK * fsys)
 
 	memset( &sway_enc_info, 0, sizeof(SWAY_ENC_INFO) );
 
-	//‚ä‚ê‘ƒGƒ“ƒJƒEƒ“ƒgƒ`ƒFƒbƒN
-	//‚ä‚ê‘‚Éƒqƒbƒg‚µ‚½‚çA–‘Oƒ`ƒFƒbƒN‚ÅAƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚©‚Á‚½‚Á‚Æ‚µ‚Ä‚àƒGƒ“ƒJƒEƒ“ƒg‚·‚é
+	//ã‚†ã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
+	//ã‚†ã‚Œè‰ã«ãƒ’ãƒƒãƒˆã—ãŸã‚‰ã€äº‹å‰ãƒã‚§ãƒƒã‚¯ã§ã€ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã‹ã£ãŸã£ã¨ã—ã¦ã‚‚ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹
 	if ( !SwayGrass_CheckSpEncount(x, z, fsys, fsys->SwayGrass,
 									&sway_enc_info.Table,
 									&sway_enc_info.Decide,
 									&sway_enc_info.Rare) ){
-		sway_enc_info.Enc = FALSE;		//‚ä‚ê‘ƒGƒ“ƒJƒEƒ“ƒg•s¬—§
+		sway_enc_info.Enc = FALSE;		//ã‚†ã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆä¸æˆç«‹
 	}else{
-		sway_enc_info.Enc = TRUE;		//‚ä‚ê‘ƒGƒ“ƒJƒEƒ“ƒg¬—§
+		sway_enc_info.Enc = TRUE;		//ã‚†ã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæˆç«‹
 		rc = TRUE;
 	}
 
@@ -485,52 +485,52 @@ BOOL FieldEncount_Check(FIELDSYS_WORK * fsys)
 		return FALSE;
 	}
 
-	//˜A‚ê•à‚«”»’è
-	if (!SysFlag_PairCheck(SaveData_GetEventWork(fsys->savedata))){	//’Êí
+	//é€£ã‚Œæ­©ãåˆ¤å®š
+	if (!SysFlag_PairCheck(SaveData_GetEventWork(fsys->savedata))){	//é€šå¸¸
 		companion = FALSE;
-	}else{	//˜A‚ê•à‚«
-		//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	}else{	//é€£ã‚Œæ­©ã
+		//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 		companion = TRUE;
 	}
 
-	//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN(˜A‚ê•à‚«A—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg¬—§‚Íƒ`ƒFƒbƒN‚µ‚È‚¢)
+	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯(é€£ã‚Œæ­©ãæ™‚ã€æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæˆç«‹æ™‚ã¯ãƒã‚§ãƒƒã‚¯ã—ãªã„)
 	if ( (!companion)&&(sway_enc_info.Enc==FALSE) ){
 		MPD_PTR mpd;
-		//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒ“ƒgƒ`ƒFƒbƒN
+		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 		if ( CheckMovePokeEnc(fsys, &mpd) ){
-			//ƒXƒvƒŒ[ƒ`ƒFƒbƒN
+			//ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯
 			if ( !CheckSpray( EncDataSave_GetMovePokeDataParam(mpd, MP_PARAM_LV),  &f_spa ) ){
-				//ƒoƒgƒ‹ƒpƒ‰ƒ€ì¬
-				param = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_MOVE);	//ƒtƒ@ƒCƒgƒ^ƒCƒv‚ÍˆÚ“®ƒ|ƒPƒ‚ƒ“ê—p
-				//è‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+				//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ä½œæˆ
+				param = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_MOVE);	//ãƒ•ã‚¡ã‚¤ãƒˆã‚¿ã‚¤ãƒ—ã¯ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å°‚ç”¨
+				//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 				BattleParam_SetParamByGameData(param, fsys);
-				//ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+				//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 				SetMovePokemon(f_spa.TrainerID, mpd, param);
-				//ƒGƒ“ƒJƒEƒ“ƒg‚µ‚½ê‡‚ÍA‚ä‚ê‘î•ñ‚ğƒNƒŠƒA
+				//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸå ´åˆã¯ã€ã‚†ã‚Œè‰æƒ…å ±ã‚’ã‚¯ãƒªã‚¢
 				SwayGrass_InitSwayGrass(fsys->SwayGrass);
-				FieldEncount_Set(fsys, param);		//ˆÚ“®ƒ|ƒPƒ‚ƒ“‚ÆƒGƒ“ƒJƒEƒ“ƒg
+				FieldEncount_Set(fsys, param);		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 				return TRUE;
 			}else{
-				return FALSE;		//ƒXƒvƒŒ[‚Åí“¬‰ñ”ğ(ƒoƒgƒ‹ƒpƒ‰ƒ€ì¬‘O‚È‚Ì‚Å‰ğ•ú‚µ‚È‚­‚Ä‚n‚j)
+				return FALSE;		//ã‚¹ãƒ—ãƒ¬ãƒ¼ã§æˆ¦é—˜å›é¿(ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ä½œæˆå‰ãªã®ã§è§£æ”¾ã—ãªãã¦ï¼¯ï¼«)
 			}
 		}
 	}
 
-	//ƒoƒgƒ‹ƒpƒ‰ƒ€‚Ìì¬
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ã®ä½œæˆ
 	if (!companion){
-		//ƒTƒtƒ@ƒŠƒtƒ‰ƒO‚ğæ“¾
+		//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°ã‚’å–å¾—
 		safari_flg = SysFlag_SafariCheck(SaveData_GetEventWork(fsys->savedata));
 		SetFieldBattleParam(fsys, safari_flg, &param);
 	}else{
-		param = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_2vs2_YASEI);	//ƒtƒ@ƒCƒgƒ^ƒCƒv‚ÍŒÅ’è
+		param = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_2vs2_YASEI);	//ãƒ•ã‚¡ã‚¤ãƒˆã‚¿ã‚¤ãƒ—ã¯å›ºå®š
 	}
 	
-	//è‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(param, fsys);
 	
-	//’nã…ã•ªŠò
-	if (enc_location == GROUND_ENCOUNT){			//’nã
-		//‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ì¬
+	//åœ°ä¸Šæ°´ä¸Šåˆ†å²
+	if (enc_location == GROUND_ENCOUNT){			//åœ°ä¸Š
+		//å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		int i;
 		BOOL book_get;
 		for(i=0;i<ENC_MONS_NUM_NORMAL;i++){
@@ -539,37 +539,37 @@ BOOL FieldEncount_Check(FIELDSYS_WORK * fsys)
 			enc_data[i].LvMin = data->NormalEnc[i].Level;
 		}
 
-		//‘S‘}ŠÓ“üèƒtƒ‰ƒOæ“¾
+		//å…¨å›½å›³é‘‘å…¥æ‰‹ãƒ•ãƒ©ã‚°å–å¾—
 		book_get = ZukanWork_GetZenkokuZukanFlag(
 								SaveData_GetZukanWork(GameSystem_GetSaveData(fsys)));
 		
-		//’‹–éƒe[ƒuƒ‹‘‚«Š·‚¦
+		//æ˜¼å¤œãƒ†ãƒ¼ãƒ–ãƒ«æ›¸ãæ›ãˆ
 		EncSet_SetTimeZoneEnc( data, &enc_data[TIME_ENC_1].MonsNo, &enc_data[TIME_ENC_2].MonsNo);
-		//‘å—Ê”­¶ƒe[ƒuƒ‹‘‚«Š·‚¦
+		//å¤§é‡ç™ºç”Ÿãƒ†ãƒ¼ãƒ–ãƒ«æ›¸ãæ›ãˆ
 		EncSet_SetGeneEnc(fsys, data, &enc_data[GENE_ENC_1].MonsNo, &enc_data[GENE_ENC_2].MonsNo);
-		//— Rƒe[ƒuƒ‹‘‚«Š·‚¦
+		//è£å±±ãƒ†ãƒ¼ãƒ–ãƒ«æ›¸ãæ›ãˆ
 		EncSet_SetHillBackEnc(	fsys, book_get, &enc_data[SP_ENC_1].MonsNo, &enc_data[SP_ENC_2].MonsNo);
-		//AGBƒXƒƒbƒgƒe[ƒuƒ‹‘‚«Š·‚¦
+		//AGBã‚¹ãƒ­ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«æ›¸ãæ›ãˆ
 		AgbSlotEnc_SetAgbSlotEnc(data, book_get, &enc_data[AGB_ENC_1].MonsNo, &enc_data[AGB_ENC_2].MonsNo);
 
 		if (!companion){
-			//ƒTƒtƒ@ƒŠ“Áê˜g‚ÌƒZƒbƒg
+			//ã‚µãƒ•ã‚¡ãƒªç‰¹æ®Šæ ã®ã‚»ãƒƒãƒˆ
 			SetSfariMonster(fsys, safari_flg, book_get, enc_data);
-			//ƒVƒ“ƒOƒ‹íƒZƒbƒg
+			//ã‚·ãƒ³ã‚°ãƒ«æˆ¦ã‚»ãƒƒãƒˆ
 			result = WildEncSingle(	fsys, poke_param, param, data, enc_data, &f_spa,
 							&sway_enc_info );
 		}else{
-			//‘Š•ûƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+			//ç›¸æ–¹ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 			{
-				//–{—ˆ‚Í˜A‚ê•à‚¢‚Ä‚¢‚éŒÜlO‚ÌID‚ğ‘ã“ü by soga 2006.06.20
+				//æœ¬æ¥ã¯é€£ã‚Œæ­©ã„ã¦ã„ã‚‹äº”äººè¡†ã®IDã‚’ä»£å…¥ by soga 2006.06.20
 				param->trainer_id[CLIENT_NO_MINE2] =
 					SysWork_PairTrainerIDGet( SaveData_GetEventWork(fsys->savedata) ); //BTFIVE1_01
 				TT_EncountTrainerDataMake(param,fsys->savedata,HEAPID_WORLD);
 			}
 			result = WildEncDouble(	fsys, poke_param, param, enc_data, &f_spa );
 		}
-	}else if(enc_location == WATER_ENCOUNT){		//…ã
-		//‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ì¬
+	}else if(enc_location == WATER_ENCOUNT){		//æ°´ä¸Š
+		//å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		int i;
 		for(i=0;i<ENC_MONS_NUM_SEA;i++){
 			enc_data[i].MonsNo = data->EncSea[i].MonsterNo;
@@ -578,8 +578,8 @@ BOOL FieldEncount_Check(FIELDSYS_WORK * fsys)
 		}
 		result = WildWaterEncSingle(	fsys, poke_param, param, enc_data, &f_spa);
 	}else{
-		GF_ASSERT(0&&"ƒGƒ“ƒJƒEƒ“ƒgƒƒP[ƒVƒ‡ƒ“•s–¾");
-		BattleParam_Delete(param);	//ƒoƒgƒ‹ƒpƒ‰ƒ€‰ğ•ú
+		GF_ASSERT(0&&"ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ä¸æ˜");
+		BattleParam_Delete(param);	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ è§£æ”¾
 		return FALSE;
 	}
 
@@ -593,9 +593,9 @@ BOOL FieldEncount_Check(FIELDSYS_WORK * fsys)
 	GF_ASSERT( sys_CheckHeapSafe( HEAPID_WORLD ) );
 
 	if (rc == FALSE){
-		BattleParam_Delete(param);	//ƒoƒgƒ‹ƒpƒ‰ƒ€‰ğ•ú
+		BattleParam_Delete(param);	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ è§£æ”¾
 	}
-	//•à‚«ƒJƒEƒ“ƒgƒNƒŠƒA‚·‚é
+	//æ­©ãã‚«ã‚¦ãƒ³ãƒˆã‚¯ãƒªã‚¢ã™ã‚‹
 	fsys->encount.walk_count = 0;
 	
 	return rc;
@@ -603,24 +603,24 @@ BOOL FieldEncount_Check(FIELDSYS_WORK * fsys)
 
 //-----------------------------------------------------------------------------
 /**
- * ’Ş‚èƒGƒ“ƒJƒEƒ“ƒg
- * ¦ƒTƒtƒ@ƒŠ‚É‚¢‚½‚Æ‚µ‚Ä‚àA’Ş‚Å‚Í“Áê˜g‚ª–³‚¢‚Ì‚ÅAƒTƒtƒ@ƒŠƒ‚ƒ“ƒXƒ^[‚ÌƒZƒbƒg‚Ís‚í‚È‚¢
+ * é‡£ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
+ * â€»ã‚µãƒ•ã‚¡ãƒªã«ã„ãŸã¨ã—ã¦ã‚‚ã€é‡£ã§ã¯ç‰¹æ®Šæ ãŒç„¡ã„ã®ã§ã€ã‚µãƒ•ã‚¡ãƒªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ã‚»ãƒƒãƒˆã¯è¡Œã‚ãªã„
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inRodtype			’Ş‚èŠÆ
- * @param	outBattleParam		ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inRodtype			é‡£ã‚Šç«¿
+ * @param	outBattleParam		ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL				TRUE:ƒGƒ“ƒJƒEƒ“ƒg‚·‚é		FALSE:ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+ * @return	BOOL				TRUE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹		FALSE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL SetFishingEncount( FIELDSYS_WORK * fsys, const FISHINGROD_TYPE inRodType, BATTLE_PARAM **outBattleParam )
 {
 	POKEMON_PARAM *poke_param;
 	POKEPARTY *my_party;
-	BOOL safari_flg;		//ƒTƒtƒ@ƒŠƒtƒ‰ƒO
+	BOOL safari_flg;		//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°
 
 	ENC_COMMON_DATA enc_data[ENC_MONS_NUM_MAX];
-	ENC_FLD_SPA f_spa;		//“Áê”\—Í
+	ENC_FLD_SPA f_spa;		//ç‰¹æ®Šèƒ½åŠ›
 
 	{
 		u8 prob;
@@ -628,45 +628,45 @@ BOOL SetFishingEncount( FIELDSYS_WORK * fsys, const FISHINGROD_TYPE inRodType, B
 		if (DebugFishProbFlg){
 			prob = 100;
 		}else{
-			// ƒGƒ“ƒJƒEƒ“ƒg—¦
+			// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡
 			prob = GetEncountProbFishing(fsys, inRodType);
 		}
 #else
-		// ƒGƒ“ƒJƒEƒ“ƒg—¦
+		// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡
 		prob = GetEncountProbFishing(fsys, inRodType);
 #endif
 		if(  prob == 0 ){
-			return FALSE;		//Šm—¦‚ª0
+			return FALSE;		//ç¢ºç‡ãŒ0
 		}
 
-		//è‚¿ƒ|ƒPƒp[ƒeƒBæ“¾
+		//æ‰‹æŒã¡ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 		my_party = SaveData_GetTemotiPokemon(fsys->savedata);
-		poke_param = PokeParty_GetMemberPointer(my_party, 0);	//æ“ªƒ|ƒPƒ‚ƒ“æ“¾	
+		poke_param = PokeParty_GetMemberPointer(my_party, 0);	//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³å–å¾—	
 		SetSpaStruct(fsys, poke_param, NULL, &f_spa);
 
-		//“Á«‚É‚æ‚Á‚ÄƒGƒ“ƒJƒEƒ“ƒg—¦•ÏX
+		//ç‰¹æ€§ã«ã‚ˆã£ã¦ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡å¤‰æ›´
 		prob = ChangeEncProb(	TRUE, prob, &f_spa,
 								Situation_GetWeatherID(SaveData_GetSituation(fsys->savedata)),
 								poke_param	);
-		//Šm—¦‚ÅƒGƒ“ƒJƒEƒ“ƒg
+		//ç¢ºç‡ã§ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 		if (gf_p_rand(100) >= prob){
-			return FALSE;		//ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+			return FALSE;		//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
 		}
 	}
-	//ƒTƒtƒ@ƒŠƒtƒ‰ƒO‚ğæ“¾
+	//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°ã‚’å–å¾—
 	safari_flg = SysFlag_SafariCheck(SaveData_GetEventWork(fsys->savedata));
 
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	SetFieldBattleParam(fsys, safari_flg, outBattleParam);
-	//è‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(*outBattleParam, fsys);
-	//‚Â‚è—p‚Ìİ’è
+	//ã¤ã‚Šç”¨ã®è¨­å®š
 	BattleParam_SetFisingParam(*outBattleParam);
 
 
 	if ( (ZoneData_IsSpFishingZone(fsys->location->zone_id))&&
 			 SpFishing_CheckPoint(fsys) ){
-		//“Áê’Ş‚èƒf[ƒ^ì¬
+		//ç‰¹æ®Šé‡£ã‚Šãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		u8 i;
 		int monsno;
 		u8 max,min;
@@ -679,24 +679,24 @@ BOOL SetFishingEncount( FIELDSYS_WORK * fsys, const FISHINGROD_TYPE inRodType, B
 			enc_data[i].LvMin = min;
 		}
 	}else{
-		//‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ì¬
+		//å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		{
 			NON_GROUND_ENC_MONSTER_DAT *enc_fish;
 			u8 i;
 			ENCOUNT_DATA *data;
 
 			data = (ENCOUNT_DATA*)EventData_GetEncountData(fsys);
-			//ƒV[ƒEƒVEƒV[ƒhƒ‹ƒSƒtƒHƒ‹ƒ€•ÏXŠm—¦ƒZƒbƒg<<’Ş‚è‚Å‚Ío‚È‚¢‚Ì‚ÅƒZƒbƒg•s—v
+			//ã‚·ãƒ¼ã‚¦ã‚·ãƒ»ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç¢ºç‡ã‚»ãƒƒãƒˆ<<é‡£ã‚Šã§ã¯å‡ºãªã„ã®ã§ã‚»ãƒƒãƒˆä¸è¦
 
-			//’Ş‚èŠÆ•Ê‚Éƒf[ƒ^ì¬
+			//é‡£ã‚Šç«¿åˆ¥ã«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 			switch(inRodType){
-			case FISHINGROD_BAD:		//ƒ{ƒ
+			case FISHINGROD_BAD:		//ãƒœãƒ­
 				enc_fish = data->EncFish1;
 				break;
-			case FISHINGROD_GOOD:		//‚¢‚¢
+			case FISHINGROD_GOOD:		//ã„ã„
 				enc_fish = data->EncFish2;
 				break;
-			case FISHINGROD_GREAT:		//‚·‚²‚¢
+			case FISHINGROD_GREAT:		//ã™ã”ã„
 				enc_fish = data->EncFish3;
 				break;
 			}
@@ -709,7 +709,7 @@ BOOL SetFishingEncount( FIELDSYS_WORK * fsys, const FISHINGROD_TYPE inRodType, B
 		}
 	}
 
-	//’Ş‚èƒGƒ“ƒJƒEƒ“ƒg
+	//é‡£ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 	{
 		BOOL rc;
 		rc = FishingEncSingle( fsys, poke_param, *outBattleParam, enc_data, &f_spa, inRodType );
@@ -723,12 +723,12 @@ BOOL SetFishingEncount( FIELDSYS_WORK * fsys, const FISHINGROD_TYPE inRodType, B
 
 //-----------------------------------------------------------------------------
 /**
- * ŠÃ‚¢–¨EŠÃ‚¢‚èƒGƒ“ƒJƒEƒ“ƒg
+ * ç”˜ã„èœœãƒ»ç”˜ã„é¦™ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	event			ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	event			ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL			TRUE:ƒGƒ“ƒJƒEƒ“ƒg‚·‚é		FALSE:ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+ * @return	BOOL			TRUE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹		FALSE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL SetSweetEncount(FIELDSYS_WORK * fsys, GMEVENT_CONTROL * event)
@@ -737,16 +737,16 @@ BOOL SetSweetEncount(FIELDSYS_WORK * fsys, GMEVENT_CONTROL * event)
 	POKEMON_PARAM *poke_param;
 	int x, z;
 	u8	attr;
-	u8 enc_location;	//ƒGƒ“ƒJƒEƒ“ƒg‚·‚é’nŒ`i’nã‚©…ã‚©j
+	u8 enc_location;	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹åœ°å½¢ï¼ˆåœ°ä¸Šã‹æ°´ä¸Šã‹ï¼‰
 	BOOL companion;
-	BOOL safari_flg;	//ƒTƒtƒ@ƒŠƒtƒ‰ƒO
+	BOOL safari_flg;	//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°
 	BOOL result;
 	SWAY_ENC_INFO sway_enc_info;
 	
 	POKEPARTY *my_party;
 	ENCOUNT_DATA *data;
 	ENC_COMMON_DATA enc_data[ENC_MONS_NUM_MAX];
-	ENC_FLD_SPA f_spa;		//“Áê”\—Í
+	ENC_FLD_SPA f_spa;		//ç‰¹æ®Šèƒ½åŠ›
 
 	x = Player_NowGPosXGet( fsys->player );
 	z = Player_NowGPosZGet( fsys->player );
@@ -758,64 +758,64 @@ BOOL SetSweetEncount(FIELDSYS_WORK * fsys, GMEVENT_CONTROL * event)
 		u8	prob;
 		prob = EncountAttributeCheck( fsys, attr, &enc_location );
 		if( prob == 0 ){
-			return FALSE;		//ƒGƒ“ƒJƒEƒ“ƒg‚·‚éƒAƒgƒŠƒrƒ…[ƒg‚Å‚Í‚È‚¢ ‚à‚µ‚­‚ÍŠm—¦‚ª0
+			return FALSE;		//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã§ã¯ãªã„ ã‚‚ã—ãã¯ç¢ºç‡ãŒ0
 		}
 	}
 	
-	//è‚¿ƒp[ƒeƒBæ“¾
+	//æ‰‹æŒã¡ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 	my_party = SaveData_GetTemotiPokemon(fsys->savedata);
 
 	data = (ENCOUNT_DATA*)EventData_GetEncountData(fsys);
-	poke_param = PokeParty_GetMemberPointer(my_party, 0);	//æ“ªƒ|ƒPƒ‚ƒ“æ“¾
+	poke_param = PokeParty_GetMemberPointer(my_party, 0);	//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³å–å¾—
 	SetSpaStruct(fsys, poke_param, data, &f_spa);
-	//ƒXƒvƒŒ[ƒ`ƒFƒbƒN‚µ‚È‚¢
+	//ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ã—ãªã„
 	f_spa.SprayCheck = FALSE;
-	//ƒGƒ“ƒJƒEƒ“ƒg‰ñ”ğ“Á«‚ğƒLƒƒƒ“ƒZƒ‹‚·‚é
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå›é¿ç‰¹æ€§ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
 	f_spa.EncCancelSpInvalid = TRUE;
 
 	memset( &sway_enc_info, 0, sizeof(SWAY_ENC_INFO) );
 	
-	//˜A‚ê•à‚«”»’è
-	if (!SysFlag_PairCheck(SaveData_GetEventWork(fsys->savedata))){	//’Êí
+	//é€£ã‚Œæ­©ãåˆ¤å®š
+	if (!SysFlag_PairCheck(SaveData_GetEventWork(fsys->savedata))){	//é€šå¸¸
 		companion = FALSE;
-	}else{	//˜A‚ê•à‚«
+	}else{	//é€£ã‚Œæ­©ã
 		companion = TRUE;
 	}
 
-	//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN(˜A‚ê•à‚«‚Íƒ`ƒFƒbƒN‚µ‚È‚¢B‚ ‚Ü‚¢‚©‚¨‚è‚Å—h‚ê‘‚Í–³‚¢‚Ì‚ÅAƒ`ƒFƒbƒN‚ÍÈ‚­)
+	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯(é€£ã‚Œæ­©ãæ™‚ã¯ãƒã‚§ãƒƒã‚¯ã—ãªã„ã€‚ã‚ã¾ã„ã‹ãŠã‚Šã§æºã‚Œè‰ã¯ç„¡ã„ã®ã§ã€ãƒã‚§ãƒƒã‚¯ã¯çœã)
 	if (!companion){
 		MPD_PTR mpd;
-		//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒ“ƒgƒ`ƒFƒbƒN
+		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 		if ( CheckMovePokeEnc(fsys, &mpd) ){
-			//‚è‚ÅƒGƒ“ƒJƒEƒ“ƒg‚È‚Ì‚ÅƒXƒvƒŒ[ƒ`ƒFƒbƒN‚È‚µ
-			//ƒoƒgƒ‹ƒpƒ‰ƒ€ì¬
-			param = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_MOVE);	//ƒtƒ@ƒCƒgƒ^ƒCƒv‚ÍˆÚ“®ƒ|ƒPƒ‚ƒ“ê—p
-			//è‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+			//é¦™ã‚Šã§ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãªã®ã§ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ãªã—
+			//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ä½œæˆ
+			param = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_MOVE);	//ãƒ•ã‚¡ã‚¤ãƒˆã‚¿ã‚¤ãƒ—ã¯ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å°‚ç”¨
+			//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 			BattleParam_SetParamByGameData(param, fsys);
-			//ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+			//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 			SetMovePokemon(f_spa.TrainerID,mpd, param);
-			//ƒGƒ“ƒJƒEƒ“ƒg‚µ‚½ê‡‚ÍA‚ä‚ê‘î•ñ‚ğƒNƒŠƒA
+			//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸå ´åˆã¯ã€ã‚†ã‚Œè‰æƒ…å ±ã‚’ã‚¯ãƒªã‚¢
 			SwayGrass_InitSwayGrass(fsys->SwayGrass);
-			FieldEncount_Change(fsys, event, param);		//ˆÚ“®ƒ|ƒPƒ‚ƒ“‚ÆƒGƒ“ƒJƒEƒ“ƒg
+			FieldEncount_Change(fsys, event, param);		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 			return TRUE;
 		}
 	}
 
-	//ƒoƒgƒ‹ƒpƒ‰ƒ€‚Ìì¬
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ã®ä½œæˆ
 	if (!companion){
-		//ƒTƒtƒ@ƒŠƒtƒ‰ƒO‚ğæ“¾
+		//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°ã‚’å–å¾—
 		safari_flg = SysFlag_SafariCheck(SaveData_GetEventWork(fsys->savedata));
 		SetFieldBattleParam(fsys, safari_flg, &param);
 	}else{
-		param = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_2vs2_YASEI);	//ƒtƒ@ƒCƒgƒ^ƒCƒv‚ÍŒÅ’è
+		param = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_2vs2_YASEI);	//ãƒ•ã‚¡ã‚¤ãƒˆã‚¿ã‚¤ãƒ—ã¯å›ºå®š
 	}
 	
-	//è‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(param, fsys);
 
-	//’nã…ã•ªŠò
-	if (enc_location == GROUND_ENCOUNT){			//’nã
-		//‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ì¬
+	//åœ°ä¸Šæ°´ä¸Šåˆ†å²
+	if (enc_location == GROUND_ENCOUNT){			//åœ°ä¸Š
+		//å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		int i;
 		BOOL book_get;
 		for(i=0;i<ENC_MONS_NUM_NORMAL;i++){
@@ -824,37 +824,37 @@ BOOL SetSweetEncount(FIELDSYS_WORK * fsys, GMEVENT_CONTROL * event)
 			enc_data[i].LvMin = data->NormalEnc[i].Level;
 		}
 
-		//‘S‘}ŠÓ“üèƒtƒ‰ƒOæ“¾
+		//å…¨å›½å›³é‘‘å…¥æ‰‹ãƒ•ãƒ©ã‚°å–å¾—
 		book_get = ZukanWork_GetZenkokuZukanFlag(
 								SaveData_GetZukanWork(GameSystem_GetSaveData(fsys)));
 
-		//’‹–éƒe[ƒuƒ‹‘‚«Š·‚¦
+		//æ˜¼å¤œãƒ†ãƒ¼ãƒ–ãƒ«æ›¸ãæ›ãˆ
 		EncSet_SetTimeZoneEnc( data, &enc_data[TIME_ENC_1].MonsNo, &enc_data[TIME_ENC_2].MonsNo);
-		//‘å—Ê”­¶ƒe[ƒuƒ‹‘‚«Š·‚¦
+		//å¤§é‡ç™ºç”Ÿãƒ†ãƒ¼ãƒ–ãƒ«æ›¸ãæ›ãˆ
 		EncSet_SetGeneEnc(fsys, data, &enc_data[GENE_ENC_1].MonsNo, &enc_data[GENE_ENC_2].MonsNo);
-		//— Rƒe[ƒuƒ‹‘‚«Š·‚¦
+		//è£å±±ãƒ†ãƒ¼ãƒ–ãƒ«æ›¸ãæ›ãˆ
 		EncSet_SetHillBackEnc(	fsys, book_get, &enc_data[SP_ENC_1].MonsNo, &enc_data[SP_ENC_2].MonsNo);
-		//AGBƒXƒƒbƒgƒe[ƒuƒ‹‘‚«Š·‚¦
+		//AGBã‚¹ãƒ­ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«æ›¸ãæ›ãˆ
 		AgbSlotEnc_SetAgbSlotEnc(data, book_get, &enc_data[AGB_ENC_1].MonsNo, &enc_data[AGB_ENC_2].MonsNo);
 		
 		if (!companion){
-			//ƒTƒtƒ@ƒŠ“Áê˜g‚ÌƒZƒbƒg
+			//ã‚µãƒ•ã‚¡ãƒªç‰¹æ®Šæ ã®ã‚»ãƒƒãƒˆ
 			SetSfariMonster(fsys, safari_flg, book_get, enc_data);
-			//ƒVƒ“ƒOƒ‹íƒZƒbƒg
+			//ã‚·ãƒ³ã‚°ãƒ«æˆ¦ã‚»ãƒƒãƒˆ
 			result = WildEncSingle(	fsys, poke_param, param, data, enc_data, &f_spa,
 							&sway_enc_info );
 		}else{
-			//‘Š•ûƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+			//ç›¸æ–¹ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 			{
-				//–{—ˆ‚Í˜A‚ê•à‚¢‚Ä‚¢‚éŒÜlO‚ÌID‚ğ‘ã“ü by soga 2006.06.20
+				//æœ¬æ¥ã¯é€£ã‚Œæ­©ã„ã¦ã„ã‚‹äº”äººè¡†ã®IDã‚’ä»£å…¥ by soga 2006.06.20
 				param->trainer_id[CLIENT_NO_MINE2] = 
 					SysWork_PairTrainerIDGet( SaveData_GetEventWork(fsys->savedata) ); //BTFIVE1_01;
 				TT_EncountTrainerDataMake(param,fsys->savedata,HEAPID_WORLD);
 			}
 			result = WildEncDouble(	fsys, poke_param, param, enc_data, &f_spa );
 		}
-	}else if(enc_location == WATER_ENCOUNT){		//…ã
-		//‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ì¬
+	}else if(enc_location == WATER_ENCOUNT){		//æ°´ä¸Š
+		//å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		int i;
 		for(i=0;i<ENC_MONS_NUM_SEA;i++){
 			enc_data[i].MonsNo = data->EncSea[i].MonsterNo;
@@ -863,7 +863,7 @@ BOOL SetSweetEncount(FIELDSYS_WORK * fsys, GMEVENT_CONTROL * event)
 		}
 		result = WildWaterEncSingle(	fsys, poke_param, param, enc_data, &f_spa);
 	}else{
-		GF_ASSERT(0&&"ƒGƒ“ƒJƒEƒ“ƒgƒƒP[ƒVƒ‡ƒ“•s–¾");
+		GF_ASSERT(0&&"ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ä¸æ˜");
 		return FALSE;
 	}
 
@@ -872,19 +872,19 @@ BOOL SetSweetEncount(FIELDSYS_WORK * fsys, GMEVENT_CONTROL * event)
 	}else{
 		GF_ASSERT(0);
 	}
-	//•à‚«ƒJƒEƒ“ƒgƒNƒŠƒA‚·‚é
+	//æ­©ãã‚«ã‚¦ãƒ³ãƒˆã‚¯ãƒªã‚¢ã™ã‚‹
 	fsys->encount.walk_count = 0;
 	return TRUE;
 }
 
 //-----------------------------------------------------------------------------
 /**
- * ƒŒƒoƒKƒ`ƒƒƒGƒ“ƒJƒEƒ“ƒg
+ * ãƒ¬ãƒã‚¬ãƒãƒ£ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	outBattleParam		ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚Ìƒ|ƒCƒ“ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	outBattleParam		ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL		TRUE:ƒGƒ“ƒJƒEƒ“ƒg¬—§	FALSE:ƒGƒ“ƒJƒEƒ“ƒg•s¬—§
+ * @return	BOOL		TRUE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæˆç«‹	FALSE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆä¸æˆç«‹
  */
 //-----------------------------------------------------------------------------
 BOOL SetKeyRandEncount( FIELDSYS_WORK * fsys, BATTLE_PARAM **outBattleParam )
@@ -892,11 +892,11 @@ BOOL SetKeyRandEncount( FIELDSYS_WORK * fsys, BATTLE_PARAM **outBattleParam )
 	POKEMON_PARAM *poke_param;
 	int x, z;
 	u8	attr;
-	u8 enc_location;	//ƒGƒ“ƒJƒEƒ“ƒg‚·‚é’nŒ`i’nã‚©…ã‚©j
+	u8 enc_location;	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹åœ°å½¢ï¼ˆåœ°ä¸Šã‹æ°´ä¸Šã‹ï¼‰
 	BOOL rc;
 	BOOL result;
 	BOOL companion;
-	BOOL safari_flg;	//ƒTƒtƒ@ƒŠƒtƒ‰ƒO
+	BOOL safari_flg;	//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°
 
 	SWAY_ENC_INFO sway_enc_info;
 	
@@ -915,41 +915,41 @@ BOOL SetKeyRandEncount( FIELDSYS_WORK * fsys, BATTLE_PARAM **outBattleParam )
 
 	{
 		u8	prob;
-		// ƒGƒ“ƒJƒEƒ“ƒgƒAƒgƒŠƒrƒ…[ƒgƒ`ƒFƒbƒN
+		// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒã‚§ãƒƒã‚¯
 		prob = EncountAttributeCheck( fsys, attr, &enc_location );
 		if( prob == 0 ){
-			return FALSE;		//ƒGƒ“ƒJƒEƒ“ƒg‚·‚éƒAƒgƒŠƒrƒ…[ƒg‚Å‚Í‚È‚¢ ‚à‚µ‚­‚ÍŠm—¦‚ª0
+			return FALSE;		//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã§ã¯ãªã„ ã‚‚ã—ãã¯ç¢ºç‡ãŒ0
 		}
 
-		//è‚¿ƒp[ƒeƒBæ“¾
+		//æ‰‹æŒã¡ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 		my_party = SaveData_GetTemotiPokemon(fsys->savedata);
 		
 		data = (ENCOUNT_DATA*)EventData_GetEncountData(fsys);
-		poke_param = PokeParty_GetMemberPointer(my_party, 0);	//æ“ªƒ|ƒPƒ‚ƒ“æ“¾
+		poke_param = PokeParty_GetMemberPointer(my_party, 0);	//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³å–å¾—
 		
 		SetSpaStruct(fsys, poke_param, data, &f_spa  );
 
 		{
-			//ƒXƒvƒŒ[g—p’†‚È‚ç‚ÎƒXƒvƒŒ[ƒ`ƒFƒbƒN‚·‚é
+			//ã‚¹ãƒ—ãƒ¬ãƒ¼ä½¿ç”¨ä¸­ãªã‚‰ã°ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 			if ( !EncDataSave_CanUseSpray( EncDataSave_GetSaveDataPtr(fsys->savedata) ) ){
 				POKEMON_PARAM *spray_poke_param;
 				OS_Printf("supure-chekku\n");
 				spray_poke_param = EvPoke_GetLivingPokemonTop(my_party);
-				//ƒXƒvƒŒ[ƒ`ƒFƒbƒN‚·‚é
+				//ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 				f_spa.SprayCheck = TRUE;
-				//ƒXƒvƒŒ[ƒ`ƒFƒbƒN‚Ég‚¤ƒŒƒxƒ‹‚ğæ“¾
+				//ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ã«ä½¿ã†ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
 				f_spa.SpMyLv = PokeParaGet(spray_poke_param, ID_PARA_level, NULL);
 			}
 		}
 		
-		//“Á«‚É‚æ‚Á‚ÄƒGƒ“ƒJƒEƒ“ƒgŠm—¦•ÏX
+		//ç‰¹æ€§ã«ã‚ˆã£ã¦ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç¢ºç‡å¤‰æ›´
 		prob = ChangeEncProb(	FALSE, prob, &f_spa,
 								Situation_GetWeatherID(SaveData_GetSituation(fsys->savedata)),
 								poke_param	);
-		//ƒr[ƒhƒ‚É‚æ‚éŠm—¦•ÏX
+		//ãƒ“ãƒ¼ãƒ‰ãƒ­ã«ã‚ˆã‚‹ç¢ºç‡å¤‰æ›´
 		ChangeEncProbByVidro( fsys, &prob );
 		
-		//‘•”õƒAƒCƒeƒ€i‚«‚æ‚ß‚Ì‚¨‚Ó‚¾j‚É‚æ‚éŠm—¦•Ï“®
+		//è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ï¼ˆãã‚ˆã‚ã®ãŠãµã ï¼‰ã«ã‚ˆã‚‹ç¢ºç‡å¤‰å‹•
 		ChangeEncProbByEquipItem( poke_param, &prob );
 		
 		if( MapEncountCheck( fsys, prob, attr ) == FALSE ){
@@ -960,53 +960,53 @@ BOOL SetKeyRandEncount( FIELDSYS_WORK * fsys, BATTLE_PARAM **outBattleParam )
 	}
 
 	memset( &sway_enc_info, 0, sizeof(SWAY_ENC_INFO) );
-	sway_enc_info.Enc = FALSE;		//‚ä‚ê‘ƒGƒ“ƒJƒEƒ“ƒgŠmÀ‚É•s¬—§
+	sway_enc_info.Enc = FALSE;		//ã‚†ã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç¢ºå®Ÿã«ä¸æˆç«‹
 	
-	//˜A‚ê•à‚«”»’è
-	if (!SysFlag_PairCheck(SaveData_GetEventWork(fsys->savedata))){	//’Êí
+	//é€£ã‚Œæ­©ãåˆ¤å®š
+	if (!SysFlag_PairCheck(SaveData_GetEventWork(fsys->savedata))){	//é€šå¸¸
 		companion = FALSE;
-	}else{	//˜A‚ê•à‚«
-		//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»
+	}else{	//é€£ã‚Œæ­©ã
+		//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–
 		companion = TRUE;
 	}
 
-	//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒ`ƒFƒbƒN(˜A‚ê•à‚«‚Íƒ`ƒFƒbƒN‚µ‚È‚¢BƒŒƒoƒKƒ`ƒƒ‚Å—h‚ê‘‚Í‚È‚¢‚Ì‚ÅAƒ`ƒFƒbƒN‚ÍÈ‚­)
+	//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒã‚§ãƒƒã‚¯(é€£ã‚Œæ­©ãæ™‚ã¯ãƒã‚§ãƒƒã‚¯ã—ãªã„ã€‚ãƒ¬ãƒã‚¬ãƒãƒ£ã§æºã‚Œè‰ã¯ãªã„ã®ã§ã€ãƒã‚§ãƒƒã‚¯ã¯çœã)
 	if (!companion){
 		MPD_PTR mpd;
-		//ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒ“ƒgƒ`ƒFƒbƒN
+		//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
 		if ( CheckMovePokeEnc(fsys, &mpd) ){
-			//ƒXƒvƒŒ[ƒ`ƒFƒbƒN
+			//ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯
 			if ( !CheckSpray( EncDataSave_GetMovePokeDataParam(mpd, MP_PARAM_LV),  &f_spa ) ){
-				//ƒoƒgƒ‹ƒpƒ‰ƒ€ì¬
-				*outBattleParam = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_MOVE);	//ƒtƒ@ƒCƒgƒ^ƒCƒv‚ÍˆÚ“®ƒ|ƒPƒ‚ƒ“ê—p
-				//è‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+				//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ä½œæˆ
+				*outBattleParam = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_MOVE);	//ãƒ•ã‚¡ã‚¤ãƒˆã‚¿ã‚¤ãƒ—ã¯ç§»å‹•ãƒã‚±ãƒ¢ãƒ³å°‚ç”¨
+				//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 				BattleParam_SetParamByGameData(*outBattleParam, fsys);
-				//ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+				//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 				SetMovePokemon(f_spa.TrainerID,mpd, *outBattleParam);
-				//ƒGƒ“ƒJƒEƒ“ƒg‚µ‚½ê‡‚ÍA‚ä‚ê‘î•ñ‚ğƒNƒŠƒA
+				//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸå ´åˆã¯ã€ã‚†ã‚Œè‰æƒ…å ±ã‚’ã‚¯ãƒªã‚¢
 				SwayGrass_InitSwayGrass(fsys->SwayGrass);
 				return TRUE;
 			}else{
-				return FALSE;		//ƒXƒvƒŒ[‚Åí“¬‰ñ”ğ(ƒoƒgƒ‹ƒpƒ‰ƒ€ì¬‘O‚È‚Ì‚Å‰ğ•ú‚µ‚È‚­‚Ä‚n‚j)
+				return FALSE;		//ã‚¹ãƒ—ãƒ¬ãƒ¼ã§æˆ¦é—˜å›é¿(ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ä½œæˆå‰ãªã®ã§è§£æ”¾ã—ãªãã¦ï¼¯ï¼«)
 			}
 		}
 	}
 
-	//ƒoƒgƒ‹ƒpƒ‰ƒ€‚Ìì¬
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ã®ä½œæˆ
 	if (!companion){
-		//ƒTƒtƒ@ƒŠƒtƒ‰ƒO‚ğæ“¾
+		//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°ã‚’å–å¾—
 		safari_flg = SysFlag_SafariCheck(SaveData_GetEventWork(fsys->savedata));
 		SetFieldBattleParam(fsys, safari_flg, outBattleParam);
 	}else{
-		*outBattleParam = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_2vs2_YASEI);	//ƒtƒ@ƒCƒgƒ^ƒCƒv‚ÍŒÅ’è
+		*outBattleParam = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_2vs2_YASEI);	//ãƒ•ã‚¡ã‚¤ãƒˆã‚¿ã‚¤ãƒ—ã¯å›ºå®š
 	}
 	
-	//è‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(*outBattleParam, fsys);
 	
-	//’nã…ã•ªŠò	…ãƒŒƒoƒKƒ`ƒƒ‚Í–³‚¢‚¾‚ë‚¤B‘½•ª
-	if (enc_location == GROUND_ENCOUNT){			//’nã
-		//‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ì¬
+	//åœ°ä¸Šæ°´ä¸Šåˆ†å²	æ°´ä¸Šãƒ¬ãƒã‚¬ãƒãƒ£ã¯ç„¡ã„ã ã‚ã†ã€‚å¤šåˆ†
+	if (enc_location == GROUND_ENCOUNT){			//åœ°ä¸Š
+		//å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		int i;
 		BOOL book_get;
 		for(i=0;i<ENC_MONS_NUM_NORMAL;i++){
@@ -1015,28 +1015,28 @@ BOOL SetKeyRandEncount( FIELDSYS_WORK * fsys, BATTLE_PARAM **outBattleParam )
 			enc_data[i].LvMin = data->NormalEnc[i].Level;
 		}
 
-		//‘S‘}ŠÓ“üèƒtƒ‰ƒOæ“¾
+		//å…¨å›½å›³é‘‘å…¥æ‰‹ãƒ•ãƒ©ã‚°å–å¾—
 		book_get = ZukanWork_GetZenkokuZukanFlag(
 								SaveData_GetZukanWork(GameSystem_GetSaveData(fsys)));
 		
-		//’‹–éƒe[ƒuƒ‹‘‚«Š·‚¦
+		//æ˜¼å¤œãƒ†ãƒ¼ãƒ–ãƒ«æ›¸ãæ›ãˆ
 		EncSet_SetTimeZoneEnc( data, &enc_data[TIME_ENC_1].MonsNo, &enc_data[TIME_ENC_2].MonsNo);
-		//‘å—Ê”­¶ƒe[ƒuƒ‹‘‚«Š·‚¦
+		//å¤§é‡ç™ºç”Ÿãƒ†ãƒ¼ãƒ–ãƒ«æ›¸ãæ›ãˆ
 		EncSet_SetGeneEnc(fsys, data, &enc_data[GENE_ENC_1].MonsNo, &enc_data[GENE_ENC_2].MonsNo);
-		//— Rƒe[ƒuƒ‹‘‚«Š·‚¦
+		//è£å±±ãƒ†ãƒ¼ãƒ–ãƒ«æ›¸ãæ›ãˆ
 		EncSet_SetHillBackEnc(	fsys, book_get, &enc_data[SP_ENC_1].MonsNo, &enc_data[SP_ENC_2].MonsNo);
-		//AGBƒXƒƒbƒgƒe[ƒuƒ‹‘‚«Š·‚¦
+		//AGBã‚¹ãƒ­ãƒƒãƒˆãƒ†ãƒ¼ãƒ–ãƒ«æ›¸ãæ›ãˆ
 		AgbSlotEnc_SetAgbSlotEnc(data, book_get, &enc_data[AGB_ENC_1].MonsNo, &enc_data[AGB_ENC_2].MonsNo);
 
 		if (!companion){
-			//ƒTƒtƒ@ƒŠ“Áê˜g‚ÌƒZƒbƒg
+			//ã‚µãƒ•ã‚¡ãƒªç‰¹æ®Šæ ã®ã‚»ãƒƒãƒˆ
 			SetSfariMonster(fsys, safari_flg, book_get, enc_data);
-			//ƒVƒ“ƒOƒ‹íƒZƒbƒg
+			//ã‚·ãƒ³ã‚°ãƒ«æˆ¦ã‚»ãƒƒãƒˆ
 			result = WildEncSingle(	fsys, poke_param, *outBattleParam, data, enc_data, &f_spa,
 							&sway_enc_info );
 		}else{
 			{
-				//–{—ˆ‚Í˜A‚ê•à‚¢‚Ä‚¢‚éŒÜlO‚ÌID‚ğ‘ã“ü by soga 2006.06.20
+				//æœ¬æ¥ã¯é€£ã‚Œæ­©ã„ã¦ã„ã‚‹äº”äººè¡†ã®IDã‚’ä»£å…¥ by soga 2006.06.20
 				(*outBattleParam)->trainer_id[CLIENT_NO_MINE2] =
 					SysWork_PairTrainerIDGet( SaveData_GetEventWork(fsys->savedata) ); //BTFIVE1_01
 				TT_EncountTrainerDataMake(*outBattleParam,fsys->savedata,HEAPID_WORLD);
@@ -1044,8 +1044,8 @@ BOOL SetKeyRandEncount( FIELDSYS_WORK * fsys, BATTLE_PARAM **outBattleParam )
 			result = WildEncDouble(	fsys, poke_param, *outBattleParam, enc_data, &f_spa );
 		}
 	}else{
-		GF_ASSERT(0&&"ƒGƒ“ƒJƒEƒ“ƒgƒƒP[ƒVƒ‡ƒ“•s–¾");
-		BattleParam_Delete(*outBattleParam);	//ƒoƒgƒ‹ƒpƒ‰ƒ€‰ğ•ú
+		GF_ASSERT(0&&"ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ä¸æ˜");
+		BattleParam_Delete(*outBattleParam);	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ è§£æ”¾
 		return FALSE;
 	}
 
@@ -1057,9 +1057,9 @@ BOOL SetKeyRandEncount( FIELDSYS_WORK * fsys, BATTLE_PARAM **outBattleParam )
 	GF_ASSERT( sys_CheckHeapSafe( HEAPID_WORLD ) );
 
 	if (rc == FALSE){
-		BattleParam_Delete(*outBattleParam);	//ƒoƒgƒ‹ƒpƒ‰ƒ€‰ğ•ú
+		BattleParam_Delete(*outBattleParam);	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ è§£æ”¾
 	}else{
-		//•à‚«ƒJƒEƒ“ƒgƒNƒŠƒA‚·‚é
+		//æ­©ãã‚«ã‚¦ãƒ³ãƒˆã‚¯ãƒªã‚¢ã™ã‚‹
 		fsys->encount.walk_count = 0;
 	}
 	return rc;
@@ -1068,17 +1068,17 @@ BOOL SetKeyRandEncount( FIELDSYS_WORK * fsys, BATTLE_PARAM **outBattleParam )
 
 //-----------------------------------------------------------------------------
 /**
- * –ì¶ƒVƒ“ƒOƒ‹íƒZƒbƒgƒAƒbƒv
+ * é‡ç”Ÿã‚·ãƒ³ã‚°ãƒ«æˆ¦ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	poke_param			ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€
- * @param	param				ƒoƒgƒ‹ƒpƒ‰ƒ€
- * @param	data				ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^
- * @param	enc_data			‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹
- * @param	inFldSpa			“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inSwayEncInfo		—h‚ê‘î•ñƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	poke_param			ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ 
+ * @param	param				ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ 
+ * @param	data				ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ * @param	enc_data			å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	inFldSpa			ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inSwayEncInfo		æºã‚Œè‰æƒ…å ±ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL	TRUE:ƒGƒ“ƒJƒEƒ“ƒg‚·‚é	FALSE:ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+ * @return	BOOL	TRUE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹	FALSE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WildEncSingle(FIELDSYS_WORK * fsys,
@@ -1090,10 +1090,10 @@ static BOOL WildEncSingle(FIELDSYS_WORK * fsys,
 							const SWAY_ENC_INFO *inSwayEncInfo )
 {
 	BOOL rc;
-	//—h‚ê‘‚©‚Ç‚¤‚©‚Å•ªŠò
-	if (inSwayEncInfo->Enc){	//—h‚ê‘ƒGƒ“ƒJƒEƒ“ƒg
+	//æºã‚Œè‰ã‹ã©ã†ã‹ã§åˆ†å²
+	if (inSwayEncInfo->Enc){	//æºã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 		int monsno,lv;
-		//‚ä‚ê‘ê—pƒe[ƒuƒ‹‚É‘‚«Š·‚¦
+		//ã‚†ã‚Œè‰å°‚ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ã«æ›¸ãæ›ãˆ
 		if (inSwayEncInfo->Table == SWAY_GRASS_ENC_SP){
 			enc_data[SWAY_ENC_1].MonsNo = data->SwayEnc[0];
 			enc_data[SWAY_ENC_2].MonsNo = data->SwayEnc[1];
@@ -1101,43 +1101,43 @@ static BOOL WildEncSingle(FIELDSYS_WORK * fsys,
 			enc_data[SWAY_ENC_4].MonsNo = data->SwayEnc[3];
 		}
 
-		//—h‚ê‘‘O‰ñƒ|ƒPƒ‚ƒ“î•ñ‚ğæ“¾i‰‰ñ‚ÍA0‚ª“ü‚Á‚Ä‚éj
+		//æºã‚Œè‰å‰å›ãƒã‚±ãƒ¢ãƒ³æƒ…å ±ã‚’å–å¾—ï¼ˆåˆå›æ™‚ã¯ã€0ãŒå…¥ã£ã¦ã‚‹ï¼‰
 		SwayGrass_GetEncMonsNoLv(fsys->SwayGrass, &monsno, &lv);
-		//ƒGƒ“ƒJƒEƒ“ƒg‚·‚éƒ‚ƒ“ƒXƒ^[‚ªŒˆ’è‚µ‚Ä‚¢‚éê‡
+		//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒæ±ºå®šã—ã¦ã„ã‚‹å ´åˆ
 		if (inSwayEncInfo->Decide == TRUE)	{
 			MYSTATUS *my_st;
-			//ƒgƒŒ[ƒi[‚h‚cæ“¾
+			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤å–å¾—
 			my_st = SaveData_GetMyStatus(GameSystem_GetSaveData(fsys));
-			//w’èƒ|ƒPƒ‚ƒ“‚Æ100“ƒGƒ“ƒJƒEƒ“ƒg
+			//æŒ‡å®šãƒã‚±ãƒ¢ãƒ³ã¨100ï¼…ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 			rc = SetEncountDataDecideMons(	monsno, lv,
 											POKEPARTY_ENEMY,
 											inSwayEncInfo->Rare,
-											MyStatus_GetID(my_st),//ƒgƒŒ[ƒi[‚h‚c
+											MyStatus_GetID(my_st),//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤
 											inFldSpa,
 											poke_param,
 											param );
-		}else{	//Œˆ’è‚µ‚Ä‚¢‚È‚¢ê‡A‚à‚µ‚­‚Í‰‰ñ
-			//ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚ğƒZƒbƒg
+		}else{	//æ±ºå®šã—ã¦ã„ãªã„å ´åˆã€ã‚‚ã—ãã¯åˆå›
+			//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 			rc = SetSwayEncountData(fsys, poke_param, inFldSpa, enc_data, POKEPARTY_ENEMY,
 									param,  monsno, lv);
 		}
 		
 		if (rc){
-			//Ÿ‰ñ—h‚ê‘êŠ‚ğŒˆ’è
+			//æ¬¡å›æºã‚Œè‰å ´æ‰€ã‚’æ±ºå®š
 			{
 				int x,z;
-				//©‹@‚ÌˆÊ’uæ“¾
+				//è‡ªæ©Ÿã®ä½ç½®å–å¾—
 				x = Player_NowGPosXGet(fsys->player);
 				z = Player_NowGPosZGet(fsys->player);
 				SwayGrass_SearchSwayGrass(fsys, x, z, fsys->SwayGrass);
 			}
 		}
-	}else{			//’Êí
+	}else{			//é€šå¸¸
 		rc = SetEncountData(poke_param, ROD_TYPE_NONE, inFldSpa, enc_data,
 							GROUND_ENCOUNT, POKEPARTY_ENEMY,
 							param);
 		if (rc){
-			//’ÊíƒGƒ“ƒJƒEƒ“ƒg‚µ‚½ê‡‚ÍA‚ä‚ê‘î•ñ“™‚ğƒNƒŠƒA
+			//é€šå¸¸ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸå ´åˆã¯ã€ã‚†ã‚Œè‰æƒ…å ±ç­‰ã‚’ã‚¯ãƒªã‚¢
 			SwayGrass_InitSwayGrass(fsys->SwayGrass);
 		}
 	}
@@ -1146,15 +1146,15 @@ static BOOL WildEncSingle(FIELDSYS_WORK * fsys,
 
 //-----------------------------------------------------------------------------
 /**
- * –ì¶ƒ_ƒuƒ‹íƒZƒbƒgƒAƒbƒv
+ * é‡ç”Ÿãƒ€ãƒ–ãƒ«æˆ¦ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	poke_param			ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€
- * @param	param				ƒoƒgƒ‹ƒpƒ‰ƒ€
- * @param	enc_data			‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹
- * @param	inFldSpa			“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	poke_param			ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ 
+ * @param	param				ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ 
+ * @param	enc_data			å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	inFldSpa			ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL	TRUE:ƒGƒ“ƒJƒEƒ“ƒg‚·‚é	FALSE:ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+ * @return	BOOL	TRUE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹	FALSE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WildEncDouble(	FIELDSYS_WORK * fsys,
@@ -1166,7 +1166,7 @@ static BOOL WildEncDouble(	FIELDSYS_WORK * fsys,
 	BOOL rc;
 	{
 		{
-			//ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚ğƒZƒbƒg
+			//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 			rc = SetEncountData(	poke_param, ROD_TYPE_NONE, inFldSpa, enc_data,
 									GROUND_ENCOUNT, POKEPARTY_ENEMY,
 									param );
@@ -1185,15 +1185,15 @@ static BOOL WildEncDouble(	FIELDSYS_WORK * fsys,
 
 //-----------------------------------------------------------------------------
 /**
- * –ì¶…ãƒVƒ“ƒOƒ‹íƒZƒbƒgƒAƒbƒv
+ * é‡ç”Ÿæ°´ä¸Šã‚·ãƒ³ã‚°ãƒ«æˆ¦ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	poke_param			ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€
- * @param	param				ƒoƒgƒ‹ƒpƒ‰ƒ€
- * @param	enc_data			‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹
- * @param	inFldSpa			“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	poke_param			ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ 
+ * @param	param				ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ 
+ * @param	enc_data			å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	inFldSpa			ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL	TRUE:ƒGƒ“ƒJƒEƒ“ƒg‚·‚é	FALSE:ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+ * @return	BOOL	TRUE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹	FALSE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL WildWaterEncSingle(	FIELDSYS_WORK * fsys,
@@ -1205,7 +1205,7 @@ static BOOL WildWaterEncSingle(	FIELDSYS_WORK * fsys,
 	BOOL rc;
 
 	{
-		//ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚ğƒZƒbƒg
+		//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 		rc = SetEncountData(	poke_param, ROD_TYPE_NONE, inFldSpa, enc_data,
 								WATER_ENCOUNT, POKEPARTY_ENEMY,
 								param );
@@ -1215,16 +1215,16 @@ static BOOL WildWaterEncSingle(	FIELDSYS_WORK * fsys,
 
 //-----------------------------------------------------------------------------
 /**
- * ’Ş‚è
+ * é‡£ã‚Š
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	poke_param			ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€
- * @param	battle_param		ƒoƒgƒ‹ƒpƒ‰ƒ€
- * @param	inData				ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^
- * @param	inFldSpa			“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inRodType			’ŞŠÆ
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	poke_param			ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ 
+ * @param	battle_param		ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ 
+ * @param	inData				ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ * @param	inFldSpa			ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inRodType			é‡£ç«¿
  *
- * @return	BOOL	TRUE:ƒGƒ“ƒJƒEƒ“ƒg‚·‚é	FALSE:ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+ * @return	BOOL	TRUE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹	FALSE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL FishingEncSingle(	FIELDSYS_WORK * fsys,
@@ -1243,13 +1243,13 @@ static BOOL FishingEncSingle(	FIELDSYS_WORK * fsys,
 
 //-----------------------------------------------------------------------------
 /**
- * ƒGƒ“ƒJƒEƒ“ƒgƒ`ƒFƒbƒNi•à”ŠÖ˜Aj
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯ï¼ˆæ­©æ•°é–¢é€£ï¼‰
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	per			ƒGƒ“ƒJƒEƒ“ƒgŠm—¦
- * @param	attr				ƒAƒgƒŠƒrƒ…[ƒg
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	per			ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç¢ºç‡
+ * @param	attr				ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  *
- * @return	BOOL	TRUE:ƒGƒ“ƒJƒEƒ“ƒg‚·‚é	FALSE:ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+ * @return	BOOL	TRUE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹	FALSE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL MapEncountCheck( FIELDSYS_WORK * fsys, const u32 per, const u8 attr )
@@ -1257,43 +1257,43 @@ static BOOL MapEncountCheck( FIELDSYS_WORK * fsys, const u32 per, const u8 attr 
 	u8 next_base;
 	u32 map_encount;
 	
-	//100%‚ªãŒÀ
+	//100%ãŒä¸Šé™
 	if (per>100){
 		map_encount = 100;
 	}
 	map_encount = per << CALC_SHIFT;
 
-	// ƒGƒ“ƒJƒEƒ“ƒg‚·‚é•à”
+	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹æ­©æ•°
 	if( EncountWalkCheck( fsys, map_encount ) == FALSE ){
-		fsys->encount.walk_count++;			// •à”ƒJƒEƒ“ƒg{
-		// 5%‚ÅŸ‚Ìˆ—‚Ö
+		fsys->encount.walk_count++;			// æ­©æ•°ã‚«ã‚¦ãƒ³ãƒˆï¼‹
+		// 5%ã§æ¬¡ã®å‡¦ç†ã¸
 		if( ( gf_p_rand(100) ) >= WALK_NEXT_PERCENT ){
 			return FALSE;
 		}
 	}
 
-	next_base = NEXT_PERCENT;	//Šî–{40“
+	next_base = NEXT_PERCENT;	//åŸºæœ¬40ï¼…
 
-	//’·‚¢‘‚Ìê‡‚Í+30“
+	//é•·ã„è‰ã®å ´åˆã¯+30ï¼…
 	if ( MATR_IsLongGrass(attr) ){
 		next_base += LONG_GRASS_PERCENT;
 	}else{
-		//©“]Ô‚Éæ‚Á‚Ä‚¢‚é‚È‚ç+30“
+		//è‡ªè»¢è»Šã«ä¹—ã£ã¦ã„ã‚‹ãªã‚‰+30ï¼…
 		if ( Player_FormGet( fsys->player ) == HERO_FORM_CYCLE ){
 			next_base += CYCLE_PERCENT;
 		}
 	}
-	//“ú•t‚É‚æ‚éŠm—¦•Ï“®
+	//æ—¥ä»˜ã«ã‚ˆã‚‹ç¢ºç‡å¤‰å‹•
 	next_base = CalEnc_GetProb(next_base, EVTIME_IsPenaltyMode(fsys));
 
-	//100%‚ªãŒÀ
+	//100%ãŒä¸Šé™
 	if (next_base>100){
 		next_base = 100;
 	}
 
-	// next_base%‚ÅŸ‚Ìˆ—iŠî–{‚Í60%‚Åˆ—‚ğ‘Å‚¿Ø‚è)
+	// next_base%ã§æ¬¡ã®å‡¦ç†ï¼ˆåŸºæœ¬ã¯60%ã§å‡¦ç†ã‚’æ‰“ã¡åˆ‡ã‚Š)
 	if( ( gf_p_rand(100) ) < next_base  ){
-		// ƒƒCƒ“
+		// ãƒ¡ã‚¤ãƒ³
 		if( EncountCheckMain( fsys, per ) ){
 			return TRUE;
 		}	
@@ -1304,22 +1304,22 @@ static BOOL MapEncountCheck( FIELDSYS_WORK * fsys, const u32 per, const u8 attr 
 
 //-----------------------------------------------------------------------------
 /**
- * Šm—¦‚ğ•Ô‚·
+ * ç¢ºç‡ã‚’è¿”ã™
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	attr				ƒAƒgƒŠƒrƒ…[ƒg
- * @param	outEncLocation		ƒGƒ“ƒJƒEƒ“ƒgêŠ‚ğŠi”[‚·‚éƒoƒbƒtƒ@
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	attr				ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+ * @param	outEncLocation		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå ´æ‰€ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
  *
- * @return	u8					Šm—¦
+ * @return	u8					ç¢ºç‡
  */
 //-----------------------------------------------------------------------------
 static u8 EncountAttributeCheck( FIELDSYS_WORK * fsys, u8 attr, u8 *outEncLocation  )
 {
 	if (MATR_IsEncount(attr)){
-		if (MATR_IsWater(attr)){			//…
+		if (MATR_IsWater(attr)){			//æ°´
 			(*outEncLocation) = WATER_ENCOUNT;
 			return GetEncountProbWater( fsys );
-		}else{								//—¤
+		}else{								//é™¸
 			(*outEncLocation) = GROUND_ENCOUNT;
 			return GetEncountProbGround( fsys );
 		}
@@ -1329,10 +1329,10 @@ static u8 EncountAttributeCheck( FIELDSYS_WORK * fsys, u8 attr, u8 *outEncLocati
 
 //-----------------------------------------------------------------------------
 /**
- * “k•àƒ`ƒFƒbƒN
+ * å¾’æ­©ãƒã‚§ãƒƒã‚¯
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	per		Šm—¦
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	per		ç¢ºç‡
  *
  * @return	BOOL	
  */
@@ -1353,12 +1353,12 @@ static BOOL	EncountWalkCheck( FIELDSYS_WORK * fsys, u32 per )
 
 //-----------------------------------------------------------------------------
 /**
- * ƒGƒ“ƒJƒEƒ“ƒgƒ`ƒFƒbƒN
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
  *
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	per		Šm—¦
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	per		ç¢ºç‡
  *
- * @return	BOOL	TRUE:ƒGƒ“ƒJƒEƒ“ƒg‚·‚é	FALSE:ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+ * @return	BOOL	TRUE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹	FALSE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL EncountCheckMain( FIELDSYS_WORK * fsys, u32 per )
@@ -1372,9 +1372,9 @@ static BOOL EncountCheckMain( FIELDSYS_WORK * fsys, u32 per )
 
 //-----------------------------------------------------------------------------
 /**
- * ƒ‰ƒ“ƒ_ƒ€ƒ|ƒPƒ‚ƒ“ƒZƒbƒgi‘‚Ş‚ç/»”™/“´ŒAj
+ * ãƒ©ãƒ³ãƒ€ãƒ ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆï¼ˆè‰ã‚€ã‚‰/ç ‚æ¼ /æ´çªŸï¼‰
  *
- * @return	u8 ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚Ìƒe[ƒuƒ‹”Ô†
+ * @return	u8 ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·
  */
 //-----------------------------------------------------------------------------
 static u8 RandamPokeSet(void)
@@ -1399,9 +1399,9 @@ static u8 RandamPokeSet(void)
 
 //-----------------------------------------------------------------------------
 /**
- * ƒ‰ƒ“ƒ_ƒ€ƒ|ƒPƒ‚ƒ“ƒZƒbƒgi…ãj
+ * ãƒ©ãƒ³ãƒ€ãƒ ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆï¼ˆæ°´ä¸Šï¼‰
  *
- * @return	u8 ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚Ìƒe[ƒuƒ‹”Ô†
+ * @return	u8 ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·
  */
 //-----------------------------------------------------------------------------
 static u8 RandamPokeSetNoGround(void)
@@ -1419,11 +1419,11 @@ static u8 RandamPokeSetNoGround(void)
 
 //-----------------------------------------------------------------------------
 /**
- * ƒ‰ƒ“ƒ_ƒ€ƒ|ƒPƒ‚ƒ“ƒZƒbƒgi’Ş‚èj
+ * ãƒ©ãƒ³ãƒ€ãƒ ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆï¼ˆé‡£ã‚Šï¼‰
  *
- * @param	inFishingRod		’ŞŠÆ
+ * @param	inFishingRod		é‡£ç«¿
  *
- * @return	u8		ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚Ìƒe[ƒuƒ‹”Ô†		
+ * @return	u8		ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã®ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·		
  */
 //-----------------------------------------------------------------------------
 static u8 RandamPokeSetFishing( const FISHINGROD_TYPE inFishingRod )
@@ -1434,21 +1434,21 @@ static u8 RandamPokeSetFishing( const FISHINGROD_TYPE inFishingRod )
 	i = gf_p_rand(100);
 
 	switch( inFishingRod ){
-	case FISHINGROD_BAD:		// ƒ{ƒ‚Ì’ŞŠÆ
+	case FISHINGROD_BAD:		// ãƒœãƒ­ã®é‡£ç«¿
 		if		( i < 60 )	p = 0;	// 60%
 		else if ( i < 90 )	p = 1;	// 30%
 		else if ( i < 95 )	p = 2;	// 5%
 		else if ( i < 99 )	p = 3;	// 4%	
 		else				p = 4;	// 1%
 		break;
-	case FISHINGROD_GOOD:		// —Ç‚¢’ŞŠÆ
+	case FISHINGROD_GOOD:		// è‰¯ã„é‡£ç«¿
 		if		( i < 40 )	p = 0;	// 40%
 		else if ( i < 80 )	p = 1;	// 40%
 		else if ( i < 95 )	p = 2;	// 15%
 		else if ( i < 99 )	p = 3;	// 4%
 		else				p = 4;	// 1%
 		break;
-	case FISHINGROD_GREAT:		// ¦‚¢’ŞŠÆ
+	case FISHINGROD_GREAT:		// å‡„ã„é‡£ç«¿
 		if		( i < 40 )	p = 0;	// 40%
 		else if ( i < 80 )	p = 1;	// 40%
 		else if ( i < 95 )	p = 2;	// 15%
@@ -1464,10 +1464,10 @@ static u8 RandamPokeSetFishing( const FISHINGROD_TYPE inFishingRod )
 
 //-----------------------------------------------------------------------------
 /**
- * ‘•”õƒAƒCƒeƒ€‚É‚æ‚éƒGƒ“ƒJƒEƒ“ƒg—¦•Ï‰»
+ * è£…å‚™ã‚¢ã‚¤ãƒ†ãƒ ã«ã‚ˆã‚‹ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡å¤‰åŒ–
  *
- * @param	inMyPokeParam	è‚¿æ“ªƒ|ƒPƒ‚ƒ“
- * @param	ioPer			Šm—¦
+ * @param	inMyPokeParam	æ‰‹æŒã¡å…ˆé ­ãƒã‚±ãƒ¢ãƒ³
+ * @param	ioPer			ç¢ºç‡
  *
  * @return	none
  */
@@ -1476,7 +1476,7 @@ static void ChangeEncProbByEquipItem( POKEMON_PARAM *inMyPokeParam, u8 *ioPer )
 {
 	u16 item;
 	item = PokeParaGet( inMyPokeParam, ID_PARA_item, NULL );
-	// æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚ªu‚«‚æ‚ß‚Ì‚¨‚Ó‚¾vEu‚«‚æ‚ß‚Ì‚¨‚±‚¤v‚ğ‘•”õ‚µ‚Ä‚¢‚éê‡A2/3
+	// å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ãŒã€Œãã‚ˆã‚ã®ãŠãµã ã€ãƒ»ã€Œãã‚ˆã‚ã®ãŠã“ã†ã€ã‚’è£…å‚™ã—ã¦ã„ã‚‹å ´åˆã€2/3
 	if( (item == ITEM_KIYOMENOOHUDA)||
 		(item == ITEM_KIYOMENOOKOU) ){
 		(*ioPer) = ( (*ioPer) * 2 ) / 3;
@@ -1485,10 +1485,10 @@ static void ChangeEncProbByEquipItem( POKEMON_PARAM *inMyPokeParam, u8 *ioPer )
 
 //-----------------------------------------------------------------------------
 /**
- * ƒr[ƒhƒ‚æ‚éƒGƒ“ƒJƒEƒ“ƒg—¦•Ï‰»
+ * ãƒ“ãƒ¼ãƒ‰ãƒ­ã‚ˆã‚‹ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡å¤‰åŒ–
  *
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	ioPer		Šm—¦
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	ioPer		ç¢ºç‡
  *
  * @return	none
  */
@@ -1496,36 +1496,36 @@ static void ChangeEncProbByEquipItem( POKEMON_PARAM *inMyPokeParam, u8 *ioPer )
 static void ChangeEncProbByVidro( FIELDSYS_WORK *fsys, u8 *ioPer )
 {
 	u8 type;
-	//ƒZ[ƒuƒf[ƒ^‚©‚çƒr[ƒhƒƒ^ƒCƒv‚ğæ“¾
+	//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ“ãƒ¼ãƒ‰ãƒ­ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
 	type = EncDataSave_GetVidro( EncDataSave_GetSaveDataPtr(fsys->savedata) );
-	if( type == VIDRO_BLACK ){			//u‚­‚ë‚¢ƒr[ƒhƒv‚ğg—p‚µ‚Ä‚¢‚éê‡A1/2”{
+	if( type == VIDRO_BLACK ){			//ã€Œãã‚ã„ãƒ“ãƒ¼ãƒ‰ãƒ­ã€ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã€1/2å€
 		(*ioPer)/=2;
-//		OS_Printf("•g—p’†%d\n",(*ioPer));
-	}else if (type == VIDRO_WHITE){		//u‚µ‚ë‚¢ƒr[ƒhƒv‚ğg—p‚µ‚Ä‚¢‚éê‡A1.5”{
+//		OS_Printf("é»’ä½¿ç”¨ä¸­%d\n",(*ioPer));
+	}else if (type == VIDRO_WHITE){		//ã€Œã—ã‚ã„ãƒ“ãƒ¼ãƒ‰ãƒ­ã€ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹å ´åˆã€1.5å€
 		(*ioPer) = (*ioPer) + ((*ioPer)/2);
-//		OS_Printf("”’g—p’†%d\n",(*ioPer));
+//		OS_Printf("ç™½ä½¿ç”¨ä¸­%d\n",(*ioPer));
 	}
 }
 
 //-----------------------------------------------------------------------------
 /**
- * «Šiİ’è
+ * æ€§æ ¼è¨­å®š
  *
- * @param	inPokeParam			ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€
- * @param	inFldSpa			“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inPokeParam			ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ 
+ * @param	inFldSpa			ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	u8					«Ši
+ * @return	u8					æ€§æ ¼
  */
 //-----------------------------------------------------------------------------
 static u8 GetEncountChar(POKEMON_PARAM *inPokeParam, const ENC_FLD_SPA *inFldSpa)
 {
 	u32	type;
 
-	//ƒVƒ“ƒNƒ‚Ì“Á«‚É‚æ‚èƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“‚Ì«Ši‚ğ“¯‚¶‚É‚È‚è‚â‚·‚­‚·‚é
-	// æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚ªƒ^ƒ}ƒS‚Å‚È‚¢
+	//ã‚·ãƒ³ã‚¯ãƒ­ã®ç‰¹æ€§ã«ã‚ˆã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³ã®æ€§æ ¼ã‚’åŒã˜ã«ãªã‚Šã‚„ã™ãã™ã‚‹
+	// å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ãŒã‚¿ãƒã‚´ã§ãªã„
 	if( inFldSpa->Egg == 0 ){
-		if( inFldSpa->Spa == TOKUSYU_SINKURO ){	//ƒVƒ“ƒNƒ
-			if ( gf_p_rand(2) == 0 ){//“Á«“K—p@Šm—¦1/2
+		if( inFldSpa->Spa == TOKUSYU_SINKURO ){	//ã‚·ãƒ³ã‚¯ãƒ­
+			if ( gf_p_rand(2) == 0 ){//ç‰¹æ€§é©ç”¨ã€€ç¢ºç‡1/2
 				type = (u32)PokeParaGet( inPokeParam, ID_PARA_personal_rnd, NULL );
 				type = type % 25;
 				return (u8)type;
@@ -1533,18 +1533,18 @@ static u8 GetEncountChar(POKEMON_PARAM *inPokeParam, const ENC_FLD_SPA *inFldSpa
 		}
 	}
 	
-	return gf_p_rand(25);	// ƒ‰ƒ“ƒ_ƒ€‚ÅŒˆ’è
+	return gf_p_rand(25);	// ãƒ©ãƒ³ãƒ€ãƒ ã§æ±ºå®š
 	
 }
 
 //-----------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹İ’è
+ * ãƒ¬ãƒ™ãƒ«è¨­å®š
  *
- * @param	inData			‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹
- * @param	inFldSpa		“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inData			å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	inFldSpa		ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	u8				ƒŒƒxƒ‹
+ * @return	u8				ãƒ¬ãƒ™ãƒ«
  */
 //-----------------------------------------------------------------------------
 static u8 SetEncountPokeLv( const ENC_COMMON_DATA *inData, const ENC_FLD_SPA *inFldSpa )
@@ -1554,7 +1554,7 @@ static u8 SetEncountPokeLv( const ENC_COMMON_DATA *inData, const ENC_FLD_SPA *in
 	u8	min, max;
 	u8	spa;
 
-	// Max Lv ‚ª Min Lv ‚æ‚è¬‚³‚¢ê‡‚ÌC³ˆ—
+	// Max Lv ãŒ Min Lv ã‚ˆã‚Šå°ã•ã„å ´åˆã®ä¿®æ­£å‡¦ç†
 	if( inData->LvMax >= inData->LvMin ){
 		min = inData->LvMin;
 		max = inData->LvMax;
@@ -1563,37 +1563,37 @@ static u8 SetEncountPokeLv( const ENC_COMMON_DATA *inData, const ENC_FLD_SPA *in
 		max = inData->LvMin;
 	}
 
-	size = max - min + 1;		// •â³ƒTƒCƒY
-	plus = gf_rand() % size;	// •â³’l
+	size = max - min + 1;		// è£œæ­£ã‚µã‚¤ã‚º
+	plus = gf_rand() % size;	// è£œæ­£å€¤
 
-	//u‚â‚é‚«vuƒvƒŒƒbƒVƒƒ[vu‚Í‚è‚«‚èv‚Ì“Á«”­“®ƒ`ƒFƒbƒNƒŒƒxƒ‹‚Ì‚‚¢ƒ|ƒPƒ‚ƒ“‚Æ‚TŠ„‚ÅƒGƒ“ƒJƒEƒ“ƒg
-	// æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚ªƒ^ƒ}ƒS‚Å‚È‚¢
+	//ã€Œã‚„ã‚‹ãã€ã€Œãƒ—ãƒ¬ãƒƒã‚·ãƒ£ãƒ¼ã€ã€Œã¯ã‚Šãã‚Šã€ã®ç‰¹æ€§ç™ºå‹•ãƒã‚§ãƒƒã‚¯ãƒ¬ãƒ™ãƒ«ã®é«˜ã„ãƒã‚±ãƒ¢ãƒ³ã¨ï¼•å‰²ã§ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
+	// å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ãŒã‚¿ãƒã‚´ã§ãªã„
 	if( inFldSpa->Egg == 0 ){
 		if( (inFldSpa->Spa == TOKUSYU_HARIKIRI)||
 			(inFldSpa->Spa == TOKUSYU_YARUKI)||
 			(inFldSpa->Spa == TOKUSYU_PURESSYAA) ){
-			// 1/2‚Å“Á«”­“®
+			// 1/2ã§ç‰¹æ€§ç™ºå‹•
 			if( gf_p_rand(2) == 0 ){
-				return 	( min + plus );		// “Á«–¢”­“®
+				return 	( min + plus );		// ç‰¹æ€§æœªç™ºå‹•
 			}
-			return	( max );	//“Á«”­“®BƒŒƒxƒ‹‚ğmax‚É‚·‚é
+			return	( max );	//ç‰¹æ€§ç™ºå‹•ã€‚ãƒ¬ãƒ™ãƒ«ã‚’maxã«ã™ã‚‹
 		}
 	}
 
-	return	( min + plus );		// ƒGƒ“ƒJƒEƒ“ƒgƒŒƒxƒ‹
+	return	( min + plus );		// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ¬ãƒ™ãƒ«
 }
 
 //-----------------------------------------------------------------------------
 /**
- * ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“ƒZƒbƒgiƒŒƒAj
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆï¼ˆãƒ¬ã‚¢ï¼‰
  *
- * @param	poke				ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param	lv					ƒŒƒxƒ‹
- * @param	inTarget			’Ç‰Á‘ÎÛ
- * @param	inTrainerID			ƒgƒŒ[ƒi[‚h‚c
- * @param	inFldSpa			“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inPokeParam			ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€i©•ªj
- * @param	outBattleParam		ƒoƒgƒ‹ƒpƒ‰ƒ€ƒ|ƒCƒ“ƒ^
+ * @param	poke				ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param	lv					ãƒ¬ãƒ™ãƒ«
+ * @param	inTarget			è¿½åŠ å¯¾è±¡
+ * @param	inTrainerID			ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤
+ * @param	inFldSpa			ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inPokeParam			ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ ï¼ˆè‡ªåˆ†ï¼‰
+ * @param	outBattleParam		ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1604,7 +1604,7 @@ static void EncountParamSetRare(	const u16 poke, const u8 lv, const int inTarget
 {
 	BOOL rc;
 	u32 rnd_val;
-	BOOL sp_use;	//“Á«“K—p‚·‚é‚©H
+	BOOL sp_use;	//ç‰¹æ€§é©ç”¨ã™ã‚‹ã‹ï¼Ÿ
 	u8 my_poke_sex;
 	u8 my_poke_chr;
 	
@@ -1614,57 +1614,57 @@ static void EncountParamSetRare(	const u16 poke, const u8 lv, const int inTarget
 
 	sp_use = FALSE;
 
-	//“Á«ƒ`ƒFƒbƒN	ƒŒƒA‚Æ‚È‚é‚h‚c‚Í•ö‚³‚¸‚ÉA“Á«‚ğ”½‰f
-	//ƒ`ƒFƒbƒN‚·‚é“Á«‚ÍAƒƒƒƒƒ{ƒfƒB‚ÆƒVƒ“ƒNƒ
+	//ç‰¹æ€§ãƒã‚§ãƒƒã‚¯	ãƒ¬ã‚¢ã¨ãªã‚‹ï¼©ï¼¤ã¯å´©ã•ãšã«ã€ç‰¹æ€§ã‚’åæ˜ 
+	//ãƒã‚§ãƒƒã‚¯ã™ã‚‹ç‰¹æ€§ã¯ã€ãƒ¡ãƒ­ãƒ¡ãƒ­ãƒœãƒ‡ã‚£ã¨ã‚·ãƒ³ã‚¯ãƒ­
 	if (inFldSpa->Egg == 0){
 		if (inFldSpa->Spa == TOKUSYU_MEROMEROBODHI){
-			//ƒGƒ“ƒJƒEƒ“ƒg‚·‚éƒ|ƒPƒ‚ƒ“‚Ì«•ÊƒxƒNƒgƒ‹‚ğ’²‚×‚é
+			//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ãƒ™ã‚¯ãƒˆãƒ«ã‚’èª¿ã¹ã‚‹
 			u32 sex_vec;
 			sex_vec = PokePersonalParaGet( poke, ID_PER_sex );
 			switch(sex_vec){
 			case    MONS_MALE:
 			case    MONS_FEMALE:
 			case    MONS_UNKNOWN:
-					break;		//«•Ê–³‚µ‚à‚µ‚­‚ÍAŒÅ’è‚Ìê‡‚ÍA“Á«”­“®‚µ‚È‚¢
+					break;		//æ€§åˆ¥ç„¡ã—ã‚‚ã—ãã¯ã€å›ºå®šã®å ´åˆã¯ã€ç‰¹æ€§ç™ºå‹•ã—ãªã„
 			default:
-				// 2/3‚Å“Á«”­“®
+				// 2/3ã§ç‰¹æ€§ç™ºå‹•
 				if( gf_p_rand(3) > 0 ){
 					my_poke_sex = PokeParaGet(inPokeParam, ID_PARA_sex, NULL);//PokeSexGet(inPokeParam);
 					sp_use = TRUE;
 				}
 			}
 		}else if (inFldSpa->Spa == TOKUSYU_SINKURO){
-			if ( gf_p_rand(2) == 0 ){//“Á«“K—p@Šm—¦1/2
+			if ( gf_p_rand(2) == 0 ){//ç‰¹æ€§é©ç”¨ã€€ç¢ºç‡1/2
 				my_poke_chr = PokeSeikakuGet(inPokeParam);
 				sp_use = TRUE;
 			}
 		}
 	}
 
-	//ƒŒƒAŒÂ«—”æ“¾
+	//ãƒ¬ã‚¢å€‹æ€§ä¹±æ•°å–å¾—
 	rnd_val = PokeRareRndGet(inTrainerID);
 
-	if (sp_use){//“Á«‚ğ“K—p‚·‚éê‡
+	if (sp_use){//ç‰¹æ€§ã‚’é©ç”¨ã™ã‚‹å ´åˆ
 		u8 sex,chr;
 		do{
 			if (inFldSpa->Spa == TOKUSYU_MEROMEROBODHI){
-				//‘Šè‚Ì«•Ê‚ğæ“¾i«•Ê–³‚µ‚Íã‚Å’e‚¢‚Ä‚é‚Ì‚Å•K‚¸“—Y‚ª•ª‚©‚é‚Í‚¸j
+				//ç›¸æ‰‹ã®æ€§åˆ¥ã‚’å–å¾—ï¼ˆæ€§åˆ¥ç„¡ã—ã¯ä¸Šã§å¼¾ã„ã¦ã‚‹ã®ã§å¿…ãšé›Œé›„ãŒåˆ†ã‹ã‚‹ã¯ãšï¼‰
 				sex = PokeSexGetMonsNo(poke, rnd_val);
 				GF_ASSERT(sex!=PARA_UNK&&"ERROR:ENCOUNT_SEX_ERROR");
-				//©•ª‚Ì«•Ê‚Æ”äŠriƒƒƒƒƒ{ƒfƒB‚ğ‚Á‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚Í•K‚¸«•Ê‚ª‚ ‚é‚±‚Æ‚ğ‘O’ñ‚Æ‚·‚éj
+				//è‡ªåˆ†ã®æ€§åˆ¥ã¨æ¯”è¼ƒï¼ˆãƒ¡ãƒ­ãƒ¡ãƒ­ãƒœãƒ‡ã‚£ã‚’æŒã£ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã¯å¿…ãšæ€§åˆ¥ãŒã‚ã‚‹ã“ã¨ã‚’å‰æã¨ã™ã‚‹ï¼‰
 				if (sex != my_poke_sex){
-					break;	//ˆÙ«‚È‚Ì‚ÅI—¹
+					break;	//ç•°æ€§ãªã®ã§çµ‚äº†
 				}else{
-					rnd_val = PokeRareRndGet(inTrainerID);	//ƒŒƒAŒÂ«—”Äæ“¾
+					rnd_val = PokeRareRndGet(inTrainerID);	//ãƒ¬ã‚¢å€‹æ€§ä¹±æ•°å†å–å¾—
 				}
 			}else if (inFldSpa->Spa == TOKUSYU_SINKURO){
-				//‘Šè‚Ì«Ši‚ğæ“¾
+				//ç›¸æ‰‹ã®æ€§æ ¼ã‚’å–å¾—
 				chr = PokeSeikakuGetRnd(rnd_val);
-				//©•ª‚Ì«Ši‚Æ”äŠr
+				//è‡ªåˆ†ã®æ€§æ ¼ã¨æ¯”è¼ƒ
 				if (chr == my_poke_chr){
-					break;	//“¯‚¶«Ši‚È‚Ì‚ÅI—¹
+					break;	//åŒã˜æ€§æ ¼ãªã®ã§çµ‚äº†
 				}else{
-					rnd_val = PokeRareRndGet(inTrainerID);	//ƒŒƒAŒÂ«—”Äæ“¾
+					rnd_val = PokeRareRndGet(inTrainerID);	//ãƒ¬ã‚¢å€‹æ€§ä¹±æ•°å†å–å¾—
 				}
 				
 
@@ -1674,7 +1674,7 @@ static void EncountParamSetRare(	const u16 poke, const u8 lv, const int inTarget
 	
 	PokeParaSet(poke_param, poke, lv, POW_RND, RND_SET, rnd_val, ID_SET, inFldSpa->TrainerID);
 	rc = AddPokemonParam(inTarget, inFldSpa, poke_param, outBattleParam);
-	GF_ASSERT(rc&&"ƒ|ƒPƒ‚ƒ“‚Ì’Ç‰Á‚É¸”s");
+	GF_ASSERT(rc&&"ãƒã‚±ãƒ¢ãƒ³ã®è¿½åŠ ã«å¤±æ•—");
 	sys_FreeMemoryEz(poke_param);
 
 	OS_Printf("RARE_POKEMON_ENCOUNT!!!!!\n");
@@ -1682,14 +1682,14 @@ static void EncountParamSetRare(	const u16 poke, const u8 lv, const int inTarget
 
 //-----------------------------------------------------------------------------
 /**
- * ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
  *
- * @param	poke				ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param	lv					ƒŒƒxƒ‹
- * @param	inTarget			’Ç‰Á‘ÎÛ
- * @param	inFldSpa			“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inPokeParam			ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€i©•ªj
- * @param	outBattleParam		ƒoƒgƒ‹ƒpƒ‰ƒ€ƒ|ƒCƒ“ƒ^
+ * @param	poke				ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param	lv					ãƒ¬ãƒ™ãƒ«
+ * @param	inTarget			è¿½åŠ å¯¾è±¡
+ * @param	inFldSpa			ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inPokeParam			ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ ï¼ˆè‡ªåˆ†ï¼‰
+ * @param	outBattleParam		ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1697,7 +1697,7 @@ static void EncountParamSetRare(	const u16 poke, const u8 lv, const int inTarget
 static void EncountParamSet(u16 poke, u8 lv, const int inTarget, const ENC_FLD_SPA *inFldSpa,
 							POKEMON_PARAM *inPokeParam, BATTLE_PARAM *outBattleParam )
 {
-	u8 valid_flg;	//“Á«—LŒøƒ`ƒFƒbƒNƒtƒ‰ƒO
+	u8 valid_flg;	//ç‰¹æ€§æœ‰åŠ¹ãƒã‚§ãƒƒã‚¯ãƒ•ãƒ©ã‚°
 	u8 sex;
 	BOOL rc;
 	POKEMON_PARAM *poke_param;
@@ -1706,7 +1706,7 @@ static void EncountParamSet(u16 poke, u8 lv, const int inTarget, const ENC_FLD_S
 
 	valid_flg = 1;
 
-	//ƒGƒ“ƒJƒEƒ“ƒg‚·‚éƒ|ƒPƒ‚ƒ“‚Ì«•ÊƒxƒNƒgƒ‹‚ğ’²‚×‚é
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ€§åˆ¥ãƒ™ã‚¯ãƒˆãƒ«ã‚’èª¿ã¹ã‚‹
 	{
 		u32 sex_vec;
 		sex_vec = PokePersonalParaGet( poke, ID_PER_sex );
@@ -1718,40 +1718,40 @@ static void EncountParamSet(u16 poke, u8 lv, const int inTarget, const ENC_FLD_S
 		}
 	}
 
-	if (valid_flg){//‘Io‚µ‚½ƒ|ƒPƒ‚ƒ“‚ª«•Ê‚È‚µA‚à‚µ‚­‚ÍAŒÅ’è‚Ìê‡‚ÍA“Á«ƒ`ƒFƒbƒN‚È‚µ
-		//æ“ªƒ|ƒPƒ‚ƒ“‚Ì“Á«‚ªƒƒƒƒƒ{ƒfƒB‚Ì‚Æ‚«‚ÍˆÙ«‚ªo‚â‚·‚­‚È‚é
-		// æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚ªƒ^ƒ}ƒS‚Å‚È‚¢
+	if (valid_flg){//é¸å‡ºã—ãŸãƒã‚±ãƒ¢ãƒ³ãŒæ€§åˆ¥ãªã—ã€ã‚‚ã—ãã¯ã€å›ºå®šã®å ´åˆã¯ã€ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãªã—
+		//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³ã®ç‰¹æ€§ãŒãƒ¡ãƒ­ãƒ¡ãƒ­ãƒœãƒ‡ã‚£ã®ã¨ãã¯ç•°æ€§ãŒå‡ºã‚„ã™ããªã‚‹
+		// å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ãŒã‚¿ãƒã‚´ã§ãªã„
 		if( inFldSpa->Egg == 0 ){
 			if( inFldSpa->Spa == TOKUSYU_MEROMEROBODHI ){
-				// 2/3‚Å“Á«”­“®
+				// 2/3ã§ç‰¹æ€§ç™ºå‹•
 				if( gf_p_rand(3) > 0 ){
 					sex = PokeParaGet(inPokeParam, ID_PARA_sex, NULL);//PokeSexGet(inPokeParam);
-					//ˆÙ«‚ğ”­¶‚³‚¹‚é
+					//ç•°æ€§ã‚’ç™ºç”Ÿã•ã›ã‚‹
 					if (sex == PARA_FEMALE){
 						sex = PARA_MALE;
-						OS_Printf("ƒƒX‚È‚Ì‚ÅƒIƒXƒZƒbƒg\n");
+						OS_Printf("ãƒ¡ã‚¹ãªã®ã§ã‚ªã‚¹ã‚»ãƒƒãƒˆ\n");
 					}else if (sex == PARA_MALE){
 						sex = PARA_FEMALE;
-						OS_Printf("ƒIƒX‚È‚Ì‚ÅƒƒXƒZƒbƒg\n");
-					}else{			GF_ASSERT(0&&"«•Ê•s–¾");
+						OS_Printf("ã‚ªã‚¹ãªã®ã§ãƒ¡ã‚¹ã‚»ãƒƒãƒˆ\n");
+					}else{			GF_ASSERT(0&&"æ€§åˆ¥ä¸æ˜");
 					}
 					PokeParaSetSexChr(poke_param, poke, lv, POW_RND, sex, GetEncountChar(inPokeParam, inFldSpa), 0);
 					PokeParaPut(poke_param, ID_PARA_id_no, &inFldSpa->TrainerID);
-#if 0	//ƒfƒoƒbƒO—p
+#if 0	//ãƒ‡ãƒãƒƒã‚°ç”¨
 					{
 						u8 d_sex;
 						d_sex = PokeParaGet(inPokeParam, ID_PARA_sex, NULL);//PokeSexGet(poke_param);
 						if (d_sex == PARA_FEMALE){
-							OS_Printf("ƒƒX\n");
+							OS_Printf("ãƒ¡ã‚¹\n");
 						}else if (d_sex == PARA_MALE){
-							OS_Printf("ƒIƒX\n");
+							OS_Printf("ã‚ªã‚¹\n");
 						}else{
-							GF_ASSERT(0&&"ƒZƒbƒg‚µ‚½«•Ê•s–¾");
+							GF_ASSERT(0&&"ã‚»ãƒƒãƒˆã—ãŸæ€§åˆ¥ä¸æ˜");
 						}
 					}
 #endif				
 					rc = AddPokemonParam(inTarget, inFldSpa, poke_param, outBattleParam);
-					GF_ASSERT(rc&&"ƒ|ƒPƒ‚ƒ“‚Ì’Ç‰Á‚É¸”s");
+					GF_ASSERT(rc&&"ãƒã‚±ãƒ¢ãƒ³ã®è¿½åŠ ã«å¤±æ•—");
 					sys_FreeMemoryEz(poke_param);
 					return;
 				}
@@ -1762,15 +1762,15 @@ static void EncountParamSet(u16 poke, u8 lv, const int inTarget, const ENC_FLD_S
 	PokeParaSetChr( poke_param, poke, lv, POW_RND, GetEncountChar(inPokeParam, inFldSpa) );
 	PokeParaPut(poke_param, ID_PARA_id_no, &inFldSpa->TrainerID);
 	rc = AddPokemonParam(inTarget, inFldSpa, poke_param, outBattleParam);
-	GF_ASSERT(rc&&"ƒ|ƒPƒ‚ƒ“‚Ì’Ç‰Á‚É¸”s");
+	GF_ASSERT(rc&&"ãƒã‚±ãƒ¢ãƒ³ã®è¿½åŠ ã«å¤±æ•—");
 	sys_FreeMemoryEz(poke_param);
 }
 
 #ifdef PM_DEBUG
 //----------------------------------------------------
-//	ƒfƒoƒbƒOƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“ƒZƒbƒg
-//	ˆø” : u16 poke = ƒ|ƒPƒ‚ƒ“ID
-//		   u8 lv    = ƒGƒ“ƒJƒEƒ“ƒgLv
+//	ãƒ‡ãƒãƒƒã‚°ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
+//	å¼•æ•° : u16 poke = ãƒã‚±ãƒ¢ãƒ³ID
+//		   u8 lv    = ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆLv
 //----------------------------------------------------
 static void DebugEncountParamSet(	u16 poke, u8 lv, const int inTarget,
 									BATTLE_PARAM *outBattleParam )
@@ -1786,22 +1786,22 @@ static void DebugEncountParamSet(	u16 poke, u8 lv, const int inTarget,
 	
 	PokeParaSetChr( poke_param, poke, lv, POW_RND, (gf_p_rand(25)) );
 	rc = PokeParty_Add(outBattleParam->poke_party[inTarget], poke_param);
-	GF_ASSERT(rc&&"ƒ|ƒPƒ‚ƒ“‚Ì’Ç‰Á‚É¸”s");
+	GF_ASSERT(rc&&"ãƒã‚±ãƒ¢ãƒ³ã®è¿½åŠ ã«å¤±æ•—");
 	sys_FreeMemoryEz(poke_param);
 }
 #endif
 
 //-----------------------------------------------------------------------------
 /**
- * ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒZƒbƒg
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	param				ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param	inRodType					ƒŒƒxƒ‹
- * @param	inFldSpa			“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inData				‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹
- * @param	location			êŠ
- * @param	intarget			’Ç‰Á‘ÎÛ
- * @param	outBattleParam		ƒoƒgƒ‹ƒpƒ‰ƒ€ƒ|ƒCƒ“ƒ^
+ * @param	param				ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param	inRodType					ãƒ¬ãƒ™ãƒ«
+ * @param	inFldSpa			ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inData				å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	location			å ´æ‰€
+ * @param	intarget			è¿½åŠ å¯¾è±¡
+ * @param	outBattleParam		ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1818,85 +1818,85 @@ static BOOL SetEncountData(	POKEMON_PARAM *param,
 	u8	no = 0;
 	u8	lv = 0;
 	
-	// ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“Œˆ’è
+	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³æ±ºå®š
 	switch( location ){
-	case GROUND_ENCOUNT:	// —¤’n
-		//‚¶‚è‚å‚­“Á«‚É‚æ‚éA‚Í‚ª‚Ëƒ^ƒCƒv‚ÌƒGƒ“ƒJƒEƒ“ƒg—¦‚ÌŒüã
+	case GROUND_ENCOUNT:	// é™¸åœ°
+		//ã˜ã‚Šã‚‡ãç‰¹æ€§ã«ã‚ˆã‚‹ã€ã¯ãŒã­ã‚¿ã‚¤ãƒ—ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ã®å‘ä¸Š
 		result = CheckFixTypeEcnt(	param, inFldSpa, inData,
 									ENC_MONS_NUM_NORMAL, METAL_TYPE,TOKUSYU_ZIRYOKU, &no);
 		if (result == FALSE){
-			//‚¹‚¢‚Å‚ñ‚«“Á«‚É‚æ‚éA‚Å‚ñ‚«ƒ^ƒCƒv‚ÌƒGƒ“ƒJƒEƒ“ƒg—¦‚ÌŒüã
+			//ã›ã„ã§ã‚“ãç‰¹æ€§ã«ã‚ˆã‚‹ã€ã§ã‚“ãã‚¿ã‚¤ãƒ—ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ã®å‘ä¸Š
 			result = CheckFixTypeEcnt(	param, inFldSpa, inData,
 										ENC_MONS_NUM_NORMAL, ELECTRIC_TYPE,TOKUSYU_SEIDENKI, &no);
 			if (result == FALSE){
-				//“Á«‚É‚æ‚éw’èƒ^ƒCƒv‚Æ‚ÌƒGƒ“ƒJƒEƒ“ƒg‚É¸”sB’Êí‚ÌƒGƒ“ƒJƒEƒ“ƒg
+				//ç‰¹æ€§ã«ã‚ˆã‚‹æŒ‡å®šã‚¿ã‚¤ãƒ—ã¨ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã«å¤±æ•—ã€‚é€šå¸¸ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 				no = RandamPokeSet();
 				//OS_Printf("enc_random = %d\n",no);				
 			}
 		}
-		//‰B‚µ“Á«‚É‚æ‚éÅ‘åƒŒƒxƒ‹ƒ|ƒPƒ‚ƒ“‘Io(’nã)
+		//éš ã—ç‰¹æ€§ã«ã‚ˆã‚‹æœ€å¤§ãƒ¬ãƒ™ãƒ«ãƒã‚±ãƒ¢ãƒ³é¸å‡º(åœ°ä¸Š)
 		no = GetMaxLvMonsTblNo(inData, inFldSpa, no);
 		lv = inData[no].LvMax;
 		break;
-	case WATER_ENCOUNT:		// …ã
-		//‚¶‚è‚å‚­“Á«‚É‚æ‚éA‚Í‚ª‚Ëƒ^ƒCƒv‚ÌƒGƒ“ƒJƒEƒ“ƒg—¦‚ÌŒüã
+	case WATER_ENCOUNT:		// æ°´ä¸Š
+		//ã˜ã‚Šã‚‡ãç‰¹æ€§ã«ã‚ˆã‚‹ã€ã¯ãŒã­ã‚¿ã‚¤ãƒ—ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ã®å‘ä¸Š
 		result = CheckFixTypeEcnt(	param, inFldSpa, inData,
 									ENC_MONS_NUM_SEA, METAL_TYPE,TOKUSYU_ZIRYOKU, &no);
-		//‚¹‚¢‚Å‚ñ‚«“Á«‚É‚æ‚éA‚Å‚ñ‚«ƒ^ƒCƒv‚ÌƒGƒ“ƒJƒEƒ“ƒg—¦‚ÌŒüã
+		//ã›ã„ã§ã‚“ãç‰¹æ€§ã«ã‚ˆã‚‹ã€ã§ã‚“ãã‚¿ã‚¤ãƒ—ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ã®å‘ä¸Š
 		result = CheckFixTypeEcnt(	param, inFldSpa, inData,
 									ENC_MONS_NUM_SEA, ELECTRIC_TYPE,TOKUSYU_SEIDENKI, &no);
 		if (result == FALSE){
-			//“Á«‚É‚æ‚éw’èƒ^ƒCƒv‚Æ‚ÌƒGƒ“ƒJƒEƒ“ƒg‚É¸”sB’Êí‚ÌƒGƒ“ƒJƒEƒ“ƒg
+			//ç‰¹æ€§ã«ã‚ˆã‚‹æŒ‡å®šã‚¿ã‚¤ãƒ—ã¨ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã«å¤±æ•—ã€‚é€šå¸¸ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 			no = RandamPokeSetNoGround();
 		}
-		//ƒŒƒxƒ‹ƒZƒbƒg
+		//ãƒ¬ãƒ™ãƒ«ã‚»ãƒƒãƒˆ
 		lv = SetEncountPokeLv( &inData[no], inFldSpa );
 		break;
-	case FISHING_ENCOUNT:	//’Ş‚è
-		//‚¶‚è‚å‚­“Á«‚É‚æ‚éA‚Í‚ª‚Ëƒ^ƒCƒv‚ÌƒGƒ“ƒJƒEƒ“ƒg—¦‚ÌŒüã
+	case FISHING_ENCOUNT:	//é‡£ã‚Š
+		//ã˜ã‚Šã‚‡ãç‰¹æ€§ã«ã‚ˆã‚‹ã€ã¯ãŒã­ã‚¿ã‚¤ãƒ—ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ã®å‘ä¸Š
 		result = CheckFixTypeEcnt(	param, inFldSpa, inData,
 									ENC_MONS_NUM_FISH, METAL_TYPE,TOKUSYU_ZIRYOKU, &no);
-		//‚¹‚¢‚Å‚ñ‚«“Á«‚É‚æ‚éA‚Å‚ñ‚«ƒ^ƒCƒv‚ÌƒGƒ“ƒJƒEƒ“ƒg—¦‚ÌŒüã
+		//ã›ã„ã§ã‚“ãç‰¹æ€§ã«ã‚ˆã‚‹ã€ã§ã‚“ãã‚¿ã‚¤ãƒ—ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ã®å‘ä¸Š
 		result = CheckFixTypeEcnt(	param, inFldSpa, inData,
 									ENC_MONS_NUM_FISH, ELECTRIC_TYPE,TOKUSYU_SEIDENKI, &no);
 		if (result == FALSE){
-			//“Á«‚É‚æ‚éw’èƒ^ƒCƒv‚Æ‚ÌƒGƒ“ƒJƒEƒ“ƒg‚É¸”sB’Êí‚ÌƒGƒ“ƒJƒEƒ“ƒg
+			//ç‰¹æ€§ã«ã‚ˆã‚‹æŒ‡å®šã‚¿ã‚¤ãƒ—ã¨ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã«å¤±æ•—ã€‚é€šå¸¸ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 			no = RandamPokeSetFishing(inRodType);
 		}
-		//ƒŒƒxƒ‹ƒZƒbƒg
+		//ãƒ¬ãƒ™ãƒ«ã‚»ãƒƒãƒˆ
 		lv = SetEncountPokeLv( &inData[no], inFldSpa );
 		break;
 	default:
 		GF_ASSERT(0);
 	}
 
-	//“Á«‚É‚æ‚éƒŒƒxƒ‹·í“¬‰ñ”ğ
+	//ç‰¹æ€§ã«ã‚ˆã‚‹ãƒ¬ãƒ™ãƒ«å·®æˆ¦é—˜å›é¿
 	if( CheckEcntCancelByLv( inFldSpa, param, lv )){
 		return FALSE;
 	}
 
-	// ƒXƒvƒŒ[ƒ`ƒFƒbƒN Lv‚Ì’á‚¢ƒ|ƒPƒ‚ƒ“‚ÍƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+	// ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ Lvã®ä½ã„ãƒã‚±ãƒ¢ãƒ³ã¯ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
 	if( CheckSpray(lv, inFldSpa) == TRUE ){
-		return FALSE;		//ƒXƒvƒŒ[‚Åí“¬‰ñ”ğ
+		return FALSE;		//ã‚¹ãƒ—ãƒ¬ãƒ¼ã§æˆ¦é—˜å›é¿
 	}
 	
-	// ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 	EncountParamSet( inData[no].MonsNo, lv, inTarget, inFldSpa, param, outBattleParam );
 	return	TRUE;
 }
 
 //-----------------------------------------------------------------------------
 /**
- * ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒZƒbƒgiƒ|ƒPƒ‚ƒ“w’èj
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼ˆãƒã‚±ãƒ¢ãƒ³æŒ‡å®šï¼‰
  *
- * @param	inMonsNo			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param	inLv				ƒŒƒxƒ‹
- * @param	inTarget			’Ç‰Á‘ÎÛ
- * @param	inRare				ƒŒƒAƒtƒ‰ƒO
- * @param	inTrainerID			ƒgƒŒ[ƒi[‚h‚c
- * @param	inFldSpa			“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	param				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€i©•ªj
- * @param	outBattleParam		ƒoƒgƒ‹ƒpƒ‰ƒ€ƒ|ƒCƒ“ƒ^
+ * @param	inMonsNo			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param	inLv				ãƒ¬ãƒ™ãƒ«
+ * @param	inTarget			è¿½åŠ å¯¾è±¡
+ * @param	inRare				ãƒ¬ã‚¢ãƒ•ãƒ©ã‚°
+ * @param	inTrainerID			ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤
+ * @param	inFldSpa			ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	param				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ ï¼ˆè‡ªåˆ†ï¼‰
+ * @param	outBattleParam		ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1913,13 +1913,13 @@ static BOOL SetEncountDataDecideMons(	const int inMonsNo, const int inLv,
 
 	GF_ASSERT(inMonsNo != 0);
 	
-	//ƒGƒ“ƒJƒEƒ“ƒg‚·‚éƒ|ƒPƒ‚ƒ“‚ª‚·‚Å‚ÉŒˆ‚Ü‚Á‚Ä‚¢‚é‚Ì‚ÅA‚¶‚è‚å‚­A‚¹‚¢‚Å‚ñ‚«“Á«‚Í–³‹‚·‚é
-	//‚â‚é‚«A‚Í‚è‚«‚èAƒvƒŒƒbƒVƒƒ[‚É‚æ‚éAƒŒƒxƒ‹•Ï“®‚às‚í‚È‚¢
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒã™ã§ã«æ±ºã¾ã£ã¦ã„ã‚‹ã®ã§ã€ã˜ã‚Šã‚‡ãã€ã›ã„ã§ã‚“ãç‰¹æ€§ã¯ç„¡è¦–ã™ã‚‹
+	//ã‚„ã‚‹ãã€ã¯ã‚Šãã‚Šã€ãƒ—ãƒ¬ãƒƒã‚·ãƒ£ãƒ¼ã«ã‚ˆã‚‹ã€ãƒ¬ãƒ™ãƒ«å¤‰å‹•ã‚‚è¡Œã‚ãªã„
 	lv = inLv;
 
-	//ƒXƒvƒŒ[ƒ`ƒFƒbƒN–³‚µ
+	//ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ç„¡ã—
 	
-	// ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 	if (inRare){
 		EncountParamSetRare(inMonsNo, lv, inTarget, inTrainerID,
 							inFldSpa, param, outBattleParam );
@@ -1931,16 +1931,16 @@ static BOOL SetEncountDataDecideMons(	const int inMonsNo, const int inLv,
 
 //-----------------------------------------------------------------------------
 /**
- * ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒZƒbƒgi—h‚ê‘j
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼ˆæºã‚Œè‰ï¼‰
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	param				ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€
- * @param	inFldSpa			“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inData				‹¤’ÊƒGƒ“ƒJƒEƒ“ƒf[ƒ^ƒe[ƒuƒ‹
- * @param	inTartget			’Ç‰Á‘ÎÛ
- * @param	outBattleParam		ƒoƒgƒ‹ƒpƒ‰ƒ€ƒ|ƒCƒ“ƒ^
- * @param	inMonsNo			ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param	inLv				ƒŒƒxƒ‹
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	param				ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ 
+ * @param	inFldSpa			ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inData				å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	inTartget			è¿½åŠ å¯¾è±¡
+ * @param	outBattleParam		ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMonsNo			ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param	inLv				ãƒ¬ãƒ™ãƒ«
  *
  * @return	none
  */
@@ -1959,54 +1959,54 @@ static BOOL SetSwayEncountData(	FIELDSYS_WORK * fsys,
 
 	int monsno;
 	
-	// ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“Œˆ’è
-	//‚¶‚è‚å‚­“Á«‚É‚æ‚éA‚Í‚ª‚Ëƒ^ƒCƒv‚ÌƒGƒ“ƒJƒEƒ“ƒg—¦‚ÌŒüã
+	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³æ±ºå®š
+	//ã˜ã‚Šã‚‡ãç‰¹æ€§ã«ã‚ˆã‚‹ã€ã¯ãŒã­ã‚¿ã‚¤ãƒ—ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ã®å‘ä¸Š
 	result = CheckFixTypeEcnt(	param, inFldSpa, inData,
 								ENC_MONS_NUM_NORMAL, METAL_TYPE,TOKUSYU_ZIRYOKU, &no);
 	if (result == FALSE){
-		//‚¹‚¢‚Å‚ñ‚«“Á«‚É‚æ‚éA‚Å‚ñ‚«ƒ^ƒCƒv‚ÌƒGƒ“ƒJƒEƒ“ƒg—¦‚ÌŒüã
+		//ã›ã„ã§ã‚“ãç‰¹æ€§ã«ã‚ˆã‚‹ã€ã§ã‚“ãã‚¿ã‚¤ãƒ—ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ã®å‘ä¸Š
 		result = CheckFixTypeEcnt(	param, inFldSpa, inData,
 									ENC_MONS_NUM_NORMAL, ELECTRIC_TYPE,TOKUSYU_SEIDENKI, &no);
 		if (result == FALSE){
-			//“Á«‚É‚æ‚éw’èƒ^ƒCƒv‚Æ‚ÌƒGƒ“ƒJƒEƒ“ƒg‚É¸”sB’Êí‚ÌƒGƒ“ƒJƒEƒ“ƒg
+			//ç‰¹æ€§ã«ã‚ˆã‚‹æŒ‡å®šã‚¿ã‚¤ãƒ—ã¨ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã«å¤±æ•—ã€‚é€šå¸¸ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 			no = RandamPokeSet();
 		}
 	}
 	lv = inData[no].LvMax;
 	monsno = inData[no].MonsNo;
 
-	//‰‰ñ‚©H
-	if (inMonsNo == 0){	//‰‰ñ
-		//‰‰ñ‚ä‚ê‘ƒGƒ“ƒJƒEƒ“ƒg‚Æ‚µ‚ÄAƒGƒ“ƒJƒEƒ“ƒg‚µ‚½ê‡‚ÍAƒZƒbƒg‚µ‚½ƒ|ƒPƒ‚ƒ“‚ğ‹L‰¯‚·‚é
+	//åˆå›ã‹ï¼Ÿ
+	if (inMonsNo == 0){	//åˆå›
+		//åˆå›ã‚†ã‚Œè‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã¨ã—ã¦ã€ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãŸå ´åˆã¯ã€ã‚»ãƒƒãƒˆã—ãŸãƒã‚±ãƒ¢ãƒ³ã‚’è¨˜æ†¶ã™ã‚‹
 		SwayGrass_SetEncMonsNoLv(fsys->SwayGrass, monsno, lv);
-		//˜A½”‚ÌXV<<d—l•ÏX 2006/0519 add@‰‰ñ‚©‚çXV‚·‚éiŒµ–§‚É‚Í˜A½”‚Å‚Í‚È‚­‚Äí“¬”‚É‚È‚éj
+		//é€£é–æ•°ã®æ›´æ–°<<ä»•æ§˜å¤‰æ›´ 2006/0519 addã€€åˆå›ã‹ã‚‰æ›´æ–°ã™ã‚‹ï¼ˆå³å¯†ã«ã¯é€£é–æ•°ã§ã¯ãªãã¦æˆ¦é—˜æ•°ã«ãªã‚‹ï¼‰
 		SwayGrass_UpDateChain(fsys);
-	}else{			//‰‰ñ‚¶‚á‚È‚¢
-		//—h‚ê‘ƒnƒYƒŒˆø‚¢‚½‚¯‚Ç“¯‚¶ƒ|ƒPƒ‚ƒ“‚Ìê‡‚Í˜A½‚ğ•œŠˆ‚³‚¹‚é
+	}else{			//åˆå›ã˜ã‚ƒãªã„
+		//æºã‚Œè‰ãƒã‚ºãƒ¬å¼•ã„ãŸã‘ã©åŒã˜ãƒã‚±ãƒ¢ãƒ³ã®å ´åˆã¯é€£é–ã‚’å¾©æ´»ã•ã›ã‚‹
 		if (monsno == inMonsNo ){
 			monsno = inMonsNo;
 			lv = inLv;
-			//˜A½”‚ÌXV
+			//é€£é–æ•°ã®æ›´æ–°
 			SwayGrass_UpDateChain(fsys);
 		}else{
-			//ƒnƒYƒŒ‚È‚Ì‚Å—h‚ê‘I‚í‚è
+			//ãƒã‚ºãƒ¬ãªã®ã§æºã‚Œè‰çµ‚ã‚ã‚Š
 			SwayGrass_InitSwayGrass(fsys->SwayGrass);
 		}
 	}
 
-	//ƒXƒvƒŒ[ƒ`ƒFƒbƒN–³‚µ
+	//ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ç„¡ã—
 	
-	// ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+	// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 	EncountParamSet( monsno, lv, inTarget, inFldSpa, param, outBattleParam );
 	return	TRUE;
 }
 
 //-----------------------------------------------------------------------------
 /**
- * ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒZƒbƒgi–¨“h‚èj
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼ˆèœœå¡—ã‚Šï¼‰
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	outBattleParam		ƒoƒgƒ‹ƒpƒ‰ƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	outBattleParam		ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2015,42 +2015,42 @@ void SetHoneyTreeEncountData(FIELDSYS_WORK *fsys, BATTLE_PARAM *outBattleParam)
 {
 	POKEMON_PARAM *param;
 	int monsno;
-	ENC_FLD_SPA f_spa;		//“Áê”\—Í
+	ENC_FLD_SPA f_spa;		//ç‰¹æ®Šèƒ½åŠ›
 	u8 lv;
 	
 	monsno = HTE_GetHoneyTreeMonster(fsys);
-	//æ“ªƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒ}ƒSƒ`ƒFƒbƒN
+	//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ãƒã‚´ãƒã‚§ãƒƒã‚¯
 	{	
 		POKEPARTY *my_party;
 		my_party = SaveData_GetTemotiPokemon(fsys->savedata);
-		param = PokeParty_GetMemberPointer(my_party, 0);	//æ“ªƒ|ƒPƒ‚ƒ“æ“¾
+		param = PokeParty_GetMemberPointer(my_party, 0);	//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³å–å¾—
 		SetSpaStruct(fsys, param, NULL, &f_spa );
 	}
 
-	//ƒŒƒxƒ‹İ’èi5`15j
+	//ãƒ¬ãƒ™ãƒ«è¨­å®šï¼ˆ5ã€œ15ï¼‰
 	{
 		u8 plus = HONEY_TREE_LV_MAX-HONEY_TREE_LV_MIN+1;
 		lv = HONEY_TREE_LV_MIN + gf_p_rand(plus);
 
-		//u‚â‚é‚«vuƒvƒŒƒbƒVƒƒ[vu‚Í‚è‚«‚èv‚Ì“Á«”­“®ƒ`ƒFƒbƒNƒŒƒxƒ‹‚Ì‚‚¢ƒ|ƒPƒ‚ƒ“‚Æ‚TŠ„‚ÅƒGƒ“ƒJƒEƒ“ƒg
-		// æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚ªƒ^ƒ}ƒS‚Å‚È‚¢
+		//ã€Œã‚„ã‚‹ãã€ã€Œãƒ—ãƒ¬ãƒƒã‚·ãƒ£ãƒ¼ã€ã€Œã¯ã‚Šãã‚Šã€ã®ç‰¹æ€§ç™ºå‹•ãƒã‚§ãƒƒã‚¯ãƒ¬ãƒ™ãƒ«ã®é«˜ã„ãƒã‚±ãƒ¢ãƒ³ã¨ï¼•å‰²ã§ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
+		// å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ãŒã‚¿ãƒã‚´ã§ãªã„
 		if( f_spa.Egg == 0 ){
 			if( (f_spa.Spa == TOKUSYU_HARIKIRI)||
 				(f_spa.Spa == TOKUSYU_YARUKI)||
 				(f_spa.Spa == TOKUSYU_PURESSYAA) ){
-				// 1/2‚Å“Á«”­“®
+				// 1/2ã§ç‰¹æ€§ç™ºå‹•
 				if( gf_p_rand(2) == 0 ){
-					;		// “Á«–¢”­“®
+					;		// ç‰¹æ€§æœªç™ºå‹•
 				}else{
-					lv = HONEY_TREE_LV_MAX;	//“Á«”­“®BƒŒƒxƒ‹‚ğmax‚É‚·‚é
+					lv = HONEY_TREE_LV_MAX;	//ç‰¹æ€§ç™ºå‹•ã€‚ãƒ¬ãƒ™ãƒ«ã‚’maxã«ã™ã‚‹
 				}
 			}
 		}
 	}
 
-	//ƒXƒvƒŒ[ƒ`ƒFƒbƒN–³‚µ
+	//ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ç„¡ã—
 	
-	//–¨–ØƒAƒjƒƒtƒ‰ƒOƒIƒt
+	//èœœæœ¨ã‚¢ãƒ‹ãƒ¡ãƒ•ãƒ©ã‚°ã‚ªãƒ•
 	HTE_ResetAnimeFlg(fsys);
 	outBattleParam->battle_status_flag |= BATTLE_STATUS_FLAG_MITSUNURI_BATTLE;
 	
@@ -2060,12 +2060,12 @@ void SetHoneyTreeEncountData(FIELDSYS_WORK *fsys, BATTLE_PARAM *outBattleParam)
 
 //-----------------------------------------------------------------------------
 /**
- * ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒZƒbƒgiƒCƒxƒ“ƒgj
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼ˆã‚¤ãƒ™ãƒ³ãƒˆï¼‰
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	monsno				ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[
- * @param	level				ƒŒƒxƒ‹
- * @param	outBattleParam		ƒoƒgƒ‹ƒpƒ‰ƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	monsno				ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼
+ * @param	level				ãƒ¬ãƒ™ãƒ«
+ * @param	outBattleParam		ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2073,32 +2073,32 @@ void SetHoneyTreeEncountData(FIELDSYS_WORK *fsys, BATTLE_PARAM *outBattleParam)
 void SetWildEncountData(FIELDSYS_WORK *fsys, u16 monsno, u8 level,BATTLE_PARAM *outBattleParam)
 {
 	POKEMON_PARAM *param;
-	ENC_FLD_SPA f_spa;		//“Áê”\—Í
-	//æ“ªƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒ}ƒSƒ`ƒFƒbƒN
+	ENC_FLD_SPA f_spa;		//ç‰¹æ®Šèƒ½åŠ›
+	//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ãƒã‚´ãƒã‚§ãƒƒã‚¯
 	{	
 		POKEPARTY *my_party;
 		my_party = SaveData_GetTemotiPokemon(fsys->savedata);
-		param = PokeParty_GetMemberPointer(my_party, 0);	//æ“ªƒ|ƒPƒ‚ƒ“æ“¾
+		param = PokeParty_GetMemberPointer(my_party, 0);	//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³å–å¾—
 
 		SetSpaStruct(fsys, param, NULL, &f_spa );
 	}
 	
-	/*-‰B‚µ“Á«‚Ì”­“®-*/
-	/*-ƒCƒxƒ“ƒg‚©‚çŒÄ‚Î‚ê‚é–ì¶í‚ÍA-*/
-	/*-ƒƒƒƒƒ{ƒfƒB[AƒVƒ“ƒNƒA‚Ó‚­‚ª‚ñ-*/
-	/*-‚Ì3‚Â‚ª‹@”\‚·‚é-*/
+	/*-éš ã—ç‰¹æ€§ã®ç™ºå‹•-*/
+	/*-ã‚¤ãƒ™ãƒ³ãƒˆã‹ã‚‰å‘¼ã°ã‚Œã‚‹é‡ç”Ÿæˆ¦ã¯ã€-*/
+	/*-ãƒ¡ãƒ­ãƒ¡ãƒ­ãƒœãƒ‡ã‚£ãƒ¼ã€ã‚·ãƒ³ã‚¯ãƒ­ã€ãµããŒã‚“-*/
+	/*-ã®3ã¤ãŒæ©Ÿèƒ½ã™ã‚‹-*/
 	EncountParamSet( monsno, level, POKEPARTY_ENEMY, &f_spa, param, outBattleParam );
 	return;
 }
 
 //-----------------------------------------------------------------------------
 /**
- * ƒGƒ“ƒJƒEƒ“ƒg‚·‚é‚©‚Ç‚¤‚©‚ğ•Ô‚·iƒ][ƒ“‚ÌƒGƒ“ƒJƒEƒ“ƒgƒtƒ‰ƒO‚Í”»’è‚µ‚È‚¢j
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™ï¼ˆã‚¾ãƒ¼ãƒ³ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã¯åˆ¤å®šã—ãªã„ï¼‰
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	attr				ƒAƒgƒŠƒrƒ…[ƒg
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	attr				ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  *
- * @return	BOOL				TRUE: ƒGƒ“ƒJƒEƒ“ƒg‚·‚é	FALSE:ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+ * @return	BOOL				TRUE: ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹	FALSE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL EncSet_CheckEncount( FIELDSYS_WORK * fsys, u8 attr  )
@@ -2106,9 +2106,9 @@ BOOL EncSet_CheckEncount( FIELDSYS_WORK * fsys, u8 attr  )
 	int prob = 0;
 	
 	if (MATR_IsEncount(attr)){
-		if (MATR_IsWater(attr)){			//…
+		if (MATR_IsWater(attr)){			//æ°´
 			prob = GetEncountProbWater( fsys );
-		}else{								//—¤
+		}else{								//é™¸
 			prob = GetEncountProbGround( fsys );
 		}
 	}
@@ -2122,17 +2122,17 @@ BOOL EncSet_CheckEncount( FIELDSYS_WORK * fsys, u8 attr  )
 
 #ifdef PM_DEBUG
 //----------------------------------------------------
-//	ƒm[ƒ}ƒ‹
-//	ˆø”   : ENCOUNT_DATA * inData = ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^
-//			 u8 id             = ƒGƒ“ƒJƒEƒ“ƒg’nŒ`
-//			 u8 sp_check       = “Áêƒ`ƒFƒbƒN
-//	–ß‚è’l : TRUE = ENCOUNT@FALSE = NOT ENCOUNT
+//	ãƒãƒ¼ãƒãƒ«
+//	å¼•æ•°   : ENCOUNT_DATA * inData = ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+//			 u8 id             = ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆåœ°å½¢
+//			 u8 sp_check       = ç‰¹æ®Šãƒã‚§ãƒƒã‚¯
+//	æˆ»ã‚Šå€¤ : TRUE = ENCOUNTã€€FALSE = NOT ENCOUNT
 //----------------------------------------------------
 BOOL DebugSetEncountData(	const ENCOUNT_DATA * inData,
 							const u8 id,
 							BATTLE_PARAM *outBattleParam)
 {
-	DebugEncountParamSet( 1, 10, POKEPARTY_ENEMY, outBattleParam );//æ“ª‚Íƒ^ƒ}ƒS‚Å‚Í‚È‚¢‚Æ‚·‚é
+	DebugEncountParamSet( 1, 10, POKEPARTY_ENEMY, outBattleParam );//å…ˆé ­ã¯ã‚¿ãƒã‚´ã§ã¯ãªã„ã¨ã™ã‚‹
 
 	return	TRUE;
 }
@@ -2140,11 +2140,11 @@ BOOL DebugSetEncountData(	const ENCOUNT_DATA * inData,
 
 //-----------------------------------------------------------------------------
 /**
- * ’nãƒGƒ“ƒJƒEƒ“ƒg—¦‚ğ•Ô‚·
+ * åœ°ä¸Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ã‚’è¿”ã™
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	int					Šm—¦
+ * @return	int					ç¢ºç‡
  */
 //-----------------------------------------------------------------------------
 static int GetEncountProbGround(FIELDSYS_WORK * fsys)
@@ -2156,11 +2156,11 @@ static int GetEncountProbGround(FIELDSYS_WORK * fsys)
 
 //-----------------------------------------------------------------------------
 /**
- * …ãƒGƒ“ƒJƒEƒ“ƒg—¦‚ğ•Ô‚·
+ * æ°´ä¸Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ã‚’è¿”ã™
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	int					Šm—¦
+ * @return	int					ç¢ºç‡
  */
 //-----------------------------------------------------------------------------
 static int GetEncountProbWater(FIELDSYS_WORK * fsys)
@@ -2172,12 +2172,12 @@ static int GetEncountProbWater(FIELDSYS_WORK * fsys)
 
 //-----------------------------------------------------------------------------
 /**
- * ’Ş‚èƒGƒ“ƒJƒEƒ“ƒg—¦‚ğ•Ô‚·
+ * é‡£ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡ã‚’è¿”ã™
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inRodType			’ŞŠÆ
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inRodType			é‡£ç«¿
  *
- * @return	int					Šm—¦
+ * @return	int					ç¢ºç‡
  */
 //-----------------------------------------------------------------------------
 static int GetEncountProbFishing(FIELDSYS_WORK * fsys, const FISHINGROD_TYPE inRodType)
@@ -2185,11 +2185,11 @@ static int GetEncountProbFishing(FIELDSYS_WORK * fsys, const FISHINGROD_TYPE inR
 	ENCOUNT_DATA *data;
 	data = (ENCOUNT_DATA*)EventData_GetEncountData(fsys);
 	switch(inRodType){
-	case FISHINGROD_BAD:				//ƒ{ƒ’ŞŠÆ
+	case FISHINGROD_BAD:				//ãƒœãƒ­é‡£ç«¿
 		return data->EncProbFish1;
-	case FISHINGROD_GOOD:				//‚¢‚¢’ŞŠÆ
+	case FISHINGROD_GOOD:				//ã„ã„é‡£ç«¿
 		return data->EncProbFish2;
-	case FISHINGROD_GREAT:				//‚·‚²‚¢’ŞŠÆ
+	case FISHINGROD_GREAT:				//ã™ã”ã„é‡£ç«¿
 		return data->EncProbFish3;
 	default:
 		GF_ASSERT(0);
@@ -2199,58 +2199,58 @@ static int GetEncountProbFishing(FIELDSYS_WORK * fsys, const FISHINGROD_TYPE inR
 
 //-----------------------------------------------------------------------------
 /**
- * w’èƒ^ƒCƒv‚Ìƒ|ƒPƒ‚ƒ“‚ÆƒGƒ“ƒJƒEƒ“ƒg‚³‚¹‚é
+ * æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ãƒã‚±ãƒ¢ãƒ³ã¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã•ã›ã‚‹
  *
- * @param	inData			‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹
- * @param	inListNum		ƒŠƒXƒg”
- * @param	type			ƒ^ƒCƒv
- * @param	outNo			ƒe[ƒuƒ‹”Ô†Ši”[ƒoƒbƒtƒ@
+ * @param	inData			å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	inListNum		ãƒªã‚¹ãƒˆæ•°
+ * @param	type			ã‚¿ã‚¤ãƒ—
+ * @param	outNo			ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *
- * @return	BOOL		TRUE:¬Œ÷	FALSE:¸”s
+ * @return	BOOL		TRUE:æˆåŠŸ	FALSE:å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 static BOOL FixPokeSet(const ENC_COMMON_DATA *inData, const u8 inListNum, const u8 type, u8 * outNo)
 {
-	u8 same_type[ENC_MONS_NUM_MAX];	//w’è‚µ‚½ƒ^ƒCƒv‚Æ“¯‚¶ƒ^ƒCƒv‚Ìƒ|ƒPƒ‚ƒ“‚ÌƒGƒ“ƒJƒEƒ“ƒgƒŠƒXƒg
-	u8 cnt;				//ƒGƒ“ƒgƒŠ[‚µ‚½”
+	u8 same_type[ENC_MONS_NUM_MAX];	//æŒ‡å®šã—ãŸã‚¿ã‚¤ãƒ—ã¨åŒã˜ã‚¿ã‚¤ãƒ—ã®ãƒã‚±ãƒ¢ãƒ³ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒªã‚¹ãƒˆ
+	u8 cnt;				//ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã—ãŸæ•°
 	u8 i;
 	u8 type1,type2;
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	for (i=0;i<ENC_MONS_NUM_MAX;i++){
 		same_type[i] = 0;
 	}
 	cnt = 0;
 	
-	//w’èƒ^ƒCƒv‚ÆƒGƒ“ƒJƒEƒ“ƒgƒŠƒXƒg“à‚Ìƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒCƒv‚ğ”äŠr‚·‚é
+	//æŒ‡å®šã‚¿ã‚¤ãƒ—ã¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒªã‚¹ãƒˆå†…ã®ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ã‚¤ãƒ—ã‚’æ¯”è¼ƒã™ã‚‹
 	for (i=0;i<inListNum;i++){
 		type1 = PokePersonalParaGet( inData[i].MonsNo, ID_PER_type1 );
 		type2 = PokePersonalParaGet( inData[i].MonsNo, ID_PER_type2 );
 		if ( (type1 == type)||(type2 == type) ){
-			//“¯‚¶ƒ^ƒCƒv‚È‚çƒŠƒXƒg‚ÉƒGƒ“ƒgƒŠ[
+			//åŒã˜ã‚¿ã‚¤ãƒ—ãªã‚‰ãƒªã‚¹ãƒˆã«ã‚¨ãƒ³ãƒˆãƒªãƒ¼
 			same_type[cnt++] = i; 
 		}
 	}
-	//ƒGƒ“ƒJƒEƒ“ƒgƒŠƒXƒg“à‚Éw’èƒ^ƒCƒv‚ª‚¢‚È‚¢A‚à‚µ‚­‚ÍAƒŠƒXƒg“à‚Í‘S‚Äw’èƒ^ƒCƒv‚È‚ç•’Ê‚ÉƒGƒ“ƒJƒEƒ“ƒg‚³‚¹‚é
+	//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒªã‚¹ãƒˆå†…ã«æŒ‡å®šã‚¿ã‚¤ãƒ—ãŒã„ãªã„ã€ã‚‚ã—ãã¯ã€ãƒªã‚¹ãƒˆå†…ã¯å…¨ã¦æŒ‡å®šã‚¿ã‚¤ãƒ—ãªã‚‰æ™®é€šã«ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã•ã›ã‚‹
 	if ( (cnt == 0)||(cnt==inListNum) ){
 		return FALSE;
 	}
-	*outNo = same_type[gf_rand()%cnt];//w’èƒ^ƒCƒv‚Ìƒ|ƒPƒ‚ƒ“‚ğoŒ»‚³‚¹‚é(Šm—¦ˆê’è)
+	*outNo = same_type[gf_rand()%cnt];//æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ãƒã‚±ãƒ¢ãƒ³ã‚’å‡ºç¾ã•ã›ã‚‹(ç¢ºç‡ä¸€å®š)
 	return TRUE;
 }
 
 //-----------------------------------------------------------------------------
 /**
- * w’èƒ^ƒCƒv‚Ìƒ|ƒPƒ‚ƒ“‚ÆƒGƒ“ƒJƒEƒ“ƒg‚³‚¹‚é
+ * æŒ‡å®šã‚¿ã‚¤ãƒ—ã®ãƒã‚±ãƒ¢ãƒ³ã¨ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã•ã›ã‚‹
  *
- * @param	inPokeParam		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€
- * @param	inFldSpa		“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inData			‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹
- * @param	inListNum		ƒŠƒXƒg”
- * @param	type			ƒ^ƒCƒv
- * @param	tokusei			“Á«
- * @param	outNo			ƒe[ƒuƒ‹”Ô†Ši”[ƒoƒbƒtƒ@
+ * @param	inPokeParam		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ 
+ * @param	inFldSpa		ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inData			å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	inListNum		ãƒªã‚¹ãƒˆæ•°
+ * @param	type			ã‚¿ã‚¤ãƒ—
+ * @param	tokusei			ç‰¹æ€§
+ * @param	outNo			ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *
- * @return	BOOL		TRUE:¬Œ÷	FALSE:¸”s
+ * @return	BOOL		TRUE:æˆåŠŸ	FALSE:å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 static BOOL CheckFixTypeEcnt(	POKEMON_PARAM *inPokeParam,
@@ -2259,30 +2259,30 @@ static BOOL CheckFixTypeEcnt(	POKEMON_PARAM *inPokeParam,
 							const u8 inListNum,
 							const u8 type, const u8 tokusei,u8 * outNo)
 {
-	// æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚ªƒ^ƒ}ƒS‚Å‚È‚¢
+	// å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ãŒã‚¿ãƒã‚´ã§ãªã„
 	if( inFldSpa->Egg == 0 ){
 		if( inFldSpa->Spa == tokusei ){
-			// 1/2‚Å“Á«”­“®
+			// 1/2ã§ç‰¹æ€§ç™ºå‹•
 			if( gf_p_rand(2) == 0 ){
 				return FixPokeSet(inData, inListNum, type, outNo);
 			}
 		}
 	}
-	//“Á«”­“®‚µ‚È‚¢
+	//ç‰¹æ€§ç™ºå‹•ã—ãªã„
 	return FALSE;
 }
 
 //-----------------------------------------------------------------------------
 /**
- * ƒGƒ“ƒJƒEƒ“ƒg—¦•ÏX
+ * ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡å¤‰æ›´
  *
- * @param	IsFishing		’Ş‚è‚©‚Ç‚¤‚©
- * @param	inProb			Šm—¦
- * @param	inFldSpa		“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inWeatherCode	“V‹C
- * @param	inPokeParam		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€
+ * @param	IsFishing		é‡£ã‚Šã‹ã©ã†ã‹
+ * @param	inProb			ç¢ºç‡
+ * @param	inFldSpa		ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inWeatherCode	å¤©æ°—
+ * @param	inPokeParam		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ 
  *
- * @return	u8				Šm—¦
+ * @return	u8				ç¢ºç‡
  */
 //-----------------------------------------------------------------------------
 static u8 ChangeEncProb(	const BOOL inIsFishing,
@@ -2294,30 +2294,30 @@ static u8 ChangeEncProb(	const BOOL inIsFishing,
 	int prob;
 
 	prob = inProb;
-	// æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚ªƒ^ƒ}ƒS‚Å‚È‚¢
+	// å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ãŒã‚¿ãƒã‚´ã§ãªã„
 	if( inFldSpa->Egg == 0 ){
-		if (inIsFishing){		//’Ş‚è
-			//‚«‚ã‚¤‚Î‚ñA‚Ë‚ñ‚¿‚á‚­‚È‚çƒGƒ“ƒJƒEƒ“ƒg—¦2”{
+		if (inIsFishing){		//é‡£ã‚Š
+			//ãã‚…ã†ã°ã‚“ã€ã­ã‚“ã¡ã‚ƒããªã‚‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡2å€
 			if( (inFldSpa->Spa == TOKUSYU_NENTYAKU)||(inFldSpa->Spa == TOKUSYU_KYUUBAN) ){
 				prob*=2;
 			}
-		}else{					//’Ş‚èˆÈŠO
-			//‚ ‚è‚¶‚²‚­Aƒm[ƒK[ƒh‚È‚çƒGƒ“ƒJƒEƒ“ƒg—¦2”{
-			//»—’’†A‚·‚È‚ª‚­‚ê‚È‚ç1/2
-			//á’†A‚ä‚«‚ª‚­‚ê‚È‚ç1/2
-			//‚µ‚ë‚¢‚«‚è‚È‚ç1/2
-			//‚Í‚â‚ ‚µ‚È‚ç1/2
+		}else{					//é‡£ã‚Šä»¥å¤–
+			//ã‚ã‚Šã˜ã”ãã€ãƒãƒ¼ã‚¬ãƒ¼ãƒ‰ãªã‚‰ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡2å€
+			//ç ‚åµä¸­ã€ã™ãªãŒãã‚Œãªã‚‰1/2
+			//å¹é›ªä¸­ã€ã‚†ããŒãã‚Œãªã‚‰1/2
+			//ã—ã‚ã„ãã‚Šãªã‚‰1/2
+			//ã¯ã‚„ã‚ã—ãªã‚‰1/2
 			if( (inFldSpa->Spa == TOKUSYU_ARIZIGOKU)||
 				(inFldSpa->Spa == TOKUSYU_NOOGAADO)||
-				(inFldSpa->Spa == TOKUSYU_HAKKOU) ){	//”­Œõ‚Í‰B‚µ“Á«‚Å‚Í‚ ‚è‚Ü‚¹‚ñ
+				(inFldSpa->Spa == TOKUSYU_HAKKOU) ){	//ç™ºå…‰ã¯éš ã—ç‰¹æ€§ã§ã¯ã‚ã‚Šã¾ã›ã‚“
 				prob*=2;
 			}else if(inFldSpa->Spa == TOKUSYU_SUNAGAKURE){
-				//“VŒóƒ`ƒFƒbƒN(»—’)
+				//å¤©å€™ãƒã‚§ãƒƒã‚¯(ç ‚åµ)
 				if(inWeatherCode == WEATHER_SYS_SANDSTORM){
 					prob/=2;
 				}
 			}else if(inFldSpa->Spa == TOKUSYU_YUKIGAKURE){
-				//“VŒóƒ`ƒFƒbƒNiáAáA–Òáj
+				//å¤©å€™ãƒã‚§ãƒƒã‚¯ï¼ˆé›ªã€å¹é›ªã€çŒ›å¹é›ªï¼‰
 				if ( (inWeatherCode == WEATHER_SYS_SNOW)||
 					 (inWeatherCode == WEATHER_SYS_SNOWSTORM)||
 					 (inWeatherCode == WEATHER_SYS_SNOWSTORM_H) ){
@@ -2325,12 +2325,12 @@ static u8 ChangeEncProb(	const BOOL inIsFishing,
 				}
 			}else if( (inFldSpa->Spa == TOKUSYU_SIROIKEMURI)||
 					  (inFldSpa->Spa == TOKUSYU_HAYAASI)||
-					  (inFldSpa->Spa == TOKUSYU_AKUSYUU) ){		//ˆ«L‚Í‰B‚µ“Á«‚Å‚Í‚ ‚è‚Ü‚¹‚ñ
+					  (inFldSpa->Spa == TOKUSYU_AKUSYUU) ){		//æ‚ªè‡­ã¯éš ã—ç‰¹æ€§ã§ã¯ã‚ã‚Šã¾ã›ã‚“
 				prob/=2;
 			}
 		}
 
-		if (prob>100){		//100%‚±‚¦‚½‚ç@100%‚É‚·‚é
+		if (prob>100){		//100%ã“ãˆãŸã‚‰ã€€100%ã«ã™ã‚‹
 			prob = 100;
 		}
 	}
@@ -2340,51 +2340,51 @@ static u8 ChangeEncProb(	const BOOL inIsFishing,
 
 //-----------------------------------------------------------------------------
 /**
- * ƒŒƒxƒ‹·‚É‚æ‚éí“¬‰ñ”ği‰B‚µ“Á«j
+ * ãƒ¬ãƒ™ãƒ«å·®ã«ã‚ˆã‚‹æˆ¦é—˜å›é¿ï¼ˆéš ã—ç‰¹æ€§ï¼‰
  *
- * @param	inFldSpa		“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inMyPokeParam	ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€
- * @param	inEneLv			‘Šè‚ÌƒŒƒxƒ‹
+ * @param	inFldSpa		ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMyPokeParam	ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ 
+ * @param	inEneLv			ç›¸æ‰‹ã®ãƒ¬ãƒ™ãƒ«
  *
- * @return	BOOL	TRUE:‰ñ”ğ¬Œ÷	FALSE:‰ñ”ğ¸”s
+ * @return	BOOL	TRUE:å›é¿æˆåŠŸ	FALSE:å›é¿å¤±æ•—
  */
 //-----------------------------------------------------------------------------
 static BOOL CheckEcntCancelByLv( const ENC_FLD_SPA *inFldSpa, POKEMON_PARAM *inMyPokeParam, const u8 inEneLv)
 {
 	u8 my_poke_lv;
-	//ƒLƒƒƒ“ƒZƒ‹‚·‚éê‡‚Í‰ñ”ğ‚µ‚È‚¢
+	//ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹å ´åˆã¯å›é¿ã—ãªã„
 	if ( inFldSpa->EncCancelSpInvalid ){
 		return FALSE;
 	}
 	
 	if (inFldSpa->Egg == 0){
-		if( (inFldSpa->Spa == TOKUSYU_SURUDOIME)||(inFldSpa->Spa == TOKUSYU_IKAKU) ){//‚·‚é‚Ç‚¢‚ßA‚¢‚©‚­
-			//è‚¿‚ÌƒŒƒxƒ‹‚ğæ“¾
+		if( (inFldSpa->Spa == TOKUSYU_SURUDOIME)||(inFldSpa->Spa == TOKUSYU_IKAKU) ){//ã™ã‚‹ã©ã„ã‚ã€ã„ã‹ã
+			//æ‰‹æŒã¡ã®ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
 			my_poke_lv = PokeParaGet(inMyPokeParam, ID_PARA_level, NULL);
-			//è‚¿‚ªƒŒƒxƒ‹‚TˆÈ‰º‚Ì‚Æ‚«‚Í“Á«–³Œø
+			//æ‰‹æŒã¡ãŒãƒ¬ãƒ™ãƒ«ï¼•ä»¥ä¸‹ã®ã¨ãã¯ç‰¹æ€§ç„¡åŠ¹
 			if (my_poke_lv<=5){
-				return FALSE;		//í“¬‰ñ”ğ‚µ‚È‚¢
+				return FALSE;		//æˆ¦é—˜å›é¿ã—ãªã„
 			}
-			// ‘ŠèLVƒè‚¿LV-‚T
+			// ç›¸æ‰‹LVï¼œï¼æ‰‹æŒã¡LV-ï¼•
 			if( inEneLv <= my_poke_lv-5 ){
-				// 1/2‚ÅƒGƒ“ƒJƒEƒ“ƒg‰ñ”ğ
+				// 1/2ã§ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆå›é¿
 				if (gf_p_rand(2) == 0){
-					return TRUE;		//í“¬‰ñ”ğ
+					return TRUE;		//æˆ¦é—˜å›é¿
 				}
 			}
 		}
 	}
 
-	return FALSE;		//í“¬‰ñ”ğ‚µ‚È‚¢
+	return FALSE;		//æˆ¦é—˜å›é¿ã—ãªã„
 }
 
 //-----------------------------------------------------------------------------
 /**
- * ƒtƒ@ƒCƒgƒ^ƒCƒv‚ÌŒˆ’è
+ * ãƒ•ã‚¡ã‚¤ãƒˆã‚¿ã‚¤ãƒ—ã®æ±ºå®š
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inSafariFlg		ƒTƒtƒ@ƒŠƒtƒ‰ƒO
- * @param	param			ƒoƒgƒ‹ƒpƒ‰ƒ€
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inSafariFlg		ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°
+ * @param	param			ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ 
  *
  * @return	none
  */
@@ -2392,10 +2392,10 @@ static BOOL CheckEcntCancelByLv( const ENC_FLD_SPA *inFldSpa, POKEMON_PARAM *inM
 static void SetFieldBattleParam(FIELDSYS_WORK * fsys, const BOOL inSatafiFlg, BATTLE_PARAM **param)
 {
 	if (!inSatafiFlg){
-		//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»(–ì¶í)
+		//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–(é‡ç”Ÿæˆ¦)
 		(*param) = BattleParam_Create(HEAPID_WORLD, FIGHT_TYPE_1vs1_YASEI);
-	}else {		//ƒTƒtƒ@ƒŠƒtƒ‰ƒO¬—§‚È‚ç
-		//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^‚ÌƒAƒƒP[ƒVƒ‡ƒ“‚Æƒ|ƒPƒ‚ƒ“ƒp[ƒeƒB‚Ì‰Šú‰»(ƒTƒtƒ@ƒŠ)
+	}else {		//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°æˆç«‹ãªã‚‰
+		//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¨ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¼ãƒ†ã‚£ã®åˆæœŸåŒ–(ã‚µãƒ•ã‚¡ãƒª)
 		u16 * ball = Situation_GetSafariBallCount(SaveData_GetSituation(fsys->savedata));
 		(*param) = BattleParam_CreateForSafari(HEAPID_WORLD, *ball);
 	}
@@ -2403,12 +2403,12 @@ static void SetFieldBattleParam(FIELDSYS_WORK * fsys, const BOOL inSatafiFlg, BA
 
 //-----------------------------------------------------------------------------
 /**
- * ƒTƒtƒ@ƒŠ“Áê˜gƒ‚ƒ“ƒXƒ^[‚ÌƒZƒbƒg
+ * ã‚µãƒ•ã‚¡ãƒªç‰¹æ®Šæ ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ã‚»ãƒƒãƒˆ
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inSafariFlg		ƒTƒtƒ@ƒŠƒtƒ‰ƒO
- * @param	inBookGet		‘S‘}ŠÓ“üèƒtƒ‰ƒO
- * @param	enc_data		‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inSafariFlg		ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°
+ * @param	inBookGet		å…¨å›½å›³é‘‘å…¥æ‰‹ãƒ•ãƒ©ã‚°
+ * @param	enc_data		å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  * @return	none
  */
@@ -2416,8 +2416,8 @@ static void SetFieldBattleParam(FIELDSYS_WORK * fsys, const BOOL inSatafiFlg, BA
 
 static void SetSfariMonster(FIELDSYS_WORK * fsys, const BOOL inSafariFlg, const BOOL inBookGet, ENC_COMMON_DATA *enc_data)
 {
-	if (inSafariFlg){	//ƒTƒtƒ@ƒŠƒtƒ‰ƒO¬—§‚È‚ç
-		//ƒTƒtƒ@ƒŠ“Áê˜g‚Ìƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+	if (inSafariFlg){	//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°æˆç«‹ãªã‚‰
+		//ã‚µãƒ•ã‚¡ãƒªç‰¹æ®Šæ ã®ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 		SafariEnc_SetSafariEnc(	EncDataSave_GetRandSeed(
 								EncDataSave_GetSaveDataPtr(fsys->savedata), ENC_RND_SEED_SAFARI),
 								inBookGet,
@@ -2428,20 +2428,20 @@ static void SetSfariMonster(FIELDSYS_WORK * fsys, const BOOL inSafariFlg, const 
 
 //-----------------------------------------------------------------------------
 /**
- * ƒXƒvƒŒ[ƒ`ƒFƒbƒN
+ * ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯
  *
- * @param	inEneLv		ƒŒƒxƒ‹
- * @param	inFldSpa	“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	inEneLv		ãƒ¬ãƒ™ãƒ«
+ * @param	inFldSpa	ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL	TRUE:ƒXƒvƒŒ[”­“®	FALSE:ƒXƒvƒŒ[•s”­
+ * @return	BOOL	TRUE:ã‚¹ãƒ—ãƒ¬ãƒ¼ç™ºå‹•	FALSE:ã‚¹ãƒ—ãƒ¬ãƒ¼ä¸ç™º
  */
 //-----------------------------------------------------------------------------
 static BOOL CheckSpray(const u8 inEneLv, const ENC_FLD_SPA *inSpa)
 {
 	if (inSpa->SprayCheck){
-		//ƒŒƒxƒ‹”äŠr
+		//ãƒ¬ãƒ™ãƒ«æ¯”è¼ƒ
 		if (inSpa->SpMyLv > inEneLv){
-			OS_Printf("ƒXƒvƒŒ[Œø‰Ê”­Šö\n");
+			OS_Printf("ã‚¹ãƒ—ãƒ¬ãƒ¼åŠ¹æœç™ºæ®\n");
 			return TRUE;
 		}
 	}
@@ -2450,11 +2450,11 @@ static BOOL CheckSpray(const u8 inEneLv, const ENC_FLD_SPA *inSpa)
 
 //-----------------------------------------------------------------------------
 /**
- * ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒGƒ“ƒZƒbƒg
+ * ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚»ãƒƒãƒˆ
  *
- * @param	inTrainerID		ƒgƒŒ[ƒi[‚h‚c
- * @param	mpd				ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	outBattleParam	ƒoƒgƒ‹ƒpƒ‰ƒ€
+ * @param	inTrainerID		ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤
+ * @param	mpd				ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	outBattleParam	ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ 
  *
  * @return	none
  */
@@ -2482,24 +2482,24 @@ static void SetMovePokemon(const u32 inTrainerID, MPD_PTR mpd, BATTLE_PARAM *out
 
 	PokeParaSetPowRnd( poke_param, monsno, lv, pow_rnd, per_rnd );
 	
-	PokeParaPut( poke_param, ID_PARA_id_no, &inTrainerID );		// ‚h‚c
-	PokeParaPut( poke_param, ID_PARA_condition, &cond );		// ƒRƒ“ƒfƒBƒVƒ‡ƒ“
+	PokeParaPut( poke_param, ID_PARA_id_no, &inTrainerID );		// ï¼©ï¼¤
+	PokeParaPut( poke_param, ID_PARA_condition, &cond );		// ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³
 	PokeParaPut( poke_param, ID_PARA_hp,        &hp );		// HP
 
-	//ƒAƒCƒeƒ€‚ğŠ‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅA’¼ÚƒAƒbƒh‚·‚é
+	//ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ‰€æŒã—ã¦ã„ãªã„ã®ã§ã€ç›´æ¥ã‚¢ãƒƒãƒ‰ã™ã‚‹
 	rc = PokeParty_Add(outBattleParam->poke_party[POKEPARTY_ENEMY], poke_param);
-	GF_ASSERT(rc&&"ƒ|ƒPƒ‚ƒ“‚Ì’Ç‰Á‚É¸”s");
+	GF_ASSERT(rc&&"ãƒã‚±ãƒ¢ãƒ³ã®è¿½åŠ ã«å¤±æ•—");
 	sys_FreeMemoryEz(poke_param);
 }
 
 //-----------------------------------------------------------------------------
 /**
- * ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒGƒ“ƒJƒEƒ“ƒgƒ`ƒFƒbƒN
+ * ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚§ãƒƒã‚¯
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	outMpd			ˆÚ“®ƒ|ƒPƒ‚ƒ“ƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	outMpd			ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL	TRUE:ƒGƒ“ƒJƒEƒ“ƒg	FALSE:ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+ * @return	BOOL	TRUE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ	FALSE:ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
  */
 //-----------------------------------------------------------------------------
 static BOOL CheckMovePokeEnc(FIELDSYS_WORK * fsys, MPD_PTR *outMpd)
@@ -2510,7 +2510,7 @@ static BOOL CheckMovePokeEnc(FIELDSYS_WORK * fsys, MPD_PTR *outMpd)
 	u8 i;
 	int zone;
 
-	//“¯‚¶êŠ‚É‚¢‚éˆÚ“®ƒ|ƒPƒ‚ƒ“‚ğæ“¾
+	//åŒã˜å ´æ‰€ã«ã„ã‚‹ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã‚’å–å¾—
 	enc_count = 0;
 	data = EncDataSave_GetSaveDataPtr(fsys->savedata);
 	for(i=0;i<MOVE_POKE_MAX;i++){
@@ -2523,19 +2523,19 @@ static BOOL CheckMovePokeEnc(FIELDSYS_WORK * fsys, MPD_PTR *outMpd)
 	}
 
 	if (enc_count == 0){
-		return FALSE;			//ˆÚ“®ƒ|ƒPƒ‚ƒ“‚¢‚È‚¢
+		return FALSE;			//ç§»å‹•ãƒã‚±ãƒ¢ãƒ³ã„ãªã„
 	}else{
-		//‚¢‚éê‡A5Š„‚ÅƒGƒ“ƒJƒEƒ“ƒg
+		//ã„ã‚‹å ´åˆã€5å‰²ã§ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 		if ( gf_p_rand(2) == 0 ){
 			return FALSE;
 		}
 	}
 	
 	if (enc_count>1){
-		//ƒ‰ƒ“ƒ_ƒ€‚Å‘Io
+		//ãƒ©ãƒ³ãƒ€ãƒ ã§é¸å‡º
 		(*outMpd)  = temp[ gf_p_rand(enc_count) ];
 	}else{
-		//1•C‚µ‚©‚¢‚È‚¢‚Ì‚ÅŠm’è
+		//1åŒ¹ã—ã‹ã„ãªã„ã®ã§ç¢ºå®š
 		(*outMpd)  = temp[0];
 	}
 
@@ -2544,21 +2544,21 @@ static BOOL CheckMovePokeEnc(FIELDSYS_WORK * fsys, MPD_PTR *outMpd)
 
 //-----------------------------------------------------------------------------
 /**
- * í“¬‚·‚éƒ|ƒPƒ‚ƒ“‚ğƒoƒgƒ‹ƒpƒ‰ƒ€‚É’Ç‰Á
+ * æˆ¦é—˜ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ ã«è¿½åŠ 
  *
- * @param	inTarget			’Ç‰Á‘ÎÛ
- * @param	inFldSpa			“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	ioPokeParam			ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€
- * @param	ioBattleParam		ƒoƒgƒ‹ƒpƒ‰ƒ€
+ * @param	inTarget			è¿½åŠ å¯¾è±¡
+ * @param	inFldSpa			ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ioPokeParam			ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ 
+ * @param	ioBattleParam		ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ 
  *
- * @return	BOOL		ƒ|ƒPƒp[ƒeƒB’Ç‰ÁŒ‹‰Ê
+ * @return	BOOL		ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£è¿½åŠ çµæœ
  */
 //-----------------------------------------------------------------------------
 static BOOL AddPokemonParam(const int inTarget, const ENC_FLD_SPA *inFldSpa,
 							POKEMON_PARAM *ioPokeParam, BATTLE_PARAM *ioBattleParam )
 {
 	int range = ITEM_RANGE_NORMAL;
-	//“Á«‚Ó‚®‚ª‚ñƒ`ƒFƒbƒN
+	//ç‰¹æ€§ãµããŒã‚“ãƒã‚§ãƒƒã‚¯
 	if (inFldSpa->Egg == 0){
 		if (inFldSpa->Spa == TOKUSYU_HUKUGAN){
 			range = ITEM_RANGE_HUKUGAN;
@@ -2567,34 +2567,34 @@ static BOOL AddPokemonParam(const int inTarget, const ENC_FLD_SPA *inFldSpa,
 	
 	PokeItemSet(ioPokeParam, ioBattleParam->fight_type , range);
 
-	//ƒtƒHƒ‹ƒ€•ÏX
+	//ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´
 	{
 		u8 change_flg;
 		u8 form_no;
 		int monsno;
 		change_flg = 0;
 		monsno = PokeParaGet( ioPokeParam, ID_PARA_monsno, NULL );
-		//ƒtƒHƒ‹ƒ€•ÏXƒf[ƒ^‚ÍŠm—¦‚Å“ü‚Á‚Ä‚¢‚é‚ªAŒ»óA•Ï‰»‚·‚é‚©‚µ‚È‚¢‚©‚Ì‚Q‘ğ‚È‚Ì‚ÅA0‚Å‚È‚¯‚ê‚ÎA•ÏX‚·‚é
+		//ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ãƒ‡ãƒ¼ã‚¿ã¯ç¢ºç‡ã§å…¥ã£ã¦ã„ã‚‹ãŒã€ç¾çŠ¶ã€å¤‰åŒ–ã™ã‚‹ã‹ã—ãªã„ã‹ã®ï¼’æŠãªã®ã§ã€0ã§ãªã‘ã‚Œã°ã€å¤‰æ›´ã™ã‚‹
 		if (monsno == MONSNO_SIIUSI ){
 			change_flg = 1;
 			if (!inFldSpa->FormProb[0]){
-				form_no = FORMNO_SII_WEST;	//¼‘¤ƒfƒtƒHƒ‹ƒg
-				OS_Printf("¼\n");
+				form_no = FORMNO_SII_WEST;	//è¥¿å´ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
+				OS_Printf("è¥¿\n");
 			}else{
-				form_no = FORMNO_SII_EAST;	//“Œ‘¤ƒtƒHƒ‹ƒ€•ÏX
-				OS_Printf("“Œ\n");
+				form_no = FORMNO_SII_EAST;	//æ±å´ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´
+				OS_Printf("æ±\n");
 			}
 		}else if(monsno == MONSNO_SIIDORUGO){
 			change_flg = 1;
 			if (!inFldSpa->FormProb[1]){
-				form_no = FORMNO_SII_WEST;	//¼‘¤ƒfƒtƒHƒ‹ƒg
+				form_no = FORMNO_SII_WEST;	//è¥¿å´ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
 			}else{
-				form_no = FORMNO_SII_EAST;	//“Œ‘¤ƒtƒHƒ‹ƒ€•ÏX
+				form_no = FORMNO_SII_EAST;	//æ±å´ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´
 			}
 		}else if(monsno == MONSNO_ANNOON){
 			u8 num;
 			change_flg = 1;
-			//oŒ»ƒ^ƒCƒv‚ğæ“¾
+			//å‡ºç¾ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
 			num = ANNOON_Table[ inFldSpa->AnnoonTblType ].Num;
 			form_no = ANNOON_Table[ inFldSpa->AnnoonTblType ].Tbl[ gf_rand()%num ];
 		}
@@ -2609,14 +2609,14 @@ static BOOL AddPokemonParam(const int inTarget, const ENC_FLD_SPA *inFldSpa,
 
 //-----------------------------------------------------------------------------
 /**
- * ’nãíˆ—Fw’è‚µ‚½ƒe[ƒuƒ‹”Ô†‚Ì¦‚·ƒ|ƒPƒ‚ƒ“‚Ì’†‚Åˆê”ÔƒŒƒxƒ‹‚Ì‚‚¢ƒe[ƒuƒ‹”Ô†‚ğ•Ô‚·(‰B‚µ“Á«ˆ—)
+ * åœ°ä¸Šæˆ¦å‡¦ç†ï¼šæŒ‡å®šã—ãŸãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·ã®ç¤ºã™ãƒã‚±ãƒ¢ãƒ³ã®ä¸­ã§ä¸€ç•ªãƒ¬ãƒ™ãƒ«ã®é«˜ã„ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·ã‚’è¿”ã™(éš ã—ç‰¹æ€§å‡¦ç†)
 
  *
- * @param	inEncCommonData		‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ƒe[ƒuƒ‹
- * @param	inFldSpa			“Á«ƒ`ƒFƒbƒNEƒtƒHƒ‹ƒ€•ÏX—p\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	inTblNo				ƒe[ƒuƒ‹ƒiƒ“ƒo[
+ * @param	inEncCommonData		å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
+ * @param	inFldSpa			ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ãƒ»ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç”¨æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	inTblNo				ãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
  *
- * @return	u8					•ÏXŒãƒe[ƒuƒ‹ƒiƒ“ƒo[
+ * @return	u8					å¤‰æ›´å¾Œãƒ†ãƒ¼ãƒ–ãƒ«ãƒŠãƒ³ãƒãƒ¼
  */
 //-----------------------------------------------------------------------------
 static u8 GetMaxLvMonsTblNo(const ENC_COMMON_DATA *inEncCommonData, const ENC_FLD_SPA *inFldSpa, const u8 inTblNo)
@@ -2624,24 +2624,24 @@ static u8 GetMaxLvMonsTblNo(const ENC_COMMON_DATA *inEncCommonData, const ENC_FL
 	u8 tbl_no;
 	u8 i;
 	if (inFldSpa->Egg == 0){
-		//‚â‚é‚«A‚Í‚è‚«‚èAƒvƒŒƒbƒVƒƒ[ “Á«”­“®ƒ`ƒFƒbƒNƒŒƒxƒ‹‚Ì‚‚¢ƒ|ƒPƒ‚ƒ“‚Æ‚TŠ„‚ÅƒGƒ“ƒJƒEƒ“ƒg
+		//ã‚„ã‚‹ãã€ã¯ã‚Šãã‚Šã€ãƒ—ãƒ¬ãƒƒã‚·ãƒ£ãƒ¼ ç‰¹æ€§ç™ºå‹•ãƒã‚§ãƒƒã‚¯ãƒ¬ãƒ™ãƒ«ã®é«˜ã„ãƒã‚±ãƒ¢ãƒ³ã¨ï¼•å‰²ã§ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 		if ( (inFldSpa->Spa == TOKUSYU_YARUKI)||
 			 (inFldSpa->Spa == TOKUSYU_HARIKIRI)||
 			 (inFldSpa->Spa == TOKUSYU_PURESSYAA) ){
 			
-			//5Š„‚Å”­“®
+			//5å‰²ã§ç™ºå‹•
 			if (gf_p_rand(2) == 0){
-				return inTblNo;			//“Á«–¢”­“®
+				return inTblNo;			//ç‰¹æ€§æœªç™ºå‹•
 			}
 			
-			//ƒe[ƒuƒ‹”Ô†•Û‘¶
+			//ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·ä¿å­˜
 			tbl_no = inTblNo;
-			//“¯‚¶ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚Ìƒe[ƒuƒ‹‚ğŒŸõ
+			//åŒã˜ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’æ¤œç´¢
 			for(i=0;i<ENC_MONS_NUM_NORMAL;i++){
-				if (inEncCommonData[i].MonsNo == inEncCommonData[tbl_no].MonsNo){ //“¯‚¶ƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[‚©H
-					//ƒŒƒxƒ‹”äŠr
+				if (inEncCommonData[i].MonsNo == inEncCommonData[tbl_no].MonsNo){ //åŒã˜ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ã‹ï¼Ÿ
+					//ãƒ¬ãƒ™ãƒ«æ¯”è¼ƒ
 					if (inEncCommonData[i].LvMax > inEncCommonData[tbl_no].LvMax){
-						//ƒe[ƒuƒ‹”Ô†‚ÌXV
+						//ãƒ†ãƒ¼ãƒ–ãƒ«ç•ªå·ã®æ›´æ–°
 						tbl_no = i;
 					}
 				}
@@ -2655,26 +2655,26 @@ static u8 GetMaxLvMonsTblNo(const ENC_COMMON_DATA *inEncCommonData, const ENC_FL
 
 //-----------------------------------------------------------------------------
 /**
- * “Á«AƒXƒvƒŒ[ƒ`ƒFƒbƒN‚È‚Ç‚Ìî•ñ‚ğWŒv‚µ‚Ä\‘¢‘Ì‚ÉƒZƒbƒg
+ * ç‰¹æ€§ã€ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ãªã©ã®æƒ…å ±ã‚’é›†è¨ˆã—ã¦æ§‹é€ ä½“ã«ã‚»ãƒƒãƒˆ
 
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inPokeParam		©•ª‚Ìƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€
- * @param	inData			ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^
- * @param	outSpa			î•ñ\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inPokeParam		è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ 
+ * @param	inData			ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ * @param	outSpa			æƒ…å ±æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //-----------------------------------------------------------------------------
 static void SetSpaStruct(FIELDSYS_WORK *fsys, POKEMON_PARAM *inPokeParam, ENCOUNT_DATA* inData, ENC_FLD_SPA *outSpa  )
 {
-	//æ“ªƒ|ƒPƒ‚ƒ“‚Ìƒ^ƒ}ƒSƒ`ƒFƒbƒN
+	//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³ã®ã‚¿ãƒã‚´ãƒã‚§ãƒƒã‚¯
 	if( PokeParaGet( inPokeParam, ID_PARA_tamago_flag, NULL ) == 0 ){
-		// æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚ªƒ^ƒ}ƒS‚Å‚È‚¢
+		// å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ãŒã‚¿ãƒã‚´ã§ãªã„
 		outSpa->Egg = 0;
-		outSpa->Spa = PokeParaGet(inPokeParam, ID_PARA_speabino, NULL);	// “Áê”\—Íæ“¾
+		outSpa->Spa = PokeParaGet(inPokeParam, ID_PARA_speabino, NULL);	// ç‰¹æ®Šèƒ½åŠ›å–å¾—
 	}else{
-		// æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚ªƒ^ƒ}ƒS
+		// å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ãŒã‚¿ãƒã‚´
 		outSpa->Egg = 1;
 		outSpa->Spa = TOKUSYU_MAX;
 	}
@@ -2684,19 +2684,19 @@ static void SetSpaStruct(FIELDSYS_WORK *fsys, POKEMON_PARAM *inPokeParam, ENCOUN
 	outSpa->EncCancelSpInvalid = FALSE;
 	
 	if (inData != NULL){
-		//ƒV[ƒEƒVEƒV[ƒhƒ‹ƒSƒtƒHƒ‹ƒ€•ÏXŠm—¦ƒZƒbƒg
-		outSpa->FormProb[0] = inData->FormProb[0];	//ƒV[ƒEƒV
-		outSpa->FormProb[1] = inData->FormProb[1];	//ƒV[ƒhƒ‹ƒS
-		//ƒAƒ“ƒm[ƒ“
+		//ã‚·ãƒ¼ã‚¦ã‚·ãƒ»ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´ãƒ•ã‚©ãƒ«ãƒ å¤‰æ›´ç¢ºç‡ã‚»ãƒƒãƒˆ
+		outSpa->FormProb[0] = inData->FormProb[0];	//ã‚·ãƒ¼ã‚¦ã‚·
+		outSpa->FormProb[1] = inData->FormProb[1];	//ã‚·ãƒ¼ãƒ‰ãƒ«ã‚´
+		//ã‚¢ãƒ³ãƒãƒ¼ãƒ³
 		if (inData->AnnoonTable != 0){
 			GF_ASSERT(inData->AnnoonTable<=8&&"annoon_table_over");
-			//ƒAƒ“ƒm[ƒ“ƒe[ƒuƒ‹ƒ^ƒCƒvƒZƒbƒg
+			//ã‚¢ãƒ³ãƒãƒ¼ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¿ã‚¤ãƒ—ã‚»ãƒƒãƒˆ
 			outSpa->AnnoonTblType = inData->AnnoonTable-1;
 		}else{
 			outSpa->AnnoonTblType = 0;
 		}
 	}
-	//ƒgƒŒ[ƒi[‚h‚c‚ÌƒZƒbƒg
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ï¼©ï¼¤ã®ã‚»ãƒƒãƒˆ
 	outSpa->TrainerID = MyStatus_GetID( SaveData_GetMyStatus(fsys->savedata) );
 	
 }
@@ -2705,11 +2705,11 @@ static void SetSpaStruct(FIELDSYS_WORK *fsys, POKEMON_PARAM *inPokeParam, ENCOUN
 
 //-----------------------------------------------------------------------------
 /**
- * ’Ş‚èƒGƒ“ƒJƒEƒ“ƒg
- * ¦ƒTƒtƒ@ƒŠ‚É‚¢‚½‚Æ‚µ‚Ä‚àA’Ş‚Å‚Í“Áê˜g‚ª–³‚¢‚Ì‚ÅAƒTƒtƒ@ƒŠƒ‚ƒ“ƒXƒ^[‚ÌƒZƒbƒg‚Ís‚í‚È‚¢
+ * é‡£ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
+ * â€»ã‚µãƒ•ã‚¡ãƒªã«ã„ãŸã¨ã—ã¦ã‚‚ã€é‡£ã§ã¯ç‰¹æ®Šæ ãŒç„¡ã„ã®ã§ã€ã‚µãƒ•ã‚¡ãƒªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ã‚»ãƒƒãƒˆã¯è¡Œã‚ãªã„
  *
- * @param	fsys				ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inRodtype			’Ş‚èŠÆ
+ * @param	fsys				ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inRodtype			é‡£ã‚Šç«¿
  *
  * @return	BOOL
  */
@@ -2719,10 +2719,10 @@ BOOL DebugSetFishingEncount( FIELDSYS_WORK * fsys, const u8 inRodType )
 	BATTLE_PARAM * battle_param;
 	POKEMON_PARAM *poke_param;
 	POKEPARTY *my_party;
-	BOOL safari_flg;		//ƒTƒtƒ@ƒŠƒtƒ‰ƒO
+	BOOL safari_flg;		//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°
 
 	ENC_COMMON_DATA enc_data[ENC_MONS_NUM_MAX];
-	ENC_FLD_SPA f_spa;		//“Áê”\—Í
+	ENC_FLD_SPA f_spa;		//ç‰¹æ®Šèƒ½åŠ›
 
 	{
 		u8 prob;
@@ -2730,45 +2730,45 @@ BOOL DebugSetFishingEncount( FIELDSYS_WORK * fsys, const u8 inRodType )
 		if (DebugFishProbFlg){
 			prob = 100;
 		}else{
-			// ƒGƒ“ƒJƒEƒ“ƒg—¦
+			// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡
 			prob = GetEncountProbFishing(fsys, inRodType);
 		}
 #else
-		// ƒGƒ“ƒJƒEƒ“ƒg—¦
+		// ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡
 		prob = GetEncountProbFishing(fsys, inRodType);
 #endif
 		if(  prob == 0 ){
-			return FALSE;		//Šm—¦‚ª0
+			return FALSE;		//ç¢ºç‡ãŒ0
 		}
 
-		//è‚¿ƒ|ƒPƒp[ƒeƒBæ“¾
+		//æ‰‹æŒã¡ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£å–å¾—
 		my_party = SaveData_GetTemotiPokemon(fsys->savedata);
-		poke_param = PokeParty_GetMemberPointer(my_party, 0);	//æ“ªƒ|ƒPƒ‚ƒ“æ“¾
+		poke_param = PokeParty_GetMemberPointer(my_party, 0);	//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³å–å¾—
 		SetSpaStruct(fsys, poke_param, NULL, &f_spa );
 	
-		//’Ş‚è‚Å‚ÍAƒXƒvƒŒ[ƒ`ƒFƒbƒN‚ğ‚µ‚È‚¢
+		//é‡£ã‚Šã§ã¯ã€ã‚¹ãƒ—ãƒ¬ãƒ¼ãƒã‚§ãƒƒã‚¯ã‚’ã—ãªã„
 	
-		//“Á«‚É‚æ‚Á‚ÄƒGƒ“ƒJƒEƒ“ƒg—¦•ÏX
+		//ç‰¹æ€§ã«ã‚ˆã£ã¦ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆç‡å¤‰æ›´
 		prob = ChangeEncProb(	TRUE, prob, &f_spa,
 								Situation_GetWeatherID(SaveData_GetSituation(fsys->savedata)),
 								poke_param	);
-		//Šm—¦‚ÅƒGƒ“ƒJƒEƒ“ƒg
+		//ç¢ºç‡ã§ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 		if (gf_p_rand(100) >= prob){
-			return FALSE;		//ƒGƒ“ƒJƒEƒ“ƒg‚µ‚È‚¢
+			return FALSE;		//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
 		}
 	}
-	//ƒTƒtƒ@ƒŠƒtƒ‰ƒO‚ğæ“¾
+	//ã‚µãƒ•ã‚¡ãƒªãƒ•ãƒ©ã‚°ã‚’å–å¾—
 	safari_flg = SysFlag_SafariCheck(SaveData_GetEventWork(fsys->savedata));
 
-	//ƒoƒgƒ‹ƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+	//ãƒãƒˆãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
 	SetFieldBattleParam(fsys, safari_flg, &battle_param);
-	//è‚¿ƒ|ƒPƒ‚ƒ“‚È‚ÇƒZƒbƒg
+	//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãªã©ã‚»ãƒƒãƒˆ
 	BattleParam_SetParamByGameData(battle_param, fsys);
 
 
 	if ( (ZoneData_IsSpFishingZone(fsys->location->zone_id))&&
 			 SpFishing_CheckPoint(fsys) ){
-		//“Áê’Ş‚èƒf[ƒ^ì¬
+		//ç‰¹æ®Šé‡£ã‚Šãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		u8 i;
 		int monsno;
 		u8 max,min;
@@ -2781,7 +2781,7 @@ BOOL DebugSetFishingEncount( FIELDSYS_WORK * fsys, const u8 inRodType )
 			enc_data[i].LvMin = min;
 		}
 	}else{
-		//‹¤’ÊƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^ì¬
+		//å…±é€šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		{
 			NON_GROUND_ENC_MONSTER_DAT *enc_fish;
 			u8 i;
@@ -2789,15 +2789,15 @@ BOOL DebugSetFishingEncount( FIELDSYS_WORK * fsys, const u8 inRodType )
 
 			data = (ENCOUNT_DATA*)EventData_GetEncountData(fsys);	
 		
-			//’Ş‚èŠÆ•Ê‚Éƒf[ƒ^ì¬
+			//é‡£ã‚Šç«¿åˆ¥ã«ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 			switch(inRodType){
-			case FISHINGROD_BAD:		//ƒ{ƒ
+			case FISHINGROD_BAD:		//ãƒœãƒ­
 				enc_fish = data->EncFish1;
 				break;
-			case FISHINGROD_GOOD:		//‚¢‚¢
+			case FISHINGROD_GOOD:		//ã„ã„
 				enc_fish = data->EncFish2;
 				break;
-			case FISHINGROD_GREAT:		//‚·‚²‚¢
+			case FISHINGROD_GREAT:		//ã™ã”ã„
 				enc_fish = data->EncFish3;
 				break;
 			}
@@ -2810,7 +2810,7 @@ BOOL DebugSetFishingEncount( FIELDSYS_WORK * fsys, const u8 inRodType )
 		}
 	}
 
-	//’Ş‚èƒGƒ“ƒJƒEƒ“ƒg
+	//é‡£ã‚Šã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
 	{
 		BOOL rc;
 		rc = FishingEncSingle( fsys, poke_param, battle_param, enc_data, &f_spa, inRodType );

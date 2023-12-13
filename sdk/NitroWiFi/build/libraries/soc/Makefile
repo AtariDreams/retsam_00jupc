@@ -13,56 +13,56 @@
 #
 # $Log: Makefile,v $
 # Revision 1.17  2005/08/23 04:42:25  yasu
-# NITROWIFI_INSTALL_ROOT ŠÖ˜A‚ÌC³
+# NITROWIFI_INSTALL_ROOT é–¢é€£ã®ä¿®æ­£
 #
 # Revision 1.16  2005/08/18 13:19:23  yasu
-# cleanup ‚Æ list ‚Ì’Ç‰Á
+# cleanup ã¨ list ã®è¿½åŠ 
 #
 # Revision 1.15  2005/08/08 06:16:43  seiki_masashi
-# socl_ssl.c ‚ğ•œ‹A
-# sed ‚É“n‚·ƒpƒX‚ª cygwin Œ`®‚É‚È‚é‚æ‚¤C³
+# socl_ssl.c ã‚’å¾©å¸°
+# sed ã«æ¸¡ã™ãƒ‘ã‚¹ãŒ cygwin å½¢å¼ã«ãªã‚‹ã‚ˆã†ä¿®æ­£
 #
 # Revision 1.14  2005/08/07 13:03:20  yasu
-# socl_misc.c ’Ç‰Á/socl_ssl.c ‚ğˆêƒRƒƒ“ƒgƒAƒEƒg
+# socl_misc.c è¿½åŠ /socl_ssl.c ã‚’ä¸€æ™‚ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
 #
 # Revision 1.13  2005/08/06 11:55:54  seiki_masashi
-# SOCL_EnableSsl ‚ğ’Ç‰Á
+# SOCL_EnableSsl ã‚’è¿½åŠ 
 #
 # Revision 1.12  2005/07/30 15:31:14  yasu
-# ƒRƒ}ƒ“ƒhƒpƒCƒv•ª—£‚É‚Æ‚à‚È‚¤C³
+# ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—åˆ†é›¢ã«ã¨ã‚‚ãªã†ä¿®æ­£
 #
 # Revision 1.11  2005/07/28 11:16:25  yasu
-# SOC_Poll ‚ÌÀ‘•
+# SOC_Poll ã®å®Ÿè£…
 #
 # Revision 1.10  2005/07/25 10:15:01  yasu
-# SOC ƒ‰ƒCƒuƒ‰ƒŠ‚Ì’Ç‰Á
+# SOC ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®è¿½åŠ 
 #
 # Revision 1.9  2005/07/22 13:55:53  yasu
-# listen accept ‚Ì’Ç‰Á
+# listen accept ã®è¿½åŠ 
 #
 # Revision 1.8  2005/07/22 12:45:05  yasu
-# ”ñ“¯Šúˆ—‰¼À‘•
+# éåŒæœŸå‡¦ç†ä»®å®Ÿè£…
 #
 # Revision 1.7  2005/07/19 14:06:39  yasu
-# SOCL_Read/Write ’Ç‰Á
+# SOCL_Read/Write è¿½åŠ 
 #
 # Revision 1.6  2005/07/18 13:16:36  yasu
-# ‘—MóMƒXƒŒƒbƒh‚ğì¬‚·‚é
+# é€ä¿¡å—ä¿¡ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½œæˆã™ã‚‹
 #
 # Revision 1.5  2005/07/15 13:33:11  yasu
-# soc ƒ‰ƒCƒuƒ‰ƒŠ‚Ìƒ\[ƒX’²®
+# soc ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ã‚½ãƒ¼ã‚¹èª¿æ•´
 #
 # Revision 1.4  2005/06/28 02:35:14  yasu
-# ƒ\ƒPƒbƒgƒXƒŒƒbƒhì¬ŠÖ”‚ğ•Ê‚É
+# ã‚½ã‚±ãƒƒãƒˆã‚¹ãƒ¬ãƒƒãƒ‰ä½œæˆé–¢æ•°ã‚’åˆ¥ã«
 #
 # Revision 1.3  2005/06/23 11:13:17  yasu
-# NitroWiFi ‚Ì commondefs, modulerules ‚ğ“Ç‚İ‚Ş
+# NitroWiFi ã® commondefs, modulerules ã‚’èª­ã¿è¾¼ã‚€
 #
 # Revision 1.2  2005/06/22 10:52:13  yasu
-# ƒAƒ‹ƒtƒ@”Åì¬
+# ã‚¢ãƒ«ãƒ•ã‚¡ç‰ˆä½œæˆ
 #
 # Revision 1.1  2005/06/20 08:42:29  terui
-# ƒcƒŠ[\‘¢‚ğV‹Kì¬
+# ãƒ„ãƒªãƒ¼æ§‹é€ ã‚’æ–°è¦ä½œæˆ
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

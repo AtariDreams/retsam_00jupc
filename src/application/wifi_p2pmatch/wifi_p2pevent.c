@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	wifi_p2pevent.c
- * @bfief	WIFIP2PƒCƒxƒ“ƒg§Œä
+ * @bfief	WIFIP2Pã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡
  * @author	k.ohno
  * @date	06.04.14
  */
@@ -43,7 +43,7 @@ extern void DwcUtilOverlayStart(void);
 
 
 FS_EXTERN_OVERLAY(wifi_p2pmatch);
-// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 static const PROC_DATA WifiP2PMatchProcData = {
 	WifiP2PMatchProc_Init,
 	WifiP2PMatchProc_Main,
@@ -64,7 +64,7 @@ typedef struct{
     u16* ret;
     u8 lvLimit;
     u8 bSingle;
-    void* work;		// wifiPofin—pƒ[ƒN
+    void* work;		// wifiPofinç”¨ãƒ¯ãƒ¼ã‚¯
 	u32 vchat;
 }EV_P2PEVENT_WORK;
 
@@ -111,7 +111,7 @@ typedef struct{
 	};
 
 
-// WiFiP2PMatrch ‚SlÚ‘±‰æ–Êl”§ŒÀ’è‹`
+// WiFiP2PMatrch ï¼”äººæ¥ç¶šç”»é¢äººæ•°åˆ¶é™å®šç¾©
 static const u8 sc_P2P_FOUR_MATCH_MAX[ WFP2PMF_TYPE_NUM ] = {
 	3, 4, 4, 4
 };
@@ -121,23 +121,23 @@ static BOOL GMEVENT_Sub_P2PMatch(GMEVENT_CONTROL * event);
 
 
 //-------------------------------------
-///	ƒoƒgƒ‹ƒ‹[ƒ€‚ÌÀŒ±‚Ì‚½‚ßƒvƒƒZƒX•ÏXŠÖ”‚ğì¬
+///	ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ã®å®Ÿé¨“ã®ãŸã‚ãƒ—ãƒ­ã‚»ã‚¹å¤‰æ›´é–¢æ•°ã‚’ä½œæˆ
 static void P2P_FourWaitInit( EV_P2PEVENT_WORK* p_wk, FIELDSYS_WORK* fsys, u32 heapID, u32 type );
 static u32 P2P_FourWaitEnd( EV_P2PEVENT_WORK* p_wk );
 
-//  ‚½‚Ü‚¢‚êİ’è
+//  ãŸã¾ã„ã‚Œè¨­å®š
 static BUCKET_PROC_WORK* BCT_ProcSet( FIELDSYS_WORK* fsys, u32 heapID, u32 vchat );
 static void BCT_ProcEnd( BUCKET_PROC_WORK* p_wk );
 
-// ‚½‚Ü‚Ì‚èİ’è
+// ãŸã¾ã®ã‚Šè¨­å®š
 static BB_PROC_WORK* BB_ProcSet( FIELDSYS_WORK* fsys, u32 heapID, u32 vchat );
 static void BB_ProcEnd( BB_PROC_WORK* p_wk );
 
-// ‚Ó‚¤‚¹‚ñ‚í‚èİ’è
+// ãµã†ã›ã‚“ã‚ã‚Šè¨­å®š
 static BALLOON_PROC_WORK* BL_ProcSet( FIELDSYS_WORK* fsys, u32 heapID, u32 vchat );
 static void BL_ProcEnd( BUCKET_PROC_WORK* p_wk );
 
-// ƒŒƒR[ƒh	ƒ~ƒjƒQ[ƒ€—V‚ñ‚¾ƒXƒRƒAİ’è
+// ãƒ¬ã‚³ãƒ¼ãƒ‰	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ éŠã‚“ã ã‚¹ã‚³ã‚¢è¨­å®š
 static void P2P_Record_Minigame( FIELDSYS_WORK* fsys );
 
 
@@ -148,7 +148,7 @@ static void WBR_ProcEnd( WIFI_BATTLEROOM* p_wk );
 #endif
 
 //==============================================================================
-//	WIFI’ÊM“ü‚èŒû
+//	WIFIé€šä¿¡å…¥ã‚Šå£
 //==============================================================================
 static BOOL GMEVENT_Sub_P2PMatch(GMEVENT_CONTROL * event)
 {
@@ -167,7 +167,7 @@ static BOOL GMEVENT_Sub_P2PMatch(GMEVENT_CONTROL * event)
         ep2p->seq++;
         if(ep2p->pMatchParam->seq == WIFI_P2PMATCH_DPW){
             if( mydwc_checkMyGSID(fsys->savedata) ){
-                ep2p->seq = P2P_FREE;  //ƒR[ƒhæ“¾Ï‚İ‚Ìê‡‚È‚É‚à‚µ‚È‚¢
+                ep2p->seq = P2P_FREE;  //ã‚³ãƒ¼ãƒ‰å–å¾—æ¸ˆã¿ã®å ´åˆãªã«ã‚‚ã—ãªã„
                 *(ep2p->ret) = 0;
             }
         }
@@ -177,58 +177,58 @@ static BOOL GMEVENT_Sub_P2PMatch(GMEVENT_CONTROL * event)
         ep2p->seq ++;
 		break;
       case P2P_SELECT:
-        if( mydwc_checkMyGSID(fsys->savedata) ){  // ƒR[ƒhæ“¾‚É¬Œ÷
+        if( mydwc_checkMyGSID(fsys->savedata) ){  // ã‚³ãƒ¼ãƒ‰å–å¾—ã«æˆåŠŸ
             SysFlag_WifiUseSet(SaveData_GetEventWork(fsys->savedata));
         }
         switch(ep2p->pMatchParam->seq){
-          case WIFI_P2PMATCH_SBATTLE_FREE:   // ’ÊM‘ÎíŒÄ‚Ño‚µ
+          case WIFI_P2PMATCH_SBATTLE_FREE:   // é€šä¿¡å¯¾æˆ¦å‘¼ã³å‡ºã—
             ep2p->lvLimit = 0;
             ep2p->bSingle = WIFI_BATTLEFLAG_SINGLE;
             ep2p->seq = P2P_BATTLE;
             break;
-          case WIFI_P2PMATCH_SBATTLE50:   // ’ÊM‘ÎíŒÄ‚Ño‚µ
+          case WIFI_P2PMATCH_SBATTLE50:   // é€šä¿¡å¯¾æˆ¦å‘¼ã³å‡ºã—
             ep2p->lvLimit = 50;
             ep2p->bSingle = WIFI_BATTLEFLAG_SINGLE;
             ep2p->seq = P2P_BATTLE;
             break;
-          case WIFI_P2PMATCH_SBATTLE100:   // ’ÊM‘ÎíŒÄ‚Ño‚µ
+          case WIFI_P2PMATCH_SBATTLE100:   // é€šä¿¡å¯¾æˆ¦å‘¼ã³å‡ºã—
             ep2p->lvLimit = 100;
             ep2p->bSingle = WIFI_BATTLEFLAG_SINGLE;
             ep2p->seq = P2P_BATTLE;
             break;
-          case WIFI_P2PMATCH_DBATTLE_FREE:   // ’ÊM‘ÎíŒÄ‚Ño‚µ
+          case WIFI_P2PMATCH_DBATTLE_FREE:   // é€šä¿¡å¯¾æˆ¦å‘¼ã³å‡ºã—
             ep2p->lvLimit = 0;
             ep2p->bSingle = WIFI_BATTLEFLAG_DOUBLE;
             ep2p->seq = P2P_BATTLE;
             break;
-          case WIFI_P2PMATCH_DBATTLE50:   // ’ÊM‘ÎíŒÄ‚Ño‚µ
+          case WIFI_P2PMATCH_DBATTLE50:   // é€šä¿¡å¯¾æˆ¦å‘¼ã³å‡ºã—
             ep2p->lvLimit = 50;
             ep2p->bSingle = WIFI_BATTLEFLAG_DOUBLE;
             ep2p->seq = P2P_BATTLE;
             break;
-          case WIFI_P2PMATCH_DBATTLE100:   // ’ÊM‘ÎíŒÄ‚Ño‚µ
+          case WIFI_P2PMATCH_DBATTLE100:   // é€šä¿¡å¯¾æˆ¦å‘¼ã³å‡ºã—
             ep2p->lvLimit = 100;
             ep2p->bSingle = WIFI_BATTLEFLAG_DOUBLE;
             ep2p->seq = P2P_BATTLE;
             break;
-          case WIFI_P2PMATCH_TRADE:   // ƒ|ƒPƒ‚ƒ“ƒgƒŒ[ƒhŒÄ‚Ño‚µ
+          case WIFI_P2PMATCH_TRADE:   // ãƒã‚±ãƒ¢ãƒ³ãƒˆãƒ¬ãƒ¼ãƒ‰å‘¼ã³å‡ºã—
             ep2p->seq = P2P_TRADE;
             break;
-          case WIFI_P2PMATCH_DPW_END:  //DPW‚Ö‚¢‚­ê‡
+          case WIFI_P2PMATCH_DPW_END:  //DPWã¸ã„ãå ´åˆ
             *(ep2p->ret) = 1;
             ep2p->seq = P2P_SETEND;
             break;
-          case WIFI_P2PMATCH_END:  // ’ÊMØ’f‚µ‚Ä‚Ü‚·BI—¹‚µ‚Ü‚·B
+          case WIFI_P2PMATCH_END:  // é€šä¿¡åˆ‡æ–­ã—ã¦ã¾ã™ã€‚çµ‚äº†ã—ã¾ã™ã€‚
             ep2p->seq = P2P_EXIT;
             break;
-          case WIFI_P2PMATCH_POFIN:   // ƒ|ƒtƒBƒ“—¿—ŒÄ‚Ño‚µ
+          case WIFI_P2PMATCH_POFIN:   // ãƒãƒ•ã‚£ãƒ³æ–™ç†å‘¼ã³å‡ºã—
             ep2p->seq = P2P_POFIN_WAIT;
             break;
-          case WIFI_P2PMATCH_FRONTIER:   // ƒtƒƒ“ƒeƒBƒAŒÄ‚Ño‚µ
+          case WIFI_P2PMATCH_FRONTIER:   // ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å‘¼ã³å‡ºã—
             ep2p->seq = P2P_FRONTIER;
             break;
 #ifdef WFP2P_DEBUG_EXON
-          case WIFI_P2PMATCH_BATTLEROOM:   // ƒ|ƒtƒBƒ“—¿—ŒÄ‚Ño‚µ
+          case WIFI_P2PMATCH_BATTLEROOM:   // ãƒãƒ•ã‚£ãƒ³æ–™ç†å‘¼ã³å‡ºã—
             ep2p->seq = P2P_BATTLEROOM;
             break;
 		  case WIFI_P2PMATCH_MBATTLE_FREE:
@@ -237,16 +237,16 @@ static BOOL GMEVENT_Sub_P2PMatch(GMEVENT_CONTROL * event)
             ep2p->seq = P2P_BATTLE;
 			break;
 #endif
-          case WIFI_P2PMATCH_BUCKET:   // ƒoƒPƒbƒgŒÄ‚Ño‚µ
+          case WIFI_P2PMATCH_BUCKET:   // ãƒã‚±ãƒƒãƒˆå‘¼ã³å‡ºã—
             ep2p->seq = P2P_BUCKET_WAIT;
 			break;
-          case WIFI_P2PMATCH_BALANCEBALL:   // ‹Êæ‚èŒÄ‚Ño‚µ
+          case WIFI_P2PMATCH_BALANCEBALL:   // ç‰ä¹—ã‚Šå‘¼ã³å‡ºã—
             ep2p->seq = P2P_BALANCE_BALL_WAIT;
 			break;
-          case WIFI_P2PMATCH_BALLOON:   // ‚Ó‚¤‚¹‚ñŒÄ‚Ño‚µ
+          case WIFI_P2PMATCH_BALLOON:   // ãµã†ã›ã‚“å‘¼ã³å‡ºã—
             ep2p->seq = P2P_BALLOON_WAIT;
 			break;
-          case WIFI_P2PMATCH_UTIL:  //WIFIUTIL‚Ö”ò‚Ñ‚Ü‚·
+          case WIFI_P2PMATCH_UTIL:  //WIFIUTILã¸é£›ã³ã¾ã™
             ep2p->seq = P2P_UTIL;
             break;
         }
@@ -285,7 +285,7 @@ static BOOL GMEVENT_Sub_P2PMatch(GMEVENT_CONTROL * event)
 		break;
 		
       case P2P_POFIN_WAIT_END:
-        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
             ep2p->seq = P2P_FourWaitEnd( ep2p );
         }
 		break;
@@ -296,7 +296,7 @@ static BOOL GMEVENT_Sub_P2PMatch(GMEVENT_CONTROL * event)
         ep2p->seq++;
         break;
       case P2P_POFIN_END:
-        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
             sys_FreeMemoryEz(ep2p->work);
             ep2p->seq = P2P_MATCH_BOARD;
         }
@@ -308,7 +308,7 @@ static BOOL GMEVENT_Sub_P2PMatch(GMEVENT_CONTROL * event)
         ep2p->seq++;
         break;
       case P2P_FRONTIER_END:
-        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
             sys_FreeMemoryEz(ep2p->work);
             ep2p->seq = P2P_MATCH_BOARD;
         }
@@ -321,7 +321,7 @@ static BOOL GMEVENT_Sub_P2PMatch(GMEVENT_CONTROL * event)
         break;
 
       case P2P_BATTLEROOM_END:
-        if( WBRSys_EndCheck( ep2p->work ) == TRUE ){		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+        if( WBRSys_EndCheck( ep2p->work ) == TRUE ){		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
             ep2p->seq = P2P_MATCH_BOARD;
 			WBR_ProcEnd( ep2p->work );
         }
@@ -334,20 +334,20 @@ static BOOL GMEVENT_Sub_P2PMatch(GMEVENT_CONTROL * event)
 		break;
 
 	  case P2P_BUCKET_WAIT_END:
-        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
             ep2p->seq = P2P_FourWaitEnd( ep2p );
         }
 		break;
 
       case P2P_BUCKET:
-		// ƒ~ƒjƒQ[ƒ€ƒXƒRƒAİ’è
+		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¹ã‚³ã‚¢è¨­å®š
 		P2P_Record_Minigame( fsys );
         ep2p->work = BCT_ProcSet(fsys,HEAPID_WORLD,ep2p->vchat);
         ep2p->seq++;
         break;
 
       case P2P_BUCKET_END:
-        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
             ep2p->seq = P2P_MATCH_BOARD;
 			BCT_ProcEnd( ep2p->work );
         }
@@ -359,20 +359,20 @@ static BOOL GMEVENT_Sub_P2PMatch(GMEVENT_CONTROL * event)
 		break;
 
 	  case P2P_BALANCE_BALL_WAIT_END:
-        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
             ep2p->seq = P2P_FourWaitEnd( ep2p );
         }
 		break;
 
       case P2P_BALANCE_BALL:
-		// ƒ~ƒjƒQ[ƒ€ƒXƒRƒAİ’è
+		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¹ã‚³ã‚¢è¨­å®š
 		P2P_Record_Minigame( fsys );
         ep2p->work = BB_ProcSet(fsys,HEAPID_WORLD,ep2p->vchat);
         ep2p->seq++;
         break;
 
       case P2P_BALANCE_BALL_END:
-        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
             ep2p->seq = P2P_MATCH_BOARD;
 			BB_ProcEnd( ep2p->work );
         }
@@ -384,20 +384,20 @@ static BOOL GMEVENT_Sub_P2PMatch(GMEVENT_CONTROL * event)
 		break;
 
 	  case P2P_BALLOON_WAIT_END:
-        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
             ep2p->seq = P2P_FourWaitEnd( ep2p );
         }
 		break;
 
       case P2P_BALLOON:
-		// ƒ~ƒjƒQ[ƒ€ƒXƒRƒAİ’è
+		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã‚¹ã‚³ã‚¢è¨­å®š
 		P2P_Record_Minigame( fsys );
         ep2p->work = BL_ProcSet(fsys,HEAPID_WORLD,ep2p->vchat);
         ep2p->seq++;
         break;
 
       case P2P_BALLOON_END:
-        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+        if( !FieldEvent_Cmd_WaitSubProcEnd(fsys) ){		//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
             ep2p->seq = P2P_MATCH_BOARD;
 			BL_ProcEnd( ep2p->work );
         }
@@ -447,11 +447,11 @@ void EventCmd_DPWInitProc2(GMEVENT_CONTROL * event, u16* ret)
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚S‚É‚ñ‘Ò‡º‰Šú‰»
+ *	@brief	ï¼”ã«ã‚“å¾…åˆå®¤åˆæœŸåŒ–
  *
- *	@param	p_wk		ƒ[ƒN
- *	@param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒv
+ *	@param	p_wk		ãƒ¯ãƒ¼ã‚¯
+ *	@param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  */
 //-----------------------------------------------------------------------------
 static void P2P_FourWaitInit( EV_P2PEVENT_WORK* p_wk, FIELDSYS_WORK* fsys, u32 heapID, u32 type )
@@ -473,11 +473,11 @@ static void P2P_FourWaitInit( EV_P2PEVENT_WORK* p_wk, FIELDSYS_WORK* fsys, u32 h
 }
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚S‚É‚ñ‘Ò‡º•åWI—¹
+ *	@brief	ï¼”ã«ã‚“å¾…åˆå®¤å‹Ÿé›†çµ‚äº†
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	Ÿi‚ñ‚Å‚Ù‚µ‚¢ƒV[ƒPƒ“ƒX
+ *	@retval	æ¬¡é€²ã‚“ã§ã»ã—ã„ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  */
 //-----------------------------------------------------------------------------
 static u32 P2P_FourWaitEnd( EV_P2PEVENT_WORK* p_wk )
@@ -486,19 +486,19 @@ static u32 P2P_FourWaitEnd( EV_P2PEVENT_WORK* p_wk )
 
 	if( p_work->result == TRUE ){
 		switch( p_work->type ){
-		// ƒ|ƒtƒBƒ“
+		// ãƒãƒ•ã‚£ãƒ³
 		case WFP2PMF_TYPE_POFIN:
 			p_wk->seq = P2P_POFIN;
 			break;
-		// ‚½‚Ü‚¢‚ê
+		// ãŸã¾ã„ã‚Œ
 		case WFP2PMF_TYPE_BUCKET:
 			p_wk->seq = P2P_BUCKET;
 			break;
-		// ‚½‚Ü‚Ì‚è
+		// ãŸã¾ã®ã‚Š
 		case WFP2PMF_TYPE_BALANCE_BALL:
 			p_wk->seq = P2P_BALANCE_BALL;
 			break;
-		// ‚Ó‚¤‚¹‚ñ‚í‚è
+		// ãµã†ã›ã‚“ã‚ã‚Š
 		case WFP2PMF_TYPE_BALLOON:
 			p_wk->seq = P2P_BALLOON;
 			break;
@@ -514,10 +514,10 @@ static u32 P2P_FourWaitEnd( EV_P2PEVENT_WORK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒPƒbƒgƒQ[ƒ€ŠJn
+ *	@brief	ãƒã‚±ãƒƒãƒˆã‚²ãƒ¼ãƒ é–‹å§‹
  *
- *	@param	fsys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	heapID		ƒq[ƒvID
+ *	@param	fsys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */	
 //-----------------------------------------------------------------------------
 static BUCKET_PROC_WORK* BCT_ProcSet( FIELDSYS_WORK* fsys, u32 heapID, u32 vchat )
@@ -527,7 +527,7 @@ static BUCKET_PROC_WORK* BCT_ProcSet( FIELDSYS_WORK* fsys, u32 heapID, u32 vchat
 	FS_EXTERN_OVERLAY(bucket);
 	FS_EXTERN_OVERLAY(minigame_common);
 	{
-		// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+		// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 		static const PROC_DATA BCTProcData = {
 			BucketProc_Init,
 			BucketProc_Main,
@@ -540,7 +540,7 @@ static BUCKET_PROC_WORK* BCT_ProcSet( FIELDSYS_WORK* fsys, u32 heapID, u32 vchat
 		p_work->wifi_lobby	= FALSE;
 		p_work->p_save		= fsys->savedata;
 
-		// ƒ~ƒjƒQ[ƒ€‹¤’ÊƒI[ƒo[ƒŒƒC‚ğ“Ç‚İ‚Ş
+		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’èª­ã¿è¾¼ã‚€
 		Overlay_Load( FS_OVERLAY_ID(minigame_common), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 		
 		GameSystem_StartSubProc(fsys, &BCTProcData, p_work);
@@ -550,7 +550,7 @@ static BUCKET_PROC_WORK* BCT_ProcSet( FIELDSYS_WORK* fsys, u32 heapID, u32 vchat
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒPƒbƒgƒQ[ƒ€I—¹
+ *	@brief	ãƒã‚±ãƒƒãƒˆã‚²ãƒ¼ãƒ çµ‚äº†
  *
  *	@param	p_wk 
  */
@@ -566,10 +566,10 @@ static void BCT_ProcEnd( BUCKET_PROC_WORK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒ‰ƒ“ƒXƒ{[ƒ‹ƒvƒƒZƒXİ’è
+ *	@brief	ãƒãƒ©ãƒ³ã‚¹ãƒœãƒ¼ãƒ«ãƒ—ãƒ­ã‚»ã‚¹è¨­å®š
  *
- *	@param	fsys		ƒ[ƒN
- *	@param	heapID		ƒq[ƒv
+ *	@param	fsys		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  *	@param	vchat		VCHAT
  */
 //-----------------------------------------------------------------------------
@@ -580,7 +580,7 @@ static BB_PROC_WORK* BB_ProcSet( FIELDSYS_WORK* fsys, u32 heapID, u32 vchat )
 	FS_EXTERN_OVERLAY(balance_ball);
 	FS_EXTERN_OVERLAY(minigame_common);
 	{
-		// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+		// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 		static const PROC_DATA BBProcData = {
 			BalanceBallProc_Init,
 			BalanceBallProc_Main,
@@ -593,7 +593,7 @@ static BB_PROC_WORK* BB_ProcSet( FIELDSYS_WORK* fsys, u32 heapID, u32 vchat )
 		p_work->wifi_lobby	= FALSE;
 		p_work->p_save= fsys->savedata;
 
-		// ƒ~ƒjƒQ[ƒ€‹¤’ÊƒI[ƒo[ƒŒƒC‚ğ“Ç‚İ‚Ş
+		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’èª­ã¿è¾¼ã‚€
 		Overlay_Load( FS_OVERLAY_ID(minigame_common), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 		
 		GameSystem_StartSubProc(fsys, &BBProcData, p_work);
@@ -603,9 +603,9 @@ static BB_PROC_WORK* BB_ProcSet( FIELDSYS_WORK* fsys, u32 heapID, u32 vchat )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒ‰ƒ“ƒXƒ{[ƒ‹ƒvƒƒZƒX”jŠü
+ *	@brief	ãƒãƒ©ãƒ³ã‚¹ãƒœãƒ¼ãƒ«ãƒ—ãƒ­ã‚»ã‚¹ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BB_ProcEnd( BB_PROC_WORK* p_wk )
@@ -619,10 +619,10 @@ static void BB_ProcEnd( BB_PROC_WORK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚Ó‚¤‚¹‚ñ‚í‚èƒvƒƒZƒXİ’è
+ *	@brief	ãµã†ã›ã‚“ã‚ã‚Šãƒ—ãƒ­ã‚»ã‚¹è¨­å®š
  *
- *	@param	fsys		ƒ[ƒN
- *	@param	heapID		ƒq[ƒv
+ *	@param	fsys		ãƒ¯ãƒ¼ã‚¯
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—
  *	@param	vchat		VCHAT
  */
 //-----------------------------------------------------------------------------
@@ -633,7 +633,7 @@ static BALLOON_PROC_WORK* BL_ProcSet( FIELDSYS_WORK* fsys, u32 heapID, u32 vchat
 	FS_EXTERN_OVERLAY(balloon);
 	FS_EXTERN_OVERLAY(minigame_common);
 	{
-		// ƒvƒƒZƒX’è‹`ƒf[ƒ^
+		// ãƒ—ãƒ­ã‚»ã‚¹å®šç¾©ãƒ‡ãƒ¼ã‚¿
 		static const PROC_DATA BCTProcData = {
 			BalloonProc_Init,
 			BalloonProc_Main,
@@ -646,7 +646,7 @@ static BALLOON_PROC_WORK* BL_ProcSet( FIELDSYS_WORK* fsys, u32 heapID, u32 vchat
 		p_work->wifi_lobby	= FALSE;
 		p_work->p_save		= fsys->savedata;
 
-		// ƒ~ƒjƒQ[ƒ€‹¤’ÊƒI[ƒo[ƒŒƒC‚ğ“Ç‚İ‚Ş
+		// ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å…±é€šã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’èª­ã¿è¾¼ã‚€
 		Overlay_Load( FS_OVERLAY_ID(minigame_common), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 		
 		GameSystem_StartSubProc(fsys, &BCTProcData, p_work);
@@ -656,9 +656,9 @@ static BALLOON_PROC_WORK* BL_ProcSet( FIELDSYS_WORK* fsys, u32 heapID, u32 vchat
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‚Ó‚¤‚¹‚ñ‚í‚èƒvƒƒZƒX”jŠü
+ *	@brief	ãµã†ã›ã‚“ã‚ã‚Šãƒ—ãƒ­ã‚»ã‚¹ç ´æ£„
  *
- *	@param	p_wk	ƒ[ƒN
+ *	@param	p_wk	ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 static void BL_ProcEnd( BUCKET_PROC_WORK* p_wk )
@@ -673,7 +673,7 @@ static void BL_ProcEnd( BUCKET_PROC_WORK* p_wk )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ~ƒjƒQ[ƒ€‚Å—V‚ñ‚¾	ƒXƒRƒAŒvZ
+ *	@brief	ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã§éŠã‚“ã 	ã‚¹ã‚³ã‚¢è¨ˆç®—
  *
  *	@param	fsys	
  */
@@ -688,21 +688,21 @@ static void P2P_Record_Minigame( FIELDSYS_WORK* fsys )
 
 
 #ifdef WFP2P_DEBUG
-// ƒI[ƒo[ƒŒƒCIDéŒ¾
+// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤IDå®£è¨€
 FS_EXTERN_OVERLAY(wifi_battleroom);
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒ‹[ƒ€ƒvƒƒZƒXİ’è
+ *	@brief	ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ ãƒ—ãƒ­ã‚»ã‚¹è¨­å®š
  *
- *	@param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€
- *	@param	heapID		ƒq[ƒvID
+ *	@param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	heapID		ãƒ’ãƒ¼ãƒ—ID
  */
 //-----------------------------------------------------------------------------
 static WIFI_BATTLEROOM* WBR_ProcSet( FIELDSYS_WORK* fsys, u32 heapID )
 {
 	WBR_INIT init;
 
-	// ƒI[ƒo[ƒŒƒCƒ[ƒh
+	// ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒ­ãƒ¼ãƒ‰
 	Overlay_Load( FS_OVERLAY_ID(wifi_battleroom), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 	
 	init.p_fsys = fsys;

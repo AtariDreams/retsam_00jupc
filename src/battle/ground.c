@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	ground.c
- * @brief	í“¬‰æ–ÊF’n–Ê(ƒ|ƒPƒ‚ƒ“‚ªã‚Éæ‚é‚¨–~)
+ * @brief	æˆ¦é—˜ç”»é¢ï¼šåœ°é¢(ãƒã‚±ãƒ¢ãƒ³ãŒä¸Šã«ä¹—ã‚‹ãŠç›†)
  * @author	matsuda
- * @date	2005.10.06(–Ø)
+ * @date	2005.10.06(æœ¨)
  */
 //==============================================================================
 #include "common.h"
@@ -18,54 +18,54 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///’n–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+///åœ°é¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define GROUND_BGPRI		(3)
-///©‹@‘¤’n–Ê‚Ìƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+///è‡ªæ©Ÿå´åœ°é¢ã®ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define GROUND_SOFTPRI_MINE		(1000)
-///“G‘¤’n–Ê‚Ìƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+///æ•µå´åœ°é¢ã®ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 #define GROUND_SOFTPRI_ENEMY	(1000)
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///’n–ÊƒAƒNƒ^[ƒwƒbƒ_
+///åœ°é¢ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S GroundObjParam[] = {
 	{//GROUND_TYPE_NORMAL_MINE
 		ENCOUNT_X_TYPE_AA, GROUND_MINE_Y, 0,		//x, y, z
-		0, GROUND_SOFTPRI_MINE, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-		NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-		{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-			CHARID_GROUND_MINE,	//ƒLƒƒƒ‰
-			PLTTID_GROUND,	//ƒpƒŒƒbƒg
-			CELLID_GROUND_MINE,	//ƒZƒ‹
-			CELLANMID_GROUND_MINE,	//ƒZƒ‹ƒAƒjƒ
-			CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-			CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+		0, GROUND_SOFTPRI_MINE, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+		{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+			CHARID_GROUND_MINE,	//ã‚­ãƒ£ãƒ©
+			PLTTID_GROUND,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+			CELLID_GROUND_MINE,	//ã‚»ãƒ«
+			CELLANMID_GROUND_MINE,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+			CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		},
-		GROUND_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-		0,			//Vram“]‘—ƒtƒ‰ƒO
+		GROUND_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+		0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 	},
 	{//GROUND_TYPE_NORMAL_ENEMY
 		ENCOUNT_X_TYPE_BB, GROUND_ENEMY_Y, 0,		//x, y, z
-		0, GROUND_SOFTPRI_ENEMY, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-		NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-		{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-			CHARID_GROUND_ENEMY,	//ƒLƒƒƒ‰
-			PLTTID_GROUND,	//ƒpƒŒƒbƒg
-			CELLID_GROUND_ENEMY,	//ƒZƒ‹
-			CELLANMID_GROUND_ENEMY,	//ƒZƒ‹ƒAƒjƒ
-			CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-			CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+		0, GROUND_SOFTPRI_ENEMY, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+		NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+		{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+			CHARID_GROUND_ENEMY,	//ã‚­ãƒ£ãƒ©
+			PLTTID_GROUND,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+			CELLID_GROUND_ENEMY,	//ã‚»ãƒ«
+			CELLANMID_GROUND_ENEMY,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+			CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		},
-		GROUND_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-		0,			//Vram“]‘—ƒtƒ‰ƒO
+		GROUND_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+		0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 	},
 };
 
-///’n–ÊƒLƒƒƒ‰IDƒŠƒ\[ƒXƒe[ƒuƒ‹F©•ª‘¤
+///åœ°é¢ã‚­ãƒ£ãƒ©IDãƒªã‚½ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ï¼šè‡ªåˆ†å´
 ALIGN4 static const u16 GroundResourceID_Mine[] = {
 	GROUND02_M_NCGR_BIN,
 	GROUND07_M_NCGR_BIN,
@@ -78,22 +78,22 @@ ALIGN4 static const u16 GroundResourceID_Mine[] = {
 	GROUND03_M_NCGR_BIN,
 	GROUND06_M_NCGR_BIN,
 	GROUND08_M_NCGR_BIN,
-	GROUND10_M_NCGR_BIN,	//’İ‚è‹´@ƒ_ƒ~[
-	GROUND12_M_NCGR_BIN,	//l“V‰¤A
-	GROUND13_M_NCGR_BIN,	//l“V‰¤B
-	GROUND14_M_NCGR_BIN,	//l“V‰¤C
-	GROUND15_M_NCGR_BIN,	//l“V‰¤D
-	GROUND16_M_NCGR_BIN,	//ƒ`ƒƒƒ“ƒsƒIƒ“
-	GROUND17_M_NCGR_BIN,	//”j‚ê‚½¢ŠE(‘Šè’n–Ê—L‚è)
-	GROUND18_M_NCGR_BIN,	//ƒoƒgƒ‹ƒ^ƒ[
-	GROUND19_M_NCGR_BIN,	//ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
-	GROUND20_M_NCGR_BIN,	//ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg
-	GROUND21_M_NCGR_BIN,	//ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
-	GROUND22_M_NCGR_BIN,	//ƒoƒgƒ‹ƒXƒe[ƒW
-	GROUND23_M_NCGR_BIN,	//”j‚ê‚½¢ŠE(ƒMƒ‰ƒeƒBƒií—pB‘Šè’n–Ê–³‚µ)
+	GROUND10_M_NCGR_BIN,	//åŠã‚Šæ©‹ã€€ãƒ€ãƒŸãƒ¼
+	GROUND12_M_NCGR_BIN,	//å››å¤©ç‹A
+	GROUND13_M_NCGR_BIN,	//å››å¤©ç‹B
+	GROUND14_M_NCGR_BIN,	//å››å¤©ç‹C
+	GROUND15_M_NCGR_BIN,	//å››å¤©ç‹D
+	GROUND16_M_NCGR_BIN,	//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
+	GROUND17_M_NCGR_BIN,	//ç ´ã‚ŒãŸä¸–ç•Œ(ç›¸æ‰‹åœ°é¢æœ‰ã‚Š)
+	GROUND18_M_NCGR_BIN,	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+	GROUND19_M_NCGR_BIN,	//ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
+	GROUND20_M_NCGR_BIN,	//ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
+	GROUND21_M_NCGR_BIN,	//ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+	GROUND22_M_NCGR_BIN,	//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
+	GROUND23_M_NCGR_BIN,	//ç ´ã‚ŒãŸä¸–ç•Œ(ã‚®ãƒ©ãƒ†ã‚£ãƒŠæˆ¦ç”¨ã€‚ç›¸æ‰‹åœ°é¢ç„¡ã—)
 };
 
-///’n–ÊƒLƒƒƒ‰IDƒŠƒ\[ƒXƒe[ƒuƒ‹F“G‘¤
+///åœ°é¢ã‚­ãƒ£ãƒ©IDãƒªã‚½ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ï¼šæ•µå´
 ALIGN4 static const u16 GroundResourceID_Enemy[] = {
 	GROUND02_E_NCGR_BIN,
 	GROUND07_E_NCGR_BIN,
@@ -106,22 +106,22 @@ ALIGN4 static const u16 GroundResourceID_Enemy[] = {
 	GROUND03_E_NCGR_BIN,
 	GROUND06_E_NCGR_BIN,
 	GROUND08_E_NCGR_BIN,
-	GROUND08_E_NCGR_BIN,	//’İ‚è‹´@ƒ_ƒ~[
-	GROUND12_E_NCGR_BIN,	//l“V‰¤A
-	GROUND13_E_NCGR_BIN,	//l“V‰¤B
-	GROUND14_E_NCGR_BIN,	//l“V‰¤C
-	GROUND15_E_NCGR_BIN,	//l“V‰¤D
-	GROUND16_E_NCGR_BIN,	//ƒ`ƒƒƒ“ƒsƒIƒ“
-	GROUND17_E_NCGR_BIN,	//”j‚ê‚½¢ŠE(‘Šè’n–Ê—L‚è)
-	GROUND18_E_NCGR_BIN,	//ƒoƒgƒ‹ƒ^ƒ[
-	GROUND19_E_NCGR_BIN,	//ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
-	GROUND20_E_NCGR_BIN,	//ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg
-	GROUND21_E_NCGR_BIN,	//ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
-	GROUND22_E_NCGR_BIN,	//ƒoƒgƒ‹ƒXƒe[ƒW
-	GROUND23_E_NCGR_BIN,	//”j‚ê‚½¢ŠE(ƒMƒ‰ƒeƒBƒií—pB‘Šè’n–Ê–³‚µ)
+	GROUND08_E_NCGR_BIN,	//åŠã‚Šæ©‹ã€€ãƒ€ãƒŸãƒ¼
+	GROUND12_E_NCGR_BIN,	//å››å¤©ç‹A
+	GROUND13_E_NCGR_BIN,	//å››å¤©ç‹B
+	GROUND14_E_NCGR_BIN,	//å››å¤©ç‹C
+	GROUND15_E_NCGR_BIN,	//å››å¤©ç‹D
+	GROUND16_E_NCGR_BIN,	//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
+	GROUND17_E_NCGR_BIN,	//ç ´ã‚ŒãŸä¸–ç•Œ(ç›¸æ‰‹åœ°é¢æœ‰ã‚Š)
+	GROUND18_E_NCGR_BIN,	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+	GROUND19_E_NCGR_BIN,	//ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
+	GROUND20_E_NCGR_BIN,	//ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
+	GROUND21_E_NCGR_BIN,	//ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+	GROUND22_E_NCGR_BIN,	//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
+	GROUND23_E_NCGR_BIN,	//ç ´ã‚ŒãŸä¸–ç•Œ(ã‚®ãƒ©ãƒ†ã‚£ãƒŠæˆ¦ç”¨ã€‚ç›¸æ‰‹åœ°é¢ç„¡ã—)
 };
 
-///’n–ÊƒpƒŒƒbƒgIDƒŠƒ\[ƒXƒe[ƒuƒ‹
+///åœ°é¢ãƒ‘ãƒ¬ãƒƒãƒˆIDãƒªã‚½ãƒ¼ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 ALIGN4 static const u16 GroundResourceID_Palette[][3] = {
 	BATT_GROUND02_D_NCLR,	BATT_GROUND02_E_NCLR,	BATT_GROUND02_N_NCLR,
 	BATT_GROUND07_D_NCLR,	BATT_GROUND07_E_NCLR,	BATT_GROUND07_N_NCLR,
@@ -134,26 +134,26 @@ ALIGN4 static const u16 GroundResourceID_Palette[][3] = {
 	BATT_GROUND03_D_NCLR,	BATT_GROUND03_E_NCLR,	BATT_GROUND03_N_NCLR,
 	BATT_GROUND06_D_NCLR,	BATT_GROUND06_E_NCLR,	BATT_GROUND06_N_NCLR,
 	BATT_GROUND08_D_NCLR,	BATT_GROUND08_E_NCLR,	BATT_GROUND08_N_NCLR,
-	BATT_GROUND08_D_NCLR,	BATT_GROUND08_E_NCLR,	BATT_GROUND08_N_NCLR,	//’İ‚è‹´@ƒ_ƒ~[
-	BATT_GROUND12_D_NCLR,	BATT_GROUND12_E_NCLR,	BATT_GROUND12_N_NCLR,	//l“V‰¤A
-	BATT_GROUND13_D_NCLR,	BATT_GROUND13_E_NCLR,	BATT_GROUND13_N_NCLR,	//l“V‰¤B
-	BATT_GROUND14_D_NCLR,	BATT_GROUND14_E_NCLR,	BATT_GROUND14_N_NCLR,	//l“V‰¤C
-	BATT_GROUND15_D_NCLR,	BATT_GROUND15_E_NCLR,	BATT_GROUND15_N_NCLR,	//l“V‰¤D
-	BATT_GROUND16_D_NCLR,	BATT_GROUND16_E_NCLR,	BATT_GROUND16_N_NCLR,	//ƒ`ƒƒƒ“ƒsƒIƒ“
-	BATT_GROUND17_D_NCLR,	BATT_GROUND17_E_NCLR,	BATT_GROUND17_N_NCLR,	//”j‚ê‚½¢ŠE
-	BATT_GROUND18_D_NCLR,	BATT_GROUND18_E_NCLR,	BATT_GROUND18_N_NCLR,	//ƒoƒgƒ‹ƒ^ƒ[
-	BATT_GROUND19_D_NCLR,	BATT_GROUND19_E_NCLR,	BATT_GROUND19_N_NCLR,	//ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
-	BATT_GROUND20_D_NCLR,	BATT_GROUND20_E_NCLR,	BATT_GROUND20_N_NCLR,	//ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg
-	BATT_GROUND21_D_NCLR,	BATT_GROUND21_E_NCLR,	BATT_GROUND21_N_NCLR,	//ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
-	BATT_GROUND22_D_NCLR,	BATT_GROUND22_E_NCLR,	BATT_GROUND22_N_NCLR,	//ƒoƒgƒ‹ƒXƒe[ƒW
-	BATT_GROUND23_D_NCLR,	BATT_GROUND23_E_NCLR,	BATT_GROUND23_N_NCLR,	//”j‚ê‚½¢ŠE(‘Šè’n–Ê–³‚µ)
+	BATT_GROUND08_D_NCLR,	BATT_GROUND08_E_NCLR,	BATT_GROUND08_N_NCLR,	//åŠã‚Šæ©‹ã€€ãƒ€ãƒŸãƒ¼
+	BATT_GROUND12_D_NCLR,	BATT_GROUND12_E_NCLR,	BATT_GROUND12_N_NCLR,	//å››å¤©ç‹A
+	BATT_GROUND13_D_NCLR,	BATT_GROUND13_E_NCLR,	BATT_GROUND13_N_NCLR,	//å››å¤©ç‹B
+	BATT_GROUND14_D_NCLR,	BATT_GROUND14_E_NCLR,	BATT_GROUND14_N_NCLR,	//å››å¤©ç‹C
+	BATT_GROUND15_D_NCLR,	BATT_GROUND15_E_NCLR,	BATT_GROUND15_N_NCLR,	//å››å¤©ç‹D
+	BATT_GROUND16_D_NCLR,	BATT_GROUND16_E_NCLR,	BATT_GROUND16_N_NCLR,	//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
+	BATT_GROUND17_D_NCLR,	BATT_GROUND17_E_NCLR,	BATT_GROUND17_N_NCLR,	//ç ´ã‚ŒãŸä¸–ç•Œ
+	BATT_GROUND18_D_NCLR,	BATT_GROUND18_E_NCLR,	BATT_GROUND18_N_NCLR,	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+	BATT_GROUND19_D_NCLR,	BATT_GROUND19_E_NCLR,	BATT_GROUND19_N_NCLR,	//ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
+	BATT_GROUND20_D_NCLR,	BATT_GROUND20_E_NCLR,	BATT_GROUND20_N_NCLR,	//ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
+	BATT_GROUND21_D_NCLR,	BATT_GROUND21_E_NCLR,	BATT_GROUND21_N_NCLR,	//ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+	BATT_GROUND22_D_NCLR,	BATT_GROUND22_E_NCLR,	BATT_GROUND22_N_NCLR,	//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
+	BATT_GROUND23_D_NCLR,	BATT_GROUND23_E_NCLR,	BATT_GROUND23_N_NCLR,	//ç ´ã‚ŒãŸä¸–ç•Œ(ç›¸æ‰‹åœ°é¢ç„¡ã—)
 };
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ’n–Ê‚ÌƒŠƒ\[ƒX“Ç‚İ‚İ
- * @param   ground		’n–Êƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   åœ°é¢ã®ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
+ * @param   ground		åœ°é¢ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Ground_ResourceLoad(GROUND_WORK *ground)
@@ -196,7 +196,7 @@ void Ground_ResourceLoad(GROUND_WORK *ground)
 	CATS_LoadResourcePlttWorkArcH(BattleWorkPfdGet(ground->bw), FADE_MAIN_OBJ, csp, crp, 
 		hdl, GroundResourceID_Palette[ground->ground_id][time_zone_offset], 0, 
 		1, NNS_G2D_VRAM_TYPE_2DMAIN, PLTTID_GROUND);
-	//”wŒiƒ`ƒFƒ“ƒW‚Ì‚½‚ß‚ÉABGƒpƒŒƒbƒg‚É‚à“WŠJ
+	//èƒŒæ™¯ãƒã‚§ãƒ³ã‚¸ã®ãŸã‚ã«ã€BGãƒ‘ãƒ¬ãƒƒãƒˆã«ã‚‚å±•é–‹
 	PaletteWorkSet_Arc(BattleWorkPfdGet(ground->bw), ARC_BATT_OBJ,
 		GroundResourceID_Palette[ground->ground_id][time_zone_offset], HEAPID_BATTLE, 
 		FADE_MAIN_BG, 0x20, 0x07*0x10);
@@ -209,10 +209,10 @@ void Ground_ResourceLoad(GROUND_WORK *ground)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’n–ÊƒAƒNƒ^[‚ğ¶¬‚·‚é
- * @param   ground		’n–Êƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   åœ°é¢ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
+ * @param   ground		åœ°é¢ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * æ‚ÉƒŠƒ\[ƒX‚ª“Ç‚İ‚Ü‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * å…ˆã«ãƒªã‚½ãƒ¼ã‚¹ãŒèª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void Ground_ActorSet(GROUND_WORK *ground)
@@ -232,8 +232,8 @@ void Ground_ActorSet(GROUND_WORK *ground)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’n–Ê‚ÌƒAƒNƒ^[‚ğíœ‚·‚é
- * @param   ground		’n–Êƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   åœ°é¢ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
+ * @param   ground		åœ°é¢ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Ground_ActorDel(GROUND_WORK *ground)
@@ -247,8 +247,8 @@ void Ground_ActorDel(GROUND_WORK *ground)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’n–Ê‚ÌƒŠƒ\[ƒX‚ğ‰ğ•ú‚·‚é
- * @param   ground		’n–Êƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   åœ°é¢ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
+ * @param   ground		åœ°é¢ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Ground_ResourceFree(GROUND_WORK *ground)
@@ -277,9 +277,9 @@ void Ground_ResourceFree(GROUND_WORK *ground)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’n–Ê‚ÌƒAƒNƒ^[‚Ì•\¦İ’è
- * @param   ground		’n–Êƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   enable		CATS_ENABLE_TRUE(•\¦) or CATS_ENABLE_FALSE(”ñ•\¦)
+ * @brief   åœ°é¢ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã®è¡¨ç¤ºè¨­å®š
+ * @param   ground		åœ°é¢ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   enable		CATS_ENABLE_TRUE(è¡¨ç¤º) or CATS_ENABLE_FALSE(éè¡¨ç¤º)
  */
 //--------------------------------------------------------------
 void Ground_EnableSet(GROUND_WORK *ground, int enable)
@@ -294,17 +294,17 @@ void Ground_EnableSet(GROUND_WORK *ground, int enable)
 
 //==============================================================================
 //
-//	•¡”‚ÌŠÖ”‚ğƒZƒbƒg‚É‚µ‚½‚à‚Ì
+//	è¤‡æ•°ã®é–¢æ•°ã‚’ã‚»ãƒƒãƒˆã«ã—ãŸã‚‚ã®
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ’n–Ê‚ÌƒŠƒ\[ƒXƒZƒbƒg‚ÆƒAƒNƒ^[“o˜^‚ğƒZƒbƒg‚É‚µ‚½‚à‚Ì
+ * @brief   åœ°é¢ã®ãƒªã‚½ãƒ¼ã‚¹ã‚»ãƒƒãƒˆã¨ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ã‚’ã‚»ãƒƒãƒˆã«ã—ãŸã‚‚ã®
  *
- * @param   ground		’n–Êƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   bw			í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   type		’n–Ê‚ÌƒOƒ‰ƒtƒBƒbƒNƒ^ƒCƒv(GROUND_TYPE_???)
- * @param   ground_id	’n–Ê‚Ìí—Ş(GROUND_ID_???)
+ * @param   ground		åœ°é¢ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   bw			æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   type		åœ°é¢ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¿ã‚¤ãƒ—(GROUND_TYPE_???)
+ * @param   ground_id	åœ°é¢ã®ç¨®é¡(GROUND_ID_???)
  */
 //--------------------------------------------------------------
 void Ground_ActorResourceSet(GROUND_WORK *ground, BATTLE_WORK *bw, u16 mine_enemy, int ground_id)
@@ -314,7 +314,7 @@ void Ground_ActorResourceSet(GROUND_WORK *ground, BATTLE_WORK *bw, u16 mine_enem
 	ground->mine_enemy = mine_enemy;
 	ground->ground_id = ground_id;
 	if(ground_id >= GROUND_ID_ALL){
-		GF_ASSERT(0);// && "ƒOƒ‰ƒEƒ“ƒhID‚ª‘¶İ‚µ‚Ü‚¹‚ñ");
+		GF_ASSERT(0);// && "ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰IDãŒå­˜åœ¨ã—ã¾ã›ã‚“");
 		ground->ground_id = 0;
 	}
 	Ground_ResourceLoad(ground);
@@ -323,8 +323,8 @@ void Ground_ActorResourceSet(GROUND_WORK *ground, BATTLE_WORK *bw, u16 mine_enem
 
 //--------------------------------------------------------------
 /**
- * @brief   ’n–Ê‚ÌƒAƒNƒ^[íœ‚ÆƒŠƒ\[ƒX‰ğ•ú‚ğƒZƒbƒg‚É‚µ‚½‚à‚Ì
- * @param   ground		’n–Êƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   åœ°é¢ã®ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤ã¨ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾ã‚’ã‚»ãƒƒãƒˆã«ã—ãŸã‚‚ã®
+ * @param   ground		åœ°é¢ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Ground_ActorResourceDel(GROUND_WORK *ground)

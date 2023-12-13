@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>MBCommPState</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">MBErrCode</h1>
-<h2>��`</h2>
+<h2>定義</h2>
 
 <dl>
   <dd>
@@ -45,51 +45,51 @@ typedef enum
   </dd>
 </dl>
 
-<H2>����</H2>
-<P>MB���C�u�����̃G���[�R�[�h�\���񋓒萔�������܂��B<BR>
-�e�l�̈Ӗ��͈ȉ��̒ʂ�ł��B<BR>
+<H2>説明</H2>
+<P>MBライブラリのエラーコード表す列挙定数を示します。<BR>
+各値の意味は以下の通りです。<BR>
 <TABLE border="0">
   <TBODY>
     <TR>
-      <TD>�l</TD>
-      <TD>�Ӗ�</TD>
+      <TD>値</TD>
+      <TD>意味</TD>
     </TR>
 
     <TR>
       <TD>MB_ERRCODE_SUCCESS</TD>
-      <TD>�����̐����������܂��B<BR>
+      <TD>処理の成功を示します。<BR>
 	  </TD>
     </TR>
 
     <TR>
       <TD>MB_ERRCODE_INVALID_PARAM</TD>
-      <TD>�֐��Ăяo���ɗ^����ꂽ�������s���ł��邱�Ƃ������܂��B<br>
-	  ���̃G���[�l�͒ʏ�A�֐��̐擪�Ŕ��肳�ꑦ���ɕԂ���܂��B</TD>
+      <TD>関数呼び出しに与えられた引数が不正であることを示します。<br>
+	  このエラー値は通常、関数の先頭で判定され即座に返されます。</TD>
     </TR>
 
     <TR>
       <TD>MB_ERRCODE_INVALID_STATE</TD>
-      <TD>MB���C�u���������҂�����ԂłȂ����Ƃ������܂��B<br>
-	  ���̃G���[�l�͒ʏ�A�֐��̐擪�Ŕ��肳�ꑦ���ɕԂ���܂��B</TD>
+      <TD>MBライブラリが期待される状態でないことを示します。<br>
+	  このエラー値は通常、関数の先頭で判定され即座に返されます。</TD>
     </TR>
 
     <TR>
       <TD>MB_ERRCODE_WM_FAILURE</TD>
-      <TD>MB���C�u���������ŋ쓮���Ă���WM���C�u�����ɔ������������\�ȃG���[�S�ʂ������܂��B<br>
-	  ���̒ʒm�̓f�o�b�N�ړI�ŗp�ӂ���Ă���A���̃^�C�~���O�Ń��[�U���s���ׂ������͂���܂���B</TD>
+      <TD>MBライブラリ内部で駆動しているWMライブラリに発生した復旧可能なエラー全般を示します。<br>
+	  この通知はデバック目的で用意されており、このタイミングでユーザが行うべき処理はありません。</TD>
     </TR>
 
     <TR>
       <TD>MB_ERRCODE_FATAL</TD>
-      <TD>MB���C�u�����̒ʐM�p�����s�\�ɂȂ�����Ԃ������܂��B<br>
-	  ���̏�Ԃ͎�ɁA�����ŋ쓮���Ă���WM���C�u�����ɔ��������\�����ʈُ킪�����ƂȂ�܂��B<br>
-	  ���̒ʒm�̃^�C�~���O�Ń��[�U���������ɍs���ׂ������͂���܂��񂪁A<br>
-	  ���̏�Ԃɂ����������ꍇ�� MB ���C�u�������ď��������Ȃ����萳�������삵�܂���B</TD>
+      <TD>MBライブラリの通信継続が不可能になった状態を示します。<br>
+	  この状態は主に、内部で駆動しているWMライブラリに発生した予期せぬ異常が原因となります。<br>
+	  この通知のタイミングでユーザがただちに行うべき処理はありませんが、<br>
+	  この状態におちいった場合は MB ライブラリを再初期化しない限り正しく動作しません。</TD>
     </TR>
 
     <TR>
       <TD><font color="#808080">MB_ERRCODE_INVALID_DLFILEINFO</font></TD>
-      <TD rowspan="5"><font color="#808080">�q�@�ł���IPL�ł̂ݎg�p����܂��B</font></TD>
+      <TD rowspan="5"><font color="#808080">子機であるIPLでのみ使用されます。</font></TD>
     </TR>
     <TR>
       <TD><font color="#808080">MB_ERRCODE_INVALID_BLOCK_NO</font></TD>
@@ -112,16 +112,16 @@ typedef enum
 </TABLE>
 <BR>
 </P>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="mb_error_status_type.html">MBErrorStatus</A> 
 <A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A> 
 <A href="parent/MB_CommGetParentState.html">MB_CommGetParentState</A> 
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/09/27 ����<BR>
+2004/09/27 初版<BR>
 </P>
 </body>
 </html>

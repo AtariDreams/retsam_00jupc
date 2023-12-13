@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_046.s
- *@brief	戦闘シーケンス
- *			じこさいせいシーケンス
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			縺倥％縺輔＞縺帙＞繧ｷ繝ｼ繧ｱ繝ｳ繧ｹ
  *@author	HisashiSogabe
  *@data		2006.01.17
  *
@@ -17,11 +17,11 @@
 SUB_046:
 	ATTACK_MESSAGE
 	SERVER_WAIT
-	//HPMAXを読み込み
+	//HPMAX繧定ｪｭ縺ｿ霎ｼ縺ｿ
 	PSP_VALUE_WORK	VAL_GET,SIDE_ATTACK,ID_PSP_hpmax,BUF_PARA_HP_CALC_WORK
-	//HPMAXを半分に
+	//HPMAX繧貞濠蛻�縺ｫ
 	DAMAGE_DIV		BUF_PARA_HP_CALC_WORK,2
-	//HP操作対象をAttackClientに
+	//HP謫堺ｽ懷ｯｾ雎｡繧但ttackClient縺ｫ
 	VALUE_WORK		VAL_SET,BUF_PARA_CLIENT_WORK,BUF_PARA_ATTACK_CLIENT
 	GOSUB			SUB_SEQ_KAIFUKU
 	SEQ_END

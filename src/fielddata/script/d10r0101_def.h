@@ -1,13 +1,13 @@
 #ifndef _D10R0101_DEF_H_
 #define _D10R0101_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_D10R0101_FLAG_CHANGE		(1)
 #define	SCRID_D10R0101_START		(2)
 #define	SCRID_D10R0101_FINISH		(3)
 #define	SCRID_D10R0101_ASK_RETIRE		(4)
 #define	SCRID_POS_D10R0101_RETIRE		(5)
 #define	SCRID_D10R0101_ADMIN		(6)
-#define	SCRID_D10R0101_DATA_MAX		(6)		//最大数
+#define	SCRID_D10R0101_DATA_MAX		(6)		//譛螟ｧ謨ｰ
 
 #endif //_D10R0101_DEF_H_

@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	btl_searcher.c
- * @bfief	ƒoƒgƒ‹ƒT[ƒ`ƒƒ[
+ * @bfief	ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼
  * @author	Satoshi Nohara
  * @date	06.04.26
  */
@@ -33,33 +33,33 @@
 
 //==============================================================================================
 //
-//	’è‹`
+//	å®šç¾©
 //
 //==============================================================================================
-//#define BS_LEVEL_MAX		(5)				//Äí‚ÌÅ‘åƒŒƒxƒ‹
-#define BS_LEVEL_MAX		(6)				//Äí‚ÌÅ‘åƒŒƒxƒ‹
+//#define BS_LEVEL_MAX		(5)				//å†æˆ¦ã®æœ€å¤§ãƒ¬ãƒ™ãƒ«
+#define BS_LEVEL_MAX		(6)				//å†æˆ¦ã®æœ€å¤§ãƒ¬ãƒ™ãƒ«
 
-#define REMATCH_DATA_END	(0)				//Äíƒf[ƒ^‚È‚µ
-#define REMATCH_DATA_DUMMY	(0xffff)		//Äíƒf[ƒ^ƒ_ƒ~[(Ÿ‚ÌƒŒƒxƒ‹‚ğŒ©‚É‚¢‚­‚æ‚¤‚É‚·‚é)
+#define REMATCH_DATA_END	(0)				//å†æˆ¦ãƒ‡ãƒ¼ã‚¿ãªã—
+#define REMATCH_DATA_DUMMY	(0xffff)		//å†æˆ¦ãƒ‡ãƒ¼ã‚¿ãƒ€ãƒŸãƒ¼(æ¬¡ã®ãƒ¬ãƒ™ãƒ«ã‚’è¦‹ã«ã„ãã‚ˆã†ã«ã™ã‚‹)
 
-#define	BS_RAND_NOSET		(50)			//‚T‚O“‚ÌŠm—¦‚ÅÄíƒgƒŒ[ƒi[ƒZƒbƒg‚µ‚È‚¢
-#define	NOT_EXIST_OFS		(-1)			//Äíƒf[ƒ^‚ª‘¶İ‚µ‚È‚¢ê‡
+#define	BS_RAND_NOSET		(50)			//ï¼•ï¼ï¼…ã®ç¢ºç‡ã§å†æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚»ãƒƒãƒˆã—ãªã„
+#define	NOT_EXIST_OFS		(-1)			//å†æˆ¦ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ãªã„å ´åˆ
 
-//ŒŸõ”ÍˆÍ
-#define BS_SEARCH_SX		(7)				//ŒŸõ”ÍˆÍ
-#define BS_SEARCH_TOP		(7)				//ŒŸõ”ÍˆÍ(ålŒö‚©‚ç‰æ–Êã)
-#define BS_SEARCH_BOTTOM	(6)				//ŒŸõ”ÍˆÍ(ålŒö‚©‚ç‰æ–Ê‰º)
+//æ¤œç´¢ç¯„å›²
+#define BS_SEARCH_SX		(7)				//æ¤œç´¢ç¯„å›²
+#define BS_SEARCH_TOP		(7)				//æ¤œç´¢ç¯„å›²(ä¸»äººå…¬ã‹ã‚‰ç”»é¢ä¸Š)
+#define BS_SEARCH_BOTTOM	(6)				//æ¤œç´¢ç¯„å›²(ä¸»äººå…¬ã‹ã‚‰ç”»é¢ä¸‹)
 
-#define	BS_FLDOBJ_MAX		(64)			//FIELD_OBJ_PTR‚ÌÅ‘å”(—vŠm”FI)
+#define	BS_FLDOBJ_MAX		(64)			//FIELD_OBJ_PTRã®æœ€å¤§æ•°(è¦ç¢ºèªï¼)
 
-//ƒgƒŒ[ƒi[ƒT[ƒ`g—pƒ`ƒFƒbƒN
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚µãƒ¼ãƒä½¿ç”¨ãƒã‚§ãƒƒã‚¯
 enum{
-	BS_NO_BATTERY = 0,						//ƒoƒbƒeƒŠ[‚ª—­‚Ü‚Á‚Ä‚¢‚È‚¢
-	BS_NO_TRAINER,							//‰æ–Ê“à‚ÉƒgƒŒ[ƒi[‚ª‚¢‚È‚¢
-	BS_OK_BATTERY,							//ƒoƒbƒeƒŠ[‚ª—­‚Ü‚Á‚Ä‚¢‚ÄA‰æ–Ê“à‚ÉƒgƒŒ[ƒi[‚à‚¢‚é
+	BS_NO_BATTERY = 0,						//ãƒãƒƒãƒ†ãƒªãƒ¼ãŒæºœã¾ã£ã¦ã„ãªã„
+	BS_NO_TRAINER,							//ç”»é¢å†…ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒã„ãªã„
+	BS_OK_BATTERY,							//ãƒãƒƒãƒ†ãƒªãƒ¼ãŒæºœã¾ã£ã¦ã„ã¦ã€ç”»é¢å†…ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚‚ã„ã‚‹
 };
 
-//ƒV[ƒPƒ“ƒXƒiƒ“ƒo[’è‹`
+//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼å®šç¾©
 enum{
 	BS_SEQ_INIT = 0,
 	BS_SEQ_START,
@@ -73,53 +73,53 @@ enum{
 	BS_SEQ_EXIT,
 };
 
-//ƒZƒbƒg‚É‚È‚Á‚Ä‚¢‚éƒgƒŒ[ƒi[‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é‚Ìƒ‚[ƒh
-#define BS_2VS2_MV_REWAR_CHK_ON		(0)		//Äí“®ìƒR[ƒh‚Ìƒ`ƒFƒbƒN‚ ‚è
-#define BS_2VS2_MV_REWAR_CHK_OFF	(1)		//Äí“®ìƒR[ƒh‚Ìƒ`ƒFƒbƒN‚È‚µ
+//ã‚»ãƒƒãƒˆã«ãªã£ã¦ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹æ™‚ã®ãƒ¢ãƒ¼ãƒ‰
+#define BS_2VS2_MV_REWAR_CHK_ON		(0)		//å†æˆ¦å‹•ä½œã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯ã‚ã‚Š
+#define BS_2VS2_MV_REWAR_CHK_OFF	(1)		//å†æˆ¦å‹•ä½œã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯ãªã—
 
 
 //==============================================================================================
 //
-//	\‘¢‘Ì
+//	æ§‹é€ ä½“
 //
 //==============================================================================================
-//ƒf[ƒ^\‘¢‘Ì(btl_searcher.dat‚Åg—p)
+//ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“(btl_searcher.datã§ä½¿ç”¨)
 typedef struct {
-	u16 id[BS_LEVEL_MAX];					//¯•ÊID
+	u16 id[BS_LEVEL_MAX];					//è­˜åˆ¥ID
 }REMATCH_DATA;
 #include "../fielddata/btl_searcher/rematch.dat"
 
-//ƒVƒXƒeƒ€\‘¢‘Ì
+//ã‚·ã‚¹ãƒ†ãƒ æ§‹é€ ä½“
 typedef struct{
 	u32	seq;
 
-	FIELDSYS_WORK* fsys;					//FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
-	EVENTWORK* ev;							//EVENTWORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+	FIELDSYS_WORK* fsys;					//FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+	EVENTWORK* ev;							//EVENTWORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
 
-	const REMATCH_DATA* data;				//Äíƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^(rematch.dat)
+	const REMATCH_DATA* data;				//å†æˆ¦ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿(rematch.dat)
 
 	FIELD_OBJ_PTR fldobj[BS_FLDOBJ_MAX];	//
 
-	u16	fldobj_max;							//Å‘å”
-	u16 anm_count;							//ƒAƒjƒ“o˜^ƒJƒEƒ“ƒg
+	u16	fldobj_max;							//æœ€å¤§æ•°
+	u16 anm_count;							//ã‚¢ãƒ‹ãƒ¡ç™»éŒ²ã‚«ã‚¦ãƒ³ãƒˆ
 
-	u16* ret_wk;							//Œ‹‰Ê‚ğ•Ô‚·ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	WORDSET* wordset;						//’PŒêƒZƒbƒg
+	u16* ret_wk;							//çµæœã‚’è¿”ã™ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	WORDSET* wordset;						//å˜èªã‚»ãƒƒãƒˆ
 
-	TCB_PTR player_tcb;						//ålŒöŒ`‘Ô•ÏXTCB
+	TCB_PTR player_tcb;						//ä¸»äººå…¬å½¢æ…‹å¤‰æ›´TCB
 }BS_SYS;
 
-//ƒAƒjƒ[ƒVƒ‡ƒ“I—¹ŠÄ‹ƒ[ƒN
+//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ç›£è¦–ãƒ¯ãƒ¼ã‚¯
 typedef struct{
 	TCB_PTR	tcb;					//TCB
-	TCB_PTR	anm_tcb;				//ƒAƒjƒ[ƒVƒ‡ƒ“TCB
-	BS_SYS* bs_sys;					//BS_SYS‚Ìƒ|ƒCƒ“ƒ^
+	TCB_PTR	anm_tcb;				//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³TCB
+	BS_SYS* bs_sys;					//BS_SYSã®ãƒã‚¤ãƒ³ã‚¿
 }BS_ANM_WORK;
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 void EventCmd_BtlSearcher(GMEVENT_CONTROL* event,WORDSET* wordset,u16* ret_wk);	//scrcmd.c
@@ -132,7 +132,7 @@ static int BS_UseChk( BS_SYS* bs_sys );
 static void BS_SeqChange( BS_SYS* bs_sys, u32 seq );
 static void BS_FldObjDataSet( BS_SYS* bs_sys );
 
-//ƒAƒjƒŠÖ˜A
+//ã‚¢ãƒ‹ãƒ¡é–¢é€£
 static void BS_FldObjAnmSet( BS_SYS* bs_sys );
 static void BS_AnmSet( BS_SYS* bs_sys, FIELD_OBJ_PTR fldobj, const FIELD_OBJ_ACMD_LIST *list );
 static void BS_AnmSetTCB( BS_SYS* bs_sys, TCB_PTR anm_tcb );
@@ -157,10 +157,10 @@ static FIELD_OBJ_PTR BS_2vs2TrPtrGet( FIELDSYS_WORK* fsys, FIELD_OBJ_PTR search_
 
 //==============================================================================================
 //
-//	ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
+//	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
 //
 //==============================================================================================
-//‰ñ“]ƒAƒjƒ
+//å›è»¢ã‚¢ãƒ‹ãƒ¡
 static const FIELD_OBJ_ACMD_LIST ps_anm_1[] = {
 	{ AC_STAY_WALK_D_8F, 1 },
 	{ AC_WAIT_4F, 1 },
@@ -175,20 +175,20 @@ static const FIELD_OBJ_ACMD_LIST ps_anm_1[] = {
 	{ ACMD_END, 0 },
 };
 
-//Äí‰Â”\ƒAƒjƒ
+//å†æˆ¦å¯èƒ½ã‚¢ãƒ‹ãƒ¡
 static const FIELD_OBJ_ACMD_LIST ps_anm_ok[] = {
 	{ AC_DIR_D, 1 },
 	{ AC_MARK_SAISEN, 1 },
 	{ ACMD_END, 0 },
 };
 
-//‰í‚ª‚Ü‚¾ƒAƒjƒ
+//åˆæˆ¦ãŒã¾ã ã‚¢ãƒ‹ãƒ¡
 static const FIELD_OBJ_ACMD_LIST ps_anm_first[] = {
 	{ AC_MARK_GYOE, 1 },
 	{ ACMD_END, 0 },
 };
 
-//‰½‚à‚µ‚È‚¢ƒAƒjƒ
+//ä½•ã‚‚ã—ãªã„ã‚¢ãƒ‹ãƒ¡
 static const FIELD_OBJ_ACMD_LIST ps_anm_ng[] = {
 	{ AC_WAIT_8F, 1 },
 	{ ACMD_END, 0 },
@@ -197,17 +197,17 @@ static const FIELD_OBJ_ACMD_LIST ps_anm_ng[] = {
 
 //==============================================================================================
 //
-//	ƒAƒCƒeƒ€g—p‚ÅŒÄ‚Î‚ê‚é
+//	ã‚¢ã‚¤ãƒ†ãƒ ä½¿ç”¨ã§å‘¼ã°ã‚Œã‚‹
 //
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+ * ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
  * 
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	wordset		WORDSETŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	ret_wk		Œ‹‰Ê‚ğ•Ô‚·ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	wordset		WORDSETå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ret_wk		çµæœã‚’è¿”ã™ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -217,14 +217,14 @@ void EventCmd_BtlSearcher( GMEVENT_CONTROL* event, WORDSET* wordset, u16* ret_wk
 	BS_SYS* bs_sys;
 	FIELDSYS_WORK* fsys	= FieldEvent_GetFieldSysWork( event );
 
-	//ƒVƒXƒeƒ€ƒ[ƒNŠm•Û
+	//ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 	bs_sys = sys_AllocMemory( HEAPID_FIELD, sizeof(BS_SYS) );
 	if( bs_sys == NULL ){
-		GF_ASSERT( (0) && "ƒƒ‚ƒŠŠm•Û¸”sI" );
+		GF_ASSERT( (0) && "ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—ï¼" );
 		return;
 	}
 
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	memset( bs_sys, 0, sizeof(BS_SYS) );
 	bs_sys->fsys	= fsys;
 	bs_sys->ev		= SaveData_GetEventWork( fsys->savedata );
@@ -237,11 +237,11 @@ void EventCmd_BtlSearcher( GMEVENT_CONTROL* event, WORDSET* wordset, u16* ret_wk
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgƒƒCƒ“
+ * ã‚¤ãƒ™ãƒ³ãƒˆãƒ¡ã‚¤ãƒ³
  * 
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"FALSE=Œp‘±ATRUE=I—¹"
+ * @retval	"FALSE=ç¶™ç¶šã€TRUE=çµ‚äº†"
  */
 //----------------------------------------------------------------------------------------------
 static BOOL GMEVENT_StartBtlSearcher( GMEVENT_CONTROL* event )
@@ -252,22 +252,22 @@ static BOOL GMEVENT_StartBtlSearcher( GMEVENT_CONTROL* event )
 
 	switch( bs_sys->seq ){
 
-	//ƒOƒŠƒbƒh‚Éû‚Ü‚é‚Ü‚Å‘Ò‚Â
+	//ã‚°ãƒªãƒƒãƒ‰ã«åã¾ã‚‹ã¾ã§å¾…ã¤
 	case BS_SEQ_INIT:
 		if( BS_StatusBitCheckMove(bs_sys->fsys) == TRUE ){
 			BS_SeqChange( bs_sys, BS_SEQ_START );
 		}
 		break;
 
-	//ŠJn
+	//é–‹å§‹
 	case BS_SEQ_START:
 
-		//‰æ–Ê“à‚É‚¢‚éƒgƒŒ[ƒi[‚Ìƒf[ƒ^‚ğƒZƒbƒg
+		//ç”»é¢å†…ã«ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 		BS_FldObjDataSet( bs_sys );
 
 		ret = BS_UseChk( bs_sys );
 
-		//ƒoƒbƒeƒŠ[‚ª—­‚Ü‚Á‚Ä‚¢‚ÄA‰æ–Ê“à‚ÉƒgƒŒ[ƒi[‚à‚¢‚é
+		//ãƒãƒƒãƒ†ãƒªãƒ¼ãŒæºœã¾ã£ã¦ã„ã¦ã€ç”»é¢å†…ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚‚ã„ã‚‹
 		if( ret == BS_OK_BATTERY ){
 			*bs_sys->ret_wk = 0;
 			BS_SeqChange( bs_sys, BS_SEQ_OK_BATTERY );
@@ -280,23 +280,23 @@ static BOOL GMEVENT_StartBtlSearcher( GMEVENT_CONTROL* event )
 		}
 		break;
 
-	//ƒoƒbƒeƒŠ[‚ª—­‚Ü‚Á‚Ä‚¢‚ÄA‰æ–Ê“à‚ÉƒgƒŒ[ƒi[‚à‚¢‚é
+	//ãƒãƒƒãƒ†ãƒªãƒ¼ãŒæºœã¾ã£ã¦ã„ã¦ã€ç”»é¢å†…ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚‚ã„ã‚‹
 	case BS_SEQ_OK_BATTERY:
-		bs_sys->player_tcb = Player_BSDrawProcSet( bs_sys->fsys );		//Œ`‘Ô•ÏX
-		Snd_SePlay( SE_BTL_SEARCHER );							//ƒsƒbƒsƒbƒs
-		SysWork_BtlSearcherBatterySet( bs_sys->ev, 0 );			//ƒoƒbƒeƒŠ[ƒNƒŠƒA
-		//BS_FldObjAnmSet( bs_sys );							//‰ñ“]ƒAƒjƒƒZƒbƒg
+		bs_sys->player_tcb = Player_BSDrawProcSet( bs_sys->fsys );		//å½¢æ…‹å¤‰æ›´
+		Snd_SePlay( SE_BTL_SEARCHER );							//ãƒ”ãƒƒãƒ”ãƒƒãƒ”
+		SysWork_BtlSearcherBatterySet( bs_sys->ev, 0 );			//ãƒãƒƒãƒ†ãƒªãƒ¼ã‚¯ãƒªã‚¢
+		//BS_FldObjAnmSet( bs_sys );							//å›è»¢ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 		BS_SeqChange( bs_sys, BS_SEQ_OK_BATTERY_ANM_WAIT );
 		break;
 
-	//ƒgƒŒ[ƒi[‚Ì‰ñ“]ƒAƒjƒI—¹‘Ò‚¿
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®å›è»¢ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	case BS_SEQ_OK_BATTERY_ANM_WAIT:
 		if( BS_AnmWait(bs_sys) == 0 ){
 			BS_SeqChange( bs_sys, BS_SEQ_OK_BATTERY_LOTTERY );
 		}
 		break;
 
-	//Äí‚Ì’Š‘I‚ğs‚¤
+	//å†æˆ¦ã®æŠ½é¸ã‚’è¡Œã†
 	case BS_SEQ_OK_BATTERY_LOTTERY:
 		if( BS_Lottery(bs_sys) == 0 ){
 			*bs_sys->ret_wk = 3;
@@ -304,28 +304,28 @@ static BOOL GMEVENT_StartBtlSearcher( GMEVENT_CONTROL* event )
 		BS_SeqChange( bs_sys, BS_SEQ_OK_BATTERY_LOTTERY_ANM_WAIT );
 		break;
 
-	//Äí‰Â”\A‰í‚Ü‚¾A‰½‚à‚µ‚È‚¢ƒAƒjƒ‘Ò‚¿
+	//å†æˆ¦å¯èƒ½ã€åˆæˆ¦ã¾ã ã€ä½•ã‚‚ã—ãªã„ã‚¢ãƒ‹ãƒ¡å¾…ã¡
 	case BS_SEQ_OK_BATTERY_LOTTERY_ANM_WAIT:
 		if( BS_AnmWait(bs_sys) == 0 ){
 			BS_SeqChange( bs_sys, BS_SEQ_OK_BATTERY_LOTTERY_SE_WAIT );
 		}
 		break;
 
-	//SE‘Ò‚¿
+	//SEå¾…ã¡
 	case BS_SEQ_OK_BATTERY_LOTTERY_SE_WAIT:
 		if( Snd_SePlayCheck(SE_BTL_SEARCHER) == FALSE ){
-			Player_BSDrawProcDelete( bs_sys->player_tcb );			//Œ`‘Ôíœ
+			Player_BSDrawProcDelete( bs_sys->player_tcb );			//å½¢æ…‹å‰Šé™¤
 			BS_SeqChange( bs_sys, BS_SEQ_EXIT );
 		}
 		break;
 			
-	//ƒoƒbƒeƒŠ[‚ª—­‚Ü‚Á‚Ä‚¢‚È‚¢
+	//ãƒãƒƒãƒ†ãƒªãƒ¼ãŒæºœã¾ã£ã¦ã„ãªã„
 	case BS_SEQ_NO_BATTERY:
 
-		//‘«‚è‚È‚¢ƒoƒbƒeƒŠ[—Ê‚ğƒoƒbƒtƒ@‚ÉƒZƒbƒg‚·‚é
+		//è¶³ã‚Šãªã„ãƒãƒƒãƒ†ãƒªãƒ¼é‡ã‚’ãƒãƒƒãƒ•ã‚¡ã«ã‚»ãƒƒãƒˆã™ã‚‹
 		num = ( BS_BATTERY_MAX - SysWork_BtlSearcherBatteryGet(bs_sys->ev) );
 
-		//Œ…”æ“¾
+		//æ¡æ•°å–å¾—
 		if( (num / 10) == 0 ){
 			keta = 1;
 		}else if( (num / 100) == 0 ){
@@ -340,12 +340,12 @@ static BOOL GMEVENT_StartBtlSearcher( GMEVENT_CONTROL* event )
 		BS_SeqChange( bs_sys, BS_SEQ_EXIT );
 		break;
 
-	//‰æ–Ê“à‚ÉƒgƒŒ[ƒi[‚ª‚¢‚È‚¢
+	//ç”»é¢å†…ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒã„ãªã„
 	case BS_SEQ_NO_TRAINER:
 		BS_SeqChange( bs_sys, BS_SEQ_EXIT );
 		break;
 
-	//I—¹
+	//çµ‚äº†
 	case BS_SEQ_EXIT:
 		sys_FreeMemoryEz( bs_sys );
 		return TRUE;
@@ -356,10 +356,10 @@ static BOOL GMEVENT_StartBtlSearcher( GMEVENT_CONTROL* event )
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒV[ƒPƒ“ƒX•ÏX
+ * ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å¤‰æ›´
  *
- * @param   bs_sys		BS_SYSŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param   seq			ƒZƒbƒg‚·‚éƒV[ƒPƒ“ƒX
+ * @param   bs_sys		BS_SYSå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   seq			ã‚»ãƒƒãƒˆã™ã‚‹ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
  * @retval	none
  */
@@ -372,39 +372,39 @@ static void BS_SeqChange( BS_SYS* bs_sys, u32 seq )
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒT[ƒ`ƒƒ[g—pƒ`ƒFƒbƒN
+ * ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ä½¿ç”¨ãƒã‚§ãƒƒã‚¯
  *
- * @param   bs_sys		BS_SYSŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bs_sys		BS_SYSå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	BS_NO_BATTERY	ƒoƒbƒeƒŠ[‚ª—­‚Ü‚Á‚Ä‚¢‚È‚¢
- * @retval	BS_NO_TRAINER	‰æ–Ê“à‚ÉƒgƒŒ[ƒi[‚ª‚¢‚È‚¢
- * @retval	BS_OK_BATTERY	ƒoƒbƒeƒŠ[‚ª—­‚Ü‚Á‚Ä‚¢‚ÄA‰æ–Ê“à‚ÉƒgƒŒ[ƒi[‚à‚¢‚é
+ * @retval	BS_NO_BATTERY	ãƒãƒƒãƒ†ãƒªãƒ¼ãŒæºœã¾ã£ã¦ã„ãªã„
+ * @retval	BS_NO_TRAINER	ç”»é¢å†…ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒã„ãªã„
+ * @retval	BS_OK_BATTERY	ãƒãƒƒãƒ†ãƒªãƒ¼ãŒæºœã¾ã£ã¦ã„ã¦ã€ç”»é¢å†…ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚‚ã„ã‚‹
  */
 //----------------------------------------------------------------------------------------------
 static int BS_UseChk( BS_SYS* bs_sys )
 {
-	//ƒoƒbƒeƒŠƒJƒEƒ“ƒ^[‚ª—­‚Ü‚Á‚Ä‚¢‚é‚©	
+	//ãƒãƒƒãƒ†ãƒªã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ãŒæºœã¾ã£ã¦ã„ã‚‹ã‹	
 	if( SysWork_BtlSearcherBatteryGet(bs_sys->ev) == BS_BATTERY_MAX ){
 
-		//‰æ–Ê“à‚ÉƒgƒŒ[ƒi[‚¢‚é‚©
+		//ç”»é¢å†…ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã„ã‚‹ã‹
 		if( bs_sys->fldobj_max == 0 ){
-			//‰æ–Ê“à‚ÉƒgƒŒ[ƒi[‚¢‚È‚¢
+			//ç”»é¢å†…ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã„ãªã„
 			return BS_NO_TRAINER;
 		}
 
-		//ƒoƒbƒeƒŠ[‚ª—­‚Ü‚Á‚Ä‚¢‚ÄA‰æ–Ê“à‚ÉƒgƒŒ[ƒi[‚à‚¢‚é
+		//ãƒãƒƒãƒ†ãƒªãƒ¼ãŒæºœã¾ã£ã¦ã„ã¦ã€ç”»é¢å†…ã«ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚‚ã„ã‚‹
 		return BS_OK_BATTERY;
 	}
 
-	//ƒoƒbƒeƒŠ[•s‘«
+	//ãƒãƒƒãƒ†ãƒªãƒ¼ä¸è¶³
 	return BS_NO_BATTERY;
 }
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒT[ƒ`ƒƒ[ƒVƒXƒeƒ€‚É‰æ–Ê“à‚É‚¢‚éƒgƒŒ[ƒi[‚Ìƒf[ƒ^‚ğƒZƒbƒg
+ * ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ã«ç”»é¢å†…ã«ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
  *
- * @param   bs_sys		BS_SYSŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bs_sys		BS_SYSå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -420,39 +420,39 @@ static void BS_FldObjDataSet( BS_SYS* bs_sys )
 
 	u32 obj_max = EventData_GetNpcCount( bs_sys->fsys );
 
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	count = 0;
 
 	for( i=0; i < obj_max ;i++ ){
 		bs_sys->fldobj[i] = NULL;
 	}
 
-	//ålŒö‚ÌˆÊ’uæ“¾
+	//ä¸»äººå…¬ã®ä½ç½®å–å¾—
 	hero_gx = Player_NowGPosXGet( bs_sys->fsys->player );
 	hero_gz = Player_NowGPosZGet( bs_sys->fsys->player );
 
-	//ŒŸõ”ÍˆÍ‚ğƒZƒbƒg(3D‚ÍˆÓ¯‚¹‚¸‚ÌŠÈˆÕ”Å)
+	//æ¤œç´¢ç¯„å›²ã‚’ã‚»ãƒƒãƒˆ(3Dã¯æ„è­˜ã›ãšã®ç°¡æ˜“ç‰ˆ)
 	l = hero_gx - BS_SEARCH_SX;
 	r = hero_gx + BS_SEARCH_SX;
 	u = hero_gz - BS_SEARCH_TOP;
 	d = hero_gz + BS_SEARCH_BOTTOM;
 
-	//•â³
+	//è£œæ­£
 	if( l < 0 ){ l = 0; }
 	//if( r < 0 ){ 0 };
 	if( u < 0 ){ u = 0; }
 	//if( d < 0 ){ 0 };
 
-	//OBJƒf[ƒ^•ªƒT[ƒ`‚ğ‚©‚¯‚é
+	//OBJãƒ‡ãƒ¼ã‚¿åˆ†ã‚µãƒ¼ãƒã‚’ã‹ã‘ã‚‹
 	for( i=0; i < obj_max ;i++ ){
 
-		//ƒtƒB[ƒ‹ƒhOBJ‚Ìƒ|ƒCƒ“ƒ^æ“¾
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		fldobj	= FieldOBJSys_OBJIDSearch( bs_sys->fsys->fldobjsys, i );
 		if( fldobj == NULL ){
 			continue;
 		}
 
-		//ƒCƒxƒ“ƒgƒ^ƒCƒv‚ªƒgƒŒ[ƒi[‚©ƒ`ƒFƒbƒN
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ãŒãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‹ãƒã‚§ãƒƒã‚¯
 		event_type = FieldOBJ_EventTypeGet( fldobj );
 
 		switch( event_type ){
@@ -464,17 +464,17 @@ static void BS_FldObjDataSet( BS_SYS* bs_sys )
 		case EV_TYPE_TRAINER_SPIN_MOVE_L:
 		case EV_TYPE_TRAINER_SPIN_MOVE_R:
 
-			//ŒŸõ”ÍˆÍ“à‚É‚ ‚é‚©ƒ`ƒFƒbƒN
+			//æ¤œç´¢ç¯„å›²å†…ã«ã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			x = FieldOBJ_NowPosGX_Get( fldobj );
 			z = FieldOBJ_NowPosGZ_Get( fldobj );
 			if( (x >= l) && (x <= r) && (z >= u) && (z <= d) ){
 
-				//“®ìƒR[ƒh‚ª‰B‚ê–ª‚©ƒ`ƒFƒbƒN
+				//å‹•ä½œã‚³ãƒ¼ãƒ‰ãŒéš ã‚Œè“‘ã‹ãƒã‚§ãƒƒã‚¯
 				if( BS_HideMoveCodeCheck(FieldOBJ_MoveCodeGet(fldobj)) == FALSE ){
 					//OS_Printf( "id = %d\n", i );
 					//OS_Printf( "event_type = %d\n", event_type );
 
-					//ƒVƒXƒeƒ€ƒ[ƒN‚ÉƒZƒbƒg
+					//ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã«ã‚»ãƒƒãƒˆ
 					bs_sys->fldobj[count] = fldobj;
 					count++;
 				}
@@ -488,20 +488,20 @@ static void BS_FldObjDataSet( BS_SYS* bs_sys )
 
 //----------------------------------------------------------------------------------------------
 /**
- * “®ìƒR[ƒh‚ª‰B‚ê–ª‚©ƒ`ƒFƒbƒN
+ * å‹•ä½œã‚³ãƒ¼ãƒ‰ãŒéš ã‚Œè“‘ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param   code	“®ìƒR[ƒh
+ * @param   code	å‹•ä½œã‚³ãƒ¼ãƒ‰
  *
- * @retval	"FALSE=ˆá‚¤ATRUE=‰B‚ê–ª"
+ * @retval	"FALSE=é•ã†ã€TRUE=éš ã‚Œè“‘"
  */
 //----------------------------------------------------------------------------------------------
 static BOOL BS_HideMoveCodeCheck( u32 code )
 {
 	switch( code ){
-	case MV_HIDE_SNOW:		//‰B‚ê–ª@á
-	case MV_HIDE_SAND:		//‰B‚ê–ª@»
-	case MV_HIDE_GRND:		//‰B‚ê–ª@“y
-	case MV_HIDE_KUSA:		//‰B‚ê–ª@‘
+	case MV_HIDE_SNOW:		//éš ã‚Œè“‘ã€€é›ª
+	case MV_HIDE_SAND:		//éš ã‚Œè“‘ã€€ç ‚
+	case MV_HIDE_GRND:		//éš ã‚Œè“‘ã€€åœŸ
+	case MV_HIDE_KUSA:		//éš ã‚Œè“‘ã€€è‰
 		return TRUE;
 	};
 
@@ -511,17 +511,17 @@ static BOOL BS_HideMoveCodeCheck( u32 code )
 
 //==============================================================================================
 //
-//	ˆê•àˆÚ“®‚ÅŒÄ‚Î‚ê‚é(ev_check.c)
+//	ä¸€æ­©ç§»å‹•ã§å‘¼ã°ã‚Œã‚‹(ev_check.c)
 //
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
 /**
- * •à”ƒJƒEƒ“ƒg
+ * æ­©æ•°ã‚«ã‚¦ãƒ³ãƒˆ
  *
- * @param   fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"FALSE	‰½‚à‚µ‚È‚¢"
+ * @retval	"FALSE	ä½•ã‚‚ã—ãªã„"
  */
 //----------------------------------------------------------------------------------------------
 BOOL BS_StepCountUp( FIELDSYS_WORK* fsys )
@@ -530,43 +530,43 @@ BOOL BS_StepCountUp( FIELDSYS_WORK* fsys )
 	u16 battery_count	= SysWork_BtlSearcherBatteryGet( ev );
 	u16 clear_count		= SysWork_BtlSearcherClearGet( ev );
 
-	//ƒoƒgƒ‹ƒT[ƒ`ƒƒ[‚ğ‚Á‚Ä‚¢‚½‚ç
+	//ãƒãƒˆãƒ«ã‚µãƒ¼ãƒãƒ£ãƒ¼ã‚’æŒã£ã¦ã„ãŸã‚‰
 	if( MyItem_CheckItem( SaveData_GetMyItem(fsys->savedata),
 							ITEM_BATORUSAATYAA,1,HEAPID_FIELD) == TRUE ){
 
-		//ƒoƒbƒeƒŠ[‚ğ’™‚ß‚é
+		//ãƒãƒƒãƒ†ãƒªãƒ¼ã‚’è²¯ã‚ã‚‹
 		if( battery_count < BS_BATTERY_MAX ) {
 			battery_count++;
 			SysWork_BtlSearcherBatterySet( ev, battery_count );
 		}
 	}
 
-	//ƒoƒbƒeƒŠ[‚ğg—p‚µ‚Ä‚¢‚½‚ç
+	//ãƒãƒƒãƒ†ãƒªãƒ¼ã‚’ä½¿ç”¨ã—ã¦ã„ãŸã‚‰
 	if( SysFlag_BtlSearcherUseCheck(ev) == TRUE ){
 
-		//ƒNƒŠƒAƒJƒEƒ“ƒ^[—­‚Ü‚Á‚Ä‚¢‚È‚©‚Á‚½‚ç
+		//ã‚¯ãƒªã‚¢ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼æºœã¾ã£ã¦ã„ãªã‹ã£ãŸã‚‰
 		if( clear_count < BS_CLEAR_MAX ){
 			clear_count++;
 			SysWork_BtlSearcherClearSet( ev, clear_count );
 		}
 		
-		//ƒNƒŠƒAƒJƒEƒ“ƒ^[—­‚Ü‚Á‚Ä‚¢‚½‚ç
+		//ã‚¯ãƒªã‚¢ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼æºœã¾ã£ã¦ã„ãŸã‚‰
 		if( clear_count == BS_CLEAR_MAX ){
 			Sys_BtlSearcherReset( ev );					//sys_work.c
-			BS_RevengeMoveCodeClear( fsys );			//Äí“®ìƒR[ƒh‚ğƒNƒŠƒA
+			BS_RevengeMoveCodeClear( fsys );			//å†æˆ¦å‹•ä½œã‚³ãƒ¼ãƒ‰ã‚’ã‚¯ãƒªã‚¢
 		}
 	}
 
 	//OS_Printf( "battery_count = %d\n", battery_count );
 	//OS_Printf( "clear_count = %d\n", clear_count );
-	return FALSE;		//‰½‚à‚µ‚È‚¢
+	return FALSE;		//ä½•ã‚‚ã—ãªã„
 }
 
 //----------------------------------------------------------------------------------------------
 /**
- * Äí“®ìƒR[ƒh‚ğƒNƒŠƒA‚·‚é
+ * å†æˆ¦å‹•ä½œã‚³ãƒ¼ãƒ‰ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
  *
- * @param   fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none
  */
@@ -577,18 +577,18 @@ static void BS_RevengeMoveCodeClear( FIELDSYS_WORK* fsys )
 	FIELD_OBJ_PTR fldobj;
 	u32 obj_max = EventData_GetNpcCount( fsys );
 
-	//OBJƒf[ƒ^•ªƒT[ƒ`‚ğ‚©‚¯‚é
+	//OBJãƒ‡ãƒ¼ã‚¿åˆ†ã‚µãƒ¼ãƒã‚’ã‹ã‘ã‚‹
 	for( i=0; i < obj_max ;i++ ){
 
-		//ƒtƒB[ƒ‹ƒhOBJ‚Ìƒ|ƒCƒ“ƒ^æ“¾
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		fldobj	= FieldOBJSys_OBJIDSearch( fsys->fldobjsys, i );
 		if( fldobj == NULL ){
 			continue;
 		}
 
-		//“®ìƒR[ƒh‚ªÄí‚©ƒ`ƒFƒbƒN
+		//å‹•ä½œã‚³ãƒ¼ãƒ‰ãŒå†æˆ¦ã‹ãƒã‚§ãƒƒã‚¯
 		if( FieldOBJ_MoveCodeGet(fldobj) == MV_REWAR ){
-			BS_MvSet( fldobj, MV_DIR_RND );		//uƒ‰ƒ“ƒ_ƒ€‚É•ûŒüØ‘Öv‚É•ÏX
+			BS_MvSet( fldobj, MV_DIR_RND );		//ã€Œãƒ©ãƒ³ãƒ€ãƒ ã«æ–¹å‘åˆ‡æ›¿ã€ã«å¤‰æ›´
 		}
 	}
 
@@ -598,15 +598,15 @@ static void BS_RevengeMoveCodeClear( FIELDSYS_WORK* fsys )
 
 //==============================================================================================
 //
-//	ƒAƒjƒŠÖ˜A
+//	ã‚¢ãƒ‹ãƒ¡é–¢é€£
 //
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ‚ÌƒAƒjƒƒZƒbƒg
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
  *
- * @param   bs_sys		BS_SYSŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bs_sys		BS_SYSå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -616,7 +616,7 @@ static void BS_FldObjAnmSet( BS_SYS* bs_sys )
 	int i;
 
 	for( i=0; i < bs_sys->fldobj_max ;i++ ){
-		BS_AnmSet( bs_sys, bs_sys->fldobj[i], ps_anm_1 );		//‰ñ“]ƒAƒjƒƒZƒbƒg
+		BS_AnmSet( bs_sys, bs_sys->fldobj[i], ps_anm_1 );		//å›è»¢ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 	}
 
 	return;
@@ -624,9 +624,9 @@ static void BS_FldObjAnmSet( BS_SYS* bs_sys )
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒAƒjƒƒZƒbƒg
+ * ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
  *
- * @param   bs_sys		BS_SYSŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bs_sys		BS_SYSå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   fldobj		FIELD_OBJ_PTR
  *
  * @retval	none
@@ -636,10 +636,10 @@ static void BS_AnmSet( BS_SYS* bs_sys, FIELD_OBJ_PTR fldobj, const FIELD_OBJ_ACM
 {
 	TCB_PTR anm_tcb;
 
-	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhƒŠƒXƒgƒZƒbƒg
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ãƒªã‚¹ãƒˆã‚»ãƒƒãƒˆ
 	anm_tcb = FieldOBJ_AcmdListSet( fldobj, list );
 
-	//ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì”‚ğ‘«‚·
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ•°ã‚’è¶³ã™
 	bs_sys->anm_count++;
 
 	BS_AnmSetTCB( bs_sys, anm_tcb );
@@ -648,10 +648,10 @@ static void BS_AnmSet( BS_SYS* bs_sys, FIELD_OBJ_PTR fldobj, const FIELD_OBJ_ACM
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒI—¹ŠÄ‹TCB ƒZƒbƒg
+ * @brief	ã‚¢ãƒ‹ãƒ¡çµ‚äº†ç›£è¦–TCB ã‚»ãƒƒãƒˆ
  *
- * @param	bs_sys	BS_SYSŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	anm_tcb	TCB_PTRŒ^
+ * @param	bs_sys	BS_SYSå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	anm_tcb	TCB_PTRå‹
  *
  * @return	none
  */
@@ -662,7 +662,7 @@ static void BS_AnmSetTCB( BS_SYS* bs_sys, TCB_PTR anm_tcb )
 
 	ps_anm_wk = sys_AllocMemory( HEAPID_FIELD, sizeof(BS_ANM_WORK) );
 	if( ps_anm_wk == NULL ){
-		GF_ASSERT( (0) && "scrcmd.c ƒƒ‚ƒŠŠm•Û¸”sI" );
+		GF_ASSERT( (0) && "scrcmd.c ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—ï¼" );
 		return;
 	}
 
@@ -674,10 +674,10 @@ static void BS_AnmSetTCB( BS_SYS* bs_sys, TCB_PTR anm_tcb )
 
 //----------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒI—¹ŠÄ‹TCB ƒƒCƒ“
+ * @brief	ã‚¢ãƒ‹ãƒ¡çµ‚äº†ç›£è¦–TCB ãƒ¡ã‚¤ãƒ³
  *
  * @param	tcb		TCB_PTR
- * @param	wk		ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  * @retval	none
  */
@@ -686,12 +686,12 @@ static void BS_AnmMainTCB( TCB_PTR tcb, void* wk )
 {
 	BS_ANM_WORK *swk = (BS_ANM_WORK *)wk;
 
-	//I—¹‚µ‚Ä‚¢‚½‚ç
+	//çµ‚äº†ã—ã¦ã„ãŸã‚‰
 	if( FieldOBJ_AcmdListEndCheck( swk->anm_tcb ) == TRUE ){
 
-		//ƒAƒjƒ[ƒVƒ‡ƒ“”‚ÌŠÇ—
+		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ•°ã®ç®¡ç†
 		if( swk->bs_sys->anm_count == 0 ){
-			GF_ASSERT( (0) && "ƒAƒjƒ[ƒVƒ‡ƒ“”‚ÌŠÇ—‚ª•s³‚Å‚·I" );
+			GF_ASSERT( (0) && "ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³æ•°ã®ç®¡ç†ãŒä¸æ­£ã§ã™ï¼" );
 		}
 
 		swk->bs_sys->anm_count--;
@@ -707,12 +707,12 @@ static void BS_AnmMainTCB( TCB_PTR tcb, void* wk )
 
 //----------------------------------------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒI—¹ƒ`ƒFƒbƒN
+ * @brief	ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
  *
  * @param	tcb		TCB_PTR
- * @param	wk		ƒ[ƒN‚ÌƒAƒhƒŒƒX
+ * @param	wk		ãƒ¯ãƒ¼ã‚¯ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
- * @retval	"0=I—¹A1=Œp‘±"
+ * @retval	"0=çµ‚äº†ã€1=ç¶™ç¶š"
  */
 //----------------------------------------------------------------------------------------------
 static BOOL BS_AnmWait( BS_SYS* bs_sys )
@@ -723,17 +723,17 @@ static BOOL BS_AnmWait( BS_SYS* bs_sys )
 
 //==============================================================================================
 //
-//	’Š‘IŠÖ˜A
+//	æŠ½é¸é–¢é€£
 //
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
 /**
- * Äíó‘Ô‚É‚·‚é‚©‚Ì’Š‘I‚ğs‚¤
+ * å†æˆ¦çŠ¶æ…‹ã«ã™ã‚‹ã‹ã®æŠ½é¸ã‚’è¡Œã†
  *
- * @param   bs_sys		BS_SYSŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bs_sys		BS_SYSå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"0 = ‚Pl‚àí‚¦‚éó‘Ô‚ÌƒgƒŒ[ƒi[‚ª‚¢‚È‚©‚Á‚½A1 = í‚¦‚éó‘Ô‚ÌƒgƒŒ[ƒi[‚ª‚¢‚½"
+ * @retval	"0 = ï¼‘äººã‚‚æˆ¦ãˆã‚‹çŠ¶æ…‹ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒã„ãªã‹ã£ãŸã€1 = æˆ¦ãˆã‚‹çŠ¶æ…‹ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒã„ãŸ"
  */
 //----------------------------------------------------------------------------------------------
 static BOOL BS_Lottery( BS_SYS* bs_sys )
@@ -743,33 +743,33 @@ static BOOL BS_Lottery( BS_SYS* bs_sys )
 	u16 tr_id;
 	int i,flag;
 
-	flag = 0;	//Äí‚É‚È‚Á‚½ƒgƒŒ[ƒi[‚ª‚¢‚½‚©ƒtƒ‰ƒO
+	flag = 0;	//å†æˆ¦ã«ãªã£ãŸãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãŒã„ãŸã‹ãƒ•ãƒ©ã‚°
 
 	for( i=0; i < bs_sys->fldobj_max ;i++ ){
 
-		//‰‰ñƒgƒŒ[ƒi[ID‚ÉŸ—˜‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		//åˆå›ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã«å‹åˆ©ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		tr_id = BS_TrainerIdGetByScriptId( bs_sys->fldobj[i] );
-		if( CheckEventFlagTrainer(bs_sys->fsys, tr_id) == FALSE ){		//Ÿ—˜‚µ‚Ä‚¢‚È‚¢
-			BS_AnmSet( bs_sys, bs_sys->fldobj[i], ps_anm_first );		//‰í‚Ü‚¾ƒAƒjƒƒZƒbƒg
+		if( CheckEventFlagTrainer(bs_sys->fsys, tr_id) == FALSE ){		//å‹åˆ©ã—ã¦ã„ãªã„
+			BS_AnmSet( bs_sys, bs_sys->fldobj[i], ps_anm_first );		//åˆæˆ¦ã¾ã ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 			//Snd_SePlay( SE_MARK_GYOE );
 			flag = 1;
 		}else{
 
-			//‚T‚O“‚ÌŠm—¦‚ÅÄíƒgƒŒ[ƒi[‚É‚È‚é
-			//“®ìƒR[ƒh‚ªÄí‚É‚È‚Á‚Ä‚¢‚È‚©‚Á‚½‚ç(2vs2‚ÍÄí‚É‚È‚Á‚Ä‚¢‚é‚±‚Æ‚ª‚ ‚é)
+			//ï¼•ï¼ï¼…ã®ç¢ºç‡ã§å†æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã«ãªã‚‹
+			//å‹•ä½œã‚³ãƒ¼ãƒ‰ãŒå†æˆ¦ã«ãªã£ã¦ã„ãªã‹ã£ãŸã‚‰(2vs2ã¯å†æˆ¦ã«ãªã£ã¦ã„ã‚‹ã“ã¨ãŒã‚ã‚‹)
 			//gf_srand( sys.vsync_counter );
 			if( ((gf_rand() % 100) < BS_RAND_NOSET) && 
 				(BS_RevengeMoveCodeCheck(bs_sys->fldobj[i]) == FALSE) ){
 
-				BS_MvSet( bs_sys->fldobj[i], MV_REWAR );				//Äí“®ìƒR[ƒh‚É•ÏX
-				BS_AnmSet( bs_sys, bs_sys->fldobj[i], ps_anm_ok );		//Äí‰Â”\ƒAƒjƒƒZƒbƒg
+				BS_MvSet( bs_sys->fldobj[i], MV_REWAR );				//å†æˆ¦å‹•ä½œã‚³ãƒ¼ãƒ‰ã«å¤‰æ›´
+				BS_AnmSet( bs_sys, bs_sys->fldobj[i], ps_anm_ok );		//å†æˆ¦å¯èƒ½ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 
 #if 1
-				//ƒZƒbƒg‚É‚È‚Á‚Ä‚¢‚éƒgƒŒ[ƒi[‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾‚µ‚ÄÄíƒZƒbƒg
+				//ã‚»ãƒƒãƒˆã«ãªã£ã¦ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã—ã¦å†æˆ¦ã‚»ãƒƒãƒˆ
 				tr_2vs2 = BS_2vs2TrPtrGet(bs_sys->fsys, bs_sys->fldobj[i], BS_2VS2_MV_REWAR_CHK_ON);
 				if( tr_2vs2 != NULL ){
-					BS_MvSet( tr_2vs2, MV_REWAR );						//Äí“®ìƒR[ƒh‚É•ÏX
-					BS_AnmSet( bs_sys, tr_2vs2, ps_anm_ok );			//Äí‰Â”\ƒAƒjƒƒZƒbƒg
+					BS_MvSet( tr_2vs2, MV_REWAR );						//å†æˆ¦å‹•ä½œã‚³ãƒ¼ãƒ‰ã«å¤‰æ›´
+					BS_AnmSet( bs_sys, tr_2vs2, ps_anm_ok );			//å†æˆ¦å¯èƒ½ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 				}
 #endif
 
@@ -777,10 +777,10 @@ static BOOL BS_Lottery( BS_SYS* bs_sys )
 				flag = 1;
 				SysFlag_BtlSearcherUseSet( ev );
 			
-			//ÄíƒgƒŒ[ƒi[‚É‚È‚ç‚È‚©‚Á‚½
+			//å†æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã«ãªã‚‰ãªã‹ã£ãŸ
 			}else{
-				//BS_MvSet( bs_sys->fldobj[i], MV_DOWN );				//³–ÊŒü‚«ŒÅ’è‚É•ÏX
-				//BS_AnmSet( bs_sys, bs_sys->fldobj[i], ps_anm_ng );	//‰½‚à‚µ‚È‚¢ƒAƒjƒƒZƒbƒg
+				//BS_MvSet( bs_sys->fldobj[i], MV_DOWN );				//æ­£é¢å‘ãå›ºå®šã«å¤‰æ›´
+				//BS_AnmSet( bs_sys, bs_sys->fldobj[i], ps_anm_ng );	//ä½•ã‚‚ã—ãªã„ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 			}
 		}
 	}
@@ -790,11 +790,11 @@ static BOOL BS_Lottery( BS_SYS* bs_sys )
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒXƒNƒŠƒvƒgID‚©‚çAƒgƒŒ[ƒi[ID‚ğæ“¾
+ * ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‹ã‚‰ã€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å–å¾—
  *
  * @param   fldobj		FIELD_OBJ_PTR
  *
- * @retval  "ƒgƒŒ[ƒi[ID"
+ * @retval  "ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID"
  */
 //----------------------------------------------------------------------------------------------
 static u16 BS_TrainerIdGetByScriptId( FIELD_OBJ_PTR fldobj )
@@ -806,47 +806,47 @@ static u16 BS_TrainerIdGetByScriptId( FIELD_OBJ_PTR fldobj )
 
 //==============================================================================================
 //
-//	ƒgƒŒ[ƒi[˜b‚µ‚©‚¯ŠÖ˜A(trainer.ev)
+//	ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼è©±ã—ã‹ã‘é–¢é€£(trainer.ev)
 //
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
 /**
- * FIELD_OBJ_PTR‚ÌÄíƒgƒŒ[ƒi[ID‚ğæ“¾
+ * FIELD_OBJ_PTRã®å†æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å–å¾—
  *
- * @param   fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   fldobj		FIELD_OBJ_PTR
- * @param   tr_id		ŒŸõ‚·‚éƒgƒŒ[ƒi[ID
+ * @param   tr_id		æ¤œç´¢ã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
  *
- * @retval  "0 = ƒf[ƒ^‚È‚µA0ˆÈŠO = ƒgƒŒ[ƒi[ID"
+ * @retval  "0 = ãƒ‡ãƒ¼ã‚¿ãªã—ã€0ä»¥å¤– = ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID"
  *
- * @li		"ƒgƒŒ[ƒi[ID = 0 = ©•ª"‚Æ‚µ‚Äˆµ‚í‚ê‚Ä‚¢‚é(Äíƒf[ƒ^ƒe[ƒuƒ‹‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚È‚¢‚Ì‚ÅOK)
+ * @li		"ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID = 0 = è‡ªåˆ†"ã¨ã—ã¦æ‰±ã‚ã‚Œã¦ã„ã‚‹(å†æˆ¦ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã«å«ã¾ã‚Œã¦ã„ãªã„ã®ã§OK)
  */
 //----------------------------------------------------------------------------------------------
 u16 BS_TrainerIDCheck( FIELDSYS_WORK* fsys, FIELD_OBJ_PTR fldobj, u16 tr_id )
 {
 	u16 index,level,ret;
 
-	//Äí“®ìƒR[ƒh‚©ƒ`ƒFƒbƒN
+	//å†æˆ¦å‹•ä½œã‚³ãƒ¼ãƒ‰ã‹ãƒã‚§ãƒƒã‚¯
 	if( BS_RevengeMoveCodeCheck(fldobj) == FALSE ){
 		return 0;
 	}
 
-	//ƒf[ƒ^ƒCƒ“ƒfƒbƒNƒXæ“¾
+	//ãƒ‡ãƒ¼ã‚¿ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹å–å¾—
 	index = BS_RevengeDataIndexGet( fsys, tr_id );
 	if( index == 0xff ){
 		return 0;
 	}
 
-	//ƒf[ƒ^ƒŒƒxƒ‹æ“¾
+	//ãƒ‡ãƒ¼ã‚¿ãƒ¬ãƒ™ãƒ«å–å¾—
 	level = BS_RevengeDataLevelGet( fsys, index );
 	//OS_Printf( "level = %d\n", level );
 
-	//ƒCƒxƒ“ƒgisƒ`ƒFƒbƒN‚É‚æ‚Á‚ÄÄíƒŒƒxƒ‹‚ğ’²®
+	//ã‚¤ãƒ™ãƒ³ãƒˆé€²è¡Œãƒã‚§ãƒƒã‚¯ã«ã‚ˆã£ã¦å†æˆ¦ãƒ¬ãƒ™ãƒ«ã‚’èª¿æ•´
 	level = BS_RevengeDataLevelEventCheck( fsys, index, level );
 	//OS_Printf( "level = %d\n", level );
 
-	//ÄíƒgƒŒ[ƒi[IDæ“¾
+	//å†æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDå–å¾—
 	ret = BS_RevengeTrainerIDGet( index, level );
 	//OS_Printf( "ret = %d\n", ret );
 
@@ -855,12 +855,12 @@ u16 BS_TrainerIDCheck( FIELDSYS_WORK* fsys, FIELD_OBJ_PTR fldobj, u16 tr_id )
 
 //----------------------------------------------------------------------------------------------
 /**
- * Äíƒf[ƒ^ƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+ * å†æˆ¦ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  *
- * @param   fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param   tr_id		ŒŸõ‚·‚éƒgƒŒ[ƒi[ID
+ * @param   fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tr_id		æ¤œç´¢ã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
  *
- * @retval  "0xffˆÈŠO = ƒCƒ“ƒfƒbƒNƒXA0xff = Œ©‚Â‚©‚ç‚È‚©‚Á‚½"
+ * @retval  "0xffä»¥å¤– = ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã€0xff = è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸ"
  */
 //----------------------------------------------------------------------------------------------
 static u16 BS_RevengeDataIndexGet( FIELDSYS_WORK* fsys, u16 tr_id )
@@ -869,15 +869,15 @@ static u16 BS_RevengeDataIndexGet( FIELDSYS_WORK* fsys, u16 tr_id )
 	//REMATCH_DATA* data = bs_sys->data;
 	const REMATCH_DATA* data = RematchDataTbl;
 
-	//ÄíƒgƒŒ[ƒi[ƒf[ƒ^•ªŒŸõ
+	//å†æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿åˆ†æ¤œç´¢
 	for( i=0; i < REMATCH_DATA_MAX; i++ ){
 
-		//“¯‚¶ƒgƒŒ[ƒi[ID‚ğ’T‚·
+		//åŒã˜ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’æ¢ã™
 		if( data[i].id[0] != tr_id ){
 			continue;
 		}
 
-		//“¯‚¶ƒgƒŒ[ƒi[ID‚ª‚ ‚Á‚½
+		//åŒã˜ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDãŒã‚ã£ãŸ
 		return i;
 	}
 
@@ -886,12 +886,12 @@ static u16 BS_RevengeDataIndexGet( FIELDSYS_WORK* fsys, u16 tr_id )
 
 //----------------------------------------------------------------------------------------------
 /**
- * ÄíƒŒƒxƒ‹‚ğæ“¾
+ * å†æˆ¦ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—
  *
- * @param   fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param   index		Äíƒf[ƒ^ƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX
+ * @param   fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   index		å†æˆ¦ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @retval  "ƒŒƒxƒ‹"
+ * @retval  "ãƒ¬ãƒ™ãƒ«"
  */
 //----------------------------------------------------------------------------------------------
 static u16 BS_RevengeDataLevelGet( FIELDSYS_WORK* fsys, u16 index )
@@ -900,39 +900,39 @@ static u16 BS_RevengeDataLevelGet( FIELDSYS_WORK* fsys, u16 index )
 	//REMATCH_DATA* data = bs_sys->data;
 	const REMATCH_DATA* data = RematchDataTbl;
 
-	//ÄíƒŒƒxƒ‹‚ğŒŸõ
+	//å†æˆ¦ãƒ¬ãƒ™ãƒ«ã‚’æ¤œç´¢
 	for( level = 1; level < BS_LEVEL_MAX; level++ ){
 
-		//Äíƒf[ƒ^‚ª‚È‚¢‚©ƒ`ƒFƒbƒN
+		//å†æˆ¦ãƒ‡ãƒ¼ã‚¿ãŒãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		if( data[index].id[level] == REMATCH_DATA_END ){
 			return (level - 1);
 		}
 
-		//Äíƒf[ƒ^‚ªƒ_ƒ~[‚©ƒ`ƒFƒbƒN
+		//å†æˆ¦ãƒ‡ãƒ¼ã‚¿ãŒãƒ€ãƒŸãƒ¼ã‹ãƒã‚§ãƒƒã‚¯
 		if( data[index].id[level] != REMATCH_DATA_DUMMY ){
 
-			//‚»‚ÌƒŒƒxƒ‹‚Í‘Îí‚µ‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+			//ãã®ãƒ¬ãƒ™ãƒ«ã¯å¯¾æˆ¦ã—ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 			if( CheckEventFlagTrainer(fsys, data[index].id[level]) == FALSE ){
 				return (level);
 			}
 		}
 	}
 
-	//ƒŒƒxƒ‹‚ªÅ‚
+	//ãƒ¬ãƒ™ãƒ«ãŒæœ€é«˜
 	return (level - 1);
 }
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒCƒxƒ“ƒgisƒ`ƒFƒbƒN‚É‚æ‚Á‚ÄÄíƒŒƒxƒ‹‚ğ’²®
+ * ã‚¤ãƒ™ãƒ³ãƒˆé€²è¡Œãƒã‚§ãƒƒã‚¯ã«ã‚ˆã£ã¦å†æˆ¦ãƒ¬ãƒ™ãƒ«ã‚’èª¿æ•´
  *
- * @param   fsys	FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param   index	Äíƒf[ƒ^ƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param   level	ÄíƒŒƒxƒ‹
+ * @param   fsys	FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   index	å†æˆ¦ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   level	å†æˆ¦ãƒ¬ãƒ™ãƒ«
  *
- * @retval	"’²®Œã‚ÌÄ¶ƒŒƒxƒ‹"
+ * @retval	"èª¿æ•´å¾Œã®å†ç”Ÿãƒ¬ãƒ™ãƒ«"
  *
- * isƒ`ƒFƒbƒN‚Í‚Ü‚¾–¢’è‚È‚Ì‚Å‰¼‚Å‚·I
+ * é€²è¡Œãƒã‚§ãƒƒã‚¯ã¯ã¾ã æœªå®šãªã®ã§ä»®ã§ã™ï¼
  */
 //----------------------------------------------------------------------------------------------
 static u16 BS_RevengeDataLevelEventCheck( FIELDSYS_WORK* fsys, u16 index, u16 level )
@@ -959,12 +959,12 @@ static u16 BS_RevengeDataLevelEventCheck( FIELDSYS_WORK* fsys, u16 index, u16 le
 
 //----------------------------------------------------------------------------------------------
 /**
- * REMATCH_DATA_DUMMY‚ğƒ`ƒFƒbƒN‚µ‚ÄÄíƒŒƒxƒ‹‚ğ‰º‚°‚é
+ * REMATCH_DATA_DUMMYã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦å†æˆ¦ãƒ¬ãƒ™ãƒ«ã‚’ä¸‹ã’ã‚‹
  *
- * @param   index	Äíƒf[ƒ^ƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param   level	ÄíƒŒƒxƒ‹
+ * @param   index	å†æˆ¦ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   level	å†æˆ¦ãƒ¬ãƒ™ãƒ«
  *
- * @retval	"’²®Œã‚ÌÄ¶ƒŒƒxƒ‹"
+ * @retval	"èª¿æ•´å¾Œã®å†ç”Ÿãƒ¬ãƒ™ãƒ«"
  */
 //----------------------------------------------------------------------------------------------
 static u16 BS_RevengeDataLevelEventCheckSub( u16 index, u16 level )
@@ -972,7 +972,7 @@ static u16 BS_RevengeDataLevelEventCheckSub( u16 index, u16 level )
 	u16 i;
 	const REMATCH_DATA* data = RematchDataTbl;
 
-	//Äíƒf[ƒ^‚ªƒ_ƒ~[‚©ƒ`ƒFƒbƒN
+	//å†æˆ¦ãƒ‡ãƒ¼ã‚¿ãŒãƒ€ãƒŸãƒ¼ã‹ãƒã‚§ãƒƒã‚¯
 	for( i=(level-1); i > 0; i-- ){
 
 		if( data[index].id[i] != REMATCH_DATA_DUMMY ){
@@ -980,17 +980,17 @@ static u16 BS_RevengeDataLevelEventCheckSub( u16 index, u16 level )
 		}
 	}
 
-	return 0;			//ƒŒƒxƒ‹0
+	return 0;			//ãƒ¬ãƒ™ãƒ«0
 }
 
 //----------------------------------------------------------------------------------------------
 /**
- * ÄíƒgƒŒ[ƒi[ID‚ğæ“¾
+ * å†æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å–å¾—
  *
- * @param   index			Äíƒf[ƒ^ƒe[ƒuƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX
- * @param   level			Äíƒf[ƒ^ƒe[ƒuƒ‹‚ÌƒŒƒxƒ‹
+ * @param   index			å†æˆ¦ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   level			å†æˆ¦ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã®ãƒ¬ãƒ™ãƒ«
  *
- * @retval  "ÄíƒgƒŒ[ƒi[ID"
+ * @retval  "å†æˆ¦ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID"
  */
 //----------------------------------------------------------------------------------------------
 static u16 BS_RevengeTrainerIDGet( u16 index, u16 level )
@@ -1002,11 +1002,11 @@ static u16 BS_RevengeTrainerIDGet( u16 index, u16 level )
 
 //----------------------------------------------------------------------------------------------
 /**
- * Äí“®ìƒR[ƒh‚ªƒ`ƒFƒbƒN
+ * å†æˆ¦å‹•ä½œã‚³ãƒ¼ãƒ‰ãŒãƒã‚§ãƒƒã‚¯
  *
  * @param   fldobj		FIELD_OBJ_PTR
  *
- * @retval  "TRUE = Äí“®ìƒR[ƒh‚¾‚Á‚½AFALSE = ‚¿‚ª‚¤"
+ * @retval  "TRUE = å†æˆ¦å‹•ä½œã‚³ãƒ¼ãƒ‰ã ã£ãŸã€FALSE = ã¡ãŒã†"
  */
 //----------------------------------------------------------------------------------------------
 static BOOL BS_RevengeMoveCodeCheck( FIELD_OBJ_PTR fldobj )
@@ -1023,10 +1023,10 @@ static BOOL BS_RevengeMoveCodeCheck( FIELD_OBJ_PTR fldobj )
 
 //----------------------------------------------------------------------------------------------
 /**
- * “®ìƒR[ƒhƒZƒbƒg
+ * å‹•ä½œã‚³ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
  *
  * @param   fldobj		FIELD_OBJ_PTR
- * @param   code		“®ìƒR[ƒh
+ * @param   code		å‹•ä½œã‚³ãƒ¼ãƒ‰
  *
  * @retval  none
  */
@@ -1040,7 +1040,7 @@ static void BS_MvSet( FIELD_OBJ_PTR fldobj, u16 code )
 
 //----------------------------------------------------------------------------------------------
 /**
- * Äí“®ìƒR[ƒh‚¾‚Á‚½‚çAŒ»İŒü‚¢‚Ä‚¢‚é•ûŒüŒÅ’è‚Ì“®ìƒR[ƒh‚ğƒZƒbƒg‚·‚é(í“¬Œã‚ÉŒÄ‚Î‚ê‚é)
+ * å†æˆ¦å‹•ä½œã‚³ãƒ¼ãƒ‰ã ã£ãŸã‚‰ã€ç¾åœ¨å‘ã„ã¦ã„ã‚‹æ–¹å‘å›ºå®šã®å‹•ä½œã‚³ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆã™ã‚‹(æˆ¦é—˜å¾Œã«å‘¼ã°ã‚Œã‚‹)
  *
  * @param   fldobj		FIELD_OBJ_PTR
  *
@@ -1053,19 +1053,19 @@ void BS_MvReWarClearDirMvSet( FIELDSYS_WORK* fsys, FIELD_OBJ_PTR fldobj )
 	u32 code;
 	int dir;
 	
-	//•s³ƒ`ƒFƒbƒN
+	//ä¸æ­£ãƒã‚§ãƒƒã‚¯
 	if( fldobj == NULL ){
 		return;
 	}
 
 #if 0
-	//“®ìƒR[ƒh‚ªÄí‚©ƒ`ƒFƒbƒN
+	//å‹•ä½œã‚³ãƒ¼ãƒ‰ãŒå†æˆ¦ã‹ãƒã‚§ãƒƒã‚¯
 	if( FieldOBJ_MoveCodeGet(fldobj) != MV_REWAR ){
 		return;
 	}
 #endif
 
-	//•\¦•ûŒüæ“¾
+	//è¡¨ç¤ºæ–¹å‘å–å¾—
 	dir = FieldOBJ_DirDispGet( fldobj );
 
 	if( dir == DIR_UP ){
@@ -1079,7 +1079,7 @@ void BS_MvReWarClearDirMvSet( FIELDSYS_WORK* fsys, FIELD_OBJ_PTR fldobj )
 	}
 
 #if 1
-	//2vs2‚Ì‚ÍƒZƒbƒg‚É‚È‚Á‚Ä‚¢‚éƒgƒŒ[ƒi[‚Ì“®ìƒR[ƒh‚à—‚Æ‚·•K—v‚ª‚ ‚éI
+	//2vs2ã®æ™‚ã¯ã‚»ãƒƒãƒˆã«ãªã£ã¦ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®å‹•ä½œã‚³ãƒ¼ãƒ‰ã‚‚è½ã¨ã™å¿…è¦ãŒã‚ã‚‹ï¼
 	tr_2vs2 = BS_2vs2TrPtrGet( fsys, fldobj, BS_2VS2_MV_REWAR_CHK_OFF );
 	if( tr_2vs2 != NULL ){
 		BS_MvSet( tr_2vs2, code );
@@ -1093,17 +1093,17 @@ void BS_MvReWarClearDirMvSet( FIELDSYS_WORK* fsys, FIELD_OBJ_PTR fldobj )
 
 //==============================================================================================
 //
-//	ƒ`ƒFƒbƒN
+//	ãƒã‚§ãƒƒã‚¯
 //
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒOƒŠƒbƒh‚Éû‚Ü‚é‚Ü‚Å‘Ò‚Â
+ * ã‚°ãƒªãƒƒãƒ‰ã«åã¾ã‚‹ã¾ã§å¾…ã¤
  *
- * @param   fsys		FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param   fsys		FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  "TRUE = “®ìI—¹AFALSE = ˆÚ“®’†"
+ * @retval  "TRUE = å‹•ä½œçµ‚äº†ã€FALSE = ç§»å‹•ä¸­"
  */
 //----------------------------------------------------------------------------------------------
 static BOOL BS_StatusBitCheckMove( FIELDSYS_WORK* fsys )
@@ -1112,27 +1112,27 @@ static BOOL BS_StatusBitCheckMove( FIELDSYS_WORK* fsys )
 	FIELD_OBJ_PTR fldobj;
 	u32 obj_max = EventData_GetNpcCount( fsys );
 
-	flag = 0;	//ƒNƒŠƒA
+	flag = 0;	//ã‚¯ãƒªã‚¢
 
-	//OS_Printf( "*******ƒƒOƒŠƒbƒhƒ`ƒFƒbƒN„*******\n" );
+	//OS_Printf( "*******ï¼œã‚°ãƒªãƒƒãƒ‰ãƒã‚§ãƒƒã‚¯ï¼*******\n" );
 
-	//OBJƒf[ƒ^•ªƒT[ƒ`‚ğ‚©‚¯‚é
+	//OBJãƒ‡ãƒ¼ã‚¿åˆ†ã‚µãƒ¼ãƒã‚’ã‹ã‘ã‚‹
 	for( i=0; i < obj_max ;i++ ){
 
-		//ƒtƒB[ƒ‹ƒhOBJ‚Ìƒ|ƒCƒ“ƒ^æ“¾
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		fldobj	= FieldOBJSys_OBJIDSearch( fsys->fldobjsys, i );
 		if( fldobj == NULL ){
 			continue;
 		}
 
-		//ˆÚ“®“®ì’†‚©ƒ`ƒFƒbƒN
+		//ç§»å‹•å‹•ä½œä¸­ã‹ãƒã‚§ãƒƒã‚¯
 		if( FieldOBJ_StatusBitCheck_Move(fldobj) == TRUE ){
-			//OS_Printf( "no = %d = “®ì’†\n", i );
+			//OS_Printf( "no = %d = å‹•ä½œä¸­\n", i );
 			FieldOBJ_MovePauseClear( fldobj );
-			flag = 1;							//“®ìI—¹‚µ‚Ä‚¢‚È‚¢‚Ì‚Åƒtƒ‰ƒOON
+			flag = 1;							//å‹•ä½œçµ‚äº†ã—ã¦ã„ãªã„ã®ã§ãƒ•ãƒ©ã‚°ON
 		}else{
-			//OS_Printf( "no = %d = “®ìI—¹\n", i );
-			FieldOBJ_MovePause( fldobj );		//“®ìƒ|[ƒY
+			//OS_Printf( "no = %d = å‹•ä½œçµ‚äº†\n", i );
+			FieldOBJ_MovePause( fldobj );		//å‹•ä½œãƒãƒ¼ã‚º
 		}
 	}
 
@@ -1145,17 +1145,17 @@ static BOOL BS_StatusBitCheckMove( FIELDSYS_WORK* fsys )
 
 //----------------------------------------------------------------------------------------------
 /**
- * ƒZƒbƒg‚É‚È‚Á‚Ä‚¢‚éƒgƒŒ[ƒi[‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
+ * ã‚»ãƒƒãƒˆã«ãªã£ã¦ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
  *
- * @param   fsys			FIELDSYS_WORKŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param   search_scr_id	ƒT[ƒ`‚·‚éƒXƒNƒŠƒvƒgID
- * @param   search_tr_id	ƒT[ƒ`‚·‚éƒgƒŒ[ƒi[ID
+ * @param   fsys			FIELDSYS_WORKå‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   search_scr_id	ã‚µãƒ¼ãƒã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆID
+ * @param   search_tr_id	ã‚µãƒ¼ãƒã™ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
  *
- * @retval "NULL=Œ©‚Â‚©‚ç‚È‚©‚Á‚½ANULLˆÈŠO=ƒZƒbƒg‚ÌƒgƒŒ[ƒi[‚ÌFIELD_OBJ_PTR"
+ * @retval "NULL=è¦‹ã¤ã‹ã‚‰ãªã‹ã£ãŸã€NULLä»¥å¤–=ã‚»ãƒƒãƒˆã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®FIELD_OBJ_PTR"
  *
- * ƒ‚[ƒh
- * BS_2VS2_MV_REWAR_CHK_ON		(0)		//Äí“®ìƒR[ƒh‚Ìƒ`ƒFƒbƒN‚ ‚è
- * BS_2VS2_MV_REWAR_CHK_OFF		(1)		//Äí“®ìƒR[ƒh‚Ìƒ`ƒFƒbƒN‚È‚µ
+ * ãƒ¢ãƒ¼ãƒ‰
+ * BS_2VS2_MV_REWAR_CHK_ON		(0)		//å†æˆ¦å‹•ä½œã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯ã‚ã‚Š
+ * BS_2VS2_MV_REWAR_CHK_OFF		(1)		//å†æˆ¦å‹•ä½œã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯ãªã—
  */
 //----------------------------------------------------------------------------------------------
 static FIELD_OBJ_PTR BS_2vs2TrPtrGet( FIELDSYS_WORK* fsys, FIELD_OBJ_PTR search_obj, int mode )
@@ -1163,34 +1163,34 @@ static FIELD_OBJ_PTR BS_2vs2TrPtrGet( FIELDSYS_WORK* fsys, FIELD_OBJ_PTR search_
 	FIELD_OBJ_PTR fldobj;
 	u32 i,event_type,scr_id,tr_id;
 	u32 obj_max			= EventData_GetNpcCount( fsys );
-	u16 search_scr_id	= FieldOBJ_EventIDGet( search_obj );			//ƒXƒNƒŠƒvƒgID‚ğæ“¾
-	u16 search_tr_id	= GetTrainerIdByScriptId( search_scr_id );		//ƒgƒŒ[ƒi[ID‚ğæ“¾
+	u16 search_scr_id	= FieldOBJ_EventIDGet( search_obj );			//ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‚’å–å¾—
+	u16 search_tr_id	= GetTrainerIdByScriptId( search_scr_id );		//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å–å¾—
 
-	//ƒVƒ“ƒOƒ‹ƒoƒgƒ‹ƒ^ƒCƒv‚Ì‚Í‰½‚à‚µ‚È‚¢I
+	//ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—ã®æ™‚ã¯ä½•ã‚‚ã—ãªã„ï¼
 	if( CheckTrainer2vs2Type(search_tr_id) == 0 ){
 		return NULL;
 	}
 
-	//‘oq‚¿‚á‚ñ‚Ì•Ğ•û‚µ‚©”ÍˆÍ‚É“ü‚Á‚Ä‚¢‚È‚¢‚ª‚ ‚é‚Ì‚ÅAƒ][ƒ““à‚ğ‘SƒT[ƒ`‚·‚éI
+	//åŒå­ã¡ã‚ƒã‚“ã®ç‰‡æ–¹ã—ã‹ç¯„å›²ã«å…¥ã£ã¦ã„ãªã„æ™‚ãŒã‚ã‚‹ã®ã§ã€ã‚¾ãƒ¼ãƒ³å†…ã‚’å…¨ã‚µãƒ¼ãƒã™ã‚‹ï¼
 	for( i=0; i < obj_max ;i++ ){
 
-		//ƒtƒB[ƒ‹ƒhOBJ‚Ìƒ|ƒCƒ“ƒ^æ“¾
+		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
 		fldobj	= FieldOBJSys_OBJIDSearch( fsys->fldobjsys, i );
 		if( fldobj == NULL ){
 			continue;
 		}
 
 #if 1
-		if(  mode == BS_2VS2_MV_REWAR_CHK_ON ){			//Äí“®ìƒR[ƒh‚Ìƒ`ƒFƒbƒN‚ ‚è
+		if(  mode == BS_2VS2_MV_REWAR_CHK_ON ){			//å†æˆ¦å‹•ä½œã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯ã‚ã‚Š
 
-			//“®ìƒR[ƒh‚ªÄí‚É‚È‚Á‚Ä‚¢‚éOBJ‚Í‰½‚à‚µ‚È‚¢
+			//å‹•ä½œã‚³ãƒ¼ãƒ‰ãŒå†æˆ¦ã«ãªã£ã¦ã„ã‚‹OBJã¯ä½•ã‚‚ã—ãªã„
 			if( FieldOBJ_MoveCodeGet(fldobj) == MV_REWAR ){
 				continue;
 			}
 		}
 #endif
 
-		//ƒCƒxƒ“ƒgƒ^ƒCƒv‚ªƒgƒŒ[ƒi[‚©ƒ`ƒFƒbƒN
+		//ã‚¤ãƒ™ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ãŒãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‹ãƒã‚§ãƒƒã‚¯
 		event_type = FieldOBJ_EventTypeGet( fldobj );
 
 		switch( event_type ){
@@ -1205,12 +1205,12 @@ static FIELD_OBJ_PTR BS_2vs2TrPtrGet( FIELDSYS_WORK* fsys, FIELD_OBJ_PTR search_
 			//OS_Printf( "id = %d\n", i );
 			//OS_Printf( "event_type = %d\n", event_type );
 
-			scr_id	= FieldOBJ_EventIDGet( fldobj );			//ƒXƒNƒŠƒvƒgID‚ğæ“¾
-			tr_id	= GetTrainerIdByScriptId( scr_id );			//ƒgƒŒ[ƒi[ID‚ğæ“¾
+			scr_id	= FieldOBJ_EventIDGet( fldobj );			//ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDã‚’å–å¾—
+			tr_id	= GetTrainerIdByScriptId( scr_id );			//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’å–å¾—
 
-			//ƒXƒNƒŠƒvƒgID‚ª“¯‚¶‚Å‚Í‚È‚­AƒgƒŒ[ƒi[ID‚ª“¯‚¶‚É‚È‚Á‚Ä‚¢‚éƒgƒŒ[ƒi[‚ğ’T‚·
+			//ã‚¹ã‚¯ãƒªãƒ—ãƒˆIDãŒåŒã˜ã§ã¯ãªãã€ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDãŒåŒã˜ã«ãªã£ã¦ã„ã‚‹ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚’æ¢ã™
 			if( (search_scr_id != scr_id) && (search_tr_id == tr_id) ){
-				return fldobj;	//Œ©‚Â‚¯‚½I
+				return fldobj;	//è¦‹ã¤ã‘ãŸï¼
 			}
 		};
 	}

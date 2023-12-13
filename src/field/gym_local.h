@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	gym_local.h
- * @bfief	ƒWƒ€dŠ|‚¯‚Æ‚©
+ * @bfief	ã‚¸ãƒ ä»•æ›ã‘ã¨ã‹
  * @author	Nozomu Saito
  *
  */
@@ -9,32 +9,32 @@
 #ifndef __GYM_LOCAL_H__
 #define __GYM_LOCAL_H__
 
-//…ƒWƒ€
-//swtich—p
+//æ°´ã‚¸ãƒ 
+//swtichç”¨
 #define GYM_WATER_LV1	(0)
 #define GYM_WATER_LV2	(1)
 #define GYM_WATER_LV3	(2)
 
-//ƒS[ƒXƒgƒWƒ€
-//swtich—p
+//ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ 
+//swtichç”¨
 #define GYM_GHOST_LIFT_LV1	(0)
 #define GYM_GHOST_LIFT_LV2	(1)
 
-#define GHOST_LIFT_ROOM_START_Z		(22)	//ƒŠƒtƒg‚Ì•”‰®‚É‰‚ß‚Ä“ü‚Á‚½‚Æ‚«‚ÌA©‹@ZÀ•W
+#define GHOST_LIFT_ROOM_START_Z		(22)	//ãƒªãƒ•ãƒˆã®éƒ¨å±‹ã«åˆã‚ã¦å…¥ã£ãŸã¨ãã®ã€è‡ªæ©ŸZåº§æ¨™
 
-//|ƒWƒ€
+//é‹¼ã‚¸ãƒ 
 #define STEEL_LIFT_MAX	(24)
 
 #if 0	//DP
-//Ši“¬ƒWƒ€
+//æ ¼é—˜ã‚¸ãƒ 
 #define COMBAT_WALL_MAX	(12)
 #endif
 
-//“d‹CƒWƒ€
-#define GEAR_ROT_ST_0	(0)			//0‹
-#define GEAR_ROT_ST_90	(1)			//90‹
-#define GEAR_ROT_ST_180	(2)			//180‹
-#define GEAR_ROT_ST_270	(3)			//270‹
+//é›»æ°—ã‚¸ãƒ 
+#define GEAR_ROT_ST_0	(0)			//0Â°
+#define GEAR_ROT_ST_90	(1)			//90Â°
+#define GEAR_ROT_ST_180	(2)			//180Â°
+#define GEAR_ROT_ST_270	(3)			//270Â°
 #define GEAR_ROT_ST_MAX	(4)
 
 #define ELEC_ROOM1_START_Z	(14)
@@ -44,53 +44,53 @@
 #define ELEC_ROOM_MAX	(3)
 
 
-///////ƒWƒ€ƒ[ƒN///////
-//…ƒWƒ€ƒ[ƒN---------------------
+///////ã‚¸ãƒ ãƒ¯ãƒ¼ã‚¯///////
+//æ°´ã‚¸ãƒ ãƒ¯ãƒ¼ã‚¯---------------------
 typedef struct WATER_GYM_WORK_tag
 {
-	u8 Water;//…ƒWƒ€‚Ì…ˆÊ
+	u8 Water;//æ°´ã‚¸ãƒ ã®æ°´ä½
 }WATER_GYM_WORK;
 
-//ƒS[ƒXƒgƒWƒ€ƒ[ƒN-------------------
+//ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ãƒ¯ãƒ¼ã‚¯-------------------
 typedef struct GHOST_GYM_WORK_tag
 {
-	u8 Lift;	//ƒŠƒtƒg‚ÌˆÊ’uiã‚©‰º‚©j
+	u8 Lift;	//ãƒªãƒ•ãƒˆã®ä½ç½®ï¼ˆä¸Šã‹ä¸‹ã‹ï¼‰
 }GHOST_GYM_WORK;
 
-//|ƒWƒ€ƒ[ƒN---------------------
+//é‹¼ã‚¸ãƒ ãƒ¯ãƒ¼ã‚¯---------------------
 typedef struct STEEL_GYM_WORK_tag
 {
-	int LiftPosBit;	//ƒŠƒtƒg‚ÌˆÊ’u‚ğŠi”[
+	int LiftPosBit;	//ãƒªãƒ•ãƒˆã®ä½ç½®ã‚’æ ¼ç´
 }STEEL_GYM_WORK;
 
 #if 0	//DP
-//Ši“¬ƒWƒ€ƒ[ƒN--------------------
+//æ ¼é—˜ã‚¸ãƒ ãƒ¯ãƒ¼ã‚¯--------------------
 typedef struct COMBAT_GYM_WORK_tag
 {
-	int WallPosBit;	//‚µ‚«‚è‚ÌˆÊ’u‚ğŠi”[
+	int WallPosBit;	//ã—ãã‚Šã®ä½ç½®ã‚’æ ¼ç´
 }COMBAT_GYM_WORK;
 #endif
 
-//“d‹CƒWƒ€ƒ[ƒN--------------------
+//é›»æ°—ã‚¸ãƒ ãƒ¯ãƒ¼ã‚¯--------------------
 typedef struct ELEC_GYM_WORK_tag
 {
-	int GearRotateCode;	//ƒMƒA‰ñ“]ó‹µ
-	int RoomNo;		//•”‰®”Ô†0`2
+	int GearRotateCode;	//ã‚®ã‚¢å›è»¢çŠ¶æ³
+	int RoomNo;		//éƒ¨å±‹ç•ªå·0ã€œ2
 }ELEC_GYM_WORK;
 
-//PL ‘ƒWƒ€ƒ[ƒN-------------------
+//PL è‰ã‚¸ãƒ ãƒ¯ãƒ¼ã‚¯-------------------
 typedef struct PL_GRASS_GYM_WORK_tag
 {
 	u32 time_seqflag;
 }PL_GRASS_GYM_WORK;
 
-//PL Ši“¬ƒWƒ€ƒ[ƒN-----------------
+//PL æ ¼é—˜ã‚¸ãƒ ãƒ¯ãƒ¼ã‚¯-----------------
 typedef struct PLFIGHT_GYM_WORK_tag
 {
-	int init_flag;	//‰Šú‰»ƒtƒ‰ƒO
+	int init_flag;	//åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
 }PLFIGHT_GYM_WORK;
 
-//PL ƒS[ƒXƒgƒWƒ€ƒ[ƒN
+//PL ã‚´ãƒ¼ã‚¹ãƒˆã‚¸ãƒ ãƒ¯ãƒ¼ã‚¯
 typedef struct PLGHOST_GYM_WORK_tag
 {
 	s16 init_flag;
@@ -99,22 +99,22 @@ typedef struct PLGHOST_GYM_WORK_tag
 	s16 hint_gz;
 }PLGHOST_GYM_WORK;
 
-//PL •Ê‘‘
+//PL åˆ¥è˜
 typedef struct
 {
 	int dmy;
 }FLD_VILLA_WORK;
 
-//PL ‚â‚Ô‚ê‚½‚¹‚©‚¢
+//PL ã‚„ã¶ã‚ŒãŸã›ã‹ã„
 #define TW_SP_GROUND_BIT (4) //0-15
 #define TW_SP_GROUND_MAX (1<<TW_SP_GROUND_BIT)
 
 typedef struct
 {
-	u32 init_flag:1;			//‰Šú‰»ƒtƒ‰ƒO
-	u32 fstone_flag:24;			//”ò‚ÑÎoŒ»ƒtƒ‰ƒO
-	u32 sp_ground_no:TW_SP_GROUND_BIT; //©‹@Œ»İ‚Ì“Áê’nŒ`”Ô†
-	u32 dmy:3;					//4 ƒrƒbƒg—]‚è
+	u32 init_flag:1;			//åˆæœŸåŒ–ãƒ•ãƒ©ã‚°
+	u32 fstone_flag:24;			//é£›ã³çŸ³å‡ºç¾ãƒ•ãƒ©ã‚°
+	u32 sp_ground_no:TW_SP_GROUND_BIT; //è‡ªæ©Ÿç¾åœ¨ã®ç‰¹æ®Šåœ°å½¢ç•ªå·
+	u32 dmy:3;					//4 ãƒ“ãƒƒãƒˆä½™ã‚Š
 	
 	u16 cm_ox;
 	u16 cm_oy;					//8
@@ -123,7 +123,7 @@ typedef struct
 	
 	u32 event_flag;				//16
 	
-	u8 free[16];				//‹ó‚«
+	u8 free[16];				//ç©ºã
 }FLD_TORNWORLD_WORK;
 
 #endif	//__GYM_LOCAL_H__

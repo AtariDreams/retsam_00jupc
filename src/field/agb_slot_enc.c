@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	agb_slot_enc.c
- * @brief	‚`‚f‚aƒXƒƒbƒgƒo[ƒWƒ‡ƒ“•ÊƒGƒ“ƒJƒEƒ“ƒgŠÖ˜A
+ * @brief	ï¼¡ï¼§ï¼¢ã‚¹ãƒ­ãƒƒãƒˆãƒãƒ¼ã‚¸ãƒ§ãƒ³åˆ¥ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆé–¢é€£
  * @author	saitou
  *
  */
@@ -14,12 +14,12 @@
 
 //-----------------------------------------------------------------------------
 /**
- * AGBƒXƒƒbƒgƒGƒ“ƒJƒEƒ“ƒgƒe[ƒuƒ‹·‚µ‘Ö‚¦
+ * AGBã‚¹ãƒ­ãƒƒãƒˆã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«å·®ã—æ›¿ãˆ
  *
- * @param	*inEncData			ƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^
- * @param	inBookGet			‘S‘}ŠÓ“üŽèƒtƒ‰ƒO
- * @param	*outAgbEncMonsNo1	ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“1‘Ì–Ú
- * @param	*outAgbEncMonsNo2	ƒGƒ“ƒJƒEƒ“ƒgƒ|ƒPƒ‚ƒ“2‘Ì–Ú
+ * @param	*inEncData			ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+ * @param	inBookGet			å…¨å›½å›³é‘‘å…¥æ‰‹ãƒ•ãƒ©ã‚°
+ * @param	*outAgbEncMonsNo1	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³1ä½“ç›®
+ * @param	*outAgbEncMonsNo2	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒã‚±ãƒ¢ãƒ³2ä½“ç›®
  *
  * @return	none
  */
@@ -28,12 +28,12 @@ void AgbSlotEnc_SetAgbSlotEnc(	const ENCOUNT_DATA *inEncData,
 								const BOOL inBookGet,
 								int *outAgbEncMonsNo1, int *outAgbEncMonsNo2)
 {
-	//‘S‘}ŠÓ“üŽè‚µ‚Ä‚¢‚È‚¯‚ê‚ÎA‰½‚à‚µ‚È‚¢
+	//å…¨å›½å›³é‘‘å…¥æ‰‹ã—ã¦ã„ãªã‘ã‚Œã°ã€ä½•ã‚‚ã—ãªã„
 	if (!inBookGet){
 		return;
 	}
 	
-	//AGBƒXƒƒbƒg‚Ìƒo[ƒWƒ‡ƒ“•Ê‚ÉƒGƒ“ƒJƒEƒ“ƒgƒf[ƒ^‚ðƒZƒbƒg
+	//AGBã‚¹ãƒ­ãƒƒãƒˆã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³åˆ¥ã«ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	switch(sys.AgbCasetteVersion){		
 	case VERSION_SAPPHIRE:
 		(*outAgbEncMonsNo1) = inEncData->SapphireEnc[0];

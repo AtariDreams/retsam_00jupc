@@ -1,13 +1,13 @@
 //=============================================================================
 /**
  * @file	savedata.h
- * @brief	�Z�[�u�f�[�^�p�w�b�_
+ * @brief	セーブデータ用ヘッダ
  * @author	tamada	GAME FREAK Inc.
  * @date	2005.10.12
  *
- * ���̃w�b�_�̓Z�[�u�f�[�^�̐��������ȂǁA���ڃZ�[�u�f�[�^�ɂ�����镔���ɂ̂ݕK�v�B
- * ����ȊO�̉ӏ��ł�savedata_def.h��SAVEDATA�^�o�R�ŃA�N�Z�X�ł���΂悢�B
- * ���̂��߁A���̃w�b�_���C���N���[�h����ӏ��͌��肳���͂�
+ * このヘッダはセーブデータの生成処理など、直接セーブデータにかかわる部分にのみ必要。
+ * それ以外の箇所ではsavedata_def.hのSAVEDATA型経由でアクセスできればよい。
+ * そのため、このヘッダをインクルードする箇所は限定されるはず
  */
 //=============================================================================
 #ifndef	__SAVEDATA_H__
@@ -16,34 +16,34 @@
 #include "savedata/savedata_def.h"
 
 //---------------------------------------------------------------------------
-///	�Z�[�u�Ɏg�p���Ă���Z�N�^��
+///	セーブに使用しているセクタ数
 //---------------------------------------------------------------------------
 #define	SAVE_PAGE_MAX		(32)
 
 #define	SAVE_SECTOR_SIZE	(0x1000)
 
-//�ȉ��̓f�o�b�O�c�[���p�̃Z�[�u�̈�ł� by soga
-#define EDIT_ANM_SAVE_2		( 45 * SAVE_SECTOR_SIZE )	//�|�P����anime�f�[�^
-#define CB_EDIT_SAVE		( 55 * SAVE_SECTOR_SIZE )	//�J�v�Z���{�[���Z�[�u�f�[�^
-#define EDIT_ANM_SAVE		( 58 * SAVE_SECTOR_SIZE )	//�|�P�����G�f�B�b�g�f�[�^
-#define	POKE_ANM_SAVE		(60*SAVE_SECTOR_SIZE)		//�|�P�����A�j���c�[���p�Z�[�u�̈�i���g�p�̂͂��j
-#define	DEBUG_FIGHT_SAVE	(62*SAVE_SECTOR_SIZE)		//�f�o�b�O�t�@�C�g�p�Z�[�u�̈�
+//以下はデバッグツール用のセーブ領域です by soga
+#define EDIT_ANM_SAVE_2		( 45 * SAVE_SECTOR_SIZE )	//ポケモンanimeデータ
+#define CB_EDIT_SAVE		( 55 * SAVE_SECTOR_SIZE )	//カプセルボールセーブデータ
+#define EDIT_ANM_SAVE		( 58 * SAVE_SECTOR_SIZE )	//ポケモンエディットデータ
+#define	POKE_ANM_SAVE		(60*SAVE_SECTOR_SIZE)		//ポケモンアニメツール用セーブ領域（未使用のはず）
+#define	DEBUG_FIGHT_SAVE	(62*SAVE_SECTOR_SIZE)		//デバッグファイト用セーブ領域
 
 //---------------------------------------------------------------------------
-///	�Z�[�u�u���b�N�̒�`
+///	セーブブロックの定義
 //---------------------------------------------------------------------------
 typedef enum {
-	SVBLK_ID_NORMAL = 0,	///<�ʏ�Q�[���i�s�f�[�^
-	SVBLK_ID_BOX,			///<�|�P�����{�b�N�X
+	SVBLK_ID_NORMAL = 0,	///<通常ゲーム進行データ
+	SVBLK_ID_BOX,			///<ポケモンボックス
 
 	SVBLK_ID_MAX,
 }SVBLK_ID;
 
 //---------------------------------------------------------------------------
-///	�Z�[�u���ڂ̒�`
+///	セーブ項目の定義
 //---------------------------------------------------------------------------
 typedef enum {
-	//�m�[�}���f�[�^�O���[�v
+	//ノーマルデータグループ
 	GMDATA_ID_SYSTEM_DATA,
 	GMDATA_ID_PLAYER_DATA,
 	GMDATA_ID_TEMOTI_POKE,
@@ -82,7 +82,7 @@ typedef enum {
 	GMDATA_ID_EMAIL,
 	GMDATA_ID_WFHIROBA,
 
-	//�{�b�N�X�f�[�^�O���[�v
+	//ボックスデータグループ
 	GMDATA_ID_BOXDATA,
 
 	GMDATA_ID_MAX,
@@ -90,30 +90,30 @@ typedef enum {
 
 //---------------------------------------------------------------------------
 /**
- * @brief	�O���Z�[�u�f�[�^��ID��`
+ * @brief	外部セーブデータのID定義
  */
 //---------------------------------------------------------------------------
 typedef enum {
-	EXDATA_ID_DENDOU,			///<�a������f�[�^
-	EXDATA_ID_FRONTIER,			///<�t�����e�B�A�O���f�[�^(�i�s�Ɋ֌W�Ȃ��L�^�̂�)
-	EXDATA_ID_BATTLE_REC_MINE,	///<�퓬�^��F�����p
-	EXDATA_ID_BATTLE_REC_DL_0,	///<�퓬�^��F�_�E�����[�h0��
-	EXDATA_ID_BATTLE_REC_DL_1,	///<�퓬�^��F�_�E�����[�h1��
-	EXDATA_ID_BATTLE_REC_DL_2,	///<�퓬�^��F�_�E�����[�h2��
+	EXDATA_ID_DENDOU,			///<殿堂入りデータ
+	EXDATA_ID_FRONTIER,			///<フロンティア外部データ(進行に関係ない記録のみ)
+	EXDATA_ID_BATTLE_REC_MINE,	///<戦闘録画：自分用
+	EXDATA_ID_BATTLE_REC_DL_0,	///<戦闘録画：ダウンロード0番
+	EXDATA_ID_BATTLE_REC_DL_1,	///<戦闘録画：ダウンロード1番
+	EXDATA_ID_BATTLE_REC_DL_2,	///<戦闘録画：ダウンロード2番
 	EXDATA_ID_MAX,
 }EXDATA_ID;
 
 
-///�O���Z�[�u�̔F�؃L�[�̌^
+///外部セーブの認証キーの型
 typedef u32 EX_CERTIFY_SAVE_KEY;
-///�O���Z�[�u�Ƀf�[�^�����݂��Ȃ��ꍇ�̔F�؃L�[
+///外部セーブにデータが存在しない場合の認証キー
 #define EX_CERTIFY_SAVE_KEY_NO_DATA		(0xffffffff)
 
 //============================================================================================
 //============================================================================================
 //---------------------------------------------------------------------------
-//	�t���b�V���A�N�Z�X�p�֐�
-//	���f�o�b�O�p�r�ȊO�ł�SaveData_�`���ĂԂ͂��Ȃ̂ŁA�ʏ�͒��ڎg��Ȃ��B
+//	フラッシュアクセス用関数
+//	※デバッグ用途以外ではSaveData_〜を呼ぶはずなので、通常は直接使わない。
 //---------------------------------------------------------------------------
 extern BOOL PMSVLD_Init(void);
 extern BOOL PMSVLD_Save(u32 src, void * dst, u32 len);
@@ -121,84 +121,84 @@ extern BOOL PMSVLD_Load(u32 src, void * dst, u32 len);
 
 
 //---------------------------------------------------------------------------
-//	�Z�[�u�f�[�^����֐�
+//	セーブデータ制御関数
 //---------------------------------------------------------------------------
-//�Z�[�u���[�h�V�X�e��������
+//セーブロードシステム初期化
 extern SAVEDATA * SaveData_System_Init(void);
 
-//�t���b�V�����݃`�F�b�N
+//フラッシュ存在チェック
 extern BOOL SaveData_GetFlashExistsFlag(const SAVEDATA * sv);
 
-//���[�h����
+//ロード処理
 extern BOOL SaveData_Load(SAVEDATA * sv);
-//�Z�[�u����
+//セーブ処理
 extern SAVE_RESULT SaveData_Save(SAVEDATA * sv);
-//��������
+//消去処理
 extern BOOL SaveData_Erase(SAVEDATA * sv);
-//�����Z�[�u����
+//部分セーブ処理
 extern SAVE_RESULT SaveData_SaveParts(SAVEDATA * sv, SVBLK_ID id);
-//�Z�[�u�f�[�^�������i�������܂Ȃ��j
+//セーブデータ初期化（書き込まない）
 extern void SaveData_ClearData(SAVEDATA * sv);
 
-//�ŏ��̓ǂݍ��ݎ��̃Z�[�u�f�[�^��Ԏ擾
+//最初の読み込み時のセーブデータ状態取得
 extern u32 SaveData_GetLoadResult(const SAVEDATA * sv);
 
-//�����f�[�^�ւ̐V�K�f�[�^�㏑���`�F�b�N
+//既存データへの新規データ上書きチェック
 extern BOOL SaveData_IsOverwritingOtherData(const SAVEDATA * sv);
-//�V�K�f�[�^���ǂ����̔��ʃt���O�擾
+//新規データかどうかの判別フラグ取得
 extern BOOL SaveData_GetNewDataFlag(const SAVEDATA * sv);
-//�f�[�^�����݂��邩�ǂ����̔��ʃt���O�擾
+//データが存在するかどうかの判別フラグ取得
 extern BOOL SaveData_GetExistFlag(const SAVEDATA * sv);
 
-//�S�̃Z�[�u���K�v���ǂ����̔��ʃt���O�擾
+//全体セーブが必要かどうかの判別フラグ取得
 extern BOOL SaveData_GetTotalSaveFlag(const SAVEDATA * sv);
 
-//�S�̃Z�[�u���N�G�X�g�t���O�Z�b�g
+//全体セーブリクエストフラグセット
 extern void SaveData_RequestTotalSave(void);
 
-//�����Z�[�u�F������
+//分割セーブ：初期化
 extern void SaveData_DivSave_Init(SAVEDATA * sv, int BlockID);
-//�����Z�[�u�F���C��
+//分割セーブ：メイン
 extern SAVE_RESULT SaveData_DivSave_Main(SAVEDATA * sv);
-//�����Z�[�u�F�L�����Z��
+//分割セーブ：キャンセル
 extern void SaveData_DivSave_Cancel(SAVEDATA * sv);
 
-//�O���Z�[�u�f�[�^�S������
+//外部セーブデータ全初期化
 extern void SVDT_ExtraInit(SAVEDATA * sv);
-//�O���Z�[�u�f�[�^���������ς݂��̔��ʃt���O�擾
+//外部セーブデータが初期化済みかの判別フラグ取得
 extern BOOL SaveData_GetExtraInitFlag(SAVEDATA * sv);
 
-//�Z�[�u�f�[�^���������Ă���CRC�e�[�u�����g�p���ăn�b�V���l�����߂�
+//セーブデータが所持しているCRCテーブルを使用してハッシュ値を求める
 extern u16 SaveData_CalcCRC(const SAVEDATA * sv, const void *start, u32 size);
 
 
 //---------------------------------------------------------------------------
-//	�Z�[�u�f�[�^�A�N�Z�X�p�֐�
+//	セーブデータアクセス用関数
 //---------------------------------------------------------------------------
 extern void * SaveData_Get(SAVEDATA * sv, GMDATA_ID gmdataID);
 extern const void * SaveData_GetReadOnlyData(const SAVEDATA * sv, GMDATA_ID gmdataID);
 
 #if CRC_LOADCHECK
 //---------------------------------------------------------------------------
-//	�Z�[�u�f�[�^��CRC����
+//	セーブデータのCRC検査
 //---------------------------------------------------------------------------
 extern BOOL SVLD_CheckCrc(GMDATA_ID gmdataID);
 extern void SVLD_SetCrc(GMDATA_ID gmdataID);
 //---------------------------------------------------------------------------
-//	�Z�[�u�f�[�^�̃T�C�Y�擾
+//	セーブデータのサイズ取得
 //---------------------------------------------------------------------------
 extern int SVDT_GetWorkSize(int id);
 #endif //CRC_LOADCHECK
 
 
 //---------------------------------------------------------------------------
-//	�f�o�b�O�p�֐�
-//	���Ȃ��g���Ă͂����܂���B
+//	デバッグ用関数
+//	許可なく使ってはいけません。
 //---------------------------------------------------------------------------
 extern SAVEDATA * SaveData_GetPointer(void);
 
-// �C���f�b�N�X����鎞�̂ݗL��
-// �ʏ��OFF�Ȃ̂�ON�ɂȂ��Ă�̂��������疳������OFF�ŗǂ�
+// インデックスを作る時のみ有効
+// 通常はOFFなのでONになってるのを見つけたら無条件にOFFで良い
 //#define CREATE_INDEX
 
 //---------------------------------------------------------------------------

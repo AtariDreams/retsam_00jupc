@@ -12,15 +12,15 @@
 
   $Log: dwc_ranking.h,v $
   Revision 1.19  2007/08/23 23:56:15  takayama
-  DWC_2_2_RC1‚Éƒ[ƒ‹ƒoƒbƒNB
+  DWC_2_2_RC1ã«ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯ã€‚
 
   Revision 1.15  2007/06/22 06:41:10  takayama
-  ’è‹`‚Ì•ÏXB
+  å®šç¾©ã®å¤‰æ›´ã€‚
   DWC_RNK_CATEGORY_MAX 100 -> 1000
   DWC_RNK_GET_MAX      10  -> 30
 
   Revision 1.14  2007/05/31 07:05:22  nakata
-  DWC_RNK_GET_MODE_NEAR_HI‚ÆDWC_RNK_GET_MODE_NEAR_LOW‚ð’Ç‰Á
+  DWC_RNK_GET_MODE_NEAR_HIã¨DWC_RNK_GET_MODE_NEAR_LOWã‚’è¿½åŠ 
 
   Revision 1.13  2007/04/25 11:43:45  hayashi
   adding Korean region support
@@ -53,13 +53,13 @@
   character code converting
 
   Revision 1.4  2006/04/11 09:01:33  hayashi
-  DWC_RnkInitialize‚ÅAÚ‘±æ‚ÌƒT[ƒo[‚ð‘I‘ð‚Å‚«‚é‚æ‚¤‚É‚µ‚½
+  DWC_RnkInitializeã§ã€æŽ¥ç¶šå…ˆã®ã‚µãƒ¼ãƒãƒ¼ã‚’é¸æŠžã§ãã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.3  2006/04/11 07:04:19  hayashi
-  base64‚ÌƒGƒ“ƒR[ƒhƒTƒCƒY‚ÌŒvŽZ‚ªŠÔˆá‚Á‚Ä‚¢‚½‚Ì‚ÅC³
+  base64ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã‚µã‚¤ã‚ºã®è¨ˆç®—ãŒé–“é•ã£ã¦ã„ãŸã®ã§ä¿®æ­£
 
   Revision 1.2  2006/04/10 13:26:11  hayashi
-  sinceƒpƒ‰ƒ[ƒ^[‚Ì’Ç‰Á
+  sinceãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®è¿½åŠ 
 
   Revision 1.1  2006/04/10 13:06:11  hayashi
   added the ranking module
@@ -79,20 +79,20 @@ extern "C" {
         define
    ------------------------------------------------------------------------- */
 
-// ƒ†[ƒU[’è‹`ƒf[ƒ^‚ÉŽg—p‚Å‚«‚éÅ‘åƒTƒCƒY
+// ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ãƒ‡ãƒ¼ã‚¿ã«ä½¿ç”¨ã§ãã‚‹æœ€å¤§ã‚µã‚¤ã‚º
 #define DWC_RNK_DATA_MAX		764
 
-// ƒJƒeƒSƒŠ[‚Æ‚µ‚ÄŽw’è‚Å‚«‚éÅ‘å’l
+// ã‚«ãƒ†ã‚´ãƒªãƒ¼ã¨ã—ã¦æŒ‡å®šã§ãã‚‹æœ€å¤§å€¤
 #define DWC_RNK_CATEGORY_MAX	1000
 
-// Žæ“¾‚·‚éƒ‰ƒ“ƒLƒ“ƒOƒŠƒXƒg‚Ì¸‡‚Æ~‡‚ðŽ¦‚·’è”
-#define DWC_RNK_ORDER_ASC		0	// ¸‡
-#define DWC_RNK_ORDER_DES		1	// ~‡
+// å–å¾—ã™ã‚‹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒªã‚¹ãƒˆã®æ˜‡é †ã¨é™é †ã‚’ç¤ºã™å®šæ•°
+#define DWC_RNK_ORDER_ASC		0	// æ˜‡é †
+#define DWC_RNK_ORDER_DES		1	// é™é †
 
-// Žæ“¾‚·‚éƒ‰ƒ“ƒLƒ“ƒOƒŠƒXƒg‚ÌÅ‘å”‚ÌãŒÀ’l
+// å–å¾—ã™ã‚‹ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒªã‚¹ãƒˆã®æœ€å¤§æ•°ã®ä¸Šé™å€¤
 #define DWC_RNK_GET_MAX         30
 
-// —F’B‚ÌÅ‘å”
+// å‹é”ã®æœ€å¤§æ•°
 #define DWC_RNK_FRIENDS_MAX		64
 
 
@@ -100,75 +100,75 @@ extern "C" {
         enum
    ------------------------------------------------------------------------- */
 
-// ƒGƒ‰[ƒR[ƒh
+// ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
 //
 typedef enum{
 
-	DWC_RNK_SUCCESS = 0,						// ¬Œ÷
-	DWC_RNK_IN_ERROR,							// ƒGƒ‰[”­¶’†
+	DWC_RNK_SUCCESS = 0,						// æˆåŠŸ
+	DWC_RNK_IN_ERROR,							// ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿä¸­
 
-	DWC_RNK_ERROR_INVALID_PARAMETER,			// •s³‚Èƒpƒ‰ƒ[ƒ^[
+	DWC_RNK_ERROR_INVALID_PARAMETER,			// ä¸æ­£ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 
 	// 
-	// DWC_RnkInitialize ‚ÌƒGƒ‰[’l
+	// DWC_RnkInitialize ã®ã‚¨ãƒ©ãƒ¼å€¤
 	// 
-	DWC_RNK_ERROR_INIT_ALREADYINITIALIZED,		// ‰Šú‰»Ï
-	DWC_RNK_ERROR_INIT_INVALID_INITDATASIZE,	// •s³‚È‰Šú‰»ƒf[ƒ^ƒTƒCƒY
-	DWC_RNK_ERROR_INIT_INVALID_INITDATA,		// •s³‚È‰Šú‰»ƒf[ƒ^
-	DWC_RNK_ERROR_INIT_INVALID_USERDATA,		// ƒ†[ƒU[î•ñ‚ª•s³
+	DWC_RNK_ERROR_INIT_ALREADYINITIALIZED,		// åˆæœŸåŒ–æ¸ˆ
+	DWC_RNK_ERROR_INIT_INVALID_INITDATASIZE,	// ä¸æ­£ãªåˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+	DWC_RNK_ERROR_INIT_INVALID_INITDATA,		// ä¸æ­£ãªåˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
+	DWC_RNK_ERROR_INIT_INVALID_USERDATA,		// ãƒ¦ãƒ¼ã‚¶ãƒ¼æƒ…å ±ãŒä¸æ­£
 
 	//
-	// DWC_RnkPutScoreAsync ‚ÌƒGƒ‰[’l
+	// DWC_RnkPutScoreAsync ã®ã‚¨ãƒ©ãƒ¼å€¤
 	//
-	DWC_RNK_ERROR_PUT_NOTREADY,					// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
-	DWC_RNK_ERROR_PUT_INVALID_KEY,				// ˆÃ†‰»ƒL[‚ª•s³
-	DWC_RNK_ERROR_PUT_NOMEMORY,					// ƒƒ‚ƒŠ[•s‘«
+	DWC_RNK_ERROR_PUT_NOTREADY,					// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
+	DWC_RNK_ERROR_PUT_INVALID_KEY,				// æš—å·åŒ–ã‚­ãƒ¼ãŒä¸æ­£
+	DWC_RNK_ERROR_PUT_NOMEMORY,					// ãƒ¡ãƒ¢ãƒªãƒ¼ä¸è¶³
  	
 	//
-	// DWC_RnkGetScoreAsync ‚ÌƒGƒ‰[’l
+	// DWC_RnkGetScoreAsync ã®ã‚¨ãƒ©ãƒ¼å€¤
 	//
-	DWC_RNK_ERROR_GET_NOTREADY,					// ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
-	DWC_RNK_ERROR_GET_INVALID_KEY,				// ˆÃ†‰»ƒL[‚ª•s³
-	DWC_RNK_ERROR_GET_NOMEMORY,					// ƒƒ‚ƒŠ[•s‘«
+	DWC_RNK_ERROR_GET_NOTREADY,					// åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
+	DWC_RNK_ERROR_GET_INVALID_KEY,				// æš—å·åŒ–ã‚­ãƒ¼ãŒä¸æ­£
+	DWC_RNK_ERROR_GET_NOMEMORY,					// ãƒ¡ãƒ¢ãƒªãƒ¼ä¸è¶³
  
 	//
-	// DWC_RnkCancelProcess ‚ÌƒGƒ‰[’l
+	// DWC_RnkCancelProcess ã®ã‚¨ãƒ©ãƒ¼å€¤
 	//
-	DWC_RNK_ERROR_CANCEL_NOTASK,				// ”ñ“¯Šúˆ—’†‚Ìˆ—‚È‚µ
+	DWC_RNK_ERROR_CANCEL_NOTASK,				// éžåŒæœŸå‡¦ç†ä¸­ã®å‡¦ç†ãªã—
 
 	//
-	// DWC_RnkProcess ‚ÌƒGƒ‰[’l
+	// DWC_RnkProcess ã®ã‚¨ãƒ©ãƒ¼å€¤
 	//
-	DWC_RNK_PROCESS_NOTASK,				// ”ñ“¯Šúˆ—’†‚Ìˆ—‚È‚µ
+	DWC_RNK_PROCESS_NOTASK,				// éžåŒæœŸå‡¦ç†ä¸­ã®å‡¦ç†ãªã—
 
 	//
-	// DWC_RnkGetResponse ‚ÌƒGƒ‰[’l
+	// DWC_RnkGetResponse ã®ã‚¨ãƒ©ãƒ¼å€¤
 	//
-	DWC_RNK_ERROR_INVALID_MODE,					// •s³‚Èƒ‚[ƒh
-	DWC_RNK_ERROR_NOTCOMPLETED,					// ’ÊM–¢Š®—¹
-	DWC_RNK_ERROR_EMPTY_RESPONSE				// ‹ó‚ÌƒŒƒXƒ|ƒ“ƒX
+	DWC_RNK_ERROR_INVALID_MODE,					// ä¸æ­£ãªãƒ¢ãƒ¼ãƒ‰
+	DWC_RNK_ERROR_NOTCOMPLETED,					// é€šä¿¡æœªå®Œäº†
+	DWC_RNK_ERROR_EMPTY_RESPONSE				// ç©ºã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹
 
 
 } DWCRnkError;
 
 
-// ƒ‚ƒWƒ…[ƒ‹ƒXƒe[ƒ^ƒX
+// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //
 typedef enum{
 
-	DWC_RNK_STATE_NOTREADY	= 0,	// –¢‰Šú‰»ó‘Ô
+	DWC_RNK_STATE_NOTREADY	= 0,	// æœªåˆæœŸåŒ–çŠ¶æ…‹
 
-	DWC_RNK_STATE_INITIALIZED,		// ‰Šú‰»Š®—¹
-	DWC_RNK_STATE_PUT_ASYNC,		// PUT”ñ“¯Šúˆ—’†
-	DWC_RNK_STATE_GET_ASYNC,		// GET”ñ“¯Šúˆ—’†
-	DWC_RNK_STATE_COMPLETED,		// Š®—¹
+	DWC_RNK_STATE_INITIALIZED,		// åˆæœŸåŒ–å®Œäº†
+	DWC_RNK_STATE_PUT_ASYNC,		// PUTéžåŒæœŸå‡¦ç†ä¸­
+	DWC_RNK_STATE_GET_ASYNC,		// GETéžåŒæœŸå‡¦ç†ä¸­
+	DWC_RNK_STATE_COMPLETED,		// å®Œäº†
 
-	DWC_RNK_STATE_ERROR				// ƒGƒ‰[”­¶
+	DWC_RNK_STATE_ERROR				// ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ
 
 } DWCRnkState;
 
 
-// ƒŠ[ƒWƒ‡ƒ“ƒR[ƒh
+// ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
 //
 typedef enum{
 
@@ -182,14 +182,14 @@ typedef enum{
 } DWCRnkRegion;
 
 
-// DWC_RnkGetScoreAsync Žæ“¾ƒ‚[ƒh
+// DWC_RnkGetScoreAsync å–å¾—ãƒ¢ãƒ¼ãƒ‰
 //
 typedef enum{
 
-	DWC_RNK_GET_MODE_ORDER,		// ‡ˆÊ
-	DWC_RNK_GET_MODE_TOPLIST,	// ƒnƒCƒXƒRƒA
-	DWC_RNK_GET_MODE_NEAR,		// Žü•ÓƒXƒRƒA
-	DWC_RNK_GET_MODE_FRIENDS,	// —F’BŽw’èƒ‰ƒ“ƒLƒ“ƒO
+	DWC_RNK_GET_MODE_ORDER,		// é †ä½
+	DWC_RNK_GET_MODE_TOPLIST,	// ãƒã‚¤ã‚¹ã‚³ã‚¢
+	DWC_RNK_GET_MODE_NEAR,		// å‘¨è¾ºã‚¹ã‚³ã‚¢
+	DWC_RNK_GET_MODE_FRIENDS,	// å‹é”æŒ‡å®šãƒ©ãƒ³ã‚­ãƒ³ã‚°
 	DWC_RNK_GET_MODE_NEAR_HI,
 	DWC_RNK_GET_MODE_NEAR_LOW
 
@@ -205,76 +205,76 @@ typedef enum{
         struct
    ------------------------------------------------------------------------- */
 
-// ƒXƒRƒAî•ñŠi”[—p\‘¢‘Ì
+// ã‚¹ã‚³ã‚¢æƒ…å ±æ ¼ç´ç”¨æ§‹é€ ä½“
 //
 typedef struct{
 
-	u32					order;		// ‡ˆÊ
+	u32					order;		// é †ä½
 	s32					pid;		// GameSpy Profile ID
-	s32					score;		// ƒXƒRƒA
-	DWCRnkRegion		region;		// ƒŠ[ƒWƒ‡ƒ“ƒR[ƒh
-	u32					lastupdate;	// ‘O‰ñ‚ÌXV‚©‚ç‚ÌŒo‰ßŽžŠÔ(•ª)
+	s32					score;		// ã‚¹ã‚³ã‚¢
+	DWCRnkRegion		region;		// ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰
+	u32					lastupdate;	// å‰å›žã®æ›´æ–°ã‹ã‚‰ã®çµŒéŽæ™‚é–“(åˆ†)
 
-	u32					size;		// userdata‚ÌƒTƒCƒY(bytes)
-	void*				userdata;	// ƒ†[ƒU[’è‹`ƒf[ƒ^‚Ìƒoƒbƒtƒ@
+	u32					size;		// userdataã®ã‚µã‚¤ã‚º(bytes)
+	void*				userdata;	// ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ãƒ‡ãƒ¼ã‚¿ã®ãƒãƒƒãƒ•ã‚¡
 
 } DWCRnkData;
 
 
-// DWC_RnkGetScoreAsync‚ÅŽw’è‚·‚éƒpƒ‰ƒ[ƒ^
+// DWC_RnkGetScoreAsyncã§æŒ‡å®šã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //
 typedef struct{
 
-	u32				size;	// ƒTƒCƒY(bytes)
+	u32				size;	// ã‚µã‚¤ã‚º(bytes)
 
 	union{
 
 		//
-		// ƒ‚[ƒh = DWC_RNK_GET_MODE_ORDER
+		// ãƒ¢ãƒ¼ãƒ‰ = DWC_RNK_GET_MODE_ORDER
 		//
 		struct{
 
-			u32	sort;							// DWC_RNK_ORDER_ASC:¸‡
-												// DWC_RNK_ORDER_DES:~‡
-			u32	since;							// ‰½•b‘O‚©‚ç‚©
+			u32	sort;							// DWC_RNK_ORDER_ASC:æ˜‡é †
+												// DWC_RNK_ORDER_DES:é™é †
+			u32	since;							// ä½•ç§’å‰ã‹ã‚‰ã‹
 
 		}			order;
 
 		//
-		// ƒ‚[ƒh = DWC_RNK_GET_MODE_TOPLIST
+		// ãƒ¢ãƒ¼ãƒ‰ = DWC_RNK_GET_MODE_TOPLIST
 		//
 		struct{
 
-			u32	sort;							// DWC_RNK_ORDER_ASC:¸‡
-												// DWC_RNK_ORDER_DES:~‡
-			u32	limit;							// Žæ“¾‚·‚éÅ‘å”
-			u32	since;							// ‰½•b‘O‚©‚ç‚©
+			u32	sort;							// DWC_RNK_ORDER_ASC:æ˜‡é †
+												// DWC_RNK_ORDER_DES:é™é †
+			u32	limit;							// å–å¾—ã™ã‚‹æœ€å¤§æ•°
+			u32	since;							// ä½•ç§’å‰ã‹ã‚‰ã‹
 
 		}			toplist;
 
 		//
-		// ƒ‚[ƒh = DWC_RNK_GET_MODE_NEAR
+		// ãƒ¢ãƒ¼ãƒ‰ = DWC_RNK_GET_MODE_NEAR
 		//
 		struct{
 
-			u32	sort;							// DWC_RNK_ORDER_ASC:¸‡
-												// DWC_RNK_ORDER_DES:~‡
-			u32	limit;							// Žæ“¾‚·‚éÅ‘å”
-			u32	since;							// ‰½•b‘O‚©‚ç‚©
+			u32	sort;							// DWC_RNK_ORDER_ASC:æ˜‡é †
+												// DWC_RNK_ORDER_DES:é™é †
+			u32	limit;							// å–å¾—ã™ã‚‹æœ€å¤§æ•°
+			u32	since;							// ä½•ç§’å‰ã‹ã‚‰ã‹
 
 		}			near;
 
 		//
-		// ƒ‚[ƒh = DWC_RNK_GET_MODE_FRIENDS
+		// ãƒ¢ãƒ¼ãƒ‰ = DWC_RNK_GET_MODE_FRIENDS
 		//
 		struct{
 
 
-			u32	sort;							// DWC_RNK_ORDER_ASC:¸‡
-												// DWC_RNK_ORDER_DES:~‡
-			u32	limit;							// Žæ“¾‚·‚éÅ‘å”
-			u32	since;							// ‰½•b‘O‚©‚ç‚©
-			s32	friends[DWC_RNK_FRIENDS_MAX];	// —F’B‚ÌPIDƒŠƒXƒg
+			u32	sort;							// DWC_RNK_ORDER_ASC:æ˜‡é †
+												// DWC_RNK_ORDER_DES:é™é †
+			u32	limit;							// å–å¾—ã™ã‚‹æœ€å¤§æ•°
+			u32	since;							// ä½•ç§’å‰ã‹ã‚‰ã‹
+			s32	friends[DWC_RNK_FRIENDS_MAX];	// å‹é”ã®PIDãƒªã‚¹ãƒˆ
 
 		}			friends;
 	
@@ -312,7 +312,7 @@ extern DWCRnkError	DWC_RnkProcess();
 extern DWCRnkState	DWC_RnkGetState();
 
 //
-// ƒŒƒXƒ|ƒ“ƒXŽæ“¾—p
+// ãƒ¬ã‚¹ãƒãƒ³ã‚¹å–å¾—ç”¨
 //
 extern DWCRnkError	DWC_RnkResGetRow(		DWCRnkData* out,
 											u32 index );

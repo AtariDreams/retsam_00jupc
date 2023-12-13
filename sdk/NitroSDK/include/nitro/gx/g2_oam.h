@@ -15,16 +15,16 @@
   do-indent
 
   Revision 1.25  2005/09/08 12:28:09  yasu
-  SDK_FROM_TOOL の判定部分に SDK_WIN32 での判定も追加
+  SDK_FROM_TOOL 縺ｮ蛻､螳夐Κ蛻�縺ｫ SDK_WIN32 縺ｧ縺ｮ蛻､螳壹ｂ霑ｽ蜉
 
   Revision 1.24  2005/03/01 01:57:00  yosizaki
-  copyright の年を修正.
+  copyright 縺ｮ蟷ｴ繧剃ｿｮ豁｣.
 
   Revision 1.23  2005/02/28 05:26:13  yosizaki
   do-indent.
 
   Revision 1.22  2004/12/27 04:45:05  takano_makoto
-  レジスタのGetter関数を追加
+  繝ｬ繧ｸ繧ｹ繧ｿ縺ｮGetter髢｢謨ｰ繧定ｿｽ蜉
 
   Revision 1.21  2004/11/02 17:06:20  takano_makoto
   fix comments.

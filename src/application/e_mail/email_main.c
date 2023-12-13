@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	emai_main.c
- * @brief	E���[����ʃ��C��PROC
+ * @brief	Eメール画面メインPROC
  * @author	matsuda
- * @date	2007.10.17(��)
+ * @date	2007.10.17(水)
  */
 //==============================================================================
 #include "common.h"
@@ -50,7 +50,7 @@
 FS_EXTERN_OVERLAY( title );
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
 #define MYDWC_HEAPSIZE		0x20000
 
@@ -63,13 +63,13 @@ enum{
 };
 
 //==============================================================================
-//	�O���[�o���ϐ�
+//	グローバル変数
 //==============================================================================
 static NNSFndHeapHandle _wtHeapHandle;
 
 
 //==============================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //==============================================================================
 static void Email_CommInitialize(EMAIL_SYSWORK *esys);
 static void Email_CommFree(EMAIL_SYSWORK *esys);
@@ -91,12 +91,12 @@ static void * ov98_22470F8(EMAIL_SYSWORK *esys);
 static void ov98_2247134(EMAIL_SYSWORK *esys);
 
 //==============================================================================
-//	PROC�f�[�^
+//	PROCデータ
 //==============================================================================
 FS_EXTERN_OVERLAY(email);
 FS_EXTERN_OVERLAY(worldtrade);
 
-///E���[���ݒ��ʃv���Z�X��`�f�[�^
+///Eメール設定画面プロセス定義データ
 const PROC_DATA EmailProcData = {
 	EmailProc_Init,
 	EmailProc_Main,
@@ -105,7 +105,7 @@ const PROC_DATA EmailProcData = {
 };
 
 
-///E���[�����j���[��ʃv���Z�X��`�f�[�^
+///Eメールメニュー画面プロセス定義データ
 static const PROC_DATA EmailMenuProcData = {
 	EmailMenu_Enter_Init,
 	EmailMenu_Enter_Main,
@@ -113,7 +113,7 @@ static const PROC_DATA EmailMenuProcData = {
 	NO_OVERLAY_ID,//FS_OVERLAY_ID(email),
 };
 
-///E���[�����l���͉�ʃv���Z�X��`�f�[�^
+///Eメール数値入力画面プロセス定義データ
 static const PROC_DATA EmailInputProcData = {
 	EmailInput_Init,
 	EmailInput_Main,
@@ -121,7 +121,7 @@ static const PROC_DATA EmailInputProcData = {
 	NO_OVERLAY_ID,//FS_OVERLAY_ID(email),
 };
 
-///E���[���A�h���X���͉�ʃv���Z�X��`�f�[�^�@��check�@��ŏ���
+///Eメールアドレス入力画面プロセス定義データ　※check　後で消す
 static const PROC_DATA EmailAddressProcData = {
 	EmailAddress_Init,
 	EmailAddress_Main,
@@ -130,7 +130,7 @@ static const PROC_DATA EmailAddressProcData = {
 };
 
 FS_EXTERN_OVERLAY(wifi_p2pmatch);
-// �F�B�R�[�h�擾�v���Z�X��`�f�[�^
+// 友達コード取得プロセス定義データ
 static const PROC_DATA WifiP2PMatchProcData = {
 	WifiP2PMatchProc_Init,
 	WifiP2PMatchProc_Main,
@@ -139,17 +139,17 @@ static const PROC_DATA WifiP2PMatchProcData = {
 };
 
 
-///�T�uPROC�Ăяo�����̃p�����[�^�쐬�֐�
+///サブPROC呼び出し時のパラメータ作成関数
 typedef void * (*EMAIL_SUBPROC_PARAM_FUNC)(EMAIL_SYSWORK *esys);
-///�T�uPROC�I�����̃p�����[�^���n���֐�
+///サブPROC終了時のパラメータ引渡し関数
 typedef void (*EMAIL_SUBPROC_RETURN_FUNC)(EMAIL_SYSWORK *esys);
 
-///PROC�f�[�^�̃|�C���^�e�[�u���@��EMAIL_SUBPROC_???�ƕ��т𓯂��ɂ��Ă������ƁI
+///PROCデータのポインタテーブル　※EMAIL_SUBPROC_???と並びを同じにしておくこと！
 static const struct{
 	EMAIL_SUBPROC_PARAM_FUNC param_func;
 	EMAIL_SUBPROC_RETURN_FUNC return_func;
 	const PROC_DATA *proc_data;
-	int comm_free_call;			//TRUE���ʐM���C�u�����Ȃǂ����������Ԃ�PROC�����
+	int comm_free_call;			//TRUE＝通信ライブラリなどを解放した状態でPROCを作る
 }EmailProcDataTbl[] = {
     // MatchComment: use matching plat US data
 	{SubFuncCall_EmailMenu, ReturnFuncCall_EmailMenu, &EmailMenuProcData, FALSE},
@@ -162,11 +162,11 @@ static const struct{
 
 
 //============================================================================================
-//	�v���Z�X�֐�
+//	プロセス関数
 //============================================================================================
 //==============================================================================
 /**
- * $brief   ���E�����������ʏ�����
+ * $brief   世界交換入り口画面初期化
  *
  * @param   esys		
  * @param   seq		
@@ -178,9 +178,9 @@ PROC_RESULT EmailProc_Init( PROC * proc, int * seq )
 {
 	EMAIL_SYSWORK *esys;
 
-	//E���[���Ǘ��p�q�[�v�쐬
+	//Eメール管理用ヒープ作成
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_EMAIL_MANAGE, 0x28000 );
-	//�ʐM�A�C�R�����o���̂ɕK�v
+	//通信アイコンを出すのに必要
 	sys_CreateHeap( HEAPID_BASE_SYSTEM, HEAPID_COMMICON, 0x300 );
 
 	esys = PROC_AllocWork(proc, sizeof(EMAIL_SYSWORK), HEAPID_EMAIL_MANAGE );
@@ -190,10 +190,10 @@ PROC_RESULT EmailProc_Init( PROC * proc, int * seq )
 	esys->email_address = STRBUF_Create(EMAIL_ADDRESS_LEN_SIZE, HEAPID_EMAIL_MANAGE);
 	esys->now_email_address = STRBUF_Create(EMAIL_ADDRESS_LEN_SIZE, HEAPID_EMAIL_MANAGE);
 
-	//�T�E���h�f�[�^�Z�b�g
+	//サウンドデータセット
 	Snd_DataSetByScene( SND_SCENE_EMAIL, SEQ_WIFILOBBY, 1 );
 		
-	//�ŏ��Ɏ��s����T�u�v���Z�X
+	//最初に実行するサブプロセス
 	esys->sub_nextprocess = EMAIL_SUBPROC_MENU;
 	
 	return PROC_RES_FINISH;
@@ -201,7 +201,7 @@ PROC_RESULT EmailProc_Init( PROC * proc, int * seq )
 
 //==============================================================================
 /**
- * $brief   E���[���Ǘ����C��
+ * $brief   Eメール管理メイン
  *
  * @param   esys		
  * @param   seq		
@@ -215,13 +215,13 @@ PROC_RESULT EmailProc_Main( PROC * proc, int * seq )
 	BOOL result;
 	
 	if(esys->comm_initialize_ok == TRUE){
-		// ��M���x�����N�𔽉f������
+		// 受信強度リンクを反映させる
 		DWC_UpdateConnection();
 
-		// Dpw_Tr_Main() �����͗�O�I�ɂ��ł��Ăׂ�
+		// Dpw_Tr_Main() だけは例外的にいつでも呼べる
 		Dpw_Tr_Main();
 
-		// �ʐM��Ԃ��m�F���ăA�C�R���̕\����ς���
+		// 通信状態を確認してアイコンの表示を変える
 		WirelessIconEasy_SetLevel( WM_LINK_LEVEL_3 - DWC_GetLinkLevel() );
 	}
 
@@ -234,7 +234,7 @@ PROC_RESULT EmailProc_Main( PROC * proc, int * seq )
 		if(CommIsVRAMDInitialize()){
 			_wtHeapHandle = esys->heapHandle;
 	
-			// wifi�������Ǘ��֐��Ăяo��
+			// wifiメモリ管理関数呼び出し
 			DWC_SetMemFunc( AllocFunc, FreeFunc );
 			
 			esys->comm_initialize_ok = TRUE;
@@ -278,7 +278,7 @@ PROC_RESULT EmailProc_Main( PROC * proc, int * seq )
 
 //==============================================================================
 /**
- * $brief   ���E�����������ʏI��
+ * $brief   世界交換入り口画面終了
  *
  * @param   esys		
  * @param   seq		
@@ -295,12 +295,12 @@ PROC_RESULT EmailProc_End(PROC *proc, int *seq)
 	STRBUF_Delete(esys->now_email_address);
 	STRBUF_Delete(esys->email_address);
 
-	PROC_FreeWork( proc );				// PROC���[�N�J��
+	PROC_FreeWork( proc );				// PROCワーク開放
 
 	sys_DeleteHeap( HEAPID_EMAIL_MANAGE );
 	sys_DeleteHeap( HEAPID_COMMICON );
 
-	//-- �^�C�g����ʂ� --//
+	//-- タイトル画面へ --//
 	Main_SetNextProc( FS_OVERLAY_ID(title), &TitleProcData);
 
 	return PROC_RES_FINISH;
@@ -309,7 +309,7 @@ PROC_RESULT EmailProc_End(PROC *proc, int *seq)
 
 //--------------------------------------------------------------
 /**
- * @brief   �ʐM���C�u�����֘A�̏���������
+ * @brief   通信ライブラリ関連の初期化処理
  *
  * @param   esys		
  */
@@ -317,29 +317,29 @@ PROC_RESULT EmailProc_End(PROC *proc, int *seq)
 static void Email_CommInitialize(EMAIL_SYSWORK *esys)
 {
 	if(esys->comm_initialize_ok == FALSE){
-		OS_TPrintf("Comm�������J�n\n");
+		OS_TPrintf("Comm初期化開始\n");
 		
-		//���E������Wifi�ʐM���߂��g�p���邽�߃I�[�o�[���C��ǂݏo��(dpw_tr.c��)
+		//世界交換のWifi通信命令を使用するためオーバーレイを読み出す(dpw_tr.c等)
 		Overlay_Load(FS_OVERLAY_ID(worldtrade), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 
-		// DWC���C�u�����iWifi�j�ɓn�����߂̃��[�N�̈���m��
+		// DWCライブラリ（Wifi）に渡すためのワーク領域を確保
 		esys->heapPtr    = sys_AllocMemory(HEAPID_EMAIL_MANAGE, MYDWC_HEAPSIZE + 32);
 		esys->heapHandle = NNS_FndCreateExpHeap( (void *)( ((u32)esys->heapPtr + 31) / 32 * 32 ), MYDWC_HEAPSIZE);
 
-		//DWC�I�[�o�[���C�ǂݍ���
+		//DWCオーバーレイ読み込み
 		DwcOverlayStart();
 		DpwCommonOverlayStart();
-		// �C�N�j���[�����]��
+		// イクニューモン転送
 		CommVRAMDInitialize();
-		sys_SleepOK(SLEEPTYPE_COMM);  // �X���[�v�֎~�������B���ۂɒʐM���鎞�ɂ����瑤��NG�ɂ���
+		sys_SleepOK(SLEEPTYPE_COMM);  // スリープ禁止を解除。実際に通信する時にこちら側でNGにする
 
-		OS_TPrintf("Comm�������I��\n");
+		OS_TPrintf("Comm初期化終了\n");
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   �ʐM���C�u�����֘A�̉������
+ * @brief   通信ライブラリ関連の解放処理
  *
  * @param   esys		
  */
@@ -347,28 +347,28 @@ static void Email_CommInitialize(EMAIL_SYSWORK *esys)
 static void Email_CommFree(EMAIL_SYSWORK *esys)
 {
 	if(esys->comm_initialize_ok == TRUE){
-		OS_TPrintf("Comm����J�n\n");
+		OS_TPrintf("Comm解放開始\n");
 		
 		NNS_FndDestroyExpHeap(esys->heapHandle);
 		sys_FreeMemoryEz( esys->heapPtr );
 		DpwCommonOverlayEnd();
 		DwcOverlayEnd();
 
-		// �C�N�j���[�������
+		// イクニューモン解放
 		CommVRAMDFinalize();
 
 		Overlay_UnloadID(FS_OVERLAY_ID(worldtrade));
 		
 		esys->comm_initialize_ok = FALSE;
 
-		OS_TPrintf("Comm�������\n");
+		OS_TPrintf("Comm解放完了\n");
 	}
 }
 
 
 //==============================================================================
 /**
- * @brief   �T�u�v���Z�X���[�h�̐؂�ւ��w��
+ * @brief   サブプロセスモードの切り替え指定
  *
  * @param   esys			
  * @param   subprccess	
@@ -385,11 +385,11 @@ void Email_SubProcessChange( EMAIL_SYSWORK *esys, int subprccess, int mode )
 
 //--------------------------------------------------------------
 /**
- * @brief   �T�u�v���Z�X���[�h�������ŏI�����[�h�ɂ���
+ * @brief   サブプロセスモードを強制で終了モードにする
  *
  * @param   esys		
  *
- * �ʐM�G���[�Ȃǂł̋����I���p
+ * 通信エラーなどでの強制終了用
  */
 //--------------------------------------------------------------
 void Email_SubProcessEndSet(EMAIL_SYSWORK *esys)
@@ -399,10 +399,10 @@ void Email_SubProcessEndSet(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ���j���[��ʂ��N������Ƃ��̃��[�h���Z�b�g
+ * @brief   メニュー画面を起動するときのモードをセット
  *
  * @param   esys				
- * @param   mode				�N�����[�h
+ * @param   mode				起動モード
  */
 //--------------------------------------------------------------
 void Email_RecoveryMenuModeSet(EMAIL_SYSWORK *esys, int mode)
@@ -412,10 +412,10 @@ void Email_RecoveryMenuModeSet(EMAIL_SYSWORK *esys, int mode)
 
 //--------------------------------------------------------------
 /**
- * @brief   ���j���[��ʂ��N������Ƃ��̃��[�h�擾
+ * @brief   メニュー画面を起動するときのモード取得
  *
  * @param   esys				
- * @param   mode				�N�����[�h
+ * @param   mode				起動モード
  */
 //--------------------------------------------------------------
 int Email_RecoveryMenuModeGet(EMAIL_SYSWORK *esys)
@@ -425,7 +425,7 @@ int Email_RecoveryMenuModeGet(EMAIL_SYSWORK *esys)
 
 
 /*---------------------------------------------------------------------------*
-  �������m�ۊ֐�
+  メモリ確保関数
  *---------------------------------------------------------------------------*/
 static void *AllocFunc( DWCAllocType name, u32   size, int align )
 {
@@ -442,7 +442,7 @@ static void *AllocFunc( DWCAllocType name, u32   size, int align )
 }
 
 /*---------------------------------------------------------------------------*
-  �������J���֐�
+  メモリ開放関数
  *---------------------------------------------------------------------------*/
 static void FreeFunc(DWCAllocType name, void* ptr,  u32 size)
 {
@@ -458,7 +458,7 @@ static void FreeFunc(DWCAllocType name, void* ptr,  u32 size)
 
 //--------------------------------------------------------------
 /**
- * @brief   EMAIL_SYSWORK�Ɏ����Ă���E���[���A�h���X���Z�[�u�f�[�^�̕��ɃZ�b�g����
+ * @brief   EMAIL_SYSWORKに持っているEメールアドレスをセーブデータの方にセットする
  *
  * @param   esys		
  */
@@ -477,7 +477,7 @@ void Email_AddressSaveWorkSet(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   EMAIL_SYSWORK�Ɏ����Ă���F�؃R�[�h(��4��)���Z�[�u�f�[�^�̕��ɃZ�b�g����
+ * @brief   EMAIL_SYSWORKに持っている認証コード(下4桁)をセーブデータの方にセットする
  *
  * @param   esys		
  */
@@ -490,7 +490,7 @@ void Email_AuthenticateCodeSaveWorkSet(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   EMAIL_SYSWORK�Ɏ����Ă���p�X���[�h���Z�[�u�f�[�^�̕��ɃZ�b�g����
+ * @brief   EMAIL_SYSWORKに持っているパスワードをセーブデータの方にセットする
  *
  * @param   esys		
  */
@@ -502,7 +502,7 @@ void Email_PasswordSaveWorkSet(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �F�ؗp�v���t�B�[���쐬
+ * @brief   認証用プロフィール作成
  *
  * @param   esys			
  */
@@ -518,8 +518,8 @@ void Email_DCProfileCreate(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   Email_DCProfileCreate�ō쐬�ς݂̃v���t�B�[���f�[�^�ɑ΂���EMAIL_SYSWORK��
- * 			�������Ă���E���[���A�h���X���Z�b�g����
+ * @brief   Email_DCProfileCreateで作成済みのプロフィールデータに対してEMAIL_SYSWORKが
+ * 			所持しているEメールアドレスをセットする
  *
  * @param   esys		
  */
@@ -531,8 +531,8 @@ void Email_DCProfileSet_Address(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   Email_DCProfileCreate�ō쐬�ς݂̃v���t�B�[���f�[�^�ɑ΂���EMAIL_SYSWORK��
- * 			�������Ă���F�؃R�[�h(��4��)���Z�b�g����
+ * @brief   Email_DCProfileCreateで作成済みのプロフィールデータに対してEMAIL_SYSWORKが
+ * 			所持している認証コード(下4桁)をセットする
  *
  * @param   esys		
  */
@@ -544,10 +544,10 @@ void Email_DCProfileSet_Authenticate(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �N���C�A���g���Ō��肳���F�؃R�[�h��3�����Z�b�g����
+ * @brief   クライアント側で決定される認証コード上3桁をセットする
  *
  * @param   esys		
- * @param   code		�F�؃R�[�h��3��
+ * @param   code		認証コード上3桁
  */
 //--------------------------------------------------------------
 void Email_AuthenticateRandCodeSet(EMAIL_SYSWORK *esys, u32 code)
@@ -557,9 +557,9 @@ void Email_AuthenticateRandCodeSet(EMAIL_SYSWORK *esys, u32 code)
 
 //--------------------------------------------------------------
 /**
- * @brief   �N���C�A���g���Ō��肳���F�؃R�[�h��3�����擾����
+ * @brief   クライアント側で決定される認証コード上3桁を取得する
  *
- * @retval		�F�؃R�[�h��3��
+ * @retval		認証コード上3桁
  */
 //--------------------------------------------------------------
 u32 Email_AuthenticateRandCodeGet(EMAIL_SYSWORK *esys)
@@ -569,10 +569,10 @@ u32 Email_AuthenticateRandCodeGet(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ���͉�ʂ���F�؃R�[�h���Z�b�g����
+ * @brief   入力画面から認証コードをセットする
  *
  * @param   esys		
- * @param   code		�F�؃R�[�h(��4��)�B�L�����Z���I���̏ꍇ��EMAIL_AUTHENTICATE_CODE_CANCEL
+ * @param   code		認証コード(下4桁)。キャンセル終了の場合はEMAIL_AUTHENTICATE_CODE_CANCEL
  */
 //--------------------------------------------------------------
 void Email_AuthenticateCodeSet(EMAIL_SYSWORK *esys, u32 code)
@@ -582,11 +582,11 @@ void Email_AuthenticateCodeSet(EMAIL_SYSWORK *esys, u32 code)
 
 //--------------------------------------------------------------
 /**
- * @brief   ���͉�ʂœ��͂��ꂽ�F�؃R�[�h���擾����
+ * @brief   入力画面で入力された認証コードを取得する
  *
  * @param   esys		
  * 
- * @retval   code		�F�؃R�[�h(��4��)�B�L�����Z���I���̏ꍇ��EMAIL_AUTHENTICATE_CODE_CANCEL
+ * @retval   code		認証コード(下4桁)。キャンセル終了の場合はEMAIL_AUTHENTICATE_CODE_CANCEL
  */
 //--------------------------------------------------------------
 u32 Email_AuthenticateCodeGet(EMAIL_SYSWORK *esys)
@@ -596,10 +596,10 @@ u32 Email_AuthenticateCodeGet(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ���͉�ʂ���p�X���[�h���Z�b�g����
+ * @brief   入力画面からパスワードをセットする
  *
  * @param   esys		
- * @param   code		�F�؃R�[�h(��4��)�B�L�����Z���I���̏ꍇ��EMAIL_PASSWORD_CANCEL
+ * @param   code		認証コード(下4桁)。キャンセル終了の場合はEMAIL_PASSWORD_CANCEL
  */
 //--------------------------------------------------------------
 void Email_PasswordNumberSet(EMAIL_SYSWORK *esys, u32 password)
@@ -609,11 +609,11 @@ void Email_PasswordNumberSet(EMAIL_SYSWORK *esys, u32 password)
 
 //--------------------------------------------------------------
 /**
- * @brief   ���͉�ʂœ��͂��ꂽ�p�X���[�h���擾����
+ * @brief   入力画面で入力されたパスワードを取得する
  *
  * @param   esys		
  * 
- * @retval   code		�F�؃R�[�h(��4��)�B�L�����Z���I���̏ꍇ��EMAIL_PASSWORD_CANCEL
+ * @retval   code		認証コード(下4桁)。キャンセル終了の場合はEMAIL_PASSWORD_CANCEL
  */
 //--------------------------------------------------------------
 u32 Email_PasswordNumberGet(EMAIL_SYSWORK *esys)
@@ -623,7 +623,7 @@ u32 Email_PasswordNumberGet(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   E���[���A�h���X���͉�ʏI���t���O���Z�b�g����
+ * @brief   Eメールアドレス入力画面終了フラグをセットする
  *
  * @param   esys		
  * @param   flag		EMAIL_ADDRESS_RET_SET or EMAIL_ADDRESS_RET_CANCEL
@@ -636,7 +636,7 @@ void Email_AddressReturnFlagSet(EMAIL_SYSWORK *esys, int flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   E���[���A�h���X���͉�ʏI���t���O���擾����
+ * @brief   Eメールアドレス入力画面終了フラグを取得する
  *
  * @param   esys		
  * 
@@ -650,7 +650,7 @@ int Email_AddressReturnFlagGet(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   E���[���A�h���X���Z�b�g����(�Z�b�g����Ă���)STRBUF�̃|�C���^���擾����
+ * @brief   Eメールアドレスをセットする(セットされている)STRBUFのポインタを取得する
  *
  * @param   esys		
  */
@@ -662,15 +662,15 @@ STRBUF * Email_AddressStrbufGet(EMAIL_SYSWORK *esys)
 
 
 //==============================================================================
-//	�T�uPROC�Ăяo�����̃p�����[�^�쐬�֐�
+//	サブPROC呼び出し時のパラメータ作成関数
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ���j���[��ʌĂяo���p�����[�^�쐬�֐�
+ * @brief   メニュー画面呼び出しパラメータ作成関数
  *
  * @param   esys		
  *
- * @retval  SubProc��ParentWork�Ƃ��ēn�����[�N�̃|�C���^
+ * @retval  SubProcにParentWorkとして渡すワークのポインタ
  */
 //--------------------------------------------------------------
 static void * SubFuncCall_EmailMenu(EMAIL_SYSWORK *esys)
@@ -680,7 +680,7 @@ static void * SubFuncCall_EmailMenu(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   ���j���[��ʂ���߂��Ă������̃p�����[�^���n���֐�
+ * @brief   メニュー画面から戻ってきた時のパラメータ引渡し関数
  *
  * @param   esys		
  */
@@ -767,11 +767,11 @@ void ov98_2247134(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �A�h���X���͉�ʌĂяo���p�����[�^�쐬�֐�
+ * @brief   アドレス入力画面呼び出しパラメータ作成関数
  *
  * @param   esys		
  *
- * @retval  SubProc��ParentWork�Ƃ��ēn�����[�N�̃|�C���^
+ * @retval  SubProcにParentWorkとして渡すワークのポインタ
  */
 //--------------------------------------------------------------
 static void * SubFuncCall_AddressInput(EMAIL_SYSWORK *esys)
@@ -791,7 +791,7 @@ static void * SubFuncCall_AddressInput(EMAIL_SYSWORK *esys)
 	para->authenticate_rand_code = esys->authenticate_rand_code;
 	para->password = EMAILSAVE_ParamGet(esys->savedata, EMAIL_PARAM_PASSWORD);
 
-#if 0	//���̉�ʌĂяo�����ɒl�̏����������Ă��܂��̂ŃL�����Z���l�Z�b�g����̂�߂�
+#if 0	//他の画面呼び出し時に値の初期化をしてしまうのでキャンセル値セットするのやめる
 	para->ret_address_flag = EMAIL_ADDRESS_RET_CANCEL;
 	para->ret_authenticate_code = EMAIL_AUTHENTICATE_CODE_CANCEL;
 	para->ret_password = 0;
@@ -807,11 +807,11 @@ static void * SubFuncCall_AddressInput(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �A�h���X���͉�ʌĂяo���p�����[�^�쐬�֐�
+ * @brief   アドレス入力画面呼び出しパラメータ作成関数
  *
  * @param   esys		
  *
- * @retval  SubProc��ParentWork�Ƃ��ēn�����[�N�̃|�C���^
+ * @retval  SubProcにParentWorkとして渡すワークのポインタ
  */
 //--------------------------------------------------------------
 static void ReturnFuncCall_AddressInput(EMAIL_SYSWORK *esys)
@@ -826,17 +826,17 @@ static void ReturnFuncCall_AddressInput(EMAIL_SYSWORK *esys)
 	
 	sys_FreeMemoryEz(esys->sub_proc_parent_work);
 
-	//�T�uPROC�����X�g�ɖ߂����߂ɃZ�b�g
+	//サブPROCをリストに戻すためにセット
 	Email_SubProcessChange(esys, EMAIL_SUBPROC_MENU, 0 );
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   �A�h���X���͉�ʌĂяo���p�����[�^�쐬�֐�
+ * @brief   アドレス入力画面呼び出しパラメータ作成関数
  *
  * @param   esys		
  *
- * @retval  SubProc��ParentWork�Ƃ��ēn�����[�N�̃|�C���^
+ * @retval  SubProcにParentWorkとして渡すワークのポインタ
  */
 //--------------------------------------------------------------
 static void * SubFuncCall_GSProfileIDGet(EMAIL_SYSWORK *esys)
@@ -856,11 +856,11 @@ static void * SubFuncCall_GSProfileIDGet(EMAIL_SYSWORK *esys)
 
 //--------------------------------------------------------------
 /**
- * @brief   �A�h���X���͉�ʌĂяo���p�����[�^�쐬�֐�
+ * @brief   アドレス入力画面呼び出しパラメータ作成関数
  *
  * @param   esys		
  *
- * @retval  SubProc��ParentWork�Ƃ��ēn�����[�N�̃|�C���^
+ * @retval  SubProcにParentWorkとして渡すワークのポインタ
  */
 //--------------------------------------------------------------
 static void ReturnFuncCall_GSProfileIDGet(EMAIL_SYSWORK *esys)
@@ -869,14 +869,14 @@ static void ReturnFuncCall_GSProfileIDGet(EMAIL_SYSWORK *esys)
 	
 	para = esys->sub_proc_parent_work;
 
-    if( mydwc_checkMyGSID(esys->savedata) ){  // �R�[�h�擾�ɐ���
+    if( mydwc_checkMyGSID(esys->savedata) ){  // コード取得に成功
         SysFlag_WifiUseSet(SaveData_GetEventWork(esys->savedata));
-        OS_TPrintf("�F�B�R�[�h�擾����\n");
+        OS_TPrintf("友達コード取得成功\n");
     }
 	
 	sys_FreeMemoryEz(esys->sub_proc_parent_work);
 
-	//�T�uPROC�����X�g�ɖ߂����߂ɃZ�b�g
+	//サブPROCをリストに戻すためにセット
 	Email_SubProcessChange(esys, EMAIL_SUBPROC_MENU, 0 );
 }
 

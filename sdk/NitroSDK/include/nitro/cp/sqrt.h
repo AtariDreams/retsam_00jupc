@@ -57,25 +57,25 @@
   convert INLINE to inline
 
   Revision 1.7  2003/12/08 12:09:56  yada
-  ƒCƒ“ƒNƒ‹[ƒh‚·‚éƒtƒ@ƒCƒ‹•ÏX
+  ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«å¤‰æ›´
 
   Revision 1.6  2003/11/14 04:02:16  yada
-  ƒŒƒWƒXƒ^‚ÌƒAƒNƒZƒXƒ}ƒNƒ REG_XXX ¨ reg_XXX ‚Æ‚µ‚½B
+  ãƒ¬ã‚¸ã‚¹ã‚¿ã®ã‚¢ã‚¯ã‚»ã‚¹ãƒžã‚¯ãƒ­ REG_XXX â†’ reg_XXX ã¨ã—ãŸã€‚
 
   Revision 1.5  2003/11/05 00:58:16  yada
-  ƒLƒƒƒXƒg‚ðŒµ‚µ‚­B
+  ã‚­ãƒ£ã‚¹ãƒˆã‚’åŽ³ã—ãã€‚
 
   Revision 1.4  2003/11/04 09:19:43  yada
-  ˆê•”‚Ì’è”‚É(u32)‚ð‚Â‚¯‚½
+  ä¸€éƒ¨ã®å®šæ•°ã«(u32)ã‚’ã¤ã‘ãŸ
 
   Revision 1.3  2003/10/30 11:42:45  yada
-  ƒŒƒWƒXƒ^‚ÌŒ^‚ÉREGTypexx ‚ðŽg‚¤‚æ‚¤‚É‚µ‚½B
+  ãƒ¬ã‚¸ã‚¹ã‚¿ã®åž‹ã«REGTypexx ã‚’ä½¿ã†ã‚ˆã†ã«ã—ãŸã€‚
 
   Revision 1.2  2003/10/30 04:59:49  yasu
-  ƒŒƒWƒXƒ^’è‹`ƒtƒ@ƒCƒ‹‚Ì•ÏX $IrisSDK/include/iris/hw ‰º
+  ãƒ¬ã‚¸ã‚¹ã‚¿å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã®å¤‰æ›´ $IrisSDK/include/iris/hw ä¸‹
 
   Revision 1.1  2003/10/30 00:37:52  yada
-  ‰”Åì¬
+  åˆç‰ˆä½œæˆ
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

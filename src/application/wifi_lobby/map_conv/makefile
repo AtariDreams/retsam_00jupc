@@ -1,6 +1,6 @@
 ##-----------------------------------------------------------------------------
 #**
-#*			WIFIƒƒr[ƒ}ƒbƒvƒRƒ“ƒo[ƒ^
+#*			WIFIãƒ­ãƒ“ãƒ¼ãƒãƒƒãƒ—ã‚³ãƒ³ãƒãƒ¼ã‚¿
 #**
 ##-----------------------------------------------------------------------------
 
@@ -8,7 +8,7 @@
 SUBDIRS		=
 
 ##############################################################################
-#			ƒ}ƒbƒvƒf[ƒ^
+#			ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
 ##############################################################################
 CP_DATA = .\\..\\..\\..\\..\\..\\pl_data\\wifi_lobby\\wflby_mapdata.xls
 OUTPUT = wflby_map.dat
@@ -17,7 +17,7 @@ ARCH_FILE 	= wflby_map.naix
 EXCELL_CONV = ..\\..\\..\\..\\convert\\exceltool\\ExcelSeetConv.exe
 
 ##############################################################################
-#			ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^
+#			ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
 ##############################################################################
 GRA_NAIX_DIR	= .\\..\\..\\..\\graphic\\
 GRA_NAIX_FILE	= wifi_lobby.naix
@@ -27,7 +27,7 @@ GRA_TARGET_FILE	= 	wflby_3dmapobj_data_0.dat
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#Make‚Å¶¬‚³‚ê‚é*.bin/*.narc‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.bin/*.narcã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= wflby_map.dat \
 			  wflby_3dmapobj_data*.dat \
 			  wflby_map.narc

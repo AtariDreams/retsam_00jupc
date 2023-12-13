@@ -12,7 +12,7 @@
 
   $Log: dwc_ranksession.h,v $
   Revision 1.7  2007/08/24 00:08:13  takayama
-  DWC_2_2_RC1 ‚Éƒ[ƒ‹ƒoƒbƒNB
+  DWC_2_2_RC1 ã«ãƒ­ãƒ¼ãƒ«ãƒãƒƒã‚¯ã€‚
 
   Revision 1.4  2006/04/13 11:41:52  hayashi
   character code fixed
@@ -21,7 +21,7 @@
   Change prefix Ranking->Rnk
 
   Revision 1.2  2006/04/11 09:01:34  hayashi
-  DWC_RnkInitialize‚ÅAÚ‘±æ‚ÌƒT[ƒo[‚ğ‘I‘ğ‚Å‚«‚é‚æ‚¤‚É‚µ‚½
+  DWC_RnkInitializeã§ã€æ¥ç¶šå…ˆã®ã‚µãƒ¼ãƒãƒ¼ã‚’é¸æŠã§ãã‚‹ã‚ˆã†ã«ã—ãŸ
 
   Revision 1.1  2006/04/10 10:16:59  hayashi
   added the ranking module
@@ -42,28 +42,28 @@ extern "C" {
         enum
    ------------------------------------------------------------------------- */
 
-//!< ƒZƒbƒVƒ‡ƒ“ƒXƒe[ƒ^ƒX
+//!< ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 typedef enum{
 
-	DWCi_RANKING_SESSION_STATE_CANCELED,		//!< ƒLƒƒƒ“ƒZƒ‹
-	DWCi_RANKING_SESSION_STATE_ERROR,			//!< ƒGƒ‰[”­¶
-	DWCi_RANKING_SESSION_STATE_INITIAL,			//!< ‰Šúó‘Ô
-	DWCi_RANKING_SESSION_STATE_INITIALIZED,		//!< ‰Šú‰»Œã
-	DWCi_RANKING_SESSION_STATE_REQUEST,			//!< ƒŠƒNƒGƒXƒg”­s
-	DWCi_RANKING_SESSION_STATE_GETTING_TOKEN,	//!< ƒg[ƒNƒ“æ“¾’†
-	DWCi_RANKING_SESSION_STATE_GOT_TOKEN,		//!< ƒg[ƒNƒ“æ“¾Š®—¹
-	DWCi_RANKING_SESSION_STATE_SENDING_DATA,	//!< ƒf[ƒ^‘—M’†
-	DWCi_RANKING_SESSION_STATE_COMPLETED		//!< Š®—¹
+	DWCi_RANKING_SESSION_STATE_CANCELED,		//!< ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	DWCi_RANKING_SESSION_STATE_ERROR,			//!< ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ
+	DWCi_RANKING_SESSION_STATE_INITIAL,			//!< åˆæœŸçŠ¶æ…‹
+	DWCi_RANKING_SESSION_STATE_INITIALIZED,		//!< åˆæœŸåŒ–å¾Œ
+	DWCi_RANKING_SESSION_STATE_REQUEST,			//!< ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºè¡Œ
+	DWCi_RANKING_SESSION_STATE_GETTING_TOKEN,	//!< ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—ä¸­
+	DWCi_RANKING_SESSION_STATE_GOT_TOKEN,		//!< ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—å®Œäº†
+	DWCi_RANKING_SESSION_STATE_SENDING_DATA,	//!< ãƒ‡ãƒ¼ã‚¿é€ä¿¡ä¸­
+	DWCi_RANKING_SESSION_STATE_COMPLETED		//!< å®Œäº†
 
 }DWCiRankingSessionState;
 
-//!< ŠÖ”•Ô‚è’l
+//!< é–¢æ•°è¿”ã‚Šå€¤
 typedef enum{
 
-	DWCi_RANKING_SESSION_SUCCESS,				//!< ³íI—¹
-	DWCi_RANKING_SESSION_ERROR_NOTINITIALIZED,	//!< –¢‰Šú‰»
-	DWCi_RANKING_SESSION_ERROR_NOMEMORY,		//!< ƒƒ‚ƒŠ[•s‘«
-	DWCi_RANKING_SESSION_ERROR_INVALID_KEY		//!< •s³‚ÈƒL[
+	DWCi_RANKING_SESSION_SUCCESS,				//!< æ­£å¸¸çµ‚äº†
+	DWCi_RANKING_SESSION_ERROR_NOTINITIALIZED,	//!< æœªåˆæœŸåŒ–
+	DWCi_RANKING_SESSION_ERROR_NOMEMORY,		//!< ãƒ¡ãƒ¢ãƒªãƒ¼ä¸è¶³
+	DWCi_RANKING_SESSION_ERROR_INVALID_KEY		//!< ä¸æ­£ãªã‚­ãƒ¼
 
 }DWCiRankingSessionResult;
 

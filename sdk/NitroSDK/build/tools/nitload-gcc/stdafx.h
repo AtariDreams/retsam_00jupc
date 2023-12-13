@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.1  2005/06/21 06:22:33  yasu
-  ���ō쐬
+  初版作成
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -23,16 +23,16 @@
 #include "nitrodll.h"
 
 //
-// �R���\�[�����b�Z�[�W�\���̗}��
+// コンソールメッセージ表示の抑制
 //
 #define  printf(...)		((void)0)
 
 /*---------------------------------------------------------------------------*
-  Description:  dll.GetDebugPrint �̃n�b�N
-                Makefile ���� dll.GetDebugPrint �� dll_GetDebugPrint �ɒu����
-                ������������֕��򂳂���D
-                �����X�g���[���� -1 ������Ă����炻���Ńv���O�������I������
-                -1 �̎��̕��������^�[���o�����[�ƂȂ�
+  Description:  dll.GetDebugPrint のハック
+                Makefile 内で dll.GetDebugPrint を dll_GetDebugPrint に置換し
+                処理をこちらへ分岐させる．
+                もしストリームに -1 が流れてきたらそこでプログラムを終了する
+                -1 の次の文字がリターンバリューとなる
  *---------------------------------------------------------------------------*/
 BOOL    dll_GetDebugPrint(CNITRODLL * dll, NITROArch arch, char *string, INT * string_lenp,
                           INT string_max);
@@ -49,12 +49,12 @@ BOOL dll_GetDebugPrint(CNITRODLL * dll, NITROArch arch, char *string, INT * stri
         for (i = 0; i < *string_lenp; i++)
         {
             //
-            // �ȑO�ɏI���g�[�N�����󂯎���Ă��邩�ǂ������肵�A
-            // �󂯎���Ă���Ȃ�I���������s�Ȃ��D
+            // 以前に終了トークンを受け取っているかどうか判定し、
+            // 受け取っているなら終了処理を行なう．
             //
             if (isexit)
             {
-                if (i > 0)             // �R���\�[���o�b�t�@�̃t���b�V��
+                if (i > 0)             // コンソールバッファのフラッシュ
                 {
                     fputs(string, stdout);
                 }
@@ -64,11 +64,11 @@ BOOL dll_GetDebugPrint(CNITRODLL * dll, NITROArch arch, char *string, INT * stri
             }
 
             //
-            // �I���g�[�N�����ǂ����̔���
-            //    �I���Ȃ玟�̒l���A�v���P�[�V�����̕Ԓl�ƂȂ�̂�
-            //    �t���O�𗧂Ă�D
-            //    �킴�킴�t���O�𗧂Ă�̂͏I���g�[�N���ƕԒl�� 2 ��
-            //    �o�b�t�@�ɂ܂������đ����Ă���ꍇ�̑Ώ��D
+            // 終了トークンかどうかの判定
+            //    終了なら次の値がアプリケーションの返値となるので
+            //    フラグを立てる．
+            //    わざわざフラグを立てるのは終了トークンと返値が 2 つの
+            //    バッファにまたがって送られてくる場合の対処．
             //
             if (string[i] == (char)-1)
             {

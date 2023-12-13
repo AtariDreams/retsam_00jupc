@@ -1,9 +1,9 @@
 //====================================================================
 //						r206r0101.gmm
-//						ƒ[ƒh206r0101
+//						ãƒ­ãƒ¼ãƒ‰206r0101
 //
-//	LOCALWORK2		ƒQ[ƒg“à‚ÌPOS‚ÅŽg—p
-//	LOCALWORK3		ƒQ[ƒg“à‚Ì‹­§ƒCƒxƒ“ƒg‚ÅŽg—p
+//	LOCALWORK2		ã‚²ãƒ¼ãƒˆå†…ã®POSã§ä½¿ç”¨
+//	LOCALWORK3		ã‚²ãƒ¼ãƒˆå†…ã®å¼·åˆ¶ã‚¤ãƒ™ãƒ³ãƒˆã§ä½¿ç”¨
 //====================================================================
 	.text
 
@@ -12,11 +12,11 @@
 	.include	"../eventdata/zone_r206r0101evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_r206r0101_flag_change
 _EVENT_DATA		ev_r206r0101_shopm1
@@ -24,7 +24,7 @@ _EVENT_DATA		pos_r206r0101_stopper_in
 _EVENT_DATA		pos_r206r0101_stopper_out
 _EVENT_DATA		ev_r206r0101_girl2
 _EVENT_DATA		ev_r206r0101_cycle_check
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
@@ -39,22 +39,22 @@ ev_r206r0101_flag_change:
 /********************************************************************/
 ev_r206r0101_cycle_check:
 
-	/*ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh‚©‚ç‹A‚Á‚Ä‚«‚½‚©ƒ`ƒFƒbƒN*/
+	/*ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ã‹ã‚‰å¸°ã£ã¦ããŸã‹ãƒã‚§ãƒƒã‚¯*/
 	_PLAYER_POS_GET	LOCALWORK4,LOCALWORK5
 	_IFVAL_CALL		LOCALWORK5,LE,3,ev_t06r0101_cycle_check_sub
 
 	_LDVAL			LOCALWORK3,1
 	_END
 
-/*ƒTƒCƒNƒŠƒ“ƒOƒ[ƒh‚©‚ç‹A‚Á‚Ä‚«‚½*/
+/*ã‚µã‚¤ã‚¯ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ã‹ã‚‰å¸°ã£ã¦ããŸ*/
 ev_t06r0101_cycle_check_sub:
-	/*Ž©“]ŽÔƒQ[ƒg’Ê‰ß‚µ‚½ƒtƒ‰ƒO‚ð—§‚Ä‚é(Ž©“]ŽÔ‚©‚ç~‚è‚ç‚ê‚È‚¢)*/
-	_FLAG_SET		SYS_FLAG_BICYCLE_GATE		/*ƒQ[ƒg“à—LŒø*/
+	/*è‡ªè»¢è»Šã‚²ãƒ¼ãƒˆé€šéŽã—ãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹(è‡ªè»¢è»Šã‹ã‚‰é™ã‚Šã‚‰ã‚Œãªã„)*/
+	_FLAG_SET		SYS_FLAG_BICYCLE_GATE		/*ã‚²ãƒ¼ãƒˆå†…æœ‰åŠ¹*/
 	_RET
 
 
 /********************************************************************/
-/*							“Xˆõ@@								*/
+/*							åº—å“¡ã€€ã€€								*/
 /********************************************************************/
 ev_r206r0101_shopm1:
 	_EASY_OBJ_MSG	msg_r206r0101_shopm1_02
@@ -62,46 +62,46 @@ ev_r206r0101_shopm1:
 
 
 /********************************************************************/
-/*					“XˆõƒXƒgƒbƒp[(ƒQ[ƒg‚Öi‚Þ)@					*/
+/*					åº—å“¡ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼(ã‚²ãƒ¼ãƒˆã¸é€²ã‚€)ã€€					*/
 /********************************************************************/
 pos_r206r0101_stopper_in:
 	_EVENT_START
 
-	/*Ž©“]ŽÔ‚Éæ‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*è‡ªè»¢è»Šã«ä¹—ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_BICYCLE_CHECK	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_r206r0101_bicycle_use
 
-	/*‹C‚Ã‚­*/
+	/*æ°—ã¥ã*/
 	_OBJ_ANIME		R206R0101_SHOPM1,anm_r206r0101_shopm1_01
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_r206r0101_shopm1_03
 	_TALK_CLOSE
 
-	/*‰Ÿ‚µ–ß‚³‚ê‚é*/
+	/*æŠ¼ã—æˆ»ã•ã‚Œã‚‹*/
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r206r0101_player_01
 	_OBJ_ANIME_WAIT
 
 	_EVENT_END
 	_END
 
-/*Ž©“]ŽÔ‚Éæ‚Á‚Ä‚¢‚é*/
+/*è‡ªè»¢è»Šã«ä¹—ã£ã¦ã„ã‚‹*/
 ev_r206r0101_bicycle_use:
-	/*Ž©“]ŽÔƒQ[ƒg’Ê‰ß‚µ‚½ƒtƒ‰ƒO‚ð—§‚Ä‚é(Ž©“]ŽÔ‚©‚ç~‚è‚ç‚ê‚È‚¢)*/
-	_FLAG_SET		SYS_FLAG_BICYCLE_GATE		/*ƒQ[ƒg“à—LŒø*/
+	/*è‡ªè»¢è»Šã‚²ãƒ¼ãƒˆé€šéŽã—ãŸãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹(è‡ªè»¢è»Šã‹ã‚‰é™ã‚Šã‚‰ã‚Œãªã„)*/
+	_FLAG_SET		SYS_FLAG_BICYCLE_GATE		/*ã‚²ãƒ¼ãƒˆå†…æœ‰åŠ¹*/
 	_LDVAL			LOCALWORK2,1
 	_EVENT_END
 	_END
 
 //--------------------------------------------------------------------
-//ƒXƒgƒbƒp[	I
+//ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼	ï¼
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r206r0101_shopm1_01
 	_ANIME_DATA	AC_MARK_GYOE,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//ŽålŒö	‰Ÿ‚µ–ß‚³‚ê‚é
+//ä¸»äººå…¬	æŠ¼ã—æˆ»ã•ã‚Œã‚‹
 //--------------------------------------------------------------------
 _ANIME_LABEL	anm_r206r0101_player_01
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -109,12 +109,12 @@ _ANIME_LABEL	anm_r206r0101_player_01
 
 
 /********************************************************************/
-/*					“XˆõƒXƒgƒbƒp[(ƒQ[ƒg‚©‚ço‚é)@@				*/
+/*					åº—å“¡ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼(ã‚²ãƒ¼ãƒˆã‹ã‚‰å‡ºã‚‹)ã€€ã€€				*/
 /********************************************************************/
 pos_r206r0101_stopper_out:
 	_EVENT_START
 
-	/*Ž©“]ŽÔƒQ[ƒg’Ê‰ß‚µ‚½ƒtƒ‰ƒO‚ð—Ž‚Æ‚·(Ž©“]ŽÔ‚©‚ç~‚è‚ç‚ê‚é)*/
+	/*è‡ªè»¢è»Šã‚²ãƒ¼ãƒˆé€šéŽã—ãŸãƒ•ãƒ©ã‚°ã‚’è½ã¨ã™(è‡ªè»¢è»Šã‹ã‚‰é™ã‚Šã‚‰ã‚Œã‚‹)*/
 	_FLAG_RESET		SYS_FLAG_BICYCLE_GATE
 	_LDVAL			LOCALWORK2,0
 
@@ -123,7 +123,7 @@ pos_r206r0101_stopper_out:
 
 
 /********************************************************************/
-/*						Šˆ”­­—									*/
+/*						æ´»ç™ºå°‘å¥³									*/
 /********************************************************************/
 ev_r206r0101_girl2:
 	_TALK_OBJ_START
@@ -135,7 +135,7 @@ ev_r206r0101_girl2:
 	_ACCE_NAME		0,SCWK_TEMP0
 	_TALK_KEYWAIT	msg_r206r0101_girl2_01
 
-	//ƒAƒNƒZƒTƒŠ[Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
+	//ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
 	_LDVAL			SCWK_TEMP1,1
 	_CHG_COMMON_SCR	SCRID_ACCE_EVENT
 

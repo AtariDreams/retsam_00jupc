@@ -1,6 +1,6 @@
 //====================================================================
 //						sodateya.gmm
-//						ƒ|ƒPƒ‚ƒ“‚»‚¾‚Ä‚â‚³‚ñ
+//						ãƒã‚±ãƒ¢ãƒ³ãã ã¦ã‚„ã•ã‚“
 //====================================================================
 	.text
 
@@ -9,83 +9,83 @@
 	.include	"../eventdata/zone_t04r0101evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_sodateya_m
 _EVENT_DATA		ev_sodateya_w
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 /********************************************************************/
-/*							‚»‚¾‚Ä‚â‚¶‚¢‚³‚ñ						*/
+/*							ãã ã¦ã‚„ã˜ã„ã•ã‚“						*/
 /********************************************************************/
 ev_sodateya_m:
 	_TALK_OBJ_START
 
 #if 0
-	_SODATEYA_POKE_FORM_RETURN	ƒ|ƒPƒ‚ƒ“ˆÊ’u,SCWK_ANSWER
+	_SODATEYA_POKE_FORM_RETURN	ãƒã‚±ãƒ¢ãƒ³ä½ç½®,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0xff,ev_sodateya_m_gira_ng
 #endif
 
 	_GET_SODATE_NAME
-	_GET_SODATEYA_ZIISAN	SCWK_ANSWER		//‚¶‚¢‚³‚ñƒ`ƒFƒbƒN0:‚È‚µ1:‚½‚Ü‚²2:ˆê•C3:2•C
+	_GET_SODATEYA_ZIISAN	SCWK_ANSWER		//ã˜ã„ã•ã‚“ãƒã‚§ãƒƒã‚¯0:ãªã—1:ãŸã¾ã”2:ä¸€åŒ¹3:2åŒ¹
 
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_sodateya_m_0100	//ƒ^ƒ}ƒS
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_sodateya_m_0200	//‚P•C—a‚©‚Á‚Ä‚¢‚é
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,3,ev_sodateya_m_0300	//‚Q•C—a‚©‚Á‚Ä‚¢‚é
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_sodateya_m_0100	//ã‚¿ãƒžã‚´
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_sodateya_m_0200	//ï¼‘åŒ¹é ã‹ã£ã¦ã„ã‚‹
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,3,ev_sodateya_m_0300	//ï¼’åŒ¹é ã‹ã£ã¦ã„ã‚‹
 
-	_TALKMSG	msg_sodateya_oldman_01			//‚¶‚¢‚³‚ñŽ©ŒÈÐ‰î
+	_TALKMSG	msg_sodateya_oldman_01			//ã˜ã„ã•ã‚“è‡ªå·±ç´¹ä»‹
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
 /*==================================================================*/
-/*  ‚¶‚¢‚³‚ñƒ^ƒ}ƒS”­Œ©												*/
+/*  ã˜ã„ã•ã‚“ã‚¿ãƒžã‚´ç™ºè¦‹												*/
 /*==================================================================*/
 ev_sodateya_m_0100:
-	_TALKMSG		msg_sodateya_oldman_02			//ƒ^ƒ}ƒS‚ª‚ ‚Á‚½‚¼‚¢  ‚Ù‚µ‚¢‚¶‚á‚ë
+	_TALKMSG		msg_sodateya_oldman_02			//ã‚¿ãƒžã‚´ãŒã‚ã£ãŸãžã„  ã»ã—ã„ã˜ã‚ƒã‚
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_m_0101	//‚Í‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_m_0101	//ã¯ã„
 													
-													//‚¢‚¢‚¦
+													//ã„ã„ãˆ
 
-	_TALKMSG		msg_sodateya_oldman_11			//‚Ù‚ñ‚Æ‚¤‚Í‚Ù‚µ‚¢‚ñ‚¶‚á‚ëH
+	_TALKMSG		msg_sodateya_oldman_11			//ã»ã‚“ã¨ã†ã¯ã»ã—ã„ã‚“ã˜ã‚ƒã‚ï¼Ÿ
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_m_0101	//‚Í‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_m_0101	//ã¯ã„
 	
-													//‚¢‚¢‚¦
-	_TALKMSG	msg_sodateya_oldman_04			//‚»‚ê‚¶‚á‚í‚µ‚ª‚à‚ç‚¨‚¤‚ ‚è‚ª‚Æ‚æ
+													//ã„ã„ãˆ
+	_TALKMSG	msg_sodateya_oldman_04			//ãã‚Œã˜ã‚ƒã‚ã—ãŒã‚‚ã‚‰ãŠã†ã‚ã‚ŠãŒã¨ã‚ˆ
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	_FLAG_RESET		FE_SODATE_TAMAGO				//‚¨‚¶‚¢‚³‚ñˆÚ“®ƒtƒ‰ƒO‚ðƒIƒt
-	_DEL_SODATEYA_EGG								//ƒ^ƒ}ƒSíœ
+	_FLAG_RESET		FE_SODATE_TAMAGO				//ãŠã˜ã„ã•ã‚“ç§»å‹•ãƒ•ãƒ©ã‚°ã‚’ã‚ªãƒ•
+	_DEL_SODATEYA_EGG								//ã‚¿ãƒžã‚´å‰Šé™¤
 
 	_TALK_OBJ_END
 	_END
 
 /*==================================================================*/
-/*  ƒ^ƒ}ƒS‚à‚ç‚¤‘O‚ÉŽèŽ‚¿ƒ`ƒFƒbƒN									*/
+/*  ã‚¿ãƒžã‚´ã‚‚ã‚‰ã†å‰ã«æ‰‹æŒã¡ãƒã‚§ãƒƒã‚¯									*/
 /*==================================================================*/
 ev_sodateya_m_0101:
 	_GET_POKE_COUNT	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,NE,6,ev_sodateya_m_0102
-	_TALKMSG	msg_sodateya_oldman_05			//‚Ä‚à‚¿‚ª‚¢‚Á‚Ï‚¢‚Ì‚æ‚¤‚¶‚á‚È
+	_TALKMSG	msg_sodateya_oldman_05			//ã¦ã‚‚ã¡ãŒã„ã£ã±ã„ã®ã‚ˆã†ã˜ã‚ƒãª
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
 /*==================================================================*/
-/*  ‚¶‚¢‚³‚ñ‚©‚çƒ^ƒ}ƒS‚ð‚à‚ç‚Á‚½I									*/
+/*  ã˜ã„ã•ã‚“ã‹ã‚‰ã‚¿ãƒžã‚´ã‚’ã‚‚ã‚‰ã£ãŸï¼									*/
 /*==================================================================*/
 ev_sodateya_m_0102:
 	_PLAYER_NAME	0
-	_TALKMSG		msg_sodateya_oldman_06			//›››‚Íƒ^ƒ}ƒS‚ð‚à‚ç‚Á‚½
+	_TALKMSG		msg_sodateya_oldman_06			//â—‹â—‹â—‹ã¯ã‚¿ãƒžã‚´ã‚’ã‚‚ã‚‰ã£ãŸ
 	_ME_PLAY			SEQ_FANFA4
 	_ME_WAIT
 	_AB_KEYWAIT
@@ -93,29 +93,29 @@ ev_sodateya_m_0102:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
-	_GET_SODATEYA_EGG								//ƒ^ƒ}ƒS‚ªŽèŽ‚¿‚É‚Í‚¢‚é
-	_FLAG_RESET		FE_SODATE_TAMAGO				//‚¨‚¶‚¢‚³‚ñˆÚ“®ƒtƒ‰ƒO‚ðƒIƒt
+	_GET_SODATEYA_EGG								//ã‚¿ãƒžã‚´ãŒæ‰‹æŒã¡ã«ã¯ã„ã‚‹
+	_FLAG_RESET		FE_SODATE_TAMAGO				//ãŠã˜ã„ã•ã‚“ç§»å‹•ãƒ•ãƒ©ã‚°ã‚’ã‚ªãƒ•
 	_TALK_OBJ_END
 	_END
 
 /*==================================================================*/
-/*  ›››‚Í‚°‚ñ‚«‚¶‚á‚¼											*/
+/*  â—‹â—‹â—‹ã¯ã’ã‚“ãã˜ã‚ƒãž											*/
 /*==================================================================*/
-ev_sodateya_m_0200:	//‚P•C—a‚©‚Á‚Ä‚¢‚é
+ev_sodateya_m_0200:	//ï¼‘åŒ¹é ã‹ã£ã¦ã„ã‚‹
 	_GET_SODATE_NAME
-	_TALKMSG	msg_sodateya_oldman_03			//‚¨‚¨‚ ‚ñ‚½‚©I›››‚Í‚°‚ñ‚«‚¶‚á‚¼
+	_TALKMSG	msg_sodateya_oldman_03			//ãŠãŠã‚ã‚“ãŸã‹ï¼â—‹â—‹â—‹ã¯ã’ã‚“ãã˜ã‚ƒãž
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_TALK_OBJ_END
 	_END
 
 /*==================================================================*/
-/*  ›››‚Æ›››‚Í‚°‚ñ‚«‚¶‚á‚¼									*/
+/*  â—‹â—‹â—‹ã¨â—‹â—‹â—‹ã¯ã’ã‚“ãã˜ã‚ƒãž									*/
 /*==================================================================*/
-ev_sodateya_m_0300:					//‚Q•C—a‚©‚Á‚Ä‚¢‚é
+ev_sodateya_m_0300:					//ï¼’åŒ¹é ã‹ã£ã¦ã„ã‚‹
 	_GET_SODATE_NAME
-	_TALK_KEYWAIT	msg_sodateya_oldman_10			//›››‚Æ›››‚Í‚°‚ñ‚«‚¶‚á‚¼
-	_GET_SODATEYA_AISHOU	SCWK_ANSWER				//‘Š«‚Ì“x‡‚¢‚ðŽæ“¾‚·‚é
+	_TALK_KEYWAIT	msg_sodateya_oldman_10			//â—‹â—‹â—‹ã¨â—‹â—‹â—‹ã¯ã’ã‚“ãã˜ã‚ƒãž
+	_GET_SODATEYA_AISHOU	SCWK_ANSWER				//ç›¸æ€§ã®åº¦åˆã„ã‚’å–å¾—ã™ã‚‹
 
 	_IFVAL_CALL	SCWK_ANSWER,EQ,0,ev_sodateya_aishou_level1
 	_IFVAL_CALL	SCWK_ANSWER,EQ,1,ev_sodateya_aishou_level2
@@ -127,43 +127,43 @@ ev_sodateya_m_0300:					//‚Q•C—a‚©‚Á‚Ä‚¢‚é
 	_TALK_OBJ_END
 	_END
 
-//70%‚Åƒ^ƒ}ƒS‚ªŽY‚Ü‚ê‚é‘Š«
+//70%ã§ã‚¿ãƒžã‚´ãŒç”£ã¾ã‚Œã‚‹ç›¸æ€§
 ev_sodateya_aishou_level1:
 	_TALKMSG	msg_sodateya_01
 	_RET
 
-//50%‚Åƒ^ƒ}ƒS‚ªŽY‚Ü‚ê‚é‘Š«
+//50%ã§ã‚¿ãƒžã‚´ãŒç”£ã¾ã‚Œã‚‹ç›¸æ€§
 ev_sodateya_aishou_level2:
 	_TALKMSG	msg_sodateya_02
 	_RET
 
-//20%‚Åƒ^ƒ}ƒS‚ªŽY‚Ü‚ê‚é‘Š«
+//20%ã§ã‚¿ãƒžã‚´ãŒç”£ã¾ã‚Œã‚‹ç›¸æ€§
 ev_sodateya_aishou_level3:
 	_TALKMSG	msg_sodateya_03
 	_RET
 
-//0%‚Åƒ^ƒ}ƒS‚ªŽY‚Ü‚ê‚é‘Š«
+//0%ã§ã‚¿ãƒžã‚´ãŒç”£ã¾ã‚Œã‚‹ç›¸æ€§
 ev_sodateya_aishou_level4:
 	_TALKMSG	msg_sodateya_04
 	_RET
 
 
 /********************************************************************/
-/*							‚Î‚ ‚³‚ñ								*/
+/*							ã°ã‚ã•ã‚“								*/
 /********************************************************************/
 ev_sodateya_w:
 	_TALK_OBJ_START
 	_GOLD_WIN_WRITE		20,2
 
-	_GET_SODATEYA_ZIISAN	SCWK_ANSWER		//‚¶‚¢‚³‚ñƒ`ƒFƒbƒN0:‚È‚µ1:‚½‚Ü‚²2:ˆê•C3:2•C
+	_GET_SODATEYA_ZIISAN	SCWK_ANSWER		//ã˜ã„ã•ã‚“ãƒã‚§ãƒƒã‚¯0:ãªã—1:ãŸã¾ã”2:ä¸€åŒ¹3:2åŒ¹
 
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_sodateya_w_0100	//ƒ^ƒ}ƒS
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_sodateya_w_0200	//‚P•C—a‚©‚Á‚Ä‚¢‚é
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,3,ev_sodateya_w_0300	//‚Q•C—a‚©‚Á‚Ä‚¢‚é
-	_TALKMSG		msg_sodateya_oldwoman_01		//‚¶‚±‚µ‚å‚¤‚©‚¢¨‚ ‚¸‚¯‚é‚©‚¢H
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_sodateya_w_0100	//ã‚¿ãƒžã‚´
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_sodateya_w_0200	//ï¼‘åŒ¹é ã‹ã£ã¦ã„ã‚‹
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,3,ev_sodateya_w_0300	//ï¼’åŒ¹é ã‹ã£ã¦ã„ã‚‹
+	_TALKMSG		msg_sodateya_oldwoman_01		//ã˜ã“ã—ã‚‡ã†ã‹ã„â†’ã‚ãšã‘ã‚‹ã‹ã„ï¼Ÿ
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0001	//‚Í‚¢
-	_TALKMSG	msg_sodateya_oldwoman_06		//‚»‚¤‚©‚¢‚»‚ê‚¶‚á‚Ü‚½‚«‚Ä‚¨‚­‚ê
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0001	//ã¯ã„
+	_TALKMSG	msg_sodateya_oldwoman_06		//ãã†ã‹ã„ãã‚Œã˜ã‚ƒã¾ãŸãã¦ãŠãã‚Œ
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_GOLD_WIN_DEL
@@ -171,17 +171,17 @@ ev_sodateya_w:
 	_END
 
 /*==================================================================*/
-/*  ‚Ç‚Ì‚±‚ð‚»‚¾‚Ä‚Ä‚Ý‚é‚©‚ËH										*/
+/*  ã©ã®ã“ã‚’ãã ã¦ã¦ã¿ã‚‹ã‹ã­ï¼Ÿ										*/
 /*==================================================================*/
 ev_sodateya_w_0001:
-	_GET_POKE_COUNT2	SCWK_ANSWER								//ŽèŽ‚¿ƒ`ƒFƒbƒN
-	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_sodateya_w_0003		//‚P‘Ì‚Ì‚Æ‚«->ƒƒbƒZ[ƒW‚ðo‚µ‚ÄI—¹
+	_GET_POKE_COUNT2	SCWK_ANSWER								//æ‰‹æŒã¡ãƒã‚§ãƒƒã‚¯
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_sodateya_w_0003		//ï¼‘ä½“ã®ã¨ã->ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã—ã¦çµ‚äº†
 
 	_GET_POKE_COUNT4	SCWK_ANSWER
-	_IFVAL_JUMP			SCWK_ANSWER,EQ,2,ev_sodateya_w_0005		//ƒ{ƒbƒNƒX‚O‚Ì‚Æ‚«i{ŽèŽ‚¿‚ª‚Qj
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,2,ev_sodateya_w_0005		//ãƒœãƒƒã‚¯ã‚¹ï¼ã®ã¨ãï¼ˆï¼‹æ‰‹æŒã¡ãŒï¼’ï¼‰
 	
 ev_sodateya_w_0001b:
-	_TALK_KEYWAIT	msg_sodateya_oldwoman_02		//‚Ç‚Ì‚±‚ð‚»‚¾‚Ä‚Ä‚Ý‚é‚©‚Ë
+	_TALK_KEYWAIT	msg_sodateya_oldwoman_02		//ã©ã®ã“ã‚’ãã ã¦ã¦ã¿ã‚‹ã‹ã­
 	_TALK_CLOSE
 
 	_GOLD_WIN_DEL
@@ -189,11 +189,11 @@ ev_sodateya_w_0001b:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	_LDVAL			SCWK_ANSWER,0		/*ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰ŠúƒJ[ƒ\ƒ‹ˆÊ’u*/
+	_LDVAL			SCWK_ANSWER,0		/*ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆåˆæœŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®*/
 ev_sodateya_w_0001b_list_back:
-	//ƒ|ƒPƒ‚ƒ“‘I‘ð
+	//ãƒã‚±ãƒ¢ãƒ³é¸æŠž
 	_SODATEYA_POKELIST_SET_PROC		SCWK_ANSWER
-	//‘I‘ð‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ì•À‚Ñ”Ô†Žæ“¾
+	//é¸æŠžã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ä¸¦ã³ç•ªå·å–å¾—
 	_SODATEYA_POKELIST_GET_RESULT	SCWK_PARAM0,SCWK_ANSWER
 
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0001b_list_select_end
@@ -209,42 +209,42 @@ ev_sodateya_w_0001b_list_select_end:
 	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_WIPE_FADE_END_CHECK
 
-	_IFVAL_JUMP		SCWK_PARAM0,EQ,0xff,ev_sodateya_w_end//ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½
+	_IFVAL_JUMP		SCWK_PARAM0,EQ,0xff,ev_sodateya_w_end//ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸ
 
-	/*‚Í‚Á‚«‚ñ‚¾‚Üƒ`ƒFƒbƒN(ƒLƒƒƒ“ƒZƒ‹ƒ`ƒFƒbƒNŒã‚Éˆ—‚·‚é)*/
+	/*ã¯ã£ãã‚“ã ã¾ãƒã‚§ãƒƒã‚¯(ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒã‚§ãƒƒã‚¯å¾Œã«å‡¦ç†ã™ã‚‹)*/
 	_SODATEYA_POKE_FORM_RETURN	SCWK_PARAM0,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0xff,ev_sodateya_m_gira_ng
 
 	_TEMOTI_MONSNO	SCWK_PARAM0,SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_tamago_select	//ƒ^ƒ}ƒS‚ª‘I‘ð‚³‚ê‚½
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_tamago_select	//ã‚¿ãƒžã‚´ãŒé¸æŠžã•ã‚ŒãŸ
 
-	_GET_POKE_COUNT3	SCWK_ANSWER,SCWK_PARAM0						//‚ ‚¸‚¯‚½‚çí“¬‚Å‚«‚È‚­‚È‚¢‚©H
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0004	//‚Å‚«‚È‚¢
+	_GET_POKE_COUNT3	SCWK_ANSWER,SCWK_PARAM0						//ã‚ãšã‘ãŸã‚‰æˆ¦é—˜ã§ããªããªã„ã‹ï¼Ÿ
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0004	//ã§ããªã„
 
-	_MSG_AZUKE_SET	0,SCWK_PARAM0,SCWK_PARAM1			//ˆç‚Ä‰®‚É‚ ‚¸‚¯‚éƒ|ƒPƒ‚ƒ“‚Ì–¼‘O‚Æ”Ô†‚ðƒZƒbƒg
+	_MSG_AZUKE_SET	0,SCWK_PARAM0,SCWK_PARAM1			//è‚²ã¦å±‹ã«ã‚ãšã‘ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®åå‰ã¨ç•ªå·ã‚’ã‚»ãƒƒãƒˆ
 
-	_SET_SODATEYA_POKE	SCWK_PARAM0							//‚Ä‚à‚¿‚©‚çˆç‚Ä‰®ƒ[ƒN‚Ö
+	_SET_SODATEYA_POKE	SCWK_PARAM0							//ã¦ã‚‚ã¡ã‹ã‚‰è‚²ã¦å±‹ãƒ¯ãƒ¼ã‚¯ã¸
 
-	/*—a‚¯‚½‚±‚Æ‚ª‚ ‚éƒtƒ‰ƒO*/
+	/*é ã‘ãŸã“ã¨ãŒã‚ã‚‹ãƒ•ãƒ©ã‚°*/
 	_FLAG_SET		FE_SODATEYA_AZUKE
 
-	_GET_SODATEYA_ZIISAN	SCWK_ANSWER				//—a‚¯ƒ`ƒFƒbƒN 2:1•C3:2•C
+	_GET_SODATEYA_ZIISAN	SCWK_ANSWER				//é ã‘ãƒã‚§ãƒƒã‚¯ 2:1åŒ¹3:2åŒ¹
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_sodateya_oldwoman_03
 	_JUMP			ev_sodateya_oldwoman_22
 
-/*‚à‚¤ˆê‘Ì‰Â”\*/
+/*ã‚‚ã†ä¸€ä½“å¯èƒ½*/
 ev_sodateya_oldwoman_03:	
-	_VOICE_PLAY		SCWK_PARAM1,0						/*‹ƒ‚«º*/
-	_TALK_KEYWAIT	msg_sodateya_oldwoman_03		//‚»‚ê‚Å‚Í‚µ‚Î‚ç‚­‚ ‚¸‚©‚é‚¼
+	_VOICE_PLAY		SCWK_PARAM1,0						/*æ³£ãå£°*/
+	_TALK_KEYWAIT	msg_sodateya_oldwoman_03		//ãã‚Œã§ã¯ã—ã°ã‚‰ãã‚ãšã‹ã‚‹ãž
 
 	_VOICE_WAIT
 
-	_JUMP			ev_sodateya_w_0002	//‚à‚¤ˆê‘Ì—a‚¯‚éH
+	_JUMP			ev_sodateya_w_0002	//ã‚‚ã†ä¸€ä½“é ã‘ã‚‹ï¼Ÿ
 
-//‚à‚¤ˆê‘Ì•s‰Â
+//ã‚‚ã†ä¸€ä½“ä¸å¯
 ev_sodateya_oldwoman_22:	
-	_VOICE_PLAY		SCWK_PARAM1,0						//‹ƒ‚«º
-	_TALKMSG		msg_sodateya_oldwoman_22		//‚»‚ê‚Å‚Í‚µ‚Î‚ç‚­‚ ‚¸‚©‚é‚¼
+	_VOICE_PLAY		SCWK_PARAM1,0						//æ³£ãå£°
+	_TALKMSG		msg_sodateya_oldwoman_22		//ãã‚Œã§ã¯ã—ã°ã‚‰ãã‚ãšã‹ã‚‹ãž
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 
@@ -256,7 +256,7 @@ ev_sodateya_oldwoman_22:
 
 
 /*==================================================================*/
-/*  ƒ^ƒ}ƒS‚ª‘I‘ð‚³‚ê‚½												*/
+/*  ã‚¿ãƒžã‚´ãŒé¸æŠžã•ã‚ŒãŸ												*/
 /*==================================================================*/
 ev_sodateya_w_tamago_select:
 	_TALKMSG	msg_sodateya_oldwoman_21		//
@@ -267,10 +267,10 @@ ev_sodateya_w_tamago_select:
 	_END
 
 /*==================================================================*/
-/*  ‚»‚ê‚¶‚á‚Ü‚½‚«‚Ä‚¨‚­‚ê											*/
+/*  ãã‚Œã˜ã‚ƒã¾ãŸãã¦ãŠãã‚Œ											*/
 /*==================================================================*/
 ev_sodateya_w_end:
-	_TALKMSG	msg_sodateya_oldwoman_09		//‚»‚ê‚¶‚á‚Ü‚½‚«‚Ä‚¨‚­‚ê
+	_TALKMSG	msg_sodateya_oldwoman_09		//ãã‚Œã˜ã‚ƒã¾ãŸãã¦ãŠãã‚Œ
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_GOLD_WIN_DEL
@@ -279,22 +279,22 @@ ev_sodateya_w_end:
 
 
 /*==================================================================*/
-/*  ‚à‚¤‚P‚Ò‚«‚»‚¾‚Ä‚é‚©‚¢H										*/
+/*  ã‚‚ã†ï¼‘ã´ããã ã¦ã‚‹ã‹ã„ï¼Ÿ										*/
 /*==================================================================*/
 ev_sodateya_w_0002:
-	_TALKMSG		msg_sodateya_oldwoman_04		//‚à‚¤‚P‚Ò‚«‚»‚¾‚Ä‚é‚©‚¢H
+	_TALKMSG		msg_sodateya_oldwoman_04		//ã‚‚ã†ï¼‘ã´ããã ã¦ã‚‹ã‹ã„ï¼Ÿ
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0001	//‚Í‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0001	//ã¯ã„
 
-	_JUMP			ev_sodateya_w_end				//‚»‚ê‚¶‚á‚Ü‚½‚«‚Ä‚¨‚­‚ê
+	_JUMP			ev_sodateya_w_end				//ãã‚Œã˜ã‚ƒã¾ãŸãã¦ãŠãã‚Œ
 	_END
 
 
 /*==================================================================*/
-/*  ‚¨‚âHƒ|ƒPƒ‚ƒ“‚ª‚P‚Ò‚«‚µ‚©‚¢‚È‚¢‚æ‚¾‚È							*/
+/*  ãŠã‚„ï¼Ÿãƒã‚±ãƒ¢ãƒ³ãŒï¼‘ã´ãã—ã‹ã„ãªã„ã‚ˆã ãª							*/
 /*==================================================================*/
 ev_sodateya_w_0003:
-	_TALKMSG	msg_sodateya_oldwoman_16		//‚¨‚âƒ|ƒPƒ‚ƒ“‚ª‚P‚Ò‚«‚µ‚©‚¢‚È‚¢‚æ‚¤‚¾‚È
+	_TALKMSG	msg_sodateya_oldwoman_16		//ãŠã‚„ãƒã‚±ãƒ¢ãƒ³ãŒï¼‘ã´ãã—ã‹ã„ãªã„ã‚ˆã†ã ãª
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_GOLD_WIN_DEL
@@ -303,10 +303,10 @@ ev_sodateya_w_0003:
 	
 
 /*==================================================================*/
-/*  ‚»‚Ìƒ|ƒPƒ‚ƒ“‚ð‚ ‚¸‚¯‚é‚Æ‚½‚½‚©‚¦‚È‚­‚È‚é‚¼						*/
+/*  ãã®ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚ãšã‘ã‚‹ã¨ãŸãŸã‹ãˆãªããªã‚‹ãž						*/
 /*==================================================================*/
 ev_sodateya_w_0004:
-	_TALKMSG	msg_sodateya_oldwoman_18		//‚¨‚âƒ|ƒPƒ‚ƒ“‚ª‚P‚Ò‚«‚µ‚©‚¢‚È‚¢‚æ‚¤‚¾‚È
+	_TALKMSG	msg_sodateya_oldwoman_18		//ãŠã‚„ãƒã‚±ãƒ¢ãƒ³ãŒï¼‘ã´ãã—ã‹ã„ãªã„ã‚ˆã†ã ãª
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_GOLD_WIN_DEL
@@ -314,10 +314,10 @@ ev_sodateya_w_0004:
 	_END
 
 /*==================================================================*/
-/*  ROM‚Ì’†‘S‚ÄŒ©“n‚µ‚Ä‚Q•C‚µ‚©‚¢‚È‚¢‚Æ‚«‚Í—a‚©‚ç‚È‚¢				*/
+/*  ROMã®ä¸­å…¨ã¦è¦‹æ¸¡ã—ã¦ï¼’åŒ¹ã—ã‹ã„ãªã„ã¨ãã¯é ã‹ã‚‰ãªã„				*/
 /*==================================================================*/
 ev_sodateya_w_0005:
-	_TALKMSG	msg_sodateya_oldwoman_19		//‚¨‚âH‚¨‚Ü‚¦‚³‚ñƒ|ƒPƒ‚ƒ“‚ª‚º‚ñ‚Ñ‚Å@‚Q‚Ð‚«‚µ‚©‚¢‚È‚¢‚æ‚¤‚¶‚á‚È
+	_TALKMSG	msg_sodateya_oldwoman_19		//ãŠã‚„ï¼ŸãŠã¾ãˆã•ã‚“ãƒã‚±ãƒ¢ãƒ³ãŒãœã‚“ã³ã§ã€€ï¼’ã²ãã—ã‹ã„ãªã„ã‚ˆã†ã˜ã‚ƒãª
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_GOLD_WIN_DEL
@@ -325,10 +325,10 @@ ev_sodateya_w_0005:
 	_END
 
 /*==================================================================*/
-/*  ‚»‚¤‚¢‚¦‚Î‚¶‚¢‚³‚ñ‚ª‚³‚ª‚µ‚Ä‚¨‚Á‚½‚¼							*/
+/*  ãã†ã„ãˆã°ã˜ã„ã•ã‚“ãŒã•ãŒã—ã¦ãŠã£ãŸãž							*/
 /*==================================================================*/
 ev_sodateya_w_0100:
-	_TALKMSG	msg_sodateya_oldwoman_05		//‚¶‚¢‚³‚ñ‚ª‚³‚ª‚µ‚Ä‚¨‚Á‚½‚¼
+	_TALKMSG	msg_sodateya_oldwoman_05		//ã˜ã„ã•ã‚“ãŒã•ãŒã—ã¦ãŠã£ãŸãž
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_GOLD_WIN_DEL
@@ -337,48 +337,48 @@ ev_sodateya_w_0100:
 
 
 ev_sodateya_poke_levelput:
-	_TALK_KEYWAIT	msg_sodateya_oldwoman_11		//›››‚ÍƒŒƒxƒ‹‚Å‚¢‚¤‚Æ›››‚­‚ç‚¢
+	_TALK_KEYWAIT	msg_sodateya_oldwoman_11		//â—‹â—‹â—‹ã¯ãƒ¬ãƒ™ãƒ«ã§ã„ã†ã¨â—‹â—‹â—‹ãã‚‰ã„
 	_RET
 
 
 ev_sodateya_poke_leveldiff:
-	_SODATE_POKE_LEVEL_STR		SCWK_ANSWER,SCWK_PARAM0	//ƒŒƒxƒ‹·‚ðŽæ“¾
+	_SODATE_POKE_LEVEL_STR		SCWK_ANSWER,SCWK_PARAM0	//ãƒ¬ãƒ™ãƒ«å·®ã‚’å–å¾—
 	_IFVAL_CALL		SCWK_ANSWER,NE,0,ev_sodateya_poke_levelput		
 	_RET
 
 
 /*==================================================================*/
-/*  ‚P‚Ò‚«‚ ‚¸‚©‚Á‚Ä‚é												*/
+/*  ï¼‘ã´ãã‚ãšã‹ã£ã¦ã‚‹												*/
 /*==================================================================*/
 ev_sodateya_w_0200:
-	_TALK_KEYWAIT	msg_sodateya_oldwoman_10		//‚¨‚¨‚ ‚ñ‚½‚©I‚æ‚­‚«‚½‚È
+	_TALK_KEYWAIT	msg_sodateya_oldwoman_10		//ãŠãŠã‚ã‚“ãŸã‹ï¼ã‚ˆãããŸãª
 	_LDVAL			SCWK_PARAM0,0
 	_CALL			ev_sodateya_poke_leveldiff
 
-	_TALKMSG		msg_sodateya_oldwoman_04		//‚à‚¤‚P‚Ò‚«‚»‚¾‚Ä‚é‚©‚¢H
+	_TALKMSG		msg_sodateya_oldwoman_04		//ã‚‚ã†ï¼‘ã´ããã ã¦ã‚‹ã‹ã„ï¼Ÿ
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0001	//‚Í‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0001	//ã¯ã„
 
-	_TALKMSG		msg_sodateya_oldwoman_17		//ƒ|ƒPƒ‚ƒ“‚ð‚Ð‚«‚Æ‚é‚©‚¢
+	_TALKMSG		msg_sodateya_oldwoman_17		//ãƒã‚±ãƒ¢ãƒ³ã‚’ã²ãã¨ã‚‹ã‹ã„
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0201	//‚Í‚¢
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0201	//ã¯ã„
 
-	_JUMP			ev_sodateya_w_end				//‚»‚ê‚¶‚á‚Ü‚½‚«‚Ä‚¨‚­‚ê
+	_JUMP			ev_sodateya_w_end				//ãã‚Œã˜ã‚ƒã¾ãŸãã¦ãŠãã‚Œ
 
 /*==================================================================*/
-/*  ‚Ð‚«‚Æ‚é‚©‚¢H													*/
+/*  ã²ãã¨ã‚‹ã‹ã„ï¼Ÿ													*/
 /*==================================================================*/
 ev_sodateya_w_0201:
-	_GET_POKE_COUNT		SCWK_ANSWER					//ŽèŽ‚¿‚É‹ó‚«‚Í‚ ‚é‚©H
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,6,ev_sodateya_w_0206	//‚È‚¢
+	_GET_POKE_COUNT		SCWK_ANSWER					//æ‰‹æŒã¡ã«ç©ºãã¯ã‚ã‚‹ã‹ï¼Ÿ
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,6,ev_sodateya_w_0206	//ãªã„
 
-	_GET_SODATEYA_ZIISAN	SCWK_ANSWER				//—a‚¯ƒ`ƒFƒbƒN 2:1•C3:2•C
+	_GET_SODATEYA_ZIISAN	SCWK_ANSWER				//é ã‘ãƒã‚§ãƒƒã‚¯ 2:1åŒ¹3:2åŒ¹
 
-	_LDVAL			SCWK_PARAM1,0		//0”Ô‚Ìƒ|ƒPƒ‚ƒ“‚ðƒZƒbƒg‚µ‚½ó‘Ô‚Ö
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_sodateya_w_0202	//‚ ‚¸‚©‚Á‚Ä‚é‚Ì‚Í‚P•C
+	_LDVAL			SCWK_PARAM1,0		//0ç•ªã®ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚»ãƒƒãƒˆã—ãŸçŠ¶æ…‹ã¸
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_sodateya_w_0202	//ã‚ãšã‹ã£ã¦ã‚‹ã®ã¯ï¼‘åŒ¹
 
-//	_BMPMENU_INIT		14,1,0,1,SCWK_PARAM1		//BƒLƒƒƒ“ƒZƒ‹–³Œø
-	_BMPMENU_INIT		1,1,0,1,SCWK_PARAM1		//BƒLƒƒƒ“ƒZƒ‹–³Œø
+//	_BMPMENU_INIT		14,1,0,1,SCWK_PARAM1		//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹
+	_BMPMENU_INIT		1,1,0,1,SCWK_PARAM1		//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«ç„¡åŠ¹
 	_HIKITORI_LIST_NAME_SET	0,1,2,0
 	_BMPMENU_MAKE_LIST	msg_ev_win_130,0
 	_HIKITORI_LIST_NAME_SET	0,1,2,1
@@ -387,29 +387,29 @@ ev_sodateya_w_0201:
 	_BMPMENU_START
 
 	_SWITCH			SCWK_PARAM1
-	_CASE_JUMP		0,ev_sodateya_w_0202			//‚P•C–Ú‘I‘ð
-	_CASE_JUMP		1,ev_sodateya_w_0202			//‚Q•C–Ú‘I‘ð
-	_JUMP			ev_sodateya_w_end				//ƒLƒƒƒ“ƒZƒ‹
+	_CASE_JUMP		0,ev_sodateya_w_0202			//ï¼‘åŒ¹ç›®é¸æŠž
+	_CASE_JUMP		1,ev_sodateya_w_0202			//ï¼’åŒ¹ç›®é¸æŠž
+	_JUMP			ev_sodateya_w_end				//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 
 /*==================================================================*/
-/*  ›››‚ð‚Ð‚«‚Æ‚é‚È‚ç—¿‹à‚Í›››‰~‚¾‚æ							*/
+/*  â—‹â—‹â—‹ã‚’ã²ãã¨ã‚‹ãªã‚‰æ–™é‡‘ã¯â—‹â—‹â—‹å††ã ã‚ˆ							*/
 /*==================================================================*/
 ev_sodateya_w_0202:
 	_HIKITORI_RYOUKIN	SCWK_TEMP0,SCWK_PARAM1
-	_TALKMSG		msg_sodateya_oldwoman_14			//›››‚ð‚Ð‚«‚Æ‚é‚È‚ç—¿‹à‚Í››‰~‚¾‚æ
+	_TALKMSG		msg_sodateya_oldwoman_14			//â—‹â—‹â—‹ã‚’ã²ãã¨ã‚‹ãªã‚‰æ–™é‡‘ã¯â—‹â—‹å††ã ã‚ˆ
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0203		//‚¨‹àƒ`ƒFƒbƒN‚Ö
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0203		//ãŠé‡‘ãƒã‚§ãƒƒã‚¯ã¸
 
-	_JUMP			ev_sodateya_w_end					//‚»‚ê‚¶‚á‚Ü‚½‚«‚Ä‚¨‚­‚ê
+	_JUMP			ev_sodateya_w_end					//ãã‚Œã˜ã‚ƒã¾ãŸãã¦ãŠãã‚Œ
 
 /*==================================================================*/
-/* ‚¨‚©‚Ë‘«‚è‚Ä‚é‚©ƒ`ƒFƒbƒN											*/
+/* ãŠã‹ã­è¶³ã‚Šã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯											*/
 /*==================================================================*/
 ev_sodateya_w_0203:
-	_COMP_MY_GOLD		SCWK_ANSWER,SCWK_TEMP0				//‚¨‹à‘«‚è‚Ä‚éH
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,TRUE,ev_sodateya_w_0204		//‘«‚è‚Ä‚é
+	_COMP_MY_GOLD		SCWK_ANSWER,SCWK_TEMP0				//ãŠé‡‘è¶³ã‚Šã¦ã‚‹ï¼Ÿ
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,TRUE,ev_sodateya_w_0204		//è¶³ã‚Šã¦ã‚‹
 		
-	_TALKMSG	msg_sodateya_oldwoman_07			//‚¨‚©‚Ë‚ª‚½‚è‚È‚¢‚æ‚¤‚¶‚á‚Ì‚¤
+	_TALKMSG	msg_sodateya_oldwoman_07			//ãŠã‹ã­ãŒãŸã‚Šãªã„ã‚ˆã†ã˜ã‚ƒã®ã†
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_GOLD_WIN_DEL
@@ -417,42 +417,42 @@ ev_sodateya_w_0203:
 	_END
 
 /*==================================================================*/
-/*  ›››‚Í›››‚ð‚Ð‚«‚Æ‚Á‚½										*/
+/*  â—‹â—‹â—‹ã¯â—‹â—‹â—‹ã‚’ã²ãã¨ã£ãŸ										*/
 /*==================================================================*/
 ev_sodateya_w_0204:
 	_OBJ_ANIME	SODATEYA_OLDWOMAN2,oldwoman2_01_anime01
-	_OBJ_ANIME_WAIT										//ƒAƒjƒI—¹‘Ò‚¿
+	_OBJ_ANIME_WAIT										//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 
-	_HIKITORI_POKE	SCWK_PARAM2,SCWK_PARAM1							//ƒ|ƒPƒ‚ƒ“‚ðˆø‚«Žæ‚é
+	_HIKITORI_POKE	SCWK_PARAM2,SCWK_PARAM1							//ãƒã‚±ãƒ¢ãƒ³ã‚’å¼•ãå–ã‚‹
 	_SUB_MY_GOLD	SCWK_TEMP0
 
 	_GOLD_WRITE
 	_SE_PLAY				SEQ_SE_DP_REGI
 	_SE_WAIT				SEQ_SE_DP_REGI
 
-	_TALK_KEYWAIT	msg_sodateya_oldwoman_15			//‚Í‚¢‚æ@‚½‚µ‚©‚ÉI
+	_TALK_KEYWAIT	msg_sodateya_oldwoman_15			//ã¯ã„ã‚ˆã€€ãŸã—ã‹ã«ï¼
 	_VOICE_PLAY		SCWK_PARAM2,0
 	_PLAYER_NAME	1
-	_TALK_KEYWAIT	msg_sodateya_oldwoman_20			//›››‚Í›››‚ðc
+	_TALK_KEYWAIT	msg_sodateya_oldwoman_20			//â—‹â—‹â—‹ã¯â—‹â—‹â—‹ã‚’â€¦
 	_VOICE_WAIT
-	_GET_SODATEYA_ZIISAN	SCWK_ANSWER		//‚¶‚¢‚³‚ñƒ`ƒFƒbƒN0:‚È‚µ1:‚½‚Ü‚²2:ˆê•C3:2•C
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_sodateya_w_0205		//‚à‚¤‚¢‚Á‚Ò‚«Ž¿–â
-	_JUMP			ev_sodateya_w_end					//‚»‚ê‚¶‚á‚Ü‚½‚«‚Ä‚¨‚­‚ê
+	_GET_SODATEYA_ZIISAN	SCWK_ANSWER		//ã˜ã„ã•ã‚“ãƒã‚§ãƒƒã‚¯0:ãªã—1:ãŸã¾ã”2:ä¸€åŒ¹3:2åŒ¹
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_sodateya_w_0205		//ã‚‚ã†ã„ã£ã´ãè³ªå•
+	_JUMP			ev_sodateya_w_end					//ãã‚Œã˜ã‚ƒã¾ãŸãã¦ãŠãã‚Œ
 
 /*==================================================================*/
-/*  ‚à‚¤‚¢‚Á‚Ò‚«‚à‚Ð‚«‚Æ‚é‚©H										*/
+/*  ã‚‚ã†ã„ã£ã´ãã‚‚ã²ãã¨ã‚‹ã‹ï¼Ÿ										*/
 /*==================================================================*/
 ev_sodateya_w_0205:
-	_TALKMSG		msg_sodateya_oldwoman_08			//‚à‚¤‚P‚Ò‚«‚à‚Ð‚«‚Æ‚é‚©H
+	_TALKMSG		msg_sodateya_oldwoman_08			//ã‚‚ã†ï¼‘ã´ãã‚‚ã²ãã¨ã‚‹ã‹ï¼Ÿ
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0201		//‚Í‚¢
-	_JUMP			ev_sodateya_w_end					//‚»‚ê‚¶‚á‚Ü‚½‚«‚Ä‚¨‚­‚ê
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0201		//ã¯ã„
+	_JUMP			ev_sodateya_w_end					//ãã‚Œã˜ã‚ƒã¾ãŸãã¦ãŠãã‚Œ
 
 /*==================================================================*/
-/*  ‚Ä‚à‚¿‚Ìƒ|ƒPƒ‚ƒ“‚ª‚¢‚Á‚Ï‚¢‚¶‚á‚æ								*/
+/*  ã¦ã‚‚ã¡ã®ãƒã‚±ãƒ¢ãƒ³ãŒã„ã£ã±ã„ã˜ã‚ƒã‚ˆ								*/
 /*==================================================================*/
 ev_sodateya_w_0206:
-	_TALKMSG	msg_sodateya_oldwoman_12			//‚Ä‚à‚¿‚Ìƒ|ƒPƒ‚ƒ“‚ª‚¢‚Á‚Ï‚¢‚¶‚á‚æ
+	_TALKMSG	msg_sodateya_oldwoman_12			//ã¦ã‚‚ã¡ã®ãƒã‚±ãƒ¢ãƒ³ãŒã„ã£ã±ã„ã˜ã‚ƒã‚ˆ
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_GOLD_WIN_DEL
@@ -475,21 +475,21 @@ _ANIME_LABEL	oldwoman2_01_anime01
 	_ANIME_DATA	ACMD_END,0
 
 /*==================================================================*/
-/*  ‚Q‚Ð‚«‚ ‚¸‚©‚Á‚Ä‚é												*/
+/*  ï¼’ã²ãã‚ãšã‹ã£ã¦ã‚‹												*/
 /*==================================================================*/
 ev_sodateya_w_0300:
-	_TALK_KEYWAIT	msg_sodateya_oldwoman_10		//‚¨‚¨‚ ‚ñ‚½‚©I‚æ‚­‚«‚½‚È
+	_TALK_KEYWAIT	msg_sodateya_oldwoman_10		//ãŠãŠã‚ã‚“ãŸã‹ï¼ã‚ˆãããŸãª
 
-	_LDVAL			SCWK_PARAM0,0						//‚P•C–Ú‚ÌƒŒƒxƒ‹ƒAƒbƒvƒ`ƒFƒbƒN
+	_LDVAL			SCWK_PARAM0,0						//ï¼‘åŒ¹ç›®ã®ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ãƒã‚§ãƒƒã‚¯
 	_CALL			ev_sodateya_poke_leveldiff
 
-	_LDVAL			SCWK_PARAM0,1						//“ñ•C–Ú‚ÌƒŒƒxƒ‹ƒAƒbƒvƒ`ƒFƒbƒN
+	_LDVAL			SCWK_PARAM0,1						//äºŒåŒ¹ç›®ã®ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ãƒã‚§ãƒƒã‚¯
 	_CALL			ev_sodateya_poke_leveldiff
 
-	_TALKMSG		msg_sodateya_oldwoman_17		//ƒ|ƒPƒ‚ƒ“‚ð‚Ð‚«‚Æ‚é‚©‚¢
+	_TALKMSG		msg_sodateya_oldwoman_17		//ãƒã‚±ãƒ¢ãƒ³ã‚’ã²ãã¨ã‚‹ã‹ã„
 	_YES_NO_WIN		SCWK_ANSWER
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0201	//‚Í‚¢
-	_TALKMSG	msg_sodateya_oldwoman_09		//‚»‚ê‚¶‚á‚Ü‚½‚«‚Ä‚¨‚­‚ê
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_sodateya_w_0201	//ã¯ã„
+	_TALKMSG	msg_sodateya_oldwoman_09		//ãã‚Œã˜ã‚ƒã¾ãŸãã¦ãŠãã‚Œ
 	_LAST_KEYWAIT
 	_TALK_CLOSE
 	_GOLD_WIN_DEL
@@ -498,18 +498,18 @@ ev_sodateya_w_0300:
 
 
 /*==================================================================*/
-/*  ƒ^ƒ}ƒS‚ª›z‰»‚µ‚½												*/
+/*  ã‚¿ãƒžã‚´ãŒå­µåŒ–ã—ãŸ												*/
 /*==================================================================*/
 ev_sodateya_tamago_huka:
 	_TALK_START
-	_TALK_KEYWAIT	msg_sodateya_05		//ƒ^ƒ}ƒS‚©‚ç›››‚ª‚¤‚Ü‚ê‚½I
+	_TALK_KEYWAIT	msg_sodateya_05		//ã‚¿ãƒžã‚´ã‹ã‚‰â—‹â—‹â—‹ãŒã†ã¾ã‚ŒãŸï¼
 	_TAMAGO_DEMO
 	_TALK_CLOSE
 	_GOLD_WIN_DEL
 	_TALK_END
 	_END
 
-/*uƒoƒbƒN‚ª‚¢‚Á‚Ï‚¢B‚Í‚Á‚«‚ñ‚¾‚Ü‚ðŠO‚¹‚Ü‚¹‚ñv*/
+/*ã€Œãƒãƒƒã‚¯ãŒã„ã£ã±ã„ã€‚ã¯ã£ãã‚“ã ã¾ã‚’å¤–ã›ã¾ã›ã‚“ã€*/
 ev_sodateya_m_gira_ng:
 	_GOLD_WIN_DEL
 	_CHG_COMMON_SCR	SCRID_GIRA_ITEM_NG

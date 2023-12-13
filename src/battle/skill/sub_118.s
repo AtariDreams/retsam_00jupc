@@ -3,8 +3,8 @@
 /**
  *
  *@file		sub_118.s
- *@brief	戦闘シーケンス
- *			すりこみシーケンス
+ *@brief	謌ｦ髣倥す繝ｼ繧ｱ繝ｳ繧ｹ
+ *			縺吶ｊ縺薙∩繧ｷ繝ｼ繧ｱ繝ｳ繧ｹ
  *@author	HisashiSogabe
  *@data		2006.07.10
  *

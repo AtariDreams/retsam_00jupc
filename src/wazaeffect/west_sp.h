@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	west_sp.h
- * @brief	�T�|�[�g�֐��p�w�b�_
+ * @brief	サポート関数用ヘッダ
  * @author	goto
- * @date	2005.07.14(��)
+ * @date	2005.07.14(木)
  *
- * �����ɐF�X�ȉ�����������Ă��悢
+ * ここに色々な解説等を書いてもよい
  *
  */
 //==============================================================================
@@ -18,21 +18,21 @@
 
 #if 0
 
-	�� ���� ��
+	■ 注意 ■
 	
-	*.s �ň������߂�define�o�^�́A[ west_sp_def.h ] ���ɋL�q���Ă��������B
-	���ۂɌĂяo���֐��́A[ west_sp.c ] �̃e�[�u�����ɋL�q���Ă��������B
+	*.s で扱うためのdefine登録は、[ west_sp_def.h ] 内に記述してください。
+	実際に呼び出す関数は、[ west_sp.c ] のテーブル内に記述してください。
 	
-	�T�|�[�g�p�̊֐��́A�����̐l�����삷��\��������̂�
-	west_sp.c ���ɃR�[�f�B���O�����A���[�U�[�l�ŗp�ӂ����t�@�C����
-	include����悤�ɂ��Ă�������	
+	サポート用の関数は、多くの人が操作する可能性があるので
+	west_sp.c 内にコーディングせず、ユーザー個人で用意したファイルを
+	includeするようにしてください	
 
 #endif
 
 
 // ----------------------------------------
 //
-//	�T�|�[�g�֐��Ăяo���֐�
+//	サポート関数呼び出し関数
 //
 // -----------------------------------------
 extern pWeFunc WazaEffectSupportFuncGet(u32 id);
@@ -40,7 +40,7 @@ extern pWeFunc WazaEffectSupportFuncGet(u32 id);
 
 // -----------------------------------------
 //
-//	�Z���A�N�^�[�p �T�|�[�g�֐��Ăяo��
+//	セルアクター用 サポート関数呼び出し
 //
 // -----------------------------------------
 extern pWeClactFunc WazaEffectSupportFuncGet_CATS(u32 id);
@@ -48,7 +48,7 @@ extern pWeClactFunc WazaEffectSupportFuncGet_CATS(u32 id);
 
 // -----------------------------------------
 //
-//	OLDACT�p �T�|�[�g�֐��Ăяo��
+//	OLDACT用 サポート関数呼び出し
 //
 // -----------------------------------------
 extern pWeOldActFunc WazaEffectSupportFuncGet_OLDACT(u32 id);

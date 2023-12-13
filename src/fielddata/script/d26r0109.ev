@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_d26r0109evc.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		pos_d26r0109_police
 _EVENT_DATA_END
@@ -22,14 +22,14 @@ _EVENT_DATA_END
 /********************************************************************/
 /*						FLAG_CHANGE_LABEL 							*/
 /*
- * ���ӁI(06.02.09����)
- * EV_SCRIPT_WORK���m�ۂ��Ă��Ȃ��̂ŁA
- * SCWK_ANSWER�Ȃǂ̃��[�N�͎g�p���邱�Ƃ��o���Ȃ��I
- * LOCALWORK0�Ȃǂ��g�p����悤�ɂ���I
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
  *
- * ���ʃX�N���v�g�ɂ��Ă͌���g�p�s�I
- * �Ή��\�肾���A�]�[�����܂��������ɏ����������邩���H
- * ���܂����Ȃ������H
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
  */
 /********************************************************************/
 //ev_d26r0109_flag_change:
@@ -47,26 +47,26 @@ pos_d26r0109_police:
 
 	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
 
-	/*���یx�@�C�Â�*/
+	/*国際警察気づく*/
 	_OBJ_ANIME		D26R0109_POLICE,anm_d26r0109_police_01
 	_OBJ_ANIME_WAIT
 
 	_TALK_KEYWAIT	msg_d26r0109_detective_01
 	_TALK_CLOSE
 
-	/*�w��ʒu�ɂ�*/
+	/*指定位置につく*/
 	_IFVAL_CALL		SCWK_TEMP1,EQ,D26R0109_POLICE_Z1,ev_d26r0109_police_z01
 	_IFVAL_CALL		SCWK_TEMP1,EQ,D26R0109_POLICE_Z2,ev_d26r0109_police_z02
 
-	//�J�����ړ�
-	//���m�𒆐S�Ɉړ�����
+	//カメラ移動
+	//博士を中心に移動する
 	_VANISH_DUMMY_OBJ_ADD	SCWK_TEMP0,SCWK_TEMP1
 
 	//_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC*3
 	//_WIPE_FADE_END_CHECK
 
-	//�_�~�[OBJ�𓮂���
+	//ダミーOBJを動かす
 	_OBJ_ANIME		SCR_OBJID_DUMMY,anm_d26r0109_dummy_01
 	_OBJ_ANIME_WAIT
 
@@ -75,7 +75,7 @@ pos_d26r0109_police:
 
 	_TIME_WAIT		15,SCWK_ANSWER
 
-	/*�A�J�M�o��*/
+	/*アカギ登場*/
 	_FLAG_RESET		FV_D26R0109_BOSS
 	_OBJ_ADD		D26R0109_BOSS
 	_OBJ_ANIME		D26R0109_BOSS,anm_d26r0109_boss_01
@@ -107,7 +107,7 @@ pos_d26r0109_police:
 
 	_TIME_WAIT		15,SCWK_ANSWER
 
-	/*�A�J�M�ޏ�*/
+	/*アカギ退場*/
 	_OBJ_ANIME		D26R0109_BOSS,anm_d26r0109_boss_02
 	_OBJ_ANIME_WAIT
 	_OBJ_DEL		D26R0109_BOSS
@@ -115,15 +115,15 @@ pos_d26r0109_police:
 	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC*3
 	_WIPE_FADE_END_CHECK
 
-	/*�J�����߂�*/
+	/*カメラ戻す*/
 	_OBJ_ANIME		SCR_OBJID_DUMMY,anm_d26r0109_dummy_11
 	_OBJ_ANIME_WAIT
 
-	//�J�����ړ�
-	//�_�~�[OBJ�폜
+	//カメラ移動
+	//ダミーOBJ削除
 	_VANISH_DUMMY_OBJ_DEL
 
-	/*�M���K�c�폜*/
+	/*ギンガ団削除*/
 	_OBJ_DEL		D26R0109_GSET1_02
 	_OBJ_DEL		D26R0109_GINGAM_05
 	_OBJ_DEL		D26R0109_GSET1_01
@@ -159,7 +159,7 @@ pos_d26r0109_police:
 	_OBJ_DEL		D26R0109_GINGAM_09
 	_OBJ_DEL		D26R0109_GINGAW_01
 
-	/*���������*/
+	/*顔を見合す*/
 	_OBJ_ANIME		D26R0109_POLICE,anm_d26r0109_police_31
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d26r0109_player_31
 	_OBJ_ANIME_WAIT
@@ -172,7 +172,7 @@ pos_d26r0109_police:
 	_TALK_KEYWAIT	msg_d26r0109_detective_02
 	_TALK_CLOSE
 
-	/*���Ɉړ�*/
+	/*左に移動*/
 	_OBJ_ANIME		D26R0109_POLICE,anm_d26r0109_police_41
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d26r0109_player_41
 	_OBJ_ANIME_WAIT
@@ -195,7 +195,7 @@ ev_d26r0109_police_z02:
 	_RET
 
 //--------------------------------------------------------------------
-//�A�J�M	���S��
+//アカギ	中心へ
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0109_boss_01
 	_ANIME_DATA	AC_WALK_D_8F,3
@@ -204,7 +204,7 @@ _ANIME_LABEL anm_d26r0109_boss_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�A�J�M	�ޏ�
+//アカギ	退場
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0109_boss_02
 	_ANIME_DATA	AC_WALK_U_8F,1
@@ -213,7 +213,7 @@ _ANIME_LABEL anm_d26r0109_boss_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�J����	�d���
+//カメラ	壇上へ
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0109_dummy_01
 	_ANIME_DATA	AC_WALK_L_8F,6
@@ -221,7 +221,7 @@ _ANIME_LABEL anm_d26r0109_dummy_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//�J����	���ɖ߂�
+//カメラ	元に戻す
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0109_dummy_11
 	_ANIME_DATA	AC_WALK_D_8F,6
@@ -229,7 +229,7 @@ _ANIME_LABEL anm_d26r0109_dummy_11
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//��l��	�w��ʒu�ɂ�
+//主人公	指定位置につく
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0109_player_01
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -241,21 +241,21 @@ _ANIME_LABEL anm_d26r0109_player_02
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//��l��	���������
+//主人公	顔を見合す
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0109_player_31
 	_ANIME_DATA	AC_STAY_WALK_U_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//��l��	������
+//主人公	見送る
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0109_player_41
 	_ANIME_DATA	AC_STAY_WALK_L_8F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���یx�@	�C�Â�
+//国際警察	気づく
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0109_police_01
 	_ANIME_DATA	AC_STAY_WALK_R_4F,1
@@ -263,21 +263,21 @@ _ANIME_LABEL anm_d26r0109_police_01
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���یx�@	�w��ʒu�ɂ�
+//国際警察	指定位置につく
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0109_police_02
 	_ANIME_DATA	AC_STAY_WALK_L_4F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���یx�@	���������
+//国際警察	顔を見合す
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0109_police_31
 	_ANIME_DATA	AC_STAY_WALK_D_4F,1
 	_ANIME_DATA	ACMD_END,0
 
 //--------------------------------------------------------------------
-//���یx�@	�����Ă���
+//国際警察	去っていく
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_d26r0109_police_41
 	_ANIME_DATA	AC_WALK_L_4F,1

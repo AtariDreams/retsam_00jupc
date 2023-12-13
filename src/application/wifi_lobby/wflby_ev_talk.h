@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_ev_talk.h
- *	@brief		��b�C�x���g
+ *	@brief		会話イベント
  *	@author		tomoya takahashi
  *	@data		2007.12.18
  *
@@ -15,38 +15,38 @@
 #include "wflby_event.h"
 
 #ifdef PM_DEBUG
-//#define WFLBY_DEBUG_TALK_ALLWORLD	// �g�s�b�N�O�̌Z����񂪐��E�̈��A�𗬂�
+//#define WFLBY_DEBUG_TALK_ALLWORLD	// トピック前の兄ちゃんが世界の挨拶を流す
 #endif
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 
 
-// ��b�͂Ȃ�������
+// 会話はなしかけた
 extern BOOL WFLBY_EV_TALK_StartA( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno );
 
-// ��b�͂Ȃ�������ꂽ
+// 会話はなしかけられた
 extern BOOL WFLBY_EV_TALK_StartB( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno );
 
-// �g�s�b�N��b
+// トピック会話
 extern BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno );
 
-// �V�т𐄑E����l
+// 遊びを推薦する人
 extern BOOL WFLBY_EV_DEF_PlayerA_SWTOPIC_PLAYED_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rmwk, u32 plno );
 
 

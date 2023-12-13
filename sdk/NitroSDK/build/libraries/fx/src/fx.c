@@ -12,7 +12,7 @@
 
   $Log: fx.c,v $
   Revision 1.15  2006/04/28 07:28:05  okubata_ryoma
-  FX32_CAST‚Ì’Ç‰Á
+  FX32_CASTã®è¿½åŠ 
 
   Revision 1.14  2006/01/18 02:11:20  kitase_hirotake
   do-indent
@@ -21,10 +21,10 @@
   do-indent.
 
   Revision 1.12  2005/02/21 00:34:22  yasu
-  ’˜ì”N“x•ÏX
+  è‘—ä½œå¹´åº¦å¤‰æ›´
 
   Revision 1.11  2005/02/21 00:32:27  yasu
-  ŒµŠi‚ÈŒ^ƒ`ƒFƒbƒN‚É‘Î‰
+  å³æ ¼ãªå‹ãƒã‚§ãƒƒã‚¯ã«å¯¾å¿œ
 
   Revision 1.10  2004/03/24 07:31:45  takano_makoto
   Change to return round decimal At FX_Mul.

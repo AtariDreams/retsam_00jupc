@@ -23,10 +23,10 @@
 #include "g2d_Internal.h"
 
 //------------------------------------------------------------------------------
-// ƒAƒjƒ[ƒVƒ‡ƒ“•ÏXŒ‹‰Ê‚ð“K—p‚·‚é
+// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å¤‰æ›´çµæžœã‚’é©ç”¨ã™ã‚‹
 //
-// ­‚µ—–\‚¾‚ªA‚Ç‚ñ‚ÈƒAƒjƒƒtƒH[ƒ}ƒbƒg‚Å‚ ‚Á‚Ä‚àNNSG2dAnimDataSRT‚ÅƒAƒNƒZƒX‚µ‚Ä‚µ‚Ü‚¤
-// (ƒAƒjƒƒtƒH[ƒ}ƒbƒg‚ªNNS_G2D_ANIMELEMENT_INDEX‚Ìê‡‚Í SRT •”•ª‚É‚Í•s³‚Èƒf[ƒ^‚ª“ü‚éŽ–‚Æ‚È‚éj
+// å°‘ã—ä¹±æš´ã ãŒã€ã©ã‚“ãªã‚¢ãƒ‹ãƒ¡ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã§ã‚ã£ã¦ã‚‚NNSG2dAnimDataSRTã§ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ã—ã¾ã†
+// (ã‚¢ãƒ‹ãƒ¡ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆãŒNNS_G2D_ANIMELEMENT_INDEXã®å ´åˆã¯ SRT éƒ¨åˆ†ã«ã¯ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ãŒå…¥ã‚‹äº‹ã¨ãªã‚‹ï¼‰
 //     
 static void ApplyCurrentAnimResult_( NNSG2dCellAnimation* pCellAnim )
 {
@@ -37,7 +37,7 @@ static void ApplyCurrentAnimResult_( NNSG2dCellAnimation* pCellAnim )
     NNS_G2D_NULL_ASSERT( pCellAnim->pCellDataBank );
     
     //
-    // •\Ž¦ŽžŠÔ‚ªƒ[ƒ‚Å‚ ‚éAƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚Ìê‡‚ÍAXVì‹Æ‚ð‰½‚às‚¢‚Ü‚¹‚ñB
+    // è¡¨ç¤ºæ™‚é–“ãŒã‚¼ãƒ­ã§ã‚ã‚‹ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã®å ´åˆã¯ã€æ›´æ–°ä½œæ¥­ã‚’ä½•ã‚‚è¡Œã„ã¾ã›ã‚“ã€‚
     //
     if( pCellAnim->animCtrl.pActiveCurrent->frames == 0 )
     {
@@ -48,7 +48,7 @@ static void ApplyCurrentAnimResult_( NNSG2dCellAnimation* pCellAnim )
 
     
     //
-    // •¡”‚ÌƒtƒH[ƒ}ƒbƒg‚É‘Î‰ž‚·‚é‚±‚Æ‚É‚È‚é—\’è‚Å‚·
+    // è¤‡æ•°ã®ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã«å¯¾å¿œã™ã‚‹ã“ã¨ã«ãªã‚‹äºˆå®šã§ã™
     //
     pAnimResult = (const NNSG2dAnimDataSRT*)NNS_G2dGetAnimCtrlCurrentElement( &pCellAnim->animCtrl );
     pCellBank   = pCellAnim->pCellDataBank;
@@ -60,7 +60,7 @@ static void ApplyCurrentAnimResult_( NNSG2dCellAnimation* pCellAnim )
     NNS_G2D_NULL_ASSERT( pCellAnim->pCurrentCell );
     
     //
-    // SRT ‚ð ”½‰f 
+    // SRT ã‚’ åæ˜  
     //
     {
        const NNSG2dAnimationElement elemType 
@@ -84,7 +84,7 @@ static void ApplyCurrentAnimResult_( NNSG2dCellAnimation* pCellAnim )
     
    
     //
-    // ‚à‚µVRAM“]‘—î•ñ‚ªÝ’è‚³‚ê‚Ä‚¢‚é‚È‚ç...
+    // ã‚‚ã—VRAMè»¢é€æƒ…å ±ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ãªã‚‰...
     //
     if( NNS_G2dCellDataBankHasVramTransferData( pCellBank ) && 
         NNSi_G2dIsCellAnimVramTransferHandleValid( pCellAnim ) )
@@ -92,7 +92,7 @@ static void ApplyCurrentAnimResult_( NNSG2dCellAnimation* pCellAnim )
         const NNSG2dCellVramTransferData*   pCellTransferData 
             = NNSi_G2dGetCellVramTransferData( pCellBank, pAnimResult->index );   
         //
-        // “]‘—‚ðƒŠƒNƒGƒXƒg‚µ‚Ü‚·
+        // è»¢é€ã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆã—ã¾ã™
         //
         NNS_G2dSetCellTransferStateRequested( pCellAnim->cellTransferStateHandle,
                                               pCellTransferData->srcDataOffset,
@@ -101,8 +101,8 @@ static void ApplyCurrentAnimResult_( NNSG2dCellAnimation* pCellAnim )
 }
 
 //------------------------------------------------------------------------------
-// ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ð‰Šú‰»‚µ‚Ü‚·B
-// NNS_G2dInitCellAnimation ‚ÌŽÀ‘••”•ª‚Å‚·B
+// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚
+// NNS_G2dInitCellAnimation ã®å®Ÿè£…éƒ¨åˆ†ã§ã™ã€‚
 static NNS_G2D_INLINE void InitCellAnimationImpl_
 ( 
     NNSG2dCellAnimation*        pCellAnim, 
@@ -119,8 +119,8 @@ static NNS_G2D_INLINE void InitCellAnimationImpl_
     pCellAnim->pCellDataBank            = pCellDataBank;
     pCellAnim->cellTransferStateHandle   = cellTransferStateHandle;
     
-    // TODO: srtCtrl ‚Ì Ží—Þ ‚Í ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŒ`Ž®‚É‰ž‚¶‚ÄAÝ’è‚·‚é•K—v‚ª‚ ‚é
-    //       ƒoƒCƒ“ƒh‚Ì‚½‚Ñ‚ÉÄ“xÝ’è‚·‚é•K—v‚ª‚ ‚éB
+    // TODO: srtCtrl ã® ç¨®é¡ž ã¯ ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å½¢å¼ã«å¿œã˜ã¦ã€è¨­å®šã™ã‚‹å¿…è¦ãŒã‚ã‚‹
+    //       ãƒã‚¤ãƒ³ãƒ‰ã®ãŸã³ã«å†åº¦è¨­å®šã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
     NNSi_G2dSrtcInitControl( &pCellAnim->srtCtrl, NNS_G2D_SRTCONTROLTYPE_SRT );
     
     NNS_G2dInitAnimCtrl( &pCellAnim->animCtrl );
@@ -130,13 +130,13 @@ static NNS_G2D_INLINE void InitCellAnimationImpl_
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitCellAnimation
 
-  Description:  NNSG2dCellAnimation  ŽÀ‘Ì‚ð‰Šú‰»‚µ‚Ü‚·
+  Description:  NNSG2dCellAnimation  å®Ÿä½“ã‚’åˆæœŸåŒ–ã—ã¾ã™
                 
-  Arguments:    pCellAnim:           [OUT]  ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ŽÀ‘Ì
-                pAnimSeq:            [IN]   ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
-                pCellDataBank:       [IN]   ƒZƒ‹ƒf[ƒ^ƒoƒ“ƒN
+  Arguments:    pCellAnim:           [OUT]  ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Ÿä½“
+                pAnimSeq:            [IN]   ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+                pCellDataBank:       [IN]   ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dInitCellAnimation
@@ -159,20 +159,20 @@ void NNS_G2dInitCellAnimation
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitCellAnimationVramTransfered
 
-  Description:  VRAM“]‘—ƒAƒjƒ[ƒVƒ‡ƒ“‚ð‚·‚éAƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ð‰Šú‰»‚µ‚Ü‚·B
+  Description:  VRAMè»¢é€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã™ã‚‹ã€ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚
                 
-  Arguments:    pCellAnim:           [OUT] ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ŽÀ‘Ì
-                pAnimSeq:            [IN]  ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
-                pCellBank:           [IN]  ƒZƒ‹ƒf[ƒ^ƒoƒ“ƒN
-                vramStateHandle:     [IN]  ƒZƒ‹VRAM“]‘—ó‘ÔƒIƒuƒWƒFƒNƒg‚Ìƒnƒ“ƒhƒ‹
-                dstAddr3D:           [IN]  “]‘—æƒf[ƒ^(3D —p)
-                dstAddr2DMain:       [IN]  “]‘—æƒf[ƒ^(2D Main—p)
-                dstAddr2DSub:        [IN]  “]‘—æƒf[ƒ^(2D Sub —p)
-                pSrcNCGR:            [IN]  “]‘—Œ³ƒf[ƒ^(NCGR)
-                pSrcNCBR:            [IN]  “]‘—Œ³ƒf[ƒ^(NCBR)
-                szSrcData:           [IN]  “]‘—Œ³ƒf[ƒ^ƒTƒCƒY
+  Arguments:    pCellAnim:           [OUT] ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Ÿä½“
+                pAnimSeq:            [IN]  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+                pCellBank:           [IN]  ã‚»ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒãƒ³ã‚¯
+                vramStateHandle:     [IN]  ã‚»ãƒ«VRAMè»¢é€çŠ¶æ…‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«
+                dstAddr3D:           [IN]  è»¢é€å…ˆãƒ‡ãƒ¼ã‚¿(3D ç”¨)
+                dstAddr2DMain:       [IN]  è»¢é€å…ˆãƒ‡ãƒ¼ã‚¿(2D Mainç”¨)
+                dstAddr2DSub:        [IN]  è»¢é€å…ˆãƒ‡ãƒ¼ã‚¿(2D Sub ç”¨)
+                pSrcNCGR:            [IN]  è»¢é€å…ƒãƒ‡ãƒ¼ã‚¿(NCGR)
+                pSrcNCBR:            [IN]  è»¢é€å…ƒãƒ‡ãƒ¼ã‚¿(NCBR)
+                szSrcData:           [IN]  è»¢é€å…ƒãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dInitCellAnimationVramTransfered
@@ -191,32 +191,32 @@ void NNS_G2dInitCellAnimationVramTransfered
 )
 {
     //
-    // VRAM“]‘—î•ñ‚ðŽ‚Á‚Ä‚¢‚é‚±‚Æ
+    // VRAMè»¢é€æƒ…å ±ã‚’æŒã£ã¦ã„ã‚‹ã“ã¨
     //
     NNS_G2D_ASSERT( NNS_G2dCellDataBankHasVramTransferData( pCellBank ) );
     
     //
-    // Vram“]‘—ŠÖ˜A‚Ì‰Šú‰»
+    // Vramè»¢é€é–¢é€£ã®åˆæœŸåŒ–
     //
     {                                                
         const NNSG2dVramTransferData*    pVramData = 
             (const NNSG2dVramTransferData*)pCellBank->pVramTransferData;
         
-        // Ý’èƒ[ƒN‚Ì‰Šú‰»
+        // è¨­å®šãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–
         NNSi_G2dInitCellTransferState( vramStateHandle,
-                                        dstAddr3D,              // dst “]‘—æVramƒAƒhƒŒƒX‚ÌÝ’è
-                                        dstAddr2DMain,          // dst “]‘—æVramƒAƒhƒŒƒX‚ÌÝ’è
-                                        dstAddr2DSub,           // dst “]‘—æVramƒAƒhƒŒƒX‚ÌÝ’è
-                                        pVramData->szByteMax,   // dst “]‘—‚·‚éÅ‘åƒf[ƒ^ƒTƒCƒY
+                                        dstAddr3D,              // dst è»¢é€å…ˆVramã‚¢ãƒ‰ãƒ¬ã‚¹ã®è¨­å®š
+                                        dstAddr2DMain,          // dst è»¢é€å…ˆVramã‚¢ãƒ‰ãƒ¬ã‚¹ã®è¨­å®š
+                                        dstAddr2DSub,           // dst è»¢é€å…ˆVramã‚¢ãƒ‰ãƒ¬ã‚¹ã®è¨­å®š
+                                        pVramData->szByteMax,   // dst è»¢é€ã™ã‚‹æœ€å¤§ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
                                         pSrcNCGR,               // src 2D char-data
                                         pSrcNCBR,               // src 3D Tex-data
-                                        szSrcData );            // src ƒTƒCƒY 
+                                        szSrcData );            // src ã‚µã‚¤ã‚º 
            
         NNSi_G2dSetCellAnimVramTransferHandle( pCellAnim, vramStateHandle );
     }
     
     //
-    // Cell ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì‰Šú‰»
+    // Cell ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®åˆæœŸåŒ–
     //
     InitCellAnimationImpl_( pCellAnim, pAnimSeq, pCellBank, vramStateHandle );        
 }
@@ -224,12 +224,12 @@ void NNS_G2dInitCellAnimationVramTransfered
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetCellAnimationSequence
 
-  Description:  ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ÉƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚ðÝ’è‚µ‚Ü‚·B
+  Description:  ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’è¨­å®šã—ã¾ã™ã€‚
 
-  Arguments:    pCellAnim   :      [OUT]     ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ŽÀ‘Ì
-                pAnimSeq    F     [IN]      ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX
+  Arguments:    pCellAnim   :      [OUT]     ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Ÿä½“
+                pAnimSeq    ï¼š     [IN]      ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetCellAnimationSequence
@@ -252,13 +252,13 @@ void NNS_G2dSetCellAnimationSequence
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetCellAnimationSequenceNoReset
 
-  Description:  ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ÉƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX‚ðÝ’è‚µ‚Ü‚·B
-                “à•”‚ÌÄ¶ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”Ô†AŒ»ÝƒtƒŒ[ƒ€•\Ž¦ŽžŠÔ‚ðƒŠƒZƒbƒg‚µ‚Ü‚¹‚ñB
+  Description:  ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’è¨­å®šã—ã¾ã™ã€‚
+                å†…éƒ¨ã®å†ç”Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·ã€ç¾åœ¨ãƒ•ãƒ¬ãƒ¼ãƒ è¡¨ç¤ºæ™‚é–“ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¾ã›ã‚“ã€‚
 
-  Arguments:    pCellAnim   :    [OUT]      ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ŽÀ‘Ì
-                pAnimSeq    F   [IN]       ƒAƒjƒ[ƒVƒ‡ƒ“ƒV[ƒPƒ“ƒX
+  Arguments:    pCellAnim   :    [OUT]      ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Ÿä½“
+                pAnimSeq    ï¼š   [IN]       ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetCellAnimationSequenceNoReset
@@ -275,7 +275,7 @@ void NNS_G2dSetCellAnimationSequenceNoReset
     {
         const u16 frameIdx = NNS_G2dGetAnimCtrlCurrentFrame( &pCellAnim->animCtrl );
         
-        // ƒJƒEƒ“ƒ^[‚ÌƒŠƒZƒbƒg‚ð‚µ‚È‚¢
+        // ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼ã®ãƒªã‚»ãƒƒãƒˆã‚’ã—ãªã„
         pCellAnim->animCtrl.pAnimSequence = pAnimSeq;
         
         if( !NNS_G2dSetAnimCtrlCurrentFrameNoResetCurrentTime( &pCellAnim->animCtrl, frameIdx ) )
@@ -290,13 +290,13 @@ void NNS_G2dSetCellAnimationSequenceNoReset
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dTickCellAnimation
 
-  Description:  NNSG2dCellAnimation ‚Ì ŽžŠÔ‚ði‚ß‚Ü‚·
+  Description:  NNSG2dCellAnimation ã® æ™‚é–“ã‚’é€²ã‚ã¾ã™
                 
-  Arguments:    pCellAnim:          [OUT] ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ŽÀ‘Ì
-                frames:             [IN]  i‚ß‚éŽžŠÔiƒtƒŒ[ƒ€j
+  Arguments:    pCellAnim:          [OUT] ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Ÿä½“
+                frames:             [IN]  é€²ã‚ã‚‹æ™‚é–“ï¼ˆãƒ•ãƒ¬ãƒ¼ãƒ ï¼‰
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dTickCellAnimation( NNSG2dCellAnimation* pCellAnim, fx32 frames )
@@ -309,7 +309,7 @@ void NNS_G2dTickCellAnimation( NNSG2dCellAnimation* pCellAnim, fx32 frames )
     if( NNS_G2dTickAnimCtrl( &pCellAnim->animCtrl, frames ) )
     {
         //
-        // FrameXV‚ª‹N‚«‚½‚È‚çAƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê‚ð”½‰f‚·‚é
+        // Frameæ›´æ–°ãŒèµ·ããŸãªã‚‰ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœã‚’åæ˜ ã™ã‚‹
         //
         ApplyCurrentAnimResult_( pCellAnim );
     }
@@ -318,13 +318,13 @@ void NNS_G2dTickCellAnimation( NNSG2dCellAnimation* pCellAnim, fx32 frames )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetCellAnimationCurrentFrame
 
-  Description:  ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ðÝ’è‚µ‚Ü‚·B
-                •s³‚ÈƒtƒŒ[ƒ€”Ô†‚ªŽw’è‚³‚ê‚½ê‡‚ÍA‰½‚à‚µ‚Ü‚¹‚ñB
+  Description:  ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’è¨­å®šã—ã¾ã™ã€‚
+                ä¸æ­£ãªãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·ãŒæŒ‡å®šã•ã‚ŒãŸå ´åˆã¯ã€ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
                 
-  Arguments:    pCellAnim   :           [OUT] ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ŽÀ‘Ì
-                frameIndex  F          [IN]  ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€”Ô†
+  Arguments:    pCellAnim   :           [OUT] ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Ÿä½“
+                frameIndex  ï¼š          [IN]  ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ç•ªå·
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetCellAnimationCurrentFrame
@@ -339,7 +339,7 @@ void NNS_G2dSetCellAnimationCurrentFrame
     if( NNS_G2dSetAnimCtrlCurrentFrame( &pCellAnim->animCtrl, frameIndex ) )
     {
         //
-        // FrameXV‚ª‹N‚«‚½‚È‚çAƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê‚ð”½‰f‚·‚é
+        // Frameæ›´æ–°ãŒèµ·ããŸãªã‚‰ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœã‚’åæ˜ ã™ã‚‹
         //
         ApplyCurrentAnimResult_( pCellAnim );
     }
@@ -348,12 +348,12 @@ void NNS_G2dSetCellAnimationCurrentFrame
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dRestartCellAnimation
 
-  Description:  ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶‚ðæ“ª‚©‚çÄƒXƒ^[ƒg‚µ‚Ü‚·B
-                ”½“]Ä¶‚µ‚Ä‚¢‚éê‡‚ÍAƒV[ƒPƒ“ƒXI’[‚©‚çÄ¶‚ðÄƒXƒ^[ƒg‚µ‚Ü‚·B
+  Description:  ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿã‚’å…ˆé ­ã‹ã‚‰å†ã‚¹ã‚¿ãƒ¼ãƒˆã—ã¾ã™ã€‚
+                åè»¢å†ç”Ÿã—ã¦ã„ã‚‹å ´åˆã¯ã€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹çµ‚ç«¯ã‹ã‚‰å†ç”Ÿã‚’å†ã‚¹ã‚¿ãƒ¼ãƒˆã—ã¾ã™ã€‚
                 
-  Arguments:    pCellAnim   :           [OUT] ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ŽÀ‘Ì
+  Arguments:    pCellAnim   :           [OUT] ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Ÿä½“
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dRestartCellAnimation
@@ -364,26 +364,26 @@ void NNS_G2dRestartCellAnimation
     NNSG2dAnimController* pAnmCtrl = NULL;
     NNS_G2D_NULL_ASSERT( pCellAnim );   
     
-    // Ä¶ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ðæ“ª‚ÉƒZƒbƒg‚µ‚Ü‚·B
+    // å†ç”Ÿã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’å…ˆé ­ã«ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
     pAnmCtrl = NNS_G2dGetCellAnimationAnimCtrl( pCellAnim );
     NNS_G2dResetAnimCtrlState( pAnmCtrl );
     
-    // Ä¶‚ðƒXƒ^[ƒg‚µ‚Ü‚·B
+    // å†ç”Ÿã‚’ã‚¹ã‚¿ãƒ¼ãƒˆã—ã¾ã™ã€‚
     NNS_G2dStartAnimCtrl( pAnmCtrl );
     
-    // ƒAƒjƒ[ƒVƒ‡ƒ“Œ‹‰Ê‚ð”½‰f‚µ‚Ü‚·B
+    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµæžœã‚’åæ˜ ã—ã¾ã™ã€‚
     ApplyCurrentAnimResult_( pCellAnim );
 }
 
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dSetCellAnimationSpeed
 
-  Description:  ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶ƒXƒs[ƒh‚ðÝ’è‚µ‚Ü‚·B
+  Description:  ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿã‚¹ãƒ”ãƒ¼ãƒ‰ã‚’è¨­å®šã—ã¾ã™ã€‚
                 
-  Arguments:    pCellAnim   :           [OUT] ƒZƒ‹ƒAƒjƒ[ƒVƒ‡ƒ“ŽÀ‘Ì
-                speed       F          [IN]  Ä¶ƒXƒs[ƒh
+  Arguments:    pCellAnim   :           [OUT] ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å®Ÿä½“
+                speed       ï¼š          [IN]  å†ç”Ÿã‚¹ãƒ”ãƒ¼ãƒ‰
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetCellAnimationSpeed
@@ -401,16 +401,16 @@ void NNS_G2dSetCellAnimationSpeed
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dMakeCellToOams
 
-  Description:  Cell‚ðOam—ñ‚É•ÏŠ·‚µ‚Ü‚·
+  Description:  Cellã‚’Oamåˆ—ã«å¤‰æ›ã—ã¾ã™
                 
-  Arguments:    pDstOams:           [OUT] Oam‚ªŠi”[‚³‚ê‚éƒoƒbƒtƒ@
-                numDstOam:          [IN] ƒoƒbƒtƒ@’·
-                pCell:              [IN] •ÏŠ·Œ³‚ÌCell
-                pMtxSR:             [IN] Cell‚ÉÝ’è‚·‚é•ÏŠ·     i”CˆÓj
-                pBaseTrans:         [IN] Cell‚ÉÝ’è‚·‚é•½sˆÚ“® i”CˆÓj
-                bDoubleAffine:      [IN] DoubleAffine ƒ‚[ƒh‚©‚Ç‚¤‚©
+  Arguments:    pDstOams:           [OUT] OamãŒæ ¼ç´ã•ã‚Œã‚‹ãƒãƒƒãƒ•ã‚¡
+                numDstOam:          [IN] ãƒãƒƒãƒ•ã‚¡é•·
+                pCell:              [IN] å¤‰æ›å…ƒã®Cell
+                pMtxSR:             [IN] Cellã«è¨­å®šã™ã‚‹å¤‰æ›     ï¼ˆä»»æ„ï¼‰
+                pBaseTrans:         [IN] Cellã«è¨­å®šã™ã‚‹å¹³è¡Œç§»å‹• ï¼ˆä»»æ„ï¼‰
+                bDoubleAffine:      [IN] DoubleAffine ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹
                 
-  Returns:      ŽÀÛ‚É•ÏŠ·‚µ‚½OamAttribute”
+  Returns:      å®Ÿéš›ã«å¤‰æ›ã—ãŸOamAttributeæ•°
   
  *---------------------------------------------------------------------------*/
 u16 NNS_G2dMakeCellToOams
@@ -438,35 +438,35 @@ u16 NNS_G2dMakeCellToOams
         NNS_G2dCopyCellAsOamAttr( pCell, i, pDstOam );
         
         //
-        // OBJ‚ÌˆÊ’u‚ð•ÏX‚·‚é•K—v‚ª‚ ‚é‚È‚ç...
+        // OBJã®ä½ç½®ã‚’å¤‰æ›´ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ãªã‚‰...
         //
         if( pMtxSR != NULL || pBaseTrans != NULL )
         {
             //
-            // ˆÊ’u‚ÌŽæ“¾
+            // ä½ç½®ã®å–å¾—
             //
             NNS_G2dGetOamTransFx32( pDstOam, &objTrans );
                     
             //
-            // affine •ÏŠ·‚ªŽw’è‚³‚ê‚Ä‚¢‚é‚È‚ç...
+            // affine å¤‰æ›ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹ãªã‚‰...
             // 
             if( pMtxSR != NULL )
             {   
                 //
-                // ”{ŠpƒAƒtƒBƒ“‚ªÝ’è‚³‚ê‚Ä‚¢‚éOBJ‚È‚çA
-                // NITRO-CHARACTER ‚ª•t‰Á‚µ‚Ä‚¢‚é•â³’l‚ðˆê’UAŽæ‚è‹Ž‚è‚Ü‚·
+                // å€è§’ã‚¢ãƒ•ã‚£ãƒ³ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹OBJãªã‚‰ã€
+                // NITRO-CHARACTER ãŒä»˜åŠ ã—ã¦ã„ã‚‹è£œæ­£å€¤ã‚’ä¸€æ—¦ã€å–ã‚ŠåŽ»ã‚Šã¾ã™
                 //
                 NNSi_G2dRemovePositionAdjustmentFromDoubleAffineOBJ( pDstOam, 
                                                                      &objTrans );               
                 {
-                    // ã‘‚«
+                    // ä¸Šæ›¸ã
                     const GXOamEffect effectTypeAfter = ( bDoubleAffine ) ? 
                                              GX_OAM_EFFECT_AFFINE_DOUBLE : GX_OAM_EFFECT_AFFINE;                
                     const BOOL bShouldAdjust = ( effectTypeAfter  == GX_OAM_EFFECT_AFFINE_DOUBLE );
         
                     MulMtx22( pMtxSR, &objTrans, &objTrans );
                     
-                    // affine Index ‚ÌÝ’è
+                    // affine Index ã®è¨­å®š
                     G2_SetOBJEffect( pDstOam, effectTypeAfter, affineIndex );
                     
                     NNSi_G2dAdjustDifferenceOfRotateOrientation( pDstOam, 
@@ -476,7 +476,7 @@ u16 NNS_G2dMakeCellToOams
                 }
             }
             //
-            // •½sˆÚ“®¬•ª‚ªŽw’è‚³‚ê‚Ä‚¢‚é‚È‚ç...
+            // å¹³è¡Œç§»å‹•æˆåˆ†ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹ãªã‚‰...
             // 
             if( pBaseTrans != NULL )
             {
@@ -485,9 +485,9 @@ u16 NNS_G2dMakeCellToOams
             }
             
             //
-            // ‘‚«–ß‚µ
+            // æ›¸ãæˆ»ã—
             //
-            // 0x800 => ŽlŽÌŒÜ“ü‚ðˆÓ}‚µ‚Ä‚¢‚Ü‚·
+            // 0x800 => å››æ¨äº”å…¥ã‚’æ„å›³ã—ã¦ã„ã¾ã™
             G2_SetOBJPosition( pDstOam, 
                                ( objTrans.x + 0x800 )>> FX32_SHIFT, 
                                ( objTrans.y + 0x800 )>> FX32_SHIFT );

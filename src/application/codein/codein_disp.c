@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	codein_disp.c
- * @brief	•¶š“ü—ÍƒCƒ“ƒ^[ƒtƒF[ƒX
+ * @brief	æ–‡å­—å…¥åŠ›ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
  * @author	goto
- * @date	2007.07.11(…)
+ * @date	2007.07.11(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -40,7 +40,7 @@
 
 //--------------------------------------------------------------
 /**
- * @brief	CATS ‚Ì ‰Šú‰»
+ * @brief	CATS ã® åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -57,7 +57,7 @@ void CI_pv_disp_CATS_Init( CODEIN_WORK* wk )
 			0, 128, 0, 32,
 		};
 		const TCATS_CHAR_MANAGER_MAKE Ccmm = {
-			48 + 48,			///< IDŠÇ— main + sub
+			48 + 48,			///< IDç®¡ç† main + sub
 			1024 * 0x40,		///< 64k
 			 512 * 0x20,		///< 32k
 			GX_OBJVRAMMODE_CHAR_1D_64K,
@@ -69,12 +69,12 @@ void CI_pv_disp_CATS_Init( CODEIN_WORK* wk )
 	{
 		BOOL active;
 		const TCATS_RESOURCE_NUM_LIST ResourceList = {
-			48 + 48,	///< ƒLƒƒƒ‰“o˜^” 	main + sub
-			16 + 16,	///< ƒpƒŒƒbƒg“o˜^”	main + sub
-			64,			///< ƒZƒ‹
-			64,			///< ƒZƒ‹ƒAƒjƒ
-			16,			///< ƒ}ƒ‹ƒ`ƒZƒ‹
-			16,			///< ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+			48 + 48,	///< ã‚­ãƒ£ãƒ©ç™»éŒ²æ•° 	main + sub
+			16 + 16,	///< ãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æ•°	main + sub
+			64,			///< ã‚»ãƒ«
+			64,			///< ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			16,			///< ãƒãƒ«ãƒã‚»ãƒ«
+			16,			///< ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 		};
 		
 		wk->sys.crp = CATS_ResourceCreate( wk->sys.csp );
@@ -89,7 +89,7 @@ void CI_pv_disp_CATS_Init( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒR[ƒh—pƒf[ƒ^“Ç‚İ‚İ
+ * @brief	ã‚³ãƒ¼ãƒ‰ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
  * @param	wk	
  *
@@ -145,7 +145,7 @@ void CI_pv_disp_CodeRes_Load( CODEIN_WORK* wk )
 		TalkWinGraphicSet( bgl, GF_BGL_FRAME0_S, 1, ePAL_WIN, wintype, HEAPID_CODEIN );
 		PaletteWorkSet_Arc( pfd, ARC_WINFRAME, TalkWinPalArcGet( wintype ), HEAPID_CODEIN, FADE_SUB_BG, 0x20, ePAL_FRAME * 16 );
 
-		///< ƒtƒHƒ“ƒg
+		///< ãƒ•ã‚©ãƒ³ãƒˆ
 		PaletteWorkSet_Arc( pfd, ARC_FONT, NARC_font_talk_ncrl, HEAPID_CODEIN, FADE_SUB_BG, 0x20, ePAL_FONT * 16 );
 	}
 }
@@ -153,7 +153,7 @@ void CI_pv_disp_CodeRes_Load( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚à‚ë‚à‚ë‰ğ•ú
+ * @brief	ã‚‚ã‚ã‚‚ã‚è§£æ”¾
  *
  * @param	wk	
  *
@@ -190,7 +190,7 @@ void CI_pv_disp_CodeRes_Delete( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒR[ƒhOAMì¬
+ * @brief	ã‚³ãƒ¼ãƒ‰OAMä½œæˆ
  *
  * @param	wk	
  *
@@ -260,7 +260,7 @@ void CI_pv_disp_CodeOAM_Create( CODEIN_WORK* wk )
 }
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OAM‚Ìì¬
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OAMã®ä½œæˆ
  *
  * @param	wk	
  *
@@ -326,7 +326,7 @@ void CI_pv_disp_CurOAM_Create( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Button OAM ì¬
+ * @brief	Button OAM ä½œæˆ
  *
  * @param	wk	
  *
@@ -389,7 +389,7 @@ void CI_pv_disp_BtnOAM_Create( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OAM‚ÌONOFF
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OAMã®ONOFF
  *
  * @param	wk	
  * @param	no	
@@ -414,7 +414,7 @@ void CI_pv_disp_CurOAM_Visible( CODEIN_WORK* wk, int no, BOOL flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹‚ÌONOFFæ“¾
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ã®ONOFFå–å¾—
  *
  * @param	wk	
  * @param	no	
@@ -435,7 +435,7 @@ BOOL CI_pv_disp_CurOAM_VisibleGet( CODEIN_WORK* wk, int no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒØ‚è‘Ö‚¦
+ * @brief	ã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	wk	
  * @param	no	
@@ -453,7 +453,7 @@ void CI_pv_disp_CurOAM_AnimeChange( CODEIN_WORK* wk, int no, int anime )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ğ“ü—ÍˆÊ’u‚É
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‚’å…¥åŠ›ä½ç½®ã«
  *
  * @param	wk	
  * @param	id	
@@ -481,7 +481,7 @@ void CI_pv_disp_CurBar_PosSet( CODEIN_WORK* wk, int id )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹ˆÊ’u‚ğƒpƒlƒ‹‚É
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ãƒ‘ãƒãƒ«ã«
  *
  * @param	wk	
  * @param	id	
@@ -524,7 +524,7 @@ void CI_pv_disp_CurSQ_PosSetEx( CODEIN_WORK* wk, int id, int cur_id )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹XV
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«æ›´æ–°
  *
  * @param	wk	
  *
@@ -614,7 +614,7 @@ static void FontOamPosSet(FONTOAM_OBJ_PTR obj, int ox, int oy)
 #define BTN_FONT_OAM_OY		( 7 )
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒ^ƒ“‚ÌƒAƒjƒ
+ * @brief	ãƒœã‚¿ãƒ³ã®ã‚¢ãƒ‹ãƒ¡
  *
  * @param	wk	
  *
@@ -668,7 +668,7 @@ void CI_pv_disp_BtnUpdate( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒƒR[ƒh‚ğæ“¾
+ * @brief	ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
  *
  * @param	state	
  * @param	size	TRUE = Large
@@ -693,7 +693,7 @@ int CI_pv_disp_CodeAnimeGet( int state, BOOL size )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒCƒYƒtƒ‰ƒO‚Ìİ’è
+ * @brief	ã‚µã‚¤ã‚ºãƒ•ãƒ©ã‚°ã®è¨­å®š
  *
  * @param	wk	
  *
@@ -720,7 +720,7 @@ void CI_pv_disp_SizeFlagSet( CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ˆÚ“®æ‚ÌˆÊ’u‚ğİ’è‚·‚é
+ * @brief	ç§»å‹•å…ˆã®ä½ç½®ã‚’è¨­å®šã™ã‚‹
  *
  * @param	wk	
  * @param	mode	0 = set 1 = move_wk set
@@ -808,7 +808,7 @@ void CI_pv_disp_MovePosSet( CODEIN_WORK* wk, int mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	“–‚½‚è”»’è‚Ìì¬
+ * @brief	å½“ãŸã‚Šåˆ¤å®šã®ä½œæˆ
  *
  * @param	wk	
  * @param	no	
@@ -837,7 +837,7 @@ static inline void CODE_HitRectSet( CODEIN_WORK* wk, int no, s16 sx, s16 sy )
 
 //--------------------------------------------------------------
 /**
- * @brief	“–‚½‚è”»’è‚Ìİ’è
+ * @brief	å½“ãŸã‚Šåˆ¤å®šã®è¨­å®š
  *
  * @param	wk	
  *
@@ -871,8 +871,8 @@ void CI_pv_disp_HitTableSet( CODEIN_WORK* wk )
 
 #include "include/msgdata/msg_codein.h"
 
-#define	PRINT_COL_BLACK		(GF_PRINTCOLOR_MAKE(15, 13, 2))		// ƒtƒHƒ“ƒgƒJƒ‰[F”’
-#define	PRINT_COL_NUM		(GF_PRINTCOLOR_MAKE( 1,  2, 0))		// ƒtƒHƒ“ƒgƒJƒ‰[F•
+#define	PRINT_COL_BLACK		(GF_PRINTCOLOR_MAKE(15, 13, 2))		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šç™½
+#define	PRINT_COL_NUM		(GF_PRINTCOLOR_MAKE( 1,  2, 0))		// ãƒ•ã‚©ãƒ³ãƒˆã‚«ãƒ©ãƒ¼ï¼šé»’
 #define PRINT_NUM_CLEAR		(0x00)
 #define PRINT_NUM_CLEAR_2	(0xEE)
 
@@ -999,7 +999,7 @@ void CI_pv_FontOam_Create(CODEIN_WORK* wk, int no, int x, int y, int pal_offset)
 		
 	///< BMP
 	{
-		///< FONT_BUTTON ‚Í 2dot‚Å‚©‚¢
+		///< FONT_BUTTON ã¯ 2dotã§ã‹ã„
 		GF_BGL_BmpWinInit(&bmpwin);
 		GF_BGL_BmpWinObjAdd(wk->sys.bgl, &bmpwin, 10, 2, 0, 0);
 		GF_STR_PrintColor(&bmpwin, FONT_BUTTON, str, FontProc_GetPrintCenteredPositionX(FONT_BUTTON, str, 0, 10*8), 0,

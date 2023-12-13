@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	email_input.c
- * @brief	ŠÈ’P‚Èà–¾‚ð‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜Žã‚’æ›¸ã
  * @author	matsuda
- * @date	2007.10.19(‹à)
+ * @date	2007.10.19(é‡‘)
  */
 //==============================================================================
 #include "common.h"
@@ -45,21 +45,21 @@
 #include "savedata/config.h"
 #include "savedata/system_data.h"
 
-#include "../wifi_p2pmatch/wifip2pmatch.naix"			// ƒOƒ‰ƒtƒBƒbƒNƒA[ƒJƒCƒu’è‹`
+#include "../wifi_p2pmatch/wifip2pmatch.naix"			// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–å®šç¾©
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 enum{
-	FUNCSEQ_CONTINUE,		///<ˆ—Œp‘±’†
-	FUNCSEQ_FINISH,			///<“ü—ÍŠ®—¹
-	FUNCSEQ_CANCEL,			///<ƒLƒƒƒ“ƒZƒ‹‚µ‚ÄI—¹‚³‚ê‚½
+	FUNCSEQ_CONTINUE,		///<å‡¦ç†ç¶™ç¶šä¸­
+	FUNCSEQ_FINISH,			///<å…¥åŠ›å®Œäº†
+	FUNCSEQ_CANCEL,			///<ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¦çµ‚äº†ã•ã‚ŒãŸ
 };
 
 #define INPUT_KETA_MAX		(7)
 
-// ‰ï˜bƒEƒCƒ“ƒhƒE•¶Žš—ñƒoƒbƒtƒ@’·
+// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡é•·
 #define TALK_MESSAGE_BUF_NUM	( 90*2 )
 
 #define EMAIL_MESFRAME_PAL	 ( 10 )
@@ -69,7 +69,7 @@ enum{
 #define EMAIL_TALKFONT_PAL	 ( 13 )
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 typedef struct{
 	EMAIL_SYSWORK *esys;
@@ -80,20 +80,20 @@ typedef struct{
 	int num_msgid;
 	
 	GF_BGL_INI		*bgl;								// GF_BGL_INI
-	WORDSET			*WordSet;							// ƒƒbƒZ[ƒW“WŠJ—pƒ[ƒNƒ}ƒl[ƒWƒƒ[
-	MSGDATA_MANAGER *MsgManager;						// –¼‘O“ü—ÍƒƒbƒZ[ƒWƒf[ƒ^ƒ}ƒl[ƒWƒƒ[
-	STRBUF			*TalkString;						// ‰ï˜bƒƒbƒZ[ƒW—p
+	WORDSET			*WordSet;							// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹ç”¨ãƒ¯ãƒ¼ã‚¯ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	MSGDATA_MANAGER *MsgManager;						// åå‰å…¥åŠ›ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	STRBUF			*TalkString;						// ä¼šè©±ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨
 	STRBUF			*ErrorString;
-	int				MsgIndex;							// I—¹ŒŸo—pƒ[ƒN
+	int				MsgIndex;							// çµ‚äº†æ¤œå‡ºç”¨ãƒ¯ãƒ¼ã‚¯
 	
-	// BMPWIN•`‰æŽü‚è
-	GF_BGL_BMPWIN			MsgWin;					// ‰ï˜bƒEƒCƒ“ƒhƒE
-	GF_BGL_BMPWIN			SubWin;					// uƒŒƒR[ƒhƒR[ƒi[@‚Ú‚µ‚ã‚¤‚¿‚ã‚¤Iv‚È‚Ç
+	// BMPWINæç”»å‘¨ã‚Š
+	GF_BGL_BMPWIN			MsgWin;					// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	GF_BGL_BMPWIN			SubWin;					// ã€Œãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼ã€€ã¼ã—ã‚…ã†ã¡ã‚…ã†ï¼ã€ãªã©
 }EMAIL_INPUT_WORK;
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 PROC_RESULT EmailInput_Init( PROC * proc, int * seq );
 PROC_RESULT EmailInput_Main( PROC * proc, int * seq );
@@ -110,11 +110,11 @@ static int NumInputFunc(EMAIL_INPUT_WORK *wk);
 
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–Ê‰Šú‰»
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢åˆæœŸåŒ–
  *
  * @param   wk		
  * @param   seq		
@@ -126,8 +126,8 @@ PROC_RESULT EmailInput_Init( PROC * proc, int * seq )
 {
 	EMAIL_INPUT_WORK *wk;
 
-	sys_VBlankFuncChange(NULL, NULL);	// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange(NULL, NULL);	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -138,7 +138,7 @@ PROC_RESULT EmailInput_Init( PROC * proc, int * seq )
 	G2_BlendNone();
 	G2S_BlendNone();
 
-	//Eƒ[ƒ‹‰æ–Ê—pƒq[ƒvì¬
+	//Eãƒ¡ãƒ¼ãƒ«ç”»é¢ç”¨ãƒ’ãƒ¼ãƒ—ä½œæˆ
 	sys_CreateHeap( HEAPID_BASE_APP, HEAPID_EMAIL, 0x70000 );
 	
 	wk = PROC_AllocWork(proc, sizeof(EMAIL_INPUT_WORK), HEAPID_EMAIL );
@@ -152,35 +152,35 @@ PROC_RESULT EmailInput_Init( PROC * proc, int * seq )
 
 	sys_KeyRepeatSpeedSet( SYS_KEYREPEAT_SPEED_DEF, SYS_KEYREPEAT_WAIT_DEF );
 
-	//VRAMŠ„‚è“–‚ÄÝ’è
+	//VRAMå‰²ã‚Šå½“ã¦è¨­å®š
 	VramBankSet(wk->bgl);
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPSystem();
 	InitTPNoBuff(4);
 	
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	wk->WordSet    		 = WORDSET_Create( HEAPID_EMAIL );
 	wk->MsgManager       = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_email_dat, HEAPID_EMAIL );
 
-	// •¶Žš—ñƒoƒbƒtƒ@ì¬
+	// æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	wk->ErrorString  = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_EMAIL );
 	wk->TalkString  = STRBUF_Create( TALK_MESSAGE_BUF_NUM, HEAPID_EMAIL );
 
-	// BGƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// BGã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	BgGraphicSet( wk );
 
-	// BMPWINŠm•Û
+	// BMPWINç¢ºä¿
 	BmpWinInit( wk );
 
-	// Wifi’ÊMƒAƒCƒRƒ“
+	// Wifié€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³
     WirelessIconEasy();
 
-	// ƒƒCƒvƒtƒF[ƒhŠJŽn
+	// ãƒ¯ã‚¤ãƒ—ãƒ•ã‚§ãƒ¼ãƒ‰é–‹å§‹
 	WIPE_SYS_Start( WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN, WIPE_TYPE_FADEIN, WIPE_FADE_BLACK, 
 		WIPE_DEF_DIV, WIPE_DEF_SYNC, HEAPID_EMAIL );
 
-	// BG–Ê•\Ž¦ON
+	// BGé¢è¡¨ç¤ºON
 	GF_Disp_GX_VisibleControl(  GX_PLANEMASK_BG0, VISIBLE_ON );
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 
@@ -196,7 +196,7 @@ PROC_RESULT EmailInput_Init( PROC * proc, int * seq )
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–ÊƒƒCƒ“
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢ãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  * @param   seq		
@@ -235,7 +235,7 @@ PROC_RESULT EmailInput_Main( PROC * proc, int * seq )
 		}
 		break;
 	case SEQ_MAIN:
-		// ƒV[ƒPƒ“ƒX‘JˆÚ‚ÅŽÀs
+		// ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é·ç§»ã§å®Ÿè¡Œ
 		ret = NumInputFunc(wk);
 		switch(ret){
 		case FUNCSEQ_CONTINUE:
@@ -246,13 +246,13 @@ PROC_RESULT EmailInput_Main( PROC * proc, int * seq )
 				
 				code = Email_AuthenticateRandCodeGet(wk->esys) * 10000 + wk->num_code;
 				Email_AuthenticateCodeSet(wk->esys, code);
-				OS_TPrintf("ÅIcode = %d\n", code);
+				OS_TPrintf("æœ€çµ‚code = %d\n", code);
 			}
 			*seq= SEQ_END;
 			break;
 		case FUNCSEQ_CANCEL:
 			Email_AuthenticateCodeSet(wk->esys, EMAIL_AUTHENTICATE_CODE_CANCEL);
-			OS_TPrintf("ƒLƒƒƒ“ƒZƒ‹I—¹\n");
+			OS_TPrintf("ã‚­ãƒ£ãƒ³ã‚»ãƒ«çµ‚äº†\n");
 			*seq= SEQ_END;
 			break;
 		}
@@ -266,7 +266,7 @@ PROC_RESULT EmailInput_Main( PROC * proc, int * seq )
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–ÊI—¹
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢çµ‚äº†
  *
  * @param   wk		
  * @param   seq		
@@ -279,11 +279,11 @@ PROC_RESULT EmailInput_End(PROC *proc, int *seq)
 	EMAIL_INPUT_WORK * wk  = PROC_GetWork( proc );
 
 
-	//ƒTƒuPROC‚ðƒŠƒXƒg‚É–ß‚·‚½‚ß‚ÉƒZƒbƒg
+	//ã‚µãƒ–PROCã‚’ãƒªã‚¹ãƒˆã«æˆ»ã™ãŸã‚ã«ã‚»ãƒƒãƒˆ
 	Email_SubProcessChange( wk->esys, EMAIL_SUBPROC_MENU, 0 );
 
 
-	// ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ[Eƒ[ƒhƒZƒbƒgƒ}ƒl[ƒWƒƒ[‰ð•ú
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ãƒ»ãƒ¯ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼è§£æ”¾
 	MSGMAN_Delete( wk->MsgManager );
 	WORDSET_Delete( wk->WordSet );
 
@@ -292,17 +292,17 @@ PROC_RESULT EmailInput_End(PROC *proc, int *seq)
 	
 	BmpWinDelete( wk );
 	
-	// BG_SYSTEM‰ð•ú
+	// BG_SYSTEMè§£æ”¾
 	sys_FreeMemoryEz( wk->bgl );
 	BgExit( wk->bgl );
 
-	sys_VBlankFuncChange( NULL, NULL );		// VBlankƒZƒbƒg
-	sys_HBlankIntrStop();	//HBlankŠ„‚èž‚Ý’âŽ~
+	sys_VBlankFuncChange( NULL, NULL );		// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
-	//Vram“]‘—ƒ}ƒl[ƒWƒƒ[íœ
+	//Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤
 	DellVramTransferManager();
 
-	StopTP();		//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌI—¹
+	StopTP();		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµ‚äº†
 
 	MsgPrintSkipFlagSet(MSG_SKIP_OFF);
 	MsgPrintAutoFlagSet(MSG_AUTO_OFF);
@@ -310,7 +310,7 @@ PROC_RESULT EmailInput_End(PROC *proc, int *seq)
 
 	WirelessIconEasyEnd();
 
-	PROC_FreeWork( proc );				// PROCƒ[ƒNŠJ•ú
+	PROC_FreeWork( proc );				// PROCãƒ¯ãƒ¼ã‚¯é–‹æ”¾
 	sys_DeleteHeap( HEAPID_EMAIL );
 
 	return PROC_RES_FINISH;
@@ -319,9 +319,9 @@ PROC_RESULT EmailInput_End(PROC *proc, int *seq)
 
 //--------------------------------------------------------------
 /**
- * @brief   Vramƒoƒ“ƒNÝ’è‚ðs‚¤
+ * @brief   Vramãƒãƒ³ã‚¯è¨­å®šã‚’è¡Œã†
  *
- * @param   bgl		BGLƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   bgl		BGLãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void VramBankSet(GF_BGL_INI *bgl)
@@ -329,27 +329,27 @@ static void VramBankSet(GF_BGL_INI *bgl)
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
 	
-	//VRAMÝ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
 
-			GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -364,10 +364,10 @@ static void VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME0_M	ƒeƒLƒXƒg–Ê
+			///<FRAME0_M	ãƒ†ã‚­ã‚¹ãƒˆé¢
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xf800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01,
@@ -379,10 +379,10 @@ static void VramBankSet(GF_BGL_INI *bgl)
 		GF_BGL_ScrollSet(bgl, GF_BGL_FRAME0_M, GF_BGL_SCROLL_X_SET, 0);
 		GF_BGL_ScrollSet(bgl, GF_BGL_FRAME0_M, GF_BGL_SCROLL_Y_SET, 0);
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€Ý’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
-			///<FRAME0_S	ƒeƒLƒXƒg–Ê
+			///<FRAME0_S	ãƒ†ã‚­ã‚¹ãƒˆé¢
 			{
 				0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 				GX_BG_SCRBASE_0xf000, GX_BG_CHARBASE_0x10000, GX_BG_EXTPLTT_01,
@@ -401,9 +401,9 @@ static void VramBankSet(GF_BGL_INI *bgl)
 
 //--------------------------------------------------------------------------------------------
 /**
- * BG‰ð•ú
+ * BGè§£æ”¾
  *
- * @param	ini		BGLƒf[ƒ^
+ * @param	ini		BGLãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -418,9 +418,9 @@ static void BgExit( GF_BGL_INI * ini )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒZƒbƒg
+ * ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param	wk		ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Ìƒ[ƒN
+ * @param	wk		ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã®ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -432,15 +432,15 @@ static void BgGraphicSet( EMAIL_INPUT_WORK * wk )
 
 	p_handle = ArchiveDataHandleOpen( ARC_WIFIP2PMATCH_GRA, HEAPID_EMAIL );
 
-	// ã‰º‰æ–Ê‚a‚fƒpƒŒƒbƒg“]‘—
+	// ä¸Šä¸‹ç”»é¢ï¼¢ï¼§ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	ArcUtil_HDL_PalSet(    p_handle, NARC_wifip2pmatch_conect_NCLR, PALTYPE_MAIN_BG, 0, 0,  HEAPID_EMAIL);
 	ArcUtil_HDL_PalSet(    p_handle, NARC_wifip2pmatch_conect_NCLR, PALTYPE_SUB_BG,  0, 0,  HEAPID_EMAIL);
 	
-	// ‰ï˜bƒtƒHƒ“ƒgƒpƒŒƒbƒg“]‘—
+	// ä¼šè©±ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€
 	TalkFontPaletteLoad( PALTYPE_MAIN_BG, EMAIL_TALKFONT_PAL*0x20, HEAPID_EMAIL );
 	TalkFontPaletteLoad( PALTYPE_SUB_BG,  EMAIL_TALKFONT_PAL*0x20, HEAPID_EMAIL );
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒEƒOƒ‰ƒtƒBƒbƒN“]‘—
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯è»¢é€
 	TalkWinGraphicSet(	bgl, GF_BGL_FRAME0_M, EMAIL_MESFRAME_CHR, 
 						EMAIL_MESFRAME_PAL,  CONFIG_GetWindowType(wk->esys->config), HEAPID_EMAIL );
 
@@ -470,7 +470,7 @@ static void BgGraphicSet( EMAIL_INPUT_WORK * wk )
 #define CONNECT_TEXT_SX	( 24 )
 #define CONNECT_TEXT_SY	(  2 )
 
-// ‰ï˜bƒEƒCƒ“ƒhƒE•\Ž¦ˆÊ’u’è‹`
+// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºä½ç½®å®šç¾©
 #define TALK_WIN_X		(  2 )
 #define TALK_WIN_Y		( 19 )
 #define	TALK_WIN_SX		( 27 )
@@ -480,11 +480,11 @@ static void BgGraphicSet( EMAIL_INPUT_WORK * wk )
 #define ERROR_MESSAGE_OFFSET ( TALK_MESSAGE_OFFSET   + TALK_WIN_SX*TALK_WIN_SY )
 #define TITLE_MESSAGE_OFFSET ( ERROR_MESSAGE_OFFSET  + SUB_TEXT_SX*SUB_TEXT_SY )
 #define YESNO_OFFSET 		 ( TITLE_MESSAGE_OFFSET  + CONNECT_TEXT_SX*CONNECT_TEXT_SY )
-#define MENULIST_MESSAGE_OFFSET	(ERROR_MESSAGE_OFFSET)	//ƒGƒ‰[ƒƒbƒZ[ƒW‚Æˆê‚É‚Ío‚È‚¢‚Ì‚Å ¦check YESNO_OFFSET‚Ì’l‚ð’²‚×‚ÄA[•ª‚È‹ó‚«‚ª‚ ‚é‚È‚çA‚»‚ÌŒã‚ë‚É‚·‚é
+#define MENULIST_MESSAGE_OFFSET	(ERROR_MESSAGE_OFFSET)	//ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¨ä¸€ç·’ã«ã¯å‡ºãªã„ã®ã§ â€»check YESNO_OFFSETã®å€¤ã‚’èª¿ã¹ã¦ã€å……åˆ†ãªç©ºããŒã‚ã‚‹ãªã‚‰ã€ãã®å¾Œã‚ã«ã™ã‚‹
 
 //------------------------------------------------------------------
 /**
- * BMPWINˆ—i•¶Žšƒpƒlƒ‹‚ÉƒtƒHƒ“ƒg•`‰æj
+ * BMPWINå‡¦ç†ï¼ˆæ–‡å­—ãƒ‘ãƒãƒ«ã«ãƒ•ã‚©ãƒ³ãƒˆæç”»ï¼‰
  *
  * @param   wk		
  *
@@ -493,15 +493,15 @@ static void BgGraphicSet( EMAIL_INPUT_WORK * wk )
 //------------------------------------------------------------------
 static void BmpWinInit( EMAIL_INPUT_WORK *wk )
 {
-	// ---------- ƒƒCƒ“‰æ–Ê ------------------
+	// ---------- ãƒ¡ã‚¤ãƒ³ç”»é¢ ------------------
 
-	// BG0–ÊBMPWIN(ƒGƒ‰[à–¾)ƒEƒCƒ“ƒhƒEŠm•ÛE•`‰æ
+	// BG0é¢BMPWIN(ã‚¨ãƒ©ãƒ¼èª¬æ˜Ž)ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç¢ºä¿ãƒ»æç”»
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->SubWin, GF_BGL_FRAME0_M,
 	SUB_TEXT_X, SUB_TEXT_Y, SUB_TEXT_SX, SUB_TEXT_SY, EMAIL_TALKFONT_PAL,  ERROR_MESSAGE_OFFSET );
 
 	GF_BGL_BmpWinDataFill( &wk->SubWin, 0x0000 );
 
-	// BG0–ÊBMPi‰ï˜bƒEƒCƒ“ƒhƒEjŠm•Û
+	// BG0é¢BMPï¼ˆä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼‰ç¢ºä¿
 	GF_BGL_BmpWinAdd(wk->bgl, &wk->MsgWin, GF_BGL_FRAME0_M,
 		TALK_WIN_X, 
 		TALK_WIN_Y, 
@@ -512,7 +512,7 @@ static void BmpWinInit( EMAIL_INPUT_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   Šm•Û‚µ‚½BMPWIN‚ð‰ð•ú
+ * $brief   ç¢ºä¿ã—ãŸBMPWINã‚’è§£æ”¾
  *
  * @param   wk		
  *
@@ -527,7 +527,7 @@ static void BmpWinDelete( EMAIL_INPUT_WORK *wk )
 
 //------------------------------------------------------------------
 /**
- * $brief   ‰ï˜bƒEƒCƒ“ƒhƒE•\Ž¦
+ * $brief   ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¡¨ç¤º
  *
  * @param   wk		
  *
@@ -536,22 +536,22 @@ static void BmpWinDelete( EMAIL_INPUT_WORK *wk )
 //------------------------------------------------------------------
 static void Input_MessagePrint( EMAIL_INPUT_WORK *wk, MSGDATA_MANAGER *msgman, int msgno, int wait, u16 dat )
 {
-	// •¶Žš—ñŽæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	STRBUF *tempbuf;
 
-	// •¶Žš—ñŽæ“¾
+	// æ–‡å­—åˆ—å–å¾—
 	tempbuf = MSGMAN_AllocString(  msgman, msgno );
 
-	// WORDSET“WŠJ
+	// WORDSETå±•é–‹
 	WORDSET_ExpandStr( wk->WordSet, wk->TalkString, tempbuf );
 
 	STRBUF_Delete(tempbuf);
 
-	// ‰ï˜bƒEƒCƒ“ƒhƒE˜g•`‰æ
+	// ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦æž æç”»
 	GF_BGL_BmpWinDataFill( &wk->MsgWin,  0x0f0f );
 	BmpTalkWinWrite( &wk->MsgWin, WINDOW_TRANS_ON, EMAIL_MESFRAME_CHR, EMAIL_MESFRAME_PAL );
 
-	// •¶Žš—ñ•`‰æŠJŽn
+	// æ–‡å­—åˆ—æç”»é–‹å§‹
 	wk->MsgIndex = GF_STR_PrintSimple( &wk->MsgWin, FONT_TALK, wk->TalkString, 0, 0, wait, NULL);
 }
 
@@ -565,7 +565,7 @@ static int NumInputFunc(EMAIL_INPUT_WORK *wk)
 	int i, k;
 	
 	if(sys.trg & PAD_BUTTON_A){
-		OS_TPrintf("Œˆ’è‚µ‚½ ‰º4Œ… = %d\n", wk->num_code);
+		OS_TPrintf("æ±ºå®šã—ãŸ ä¸‹4æ¡ = %d\n", wk->num_code);
 		return FUNCSEQ_FINISH;
 	}
 	if(sys.trg & PAD_BUTTON_B){

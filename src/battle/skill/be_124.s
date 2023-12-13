@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_000.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			124�@�T�^�[���̊ԁA�����ԁi�ǂ��E�}�q���j�ɂȂ�Ȃ��Ȃ�A�g�p�����|�P��������サ�Ă��^�[�����͌��ʂ��󂯌p�����
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			124　５ターンの間、特殊状態（どく・マヒ等）にならなくなる、使用したポケモンが交代してもターン分は効果が受け継がれる
  *
  *@author	HisashiSogabe
  *@data		2005.10.03

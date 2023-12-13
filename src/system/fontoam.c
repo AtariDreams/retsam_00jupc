@@ -2,7 +2,7 @@
 /**
  *
  *	@file		fontoam.c
- *	@brief		OAM���g�p����������`��V�X�e��
+ *	@brief		OAMを使用した文字列描画システム
  *	@author		tomoya takahashi 
  *	@data		2005.10.20
  *
@@ -22,12 +22,12 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	OAM�D�揇�ʒ萔	
+//	OAM優先順位定数	
 //	
 //=====================================
 enum{
@@ -53,110 +53,110 @@ enum{
 
 //-------------------------------------
 //	
-//	OAM���ߐs�����f�[�^�̗L��
+//	OAM埋め尽くしデータの有無
 //	
 //=====================================
 enum{
 	FONTOAM_OAM_AREA_NONE,
-	FONTOAM_OAM_AREA_RIGHT,		// �E�G���A����
+	FONTOAM_OAM_AREA_RIGHT,		// 右エリアあり
 };
 
-#define FONTOAM_CHAR_BYTE	(32)	// 1char�T�C�Y
-#define FONTOAM_CHAR_SIZE	(8)		// ���A����
+#define FONTOAM_CHAR_BYTE	(32)	// 1charサイズ
+#define FONTOAM_CHAR_SIZE	(8)		// 幅、高さ
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	�Z���Ƃ��̍��W��ۑ�����\����
+//	セルとその座標を保存する構造体
 //	
 //=====================================
 typedef struct _FONTOAM_OBJ_CORE{
 	CLACT_WORK_PTR clact;
-	int	x;		// �h�b�g�P��
-	int y;		// �h�b�g�P��
+	int	x;		// ドット単位
+	int y;		// ドット単位
 } FONTOAM_OBJ_CORE;
 
 //-------------------------------------
 //	
-//	1OAM�t�H���g�f�[�^
+//	1OAMフォントデータ
 //	
 //=====================================
 typedef struct _FONTOAM_OBJ{
-	// ������E�B���h�E�̌`������킵�Ă���
-	// �Z���̃f�[�^
+	// 文字列ウィンドウの形をあらわしている
+	// セルのデータ
 	FONTOAM_OBJ_CORE*	obj_w;
 	int obj_num;
 
-	// ����Z���A�N�^�[
+	// おやセルアクター
 	CONST_CLACT_WORK_PTR parent;
 
-	// ���̐ݒ���W
-	int x;		// �h�b�g�P��
-	int y;		// �h�b�g�P��
+	// 今の設定座標
+	int x;		// ドット単位
+	int y;		// ドット単位
 } FONTOAM_OBJ;
 
 //-------------------------------------
 //	
-//	�V�X�e���f�[�^
+//	システムデータ
 //	
 //=====================================
 typedef struct _FONTOAM_SYSTEM{
-	// OAM�T�C�Y���̃Z���f�[�^
+	// OAMサイズ分のセルデータ
 	void*	pCellBuff[ FONTOAM_PRI_MAX ];
 	NNSG2dCellDataBank* pCellBank[ FONTOAM_PRI_MAX ];
 
-	// 1OAM�t�H���g�f�[�^���[�N
+	// 1OAMフォントデータワーク
 	FONTOAM_OBJ*	fontoam_work;
-	int				fontoam_num;		// ���[�N��
+	int				fontoam_num;		// ワーク数
 } FONTOAM_SYSTEM;
 
 
 //-------------------------------------
 //	
-//	OAM���ߐs�����G���A
-//	�P�G���A�f�[�^
+//	OAM埋め尽くしエリア
+//	１エリアデータ
 //	
 //=====================================
 typedef struct _FONTOAM_OAM_AREA_ONE{
-	// �S�ăL�����N�^�P��
-	int top;		// ��
-	int left;		// ��
-	int width;		// ��
-	int height;		// ����
+	// 全てキャラクタ単位
+	int top;		// 上
+	int left;		// 左
+	int width;		// 幅
+	int height;		// 高さ
 } FONTOAM_OAM_AREA_ONE;
 
 //-------------------------------------
 //	
-//	OAM���ߐs�����G���A
+//	OAM埋め尽くしエリア
 //
-//	�܂�now�ɓ����Ă���G���A����OAM���쐬
-//	now���S�ĂO�ɂȂ�����right��now�ɑ������
-//	now���܂��S�ĂO�ɂȂ�܂�OAM�Ŗ��߂Ă���
+//	まずnowに入っているエリアからOAMを作成
+//	nowが全て０になったらrightをnowに代入して
+//	nowをまた全て０になるまでOAMで埋めていく
 //	
 //=====================================
 typedef struct _FONTOAM_OAM_AREA{
 	FONTOAM_OAM_AREA_ONE now;
 	FONTOAM_OAM_AREA_ONE right;
-	u8	tmp_flg;					// �l�̗L��
+	u8	tmp_flg;					// 値の有無
 /*						
 	FONTOAM_OAM_AREA_NONE,
-	FONTOAM_OAM_AREA_RIGHT,		// �E�G���A����
-	FONTOAM_OAM_AERA_MAX		// ����*/
+	FONTOAM_OAM_AREA_RIGHT,		// 右エリアあり
+	FONTOAM_OAM_AERA_MAX		// 両方*/
 } FONTOAM_OAM_AREA;
 
 //-------------------------------------
 //	
-//	���ߐs����OAM�f�[�^
+//	埋め尽くしOAMデータ
 //	
 //=====================================
 typedef struct _FONTOAM_OAM_DATA{
-	int x;			// �L�����N�^�P�ʍ��W
-	int y;			// �L�����N�^�P�ʍ��W
-	int oam_size;	// OAM�T�C�Y
+	int x;			// キャラクタ単位座標
+	int y;			// キャラクタ単位座標
+	int oam_size;	// OAMサイズ
 
 	struct _FONTOAM_OAM_DATA* next;
 	struct _FONTOAM_OAM_DATA* prev;
@@ -165,7 +165,7 @@ typedef struct _FONTOAM_OAM_DATA{
 
 //-------------------------------------
 //	
-//	���ߐs����OAM�f�[�^
+//	埋め尽くしOAMデータ
 //	
 //=====================================
 typedef struct _FONTOAM_OAM_DATA_SET{
@@ -177,13 +177,13 @@ typedef struct _FONTOAM_OAM_DATA_SET{
 
 //-----------------------------------------------------------------------------
 /**
-*		�O���[�o���ϐ�
+*		グローバル変数
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	OAM�D�揇�ʒ萔	
-//	�ɑΉ������L�����N�^�P�ʂ�OAM�T�C�Y
+//	OAM優先順位定数	
+//	に対応したキャラクタ単位のOAMサイズ
 //	
 //=====================================
 static const u8 FONTOAM_PriTbl[ FONTOAM_PRI_MAX ][ FONTOAM_PRI_XY ] = {
@@ -205,7 +205,7 @@ static const u8 FONTOAM_PriTbl[ FONTOAM_PRI_MAX ][ FONTOAM_PRI_XY ] = {
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 static void cleanFONTOAM_OBJ( FONTOAM_OBJ* fontoam );
@@ -241,12 +241,12 @@ static int charSetOamDataOne( const GF_BGL_BMPWIN* bmp, const FONTOAM_OAM_DATA* 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�t�H���g�V�X�e���̍쐬
+ *	@brief	OAMフォントシステムの作成
  *
- *	@param	workNum		�Ǘ����镶����
- *	@param	heap		�g�p����q�[�v
+ *	@param	workNum		管理する文字列数
+ *	@param	heap		使用するヒープ
  *
- *	@return	FONTOAM_SYS_PTR		�쐬����OAM�t�H���g�V�X�e���f�[�^
+ *	@return	FONTOAM_SYS_PTR		作成したOAMフォントシステムデータ
  *
  *
  */
@@ -254,13 +254,13 @@ static int charSetOamDataOne( const GF_BGL_BMPWIN* bmp, const FONTOAM_OAM_DATA* 
 FONTOAM_SYS_PTR FONTOAM_SysInit( int workNum, int heap )
 {
 	FONTOAM_SYS_PTR fntoam_sys;
-	int i;			// ���[�v�p
+	int i;			// ループ用
 	
 	fntoam_sys = sys_AllocMemory( heap, sizeof(FONTOAM_SYSTEM) );
 	GF_ASSERT( fntoam_sys );
 	
 
-	// OAM�̃Z���f�[�^��ǂݍ���
+	// OAMのセルデータを読み込む
 	for( i=0; i<FONTOAM_PRI_MAX; i++ ){
 		fntoam_sys->pCellBuff[ i ] = ArcUtil_CellBankDataGet( 
 				ARC_FONTOAM,
@@ -271,7 +271,7 @@ FONTOAM_SYS_PTR FONTOAM_SysInit( int workNum, int heap )
 		GF_ASSERT( fntoam_sys->pCellBuff[ i ] );
 	}
 	
-	// workNum����1OAM�t�H���g�f�[�^���쐬
+	// workNum分の1OAMフォントデータを作成
 	fntoam_sys->fontoam_work = sys_AllocMemory( heap, sizeof(FONTOAM_OBJ) * workNum );
 	GF_ASSERT( fntoam_sys->fontoam_work );
 	fntoam_sys->fontoam_num	= workNum;
@@ -283,9 +283,9 @@ FONTOAM_SYS_PTR FONTOAM_SysInit( int workNum, int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�t�H���g�V�X�e���̔j��
+ *	@brief	OAMフォントシステムの破棄
  *
- *	@param	fntoam_sys	OAM�t�H���g�V�X�e���f�[�^
+ *	@param	fntoam_sys	OAMフォントシステムデータ
  *
  *	@return	none
  *
@@ -308,11 +308,11 @@ void FONTOAM_SysDelete( FONTOAM_SYS_PTR fntoam_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�t�H���g�쐬
+ *	@brief	OAMフォント作成
  *
- *	@param	fontoam_init	OAM�t�H���g�쐬�f�[�^
+ *	@param	fontoam_init	OAMフォント作成データ
  *
- *	@return	FONTOAM_OBJ_PTR	OAM�t�H���g�f�[�^
+ *	@return	FONTOAM_OBJ_PTR	OAMフォントデータ
  *
  *
  */
@@ -326,15 +326,15 @@ FONTOAM_OBJ_PTR FONTOAM_Init( const FONTOAM_INIT* fontoam_init )
 
 	GF_ASSERT( fontoam_init );
 
-	// ��̃e�[�u�����擾
+	// 空のテーブルを取得
 	fontoam = getCleanFONTOAM_OBJ( fontoam_init->fontoam_sys );
-	GF_ASSERT_MSG( fontoam, "���OAM�t�H���g�e�[�u��������܂���" );
-	fontoam->parent	= fontoam_init->parent;	// �e�f�[�^���
+	GF_ASSERT_MSG( fontoam, "空のOAMフォントテーブルがありません" );
+	fontoam->parent	= fontoam_init->parent;	// 親データ代入
 
 	fontoam->x	= fontoam_init->x;
 	fontoam->y	= fontoam_init->y;
 
-	// OAM�f�[�^�쐬
+	// OAMデータ作成
 	list_dummy.next = &list_dummy;
 	list_dummy.prev = &list_dummy;
 	oam_num = getOamData( fontoam_init->bmp->sizx, 
@@ -342,14 +342,14 @@ FONTOAM_OBJ_PTR FONTOAM_Init( const FONTOAM_INIT* fontoam_init )
 			fontoam_init->heap, 
 			&list_dummy );
 
-	// oam_num���̃C���[�W�v���N�V�ƁA�Z���A�N�^�[�o�^�̈���쐬
+	// oam_num分のイメージプロクシと、セルアクター登録領域を作成
 	img_proxy = sys_AllocMemoryLo( fontoam_init->heap,
 			sizeof(NNSG2dImageProxy) * oam_num );
 	fontoam->obj_w = sys_AllocMemory( fontoam_init->heap,
 			sizeof(FONTOAM_OBJ_CORE) * oam_num );
 	fontoam->obj_num = oam_num;
 
-	// �L�����N�^�f�[�^�]��
+	// キャラクタデータ転送
 	charTransOamDataList( fontoam_init->bmp, 
 			&list_dummy,
 			img_proxy,
@@ -357,16 +357,16 @@ FONTOAM_OBJ_PTR FONTOAM_Init( const FONTOAM_INIT* fontoam_init )
 			fontoam_init->draw_area,
 			fontoam_init->heap );
 
-	// �Z���A�N�^�[�o�^
+	// セルアクター登録
 	addClActOamDataList( fontoam_init,
 			&list_dummy,
 			img_proxy,
 			fontoam );
 
-	// �v���N�V�̔j��
+	// プロクシの破棄
 	sys_FreeMemoryEz( img_proxy );
 
-	// OAM�f�[�^�j��
+	// OAMデータ破棄
 	destOamListAll( &list_dummy );
 
 	return fontoam;
@@ -375,7 +375,7 @@ FONTOAM_OBJ_PTR FONTOAM_Init( const FONTOAM_INIT* fontoam_init )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�t�H���g�j��
+ *	@brief	OAMフォント破棄
  *
  *	@param	fontoam 
  *
@@ -398,16 +398,16 @@ void FONTOAM_Delete( FONTOAM_OBJ_PTR fontoam )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�r�b�g�}�b�v�E�B���h�E��OAM�t�H���g�V�X�e���ŕ\�����邽�߂ɕK�v�ȃL�����N�^�f�[�^�T�C�Y���擾
+ *	@brief	ビットマップウィンドウをOAMフォントシステムで表示するために必要なキャラクタデータサイズを取得
  *
- *	@param	bmp			�r�b�g�}�b�v�f�[�^
- *	@param	draw_area	�`��G���A
- *	@param	heap		�g�p����q�[�v
+ *	@param	bmp			ビットマップデータ
+ *	@param	draw_area	描画エリア
+ *	@param	heap		使用するヒープ
  *
- *	@return	�\�����邽�߂ɕK�v�ȃL�����N�^�T�C�Y
+ *	@return	表示するために必要なキャラクタサイズ
  *	
- *	char_manager���g�p���Ă���Ƃ��́A���̃T�C�Y��
- *	���Vram�̈���m�ۂ��Ă����K�v�����邽�ߍ쐬
+ *	char_managerを使用しているときは、このサイズ分
+ *	先にVram領域を確保しておく必要があるため作成
  *
  *
  */
@@ -417,7 +417,7 @@ int FONTOAM_NeedCharSize( const GF_BGL_BMPWIN* bmp, int draw_area,  int heap )
 	FONTOAM_OAM_DATA list_dummy;
 	int offs;
 
-	// OAM�f�[�^�쐬
+	// OAMデータ作成
 	list_dummy.next = &list_dummy;
 	list_dummy.prev = &list_dummy;
 	getOamData( bmp->sizx, 
@@ -427,7 +427,7 @@ int FONTOAM_NeedCharSize( const GF_BGL_BMPWIN* bmp, int draw_area,  int heap )
 
 	offs = charAreaSizeOamDataList( &list_dummy, draw_area );
 
-	// OAM�f�[�^�j��
+	// OAMデータ破棄
 	destOamListAll( &list_dummy );
 
 	return offs;
@@ -436,11 +436,11 @@ int FONTOAM_NeedCharSize( const GF_BGL_BMPWIN* bmp, int draw_area,  int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�t�H���g���W��ݒ�
+ *	@brief	OAMフォント座標を設定
  *
- *	@param	fontoam		OAM�t�H���g
- *	@param	x			�����W		�e�A�N�^�[������Ƃ��̓I�t�Z�b�g���W
- *	@param	y			�����W		�e�A�N�^�[������Ƃ��̓I�t�Z�b�g���W
+ *	@param	fontoam		OAMフォント
+ *	@param	x			ｘ座標		親アクターがいるときはオフセット座標
+ *	@param	y			ｙ座標		親アクターがいるときはオフセット座標
  *
  *	@return	none
  *
@@ -449,8 +449,8 @@ int FONTOAM_NeedCharSize( const GF_BGL_BMPWIN* bmp, int draw_area,  int heap )
 //-----------------------------------------------------------------------------
 void FONTOAM_SetMat( FONTOAM_OBJ_PTR fontoam, int x, int y )
 {
-	int i;		// ���[�v�p
-	VecFx32	set_mat;	// �ݒ���W
+	int i;		// ループ用
+	VecFx32	set_mat;	// 設定座標
 	const VecFx32* parent_mat;
 
 	GF_ASSERT( fontoam );
@@ -461,7 +461,7 @@ void FONTOAM_SetMat( FONTOAM_OBJ_PTR fontoam, int x, int y )
 	x *= FX32_ONE;
 	y *= FX32_ONE;
 
-	// �e������Ƃ��͐e����̃I�t�Z�b�g�ɂȂ�
+	// 親がいるときは親からのオフセットになる
 	if( fontoam->parent ){
 
 		parent_mat = CLACT_GetMatrix( fontoam->parent );
@@ -472,7 +472,7 @@ void FONTOAM_SetMat( FONTOAM_OBJ_PTR fontoam, int x, int y )
 	
 		
 	set_mat.z = 0;
-	// �S�Z���A�N�^�[�ɍ��W��ݒ�
+	// 全セルアクターに座標を設定
 	for(i=0; i<fontoam->obj_num; i++ ){
 		set_mat.x = x + (fontoam->obj_w[ i ].x << FX32_SHIFT);
 		set_mat.y = y + (fontoam->obj_w[ i ].y << FX32_SHIFT);
@@ -482,29 +482,29 @@ void FONTOAM_SetMat( FONTOAM_OBJ_PTR fontoam, int x, int y )
 
 //----------------------------------------------------------------------------
 /**
- * ���e�Z���A�N�^�[��ݒ肵�Ă��Ȃ��ꍇ�͎g�p���Ă��Ӗ�������܂���B
+ * ●親セルアクターを設定していない場合は使用しても意味がありません。
  *	
- *	@brief	�e�A�N�^�[�̍��W�ʒu�Ɉʒu�����킹��
+ *	@brief	親アクターの座標位置に位置を合わせる
  *
  *	@param	fontoam 
  *
  *	@return
  *
- * ���e�Z���A�N�^�[�̈ʒu��ύX�����Ƃ��ɌĂ�ł��������B
- *	�@�e�ɍ��킹�ĕ����������܂�
+ * ■親セルアクターの位置を変更したときに呼んでください。
+ *	　親に合わせて文字も動きます
  *
  */
 //-----------------------------------------------------------------------------
 void FONTOAM_ReflectParentMat( FONTOAM_OBJ_PTR fontoam )
 {
-	int i;		// ���[�v�p
-	VecFx32	set_mat;	// �ݒ���W
+	int i;		// ループ用
+	VecFx32	set_mat;	// 設定座標
 	const VecFx32* parent_mat;
 	fx32 x, y;
 
 	GF_ASSERT( fontoam );
 
-	// �e������Ƃ��͐e����̃I�t�Z�b�g�ɂȂ�
+	// 親がいるときは親からのオフセットになる
 	if( fontoam->parent ){
 		
 		x = fontoam->x << FX32_SHIFT;
@@ -516,7 +516,7 @@ void FONTOAM_ReflectParentMat( FONTOAM_OBJ_PTR fontoam )
 		y += parent_mat->y;
 			
 		set_mat.z = 0;
-		// �S�Z���A�N�^�[�ɍ��W��ݒ�
+		// 全セルアクターに座標を設定
 		for(i=0; i<fontoam->obj_num; i++ ){
 			set_mat.x = x + (fontoam->obj_w[ i ].x << FX32_SHIFT);
 			set_mat.y = y + (fontoam->obj_w[ i ].y << FX32_SHIFT);
@@ -529,11 +529,11 @@ void FONTOAM_ReflectParentMat( FONTOAM_OBJ_PTR fontoam )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�t�H���g���W���擾
+ *	@brief	OAMフォント座標を取得
  *
- *	@param	fontoam		OAM�t�H���g
- *	@param	x			�����W		�e�A�N�^�[������Ƃ��̓I�t�Z�b�g���W
- *	@param	y			�����W		�e�A�N�^�[������Ƃ��̓I�t�Z�b�g���W
+ *	@param	fontoam		OAMフォント
+ *	@param	x			ｘ座標		親アクターがいるときはオフセット座標
+ *	@param	y			ｙ座標		親アクターがいるときはオフセット座標
  *
  *	@return
  *
@@ -553,25 +553,25 @@ void FONTOAM_GetMat( CONST_FONTOAM_OBJ_PTR fontoam, int* x, int* y )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�\��/��\���ݒ�
+ *	@brief	表示/非表示設定
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
- *	@param	flag		�\��/��\���t���O
+ *	@param	fontoam		OAMフォントオブジェ
+ *	@param	flag		表示/非表示フラグ
  *
  *	@return	none
  *
  * flag
- *	TRUE	�\��
- *	FALSE	��\��
+ *	TRUE	表示
+ *	FALSE	非表示
  *
  */
 //-----------------------------------------------------------------------------
 void FONTOAM_SetDrawFlag( FONTOAM_OBJ_PTR fontoam, BOOL flag )
 {
-	int i;		// ���[�v�p
+	int i;		// ループ用
 
 	GF_ASSERT( fontoam );
-	// �S�Z���A�N�^�[�ɍ��W��ݒ�
+	// 全セルアクターに座標を設定
 	for(i=0; i<fontoam->obj_num; i++ ){
 
 		CLACT_SetDrawFlag( fontoam->obj_w[ i ].clact, flag );
@@ -582,12 +582,12 @@ void FONTOAM_SetDrawFlag( FONTOAM_OBJ_PTR fontoam, BOOL flag )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�\��/��\�����擾
+ *	@brief	表示/非表示を取得
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
+ *	@param	fontoam		OAMフォントオブジェ
  *
- *	@retval	TRUE	�\����
- *	@retval	FALSE	��\����
+ *	@retval	TRUE	表示中
+ *	@retval	FALSE	非表示中
  *
  *
  */
@@ -602,10 +602,10 @@ BOOL FONTOAM_GetDrawFlag( CONST_FONTOAM_OBJ_PTR fontoam )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG�ʂƂ̗D�揇�ʂ�ݒ�
+ *	@brief	BG面との優先順位を設定
  *
- *	@param	fontoam	OAM�t�H���g�f�[�^
- *	@param	pri		BG�Ƃ̗D�揇��
+ *	@param	fontoam	OAMフォントデータ
+ *	@param	pri		BGとの優先順位
  *
  *	@return	none
  *
@@ -614,10 +614,10 @@ BOOL FONTOAM_GetDrawFlag( CONST_FONTOAM_OBJ_PTR fontoam )
 //-----------------------------------------------------------------------------
 void FONTOAM_SetBGPriority( FONTOAM_OBJ_PTR fontoam, u8 pri )
 {
-	int i;		// ���[�v�p
+	int i;		// ループ用
 
 	GF_ASSERT( fontoam );
-	// �S�Z���A�N�^�[�ɍ��W��ݒ�
+	// 全セルアクターに座標を設定
 	for(i=0; i<fontoam->obj_num; i++ ){
 
 		CLACT_BGPriorityChg( fontoam->obj_w[ i ].clact, pri );
@@ -627,11 +627,11 @@ void FONTOAM_SetBGPriority( FONTOAM_OBJ_PTR fontoam, u8 pri )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BG�ʂƂ̕`��D�揇�ʂ��擾
+ *	@brief	BG面との描画優先順位を取得
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
+ *	@param	fontoam		OAMフォントオブジェ
  *
- *	@return	BG�ʂƂ̗D�揇��
+ *	@return	BG面との優先順位
  *
  *
  */
@@ -645,10 +645,10 @@ int FONTOAM_GetBGPriority( CONST_FONTOAM_OBJ_PTR fontoam )
 
 //-----------------------------------------------------------------------------
 /**
- *	@brief	�`��D�揇�ʂ�ݒ�
+ *	@brief	描画優先順位を設定
  *
- *	@param	fontoam		OAM�t�H���g�f�[�^
- *	@param	pri			�\���D�揇��
+ *	@param	fontoam		OAMフォントデータ
+ *	@param	pri			表示優先順位
  *				
  * 
  *	@return	none
@@ -656,10 +656,10 @@ int FONTOAM_GetBGPriority( CONST_FONTOAM_OBJ_PTR fontoam )
  //----------------------------------------------------------------------------
 void FONTOAM_SetDrawPriority( FONTOAM_OBJ_PTR fontoam, u32 pri )
 {
-	int i;		// ���[�v�p
+	int i;		// ループ用
 
 	GF_ASSERT( fontoam );
-	// �S�Z���A�N�^�[�ɍ��W��ݒ�
+	// 全セルアクターに座標を設定
 	for(i=0; i<fontoam->obj_num; i++ ){
 
 		CLACT_DrawPriorityChg( fontoam->obj_w[ i ].clact, pri );
@@ -669,11 +669,11 @@ void FONTOAM_SetDrawPriority( FONTOAM_OBJ_PTR fontoam, u32 pri )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�`��D�揇�ʂ��擾
+ *	@brief	描画優先順位を取得
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
+ *	@param	fontoam		OAMフォントオブジェ
  *
- *	@return	u32			�`��D�揇��
+ *	@return	u32			描画優先順位
  *
  *
  */
@@ -687,27 +687,27 @@ u32 FONTOAM_GetDrawPriority( CONST_FONTOAM_OBJ_PTR fontoam )
 
 //-----------------------------------------------------------------------------
 /**
- * ��OAM�����̃p���b�g�i���o�[������悤�ɂȂ�܂��B
+ * ●OAMがこのパレットナンバーを見るようになります。
  *
- *	@brief				�p���b�g�i���o�[��ύX
+ *	@brief				パレットナンバーを変更
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
- *	@param	pltt_no		�ݒ�p���b�g�i���o�[
+ *	@param	fontoam		OAMフォントオブジェ
+ *	@param	pltt_no		設定パレットナンバー
  * 
  *	@return	none
  *
- * ���p���b�g�i���o�[�ݒ�ƃp���b�g�I�t�Z�b�g�ݒ�͓������܂���B
- *�@�@���p���b�g�i���o�[��ݒ肷��ƃI�t�Z�b�g�̒l�͔��f����Ȃ��Ȃ�܂��B
- *	�@���I�t�Z�b�g�l��ݒ肵���Ƃ��̓p���b�g�i���o�[�����f����Ȃ��Ȃ�܂��B
+ * ■パレットナンバー設定とパレットオフセット設定は同居しません。
+ *　　●パレットナンバーを設定するとオフセットの値は反映されなくなります。
+ *	　●オフセット値を設定したときはパレットナンバーが反映されなくなります。
  * 
  */
  //----------------------------------------------------------------------------
 void FONTOAM_SetPaletteNo( FONTOAM_OBJ_PTR fontoam, u32 pltt_no )
 {
-	int i;		// ���[�v�p
+	int i;		// ループ用
 
 	GF_ASSERT( fontoam );
-	// �S�Z���A�N�^�[�ɍ��W��ݒ�
+	// 全セルアクターに座標を設定
 	for(i=0; i<fontoam->obj_num; i++ ){
 
 		CLACT_PaletteNoChg( fontoam->obj_w[ i ].clact, pltt_no );
@@ -715,10 +715,10 @@ void FONTOAM_SetPaletteNo( FONTOAM_OBJ_PTR fontoam, u32 pltt_no )
 }
 void FONTOAM_SetPaletteNoAddTransPlttNo( FONTOAM_OBJ_PTR fontoam, u32 pltt_no )
 {
-	int i;		// ���[�v�p
+	int i;		// ループ用
 
 	GF_ASSERT( fontoam );
-	// �S�Z���A�N�^�[�ɍ��W��ݒ�
+	// 全セルアクターに座標を設定
 	for(i=0; i<fontoam->obj_num; i++ ){
 
 		CLACT_PaletteNoChgAddTransPlttNo( fontoam->obj_w[ i ].clact, pltt_no );
@@ -728,11 +728,11 @@ void FONTOAM_SetPaletteNoAddTransPlttNo( FONTOAM_OBJ_PTR fontoam, u32 pltt_no )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�p���b�g�i���o�[�擾
+ *	@brief	パレットナンバー取得
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
+ *	@param	fontoam		OAMフォントオブジェ
  *
- *	@return	u32			���̃p���b�g�i���o�[
+ *	@return	u32			今のパレットナンバー
  *
  *
  */
@@ -746,29 +746,29 @@ u32 FONTOAM_GetPaletteNo( CONST_FONTOAM_OBJ_PTR fontoam )
 
 //-----------------------------------------------------------------------------
 /**
- * ��OAM�A�g���r���[�g�ɐݒ肳��Ă���p���b�g�i���o�[�ɉ��Z����܂��B
- *	 �����AOAM�A�g���r���[�g�̃J���[�p���b�gNo���Q�ŃI�t�Z�b�g�ɂQ��
- *	 �ݒ肷��ƁA�S�̃J���[�p���b�g���Q�Ƃ���悤�ɂȂ�܂�
+ * ●OAMアトリビュートに設定されているパレットナンバーに加算されます。
+ *	 もし、OAMアトリビュートのカラーパレットNoが２でオフセットに２を
+ *	 設定すると、４のカラーパレットを参照するようになります
  * 
- *	@brief	�p���b�g�I�t�Z�b�g��ݒ�
+ *	@brief	パレットオフセットを設定
  *
- *	@param	fontoam		OAM�t�H���g�I�u�W�F
- *	@param	pltt_ofs	�p���b�g�I�t�Z�b�g
+ *	@param	fontoam		OAMフォントオブジェ
+ *	@param	pltt_ofs	パレットオフセット
  * 
  *	@return	none
  *
- * ���p���b�g�i���o�[�ݒ�ƃp���b�g�I�t�Z�b�g�ݒ�͓������܂���B
- *�@�@���p���b�g�i���o�[��ݒ肷��ƃI�t�Z�b�g�̒l�͔��f����Ȃ��Ȃ�܂��B
- *	�@���I�t�Z�b�g�l��ݒ肵���Ƃ��̓p���b�g�i���o�[�����f����Ȃ��Ȃ�܂��B
+ * ■パレットナンバー設定とパレットオフセット設定は同居しません。
+ *　　●パレットナンバーを設定するとオフセットの値は反映されなくなります。
+ *	　●オフセット値を設定したときはパレットナンバーが反映されなくなります。
  * 
  */
  //----------------------------------------------------------------------------
 void FONTOAM_SetPaletteOffset( FONTOAM_OBJ_PTR fontoam, u32 pltt_ofs )
 {
-	int i;		// ���[�v�p
+	int i;		// ループ用
 
 	GF_ASSERT( fontoam );
-	// �S�Z���A�N�^�[�ɍ��W��ݒ�
+	// 全セルアクターに座標を設定
 	for(i=0; i<fontoam->obj_num; i++ ){
 
 		CLACT_PaletteOffsetChg( fontoam->obj_w[ i ].clact, pltt_ofs );
@@ -776,10 +776,10 @@ void FONTOAM_SetPaletteOffset( FONTOAM_OBJ_PTR fontoam, u32 pltt_ofs )
 }
 void FONTOAM_SetPaletteOffsetAddTransPlttNo( FONTOAM_OBJ_PTR fontoam, u32 pltt_ofs )
 {
-	int i;		// ���[�v�p
+	int i;		// ループ用
 
 	GF_ASSERT( fontoam );
-	// �S�Z���A�N�^�[�ɍ��W��ݒ�
+	// 全セルアクターに座標を設定
 	for(i=0; i<fontoam->obj_num; i++ ){
 
 		CLACT_PaletteOffsetChgAddTransPlttNo( fontoam->obj_w[ i ].clact, pltt_ofs );
@@ -789,11 +789,11 @@ void FONTOAM_SetPaletteOffsetAddTransPlttNo( FONTOAM_OBJ_PTR fontoam, u32 pltt_o
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�p���b�g�I�t�Z�b�g�l�擾
+ *	@brief	パレットオフセット値取得
  *
- *	@param	fontoam	OAM�t�H���g�I�u�W�F
+ *	@param	fontoam	OAMフォントオブジェ
  *
- *	@return	u32		���̃p���b�g�I�t�Z�b�g�l
+ *	@return	u32		今のパレットオフセット値
  *
  */
 //-----------------------------------------------------------------------------
@@ -807,24 +807,24 @@ u32 FONTOAM_GetPaletteOffset( CONST_FONTOAM_OBJ_PTR fontoam )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���U�C�N�ݒ�
+ *	@brief	モザイク設定
  *
- *	@param	fontoam	OAM�t�H���g�I�u�W�F
- *	@param	flag	�t���O	TRUE�����U�C�NON	FALSE�����U�C�NOFF
+ *	@param	fontoam	OAMフォントオブジェ
+ *	@param	flag	フラグ	TRUE＝モザイクON	FALSE＝モザイクOFF
  *
  *	@return	none
  *
- * ���U�C�NOFF�̎��ł��A�j�g���L�����N�^�Ń��U�C�NON�ɂ���OAM��
- * ���U�C�N���������ĕ`�悳��܂��B
+ * モザイクOFFの時でも、ニトロキャラクタでモザイクONにしたOAMは
+ * モザイクがかかって描画されます。
  *
  */
 //-----------------------------------------------------------------------------
 void FONTOAM_SetMosaic( FONTOAM_OBJ_PTR fontoam, BOOL flag )
 {
-	int i;		// ���[�v�p
+	int i;		// ループ用
 
 	GF_ASSERT( fontoam );
-	// �S�Z���A�N�^�[�ɍ��W��ݒ�
+	// 全セルアクターに座標を設定
 	for(i=0; i<fontoam->obj_num; i++ ){
 
 		CLACT_MosaicSet( fontoam->obj_w[ i ].clact, flag );
@@ -834,12 +834,12 @@ void FONTOAM_SetMosaic( FONTOAM_OBJ_PTR fontoam, BOOL flag )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���U�C�N�ݒ��Ԃ��擾
+ *	@brief	モザイク設定状態を取得
  *
- *	@param	fontoam	OAM�t�H���g�I�u�W�F
+ *	@param	fontoam	OAMフォントオブジェ
  *
- *	@retval	TRUE	���U�C�N��ON
- *	@retval	FALSE	���U�C�N��OFF	�i�j�g���L�����N�^�Őݒ肵�Ă�Ƃ��͔��f�����j
+ *	@retval	TRUE	モザイク＝ON
+ *	@retval	FALSE	モザイク＝OFF	（ニトロキャラクタで設定してるときは反映される）
  *
  *
  */
@@ -853,25 +853,25 @@ BOOL FONTOAM_GetMosaic( CONST_FONTOAM_OBJ_PTR fontoam )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F�N�g���[�h�̐ݒ�
+ *	@brief	オブジェクトモードの設定
  *
- *	@param	fontoam		�t�H���gOAM
- *	@param	objmode		�I�u�W�F���[�h
+ *	@param	fontoam		フォントOAM
+ *	@param	objmode		オブジェモード
  *
  *	@return	none
  *
-	GX_OAM_MODE_NORMAL		�m�[�}��OBJ 
-	GX_OAM_MODE_XLU			������OBJ 
-	GX_OAM_MODE_OBJWND		OBJ�E�B���h�E 
-	GX_OAM_MODE_BITMAPOBJ	�r�b�g�}�b�vOBJ 
+	GX_OAM_MODE_NORMAL		ノーマルOBJ 
+	GX_OAM_MODE_XLU			半透明OBJ 
+	GX_OAM_MODE_OBJWND		OBJウィンドウ 
+	GX_OAM_MODE_BITMAPOBJ	ビットマップOBJ 
  */
 //-----------------------------------------------------------------------------
 void FONTOAM_ObjModeSet( FONTOAM_OBJ_PTR fontoam, GXOamMode objmode )
 {
-	int i;		// ���[�v�p
+	int i;		// ループ用
 
 	GF_ASSERT( fontoam );
-	// �S�Z���A�N�^�[�ɍ��W��ݒ�
+	// 全セルアクターに座標を設定
 	for(i=0; i<fontoam->obj_num; i++ ){
 
 		CLACT_ObjModeSet( fontoam->obj_w[ i ].clact, objmode );
@@ -880,15 +880,15 @@ void FONTOAM_ObjModeSet( FONTOAM_OBJ_PTR fontoam, GXOamMode objmode )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�I�u�W�F���[�h�̎擾
+ *	@brief	オブジェモードの取得
  *
  *	@param	fontoam		FONTOAM
- *	@param	objmode		�I�u�W�F���[�h
+ *	@param	objmode		オブジェモード
  *
- *	@retval	GX_OAM_MODE_NORMAL		�m�[�}��OBJ 
- *	@retval	GX_OAM_MODE_XLU			������OBJ 
- *	@retval	GX_OAM_MODE_OBJWND		OBJ�E�B���h�E 
- *	@retval	GX_OAM_MODE_BITMAPOBJ	�r�b�g�}�b�vOBJ 
+ *	@retval	GX_OAM_MODE_NORMAL		ノーマルOBJ 
+ *	@retval	GX_OAM_MODE_XLU			半透明OBJ 
+ *	@retval	GX_OAM_MODE_OBJWND		OBJウィンドウ 
+ *	@retval	GX_OAM_MODE_BITMAPOBJ	ビットマップOBJ 
  */
 //-----------------------------------------------------------------------------
 GXOamMode FONTOAM_ObjModeGet( CONST_FONTOAM_OBJ_PTR fontoam, GXOamMode objmode )
@@ -902,17 +902,17 @@ GXOamMode FONTOAM_ObjModeGet( CONST_FONTOAM_OBJ_PTR fontoam, GXOamMode objmode )
 
 //-----------------------------------------------------------------------------
 /**
- *		FONTOAM	�ׂ���������o�[�W����
+ *		FONTOAM	細か処理分岐バージョン
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t�H���gOAM�����f�[�^�쐬
+ *	@brief	フォントOAM分割データ作成
  *
- *	@param	bmp		�f�[�^�쐬���r�b�g�}�b�v
- *	@param	heap	�q�[�v
+ *	@param	bmp		データ作成元ビットマップ
+ *	@param	heap	ヒープ
  *
- *	@return	�����f�[�^
+ *	@return	分割データ
  */
 //-----------------------------------------------------------------------------
 FONTOAM_OAM_DATA_PTR FONTOAM_OAMDATA_Make( const GF_BGL_BMPWIN* bmp, int heap )
@@ -923,7 +923,7 @@ FONTOAM_OAM_DATA_PTR FONTOAM_OAMDATA_Make( const GF_BGL_BMPWIN* bmp, int heap )
 	fontoam_data->fontoamdata.next = &fontoam_data->fontoamdata;
 	fontoam_data->fontoamdata.prev = &fontoam_data->fontoamdata;
 
-	// OAM�f�[�^�쐬
+	// OAMデータ作成
 	fontoam_data->data_num = getOamData( bmp->sizx, 
 			bmp->sizy,
 			heap, 
@@ -934,16 +934,16 @@ FONTOAM_OAM_DATA_PTR FONTOAM_OAMDATA_Make( const GF_BGL_BMPWIN* bmp, int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t�H���gOAM�����f�[�^�̔j��
+ *	@brief	フォントOAM分割データの破棄
  *
- *	@param	oamdata	�t�H���gOAM�����f�[�^
+ *	@param	oamdata	フォントOAM分割データ
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void FONTOAM_OAMDATA_Free( FONTOAM_OAM_DATA_PTR oamdata )
 {
-	// OAM�f�[�^�j��
+	// OAMデータ破棄
 	destOamListAll( &oamdata->fontoamdata );
 
 	sys_FreeMemoryEz( oamdata );
@@ -951,12 +951,12 @@ void FONTOAM_OAMDATA_Free( FONTOAM_OAM_DATA_PTR oamdata )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t�H���gOAM�����f�[�^����]���ɕK�v���L�����N�^�T�C�Y���擾
+ *	@brief	フォントOAM分割データから転送に必要がキャラクタサイズを取得
  *
- *	@param	oamdata		�t�H���gOAM�����f�[�^
- *	@param	draw_area	�`��G���A
+ *	@param	oamdata		フォントOAM分割データ
+ *	@param	draw_area	描画エリア
  *
- *	@return	�K�v���L�����N�^�T�C�Y
+ *	@return	必要がキャラクタサイズ
  */
 //-----------------------------------------------------------------------------
 int FONTOAM_OAMDATA_NeedCharSize( CONST_FONTOAM_OAM_DATA_PTR oamdata, int draw_area )
@@ -966,12 +966,12 @@ int FONTOAM_OAMDATA_NeedCharSize( CONST_FONTOAM_OAM_DATA_PTR oamdata, int draw_a
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t�H���gOAM�����f�[�^���g�p���ăt�H���gOAM�̍쐬
+ *	@brief	フォントOAM分割データを使用してフォントOAMの作成
  *
- *	@param	fontoam_init		�ӂ����OAM �쐬�f�[�^
- *	@param	oamdata				OAM�����f�[�^
+ *	@param	fontoam_init		ふぉんとOAM 作成データ
+ *	@param	oamdata				OAM分割データ
  *
- *	@return	�쐬���ꂽ�t�H���gOAM
+ *	@return	作成されたフォントOAM
  */
 //-----------------------------------------------------------------------------
 FONTOAM_OBJ_PTR FONTOAM_OAMDATA_Init( const FONTOAM_INIT* fontoam_init, CONST_FONTOAM_OAM_DATA_PTR oamdata )
@@ -981,22 +981,22 @@ FONTOAM_OBJ_PTR FONTOAM_OAMDATA_Init( const FONTOAM_INIT* fontoam_init, CONST_FO
 
 	GF_ASSERT( fontoam_init );
 
-	// ��̃e�[�u�����擾
+	// 空のテーブルを取得
 	fontoam = getCleanFONTOAM_OBJ( fontoam_init->fontoam_sys );
-	GF_ASSERT_MSG( fontoam, "���OAM�t�H���g�e�[�u��������܂���" );
-	fontoam->parent	= fontoam_init->parent;	// �e�f�[�^���
+	GF_ASSERT_MSG( fontoam, "空のOAMフォントテーブルがありません" );
+	fontoam->parent	= fontoam_init->parent;	// 親データ代入
 
 	fontoam->x	= fontoam_init->x;
 	fontoam->y	= fontoam_init->y;
 
-	// oam_num���̃C���[�W�v���N�V�ƁA�Z���A�N�^�[�o�^�̈���쐬
+	// oam_num分のイメージプロクシと、セルアクター登録領域を作成
 	img_proxy = sys_AllocMemoryLo( fontoam_init->heap,
 			sizeof(NNSG2dImageProxy) * oamdata->data_num );
 	fontoam->obj_w = sys_AllocMemory( fontoam_init->heap,
 			sizeof(FONTOAM_OBJ_CORE) * oamdata->data_num );
 	fontoam->obj_num = oamdata->data_num;
 
-	// �L�����N�^�f�[�^�]��
+	// キャラクタデータ転送
 	charTransOamDataList( fontoam_init->bmp, 
 			&oamdata->fontoamdata,
 			img_proxy,
@@ -1004,13 +1004,13 @@ FONTOAM_OBJ_PTR FONTOAM_OAMDATA_Init( const FONTOAM_INIT* fontoam_init, CONST_FO
 			fontoam_init->draw_area,
 			fontoam_init->heap );
 
-	// �Z���A�N�^�[�o�^
+	// セルアクター登録
 	addClActOamDataList( fontoam_init,
 			&oamdata->fontoamdata,
 			img_proxy,
 			fontoam );
 
-	// �v���N�V�̔j��
+	// プロクシの破棄
 	sys_FreeMemoryEz( img_proxy );
 
 	return fontoam;
@@ -1018,7 +1018,7 @@ FONTOAM_OBJ_PTR FONTOAM_OAMDATA_Init( const FONTOAM_INIT* fontoam_init, CONST_FO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OAM�t�H���g�j��
+ *	@brief	OAMフォント破棄
  *
  *	@param	fontoam 
  *
@@ -1032,17 +1032,17 @@ void FONTOAM_OAMDATA_Delete( FONTOAM_OBJ_PTR fontoam )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t�H���gOAM�̃r�b�g�}�b�v�f�[�^��ύX����
+ *	@brief	フォントOAMのビットマップデータを変更する
  *
- *	@param	fontoam		�ύX����FONTOAM
- *	@param	oamdata		OAM�����f�[�^
- *	@param	bmp			�r�b�g�}�b�v 
- *	@param	heap		�q�[�v
+ *	@param	fontoam		変更するFONTOAM
+ *	@param	oamdata		OAM分割データ
+ *	@param	bmp			ビットマップ 
+ *	@param	heap		ヒープ
  *
  *	@return	none
  *
- *	�����ӓ_
- *		�r�b�g�}�b�v�̑傫�����������K�v������܂��B
+ *	＊注意点
+ *		ビットマップの大きさが等しい必要があります。
  */
 //-----------------------------------------------------------------------------
 void FONTOAM_OAMDATA_ResetBmp( FONTOAM_OBJ_PTR fontoam, CONST_FONTOAM_OAM_DATA_PTR oamdata, const GF_BGL_BMPWIN* bmp, int heap )
@@ -1053,23 +1053,23 @@ void FONTOAM_OAMDATA_ResetBmp( FONTOAM_OBJ_PTR fontoam, CONST_FONTOAM_OAM_DATA_P
 	CLACT_WORK_PTR start_act = fontoam->obj_w[0].clact;
 	int draw_area;
 
-	// �`��G���A
+	// 描画エリア
 	draw_area = CLACT_VramTypeGet( start_act );
 
 
-	// �K�v�L�����N�^�o�b�t�@�쐬
+	// 必要キャラクタバッファ作成
 	need_char = FONTOAM_OAMDATA_NeedCharSize( oamdata, draw_area );
 
-	// �L�����N�^�o�b�t�@�쐬
+	// キャラクタバッファ作成
 	pbuff = (char*)sys_AllocMemoryLo( heap, need_char );
 	memset( pbuff, 0, need_char );
 
-	// �]���L�����N�^�f�[�^�쐬
+	// 転送キャラクタデータ作成
 	charSetOamDataList( bmp, pbuff, &oamdata->fontoamdata, draw_area, heap );
 
     DC_FlushRange(pbuff, need_char);
 
-	// Vram�ɓ]��
+	// Vramに転送
 	p_prox = CLACT_ImageProxyGet( start_act );
 	if( draw_area == NNS_G2D_VRAM_TYPE_2DMAIN ){
 		GX_LoadOBJ( pbuff, NNS_G2dGetImageLocation(	p_prox, NNS_G2D_VRAM_TYPE_2DMAIN ), need_char );	
@@ -1077,7 +1077,7 @@ void FONTOAM_OAMDATA_ResetBmp( FONTOAM_OBJ_PTR fontoam, CONST_FONTOAM_OAM_DATA_P
 		GXS_LoadOBJ( pbuff, NNS_G2dGetImageLocation(	p_prox, NNS_G2D_VRAM_TYPE_2DSUB ), need_char );	
 	}
 
-	// �L�����N�^�o�b�t�@�j��
+	// キャラクタバッファ破棄
 	sys_FreeMemoryEz( pbuff );
 }
 
@@ -1085,20 +1085,20 @@ void FONTOAM_OAMDATA_ResetBmp( FONTOAM_OBJ_PTR fontoam, CONST_FONTOAM_OAM_DATA_P
 
 //-----------------------------------------------------------------------------
 /**
- *		FONTOAM�Ƃ͖��֌W�ł����A�ėp�I�Ɏg�p�ł���֐�
+ *		FONTOAMとは無関係ですが、汎用的に使用できる関数
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	BMP�̃L�����N�^�f�[�^��OAM�̃T�C�Y�Ő؂���
+ *	@brief	BMPのキャラクタデータをOAMのサイズで切り取る
  *
- *	@param	bmp				�r�b�g�}�b�v�f�[�^
- *	@param	oam_csx			OAM�̉��T�C�Y	�i�L�����N�^�P�ʁj
- *	@param	oam_csy			OAM�̏c�T�C�Y	�i�L�����N�^�P�ʁj
- *	@param	bmp_cmx			�r�b�g�}�b�v�؂��荶�゘���W	�i�L�����N�^�P�ʁj
- *	@param	bmp_cmy			�r�b�g�}�b�v�؂��荶�゙���W	�i�L�����N�^�P�ʁj
- *	@param	char_buff		�o�͐�L�����N�^�o�b�t�@ (oam_csx * oam_csy)*32byte�@�T�C�Y�ȏ�̗̈�
+ *	@param	bmp				ビットマップデータ
+ *	@param	oam_csx			OAMの横サイズ	（キャラクタ単位）
+ *	@param	oam_csy			OAMの縦サイズ	（キャラクタ単位）
+ *	@param	bmp_cmx			ビットマップ切り取り左上ｘ座標	（キャラクタ単位）
+ *	@param	bmp_cmy			ビットマップ切り取り左上ｙ座標	（キャラクタ単位）
+ *	@param	char_buff		出力先キャラクタバッファ (oam_csx * oam_csy)*32byte　サイズ以上の領域
  *
  *	@return	none
  *
@@ -1107,15 +1107,15 @@ void FONTOAM_OAMDATA_ResetBmp( FONTOAM_OBJ_PTR fontoam, CONST_FONTOAM_OAM_DATA_P
 //-----------------------------------------------------------------------------
 void FONTOAM_BmpCutOamSize( const GF_BGL_BMPWIN* cp_bmp, int oam_csx, int oam_csy, int bmp_cmx, int bmp_cmy, char* char_buff )
 {
-	int i;				// ���[�v�p
-	int buff_out;		// �o�b�t�@�������ݐ�
-	int buff_in;		// �o�b�t�@�ǂݍ��ݐ�
+	int i;				// ループ用
+	int buff_out;		// バッファ書き込み先
+	int buff_in;		// バッファ読み込み先
 	
-	// bmp�f�[�^�̃T�C�Y������邩�`�F�b�N
+	// bmpデータのサイズが足りるかチェック
 	GF_ASSERT( cp_bmp->sizx >= (oam_csx + bmp_cmx) );
 	GF_ASSERT( cp_bmp->sizy >= (oam_csy + bmp_cmy) );
 	
-	// ���[�J���o�b�t�@�Ƀf�[�^���
+	// ローカルバッファにデータ代入
 	for( i=0; i<oam_csy; i++ ){
 		
 		buff_out = i * oam_csx;
@@ -1129,15 +1129,15 @@ void FONTOAM_BmpCutOamSize( const GF_BGL_BMPWIN* cp_bmp, int oam_csx, int oam_cs
 
 //-----------------------------------------------------------------------------
 /**
-*		�v���C�x�[�g�֐�
+*		プライベート関数
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�e�[�u����������
+ *	@brief	テーブルを初期化
  *
- *	@param	fontoam		OAM�t�H���g
+ *	@param	fontoam		OAMフォント
  *	
  *	@return	none
  *
@@ -1152,18 +1152,18 @@ static void cleanFONTOAM_OBJ( FONTOAM_OBJ* fontoam )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	��̃e�[�u�����擾
+ *	@brief	空のテーブルを取得
  *
- *	@param	fontoam_sys		OAM�t�H���g�V�X�e��
+ *	@param	fontoam_sys		OAMフォントシステム
  *
- *	@return	FONTOAM_OBJ*	OAM�t�H���g
+ *	@return	FONTOAM_OBJ*	OAMフォント
  *
  *
  */
 //-----------------------------------------------------------------------------
 static FONTOAM_OBJ* getCleanFONTOAM_OBJ( const FONTOAM_SYSTEM* fontoam_sys )
 {
-	int i;		// ���[�v�p
+	int i;		// ループ用
 
 	for( i=0; i<fontoam_sys->fontoam_num; i++ ){
 
@@ -1182,10 +1182,10 @@ static FONTOAM_OBJ* getCleanFONTOAM_OBJ( const FONTOAM_SYSTEM* fontoam_sys )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���ƍ�������œK��OAM�T�C�Y���擾����
+ *	@brief	幅と高さから最適なOAMサイズを取得する
  *
- *	@param	x		��		�L�����N�^�P��
- *	@param	y		����	�L�����N�^�P��
+ *	@param	x		幅		キャラクタ単位
+ *	@param	y		高さ	キャラクタ単位
  *
  *		
  *	@retval		FONTOAM_PRI_8x8 = 0,	
@@ -1205,34 +1205,34 @@ static FONTOAM_OBJ* getCleanFONTOAM_OBJ( const FONTOAM_SYSTEM* fontoam_sys )
 //-----------------------------------------------------------------------------
 static int searchOamSize( int x, int y )
 {
-	int i;	// ���[�v�p
+	int i;	// ループ用
 
 	for( i = 0; i < FONTOAM_PRI_MAX; i++ ){
 		
-		// ���������肫��l���`�F�b�N
+		// 両方が入りきる値かチェック
 		if( (FONTOAM_PriTbl[ i ][ FONTOAM_PRI_X ] <= x) &&
 			(FONTOAM_PriTbl[ i ][ FONTOAM_PRI_Y ] <= y) ){
 			return i;
 		}
 	}
 
-	return FONTOAM_PRI_MAX;		//<-�����ɗ��邱�Ƃ͂Ȃ�
+	return FONTOAM_PRI_MAX;		//<-ここに来ることはない
 }
 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM���ߐs�����f�[�^�쐬
+ *	@brief	OAM埋め尽くしデータ作成
  *
- *	@param	oam		�G���A�f�[�^
- *	@param	list	���X�g�擪�_�~�[�f�[�^
- *	@param	heap	�g�p����q�[�v
+ *	@param	oam		エリアデータ
+ *	@param	list	リスト先頭ダミーデータ
+ *	@param	heap	使用するヒープ
  *
- *	@retval	TRUE	���ߐs�����f�[�^����
- *	@retval FALSE	���ߐs�����f�[�^�쐬��
+ *	@retval	TRUE	埋め尽くしデータ完成
+ *	@retval FALSE	埋め尽くしデータ作成中
  *
- * �����ɓn���Ă���l�̍�����8�L�����@4�L���� 2�L���� 1�L�����̂����ꂩ
- * �ɂ��Ă��������B
+ * ここに渡してくる値の高さは8キャラ　4キャラ 2キャラ 1キャラのいずれか
+ * にしてください。
  * 
  *
  */
@@ -1240,27 +1240,27 @@ static int searchOamSize( int x, int y )
 static BOOL sumOamArea( FONTOAM_OAM_AREA* oam, FONTOAM_OAM_DATA* list, int heap )
 {
 	FONTOAM_OAM_DATA* oam_data;
-	int rest_height;	// ���܂荂��
-	int rest_width;		// ���܂蕝
+	int rest_height;	// あまり高さ
+	int rest_width;		// あまり幅
 
 	
-	// OAM�f�[�^�������m��
+	// OAMデータメモリ確保
 	oam_data = makeOamList( heap );
-	setOamList( oam_data, list->prev );		// �Ō���ɓo�^
+	setOamList( oam_data, list->prev );		// 最後尾に登録
 	
-	// �T�C�Y����OAM�T�C�Y���擾
+	// サイズからOAMサイズを取得
 	oam_data->oam_size = searchOamSize( oam->now.width, oam->now.height );
 
-	// ���̈ʒu��ݒ�
+	// 今の位置を設定
 	oam_data->x = oam->now.left;
 	oam_data->y = oam->now.top;
 
-	// ����OAM���ߐs�����G���A���疄�߂�OAM�T�C�Y�����炷
+	// 今のOAM埋め尽くしエリアから埋めたOAMサイズを減らす
 	rest_width	= oam->now.width - FONTOAM_PriTbl[ oam_data->oam_size ][ FONTOAM_PRI_X ];
 	rest_height = oam->now.height - FONTOAM_PriTbl[ oam_data->oam_size ][ FONTOAM_PRI_Y ];
 
-	// ���ɂ��܂肪����Ƃ���
-	// �c�ɂ͂��܂肪�Ȃ��͂�
+	// 幅にあまりがあるときは
+	// 縦にはあまりがないはず
 	if( rest_width > 0 ){
 		oam->right.height	= oam->now.height;
 		oam->right.width	= rest_width;
@@ -1271,21 +1271,21 @@ static BOOL sumOamArea( FONTOAM_OAM_AREA* oam, FONTOAM_OAM_DATA* list, int heap 
 		oam->tmp_flg = FONTOAM_OAM_AREA_RIGHT;
 	}
 
-	// �����ɂ��܂肪����Ƃ��́A���ɂ͂��܂�͂Ȃ�
-	// �������܂�̂���Ƃ��͍��G���A���Đݒ�
-	// �����ɂ��܂�̖����Ƃ��͉E�G���A�����G���A�ɂ���
+	// 高さにあまりがあるときは、幅にはあまりはない
+	// 高さあまりのあるときは今エリアを再設定
+	// 高さにあまりの無いときは右エリアを今エリアにする
 	if( rest_height > 0 ){
 		oam->now.top = oam->now.top + FONTOAM_PriTbl[ oam_data->oam_size ][ FONTOAM_PRI_Y ];
 		oam->now.height = rest_height;
 	}else{
 		
 
-		// �E�����邩�`�F�b�N
+		// 右があるかチェック
 		if( oam->tmp_flg == FONTOAM_OAM_AREA_RIGHT ){
 			oam->now = oam->right;
 			oam->tmp_flg = FONTOAM_OAM_AREA_NONE;
 		}else{
-			// �I���
+			// 終わり
 			return TRUE;
 		}
 	}
@@ -1296,26 +1296,26 @@ static BOOL sumOamArea( FONTOAM_OAM_AREA* oam, FONTOAM_OAM_DATA* list, int heap 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�f�[�^�������o��OAM�̃f�[�^���쐬����
+ *	@brief	データを書き出すOAMのデータを作成する
  *
- *	@param	x		OAM�����o���r�b�g�}�b�v���T�C�Y
- *	@param	y		OAM�����o���r�b�g�}�b�v���T�C�Y
- *	@param	heap	�g�p����q�[�v
- *	@param	list	OAM�f�[�^���X�g�擪�f�[�^
+ *	@param	x		OAM書き出しビットマップｘサイズ
+ *	@param	y		OAM書き出しビットマップｙサイズ
+ *	@param	heap	使用するヒープ
+ *	@param	list	OAMデータリスト先頭データ
  *
- *	@return	�K�v�Z���A�N�^�[��
+ *	@return	必要セルアクター数
  *
  *
  */
 //-----------------------------------------------------------------------------
 static int getOamData( int x, int y, int heap,  FONTOAM_OAM_DATA* list )
 {
-	FONTOAM_OAM_AREA_ONE next_area;		// ���`�F�b�N����G���A
-	FONTOAM_OAM_AREA	now_area;		// ������`�F�b�N����G���A
-	int in_oam_size;					// �G���A�ɓ���OAM�T�C�Y
-	int count;							// �K�v�Z���A�N�^�[��
+	FONTOAM_OAM_AREA_ONE next_area;		// 次チェックするエリア
+	FONTOAM_OAM_AREA	now_area;		// 今からチェックするエリア
+	int in_oam_size;					// エリアに入るOAMサイズ
+	int count;							// 必要セルアクター数
 	
-	// �T�C�Y�O�`�F�b�N
+	// サイズ０チェック
 	GF_ASSERT( x );
 	GF_ASSERT( y );
 
@@ -1328,21 +1328,21 @@ static int getOamData( int x, int y, int heap,  FONTOAM_OAM_DATA* list )
 	next_area.left		= 0;
 	next_area.width		= x;
 	
-	// �G���A��񂪂������
+	// エリア情報がある限り
 	while( now_area.now.height != 0 ){
 
-		// ���̃G���A�̍�������`�F�b�N����G���A�̍���������
+		// 今のエリアの高さからチェックするエリアの高さを検索
 		in_oam_size			= searchOamSize( now_area.now.width, now_area.now.height );
 		next_area.top		= now_area.now.top + FONTOAM_PriTbl[ in_oam_size ][ FONTOAM_PRI_Y ];
 		next_area.height	= now_area.now.height - FONTOAM_PriTbl[ in_oam_size ][ FONTOAM_PRI_Y ];
 		now_area.now.height = FONTOAM_PriTbl[ in_oam_size ][ FONTOAM_PRI_Y ];
 
-		// ����OAM���쐬
+		// 入るOAMを作成
 		do{
 			count ++;
 		}while( sumOamArea( &now_area, list, heap ) == FALSE );
 
-		// next��now�ɑ��
+		// nextをnowに代入
 		now_area.now = next_area;
 	}
 
@@ -1353,14 +1353,14 @@ static int getOamData( int x, int y, int heap,  FONTOAM_OAM_DATA* list )
 //----------------------------------------------------------------------------
 /**
  *	
- *	@brief	OAM�f�[�^���X�g���̃L�����N�^�f�[�^��]�����A�C���[�W�v���N�V���쐬
+ *	@brief	OAMデータリスト分のキャラクタデータを転送し、イメージプロクシを作成
  *
- *	@param	bmp			�r�b�g�}�b�v�E�B���h�E�f�[�^
- *	@param	list		OAM�f�[�^���X�g
- *	@param	img_proxy	�C���[�W�v���N�V
- *	@param	offs		�I�t�Z�b�g�l
- *	@param	draw_area	�`���
- *	@param	heap		�g�p����q�[�v
+ *	@param	bmp			ビットマップウィンドウデータ
+ *	@param	list		OAMデータリスト
+ *	@param	img_proxy	イメージプロクシ
+ *	@param	offs		オフセット値
+ *	@param	draw_area	描画先
+ *	@param	heap		使用するヒープ
  *
  *	@return	none
  *
@@ -1370,11 +1370,11 @@ static int getOamData( int x, int y, int heap,  FONTOAM_OAM_DATA* list )
 static void charTransOamDataList( const GF_BGL_BMPWIN* bmp, const FONTOAM_OAM_DATA* list, NNSG2dImageProxy* img_proxy, int offs, int draw_area, int heap )
 {
 	FONTOAM_OAM_DATA* work;
-	int count;		// �J�E���^
-	int char_min;	// �L�����N�^�f�[�^�̍ŏ��P��
+	int count;		// カウンタ
+	int char_min;	// キャラクタデータの最小単位
 	GXOBJVRamModeChar  map_mode;
 	
-	// �L�����N�^�f�[�^�̍ŏ��P�ʂ��v�Z
+	// キャラクタデータの最小単位を計算
 	if( draw_area == NNS_G2D_VRAM_TYPE_2DMAIN ){
 		map_mode = GX_GetOBJVRamModeChar();
 	}else{
@@ -1396,32 +1396,32 @@ static void charTransOamDataList( const GF_BGL_BMPWIN* bmp, const FONTOAM_OAM_DA
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�f�[�^�P���̃L�����N�^�f�[�^���쐬���A�]��
+ *	@brief	OAMデータ１つ分のキャラクタデータを作成し、転送
  *
- *	@param	bmp			�r�b�g�}�b�v�E�B���h�E�f�[�^
- *	@param	oamdata		OAM�f�[�^
- *	@param	img_proxy	�ݒ�C���[�W�v���N�V
- *	@param	char_min_num�L�����N�^���[�h�Őݒ肳��Ă���Œ�̃L�����N�^�T�C�Y
- *	@param	char_mode	�}�b�s���O���[�h
- *	@param	offs		�I�t�Z�b�g�l
- *	@param	draw_area	�`���
- *	@param	heap		�g�p����q�[�v
+ *	@param	bmp			ビットマップウィンドウデータ
+ *	@param	oamdata		OAMデータ
+ *	@param	img_proxy	設定イメージプロクシ
+ *	@param	char_min_numキャラクタモードで設定されている最低のキャラクタサイズ
+ *	@param	char_mode	マッピングモード
+ *	@param	offs		オフセット値
+ *	@param	draw_area	描画先
+ *	@param	heap		使用するヒープ
  *
- *	@return	�]�����������炵���I�t�Z�b�g
+ *	@return	転送した分ずらしたオフセット
  *
  *
  */
 //-----------------------------------------------------------------------------
 static int charTransOamDataOne( const GF_BGL_BMPWIN* bmp, const FONTOAM_OAM_DATA* oamdata, NNSG2dImageProxy* img_proxy, int char_min_num, int char_mode, int offs, int draw_arae, int heap )
 {
-	char* local_buff;		// OAM�P���̃L�����N�^�f�[�^
+	char* local_buff;		// OAM１つ分のキャラクタデータ
 	int buff_size;
-	int oam_x, oam_y;	// oam�T�C�Y
+	int oam_x, oam_y;	// oamサイズ
 
 	oam_x = FONTOAM_PriTbl[ oamdata->oam_size ][ FONTOAM_PRI_X ];
 	oam_y = FONTOAM_PriTbl[ oamdata->oam_size ][ FONTOAM_PRI_Y ]; 
 	
-	// oam�T�C�Y����L�����N�^�f�[�^�o�b�t�@���쐬
+	// oamサイズからキャラクタデータバッファを作成
 	buff_size =  oam_x;
 	buff_size *= oam_y;
 	if( buff_size < char_min_num ){
@@ -1430,21 +1430,21 @@ static int charTransOamDataOne( const GF_BGL_BMPWIN* bmp, const FONTOAM_OAM_DATA
 	buff_size *= FONTOAM_CHAR_BYTE;
 	local_buff = sys_AllocMemoryLo( heap, buff_size );
 	
-	// ���[�J���o�b�t�@�Ƀf�[�^���
+	// ローカルバッファにデータ代入
 	FONTOAM_BmpCutOamSize( bmp, oam_x, oam_y, oamdata->x, oamdata->y, local_buff );
 
     DC_FlushRange(local_buff, buff_size);
 
 	
-	// �]��
+	// 転送
 	if( draw_arae == NNS_G2D_VRAM_TYPE_2DMAIN ){
 		GX_LoadOBJ( local_buff, offs, buff_size );	
 		img_proxy->vramLocation.baseAddrOfVram[ NNS_G2D_VRAM_TYPE_2DMAIN ] = offs;
-		img_proxy->attr.mappingType = GX_GetOBJVRamModeChar();	  // ���C��
+		img_proxy->attr.mappingType = GX_GetOBJVRamModeChar();	  // メイン
 	}else{
 		GXS_LoadOBJ( local_buff, offs, buff_size );	
 		img_proxy->vramLocation.baseAddrOfVram[ NNS_G2D_VRAM_TYPE_2DSUB ] = offs;
-		img_proxy->attr.mappingType = GXS_GetOBJVRamModeChar();   // �T�u
+		img_proxy->attr.mappingType = GXS_GetOBJVRamModeChar();   // サブ
 	}
 	img_proxy->attr.sizeS         = NNS_G2D_1D_MAPPING_CHAR_SIZE;
     img_proxy->attr.sizeT         = NNS_G2D_1D_MAPPING_CHAR_SIZE;
@@ -1461,13 +1461,13 @@ static int charTransOamDataOne( const GF_BGL_BMPWIN* bmp, const FONTOAM_OAM_DATA
 //----------------------------------------------------------------------------
 /**
  *	
- *	@brief	OAM�f�[�^���X�g���̃L�����N�^�f�[�^���쐬
+ *	@brief	OAMデータリスト分のキャラクタデータを作成
  *
- *	@param	bmp			�r�b�g�}�b�v�E�B���h�E�f�[�^
- *	@param	pbuff		�L�����N�^�f�[�^�o�b�t�@
- *	@param	list		OAM�f�[�^���X�g
- *	@param	draw_area	�`��G���A
- *	@param	heap		�g�p����q�[�v
+ *	@param	bmp			ビットマップウィンドウデータ
+ *	@param	pbuff		キャラクタデータバッファ
+ *	@param	list		OAMデータリスト
+ *	@param	draw_area	描画エリア
+ *	@param	heap		使用するヒープ
  *
  *	@return	none
  *
@@ -1477,12 +1477,12 @@ static int charTransOamDataOne( const GF_BGL_BMPWIN* bmp, const FONTOAM_OAM_DATA
 static void charSetOamDataList( const GF_BGL_BMPWIN* bmp, char* pbuff, const FONTOAM_OAM_DATA* list, int draw_area, int heap )
 {
 	FONTOAM_OAM_DATA* work;
-	int count;		// �J�E���^
-	int char_min;	// �L�����N�^�f�[�^�̍ŏ��P��
+	int count;		// カウンタ
+	int char_min;	// キャラクタデータの最小単位
 	int offs;
 	GXOBJVRamModeChar  map_mode;
 	
-	// �L�����N�^�f�[�^�̍ŏ��P�ʂ��v�Z
+	// キャラクタデータの最小単位を計算
 	if( draw_area == NNS_G2D_VRAM_TYPE_2DMAIN ){
 		map_mode = GX_GetOBJVRamModeChar();
 	}else{
@@ -1502,17 +1502,17 @@ static void charSetOamDataList( const GF_BGL_BMPWIN* bmp, char* pbuff, const FON
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�f�[�^�P���̃L�����N�^�f�[�^���쐬
+ *	@brief	OAMデータ１つ分のキャラクタデータを作成
  *
- *	@param	bmp			�r�b�g�}�b�v�E�B���h�E�f�[�^
- *	@param	oamdata		OAM�f�[�^
- *	@param	pbuff		�L�����N�^�o�b�t�@
- *	@param	idx			�C���f�b�N�X
- *	@param	char_min_num�L�����N�^���[�h�Őݒ肳��Ă���Œ�̃L�����N�^�T�C�Y
- *	@param	char_mode	�}�b�s���O���[�h
- *	@param	heap		�g�p����q�[�v
+ *	@param	bmp			ビットマップウィンドウデータ
+ *	@param	oamdata		OAMデータ
+ *	@param	pbuff		キャラクタバッファ
+ *	@param	idx			インデックス
+ *	@param	char_min_numキャラクタモードで設定されている最低のキャラクタサイズ
+ *	@param	char_mode	マッピングモード
+ *	@param	heap		使用するヒープ
  *
- *	@return	idx	���̊i�[��C���f�b�N�X
+ *	@return	idx	次の格納先インデックス
  *
  *
  */
@@ -1520,12 +1520,12 @@ static void charSetOamDataList( const GF_BGL_BMPWIN* bmp, char* pbuff, const FON
 static int charSetOamDataOne( const GF_BGL_BMPWIN* bmp, const FONTOAM_OAM_DATA* oamdata, char* pbuff, int idx, int char_min_num, int char_mode, int heap )
 {
 	int buff_size;
-	int oam_x, oam_y;	// oam�T�C�Y
+	int oam_x, oam_y;	// oamサイズ
 
 	oam_x = FONTOAM_PriTbl[ oamdata->oam_size ][ FONTOAM_PRI_X ];
 	oam_y = FONTOAM_PriTbl[ oamdata->oam_size ][ FONTOAM_PRI_Y ]; 
 	
-	// oam�T�C�Y����L�����N�^�f�[�^�o�b�t�@���쐬
+	// oamサイズからキャラクタデータバッファを作成
 	buff_size =  oam_x;
 	buff_size *= oam_y;
 	if( buff_size < char_min_num ){
@@ -1533,7 +1533,7 @@ static int charSetOamDataOne( const GF_BGL_BMPWIN* bmp, const FONTOAM_OAM_DATA* 
 	}
 	buff_size *= FONTOAM_CHAR_BYTE;
 	
-	// ���[�J���o�b�t�@�Ƀf�[�^���
+	// ローカルバッファにデータ代入
 	FONTOAM_BmpCutOamSize( bmp, oam_x, oam_y, oamdata->x, oamdata->y, &pbuff[idx] );
 
 	return (idx + buff_size);
@@ -1542,7 +1542,7 @@ static int charSetOamDataOne( const GF_BGL_BMPWIN* bmp, const FONTOAM_OAM_DATA* 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	����OAM�S��\������̂ɕK�v�ȃL�����N�^�f�[�^�T�C�Y���擾
+ *	@brief	このOAM郡を表示するのに必要なキャラクタデータサイズを取得
  *
  *	@param	list 
  *
@@ -1554,13 +1554,13 @@ static int charSetOamDataOne( const GF_BGL_BMPWIN* bmp, const FONTOAM_OAM_DATA* 
 static int charAreaSizeOamDataList( const FONTOAM_OAM_DATA* list, int draw_area )
 {
 	FONTOAM_OAM_DATA* work;
-	int char_min;	// �L�����N�^�f�[�^�̍ŏ��P��
+	int char_min;	// キャラクタデータの最小単位
 	GXOBJVRamModeChar  map_mode;
 	int offs;
 	int char_num;
-	int oam_x, oam_y;	// oam�T�C�Y
+	int oam_x, oam_y;	// oamサイズ
 	
-	// �L�����N�^�f�[�^�̍ŏ��P�ʂ��v�Z
+	// キャラクタデータの最小単位を計算
 	if( draw_area == NNS_G2D_VRAM_TYPE_2DMAIN ){
 		map_mode = GX_GetOBJVRamModeChar();
 	}else{
@@ -1572,7 +1572,7 @@ static int charAreaSizeOamDataList( const FONTOAM_OAM_DATA* list, int draw_area 
 	work = list->next;
 	while( work != list ){
 
-		// �L�����N�^oam�T�C�Y����L�����N�^�����v�Z
+		// キャラクタoamサイズからキャラクタ数を計算
 		oam_x = FONTOAM_PriTbl[ work->oam_size ][ FONTOAM_PRI_X ];
 		oam_y = FONTOAM_PriTbl[ work->oam_size ][ FONTOAM_PRI_Y ]; 
 		
@@ -1592,12 +1592,12 @@ static int charAreaSizeOamDataList( const FONTOAM_OAM_DATA* list, int draw_area 
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�f�[�^���X�g�̃Z���A�N�^�[���쐬����
+ *	@brief	OAMデータリストのセルアクターを作成する
  *
- *	@param	font_init		�t�H���g�쐬�f�[�^
- *	@param	list			OAM�f�[�^���X�g�擪�f�[�^
- *	@param	img_proxy		�C���[�W�v���N�V�z��f�[�^
- *	@param	font_obj		�t�H���g�I�u�W�F
+ *	@param	font_init		フォント作成データ
+ *	@param	list			OAMデータリスト先頭データ
+ *	@param	img_proxy		イメージプロクシ配列データ
+ *	@param	font_obj		フォントオブジェ
  *
  *	@return	none
  *
@@ -1626,7 +1626,7 @@ static void addClActOamDataList( const FONTOAM_INIT* font_init, const FONTOAM_OA
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���X�g�̃Z���A�N�^�[�j��
+ *	@brief	リストのセルアクター破棄
  *
  *	@param	fontoam 
  *
@@ -1637,7 +1637,7 @@ static void addClActOamDataList( const FONTOAM_INIT* font_init, const FONTOAM_OA
 //-----------------------------------------------------------------------------
 static void delClActOamDataList( FONTOAM_OBJ_PTR fontoam )
 {
-	int i;		// ���[�v�p
+	int i;		// ループ用
 
 	for( i=0; i<fontoam->obj_num; i++ ){
 
@@ -1648,23 +1648,23 @@ static void delClActOamDataList( FONTOAM_OBJ_PTR fontoam )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	�POAM�̃A�N�^�[���쐬
+ *	@brief	１OAMのアクターを作成
  *
- *	@param	font_init	�t�H���g�쐬�f�[�^
- *	@param	oamdata		OAM�f�[�^
- *	@param	img_proxy	�g�p����C���[�W�v���N�V
+ *	@param	font_init	フォント作成データ
+ *	@param	oamdata		OAMデータ
+ *	@param	img_proxy	使用するイメージプロクシ
  *
- *	@return	�쐬�����A�N�^�[�|�C���^
+ *	@return	作成したアクターポインタ
  *
  *
  */
 //-----------------------------------------------------------------------------
 static CLACT_WORK_PTR addClActOamDataOne( const FONTOAM_INIT* font_init, const FONTOAM_OAM_DATA* oamdata, const NNSG2dImageProxy* img_proxy )
 {
-	CLACT_ADD_SIMPLE	add;		// �o�^�f�[�^
-	CLACT_HEADER		head;		// �w�b�_�[
+	CLACT_ADD_SIMPLE	add;		// 登録データ
+	CLACT_HEADER		head;		// ヘッダー
 
-	// �Z���A�N�^�[�w�b�_�[�쐬
+	// セルアクターヘッダー作成
 	head.pImageProxy	= img_proxy;
 	head.pCharData		= NULL;
 	head.pPaletteProxy	= font_init->pltt;
@@ -1676,20 +1676,20 @@ static CLACT_WORK_PTR addClActOamDataOne( const FONTOAM_INIT* font_init, const F
 	head.flag			= 0;
 	head.priority		= font_init->bg_pri;
 	
-	// �o�^�f�[�^�쐬
+	// 登録データ作成
 	add.ClActSet		= font_init->clact_set;
 	add.ClActHeader		= &head;
 	add.pri				= font_init->soft_pri;
 	add.DrawArea		= font_init->draw_area;
 	add.heap			= font_init->heap;
 
-	// �o�^���W�v�Z
+	// 登録座標計算
 	add.mat.x = 0;
 	add.mat.y = 0;
 	add.mat.z = 0;
 	
 	if( font_init->parent ){
-		const VecFx32* parent_mat;			// �e���W
+		const VecFx32* parent_mat;			// 親座標
 		parent_mat = CLACT_GetMatrix( font_init->parent );
 
 		add.mat = *parent_mat;
@@ -1697,7 +1697,7 @@ static CLACT_WORK_PTR addClActOamDataOne( const FONTOAM_INIT* font_init, const F
 	add.mat.x	+= (font_init->x << FX32_SHIFT) + ((oamdata->x * FONTOAM_CHAR_SIZE) << FX32_SHIFT);
 	add.mat.y	+= (font_init->y << FX32_SHIFT) + ((oamdata->y * FONTOAM_CHAR_SIZE) << FX32_SHIFT);
 
-	// �o�^
+	// 登録
 	return CLACT_AddSimple( &add );
 }
 
@@ -1710,11 +1710,11 @@ static CLACT_WORK_PTR addClActOamDataOne( const FONTOAM_INIT* font_init, const F
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�f�[�^���쐬
+ *	@brief	OAMデータを作成
  *
- *	@param	heap	�g�p����q�[�v
+ *	@param	heap	使用するヒープ
  *
- *	@return	OAM�f�[�^
+ *	@return	OAMデータ
  *
  *
  */
@@ -1724,7 +1724,7 @@ static FONTOAM_OAM_DATA* makeOamList( int heap )
 	FONTOAM_OAM_DATA* oamdata;
 
 	oamdata = sys_AllocMemoryLo( heap, sizeof(FONTOAM_OAM_DATA) );
-	GF_ASSERT_MSG( oamdata, "�������I�[�o�[" );
+	GF_ASSERT_MSG( oamdata, "メモリオーバー" );
 
 	oamdata->next = NULL;
 	oamdata->prev = NULL;
@@ -1735,9 +1735,9 @@ static FONTOAM_OAM_DATA* makeOamList( int heap )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	OAM�f�[�^���������
+ *	@brief	OAMデータメモリ解放
  *
- *	@param	oamdata OAM�f�[�^
+ *	@param	oamdata OAMデータ
  *
  *	@return	none
  *
@@ -1754,9 +1754,9 @@ static void destOamList( FONTOAM_OAM_DATA* oamdata )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���X�g�̑S�f�[�^�j��
+ *	@brief	リストの全データ破棄
  *
- *	@param	dummy	�_�~�[�f�[�^
+ *	@param	dummy	ダミーデータ
  *
  *	@return	none
  *
@@ -1779,10 +1779,10 @@ static void destOamListAll( FONTOAM_OAM_DATA* dummy )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	���X�g�ɐݒ�
+ *	@brief	リストに設定
  *
- *	@param	oamdata	OAM�f�[�^
- *	@param	prev	�O�̃f�[�^
+ *	@param	oamdata	OAMデータ
+ *	@param	prev	前のデータ
  *
  *	@return	none
  *
@@ -1800,9 +1800,9 @@ static void setOamList( FONTOAM_OAM_DATA* oamdata, FONTOAM_OAM_DATA* prev )
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	oam�f�[�^�����X�g����͂���
+ *	@brief	oamデータをリストからはずす
  *
- *	@param	oamdata	OAM�f�[�^
+ *	@param	oamdata	OAMデータ
  *
  *	@return	none
  *
@@ -1818,7 +1818,7 @@ static void resetOamList( FONTOAM_OAM_DATA* oamdata )
 
 //--------------------------------------------------------------
 /**
- * @brief	�e�A�N�^�[�Đݒ�
+ * @brief	親アクター再設定
  *
  * @param	fontoam	
  * @param	parent	

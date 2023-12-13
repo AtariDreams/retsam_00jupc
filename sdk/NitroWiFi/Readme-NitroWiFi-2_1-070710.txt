@@ -1,59 +1,59 @@
-������������������������������������������������������������������������������
-��                                                                          ��
-��  Readme-NitroWiFi-2_1-070710.txt                                         ��
-��                                                                          ��
-��  NITRO-SDK Wi-Fi ���C�u���� 2.1                                          ��
-��                                                                          ��
-��  Jul.10,2007                                                             ��
-��                                                                          ��
-������������������������������������������������������������������������������
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+■                                                                          ■
+■  Readme-NitroWiFi-2_1-070710.txt                                         ■
+■                                                                          ■
+■  NITRO-SDK Wi-Fi ライブラリ 2.1                                          ■
+■                                                                          ■
+■  Jul.10,2007                                                             ■
+■                                                                          ■
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
-�y�͂��߂Ɂz
-�ENITRO-SDK Wi-Fi���C�u�����́A�j���e���h�[DS�p�Q�[���\�t�g�̊J���Ɏg�p�ł���A
-  �\�P�b�g���C�u�����̑��̂ł��B
-  �{���C�u�������g�p���邱�ƂŁA�j���e���h�[DS�̃��C�����X�ʐM�i�C���t���X�g��
-  �N�`���[���[�h�j�𗘗p���āA�C���^�[�l�b�g�փA�N�Z�X���s�Ȃ����Ƃ��ł��܂��B
+【はじめに】
+・NITRO-SDK Wi-Fiライブラリは、ニンテンドーDS用ゲームソフトの開発に使用できる、
+  ソケットライブラリの総称です。
+  本ライブラリを使用することで、ニンテンドーDSのワイヤレス通信（インフラストラ
+  クチャーモード）を利用して、インターネットへアクセスを行なうことができます。
 
-�E�ڍׂɊւ��ẮA�֐����t�@�����X�����Q�Ɖ������B
+・詳細に関しては、関数リファレンスをご参照下さい。
 
-�E�{�p�b�P�[�W���Ή����Ă���J�����͈ȉ��̒ʂ�ł��B
+・本パッケージが対応している開発環境は以下の通りです。
 
-  * NITRO-SDK 4.0 �ȍ~
-  * CodeWarrior for NINTENDO DS version 2.0 SP1 �ȍ~
+  * NITRO-SDK 4.0 以降
+  * CodeWarrior for NINTENDO DS version 2.0 SP1 以降
 
 --
 
-�y�X�V���e�z
+【更新内容】
 
-�ENITRO-SDK Wi-Fi ���C�u���� 2.0 ������ ����̍X�V���e�͈ȉ��̒ʂ�ł��B
+・NITRO-SDK Wi-Fi ライブラリ 2.0 正式版 からの更新内容は以下の通りです。
 
-  * (SOC) SOC_Read �֐��̏C��
+  * (SOC) SOC_Read 関数の修正
 
-	SSL ��L���ɂ����\�P�b�g�ɑ΂��� SOC_Read �֐����Ăяo������Ԃɂ����āA
-	���[�^�̓d���f�Ȃǂ������Ńp�P�b�g���Ւf���ꂽ�ꍇ�ASOC_Close �֐��� 
-	SOC_EINPROGRESS ��Ԃ������Ă��܂���������܂����B
-	������C�����܂����B 
+	SSL を有効にしたソケットに対して SOC_Read 関数を呼び出した状態において、
+	ルータの電源断などが原因でパケットが遮断された場合、SOC_Close 関数が 
+	SOC_EINPROGRESS を返し続けてしまう事がありました。
+	これを修正しました。 
 
-  * (SSL) SSL �̐ڑ����̌���
-	����܂ł� handshake ���� Certificate Request �𑗐M���� SSL �T�[�o�֐ڑ�
-	����ƃG���[�ɂȂ��Ă��܂������ANo Certificate Alert �𑗐M���� handshake 
-	�𑱂���悤�ɏC�����܂����B 
+  * (SSL) SSL の接続性の向上
+	これまでは handshake 中に Certificate Request を送信する SSL サーバへ接続
+	するとエラーになっていましたが、No Certificate Alert を送信して handshake 
+	を続けるように修正しました。 
 
 
-    �Ȃ��A���L�� html�t�@�C���ł��������̂��A���������܂��B
+    なお、下記の htmlファイルでも同じものが、ご覧頂けます。
 
       NitroWiFi\man\ja_JP\changelog.html
 
 --
 
-�y���ӎ����z
+【注意事項】
 
-�ENITRO-SDK Wi-Fi ���C�u�����́A�u�O���ב֋y�ъO���f�Ֆ@�v�u�A�o�f�ՊǗ��߁v
-  �u�O���ב֗߁v�ȂǂŒ�߂�ꂽ�Í����u�Ƃ��Ă̋@�\�𓋍ڂ��Ă��邽�߁A���{��
-  ��A�o����ꍇ�́A���O�Ɍo�ώY�ƏȂ֗A�o���\�����s�����𓾂Ă����K�v����
-  ��܂��B�܂��A�C�O���瑼���֗A�o����ꍇ�ɂ͊e���̗A�o�K���֘A�@�����炵�Ȃ�
-  ��΂Ȃ�܂���̂ŁA���g�p�̍ۂ͂����Ӊ������B
+・NITRO-SDK Wi-Fi ライブラリは、「外国為替及び外国貿易法」「輸出貿易管理令」
+  「外国為替令」などで定められた暗号装置としての機能を搭載しているため、日本か
+  ら輸出する場合は、事前に経済産業省へ輸出許可申請を行い許可を得ておく必要があ
+  ります。また、海外から他国へ輸出する場合には各国の輸出規制関連法を遵守しなけ
+  ればなりませんので、ご使用の際はご注意下さい。
 
 --
 
-�ȏ�
+以上

@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief Wi-Fi ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ ƒwƒbƒ_
+ * @brief Wi-Fi ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª ãƒ˜ãƒƒãƒ€
  */
 
 #ifndef DWCi_NONPORT_RVL_H_
@@ -37,7 +37,7 @@ inline s64 DWCi_Np_GetCurrentSecondByUTC()
     DWCUtcTime now;
     BOOL result;
     
-    // ƒ‰ƒCƒuƒ‰ƒŠ‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎƒAƒT[ƒg
+    // ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã‚¢ã‚µãƒ¼ãƒˆ
     DWC_ASSERT_IF_NOT_INITIALIZED()
     
     now = DWCi_Np_GetTimeInSeconds();
@@ -47,7 +47,7 @@ inline s64 DWCi_Np_GetCurrentSecondByUTC()
         now += diff;
     }
     
-    // 1970”N‚©‚ç‚ÌŽžŠÔ‚È‚Ì‚Å2000”N‚©‚ç‚É’¼‚·
+    // 1970å¹´ã‹ã‚‰ã®æ™‚é–“ãªã®ã§2000å¹´ã‹ã‚‰ã«ç›´ã™
     now -= OSTIME_UNIXTIME_DIFF_SEC;
     
     return (s64)now;

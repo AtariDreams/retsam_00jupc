@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	actin_calc.c
- * @brief	���Z�͕���F�Z���ʌv�Z�Ȃ�
+ * @brief	演技力部門：技効果計算など
  * @author	matsuda
- * @date	2005.12.07(��)
+ * @date	2005.12.07(水)
  */
 //==============================================================================
 #include "common.h"
@@ -39,25 +39,25 @@
 
 
 //==============================================================================
-//	�f�[�^
+//	データ
 //==============================================================================
-///�R���e�X�g�^�C�v�ɂ��o�����Z�̃^�C�v�Ƃ̃{���e�[�W�Q�[�W�̏㉺
+///コンテストタイプによる出した技のタイプとのボルテージゲージの上下
 ALIGN4 static const s8 ConTypeVoltageTbl[][5] = {
-//�����������A�������A���킢���A�����A�����܂���
-	{VOLTAGE_ONE_POINT, 0, -VOLTAGE_ONE_POINT, -VOLTAGE_ONE_POINT, 0},	//����������
-	{0, VOLTAGE_ONE_POINT, 0, -VOLTAGE_ONE_POINT, -VOLTAGE_ONE_POINT},	//������
-	{-VOLTAGE_ONE_POINT, 0, VOLTAGE_ONE_POINT, 0, -VOLTAGE_ONE_POINT},	//���킢��
-	{-VOLTAGE_ONE_POINT, -VOLTAGE_ONE_POINT, 0, VOLTAGE_ONE_POINT, 0},	//����
-	{0, -VOLTAGE_ONE_POINT, -VOLTAGE_ONE_POINT, 0, VOLTAGE_ONE_POINT},	//�����܂���
+//かっこいい、美しい、かわいい、賢い、たくましい
+	{VOLTAGE_ONE_POINT, 0, -VOLTAGE_ONE_POINT, -VOLTAGE_ONE_POINT, 0},	//かっこいい
+	{0, VOLTAGE_ONE_POINT, 0, -VOLTAGE_ONE_POINT, -VOLTAGE_ONE_POINT},	//美しい
+	{-VOLTAGE_ONE_POINT, 0, VOLTAGE_ONE_POINT, 0, -VOLTAGE_ONE_POINT},	//かわいい
+	{-VOLTAGE_ONE_POINT, -VOLTAGE_ONE_POINT, 0, VOLTAGE_ONE_POINT, 0},	//賢い
+	{0, -VOLTAGE_ONE_POINT, -VOLTAGE_ONE_POINT, 0, VOLTAGE_ONE_POINT},	//たくましい
 };
 
 
 
 //--------------------------------------------------------------
 /**
- * @brief   �Z�ԍ������{�A�s�[���|�C���g���擾����
- * @param   wazano		�Z�ԍ�
- * @retval  ��{�A�s�[���|�C���g
+ * @brief   技番号から基本アピールポイントを取得する
+ * @param   wazano		技番号
+ * @retval  基本アピールポイント
  */
 //--------------------------------------------------------------
 int ACALC_BaseAppealGet(int wazano)
@@ -71,12 +71,12 @@ int ACALC_BaseAppealGet(int wazano)
 
 //--------------------------------------------------------------
 /**
- * @brief   �w�肵���u���[�_�[���I�񂾐R�����A���ɉ��l�w�����Ă��邩���ׂ�
+ * @brief   指定したブリーダーが選んだ審判を、他に何人指名しているか調べる
  *
- * @param   a_game				���Z�̓Q�[���i�s�p�����[�^�ւ̃|�C���^
- * @param   check_breeder		���ׂ�u���[�_�[��No
+ * @param   a_game				演技力ゲーム進行パラメータへのポインタ
+ * @param   check_breeder		調べるブリーダーのNo
  *
- * @retval  �w����������l��(���Ȃ������ꍇ��0)
+ * @retval  指名が被った人数(被らなかった場合は0)
  */
 //--------------------------------------------------------------
 int ACALC_JudgeSufferCheck(ACTIN_GAME_PARAM *a_game, int check_breeder)
@@ -89,15 +89,15 @@ int ACALC_JudgeSufferCheck(ACTIN_GAME_PARAM *a_game, int check_breeder)
 			count++;
 		}
 	}
-	count--;	//�����̕�������
+	count--;	//自分の分を引く
 	return count;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   �R���w����������l���ɂ���Ĕ�������A�s�[���|�C���g���擾����
- * @param   suffer_num		������l��
- * @retval  �擾�o����A�s�[���|�C���g
+ * @brief   審判指名が被った人数によって発生するアピールポイントを取得する
+ * @param   suffer_num		被った人数
+ * @retval  取得出来るアピールポイント
  */
 //--------------------------------------------------------------
 int ACALC_JudgeSufferPointCheck(int suffer_num)
@@ -114,14 +114,14 @@ int ACALC_JudgeSufferPointCheck(int suffer_num)
 
 //--------------------------------------------------------------
 /**
- * @brief   �o�����Z�ɂ���ă{���e�[�W�������������邩�擾����
+ * @brief   出した技によってボルテージがいくつ増減するか取得する
  *
- * @param   contest_type		���ݎQ�����̃R���e�X�g�^�C�v
- * @param   wazano				�Z�ԍ�
- * @param   judge_no			�I�񂾐R���̔ԍ�
- * @param   special_judge_no	�����R���̔ԍ�
+ * @param   contest_type		現在参加中のコンテストタイプ
+ * @param   wazano				技番号
+ * @param   judge_no			選んだ審判の番号
+ * @param   special_judge_no	凄い審判の番号
  *
- * @retval  �{���e�[�W�����l
+ * @retval  ボルテージ増減値
  */
 //--------------------------------------------------------------
 int ACALC_VoltageUpDownCheck(int contest_type, int wazano, int judge_no, int special_judge_no)
@@ -131,7 +131,7 @@ int ACALC_VoltageUpDownCheck(int contest_type, int wazano, int judge_no, int spe
 	
 	waza_con_type = WT_WazaDataParaGet(wazano, ID_WTD_contype);
 	point = ConTypeVoltageTbl[contest_type][waza_con_type];
-#if 0	//�����R���ł��{�P�̂܂܂ɂȂ��� 2006.03.11(�y)
+#if 0	//凄い審判でも＋１のままになった 2006.03.11(土)
 	if(judge_no == special_judge_no){
 		point *= 2;
 	}
@@ -141,20 +141,20 @@ int ACALC_VoltageUpDownCheck(int contest_type, int wazano, int judge_no, int spe
 
 //--------------------------------------------------------------
 /**
- * @brief   �u���[�_�[�\�[�g�����s
+ * @brief   ブリーダーソートを実行
  *
- * @param   a_game		���Z�̓Q�[���i�s�p�����[�^�ւ̃|�C���^
+ * @param   a_game		演技力ゲーム進行パラメータへのポインタ
  */
 //--------------------------------------------------------------
-//���ԑ����U�w�肵���ꍇ�Ƀ\�[�g����p�ɓ���鉼AP
-//(�ʏ�ł͎擾������Ȃ����̒l�����鎖�Ō��ɍs���悤�ɂ��Ă���)
+//順番操作後攻指定した場合にソート操作用に入れる仮AP
+//(通常では取得しきれない程の値を入れる事で後ろに行くようにしている)
 ALIGN4 static const s16 NextSortSpecifyEndAP[] = {29970, 29980, 29990, 30000};
-//���ԑ����U�w�肵���ꍇ�Ƀ\�[�g����p�ɓ���鉼AP
-//(�ʏ�ł͎擾������Ȃ����̒l�����鎖�őO�ɗ���悤�ɂ��Ă���)
+//順番操作先攻指定した場合にソート操作用に入れる仮AP
+//(通常では取得しきれない程の値を入れる事で前に来るようにしている)
 ALIGN4 static const s16 NextSortSpecifyFirstAP[] = {-30000, -29990, -29980, -29970};
-//���ԑ��색���_���w�肵���ꍇ�Ƀ\�[�g����p�ɓ���鉼AP
-//(�ʏ�ł͎擾������Ȃ����̒l�ŁAFirst��End�̒��Ԃ��w�肷�鎖�ŁA��U�A��U�����
-//�e�����Ȃ��͈͂̏ꏊ�Ń����_��������)
+//順番操作ランダム指定した場合にソート操作用に入れる仮AP
+//(通常では取得しきれない程の値で、FirstとEndの中間を指定する事で、先攻、後攻操作に
+//影響しない範囲の場所でランダムさせる)
 ALIGN4 static const s16 NextSortRandomAP[] = {-10000, -500, 500, 10000};
 
 void ACALC_BreederSort(ACTIN_GAME_PARAM *a_game)
@@ -164,7 +164,7 @@ void ACALC_BreederSort(ACTIN_GAME_PARAM *a_game)
 	u8 b[BREEDER_MAX];
 	u8 before_pos[BREEDER_MAX];
 	
-	//�\�[�g�p�Ƀe���|�����̈��AP�l�ƃu���[�_�[�ԍ�������
+	//ソート用にテンポラリ領域にAP値とブリーダー番号を入れる
 	for(i = 0; i < BREEDER_MAX; i++){
 		a[i] = a_game->app_turn[i];
 		b[i] = i;
@@ -176,7 +176,7 @@ void ACALC_BreederSort(ACTIN_GAME_PARAM *a_game)
 		}
 	}
 	
-	//���ԑ��삪���s����Ă���ꍇ�́A�C�ӂ̏ꏊ�ɂ��܂��\�[�g�����悤��AP�l��ύX����
+	//順番操作が実行されている場合は、任意の場所にうまくソートされるようにAP値を変更する
 	{
 		for(i = 0; i < BREEDER_MAX; i++){
 			switch(a_game->wazapara.personal[i].next_sort){
@@ -185,37 +185,37 @@ void ACALC_BreederSort(ACTIN_GAME_PARAM *a_game)
 				break;
 			case AWK_SORT_SPECIFY_FIRST:
 				a[i] = NextSortSpecifyFirstAP[a_game->wazapara.personal[i].next_pos];
-				OS_TPrintf("�u���[�_�[�ԍ�%d�A���ԑ���(��U)�����^�[��%d�Ԗڂ̃A�s�[��\n", i, 
+				OS_TPrintf("ブリーダー番号%d、順番操作(先攻)＝次ターン%d番目のアピール\n", i, 
 					a_game->wazapara.personal[i].next_pos);
 				break;
 			case AWK_SORT_SPECIFY_END:
 				a[i] = NextSortSpecifyEndAP[a_game->wazapara.personal[i].next_pos];
-				OS_TPrintf("�u���[�_�[�ԍ�%d�A���ԑ���(��U)�����^�[��%d�Ԗڂ̃A�s�[��\n", i, 
+				OS_TPrintf("ブリーダー番号%d、順番操作(後攻)＝次ターン%d番目のアピール\n", i, 
 					a_game->wazapara.personal[i].next_pos);
 				break;
 			case AWK_SORT_RANDOM:
 				a[i] = NextSortRandomAP[a_game->wazapara.personal[i].next_pos];
-				OS_TPrintf("�u���[�_�[�ԍ�%d�A���ԑ���(�����_��)�����^�[��%d�Ԗڂ̃A�s�[��\n", i, 
+				OS_TPrintf("ブリーダー番号%d、順番操作(ランダム)＝次ターン%d番目のアピール\n", i, 
 					a_game->wazapara.personal[i].next_pos);
 				break;
 			}
 		}
 	}
 	
-	//AP�l���Ƀ\�[�g���s
+	//AP値順にソート実行
 	for(i = 0; i < BREEDER_MAX - 1; i++){
 		for(j = BREEDER_MAX - 1; j > i; j--){
 			if(a[j-1] > a[j] 
 					|| (a[j-1] == a[j] && before_pos[j-1] < before_pos[j])){
-				//AP�l����ւ�
+				//AP値入れ替え
 				t = a[j];
 				a[j] = a[j-1];
 				a[j-1] = t;
-				//�u���[�_�[�ԍ����ꂩ��
+				//ブリーダー番号入れかえ
 				t = b[j];
 				b[j] = b[j-1];
 				b[j-1] = t;
-				//����ւ��O�̏��ԓ���ւ�
+				//入れ替え前の順番入れ替え
 				t = before_pos[j];
 				before_pos[j] = before_pos[j-1];
 				before_pos[j-1] = t;
@@ -223,10 +223,10 @@ void ACALC_BreederSort(ACTIN_GAME_PARAM *a_game)
 		}
 	}
 	
-	//���ёւ������ʂ��Z�b�g
+	//並び替えた結果をセット
 	for(i = 0; i < BREEDER_MAX; i++){
 		a_game->breeder_sort[i] = b[i];
-		OS_TPrintf("����%d�F�u���[�_�[�ԍ�%d, �����܂ł̍��vAP�l=%d\n", 
+		OS_TPrintf("順番%d：ブリーダー番号%d, ここまでの合計AP値=%d\n", 
 			i, b[i], a_game->app_total[b[i]]);
 	}
 }

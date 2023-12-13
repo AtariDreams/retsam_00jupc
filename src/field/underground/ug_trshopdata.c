@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	ug_treasureshopdata.c
- * @brief	•ó‰®‚ÌŒğŠ·‘Î‰ƒf[ƒ^
+ * @brief	å®å±‹ã®äº¤æ›å¯¾å¿œãƒ‡ãƒ¼ã‚¿
  * @author	k.ohno
  * @date	2006.3.9
  */
@@ -17,8 +17,8 @@ typedef struct UG_TREASURESHOPDATA_tag
 
 //------------------------------------------------------------------
 /**
- * @brief	SHOP‚Å‚Ì•óŒğŠ·í—Şæ“¾
- * @param	treasureType		ã©í—Ş
+ * @brief	SHOPã§ã®å®äº¤æ›ç¨®é¡å–å¾—
+ * @param	treasureType		ç½ ç¨®é¡
  * @return	StoneType_e
  */
 //------------------------------------------------------------------
@@ -28,8 +28,8 @@ const u8 TrShopGetChangeStoneType(const int treasureType)
 }
 //------------------------------------------------------------------
 /**
- * @brief	SHOP‚Å‚Ì•óŒğŠ·Å¬ƒŒ[ƒgæ“¾
- * @param	treasureType		ã©í—Ş
+ * @brief	SHOPã§ã®å®äº¤æ›æœ€å°ãƒ¬ãƒ¼ãƒˆå–å¾—
+ * @param	treasureType		ç½ ç¨®é¡
  * @return	carat 1-99
  */
 //------------------------------------------------------------------
@@ -39,8 +39,8 @@ const u8 TrShopGetChangeStoneCaratMin(const int treasureType)
 }
 //------------------------------------------------------------------
 /**
- * @brief	SHOP‚Å‚Ì•óŒğŠ·Å‘åƒŒ[ƒgæ“¾
- * @param	treasureType		ã©í—Ş
+ * @brief	SHOPã§ã®å®äº¤æ›æœ€å¤§ãƒ¬ãƒ¼ãƒˆå–å¾—
+ * @param	treasureType		ç½ ç¨®é¡
  * @return	carat 1-99
  */
 //------------------------------------------------------------------

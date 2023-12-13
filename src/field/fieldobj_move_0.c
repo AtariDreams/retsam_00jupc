@@ -2,7 +2,7 @@
 /**
  *
  * @file	fieldobj_move_0.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@Šî–{“®ìŒn‚»‚Ì0
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€åŸºæœ¬å‹•ä½œç³»ãã®0
  * @author	kagaya
  * @data	05.07.21
  *
@@ -17,20 +17,20 @@
 //==============================================================================
 //	define
 //==============================================================================
-#define WAIT_END (-1)										///<ƒEƒFƒCƒgI’[
+#define WAIT_END (-1)										///<ã‚¦ã‚§ã‚¤ãƒˆçµ‚ç«¯
 
 //--------------------------------------------------------------
-//	MV_RNDŒn@ˆÚ“®ƒ`ƒFƒbƒN•û®¯•Ê
+//	MV_RNDç³»ã€€ç§»å‹•ãƒã‚§ãƒƒã‚¯æ–¹å¼è­˜åˆ¥
 //--------------------------------------------------------------
 enum
 {
-	MV_RND_MOVE_CHECK_NORMAL = 0,				///<’Êíƒ`ƒFƒbƒN
-	MV_RND_MOVE_CHECK_RECT,						///<‹éŒ`ƒ`ƒFƒbƒNƒAƒŠ
-	MV_RND_MOVE_CHECK_LIMIT_ONLY,				///<ˆÚ“®§ŒÀƒ`ƒFƒbƒN‚Ì‚İ
+	MV_RND_MOVE_CHECK_NORMAL = 0,				///<é€šå¸¸ãƒã‚§ãƒƒã‚¯
+	MV_RND_MOVE_CHECK_RECT,						///<çŸ©å½¢ãƒã‚§ãƒƒã‚¯ã‚¢ãƒª
+	MV_RND_MOVE_CHECK_LIMIT_ONLY,				///<ç§»å‹•åˆ¶é™ãƒã‚§ãƒƒã‚¯ã®ã¿
 };
 
 //--------------------------------------------------------------
-///	MV_SPIN_DIR“®ì”Ô†
+///	MV_SPIN_DIRå‹•ä½œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -43,7 +43,7 @@ enum
 #define MV_SPIN_WAIT_FRAME (24)	//AGB 48 frame
 
 //--------------------------------------------------------------
-///	MV_REWAR“®ì”Ô†
+///	MV_REWARå‹•ä½œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -54,7 +54,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	MV_RT2“®ì”Ô†
+///	MV_RT2å‹•ä½œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -64,7 +64,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	MV_RT3“®ì”Ô†
+///	MV_RT3å‹•ä½œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -72,7 +72,7 @@ enum
 	SEQNO_MV_RT3_MOVE,
 };
 
-#define MV_RT3_TURN_END_NO (3)	///<3“_„‰ñI—¹’l
+#define MV_RT3_TURN_END_NO (3)	///<3ç‚¹å·¡å›çµ‚äº†å€¤
 
 enum
 {
@@ -81,7 +81,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	MV_RT4“®ì”Ô†
+///	MV_RT4å‹•ä½œç•ªå·
 //--------------------------------------------------------------
 enum
 {
@@ -92,7 +92,7 @@ enum
 };
 
 //--------------------------------------------------------------
-///	ƒTƒu“®ì@ƒNƒ‹ƒNƒ‹ˆÚ“®@‰ñ“]•ûŒü
+///	ã‚µãƒ–å‹•ä½œã€€ã‚¯ãƒ«ã‚¯ãƒ«ç§»å‹•ã€€å›è»¢æ–¹å‘
 //--------------------------------------------------------------
 enum
 {
@@ -101,10 +101,10 @@ enum
 	RT_KURU2_MAX,
 };
 
-#define RT_KURU2_DIR_MAX (DIR_4_MAX)		///<ƒNƒ‹ƒNƒ‹ˆÚ“®Å‘å‰ñ“]”
+#define RT_KURU2_DIR_MAX (DIR_4_MAX)		///<ã‚¯ãƒ«ã‚¯ãƒ«ç§»å‹•æœ€å¤§å›è»¢æ•°
 
 //--------------------------------------------------------------
-///	•ûŒüƒe[ƒuƒ‹ID
+///	æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«ID
 //--------------------------------------------------------------
 enum
 {
@@ -155,14 +155,14 @@ enum
 //	debug
 //--------------------------------------------------------------
 #ifdef PM_DEBUG
-//#define DEBUG_SEARCH	//—LŒø‚Å•ûŒüØ‚è‘Ö‚¦Œ^“®ì‘S‚Ä©‹@ƒT[ƒ`
+//#define DEBUG_SEARCH	//æœ‰åŠ¹ã§æ–¹å‘åˆ‡ã‚Šæ›¿ãˆå‹å‹•ä½œå…¨ã¦è‡ªæ©Ÿã‚µãƒ¼ãƒ
 #endif
 
 //==============================================================================
 //	typedef
 //==============================================================================
 //--------------------------------------------------------------
-//	DIR_TBL\‘¢‘Ì
+//	DIR_TBLæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -171,7 +171,7 @@ typedef struct
 }DIR_TBL;
 
 //--------------------------------------------------------------
-///	RECT\‘¢‘Ì
+///	RECTæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -182,7 +182,7 @@ typedef struct
 }RECT;
 
 //--------------------------------------------------------------
-///	RT_KURUKURU_WORK\‘¢‘Ì
+///	RT_KURUKURU_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -195,19 +195,19 @@ typedef struct
 #define RT_KURUKURU_WORK_SIZE (sizeof(RT_KURUKURU_WORK))
 
 //--------------------------------------------------------------
-///	MV_DIR_RND_WORK\‘¢‘Ì
+///	MV_DIR_RND_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
-	u16 seq_no;												///<ƒV[ƒPƒ“ƒXƒiƒ“ƒo[
-	s16 wait;												///<•\¦ƒEƒFƒCƒg
+	u16 seq_no;												///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼
+	s16 wait;												///<è¡¨ç¤ºã‚¦ã‚§ã‚¤ãƒˆ
 	int tbl_id;
 }MV_DIR_RND_WORK;
 
-#define MV_DIR_RND_WORK_SIZE (sizeof(MV_DIR_RND_WORK))		///<MV_DIR_RND_WORKƒTƒCƒY
+#define MV_DIR_RND_WORK_SIZE (sizeof(MV_DIR_RND_WORK))		///<MV_DIR_RND_WORKã‚µã‚¤ã‚º
 
 //--------------------------------------------------------------
-///	MV_RND_WORK \‘¢‘Ì
+///	MV_RND_WORK æ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -221,7 +221,7 @@ typedef struct
 #define MV_RND_WORK_SIZE (sizeof(MV_RND_WORK))
 
 //--------------------------------------------------------------
-///	MV_DIR_WORK \‘¢‘Ì
+///	MV_DIR_WORK æ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -232,7 +232,7 @@ typedef struct
 #define MV_DIR_WORK_SIZE (sizeof(MV_DIR_WORK))
 
 //--------------------------------------------------------------
-///	MV_SPIN_DIR_WORK\‘¢‘Ì
+///	MV_SPIN_DIR_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -246,7 +246,7 @@ typedef struct
 #define MV_SPIN_DIR_WORK_SIZE (sizeof(MV_SPIN_DIR_WORK))
 
 //--------------------------------------------------------------
-///	MV_RT2_WORK\‘¢‘Ì
+///	MV_RT2_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -258,7 +258,7 @@ typedef struct
 #define MV_RT2_WORK_SIZE (sizeof(MV_RT2_WORK))
 
 //--------------------------------------------------------------
-///	MV_RT3_WORK\‘¢‘Ì
+///	MV_RT3_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -273,7 +273,7 @@ typedef struct
 #define MV_RT3_WORK_SIZE (sizeof(MV_RT3_WORK))
 
 //--------------------------------------------------------------
-///	MV_RT4_WORK\‘¢‘Ì
+///	MV_RT4_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -291,7 +291,7 @@ typedef struct
 #define MV_RT4_WORK_SIZE (sizeof(MV_RT4_WORK))
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static void DirRndWorkInit( FIELD_OBJ_PTR fldobj, int id );
 
@@ -377,17 +377,17 @@ static const DIR_TBL DATA_MoveDirTbl[DIRID_MAX];
 const int JikiDashSensorMoveCodeTbl[];
 
 //==============================================================================
-//	ƒfƒoƒbƒO
+//	ãƒ‡ãƒãƒƒã‚°
 //==============================================================================
 
 //==============================================================================
-//	MV_DIR_RND	ƒ‰ƒ“ƒ_ƒ€‚É•ûŒüØ‚è‘Ö‚¦
+//	MV_DIR_RND	ãƒ©ãƒ³ãƒ€ãƒ ã«æ–¹å‘åˆ‡ã‚Šæ›¿ãˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_DIR_RND_WORK‰Šú‰»
+ * MV_DIR_RND_WORKåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	id		•ûŒüƒe[ƒuƒ‹ID
+ * @param	id		æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -395,17 +395,17 @@ static void DirRndWorkInit( FIELD_OBJ_PTR fldobj, int id )
 {
 	MV_DIR_RND_WORK *work;
 	
-	work = FieldOBJ_MoveProcWorkInit( fldobj, MV_DIR_RND_WORK_SIZE );	//“®ìƒ[ƒN‰Šú‰»
-	work->wait = TblRndGet( DATA_MvDirRndWaitTbl, WAIT_END );			//‘Ò‚¿ŠÔƒZƒbƒg
+	work = FieldOBJ_MoveProcWorkInit( fldobj, MV_DIR_RND_WORK_SIZE );	//å‹•ä½œãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
+	work->wait = TblRndGet( DATA_MvDirRndWaitTbl, WAIT_END );			//å¾…ã¡æ™‚é–“ã‚»ãƒƒãƒˆ
 	work->tbl_id = id;
 	
-	FieldOBJ_DrawStatusSet( fldobj, DRAW_STA_STOP );					//•`‰æƒXƒe[ƒ^ƒX@’â~
-	FieldOBJ_StatusBitOFF_Move( fldobj );								//í‚É’â~’†
+	FieldOBJ_DrawStatusSet( fldobj, DRAW_STA_STOP );					//æç”»ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã€€åœæ­¢
+	FieldOBJ_StatusBitOFF_Move( fldobj );								//å¸¸ã«åœæ­¢ä¸­
 }
 
 //--------------------------------------------------------------
 /**
- * MV_DIR_RND ‰Šú‰»
+ * MV_DIR_RND åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -417,7 +417,7 @@ void FieldOBJ_MoveDirRnd_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_UL ‰Šú‰»
+ * MV_RND_UL åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -429,7 +429,7 @@ void FieldOBJ_MoveDirRndUL_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_UR ‰Šú‰»
+ * MV_RND_UR åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -441,7 +441,7 @@ void FieldOBJ_MoveDirRndUR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_DL ‰Šú‰»
+ * MV_RND_DL åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -453,7 +453,7 @@ void FieldOBJ_MoveDirRndDL_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_DR ‰Šú‰»
+ * MV_RND_DR åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -465,7 +465,7 @@ void FieldOBJ_MoveDirRndDR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_UDL ‰Šú‰»
+ * MV_RND_UDL åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -477,7 +477,7 @@ void FieldOBJ_MoveDirRndUDL_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_UDR ‰Šú‰»
+ * MV_RND_UDR åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -489,7 +489,7 @@ void FieldOBJ_MoveDirRndUDR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_ULR ‰Šú‰»
+ * MV_RND_ULR åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -501,7 +501,7 @@ void FieldOBJ_MoveDirRndULR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_DLR ‰Šú‰»
+ * MV_RND_DLR åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -513,7 +513,7 @@ void FieldOBJ_MoveDirRndDLR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_UD ‰Šú‰»
+ * MV_RND_UD åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -525,7 +525,7 @@ void FieldOBJ_MoveDirRndUD_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_LR ‰Šú‰»
+ * MV_RND_LR åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -537,9 +537,9 @@ void FieldOBJ_MoveDirRndLR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_DIR_RND “®ì
+ * MV_DIR_RND å‹•ä½œ
  * @param	fldobj		FIELD_OBJ_PTR 
- * @retval	int			TRUE=‰Šú‰»¬Œ÷
+ * @retval	int			TRUE=åˆæœŸåŒ–æˆåŠŸ
  */
 //--------------------------------------------------------------
 void FieldOBJ_MoveDirRnd_Move( FIELD_OBJ_PTR fldobj )
@@ -554,7 +554,7 @@ void FieldOBJ_MoveDirRnd_Move( FIELD_OBJ_PTR fldobj )
 		case 0:
 			work->wait--;
 		
-			if( work->wait <= 0 ){									//‘Ò‚¿ŠÔ 0
+			if( work->wait <= 0 ){									//å¾…ã¡æ™‚é–“ 0
 				work->wait = TblRndGet( DATA_MvDirRndWaitTbl, WAIT_END );
 				FieldOBJ_DirDispCheckSet( fldobj, TblIDRndGet(work->tbl_id,DIR_NOT) );
 			}
@@ -566,7 +566,7 @@ void FieldOBJ_MoveDirRnd_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_DIR_RND íœŠÖ”
+ * MV_DIR_RND å‰Šé™¤é–¢æ•°
  * @param	fldobj	FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -576,11 +576,11 @@ void FieldOBJ_MoveDirRnd_Delete( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	MV_RNDŒn	ƒ‰ƒ“ƒ_ƒ€‚ÉˆÚ“®
+//	MV_RNDç³»	ãƒ©ãƒ³ãƒ€ãƒ ã«ç§»å‹•
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_RND ‰Šú‰»
+ * MV_RND åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -592,7 +592,7 @@ void FieldOBJ_MoveRnd_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_V ‰Šú‰»
+ * MV_RND_V åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -604,7 +604,7 @@ void FieldOBJ_MoveRndV_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_H ‰Šú‰»
+ * MV_RND_H åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -616,7 +616,7 @@ void FieldOBJ_MoveRndH_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_H_LIM ‰Šú‰»
+ * MV_RND_H_LIM åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -628,7 +628,7 @@ void FieldOBJ_MoveRndHLim_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RND_ULŒn ‰Šú‰»
+ * MV_RND_ULç³» åˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR 
  * @retval	nothing
  */
@@ -639,16 +639,16 @@ void FieldOBJ_MoveRndRect_Init( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	MV_RNDŒn@ƒp[ƒc
+//	MV_RNDç³»ã€€ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_RND_WORK‰Šú‰»
+ * MV_RND_WORKåˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR
- * @param	ac			ˆÚ“®‚·‚éÛ‚Ég—p‚·‚éƒAƒjƒ[ƒVƒ‡ƒ“ƒRƒ}ƒ“ƒhB
- * FieldOBJ_AcmdCodeDirChange()‚Å•ÏŠ·‘ÎÛ‚Æ‚È‚éBAC_WALK_U_32F“™
- * @param	tbl_id		•ûŒüƒe[ƒuƒ‹ID
- * @param	check		MV_RND_MOVE_CHECK_NORMAL“™
+ * @param	ac			ç§»å‹•ã™ã‚‹éš›ã«ä½¿ç”¨ã™ã‚‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚³ãƒãƒ³ãƒ‰ã€‚
+ * FieldOBJ_AcmdCodeDirChange()ã§å¤‰æ›å¯¾è±¡ã¨ãªã‚‹ã€‚AC_WALK_U_32Fç­‰
+ * @param	tbl_id		æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«ID
+ * @param	check		MV_RND_MOVE_CHECK_NORMALç­‰
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -667,7 +667,7 @@ static void MvRndWorkInit( FIELD_OBJ_PTR fldobj, int ac, int tbl_id, int check )
 
 //--------------------------------------------------------------
 /**
- * MV_RNDŒn@“®ì
+ * MV_RNDç³»ã€€å‹•ä½œ
  * @param	fldobj		FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -721,7 +721,7 @@ void FieldOBJ_MvRnd_Move( FIELD_OBJ_PTR fldobj )
 			
 			if( hit != FLDOBJ_MOVE_HIT_BIT_NON ){
 				if( work->move_check_type == MV_RND_MOVE_CHECK_LIMIT_ONLY ){
-					if( (hit&FLDOBJ_MOVE_HIT_BIT_LIM) ){ //ˆÚ“®§ŒÀ‚Ì‚İŒ©‚é
+					if( (hit&FLDOBJ_MOVE_HIT_BIT_LIM) ){ //ç§»å‹•åˆ¶é™ã®ã¿è¦‹ã‚‹
 						work->seq_no = 0;
 						break;
 					}
@@ -748,13 +748,13 @@ void FieldOBJ_MvRnd_Move( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	MV_RND_UL“™ƒp[ƒc
+//	MV_RND_ULç­‰ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ˆÚ“®‰Â”\”ÍˆÍ‹éŒ`ì¬
+ * ç§»å‹•å¯èƒ½ç¯„å›²çŸ©å½¢ä½œæˆ
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	rect	‹éŒ`Ši”[æ
+ * @param	rect	çŸ©å½¢æ ¼ç´å…ˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -803,16 +803,16 @@ static void MvRndRectMake( FIELD_OBJ_PTR fldobj, RECT *rect )
 		rect->top = iz; rect->bottom = iz + lz;
 		break;
 	default:
-		GF_ASSERT( 0 && "MvRndRectMake()–¢‘Î‰“®ìƒR[" );
+		GF_ASSERT( 0 && "MvRndRectMake()æœªå¯¾å¿œå‹•ä½œã‚³ãƒ¼" );
 	}
 }
 
 //--------------------------------------------------------------
 /**
- * ˆÚ“®‰Â”\”ÍˆÍƒ`ƒFƒbƒN@•ûŒüw’è
+ * ç§»å‹•å¯èƒ½ç¯„å›²ãƒã‚§ãƒƒã‚¯ã€€æ–¹å‘æŒ‡å®š
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		ˆÚ“®•ûŒü
- * @retval	int		TRUE=‰Â”\
+ * @param	dir		ç§»å‹•æ–¹å‘
+ * @retval	int		TRUE=å¯èƒ½
  */
 //--------------------------------------------------------------
 static int MvRndRectMoveLimitCheck( FIELD_OBJ_PTR fldobj, int dir )
@@ -836,13 +836,13 @@ static int MvRndRectMoveLimitCheck( FIELD_OBJ_PTR fldobj, int dir )
 }
 
 //==============================================================================
-//	MV_UPŒn@í‚Éw’è•ûŒü‚ğŒü‚­
+//	MV_UPç³»ã€€å¸¸ã«æŒ‡å®šæ–¹å‘ã‚’å‘ã
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_UPŒn@‰Šú‰»
+ * MV_UPç³»ã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		Œü‚­•ûŒü
+ * @param	dir		å‘ãæ–¹å‘
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -860,7 +860,7 @@ static void MvDirWorkInit( FIELD_OBJ_PTR fldobj, int dir )
 
 //--------------------------------------------------------------
 /**
- * MV_UPŒn@“®ì
+ * MV_UPç³»ã€€å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -883,7 +883,7 @@ void FieldOBJ_MoveDir_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_UP ‰Šú‰»
+ * MV_UP åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -895,7 +895,7 @@ void FieldOBJ_MoveUp_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_DOWN ‰Šú‰»
+ * MV_DOWN åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -907,7 +907,7 @@ void FieldOBJ_MoveDown_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_LEFT ‰Šú‰»
+ * MV_LEFT åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -919,7 +919,7 @@ void FieldOBJ_MoveLeft_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RIGHT ‰Šú‰»
+ * MV_RIGHT åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -930,13 +930,13 @@ void FieldOBJ_MoveRight_Init( FIELD_OBJ_PTR fldobj )
 }
 
 //==============================================================================
-//	MV_SPINŒn@•ûŒü‰ñ“]
+//	MV_SPINç³»ã€€æ–¹å‘å›è»¢
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_SPIN_DIR_WORK‰Šú‰»
+ * MV_SPIN_DIR_WORKåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
- * @param	dir		DIR_LEFT=¶ü‚èADIR_RIGHT=‰Eü‚è
+ * @param	dir		DIR_LEFT=å·¦å‘¨ã‚Šã€DIR_RIGHT=å³å‘¨ã‚Š
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -954,7 +954,7 @@ static void MvSpinDirWorkInit( FIELD_OBJ_PTR fldobj, int dir )
 
 //--------------------------------------------------------------
 /**
- * MV_SPIN_L@‰Šú‰»
+ * MV_SPIN_Lã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -966,7 +966,7 @@ void FieldOBJ_MoveSpinLeft_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_SPIN_R@‰Šú‰»
+ * MV_SPIN_Rã€€åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -978,7 +978,7 @@ void FieldOBJ_MoveSpinRight_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_SPINŒn@“®ì
+ * MV_SPINç³»ã€€å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -993,10 +993,10 @@ void FieldOBJ_MoveSpin_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_SPINŒn@“®ì@Œ»İ•ûŒüƒRƒ}ƒ“ƒhƒZƒbƒg
+ * MV_SPINç³»ã€€å‹•ä½œã€€ç¾åœ¨æ–¹å‘ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_SPIN_DIR_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvSpinMove_DirCmdSet( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
@@ -1016,10 +1016,10 @@ static int MvSpinMove_DirCmdSet( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_SPINŒn@“®ì@ƒRƒ}ƒ“ƒhƒAƒNƒVƒ‡ƒ“
+ * MV_SPINç³»ã€€å‹•ä½œã€€ã‚³ãƒãƒ³ãƒ‰ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_SPIN_DIR_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvSpinMove_CmdAction( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
@@ -1035,10 +1035,10 @@ static int MvSpinMove_CmdAction( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_SPINŒn@“®ì@ƒEƒFƒCƒg
+ * MV_SPINç³»ã€€å‹•ä½œã€€ã‚¦ã‚§ã‚¤ãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_SPIN_DIR_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvSpinMove_Wait( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
@@ -1062,10 +1062,10 @@ static int MvSpinMove_Wait( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_SPINŒn@“®ì@Ÿ•ûŒüƒZƒbƒg
+ * MV_SPINç³»ã€€å‹•ä½œã€€æ¬¡æ–¹å‘ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_SPIN_DIR_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvSpinMove_NextDirSet( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
@@ -1088,7 +1088,7 @@ static int MvSpinMove_NextDirSet( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
 		}
 	}
 	
-	GF_ASSERT( tbl[i] != DIR_NOT && "FieldOBJ MV_SPIN‰Šú•ûŒüƒGƒ‰[" );
+	GF_ASSERT( tbl[i] != DIR_NOT && "FieldOBJ MV_SPINåˆæœŸæ–¹å‘ã‚¨ãƒ©ãƒ¼" );
 	
 	i++;
 	
@@ -1105,7 +1105,7 @@ static int MvSpinMove_NextDirSet( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	MV_SPIN“®ìƒe[ƒuƒ‹
+///	MV_SPINå‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_MvSpinMoveTbl[])( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work ) =
 {
@@ -1116,11 +1116,11 @@ static int (* const DATA_MvSpinMoveTbl[])( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WOR
 };
 
 //==============================================================================
-//	MV_REWAR@‰E‰ñ“]<->¶‰ñ“]
+//	MV_REWARã€€å³å›è»¢<->å·¦å›è»¢
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_REWAR ‰Šú‰»
+ * MV_REWAR åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1132,7 +1132,7 @@ void FieldOBJ_MoveRewar_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_REWARŒn@“®ì
+ * MV_REWARç³»ã€€å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1147,10 +1147,10 @@ void FieldOBJ_MoveRewar_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_REWAR@“®ì@Œ»İ•ûŒüƒRƒ}ƒ“ƒhƒZƒbƒg
+ * MV_REWARã€€å‹•ä½œã€€ç¾åœ¨æ–¹å‘ã‚³ãƒãƒ³ãƒ‰ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_SPIN_DIR_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvRewarMove_DirCmdSet( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
@@ -1165,10 +1165,10 @@ static int MvRewarMove_DirCmdSet( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_REWAR@“®ì@ƒRƒ}ƒ“ƒhƒAƒNƒVƒ‡ƒ“
+ * MV_REWARã€€å‹•ä½œã€€ã‚³ãƒãƒ³ãƒ‰ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_SPIN_DIR_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvRewarMove_CmdAction( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
@@ -1184,10 +1184,10 @@ static int MvRewarMove_CmdAction( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_REWARŒn@“®ì@ƒEƒFƒCƒg
+ * MV_REWARç³»ã€€å‹•ä½œã€€ã‚¦ã‚§ã‚¤ãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_SPIN_DIR_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvRewarMove_Wait( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
@@ -1204,10 +1204,10 @@ static int MvRewarMove_Wait( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_REWAR@“®ì@Ÿ•ûŒüƒZƒbƒg
+ * MV_REWARã€€å‹•ä½œã€€æ¬¡æ–¹å‘ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_SPIN_DIR_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvRewarMove_NextDirSet( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work )
@@ -1230,7 +1230,7 @@ static int MvRewarMove_NextDirSet( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work 
 		}
 	}
 	
-	GF_ASSERT( tbl[i] != DIR_NOT && "FieldOBJ MV_REWAR‰Šú•ûŒüƒGƒ‰[" );
+	GF_ASSERT( tbl[i] != DIR_NOT && "FieldOBJ MV_REWARåˆæœŸæ–¹å‘ã‚¨ãƒ©ãƒ¼" );
 	
 	i++;
 	
@@ -1256,7 +1256,7 @@ static int MvRewarMove_NextDirSet( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work 
 }
 
 //--------------------------------------------------------------
-///	MV_SPIN“®ìƒe[ƒuƒ‹
+///	MV_SPINå‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_MvRewarMoveTbl[])( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WORK *work ) =
 {
@@ -1267,11 +1267,11 @@ static int (* const DATA_MvRewarMoveTbl[])( FIELD_OBJ_PTR fldobj, MV_SPIN_DIR_WO
 };
 
 //==============================================================================
-//	MV_RT2@ˆê•ûŒü‚ğ‰•œ	
+//	MV_RT2ã€€ä¸€æ–¹å‘ã‚’å¾€å¾©	
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_RT2 ‰Šú‰»
+ * MV_RT2 åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1289,7 +1289,7 @@ void FieldOBJ_MoveRoute2_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RT2 “®ì
+ * MV_RT2 å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1303,17 +1303,17 @@ void FieldOBJ_MoveRoute2_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RT2 “®ì@•ûŒüƒ`ƒFƒbƒN
+ * MV_RT2 å‹•ä½œã€€æ–¹å‘ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_RT2_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvRt2_DirCheck( FIELD_OBJ_PTR fldobj, MV_RT2_WORK *work )
 {
 	int dir;
 	
-	dir = FieldOBJ_DirHeaderGet( fldobj );						//ƒwƒbƒ_w’è•ûŒü
+	dir = FieldOBJ_DirHeaderGet( fldobj );						//ãƒ˜ãƒƒãƒ€æŒ‡å®šæ–¹å‘
 	
 	if( work->turn_flag == TRUE ){
 		dir = FieldOBJTool_DirFlip( dir );
@@ -1331,10 +1331,10 @@ static int MvRt2_DirCheck( FIELD_OBJ_PTR fldobj, MV_RT2_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_RT2 “®ì@“®ìƒZƒbƒg
+ * MV_RT2 å‹•ä½œã€€å‹•ä½œã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_RT2_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvRt2_MoveSet( FIELD_OBJ_PTR fldobj, MV_RT2_WORK *work )
@@ -1394,10 +1394,10 @@ static int MvRt2_MoveSet( FIELD_OBJ_PTR fldobj, MV_RT2_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_RT2 “®ì@“®ì’†
+ * MV_RT2 å‹•ä½œã€€å‹•ä½œä¸­
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_RT2_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvRt2_Move( FIELD_OBJ_PTR fldobj, MV_RT2_WORK *work )
@@ -1416,7 +1416,7 @@ static int MvRt2_Move( FIELD_OBJ_PTR fldobj, MV_RT2_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	MV_RT2“®ìƒe[ƒuƒ‹
+///	MV_RT2å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_MvRt2MoveTbl[])( FIELD_OBJ_PTR fldobj, MV_RT2_WORK *work ) =
 {
@@ -1426,15 +1426,15 @@ static int (* const DATA_MvRt2MoveTbl[])( FIELD_OBJ_PTR fldobj, MV_RT2_WORK *wor
 };
 
 //==============================================================================
-//	MV_RTURLD“™@3‰ÓŠ‰•œ
+//	MV_RTURLDç­‰ã€€3ç®‡æ‰€å¾€å¾©
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_RT3_WORK‰Šú‰»
+ * MV_RT3_WORKåˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR
- * @param	check_no	3“_ˆÚ“®‚Å“Á’è•ªŠò‚Æ‚·‚é“_
- * @param	check_type	MV_RT3_CHECK_TYPE_X“™
- * @param	tbl_id		ƒe[ƒuƒ‹ID
+ * @param	check_no	3ç‚¹ç§»å‹•ã§ç‰¹å®šåˆ†å²ã¨ã™ã‚‹ç‚¹
+ * @param	check_type	MV_RT3_CHECK_TYPE_Xç­‰
+ * @param	tbl_id		ãƒ†ãƒ¼ãƒ–ãƒ«ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1454,7 +1454,7 @@ static void MvRt3WorkInit( FIELD_OBJ_PTR fldobj, int check_no, int check_type, i
 
 //--------------------------------------------------------------
 /**
- * MV_RTURLD ‰Šú‰»
+ * MV_RTURLD åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1466,7 +1466,7 @@ void FieldOBJ_MoveRouteURLD_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTRLDU ‰Šú‰»
+ * MV_RTRLDU åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1478,7 +1478,7 @@ void FieldOBJ_MoveRouteRLDU_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTDURL‰Šú‰»
+ * MV_RTDURLåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1490,7 +1490,7 @@ void FieldOBJ_MoveRouteDURL_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTLDUR‰Šú‰»
+ * MV_RTLDURåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1502,7 +1502,7 @@ void FieldOBJ_MoveRouteLDUR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTULRD‰Šú‰»
+ * MV_RTULRDåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1514,7 +1514,7 @@ void FieldOBJ_MoveRouteULRD_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTLRDU‰Šú‰»
+ * MV_RTLRDUåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1526,7 +1526,7 @@ void FieldOBJ_MoveRouteLRDU_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTDULR‰Šú‰»
+ * MV_RTDULRåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1538,7 +1538,7 @@ void FieldOBJ_MoveRouteDULR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTRDUL‰Šú‰»
+ * MV_RTRDULåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1550,7 +1550,7 @@ void FieldOBJ_MoveRouteRDUL_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTLUDR‰Šú‰»
+ * MV_RTLUDRåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1562,7 +1562,7 @@ void FieldOBJ_MoveRouteLUDR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTUDRL‰Šú‰»
+ * MV_RTUDRLåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1574,7 +1574,7 @@ void FieldOBJ_MoveRouteUDRL_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTRLUD‰Šú‰»
+ * MV_RTRLUDåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1586,7 +1586,7 @@ void FieldOBJ_MoveRouteRLUD_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTDRLU‰Šú‰»
+ * MV_RTDRLUåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1598,7 +1598,7 @@ void FieldOBJ_MoveRouteDRLU_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTRUDL‰Šú‰»
+ * MV_RTRUDLåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1610,7 +1610,7 @@ void FieldOBJ_MoveRouteRUDL_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTUDLR‰Šú‰»
+ * MV_RTUDLRåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1622,7 +1622,7 @@ void FieldOBJ_MoveRouteUDLR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTLRUD‰Šú‰»
+ * MV_RTLRUDåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1634,7 +1634,7 @@ void FieldOBJ_MoveRouteLRUD_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTDLRU‰Šú‰»
+ * MV_RTDLRUåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1646,7 +1646,7 @@ void FieldOBJ_MoveRouteDLRU_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RT3“®ì@
+ * MV_RT3å‹•ä½œã€€
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1661,10 +1661,10 @@ void FieldOBJ_MoveRoute3_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RT3“®ì@ˆÚ“®•ûŒüƒZƒbƒg
+ * MV_RT3å‹•ä½œã€€ç§»å‹•æ–¹å‘ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_RT3_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvRt3Move_MoveDirSet( FIELD_OBJ_PTR fldobj, MV_RT3_WORK *work )
@@ -1748,10 +1748,10 @@ static int MvRt3Move_MoveDirSet( FIELD_OBJ_PTR fldobj, MV_RT3_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_RT3“®ì@ˆÚ“®
+ * MV_RT3å‹•ä½œã€€ç§»å‹•
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_RT3_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvRt3Move_MoveDir( FIELD_OBJ_PTR fldobj, MV_RT3_WORK *work )
@@ -1770,7 +1770,7 @@ static int MvRt3Move_MoveDir( FIELD_OBJ_PTR fldobj, MV_RT3_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	MV_RT3“®ìƒe[ƒuƒ‹
+///	MV_RT3å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_MvRt3MoveTbl[])( FIELD_OBJ_PTR fldobj, MV_RT3_WORK *work ) =
 {
@@ -1779,15 +1779,15 @@ static int (* const DATA_MvRt3MoveTbl[])( FIELD_OBJ_PTR fldobj, MV_RT3_WORK *wor
 };
 
 //==============================================================================
-//	MV_RTRL“™@‚S“_ˆÚ“®“®ì
+//	MV_RTRLç­‰ã€€ï¼”ç‚¹ç§»å‹•å‹•ä½œ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * MV_RT4_WORK‰Šú‰»
+ * MV_RT4_WORKåˆæœŸåŒ–
  * @param	fldobj		FIELD_OBJ_PTR
- * @param	check_no	4“_ˆÚ“®‚Å“Á’è•ªŠò‚Æ‚·‚é“_
- * @param	check_type	MV_RT3_CHECK_TYPE_X“™
- * @param	tbl_id		ƒe[ƒuƒ‹ID
+ * @param	check_no	4ç‚¹ç§»å‹•ã§ç‰¹å®šåˆ†å²ã¨ã™ã‚‹ç‚¹
+ * @param	check_type	MV_RT3_CHECK_TYPE_Xç­‰
+ * @param	tbl_id		ãƒ†ãƒ¼ãƒ–ãƒ«ID
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -1807,7 +1807,7 @@ static void MvRt4WorkInit( FIELD_OBJ_PTR fldobj, int check_no, int check_type, i
 
 //--------------------------------------------------------------
 /**
- * MV_RTUL‰Šú‰»
+ * MV_RTULåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1819,7 +1819,7 @@ void FieldOBJ_MoveRouteUL_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTDR‰Šú‰»
+ * MV_RTDRåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1831,7 +1831,7 @@ void FieldOBJ_MoveRouteDR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTLD‰Šú‰»
+ * MV_RTLDåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1843,7 +1843,7 @@ void FieldOBJ_MoveRouteLD_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTRU‰Šú‰»
+ * MV_RTRUåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1855,7 +1855,7 @@ void FieldOBJ_MoveRouteRU_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTUR‰Šú‰»
+ * MV_RTURåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1867,7 +1867,7 @@ void FieldOBJ_MoveRouteUR_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTDL‰Šú‰»
+ * MV_RTDLåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1879,7 +1879,7 @@ void FieldOBJ_MoveRouteDL_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTLU‰Šú‰»
+ * MV_RTLUåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1891,7 +1891,7 @@ void FieldOBJ_MoveRouteLU_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RTRD‰Šú‰»
+ * MV_RTRDåˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1903,7 +1903,7 @@ void FieldOBJ_MoveRouteRD_Init( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RT4Œn“®ì
+ * MV_RT4ç³»å‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	nothing
  */
@@ -1916,7 +1916,7 @@ void FieldOBJ_MoveRoute4_Move( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * MV_RT4“®ì@ƒ^[ƒ“‰ñ”‘‰Á
+ * MV_RT4å‹•ä½œã€€ã‚¿ãƒ¼ãƒ³å›æ•°å¢—åŠ 
  * @param	work	MV_RT4_WORK *
  * @retval	nothing
  */
@@ -1935,10 +1935,10 @@ static void MvRt4Move_TurnNoInc( MV_RT4_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_RT4“®ì@©‹@ƒ`ƒFƒbƒN
+ * MV_RT4å‹•ä½œã€€è‡ªæ©Ÿãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_RT4_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvRt4Move_JikiCheck( FIELD_OBJ_PTR fldobj, MV_RT4_WORK *work )
@@ -1965,10 +1965,10 @@ static int MvRt4Move_JikiCheck( FIELD_OBJ_PTR fldobj, MV_RT4_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_RT4“®ì@©‹@‚ğ”­Œ©@”ò‚Ñã‚ª‚è“®ì
+ * MV_RT4å‹•ä½œã€€è‡ªæ©Ÿã‚’ç™ºè¦‹ã€€é£›ã³ä¸ŠãŒã‚Šå‹•ä½œ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_RT4_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvRt4Move_DiscoveryJump( FIELD_OBJ_PTR fldobj, MV_RT4_WORK *work )
@@ -1983,10 +1983,10 @@ static int MvRt4Move_DiscoveryJump( FIELD_OBJ_PTR fldobj, MV_RT4_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_RT4“®ì@ˆÚ“®•ûŒüƒZƒbƒg
+ * MV_RT4å‹•ä½œã€€ç§»å‹•æ–¹å‘ã‚»ãƒƒãƒˆ
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_RT4_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvRt4Move_MoveDirSet( FIELD_OBJ_PTR fldobj, MV_RT4_WORK *work )
@@ -2070,10 +2070,10 @@ static int MvRt4Move_MoveDirSet( FIELD_OBJ_PTR fldobj, MV_RT4_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * MV_RT4“®ì@ˆÚ“®
+ * MV_RT4å‹•ä½œã€€ç§»å‹•
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	MV_RT4_WORK
- * @retval	int		TRUE=Ä‹A
+ * @retval	int		TRUE=å†å¸°
  */
 //--------------------------------------------------------------
 static int MvRt4Move_MoveDir( FIELD_OBJ_PTR fldobj, MV_RT4_WORK *work )
@@ -2092,7 +2092,7 @@ static int MvRt4Move_MoveDir( FIELD_OBJ_PTR fldobj, MV_RT4_WORK *work )
 }
 
 //--------------------------------------------------------------
-///	MV_RT4“®ìƒe[ƒuƒ‹
+///	MV_RT4å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static int (* const DATA_MvRt4MoveTbl[])( FIELD_OBJ_PTR fldobj, MV_RT4_WORK *work ) =
 {
@@ -2103,27 +2103,27 @@ static int (* const DATA_MvRt4MoveTbl[])( FIELD_OBJ_PTR fldobj, MV_RT4_WORK *wor
 };
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * •ûŒüƒe[ƒuƒ‹—v‘f”æ“¾
- * @param	tbl		ƒf[ƒ^ƒe[ƒuƒ‹BI’[‚Éend
- * @param	end		ƒe[ƒuƒ‹I’[‚Æ‚·‚é’l
- * @retval	int		tbl—v‘f”
+ * æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«è¦ç´ æ•°å–å¾—
+ * @param	tbl		ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã€‚çµ‚ç«¯ã«end
+ * @param	end		ãƒ†ãƒ¼ãƒ–ãƒ«çµ‚ç«¯ã¨ã™ã‚‹å€¤
+ * @retval	int		tblè¦ç´ æ•°
  */
 //--------------------------------------------------------------
 static int TblNumGet( const int *tbl, int end )
 {
-	int i=0; while(tbl[i]!=end){i++;} GF_ASSERT(i&&"TblNumGet()—v‘f”0"); return(i);
+	int i=0; while(tbl[i]!=end){i++;} GF_ASSERT(i&&"TblNumGet()è¦ç´ æ•°0"); return(i);
 }
 
 //--------------------------------------------------------------
 /**
- * ƒe[ƒuƒ‹ƒf[ƒ^‚©‚çƒ‰ƒ“ƒ_ƒ€‚Å’læ“¾
- * @param	tbl		ƒf[ƒ^ƒe[ƒuƒ‹BI’[‚Éend
- * @param	end		ƒe[ƒuƒ‹I’[‚Æ‚·‚é’l
- * @retval	int		tbl“à•”‚Ì’l
+ * ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã§å€¤å–å¾—
+ * @param	tbl		ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã€‚çµ‚ç«¯ã«end
+ * @param	end		ãƒ†ãƒ¼ãƒ–ãƒ«çµ‚ç«¯ã¨ã™ã‚‹å€¤
+ * @retval	int		tblå†…éƒ¨ã®å€¤
  */
 //--------------------------------------------------------------
 static int TblRndGet( const int *tbl, int end )
@@ -2133,10 +2133,10 @@ static int TblRndGet( const int *tbl, int end )
 
 //--------------------------------------------------------------
 /**
- * •ûŒüID‚©‚çƒe[ƒuƒ‹ƒf[ƒ^‚ğæ“¾‚µƒ‰ƒ“ƒ_ƒ€‚Å’læ“¾
- * @param	tbl		ƒf[ƒ^ƒe[ƒuƒ‹BI’[‚Éend
- * @param	end		ƒe[ƒuƒ‹I’[‚Æ‚·‚é’l
- * @retval	int		tbl“à•”‚Ì’l
+ * æ–¹å‘IDã‹ã‚‰ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ãƒ©ãƒ³ãƒ€ãƒ ã§å€¤å–å¾—
+ * @param	tbl		ãƒ‡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«ã€‚çµ‚ç«¯ã«end
+ * @param	end		ãƒ†ãƒ¼ãƒ–ãƒ«çµ‚ç«¯ã¨ã™ã‚‹å€¤
+ * @retval	int		tblå†…éƒ¨ã®å€¤
  */
 //--------------------------------------------------------------
 static int TblIDRndGet( int id, int end )
@@ -2147,9 +2147,9 @@ static int TblIDRndGet( int id, int end )
 
 //--------------------------------------------------------------
 /**
- * DATA_MoveDirTblŒŸõ
- * @param	id		ŒŸõID
- * @retval	int		ƒqƒbƒg‚µ‚½ƒe[ƒuƒ‹*
+ * DATA_MoveDirTblæ¤œç´¢
+ * @param	id		æ¤œç´¢ID
+ * @retval	int		ãƒ’ãƒƒãƒˆã—ãŸãƒ†ãƒ¼ãƒ–ãƒ«*
  */
 //--------------------------------------------------------------
 static const int * MoveDirTblIDSearch( int id )
@@ -2161,15 +2161,15 @@ static const int * MoveDirTblIDSearch( int id )
 		tbl++;
 	}
 	
-	GF_ASSERT( 0 && "MoveDirTblIDSearch()IDˆÙí" );
+	GF_ASSERT( 0 && "MoveDirTblIDSearch()IDç•°å¸¸" );
 	return( NULL );
 }
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ªw’è”ÍˆÍ“à‚Åƒ_ƒbƒVƒ…‚µ‚Ä‚¢‚é‚©
+ * è‡ªæ©ŸãŒæŒ‡å®šç¯„å›²å†…ã§ãƒ€ãƒƒã‚·ãƒ¥ã—ã¦ã„ã‚‹ã‹
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		DIR_NOT=”ÍˆÍ“àA•ûŒüØ‚è‘Ö‚¦Œ^‚Å‚Í–³‚¢B‚»‚Ì‘¼DIR_UP“™
+ * @retval	int		DIR_NOT=ç¯„å›²å†…ã€æ–¹å‘åˆ‡ã‚Šæ›¿ãˆå‹ã§ã¯ç„¡ã„ã€‚ãã®ä»–DIR_UPç­‰
  */
 //--------------------------------------------------------------
 static int TrJikiDashSearch( FIELD_OBJ_PTR fldobj )
@@ -2243,9 +2243,9 @@ static int TrJikiDashSearch( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ©‹@‚ªw’è”ÍˆÍ“à‚Åƒ_ƒbƒVƒ…‚µ‚Ä‚¢‚ê‚Î‚»‚Ì•ûŒü‚ğ•Ô‚·B•ûŒüƒe[ƒuƒ‹ƒAƒŠ
+ * è‡ªæ©ŸãŒæŒ‡å®šç¯„å›²å†…ã§ãƒ€ãƒƒã‚·ãƒ¥ã—ã¦ã„ã‚Œã°ãã®æ–¹å‘ã‚’è¿”ã™ã€‚æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«ã‚¢ãƒª
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		DIR_NOT=”ÍˆÍ“àA•ûŒüØ‚è‘Ö‚¦Œ^‚Å‚Í–³‚¢B‚»‚Ì‘¼DIR_UP“™
+ * @retval	int		DIR_NOT=ç¯„å›²å†…ã€æ–¹å‘åˆ‡ã‚Šæ›¿ãˆå‹ã§ã¯ç„¡ã„ã€‚ãã®ä»–DIR_UPç­‰
  */
 //--------------------------------------------------------------
 static int TrJikiDashSearchTbl( FIELD_OBJ_PTR fldobj, int id, int end )
@@ -2253,7 +2253,7 @@ static int TrJikiDashSearchTbl( FIELD_OBJ_PTR fldobj, int id, int end )
 	const int *tbl = MoveDirTblIDSearch( id );
 	int num = TblNumGet( tbl, end );
 	
-	if( num == 1 ){			//ˆê•ûŒü‚Ì‚İ
+	if( num == 1 ){			//ä¸€æ–¹å‘ã®ã¿
 		return( DIR_NOT );
 	}
 	
@@ -2303,10 +2303,10 @@ static int TrJikiDashSearchTbl( FIELD_OBJ_PTR fldobj, int id, int end )
 }
 
 //==============================================================================
-//	ƒ‹[ƒgŒ^@ƒNƒ‹ƒNƒ‹ˆÚ“®ƒp[ƒc
+//	ãƒ«ãƒ¼ãƒˆå‹ã€€ã‚¯ãƒ«ã‚¯ãƒ«ç§»å‹•ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒNƒ‹ƒNƒ‹ƒe[ƒuƒ‹
+///	ã‚¯ãƒ«ã‚¯ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_KuruKuruTbl[RT_KURU2_MAX][RT_KURU2_DIR_MAX] =
 {
@@ -2316,9 +2316,9 @@ static const int DATA_KuruKuruTbl[RT_KURU2_MAX][RT_KURU2_DIR_MAX] =
 
 //--------------------------------------------------------------
 /**
- * ƒNƒ‹ƒNƒ‹ƒ^ƒCƒvƒ`ƒFƒbƒN
+ * ã‚¯ãƒ«ã‚¯ãƒ«ã‚¿ã‚¤ãƒ—ãƒã‚§ãƒƒã‚¯
  * @param	fldobj	FIELD_OBJ_PTR
- * @retval	int		TRUE=ƒNƒ‹ƒNƒ‹‰ñ‚ê
+ * @retval	int		TRUE=ã‚¯ãƒ«ã‚¯ãƒ«å›ã‚Œ
  */
 //--------------------------------------------------------------
 static int MoveSub_KuruKuruCheck( FIELD_OBJ_PTR fldobj )
@@ -2335,7 +2335,7 @@ static int MoveSub_KuruKuruCheck( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * ‚­‚é‚­‚éƒ^ƒCƒv‰Šú‰»
+ * ãã‚‹ãã‚‹ã‚¿ã‚¤ãƒ—åˆæœŸåŒ–
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	RT_KURUKURU_WORK *
  * @retval	nothing
@@ -2352,8 +2352,8 @@ static void MoveSub_KuruKuruInit( FIELD_OBJ_PTR fldobj, RT_KURUKURU_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‚­‚é‚­‚éƒ^ƒCƒv•ûŒüƒZƒbƒgB
- * ’ˆÓF•ûŒü‚ªŒÅ’è‚³‚ê‚é
+ * ãã‚‹ãã‚‹ã‚¿ã‚¤ãƒ—æ–¹å‘ã‚»ãƒƒãƒˆã€‚
+ * æ³¨æ„ï¼šæ–¹å‘ãŒå›ºå®šã•ã‚Œã‚‹
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	RT_KURUKURU_WORK *
  * @retval	nothing
@@ -2366,19 +2366,19 @@ static void MoveSub_KuruKuruSet( FIELD_OBJ_PTR fldobj, RT_KURUKURU_WORK *work )
 #if 0	
 	{
 		switch( dir ){
-		case DIR_UP: OS_Printf( "‚­‚é‚­‚éˆÚ“® 0 •ûŒü‚Íã@" ); break;
-		case DIR_DOWN: OS_Printf( "‚­‚é‚­‚éˆÚ“® 0 •ûŒü‚Í‰º@" ); break;
-		case DIR_LEFT: OS_Printf( "‚­‚é‚­‚éˆÚ“® 0 •ûŒü‚Í¶@" ); break;
-		case DIR_RIGHT: OS_Printf( "‚­‚é‚­‚éˆÚ“® 0 •ûŒü‚Í‰E@" ); break;
+		case DIR_UP: OS_Printf( "ãã‚‹ãã‚‹ç§»å‹• 0 æ–¹å‘ã¯ä¸Šã€€" ); break;
+		case DIR_DOWN: OS_Printf( "ãã‚‹ãã‚‹ç§»å‹• 0 æ–¹å‘ã¯ä¸‹ã€€" ); break;
+		case DIR_LEFT: OS_Printf( "ãã‚‹ãã‚‹ç§»å‹• 0 æ–¹å‘ã¯å·¦ã€€" ); break;
+		case DIR_RIGHT: OS_Printf( "ãã‚‹ãã‚‹ç§»å‹• 0 æ–¹å‘ã¯å³ã€€" ); break;
 		}
 	}
 #endif
 	
 	for( i = 0; (i < RT_KURU2_DIR_MAX && dir != DATA_KuruKuruTbl[work->spin_type][i]); i++ ){}
-	GF_ASSERT( i < RT_KURU2_DIR_MAX && "MoveSub_KuruKuruInit()•ûŒüˆÙí" );
+	GF_ASSERT( i < RT_KURU2_DIR_MAX && "MoveSub_KuruKuruInit()æ–¹å‘ç•°å¸¸" );
 	
 	work->origin_dir = dir;
-	i = (i + 1) % RT_KURU2_DIR_MAX;								//+1=1‚Âæ
+	i = (i + 1) % RT_KURU2_DIR_MAX;								//+1=1ã¤å…ˆ
 	dir = DATA_KuruKuruTbl[work->spin_type][i];
 	
 	if( FieldOBJ_StatusBit_Check(fldobj,FLDOBJ_STA_BIT_PAUSE_DIR) ){
@@ -2392,10 +2392,10 @@ static void MoveSub_KuruKuruSet( FIELD_OBJ_PTR fldobj, RT_KURUKURU_WORK *work )
 #if 0	
 	{
 		switch( dir ){
-		case DIR_UP: OS_Printf( "1•ûŒü‚Íã\n" ); break;
-		case DIR_DOWN: OS_Printf( "1•ûŒü‚Í‰º\n" ); break;
-		case DIR_LEFT: OS_Printf( "1•ûŒü‚Í¶\n" ); break;
-		case DIR_RIGHT: OS_Printf(  " 1•ûŒü‚Í‰E\n" ); break;
+		case DIR_UP: OS_Printf( "1æ–¹å‘ã¯ä¸Š\n" ); break;
+		case DIR_DOWN: OS_Printf( "1æ–¹å‘ã¯ä¸‹\n" ); break;
+		case DIR_LEFT: OS_Printf( "1æ–¹å‘ã¯å·¦\n" ); break;
+		case DIR_RIGHT: OS_Printf(  " 1æ–¹å‘ã¯å³\n" ); break;
 		}
 	}
 #endif
@@ -2403,7 +2403,7 @@ static void MoveSub_KuruKuruSet( FIELD_OBJ_PTR fldobj, RT_KURUKURU_WORK *work )
 
 //--------------------------------------------------------------
 /**
- * ‚­‚é‚­‚éƒ^ƒCƒv•ûŒüI—¹
+ * ãã‚‹ãã‚‹ã‚¿ã‚¤ãƒ—æ–¹å‘çµ‚äº†
  * @param	fldobj	FIELD_OBJ_PTR
  * @param	work	RT_KURUKURU_WORK *
  * @retval	nothing
@@ -2420,222 +2420,222 @@ static void MoveSub_KuruKuruEnd( FIELD_OBJ_PTR fldobj, RT_KURUKURU_WORK *work )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	DIR_RND ƒEƒFƒCƒgƒe[ƒuƒ‹
+///	DIR_RND ã‚¦ã‚§ã‚¤ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvDirRndWaitTbl[] =
 { 16, 32, 48, 64, WAIT_END };
 
 //--------------------------------------------------------------
-///	DIR_RND •ûŒüƒe[ƒuƒ‹
+///	DIR_RND æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvDirRndDirTbl[] =
 { DIR_UP, DIR_DOWN, DIR_LEFT, DIR_RIGHT, DIR_NOT };
 
 //--------------------------------------------------------------
-/// RND_UL •ûŒüƒe[ƒuƒ‹
+/// RND_UL æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvDirRndDirTbl_UL[] =
 { DIR_UP, DIR_LEFT, DIR_NOT };
 
 //--------------------------------------------------------------
-/// RND_UR •ûŒüƒe[ƒuƒ‹
+/// RND_UR æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvDirRndDirTbl_UR[] =
 { DIR_UP, DIR_RIGHT, DIR_NOT };
 
 //--------------------------------------------------------------
-/// RND_DL •ûŒüƒe[ƒuƒ‹
+/// RND_DL æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvDirRndDirTbl_DL[] =
 { DIR_DOWN, DIR_LEFT, DIR_NOT };
 
 //--------------------------------------------------------------
-/// RND_DR •ûŒüƒe[ƒuƒ‹
+/// RND_DR æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvDirRndDirTbl_DR[] =
 { DIR_DOWN, DIR_RIGHT, DIR_NOT };
 
 //--------------------------------------------------------------
-/// RND_UDL •ûŒüƒe[ƒuƒ‹
+/// RND_UDL æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvDirRndDirTbl_UDL[] =
 { DIR_UP, DIR_DOWN, DIR_LEFT, DIR_NOT };
 
 //--------------------------------------------------------------
-/// RND_UDR •ûŒüƒe[ƒuƒ‹
+/// RND_UDR æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvDirRndDirTbl_UDR[] =
 { DIR_UP, DIR_DOWN, DIR_RIGHT, DIR_NOT };
 
 //--------------------------------------------------------------
-/// RND_ULR •ûŒüƒe[ƒuƒ‹
+/// RND_ULR æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvDirRndDirTbl_ULR[] =
 { DIR_UP, DIR_LEFT, DIR_RIGHT, DIR_NOT };
 
 //--------------------------------------------------------------
-/// RND_DLR •ûŒüƒe[ƒuƒ‹
+/// RND_DLR æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvDirRndDirTbl_DLR[] =
 { DIR_DOWN, DIR_LEFT, DIR_RIGHT, DIR_NOT };
 
 //--------------------------------------------------------------
-/// RND_UD •ûŒüƒe[ƒuƒ‹
+/// RND_UD æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvDirRndDirTbl_UD[] =
 { DIR_UP, DIR_DOWN, DIR_NOT };
 
 //--------------------------------------------------------------
-/// RND_LR •ûŒüƒe[ƒuƒ‹
+/// RND_LR æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvDirRndDirTbl_LR[] =
 { DIR_LEFT, DIR_RIGHT, DIR_NOT };
 
 //--------------------------------------------------------------
-///	MV_RND ˆÚ“®‰Â”\•ûŒü
+///	MV_RND ç§»å‹•å¯èƒ½æ–¹å‘
 //--------------------------------------------------------------
 static const int DATA_MV_RND_DirTbl[] =
 { DIR_UP, DIR_DOWN, DIR_LEFT, DIR_RIGHT, DIR_NOT };
 
 //--------------------------------------------------------------
-///	MV_RND_V ˆÚ“®‰Â”\•ûŒü
+///	MV_RND_V ç§»å‹•å¯èƒ½æ–¹å‘
 //--------------------------------------------------------------
 static const int DATA_MV_RND_V_DirTbl[] =
 { DIR_UP, DIR_DOWN, DIR_NOT };
 
 //--------------------------------------------------------------
-///	MV_RND_H ˆÚ“®‰Â”\•ûŒü
+///	MV_RND_H ç§»å‹•å¯èƒ½æ–¹å‘
 //--------------------------------------------------------------
 static const int DATA_MV_RND_H_DirTbl[] =
 { DIR_LEFT, DIR_RIGHT, DIR_NOT };
 
 //--------------------------------------------------------------
-///	MV_RTURLD•ûŒüƒe[ƒuƒ‹
+///	MV_RTURLDæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtURLD_DirTbl[] = {DIR_UP,DIR_RIGHT,DIR_LEFT,DIR_DOWN};
 
 //--------------------------------------------------------------
-///	MV_RTRLDU•ûŒüƒe[ƒuƒ‹
+///	MV_RTRLDUæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtRLDU_DirTbl[] = {DIR_RIGHT,DIR_LEFT,DIR_DOWN,DIR_UP};
 
 //--------------------------------------------------------------
-///	MV_RTDURL•ûŒüƒe[ƒuƒ‹
+///	MV_RTDURLæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtDURL_DirTbl[] = {DIR_DOWN,DIR_UP,DIR_RIGHT,DIR_LEFT};
 
 //--------------------------------------------------------------
-///	MV_RTLDUR•ûŒüƒe[ƒuƒ‹
+///	MV_RTLDURæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtLDUR_DirTbl[] = {DIR_LEFT,DIR_DOWN,DIR_UP,DIR_RIGHT};
 
 //--------------------------------------------------------------
-///	MV_RTULRD•ûŒüƒe[ƒuƒ‹
+///	MV_RTULRDæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtULRD_DirTbl[] = {DIR_LEFT,DIR_RIGHT,DIR_DOWN,DIR_UP};
 
 //--------------------------------------------------------------
-///	MV_RTLRDU•ûŒüƒe[ƒuƒ‹
+///	MV_RTLRDUæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtLRDU_DirTbl[] = {DIR_LEFT,DIR_RIGHT,DIR_DOWN,DIR_UP};
 
 //--------------------------------------------------------------
-///	MV_RTDULR•ûŒüƒe[ƒuƒ‹
+///	MV_RTDULRæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtDULR_DirTbl[] = {DIR_DOWN,DIR_UP,DIR_LEFT,DIR_RIGHT};
 
 //--------------------------------------------------------------
-///	MV_RTRDUL•ûŒüƒe[ƒuƒ‹
+///	MV_RTRDULæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtRDUL_DirTbl[] = {DIR_RIGHT,DIR_DOWN,DIR_UP,DIR_LEFT};
 
 //--------------------------------------------------------------
-///	MV_RTLUDR•ûŒüƒe[ƒuƒ‹
+///	MV_RTLUDRæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtLUDR_DirTbl[] = {DIR_LEFT,DIR_UP,DIR_DOWN,DIR_RIGHT};
 
 //--------------------------------------------------------------
-///	MV_RTUDRL•ûŒüƒe[ƒuƒ‹
+///	MV_RTUDRLæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtUDRL_DirTbl[] = {DIR_UP,DIR_DOWN,DIR_RIGHT,DIR_LEFT};
 
 //--------------------------------------------------------------
-///	MV_RTRLUD•ûŒüƒe[ƒuƒ‹
+///	MV_RTRLUDæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtRLUD_DirTbl[] = {DIR_RIGHT,DIR_LEFT,DIR_UP,DIR_DOWN};
 
 //--------------------------------------------------------------
-///	MV_RTDRLU•ûŒüƒe[ƒuƒ‹
+///	MV_RTDRLUæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtDRLU_DirTbl[] = {DIR_DOWN,DIR_RIGHT,DIR_LEFT,DIR_UP};
 
 //--------------------------------------------------------------
-///	MV_RTRUDL•ûŒüƒe[ƒuƒ‹
+///	MV_RTRUDLæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtRUDL_DirTbl[] = {DIR_RIGHT,DIR_UP,DIR_DOWN,DIR_LEFT};
 
 //--------------------------------------------------------------
-///	MV_RTUDLR•ûŒüƒe[ƒuƒ‹
+///	MV_RTUDLRæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtUDLR_DirTbl[] = {DIR_UP,DIR_DOWN,DIR_LEFT,DIR_RIGHT};
 
 //--------------------------------------------------------------
-///	MV_RTLRUD•ûŒüƒe[ƒuƒ‹
+///	MV_RTLRUDæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtLRUD_DirTbl[] = {DIR_LEFT,DIR_RIGHT,DIR_UP,DIR_DOWN};
 
 //--------------------------------------------------------------
-///	MV_RTDLRU•ûŒüƒe[ƒuƒ‹
+///	MV_RTDLRUæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtDLRU_DirTbl[] = {DIR_DOWN,DIR_LEFT,DIR_RIGHT,DIR_UP};
 
 //--------------------------------------------------------------
-///	MV_RTUL•ûŒüƒe[ƒuƒ‹
+///	MV_RTULæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtUL_DirTbl[] = {DIR_UP,DIR_LEFT,DIR_DOWN,DIR_RIGHT};
 
 //--------------------------------------------------------------
-///	MV_RTDR•ûŒüƒe[ƒuƒ‹
+///	MV_RTDRæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtDR_DirTbl[] = {DIR_DOWN,DIR_RIGHT,DIR_UP,DIR_LEFT};
 
 //--------------------------------------------------------------
-///	MV_RTLD•ûŒüƒe[ƒuƒ‹
+///	MV_RTLDæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtLD_DirTbl[] = {DIR_LEFT,DIR_DOWN,DIR_RIGHT,DIR_UP};
 
 //--------------------------------------------------------------
-///	MV_RTRU•ûŒüƒe[ƒuƒ‹
+///	MV_RTRUæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtRU_DirTbl[] = {DIR_RIGHT,DIR_UP,DIR_LEFT,DIR_DOWN};
 
 //--------------------------------------------------------------
-///	MV_RTUR•ûŒüƒe[ƒuƒ‹
+///	MV_RTURæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtUR_DirTbl[] = {DIR_UP,DIR_RIGHT,DIR_DOWN,DIR_LEFT};
 
 //--------------------------------------------------------------
-///	MV_RTDL•ûŒüƒe[ƒuƒ‹
+///	MV_RTDLæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtDL_DirTbl[] = {DIR_DOWN,DIR_LEFT,DIR_UP,DIR_RIGHT};
 
 //--------------------------------------------------------------
-///	MV_RTLU•ûŒüƒe[ƒuƒ‹
+///	MV_RTLUæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtLU_DirTbl[] = {DIR_LEFT,DIR_UP,DIR_RIGHT,DIR_DOWN};
 
 //--------------------------------------------------------------
-///	MV_RTRD•ûŒüƒe[ƒuƒ‹
+///	MV_RTRDæ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvRtRD_DirTbl[] = {DIR_RIGHT,DIR_DOWN,DIR_LEFT,DIR_UP};
 
 //--------------------------------------------------------------
-///	MV_SPINŒn•ûŒüƒe[ƒuƒ‹
+///	MV_SPINç³»æ–¹å‘ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
 static const int DATA_MvDirSpin_DirTbl[] = {DIR_UP,DIR_DOWN,DIR_LEFT,DIR_RIGHT,DIR_NOT};
 
 //--------------------------------------------------------------
-///	ƒe[ƒuƒ‹ƒf[ƒ^
+///	ãƒ†ãƒ¼ãƒ–ãƒ«ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
 static const DIR_TBL DATA_MoveDirTbl[DIRID_MAX] =
 {
@@ -2682,7 +2682,7 @@ static const DIR_TBL DATA_MoveDirTbl[DIRID_MAX] =
 };
 
 //--------------------------------------------------------------
-///	©‹@ƒ_ƒbƒVƒ…Š´’m“®ìƒR[ƒh
+///	è‡ªæ©Ÿãƒ€ãƒƒã‚·ãƒ¥æ„ŸçŸ¥å‹•ä½œã‚³ãƒ¼ãƒ‰
 //--------------------------------------------------------------
 static const int JikiDashSensorMoveCodeTbl[] =
 {

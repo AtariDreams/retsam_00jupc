@@ -16,7 +16,7 @@
 #include <nnsys/gfd/VramTransferMan/gfd_VramTransferManager.h>
 
 //------------------------------------------------------------------------------
-// —Bˆê‚Ìƒ}ƒl[ƒWƒƒÀ‘Ì
+// å”¯ä¸€ã®ãƒãƒãƒ¼ã‚¸ãƒ£å®Ÿä½“
 //------------------------------------------------------------------------------
 static NNSGfdVramTransferManager    s_VramTransferManager;
 
@@ -45,7 +45,7 @@ IsVramTransferTaskQueueEmpty_( const NNSGfdVramTransferTaskQueue* pQueue )
 }
 
 //------------------------------------------------------------------------------
-// “]‘—
+// è»¢é€
 static void DoTransfer3dTex( const void* pSrc, u32 offset, u32 szByte )
 {
     GX_BeginLoadTex();
@@ -299,7 +299,7 @@ DoTransfer_( const NNSGfdVramTransferTask* pTask )
 }
 
 //------------------------------------------------------------------------------
-// ƒLƒ…[‘€ì
+// ã‚­ãƒ¥ãƒ¼æ“ä½œ
 static void ResetTaskQueue_( NNSGfdVramTransferTaskQueue* pQueue )
 {
     NNS_GFD_NULL_ASSERT( pQueue );
@@ -310,7 +310,7 @@ static void ResetTaskQueue_( NNSGfdVramTransferTaskQueue* pQueue )
 }
 
 //------------------------------------------------------------------------------
-// ƒLƒ…[‘€ì
+// ã‚­ãƒ¥ãƒ¼æ“ä½œ
 BOOL
 NNSi_GfdPushVramTransferTaskQueue( NNSGfdVramTransferTaskQueue* pQueue )
 {
@@ -327,7 +327,7 @@ NNSi_GfdPushVramTransferTaskQueue( NNSGfdVramTransferTaskQueue* pQueue )
 }
 
 //------------------------------------------------------------------------------
-// ƒLƒ…[‘€ì
+// ã‚­ãƒ¥ãƒ¼æ“ä½œ
 NNSGfdVramTransferTask*
 NNSi_GfdGetFrontVramTransferTaskQueue
 (
@@ -340,7 +340,7 @@ NNSi_GfdGetFrontVramTransferTaskQueue
 }
 
 //------------------------------------------------------------------------------
-// ƒLƒ…[‘€ì
+// ã‚­ãƒ¥ãƒ¼æ“ä½œ
 NNSGfdVramTransferTask*
 NNSi_GfdGetEndVramTransferTaskQueue
 (
@@ -353,7 +353,7 @@ NNSi_GfdGetEndVramTransferTaskQueue
 }
 
 //------------------------------------------------------------------------------
-// ƒLƒ…[‘€ì
+// ã‚­ãƒ¥ãƒ¼æ“ä½œ
 BOOL
 NNSi_GfdPopVramTransferTaskQueue( NNSGfdVramTransferTaskQueue* pQueue )
 {
@@ -373,12 +373,12 @@ NNSi_GfdPopVramTransferTaskQueue( NNSGfdVramTransferTaskQueue* pQueue )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdInitVramTransferManager
 
-  Description:  VRAM“]‘—ƒ}ƒl[ƒWƒƒ‚ğ‰Šú‰»‚µ‚Ü‚·B
+  Description:  VRAMè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚
 
-  Arguments:    pTaskArray      :       VRAM“]‘—ƒ^ƒXƒN”z—ñ      (“à•”ƒoƒbƒtƒ@‚Æ‚µ‚Ä—˜—p‚µ‚Ü‚·)
-                lengthOfArray   :       VRAM“]‘—ƒ^ƒXƒN”z—ñ‚Ì’·‚³(“à•”ƒoƒbƒtƒ@‚Æ‚µ‚Ä—˜—p‚µ‚Ü‚·)
+  Arguments:    pTaskArray      :       VRAMè»¢é€ã‚¿ã‚¹ã‚¯é…åˆ—      (å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã¨ã—ã¦åˆ©ç”¨ã—ã¾ã™)
+                lengthOfArray   :       VRAMè»¢é€ã‚¿ã‚¹ã‚¯é…åˆ—ã®é•·ã•(å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã¨ã—ã¦åˆ©ç”¨ã—ã¾ã™)
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
 
  *---------------------------------------------------------------------------*/
 void
@@ -404,11 +404,11 @@ NNS_GfdInitVramTransferManager
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdClearVramTransferManagerTask
 
-  Description:  VRAM“]‘—ƒ}ƒl[ƒWƒƒ‚Ì“à•”VRAM“]‘—ƒ^ƒXƒN‚ğƒNƒŠƒA‚µ‚Ü‚·B
+  Description:  VRAMè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ã®å†…éƒ¨VRAMè»¢é€ã‚¿ã‚¹ã‚¯ã‚’ã‚¯ãƒªã‚¢ã—ã¾ã™ã€‚
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
 
  *---------------------------------------------------------------------------*/
 void 
@@ -420,12 +420,12 @@ NNS_GfdClearVramTransferManagerTask( )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdDoVramTransfer
 
-  Description:  “o˜^‚³‚ê‚Ä‚¢‚éVRAM“]‘—ƒ^ƒXƒN‚ğÀs‚µ‚Ü‚·B
+  Description:  ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹VRAMè»¢é€ã‚¿ã‚¹ã‚¯ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
 
  *---------------------------------------------------------------------------*/
 void
@@ -449,14 +449,14 @@ NNS_GfdDoVramTransfer( )
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdRegisterNewVramTransferTask
 
-  Description:  V‚½‚ÈVRAM“]‘—ƒ^ƒXƒN‚ğ“o˜^‚µ‚Ü‚·
+  Description:  æ–°ãŸãªVRAMè»¢é€ã‚¿ã‚¹ã‚¯ã‚’ç™»éŒ²ã—ã¾ã™
 
-  Arguments:    type    :       “]‘—æ‚Ìí—Ş
-                dstAddr :       “]‘—æƒAƒhƒŒƒX
-                pSrc    :       “]‘—Œ³ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                szByte  :       “]‘—ƒTƒCƒY
+  Arguments:    type    :       è»¢é€å…ˆã®ç¨®é¡
+                dstAddr :       è»¢é€å…ˆã‚¢ãƒ‰ãƒ¬ã‚¹
+                pSrc    :       è»¢é€å…ƒãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                szByte  :       è»¢é€ã‚µã‚¤ã‚º
 
-  Returns:      “o˜^‚Ì¬”Ûi¬Œ÷‚ÅTRUEj
+  Returns:      ç™»éŒ²ã®æˆå¦ï¼ˆæˆåŠŸã§TRUEï¼‰
 
  *---------------------------------------------------------------------------*/
 BOOL
@@ -494,11 +494,11 @@ NNS_GfdRegisterNewVramTransferTask
 /*---------------------------------------------------------------------------*
   Name:         NNS_GfdGetVramTransferTaskTotalSize
 
-  Description:  “o˜^‚³‚ê‚Ä‚¢‚é“]‘—ƒ^ƒXƒN‚Ì‘“]‘——Ê‚ğæ“¾‚µ‚Ü‚·
+  Description:  ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹è»¢é€ã‚¿ã‚¹ã‚¯ã®ç·è»¢é€é‡ã‚’å–å¾—ã—ã¾ã™
 
-  Arguments:    ‚È‚µ
+  Arguments:    ãªã—
 
-  Returns:      “o˜^‚³‚ê‚Ä‚¢‚é“]‘—ƒ^ƒXƒN‚Ì‘“]‘——Ê
+  Returns:      ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹è»¢é€ã‚¿ã‚¹ã‚¯ã®ç·è»¢é€é‡
 
  *---------------------------------------------------------------------------*/
 u32 

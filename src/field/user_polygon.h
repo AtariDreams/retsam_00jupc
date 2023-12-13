@@ -10,17 +10,17 @@
 //typedef PolygonFunc 
 typedef struct USER_POLYGON_DATA_tag
 {
-	VecFx32 Pos;	//ˆÊ’uÀ•W
-	VecFx32 Scale;	//ƒXƒP[ƒ‹
-	VecFx32 Rot;	//‰ñ“]
+	VecFx32 Pos;	//ä½ç½®åº§æ¨™
+	VecFx32 Scale;	//ã‚¹ã‚±ãƒ¼ãƒ«
+	VecFx32 Rot;	//å›è»¢
 	VecFx32 *Vtx;
-	void *Work;		//ƒ[ƒN—Ìˆæ—pƒ”ƒHƒCƒhƒ|ƒCƒ“ƒ^
-	void (*Move)( struct USER_POLYGON_DATA_tag* );//“®ìŠÖ”
-	void (*Draw)( struct USER_POLYGON_DATA_tag* );//•`‰æŠÖ”
-	struct USER_POLYGON_DATA_tag *Next;//ƒŠƒ“ƒNæ
-	struct USER_POLYGON_DATA_tag *Prev;//ƒŠƒ“ƒNæ
+	void *Work;		//ãƒ¯ãƒ¼ã‚¯é ˜åŸŸç”¨ãƒ´ã‚©ã‚¤ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+	void (*Move)( struct USER_POLYGON_DATA_tag* );//å‹•ä½œé–¢æ•°
+	void (*Draw)( struct USER_POLYGON_DATA_tag* );//æç”»é–¢æ•°
+	struct USER_POLYGON_DATA_tag *Next;//ãƒªãƒ³ã‚¯å…ˆ
+	struct USER_POLYGON_DATA_tag *Prev;//ãƒªãƒ³ã‚¯å…ˆ
 	u32 Color;
-	void (*BeforeCB)(struct USER_POLYGON_DATA_tag*);	//’¸“_éŒ¾‘OƒR[ƒ‹ƒoƒbƒN
+	void (*BeforeCB)(struct USER_POLYGON_DATA_tag*);	//é ‚ç‚¹å®£è¨€å‰ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 
 	u8 Flag;
 	FIELDSYS_WORK *fsys;
@@ -65,7 +65,7 @@ extern void SetCallBack(	USER_POLYGON_DATA *inData,
 extern void DelUserPolygonAll(void);
 #ifdef DEBUG_USER_POLYGON
 //----------------------------------------------------------------
-//	ƒfƒoƒbƒOEƒeƒXƒg
+//	ãƒ‡ãƒãƒƒã‚°ãƒ»ãƒ†ã‚¹ãƒˆ
 //----------------------------------------------------------------
 extern void TestInitPlayerGrid(FIELDSYS_WORK *fsys);
 #endif	//DEBUG_USER_POLYGON

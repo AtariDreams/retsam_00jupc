@@ -2,7 +2,7 @@
 /**
  *
  *	@file		imc_sys.h
- *	@brief		ƒCƒ[ƒWƒNƒŠƒbƒvƒƒCƒ“ƒVƒXƒeƒ€
+ *	@brief		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ¡ã‚¤ãƒ³ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2005.09.21
  *
@@ -27,11 +27,11 @@
 
 //-----------------------------------------------------------------------------
 /**
- *	yà–¾z
- *		ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒN‚Í2‚Â‚ ‚è‚Ü‚·B
- *		‚PF’Êí‚Ìì¬ƒvƒƒbƒN			[JAMP_NORMAL]
- *		‚QFƒRƒ“ƒeƒXƒg—pƒvƒƒbƒN		[JAMP_CONTEST]
- *		‚Å‚·B
+ *	ã€èª¬æ˜Žã€‘
+ *		ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯ã¯2ã¤ã‚ã‚Šã¾ã™ã€‚
+ *		ï¼‘ï¼šé€šå¸¸ã®ä½œæˆãƒ—ãƒ­ãƒƒã‚¯			[JAMP_NORMAL]
+ *		ï¼’ï¼šã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨ãƒ—ãƒ­ãƒƒã‚¯		[JAMP_CONTEST]
+ *		ã§ã™ã€‚
  */
 //-----------------------------------------------------------------------------
 
@@ -40,70 +40,70 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’Êí
+ *					é€šå¸¸
  * [JAMP_NORMAL]
  */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒCƒ[ƒWƒNƒŠƒbƒvŠO•”ƒf[ƒ^
+//	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	// •ÒW‚·‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	// ç·¨é›†ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 	POKEMON_PARAM* p_poke_para;
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒvƒZ[ƒu—Ìˆæ
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚»ãƒ¼ãƒ–é ˜åŸŸ
 	IMC_TELEVISION_SAVEDATA* p_imc_one_data;
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒvƒAƒCƒeƒ€ƒZ[ƒu—Ìˆæ
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–é ˜åŸŸ
 	const IMC_ITEM_SAVEDATA* cp_imc_item;
 
-	// ƒRƒ“ƒtƒBƒO
+	// ã‚³ãƒ³ãƒ•ã‚£ã‚°
 	const CONFIG* cp_config;
 
-	// ƒŒƒR[ƒhƒf[ƒ^
+	// ãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿
 	RECORD* p_record;	
 
-	// ƒgƒŒ[ƒi[ƒf[ƒ^
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
 	const MYSTATUS* cp_tr;
 
-	// ƒZ[ƒu—L–³Ši”[æ
+	// ã‚»ãƒ¼ãƒ–æœ‰ç„¡æ ¼ç´å…ˆ
 	BOOL* p_save_flg;
 
-	// Å‰‚Ìà–¾ƒeƒLƒXƒg‚ðo‚·‚©ƒ`ƒFƒbƒN
+	// æœ€åˆã®èª¬æ˜Žãƒ†ã‚­ã‚¹ãƒˆã‚’å‡ºã™ã‹ãƒã‚§ãƒƒã‚¯
 	BOOL reference;
 } IMC_PROC_WORK;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒN¶¬
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯ç”Ÿæˆ
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -114,16 +114,16 @@ GLOBAL PROC_RESULT IMC_ProcInit( PROC* proc, int* seq );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒNƒƒCƒ“
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯ãƒ¡ã‚¤ãƒ³
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -134,16 +134,16 @@ GLOBAL PROC_RESULT IMC_ProcMain( PROC* proc, int* seq );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒNI—¹
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -156,51 +156,51 @@ GLOBAL PROC_RESULT IMC_ProcEnd( PROC* proc, int* seq );
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒRƒ“ƒeƒXƒg—p
+ *					ã‚³ãƒ³ãƒ†ã‚¹ãƒˆç”¨
  * [JAMP_CONTEST]
  */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	¶³ÝÀ’è”
+//	ã‚«ã‚¦ãƒ³ã‚¿å®šæ•°
 //=====================================
 #define IMC_COUNT_MAX	(60)
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒCƒ[ƒWƒNƒŠƒbƒvŠO•”ƒf[ƒ^
+//	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
-	// •ÒW‚·‚éƒ|ƒPƒ‚ƒ“ƒf[ƒ^
+	// ç·¨é›†ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
 	POKEMON_PARAM* p_poke_para;
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒvƒZ[ƒu—Ìˆæ
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚»ãƒ¼ãƒ–é ˜åŸŸ
 	IMC_CONTEST_SAVEDATA* p_imc_one_data;
 
-	int theme;			// ƒe[ƒ}
-	int rank;			// ƒ‰ƒ“ƒN
-	int mode;			// ƒ‚[ƒh
-	int type;			// À²Ìß
+	int theme;			// ãƒ†ãƒ¼ãƒž
+	int rank;			// ãƒ©ãƒ³ã‚¯
+	int mode;			// ãƒ¢ãƒ¼ãƒ‰
+	int type;			// ã‚¿ã‚¤ãƒ—
 
-	// ƒCƒ[ƒWƒNƒŠƒbƒvƒAƒCƒeƒ€ƒZ[ƒu—Ìˆæ
+	// ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ã‚¢ã‚¤ãƒ†ãƒ ã‚»ãƒ¼ãƒ–é ˜åŸŸ
 	const IMC_ITEM_SAVEDATA* cp_imc_item;
 
-	// ’ÊM—pƒf[ƒ^
+	// é€šä¿¡ç”¨ãƒ‡ãƒ¼ã‚¿
 	CON_IMC_LOCAL* p_comm_data;	
 
-	// ƒRƒ“ƒtƒBƒO
+	// ã‚³ãƒ³ãƒ•ã‚£ã‚°
 	const CONFIG* cp_config;	
 
-	// ƒgƒŒ[ƒi[ƒf[ƒ^
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
 	const MYSTATUS* cp_tr;
 
 } IMC_CONTEST_PROC_WORK;
@@ -208,22 +208,22 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒN¶¬
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯ç”Ÿæˆ
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -234,16 +234,16 @@ GLOBAL PROC_RESULT IMC_ProcContestInit( PROC* proc, int* seq );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒNƒƒCƒ“
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯ãƒ¡ã‚¤ãƒ³
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -254,16 +254,16 @@ GLOBAL PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	ƒCƒ[ƒWƒNƒŠƒbƒvƒvƒƒbƒNI—¹
+ *	@brief	ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¯ãƒªãƒƒãƒ—ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *

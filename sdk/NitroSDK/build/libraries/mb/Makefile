@@ -16,7 +16,7 @@
 # replace prefix MBw to MBi.
 #
 # Revision 1.6  2004/11/22 12:56:56  takano_makoto
-# mb_fake_child.c mb_wm.c mb_block.c‚ğ’Ç‰Á
+# mb_fake_child.c mb_wm.c mb_block.cã‚’è¿½åŠ 
 #
 # Revision 1.5  2004/11/11 11:45:24  yosizaki
 # add mb_task.c
@@ -25,10 +25,10 @@
 # add mb_cache.
 #
 # Revision 1.3  2004/09/17 04:02:37  miya
-# •s—v‚È•”•ª‚Ìíœ
+# ä¸è¦ãªéƒ¨åˆ†ã®å‰Šé™¤
 #
 # Revision 1.2  2004/09/03 07:04:36  sato_masaki
-# ƒtƒ@ƒCƒ‹‚ğ‹@”\•Ê‚É•ªŠ„B
+# ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ©Ÿèƒ½åˆ¥ã«åˆ†å‰²ã€‚
 #
 #
 # $NoKeywords: $

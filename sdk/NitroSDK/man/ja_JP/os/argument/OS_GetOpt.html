@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <TITLE>OS_GetOpt</TITLE>
@@ -9,7 +9,7 @@
 </HEAD>
 <BODY>
 <H1 align="left">OS_GetOpt*</H1>
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE>
@@ -18,31 +18,31 @@
 <CODE>const char *OS_GetOptArg( void );</CODE>
 <CODE>int         OS_GetOptOpt( void );</CODE></PRE>
 </DL>
-<H2>����</H2>
+<H2>引数</H2>
 <TABLE border="1">
   <TBODY>
     <TR>
-      <TD><EM><B>optstring�@</B></EM></TD>
-      <TD>�󂯕t����I�v�V��������������������</TD>
+      <TD><EM><B>optstring　</B></EM></TD>
+      <TD>受け付けるオプション文字を示す文字列</TD>
     </TR>
   </TBODY>
 </TABLE>
-<H2>�Ԃ�l</H2>
-<P>���������R�}���h���C���I�v�V�����̏��B(�������Q��)</P>
-<H2>����</H2>
-<P><CODE><A href="OS_GetArgc.html">�@OS_GetArgc()</A></CODE>, <CODE><A href="OS_GetArgc.html">OS_GetArgv()</A></CODE> �Ŏ擾�ł���R�}���h���C���������𕪐͂��āA�I�v�V�����Ɋւ�������擾���܂��B</P>
-<P><CODE>�@OS_GetOpt()</CODE> �͗^����ꂽ <EM><B>optstring</B></EM> ������Ɋ܂܂�镶�����I�v�V�����̎��ʕ����ƌ��Ȃ��A�Ăяo����邲�ƂɃR�}���h���C������������A���ɒ������A�Y������I�v�V����������ꍇ�A���̃I�v�V�������ʕ�����Ԃ�l�Ƃ��܂��B</P>
-<P><CODE>�@OS_GetOpt()</CODE> �����ݒ������Ă���R�}���h���C�������̃C���f�b�N�X�l�� <CODE>OS_GetOptInd()</CODE> �Ŏ擾�ł��܂��B</P>
-<P>�@�܂��A<EM><B>optstring</B></EM> ���̕����̌�� <CODE>&quot;:&quot;</CODE> ���邢�� <CODE>&quot;::&quot;</CODE> ���t���Ă���ꍇ�A���̃I�v�V�����͈�������邱�Ƃ������܂��B���̂Ƃ��I�v�V���������̏���
-<CODE>OS_GetOptArg() </CODE>�Ŏ擾���邱�Ƃ��ł��܂��B<CODE>&quot;:&quot;</CODE>�̓I�v�V�����������K�{�ł��邱�Ƃ������܂��B�܂� <CODE>&quot;::&quot;</CODE> �̓I�v�V���������͏ȗ��\�ł��邱�Ƃ������܂��B�I�v�V�����������ȗ����ꂽ�Ƃ���
-<CODE>OS_GetOptArg()</CODE> �� NULL ��Ԃ��܂��B</P>
-<P>�@�R�}���h���C�������� <EM><B>optstring</B></EM> �Ɋ܂܂�Ȃ��I�v�V�������������ꍇ�A����� <CODE>&quot;:&quot;</CODE> �ɂ��K�{�ȃI�v�V�������������������ꍇ�A<CODE>OS_GetOpt()</CODE> �͕����R�[�h <CODE>&quot;?&quot;</CODE> ��Ԃ��܂��B���̂Ƃ��Ɍ����ƂȂ����I�v�V�����̎��ʕ����� <CODE>OS_GetOptOpt()</CODE> �Ŏ擾�ł��܂��B</P>
-<P><CODE>�@OS_GetOpt()</CODE> ���I�v�V�����łȂ��ʏ�̃R�}���h���C�������𔭌������Ƃ��̓���Ƃ���2��ނ̐U�镑�����I���\�ł��B�����
-<EM><B>optstring</B></EM> �̐擪������ <CODE>&quot;-&quot;</CODE> (�}�C�i�X����)�ł��邩����ȊO�ł��邩�ɂ���Đ؂�ւ��܂��B</P>
-<P>�@<EM><B>optstring</B></EM> �̐擪�������}�C�i�X�����łȂ��ꍇ(�f�t�H���g)�A�ʏ�̃R�}���h���C�������𔭌������Ƃ��A�܂��͂���ȍ~�̃R�}���h���C�������������Ȃ����Ƃ���
-<CODE>OS_GetOpt()</CODE>�͕Ԓl�Ƃ���<CODE>-1</CODE> ��Ԃ��܂��B�����āA���̈ʒu�ň����̕]�����I�����A�ȍ~�̈����̒������s�Ȃ��܂���B<CODE>OS_GetOptInd()</CODE>�̕Ԓl�͂��̍ŏ��Ɍ��ꂽ�ʏ�����̃C���f�b�N�X�l��Ԃ����ƂɂȂ�܂��B<CODE>OS_GetOptArg()</CODE> �� <CODE>NULL</CODE> ��Ԃ��܂��B�A�v���P�[�V������ <CODE>OS_GetOptInd()</CODE>�œ���ꂽ�l����@<CODE>OS_GetArgc()-1</CODE> �܂ł̒l�� <CODE>OS_GetArgv()</CODE> �̃C���f�b�N�X�Ƃ��Ďw�肷�邱�Ƃɂ���āA�I�v�V�������������R�}���h���C���������Q�Ƃ��邱�Ƃ��ł��܂��B</P>
-<P>�ȉ��ɃT���v���R�[�h�������܂��B</P>
-<PRE>        BOOL �@      opt_b = FALSE;
+<H2>返り値</H2>
+<P>発見したコマンドラインオプションの情報。(次項を参照)</P>
+<H2>説明</H2>
+<P><CODE><A href="OS_GetArgc.html">　OS_GetArgc()</A></CODE>, <CODE><A href="OS_GetArgc.html">OS_GetArgv()</A></CODE> で取得できるコマンドライン引数情報を分析して、オプションに関する情報を取得します。</P>
+<P><CODE>　OS_GetOpt()</CODE> は与えられた <EM><B>optstring</B></EM> 文字列に含まれる文字をオプションの識別文字と見なし、呼び出されるごとにコマンドライン引数を一つずつ、順に調査し、該当するオプションがある場合、そのオプション識別文字を返り値とします。</P>
+<P><CODE>　OS_GetOpt()</CODE> が現在調査しているコマンドライン引数のインデックス値は <CODE>OS_GetOptInd()</CODE> で取得できます。</P>
+<P>　また、<EM><B>optstring</B></EM> 内の文字の後に <CODE>&quot;:&quot;</CODE> あるいは <CODE>&quot;::&quot;</CODE> が付いている場合、そのオプションは引数を取ることを示します。このときオプション引数の情報を
+<CODE>OS_GetOptArg() </CODE>で取得することができます。<CODE>&quot;:&quot;</CODE>はオプション引数が必須であることを示します。また <CODE>&quot;::&quot;</CODE> はオプション引数は省略可能であることを示します。オプション引数が省略されたときは
+<CODE>OS_GetOptArg()</CODE> は NULL を返します。</P>
+<P>　コマンドライン引数に <EM><B>optstring</B></EM> に含まれないオプションがあった場合、および <CODE>&quot;:&quot;</CODE> による必須なオプション引数が無かった場合、<CODE>OS_GetOpt()</CODE> は文字コード <CODE>&quot;?&quot;</CODE> を返します。このときに原因となったオプションの識別文字は <CODE>OS_GetOptOpt()</CODE> で取得できます。</P>
+<P><CODE>　OS_GetOpt()</CODE> がオプションでない通常のコマンドライン引数を発見したときの動作として2種類の振る舞いが選択可能です。これは
+<EM><B>optstring</B></EM> の先頭文字が <CODE>&quot;-&quot;</CODE> (マイナス文字)であるかそれ以外であるかによって切り替わります。</P>
+<P>　<EM><B>optstring</B></EM> の先頭文字がマイナス文字でない場合(デフォルト)、通常のコマンドライン引数を発見したとき、またはこれ以降のコマンドライン引数が無くなったときに
+<CODE>OS_GetOpt()</CODE>は返値として<CODE>-1</CODE> を返します。そして、この位置で引数の評価を終了し、以降の引数の調査を行ないません。<CODE>OS_GetOptInd()</CODE>の返値はこの最初に現れた通常引数のインデックス値を返すことになります。<CODE>OS_GetOptArg()</CODE> は <CODE>NULL</CODE> を返します。アプリケーションは <CODE>OS_GetOptInd()</CODE>で得られた値から　<CODE>OS_GetArgc()-1</CODE> までの値を <CODE>OS_GetArgv()</CODE> のインデックスとして指定することによって、オプションを除いたコマンドライン引数を参照することができます。</P>
+<P>以下にサンプルコードを示します。</P>
+<PRE>        BOOL 　      opt_b = FALSE;
         const char*  opt_s = NULL;
         const char*  opt_t = NULL;
         int          argc  = OS_GetArgc();
@@ -52,33 +52,33 @@
         {
                 switch (c)
                 {
-                case 'b':       // �X�C�b�`�^�̃I�v�V����
+                case 'b':       // スイッチ型のオプション
                         opt_b = TRUE;
                         break;
 
-                case 's':       // �������K�{�ȃI�v�V����
+                case 's':       // 引数が必須なオプション
                         opt_s = OS_GetOptArg();
                         break;
 
-                case 't':       // �������ȗ��\�ȃI�v�V����
+                case 't':       // 引数が省略可能なオプション
                         opt_t = OS_GetOptArg();
                         break;
 
-                case '?':       // �G���[����
+                case '?':       // エラー処理
                 default:
                         OS_Printf(&quot;Error --- option '%c'\n&quot;, OS_GetOptOpt());
                         break;
                 }
         }
 
-        // �ʏ�̃R�}���h���C������
+        // 通常のコマンドライン引数
         for (i = OS_GetOptInd(); i &lt; argc; i ++)
         { 
                 OS_Printf(&quot;ARG[%d]=%s\n&quot;, i, OS_GetArgv(i));
         }</PRE>
-<P>�@<EM><B>optstring</B></EM> �̐擪�������}�C�i�X�����̏ꍇ�A�ʏ�̃R�}���h���C�������𔭌������Ƃ��A<CODE>OS_GetOpt()</CODE>�͕Ԓl�Ƃ��� <CODE>+1</CODE> ��Ԃ��܂��B���̈����̒l�� <CODE>OS_GetOptArg()</CODE> �Ŏ擾���邱�Ƃ��ł��邽�߁A�A�v���P�[�V�����͒ʏ�̈�����<CODE>OS_GetOpt()��</CODE>�����R�[�h <CODE>1 </CODE>�̃I�v�V���������̂悤�Ɉ������Ƃ��ł��܂��B�f�t�H���g�̓���Ƃ͈قȂ�A����ȍ~�̈����ɂ��Ă̒����͌p������A<CODE>OS_GetOptInd()</CODE>�̕Ԓl��<CODE>OS_GetOpt()�̌ďo������</CODE>���̈����̃C���f�b�N�X�l�ւƕω����܂��B�������i�݁A�ȍ~�̈����������Ȃ����Ƃ���<CODE>OS_GetOpt()�� -1 ��Ԃ��܂��B</CODE></P>
-<P>�ȉ��ɃT���v���R�[�h�������܂��B</P>
-<PRE>        BOOL �@      opt_b = FALSE;
+<P>　<EM><B>optstring</B></EM> の先頭文字がマイナス文字の場合、通常のコマンドライン引数を発見したとき、<CODE>OS_GetOpt()</CODE>は返値として <CODE>+1</CODE> を返します。この引数の値を <CODE>OS_GetOptArg()</CODE> で取得することができるため、アプリケーションは通常の引数を<CODE>OS_GetOpt()が</CODE>文字コード <CODE>1 </CODE>のオプション文字のように扱うことができます。デフォルトの動作とは異なり、これ以降の引数についての調査は継続され、<CODE>OS_GetOptInd()</CODE>の返値は<CODE>OS_GetOpt()の呼出し毎に</CODE>次の引数のインデックス値へと変化します。調査が進み、以降の引数が無くなったときに<CODE>OS_GetOpt()は -1 を返します。</CODE></P>
+<P>以下にサンプルコードを示します。</P>
+<PRE>        BOOL 　      opt_b = FALSE;
         const char*  opt_s = NULL;
         const char*  opt_t = NULL;
         int          c;
@@ -87,33 +87,33 @@
         {
                 switch (c)
                 {
-                case 1:        // �ʏ�̃R�}���h���C������
+                case 1:        // 通常のコマンドライン引数
                         OS_Printf(&quot;ARG=%s\n&quot;, OS_GetOptArg());
                         break;
 
-                case 'b':       // �X�C�b�`�^�̃I�v�V����
+                case 'b':       // スイッチ型のオプション
                         opt_b = TRUE;
                         break;
 
-                case 's':       // �������K�{�ȃI�v�V����
+                case 's':       // 引数が必須なオプション
                         opt_s = OS_GetOptArg();
                         break;
 
-                case 't':       // �������ȗ��\�ȃI�v�V����
+                case 't':       // 引数が省略可能なオプション
                         opt_t = OS_GetOptArg();
                         break;
 
-                case '?':       // �G���[����
+                case '?':       // エラー処理
                 default:
                         OS_Printf(&quot;Error --- option '%c'\n&quot;, OS_GetOptOpt());
                         break;
                 }
         }</PRE>
-<H2>�Q��</H2>
-<P><CODE><A href="OS_GetArgc.html">OS_GetArgc</A>, <A href="OS_GetArgv.html">OS_GetArgv</A>, <A href="../../tools/buryarg.html">buryarg �c�[��</A><BR>
+<H2>参照</H2>
+<P><CODE><A href="OS_GetArgc.html">OS_GetArgc</A>, <A href="OS_GetArgv.html">OS_GetArgv</A>, <A href="../../tools/buryarg.html">buryarg ツール</A><BR>
 </CODE></P>
-<H2>����</H2>
-<P>2005/09/06 ��������؂�ւ��ɂ��Ẳ����ǉ�</P>
-<P>2005/08/30 ����</P>
+<H2>履歴</H2>
+<P>2005/09/06 調査動作切り替えについての解説を追加</P>
+<P>2005/08/30 初版</P>
 </BODY>
 </HTML>

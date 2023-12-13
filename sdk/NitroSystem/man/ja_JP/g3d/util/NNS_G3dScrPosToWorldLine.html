@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
 <HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META http-equiv="Content-Style-Type" content="text/css">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 	<TITLE>NNS_G3dScrPosToWorldLine</TITLE>
@@ -12,7 +12,7 @@
 
 <H1 align="left">NNS_G3dScrPosToWorldLine</H1>
 
-<H2>�\��</H2>
+<H2>構文</H2>
 <DL>
   <DD>
   <PRE><CODE>#include &lt;nnsys/g3d/util.h&gt;
@@ -26,37 +26,37 @@ NNS_G3dScrPosToWorldLine(
 );</CODE></PRE>
 </DL>
 
-<H2>����</H2>
+<H2>引数</H2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>px</STRONG></EM></TD>
-      <TD width="87%">�X�N���[�����x���W</TD>
+      <TD width="87%">スクリーン上のx座標</TD>
     </TR>
     <TR>
       <TD width="13%"><EM><STRONG>py</STRONG></EM></TD>
-      <TD width="87%">�X�N���[�����y���W</TD>
+      <TD width="87%">スクリーン上のy座標</TD>
     </TR>
     <TR>
       <TD><EM><STRONG>pNear</STRONG></EM></TD>
-      <TD>�X�N���[����̍��W�ɑΉ�����Near�N���b�v�ʏ�̓_�̃��[���h���W�n�ł̈ʒu</TD>
+      <TD>スクリーン上の座標に対応するNearクリップ面上の点のワールド座標系での位置</TD>
     </TR>
     <TR>
       <TD><EM><STRONG>pFar</STRONG></EM></TD>
-      <TD>�X�N���[����̍��W�ɑΉ�����Far�N���b�v�ʏ�̓_�̃��[���h���W�n�ł̈ʒu</TD>
+      <TD>スクリーン上の座標に対応するFarクリップ面上の点のワールド座標系での位置</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<H2>�Ԃ�l</H2>
-<P><EM><STRONG>px</STRONG></EM>, <EM><STRONG>py</STRONG></EM> ���r���[�|�[�g���Ȃ��0���Ԃ���܂��B�r���[�|�[�g�O�Ȃ�΁A-1���Ԃ���܂��B</P>
-<H2>����</H2>
-<P>�X�N���[����̈ʒu�ɑΉ�����Near�N���b�v�ʂ�Far�N���b�v�ʏ�̓_�����[���h���W�n�ŕԂ��܂��B<I><B>pFar</B></I>��<CODE>NULL</CODE>�̏ꍇ�́AFar�N���b�v�ʏ�̓_�̌v�Z�͏ȗ�����܂��B<CODE>NNS_G3dGlb</CODE>�\���̂ɃJ�����s��Ǝˉe�s�񂪐ݒ肳��Ă���K�v������܂��B�Ԃ�l��-1�̏ꍇ�ł��A<EM><STRONG>��pNear</STRONG></EM>, <EM><STRONG>��pFar</STRONG></EM> �ɂ͒l���i�[����Ă��āA�����̖ڈ��Ƃ��Ďg�p���邱�Ƃ��ł��܂��B�Ȃ��A�����ˉe�̏ꍇ�A<CODE><EM><STRONG>��pFar</STRONG></EM></CODE>�̒l��<EM><STRONG>��pNear</STRONG></EM>�ɔ�ׂČ덷���傫���Ȃ�܂��B����́ANear�N���b�v�ʂ��Far�N���b�v�ʂ̕����傫�����߁A���K���X�N���[�����W�n�̓_���猳�̓_�����߂�ۂ�Far�ʂ̕������g�傳��邩��ł��B�Ȃ��ANitro-SDK��G3X_SetHOffset�֐����g�p����3D�ʂɑ΂��Đ����I�t�Z�b�g�������Ă���ꍇ�́A���炩���߃I�t�Z�b�g�̕�����������x���W���ړ������Ă����K�v������܂��B</P>
+<H2>返り値</H2>
+<P><EM><STRONG>px</STRONG></EM>, <EM><STRONG>py</STRONG></EM> がビューポート内ならば0が返されます。ビューポート外ならば、-1が返されます。</P>
+<H2>説明</H2>
+<P>スクリーン上の位置に対応するNearクリップ面とFarクリップ面上の点をワールド座標系で返します。<I><B>pFar</B></I>が<CODE>NULL</CODE>の場合は、Farクリップ面上の点の計算は省略されます。<CODE>NNS_G3dGlb</CODE>構造体にカメラ行列と射影行列が設定されている必要があります。返り値が-1の場合でも、<EM><STRONG>＊pNear</STRONG></EM>, <EM><STRONG>＊pFar</STRONG></EM> には値が格納されていて、方向の目安として使用することができます。なお、投資射影の場合、<CODE><EM><STRONG>＊pFar</STRONG></EM></CODE>の値は<EM><STRONG>＊pNear</STRONG></EM>に比べて誤差が大きくなります。これは、Nearクリップ面よりFarクリップ面の方が大きいため、正規化スクリーン座標系の点から元の点を求める際にFar面の方がより拡大されるからです。なお、Nitro-SDKのG3X_SetHOffset関数を使用して3D面に対して水平オフセットをかけている場合は、あらかじめオフセットの分だけ引数のx座標を移動させておく必要があります。</P>
 
-<H2>�Q��</H2>
+<H2>参照</H2>
 <P><CODE><A href="NNS_G3dLocalOriginToScrPos.html">NNS_G3dLocalOriginToScrPos</A><A href="NNS_G3dWorldPosToScrPos.html"> NNS_G3dWorldPosToScrPos</A></CODE></P>
-<H2>����</H2>
-<P>2004/11/01 ����</P>
+<H2>履歴</H2>
+<P>2004/11/01 初版</P>
 </BODY>
 
 </HTML>

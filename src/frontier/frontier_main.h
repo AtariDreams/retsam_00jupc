@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	frontier_main.h
- * @brief	ƒtƒƒ“ƒeƒBƒAƒƒCƒ“ˆ—‚Ìƒwƒbƒ_
+ * @brief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¡ã‚¤ãƒ³å‡¦ç†ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2007.04.05(–Ø)
+ * @date	2007.04.05(æœ¨)
  */
 //==============================================================================
 #ifndef __FRONTIER_MAIN_H__
@@ -23,43 +23,43 @@
 #include "application/wifi_2dmap/wf2dmap_objdraw.h"
 #include "application/wifi_2dmap/wf2dmap_cmdq.h"
 
-//‰¼III
+//ä»®ï¼ï¼ï¼
 #include "field/field.h"
 
 //==============================================================================
-//	Œ^’è‹`
+//	å‹å®šç¾©
 //==============================================================================
 typedef void (*FS_SUBPROC_END_FUNC)(void *);
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒ}ƒbƒvØ‚è‘Ö‚¦AƒCƒxƒ“ƒgIDw’è‚È‚µ
+///ãƒãƒƒãƒ—åˆ‡ã‚Šæ›¿ãˆæ™‚ã€ã‚¤ãƒ™ãƒ³ãƒˆIDæŒ‡å®šãªã—
 #define FS_MAPCHANGE_EVENTID_NULL		(0xffff)
 
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
-///ƒtƒƒ“ƒeƒBƒAŒÄ‚Ño‚µ‚ÉŠO‘¤‚©‚ç“n‚³‚ê‚éƒVƒXƒeƒ€ŠÖ˜Aƒf[ƒ^
+///ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å‘¼ã³å‡ºã—æ™‚ã«å¤–å´ã‹ã‚‰æ¸¡ã•ã‚Œã‚‹ã‚·ã‚¹ãƒ†ãƒ é–¢é€£ãƒ‡ãƒ¼ã‚¿
 typedef struct{
-	void *syswork;				///<ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‘¤‚Å•Û‚µ‚Ä—~‚µ‚¢ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^‚ğ“n‚·
+	void *syswork;				///<ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³å´ã§ä¿æŒã—ã¦æ¬²ã—ã„ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿ã‚’æ¸¡ã™
 	
-	const CONFIG *config;		///<ƒRƒ“ƒtƒBƒOƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	SAVEDATA *savedata;			///<ƒZ[ƒuƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	const CONFIG *config;		///<ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	SAVEDATA *savedata;			///<ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	FNOTE_DATA	*fnote_data;	///<–`Œ¯ƒm[ƒgƒ[ƒN
-	BAG_CURSOR	*bag_cursor;	///<ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ƒf[ƒ^
-	int	bg_id;					///<”wŒiID
-	int	ground_id;				///<’nŒ`ID
-	int	zone_id;				///<ƒ][ƒ“ID
-	BATTLE_CURSOR_DISP	*battle_cursor;	///<í“¬ƒJ[ƒ\ƒ‹‰Šú•\¦ó‘Ô
+	FNOTE_DATA	*fnote_data;	///<å†’é™ºãƒãƒ¼ãƒˆãƒ¯ãƒ¼ã‚¯
+	BAG_CURSOR	*bag_cursor;	///<ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+	int	bg_id;					///<èƒŒæ™¯ID
+	int	ground_id;				///<åœ°å½¢ID
+	int	zone_id;				///<ã‚¾ãƒ¼ãƒ³ID
+	BATTLE_CURSOR_DISP	*battle_cursor;	///<æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸè¡¨ç¤ºçŠ¶æ…‹
 	
-	u8 scene_id;				///<ƒV[ƒ“ID
+	u8 scene_id;				///<ã‚·ãƒ¼ãƒ³ID
 
-	//‰¼III
-	FIELDSYS_WORK* fsys;		///<WiFió•t‚©‚çŒÄ‚Î‚ê‚é@ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚É•K—v
+	//ä»®ï¼ï¼ï¼
+	FIELDSYS_WORK* fsys;		///<WiFiå—ä»˜ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã€€ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã«å¿…è¦
 	//POKE_PARTY 
 	//SAVE
 	//
@@ -69,60 +69,60 @@ typedef struct{
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
-///ƒLƒƒƒ‰ƒNƒ^ƒŠƒ\[ƒX“o˜^—pƒf[ƒ^\‘¢‘Ì
+///ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²ç”¨ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct{
 	u16 charid;
 	u8 movetype;
 }FSS_CHAR_RESOURCE_DATA;
 
-///OBJ“®ì—pƒ[ƒN‚ª‚Â”Ä—pƒ[ƒN‚ÌÅ‘å”
+///OBJå‹•ä½œç”¨ãƒ¯ãƒ¼ã‚¯ãŒæŒã¤æ±ç”¨ãƒ¯ãƒ¼ã‚¯ã®æœ€å¤§æ•°
 #define FSS_OBJMOVE_WORK_MAX		(7)
 
-///OBJ“®ì—pƒ[ƒN\‘¢‘Ì
+///OBJå‹•ä½œç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct{
-	u8 move_id;		///<OBJ“®ìƒR[ƒh
-	u8 seq;			///<”Ä—pƒV[ƒPƒ“ƒX”Ô†
-	s16 work[FSS_OBJMOVE_WORK_MAX];	///<”Ä—pƒ[ƒN
+	u8 move_id;		///<OBJå‹•ä½œã‚³ãƒ¼ãƒ‰
+	u8 seq;			///<æ±ç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	s16 work[FSS_OBJMOVE_WORK_MAX];	///<æ±ç”¨ãƒ¯ãƒ¼ã‚¯
 }FSS_OBJMOVE_WORK;
 
-///ƒLƒƒƒ‰ƒNƒ^ƒAƒNƒ^[“o˜^—pƒf[ƒ^\‘¢‘Ì
+///ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ç”¨ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct{
-	u16 charid;		///<ƒLƒƒƒ‰ƒNƒ^[ID
-	u16 status;		///<‰Šú‰»ó‘Ô(WF2DMAP_OBJST)
-	u16 playid;		///<ƒvƒŒƒCƒ„[¯•ÊID
-	s16 x;			///<XÀ•W
-	s16 y;			///<YÀ•W
-	u8 way;			///<•ûŒü(WF2DMAP_WAY)
+	u16 charid;		///<ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ID
+	u16 status;		///<åˆæœŸåŒ–çŠ¶æ…‹(WF2DMAP_OBJST)
+	u16 playid;		///<ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è­˜åˆ¥ID
+	s16 x;			///<Xåº§æ¨™
+	s16 y;			///<Yåº§æ¨™
+	u8 way;			///<æ–¹å‘(WF2DMAP_WAY)
 
-	u8 visible;		///<TRUE:•\¦AFALSE:”ñ•\¦
-	u8 event_id;	///<‘Î‰‚·‚éƒCƒxƒ“ƒgID
+	u8 visible;		///<TRUE:è¡¨ç¤ºã€FALSE:éè¡¨ç¤º
+	u8 event_id;	///<å¯¾å¿œã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆID
 	
-	//OBJ“®ìƒR[ƒh—pƒ[ƒN
-	FSS_OBJMOVE_WORK objmove;	///<OBJ“®ìƒR[ƒh—pƒ[ƒN
+	//OBJå‹•ä½œã‚³ãƒ¼ãƒ‰ç”¨ãƒ¯ãƒ¼ã‚¯
+	FSS_OBJMOVE_WORK objmove;	///<OBJå‹•ä½œã‚³ãƒ¼ãƒ‰ç”¨ãƒ¯ãƒ¼ã‚¯
 
 }FSS_CHAR_ACTOR_DATA;
 
-///ƒAƒNƒ^[‚ÌOBJƒpƒ‰ƒ[ƒ^
-///(Œ»óFSS_CHAR_ACTOR_DATA‚Æ“¯‚¶B‚Ç‚¿‚ç‚©‚ğ•ÏX‚·‚éê‡‚ÍA
-/// Frontier_ActWork_to_ActDataŠÖ”AFrontier_ActWorkDataSetŠÖ”‚Ì
-/// •ÏX‚È‚Ç‚É‚à’ˆÓ‚·‚é‚±‚Æ)
+///ã‚¢ã‚¯ã‚¿ãƒ¼ã®OBJãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+///(ç¾çŠ¶FSS_CHAR_ACTOR_DATAã¨åŒã˜ã€‚ã©ã¡ã‚‰ã‹ã‚’å¤‰æ›´ã™ã‚‹å ´åˆã¯ã€
+/// Frontier_ActWork_to_ActDataé–¢æ•°ã€Frontier_ActWorkDataSeté–¢æ•°ã®
+/// å¤‰æ›´ãªã©ã«ã‚‚æ³¨æ„ã™ã‚‹ã“ã¨)
 typedef FSS_CHAR_ACTOR_DATA FSS_OBJPARAM;
 
-///ƒAƒNƒ^[“®ì—pƒ[ƒN(PUSH‚Ìî•ñ‘Ş”ğæ‚Æ‚µ‚Ä‚àg—p‚³‚ê‚é
+///ã‚¢ã‚¯ã‚¿ãƒ¼å‹•ä½œç”¨ãƒ¯ãƒ¼ã‚¯(PUSHæ™‚ã®æƒ…å ±é€€é¿å…ˆã¨ã—ã¦ã‚‚ä½¿ç”¨ã•ã‚Œã‚‹
 typedef struct{
-	//param.playid‚©‚çˆø‚Á’£‚ê‚é‚Ì‚Å‚Â•K—v‚Í‚È‚¢‚¯‚ê‚ÇAƒT[ƒ`‚ğ‚È‚­‚¹‚é‚Ì‚Å‚½‚¹‚Ä‚Ü‚·
-	//objwk‚ªNULL‚©‚Ç‚¤‚©‚Åg—pE–¢g—p”»’è‚É‚àg—p‚µ‚Ä‚¢‚Ü‚·
-	WF2DMAP_OBJWK *objwk;	///<ƒIƒuƒWƒFƒNƒgƒ[ƒN
-	WF2DMAP_OBJDRAWWK *drawwk;	///<•`‰æƒIƒuƒWƒFƒNƒgƒ[ƒN
+	//param.playidã‹ã‚‰å¼•ã£å¼µã‚Œã‚‹ã®ã§æŒã¤å¿…è¦ã¯ãªã„ã‘ã‚Œã©ã€ã‚µãƒ¼ãƒã‚’ãªãã›ã‚‹ã®ã§æŒãŸã›ã¦ã¾ã™
+	//objwkãŒNULLã‹ã©ã†ã‹ã§ä½¿ç”¨ãƒ»æœªä½¿ç”¨åˆ¤å®šã«ã‚‚ä½¿ç”¨ã—ã¦ã„ã¾ã™
+	WF2DMAP_OBJWK *objwk;	///<ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
+	WF2DMAP_OBJDRAWWK *drawwk;	///<æç”»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
 
-	FSS_OBJPARAM param;			///<OBJƒpƒ‰ƒ[ƒ^
-	FSS_OBJMOVE_WORK move;		///<OBJ“®ìƒ[ƒN
-	TCB_PTR anime_tcb;	///<ƒXƒNƒŠƒvƒgƒAƒjƒÀs’†‚Ìê‡A§ŒäTCB‚Ìƒ|ƒCƒ“ƒ^‚ª“ü‚é
+	FSS_OBJPARAM param;			///<OBJãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	FSS_OBJMOVE_WORK move;		///<OBJå‹•ä½œãƒ¯ãƒ¼ã‚¯
+	TCB_PTR anime_tcb;	///<ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¢ãƒ‹ãƒ¡å®Ÿè¡Œä¸­ã®å ´åˆã€åˆ¶å¾¡TCBã®ãƒã‚¤ãƒ³ã‚¿ãŒå…¥ã‚‹
 }FSS_ACTOR_WORK;
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern FRONTIER_EX_PARAM * Frontier_ExParamGet(FMAIN_PTR fmain);
 extern FMAP_PTR Frontier_FMapAdrsGet(FMAIN_PTR fmain);
@@ -139,7 +139,7 @@ extern PUSH_ARTICLE_WORK * Frontier_ArticlePushBufferGet(FMAIN_PTR fmain);
 extern void Frontier_ArticlePushBufferInit(FMAIN_PTR fmain);
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 extern const PROC_DATA FrontierMainProcData;
 

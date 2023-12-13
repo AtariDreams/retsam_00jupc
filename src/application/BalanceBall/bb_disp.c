@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	bb_disp.c
- * @brief	ä»íPÇ»ê‡ñæÇèëÇ≠
+ * @brief	Á∞°Âçò„Å™Ë™¨Êòé„ÇíÊõ∏„Åè
  * @author	goto
- * @date	2007.10.01(åé)
+ * @date	2007.10.01(Êúà)
  *
- * Ç±Ç±Ç…êFÅXÇ»âê‡ìôÇèëÇ¢ÇƒÇ‡ÇÊÇ¢
+ * „Åì„Åì„Å´Ëâ≤„ÄÖ„Å™Ëß£Ë™¨Á≠â„ÇíÊõ∏„ÅÑ„Å¶„ÇÇ„Çà„ÅÑ
  *
  */
 //==============================================================================
@@ -29,7 +29,7 @@ static void BB_disp_COAP_SimpleInit( TCATS_OBJECT_ADD_PARAM_S* coap, s16 x, s16 
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉÇÉfÉãï`âÊ
+ * @brief	„É¢„Éá„É´ÊèèÁîª
  *
  * @param	obj	
  * @param	mat43	
@@ -44,7 +44,7 @@ void BB_disp_3DModelDraw( D3DOBJ* obj, MtxFx43* mat43, VecFx32* pos )
 		NNS_G3dGlbFlush();
 		NNS_G3dGeTranslateVec( pos );
 		NNS_G3dGeMultMtx43( mat43 );
-		NNS_G3dGlbSetBaseScale( &obj->scale );	///< ägëÂÇîΩâfÇ≥ÇπÇÈÇΩÇﬂ
+		NNS_G3dGlbSetBaseScale( &obj->scale );	///< Êã°Â§ß„ÇíÂèçÊò†„Åï„Åõ„Çã„Åü„ÇÅ
 		NNS_G3dDraw( &obj->render );
 	}
 }
@@ -52,7 +52,7 @@ void BB_disp_3DModelDraw( D3DOBJ* obj, MtxFx43* mat43, VecFx32* pos )
 
 //--------------------------------------------------------------
 /**
- * @brief	model ÇÃ ï`âÊ
+ * @brief	model „ÅÆ ÊèèÁîª
  *
  * @param	obj	
  *
@@ -81,7 +81,7 @@ static inline void BB_inline_ModelDrawEx( BB_3D_MODEL* wk, BB_3D_MODEL* wk2 )
 
 //--------------------------------------------------------------
 /**
- * @brief	Light ÇÃ ÇπÇ¡ÇƒÇ¢
+ * @brief	Light „ÅÆ „Åõ„Å£„Å¶„ÅÑ
  *
  * @param	none	
  *
@@ -106,7 +106,7 @@ static inline void BB_inline_LightSet( void )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉÇÉfÉã ÉçÅ[Éh
+ * @brief	„É¢„Éá„É´ „É≠„Éº„Éâ
  *
  * @param	wk	
  *
@@ -122,7 +122,7 @@ void BB_disp_Model_Load( BB_3D_MODEL* wk, ARCHANDLE* p_handle, int id )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉÇÉfÉã ìoò^
+ * @brief	„É¢„Éá„É´ ÁôªÈå≤
  *
  * @param	wk	
  *
@@ -157,7 +157,7 @@ void BB_disp_Model_Init( BB_3D_MODEL* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉÇÉfÉã îjä¸
+ * @brief	„É¢„Éá„É´ Á†¥Ê£Ñ
  *
  * @param	wk	
  *
@@ -174,7 +174,7 @@ void BB_disp_Model_Delete( BB_3D_MODEL* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ï`âÊ
+ * @brief	ÊèèÁîª
  *
  * @param	wk	
  *
@@ -222,7 +222,7 @@ void BB_disp_Draw( BB_WORK* wk )
 	BB_inline_ModelDraw( &wk->p_client->bb3d_ball );
 	BB_inline_ModelDraw( &wk->p_client->bb3d_spot );
 
-	///< lv upÅ@è„è∏
+	///< lv up„ÄÄ‰∏äÊòá
 	if ( wk->p_client->bb3d_lvup.bInit ){
 		BB_inline_ModelDraw( &wk->p_client->bb3d_lvup );		
 		if ( wk->p_client->bb3d_lvup.bAnime ){
@@ -235,7 +235,7 @@ void BB_disp_Draw( BB_WORK* wk )
 		}
 	}
 	
-	///< lv up í èÌ
+	///< lv up ÈÄöÂ∏∏
 	if ( wk->p_client->bb3d_lvbs.bInit ){
 		BB_inline_ModelDraw( &wk->p_client->bb3d_lvbs );		
 		if ( wk->p_client->bb3d_lvbs.bAnime ){
@@ -252,7 +252,7 @@ void BB_disp_Draw( BB_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Ç‹ÇÀÇÀÇÃÉAÉjÉÅê›íË
+ * @brief	„Åæ„Å≠„Å≠„ÅÆ„Ç¢„Éã„É°Ë®≠ÂÆö
  * @param	model	
  * @param	anime_no	
  *
@@ -269,7 +269,7 @@ void ManeneAnime_Set( BB_CLIENT* wk, int anime_no )
 
 	D3DOBJ_DelAnm( &wk->bb3d_mane[ 0 ].obj, &wk->bb3d_mane[ 0 ].anm[ old ] );
 
-	wk->bb3d_mane[ 0 ].anime_no = anime_no;	///< anime ÇÃïœçX
+	wk->bb3d_mane[ 0 ].anime_no = anime_no;	///< anime „ÅÆÂ§âÊõ¥
 
 	D3DOBJ_AddAnm( &wk->bb3d_mane[ 0 ].obj, &wk->bb3d_mane[ 0 ].anm[ now ] );
 }
@@ -291,7 +291,7 @@ int ManeneAnime_Get( BB_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Ç‹ÇÀÇÀÇÃÉAÉjÉÅÉtÉâÉOê›íË
+ * @brief	„Åæ„Å≠„Å≠„ÅÆ„Ç¢„Éã„É°„Éï„É©„Ç∞Ë®≠ÂÆö
  * @param	model	
  * @param	flag	
  *
@@ -307,7 +307,7 @@ void ManeneAnime_FlagSet( BB_WORK* wk, BOOL flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉJÉÅÉâÇπÇ¡ÇƒÇ¢
+ * @brief	„Ç´„É°„É©„Åõ„Å£„Å¶„ÅÑ
  *
  * @param	wk	
  *
@@ -330,7 +330,7 @@ void BB_disp_CameraSet( BB_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ä»íPÇ…èâä˙âª
+ * @brief	Á∞°Âçò„Å´ÂàùÊúüÂåñ
  *
  * @param	x	
  * @param	y	
@@ -362,16 +362,16 @@ static void BB_disp_COAP_SimpleInit( TCATS_OBJECT_ADD_PARAM_S* coap, s16 x, s16 
 }
 
 static const s16 manene_pos[][ 3 ] = {
-	{	///< ÇPêlÉvÉåÉC
+	{	///< Ôºë‰∫∫„Éó„É¨„Ç§
 		0,0,0,
 	},
-	{	///< ÇQêlÉvÉåÉC
+	{	///< Ôºí‰∫∫„Éó„É¨„Ç§
 		128,0,0
 	},
-	{	///< ÇRêlÉvÉåÉC
+	{	///< Ôºì‰∫∫„Éó„É¨„Ç§
 		85, 170,0,
 	},
-	{	///< ÇSêlÉvÉåÉC
+	{	///< Ôºî‰∫∫„Éó„É¨„Ç§
 		64, 128, 192,
 	},
 };
@@ -379,7 +379,7 @@ static const s16 manene_pos[][ 3 ] = {
 
 //--------------------------------------------------------------
 /**
- * @brief	â‘âŒÇÃìoò^
+ * @brief	Ëä±ÁÅ´„ÅÆÁôªÈå≤
  *
  * @param	wk	
  *
@@ -410,7 +410,7 @@ void BB_disp_Hanabi_OAM_Add( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	éËÇÃìoò^
+ * @brief	Êâã„ÅÆÁôªÈå≤
  *
  * @param	wk	
  *
@@ -441,7 +441,7 @@ void BB_disp_Hand_Add( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	éËÇÃîjä¸
+ * @brief	Êâã„ÅÆÁ†¥Ê£Ñ
  *
  * @param	wk	
  *
@@ -580,7 +580,7 @@ void BB_disp_Manene_OAM_Del( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉÅÉbÉZÅ[ÉWÉEÉBÉìÉhÉEçÏê¨
+ * @brief	„É°„ÉÉ„Çª„Éº„Ç∏„Ç¶„Ç£„É≥„Éâ„Ç¶‰ΩúÊàê
  *
  * @param	wk	
  *
@@ -612,7 +612,7 @@ void BB_disp_InfoWinAdd( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉÅÉbÉZÅ[ÉWÉEÉBÉìÉhÉEîjä¸
+ * @brief	„É°„ÉÉ„Çª„Éº„Ç∏„Ç¶„Ç£„É≥„Éâ„Ç¶Á†¥Ê£Ñ
  *
  * @param	wk	
  *
@@ -631,7 +631,7 @@ void BB_disp_InfoWinDel( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Ç¢ÇÎÇ™Ç¶
+ * @brief	„ÅÑ„Çç„Åå„Åà
  *
  * @param	wk	
  * @param	id	
@@ -644,7 +644,7 @@ void BR_ColorChange( BB_WORK* wk, int id )
 {
 	PALETTE_FADE_PTR pfd	= wk->sys.pfd;
 
-	/// 1 = ê¬ 2 = ê‘ = 3 = â© 4 = óŒ
+	/// 1 = Èùí 2 = Ëµ§ = 3 = ÈªÑ 4 = Á∑ë
 	static int pal_pos[][ 4 ][ 4 + 1 ] = {
 		/// comm_num = 1
 		{
@@ -805,7 +805,7 @@ void BB_disp_NameWinDel( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉäÉ\Å[ÉXÇÃì«Ç›çûÇ›
+ * @brief	„É™„ÇΩ„Éº„Çπ„ÅÆË™≠„ÅøËæº„Åø
  *
  * @param	wk	
  *
@@ -830,7 +830,7 @@ void BB_disp_ResourceLoad( BB_WORK* wk )
 	int id;
 	int palnum;
 	
-	// ----- è„âÊñ  -----
+	// ----- ‰∏äÁîªÈù¢ -----
 	
 	hdl = hdl_bb;
     nca = NARC_manene_upper_oam_NANR;
@@ -845,8 +845,8 @@ void BB_disp_ResourceLoad( BB_WORK* wk )
 	CATS_LoadResourceCellAnmArcH( csp, crp, hdl, nca, FALSE, id );
 	CATS_LoadResourcePlttWorkArcH( pfd, FADE_SUB_OBJ, csp, crp, hdl, ncl, FALSE, palnum, NNS_G2D_VRAM_TYPE_2DSUB, id );		
 	
-	// ----- â∫âÊñ  -----
-	// êØ
+	// ----- ‰∏ãÁîªÈù¢ -----
+	// Êòü
     nca = NARC_manene_eff_star_NANR;
 	nce = NARC_manene_eff_star_NCER;
 	ncg = NARC_manene_eff_star_NCGR;
@@ -859,7 +859,7 @@ void BB_disp_ResourceLoad( BB_WORK* wk )
 	CATS_LoadResourceCellAnmArcH( csp, crp, hdl, nca, FALSE, id );
 	CATS_LoadResourcePlttWorkArcH( pfd, FADE_MAIN_OBJ, csp, crp, hdl, ncl, FALSE, palnum, NNS_G2D_VRAM_TYPE_2DMAIN, id );
 	
-	// îèéË
+	// ÊãçÊâã
     nca = NARC_manene_bottom_hakusyu_NANR;
 	nce = NARC_manene_bottom_hakusyu_NCER;
 	ncg = NARC_manene_bottom_hakusyu_NCGR ;
@@ -872,7 +872,7 @@ void BB_disp_ResourceLoad( BB_WORK* wk )
 	CATS_LoadResourceCellAnmArcH( csp, crp, hdl, nca, FALSE, id );
 	CATS_LoadResourcePlttWorkArcH( pfd, FADE_MAIN_OBJ, csp, crp, hdl, ncl, FALSE, palnum, NNS_G2D_VRAM_TYPE_2DMAIN, id );
 	
-	// éÜ
+	// Á¥ô
     nca = NARC_manene_bottom_kami_NANR;
 	nce = NARC_manene_bottom_kami_NCER;
 	ncg = NARC_manene_bottom_kami_NCGR ;
@@ -886,7 +886,7 @@ void BB_disp_ResourceLoad( BB_WORK* wk )
 	CATS_LoadResourcePlttWorkArcH( pfd, FADE_MAIN_OBJ, csp, crp, hdl, ncl, FALSE, palnum, NNS_G2D_VRAM_TYPE_2DMAIN, id );
 	
 	
-	// â‘âŒ
+	// Ëä±ÁÅ´
     nca = NARC_manene_bottom_hanabi_NANR;
 	nce = NARC_manene_bottom_hanabi_NCER;
 	ncg = NARC_manene_bottom_hanabi_NCGR ;
@@ -899,7 +899,7 @@ void BB_disp_ResourceLoad( BB_WORK* wk )
 	CATS_LoadResourceCellAnmArcH( csp, crp, hdl, nca, FALSE, id );
 	CATS_LoadResourcePlttWorkArcH( pfd, FADE_MAIN_OBJ, csp, crp, hdl, ncl, FALSE, palnum, NNS_G2D_VRAM_TYPE_2DMAIN, id );
 	
-	// ÉâÉCÉg
+	// „É©„Ç§„Éà
     nca = NARC_manene_bottom_oam_NANR;
 	nce = NARC_manene_bottom_oam_NCER;
 	ncg = NARC_manene_bottom_oam_NCGR;
@@ -912,7 +912,7 @@ void BB_disp_ResourceLoad( BB_WORK* wk )
 	CATS_LoadResourceCellAnmArcH( csp, crp, hdl, nca, FALSE, id );
 	CATS_LoadResourcePlttWorkArcH( pfd, FADE_MAIN_OBJ, csp, crp, hdl, ncl, FALSE, palnum, NNS_G2D_VRAM_TYPE_2DMAIN, id );
 	
-	// ÉyÉì
+	// „Éö„É≥
 	{
 		ARCHANDLE* res_hdl = ArchiveDataHandleOpen( ARC_WLMNGM_TOOL_GRA, HEAPID_BB );
 
@@ -979,7 +979,7 @@ void BB_disp_Manene_Add( BB_WORK* bb_wk, BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉXÉ^Å[É_ÉXÉg
+ * @brief	„Çπ„Çø„Éº„ÉÄ„Çπ„Éà
  *
  * @param	bb_wk	
  * @param	wk	
@@ -1010,7 +1010,7 @@ CATS_ACT_PTR BB_disp_Stardust_Add( BB_CLIENT* wk, s16 x, s16 y )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉâÉCÉg
+ * @brief	„É©„Ç§„Éà
  *
  * @param	wk
  * @retval	none	
@@ -1052,7 +1052,7 @@ void BB_disp_Light_Add( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ÉâÉCÉgçÌèú
+ * @brief	„É©„Ç§„ÉàÂâäÈô§
  *
  * @param	wk	
  *
@@ -1118,7 +1118,7 @@ void BB_disp_Pen_Del( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	BG ÇÃ ìWäJ
+ * @brief	BG „ÅÆ Â±ïÈñã
  *
  * @param	wk	
  *
@@ -1137,27 +1137,27 @@ void BB_disp_BG_Load( BB_WORK* wk )
 	
 	ARCHANDLE* hdl = hdl_bb;
 	
-	// ----- è„âÊñ  -----	
-	ArcUtil_HDL_BgCharSet( hdl, NARC_manene_upper_bg_NCGR,   	bgl, GF_BGL_FRAME0_S, 0, 0, 0, HEAPID_BB );		///< îwåi
-	ArcUtil_HDL_BgCharSet( hdl, NARC_manene_upper_bg_maku_NCGR, bgl, GF_BGL_FRAME1_S, 0, 0, 0, HEAPID_BB );		///< ñã
+	// ----- ‰∏äÁîªÈù¢ -----	
+	ArcUtil_HDL_BgCharSet( hdl, NARC_manene_upper_bg_NCGR,   	bgl, GF_BGL_FRAME0_S, 0, 0, 0, HEAPID_BB );		///< ËÉåÊôØ
+	ArcUtil_HDL_BgCharSet( hdl, NARC_manene_upper_bg_maku_NCGR, bgl, GF_BGL_FRAME1_S, 0, 0, 0, HEAPID_BB );		///< Âπï
 	ArcUtil_HDL_ScrnSet( hdl, NARC_manene_upper_bg_00_NSCR,  	bgl, GF_BGL_FRAME0_S, 0, 0, 0, HEAPID_BB );
 	ArcUtil_HDL_ScrnSet( hdl, NARC_manene_upper_bg_maku1_NSCR, 	bgl, GF_BGL_FRAME1_S, 0, 0, 0, HEAPID_BB );
 	ArcUtil_HDL_ScrnSet( hdl, NARC_manene_upper_bg_maku2_NSCR, 	bgl, GF_BGL_FRAME2_S, 0, 0, 0, HEAPID_BB );
 	ArcUtil_HDL_ScrnSet( hdl, NARC_manene_upper_bg_maku3_NSCR, 	bgl, GF_BGL_FRAME3_S, 0, 0, 0, HEAPID_BB );
-	PaletteWorkSet_Arc( pfd, ARCID_BB_RES, NARC_manene_upper_bg_NCLR, 	HEAPID_BB, FADE_SUB_BG, 0x20 * 5, 0 );	///< 4ñ{ï™
+	PaletteWorkSet_Arc( pfd, ARCID_BB_RES, NARC_manene_upper_bg_NCLR, 	HEAPID_BB, FADE_SUB_BG, 0x20 * 5, 0 );	///< 4Êú¨ÂàÜ
 
-	// ----- â∫âÊñ  -----
-	ArcUtil_HDL_BgCharSet( hdl, NARC_manene_bottom_bg_NCGR,   	bgl, GF_BGL_FRAME3_M, 0, 0, 0, HEAPID_BB );		///< îwåi
-	ArcUtil_HDL_BgCharSet( hdl, NARC_manene_bottom_bg_maku_NCGR,bgl, GF_BGL_FRAME1_M, 0, 0, 0, HEAPID_BB );		///< ñã
+	// ----- ‰∏ãÁîªÈù¢ -----
+	ArcUtil_HDL_BgCharSet( hdl, NARC_manene_bottom_bg_NCGR,   	bgl, GF_BGL_FRAME3_M, 0, 0, 0, HEAPID_BB );		///< ËÉåÊôØ
+	ArcUtil_HDL_BgCharSet( hdl, NARC_manene_bottom_bg_maku_NCGR,bgl, GF_BGL_FRAME1_M, 0, 0, 0, HEAPID_BB );		///< Âπï
 	ArcUtil_HDL_ScrnSet( hdl, NARC_manene_bottom_bg_NSCR,  		bgl, GF_BGL_FRAME3_M, 0, 0, 0, HEAPID_BB );
 	ArcUtil_HDL_ScrnSet( hdl, NARC_manene_bottom_bg_maku1_NSCR, bgl, GF_BGL_FRAME1_M, 0, 0, 0, HEAPID_BB );
 	ArcUtil_HDL_ScrnSet( hdl, NARC_manene_bottom_bg_maku2_NSCR, bgl, GF_BGL_FRAME2_M, 0, 0, 0, HEAPID_BB );
 	PaletteWorkSet_Arc( pfd, ARCID_BB_RES, NARC_manene_bottom_bg_NCLR, 	HEAPID_BB, FADE_MAIN_BG, 0x20, 0 );
 
-	// ----- ÉtÉHÉìÉg -----
+	// ----- „Éï„Ç©„É≥„Éà -----
 	PaletteWorkSet_Arc( pfd, ARC_FONT, NARC_font_talk_ncrl, HEAPID_BB, FADE_SUB_BG, 0x20, 14 * 16);
 	
-	// ----- ÉEÉBÉìÉhÉE -----
+	// ----- „Ç¶„Ç£„É≥„Éâ„Ç¶ -----
 	PaletteWorkSet_Arc( pfd, ARC_WINFRAME, MenuWinPalArcGet(), HEAPID_BB, FADE_SUB_BG, 0x20, 13 * 16);	
 	MenuWinGraphicSet( bgl, GF_BGL_FRAME3_S, BB_BG_CGX_OFS, 13, 0, HEAPID_BB );
 }

@@ -13,10 +13,10 @@
 #
 # $Log: Makefile,v $
 # Revision 1.2  2005/08/23 04:42:25  yasu
-# NITROWIFI_INSTALL_ROOT �֘A�̏C��
+# NITROWIFI_INSTALL_ROOT 関連の修正
 #
 # Revision 1.1  2005/07/29 05:10:17  terui
-# md5 �v�Z�p API ��MATH �֐��̃��b�p�[�Ƃ��ĐV�K�ǉ��B
+# md5 計算用 API をMATH 関数のラッパーとして新規追加。
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

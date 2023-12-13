@@ -20,14 +20,14 @@
 /* constants */
 
 /*
- * ROMƒLƒƒƒbƒVƒ…‚ÌŠeÝ’è’l.
- * [ƒy[ƒWƒTƒCƒY]
- * - ROMƒy[ƒWƒTƒCƒY(512BYTE)‚Ì®””{‚ª–]‚Ü‚µ‚¢.
- * - ¬‚³‚·‚¬‚é‚ÆROMƒAƒNƒZƒX‚ÌƒI[ƒo[ƒwƒbƒh‚ª‘‰Á‚·‚é.
- * - ‘å‚«‚·‚¬‚é‚ÆƒT[ƒoŽ©g‚ÌROMƒAƒNƒZƒX(FS/SND/...)‚ª•s’èŠú‚É‘jŠQ‚³‚ê‚é.
- * [ƒy[ƒW”]
- * - ‘å‚«‚¯‚ê‚Î“]‘—Œø—¦‚ÌˆÀ’è‰»(—òˆ«‚È’ÊMŠÂ‹«‚Å‚ÌÄ‘—ˆ—‰ž“š«)‚ÉŠñ—^‚·‚é.
- * - ƒAƒNƒZƒX‚Ì‹ÇŠ«‚ª‚‚¢ê‡‚É‚ÍƒNƒ‰ƒCƒAƒ“ƒg‘”‚æ‚è‘å‚«‚¢’l‚ª–]‚Ü‚µ‚¢.
+ * ROMã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®å„è¨­å®šå€¤.
+ * [ãƒšãƒ¼ã‚¸ã‚µã‚¤ã‚º]
+ * - ROMãƒšãƒ¼ã‚¸ã‚µã‚¤ã‚º(512BYTE)ã®æ•´æ•°å€ãŒæœ›ã¾ã—ã„.
+ * - å°ã•ã™ãŽã‚‹ã¨ROMã‚¢ã‚¯ã‚»ã‚¹ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ˜ãƒƒãƒ‰ãŒå¢—åŠ ã™ã‚‹.
+ * - å¤§ãã™ãŽã‚‹ã¨ã‚µãƒ¼ãƒè‡ªèº«ã®ROMã‚¢ã‚¯ã‚»ã‚¹(FS/SND/...)ãŒä¸å®šæœŸã«é˜»å®³ã•ã‚Œã‚‹.
+ * [ãƒšãƒ¼ã‚¸æ•°]
+ * - å¤§ãã‘ã‚Œã°è»¢é€åŠ¹çŽ‡ã®å®‰å®šåŒ–(åŠ£æ‚ªãªé€šä¿¡ç’°å¢ƒã§ã®å†é€å‡¦ç†å¿œç­”æ€§)ã«å¯„ä¸Žã™ã‚‹.
+ * - ã‚¢ã‚¯ã‚»ã‚¹ã®å±€æ‰€æ€§ãŒé«˜ã„å ´åˆã«ã¯ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç·æ•°ã‚ˆã‚Šå¤§ãã„å€¤ãŒæœ›ã¾ã—ã„.
  */
 #define	WFS_FILE_CACHE_SIZE	    1024UL
 #define WFS_CACHE_PAGE_TOTAL    8
@@ -58,20 +58,20 @@ WFSServerThread;
 /*---------------------------------------------------------------------------*
   Name:         WFSi_ReadRomCallback
 
-  Description:  ROMƒfƒoƒCƒX“Ç‚Ýž‚ÝƒR[ƒ‹ƒoƒbƒN.
+  Description:  ROMãƒ‡ãƒã‚¤ã‚¹èª­ã¿è¾¼ã¿ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯.
 
-  Arguments:    userdata         WFSServerThread\‘¢‘Ì.
-                buffer           “]‘—æƒƒ‚ƒŠ.
-                offset           “]‘—Œ³ƒIƒtƒZƒbƒg.
-                length           “]‘—ƒTƒCƒY.
+  Arguments:    userdata         WFSServerThreadæ§‹é€ ä½“.
+                buffer           è»¢é€å…ˆãƒ¡ãƒ¢ãƒª.
+                offset           è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                length           è»¢é€ã‚µã‚¤ã‚º.
 
-  Returns:      ¬Œ÷‚·‚ê‚Î0ˆÈã‚Ì’l, Ž¸”s‚·‚ê‚Î•‰‚Ì’l.
+  Returns:      æˆåŠŸã™ã‚Œã°0ä»¥ä¸Šã®å€¤, å¤±æ•—ã™ã‚Œã°è² ã®å€¤.
  *---------------------------------------------------------------------------*/
 static int WFSi_ReadRomCallback(void *userdata, void *buffer, u32 offset, u32 length)
 {
     WFSServerThread * const thread = (WFSServerThread*)userdata;
 
-    /* NITRO-SDK ŒÅ—L : æ“ª32kB‚ÍƒAƒNƒZƒX•s‰Â‚È‚Ì‚Åƒƒ‚ƒŠ‚©‚ç“Ç‚Ýž‚Ý */
+    /* NITRO-SDK å›ºæœ‰ : å…ˆé ­32kBã¯ã‚¢ã‚¯ã‚»ã‚¹ä¸å¯ãªã®ã§ãƒ¡ãƒ¢ãƒªã‹ã‚‰èª­ã¿è¾¼ã¿ */
     if(offset < sizeof(CARDRomRegion))
     {
         const u8 *header = CARD_GetRomHeader();
@@ -106,14 +106,14 @@ static int WFSi_ReadRomCallback(void *userdata, void *buffer, u32 offset, u32 le
 /*---------------------------------------------------------------------------*
   Name:         WFSi_WriteRomCallback
 
-  Description:  ROMƒfƒoƒCƒX‘‚«ž‚ÝƒR[ƒ‹ƒoƒbƒN. (ƒ_ƒ~[)
+  Description:  ROMãƒ‡ãƒã‚¤ã‚¹æ›¸ãè¾¼ã¿ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯. (ãƒ€ãƒŸãƒ¼)
 
-  Arguments:    userdata         WFSServerThread\‘¢‘Ì.
-                buffer           “]‘—æƒƒ‚ƒŠ.
-                offset           “]‘—Œ³ƒIƒtƒZƒbƒg.
-                length           “]‘—ƒTƒCƒY.
+  Arguments:    userdata         WFSServerThreadæ§‹é€ ä½“.
+                buffer           è»¢é€å…ˆãƒ¡ãƒ¢ãƒª.
+                offset           è»¢é€å…ƒã‚ªãƒ•ã‚»ãƒƒãƒˆ.
+                length           è»¢é€ã‚µã‚¤ã‚º.
 
-  Returns:      ¬Œ÷‚·‚ê‚Î0ˆÈã‚Ì’l, Ž¸”s‚·‚ê‚Î•‰‚Ì’l.
+  Returns:      æˆåŠŸã™ã‚Œã°0ä»¥ä¸Šã®å€¤, å¤±æ•—ã™ã‚Œã°è² ã®å€¤.
  *---------------------------------------------------------------------------*/
 static int WFSi_WriteRomCallback(void *userdata, const void *buffer, u32 offset, u32 length)
 {
@@ -127,9 +127,9 @@ static int WFSi_WriteRomCallback(void *userdata, const void *buffer, u32 offset,
 /*---------------------------------------------------------------------------*
   Name:         WFSi_ServerThreadProc
 
-  Description:  WFSƒT[ƒo—pƒXƒŒƒbƒhƒvƒƒV[ƒWƒƒ.
+  Description:  WFSã‚µãƒ¼ãƒç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£.
 
-  Arguments:    arg             WFSServerThread\‘¢‘Ì.
+  Arguments:    arg             WFSServerThreadæ§‹é€ ä½“.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -151,11 +151,11 @@ static void WFSi_ServerThreadProc(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         WFSi_ThreadHook
 
-  Description:  WFSƒT[ƒo‚ÌƒZƒOƒƒ“ƒgƒR[ƒ‹ƒoƒbƒN‚ÉŽdŠ|‚¯‚éƒtƒbƒNŠÖ”.
+  Description:  WFSã‚µãƒ¼ãƒã®ã‚»ã‚°ãƒ¡ãƒ³ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã«ä»•æŽ›ã‘ã‚‹ãƒ•ãƒƒã‚¯é–¢æ•°.
 
-  Arguments:    work            WFSServerThread\‘¢‘Ì.
-                argument        WFSSegmentBuffer\‘¢‘Ì.
-                                NULL‚È‚çI—¹’Ê’m.
+  Arguments:    work            WFSServerThreadæ§‹é€ ä½“.
+                argument        WFSSegmentBufferæ§‹é€ ä½“.
+                                NULLãªã‚‰çµ‚äº†é€šçŸ¥.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -163,17 +163,17 @@ static void WFSi_ThreadHook(void *work, void *argument)
 {
     WFSServerThread * const thread = (WFSServerThread *)work;
     WFSSegmentBuffer * const segment = (WFSSegmentBuffer*)argument;
-    /* NULL‚È‚çI—¹’Ê’m */
+    /* NULLãªã‚‰çµ‚äº†é€šçŸ¥ */
     if (!segment)
     {
         (void)OS_SendMessage(thread->msg_queue, (OSMessage)FALSE, OS_MESSAGE_BLOCK);
         OS_JoinThread(thread->thread);
         (void)FS_CloseFile(thread->file);
     }
-    /* NULL‚Å‚È‚¯‚ê‚ÎƒZƒOƒƒ“ƒg—v‹ (‚Ü‚½‚Í‚»‚Ì€”õ’Ê’m) */
+    /* NULLã§ãªã‘ã‚Œã°ã‚»ã‚°ãƒ¡ãƒ³ãƒˆè¦æ±‚ (ã¾ãŸã¯ãã®æº–å‚™é€šçŸ¥) */
     else if (!MI_ReadCache(thread->cache, segment->buffer, segment->offset, segment->length))
     {
-        /* ƒLƒƒƒbƒVƒ…ƒ~ƒX‚µ‚½ê‡‚ÍƒXƒŒƒbƒh‚Ö“Ç‚Ýž‚ÝŽwŽ¦ */
+        /* ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒŸã‚¹ã—ãŸå ´åˆã¯ã‚¹ãƒ¬ãƒƒãƒ‰ã¸èª­ã¿è¾¼ã¿æŒ‡ç¤º */
         segment->buffer = NULL; /* == "could not prepare immediately" */
         (void)OS_SendMessage(thread->msg_queue, (OSMessage)TRUE, OS_MESSAGE_NOBLOCK);
     }
@@ -182,22 +182,22 @@ static void WFSi_ThreadHook(void *work, void *argument)
 /*---------------------------------------------------------------------------*
   Name:         WFS_ExecuteRomServerThread
 
-  Description:  Žw’è‚ÌROMƒtƒ@ƒCƒ‹‚ð”zM‚·‚é‚æ‚¤WFSƒ‰ƒCƒuƒ‰ƒŠ‚Ö“o˜^‚µ,
-                “à•”‚ÅROMƒAƒNƒZƒX—p‚ÌƒXƒŒƒbƒh‚ðŽ©“®“I‚É‹N“®‚·‚é.
-                ‚±‚ÌƒXƒŒƒbƒh‚ÍWFS_EndServerŠÖ”‚Ì“à•”‚ÅŽ©“®“I‚É”jŠü‚³‚ê‚é.
+  Description:  æŒ‡å®šã®ROMãƒ•ã‚¡ã‚¤ãƒ«ã‚’é…ä¿¡ã™ã‚‹ã‚ˆã†WFSãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¸ç™»éŒ²ã—,
+                å†…éƒ¨ã§ROMã‚¢ã‚¯ã‚»ã‚¹ç”¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’è‡ªå‹•çš„ã«èµ·å‹•ã™ã‚‹.
+                ã“ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã¯WFS_EndServeré–¢æ•°ã®å†…éƒ¨ã§è‡ªå‹•çš„ã«ç ´æ£„ã•ã‚Œã‚‹.
 
-  Arguments:    context          WFSServerContext\‘¢‘Ì.
-                file             ”zM‚·‚éƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ðŽ‚ÂSRLƒtƒ@ƒCƒ‹.
-                                 ƒNƒ[ƒ“ƒu[ƒg‚È‚çNULL‚ðŽw’è‚·‚é.
-                sharedFS         ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ðeŽq‚Å‹¤—L‚³‚¹‚é‚È‚çTRUE.
-                                 ‚»‚Ìê‡, e‹@Ž©‘Ì‚ÌŽ‚Âƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚É
-                                 file‚ÌŽ‚ÂƒI[ƒo[ƒŒƒC‚¾‚¯‚ð’Šo‚µ‚Ä’Ç‰Á‚µ‚½
-                                 ¬‡ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ð”zM‚·‚é.
-                                 file‚ÉNULL‚ðŽw’è‚µ‚½ê‡‚ÍƒNƒ[ƒ“ƒu[ƒg‚È‚Ì‚Å
-                                 ‚±‚Ìˆø”‚Í–³Ž‹‚³‚ê‚é. (í‚ÉTRUE‚Æ‰ðŽß‚³‚ê‚é)
+  Arguments:    context          WFSServerContextæ§‹é€ ä½“.
+                file             é…ä¿¡ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‚’æŒã¤SRLãƒ•ã‚¡ã‚¤ãƒ«.
+                                 ã‚¯ãƒ­ãƒ¼ãƒ³ãƒ–ãƒ¼ãƒˆãªã‚‰NULLã‚’æŒ‡å®šã™ã‚‹.
+                sharedFS         ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‚’è¦ªå­ã§å…±æœ‰ã•ã›ã‚‹ãªã‚‰TRUE.
+                                 ãã®å ´åˆ, è¦ªæ©Ÿè‡ªä½“ã®æŒã¤ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã«
+                                 fileã®æŒã¤ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã ã‘ã‚’æŠ½å‡ºã—ã¦è¿½åŠ ã—ãŸ
+                                 æ··åˆãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‚’é…ä¿¡ã™ã‚‹.
+                                 fileã«NULLã‚’æŒ‡å®šã—ãŸå ´åˆã¯ã‚¯ãƒ­ãƒ¼ãƒ³ãƒ–ãƒ¼ãƒˆãªã®ã§
+                                 ã“ã®å¼•æ•°ã¯ç„¡è¦–ã•ã‚Œã‚‹. (å¸¸ã«TRUEã¨è§£é‡ˆã•ã‚Œã‚‹)
 
 
-  Returns:      ROMƒtƒ@ƒCƒ‹‚Ì“o˜^‚ÆƒXƒŒƒbƒh‚Ì¶¬‚É¬Œ÷‚·‚ê‚ÎTRUE.
+  Returns:      ROMãƒ•ã‚¡ã‚¤ãƒ«ã®ç™»éŒ²ã¨ã‚¹ãƒ¬ãƒƒãƒ‰ã®ç”Ÿæˆã«æˆåŠŸã™ã‚Œã°TRUE.
  *---------------------------------------------------------------------------*/
 BOOL WFS_ExecuteRomServerThread(WFSServerContext *context, FSFile *file, BOOL sharedFS)
 {
@@ -210,11 +210,11 @@ BOOL WFS_ExecuteRomServerThread(WFSServerContext *context, FSFile *file, BOOL sh
     }
     else
     {
-        /* ’P‘ÌROMŒ^, ƒNƒ[ƒ“ƒu[ƒgŒ^, FS‹¤—LŒ^‚Ì‚¢‚¸‚ê‚©‚ð”»’è‚·‚é */
+        /* å˜ä½“ROMåž‹, ã‚¯ãƒ­ãƒ¼ãƒ³ãƒ–ãƒ¼ãƒˆåž‹, FSå…±æœ‰åž‹ã®ã„ãšã‚Œã‹ã‚’åˆ¤å®šã™ã‚‹ */
         u32     pos = file ? (FS_GetFileImageTop(file) + FS_GetPosition(file)) : 0;
         u32     fatbase = (u32)((file && !sharedFS) ? pos : 0);
         u32     overlay = (u32)(file ? pos : 0);
-        /* ROMƒAƒNƒZƒX—p‚ÌƒfƒoƒCƒX‚ÆƒLƒƒƒbƒVƒ…‚ð‰Šú‰» */
+        /* ROMã‚¢ã‚¯ã‚»ã‚¹ç”¨ã®ãƒ‡ãƒã‚¤ã‚¹ã¨ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’åˆæœŸåŒ– */
         FS_InitFile(thread->file);
         if (!FS_CreateFileFromRom(thread->file, 0, 0x7FFFFFFF))
         {
@@ -224,10 +224,10 @@ BOOL WFS_ExecuteRomServerThread(WFSServerContext *context, FSFile *file, BOOL sh
                       WFSi_ReadRomCallback, WFSi_WriteRomCallback);
         MI_InitCache(thread->cache, WFS_FILE_CACHE_SIZE,
                      thread->cache_buf, sizeof(thread->cache_buf));
-        /* ƒtƒ@ƒCƒ‹ƒe[ƒuƒ‹‚ð“o˜^ */
+        /* ãƒ•ã‚¡ã‚¤ãƒ«ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç™»éŒ² */
         if (WFS_RegisterServerTable(context, thread->device, fatbase, overlay))
         {
-            /* ˆ—‚ª¬Œ÷‚·‚ê‚ÎƒtƒbƒN‚ðÝ’è‚µ‚ÄƒXƒŒƒbƒh‹N“® */
+            /* å‡¦ç†ãŒæˆåŠŸã™ã‚Œã°ãƒ•ãƒƒã‚¯ã‚’è¨­å®šã—ã¦ã‚¹ãƒ¬ãƒƒãƒ‰èµ·å‹• */
             context->thread_work = thread;
             context->thread_hook = WFSi_ThreadHook;
             OS_InitMessageQueue(thread->msg_queue, thread->msg_array, 1);

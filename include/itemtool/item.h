@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	item.h
- * @brief	�A�C�e���f�[�^����
+ * @brief	アイテムデータ処理
  * @author	Hiroyuki Nakamura
  * @date	05.09.06
  */
@@ -21,102 +21,102 @@
 
 
 //============================================================================================
-//	�萔��`
+//	定数定義
 //============================================================================================
-typedef struct _ITEM_DATA	ITEMDATA;		// �A�C�e���f�[�^
+typedef struct _ITEM_DATA	ITEMDATA;		// アイテムデータ
 
-// ����A�C�e��ID�i�A�C�R���擾�ȂǂɎg�p�j
-#define	ITEM_DUMMY_ID	( 0 )				// �_�~�[ID
-#define	ITEM_RETURN_ID	( 0xffff )			// �߂�
+// 特殊アイテムID（アイコン取得などに使用）
+#define	ITEM_DUMMY_ID	( 0 )				// ダミーID
+#define	ITEM_RETURN_ID	( 0xffff )			// 戻る
 
-// �C���f�b�N�X�擾��`
+// インデックス取得定義
 enum {
-	ITEM_GET_DATA = 0,		// �A�C�e���f�[�^
-	ITEM_GET_ICON_CGX,		// �A�C�R���L����
-	ITEM_GET_ICON_PAL,		// �A�C�R���p���b�g
-	ITEM_GET_AGB_NUM		// AGB�̃A�C�e���ԍ�
+	ITEM_GET_DATA = 0,		// アイテムデータ
+	ITEM_GET_ICON_CGX,		// アイコンキャラ
+	ITEM_GET_ICON_PAL,		// アイコンパレット
+	ITEM_GET_AGB_NUM		// AGBのアイテム番号
 };
 
-// �p�����[�^�擾��`
+// パラメータ取得定義
 enum {
-	ITEM_PRM_PRICE,					// ���l
-	ITEM_PRM_EQUIP,					// ��������
-	ITEM_PRM_ATTACK,				// �З�
-	ITEM_PRM_EVENT,					// �d�v
-	ITEM_PRM_CNV,					// �֗��{�^��
-	ITEM_PRM_POCKET,				// �ۑ���i�|�P�b�g�ԍ��j
-	ITEM_PRM_FIELD,					// field�@�\ 
-	ITEM_PRM_BATTLE,				// battle�@�\ 
-	ITEM_PRM_TUIBAMU_EFF,			// ���΂ތ���
-	ITEM_PRM_NAGETUKERU_EFF,		// �Ȃ��������
-	ITEM_PRM_NAGETUKERU_ATC,		// �Ȃ�����З�
-	ITEM_PRM_SIZENNOMEGUMI_ATC,		// ������̂߂��݈З�
-	ITEM_PRM_SIZENNOMEGUMI_TYPE,	// ������̂߂��݃^�C�v
-	ITEM_PRM_BTL_POCKET,			// �퓬�ۑ���i�|�P�b�g�ԍ��j
-	ITEM_PRM_W_TYPE,				// ���[�N�^�C�v
-	ITEM_PRM_SLEEP_RCV,				// �����
-	ITEM_PRM_POISON_RCV,			// �ŉ�
-	ITEM_PRM_BURN_RCV,				// �Ώ���
-	ITEM_PRM_ICE_RCV,				// �X��
-	ITEM_PRM_PARALYZE_RCV,			// ��჉�
-	ITEM_PRM_PANIC_RCV,				// ������
-	ITEM_PRM_MEROMERO_RCV,			// ����������
-	ITEM_PRM_ABILITY_GUARD,			// �\�̓K�[�h
-	ITEM_PRM_DEATH_RCV,				// �m����
-	ITEM_PRM_ALL_DEATH_RCV,			// �S���m����
-	ITEM_PRM_LV_UP,					// ���x���A�b�v
-	ITEM_PRM_EVOLUTION,				// �i��
-	ITEM_PRM_ATTACK_UP,				// �U���̓A�b�v
-	ITEM_PRM_DEFENCE_UP,			// �h��̓A�b�v
-	ITEM_PRM_SP_ATTACK_UP,			// ���U�A�b�v
-	ITEM_PRM_SP_DEFENCE_UP,			// ���h�A�b�v
-	ITEM_PRM_AGILITY_UP,			// �f�����A�b�v
-	ITEM_PRM_HIT_UP,				// �������A�b�v
-	ITEM_PRM_CRITICAL_UP,			// �N���e�B�J�����A�b�v
-	ITEM_PRM_PP_UP,					// PP�A�b�v
-	ITEM_PRM_PP_3UP,				// PP�A�b�v�i�R�i�K�j
-	ITEM_PRM_PP_RCV,				// PP��
-	ITEM_PRM_ALL_PP_RCV,			// PP�񕜁i�S�Ă̋Z�j
-	ITEM_PRM_HP_RCV,				// HP��
-	ITEM_PRM_HP_EXP,				// HP�w�͒l�A�b�v
-	ITEM_PRM_POWER_EXP,				// �U���w�͒l�A�b�v
-	ITEM_PRM_DEFENCE_EXP,			// �h��w�͒l�A�b�v
-	ITEM_PRM_AGILITY_EXP,			// �f�����w�͒l�A�b�v
-	ITEM_PRM_SP_ATTACK_EXP,			// ���U�w�͒l�A�b�v
-	ITEM_PRM_SP_DEFENCE_EXP,		// ���h�w�͒l�A�b�v
-	ITEM_PRM_FRIEND1,				// �Ȃ��x�P
-	ITEM_PRM_FRIEND2,				// �Ȃ��x�Q
-	ITEM_PRM_FRIEND3,				// �Ȃ��x�R
-	ITEM_PRM_HP_EXP_POINT,			// HP�w�͒l�̒l
-	ITEM_PRM_POWER_EXP_POINT,		// �U���w�͒l�̒l
-	ITEM_PRM_DEFENCE_EXP_POINT,		// �h��w�͒l�̒l
-	ITEM_PRM_AGILITY_EXP_POINT,		// �f�����w�͒l�̒l
-	ITEM_PRM_SP_ATTACK_EXP_POINT,	// ���U�w�͒l�̒l
-	ITEM_PRM_SP_DEFENCE_EXP_POINT,	// ���h�w�͒l�̒l
-	ITEM_PRM_HP_RCV_POINT,			// HP�񕜒l�̒l
-	ITEM_PRM_PP_RCV_POINT,			// pp�񕜒l�̒l
-	ITEM_PRM_FRIEND1_POINT,			// �Ȃ��x1�̒l
-	ITEM_PRM_FRIEND2_POINT,			// �Ȃ��x2�̒l
-	ITEM_PRM_FRIEND3_POINT,			// �Ȃ��x3�̒l
+	ITEM_PRM_PRICE,					// 買値
+	ITEM_PRM_EQUIP,					// 装備効果
+	ITEM_PRM_ATTACK,				// 威力
+	ITEM_PRM_EVENT,					// 重要
+	ITEM_PRM_CNV,					// 便利ボタン
+	ITEM_PRM_POCKET,				// 保存先（ポケット番号）
+	ITEM_PRM_FIELD,					// field機能 
+	ITEM_PRM_BATTLE,				// battle機能 
+	ITEM_PRM_TUIBAMU_EFF,			// ついばむ効果
+	ITEM_PRM_NAGETUKERU_EFF,		// なげつける効果
+	ITEM_PRM_NAGETUKERU_ATC,		// なげつける威力
+	ITEM_PRM_SIZENNOMEGUMI_ATC,		// しぜんのめぐみ威力
+	ITEM_PRM_SIZENNOMEGUMI_TYPE,	// しぜんのめぐみタイプ
+	ITEM_PRM_BTL_POCKET,			// 戦闘保存先（ポケット番号）
+	ITEM_PRM_W_TYPE,				// ワークタイプ
+	ITEM_PRM_SLEEP_RCV,				// 眠り回復
+	ITEM_PRM_POISON_RCV,			// 毒回復
+	ITEM_PRM_BURN_RCV,				// 火傷回復
+	ITEM_PRM_ICE_RCV,				// 氷回復
+	ITEM_PRM_PARALYZE_RCV,			// 麻痺回復
+	ITEM_PRM_PANIC_RCV,				// 混乱回復
+	ITEM_PRM_MEROMERO_RCV,			// メロメロ回復
+	ITEM_PRM_ABILITY_GUARD,			// 能力ガード
+	ITEM_PRM_DEATH_RCV,				// 瀕死回復
+	ITEM_PRM_ALL_DEATH_RCV,			// 全員瀕死回復
+	ITEM_PRM_LV_UP,					// レベルアップ
+	ITEM_PRM_EVOLUTION,				// 進化
+	ITEM_PRM_ATTACK_UP,				// 攻撃力アップ
+	ITEM_PRM_DEFENCE_UP,			// 防御力アップ
+	ITEM_PRM_SP_ATTACK_UP,			// 特攻アップ
+	ITEM_PRM_SP_DEFENCE_UP,			// 特防アップ
+	ITEM_PRM_AGILITY_UP,			// 素早さアップ
+	ITEM_PRM_HIT_UP,				// 命中率アップ
+	ITEM_PRM_CRITICAL_UP,			// クリティカル率アップ
+	ITEM_PRM_PP_UP,					// PPアップ
+	ITEM_PRM_PP_3UP,				// PPアップ（３段階）
+	ITEM_PRM_PP_RCV,				// PP回復
+	ITEM_PRM_ALL_PP_RCV,			// PP回復（全ての技）
+	ITEM_PRM_HP_RCV,				// HP回復
+	ITEM_PRM_HP_EXP,				// HP努力値アップ
+	ITEM_PRM_POWER_EXP,				// 攻撃努力値アップ
+	ITEM_PRM_DEFENCE_EXP,			// 防御努力値アップ
+	ITEM_PRM_AGILITY_EXP,			// 素早さ努力値アップ
+	ITEM_PRM_SP_ATTACK_EXP,			// 特攻努力値アップ
+	ITEM_PRM_SP_DEFENCE_EXP,		// 特防努力値アップ
+	ITEM_PRM_FRIEND1,				// なつき度１
+	ITEM_PRM_FRIEND2,				// なつき度２
+	ITEM_PRM_FRIEND3,				// なつき度３
+	ITEM_PRM_HP_EXP_POINT,			// HP努力値の値
+	ITEM_PRM_POWER_EXP_POINT,		// 攻撃努力値の値
+	ITEM_PRM_DEFENCE_EXP_POINT,		// 防御努力値の値
+	ITEM_PRM_AGILITY_EXP_POINT,		// 素早さ努力値の値
+	ITEM_PRM_SP_ATTACK_EXP_POINT,	// 特攻努力値の値
+	ITEM_PRM_SP_DEFENCE_EXP_POINT,	// 特防努力値の値
+	ITEM_PRM_HP_RCV_POINT,			// HP回復値の値
+	ITEM_PRM_PP_RCV_POINT,			// pp回復値の値
+	ITEM_PRM_FRIEND1_POINT,			// なつき度1の値
+	ITEM_PRM_FRIEND2_POINT,			// なつき度2の値
+	ITEM_PRM_FRIEND3_POINT,			// なつき度3の値
 };
 
-// ���[�N�^�C�v�̎��
+// ワークタイプの種類
 enum {
-	ITEM_WKTYPE_DUMMY = 0,		// �_�~�[
-	ITEM_WKTYPE_POKEUSE,		// �|�P�����Ɏg��
+	ITEM_WKTYPE_DUMMY = 0,		// ダミー
+	ITEM_WKTYPE_POKEUSE,		// ポケモンに使う
 };
 
 //============================================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * �w��A�C�e�����w��ʒu�ɑ}��
+ * 指定アイテムを指定位置に挿入
  *
- * @param	item	�A�C�e���f�[�^
- * @param	pos1	�w��A�C�e���ʒu
- * @param	pos2	�}���ʒu
+ * @param	item	アイテムデータ
+ * @param	pos1	指定アイテム位置
+ * @param	pos2	挿入位置
  *
  * @return	none
  */	
@@ -125,85 +125,85 @@ GLOBAL void ItemPutIn( void * item, u16 pos1, u16 pos2 );
 
 //============================================================================================
 //============================================================================================
-//	�f�[�^�擾
+//	データ取得
 //============================================================================================
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * �f�[�^�C���f�b�N�X�擾
+ * データインデックス取得
  *
- * @param	item		�A�C�e���ԍ�
- * @param	type		�擾�f�[�^
+ * @param	item		アイテム番号
+ * @param	type		取得データ
  *
- * @return	�w��f�[�^
+ * @return	指定データ
  *
- * @li	type = ITEM_GET_DATA		: �A�C�e���f�[�^�̃A�[�J�C�u�C���f�b�N�X
- * @li	type = ITEM_GET_ICON_CGX	: �A�C�R���L�����̃A�[�J�C�u�C���f�b�N�X
- * @li	type = ITEM_GET_ICON_PAL	: �A�C�R���p���b�g�̃A�[�J�C�u�C���f�b�N�X
- * @li	type = ITEM_GET_AGB_NUM		: AGB�̃A�C�e���ԍ�
+ * @li	type = ITEM_GET_DATA		: アイテムデータのアーカイブインデックス
+ * @li	type = ITEM_GET_ICON_CGX	: アイコンキャラのアーカイブインデックス
+ * @li	type = ITEM_GET_ICON_PAL	: アイコンパレットのアーカイブインデックス
+ * @li	type = ITEM_GET_AGB_NUM		: AGBのアイテム番号
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u16 GetItemIndex( u16 item, u16 type );
 
 //--------------------------------------------------------------------------------------------
 /**
- * AGB�̃A�C�e����DP�̃A�C�e���ɕϊ�
+ * AGBのアイテムをDPのアイテムに変換
  *
- * @param	agb		AGB�̃A�C�e���ԍ�
+ * @param	agb		AGBのアイテム番号
  *
- * @retval	"ITEM_DUMMY_ID = DP�ɂȂ��A�C�e��"
- * @retval	"ITEM_DUMMY_ID != DP�̃A�C�e���ԍ�"
+ * @retval	"ITEM_DUMMY_ID = DPにないアイテム"
+ * @retval	"ITEM_DUMMY_ID != DPのアイテム番号"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u16 ITEM_AgbItemCnv( u16 agb );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �A�C�e���A�C�R���̃Z���A�[�J�C�u�C���f�b�N�X�擾
+ * アイテムアイコンのセルアーカイブインデックス取得
  *
  * @param	none
  *
- * @return	�Z���A�[�J�C�u�C���f�b�N�X
+ * @return	セルアーカイブインデックス
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u16 ItemIconCellGet(void);
 
 //--------------------------------------------------------------------------------------------
 /**
- * �A�C�e���A�C�R���̃Z���A�j���A�[�J�C�u�C���f�b�N�X�擾
+ * アイテムアイコンのセルアニメアーカイブインデックス取得
  *
  * @param	none
  *
- * @return	�Z���A�j���A�[�J�C�u�C���f�b�N�X
+ * @return	セルアニメアーカイブインデックス
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u16 ItemIconCAnmGet(void);
 
 //--------------------------------------------------------------------------------------------
 /**
- * �A�[�J�C�u�f�[�^���[�h
+ * アーカイブデータロード
  *
- * @param	item		�A�C�e���ԍ�
- * @param	type		�擾�f�[�^
- * @param	heap_id		�q�[�vID
+ * @param	item		アイテム番号
+ * @param	type		取得データ
+ * @param	heap_id		ヒープID
  *
- * @return	�w��f�[�^
+ * @return	指定データ
  *
- * @li	type = ITEM_GET_DATA		: �A�C�e���f�[�^
- * @li	type = ITEM_GET_ICON_CGX	: �A�C�R���̃L�����f�[�^
- * @li	type = ITEM_GET_ICON_PAL	: �A�C�R���̃p���b�g�f�[�^
+ * @li	type = ITEM_GET_DATA		: アイテムデータ
+ * @li	type = ITEM_GET_ICON_CGX	: アイコンのキャラデータ
+ * @li	type = ITEM_GET_ICON_PAL	: アイコンのパレットデータ
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void * GetItemArcData( u16 item, u16 type, u32 heap_id );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���O�擾
+ * 名前取得
  *
- * @param	buf			�i�[�ꏊ
- * @param	item		�A�C�e���ԍ�
- * @param	heap_id		�q�[�vID
+ * @param	buf			格納場所
+ * @param	item		アイテム番号
+ * @param	heap_id		ヒープID
  *
  * @return	none
  */
@@ -212,188 +212,188 @@ GLOBAL void GetItemName( STRBUF* buf, u16 item, u32 heap_id );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �����擾
+ * 説明取得
  *
- * @param   buf			�A�C�e�����i�[��o�b�t�@
- * @param	item		�A�C�e���ԍ�
- * @param	heap_id		�q�[�vID
+ * @param   buf			アイテム名格納先バッファ
+ * @param	item		アイテム番号
+ * @param	heap_id		ヒープID
  *
- * @return	����
+ * @return	説明
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void ItemInfoGet( STRBUF * buf, u16 item, u16 heap_id );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���������擾
+ * 装備説明取得
  *
- * @param   buf			�A�C�e�����i�[��o�b�t�@
- * @param	item		�A�C�e���ԍ�
- * @param	heap_id		�q�[�vID
+ * @param   buf			アイテム名格納先バッファ
+ * @param	item		アイテム番号
+ * @param	heap_id		ヒープID
  *
- * @return	��������
+ * @return	装備説明
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL void ItemEpuipInfoGet( STRBUF * buf, u16 item, u16 heap_id );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �p�����[�^�擾�i�A�C�e���ԍ��w��j
+ * パラメータ取得（アイテム番号指定）
  *
- * @param	item	�A�C�e���ԍ�
- * @param	param	�擾�p�����[�^��`
- * @param	heap_id		�q�[�vID
+ * @param	item	アイテム番号
+ * @param	param	取得パラメータ定義
+ * @param	heap_id		ヒープID
  *
- * @return	�w��p�����[�^
+ * @return	指定パラメータ
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL s32 ItemParamGet( u16 item, u16 param, u32 heap_id );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �p�����[�^�擾�i�A�C�e���f�[�^�w��j
+ * パラメータ取得（アイテムデータ指定）
  *
- * @param	item	�A�C�e���f�[�^
- * @param	param	�擾�p�����[�^��`
+ * @param	item	アイテムデータ
+ * @param	param	取得パラメータ定義
  *
- * @return	�w��p�����[�^
+ * @return	指定パラメータ
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL s32 ItemBufParamGet( ITEMDATA * item, u16 param );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �Z�}�V���Ŋo������Z���擾
+ * 技マシンで覚えられる技を取得
  *
- * @param	item	�A�C�e���ԍ�
+ * @param	item	アイテム番号
  *
- * @return	�Z�ԍ�
+ * @return	技番号
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL const u16 GetWazaNoItem( u16 item );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �I�����ꂽ�Z����`�Z���ǂ���
+ * 選択された技が秘伝技かどうか
  *
- * @param	waza	�Z�ԍ�
+ * @param	waza	技番号
  *
- * @retval	"TRUE = ��`�Z"
- * @retval	"FALSE = ��`�Z�ȊO"
+ * @retval	"TRUE = 秘伝技"
+ * @retval	"FALSE = 秘伝技以外"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 HidenWazaCheck( u16 waza );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �Z�}�V���ԍ��擾
+ * 技マシン番号取得
  *
- * @param	item	�A�C�e���ԍ�
+ * @param	item	アイテム番号
  *
- * @return	�Z�}�V���ԍ�
+ * @return	技マシン番号
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 WazaMashineNoGet( u16 item );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �A�C�e�������[�����ǂ������`�F�b�N
+ * アイテムがメールかどうかをチェック
  *
- * @param	item	�A�C�e���ԍ�
+ * @param	item	アイテム番号
  *
- * @retval	"TRUE = ���[��"
- * @retval	"FALSE = ���[���ȊO"
+ * @retval	"TRUE = メール"
+ * @retval	"FALSE = メール以外"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 ItemMailCheck( u16 item );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �A�C�e���ԍ����烁�[���̃f�U�C�����擾
+ * アイテム番号からメールのデザインを取得
  *
- * @param	item	�A�C�e���ԍ�
+ * @param	item	アイテム番号
  *
- * @return	�f�U�C��ID
+ * @return	デザインID
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 ItemMailDesignGet( u16 item );
 
 //--------------------------------------------------------------------------------------------
 /**
- * ���[���̃f�U�C������A�C�e���ԍ����擾
+ * メールのデザインからアイテム番号を取得
  *
- * @param	design		�f�U�C��ID
+ * @param	design		デザインID
  *
- * @return	�A�C�e���ԍ�
+ * @return	アイテム番号
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u16 MailItemNumGet( u8 design );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �A�C�e�����؂̎����ǂ������`�F�b�N
+ * アイテムが木の実かどうかをチェック
  *
- * @param	item	�A�C�e���ԍ�
+ * @param	item	アイテム番号
  *
- * @retval	"TRUE = �؂̎�"
- * @retval	"FALSE = �؂̎��ȊO"
+ * @retval	"TRUE = 木の実"
+ * @retval	"FALSE = 木の実以外"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 ItemNutsCheck( u16 item );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �؂̎��̔ԍ����擾
+ * 木の実の番号を取得
  *
- * @param	item	�A�C�e���ԍ�
+ * @param	item	アイテム番号
  *
- * @return	�؂̎��ԍ�
+ * @return	木の実番号
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 NutsNoGet( u16 item );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �w��ID�̖؂̎��̃A�C�e���ԍ����擾
+ * 指定IDの木の実のアイテム番号を取得
  *
- * @param	id		�؂̎���ID
+ * @param	id		木の実のID
  *
- * @return	�A�C�e���ԍ�
+ * @return	アイテム番号
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u16 NutsIDItemGet( u8 id );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �A�C�e���������򂩂ǂ������`�F�b�N
+ * アイテムが漢方薬かどうかをチェック
  *
- * @param	item	�A�C�e���ԍ�
+ * @param	item	アイテム番号
  *
- * @retval	"TRUE = ������"
- * @retval	"FALSE = ������"
+ * @retval	"TRUE = 漢方薬"
+ * @retval	"FALSE = 漢方薬"
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL u8 ItemKanpouyakuCheck( u16 item );
 
 //--------------------------------------------------------------------------------------------
 /**
- * �A�C�e���e�[�u�������ׂă������ɓW�J
+ * アイテムテーブルをすべてメモリに展開
  *
- * @param	heapID	�W�J���郁�����q�[�vID
+ * @param	heapID	展開するメモリヒープID
  *
- * @retval	�m�ۂ����������̃A�h���X
+ * @retval	確保したメモリのアドレス
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL	void	*ItemDataTableLoad(int heapID);
 
 //--------------------------------------------------------------------------------------------
 /**
- * �A�C�e���e�[�u������C�ӂ̃A�h���X���擾
+ * アイテムテーブルから任意のアドレスを取得
  *
- * @param	item	�A�C�e���e�[�u��
- * @param	index	�Ƃ肾���C���f�b�N�X�i���o�[
+ * @param	item	アイテムテーブル
+ * @param	index	とりだすインデックスナンバー
  *
- * @retval	�擾�����A�h���X
+ * @retval	取得したアドレス
  */
 //--------------------------------------------------------------------------------------------
 GLOBAL	ITEMDATA	*GetItemDataPointer(ITEMDATA *item,u16 index);

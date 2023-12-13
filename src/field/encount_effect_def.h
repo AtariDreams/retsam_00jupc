@@ -2,7 +2,7 @@
 /**
  *
  *@file		eccount_effect_def.h
- *@brief	�G���J�E���g�G�t�F�N�g�̃^�X�N�쐬�ɕK�v�ȃf�[�^
+ *@brief	エンカウントエフェクトのタスク作成に必要なデータ
  *@author	tomoya takahashi
  *@data		2005.07.28
  *
@@ -29,11 +29,11 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	�ėp����
+//	汎用動作
 //=====================================
 typedef struct {
 	int x;
@@ -46,7 +46,7 @@ GLOBAL void ENC_MoveReq( ENC_MOVE_WORK* p_work, int s_x, int e_x, int count_max 
 GLOBAL BOOL	ENC_MoveMain( ENC_MOVE_WORK* p_work );
 
 //-------------------------------------
-//	�ėp����
+//	汎用動作
 //=====================================
 typedef struct {
 	fx32 x;
@@ -59,13 +59,13 @@ GLOBAL void ENC_MoveReqFx( ENC_MOVE_WORK_FX* p_work, fx32 s_x, fx32 e_x, int cou
 GLOBAL BOOL	ENC_MoveMainFx( ENC_MOVE_WORK_FX* p_work );
 
 //-------------------------------------
-//	�ėp��������
+//	汎用加速動作
 //=====================================
 typedef struct {
 	fx32 x;
 	fx32 s_x;
-	fx32 s_s;	// �����x
-	fx32 s_a;	// �����x
+	fx32 s_s;	// 初速度
+	fx32 s_a;	// 加速度
 	int count;
 	int count_max;
 } ENC_ADDMOVE_WORK_FX;
@@ -77,19 +77,19 @@ GLOBAL BOOL	ENC_AddMoveMainFx( ENC_ADDMOVE_WORK_FX* p_work );
 
 //-------------------------------------
 //
-//	�G���J�E���g�G�t�F�N�g���[�N
+//	エンカウントエフェクトワーク
 //
 //=====================================
 typedef struct{
 	int seq;
 	int wait;
 	int count;
-	void* work;		// �e���A���R�Ɏg�p
+	void* work;		// 各自、自由に使用
 	FIELDSYS_WORK *fsw;
-	BOOL* end;		// �I�������p
-	BOOL hblank_flg;// H�u�����N�t���O
+	BOOL* end;		// 終了チェック用
+	BOOL hblank_flg;// Hブランクフラグ
 	BOOL wipe_flag;
-	ARCHANDLE* p_handle;	// �A�[�J�C�u�n���h��
+	ARCHANDLE* p_handle;	// アーカイブハンドル
 }ENCOUNT_EFFECT_WORK;
 
 GLOBAL void ENC_End( ENCOUNT_EFFECT_WORK* eew, TCB_PTR tcb );
@@ -98,16 +98,16 @@ GLOBAL void ENC_End( ENCOUNT_EFFECT_WORK* eew, TCB_PTR tcb );
 //----------------------------------------------------------------------------
 /**
  *
- *@brief	�ŏ��̃t���b�V���̕\��������^�X�N�����s����
- *				�u���C�g�l�X���g�p���A��ʂ��s�J�s�J�_�ł��܂��B
+ *@brief	最初のフラッシュの表現をするタスクを実行する
+ *				ブライトネスを使用し、画面がピカピカ点滅します。
  *
- *@param	disp	���C����ʂɂ�����:MASK_MAIN_DISPLAY
- *					�T�u��ʂɂ�����:MASK_SUB_DISPLAY
- *					����ʂɂ�����:MASK_DOUBLE_DISPLAY
- *@param	bright_color		��ײ�Ƚ�J���[
- *@param	sub_bright_color	�T�u����ײ�Ƚ�J���[
- *@param	end		�I��������TRUE��Ԃ��t���O
- *@param	flash_num			�t���b�V����
+ *@param	disp	メイン画面にかける:MASK_MAIN_DISPLAY
+ *					サブ画面にかける:MASK_SUB_DISPLAY
+ *					両画面にかける:MASK_DOUBLE_DISPLAY
+ *@param	bright_color		ブライトネスカラー
+ *@param	sub_bright_color	サブ面ブライトネスカラー
+ *@param	end		終了したらTRUEを返すフラグ
+ *@param	flash_num			フラッシュ回数
  *
  *@return	none
  *
@@ -118,16 +118,16 @@ GLOBAL void EncountFlashTask(int disp, u32 bright_color, u32 sub_bright_color, B
 
 //-------------------------------------
 //
-//	H�u�����N�p�֐��S
+//	Hブランク用関数郡
 //
 //=====================================
-// H�u�����N�I���`�F�b�N
+// Hブランク終了チェック
 GLOBAL BOOL ENC_HBlankEndCheck( ENCOUNT_EFFECT_WORK* p_work );
 
-// ���ɉ�ʂ�����
+// 横に画面を割る
 GLOBAL void ENC_BG_Cut_Start(ENCOUNT_EFFECT_WORK* p_ew);
 
-// �h�b�g�P�ʂŉ�ʂ����ɐ؂�
+// ドット単位で画面を横に切る
 typedef struct _ENC_HB_BG_SLICE ENC_HB_BG_SLICE;
 
 GLOBAL ENC_HB_BG_SLICE* ENC_BG_Slice_Alloc( void );
@@ -135,14 +135,14 @@ GLOBAL void ENC_BG_Slice_Delete( ENC_HB_BG_SLICE* p_work );
 GLOBAL void ENC_BG_Slice_Start( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_SLICE* p_eff, u8 dot, u32 sync, int s_x, int e_x, fx32 s_s );
 GLOBAL void ENC_BG_Slice_Change( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_SLICE* p_eff, u8 dot, u32 sync, int s_x, int e_x, fx32 s_s );
 
-// �E�B���h�E�Ŏ΂߂ɉ�ʂ��B���Ă���
+// ウィンドウで斜めに画面を隠していく
 typedef struct _ENC_HB_BG_WND_SLANT ENC_HB_BG_WND_SLANT;
 
 GLOBAL ENC_HB_BG_WND_SLANT* ENC_BG_WndSlant_Alloc( void );
 GLOBAL void ENC_BG_WndSlant_Delete( ENC_HB_BG_WND_SLANT* p_work );
 GLOBAL void ENC_BG_WndSlant_Start( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_WND_SLANT* p_eff, u32 sync, fx32 x_ss, fx32 y_ss );
 
-// �J�b�g�C���p�@�W�O�U�O�E�B���h�E
+// カットイン用　ジグザグウィンドウ
 typedef struct _ENC_HB_BG_WND_ZIGUZAGU	ENC_HB_BG_WND_ZIGUZAGU;
 
 GLOBAL ENC_HB_BG_WND_ZIGUZAGU* ENC_BG_WndZiguzagu_Alloc( void );
@@ -153,7 +153,7 @@ GLOBAL void ENC_BG_WndZiguzagu_Start( ENCOUNT_EFFECT_WORK* p_ew, ENC_HB_BG_WND_Z
 
 //-------------------------------------
 //	
-//	Ͻ���u���C�g�l�X�֘A
+//	マスターブライトネス関連
 //	
 //=====================================
 typedef struct {
@@ -169,13 +169,13 @@ GLOBAL void ENC_V_SetMstBrightness( int disp, int no );
 //-----------------------------------------------------------------------------
 /**
  *
- *		BG�ݒ�֘A
+ *		BG設定関連
  *
  */
 //-----------------------------------------------------------------------------
 #define ENC_BG_AFFINE_FRAME		( GF_BGL_FRAME3_M )
 
-GLOBAL void ENC_BG_SetAffineCont( GF_BGL_INI* p_bgl );	// ����ŃA�t�B��BG�����悤�ł���悤�ɕύX����@�ύX��1�V���N�g�p����
+GLOBAL void ENC_BG_SetAffineCont( GF_BGL_INI* p_bgl );	// これでアフィンBGをしようできるように変更する　変更に1シンク使用する
 GLOBAL void ENC_BG_SetAffineBG( ARCHANDLE* p_handle, u32 scrn_idx, u32 char_idx, u32 pltt_idx, GF_BGL_INI* p_bgl );
 GLOBAL void ENC_BG_SetNormalBG( ARCHANDLE* p_handle, u32 scrn_idx, u32 char_idx, u32 pltt_idx, u32 pltt_no, u32 pltt_num, GF_BGL_INI* p_bgl, u32 frame );
 
@@ -191,7 +191,7 @@ typedef struct {
 GLOBAL void ENC_BG_SetAffineMtx( ENC_BG_SET_AFFINEPARAM* p_work, GF_BGL_INI* p_bgl, u32 frame, fx32 scale_x, fx32 scale_y, u16 rota, int cx, int cy, int sc_x );
 
 
-// �r�b�g�}�b�v�E�B���h�E�h��Ԃ��I�u�W�F�N�g
+// ビットマップウィンドウ塗りつぶしオブジェクト
 typedef struct _ENC_BMP_FILL_OBJ ENC_BMP_FILL_OBJ;
 
 GLOBAL ENC_BMP_FILL_OBJ* ENC_BMP_FillObjAlloc( u32 heapID );
@@ -199,7 +199,7 @@ GLOBAL void ENC_BMP_FillObjDelete( ENC_BMP_FILL_OBJ* p_work );
 GLOBAL void ENC_BMP_FillObjStart( ENC_BMP_FILL_OBJ* p_work, int s_x, int e_x, int s_y, int e_y, int sync, GF_BGL_BMPWIN* p_bmp, u32 width, u32 height, u8 col );
 GLOBAL BOOL ENC_BMP_FillObjMain( ENC_BMP_FILL_OBJ* p_work );
 
-// �r�b�g�}�b�v�u���b�N��h��Ԃ��I�u�W�F�N�g
+// ビットマップブロック状塗りつぶしオブジェクト
 typedef struct _ENC_BMP_FILL_BLOCK ENC_BMP_FILL_BLOCK;
 
 GLOBAL ENC_BMP_FILL_BLOCK* ENC_BMP_FillBlockAlloc( u32 heapID );
@@ -207,7 +207,7 @@ GLOBAL void ENC_BMP_FillBlockDelete( ENC_BMP_FILL_BLOCK* p_work );
 GLOBAL void ENC_BMP_FillBlockStart( ENC_BMP_FILL_BLOCK* p_work, int s_x, int e_x, int s_y, int e_y, int sync, GF_BGL_BMPWIN* p_bmp, u32 width, u32 height, u8 col );
 GLOBAL BOOL ENC_BMP_FillBlockMain( ENC_BMP_FILL_BLOCK* p_work );
 
-// �r�b�g�}�b�v�u���b�N���ߐs�����V�X�e��
+// ビットマップブロック埋め尽くしシステム
 typedef struct _ENC_BMP_FILL_BLOCK_MOVE ENC_BMP_FILL_BLOCK_MOVE;
 
 GLOBAL ENC_BMP_FILL_BLOCK_MOVE* ENC_BMP_FillBlockMoveAlloc( u32 heapID );
@@ -215,7 +215,7 @@ GLOBAL void ENC_BMP_FillBlockMoveDelete( ENC_BMP_FILL_BLOCK_MOVE* p_work );
 GLOBAL void ENC_BMP_FillBlockMoveStart( ENC_BMP_FILL_BLOCK_MOVE* p_work, u8 sync, u8 start, GF_BGL_BMPWIN* p_bmp, u8 col );
 GLOBAL BOOL ENC_BMP_FillBlockMoveMain( ENC_BMP_FILL_BLOCK_MOVE* p_work );
 
-// �~�`BMP�h��Ԃ��I�u�W�F�N�g
+// 円形BMP塗りつぶしオブジェクト
 typedef struct _ENC_BMP_CIRCLE_FILL ENC_BMP_CIRCLE_FILL;
 
 GLOBAL ENC_BMP_CIRCLE_FILL* ENC_BMP_CircleFillAlloc( u32 heapID );
@@ -224,7 +224,7 @@ GLOBAL void ENC_BMP_CircleFillStart( ENC_BMP_CIRCLE_FILL* p_work, u8 sync, u16 s
 GLOBAL BOOL ENC_BMP_CircleFillMain( ENC_BMP_CIRCLE_FILL* p_work );
 
 
-// �t���b�V���A�E�g�@�I�u�W�F
+// フラッシュアウト　オブジェ
 typedef struct _ENC_BMP_FLASH_OUT ENC_BMP_FLASH_OUT;
 GLOBAL ENC_BMP_FLASH_OUT* ENC_BMP_FlashOutAlloc( u32 heapID );
 GLOBAL void ENC_BMP_FlashOutDelete( ENC_BMP_FLASH_OUT* p_work );
@@ -235,46 +235,46 @@ GLOBAL BOOL ENC_BMP_FlashOutMain( ENC_BMP_FLASH_OUT* p_work );
 //-----------------------------------------------------------------------------
 /**
  *
- *		OAM�ݒ�֘A
+ *		OAM設定関連
  *
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	�Z���A�N�^�[�p�b�N
+//	セルアクターパック
 //=====================================
 typedef struct {
 	CLACT_SET_PTR	cas;
-	CLACT_U_EASYRENDER_DATA	renddata;	// �ȈՃ����_�[�f�[�^
-	CLACT_U_RES_MANAGER_PTR	resMan[4];	// ���\�[�X�}�l�[�W��
+	CLACT_U_EASYRENDER_DATA	renddata;	// 簡易レンダーデータ
+	CLACT_U_RES_MANAGER_PTR	resMan[4];	// リソースマネージャ
 } ENC_CLACT_SYS;
 //-------------------------------------
-//	�Z���A�N�^�[���\�[�X�I�u�W�F�p�b�N
+//	セルアクターリソースオブジェパック
 //=====================================
 typedef struct {
 	CLACT_U_RES_OBJ_PTR resobj[4];
 	CLACT_HEADER head;
 } ENC_CLACT_RES_WORK;
 
-// �V�X�e��������
+// システム初期化
 GLOBAL void ENC_CLACT_Init( ENC_CLACT_SYS* p_sys, int work_num, int res_num );
 GLOBAL void ENC_CLACT_Delete( ENC_CLACT_SYS* p_sys );
 
-// �ȒP���\�[�X�ǂݍ���
+// 簡単リソース読み込み
 GLOBAL void ENC_CLACT_ResLoadEasy( ARCHANDLE* p_handle, ENC_CLACT_SYS* p_sys, ENC_CLACT_RES_WORK* p_work, u32 pltt_idx, u32 pltt_num, u32 char_idx, u32 cel_idx, u32 anm_idx, u32 cont_id );
 GLOBAL void ENC_CLACT_ResDeleteEasy( ENC_CLACT_SYS* p_sys, ENC_CLACT_RES_WORK* p_work );
 GLOBAL void ENC_CLACT_ResColorChange( CLACT_WORK_PTR clact, u32 heap, u32 tr_type, u8 evy, u16 next_rgb );
 
-// �A�N�^�[�o�^
+// アクター登録
 GLOBAL CLACT_WORK_PTR ENC_CLACT_Add( ENC_CLACT_SYS* p_sys, ENC_CLACT_RES_WORK* p_work, fx32 x, fx32 y, fx32 z, int pri );
 
-// OAM�ėp
+// OAM汎用
 GLOBAL VecFx32 ENC_MakeVec( fx32 x, fx32 y, fx32 z );
 
-// �\�t�g�E�F�A�X�v���C�g�L�����N�^�f�[�^�̓]��
-#define ENC_OAM_TR_CHAR_CUT_CX	( 1 )	// ���ꂾ�����炵���Ƃ��납�甲���o��
+// ソフトウェアスプライトキャラクタデータの転送
+#define ENC_OAM_TR_CHAR_CUT_CX	( 1 )	// これだけずらしたところから抜き出す
 GLOBAL void ENC_CLACT_ResSetSoftSpriteDataTrOam( CLACT_WORK_PTR clact, u32 heap, u32 tr_type, u8 evy, u16 next_rgb, u32 ofs_cx );
 
-// OAM�ʂ��E�B���h�E����`�Őݒ�
+// OAM面をウィンドウを矩形で設定
 typedef struct{
 	u8 x1;
 	u8 x2;
@@ -287,7 +287,7 @@ typedef struct{
 GLOBAL void ENC_WND_SetScaleWnd( fx32 y, int bottom_y, fx32 scale, int height, int wndno, ENC_WND_SETPOSITION* p_work );
 GLOBAL int ENC_WND_SetScaleWndToolMakeBottomY( fx32 scale, int c_y, int half_height );
 
-// V�u�����NMaster�P�x����^�X�N
+// VブランクMaster輝度操作タスク
 #define ENC_SET_MSTBRI_TCB_PRI	( 1024 )
 GLOBAL void ENC_SetMasterBrightnessVblank( int* p_setnum );
 
@@ -295,25 +295,25 @@ GLOBAL void ENC_SetMasterBrightnessVblank( int* p_setnum );
 
 //-----------------------------------------------------------------------------
 /**
- *			�O���t�B�b�N�v�����g�@�V�`����ݒ�V�X�e��
+ *			グラフィックプリント　新描画環境設定システム
  *
- *			��������
- *			�P�FGPrint_Init���Ăԁ[�������łRD�ʂ��QD�ʂɏ�������ł���
- *			�Q�F�RD�\�����QD�\���ɐ؂�ւ���^�C�~���O��ENC_GPrint_SwitchOn���Ă�
- *			�R�FENC_GPrint_Check��TRUE���A���Ă�����ݒ芮��
+ *			■初期化
+ *			１：GPrint_Initを呼ぶー＞ここで３D面を２D面に書き込んでおく
+ *			２：３D表示を２D表示に切り替えるタイミングでENC_GPrint_SwitchOnを呼ぶ
+ *			３：ENC_GPrint_CheckにTRUEが帰ってきたら設定完了
  *
- *			���j��
- *			ENC_GPrint_Exit���Ă�
+ *			■破棄
+ *			ENC_GPrint_Exitを呼ぶ
  *
- *			����ɌĂԂ���
+ *			■常に呼ぶもの
  *			ENC_GPrint_Draw
  *
- *			����������ł��邱��
- *				�E�p�[�e�B�N�����o��
- *					�P�FENC_GPrint_PTC_Load�œǂݍ���
- *					�Q�FENC_GPrint_PTC_Start����J�n
- *					�R�FENC_GPrint_PTC_Move�œ��삳����
- *					�S�FENC_GPrint_PTC_Delete�Ŕj������
+ *			■初期化後できること
+ *				・パーティクルを出す
+ *					１：ENC_GPrint_PTC_Loadで読み込む
+ *					２：ENC_GPrint_PTC_Start動作開始
+ *					３：ENC_GPrint_PTC_Moveで動作させる
+ *					４：ENC_GPrint_PTC_Deleteで破棄する
  */
 //-----------------------------------------------------------------------------
 GLOBAL void ENC_GPrint_Init(FIELDSYS_WORK* p_fsys);

@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_315.s
- * @brief	ƒI[ƒo[ƒq[ƒg			315
+ * @brief	ã‚ªãƒ¼ãƒãƒ¼ãƒ’ãƒ¼ãƒˆ			315
  * @author	goto
- * @date	2005.07.13(…)
+ * @date	2005.07.13(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -19,7 +19,7 @@
 // =============================================================================
 //
 //
-//	¡ƒI[ƒo[ƒq[ƒg			315
+//	â– ã‚ªãƒ¼ãƒãƒ¼ãƒ’ãƒ¼ãƒˆ			315
 //
 //
 // =============================================================================
@@ -27,7 +27,7 @@ WEST_OOBAAHIITO:
 	
 	LOAD_PARTICLE_DROP	0,W_315_SPA
 	
-	///< ”wŒiƒtƒF[ƒh
+	///< èƒŒæ™¯ãƒ•ã‚§ãƒ¼ãƒ‰
 //	FUNC_CALL		WEST_SP_WE_HAIKEI_PAL_FADE, 5, 0, 1, 0, 12, WE_PAL_BLACK
 //	WAIT_FLAG
 
@@ -37,20 +37,20 @@ WEST_OOBAAHIITO:
 	
 	SE_L			SEQ_SE_DP_W082
 	
-	///< —­‚ß
+	///< æºœã‚
 	FUNC_CALL		WEST_SP_WT_SHAKE, 5, 1, 0, 1, 5,  WE_TOOL_M1 | WE_TOOL_SSP,	
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6,  WE_TOOL_M1, 0, 1, WE_PAL_RED, 10, 20
 	WAIT			10
 	WAIT			10
 	SE_L			SEQ_SE_DP_W172B
 
-	///< ‰Š
+	///< ç‚Ž
 	ADD_PARTICLE 	0,W_315_315_CIRCLE_BURN, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_SP, OPERATOR_AXIS_NONE, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 	ADD_PARTICLE 	0,W_315_315_FIRE_BURN, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_SP, OPERATOR_AXIS_NONE, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE
 	
-	///< Å‚°‚é
+	///< ç„¦ã’ã‚‹
 	WAIT			15
 	FUNC_CALL		WEST_SP_WT_SHAKE, 5, 1, 0, 1, 6,  WE_TOOL_M1 | WE_TOOL_SSP,	
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6,  WE_TOOL_M1, 0, 1, WE_PAL_BROWN, 10, 15
@@ -58,7 +58,7 @@ WEST_OOBAAHIITO:
 	FUNC_CALL		WEST_SP_WT_SHAKE, 5, 1, 0, 1, 6,  WE_TOOL_E1 | WE_TOOL_SSP,	
 	FUNC_CALL		WEST_SP_WE_SSP_POKE_PAL_FADE, 6,  WE_TOOL_E1, 0, 1, WE_PAL_BROWN, 10, 15
 	
-	///< ‰Œ
+	///< ç…™
 	SE_C			SEQ_SE_DP_W007
 	ADD_PARTICLE 	0,W_315_315_KEMURI_UP, EMTFUNC_FIELD_OPERATOR
 	EX_DATA			OPERATOR_DEF_DATA_NUM, OPERATOR_PRI_NONE, OPERATOR_TARGET_DF, OPERATOR_POS_SP, OPERATOR_AXIS_NONE, OPERATOR_FLD_NONE, OPERATOR_CAMERA_NONE

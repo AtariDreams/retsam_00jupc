@@ -102,11 +102,11 @@ NNS_G3dPrintMatColAnm(const NNSG3dResMatCAnm* pMatColAnm)
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dPrintMatColAnmSet
 
-  Description:  NNSG3dResMatCAnmSet ‚Ì“à—e‚ð ƒfƒoƒbƒNo—Í‚É•\Ž¦‚µ‚Ü‚·B
+  Description:  NNSG3dResMatCAnmSet ã®å†…å®¹ã‚’ ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã«è¡¨ç¤ºã—ã¾ã™ã€‚
                 
-  Arguments:    pAnmSet:     ƒ}ƒeƒŠƒAƒ‹ƒJƒ‰[ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒZƒbƒg‚ð‘©‚Ë‚é\‘¢‘Ì
+  Arguments:    pAnmSet:     ãƒžãƒ†ãƒªã‚¢ãƒ«ã‚«ãƒ©ãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚»ãƒƒãƒˆã‚’æŸã­ã‚‹æ§‹é€ ä½“
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void
@@ -134,11 +134,11 @@ NNS_G3dPrintMatColAnmSet( const NNSG3dResMatCAnmSet* pAnmSet )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G3dPrintNSBMA
 
-  Description:  NSBMA ƒtƒ@ƒCƒ‹ ‚Ì“à—e‚ð ƒfƒoƒbƒNo—Í‚É•\Ž¦‚µ‚Ü‚·B
+  Description:  NSBMA ãƒ•ã‚¡ã‚¤ãƒ« ã®å†…å®¹ã‚’ ãƒ‡ãƒãƒƒã‚¯å‡ºåŠ›ã«è¡¨ç¤ºã—ã¾ã™ã€‚
                 
-  Arguments:    binFile:     NSBMAƒtƒ@ƒCƒ‹ƒf[ƒ^‚Ìæ“ª‚ðŽw‚·ƒ|ƒCƒ“ƒ^
+  Arguments:    binFile:     NSBMAãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‚’æŒ‡ã™ãƒã‚¤ãƒ³ã‚¿
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void
@@ -155,7 +155,7 @@ NNS_G3dPrintNSBMA(const u8* binFile)
     NNS_G3dPrintFileHeader(header);
 
     //
-    // ‚·‚×‚Ä‚ÌƒuƒƒbƒN‚É‚Â‚¢‚Ä...
+    // ã™ã¹ã¦ã®ãƒ–ãƒ­ãƒƒã‚¯ã«ã¤ã„ã¦...
     //
     numBlocks  = header->dataBlocks;
     for ( i = 0; i < numBlocks; ++i )

@@ -2,13 +2,13 @@
 /**
  *
  * @file	fldeff_elight.c
- * @brief	ƒtƒB[ƒ‹ƒhOBJ@“d“”@‰ù’†“d“” electric light
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJã€€é›»ç¯ã€€æ‡ä¸­é›»ç¯ electric light
  * @author	kagaya
  * @data	05.07.13
  *
  */
 //******************************************************************************
-#if 0	//g‚í‚È‚¢
+#if 0	//ä½¿ã‚ãªã„
 #include "common.h"
 #include "fieldsys.h"
 #include "field_effect.h"
@@ -20,45 +20,45 @@
 //	define
 //==============================================================================
 //--------------------------------------------------------------
-///	Œõ‚Ì’·‚³
+///	å…‰ã®é•·ã•
 //--------------------------------------------------------------
 enum
 {
-	EL_LEN_0 = 0,											//’·‚³0
-	EL_LEN_1,												//’·‚³1
-	EL_LEN_2,												//’·‚³2
-	EL_LEN_3,												//’·‚³3
-	EL_LEN_MAX,												//’·‚³Å‘å
+	EL_LEN_0 = 0,											//é•·ã•0
+	EL_LEN_1,												//é•·ã•1
+	EL_LEN_2,												//é•·ã•2
+	EL_LEN_3,												//é•·ã•3
+	EL_LEN_MAX,												//é•·ã•æœ€å¤§
 	
 	EL_LEN_SIZE_MAX = EL_LEN_3,
 };
 
 //--------------------------------------------------------------
-///	Œõí—Ş
+///	å…‰ç¨®é¡
 //--------------------------------------------------------------
 enum
 {
-	EL_TYPE_D_0,											///<“d“”‘«Œ³
-	EL_TYPE_U_1,											///<“d“” 1@ã
-	EL_TYPE_U_2,											///<“d“” 2@ã
-	EL_TYPE_U_3,											///<“d“” 3@ã
-	EL_TYPE_D_1,											///<“d“” 1@‰º
-	EL_TYPE_D_2,											///<“d“” 2@‰º
-	EL_TYPE_D_3,											///<“d“” 3@‰º
-	EL_TYPE_L_1,											///<“d“” 1@¶
-	EL_TYPE_L_2,											///<“d“” 2@¶
-	EL_TYPE_L_3,											///<“d“” 3@¶
-	EL_TYPE_R_1,											///<“d“” 1@¶
-	EL_TYPE_R_2,											///<“d“” 2@¶
-	EL_TYPE_R_3,											///<“d“” 3@¶
-	EL_MDL_MAX,												///<“d“”Å‘å”
+	EL_TYPE_D_0,											///<é›»ç¯è¶³å…ƒ
+	EL_TYPE_U_1,											///<é›»ç¯ 1ã€€ä¸Š
+	EL_TYPE_U_2,											///<é›»ç¯ 2ã€€ä¸Š
+	EL_TYPE_U_3,											///<é›»ç¯ 3ã€€ä¸Š
+	EL_TYPE_D_1,											///<é›»ç¯ 1ã€€ä¸‹
+	EL_TYPE_D_2,											///<é›»ç¯ 2ã€€ä¸‹
+	EL_TYPE_D_3,											///<é›»ç¯ 3ã€€ä¸‹
+	EL_TYPE_L_1,											///<é›»ç¯ 1ã€€å·¦
+	EL_TYPE_L_2,											///<é›»ç¯ 2ã€€å·¦
+	EL_TYPE_L_3,											///<é›»ç¯ 3ã€€å·¦
+	EL_TYPE_R_1,											///<é›»ç¯ 1ã€€å·¦
+	EL_TYPE_R_2,											///<é›»ç¯ 2ã€€å·¦
+	EL_TYPE_R_3,											///<é›»ç¯ 3ã€€å·¦
+	EL_MDL_MAX,												///<é›»ç¯æœ€å¤§æ•°
 };
 
 //==============================================================================
 //	typedef struct
 //==============================================================================
 //--------------------------------------------------------------
-///	FE_ELLIGHT\‘¢‘Ì
+///	FE_ELLIGHTæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct _TAG_FE_ELIGHT
 {
@@ -72,7 +72,7 @@ typedef struct _TAG_FE_ELIGHT
 #define FE_ELIGHT_SIZE (sizeof(FE_ELIGHT))
 
 //--------------------------------------------------------------
-///	ELIGHT_ADD_H\‘¢‘Ì
+///	ELIGHT_ADD_Hæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -85,7 +85,7 @@ typedef struct
 #define ELIGHT_ADD_H_SIZE (sizeof(ELIGHT_ADD_H))
 
 //--------------------------------------------------------------
-///	ELIGHT_WORK\‘¢‘Ì
+///	ELIGHT_WORKæ§‹é€ ä½“
 //--------------------------------------------------------------
 typedef struct
 {
@@ -102,7 +102,7 @@ typedef struct
 #define EL_WORK_SIZE (sizeof(EL_WORK))
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒv
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 //==============================================================================
 static FE_ELIGHT_PTR ELight_AllocMemory( int heap_id );
 static void ELight_FreeMemory( FE_ELIGHT_PTR el );
@@ -118,13 +118,13 @@ static const char * const DATA_3DModelFile_ELight[EL_MDL_MAX];
 static const EOA_H_NPP DATA_EoaH_ELight;
 
 //==============================================================================
-//	“d“”@ƒVƒXƒeƒ€
+//	é›»ç¯ã€€ã‚·ã‚¹ãƒ†ãƒ 
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * “d“”‰Šú‰»
+ * é›»ç¯åˆæœŸåŒ–
  * @param	fes		FE_SYS_PTR
- * @param	heap_id	ƒq[ƒvID
+ * @param	heap_id	ãƒ’ãƒ¼ãƒ—ID
  * @retval	FE_GRASS_PTR	FE_GRASS_PTR
  */
 //--------------------------------------------------------------
@@ -143,7 +143,7 @@ FE_ELIGHT_PTR FE_ELight_Init( FE_SYS_PTR fes, int heap_id )
 
 //--------------------------------------------------------------
 /**
- * “d“”íœ
+ * é›»ç¯å‰Šé™¤
  * @param	el		FE_ELIGHT_PTR
  * @retval	nothing
  */
@@ -160,9 +160,9 @@ void FE_ELight_Delete( FE_ELIGHT_PTR el )
 
 //--------------------------------------------------------------
 /**
- * “d“”ƒƒ‚ƒŠŠm•Û
- * @param	heap_id		ƒq[ƒvID
- * @retval	FE_ELIGHT_PTR	Šm•Û‚µ‚½FE_ELIGHT_PTR
+ * é›»ç¯ãƒ¡ãƒ¢ãƒªç¢ºä¿
+ * @param	heap_id		ãƒ’ãƒ¼ãƒ—ID
+ * @retval	FE_ELIGHT_PTR	ç¢ºä¿ã—ãŸFE_ELIGHT_PTR
  */
 //--------------------------------------------------------------
 static FE_ELIGHT_PTR ELight_AllocMemory( int heap_id )
@@ -170,16 +170,16 @@ static FE_ELIGHT_PTR ELight_AllocMemory( int heap_id )
 	FE_ELIGHT_PTR el;
 	
 	el = sys_AllocMemory( heap_id, FE_ELIGHT_SIZE );
-	GF_ASSERT( el != NULL && "ELight_AllocMemory()ƒƒ‚ƒŠŠm•Û¸”s" );
+	GF_ASSERT( el != NULL && "ELight_AllocMemory()ãƒ¡ãƒ¢ãƒªç¢ºä¿å¤±æ•—" );
 	
 	return( el );
 }
 
 //--------------------------------------------------------------
 /**
- * “d“”ƒƒ‚ƒŠŠJ•ú
+ * é›»ç¯ãƒ¡ãƒ¢ãƒªé–‹æ”¾
  * @param	kusa	FE_GRASS_PTR
- * @retval	FE_GRASS_PTR	Šm•Û‚µ‚½FE_GRASS_PTR
+ * @retval	FE_GRASS_PTR	ç¢ºä¿ã—ãŸFE_GRASS_PTR
  */
 //--------------------------------------------------------------
 static void ELight_FreeMemory( FE_ELIGHT_PTR el )
@@ -188,11 +188,11 @@ static void ELight_FreeMemory( FE_ELIGHT_PTR el )
 }
 
 //==============================================================================
-//	“d“”@ƒOƒ‰ƒtƒBƒbƒN
+//	é›»ç¯ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * “d“”@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * é›»ç¯ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	kusa	FE_GRASS_PTR
  * @retval	nothing
  */
@@ -212,7 +212,7 @@ static void ELight_GraphicInit( FE_ELIGHT_PTR el )
 
 //--------------------------------------------------------------
 /**
- * “d“”@ƒOƒ‰ƒtƒBƒbƒN‰Šú‰»
+ * é›»ç¯ã€€ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯åˆæœŸåŒ–
  * @param	kusa	FE_GRASS_PTR
  * @retval	nothing
  */
@@ -227,11 +227,11 @@ static void ELight_GraphicDelete( FE_ELIGHT_PTR el )
 }
 
 //==============================================================================
-//	“d“”@EOA
+//	é›»ç¯ã€€EOA
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * ƒtƒB[ƒ‹ƒhOBJ“d“”’Ç‰Á
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰OBJé›»ç¯è¿½åŠ 
  * @param	fldobj	FIELD_OBJ_PTR
  * @retval	eoa		EOA_PTR
  */
@@ -257,10 +257,10 @@ EOA_PTR FE_FldOBJELight_Add( FIELD_OBJ_PTR fldobj )
 
 //--------------------------------------------------------------
 /**
- * EOA “d“”@‰Šú‰»
+ * EOA é›»ç¯ã€€åˆæœŸåŒ–
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
- * @retval	int		TRUE=³íI—¹BFALSE=ˆÙíI—¹
+ * @retval	int		TRUE=æ­£å¸¸çµ‚äº†ã€‚FALSE=ç•°å¸¸çµ‚äº†
  */
 //--------------------------------------------------------------
 static int EoaELight_Init( EOA_PTR eoa, void *wk )
@@ -283,7 +283,7 @@ static int EoaELight_Init( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA “d“”@íœ
+ * EOA é›»ç¯ã€€å‰Šé™¤
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -295,7 +295,7 @@ static void EoaELight_Delete( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA “d“”@“®ì
+ * EOA é›»ç¯ã€€å‹•ä½œ
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -372,7 +372,7 @@ static void EoaELight_Move( EOA_PTR eoa, void *wk )
 
 //--------------------------------------------------------------
 /**
- * EOA “d“”@•`‰æ
+ * EOA é›»ç¯ã€€æç”»
  * @param	eoa		EOA_PTR
  * @param	wk		eoa work *
  * @retval	nothing
@@ -399,16 +399,16 @@ static void EoaELight_Draw( EOA_PTR eoa, void *wk )
 }
 
 //==============================================================================
-//	ƒp[ƒc
+//	ãƒ‘ãƒ¼ãƒ„
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * “d“”@“d“”‚Ì’·‚³ƒ`ƒFƒbƒN
+ * é›»ç¯ã€€é›»ç¯ã®é•·ã•ãƒã‚§ãƒƒã‚¯
  * @param	work	EL_WORK *
- * @param	x		ŠJnƒOƒŠƒbƒhX
- * @param	z		ŠJnƒOƒŠƒbƒhZ
- * @param	dir		•\¦•ûŒü
- * @retval	int		“d“”’·‚³ 0-3
+ * @param	x		é–‹å§‹ã‚°ãƒªãƒƒãƒ‰X
+ * @param	z		é–‹å§‹ã‚°ãƒªãƒƒãƒ‰Z
+ * @param	dir		è¡¨ç¤ºæ–¹å‘
+ * @retval	int		é›»ç¯é•·ã• 0-3
  */
 //--------------------------------------------------------------
 static int ELight_LengthCheck( EL_WORK *work, int x, int z, int dir )
@@ -433,16 +433,16 @@ static int ELight_LengthCheck( EL_WORK *work, int x, int z, int dir )
 
 //--------------------------------------------------------------
 /**
- * “d“”‚Ì•ûŒü@’·‚³‚©‚çEL_TYPE_D_0“™‚ğæ“¾
- * @param	dir		“d“”•ûŒü DIR_UP“™
- * @param	len		“d“”’·‚³ EL_LEN_0“™
- * @retval	int		EL_TYPE_D_0“™
+ * é›»ç¯ã®æ–¹å‘ã€€é•·ã•ã‹ã‚‰EL_TYPE_D_0ç­‰ã‚’å–å¾—
+ * @param	dir		é›»ç¯æ–¹å‘ DIR_UPç­‰
+ * @param	len		é›»ç¯é•·ã• EL_LEN_0ç­‰
+ * @retval	int		EL_TYPE_D_0ç­‰
  */
 //--------------------------------------------------------------
 static int ELight_DirLenTypeGet( int dir, int len )
 {
-	GF_ASSERT( (u32)dir <= DIR_RIGHT && "ELight_DirLenTypeGet()•ûŒüˆÙí" );
-	GF_ASSERT( (u32)len < EL_LEN_MAX && "ELight_DirLenTypeGet()‹——£ˆÙí" );
+	GF_ASSERT( (u32)dir <= DIR_RIGHT && "ELight_DirLenTypeGet()æ–¹å‘ç•°å¸¸" );
+	GF_ASSERT( (u32)len < EL_LEN_MAX && "ELight_DirLenTypeGet()è·é›¢ç•°å¸¸" );
 	
 	if( len == 0 ){
 		return( EL_TYPE_D_0 );
@@ -457,11 +457,11 @@ static int ELight_DirLenTypeGet( int dir, int len )
 #if 0
 //--------------------------------------------------------------
 /**
- * “d“”@ƒAƒNƒ^[’Ç‰Á
+ * é›»ç¯ã€€ã‚¢ã‚¯ã‚¿ãƒ¼è¿½åŠ 
  * @param	el		FE_ELIGHT_PTR
- * @param	dir		•\¦•ûŒü
- * @param	len		“d“”’·‚³ 0-3
- * @retval	BLACT_WORK_PTR@’Ç‰Á‚³‚ê‚½BLACT_WORK_PTR
+ * @param	dir		è¡¨ç¤ºæ–¹å‘
+ * @param	len		é›»ç¯é•·ã• 0-3
+ * @retval	BLACT_WORK_PTRã€€è¿½åŠ ã•ã‚ŒãŸBLACT_WORK_PTR
  */
 //--------------------------------------------------------------
 static BLACT_WORK_PTR ELight_BlActAdd( FE_ELIGHT_PTR el, int dir, int len )
@@ -470,8 +470,8 @@ static BLACT_WORK_PTR ELight_BlActAdd( FE_ELIGHT_PTR el, int dir, int len )
 	BLACT_WORK_PTR act;
 	VecFx32 mtx = { 0, 0, 0 };
 	
-	GF_ASSERT( dir <= DIR_RIGHT && "ELight_BlActAdd()•ûŒüˆÙí" );
-	GF_ASSERT( len < EL_LEN_MAX && "ELight_BlActAdd()•ûŒüˆÙí" );
+	GF_ASSERT( dir <= DIR_RIGHT && "ELight_BlActAdd()æ–¹å‘ç•°å¸¸" );
+	GF_ASSERT( len < EL_LEN_MAX && "ELight_BlActAdd()æ–¹å‘ç•°å¸¸" );
 	
 	id = FE_BLACT_H_ID_ELIGHT;
 		
@@ -496,7 +496,7 @@ static BLACT_WORK_PTR ELight_BlActAdd( FE_ELIGHT_PTR el, int dir, int len )
 //	data
 //==============================================================================
 //--------------------------------------------------------------
-///	ƒ‚ƒfƒ‹ƒf[ƒ^ƒtƒ@ƒCƒ‹ƒpƒX
+///	ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 //--------------------------------------------------------------
 static const char * const DATA_3DModelFile_ELight[EL_MDL_MAX] = 
 {
@@ -508,7 +508,7 @@ static const char * const DATA_3DModelFile_ELight[EL_MDL_MAX] =
 };
 
 //--------------------------------------------------------------
-///	“d“”EOA_H
+///	é›»ç¯EOA_H
 //--------------------------------------------------------------
 static const EOA_H_NPP DATA_EoaH_ELight =
 {

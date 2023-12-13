@@ -12,10 +12,10 @@
 
   $Log: env_system.c,v $
   Revision 1.5  2006/12/18 01:31:04  kitase_hirotake
-  �s�K�v�ȃf�o�b�O�o�͂̍폜
+  不必要なデバッグ出力の削除
 
   Revision 1.4  2006/04/24 00:05:24  okubata_ryoma
-  CW2.0�̌x�����x�������ɔ������ύX
+  CW2.0の警告レベル強化に伴った変更
 
   Revision 1.3  2006/01/18 02:11:20  kitase_hirotake
   do-indent

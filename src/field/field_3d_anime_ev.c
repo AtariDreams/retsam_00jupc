@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	field_3d_anime_ev.c
- * @brief	ƒCƒxƒ“ƒg—p3DƒAƒjƒŠÖ˜Aƒtƒ@ƒCƒ‹
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆç”¨3Dã‚¢ãƒ‹ãƒ¡é–¢é€£ãƒ•ã‚¡ã‚¤ãƒ«
  * @author	Nozomu Saito
  * @date	2006.01.26
  */
@@ -51,11 +51,11 @@ static void AnimeCameraZoomOut(GF_CAMERA_PTR camera_ptr,  u8 *ioCount);
 static u8 IsAutoDoor(const int inObjID);
 //==============================================================================
 /**
- * ƒCƒxƒ“ƒg—p3DƒAƒjƒ\‘¢‘Ìƒƒ‚ƒŠƒAƒƒP[ƒVƒ‡ƒ“
+ * ã‚¤ãƒ™ãƒ³ãƒˆç”¨3Dã‚¢ãƒ‹ãƒ¡æ§‹é€ ä½“ãƒ¡ãƒ¢ãƒªã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³
  * 
  * @param	none
  *
- * @retval  FLD_3D_ANIME_WORK_PTR	ƒCƒxƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @retval  FLD_3D_ANIME_WORK_PTR	ã‚¤ãƒ™ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 FLD_3D_ANIME_WORK_PTR	Fld3DAnm_AllocEvent3DAnimeWork(void)
@@ -68,9 +68,9 @@ FLD_3D_ANIME_WORK_PTR	Fld3DAnm_AllocEvent3DAnimeWork(void)
 
 //==============================================================================
 /**
- * ƒCƒxƒ“ƒg—p3DƒAƒjƒ\‘¢‘Ì‰ð•ú
+ * ã‚¤ãƒ™ãƒ³ãƒˆç”¨3Dã‚¢ãƒ‹ãƒ¡æ§‹é€ ä½“è§£æ”¾
  * 
- * @param	outAnime3DWorkPtr	ƒCƒxƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param	outAnime3DWorkPtr	ã‚¤ãƒ™ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none
  */
@@ -82,11 +82,11 @@ void Fld3DAnm_FreeEvent3DAnimeWork(FLD_3D_ANIME_WORK_PTR outAnime3DWorkPtr)
 
 //==============================================================================
 /**
- * ƒCƒxƒ“ƒg—p3DƒAƒjƒ‘ÎÛÀ•WƒZƒbƒg
+ * ã‚¤ãƒ™ãƒ³ãƒˆç”¨3Dã‚¢ãƒ‹ãƒ¡å¯¾è±¡åº§æ¨™ã‚»ãƒƒãƒˆ
  * 
- * @param	inGridX				ƒ[ƒ‹ƒhƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ				ƒ[ƒ‹ƒhƒOƒŠƒbƒhZÀ•W
- * @param	outAnime3DWorkPtr	ƒCƒxƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param	inGridX				ãƒ¯ãƒ¼ãƒ«ãƒ‰ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ				ãƒ¯ãƒ¼ãƒ«ãƒ‰ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	outAnime3DWorkPtr	ã‚¤ãƒ™ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none
  */
@@ -100,12 +100,12 @@ void Fld3DAnm_EventSetGrid(	const int inGridX, const int inGridZ,
 
 //==============================================================================
 /**
- * ƒhƒAƒAƒjƒƒCƒxƒ“ƒg(“ü‚é)
+ * ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ™ãƒ³ãƒˆ(å…¥ã‚‹)
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	work	ƒCƒxƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	ã‚¤ãƒ™ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE:ƒCƒxƒ“ƒgI—¹@FALSEFƒCƒxƒ“ƒgŒp‘±
+ * @retval  BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSEï¼šã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //==============================================================================
 BOOL Fld3DAnm_EventDoorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
@@ -125,13 +125,13 @@ BOOL Fld3DAnm_EventDoorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
 							BMID_C4_DOOR1,BMID_D3_DOOR1, BMID_C5_DOOR_S, BMID_GYM_DOOR00,
 							BMID_CARD_DOOR01, BMID_COUNTER_PC04, BMID_L2_DOOR1, BMID_ELE_DOOR1 };
 			
-			//ƒJƒƒ‰ƒY[ƒ€‰Šú‰»
+			//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ åˆæœŸåŒ–
 			work->CameraZoomStartFlg = FALSE;
 			work->CameraZoomCount = 0;
 		
 			MPTL_MakeTargetRect( work->GridX, work->GridZ, -1, -1, 3, 1, &rect );
 
-			//“o˜^ƒR[ƒh‚ðÝ’è
+			//ç™»éŒ²ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®š
 			work->EntryID = DOOR_ANIME_ENTRY_ID;
 			
 			rc = MPTL_CheckPluralMap3DObjInRect(fsys,
@@ -149,10 +149,10 @@ BOOL Fld3DAnm_EventDoorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
 				anime_num = F3DA_GetAnimeNum(fsys->field_3d_anime, obj_id);
 				work->AnimeNum = anime_num;
 #if 0
-				if (IsAutoDoor(obj_id)){	//Ž©“®ƒhƒA‚Ì‚Æ‚«
-					anime_num = 2;			//ƒZƒbƒg‚·‚éƒAƒjƒ‚Q‚ÂiŠJ‚­A•Â‚¶‚éj
-				}else{						//‚»‚êˆÈŠO
-					anime_num = 4;			//ƒZƒbƒg‚·‚éƒAƒjƒ‚S‚ÂiŠJ‚­A•Â‚¶‚éAŠOoŠJ‚­AŠOo•Â‚¶‚éj
+				if (IsAutoDoor(obj_id)){	//è‡ªå‹•ãƒ‰ã‚¢ã®ã¨ã
+					anime_num = 2;			//ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡ï¼’ã¤ï¼ˆé–‹ãã€é–‰ã˜ã‚‹ï¼‰
+				}else{						//ãã‚Œä»¥å¤–
+					anime_num = 4;			//ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡ï¼”ã¤ï¼ˆé–‹ãã€é–‰ã˜ã‚‹ã€å¤–å‡ºé–‹ãã€å¤–å‡ºé–‰ã˜ã‚‹ï¼‰
 				}
 #endif				
 				tex = GetMapResourceBmTexturePTR(fsys->MapResource);
@@ -164,12 +164,12 @@ BOOL Fld3DAnm_EventDoorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
 										M3DO_GetRenderObj(obj_ptr),
 										M3DO_GetObjModel(obj_ptr),
 										tex,anime_num,
-										1,		//ƒ‹[ƒv1‰ñ
+										1,		//ãƒ«ãƒ¼ãƒ—1å›ž
 										FALSE);
 			}else{
-				OS_Printf_saitou("ƒhƒA‚È‚¢‚Å‚·\n");
+				OS_Printf_saitou("ãƒ‰ã‚¢ãªã„ã§ã™\n");
 				GF_ASSERT(0&&"No Door");
-				return TRUE;	//ƒhƒA‚È‚µ
+				return TRUE;	//ãƒ‰ã‚¢ãªã—
 			}//end if
 			(work->seq) ++;
 		}
@@ -182,22 +182,22 @@ BOOL Fld3DAnm_EventDoorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
 			int sound;
 			int anime_no;
 			obj_id = F3DASub_GetObjIDFromEntryID(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID);
-			//ƒGƒŒƒx[ƒ^[‚Ìê‡‚Ì‚ÝƒJƒƒ‰ƒY[ƒ€‚³‚¹‚È‚¢<<20060704 add
+			//ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ãƒ¼ã®å ´åˆã®ã¿ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ ã•ã›ãªã„<<20060704 add
 			if (obj_id != BMID_ELE_DOOR1){
-				//ƒJƒƒ‰ƒoƒCƒ“ƒh‚ð‰ð‚­
+				//ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ãƒ‰ã‚’è§£ã
 				GFC_PurgeCameraTarget(fsys->camera_ptr);
-				//ƒJƒƒ‰ƒY[ƒ€ŠJŽn
+				//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ é–‹å§‹
 				work->CameraZoomStartFlg = TRUE;
 			}
 			
 			if ( IsAutoDoor(obj_id) == 1 ){
-				//SEƒZƒbƒg
-				sound = SE_JIDO_DOOR_OPEN;	//Ž©“®ƒhƒAŠJ‚­
+				//SEã‚»ãƒƒãƒˆ
+				sound = SE_JIDO_DOOR_OPEN;	//è‡ªå‹•ãƒ‰ã‚¢é–‹ã
 			}else if ( IsAutoDoor(obj_id) == 2 ){
-				sound = SE_DEPT_DOOR_OPEN;	//ƒfƒp[ƒgƒhƒAŠJ‚­
+				sound = SE_DEPT_DOOR_OPEN;	//ãƒ‡ãƒ‘ãƒ¼ãƒˆãƒ‰ã‚¢é–‹ã
 			}else{
-				//SEƒZƒbƒg
-				sound = SE_DOOR_OPEN;		//ƒhƒAŠJ‚­
+				//SEã‚»ãƒƒãƒˆ
+				sound = SE_DOOR_OPEN;		//ãƒ‰ã‚¢é–‹ã
 			}
 			
 			if (work->AnimeNum == 2){
@@ -209,7 +209,7 @@ BOOL Fld3DAnm_EventDoorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
 				anime_no = ANIME_NO_DOOR_AUTO_OPEN;
 			}
 			
-			F3DASub_StartAnimeSnd(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID, anime_no, sound);	//ƒhƒAŠJ‚­ƒAƒjƒ
+			F3DASub_StartAnimeSnd(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID, anime_no, sound);	//ãƒ‰ã‚¢é–‹ãã‚¢ãƒ‹ãƒ¡
 		}
 		(work->seq) ++;
 		break;
@@ -217,7 +217,7 @@ BOOL Fld3DAnm_EventDoorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
 		{
 			BOOL wait;
 			wait = F3DASub_WaitAnimation(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID);
-			//ŠJ‚­ƒAƒjƒI—¹‘Ò‚¿
+			//é–‹ãã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 			if (wait) {
 				(work->seq) ++;
 			}
@@ -226,24 +226,24 @@ BOOL Fld3DAnm_EventDoorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
 	case 3:
 		fop = Player_FieldOBJGet( fsys->player );
 #if 0		
-		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
-			FieldOBJ_AcmdSet(fop,AC_WALK_U_32F);	//o—ˆ‚éB”CˆÓ‚ÌƒAƒjƒƒZƒbƒg
+		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
+			FieldOBJ_AcmdSet(fop,AC_WALK_U_32F);	//å‡ºæ¥ã‚‹ã€‚ä»»æ„ã®ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 		}else{
-			GF_ASSERT(0&&"ƒAƒjƒ“o˜^‚Å‚«‚È‚©‚Á‚½");
+			GF_ASSERT(0&&"ã‚¢ãƒ‹ãƒ¡ç™»éŒ²ã§ããªã‹ã£ãŸ");
 		}
 #else
-		//ƒhƒAƒAƒjƒ‚Ìê‡‚ÉŒÀ‚èƒAƒjƒ“o˜^ƒ`ƒFƒbƒN‚ðs‚í‚È‚­‚Ä‚æ‚¢iƒhƒA‚Í•Ç‚É‚È‚Á‚Ä‚¢‚ÄAƒOƒŠƒbƒh‚ÌƒYƒŒ‚ª¶‚¶‚È‚¢‚½‚ßj
-		FieldOBJ_AcmdSet(fop,AC_WALK_U_8F);	//ƒAƒjƒƒZƒbƒg	
+		//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ã®å ´åˆã«é™ã‚Šã‚¢ãƒ‹ãƒ¡ç™»éŒ²ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã‚ãªãã¦ã‚ˆã„ï¼ˆãƒ‰ã‚¢ã¯å£ã«ãªã£ã¦ã„ã¦ã€ã‚°ãƒªãƒƒãƒ‰ã®ã‚ºãƒ¬ãŒç”Ÿã˜ãªã„ãŸã‚ï¼‰
+		FieldOBJ_AcmdSet(fop,AC_WALK_U_8F);	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ	
 #endif
 		(work->seq) ++;
 		break;
 	case 4:
 		fop = Player_FieldOBJGet( fsys->player );
 		
-		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ƒAƒjƒI—¹ƒ`ƒFƒbƒN
-			FieldOBJ_AcmdEnd(fop); //ƒAƒjƒI—¹
+		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+			FieldOBJ_AcmdEnd(fop); //ã‚¢ãƒ‹ãƒ¡çµ‚äº†
 
-			//Ž©‹@‚ðÁ‚·
+			//è‡ªæ©Ÿã‚’æ¶ˆã™
 			FieldOBJ_StatusBitSet_Vanish( fop, TRUE );
 			{
 				int obj_id;
@@ -251,13 +251,13 @@ BOOL Fld3DAnm_EventDoorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
 				int anime_no;
 				obj_id = F3DASub_GetObjIDFromEntryID(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID);
 				if ( IsAutoDoor(obj_id) == 1 ){
-					//SEƒZƒbƒg
-					sound = SE_JIDO_DOOR_CLOSE;	//Ž©“®ƒhƒA•Â‚¶‚é
+					//SEã‚»ãƒƒãƒˆ
+					sound = SE_JIDO_DOOR_CLOSE;	//è‡ªå‹•ãƒ‰ã‚¢é–‰ã˜ã‚‹
 				}else if ( IsAutoDoor(obj_id) == 2 ){
-					sound = SE_DEPT_DOOR_CLOSE;	//ƒfƒp[ƒgƒhƒA•Â‚¶‚é
+					sound = SE_DEPT_DOOR_CLOSE;	//ãƒ‡ãƒ‘ãƒ¼ãƒˆãƒ‰ã‚¢é–‰ã˜ã‚‹
 				}else{
-					//SEƒZƒbƒg
-					sound = SE_DOOR_CLOSE;		//ƒhƒA•Â‚¶‚é
+					//SEã‚»ãƒƒãƒˆ
+					sound = SE_DOOR_CLOSE;		//ãƒ‰ã‚¢é–‰ã˜ã‚‹
 				}
 
 				if (work->AnimeNum == 2){
@@ -268,7 +268,7 @@ BOOL Fld3DAnm_EventDoorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
 					GF_ASSERT(0);
 					anime_no = ANIME_NO_DOOR_AUTO_CLOSE;
 				}
-				F3DASub_StartAnimeSnd(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID, anime_no, sound);	//ƒhƒA•Â‚¶‚éƒAƒjƒ
+				F3DASub_StartAnimeSnd(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID, anime_no, sound);	//ãƒ‰ã‚¢é–‰ã˜ã‚‹ã‚¢ãƒ‹ãƒ¡
 			}
 			(work->seq) ++;
 		}
@@ -277,7 +277,7 @@ BOOL Fld3DAnm_EventDoorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
 		{
 			BOOL wait;
 			wait = F3DASub_WaitAnimation(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID);
-			//•Â‚¶‚éƒAƒjƒI—¹‘Ò‚¿
+			//é–‰ã˜ã‚‹ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 			if (wait) {
 				F3DASub_RereaseAnimation(	fsys->field_3d_anime,
 											fsys->AnimeContMng,
@@ -288,7 +288,7 @@ BOOL Fld3DAnm_EventDoorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
 		break;
 	}
 	if (work->CameraZoomStartFlg){
-		//ƒJƒƒ‰ƒY[ƒ€ƒCƒ“
+		//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ ã‚¤ãƒ³
 		AnimeCameraZoomIn(fsys->camera_ptr, &work->CameraZoomCount);
 	}
 	return FALSE;	
@@ -296,12 +296,12 @@ BOOL Fld3DAnm_EventDoorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
 
 //==============================================================================
 /**
- * ƒhƒAƒAƒjƒƒCƒxƒ“ƒg(o‚é)
+ * ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ã‚¤ãƒ™ãƒ³ãƒˆ(å‡ºã‚‹)
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	work	ƒCƒxƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	ã‚¤ãƒ™ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE:ƒCƒxƒ“ƒgI—¹@FALSEFƒCƒxƒ“ƒgŒp‘±
+ * @retval  BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSEï¼šã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //==============================================================================
 BOOL Fld3DAnm_EventDoorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work)
@@ -321,12 +321,12 @@ BOOL Fld3DAnm_EventDoorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work
 							BMID_C4_DOOR1,BMID_D3_DOOR1, BMID_C5_DOOR_S, BMID_GYM_DOOR00,
 							BMID_CARD_DOOR01, BMID_COUNTER_PC04, BMID_L2_DOOR1, BMID_ELE_DOOR1};
 
-			//ƒJƒƒ‰ƒY[ƒ€‰Šú‰»
+			//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ åˆæœŸåŒ–
 			work->CameraZoomStartFlg = FALSE;
 			work->CameraZoomCount = 0;	
 			
 			MPTL_MakeTargetRect( work->GridX, work->GridZ, -1, 0, 3, 1, &rect );
-			//“o˜^ƒR[ƒh‚ðÝ’è
+			//ç™»éŒ²ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®š
 			work->EntryID = DOOR_ANIME_ENTRY_ID;
 			
 			rc = MPTL_CheckPluralMap3DObjInRect(fsys,
@@ -343,10 +343,10 @@ BOOL Fld3DAnm_EventDoorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work
 				anime_num = F3DA_GetAnimeNum(fsys->field_3d_anime, obj_id);
 				work->AnimeNum = anime_num;
 #if 0				
-				if (IsAutoDoor(obj_id)){	//Ž©“®ƒhƒA‚Ì‚Æ‚«
-					anime_num = 2;			//ƒZƒbƒg‚·‚éƒAƒjƒ‚Q‚ÂiŠJ‚­A•Â‚¶‚éj
-				}else{						//‚»‚êˆÈŠO
-					anime_num = 4;			//ƒZƒbƒg‚·‚éƒAƒjƒ‚S‚ÂiŠJ‚­A•Â‚¶‚éAŠOoŠJ‚­AŠOo•Â‚¶‚éj
+				if (IsAutoDoor(obj_id)){	//è‡ªå‹•ãƒ‰ã‚¢ã®ã¨ã
+					anime_num = 2;			//ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡ï¼’ã¤ï¼ˆé–‹ãã€é–‰ã˜ã‚‹ï¼‰
+				}else{						//ãã‚Œä»¥å¤–
+					anime_num = 4;			//ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡ï¼”ã¤ï¼ˆé–‹ãã€é–‰ã˜ã‚‹ã€å¤–å‡ºé–‹ãã€å¤–å‡ºé–‰ã˜ã‚‹ï¼‰
 				}
 #endif				
 				tex = GetMapResourceBmTexturePTR(fsys->MapResource);
@@ -357,31 +357,31 @@ BOOL Fld3DAnm_EventDoorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work
 										M3DO_GetRenderObj(obj_ptr),
 										M3DO_GetObjModel(obj_ptr),
 										tex,anime_num,
-										1,		//ƒ‹[ƒv1‰ñ
+										1,		//ãƒ«ãƒ¼ãƒ—1å›ž
 										FALSE);
 			}else{
-				OS_Printf_saitou("ƒhƒA‚È‚¢‚Å‚·\n");
+				OS_Printf_saitou("ãƒ‰ã‚¢ãªã„ã§ã™\n");
 				GF_ASSERT(0&&"No Door");
-				//ƒtƒF[ƒhƒCƒ“ŠJŽn
+				//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹
 				FieldFadeWipeSet(FLD_DISP_BRIGHT_BLACKIN);
 				(work->seq)  = 6;
 				return FALSE;
 			}//end if
 
-			//ƒp[ƒX‚Ì•Û‘¶
+			//ãƒ‘ãƒ¼ã‚¹ã®ä¿å­˜
 			work->PerspWayWork = GFC_GetCameraPerspWay(fsys->camera_ptr);	
 			
-			//ƒGƒŒƒx[ƒ^[‚Ìê‡‚Ì‚ÝƒJƒƒ‰ƒY[ƒ€‚³‚¹‚È‚¢<<20060704 add
+			//ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ãƒ¼ã®å ´åˆã®ã¿ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ ã•ã›ãªã„<<20060704 add
 			if (obj_id != BMID_ELE_DOOR1){
-				//ƒJƒƒ‰‚ÌƒY[ƒ€‚ðƒZƒbƒg‚µ‚È‚¨‚µ
-				//ƒp[ƒX‘‚«Š·‚¦
+				//ã‚«ãƒ¡ãƒ©ã®ã‚ºãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã—ãªãŠã—
+				//ãƒ‘ãƒ¼ã‚¹æ›¸ãæ›ãˆ
 				GFC_AddCameraPerspWay(-(ZOOM_VAL),fsys->camera_ptr);	
 			}
 			(work->seq) ++;
 		}
 		break;
 	case 1:
-		//ƒƒCƒvƒXƒ^[ƒg	ƒXƒvƒŠƒbƒgƒCƒ“
+		//ãƒ¯ã‚¤ãƒ—ã‚¹ã‚¿ãƒ¼ãƒˆ	ã‚¹ãƒ—ãƒªãƒƒãƒˆã‚¤ãƒ³
 		MJUMP_RequestWipe(	fsys->event, WIPE_PATTERN_WMS, WIPE_TYPE_SPLITIN_VCENTER,
 							WIPE_TYPE_FADEIN,0x0000,6,1,HEAPID_WORLD );
 		{
@@ -390,19 +390,19 @@ BOOL Fld3DAnm_EventDoorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work
 			int anime_no;
 			obj_id = F3DASub_GetObjIDFromEntryID(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID);
 
-			//ƒGƒŒƒx[ƒ^[‚Ìê‡‚Ì‚ÝƒJƒƒ‰ƒY[ƒ€‚³‚¹‚È‚¢<<20060704 add
+			//ã‚¨ãƒ¬ãƒ™ãƒ¼ã‚¿ãƒ¼ã®å ´åˆã®ã¿ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ ã•ã›ãªã„<<20060704 add
 			if (obj_id != BMID_ELE_DOOR1){
-				work->CameraZoomStartFlg = TRUE;	//ƒY[ƒ€ŠJŽn
+				work->CameraZoomStartFlg = TRUE;	//ã‚ºãƒ¼ãƒ é–‹å§‹
 			}
 			
 			if ( IsAutoDoor(obj_id) == 1 ){
-				//SEƒZƒbƒg
-				sound = SE_JIDO_DOOR_OPEN;	//Ž©“®ƒhƒAŠJ‚­
+				//SEã‚»ãƒƒãƒˆ
+				sound = SE_JIDO_DOOR_OPEN;	//è‡ªå‹•ãƒ‰ã‚¢é–‹ã
 			}else if ( IsAutoDoor(obj_id) == 2 ){
-				sound = SE_DEPT_DOOR_OPEN;	//ƒfƒp[ƒgƒhƒAŠJ‚­
+				sound = SE_DEPT_DOOR_OPEN;	//ãƒ‡ãƒ‘ãƒ¼ãƒˆãƒ‰ã‚¢é–‹ã
 			}else{
-				//SEƒZƒbƒg
-				sound = SE_DOOR_OPEN;		//ƒhƒAŠJ‚­iŠOoj
+				//SEã‚»ãƒƒãƒˆ
+				sound = SE_DOOR_OPEN;		//ãƒ‰ã‚¢é–‹ãï¼ˆå¤–å‡ºï¼‰
 			}
 
 			if (work->AnimeNum == 2){
@@ -414,7 +414,7 @@ BOOL Fld3DAnm_EventDoorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work
 				anime_no = ANIME_NO_DOOR_AUTO_OPEN;
 			}
 			
-			F3DASub_StartAnimeSnd(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID, anime_no, sound);	//ƒhƒAŠJ‚­ƒAƒjƒ
+			F3DASub_StartAnimeSnd(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID, anime_no, sound);	//ãƒ‰ã‚¢é–‹ãã‚¢ãƒ‹ãƒ¡
 		}
 		
 		(work->seq) ++;
@@ -423,10 +423,10 @@ BOOL Fld3DAnm_EventDoorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work
 		{
 			BOOL wait;
 			wait = F3DASub_WaitAnimation(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID);
-			//ŠJ‚­ƒAƒjƒI—¹‘Ò‚¿
+			//é–‹ãã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 			if (wait) {
 				fop = Player_FieldOBJGet( fsys->player );
-				//Ž©‹@‚ð•\Ž¦
+				//è‡ªæ©Ÿã‚’è¡¨ç¤º
 				FieldOBJ_StatusBitSet_Vanish( fop, FALSE );
 				(work->seq) ++;
 			}
@@ -435,34 +435,34 @@ BOOL Fld3DAnm_EventDoorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work
 	case 3:
 		fop = Player_FieldOBJGet( fsys->player );
 #if 0			
-		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
-			FieldOBJ_AcmdSet(fop,AC_WALK_D_32F);	//o—ˆ‚éB”CˆÓ‚ÌƒAƒjƒƒZƒbƒg
+		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
+			FieldOBJ_AcmdSet(fop,AC_WALK_D_32F);	//å‡ºæ¥ã‚‹ã€‚ä»»æ„ã®ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 		}else{
-			GF_ASSERT(0&&"ƒAƒjƒ“o˜^‚Å‚«‚È‚©‚Á‚½");
+			GF_ASSERT(0&&"ã‚¢ãƒ‹ãƒ¡ç™»éŒ²ã§ããªã‹ã£ãŸ");
 		}
 #else
-		//ƒhƒAƒAƒjƒ‚Ìê‡‚ÉŒÀ‚èƒAƒjƒ“o˜^ƒ`ƒFƒbƒN‚ðs‚í‚È‚­‚Ä‚æ‚¢iƒhƒA‚Í•Ç‚É‚È‚Á‚Ä‚¢‚ÄAƒOƒŠƒbƒh‚ÌƒYƒŒ‚ª¶‚¶‚È‚¢‚½‚ßj
-		FieldOBJ_AcmdSet(fop,AC_WALK_D_8F);	//ƒAƒjƒƒZƒbƒg	
+		//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ã®å ´åˆã«é™ã‚Šã‚¢ãƒ‹ãƒ¡ç™»éŒ²ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã‚ãªãã¦ã‚ˆã„ï¼ˆãƒ‰ã‚¢ã¯å£ã«ãªã£ã¦ã„ã¦ã€ã‚°ãƒªãƒƒãƒ‰ã®ã‚ºãƒ¬ãŒç”Ÿã˜ãªã„ãŸã‚ï¼‰
+		FieldOBJ_AcmdSet(fop,AC_WALK_D_8F);	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ	
 #endif
 		(work->seq) ++;
 		break;
 	case 4:
 		fop = Player_FieldOBJGet( fsys->player );
-		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ƒAƒjƒI—¹ƒ`ƒFƒbƒN
-			FieldOBJ_AcmdEnd(fop); //ƒAƒjƒI—¹
+		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+			FieldOBJ_AcmdEnd(fop); //ã‚¢ãƒ‹ãƒ¡çµ‚äº†
 			{
 				int obj_id;
 				int sound;
 				int anime_no;
 				obj_id = F3DASub_GetObjIDFromEntryID(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID);
 				if ( IsAutoDoor(obj_id) == 1 ){
-					//SEƒZƒbƒg
-					sound = SE_JIDO_DOOR_CLOSE;	//Ž©“®ƒhƒA•Â‚¶‚é
+					//SEã‚»ãƒƒãƒˆ
+					sound = SE_JIDO_DOOR_CLOSE;	//è‡ªå‹•ãƒ‰ã‚¢é–‰ã˜ã‚‹
 				}else if ( IsAutoDoor(obj_id) == 2 ){
-					sound = SE_DEPT_DOOR_CLOSE;	//ƒfƒp[ƒgƒhƒA•Â‚¶‚é
+					sound = SE_DEPT_DOOR_CLOSE;	//ãƒ‡ãƒ‘ãƒ¼ãƒˆãƒ‰ã‚¢é–‰ã˜ã‚‹
 				}else{
-					//SEƒZƒbƒg
-					sound = SE_DOOR_CLOSE;		//ƒhƒA•Â‚¶‚é(ŠOo)
+					//SEã‚»ãƒƒãƒˆ
+					sound = SE_DOOR_CLOSE;		//ãƒ‰ã‚¢é–‰ã˜ã‚‹(å¤–å‡º)
 				}
 
 				if (work->AnimeNum == 2){
@@ -473,7 +473,7 @@ BOOL Fld3DAnm_EventDoorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work
 					GF_ASSERT(0);
 					anime_no = ANIME_NO_DOOR_AUTO_CLOSE;
 				}
-				F3DASub_StartAnimeSnd(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID, anime_no, sound);	//ƒhƒA•Â‚¶‚éƒAƒjƒ
+				F3DASub_StartAnimeSnd(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID, anime_no, sound);	//ãƒ‰ã‚¢é–‰ã˜ã‚‹ã‚¢ãƒ‹ãƒ¡
 			}
 			(work->seq) ++;
 		}
@@ -482,7 +482,7 @@ BOOL Fld3DAnm_EventDoorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work
 		{
 			BOOL wait;
 			wait = F3DASub_WaitAnimation(fsys->AnimeContMng, DOOR_ANIME_ENTRY_ID);
-			//•Â‚¶‚éƒAƒjƒI—¹Aƒuƒ‰ƒbƒNƒAƒEƒgI—¹AƒY[ƒ€I—¹‘Ò‚¿
+			//é–‰ã˜ã‚‹ã‚¢ãƒ‹ãƒ¡çµ‚äº†ã€ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆçµ‚äº†ã€ã‚ºãƒ¼ãƒ çµ‚äº†å¾…ã¡
 			if (wait&&WIPE_SYS_EndCheck()&&
 					(work->PerspWayWork == GFC_GetCameraPerspWay(fsys->camera_ptr))) {
 				
@@ -493,24 +493,24 @@ BOOL Fld3DAnm_EventDoorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work
 			}
 		}
 		break;
-	case 6:	//ƒhƒA‚ª‚È‚¢‚Æ‚«—pƒV[ƒPƒ“ƒX
+	case 6:	//ãƒ‰ã‚¢ãŒãªã„ã¨ãç”¨ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 		if (WIPE_SYS_EndCheck()){
 			return TRUE;
 		}
 		break;
 	}
 	if (work->CameraZoomStartFlg){
-		AnimeCameraZoomOut(fsys->camera_ptr, &work->CameraZoomCount);		//ƒY[ƒ€ƒAƒEƒg
+		AnimeCameraZoomOut(fsys->camera_ptr, &work->CameraZoomCount);		//ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ
 	}
 	return FALSE;
 }
 
 //==============================================================================
 /**
- * ƒhƒAƒAƒjƒ‚Æ˜A“®‚·‚éƒJƒƒ‰(ƒY[ƒ€ƒCƒ“)
+ * ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ã¨é€£å‹•ã™ã‚‹ã‚«ãƒ¡ãƒ©(ã‚ºãƒ¼ãƒ ã‚¤ãƒ³)
  * 
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
- * @param	ioCoint			ƒJƒƒ‰ƒY[ƒ€ƒJƒEƒ“ƒ^
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
+ * @param	ioCoint			ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ ã‚«ã‚¦ãƒ³ã‚¿
  *
  * @retval  none
  */
@@ -544,10 +544,10 @@ static void AnimeCameraZoomIn(GF_CAMERA_PTR camera_ptr, u8 *ioCount)
 
 //==============================================================================
 /**
- * ƒhƒAƒAƒjƒ‚Æ˜A“®‚·‚éƒJƒƒ‰(ƒY[ƒ€ƒAƒEƒg)
+ * ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ã¨é€£å‹•ã™ã‚‹ã‚«ãƒ¡ãƒ©(ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ)
  * 
- * @param	camera_ptr		ƒJƒƒ‰ƒ|ƒCƒ“ƒ^
- * @param	ioCoint			ƒJƒƒ‰ƒY[ƒ€ƒJƒEƒ“ƒ^
+ * @param	camera_ptr		ã‚«ãƒ¡ãƒ©ãƒã‚¤ãƒ³ã‚¿
+ * @param	ioCoint			ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ ã‚«ã‚¦ãƒ³ã‚¿
  *
  * @retval  none
  */
@@ -578,11 +578,11 @@ static void AnimeCameraZoomOut(GF_CAMERA_PTR camera_ptr, u8 *ioCount)
 
 //==============================================================================
 /**
- * Ž©“®ƒhƒA”»’è
+ * è‡ªå‹•ãƒ‰ã‚¢åˆ¤å®š
  * 
  * @param	inObjID		OBJID
  *
- * @retval  2:ƒfƒp[ƒgƒhƒA	1:Ž©“®ƒhƒA	0:’ÊíƒhƒA
+ * @retval  2:ãƒ‡ãƒ‘ãƒ¼ãƒˆãƒ‰ã‚¢	1:è‡ªå‹•ãƒ‰ã‚¢	0:é€šå¸¸ãƒ‰ã‚¢
  */
 //==============================================================================
 static u8 IsAutoDoor(const int inObjID)
@@ -603,13 +603,13 @@ static u8 IsAutoDoor(const int inObjID)
 
 //==============================================================================
 /**
- * ƒGƒXƒJƒŒ[ƒ^[(ã‰º¶‰EŠÖŒW–³‚­AƒGƒXƒJƒŒ[ƒ^[~‚è‚é)
+ * ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼(ä¸Šä¸‹å·¦å³é–¢ä¿‚ç„¡ãã€ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼é™ã‚Šã‚‹)
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	work	ƒCƒxƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	inDir	Ž©‹@•ûŒü
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	ã‚¤ãƒ™ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	inDir	è‡ªæ©Ÿæ–¹å‘
  *
- * @retval  BOOL	TRUE:ƒCƒxƒ“ƒgI—¹@FALSEFƒCƒxƒ“ƒgŒp‘±
+ * @retval  BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSEï¼šã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //==============================================================================
 BOOL Fld3DAnm_EventEscalatorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work, const u8 inDir)
@@ -624,13 +624,13 @@ BOOL Fld3DAnm_EventEscalatorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR
 			int obj_id;
 			int list[] = {BMID_STAIR_PC_U01, BMID_STAIR_PC_D01, BMID_STAIR_PC_U02, BMID_STAIR_PC_D02};
 			
-			//Ž©‹@•ûŒü‚É‚æ‚Á‚ÄŒŸõ”ÍˆÍ‚ð•ªŠò
+			//è‡ªæ©Ÿæ–¹å‘ã«ã‚ˆã£ã¦æ¤œç´¢ç¯„å›²ã‚’åˆ†å²
 			if (inDir == DIR_LEFT){
 				MPTL_MakeTargetRect(work->GridX,work->GridZ,-1, 0, 2, 1, &rect );
 			}else{	//(inDir == DIR_RIGHT)
 				MPTL_MakeTargetRect(work->GridX,work->GridZ,0, 0, 2, 1, &rect );
 			}
-			//“o˜^ƒR[ƒh‚ðÝ’è
+			//ç™»éŒ²ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®š
 			work->EntryID = ESCA_ANIME_ENTRY_ID;
 			
 			rc = MPTL_CheckPluralMap3DObjInRect(fsys,
@@ -650,67 +650,67 @@ BOOL Fld3DAnm_EventEscalatorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR
 										obj_id,
 										M3DO_GetRenderObj(obj_ptr),
 										M3DO_GetObjModel(obj_ptr),
-										tex, 1, //ƒZƒbƒg‚·‚éƒAƒjƒ1‚Â
-										1,		//ƒ‹[ƒv1‰ñ
-										TRUE);	//‹tÄ¶
+										tex, 1, //ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡1ã¤
+										1,		//ãƒ«ãƒ¼ãƒ—1å›ž
+										TRUE);	//é€†å†ç”Ÿ
 			}else{
-				GF_ASSERT(0&&"ƒGƒXƒJƒŒ[ƒ^[‚ª‚È‚¢");
+				GF_ASSERT(0&&"ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼ãŒãªã„");
 				return TRUE;
 			}//end if
 			
 			fop = Player_FieldOBJGet( fsys->player );
-			if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
-				FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_ON);	//o—ˆ‚éB“®‚«‚ðƒ|[ƒY
+			if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
+				FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_ON);	//å‡ºæ¥ã‚‹ã€‚å‹•ãã‚’ãƒãƒ¼ã‚º
 			}else{
-				GF_ASSERT(0&&"ƒAƒjƒ“o˜^‚Å‚«‚È‚©‚Á‚½");
+				GF_ASSERT(0&&"ã‚¢ãƒ‹ãƒ¡ç™»éŒ²ã§ããªã‹ã£ãŸ");
 			}
 			(work->seq) ++;
 		}
 		break;
 	case 1:
-		//ƒtƒF[ƒhƒCƒ“ŠJŽn
+		//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³é–‹å§‹
 		FieldFadeWipeSet(FLD_DISP_BRIGHT_BLACKIN);
 		
-		F3DASub_StartAnimeSnd(fsys->AnimeContMng, ESCA_ANIME_ENTRY_ID, ANIME_NO_ESCA, SEQ_SE_DP_ESUKA);	//ƒGƒXƒJƒŒ[ƒ^[ƒAƒjƒ
+		F3DASub_StartAnimeSnd(fsys->AnimeContMng, ESCA_ANIME_ENTRY_ID, ANIME_NO_ESCA, SEQ_SE_DP_ESUKA);	//ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡
 		fop = Player_FieldOBJGet( fsys->player );
 		
-		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
+		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
 			int code;
 			if (inDir == DIR_RIGHT){
 				code = AC_WALK_R_16F;
 			}else{	//(inDir == DIR_LEFT)
 				code = AC_WALK_L_16F;
 			}
-			FieldOBJ_AcmdSet(fop,code);	//o—ˆ‚éB”CˆÓ‚ÌƒAƒjƒƒZƒbƒg
+			FieldOBJ_AcmdSet(fop,code);	//å‡ºæ¥ã‚‹ã€‚ä»»æ„ã®ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 		}else{
-			GF_ASSERT(0&&"ƒAƒjƒ“o˜^‚Å‚«‚È‚©‚Á‚½");
+			GF_ASSERT(0&&"ã‚¢ãƒ‹ãƒ¡ç™»éŒ²ã§ããªã‹ã£ãŸ");
 		}
 		(work->seq) ++;
 		break;
 	case 2:
 		fop = Player_FieldOBJGet( fsys->player );
-		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
-			FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_OFF);	//o—ˆ‚éBƒ|[ƒY‰ðœ
+		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
+			FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_OFF);	//å‡ºæ¥ã‚‹ã€‚ãƒãƒ¼ã‚ºè§£é™¤
 			(work->seq) ++;
 		}
 		break;
 	case 3:
 		fop = Player_FieldOBJGet( fsys->player );
-		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
+		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
 			int code;
 			if (inDir == DIR_RIGHT){
 				code = AC_WALK_R_16F;
 			}else{	//(inDir == DIR_LEFT)
 				code = AC_WALK_L_16F;
 			}
-			FieldOBJ_AcmdSet(fop,code);	//o—ˆ‚éB‚P•à¶‚É•à‚­
+			FieldOBJ_AcmdSet(fop,code);	//å‡ºæ¥ã‚‹ã€‚ï¼‘æ­©å·¦ã«æ­©ã
 			(work->seq) ++;
 		}
 		break;
 	case 4:
 		fop = Player_FieldOBJGet( fsys->player );
-		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ƒAƒjƒI—¹ƒ`ƒFƒbƒN
-			FieldOBJ_AcmdEnd(fop); //ƒAƒjƒI—¹	
+		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+			FieldOBJ_AcmdEnd(fop); //ã‚¢ãƒ‹ãƒ¡çµ‚äº†	
 			(work->seq) ++;
 		}
 		break;
@@ -718,12 +718,12 @@ BOOL Fld3DAnm_EventEscalatorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR
 		{
 			BOOL wait;
 			wait = F3DASub_WaitAnimation(fsys->AnimeContMng, ESCA_ANIME_ENTRY_ID);
-			//ƒGƒXƒJƒŒ[ƒ^[ƒAƒjƒI—¹Aƒuƒ‰ƒbƒNƒCƒ“I—¹‘Ò‚¿
+			//ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡çµ‚äº†ã€ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³çµ‚äº†å¾…ã¡
 			if (wait&&WIPE_SYS_EndCheck()) {
 				F3DASub_RereaseAnimation(	fsys->field_3d_anime,
 											fsys->AnimeContMng,
 											ESCA_ANIME_ENTRY_ID	);
-				//‚r‚dƒXƒgƒbƒv
+				//ï¼³ï¼¥ã‚¹ãƒˆãƒƒãƒ—
 				Snd_SeStopBySeqNo( SEQ_SE_DP_ESUKA, 0 );
 				return TRUE;
 			}
@@ -735,13 +735,13 @@ BOOL Fld3DAnm_EventEscalatorOutAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR
 
 //==============================================================================
 /**
- * ƒGƒXƒJƒŒ[ƒ^[(ã‰º¶‰EŠÖŒW–³‚­AƒGƒXƒJƒŒ[ƒ^[‚Éæ‚é)
+ * ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼(ä¸Šä¸‹å·¦å³é–¢ä¿‚ç„¡ãã€ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼ã«ä¹—ã‚‹)
  * 
- * @param	fsys	ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	work	ƒCƒxƒ“ƒgƒAƒjƒ[ƒVƒ‡ƒ“ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param	inDir	Ž©‹@•ûŒü
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	work	ã‚¤ãƒ™ãƒ³ãƒˆã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param	inDir	è‡ªæ©Ÿæ–¹å‘
  *
- * @retval  BOOL	TRUE:ƒCƒxƒ“ƒgI—¹@FALSEFƒCƒxƒ“ƒgŒp‘±
+ * @retval  BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSEï¼šã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //==============================================================================
 BOOL Fld3DAnm_EventEscalatorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR work, const u8 inDir)
@@ -757,13 +757,13 @@ BOOL Fld3DAnm_EventEscalatorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR 
 			int list[] = {BMID_STAIR_PC_U01, BMID_STAIR_PC_D01, BMID_STAIR_PC_U02, BMID_STAIR_PC_D02};
 			
 
-			//Ž©‹@•ûŒü‚É‚æ‚Á‚ÄŒŸõ”ÍˆÍ‚ð•ªŠò
+			//è‡ªæ©Ÿæ–¹å‘ã«ã‚ˆã£ã¦æ¤œç´¢ç¯„å›²ã‚’åˆ†å²
 			if (inDir == DIR_LEFT){
 				MPTL_MakeTargetRect(work->GridX,work->GridZ,-1, 0, 2, 1, &rect );
 			}else{	//(inDir == DIR_RIGHT)
 				MPTL_MakeTargetRect(work->GridX,work->GridZ,0, 0, 2, 1, &rect );
 			}
-			//“o˜^ƒR[ƒh‚ðÝ’è
+			//ç™»éŒ²ã‚³ãƒ¼ãƒ‰ã‚’è¨­å®š
 			work->EntryID = ESCA_ANIME_ENTRY_ID;
 			
 			rc = MPTL_CheckPluralMap3DObjInRect(fsys,
@@ -783,53 +783,53 @@ BOOL Fld3DAnm_EventEscalatorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR 
 										obj_id,
 										M3DO_GetRenderObj(obj_ptr),
 										M3DO_GetObjModel(obj_ptr),
-										tex, 1,	//ƒZƒbƒg‚·‚éƒAƒjƒ1‚Â
-										1,		//ƒ‹[ƒv1‰ñ
+										tex, 1,	//ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡1ã¤
+										1,		//ãƒ«ãƒ¼ãƒ—1å›ž
 										FALSE);
 			}else{
-				GF_ASSERT(0&&"ƒGƒXƒJƒŒ[ƒ^[‚ª‚È‚¢");
+				GF_ASSERT(0&&"ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼ãŒãªã„");
 				return TRUE;
 			}//end if
 			
 			fop = Player_FieldOBJGet( fsys->player );
-			if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
-				FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_ON);	//o—ˆ‚éB“®‚«‚ðƒ|[ƒY
+			if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
+				FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_ON);	//å‡ºæ¥ã‚‹ã€‚å‹•ãã‚’ãƒãƒ¼ã‚º
 			}else{
-				GF_ASSERT(0&&"ƒAƒjƒ“o˜^‚Å‚«‚È‚©‚Á‚½");
+				GF_ASSERT(0&&"ã‚¢ãƒ‹ãƒ¡ç™»éŒ²ã§ããªã‹ã£ãŸ");
 			}
 			(work->seq) ++;
 		}
 		break;
 	case 1:
-		F3DASub_StartAnimeSnd(fsys->AnimeContMng, ESCA_ANIME_ENTRY_ID, ANIME_NO_ESCA, SEQ_SE_DP_ESUKA);	//ƒGƒXƒJƒŒ[ƒ^[ƒAƒjƒ
+		F3DASub_StartAnimeSnd(fsys->AnimeContMng, ESCA_ANIME_ENTRY_ID, ANIME_NO_ESCA, SEQ_SE_DP_ESUKA);	//ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡
 		fop = Player_FieldOBJGet( fsys->player );
 		
-		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
+		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
 			int code;
 			if (inDir == DIR_LEFT){
 				code = AC_WALK_L_16F;
 			}else{
 				code = AC_WALK_R_16F;
 			}
-			FieldOBJ_AcmdSet(fop,code);	//o—ˆ‚éB”CˆÓ‚ÌƒAƒjƒƒZƒbƒg
+			FieldOBJ_AcmdSet(fop,code);	//å‡ºæ¥ã‚‹ã€‚ä»»æ„ã®ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 		}else{
-			GF_ASSERT(0&&"ƒAƒjƒ“o˜^‚Å‚«‚È‚©‚Á‚½");
+			GF_ASSERT(0&&"ã‚¢ãƒ‹ãƒ¡ç™»éŒ²ã§ããªã‹ã£ãŸ");
 		}
 		(work->seq) ++;
 		break;
 	case 2:
 		fop = Player_FieldOBJGet( fsys->player );
-		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ƒAƒjƒƒZƒbƒg‚Å‚«‚é‚©?
-			FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_OFF);	//o—ˆ‚éBƒ|[ƒY‰ðœ
-			//ƒtƒF[ƒhƒAƒEƒgŠJŽn
+		if( FieldOBJ_AcmdSetCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆã§ãã‚‹ã‹?
+			FieldOBJ_AcmdSet(fop,AC_ANM_PAUSE_OFF);	//å‡ºæ¥ã‚‹ã€‚ãƒãƒ¼ã‚ºè§£é™¤
+			//ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆé–‹å§‹
 			FieldFadeWipeSet(FLD_DISP_BRIGHT_BLACKOUT);
 			(work->seq) ++;
 		}
 		break;
 	case 3:
 		fop = Player_FieldOBJGet( fsys->player );
-		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ƒAƒjƒI—¹ƒ`ƒFƒbƒN
-			FieldOBJ_AcmdEnd(fop); //ƒAƒjƒI—¹	
+		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+			FieldOBJ_AcmdEnd(fop); //ã‚¢ãƒ‹ãƒ¡çµ‚äº†	
 			(work->seq) ++;
 		}
 		break;
@@ -837,12 +837,12 @@ BOOL Fld3DAnm_EventEscalatorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR 
 		{
 			BOOL wait;
 			wait = F3DASub_WaitAnimation(fsys->AnimeContMng, ESCA_ANIME_ENTRY_ID);
-			//ƒGƒXƒJƒŒ[ƒ^[ƒAƒjƒI—¹Aƒuƒ‰ƒbƒNƒAƒEƒgI—¹‘Ò‚¿
+			//ã‚¨ã‚¹ã‚«ãƒ¬ãƒ¼ã‚¿ãƒ¼ã‚¢ãƒ‹ãƒ¡çµ‚äº†ã€ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆçµ‚äº†å¾…ã¡
 			if (wait&&WIPE_SYS_EndCheck()) {
 				F3DASub_RereaseAnimation(	fsys->field_3d_anime,
 											fsys->AnimeContMng,
 											ESCA_ANIME_ENTRY_ID	);
-				//‚r‚dƒXƒgƒbƒv
+				//ï¼³ï¼¥ã‚¹ãƒˆãƒƒãƒ—
 				Snd_SeStopBySeqNo( SEQ_SE_DP_ESUKA, 0 );
 				return TRUE;
 			}
@@ -855,18 +855,18 @@ BOOL Fld3DAnm_EventEscalatorInAnime(FIELDSYS_WORK * fsys, FLD_3D_ANIME_WORK_PTR 
 
 //==============================================================================
 //
-//	«ƒXƒNƒŠƒvƒg—pŠÖ”ŒQ
+//	â†“ã‚¹ã‚¯ãƒªãƒ—ãƒˆç”¨é–¢æ•°ç¾¤
 //
 //==============================================================================
 
 
 //==============================================================================
 /**
- * ƒAƒjƒ‘Ò‚¿
+ * ã‚¢ãƒ‹ãƒ¡å¾…ã¡
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE:ƒCƒxƒ“ƒgI—¹@FALSEFƒCƒxƒ“ƒgŒp‘±
+ * @retval  BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSEï¼šã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //==============================================================================
 static BOOL WaitAnime(GMEVENT_CONTROL * event)
@@ -875,7 +875,7 @@ static BOOL WaitAnime(GMEVENT_CONTROL * event)
 	FIELDSYS_WORK * fsys = FieldEvent_GetFieldSysWork(event);
 	u8 *entry  = FieldEvent_GetSpecialWork(event);
 	wait = F3DASub_WaitAnimation(fsys->AnimeContMng, *entry);
-	//ŠJ‚­ƒAƒjƒI—¹‘Ò‚¿
+	//é–‹ãã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	if (wait) {
 		sys_FreeMemoryEz(entry);
 		return TRUE;
@@ -885,12 +885,12 @@ static BOOL WaitAnime(GMEVENT_CONTROL * event)
 
 //==============================================================================
 /**
- * ƒhƒAƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒZƒbƒgƒAƒbƒv
+ * ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inGridX		ƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ		ƒOƒŠƒbƒhZÀ•W
- * @param	inEntryID	“o˜^ID
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inGridX		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inEntryID	ç™»éŒ²ID
  *
  * @retval  none
  */
@@ -923,10 +923,10 @@ void FLD_SCR_ANM_DOOR_Setup(FIELDSYS_WORK * fsys,
 		NNSG3dResTex *tex;
 		anime_num = F3DA_GetAnimeNum(fsys->field_3d_anime, obj_id);
 #if 0		
-		if (IsAutoDoor(obj_id)){	//Ž©“®ƒhƒA‚Ì‚Æ‚«
-			anime_num = 2;			//ƒZƒbƒg‚·‚éƒAƒjƒ‚Q‚ÂiŠJ‚­A•Â‚¶‚éj
-		}else{						//‚»‚êˆÈŠO
-			anime_num = 4;			//ƒZƒbƒg‚·‚éƒAƒjƒ‚S‚ÂiŠJ‚­A•Â‚¶‚éAŠOoŠJ‚­AŠOo•Â‚¶‚éj
+		if (IsAutoDoor(obj_id)){	//è‡ªå‹•ãƒ‰ã‚¢ã®ã¨ã
+			anime_num = 2;			//ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡ï¼’ã¤ï¼ˆé–‹ãã€é–‰ã˜ã‚‹ï¼‰
+		}else{						//ãã‚Œä»¥å¤–
+			anime_num = 4;			//ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ãƒ‹ãƒ¡ï¼”ã¤ï¼ˆé–‹ãã€é–‰ã˜ã‚‹ã€å¤–å‡ºé–‹ãã€å¤–å‡ºé–‰ã˜ã‚‹ï¼‰
 		}
 #endif		
 		tex = GetMapResourceBmTexturePTR(fsys->MapResource);
@@ -937,19 +937,19 @@ void FLD_SCR_ANM_DOOR_Setup(FIELDSYS_WORK * fsys,
 								M3DO_GetRenderObj(obj_ptr),
 								M3DO_GetObjModel(obj_ptr),
 								tex,anime_num,
-								1,		//ƒ‹[ƒv1‰ñ
+								1,		//ãƒ«ãƒ¼ãƒ—1å›ž
 								FALSE);
 	}else{
-		GF_ASSERT(0&&"ƒhƒA‚ ‚è‚Ü‚¹‚ñ");
+		GF_ASSERT(0&&"ãƒ‰ã‚¢ã‚ã‚Šã¾ã›ã‚“");
 	}
 }
 
 //==============================================================================
 /**
- * ƒhƒAƒAƒjƒ[ƒVƒ‡ƒ“(ƒI[ƒvƒ“)
+ * ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³(ã‚ªãƒ¼ãƒ—ãƒ³)
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inEntryID	“o˜^ID
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inEntryID	ç™»éŒ²ID
  *
  * @retval  none
  */
@@ -963,13 +963,13 @@ void FLD_SCR_ANM_DOOR_StartOpenDoorAnm(	FIELDSYS_WORK * fsys, const u8 inEntryID
 	obj_id = F3DASub_GetObjIDFromEntryID(fsys->AnimeContMng, inEntryID);
 	anime_num = F3DA_GetAnimeNum(fsys->field_3d_anime, obj_id);
 	if ( IsAutoDoor(obj_id) == 1 ){
-		//SEƒZƒbƒg
-		sound = SE_JIDO_DOOR_OPEN;	//Ž©“®ƒhƒAŠJ‚­
+		//SEã‚»ãƒƒãƒˆ
+		sound = SE_JIDO_DOOR_OPEN;	//è‡ªå‹•ãƒ‰ã‚¢é–‹ã
 	}else if ( IsAutoDoor(obj_id) == 2 ){
-		sound = SE_DEPT_DOOR_OPEN;	//ƒfƒp[ƒgƒhƒAŠJ‚­
+		sound = SE_DEPT_DOOR_OPEN;	//ãƒ‡ãƒ‘ãƒ¼ãƒˆãƒ‰ã‚¢é–‹ã
 	}else{
-		//SEƒZƒbƒg
-		sound = SE_DOOR_OPEN;		//ƒhƒAŠJ‚­
+		//SEã‚»ãƒƒãƒˆ
+		sound = SE_DOOR_OPEN;		//ãƒ‰ã‚¢é–‹ã
 	}
 
 	if (anime_num == 2){
@@ -980,15 +980,15 @@ void FLD_SCR_ANM_DOOR_StartOpenDoorAnm(	FIELDSYS_WORK * fsys, const u8 inEntryID
 		GF_ASSERT(0);
 		anime_no = ANIME_NO_DOOR_AUTO_OPEN;
 	}
-	F3DASub_StartAnimeSnd(fsys->AnimeContMng, inEntryID, anime_no, sound);	//ƒhƒAŠJ‚­ƒAƒjƒ
+	F3DASub_StartAnimeSnd(fsys->AnimeContMng, inEntryID, anime_no, sound);	//ãƒ‰ã‚¢é–‹ãã‚¢ãƒ‹ãƒ¡
 }
 
 //==============================================================================
 /**
- * ƒhƒAƒAƒjƒ[ƒVƒ‡ƒ“(ƒNƒ[ƒY)
+ * ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³(ã‚¯ãƒ­ãƒ¼ã‚º)
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inEntryID	“o˜^ID
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inEntryID	ç™»éŒ²ID
  *
  * @retval  none
  */
@@ -1002,13 +1002,13 @@ void FLD_SCR_ANM_DOOR_StartCloseDoorAnm(	FIELDSYS_WORK * fsys, const u8 inEntryI
 	obj_id = F3DASub_GetObjIDFromEntryID(fsys->AnimeContMng, inEntryID);
 	anime_num = F3DA_GetAnimeNum(fsys->field_3d_anime, obj_id);
 	if ( IsAutoDoor(obj_id) == 1 ){
-		//SEƒZƒbƒg
-		sound = SE_JIDO_DOOR_CLOSE;	//Ž©“®ƒhƒA•Â‚¶‚é
+		//SEã‚»ãƒƒãƒˆ
+		sound = SE_JIDO_DOOR_CLOSE;	//è‡ªå‹•ãƒ‰ã‚¢é–‰ã˜ã‚‹
 	}else if ( IsAutoDoor(obj_id) == 2 ){
-		sound = SE_DEPT_DOOR_CLOSE;	//ƒfƒp[ƒgƒhƒA•Â‚¶‚é
+		sound = SE_DEPT_DOOR_CLOSE;	//ãƒ‡ãƒ‘ãƒ¼ãƒˆãƒ‰ã‚¢é–‰ã˜ã‚‹
 	}else{
-		//SEƒZƒbƒg
-		sound = SE_DOOR_CLOSE;		//ƒhƒA•Â‚¶‚é
+		//SEã‚»ãƒƒãƒˆ
+		sound = SE_DOOR_CLOSE;		//ãƒ‰ã‚¢é–‰ã˜ã‚‹
 	}
 
 	if (anime_num == 2){
@@ -1019,15 +1019,15 @@ void FLD_SCR_ANM_DOOR_StartCloseDoorAnm(	FIELDSYS_WORK * fsys, const u8 inEntryI
 		GF_ASSERT(0);
 		anime_no = ANIME_NO_DOOR_AUTO_CLOSE;
 	}
-	F3DASub_StartAnimeSnd(fsys->AnimeContMng, inEntryID, anime_no, sound);	//ƒhƒA•Â‚¶‚éƒAƒjƒ
+	F3DASub_StartAnimeSnd(fsys->AnimeContMng, inEntryID, anime_no, sound);	//ãƒ‰ã‚¢é–‰ã˜ã‚‹ã‚¢ãƒ‹ãƒ¡
 }
 
 //==============================================================================
 /**
- * ƒAƒjƒ[ƒVƒ‡ƒ“‘Ò‚¿
+ * ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å¾…ã¡
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inEntryID	“o˜^ID
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inEntryID	ç™»éŒ²ID
  *
  * @retval  none
  */
@@ -1041,10 +1041,10 @@ void FLD_SCR_ANM_DOOR_WaitAnime(FIELDSYS_WORK * fsys, const u8 inEntryID)
 
 //==============================================================================
 /**
- * ƒhƒAƒAƒjƒ[ƒVƒ‡ƒ“‰ð•ú
+ * ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³è§£æ”¾
  * 
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	inEntryID	“o˜^ID
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	inEntryID	ç™»éŒ²ID
  *
  * @retval  none
  */
@@ -1058,12 +1058,12 @@ void FLD_SCR_ANM_DOOR_FreeDoor(FIELDSYS_WORK * fsys, const u8 inEntryID)
 
 //==============================================================================
 /**
- * —¬»ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒXƒ^[ƒg
+ * æµç ‚ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¹ã‚¿ãƒ¼ãƒˆ
  * 
- * @param	inGridX		ƒOƒŠƒbƒhXÀ•W
- * @param	inGridZ		ƒOƒŠƒbƒhZÀ•W
- * @param	inAnmNo		ƒAƒjƒƒiƒ“ƒo[	0F—¬»‰º@1F—¬»ã
- * @param	fsys		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param	inGridX		ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™
+ * @param	inAnmNo		ã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼	0ï¼šæµç ‚ä¸‹ã€€1ï¼šæµç ‚ä¸Š
+ * @param	fsys		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none
  */
@@ -1080,9 +1080,9 @@ void Fld3DAnm_StartQuickSandAnime(	const int inGridX,
 	int obj_id;
 	int list[] = {BMID_CY_SLOPE, BMID_CY_SLOPE_DUN};
 		
-	//ŒŸõ”ÍˆÍì¬
+	//æ¤œç´¢ç¯„å›²ä½œæˆ
 	MPTL_MakeTargetRect( inGridX, inGridZ, 0, -1, 1, 3, &rect );
-	//—¬»OBJŽæ“¾
+	//æµç ‚OBJå–å¾—
 /**
 	rc = MPTL_CheckMap3DObjInRect(	fsys,
 									BMID_CY_SLOPE,
@@ -1095,22 +1095,22 @@ void Fld3DAnm_StartQuickSandAnime(	const int inGridX,
 										&rect,
 										&obj_ptr,
 										&obj_id);
-	GF_ASSERT(rc&&"—¬»Œ©‚Â‚©‚ç‚È‚¢");
+	GF_ASSERT(rc&&"æµç ‚è¦‹ã¤ã‹ã‚‰ãªã„");
 	
-	//ƒAƒjƒƒZƒbƒg
+	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 	{
 		NNSG3dRenderObj *render_obj;
 		render_obj = M3DO_GetRenderObj(obj_ptr);
 		rc =	F3DA_SetFld3DAnime(	obj_id, inAnmNo, TRUE,
 									render_obj,
 									fsys->field_3d_anime );
-		GF_ASSERT(rc&&"—¬»ƒZƒbƒgŽ¸”s");
+		GF_ASSERT(rc&&"æµç ‚ã‚»ãƒƒãƒˆå¤±æ•—");
 	}
 	{
 		FLD_3D_ANM_DAT_PTR anime;
-		//ƒAƒjƒŽæ“¾
+		//ã‚¢ãƒ‹ãƒ¡å–å¾—
 		anime = F3DA_GetFld3DAnmPtr(obj_id, inAnmNo, fsys->field_3d_anime);
-		//ƒAƒjƒŠJŽn
+		//ã‚¢ãƒ‹ãƒ¡é–‹å§‹
 		F3DA_SetStartFrame(anime);
 		F3DA_SetStopFlg(anime, FALSE);
 		F3DA_MoveAnime(anime);
@@ -1126,10 +1126,10 @@ typedef struct FLD_MAP_JUMP_WORK_tag{
 
 //==============================================================================
 /**
- * ƒ[ƒNƒƒ‚ƒŠŠm•Û
+ * ãƒ¯ãƒ¼ã‚¯ãƒ¡ãƒ¢ãƒªç¢ºä¿
  * 
  *
- * @retval FMJ_WORK_PTR 	ƒ}ƒbƒvƒWƒƒƒ“ƒvƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @retval FMJ_WORK_PTR 	ãƒžãƒƒãƒ—ã‚¸ãƒ£ãƒ³ãƒ—ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 extern FMJ_WORK_PTR	MapJump_AllocWork(void)
@@ -1142,11 +1142,11 @@ extern FMJ_WORK_PTR	MapJump_AllocWork(void)
 
 //==============================================================================
 /**
- * ƒzƒƒCƒgƒCƒ“
+ * ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE:ƒCƒxƒ“ƒgI—¹@FALSEFƒCƒxƒ“ƒgŒp‘±
+ * @retval  BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSEï¼šã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //==============================================================================
 BOOL MapJump_EventFadeInWhite(GMEVENT_CONTROL * event)
@@ -1157,50 +1157,50 @@ BOOL MapJump_EventFadeInWhite(GMEVENT_CONTROL * event)
 	switch (work->seq) {
 	case 0:
 		fop = Player_FieldOBJGet( fsys->player );
-		//‰ºŒü‚«‚Ìê‡‚ÍŽ©‹@”ñ•\Ž¦
+		//ä¸‹å‘ãã®å ´åˆã¯è‡ªæ©Ÿéžè¡¨ç¤º
 		if (Player_DirGet( fsys->player ) == DIR_DOWN){
 			FieldOBJ_StatusBitSet_Vanish( fop, TRUE );
 			(work->seq) = 1;
 		}else{
-			//Ž©‹@•\Ž¦
+			//è‡ªæ©Ÿè¡¨ç¤º
 			FieldOBJ_StatusBitSet_Vanish( fop, FALSE );
 			(work->seq) = 3;
 
 		}
-		//ƒJƒƒ‰ƒY[ƒ€‰Šú‰»
+		//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ åˆæœŸåŒ–
 		work->CameraZoomStartFlg = FALSE;
 		work->CameraZoomCount = 0;	
 			
-		//ƒJƒƒ‰‚ÌƒY[ƒ€‚ðƒZƒbƒg‚µ‚È‚¨‚µ
+		//ã‚«ãƒ¡ãƒ©ã®ã‚ºãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã—ãªãŠã—
 		{
-			//ƒp[ƒX‚Ì•Û‘¶
+			//ãƒ‘ãƒ¼ã‚¹ã®ä¿å­˜
 			work->PerspWayWork = GFC_GetCameraPerspWay(fsys->camera_ptr);
-			//ƒp[ƒX‘‚«Š·‚¦
+			//ãƒ‘ãƒ¼ã‚¹æ›¸ãæ›ãˆ
 			GFC_AddCameraPerspWay(-(ZOOM_VAL),fsys->camera_ptr);	
 		}
 		
-		//ƒƒCƒvƒXƒ^[ƒg	ƒzƒƒCƒgƒCƒ“
+		//ãƒ¯ã‚¤ãƒ—ã‚¹ã‚¿ãƒ¼ãƒˆ	ãƒ›ãƒ¯ã‚¤ãƒˆã‚¤ãƒ³
 		WIPE_SYS_Start(	WIPE_PATTERN_WMS, WIPE_TYPE_FADEIN,
 						WIPE_TYPE_FADEIN,0x7fff,COMM_BRIGHTNESS_SYNC,1,HEAPID_WORLD );
-		work->CameraZoomStartFlg = TRUE;	//ƒY[ƒ€ƒAƒEƒgŠJŽn
+		work->CameraZoomStartFlg = TRUE;	//ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆé–‹å§‹
 		
 		break;
 	case 1:
 		fop = Player_FieldOBJGet( fsys->player );
-		//Ž©‹@•\Ž¦
+		//è‡ªæ©Ÿè¡¨ç¤º
 		FieldOBJ_StatusBitSet_Vanish( fop, FALSE );
-		FieldOBJ_AcmdSet(fop,AC_WALK_D_8F);	//ƒAƒjƒƒZƒbƒg
+		FieldOBJ_AcmdSet(fop,AC_WALK_D_8F);	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 		(work->seq) ++;
 		break;
 	case 2:
 		fop = Player_FieldOBJGet( fsys->player );
-		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ƒAƒjƒI—¹ƒ`ƒFƒbƒN
-			FieldOBJ_AcmdEnd(fop); //ƒAƒjƒI—¹
+		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+			FieldOBJ_AcmdEnd(fop); //ã‚¢ãƒ‹ãƒ¡çµ‚äº†
 			(work->seq) ++;
 		}
 		break;
 	case 3:
-		//ƒƒCƒvI—¹AƒY[ƒ€I—¹‘Ò‚¿
+		//ãƒ¯ã‚¤ãƒ—çµ‚äº†ã€ã‚ºãƒ¼ãƒ çµ‚äº†å¾…ã¡
 		if ( WIPE_SYS_EndCheck()&&
 				( work->PerspWayWork == GFC_GetCameraPerspWay(fsys->camera_ptr) ) ) {
 			sys_FreeMemoryEz(work);
@@ -1210,7 +1210,7 @@ BOOL MapJump_EventFadeInWhite(GMEVENT_CONTROL * event)
 	}
 
 	if (work->CameraZoomStartFlg){
-		AnimeCameraZoomOut(fsys->camera_ptr, &work->CameraZoomCount);		//ƒY[ƒ€ƒAƒEƒg
+		AnimeCameraZoomOut(fsys->camera_ptr, &work->CameraZoomCount);		//ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ
 	}
 
 	return FALSE;
@@ -1219,11 +1219,11 @@ BOOL MapJump_EventFadeInWhite(GMEVENT_CONTROL * event)
 
 //==============================================================================
 /**
- * ƒzƒƒCƒgƒAƒEƒg
+ * ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE:ƒCƒxƒ“ƒgI—¹@FALSEFƒCƒxƒ“ƒgŒp‘±
+ * @retval  BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSEï¼šã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //==============================================================================
 BOOL MapJump_EventFadeOutWhite(GMEVENT_CONTROL * event)
@@ -1235,22 +1235,22 @@ BOOL MapJump_EventFadeOutWhite(GMEVENT_CONTROL * event)
 		{
 			FIELD_OBJ_PTR fop;
 			fop = Player_FieldOBJGet( fsys->player );
-			//Ž©‹@”ñ•\Ž¦
+			//è‡ªæ©Ÿéžè¡¨ç¤º
 			FieldOBJ_StatusBitSet_Vanish( fop, TRUE );
-			//ƒJƒƒ‰ƒY[ƒ€‰Šú‰»
+			//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ åˆæœŸåŒ–
 			work->CameraZoomStartFlg = FALSE;
 			work->CameraZoomCount = 0;	
-			//“ü‚é‰¹
+			//å…¥ã‚‹éŸ³
 			Snd_SePlay( SEQ_SE_DP_KAIDAN2 );
-			//ƒƒCƒvƒXƒ^[ƒg	ƒzƒƒCƒgƒAƒEƒg
+			//ãƒ¯ã‚¤ãƒ—ã‚¹ã‚¿ãƒ¼ãƒˆ	ãƒ›ãƒ¯ã‚¤ãƒˆã‚¢ã‚¦ãƒˆ
 			WIPE_SYS_Start(	WIPE_PATTERN_WMS, WIPE_TYPE_FADEOUT,
 							WIPE_TYPE_FADEOUT,0x7fff,COMM_BRIGHTNESS_SYNC,1,HEAPID_WORLD );
-			work->CameraZoomStartFlg = TRUE;	//ƒY[ƒ€ƒCƒ“ŠJŽn
+			work->CameraZoomStartFlg = TRUE;	//ã‚ºãƒ¼ãƒ ã‚¤ãƒ³é–‹å§‹
 			(work->seq) ++;
 		}
 		break;
 	case 1:
-		//ƒƒCƒvI—¹‘Ò‚¿
+		//ãƒ¯ã‚¤ãƒ—çµ‚äº†å¾…ã¡
 		if ( WIPE_SYS_EndCheck() ) {
 			sys_FreeMemoryEz(work);
 			return TRUE;
@@ -1259,7 +1259,7 @@ BOOL MapJump_EventFadeOutWhite(GMEVENT_CONTROL * event)
 	}
 
 	if (work->CameraZoomStartFlg){
-		AnimeCameraZoomIn(fsys->camera_ptr, &work->CameraZoomCount);		//ƒY[ƒ€ƒCƒ“
+		AnimeCameraZoomIn(fsys->camera_ptr, &work->CameraZoomCount);		//ã‚ºãƒ¼ãƒ ã‚¤ãƒ³
 	}
 
 	return FALSE;
@@ -1267,11 +1267,11 @@ BOOL MapJump_EventFadeOutWhite(GMEVENT_CONTROL * event)
 
 //==============================================================================
 /**
- * ƒz[ƒ‹ƒAƒEƒg
+ * ãƒ›ãƒ¼ãƒ«ã‚¢ã‚¦ãƒˆ
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE:ƒCƒxƒ“ƒgI—¹@FALSEFƒCƒxƒ“ƒgŒp‘±
+ * @retval  BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSEï¼šã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //==============================================================================
 BOOL MapJump_EventFadeOutHole(GMEVENT_CONTROL * event)
@@ -1281,20 +1281,20 @@ BOOL MapJump_EventFadeOutHole(GMEVENT_CONTROL * event)
 	switch (work->seq) {
 	case 0:
 		{
-			//ƒJƒƒ‰ƒY[ƒ€‰Šú‰»
+			//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ åˆæœŸåŒ–
 			work->CameraZoomStartFlg = FALSE;
 			work->CameraZoomCount = 0;	
-			//“ü‚é‰¹
+			//å…¥ã‚‹éŸ³
 			Snd_SePlay( SEQ_SE_DP_KAIDAN2 );
-			//ƒƒCƒvƒXƒ^[ƒg	ƒz[ƒ‹ƒAƒEƒg
+			//ãƒ¯ã‚¤ãƒ—ã‚¹ã‚¿ãƒ¼ãƒˆ	ãƒ›ãƒ¼ãƒ«ã‚¢ã‚¦ãƒˆ
 			MJUMP_RequestWipe(	event, WIPE_PATTERN_WMS, WIPE_TYPE_HOLEOUT,
 								WIPE_TYPE_FADEOUT,0x0000,6,1,HEAPID_WORLD );
-			work->CameraZoomStartFlg = TRUE;	//ƒY[ƒ€ƒCƒ“ŠJŽn
+			work->CameraZoomStartFlg = TRUE;	//ã‚ºãƒ¼ãƒ ã‚¤ãƒ³é–‹å§‹
 			(work->seq) ++;
 		}
 		break;
 	case 1:
-		//ƒƒCƒvI—¹‘Ò‚¿
+		//ãƒ¯ã‚¤ãƒ—çµ‚äº†å¾…ã¡
 		if ( WIPE_SYS_EndCheck() ) {
 			sys_FreeMemoryEz(work);
 			return TRUE;
@@ -1303,7 +1303,7 @@ BOOL MapJump_EventFadeOutHole(GMEVENT_CONTROL * event)
 	}
 
 	if (work->CameraZoomStartFlg){
-		AnimeCameraZoomIn(fsys->camera_ptr, &work->CameraZoomCount);		//ƒY[ƒ€ƒCƒ“
+		AnimeCameraZoomIn(fsys->camera_ptr, &work->CameraZoomCount);		//ã‚ºãƒ¼ãƒ ã‚¤ãƒ³
 	}
 
 	return FALSE;
@@ -1311,11 +1311,11 @@ BOOL MapJump_EventFadeOutHole(GMEVENT_CONTROL * event)
 
 //==============================================================================
 /**
- * ƒVƒƒƒbƒgEƒXƒ‰ƒCƒhƒCƒ“
+ * ã‚·ãƒ£ãƒƒãƒˆãƒ»ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE:ƒCƒxƒ“ƒgI—¹@FALSEFƒCƒxƒ“ƒgŒp‘±
+ * @retval  BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSEï¼šã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //==============================================================================
 BOOL MapJump_EventFadeInShutSlide(GMEVENT_CONTROL * event)
@@ -1330,29 +1330,29 @@ BOOL MapJump_EventFadeInShutSlide(GMEVENT_CONTROL * event)
 			u8 main_wipe_type;
 			fop = Player_FieldOBJGet( fsys->player );
 			dir = Player_DirGet( fsys->player );
-			//‰ºŒü‚«‚Ìê‡‚ÍŽ©‹@”ñ•\Ž¦
+			//ä¸‹å‘ãã®å ´åˆã¯è‡ªæ©Ÿéžè¡¨ç¤º
 			if ( dir == DIR_DOWN){
 				FieldOBJ_StatusBitSet_Vanish( fop, TRUE );
 				(work->seq) = 1;
 			}else{
-				//Ž©‹@•\Ž¦
+				//è‡ªæ©Ÿè¡¨ç¤º
 				FieldOBJ_StatusBitSet_Vanish( fop, FALSE );
 				(work->seq) = 3;
 		
 			}
-			//ƒJƒƒ‰ƒY[ƒ€‰Šú‰»
+			//ã‚«ãƒ¡ãƒ©ã‚ºãƒ¼ãƒ åˆæœŸåŒ–
 			work->CameraZoomStartFlg = FALSE;
 			work->CameraZoomCount = 0;	
 			
-			//ƒJƒƒ‰‚ÌƒY[ƒ€‚ðƒZƒbƒg‚µ‚È‚¨‚µ
+			//ã‚«ãƒ¡ãƒ©ã®ã‚ºãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆã—ãªãŠã—
 			{
-				//ƒp[ƒX‚Ì•Û‘¶
+				//ãƒ‘ãƒ¼ã‚¹ã®ä¿å­˜
 				work->PerspWayWork = GFC_GetCameraPerspWay(fsys->camera_ptr);
-				//ƒp[ƒX‘‚«Š·‚¦
+				//ãƒ‘ãƒ¼ã‚¹æ›¸ãæ›ãˆ
 				GFC_AddCameraPerspWay(-(ZOOM_VAL),fsys->camera_ptr);	
 			}
 
-			//•ûŒü•Ê‚ÉƒƒCƒv‚ÌŽí—Þ‚ð•ª‚¯‚é
+			//æ–¹å‘åˆ¥ã«ãƒ¯ã‚¤ãƒ—ã®ç¨®é¡žã‚’åˆ†ã‘ã‚‹
 			switch(dir){
 			case DIR_UP:
 				main_wipe_type = WIPE_TYPE_SHUTTERIN_DOWN;
@@ -1370,28 +1370,28 @@ BOOL MapJump_EventFadeInShutSlide(GMEVENT_CONTROL * event)
 				GF_ASSERT(0);
 			}
 			
-			//ƒƒCƒvƒXƒ^[ƒg	ƒVƒƒƒbƒgEƒXƒ‰ƒCƒhƒCƒ“
+			//ãƒ¯ã‚¤ãƒ—ã‚¹ã‚¿ãƒ¼ãƒˆ	ã‚·ãƒ£ãƒƒãƒˆãƒ»ã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³
 			MJUMP_RequestWipe(	event, WIPE_PATTERN_WMS, main_wipe_type,
 								WIPE_TYPE_FADEIN,0x0000,COMM_BRIGHTNESS_SYNC,1,HEAPID_WORLD );
-			work->CameraZoomStartFlg = TRUE;	//ƒY[ƒ€ƒAƒEƒgŠJŽn
+			work->CameraZoomStartFlg = TRUE;	//ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆé–‹å§‹
 		}
 		break;
 	case 1:
 		fop = Player_FieldOBJGet( fsys->player );
-		//Ž©‹@•\Ž¦
+		//è‡ªæ©Ÿè¡¨ç¤º
 		FieldOBJ_StatusBitSet_Vanish( fop, FALSE );
-		FieldOBJ_AcmdSet(fop,AC_WALK_D_8F);	//ƒAƒjƒƒZƒbƒg
+		FieldOBJ_AcmdSet(fop,AC_WALK_D_8F);	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 		(work->seq) ++;
 		break;
 	case 2:
 		fop = Player_FieldOBJGet( fsys->player );
-		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ƒAƒjƒI—¹ƒ`ƒFƒbƒN
-			FieldOBJ_AcmdEnd(fop); //ƒAƒjƒI—¹
+		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+			FieldOBJ_AcmdEnd(fop); //ã‚¢ãƒ‹ãƒ¡çµ‚äº†
 			(work->seq) ++;
 		}
 		break;
 	case 3:
-		//ƒƒCƒvI—¹AƒY[ƒ€I—¹‘Ò‚¿
+		//ãƒ¯ã‚¤ãƒ—çµ‚äº†ã€ã‚ºãƒ¼ãƒ çµ‚äº†å¾…ã¡
 		if ( WIPE_SYS_EndCheck()&&
 				( work->PerspWayWork == GFC_GetCameraPerspWay(fsys->camera_ptr) ) ) {
 			sys_FreeMemoryEz(work);
@@ -1401,7 +1401,7 @@ BOOL MapJump_EventFadeInShutSlide(GMEVENT_CONTROL * event)
 	}
 
 	if (work->CameraZoomStartFlg){
-		AnimeCameraZoomOut(fsys->camera_ptr, &work->CameraZoomCount);		//ƒY[ƒ€ƒAƒEƒg
+		AnimeCameraZoomOut(fsys->camera_ptr, &work->CameraZoomCount);		//ã‚ºãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ
 	}
 
 	return FALSE;
@@ -1409,11 +1409,11 @@ BOOL MapJump_EventFadeInShutSlide(GMEVENT_CONTROL * event)
 
 //==============================================================================
 /**
- * ƒuƒ‰ƒbƒNƒCƒ“
+ * ãƒ–ãƒ©ãƒƒã‚¯ã‚¤ãƒ³
  * 
- * @param	event	ƒCƒxƒ“ƒgƒ|ƒCƒ“ƒ^
+ * @param	event	ã‚¤ãƒ™ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  BOOL	TRUE:ƒCƒxƒ“ƒgI—¹@FALSEFƒCƒxƒ“ƒgŒp‘±
+ * @retval  BOOL	TRUE:ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†ã€€FALSEï¼šã‚¤ãƒ™ãƒ³ãƒˆç¶™ç¶š
  */
 //==============================================================================
 BOOL MapJump_EventFadeInBlack(GMEVENT_CONTROL * event)
@@ -1428,12 +1428,12 @@ BOOL MapJump_EventFadeInBlack(GMEVENT_CONTROL * event)
 			u8 main_wipe_type;
 			fop = Player_FieldOBJGet( fsys->player );
 			dir = Player_DirGet( fsys->player );
-			//‰ºŒü‚«‚Ìê‡‚ÍŽ©‹@”ñ•\Ž¦
+			//ä¸‹å‘ãã®å ´åˆã¯è‡ªæ©Ÿéžè¡¨ç¤º
 			if ( dir == DIR_DOWN){
 				FieldOBJ_StatusBitSet_Vanish( fop, TRUE );
 				(work->seq) = 1;
 			}else{
-				//Ž©‹@•\Ž¦
+				//è‡ªæ©Ÿè¡¨ç¤º
 				FieldOBJ_StatusBitSet_Vanish( fop, FALSE );
 				(work->seq) = 3;
 		
@@ -1445,20 +1445,20 @@ BOOL MapJump_EventFadeInBlack(GMEVENT_CONTROL * event)
 		break;
 	case 1:
 		fop = Player_FieldOBJGet( fsys->player );
-		//Ž©‹@•\Ž¦
+		//è‡ªæ©Ÿè¡¨ç¤º
 		FieldOBJ_StatusBitSet_Vanish( fop, FALSE );
-		FieldOBJ_AcmdSet(fop,AC_WALK_D_8F);	//ƒAƒjƒƒZƒbƒg
+		FieldOBJ_AcmdSet(fop,AC_WALK_D_8F);	//ã‚¢ãƒ‹ãƒ¡ã‚»ãƒƒãƒˆ
 		(work->seq) ++;
 		break;
 	case 2:
 		fop = Player_FieldOBJGet( fsys->player );
-		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ƒAƒjƒI—¹ƒ`ƒFƒbƒN
-			FieldOBJ_AcmdEnd(fop); //ƒAƒjƒI—¹
+		if( FieldOBJ_AcmdEndCheck(fop) == TRUE ){	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒã‚§ãƒƒã‚¯
+			FieldOBJ_AcmdEnd(fop); //ã‚¢ãƒ‹ãƒ¡çµ‚äº†
 			(work->seq) ++;
 		}
 		break;
 	case 3:
-		//ƒƒCƒvI—¹‘Ò‚¿
+		//ãƒ¯ã‚¤ãƒ—çµ‚äº†å¾…ã¡
 		if ( WIPE_SYS_EndCheck() ){
 			sys_FreeMemoryEz(work);
 			return TRUE;

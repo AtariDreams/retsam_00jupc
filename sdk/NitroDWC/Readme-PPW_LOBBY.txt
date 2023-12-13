@@ -1,33 +1,33 @@
-¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
-¡                                                                          ¡
-¡  Readme.txt                                                              ¡
-¡                                                                          ¡
-¡  ƒ|ƒPƒ‚ƒ“ƒvƒ‰ƒ`ƒi Wi-Fi ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ                                 ¡
-¡                                                                          ¡
-¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
+â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– 
+â–                                                                           â– 
+â–   Readme.txt                                                              â– 
+â–                                                                           â– 
+â–   ãƒã‚±ãƒ¢ãƒ³ãƒ—ãƒ©ãƒãƒŠ Wi-Fi ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª                                 â– 
+â–                                                                           â– 
+â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– 
 
-1. ‚Í‚¶‚ß‚É
+1. ã¯ã˜ã‚ã«
 ==============================================================================
 
-@‚±‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚ÍAGameSpy‚ÌIRCƒT[ƒo‚ð‰î‚µ‚Ä‘¼‚ÌƒvƒŒƒCƒ„[‚Æ’ÊM‚·‚é‚à‚Ì‚Å‚·B
-ƒ‰ƒCƒuƒ‰ƒŠ‚ÌÚ×‚ÍmanƒtƒHƒ‹ƒ_“à‚ÌŠÖ”ƒŠƒtƒ@ƒŒƒ“ƒX‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+ã€€ã“ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã¯ã€GameSpyã®IRCã‚µãƒ¼ãƒã‚’ä»‹ã—ã¦ä»–ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨é€šä¿¡ã™ã‚‹ã‚‚ã®ã§ã™ã€‚
+ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®è©³ç´°ã¯manãƒ•ã‚©ãƒ«ãƒ€å†…ã®é–¢æ•°ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 
 
-2. ƒfƒBƒŒƒNƒgƒŠ\¬
+2. ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæ§‹æˆ
 ==============================================================================
 
-+build----+-demos      ƒfƒ‚
-          +-libraries  ƒ‰ƒCƒuƒ‰ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹
-+include               ŠO•”ƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹
-+lib                   ƒ‰ƒCƒuƒ‰ƒŠƒtƒ@ƒCƒ‹
-+man                   ŠÖ”ƒŠƒtƒ@ƒŒƒ“ƒX
-+tools                 ŠÇ—ƒc[ƒ‹
++build----+-demos      ãƒ‡ãƒ¢
+          +-libraries  ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
++include               å¤–éƒ¨ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«
++lib                   ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«
++man                   é–¢æ•°ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹
++tools                 ç®¡ç†ãƒ„ãƒ¼ãƒ«
 
 
-3. ƒeƒXƒgŠÂ‹«
+3. ãƒ†ã‚¹ãƒˆç’°å¢ƒ
 ==============================================================================
 
-@–{ƒpƒbƒP[ƒW‚ÍAˆÈ‰º‚ÌŠÂ‹«‚Å\’zA“®ìŠm”F‚³‚ê‚Ü‚µ‚½B
+ã€€æœ¬ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã€ä»¥ä¸‹ã®ç’°å¢ƒã§æ§‹ç¯‰ã€å‹•ä½œç¢ºèªã•ã‚Œã¾ã—ãŸã€‚
 
  NitroSDK-4_2-patch-plus-080118
  NITRO-System-Library-071126-patch1
@@ -36,186 +36,186 @@
  CodeWarrior-2.0-sp2-patch2
 
 
-4. ƒCƒ“ƒXƒg[ƒ‹
+4. ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«
 ==============================================================================
 
-@ƒpƒbƒP[ƒW‚ÉŠÜ‚Ü‚ê‚é‚·‚×‚Ä‚Ìƒtƒ@ƒCƒ‹‚ðŠù‘¶‚ÌNitroDWC‚ÌƒpƒbƒP[ƒW‚Éã‘‚«‚µ‚Ä
-‚­‚¾‚³‚¢B
-ƒrƒ‹ƒhÏ‚Ý‚Ìƒ‰ƒCƒuƒ‰ƒŠƒtƒ@ƒCƒ‹‚Í•t‘®‚µ‚Ä‚¢‚Ü‚·‚ªAƒ\[ƒXƒR[ƒh‚ª“¯«‚³‚ê‚Ä‚¢‚Ü
-‚·‚Ì‚Åƒrƒ‹ƒh‚·‚é‚±‚Æ‚à‰Â”\‚Å‚·B
-ƒ‰ƒCƒuƒ‰ƒŠ‚ðƒrƒ‹ƒh‚·‚éê‡‚Í‘O‰ñã‘‚«‚µ‚½‚à‚Ì‚ðƒNƒŠ[ƒ“ŒãAƒrƒ‹ƒh‚ðs‚Á‚Ä‚­‚¾
-‚³‚¢B
-$(NITRODWC_ROOT)/include/ppwlobby/ppw_lobby.h‚ðƒCƒ“ƒNƒ‹[ƒh‚µA
-$(NITRODWC_ROOT)/libˆÈ‰º‚Ìlibdwcppwlobby.a‚Ælibdwcilobby.a‚Ælibdwcenc.a‚ðƒŠƒ“ƒN
-‚µ‚Ä‚­‚¾‚³‚¢B
+ã€€ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã«å«ã¾ã‚Œã‚‹ã™ã¹ã¦ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ—¢å­˜ã®NitroDWCã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã«ä¸Šæ›¸ãã—ã¦
+ãã ã•ã„ã€‚
+ãƒ“ãƒ«ãƒ‰æ¸ˆã¿ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã¯ä»˜å±žã—ã¦ã„ã¾ã™ãŒã€ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ãŒåŒæ¢±ã•ã‚Œã¦ã„ã¾
+ã™ã®ã§ãƒ“ãƒ«ãƒ‰ã™ã‚‹ã“ã¨ã‚‚å¯èƒ½ã§ã™ã€‚
+ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ãƒ“ãƒ«ãƒ‰ã™ã‚‹å ´åˆã¯å‰å›žä¸Šæ›¸ãã—ãŸã‚‚ã®ã‚’ã‚¯ãƒªãƒ¼ãƒ³å¾Œã€ãƒ“ãƒ«ãƒ‰ã‚’è¡Œã£ã¦ãã 
+ã•ã„ã€‚
+$(NITRODWC_ROOT)/include/ppwlobby/ppw_lobby.hã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã—ã€
+$(NITRODWC_ROOT)/libä»¥ä¸‹ã®libdwcppwlobby.aã¨libdwcilobby.aã¨libdwcenc.aã‚’ãƒªãƒ³ã‚¯
+ã—ã¦ãã ã•ã„ã€‚
 
-5. ƒfƒ‚
+5. ãƒ‡ãƒ¢
 ==============================================================================
 
-@ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‚ð‰Šú‰»‚µAƒƒbƒZ[ƒW‘—M‚È‚Ç‚ðs‚¤ƒfƒ‚‚Å‚·B
-‰Šú‰»Š®—¹Œã‚ÉXƒ{ƒ^ƒ“‚ð‰Ÿ‚·‚Æƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‚ÌŠÖ”‚ð‡‚ÉŒÄ‚Ño‚µ‚Ü‚·B
-Aƒ{ƒ^ƒ“‚ð‰Ÿ‚·‚Æƒ~ƒjƒQ[ƒ€‚Ì•åW‚©‚çP2P’ÊM‚Ü‚Å‚ðs‚¢‚Ü‚·B
+ã€€ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’åˆæœŸåŒ–ã—ã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é€ä¿¡ãªã©ã‚’è¡Œã†ãƒ‡ãƒ¢ã§ã™ã€‚
+åˆæœŸåŒ–å®Œäº†å¾Œã«Xãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã¨ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®é–¢æ•°ã‚’é †ã«å‘¼ã³å‡ºã—ã¾ã™ã€‚
+Aãƒœã‚¿ãƒ³ã‚’æŠ¼ã™ã¨ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®å‹Ÿé›†ã‹ã‚‰P2Pé€šä¿¡ã¾ã§ã‚’è¡Œã„ã¾ã™ã€‚
 
-6. ŠÇ——pƒc[ƒ‹
+6. ç®¡ç†ç”¨ãƒ„ãƒ¼ãƒ«
 ==============================================================================
 
-@toolsˆÈ‰º‚ÉWi-Fi‚Ð‚ë‚Î‚ÌŠÇ—ƒc[ƒ‹‚ªŽû˜^‚³‚ê‚Ä‚¢‚Ü‚·BÚ‚µ‚­‚Í
-"tools/PpwAdminTool/Readme.txt"‚ðŽQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+ã€€toolsä»¥ä¸‹ã«Wi-Fiã²ã‚ã°ã®ç®¡ç†ãƒ„ãƒ¼ãƒ«ãŒåŽéŒ²ã•ã‚Œã¦ã„ã¾ã™ã€‚è©³ã—ãã¯
+"tools/PpwAdminTool/Readme.txt"ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
 
 
-yXV—š—ðz
+ã€æ›´æ–°å±¥æ­´ã€‘
 
-¡ 2008/07/07 1_0_0
+â–  2008/07/07 1_0_0
 
-E20lW‚Ü‚Á‚½uŠÔ‚Él‚ª”²‚¯‚é‚ÆƒƒbƒN‚³‚ê‚È‚¢l‚ªo‚Ä‚­‚é•s‹ï‡‚ðC³‚µ‚Ü‚µ‚½B
+ãƒ»20äººé›†ã¾ã£ãŸçž¬é–“ã«äººãŒæŠœã‘ã‚‹ã¨ãƒ­ãƒƒã‚¯ã•ã‚Œãªã„äººãŒå‡ºã¦ãã‚‹ä¸å…·åˆã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
 
-¡ 2008/07/02 1_0_0 beta 20
+â–  2008/07/02 1_0_0 beta 20
 
-EÚ‘±‚·‚éƒhƒƒCƒ“‚ªpeerchat.gamespy.com‚¾‚Á‚½‚Ì‚ð
-  <gamename>.gs.peerchat.nintendowifi.net‚ÉC³‚µ‚Ü‚µ‚½B
+ãƒ»æŽ¥ç¶šã™ã‚‹ãƒ‰ãƒ¡ã‚¤ãƒ³ãŒpeerchat.gamespy.comã ã£ãŸã®ã‚’
+  <gamename>.gs.peerchat.nintendowifi.netã«ä¿®æ­£ã—ã¾ã—ãŸã€‚
 
-¡ 2008/06/23 1_0_0 beta 19
+â–  2008/06/23 1_0_0 beta 19
 
-E‰Šú‰»Žž‚Éƒ‰ƒCƒuƒ‰ƒŠ‚ðƒVƒƒƒbƒgƒ_ƒEƒ“‚·‚é‚Æƒ‰ƒCƒuƒ‰ƒŠ‚ª•s³‚Èó‘Ô‚Æ‚È‚è³‚µ‚­
-ƒVƒƒƒbƒgƒ_ƒEƒ“‚³‚ê‚È‚­‚È‚éƒoƒO‚ðC³‚µ‚Ü‚µ‚½B
-EPPW_LobbyShutdownAsyncŠÖ”‚ÌŽd—l‚ð•ÏX‚µ‚Ü‚µ‚½BDWC_InitFriendsMatchŠÖ”‚Æ‹¤
-‚Éƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‚ðŽg—p‚µ‚Ä‚¢‚é‚Æ‚«‚ÍAƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ‚ÌI—¹‚ðŠm”F‚µ‚½Œã‚É
-DWC_ShutdownFriendsMatchŠÖ”‚ðŒÄ‚Ño‚µ‚Ä‚­‚¾‚³‚¢B  
+ãƒ»åˆæœŸåŒ–æ™‚ã«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã™ã‚‹ã¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒä¸æ­£ãªçŠ¶æ…‹ã¨ãªã‚Šæ­£ã—ã
+ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³ã•ã‚Œãªããªã‚‹ãƒã‚°ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+ãƒ»PPW_LobbyShutdownAsyncé–¢æ•°ã®ä»•æ§˜ã‚’å¤‰æ›´ã—ã¾ã—ãŸã€‚DWC_InitFriendsMatché–¢æ•°ã¨å…±
+ã«ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ã¨ãã¯ã€ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®çµ‚äº†ã‚’ç¢ºèªã—ãŸå¾Œã«
+DWC_ShutdownFriendsMatché–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¦ãã ã•ã„ã€‚  
 
-¡ 2008/06/20 1_0_0 beta 18
+â–  2008/06/20 1_0_0 beta 18
 
-EPPW_LobbySystemProfileUpdatedCallbackƒR[ƒ‹ƒoƒbƒN‚ª
-  PPW_LobbyPlayerConnectedCallbackƒR[ƒ‹ƒoƒbƒN‚Ì‘O‹y‚Ñ
-  PPW_LobbyPlayerDisconnectedCallbackƒR[ƒ‹ƒoƒbƒN‚ÌŒã‚ÉŒÄ‚Î‚ê‚é‰Â”\«‚ª‚ ‚è‚Ü‚µ
-  ‚½‚Ì‚ÅŒÄ‚Î‚ê‚È‚¢‚æ‚¤‚ÉC³‚µ‚Ü‚µ‚½B
+ãƒ»PPW_LobbySystemProfileUpdatedCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒ
+  PPW_LobbyPlayerConnectedCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å‰åŠã³
+  PPW_LobbyPlayerDisconnectedCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®å¾Œã«å‘¼ã°ã‚Œã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã—
+  ãŸã®ã§å‘¼ã°ã‚Œãªã„ã‚ˆã†ã«ä¿®æ­£ã—ã¾ã—ãŸã€‚
 
-¡ 2008/06/18 1_0_0 beta 17
+â–  2008/06/18 1_0_0 beta 17
 
-EƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚ÉÚ‘±‚·‚éÛ‚É3‰ñ‚Ü‚ÅÄŽŽs‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-EŠÇ—ƒc[ƒ‹‚ðver1_0_0 beta7‚ÉXV‚µ‚Ü‚µ‚½B
+ãƒ»ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã«æŽ¥ç¶šã™ã‚‹éš›ã«3å›žã¾ã§å†è©¦è¡Œã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+ãƒ»ç®¡ç†ãƒ„ãƒ¼ãƒ«ã‚’ver1_0_0 beta7ã«æ›´æ–°ã—ã¾ã—ãŸã€‚
 
-¡ 2008/06/16 1_0_0 beta 16
+â–  2008/06/16 1_0_0 beta 16
 
-EƒAƒ“ƒP[ƒgî•ñ‚ÉƒXƒyƒVƒƒƒ‹ƒEƒB[ƒN‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-EŠÇ—ƒc[ƒ‹‚ðver1_0_0 beta6‚ÉXV‚µ‚Ü‚µ‚½B
+ãƒ»ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±ã«ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¦ã‚£ãƒ¼ã‚¯ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ãƒ»ç®¡ç†ãƒ„ãƒ¼ãƒ«ã‚’ver1_0_0 beta6ã«æ›´æ–°ã—ã¾ã—ãŸã€‚
 
-¡ 2008/06/13 1_0_0 beta 15
+â–  2008/06/13 1_0_0 beta 15
 
-EƒAƒ“ƒP[ƒg‹@”\‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-EƒAƒ“ƒP[ƒg‚ð’ño‚·‚éPPW_LobbySubmitQuestionnaireŠÖ”‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-EŽæ“¾‚µ‚½ƒAƒ“ƒP[ƒgî•ñ‚ð’Ê’m‚·‚éPPW_LobbyGetQuestionnaireCallbackƒR[ƒ‹ƒoƒb
-@ƒN‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-EƒAƒ“ƒP[ƒg‚Ì’ño‚ªŠ®—¹‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚é
-@PPW_LobbySubmitQuestionnaireCallbackƒR[ƒ‹ƒoƒbƒN‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-EƒGƒ‰[‚Ìó‘Ô‚©‚çƒGƒ‰[ƒR[ƒh‚ðŽæ“¾‚·‚éPPW_LobbyToErrorCodeŠÖ”‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-EŠÇ—ƒc[ƒ‹‚ðver1_0_0 beta5‚ÉXV‚µ‚Ü‚µ‚½B
+ãƒ»ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæ©Ÿèƒ½ã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+ãƒ»ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã‚’æå‡ºã™ã‚‹PPW_LobbySubmitQuestionnaireé–¢æ•°ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ãƒ»å–å¾—ã—ãŸã‚¢ãƒ³ã‚±ãƒ¼ãƒˆæƒ…å ±ã‚’é€šçŸ¥ã™ã‚‹PPW_LobbyGetQuestionnaireCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒ
+ã€€ã‚¯ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ãƒ»ã‚¢ãƒ³ã‚±ãƒ¼ãƒˆã®æå‡ºãŒå®Œäº†ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹
+ã€€PPW_LobbySubmitQuestionnaireCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ãƒ»ã‚¨ãƒ©ãƒ¼ã®çŠ¶æ…‹ã‹ã‚‰ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹PPW_LobbyToErrorCodeé–¢æ•°ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ãƒ»ç®¡ç†ãƒ„ãƒ¼ãƒ«ã‚’ver1_0_0 beta5ã«æ›´æ–°ã—ã¾ã—ãŸã€‚
 
-¡ 2008/05/27 1_0_0 beta 14
+â–  2008/05/27 1_0_0 beta 14
 
-Eƒ^ƒCƒv•\Ž¦‚É‘Î‰ž‚µ‚Ü‚µ‚½B
-Eƒ`ƒƒƒbƒgƒT[ƒo‚Ö‚ÌÚ‘±‚ÆƒXƒPƒWƒ…[ƒ‹‚È‚Ç‚Ìƒf[ƒ^Žæ“¾‚ð“¯Žž‚És‚¤‚±‚Æ‚É‚æ‚èA
-  ‰Šú‰»ŽžŠÔ‚ðŽáŠ±’Zk‚µ‚Ü‚µ‚½B
-EŠÇ—ƒc[ƒ‹‚ðver1_0_0 beta4‚ÉXV‚µ‚Ü‚µ‚½B
+ãƒ»ã‚¿ã‚¤ãƒ—è¡¨ç¤ºã«å¯¾å¿œã—ã¾ã—ãŸã€‚
+ãƒ»ãƒãƒ£ãƒƒãƒˆã‚µãƒ¼ãƒã¸ã®æŽ¥ç¶šã¨ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ãªã©ã®ãƒ‡ãƒ¼ã‚¿å–å¾—ã‚’åŒæ™‚ã«è¡Œã†ã“ã¨ã«ã‚ˆã‚Šã€
+  åˆæœŸåŒ–æ™‚é–“ã‚’è‹¥å¹²çŸ­ç¸®ã—ã¾ã—ãŸã€‚
+ãƒ»ç®¡ç†ãƒ„ãƒ¼ãƒ«ã‚’ver1_0_0 beta4ã«æ›´æ–°ã—ã¾ã—ãŸã€‚
 
-¡ 2008/05/08 1_0_0 beta 13
+â–  2008/05/08 1_0_0 beta 13
 
-EPPW_LobbyCheckProfileCallbackƒR[ƒ‹ƒoƒbƒN‚Ì•Ô‚è’l‚ðvoid‚ÉC³‚µ‚Ü‚µ‚½B
+ãƒ»PPW_LobbyCheckProfileCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®è¿”ã‚Šå€¤ã‚’voidã«ä¿®æ­£ã—ã¾ã—ãŸã€‚
 
-¡ 2008/05/07 1_0_0 beta 12
+â–  2008/05/07 1_0_0 beta 12
 
-E•s³ƒ`ƒFƒbƒN‚ðs‚¤‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-E•s³ƒ`ƒFƒbƒN‚ÌŒ‹‰Ê‚ð’Ê’m‚·‚éAPPW_LobbyCheckProfileCallbackƒR[ƒ‹ƒoƒbƒN‚ð’Ç‰Á
-  ‚µ‚Ü‚µ‚½B 
-EƒXƒPƒWƒ…[ƒ‹‚âVIPÝ’è‚ÌŽæ“¾æ(ƒŠƒŠ[ƒX/ƒfƒoƒbƒO)‚ªPPW_LobbyInitializeAsyncŠÖ
-  ”‚Ìprefix‚É‚æ‚èŒˆ’è‚³‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½BDWC_LOBBY_CHANNEL_PREFIX_RELEASE‚Í
-  ƒŠƒŠ[ƒXƒT[ƒo‚©‚çA‚»‚êˆÈŠO‚Å‚ÍƒfƒoƒbƒOƒT[ƒo‚©‚çƒf[ƒ^‚ðŽæ“¾‚µ‚Ü‚·B‚½‚¾‚µA
-  Œ»ÝƒŠƒŠ[ƒXƒT[ƒo‚Ì—pˆÓ‚Í‚Å‚«‚Ä‚¢‚Ü‚¹‚ñB
-EŠÇ—ƒc[ƒ‹‚ðver1_0_0 beta3‚ÉXV‚µ‚Ü‚µ‚½B
+ãƒ»ä¸æ­£ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+ãƒ»ä¸æ­£ãƒã‚§ãƒƒã‚¯ã®çµæžœã‚’é€šçŸ¥ã™ã‚‹ã€PPW_LobbyCheckProfileCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¿½åŠ 
+  ã—ã¾ã—ãŸã€‚ 
+ãƒ»ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚„VIPè¨­å®šã®å–å¾—å…ˆ(ãƒªãƒªãƒ¼ã‚¹/ãƒ‡ãƒãƒƒã‚°)ãŒPPW_LobbyInitializeAsyncé–¢
+  æ•°ã®prefixã«ã‚ˆã‚Šæ±ºå®šã•ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚DWC_LOBBY_CHANNEL_PREFIX_RELEASEã¯
+  ãƒªãƒªãƒ¼ã‚¹ã‚µãƒ¼ãƒã‹ã‚‰ã€ãã‚Œä»¥å¤–ã§ã¯ãƒ‡ãƒãƒƒã‚°ã‚µãƒ¼ãƒã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚ãŸã ã—ã€
+  ç¾åœ¨ãƒªãƒªãƒ¼ã‚¹ã‚µãƒ¼ãƒã®ç”¨æ„ã¯ã§ãã¦ã„ã¾ã›ã‚“ã€‚
+ãƒ»ç®¡ç†ãƒ„ãƒ¼ãƒ«ã‚’ver1_0_0 beta3ã«æ›´æ–°ã—ã¾ã—ãŸã€‚
 
-¡ 2008/04/16 1_0_0 beta 11
+â–  2008/04/16 1_0_0 beta 11
 
-EŠÇ—ƒc[ƒ‹‚ðver1_0_0 beta2‚ÉXV‚µ‚Ü‚µ‚½B
+ãƒ»ç®¡ç†ãƒ„ãƒ¼ãƒ«ã‚’ver1_0_0 beta2ã«æ›´æ–°ã—ã¾ã—ãŸã€‚
 
-¡ 2008/04/14 1_0_0 beta 10
+â–  2008/04/14 1_0_0 beta 10
 
-EƒT[ƒo‚©‚çƒXƒPƒWƒ…[ƒ‹‚ÆVIPî•ñ‚ðŽæ“¾‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-EŽæ“¾‚µ‚½ƒXƒPƒWƒ…[ƒ‹‚ð’Ê’m‚·‚éAPPW_LobbyNotifyScheduleCallbackƒR[ƒ‹ƒoƒbƒN‚ð’Ç
-  ‰Á‚µ‚Ü‚µ‚½B
-EŽæ“¾‚µ‚½VIPî•ñ‚ð’Ê’m‚·‚éA PPW_LobbyGetVipCallbackƒR[ƒ‹ƒoƒbƒN‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-EƒT[ƒo‚Æ‚Ì’ÊM‚ª‘½‚·‚¬‚éó‘Ô‚ð’Ê’m‚·‚éAPPW_LobbyExcessFloodCallbackƒR[ƒ‹ƒoƒb
-  ƒN‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-EVIPî•ñ‚ðŽQÆ‚·‚éAPPW_LobbyGetVipŠÖ”‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-EƒXƒPƒWƒ…[ƒ‹‚ÆVIP‚ÌÝ’è‚ðs‚¦‚éŠÇ—ƒc[ƒ‹‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
+ãƒ»ã‚µãƒ¼ãƒã‹ã‚‰ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã¨VIPæƒ…å ±ã‚’å–å¾—ã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+ãƒ»å–å¾—ã—ãŸã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’é€šçŸ¥ã™ã‚‹ã€PPW_LobbyNotifyScheduleCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¿½
+  åŠ ã—ã¾ã—ãŸã€‚
+ãƒ»å–å¾—ã—ãŸVIPæƒ…å ±ã‚’é€šçŸ¥ã™ã‚‹ã€ PPW_LobbyGetVipCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ãƒ»ã‚µãƒ¼ãƒã¨ã®é€šä¿¡ãŒå¤šã™ãŽã‚‹çŠ¶æ…‹ã‚’é€šçŸ¥ã™ã‚‹ã€PPW_LobbyExcessFloodCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒ
+  ã‚¯ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ãƒ»VIPæƒ…å ±ã‚’å‚ç…§ã™ã‚‹ã€PPW_LobbyGetVipé–¢æ•°ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ãƒ»ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã¨VIPã®è¨­å®šã‚’è¡Œãˆã‚‹ç®¡ç†ãƒ„ãƒ¼ãƒ«ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
 
-¡ 2008/02/07 1_0_0 beta 9
+â–  2008/02/07 1_0_0 beta 9
 
-Eƒfƒ‚‚Ìƒ~ƒjƒQ[ƒ€•åW•û–@‚ðC³‚µ‚Ü‚µ‚½B
-EƒT[ƒo‚©‚çØ’f‚³‚ê‚½‚Æ‚«‚Éƒ‰ƒCƒuƒ‰ƒŠ‚ðI—¹‚Å‚«‚È‚­‚È‚éƒoƒO‚ðC³‚µ‚Ü‚µ‚½B
-Eƒ`ƒƒƒ“ƒlƒ‹‚Ìl”§ŒÀ‚ªŒø‚©‚È‚¢ƒoƒO‚ðC³‚µ‚Ü‚µ‚½B
-EƒVƒXƒeƒ€’è‹`ƒvƒƒtƒB[ƒ‹‚ª•Ï‰»‚µ‚Ä‚¢‚È‚¢‚Ì‚É
-  PPW_LobbySystemProfileUpdatedCallbackƒR[ƒ‹ƒoƒbƒN‚ªŒÄ‚Î‚ê‚éƒoƒO‚ðC³‚µ‚Ü‚µ‚½B
-EPPW_LobbySchedule\‘¢‘Ì‚ÉroomFlagƒƒ“ƒo‚ð’Ç‰Á‚µAƒAƒ‹ƒZƒEƒXƒtƒ‰ƒO‚ªƒZƒbƒg‚³‚ê
-  ‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
+ãƒ»ãƒ‡ãƒ¢ã®ãƒŸãƒ‹ã‚²ãƒ¼ãƒ å‹Ÿé›†æ–¹æ³•ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+ãƒ»ã‚µãƒ¼ãƒã‹ã‚‰åˆ‡æ–­ã•ã‚ŒãŸã¨ãã«ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’çµ‚äº†ã§ããªããªã‚‹ãƒã‚°ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+ãƒ»ãƒãƒ£ãƒ³ãƒãƒ«ã®äººæ•°åˆ¶é™ãŒåŠ¹ã‹ãªã„ãƒã‚°ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+ãƒ»ã‚·ã‚¹ãƒ†ãƒ å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãŒå¤‰åŒ–ã—ã¦ã„ãªã„ã®ã«
+  PPW_LobbySystemProfileUpdatedCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒå‘¼ã°ã‚Œã‚‹ãƒã‚°ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+ãƒ»PPW_LobbyScheduleæ§‹é€ ä½“ã«roomFlagãƒ¡ãƒ³ãƒã‚’è¿½åŠ ã—ã€ã‚¢ãƒ«ã‚»ã‚¦ã‚¹ãƒ•ãƒ©ã‚°ãŒã‚»ãƒƒãƒˆã•ã‚Œ
+  ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
 
-¡ 2008/01/22 1_0_0 beta 8
+â–  2008/01/22 1_0_0 beta 8
 
-EƒCƒxƒ“ƒg(PPW_LOBBY_TIME_EVENT)‚ÌŽí—Þ‚ðŽ‘—¿PlaWifi080117‚É‡‚í‚¹‚Ü‚µ‚½B
-E“¯Žž‚ÉƒCƒxƒ“ƒg‚ª”­¶‚µ‚½ÛAPPW_LobbyScheduleProgressCallbackƒR[ƒ‹ƒoƒbƒN‚ª
-  “¯ˆêƒtƒŒ[ƒ€“à‚É”­¶‚·‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
-E‘Î‰žƒ‰ƒCƒuƒ‰ƒŠ‚ðƒAƒbƒvƒf[ƒg‚µ‚Ü‚µ‚½B
+ãƒ»ã‚¤ãƒ™ãƒ³ãƒˆ(PPW_LOBBY_TIME_EVENT)ã®ç¨®é¡žã‚’è³‡æ–™PlaWifi080117ã«åˆã‚ã›ã¾ã—ãŸã€‚
+ãƒ»åŒæ™‚åˆ»ã«ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç”Ÿã—ãŸéš›ã€PPW_LobbyScheduleProgressCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒ
+  åŒä¸€ãƒ•ãƒ¬ãƒ¼ãƒ å†…ã«ç™ºç”Ÿã™ã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
+ãƒ»å¯¾å¿œãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã—ã¾ã—ãŸã€‚
 
-¡ 2008/01/10 1_0_0 beta 7
+â–  2008/01/10 1_0_0 beta 7
 
-E“à•”‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚ðlibdwcilobby.a‚Ö•ª—£‚µ‚Ü‚µ‚½B
-EPPW_IsConnectedUserIdŠÖ”‚ÌdwcFriendMatchCtrlƒpƒ‰ƒ[ƒ^‚ðconst‚É‚µ‚Ü‚µ‚½B
-EPPW_LobbyBinaryMassageReceivedCallbackƒR[ƒ‹ƒoƒbƒN‚Ìdataƒpƒ‰ƒ[ƒ^‚ðconst‚É
-  ‚µ‚Ü‚µ‚½B
-E“ñlˆÈãƒ`ƒƒƒ“ƒlƒ‹‚ÉŽQ‰Á‚µ‚½‚Æ‚«‚É³‚µ‚­READYó‘Ô‚É‚È‚ç‚È‚­‚È‚éƒoƒO‚ðC³‚µ
-  ‚Ü‚µ‚½B(beta5‚©‚ç)
-Eƒ†[ƒU‚ªÄÚ‘±‚µ‚½‚Æ‚«‚É‚»‚Ìƒ†[ƒU‚É‘Î‚µ‚Ä
-  PPW_LobbyPlayerDisconnectedCallbackƒR[ƒ‹ƒoƒbƒN‚ðŒÄ‚ñ‚¾ŒãA
-  PPW_LobbyPlayerConnectedCallbackƒR[ƒ‹ƒoƒbƒN‚ðŒÄ‚Ô‚æ‚¤‚ÉC³‚µ‚Ü‚µ‚½B
-E•¡”l‚Å‚ÌŠJ”­Žž‚É“¯ˆê‚Ìƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚ç‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚É
-  DWC_LOBBY_CHANNEL_PREFIX_DEBUG‚ð10ŒÂ‚É‘‚â‚µ‚Ü‚µ‚½B
-EPPW_LobbyEnumUserIdŠÖ”‚ª³‚µ‚¢Œ‹‰Ê‚ð•Ô‚³‚È‚¢ƒoƒO‚ðC³‚µ‚Ü‚µ‚½B
-EƒGƒ‰[ƒƒbƒZ[ƒW‚Ì•\Ž¦‚É‚Â‚¢‚ÄŠÖ”ƒŠƒtƒ@ƒŒƒ“ƒX‚É’Ç‹L‚µ‚Ü‚µ‚½B
+ãƒ»å†…éƒ¨ã®ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’libdwcilobby.aã¸åˆ†é›¢ã—ã¾ã—ãŸã€‚
+ãƒ»PPW_IsConnectedUserIdé–¢æ•°ã®dwcFriendMatchCtrlãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’constã«ã—ã¾ã—ãŸã€‚
+ãƒ»PPW_LobbyBinaryMassageReceivedCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã®dataãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’constã«
+  ã—ã¾ã—ãŸã€‚
+ãƒ»äºŒäººä»¥ä¸Šãƒãƒ£ãƒ³ãƒãƒ«ã«å‚åŠ ã—ãŸã¨ãã«æ­£ã—ãREADYçŠ¶æ…‹ã«ãªã‚‰ãªããªã‚‹ãƒã‚°ã‚’ä¿®æ­£ã—
+  ã¾ã—ãŸã€‚(beta5ã‹ã‚‰)
+ãƒ»ãƒ¦ãƒ¼ã‚¶ãŒå†æŽ¥ç¶šã—ãŸã¨ãã«ãã®ãƒ¦ãƒ¼ã‚¶ã«å¯¾ã—ã¦
+  PPW_LobbyPlayerDisconnectedCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã‚“ã å¾Œã€
+  PPW_LobbyPlayerConnectedCallbackã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã¶ã‚ˆã†ã«ä¿®æ­£ã—ã¾ã—ãŸã€‚
+ãƒ»è¤‡æ•°äººã§ã®é–‹ç™ºæ™‚ã«åŒä¸€ã®ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«
+  DWC_LOBBY_CHANNEL_PREFIX_DEBUGã‚’10å€‹ã«å¢—ã‚„ã—ã¾ã—ãŸã€‚
+ãƒ»PPW_LobbyEnumUserIdé–¢æ•°ãŒæ­£ã—ã„çµæžœã‚’è¿”ã•ãªã„ãƒã‚°ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+ãƒ»ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®è¡¨ç¤ºã«ã¤ã„ã¦é–¢æ•°ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã«è¿½è¨˜ã—ã¾ã—ãŸã€‚
 
-¡ 2007/12/20 1_0_0 beta 6
+â–  2007/12/20 1_0_0 beta 6
 
-Eƒ`ƒƒƒ“ƒlƒ‹Ž©‘Ì‚ÉƒZƒbƒg‚µ‚½ƒ`ƒƒƒ“ƒlƒ‹ƒf[ƒ^‚ðŽóM‚Å‚«‚È‚¢ƒoƒO‚ðC³‚µ‚Ü‚µ‚½B
-Ebeta5‚ÅPPW_LobbyGetChannelDataCallback‚Ìparamƒpƒ‰ƒ[ƒ^‚ªí‚ÉNULL‚Æ‚È‚éƒoƒO
-  ‚ª‚ ‚è‚Ü‚µ‚½‚Ì‚ÅC³‚µ‚Ü‚µ‚½B
-EŠÖ”ƒŠƒtƒ@ƒŒƒ“ƒX‚ÅAPPW_LobbySystemProfile\‘¢‘ÌAPPW_LobbyRecruitInfo\‘¢‘ÌA
-  PPW_LobbyTimeInfo\‘¢‘Ì‚Ìƒƒ“ƒo‚ÉŠÖ‚·‚éà–¾‚ª‚¸‚ê‚Ä‚¢‚½‚è”²‚¯‚Ä‚¢‚½‚è‚µ‚Ä‚¢
-  ‚½‚Ì‚ðC³‚µ‚Ü‚µ‚½B
+ãƒ»ãƒãƒ£ãƒ³ãƒãƒ«è‡ªä½“ã«ã‚»ãƒƒãƒˆã—ãŸãƒãƒ£ãƒ³ãƒãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã§ããªã„ãƒã‚°ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+ãƒ»beta5ã§PPW_LobbyGetChannelDataCallbackã®paramãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒå¸¸ã«NULLã¨ãªã‚‹ãƒã‚°
+  ãŒã‚ã‚Šã¾ã—ãŸã®ã§ä¿®æ­£ã—ã¾ã—ãŸã€‚
+ãƒ»é–¢æ•°ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã§ã€PPW_LobbySystemProfileæ§‹é€ ä½“ã€PPW_LobbyRecruitInfoæ§‹é€ ä½“ã€
+  PPW_LobbyTimeInfoæ§‹é€ ä½“ã®ãƒ¡ãƒ³ãƒã«é–¢ã™ã‚‹èª¬æ˜ŽãŒãšã‚Œã¦ã„ãŸã‚ŠæŠœã‘ã¦ã„ãŸã‚Šã—ã¦ã„
+  ãŸã®ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
 
-¡ 2007/12/19 1_0_0 beta 5
+â–  2007/12/19 1_0_0 beta 5
 
-EPPW_LobbySendPlayer*MessageŠÖ”‚Å‘—M‚³‚ê‚½ƒƒbƒZ[ƒW‚ðŽóM‚·‚é‚ÆŽ~‚Ü‚éƒoƒO
-  ‚ðC³‚µ‚Ü‚µ‚½B
-EŽ©•ªŽ©g‚ªƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚Á‚½‚Æ‚«‚É‚àPPW_LobbyPlayerConnectedCallback‚ª
-  ŒÄ‚Î‚ê‚é‚æ‚¤‚É‚µ‚Ü‚µ‚½B
+ãƒ»PPW_LobbySendPlayer*Messageé–¢æ•°ã§é€ä¿¡ã•ã‚ŒãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ä¿¡ã™ã‚‹ã¨æ­¢ã¾ã‚‹ãƒã‚°
+  ã‚’ä¿®æ­£ã—ã¾ã—ãŸã€‚
+ãƒ»è‡ªåˆ†è‡ªèº«ãŒãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã£ãŸã¨ãã«ã‚‚PPW_LobbyPlayerConnectedCallbackãŒ
+  å‘¼ã°ã‚Œã‚‹ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
 
-¡ 2007/12/14 1_0_0 beta 4
+â–  2007/12/14 1_0_0 beta 4
 
-EPPW_LobbyStartRecruitŠÖ”‚ª³‚µ‚­matchMakingString‚ðƒZƒbƒg‚µ‚È‚¢ƒoƒO‚ðC³‚µ
-  ‚Ü‚µ‚½B
-EŽw’è‚µ‚½ƒ†[ƒUID‚Ìl‚ÆP2PÚ‘±‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚éAPPW_IsConnectedUserIdŠÖ”‚ð
-  ’Ç‰Á‚µ‚Ü‚µ‚½B
-Eƒ~ƒjƒQ[ƒ€‚Ì•åW‚ðI—¹‚µ‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚éƒR[ƒ‹ƒoƒbƒNŠÖ”Œ^A
-  PPW_LobbyRecruitStoppedCallback‚ð’Ç‰Á‚µ‚Ü‚µ‚½B
-Eƒƒ‚ƒŠŠm•Û‚ÉŽ¸”s‚µ‚½‚Æ‚«‚ÉPanic‚Å‰¼ˆ—‚µ‚Ä‚¢‚½‚Ì‚ðPanic‚µ‚È‚¢‚æ‚¤C³‚µ‚Ü‚µ
-  ‚½B
-Eƒfƒ‚‚Åƒ~ƒjƒQ[ƒ€‚Ì•åW‚©‚çP2P’ÊM‚Ü‚Å‚ðs‚¤‚æ‚¤‚É‚µ‚Ü‚µ‚½B
+ãƒ»PPW_LobbyStartRecruité–¢æ•°ãŒæ­£ã—ãmatchMakingStringã‚’ã‚»ãƒƒãƒˆã—ãªã„ãƒã‚°ã‚’ä¿®æ­£ã—
+  ã¾ã—ãŸã€‚
+ãƒ»æŒ‡å®šã—ãŸãƒ¦ãƒ¼ã‚¶IDã®äººã¨P2PæŽ¥ç¶šã—ã¦ã„ã‚‹ã‹ã‚’èª¿ã¹ã‚‹ã€PPW_IsConnectedUserIdé–¢æ•°ã‚’
+  è¿½åŠ ã—ã¾ã—ãŸã€‚
+ãƒ»ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®å‹Ÿé›†ã‚’çµ‚äº†ã—ãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°åž‹ã€
+  PPW_LobbyRecruitStoppedCallbackã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚
+ãƒ»ãƒ¡ãƒ¢ãƒªç¢ºä¿ã«å¤±æ•—ã—ãŸã¨ãã«Panicã§ä»®å‡¦ç†ã—ã¦ã„ãŸã®ã‚’Panicã—ãªã„ã‚ˆã†ä¿®æ­£ã—ã¾ã—
+  ãŸã€‚
+ãƒ»ãƒ‡ãƒ¢ã§ãƒŸãƒ‹ã‚²ãƒ¼ãƒ ã®å‹Ÿé›†ã‹ã‚‰P2Pé€šä¿¡ã¾ã§ã‚’è¡Œã†ã‚ˆã†ã«ã—ã¾ã—ãŸã€‚
 
-¡ 2007/12/05 1_0_0 beta 3
+â–  2007/12/05 1_0_0 beta 3
 
-Eƒƒ‚ƒŠŽg—p—ÊíŒ¸‚Ì‚½‚ßRTTI‚ðƒIƒt‚É‚µ‚Ü‚µ‚½B
+ãƒ»ãƒ¡ãƒ¢ãƒªä½¿ç”¨é‡å‰Šæ¸›ã®ãŸã‚RTTIã‚’ã‚ªãƒ•ã«ã—ã¾ã—ãŸã€‚
 
-¡ 2007/12/04 1_0_0 beta 2
+â–  2007/12/04 1_0_0 beta 2
 
-Eƒƒ‚ƒŠŽg—p—ÊíŒ¸‚Ì‚½‚ß—áŠO‹@\‚ðƒIƒt‚É‚µ‚Ü‚µ‚½B
+ãƒ»ãƒ¡ãƒ¢ãƒªä½¿ç”¨é‡å‰Šæ¸›ã®ãŸã‚ä¾‹å¤–æ©Ÿæ§‹ã‚’ã‚ªãƒ•ã«ã—ã¾ã—ãŸã€‚
 
-¡ 2007/11/30 1_0_0 beta 1
+â–  2007/11/30 1_0_0 beta 1
 
-E‰‰ñƒŠƒŠ[ƒXB
+ãƒ»åˆå›žãƒªãƒªãƒ¼ã‚¹ã€‚

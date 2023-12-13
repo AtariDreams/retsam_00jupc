@@ -1,6 +1,6 @@
 /**
  *	@file	b_tower_wifi.h
- *	@brief	ƒoƒgƒ‹ƒ^ƒ[wifi/’ÊMƒ}ƒ‹ƒ`ŠÖ˜Aƒ\[ƒX
+ *	@brief	ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼wifi/é€šä¿¡ãƒžãƒ«ãƒé–¢é€£ã‚½ãƒ¼ã‚¹
  *	@author	Miyuki Iwasawa
  *	@date	06.05.23
  */
@@ -16,10 +16,10 @@
 #endif
 
 /**
- *	@brief	’ÊM—p‚ÉƒAƒbƒvƒf[ƒg‚·‚éƒvƒŒƒCƒ„[ƒf[ƒ^‚ðƒZ[ƒuƒf[ƒ^‚©‚çì¬‚·‚é
+ *	@brief	é€šä¿¡ç”¨ã«ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã™ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ä½œæˆã™ã‚‹
  *
- *	@param	mode	0:ƒVƒ“ƒOƒ‹—p(ƒgƒŒ[ƒi[ƒ[ƒh—p)
- *					1:wifi—p(ƒ^ƒ[wifi—p)
+ *	@param	mode	0:ã‚·ãƒ³ã‚°ãƒ«ç”¨(ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ­ãƒ¼ãƒ‰ç”¨)
+ *					1:wifiç”¨(ã‚¿ãƒ¯ãƒ¼wifiç”¨)
  */
 GLOBAL void BtlTowerData_MakeUpdatePlayerData(SAVEDATA* sv,BTWR_SCORE_POKE_DATA mode,DPW_BT_PLAYER* dat);
 

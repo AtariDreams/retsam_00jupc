@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wf2dmap_map.h
- *	@brief		ƒ}ƒbƒvƒf[ƒ^ŠÇ—ƒVƒXƒeƒ€
+ *	@brief		ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2007.03.14
  *
@@ -22,55 +22,55 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define WF2DMAP_MAPDATA_NONE	(0xffffffff)
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒ}ƒbƒvƒf[ƒ^\‘¢‘Ì
-//	ƒf[ƒ^\‘¢
-//	31`1 0		bit
+///	ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
+//	ãƒ‡ãƒ¼ã‚¿æ§‹é€ 
+//	31ã€œ1 0		bit
 //	param hit
 //
-//	1bit‚ªƒqƒbƒgƒtƒ‰ƒO
-//	c‚è31bit‚ªƒpƒ‰ƒ[ƒ^
+//	1bitãŒãƒ’ãƒƒãƒˆãƒ•ãƒ©ã‚°
+//	æ®‹ã‚Š31bitãŒãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 //=====================================
 typedef union {
 	u32 data;
 	struct {
-		u32 hit:1;		// “–‚½‚è”»’èƒf[ƒ^
-		u32	param:31;	// ƒpƒ‰ƒ[ƒ^
+		u32 hit:1;		// å½“ãŸã‚Šåˆ¤å®šãƒ‡ãƒ¼ã‚¿
+		u32	param:31;	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	};
 } WF2DMAP_MAP;
-#define WF2DMAP_MAPDATA(hit, param)		(((param)<<1) | (hit))	// ƒ}ƒbƒvƒf[ƒ^ì¬
+#define WF2DMAP_MAPDATA(hit, param)		(((param)<<1) | (hit))	// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 
 //-------------------------------------
-///	ƒ}ƒbƒvƒf[ƒ^ŠÇ—ƒVƒXƒeƒ€ƒ[ƒN
+///	ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct _WF2DMAP_MAPSYS WF2DMAP_MAPSYS;
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
-// ƒVƒXƒeƒ€ŠÇ—
+// ã‚·ã‚¹ãƒ†ãƒ ç®¡ç†
 GLOBAL WF2DMAP_MAPSYS* WF2DMAP_MAPSysInit( u16 xgrid, u16 ygrid, u32 heapID );
 GLOBAL void WF2DMAP_MAPSysExit( WF2DMAP_MAPSYS* p_sys );
 
-// ƒ}ƒbƒvƒf[ƒ^İ’è
+// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿è¨­å®š
 GLOBAL void WF2DMAP_MAPSysDataSet( WF2DMAP_MAPSYS* p_sys, const WF2DMAP_MAP* cp_buff );
-// ƒ}ƒbƒv‚Ì‘å‚«‚³æ“¾
+// ãƒãƒƒãƒ—ã®å¤§ãã•å–å¾—
 GLOBAL u16 WF2DMAP_MAPSysGridXGet( const WF2DMAP_MAPSYS* cp_sys );
 GLOBAL u16 WF2DMAP_MAPSysGridYGet( const WF2DMAP_MAPSYS* cp_sys );
 
-// ƒ}ƒbƒvƒf[ƒ^æ“¾
+// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å–å¾—
 GLOBAL WF2DMAP_MAP WF2DMAP_MAPSysDataGet( const WF2DMAP_MAPSYS* cp_sys, u16 xgrid, u16 ygrid );
 GLOBAL BOOL WF2DMAP_MAPSysHitGet( const WF2DMAP_MAPSYS* cp_sys, u16 xgrid, u16 ygrid );
 GLOBAL u32 WF2DMAP_MAPSysParamGet( const WF2DMAP_MAPSYS* cp_sys, u16 xgrid, u16 ygrid );

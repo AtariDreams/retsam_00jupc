@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	fight.h
- * @bfief	í“¬ƒƒCƒ“ƒvƒƒOƒ‰ƒ€
+ * @bfief	æˆ¦é—˜ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.05.24
  */
@@ -14,37 +14,37 @@
 #include "battle/battle_common.h"
 #include "system/procsys.h"
 
-#define	TALK_WIN_CGX_START	(1)			///<‰ï˜bƒEƒCƒ“ƒhƒEƒLƒƒƒ‰“Ç‚İ‚İæ
-#define	TALK_WIN_PAL_NO		(10)		///<‰ï˜bƒEƒCƒ“ƒhƒEƒpƒŒƒbƒgƒiƒ“ƒo[
-#define	TALK_MSG_PAL_NO		(11)		///<‰ï˜bƒEƒCƒ“ƒhƒE“àƒƒbƒZ[ƒWƒpƒŒƒbƒgƒiƒ“ƒo[
-#define	TALK_MSG_START		(TALK_WIN_CGX_SIZ+1)	///<‰ï˜bƒEƒCƒ“ƒhƒE“àƒƒbƒZ[ƒWƒLƒƒƒ‰ƒXƒ^[ƒgˆÊ’u
-#define	TALK_WIN_NO			(0)			///<‰ï˜bƒEƒCƒ“ƒhƒENo
-#define	TALK_WIN_X			(0x02)		///<‰ï˜bƒEƒCƒ“ƒhƒE¶ãXˆÊ’u
-#define	TALK_WIN_Y			(0x13)		///<‰ï˜bƒEƒCƒ“ƒhƒE¶ãXˆÊ’u
-#define	TALK_WIN_SIZE_X		(27)		///<‰ï˜bƒEƒCƒ“ƒhƒEXƒTƒCƒY
-#define	TALK_WIN_SIZE_Y		(4)			///<‰ï˜bƒEƒCƒ“ƒhƒEYƒTƒCƒY
-#define	TALK_PAL_BIT		(0x0c00)	///<‰ï˜bƒEƒCƒ“ƒhƒEƒpƒŒƒbƒgƒrƒbƒg
+#define	TALK_WIN_CGX_START	(1)			///<ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©èª­ã¿è¾¼ã¿å…ˆ
+#define	TALK_WIN_PAL_NO		(10)		///<ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define	TALK_MSG_PAL_NO		(11)		///<ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define	TALK_MSG_START		(TALK_WIN_CGX_SIZ+1)	///<ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚­ãƒ£ãƒ©ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®
+#define	TALK_WIN_NO			(0)			///<ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦No
+#define	TALK_WIN_X			(0x02)		///<ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å·¦ä¸ŠXä½ç½®
+#define	TALK_WIN_Y			(0x13)		///<ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å·¦ä¸ŠXä½ç½®
+#define	TALK_WIN_SIZE_X		(27)		///<ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦Xã‚µã‚¤ã‚º
+#define	TALK_WIN_SIZE_Y		(4)			///<ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦Yã‚µã‚¤ã‚º
+#define	TALK_PAL_BIT		(0x0c00)	///<ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆãƒ“ãƒƒãƒˆ
 
-//ƒŒƒxƒ‹ƒAƒbƒvƒXƒe[ƒ^ƒXƒEƒCƒ“ƒhƒE
-#define	MENU_WIN_CGX_START	(1)			///<ƒƒjƒ…[ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰“Ç‚İ‚İæ
-#define	MENU_WIN_PAL_NO		(8)			///<ƒƒjƒ…[ƒEƒCƒ“ƒhƒEƒpƒŒƒbƒgƒiƒ“ƒo[
-#define	MENU_MSG_PAL_NO		(11)		///<ƒƒjƒ…[ƒEƒCƒ“ƒhƒE“àƒƒbƒZ[ƒWƒpƒŒƒbƒgƒiƒ“ƒo[
-#define	MENU_MSG_START		(MENU_WIN_CGX_SIZ+1)	   ///<ƒƒjƒ…[ƒEƒCƒ“ƒhƒE“àƒƒbƒZ[ƒWƒLƒƒƒ‰ƒXƒ^[ƒgˆÊ’u
-#define	MENU_WIN_NO			(1)			///<ƒƒjƒ…[ƒEƒCƒ“ƒhƒENo
-#define	MENU_WIN_X			(0x11)		///<ƒƒjƒ…[ƒEƒCƒ“ƒhƒE¶ãXˆÊ’u
-#define	MENU_WIN_Y			(0x07)		///<ƒƒjƒ…[ƒEƒCƒ“ƒhƒE¶ãXˆÊ’u
-#define	MENU_WIN_SIZE_X		(14)		///<ƒƒjƒ…[ƒEƒCƒ“ƒhƒEXƒTƒCƒY
-#define	MENU_WIN_SIZE_Y		(12)		///<ƒƒjƒ…[ƒEƒCƒ“ƒhƒEYƒTƒCƒY
+//ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define	MENU_WIN_CGX_START	(1)			///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©èª­ã¿è¾¼ã¿å…ˆ
+#define	MENU_WIN_PAL_NO		(8)			///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define	MENU_MSG_PAL_NO		(11)		///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼
+#define	MENU_MSG_START		(MENU_WIN_CGX_SIZ+1)	   ///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å†…ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚­ãƒ£ãƒ©ã‚¹ã‚¿ãƒ¼ãƒˆä½ç½®
+#define	MENU_WIN_NO			(1)			///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦No
+#define	MENU_WIN_X			(0x11)		///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å·¦ä¸ŠXä½ç½®
+#define	MENU_WIN_Y			(0x07)		///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å·¦ä¸ŠXä½ç½®
+#define	MENU_WIN_SIZE_X		(14)		///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦Xã‚µã‚¤ã‚º
+#define	MENU_WIN_SIZE_Y		(12)		///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦Yã‚µã‚¤ã‚º
 
-#define	TAG_WIN_NO			(2)			///<ƒ^ƒOƒEƒCƒ“ƒhƒENo
-#define	TAG_WIN_X			(0x11)		///<ƒƒjƒ…[ƒEƒCƒ“ƒhƒE¶ãXˆÊ’u
-#define	TAG_WIN_Y			(0x01)		///<ƒƒjƒ…[ƒEƒCƒ“ƒhƒE¶ãXˆÊ’u
-#define	TAG_WIN_SIZE_X		(14)		///<ƒƒjƒ…[ƒEƒCƒ“ƒhƒEXƒTƒCƒY
-#define	TAG_WIN_SIZE_Y		(4)			///<ƒƒjƒ…[ƒEƒCƒ“ƒhƒEYƒTƒCƒY
+#define	TAG_WIN_NO			(2)			///<ã‚¿ã‚°ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦No
+#define	TAG_WIN_X			(0x11)		///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å·¦ä¸ŠXä½ç½®
+#define	TAG_WIN_Y			(0x01)		///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å·¦ä¸ŠXä½ç½®
+#define	TAG_WIN_SIZE_X		(14)		///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦Xã‚µã‚¤ã‚º
+#define	TAG_WIN_SIZE_Y		(4)			///<ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦Yã‚µã‚¤ã‚º
 
 
 
-//í“¬ƒVƒXƒeƒ€ƒu[ƒgƒpƒ‰ƒ[ƒ^
+//æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ–ãƒ¼ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct
 {
 	u8	client_no;
@@ -60,17 +60,17 @@ extern	void	FightScreenPokemonGet(BATTLE_WORK *bw);
 
 //============================================================================================
 /**
- *	í“¬ƒI[ƒo[ƒŒƒCØ‚è‘Ö‚¦
+ *	æˆ¦é—˜ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤åˆ‡ã‚Šæ›¿ãˆ
  *
- *	Wifi‚ÆAI‚ğ‹¤‘¶‚³‚¹‚é‚½‚ß‚ÉDP‚Å‚ÍWifi—Ìˆæ‚É’u‚¢‚Ä‚¢‚½AIƒ‹[ƒ`ƒ“‚ğƒI[ƒo[ƒŒƒC‚Åí“¬—Ìˆæ‚É’u‚­
+ *	Wifiã¨AIã‚’å…±å­˜ã•ã›ã‚‹ãŸã‚ã«DPã§ã¯Wifié ˜åŸŸã«ç½®ã„ã¦ã„ãŸAIãƒ«ãƒ¼ãƒãƒ³ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã§æˆ¦é—˜é ˜åŸŸã«ç½®ã
  
- * @param	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	ƒI[ƒo[ƒŒƒCØ‚è‘Ö‚¦ƒtƒ‰ƒO
+ * @param	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤åˆ‡ã‚Šæ›¿ãˆãƒ•ãƒ©ã‚°
  */
 //============================================================================================
 extern	void	FightOverlaySwitch(BATTLE_WORK *bw,int flag);
 
-#define	FIGHT_OVERLAY_AI_TO_SKILL	(0)		//ƒI[ƒo[ƒŒƒCØ‚è‘Ö‚¦iAI‚©‚ç‹ZƒV[ƒPƒ“ƒXj
-#define	FIGHT_OVERLAY_SKILL_TO_AI	(1)		//ƒI[ƒo[ƒŒƒCØ‚è‘Ö‚¦i‹ZƒV[ƒPƒ“ƒX‚©‚çAIj
+#define	FIGHT_OVERLAY_AI_TO_SKILL	(0)		//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤åˆ‡ã‚Šæ›¿ãˆï¼ˆAIã‹ã‚‰æŠ€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ï¼‰
+#define	FIGHT_OVERLAY_SKILL_TO_AI	(1)		//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤åˆ‡ã‚Šæ›¿ãˆï¼ˆæŠ€ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‹ã‚‰AIï¼‰
 
 #endif __FIGHT_H_

@@ -13,25 +13,25 @@
 #
 # $Log: Makefile,v $
 # Revision 1.15  2006/06/29 09:52:55  takayama
-# dwc_common.c‚ðNITRODWC_NOGSƒIƒvƒVƒ‡ƒ“Žž‚©‚çŠO‚µ‚½B
+# dwc_common.cã‚’NITRODWC_NOGSã‚ªãƒ—ã‚·ãƒ§ãƒ³æ™‚ã‹ã‚‰å¤–ã—ãŸã€‚
 #
 # Revision 1.14  2006/04/27 11:17:33  takayama
-# NITRODWC_NOGSƒIƒvƒVƒ‡ƒ“‚ðƒuƒ‰ƒEƒUŒü‚¯‚©‚ç’Êí‚Ì‚à‚Ì‚ÉC³B
+# NITRODWC_NOGSã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ãƒ–ãƒ©ã‚¦ã‚¶å‘ã‘ã‹ã‚‰é€šå¸¸ã®ã‚‚ã®ã«ä¿®æ­£ã€‚
 #
 # Revision 1.13  2006/04/25 12:03:51  nakata
-# DWC_Ndƒ‰ƒbƒp‚ð’Ç‰Á
+# DWC_Ndãƒ©ãƒƒãƒ‘ã‚’è¿½åŠ 
 #
 # Revision 1.12  2006/04/21 01:33:43  takayama
-# NITORDWC_NOGS‚Å‚Ìƒrƒ‹ƒhŠÂ‹«‚Ì’²®B
+# NITORDWC_NOGSã§ã®ãƒ“ãƒ«ãƒ‰ç’°å¢ƒã®èª¿æ•´ã€‚
 #
 # Revision 1.11  2006/04/20 13:21:11  takayama
-# NITRODWC_NOGSƒIƒvƒVƒ‡ƒ“‚É‘Î‰žB
+# NITRODWC_NOGSã‚ªãƒ—ã‚·ãƒ§ãƒ³ã«å¯¾å¿œã€‚
 #
 # Revision 1.10  2006/04/10 10:16:57  hayashi
 # added the ranking module
 #
 # Revision 1.9  2006/03/07 01:18:16  nakata
-# NAS‚ÉŠÖ˜A‚·‚é‹@”\’Ç‰Á‚ðdwc_nasfunc.c/dwc_nasfunc.h‚ÉW–ñ‚·‚éÛ‚É•K—v‚È•ÏX‚ðs‚Á‚½B
+# NASã«é–¢é€£ã™ã‚‹æ©Ÿèƒ½è¿½åŠ ã‚’dwc_nasfunc.c/dwc_nasfunc.hã«é›†ç´„ã™ã‚‹éš›ã«å¿…è¦ãªå¤‰æ›´ã‚’è¡Œã£ãŸã€‚
 #
 # Revision 1.8  2005/12/26 04:23:17  nakata
 # Added NAS return code 40 related functions to Auth.
@@ -39,28 +39,28 @@
 # Fixed the bug that incorrect ingamesn is sent when auth is called in netcheck.
 #
 # Revision 1.7  2005/09/05 05:16:25  onozawa
-# dwc_ghttp.c‚Ì’Ç‰Á
+# dwc_ghttp.cã®è¿½åŠ 
 #
 # Revision 1.6  2005/08/31 11:25:35  sasakit
-# dwc_report‚ðaccountƒ‚ƒWƒ…[ƒ‹‚ÉˆÚ“®
+# dwc_reportã‚’accountãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã«ç§»å‹•
 #
 # Revision 1.5  2005/08/31 02:29:44  sasakit
-# ‰Šú‰»—p‚ÌƒR[ƒh‚ªoverlay‚Å•ª‚¯‚ç‚ê‚é‚æ‚¤‚ÉAƒ‚ƒWƒ…[ƒ‹‚ð•ª‚¯‚½B
+# åˆæœŸåŒ–ç”¨ã®ã‚³ãƒ¼ãƒ‰ãŒoverlayã§åˆ†ã‘ã‚‰ã‚Œã‚‹ã‚ˆã†ã«ã€ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’åˆ†ã‘ãŸã€‚
 #
 # Revision 1.4  2005/08/19 12:12:10  sasakit
-# ƒŠƒŠ[ƒX‚ÉŒü‚¯‚ÄC³
+# ãƒªãƒªãƒ¼ã‚¹ã«å‘ã‘ã¦ä¿®æ­£
 #
 # Revision 1.3  2005/08/19 06:10:15  sasakit
-# ƒtƒ@ƒCƒ‹‚Ì’Ç‰Á
+# ãƒ•ã‚¡ã‚¤ãƒ«ã®è¿½åŠ 
 #
 # Revision 1.2  2005/08/17 13:15:01  arakit
-# E‘¼‚Ìƒ}ƒbƒ`ƒ“ƒOŒ`Ž®‚Æ“¯‚¶‚­A—F’BŽw’èƒ}ƒbƒ`ƒ“ƒO‚àƒAƒ‹ƒSƒŠƒYƒ€‚ð‰ü—Ç‚µ‚½B
-# EƒQ[ƒ€’è‹`‚ÌQR2ƒL[‚ðÝ’è‚Å‚«‚é‚æ‚¤‚É‚µ‚½B
-# ESBƒT[ƒoƒAƒbƒvƒf[ƒg‚ÌƒtƒBƒ‹ƒ^‚ðƒQ[ƒ€‚©‚çŽw’è‚Å‚«‚é‚æ‚¤‚É‚µ‚½B
-# ESBƒT[ƒoƒAƒbƒvƒf[ƒg‚ÅŒ©‚Â‚¯‚½ƒT[ƒo‚ð•]‰¿‚µAƒ}ƒbƒ`ƒ“ƒO‚Ì—Dæ‡ˆÊ‚ðƒQ[ƒ€‘¤‚Å
-# Œˆ‚ß‚éƒVƒXƒeƒ€‚ðì¬‚µ‚½B
-# Eƒ}ƒbƒ`ƒ“ƒO‚ÌƒoƒO‚ðC³‚µ‚½B
-# E‚¢‚Â‚Å‚àƒ}ƒbƒ`ƒ“ƒO‚ðƒLƒƒƒ“ƒZƒ‹‚Å‚«‚é‚æ‚¤‚É‚µ‚½iƒT[ƒoƒNƒ‰ƒCƒAƒ“ƒgŒ^ƒ}ƒbƒ`ƒ“ƒO‚Í–¢Š®¬jB
+# ãƒ»ä»–ã®ãƒžãƒƒãƒãƒ³ã‚°å½¢å¼ã¨åŒã˜ãã€å‹é”æŒ‡å®šãƒžãƒƒãƒãƒ³ã‚°ã‚‚ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã‚’æ”¹è‰¯ã—ãŸã€‚
+# ãƒ»ã‚²ãƒ¼ãƒ å®šç¾©ã®QR2ã‚­ãƒ¼ã‚’è¨­å®šã§ãã‚‹ã‚ˆã†ã«ã—ãŸã€‚
+# ãƒ»SBã‚µãƒ¼ãƒã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã®ãƒ•ã‚£ãƒ«ã‚¿ã‚’ã‚²ãƒ¼ãƒ ã‹ã‚‰æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«ã—ãŸã€‚
+# ãƒ»SBã‚µãƒ¼ãƒã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã§è¦‹ã¤ã‘ãŸã‚µãƒ¼ãƒã‚’è©•ä¾¡ã—ã€ãƒžãƒƒãƒãƒ³ã‚°ã®å„ªå…ˆé †ä½ã‚’ã‚²ãƒ¼ãƒ å´ã§
+# æ±ºã‚ã‚‹ã‚·ã‚¹ãƒ†ãƒ ã‚’ä½œæˆã—ãŸã€‚
+# ãƒ»ãƒžãƒƒãƒãƒ³ã‚°ã®ãƒã‚°ã‚’ä¿®æ­£ã—ãŸã€‚
+# ãƒ»ã„ã¤ã§ã‚‚ãƒžãƒƒãƒãƒ³ã‚°ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã§ãã‚‹ã‚ˆã†ã«ã—ãŸï¼ˆã‚µãƒ¼ãƒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆåž‹ãƒžãƒƒãƒãƒ³ã‚°ã¯æœªå®Œæˆï¼‰ã€‚
 #
 # Revision 1.1.1.1  2005/08/02 08:02:37  sasakit
 # First import of NitroDWC source tree.

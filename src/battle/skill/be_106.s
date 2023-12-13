@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_106.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			106�@�G�𓦂����Ȃ�����B�g���[�i�[��ł͂��ꂩ�����ł��Ȃ��Ȃ�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			106　敵を逃げられなくする。トレーナー戦ではいれかえができなくなる
  *
  *@author	HisashiSogabe
  *@data		2006.01.25

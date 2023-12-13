@@ -15,7 +15,7 @@
   do-indent
 
   Revision 1.1  2005/06/24 02:19:25  yasu
-  ƒ†ƒjƒbƒgƒeƒXƒg‚Ì’Ç‰Á
+  ãƒ¦ãƒ‹ãƒƒãƒˆãƒ†ã‚¹ãƒˆã®è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -23,28 +23,28 @@
 #include <nitro/utest.h>
 
 /*---------------------------------------------------------------------------*
-  ’Êí‚Ì ASSERT
+  é€šå¸¸ã® ASSERT
  *---------------------------------------------------------------------------*/
 
 /*---------------------------------------------------------------------------*
   Name:         UTi_Assert
-  Description:  exp_val ‚Ì’l‚ª”ñ0‚È‚ç NG ƒƒbƒZ[ƒW‚ğo—Í‚·‚é
-  Arguments:    file:    __FILE__ ƒ\[ƒXƒtƒ@ƒCƒ‹–¼
-                line:    __LINE__ ƒ\[ƒXƒtƒ@ƒCƒ‹ƒ‰ƒCƒ“”
-                exp_str: •\¦‚·‚éƒƒbƒZ[ƒWƒtƒH[ƒ}ƒbƒg
-                exp_val: •\¦‚·‚é’l
+  Description:  exp_val ã®å€¤ãŒé0ãªã‚‰ NG ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºåŠ›ã™ã‚‹
+  Arguments:    file:    __FILE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«å
+                line:    __LINE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ©ã‚¤ãƒ³æ•°
+                exp_str: è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+                exp_val: è¡¨ç¤ºã™ã‚‹å€¤
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void UTi_Assert(const char *file, int line, const char *exp_str, int exp_val)
 {
-    // val ‚ª‚O‚È‚ç NG ‚Æ‚·‚é
+    // val ãŒï¼ãªã‚‰ NG ã¨ã™ã‚‹
     if (!exp_val)
     {
         UTi_SetResult(UT_RESULT_NG);
         UTi_SetMessage(file, line, "UT_Assert: %s[=%d] is not TRUE\n", exp_str, exp_val);
     }
 
-    // val ‚ª”ñ‚O‚Å‚ ‚èA‚±‚ê‚Ü‚Å‚ÌƒeƒXƒg‚É¸”s‚µ‚Ä‚¢‚È‚¯‚ê‚Î OK ‚Æ‚·‚é
+    // val ãŒéï¼ã§ã‚ã‚Šã€ã“ã‚Œã¾ã§ã®ãƒ†ã‚¹ãƒˆã«å¤±æ•—ã—ã¦ã„ãªã‘ã‚Œã° OK ã¨ã™ã‚‹
     else if (UTi_GetResult() != UT_RESULT_NG)
     {
         UTi_SetResult(UT_RESULT_OK);
@@ -54,19 +54,19 @@ void UTi_Assert(const char *file, int line, const char *exp_str, int exp_val)
 
 /*---------------------------------------------------------------------------*
   Name:         UTi_AssertEq
-  Description:  exp_val1 ‚Ì’l‚Æ exp_val2 ‚ª“™‚µ‚­‚È‚¯‚ê‚Î NG ƒƒbƒZ[ƒW‚ğo—Í‚·‚é
-  Arguments:    file:    __FILE__ ƒ\[ƒXƒtƒ@ƒCƒ‹–¼
-                line:    __LINE__ ƒ\[ƒXƒtƒ@ƒCƒ‹ƒ‰ƒCƒ“”
-                exp_str1: ”äŠr‚·‚é’l1 ‚ÌƒeƒLƒXƒg
-                exp_val1: ”äŠr‚·‚é’l1
-                exp_str2: ”äŠr‚·‚é’l2 ‚ÌƒeƒLƒXƒg
-                exp_val2: ”äŠr‚·‚é’l2
+  Description:  exp_val1 ã®å€¤ã¨ exp_val2 ãŒç­‰ã—ããªã‘ã‚Œã° NG ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºåŠ›ã™ã‚‹
+  Arguments:    file:    __FILE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«å
+                line:    __LINE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ©ã‚¤ãƒ³æ•°
+                exp_str1: æ¯”è¼ƒã™ã‚‹å€¤1 ã®ãƒ†ã‚­ã‚¹ãƒˆ
+                exp_val1: æ¯”è¼ƒã™ã‚‹å€¤1
+                exp_str2: æ¯”è¼ƒã™ã‚‹å€¤2 ã®ãƒ†ã‚­ã‚¹ãƒˆ
+                exp_val2: æ¯”è¼ƒã™ã‚‹å€¤2
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void UTi_AssertEq(const char *file, int line, const char *exp_str1, int exp_val1,
                   const char *exp_str2, int exp_val2)
 {
-    // val1 ‚Æ val2 ‚ª“™‚µ‚­‚È‚¢‚È‚ç NG ‚Æ‚·‚é
+    // val1 ã¨ val2 ãŒç­‰ã—ããªã„ãªã‚‰ NG ã¨ã™ã‚‹
     if (exp_val1 != exp_val2)
     {
         UTi_SetResult(UT_RESULT_NG);
@@ -74,7 +74,7 @@ void UTi_AssertEq(const char *file, int line, const char *exp_str1, int exp_val1
                        exp_val1, exp_str2, exp_val2);
     }
 
-    // val1 ‚Æ val2 ‚ª“™‚µ‚­‚©‚ÂA‚±‚ê‚Ü‚Å‚ÌƒeƒXƒg‚É¸”s‚µ‚Ä‚¢‚È‚¯‚ê‚Î OK ‚Æ‚·‚é
+    // val1 ã¨ val2 ãŒç­‰ã—ãã‹ã¤ã€ã“ã‚Œã¾ã§ã®ãƒ†ã‚¹ãƒˆã«å¤±æ•—ã—ã¦ã„ãªã‘ã‚Œã° OK ã¨ã™ã‚‹
     else if (UTi_GetResult() != UT_RESULT_NG)
     {
         UTi_SetResult(UT_RESULT_OK);
@@ -85,19 +85,19 @@ void UTi_AssertEq(const char *file, int line, const char *exp_str1, int exp_val1
 
 /*---------------------------------------------------------------------------*
   Name:         UTi_AssertNe
-  Description:  exp_val1 ‚Ì’l‚Æ exp_val2 ‚ª“™‚µ‚¯‚ê‚Î NG ƒƒbƒZ[ƒW‚ğo—Í‚·‚é
-  Arguments:    file:    __FILE__ ƒ\[ƒXƒtƒ@ƒCƒ‹–¼
-                line:    __LINE__ ƒ\[ƒXƒtƒ@ƒCƒ‹ƒ‰ƒCƒ“”
-                exp_str1: ”äŠr‚·‚é’l1 ‚ÌƒeƒLƒXƒg
-                exp_val1: ”äŠr‚·‚é’l1
-                exp_str2: ”äŠr‚·‚é’l2 ‚ÌƒeƒLƒXƒg
-                exp_val2: ”äŠr‚·‚é’l2
+  Description:  exp_val1 ã®å€¤ã¨ exp_val2 ãŒç­‰ã—ã‘ã‚Œã° NG ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºåŠ›ã™ã‚‹
+  Arguments:    file:    __FILE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«å
+                line:    __LINE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ©ã‚¤ãƒ³æ•°
+                exp_str1: æ¯”è¼ƒã™ã‚‹å€¤1 ã®ãƒ†ã‚­ã‚¹ãƒˆ
+                exp_val1: æ¯”è¼ƒã™ã‚‹å€¤1
+                exp_str2: æ¯”è¼ƒã™ã‚‹å€¤2 ã®ãƒ†ã‚­ã‚¹ãƒˆ
+                exp_val2: æ¯”è¼ƒã™ã‚‹å€¤2
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void UTi_AssertNe(const char *file, int line, const char *exp_str1, int exp_val1,
                   const char *exp_str2, int exp_val2)
 {
-    // val1 ‚Æ val2 ‚ª“™‚µ‚¢‚È‚ç NG ‚Æ‚·‚é
+    // val1 ã¨ val2 ãŒç­‰ã—ã„ãªã‚‰ NG ã¨ã™ã‚‹
     if (exp_val1 == exp_val2)
     {
         UTi_SetResult(UT_RESULT_NG);
@@ -105,7 +105,7 @@ void UTi_AssertNe(const char *file, int line, const char *exp_str1, int exp_val1
                        exp_str2, exp_val2);
     }
 
-    // val1 ‚Æ val2 ‚ª“™‚µ‚­‚È‚­A‚©‚Â‚±‚ê‚Ü‚Å‚ÌƒeƒXƒg‚É¸”s‚µ‚Ä‚¢‚È‚¯‚ê‚Î OK ‚Æ‚·‚é
+    // val1 ã¨ val2 ãŒç­‰ã—ããªãã€ã‹ã¤ã“ã‚Œã¾ã§ã®ãƒ†ã‚¹ãƒˆã«å¤±æ•—ã—ã¦ã„ãªã‘ã‚Œã° OK ã¨ã™ã‚‹
     else if (UTi_GetResult() != UT_RESULT_NG)
     {
         UTi_SetResult(UT_RESULT_OK);
@@ -117,23 +117,23 @@ void UTi_AssertNe(const char *file, int line, const char *exp_str1, int exp_val1
 /*---------------------------------------------------------------------------*
   Name:         UTi_AssertMemEq
   
-  Description:  exp_len ƒoƒCƒg‚Ìƒƒ‚ƒŠƒuƒƒbƒN exp_ptr1 ‚Æ exp_ptr2 ‚ª
-                “™‚µ‚­‚È‚¯‚ê‚Î NG ƒƒbƒZ[ƒW‚ğo—Í‚·‚é
+  Description:  exp_len ãƒã‚¤ãƒˆã®ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ exp_ptr1 ã¨ exp_ptr2 ãŒ
+                ç­‰ã—ããªã‘ã‚Œã° NG ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºåŠ›ã™ã‚‹
   
-  Arguments:    file:    __FILE__ ƒ\[ƒXƒtƒ@ƒCƒ‹–¼
-                line:    __LINE__ ƒ\[ƒXƒtƒ@ƒCƒ‹ƒ‰ƒCƒ“”
-                exp_str1: ”äŠr‚·‚éƒuƒƒbƒN1 ‚ÌƒeƒLƒXƒg•\Œ»
-                exp_ptr1: ”äŠr‚·‚éƒuƒƒbƒN1
-                exp_str2: ”äŠr‚·‚éƒuƒƒbƒN2 ‚ÌƒeƒLƒXƒg•\Œ»
-                exp_ptr2: ”äŠr‚·‚éƒuƒƒbƒN2
-                exp_len : ”äŠr‚·‚éƒuƒƒbƒN‚ÌƒTƒCƒY
+  Arguments:    file:    __FILE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«å
+                line:    __LINE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ©ã‚¤ãƒ³æ•°
+                exp_str1: æ¯”è¼ƒã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯1 ã®ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¾
+                exp_ptr1: æ¯”è¼ƒã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯1
+                exp_str2: æ¯”è¼ƒã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯2 ã®ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¾
+                exp_ptr2: æ¯”è¼ƒã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯2
+                exp_len : æ¯”è¼ƒã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void UTi_AssertMemEq(const char *file, int line,
                      const char *exp_str1, const void *exp_ptr1,
                      const char *exp_str2, const void *exp_ptr2, int exp_len)
 {
-    // exp_ptr1 ‚Æ exp_ptr2 ‚ª exp_len ƒoƒCƒg’·‚¾‚¯“™‚µ‚­‚È‚¯‚ê‚Î NG ‚Æ‚·‚é
+    // exp_ptr1 ã¨ exp_ptr2 ãŒ exp_len ãƒã‚¤ãƒˆé•·ã ã‘ç­‰ã—ããªã‘ã‚Œã° NG ã¨ã™ã‚‹
     if (UTi_MemCmp(exp_ptr1, exp_ptr2, exp_len))
     {
         UTi_SetResult(UT_RESULT_NG);
@@ -141,7 +141,7 @@ void UTi_AssertMemEq(const char *file, int line,
                        exp_str2, exp_len);
     }
 
-    // val1 ‚Æ val2 ‚ª“™‚µ‚­A‚©‚Â‚±‚ê‚Ü‚Å‚ÌƒeƒXƒg‚É¸”s‚µ‚Ä‚¢‚È‚¯‚ê‚Î OK ‚Æ‚·‚é
+    // val1 ã¨ val2 ãŒç­‰ã—ãã€ã‹ã¤ã“ã‚Œã¾ã§ã®ãƒ†ã‚¹ãƒˆã«å¤±æ•—ã—ã¦ã„ãªã‘ã‚Œã° OK ã¨ã™ã‚‹
     else if (UTi_GetResult() != UT_RESULT_NG)
     {
         UTi_SetResult(UT_RESULT_OK);
@@ -153,23 +153,23 @@ void UTi_AssertMemEq(const char *file, int line,
 /*---------------------------------------------------------------------------*
   Name:         UTi_AssertMemNe
   
-  Description:  exp_len ƒoƒCƒg‚Ìƒƒ‚ƒŠƒuƒƒbƒN exp_ptr1 ‚Æ exp_ptr2 ‚ª
-                “™‚µ‚¯‚ê‚Î NG ƒƒbƒZ[ƒW‚ğo—Í‚·‚é
+  Description:  exp_len ãƒã‚¤ãƒˆã®ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ exp_ptr1 ã¨ exp_ptr2 ãŒ
+                ç­‰ã—ã‘ã‚Œã° NG ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºåŠ›ã™ã‚‹
   
-  Arguments:    file:    __FILE__ ƒ\[ƒXƒtƒ@ƒCƒ‹–¼
-                line:    __LINE__ ƒ\[ƒXƒtƒ@ƒCƒ‹ƒ‰ƒCƒ“”
-                exp_str1: ”äŠr‚·‚éƒuƒƒbƒN1 ‚ÌƒeƒLƒXƒg•\Œ»
-                exp_ptr1: ”äŠr‚·‚éƒuƒƒbƒN1
-                exp_str2: ”äŠr‚·‚éƒuƒƒbƒN2 ‚ÌƒeƒLƒXƒg•\Œ»
-                exp_ptr2: ”äŠr‚·‚éƒuƒƒbƒN2
-                exp_len : ”äŠr‚·‚éƒuƒƒbƒN‚ÌƒTƒCƒY
+  Arguments:    file:    __FILE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«å
+                line:    __LINE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ©ã‚¤ãƒ³æ•°
+                exp_str1: æ¯”è¼ƒã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯1 ã®ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¾
+                exp_ptr1: æ¯”è¼ƒã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯1
+                exp_str2: æ¯”è¼ƒã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯2 ã®ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¾
+                exp_ptr2: æ¯”è¼ƒã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯2
+                exp_len : æ¯”è¼ƒã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void UTi_AssertMemNe(const char *file, int line,
                      const char *exp_str1, const void *exp_ptr1,
                      const char *exp_str2, const void *exp_ptr2, int exp_len)
 {
-    // exp_ptr1 ‚Æ exp_ptr2 ‚ª exp_len ƒoƒCƒg’·‚¾‚¯“™‚µ‚¯‚ê‚Î NG ‚Æ‚·‚é
+    // exp_ptr1 ã¨ exp_ptr2 ãŒ exp_len ãƒã‚¤ãƒˆé•·ã ã‘ç­‰ã—ã‘ã‚Œã° NG ã¨ã™ã‚‹
     if (!UTi_MemCmp(exp_ptr1, exp_ptr2, exp_len))
     {
         UTi_SetResult(UT_RESULT_NG);
@@ -177,7 +177,7 @@ void UTi_AssertMemNe(const char *file, int line,
                        exp_str2, exp_len);
     }
 
-    // val1 ‚Æ val2 ‚ª“™‚µ‚­‚È‚­A‚©‚Â‚±‚ê‚Ü‚Å‚ÌƒeƒXƒg‚É¸”s‚µ‚Ä‚¢‚È‚¯‚ê‚Î OK ‚Æ‚·‚é
+    // val1 ã¨ val2 ãŒç­‰ã—ããªãã€ã‹ã¤ã“ã‚Œã¾ã§ã®ãƒ†ã‚¹ãƒˆã«å¤±æ•—ã—ã¦ã„ãªã‘ã‚Œã° OK ã¨ã™ã‚‹
     else if (UTi_GetResult() != UT_RESULT_NG)
     {
         UTi_SetResult(UT_RESULT_OK);
@@ -187,14 +187,14 @@ void UTi_AssertMemNe(const char *file, int line,
 
 
 /*---------------------------------------------------------------------------*
-  ASSERT ‹@”\‚Ì ASSERT
+  ASSERT æ©Ÿèƒ½ã® ASSERT
  *---------------------------------------------------------------------------*/
 
 OSContext UTi_AssertContext;
 
 /*---------------------------------------------------------------------------*
   Name:         UTi_Terminate
-  Description:  ’â~ˆ—‚ğ·‚µ‘Ö‚¦‚é. ASSERT Œã‚ÉŒ³‚É–ß‚é
+  Description:  åœæ­¢å‡¦ç†ã‚’å·®ã—æ›¿ãˆã‚‹. ASSERT å¾Œã«å…ƒã«æˆ»ã‚‹
   Arguments:    None.
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -208,23 +208,23 @@ void UTi_Terminate(void)
 
 /*---------------------------------------------------------------------------*
   Name:         UTi_AssertAsserted
-  Description:  Assert ‚ª”­¶‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚ÌƒGƒ‰[ƒƒbƒZ[ƒW‚ğo—Í‚·‚é
-  Arguments:    file:    __FILE__ ƒ\[ƒXƒtƒ@ƒCƒ‹–¼
-                line:    __LINE__ ƒ\[ƒXƒtƒ@ƒCƒ‹ƒ‰ƒCƒ“”
-                exp_str:  •\¦‚·‚éƒƒbƒZ[ƒWƒtƒH[ƒ}ƒbƒg
-                asserted:ƒAƒT[ƒg‚ª‹N‚±‚Á‚Ä‚¢‚½‚ç 1 ‚³‚à‚È‚­‚Î 0
+  Description:  Assert ãŒç™ºç”Ÿã—ã¦ã„ãªã„ã¨ãã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºåŠ›ã™ã‚‹
+  Arguments:    file:    __FILE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«å
+                line:    __LINE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ©ã‚¤ãƒ³æ•°
+                exp_str:  è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+                asserted:ã‚¢ã‚µãƒ¼ãƒˆãŒèµ·ã“ã£ã¦ã„ãŸã‚‰ 1 ã•ã‚‚ãªãã° 0
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void UTi_AssertAsserted(const char *file, int line, const char *exp_str, int asserted)
 {
-    // ƒAƒT[ƒg‚ª‹N‚±‚ç‚È‚¢‚È‚ç NG ‚Æ‚·‚é
+    // ã‚¢ã‚µãƒ¼ãƒˆãŒèµ·ã“ã‚‰ãªã„ãªã‚‰ NG ã¨ã™ã‚‹
     if (!asserted)
     {
         UTi_SetResult(UT_RESULT_NG);
         UTi_SetMessage(file, line, "UT_AssertAsserted: %s not asserted\n", exp_str);
     }
 
-    // ƒAƒT[ƒg‚ª‹N‚±‚Á‚Ä‚¨‚èA‚©‚Â‚±‚ê‚Ü‚Å‚ÌƒeƒXƒg‚É¸”s‚µ‚Ä‚¢‚È‚¯‚ê‚Î OK ‚Æ‚·‚é
+    // ã‚¢ã‚µãƒ¼ãƒˆãŒèµ·ã“ã£ã¦ãŠã‚Šã€ã‹ã¤ã“ã‚Œã¾ã§ã®ãƒ†ã‚¹ãƒˆã«å¤±æ•—ã—ã¦ã„ãªã‘ã‚Œã° OK ã¨ã™ã‚‹
     else if (UTi_GetResult() != UT_RESULT_NG)
     {
         UTi_SetResult(UT_RESULT_OK);
@@ -235,23 +235,23 @@ void UTi_AssertAsserted(const char *file, int line, const char *exp_str, int ass
 
 /*---------------------------------------------------------------------------*
   Name:         UTi_AssertNotAsserted
-  Description:  Assert ‚ª”­¶‚µ‚Ä‚¢‚é‚Æ‚«‚ÌƒGƒ‰[ƒƒbƒZ[ƒW‚ğo—Í‚·‚é
-  Arguments:    file:    __FILE__ ƒ\[ƒXƒtƒ@ƒCƒ‹–¼
-                line:    __LINE__ ƒ\[ƒXƒtƒ@ƒCƒ‹ƒ‰ƒCƒ“”
-                exp_str:  •\¦‚·‚éƒƒbƒZ[ƒWƒtƒH[ƒ}ƒbƒg
-                asserted:ƒAƒT[ƒg‚ª‹N‚±‚Á‚Ä‚¢‚½‚ç 1 ‚³‚à‚È‚­‚Î 0
+  Description:  Assert ãŒç™ºç”Ÿã—ã¦ã„ã‚‹ã¨ãã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºåŠ›ã™ã‚‹
+  Arguments:    file:    __FILE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«å
+                line:    __LINE__ ã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ©ã‚¤ãƒ³æ•°
+                exp_str:  è¡¨ç¤ºã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+                asserted:ã‚¢ã‚µãƒ¼ãƒˆãŒèµ·ã“ã£ã¦ã„ãŸã‚‰ 1 ã•ã‚‚ãªãã° 0
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void UTi_AssertNotAsserted(const char *file, int line, const char *exp_str, int asserted)
 {
-    // ƒAƒT[ƒg‚ª‹N‚«‚½‚È‚ç NG ‚Æ‚·‚é
+    // ã‚¢ã‚µãƒ¼ãƒˆãŒèµ·ããŸãªã‚‰ NG ã¨ã™ã‚‹
     if (asserted)
     {
         UTi_SetResult(UT_RESULT_NG);
         UTi_SetMessage(file, line, "UT_AssertNotAsserted: %s asserted\n", exp_str);
     }
 
-    // ƒAƒT[ƒg‚ª‹N‚±‚Á‚Ä‚¢‚È‚¢A‚©‚Â‚±‚ê‚Ü‚Å‚ÌƒeƒXƒg‚É¸”s‚µ‚Ä‚¢‚È‚¯‚ê‚Î OK ‚Æ‚·‚é
+    // ã‚¢ã‚µãƒ¼ãƒˆãŒèµ·ã“ã£ã¦ã„ãªã„ã€ã‹ã¤ã“ã‚Œã¾ã§ã®ãƒ†ã‚¹ãƒˆã«å¤±æ•—ã—ã¦ã„ãªã‘ã‚Œã° OK ã¨ã™ã‚‹
     else if (UTi_GetResult() != UT_RESULT_NG)
     {
         UTi_SetResult(UT_RESULT_OK);
@@ -263,14 +263,14 @@ void UTi_AssertNotAsserted(const char *file, int line, const char *exp_str, int 
 /*---------------------------------------------------------------------------*
   Name:         UTi_MemCmp
   
-  Description:  len ƒoƒCƒg‚Ìƒƒ‚ƒŠƒuƒƒbƒN ptr1 ‚Æ ptr2 ‚ğ”äŠr‚·‚é
+  Description:  len ãƒã‚¤ãƒˆã®ãƒ¡ãƒ¢ãƒªãƒ–ãƒ­ãƒƒã‚¯ ptr1 ã¨ ptr2 ã‚’æ¯”è¼ƒã™ã‚‹
   
-  Arguments:    ptr1: ”äŠr‚·‚éƒuƒƒbƒN1
-                ptr2: ”äŠr‚·‚éƒuƒƒbƒN2
-                len : ”äŠr‚·‚éƒuƒƒbƒN‚ÌƒTƒCƒY
+  Arguments:    ptr1: æ¯”è¼ƒã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯1
+                ptr2: æ¯”è¼ƒã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯2
+                len : æ¯”è¼ƒã™ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º
   
-  Returns:      0    : “™‚µ‚¢.
-                0ˆÈŠO: “™‚µ‚­‚È‚¢
+  Returns:      0    : ç­‰ã—ã„.
+                0ä»¥å¤–: ç­‰ã—ããªã„
  *---------------------------------------------------------------------------*/
 int UTi_MemCmp(const void *ptr1, const void *ptr2, int len)
 {

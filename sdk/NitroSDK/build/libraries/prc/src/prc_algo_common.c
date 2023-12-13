@@ -15,64 +15,64 @@
   do-indent
 
   Revision 1.16  2005/03/04 14:07:18  seiki_masashi
-  PRC_ResampleStrokes_* ‚Ì•Ô‚è’l‚ÌŒ^‚Ì•ÏX‚É‘Î‰
-  “_—ñ‚ÉŒÇ—§“_‚ªŠÜ‚Ü‚ê‚Ä‚¢‚½ê‡‚Ìˆ—‚Ì•s‹ï‡‚ğC³
+  PRC_ResampleStrokes_* ã®è¿”ã‚Šå€¤ã®å‹ã®å¤‰æ›´ã«å¯¾å¿œ
+  ç‚¹åˆ—ã«å­¤ç«‹ç‚¹ãŒå«ã¾ã‚Œã¦ã„ãŸå ´åˆã®å‡¦ç†ã®ä¸å…·åˆã‚’ä¿®æ­£
 
   Revision 1.15  2005/03/04 12:44:11  seiki_masashi
-  PRC_InitPrototypeDB ‹y‚Ñ PRC_InitInputPattern ‚ªì¬‚Ì¬Œ÷E¸”s‚ğ•Ô‚·‚æ‚¤‚É•ÏX
+  PRC_InitPrototypeDB åŠã³ PRC_InitInputPattern ãŒä½œæˆã®æˆåŠŸãƒ»å¤±æ•—ã‚’è¿”ã™ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.14  2005/02/28 05:26:29  yosizaki
   do-indent.
 
   Revision 1.13  2005/02/18 07:10:49  seiki_masashi
-  Copyright •\‹L‚ÌC³
+  Copyright è¡¨è¨˜ã®ä¿®æ­£
 
   Revision 1.12  2005/02/18 07:09:52  seiki_masashi
-  warning ‘Îô
+  warning å¯¾ç­–
 
   Revision 1.11  2004/11/04 07:57:46  seiki_masashi
-  regularize ‚ğ normalize ‚ÉC³
+  regularize ã‚’ normalize ã«ä¿®æ­£
 
   Revision 1.10  2004/07/19 06:52:06  seiki_masashi
-  ¯•Êq–¼‚Ì®—
+  è­˜åˆ¥å­åã®æ•´ç†
 
   Revision 1.9  2004/07/09 00:12:59  seiki_masashi
   PRCi_Resample* -> PRC_Resample*
 
   Revision 1.8  2004/06/29 07:25:58  seiki_masashi
-  “_‚ª1‚Â‚ÌƒXƒgƒ[ƒN‚ğ‹Ö~‚É
+  ç‚¹ãŒ1ã¤ã®ã‚¹ãƒˆãƒ­ãƒ¼ã‚¯ã‚’ç¦æ­¢ã«
 
   Revision 1.7  2004/06/29 02:13:01  seiki_masashi
   remove lineSegmentRatioToWholeArray
 
   Revision 1.6  2004/06/28 13:18:11  seiki_masashi
-  PRC_GetInputPatternStrokes ‚Ì’Ç‰Á
+  PRC_GetInputPatternStrokes ã®è¿½åŠ 
 
   Revision 1.5  2004/06/28 11:11:36  seiki_masashi
-  Œ©–{ƒpƒ^[ƒ“‚Ìˆê——‚É regularizeSize ‚ğ’Ç‰Á
-  Šeíƒpƒ‰ƒ[ƒ^—Ş‚ğ®—
+  è¦‹æœ¬ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ä¸€è¦§ã« regularizeSize ã‚’è¿½åŠ 
+  å„ç¨®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿é¡ã‚’æ•´ç†
 
   Revision 1.4  2004/06/25 03:02:55  seiki_masashi
-  ŠeŠÖ”‚©‚ç bufferSize ‚Ìw’è‚ğíœ
-  GetRecognitionBufferSize* ‚Ì’Ç‰Á
+  å„é–¢æ•°ã‹ã‚‰ bufferSize ã®æŒ‡å®šã‚’å‰Šé™¤
+  GetRecognitionBufferSize* ã®è¿½åŠ 
 
   Revision 1.3  2004/06/24 08:08:33  seiki_masashi
   fix typo
 
   Revision 1.2  2004/06/24 07:03:39  seiki_masashi
-  ƒwƒbƒ_ƒtƒ@ƒCƒ‹‚ğ•ªŠ„E®—‚µ‚Ü‚µ‚½
+  ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆ†å‰²ãƒ»æ•´ç†ã—ã¾ã—ãŸ
 
   Revision 1.1  2004/06/23 11:59:30  seiki_masashi
   add 'PRC*' to SDK
 
   Revision 1.3  2004/06/22 11:19:00  seiki_masashi
-  “®ì‰Â”\ƒo[ƒWƒ‡ƒ“(simple‚Ì‚İ)
+  å‹•ä½œå¯èƒ½ãƒãƒ¼ã‚¸ãƒ§ãƒ³(simpleã®ã¿)
 
   Revision 1.2  2004/06/17 08:14:52  seiki_masashi
   PRC_GetPrototypeDBBufferSizeEx
 
   Revision 1.1  2004/06/17 02:30:29  seiki_masashi
-  ”F¯ƒAƒ‹ƒSƒŠƒYƒ€‚Ì·‚µ‘Ö‚¦‚ğ—eˆÕ‚É‚·‚é‚½‚ß‚É prc_algo_* ‚É•ªŠ„‚µ‚Ü‚µ‚½
+  èªè­˜ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã®å·®ã—æ›¿ãˆã‚’å®¹æ˜“ã«ã™ã‚‹ãŸã‚ã« prc_algo_* ã«åˆ†å‰²ã—ã¾ã—ãŸ
 
   Revision 1.2  2004/06/17 00:52:36  seiki_masashi
   PRC_InitPrototypeDBEX, PRC_InitInputPatternEX
@@ -140,15 +140,15 @@ static void PRCi_GetPatternStrokes_Common(PRCStrokes *strokes, const PRCiPattern
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetPrototypeDBBufferSizeEx_Common
 
-  Description:  Œ©–{DB‚ğ“WŠJ‚·‚é‚Ì‚É•K—v‚Èƒ[ƒN—Ìˆæ‚Ì‘å‚«‚³‚ğŒvZ‚µ‚Ü‚·.
+  Description:  è¦‹æœ¬DBã‚’å±•é–‹ã™ã‚‹ã®ã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®å¤§ãã•ã‚’è¨ˆç®—ã—ã¾ã™.
 
-  Arguments:    prototypeList   Œ©–{ƒpƒ^[ƒ“‚Ìˆê——
-                kindMask        í—Şw’è—pƒ}ƒXƒN
-                ignoreDisabledEntries   enabled ƒtƒ‰ƒO‚ª FALSE ‚ÌŒ©–{DBƒGƒ“ƒgƒŠ‚Í
-                                        ‚»‚à‚»‚à“WŠJ‚µ‚È‚¢‚©‚Ç‚¤‚©
-                param           Œ©–{DB‚Ì“WŠJ‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^
+  Arguments:    prototypeList   è¦‹æœ¬ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ä¸€è¦§
+                kindMask        ç¨®é¡æŒ‡å®šç”¨ãƒã‚¹ã‚¯
+                ignoreDisabledEntries   enabled ãƒ•ãƒ©ã‚°ãŒ FALSE ã®è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã¯
+                                        ãã‚‚ãã‚‚å±•é–‹ã—ãªã„ã‹ã©ã†ã‹
+                param           è¦‹æœ¬DBã®å±•é–‹ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-  Returns:      Œ©–{DB‚ğ“WŠJ‚·‚é‚Ì‚É•K—v‚Èƒƒ‚ƒŠ—Ê.
+  Returns:      è¦‹æœ¬DBã‚’å±•é–‹ã™ã‚‹ã®ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªé‡.
  *---------------------------------------------------------------------------*/
 u32
 PRC_GetPrototypeDBBufferSizeEx_Common(const PRCPrototypeList *prototypeList,
@@ -160,7 +160,7 @@ PRC_GetPrototypeDBBufferSizeEx_Common(const PRCPrototypeList *prototypeList,
     int     maxPointCount, maxStrokeCount;
     SDK_ASSERT(prototypeList);
 
-    (void)param;                       // param ‚Í–³‹
+    (void)param;                       // param ã¯ç„¡è¦–
     PRCi_CountPrototypeList_Common(&wholePointCount, &wholeStrokeCount,
                                    &patternCount, &maxPointCount, &maxStrokeCount,
                                    prototypeList, kindMask, ignoreDisabledEntries);
@@ -171,21 +171,21 @@ PRC_GetPrototypeDBBufferSizeEx_Common(const PRCPrototypeList *prototypeList,
 /*---------------------------------------------------------------------------*
   Name:         PRC_InitPrototypeDBEx_Common
 
-  Description:  PRCPrototypeDB \‘¢‘Ì‚ğì¬‚µ‚Ü‚·.
-                buffer ‚É‚Í PRC_GetPrototypeDBBufferSize ‚ª•Ô‚·ƒTƒCƒYˆÈã‚Ì
-                ƒoƒbƒtƒ@—Ìˆæ‚ªİ’è‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·.
-                param ‚É‚æ‚Á‚ÄA“WŠJ‚Ìƒpƒ‰ƒ[ƒ^‚ªw’è‚Å‚«‚Ü‚·.
+  Description:  PRCPrototypeDB æ§‹é€ ä½“ã‚’ä½œæˆã—ã¾ã™.
+                buffer ã«ã¯ PRC_GetPrototypeDBBufferSize ãŒè¿”ã™ã‚µã‚¤ã‚ºä»¥ä¸Šã®
+                ãƒãƒƒãƒ•ã‚¡é ˜åŸŸãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™.
+                param ã«ã‚ˆã£ã¦ã€å±•é–‹æ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãŒæŒ‡å®šã§ãã¾ã™.
 
-  Arguments:    protoDB         ‰Šú‰»‚·‚éŒ©–{DB\‘¢‘Ì.
-                buffer          Œ©–{DB‚Ì“WŠJ‚Ég—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                (ƒƒ‚ƒŠ—ÌˆæƒTƒCƒY>=PRC_GetPrototypeDBBufferSize ‚Ì•Ô‚è’l)
-                prototypeList   Œ©–{ƒpƒ^[ƒ“‚Ìˆê——
-                kindMask        í—Şw’è—pƒ}ƒXƒN
-                ignoreDisabledEntries   enabled ƒtƒ‰ƒO‚ª FALSE ‚ÌŒ©–{DBƒGƒ“ƒgƒŠ‚Í
-                                        ‚»‚à‚»‚à“WŠJ‚µ‚È‚¢‚©‚Ç‚¤‚©
-                param           Œ©–{DB‚Ì“WŠJ‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^
+  Arguments:    protoDB         åˆæœŸåŒ–ã™ã‚‹è¦‹æœ¬DBæ§‹é€ ä½“.
+                buffer          è¦‹æœ¬DBã®å±•é–‹ã«ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                (ãƒ¡ãƒ¢ãƒªé ˜åŸŸã‚µã‚¤ã‚º>=PRC_GetPrototypeDBBufferSize ã®è¿”ã‚Šå€¤)
+                prototypeList   è¦‹æœ¬ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ä¸€è¦§
+                kindMask        ç¨®é¡æŒ‡å®šç”¨ãƒã‚¹ã‚¯
+                ignoreDisabledEntries   enabled ãƒ•ãƒ©ã‚°ãŒ FALSE ã®è¦‹æœ¬DBã‚¨ãƒ³ãƒˆãƒªã¯
+                                        ãã‚‚ãã‚‚å±•é–‹ã—ãªã„ã‹ã©ã†ã‹
+                param           è¦‹æœ¬DBã®å±•é–‹ã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-  Returns:      ì¬‚É¬Œ÷‚·‚ê‚Î^.
+  Returns:      ä½œæˆã«æˆåŠŸã™ã‚Œã°çœŸ.
  *---------------------------------------------------------------------------*/
 BOOL
 PRC_InitPrototypeDBEx_Common(PRCPrototypeDB_Common *protoDB,
@@ -239,13 +239,13 @@ PRC_InitPrototypeDBEx_Common(PRCPrototypeDB_Common *protoDB,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetInputPatternBufferSize_Common
 
-  Description:  ƒpƒ^[ƒ“ƒf[ƒ^‚ğ”äŠr—p‚É“WŠJ‚·‚é‚Ì‚É•K—v‚Èƒ[ƒN—Ìˆæ‚Ì‘å‚«‚³‚ğ
-                ŒvZ‚µ‚Ü‚·.
+  Description:  ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’æ¯”è¼ƒç”¨ã«å±•é–‹ã™ã‚‹ã®ã«å¿…è¦ãªãƒ¯ãƒ¼ã‚¯é ˜åŸŸã®å¤§ãã•ã‚’
+                è¨ˆç®—ã—ã¾ã™.
 
-  Arguments:    maxPointCount   “ü—Í“_”‚ÌãŒÀ(pen up marker ‚ğŠÜ‚Ş)
-                maxStrokeCount  ‰æ”‚ÌãŒÀ
+  Arguments:    maxPointCount   å…¥åŠ›ç‚¹æ•°ã®ä¸Šé™(pen up marker ã‚’å«ã‚€)
+                maxStrokeCount  ç”»æ•°ã®ä¸Šé™
 
-  Returns:      ƒpƒ^[ƒ“‚ğ“WŠJ‚·‚é‚Ì‚É•K—v‚Èƒƒ‚ƒŠ—Ê.
+  Returns:      ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å±•é–‹ã™ã‚‹ã®ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªé‡.
  *---------------------------------------------------------------------------*/
 u32 PRC_GetInputPatternBufferSize_Common(int maxPointCount, int maxStrokeCount)
 {
@@ -255,18 +255,18 @@ u32 PRC_GetInputPatternBufferSize_Common(int maxPointCount, int maxStrokeCount)
 /*---------------------------------------------------------------------------*
   Name:         PRC_InitInputPatternEx_Common
 
-  Description:  PRCInputPattern \‘¢‘Ì‚ğì¬‚µ‚Ü‚·.
-                param ‚É‚æ‚Á‚ÄA“ü—Íƒpƒ^[ƒ“‚Ì‰ğß‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^‚ğw’è‚Å‚«‚Ü‚·.
+  Description:  PRCInputPattern æ§‹é€ ä½“ã‚’ä½œæˆã—ã¾ã™.
+                param ã«ã‚ˆã£ã¦ã€å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³ã®è§£é‡ˆã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æŒ‡å®šã§ãã¾ã™.
 
-  Arguments:    pattern             ‰Šú‰»‚·‚éƒpƒ^[ƒ“\‘¢‘Ì.
-                buffer              ƒpƒ^[ƒ“‚Ì“WŠJ‚Ég—p‚·‚éƒƒ‚ƒŠ—Ìˆæ‚Ö‚Ìƒ|ƒCƒ“ƒ^.
-                                    (—ÌˆæƒTƒCƒY>=PRC_GetInputPatternBufferSize ‚Ì•Ô‚è’l)
-                strokes             ®Œ`‘O‚Ì¶“ü—ÍÀ•W’l.
-                maxPointCount       “ü—Í“_”‚ÌãŒÀ(pen up marker ‚ğŠÜ‚Ş)
-                maxStrokeCount      ‰æ”‚ÌãŒÀ
-                param               “ü—Íƒpƒ^[ƒ“‚Ì‰ğß‚ÉŠÖ‚·‚éƒpƒ‰ƒ[ƒ^
+  Arguments:    pattern             åˆæœŸåŒ–ã™ã‚‹ãƒ‘ã‚¿ãƒ¼ãƒ³æ§‹é€ ä½“.
+                buffer              ãƒ‘ã‚¿ãƒ¼ãƒ³ã®å±•é–‹ã«ä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªé ˜åŸŸã¸ã®ãƒã‚¤ãƒ³ã‚¿.
+                                    (é ˜åŸŸã‚µã‚¤ã‚º>=PRC_GetInputPatternBufferSize ã®è¿”ã‚Šå€¤)
+                strokes             æ•´å½¢å‰ã®ç”Ÿå…¥åŠ›åº§æ¨™å€¤.
+                maxPointCount       å…¥åŠ›ç‚¹æ•°ã®ä¸Šé™(pen up marker ã‚’å«ã‚€)
+                maxStrokeCount      ç”»æ•°ã®ä¸Šé™
+                param               å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³ã®è§£é‡ˆã«é–¢ã™ã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-  Returns:      ì¬‚É¬Œ÷‚·‚ê‚Î^.
+  Returns:      ä½œæˆã«æˆåŠŸã™ã‚Œã°çœŸ.
  *---------------------------------------------------------------------------*/
 BOOL
 PRC_InitInputPatternEx_Common(PRCInputPattern_Common *pattern,
@@ -308,11 +308,11 @@ PRC_InitInputPatternEx_Common(PRCInputPattern_Common *pattern,
 /*---------------------------------------------------------------------------*
   Name:         PRC_GetInputPatternStrokes_Common
 
-  Description:  PRCInputPattern \‘¢‘Ì‚©‚ç“_—ñƒf[ƒ^‚ğ“¾‚Ü‚·.
+  Description:  PRCInputPattern æ§‹é€ ä½“ã‹ã‚‰ç‚¹åˆ—ãƒ‡ãƒ¼ã‚¿ã‚’å¾—ã¾ã™.
 
-  Arguments:    strokes         “¾‚ç‚ê‚½“_—ñƒf[ƒ^.
-                                ‘‚«Š·‚¦‚Ä‚Í‚¢‚¯‚Ü‚¹‚ñ.
-                input           “ü—Íƒpƒ^[ƒ“.
+  Arguments:    strokes         å¾—ã‚‰ã‚ŒãŸç‚¹åˆ—ãƒ‡ãƒ¼ã‚¿.
+                                æ›¸ãæ›ãˆã¦ã¯ã„ã‘ã¾ã›ã‚“.
+                input           å…¥åŠ›ãƒ‘ã‚¿ãƒ¼ãƒ³.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -633,7 +633,7 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
 
     if (param == NULL)
     {
-        // default ’l
+        // default å€¤
         normalizeSize = 0;
         resampleMethod = PRC_RESAMPLE_DEFAULT_METHOD_COMMON;
         resampleThreshold = PRC_RESAMPLE_DEFAULT_THRESHOLD_COMMON;
@@ -647,8 +647,8 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
 
     if (normalizeSize > 0)
     {
-        // ‚Ì‚¿‚Ì‚¿³‹K‰»‚ğs‚¤
-        // ‚Ü‚¸A³‹K‰»‚Ì‚½‚ß‚ÌƒoƒEƒ“ƒfƒBƒ“ƒOƒ{ƒbƒNƒX’l‚ğæ“¾
+        // ã®ã¡ã®ã¡æ­£è¦åŒ–ã‚’è¡Œã†
+        // ã¾ãšã€æ­£è¦åŒ–ã®ãŸã‚ã®ãƒã‚¦ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒœãƒƒã‚¯ã‚¹å€¤ã‚’å–å¾—
         PRCBoundingBox boundingBox;
         PRCPoint *point;
         int     size;
@@ -682,14 +682,14 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
         dy = (boundingBox.y1 + boundingBox.y2) / 2 - w / 2;
     }
 
-    // ‚±‚±‚Ü‚Å‚ÅA³‹K‰»‚·‚é‚½‚ß‚Ìî•ñ‚Í‚»‚ë‚Á‚½.
-    // ‚±‚±‚©‚ç“Á’¥“_’Šo‚©‚ç³‹K‰»‚Ü‚Åˆê‹C‚É‚±‚È‚·.
-    // –{“–‚Í‚¢‚Á‚½‚ñ rawStroke ã‚Ì pointArray ‚É³‹K‰»‚µ‚½
-    // À•W’l‚ğã‘‚«‚Å‚«‚é‚Æ‚¢‚¢‚Ì‚¾‚ªA”ñ”j‰ó‚Æ‚¢‚¤–¼–Ú‚È‚Ì‚Åcc
+    // ã“ã“ã¾ã§ã§ã€æ­£è¦åŒ–ã™ã‚‹ãŸã‚ã®æƒ…å ±ã¯ãã‚ã£ãŸ.
+    // ã“ã“ã‹ã‚‰ç‰¹å¾´ç‚¹æŠ½å‡ºã‹ã‚‰æ­£è¦åŒ–ã¾ã§ä¸€æ°—ã«ã“ãªã™.
+    // æœ¬å½“ã¯ã„ã£ãŸã‚“ rawStroke ä¸Šã® pointArray ã«æ­£è¦åŒ–ã—ãŸ
+    // åº§æ¨™å€¤ã‚’ä¸Šæ›¸ãã§ãã‚‹ã¨ã„ã„ã®ã ãŒã€éç ´å£Šã¨ã„ã†åç›®ãªã®ã§â€¦â€¦
 
-    // ‚Æ‚Ä‚Â‚à‚È‚­‰˜‚¢‚ªAlineSegmentAngleArray ‚ğ u16 ”z—ñ‚Æ‚µ‚Ä
-    // ˆê“I‚Éì‹Æ—Ìˆæ‚Æ‚µ‚Äg‚í‚¹‚Ä‚à‚ç‚¤
-    // pointArray ‚É‚¢‚½‚Á‚Ä‚ÍA2•ªŠ„‚µ‚Äì‹Æ—Ìˆæ‚Æ‚µ‚Ä—p‚¢‚écc
+    // ã¨ã¦ã¤ã‚‚ãªãæ±šã„ãŒã€lineSegmentAngleArray ã‚’ u16 é…åˆ—ã¨ã—ã¦
+    // ä¸€æ™‚çš„ã«ä½œæ¥­é ˜åŸŸã¨ã—ã¦ä½¿ã‚ã›ã¦ã‚‚ã‚‰ã†
+    // pointArray ã«ã„ãŸã£ã¦ã¯ã€2åˆ†å‰²ã—ã¦ä½œæ¥­é ˜åŸŸã¨ã—ã¦ç”¨ã„ã‚‹â€¦â€¦
 
     data = &pattern->data;
     selectedPoints = (u16 *)data->lineSegmentAngleArray;
@@ -699,7 +699,7 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
 //    start = OS_GetTick();
     if (resampleMethod == PRC_RESAMPLE_METHOD_NONE)
     {
-        // ƒŠƒTƒ“ƒvƒ‹‚¹‚¸‚É¶‚Ì“_—ñ‚ğg‚¤
+        // ãƒªã‚µãƒ³ãƒ—ãƒ«ã›ãšã«ç”Ÿã®ç‚¹åˆ—ã‚’ä½¿ã†
         if (!PRC_ResampleStrokes_None
             (selectedPoints, &selectedPointNum, maxPointCount, maxStrokeCount, strokes, 0,
              (void *)data->pointArray))
@@ -709,21 +709,21 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
     }
     else
     {
-        // param->resampleThreshold ‚ğè‡’l‚Æ‚µ‚ÄƒŠƒTƒ“ƒvƒŠƒ“ƒO
+        // param->resampleThreshold ã‚’é–¾å€¤ã¨ã—ã¦ãƒªã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°
         BOOL    result = FALSE;
         int     threshold;
 
         threshold = resampleThreshold;
         if (normalizeSize > 0)
         {
-            // ƒTƒCƒY‚Ì³‹K‰»•ªAthreshold ‚ğ’²®
+            // ã‚µã‚¤ã‚ºã®æ­£è¦åŒ–åˆ†ã€threshold ã‚’èª¿æ•´
             if (resampleMethod == PRC_RESAMPLE_METHOD_DISTANCE
                 || resampleMethod == PRC_RESAMPLE_METHOD_RECURSIVE)
             {
                 if (threshold > 0)
                 {
 //                    threshold = (threshold * w + normalizeSize - 1) / normalizeSize;
-                    // Ø‚èã‚°‚é‚Æ¬‚³‚¢ threshold ‚Ìw’è‚ª‘å–¡‚É‚È‚Á‚Ä‚µ‚Ü‚¤‚Ì‚Å
+                    // åˆ‡ã‚Šä¸Šã’ã‚‹ã¨å°ã•ã„ threshold ã®æŒ‡å®šãŒå¤§å‘³ã«ãªã£ã¦ã—ã¾ã†ã®ã§
                     threshold = threshold * w / normalizeSize;
                     if (threshold == 0)
                         threshold = 1;
@@ -762,12 +762,12 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
         }
     }
 //    end = OS_GetTick();
-//    OS_Printf("// Resample: %lldƒÊs\n", OS_TicksToMicroSeconds(end-start));
+//    OS_Printf("// Resample: %lldÎ¼s\n", OS_TicksToMicroSeconds(end-start));
 //    }
 
     SDK_ASSERT(selectedPointNum <= maxPointCount);
 
-    // “Á’¥“_‚ğ³‹K‰»‚µ‚È‚ª‚ç pointArray ‚É‹l‚ß‚é
+    // ç‰¹å¾´ç‚¹ã‚’æ­£è¦åŒ–ã—ãªãŒã‚‰ pointArray ã«è©°ã‚ã‚‹
     wholePointCount = 0;
     strokeCount = 0;
 
@@ -791,7 +791,7 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
 
         if (normalizeSize > 0)
         {
-            // normalizeSize ‚Å³‹K‰»
+            // normalizeSize ã§æ­£è¦åŒ–
             u32     scale;
 
             scale = (((u32)normalizeSize) << 16) / (w + 1);
@@ -802,7 +802,7 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
                 point = &inputPoints[selectedPoints[i]];
                 if (selectedPoints[i] == (u16)-1 || PRC_IsPenUpMarker(point))
                 {
-                    // ƒXƒgƒ[ƒN‚ÌI’[
+                    // ã‚¹ãƒˆãƒ­ãƒ¼ã‚¯ã®çµ‚ç«¯
                     if (pointCount >= 2)
                     {
                         dstPoint->x = prevPoint.x = PRC_PEN_UP_MARKER_X;
@@ -813,11 +813,11 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
                     }
                     else
                     {
-                        // “_‚Ì”‚ª2–¢–‚Ì stroke ‚Í”F‚ß‚È‚¢
+                        // ç‚¹ã®æ•°ãŒ2æœªæº€ã® stroke ã¯èªã‚ãªã„
                         int     i;
                         for (i = 0; i < pointCount; i++)
                         {
-                            // Šª‚«–ß‚·
+                            // å·»ãæˆ»ã™
                             dstPoint--;
                             wholePointCount--;
                         }
@@ -827,14 +827,14 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
                 }
                 else
                 {
-                    // I’[ˆÈŠO
+                    // çµ‚ç«¯ä»¥å¤–
 
-                    // À•W‚Ì³‹K‰»
+                    // åº§æ¨™ã®æ­£è¦åŒ–
 //                    x = (s16)((int)(point->x-dx) * normalizeSize / (w+1));
 //                    y = (s16)((int)(point->y-dy) * normalizeSize / (w+1));
                     x = (s16)(((u32)(point->x - dx) * scale) >> 16);
                     y = (s16)(((u32)(point->y - dy) * scale) >> 16);
-                    // ³‹K‰»‚ÌŒ‹‰Ê’¼‘O‚Æ“¯‚¶À•W‚É‚È‚Á‚½‚ç•Û‘¶‚µ‚È‚¢
+                    // æ­£è¦åŒ–ã®çµæœç›´å‰ã¨åŒã˜åº§æ¨™ã«ãªã£ãŸã‚‰ä¿å­˜ã—ãªã„
                     if (prevPoint.x != x || prevPoint.y != y)
                     {
                         dstPoint->x = prevPoint.x = x;
@@ -849,14 +849,14 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
         }
         else
         {
-            // ³‹K‰»‚¹‚¸‚É‚»‚Ì‚Ü‚ÜƒRƒs[
+            // æ­£è¦åŒ–ã›ãšã«ãã®ã¾ã¾ã‚³ãƒ”ãƒ¼
 
             for (i = 0; i < selectedPointNum; i++)
             {
                 point = &inputPoints[selectedPoints[i]];
                 if (selectedPoints[i] == (u16)-1 || PRC_IsPenUpMarker(point))
                 {
-                    // ƒXƒgƒ[ƒN‚ÌI’[
+                    // ã‚¹ãƒˆãƒ­ãƒ¼ã‚¯ã®çµ‚ç«¯
                     if (pointCount >= 2)
                     {
                         dstPoint->x = prevPoint.x = PRC_PEN_UP_MARKER_X;
@@ -867,11 +867,11 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
                     }
                     else
                     {
-                        // “_‚Ì”‚ª2–¢–‚Ì stroke ‚Í”F‚ß‚È‚¢
+                        // ç‚¹ã®æ•°ãŒ2æœªæº€ã® stroke ã¯èªã‚ãªã„
                         int     i;
                         for (i = 0; i < pointCount; i++)
                         {
-                            // Šª‚«–ß‚·
+                            // å·»ãæˆ»ã™
                             dstPoint--;
                             wholePointCount--;
                         }
@@ -881,9 +881,9 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
                 }
                 else
                 {
-                    // I’[ˆÈŠO
+                    // çµ‚ç«¯ä»¥å¤–
 
-                    // ’¼‘O‚Æ“¯‚¶À•W‚É‚È‚Á‚½‚ç•Û‘¶‚µ‚È‚¢
+                    // ç›´å‰ã¨åŒã˜åº§æ¨™ã«ãªã£ãŸã‚‰ä¿å­˜ã—ãªã„
                     if (prevPoint.x != point->x || prevPoint.y != point->y)
                     {
                         *dstPoint = prevPoint = *point;
@@ -911,7 +911,7 @@ PRCi_ExtractInputPattern_Common(PRCInputPattern_Common *pattern,
 //    start = OS_GetTick();
     PRCi_CalcExtraValues_Common((PRCiPatternData_Common *)data);
 //    end = OS_GetTick();
-//    OS_Printf("// CalcExtraValues: %lldƒÊs\n", OS_TicksToMicroSeconds(end-start));
+//    OS_Printf("// CalcExtraValues: %lldÎ¼s\n", OS_TicksToMicroSeconds(end-start));
 //    }
 
     if (normalizeSize > 0)
@@ -950,11 +950,11 @@ void PRCi_CalcExtraValues_Common(PRCiPatternData_Common *data)
 
     size = data->pointCount;
 
-    // Šp“x‚Æ’·‚³‚ÌŒvZ
+    // è§’åº¦ã¨é•·ã•ã®è¨ˆç®—
     {
         point = data->pointArray;
 
-        // Å‰‚Ì1“_‚¾‚¯A2“_–Ú‚Ö‚Ì•ûŒü‚É‰Šú‰»‚·‚é
+        // æœ€åˆã®1ç‚¹ã ã‘ã€2ç‚¹ç›®ã¸ã®æ–¹å‘ã«åˆæœŸåŒ–ã™ã‚‹
         if (size >= 2 && !PRC_IsPenUpMarker(point + 1))
         {
             prevPoint.x = (s16)(point[0].x * 2 - point[1].x);
@@ -975,7 +975,7 @@ void PRCi_CalcExtraValues_Common(PRCiPatternData_Common *data)
             {
                 if (newFlag)
                 {
-                    // ‘‚«o‚µ‚Ì1“_
+                    // æ›¸ãå‡ºã—ã®1ç‚¹
                     SDK_ASSERT(iStroke < data->strokeCount);
 
                     data->strokes[iStroke] = iPoint;
@@ -992,7 +992,7 @@ void PRCi_CalcExtraValues_Common(PRCiPatternData_Common *data)
                 }
                 else
                 {
-                    // ‘‚¢‚Ä‚¢‚é“r’†
+                    // æ›¸ã„ã¦ã„ã‚‹é€”ä¸­
                     if (point->x < boundingBox.x1)
                         boundingBox.x1 = point->x;
                     if (point->x > boundingBox.x2)
@@ -1018,7 +1018,7 @@ void PRCi_CalcExtraValues_Common(PRCiPatternData_Common *data)
             }
             else
             {
-                // 1ƒXƒgƒ[ƒNI—¹
+                // 1ã‚¹ãƒˆãƒ­ãƒ¼ã‚¯çµ‚äº†
 
                 SDK_ASSERTMSG(!newFlag, "the pattern contains a zero-length stroke.");
 
@@ -1033,7 +1033,7 @@ void PRCi_CalcExtraValues_Common(PRCiPatternData_Common *data)
 
                 if (iPoint + 1 < size)
                 {
-                    // wholeLength ‚É‚ÍŠÜ‚Ü‚ê‚È‚¢
+                    // wholeLength ã«ã¯å«ã¾ã‚Œãªã„
                     segmentLength = PRCi_CalcDistance(&prevPoint, point + 1);
                     if (segmentLength == 0)
                     {
@@ -1084,8 +1084,8 @@ void PRCi_CalcExtraValues_Common(PRCiPatternData_Common *data)
         }
     }
 
-    // ’·‚³‚Ì”ä‚ÌŒvZ
-    // ‡Œv‚ª FX32_ONE ‚É‚È‚é‚æ‚¤‚ÉŒvZ
+    // é•·ã•ã®æ¯”ã®è¨ˆç®—
+    // åˆè¨ˆãŒ FX32_ONE ã«ãªã‚‹ã‚ˆã†ã«è¨ˆç®—
     {
         fx32    sumSegmentToStrokeLength, sumStrokeToWholeLength;
 //        fx32 sumSegmentToWholeLength;

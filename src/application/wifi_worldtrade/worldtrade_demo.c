@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	worldtrade_status.c
- * @bfief	¢ŠEŒðŠ·ƒ|ƒPƒ‚ƒ“ŒðŠ·ƒfƒ‚ŒÄ‚Ño‚µ
+ * @bfief	ä¸–ç•Œäº¤æ›ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒ‡ãƒ¢å‘¼ã³å‡ºã—
  * @author	Akito Mori
  * @date	06.05.10
  */
@@ -46,9 +46,9 @@
 
 
 //============================================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //============================================================================================
-/*** ŠÖ”ƒvƒƒgƒ^ƒCƒv ***/
+/*** é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ— ***/
 //static void InitWork( WORLDTRADE_WORK *wk );
 //static void FreeWork( WORLDTRADE_WORK *wk );
 static MYSTATUS *MakePartnerStatusData( Dpw_Tr_Data *dtd );
@@ -59,7 +59,7 @@ static void EvoPokemonUpdate( WORLDTRADE_WORK *wk );
 
 
 //============================================================================================
-//	PROC’è‹`
+//	PROCå®šç¾©
 //============================================================================================
 static const PROC_DATA  TradeDemoProcData = {
 	TradeDemoProc_Init,
@@ -71,7 +71,7 @@ static const PROC_DATA  TradeDemoProcData = {
 
 
 //============================================================================================
-//	’è‹`
+//	å®šç¾©
 //============================================================================================
 enum{
 	DEMO_MODE_DEMO=0,
@@ -79,12 +79,12 @@ enum{
 };
 
 //============================================================================================
-//	ƒvƒƒZƒXŠÖ”
+//	ãƒ—ãƒ­ã‚»ã‚¹é–¢æ•°
 //============================================================================================
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–Ê‰Šú‰»
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢åˆæœŸåŒ–
  *
  * @param   wk		
  * @param   seq		
@@ -94,16 +94,16 @@ enum{
 //==============================================================================
 int WorldTrade_Demo_Init(WORLDTRADE_WORK *wk, int seq)
 {
-	// ƒ[ƒN‰Šú‰»
+	// ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 //	InitWork( wk );
 
 	wk->demoPokePara = PokemonParam_AllocWork( HEAPID_WORLDTRADE );
 
 
-	// ƒ‚[ƒh‚²‚Æ‚Éƒpƒ‰ƒ[ƒ^‚ðŠi”[‚·‚é
+	// ãƒ¢ãƒ¼ãƒ‰ã”ã¨ã«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ ¼ç´ã™ã‚‹
 	switch(wk->sub_process_mode){
 
-	// —a‚¯‚é
+	// é ã‘ã‚‹
 	case MODE_UPLOAD:
 		wk->tradeDemoParam.sendPoke = (POKEMON_PASO_PARAM*)PPPPointerGet(
 										(POKEMON_PARAM*)wk->UploadPokemonData.postData.data);
@@ -115,13 +115,13 @@ int WorldTrade_Demo_Init(WORLDTRADE_WORK *wk, int seq)
 		wk->tradeDemoParam.seqFlag  = DEMO_TRADE_SEQ_SEND_ONLY;
 		break;
 
-	// Žó‚¯Žæ‚é
+	// å—ã‘å–ã‚‹
 	case MODE_DOWNLOAD:
 		wk->tradeDemoParam.recvPoke = (POKEMON_PASO_PARAM*)PPPPointerGet(
 										(POKEMON_PARAM*)wk->UploadPokemonData.postData.data);
 
 		wk->tradeDemoParam.sendPoke = wk->tradeDemoParam.recvPoke;
-		// ‘ŠŽè‚ÌMYSTATUS‚ª–³‚¢‚Ì‚ÅA‚Å‚«‚éŒÀ‚è‚Å‚Á‚¿‚ ‚°‚é
+		// ç›¸æ‰‹ã®MYSTATUSãŒç„¡ã„ã®ã§ã€ã§ãã‚‹é™ã‚Šã§ã£ã¡ã‚ã’ã‚‹
 		wk->partnerStatus = MakePartnerStatusData( &wk->UploadPokemonData );
 		wk->tradeDemoParam.partner  = wk->partnerStatus;
 
@@ -129,14 +129,14 @@ int WorldTrade_Demo_Init(WORLDTRADE_WORK *wk, int seq)
 		wk->tradeDemoParam.seqFlag  = DEMO_TRADE_SEQ_RECV_ONLY;
 		break;
 
-	// Žó‚¯Žæ‚éƒ|ƒPƒ‚ƒ“‚ªŒðŠ·‚³‚ê‚Ä‚¢‚½
+	// å—ã‘å–ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒäº¤æ›ã•ã‚Œã¦ã„ãŸ
 	case MODE_DOWNLOAD_EX:
 			wk->tradeDemoParam.recvPoke = PPPPointerGet((POKEMON_PARAM*)wk->UploadPokemonData.postData.data);
 
 			WorldTradeData_GetPokemonData( wk->param->worldtrade_data, wk->demoPokePara );
 			wk->tradeDemoParam.sendPoke = PPPPointerGet(wk->demoPokePara);
 			
-			// ‘ŠŽè‚ÌMYSTATUS‚ª–³‚¢‚Ì‚ÅA‚Å‚«‚éŒÀ‚è‚Å‚Á‚¿‚ ‚°‚é
+			// ç›¸æ‰‹ã®MYSTATUSãŒç„¡ã„ã®ã§ã€ã§ãã‚‹é™ã‚Šã§ã£ã¡ã‚ã’ã‚‹
 			wk->partnerStatus 			= MakePartnerStatusData( &wk->UploadPokemonData );
 			wk->tradeDemoParam.partner  = wk->partnerStatus;
 
@@ -144,13 +144,13 @@ int WorldTrade_Demo_Init(WORLDTRADE_WORK *wk, int seq)
 			wk->tradeDemoParam.seqFlag  = DEMO_TRADE_SEQ_FULL;
 		break;
 
-	// ŒðŠ·‚·‚é
+	// äº¤æ›ã™ã‚‹
 	case MODE_EXCHANGE:
 		WorldTradeData_GetPokemonData( wk->param->worldtrade_data, wk->demoPokePara );
 		wk->tradeDemoParam.sendPoke = PPPPointerGet(wk->demoPokePara);
 		wk->tradeDemoParam.recvPoke = (POKEMON_PASO_PARAM*)PPPPointerGet(
 											(POKEMON_PARAM*)wk->DownloadPokemonData[wk->TouchTrainerPos].postData.data);
-		// ‘ŠŽè‚ÌMYSTATUS‚ª–³‚¢‚Ì‚ÅA‚Å‚«‚éŒÀ‚è‚Å‚Á‚¿‚ ‚°‚é
+		// ç›¸æ‰‹ã®MYSTATUSãŒç„¡ã„ã®ã§ã€ã§ãã‚‹é™ã‚Šã§ã£ã¡ã‚ã’ã‚‹
 		wk->partnerStatus = MakePartnerStatusData( &wk->DownloadPokemonData[wk->TouchTrainerPos] );
 		wk->tradeDemoParam.partner  = wk->partnerStatus;
 
@@ -162,7 +162,7 @@ int WorldTrade_Demo_Init(WORLDTRADE_WORK *wk, int seq)
 
 	wk->tradeDemoParam.config   = wk->param->config;
 
-	// subPROC¶¬
+	// subPROCç”Ÿæˆ
 	wk->proc = PROC_Create( &TradeDemoProcData, &wk->tradeDemoParam, HEAPID_WORLDTRADE );
 
 	wk->subprocflag = 1;
@@ -171,7 +171,7 @@ int WorldTrade_Demo_Init(WORLDTRADE_WORK *wk, int seq)
 }
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–ÊƒƒCƒ“
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢ãƒ¡ã‚¤ãƒ³
  *
  * @param   wk		
  * @param   seq		
@@ -189,14 +189,14 @@ int WorldTrade_Demo_Main(WORLDTRADE_WORK *wk, int seq)
 
 			PROC_Delete( wk->proc );
 
-			// i‰»ƒ`ƒFƒbƒN
+			// é€²åŒ–ãƒã‚§ãƒƒã‚¯
 			if(wk->sub_process_mode==MODE_EXCHANGE){
-				// Ž©•ª‚ÅŒðŠ·‚µ‚½
+				// è‡ªåˆ†ã§äº¤æ›ã—ãŸ
 				POKEMON_PARAM *pp = RecvPokemonParamPointerGet( wk, wk->sub_process_mode );
 				int item     = PokeParaGet( pp, ID_PARA_item, NULL );
 				int shinkano;
 				int shinka_cond;
-				OS_Printf( "i‰»ƒ`ƒFƒbƒN %d\n",PokeParaGet(pp,ID_PARA_monsno,NULL));
+				OS_Printf( "é€²åŒ–ãƒã‚§ãƒƒã‚¯ %d\n",PokeParaGet(pp,ID_PARA_monsno,NULL));
 
 				shinkano=PokeShinkaCheck( NULL, pp, TUUSHIN_SHINKA, item, &shinka_cond );
 				if(shinkano!=0){
@@ -214,13 +214,13 @@ int WorldTrade_Demo_Main(WORLDTRADE_WORK *wk, int seq)
 												HEAPID_WORLDTRADE);
 					wk->subprocess_seq = DEMO_MODE_SHINKA;
 				}else{
-					// i‰»–³‚µ‚È‚ç‚»‚Ì‚Ü‚ÜI—¹
+					// é€²åŒ–ç„¡ã—ãªã‚‰ãã®ã¾ã¾çµ‚äº†
 					WorldTrade_SubProcessChange( wk, WORLDTRADE_TITLE, 0 );
 					ret = SEQ_FADEOUT;
 				
 				}
 			}else if(wk->sub_process_mode==MODE_DOWNLOAD || wk->sub_process_mode==MODE_DOWNLOAD_EX){
-				// Ž©•ª‚Ìƒ|ƒPƒ‚ƒ“‚ðˆø‚«Žæ‚Á‚½‚çŒðŠ·‚³‚ê‚Ä‚½?
+				// è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã‚’å¼•ãå–ã£ãŸã‚‰äº¤æ›ã•ã‚Œã¦ãŸ?
 				POKEMON_PARAM *pp     = RecvPokemonParamPointerGet( wk, wk->sub_process_mode );
 				POKEMON_PARAM *backup = PokemonParam_AllocWork(HEAPID_WORLDTRADE);
 				WorldTradeData_GetPokemonData( wk->param->worldtrade_data, backup );
@@ -230,7 +230,7 @@ int WorldTrade_Demo_Main(WORLDTRADE_WORK *wk, int seq)
 					int item     = PokeParaGet( pp, ID_PARA_item, NULL );
 					int shinkano;
 					int shinka_cond;
-					OS_Printf( "i‰»ƒ`ƒFƒbƒN %d\n",PokeParaGet(pp,ID_PARA_monsno,NULL));
+					OS_Printf( "é€²åŒ–ãƒã‚§ãƒƒã‚¯ %d\n",PokeParaGet(pp,ID_PARA_monsno,NULL));
 
 					shinkano=PokeShinkaCheck( NULL, pp, TUUSHIN_SHINKA, item, &shinka_cond );
 					if(shinkano!=0){
@@ -248,21 +248,21 @@ int WorldTrade_Demo_Main(WORLDTRADE_WORK *wk, int seq)
 												HEAPID_WORLDTRADE);
 						wk->subprocess_seq = DEMO_MODE_SHINKA;
 					}else{
-						// i‰»–³‚µ‚È‚ç‚»‚Ì‚Ü‚ÜI—¹
+						// é€²åŒ–ç„¡ã—ãªã‚‰ãã®ã¾ã¾çµ‚äº†
 						WorldTrade_SubProcessChange( wk, WORLDTRADE_TITLE, 0 );
 						ret = SEQ_FADEOUT;
 				
 					}
-					// ”äŠr—p‚ÉŽg‚Á‚½ƒ|ƒPƒ‚ƒ“ƒf[ƒ^‚ð‰ð•ú
+					// æ¯”è¼ƒç”¨ã«ä½¿ã£ãŸãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿ã‚’è§£æ”¾
 				}else{
-					// Ž©•ª‚Ìƒ|ƒPƒ‚ƒ“‚ðˆø‚«Žæ‚Á‚½‚Ì‚Å‚ ‚ê‚Î‚»‚Ì‚Ü‚Ü
+					// è‡ªåˆ†ã®ãƒã‚±ãƒ¢ãƒ³ã‚’å¼•ãå–ã£ãŸã®ã§ã‚ã‚Œã°ãã®ã¾ã¾
 					WorldTrade_SubProcessChange( wk, WORLDTRADE_TITLE, 0 );
 					ret = SEQ_FADEOUT;
 				}
 				sys_FreeMemoryEz(backup);
 							
 			}else{
-				// i‰»–³‚µ‚È‚ç‚»‚Ì‚Ü‚ÜI—¹
+				// é€²åŒ–ç„¡ã—ãªã‚‰ãã®ã¾ã¾çµ‚äº†
 				WorldTrade_SubProcessChange( wk, WORLDTRADE_TITLE, 0 );
 				ret = SEQ_FADEOUT;
 			}
@@ -270,17 +270,17 @@ int WorldTrade_Demo_Main(WORLDTRADE_WORK *wk, int seq)
 
 		break;
 	case DEMO_MODE_SHINKA:
-		// i‰»I—¹‘Ò‚¿
+		// é€²åŒ–çµ‚äº†å¾…ã¡
 		if(ShinkaEndCheck(wk->shinkaWork)){
 			ShinkaEnd( wk->shinkaWork );
 
-			// i‰»Œã‚ÌPOKEMON_PARAM‚ð‚³‚Á‚«Ši”[‚µ‚½êŠ‚É”½‰f‚³‚¹‚é
+			// é€²åŒ–å¾Œã®POKEMON_PARAMã‚’ã•ã£ãæ ¼ç´ã—ãŸå ´æ‰€ã«åæ˜ ã•ã›ã‚‹
 			EvoPokemonUpdate( wk );
 
-			// ƒn[ƒhƒEƒFƒAƒEƒCƒ“ƒhƒE‚ð‰ðœ
+			// ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’è§£é™¤
 			GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
-			// ƒZ[ƒu‚Ö
+			// ã‚»ãƒ¼ãƒ–ã¸
 //			WorldTrade_SubProcessChange( wk, WORLDTRADE_TITLE, 0 );
 			WorldTrade_SubProcessChange( wk, WORLDTRADE_UPLOAD, MODE_POKEMON_EVO_SAVE );
 			ret = SEQ_FADEOUT;
@@ -294,7 +294,7 @@ int WorldTrade_Demo_Main(WORLDTRADE_WORK *wk, int seq)
 
 //==============================================================================
 /**
- * $brief   ¢ŠEŒðŠ·“ü‚èŒû‰æ–ÊI—¹
+ * $brief   ä¸–ç•Œäº¤æ›å…¥ã‚Šå£ç”»é¢çµ‚äº†
  *
  * @param   wk		
  * @param   seq		
@@ -308,7 +308,7 @@ int WorldTrade_Demo_End(WORLDTRADE_WORK *wk, int seq)
 
 	sys_FreeMemoryEz(wk->demoPokePara);
 	sys_FreeMemoryEz(wk->partnerStatus);
-	// ƒ{ƒbƒNƒX‰æ–Ê‚É–ß‚é
+	// ãƒœãƒƒã‚¯ã‚¹ç”»é¢ã«æˆ»ã‚‹
 	WorldTrade_SubProcessUpdate( wk );
 
 	return SEQ_INIT;
@@ -317,9 +317,9 @@ int WorldTrade_Demo_End(WORLDTRADE_WORK *wk, int seq)
 
 //------------------------------------------------------------------
 /**
- * @brief   wifi‚Ì‘ŠŽè‚©‚ç‚ÍMYSTATUS‚ð–á‚í‚È‚¢‚Ì‚ÅAÅ’áŒÀ‚Ìî•ñ‚Ì‚Ýì‚é
+ * @brief   wifiã®ç›¸æ‰‹ã‹ã‚‰ã¯MYSTATUSã‚’è²°ã‚ãªã„ã®ã§ã€æœ€ä½Žé™ã®æƒ…å ±ã®ã¿ä½œã‚‹
  *
- * @param   dtd			ƒT[ƒo[‚©‚ç–á‚¤ŒðŠ·ƒf[ƒ^
+ * @param   dtd			ã‚µãƒ¼ãƒãƒ¼ã‹ã‚‰è²°ã†äº¤æ›ãƒ‡ãƒ¼ã‚¿
  *
  * @retval  MYSTATUS *	
  */
@@ -330,10 +330,10 @@ static MYSTATUS *MakePartnerStatusData( Dpw_Tr_Data *dtd )
 	
 	MyStatus_Init( status );
 	
-	// ƒgƒŒ[ƒi[–¼Ši”[
+	// ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åæ ¼ç´
 	MyStatus_SetMyName(status, dtd->name );
 
-	// ROMEƒŠ[ƒWƒ‡ƒ“ƒR[ƒhŠi”[
+	// ROMãƒ»ãƒªãƒ¼ã‚¸ãƒ§ãƒ³ã‚³ãƒ¼ãƒ‰æ ¼ç´
 	MyStatus_SetRomCode( status,    dtd->versionCode );
 	MyStatus_SetRegionCode( status, dtd->langCode );
 	
@@ -344,7 +344,7 @@ static MYSTATUS *MakePartnerStatusData( Dpw_Tr_Data *dtd )
 
 //------------------------------------------------------------------
 /**
- * @brief   ŒðŠ·‚µ‚½ƒ|ƒPƒ‚ƒ“‚Ìƒ|ƒCƒ“ƒ^‚ð•Ô‚·ŠÖ”
+ * @brief   äº¤æ›ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™é–¢æ•°
  *
  * @param   wk		
  * @param   mode	
@@ -354,7 +354,7 @@ static MYSTATUS *MakePartnerStatusData( Dpw_Tr_Data *dtd )
 //------------------------------------------------------------------
 static POKEMON_PARAM *RecvPokemonParamPointerGet( WORLDTRADE_WORK *wk, int mode )
 {
-	// ”\“®“IŒðŠ·‚ÆAŽó“®“IŒðŠ·‚Ìƒ|ƒPƒ‚ƒ“‚Ìƒ|ƒCƒ“ƒ^
+	// èƒ½å‹•çš„äº¤æ›ã¨ã€å—å‹•çš„äº¤æ›ã®ãƒã‚±ãƒ¢ãƒ³ã®ãƒã‚¤ãƒ³ã‚¿
 	if( mode == MODE_EXCHANGE){
 		return (POKEMON_PARAM*)wk->DownloadPokemonData[wk->TouchTrainerPos].postData.data;
 	}else if( mode == MODE_DOWNLOAD_EX ){
@@ -363,13 +363,13 @@ static POKEMON_PARAM *RecvPokemonParamPointerGet( WORLDTRADE_WORK *wk, int mode 
 		return (POKEMON_PARAM*)wk->UploadPokemonData.postData.data;
 	}
 
-	GF_ASSERT_MSG(0,"“n‚·ƒ‚[ƒh‚ðŠÔˆá‚Á‚Ä‚¢‚é");
+	GF_ASSERT_MSG(0,"æ¸¡ã™ãƒ¢ãƒ¼ãƒ‰ã‚’é–“é•ã£ã¦ã„ã‚‹");
 	return NULL;
 }
 
 //------------------------------------------------------------------
 /**
- * @brief   i‰»ƒ|ƒPƒ‚ƒ“‚ð‚à‚¤ˆê“x‚³‚Á‚«‚¢‚ê‚½êŠ‚ÉŠi”[‚µ‚È‚¨‚·
+ * @brief   é€²åŒ–ãƒã‚±ãƒ¢ãƒ³ã‚’ã‚‚ã†ä¸€åº¦ã•ã£ãã„ã‚ŒãŸå ´æ‰€ã«æ ¼ç´ã—ãªãŠã™
  *
  * @param   wk		
  *
@@ -381,15 +381,15 @@ static void EvoPokemonUpdate( WORLDTRADE_WORK *wk )
 	POKEMON_PARAM *pp = RecvPokemonParamPointerGet( wk, wk->sub_process_mode );
 	
 	if(wk->EvoPokeInfo.boxno==18){
-		// ‚Ä‚à‚¿‚ÌŽž
+		// ã¦ã‚‚ã¡ã®æ™‚
 		PokeCopyPPtoPP( pp, PokeParty_GetMemberPointer( wk->param->myparty, wk->EvoPokeInfo.pos ) );
 	}else{
 		int boxno=0, boxpos=0;
-		// ƒ{ƒbƒNƒX‚ÌŽž
-		// ƒ{ƒbƒNƒX‚ÉŠi”[‚µ‚½ƒ|ƒPƒ‚ƒ“‚ðˆê’UÁ‚·
+		// ãƒœãƒƒã‚¯ã‚¹ã®æ™‚
+		// ãƒœãƒƒã‚¯ã‚¹ã«æ ¼ç´ã—ãŸãƒã‚±ãƒ¢ãƒ³ã‚’ä¸€æ—¦æ¶ˆã™
 		BOXDAT_ClearPokemon( wk->param->mybox, wk->EvoPokeInfo.boxno, wk->EvoPokeInfo.pos );
 
-		// Ši”[‚µ‚È‚¨‚·
+		// æ ¼ç´ã—ãªãŠã™
 		BOXDAT_GetEmptyTrayNumberAndPos( wk->param->mybox, &boxno, &boxpos );
 		BOXDAT_PutPokemonBox( wk->param->mybox, boxno, PPPPointerGet(pp) );
 		

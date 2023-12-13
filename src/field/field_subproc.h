@@ -1,7 +1,7 @@
 //=============================================================================
 /**
  * @file	field_subproc.h	
- * @brief	ƒtƒB[ƒ‹ƒh‚©‚ç‚æ‚Î‚ê‚éƒTƒuƒvƒƒZƒX
+ * @brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‹ã‚‰ã‚ˆã°ã‚Œã‚‹ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹
  * @author	GAME FREAK inc.
  */
 //=============================================================================
@@ -32,7 +32,7 @@ typedef enum {
 //==============================================================================
 //==============================================================================
 
-//’ÊMŒğŠ·ƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+//é€šä¿¡äº¤æ›ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
 extern void EventCmd_UnionTrade(GMEVENT_CONTROL * event);
 
 extern void * FieldBag_SetProc( FIELDSYS_WORK * fsys, ITEMCHECK_WORK * icwk );
@@ -59,7 +59,7 @@ extern void WifiNoteEntry_SetProc( FIELDSYS_WORK *fsys, SAVEDATA* pSaveData );
 extern void WifiNote_SetProc( FIELDSYS_WORK *fsys, SAVEDATA* pSaveData );
 extern void BattleRecorder_SetProc( FIELDSYS_WORK *fsys,SAVEDATA* pSaveData );
 extern BOOL WifiP2PMatch_SetProc( FIELDSYS_WORK *fsys,WIFIP2PMATCH_PROC_PARAM* pParam );
-//WiFi’n‹…‹VŒÄ‚Ño‚µ
+//WiFiåœ°çƒå„€å‘¼ã³å‡ºã—
 extern void Field_WifiEarth_SetProc(FIELDSYS_WORK * fsys);
 
 extern void EventCmd_NameIn(GMEVENT_CONTROL * event, int mode, int info, int wordmax, int pos, const STRCODE* str, u16* ret_work);
@@ -68,7 +68,7 @@ extern void EventCmd_NameIn(GMEVENT_CONTROL * event, int mode, int info, int wor
 extern void * FieldBagEvent_SetProc( FIELDSYS_WORK * fsys, EVBAG_MODE mode );
 extern u16 FieldBagEvent_GetSelectedItem(void * param);
 
-//ƒ|ƒPƒ‚ƒ“‘I‘ğŒÄo‚µ
+//ãƒã‚±ãƒ¢ãƒ³é¸æŠå‘¼å‡ºã—
 extern void * FieldPokeListEvent_SetProc(int heap, FIELDSYS_WORK * fsys);
 extern void * FieldPokeListEventNpcTrade_SetProc(int heap, FIELDSYS_WORK * fsys);
 extern int FieldPokeListEvent_GetSelect(void * wk);
@@ -80,142 +80,142 @@ extern void * Guru2ListEvent_SetProc( FIELDSYS_WORK * fsys, int pos);
 
 extern void * EventCmd_PokeListSelect(GMEVENT_CONTROL * event, int heapID);
 
-//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXì¬
+//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ä½œæˆ
 extern PSTATUS_DATA * PSTATUS_Temoti_Create(FIELDSYS_WORK* fsys,int heapID, int mode);
 
-//‚»‚¾‚Ä‚âƒ|ƒPƒ‚ƒ“‘I‘ğŒÄo‚µ
+//ãã ã¦ã‚„ãƒã‚±ãƒ¢ãƒ³é¸æŠå‘¼å‡ºã—
 extern void * SodateyaPokeListEvent_SetProc(int heap, FIELDSYS_WORK * fsys, int pos);
 
-//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‰æ–ÊŒÄ‚Ño‚µ
+//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç”»é¢å‘¼ã³å‡ºã—
 extern void * ContestPokeStatusEvent_SetProc(int heap, FIELDSYS_WORK * fsys, int pos);
 extern int FieldPokeStatusEvent_GetPos(void * wk);
 
-//‚í‚´–Y‚ê‘I‘ğŒÄo‚µ
+//ã‚ã–å¿˜ã‚Œé¸æŠå‘¼å‡ºã—
 extern void * FieldWazaListEvent_SetProc(int heap, FIELDSYS_WORK * fsys, u8 pos);
 extern int FieldWazaListEvent_GetSelect(void * wk);
 
-//‹Z‹³‚¦Ev‚¢o‚µ
+//æŠ€æ•™ãˆãƒ»æ€ã„å‡ºã—
 #include "application/waza_oshie.h"
 extern void WazaOshie_ProcSet( FIELDSYS_WORK * fsys , WAZAOSHIE_DATA * wk );
 
-//ƒ[ƒ‹ŒÄ‚Ño‚µ
+//ãƒ¡ãƒ¼ãƒ«å‘¼ã³å‡ºã—
 #include "savedata/mail_def.h"
 #include "application/mail/mail_param.h"
 /**
- *	@brief	ƒ[ƒ‹ì¬‰æ–ÊƒtƒB[ƒ‹ƒhƒƒjƒ…[ŒÄ‚Ño‚µ
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ä½œæˆç”»é¢ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—
  *	
  *	@param	fsys FIELDSYS_WORK *
  *
- *	@retval	MAIL_PARAM* :“à•”Šm•Û‚µ‚½ƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *						@@ŒÄ‚Ño‚µ‘¤‚ª–¾¦“I‚É‰ğ•ú‚·‚é•K—v‚ ‚è
+ *	@retval	MAIL_PARAM* :å†…éƒ¨ç¢ºä¿ã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *						ã€€ã€€å‘¼ã³å‡ºã—å´ãŒæ˜ç¤ºçš„ã«è§£æ”¾ã™ã‚‹å¿…è¦ã‚ã‚Š
  */
 extern MAIL_PARAM * FieldMailCreate_InitCall( FIELDSYS_WORK * fsys ,
 		MAILBLOCK_ID blockID,u8 poke_pos,u8 design,int heapID);
 
 /**
- *	@brief	ƒ[ƒ‹•`‰æ‰æ–ÊƒtƒB[ƒ‹ƒhƒƒjƒ…[ŒÄ‚Ño‚µ
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ç”»é¢ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—
  *	
  *	@param	fsys FIELDSYS_WORK *
  *
- *	@retval	MAIL_PARAM* :“à•”Šm•Û‚µ‚½ƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *						@@ŒÄ‚Ño‚µ‘¤‚ª–¾¦“I‚É‰ğ•ú‚·‚é•K—v‚ ‚è
+ *	@retval	MAIL_PARAM* :å†…éƒ¨ç¢ºä¿ã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *						ã€€ã€€å‘¼ã³å‡ºã—å´ãŒæ˜ç¤ºçš„ã«è§£æ”¾ã™ã‚‹å¿…è¦ã‚ã‚Š
  */
 extern MAIL_PARAM * FieldMailView_InitCall( FIELDSYS_WORK * fsys,
 		MAILBLOCK_ID blockID,u8 dataID,int heapID);
 /**
- *	@brief	ƒ[ƒ‹•`‰æ‰æ–ÊƒtƒB[ƒ‹ƒhƒƒjƒ…[ŒÄ‚Ño‚µ(ƒ|ƒPƒ‚ƒ“ƒ[ƒ‹)
+ *	@brief	ãƒ¡ãƒ¼ãƒ«æç”»ç”»é¢ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼å‘¼ã³å‡ºã—(ãƒã‚±ãƒ¢ãƒ³ãƒ¡ãƒ¼ãƒ«)
  *	
  *	@param	fsys FIELDSYS_WORK *
  *
- *	@retval	MAIL_PARAM* :“à•”Šm•Û‚µ‚½ƒpƒ‰ƒ[ƒ^ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- *						@@ŒÄ‚Ño‚µ‘¤‚ª–¾¦“I‚É‰ğ•ú‚·‚é•K—v‚ ‚è
+ *	@retval	MAIL_PARAM* :å†…éƒ¨ç¢ºä¿ã—ãŸãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ *						ã€€ã€€å‘¼ã³å‡ºã—å´ãŒæ˜ç¤ºçš„ã«è§£æ”¾ã™ã‚‹å¿…è¦ã‚ã‚Š
  *
  */
 extern MAIL_PARAM * FieldMailViewPoke_InitCall( FIELDSYS_WORK * fsys,
 		POKEMON_PARAM* poke,int heapID);
 
 /**
- *	@brief	ƒ|ƒ‹ƒgƒP[ƒXŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒ«ãƒˆã‚±ãƒ¼ã‚¹å‘¼ã³å‡ºã—
  */
 extern PORUTO_PARAM* FieldPorutoCase_InitCall(FIELDSYS_WORK* fsys,int heapID);
 /**
- *	@brief	ƒtƒB[ƒ‹ƒh ƒ^ƒ[ƒAƒvƒŠŒÄ‚Ño‚µ
+ *	@brief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ ã‚¿ãƒ¯ãƒ¼ã‚¢ãƒ—ãƒªå‘¼ã³å‡ºã—
  *
  *	@param	fsys FIELDSYS_WORK *
- *	@param	work	void*:ƒ[ƒN‚ÌˆøŒp‚¬
+ *	@param	work	void*:ãƒ¯ãƒ¼ã‚¯ã®å¼•ç¶™ã
  *
- *	@retval	0:¬Œ÷
- *	@retval else	¸”s
+ *	@retval	0:æˆåŠŸ
+ *	@retval else	å¤±æ•—
  */
 #include "application/btwr_app.h"
 extern void BTowerApp_SetProc(FIELDSYS_WORK *fsys,BTOWER_APP_PARAM * ap);
 
 //==============================================================================
-// ŠÈˆÕ‰ï˜b“ü—Í‰æ–Ê
+// ç°¡æ˜“ä¼šè©±å…¥åŠ›ç”»é¢
 //==============================================================================
 #include "application/pms_input.h"
 extern void FieldProc_SetPmsInput( FIELDSYS_WORK* fsys, PMSI_PARAM* param );
 
-//ƒCƒxƒ“ƒgƒRƒ}ƒ“ƒhFŠÈˆÕ‰ï˜b’PŒê“ü—ÍŒÄ‚Ño‚µ
+//ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šç°¡æ˜“ä¼šè©±å˜èªå…¥åŠ›å‘¼ã³å‡ºã—
 extern void EventCmd_PMSInput(GMEVENT_CONTROL * event, u16 * result, u16 * pms1, u16 * pms2);
 
 //==============================================================================
-// ŠJnƒ|ƒPƒ‚ƒ“‘I‘ğ‰æ–Ê‰æ–Ê
+// é–‹å§‹ãƒã‚±ãƒ¢ãƒ³é¸æŠç”»é¢ç”»é¢
 //==============================================================================
 #include "demo/ev_poke_select.h"
 extern void Field_EVPokeSelect_SetProc( FIELDSYS_WORK * fsys, EV_POKESELECT_PEARENT_DATA* p_pearent );
 
 // -----------------------------------------
 //
-//	ƒJƒXƒ^ƒ€ƒ{[ƒ‹‰æ–Ê
+//	ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ç”»é¢
 //
 // -----------------------------------------
 extern BOOL Field_CustomBall_SetProc( FIELDSYS_WORK * fsys, void* buff );
 
-// ©•ªƒTƒCƒ““ü—Í‰æ–Ê
+// è‡ªåˆ†ã‚µã‚¤ãƒ³å…¥åŠ›ç”»é¢
 extern void Field_MySign_SetProc( FIELDSYS_WORK *fsys );
 
-// ¢ŠEŒğŠ·ŒÄ‚Ño‚µ
+// ä¸–ç•Œäº¤æ›å‘¼ã³å‡ºã—
 extern void Field_WorldTrade_SetProc( FIELDSYS_WORK *fsys, int connect );
 
-// WIFIƒoƒgƒ‹ƒ^ƒ[Ú‘±‰æ–ÊŒÄ‚Ño‚µ
+// WIFIãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æ¥ç¶šç”»é¢å‘¼ã³å‡ºã—
 extern void* Field_WifiBattleTowerConnect_SetProc( FIELDSYS_WORK *fsys, int mode, int connect );
 
-// ƒoƒgƒ‹ƒŒƒR[ƒ_[(GDSƒ‚[ƒh)ŒÄ‚Ño‚µ
+// ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼(GDSãƒ¢ãƒ¼ãƒ‰)å‘¼ã³å‡ºã—
 extern void Field_Gds_SetProc( FIELDSYS_WORK *fsys, int connect, int gds_mode );
 
 
 //==============================================================================
-// ŒğŠ·ƒŠƒXƒg`ŒğŠ·ƒfƒ‚`
+// äº¤æ›ãƒªã‚¹ãƒˆã€œäº¤æ›ãƒ‡ãƒ¢ã€œ
 //==============================================================================
 extern BOOL GMEVENT_UnionTradeList(GMEVENT_CONTROL * event);
 
 
 //==============================================================================
-// “a“°“ü‚èƒfƒ‚
+// æ®¿å ‚å…¥ã‚Šãƒ‡ãƒ¢
 //==============================================================================
 #include "demo/demo_dendou.h"
 extern void Field_DendouDemo_SetProc( FIELDSYS_WORK * fsys, DEMO_DENDOU_PARAM* param );
 
 //==============================================================================
-//	“a“°“ü‚èŠm”F
+//	æ®¿å ‚å…¥ã‚Šç¢ºèª
 //==============================================================================
 extern void * Field_DendouPC_Call( FIELDSYS_WORK* fsys );
 
 
 //==============================================================================
-// ƒGƒ“ƒfƒBƒ“ƒOƒfƒ‚
+// ã‚¨ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ãƒ‡ãƒ¢
 //==============================================================================
 #include "demo/ending.h"
 extern void Field_EndingDemo_SetProc( FIELDSYS_WORK * fsys, ENDING_PARENT_PARAM* param );
 
 //==============================================================================
-//	ƒ^ƒ}ƒS‚¤‚Ü‚ê‚éƒfƒ‚
+//	ã‚¿ãƒã‚´ã†ã¾ã‚Œã‚‹ãƒ‡ãƒ¢
 //==============================================================================
 void Field_EggDemo_Call(FIELDSYS_WORK * fsys);
 
 //==============================================================================
-//	ƒXƒƒbƒg
+//	ã‚¹ãƒ­ãƒƒãƒˆ
 //==============================================================================
 extern BOOL FieldSlot_SetProc( FIELDSYS_WORK *fsys, SLOT_PARAM *slotparam );
 
@@ -223,57 +223,57 @@ extern void EventCmd_SlotMachine(GMEVENT_CONTROL * event, int id);
 
 
 //==============================================================================
-//	ƒAƒNƒZƒTƒŠ[ƒVƒ‡ƒbƒv
+//	ã‚¢ã‚¯ã‚»ã‚µãƒªãƒ¼ã‚·ãƒ§ãƒƒãƒ—
 //==============================================================================
 extern void EventCmd_AcceShop(GMEVENT_CONTROL * event);
 
 //==============================================================================
-//	•\²ó
+//	è¡¨å½°çŠ¶
 //==============================================================================
 extern void* Syoujyou_SetProc( FIELDSYS_WORK * fsys, int heapID, int type );
 
 //==============================================================================
-// ƒ^ƒEƒ“ƒ}ƒbƒvŠÖ˜A
+// ã‚¿ã‚¦ãƒ³ãƒãƒƒãƒ—é–¢é€£
 //==============================================================================
 extern void * FieldMenuTMap_SetProc( FIELDSYS_WORK * fsys );
 
 //==============================================================================
-// ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
+// ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
 //==============================================================================
 extern const PROC_DATA TestBattleProcData;
 
 //==============================================================================
-// ƒoƒgƒ‹ƒtƒƒ“ƒeƒBƒAƒ‚ƒjƒ^[
+// ãƒãƒˆãƒ«ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢ãƒ¢ãƒ‹ã‚¿ãƒ¼
 //==============================================================================
 extern void* FrontierMonitor_SetProc( FIELDSYS_WORK * fsys, u8 type, u8 fr_no, u16 monsno, int heapID );
 
 //==============================================================================
-// ƒXƒNƒ‰ƒbƒ`
+// ã‚¹ã‚¯ãƒ©ãƒƒãƒ
 //==============================================================================
 extern void* Scratch_SetProc( FIELDSYS_WORK * fsys, int heapID );
 
 //==============================================================================
-// ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒWƒfƒ‚
+// ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ãƒ‡ãƒ¢
 //==============================================================================
 extern PLIST_DATA * FieldFormChangePokeList_SetProc(FIELDSYS_WORK* fsys,int heapID, int item);
 
 //==============================================================================
-// ‹Z‹³‚¦
+// æŠ€æ•™ãˆ
 //==============================================================================
 extern void* WazaOshiePokeStatusEvent_SetProc( int heap, FIELDSYS_WORK* fsys, u16 pos, u16 waza );
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	}‘ŠÙTVŒÄ‚Ño‚µ
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	å›³æ›¸é¤¨TVå‘¼ã³å‡ºã—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 extern void Field_LibraryTV_SetProc(FIELDSYS_WORK * fsys);
 
 //-----------------------------------------------------------------------------
 /**
- * @brief	”j‚ê‚½¢ŠE“Ë“üƒfƒ‚‰æ–ÊŒÄ‚Ño‚µ
- * @param	fsys	ƒtƒB[ƒ‹ƒh§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	ç ´ã‚ŒãŸä¸–ç•Œçªå…¥ãƒ‡ãƒ¢ç”»é¢å‘¼ã³å‡ºã—
+ * @param	fsys	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //-----------------------------------------------------------------------------
 extern void Field_HakaiWarp_SetProc(FIELDSYS_WORK * fsys);

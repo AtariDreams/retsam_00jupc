@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pms_input_data.h
- * @bfief	�ȈՉ�b���͉�ʁi�J�e�S���E�C���f�b�N�X���̃f�[�^�Ǘ��j
+ * @bfief	簡易会話入力画面（カテゴリ・インデックス等のデータ管理）
  * @author	taya
  * @date	06.02.03
  */
@@ -16,7 +16,7 @@
 
 //--------------------------------------------------------------
 /**
- *	�f�[�^�Ǘ��I�u�W�F�N�g�̒��ی^
+ *	データ管理オブジェクトの抽象型
  */
 //--------------------------------------------------------------
 typedef struct _PMS_INPUT_DATA  PMS_INPUT_DATA;
@@ -24,7 +24,7 @@ typedef struct _PMS_INPUT_DATA  PMS_INPUT_DATA;
 
 //--------------------------------------------------------------
 /**
- *	�J�e�S��
+ *	カテゴリ
  */
 //--------------------------------------------------------------
 enum PMSI_CATEGORY_GROUP {
@@ -93,10 +93,10 @@ enum PMSI_CATEGORY_INITIAL {
 	CATEGORY_INITIAL_OTHER,
 };
 
-// �O���[�v�E�C�j�V�����̂ǂ̃i���o�[�Ƃ��d�����Ȃ��l�i1byte�j
+// グループ・イニシャルのどのナンバーとも重複しない値（1byte）
 enum {
-	CATEGORY_POS_BACK    = 0xfe,	///< �u���ǂ�v�ʒu�f�[�^
-	CATEGORY_POS_DISABLE = 0xff,	///< �����ʒu�f�[�^
+	CATEGORY_POS_BACK    = 0xfe,	///< 「もどる」位置データ
+	CATEGORY_POS_DISABLE = 0xff,	///< 無効位置データ
 };
 
 
@@ -116,7 +116,7 @@ extern PMS_WORD PMSI_DATA_GetInitialEnableWordCode( const PMS_INPUT_DATA* pmsi, 
 
 
 //====================================================================================
-// �{�b�N�X�ǎ��p�X���[�h�Ή�����
+// ボックス壁紙パスワード対応処理
 //====================================================================================
 extern int PMSI_DAT_GetBoxPwdMax(void);
 extern int PMSI_DAT_WordToBoxPwdID( PMS_WORD word );

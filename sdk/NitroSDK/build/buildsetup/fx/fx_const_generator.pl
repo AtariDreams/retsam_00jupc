@@ -24,31 +24,31 @@
 # adds 'L' suffix to 32bit constants
 #
 # Revision 1.10  2003/11/26 12:25:35  nishida_kenji
-# ƒRƒƒ“ƒg‚ğ’Ç‰Á‚·‚é‚æ‚¤‚É‚µ‚½B
+# ã‚³ãƒ¡ãƒ³ãƒˆã‚’è¿½åŠ ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
 #
 # Revision 1.9  2003/11/26 10:51:54  nishida_kenji
-# ŠÛ‚ß‚ÌÛ‚ÉŒë·‚ªo‚é‰Â”\«‚Ì‚ ‚éƒoƒO‚ÌC³
+# ä¸¸ã‚ã®éš›ã«èª¤å·®ãŒå‡ºã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹ãƒã‚°ã®ä¿®æ­£
 #
 # Revision 1.8  2003/11/25 01:49:42  nishida_kenji
-# ƒoƒOƒtƒBƒbƒNƒX
+# ãƒã‚°ãƒ•ã‚£ãƒƒã‚¯ã‚¹
 #
 # Revision 1.7  2003/11/19 11:35:12  nishida_kenji
 # FX16_ONE
 #
 # Revision 1.6  2003/11/18 10:51:56  nishida_kenji
-# fx64cŒ^‚É
+# fx64cå‹ã«
 #
 # Revision 1.5  2003/11/17 01:28:11  nishida_kenji
-# fx32‚ÌŠÔˆá‚¢‚È‚¨‚µ
+# fx32ã®é–“é•ã„ãªãŠã—
 #
 # Revision 1.4  2003/11/17 00:33:48  nishida_kenji
-# ƒfƒBƒŒƒNƒgƒŠ•ÏX
+# ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå¤‰æ›´
 #
 # Revision 1.3  2003/11/14 12:51:48  nishida_kenji
-# Math::BigInt‚Å‘å‚«‚È”‚ªg‚¦‚Ü‚·
+# Math::BigIntã§å¤§ããªæ•°ãŒä½¿ãˆã¾ã™
 #
 # Revision 1.2  2003/11/14 12:39:54  nishida_kenji
-# ’ˆÓ‘‚«’Ç‰Á
+# æ³¨æ„æ›¸ãè¿½åŠ 
 #
 # $NoKeywords: $
 ##############################################################################
@@ -65,7 +65,7 @@ $line_no = 0;
 $filename = $ARGV[0];
 
 #
-# ƒtƒB[ƒ‹ƒh‚ÌÅ‰‚ÆÅŒã‚Ì‹ó”’‚ğæ‚èœ‚­
+# ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®æœ€åˆã¨æœ€å¾Œã®ç©ºç™½ã‚’å–ã‚Šé™¤ã
 #
 sub trim {
   my @out = @_;
@@ -77,14 +77,14 @@ sub trim {
 }
 
 #
-# CSV‰ğÍƒ‹[ƒ`ƒ“
+# CSVè§£æãƒ«ãƒ¼ãƒãƒ³
 #
 sub parse_csv {
   my @fields = quotewords(",", 0, shift @_);
   @fields = trim(@fields);
   
   my $tmp;
-  # s––‚Ì,,,,‚ğæ‚èœ‚­
+  # è¡Œæœ«ã®,,,,ã‚’å–ã‚Šé™¤ã
   while(defined($tmp = pop @fields) && $tmp =~ /^$/ ) {
        ;
   }
@@ -94,14 +94,14 @@ sub parse_csv {
 }
 
 #
-# ƒvƒŠƒvƒƒZƒbƒT
+# ãƒ—ãƒªãƒ—ãƒ­ã‚»ãƒƒã‚µ
 #
 sub preprocess {
   return parse_csv(shift @_);
 }
 
 #
-# ‰ğÍ
+# è§£æ
 #
 
 sub analyze {
@@ -122,7 +122,7 @@ sub analyze {
 
 
 #
-# ƒƒCƒ“ƒ‹[ƒ`ƒ“
+# ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
 #
 open INPUTFILE, "$filename" or die  "ERROR: Cannot open file \'$filename\'\n";
 
@@ -150,7 +150,7 @@ $include_guard =~ s/[.\/]/_/g;
 $include_guard = "nitro_". uc($include_guard). "_";
 
 #
-# o—Í
+# å‡ºåŠ›
 #
 print $handle <<ENDDOC;
 /*---------------------------------------------------------------------------*

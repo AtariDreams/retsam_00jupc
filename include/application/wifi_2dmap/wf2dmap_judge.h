@@ -2,7 +2,7 @@
 /**
  *
  *	@file		wf2dmap_judge.h
- *	@brief		ƒRƒ}ƒ“ƒh”»’fƒ‚ƒWƒ…[ƒ‹•ƒŠƒNƒGƒXƒgƒRƒ}ƒ“ƒhƒoƒbƒtƒ@
+ *	@brief		ã‚³ãƒžãƒ³ãƒ‰åˆ¤æ–­ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ï¼†ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒžãƒ³ãƒ‰ãƒãƒƒãƒ•ã‚¡
  *	@author		tomoya takahashi
  *	@data		2007.03.15
  *
@@ -26,7 +26,7 @@
 
 //-----------------------------------------------------------------------------
 /**
- *			ƒRƒ}ƒ“ƒhƒWƒƒƒbƒWƒ‚ƒWƒ…[ƒ‹
+ *			ã‚³ãƒžãƒ³ãƒ‰ã‚¸ãƒ£ãƒƒã‚¸ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
  */
 //-----------------------------------------------------------------------------
 GLOBAL BOOL WF2DMAP_JUDGESysCmdJudge( const WF2DMAP_MAPSYS* cp_mapsys, const WF2DMAP_OBJSYS* cp_objsys, const WF2DMAP_REQCMD* cp_req, WF2DMAP_ACTCMD* p_act );

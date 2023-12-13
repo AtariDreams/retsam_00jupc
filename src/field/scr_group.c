@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_group.c
- * @brief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒvŠÖ˜A
+ * @brief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—é–¢é€£
  * @author	tamada GAME FREAK inc.
  * @date	2006.05.22
  */
@@ -26,7 +26,7 @@
 //============================================================================================
 //-----------------------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒ“ƒ_ƒ€ƒOƒ‹[ƒv—p‹¤’ÊƒRƒ}ƒ“ƒh
+ * @brief	ãƒ©ãƒ³ãƒ€ãƒ ã‚°ãƒ«ãƒ¼ãƒ—ç”¨å…±é€šã‚³ãƒãƒ³ãƒ‰
  */
 //-----------------------------------------------------------------------------
 BOOL EvCmdRandomGroup(VM_MACHINE * core)
@@ -89,7 +89,7 @@ BOOL EvCmdRandomGroup(VM_MACHINE * core)
 
 			RandomGroup_Copy(rg, select, RANDOMGROUP_MYUSE);
 			if (entry) {
-				//‚·‚Å‚ÉƒOƒ‹[ƒv‚ÉŠ‘®‚µ‚Ä‚¢‚éê‡‚Ì‚İAƒgƒsƒbƒN‚ğ¶¬‚·‚é
+				//ã™ã§ã«ã‚°ãƒ«ãƒ¼ãƒ—ã«æ‰€å±ã—ã¦ã„ã‚‹å ´åˆã®ã¿ã€ãƒˆãƒ”ãƒƒã‚¯ã‚’ç”Ÿæˆã™ã‚‹
 				TVTOPIC_Entry_Watch_ChangeGroup(core->fsys);
 			}
 		}
@@ -100,7 +100,7 @@ BOOL EvCmdRandomGroup(VM_MACHINE * core)
 			STRBUF * strbuf = STRBUF_Create(64, HEAPID_EVENT);
 			MYSTATUS * my = SaveData_GetMyStatus(core->fsys->savedata);
 
-			//ƒOƒ‹[ƒv¶¬ˆ—EƒOƒ‹[ƒv–¼‚Ì‚İAEventCmd_NameIn“à‚ÅƒZƒbƒg‚³‚ê‚Ä‚¢‚é
+			//ã‚°ãƒ«ãƒ¼ãƒ—ç”Ÿæˆå‡¦ç†ãƒ»ã‚°ãƒ«ãƒ¼ãƒ—åã®ã¿ã€EventCmd_NameInå†…ã§ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹
 			MyStatus_CopyNameString(my, strbuf);
 			RandomGroup_SetName(rg, RANDOMGROUP_MINE, RANDOMGROUP_NAME_LEADER, strbuf);
 			RandomGroup_SetSex(rg, RANDOMGROUP_MINE, MyStatus_GetMySex(my));

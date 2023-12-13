@@ -18,7 +18,7 @@
 
 
 //------------------------------------------------------------------------------
-// �u���b�N���烊�[�W�������擾���܂��B
+// ブロックからリージョンを取得します。
 static NNS_GFD_INLINE void 
 GetRegionOfMemBlock_
 (
@@ -36,7 +36,7 @@ GetRegionOfMemBlock_
 }
 
 //------------------------------------------------------------------------------
-// ���[�W��������u���b�N�����������܂��B
+// リージョンからブロックを初期化します。
 static NNS_GFD_INLINE void InitBlockFromRegion_
 ( 
     NNSiGfdLnkVramBlock*        pBlk, 
@@ -53,7 +53,7 @@ static NNS_GFD_INLINE void InitBlockFromRegion_
 }
 
 //------------------------------------------------------------------------------
-// �p�����[�^�ނ���u���b�N�����������܂��B
+// パラメータ類からブロックを初期化します。
 static NNS_GFD_INLINE void InitBlockFromPrams_
 ( 
     NNSiGfdLnkVramBlock*    pBlk, 
@@ -71,7 +71,7 @@ static NNS_GFD_INLINE void InitBlockFromPrams_
 }
 
 //------------------------------------------------------------------------------
-// ���X�g�̐擪�֗v�f��}�����܂��B
+// リストの先頭へ要素を挿入します。
 static NNS_GFD_INLINE void InsertBlock_
 (
     NNSiGfdLnkVramBlock**   pListHead,
@@ -92,7 +92,7 @@ static NNS_GFD_INLINE void InsertBlock_
 }
 
 //------------------------------------------------------------------------------
-// ���X�g����v�f�����o���܂��B
+// リストから要素を取り出します。
 static NNS_GFD_INLINE void RemoveBlock_
 (
     NNSiGfdLnkVramBlock**  pListHead,
@@ -105,7 +105,7 @@ static NNS_GFD_INLINE void RemoveBlock_
         NNSiGfdLnkVramBlock *const pPrev = pBlk->pBlkPrev;
         NNSiGfdLnkVramBlock *const pNext = pBlk->pBlkNext;
 
-        // �O�Q�ƃ����N
+        // 前参照リンク
         if ( pPrev )
         {
             pPrev->pBlkNext = pNext;
@@ -114,7 +114,7 @@ static NNS_GFD_INLINE void RemoveBlock_
         }
         
 
-        // ���Q�ƃ����N
+        // 次参照リンク
         if ( pNext )
         {
             pNext->pBlkPrev = pPrev;
@@ -123,13 +123,13 @@ static NNS_GFD_INLINE void RemoveBlock_
 }
 
 //------------------------------------------------------------------------------
-// �V�����u���b�N���擾���܂��B
+// 新しいブロックを取得します。
 static NNS_GFD_INLINE NNSiGfdLnkVramBlock* 
 GetNewBlock_( NNSiGfdLnkVramBlock**   ppBlockPoolList )
 {
     NNS_GFD_NULL_ASSERT( ppBlockPoolList );
     {
-        // ���X�g�擪������o��
+        // リスト先頭から取り出す
         NNSiGfdLnkVramBlock*    pNew = *ppBlockPoolList;
         if( pNew )
         {
@@ -142,7 +142,7 @@ GetNewBlock_( NNSiGfdLnkVramBlock**   ppBlockPoolList )
 
 
 //------------------------------------------------------------------------------
-// �u���b�N�̏I�[�A�h���X���擾���܂��B
+// ブロックの終端アドレスを取得します。
 static NNS_GFD_INLINE u32 GetBlockEndAddr_( NNSiGfdLnkVramBlock* pBlk )
 {
     NNS_GFD_NULL_ASSERT( pBlk );
@@ -151,7 +151,7 @@ static NNS_GFD_INLINE u32 GetBlockEndAddr_( NNSiGfdLnkVramBlock* pBlk )
 }
 
 //------------------------------------------------------------------------------
-// NNSi_GfdDumpLnkVramManFreeListInfo() �Ŏg�p�����A�f�o�b�N�o�͏����֐��B
+// NNSi_GfdDumpLnkVramManFreeListInfo() で使用される、デバック出力処理関数。
 static void DefaultDumpCallBack_( 
     u32                             addr, 
     u32                             szByte, 
@@ -172,8 +172,8 @@ static void DefaultDumpCallBack_(
 }
 
 //------------------------------------------------------------------------------
-// �t���[�u���b�N�𑖍����āA���[�W�������������܂��B
-// �������N�������ǂ�����BOOL�ŕԂ��܂��B
+// フリーブロックを走査して、リージョンを結合します。
+// 結合が起きたかどうかをBOOLで返します。
 static BOOL TryToMergeBlockRegion_( 
     NNSiGfdLnkVramMan*      pMan, 
     NNSiGfdLnkVramBlock**   ppBlockPoolList,
@@ -184,33 +184,33 @@ static BOOL TryToMergeBlockRegion_(
     NNS_GFD_NULL_ASSERT( pRegion );
             
     {
-        // �w��G���A�ɗאڂ����t���[�G���A������
+        // 指定エリアに隣接したフリーエリアを検索
         NNSiGfdLnkVramBlock*        pCursor         = pMan->pFreeList;
         NNSiGfdLnkVramBlock*        pNext           = NULL;
         BOOL                        bMerged         = FALSE;
 
-        // ���ׂẴt���[���X�g�v�f�ɂ���...
+        // すべてのフリーリスト要素について...
         while( pCursor )
         {
             pNext = pCursor->pBlkNext;
               
-            // ����ɗאڂ���u���b�N��?
+            // 後方に隣接するブロックか?
             if( pCursor->addr == pRegion->end )   
             {
-                // �󂫃��[�W����������
+                // 空きリージョンを結合
                 pRegion->end = GetBlockEndAddr_( pCursor );
-                // ���X�g�����菜���APool �ɖ߂�
+                // リストから取り除き、Pool に戻す
                 RemoveBlock_( &pMan->pFreeList, pCursor );
                 InsertBlock_( ppBlockPoolList, pCursor );
                 bMerged |= TRUE;
             }
                             
-            // �O���ɗאڂ���u���b�N��?
+            // 前方に隣接するブロックか?
             if( GetBlockEndAddr_( pCursor ) == pRegion->start )
             {
-                // �󂫃��[�W����������
+                // 空きリージョンを結合
                 pRegion->start  = pCursor->addr;
-                // ���X�g�����菜���APool �ɖ߂�
+                // リストから取り除き、Pool に戻す
                 RemoveBlock_( &pMan->pFreeList, pCursor );
                 InsertBlock_( ppBlockPoolList, pCursor );
                 bMerged |= TRUE;
@@ -227,12 +227,12 @@ static BOOL TryToMergeBlockRegion_(
 /*---------------------------------------------------------------------------*
   Name:         NNSi_GfdDumpLnkVramManFreeListInfo
 
-  Description:  �t���[�u���b�N�����f�o�b�N�o�͂��܂��B
+  Description:  フリーブロック情報をデバック出力します。
                 
-  Arguments:    pFreeListHead          : �t���[�u���b�N��񃊃X�g�̐擪
-                szReserved             : �m�ۂ���Ă���̈�̃T�C�Y
+  Arguments:    pFreeListHead          : フリーブロック情報リストの先頭
+                szReserved             : 確保されている領域のサイズ
                
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNSi_GfdDumpLnkVramManFreeListInfo
@@ -245,16 +245,16 @@ void NNSi_GfdDumpLnkVramManFreeListInfo
     u32                         szFreeTotal = 0; 
     const NNSiGfdLnkVramBlock*  pBlk        = pFreeListHead;
     
-    // ���ׂẴt���[���X�g�̏���\��
+    // すべてのフリーリストの情報を表示
     NNSi_GfdDumpLnkVramManFreeListInfoEx( pBlk, DefaultDumpCallBack_, &szFreeTotal );
     
-    // �t���[���X�g�����݂��Ȃ��ꍇ�́A�_�~�[�s�̕\�����s��
+    // フリーリストが存在しない場合は、ダミー行の表示を行う
     if( szFreeTotal == 0 )
     {
         OS_Printf("0x--------:  0x--------    \n");
     }
     
-    // �g�p���̕\��
+    // 使用率の表示
     {
         const u32 szUsedTotal = (szReserved - szFreeTotal);
         OS_Printf("    %08d / %08d bytes (%6.2f%%) used \n", 
@@ -265,15 +265,15 @@ void NNSi_GfdDumpLnkVramManFreeListInfo
 /*---------------------------------------------------------------------------*
   Name:         NNSi_GfdDumpLnkVramManFreeListInfoEx
 
-  Description:  �f�o�b�N�o�͏����֐����w�肵�āA
-                �t���[�u���b�N�����f�o�b�N�o�͂��܂��B
+  Description:  デバック出力処理関数を指定して、
+                フリーブロック情報をデバック出力します。
                 
-  Arguments:    pFreeListHead          : �t���[�u���b�N��񃊃X�g�̐擪
-                pFunc                  : �f�o�b�N�o�͏����֐�
-                pUserData              : �f�o�b�N�o�͏����֐��Ɉ����Ƃ��ēn�����A
-                                         �f�o�b�N�o�͏����p�f�[�^
+  Arguments:    pFreeListHead          : フリーブロック情報リストの先頭
+                pFunc                  : デバック出力処理関数
+                pUserData              : デバック出力処理関数に引数として渡される、
+                                         デバック出力処理用データ
                
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void NNSi_GfdDumpLnkVramManFreeListInfoEx( 
@@ -281,7 +281,7 @@ void NNSi_GfdDumpLnkVramManFreeListInfoEx(
     NNSGfdLnkDumpCallBack           pFunc, 
     void*                           pUserData )
 {
-    // ���ׂẴt���[���X�g�̏���\��
+    // すべてのフリーリストの情報を表示
     const NNSiGfdLnkVramBlock*  pBlk        = pFreeListHead;
     
     NNS_GFD_NULL_ASSERT( pFunc );
@@ -296,12 +296,12 @@ void NNSi_GfdDumpLnkVramManFreeListInfoEx(
 /*---------------------------------------------------------------------------*
   Name:         NNSi_GfdInitLnkVramMan
 
-  Description:  NNSiGfdLnkVramMan�����������܂��B
+  Description:  NNSiGfdLnkVramManを初期化します。
                 
-  Arguments:    pMgr          : VRAM�}�l�[�W��
+  Arguments:    pMgr          : VRAMマネージャ
                 
                
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 void 
@@ -315,13 +315,13 @@ NNSi_GfdInitLnkVramMan( NNSiGfdLnkVramMan* pMgr )
 /*---------------------------------------------------------------------------*
   Name:         NNSi_GfdInitLnkVramBlockPool
 
-  Description:  �Ǘ��u���b�N�v�[�������������܂��B
-                �Ǘ����v�f�� == �Ǘ��\�ȃ������敪���ƂȂ�܂�
+  Description:  管理ブロックプールを初期化します。
+                管理情報要素数 == 管理可能なメモリ区分数となります
                 
-  Arguments:    pArrayHead          : �Ǘ����z��̐擪
-                lengthOfArray       : �Ǘ����v�f��
+  Arguments:    pArrayHead          : 管理情報配列の先頭
+                lengthOfArray       : 管理情報要素数
                
-  Returns:      ���X�g�̐擪
+  Returns:      リストの先頭
   
  *---------------------------------------------------------------------------*/
 NNSiGfdLnkVramBlock* 
@@ -335,7 +335,7 @@ NNSi_GfdInitLnkVramBlockPool
     NNS_GFD_NON_ZERO_ASSERT( lengthOfArray );
     
     //
-    // ���X�g�łȂ��܂�
+    // リストでつなぎます
     //
     {
         int i;
@@ -349,22 +349,22 @@ NNSi_GfdInitLnkVramBlockPool
         pArrayHead[lengthOfArray - 1].pBlkNext  = NULL;    
     }
     
-    // ���X�g�擪��Ԃ��܂�
+    // リスト先頭を返します
     return &pArrayHead[0];
 }
 
 /*---------------------------------------------------------------------------*
   Name:         NNSi_GfdInitLnkVramMan
 
-  Description:  �}�l�[�W���ɐV�����t���[�̈�̃u���b�N��ǉ����܂��B
+  Description:  マネージャに新しいフリー領域のブロックを追加します。
                 
                 
-  Arguments:    pMan                : �}�l�[�W��
-                ppBlockPoolList     : ���ʃu���b�N�Ǘ����
-                baseAddr            : �Ǘ��̈�̃x�[�X�A�h���X
-                szByte              : �m�ۂ��郁�����T�C�Y
+  Arguments:    pMan                : マネージャ
+                ppBlockPoolList     : 共通ブロック管理情報
+                baseAddr            : 管理領域のベースアドレス
+                szByte              : 確保するメモリサイズ
                
-  Returns:      �Ȃ�
+  Returns:      なし
   
  *---------------------------------------------------------------------------*/
 BOOL NNSi_GfdAddNewFreeBlock
@@ -379,7 +379,7 @@ BOOL NNSi_GfdAddNewFreeBlock
     NNS_GFD_NULL_ASSERT( ppBlockPoolList );
     NNS_GFD_NON_ZERO_ASSERT( szByte );
     
-    // �t���[�u���b�N���쐬����
+    // フリーブロックを作成する
     {
         NNSiGfdLnkVramBlock*        pNew  = GetNewBlock_( ppBlockPoolList );
         if( pNew )
@@ -399,17 +399,17 @@ BOOL NNSi_GfdAddNewFreeBlock
 /*---------------------------------------------------------------------------*
   Name:         NNSi_GfdAllocLnkVram
 
-  Description:  �������m�ۂ��s���܂��B
+  Description:  メモリ確保を行います。
                 
-                �c�胁�������\���ł��A
-                �Ǘ��u���b�N���s�������ꍇ�Ɋm�ۂɎ��s����ꍇ������̂Œ��ӂ��K�v�ł��B 
+                残りメモリが十分でも、
+                管理ブロックが不足した場合に確保に失敗する場合があるので注意が必要です。 
                 
-  Arguments:    pMan                : �}�l�[�W��
-                ppBlockPoolList     : ���ʃu���b�N�Ǘ����
-                pRetAddr            : �m�ۂ���A�h���X�ւ̃|�C���^
-                szByte              : �m�ۂ��郁�����T�C�Y
+  Arguments:    pMan                : マネージャ
+                ppBlockPoolList     : 共通ブロック管理情報
+                pRetAddr            : 確保するアドレスへのポインタ
+                szByte              : 確保するメモリサイズ
                 
-  Returns:      �������m�ۂ̐���
+  Returns:      メモリ確保の成否
   
  *---------------------------------------------------------------------------*/
 BOOL
@@ -425,9 +425,9 @@ NNSi_GfdAllocLnkVram
 }
 
 //------------------------------------------------------------------------------
-// �A���C�������g���w��\�ȃ������m�ہB
-// �A���C�������g�̍ۂɔ��������A�󂫗̈�̓t���[���X�g�ɐV���ɓo�^�����B
-// �󂫗̈�̂��߂̊Ǘ����u���b�N�����݂��Ȃ��ꍇ�ɂ́A�m�ێ��s�ƂȂ�̂Œ��ӂ��K�v�ł���B
+// アラインメントを指定可能なメモリ確保。
+// アラインメントの際に発生した、空き領域はフリーリストに新たに登録される。
+// 空き領域のための管理情報ブロックが存在しない場合には、確保失敗となるので注意が必要である。
 BOOL
 NNSi_GfdAllocLnkVramAligned
 ( 
@@ -444,7 +444,7 @@ NNSi_GfdAllocLnkVramAligned
     NNS_GFD_NON_ZERO_ASSERT( szByte );
     {
         //
-        // �t���[���X�g��������ɂ����u���b�N����������
+        // フリーリストから条件にあうブロックを検索する
         //
         u32     alignedAddr;
         u32     szNeeded;
@@ -457,12 +457,12 @@ NNSi_GfdAllocLnkVramAligned
         while( pBlk )
         {
             //
-            // �K�v������΁A�A���C�����E�ɐ؂�グ���A�h���X���v�Z���܂�
+            // 必要があれば、アライン境界に切り上げたアドレスを計算します
             //
             if( alignment > 1 )
             {
                 alignedAddr = (u32)(  (pBlk->addr + (alignment - 1)) & ~(alignment - 1) );
-                // ���ۂɕK�v�ƂȂ�T�C�Y�͐؂�グ���������������܂�
+                // 実際に必要となるサイズは切り上げた分だけ増加します
                 difference  = ( alignedAddr - pBlk->addr );
                 szNeeded    = szByte + difference;
             }else{
@@ -472,7 +472,7 @@ NNSi_GfdAllocLnkVramAligned
             }
             
             
-            // �T�C�Y���v�����݂������H
+            // サイズが要求をみたすか？
             if( pBlk->szByte >= szNeeded )
             {
                 pBlkFound = pBlk;
@@ -482,36 +482,36 @@ NNSi_GfdAllocLnkVramAligned
         }
         
         //
-        // �����ɂ���u���b�N���������ꂽ�Ȃ��...
+        // 条件にあるブロックが発見されたならば...
         //
         if ( pBlkFound ) 
         {
-            // �A���C�����g�Ƃ��Ă��炵�������̓t���[�u���b�N�Ƃ��ēo�^���܂�
+            // アライメントとしてずらした部分はフリーブロックとして登録します
             if( difference > 0 )
             {    
                 NNSiGfdLnkVramBlock*        pNewFreeBlk = GetNewBlock_( ppBlockPoolList );
                 if( pNewFreeBlk )
                 {
-                    // �o�^
+                    // 登録
                     InitBlockFromPrams_( pNewFreeBlk, pBlkFound->addr, difference );
                     InsertBlock_( &pMan->pFreeList, pNewFreeBlk );
                 }else{
-                    // �m�ێ��s�Ƃ���
+                    // 確保失敗とする
                     goto NG_CASE;
                 }
             }
             
-            // ���������t���[�u���b�N�̏����X�V
+            // 発見したフリーブロックの情報を更新
             {
-                // �g�p�����������Z����
+                // 使用した分を減算する
                 pBlkFound->szByte   -= szNeeded;
-                // �u���b�N�O������m�ۂ���B
+                // ブロック前方から確保する。
                 pBlkFound->addr     += szNeeded; 
                 
-                // ���傤�ǂ̑傫��������
+                // ちょうどの大きさだった
                 if( pBlkFound->szByte == 0 )
                 {
-                    // �t���[���X�g�����菜��
+                    // フリーリストから取り除く
                     RemoveBlock_( &pMan->pFreeList, pBlkFound );
                     InsertBlock_( ppBlockPoolList, pBlkFound );
                 }
@@ -523,7 +523,7 @@ NNSi_GfdAllocLnkVramAligned
         
 NG_CASE:            
         //
-        // �����ɍ����A�u���b�N�������ł��Ȃ������B
+        // 条件に合う、ブロックが発見できなかった。
         //
         *pRetAddr = 0;
         return FALSE;
@@ -534,7 +534,7 @@ NG_CASE:
 /*---------------------------------------------------------------------------*
   Name:         NNSi_GfdMergeAllFreeBlocks
 
-  Description:  �t���[�u���b�N�𑖍����āA�u���b�N�̌��������܂��B
+  Description:  フリーブロックを走査して、ブロックの結合をします。
   
  *---------------------------------------------------------------------------*/
 void NNSi_GfdMergeAllFreeBlocks( 
@@ -544,24 +544,24 @@ void NNSi_GfdMergeAllFreeBlocks(
 {
     NNSiGfdLnkMemRegion         region;
     
-    // ���ׂẮA�t���[���X�g�ɂ���...
+    // すべての、フリーリストについて...
     NNSiGfdLnkVramBlock*        pCursor         = pMan->pFreeList;
     while( pCursor )
     {
         region.start    = pCursor->addr;
         region.end      = pCursor->addr + pCursor->szByte;
         
-        // �u���b�N�������ł��Ȃ����m�F���܂��B
-        // �����������...
+        // ブロックが結合できないか確認します。
+        // 結合があれば...
         if( TryToMergeBlockRegion_( pMan, ppBlockPoolList, &region ) )
         {
             //
-            // �������s��́A�V�����T�C�Y��ݒ肵�܂��B
+            // 結合試行後の、新しいサイズを設定します。
             //
             pCursor->addr    = region.start;
             pCursor->szByte  = region.end - region.start;       
             
-            // ���X�g�擪����A�ēx�������܂��B
+            // リスト先頭から、再度走査します。
             pCursor = pMan->pFreeList;
         }else{
             pCursor = pCursor->pBlkNext;
@@ -572,17 +572,17 @@ void NNSi_GfdMergeAllFreeBlocks(
 /*---------------------------------------------------------------------------*
   Name:         NNSi_GfdFreeLnkVram
 
-  Description:  �������J�����s���܂��B
-                �Ǘ��u���b�N���s�������ꍇ�ɊJ���Ɏ��s����ꍇ������̂Œ��ӂ��K�v�ł��B
-                (�V���ȃt���[�u���b�N�̐����Ɏ��s���邽��)
+  Description:  メモリ開放を行います。
+                管理ブロックが不足した場合に開放に失敗する場合があるので注意が必要です。
+                (新たなフリーブロックの生成に失敗するため)
                 
                 
-  Arguments:    pMan                : �}�l�[�W��
-                ppBlockPoolList     : ���ʃu���b�N�Ǘ����
-                addr                : �J������A�h���X
-                szByte              : �J�����郁�����T�C�Y
+  Arguments:    pMan                : マネージャ
+                ppBlockPoolList     : 共通ブロック管理情報
+                addr                : 開放するアドレス
+                szByte              : 開放するメモリサイズ
                
-  Returns:      �������J���̐���
+  Returns:      メモリ開放の成否
   
  *---------------------------------------------------------------------------*/
 BOOL NNSi_GfdFreeLnkVram
@@ -599,11 +599,11 @@ BOOL NNSi_GfdFreeLnkVram
     {
         
         //------------------------------------------------------------------------------
-        // �󂫃��[�W�������t���[�������u���b�N�֑g�ݓ���܂��B
-        //      �t���[�u���b�N�Ɨאڂ��Ă���ꍇ�́A�t���[�u���b�N���g�����܂��B
-        //      �t���[�u���b�N�Ɨאڂ��Ă��炸�A���t���[�u���b�N�Ƃ���قǂ�
-        //      �T�C�Y�������ꍇ�́A����ɗאڂ���g�p�ς݃u���b�N�̃A���C�����g�l�Ƃ��܂��B
-        //      ����ɗאڂ���g�p�ς݃u���b�N�������ꍇ�́A�֐��͎��s���܂��B
+        // 空きリージョンをフリーメモリブロックへ組み入れます。
+        //      フリーブロックと隣接している場合は、フリーブロックを拡張します。
+        //      フリーブロックと隣接しておらず、かつフリーブロックとするほどの
+        //      サイズが無い場合は、後方に隣接する使用済みブロックのアライメント値とします。
+        //      後方に隣接する使用済みブロックが無い場合は、関数は失敗します。
         {
             NNSiGfdLnkMemRegion     region;
         
@@ -616,14 +616,14 @@ BOOL NNSi_GfdFreeLnkVram
                 (void)TryToMergeBlockRegion_( pMan, ppBlockPoolList, &region );
                                 
                 //
-                // �V�����t���[�u���b�N��o�^����
+                // 新しいフリーブロックを登録する
                 //
                 {
                     NNSiGfdLnkVramBlock*        pNewFreeBlk = GetNewBlock_( ppBlockPoolList );
                     if( pNewFreeBlk == NULL )
                     {
-                        // �Ǘ��̈�p�f�[�^������Ȃ�
-                        // Free�Ɏ��s
+                        // 管理領域用データが足りない
+                        // Freeに失敗
                         return FALSE;
                     }else{
                     

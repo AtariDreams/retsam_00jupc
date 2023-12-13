@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	bb_tool.c
- * @brief	ŠÈ’P‚Èà–¾‚ğ‘‚­
+ * @brief	ç°¡å˜ãªèª¬æ˜ã‚’æ›¸ã
  * @author	goto
- * @date	2008.02.02(“y)
+ * @date	2008.02.02(åœŸ)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -14,12 +14,12 @@
 #include "bb_common.h"
 
 #if 0
-	‚Ü‚¸A‚Ü‚Ë‚Ë‚Ì‘«Œ³‚Ì‚P“_‚ÌÀ•W‚ğ•t‚­’ÃI
-	‚Ü‚Ë‚Ë‚ÌƒNƒH[ƒ^ƒjƒIƒ“‚Ì‚S‚Rs—ñ‚É‚É‚©‚¯‚Ä‚ ‚°‚ÂI
-	‚»‚ÌŒ‹‰Ê‚ÌÀ•W‚ÌY‚ª‚ ‚éˆê’è‚Ì’lˆÈ‰º‚È‚ç‚¨‚¿‚ÂI	
+	ã¾ãšã€ã¾ã­ã­ã®è¶³å…ƒã®ï¼‘ç‚¹ã®åº§æ¨™ã‚’ä»˜ãæ´¥ï¼
+	ã¾ã­ã­ã®ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³ã®ï¼”ï¼“è¡Œåˆ—ã«ã«ã‹ã‘ã¦ã‚ã’ã¤ï¼
+	ãã®çµæœã®åº§æ¨™ã®YãŒã‚ã‚‹ä¸€å®šã®å€¤ä»¥ä¸‹ãªã‚‰ãŠã¡ã¤ï¼	
 	Lv80
-	‚­‚§[‚½‚É‚¨‚ñ‚ÌƒxƒNƒgƒ‹‚Ìy²‚Ì’l[2]‚Æ[1][3]‚ÌŠ„‡‚©‚ç
-	‚È‚ñ‚Æ‚©‚·‚é
+	ãã‰ãƒ¼ãŸã«ãŠã‚“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®yè»¸ã®å€¤[2]ã¨[1][3]ã®å‰²åˆã‹ã‚‰
+	ãªã‚“ã¨ã‹ã™ã‚‹
 #endif
 
 
@@ -106,7 +106,7 @@ extern void BB_Fever_Call( BB_CLIENT* wk );
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒNƒH[ƒ^ƒjƒIƒ“‰ñ“]
+ * @brief	ã‚¯ã‚©ãƒ¼ã‚¿ãƒ‹ã‚ªãƒ³å›è»¢
  *
  * @param	wk	
  * @param	x	
@@ -177,7 +177,7 @@ BOOL Quaternion_Rotation( BB_3D_MODEL* wk, int x, int y, int ox, int oy, f32 pow
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒ[‚ğw’è‚·‚é
+ * @brief	ãƒ‘ãƒ¯ãƒ¼ã‚’æŒ‡å®šã™ã‚‹
  *
  * @param	wk	
  * @param	pow	
@@ -234,7 +234,7 @@ BOOL Quaternion_Rotation_Pow( BB_3D_MODEL* wk, f32 pow )
 
 //--------------------------------------------------------------
 /**
- * @brief	NetID ‚©‚ç PlayerNoæ“¾
+ * @brief	NetID ã‹ã‚‰ PlayerNoå–å¾—
  *
  * @param	wk	
  * @param	net_id	
@@ -261,27 +261,27 @@ int NetID_To_PlayerNo( BB_WORK* wk, int net_id )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Á‘¬“®ì”Ä—p@‰Šú‰»
+ *	@brief	åŠ é€Ÿå‹•ä½œæ±ç”¨ã€€åˆæœŸåŒ–
  *
- *	@param	p_work	ƒ[ƒN
- *	@param	s_x		ŠJnÀ•W
- *	@param	e_x		I—¹À•W
- *	@param	s_s		ŠJn‘¬“x
- *	@param	count_max ¶³İÀ’l
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
+ *	@param	s_x		é–‹å§‹åº§æ¨™
+ *	@param	e_x		çµ‚äº†åº§æ¨™
+ *	@param	s_s		é–‹å§‹é€Ÿåº¦
+ *	@param	count_max ã‚«ã‚¦ãƒ³ã‚¿å€¤
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void BB_AddMoveReqFx( BB_ADDMOVE_WORK_FX* p_work, fx32 s_x, fx32 e_x, fx32 s_s, int count_max )
 {
-	fx32 t_x_t;	// ƒ^ƒCƒ€‚Ì‚Qæ
-	fx32 vot;	// ‰‘¬“x–ƒ^ƒCƒ€
+	fx32 t_x_t;	// ã‚¿ã‚¤ãƒ ã®ï¼’ä¹—
+	fx32 vot;	// åˆé€Ÿåº¦ï¼Šã‚¿ã‚¤ãƒ 
 	fx32 dis;
 	fx32 a;
 
 	dis = e_x - s_x;
 	
-	// ‰Á‘¬’l‚ğ‹‚ß‚é
+	// åŠ é€Ÿå€¤ã‚’æ±‚ã‚ã‚‹
 	// a = 2(x - vot)/(t*t)
 	t_x_t = (count_max * count_max) << FX32_SHIFT;
 	vot = FX_Mul( s_s, count_max * FX32_ONE );
@@ -299,12 +299,12 @@ void BB_AddMoveReqFx( BB_ADDMOVE_WORK_FX* p_work, fx32 s_x, fx32 e_x, fx32 s_s, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	‰Á‘¬“®ìƒƒCƒ“
+ *	@brief	åŠ é€Ÿå‹•ä½œãƒ¡ã‚¤ãƒ³
  *
- *	@param	p_work	ƒ[ƒN
+ *	@param	p_work	ãƒ¯ãƒ¼ã‚¯
  *
- *	@retval	TRUE	I—¹
- *	@retval	FALSE	“r’†
+ *	@retval	TRUE	çµ‚äº†
+ *	@retval	FALSE	é€”ä¸­
  */
 //-----------------------------------------------------------------------------
 BOOL BB_AddMoveMainFx( BB_ADDMOVE_WORK_FX* p_work )
@@ -314,13 +314,13 @@ BOOL BB_AddMoveMainFx( BB_ADDMOVE_WORK_FX* p_work )
 	fx32 calc_work;
 	fx32 vot;
 	
-	// “™‰Á‘¬“x‰^“®
+	// ç­‰åŠ é€Ÿåº¦é‹å‹•
 	// dis = vot + 1/2( a*(t*t) )
 	vot = FX_Mul( p_work->s_s, p_work->count << FX32_SHIFT );
 	t_x_t = (p_work->count * p_work->count) << FX32_SHIFT;
 	calc_work = FX_Mul( p_work->s_a, t_x_t );
 	calc_work = FX_Div( calc_work, 2*FX32_ONE );	// 1/2(a*(t*t))
-	dis = vot + calc_work;	///<ˆÚ“®‹——£
+	dis = vot + calc_work;	///<ç§»å‹•è·é›¢
 
 	p_work->x = p_work->s_x + dis;
 
@@ -384,12 +384,12 @@ BOOL BB_MoveMain_FX( BB_ADDMOVE_WORK_FX* p_data )
 		ret = FALSE;
 	}
 
-	// ŒvZ
+	// è¨ˆç®—
 	num = FX_Mul( p_data->s_a, local_count << FX32_SHIFT );
 	num = FX_Div( num, p_data->count_max << FX32_SHIFT );
 	num += p_data->s_x;
 
-	// İ’è
+	// è¨­å®š
 	p_data->x = num;
 
 	return ret;
@@ -398,7 +398,7 @@ BOOL BB_MoveMain_FX( BB_ADDMOVE_WORK_FX* p_data )
 
 //--------------------------------------------------------------
 /**
- * @brief	¯‚­‚¸
+ * @brief	æ˜Ÿããš
  *
  * @param	tcb	
  * @param	work	
@@ -466,7 +466,7 @@ static void BB_Stardust_TCB( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	¯‚­‚¸ŒÄ‚Ño‚µ
+ * @brief	æ˜Ÿããšå‘¼ã³å‡ºã—
  *
  * @param	wk	
  * @param	x	
@@ -585,7 +585,7 @@ static void BB_Client_Effect_TCB( TCB_PTR tcb, void* work )
 			if ( wk->wait == 0 ){
 				 wk->wait++;
 				 BB_disp_Hanabi_OAM_Enable( wk->client, TRUE, 0 );
-				 Snd_SePlay( BB_SND_HANABI );			///< ‰Ô‰Î‚Ç‚ª[‚ñ
+				 Snd_SePlay( BB_SND_HANABI );			///< èŠ±ç«ã©ãŒãƒ¼ã‚“
 			}
 			if ( wk->wait > 30 ){
 				wk->seq = 1;
@@ -677,7 +677,7 @@ static void BB_Client_Effect_TCB( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒtƒFƒNƒgŠJn
+ * @brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
  * @param	wk	
  * @param	level	
@@ -702,7 +702,7 @@ void BB_Client_EffectStart( BB_CLIENT* wk, BOOL* flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ‰ƒCƒg‚ÌƒGƒtƒFƒNƒg
+ * @brief	ãƒ©ã‚¤ãƒˆã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
  * @param	wk	
  *
@@ -739,7 +739,7 @@ static void EFF_1( BB_EFF_WORK* wk )
 		break;
 	
 	case 2:
-		///< ‘Ò‹@’†
+		///< å¾…æ©Ÿä¸­
 		if ( wk->flag[ 0 ] == TRUE ){
 			if ( ++wk->temp[ 0 ] >= TEMP_WAIT ){
 				wk->seq++;
@@ -793,17 +793,17 @@ static void EFF_2( BB_EFF_WORK* wk )
 		}
 		if ( bEnd[ 0 ] && bEnd[ 1 ] && bEnd[ 2 ] && bEnd[ 2 ] ){
 			wk->temp[ 0 ] = 0;
-			OS_Printf( "”è‚ÅI‚í‚Á‚½ = %d\n", wk->flag[ 0 ] );
+			OS_Printf( "æ‹æ‰‹ã§çµ‚ã‚ã£ãŸ = %d\n", wk->flag[ 0 ] );
 			wk->flag[ 0 ] = FALSE;
 			wk->seq++;
 		}
 		break;
 	
 	case 1:
-		///< ‘Ò‹@’†
+		///< å¾…æ©Ÿä¸­
 		if ( wk->flag[ 0 ] == TRUE ){
 			if ( ++wk->temp[ 0 ] >= TEMP_WAIT ){
-				OS_Printf( "”è‚Ì‰º‚°‚éƒŠƒNƒGƒXƒg”­sÏ‚İ = %d\n" );
+				OS_Printf( "æ‹æ‰‹ã®ä¸‹ã’ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆç™ºè¡Œæ¸ˆã¿ = %d\n" );
 				wk->seq++;
 			}
 		}
@@ -908,7 +908,7 @@ static void EFF_5( BB_EFF_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒtƒFƒNƒg ƒƒCƒ“TCB
+ * @brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ ãƒ¡ã‚¤ãƒ³TCB
  *
  * @param	tcb	
  * @param	work	
@@ -935,7 +935,7 @@ static void BB_Effect_Main_TCB( TCB_PTR tcb, void* work )
 		}
 	case 4:
 		if ( wk->work[ 3 ].active == FALSE ){
-			Snd_SePlay( BB_SND_KANSEI );		///< Š½º
+			Snd_SePlay( BB_SND_KANSEI );		///< æ­“å£°
 			wk->work[ 3 ].active = TRUE;		
 			wk->work[ 3 ].flag[ 0 ] = FALSE;
 		}
@@ -946,7 +946,7 @@ static void BB_Effect_Main_TCB( TCB_PTR tcb, void* work )
 		}
 	case 2:
 		if ( wk->work[ 1 ].active == FALSE ){
-			Snd_SePlay( BB_SND_HAND );			///< ”è
+			Snd_SePlay( BB_SND_HAND );			///< æ‹æ‰‹
 			wk->work[ 1 ].active = TRUE;	
 			wk->work[ 1 ].flag[ 0 ] = FALSE;	
 		}
@@ -959,21 +959,21 @@ static void BB_Effect_Main_TCB( TCB_PTR tcb, void* work )
 	
 	default:
 		if ( *wk->level != wk->old_level ){
-			wk->work[ 0 ].flag[ 0 ] = TRUE;	///< ƒ‰ƒCƒgÁ‚µ‚Ä
-			wk->work[ 1 ].flag[ 0 ] = TRUE;	///< ”èx2‚Æ‚ß‚é
-			wk->work[ 2 ].flag[ 0 ] = TRUE;	///< †‚Ó‚Ô‚«I—¹
-			wk->work[ 3 ].flag[ 0 ] = TRUE;	///< ”èx4‚Æ‚ß‚é
-			wk->work[ 4 ].flag[ 0 ] = TRUE;	///< ‰Ô‰Î‚Æ‚ß‚é
+			wk->work[ 0 ].flag[ 0 ] = TRUE;	///< ãƒ©ã‚¤ãƒˆæ¶ˆã—ã¦
+			wk->work[ 1 ].flag[ 0 ] = TRUE;	///< æ‹æ‰‹x2ã¨ã‚ã‚‹
+			wk->work[ 2 ].flag[ 0 ] = TRUE;	///< ç´™ãµã¶ãçµ‚äº†
+			wk->work[ 3 ].flag[ 0 ] = TRUE;	///< æ‹æ‰‹x4ã¨ã‚ã‚‹
+			wk->work[ 4 ].flag[ 0 ] = TRUE;	///< èŠ±ç«ã¨ã‚ã‚‹
 			Snd_SeStopBySeqNo( BB_SND_HAND, 0 );
 		}
 		break;
 	}
 
-	EFF_1( &wk->work[ 0 ] );				///< ƒ‰ƒCƒg
-	EFF_2( &wk->work[ 1 ] );				///< ”èx2
-	EFF_3( &wk->work[ 2 ] );				///< †‚Ó‚Ô‚«
-	EFF_2( &wk->work[ 3 ] );				///< ”èx4
-	EFF_5( &wk->work[ 4 ] );				///< ‰Ô‰Î
+	EFF_1( &wk->work[ 0 ] );				///< ãƒ©ã‚¤ãƒˆ
+	EFF_2( &wk->work[ 1 ] );				///< æ‹æ‰‹x2
+	EFF_3( &wk->work[ 2 ] );				///< ç´™ãµã¶ã
+	EFF_2( &wk->work[ 3 ] );				///< æ‹æ‰‹x4
+	EFF_5( &wk->work[ 4 ] );				///< èŠ±ç«
 	
 	wk->old_level = *wk->level;
 }
@@ -981,7 +981,7 @@ static void BB_Effect_Main_TCB( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒGƒtƒFƒNƒgŒÄ‚Ño‚µ
+ * @brief	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‘¼ã³å‡ºã—
  *
  * @param	wk	
  *
@@ -1004,15 +1004,15 @@ void BB_Effect_Call( BB_CLIENT* wk )
 		
 		switch ( i ){
 		case 0:
-			///< ƒ‰ƒCƒg‰Šú‰»
-			ewk->data[ 0 ] = &wk->bb3d_spot;	///< ƒXƒ|ƒbƒgƒ‰ƒCƒg
-			ewk->data[ 1 ] = &wk->color1;		///< ƒJƒ‰[
-			ewk->data[ 3 ] = &wk->color2;		///< ƒJƒ‰[
-			ewk->data[ 2 ] = wk->sys->pfd;		///< ƒpƒŒƒbƒgƒtƒF[ƒh
+			///< ãƒ©ã‚¤ãƒˆåˆæœŸåŒ–
+			ewk->data[ 0 ] = &wk->bb3d_spot;	///< ã‚¹ãƒãƒƒãƒˆãƒ©ã‚¤ãƒˆ
+			ewk->data[ 1 ] = &wk->color1;		///< ã‚«ãƒ©ãƒ¼
+			ewk->data[ 3 ] = &wk->color2;		///< ã‚«ãƒ©ãƒ¼
+			ewk->data[ 2 ] = wk->sys->pfd;		///< ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
 			break;
 
 		case 1:
-			///< ”è‚P‰Šú‰»
+			///< æ‹æ‰‹ï¼‘åˆæœŸåŒ–
 			ewk->data[ 0 ] = wk->cap_hand[ 0 ];
 			ewk->data[ 1 ] = wk->cap_hand[ 1 ];
 			ewk->data[ 2 ] = NULL;
@@ -1027,7 +1027,7 @@ void BB_Effect_Call( BB_CLIENT* wk )
 			break;
 
 		case 2:
-			///< †á‰Šú‰»
+			///< ç´™å¹é›ªåˆæœŸåŒ–
 			{
 				int j;				
 				for ( j = 0; j < BB_KAMI_HUBUKI_MAX; j++ ){
@@ -1037,7 +1037,7 @@ void BB_Effect_Call( BB_CLIENT* wk )
 			break;
 
 		case 3:
-			///< ”è‚Q‰Šú‰»
+			///< æ‹æ‰‹ï¼’åˆæœŸåŒ–
 			ewk->data[ 0 ] = NULL;
 			ewk->data[ 1 ] = NULL;
 			ewk->data[ 2 ] = wk->cap_hand[ 2 ];
@@ -1052,7 +1052,7 @@ void BB_Effect_Call( BB_CLIENT* wk )
 			break;
 
 		case 4:
-			///< ‰Ô‰Î‰Šú‰»
+			///< èŠ±ç«åˆæœŸåŒ–
 			ewk->data[ 0 ] = wk;
 			break;
 		}
@@ -1064,7 +1064,7 @@ void BB_Effect_Call( BB_CLIENT* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ŠJ‚­ˆ—
+ * @brief	é–‹ãå‡¦ç†
  *
  * @param	wk	
  *
@@ -1079,13 +1079,13 @@ static void BB_Fever_Open( BB_FEVER* wk )
 	int* col2 = wk->col2;
 	BOOL bEnd[ 5 ];
 	
-	/// ª40@Ì80dot /// 56dot
+	/// â†‘40ã€€â‡”80dot /// 56dot
 	
 	switch ( wk->seq ){
 	case 0:
-		BB_MoveInit_FX( &wk->scr_move[ 0 ], FX32_CONST( 0 ), FX32_CONST( +40 ), BB_FEVER_CURTAIN_FRAME );	///< ª
-		BB_MoveInit_FX( &wk->scr_move[ 1 ], FX32_CONST( 0 ), FX32_CONST( +80 ), BB_FEVER_CURTAIN_FRAME );	///< ©
-		BB_MoveInit_FX( &wk->scr_move[ 2 ], FX32_CONST( 0 ), FX32_CONST( -80 ), BB_FEVER_CURTAIN_FRAME );	///< ¨
+		BB_MoveInit_FX( &wk->scr_move[ 0 ], FX32_CONST( 0 ), FX32_CONST( +40 ), BB_FEVER_CURTAIN_FRAME );	///< â†‘
+		BB_MoveInit_FX( &wk->scr_move[ 1 ], FX32_CONST( 0 ), FX32_CONST( +80 ), BB_FEVER_CURTAIN_FRAME );	///< â†
+		BB_MoveInit_FX( &wk->scr_move[ 2 ], FX32_CONST( 0 ), FX32_CONST( -80 ), BB_FEVER_CURTAIN_FRAME );	///< â†’
 		wk->seq++;
 		break;
 	
@@ -1129,13 +1129,13 @@ static void BB_Fever_Close( BB_FEVER* wk )
 	int* col2 = wk->col2;
 	BOOL bEnd[ 5 ];
 	
-	/// ª40@Ì80dot /// 56dot
+	/// â†‘40ã€€â‡”80dot /// 56dot
 	
 	switch ( wk->seq ){
 	case 0:
-		BB_MoveInit_FX( &wk->scr_move[ 0 ], FX32_CONST( +40 ), FX32_CONST( 0 ), BB_FEVER_CURTAIN_FRAME );	///< ª
-		BB_MoveInit_FX( &wk->scr_move[ 1 ], FX32_CONST( +80 ), FX32_CONST( 0 ), BB_FEVER_CURTAIN_FRAME );	///< ©
-		BB_MoveInit_FX( &wk->scr_move[ 2 ], FX32_CONST( -80 ), FX32_CONST( 0 ), BB_FEVER_CURTAIN_FRAME );	///< ¨
+		BB_MoveInit_FX( &wk->scr_move[ 0 ], FX32_CONST( +40 ), FX32_CONST( 0 ), BB_FEVER_CURTAIN_FRAME );	///< â†‘
+		BB_MoveInit_FX( &wk->scr_move[ 1 ], FX32_CONST( +80 ), FX32_CONST( 0 ), BB_FEVER_CURTAIN_FRAME );	///< â†
+		BB_MoveInit_FX( &wk->scr_move[ 2 ], FX32_CONST( -80 ), FX32_CONST( 0 ), BB_FEVER_CURTAIN_FRAME );	///< â†’
 		wk->seq++;
 		break;
 	
@@ -1173,16 +1173,16 @@ static void BB_Fever_Close( BB_FEVER* wk )
 	ColorConceChangePfd( wk->sys->pfd, FADE_SUB_BG,  BB_COLOR_FADE_PAL_OFS, *col1 + *col2, BB_COLOR_FADE_COL );
 }
 
-///GF_BGL_FRAME1_M = ©
-///GF_BGL_FRAME2_M = ¨
+///GF_BGL_FRAME1_M = â†
+///GF_BGL_FRAME2_M = â†’
 
-///GF_BGL_FRAME1_S = ©
-///GF_BGL_FRAME2_S = ¨
-///GF_BGL_FRAME3_S = ª
+///GF_BGL_FRAME1_S = â†
+///GF_BGL_FRAME2_S = â†’
+///GF_BGL_FRAME3_S = â†‘
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒ“ƒNƒƒƒCƒ“
+ * @brief	ã‚·ãƒ³ã‚¯ãƒ­ãƒ¡ã‚¤ãƒ³
  *
  * @param	tcb	
  * @param	work	
@@ -1256,10 +1256,10 @@ static void BB_Fever_Main_TCB( TCB_PTR tcb, void* work )
 			BB_Fever_Open( wk );
 		}
 		if ( wk->wait == 0 ){
-			if ( level && level < ( BB_FEVER_LEVEL_MAX - 0 ) ){	///< 1 - 7 ‚Ü‚Å
+			if ( level && level < ( BB_FEVER_LEVEL_MAX - 0 ) ){	///< 1 - 7 ã¾ã§
 				wk->wait	= fever_para[ level ].wait;
 				wk->eff_seq = 0;
-				mvwk->num	= fever_para[ level ].num - 1;		///< ã‚RŒÂ‚Í‚ ‚è‚¦‚È‚¢‚»[‚È‚Ì‚Å
+				mvwk->num	= fever_para[ level ].num - 1;		///< ä¸Šï¼“å€‹ã¯ã‚ã‚Šãˆãªã„ããƒ¼ãªã®ã§
 				mvwk->speed	  = fever_para[ level ].speed;
 				mvwk->speed_m = fever_para[ level ].speed + 5;
 				
@@ -1271,7 +1271,7 @@ static void BB_Fever_Main_TCB( TCB_PTR tcb, void* work )
 				}
 				
 				TCB_Add( fever_para[ level ].tcb_func, wk, BB_TCB_PRI_2 );
-//				OS_Printf( " level %d ‚Ì ƒGƒtƒFƒNƒg‚ğ“o˜^\n ", level );
+//				OS_Printf( " level %d ã® ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç™»éŒ²\n ", level );
 			}
 		}
 	}
@@ -1285,7 +1285,7 @@ static void BB_Fever_Main_TCB( TCB_PTR tcb, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒVƒ“ƒNƒƒ^ƒXƒNŒÄ‚Ño‚µ
+ * @brief	ã‚·ãƒ³ã‚¯ãƒ­ã‚¿ã‚¹ã‚¯å‘¼ã³å‡ºã—
  *
  * @param	wk	
  *
@@ -1328,7 +1328,7 @@ enum {
 
 //--------------------------------------------------------------
 /**
- * @brief	2ŒÂ‚Ìƒ‰ƒCƒg‚ª“®‚­‚â‚Â
+ * @brief	2å€‹ã®ãƒ©ã‚¤ãƒˆãŒå‹•ãã‚„ã¤
  *
  * @param	tcb	
  * @param	work	
@@ -2044,7 +2044,7 @@ static void Fever05_TCB( TCB_PTR tcb, void* work )
 			oy = ( mvwk->sub[ i ].cy << FX32_SHIFT ) - ( Cos360R( mvwk->sub[ i ].rad ) * mvwk->sub[ i ].ry );			
 			CATS_ObjectPosSetCapFx32_SubSurface( mvwk->sub[ i ].cap, ox, oy, BB_SURFACE_Y_FX );
 		}
-		OS_Printf( " ‚±‚±‚±\n" );
+		OS_Printf( " ã“ã“ã“\n" );
 		MoveInit( &mvwk->sub[ 0 ] );
 		MoveInit( &mvwk->sub[ 1 ] );
 		MoveInit( &mvwk->main[ 0 ] );

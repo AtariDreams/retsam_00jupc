@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	br_main.c
- * @brief	ƒoƒgƒ‹ƒŒƒR[ƒ_[
+ * @brief	ãƒãƒˆãƒ«ãƒ¬ã‚³ãƒ¼ãƒ€ãƒ¼
  * @author	goto
- * @date	2007.07.26(–Ø)
+ * @date	2007.07.26(æœ¨)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -42,16 +42,16 @@
 // Prototype
 //==============================================================
 
-///< TAG ‚Ì ƒvƒ‰ƒCƒIƒŠƒeƒB
+///< TAG ã® ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 static const u8 TAG_OamPri[][ TAG_MAX ] = {
 	
-	{  5, 10, 15, 20, 25, },		///< ‚µ‚½
-	{ 25, 20, 15, 10,  5, },		///< ‚¤‚¦
+	{  5, 10, 15, 20, 25, },		///< ã—ãŸ
+	{ 25, 20, 15, 10,  5, },		///< ã†ãˆ
 };
 
 //--------------------------------------------------------------
 /**
- * @brief	BG“WŠJ
+ * @brief	BGå±•é–‹
  *
  * @param	wk	
  *
@@ -67,7 +67,7 @@ void BR_disp_BG_Load( BR_WORK* wk )
 	CATS_RES_PTR	 crp = wk->sys.crp;
 	PALETTE_FADE_PTR pfd = wk->sys.pfd;
 	
-	///< ƒLƒƒƒ‰“]‘—
+	///< ã‚­ãƒ£ãƒ©è»¢é€
 	if ( wk->mode == BR_MODE_BROWSE ){	
 		ArcUtil_HDL_BgCharSet( hdl, NARC_batt_rec_gra_batt_rec_browse_bg_NCGR, bgl, GF_BGL_FRAME1_M, 0, 0, 0, HEAPID_BR );
 		ArcUtil_HDL_BgCharSet( hdl, NARC_batt_rec_gra_batt_rec_browse_bg_NCGR, bgl, GF_BGL_FRAME1_S, 0, 0, 0, HEAPID_BR );	
@@ -134,7 +134,7 @@ void BR_disp_BG_InfoWindowLoad_Single( BR_WORK* wk, int frame )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒCƒhƒo[ƒLƒƒƒ‰“Ç‚İ‚İ
+ * @brief	ã‚µã‚¤ãƒ‰ãƒãƒ¼ã‚­ãƒ£ãƒ©èª­ã¿è¾¼ã¿
  *
  * @param	wk	
  *
@@ -171,7 +171,7 @@ void BR_SideBar_Load( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	“o˜^
+ * @brief	ç™»éŒ²
  *
  * @param	wk	
  *
@@ -266,7 +266,7 @@ void BR_SideBar_Add( BR_WORK* wk )
 			wk->bar[ n ].tcb = VIntrTCB_Add( BR_SideBar_TCB, &wk->bar[ n ], eVINTR_TCB_PRI_BAR );
 		}
 		
-		///< stack_s ‚ª 0 ‚¶‚á‚È‚¢ê‡AƒTƒCƒhƒo[‚ğk‚ß‚Ä‚¨‚­
+		///< stack_s ãŒ 0 ã˜ã‚ƒãªã„å ´åˆã€ã‚µã‚¤ãƒ‰ãƒãƒ¼ã‚’ç¸®ã‚ã¦ãŠã
 		if ( wk->tag_man.stack_s != 0 ){
 			BOOL bActive;
 			do {
@@ -285,7 +285,7 @@ void BR_SideBar_Add( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	íœ
+ * @brief	å‰Šé™¤
  *
  * @param	wk	
  *
@@ -328,7 +328,7 @@ void BR_SideBar_TCB_Delete( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰æ‘œ‚Ì“Ç‚İ‚İ
+ * @brief	ç”»åƒã®èª­ã¿è¾¼ã¿
  *
  * @param	wk	
  *
@@ -350,7 +350,7 @@ void BR_Tag_Load( BR_WORK* wk )
 	
 	switch ( wk->mode ){
 	case BR_MODE_BROWSE:
-		///< ƒuƒ‰ƒEƒYƒ‚[ƒh
+		///< ãƒ–ãƒ©ã‚¦ã‚ºãƒ¢ãƒ¼ãƒ‰
 		ncgr = NARC_batt_rec_gra_batt_rec_browse_tag_NCGR;
 		ncer = NARC_batt_rec_gra_batt_rec_tag_64k_NCER;
 		nanr = NARC_batt_rec_gra_batt_rec_tag_64k_NANR;
@@ -358,7 +358,7 @@ void BR_Tag_Load( BR_WORK* wk )
 	
 	case BR_MODE_GDS_BV:
 //	case BR_MODE_GDS_BV_RANK:
-		///< ƒoƒgƒ‹ƒrƒfƒI
+		///< ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ª
 		ncgr = NARC_batt_rec_gra_batt_rec_tag_gds_video_NCGR;
 		ncer = NARC_batt_rec_gra_batt_rec_tag_gds_video_NCER;
 		nanr = NARC_batt_rec_gra_batt_rec_tag_gds_video_NANR;		
@@ -366,28 +366,28 @@ void BR_Tag_Load( BR_WORK* wk )
 	
 	case BR_MODE_GDS_DRESS:
 	case BR_MODE_GDS_BOX:
-		///< ƒ{ƒbƒNƒXƒˆƒbƒgEƒhƒŒƒX
+		///< ãƒœãƒƒã‚¯ã‚¹ãƒ¨ãƒƒãƒˆãƒ»ãƒ‰ãƒ¬ã‚¹
 		ncgr = NARC_batt_rec_gra_batt_rec_tag_gds_box_photo_NCGR;
 		ncer = NARC_batt_rec_gra_batt_rec_tag_gds_box_photo_NCER;
 		nanr = NARC_batt_rec_gra_batt_rec_tag_gds_box_photo_NANR;
 		break;
 		
 	case BR_MODE_GDS_RANK:
-		///< TŠÔƒ‰ƒ“ƒLƒ“ƒO
+		///< é€±é–“ãƒ©ãƒ³ã‚­ãƒ³ã‚°
 		ncgr = NARC_batt_rec_gra_batt_rec_tag_gds_weekly_rank_NCGR;
 		ncer = NARC_batt_rec_gra_batt_rec_tag_gds_weekly_rank_NCER;
 		nanr = NARC_batt_rec_gra_batt_rec_tag_gds_weekly_rank_NANR;
 		break;
 	
 	case BR_MODE_GDS_BV_RANK:
-		///< ƒoƒgƒ‹ƒrƒfƒIEƒ‰ƒ“ƒLƒ“ƒO
+		///< ãƒãƒˆãƒ«ãƒ“ãƒ‡ã‚ªãƒ»ãƒ©ãƒ³ã‚­ãƒ³ã‚°
 		ncgr = NARC_batt_rec_gra_batt_rec_tag_gds_video_rank_NCGR;
 		ncer = NARC_batt_rec_gra_batt_rec_tag_gds_video_rank_NCER;
 		nanr = NARC_batt_rec_gra_batt_rec_tag_gds_video_rank_NANR;
 		break;
 	
 	default:
-		///< ‚»‚Ì‘¼
+		///< ãã®ä»–
 		ncgr = NARC_batt_rec_gra_batt_rec_gds_tag_NCGR;
 		ncer = NARC_batt_rec_gra_batt_rec_tag__gds_64k_NCER;
 		nanr = NARC_batt_rec_gra_batt_rec_tag__gds_64k_NANR;
@@ -465,7 +465,7 @@ void BR_Tag_PosReset_Sub( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒO’Ç‰Á
+ * @brief	ã‚¿ã‚°è¿½åŠ 
  *
  * @param	wk	
  *
@@ -529,7 +529,7 @@ void BR_Tag_Add( BR_WORK* wk )
 		CATS_ObjectEnableCap( tag_man->tag_m[ i ].cap, wk->menu_data[ i ].active );
 	}
 
-	/// ã‰æ–Ê‚ÌÀ•W•œ‹Aˆ—
+	/// ä¸Šç”»é¢ã®åº§æ¨™å¾©å¸°å‡¦ç†
 	i = 0;
 	do {
 		s16 x, y;
@@ -561,7 +561,7 @@ void BR_Tag_Add( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒO‚Ìanime‚È‚ÇÄİ’è
+ * @brief	ã‚¿ã‚°ã®animeãªã©å†è¨­å®š
  *
  * @param	wk	
  *
@@ -587,7 +587,7 @@ void BR_Tag_ReSet( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒHƒ“ƒgOAMÄİ’è
+ * @brief	ãƒ•ã‚©ãƒ³ãƒˆOAMå†è¨­å®š
  *
  * @param	wk	
  *
@@ -634,7 +634,7 @@ void BR_Tag_SubRecover( BR_WORK* wk ){
 
 //--------------------------------------------------------------
 /**
- * @brief	íœ
+ * @brief	å‰Šé™¤
  *
  * @param	wk	
  *
@@ -686,7 +686,7 @@ void BR_Tag_Enable( BR_WORK* wk, BOOL flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒCƒhƒo[TCB
+ * @brief	ã‚µã‚¤ãƒ‰ãƒãƒ¼TCB
  *
  * @param	tcb	
  * @param	work	
@@ -891,7 +891,7 @@ void BR_CATS_ObjectPosGetCapFx32(CATS_ACT_PTR cap, fx32* x, fx32* y)
 // =============================================================================
 //
 //
-//	¡font oam ŠÖ˜A
+//	â– font oam é–¢é€£
 //
 //
 // =============================================================================
@@ -975,7 +975,7 @@ void BR_disp_FontOAM_MegWrite( BR_WORK* wk, TAG* tag, int mes_id, const BR_MENU_
 	
 	
 	if ( mes_id == msg_10 ){
-		///< ‚ ‚«‚Ìê‡	`‚Ì‚«‚ë‚­	
+		///< ã‚ãã®å ´åˆ	ã€œã®ãã‚ã	
 		if ( wk->br_gpp[ dat->ex_param1 ] == NULL ){
 			str	= MSGMAN_AllocString( man, mes_id );
 		}
@@ -995,7 +995,7 @@ void BR_disp_FontOAM_MegWrite( BR_WORK* wk, TAG* tag, int mes_id, const BR_MENU_
 		}
 	}
 	else if ( mes_id == msg_102 ){
-		///< ‚ ‚«‚Ìê‡	`‚Ì‚«‚ë‚­‚ğ‚¯‚·
+		///< ã‚ãã®å ´åˆ	ã€œã®ãã‚ãã‚’ã‘ã™
 		if ( wk->br_gpp[ dat->ex_param1 ] == NULL ){
 			str	= MSGMAN_AllocString( man, mes_id );
 		}
@@ -1015,7 +1015,7 @@ void BR_disp_FontOAM_MegWrite( BR_WORK* wk, TAG* tag, int mes_id, const BR_MENU_
 		}
 	}
 	else {
-		///< ‚»‚êˆÈŠO
+		///< ãã‚Œä»¥å¤–
 		str	= MSGMAN_AllocString( man, mes_id );
 	}
 	
@@ -1052,7 +1052,7 @@ void BR_disp_FontOam_Delete( BR_WORK* wk )
 // =============================================================================
 //
 //
-//	¡ FONT OAM
+//	â–  FONT OAM
 //
 //
 // =============================================================================
@@ -1259,7 +1259,7 @@ CATS_ACT_PTR ExTag_Add( BR_WORK* wk, int d_area )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒO‚Ì”jŠü •K—v‚É‚È‚é‚·‚×‚Ä‚Ìì‹Æ‚ğs‚¤ NormalTag_RecoverAllOp ‚Æ‘Î‚Åg‚¤–‘O’ñ
+ * @brief	ã‚¿ã‚°ã®ç ´æ£„ å¿…è¦ã«ãªã‚‹ã™ã¹ã¦ã®ä½œæ¥­ã‚’è¡Œã† NormalTag_RecoverAllOp ã¨å¯¾ã§ä½¿ã†äº‹å‰æ
  *
  * @param	wk	
  *
@@ -1270,13 +1270,13 @@ CATS_ACT_PTR ExTag_Add( BR_WORK* wk, int d_area )
 void NormalTag_DeleteAllOp( BR_WORK* wk )
 {
 	BR_Tag_Enable( wk, FALSE );	///< font oam enable
-	BR_Tag_Delete( wk );		///< CAP ‰ğ•ú
-	BR_Tag_Release( wk );		///< ƒ^ƒO‚Ì‰ğ•ú
+	BR_Tag_Delete( wk );		///< CAP è§£æ”¾
+	BR_Tag_Release( wk );		///< ã‚¿ã‚°ã®è§£æ”¾
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ^ƒO ‚Ì•œ‹A •K—v‚É‚È‚é‚·‚×‚Ä‚Ìì‹Æ‚ğs‚¤
+ * @brief	ã‚¿ã‚° ã®å¾©å¸° å¿…è¦ã«ãªã‚‹ã™ã¹ã¦ã®ä½œæ¥­ã‚’è¡Œã†
  *
  * @param	wk	
  *
@@ -1302,7 +1302,7 @@ void NormalTag_RecoverAllOp( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Œ‹‰Ê“I‚É‚P’iŠK–ß‚³‚¸A‚»‚Ì‚Ü‚Üg‚¤
+ * @brief	çµæœçš„ã«ï¼‘æ®µéšæˆ»ã•ãšã€ãã®ã¾ã¾ä½¿ã†
  *
  * @param	wk	
  *
@@ -1321,7 +1321,7 @@ void NormalTag_RecoverAllOp_Simple( BR_WORK* wk )
 	BR_Tag_FontOamReset( wk );
 	BR_Tag_PosReset_Sub( wk );
 	BR_Tag_SubRecover( wk );	
-	wk->tag_man.stack_s += 1;				///< proc init ‚Å Menu_Back‚ªŒÄ‚Î‚ê1’iŠK‰º‚ª‚Á‚Ä‚µ‚Ü‚¤‚Ì‚Å‰‹}ˆ’u
+	wk->tag_man.stack_s += 1;				///< proc init ã§ Menu_BackãŒå‘¼ã°ã‚Œ1æ®µéšä¸‹ãŒã£ã¦ã—ã¾ã†ã®ã§å¿œæ€¥å‡¦ç½®
 
 //	OS_Printf( "stack = %d\n", wk->tag_man.stack_s );
 }
@@ -1329,7 +1329,7 @@ void NormalTag_RecoverAllOp_Simple( BR_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒuƒŒƒ“ƒh‚Ì‰Šú‰»
+ * @brief	ãƒ–ãƒ¬ãƒ³ãƒ‰ã®åˆæœŸåŒ–
  *
  * @param	eva	
  * @param	evb	
@@ -1391,7 +1391,7 @@ void Plate_AlphaSetPlane( int* eva, int* evb, int mp1, int mp2, int sp1, int sp2
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒfƒtƒHƒ‹ƒg‚Ì‰Šú‰»
+ * @brief	ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®åˆæœŸåŒ–
  *
  * @param	eva	
  * @param	evb	
@@ -1407,7 +1407,7 @@ void Plate_AlphaInit_Default( int* eva, int* evb, int plane )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒ‹ƒtƒ@ƒtƒF[ƒh
+ * @brief	ã‚¢ãƒ«ãƒ•ã‚¡ãƒ•ã‚§ãƒ¼ãƒ‰
  *
  * @param	eva	
  * @param	evb	
@@ -1458,7 +1458,7 @@ BOOL Plate_AlphaFade( int* eva, int* evb, int mode, int plane )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒgƒtƒF[ƒh
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰
  *
  * @param	pfd	
  * @param	color	

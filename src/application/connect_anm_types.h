@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	connect_anm_types.h
- * @brief	Wifi�ڑ���ʂ�BG�A�j���̍\���̒�`�Ȃ�
+ * @brief	Wifi接続画面のBGアニメの構造体定義など
  * @author	matsuda
- * @date	2007.12.26(��)
+ * @date	2007.12.26(水)
  */
 //==============================================================================
 #ifndef __CONNECT_ANM_TYPES_H__
@@ -11,38 +11,38 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///ncl�t�@�C����̃p���b�g�A�j�����J�n������p���b�g�J�n�ʒu
+///nclファイル上のパレットアニメを開始させるパレット開始位置
 #define CBP_PAL_START_NUMBER	(0)
-///�p���b�g�A�j���Ώۃp���b�g�{��
+///パレットアニメ対象パレット本数
 #define CBP_PAL_NUM			(4)
-///�A�j���]���p���b�g�{��
+///アニメ転送パレット本数
 #define CBP_TRANS_PAL_NUM	(1)
 
-///�p���b�g�A�j���Ώۃp���b�g�̒��Ɋ܂܂�Ă�����ۂɃA�j���Ώۂ̃J���[�J�n�ʒu
-#define CBP_PAL_COLOR_START	(1)	//CBP_PAL_COLOR_START �` (CBP_PAL_COLOR_START + CBP_PAL_COLOR_NUM)
-///�p���b�g�A�j���Ώۃp���b�g�̒��Ɋ܂܂�Ă�����ۂɃA�j���Ώۂ̃J���[��
+///パレットアニメ対象パレットの中に含まれている実際にアニメ対象のカラー開始位置
+#define CBP_PAL_COLOR_START	(1)	//CBP_PAL_COLOR_START 〜 (CBP_PAL_COLOR_START + CBP_PAL_COLOR_NUM)
+///パレットアニメ対象パレットの中に含まれている実際にアニメ対象のカラー数
 #define CBP_PAL_COLOR_NUM	(15)
 
-///EVY���Z�l(����8�r�b�g����)
+///EVY加算値(下位8ビット小数)
 #define CBP_ADD_EVY			(0x0300)
 
-///EVY�p�^�[����
-#define CBP_EVY_ANM_NUM		((16<<8) / CBP_ADD_EVY + 2)	// +1 = �[���� +1=0�̕�
-///EVY�p�^�[����(�S�A�j���p�^�[����)
+///EVYパターン数
+#define CBP_EVY_ANM_NUM		((16<<8) / CBP_ADD_EVY + 2)	// +1 = 端数分 +1=0の分
+///EVYパターン数(全アニメパターン数)
 #define CBP_EVY_TBL_ALL		(CBP_EVY_ANM_NUM * (CBP_PAL_NUM - 1))
 
 
 //==============================================================================
-//	�\���̒�`
+//	構造体定義
 //==============================================================================
-///Wifi�ڑ�BG�̃p���b�g�A�j������\����
+///Wifi接続BGのパレットアニメ制御構造体
 typedef struct{
 	TCB_PTR tcb;
-	BOOL occ;							///<TRUE:�L���@FALSE:����
-	u16 src_color[CBP_PAL_NUM][16];		///<���p���b�g
-	u16 dest_color[CBP_EVY_TBL_ALL][16];	///<�]���p���b�g
+	BOOL occ;							///<TRUE:有効　FALSE:無効
+	u16 src_color[CBP_PAL_NUM][16];		///<元パレット
+	u16 dest_color[CBP_EVY_TBL_ALL][16];	///<転送パレット
 	
 	s16 trans_pos;
 	s8 trans_dir;

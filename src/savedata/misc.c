@@ -1,22 +1,22 @@
 //============================================================================================
 /**
  * @file	misc.c
- * @brief	�����ރZ�[�u�f�[�^�̃A�N�Z�X
+ * @brief	未分類セーブデータのアクセス
  * @author	tamada	GAME FREAK Inc.
  * @date	2006.01.26
  *
- * ���ނ���Ă��Ȃ��Z�[�u�f�[�^�͂Ƃ肠���������ɒǉ������B
- * �A�v���P�[�V�������x���A�Z�[�u�f�[�^�A�N�Z�X�֐����x�������
- * ����MISC�\���̂����o�����Ƃ͂ł��Ȃ��B
- * MISC�\���̂̓����o�Ɏ��\���̂ւ̃A�N�Z�X��񋟂��邾����
- * �C���^�[�t�F�C�X�Ƃ��ċ@�\���Ă���B
+ * 分類されていないセーブデータはとりあえずここに追加される。
+ * アプリケーションレベル、セーブデータアクセス関数レベルからは
+ * 直接MISC構造体を取り出すことはできない。
+ * MISC構造体はメンバに持つ構造体へのアクセスを提供するだけの
+ * インターフェイスとして機能している。
  *
- * �Z�[�u�f�[�^�Ƃ��Ă̐�����������ƒ�`�ł���悤�ɂȂ������_�ŁA
- * �����̃Z�[�u�\���̂͂�����ƕʃ\�[�X�ɐ؂蕪�����邱�ƂɂȂ�B
+ * セーブデータとしての性質がきちんと定義できるようになった時点で、
+ * それらのセーブ構造体はきちんと別ソースに切り分けられることになる。
  *
  * 2006.06.02
- * ���Ԑ؂�ŕ��ނ��킩�����̂͂����ɒǉ����邱�Ƃɂ��܂����B
- * ���O�B
+ * 時間切れで分類がわからんものはここに追加することにしました。
+ * 無念。
  */
 //============================================================================================
 
@@ -58,24 +58,24 @@
 //============================================================================================
 //--------------------------------------------------------------
 /**
- * @brief   �O���Z�[�u�̎Q�Ɛ�ƃ����_���L�[�̐���\���̒�`
- * 			�a������f�[�^�̂݁ADP���炠��̂ŏ���
+ * @brief   外部セーブの参照先とランダムキーの制御構造体定義
+ * 			殿堂入りデータのみ、DPからあるので除く
  */
 //--------------------------------------------------------------
 typedef struct{
-	EX_CERTIFY_SAVE_KEY key[EXDATA_ID_MAX - EXDATA_ID_FRONTIER];		//�F�؃L�[
-	EX_CERTIFY_SAVE_KEY old_key[EXDATA_ID_MAX - EXDATA_ID_FRONTIER];	//1�O�̔F�؃L�[
-	u8 flag[EXDATA_ID_MAX - EXDATA_ID_FRONTIER];						//�Q�Ɛ�t���O
+	EX_CERTIFY_SAVE_KEY key[EXDATA_ID_MAX - EXDATA_ID_FRONTIER];		//認証キー
+	EX_CERTIFY_SAVE_KEY old_key[EXDATA_ID_MAX - EXDATA_ID_FRONTIER];	//1つ前の認証キー
+	u8 flag[EXDATA_ID_MAX - EXDATA_ID_FRONTIER];						//参照先フラグ
 	u8 padding[3];
 }EX_SAVE_KEY;
 
 //---------------------------------------------------------------------------
 /**
- * @brief	MISC�\���̂̒�`
+ * @brief	MISC構造体の定義
  *
- * ���L�̂悤�ȃZ�[�u�f�[�^�u���b�N�́AMISC�̃����o�[�Ƃ��Ċm�ۂ���B
- * -�ǂ��ɕ��ނ���ׂ����A���f�ɖ������́B���͕��ނ�ۗ����Ă�����������
- * -�K�͂��������A���̂��߂ɃZ�[�u�u���b�N���m�ۂ���̂����������Ȃ�����
+ * 下記のようなセーブデータブロックは、MISCのメンバーとして確保する。
+ * -どこに分類するべきか、判断に迷うもの。今は分類を保留しておきたいもの
+ * -規模が小さく、そのためにセーブブロックを確保するのがもったいないもの
  */
 //---------------------------------------------------------------------------
 struct _MISC {
@@ -84,21 +84,21 @@ struct _MISC {
 	STRCODE rivalname[PERSON_NAME_SIZE + EOM_SIZE];
 	STRCODE monument_name[MONUMENT_NAME_SIZE + EOM_SIZE];
 	
-	//�v���`�i����ǉ�
-	u16 favorite_monsno;		//���C�ɓ���|�P����
-	u8  favorite_form_no:7;		//���C�ɓ���|�P�����̃t�H�����ԍ�
-	u8  favorite_egg_flag:1;	//���C�ɓ���|�P�����̃^�}�S�t���O
+	//プラチナから追加
+	u16 favorite_monsno;		//お気に入りポケモン
+	u8  favorite_form_no:7;		//お気に入りポケモンのフォルム番号
+	u8  favorite_egg_flag:1;	//お気に入りポケモンのタマゴフラグ
 
-	u8 extra_init_flag:1;		// �O���Z�[�u�������ς݂��ǂ����̃t���O(TRUE�������ς�)
-	u8 battle_recoder_color:4;	// �o�g�����R�[�_�[�̐F(5�F)
-	u8 				:3;			//�]��
+	u8 extra_init_flag:1;		// 外部セーブ初期化済みかどうかのフラグ(TRUE初期化済み)
+	u8 battle_recoder_color:4;	// バトルレコーダーの色(5色)
+	u8 				:3;			//余り
 	
-	//���g�p�ɂȂ��� 2008.06.21(�y) matsuda(���XGDS�n�̑��M�ς݃t���O����������)
+	//未使用になった 2008.06.21(土) matsuda(元々GDS系の送信済みフラグだったもの)
 	u32 dummy;
 	
-	PMS_DATA gds_self_introduction;		// GDS�v���t�B�[���̎��ȏЉ�b�Z�[�W
+	PMS_DATA gds_self_introduction;		// GDSプロフィールの自己紹介メッセージ
 	
-	EX_SAVE_KEY ex_save_key;	///<�O���Z�[�u�̔F�؃L�[
+	EX_SAVE_KEY ex_save_key;	///<外部セーブの認証キー
 };
 
 #ifdef	PM_DEBUG
@@ -109,8 +109,8 @@ static const STRCODE RivalName[] = {PA_, bou_,RU_, EOM_ };
 
 //---------------------------------------------------------------------------
 /**
- * @brief	MISC�\���̂̃T�C�Y�擾
- * @return	int		MISC�\���̂̃T�C�Y
+ * @brief	MISC構造体のサイズ取得
+ * @return	int		MISC構造体のサイズ
  */
 //---------------------------------------------------------------------------
 int MISC_GetWorkSize(void)
@@ -131,14 +131,14 @@ void MISC_Copy(const MISC * from, MISC * to)
 //============================================================================================
 //---------------------------------------------------------------------------
 /**
- * @brief	�F�X�Z�[�u�f�[�^�ێ����[�N�̏�����
- * @param	misc	�F�X�Z�[�u�f�[�^�ێ����[�N�ւ̃|�C���^
+ * @brief	色々セーブデータ保持ワークの初期化
+ * @param	misc	色々セーブデータ保持ワークへのポインタ
  */
 //---------------------------------------------------------------------------
 void MISC_Init(MISC * misc)
 {
 	MI_CpuClearFast(misc, sizeof(MISC));
-	/* �ȉ��Ɍʕ����̏��������������� */
+	/* 以下に個別部分の初期化処理をおく */
 	SEEDBED_Init(misc->seedbed);
 	GIMMICKWORK_Init(&misc->gimmick);
 	MI_CpuFill16(misc->rivalname, EOM_, PERSON_NAME_SIZE + EOM_SIZE);
@@ -168,14 +168,14 @@ void MISC_Init(MISC * misc)
 
 //============================================================================================
 //
-//	�Z�[�u�f�[�^�擾�̂��߂̊֐�
+//	セーブデータ取得のための関数
 //
 //============================================================================================
 //---------------------------------------------------------------------------
 /**
- * @brief	MISC�Z�[�u�f�[�^�̎擾
- * @param	sv			�Z�[�u�f�[�^�ێ����[�N�ւ̃|�C���^
- * @return	MISC�\���̂ւ̃|�C���^
+ * @brief	MISCセーブデータの取得
+ * @param	sv			セーブデータ保持ワークへのポインタ
+ * @return	MISC構造体へのポインタ
  */
 //---------------------------------------------------------------------------
 MISC * SaveData_GetMisc(SAVEDATA * sv)
@@ -188,9 +188,9 @@ MISC * SaveData_GetMisc(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	MISC�Z�[�u�f�[�^�̎擾
- * @param	sv			�Z�[�u�f�[�^�ێ����[�N�ւ̃|�C���^
- * @return	MISC�\���̂ւ̃|�C���^
+ * @brief	MISCセーブデータの取得
+ * @param	sv			セーブデータ保持ワークへのポインタ
+ * @return	MISC構造体へのポインタ
  */
 //---------------------------------------------------------------------------
 const MISC * SaveData_GetMiscReadOnly(const SAVEDATA * sv)
@@ -203,9 +203,9 @@ const MISC * SaveData_GetMiscReadOnly(const SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	���̂ݏ�ԃf�[�^�ւ̃|�C���^�擾
- * @param	sv			�Z�[�u�f�[�^�ێ����[�N�ւ̃|�C���^
- * @return	CONFIG		�ݒ���ێ����[�N�ւ̃|�C���^
+ * @brief	きのみ状態データへのポインタ取得
+ * @param	sv			セーブデータ保持ワークへのポインタ
+ * @return	CONFIG		設定情報保持ワークへのポインタ
  */
 //---------------------------------------------------------------------------
 SEEDBED * SaveData_GetSeedBed(SAVEDATA * sv)
@@ -220,9 +220,9 @@ SEEDBED * SaveData_GetSeedBed(SAVEDATA * sv)
 
 //---------------------------------------------------------------------------
 /**
- * @brief	�}�b�v�ŗL�̎d�|�����[�N�ւ̃|�C���^�擾
- * @param	sv			�Z�[�u�f�[�^�ێ����[�N�ւ̃|�C���^
- * @return	GIMMICKWORK	�d�|���p���[�N�ւ̃|�C���^
+ * @brief	マップ固有の仕掛けワークへのポインタ取得
+ * @param	sv			セーブデータ保持ワークへのポインタ
+ * @return	GIMMICKWORK	仕掛け用ワークへのポインタ
  */
 //---------------------------------------------------------------------------
 GIMMICKWORK * SaveData_GetGimmickWork(SAVEDATA * sv)
@@ -281,8 +281,8 @@ void MISC_SetMonumentName(MISC * misc, STRBUF * str)
 //==============================================================================
 //----------------------------------------------------------
 /**
- * @brief	�O���Z�[�u�f�[�^�̏������ς݃t���O�̃Z�b�g
- * @param	my		������ԕێ����[�N�ւ̃|�C���^
+ * @brief	外部セーブデータの初期化済みフラグのセット
+ * @param	my		自分状態保持ワークへのポインタ
  */
 //----------------------------------------------------------
 void MISC_SetExtraInitFlag(MISC * misc)
@@ -295,9 +295,9 @@ void MISC_SetExtraInitFlag(MISC * misc)
 
 //----------------------------------------------------------
 /**
- * @brief	�O���Z�[�u�f�[�^�̏������ς݃t���O�擾
- * @param	misc		������ԕێ����[�N�ւ̃|�C���^
- * @retval	1:�������ς݁A0:����������Ă��Ȃ�
+ * @brief	外部セーブデータの初期化済みフラグ取得
+ * @param	misc		自分状態保持ワークへのポインタ
+ * @retval	1:初期化済み、0:初期化されていない
  */
 //----------------------------------------------------------
 u32 MISC_GetExtraInitFlag(const MISC * misc)
@@ -307,8 +307,8 @@ u32 MISC_GetExtraInitFlag(const MISC * misc)
 
 #ifdef PM_DEBUG //==============
 //--------------------
-//	�O���Z�[�u�f�[�^�̏������ς݃t���O�����Z�b�g����
-//		���f�o�b�O�p
+//	外部セーブデータの初期化済みフラグをリセットする
+//		※デバッグ用
 //--------------------
 void MISC_ClearExtraInitFlag(MISC * misc)
 {
@@ -323,12 +323,12 @@ void MISC_ClearExtraInitFlag(MISC * misc)
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ���C�ɓ���|�P�����̃Z�b�g
+ * @brief   お気に入りポケモンのセット
  *
  * @param   misc		
- * @param   monsno		�|�P�����ԍ�
- * @param   form_no		�t�H�����ԍ�
- * @param   egg_flag	�^�}�S�t���O
+ * @param   monsno		ポケモン番号
+ * @param   form_no		フォルム番号
+ * @param   egg_flag	タマゴフラグ
  */
 //--------------------------------------------------------------
 void MISC_SetFavoriteMonsno(MISC * misc, int monsno, int form_no, int egg_flag)
@@ -344,12 +344,12 @@ void MISC_SetFavoriteMonsno(MISC * misc, int monsno, int form_no, int egg_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ���C�ɓ���|�P�����擾
+ * @brief   お気に入りポケモン取得
  *
  * @param   misc		
- * @param   monsno		�|�P�����ԍ�(���C�ɓ����ݒ肵�Ă��Ȃ��ꍇ��0)
- * @param   form_no		�t�H�����ԍ�
- * @param   egg_flag	�^�}�S�t���O
+ * @param   monsno		ポケモン番号(お気に入りを設定していない場合は0)
+ * @param   form_no		フォルム番号
+ * @param   egg_flag	タマゴフラグ
  */
 //--------------------------------------------------------------
 void MISC_GetFavoriteMonsno(const MISC * misc, int *monsno, int *form_no, int *egg_flag)
@@ -361,10 +361,10 @@ void MISC_GetFavoriteMonsno(const MISC * misc, int *monsno, int *form_no, int *e
 
 //--------------------------------------------------------------
 /**
- * @brief   GDS���ȏЉ�b�Z�[�W���擾
+ * @brief   GDS自己紹介メッセージを取得
  *
  * @param   misc		
- * @param   pms			�����
+ * @param   pms			代入先
  */
 //--------------------------------------------------------------
 void MISC_GetGdsSelfIntroduction(const MISC *misc, PMS_DATA *pms)
@@ -374,10 +374,10 @@ void MISC_GetGdsSelfIntroduction(const MISC *misc, PMS_DATA *pms)
 
 //--------------------------------------------------------------
 /**
- * @brief   GDS���ȏЉ�b�Z�[�W���Z�b�g����
+ * @brief   GDS自己紹介メッセージをセットする
  *
  * @param   misc		
- * @param   pms			�Z�b�g���郁�b�Z�[�W
+ * @param   pms			セットするメッセージ
  */
 //--------------------------------------------------------------
 void MISC_SetGdsSelfIntroduction(MISC *misc, const PMS_DATA *pms)
@@ -387,7 +387,7 @@ void MISC_SetGdsSelfIntroduction(MISC *misc, const PMS_DATA *pms)
 
 //--------------------------------------------------------------
 /**
- * @brief	�o�g�����R�[�_�[�̐F�擾
+ * @brief	バトルレコーダーの色取得
  *
  * @param	misc	
  * @param	color	
@@ -404,7 +404,7 @@ void MISC_GetBattleRecoderColor( const MISC * misc, u8* color )
 
 //--------------------------------------------------------------
 /**
- * @brief	�o�g�����R�[�_�[�̐F�ݒ�
+ * @brief	バトルレコーダーの色設定
  *
  * @param	misc	
  * @param	color	
@@ -420,13 +420,13 @@ void MISC_SetBattleRecoderColor( MISC * misc, u8 color )
 
 //--------------------------------------------------------------
 /**
- * @brief   �Z�[�u�f�[�^����O���f�[�^�̔F�؃L�[�A�t���O���擾����
+ * @brief   セーブデータから外部データの認証キー、フラグを取得する
  *
- * @param   sv				�Z�[�u�f�[�^�ւ̃|�C���^
- * @param   exdata_id		�O���f�[�^�ԍ�(EXDATA_ID_???)
- * @param   key				�F�؃L�[�����
- * @param   old_key			1�O�̔F�؃L�[�����
- * @param   flag			�t���O�����
+ * @param   sv				セーブデータへのポインタ
+ * @param   exdata_id		外部データ番号(EXDATA_ID_???)
+ * @param   key				認証キー代入先
+ * @param   old_key			1つ前の認証キー代入先
+ * @param   flag			フラグ代入先
  */
 //--------------------------------------------------------------
 void MISC_ExtraSaveKeyGet(const MISC *misc, EXDATA_ID exdata_id, EX_CERTIFY_SAVE_KEY *key, EX_CERTIFY_SAVE_KEY *old_key, u8 *flag)
@@ -438,14 +438,14 @@ void MISC_ExtraSaveKeyGet(const MISC *misc, EXDATA_ID exdata_id, EX_CERTIFY_SAVE
 
 //--------------------------------------------------------------
 /**
- * @brief   �Z�[�u�f�[�^����O���f�[�^�̔F�؃L�[�A�t���O���Z�b�g����
+ * @brief   セーブデータから外部データの認証キー、フラグをセットする
  *
  * @param   misc		
  * @param   exdata_id	
- * @param   key			�F�؃L�[
- * @param   key			1�O�̔F�؃L�[
- * @param   flag		�t���O
- * @param   flag		1�O�̃t���O
+ * @param   key			認証キー
+ * @param   key			1つ前の認証キー
+ * @param   flag		フラグ
+ * @param   flag		1つ前のフラグ
  */
 //--------------------------------------------------------------
 void MISC_ExtraSaveKeySet(MISC *misc, EXDATA_ID exdata_id, EX_CERTIFY_SAVE_KEY key, EX_CERTIFY_SAVE_KEY old_key, u8 flag)

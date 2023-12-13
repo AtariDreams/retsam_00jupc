@@ -12,26 +12,26 @@
 
   $Log: dwc.h,v $
   Revision 1.8  2006/04/27 11:17:33  takayama
-  NITRODWC_NOGS�I�v�V�������u���E�U��������ʏ�̂��̂ɏC���B
+  NITRODWC_NOGSオプションをブラウザ向けから通常のものに修正。
 
   Revision 1.7  2006/04/26 08:34:32  nakata
-  DWC_Nd��dwc.h�����C���N���[�h����Γ��삷��悤�ύX
+  DWC_Ndをdwc.hさえインクルードすれば動作するよう変更
 
   Revision 1.6  2006/04/21 02:04:41  takayama
-  NITRODWC_NOGS�ɑΉ��B
+  NITRODWC_NOGSに対応。
 
   Revision 1.5  2006/04/10 10:16:57  hayashi
   added the ranking module
 
   Revision 1.4  2005/08/20 07:04:03  sasakit
-  bm/dwc_init.h -> bm/dwc_bm_init.h�ɕύX
+  bm/dwc_init.h -> bm/dwc_bm_init.hに変更
 
   Revision 1.3  2005/08/20 07:01:18  sasakit
-  �w�b�_�C���N���[�h�K�[�h�̏����𓝈ꂵ���B
-  bm/dwc_init.h -> bm/dwc_bm_init.h�ɕύX
-  �w�b�_��Copyright�������B
-  �\���̖̂��O��Ԃ��ł��邾�����[���ɂ����Â����B
-  util_wifiidtool.h��dwc_backup.h�̊֌W���኱�C���B
+  ヘッダインクルードガードの書式を統一した。
+  bm/dwc_init.h -> bm/dwc_bm_init.hに変更
+  ヘッダにCopyrightをつけた。
+  構造体の名前空間をできるだけルールにちかづけた。
+  util_wifiidtool.hとdwc_backup.hの関係を若干修正。
 
 
   $NoKeywords: $

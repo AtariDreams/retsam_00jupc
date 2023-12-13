@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	div_map.c
- * @brief	•ªŠ„ƒ}ƒbƒv
+ * @brief	åˆ†å‰²ãƒãƒƒãƒ—
  * @author	Nozomu Saito
  * @date	2005.05.06
  */
@@ -17,10 +17,10 @@
 #include "fld_debug.h"
 
 #include "system/arc_tool.h"
-#include "communication/communication.h" // ’ÊMƒGƒ‰[ŠÖŒW
+#include "communication/communication.h" // é€šä¿¡ã‚¨ãƒ©ãƒ¼é–¢ä¿‚
 
-#define BLOCK_GRID_SIZE_X	(BLOCK_GRID_W)	//1ƒuƒƒbƒN‚Ì‰¡ƒOƒŠƒbƒh”
-#define BLOCK_GRID_SIZE_Z	(BLOCK_GRID_H)	//1ƒuƒƒbƒN‚ÌcƒOƒŠƒbƒh”
+#define BLOCK_GRID_SIZE_X	(BLOCK_GRID_W)	//1ãƒ–ãƒ­ãƒƒã‚¯ã®æ¨ªã‚°ãƒªãƒƒãƒ‰æ•°
+#define BLOCK_GRID_SIZE_Z	(BLOCK_GRID_H)	//1ãƒ–ãƒ­ãƒƒã‚¯ã®ç¸¦ã‚°ãƒªãƒƒãƒ‰æ•°
 
 #define HARF_GRID_SIZE	(ONE_GRID_SIZE/2)
 #define NON_BLOCK	(-1)
@@ -48,30 +48,30 @@ typedef struct MAP_LOAD_TASK_COUNTER_tag
 	
 }MAP_LOAD_TASK_COUNTER;
 
-//ƒuƒƒbƒNƒŠƒXƒgƒf[ƒ^
+//ãƒ–ãƒ­ãƒƒã‚¯ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿
 typedef struct BLOCK_NODE_tag{
-	u16 Attribute[32*32];				//ƒAƒgƒŠƒrƒ…[ƒg
-	NNSG3dRenderObj		FloorData;		//’nŒ`ƒf[ƒ^ƒŒƒ“ƒ_[‚n‚a‚i
-	NNSG3dResFileHeader	*FloorResFile;	//’nŒ`ƒf[ƒ^ƒŠƒ\[ƒXƒwƒbƒ_[
-	u8				*HeightMem;			//‚‚³ƒf[ƒ^ƒƒ‚ƒŠƒ|ƒCƒ“ƒ^
-	MHI_PTR			MapHeightInfo;		//‚‚³ƒf[ƒ^î•ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	int BlockIndex;						//ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
-	BOOL DrawOKFlg;						//•`‰æ‹–‰Âƒtƒ‰ƒO
-	M3DOL_PTR	ObjDataList;			//”z’uƒ‚ƒfƒ‹‚n‚a‚iƒŠƒXƒg
+	u16 Attribute[32*32];				//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
+	NNSG3dRenderObj		FloorData;		//åœ°å½¢ãƒ‡ãƒ¼ã‚¿ãƒ¬ãƒ³ãƒ€ãƒ¼ï¼¯ï¼¢ï¼ª
+	NNSG3dResFileHeader	*FloorResFile;	//åœ°å½¢ãƒ‡ãƒ¼ã‚¿ãƒªã‚½ãƒ¼ã‚¹ãƒ˜ãƒƒãƒ€ãƒ¼
+	u8				*HeightMem;			//é«˜ã•ãƒ‡ãƒ¼ã‚¿ãƒ¡ãƒ¢ãƒªãƒã‚¤ãƒ³ã‚¿
+	MHI_PTR			MapHeightInfo;		//é«˜ã•ãƒ‡ãƒ¼ã‚¿æƒ…å ±ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	int BlockIndex;						//ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	BOOL DrawOKFlg;						//æç”»è¨±å¯ãƒ•ãƒ©ã‚°
+	M3DOL_PTR	ObjDataList;			//é…ç½®ãƒ¢ãƒ‡ãƒ«ï¼¯ï¼¢ï¼ªãƒªã‚¹ãƒˆ
 }BLOCK_NODE;
 
 typedef struct MAP_LOAD_BLOCK_ST_tag
 {
-	BLOCK_NODE *Node[2];	//“Ç‚İ‚İ‘ÎÛƒuƒƒbƒNƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	BLOCK_NODE *Node[2];	//èª­ã¿è¾¼ã¿å¯¾è±¡ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 	
-	TCB_PTR	RandTask;		//’nŒ`ƒ[ƒhƒ^ƒXƒNƒ|ƒCƒ“ƒ^
-	TCB_PTR	HeightTask;		//‚‚³ƒ[ƒhƒ^ƒXƒNƒ|ƒCƒ“ƒ^
-	MAP_LOAD_TASK_COUNTER	TaskCnter;	//’nŒ`ƒ[ƒhƒ^ƒXƒNA‚‚³ƒ[ƒhƒ^ƒXƒN‚ÌƒJƒEƒ“ƒ^
-	int Block[2];		//“Ç‚İ‚İ‘ÎÛƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
-	u8 Index[2];		//“Ç‚İ‚İ‘ÎÛƒ[ƒJƒ‹ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
+	TCB_PTR	RandTask;		//åœ°å½¢ãƒ­ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+	TCB_PTR	HeightTask;		//é«˜ã•ãƒ­ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
+	MAP_LOAD_TASK_COUNTER	TaskCnter;	//åœ°å½¢ãƒ­ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯ã€é«˜ã•ãƒ­ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯ã®ã‚«ã‚¦ãƒ³ã‚¿
+	int Block[2];		//èª­ã¿è¾¼ã¿å¯¾è±¡ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8 Index[2];		//èª­ã¿è¾¼ã¿å¯¾è±¡ãƒ­ãƒ¼ã‚«ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	u8 TotalCount;		//“Ç‚İ‚İI—¹ƒJƒEƒ“ƒg”0`2
-	BOOL BlockLoadOK;	//“Ç‚İ‚İ‚ªŠ®—¹‚µ‚½‚©‚Ìƒtƒ‰ƒO
+	u8 TotalCount;		//èª­ã¿è¾¼ã¿çµ‚äº†ã‚«ã‚¦ãƒ³ãƒˆæ•°0ã€œ2
+	BOOL BlockLoadOK;	//èª­ã¿è¾¼ã¿ãŒå®Œäº†ã—ãŸã‹ã®ãƒ•ãƒ©ã‚°
 	
 }MAP_LOAD_BLOCK_ST;
 
@@ -98,15 +98,15 @@ typedef struct DIV_FUNC_LIST_tag{
 typedef struct BLOCK_LOAD_tag
 {
 	MAP_LOAD_BLOCK_ST	MLBS;
-	BOOL	Moving;		//‰Ò“®’†ƒtƒ‰ƒO
-	u8		LoadDir;	//ƒ[ƒh•ûŒü
+	BOOL	Moving;		//ç¨¼å‹•ä¸­ãƒ•ãƒ©ã‚°
+	u8		LoadDir;	//ãƒ­ãƒ¼ãƒ‰æ–¹å‘
 }MAP_LOAD_BLOCK_CONT;
 
 typedef struct STOCK_LOAD_DATA_tag
 {
 	BLOCK_NODE *Node[2];
 	BOOL	Valid;
-	u8		LoadDir;	//ƒ[ƒh•ûŒü
+	u8		LoadDir;	//ãƒ­ãƒ¼ãƒ‰æ–¹å‘
 	int Block[2];
 	u8 Index[2];
 }STOCK_LOAD_DATA;
@@ -125,25 +125,25 @@ typedef struct DIV_MAP_CHECK_tag
 typedef struct DIV_MAP_LOAD_CONT_tag
 {
 	FMM_PTR FldMapMem;
-	MAP_LOAD_BLOCK_CONT MLBC[2];		//ƒ[ƒhƒŠƒNƒGƒXƒgŠÇ—ƒf[ƒ^
-	STOCK_LOAD_DATA Stock;				//ƒ[ƒhƒŠƒNƒGƒXƒgƒXƒgƒbƒN
-	BOOL LocalFreeIndexTable[4];		//‰ğ•ú—\–ñƒe[ƒuƒ‹
-	BLOCK_NODE *BlockNodeList[4];		//©‹@‚Ìü‚è‚Ì4ƒuƒƒbƒN‚Ìƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+	MAP_LOAD_BLOCK_CONT MLBC[2];		//ãƒ­ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆç®¡ç†ãƒ‡ãƒ¼ã‚¿
+	STOCK_LOAD_DATA Stock;				//ãƒ­ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚¹ãƒˆãƒƒã‚¯
+	BOOL LocalFreeIndexTable[4];		//è§£æ”¾äºˆç´„ãƒ†ãƒ¼ãƒ–ãƒ«
+	BLOCK_NODE *BlockNodeList[4];		//è‡ªæ©Ÿã®å‘¨ã‚Šã®4ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-	u8 MovingNum;	//‰Ò“®”
-	u8 BlankNo;			//0or1			ƒ[ƒhƒŠƒNƒGƒXƒgŠÇ—‹ó‚«”Ô†
-	u8 NowMovingNo;		//0or1			ƒ[ƒhƒŠƒNƒGƒXƒgŠÇ—”Ô†
+	u8 MovingNum;	//ç¨¼å‹•æ•°
+	u8 BlankNo;			//0or1			ãƒ­ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆç®¡ç†ç©ºãç•ªå·
+	u8 NowMovingNo;		//0or1			ãƒ­ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆç®¡ç†ç•ªå·
 	u32 NowBlockIndex;		
-	u32 NowGridNo;				//Œ»İ‚Ì©‹@ƒOƒŠƒbƒhƒiƒ“ƒo[
-	u8 NowLocalIndex;			//Œ»İƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX
-	u8 NowPosInBlock;	//0`3
+	u32 NowGridNo;				//ç¾åœ¨ã®è‡ªæ©Ÿã‚°ãƒªãƒƒãƒ‰ãƒŠãƒ³ãƒãƒ¼
+	u8 NowLocalIndex;			//ç¾åœ¨ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	u8 NowPosInBlock;	//0ã€œ3
 	BOOL FreeRequest;
 	int LoadSeq;
 	MAP_RESOURCE_PTR MapResource;
 	WORLD_MAP_PTR World;
-	//‰º‹L3‚Â‚Ì•Ï”‚Íworld\‘¢‘Ì‚Ìƒ|ƒCƒ“ƒ^‚©‚çæ“¾‰Â”\‚Å‚·‚ªAƒAƒNƒZƒX‚ª•p”É‚É”­¶‚·‚é‚½‚ßA
-	//‰Šú‰»‚Ì’iŠK‚Å‚±‚±‚É’l‚ğŠi”[‚µA‚±‚ê‚ğg‚¢‚Ü‚·B
-	//‚±‚Ì•Ï”‚Ì’l‚Íƒ}ƒbƒv‚ªØ‚è‘Ö‚í‚ç‚È‚¢ŒÀ‚è•ÏX‚Í‚ ‚è‚Ü‚¹‚ñB(‘‚«Š·‚¦‚ğs‚í‚È‚¢)
+	//ä¸‹è¨˜3ã¤ã®å¤‰æ•°ã¯worldæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰å–å¾—å¯èƒ½ã§ã™ãŒã€ã‚¢ã‚¯ã‚»ã‚¹ãŒé »ç¹ã«ç™ºç”Ÿã™ã‚‹ãŸã‚ã€
+	//åˆæœŸåŒ–ã®æ®µéšã§ã“ã“ã«å€¤ã‚’æ ¼ç´ã—ã€ã“ã‚Œã‚’ä½¿ã„ã¾ã™ã€‚
+	//ã“ã®å¤‰æ•°ã®å€¤ã¯ãƒãƒƒãƒ—ãŒåˆ‡ã‚Šæ›¿ã‚ã‚‰ãªã„é™ã‚Šå¤‰æ›´ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚(æ›¸ãæ›ãˆã‚’è¡Œã‚ãªã„)
 	int MapW;
 	int MapH;
 	int MapGridW;
@@ -151,15 +151,15 @@ typedef struct DIV_MAP_LOAD_CONT_tag
 	DIV_MAP_CHECK MapCheck;
 	FLD_3D_ANM_MNG_PTR Field3DAnmPtr;
 	DFL_CONST_PTR	FuncList;
-	ARCHANDLE *ArcHandle;		//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+	ARCHANDLE *ArcHandle;		//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
 #ifdef DIV_CALL_BACK
-	//ƒR[ƒ‹ƒoƒbƒNŠÖ”
+	//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 	DIV_LOAD_CALL_BACK CallBack;
-	//ƒR[ƒ‹ƒoƒbƒNƒ[ƒN
+	//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãƒ¯ãƒ¼ã‚¯
 	void *CallBackWork;
 #endif
 	
-	//pl‘‰Á
+	//plå¢—åŠ 
 	DIV_BLOCK_MODE BlockMode;
 	DIV_M3DO_FLAG M3dObjFlag;
 	int OriginGridX;
@@ -182,7 +182,7 @@ static BOOL DebugOutRangeFlg = TRUE;
 
 
 //////////////////////////////////////////////////////////////////////////////////
-//	‘O•ûéŒ¾
+//	å‰æ–¹å®£è¨€
 //////////////////////////////////////////////////////////////////////////////////
 static TCB_PTR Set3DModelTask(	ARCHANDLE *inHandle,
 								const int inSize,
@@ -312,7 +312,7 @@ static void CalcMapOffset3D(	const int inBlockIndex,
 								VecFx32 *outTrans);
 
 ///////////////////////////////////////////////////////
-//	ƒXƒ^ƒeƒBƒbƒN•Ï”
+//	ã‚¹ã‚¿ãƒ†ã‚£ãƒƒã‚¯å¤‰æ•°
 ///////////////////////////////////////////////////////
 
 static const DIV_FUNC_LIST DivGroundFunc = 
@@ -329,13 +329,13 @@ static const DIV_FUNC_LIST DivUnderFunc =
 
 //--------------------------------------------------------------------------------------------
 /**
- * ®‡«ƒ`ƒFƒbƒNc
+ * æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯ç¸¦
  *
- * @param	inBlockIdx1		ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX1
- * @param	inBlockIdx2		ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX2
- * @param	inMapW			ƒ}ƒbƒv•
+ * @param	inBlockIdx1		ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹1
+ * @param	inBlockIdx2		ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹2
+ * @param	inMapW			ãƒãƒƒãƒ—å¹…
  *
- * @return	BOOL			TRUE:cƒ`ƒFƒbƒN‚n‚j		FALSE:cƒ`ƒFƒbƒN‚m‚f
+ * @return	BOOL			TRUE:ç¸¦ãƒã‚§ãƒƒã‚¯ï¼¯ï¼«		FALSE:ç¸¦ãƒã‚§ãƒƒã‚¯ï¼®ï¼§
  */
 //--------------------------------------------------------------------------------------------
 static BOOL CheckColumnBlockIndex(const int inBlockIdx1,
@@ -351,13 +351,13 @@ static BOOL CheckColumnBlockIndex(const int inBlockIdx1,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ®‡«ƒ`ƒFƒbƒN‰¡
+ * æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯æ¨ª
  *
- * @param	inBlockIdx1		ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX1
- * @param	inBlockIdx2		ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX2
- * @param	inMapW			ƒ}ƒbƒv•
+ * @param	inBlockIdx1		ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹1
+ * @param	inBlockIdx2		ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹2
+ * @param	inMapW			ãƒãƒƒãƒ—å¹…
  *
- * @return	BOOL			TRUE:‰¡ƒ`ƒFƒbƒN‚n‚j		FALSE:‰¡ƒ`ƒFƒbƒN‚m‚f
+ * @return	BOOL			TRUE:æ¨ªãƒã‚§ãƒƒã‚¯ï¼¯ï¼«		FALSE:æ¨ªãƒã‚§ãƒƒã‚¯ï¼®ï¼§
  */
 //--------------------------------------------------------------------------------------------
 static BOOL CheckRowBlockIndex(const int inBlockIdx1,
@@ -373,10 +373,10 @@ static BOOL CheckRowBlockIndex(const int inBlockIdx1,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒhƒ^ƒXƒN‚Ìƒiƒ“ƒo[(0or1)‚ğg—p‚µ‚½ƒ^ƒXƒN’â~ƒŠƒNƒGƒXƒg
+ * ãƒ­ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯ã®ãƒŠãƒ³ãƒãƒ¼(0or1)ã‚’ä½¿ç”¨ã—ãŸã‚¿ã‚¹ã‚¯åœæ­¢ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param	ioDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	inNo			’†~ƒŠƒNƒGƒXƒgƒiƒ“ƒo[i0‚n‚q1j
+ * @param	ioDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	inNo			ä¸­æ­¢ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼ï¼ˆ0ï¼¯ï¼²1ï¼‰
  *
  * @return	none
  */
@@ -387,22 +387,22 @@ static void	LoadStopReqest(DMC_PTR ioDivMapCont,const u8 inNo)
 	u8 i;
 
 	if (ioDivMapCont->MLBC[inNo].MLBS.TaskCnter.BlockLoadTaskCounter != 0){
-		//’nŒ`ƒf[ƒ^ƒ[ƒh’†~ƒŠƒNƒGƒXƒg
+		//åœ°å½¢ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ä¸­æ­¢ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		StopMapLoadTaskRequest(ioDivMapCont->MLBC[inNo].MLBS.RandTask);
 #ifdef DIV_MAP_LOAD_DEBUG		
-		OS_Printf("’nŒ`‰ğ•ú\n");
+		OS_Printf("åœ°å½¢è§£æ”¾\n");
 #endif		
 	}
 	if (ioDivMapCont->MLBC[inNo].MLBS.TaskCnter.BlockHeightLoadTaskCounter != 0){
-		//‚‚³ƒf[ƒ^ƒ[ƒh’†~ƒŠƒNƒGƒXƒg
+		//é«˜ã•ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ä¸­æ­¢ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		StopHeightLoadTaskRequest(ioDivMapCont->MLBC[inNo].MLBS.HeightTask);
 #ifdef DIV_MAP_LOAD_DEBUG
-		OS_Printf("‚‚³‰ğ•ú\n");
+		OS_Printf("é«˜ã•è§£æ”¾\n");
 #endif
 	}
 	ioDivMapCont->MLBC[inNo].MLBS.BlockLoadOK = TRUE;
 #if 0
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚ğ‰ğ•ú
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾
 	if (ioDivMapCont->ArcHandle != NULL){
 		ArchiveDataHandleClose( ioDivMapCont->ArcHandle );
 		ioDivMapCont->ArcHandle = NULL;
@@ -412,9 +412,9 @@ static void	LoadStopReqest(DMC_PTR ioDivMapCont,const u8 inNo)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒNƒf[ƒ^‚ğg—p‚µ‚½Aƒ^ƒXƒN‚Ì’â~ƒŠƒNƒGƒXƒg
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ä½¿ç”¨ã—ãŸã€ã‚¿ã‚¹ã‚¯ã®åœæ­¢ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param	*inMLBS		ƒ[ƒhƒuƒƒbƒNƒf[ƒ^
+ * @param	*inMLBS		ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -422,15 +422,15 @@ static void	LoadStopReqest(DMC_PTR ioDivMapCont,const u8 inNo)
 static void	LoadTaskStopReqestByMLBS(MAP_LOAD_BLOCK_ST *inMLBS)
 {
 	if (inMLBS->TaskCnter.BlockLoadTaskCounter != 0){
-		//’nŒ`ƒf[ƒ^ƒ[ƒh’†~ƒŠƒNƒGƒXƒg
+		//åœ°å½¢ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ä¸­æ­¢ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		StopMapLoadTaskRequest(inMLBS->RandTask);
 	}
 	if (inMLBS->TaskCnter.BlockHeightLoadTaskCounter != 0){
-		//‚‚³ƒf[ƒ^ƒ[ƒh’†~ƒŠƒNƒGƒXƒg
+		//é«˜ã•ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ä¸­æ­¢ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 		StopHeightLoadTaskRequest(inMLBS->HeightTask);
 	}
 
-	//Ÿ‚Ìƒ^ƒXƒN‚ª‚·‚®‚É‰ñ‚é‚æ‚¤‚ÉA‚±‚±‚ÅƒJƒEƒ“ƒ^‚ğƒNƒŠƒA‚µ‚Ä‚¨‚­
+	//æ¬¡ã®ã‚¿ã‚¹ã‚¯ãŒã™ãã«å›ã‚‹ã‚ˆã†ã«ã€ã“ã“ã§ã‚«ã‚¦ãƒ³ã‚¿ã‚’ã‚¯ãƒªã‚¢ã—ã¦ãŠã
 	inMLBS->TaskCnter.BlockLoadTaskCounter = 0;
 	inMLBS->TaskCnter.BlockHeightLoadTaskCounter = 0;
 	
@@ -439,14 +439,14 @@ static void	LoadTaskStopReqestByMLBS(MAP_LOAD_BLOCK_ST *inMLBS)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‰ŠúƒuƒƒbƒN‚ğƒOƒŠƒbƒh‚©‚çŠ„‚èo‚·
+ * åˆæœŸãƒ–ãƒ­ãƒƒã‚¯ã‚’ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰å‰²ã‚Šå‡ºã™
  *
- * @param	inGridX			ƒOƒŠƒbƒh‚wÀ•W
- * @param	inGridZ			ƒOƒŠƒbƒh‚yÀ•W
- * @param	inMapW			ƒ}ƒbƒv‰¡•
- * @param	inMapH			ƒ}ƒbƒvc•
- * @param	inMapGridW		ƒ}ƒbƒvƒOƒŠƒbƒh•
- * @param	*outBlockTbl	‰ŠúƒuƒƒbƒNƒe[ƒuƒ‹
+ * @param	inGridX			ã‚°ãƒªãƒƒãƒ‰ï¼¸åº§æ¨™
+ * @param	inGridZ			ã‚°ãƒªãƒƒãƒ‰ï¼ºåº§æ¨™
+ * @param	inMapW			ãƒãƒƒãƒ—æ¨ªå¹…
+ * @param	inMapH			ãƒãƒƒãƒ—ç¸¦å¹…
+ * @param	inMapGridW		ãƒãƒƒãƒ—ã‚°ãƒªãƒƒãƒ‰å¹…
+ * @param	*outBlockTbl	åˆæœŸãƒ–ãƒ­ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  * @return	none
  */
@@ -466,7 +466,7 @@ static void MakeStartBlockTbl(	const DIV_BLOCK_MODE BlockMode,
 	int block_index;
 	int block_w, block_h;
 	
-	if( BlockMode == BLOCKMODE_2x2 ){		//2x2ƒuƒƒbƒNŒÀ’èƒ‚[ƒh
+	if( BlockMode == BLOCKMODE_2x2 ){		//2x2ãƒ–ãƒ­ãƒƒã‚¯é™å®šãƒ¢ãƒ¼ãƒ‰
 		int i;
 		for( i = 0; i < 4; outBlockTbl[i] = NON_BLOCK, i++ ){};
 		
@@ -490,7 +490,7 @@ static void MakeStartBlockTbl(	const DIV_BLOCK_MODE BlockMode,
 		return;
 	}
 	
-	//4ƒuƒƒbƒN‚Ì¶ã‚ÌƒCƒ“ƒfƒbƒNƒX‚ğZo
+	//4ãƒ–ãƒ­ãƒƒã‚¯ã®å·¦ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ç®—å‡º
 	GF_ASSERT( inGridX >= inOriginGridX );
 	GF_ASSERT( inGridZ >= inOriginGridZ );
 	
@@ -504,83 +504,83 @@ static void MakeStartBlockTbl(	const DIV_BLOCK_MODE BlockMode,
 	block_index = (block_h*inMapW)+block_w;
 	
 	switch(pos_in_block){
-	case 0:		//¶ã
-		//©•ª‚Íƒ[ƒJƒ‹3
+	case 0:		//å·¦ä¸Š
+		//è‡ªåˆ†ã¯ãƒ­ãƒ¼ã‚«ãƒ«3
 		outBlockTbl[3] = block_index;
 		outBlockTbl[0] = block_index-inMapW-1;
 		outBlockTbl[1] = block_index-inMapW;
 		outBlockTbl[2] = block_index-1;
-		//¶—×‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//å·¦éš£ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_w-1<0){
-			//¶‚Í”ÍˆÍŠO
-			//‚»‚Ìã‚à”ÍˆÍŠO‚Ì‚Í‚¸
+			//å·¦ã¯ç¯„å›²å¤–
+			//ãã®ä¸Šã‚‚ç¯„å›²å¤–ã®ã¯ãš
 			outBlockTbl[0] = NON_BLOCK;
 			outBlockTbl[2] = NON_BLOCK;
 		}
-		//ã‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//ä¸Šã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_h-1<0){
-			//ã‚Í”ÍˆÍŠO
+			//ä¸Šã¯ç¯„å›²å¤–
 			outBlockTbl[1] = NON_BLOCK;
 		}
 ///		block_w--;
 ///		block_h--;
 		break;
-	case 1:		//‰Eã
-		//©•ª‚Íƒ[ƒJƒ‹2
+	case 1:		//å³ä¸Š
+		//è‡ªåˆ†ã¯ãƒ­ãƒ¼ã‚«ãƒ«2
 		outBlockTbl[2] = block_index;
 		outBlockTbl[0] = block_index-inMapW;
 		outBlockTbl[1] = block_index-inMapW+1;
 		outBlockTbl[3] = block_index+1;
-		//‰E—×‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//å³éš£ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_w+1>=inMapW){
-			//‰E‚Í”ÍˆÍŠO
-			//‚»‚Ìã‚à”ÍˆÍŠO‚Ì‚Í‚¸
+			//å³ã¯ç¯„å›²å¤–
+			//ãã®ä¸Šã‚‚ç¯„å›²å¤–ã®ã¯ãš
 			outBlockTbl[1] = NON_BLOCK;
 			outBlockTbl[3] = NON_BLOCK;
 		}
-		//ã‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//ä¸Šã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_h-1<0){
-			//ã‚Í”ÍˆÍŠO
+			//ä¸Šã¯ç¯„å›²å¤–
 			outBlockTbl[0] = NON_BLOCK;
 		}
 ///		block_h--;
 		break;
-	case 2:		//¶‰º
-		//©•ª‚Íƒ[ƒJƒ‹1
+	case 2:		//å·¦ä¸‹
+		//è‡ªåˆ†ã¯ãƒ­ãƒ¼ã‚«ãƒ«1
 		outBlockTbl[1] = block_index;
 		outBlockTbl[0] = block_index-1;
 		outBlockTbl[2] = block_index+inMapW-1;
 		outBlockTbl[3] = block_index+inMapW;
-		//¶—×‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//å·¦éš£ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_w-1<0){
-			//¶‚Í”ÍˆÍŠO
-			//‚»‚Ì‰º‚à”ÍˆÍŠO‚Ì‚Í‚¸
+			//å·¦ã¯ç¯„å›²å¤–
+			//ãã®ä¸‹ã‚‚ç¯„å›²å¤–ã®ã¯ãš
 			outBlockTbl[0] = NON_BLOCK;
 			outBlockTbl[2] = NON_BLOCK;
 		}
-		//‰º‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//ä¸‹ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_h+1>inMapH){
-			//‰º‚Í”ÍˆÍŠO
+			//ä¸‹ã¯ç¯„å›²å¤–
 			outBlockTbl[3] = NON_BLOCK;
 		}
 ///		block_w--;
 		break;
-	case 3:		//‰E‰º
-		//©•ª‚Íƒ[ƒJƒ‹0
+	case 3:		//å³ä¸‹
+		//è‡ªåˆ†ã¯ãƒ­ãƒ¼ã‚«ãƒ«0
 		outBlockTbl[0] = block_index;
 		outBlockTbl[1] = block_index+1;
 		outBlockTbl[2] = block_index+inMapW;
 		outBlockTbl[3] = block_index+inMapW+1;
-		//‰E—×‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//å³éš£ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_w+1>=inMapW){
-			//‰E‚Í”ÍˆÍŠO
-			//‚»‚Ì‰º‚à”ÍˆÍŠO‚Ì‚Í‚¸
+			//å³ã¯ç¯„å›²å¤–
+			//ãã®ä¸‹ã‚‚ç¯„å›²å¤–ã®ã¯ãš
 			outBlockTbl[1] = NON_BLOCK;
 			outBlockTbl[3] = NON_BLOCK;
 		}
-		//‰º‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//ä¸‹ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_h+1>inMapH){
-			//‰º‚Í”ÍˆÍŠO
+			//ä¸‹ã¯ç¯„å›²å¤–
 			outBlockTbl[0] = NON_BLOCK;
 		}
 		break;
@@ -595,7 +595,7 @@ static void MakeStartBlockTbl(	const DIV_BLOCK_MODE BlockMode,
 #endif //DEBUG_ONLY_FOR_saitou	
 }
 
-//ƒIƒtƒZƒbƒgC³–³‚µ old
+//ã‚ªãƒ•ã‚»ãƒƒãƒˆä¿®æ­£ç„¡ã— old
 #if 0
 static void MakeStartBlockTbl(	const int inGridX,
 								const int inGridZ,
@@ -608,7 +608,7 @@ static void MakeStartBlockTbl(	const int inGridX,
 	u8 pos_in_block;
 	int block_index;
 	int block_w, block_h;
-	//4ƒuƒƒbƒN‚Ì¶ã‚ÌƒCƒ“ƒfƒbƒNƒX‚ğZo
+	//4ãƒ–ãƒ­ãƒƒã‚¯ã®å·¦ä¸Šã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ç®—å‡º
 	block_w = (inGridX / BLOCK_GRID_SIZE_X);
 	block_h = (inGridZ / BLOCK_GRID_SIZE_Z);
 
@@ -618,83 +618,83 @@ static void MakeStartBlockTbl(	const int inGridX,
 	block_index = (block_h*inMapW)+block_w;
 	
 	switch(pos_in_block){
-	case 0:		//¶ã
-		//©•ª‚Íƒ[ƒJƒ‹3
+	case 0:		//å·¦ä¸Š
+		//è‡ªåˆ†ã¯ãƒ­ãƒ¼ã‚«ãƒ«3
 		outBlockTbl[3] = block_index;
 		outBlockTbl[0] = block_index-inMapW-1;
 		outBlockTbl[1] = block_index-inMapW;
 		outBlockTbl[2] = block_index-1;
-		//¶—×‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//å·¦éš£ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_w-1<0){
-			//¶‚Í”ÍˆÍŠO
-			//‚»‚Ìã‚à”ÍˆÍŠO‚Ì‚Í‚¸
+			//å·¦ã¯ç¯„å›²å¤–
+			//ãã®ä¸Šã‚‚ç¯„å›²å¤–ã®ã¯ãš
 			outBlockTbl[0] = NON_BLOCK;
 			outBlockTbl[2] = NON_BLOCK;
 		}
-		//ã‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//ä¸Šã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_h-1<0){
-			//ã‚Í”ÍˆÍŠO
+			//ä¸Šã¯ç¯„å›²å¤–
 			outBlockTbl[1] = NON_BLOCK;
 		}
 ///		block_w--;
 ///		block_h--;
 		break;
-	case 1:		//‰Eã
-		//©•ª‚Íƒ[ƒJƒ‹2
+	case 1:		//å³ä¸Š
+		//è‡ªåˆ†ã¯ãƒ­ãƒ¼ã‚«ãƒ«2
 		outBlockTbl[2] = block_index;
 		outBlockTbl[0] = block_index-inMapW;
 		outBlockTbl[1] = block_index-inMapW+1;
 		outBlockTbl[3] = block_index+1;
-		//‰E—×‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//å³éš£ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_w+1>=inMapW){
-			//‰E‚Í”ÍˆÍŠO
-			//‚»‚Ìã‚à”ÍˆÍŠO‚Ì‚Í‚¸
+			//å³ã¯ç¯„å›²å¤–
+			//ãã®ä¸Šã‚‚ç¯„å›²å¤–ã®ã¯ãš
 			outBlockTbl[1] = NON_BLOCK;
 			outBlockTbl[3] = NON_BLOCK;
 		}
-		//ã‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//ä¸Šã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_h-1<0){
-			//ã‚Í”ÍˆÍŠO
+			//ä¸Šã¯ç¯„å›²å¤–
 			outBlockTbl[0] = NON_BLOCK;
 		}
 ///		block_h--;
 		break;
-	case 2:		//¶‰º
-		//©•ª‚Íƒ[ƒJƒ‹1
+	case 2:		//å·¦ä¸‹
+		//è‡ªåˆ†ã¯ãƒ­ãƒ¼ã‚«ãƒ«1
 		outBlockTbl[1] = block_index;
 		outBlockTbl[0] = block_index-1;
 		outBlockTbl[2] = block_index+inMapW-1;
 		outBlockTbl[3] = block_index+inMapW;
-		//¶—×‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//å·¦éš£ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_w-1<0){
-			//¶‚Í”ÍˆÍŠO
-			//‚»‚Ì‰º‚à”ÍˆÍŠO‚Ì‚Í‚¸
+			//å·¦ã¯ç¯„å›²å¤–
+			//ãã®ä¸‹ã‚‚ç¯„å›²å¤–ã®ã¯ãš
 			outBlockTbl[0] = NON_BLOCK;
 			outBlockTbl[2] = NON_BLOCK;
 		}
-		//‰º‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//ä¸‹ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_h+1>inMapH){
-			//‰º‚Í”ÍˆÍŠO
+			//ä¸‹ã¯ç¯„å›²å¤–
 			outBlockTbl[3] = NON_BLOCK;
 		}
 ///		block_w--;
 		break;
-	case 3:		//‰E‰º
-		//©•ª‚Íƒ[ƒJƒ‹0
+	case 3:		//å³ä¸‹
+		//è‡ªåˆ†ã¯ãƒ­ãƒ¼ã‚«ãƒ«0
 		outBlockTbl[0] = block_index;
 		outBlockTbl[1] = block_index+1;
 		outBlockTbl[2] = block_index+inMapW;
 		outBlockTbl[3] = block_index+inMapW+1;
-		//‰E—×‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//å³éš£ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_w+1>=inMapW){
-			//‰E‚Í”ÍˆÍŠO
-			//‚»‚Ì‰º‚à”ÍˆÍŠO‚Ì‚Í‚¸
+			//å³ã¯ç¯„å›²å¤–
+			//ãã®ä¸‹ã‚‚ç¯„å›²å¤–ã®ã¯ãš
 			outBlockTbl[1] = NON_BLOCK;
 			outBlockTbl[3] = NON_BLOCK;
 		}
-		//‰º‚ÌƒuƒƒbƒN‚ğ’²‚×‚é
+		//ä¸‹ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’èª¿ã¹ã‚‹
 		if(block_h+1>inMapH){
-			//‰º‚Í”ÍˆÍŠO
+			//ä¸‹ã¯ç¯„å›²å¤–
 			outBlockTbl[0] = NON_BLOCK;
 		}
 		break;
@@ -713,9 +713,9 @@ static void MakeStartBlockTbl(	const int inGridX,
 
 //--------------------------------------------------------------------------------------------
 /**
- * 4ƒuƒƒbƒN•ª‚Ìƒƒ‚ƒŠŠm•Û
+ * 4ãƒ–ãƒ­ãƒƒã‚¯åˆ†ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿
  *
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -729,11 +729,11 @@ static void AllocBlockList(DMC_PTR outDivMapCont)
 		outDivMapCont->BlockNodeList[i] = node;
 		outDivMapCont->BlockNodeList[i]->DrawOKFlg = FALSE;
 
-		//Šm•Û‚µ‚½ƒƒ‚ƒŠ(’nŒ`)‚Æƒ|ƒCƒ“ƒ^‚ğƒoƒCƒ“ƒh
+		//ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒª(åœ°å½¢)ã¨ãƒã‚¤ãƒ³ã‚¿ã‚’ãƒã‚¤ãƒ³ãƒ‰
 		BindGroundMem(i, outDivMapCont->FldMapMem, (void**)&(outDivMapCont->BlockNodeList[i]->FloorResFile));
 		BindHeightMem(i, outDivMapCont->FldMapMem, (void**)&(outDivMapCont->BlockNodeList[i]->HeightMem));
 
-		//3DOBJ‚ÌƒAƒƒP[ƒVƒ‡ƒ“
+		//3DOBJã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³
 		if( outDivMapCont->M3dObjFlag == DIVM3DO_SET ){
 			outDivMapCont->BlockNodeList[i]->ObjDataList =
 				M3DO_AllocMap3DObjList(HEAPID_FIELD);
@@ -742,7 +742,7 @@ static void AllocBlockList(DMC_PTR outDivMapCont)
 		}
 		
 		outDivMapCont->BlockNodeList[i]->BlockIndex = NON_BLOCK;
-		//ƒAƒgƒŠƒrƒ…[ƒgƒNƒŠƒA
+		//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚¯ãƒªã‚¢
 		MI_CpuFillFast(outDivMapCont->BlockNodeList[i]->Attribute, 0xffffffff, 2*32*32 );
 	}
 	
@@ -751,9 +751,9 @@ static void AllocBlockList(DMC_PTR outDivMapCont)
 
 //--------------------------------------------------------------------------------------------
 /**
- * 4ƒuƒƒbƒN•ª‚Ìƒƒ‚ƒŠŠm•Û@ƒƒ‚ƒŠƒAƒƒbƒN‚Ì‚İ
+ * 4ãƒ–ãƒ­ãƒƒã‚¯åˆ†ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ã€€ãƒ¡ãƒ¢ãƒªã‚¢ãƒ­ãƒƒã‚¯ã®ã¿
  *
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -768,7 +768,7 @@ void AllocOnlyDivMapBlockList(DMC_PTR outDivMapCont)
 		outDivMapCont->BlockNodeList[i] = node;
 		outDivMapCont->BlockNodeList[i]->DrawOKFlg = FALSE;
 		
-		//3DOBJ‚ÌƒAƒƒP[ƒVƒ‡ƒ“
+		//3DOBJã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³
 		if( outDivMapCont->M3dObjFlag == DIVM3DO_SET ){
 			outDivMapCont->BlockNodeList[i]->ObjDataList =
 				M3DO_AllocMap3DObjList(HEAPID_FIELD);
@@ -782,9 +782,9 @@ void AllocOnlyDivMapBlockList(DMC_PTR outDivMapCont)
 
 //--------------------------------------------------------------------------------------------
 /**
- * 4ƒuƒƒbƒN•ª‚Ìƒƒ‚ƒŠŠm•Ûi’n‰ºj
+ * 4ãƒ–ãƒ­ãƒƒã‚¯åˆ†ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ï¼ˆåœ°ä¸‹ï¼‰
  *
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -797,10 +797,10 @@ static void AllocBlockListForUnder(DMC_PTR outDivMapCont)
 		node = sys_AllocMemory( HEAPID_FIELD, sizeof(BLOCK_NODE) );
 		outDivMapCont->BlockNodeList[i] = node;
 		outDivMapCont->BlockNodeList[i]->DrawOKFlg = FALSE;
-		//Šm•Û‚µ‚½ƒƒ‚ƒŠ(’nŒ`)‚Æƒ|ƒCƒ“ƒ^‚ğƒoƒCƒ“ƒh
+		//ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒª(åœ°å½¢)ã¨ãƒã‚¤ãƒ³ã‚¿ã‚’ãƒã‚¤ãƒ³ãƒ‰
 		BindGroundMem(i, outDivMapCont->FldMapMem, (void**)&(outDivMapCont->BlockNodeList[i]->FloorResFile));
 		///BindHeightMem(i, outDivMapCont->FldMapMem, (void**)&(outDivMapCont->BlockNodeList[i]->HeightMem));
-		//3DOBJ‚ÌƒAƒƒP[ƒVƒ‡ƒ“
+		//3DOBJã®ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³
 		if( outDivMapCont->M3dObjFlag == DIVM3DO_SET ){
 			outDivMapCont->BlockNodeList[i]->ObjDataList =
 				M3DO_AllocMap3DObjList(HEAPID_FIELD);
@@ -809,7 +809,7 @@ static void AllocBlockListForUnder(DMC_PTR outDivMapCont)
 		}
 		
 		outDivMapCont->BlockNodeList[i]->BlockIndex = NON_BLOCK;
-		//’n‰º‚Íê—p‚ÉƒAƒgƒŠƒrƒ…[ƒgƒf[ƒ^‚ğ‚Â‚Ì‚ÅAƒNƒŠƒAˆ—‚ğÈ‚­
+		//åœ°ä¸‹ã¯å°‚ç”¨ã«ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ã‚’æŒã¤ã®ã§ã€ã‚¯ãƒªã‚¢å‡¦ç†ã‚’çœã
 	}
 	
 	//BlockNodeList = sys_AllocMemory( HEAPID_FIELD, sizeof(BLOCK_NODE)*9 );
@@ -817,9 +817,9 @@ static void AllocBlockListForUnder(DMC_PTR outDivMapCont)
 
 //--------------------------------------------------------------------------------------------
 /**
- * 4ƒuƒƒbƒN•ª‚Ìƒƒ‚ƒŠŠm•Ûi’n‰ºj
+ * 4ãƒ–ãƒ­ãƒƒã‚¯åˆ†ã®ãƒ¡ãƒ¢ãƒªç¢ºä¿ï¼ˆåœ°ä¸‹ï¼‰
  *
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -843,11 +843,11 @@ static void ResetBlockListForUnder(DMC_PTR outDivMapCont)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒA[ƒJƒCƒuƒIƒtƒZƒbƒgæ“¾
+ * ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚ªãƒ•ã‚»ãƒƒãƒˆå–å¾—
  *
- * @param	ioHandle		ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- * @param	inArcIndex		ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX
- * @param	outData			æ“¾ƒf[ƒ^Ši”[ƒoƒbƒtƒ@
+ * @param	ioHandle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ * @param	inArcIndex		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	outData			å–å¾—ãƒ‡ãƒ¼ã‚¿æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *
  * @return	none
  */
@@ -856,7 +856,7 @@ static void GetMapArcLoadOffset(ARCHANDLE *ioHandle, const int inArcIndex, DATA_
 {
 	void *raw_data;
 	int *data;
-	int size = sizeof(int)*4;	//4ƒoƒCƒg‚S€–Ú
+	int size = sizeof(int)*4;	//4ãƒã‚¤ãƒˆï¼”é …ç›®
 	
 
 	if (ioHandle != NULL){
@@ -887,15 +887,15 @@ static void GetMapArcLoadOffset(ARCHANDLE *ioHandle, const int inArcIndex, DATA_
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒNƒf[ƒ^ƒ[ƒh‚Ì“o˜^
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ã®ç™»éŒ²
  *
- * @param	inCount			“o˜^êŠi0‚n‚q1j
- * @param	inMapResource	ƒ}ƒbƒvƒŠƒ\[ƒX
- * @param	inWorld			ƒ[ƒ‹ƒhƒ|ƒCƒ“ƒ^
- * @param	inMapW			ƒ}ƒbƒv‰¡•
- * @param	inMapH			ƒ}ƒbƒvc•
- * @param	inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	*ioMLBS			ƒ[ƒhƒuƒƒbƒNƒf[ƒ^
+ * @param	inCount			ç™»éŒ²å ´æ‰€ï¼ˆ0ï¼¯ï¼²1ï¼‰
+ * @param	inMapResource	ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹
+ * @param	inWorld			ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMapW			ãƒãƒƒãƒ—æ¨ªå¹…
+ * @param	inMapH			ãƒãƒƒãƒ—ç¸¦å¹…
+ * @param	inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	*ioMLBS			ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -922,32 +922,32 @@ static void LoadBlock(	const u8 inCount,
 	}
 
 
-	//ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	arc_index = GetWorldMapArcIdx(block_index, inWorld);
 #ifdef DEBUG_ONLY_FOR_saitou	
-	OS_Printf("local_print ƒA[ƒJƒCƒu”Ô†%d\n",arc_index);
+	OS_Printf("local_print ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·%d\n",arc_index);
 #endif	
 	if (arc_index == MAP_ARC_NO_DATA){
 		return;
 	}
 #if 0
-	GF_ASSERT(inDivMapCont->ArcHandle==NULL&&"ƒnƒ“ƒhƒ‹‰ğ•ú–Y‚ê");
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚Ìæ“¾
+	GF_ASSERT(inDivMapCont->ArcHandle==NULL&&"ãƒãƒ³ãƒ‰ãƒ«è§£æ”¾å¿˜ã‚Œ");
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	inDivMapCont->ArcHandle = ArchiveDataHandleOpen( ARC_FIELD_MAP_DATA, HEAPID_FIELD );
 #endif	
 	GetMapArcLoadOffset(inDivMapCont->ArcHandle, arc_index, &data);
 
-	//ƒAƒgƒŠƒrƒ…[ƒgƒ[ƒh
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ­ãƒ¼ãƒ‰
 	{
 		void *mem;
 		mem = &(ioMLBS->Node[inCount]->Attribute[0]);
 		ArchiveDataLoadByHandleContinue( inDivMapCont->ArcHandle, data.AttrSize, mem );
 #ifdef DEBUG_ONLY_FOR_saitou
-		OS_Printf("local_print ƒAƒgƒŠƒrƒ…[ƒgƒ[ƒh\n");
+		OS_Printf("local_print ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ­ãƒ¼ãƒ‰\n");
 #endif
 	}
 
-	//3DOBJƒ[ƒh
+	//3DOBJãƒ­ãƒ¼ãƒ‰
 	if( ioMLBS->Node[inCount]->ObjDataList != NULL ){
 		M3DO_LoadArc3DObjData(	inDivMapCont->ArcHandle,
 								data.ObjSize,
@@ -956,9 +956,9 @@ static void LoadBlock(	const u8 inCount,
 								inDivMapCont->Field3DAnmPtr);
 	}
 	
-	//’nŒ`ƒ[ƒh
+	//åœ°å½¢ãƒ­ãƒ¼ãƒ‰
 	{
-		//‰Ò“®ƒ^ƒXƒN’Ç‰Á
+		//ç¨¼å‹•ã‚¿ã‚¹ã‚¯è¿½åŠ 
 		ioMLBS->TaskCnter.BlockLoadTaskCounter++;
 #ifdef PM_DEBUG
 		{
@@ -966,7 +966,7 @@ static void LoadBlock(	const u8 inCount,
 				block_index, data.MapSize );
 			
 			if (data.MapSize > 0xf000){
-				OS_Printf("ƒA[ƒJƒCƒu%d:’nŒ`ƒ‚ƒfƒ‹‚ªƒƒ‚ƒŠƒTƒCƒYƒI[ƒo[‚Å‚·:%d\n",arc_index,data.MapSize);
+				OS_Printf("ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–%d:åœ°å½¢ãƒ¢ãƒ‡ãƒ«ãŒãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚ªãƒ¼ãƒãƒ¼ã§ã™:%d\n",arc_index,data.MapSize);
 				GF_ASSERT(0);
 			}
 		}
@@ -982,9 +982,9 @@ static void LoadBlock(	const u8 inCount,
 		
 	}
 
-	//‚‚³ƒ[ƒh	
+	//é«˜ã•ãƒ­ãƒ¼ãƒ‰	
 	{
-		//‰Ò“®ƒ^ƒXƒN’Ç‰Á
+		//ç¨¼å‹•ã‚¿ã‚¹ã‚¯è¿½åŠ 
 		ioMLBS->TaskCnter.BlockHeightLoadTaskCounter++;
 		ioMLBS->HeightTask = SetupHeightDataArcTask(inDivMapCont->ArcHandle,
 													data.HeightSize,
@@ -997,15 +997,15 @@ static void LoadBlock(	const u8 inCount,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒNƒf[ƒ^ƒ[ƒh‚Ì“o˜^i’n‰ºj
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ã®ç™»éŒ²ï¼ˆåœ°ä¸‹ï¼‰
  *
- * @param	inCount			“o˜^êŠi0‚n‚q1j
- * @param	inMapResource	ƒ}ƒbƒvƒŠƒ\[ƒX
- * @param	inWorld			ƒ[ƒ‹ƒhƒ|ƒCƒ“ƒ^
- * @param	inMapW			ƒ}ƒbƒv‰¡•
- * @param	inMapH			ƒ}ƒbƒvc•
- * @param	inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	*ioMLBS			ƒ[ƒhƒuƒƒbƒNƒf[ƒ^
+ * @param	inCount			ç™»éŒ²å ´æ‰€ï¼ˆ0ï¼¯ï¼²1ï¼‰
+ * @param	inMapResource	ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹
+ * @param	inWorld			ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMapW			ãƒãƒƒãƒ—æ¨ªå¹…
+ * @param	inMapH			ãƒãƒƒãƒ—ç¸¦å¹…
+ * @param	inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	*ioMLBS			ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1031,28 +1031,28 @@ static void LoadBlockForUnder(	const u8 inCount,
 		return;
 	}
 
-	//ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	arc_index = GetWorldMapArcIdx(block_index, inWorld);
 #ifdef DEBUG_ONLY_FOR_saitou	
-	OS_Printf("local_print ƒA[ƒJƒCƒu”Ô†%d\n",arc_index);
+	OS_Printf("local_print ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·%d\n",arc_index);
 #endif	
 	if (arc_index == MAP_ARC_NO_DATA){
 		return;
 	}
 #if 0	
-	GF_ASSERT(inDivMapCont->ArcHandle==NULL&&"ƒnƒ“ƒhƒ‹‰ğ•ú–Y‚ê");
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚Ìæ“¾
+	GF_ASSERT(inDivMapCont->ArcHandle==NULL&&"ãƒãƒ³ãƒ‰ãƒ«è§£æ”¾å¿˜ã‚Œ");
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	inDivMapCont->ArcHandle = ArchiveDataHandleOpen( ARC_FIELD_MAP_DATA, HEAPID_FIELD );
 #endif	
 	GetMapArcLoadOffset(inDivMapCont->ArcHandle, arc_index, &data);
 
 	{
 		u8 temp[0x800];
-		//ƒAƒgƒŠƒrƒ…[ƒg‚Í”ò‚Î‚·
+		//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã¯é£›ã°ã™
 		///ArchiveDataSeekByHandle( inDivMapCont->ArcHandle, 0x800+0x10 );
 		ArchiveDataLoadByHandleContinue( inDivMapCont->ArcHandle, 0x800, temp );
 	}
-	//3DOBJƒ[ƒh
+	//3DOBJãƒ­ãƒ¼ãƒ‰
 	if( ioMLBS->Node[inCount]->ObjDataList != NULL ){
 		M3DO_LoadArc3DObjData(	inDivMapCont->ArcHandle,
 								data.ObjSize,
@@ -1061,14 +1061,14 @@ static void LoadBlockForUnder(	const u8 inCount,
 								inDivMapCont->Field3DAnmPtr);
 	}
 	
-	//’nŒ`ƒ[ƒh
+	//åœ°å½¢ãƒ­ãƒ¼ãƒ‰
 	{
-		//‰Ò“®ƒ^ƒXƒN’Ç‰Á
+		//ç¨¼å‹•ã‚¿ã‚¹ã‚¯è¿½åŠ 
 		ioMLBS->TaskCnter.BlockLoadTaskCounter++;
 #ifdef PM_DEBUG
 		{
 			if (data.MapSize > 0xf000){
-				OS_Printf("ƒA[ƒJƒCƒu%d:’nŒ`ƒ‚ƒfƒ‹‚ªƒƒ‚ƒŠƒTƒCƒYƒI[ƒo[‚Å‚·:%d\n",arc_index,data.MapSize);
+				OS_Printf("ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–%d:åœ°å½¢ãƒ¢ãƒ‡ãƒ«ãŒãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚ªãƒ¼ãƒãƒ¼ã§ã™:%d\n",arc_index,data.MapSize);
 				GF_ASSERT(0);
 			}
 		}
@@ -1083,20 +1083,20 @@ static void LoadBlockForUnder(	const u8 inCount,
 
 		
 	}
-	//‚‚³‚Í“Ç‚Ü‚È‚¢		
+	//é«˜ã•ã¯èª­ã¾ãªã„		
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒNƒf[ƒ^ƒ[ƒh‚Ì“o˜^iƒ_ƒ~[ƒ}ƒbƒv
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ã®ç™»éŒ²ï¼ˆãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—
  *
- * @param	inCount			“o˜^êŠi0‚n‚q1j
- * @param	inMapResource	ƒ}ƒbƒvƒŠƒ\[ƒX
- * @param	inWorld			ƒ[ƒ‹ƒhƒ|ƒCƒ“ƒ^
- * @param	inMapW			ƒ}ƒbƒv‰¡•
- * @param	inMapH			ƒ}ƒbƒvc•
- * @param	inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	*ioMLBS			ƒ[ƒhƒuƒƒbƒNƒf[ƒ^
+ * @param	inCount			ç™»éŒ²å ´æ‰€ï¼ˆ0ï¼¯ï¼²1ï¼‰
+ * @param	inMapResource	ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹
+ * @param	inWorld			ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMapW			ãƒãƒƒãƒ—æ¨ªå¹…
+ * @param	inMapH			ãƒãƒƒãƒ—ç¸¦å¹…
+ * @param	inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	*ioMLBS			ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿
  *
  * @return	none
  */
@@ -1122,7 +1122,7 @@ static void LoadBlockForDummy(	const u8 inCount,
 		return;
 	}
 
-	//ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	arc_index = GetWorldMapArcIdx(block_index, inWorld);
 	
 	if (arc_index == MAP_ARC_NO_DATA){
@@ -1134,7 +1134,7 @@ static void LoadBlockForDummy(	const u8 inCount,
 	#if 0
 	{
 		u8 temp[0x800];
-		//ƒAƒgƒŠƒrƒ…[ƒg‚Í”ò‚Î‚·
+		//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã¯é£›ã°ã™
 		///ArchiveDataSeekByHandle( inDivMapCont->ArcHandle, 0x800+0x10 );
 		ArchiveDataLoadByHandleContinue(
 			inDivMapCont->ArcHandle, 0x800, temp );
@@ -1143,17 +1143,17 @@ static void LoadBlockForDummy(	const u8 inCount,
 	ArchiveDataSeekByHandleCur( inDivMapCont->ArcHandle, 0x800 );
 	#endif
 	
-	//3DOBJ”ò‚Î‚µ
+	//3DOBJé£›ã°ã—
 	ArchiveDataSeekByHandleCur( inDivMapCont->ArcHandle, data.ObjSize );
 	
-	//’nŒ`ƒ[ƒh
+	//åœ°å½¢ãƒ­ãƒ¼ãƒ‰
 	{
-		//‰Ò“®ƒ^ƒXƒN’Ç‰Á
+		//ç¨¼å‹•ã‚¿ã‚¹ã‚¯è¿½åŠ 
 		ioMLBS->TaskCnter.BlockLoadTaskCounter++;
 #ifdef PM_DEBUG
 		{
 			if (data.MapSize > 0xf000){
-				OS_Printf("ƒA[ƒJƒCƒu%d:’nŒ`ƒ‚ƒfƒ‹‚ªƒƒ‚ƒŠƒTƒCƒYƒI[ƒo[‚Å‚·:%d\n",arc_index,data.MapSize);
+				OS_Printf("ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–%d:åœ°å½¢ãƒ¢ãƒ‡ãƒ«ãŒãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚ªãƒ¼ãƒãƒ¼ã§ã™:%d\n",arc_index,data.MapSize);
 				GF_ASSERT(0);
 			}
 		}
@@ -1168,21 +1168,21 @@ static void LoadBlockForDummy(	const u8 inCount,
 
 		
 	}
-	//‚‚³‚Í“Ç‚Ü‚È‚¢
+	//é«˜ã•ã¯èª­ã¾ãªã„
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒN‚Ìƒ[ƒh1syncŒ^(ˆêŠ‡“Ç‚İ‚İ‚Ì‚½‚ßAƒuƒ‰ƒbƒNƒAƒEƒg‚Ég—p‚·‚é)
+ * ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ­ãƒ¼ãƒ‰1syncå‹(ä¸€æ‹¬èª­ã¿è¾¼ã¿ã®ãŸã‚ã€ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆæ™‚ã«ä½¿ç”¨ã™ã‚‹)
  *
- * @param	inBlockIndex	ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
- * @param	inLocalIndex	0`3ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param	inMapResource	ƒ}ƒbƒvƒŠƒ\[ƒX
- * @param	inWorld			ƒ[ƒ‹ƒhƒ|ƒCƒ“ƒ^
- * @param	inMapW			ƒ}ƒbƒv‰¡•
- * @param	inMapH			ƒ}ƒbƒvc•
- * @param	inLightValid	ƒ‰ƒCƒgƒtƒ‰ƒO
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	inBlockIndex	ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inLocalIndex	0ã€œ3ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inMapResource	ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹
+ * @param	inWorld			ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMapW			ãƒãƒƒãƒ—æ¨ªå¹…
+ * @param	inMapH			ãƒãƒƒãƒ—ç¸¦å¹…
+ * @param	inLightValid	ãƒ©ã‚¤ãƒˆãƒ•ãƒ©ã‚°
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1197,7 +1197,7 @@ static void LoadBlockQuick(	const int inBlockIndex,
 							DMC_PTR outDivMapCont)
 {
 	int arc_index;
-	NNSG3dResMdl* model;			// ƒ‚ƒfƒ‹
+	NNSG3dResMdl* model;			// ãƒ¢ãƒ‡ãƒ«
 	DATA_OFS_SIZE data;
 	
 	if (inBlockIndex<0 || inBlockIndex>=inMapW*inMapH){
@@ -1207,20 +1207,20 @@ static void LoadBlockQuick(	const int inBlockIndex,
 		return;
 	}
 	
-	//ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	arc_index = GetWorldMapArcIdx(inBlockIndex, inWorld);
 #ifdef DEBUG_ONLY_FOR_saitou
-	OS_Printf("local_print ƒA[ƒJƒCƒu”Ô†%d\n",arc_index);
+	OS_Printf("local_print ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·%d\n",arc_index);
 #endif	
 	if (arc_index == MAP_ARC_NO_DATA){
 		return;
 	}
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚Ìæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 ///	outDivMapCont->ArcHandle = ArchiveDataHandleOpen( ARC_FIELD_MAP_DATA, HEAPID_FIELD );
 	
 	GetMapArcLoadOffset(outDivMapCont->ArcHandle, arc_index, &data);
 	
-	//ƒAƒgƒŠƒrƒ…[ƒgƒ[ƒh
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ­ãƒ¼ãƒ‰
 	{
 		void *mem;
 		mem = &(outDivMapCont->BlockNodeList[inLocalIndex]->Attribute[0]);
@@ -1228,7 +1228,7 @@ static void LoadBlockQuick(	const int inBlockIndex,
 		ArchiveDataLoadByHandleContinue( outDivMapCont->ArcHandle, data.AttrSize, mem );
 	}
 	
-	//3DOBJƒ[ƒh
+	//3DOBJãƒ­ãƒ¼ãƒ‰
 	if( outDivMapCont->BlockNodeList[inLocalIndex]->ObjDataList != NULL ){
 		M3DO_LoadArc3DObjData(	outDivMapCont->ArcHandle,
 					data.ObjSize,
@@ -1243,13 +1243,13 @@ static void LoadBlockQuick(	const int inBlockIndex,
 			inBlockIndex, data.MapSize );
 		
 		if (data.MapSize > 0xf000){
-			OS_Printf("ƒA[ƒJƒCƒu%d:’nŒ`ƒ‚ƒfƒ‹‚ªƒƒ‚ƒŠƒTƒCƒYƒI[ƒo[‚Å‚·:%d\n",arc_index,data.MapSize);
+			OS_Printf("ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–%d:åœ°å½¢ãƒ¢ãƒ‡ãƒ«ãŒãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚ªãƒ¼ãƒãƒ¼ã§ã™:%d\n",arc_index,data.MapSize);
 				GF_ASSERT(0);
 		}
 	}
 #endif
 	
-	//’nŒ`ƒ[ƒh
+	//åœ°å½¢ãƒ­ãƒ¼ãƒ‰
 	{
 		model = Set3DModel(	outDivMapCont->ArcHandle,
 							data.MapSize,
@@ -1258,14 +1258,14 @@ static void LoadBlockQuick(	const int inBlockIndex,
 							GetMapResourceTexturePTR(inMapResource));
 
 		if (inLightValid == TRUE){
-			//ƒOƒ[ƒoƒ‹ƒXƒe[ƒgg—p
+			//ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆä½¿ç”¨
 			SetGlbLightMdl(model);
 		}
 
 		outDivMapCont->BlockNodeList[inLocalIndex]->DrawOKFlg = TRUE;	
 	}
 
-	//‚‚³ƒ[ƒh
+	//é«˜ã•ãƒ­ãƒ¼ãƒ‰
 	{
 		SetupHeightDataArc(	outDivMapCont->ArcHandle,
 							data.HeightSize,
@@ -1273,13 +1273,13 @@ static void LoadBlockQuick(	const int inBlockIndex,
 							outDivMapCont->BlockNodeList[inLocalIndex]->HeightMem);
 	}
 #if 0
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚Ì‰ğ•ú
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã®è§£æ”¾
 	ArchiveDataHandleClose( outDivMapCont->ArcHandle );
 	outDivMapCont->ArcHandle = NULL;
 #endif	
 	outDivMapCont->BlockNodeList[inLocalIndex]->BlockIndex = inBlockIndex;
 
-	//ƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ
+	//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—
 	if (outDivMapCont->CallBack!=NULL){
 		outDivMapCont->CallBack(	outDivMapCont->CallBackWork,
 			inBlockIndex,
@@ -1289,16 +1289,16 @@ static void LoadBlockQuick(	const int inBlockIndex,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒN‚Ìƒ[ƒh1syncŒ^(ˆêŠ‡“Ç‚İ‚İ‚Ì‚½‚ßAƒuƒ‰ƒbƒNƒAƒEƒg‚Ég—p‚·‚é)’n‰º—p
+ * ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ­ãƒ¼ãƒ‰1syncå‹(ä¸€æ‹¬èª­ã¿è¾¼ã¿ã®ãŸã‚ã€ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆæ™‚ã«ä½¿ç”¨ã™ã‚‹)åœ°ä¸‹ç”¨
  *
- * @param	inBlockIndex	ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
- * @param	inLocalIndex	0`3@ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param	inMapResource	ƒ}ƒbƒvƒŠƒ\[ƒX
- * @param	inWorld			ƒ[ƒ‹ƒhƒ|ƒCƒ“ƒ^
- * @param	inMapW			ƒ}ƒbƒv‰¡•
- * @param	inMapH			ƒ}ƒbƒvc•
- * @param	inLightValid	ƒ‰ƒCƒgƒtƒ‰ƒO
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	inBlockIndex	ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inLocalIndex	0ã€œ3ã€€ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inMapResource	ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹
+ * @param	inWorld			ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMapW			ãƒãƒƒãƒ—æ¨ªå¹…
+ * @param	inMapH			ãƒãƒƒãƒ—ç¸¦å¹…
+ * @param	inLightValid	ãƒ©ã‚¤ãƒˆãƒ•ãƒ©ã‚°
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
@@ -1314,32 +1314,32 @@ static void LoadBlockQuickForUnder(	const int inBlockIndex,
 {
 	int arc_index;
 	DATA_OFS_SIZE data;
-	NNSG3dResMdl* model;			// ƒ‚ƒfƒ‹
+	NNSG3dResMdl* model;			// ãƒ¢ãƒ‡ãƒ«
 	if (inBlockIndex<0 || inBlockIndex>=inMapW*inMapH){
 		return;
 	}
 
-	//ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	arc_index = GetWorldMapArcIdx(inBlockIndex, inWorld);
 #ifdef DEBUG_ONLY_FOR_saitou
-	OS_Printf("local_print ƒA[ƒJƒCƒu”Ô†%d\n",arc_index);
+	OS_Printf("local_print ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·%d\n",arc_index);
 #endif
 	if (arc_index == MAP_ARC_NO_DATA){
 		return;
 	}
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚Ìæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 ///	outDivMapCont->ArcHandle = ArchiveDataHandleOpen( ARC_FIELD_MAP_DATA, HEAPID_FIELD );
 	
 	GetMapArcLoadOffset(outDivMapCont->ArcHandle, arc_index, &data);
 
 	{
 		u8 temp[0x800];
-		//ƒAƒgƒŠƒrƒ…[ƒg‚Í”ò‚Î‚·
+		//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã¯é£›ã°ã™
 		///ArchiveDataSeekByHandle( outDivMapCont->ArcHandle, 0x800+0x10 );
 		ArchiveDataLoadByHandleContinue( outDivMapCont->ArcHandle, 0x800, temp );
 	}
 
-	//3DOBJƒ[ƒh	
+	//3DOBJãƒ­ãƒ¼ãƒ‰	
 	if( outDivMapCont->BlockNodeList[inLocalIndex]->ObjDataList != NULL ){
 		M3DO_LoadArc3DObjData(	outDivMapCont->ArcHandle,
 					data.ObjSize,
@@ -1348,7 +1348,7 @@ static void LoadBlockQuickForUnder(	const int inBlockIndex,
 					outDivMapCont->Field3DAnmPtr);
 	}
 	
-	//’nŒ`ƒ[ƒh
+	//åœ°å½¢ãƒ­ãƒ¼ãƒ‰
 	{
 		model = Set3DModel(	outDivMapCont->ArcHandle,
 							data.MapSize,
@@ -1357,16 +1357,16 @@ static void LoadBlockQuickForUnder(	const int inBlockIndex,
 							GetMapResourceTexturePTR(inMapResource));
 
 		if (inLightValid == TRUE){
-			//ƒOƒ[ƒoƒ‹ƒXƒe[ƒgg—p
+			//ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆä½¿ç”¨
 			SetGlbLightMdl(model);
 		}
 
 		outDivMapCont->BlockNodeList[inLocalIndex]->DrawOKFlg = TRUE;	
 	}
 	
-	//‚‚³“Ç‚Ü‚È‚¢
+	//é«˜ã•èª­ã¾ãªã„
 #if 0
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚Ì‰ğ•ú
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã®è§£æ”¾
 	ArchiveDataHandleClose( outDivMapCont->ArcHandle );
 	outDivMapCont->ArcHandle = NULL;
 #endif	
@@ -1375,17 +1375,17 @@ static void LoadBlockQuickForUnder(	const int inBlockIndex,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒN‚Ìƒ[ƒh1syncŒ^(ˆêŠ‡“Ç‚İ‚İ‚Ì‚½‚ßAƒuƒ‰ƒbƒNƒAƒEƒg‚Ég—p‚·‚é)
- * ’nŒ`‚Í“Ç‚İ‚Ü‚È‚¢
+ * ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ­ãƒ¼ãƒ‰1syncå‹(ä¸€æ‹¬èª­ã¿è¾¼ã¿ã®ãŸã‚ã€ãƒ–ãƒ©ãƒƒã‚¯ã‚¢ã‚¦ãƒˆæ™‚ã«ä½¿ç”¨ã™ã‚‹)
+ * åœ°å½¢ã¯èª­ã¿è¾¼ã¾ãªã„
  *
- * @param	inBlockIndex	ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
- * @param	inLocalIndex	0`3ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param	inMapResource	ƒ}ƒbƒvƒŠƒ\[ƒX
- * @param	inWorld			ƒ[ƒ‹ƒhƒ|ƒCƒ“ƒ^
- * @param	inMapW			ƒ}ƒbƒv‰¡•
- * @param	inMapH			ƒ}ƒbƒvc•
- * @param	inLightValid	ƒ‰ƒCƒgƒtƒ‰ƒO
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	inBlockIndex	ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inLocalIndex	0ã€œ3ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inMapResource	ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹
+ * @param	inWorld			ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMapW			ãƒãƒƒãƒ—æ¨ªå¹…
+ * @param	inMapH			ãƒãƒƒãƒ—ç¸¦å¹…
+ * @param	inLightValid	ãƒ©ã‚¤ãƒˆãƒ•ãƒ©ã‚°
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1410,10 +1410,10 @@ static void LoadBlockModelHeightAttrQuick(
 		return;
 	}
 	
-	//ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	arc_index = GetWorldMapArcIdx(inBlockIndex, inWorld);
 #ifdef DEBUG_ONLY_FOR_saitou
-	OS_Printf("local_print ƒA[ƒJƒCƒu”Ô†%d\n",arc_index);
+	OS_Printf("local_print ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ç•ªå·%d\n",arc_index);
 #endif
 	if (arc_index == MAP_ARC_NO_DATA){
 		return;
@@ -1421,7 +1421,7 @@ static void LoadBlockModelHeightAttrQuick(
 	
 	GetMapArcLoadOffset(outDivMapCont->ArcHandle, arc_index, &data);
 	
-	//ƒAƒgƒŠƒrƒ…[ƒgƒ[ƒh
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆãƒ­ãƒ¼ãƒ‰
 	{
 		void *mem;
 		mem = &(outDivMapCont->BlockNodeList[inLocalIndex]->Attribute[0]);
@@ -1429,7 +1429,7 @@ static void LoadBlockModelHeightAttrQuick(
 			outDivMapCont->ArcHandle, data.AttrSize, mem );
 	}
 	
-	//3DOBJƒ[ƒh
+	//3DOBJãƒ­ãƒ¼ãƒ‰
 	if( outDivMapCont->BlockNodeList[inLocalIndex]->ObjDataList != NULL ){
 		M3DO_LoadArc3DObjData(	outDivMapCont->ArcHandle,
 			data.ObjSize,
@@ -1438,10 +1438,10 @@ static void LoadBlockModelHeightAttrQuick(
 			outDivMapCont->Field3DAnmPtr);
 	}
 	
-	//’nŒ`ƒf[ƒ^”ò‚Î‚µ
+	//åœ°å½¢ãƒ‡ãƒ¼ã‚¿é£›ã°ã—
 	ArchiveDataSeekByHandleCur( outDivMapCont->ArcHandle, data.MapSize );
 	
-	//‚‚³ƒ[ƒh
+	//é«˜ã•ãƒ­ãƒ¼ãƒ‰
 	{
 		SetupHeightDataArc(	outDivMapCont->ArcHandle,
 			data.HeightSize,
@@ -1451,7 +1451,7 @@ static void LoadBlockModelHeightAttrQuick(
 	
 	outDivMapCont->BlockNodeList[inLocalIndex]->BlockIndex = inBlockIndex;
 	
-	//ƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ
+	//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—
 	if (outDivMapCont->CallBack!=NULL){
 		outDivMapCont->CallBack(
 			outDivMapCont->CallBackWork,
@@ -1462,11 +1462,11 @@ static void LoadBlockModelHeightAttrQuick(
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒNƒ[ƒhƒ^ƒXƒN‚ª‰Ò“®’†‚©‚ğƒ`ƒFƒbƒN
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯ãŒç¨¼å‹•ä¸­ã‹ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param	*inTaskCnter	ƒ^ƒXƒNƒJƒEƒ“ƒ^
+ * @param	*inTaskCnter	ã‚¿ã‚¹ã‚¯ã‚«ã‚¦ãƒ³ã‚¿
  *
- * @return	BOOL		TRUE:I—¹	FALSE:‰Ò“®’†
+ * @return	BOOL		TRUE:çµ‚äº†	FALSE:ç¨¼å‹•ä¸­
  */
 //--------------------------------------------------------------------------------------------
 static BOOL CheckBlockLoadTaskCounter(const MAP_LOAD_TASK_COUNTER *inTaskCnter)
@@ -1481,17 +1481,17 @@ static BOOL CheckBlockLoadTaskCounter(const MAP_LOAD_TASK_COUNTER *inTaskCnter)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒ[ƒhƒŠƒNƒGƒXƒgŠÖ”
+ * ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆé–¢æ•°
  *
- * @param	ioDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	inBlock1		‘æ1ƒ[ƒhƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
- * @param	inBlock2		‘æ2ƒ[ƒhƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
- * @param	inIdx1			‘æ1ƒ[ƒhƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX(0`3)
- * @param	inIdx2			‘æ2ƒ[ƒhƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX(0`3)
- * @param	inBlankNo		“o˜^‹ó‚«êŠi0‚n‚q1j
- * @param	inDir			ƒ[ƒh•ûŒü
+ * @param	ioDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	inBlock1		ç¬¬1ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inBlock2		ç¬¬2ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inIdx1			ç¬¬1ãƒ­ãƒ¼ãƒ‰ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(0ã€œ3)
+ * @param	inIdx2			ç¬¬2ãƒ­ãƒ¼ãƒ‰ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(0ã€œ3)
+ * @param	inBlankNo		ç™»éŒ²ç©ºãå ´æ‰€ï¼ˆ0ï¼¯ï¼²1ï¼‰
+ * @param	inDir			ãƒ­ãƒ¼ãƒ‰æ–¹å‘
  *
- * @return	BOOL		“o˜^¬Œ÷—L–³	TRUE:¬Œ÷	FALSE:¸”s
+ * @return	BOOL		ç™»éŒ²æˆåŠŸæœ‰ç„¡	TRUE:æˆåŠŸ	FALSE:å¤±æ•—
  */
 //--------------------------------------------------------------------------------------------
 static BOOL BlockLoadReqest( DMC_PTR ioDivMapCont,
@@ -1502,13 +1502,13 @@ static BOOL BlockLoadReqest( DMC_PTR ioDivMapCont,
 								const u8 inBlankNo,
 								const u8 inDir)
 {
-	//‰Ò“®’†‚É“o˜^‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚é‚Ì‚ÅƒGƒ‰[‚Æ‚·‚é
-	GF_ASSERT((ioDivMapCont->MLBC[inBlankNo].Moving == FALSE)&&"ERROR:‰Ò“®’†‚È‚Ì‚É“o˜^‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚é");
+	//ç¨¼å‹•ä¸­ã«ç™»éŒ²ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹ã®ã§ã‚¨ãƒ©ãƒ¼ã¨ã™ã‚‹
+	GF_ASSERT((ioDivMapCont->MLBC[inBlankNo].Moving == FALSE)&&"ERROR:ç¨¼å‹•ä¸­ãªã®ã«ç™»éŒ²ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹");
 	
-	//‰Ò“®’†‚É‚·‚é
+	//ç¨¼å‹•ä¸­ã«ã™ã‚‹
 	ioDivMapCont->MLBC[inBlankNo].Moving = TRUE;
 
-	//ƒ[ƒh•ûŒü•Û‘¶
+	//ãƒ­ãƒ¼ãƒ‰æ–¹å‘ä¿å­˜
 	ioDivMapCont->MLBC[inBlankNo].LoadDir = inDir;
 	
 	ioDivMapCont->MLBC[inBlankNo].MLBS.Block[0] = inBlock1;
@@ -1522,8 +1522,8 @@ static BOOL BlockLoadReqest( DMC_PTR ioDivMapCont,
 	ioDivMapCont->MLBC[inBlankNo].MLBS.TotalCount = 0;
 	ioDivMapCont->MLBC[inBlankNo].MLBS.BlockLoadOK = FALSE;
 
-	//‰Ò“®ƒ[ƒ_[‚ª‚È‚¢‚È‚çƒ[ƒh‚ğƒŠƒNƒGƒXƒg‚·‚é
-	//‰Ò“®ƒ[ƒ_[‚ª‚ ‚é‚È‚çA“o˜^‚¾‚¯‚·‚é
+	//ç¨¼å‹•ãƒ­ãƒ¼ãƒ€ãƒ¼ãŒãªã„ãªã‚‰ãƒ­ãƒ¼ãƒ‰ã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆã™ã‚‹
+	//ç¨¼å‹•ãƒ­ãƒ¼ãƒ€ãƒ¼ãŒã‚ã‚‹ãªã‚‰ã€ç™»éŒ²ã ã‘ã™ã‚‹
 	if (ioDivMapCont->MovingNum == 0){		
 		ioDivMapCont->LoadSeq = DML_LOAD_BLOCK;
 	}
@@ -1539,10 +1539,10 @@ static BOOL BlockLoadReqest( DMC_PTR ioDivMapCont,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒV[ƒPƒ“ƒXŠÖ”
+ * ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹é–¢æ•°
  *
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	ioDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	ioDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -1567,22 +1567,22 @@ if (test_sync_count_flg){
 #endif
 
 	if(ioDivMapCont->BlockMode == BLOCKMODE_OVERLOAD && dmc->Valid == TRUE){
-		//Œ»İˆÚ“®’†
-		//‹ŒÀ•W‚ÆŒ»İÀ•W‚Ì·•ª‚ªA1ƒOƒŠƒbƒh‚É‚È‚Á‚½‚©‚ğ”»’è
+		//ç¾åœ¨ç§»å‹•ä¸­
+		//æ—§åº§æ¨™ã¨ç¾åœ¨åº§æ¨™ã®å·®åˆ†ãŒã€1ã‚°ãƒªãƒƒãƒ‰ã«ãªã£ãŸã‹ã‚’åˆ¤å®š
 		if (dmc->Moving){
-			GF_ASSERT((*dmc->SmallVal)<=(*dmc->LargeVal)&&"ERROR:’l•s³");
+			GF_ASSERT((*dmc->SmallVal)<=(*dmc->LargeVal)&&"ERROR:å€¤ä¸æ­£");
 			if( (*dmc->LargeVal)-(*dmc->SmallVal) >=
 				(FX32_ONE *ONE_GRID_SIZE) ){
 				int grid_x,grid_z;
-				//1ƒOƒŠƒbƒhˆÚ“®Š®—¹ ·•ª‚ÍŠO•”’l‚ğM—p‚µ‚Äs‚¢‚Ü‚·
+				//1ã‚°ãƒªãƒƒãƒ‰ç§»å‹•å®Œäº† å·®åˆ†ã¯å¤–éƒ¨å€¤ã‚’ä¿¡ç”¨ã—ã¦è¡Œã„ã¾ã™
 				GetGridXZ(
 					dmc->TargetPoint->x, dmc->TargetPoint->z,
 					&grid_x, &grid_z);
-				UpdateNowData( grid_x, grid_z,	//“à•”ƒf[ƒ^XV
+				UpdateNowData( grid_x, grid_z,	//å†…éƒ¨ãƒ‡ãƒ¼ã‚¿æ›´æ–°
 						ioDivMapCont->OriginGridX, ioDivMapCont->OriginGridZ,
 						ioDivMapCont);
 				dmc->OldPoint = *dmc->TargetPoint;
-				// ’ÊM‚É‚ÍƒGƒ‰[‚É‚·‚é
+				// é€šä¿¡æ™‚ã«ã¯ã‚¨ãƒ©ãƒ¼ã«ã™ã‚‹
                 
 				if(!(dmc->OldPoint.z%(FX32_ONE*8)==0)){
                     if(CommStateSetError(COMM_ERROR_RESET_SAVEPOINT)){
@@ -1590,67 +1590,67 @@ if (test_sync_count_flg){
                     }
                 }
 				GF_ASSERT( dmc->OldPoint.z%(FX32_ONE*8)==0 &&
-					"ƒOƒŠƒbƒh’PˆÊ‚ÌˆÚ“®‚ª‚È‚³‚ê‚Ä‚¢‚È‚¢");
+					"ã‚°ãƒªãƒƒãƒ‰å˜ä½ã®ç§»å‹•ãŒãªã•ã‚Œã¦ã„ãªã„");
 				dmc->Moving = FALSE;
 				dmc->LargeVal = NULL;
 				dmc->SmallVal = NULL;
 			}
-		}else{	//ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚éÀ•W‚Ì“®‚«n‚ß‚ğŒŸo
+		}else{	//ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹åº§æ¨™ã®å‹•ãå§‹ã‚ã‚’æ¤œå‡º
 			if ( (dmc->OldPoint.x != dmc->TargetPoint->x)&&
 					(dmc->OldPoint.z != dmc->TargetPoint->z) ){
-				//‚˜A‚š“¯•Ï‰»‚ÍƒGƒ‰[‚Æ‚·‚é
-				GF_ASSERT(0&&"ERRORFXZ“¯•Ï‰»‚ª”­¶");				
+				//ï½˜ã€ï½šåŒæ™‚å¤‰åŒ–ã¯ã‚¨ãƒ©ãƒ¼ã¨ã™ã‚‹
+				GF_ASSERT(0&&"ERRORï¼šXZåŒæ™‚å¤‰åŒ–ãŒç™ºç”Ÿ");				
 			}else if ( (dmc->OldPoint.x == dmc->TargetPoint->x)&&
 						(dmc->OldPoint.z == dmc->TargetPoint->z) ){
-				;	//‰½‚à‚µ‚È‚¢
-			}else{	//XZ‚Ç‚¿‚ç‚©ˆê•û‚Ì•Ï‰»‚ª‚ ‚Á‚½ê‡
+				;	//ä½•ã‚‚ã—ãªã„
+			}else{	//XZã©ã¡ã‚‰ã‹ä¸€æ–¹ã®å¤‰åŒ–ãŒã‚ã£ãŸå ´åˆ
 				dmc->Moving = TRUE;
-				if (dmc->OldPoint.x != dmc->TargetPoint->x){	//X‚ª•Ï‰»
+				if (dmc->OldPoint.x != dmc->TargetPoint->x){	//XãŒå¤‰åŒ–
 					if (dmc->OldPoint.x > dmc->TargetPoint->x){
-						//‹ŒÀ•W‚Ì‚Ù‚¤‚ª‘å‚«‚¢„„¶‚ÉˆÚ“®
+						//æ—§åº§æ¨™ã®ã»ã†ãŒå¤§ãã„ï¼ï¼å·¦ã«ç§»å‹•
 						dmc->LargeVal = &dmc->OldPoint.x;
 						dmc->SmallVal = &dmc->TargetPoint->x;
 						dmc->Dir = MAP_LOAD_LEFT;
 					}else{
-						//‰E‚ÉˆÚ“®
+						//å³ã«ç§»å‹•
 						dmc->LargeVal = &dmc->TargetPoint->x;
 						dmc->SmallVal = &dmc->OldPoint.x;
 						dmc->Dir = MAP_LOAD_RIGHT;
 					}
                     
-					// ’ÊM‚É‚ÍƒGƒ‰[‚É‚·‚é
+					// é€šä¿¡æ™‚ã«ã¯ã‚¨ãƒ©ãƒ¼ã«ã™ã‚‹
 					if(!(dmc->OldPoint.x%(FX32_ONE*8)==0)){
                         if(CommStateSetError(COMM_ERROR_RESET_SAVEPOINT)){
                             return;
                         }
                     }
                     GF_ASSERT(dmc->OldPoint.x%(FX32_ONE*8)==0&&
-						"‹ŒxÀ•W‚ªƒOƒŠƒbƒh’PˆÊ‚ÌˆÚ“®‚Å‚Í‚È‚¢");
+						"æ—§xåº§æ¨™ãŒã‚°ãƒªãƒƒãƒ‰å˜ä½ã®ç§»å‹•ã§ã¯ãªã„");
 				}
-				else{	//Z‚ª•Ï‰»
+				else{	//ZãŒå¤‰åŒ–
 					if( ioDivMapCont->MapCheck.OldPoint.z >
 						ioDivMapCont->MapCheck.TargetPoint->z){
-						//‹ŒÀ•W‚Ì‚Ù‚¤‚ª‘å‚«‚¢„„ã‚ÉˆÚ“®
+						//æ—§åº§æ¨™ã®ã»ã†ãŒå¤§ãã„ï¼ï¼ä¸Šã«ç§»å‹•
 						dmc->LargeVal = &dmc->OldPoint.z;
 						dmc->SmallVal = &dmc->TargetPoint->z;
 						dmc->Dir = MAP_LOAD_UP;
-					}else{	//‰º‚ÉˆÚ“®
+					}else{	//ä¸‹ã«ç§»å‹•
 						dmc->LargeVal = &dmc->TargetPoint->z;
 						dmc->SmallVal = &dmc->OldPoint.z;
 						dmc->Dir = MAP_LOAD_DOWN;
 					}
 					
-					// ’ÊM‚É‚ÍƒGƒ‰[‚É‚·‚é
+					// é€šä¿¡æ™‚ã«ã¯ã‚¨ãƒ©ãƒ¼ã«ã™ã‚‹
                     if(!(dmc->OldPoint.z%(FX32_ONE*8)==0)){
                         if(CommStateSetError(COMM_ERROR_RESET_SAVEPOINT)){
                             return;
                         }
                     }
 					GF_ASSERT(dmc->OldPoint.z%(FX32_ONE*8)==0&&
-						"‹ŒzÀ•W‚ªƒOƒŠƒbƒh’PˆÊ‚ÌˆÚ“®‚Å‚Í‚È‚¢");
+						"æ—§zåº§æ¨™ãŒã‚°ãƒªãƒƒãƒ‰å˜ä½ã®ç§»å‹•ã§ã¯ãªã„");
 				}
 				
-				//ƒ[ƒhƒŠƒNƒGƒXƒg
+				//ãƒ­ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 				DivMapLoad_UpdateBlockData(dmc->Dir,ioDivMapCont);
 			}
 		}
@@ -1658,23 +1658,23 @@ if (test_sync_count_flg){
 	}//end if(dmc->Valid == TRUE)
 	
 	switch(ioDivMapCont->LoadSeq){
-	case DML_LOAD_BLOCK:	//ƒuƒƒbƒN‚Ìƒ[ƒh
+	case DML_LOAD_BLOCK:	//ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ­ãƒ¼ãƒ‰
 		#ifdef DIV_MAP_LOAD_DEBUG
-		OS_Printf("ƒ[ƒhŠJn\n");
+		OS_Printf("ãƒ­ãƒ¼ãƒ‰é–‹å§‹\n");
 		#endif
-		///OS_Printf("’†~Šm”F%d\n",mlbs->Index[mlbs->TotalCount]);
-		//ƒŠƒNƒGƒXƒg’†~‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢‚È‚çAƒ[ƒh
+		///OS_Printf("ä¸­æ­¢ç¢ºèª%d\n",mlbs->Index[mlbs->TotalCount]);
+		//ãƒªã‚¯ã‚¨ã‚¹ãƒˆä¸­æ­¢ãŒã‹ã‹ã£ã¦ã„ãªã„ãªã‚‰ã€ãƒ­ãƒ¼ãƒ‰
 		if( ioDivMapCont->LocalFreeIndexTable[mlbs->Index[mlbs->TotalCount]]
 			== TRUE){
 			#ifdef DIV_MAP_LOAD_DEBUG			
-			OS_Printf("‰ğ•úƒŠƒNƒGƒXƒg‚ª‚©‚©‚Á‚Ä‚¢‚é‚Ì‚ÅAƒ[ƒh‚µ‚È‚¢\n");
+			OS_Printf("è§£æ”¾ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‹ã‹ã£ã¦ã„ã‚‹ã®ã§ã€ãƒ­ãƒ¼ãƒ‰ã—ãªã„\n");
 			#endif
 			;
 		}else{
 			#ifdef DIV_MAP_LOAD_DEBUG
-			OS_Printf( "ƒg[ƒ^ƒ‹%d‚Â‚ß,ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX%d:ƒ[ƒh\n",
+			OS_Printf( "ãƒˆãƒ¼ã‚¿ãƒ«%dã¤ã‚,ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹%d:ãƒ­ãƒ¼ãƒ‰\n",
 				mlbs->TotalCount+1,mlbs->Index[mlbs->TotalCount]);
-			OS_Printf("%d:Œ»İ“Ç‚İ‚İˆÊ’u\n",ioDivMapCont->NowMovingNo);
+			OS_Printf("%d:ç¾åœ¨èª­ã¿è¾¼ã¿ä½ç½®\n",ioDivMapCont->NowMovingNo);
 			#endif
 			ioDivMapCont->FuncList->DivLoadFunc( mlbs->TotalCount,
 												ioDivMapCont->MapResource,
@@ -1691,11 +1691,11 @@ if (test_sync_count_flg){
 		mlbs->TotalCount++;
 		ioDivMapCont->	LoadSeq = DML_LOAD_WAIT;
 		break;
-	case DML_LOAD_WAIT:		//ƒuƒƒbƒNƒ[ƒhI—¹‘Ò‚¿
+	case DML_LOAD_WAIT:		//ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 		if(ioDivMapCont->LocalFreeIndexTable[mlbs->Index[mlbs->TotalCount-1]]
 			== TRUE){
 			#ifdef DIV_MAP_LOAD_DEBUG
-			OS_Printf("%d,%d:‰ğ•úƒŠƒNƒGƒXƒg‚ª‚©‚©‚Á‚Ä‚¢‚é‚Ì‚ÅA‰ğ•ú‚·‚é\n",
+			OS_Printf("%d,%d:è§£æ”¾ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‹ã‹ã£ã¦ã„ã‚‹ã®ã§ã€è§£æ”¾ã™ã‚‹\n",
 				mlbs->Index[mlbs->TotalCount-1],mlbs->TotalCount);
 			#endif
 			LoadTaskStopReqestByMLBS(mlbs);
@@ -1707,29 +1707,29 @@ if (test_sync_count_flg){
 			(CheckBlockLoadTaskCounter(&mlbs->TaskCnter) == TRUE)){
 			if (mlbs->TotalCount>=2){
 				#ifdef DIV_MAP_LOAD_DEBUG
-				OS_Printf("%d:2‚Â‚ß“Ç‚İ‚İI‚í‚è\n",mlbs->TotalCount);
+				OS_Printf("%d:2ã¤ã‚èª­ã¿è¾¼ã¿çµ‚ã‚ã‚Š\n",mlbs->TotalCount);
 				#endif
-				mlbs->BlockLoadOK = TRUE;	//“Ç‚İ‚İI—¹
-				//2‚Â‚ÌƒuƒƒbƒNƒ[ƒh‚ªI—¹‚µ‚½‚Ì‚ÅA
-				//Ï‚İ‚Ü‚ê‚Ä‚¢‚éƒuƒƒbƒNƒ[ƒh‚ª‚ ‚é‚©‚ğ’²‚×‚é
-				//Ï‚Ü‚ê‚Ä‚¢‚éê‡‚Íˆ—‚ğ‚·‚é
+				mlbs->BlockLoadOK = TRUE;	//èª­ã¿è¾¼ã¿çµ‚äº†
+				//2ã¤ã®ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰ãŒçµ‚äº†ã—ãŸã®ã§ã€
+				//ç©ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰ãŒã‚ã‚‹ã‹ã‚’èª¿ã¹ã‚‹
+				//ç©ã¾ã‚Œã¦ã„ã‚‹å ´åˆã¯å‡¦ç†ã‚’ã™ã‚‹
 				/*
 				MapLoadCont.MLBC[MapLoadCont.NowMovingTaskNo].MLBS.Node[0]->DrawOKFlg = TRUE;
 				MapLoadCont.MLBC[MapLoadCont.NowMovingTaskNo].MLBS.Node[1]->DrawOKFlg = TRUE;
 				*/
 			}else{
 				#ifdef DIV_MAP_LOAD_DEBUG
-				OS_Printf("%d:1‚Â‚ß“Ç‚İ‚İI‚í‚è\n",mlbs->TotalCount);
+				OS_Printf("%d:1ã¤ã‚èª­ã¿è¾¼ã¿çµ‚ã‚ã‚Š\n",mlbs->TotalCount);
 				#endif
 				ioDivMapCont->LoadSeq = DML_LOAD_BLOCK;
 				#ifdef DIV_MAP_LOAD_DEBUG	
-				OS_Printf("1‚Â–Úƒ[ƒhI@mlbs->LoadTime = %d\n",
+				OS_Printf("1ã¤ç›®ãƒ­ãƒ¼ãƒ‰ï¼ã€€mlbs->LoadTime = %d\n",
 					mlbs->DebugLoadTimer);
 				#endif				
 			}
 			
 			#if 0			
-			//“Ç‚İ‚İ‚ªI—¹‚µ‚½‚Ì‚ÅƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚ğ‰ğ•ú
+			//èª­ã¿è¾¼ã¿ãŒçµ‚äº†ã—ãŸã®ã§ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾
 			if (ioDivMapCont->ArcHandle != NULL){
 				ArchiveDataHandleClose( ioDivMapCont->ArcHandle );
 				ioDivMapCont->ArcHandle = NULL;
@@ -1741,13 +1741,13 @@ if (test_sync_count_flg){
 					mlbs->Node[mlbs->TotalCount-1]->FloorResFile);
 				NNSG3dResMdl* model = NNS_G3dGetMdlByIdx(pMdlSet, 0);
 				if (MAPRES_IsValidLight(ioDivMapCont->MapResource) == TRUE){
-					//ƒOƒ[ƒoƒ‹ƒXƒe[ƒgg—p
+					//ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆä½¿ç”¨
 					SetGlbLightMdl(model);
 				}
 			}
 			#ifdef DIV_CALL_BACK	
-			//‚±‚±‚ÅƒR[ƒ‹ƒoƒbƒN
-			//ƒ}ƒgƒŠƒbƒNƒXƒTƒCƒY‚ğŒ©‚ÄAƒI[ƒo[‚µ‚Ä‚¢‚½‚çƒR[ƒ‹‚µ‚È‚¢
+			//ã“ã“ã§ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+			//ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã‚µã‚¤ã‚ºã‚’è¦‹ã¦ã€ã‚ªãƒ¼ãƒãƒ¼ã—ã¦ã„ãŸã‚‰ã‚³ãƒ¼ãƒ«ã—ãªã„
 			if (0<=mlbs->Node[mlbs->TotalCount-1]->BlockIndex &&
 				mlbs->Node[mlbs->TotalCount-1]->BlockIndex <
 				ioDivMapCont->MapW*ioDivMapCont->MapH){
@@ -1760,21 +1760,21 @@ if (test_sync_count_flg){
 			#endif
 			
 			#ifdef DEBUG_ONLY_FOR_saitou			
-			//‚©‚©‚Á‚½ƒVƒ“ƒN”‚ğ•\¦
-			OS_Printf("local_print ƒ[ƒhŠ—vƒVƒ“ƒN”%d\n",test_sync_counter);
+			//ã‹ã‹ã£ãŸã‚·ãƒ³ã‚¯æ•°ã‚’è¡¨ç¤º
+			OS_Printf("local_print ãƒ­ãƒ¼ãƒ‰æ‰€è¦ã‚·ãƒ³ã‚¯æ•°%d\n",test_sync_counter);
 			test_sync_counter = 0;
 			test_sync_count_flg = FALSE;
 			#endif			
 		}
 		break;
-	case DML_NONE:			//–³ˆ—ó‘Ô
+	case DML_NONE:			//ç„¡å‡¦ç†çŠ¶æ…‹
 		break;
-	case DML_FREE_WAIT:		//ƒuƒƒbƒNƒ[ƒh‰ğ•ú‘Ò‚¿
+	case DML_FREE_WAIT:		//ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰è§£æ”¾å¾…ã¡
 		if ( CheckBlockLoadTaskCounter(&mlbs->TaskCnter)==TRUE ){
-			//‚‚³ƒ[ƒh‚ğŠÄ‹‚·‚ê‚ÎAƒ^ƒXƒNI—¹‚ğŠm”F‚Å‚«‚é
+			//é«˜ã•ãƒ­ãƒ¼ãƒ‰ã‚’ç›£è¦–ã™ã‚Œã°ã€ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’ç¢ºèªã§ãã‚‹
 			ioDivMapCont->MovingNum = 0;
 			#if 0			
-			//“Ç‚İ‚İ‚ªI—¹‚µ‚½‚Ì‚ÅƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚ğ‰ğ•ú
+			//èª­ã¿è¾¼ã¿ãŒçµ‚äº†ã—ãŸã®ã§ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾
 			if (ioDivMapCont->ArcHandle != NULL){
 				ArchiveDataHandleClose( ioDivMapCont->ArcHandle );
 				ioDivMapCont->ArcHandle = NULL;
@@ -1784,48 +1784,48 @@ if (test_sync_count_flg){
 		break;
 	}
 
-	//‰Ò“®‚µ‚Ä‚¢‚é‚à‚Ì‚ª‚È‚¢‚È‚ç‚Î
+	//ç¨¼å‹•ã—ã¦ã„ã‚‹ã‚‚ã®ãŒãªã„ãªã‚‰ã°
 	if (ioDivMapCont->MovingNum == 0){
 		ioDivMapCont->NowMovingNo = 0;
 		ioDivMapCont->BlankNo = 0;
-		ioDivMapCont->LoadSeq = DML_NONE;		//–³ˆ—ƒV[ƒPƒ“ƒX
+		ioDivMapCont->LoadSeq = DML_NONE;		//ç„¡å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 		return;
 	}
 
-	//ƒuƒƒbƒNƒ[ƒhI—¹ŠÄ‹
+	//ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰çµ‚äº†ç›£è¦–
 	if ( IsFinishedLoadBlock(ioDivMapCont) == TRUE){
-		//‰Ò“®ƒtƒ‰ƒO‚ğ‚¨‚Æ‚·
+		//ç¨¼å‹•ãƒ•ãƒ©ã‚°ã‚’ãŠã¨ã™
 		ioDivMapCont->MLBC[ioDivMapCont->NowMovingNo].Moving = FALSE;
 
-		//‰ğ•úƒuƒƒbƒNƒ}[ƒLƒ“ƒO‚ğƒNƒŠƒA
+		//è§£æ”¾ãƒ–ãƒ­ãƒƒã‚¯ãƒãƒ¼ã‚­ãƒ³ã‚°ã‚’ã‚¯ãƒªã‚¢
 		ClearLocalFreeIndexTable(ioDivMapCont);
 		
-		ioDivMapCont->MovingNum--;		//ŠÇ—”Œ¸Z
+		ioDivMapCont->MovingNum--;		//ç®¡ç†æ•°æ¸›ç®—
 	
-		//‰Ò“®”Ô†XV
+		//ç¨¼å‹•ç•ªå·æ›´æ–°
 		ioDivMapCont->NowMovingNo = (ioDivMapCont->NowMovingNo+1)%2;
 
-		//‰Ò“®‘Ò‚¿ƒuƒƒbƒNƒ[ƒh‚ª‚ ‚é‚È‚çAƒ[ƒhŠJn
+		//ç¨¼å‹•å¾…ã¡ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰ãŒã‚ã‚‹ãªã‚‰ã€ãƒ­ãƒ¼ãƒ‰é–‹å§‹
 		if (ioDivMapCont->MovingNum != 0){
 			#ifdef DIV_MAP_LOAD_DEBUG
-			OS_Printf("Ÿƒ[ƒhŠJn\n");
+			OS_Printf("æ¬¡ãƒ­ãƒ¼ãƒ‰é–‹å§‹\n");
 			#endif
 			/*
 			MapLoadCont.MLBC[MapLoadCont.NowMovingNo].MLBS.ReadStartOK = TRUE;
 			*/
-			ioDivMapCont->LoadSeq = DML_LOAD_BLOCK;		//ƒ[ƒhƒV[ƒPƒ“ƒX
+			ioDivMapCont->LoadSeq = DML_LOAD_BLOCK;		//ãƒ­ãƒ¼ãƒ‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 		}else{
 			ioDivMapCont->NowMovingNo = 0;
 			ioDivMapCont->BlankNo = 0;
-			ioDivMapCont->LoadSeq = DML_NONE;		//–³ˆ—ƒV[ƒPƒ“ƒX
+			ioDivMapCont->LoadSeq = DML_NONE;		//ç„¡å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 		}
 
-		//ƒXƒgƒbƒN‚ª‚ ‚éê‡‚Í—Dæ“I‚É“o˜^
+		//ã‚¹ãƒˆãƒƒã‚¯ãŒã‚ã‚‹å ´åˆã¯å„ªå…ˆçš„ã«ç™»éŒ²
 		if (ioDivMapCont->Stock.Valid == TRUE){
 			BOOL rc;
 			ioDivMapCont->Stock.Valid = FALSE;
-			//ƒXƒgƒbƒN•ûŒü‚©‚çA“Ç‚İ‚Ü‚È‚­‚Ä‚¢‚¢
-			//ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚ğŒˆ’è‚·‚é
+			//ã‚¹ãƒˆãƒƒã‚¯æ–¹å‘ã‹ã‚‰ã€èª­ã¿è¾¼ã¾ãªãã¦ã„ã„
+			//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ±ºå®šã™ã‚‹
 			MarkLocalFreeIndexTableByDir(
 				ioDivMapCont->Stock.LoadDir,ioDivMapCont);
 			AddMapLoadForStock(ioDivMapCont);
@@ -1854,79 +1854,79 @@ if (test_sync_count_flg){
 
 	if (dmc->Valid == TRUE){
 
-		//Œ»İˆÚ“®’†
-		if (dmc->Moving){	//‹ŒÀ•W‚ÆŒ»İÀ•W‚Ì·•ª‚ªA1ƒOƒŠƒbƒh‚É‚È‚Á‚½‚©‚ğ”»’è
+		//ç¾åœ¨ç§»å‹•ä¸­
+		if (dmc->Moving){	//æ—§åº§æ¨™ã¨ç¾åœ¨åº§æ¨™ã®å·®åˆ†ãŒã€1ã‚°ãƒªãƒƒãƒ‰ã«ãªã£ãŸã‹ã‚’åˆ¤å®š
 			
-			GF_ASSERT((*dmc->SmallVal)<=(*dmc->LargeVal)&&"ERROR:’l•s³");
+			GF_ASSERT((*dmc->SmallVal)<=(*dmc->LargeVal)&&"ERROR:å€¤ä¸æ­£");
 
 			if ( (*dmc->LargeVal) - (*dmc->SmallVal) >= (FX32_ONE *ONE_GRID_SIZE) ){
 				int grid_x,grid_z;
-				//·•ª‚ÍŠO•”’l‚ğM—p‚µ‚Äs‚¢‚Ü‚·
-				//1ƒOƒŠƒbƒhˆÚ“®Š®—¹
+				//å·®åˆ†ã¯å¤–éƒ¨å€¤ã‚’ä¿¡ç”¨ã—ã¦è¡Œã„ã¾ã™
+				//1ã‚°ãƒªãƒƒãƒ‰ç§»å‹•å®Œäº†
 				GetGridXZ(dmc->TargetPoint->x, dmc->TargetPoint->z, &grid_x, &grid_z);
-				UpdateNowData( grid_x, grid_z,	//“à•”ƒf[ƒ^XV
+				UpdateNowData( grid_x, grid_z,	//å†…éƒ¨ãƒ‡ãƒ¼ã‚¿æ›´æ–°
 						ioDivMapCont->OriginGridX, ioDivMapCont->OriginGridZ,
 						ioDivMapCont);
 				dmc->OldPoint = *dmc->TargetPoint;
-                if(!(dmc->OldPoint.z%(FX32_ONE*8)==0)){  // ’ÊM‚É‚ÍƒGƒ‰[‚É‚·‚é
+                if(!(dmc->OldPoint.z%(FX32_ONE*8)==0)){  // é€šä¿¡æ™‚ã«ã¯ã‚¨ãƒ©ãƒ¼ã«ã™ã‚‹
                     if(CommStateSetError(COMM_ERROR_RESET_SAVEPOINT)){
                         return;
                     }
                 }
-				GF_ASSERT(dmc->OldPoint.z%(FX32_ONE*8)==0&&"ƒOƒŠƒbƒh’PˆÊ‚ÌˆÚ“®‚ª‚È‚³‚ê‚Ä‚¢‚È‚¢");
+				GF_ASSERT(dmc->OldPoint.z%(FX32_ONE*8)==0&&"ã‚°ãƒªãƒƒãƒ‰å˜ä½ã®ç§»å‹•ãŒãªã•ã‚Œã¦ã„ãªã„");
 				dmc->Moving = FALSE;
 				dmc->LargeVal = NULL;
 				dmc->SmallVal = NULL;
 			}
-		}else{	//ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚éÀ•W‚Ì“®‚«n‚ß‚ğŒŸo
+		}else{	//ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹åº§æ¨™ã®å‹•ãå§‹ã‚ã‚’æ¤œå‡º
 			if ( (dmc->OldPoint.x != dmc->TargetPoint->x)&&
 					(dmc->OldPoint.z != dmc->TargetPoint->z) ){
-				//‚˜A‚š“¯•Ï‰»‚ÍƒGƒ‰[‚Æ‚·‚é
-				GF_ASSERT(0&&"ERRORFXZ“¯•Ï‰»‚ª”­¶");				
+				//ï½˜ã€ï½šåŒæ™‚å¤‰åŒ–ã¯ã‚¨ãƒ©ãƒ¼ã¨ã™ã‚‹
+				GF_ASSERT(0&&"ERRORï¼šXZåŒæ™‚å¤‰åŒ–ãŒç™ºç”Ÿ");				
 			}else if ( (dmc->OldPoint.x == dmc->TargetPoint->x)&&
 						(dmc->OldPoint.z == dmc->TargetPoint->z) ){
-				;//‰½‚à‚µ‚È‚¢
-			}else{	//XZ‚Ç‚¿‚ç‚©ˆê•û‚Ì•Ï‰»‚ª‚ ‚Á‚½ê‡
+				;//ä½•ã‚‚ã—ãªã„
+			}else{	//XZã©ã¡ã‚‰ã‹ä¸€æ–¹ã®å¤‰åŒ–ãŒã‚ã£ãŸå ´åˆ
 				dmc->Moving = TRUE;
-				if (dmc->OldPoint.x != dmc->TargetPoint->x){	//X‚ª•Ï‰»
+				if (dmc->OldPoint.x != dmc->TargetPoint->x){	//XãŒå¤‰åŒ–
 					if (dmc->OldPoint.x > dmc->TargetPoint->x){
-						//‹ŒÀ•W‚Ì‚Ù‚¤‚ª‘å‚«‚¢„„¶‚ÉˆÚ“®
+						//æ—§åº§æ¨™ã®ã»ã†ãŒå¤§ãã„ï¼ï¼å·¦ã«ç§»å‹•
 						dmc->LargeVal = &dmc->OldPoint.x;
 						dmc->SmallVal = &dmc->TargetPoint->x;
 						dmc->Dir = MAP_LOAD_LEFT;
 					}else{
-						//‰E‚ÉˆÚ“®
+						//å³ã«ç§»å‹•
 						dmc->LargeVal = &dmc->TargetPoint->x;
 						dmc->SmallVal = &dmc->OldPoint.x;
 						dmc->Dir = MAP_LOAD_RIGHT;
 					}
-                    if(!(dmc->OldPoint.x%(FX32_ONE*8)==0)){  // ’ÊM‚É‚ÍƒGƒ‰[‚É‚·‚é
+                    if(!(dmc->OldPoint.x%(FX32_ONE*8)==0)){  // é€šä¿¡æ™‚ã«ã¯ã‚¨ãƒ©ãƒ¼ã«ã™ã‚‹
                         if(CommStateSetError(COMM_ERROR_RESET_SAVEPOINT)){
                             return;
                         }
                     }
-                    GF_ASSERT(dmc->OldPoint.x%(FX32_ONE*8)==0&&"‹ŒxÀ•W‚ªƒOƒŠƒbƒh’PˆÊ‚ÌˆÚ“®‚Å‚Í‚È‚¢");
+                    GF_ASSERT(dmc->OldPoint.x%(FX32_ONE*8)==0&&"æ—§xåº§æ¨™ãŒã‚°ãƒªãƒƒãƒ‰å˜ä½ã®ç§»å‹•ã§ã¯ãªã„");
 				}
-				else{	//Z‚ª•Ï‰»
+				else{	//ZãŒå¤‰åŒ–
 					if (ioDivMapCont->MapCheck.OldPoint.z >	ioDivMapCont->MapCheck.TargetPoint->z){
-						//‹ŒÀ•W‚Ì‚Ù‚¤‚ª‘å‚«‚¢„„ã‚ÉˆÚ“®
+						//æ—§åº§æ¨™ã®ã»ã†ãŒå¤§ãã„ï¼ï¼ä¸Šã«ç§»å‹•
 						dmc->LargeVal = &dmc->OldPoint.z;
 						dmc->SmallVal = &dmc->TargetPoint->z;
 						dmc->Dir = MAP_LOAD_UP;
 					}else{
-						//‰º‚ÉˆÚ“®
+						//ä¸‹ã«ç§»å‹•
 						dmc->LargeVal = &dmc->TargetPoint->z;
 						dmc->SmallVal = &dmc->OldPoint.z;
 						dmc->Dir = MAP_LOAD_DOWN;
 					}
-                    if(!(dmc->OldPoint.z%(FX32_ONE*8)==0)){  // ’ÊM‚É‚ÍƒGƒ‰[‚É‚·‚é
+                    if(!(dmc->OldPoint.z%(FX32_ONE*8)==0)){  // é€šä¿¡æ™‚ã«ã¯ã‚¨ãƒ©ãƒ¼ã«ã™ã‚‹
                         if(CommStateSetError(COMM_ERROR_RESET_SAVEPOINT)){
                             return;
                         }
                     }
-					GF_ASSERT(dmc->OldPoint.z%(FX32_ONE*8)==0&&"‹ŒzÀ•W‚ªƒOƒŠƒbƒh’PˆÊ‚ÌˆÚ“®‚Å‚Í‚È‚¢");
+					GF_ASSERT(dmc->OldPoint.z%(FX32_ONE*8)==0&&"æ—§zåº§æ¨™ãŒã‚°ãƒªãƒƒãƒ‰å˜ä½ã®ç§»å‹•ã§ã¯ãªã„");
 				}
-				//ƒ[ƒhƒŠƒNƒGƒXƒg
+				//ãƒ­ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 				DivMapLoad_UpdateBlockData(dmc->Dir,ioDivMapCont);
 			}
 		}
@@ -1934,21 +1934,21 @@ if (test_sync_count_flg){
 	}//end if(dmc->Valid == TRUE)
 	
 	switch(ioDivMapCont->LoadSeq){
-	case DML_LOAD_BLOCK:	//ƒuƒƒbƒN‚Ìƒ[ƒh
+	case DML_LOAD_BLOCK:	//ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ­ãƒ¼ãƒ‰
 #ifdef DIV_MAP_LOAD_DEBUG
-		OS_Printf("ƒ[ƒhŠJn\n");
+		OS_Printf("ãƒ­ãƒ¼ãƒ‰é–‹å§‹\n");
 #endif
-		///OS_Printf("’†~Šm”F%d\n",mlbs->Index[mlbs->TotalCount]);
-		//ƒŠƒNƒGƒXƒg’†~‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢‚È‚çAƒ[ƒh
+		///OS_Printf("ä¸­æ­¢ç¢ºèª%d\n",mlbs->Index[mlbs->TotalCount]);
+		//ãƒªã‚¯ã‚¨ã‚¹ãƒˆä¸­æ­¢ãŒã‹ã‹ã£ã¦ã„ãªã„ãªã‚‰ã€ãƒ­ãƒ¼ãƒ‰
 		if (ioDivMapCont->LocalFreeIndexTable[mlbs->Index[mlbs->TotalCount]] == TRUE){
 #ifdef DIV_MAP_LOAD_DEBUG			
-			OS_Printf("‰ğ•úƒŠƒNƒGƒXƒg‚ª‚©‚©‚Á‚Ä‚¢‚é‚Ì‚ÅAƒ[ƒh‚µ‚È‚¢\n");
+			OS_Printf("è§£æ”¾ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‹ã‹ã£ã¦ã„ã‚‹ã®ã§ã€ãƒ­ãƒ¼ãƒ‰ã—ãªã„\n");
 #endif
 			;
 		}else{
 #ifdef DIV_MAP_LOAD_DEBUG
-			OS_Printf("ƒg[ƒ^ƒ‹%d‚Â‚ß,ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX%d:ƒ[ƒh\n",mlbs->TotalCount+1,mlbs->Index[mlbs->TotalCount]);
-			OS_Printf("%d:Œ»İ“Ç‚İ‚İˆÊ’u\n",ioDivMapCont->NowMovingNo);
+			OS_Printf("ãƒˆãƒ¼ã‚¿ãƒ«%dã¤ã‚,ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹%d:ãƒ­ãƒ¼ãƒ‰\n",mlbs->TotalCount+1,mlbs->Index[mlbs->TotalCount]);
+			OS_Printf("%d:ç¾åœ¨èª­ã¿è¾¼ã¿ä½ç½®\n",ioDivMapCont->NowMovingNo);
 #endif
 			ioDivMapCont->FuncList->DivLoadFunc(	mlbs->TotalCount,
 												ioDivMapCont->MapResource,
@@ -1966,10 +1966,10 @@ if (test_sync_count_flg){
 		
 		ioDivMapCont->LoadSeq = DML_LOAD_WAIT;
 		break;
-	case DML_LOAD_WAIT:		//ƒuƒƒbƒNƒ[ƒhI—¹‘Ò‚¿
+	case DML_LOAD_WAIT:		//ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 		if (ioDivMapCont->LocalFreeIndexTable[mlbs->Index[mlbs->TotalCount-1]] == TRUE){
 #ifdef DIV_MAP_LOAD_DEBUG
-			OS_Printf("%d,%d:‰ğ•úƒŠƒNƒGƒXƒg‚ª‚©‚©‚Á‚Ä‚¢‚é‚Ì‚ÅA‰ğ•ú‚·‚é\n",mlbs->Index[mlbs->TotalCount-1],mlbs->TotalCount);
+			OS_Printf("%d,%d:è§£æ”¾ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‹ã‹ã£ã¦ã„ã‚‹ã®ã§ã€è§£æ”¾ã™ã‚‹\n",mlbs->Index[mlbs->TotalCount-1],mlbs->TotalCount);
 #endif
 			LoadTaskStopReqestByMLBS(mlbs);
 			ioDivMapCont->LocalFreeIndexTable[mlbs->Index[mlbs->TotalCount-1]] = FALSE;
@@ -1977,25 +1977,25 @@ if (test_sync_count_flg){
 		if ((mlbs->TotalCount <=2)&&(CheckBlockLoadTaskCounter(&mlbs->TaskCnter) == TRUE)){
 			if (mlbs->TotalCount>=2){
 #ifdef DIV_MAP_LOAD_DEBUG
-				OS_Printf("%d:2‚Â‚ß“Ç‚İ‚İI‚í‚è\n",mlbs->TotalCount);
+				OS_Printf("%d:2ã¤ã‚èª­ã¿è¾¼ã¿çµ‚ã‚ã‚Š\n",mlbs->TotalCount);
 #endif
-				mlbs->BlockLoadOK = TRUE;	//“Ç‚İ‚İI—¹
-				//2‚Â‚ÌƒuƒƒbƒNƒ[ƒh‚ªI—¹‚µ‚½‚Ì‚ÅAÏ‚İ‚Ü‚ê‚Ä‚¢‚éƒuƒƒbƒNƒ[ƒh‚ª‚ ‚é‚©‚ğ’²‚×‚é
-				//Ï‚Ü‚ê‚Ä‚¢‚éê‡‚Íˆ—‚ğ‚·‚é
+				mlbs->BlockLoadOK = TRUE;	//èª­ã¿è¾¼ã¿çµ‚äº†
+				//2ã¤ã®ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰ãŒçµ‚äº†ã—ãŸã®ã§ã€ç©ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰ãŒã‚ã‚‹ã‹ã‚’èª¿ã¹ã‚‹
+				//ç©ã¾ã‚Œã¦ã„ã‚‹å ´åˆã¯å‡¦ç†ã‚’ã™ã‚‹
 ///		MapLoadCont.MLBC[MapLoadCont.NowMovingTaskNo].MLBS.Node[0]->DrawOKFlg = TRUE;
 ///		MapLoadCont.MLBC[MapLoadCont.NowMovingTaskNo].MLBS.Node[1]->DrawOKFlg = TRUE;
 				
 			}else{
 #ifdef DIV_MAP_LOAD_DEBUG
-				OS_Printf("%d:1‚Â‚ß“Ç‚İ‚İI‚í‚è\n",mlbs->TotalCount);
+				OS_Printf("%d:1ã¤ã‚èª­ã¿è¾¼ã¿çµ‚ã‚ã‚Š\n",mlbs->TotalCount);
 #endif
 				ioDivMapCont->LoadSeq = DML_LOAD_BLOCK;
 #ifdef DIV_MAP_LOAD_DEBUG	
-				OS_Printf("1‚Â–Úƒ[ƒhI@mlbs->LoadTime = %d\n",mlbs->DebugLoadTimer);
+				OS_Printf("1ã¤ç›®ãƒ­ãƒ¼ãƒ‰ï¼ã€€mlbs->LoadTime = %d\n",mlbs->DebugLoadTimer);
 #endif				
 			}
 #if 0			
-			//“Ç‚İ‚İ‚ªI—¹‚µ‚½‚Ì‚ÅƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚ğ‰ğ•ú
+			//èª­ã¿è¾¼ã¿ãŒçµ‚äº†ã—ãŸã®ã§ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾
 			if (ioDivMapCont->ArcHandle != NULL){
 				ArchiveDataHandleClose( ioDivMapCont->ArcHandle );
 				ioDivMapCont->ArcHandle = NULL;
@@ -2005,14 +2005,14 @@ if (test_sync_count_flg){
 				NNSG3dResMdlSet* pMdlSet = NNS_G3dGetMdlSet(mlbs->Node[mlbs->TotalCount-1]->FloorResFile);
 				NNSG3dResMdl* model = NNS_G3dGetMdlByIdx(pMdlSet, 0);
 				if (MAPRES_IsValidLight(ioDivMapCont->MapResource) == TRUE){
-					//ƒOƒ[ƒoƒ‹ƒXƒe[ƒgg—p
+					//ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆä½¿ç”¨
 					SetGlbLightMdl(model);
 				}
 			}
 #ifdef DIV_CALL_BACK	
-			//‚±‚±‚ÅƒR[ƒ‹ƒoƒbƒN
+			//ã“ã“ã§ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 			if (ioDivMapCont->CallBack!=NULL){
-				//ƒ}ƒgƒŠƒbƒNƒXƒTƒCƒY‚ğŒ©‚ÄAƒI[ƒo[‚µ‚Ä‚¢‚½‚çƒR[ƒ‹‚µ‚È‚¢
+				//ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã‚µã‚¤ã‚ºã‚’è¦‹ã¦ã€ã‚ªãƒ¼ãƒãƒ¼ã—ã¦ã„ãŸã‚‰ã‚³ãƒ¼ãƒ«ã—ãªã„
 				if (0<=mlbs->Node[mlbs->TotalCount-1]->BlockIndex &&
 					mlbs->Node[mlbs->TotalCount-1]->BlockIndex<ioDivMapCont->MapW*ioDivMapCont->MapH){
 					ioDivMapCont->CallBack(	ioDivMapCont->CallBackWork,
@@ -2022,21 +2022,21 @@ if (test_sync_count_flg){
 			}
 #endif
 #ifdef DEBUG_ONLY_FOR_saitou			
-			//‚©‚©‚Á‚½ƒVƒ“ƒN”‚ğ•\¦
-			OS_Printf("local_print ƒ[ƒhŠ—vƒVƒ“ƒN”%d\n",test_sync_counter);
+			//ã‹ã‹ã£ãŸã‚·ãƒ³ã‚¯æ•°ã‚’è¡¨ç¤º
+			OS_Printf("local_print ãƒ­ãƒ¼ãƒ‰æ‰€è¦ã‚·ãƒ³ã‚¯æ•°%d\n",test_sync_counter);
 			test_sync_counter = 0;
 			test_sync_count_flg = FALSE;
 #endif			
 		}
 		break;
-	case DML_NONE:			//–³ˆ—ó‘Ô
+	case DML_NONE:			//ç„¡å‡¦ç†çŠ¶æ…‹
 		break;
-	case DML_FREE_WAIT:		//ƒuƒƒbƒNƒ[ƒh‰ğ•ú‘Ò‚¿
+	case DML_FREE_WAIT:		//ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰è§£æ”¾å¾…ã¡
 		if ( CheckBlockLoadTaskCounter(&mlbs->TaskCnter)==TRUE ){
-			//‚‚³ƒ[ƒh‚ğŠÄ‹‚·‚ê‚ÎAƒ^ƒXƒNI—¹‚ğŠm”F‚Å‚«‚é
+			//é«˜ã•ãƒ­ãƒ¼ãƒ‰ã‚’ç›£è¦–ã™ã‚Œã°ã€ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’ç¢ºèªã§ãã‚‹
 			ioDivMapCont->MovingNum = 0;
 #if 0			
-			//“Ç‚İ‚İ‚ªI—¹‚µ‚½‚Ì‚ÅƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚ğ‰ğ•ú
+			//èª­ã¿è¾¼ã¿ãŒçµ‚äº†ã—ãŸã®ã§ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾
 			if (ioDivMapCont->ArcHandle != NULL){
 				ArchiveDataHandleClose( ioDivMapCont->ArcHandle );
 				ioDivMapCont->ArcHandle = NULL;
@@ -2046,46 +2046,46 @@ if (test_sync_count_flg){
 		break;
 	}
 
-	//‰Ò“®‚µ‚Ä‚¢‚é‚à‚Ì‚ª‚È‚¢‚È‚ç‚Î
+	//ç¨¼å‹•ã—ã¦ã„ã‚‹ã‚‚ã®ãŒãªã„ãªã‚‰ã°
 	if (ioDivMapCont->MovingNum == 0){
 		ioDivMapCont->NowMovingNo = 0;
 		ioDivMapCont->BlankNo = 0;
-		ioDivMapCont->LoadSeq = DML_NONE;		//–³ˆ—ƒV[ƒPƒ“ƒX
+		ioDivMapCont->LoadSeq = DML_NONE;		//ç„¡å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 		return;
 	}
 
-	//ƒuƒƒbƒNƒ[ƒhI—¹ŠÄ‹
+	//ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰çµ‚äº†ç›£è¦–
 	if ( IsFinishedLoadBlock(ioDivMapCont) == TRUE){
-		//‰Ò“®ƒtƒ‰ƒO‚ğ‚¨‚Æ‚·
+		//ç¨¼å‹•ãƒ•ãƒ©ã‚°ã‚’ãŠã¨ã™
 		ioDivMapCont->MLBC[ioDivMapCont->NowMovingNo].Moving = FALSE;
 
-		//‰ğ•úƒuƒƒbƒNƒ}[ƒLƒ“ƒO‚ğƒNƒŠƒA
+		//è§£æ”¾ãƒ–ãƒ­ãƒƒã‚¯ãƒãƒ¼ã‚­ãƒ³ã‚°ã‚’ã‚¯ãƒªã‚¢
 		ClearLocalFreeIndexTable(ioDivMapCont);
 		
-		ioDivMapCont->MovingNum--;		//ŠÇ—”Œ¸Z
+		ioDivMapCont->MovingNum--;		//ç®¡ç†æ•°æ¸›ç®—
 	
-		ioDivMapCont->NowMovingNo = (ioDivMapCont->NowMovingNo+1)%2;	//‰Ò“®”Ô†XV
+		ioDivMapCont->NowMovingNo = (ioDivMapCont->NowMovingNo+1)%2;	//ç¨¼å‹•ç•ªå·æ›´æ–°
 
-		//‰Ò“®‘Ò‚¿ƒuƒƒbƒNƒ[ƒh‚ª‚ ‚é‚È‚çAƒ[ƒhŠJn
+		//ç¨¼å‹•å¾…ã¡ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰ãŒã‚ã‚‹ãªã‚‰ã€ãƒ­ãƒ¼ãƒ‰é–‹å§‹
 		if (ioDivMapCont->MovingNum != 0){
 #ifdef DIV_MAP_LOAD_DEBUG
-			OS_Printf("Ÿƒ[ƒhŠJn\n");
+			OS_Printf("æ¬¡ãƒ­ãƒ¼ãƒ‰é–‹å§‹\n");
 #endif
 			//MapLoadCont.MLBC[MapLoadCont.NowMovingNo].MLBS.ReadStartOK = TRUE;
 
-			ioDivMapCont->LoadSeq = DML_LOAD_BLOCK;		//ƒ[ƒhƒV[ƒPƒ“ƒX
+			ioDivMapCont->LoadSeq = DML_LOAD_BLOCK;		//ãƒ­ãƒ¼ãƒ‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 
 		}else{
 			ioDivMapCont->NowMovingNo = 0;
 			ioDivMapCont->BlankNo = 0;
-			ioDivMapCont->LoadSeq = DML_NONE;		//–³ˆ—ƒV[ƒPƒ“ƒX
+			ioDivMapCont->LoadSeq = DML_NONE;		//ç„¡å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 		}
 
-		//ƒXƒgƒbƒN‚ª‚ ‚éê‡‚Í—Dæ“I‚É“o˜^
+		//ã‚¹ãƒˆãƒƒã‚¯ãŒã‚ã‚‹å ´åˆã¯å„ªå…ˆçš„ã«ç™»éŒ²
 		if (ioDivMapCont->Stock.Valid == TRUE){
 			BOOL rc;
 			ioDivMapCont->Stock.Valid = FALSE;
-			//ƒXƒgƒbƒN•ûŒü‚©‚çA“Ç‚İ‚Ü‚È‚­‚Ä‚¢‚¢ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚ğŒˆ’è‚·‚é
+			//ã‚¹ãƒˆãƒƒã‚¯æ–¹å‘ã‹ã‚‰ã€èª­ã¿è¾¼ã¾ãªãã¦ã„ã„ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ±ºå®šã™ã‚‹
 			MarkLocalFreeIndexTableByDir(ioDivMapCont->Stock.LoadDir,ioDivMapCont);
 			
 			AddMapLoadForStock(ioDivMapCont);
@@ -2097,14 +2097,14 @@ if (test_sync_count_flg){
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ}ƒbƒvƒ[ƒh’Ç‰Á
+ * ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰è¿½åŠ 
  *
- * @param	inBlock1		‘æ1ƒ[ƒhƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
- * @param	inBlock2		‘æ2ƒ[ƒhƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
- * @param	inIdx1			‘æ1ƒ[ƒhƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX(0`3)
- * @param	inIdx2			‘æ2ƒ[ƒhƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX(0`3)
- * @param	inDir			ƒ[ƒh•ûŒü
- * @param	ioDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	inBlock1		ç¬¬1ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inBlock2		ç¬¬2ãƒ­ãƒ¼ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inIdx1			ç¬¬1ãƒ­ãƒ¼ãƒ‰ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(0ã€œ3)
+ * @param	inIdx2			ç¬¬2ãƒ­ãƒ¼ãƒ‰ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(0ã€œ3)
+ * @param	inDir			ãƒ­ãƒ¼ãƒ‰æ–¹å‘
+ * @param	ioDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2122,18 +2122,18 @@ static void AddMapLoad( const int inBlock1,
 	
 #ifdef DEBUG_ONLY_FOR_saitou
 	if (ioDivMapCont->MovingNum>=2){
-		OS_Printf("local_print 3‚Â–Ú\n");
+		OS_Printf("local_print 3ã¤ç›®\n");
 	}
 #endif
-	GF_ASSERT((ioDivMapCont->Stock.Valid != TRUE)&&"ƒXƒgƒbƒN‚ª–„‚Ü‚Á‚Ä‚é");
-	//Œ»İƒŠƒNƒGƒXƒg‚Ì‚©‚©‚Á‚Ä‚¢‚éƒ[ƒh•ûŒü‚Æ‰Ò“®’†ƒ^ƒXƒN‚Ì•ûŒü‚ğ”äŠr
+	GF_ASSERT((ioDivMapCont->Stock.Valid != TRUE)&&"ã‚¹ãƒˆãƒƒã‚¯ãŒåŸ‹ã¾ã£ã¦ã‚‹");
+	//ç¾åœ¨ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ã‹ã‹ã£ã¦ã„ã‚‹ãƒ­ãƒ¼ãƒ‰æ–¹å‘ã¨ç¨¼å‹•ä¸­ã‚¿ã‚¹ã‚¯ã®æ–¹å‘ã‚’æ¯”è¼ƒ
 	if ( CompLoadDirection(inDir, ioDivMapCont, &no) == TRUE ){
-		//ƒ[ƒh•ûŒü‚ÆƒŠƒNƒGƒXƒg•ûŒü‚ª³”½‘Î‚È‚ç‚ÎAƒ[ƒh’†~
+		//ãƒ­ãƒ¼ãƒ‰æ–¹å‘ã¨ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ–¹å‘ãŒæ­£åå¯¾ãªã‚‰ã°ã€ãƒ­ãƒ¼ãƒ‰ä¸­æ­¢
 #ifdef DIV_MAP_LOAD_DEBUG
 		OS_Printf("no:%d",no);
 #endif
 		LoadStopReqest(ioDivMapCont,no);
-		//‹ó‚«‚ª‚È‚¢ê‡
+		//ç©ºããŒãªã„å ´åˆ
 		if (ioDivMapCont->MovingNum>=2){
 			ioDivMapCont->Stock.Valid = TRUE;
 			ioDivMapCont->Stock.Block[0] = inBlock1;
@@ -2150,30 +2150,30 @@ static void AddMapLoad( const int inBlock1,
 		}else{
 			rc = BlockLoadReqest(ioDivMapCont,inBlock1,inBlock2,inIdx1,inIdx2,ioDivMapCont->BlankNo,inDir);
 			if (rc == FALSE){
-				//‹ó‚«‚ª‚È‚¢ê‡iƒŠƒNƒGƒXƒg‚ª’†~ƒ^ƒXƒN‚ğŠÜ‚ß3‚Â–ÚjAƒŠƒNƒGƒXƒg‘Ò‹@ó‘Ô‚É‚µ‚Æ‚­
+				//ç©ºããŒãªã„å ´åˆï¼ˆãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒä¸­æ­¢ã‚¿ã‚¹ã‚¯ã‚’å«ã‚3ã¤ç›®ï¼‰ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆå¾…æ©ŸçŠ¶æ…‹ã«ã—ã¨ã
 #ifdef DEBUG_ONLY_FOR_saitou
-				OS_Printf("local_print ERROR:3‚Â–Ú\n");
+				OS_Printf("local_print ERROR:3ã¤ç›®\n");
 #endif				
 			}
 		}
 	}else{
-		//³”½‘Î‚Å‚È‚¢ê‡AƒŠƒNƒGƒXƒg’Ç‰Á
-		//‹ó‚¢‚Ä‚¢‚éŠÇ—ƒ^ƒXƒN‚É“o˜^
+		//æ­£åå¯¾ã§ãªã„å ´åˆã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆè¿½åŠ 
+		//ç©ºã„ã¦ã„ã‚‹ç®¡ç†ã‚¿ã‚¹ã‚¯ã«ç™»éŒ²
 		rc = BlockLoadReqest(ioDivMapCont,inBlock1,inBlock2,inIdx1,inIdx2,ioDivMapCont->BlankNo,inDir);
 #ifdef DIV_MAP_LOAD_DEBUG
-		OS_Printf("%d‚Éƒ^ƒXƒN“o˜^\n",MapLoadCont.BlankNo);
+		OS_Printf("%dã«ã‚¿ã‚¹ã‚¯ç™»éŒ²\n",MapLoadCont.BlankNo);
 #endif
-		//ŠÇ—ƒ^ƒXƒN‚ª‚¢‚Á‚Ï‚¢‚È‚Ì‚ÉAƒŠƒNƒGƒXƒg‚ª‚©‚©‚Á‚½ê‡AƒGƒ‰[‚Æ‚µ‚Æ‚­
-		GF_ASSERT((rc==TRUE)&&"ERROR:ŠÇ—ƒ^ƒXƒN‚ª‚¢‚Á‚Ï‚¢");
+		//ç®¡ç†ã‚¿ã‚¹ã‚¯ãŒã„ã£ã±ã„ãªã®ã«ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‹ã‹ã£ãŸå ´åˆã€ã‚¨ãƒ©ãƒ¼ã¨ã—ã¨ã
+		GF_ASSERT((rc==TRUE)&&"ERROR:ç®¡ç†ã‚¿ã‚¹ã‚¯ãŒã„ã£ã±ã„");
 	}
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒNƒf[ƒ^‚Ì‰ğ•ú(ˆÚ“®)
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾(ç§»å‹•æ™‚)
  *
- * @param	inLocalIndex	‰ğ•ú‚·‚éƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒXi0`3j
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	inLocalIndex	è§£æ”¾ã™ã‚‹ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆ0ã€œ3ï¼‰
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2184,7 +2184,7 @@ static void FreeBlock(const u8 inLocalIndex, DMC_PTR outDivMapCont)
 	SetInvalidHeightData(outDivMapCont->BlockNodeList[inLocalIndex]->MapHeightInfo);
 //	ClearFldMapMem(inLocalIndex, outDivMapCont->FldMapMem);
 	
-	//3DOBJƒf[ƒ^‰ğ•ú(ÀÛ‚É‚ÍAƒf[ƒ^‰ğ•ú‚Å‚Í‚È‚­AŠÇ—î•ñ‚ÌƒNƒŠƒA)
+	//3DOBJãƒ‡ãƒ¼ã‚¿è§£æ”¾(å®Ÿéš›ã«ã¯ã€ãƒ‡ãƒ¼ã‚¿è§£æ”¾ã§ã¯ãªãã€ç®¡ç†æƒ…å ±ã®ã‚¯ãƒªã‚¢)
 	if( outDivMapCont->BlockNodeList[inLocalIndex]->ObjDataList != NULL ){
 		M3DO_CleanMap3DObjList(
 			outDivMapCont->BlockNodeList[inLocalIndex]->ObjDataList);
@@ -2192,22 +2192,22 @@ static void FreeBlock(const u8 inLocalIndex, DMC_PTR outDivMapCont)
 	
 	outDivMapCont->BlockNodeList[inLocalIndex]->BlockIndex = NON_BLOCK;
 
-	//ƒAƒgƒŠƒrƒ…[ƒgƒNƒŠƒA
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚¯ãƒªã‚¢
 	MI_CpuFillFast(outDivMapCont->BlockNodeList[inLocalIndex]->Attribute, 0xffffffff, 2*32*32 );
 	
-	//‰ğ•úƒuƒƒbƒNƒ}[ƒLƒ“ƒO
+	//è§£æ”¾ãƒ–ãƒ­ãƒƒã‚¯ãƒãƒ¼ã‚­ãƒ³ã‚°
 	outDivMapCont->LocalFreeIndexTable[inLocalIndex] = TRUE;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒNƒf[ƒ^ƒm[ƒh‚Ì‰ğ•ú
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒãƒ¼ãƒ‰ã®è§£æ”¾
  *
- * @param	inFreeNo1		‰ğ•úƒuƒƒbƒNƒm[ƒhƒiƒ“ƒo[‚P‚Â–Ú
- * @param	inFreeNo2		‰ğ•úƒuƒƒbƒNƒm[ƒhƒiƒ“ƒo[‚Q‚Â–Ú
- * @param	inMoveNo1		V‹K“Ç‚İ‚İƒuƒƒbƒNƒm[ƒhƒiƒ“ƒo[‚P‚Â–Ú
- * @param	inMoveNo2		V‹K“Ç‚İ‚İƒuƒƒbƒNƒm[ƒhƒiƒ“ƒo[‚Q‚Â–Ú
- * @param	ioDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	inFreeNo1		è§£æ”¾ãƒ–ãƒ­ãƒƒã‚¯ãƒãƒ¼ãƒ‰ãƒŠãƒ³ãƒãƒ¼ï¼‘ã¤ç›®
+ * @param	inFreeNo2		è§£æ”¾ãƒ–ãƒ­ãƒƒã‚¯ãƒãƒ¼ãƒ‰ãƒŠãƒ³ãƒãƒ¼ï¼’ã¤ç›®
+ * @param	inMoveNo1		æ–°è¦èª­ã¿è¾¼ã¿ãƒ–ãƒ­ãƒƒã‚¯ãƒãƒ¼ãƒ‰ãƒŠãƒ³ãƒãƒ¼ï¼‘ã¤ç›®
+ * @param	inMoveNo2		æ–°è¦èª­ã¿è¾¼ã¿ãƒ–ãƒ­ãƒƒã‚¯ãƒãƒ¼ãƒ‰ãƒŠãƒ³ãƒãƒ¼ï¼’ã¤ç›®
+ * @param	ioDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2219,27 +2219,27 @@ static void FreeAndMoveNode(const u8 inFreeNo1,
 							DMC_PTR ioDivMapCont)
 {
 	BLOCK_NODE *TempNode[2];
-	//inFreeNo1,inFreeNo2‚ğ‰ğ•ú
+	//inFreeNo1,inFreeNo2ã‚’è§£æ”¾
 	FreeBlock(inFreeNo1,ioDivMapCont);
 	FreeBlock(inFreeNo2,ioDivMapCont);
-	//‰ğ•ú‚µ‚½ƒm[ƒh‚ğ1‘Ş‹
+	//è§£æ”¾ã—ãŸãƒãƒ¼ãƒ‰ã‚’1æ™‚é€€å»
 	TempNode[0] = ioDivMapCont->BlockNodeList[inFreeNo1];
 	TempNode[1] = ioDivMapCont->BlockNodeList[inFreeNo2];
-	//c‚è‚Ì2‚Â‚Ìƒe[ƒuƒ‹‚ğˆÚ“®
+	//æ®‹ã‚Šã®2ã¤ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ç§»å‹•
 	ioDivMapCont->BlockNodeList[inFreeNo1] = ioDivMapCont->BlockNodeList[inMoveNo1];
 	ioDivMapCont->BlockNodeList[inFreeNo2] = ioDivMapCont->BlockNodeList[inMoveNo2];
-	//‘Ş‹‚µ‚½ƒm[ƒh‚ğV“Ç‚İ‚İˆÊ’u‚É–ß‚·
+	//é€€å»ã—ãŸãƒãƒ¼ãƒ‰ã‚’æ–°èª­ã¿è¾¼ã¿ä½ç½®ã«æˆ»ã™
 	ioDivMapCont->BlockNodeList[inMoveNo1] = TempNode[0];
 	ioDivMapCont->BlockNodeList[inMoveNo2] = TempNode[1];
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒNXV
+ * ãƒ–ãƒ­ãƒƒã‚¯æ›´æ–°
  *
- * @param	inBlockIndex	ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
- * @param	inDirection		XV•ûŒü
- * @param	ioDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	inBlockIndex	ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inDirection		æ›´æ–°æ–¹å‘
+ * @param	ioDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2251,174 +2251,174 @@ static void UpdateBlockList(const int inBlockIndex, const u8 inDirection, DMC_PT
 	int old_block;
 	int idx1,idx2;
 	switch(inDirection){
-	case MAP_LOAD_UP:	//©‹@‚ªã‚ÉˆÚ“®(2¨0A3¨1)
-		//2,3‚ğ‰ğ•ú‚µ‚Ä0,1‚ğˆÚ“®
+	case MAP_LOAD_UP:	//è‡ªæ©ŸãŒä¸Šã«ç§»å‹•(2â†’0ã€3â†’1)
+		//2,3ã‚’è§£æ”¾ã—ã¦0,1ã‚’ç§»å‹•
 		FreeAndMoveNode(2,3,0,1,ioDivMapCont);
 
-		//©‹@‚Ì‚¢‚éƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğƒL[‚É‚µ‚ÄA0,1‚É‚Í‚¢‚éƒuƒƒbƒN‚ğZo
-		//2¨0A3¨1‚Åê‡•ª‚¯
+		//è‡ªæ©Ÿã®ã„ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚­ãƒ¼ã«ã—ã¦ã€0,1ã«ã¯ã„ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç®—å‡º
+		//2â†’0ã€3â†’1ã§å ´åˆåˆ†ã‘
 
-		if (/*¶‰º‚É‚¢‚½ê‡*/ioDivMapCont->NowPosInBlock == 2){
+		if (/*å·¦ä¸‹ã«ã„ãŸå ´åˆ*/ioDivMapCont->NowPosInBlock == 2){
 			block1 = inBlockIndex - ioDivMapCont->MapW;
 			block2 = inBlockIndex - ioDivMapCont->MapW - 1;
 			idx1 = 1;
 			idx2 = 0;
-			//®‡«ƒ`ƒFƒbƒN
-			if (block1<0){	//”ÍˆÍŠO
-				//^ã‚ÌƒuƒƒbƒN‚Íƒ}ƒgƒŠƒbƒNƒX“à‚É‚ ‚é‚Í‚¸
+			//æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
+			if (block1<0){	//ç¯„å›²å¤–
+				//çœŸä¸Šã®ãƒ–ãƒ­ãƒƒã‚¯ã¯ãƒãƒˆãƒªãƒƒã‚¯ã‚¹å†…ã«ã‚ã‚‹ã¯ãš
 				block1 = NON_BLOCK;
 				block2 = NON_BLOCK;
 			}else{
-				//‚Q‚Â–Ú‚ÌƒuƒƒbƒN‚Íƒ}ƒgƒŠƒNƒX“àAŠ‚Â“Ç‚İ‚ñ‚¾‚QƒuƒƒbƒN‚ÍA“¯‚¶s‚É‚ ‚é‚Í‚¸
-				if ( (block2<0)||(!CheckRowBlockIndex(block1,block2,ioDivMapCont->MapW)) ){	//”ÍˆÍŠO
+				//ï¼’ã¤ç›®ã®ãƒ–ãƒ­ãƒƒã‚¯ã¯ãƒãƒˆãƒªã‚¯ã‚¹å†…ã€ä¸”ã¤èª­ã¿è¾¼ã‚“ã ï¼’ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€åŒã˜è¡Œã«ã‚ã‚‹ã¯ãš
+				if ( (block2<0)||(!CheckRowBlockIndex(block1,block2,ioDivMapCont->MapW)) ){	//ç¯„å›²å¤–
 					block2 = NON_BLOCK;
 				}
 			}
-		}else if(/*‰E‰º‚É‚¢‚½ê‡*/ioDivMapCont->NowPosInBlock == 3){
+		}else if(/*å³ä¸‹ã«ã„ãŸå ´åˆ*/ioDivMapCont->NowPosInBlock == 3){
 			block1 = inBlockIndex - ioDivMapCont->MapW;
 			block2 = inBlockIndex - ioDivMapCont->MapW + 1;
 			idx1 = 0;
 			idx2 = 1;
-			//®‡«ƒ`ƒFƒbƒN
-			if (block1<0){	//”ÍˆÍŠO
-				//^ã‚ÌƒuƒƒbƒN‚Íƒ}ƒgƒŠƒbƒNƒX“à‚É‚ ‚é‚Í‚¸
+			//æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
+			if (block1<0){	//ç¯„å›²å¤–
+				//çœŸä¸Šã®ãƒ–ãƒ­ãƒƒã‚¯ã¯ãƒãƒˆãƒªãƒƒã‚¯ã‚¹å†…ã«ã‚ã‚‹ã¯ãš
 				block1 = NON_BLOCK;
 				block2 = NON_BLOCK;
 			}else{
-				//“Ç‚İ‚ñ‚¾‚QƒuƒƒbƒN‚ÍA“¯‚¶s‚É‚ ‚é‚Í‚¸
-				if ( !CheckRowBlockIndex(block1,block2,ioDivMapCont->MapW) ){	//”ÍˆÍŠO
+				//èª­ã¿è¾¼ã‚“ã ï¼’ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€åŒã˜è¡Œã«ã‚ã‚‹ã¯ãš
+				if ( !CheckRowBlockIndex(block1,block2,ioDivMapCont->MapW) ){	//ç¯„å›²å¤–
 					block2 = NON_BLOCK;
 				}
 			}
 		}else{
-			GF_ASSERT(0&&"ERROR:ãˆÚ“®ƒuƒƒbƒNŒvZ¸”s");
+			GF_ASSERT(0&&"ERROR:ä¸Šç§»å‹•ãƒ–ãƒ­ãƒƒã‚¯è¨ˆç®—å¤±æ•—");
 		}
 /**
-		//®‡«ƒ`ƒFƒbƒN
+		//æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
 		if ( (block1<0)||(ioDivMapCont->MapW*ioDivMapCont->MapH<=block1) ){
-			//”ÍˆÍŠO
+			//ç¯„å›²å¤–
 			block1 = -1;
 			block2 = -2;
 		}
 */
-		//0,1‚ÌV‹Kƒ[ƒh
+		//0,1ã®æ–°è¦ãƒ­ãƒ¼ãƒ‰
 		AddMapLoad(block1,block2,idx1,idx2,inDirection,ioDivMapCont);
 		
 		break;
-	case MAP_LOAD_LEFT:	//©‹@‚ª¶‚ÉˆÚ“®
-		//1,3‚ğ‰ğ•ú‚µ‚Ä0,2‚ğˆÚ“®
+	case MAP_LOAD_LEFT:	//è‡ªæ©ŸãŒå·¦ã«ç§»å‹•
+		//1,3ã‚’è§£æ”¾ã—ã¦0,2ã‚’ç§»å‹•
 		FreeAndMoveNode(1,3,0,2,ioDivMapCont);
 		
-		//©‹@‚Ì‚¢‚éƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğƒL[‚É‚µ‚ÄA0,2‚É‚Í‚¢‚éƒuƒƒbƒN‚ğZo
-		//1¨0A3¨2‚Åê‡•ª‚¯
+		//è‡ªæ©Ÿã®ã„ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚­ãƒ¼ã«ã—ã¦ã€0,2ã«ã¯ã„ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç®—å‡º
+		//1â†’0ã€3â†’2ã§å ´åˆåˆ†ã‘
 
-		if (/*‰Eã‚É‚¢‚½ê‡*/ioDivMapCont->NowPosInBlock == 1){
+		if (/*å³ä¸Šã«ã„ãŸå ´åˆ*/ioDivMapCont->NowPosInBlock == 1){
 			block1 = inBlockIndex - 1;
 			block2 = inBlockIndex - ioDivMapCont->MapW - 1;
 			idx1 = 2;
 			idx2 = 0;
-			//©‹@‚Ì‚¢‚éc‚ÌƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğ•Û‘¶(‰¡ˆÚ“®‚Ì‚İ)
+			//è‡ªæ©Ÿã®ã„ã‚‹ç¸¦ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¿å­˜(æ¨ªç§»å‹•ã®ã¿)
 ///			old_block = ioDivMapCont->BlockNodeList[3]->BlockIndex;
-			//®‡«ƒ`ƒFƒbƒN
+			//æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
 			if ( (block1<0)||(!CheckRowBlockIndex(block1,inBlockIndex,ioDivMapCont->MapW)) ){
-				//“Ç‚İ‚ñ‚¾¶—×‚ÌƒuƒƒbƒN‚ÍAƒ}ƒgƒŠƒNƒX“àAŠ‚Â¡‚Ü‚Å‚¢‚½ƒuƒƒbƒN‚Æ“¯‚¶s‚Ì‚Í‚¸
+				//èª­ã¿è¾¼ã‚“ã å·¦éš£ã®ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€ãƒãƒˆãƒªã‚¯ã‚¹å†…ã€ä¸”ã¤ä»Šã¾ã§ã„ãŸãƒ–ãƒ­ãƒƒã‚¯ã¨åŒã˜è¡Œã®ã¯ãš
 				block1 = NON_BLOCK;
 				block2 = NON_BLOCK;
 			}
 			if ( (block2<0)||
 					(!CheckColumnBlockIndex(block1,block2,ioDivMapCont->MapW)) ){
-				//2‚Â–Ú‚ÌƒuƒƒbƒN‚ÍAƒ}ƒgƒŠƒNƒX“àAŠ‚Â“Ç‚İ‚ñ‚¾‚QƒuƒƒbƒN‚ÍA“¯‚¶—ñ‚É‚ ‚é‚Í‚¸
+				//2ã¤ç›®ã®ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€ãƒãƒˆãƒªã‚¯ã‚¹å†…ã€ä¸”ã¤èª­ã¿è¾¼ã‚“ã ï¼’ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€åŒã˜åˆ—ã«ã‚ã‚‹ã¯ãš
 				block2 = NON_BLOCK;
 			}
-		}else if(/*‰E‰º‚É‚¢‚½ê‡*/ioDivMapCont->NowPosInBlock == 3){
+		}else if(/*å³ä¸‹ã«ã„ãŸå ´åˆ*/ioDivMapCont->NowPosInBlock == 3){
 			block1 = inBlockIndex - 1;
 			block2 = inBlockIndex + ioDivMapCont->MapW - 1;
 			idx1 = 0;
 			idx2 = 2;
-			//©‹@‚Ì‚¢‚éc‚ÌƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğ•Û‘¶(‰¡ˆÚ“®‚Ì‚İ)
+			//è‡ªæ©Ÿã®ã„ã‚‹ç¸¦ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¿å­˜(æ¨ªç§»å‹•ã®ã¿)
 ///			old_block = ioDivMapCont->BlockNodeList[1]->BlockIndex;
-			//®‡«ƒ`ƒFƒbƒN
+			//æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
 			if ( (block1<0)||(!CheckRowBlockIndex(block1,inBlockIndex,ioDivMapCont->MapW)) ){
-				//“Ç‚İ‚ñ‚¾¶—×‚ÌƒuƒƒbƒN‚ÍAƒ}ƒgƒŠƒNƒX“àAŠ‚Â¡‚Ü‚Å‚¢‚½ƒuƒƒbƒN‚Æ“¯‚¶s‚Ì‚Í‚¸
+				//èª­ã¿è¾¼ã‚“ã å·¦éš£ã®ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€ãƒãƒˆãƒªã‚¯ã‚¹å†…ã€ä¸”ã¤ä»Šã¾ã§ã„ãŸãƒ–ãƒ­ãƒƒã‚¯ã¨åŒã˜è¡Œã®ã¯ãš
 				block1 = NON_BLOCK;
 				block2 = NON_BLOCK;
 			}
 			if ( (ioDivMapCont->MapW*ioDivMapCont->MapH<=block2)||
 					(!CheckColumnBlockIndex(block1,block2,ioDivMapCont->MapW)) ){
-				//2‚Â–Ú‚ÌƒuƒƒbƒN‚ÍAƒ}ƒgƒŠƒNƒX“àAŠ‚Â“Ç‚İ‚ñ‚¾‚QƒuƒƒbƒN‚ÍA“¯‚¶—ñ‚É‚ ‚é‚Í‚¸
+				//2ã¤ç›®ã®ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€ãƒãƒˆãƒªã‚¯ã‚¹å†…ã€ä¸”ã¤èª­ã¿è¾¼ã‚“ã ï¼’ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€åŒã˜åˆ—ã«ã‚ã‚‹ã¯ãš
 				block2 = NON_BLOCK;
 			}
 		}else{
-			GF_ASSERT(0&&"ERROR:¶ˆÚ“®ƒuƒƒbƒNŒvZ¸”s");
+			GF_ASSERT(0&&"ERROR:å·¦ç§»å‹•ãƒ–ãƒ­ãƒƒã‚¯è¨ˆç®—å¤±æ•—");
 		}
 		AddMapLoad(block1,block2,idx1,idx2,inDirection,ioDivMapCont);
 /**		
 #ifdef DIV_MAP_LOAD_DEBUG
 		OS_Printf("load_block:%d,%d\nold:%d,%d\n",block1,block2,old_block1,old_block2);
 #endif
-		//V‹K“Ç‚İ‚İƒuƒƒbƒN‚Ì®‡«‚ğƒ`ƒFƒbƒN(‰¡ˆÚ“®‚Ì‚İ)
+		//æ–°è¦èª­ã¿è¾¼ã¿ãƒ–ãƒ­ãƒƒã‚¯ã®æ•´åˆæ€§ã‚’ãƒã‚§ãƒƒã‚¯(æ¨ªç§»å‹•ã®ã¿)
 		if (CheckSideBlockIndex(block1,old_block,ioDivMapCont->MapW)==TRUE){
 			AddMapLoad(block1,block2,idx1,idx2,inDirection,ioDivMapCont);
 		}else{
 #ifdef	DEBUG_ONLY_FOR_saitou			
-			OS_Printf("local_print ‰æ–Ê¶’[‚È‚Ì‚Åƒ[ƒh‚µ‚È‚¢\n");
+			OS_Printf("local_print ç”»é¢å·¦ç«¯ãªã®ã§ãƒ­ãƒ¼ãƒ‰ã—ãªã„\n");
 #endif			
 			ioDivMapCont->LocalFreeIndexTable[1] = FALSE;
 			ioDivMapCont->LocalFreeIndexTable[3] = FALSE;
 		}
 */		
 		break;
-	case MAP_LOAD_RIGHT: //©‹@‚ª‰E‚ÉˆÚ“®
-		//0,2‚ğ‰ğ•ú‚µ‚Ä1,3‚ğˆÚ“®
+	case MAP_LOAD_RIGHT: //è‡ªæ©ŸãŒå³ã«ç§»å‹•
+		//0,2ã‚’è§£æ”¾ã—ã¦1,3ã‚’ç§»å‹•
 		FreeAndMoveNode(0,2,1,3,ioDivMapCont);
 		
-		//©‹@‚Ì‚¢‚éƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğƒL[‚É‚µ‚ÄA1,3‚É‚Í‚¢‚éƒuƒƒbƒN‚ğZo
-		//0¨1A2¨3‚Åê‡•ª‚¯
+		//è‡ªæ©Ÿã®ã„ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚­ãƒ¼ã«ã—ã¦ã€1,3ã«ã¯ã„ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç®—å‡º
+		//0â†’1ã€2â†’3ã§å ´åˆåˆ†ã‘
 
-		if (/*¶ã‚É‚¢‚½ê‡*/ioDivMapCont->NowPosInBlock == 0){
+		if (/*å·¦ä¸Šã«ã„ãŸå ´åˆ*/ioDivMapCont->NowPosInBlock == 0){
 			block1 = inBlockIndex + 1;
 			block2 = inBlockIndex - ioDivMapCont->MapW + 1;
 			idx1 = 3;
 			idx2 = 1;
-			//©‹@‚Ì‚¢‚éc‚ÌƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğ•Û‘¶(‰¡ˆÚ“®‚Ì‚İ)
+			//è‡ªæ©Ÿã®ã„ã‚‹ç¸¦ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¿å­˜(æ¨ªç§»å‹•ã®ã¿)
 ///			old_block = ioDivMapCont->BlockNodeList[2]->BlockIndex;
-			//®‡«ƒ`ƒFƒbƒN
+			//æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
 			if ( (ioDivMapCont->MapW*ioDivMapCont->MapH<=block1)||
 					(!CheckRowBlockIndex(block1,inBlockIndex,ioDivMapCont->MapW)) ){
-				//“Ç‚İ‚ñ‚¾‰E—×‚ÌƒuƒƒbƒN‚ÍAƒ}ƒgƒŠƒNƒX“àAŠ‚Â¡‚Ü‚Å‚¢‚½ƒuƒƒbƒN‚Æ“¯‚¶s‚Ì‚Í‚¸
+				//èª­ã¿è¾¼ã‚“ã å³éš£ã®ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€ãƒãƒˆãƒªã‚¯ã‚¹å†…ã€ä¸”ã¤ä»Šã¾ã§ã„ãŸãƒ–ãƒ­ãƒƒã‚¯ã¨åŒã˜è¡Œã®ã¯ãš
 				block1 = NON_BLOCK;
 				block2 = NON_BLOCK;
 			}
 			if ( (ioDivMapCont->MapW*ioDivMapCont->MapH<=block2)||
 					(!CheckColumnBlockIndex(block1,block2,ioDivMapCont->MapW)) ){
-				//2‚Â–Ú‚ÌƒuƒƒbƒN‚Íƒ}ƒgƒŠƒNƒX“àAŠ‚Â“Ç‚İ‚ñ‚¾‚QƒuƒƒbƒN‚ÍA“¯‚¶—ñ‚É‚ ‚é‚Í‚¸
+				//2ã¤ç›®ã®ãƒ–ãƒ­ãƒƒã‚¯ã¯ãƒãƒˆãƒªã‚¯ã‚¹å†…ã€ä¸”ã¤èª­ã¿è¾¼ã‚“ã ï¼’ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€åŒã˜åˆ—ã«ã‚ã‚‹ã¯ãš
 				block2 = NON_BLOCK;
 			}
-		}else if(/*¶‰º‚É‚¢‚½ê‡*/ioDivMapCont->NowPosInBlock == 2){
+		}else if(/*å·¦ä¸‹ã«ã„ãŸå ´åˆ*/ioDivMapCont->NowPosInBlock == 2){
 			block1 = inBlockIndex + 1;
 			block2 = inBlockIndex + ioDivMapCont->MapW + 1;
 			idx1 = 1;
 			idx2 = 3;
-			//©‹@‚Ì‚¢‚éc‚ÌƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğ•Û‘¶(‰¡ˆÚ“®‚Ì‚İ)
+			//è‡ªæ©Ÿã®ã„ã‚‹ç¸¦ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¿å­˜(æ¨ªç§»å‹•ã®ã¿)
 ///			old_block = ioDivMapCont->BlockNodeList[0]->BlockIndex;
-			//®‡«ƒ`ƒFƒbƒN
+			//æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
 			if ( (ioDivMapCont->MapW*ioDivMapCont->MapH<=block1)||
 					(!CheckRowBlockIndex(block1,inBlockIndex,ioDivMapCont->MapW)) ){
-				//“Ç‚İ‚ñ‚¾‰E—×‚ÌƒuƒƒbƒN‚ÍAƒ}ƒgƒŠƒNƒX“àAŠ‚Â¡‚Ü‚Å‚¢‚½ƒuƒƒbƒN‚Æ“¯‚¶s‚Ì‚Í‚¸
+				//èª­ã¿è¾¼ã‚“ã å³éš£ã®ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€ãƒãƒˆãƒªã‚¯ã‚¹å†…ã€ä¸”ã¤ä»Šã¾ã§ã„ãŸãƒ–ãƒ­ãƒƒã‚¯ã¨åŒã˜è¡Œã®ã¯ãš
 				block1 = NON_BLOCK;
 				block2 = NON_BLOCK;
 			}
 			if ( (block2<0)||
 					(!CheckColumnBlockIndex(block1,block2,ioDivMapCont->MapW)) ){
-				//2‚Â–Ú‚ÌƒuƒƒbƒN‚Íƒ}ƒgƒŠƒNƒX“àAŠ‚Â“Ç‚İ‚ñ‚¾‚QƒuƒƒbƒN‚ÍA“¯‚¶—ñ‚É‚ ‚é‚Í‚¸
+				//2ã¤ç›®ã®ãƒ–ãƒ­ãƒƒã‚¯ã¯ãƒãƒˆãƒªã‚¯ã‚¹å†…ã€ä¸”ã¤èª­ã¿è¾¼ã‚“ã ï¼’ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€åŒã˜åˆ—ã«ã‚ã‚‹ã¯ãš
 				block2 = NON_BLOCK;
 			}
 		}else{
-			OS_Printf("ERROR:‰EˆÚ“®ƒuƒƒbƒNŒvZ¸”s\n");
+			OS_Printf("ERROR:å³ç§»å‹•ãƒ–ãƒ­ãƒƒã‚¯è¨ˆç®—å¤±æ•—\n");
 		}
 		AddMapLoad(block1,block2,idx1,idx2,inDirection,ioDivMapCont);
 /**		
-		//V‹K“Ç‚İ‚İƒuƒƒbƒN‚Ì®‡«‚ğƒ`ƒFƒbƒN(‰¡ˆÚ“®‚Ì‚İ)
+		//æ–°è¦èª­ã¿è¾¼ã¿ãƒ–ãƒ­ãƒƒã‚¯ã®æ•´åˆæ€§ã‚’ãƒã‚§ãƒƒã‚¯(æ¨ªç§»å‹•ã®ã¿)
 #ifdef DIV_MAP_LOAD_DEBUG
 		OS_Printf("load_block:%d,%d\nold:%d,%d\n",block1,block2,old_block1,old_block2);
 #endif
@@ -2427,69 +2427,69 @@ static void UpdateBlockList(const int inBlockIndex, const u8 inDirection, DMC_PT
 			AddMapLoad(block1,block2,idx1,idx2,inDirection,ioDivMapCont);
 		}else{
 #ifdef	DEBUG_ONLY_FOR_saitou		
-			OS_Printf("local_print ‰æ–Ê‰E’[‚È‚Ì‚Åƒ[ƒh‚µ‚È‚¢\n");
+			OS_Printf("local_print ç”»é¢å³ç«¯ãªã®ã§ãƒ­ãƒ¼ãƒ‰ã—ãªã„\n");
 #endif			
 			ioDivMapCont->LocalFreeIndexTable[0] = FALSE;
 			ioDivMapCont->LocalFreeIndexTable[2] = FALSE;
 		}
 */		
 		break;
-	case MAP_LOAD_DOWN: //©‹@‚ª‰º‚ÉˆÚ“®
-		//0,1‚ğ‰ğ•ú‚µ‚Ä2,3‚ğˆÚ“®
+	case MAP_LOAD_DOWN: //è‡ªæ©ŸãŒä¸‹ã«ç§»å‹•
+		//0,1ã‚’è§£æ”¾ã—ã¦2,3ã‚’ç§»å‹•
 		FreeAndMoveNode(0,1,2,3,ioDivMapCont);
 		
-		//©‹@‚Ì‚¢‚éƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğƒL[‚É‚µ‚ÄA2,3‚É‚Í‚¢‚éƒuƒƒbƒN‚ğZo
-		//0¨2A1¨3‚Åê‡•ª‚¯
+		//è‡ªæ©Ÿã®ã„ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ã‚­ãƒ¼ã«ã—ã¦ã€2,3ã«ã¯ã„ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ã‚’ç®—å‡º
+		//0â†’2ã€1â†’3ã§å ´åˆåˆ†ã‘
 
-		if (/*¶ã‚É‚¢‚½ê‡*/ioDivMapCont->NowPosInBlock == 0){
+		if (/*å·¦ä¸Šã«ã„ãŸå ´åˆ*/ioDivMapCont->NowPosInBlock == 0){
 			block1 = inBlockIndex + ioDivMapCont->MapW;
 			block2 = inBlockIndex + ioDivMapCont->MapW - 1;
 			idx1 = 3;
 			idx2 = 2;
-			//®‡«ƒ`ƒFƒbƒN
-			if (ioDivMapCont->MapW*ioDivMapCont->MapH<=block1){	//”ÍˆÍŠO
-				//^‰ºƒuƒƒbƒN‚Íƒ}ƒgƒŠƒNƒX“à‚É‚ ‚é‚Í‚¸
+			//æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
+			if (ioDivMapCont->MapW*ioDivMapCont->MapH<=block1){	//ç¯„å›²å¤–
+				//çœŸä¸‹ãƒ–ãƒ­ãƒƒã‚¯ã¯ãƒãƒˆãƒªã‚¯ã‚¹å†…ã«ã‚ã‚‹ã¯ãš
 				block1 = NON_BLOCK;
 				block2 = NON_BLOCK;
 			}else{
-				//“Ç‚İ‚ñ‚¾‚QƒuƒƒbƒN‚ÍA“¯‚¶s‚É‚ ‚é‚Í‚¸
-				if ( !CheckRowBlockIndex(block1,block2,ioDivMapCont->MapW) ){	//”ÍˆÍŠO
+				//èª­ã¿è¾¼ã‚“ã ï¼’ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€åŒã˜è¡Œã«ã‚ã‚‹ã¯ãš
+				if ( !CheckRowBlockIndex(block1,block2,ioDivMapCont->MapW) ){	//ç¯„å›²å¤–
 					block2 = NON_BLOCK;
 				}
 			}
-		}else if(/*‰Eã‚É‚¢‚½ê‡*/ioDivMapCont->NowPosInBlock == 1){
+		}else if(/*å³ä¸Šã«ã„ãŸå ´åˆ*/ioDivMapCont->NowPosInBlock == 1){
 			block1 = inBlockIndex + ioDivMapCont->MapW;
 			block2 = inBlockIndex + ioDivMapCont->MapW + 1;
 			idx1 = 2;
 			idx2 = 3;
-			//®‡«ƒ`ƒFƒbƒN
-			if (ioDivMapCont->MapW*ioDivMapCont->MapH<=block1){	//”ÍˆÍŠO
-				//^‰ºƒuƒƒbƒN‚Íƒ}ƒgƒŠƒNƒX“à‚É‚ ‚é‚Í‚¸
+			//æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
+			if (ioDivMapCont->MapW*ioDivMapCont->MapH<=block1){	//ç¯„å›²å¤–
+				//çœŸä¸‹ãƒ–ãƒ­ãƒƒã‚¯ã¯ãƒãƒˆãƒªã‚¯ã‚¹å†…ã«ã‚ã‚‹ã¯ãš
 				block1 = NON_BLOCK;
 				block2 = NON_BLOCK;
 			}else{
-				//2‚Â‚ß‚ÌƒuƒƒbƒN‚Íƒ}ƒgƒŠƒNƒX“à‚ÅAŠ‚Â“Ç‚İ‚ñ‚¾‚QƒuƒƒbƒN‚ÍA“¯‚¶s‚É‚ ‚é‚Í‚¸
+				//2ã¤ã‚ã®ãƒ–ãƒ­ãƒƒã‚¯ã¯ãƒãƒˆãƒªã‚¯ã‚¹å†…ã§ã€ä¸”ã¤èª­ã¿è¾¼ã‚“ã ï¼’ãƒ–ãƒ­ãƒƒã‚¯ã¯ã€åŒã˜è¡Œã«ã‚ã‚‹ã¯ãš
 				if ( (ioDivMapCont->MapW*ioDivMapCont->MapH<=block2)||
-						(!CheckRowBlockIndex(block1,block2,ioDivMapCont->MapW)) ){	//”ÍˆÍŠO
+						(!CheckRowBlockIndex(block1,block2,ioDivMapCont->MapW)) ){	//ç¯„å›²å¤–
 					block2 = NON_BLOCK;
 				}
 			}
 		}else{
-			GF_ASSERT(0&&"ERROR:‰ºˆÚ“®ƒuƒƒbƒNŒvZ¸”s");
+			GF_ASSERT(0&&"ERROR:ä¸‹ç§»å‹•ãƒ–ãƒ­ãƒƒã‚¯è¨ˆç®—å¤±æ•—");
 		}
 /**		
-		//®‡«ƒ`ƒFƒbƒN
+		//æ•´åˆæ€§ãƒã‚§ãƒƒã‚¯
 		if ( (block1<0)||(ioDivMapCont->MapW*ioDivMapCont->MapH<=block1) ){
-			//”ÍˆÍŠO
+			//ç¯„å›²å¤–
 			block1 = -1;
 			block2 = -2;
 		}
 */
-		//2,3‚ÌV‹Kƒ[ƒh
+		//2,3ã®æ–°è¦ãƒ­ãƒ¼ãƒ‰
 		AddMapLoad(block1,block2,idx1,idx2,inDirection,ioDivMapCont);
 		break;
 	default:
-		GF_ASSERT(0&&"ERROR:ƒuƒƒbƒN‚Ì‰ğ•ú‚Æì¬‚É¸”s");
+		GF_ASSERT(0&&"ERROR:ãƒ–ãƒ­ãƒƒã‚¯ã®è§£æ”¾ã¨ä½œæˆã«å¤±æ•—");
 		break;
 	};
 #ifdef DEBUG_ONLY_FOR_saitou
@@ -2503,11 +2503,11 @@ static void UpdateBlockList(const int inBlockIndex, const u8 inDirection, DMC_PT
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒN•`‰æ
+ * ãƒ–ãƒ­ãƒƒã‚¯æç”»
  *
- * @param	inLocalIndex	•`‰æƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX(0`3)
- * @param	inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	glst_data		ƒOƒ[ƒoƒ‹ƒXƒe[ƒgƒ|ƒCƒ“ƒ^
+ * @param	inLocalIndex	æç”»ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(0ã€œ3)
+ * @param	inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	glst_data		ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2526,7 +2526,7 @@ static void DrawBlock(	const u8 inLocalIndex,
 	trans.y += inDivMapCont->OriginPos.y;
 	trans.z += inDivMapCont->OriginPos.z;
 	
-//°‚R‚c•`‰æ
+//åºŠï¼“ï¼¤æç”»
 	if (inDivMapCont->BlockNodeList[inLocalIndex]->DrawOKFlg == TRUE){
 		VecFx32 scale = {FX32_ONE, FX32_ONE, FX32_ONE};
 		MtxFx33 rot	  = {FX32_ONE,0,0,0,FX32_ONE,0,0,0,FX32_ONE};
@@ -2566,13 +2566,13 @@ static void DrawBlock(	const u8 inLocalIndex,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒŠƒbƒhƒiƒ“ƒo[‚©‚çƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+ * ã‚°ãƒªãƒƒãƒ‰ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  *
- * @param	inGridNo	ƒOƒŠƒbƒhƒiƒ“ƒo[
- * @param	inmaW		ƒ}ƒbƒv‰¡•
- * @pram	inMapGridW	ƒ}ƒbƒv‰¡ƒOƒŠƒbƒh•
+ * @param	inGridNo	ã‚°ãƒªãƒƒãƒ‰ãƒŠãƒ³ãƒãƒ¼
+ * @param	inmaW		ãƒãƒƒãƒ—æ¨ªå¹…
+ * @pram	inMapGridW	ãƒãƒƒãƒ—æ¨ªã‚°ãƒªãƒƒãƒ‰å¹…
  *
- * @return	int			ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
+ * @return	int			ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static int GetBlockIdxFromGridNo(const u32 inGridNo, const int inMapW, const int inMapGridW)
@@ -2592,13 +2592,13 @@ static int GetBlockIdxFromGridNo(const u32 inGridNo, const int inMapW, const int
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒOƒŠƒbƒhÀ•W‚ğŒ³‚ÉAŒ»İ—§‚Á‚Ä‚¢‚éƒOƒŠƒbƒhƒiƒ“ƒo[‚ğ•Ô‚·
+ * ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ã‚’å…ƒã«ã€ç¾åœ¨ç«‹ã£ã¦ã„ã‚‹ã‚°ãƒªãƒƒãƒ‰ãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
- * @param	inGeidX		ƒOƒŠƒbƒhÀ•W‚w
- * @param	inGridZ		ƒOƒŠƒbƒhÀ•W‚y
- * @param	inMapGridW	ƒ}ƒbƒvƒOƒŠƒbƒh‰¡•
+ * @param	inGeidX		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ï¼¸
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ï¼º
+ * @param	inMapGridW	ãƒãƒƒãƒ—ã‚°ãƒªãƒƒãƒ‰æ¨ªå¹…
  *
- * @return	int	ƒOƒŠƒbƒhƒiƒ“ƒo[
+ * @return	int	ã‚°ãƒªãƒƒãƒ‰ãƒŠãƒ³ãƒãƒ¼
  */
 //--------------------------------------------------------------------------------------------
 static int CalcGridNoFromGridXZ(
@@ -2611,7 +2611,7 @@ static int CalcGridNoFromGridXZ(
 	return grid_no;
 }
 
-//ƒIƒtƒZƒbƒg–³‚µ old
+//ã‚ªãƒ•ã‚»ãƒƒãƒˆç„¡ã— old
 #if 0
 static int CalcGridNoFromGridXZ(const int inGridX, const int inGridZ, const int inMapGridW)
 {
@@ -2623,13 +2623,13 @@ static int CalcGridNoFromGridXZ(const int inGridX, const int inGridZ, const int 
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒGƒŠƒAƒOƒŠƒbƒhƒiƒ“ƒo[‚©‚çƒGƒŠƒAƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğZo
+ * ã‚¨ãƒªã‚¢ã‚°ãƒªãƒƒãƒ‰ãƒŠãƒ³ãƒãƒ¼ã‹ã‚‰ã‚¨ãƒªã‚¢ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ç®—å‡º
  *
- * @param	inGridNo		ƒOƒŠƒbƒhƒiƒ“ƒo[
- * @param	inMapW			ƒ}ƒbƒv•
- * @param	inMapGridW		ƒ}ƒbƒvƒOƒŠƒbƒh•
+ * @param	inGridNo		ã‚°ãƒªãƒƒãƒ‰ãƒŠãƒ³ãƒãƒ¼
+ * @param	inMapW			ãƒãƒƒãƒ—å¹…
+ * @param	inMapGridW		ãƒãƒƒãƒ—ã‚°ãƒªãƒƒãƒ‰å¹…
  *
- * @return	u32				ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
+ * @return	u32				ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 static u32 GetBlockIndexFromGridNo(const u32 inGridNo, const int inMapW, const int inMapGridW)
@@ -2649,11 +2649,11 @@ static u32 GetBlockIndexFromGridNo(const u32 inGridNo, const int inMapW, const i
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒN“àˆÊ’u‚©‚çƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚ğŒvZi0`3j
+ * ãƒ–ãƒ­ãƒƒã‚¯å†…ä½ç½®ã‹ã‚‰ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¨ˆç®—ï¼ˆ0ã€œ3ï¼‰
  *
- * @param	inPosInBlock	ƒuƒƒbƒN“àˆÊ’u(0`3)
+ * @param	inPosInBlock	ãƒ–ãƒ­ãƒƒã‚¯å†…ä½ç½®(0ã€œ3)
  *
- * @return	u8				ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒXi0`3j
+ * @return	u8				ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ï¼ˆ0ã€œ3ï¼‰
  */
 //--------------------------------------------------------------------------------------------
 static u8 CalcLocalIdxFromPosInBlock(const u8 inPosInBlock)
@@ -2668,21 +2668,21 @@ static u8 CalcLocalIdxFromPosInBlock(const u8 inPosInBlock)
 	}else if (inPosInBlock == 3){
 		return 0;
 	}else{
-		GF_ASSERT(0&&"ERROR:ƒuƒƒbƒN“àˆÊ’u‚ª•s³");
+		GF_ASSERT(0&&"ERROR:ãƒ–ãƒ­ãƒƒã‚¯å†…ä½ç½®ãŒä¸æ­£");
 	}
 	return 0;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * i‚à‚¤‚Æ‚µ‚Ä‚¢‚é•ûŒü‚Ì1ƒOƒŠƒbƒhæ‚ÌƒOƒŠƒbƒhƒiƒ“ƒo[‚ğæ“¾‚·‚é
+ * é€²ã‚‚ã†ã¨ã—ã¦ã„ã‚‹æ–¹å‘ã®1ã‚°ãƒªãƒƒãƒ‰å…ˆã®ã‚°ãƒªãƒƒãƒ‰ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—ã™ã‚‹
  *
- * @param	inDirection		•ûŒü
- * @param	inMapH			ƒ}ƒbƒvc•
- * @param	inMapGridW		ƒ}ƒbƒvƒOƒŠƒbƒh‰¡•
- * @param	inNowGridNo		Œ»İƒOƒŠƒbƒhƒCƒ“ƒfƒbƒNƒX
+ * @param	inDirection		æ–¹å‘
+ * @param	inMapH			ãƒãƒƒãƒ—ç¸¦å¹…
+ * @param	inMapGridW		ãƒãƒƒãƒ—ã‚°ãƒªãƒƒãƒ‰æ¨ªå¹…
+ * @param	inNowGridNo		ç¾åœ¨ã‚°ãƒªãƒƒãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @return	u32				ƒOƒŠƒbƒhƒiƒ“ƒo[
+ * @return	u32				ã‚°ãƒªãƒƒãƒ‰ãƒŠãƒ³ãƒãƒ¼
  */
 //--------------------------------------------------------------------------------------------
 static u32 GetNextGridNo(	const u8 inDirection,
@@ -2694,9 +2694,9 @@ static u32 GetNextGridNo(	const u8 inDirection,
 	u32 next_block;
 	int check;
 	
-	//Œ»İƒOƒŠƒbƒh‚©‚ç•ûŒü‚É‚ ‚í‚¹‚ÄAŸƒOƒŠƒbƒh‚ğŒvZ
+	//ç¾åœ¨ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰æ–¹å‘ã«ã‚ã‚ã›ã¦ã€æ¬¡ã‚°ãƒªãƒƒãƒ‰ã‚’è¨ˆç®—
 	switch(inDirection){
-	case  MAP_LOAD_RIGHT:		//‰E
+	case  MAP_LOAD_RIGHT:		//å³
 		check = (inNowGridNo%inMapGridW)+1;
 		if ( check >= inMapGridW ){
 			OS_Printf("ERROR:EREA_RIGHT_OVER!!\n");
@@ -2704,7 +2704,7 @@ static u32 GetNextGridNo(	const u8 inDirection,
 		}
 		grid_next = inNowGridNo + 1;	
 		break;
-	case MAP_LOAD_DOWN:			//‰º
+	case MAP_LOAD_DOWN:			//ä¸‹
 		check = inNowGridNo+inMapGridW;
 		if (check >= inMapH*BLOCK_GRID_SIZE_Z*inMapGridW){
 			OS_Printf("ERROR:EREA_DOWN_OVER!!\n");
@@ -2712,7 +2712,7 @@ static u32 GetNextGridNo(	const u8 inDirection,
 		}
 		grid_next = inNowGridNo + inMapGridW;
 		break;
-	case MAP_LOAD_LEFT:			//¶
+	case MAP_LOAD_LEFT:			//å·¦
 		check = (inNowGridNo%inMapGridW)-1;
 		if ( check < 0 ){
 			OS_Printf("ERROR:EREA_LEFT_OVER!!\n");
@@ -2720,7 +2720,7 @@ static u32 GetNextGridNo(	const u8 inDirection,
 		}
 		grid_next = inNowGridNo - 1;
 		break;
-	case MAP_LOAD_UP:			//ã
+	case MAP_LOAD_UP:			//ä¸Š
 		check = inNowGridNo-inMapGridW;
 		if (check < 0 ){
 			OS_Printf("ERROR:EREA_UP_OVER!!\n");
@@ -2739,12 +2739,12 @@ static u32 GetNextGridNo(	const u8 inDirection,
 
 //--------------------------------------------------------------------------------------------
 /**
- * is•ûŒü‚©‚ç–¢—ˆ‚ÌƒuƒƒbƒN“àˆÊ’u‚ğæ“¾(ƒuƒƒbƒNˆÈ“à‚É‚¢‚é‚Æ‚«‚Ì‚İg—p)
+ * é€²è¡Œæ–¹å‘ã‹ã‚‰æœªæ¥ã®ãƒ–ãƒ­ãƒƒã‚¯å†…ä½ç½®ã‚’å–å¾—(ãƒ–ãƒ­ãƒƒã‚¯ä»¥å†…ã«ã„ã‚‹ã¨ãã®ã¿ä½¿ç”¨)
  *
- * @param	inDirection		•ûŒü
- * @param	inNowPosInBlock	Œ»İƒuƒƒbƒN“à‚Ì‚Ç‚±‚É‚¢‚é‚©i0`3j
+ * @param	inDirection		æ–¹å‘
+ * @param	inNowPosInBlock	ç¾åœ¨ãƒ–ãƒ­ãƒƒã‚¯å†…ã®ã©ã“ã«ã„ã‚‹ã‹ï¼ˆ0ã€œ3ï¼‰
  *
- * @return	u8				ƒuƒƒbƒN“àˆÊ’u(0`3)
+ * @return	u8				ãƒ–ãƒ­ãƒƒã‚¯å†…ä½ç½®(0ã€œ3)
  */
 //--------------------------------------------------------------------------------------------
 static u8 GetNextPosInBlock(const u8 inDirection, const int inNowPosInBlock)
@@ -2769,11 +2769,11 @@ static u8 GetNextPosInBlock(const u8 inDirection, const int inNowPosInBlock)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚ğXV
+ * ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ›´æ–°
  *
- * @param	inDirection			XV•ûŒü
- * @param	inNowPosInBlock		Œ»İƒuƒƒbƒN“à‚Ì‚Ç‚±‚É‚¢‚é‚©i0`3j
- * @param	outNowLocalIndex	ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒXŠi”[ƒoƒbƒtƒ@
+ * @param	inDirection			æ›´æ–°æ–¹å‘
+ * @param	inNowPosInBlock		ç¾åœ¨ãƒ–ãƒ­ãƒƒã‚¯å†…ã®ã©ã“ã«ã„ã‚‹ã‹ï¼ˆ0ã€œ3ï¼‰
+ * @param	outNowLocalIndex	ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *
  * @return	none
  */
@@ -2789,22 +2789,22 @@ static void UpdateNowLocalIndexForAfterLoad(const u8 inDirection,
 	
 	if (inNowPosInBlock<pos){
 		if (pos - inNowPosInBlock == 1){
-			local_index = (*outNowLocalIndex)-1;			//‰E
+			local_index = (*outNowLocalIndex)-1;			//å³
 		}else if(pos - inNowPosInBlock == 2){
-			local_index = (*outNowLocalIndex)-2;			//‰º
+			local_index = (*outNowLocalIndex)-2;			//ä¸‹
 		}else{
 			GF_ASSERT(0&&"ERROR:LOCAL_INDEX_ERROR!");
 		}
 	}else if(inNowPosInBlock>pos){
 		if (inNowPosInBlock - pos == 1){
-			local_index = (*outNowLocalIndex)+1;			//‰E
+			local_index = (*outNowLocalIndex)+1;			//å³
 		}else if(inNowPosInBlock - pos == 2){
-			local_index = (*outNowLocalIndex)+2;			//‰º
+			local_index = (*outNowLocalIndex)+2;			//ä¸‹
 		}else{
 			GF_ASSERT(0&&"ERROR:LOCAL_INDEX_ERROR!");
 		}
 	}else{
-		//ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚ÌXV‚È‚µ;
+		//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®æ›´æ–°ãªã—;
 		GF_ASSERT(0&&"ERROR:LOCAL_INDEX_NO_UPDATE!");
 	}
 
@@ -2813,11 +2813,11 @@ static void UpdateNowLocalIndexForAfterLoad(const u8 inDirection,
 
 //--------------------------------------------------------------------------------------------
 /**
- * ³”½‘Î‚Ì•ûŒü‚ğ•Ô‚·
+ * æ­£åå¯¾ã®æ–¹å‘ã‚’è¿”ã™
  *
- * @param	inDir	w’è•ûŒü
+ * @param	inDir	æŒ‡å®šæ–¹å‘
  *
- * @return	u8		w’è‚Ì‹t•ûŒü
+ * @return	u8		æŒ‡å®šã®é€†æ–¹å‘
  */
 //--------------------------------------------------------------------------------------------
 static u8 GetRevDir(const u8 inDir)
@@ -2832,56 +2832,56 @@ static u8 GetRevDir(const u8 inDir)
 	case MAP_LOAD_LEFT:
 		return MAP_LOAD_RIGHT;
 	default:
-		GF_ASSERT(0&&"ERROR:•ûŒü‚Í¯•Ê‚Å‚«‚È‚¢");
+		GF_ASSERT(0&&"ERROR:æ–¹å‘ã¯è­˜åˆ¥ã§ããªã„");
 		return 0;
 	}
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒh•ûŒü‚Æ‰Ò“®’†ƒ[ƒ_‚Ì•ûŒü‚ğ”äŠr
+ * ãƒ­ãƒ¼ãƒ‰æ–¹å‘ã¨ç¨¼å‹•ä¸­ãƒ­ãƒ¼ãƒ€ã®æ–¹å‘ã‚’æ¯”è¼ƒ
  *
- * @param	inDir			•ûŒü
- * @param	inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	*outNo			“o˜^”Ô†i0‚n‚q1j
+ * @param	inDir			æ–¹å‘
+ * @param	inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	*outNo			ç™»éŒ²ç•ªå·ï¼ˆ0ï¼¯ï¼²1ï¼‰
  *
- * @return	BOOL	‘Î•ûŒü‚Ì—L–³
+ * @return	BOOL	å¯¾æ–¹å‘ã®æœ‰ç„¡
  */
 //--------------------------------------------------------------------------------------------
 static BOOL CompLoadDirection(const u8 inDir, DMC_CONST_PTR inDivMapCont, u8* outNo)
 {
 	int i;
 #ifdef DIV_MAP_LOAD_DEBUG	
-	OS_Printf("”äŠr•ûŒü%d\n",inDir);
+	OS_Printf("æ¯”è¼ƒæ–¹å‘%d\n",inDir);
 #endif	
-	//Œ»İƒŠƒNƒGƒXƒg‚Ì‚©‚©‚Á‚Ä‚¢‚éƒ[ƒh•ûŒü‚Æ‰Ò“®’†ƒ^ƒXƒN‚Ì•ûŒü‚ğ”äŠr
+	//ç¾åœ¨ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ã‹ã‹ã£ã¦ã„ã‚‹ãƒ­ãƒ¼ãƒ‰æ–¹å‘ã¨ç¨¼å‹•ä¸­ã‚¿ã‚¹ã‚¯ã®æ–¹å‘ã‚’æ¯”è¼ƒ
 	for (i=0;i<2;i++){
 #ifdef DIV_MAP_LOAD_DEBUG		
-		OS_Printf("ƒ^ƒXƒNŠÇ—•ûŒü%d",inDivMapCont->MLBC[i].LoadDir);
+		OS_Printf("ã‚¿ã‚¹ã‚¯ç®¡ç†æ–¹å‘%d",inDivMapCont->MLBC[i].LoadDir);
 #endif
-		//ƒ^ƒXƒN‰Ò“®’†H
+		//ã‚¿ã‚¹ã‚¯ç¨¼å‹•ä¸­ï¼Ÿ
 		if (inDivMapCont->MLBC[i].Moving == TRUE){
 			if (GetRevDir(inDir) == inDivMapCont->MLBC[i].LoadDir){
 				*outNo = i;
-				return TRUE;	//‘Î•ûŒü‚ª‚ ‚Á‚½
+				return TRUE;	//å¯¾æ–¹å‘ãŒã‚ã£ãŸ
 			}
 		}
 	}
 
-	//‘Î•ûŒü‚ª‚È‚©‚Á‚½
+	//å¯¾æ–¹å‘ãŒãªã‹ã£ãŸ
 	return FALSE;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒgƒbƒN—pƒuƒƒbƒNƒ[ƒhƒŠƒNƒGƒXƒg
- * ƒ[ƒh‹«ŠE‚ÅƒuƒƒbƒNƒf[ƒ^‚ğ“o˜^‚µ‚½ÛAˆ—‚ªÏ‚Ü‚ê‚Ä‚¢‚ÄAƒ[ƒh‚ª‚·‚®‚É‚Å‚«‚È‚¢‚Æ‚«ƒf[ƒ^‚ªƒXƒgƒbƒN‚³‚ê‚Ü‚·
- * ‚»‚ÌƒXƒgƒbƒN‚³‚ê‚½ƒf[ƒ^‚ğˆ—‚·‚éˆ—
+ * ã‚¹ãƒˆãƒƒã‚¯ç”¨ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+ * ãƒ­ãƒ¼ãƒ‰å¢ƒç•Œã§ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²ã—ãŸéš›ã€å‡¦ç†ãŒç©ã¾ã‚Œã¦ã„ã¦ã€ãƒ­ãƒ¼ãƒ‰ãŒã™ãã«ã§ããªã„ã¨ããƒ‡ãƒ¼ã‚¿ãŒã‚¹ãƒˆãƒƒã‚¯ã•ã‚Œã¾ã™
+ * ãã®ã‚¹ãƒˆãƒƒã‚¯ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’å‡¦ç†ã™ã‚‹å‡¦ç†
  * 
  *
- * @param	ioDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	ioDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL	“o˜^¬Œ÷—L–³	TRUE:¬Œ÷@FALSE:¸”s
+ * @return	BOOL	ç™»éŒ²æˆåŠŸæœ‰ç„¡	TRUE:æˆåŠŸã€€FALSE:å¤±æ•—
  */
 //--------------------------------------------------------------------------------------------
 static BOOL BlockLoadReqestForStock(DMC_PTR ioDivMapCont)
@@ -2889,14 +2889,14 @@ static BOOL BlockLoadReqestForStock(DMC_PTR ioDivMapCont)
 	STOCK_LOAD_DATA *stock = &ioDivMapCont->Stock;
 	
 	if (ioDivMapCont->MLBC[ioDivMapCont->BlankNo].Moving != FALSE){
-		//‰Ò“®’†ƒ^ƒXƒN‚É“o˜^‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚é‚Ì‚ÅƒGƒ‰[‚Æ‚·‚é
-		GF_ASSERT(0&&"ERROR:‰Ò“®’†‚È‚Ì‚É“o˜^‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚é");
+		//ç¨¼å‹•ä¸­ã‚¿ã‚¹ã‚¯ã«ç™»éŒ²ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹ã®ã§ã‚¨ãƒ©ãƒ¼ã¨ã™ã‚‹
+		GF_ASSERT(0&&"ERROR:ç¨¼å‹•ä¸­ãªã®ã«ç™»éŒ²ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹");
 	}
 
-	//‰Ò“®’†‚É‚·‚é
+	//ç¨¼å‹•ä¸­ã«ã™ã‚‹
 	ioDivMapCont->MLBC[ioDivMapCont->BlankNo].Moving = TRUE;
 
-	//ƒ[ƒh•ûŒü•Û‘¶
+	//ãƒ­ãƒ¼ãƒ‰æ–¹å‘ä¿å­˜
 	ioDivMapCont->MLBC[ioDivMapCont->BlankNo].LoadDir = stock->LoadDir;
 	
 	ioDivMapCont->MLBC[ioDivMapCont->BlankNo].MLBS.Block[0] = stock->Block[0];
@@ -2915,9 +2915,9 @@ static BOOL BlockLoadReqestForStock(DMC_PTR ioDivMapCont)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒXƒgƒbƒN—pƒ}ƒbƒvƒ[ƒh
+ * ã‚¹ãƒˆãƒƒã‚¯ç”¨ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
  *
- * @param	ioDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	ioDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2928,14 +2928,14 @@ static void AddMapLoadForStock(DMC_PTR ioDivMapCont)
 	BOOL rc;
 	STOCK_LOAD_DATA *stock = &ioDivMapCont->Stock;
 	if (ioDivMapCont->MovingNum>=2){
-		GF_ASSERT(0&&"ERROR:3‚Â–Ú");
+		GF_ASSERT(0&&"ERROR:3ã¤ç›®");
 	}
 	rc = BlockLoadReqestForStock(ioDivMapCont/*stock,ioDivMapCont->BlankNo*/);
 #ifdef DIV_MAP_LOAD_DEBUG	
-	OS_Printf("ƒXƒgƒbƒN‚ğ%d‚Éƒ^ƒXƒN“o˜^\n",ioDivMapCont->BlankNo);
+	OS_Printf("ã‚¹ãƒˆãƒƒã‚¯ã‚’%dã«ã‚¿ã‚¹ã‚¯ç™»éŒ²\n",ioDivMapCont->BlankNo);
 #endif
-	//ŠÇ—ƒ^ƒXƒN‚ª‚¢‚Á‚Ï‚¢‚È‚Ì‚ÉAƒŠƒNƒGƒXƒg‚ª‚©‚©‚Á‚½ê‡AƒGƒ‰[‚Æ‚µ‚Æ‚­
-	GF_ASSERT((rc == TRUE)&&"ERROR:ŠÇ—ƒ^ƒXƒN‚ª‚¢‚Á‚Ï‚¢");
+	//ç®¡ç†ã‚¿ã‚¹ã‚¯ãŒã„ã£ã±ã„ãªã®ã«ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆãŒã‹ã‹ã£ãŸå ´åˆã€ã‚¨ãƒ©ãƒ¼ã¨ã—ã¨ã
+	GF_ASSERT((rc == TRUE)&&"ERROR:ç®¡ç†ã‚¿ã‚¹ã‚¯ãŒã„ã£ã±ã„");
 	
 	stock->Node[0]->BlockIndex = stock->Block[0];
 	stock->Node[1]->BlockIndex = stock->Block[1];
@@ -2946,11 +2946,11 @@ static void AddMapLoadForStock(DMC_PTR ioDivMapCont)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒ[ƒhI—¹ŠÄ‹ŠÖ”
+ * ãƒ­ãƒ¼ãƒ‰çµ‚äº†ç›£è¦–é–¢æ•°
  *
- * @param	inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL		TRUE:I—¹@FALSE:ƒ[ƒhŒp‘±
+ * @return	BOOL		TRUE:çµ‚äº†ã€€FALSE:ãƒ­ãƒ¼ãƒ‰ç¶™ç¶š
  */
 //--------------------------------------------------------------------------------------------
 static BOOL IsFinishedLoadBlock(DMC_CONST_PTR inDivMapCont)
@@ -2960,9 +2960,9 @@ static BOOL IsFinishedLoadBlock(DMC_CONST_PTR inDivMapCont)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒtƒŠ[ƒuƒƒbƒNŠÇ—ƒe[ƒuƒ‹‚ğƒNƒŠƒA‚·‚é
+ * ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
  *
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -2977,10 +2977,10 @@ static void ClearLocalFreeIndexTable(DMC_PTR outDivMapCont)
 
 //--------------------------------------------------------------------------------------------
 /**
- * •ûŒü‚©‚çƒtƒŠ[ƒuƒƒbƒN‚ğƒ}[ƒLƒ“ƒO‚·‚é
+ * æ–¹å‘ã‹ã‚‰ãƒ•ãƒªãƒ¼ãƒ–ãƒ­ãƒƒã‚¯ã‚’ãƒãƒ¼ã‚­ãƒ³ã‚°ã™ã‚‹
  *
- * @param	inDir	•ûŒü
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	inDir	æ–¹å‘
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3009,12 +3009,12 @@ static void MarkLocalFreeIndexTableByDir(const u8 inDir, DMC_PTR outDivMapCont)
 
 //==============================================================================
 /**
- * ƒGƒŠƒAƒf[ƒ^‚Ìƒ[ƒh
+ * ã‚¨ãƒªã‚¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
  *
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param   inGridX		ƒOƒŠƒbƒhÀ•W‚w
- * @param	inGridZ		ƒOƒŠƒbƒhÀ•W‚y
- * @param	inMapGridW	ƒ}ƒbƒvƒOƒŠƒbƒh‰¡•
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param   inGridX		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ï¼¸
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ï¼º
+ * @param	inMapGridW	ãƒãƒƒãƒ—ã‚°ãƒªãƒƒãƒ‰æ¨ªå¹…
  * 
  * @retval  none		
  */
@@ -3029,10 +3029,10 @@ static void LoadFirstBlock(	DMC_PTR outDivMapCont,
 	u8 i;
 	int start_block[4];
 
-	//4ƒuƒƒbƒN‚Ìƒf[ƒ^“Çæ‚ğŠm•Û
+	//4ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿èª­è¾¼å…ˆã‚’ç¢ºä¿
 	AllocBlockList(outDivMapCont);
 
-	//‰ŠúƒuƒƒbƒN‚ğƒOƒŠƒbƒh‚©‚çŠ„‚èo‚·
+	//åˆæœŸãƒ–ãƒ­ãƒƒã‚¯ã‚’ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰å‰²ã‚Šå‡ºã™
 	MakeStartBlockTbl(	outDivMapCont->BlockMode,
 						inGridX, inGridZ,
 						inOriginGridX,
@@ -3042,9 +3042,9 @@ static void LoadFirstBlock(	DMC_PTR outDivMapCont,
 						inMapGridW, start_block	);
 
 	for(i=0;i<4;i++){
-		//‚‚³ƒf[ƒ^ŠÇ—\‘¢‘Ìƒƒ‚ƒŠŠm•Û
+		//é«˜ã•ãƒ‡ãƒ¼ã‚¿ç®¡ç†æ§‹é€ ä½“ãƒ¡ãƒ¢ãƒªç¢ºä¿
 		outDivMapCont->BlockNodeList[i]->MapHeightInfo = AllocMapHeightInfo();
-		InitHeightData(outDivMapCont->BlockNodeList[i]->MapHeightInfo);	//‚‚³ƒf[ƒ^ŠÇ—\‘¢‘Ì‰Šú‰»
+		InitHeightData(outDivMapCont->BlockNodeList[i]->MapHeightInfo);	//é«˜ã•ãƒ‡ãƒ¼ã‚¿ç®¡ç†æ§‹é€ ä½“åˆæœŸåŒ–
 		LoadBlockQuick(	start_block[i],
 						i,
 						outDivMapCont->MapResource,
@@ -3052,9 +3052,9 @@ static void LoadFirstBlock(	DMC_PTR outDivMapCont,
 						outDivMapCont->MapW,
 						outDivMapCont->MapH,
 						MAPRES_IsValidLight(outDivMapCont->MapResource),
-						outDivMapCont);//4ƒuƒƒbƒN•ª‚Ìƒf[ƒ^“Ç‚İ‚İ
+						outDivMapCont);//4ãƒ–ãƒ­ãƒƒã‚¯åˆ†ã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		/**
-		//ƒR[ƒ‹ƒoƒbƒNŒÄ‚Ño‚µ
+		//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å‘¼ã³å‡ºã—
 		if (outDivMapCont->CallBack!=NULL){
 			outDivMapCont->CallBack(	outDivMapCont->CallBackWork,
 										start_block[i],
@@ -3065,12 +3065,12 @@ static void LoadFirstBlock(	DMC_PTR outDivMapCont,
 
 //==============================================================================
 /**
- * ƒGƒŠƒAƒf[ƒ^‚Ìƒ[ƒh
+ * ã‚¨ãƒªã‚¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
  *
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param   inGridX		ƒOƒŠƒbƒhÀ•W‚w
- * @param	inGridZ		ƒOƒŠƒbƒhÀ•W‚y
- * @param	inMapGridW	ƒ}ƒbƒvƒOƒŠƒbƒh‰¡•
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param   inGridX		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ï¼¸
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ï¼º
+ * @param	inMapGridW	ãƒãƒƒãƒ—ã‚°ãƒªãƒƒãƒ‰æ¨ªå¹…
  * 
  * @retval  none		
  */
@@ -3085,10 +3085,10 @@ static void LoadFirstBlockForUnder(	DMC_PTR outDivMapCont,
 	u8 i;
 	int start_block[4];
 	
-	//4ƒuƒƒbƒN‚Ìƒf[ƒ^“Çæ‚ğŠm•Û
+	//4ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿èª­è¾¼å…ˆã‚’ç¢ºä¿
 	AllocBlockListForUnder(outDivMapCont);
 
-	//‰ŠúƒuƒƒbƒN‚ğƒOƒŠƒbƒh‚©‚çŠ„‚èo‚·
+	//åˆæœŸãƒ–ãƒ­ãƒƒã‚¯ã‚’ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰å‰²ã‚Šå‡ºã™
 	MakeStartBlockTbl(	outDivMapCont->BlockMode,
 						inGridX, inGridZ,
 						inOriginGridX,
@@ -3098,7 +3098,7 @@ static void LoadFirstBlockForUnder(	DMC_PTR outDivMapCont,
 						inMapGridW, start_block);
 
 	for(i=0;i<4;i++){
-		//‚‚³ƒf[ƒ^ŠÇ—\‘¢‘ÌNULLƒZƒbƒg
+		//é«˜ã•ãƒ‡ãƒ¼ã‚¿ç®¡ç†æ§‹é€ ä½“NULLã‚»ãƒƒãƒˆ
 		outDivMapCont->BlockNodeList[i]->MapHeightInfo = NULL;
 		LoadBlockQuickForUnder(	start_block[i],
 								i,
@@ -3107,16 +3107,16 @@ static void LoadFirstBlockForUnder(	DMC_PTR outDivMapCont,
 								outDivMapCont->MapW,
 								outDivMapCont->MapH,
 								MAPRES_IsValidLight(outDivMapCont->MapResource),
-								outDivMapCont);//4ƒuƒƒbƒN•ª‚Ìƒf[ƒ^“Ç‚İ‚İ
+								outDivMapCont);//4ãƒ–ãƒ­ãƒƒã‚¯åˆ†ã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	}
 }
 
 
 //==============================================================================
 /**
- * ‰Šú‰»
+ * åˆæœŸåŒ–
  *
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3137,11 +3137,11 @@ static void InitMapLoadCont(DMC_PTR outDivMapCont)
 
 //==============================================================================
 /**
- * À•W‚ÅŒ»İî•ñ‚ğXV
+ * åº§æ¨™ã§ç¾åœ¨æƒ…å ±ã‚’æ›´æ–°
  *
- * @param   inGridX		ƒOƒŠƒbƒhÀ•W‚w
- * @param	inGridZ		ƒOƒŠƒbƒhÀ•W‚y
- * @param	ioDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param   inGridX		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ï¼¸
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ï¼º
+ * @param	ioDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3153,7 +3153,7 @@ static void UpdateNowData(
 {
 	int GX = inGridX, GZ = inGridZ;
 	
-	if( outDivMapCont->BlockMode == BLOCKMODE_2x2 ){	//0,1,2,3ŒÅ’è
+	if( outDivMapCont->BlockMode == BLOCKMODE_2x2 ){	//0,1,2,3å›ºå®š
 		if( outDivMapCont->MapW > 1 ){
 			GX = inOrgGX + 31;
 		}else{
@@ -3216,12 +3216,12 @@ static void UpdateNowData(
 
 //==============================================================================
 /**
- * ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚©‚ç’nŒ`ƒIƒtƒZƒbƒg‚ğŒvZ(‚‚³ƒx[ƒX‚à‹‚ß‚é)
+ * ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰åœ°å½¢ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¨ˆç®—(é«˜ã•ãƒ™ãƒ¼ã‚¹ã‚‚æ±‚ã‚ã‚‹)
  *
- * @param   inBlockIndex	ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
- * @param	inMapW			ƒ}ƒbƒv•
- * @param	inWorld			ƒ[ƒ‹ƒh\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	outTrans		Ši”[À•W
+ * @param   inBlockIndex	ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inMapW			ãƒãƒƒãƒ—å¹…
+ * @param	inWorld			ãƒ¯ãƒ¼ãƒ«ãƒ‰æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	outTrans		æ ¼ç´åº§æ¨™
  * 
  * @return	none
  */
@@ -3257,18 +3257,18 @@ static void CalcMapOffset3D(	const int inBlockIndex,
 
 
 //-----------------------------------------------------------------------------------------
-//	ƒAƒNƒZƒXŠÖ”
+//	ã‚¢ã‚¯ã‚»ã‚¹é–¢æ•°
 //-----------------------------------------------------------------------------------------
 //==============================================================================
 /**
- * ‰Šú‰»
+ * åˆæœŸåŒ–
  *
- * @param   world			ƒ[ƒ‹ƒh\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	mapresource		ƒ}ƒbƒvƒŠƒ\[ƒX
- * @param	inFld3DAnmPtr	ƒtƒB[ƒ‹ƒh3‚cƒAƒjƒƒ|ƒCƒ“ƒ^
- * @param	inMode			“Ç‚İ‚İƒ‚[ƒh
+ * @param   world			ãƒ¯ãƒ¼ãƒ«ãƒ‰æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	mapresource		ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹
+ * @param	inFld3DAnmPtr	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰3ï¼¤ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMode			èª­ã¿è¾¼ã¿ãƒ¢ãƒ¼ãƒ‰
  * 
- * @retval  DMC_PTR			•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^		
+ * @retval  DMC_PTR			åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿		
  */
 //==============================================================================
 DMC_PTR InitDivMap(	WORLD_MAP_PTR world,
@@ -3279,53 +3279,53 @@ DMC_PTR InitDivMap(	WORLD_MAP_PTR world,
 	DMC_PTR map_cont_ptr;
 	BOOL height_data_valid;
 
-	//ƒ}ƒbƒvƒRƒ“ƒgƒ[ƒ‹ƒf[ƒ^Šm•Û
+	//ãƒãƒƒãƒ—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ç¢ºä¿
 	map_cont_ptr = sys_AllocMemory( HEAPID_FIELD, sizeof(DIV_MAP_LOAD_CONT) );
-	//Šm•Û—Ìˆæ‚ÌƒNƒŠ[ƒ“
+	//ç¢ºä¿é ˜åŸŸã®ã‚¯ãƒªãƒ¼ãƒ³
 	MI_CpuClear8( map_cont_ptr, sizeof(DIV_MAP_LOAD_CONT));
 	
-	//ƒ‚[ƒh•ªŠò
-	if (inMode == DIV_MAP_MODE_GROUND){				//’nã
+	//ãƒ¢ãƒ¼ãƒ‰åˆ†å²
+	if (inMode == DIV_MAP_MODE_GROUND){				//åœ°ä¸Š
 		map_cont_ptr->FuncList = &DivGroundFunc;
 		height_data_valid = TRUE;
-	}else if(inMode == DIV_MAP_MODE_UNDER){			//’n‰º
+	}else if(inMode == DIV_MAP_MODE_UNDER){			//åœ°ä¸‹
 		map_cont_ptr->FuncList = &DivUnderFunc;
 		height_data_valid = FALSE;
 	}else{
-		GF_ASSERT(0&&"ERROR:ƒ}ƒbƒv‚ª“Á’è‚Å‚«‚È‚¢");
+		GF_ASSERT(0&&"ERROR:ãƒãƒƒãƒ—ãŒç‰¹å®šã§ããªã„");
 	}
 	
-	//ƒ}ƒbƒv‚ªg—p‚·‚éƒƒ‚ƒŠi’nŒ`ƒf[ƒ^“™j‚ğŠm•Û
+	//ãƒãƒƒãƒ—ãŒä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªï¼ˆåœ°å½¢ãƒ‡ãƒ¼ã‚¿ç­‰ï¼‰ã‚’ç¢ºä¿
 	map_cont_ptr->FldMapMem = AllocFldMapMem(height_data_valid);
-	//ƒtƒB[ƒ‹ƒh‹¤’ÊƒŠƒ\[ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğƒZƒbƒg
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å…±é€šãƒªã‚½ãƒ¼ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	map_cont_ptr->MapResource = mapresource;
 	map_cont_ptr->World = world;
 	
-	//ƒ}ƒbƒvc‰¡î•ñƒZƒbƒg
+	//ãƒãƒƒãƒ—ç¸¦æ¨ªæƒ…å ±ã‚»ãƒƒãƒˆ
 	map_cont_ptr->MapW = GetWorldMapMatrixW(world);
 	map_cont_ptr->MapH = GetWorldMapMatrixH(world);
 	map_cont_ptr->MapGridW = map_cont_ptr->MapW*BLOCK_GRID_W;
 
-	//ƒtƒB[ƒ‹ƒh3‚cƒAƒjƒƒ}ƒl[ƒWƒƒƒ|ƒCƒ“ƒ^ƒZƒbƒg
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰3ï¼¤ã‚¢ãƒ‹ãƒ¡ãƒãƒãƒ¼ã‚¸ãƒ£ãƒã‚¤ãƒ³ã‚¿ã‚»ãƒƒãƒˆ
 	map_cont_ptr->Field3DAnmPtr = inFld3DAnmPtr;
 
 	map_cont_ptr->MapCheck.Valid = TRUE;
 		
-	//ƒ}ƒbƒvŠÇ—ƒ^ƒXƒN‰Šú‰»
+	//ãƒãƒƒãƒ—ç®¡ç†ã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
 	InitMapLoadCont(map_cont_ptr);
 /**
-	//•ªŠ„ƒ}ƒbƒvƒZƒbƒgƒAƒbƒvAƒ[ƒh•û®‚ğ‚†‚“‚™‚“‚©‚ç‚à‚ç‚¤
+	//åˆ†å‰²ãƒãƒƒãƒ—ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã€ãƒ­ãƒ¼ãƒ‰æ–¹å¼ã‚’ï½†ï½“ï½™ï½“ã‹ã‚‰ã‚‚ã‚‰ã†
 	map_cont_ptr->FuncList = ioFuncList;
 */	
 	
 	map_cont_ptr->FreeRequest = FALSE;
 	
 	map_cont_ptr->LoadSeq = DML_NONE;
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚Ìæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	map_cont_ptr->ArcHandle = ArchiveDataHandleOpen( ARC_FIELD_MAP_DATA, HEAPID_FIELD );
 	
 #ifdef DIV_CALL_BACK
-	//ƒR[ƒ‹ƒoƒbƒN‰Šú‰»
+	//ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯åˆæœŸåŒ–
 	map_cont_ptr->CallBack = NULL;
 #endif
 	
@@ -3339,18 +3339,18 @@ DMC_PTR InitDivMap(	WORLD_MAP_PTR world,
 
 //==============================================================================
 /**
- * ƒ}ƒbƒv“Ç‚İ‚İ
+ * ãƒãƒƒãƒ—èª­ã¿è¾¼ã¿
  *
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param   x				‚˜À•W
- * @param	z				‚šÀ•W
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param   x				ï½˜åº§æ¨™
+ * @param	z				ï½šåº§æ¨™
  * 
  * @retval  none		
  */
 //==============================================================================
 void LoadDivMap(DMC_PTR outDivMapCont, const int x, const int z)
 {
-	//4‚ÂƒuƒƒbƒNƒ[ƒh
+	//4ã¤ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰
 /*
 	DivMapLoad_LoadErea(outDivMapCont,
 						x,
@@ -3365,7 +3365,7 @@ void LoadDivMap(DMC_PTR outDivMapCont, const int x, const int z)
 											outDivMapCont->OriginGridX,
 											outDivMapCont->OriginGridZ,
 											outDivMapCont->MapGridW);
-	//©‹@‚Ì‰ŠúƒOƒŠƒbƒh‚ğ“o˜^
+	//è‡ªæ©Ÿã®åˆæœŸã‚°ãƒªãƒƒãƒ‰ã‚’ç™»éŒ²
 	UpdateNowData(
 		x,z,
 		outDivMapCont->OriginGridX,
@@ -3375,10 +3375,10 @@ void LoadDivMap(DMC_PTR outDivMapCont, const int x, const int z)
 
 //==============================================================================
 /**
- * ƒuƒƒbƒNƒf[ƒ^‚ÌXVi©‹@‚ªA“®‚«o‚µ‚½‚Æ‚«‚ÉŒÄ‚Ôj
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®æ›´æ–°ï¼ˆè‡ªæ©ŸãŒã€å‹•ãå‡ºã—ãŸã¨ãã«å‘¼ã¶ï¼‰
  *
- * @param	inDirection		•ûŒü
- * @param	ioDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	inDirection		æ–¹å‘
+ * @param	ioDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3396,14 +3396,14 @@ void DivMapLoad_UpdateBlockData(const u8 inDirection, DMC_PTR ioDivMapCont)
 
 	next_block = GetBlockIdxFromGridNo(next_grid,ioDivMapCont->MapW, ioDivMapCont->MapGridW);
 	pos = CalcPositionInBlockFromGridNo(next_grid,ioDivMapCont->MapGridW);
-	//ƒuƒƒbƒNŠÔˆÚ“®‚ªs‚í‚ê‚é‚©‚ğƒ`ƒFƒbƒN
+	//ãƒ–ãƒ­ãƒƒã‚¯é–“ç§»å‹•ãŒè¡Œã‚ã‚Œã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	if (ioDivMapCont->NowBlockIndex != next_block){
-		return;	//ƒuƒƒbƒNŠÔˆÚ“®‚Ìê‡‚Íƒ[ƒh‚È‚µ
-	}else{	//ƒuƒƒbƒN“àˆÚ“®
-		if (ioDivMapCont->NowPosInBlock != pos){	//ƒuƒƒbƒN“àˆÊ’u‚ªˆÙ‚È‚é
-			//ƒuƒƒbƒNƒ[ƒh
+		return;	//ãƒ–ãƒ­ãƒƒã‚¯é–“ç§»å‹•ã®å ´åˆã¯ãƒ­ãƒ¼ãƒ‰ãªã—
+	}else{	//ãƒ–ãƒ­ãƒƒã‚¯å†…ç§»å‹•
+		if (ioDivMapCont->NowPosInBlock != pos){	//ãƒ–ãƒ­ãƒƒã‚¯å†…ä½ç½®ãŒç•°ãªã‚‹
+			//ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰
 			UpdateBlockList(next_block, inDirection, ioDivMapCont);
-			//ƒuƒƒbƒNXV‚ªs‚í‚ê‚é‚Ì‚ÅAƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚ğXV‚·‚é
+			//ãƒ–ãƒ­ãƒƒã‚¯æ›´æ–°ãŒè¡Œã‚ã‚Œã‚‹ã®ã§ã€ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ›´æ–°ã™ã‚‹
 			UpdateNowLocalIndexForAfterLoad(inDirection,
 											ioDivMapCont->NowPosInBlock,
 											&(ioDivMapCont->NowLocalIndex));
@@ -3413,10 +3413,10 @@ void DivMapLoad_UpdateBlockData(const u8 inDirection, DMC_PTR ioDivMapCont)
 
 //==============================================================================
 /**
- * ƒuƒƒbƒN•`‰æŠÖ”
+ * ãƒ–ãƒ­ãƒƒã‚¯æç”»é–¢æ•°
  *
- * @param	inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	glst_data		ƒOƒ[ƒoƒ‹ƒXƒe[ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
+ * @param	inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	glst_data		ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3427,9 +3427,9 @@ void DrawAroundBlock(	DMC_CONST_PTR inDivMapCont,
 	static u8 debug_trg_alias = 0;
 	
 	u8 i;
-	u8 draw = 0;	//•`‰æ‚·‚éƒ[ƒJƒ‹ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğ”z—ñ‚Æ‚µ‚Ä‚Âƒe[ƒuƒ‹‚ÌQÆƒCƒ“ƒfƒbƒNƒX
+	u8 draw = 0;	//æç”»ã™ã‚‹ãƒ­ãƒ¼ã‚«ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’é…åˆ—ã¨ã—ã¦æŒã¤ãƒ†ãƒ¼ãƒ–ãƒ«ã®å‚ç…§ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 
-	//4ƒuƒƒbƒN‚Ì•`‰æ
+	//4ãƒ–ãƒ­ãƒƒã‚¯ã®æç”»
 	for(i=0;i<4;i++){
 		///debag_count_b[i] = 0;
 		if (inDivMapCont->BlockNodeList[i]->BlockIndex != NON_BLOCK){
@@ -3446,7 +3446,7 @@ void DrawAroundBlock(	DMC_CONST_PTR inDivMapCont,
 		OS_Printf("DRAW_MODEL_B:%d,%d,%d,%d\n",
 				debag_count_b[0],debag_count_b[1],debag_count_b[2],debag_count_b[3]);
 */
-//ƒfƒoƒbƒO—pƒvƒŠƒ“ƒg
+//ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ—ãƒªãƒ³ãƒˆ
 		OS_Printf("0:WorldHeap = %ld\n",sys_GetHeapFreeSize(HEAPID_WORLD));
 		OS_Printf("1:FieldHeap = %ld\n",sys_GetHeapFreeSize(HEAPID_FIELD));
 	}
@@ -3456,41 +3456,41 @@ void DrawAroundBlock(	DMC_CONST_PTR inDivMapCont,
 
 //==============================================================================
 /**
- * i‚à‚¤‚Æ‚µ‚Ä‚¢‚é•ûŒü‚Ì1ƒOƒŠƒbƒhæ‚ÌƒOƒŠƒbƒh‚ªƒGƒŠƒA“à‚©‚ğ”»’è‚·‚é
+ * é€²ã‚‚ã†ã¨ã—ã¦ã„ã‚‹æ–¹å‘ã®1ã‚°ãƒªãƒƒãƒ‰å…ˆã®ã‚°ãƒªãƒƒãƒ‰ãŒã‚¨ãƒªã‚¢å†…ã‹ã‚’åˆ¤å®šã™ã‚‹
  *
- * @param	inDirction	•ûŒü
- * @param	inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	*outGrid	i‚à‚¤‚Æ‚µ‚Ä‚¢‚é•ûŒü‚Ì1ƒOƒŠƒbƒhæ‚ÌƒOƒŠƒbƒh
- * @return	BOOL	TRUE:ƒGƒŠƒA“à	FALSE:ƒGƒŠƒAŠO
+ * @param	inDirction	æ–¹å‘
+ * @param	inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	*outGrid	é€²ã‚‚ã†ã¨ã—ã¦ã„ã‚‹æ–¹å‘ã®1ã‚°ãƒªãƒƒãƒ‰å…ˆã®ã‚°ãƒªãƒƒãƒ‰
+ * @return	BOOL	TRUE:ã‚¨ãƒªã‚¢å†…	FALSE:ã‚¨ãƒªã‚¢å¤–
  */
 //==============================================================================
 BOOL CheckNextGridIO(const u8 inDirection, DMC_CONST_PTR inDivMapCont, int *outGrid)
 {
 	int next_grid;
 	
-	//Œ»İƒOƒŠƒbƒh‚©‚ç•ûŒü‚É‚ ‚í‚¹‚ÄAŸƒOƒŠƒbƒh‚ğŒvZ
+	//ç¾åœ¨ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰æ–¹å‘ã«ã‚ã‚ã›ã¦ã€æ¬¡ã‚°ãƒªãƒƒãƒ‰ã‚’è¨ˆç®—
 	switch(inDirection){
-	case  MAP_LOAD_RIGHT:		//‰E
+	case  MAP_LOAD_RIGHT:		//å³
 		next_grid = (inDivMapCont->NowGridNo%inDivMapCont->MapGridW)+1;
 		if ( next_grid >= inDivMapCont->MapGridW ){
 			return FALSE;
 		}
 		*outGrid = inDivMapCont->NowGridNo+1;
 		break;
-	case MAP_LOAD_DOWN:			//‰º
+	case MAP_LOAD_DOWN:			//ä¸‹
 		*outGrid = inDivMapCont->NowGridNo+inDivMapCont->MapGridW;
 		if (*outGrid >= inDivMapCont->MapH*BLOCK_GRID_SIZE_Z*inDivMapCont->MapGridW){
 			return FALSE;
 		}
 		break;
-	case MAP_LOAD_LEFT:			//¶
+	case MAP_LOAD_LEFT:			//å·¦
 		next_grid = (inDivMapCont->NowGridNo%inDivMapCont->MapGridW)-1;
 		if ( next_grid < 0 ){
 			return FALSE;
 		}
 		*outGrid = inDivMapCont->NowGridNo-1;
 		break;
-	case MAP_LOAD_UP:			//ã
+	case MAP_LOAD_UP:			//ä¸Š
 		*outGrid = inDivMapCont->NowGridNo-inDivMapCont->MapGridW;
 		if (*outGrid < 0 ){
 			return FALSE;
@@ -3504,12 +3504,12 @@ BOOL CheckNextGridIO(const u8 inDirection, DMC_CONST_PTR inDivMapCont, int *outG
 
 //==============================================================================
 /**
- * À•W‚ğŒ³‚ÉAŒ»İ—§‚Á‚Ä‚¢‚éƒOƒŠƒbƒhXZ‚ğ•Ô‚·
+ * åº§æ¨™ã‚’å…ƒã«ã€ç¾åœ¨ç«‹ã£ã¦ã„ã‚‹ã‚°ãƒªãƒƒãƒ‰XZã‚’è¿”ã™
  *
- * @param   inX				À•W‚w
- * @param	inZ				À•W‚y
- * @param   outGridX		ƒOƒŠƒbƒhÀ•W‚w
- * @param	outGridZ		ƒOƒŠƒbƒhÀ•W‚y
+ * @param   inX				åº§æ¨™ï¼¸
+ * @param	inZ				åº§æ¨™ï¼º
+ * @param   outGridX		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ï¼¸
+ * @param	outGridZ		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ï¼º
  *
  * @return	none
  */
@@ -3522,9 +3522,9 @@ void GetGridXZ(fx32 inX, fx32 inZ, int *outGridX, int *outGridZ)
 
 //==============================================================================
 /**
- * Šm•Ûƒƒ‚ƒŠ‚Ì‰ğ•ú
+ * ç¢ºä¿ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
  *
- * @param	ioDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	ioDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3533,35 +3533,35 @@ void DivMapLoad_FreeMap(DMC_PTR ioDivMapCont)
 {
 	u8 i;
 
-	//ƒLƒƒƒbƒVƒ…ƒNƒŠƒA
+	//ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚¯ãƒªã‚¢
 	ClearFileCache();
 	
 #ifdef LINK_VRAM_MANAGER
 	NNS_GfdResetLnkTexVramState();
 	NNS_GfdResetLnkPlttVramState();
 #else
-	//ƒeƒNƒXƒ`ƒƒAƒpƒŒƒbƒgŠJ•ú
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã€ãƒ‘ãƒ¬ãƒƒãƒˆé–‹æ”¾
 	NNS_GfdResetFrmTexVramState();
 	NNS_GfdResetFrmPlttVramState();
 #endif
 
-	//ƒ[ƒhƒ^ƒXƒN’†~ƒŠƒNƒGƒXƒg
+	//ãƒ­ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯ä¸­æ­¢ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	for(i=0;i<2;i++){
 		LoadTaskStopReqestByMLBS(&ioDivMapCont->MLBC[i].MLBS);
 	}
 #if 0
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚ğ‰ğ•ú
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚’è§£æ”¾
 	if (ioDivMapCont->ArcHandle != NULL){
 		ArchiveDataHandleClose( ioDivMapCont->ArcHandle );
 		ioDivMapCont->ArcHandle = NULL;
 	}
 #endif
-	//ƒuƒƒbƒNƒf[ƒ^‰ğ•ú(’nŒ`ƒf[ƒ^‚Ì‰ğ•úAƒ}ƒbƒv‚‚³ƒf[ƒ^ŠJ•ú‚ğŠÜ‚Ş)
+	//ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿è§£æ”¾(åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã®è§£æ”¾ã€ãƒãƒƒãƒ—é«˜ã•ãƒ‡ãƒ¼ã‚¿é–‹æ”¾ã‚’å«ã‚€)
 	for (i=0;i<4;i++){
 		ioDivMapCont->BlockNodeList[i]->DrawOKFlg = FALSE;
 
 		FreeMapHeightInfo(ioDivMapCont->BlockNodeList[i]->MapHeightInfo);
-		//3DOBJ‰ğ•ú
+		//3DOBJè§£æ”¾
 		if( ioDivMapCont->BlockNodeList[i]->ObjDataList != NULL ){
 			M3DO_FreeMap3DObjList(
 				ioDivMapCont->BlockNodeList[i]->ObjDataList );
@@ -3579,31 +3579,31 @@ void DivMapLoad_FreeMap(DMC_PTR ioDivMapCont)
 
 //==============================================================================
 /**
- * Šm•Ûƒƒ‚ƒŠ‚Ì‰ğ•ú
+ * ç¢ºä¿ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
  *
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
 //==============================================================================
 void FreeDivMapCont(DMC_PTR outDivMapCont)
 {
-	//ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹ƒNƒ[ƒY
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
 	ArchiveDataHandleClose( outDivMapCont->ArcHandle );	
-	//ƒ}ƒbƒvƒƒ‚ƒŠ‰ğ•ú
+	//ãƒãƒƒãƒ—ãƒ¡ãƒ¢ãƒªè§£æ”¾
 	FreeFldMapMem(outDivMapCont->FldMapMem);
-	//ƒ}ƒbƒvŠÇ—ƒf[ƒ^‰ğ•ú
+	//ãƒãƒƒãƒ—ç®¡ç†ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	sys_FreeMemoryEz( (void *)outDivMapCont );
 	///outDivMapCont = NULL;
 }
 
 //==============================================================================
 /**
- * Šm•Ûƒƒ‚ƒŠ‚Ì‰ğ•ú‘Ò‚¿
+ * ç¢ºä¿ãƒ¡ãƒ¢ãƒªã®è§£æ”¾å¾…ã¡
  *
- * @param	inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	BOOL		TRUE:‰ğ•úI—¹		FALSE:‰ğ•ú‘Ò‚¿
+ * @return	BOOL		TRUE:è§£æ”¾çµ‚äº†		FALSE:è§£æ”¾å¾…ã¡
  */
 //==============================================================================
 BOOL WaitMapFree(DMC_CONST_PTR inDivMapCont)
@@ -3617,10 +3617,10 @@ BOOL WaitMapFree(DMC_CONST_PTR inDivMapCont)
 
 //==============================================================================
 /**
- * À•W‚ÌƒoƒCƒ“ƒh
+ * åº§æ¨™ã®ãƒã‚¤ãƒ³ãƒ‰
  *
- * @param	*inTarget	À•W
- * @param   outDivMapCont@•ªŠ„ƒ}ƒbƒv\‘¢‘Ì
+ * @param	*inTarget	åº§æ¨™
+ * @param   outDivMapContã€€åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“
  *
  * @return	none
  */
@@ -3633,9 +3633,9 @@ void DivMapBindTarget(VecFx32 const *inTarget, DMC_PTR outDivMapCont)
 
 //==============================================================================
 /**
- * À•W‚ÌØ‚è—£‚µ
+ * åº§æ¨™ã®åˆ‡ã‚Šé›¢ã—
  *
- * @param   outDivMapCont@•ªŠ„ƒ}ƒbƒv\‘¢‘Ì
+ * @param   outDivMapContã€€åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“
  *
  * @return	none
  */
@@ -3647,11 +3647,11 @@ void DivMapPurgeTarget(DMC_PTR outDivMapCont)
 
 //==============================================================================
 /**
- * w’èƒ[ƒJƒ‹ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚©‚çƒIƒuƒWƒFƒNƒg\‘¢‘ÌƒŠƒXƒg‚ğ•Ô‚·
+ * æŒ‡å®šãƒ­ãƒ¼ã‚«ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ãƒªã‚¹ãƒˆã‚’è¿”ã™
  *
- * @param	inIdx			ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param   inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ì
- * @param	outObjList		OBJƒŠƒXƒgƒ|ƒCƒ“ƒ^
+ * @param	inIdx			ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param   inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“
+ * @param	outObjList		OBJãƒªã‚¹ãƒˆãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3663,11 +3663,11 @@ void Get3DObjListFromLocalIdx(const u8 inIdx, DMC_CONST_PTR inDivMapCont, M3DOL_
 
 //==============================================================================
 /**
- * Œ»İ‚Ìƒ[ƒJƒ‹ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+ * ç¾åœ¨ã®ãƒ­ãƒ¼ã‚«ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  *
- * @param   inDivMapCont@•ªŠ„ƒ}ƒbƒv\‘¢‘Ì
+ * @param   inDivMapContã€€åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“
  *
- * @return	u8		Œ»İ‚Ìƒ[ƒJƒ‹ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
+ * @return	u8		ç¾åœ¨ã®ãƒ­ãƒ¼ã‚«ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //==============================================================================
 u8 GetNowLocalIndex(DMC_CONST_PTR inDivMapCont)
@@ -3677,11 +3677,11 @@ u8 GetNowLocalIndex(DMC_CONST_PTR inDivMapCont)
 
 //==============================================================================
 /**
- * Œ»İ‚ÌƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+ * ç¾åœ¨ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  *
- * @param   inDivMapCont@•ªŠ„ƒ}ƒbƒv\‘¢‘Ì
+ * @param   inDivMapContã€€åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“
  *
- * @return	int		Œ»İ‚ÌƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
+ * @return	int		ç¾åœ¨ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //==============================================================================
 int GetNowBlockIndex(DMC_CONST_PTR inDivMapCont)
@@ -3691,12 +3691,12 @@ int GetNowBlockIndex(DMC_CONST_PTR inDivMapCont)
 
 //--------------------------------------------------------------------------------------------
 /**
- * Œ»İƒOƒŠƒbƒhƒCƒ“ƒfƒbƒNƒX‚©‚çAƒuƒƒbƒN‚Ì‚Ç‚ÌˆÊ’ui4•ªŠ„‚µ‚½‚Æ‚«j‚É‚¢‚é‚©‚ğŒvZ
+ * ç¾åœ¨ã‚°ãƒªãƒƒãƒ‰ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰ã€ãƒ–ãƒ­ãƒƒã‚¯ã®ã©ã®ä½ç½®ï¼ˆ4åˆ†å‰²ã—ãŸã¨ãï¼‰ã«ã„ã‚‹ã‹ã‚’è¨ˆç®—
  *
- * @param	inGridNo	ƒOƒŠƒbƒhƒiƒ“ƒo[
- * @param	inMapGridW	ƒ}ƒbƒvƒOƒŠƒbƒh‰¡•
+ * @param	inGridNo	ã‚°ãƒªãƒƒãƒ‰ãƒŠãƒ³ãƒãƒ¼
+ * @param	inMapGridW	ãƒãƒƒãƒ—ã‚°ãƒªãƒƒãƒ‰æ¨ªå¹…
  *
- * @return	u8			ƒuƒƒbƒN“àˆÊ’u(0`3)
+ * @return	u8			ãƒ–ãƒ­ãƒƒã‚¯å†…ä½ç½®(0ã€œ3)
  */
 //--------------------------------------------------------------------------------------------
 u8 CalcPositionInBlockFromGridNo(const u32 inGridNo, const int inMapGridW)
@@ -3709,15 +3709,15 @@ u8 CalcPositionInBlockFromGridNo(const u32 inGridNo, const int inMapGridW)
 	pos_z = line_z%BLOCK_GRID_SIZE_Z;
 	if (pos_x < BLOCK_GRID_SIZE_X/2){
 		if (pos_z < BLOCK_GRID_SIZE_Z/2){
-			pos = 0;	//ƒuƒƒbƒN¶ã
+			pos = 0;	//ãƒ–ãƒ­ãƒƒã‚¯å·¦ä¸Š
 		}else{
-			pos = 2;	//ƒuƒƒbƒN¶‰º
+			pos = 2;	//ãƒ–ãƒ­ãƒƒã‚¯å·¦ä¸‹
 		}
 	}else{
 		if (pos_z < BLOCK_GRID_SIZE_Z/2){
-			pos = 1;	//ƒuƒƒbƒN‰Eã
+			pos = 1;	//ãƒ–ãƒ­ãƒƒã‚¯å³ä¸Š
 		}else{
-			pos = 3;	//ƒuƒƒbƒN‰E‰º
+			pos = 3;	//ãƒ–ãƒ­ãƒƒã‚¯å³ä¸‹
 		}
 	}
 	return pos;
@@ -3725,13 +3725,13 @@ u8 CalcPositionInBlockFromGridNo(const u32 inGridNo, const int inMapGridW)
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚©‚çƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚ğŒvZiã‰º¶‰E‚Ì‚İj
+ * ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’è¨ˆç®—ï¼ˆä¸Šä¸‹å·¦å³ã®ã¿ï¼‰
  *
- * @param	inBlockIndex	ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
- * @param	inPosInBlock	ƒuƒƒbƒN“àˆÊ’u(0`3)
- * @param	inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * @param	inBlockIndex	ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inPosInBlock	ãƒ–ãƒ­ãƒƒã‚¯å†…ä½ç½®(0ã€œ3)
+ * @param	inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	u8				ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX
+ * @return	u8				ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //--------------------------------------------------------------------------------------------
 u8 CalcLocalIdxFromBlockIdx(const int inBlockIndex, const u8 inPosInBlock, DMC_CONST_PTR inDivMapCont)
@@ -3747,75 +3747,75 @@ u8 CalcLocalIdxFromBlockIdx(const int inBlockIndex, const u8 inPosInBlock, DMC_C
 	GF_ASSERT(inBlockIndex!=NON_BLOCK);
 	
 	switch (inDivMapCont->NowLocalIndex){
-	case 0:															//©‹@‚ª¶ã‚É‚¢‚é‚Æ‚«
-		//MapW‚ª‚P‚Ì‚Æ‚«‚ğl‚¦—Dæ‚µ‚Ä”»’è‚·‚é
+	case 0:															//è‡ªæ©ŸãŒå·¦ä¸Šã«ã„ã‚‹ã¨ã
+		//MapWãŒï¼‘ã®ã¨ãã‚’è€ƒãˆå„ªå…ˆã—ã¦åˆ¤å®šã™ã‚‹
 		if(inBlockIndex - inDivMapCont->NowBlockIndex == inDivMapCont->MapW){
-			local_index = inDivMapCont->NowLocalIndex+2;			//‰º
+			local_index = inDivMapCont->NowLocalIndex+2;			//ä¸‹
 		}else if ( (inBlockIndex - inDivMapCont->NowBlockIndex == 1) &&
 				(CheckRowBlockIndex( inDivMapCont->NowBlockIndex, inBlockIndex, inDivMapCont->MapW)) ){
-			//‰¡•À‚Ñ‚Å‚ ‚ê‚ÎA‚n‚j
-			local_index = inDivMapCont->NowLocalIndex+1;			//‰E
+			//æ¨ªä¸¦ã³ã§ã‚ã‚Œã°ã€ï¼¯ï¼«
+			local_index = inDivMapCont->NowLocalIndex+1;			//å³
 		}else if ( (inBlockIndex - inDivMapCont->NowBlockIndex == inDivMapCont->MapW+1) &&
 				(!CheckRowBlockIndex( inDivMapCont->NowBlockIndex, inBlockIndex, inDivMapCont->MapW)) ){
-			//‰¡•À‚Ñ‚Å‚È‚¯‚ê‚Î@‚n‚j
-			local_index = inDivMapCont->NowLocalIndex+3;			//‰E‰º
+			//æ¨ªä¸¦ã³ã§ãªã‘ã‚Œã°ã€€ï¼¯ï¼«
+			local_index = inDivMapCont->NowLocalIndex+3;			//å³ä¸‹
 		}else{
-			local_index = 4;		//¯•Ê•s‰Â
+			local_index = 4;		//è­˜åˆ¥ä¸å¯
 		}
 		break;
-	case 1:															//©‹@‚ª‰Eã‚É‚¢‚é‚Æ‚«
-		//MapW‚ª‚P‚Ì‚Æ‚«‚ğl‚¦—Dæ‚µ‚Ä”»’è‚·‚é
+	case 1:															//è‡ªæ©ŸãŒå³ä¸Šã«ã„ã‚‹ã¨ã
+		//MapWãŒï¼‘ã®ã¨ãã‚’è€ƒãˆå„ªå…ˆã—ã¦åˆ¤å®šã™ã‚‹
 		if(inBlockIndex - inDivMapCont->NowBlockIndex == inDivMapCont->MapW){
-			local_index = inDivMapCont->NowLocalIndex+2;			//‰º
+			local_index = inDivMapCont->NowLocalIndex+2;			//ä¸‹
 		}else if ( (inDivMapCont->NowBlockIndex - inBlockIndex == 1) &&
 				(CheckRowBlockIndex( inDivMapCont->NowBlockIndex, inBlockIndex, inDivMapCont->MapW)) ){
-			//‰¡•À‚Ñ‚Å‚ ‚ê‚ÎA‚n‚j
-			local_index = inDivMapCont->NowLocalIndex-1;			//¶
+			//æ¨ªä¸¦ã³ã§ã‚ã‚Œã°ã€ï¼¯ï¼«
+			local_index = inDivMapCont->NowLocalIndex-1;			//å·¦
 		}else if ( (inBlockIndex - inDivMapCont->NowBlockIndex == inDivMapCont->MapW-1) &&
 				(!CheckRowBlockIndex( inDivMapCont->NowBlockIndex, inBlockIndex, inDivMapCont->MapW)) ){
-			//‰¡•À‚Ñ‚Å‚È‚¯‚ê‚Î@‚n‚j
-			local_index = inDivMapCont->NowLocalIndex+1;			//¶‰º
+			//æ¨ªä¸¦ã³ã§ãªã‘ã‚Œã°ã€€ï¼¯ï¼«
+			local_index = inDivMapCont->NowLocalIndex+1;			//å·¦ä¸‹
 		}else{
-			local_index = 4;		//¯•Ê•s‰Â
+			local_index = 4;		//è­˜åˆ¥ä¸å¯
 
 		}
 		break;
-	case 2:															//©‹@‚ª¶‰º‚É‚¢‚é‚Æ‚«
-		//MapW‚ª‚P‚Ì‚Æ‚«‚ğl‚¦—Dæ‚µ‚Ä”»’è‚·‚é
+	case 2:															//è‡ªæ©ŸãŒå·¦ä¸‹ã«ã„ã‚‹ã¨ã
+		//MapWãŒï¼‘ã®ã¨ãã‚’è€ƒãˆå„ªå…ˆã—ã¦åˆ¤å®šã™ã‚‹
 		if (inDivMapCont->NowBlockIndex - inBlockIndex == inDivMapCont->MapW){
-			local_index = inDivMapCont->NowLocalIndex-2;			//ã
+			local_index = inDivMapCont->NowLocalIndex-2;			//ä¸Š
 		}else if( (inDivMapCont->NowBlockIndex - inBlockIndex == inDivMapCont->MapW-1) &&
 				(!CheckRowBlockIndex( inDivMapCont->NowBlockIndex, inBlockIndex, inDivMapCont->MapW)) ){
-			//‰¡•À‚Ñ‚Å‚È‚¯‚ê‚ÎA‚n‚j
-			local_index = inDivMapCont->NowLocalIndex-1;			//‰Eã
+			//æ¨ªä¸¦ã³ã§ãªã‘ã‚Œã°ã€ï¼¯ï¼«
+			local_index = inDivMapCont->NowLocalIndex-1;			//å³ä¸Š
 		}else if ( (inBlockIndex - inDivMapCont->NowBlockIndex == 1) &&
 				(CheckRowBlockIndex( inDivMapCont->NowBlockIndex, inBlockIndex, inDivMapCont->MapW)) ){
-			//‰¡•À‚Ñ‚Å‚ ‚ê‚Î‚n‚j
-			local_index = inDivMapCont->NowLocalIndex+1;			//‰E
+			//æ¨ªä¸¦ã³ã§ã‚ã‚Œã°ï¼¯ï¼«
+			local_index = inDivMapCont->NowLocalIndex+1;			//å³
 		}else{
-			local_index = 4;		//¯•Ê•s‰Â
+			local_index = 4;		//è­˜åˆ¥ä¸å¯
 
 		}
 		break;
-	case 3:															//©‹@‚ª‰E‰º‚É‚¢‚é‚Æ‚«
-		//MapW‚ª‚P‚Ì‚Æ‚«‚ğl‚¦—Dæ‚µ‚Ä”»’è‚·‚é
+	case 3:															//è‡ªæ©ŸãŒå³ä¸‹ã«ã„ã‚‹ã¨ã
+		//MapWãŒï¼‘ã®ã¨ãã‚’è€ƒãˆå„ªå…ˆã—ã¦åˆ¤å®šã™ã‚‹
 		if(inDivMapCont->NowBlockIndex - inBlockIndex == inDivMapCont->MapW){
-			local_index = inDivMapCont->NowLocalIndex-2;			//ã
+			local_index = inDivMapCont->NowLocalIndex-2;			//ä¸Š
 		}else if ( (inDivMapCont->NowBlockIndex - inBlockIndex == inDivMapCont->MapW+1) &&
 				(!CheckRowBlockIndex( inDivMapCont->NowBlockIndex, inBlockIndex, inDivMapCont->MapW)) ){
-			//‰¡•À‚Ñ‚Å‚È‚¯‚ê‚ÎA‚n‚j
-			local_index = inDivMapCont->NowLocalIndex-3;			//¶ã
+			//æ¨ªä¸¦ã³ã§ãªã‘ã‚Œã°ã€ï¼¯ï¼«
+			local_index = inDivMapCont->NowLocalIndex-3;			//å·¦ä¸Š
 		}else if ( (inDivMapCont->NowBlockIndex- inBlockIndex == 1) &&
 				(CheckRowBlockIndex( inDivMapCont->NowBlockIndex, inBlockIndex, inDivMapCont->MapW)) ){
-			//‰¡•À‚Ñ‚Å‚ ‚ê‚Î‚n‚j
-			local_index = inDivMapCont->NowLocalIndex-1;			//¶
+			//æ¨ªä¸¦ã³ã§ã‚ã‚Œã°ï¼¯ï¼«
+			local_index = inDivMapCont->NowLocalIndex-1;			//å·¦
 		}else{
-			local_index = 4;		//¯•Ê•s‰Â
+			local_index = 4;		//è­˜åˆ¥ä¸å¯
 
 		}
 		break;
 	default:
-		local_index = 4;		//¯•Ê•s‰Â
+		local_index = 4;		//è­˜åˆ¥ä¸å¯
 
 	}
 	
@@ -3824,12 +3824,12 @@ u8 CalcLocalIdxFromBlockIdx(const int inBlockIndex, const u8 inPosInBlock, DMC_C
 
 //==============================================================================
 /**
- * ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚©‚çƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+ * ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‹ã‚‰ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
  *
- * @param   inDivMapCont@•ªŠ„ƒ}ƒbƒv\‘¢‘Ì
- * @param	inLocalIndex@ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX
+ * @param   inDivMapContã€€åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“
+ * @param	inLocalIndexã€€ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @return	int		ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
+ * @return	int		ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  */
 //==============================================================================
 int GetBlockIndexFromLocalIndex(DMC_CONST_PTR inDivMapCont, const u8 inLocalIndex)
@@ -3840,14 +3840,14 @@ int GetBlockIndexFromLocalIndex(DMC_CONST_PTR inDivMapCont, const u8 inLocalInde
 
 //==============================================================================
 /**
- * ƒuƒƒbƒN“àŠO”»’è
+ * ãƒ–ãƒ­ãƒƒã‚¯å†…å¤–åˆ¤å®š
  *
- * @param   inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ì
- * @param	inGridX			ƒOƒŠƒbƒh‚wÀ•W
- * @param	inGridZ			ƒOƒŠƒbƒh‚yÀ•W
- * @param	outLocalIndex	ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒXŠi”[ƒoƒbƒtƒ@
+ * @param   inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“
+ * @param	inGridX			ã‚°ãƒªãƒƒãƒ‰ï¼¸åº§æ¨™
+ * @param	inGridZ			ã‚°ãƒªãƒƒãƒ‰ï¼ºåº§æ¨™
+ * @param	outLocalIndex	ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹æ ¼ç´ãƒãƒƒãƒ•ã‚¡
  *
- * @return	BOOL			TRUE:“à‘¤@ FALSE:ŠO‘¤
+ * @return	BOOL			TRUE:å†…å´ã€€ FALSE:å¤–å´
  */
 //==============================================================================
 BOOL CheckFourBlockIO(DMC_CONST_PTR inDivMapCont, const int inGridX, const int inGridZ, u8 *outLocalIndex)
@@ -3891,12 +3891,12 @@ BOOL CheckFourBlockIO(DMC_CONST_PTR inDivMapCont, const int inGridX, const int i
 
 //==============================================================================
 /**
- * •ªŠ„ƒ}ƒbƒv\‘¢‘Ì‚ğ‰î‚µ‚ÄA‚‚³î•ñæ“¾
+ * åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ã‚’ä»‹ã—ã¦ã€é«˜ã•æƒ…å ±å–å¾—
  *
- * @param   inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ì
- * @param	inLocalIndex	ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX
+ * @param   inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“
+ * @param	inLocalIndex	ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @return	MHI_CONST_PTR	‚‚³î•ñ
+ * @return	MHI_CONST_PTR	é«˜ã•æƒ…å ±
  */
 //==============================================================================
 MHI_CONST_PTR GetDivMapHeightInfo(DMC_CONST_PTR inDivMapCont, const u8 inLocalIndex)
@@ -3906,12 +3906,12 @@ MHI_CONST_PTR GetDivMapHeightInfo(DMC_CONST_PTR inDivMapCont, const u8 inLocalIn
 
 //==============================================================================
 /**
- * •ªŠ„ƒ}ƒbƒv\‘¢‘Ì‚ğ‰î‚µ‚ÄAƒAƒgƒŠƒrƒ…[ƒgæ“¾
+ * åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ã‚’ä»‹ã—ã¦ã€ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆå–å¾—
  *
- * @param   inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ì
- * @param	inLocalIndex	ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX
+ * @param   inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“
+ * @param	inLocalIndex	ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
  *
- * @return	u16				ƒAƒgƒŠƒrƒ…[ƒg
+ * @return	u16				ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆ
  */
 //==============================================================================
 u16 const *GetDivMapAttribute(DMC_CONST_PTR inDivMapCont, const u8 inLocalIndex)
@@ -3922,11 +3922,11 @@ u16 const *GetDivMapAttribute(DMC_CONST_PTR inDivMapCont, const u8 inLocalIndex)
 #ifdef DIV_CALL_BACK
 //==============================================================================
 /**
- * ƒuƒƒbƒNƒ[ƒhŒã‚ÌƒR[ƒ‹ƒoƒbƒNŠÖ”‚ÌƒZƒbƒg
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰å¾Œã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã®ã‚»ãƒƒãƒˆ
  *
- * @param   outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ì
- * @param	call_back		ƒR[ƒ‹ƒoƒbƒN
- * @param	waork			ƒR[ƒ‹ƒoƒbƒN—pƒ[ƒN
+ * @param   outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“
+ * @param	call_back		ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
+ * @param	waork			ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ãƒ¯ãƒ¼ã‚¯
  *
  * @return	none
  */
@@ -3955,9 +3955,9 @@ typedef struct MODEL_SET_DAT_tsg
 
 //==============================================================================
 /**
- * ƒ[ƒhƒ^ƒXƒN’â~ƒŠƒNƒGƒXƒg
+ * ãƒ­ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯åœæ­¢ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
  *
- * @param   tcb				ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb				ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -3971,7 +3971,7 @@ static void StopMapLoadTaskRequest(TCB_PTR tcb)
 
 //==============================================================================
 /**
- * ’nŒ`ƒ‚ƒfƒ‹‚ÌƒZƒbƒgƒ^ƒXƒN
+ * åœ°å½¢ãƒ¢ãƒ‡ãƒ«ã®ã‚»ãƒƒãƒˆã‚¿ã‚¹ã‚¯
  * 
  * @param   tcb
  * @param	work
@@ -3991,7 +3991,7 @@ static void SetModel(TCB_PTR tcb,void* work)
 	
 
 	if (model_set_dat->StopFlg == TRUE){
-		//‹­§’†’f
+		//å¼·åˆ¶ä¸­æ–­
 		model_set_dat->SetSeq = MODELSET_TASK_SEQ_EXIT;
 	}
 	switch(model_set_dat->SetSeq){
@@ -4000,11 +4000,11 @@ static void SetModel(TCB_PTR tcb,void* work)
 
 		model_set_dat->data_trans_offset = 0;
 		if (model_set_dat->DataSize<=MODEL_SET_DIV_SIZE){
-			//•ªŠ„—ÊˆÈ‰º‚Ìê‡
+			//åˆ†å‰²é‡ä»¥ä¸‹ã®å ´åˆ
 			read_size = model_set_dat->DataSize;
 			model_set_dat->SetSeq = MODELSET_TASK_SEQ_TEXTURE_BIND;
 		}else{
-			//•ªŠ„—Ê‚æ‚è‘å‚«‚¢ê‡
+			//åˆ†å‰²é‡ã‚ˆã‚Šå¤§ãã„å ´åˆ
 			read_size = MODEL_SET_DIV_SIZE;
 			model_set_dat->SetSeq = MODELSET_TASK_SEQ_MODEL_LOAD;
 		}
@@ -4020,12 +4020,12 @@ static void SetModel(TCB_PTR tcb,void* work)
 			int end;
 			read_size = model_set_dat->DataSize-model_set_dat->data_trans_offset;
 			if (read_size>MODEL_SET_DIV_SIZE){
-				//•ªŠ„—Ê‚æ‚è‘å‚«‚¢ê‡
+				//åˆ†å‰²é‡ã‚ˆã‚Šå¤§ãã„å ´åˆ
 				read_size = MODEL_SET_DIV_SIZE;
-				//ˆ—‚ğŒp‘±
+				//å‡¦ç†ã‚’ç¶™ç¶š
 				end = 0;
 			}else{
-				//“Ç‚İ‚ñ‚ÅI—¹
+				//èª­ã¿è¾¼ã‚“ã§çµ‚äº†
 				end = 1;
 			}
 			mem = &((u8*)(*model_set_dat->ResFile))[model_set_dat->data_trans_offset];
@@ -4042,13 +4042,13 @@ static void SetModel(TCB_PTR tcb,void* work)
 
 	case MODELSET_TASK_SEQ_TEXTURE_BIND:
 		if(model_set_dat->Texture != NULL){
-			// ƒeƒNƒXƒ`ƒƒ‚ªVram‚É“WŠJ‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒVramã«å±•é–‹ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if(TexKeyLive(model_set_dat->Texture) == TRUE){	
-				//ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh
+				//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰
 				status = BindTexture(*model_set_dat->ResFile, model_set_dat->Texture);
 				NNS_G3D_ASSERTMSG(status, "BindTexture failed");
 			}else{
-				OS_Printf("ƒeƒNƒXƒ`ƒƒ‚ª“WŠJ‚³‚ê‚Ä‚¢‚È‚¢");
+				OS_Printf("ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒå±•é–‹ã•ã‚Œã¦ã„ãªã„");
 			}
 		}
 		model_set_dat->SetSeq = MODELSET_TASK_SEQ_RESOUCE_SET;
@@ -4068,7 +4068,7 @@ static void SetModel(TCB_PTR tcb,void* work)
 			NNSG3dResMdlSet* pMdlSet = NNS_G3dGetMdlSet(*model_set_dat->ResFile);
 			NNSG3dResMdl *model;
 			
-			GF_ASSERT(pMdlSet->dict.numEntry==1&&"ƒ‚ƒfƒ‹ƒZƒbƒg‚Ì’†‚É•¡”ƒ‚ƒfƒ‹‚ª‘¶İ");
+			GF_ASSERT(pMdlSet->dict.numEntry==1&&"ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆã®ä¸­ã«è¤‡æ•°ãƒ¢ãƒ‡ãƒ«ãŒå­˜åœ¨");
 			
 			model = NNS_G3dGetMdlByIdx(pMdlSet, 0);
 			GF_ASSERT(model&&"load failed");
@@ -4089,17 +4089,17 @@ static void SetModel(TCB_PTR tcb,void* work)
 
 //==============================================================================
 /**
- * ƒ}ƒbƒvƒ[ƒhƒ^ƒXƒN
+ * ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯
  *
- * @param   inHandle		ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- * @param	inSize			ƒf[ƒ^ƒTƒCƒY
- * @param	object_p		ƒŒƒ“ƒ_[‚n‚a‚iƒ|ƒCƒ“ƒ^
- * @param	resFile			ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹
- * @param	pTexture		ƒeƒNƒXƒ`ƒƒ
- * @param	ioDrawOKFlg		•`‰æ‹–‰Âƒtƒ‰ƒO
- * @param	inEndFlg		ƒ^ƒXƒNI—¹ƒtƒ‰ƒO
+ * @param   inHandle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ * @param	inSize			ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param	object_p		ãƒ¬ãƒ³ãƒ€ãƒ¼ï¼¯ï¼¢ï¼ªãƒã‚¤ãƒ³ã‚¿
+ * @param	resFile			ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
+ * @param	pTexture		ãƒ†ã‚¯ã‚¹ãƒãƒ£
+ * @param	ioDrawOKFlg		æç”»è¨±å¯ãƒ•ãƒ©ã‚°
+ * @param	inEndFlg		ã‚¿ã‚¹ã‚¯çµ‚äº†ãƒ•ãƒ©ã‚°
  *
- * @return	TCB_PTR			ƒ^ƒXƒNƒ|ƒCƒ“ƒ^
+ * @return	TCB_PTR			ã‚¿ã‚¹ã‚¯ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 TCB_PTR Set3DModelTask(	ARCHANDLE *inHandle,
@@ -4132,15 +4132,15 @@ TCB_PTR Set3DModelTask(	ARCHANDLE *inHandle,
 
 //==============================================================================
 /**
- * ƒfƒtƒHƒ‹ƒgƒZƒbƒgƒAƒbƒv‚ğs‚í‚È‚¢ƒ‚ƒfƒ‹“Ç‚İ‚İŠÖ”
+ * ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã‚’è¡Œã‚ãªã„ãƒ¢ãƒ‡ãƒ«èª­ã¿è¾¼ã¿é–¢æ•°
  *
- * @param   ioHandle		ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
- * @param	inSize			ƒf[ƒ^ƒTƒCƒY
- * @param	object_p		ƒŒƒ“ƒ_[‚n‚a‚iƒ|ƒCƒ“ƒ^
- * @param	resFile			ƒŠƒ\[ƒXƒtƒ@ƒCƒ‹
- * @param	pTexture		ƒeƒNƒXƒ`ƒƒ
+ * @param   ioHandle		ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
+ * @param	inSize			ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚º
+ * @param	object_p		ãƒ¬ãƒ³ãƒ€ãƒ¼ï¼¯ï¼¢ï¼ªãƒã‚¤ãƒ³ã‚¿
+ * @param	resFile			ãƒªã‚½ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«
+ * @param	pTexture		ãƒ†ã‚¯ã‚¹ãƒãƒ£
  *
- * @return	NNSG3dResMdl	ƒ‚ƒfƒ‹ƒ|ƒCƒ“ƒ^
+ * @return	NNSG3dResMdl	ãƒ¢ãƒ‡ãƒ«ãƒã‚¤ãƒ³ã‚¿
  */
 //==============================================================================
 NNSG3dResMdl* Set3DModel(	ARCHANDLE *ioHandle,
@@ -4155,13 +4155,13 @@ NNSG3dResMdl* Set3DModel(	ARCHANDLE *ioHandle,
 	ArchiveDataLoadByHandleContinue( ioHandle, inSize, *(resFile) );
 	
 	if(pTexture != NULL){
-		if(TexKeyLive(pTexture) == TRUE){	// ƒeƒNƒXƒ`ƒƒ‚ªVram‚É“WŠJ‚³‚ê‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
-			//ƒeƒNƒXƒ`ƒƒƒoƒCƒ“ƒh
+		if(TexKeyLive(pTexture) == TRUE){	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒVramã«å±•é–‹ã•ã‚Œã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
+			//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒã‚¤ãƒ³ãƒ‰
 			status = BindTexture(*resFile, pTexture);
 			NNS_G3D_ASSERTMSG(status, "BindTexture failed");
 			GF_ASSERT(status&&"BindTexture failed");
 		}else{
-			OS_Printf("ƒeƒNƒXƒ`ƒƒ‚ª“WŠJ‚³‚ê‚Ä‚¢‚È‚¢");
+			OS_Printf("ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒå±•é–‹ã•ã‚Œã¦ã„ãªã„");
 		}
 	}
 
@@ -4170,7 +4170,7 @@ NNSG3dResMdl* Set3DModel(	ARCHANDLE *ioHandle,
 		u16 entry_model_num;
 		NNSG3dResMdlSet* pMdlSet = NNS_G3dGetMdlSet(*resFile);
 
-		GF_ASSERT(pMdlSet->dict.numEntry==1&&"ƒ‚ƒfƒ‹ƒZƒbƒg‚Ì’†‚É•¡”ƒ‚ƒfƒ‹‚ª‘¶İ");
+		GF_ASSERT(pMdlSet->dict.numEntry==1&&"ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆã®ä¸­ã«è¤‡æ•°ãƒ¢ãƒ‡ãƒ«ãŒå­˜åœ¨");
 
 		model = NNS_G3dGetMdlByIdx(NNS_G3dGetMdlSet(*resFile), 0);
 		GF_ASSERT(model&&"load failed");
@@ -4190,7 +4190,7 @@ NNSG3dResMdl* Set3DModel(	ARCHANDLE *ioHandle,
 }
 
 //=========================================================================
-//	ƒ_ƒ~[ƒ}ƒbƒv
+//	ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—
 //=========================================================================
 //static
 static void LoadFirstBlockDummy(
@@ -4221,7 +4221,7 @@ static void ReloadFirstBlockDummy(
 #if 0
 //--------------------------------------------------------------
 /**
- * ’nŒ`ƒŠƒ\[ƒX‚ÌƒA[ƒJƒCƒuƒ|ƒCƒ“ƒ^AƒTƒCƒY‚ğæ“¾
+ * åœ°å½¢ãƒªã‚½ãƒ¼ã‚¹ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒã‚¤ãƒ³ã‚¿ã€ã‚µã‚¤ã‚ºã‚’å–å¾—
  * @param
  * @retval
  */
@@ -4240,13 +4240,13 @@ void GetMap3DModelArcOffset(
 	
 	#ifdef PM_DEBUG
 	if( data.MapSize > 0xf000 ){
-		OS_Printf("arc%d:’nŒ`ƒTƒCƒYƒI[ƒo[:%d\n",arc_index,data.MapSize);
+		OS_Printf("arc%d:åœ°å½¢ã‚µã‚¤ã‚ºã‚ªãƒ¼ãƒãƒ¼:%d\n",arc_index,data.MapSize);
 		GF_ASSERT(0);
 	}
 	#endif
 	
 	seek = (0x800) + data.ObjSize;		//0x800=Attribute
-	ArchiveDataSeekByHandleCur( DivMapCont->ArcHandle, seek );	//3DMdlˆÊ’u
+	ArchiveDataSeekByHandleCur( DivMapCont->ArcHandle, seek );	//3DMdlä½ç½®
 	
 	*size = data.MapSize;
 	*handle = DivMapCont->ArcHandle;
@@ -4255,7 +4255,7 @@ void GetMap3DModelArcOffset(
 
 //--------------------------------------------------------------
 /**
- * DMC_PTR‚©‚çARCHANDLEæ“¾
+ * DMC_PTRã‹ã‚‰ARCHANDLEå–å¾—
  * @param	dmc	DMC_PTR
  * @retval	ARCHANDLE*
  */
@@ -4267,10 +4267,10 @@ ARCHANDLE * GetDivMapArcHandle( DMC_PTR dmc )
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[DMC_PTR‰Šú‰»B’nŒ`ƒ‚ƒfƒ‹‚Ì‚İ‚ğ“WŠJ‚·‚éDMC_PTR
+ * ãƒ€ãƒŸãƒ¼DMC_PTRåˆæœŸåŒ–ã€‚åœ°å½¢ãƒ¢ãƒ‡ãƒ«ã®ã¿ã‚’å±•é–‹ã™ã‚‹DMC_PTR
  * @param	world	WORLD_MAP_PTR
  * @param	MAP_RESOURCE_PTR mapresource
- * @param	ARCHANDLE * NULL=V‹K‚Éì¬
+ * @param	ARCHANDLE * NULL=æ–°è¦ã«ä½œæˆ
  * @retval	DMC_PTR	DMC_PTR
  */
 //--------------------------------------------------------------
@@ -4282,20 +4282,20 @@ DMC_PTR InitDivMapDummy(
 	DMC_PTR map_cont_ptr;
 	BOOL height_data_valid;
 	
-	//ƒ}ƒbƒvƒRƒ“ƒgƒ[ƒ‹ƒf[ƒ^Šm•Û
+	//ãƒãƒƒãƒ—ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ç¢ºä¿
 	map_cont_ptr = sys_AllocMemory(
 		HEAPID_FIELD, sizeof(DIV_MAP_LOAD_CONT) );
-	//Šm•Û—Ìˆæ‚ÌƒNƒŠ[ƒ“
+	//ç¢ºä¿é ˜åŸŸã®ã‚¯ãƒªãƒ¼ãƒ³
 	MI_CpuClear8( map_cont_ptr, sizeof(DIV_MAP_LOAD_CONT));
 	
-	//ƒ}ƒbƒv‚ªg—p‚·‚éƒƒ‚ƒŠi’nŒ`ƒf[ƒ^“™j‚ğŠm•Û
+	//ãƒãƒƒãƒ—ãŒä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ¢ãƒªï¼ˆåœ°å½¢ãƒ‡ãƒ¼ã‚¿ç­‰ï¼‰ã‚’ç¢ºä¿
 	map_cont_ptr->FldMapMem = AllocHeapFldMapMem( FALSE );
 	
-	//ƒtƒB[ƒ‹ƒh‹¤’ÊƒŠƒ\[ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğƒZƒbƒg
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å…±é€šãƒªã‚½ãƒ¼ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	map_cont_ptr->MapResource = mapresource;
 	map_cont_ptr->World = world;
 	
-	//ƒ}ƒbƒvc‰¡î•ñƒZƒbƒg
+	//ãƒãƒƒãƒ—ç¸¦æ¨ªæƒ…å ±ã‚»ãƒƒãƒˆ
 	if( world != NULL ){
 		map_cont_ptr->MapW = GetWorldMapMatrixW(world);
 		map_cont_ptr->MapH = GetWorldMapMatrixH(world);
@@ -4304,7 +4304,7 @@ DMC_PTR InitDivMapDummy(
 	
 	map_cont_ptr->MapCheck.Valid = FALSE;
 	
-	//ƒ}ƒbƒvŠÇ—ƒ^ƒXƒN‰Šú‰»
+	//ãƒãƒƒãƒ—ç®¡ç†ã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
 	InitMapLoadCont(map_cont_ptr);
 	
 	map_cont_ptr->FreeRequest = FALSE;
@@ -4322,10 +4322,10 @@ DMC_PTR InitDivMapDummy(
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[DMC_PTRAÄ‰Šú‰»
+ * ãƒ€ãƒŸãƒ¼DMC_PTRã€å†åˆæœŸåŒ–
  * @param	world	WORLD_MAP_PTR
  * @param	MAP_RESOURCE_PTR mapresource
- * @param	ARCHANDLE * NULL=V‹K‚Éì¬
+ * @param	ARCHANDLE * NULL=æ–°è¦ã«ä½œæˆ
  * @retval	DMC_PTR	DMC_PTR
  */
 //--------------------------------------------------------------
@@ -4337,18 +4337,18 @@ void InitDivMapDummyContinue(
 {
 	BOOL height_data_valid;
 	
-	//ƒtƒB[ƒ‹ƒh‹¤’ÊƒŠƒ\[ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğƒZƒbƒg
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å…±é€šãƒªã‚½ãƒ¼ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	map_cont_ptr->MapResource = mapresource;
 	map_cont_ptr->World = world;
 	
-	//ƒ}ƒbƒvc‰¡î•ñƒZƒbƒg
+	//ãƒãƒƒãƒ—ç¸¦æ¨ªæƒ…å ±ã‚»ãƒƒãƒˆ
 	map_cont_ptr->MapW = GetWorldMapMatrixW(world);
 	map_cont_ptr->MapH = GetWorldMapMatrixH(world);
 	map_cont_ptr->MapGridW = map_cont_ptr->MapW*BLOCK_GRID_W;
 	
 	map_cont_ptr->MapCheck.Valid = FALSE;
 	
-	//ƒ}ƒbƒvŠÇ—ƒ^ƒXƒN‰Šú‰»
+	//ãƒãƒƒãƒ—ç®¡ç†ã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
 	InitMapLoadCont(map_cont_ptr);
 	
 	map_cont_ptr->FreeRequest = FALSE;
@@ -4364,7 +4364,7 @@ void InitDivMapDummyContinue(
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv@ƒƒ‚ƒŠŠJ•ú
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€ãƒ¡ãƒ¢ãƒªé–‹æ”¾
  * @param	ioDivMapCont	DMC_PTR
  * @retval	nothing
  */
@@ -4390,7 +4390,7 @@ void DivMapLoad_FreeMapDummy( DMC_PTR ioDivMapCont )
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv@M3DƒtƒŠ[
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€M3Dãƒ•ãƒªãƒ¼
  * @param	ioDivMapCont	DMC_PTR
  * @retval	nothing
  */
@@ -4408,7 +4408,7 @@ void DivMapLoad_FreeMapDummyM3DObj( DMC_PTR ioDivMapCont )
 
 //--------------------------------------------------------------
 /**
- * M3DƒNƒŠ[ƒ“
+ * M3Dã‚¯ãƒªãƒ¼ãƒ³
  * @param	ioDivMapCont	DMC_PTR
  * @retval	nothing
  */
@@ -4426,25 +4426,25 @@ void DivMapLoad_CleanM3DObj( DMC_PTR ioDivMapCont )
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[DMC ŠJ•ú
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * ãƒ€ãƒŸãƒ¼DMC é–‹æ”¾
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  * @retval	nothing
  */
 //--------------------------------------------------------------
 void FreeDivMapContDummy( DMC_PTR outDivMapCont )
 {
-	//ƒ}ƒbƒvƒƒ‚ƒŠ‰ğ•ú
+	//ãƒãƒƒãƒ—ãƒ¡ãƒ¢ãƒªè§£æ”¾
 	FreeFldMapMem( outDivMapCont->FldMapMem );
-	//ƒ}ƒbƒvŠÇ—ƒf[ƒ^‰ğ•ú
+	//ãƒãƒƒãƒ—ç®¡ç†ãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	sys_FreeMemoryEz( (void *)outDivMapCont );
 }
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv ƒ}ƒbƒv“Ç‚İ‚İ
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ— ãƒãƒƒãƒ—èª­ã¿è¾¼ã¿
  * @param	world	WORLD_MAP_PTR
  * @param	MAP_RESOURCE_PTR mapresource
- * @param	ARCHANDLE * NULL=V‹K‚Éì¬
+ * @param	ARCHANDLE * NULL=æ–°è¦ã«ä½œæˆ
  * @retval	DMC_PTR	DMC_PTR
  */
 //--------------------------------------------------------------
@@ -4463,10 +4463,10 @@ void LoadDivMapDummy( DMC_PTR outDivMapCont, const int x, const int z )
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv ƒ}ƒbƒvÄ“Ç‚İ‚İ
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ— ãƒãƒƒãƒ—å†èª­ã¿è¾¼ã¿
  * @param	world	WORLD_MAP_PTR
  * @param	MAP_RESOURCE_PTR mapresource
- * @param	ARCHANDLE * NULL=V‹K‚Éì¬
+ * @param	ARCHANDLE * NULL=æ–°è¦ã«ä½œæˆ
  * @retval	DMC_PTR	DMC_PTR
  */
 //--------------------------------------------------------------
@@ -4480,10 +4480,10 @@ void ReloadDivMapDummy( DMC_PTR outDivMapCont, const int x, const int z )
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv ƒ}ƒbƒvƒ[ƒh
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ— ãƒãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰
  * @param	world	WORLD_MAP_PTR
  * @param	MAP_RESOURCE_PTR mapresource
- * @param	ARCHANDLE * NULL=V‹K‚Éì¬
+ * @param	ARCHANDLE * NULL=æ–°è¦ã«ä½œæˆ
  * @retval	DMC_PTR	DMC_PTR
  */
 //--------------------------------------------------------------
@@ -4498,11 +4498,11 @@ static void LoadFirstBlockDummy(
 	u8 i;
 	int start_block[4];
 	
-	//4ƒuƒƒbƒN‚Ìƒf[ƒ^“Çæ‚ğŠm•Û
-	//‚‚³,ƒAƒgƒŠƒrƒ…[ƒg‚ğƒ[ƒh‚µ‚È‚¢’n‰º“Ç‚İ‚İ‚ğ—¬—p
+	//4ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿èª­è¾¼å…ˆã‚’ç¢ºä¿
+	//é«˜ã•,ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚’ãƒ­ãƒ¼ãƒ‰ã—ãªã„åœ°ä¸‹èª­ã¿è¾¼ã¿ã‚’æµç”¨
 	AllocBlockListForUnder( outDivMapCont );
 	
-	//‰ŠúƒuƒƒbƒN‚ğƒOƒŠƒbƒh‚©‚çŠ„‚èo‚·
+	//åˆæœŸãƒ–ãƒ­ãƒƒã‚¯ã‚’ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰å‰²ã‚Šå‡ºã™
 	MakeStartBlockTbl(	outDivMapCont->BlockMode,
 						inGridX, inGridZ,
 						outDivMapCont->OriginGridX,
@@ -4512,9 +4512,9 @@ static void LoadFirstBlockDummy(
 						inMapGridW, start_block	);
 	
 	for( i = 0; i < 4; i++ ){
-		//‚‚³ƒf[ƒ^ŠÇ—\‘¢‘ÌNULLƒZƒbƒg
+		//é«˜ã•ãƒ‡ãƒ¼ã‚¿ç®¡ç†æ§‹é€ ä½“NULLã‚»ãƒƒãƒˆ
 		outDivMapCont->BlockNodeList[i]->MapHeightInfo = NULL;
-		//4ƒuƒƒbƒN•ª‚Ìƒf[ƒ^“Ç‚İ‚İ
+		//4ãƒ–ãƒ­ãƒƒã‚¯åˆ†ã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		LoadBlockQuickForDummy(
 			start_block[i], i,
 			outDivMapCont->MapResource,
@@ -4528,10 +4528,10 @@ static void LoadFirstBlockDummy(
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv ƒ}ƒbƒvƒŠƒ[ƒh
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ— ãƒãƒƒãƒ—ãƒªãƒ­ãƒ¼ãƒ‰
  * @param	world	WORLD_MAP_PTR
  * @param	MAP_RESOURCE_PTR mapresource
- * @param	ARCHANDLE * NULL=V‹K‚Éì¬
+ * @param	ARCHANDLE * NULL=æ–°è¦ã«ä½œæˆ
  * @retval	DMC_PTR	DMC_PTR
  */
 //--------------------------------------------------------------
@@ -4546,7 +4546,7 @@ static void ReloadFirstBlockDummy(
 	
 	ResetBlockListForUnder( outDivMapCont );
 	
-	//‰ŠúƒuƒƒbƒN‚ğƒOƒŠƒbƒh‚©‚çŠ„‚èo‚·
+	//åˆæœŸãƒ–ãƒ­ãƒƒã‚¯ã‚’ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰å‰²ã‚Šå‡ºã™
 	MakeStartBlockTbl(	outDivMapCont->BlockMode,
 						inGridX, inGridZ,
 						outDivMapCont->OriginGridX,
@@ -4556,9 +4556,9 @@ static void ReloadFirstBlockDummy(
 						inMapGridW, start_block	);
 	
 	for( i = 0; i < 4; i++ ){
-		//‚‚³ƒf[ƒ^ŠÇ—\‘¢‘ÌNULLƒZƒbƒg
+		//é«˜ã•ãƒ‡ãƒ¼ã‚¿ç®¡ç†æ§‹é€ ä½“NULLã‚»ãƒƒãƒˆ
 		outDivMapCont->BlockNodeList[i]->MapHeightInfo = NULL;
-		//4ƒuƒƒbƒN•ª‚Ìƒf[ƒ^“Ç‚İ‚İ
+		//4ãƒ–ãƒ­ãƒƒã‚¯åˆ†ã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		LoadBlockQuickForDummy(
 			start_block[i], i,
 			outDivMapCont->MapResource,
@@ -4572,7 +4572,7 @@ static void ReloadFirstBlockDummy(
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv ƒ}ƒbƒvƒŠƒ[ƒh@“Ç‚İ‚İƒe[ƒuƒ‹ƒZƒbƒgƒAƒbƒv
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ— ãƒãƒƒãƒ—ãƒªãƒ­ãƒ¼ãƒ‰ã€€èª­ã¿è¾¼ã¿ãƒ†ãƒ¼ãƒ–ãƒ«ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * @param	world	WORLD_MAP_PTR
  * @param	MAP_RESOURCE_PTR mapresource
  * @param	inGridX
@@ -4592,7 +4592,7 @@ void LoadBlockListSetUpForDummy(
 	
 	ResetBlockListForUnder( outDivMapCont );
 	
-	//‰ŠúƒuƒƒbƒN‚ğƒOƒŠƒbƒh‚©‚çŠ„‚èo‚·
+	//åˆæœŸãƒ–ãƒ­ãƒƒã‚¯ã‚’ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰å‰²ã‚Šå‡ºã™
 	MakeStartBlockTbl(	outDivMapCont->BlockMode,
 						inGridX, inGridZ,
 						outDivMapCont->OriginGridX,
@@ -4601,7 +4601,7 @@ void LoadBlockListSetUpForDummy(
 						outDivMapCont->MapH,
 						outDivMapCont->MapGridW, block_tbl );
 	
-	//•`‰æ’â~
+	//æç”»åœæ­¢
 	for( i = 0; i < 4; i++ ){	
 		outDivMapCont->BlockNodeList[i]->DrawOKFlg = FALSE;
 	}
@@ -4609,20 +4609,20 @@ void LoadBlockListSetUpForDummy(
 
 //--------------------------------------------------------------
 /**
- * w’è‚³‚ê‚½ƒuƒƒbƒNNo“Ç‚İ‚İ@ƒ_ƒ~[
+ * æŒ‡å®šã•ã‚ŒãŸãƒ–ãƒ­ãƒƒã‚¯Noèª­ã¿è¾¼ã¿ã€€ãƒ€ãƒŸãƒ¼
  * @param	outDivMapCont	DMC_PTR
  * @param	list	0-3
- * @param	block_no	LoadBlockListSetUpForDummy‚Åì¬‚µ‚½ƒŠƒXƒg
+ * @param	block_no	LoadBlockListSetUpForDummyã§ä½œæˆã—ãŸãƒªã‚¹ãƒˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
 void LoadBlockListNoForDummy(
 		DMC_PTR outDivMapCont, int list_no, int block_no )
 {
-	//‚‚³ƒf[ƒ^ŠÇ—\‘¢‘ÌNULLƒZƒbƒg
+	//é«˜ã•ãƒ‡ãƒ¼ã‚¿ç®¡ç†æ§‹é€ ä½“NULLã‚»ãƒƒãƒˆ
 	outDivMapCont->BlockNodeList[list_no]->MapHeightInfo = NULL;
 	
-	//ƒuƒƒbƒNƒf[ƒ^“Ç‚İ‚İ
+	//ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	LoadBlockQuickForDummy(
 		block_no, list_no,
 		outDivMapCont->MapResource,
@@ -4632,21 +4632,21 @@ void LoadBlockListNoForDummy(
 		MAPRES_IsValidLight(outDivMapCont->MapResource),
 		outDivMapCont );
 	
-	//ˆê’U–³Œø‚É
+	//ä¸€æ—¦ç„¡åŠ¹ã«
 	outDivMapCont->BlockNodeList[list_no]->DrawOKFlg = FALSE;
 }
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒuƒƒbƒN‚Ìƒ[ƒh1syncŒ^(ˆêŠ‡“Ç‚İ‚İ)ƒ_ƒ~[ƒ}ƒbƒv
- * @param	inBlockIndex	ƒuƒƒbƒNƒCƒ“ƒfƒbƒNƒX
- * @param	inLocalIndex	0`3@ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX
- * @param	inMapResource	ƒ}ƒbƒvƒŠƒ\[ƒX
- * @param	inWorld			ƒ[ƒ‹ƒhƒ|ƒCƒ“ƒ^
- * @param	inMapW			ƒ}ƒbƒv‰¡•
- * @param	inMapH			ƒ}ƒbƒvc•
- * @param	inLightValid	ƒ‰ƒCƒgƒtƒ‰ƒO
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ­ãƒ¼ãƒ‰1syncå‹(ä¸€æ‹¬èª­ã¿è¾¼ã¿)ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—
+ * @param	inBlockIndex	ãƒ–ãƒ­ãƒƒã‚¯ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inLocalIndex	0ã€œ3ã€€ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+ * @param	inMapResource	ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹
+ * @param	inWorld			ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMapW			ãƒãƒƒãƒ—æ¨ªå¹…
+ * @param	inMapH			ãƒãƒƒãƒ—ç¸¦å¹…
+ * @param	inLightValid	ãƒ©ã‚¤ãƒˆãƒ•ãƒ©ã‚°
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
@@ -4667,18 +4667,18 @@ static void LoadBlockQuickForDummy(	const int inBlockIndex,
 		return;
 	}
 	
-	//ƒA[ƒJƒCƒuƒCƒ“ƒfƒbƒNƒX‚ğæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’å–å¾—
 	arc_index = GetWorldMapArcIdx( inBlockIndex, inWorld );
 	GetMapArcLoadOffset( outDivMapCont->ArcHandle, arc_index, &data );
 	
 	#ifdef PM_DEBUG
 	if( data.MapSize > 0xf000 ){
-		OS_Printf("arc%d:’nŒ`ƒTƒCƒYƒI[ƒo[:%d\n",arc_index,data.MapSize);
+		OS_Printf("arc%d:åœ°å½¢ã‚µã‚¤ã‚ºã‚ªãƒ¼ãƒãƒ¼:%d\n",arc_index,data.MapSize);
 		GF_ASSERT(0);
 	}
 	#endif
 	
-	seek = (0x800) + data.ObjSize;		//0x800=Attribute 3DMdlˆÊ’u
+	seek = (0x800) + data.ObjSize;		//0x800=Attribute 3DMdlä½ç½®
 	ArchiveDataSeekByHandleCur( outDivMapCont->ArcHandle, seek );
 	
 	DC_FlushRange(
@@ -4701,10 +4701,10 @@ static void LoadBlockQuickForDummy(	const int inBlockIndex,
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv@ƒuƒƒbƒN•`‰æ
- * @param	inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	glst_data		ƒOƒ[ƒoƒ‹ƒXƒe[ƒgƒf[ƒ^ƒ|ƒCƒ“ƒ^
- * @param	offset			•`‰æƒIƒtƒZƒbƒg
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€ãƒ–ãƒ­ãƒƒã‚¯æç”»
+ * @param	inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	glst_data		ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+ * @param	offset			æç”»ã‚ªãƒ•ã‚»ãƒƒãƒˆ
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4722,10 +4722,10 @@ void DrawAroundBlockDummy( DMC_CONST_PTR inDivMapCont,
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv@ƒuƒƒbƒN•`‰æ
- * @param	inLocalIndex	•`‰æƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX(0`3)
- * @param	inDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	glst_data		ƒOƒ[ƒoƒ‹ƒXƒe[ƒgƒ|ƒCƒ“ƒ^
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€ãƒ–ãƒ­ãƒƒã‚¯æç”»
+ * @param	inLocalIndex	æç”»ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(0ã€œ3)
+ * @param	inDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	glst_data		ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚¤ãƒ³ã‚¿
  * @retval	nothing
  */
 //--------------------------------------------------------------
@@ -4759,7 +4759,7 @@ static void DrawBlockDummy(
 
 //--------------------------------------------------------------
 /**
- * ˆÚ‚µ•Ï‚¦‚Ìˆ×‚ÌDMC_PTRƒŠƒZƒbƒgˆ—
+ * ç§»ã—å¤‰ãˆã®ç‚ºã®DMC_PTRãƒªã‚»ãƒƒãƒˆå‡¦ç†
  * @param	ioDivMapCont	DMC_PTR
  * @retval	nothing
  */
@@ -4768,12 +4768,12 @@ void DivMapLoad_RemoveReset( DMC_PTR ioDivMapCont)
 {
 	int i;
 	
-	//ƒ[ƒhƒ^ƒXƒN’†~ƒŠƒNƒGƒXƒg
+	//ãƒ­ãƒ¼ãƒ‰ã‚¿ã‚¹ã‚¯ä¸­æ­¢ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	for(i=0;i<2;i++){
 		LoadTaskStopReqestByMLBS( &ioDivMapCont->MLBC[i].MLBS );
 	}
 	
-	//ƒuƒƒbƒNƒf[ƒ^@’nŒ`ˆÈŠO‚ğŠJ•ú
+	//ãƒ–ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã€€åœ°å½¢ä»¥å¤–ã‚’é–‹æ”¾
 	for (i=0;i<4;i++){
 		ioDivMapCont->BlockNodeList[i]->DrawOKFlg = FALSE;
 	}
@@ -4782,7 +4782,7 @@ void DivMapLoad_RemoveReset( DMC_PTR ioDivMapCont)
 	ioDivMapCont->FreeRequest = TRUE;
 	ioDivMapCont->MapCheck.Valid = FALSE;
 	
-	//ƒAƒgƒŠƒrƒ…[ƒgƒNƒŠƒA
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚¯ãƒªã‚¢
 	for( i=0;i<4;i++){
 		MI_CpuFillFast(
 			ioDivMapCont->BlockNodeList[i]->Attribute, 0xffffffff, 2*32*32 );
@@ -4791,7 +4791,7 @@ void DivMapLoad_RemoveReset( DMC_PTR ioDivMapCont)
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒvƒŠƒ\[ƒX‚ğƒƒCƒ“‚ÉˆÚ“®
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ¡ã‚¤ãƒ³ã«ç§»å‹•
  * @param	inDivMapCont
  * @retval	nothing
  */
@@ -4806,13 +4806,13 @@ void RemoveDivMapDummyMain(
 	int i;
 	int start_block[4];
 	
-	//ƒŠƒ\[ƒXƒƒ‚ƒŠ‚ÌŒğŠ·
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒ¡ãƒ¢ãƒªã®äº¤æ›
 	ExchangeFldMapMemGround( dmy_dmc->FldMapMem, main_dmc->FldMapMem );
 	
-	//WORLD_MAP_PTR‚ÌˆÚ“®
+	//WORLD_MAP_PTRã®ç§»å‹•
 	WorldMapRemove( World, main_dmc->World );
 	
-	//Šeƒf[ƒ^‚ÌˆÚ“®
+	//å„ãƒ‡ãƒ¼ã‚¿ã®ç§»å‹•
 	for( i = 0; i < 2; i++ ){
 		main_dmc->MLBC[i] = dmy_dmc->MLBC[i];
 	}
@@ -4830,7 +4830,7 @@ void RemoveDivMapDummyMain(
 	main_dmc->NowLocalIndex = dmy_dmc->NowLocalIndex;
 	main_dmc->NowPosInBlock = dmy_dmc->NowPosInBlock;
 	
-	//’nŒ`ƒf[ƒ^‚ÌˆÚ“®
+	//åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã®ç§»å‹•
 	for( i = 0; i < 4; i++ ){
 		main_dmc->BlockNodeList[i]->FloorData =
 			dmy_dmc->BlockNodeList[i]->FloorData;
@@ -4864,14 +4864,14 @@ void RemoveDivMapDummyMain(
 	main_dmc->LoadSeq = dmy_dmc->LoadSeq;
 	
 	for( i = 0; i < 4; i++ ){
-		//“Ç‚İ‚ŞƒCƒ“ƒfƒbƒNƒX‚ğˆê’v‚³‚¹‚é
+		//èª­ã¿è¾¼ã‚€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¸€è‡´ã•ã›ã‚‹
 		start_block[i] = main_dmc->BlockNodeList[i]->BlockIndex;
-		//‚‚³ƒf[ƒ^ŠÇ—\‘¢‘Ì‰Šú‰»
+		//é«˜ã•ãƒ‡ãƒ¼ã‚¿ç®¡ç†æ§‹é€ ä½“åˆæœŸåŒ–
 		InitHeightData(main_dmc->BlockNodeList[i]->MapHeightInfo);
 	}
 	
 	for( i = 0; i < 4; i++ ){
-		//4ƒuƒƒbƒN•ª‚Ìƒf[ƒ^“Ç‚İ‚İ
+		//4ãƒ–ãƒ­ãƒƒã‚¯åˆ†ã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		LoadBlockModelHeightAttrQuick(
 				start_block[i],
 				i,
@@ -4886,7 +4886,7 @@ void RemoveDivMapDummyMain(
 
 //--------------------------------------------------------------
 /**
- * ƒƒCƒ“ƒŠƒ\[ƒX‚ğƒ_ƒ~[‚ÉˆÚ“®
+ * ãƒ¡ã‚¤ãƒ³ãƒªã‚½ãƒ¼ã‚¹ã‚’ãƒ€ãƒŸãƒ¼ã«ç§»å‹•
  * @param	inDivMapCont
  * @retval	nothing
  */
@@ -4897,13 +4897,13 @@ void RemoveDivMapMainDummy(
 	int i;
 	int start_block[4];
 	
-	//ƒŠƒ\[ƒXƒƒ‚ƒŠ‚ÌŒğŠ·
+	//ãƒªã‚½ãƒ¼ã‚¹ãƒ¡ãƒ¢ãƒªã®äº¤æ›
 	ExchangeFldMapMemGround( main_dmc->FldMapMem, dmy_dmc->FldMapMem );
 	
-	//WORLD_MAP_PTR‚ÌˆÚ“®
+	//WORLD_MAP_PTRã®ç§»å‹•
 	WorldMapRemove( main_dmc->World, dmy_dmc->World );
 	
-	//Šeƒf[ƒ^‚ÌˆÚ“®
+	//å„ãƒ‡ãƒ¼ã‚¿ã®ç§»å‹•
 	for( i = 0; i < 2; i++ ){
 		dmy_dmc->MLBC[i] = main_dmc->MLBC[i];
 	}
@@ -4921,7 +4921,7 @@ void RemoveDivMapMainDummy(
 	dmy_dmc->NowLocalIndex = main_dmc->NowLocalIndex;
 	dmy_dmc->NowPosInBlock = main_dmc->NowPosInBlock;
 	
-	//’nŒ`ƒf[ƒ^‚ÌˆÚ“®
+	//åœ°å½¢ãƒ‡ãƒ¼ã‚¿ã®ç§»å‹•
 	for( i = 0; i < 4; i++ ){
 		dmy_dmc->BlockNodeList[i]->FloorData =
 			main_dmc->BlockNodeList[i]->FloorData;
@@ -4957,14 +4957,14 @@ void RemoveDivMapMainDummy(
 	
 #if 0
 	for( i = 0; i < 4; i++ ){
-		//“Ç‚İ‚ŞƒCƒ“ƒfƒbƒNƒX‚ğˆê’v‚³‚¹‚é
+		//èª­ã¿è¾¼ã‚€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä¸€è‡´ã•ã›ã‚‹
 		start_block[i] = main_dmc->BlockNodeList[i]->BlockIndex;
-		//‚‚³ƒf[ƒ^ŠÇ—\‘¢‘Ì‰Šú‰»
+		//é«˜ã•ãƒ‡ãƒ¼ã‚¿ç®¡ç†æ§‹é€ ä½“åˆæœŸåŒ–
 		InitHeightData(main_dmc->BlockNodeList[i]->MapHeightInfo);
 	}
 	
 	for( i = 0; i < 4; i++ ){
-		//4ƒuƒƒbƒN•ª‚Ìƒf[ƒ^“Ç‚İ‚İ
+		//4ãƒ–ãƒ­ãƒƒã‚¯åˆ†ã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		LoadBlockModelHeightAttrQuick(
 				start_block[i],
 				i,
@@ -4980,9 +4980,9 @@ void RemoveDivMapMainDummy(
 
 //--------------------------------------------------------------
 /**
- * ƒ_ƒ~[ƒ}ƒbƒv@ƒƒCƒ“ƒV[ƒPƒ“ƒX
- * @param	fsys			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param	ioDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
+ * ãƒ€ãƒŸãƒ¼ãƒãƒƒãƒ—ã€€ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
+ * @param	fsys			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param	ioDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  * @retval	non
  */
 //--------------------------------------------------------------
@@ -4995,22 +4995,22 @@ void DivMapLoadMainDummy( FIELDSYS_WORK *fsys, DMC_PTR ioDivMapCont )
 	dmc = &ioDivMapCont->MapCheck;
 
 	if(ioDivMapCont->BlockMode == BLOCKMODE_OVERLOAD && dmc->Valid == TRUE){
-		//Œ»İˆÚ“®’†
-		//‹ŒÀ•W‚ÆŒ»İÀ•W‚Ì·•ª‚ªA1ƒOƒŠƒbƒh‚É‚È‚Á‚½‚©‚ğ”»’è
+		//ç¾åœ¨ç§»å‹•ä¸­
+		//æ—§åº§æ¨™ã¨ç¾åœ¨åº§æ¨™ã®å·®åˆ†ãŒã€1ã‚°ãƒªãƒƒãƒ‰ã«ãªã£ãŸã‹ã‚’åˆ¤å®š
 		if (dmc->Moving){
-			GF_ASSERT((*dmc->SmallVal)<=(*dmc->LargeVal)&&"ERROR:’l•s³");
+			GF_ASSERT((*dmc->SmallVal)<=(*dmc->LargeVal)&&"ERROR:å€¤ä¸æ­£");
 			if( (*dmc->LargeVal)-(*dmc->SmallVal) >=
 				(FX32_ONE *ONE_GRID_SIZE) ){
 				int grid_x,grid_z;
-				//1ƒOƒŠƒbƒhˆÚ“®Š®—¹ ·•ª‚ÍŠO•”’l‚ğM—p‚µ‚Äs‚¢‚Ü‚·
+				//1ã‚°ãƒªãƒƒãƒ‰ç§»å‹•å®Œäº† å·®åˆ†ã¯å¤–éƒ¨å€¤ã‚’ä¿¡ç”¨ã—ã¦è¡Œã„ã¾ã™
 				GetGridXZ(
 					dmc->TargetPoint->x, dmc->TargetPoint->z,
 					&grid_x, &grid_z);
-				UpdateNowData( grid_x, grid_z,	//“à•”ƒf[ƒ^XV
+				UpdateNowData( grid_x, grid_z,	//å†…éƒ¨ãƒ‡ãƒ¼ã‚¿æ›´æ–°
 						ioDivMapCont->OriginGridX, ioDivMapCont->OriginGridZ,
 						ioDivMapCont);
 				dmc->OldPoint = *dmc->TargetPoint;
-				// ’ÊM‚É‚ÍƒGƒ‰[‚É‚·‚é
+				// é€šä¿¡æ™‚ã«ã¯ã‚¨ãƒ©ãƒ¼ã«ã™ã‚‹
                 
 				if(!(dmc->OldPoint.z%(FX32_ONE*8)==0)){
                     if(CommStateSetError(COMM_ERROR_RESET_SAVEPOINT)){
@@ -5018,67 +5018,67 @@ void DivMapLoadMainDummy( FIELDSYS_WORK *fsys, DMC_PTR ioDivMapCont )
                     }
                 }
 				GF_ASSERT( dmc->OldPoint.z%(FX32_ONE*8)==0 &&
-					"ƒOƒŠƒbƒh’PˆÊ‚ÌˆÚ“®‚ª‚È‚³‚ê‚Ä‚¢‚È‚¢");
+					"ã‚°ãƒªãƒƒãƒ‰å˜ä½ã®ç§»å‹•ãŒãªã•ã‚Œã¦ã„ãªã„");
 				dmc->Moving = FALSE;
 				dmc->LargeVal = NULL;
 				dmc->SmallVal = NULL;
 			}
-		}else{	//ƒoƒCƒ“ƒh‚³‚ê‚Ä‚¢‚éÀ•W‚Ì“®‚«n‚ß‚ğŒŸo
+		}else{	//ãƒã‚¤ãƒ³ãƒ‰ã•ã‚Œã¦ã„ã‚‹åº§æ¨™ã®å‹•ãå§‹ã‚ã‚’æ¤œå‡º
 			if ( (dmc->OldPoint.x != dmc->TargetPoint->x)&&
 					(dmc->OldPoint.z != dmc->TargetPoint->z) ){
-				//‚˜A‚š“¯•Ï‰»‚ÍƒGƒ‰[‚Æ‚·‚é
-				GF_ASSERT(0&&"ERRORFXZ“¯•Ï‰»‚ª”­¶");				
+				//ï½˜ã€ï½šåŒæ™‚å¤‰åŒ–ã¯ã‚¨ãƒ©ãƒ¼ã¨ã™ã‚‹
+				GF_ASSERT(0&&"ERRORï¼šXZåŒæ™‚å¤‰åŒ–ãŒç™ºç”Ÿ");				
 			}else if ( (dmc->OldPoint.x == dmc->TargetPoint->x)&&
 						(dmc->OldPoint.z == dmc->TargetPoint->z) ){
-				;	//‰½‚à‚µ‚È‚¢
-			}else{	//XZ‚Ç‚¿‚ç‚©ˆê•û‚Ì•Ï‰»‚ª‚ ‚Á‚½ê‡
+				;	//ä½•ã‚‚ã—ãªã„
+			}else{	//XZã©ã¡ã‚‰ã‹ä¸€æ–¹ã®å¤‰åŒ–ãŒã‚ã£ãŸå ´åˆ
 				dmc->Moving = TRUE;
-				if (dmc->OldPoint.x != dmc->TargetPoint->x){	//X‚ª•Ï‰»
+				if (dmc->OldPoint.x != dmc->TargetPoint->x){	//XãŒå¤‰åŒ–
 					if (dmc->OldPoint.x > dmc->TargetPoint->x){
-						//‹ŒÀ•W‚Ì‚Ù‚¤‚ª‘å‚«‚¢„„¶‚ÉˆÚ“®
+						//æ—§åº§æ¨™ã®ã»ã†ãŒå¤§ãã„ï¼ï¼å·¦ã«ç§»å‹•
 						dmc->LargeVal = &dmc->OldPoint.x;
 						dmc->SmallVal = &dmc->TargetPoint->x;
 						dmc->Dir = MAP_LOAD_LEFT;
 					}else{
-						//‰E‚ÉˆÚ“®
+						//å³ã«ç§»å‹•
 						dmc->LargeVal = &dmc->TargetPoint->x;
 						dmc->SmallVal = &dmc->OldPoint.x;
 						dmc->Dir = MAP_LOAD_RIGHT;
 					}
                     
-					// ’ÊM‚É‚ÍƒGƒ‰[‚É‚·‚é
+					// é€šä¿¡æ™‚ã«ã¯ã‚¨ãƒ©ãƒ¼ã«ã™ã‚‹
 					if(!(dmc->OldPoint.x%(FX32_ONE*8)==0)){
                         if(CommStateSetError(COMM_ERROR_RESET_SAVEPOINT)){
                             return;
                         }
                     }
                     GF_ASSERT(dmc->OldPoint.x%(FX32_ONE*8)==0&&
-						"‹ŒxÀ•W‚ªƒOƒŠƒbƒh’PˆÊ‚ÌˆÚ“®‚Å‚Í‚È‚¢");
+						"æ—§xåº§æ¨™ãŒã‚°ãƒªãƒƒãƒ‰å˜ä½ã®ç§»å‹•ã§ã¯ãªã„");
 				}
-				else{	//Z‚ª•Ï‰»
+				else{	//ZãŒå¤‰åŒ–
 					if( ioDivMapCont->MapCheck.OldPoint.z >
 						ioDivMapCont->MapCheck.TargetPoint->z){
-						//‹ŒÀ•W‚Ì‚Ù‚¤‚ª‘å‚«‚¢„„ã‚ÉˆÚ“®
+						//æ—§åº§æ¨™ã®ã»ã†ãŒå¤§ãã„ï¼ï¼ä¸Šã«ç§»å‹•
 						dmc->LargeVal = &dmc->OldPoint.z;
 						dmc->SmallVal = &dmc->TargetPoint->z;
 						dmc->Dir = MAP_LOAD_UP;
-					}else{	//‰º‚ÉˆÚ“®
+					}else{	//ä¸‹ã«ç§»å‹•
 						dmc->LargeVal = &dmc->TargetPoint->z;
 						dmc->SmallVal = &dmc->OldPoint.z;
 						dmc->Dir = MAP_LOAD_DOWN;
 					}
 					
-					// ’ÊM‚É‚ÍƒGƒ‰[‚É‚·‚é
+					// é€šä¿¡æ™‚ã«ã¯ã‚¨ãƒ©ãƒ¼ã«ã™ã‚‹
                     if(!(dmc->OldPoint.z%(FX32_ONE*8)==0)){
                         if(CommStateSetError(COMM_ERROR_RESET_SAVEPOINT)){
                             return;
                         }
                     }
 					GF_ASSERT(dmc->OldPoint.z%(FX32_ONE*8)==0&&
-						"‹ŒzÀ•W‚ªƒOƒŠƒbƒh’PˆÊ‚ÌˆÚ“®‚Å‚Í‚È‚¢");
+						"æ—§zåº§æ¨™ãŒã‚°ãƒªãƒƒãƒ‰å˜ä½ã®ç§»å‹•ã§ã¯ãªã„");
 				}
 				
-				//ƒ[ƒhƒŠƒNƒGƒXƒg
+				//ãƒ­ãƒ¼ãƒ‰ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 				DivMapLoad_UpdateBlockData(dmc->Dir,ioDivMapCont);
 			}
 		}
@@ -5086,9 +5086,9 @@ void DivMapLoadMainDummy( FIELDSYS_WORK *fsys, DMC_PTR ioDivMapCont )
 	}//end if(dmc->Valid == TRUE)
 	
 	switch(ioDivMapCont->LoadSeq){
-	case DML_LOAD_BLOCK:	//ƒuƒƒbƒN‚Ìƒ[ƒh
-		///OS_Printf("’†~Šm”F%d\n",mlbs->Index[mlbs->TotalCount]);
-		//ƒŠƒNƒGƒXƒg’†~‚ª‚©‚©‚Á‚Ä‚¢‚È‚¢‚È‚çAƒ[ƒh
+	case DML_LOAD_BLOCK:	//ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ­ãƒ¼ãƒ‰
+		///OS_Printf("ä¸­æ­¢ç¢ºèª%d\n",mlbs->Index[mlbs->TotalCount]);
+		//ãƒªã‚¯ã‚¨ã‚¹ãƒˆä¸­æ­¢ãŒã‹ã‹ã£ã¦ã„ãªã„ãªã‚‰ã€ãƒ­ãƒ¼ãƒ‰
 		if(ioDivMapCont->LocalFreeIndexTable[mlbs->Index[mlbs->TotalCount]]
 			== TRUE){
 			;
@@ -5106,7 +5106,7 @@ void DivMapLoadMainDummy( FIELDSYS_WORK *fsys, DMC_PTR ioDivMapCont )
 		mlbs->TotalCount++;
 		ioDivMapCont->LoadSeq = DML_LOAD_WAIT;
 		break;
-	case DML_LOAD_WAIT:		//ƒuƒƒbƒNƒ[ƒhI—¹‘Ò‚¿
+	case DML_LOAD_WAIT:		//ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡
 		if(ioDivMapCont->LocalFreeIndexTable[mlbs->Index[mlbs->TotalCount-1]]
 			== TRUE){
 			LoadTaskStopReqestByMLBS(mlbs);
@@ -5116,7 +5116,7 @@ void DivMapLoadMainDummy( FIELDSYS_WORK *fsys, DMC_PTR ioDivMapCont )
 		if( (mlbs->TotalCount <=2) &&
 			(CheckBlockLoadTaskCounter(&mlbs->TaskCnter) == TRUE) ){
 			if (mlbs->TotalCount>=2){
-				mlbs->BlockLoadOK = TRUE;	//“Ç‚İ‚İI—¹
+				mlbs->BlockLoadOK = TRUE;	//èª­ã¿è¾¼ã¿çµ‚äº†
 			}else{
 				ioDivMapCont->LoadSeq = DML_LOAD_BLOCK;
 			}
@@ -5126,15 +5126,15 @@ void DivMapLoadMainDummy( FIELDSYS_WORK *fsys, DMC_PTR ioDivMapCont )
 					mlbs->Node[mlbs->TotalCount-1]->FloorResFile);
 				NNSG3dResMdl* model = NNS_G3dGetMdlByIdx(pMdlSet, 0);
 				if (MAPRES_IsValidLight(ioDivMapCont->MapResource) == TRUE){
-					//ƒOƒ[ƒoƒ‹ƒXƒe[ƒgg—p
+					//ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚¹ãƒ†ãƒ¼ãƒˆä½¿ç”¨
 					SetGlbLightMdl(model);
 				}
 			}
 			
 			#ifdef DIV_CALL_BACK	
-			//‚±‚±‚ÅƒR[ƒ‹ƒoƒbƒN
+			//ã“ã“ã§ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 			if (ioDivMapCont->CallBack!=NULL){
-				//ƒ}ƒgƒŠƒbƒNƒXƒTƒCƒY‚ğŒ©‚ÄAƒI[ƒo[‚µ‚Ä‚¢‚½‚çƒR[ƒ‹‚µ‚È‚¢
+				//ãƒãƒˆãƒªãƒƒã‚¯ã‚¹ã‚µã‚¤ã‚ºã‚’è¦‹ã¦ã€ã‚ªãƒ¼ãƒãƒ¼ã—ã¦ã„ãŸã‚‰ã‚³ãƒ¼ãƒ«ã—ãªã„
 				if (0<=mlbs->Node[mlbs->TotalCount-1]->BlockIndex &&
 					mlbs->Node[mlbs->TotalCount-1]->BlockIndex <
 					ioDivMapCont->MapW*ioDivMapCont->MapH){
@@ -5146,59 +5146,59 @@ void DivMapLoadMainDummy( FIELDSYS_WORK *fsys, DMC_PTR ioDivMapCont )
 			#endif
 		}
 		break;
-	case DML_NONE:			//–³ˆ—ó‘Ô
+	case DML_NONE:			//ç„¡å‡¦ç†çŠ¶æ…‹
 		break;
-	case DML_FREE_WAIT:		//ƒuƒƒbƒNƒ[ƒh‰ğ•ú‘Ò‚¿
+	case DML_FREE_WAIT:		//ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰è§£æ”¾å¾…ã¡
 		if ( CheckBlockLoadTaskCounter(&mlbs->TaskCnter)==TRUE ){
-			//‚‚³ƒ[ƒh‚ğŠÄ‹‚·‚ê‚ÎAƒ^ƒXƒNI—¹‚ğŠm”F‚Å‚«‚é
+			//é«˜ã•ãƒ­ãƒ¼ãƒ‰ã‚’ç›£è¦–ã™ã‚Œã°ã€ã‚¿ã‚¹ã‚¯çµ‚äº†ã‚’ç¢ºèªã§ãã‚‹
 			ioDivMapCont->MovingNum = 0;
 		}
 		break;
 	}
 
-	//‰Ò“®‚µ‚Ä‚¢‚é‚à‚Ì‚ª‚È‚¢‚È‚ç‚Î
+	//ç¨¼å‹•ã—ã¦ã„ã‚‹ã‚‚ã®ãŒãªã„ãªã‚‰ã°
 	if (ioDivMapCont->MovingNum == 0){
 		ioDivMapCont->NowMovingNo = 0;
 		ioDivMapCont->BlankNo = 0;
-		ioDivMapCont->LoadSeq = DML_NONE;		//–³ˆ—ƒV[ƒPƒ“ƒX
+		ioDivMapCont->LoadSeq = DML_NONE;		//ç„¡å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 		return;
 	}
 
-	//ƒuƒƒbƒNƒ[ƒhI—¹ŠÄ‹
+	//ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰çµ‚äº†ç›£è¦–
 	if ( IsFinishedLoadBlock(ioDivMapCont) == TRUE){
-		//‰Ò“®ƒtƒ‰ƒO‚ğ‚¨‚Æ‚·
+		//ç¨¼å‹•ãƒ•ãƒ©ã‚°ã‚’ãŠã¨ã™
 		ioDivMapCont->MLBC[ioDivMapCont->NowMovingNo].Moving = FALSE;
 
-		//‰ğ•úƒuƒƒbƒNƒ}[ƒLƒ“ƒO‚ğƒNƒŠƒA
+		//è§£æ”¾ãƒ–ãƒ­ãƒƒã‚¯ãƒãƒ¼ã‚­ãƒ³ã‚°ã‚’ã‚¯ãƒªã‚¢
 		ClearLocalFreeIndexTable(ioDivMapCont);
 		
-		ioDivMapCont->MovingNum--;		//ŠÇ—”Œ¸Z
+		ioDivMapCont->MovingNum--;		//ç®¡ç†æ•°æ¸›ç®—
 		
-		//‰Ò“®”Ô†XV
+		//ç¨¼å‹•ç•ªå·æ›´æ–°
 		ioDivMapCont->NowMovingNo = (ioDivMapCont->NowMovingNo+1)%2;
 
-		//‰Ò“®‘Ò‚¿ƒuƒƒbƒNƒ[ƒh‚ª‚ ‚é‚È‚çAƒ[ƒhŠJn
+		//ç¨¼å‹•å¾…ã¡ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰ãŒã‚ã‚‹ãªã‚‰ã€ãƒ­ãƒ¼ãƒ‰é–‹å§‹
 		if (ioDivMapCont->MovingNum != 0){
 			#ifdef DIV_MAP_LOAD_DEBUG
-			OS_Printf("Ÿƒ[ƒhŠJn\n");
+			OS_Printf("æ¬¡ãƒ­ãƒ¼ãƒ‰é–‹å§‹\n");
 			#endif
 			/*
 			MapLoadCont.MLBC[MapLoadCont.NowMovingNo].MLBS.ReadStartOK
 				= TRUE;
 			*/
-			ioDivMapCont->LoadSeq = DML_LOAD_BLOCK;		//ƒ[ƒhƒV[ƒPƒ“ƒX
+			ioDivMapCont->LoadSeq = DML_LOAD_BLOCK;		//ãƒ­ãƒ¼ãƒ‰ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 		}else{
 			ioDivMapCont->NowMovingNo = 0;
 			ioDivMapCont->BlankNo = 0;
-			ioDivMapCont->LoadSeq = DML_NONE;		//–³ˆ—ƒV[ƒPƒ“ƒX
+			ioDivMapCont->LoadSeq = DML_NONE;		//ç„¡å‡¦ç†ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 		}
 
-		//ƒXƒgƒbƒN‚ª‚ ‚éê‡‚Í—Dæ“I‚É“o˜^
+		//ã‚¹ãƒˆãƒƒã‚¯ãŒã‚ã‚‹å ´åˆã¯å„ªå…ˆçš„ã«ç™»éŒ²
 		if (ioDivMapCont->Stock.Valid == TRUE){
 			BOOL rc;
 			ioDivMapCont->Stock.Valid = FALSE;
-			//ƒXƒgƒbƒN•ûŒü‚©‚çA“Ç‚İ‚Ü‚È‚­‚Ä‚¢‚¢
-			//ƒ[ƒJƒ‹ƒCƒ“ƒfƒbƒNƒX‚ğŒˆ’è‚·‚é
+			//ã‚¹ãƒˆãƒƒã‚¯æ–¹å‘ã‹ã‚‰ã€èª­ã¿è¾¼ã¾ãªãã¦ã„ã„
+			//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’æ±ºå®šã™ã‚‹
 			MarkLocalFreeIndexTableByDir(
 				ioDivMapCont->Stock.LoadDir,ioDivMapCont);
 			AddMapLoadForStock(ioDivMapCont);
@@ -5208,14 +5208,14 @@ void DivMapLoadMainDummy( FIELDSYS_WORK *fsys, DMC_PTR ioDivMapCont )
 
 //==============================================================================
 /**
- * ‰Šú‰»
+ * åˆæœŸåŒ–
  *
- * @param   world			ƒ[ƒ‹ƒh\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param	mapresource		ƒ}ƒbƒvƒŠƒ\[ƒX
- * @param	inFld3DAnmPtr	ƒtƒB[ƒ‹ƒh3‚cƒAƒjƒƒ|ƒCƒ“ƒ^
- * @param	inMode			“Ç‚İ‚İƒ‚[ƒh
+ * @param   world			ãƒ¯ãƒ¼ãƒ«ãƒ‰æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param	mapresource		ãƒãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹
+ * @param	inFld3DAnmPtr	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰3ï¼¤ã‚¢ãƒ‹ãƒ¡ãƒã‚¤ãƒ³ã‚¿
+ * @param	inMode			èª­ã¿è¾¼ã¿ãƒ¢ãƒ¼ãƒ‰
  * 
- * @retval  DMC_PTR			•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^		
+ * @retval  DMC_PTR			åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿		
  */
 //==============================================================================
 void ResetDivMap(
@@ -5223,16 +5223,16 @@ void ResetDivMap(
 		WORLD_MAP_PTR world,
 		MAP_RESOURCE_PTR mapresource )
 {
-	//ƒtƒB[ƒ‹ƒh‹¤’ÊƒŠƒ\[ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğƒZƒbƒg
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å…±é€šãƒªã‚½ãƒ¼ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ã‚»ãƒƒãƒˆ
 	map_cont_ptr->MapResource = mapresource;
 	map_cont_ptr->World = world;
 	
-	//ƒ}ƒbƒvc‰¡î•ñƒZƒbƒg
+	//ãƒãƒƒãƒ—ç¸¦æ¨ªæƒ…å ±ã‚»ãƒƒãƒˆ
 	map_cont_ptr->MapW = GetWorldMapMatrixW(world);
 	map_cont_ptr->MapH = GetWorldMapMatrixH(world);
 	map_cont_ptr->MapGridW = map_cont_ptr->MapW*BLOCK_GRID_W;
 	
-	//ƒ}ƒbƒvŠÇ—ƒ^ƒXƒN‰Šú‰»
+	//ãƒãƒƒãƒ—ç®¡ç†ã‚¿ã‚¹ã‚¯åˆæœŸåŒ–
 	InitMapLoadCont(map_cont_ptr);
 	
 	map_cont_ptr->FreeRequest = FALSE;
@@ -5241,12 +5241,12 @@ void ResetDivMap(
 
 //==============================================================================
 /**
- * ƒGƒŠƒAƒf[ƒ^‚Ìƒ[ƒh@ƒAƒƒP[ƒg–³‚µ
+ * ã‚¨ãƒªã‚¢ãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰ã€€ã‚¢ãƒ­ã‚±ãƒ¼ãƒˆç„¡ã—
  *
- * @param	outDivMapCont	•ªŠ„ƒ}ƒbƒv\‘¢‘Ìƒ|ƒCƒ“ƒ^
- * @param   inGridX		ƒOƒŠƒbƒhÀ•W‚w
- * @param	inGridZ		ƒOƒŠƒbƒhÀ•W‚y
- * @param	inMapGridW	ƒ}ƒbƒvƒOƒŠƒbƒh‰¡•
+ * @param	outDivMapCont	åˆ†å‰²ãƒãƒƒãƒ—æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param   inGridX		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ï¼¸
+ * @param	inGridZ		ã‚°ãƒªãƒƒãƒ‰åº§æ¨™ï¼º
+ * @param	inMapGridW	ãƒãƒƒãƒ—ã‚°ãƒªãƒƒãƒ‰æ¨ªå¹…
  * 
  * @retval  none		
  */
@@ -5267,7 +5267,7 @@ static void LoadFirstBlockNonAlloc( DMC_PTR outDivMapCont,
 		for (i=0;i<4;i++){
 			outDivMapCont->BlockNodeList[i]->DrawOKFlg = FALSE;
 	
-			//Šm•Û‚µ‚½ƒƒ‚ƒŠ(’nŒ`)‚Æƒ|ƒCƒ“ƒ^‚ğƒoƒCƒ“ƒh
+			//ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒª(åœ°å½¢)ã¨ãƒã‚¤ãƒ³ã‚¿ã‚’ãƒã‚¤ãƒ³ãƒ‰
 			BindGroundMem(i, outDivMapCont->FldMapMem,
 				(void**)&(outDivMapCont->BlockNodeList[i]->FloorResFile));
 			BindHeightMem(i, outDivMapCont->FldMapMem,
@@ -5275,14 +5275,14 @@ static void LoadFirstBlockNonAlloc( DMC_PTR outDivMapCont,
 			
 			outDivMapCont->BlockNodeList[i]->BlockIndex = NON_BLOCK;
 			
-			//ƒAƒgƒŠƒrƒ…[ƒgƒNƒŠƒA
+			//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚¯ãƒªã‚¢
 			MI_CpuFillFast(
 				outDivMapCont->BlockNodeList[i]->Attribute,
 				0xffffffff, 2*32*32 );
 		}
 	}
 	
-	//‰ŠúƒuƒƒbƒN‚ğƒOƒŠƒbƒh‚©‚çŠ„‚èo‚·
+	//åˆæœŸãƒ–ãƒ­ãƒƒã‚¯ã‚’ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰å‰²ã‚Šå‡ºã™
 	MakeStartBlockTbl(	outDivMapCont->BlockMode,
 						inGridX, inGridZ,
 						inOriginGridX,
@@ -5292,10 +5292,10 @@ static void LoadFirstBlockNonAlloc( DMC_PTR outDivMapCont,
 						inMapGridW, start_block	);
 	
 	for(i=0;i<4;i++){
-		//‚‚³ƒf[ƒ^ŠÇ—\‘¢‘Ì‰Šú‰»
+		//é«˜ã•ãƒ‡ãƒ¼ã‚¿ç®¡ç†æ§‹é€ ä½“åˆæœŸåŒ–
 		InitHeightData( outDivMapCont->BlockNodeList[i]->MapHeightInfo );
 		
-		//4ƒuƒƒbƒN•ª‚Ìƒf[ƒ^“Ç‚İ‚İ
+		//4ãƒ–ãƒ­ãƒƒã‚¯åˆ†ã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 		LoadBlockQuick(	start_block[i],
 						i,
 						outDivMapCont->MapResource,
@@ -5309,7 +5309,7 @@ static void LoadFirstBlockNonAlloc( DMC_PTR outDivMapCont,
 
 void LoadDivMapNonAlloc(DMC_PTR outDivMapCont, const int x, const int z)
 {
-	//4‚ÂƒuƒƒbƒNƒ[ƒh
+	//4ã¤ãƒ–ãƒ­ãƒƒã‚¯ãƒ­ãƒ¼ãƒ‰
 	LoadFirstBlockNonAlloc( outDivMapCont,
 			x,
 			z,
@@ -5317,7 +5317,7 @@ void LoadDivMapNonAlloc(DMC_PTR outDivMapCont, const int x, const int z)
 			outDivMapCont->OriginGridZ,
 			outDivMapCont->MapGridW);
 	
-	//©‹@‚Ì‰ŠúƒOƒŠƒbƒh‚ğ“o˜^
+	//è‡ªæ©Ÿã®åˆæœŸã‚°ãƒªãƒƒãƒ‰ã‚’ç™»éŒ²
 	UpdateNowData(
 		x,z,
 		outDivMapCont->OriginGridX,
@@ -5327,7 +5327,7 @@ void LoadDivMapNonAlloc(DMC_PTR outDivMapCont, const int x, const int z)
 
 //--------------------------------------------------------------
 /**
- * ƒGƒŠƒAƒf[ƒ^ƒ[ƒhƒZƒbƒgƒAƒbƒv
+ * ã‚¨ãƒªã‚¢ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
  * @param	
  * @retval
  */
@@ -5339,7 +5339,7 @@ void LoadBlockListSetUp( DMC_PTR outDivMapCont,
 {
 	int i;
 	
-	//‰ŠúƒuƒƒbƒN‚ğƒOƒŠƒbƒh‚©‚çŠ„‚èo‚·
+	//åˆæœŸãƒ–ãƒ­ãƒƒã‚¯ã‚’ã‚°ãƒªãƒƒãƒ‰ã‹ã‚‰å‰²ã‚Šå‡ºã™
 	MakeStartBlockTbl(	outDivMapCont->BlockMode,
 						inGridX, inGridZ,
 						outDivMapCont->OriginGridX,
@@ -5347,7 +5347,7 @@ void LoadBlockListSetUp( DMC_PTR outDivMapCont,
 						outDivMapCont->MapW,
 						outDivMapCont->MapH,
 						outDivMapCont->MapGridW, block_tbl );
-	//•`‰æ’â~
+	//æç”»åœæ­¢
 	for( i = 0; i < 4; i++ ){	
 		outDivMapCont->BlockNodeList[i]->DrawOKFlg = FALSE;
 	}
@@ -5356,7 +5356,7 @@ void LoadBlockListSetUp( DMC_PTR outDivMapCont,
 void LoadBlockListNoNonAlloc(
 	DMC_PTR outDivMapCont, int list_no, int block_no )
 {
-	//Šm•Û‚µ‚½ƒƒ‚ƒŠ(’nŒ`)‚Æƒ|ƒCƒ“ƒ^‚ğƒoƒCƒ“ƒh
+	//ç¢ºä¿ã—ãŸãƒ¡ãƒ¢ãƒª(åœ°å½¢)ã¨ãƒã‚¤ãƒ³ã‚¿ã‚’ãƒã‚¤ãƒ³ãƒ‰
 	outDivMapCont->BlockNodeList[list_no]->DrawOKFlg = FALSE;
 	
 	BindGroundMem( list_no, outDivMapCont->FldMapMem,
@@ -5365,15 +5365,15 @@ void LoadBlockListNoNonAlloc(
 		(void**)&(outDivMapCont->BlockNodeList[list_no]->HeightMem) );
 	outDivMapCont->BlockNodeList[list_no]->BlockIndex = NON_BLOCK;
 		
-	//ƒAƒgƒŠƒrƒ…[ƒgƒNƒŠƒA
+	//ã‚¢ãƒˆãƒªãƒ“ãƒ¥ãƒ¼ãƒˆã‚¯ãƒªã‚¢
 	MI_CpuFillFast(
 		outDivMapCont->BlockNodeList[list_no]->Attribute,
 		0xffffffff, 2*32*32 );
 	
-	//‚‚³ƒf[ƒ^ŠÇ—\‘¢‘Ì‰Šú‰»
+	//é«˜ã•ãƒ‡ãƒ¼ã‚¿ç®¡ç†æ§‹é€ ä½“åˆæœŸåŒ–
 	InitHeightData( outDivMapCont->BlockNodeList[list_no]->MapHeightInfo );
 		
-	//4ƒuƒƒbƒN•ª‚Ìƒf[ƒ^“Ç‚İ‚İ
+	//4ãƒ–ãƒ­ãƒƒã‚¯åˆ†ã®ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	LoadBlockQuick(	block_no, list_no,
 				outDivMapCont->MapResource,
 				outDivMapCont->World,
@@ -5384,11 +5384,11 @@ void LoadBlockListNoNonAlloc(
 }
 
 //==============================================================================
-//	pl ’Ç‰Áî•ñ
+//	pl è¿½åŠ æƒ…å ±
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * n“_ƒOƒŠƒbƒhX,Y,ZÀ•Wİ’è
+ * å§‹ç‚¹ã‚°ãƒªãƒƒãƒ‰X,Y,Zåº§æ¨™è¨­å®š
  * @param
  * @retval
  */
@@ -5405,7 +5405,7 @@ void SetDivMapOriginGridPos( DMC_PTR dmc, int x, int y, int z )
 
 //--------------------------------------------------------------
 /**
- * ƒuƒƒbƒNƒ‚[ƒhİ’è
+ * ãƒ–ãƒ­ãƒƒã‚¯ãƒ¢ãƒ¼ãƒ‰è¨­å®š
  * @param	
  * @retval
  */
@@ -5417,7 +5417,7 @@ void SetDivMapBlockMode( DMC_PTR dmc, DIV_BLOCK_MODE mode )
 
 //--------------------------------------------------------------
 /**
- * n“_ƒOƒŠƒbƒhXÀ•Wæ“¾
+ * å§‹ç‚¹ã‚°ãƒªãƒƒãƒ‰Xåº§æ¨™å–å¾—
  * @param
  * @retval
  */
@@ -5429,7 +5429,7 @@ int GetDivMapOriginGridX( DMC_CONST_PTR dmc )
 
 //--------------------------------------------------------------
 /**
- * n“_ƒOƒŠƒbƒhYÀ•Wæ“¾
+ * å§‹ç‚¹ã‚°ãƒªãƒƒãƒ‰Yåº§æ¨™å–å¾—
  * @param
  * @retval
  */
@@ -5441,7 +5441,7 @@ int GetDivMapOriginGridY( DMC_CONST_PTR dmc )
 
 //--------------------------------------------------------------
 /**
- * n“_ƒOƒŠƒbƒhZÀ•Wæ“¾
+ * å§‹ç‚¹ã‚°ãƒªãƒƒãƒ‰Zåº§æ¨™å–å¾—
  * @param
  * @retval
  */
@@ -5453,7 +5453,7 @@ int GetDivMapOriginGridZ( DMC_CONST_PTR dmc )
 
 //--------------------------------------------------------------
 /**
- * n“_À•Wæ“¾
+ * å§‹ç‚¹åº§æ¨™å–å¾—
  * @param
  * @retval
  */
@@ -5465,7 +5465,7 @@ void GetDivMapOriginPos( DMC_CONST_PTR dmc, VecFx32 *pos )
 
 //--------------------------------------------------------------
 /**
- * ”z’uƒ‚ƒfƒ‹ƒZƒbƒgƒtƒ‰ƒOƒZƒbƒg
+ * é…ç½®ãƒ¢ãƒ‡ãƒ«ã‚»ãƒƒãƒˆãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  * @param
  * @retval
  */
@@ -5477,7 +5477,7 @@ void SetDivMapM3dObjSetFlag( DMC_PTR dmc, DIV_M3DO_FLAG flag )
 
 //--------------------------------------------------------------
 /**
- * ƒ[ƒ‹ƒhƒ}ƒbƒvƒZƒbƒg
+ * ãƒ¯ãƒ¼ãƒ«ãƒ‰ãƒãƒƒãƒ—ã‚»ãƒƒãƒˆ
  * @param
  * @retval
  */
@@ -5489,7 +5489,7 @@ void SetDivMapWorldMap( DMC_PTR dmc, WORLD_MAP_PTR inWorld )
 
 //--------------------------------------------------------------
 /**
- * •`‰æƒtƒ‰ƒOƒZƒbƒg
+ * æç”»ãƒ•ãƒ©ã‚°ã‚»ãƒƒãƒˆ
  * @param	
  * @retval
  */
@@ -5501,7 +5501,7 @@ void SetDivMapDrawFlag( DMC_PTR dmc, int block_no, BOOL flag )
 
 //--------------------------------------------------------------
 /**
- * À•Wî•ñXV
+ * åº§æ¨™æƒ…å ±æ›´æ–°
  * @param
  * @retval
  */

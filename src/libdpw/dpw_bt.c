@@ -14,7 +14,7 @@
  *---------------------------------------------------------------------------*/
 
 /*! @file
-	@brief	DP WiFi Battle Tower ���C�u����
+	@brief	DP WiFi Battle Tower ライブラリ
 	
 	@author	kitayama(kitayama_shigetoshi@nintendo.co.jp)
 	@author	Yamaguchi Ryo(yamaguchi_ryo@nintendo.co.jp)
@@ -30,7 +30,7 @@
 #include "include/libdpw/dpwi_assert.h"
 
 /*-----------------------------------------------------------------------*
-					�^�E�萔�錾
+					型・定数宣言
  *-----------------------------------------------------------------------*/
 
 #ifdef DPW_SERVER_PUBLIC
@@ -48,7 +48,7 @@
 #define BT_URL_UPDATE 		(BT_SERVER_URL "admin/bt_update.asp")
 
 #ifdef _NITRO
-// �\���̂��z��̃T�C�Y�ƂȂ��Ă��邩�`�F�b�N
+// 構造体が想定のサイズとなっているかチェック
 SDK_COMPILER_ASSERT(sizeof(Dpw_Bt_Leader) == 34);
 SDK_COMPILER_ASSERT(sizeof(Dpw_Bt_Player) == 228);
 SDK_COMPILER_ASSERT(sizeof(Dpw_Bt_Room) == sizeof(Dpw_Bt_Player) * 7 + sizeof(Dpw_Bt_Leader) * 30);
@@ -79,17 +79,17 @@ typedef enum {
 } DpwiBtState;
 
 typedef struct {
-	DpwiBtState state;		// ���C�u�����̏��
-	s32 last_result;		// �Ō�ɍs�����񓯊������̌���
-	s32 pid;				// �g�p����PID
-	u64 friend_key;			// �t�����h�L�[
-	u8 send_buf[sizeof(Dpw_Bt_Player) + 11];	// ���M�o�b�t�@
-	u8 recv_buf[2];			// ��M�o�b�t�@
-	u8* user_recv_buf;		// ���[�U�[����^����ꂽ��M�o�b�t�@
+	DpwiBtState state;		// ライブラリの状態
+	s32 last_result;		// 最後に行った非同期処理の結果
+	s32 pid;				// 使用するPID
+	u64 friend_key;			// フレンドキー
+	u8 send_buf[sizeof(Dpw_Bt_Player) + 11];	// 送信バッファ
+	u8 recv_buf[2];			// 受信バッファ
+	u8* user_recv_buf;		// ユーザーから与えられた受信バッファ
 } DpwiBtCtrl;
 
 /*-----------------------------------------------------------------------*
-					�֐��v���g�^�C�v�錾
+					関数プロトタイプ宣言
  *-----------------------------------------------------------------------*/
 
 static BOOL Dpwi_Bt_CallSessionRequest(const u8* url, const void* data, int len, void* resbuf, int ressize );
@@ -97,27 +97,27 @@ static DpwBtError Dpwi_Bt_HandleCommonError(DpwiHttpError error);
 static void Dpwi_Db_GhttpCopleteCallback(const char* buf, int len, DWCGHTTPResult result, void* param);
 
 /*-----------------------------------------------------------------------*
-					�O���[�o���ϐ���`
+					グローバル変数定義
  *-----------------------------------------------------------------------*/
 
 static DpwiBtCtrl dpw_bt;
 static int db_ghttp_flag;
 
 /*-----------------------------------------------------------------------*
-					�O���[�o���֐���`
+					グローバル関数定義
  *-----------------------------------------------------------------------*/
 
 /*!
-	Dpw_Bt ���C�u���������������܂��B�S�Ă�Dpw_Bt �̕t���֐������s����O�ɃR�[�����܂��B
+	Dpw_Bt ライブラリを初期化します。全てのDpw_Bt の付く関数を実行する前にコールします。
 	
-	GS�v���t�@�C��ID�́A DWC_LoginAsync() �֐��̃R�[���o�b�N�Ŏ擾�ł���l�ŁA�T�[�o�[���ň�ӂɃN���C�A���g
-	�𔻕ʂ��邽�߂̒l�ł��B
+	GSプロファイルIDは、 DWC_LoginAsync() 関数のコールバックで取得できる値で、サーバー側で一意にクライアント
+	を判別するための値です。
 	
-	���̊֐����R�[������ۂ́ADWC ���C�u�����̃C���^�[�l�b�g�ڑ��֐��Ńl�b�g���[�N�ɐڑ����Ă���s���Ă���
-	�����B�������A���O�C�����s���Ă���K�v�͂���܂���B
+	この関数をコールする際は、DWC ライブラリのインターネット接続関数でネットワークに接続してから行ってくだ
+	さい。ただし、ログインを行っている必要はありません。
 	
-	@param[in] pid	������GS�v���t�@�C��ID
-	@param[in] friend_key	�����̃t�����h�L�[�BDWC_CreateFriendKey() �Ŏ擾�ł��܂��B
+	@param[in] pid	自分のGSプロファイルID
+	@param[in] friend_key	自分のフレンドキー。DWC_CreateFriendKey() で取得できます。
 */
 void Dpw_Bt_Init(s32 pid, u64 friend_key) {
 
@@ -130,9 +130,9 @@ void Dpw_Bt_Init(s32 pid, u64 friend_key) {
 }
 
 /*!
-	���Q�[���t���[���Ăт����A������i�߂܂��B
+	毎ゲームフレーム呼びだし、処理を進めます。
 	
-	���֐��̂��߁A���̊֐��͏�ɌĂяo�����Ƃ��ł��܂��B����������Ԃł͉����s���܂���B
+	利便性のため、この関数は常に呼び出すことができます。未初期化状態では何も行いません。
 */
 void Dpw_Bt_Main(void) {
 	
@@ -300,10 +300,10 @@ void Dpw_Bt_Main(void) {
 }
 
 /*!
-	�������̊J���ȂǏI���������s���܂��B
+	メモリの開放など終了処理を行います。
 	
-	���̊֐��́A�񓯊����������s���Ă���Ƃ��ɂ̓R�[�����邱�Ƃ��ł��܂���BDpw_Bt_IsAsyncEnd()�Ŕ񓯊���
-	���̏I�����m�F���Ă���R�[�����Ă��������B
+	この関数は、非同期処理を実行しているときにはコールすることができません。Dpw_Bt_IsAsyncEnd()で非同期処
+	理の終了を確認してからコールしてください。
 */
 void Dpw_Bt_End(void) {
 	
@@ -314,12 +314,12 @@ void Dpw_Bt_End(void) {
 }
 
 /*!
-	Dpw_Bt���C�u�����̔񓯊��������I�����Ă��邩�ۂ���Ԃ��܂��B
+	Dpw_Btライブラリの非同期処理が終了しているか否かを返します。
 	
-	�֐����ɁuAsync�v���t���֐����R�[�������ۂ́A���̊֐������I�ɃR�[�����āA�I�����m�F���Ă��������B
+	関数名に「Async」が付く関数をコールした際は、この関数を定期的にコールして、終了を確認してください。
 	
-	@retval TRUE	�񓯊��������I�����Ă���
-	@retval FALSE	�񓯊��������I�����Ă��Ȃ�
+	@retval TRUE	非同期処理が終了している
+	@retval FALSE	非同期処理が終了していない
 */
 BOOL Dpw_Bt_IsAsyncEnd(void) {
 	
@@ -339,11 +339,11 @@ BOOL Dpw_Bt_IsAsyncEnd(void) {
 }
 
 /*!
-	���O�̔񓯊������̌��ʂ��擾���܂��B
-	Bpw_Bt_IsAsyncEnd() �ŏI�����m�F���Ă���Ă�ł��������B
+	直前の非同期処理の結果を取得します。
+	Bpw_Bt_IsAsyncEnd() で終了を確認してから呼んでください。
 	
-	�񓯊��������s�����ꍇ�́A�K�����̊֐��Ō��ʁi���ɃG���[���N�����Ă��Ȃ����j���m�F���Ă��������B@n
-	�G���[�̎�ނ͔񓯊������ɂ���ĈقȂ�܂����A�ȉ��̃G���[�͋��ʂł��B
+	非同期処理を行った場合は、必ずこの関数で結果（特にエラーが起こっていないか）を確認してください。@n
+	エラーの種類は非同期処理によって異なりますが、以下のエラーは共通です。
 	
 	@li ::DPW_BT_ERROR_SERVER_TIMEOUT
 	@li ::DPW_BT_ERROR_CANCEL
@@ -351,7 +351,7 @@ BOOL Dpw_Bt_IsAsyncEnd(void) {
 	@li ::DPW_BT_ERROR_DISCONNECTED
 	@li ::DPW_BT_ERROR_FAILURE
 	
-	@return	�񓯊������̌��ʁB���̒l�̓G���[�������ADpwBtError�̒l���Ԃ�܂��B
+	@return	非同期処理の結果。負の値はエラーを示し、DpwBtErrorの値が返ります。
 */
 s32 Dpw_Bt_GetAsyncResult(void) {
 	
@@ -361,12 +361,12 @@ s32 Dpw_Bt_GetAsyncResult(void) {
 }
 
 /*!
-	���݃I�[�v�����Ă��郋�[�����̎擾���J�n���܂��B
+	現在オープンしているルーム数の取得を開始します。
 	
-	�擾�o�����ꍇ�� Dpw_Bt_GetAsyncResult() �Ń��[�������Ԃ���܂��B
-	�G���[���N�������ꍇ�́A���ʂ̃G���[�̂����ꂩ���Ԃ���܂��B
+	取得出来た場合は Dpw_Bt_GetAsyncResult() でルーム数が返されます。
+	エラーが起こった場合は、共通のエラーのいずれかが返されます。
 	
-	@param[in] rank	�����N
+	@param[in] rank	ランク
 */
 void Dpw_Bt_GetRoomNumAsync(s32 rank) {
 	
@@ -374,12 +374,12 @@ void Dpw_Bt_GetRoomNumAsync(s32 rank) {
 	DPW_TASSERTMSG(dpw_bt.state == DPWi_BT_NORMAL, "async process is already running.\n");
 	DPW_MINMAX_TASSERT(rank, 1, DPW_BT_RANK_NUM);
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 
-	dpw_bt.send_buf[0] = (u8)(rank - 1);	// �T�[�o�[����0�x�[�X�Ȃ̂ŁA���킹��
+	dpw_bt.send_buf[0] = (u8)(rank - 1);	// サーバー側は0ベースなので、合わせる
 	
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Bt_CallSessionRequest(BT_URL_GETROOMNUM, dpw_bt.send_buf, 1, dpw_bt.recv_buf, 2)) {
 		dpw_bt.state = DPWi_BT_RROCESS_GETROOMNUM;
 	} else {
@@ -390,16 +390,16 @@ void Dpw_Bt_GetRoomNumAsync(s32 rank) {
 }
 
 /*!
-	���[���f�[�^���_�E�����[�h���܂��B
+	ルームデータをダウンロードします。
 	
-	���������ꍇ�A Dpw_Bt_GetAsyncResult() ��0���Ԃ���܂��B
-	�G���[���N�������ꍇ�́A���ʂ̃G���[�������͈ȉ��̃G���[���Ԃ���܂��B
+	成功した場合、 Dpw_Bt_GetAsyncResult() で0が返されます。
+	エラーが起こった場合は、共通のエラーもしくは以下のエラーが返されます。
 	
-	@li ::DPW_BT_ERROR_ILLIGAL_REQUEST	�F ���[���ԍ��̎w�肪����Ă��܂��B
+	@li ::DPW_BT_ERROR_ILLIGAL_REQUEST	： ルーム番号の指定が誤っています。
 	
-	@param[in] rank	�����N
-	@param[in] roomNo ���[���ԍ�
-	@param[out] roomData �_�E�����[�h�������[���f�[�^���L�^����o�b�t�@
+	@param[in] rank	ランク
+	@param[in] roomNo ルーム番号
+	@param[out] roomData ダウンロードしたルームデータを記録するバッファ
 */
 void Dpw_Bt_DownloadRoomAsync(s32 rank, s32 roomNo, Dpw_Bt_Room* roomData) {
 	
@@ -411,13 +411,13 @@ void Dpw_Bt_DownloadRoomAsync(s32 rank, s32 roomNo, Dpw_Bt_Room* roomData) {
 	
 	dpw_bt.user_recv_buf = (u8*)roomData;
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 
-	dpw_bt.send_buf[0] = (u8)(rank - 1);	// �T�[�o�[����0�x�[�X�Ȃ̂ŁA���킹��
-	dpw_bt.send_buf[1] = (u8)(roomNo - 1);	// �T�[�o�[����0�x�[�X�Ȃ̂ŁA���킹��
+	dpw_bt.send_buf[0] = (u8)(rank - 1);	// サーバー側は0ベースなので、合わせる
+	dpw_bt.send_buf[1] = (u8)(roomNo - 1);	// サーバー側は0ベースなので、合わせる
 	
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Bt_CallSessionRequest(BT_URL_DOWNLOADROOM, dpw_bt.send_buf, 2, roomData, sizeof(Dpw_Bt_Room))) {
 		dpw_bt.state = DPWi_BT_RROCESS_DOWNLOADROOM;
 	} else {
@@ -428,18 +428,18 @@ void Dpw_Bt_DownloadRoomAsync(s32 rank, s32 roomNo, Dpw_Bt_Room* roomData) {
 }
 
 /*!
-	�v���C���[�f�[�^���A�b�v���[�h���܂��B
+	プレイヤーデータをアップロードします。
 	
-	���������ꍇ�A Dpw_Bt_GetAsyncResult() ��0���Ԃ���܂��B
-	�G���[���N�������ꍇ�́A���ʂ̃G���[�������͈ȉ��̃G���[���Ԃ���܂��B
+	成功した場合、 Dpw_Bt_GetAsyncResult() で0が返されます。
+	エラーが起こった場合は、共通のエラーもしくは以下のエラーが返されます。
 	
-	@li ::DPW_BT_ERROR_SERVER_FULL		�F �T�[�o�[�̗e�ʃI�[�o�[�ł��B
-	@li ::DPW_BT_ERROR_ILLIGAL_REQUEST	�F ���[���ԍ��̎w�肪����Ă��܂��B
+	@li ::DPW_BT_ERROR_SERVER_FULL		： サーバーの容量オーバーです。
+	@li ::DPW_BT_ERROR_ILLIGAL_REQUEST	： ルーム番号の指定が誤っています。
 	
-	@param[in] rank	�����N
-	@param[in] roomNo	���[���ԍ�
-	@param[in] win	�v���C���[�̏�����
-	@param[in] player	�v���C���[�f�[�^�B�֐����ŃR�s�[���܂��̂ŁA�ÓI�ɕێ�����K�v�͂���܂���B
+	@param[in] rank	ランク
+	@param[in] roomNo	ルーム番号
+	@param[in] win	プレイヤーの勝ち数
+	@param[in] player	プレイヤーデータ。関数内でコピーしますので、静的に保持する必要はありません。
 */
 void Dpw_Bt_UploadPlayerAsync(s32 rank, s32 roomNo, s32 win, const Dpw_Bt_Player* player) {
 	
@@ -450,16 +450,16 @@ void Dpw_Bt_UploadPlayerAsync(s32 rank, s32 roomNo, s32 win, const Dpw_Bt_Player
 	DPW_MINMAX_TASSERT(win, 0, 7);
 	DPW_NULL_TASSERT(player);
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 
 	memcpy(&dpw_bt.send_buf[0], player, sizeof(Dpw_Bt_Player));
-	dpw_bt.send_buf[sizeof(Dpw_Bt_Player)] = (u8)(rank - 1);	// �T�[�o�[����0�x�[�X�Ȃ̂ŁA���킹��
-	dpw_bt.send_buf[sizeof(Dpw_Bt_Player) + 1] = (u8)(roomNo - 1);	// �T�[�o�[����0�x�[�X�Ȃ̂ŁA���킹��
+	dpw_bt.send_buf[sizeof(Dpw_Bt_Player)] = (u8)(rank - 1);	// サーバー側は0ベースなので、合わせる
+	dpw_bt.send_buf[sizeof(Dpw_Bt_Player) + 1] = (u8)(roomNo - 1);	// サーバー側は0ベースなので、合わせる
 	dpw_bt.send_buf[sizeof(Dpw_Bt_Player) + 2] = (u8)win;
 	memcpy(&dpw_bt.send_buf[sizeof(Dpw_Bt_Player) + 3], &dpw_bt.friend_key, 8);
 	
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Bt_CallSessionRequest(BT_URL_UPLOADPLAYER, dpw_bt.send_buf, sizeof(Dpw_Bt_Player) + 11, dpw_bt.recv_buf, 2)) {
 		dpw_bt.state = DPWi_BT_RROCESS_UPLOADPLAYER;
 	} else {
@@ -470,14 +470,14 @@ void Dpw_Bt_UploadPlayerAsync(s32 rank, s32 roomNo, s32 win, const Dpw_Bt_Player
 }
 
 /*!
-	Dpw_Bt ���C�u�����Ō��ݍs���Ă���񓯊��������L�����Z�����܂��B
+	Dpw_Bt ライブラリで現在行われている非同期処理をキャンセルします。
 	
-	�L�����Z�������ꍇ�A Dpw_Bt_GetAsyncResult() �̕Ԓl�� DPW_BT_ERROR_CANCEL �ƂȂ�܂��B
+	キャンセルした場合、 Dpw_Bt_GetAsyncResult() の返値は DPW_BT_ERROR_CANCEL となります。
 	
-	���ɒʐM���I�����Ă��邱�Ƃ�����܂��̂ŁA�L�����Z���͏�ɐ�������Ƃ͌���܂���B
-	�L�����Z���ł������ǂ����́A Dpw_Bt_GetAsyncResult() �̕Ԓl�� DPW_BT_ERROR_CANCEL �ƂȂ��Ă��邩�Ŕ��f���Ă��������B
+	既に通信が終了していることもありますので、キャンセルは常に成功するとは限りません。
+	キャンセルできたかどうかは、 Dpw_Bt_GetAsyncResult() の返値が DPW_BT_ERROR_CANCEL となっているかで判断してください。
 	
-	Dpw_Bt_CancelAsync()���̂��񓯊������ł����A������L�����Z�����邱�Ƃ͂ł��܂���B
+	Dpw_Bt_CancelAsync()自体も非同期処理ですが、これをキャンセルすることはできません。
 */
 void Dpw_Bt_CancelAsync(void) {
 	
@@ -508,21 +508,21 @@ void Dpw_Bt_CancelAsync(void) {
 }
 
 /*!
-	�T�[�o�[��Ԃ̒������J�n���܂��B
+	サーバー状態の調査を開始します。
 	
-	�T�[�o�[�Ɛ���ɒʐM�ł����ꍇ�́A Dpw_Bt_GetAsyncResult() �� DpwBtServerStatus �̒l���Ԃ���܂��B
+	サーバーと正常に通信できた場合は、 Dpw_Bt_GetAsyncResult() で DpwBtServerStatus の値が返されます。
 	
-	����ɒʐM�ł��Ȃ������ꍇ�́A ���ʂ̃G���[�̂����ꂩ���Ԃ���܂��B
+	正常に通信できなかった場合は、 共通のエラーのいずれかが返されます。
 */
 void Dpw_Bt_GetServerStateAsync(void) {
 	
 	DPW_TASSERTMSG(dpw_bt.state != DPWi_BT_NOT_INIT, "dpw bt is not initialized.\n");
 	DPW_TASSERTMSG(dpw_bt.state == DPWi_BT_NORMAL, "async process is already running.\n");
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Bt_CallSessionRequest(BT_URL_GETSERVERSTATE, dpw_bt.send_buf, 0, dpw_bt.recv_buf, 2)) {
 		dpw_bt.state = DPWi_BT_RROCESS_GETSERVERSTATE;
 	} else {
@@ -533,18 +533,18 @@ void Dpw_Bt_GetServerStateAsync(void) {
 }
 
 /*!
-	�l����o�^���鏈�����J�n���܂��B
+	個人情報を登録する処理を開始します。
 	
-	���������ꍇ�́A Dpw_Bt_GetAsyncResult() ��0���Ԃ���A�w�肵��result�p�����[�^��code�����o��DPW_PROFILE_RESULTCODE_SUCCESS���Ԃ�܂��B
+	成功した場合は、 Dpw_Bt_GetAsyncResult() で0が返され、指定したresultパラメータのcodeメンバにDPW_PROFILE_RESULTCODE_SUCCESSが返ります。
     
-	��ɒʐM�ɋN������G���[���N�������ꍇ�́ADpw_Bt_GetAsyncResult()��BT�̋��ʂ̃G���[���Ԃ���܂��B
-    �l���o�^�Ɋւ���G���[���N�������ꍇ�͎w�肵��result�p�����[�^��code�����o��DPW_PROFILE_RESULTCODE_SUCCESS�ȊO�̒l���Z�b�g����܂��B
-    Dpw_Tr_GetAsyncResult()�ŃG���[���������Ȃ������ꍇ�̂�code�����o���Q�Ƃ��Ă��������B
+	主に通信に起因するエラーが起こった場合は、Dpw_Bt_GetAsyncResult()でBTの共通のエラーが返されます。
+    個人情報登録に関するエラーが起こった場合は指定したresultパラメータのcodeメンバにDPW_PROFILE_RESULTCODE_SUCCESS以外の値がセットされます。
+    Dpw_Tr_GetAsyncResult()でエラーが発生しなかった場合のみcodeメンバを参照してください。
 	
-	@param[in] data	�A�b�v���[�h����f�[�^�B�֐����ŃR�s�[���܂��̂ŁA�ÓI�ɕێ�����K�v�͂���܂���B
-                    MAC�A�h���X�̓��C�u�������Ŋi�[����̂ŃZ�b�g����K�v�͂���܂���B
-                    DP�؍���łł�version, language, countryCode, localCode, playerName, playerId, flag�݂̂��Z�b�g���Ă��������B����ȊO��0�Ŗ��߂Ă��������B
-	@param[out] result �T�[�o����̃��X�|���X�Bcode�����o�ɓo�^�Ɋւ��錋�ʂ��Z�b�g����AmailAddrAuthResult�Ƀ��[���A�h���X�o�^�Ɋւ��錋�ʂ��Z�b�g����܂��Bcode�����o��DPW_PROFILE_RESULTCODE_SUCCESS�������ꍇ�̂�mailAddrAuthResult�����o���Z�b�g���Ă��������B�������AmailAddrAuthResult�����o��DP�؍���łł͕K��0�ɂȂ�܂��B
+	@param[in] data	アップロードするデータ。関数内でコピーしますので、静的に保持する必要はありません。
+                    MACアドレスはライブラリ内で格納するのでセットする必要はありません。
+                    DP韓国語版ではversion, language, countryCode, localCode, playerName, playerId, flagのみをセットしてください。それ以外は0で埋めてください。
+	@param[out] result サーバからのレスポンス。codeメンバに登録に関する結果がセットされ、mailAddrAuthResultにメールアドレス登録に関する結果がセットされます。codeメンバがDPW_PROFILE_RESULTCODE_SUCCESSだった場合のみmailAddrAuthResultメンバをセットしてください。ただし、mailAddrAuthResultメンバはDP韓国語版では必ず0になります。
 */
 void Dpw_Bt_SetProfileAsync(const Dpw_Common_Profile* data, Dpw_Common_ProfileResult* result) {
 	
@@ -554,16 +554,16 @@ void Dpw_Bt_SetProfileAsync(const Dpw_Common_Profile* data, Dpw_Common_ProfileRe
 	
     DPW_TASSERTMSG(sizeof(Dpw_Common_Profile) <= sizeof(dpw_bt.send_buf), "Internal error: dpw send buf is too small.\n");
     
-    // Mac�A�h���X���Z�b�g
+    // Macアドレスをセット
 	OS_GetMacAddress((u8*)data->macAddr);
     
 	memcpy(dpw_bt.send_buf, data, sizeof(Dpw_Common_Profile));
 	dpw_bt.user_recv_buf = (u8*)result;
 	
-	// �Z�b�V����������
+	// セッション初期化
 	DpwiSessionInitialize();
 
-	// �ʐM�J�n
+	// 通信開始
 	if (Dpwi_Bt_CallSessionRequest(BT_URL_SETPROFILE, dpw_bt.send_buf, sizeof(Dpw_Common_Profile), dpw_bt.user_recv_buf, sizeof(Dpw_Common_ProfileResult))) {
 		dpw_bt.state = DPWi_BT_RROCESS_SETPROFILE;
 	} else {
@@ -574,10 +574,10 @@ void Dpw_Bt_SetProfileAsync(const Dpw_Common_Profile* data, Dpw_Common_ProfileRe
 }
 
 /*!
-	�o�g���^���[�̃T�[�o��Ԃ����������܂��B
-	�����Ńu���b�N���܂��B
+	バトルタワーのサーバ状態を初期化します。
+	内部でブロックします。
 	
-	���̊֐��͔p�~����܂����BDpw Admin Tool�����g�p�������B
+	この関数は廃止されました。Dpw Admin Toolをご使用下さい。
 */
 BOOL Dpw_Bt_Db_InitServer(void) {
 #if 0
@@ -617,10 +617,10 @@ BOOL Dpw_Bt_Db_InitServer(void) {
 }
 
 /*!
-	�o�g���^���[�̃T�[�o�̈�����̃A�b�v�f�[�g�s���܂��B
-	�����Ńu���b�N���܂��B
+	バトルタワーのサーバの一日一回のアップデート行います。
+	内部でブロックします。
 	
-	���̊֐��͔p�~����܂����BDpw Admin Tool�����g�p�������B
+	この関数は廃止されました。Dpw Admin Toolをご使用下さい。
 */
 BOOL Dpw_Bt_Db_UpdateServer(void) {
 #if 0
@@ -660,20 +660,20 @@ BOOL Dpw_Bt_Db_UpdateServer(void) {
 }
 
 /*-----------------------------------------------------------------------*
-					���[�J���֐���`
+					ローカル関数定義
  *-----------------------------------------------------------------------*/
 
 static BOOL Dpwi_Bt_CallSessionRequest(const u8* url, const void* data, int len, void* resbuf, int ressize) {
 	
 	OS_TPrintf("[DPW BT] Connecting to %s.\n", url);
 	switch (DpwiSessionRequest(url, dpw_bt.pid, data, len, (u8*)resbuf, ressize)) {
-	case DPWI_COMMON_SESSION_SUCCESS:				// ����I��
+	case DPWI_COMMON_SESSION_SUCCESS:				// 正常終了
 		return TRUE;
 		break;
-	case DPWI_COMMON_SESSION_ERROR_NOTINITIALIZED:	// ��������
+	case DPWI_COMMON_SESSION_ERROR_NOTINITIALIZED:	// 未初期化
 		DPW_TASSERTMSG(FALSE, "common session not initialized.");
 		break;
-	case DPWI_COMMON_SESSION_ERROR_NOMEMORY:		// �������[�s��
+	case DPWI_COMMON_SESSION_ERROR_NOMEMORY:		// メモリー不足
 		DPW_TASSERTMSG(FALSE, "common session memory shortage.");
 		break;
 	}
@@ -688,53 +688,53 @@ static DpwBtError Dpwi_Bt_HandleCommonError(DpwiHttpError error) {
 	OS_TPrintf("[DPW BT] ghttp error: %d\n", error);
 	
 	switch (error) {
-	case DPWI_COMMON_SESSION_ERROR_IN_ERROR:			// �G���[������ 
-	case DPWI_COMMON_SESSION_ERROR_INVALID_POST:		// �����ȑ��M 
-	case DPWI_COMMON_SESSION_ERROR_INVALID_FILE_NAME:	// �����ȃt�@�C���� 
-	case DPWI_COMMON_SESSION_ERROR_INVALID_BUFFER_SIZE:	// �����ȃo�b�t�@�T�C�Y 
-	case DPWI_COMMON_SESSION_ERROR_INVALID_URL:			// ������URL
-	case DPWI_COMMON_SESSION_ERROR_UNSPECIFIED_ERROR:	// ���̑��̃G���[
-	case DPWI_COMMON_SESSION_ERROR_BUFFER_OVERFLOW:		// �������ꂽ�o�b�t�@�����������邽�߁A�t�@�C���̎擾���s 
-	case DPWI_COMMON_SESSION_ERROR_PARSE_URL_FAILED:	// URL��̓G���[ 
-//	case DPWI_COMMON_SESSION_ERROR_ENCRYPTION_ERROR:	// �Í����G���[ 
-	case DPWI_COMMON_SESSION_ERROR_FILE_TOO_BIG:		// �t�@�C�����傫�����邽�߃_�E�����[�h�s�\ 
-	case DPWI_COMMON_SESSION_ERROR_FILE_INCOMPLETE:		// �_�E�����[�h�̒��f 
-	case DPWI_COMMON_SESSION_ERROR_FILE_WRITE_FAILED:	// ���[�J���t�@�C���ւ̏������݃G���[ 
-	case DPWI_COMMON_SESSION_ERROR_FILE_READ_FAILED:	// ���[�J���t�@�C������̓ǂݏo���G���[ 
-	case DPWI_COMMON_SESSION_ERROR_BAD_RESPONSE:		// HTTP�T�[�o����̃��X�|���X�̉�̓G���[ 
-	case DPWI_COMMON_SESSION_ERROR_BUFFER_OVER:			// COMMON�w: ��M�o�b�t�@���I�[�o�[����
+	case DPWI_COMMON_SESSION_ERROR_IN_ERROR:			// エラー発生中 
+	case DPWI_COMMON_SESSION_ERROR_INVALID_POST:		// 無効な送信 
+	case DPWI_COMMON_SESSION_ERROR_INVALID_FILE_NAME:	// 無効なファイル名 
+	case DPWI_COMMON_SESSION_ERROR_INVALID_BUFFER_SIZE:	// 無効なバッファサイズ 
+	case DPWI_COMMON_SESSION_ERROR_INVALID_URL:			// 無効なURL
+	case DPWI_COMMON_SESSION_ERROR_UNSPECIFIED_ERROR:	// その他のエラー
+	case DPWI_COMMON_SESSION_ERROR_BUFFER_OVERFLOW:		// 供給されたバッファが小さすぎるため、ファイルの取得失敗 
+	case DPWI_COMMON_SESSION_ERROR_PARSE_URL_FAILED:	// URL解析エラー 
+//	case DPWI_COMMON_SESSION_ERROR_ENCRYPTION_ERROR:	// 暗号化エラー 
+	case DPWI_COMMON_SESSION_ERROR_FILE_TOO_BIG:		// ファイルが大きすぎるためダウンロード不可能 
+	case DPWI_COMMON_SESSION_ERROR_FILE_INCOMPLETE:		// ダウンロードの中断 
+	case DPWI_COMMON_SESSION_ERROR_FILE_WRITE_FAILED:	// ローカルファイルへの書き込みエラー 
+	case DPWI_COMMON_SESSION_ERROR_FILE_READ_FAILED:	// ローカルファイルからの読み出しエラー 
+	case DPWI_COMMON_SESSION_ERROR_BAD_RESPONSE:		// HTTPサーバからのレスポンスの解析エラー 
+	case DPWI_COMMON_SESSION_ERROR_BUFFER_OVER:			// COMMON層: 受信バッファをオーバーした
 		DPW_TASSERTMSG(FALSE, "library internal error. please contact author.");
 		ret = DPW_BT_ERROR_FATAL;
 		break;
-	case DPWI_COMMON_SESSION_ERROR_INSUFFICIENT_MEMORY:	// �������s�� 
-	case DPWI_COMMON_SESSION_ERROR_OUT_OF_MEMORY:		// ���������蓖�Ď��s 
-	case DPWI_COMMON_SESSION_ERROR_MEMORY_ERROR: 		// ���������蓖�Ď��s 
+	case DPWI_COMMON_SESSION_ERROR_INSUFFICIENT_MEMORY:	// メモリ不足 
+	case DPWI_COMMON_SESSION_ERROR_OUT_OF_MEMORY:		// メモリ割り当て失敗 
+	case DPWI_COMMON_SESSION_ERROR_MEMORY_ERROR: 		// メモリ割り当て失敗 
 		DPW_TASSERTMSG(FALSE, "common session memory shortage.");
 		ret = DPW_BT_ERROR_FATAL;
 		break;
-	case DPWI_COMMON_SESSION_ERROR_HOST_LOOKUP_FAILED:	// �z�X�g���������s 
+	case DPWI_COMMON_SESSION_ERROR_HOST_LOOKUP_FAILED:	// ホスト名検索失敗 
 		OS_TPrintf("[DPW BT] dns lookup failed.\n");
 		ret = DPW_BT_ERROR_FAILURE;
 		break;
-	case DPWI_COMMON_SESSION_ERROR_SOCKET_FAILED:		// �\�P�b�g�̍쐬�A�������A�ǂݏo���A�������ݎ��s 
-	case DPWI_COMMON_SESSION_ERROR_CONNECT_FAILED:		// HTTP�T�[�o�ւ̐ڑ����s 
+	case DPWI_COMMON_SESSION_ERROR_SOCKET_FAILED:		// ソケットの作成、初期化、読み出し、書き込み失敗 
+	case DPWI_COMMON_SESSION_ERROR_CONNECT_FAILED:		// HTTPサーバへの接続失敗 
 		OS_TPrintf("[DPW BT] socket error.\n");
 		ret = DPW_BT_ERROR_FAILURE;
 		break;
-	case DPWI_COMMON_SESSION_ERROR_UNAUTHORIZED:		// �t�@�C���擾������ 
-	case DPWI_COMMON_SESSION_ERROR_FORBIDDEN:			// HTTP�T�[�o�̃t�@�C�����M���� 
-	case DPWI_COMMON_SESSION_ERROR_FILE_NOT_FOUND:		// HTTP�T�[�o��̃t�@�C���������s 
-	case DPWI_COMMON_SESSION_ERROR_SERVER_ERROR:		// HTTP�T�[�o�����G���[
-	case DPWI_COMMON_SESSION_ERROR_CHECKSUM:			// COMMON�w: �`�F�b�N�T���̕s��v
-	case DPWI_COMMON_SESSION_ERROR_PID:					// COMMON�w: PID�̕s��v
-	case DPWI_COMMON_SESSION_ERROR_DATA_LENGTH: 		// COMMON�w: �f�[�^�̒������s��
-	case DPWI_COMMON_SESSION_ERROR_TOKEN_NOT_FOUND:		// COMMON�w: �g�[�N�����Ȃ�
-	case DPWI_COMMON_SESSION_ERROR_INCORRECT_HASH:		// COMMON�w: �n�b�V��������Ȃ�
+	case DPWI_COMMON_SESSION_ERROR_UNAUTHORIZED:		// ファイル取得未許可 
+	case DPWI_COMMON_SESSION_ERROR_FORBIDDEN:			// HTTPサーバのファイル送信拒否 
+	case DPWI_COMMON_SESSION_ERROR_FILE_NOT_FOUND:		// HTTPサーバ上のファイル検索失敗 
+	case DPWI_COMMON_SESSION_ERROR_SERVER_ERROR:		// HTTPサーバ内部エラー
+	case DPWI_COMMON_SESSION_ERROR_CHECKSUM:			// COMMON層: チェックサムの不一致
+	case DPWI_COMMON_SESSION_ERROR_PID:					// COMMON層: PIDの不一致
+	case DPWI_COMMON_SESSION_ERROR_DATA_LENGTH: 		// COMMON層: データの長さが不正
+	case DPWI_COMMON_SESSION_ERROR_TOKEN_NOT_FOUND:		// COMMON層: トークンがない
+	case DPWI_COMMON_SESSION_ERROR_INCORRECT_HASH:		// COMMON層: ハッシュが合わない
 		OS_TPrintf("[DPW BT] server internal error.  please contact server administrator.\n");
 		ret = DPW_BT_ERROR_SERVER_TIMEOUT;
 		break;
-	case DPWI_COMMON_SESSION_ERROR_REQUEST_REJECTED:	// HTTP�T�[�o�̃��N�G�X�g���� 
-	case DPWI_COMMON_SESSION_ERROR_TOKEN_EXPIRED:		// COMMON�w: �g�[�N���̗L�������؂�
+	case DPWI_COMMON_SESSION_ERROR_REQUEST_REJECTED:	// HTTPサーバのリクエスト拒否 
+	case DPWI_COMMON_SESSION_ERROR_TOKEN_EXPIRED:		// COMMON層: トークンの有効期限切れ
 		OS_TPrintf("[DPW BT] server is now heavy.\n");
 		ret = DPW_BT_ERROR_SERVER_TIMEOUT;
 		break;
@@ -744,16 +744,16 @@ static DpwBtError Dpwi_Bt_HandleCommonError(DpwiHttpError error) {
 		break;
 	}
 	
-	// FATAL�G���[�łȂ��ꍇ
+	// FATALエラーでない場合
 	if (ret != DPW_BT_ERROR_FATAL) {
 #ifdef _NITRO
-		// NitroWiFi�̃��C���[�Ŗ������؂�Ă��Ȃ����`�F�b�N����
+		// NitroWiFiのレイヤーで無線が切れていないかチェックする
 		if (WCM_GetPhase() != WCM_PHASE_DCF) {
 			OS_TPrintf("[DPW BT] disconnected from access point.\n");
 			ret = DPW_BT_ERROR_DISCONNECTED;
 		}
 #endif
-		// DWC�̃G���[��Ԃ��N���A����
+		// DWCのエラー状態をクリアする
 		DWC_ClearError();
 	}
 	

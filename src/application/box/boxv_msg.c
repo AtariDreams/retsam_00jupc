@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	boxv_msg.c
- * @brief	ƒ{ƒbƒNƒX‘€ì‰æ–Ê@•`‰æ‰º¿‚¯iƒƒbƒZ[ƒWEƒƒjƒ…[ŠÖ˜Aj
+ * @brief	ãƒœãƒƒã‚¯ã‚¹æ“ä½œç”»é¢ã€€æç”»ä¸‹è«‹ã‘ï¼ˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ»ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–¢é€£ï¼‰
  * @author	taya
  * @date	2005.09.27
  */
@@ -27,14 +27,14 @@
  */
 //------------------------------------------------------------
 
-/// ƒEƒBƒ“ƒhƒEƒ^ƒCƒv
+/// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ—
 enum {
 	WIN_MSG,
 	WIN_MENU,
 	WIN_MAX,
 };
 
-/// ƒEƒBƒ“ƒhƒEƒpƒ‰ƒ[ƒ^
+/// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 enum {
 	// Frame 9 char
 	MENU_FRAME_CHAROFS = 512,
@@ -53,7 +53,7 @@ enum {
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/15
-	// ƒƒjƒ…[ƒEƒBƒ“ƒhƒE‚Ì•‚ðAŠe‘Œê‚Ì TEAM GALACTIC ‚ª“ü‚é‚æ‚¤‚ÉŠg‘å
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å¹…ã‚’ã€å„å›½èªžã® TEAM GALACTIC ãŒå…¥ã‚‹ã‚ˆã†ã«æ‹¡å¤§
 	// Menu 194 char
 	WIN_MENU_CHAROFS = WIN_MSG_CHAROFS + WIN_MSG_SIZE,
 	WIN_MENU_WIDTH = 12,
@@ -90,15 +90,15 @@ static void MsgWinScrnErase( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win );
 
 //------------------------------------------------------------------
 /**
- * ‰Šú‰»ˆ—
+ * åˆæœŸåŒ–å‡¦ç†
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   vwk			•`‰æƒ[ƒN
- * @param   vpara		•`‰æƒpƒ‰ƒ[ƒ^
- * @param   bgl			BGLƒVƒXƒeƒ€ƒ[ƒN
- * @param   actsys		ƒAƒNƒ^[ƒVƒXƒeƒ€ƒ[ƒN
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   vwk			æç”»ãƒ¯ãƒ¼ã‚¯
+ * @param   vpara		æç”»ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param   bgl			BGLã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ * @param   actsys		ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- * @retval  BOOL		TRUE‚Å¬Œ÷
+ * @retval  BOOL		TRUEã§æˆåŠŸ
  */
 //------------------------------------------------------------------
 BOOL BoxAppView_MsgInit( MSG_VIEW_WORK* wk, BOXAPP_VIEW_WORK* vwk, const BOXAPP_VPARAM* vpara, GF_BGL_INI* bgl, CLACT_SET_PTR actsys,
@@ -133,9 +133,9 @@ BOOL BoxAppView_MsgInit( MSG_VIEW_WORK* wk, BOXAPP_VIEW_WORK* vwk, const BOXAPP_
 }
 //------------------------------------------------------------------
 /**
- * I—¹ˆ—
+ * çµ‚äº†å‡¦ç†
  *
- * @param   wk		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -207,14 +207,14 @@ void BoxAppView_MsgSetup( MSG_VIEW_WORK* wk )
 	ArcUtil_PalSet( ARC_WINFRAME, NARC_winframe_system_nclr, PALTYPE_MAIN_BG, PAL_MAIN_WINDOW_FRAME*0x20, 0x20, HEAPID_BOX_VIEW );
 
 	TalkWinGraphicSet( wk->bgl, FRM_MAIN_MESSAGE, MSG_FRAME_CHAROFS, PAL_MAIN_MESSAGE_FRAME,
-						wk->wintype,	// ‚Ü‚¾ƒvƒŒƒCƒ„[‚ªƒEƒBƒ“ƒhƒEƒ^ƒCƒv‚ðÝ’è‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚Ä‚¢‚È‚¢‚Ì‚Åƒ[ƒ‚ð“n‚·
+						wk->wintype,	// ã¾ã ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¿ã‚¤ãƒ—ã‚’è¨­å®šã§ãã‚‹ã‚ˆã†ã«ãªã£ã¦ã„ãªã„ã®ã§ã‚¼ãƒ­ã‚’æ¸¡ã™
 						HEAPID_BOX_VIEW );
 
 }
 
 //------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒW•`‰æ
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æç”»
  *
  * @param   wk		
  * @param   msg_id		
@@ -244,7 +244,7 @@ void BoxAppView_MsgWrite( MSG_VIEW_WORK* wk, u32 msg_id )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒEƒtƒŒ[ƒ€‚ðƒXƒNƒŠ[ƒ“ƒoƒbƒtƒ@‚É•`‰æ
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒƒãƒ•ã‚¡ã«æç”»
  *
  * @param   bgl		
  * @param   frm		
@@ -263,7 +263,7 @@ static void MsgWindowFrameWrite( GF_BGL_INI* bgl, u32 frm, u32 posx, u32 posy, u
 	scrn = GF_BGL_ScreenAdrsGet( bgl, frm );
 	scrn += (((posy-1)*32)+(posx-2));
 
-// ã•Ó
+// ä¸Šè¾º
 	scrn[0] = (PAL_MAIN_MESSAGE_FRAME << 12) | MSG_FRAME_CHAROFS;
 	scrn[1] = (PAL_MAIN_MESSAGE_FRAME << 12) | (MSG_FRAME_CHAROFS + 1);
 
@@ -275,7 +275,7 @@ static void MsgWindowFrameWrite( GF_BGL_INI* bgl, u32 frm, u32 posx, u32 posy, u
 	scrn[3+sizx] = (PAL_MAIN_MESSAGE_FRAME << 12) | (MSG_FRAME_CHAROFS+4);
 	scrn[4+sizx] = (PAL_MAIN_MESSAGE_FRAME << 12) | (MSG_FRAME_CHAROFS+5);
 
-// ¶‰E•Ó
+// å·¦å³è¾º
 	scrn += 32;
 	for(i=0; i<sizy; i++){
 		scrn[0] = (PAL_MAIN_MESSAGE_FRAME << 12) | (MSG_FRAME_CHAROFS+6);
@@ -286,7 +286,7 @@ static void MsgWindowFrameWrite( GF_BGL_INI* bgl, u32 frm, u32 posx, u32 posy, u
 		scrn += 32;
 	}
 
-// ‰º•Ó
+// ä¸‹è¾º
 	scrn[0] = (PAL_MAIN_MESSAGE_FRAME << 12) | (MSG_FRAME_CHAROFS+12);
 	scrn[1] = (PAL_MAIN_MESSAGE_FRAME << 12) | (MSG_FRAME_CHAROFS+13);
 	for(i=0; i<sizx; i++){
@@ -299,11 +299,11 @@ static void MsgWindowFrameWrite( GF_BGL_INI* bgl, u32 frm, u32 posx, u32 posy, u
 }
 //------------------------------------------------------------------
 /**
- * ƒƒjƒ…[•`‰æ
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼æç”»
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   menu		ƒƒjƒ…[î•ñƒf[ƒ^
- * @param   cursor		‰ŠúƒJ[ƒ\ƒ‹ˆÊ’u
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   menu		ãƒ¡ãƒ‹ãƒ¥ãƒ¼æƒ…å ±ãƒ‡ãƒ¼ã‚¿
+ * @param   cursor		åˆæœŸã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
  *
  */
 //------------------------------------------------------------------
@@ -350,12 +350,12 @@ void BoxAppView_MenuWrite( MSG_VIEW_WORK* wk, const BOXAPP_MENU* menu )
 }
 //------------------------------------------------------------------
 /**
- * ƒ}[ƒLƒ“ƒOó‘Ô‚É‰ž‚¶‚ÄBitmapWindow‚ÉƒLƒƒƒ‰•`‰æ
+ * ãƒžãƒ¼ã‚­ãƒ³ã‚°çŠ¶æ…‹ã«å¿œã˜ã¦BitmapWindowã«ã‚­ãƒ£ãƒ©æç”»
  *
- * @param   wk				ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   wk				ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  * @param   win				BitmapWindow
- * @param   mark			ƒ}[ƒLƒ“ƒOó‘Ô
- * @param   mark_pos		•`‰æˆÊ’u
+ * @param   mark			ãƒžãƒ¼ã‚­ãƒ³ã‚°çŠ¶æ…‹
+ * @param   mark_pos		æç”»ä½ç½®
  *
  */
 //------------------------------------------------------------------
@@ -370,7 +370,7 @@ static void MarkingStatePrint( MSG_VIEW_WORK* wk, GF_BGL_BMPWIN* win, u8 mark, u
 }
 //------------------------------------------------------------------
 /**
- * ƒƒjƒ…[€–Ú”‚É‡‚í‚¹‚ÄƒEƒBƒ“ƒhƒEƒXƒNƒŠ[ƒ“•`‰æ
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®æ•°ã«åˆã‚ã›ã¦ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¯ãƒªãƒ¼ãƒ³æç”»
  *
  * @param   elems		
  *
@@ -403,7 +403,7 @@ static void MenuWinScrnWrite( MSG_VIEW_WORK* wk, u32 elems )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWEƒƒjƒ…[Á‹Ž
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ»ãƒ¡ãƒ‹ãƒ¥ãƒ¼æ¶ˆåŽ»
  *
  * @param   wk		
  *
@@ -426,7 +426,7 @@ void BoxAppView_MsgClear( MSG_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒƒjƒ…[‚Ì‚ÝÁ‹Ž
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã¿æ¶ˆåŽ»
  *
  * @param   wk		
  *
@@ -444,7 +444,7 @@ void BoxAppView_MenuClear( MSG_VIEW_WORK* wk )
 
 //------------------------------------------------------------------
 /**
- * ƒJ[ƒ\ƒ‹ˆÊ’uXV
+ * ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®æ›´æ–°
  *
  * @param   wk		
  *
@@ -466,7 +466,7 @@ void BoxAppView_MenuCursorUpdate( MSG_VIEW_WORK* wk, const BOXAPP_MENU* menu )
 
 //------------------------------------------------------------------
 /**
- * ƒ}[ƒLƒ“ƒO•\Ž¦XV
+ * ãƒžãƒ¼ã‚­ãƒ³ã‚°è¡¨ç¤ºæ›´æ–°
  *
  * @param   wk		
  *
@@ -528,8 +528,8 @@ static void WinFrameScrnWrite( GF_BGL_INI* bgl, u32 frm, u32 posx, u32 posy, u32
 }
 //------------------------------------------------------------------
 /**
- * ƒƒjƒ…[ƒEƒBƒ“ƒhƒEŽü•Ó‚É”z’u‚³‚ê‚Ä‚¢‚éƒtƒŒ[ƒ€‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^‚²‚Æ
- * ƒoƒbƒtƒ@ƒNƒŠƒAi“]‘—‚Ís‚í‚È‚¢j
+ * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‘¨è¾ºã«é…ç½®ã•ã‚Œã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã”ã¨
+ * ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢ï¼ˆè»¢é€ã¯è¡Œã‚ãªã„ï¼‰
  *
  * @param   win		
  *
@@ -554,8 +554,8 @@ static void MenuWinScrnErase( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win )
 }
 //------------------------------------------------------------------
 /**
- * ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒEŽü•Ó‚É”z’u‚³‚ê‚Ä‚¢‚éƒtƒŒ[ƒ€‚ÌƒXƒNƒŠ[ƒ“ƒf[ƒ^‚²‚Æ
- * ƒoƒbƒtƒ@ƒNƒŠƒAi“]‘—‚Ís‚í‚È‚¢j
+ * ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å‘¨è¾ºã«é…ç½®ã•ã‚Œã¦ã„ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‡ãƒ¼ã‚¿ã”ã¨
+ * ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢ï¼ˆè»¢é€ã¯è¡Œã‚ãªã„ï¼‰
  *
  * @param   win		
  *

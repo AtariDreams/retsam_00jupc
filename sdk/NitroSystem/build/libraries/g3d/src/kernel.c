@@ -26,8 +26,8 @@
 /*---------------------------------------------------------------------------*
     NNS_G3dAnmObjCalcSizeRequired
 
-    �A�j���[�V�������\�[�X�A���f�����\�[�X�ɑΉ�����NNSG3dAnmObj�ɕK�v��
-    �������T�C�Y��Ԃ��܂��B
+    アニメーションリソース、モデルリソースに対応するNNSG3dAnmObjに必要な
+    メモリサイズを返します。
  *---------------------------------------------------------------------------*/
 u32
 NNS_G3dAnmObjCalcSizeRequired(const void* pAnm,
@@ -60,11 +60,11 @@ NNS_G3dAnmObjCalcSizeRequired(const void* pAnm,
 /*---------------------------------------------------------------------------*
     NNS_G3dInitAnmObj
 
-    pAnmObj��pResAnm, pResMdl�p�ɏ��������܂��B
+    pAnmObjをpResAnm, pResMdl用に初期化します。
 
     NOTICE:
-    pAnmObj�͍Œ�ANNS_G3dAnmObjCalcSizeRequired(pResAnm, pResMdl)�̃T�C�Y��
-    �����Ă���K�v������B
+    pAnmObjは最低、NNS_G3dAnmObjCalcSizeRequired(pResAnm, pResMdl)のサイズを
+    持っている必要がある。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dAnmObjInit(NNSG3dAnmObj* pAnmObj,
@@ -72,27 +72,27 @@ NNS_G3dAnmObjInit(NNSG3dAnmObj* pAnmObj,
                   const NNSG3dResMdl* pResMdl,
                   const NNSG3dResTex* pResTex)
 {
-    // �v���O���}����`����A�j���[�V�����̏ꍇ���\�[�X���Ȃ��ꍇ�����邪�A
-    // ���̏ꍇ�̓w�b�_�����������U�����ē���Ă��܂��΂悢�B
+    // プログラマが定義するアニメーションの場合リソースがない場合もあるが、
+    // その場合はヘッダ部分だけを偽装して入れてしまえばよい。
     const NNSG3dResAnmHeader* hdr;
     u32 i;
     NNS_G3D_NULL_ASSERT(pAnmObj);
     NNS_G3D_NULL_ASSERT(pResAnm);
     NNS_G3D_NULL_ASSERT(pResMdl);
-    // resTex�̓e�N�X�`���p�^�[���A�j���[�V�����ȊO�ł�NULL�ł��悢�B
+    // resTexはテクスチャパターンアニメーション以外ではNULLでもよい。
     NNS_G3D_ASSERT(NNS_G3dAnmFmtNum <= NNS_G3D_ANMFMT_MAX);
 
     pAnmObj->frame = 0;
     pAnmObj->resAnm = (void*)pResAnm;
 
-    // �A�j���[�V�����֐��̐ݒ肪����B
-    // �����category1�ɂ���Č��肳���
+    // アニメーション関数の設定がいる。
+    // これはcategory1によって決定される
     pAnmObj->next = NULL;
     pAnmObj->priority = 127;
     pAnmObj->ratio = FX32_ONE;
     pAnmObj->resTex = pResTex;
-    pAnmObj->numMapData = 0; // �A�j���[�V���������}�N��(NNS_G3D_NS***_DISABLE)�Ή��p
-    pAnmObj->funcAnm = NULL; // �A�j���[�V���������}�N��(NNS_G3D_NS***_DISABLE)�Ή��p
+    pAnmObj->numMapData = 0; // アニメーション無効マクロ(NNS_G3D_NS***_DISABLE)対応用
+    pAnmObj->funcAnm = NULL; // アニメーション無効マクロ(NNS_G3D_NS***_DISABLE)対応用
 
     hdr = (const NNSG3dResAnmHeader*)pResAnm;
 
@@ -115,8 +115,8 @@ NNS_G3dAnmObjInit(NNSG3dAnmObj* pAnmObj,
 /*---------------------------------------------------------------------------
     NNS_G3dAnmObjEnableID
 
-    JntID,����MatID�ɑΉ������A�j���[�V�������Đ�����悤�ɂ��܂��B
-    (�f�t�H���g)
+    JntID,又はMatIDに対応したアニメーションを再生するようにします。
+    (デフォルト)
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dAnmObjEnableID(NNSG3dAnmObj* pAnmObj, int id)
@@ -132,7 +132,7 @@ NNS_G3dAnmObjEnableID(NNSG3dAnmObj* pAnmObj, int id)
 /*---------------------------------------------------------------------------
     NNS_G3dAnmObjEnableID
 
-    JntID,����MatID�ɑΉ������A�j���[�V�������Đ����Ȃ��悤�ɂ��܂��B
+    JntID,又はMatIDに対応したアニメーションを再生しないようにします。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dAnmObjDisableID(NNSG3dAnmObj* pAnmObj, int id)
@@ -149,7 +149,7 @@ NNS_G3dAnmObjDisableID(NNSG3dAnmObj* pAnmObj, int id)
 /*---------------------------------------------------------------------------*
     NNS_G3dRenderObjInit
 
-    NNSG3dRenderObj�����������܂��BpResMdl��NULL�ł�OK�ł��B
+    NNSG3dRenderObjを初期化します。pResMdlはNULLでもOKです。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dRenderObjInit(NNSG3dRenderObj* pRenderObj,
@@ -160,7 +160,7 @@ NNS_G3dRenderObjInit(NNSG3dRenderObj* pRenderObj,
 
     MI_CpuClear32(pRenderObj, sizeof(NNSG3dRenderObj));
 
-    // �u�����h�̃f�t�H���g�n���h����ݒ�
+    // ブレンドのデフォルトハンドラを設定
     pRenderObj->funcBlendMat = NNS_G3dFuncBlendMatDefault;
     pRenderObj->funcBlendJnt = NNS_G3dFuncBlendJntDefault;
     pRenderObj->funcBlendVis = NNS_G3dFuncBlendVisDefault;
@@ -172,14 +172,14 @@ NNS_G3dRenderObjInit(NNSG3dRenderObj* pRenderObj,
 /*---------------------------------------------------------------------------*
     addLink_
 
-    item�����Ƀ��X�g�ɂȂ��Ă���ꍇ�ɂ��Ή����Ă��邪�A���̃��X�g���\�[�g
-    ����Ă��Ȃ��ꍇ�͐������Ȃ����ԂɂȂ�ꍇ������
+    itemが既にリストになっている場合にも対応しているが、そのリストがソート
+    されていない場合は正しくない順番になる場合がある
  *---------------------------------------------------------------------------*/
 static void
 addLink_(NNSG3dAnmObj** l, NNSG3dAnmObj* item)
 {
 #ifdef NITRO_DEBUG
-    // item��l���ɂ��łɂ���ꍇ�̓G���[
+    // itemがl内にすでにある場合はエラー
     {
         NNSG3dAnmObj* p = *l;
         while(p)
@@ -191,15 +191,15 @@ addLink_(NNSG3dAnmObj** l, NNSG3dAnmObj* item)
 #endif
     if (!(*l))
     {
-        // ���X�g�����݂��Ȃ���΍ŏ��̗v�f�ɂȂ�B
+        // リストが存在しなければ最初の要素になる。
         *l = item;
     }
     else if (!((*l)->next))
     {
-        // ���X�g�̗v�f���P�̏ꍇ
+        // リストの要素が１つの場合
         if ((*l)->priority > item->priority)
         {
-            // item�̖����Ƀ��X�g���q����
+            // itemの末尾にリストを繋げる
             NNSG3dAnmObj* p = item;
             while(p->next)
             {
@@ -210,7 +210,7 @@ addLink_(NNSG3dAnmObj** l, NNSG3dAnmObj* item)
         }
         else
         {
-            // �������X�g(�������v�f�͂P��)�̖����Ɍq����
+            // 既存リスト(ただし要素は１つ)の末尾に繋げる
             (*l)->next = item;
         }
     }
@@ -223,7 +223,7 @@ addLink_(NNSG3dAnmObj** l, NNSG3dAnmObj* item)
         {
             if (x->priority >= item->priority)
             {
-                // �������X�g�ɑ}��
+                // 既存リストに挿入
                 NNSG3dAnmObj* pp = item;
                 while(pp->next)
                 {
@@ -236,7 +236,7 @@ addLink_(NNSG3dAnmObj** l, NNSG3dAnmObj* item)
             p = x;
             x = x->next;
         }
-        // �������X�g�̖����Ɍq����
+        // 既存リストの末尾に繋げる
         p->next = item;
     }
 }
@@ -245,7 +245,7 @@ addLink_(NNSG3dAnmObj** l, NNSG3dAnmObj* item)
 /*---------------------------------------------------------------------------*
     updateHintVec_
 
-    pAnmObj�œo�^����Ă��郊�\�[�XID�ɑΉ�����r�b�g��ON�ɂ��Ă���
+    pAnmObjで登録されているリソースIDに対応するビットをONにしていく
  *---------------------------------------------------------------------------*/
 static void
 updateHintVec_(u32* pVec, const NNSG3dAnmObj* pAnmObj)
@@ -269,8 +269,8 @@ updateHintVec_(u32* pVec, const NNSG3dAnmObj* pAnmObj)
 /*---------------------------------------------------------------------------*
     NNS_G3dRenderObjAddAnm
 
-    pRenderObj��pAnmObj��ǉ�����BpAnmObj�̃w�b�_�������āA
-    �K�؂ȃ��X�g�ɒǉ�����B
+    pRenderObjにpAnmObjを追加する。pAnmObjのヘッダ情報を見て、
+    適切なリストに追加する。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dRenderObjAddAnmObj(NNSG3dRenderObj* pRenderObj,
@@ -310,8 +310,8 @@ NNS_G3dRenderObjAddAnmObj(NNSG3dRenderObj* pRenderObj,
 /*---------------------------------------------------------------------------*
     removeLink_
 
-    item�����X�g�����菜���܂��B���X�g����item���������ꍇ�ɂ�TRUE
-    �Ȃ������ꍇ�ɂ�FALSE��Ԃ��܂��B
+    itemをリストから取り除きます。リスト内にitemがあった場合にはTRUE
+    なかった場合にはFALSEを返します。
  *---------------------------------------------------------------------------*/
 static BOOL
 removeLink_(NNSG3dAnmObj** l, NNSG3dAnmObj* item)
@@ -321,19 +321,19 @@ removeLink_(NNSG3dAnmObj** l, NNSG3dAnmObj* item)
 
     if (!*l)
     {
-        // AnmObj������Ȃ��ꍇ
+        // AnmObjが一つもない場合
         return FALSE;
     }
     
     if (*l == item)
     {
-        // �ŏ���AnmObj����菜�����ꍇ
+        // 最初のAnmObjが取り除かれる場合
         *l = (*l)->next;
         item->next = NULL;
         return TRUE;
     }
 
-    // ���X�g������
+    // リストを検索
     p = (*l)->next;
     pp = (*l);
     while(p)
@@ -355,10 +355,10 @@ removeLink_(NNSG3dAnmObj** l, NNSG3dAnmObj* item)
 /*---------------------------------------------------------------------------*
     NNS_G3dRenderObjRemoveAnmObj
 
-    pRenderObj����pAnmObj���폜���܂��B
-    �������A�q���g�p�̃r�b�g�x�N�g���͕ύX����܂���B
-    �X�V�́ANNS_G3dDraw����NNS_G3D_RENDEROBJ_FLAG_HINT_OBSOLETE
-    ���`�F�b�N����Ă���ꍇ�ɍs���܂��B
+    pRenderObjからpAnmObjを削除します。
+    ただし、ヒント用のビットベクトルは変更されません。
+    更新は、NNS_G3dDraw内でNNS_G3D_RENDEROBJ_FLAG_HINT_OBSOLETE
+    がチェックされている場合に行われます。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dRenderObjRemoveAnmObj(NNSG3dRenderObj* pRenderObj,
@@ -375,7 +375,7 @@ NNS_G3dRenderObjRemoveAnmObj(NNSG3dRenderObj* pRenderObj,
         return;
     }
     
-    // pAnmObj��pRenderObj�Ɍq�����Ă��Ȃ�����
+    // pAnmObjはpRenderObjに繋がっていなかった
     NNS_G3D_WARNING(0, "An AnmObj was not removed in NNS_G3dRenderObjRemoveAnmObj");
 }
 
@@ -383,14 +383,14 @@ NNS_G3dRenderObjRemoveAnmObj(NNSG3dRenderObj* pRenderObj,
 /*---------------------------------------------------------------------------*
     NNS_G3dRenderObjSetCallBack
 
-    �`�揈�����ɍs���R�[���o�b�N������o�^���܂��B
-    cmd�̃R�}���h�����s�����Ƃ��ŁA
-    timing�Ŏw��ł���(3��ޑI�ׂ�)�ꏊ�ŁA�R�[���o�b�N���Ă΂�܂��B
+    描画処理中に行うコールバック処理を登録します。
+    cmdのコマンドが実行されるときで、
+    timingで指定できる(3種類選べる)場所で、コールバックが呼ばれます。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dRenderObjSetCallBack(NNSG3dRenderObj* pRenderObj,
                             NNSG3dSbcCallBackFunc func,
-                            u8*,          // NOTICE:�R�[���o�b�N�̃A�h���X�w��͔p�~�ɂȂ�܂���
+                            u8*,          // NOTICE:コールバックのアドレス指定は廃止になりました
                             u8 cmd,
                             NNSG3dSbcCallBackTiming timing)
 {
@@ -406,7 +406,7 @@ NNS_G3dRenderObjSetCallBack(NNSG3dRenderObj* pRenderObj,
 /*---------------------------------------------------------------------------*
     NNS_G3dRenderObjResetCallBack
 
-    �`�揈�����ɍs���R�[���o�b�N�������������܂��B
+    描画処理中に行うコールバック処理を消去します。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dRenderObjResetCallBack(NNSG3dRenderObj* pRenderObj)
@@ -422,7 +422,7 @@ NNS_G3dRenderObjResetCallBack(NNSG3dRenderObj* pRenderObj)
 /*---------------------------------------------------------------------------*
     NNS_G3dRenderObjSetInitFunc
 
-    �`�揈�����O�ɌĂ΂��R�[���o�b�N��ݒ肵�܂��B
+    描画処理直前に呼ばれるコールバックを設定します。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dRenderObjSetInitFunc(NNSG3dRenderObj* pRenderObj,
@@ -435,29 +435,29 @@ NNS_G3dRenderObjSetInitFunc(NNSG3dRenderObj* pRenderObj,
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-// ���f��<->�e�N�X�`���ԃR�[�h
+// モデル<->テクスチャ間コード
 //
 //
 
 //
-// Texture / 4x4Texture / Pltt�̃��C�t�T�C�N��
+// Texture / 4x4Texture / Plttのライフサイクル
 //
-// 1 GetRequiredSize�ŃT�C�Y�����߂�
-// 2 texKey�܂���plttKey���擾(VRAM�}�l�[�W���̃R�[�h�͌Ăяo���Ȃ�)
-// 3 SetTexKey�܂���SetPlttKey�ŃL�[���Z�b�g
-// 4 �e�N�X�`���^�p���b�g�f�[�^��VRAM�Ƀ��[�h
-// 5 �`�悵�������f�����\�[�X�Ƀe�N�X�`���^�p���b�g�f�[�^���o�C���h
-// 6 ���f�����\�[�X���g���ĕ`��
-//(7 ���f�����\�[�X���ʂ̃e�N�X�`���Z�b�g�𗘗p����ꍇ�̓A���o�C���h)
-// 8 �ǂ̃��f��������g�p���Ȃ��̂Ȃ烊���[�X(VRAM�}�l�[�W���̃R�[�h�͌Ăяo���Ȃ�)
+// 1 GetRequiredSizeでサイズを求める
+// 2 texKeyまたはplttKeyを取得(VRAMマネージャのコードは呼び出さない)
+// 3 SetTexKeyまたはSetPlttKeyでキーをセット
+// 4 テクスチャ／パレットデータをVRAMにロード
+// 5 描画したいモデルリソースにテクスチャ／パレットデータをバインド
+// 6 モデルリソースを使って描画
+//(7 モデルリソースが別のテクスチャセットを利用する場合はアンバインド)
+// 8 どのモデルからも使用しないのならリリース(VRAMマネージャのコードは呼び出さない)
 //
-// 4,5�͏��s��
+// 4,5は順不同
 //
 
 /*---------------------------------------------------------------------------*
     NNS_G3dTexGetRequiredSize
 
-    �e�N�X�`���u���b�N������4x4���k�e�N�X�`���ȊO�̃e�N�X�`���̃T�C�Y��Ԃ��܂�
+    テクスチャブロックが持つ4x4圧縮テクスチャ以外のテクスチャのサイズを返します
  *---------------------------------------------------------------------------*/
 u32
 NNS_G3dTexGetRequiredSize(const NNSG3dResTex* pTex)
@@ -478,7 +478,7 @@ NNS_G3dTexGetRequiredSize(const NNSG3dResTex* pTex)
 /*---------------------------------------------------------------------------*
     NNS_G3dTex4x4GetRequiredSize
 
-    �e�N�X�`���u���b�N������4x4���k�e�N�X�`���̃T�C�Y��Ԃ��܂�
+    テクスチャブロックが持つ4x4圧縮テクスチャのサイズを返します
  *---------------------------------------------------------------------------*/
 u32
 NNS_G3dTex4x4GetRequiredSize(const NNSG3dResTex* pTex)
@@ -499,7 +499,7 @@ NNS_G3dTex4x4GetRequiredSize(const NNSG3dResTex* pTex)
 /*---------------------------------------------------------------------------*
     NNS_G3dTexSetTexKey
 
-    �e�N�X�`���u���b�N���̃e�N�X�`���փe�N�X�`���L�[�̊��蓖�Ă��s���܂�
+    テクスチャブロック内のテクスチャへテクスチャキーの割り当てを行います
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dTexSetTexKey(NNSG3dResTex* pTex,
@@ -534,10 +534,10 @@ NNS_G3dTexSetTexKey(NNSG3dResTex* pTex,
 /*---------------------------------------------------------------------------*
     NNS_G3dTexLoad
 
-    pTex���̃e�N�X�`�����e�N�X�`���L�[�������ꏊ�Ƀ��[�h���܂��B
-    exec_begin_end��TRUE�Ɏw�肷��ƁA
-    ������VRAM�o���N�̐؂�ւ����s���܂��BFALSE�̏ꍇ�́A���[�U�[�����O�Ǝ����
-    VRAM�o���N�̐؂�ւ����s���K�v������܂��B
+    pTex内のテクスチャをテクスチャキーが示す場所にロードします。
+    exec_begin_endをTRUEに指定すると、
+    内部でVRAMバンクの切り替えを行います。FALSEの場合は、ユーザーが事前と事後に
+    VRAMバンクの切り替えを行う必要があります。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dTexLoad(NNSG3dResTex* pTex, BOOL exec_begin_end)
@@ -550,13 +550,13 @@ NNS_G3dTexLoad(NNSG3dResTex* pTex, BOOL exec_begin_end)
 
     if (exec_begin_end)
     {
-        // VRAM���o���N�؂�ւ����ă��C���������̃A�h���X��ԂɎ����Ă���B
+        // VRAMをバンク切り替えしてメインメモリのアドレス空間に持ってくる。
         GX_BeginLoadTex();
     }
 
     {
         //
-        // �ʏ�̃e�N�X�`�������[�h����
+        // 通常のテクスチャをロードする
         //
 
         u32 sz;
@@ -564,7 +564,7 @@ NNS_G3dTexLoad(NNSG3dResTex* pTex, BOOL exec_begin_end)
         u32 from;
 
         sz = (u32)pTex->texInfo.sizeTex << 3;
-        if (sz > 0) // �e�N�X�`���f�[�^�����݂��Ȃ��ꍇ��sz == 0�ɂȂ�B
+        if (sz > 0) // テクスチャデータが存在しない場合はsz == 0になる。
         {
             NNS_G3D_ASSERT(pTex->texInfo.vramKey != 0);
             NNS_G3D_ASSERTMSG(sz <= NNS_GfdGetTexKeySize(pTex->texInfo.vramKey),
@@ -582,7 +582,7 @@ NNS_G3dTexLoad(NNSG3dResTex* pTex, BOOL exec_begin_end)
 
     {
         //
-        // 4x4���k�e�N�X�`�������[�h����
+        // 4x4圧縮テクスチャをロードする
         //
 
         u32 sz;
@@ -592,7 +592,7 @@ NNS_G3dTexLoad(NNSG3dResTex* pTex, BOOL exec_begin_end)
 
         sz = (u32)pTex->tex4x4Info.sizeTex << 3;
 
-        if (sz > 0) // �e�N�X�`���f�[�^�����݂��Ȃ��ꍇ��sz == 0�ɂȂ�B
+        if (sz > 0) // テクスチャデータが存在しない場合はsz == 0になる。
         {
             NNS_G3D_ASSERT(pTex->tex4x4Info.sizeTex != 0);
             NNS_G3D_ASSERTMSG(NNS_GfdGetTexKey4x4Flag(pTex->tex4x4Info.vramKey),
@@ -614,7 +614,7 @@ NNS_G3dTexLoad(NNSG3dResTex* pTex, BOOL exec_begin_end)
 
     if (exec_begin_end)
     {
-        // �o���N�؂�ւ��������̂����ɖ߂�
+        // バンク切り替えしたものを元に戻す
         GX_EndLoadTex();
     }
 }
@@ -623,10 +623,10 @@ NNS_G3dTexLoad(NNSG3dResTex* pTex, BOOL exec_begin_end)
 /*---------------------------------------------------------------------------*
     NNS_G3dTexReleaseTexKey
 
-    �e�N�X�`���u���b�N���̃e�N�X�`���L�[���蓖�Ă��������܂��B
-    �L�[�͕Ԃ�l�Ƃ��ă��[�U�[�ɓn����܂��B
-    VRAM�̃e�N�X�`���̈悻�̂��̂̉���͍s���܂���B
-    ���[�U�[���L�[�𗘗p���ĉ������K�v������܂��B
+    テクスチャブロック内のテクスチャキー割り当てを解除します。
+    キーは返り値としてユーザーに渡されます。
+    VRAMのテクスチャ領域そのものの解放は行われません。
+    ユーザーがキーを利用して解放する必要があります。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dTexReleaseTexKey(NNSG3dResTex* pTex,
@@ -656,7 +656,7 @@ NNS_G3dTexReleaseTexKey(NNSG3dResTex* pTex,
 /*---------------------------------------------------------------------------*
     NNS_G3dPlttGetRequiredSize
 
-    �e�N�X�`���u���b�N�����p���b�g�̃T�C�Y��Ԃ��܂��B
+    テクスチャブロックが持つパレットのサイズを返します。
  *---------------------------------------------------------------------------*/
 u32
 NNS_G3dPlttGetRequiredSize(const NNSG3dResTex* pTex)
@@ -677,7 +677,7 @@ NNS_G3dPlttGetRequiredSize(const NNSG3dResTex* pTex)
 /*---------------------------------------------------------------------------*
     NNS_G3dPlttSetPlttKey
 
-    �e�N�X�`���u���b�N���̃p���b�g�փp���b�g�L�[�̊��蓖�Ă��s���܂��B
+    テクスチャブロック内のパレットへパレットキーの割り当てを行います。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPlttSetPlttKey(NNSG3dResTex* pTex, NNSG3dPlttKey plttKey)
@@ -696,10 +696,10 @@ NNS_G3dPlttSetPlttKey(NNSG3dResTex* pTex, NNSG3dPlttKey plttKey)
 /*---------------------------------------------------------------------------*
     NNS_G3dPlttLoad
 
-    pTex���̃p���b�g���p���b�g�L�[�������ꏊ�Ƀ��[�h���܂��B
-    exec_begin_end��TRUE���w�肷���
-    ������VRAM�o���N�̐؂�ւ����s���܂��BFALSE�̏ꍇ�́A���[�U�[�����O�Ǝ����
-    VRAM�o���N�̐؂�ւ����s���K�v������܂��B
+    pTex内のパレットをパレットキーが示す場所にロードします。
+    exec_begin_endにTRUEを指定すると
+    内部でVRAMバンクの切り替えを行います。FALSEの場合は、ユーザーが事前と事後に
+    VRAMバンクの切り替えを行う必要があります。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dPlttLoad(NNSG3dResTex* pTex, BOOL exec_begin_end)
@@ -710,7 +710,7 @@ NNS_G3dPlttLoad(NNSG3dResTex* pTex, BOOL exec_begin_end)
 
     if (exec_begin_end)
     {
-        // VRAM���o���N�؂�ւ����ă��C���������̃A�h���X��ԂɎ����Ă���B
+        // VRAMをバンク切り替えしてメインメモリのアドレス空間に持ってくる。
         GX_BeginLoadTexPltt();
     }
 
@@ -730,7 +730,7 @@ NNS_G3dPlttLoad(NNSG3dResTex* pTex, BOOL exec_begin_end)
 
     if (exec_begin_end)
     {
-        // �o���N�؂�ւ��������̂����ɖ߂�
+        // バンク切り替えしたものを元に戻す
         GX_EndLoadTexPltt();
     }
 }
@@ -739,10 +739,10 @@ NNS_G3dPlttLoad(NNSG3dResTex* pTex, BOOL exec_begin_end)
 /*---------------------------------------------------------------------------*
     NNS_G3dPlttReleasePlttKey
 
-    �e�N�X�`���u���b�N���̃p���b�g�u���b�N�ւ̃p���b�g�L�[���蓖�Ă��������܂��B
-    �L�[�͕Ԃ�l�Ƃ��ă��[�U�[�ɓn����܂��B
-    VRAM�̃p���b�g�̈悻�̂��̂̉���͍s���܂���B
-    ���[�U�[���L�[�𗘗p���ĉ������K�v������܂��B
+    テクスチャブロック内のパレットブロックへのパレットキー割り当てを解除します。
+    キーは返り値としてユーザーに渡されます。
+    VRAMのパレット領域そのものの解放は行われません。
+    ユーザーがキーを利用して解放する必要があります。
  *---------------------------------------------------------------------------*/
 NNSG3dPlttKey
 NNS_G3dPlttReleasePlttKey(NNSG3dResTex* pTex)
@@ -776,13 +776,13 @@ bindMdlTex_Internal_(NNSG3dResMat* pMat,
     if ((pTexData->texImageParam & REG_G3_TEXIMAGE_PARAM_TEXFMT_MASK) !=
                     (GX_TEXFMT_COMP4x4 << REG_G3_TEXIMAGE_PARAM_TEXFMT_SHIFT))
     {
-        // 4x4�ȊO�̃e�N�X�`��
+        // 4x4以外のテクスチャ
         vramOffset = NNS_GfdGetTexKeyAddr(pTex->texInfo.vramKey)
                             >> NNS_GFD_TEXKEY_ADDR_SHIFT;
     }
     else
     {
-        // 4x4�e�N�X�`��
+        // 4x4テクスチャ
         vramOffset = NNS_GfdGetTexKeyAddr(pTex->tex4x4Info.vramKey)
                             >> NNS_GFD_TEXKEY_ADDR_SHIFT;
     }
@@ -791,7 +791,7 @@ bindMdlTex_Internal_(NNSG3dResMat* pMat,
     {
         s32 w, h;
 
-        // �ematData�Ƀe�N�X�`�������Z�b�g�A�b�v���Ă����B
+        // 各matDataにテクスチャ情報をセットアップしていく。
         NNSG3dResMatData* matData = NNS_G3dGetMatDataByIdx(pMat, *(base + j));
 
         matData->texImageParam |= (pTexData->texImageParam + vramOffset);
@@ -806,7 +806,7 @@ bindMdlTex_Internal_(NNSG3dResMat* pMat,
                         FX32_ONE;
     }
 
-    // �o�C���h��Ԃɂ���B
+    // バインド状態にする。
     pBindData->flag |= 1;
 }
 
@@ -814,23 +814,23 @@ static void
 releaseMdlTex_Internal_(NNSG3dResMat* pMat,
                         NNSG3dResDictTexToMatIdxData* pData)
 {
-    // �o�C���h��Ԃ̏ꍇ�����[�X����
+    // バインド状態の場合リリースする
     u8* base = (u8*)pMat + pData->offset;
     u32 j;
 
     for (j = 0; j < pData->numIdx; ++j)
     {
-        // �ematData�Ƀe�N�X�`�������Z�b�g�A�b�v���Ă����B
+        // 各matDataにテクスチャ情報をセットアップしていく。
         NNSG3dResMatData* matData = NNS_G3dGetMatDataByIdx(pMat, *(base + j));
 
-        // flip��repeat��texgen���c�����Z�b�g
+        // flipとrepeatとtexgenを残しリセット
         matData->texImageParam &= REG_G3_TEXIMAGE_PARAM_TGEN_MASK |
                                   REG_G3_TEXIMAGE_PARAM_FT_MASK | REG_G3_TEXIMAGE_PARAM_FS_MASK |
                                   REG_G3_TEXIMAGE_PARAM_RT_MASK | REG_G3_TEXIMAGE_PARAM_RS_MASK;
         matData->magH = matData->magW = FX32_ONE;
     }
 
-    // �A���o�C���h��Ԃɂ���
+    // アンバインド状態にする
     pData->flag &= ~1;
 }
 
@@ -838,8 +838,8 @@ releaseMdlTex_Internal_(NNSG3dResMat* pMat,
 /*---------------------------------------------------------------------------*
     NNS_G3dBindMdlTex
 
-    ���f�����ŁA�e�N�X�`�����Ɋ֘A�t�����Ă���}�e���A���̃e�N�X�`���G���g����
-    �e�N�X�`���u���b�N���̓����̃e�N�X�`���������e�N�X�`���f�[�^�Ɋ֘A�t���܂��B
+    モデル内で、テクスチャ名に関連付けられているマテリアルのテクスチャエントリを
+    テクスチャブロック内の同名のテクスチャ名を持つテクスチャデータに関連付けます。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dBindMdlTex(NNSG3dResMdl* pMdl, const NNSG3dResTex* pTex)
@@ -855,24 +855,24 @@ NNS_G3dBindMdlTex(NNSG3dResMdl* pMdl, const NNSG3dResTex* pTex)
     mat     = NNS_G3dGetMat(pMdl);
     dictTex = (NNSG3dResDict*)((u8*)mat + mat->ofsDictTexToMatList);
     
-    // ���f�����\�[�X�̃e�N�X�`����->�}�e���A���C���f�b�N�X�񎫏�����
-    // ���ꂼ��ɑ΂��ă��[�v����
+    // モデルリソースのテクスチャ名->マテリアルインデックス列辞書内の
+    // それぞれに対してループを回す
     for (i = 0; i < dictTex->numEntry; ++i)
     {
         const NNSG3dResName* name = NNS_G3dGetResNameByIdx(dictTex, i);
 
-        // �e�N�X�`���u���b�N���̓����G���g��������
+        // テクスチャブロック内の同名エントリを検索
         const NNSG3dResDictTexData* texData = NNS_G3dGetTexDataByName(pTex, name);
 
         if (texData)
         {
-            // ���݂��Ă����i�Ԗڂ̃e�N�X�`���Ɋւ���o�C���h�f�[�^���擾
+            // 存在していればi番目のテクスチャに関するバインドデータを取得
             NNSG3dResDictTexToMatIdxData* data =
                 (NNSG3dResDictTexToMatIdxData*) NNS_G3dGetResDataByIdx(dictTex, i);
         
             if (!(data->flag & 1))
             {
-                // �o�C���h��ԂłȂ��ꍇ�A�o�C���h����
+                // バインド状態でない場合、バインドする
                 bindMdlTex_Internal_(mat, data, pTex, texData);
             }
         }
@@ -888,9 +888,9 @@ NNS_G3dBindMdlTex(NNSG3dResMdl* pMdl, const NNSG3dResTex* pTex)
 /*---------------------------------------------------------------------------*
     NNS_G3dBindMdlTexEx
 
-    ���f�����ŁApResName�Ƃ����e�N�X�`�����Ɋ֘A�t�����Ă���}�e���A����
-    �e�N�X�`���G���g�����e�N�X�`���u���b�N���̖��OpResName�����e�N�X�`��
-    �Ɋ֘A�t���܂��B
+    モデル内で、pResNameというテクスチャ名に関連付けられているマテリアルの
+    テクスチャエントリをテクスチャブロック内の名前pResNameを持つテクスチャ
+    に関連付けます。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dBindMdlTexEx(NNSG3dResMdl* pMdl,
@@ -909,19 +909,19 @@ NNS_G3dBindMdlTexEx(NNSG3dResMdl* pMdl,
     mat     = NNS_G3dGetMat(pMdl);
     dictTex = (NNSG3dResDict*)((u8*)mat + mat->ofsDictTexToMatList);
 
-    // �e�N�X�`���u���b�N���̎���������
+    // テクスチャブロック内の辞書を検索
     texData = NNS_G3dGetTexDataByName(pTex, pResName);
 
     if (texData)
     {
-        // ���f���f�[�^���̃e�N�X�`��->�}�e���A���C���f�b�N�X��̎���������
+        // モデルデータ内のテクスチャ->マテリアルインデックス列の辞書を検索
         data = (NNSG3dResDictTexToMatIdxData*)
                     NNS_G3dGetResDataByName(dictTex, pResName);
 
         if (data && !(data->flag & 1))
         {
-            // ���f���ƃe�N�X�`���̗�����pResName�ɑΉ�����f�[�^�������āA
-            // �o�C���h��ԂłȂ��ꍇ�A�o�C���h����
+            // モデルとテクスチャの両方にpResNameに対応するデータがあって、
+            // バインド状態でない場合、バインドする
             bindMdlTex_Internal_(mat, data, pTex, texData);
             return TRUE;
         }
@@ -933,9 +933,9 @@ NNS_G3dBindMdlTexEx(NNSG3dResMdl* pMdl,
 /*---------------------------------------------------------------------------*
     NNS_G3dForceBindMdlTex
 
-    ���f�����Ńe�N�X�`����->�}�e���A�����X�g������texToMatListIdx�Ԗڂ̃G���g��
-    �Ɋi�[����Ă���}�e���A���̃e�N�X�`���G���g���ƃe�N�X�`���u���b�N����
-    texIdx�Ԗڂ̃e�N�X�`���ɋ����I�Ɋ֘A�t���܂��B
+    モデル内でテクスチャ名->マテリアルリスト辞書のtexToMatListIdx番目のエントリ
+    に格納されているマテリアルのテクスチャエントリとテクスチャブロック内の
+    texIdx番目のテクスチャに強制的に関連付けます。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dForceBindMdlTex(NNSG3dResMdl* pMdl,
@@ -954,16 +954,16 @@ NNS_G3dForceBindMdlTex(NNSG3dResMdl* pMdl,
     mat     = NNS_G3dGetMat(pMdl);
     dictTex = (NNSG3dResDict*)((u8*)mat + mat->ofsDictTexToMatList);
 
-    // �e�N�X�`���u���b�N���̃e�N�X�`���f�[�^���C���f�b�N�X�����Ŏ擾
+    // テクスチャブロック内のテクスチャデータをインデックス引きで取得
     texData = NNS_G3dGetTexDataByIdx(pTex, texIdx);
 
-    // ���f���f�[�^���̃e�N�X�`��->�}�e���A���C���f�b�N�X��̎���������
+    // モデルデータ内のテクスチャ->マテリアルインデックス列の辞書を検索
     data = (NNSG3dResDictTexToMatIdxData*)
                 NNS_G3dGetResDataByIdx(dictTex, texToMatListIdx);
 
     if (data)
     {
-        // pResName�̖��O�����e�N�X�`�����}�e���A���ɑ��݂���΋����I�Ƀo�C���h����B
+        // pResNameの名前をもつテクスチャがマテリアルに存在すれば強制的にバインドする。
         bindMdlTex_Internal_(mat, data, pTex, texData);
         return TRUE;
     }
@@ -974,8 +974,8 @@ NNS_G3dForceBindMdlTex(NNSG3dResMdl* pMdl,
 /*---------------------------------------------------------------------------*
     NNS_G3dReleaseMdlTex
 
-    ���f�����ŁA�e�N�X�`���Ɋ֘A�t�����Ă���}�e���A���̃e�N�X�`���G���g��
-    �̊֘A�t�����������܂��B
+    モデル内で、テクスチャに関連付けられているマテリアルのテクスチャエントリ
+    の関連付けを解除します。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dReleaseMdlTex(NNSG3dResMdl* pMdl)
@@ -989,8 +989,8 @@ NNS_G3dReleaseMdlTex(NNSG3dResMdl* pMdl)
     mat      = NNS_G3dGetMat(pMdl);
     dictTex  = (NNSG3dResDict*)((u8*)mat + mat->ofsDictTexToMatList);
     
-    // ���f�����\�[�X�̃e�N�X�`����->�}�e���A���C���f�b�N�X�񎫏�����
-    // ���ꂼ��ɑ΂��ă��[�v����
+    // モデルリソースのテクスチャ名->マテリアルインデックス列辞書内の
+    // それぞれに対してループを回す
     for (i = 0; i < dictTex->numEntry; ++i)
     {
         NNSG3dResDictTexToMatIdxData* data =
@@ -998,7 +998,7 @@ NNS_G3dReleaseMdlTex(NNSG3dResMdl* pMdl)
 
         if (data->flag & 1)
         {
-            // �o�C���h����Ă����ԂȂ�΃����[�X
+            // バインドされている状態ならばリリース
             releaseMdlTex_Internal_(mat, data);
         }
     }
@@ -1008,8 +1008,8 @@ NNS_G3dReleaseMdlTex(NNSG3dResMdl* pMdl)
 /*---------------------------------------------------------------------------*
     NNS_G3dReleaseMdlTexEx
 
-    ���f�����ŁA���OpResName�Ƃ������O�����e�N�X�`���Ɋ֘A�t�����Ă���
-    �}�e���A���̃e�N�X�`���G���g���̊֘A�t�����������܂��B
+    モデル内で、名前pResNameという名前をもつテクスチャに関連付けられている
+    マテリアルのテクスチャエントリの関連付けを解除します。
  *---------------------------------------------------------------------------*/
 BOOL NNS_G3dReleaseMdlTexEx(NNSG3dResMdl* pMdl, const NNSG3dResName* pResName)
 {
@@ -1026,7 +1026,7 @@ BOOL NNS_G3dReleaseMdlTexEx(NNSG3dResMdl* pMdl, const NNSG3dResName* pResName)
 
     if (data && (data->flag & 1))
     {
-        // �o�C���h����Ă����ԂȂ�΃����[�X
+        // バインドされている状態ならばリリース
         releaseMdlTex_Internal_(mat, data);
         return TRUE;
     }
@@ -1040,7 +1040,7 @@ bindMdlPltt_Internal_(NNSG3dResMat* pMat,
                       const NNSG3dResTex* pTex,
                       const NNSG3dResDictPlttData* pPlttData)
 {
-    // �o�C���h��ԂłȂ��ꍇ�A�o�C���h����
+    // バインド状態でない場合、バインドする
     u8* base = (u8*)pMat + pBindData->offset;
     u16 plttBase = pPlttData->offset;
     u16 vramOffset = (u16)(NNS_GfdGetTexKeyAddr(pTex->plttInfo.vramKey) >> NNS_GFD_TEXKEY_ADDR_SHIFT);
@@ -1049,23 +1049,23 @@ bindMdlPltt_Internal_(NNSG3dResMat* pMat,
     NNS_G3D_ASSERTMSG((pTex->plttInfo.vramKey != 0 || pTex->plttInfo.sizePltt == 0),
                        "No palette key assigned");
     
-    // 4colors�Ȃ�r�b�g�������Ă���
+    // 4colorsならビットが立っている
     if (!(pPlttData->flag & 1))
     {
-        // 4colors�ȊO�̏ꍇ��4bit�V�t�g�ɂȂ�B
-        // 4colors�̏ꍇ��3bit�V�t�g�Ȃ̂ł��̂܂�
+        // 4colors以外の場合は4bitシフトになる。
+        // 4colorsの場合は3bitシフトなのでそのまま
         plttBase >>= 1;
         vramOffset >>= 1;
     }
 
     for (j = 0; j < pBindData->numIdx; ++j)
     {
-        // �ematData�Ƀp���b�g�����Z�b�g�A�b�v���Ă����B
+        // 各matDataにパレット情報をセットアップしていく。
         NNSG3dResMatData* matData = NNS_G3dGetMatDataByIdx(pMat, *(base + j));
         matData->texPlttBase = (u16)(plttBase + vramOffset);
     }
 
-    // �o�C���h��Ԃɂ���
+    // バインド状態にする
     pBindData->flag |= 1;
 }
 
@@ -1073,8 +1073,8 @@ bindMdlPltt_Internal_(NNSG3dResMat* pMat,
 /*---------------------------------------------------------------------------*
     NNS_G3dBindMdlPltt
 
-    ���f�����ŁA�p���b�g���Ɋ֘A�t�����Ă���}�e���A���̃p���b�g�G���g����
-    �e�N�X�`���u���b�N���̓����̃p���b�g�������p���b�g�f�[�^�Ɋ֘A�t���܂��B
+    モデル内で、パレット名に関連付けられているマテリアルのパレットエントリを
+    テクスチャブロック内の同名のパレット名を持つパレットデータに関連付けます。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dBindMdlPltt(NNSG3dResMdl* pMdl, const NNSG3dResTex* pTex)
@@ -1092,15 +1092,15 @@ NNS_G3dBindMdlPltt(NNSG3dResMdl* pMdl, const NNSG3dResTex* pTex)
 
     for (i = 0; i < dictPltt->numEntry; ++i)
     {
-        // ���f�����̃p���b�g��->�}�e���A���C���f�b�N�X�񎫏�����p���b�g�����Ƃ�
+        // モデル内のパレット名->マテリアルインデックス列辞書からパレット名をとる
         const NNSG3dResName* name = NNS_G3dGetResNameByIdx(dictPltt, i);
         
-        // �e�N�X�`���u���b�N����p���b�g���ɑΉ�����f�[�^�t�B�[���h�𓾂�
+        // テクスチャブロックからパレット名に対応するデータフィールドを得る
         const NNSG3dResDictPlttData* plttData = NNS_G3dGetPlttDataByName(pTex, name);
 
         if (plttData)
         {
-            // �e�N�X�`���u���b�N�Ƀp���b�g��������
+            // テクスチャブロックにパレット名が存在
             NNSG3dResDictPlttToMatIdxData* data;
             data = (NNSG3dResDictPlttToMatIdxData*) NNS_G3dGetResDataByIdx(dictPltt, i);
 
@@ -1121,9 +1121,9 @@ NNS_G3dBindMdlPltt(NNSG3dResMdl* pMdl, const NNSG3dResTex* pTex)
 /*---------------------------------------------------------------------------*
     NNS_G3dBindMdlPlttEx
 
-    ���f�����ŁApResName�Ƃ����p���b�g���Ɋ֘A�t�����Ă���}�e���A����
-    �p���b�g�G���g�����e�N�X�`���u���b�N���̖��OpResName�����p���b�g
-    �Ɋ֘A�t���܂��B
+    モデル内で、pResNameというパレット名に関連付けられているマテリアルの
+    パレットエントリをテクスチャブロック内の名前pResNameを持つパレット
+    に関連付けます。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dBindMdlPlttEx(NNSG3dResMdl* pMdl,
@@ -1142,12 +1142,12 @@ NNS_G3dBindMdlPlttEx(NNSG3dResMdl* pMdl,
     mat      = NNS_G3dGetMat(pMdl);
     dictPltt = (NNSG3dResDict*)((u8*)mat + mat->ofsDictPlttToMatList);
 
-    // �e�N�X�`���u���b�N����p���b�g���ɑΉ�����f�[�^�t�B�[���h�𓾂�
+    // テクスチャブロックからパレット名に対応するデータフィールドを得る
     plttData = NNS_G3dGetPlttDataByName(pTex, pResName);
 
     if (plttData)
     {
-        // �e�N�X�`���u���b�N�Ƀp���b�g��������
+        // テクスチャブロックにパレット名が存在
         data = (NNSG3dResDictPlttToMatIdxData*)
                     NNS_G3dGetResDataByName(dictPltt, pResName);
         
@@ -1164,9 +1164,9 @@ NNS_G3dBindMdlPlttEx(NNSG3dResMdl* pMdl,
 /*---------------------------------------------------------------------------*
     NNS_G3dForceBindMdlPltt
 
-    ���f�����Ńp���b�g��->�}�e���A�����X�g������plttToMatListIdx�Ԗڂ̃G���g��
-    �Ɋi�[����Ă���}�e���A���̃p���b�g�G���g���ƃe�N�X�`���u���b�N����
-    plttIdx�Ԗڂ̃p���b�g�ɋ����I�Ɋ֘A�t���܂��B
+    モデル内でパレット名->マテリアルリスト辞書のplttToMatListIdx番目のエントリ
+    に格納されているマテリアルのパレットエントリとテクスチャブロック内の
+    plttIdx番目のパレットに強制的に関連付けます。
  *---------------------------------------------------------------------------*/
 BOOL NNS_G3dForceBindMdlPltt(NNSG3dResMdl* pMdl,
                              const NNSG3dResTex* pTex,
@@ -1201,8 +1201,8 @@ BOOL NNS_G3dForceBindMdlPltt(NNSG3dResMdl* pMdl,
 /*---------------------------------------------------------------------------*
     NNS_G3dReleaseMdlPltt
 
-    ���f�����ŁA�p���b�g�Ɋ֘A�t�����Ă���}�e���A���̃p���b�g�G���g��
-    �̊֘A�t�����������܂��B
+    モデル内で、パレットに関連付けられているマテリアルのパレットエントリ
+    の関連付けを解除します。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dReleaseMdlPltt(NNSG3dResMdl* pMdl)
@@ -1222,20 +1222,20 @@ NNS_G3dReleaseMdlPltt(NNSG3dResMdl* pMdl)
          
         if (data->flag & 1)
         {
-            // �o�C���h��Ԃ̏ꍇ�����[�X����
+            // バインド状態の場合リリースする
 #if 0
             u32 j;
-            // �t���O���삾���łn�j�Ȃ̂Ŏ��s���Ȃ�
+            // フラグ操作だけでＯＫなので実行しない
             u8* base = (u8*)mat + data->offset;
 
             for (j = 0; j < data->numIdx; ++j)
             {
-                // �ematData�����Z�b�g����.
+                // 各matDataをリセットする.
                 NNSG3dResMatData* matData = NNS_G3dGetMatDataByIdx(mat, *(base + j));
                 matData->texPlttBase = 0;
             }
 #endif
-            // �A���o�C���h�ɂ���B
+            // アンバインドにする。
             data->flag &= ~1;
         }
     }
@@ -1245,8 +1245,8 @@ NNS_G3dReleaseMdlPltt(NNSG3dResMdl* pMdl)
 /*---------------------------------------------------------------------------*
     NNS_G3dReleaseMdlPlttEx
 
-    ���f�����ŁA���OpResName�Ƃ������O�����p���b�g�Ɋ֘A�t�����Ă���
-    �}�e���A���̃p���b�g�G���g���̊֘A�t�����������܂��B
+    モデル内で、名前pResNameという名前をもつパレットに関連付けられている
+    マテリアルのパレットエントリの関連付けを解除します。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dReleaseMdlPlttEx(NNSG3dResMdl* pMdl, const NNSG3dResName* pResName)
@@ -1265,7 +1265,7 @@ NNS_G3dReleaseMdlPlttEx(NNSG3dResMdl* pMdl, const NNSG3dResName* pResName)
 
     if (data && (data->flag & 1))
     {
-        // �o�C���h��Ԃ̏ꍇ�����[�X����
+        // バインド状態の場合リリースする
         data->flag &= ~1;
         return TRUE;
     }
@@ -1276,8 +1276,8 @@ NNS_G3dReleaseMdlPlttEx(NNSG3dResMdl* pMdl, const NNSG3dResName* pResName)
 /*---------------------------------------------------------------------------*
     NNS_G3dBindMdlSet
 
-    �e���f�����e�N�X�`���^�p���b�g�Ɋ֘A�t���܂��B
-    �e�N�X�`����TexKey, PlttKey���Z�b�g����Ă���K�v������܂��B
+    各モデルをテクスチャ／パレットに関連付けます。
+    テクスチャはTexKey, PlttKeyがセットされている必要があります。
  *---------------------------------------------------------------------------*/
 BOOL
 NNS_G3dBindMdlSet(NNSG3dResMdlSet* pMdlSet, const NNSG3dResTex* pTex)
@@ -1303,7 +1303,7 @@ NNS_G3dBindMdlSet(NNSG3dResMdlSet* pMdlSet, const NNSG3dResTex* pTex)
 /*---------------------------------------------------------------------------*
     NNS_G3dReleaseMdlSet
 
-    �e���f������e�N�X�`���^�p���b�g�ւ̊֘A�t�����O���܂��B
+    各モデルからテクスチャ／パレットへの関連付けを外します。
  *---------------------------------------------------------------------------*/
 void
 NNS_G3dReleaseMdlSet(NNSG3dResMdlSet* pMdlSet)

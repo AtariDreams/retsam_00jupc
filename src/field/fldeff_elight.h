@@ -1,7 +1,7 @@
 //==============================================================================
 /**
  * @file	fldeff_elight.h
- * @brief	フィールドOBJ電灯
+ * @brief	繝輔ぅ繝ｼ繝ｫ繝碓BJ髮ｻ轣ｯ
  * @author	kagaya
  * @data	05.07.13
  */
@@ -22,7 +22,7 @@
 typedef struct _TAG_FE_ELIGHT * FE_ELIGHT_PTR;
 
 //==============================================================================
-//	外部参照
+//	螟夜Κ蜿ら�ｧ
 //==============================================================================
 extern FE_ELIGHT_PTR FE_ELight_Init( FE_SYS_PTR fes, int heap_id );
 extern void FE_ELight_Delete( FE_ELIGHT_PTR el );

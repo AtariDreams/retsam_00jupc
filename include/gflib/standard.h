@@ -1,6 +1,6 @@
 /**
  *	@file	standard.h
- *	@brief	•W€ƒwƒbƒ_ƒCƒ“ƒNƒ‹[ƒh
+ *	@brief	æ¨™æº–ãƒ˜ãƒƒãƒ€ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
  *	@author	GAME FREAK INC.
  *	@date	2005/01/25
  */

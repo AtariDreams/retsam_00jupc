@@ -373,7 +373,7 @@
 	</dialog>
 
 	<output default="デフォルト">
-		<target japanese="デフォルト" english="default" endian="big" encoding="Shift_JIS" letter-list-encoding="Shift_JIS" header-file-encoding="Shift_JIS" language="日本語">
+		<target japanese="デフォルト" english="default" endian="big" encoding="UTF-8" letter-list-encoding="UTF-8" header-file-encoding="UTF-8" language="日本語">
 			<struct name="JMSMesgEntry" id="" message="mesgOffset">
 			</struct>
 			<entry sort="id" id-block="no" flowlabel-block="no"/>

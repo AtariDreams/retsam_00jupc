@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_241.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			241�@���肪�o�����Ƃ��Ă���U���Z���P�D�T�{�̈З͂ŏo���B�����ɍU���ł���ΐ����B�ł��Ȃ��ꍇ���s�B
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			241　相手が出そうとしている攻撃技を１．５倍の威力で出す。さきに攻撃できれば成功。できない場合失敗。
  *
  *@author	HisashiSogabe
  *@data		2006.02.14
@@ -15,7 +15,7 @@
 	.include	"waza_seq_def.h"
 
 BE_241:
-	//�o����Z��I�����ċZ�̃V�[�P���X�փW�����v
+	//出せる技を選択して技のシーケンスへジャンプ
 	SAKIDORI		Umakukimaran
 	ATTACK_MESSAGE
 	SERVER_WAIT

@@ -13,16 +13,16 @@
 #
 # $Log: commondefs,v $
 # Revision 1.4  2005/08/19 12:28:20  yasu
-# add-ins ‚ÌƒTƒ|[ƒg
+# add-ins ã®ã‚µãƒãƒ¼ãƒˆ
 #
 # Revision 1.3  2005/06/28 03:56:46  yasu
-# NITROWIFI_PRIVATE/NOSUPPORT ƒtƒ‰ƒO‚Ì’Ç‰Á
+# NITROWIFI_PRIVATE/NOSUPPORT ãƒ•ãƒ©ã‚°ã®è¿½åŠ 
 #
 # Revision 1.2  2005/06/24 13:15:53  yasu
-# commondefs.utest ‚È‚Ç‚ğíœ
+# commondefs.utest ãªã©ã‚’å‰Šé™¤
 #
 # Revision 1.1  2005/06/23 11:12:36  yasu
-# make ƒ‹[ƒ‹‚ğ‚Ü‚Æ‚ß‚½ƒtƒ@ƒCƒ‹‚Æ‚µ‚Äì¬
+# make ãƒ«ãƒ¼ãƒ«ã‚’ã¾ã¨ã‚ãŸãƒ•ã‚¡ã‚¤ãƒ«ã¨ã—ã¦ä½œæˆ
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------

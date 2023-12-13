@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	demo_trade.c
- * @brief	ƒ|ƒPƒ‚ƒ“ŒğŠ·ƒfƒ‚iƒƒCƒ“j
+ * @brief	ãƒã‚±ãƒ¢ãƒ³äº¤æ›ãƒ‡ãƒ¢ï¼ˆãƒ¡ã‚¤ãƒ³ï¼‰
  * @author	taya
  * @date	2006.04.07
  */
@@ -46,7 +46,7 @@ enum {
 
 //-------------------------------------------------
 /**
- *	Šeí’è”
+ *	å„ç¨®å®šæ•°
  */
 //-------------------------------------------------
 enum {
@@ -61,7 +61,7 @@ enum {
 
 //-------------------------------------------------
 /**
- *	ƒƒCƒ“ƒ[ƒN
+ *	ãƒ¡ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯
  */
 //-------------------------------------------------
 struct _DEMO_TRADE_WORK {
@@ -88,7 +88,7 @@ struct _DEMO_TRADE_WORK {
 
 //-------------------------------------------------
 /**
- *	ŠeƒV[ƒ“‚Ì‰Šú‰»EƒƒCƒ“EI—¹ŠÖ”ƒe[ƒuƒ‹
+ *	å„ã‚·ãƒ¼ãƒ³ã®åˆæœŸåŒ–ãƒ»ãƒ¡ã‚¤ãƒ³ãƒ»çµ‚äº†é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //-------------------------------------------------
 typedef void* (*pSceneInitProc)(DEMO_TRADE_WORK*);
@@ -130,7 +130,7 @@ static void IRQ_FreeReqFlush( void );
 
 //------------------------------------------------------------------
 /**
- * ŒğŠ·ƒfƒ‚PROC‰Šú‰»ˆ—
+ * äº¤æ›ãƒ‡ãƒ¢PROCåˆæœŸåŒ–å‡¦ç†
  *
  * @param   proc		
  * @param   seq		
@@ -149,8 +149,8 @@ PROC_RESULT TradeDemoProc_Init( PROC * proc, int * seq )
 
 		IRQ_FreeReqInit();
 
-		//ƒTƒEƒ“ƒhƒf[ƒ^ƒ[ƒh
-		Snd_DataSetByScene( SND_SCENE_TRADE, SEQ_DP_TRADE, 1 );	//ŒğŠ·ƒfƒ‚‹ÈÄ¶
+		//ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
+		Snd_DataSetByScene( SND_SCENE_TRADE, SEQ_DP_TRADE, 1 );	//äº¤æ›ãƒ‡ãƒ¢æ›²å†ç”Ÿ
 
 		wk = PROC_AllocWork(proc, sizeof(DEMO_TRADE_WORK), HEAPID_DEMO_TRADE_MAIN);
 
@@ -193,7 +193,7 @@ PROC_RESULT TradeDemoProc_Init( PROC * proc, int * seq )
 			wk->sceneWork = NULL;
 
 			sys_VBlankFuncChange( NULL, NULL );
-			sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+			sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 			GF_Disp_GX_VisibleControlInit();
 			GF_Disp_GXS_VisibleControlInit();
 			GX_SetVisiblePlane( 0 );
@@ -209,7 +209,7 @@ PROC_RESULT TradeDemoProc_Init( PROC * proc, int * seq )
 	return PROC_RES_CONTINUE;
 }
 
-// ”½“]•\¦‚µ‚Ä—Ç‚¢ƒ|ƒPƒ‚ƒ“‚©ƒ`ƒFƒbƒN
+// åè»¢è¡¨ç¤ºã—ã¦è‰¯ã„ãƒã‚±ãƒ¢ãƒ³ã‹ãƒã‚§ãƒƒã‚¯
 static BOOL check_reverse_ok( POKEMON_PASO_PARAM* ppp )
 {
 	int monsno = PokePasoParaGet( ppp, ID_PARA_monsno, NULL );
@@ -219,7 +219,7 @@ static BOOL check_reverse_ok( POKEMON_PASO_PARAM* ppp )
 
 //------------------------------------------------------------------
 /**
- * ŒğŠ·ƒfƒ‚PROCI—¹ˆ—
+ * äº¤æ›ãƒ‡ãƒ¢PROCçµ‚äº†å‡¦ç†
  *
  * @param   proc		
  * @param   seq		
@@ -270,7 +270,7 @@ PROC_RESULT TradeDemoProc_Quit( PROC * proc, int * seq )
 
 //------------------------------------------------------------------
 /**
- * ŒğŠ·ƒfƒ‚PROCƒƒCƒ“ˆ—
+ * äº¤æ›ãƒ‡ãƒ¢PROCãƒ¡ã‚¤ãƒ³å‡¦ç†
  *
  * @param   proc		
  * @param   seq		
@@ -340,7 +340,7 @@ PROC_RESULT TradeDemoProc_Main( PROC * proc, int * seq )
 			OS_TPrintf("SceneChangeB : %d\n", wk->scene);
 		}
 
-	// Š„‚è‚İ’†‚Éó‚¯•t‚¯‚½ƒƒ‚ƒŠ‰ğ•úƒŠƒNƒGƒXƒg‚ğ‚±‚±‚Åˆ—‚·‚é
+	// å‰²ã‚Šè¾¼ã¿ä¸­ã«å—ã‘ä»˜ã‘ãŸãƒ¡ãƒ¢ãƒªè§£æ”¾ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’ã“ã“ã§å‡¦ç†ã™ã‚‹
 		IRQ_FreeReqFlush();
 
 		return PROC_RES_CONTINUE;
@@ -360,7 +360,7 @@ static void TradeDemo_VBlank(TCB_PTR tcb, void* wk_adrs)
 	DEMO_TRADE_WORK* wk = wk_adrs;
 
 	CLACT_Draw( wk->actSet );
-	REND_OAMTrans();		// ƒŒƒ“ƒ_ƒ‰‹¤—LOAMƒ}ƒl[ƒWƒƒVram“]‘—
+	REND_OAMTrans();		// ãƒ¬ãƒ³ãƒ€ãƒ©å…±æœ‰OAMãƒãƒãƒ¼ã‚¸ãƒ£Vramè»¢é€
 	OS_SetIrqCheckFlag( OS_IE_V_BLANK );
 }
 
@@ -368,7 +368,7 @@ static void TradeDemo_VBlank(TCB_PTR tcb, void* wk_adrs)
 
 
 //======================================================================================
-// “d”gƒGƒtƒFƒNƒgƒ^ƒXƒN
+// é›»æ³¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚¿ã‚¹ã‚¯
 //======================================================================================
 
 
@@ -409,13 +409,13 @@ typedef struct {
 
 //------------------------------------------------------------------
 /**
- * “d”gƒpƒŒƒbƒgƒAƒjƒŠJn
- *iŠJn‘O‚ÉA³‚µ‚­VRAMƒoƒ“ƒNİ’è‚ğ‚µ‚Ä‚¨‚­•K—v‚ª‚ ‚éj
- *iƒƒCƒ“AƒTƒu‚Æ‚àBG3‚ğŠg’£ƒAƒtƒBƒ“256x16ƒpƒŒƒbƒgƒ‚[ƒh‚Éİ’èj
+ * é›»æ³¢ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡é–‹å§‹
+ *ï¼ˆé–‹å§‹å‰ã«ã€æ­£ã—ãVRAMãƒãƒ³ã‚¯è¨­å®šã‚’ã—ã¦ãŠãå¿…è¦ãŒã‚ã‚‹ï¼‰
+ *ï¼ˆãƒ¡ã‚¤ãƒ³ã€ã‚µãƒ–ã¨ã‚‚BG3ã‚’æ‹¡å¼µã‚¢ãƒ•ã‚£ãƒ³256x16ãƒ‘ãƒ¬ãƒƒãƒˆãƒ¢ãƒ¼ãƒ‰ã«è¨­å®šï¼‰
  *
- * @param	BOOL*		‰Ò“­’†‚ÍTRUEAI—¹Œã‚ÍFALSE‚ğƒZƒbƒg‚·‚é
+ * @param	BOOL*		ç¨¼åƒä¸­ã¯TRUEã€çµ‚äº†å¾Œã¯FALSEã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @retval  DT_WAVE_PALANM_CTRL*	ƒpƒŒƒbƒgƒAƒjƒƒRƒ“ƒgƒ[ƒ‹ƒ[ƒN
+ * @retval  DT_WAVE_PALANM_CTRL*	ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
  */
 //------------------------------------------------------------------
 DT_WAVE_PALANM_CTRL* DT_WavePalAnm_Start( BOOL* runFlag, int direction )
@@ -463,9 +463,9 @@ DT_WAVE_PALANM_CTRL* DT_WavePalAnm_Start( BOOL* runFlag, int direction )
 }
 //------------------------------------------------------------------
 /**
- * “d”gƒpƒŒƒbƒgƒAƒjƒI—¹ƒŠƒNƒGƒXƒgi™X‚ÉI—¹j
+ * é›»æ³¢ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡çµ‚äº†ãƒªã‚¯ã‚¨ã‚¹ãƒˆï¼ˆå¾ã€…ã«çµ‚äº†ï¼‰
  *
- * @param   cwk		ƒpƒŒƒbƒgƒAƒjƒƒRƒ“ƒgƒ[ƒ‹ƒ[ƒN
+ * @param   cwk		ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
  *
  */
 //------------------------------------------------------------------
@@ -479,9 +479,9 @@ void DT_WavePalAnm_StopReq( DT_WAVE_PALANM_CTRL* cwk )
 }
 //------------------------------------------------------------------
 /**
- * “d”gƒpƒŒƒbƒgƒAƒjƒ‹­§I—¹
+ * é›»æ³¢ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡å¼·åˆ¶çµ‚äº†
  *
- * @param   cwk		ƒpƒŒƒbƒgƒAƒjƒƒRƒ“ƒgƒ[ƒ‹ƒ[ƒN
+ * @param   cwk		ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ¯ãƒ¼ã‚¯
  *
  */
 //------------------------------------------------------------------
@@ -506,7 +506,7 @@ void DT_WavePalAnm_Quit( DT_WAVE_PALANM_CTRL* cwk )
 
 //------------------------------------------------------------------
 /**
- * “d”gƒpƒŒƒbƒgƒAƒjƒ
+ * é›»æ³¢ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
  *
  * @param   tcb		
  * @param   wk_adrs		
@@ -663,12 +663,12 @@ static void WavePalAnmTask(TCB_PTR tcb, void* wk_adrs)
 }
 
 //======================================================================================
-// DSŠgkƒGƒtƒFƒNƒg
+// DSæ‹¡ç¸®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //======================================================================================
 
 //--------------------------------------------------------------
 /**
- *	DSƒCƒ[ƒWŠgkƒGƒtƒFƒNƒgƒ[ƒN
+ *	DSã‚¤ãƒ¡ãƒ¼ã‚¸æ‹¡ç¸®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 struct _DT_DSIMG_AFFINE_CTRL	{
@@ -686,14 +686,14 @@ struct _DT_DSIMG_AFFINE_CTRL	{
 
 //------------------------------------------------------------------
 /**
- * DSŠgkŠJniƒƒCƒ“AƒTƒu‚Æ‚à•K—v‚ÈBGİ’è‚ğs‚Á‚Ä‚¨‚­‚±‚Æj
+ * DSæ‹¡ç¸®é–‹å§‹ï¼ˆãƒ¡ã‚¤ãƒ³ã€ã‚µãƒ–ã¨ã‚‚å¿…è¦ãªBGè¨­å®šã‚’è¡Œã£ã¦ãŠãã“ã¨ï¼‰
  *
- * @param   startRatio		‰ŠúŠgk—¦
- * @param   endRatio		ÅIŠgk—¦
- * @param   startSpeed		‰ŠúŠgk‘¬“x
- * @param   ac				Šgk‰Á‘¬“x
- * @param   type			0:‰º‰æ–Ê’†S  1:ã‰æ–Ê’†S
- * @param   endFlag			ŠJn‚ÉFALSEAI—¹‚ÉTRUE‚ğƒZƒbƒg‚·‚é
+ * @param   startRatio		åˆæœŸæ‹¡ç¸®ç‡
+ * @param   endRatio		æœ€çµ‚æ‹¡ç¸®ç‡
+ * @param   startSpeed		åˆæœŸæ‹¡ç¸®é€Ÿåº¦
+ * @param   ac				æ‹¡ç¸®åŠ é€Ÿåº¦
+ * @param   type			0:ä¸‹ç”»é¢ä¸­å¿ƒ  1:ä¸Šç”»é¢ä¸­å¿ƒ
+ * @param   endFlag			é–‹å§‹æ™‚ã«FALSEã€çµ‚äº†æ™‚ã«TRUEã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
  * @retval  DT_DSIMG_AFFINE_CTRL*		
  */
@@ -795,15 +795,15 @@ static void ds_affine_setvalue( DT_DSIMG_AFFINE_CTRL* wk )
 }
 
 //======================================================================================================
-// ƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒN‚ğBG—Ìˆæ‚É“]‘—
+// ãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’BGé ˜åŸŸã«è»¢é€
 //======================================================================================================
 
 //------------------------------------------------------------------
 /**
  * 
  *
- * @param   wk			ƒ[ƒNƒ|ƒCƒ“ƒ^
- * @param   id			0:‘—‚Á‚½•û 1:‘—‚ç‚ê‚Ä‚«‚½•û
+ * @param   wk			ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
+ * @param   id			0:é€ã£ãŸæ–¹ 1:é€ã‚‰ã‚Œã¦ããŸæ–¹
  * @param   bg_frame	
  * @param   palno		
  *
@@ -860,10 +860,10 @@ void DemoTrade_TransPokeGraphic( DEMO_TRADE_WORK* wk, int id, u32 bg_frame, u32 
 
 //------------------------------------------------------------------
 /**
- * ƒ|ƒPƒ‚ƒ“BG•\¦—pƒXƒNƒŠ[ƒ“‚ğ“à•”ƒoƒbƒtƒ@‚Éì¬
+ * ãƒã‚±ãƒ¢ãƒ³BGè¡¨ç¤ºç”¨ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’å†…éƒ¨ãƒãƒƒãƒ•ã‚¡ã«ä½œæˆ
  *
  * @param   wk		
- * @param   id			0:‘—‚éƒ|ƒP  1:ó‚¯æ‚éƒ|ƒP
+ * @param   id			0:é€ã‚‹ãƒã‚±  1:å—ã‘å–ã‚‹ãƒã‚±
  * @param   bg_frame	
  * @param   palno		
  *
@@ -875,7 +875,7 @@ void DemoTrade_SetupPokeScreen( DEMO_TRADE_WORK* wk, int id, u32 bg_frame, u32 p
 	NNSG2dScreenData* scrn;
 	u32   datID;
 
-	// ‘—‚é•û‚Í’ÊíŒü‚«Aó‚¯æ‚é•û‚Í”½“]B
+	// é€ã‚‹æ–¹ã¯é€šå¸¸å‘ãã€å—ã‘å–ã‚‹æ–¹ã¯åè»¢ã€‚
 	if( id == 0 )
 	{
 		datID = POKE_SCREEN_N_NSCR;
@@ -898,12 +898,12 @@ void DemoTrade_SetupPokeScreen( DEMO_TRADE_WORK* wk, int id, u32 bg_frame, u32 p
 //extern void* ArcUtil_ScrnDataGet(u32 fileIdx, u32 dataIdx, BOOL compressedFlag, NNSG2dScreenData** scrnData, u32 heapID);
 /*
 
-ƒA[ƒNID@ARC_BATT_BG
+ã‚¢ãƒ¼ã‚¯IDã€€ARC_BATT_BG
 
-’Êí@POKE_SCREEN_N_NSCR
-”½“]@POKE_SCREEN_F_NSCR
+é€šå¸¸ã€€POKE_SCREEN_N_NSCR
+åè»¢ã€€POKE_SCREEN_F_NSCR
 
-‚Å‚·B
+ã§ã™ã€‚
 
 
 battle/graphic/pl_batt_bg_def.h
@@ -915,7 +915,7 @@ battle/graphic/pl_batt_bg_def.h
 
 
 //======================================================================================================
-// OAMƒAƒNƒ^[ŠÖ˜A
+// OAMã‚¢ã‚¯ã‚¿ãƒ¼é–¢é€£
 //======================================================================================================
 void DemoTrade_LoadCellAnimDatas( DEMO_TRADE_CELLANIM* clpack, u32 arcID, u32 cellDatID, u32 animDatID )
 {
@@ -1065,7 +1065,7 @@ static void IRQ_FreeReqFlush( void )
 
 //------------------------------------------------------------------
 /**
- * Š„‚è‚İ’†‚Éƒƒ‚ƒŠ‰ğ•ú‚ÌƒŠƒNƒGƒXƒg‚ğó‚¯•t‚¯‚é
+ * å‰²ã‚Šè¾¼ã¿ä¸­ã«ãƒ¡ãƒ¢ãƒªè§£æ”¾ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å—ã‘ä»˜ã‘ã‚‹
  *
  * @param   wk		
  * @param   adrs		
@@ -1086,7 +1086,7 @@ void DemoTrade_IRQ_FreeReq( void* adrs )
 
 //------------------------------------------------------------------
 /**
- * ”’l’²®iƒfƒoƒbƒO—pj
+ * æ•°å€¤èª¿æ•´ï¼ˆãƒ‡ãƒãƒƒã‚°ç”¨ï¼‰
  *
  * @param   val		
  * @param   val_unit		
@@ -1129,7 +1129,7 @@ BOOL DT_adjustValue32( s32* val , u32 val_unit, u32 key, const char* str )
 }
 //------------------------------------------------------------------
 /**
- * ”’l’²®16bit”ÅiƒfƒoƒbƒO—pj
+ * æ•°å€¤èª¿æ•´16bitç‰ˆï¼ˆãƒ‡ãƒãƒƒã‚°ç”¨ï¼‰
  *
  * @param   val		
  * @param   val_unit		

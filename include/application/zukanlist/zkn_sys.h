@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_sys.h
- *	@brief		}ŠÓƒVƒXƒeƒ€
+ *	@brief		å›³é‘‘ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2006.01.17
  *
@@ -24,12 +24,12 @@
 
 
 //-------------------------------------
-//	ƒyƒAƒŒƒ“ƒgƒf[ƒ^ƒ[ƒN
+//	ãƒšã‚¢ãƒ¬ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	const ZUKAN_WORK*	cp_zukansave_data;
 	const MYSTATUS*		cp_hero_data;
-	int time_zone;		// }ŠÓ‚ğŠJ‚¢‚½‚Æ‚«‚ÌŠÔ‘Ñ
+	int time_zone;		// å›³é‘‘ã‚’é–‹ã„ãŸã¨ãã®æ™‚é–“å¸¯
 	BOOL hidemap_id_D15;
 	BOOL hidemap_id_D30;
 	BOOL hidemap_id_L04;
@@ -41,16 +41,16 @@ typedef struct {
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓƒvƒƒbƒN¶¬
+ *	@brief	å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ç”Ÿæˆ
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -61,16 +61,16 @@ GLOBAL PROC_RESULT ZKN_ProcInit( PROC* proc, int* seq );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓƒvƒƒbƒNƒƒCƒ“
+ *	@brief	å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯ãƒ¡ã‚¤ãƒ³
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -81,16 +81,16 @@ GLOBAL PROC_RESULT ZKN_ProcMain( PROC* proc, int* seq );
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief	}ŠÓƒvƒƒbƒNI—¹
+ *	@brief	å›³é‘‘ãƒ—ãƒ­ãƒƒã‚¯çµ‚äº†
  *
- *	@param	proc		ƒvƒƒbƒNƒf[ƒ^	
- *	@param	seq			ƒV[ƒPƒ“ƒX
+ *	@param	proc		ãƒ—ãƒ­ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
+ *	@param	seq			ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
  *
- *	@return	ˆ—ó‹µ
+ *	@return	å‡¦ç†çŠ¶æ³
  *
  *	typedef enum {
- *		PROC_RES_CONTINUE = 0,		///<“®ìŒp‘±’†
- *		PROC_RES_FINISH,			///<“®ìI—¹
+ *		PROC_RES_CONTINUE = 0,		///<å‹•ä½œç¶™ç¶šä¸­
+ *		PROC_RES_FINISH,			///<å‹•ä½œçµ‚äº†
  *	}PROC_RESULT;
  *
  *
@@ -104,22 +104,22 @@ GLOBAL PROC_RESULT ZKN_ProcEnd( PROC* proc, int* seq );
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	ƒVƒXƒeƒ€‰Šú‰»ƒf[ƒ^
+//	ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿
 //=====================================
 typedef struct {
 	const ZUKAN_WORK*	cp_zukansave_data;
 	const MYSTATUS*		cp_hero_data;
-	int time_zone;		// }ŠÓ‚ğŠJ‚¢‚½‚Æ‚«‚ÌŠÔ‘Ñ
+	int time_zone;		// å›³é‘‘ã‚’é–‹ã„ãŸã¨ãã®æ™‚é–“å¸¯
 	BOOL hidemap_id_D15;
 	BOOL hidemap_id_D30;
 	BOOL hidemap_id_L04;
@@ -130,7 +130,7 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL void ZKN_SYS_SetUpDraw( int heap );

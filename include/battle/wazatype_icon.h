@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	wazatype_icon.h
- * @brief	‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚Ìƒwƒbƒ_
+ * @brief	æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®ãƒ˜ãƒƒãƒ€
  * @author	matsuda
- * @date	2005.10.26(…)
+ * @date	2005.10.26(æ°´)
  */
 //==============================================================================
 #ifndef __WAZATYPE_ICON_H__
@@ -13,46 +13,46 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///ƒAƒCƒRƒ“ƒ^ƒCƒv(‹Zƒ^ƒCƒvˆÈŠO‚Ìƒ^ƒCƒv)
+///ã‚¢ã‚¤ã‚³ãƒ³ã‚¿ã‚¤ãƒ—(æŠ€ã‚¿ã‚¤ãƒ—ä»¥å¤–ã®ã‚¿ã‚¤ãƒ—)
 enum{
-	ICONTYPE_STYLE = 18,	///<ŠiD‚æ‚³
-	ICONTYPE_BEAUTIFUL,		///<”ü‚µ‚³
-	ICONTYPE_CUTE,			///<‰Âˆ¤‚³
-	ICONTYPE_INTELLI,		///<Œ«‚³
-	ICONTYPE_STRONG,		///<ç—‚µ‚³
+	ICONTYPE_STYLE = 18,	///<æ ¼å¥½ã‚ˆã•
+	ICONTYPE_BEAUTIFUL,		///<ç¾Žã—ã•
+	ICONTYPE_CUTE,			///<å¯æ„›ã•
+	ICONTYPE_INTELLI,		///<è³¢ã•
+	ICONTYPE_STRONG,		///<é€žã—ã•
 };
 
-///‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ÅŽg—p‚·‚éƒpƒŒƒbƒg–{”
+///æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°
 #define WTI_PLTT_NUM		(3)
-///‹Z•ª—ÞƒAƒCƒRƒ“‚ÅŽg—p‚·‚éƒpƒŒƒbƒg–{”
+///æŠ€åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³ã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°
 #define WKI_PLTT_NUM		(3)
 
-///‹Zƒ^ƒCƒvƒAƒCƒRƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ìˆ³kƒtƒ‰ƒO(ƒLƒƒƒ‰ƒNƒ^)
+///æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åœ§ç¸®ãƒ•ãƒ©ã‚°(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿)
 #define WAZATYPEICON_COMP_CHAR		(1)
-///‹Zƒ^ƒCƒvƒAƒCƒRƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ìˆ³kƒtƒ‰ƒO(ƒpƒŒƒbƒg)
+///æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åœ§ç¸®ãƒ•ãƒ©ã‚°(ãƒ‘ãƒ¬ãƒƒãƒˆ)
 #define WAZATYPEICON_COMP_PLTT		(0)
-///‹Zƒ^ƒCƒvƒAƒCƒRƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ìˆ³kƒtƒ‰ƒO(ƒZƒ‹)
+///æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åœ§ç¸®ãƒ•ãƒ©ã‚°(ã‚»ãƒ«)
 #define WAZATYPEICON_COMP_CELL		(1)
-///‹Zƒ^ƒCƒvƒAƒCƒRƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ìˆ³kƒtƒ‰ƒO(ƒZƒ‹ƒAƒjƒ)
+///æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åœ§ç¸®ãƒ•ãƒ©ã‚°(ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡)
 #define WAZATYPEICON_COMP_CELLANM	(1)
 
-///‹Z•ª—ÞƒAƒCƒRƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ìˆ³kƒtƒ‰ƒO(ƒLƒƒƒ‰ƒNƒ^)
+///æŠ€åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åœ§ç¸®ãƒ•ãƒ©ã‚°(ã‚­ãƒ£ãƒ©ã‚¯ã‚¿)
 #define WAZAKINDICON_COMP_CHAR		(1)
-///‹Z•ª—ÞƒAƒCƒRƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ìˆ³kƒtƒ‰ƒO(ƒpƒŒƒbƒg)
+///æŠ€åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åœ§ç¸®ãƒ•ãƒ©ã‚°(ãƒ‘ãƒ¬ãƒƒãƒˆ)
 #define WAZAKINDICON_COMP_PLTT		(0)
-///‹Z•ª—ÞƒAƒCƒRƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ìˆ³kƒtƒ‰ƒO(ƒZƒ‹)
+///æŠ€åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åœ§ç¸®ãƒ•ãƒ©ã‚°(ã‚»ãƒ«)
 #define WAZAKINDICON_COMP_CELL		(1)
-///‹Z•ª—ÞƒAƒCƒRƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ìˆ³kƒtƒ‰ƒO(ƒZƒ‹ƒAƒjƒ)
+///æŠ€åˆ†é¡žã‚¢ã‚¤ã‚³ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®åœ§ç¸®ãƒ•ãƒ©ã‚°(ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡)
 #define WAZAKINDICON_COMP_CELLANM	(1)
 
-///‹Zƒ^ƒCƒvƒAƒCƒRƒ“‚ÌOAMƒ^ƒCƒv’è‹`
+///æŠ€ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ã‚³ãƒ³ã®OAMã‚¿ã‚¤ãƒ—å®šç¾©
 #define WAZATYPEICON_OAMTYPE		(OAMTYPE_32x16)
 
 
 //==============================================================================
-//	ŠO•”ŠÖ”éŒ¾
+//	å¤–éƒ¨é–¢æ•°å®£è¨€
 //==============================================================================
 extern void WazaTypeIcon_CharResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, 
 	NNS_G2D_VRAM_TYPE vram_type, int waza_type, u32 char_id);

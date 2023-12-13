@@ -27,7 +27,7 @@ typedef void (*DWCRemoteAuthCallback)(const char* authToken, const char* partner
 //----------------------------------------------------------------------------
 // static variable
 //----------------------------------------------------------------------------
-// ƒƒOƒCƒ“§ŒäƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+// ãƒ­ã‚°ã‚¤ãƒ³åˆ¶å¾¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
 static DWCLoginControl* stpLoginCnt = NULL;
 
 static DWCRemoteAuthCallback stRemoteAuthCallback;
@@ -54,17 +54,17 @@ static void DWCi_RemoteLoginProcess( void );
 // function - internal
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  ƒƒOƒCƒ“§Œä\‘¢‘Ì‰Šú‰»ŠÖ”
-  ˆø”@Flogcnt     ƒƒOƒCƒ“§ŒäƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-          userdata   ƒ†[ƒUƒf[ƒ^ƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-          pGpObj     gpƒRƒlƒNƒVƒ‡ƒ“\‘¢‘Ìƒ|ƒCƒ“ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-          productID  GameSpy‚©‚ç—^‚¦‚ç‚ê‚éƒvƒƒ_ƒNƒgID
-          gamecode   ƒQ[ƒ€“Á’è—p‚ÌƒR[ƒhi’ÊíƒCƒjƒVƒƒƒ‹ƒR[ƒhj
-          playerName ƒQ[ƒ€“àƒXƒNƒŠ[ƒ“ƒl[ƒ€
-          callback   ƒƒOƒCƒ“Š®—¹’Ê’m—pƒR[ƒ‹ƒoƒbƒNŠÖ”
-          param      ƒR[ƒ‹ƒoƒbƒN—pƒpƒ‰ƒ[ƒ^
-  –ß‚è’lF‚È‚µ
-  —p“r@FƒƒOƒCƒ“§Œä\‘¢‘Ì‚ð‰Šú‰»‚·‚é
+  ãƒ­ã‚°ã‚¤ãƒ³åˆ¶å¾¡æ§‹é€ ä½“åˆæœŸåŒ–é–¢æ•°
+  å¼•æ•°ã€€ï¼šlogcnt     ãƒ­ã‚°ã‚¤ãƒ³åˆ¶å¾¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+          userdata   ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+          pGpObj     gpã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+          productID  GameSpyã‹ã‚‰ä¸Žãˆã‚‰ã‚Œã‚‹ãƒ—ãƒ­ãƒ€ã‚¯ãƒˆID
+          gamecode   ã‚²ãƒ¼ãƒ ç‰¹å®šç”¨ã®ã‚³ãƒ¼ãƒ‰ï¼ˆé€šå¸¸ã‚¤ãƒ‹ã‚·ãƒ£ãƒ«ã‚³ãƒ¼ãƒ‰ï¼‰
+          playerName ã‚²ãƒ¼ãƒ å†…ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒ¼ãƒ 
+          callback   ãƒ­ã‚°ã‚¤ãƒ³å®Œäº†é€šçŸ¥ç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+          param      ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+  æˆ»ã‚Šå€¤ï¼šãªã—
+  ç”¨é€”ã€€ï¼šãƒ­ã‚°ã‚¤ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹
  *---------------------------------------------------------------------------*/
 void DWCi_LoginInit(DWCLoginControl* logcnt, DWCUserData* userdata, GPConnection* pGpObj, int productID, u32 gamecode, const u16* playerName, DWCLoginCallback callback, void* param)
 {
@@ -76,7 +76,7 @@ void DWCi_LoginInit(DWCLoginControl* logcnt, DWCUserData* userdata, GPConnection
 
     MI_CpuClear8( stpLoginCnt, sizeof( DWCLoginControl ) );
 
-    // ƒƒOƒCƒ“§Œä\‘¢‘Ì‰Šú‰»
+    // ãƒ­ã‚°ã‚¤ãƒ³åˆ¶å¾¡æ§‹é€ ä½“åˆæœŸåŒ–
     stpLoginCnt->pGpObj     = pGpObj;
     stpLoginCnt->state      = DWC_LOGIN_STATE_INIT;
     stpLoginCnt->productID  = productID;
@@ -98,10 +98,10 @@ void DWCi_LoginInit(DWCLoginControl* logcnt, DWCUserData* userdata, GPConnection
 
 
 /*---------------------------------------------------------------------------*
-  Wi-FiƒRƒlƒNƒVƒ‡ƒ“ƒƒOƒCƒ“ŠÖ”
-  ˆø”@F‚È‚µ
-  –ß‚è’lF‚È‚µ
-  —p“r@FWi-FiƒRƒlƒNƒVƒ‡ƒ“‚Ö‚ÌƒƒOƒCƒ“‚ðŠJŽn‚·‚é
+  Wi-Fiã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ãƒ­ã‚°ã‚¤ãƒ³é–¢æ•°
+  å¼•æ•°ã€€ï¼šãªã—
+  æˆ»ã‚Šå€¤ï¼šãªã—
+  ç”¨é€”ã€€ï¼šWi-Fiã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã¸ã®ãƒ­ã‚°ã‚¤ãƒ³ã‚’é–‹å§‹ã™ã‚‹
  *---------------------------------------------------------------------------*/
 //void DWCi_LoginAsync(DWCLoginCallback callback, void* param)
 void DWCi_LoginAsync( void )
@@ -109,7 +109,7 @@ void DWCi_LoginAsync( void )
 
     DWC_Printf( DWC_REPORTFLAG_LOGIN, "Login Async\n" );
 
-    // –{—ˆ‚Ì”FØƒT[ƒoŒÄ‚Ño‚µB
+    // æœ¬æ¥ã®èªè¨¼ã‚µãƒ¼ãƒå‘¼ã³å‡ºã—ã€‚
     DWCi_RemoteLogin( DWCi_RemoteAuthCallback, NULL );
 
     stpLoginCnt->state = DWC_LOGIN_STATE_REMOTE_AUTH;
@@ -118,10 +118,10 @@ void DWCi_LoginAsync( void )
 
 
 /*---------------------------------------------------------------------------*
-  ƒƒOƒCƒ“ˆ—XVŠÖ”
-  ˆø”@F‚È‚µ
-  –ß‚è’lF‚È‚µ
-  —p“r@F–ˆƒQ[ƒ€ƒtƒŒ[ƒ€ŒÄ‚Ño‚µAƒƒOƒCƒ“’ÊMˆ—‚ðXV‚·‚é
+  ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†æ›´æ–°é–¢æ•°
+  å¼•æ•°ã€€ï¼šãªã—
+  æˆ»ã‚Šå€¤ï¼šãªã—
+  ç”¨é€”ã€€ï¼šæ¯Žã‚²ãƒ¼ãƒ ãƒ•ãƒ¬ãƒ¼ãƒ å‘¼ã³å‡ºã—ã€ãƒ­ã‚°ã‚¤ãƒ³é€šä¿¡å‡¦ç†ã‚’æ›´æ–°ã™ã‚‹
  *---------------------------------------------------------------------------*/
 void DWCi_LoginProcess(void)
 {
@@ -129,11 +129,11 @@ void DWCi_LoginProcess(void)
     if (!stpLoginCnt || DWCi_IsError()) return;
 
     switch (stpLoginCnt->state){
-    case DWC_LOGIN_STATE_REMOTE_AUTH:  // ƒŠƒ‚[ƒg”FØ’†
+    case DWC_LOGIN_STATE_REMOTE_AUTH:  // ãƒªãƒ¢ãƒ¼ãƒˆèªè¨¼ä¸­
         DWCi_RemoteLoginProcess();
         break;
 
-    case DWC_LOGIN_STATE_CONNECTING:  // GPƒT[ƒoÚ‘±’†
+    case DWC_LOGIN_STATE_CONNECTING:  // GPã‚µãƒ¼ãƒæŽ¥ç¶šä¸­
     case DWC_LOGIN_STATE_GPGETINFO:
     case DWC_LOGIN_STATE_GPSETINFO:
         if (stpLoginCnt->pGpObj && *stpLoginCnt->pGpObj)
@@ -143,7 +143,7 @@ void DWCi_LoginProcess(void)
         if ( stpLoginCnt->connectFlag &&
              ( OS_TicksToMilliSeconds( OS_GetTick() - stpLoginCnt->connectTick ) > DWC_LOGIN_GPCONNECT_TIMEOUT ) )
         {
-            // ƒ^ƒCƒ€ƒAƒEƒg”­¶B
+            // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆç™ºç”Ÿã€‚
             DWCi_StopLogin( DWC_ERROR_NETWORK, DWC_ECODE_SEQ_LOGIN+DWC_ECODE_GS_GP+DWC_ECODE_TYPE_TIMEOUT );
             stpLoginCnt->connectFlag = FALSE;
         }
@@ -152,7 +152,7 @@ void DWCi_LoginProcess(void)
     case DWC_LOGIN_STATE_INIT:
     case DWC_LOGIN_STATE_CONNECTED:
     default:
-        // ã‹LˆÈŠO‚Ìê‡‚Í‰½‚à‚µ‚È‚¢‚Å”²‚¯‚é
+        // ä¸Šè¨˜ä»¥å¤–ã®å ´åˆã¯ä½•ã‚‚ã—ãªã„ã§æŠœã‘ã‚‹
         DWC_Printf(DWC_REPORTFLAG_DEBUG, "Ignore invalid login state.\n");
         break;
     }
@@ -160,10 +160,10 @@ void DWCi_LoginProcess(void)
 
 
 /*---------------------------------------------------------------------------*
-  ƒ†[ƒUƒf[ƒ^Žæ“¾ŠÖ”
-  ˆø”@F‚È‚µ
-  –ß‚è’lFƒ†[ƒUƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-  —p“r@Fƒ†[ƒUƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ðŽæ“¾‚·‚é
+  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿å–å¾—é–¢æ•°
+  å¼•æ•°ã€€ï¼šãªã—
+  æˆ»ã‚Šå€¤ï¼šãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+  ç”¨é€”ã€€ï¼šãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
  *---------------------------------------------------------------------------*/
 DWCAccUserData* DWCi_GetUserData(void)
 {
@@ -178,11 +178,11 @@ DWCAccUserData* DWCi_GetUserData(void)
 
 
 /*---------------------------------------------------------------------------*
-  ƒƒOƒCƒ“ƒGƒ‰[I—¹ŠÖ”
-  ˆø”@Ferror     DWCƒGƒ‰[Ží•Ê
-          errorCode ƒGƒ‰[ƒR[ƒh
-  –ß‚è’lF‚È‚µ
-  —p“r@FƒƒOƒCƒ“ˆ—’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚½ê‡‚ÉAˆ—‚ð’†’f‚·‚é
+  ãƒ­ã‚°ã‚¤ãƒ³ã‚¨ãƒ©ãƒ¼çµ‚äº†é–¢æ•°
+  å¼•æ•°ã€€ï¼šerror     DWCã‚¨ãƒ©ãƒ¼ç¨®åˆ¥
+          errorCode ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+  æˆ»ã‚Šå€¤ï¼šãªã—
+  ç”¨é€”ã€€ï¼šãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã«ã€å‡¦ç†ã‚’ä¸­æ–­ã™ã‚‹
  *---------------------------------------------------------------------------*/
 void DWCi_StopLogin(DWCError error, int errorCode)
 {
@@ -191,7 +191,7 @@ void DWCi_StopLogin(DWCError error, int errorCode)
 
     DWCi_SetError(error, errorCode);
     
-    // ƒƒOƒCƒ“Š®—¹ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ
+    // ãƒ­ã‚°ã‚¤ãƒ³å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—
     if ( stpLoginCnt->callback != NULL )
     {
         stpLoginCnt->callback(error, 0, stpLoginCnt->param);
@@ -199,19 +199,19 @@ void DWCi_StopLogin(DWCError error, int errorCode)
 
     DWCi_CloseLogin();
 
-    // ‚±‚ÌŒãADWC_ShutdownFriendsMatch()‚ÅGPƒIƒuƒWƒFƒNƒg‚ð‰ð•ú‚·‚é•K—v‚ª‚ ‚é
+    // ã“ã®å¾Œã€DWC_ShutdownFriendsMatch()ã§GPã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è§£æ”¾ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
 }
 
 
 /*---------------------------------------------------------------------------*
-  ƒƒOƒCƒ“§ŒäƒIƒuƒWƒFƒNƒg‰ð•úŠÖ”
-  ˆø”@F‚È‚µ
-  –ß‚è’lF‚È‚µ
-  —p“r@FƒƒOƒCƒ“§ŒäƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ðNULLƒNƒŠƒA‚·‚é
+  ãƒ­ã‚°ã‚¤ãƒ³åˆ¶å¾¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè§£æ”¾é–¢æ•°
+  å¼•æ•°ã€€ï¼šãªã—
+  æˆ»ã‚Šå€¤ï¼šãªã—
+  ç”¨é€”ã€€ï¼šãƒ­ã‚°ã‚¤ãƒ³åˆ¶å¾¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’NULLã‚¯ãƒªã‚¢ã™ã‚‹
  *---------------------------------------------------------------------------*/
 void DWCi_ShutdownLogin(void)
 {
-    // ”FØ’†‚©‚Ç‚¤‚©‚ðŠm”FB
+    // èªè¨¼ä¸­ã‹ã©ã†ã‹ã‚’ç¢ºèªã€‚
     if ( stpLoginCnt->http != NULL )
     {
         DWC_Auth_Abort();
@@ -229,31 +229,31 @@ void DWCi_ShutdownLogin(void)
 // function - static
 //----------------------------------------------------------------------------
 /*---------------------------------------------------------------------------*
-  ƒƒOƒCƒ“I—¹ŠÖ”
-  ˆø”@F‚È‚µ
-  –ß‚è’lF‚È‚µ
-  —p“r@FƒƒOƒCƒ“§ŒäƒIƒuƒWƒFƒNƒg‚ð‰Šú‰»‚µ‚ÄƒƒOƒCƒ“ˆ—‚ðI—¹‚·‚é
+  ãƒ­ã‚°ã‚¤ãƒ³çµ‚äº†é–¢æ•°
+  å¼•æ•°ã€€ï¼šãªã—
+  æˆ»ã‚Šå€¤ï¼šãªã—
+  ç”¨é€”ã€€ï¼šãƒ­ã‚°ã‚¤ãƒ³åˆ¶å¾¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’åˆæœŸåŒ–ã—ã¦ãƒ­ã‚°ã‚¤ãƒ³å‡¦ç†ã‚’çµ‚äº†ã™ã‚‹
  *---------------------------------------------------------------------------*/
 static void DWCi_CloseLogin(void)
 {
 
     if (!stpLoginCnt) return;
     
-    // ƒƒOƒCƒ“§ŒäƒIƒuƒWƒFƒNƒg‰Šú‰»
+    // ãƒ­ã‚°ã‚¤ãƒ³åˆ¶å¾¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåˆæœŸåŒ–
     stpLoginCnt->state = DWC_LOGIN_STATE_INIT;
     stpLoginCnt->connectFlag = FALSE;
 
-    // password‚àauthToken‚àpartnerChallenge‚àAPersistent Storage‚Ö‚Ì
-    // ƒƒOƒCƒ“‚ÉŽg‚¤
+    // passwordã‚‚authTokenã‚‚partnerChallengeã‚‚ã€Persistent Storageã¸ã®
+    // ãƒ­ã‚°ã‚¤ãƒ³ã«ä½¿ã†
 }
 
 
 /*---------------------------------------------------------------------------*
-  GPResult‘Î‰žƒGƒ‰[ˆ—ŠÖ”
-  ˆø”@Fresult GP‚Ìˆ—Œ‹‰ÊŒ^
-  –ß‚è’lFGP‚Ìˆ—Œ‹‰ÊŒ^iˆø”‚ð‚»‚Ì‚Ü‚Ü•Ô‚·j
-  —p“r@FGPResult‚Ì’l‚É‘Î‰ž‚·‚éƒGƒ‰[•\Ž¦i‚à‚µ‚­‚Í’âŽ~j‚ðs‚¢‚Â‚ÂA
-          ‘Î‰ž‚·‚éDWCƒGƒ‰[‚ð“n‚µ‚ÄƒƒOƒCƒ“Žè‘±‚«‚ðI—¹‚·‚é
+  GPResultå¯¾å¿œã‚¨ãƒ©ãƒ¼å‡¦ç†é–¢æ•°
+  å¼•æ•°ã€€ï¼šresult GPã®å‡¦ç†çµæžœåž‹
+  æˆ»ã‚Šå€¤ï¼šGPã®å‡¦ç†çµæžœåž‹ï¼ˆå¼•æ•°ã‚’ãã®ã¾ã¾è¿”ã™ï¼‰
+  ç”¨é€”ã€€ï¼šGPResultã®å€¤ã«å¯¾å¿œã™ã‚‹ã‚¨ãƒ©ãƒ¼è¡¨ç¤ºï¼ˆã‚‚ã—ãã¯åœæ­¢ï¼‰ã‚’è¡Œã„ã¤ã¤ã€
+          å¯¾å¿œã™ã‚‹DWCã‚¨ãƒ©ãƒ¼ã‚’æ¸¡ã—ã¦ãƒ­ã‚°ã‚¤ãƒ³æ‰‹ç¶šãã‚’çµ‚äº†ã™ã‚‹
  *---------------------------------------------------------------------------*/
 static GPResult DWCi_HandleGPError(GPResult result)
 {
@@ -283,22 +283,22 @@ static GPResult DWCi_HandleGPError(GPResult result)
         break;
     }
 
-    // ƒx[ƒXƒGƒ‰[ƒR[ƒh‚ð’Ç‰Á
+    // ãƒ™ãƒ¼ã‚¹ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’è¿½åŠ 
     errorCode += DWC_ECODE_SEQ_LOGIN+DWC_ECODE_GS_GP;
 
-    DWCi_StopLogin(dwcError, errorCode);  // ƒƒOƒCƒ“Žè‘±‚«‚ðƒGƒ‰[I—¹
+    DWCi_StopLogin(dwcError, errorCode);  // ãƒ­ã‚°ã‚¤ãƒ³æ‰‹ç¶šãã‚’ã‚¨ãƒ©ãƒ¼çµ‚äº†
 
     return result;
 }
 
 
 /*---------------------------------------------------------------------------*
-  GPƒRƒlƒNƒgƒR[ƒ‹ƒoƒbƒNŠÖ”
-  ˆø”@Fpconnection GPƒRƒlƒNƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-          arg         GPƒRƒlƒNƒVƒ‡ƒ“‰ž“š\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
-          param       ƒR[ƒ‹ƒoƒbƒN—pƒpƒ‰ƒ[ƒ^
-  –ß‚è’lF‚È‚µ
-  —p“r@FGPƒRƒlƒNƒgƒR[ƒ‹ƒoƒbƒN
+  GPã‚³ãƒã‚¯ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+  å¼•æ•°ã€€ï¼špconnection GPã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+          arg         GPã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³å¿œç­”æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+          param       ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+  æˆ»ã‚Šå€¤ï¼šãªã—
+  ç”¨é€”ã€€ï¼šGPã‚³ãƒã‚¯ãƒˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *---------------------------------------------------------------------------*/
 static void DWCi_GPConnectCallback(GPConnection* pconnection, GPConnectResponseArg* arg, void* param)
 {
@@ -306,16 +306,16 @@ static void DWCi_GPConnectCallback(GPConnection* pconnection, GPConnectResponseA
     GPResult gpResult;
 
     DWC_Printf(DWC_REPORTFLAG_LOGIN, "Finished connecting to GP server, result = %d\n", arg->result);
-    // ƒR[ƒ‹ƒoƒbƒN‚ªŒÄ‚Ño‚³‚ê‚½‚çAI—¹B
+    // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ãŒå‘¼ã³å‡ºã•ã‚ŒãŸã‚‰ã€çµ‚äº†ã€‚
     stpLoginCnt->connectFlag = FALSE;
 
     if (arg->result == GP_NO_ERROR)
     {
-        // [nakata] GPConnectResponseArg‚ð‘Þ”ð(gpGetInfoŒã‚ÉŽg—p‚·‚é)
+        // [nakata] GPConnectResponseArgã‚’é€€é¿(gpGetInfoå¾Œã«ä½¿ç”¨ã™ã‚‹)
         stpLoginCnt->gpconnectresponsearg = *arg;
         if ( stpLoginCnt->state == DWC_LOGIN_STATE_CONNECTING )
         {
-            // GPƒXƒe[ƒ^ƒX‚ðƒIƒ“ƒ‰ƒCƒ“ó‘Ô‚ÉƒZƒbƒg‚·‚éB
+            // GPã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚ªãƒ³ãƒ©ã‚¤ãƒ³çŠ¶æ…‹ã«ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
             //gpResult = DWCi_SetGPStatus(DWC_STATUS_ONLINE, "", NULL);
 
             //if (DWCi_HandleGPError(gpResult)) return;
@@ -326,21 +326,21 @@ static void DWCi_GPConnectCallback(GPConnection* pconnection, GPConnectResponseA
 
                 stpLoginCnt->state = DWC_LOGIN_STATE_CONNECTED;
 
-                // GPƒXƒe[ƒ^ƒX‚ðƒIƒ“ƒ‰ƒCƒ“ó‘Ô‚ÉƒZƒbƒg‚·‚éB
+                // GPã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚ªãƒ³ãƒ©ã‚¤ãƒ³çŠ¶æ…‹ã«ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
                 gpResult = DWCi_SetGPStatus(DWC_STATUS_ONLINE, "", NULL);
                 if (DWCi_HandleGPError(gpResult)) return;
 
-                // Ú‘±¬Œ÷BƒƒOƒCƒ“Š®—¹ƒR[ƒ‹ƒoƒbƒNŠÖ”ŒÄ‚Ño‚µ
+                // æŽ¥ç¶šæˆåŠŸã€‚ãƒ­ã‚°ã‚¤ãƒ³å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å‘¼ã³å‡ºã—
                 stpLoginCnt->callback(DWC_ERROR_NONE, arg->profile, stpLoginCnt->param);
 
-                // gt2ƒ\ƒPƒbƒgì¬
+                // gt2ã‚½ã‚±ãƒƒãƒˆä½œæˆ
                 if (!DWCi_GT2Startup()){
-                    // ¬Œ÷‚µ‚½‚çQR2‹N“®
+                    // æˆåŠŸã—ãŸã‚‰QR2èµ·å‹•
                     if (DWCi_QR2Startup(arg->profile)) return;
                 }
                 else return;
-                // ŠeŠÖ”“à‚ÅƒGƒ‰[‚ª”­¶‚µ‚½ê‡‚ÍA“à•”‚ÅƒƒOƒCƒ“ƒGƒ‰[I—¹
-                // ˆ—‚ðs‚Á‚Ä‚¢‚é
+                // å„é–¢æ•°å†…ã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã¯ã€å†…éƒ¨ã§ãƒ­ã‚°ã‚¤ãƒ³ã‚¨ãƒ©ãƒ¼çµ‚äº†
+                // å‡¦ç†ã‚’è¡Œã£ã¦ã„ã‚‹
             }
             else
             {
@@ -351,25 +351,25 @@ static void DWCi_GPConnectCallback(GPConnection* pconnection, GPConnectResponseA
         }
         else if ( stpLoginCnt->state == DWC_LOGIN_STATE_GPGETINFO )
         {
-            // GPGetInfo‚Ålastnameƒ`ƒFƒbƒN‚ð‚·‚é‚½‚ß‚ÌƒV[ƒPƒ“ƒX
+            // GPGetInfoã§lastnameãƒã‚§ãƒƒã‚¯ã‚’ã™ã‚‹ãŸã‚ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
             gpResult = gpGetInfo( pconnection, arg->profile, GP_DONT_CHECK_CACHE, GP_NON_BLOCKING, (GPCallback)DWCi_GPGetInfoCallback, NULL );
             if (DWCi_HandleGPError(gpResult)) return;
         }
     }
     else
     {
-        // Ú‘±‚ÉŽ¸”s‚µ‚½ê‡
+        // æŽ¥ç¶šã«å¤±æ•—ã—ãŸå ´åˆ
         (void)DWCi_HandleGPError(arg->result);
     }
 }
 
 /*---------------------------------------------------------------------------*
-  ƒŠƒ‚[ƒg”FØŠ®—¹ƒR[ƒ‹ƒoƒbƒNŠÖ”
-  ˆø”@FauthToken        Žæ“¾‚µ‚½”FØ—pƒg[ƒNƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
-          partnerchallenge Žæ“¾‚µ‚½ƒ`ƒƒƒŒƒ“ƒW‚Ö‚Ìƒ|ƒCƒ“ƒ^
-          param            ƒR[ƒ‹ƒoƒbƒN—pƒpƒ‰ƒ[ƒ^
-  –ß‚è’lF‚È‚µ
-  —p“r@FƒŠƒ‚[ƒg”FØŠ®—¹ƒR[ƒ‹ƒoƒbƒN
+  ãƒªãƒ¢ãƒ¼ãƒˆèªè¨¼å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
+  å¼•æ•°ã€€ï¼šauthToken        å–å¾—ã—ãŸèªè¨¼ç”¨ãƒˆãƒ¼ã‚¯ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+          partnerchallenge å–å¾—ã—ãŸãƒãƒ£ãƒ¬ãƒ³ã‚¸ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+          param            ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+  æˆ»ã‚Šå€¤ï¼šãªã—
+  ç”¨é€”ã€€ï¼šãƒªãƒ¢ãƒ¼ãƒˆèªè¨¼å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *---------------------------------------------------------------------------*/
 static void DWCi_RemoteAuthCallback(const char* authToken, const char* partnerChallenge, void* param)
 {
@@ -421,23 +421,23 @@ static void DWCi_RemoteLogin( DWCRemoteAuthCallback callback,
     stRemoteAuthCallback = callback;
     pStRemoteAuthParam   = param;
 
-    // ”FØ—p‚Ìƒf[ƒ^ì¬
+    // èªè¨¼ç”¨ã®ãƒ‡ãƒ¼ã‚¿ä½œæˆ
     if ( DWCi_Acc_IsAuthentic( stpLoginCnt->userdata ) )
     {
         DWC_Printf( DWC_REPORTFLAG_LOGIN, "  Hmm.. you already have authentic login id.\n" );
 
-        // ”FØÏ‚Ý‚È‚Ì‚ÅA”FØÏ‚Ý‚Ìuserid‚ðŽg—p‚·‚éB
+        // èªè¨¼æ¸ˆã¿ãªã®ã§ã€èªè¨¼æ¸ˆã¿ã®useridã‚’ä½¿ç”¨ã™ã‚‹ã€‚
         DWCi_Acc_LoginIdToUserName( &stpLoginCnt->userdata->authentic, stpLoginCnt->userdata->gamecode, stpLoginCnt->username );
     }
     else
     {
         DWC_Printf( DWC_REPORTFLAG_LOGIN, "  Hmm.. you need to create authentic login id.\n" );
 
-        // ‰½“x–Ú‚ÌŽÀs‚©‚ðŠm”F‚·‚éB
+        // ä½•åº¦ç›®ã®å®Ÿè¡Œã‹ã‚’ç¢ºèªã™ã‚‹ã€‚
         if ( !DWCi_Acc_IsValidLoginId( &stpLoginCnt->tempLoginId ) )
         {
             DWC_Printf( DWC_REPORTFLAG_LOGIN, "    Hmm.. you are the first time to get authentic login id." );
-            // Å‰‚ÌŽÀs‚Ìê‡‚ÍA‰¼ID‚ðƒRƒs[‚µ‚ÄŽg‚¤B
+            // æœ€åˆã®å®Ÿè¡Œã®å ´åˆã¯ã€ä»®IDã‚’ã‚³ãƒ”ãƒ¼ã—ã¦ä½¿ã†ã€‚
             if ( DWCi_Acc_CheckConsoleUserId( &stpLoginCnt->userdata->pseudo ) )
             {
                 DWC_Printf( DWC_REPORTFLAG_LOGIN, "- copy temp loginid from pseudo login id\n" );
@@ -445,7 +445,7 @@ static void DWCi_RemoteLogin( DWCRemoteAuthCallback callback,
             }
             else
             {
-                // ‰¼ID‚ðì‚Á‚½‚Ì‚Æˆá‚¤ƒzƒXƒg‚È‚Ì‚ÅB
+                // ä»®IDã‚’ä½œã£ãŸã®ã¨é•ã†ãƒ›ã‚¹ãƒˆãªã®ã§ã€‚
                 DWC_Printf( DWC_REPORTFLAG_LOGIN, "- create temp loginid from console user id\n" );
                 DWCi_Acc_CreateTempLoginId( &stpLoginCnt->tempLoginId );
             }
@@ -455,8 +455,8 @@ static void DWCi_RemoteLogin( DWCRemoteAuthCallback callback,
             MATHRandContext32   randcontext;
 
             DWC_Printf( DWC_REPORTFLAG_LOGIN, "    Hmm.. you are NOT the first times to get authentic login id.\n" );
-            // “ñ“x–ÚˆÈ~‚ÍAƒvƒŒƒCƒ„[ID‚Ì‚Ý‚ð’u‚«Š·‚¦‚éB
-            // [todo] —”‰». -> ok
+            // äºŒåº¦ç›®ä»¥é™ã¯ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼IDã®ã¿ã‚’ç½®ãæ›ãˆã‚‹ã€‚
+            // [todo] ä¹±æ•°åŒ–. -> ok
             //DWCi_Acc_SetPlayerId( &stpLoginCnt->tempLoginId, DWCi_Acc_GetPlayerId( &stpLoginCnt->tempLoginId ) + 1 );
 
             MATH_InitRand32( &randcontext, OS_GetTick() );
@@ -466,7 +466,7 @@ static void DWCi_RemoteLogin( DWCRemoteAuthCallback callback,
         DWCi_Acc_LoginIdToUserName( &stpLoginCnt->tempLoginId, stpLoginCnt->gamecode, stpLoginCnt->username );
     }
 
-    // ƒQ[ƒ€“àƒXƒNƒŠ[ƒ“ƒl[ƒ€‚ð”FØ—pƒf[ƒ^‚ÉƒRƒs[‚·‚é
+    // ã‚²ãƒ¼ãƒ å†…ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒ¼ãƒ ã‚’èªè¨¼ç”¨ãƒ‡ãƒ¼ã‚¿ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
 	MI_CpuCopy8(stpLoginCnt->playerName, auth.ingamesn, DWCi_WStrLen(stpLoginCnt->playerName)*2+2);
 
     DWC_Printf( DWC_REPORTFLAG_LOGIN, "  ingamesn : %s\n", auth.ingamesn );
@@ -480,11 +480,11 @@ static void DWCi_RemoteLogin( DWCRemoteAuthCallback callback,
     http = DWC_AllocEx( DWC_ALLOCTYPE_AUTH, sizeof( DWCHttp ), 4 );
     SDK_ASSERTMSG( http, "DWC_LOGIN: can't alloc memory %s :%d\n", __FILE__, __LINE__ );
 
-    // ŠJ•ú—p‚ÉŠo‚¦‚Ä‚¨‚­
+    // é–‹æ”¾ç”¨ã«è¦šãˆã¦ãŠã
     stpLoginCnt->http   = http;
     stpLoginCnt->startTick = OS_GetTick();
 
-    // ”FØˆ—‚ÌŠJŽnB
+    // èªè¨¼å‡¦ç†ã®é–‹å§‹ã€‚
     DWC_Auth_Create( &auth, http );
 }
 
@@ -504,15 +504,15 @@ static void DWCi_RemoteLoginProcess( void )
         DWC_Free( DWC_ALLOCTYPE_AUTH, stpLoginCnt->http, 0 );
         stpLoginCnt->http = NULL;
 
-        // ”FØƒpƒPƒbƒgŽæ“¾iƒR[ƒ‹ƒoƒbƒN‚ðŒÄ‚Ño‚·j
-        // –{—ˆ‚È‚çAƒvƒŒƒCƒ„[ID‚È‚Ç‚Ìˆ—‚à•K—vB
+        // èªè¨¼ãƒ‘ã‚±ãƒƒãƒˆå–å¾—ï¼ˆã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã³å‡ºã™ï¼‰
+        // æœ¬æ¥ãªã‚‰ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼IDãªã©ã®å‡¦ç†ã‚‚å¿…è¦ã€‚
         if ( DWCi_Acc_IsAuthentic( stpLoginCnt->userdata ) )
         {
             stRemoteAuthCallback( stpLoginCnt->authToken, stpLoginCnt->partnerChallenge, pStRemoteAuthParam );
         }
         else
         {
-            // ‰‚ß‚Ä‚ÌÚ‘±‚È‚Ì‚ÅALoginID‚ðŽæ“¾‚·‚éB
+            // åˆã‚ã¦ã®æŽ¥ç¶šãªã®ã§ã€LoginIDã‚’å–å¾—ã™ã‚‹ã€‚
             DWCi_GPConnect( stpLoginCnt->authToken, stpLoginCnt->partnerChallenge, (GPCallback)DWCi_GPConnectCallback, DWC_LOGIN_STATE_GPGETINFO );
         }
     }
@@ -527,7 +527,7 @@ static void DWCi_RemoteLoginProcess( void )
             DWCAuthResult result;
             DWC_Auth_GetResult( &result );
 
-            // ƒGƒ‰[”­¶B
+            // ã‚¨ãƒ©ãƒ¼ç™ºç”Ÿã€‚
             DWC_Auth_Destroy();
             DWC_Free( DWC_ALLOCTYPE_AUTH, stpLoginCnt->http, 0 );
             stpLoginCnt->http = NULL;
@@ -539,17 +539,17 @@ static void DWCi_RemoteLoginProcess( void )
         }
         else
         {
-            // ƒ^ƒCƒ€ƒAƒEƒgˆÈ‰º‚È‚Ì‚ÅA“¯‚¶ƒpƒ‰ƒ[ƒ^‚ÅƒŠƒgƒ‰ƒCB
+            // ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆä»¥ä¸‹ãªã®ã§ã€åŒã˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã§ãƒªãƒˆãƒ©ã‚¤ã€‚
             DWCAuthParam auth;
 
             DWC_Printf( DWC_REPORTFLAG_LOGIN, "  **** AUTH FAILED ... retry AUTH_ERROR:%d.\n", DWC_Auth_GetError() );
 
-            // ”FØˆ—‚Ì‚â‚è’¼‚µB
+            // èªè¨¼å‡¦ç†ã®ã‚„ã‚Šç›´ã—ã€‚
             DWC_Auth_Destroy();
             
             MI_CpuClear8( &auth, sizeof(auth) );
 
-            // ƒQ[ƒ€“àƒXƒNƒŠ[ƒ“ƒl[ƒ€‚ð”FØ—pƒf[ƒ^‚ÉƒRƒs[‚·‚é
+            // ã‚²ãƒ¼ãƒ å†…ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒãƒ¼ãƒ ã‚’èªè¨¼ç”¨ãƒ‡ãƒ¼ã‚¿ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹
             MI_CpuCopy8(stpLoginCnt->playerName, auth.ingamesn, DWCi_WStrLen(stpLoginCnt->playerName)*2+2);
 
             DWC_Printf( DWC_REPORTFLAG_LOGIN, "  ingamesn : %s\n", auth.ingamesn );
@@ -577,7 +577,7 @@ static void DWCi_GPGetInfoCallback( GPConnection* pconnection, GPGetInfoResponse
             {
                 GPResult gpResult;
                 char pseudo_name[DWC_ACC_USERNAME_STRING_BUFSIZE];
-                // profileID‚ª‚Í‚¶‚ß‚ÄŽg‚í‚ê‚é‚Ì‚ÅAlastname‚ðƒZƒbƒg‚·‚éB
+                // profileIDãŒã¯ã˜ã‚ã¦ä½¿ã‚ã‚Œã‚‹ã®ã§ã€lastnameã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
                 DWC_Printf( DWC_REPORTFLAG_LOGIN, "    login id is authenticated. set lastname field.\n" );
                 DWCi_Acc_LoginIdToUserName( &stpLoginCnt->userdata->pseudo, stpLoginCnt->gamecode, pseudo_name );
                 gpResult = gpSetInfos( pconnection, GP_LASTNAME, pseudo_name );
@@ -585,7 +585,7 @@ static void DWCi_GPGetInfoCallback( GPConnection* pconnection, GPGetInfoResponse
 
                 stpLoginCnt->state = DWC_LOGIN_STATE_GPSETINFO;
 
-                // –{“–‚ÉƒZƒbƒg‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ðŽæ“¾‚µ‚ÄŠm”F‚·‚éB
+                // æœ¬å½“ã«ã‚»ãƒƒãƒˆã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’å–å¾—ã—ã¦ç¢ºèªã™ã‚‹ã€‚
                 gpResult = gpGetInfo( pconnection, arg->profile, GP_DONT_CHECK_CACHE, GP_NON_BLOCKING, (GPCallback)DWCi_GPGetInfoCallback, NULL );
                 if (DWCi_HandleGPError(gpResult)) return;
 
@@ -595,17 +595,17 @@ static void DWCi_GPGetInfoCallback( GPConnection* pconnection, GPGetInfoResponse
             {
                 DWC_Printf( DWC_REPORTFLAG_LOGIN, "    this login id is used by anybody.... retry.\n" );
 
-                // ˆê’UØ’f‚·‚éB
+                // ä¸€æ—¦åˆ‡æ–­ã™ã‚‹ã€‚
                 gpDisconnect( pconnection );
 
-                // PlayerID‚ð•Ï‚¦‚Ä‚ÌƒŠƒgƒ‰ƒCB
+                // PlayerIDã‚’å¤‰ãˆã¦ã®ãƒªãƒˆãƒ©ã‚¤ã€‚
                 DWCi_RemoteLogin( DWCi_RemoteAuthCallback, NULL );
                 stpLoginCnt->state = DWC_LOGIN_STATE_REMOTE_AUTH;
             }
         }
         else if ( stpLoginCnt->state == DWC_LOGIN_STATE_GPSETINFO )
         {
-            // ƒZƒbƒg‚µ‚½Œã‚ÌƒxƒŠƒtƒ@ƒC
+            // ã‚»ãƒƒãƒˆã—ãŸå¾Œã®ãƒ™ãƒªãƒ•ã‚¡ã‚¤
             char pseudo_name[DWC_ACC_USERNAME_STRING_BUFSIZE];
             DWCi_Acc_LoginIdToUserName( &stpLoginCnt->userdata->pseudo, stpLoginCnt->gamecode, pseudo_name );
 
@@ -617,10 +617,10 @@ static void DWCi_GPGetInfoCallback( GPConnection* pconnection, GPGetInfoResponse
 
                 DWCi_Acc_SetLoginIdToUserData( stpLoginCnt->userdata, &stpLoginCnt->tempLoginId, arg->profile );
 
-                // [nakata] Ø’f/ÄÚ‘±‚Í–³‘Ê‚È‚Ì‚Å‚â‚ß‚Ä‚Ý‚é
-                //gpDisconnect( pconnection ); // Ú‘±ó‘Ô‚ð‰ðœ‚·‚éB
+                // [nakata] åˆ‡æ–­/å†æŽ¥ç¶šã¯ç„¡é§„ãªã®ã§ã‚„ã‚ã¦ã¿ã‚‹
+                //gpDisconnect( pconnection ); // æŽ¥ç¶šçŠ¶æ…‹ã‚’è§£é™¤ã™ã‚‹ã€‚
 
-                // –{”Ô‚ÌÚ‘±B
+                // æœ¬ç•ªã®æŽ¥ç¶šã€‚
                 //stRemoteAuthCallback( stpLoginCnt->authToken, stpLoginCnt->partnerChallenge, pStRemoteAuthParam );
                 stpLoginCnt->state = DWC_LOGIN_STATE_CONNECTING;
                 DWCi_GPConnectCallback(pconnection, &stpLoginCnt->gpconnectresponsearg, NULL);

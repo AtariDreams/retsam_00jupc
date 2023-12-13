@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	poketch_a07v.c
- * @bfief	ƒ|ƒPƒbƒ`iƒAƒvƒŠNo07: ‚È‚Â‚«“xƒ`ƒFƒbƒJ[j@•`‰æ
+ * @bfief	ãƒã‚±ãƒƒãƒï¼ˆã‚¢ãƒ—ãƒªNo07: ãªã¤ãåº¦ãƒã‚§ãƒƒã‚«ãƒ¼ï¼‰ã€€æç”»
  * @author	taya GAME FREAK inc.
  */
 //============================================================================================
@@ -61,7 +61,7 @@ enum {
 
 enum {
 	PALPOS_EFFECT,
-	PALPOS_ICON,	// ƒAƒCƒRƒ“‚Íƒ|ƒPƒ‚ƒ“ƒAƒCƒRƒ“‚Æ“¯‚¶‚¾‚¯–{”‚ğg‚¤
+	PALPOS_ICON,	// ã‚¢ã‚¤ã‚³ãƒ³ã¯ãƒã‚±ãƒ¢ãƒ³ã‚¢ã‚¤ã‚³ãƒ³ã¨åŒã˜ã ã‘æœ¬æ•°ã‚’ä½¿ã†
 };
 
 #ifdef PM_DEBUG
@@ -80,9 +80,9 @@ typedef struct {
 	PACT*		act;
 	PACT*		eff_act;
 
-	VecFx32		vec;		// ˆÚ“®—Ê
-	VecFx32		pos;		// “–‚½‚è”»’èˆÊ’u
-	VecFx32		add_pos;	// “–‚½‚è”»’è‚Æ‚Í•Ê‚É‰ÁZ‚·‚é
+	VecFx32		vec;		// ç§»å‹•é‡
+	VecFx32		pos;		// å½“ãŸã‚Šåˆ¤å®šä½ç½®
+	VecFx32		add_pos;	// å½“ãŸã‚Šåˆ¤å®šã¨ã¯åˆ¥ã«åŠ ç®—ã™ã‚‹
 
 	u8  move_seq;
 	u8  reaction_type;
@@ -202,9 +202,9 @@ static inline void reverse_vector( VecFx32* vector );
 
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNŠm•Û
+ * ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- * @param   wk_ptr		Šm•Û‚µ‚½ƒ[ƒNƒAƒhƒŒƒX‚ğ•Û‘¶‚·‚éƒ|ƒCƒ“ƒ^‚ÌƒAƒhƒŒƒX
+ * @param   wk_ptr		ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿å­˜ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -243,9 +243,9 @@ BOOL Poketch_A07_SetViewWork( VIEWWORK** wk_ptr, const VIEWPARAM* vpara, GF_BGL_
 }
 //------------------------------------------------------------------
 /**
- * ƒ[ƒNíœ
+ * ãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param   wk		Šm•Û‚µ‚½ƒ[ƒNƒAƒhƒŒƒX
+ * @param   wk		ç¢ºä¿ã—ãŸãƒ¯ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -279,7 +279,7 @@ void Poketch_A07_DeleteViewWork( VIEWWORK* wk )
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹
+ * @brief	ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //------------------------------------------------------------------
 static const POKETCH_VIEW_CMD CmdTbl[] = {
@@ -291,10 +291,10 @@ static const POKETCH_VIEW_CMD CmdTbl[] = {
 
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌƒZƒbƒg
+ * æç”»ã‚³ãƒãƒ³ãƒ‰ã®ã‚»ãƒƒãƒˆ
  *
- * @param   cmd		ƒRƒ}ƒ“ƒh
- * @param   view_wk_adrs	ƒ[ƒN—ÌˆæƒAƒhƒŒƒX
+ * @param   cmd		ã‚³ãƒãƒ³ãƒ‰
+ * @param   view_wk_adrs	ãƒ¯ãƒ¼ã‚¯é ˜åŸŸã‚¢ãƒ‰ãƒ¬ã‚¹
  *
  */
 //------------------------------------------------------------------
@@ -305,11 +305,11 @@ void Poketch_A07_SetViewCommand(VIEWWORK* wk, u32 cmd)
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌI—¹‘Ò‚¿i’P”­j
+ * æç”»ã‚³ãƒãƒ³ãƒ‰ã®çµ‚äº†å¾…ã¡ï¼ˆå˜ç™ºï¼‰
  *
- * @param   cmd			ƒRƒ}ƒ“ƒh
+ * @param   cmd			ã‚³ãƒãƒ³ãƒ‰
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL Poketch_A07_WaitViewCommand(VIEWWORK* wk, u32 cmd)
@@ -318,9 +318,9 @@ BOOL Poketch_A07_WaitViewCommand(VIEWWORK* wk, u32 cmd)
 }
 //------------------------------------------------------------------
 /**
- * •`‰æƒRƒ}ƒ“ƒh‚ÌI—¹‘Ò‚¿i‘S•”j
+ * æç”»ã‚³ãƒãƒ³ãƒ‰ã®çµ‚äº†å¾…ã¡ï¼ˆå…¨éƒ¨ï¼‰
  *
- * @retval  BOOL		TRUE‚ÅI—¹
+ * @retval  BOOL		TRUEã§çµ‚äº†
  */
 //------------------------------------------------------------------
 BOOL Poketch_A07_WaitViewCommandAll(VIEWWORK* wk)
@@ -332,9 +332,9 @@ BOOL Poketch_A07_WaitViewCommandAll(VIEWWORK* wk)
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhíœ
+ * ã‚³ãƒãƒ³ãƒ‰å‰Šé™¤
  *
- * @param   cwk		ƒRƒ}ƒ“ƒhƒ[ƒN
+ * @param   cwk		ã‚³ãƒãƒ³ãƒ‰ãƒ¯ãƒ¼ã‚¯
  *
  */
 //------------------------------------------------------------------
@@ -346,10 +346,10 @@ static void DeleteCommand(POKETCH_CMD_WORK* cwk)
 
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhF‰æ–Ê\’z
+ * ã‚³ãƒãƒ³ãƒ‰ï¼šç”»é¢æ§‹ç¯‰
  *
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_ptr		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -462,7 +462,7 @@ static void SetupPokeActor( VIEWWORK* vwk, const VIEWPARAM* vpara )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ˆÚ“®—Ê‚ğƒŠƒZƒbƒgiƒ‰ƒ“ƒ_ƒ€j
+ * ã‚¢ã‚¤ã‚³ãƒ³ç§»å‹•é‡ã‚’ãƒªã‚»ãƒƒãƒˆï¼ˆãƒ©ãƒ³ãƒ€ãƒ ï¼‰
  *
  * @param   vec		
  *
@@ -502,7 +502,7 @@ static void SetupMoveTask( VIEWWORK* vwk, const VIEWPARAM* vpara )
 	int i;
 	for(i=0; i<vpara->poke_count; i++)
 	{
-		// ˆÚ“®—pvector‚ğì‚Á‚Ä‚¨‚­
+		// ç§»å‹•ç”¨vectorã‚’ä½œã£ã¦ãŠã
 		ResetIconVector( &vwk->icon[i].vec );
 		UpdateIconDirection( &vwk->icon[i] );
 	}
@@ -513,10 +513,10 @@ static void SetupMoveTask( VIEWWORK* vwk, const VIEWPARAM* vpara )
 }
 //------------------------------------------------------------------
 /**
- * ƒRƒ}ƒ“ƒhFI—¹ˆ—
+ * ã‚³ãƒãƒ³ãƒ‰ï¼šçµ‚äº†å‡¦ç†
  *
- * @param   tcb			TCBƒ|ƒCƒ“ƒ^
- * @param   wk_ptr		ƒ[ƒNƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBãƒã‚¤ãƒ³ã‚¿
+ * @param   wk_ptr		ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -562,7 +562,7 @@ static void ChangeIconCtrlSeq( VIEWWORK* vwk, int seq )
 
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ“ƒRƒ“ƒgƒ[ƒ‹ƒ^ƒXƒNF‰Šú
+ * ã‚¢ã‚¤ã‚³ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¿ã‚¹ã‚¯ï¼šåˆæœŸæ™‚
  *
  * @param   tcb		
  * @param   wk_ptr		
@@ -585,7 +585,7 @@ static void IconCtrlTask(TCB_PTR tcb, void* wk_ptr)
 	if( vpara->tp_cont )
 	{
 		vwk->tp_x = vpara->tp_x;
-		vwk->tp_y = vpara->tp_y - 8;	// ‚PƒLƒƒƒ‰‰º‚°‚Ä•`‚¢‚Ä‚é•ª‚ğ‚±‚±‚Å‹zû
+		vwk->tp_y = vpara->tp_y - 8;	// ï¼‘ã‚­ãƒ£ãƒ©ä¸‹ã’ã¦æã„ã¦ã‚‹åˆ†ã‚’ã“ã“ã§å¸å
 
 		vwk->touch_icon = check_touch_icon( vwk );
 		vwk->icon_touch_flag = (vwk->touch_icon < vpara->poke_count );
@@ -635,7 +635,7 @@ static u32 check_touch_icon( VIEWWORK* vwk )
 	return vwk->vpara->poke_count;
 }
 
-// ƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚éˆÊ’u‚Ì—LŒø”ÍˆÍ“à‚É‚¢‚é‚©H
+// ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã‚‹ä½ç½®ã®æœ‰åŠ¹ç¯„å›²å†…ã«ã„ã‚‹ã‹ï¼Ÿ
 static BOOL check_tp_range( u32 tp_x, u32 tp_y, u32 area_r, const VecFx32* pos )
 {
 	int x, y;
@@ -801,7 +801,7 @@ static void debug_print( const char* fmt, ... )
 
 
 //==============================================================================================
-// ƒrƒŠƒ„[ƒh‹…‚İ‚½‚¢‚È“®‚«
+// ãƒ“ãƒªãƒ¤ãƒ¼ãƒ‰çƒã¿ãŸã„ãªå‹•ã
 //==============================================================================================
 enum {
 	BMV_DEFAULT,
@@ -847,7 +847,7 @@ static void IconBallMovePreProc( VIEWWORK* vwk, const VIEWPARAM* vpara )
 }
 //------------------------------------------------------------------
 /**
- * ƒAƒCƒRƒ““®ìƒZƒbƒg
+ * ã‚¢ã‚¤ã‚³ãƒ³å‹•ä½œã‚»ãƒƒãƒˆ
  *
  * @param   vwk		
  * @param   p		
@@ -857,7 +857,7 @@ static void IconBallMovePreProc( VIEWWORK* vwk, const VIEWPARAM* vpara )
 //------------------------------------------------------------------
 static void SetIconMoveSeq( VIEWWORK* vwk, int p, int seq )
 {
-	/* ‘Oˆ— */
+	/* å‰å‡¦ç† */
 	switch( vwk->icon[p].move_seq ){
 	case BMV_TOUCH_LIKE:
 		vanish_effect_actor( vwk, p );
@@ -869,7 +869,7 @@ static void SetIconMoveSeq( VIEWWORK* vwk, int p, int seq )
 	VEC_Set( &vwk->icon[p].add_pos, 0, 0, 0 );
 
 
-	/* Œãˆ— */
+	/* å¾Œå‡¦ç† */
 	switch( vwk->icon[p].move_seq ){
 	case BMV_TOUCH_LIKE:
 		disp_heart_actor( vwk, p );
@@ -1071,14 +1071,14 @@ static void Bmv_Touch_Like( VIEWWORK* vwk, const VIEWPARAM* vpara, int p )
 {
 	debug_print(" icon[%d] TcgLike\n", p );
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ÚG—L‚è
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æ¥è§¦æœ‰ã‚Š
 	if(vpara->tp_cont)
 	{
 		VecFx32 tpp;
 
 		VEC_Set(&tpp, vwk->tp_x<<FX32_SHIFT, vwk->tp_y<<FX32_SHIFT, 0);
 
-		// ‚Ü‚¾ƒ^ƒbƒ`ƒ|ƒCƒ“ƒg‚ÉG‚ê‚Ä‚¢‚é”ÍˆÍ
+		// ã¾ã ã‚¿ãƒƒãƒãƒã‚¤ãƒ³ãƒˆã«è§¦ã‚Œã¦ã„ã‚‹ç¯„å›²
 		if(check_tp_range(vwk->tp_x, vwk->tp_y, POKEICON_TOUCH_RANGE, &vwk->icon[p].pos))
 		{
 			VEC_Subtract( &tpp, &vwk->icon[p].pos, &tpp );
@@ -1096,7 +1096,7 @@ static void Bmv_Touch_Like( VIEWWORK* vwk, const VIEWPARAM* vpara, int p )
 
 			return;
 		}
-		// ‚Ü‚¾”½‰‚Å‚«‚é”ÍˆÍ
+		// ã¾ã åå¿œã§ãã‚‹ç¯„å›²
 		else if(check_tp_range(vwk->tp_x, vwk->tp_y, POKEICON_REACTION_EX_RANGE, &vwk->icon[p].pos))
 		{
 			SetIconMoveSeq( vwk, p, BMV_REACTION_LIKE );
@@ -1111,20 +1111,20 @@ static void Bmv_Touch_Hate( VIEWWORK* vwk, const VIEWPARAM* vpara, int p )
 {
 	debug_print(" icon[%d] TchHate\n", p );
 
-	// ƒ^ƒbƒ`ƒpƒlƒ‹ÚG—L‚è
+	// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æ¥è§¦æœ‰ã‚Š
 	if(vpara->tp_cont)
 	{
 		VecFx32 tpp;
 
 		VEC_Set(&tpp, vwk->tp_x<<FX32_SHIFT, vwk->tp_y<<FX32_SHIFT, 0);
 
-		// ‚Ü‚¾ƒ^ƒbƒ`ƒ|ƒCƒ“ƒg‚ÉG‚ê‚Ä‚¢‚é”ÍˆÍ
+		// ã¾ã ã‚¿ãƒƒãƒãƒã‚¤ãƒ³ãƒˆã«è§¦ã‚Œã¦ã„ã‚‹ç¯„å›²
 		if(check_tp_range(vwk->tp_x, vwk->tp_y, POKEICON_TOUCH_RANGE, &vwk->icon[p].pos))
 		{
 			VEC_Set( &vwk->icon[p].vec, 0, 0, 0 );
 			return;
 		}
-		// ‚Ü‚¾”½‰‚Å‚«‚é”ÍˆÍ
+		// ã¾ã åå¿œã§ãã‚‹ç¯„å›²
 		else if(check_tp_range(vwk->tp_x, vwk->tp_y, POKEICON_REACTION_EX_RANGE, &vwk->icon[p].pos))
 		{
 			SetIconMoveSeq( vwk, p, BMV_REACTION_HATE );
@@ -1219,16 +1219,16 @@ static void IconBallMoveProc( VIEWWORK* vwk, const VIEWPARAM* vpara )
 		ev_type = EVTYPE_NONE;
 
 
-		// ‰½‚àÚGƒCƒxƒ“ƒg‚ª”­¶‚µ‚È‚©‚Á‚½ê‡‚ÌŸƒtƒŒ[ƒ€ˆÊ’u
+		// ä½•ã‚‚æ¥è§¦ã‚¤ãƒ™ãƒ³ãƒˆãŒç™ºç”Ÿã—ãªã‹ã£ãŸå ´åˆã®æ¬¡ãƒ•ãƒ¬ãƒ¼ãƒ ä½ç½®
 		for(i=0; i<vpara->poke_count; i++)
 		{
 			VEC_MultAdd( ev_time, &vwk->icon[i].vec, &vwk->icon[i].pos, &vwk->next_pos[i] );
 		}
 
-		// •Ç‚Ö‚ÌÚG”»’è
+		// å£ã¸ã®æ¥è§¦åˆ¤å®š
 		for(i=0; i<vpara->poke_count; i++)
 		{
-			// ¶•Ç
+			// å·¦å£
 			if( (vwk->next_pos[i].x < AREA_L_LIMIT) && (vwk->icon[i].vec.x != 0) )
 			{
 				fx32 ov_time = ev_time - ((vwk->next_pos[i].x - AREA_L_LIMIT) / vwk->icon[i].vec.x);
@@ -1239,7 +1239,7 @@ static void IconBallMoveProc( VIEWWORK* vwk, const VIEWPARAM* vpara )
 					ev_time = ov_time;
 				}
 			}
-			// ‰E•Ç
+			// å³å£
 			if( (vwk->next_pos[i].x > AREA_R_LIMIT) && (vwk->icon[i].vec.x != 0) )
 			{
 				fx32 ov_time = ev_time - ((vwk->next_pos[i].x - AREA_R_LIMIT) / vwk->icon[i].vec.x);
@@ -1250,7 +1250,7 @@ static void IconBallMoveProc( VIEWWORK* vwk, const VIEWPARAM* vpara )
 					ev_time = ov_time;
 				}
 			}
-			// ã•Ç
+			// ä¸Šå£
 			if( (vwk->next_pos[i].y < AREA_T_LIMIT) && (vwk->icon[i].vec.y != 0) )
 			{
 				fx32 ov_time = ev_time - ((vwk->next_pos[i].y - AREA_T_LIMIT) / vwk->icon[i].vec.y);
@@ -1261,7 +1261,7 @@ static void IconBallMoveProc( VIEWWORK* vwk, const VIEWPARAM* vpara )
 					ev_time = ov_time;
 				}
 			}
-			// ‰º•Ç
+			// ä¸‹å£
 			if( (vwk->next_pos[i].y > AREA_B_LIMIT) && (vwk->icon[i].vec.y != 0) )
 			{
 				fx32 ov_time = ev_time - ((vwk->next_pos[i].y - AREA_B_LIMIT) / vwk->icon[i].vec.y);
@@ -1274,27 +1274,27 @@ static void IconBallMoveProc( VIEWWORK* vwk, const VIEWPARAM* vpara )
 			}
 		}
 
-		// ƒAƒCƒRƒ““¯m‚ÌÚG
+		// ã‚¢ã‚¤ã‚³ãƒ³åŒå£«ã®æ¥è§¦
 		for(j=0; j<vpara->poke_count; j++)
 		{
 			for(i=0; i<j; i++)
 			{
-				// ‘Š‘ÎˆÊ’u‚ğŒvZ
+				// ç›¸å¯¾ä½ç½®ã‚’è¨ˆç®—
 				VEC_Subtract( &vwk->next_pos[i], &vwk->next_pos[j], &relative_pos );
 
-				// ƒAƒCƒRƒ“‚Ì’†SŠÔ‹——£‚ğŒvZi‚Q‚qˆÈ‰º‚È‚çÕ“Ë‚µ‚Ä‚éj
+				// ã‚¢ã‚¤ã‚³ãƒ³ã®ä¸­å¿ƒé–“è·é›¢ã‚’è¨ˆç®—ï¼ˆï¼’ï¼²ä»¥ä¸‹ãªã‚‰è¡çªã—ã¦ã‚‹ï¼‰
 				icon_distance = VEC_Mag( &relative_pos );
 				if( icon_distance < (2*POKEICON_R_FX32) )
 				{
-					// ‘Š‘ÎˆÊ’u‚Ì’PˆÊƒxƒNƒgƒ‹
+					// ç›¸å¯¾ä½ç½®ã®å˜ä½ãƒ™ã‚¯ãƒˆãƒ«
 					VEC_Normalize( &relative_pos, &norm_pos );
 
-					// ‘Š‘Î‘¬“x
+					// ç›¸å¯¾é€Ÿåº¦
 					VEC_Subtract( &vwk->icon[i].vec, &vwk->icon[j].vec, &relative_vec );
 
-					// ƒAƒCƒRƒ“’†S“¯m‚ğŒ‹‚ñ‚¾À•W²‚Å‚Ì‘Š‘Î‘¬“x
+					// ã‚¢ã‚¤ã‚³ãƒ³ä¸­å¿ƒåŒå£«ã‚’çµã‚“ã åº§æ¨™è»¸ã§ã®ç›¸å¯¾é€Ÿåº¦
 					relative_speed = VEC_DotProduct( &relative_vec, &norm_pos );
-					// ÚG‚ÌuŠÔ‚©‚ç“®‚¢‚½ŠÔ
+					// æ¥è§¦ã®ç¬é–“ã‹ã‚‰å‹•ã„ãŸæ™‚é–“
 					ov_time = ev_time - ((2*POKEICON_R_FX32 - icon_distance) / -relative_speed);
 					if( ov_time < ev_time )
 					{
@@ -1307,8 +1307,8 @@ static void IconBallMoveProc( VIEWWORK* vwk, const VIEWPARAM* vpara )
 			}
 		}
 
-		// Ÿ‚ÌÚGƒCƒxƒ“ƒg”­¶‚Ü‚ÅˆÊ’u‚ğXV
-		//iŒvZŒë·‚É‚æ‚èŸƒCƒxƒ“ƒg‚Ü‚Å‚ÌŠÔ‚ªŠ®‘S‚Éƒ[ƒ‚É‚È‚é‚±‚Æ‚ª‚ ‚é‚Ì‚ÅA‹­§“I‚ÉÅ¬’l‚ğ“ü‚ê‚éj
+		// æ¬¡ã®æ¥è§¦ã‚¤ãƒ™ãƒ³ãƒˆç™ºç”Ÿã¾ã§ä½ç½®ã‚’æ›´æ–°
+		//ï¼ˆè¨ˆç®—èª¤å·®ã«ã‚ˆã‚Šæ¬¡ã‚¤ãƒ™ãƒ³ãƒˆã¾ã§ã®æ™‚é–“ãŒå®Œå…¨ã«ã‚¼ãƒ­ã«ãªã‚‹ã“ã¨ãŒã‚ã‚‹ã®ã§ã€å¼·åˆ¶çš„ã«æœ€å°å€¤ã‚’å…¥ã‚Œã‚‹ï¼‰
 		if( ev_time <= 0 )
 		{
 			break;
@@ -1319,7 +1319,7 @@ static void IconBallMoveProc( VIEWWORK* vwk, const VIEWPARAM* vpara )
 			VEC_MultAdd( ev_time, &vwk->icon[i].vec, &vwk->icon[i].pos, &vwk->icon[i].pos );
 		}
 
-		// ÚGƒCƒxƒ“ƒgˆ—
+		// æ¥è§¦ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
 		switch( ev_type ){
 		case EVTYPE_HIT_ICON:
 			{
@@ -1328,7 +1328,7 @@ static void IconBallMoveProc( VIEWWORK* vwk, const VIEWPARAM* vpara )
 					VecFx32* vec = &vwk->icon[ev_pos2].vec;
 					if( check_vector_zero(vec) || vwk->icon[ev_pos2].prev_pushed_flag )
 					{
-						// ‘Š‘ÎˆÊ’u
+						// ç›¸å¯¾ä½ç½®
 						VEC_Subtract( &vwk->icon[ev_pos2].pos, &vwk->icon[ev_pos1].pos, &relative_pos );
 						VEC_Normalize( &relative_pos, &norm_pos );
 						vec->x = FX_Mul(norm_pos.x, FX32_CONST(0.1f));
@@ -1364,17 +1364,17 @@ static void IconBallMoveProc( VIEWWORK* vwk, const VIEWPARAM* vpara )
 				}
 				else
 				{
-					// ‘Š‘ÎˆÊ’u
+					// ç›¸å¯¾ä½ç½®
 					VEC_Subtract( &vwk->icon[ev_pos1].pos, &vwk->icon[ev_pos2].pos, &relative_pos );
-					// ’†S‹——£
+					// ä¸­å¿ƒè·é›¢
 					icon_distance = VEC_Mag( &relative_pos );
-					// ‘Š‘ÎˆÊ’u‚Ì’PˆÊƒxƒNƒgƒ‹
+					// ç›¸å¯¾ä½ç½®ã®å˜ä½ãƒ™ã‚¯ãƒˆãƒ«
 					VEC_Normalize( &relative_pos, &norm_pos );
-					// ‘Š‘Î‘¬“x
+					// ç›¸å¯¾é€Ÿåº¦
 					VEC_Subtract( &vwk->icon[ev_pos1].vec, &vwk->icon[ev_pos2].vec, &relative_vec );
-					// ƒAƒCƒRƒ“’†S“¯m‚ğŒ‹‚ñ‚¾À•W²‚Å‚Ì‘Š‘Î‘¬“x
+					// ã‚¢ã‚¤ã‚³ãƒ³ä¸­å¿ƒåŒå£«ã‚’çµã‚“ã åº§æ¨™è»¸ã§ã®ç›¸å¯¾é€Ÿåº¦
 					relative_speed = VEC_DotProduct( &relative_vec, &norm_pos );
-					// ”½ËŒvZ
+					// åå°„è¨ˆç®—
 					VEC_MultAdd(-relative_speed, &norm_pos, &vwk->icon[ev_pos1].vec, &vwk->icon[ev_pos1].vec);
 					VEC_MultAdd( relative_speed, &norm_pos, &vwk->icon[ev_pos2].vec, &vwk->icon[ev_pos2].vec);
 					vwk->icon[ev_pos1].ref_timer = 20;

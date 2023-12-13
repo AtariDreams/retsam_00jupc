@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_stage.c
- * @bfief	ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒoƒgƒ‹ƒXƒe[ƒW(ó•t‚Ü‚í‚è)
+ * @bfief	ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸(å—ä»˜ã¾ã‚ã‚Š)
  * @author	Satoshi Nohara
  * @date	06.06.13
  */
@@ -19,11 +19,11 @@
 #include "poketool/poke_number.h"	//PMNumber_GetMode
 #include "savedata/sp_ribbon.h"		//SaveData_GetSpRibbon
 #include "savedata/frontier_savedata.h"
-#include "gflib/strbuf_family.h"	//‹–‰Â§
-//ƒtƒB[ƒ‹ƒh
+#include "gflib/strbuf_family.h"	//è¨±å¯åˆ¶
+//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
 #include "fieldsys.h"
 #include "field_subproc.h"
-//ƒXƒNƒŠƒvƒg
+//ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 #include "script.h"
 #include "scrcmd.h"
 #include "scrcmd_def.h"
@@ -32,12 +32,12 @@
 #include "sysflag.h"
 #include "syswork.h"
 #include "scr_tool.h"
-//ƒoƒgƒ‹ƒXƒe[ƒW
+//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
 #include "scr_stage.h"
 #include "scr_stage_sub.h"
 #include "savedata/stage_savedata.h"
 #include "../frontier/stage_def.h"
-//’ÊM
+//é€šä¿¡
 #include "communication/comm_def.h"
 #include "communication/comm_tool.h"
 #include "communication/comm_system.h"
@@ -49,31 +49,31 @@
 
 //============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //============================================================================================
-///ƒ|ƒPƒ‚ƒ“‘I‘ğƒCƒxƒ“ƒgƒ[ƒN
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¤ãƒ™ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯
 typedef struct _STAGE_POKESEL_EVENT{
 	int	seq;
-	u8	plist_type;							//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ^ƒCƒv
-	u8	pos;								//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ÌŒ»İƒJ[ƒ\ƒ‹ˆÊ’u
+	u8	plist_type;							//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã‚¿ã‚¤ãƒ—
+	u8	pos;								//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ç¾åœ¨ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 	u8	sel[STAGE_ENTRY_POKE_MAX];
 	void** sp_wk;
 }STAGE_POKESEL_EVENT;
 
-///ƒ|ƒPƒ‚ƒ“‘I‘ğƒCƒxƒ“ƒgƒV[ƒPƒ“ƒXID
+///ãƒã‚±ãƒ¢ãƒ³é¸æŠã‚¤ãƒ™ãƒ³ãƒˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹ID
 typedef enum{
-	STAGE_POKESEL_PLIST_CALL,				//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
-	STAGE_POKESEL_PLIST_WAIT,				//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹‘Ò‚¿
-	STAGE_POKESEL_PST_CALL,					//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXŒÄ‚Ño‚µ
-	STAGE_POKESEL_PST_WAIT,					//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXI—¹‘Ò‚¿
-	STAGE_POKESEL_EXIT,						//I—¹
+	STAGE_POKESEL_PLIST_CALL,				//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
+	STAGE_POKESEL_PLIST_WAIT,				//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å¾…ã¡
+	STAGE_POKESEL_PST_CALL,					//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—
+	STAGE_POKESEL_PST_WAIT,					//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çµ‚äº†å¾…ã¡
+	STAGE_POKESEL_EXIT,						//çµ‚äº†
 };
 
 
 //============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //============================================================================================
 BOOL EvCmdBattleStageTools(VM_MACHINE* core);
@@ -84,7 +84,7 @@ BOOL EvCmdBattleStageCommMonsNo(VM_MACHINE* core);
 void EventCall_StageComm( GMEVENT_CONTROL* event, u16 monsno, u16* ret_wk );
 static BOOL GMEVENT_StageComm( GMEVENT_CONTROL* event );
 
-//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX
+//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆï¼†ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 void EventCmd_StagePokeSelectCall( GMEVENT_CONTROL *event, void** buf, u8 plist_type );
 static BOOL BtlStageEv_PokeSelect( GMEVENT_CONTROL *ev );
 static int BtlStage_PokeListCall( STAGE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,int heapID );
@@ -95,16 +95,16 @@ static int BtlStage_PokeStatusWait( STAGE_POKESEL_EVENT* wk, FIELDSYS_WORK* fsys
 
 //============================================================================================
 //
-//	ƒRƒ}ƒ“ƒh
+//	ã‚³ãƒãƒ³ãƒ‰
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒXƒe[ƒW—pƒRƒ}ƒ“ƒhŒQŒÄ‚Ño‚µƒCƒ“ƒ^[ƒtƒF[ƒX
+ *	@brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ç”¨ã‚³ãƒãƒ³ãƒ‰ç¾¤å‘¼ã³å‡ºã—ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
  *
- *	@param	com_id		u16:ƒRƒ}ƒ“ƒhID
- *	@param	retwk_id	u16:•Ô‚è’l‚ğŠi”[‚·‚éƒ[ƒN‚ÌID
+ *	@param	com_id		u16:ã‚³ãƒãƒ³ãƒ‰ID
+ *	@param	retwk_id	u16:è¿”ã‚Šå€¤ã‚’æ ¼ç´ã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã®ID
  */
 //--------------------------------------------------------------
 BOOL EvCmdBattleStageTools(VM_MACHINE* core)
@@ -130,14 +130,14 @@ BOOL EvCmdBattleStageTools(VM_MACHINE* core)
 
 	switch( com_id ){
 
-	//0:Q‰Á‰Â”\‚Èƒ|ƒPƒ‚ƒ“”‚Ìƒ`ƒFƒbƒN(ƒVƒ“ƒOƒ‹ê—p‚Èˆ—‚É‚È‚Á‚Ä‚¢‚é)
+	//0:å‚åŠ å¯èƒ½ãªãƒã‚±ãƒ¢ãƒ³æ•°ã®ãƒã‚§ãƒƒã‚¯(ã‚·ãƒ³ã‚°ãƒ«å°‚ç”¨ãªå‡¦ç†ã«ãªã£ã¦ã„ã‚‹)
 	case STAGE_TOOL_CHK_ENTRY_POKE_NUM:
 		*ret_wk = StageScrTools_CheckEntryPokeNum( param, core->fsys->savedata );
 		break;
 
-	//1:˜AŸ’†‚©æ“¾
+	//1:é€£å‹ä¸­ã‹å–å¾—
 	case STAGE_TOOL_GET_CLEAR_FLAG:
-		//WIFI‚Ì‚İ“Áê
+		//WIFIã®ã¿ç‰¹æ®Š
 		if( param == STAGE_TYPE_WIFI_MULTI ){
 			*ret_wk = FrontierRecord_Get(SaveData_GetFrontier(core->fsys->savedata), 
 										FRID_STAGE_MULTI_WIFI_CLEAR_BIT,
@@ -148,22 +148,22 @@ BOOL EvCmdBattleStageTools(VM_MACHINE* core)
 		}
 		break;
 
-	//2:˜AŸ’†‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ğæ“¾
+	//2:é€£å‹ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	case STAGE_TOOL_GET_CLEAR_MONSNO:
 		*ret_wk = FrontierRecord_Get(SaveData_GetFrontier(core->fsys->savedata), 
 									StageScr_GetMonsNoRecordID(param),
 									Frontier_GetFriendIndex(StageScr_GetMonsNoRecordID(param)) );
 		break;
 
-	//3:˜AŸ’†ƒtƒ‰ƒOƒNƒŠƒAA˜AŸƒŒƒR[ƒhƒNƒŠƒAAƒ^ƒCƒvƒJƒEƒ“ƒgƒNƒŠƒA
+	//3:é€£å‹ä¸­ãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢ã€é€£å‹ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚¯ãƒªã‚¢ã€ã‚¿ã‚¤ãƒ—ã‚«ã‚¦ãƒ³ãƒˆã‚¯ãƒªã‚¢
 	case STAGE_TOOL_SET_NEW_CHALLENGE:
 		BattleStageSetNewChallenge( core->fsys->savedata, score_sv, param );
 		break;
 
-	//4:ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–ÊŒÄ‚Ño‚µ
+	//4:ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢å‘¼ã³å‡ºã—
 	case STAGE_TOOL_SELECT_POKE:
 
-		//ƒoƒgƒ‹ƒ^ƒCƒv‚É‚æ‚Á‚Ä•ªŠò
+		//ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—ã«ã‚ˆã£ã¦åˆ†å²
 		if( param == STAGE_TYPE_SINGLE ){
 			plist_type = PL_TYPE_SINGLE;
 		}else if( param == STAGE_TYPE_DOUBLE ){
@@ -179,8 +179,8 @@ BOOL EvCmdBattleStageTools(VM_MACHINE* core)
 		return 1;
 
 	default:
-		OS_Printf( "“n‚³‚ê‚½com_id = %d\n", com_id );
-		GF_ASSERT( (0) && "com_id‚ª–¢‘Î‰‚Å‚·I" );
+		OS_Printf( "æ¸¡ã•ã‚ŒãŸcom_id = %d\n", com_id );
+		GF_ASSERT( (0) && "com_idãŒæœªå¯¾å¿œã§ã™ï¼" );
 		*ret_wk = 0;
 		break;
 	}
@@ -190,14 +190,14 @@ BOOL EvCmdBattleStageTools(VM_MACHINE* core)
 
 //--------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒXƒe[ƒW@Q‰Á‰Â”\‚Èƒ|ƒPƒ‚ƒ“”‚Ìƒ`ƒFƒbƒN
+ *	@brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€€å‚åŠ å¯èƒ½ãªãƒã‚±ãƒ¢ãƒ³æ•°ã®ãƒã‚§ãƒƒã‚¯
  *
- *	@param	num		Q‰Á‚É•K—v‚Èƒ|ƒPƒ‚ƒ“”
+ *	@param	num		å‚åŠ ã«å¿…è¦ãªãƒã‚±ãƒ¢ãƒ³æ•°
  *
- *	@retval	true	Q‰Á‰Â”\
- *	@retval	false	Q‰Á•s‰Â
+ *	@retval	true	å‚åŠ å¯èƒ½
+ *	@retval	false	å‚åŠ ä¸å¯
  *
- *	LV30ˆÈã‚ÅAƒ^ƒ}ƒS‚Å‚È‚­‚ÄA“`àŒnˆÈŠO‚ª‰½•C‚¢‚é‚©
+ *	LV30ä»¥ä¸Šã§ã€ã‚¿ãƒã‚´ã§ãªãã¦ã€ä¼èª¬ç³»ä»¥å¤–ãŒä½•åŒ¹ã„ã‚‹ã‹
  */
 //--------------------------------------------------------------
 static BOOL StageScrTools_CheckEntryPokeNum(u16 num,SAVEDATA *savedata)
@@ -211,32 +211,32 @@ static BOOL StageScrTools_CheckEntryPokeNum(u16 num,SAVEDATA *savedata)
 	party	= SaveData_GetTemotiPokemon( savedata );
 	pokenum = PokeParty_GetPokeCount( party );
 
-	//è‚¿‚Ì”‚æ‚è•K—v‚Èƒ|ƒPƒ‚ƒ“”‚ª‘½‚¢
+	//æ‰‹æŒã¡ã®æ•°ã‚ˆã‚Šå¿…è¦ãªãƒã‚±ãƒ¢ãƒ³æ•°ãŒå¤šã„æ™‚
 	if( pokenum < num ){
 		return FALSE;
 	}
 
-	//‰Šú‰»
+	//åˆæœŸåŒ–
 	for( i=0; i < 6 ;i++ ){
 		poke_tbl[i] = 0;
 	}
 
 	for( i=0, ct=0; i < pokenum ;i++ ){
 		pp		= PokeParty_GetMemberPointer( party, i );
-		monsno	= PokeParaGet( pp, ID_PARA_monsno, NULL );		//ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
-		level	= PokeParaGet( pp, ID_PARA_level, NULL );		//ƒŒƒxƒ‹
+		monsno	= PokeParaGet( pp, ID_PARA_monsno, NULL );		//ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
+		level	= PokeParaGet( pp, ID_PARA_level, NULL );		//ãƒ¬ãƒ™ãƒ«
 		
-		//ƒ^ƒ}ƒS‚Å‚È‚¢‚©ƒ`ƒFƒbƒN
+		//ã‚¿ãƒã‚´ã§ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		if( PokeParaGet(pp,ID_PARA_tamago_flag,NULL) != 0 ){
 			continue;
 		}
 
-		//ƒŒƒxƒ‹§ŒÀ
+		//ãƒ¬ãƒ™ãƒ«åˆ¶é™
 		if( level < 30 ){
 			continue;	
 		}
 
-		//ƒoƒgƒ‹ƒ^ƒ[‚ÉQ‰Á‚Å‚«‚È‚¢ƒ|ƒPƒ‚ƒ“‚©‚ğƒ`ƒFƒbƒN
+		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã«å‚åŠ ã§ããªã„ãƒã‚±ãƒ¢ãƒ³ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 		if( BattleTowerExPokeCheck_MonsNo(monsno) == TRUE ){
 			continue;
 		}
@@ -246,20 +246,20 @@ static BOOL StageScrTools_CheckEntryPokeNum(u16 num,SAVEDATA *savedata)
 	}
 
 	//////////////////////////////////////////////////////////////////////
-	//ƒXƒe[ƒW‚ÅA2•CQ‰Á‚Ì‚Í“¯‚¶ƒ|ƒPƒ‚ƒ“‚Å‚È‚¯‚ê‚Î‚¢‚¯‚È‚¢
+	//ã‚¹ãƒ†ãƒ¼ã‚¸ã§ã€2åŒ¹å‚åŠ ã®æ™‚ã¯åŒã˜ãƒã‚±ãƒ¢ãƒ³ã§ãªã‘ã‚Œã°ã„ã‘ãªã„
 	if( num == 2 ){
 
 		for( j=0; j < pokenum ;j++ ){
 
 			for( i=0; i < pokenum ;i++ ){
 
-				//“¯‚¶—v‘f”‚Í”äŠr‚µ‚È‚¢
+				//åŒã˜è¦ç´ æ•°ã¯æ¯”è¼ƒã—ãªã„
 				if( j != i ){
 
-					//’l‚ª“ü‚Á‚Ä‚¢‚½‚ç
+					//å€¤ãŒå…¥ã£ã¦ã„ãŸã‚‰
 					if( poke_tbl[j] != 0 ){
 
-						//“¯‚¶ƒ|ƒPƒ‚ƒ“‚ª‚¢‚é‚©ƒ`ƒFƒbƒN
+						//åŒã˜ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 						if( poke_tbl[j] == poke_tbl[i] ){
 							return TRUE;
 						}
@@ -268,12 +268,12 @@ static BOOL StageScrTools_CheckEntryPokeNum(u16 num,SAVEDATA *savedata)
 			}
 		}
 
-		//Q‰Á”‘«‚è‚È‚¢
+		//å‚åŠ æ•°è¶³ã‚Šãªã„
 		return FALSE;
 	}
 	//////////////////////////////////////////////////////////////////////
 
-	//ğŒ‚ğ’Ê‰ß‚µ‚½ƒ|ƒPƒ‚ƒ“”‚ğƒ`ƒFƒbƒN
+	//æ¡ä»¶ã‚’é€šéã—ãŸãƒã‚±ãƒ¢ãƒ³æ•°ã‚’ãƒã‚§ãƒƒã‚¯
 	if( ct < num ){
 		return FALSE;
 	}
@@ -283,7 +283,7 @@ static BOOL StageScrTools_CheckEntryPokeNum(u16 num,SAVEDATA *savedata)
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief		ƒXƒNƒŠƒvƒgƒRƒ}ƒ“ƒhFƒoƒgƒ‹ƒXƒe[ƒWŒp‘±NGƒZƒbƒg
+ * @brief		ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚³ãƒãƒ³ãƒ‰ï¼šãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ç¶™ç¶šNGã‚»ãƒƒãƒˆ
  * @param		core
  */
 //--------------------------------------------------------------------------------------------
@@ -301,13 +301,13 @@ BOOL EvCmdBattleStageSetContinueNG( VM_MACHINE * core )
 
 //============================================================================================
 //
-//	’ÊM
+//	é€šä¿¡
 //
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	’ÊMƒ}ƒ‹ƒ`ƒf[ƒ^‘—M
+ *	@brief	é€šä¿¡ãƒãƒ«ãƒãƒ‡ãƒ¼ã‚¿é€ä¿¡
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdBattleStageCommMonsNo(VM_MACHINE* core)
@@ -315,8 +315,8 @@ BOOL EvCmdBattleStageCommMonsNo(VM_MACHINE* core)
 	u16 monsno	= VMGetWorkValue( core );
 	u16* ret_wk	= VMGetWork( core );
 
-	OS_Printf( "ƒoƒgƒ‹ƒXƒe[ƒW’ÊMƒ}ƒ‹ƒ`ƒf[ƒ^‘—M\n" );
-	OS_Printf( "ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[ monsno = %d\n", monsno );
+	OS_Printf( "ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸é€šä¿¡ãƒãƒ«ãƒãƒ‡ãƒ¼ã‚¿é€ä¿¡\n" );
+	OS_Printf( "ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ monsno = %d\n", monsno );
 	
 	EventCall_StageComm( core->event_work, monsno, ret_wk );
 	return 1;
@@ -324,10 +324,10 @@ BOOL EvCmdBattleStageCommMonsNo(VM_MACHINE* core)
 	
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒCƒxƒ“ƒg‹[—ƒRƒ}ƒ“ƒhF‘—óM
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆæ“¬ä¼¼ã‚³ãƒãƒ³ãƒ‰ï¼šé€å—ä¿¡
  *
- * @param	event		ƒCƒxƒ“ƒg§Œäƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	monsno		ƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[
+ * @param	event		ã‚¤ãƒ™ãƒ³ãƒˆåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	monsno		ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼
  */
 //--------------------------------------------------------------------------------------------
 void EventCall_StageComm( GMEVENT_CONTROL* event, u16 monsno, u16* ret_wk )
@@ -348,12 +348,12 @@ void EventCall_StageComm( GMEVENT_CONTROL* event, u16 monsno, u16* ret_wk )
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	‘—óM
+ * @brief	é€å—ä¿¡
  *
- * @param	event		GMEVENT_CONTROLŒ^
+ * @param	event		GMEVENT_CONTROLå‹
  *
- * @retval	"FALSE = Às’†"
- * @retval	"TRUE = ÀsI—¹"
+ * @retval	"FALSE = å®Ÿè¡Œä¸­"
+ * @retval	"TRUE = å®Ÿè¡Œçµ‚äº†"
  */
 //--------------------------------------------------------------------------------------------
 static BOOL GMEVENT_StageComm( GMEVENT_CONTROL* event )
@@ -371,7 +371,7 @@ static BOOL GMEVENT_StageComm( GMEVENT_CONTROL* event )
 	case 1:
 		if( comm_wk->recieve_count >= STAGE_COMM_PLAYER_NUM ){
 
-			//“¯‚¶ƒ|ƒPƒ‚ƒ“‚ğ‘I‚ñ‚Å‚¢‚é‚©ƒ`ƒFƒbƒN
+			//åŒã˜ãƒã‚±ãƒ¢ãƒ³ã‚’é¸ã‚“ã§ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			if( comm_wk->mine_monsno == comm_wk->pair_monsno ){
 				*comm_wk->ret_wk = 0;
 			}else{
@@ -396,13 +396,13 @@ static BOOL GMEVENT_StageComm( GMEVENT_CONTROL* event )
 
 //============================================================================================
 //
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆï¼†ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //
 //============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‘I‘ğ@ƒTƒuƒCƒxƒ“ƒgŒÄ‚Ño‚µ
+ * @brief	ãƒã‚±ãƒ¢ãƒ³é¸æŠã€€ã‚µãƒ–ã‚¤ãƒ™ãƒ³ãƒˆå‘¼ã³å‡ºã—
  *
  * @param	event	GMEVENT_CONTROL*
  *
@@ -424,11 +424,11 @@ void EventCmd_StagePokeSelectCall( GMEVENT_CONTROL *event, void** buf, u8 plist_
 
 //--------------------------------------------------------------------------------------------
 /**
- * @brief	ƒQ[ƒ€ƒCƒxƒ“ƒgƒRƒ“ƒgƒ[ƒ‰@ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•ƒXƒe[ƒ^ƒX
+ * @brief	ã‚²ãƒ¼ãƒ ã‚¤ãƒ™ãƒ³ãƒˆã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ã€€ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆï¼†ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  *
  * @param	ev	GMEVENT_CONTROL *
  *
- * @retval	BOOL	TRUE=ƒCƒxƒ“ƒgI—¹
+ * @retval	BOOL	TRUE=ã‚¤ãƒ™ãƒ³ãƒˆçµ‚äº†
  */
 //--------------------------------------------------------------------------------------------
 static BOOL BtlStageEv_PokeSelect( GMEVENT_CONTROL *ev )
@@ -438,29 +438,29 @@ static BOOL BtlStageEv_PokeSelect( GMEVENT_CONTROL *ev )
 
 	switch( wk->seq ){
 
-	//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
+	//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
 	case STAGE_POKESEL_PLIST_CALL:
 		wk->seq = BtlStage_PokeListCall( wk, fsys, HEAPID_WORLD );
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹‘Ò‚¿
+	//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å¾…ã¡
 	case STAGE_POKESEL_PLIST_WAIT:
 		wk->seq = BtlStage_PokeListWait( wk, fsys );
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXŒÄ‚Ño‚µ
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—
 	case STAGE_POKESEL_PST_CALL:
 		wk->seq = BtlStage_PokeStatusCall( wk, fsys, HEAPID_WORLD );
 		break;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXI—¹‘Ò‚¿
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çµ‚äº†å¾…ã¡
 	case STAGE_POKESEL_PST_WAIT:
 		wk->seq = BtlStage_PokeStatusWait( wk, fsys );
 		break;
 
-	//I—¹
+	//çµ‚äº†
 	case STAGE_POKESEL_EXIT:
-		sys_FreeMemoryEz( wk );		//STAGE_POKESEL_EVENT‚ğŠJ•ú
+		sys_FreeMemoryEz( wk );		//STAGE_POKESEL_EVENTã‚’é–‹æ”¾
 		return TRUE;
 	}
 
@@ -469,7 +469,7 @@ static BOOL BtlStageEv_PokeSelect( GMEVENT_CONTROL *ev )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒXƒe[ƒW@ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€€ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—
  */
 //--------------------------------------------------------------------------------------------
 static int BtlStage_PokeListCall( STAGE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,int heapID )
@@ -480,35 +480,35 @@ static int BtlStage_PokeListCall( STAGE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,in
 	PLIST_DATA* pld = sys_AllocMemory( HEAPID_WORLD, sizeof(PLIST_DATA) );
 	MI_CpuClearFast( pld, sizeof(PLIST_DATA) );
 
-	//PILSTDATA_Create‚Ì’†g‚Æ“¯‚¶
+	//PILSTDATA_Createã®ä¸­èº«ã¨åŒã˜
 	pld->pp			= SaveData_GetTemotiPokemon( fsys->savedata );
 	pld->myitem		= SaveData_GetMyItem( fsys->savedata );
 	pld->mailblock	= SaveData_GetMailBlock( fsys->savedata );
 	pld->cfg		= SaveData_GetConfig( fsys->savedata );
 
-	//ƒ^ƒCƒv‚ÍƒVƒ“ƒOƒ‹ŒÅ’è‚Å‚æ‚³‚»‚¤(Šm”F‚·‚é)
+	//ã‚¿ã‚¤ãƒ—ã¯ã‚·ãƒ³ã‚°ãƒ«å›ºå®šã§ã‚ˆã•ãã†(ç¢ºèªã™ã‚‹)
 	//pld->type		= wk->plist_type;
 	pld->type		= PL_TYPE_SINGLE;
 
 	pld->mode		= PL_MODE_BATTLE_STAGE;
 	pld->fsys		= fsys;
 
-	//ƒJ[ƒ\ƒ‹ˆÊ’u
+	//ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
 	pld->ret_sel	= wk->pos;
 
-	//‘I‘ğ‚µ‚Ä‚¢‚éˆÊ’u(ƒŠƒXƒg¨ƒXƒe[ƒ^ƒX¨ƒŠƒXƒg‚Åó‘Ô‚ğ•œ‹A‚³‚¹‚é)
+	//é¸æŠã—ã¦ã„ã‚‹ä½ç½®(ãƒªã‚¹ãƒˆâ†’ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹â†’ãƒªã‚¹ãƒˆã§çŠ¶æ…‹ã‚’å¾©å¸°ã•ã›ã‚‹)
 	for( i=0; i < STAGE_ENTRY_POKE_MAX ;i++ ){
 		pld->in_num[i] = wk->sel[i];
 	}
 
-	pld->in_lv		= 30;			//Q‰ÁƒŒƒxƒ‹30-100
+	pld->in_lv		= 30;			//å‚åŠ ãƒ¬ãƒ™ãƒ«30-100
 
-	pld->in_min		= 1;			//Q‰ÁÅ¬”
-	pld->in_max		= 1;			//Q‰ÁÅ‘å”
+	pld->in_min		= 1;			//å‚åŠ æœ€å°æ•°
+	pld->in_max		= 1;			//å‚åŠ æœ€å¤§æ•°
 
 	if( wk->plist_type == PL_TYPE_DOUBLE ){
-		pld->in_min = 2;			//Q‰ÁÅ¬”
-		pld->in_max = 2;			//Q‰ÁÅ‘å”
+		pld->in_min = 2;			//å‚åŠ æœ€å°æ•°
+		pld->in_max = 2;			//å‚åŠ æœ€å¤§æ•°
 	}
 
 	GameSystem_StartSubProc( fsys, &PokeListProcData, pld );
@@ -520,7 +520,7 @@ static int BtlStage_PokeListCall( STAGE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,in
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgI—¹‘Ò‚¿
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆçµ‚äº†å¾…ã¡
  */
 //--------------------------------------------------------------------------------------------
 static int BtlStage_PokeListWait( STAGE_POKESEL_EVENT* wk, FIELDSYS_WORK* fsys )
@@ -528,30 +528,30 @@ static int BtlStage_PokeListWait( STAGE_POKESEL_EVENT* wk, FIELDSYS_WORK* fsys )
 	int	ret;
 	PLIST_DATA* pld;
 
-	// ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+	// ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 	if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ) {
 		return STAGE_POKESEL_PLIST_WAIT;
 	}
 
 	pld = *(wk->sp_wk);
 
-	//ƒf[ƒ^æ“¾
+	//ãƒ‡ãƒ¼ã‚¿å–å¾—
 	switch( pld->ret_sel ){
 
-	case PL_SEL_POS_EXIT:					//‚â‚ß‚é(pld‚ÍŠJ•ú‚µ‚Ä‚¢‚È‚¢)
+	case PL_SEL_POS_EXIT:					//ã‚„ã‚ã‚‹(pldã¯é–‹æ”¾ã—ã¦ã„ãªã„)
 		return STAGE_POKESEL_EXIT;
 
-	case PL_SEL_POS_ENTER:					//Œˆ’è(pld‚ÍŠJ•ú‚µ‚Ä‚¢‚È‚¢)
+	case PL_SEL_POS_ENTER:					//æ±ºå®š(pldã¯é–‹æ”¾ã—ã¦ã„ãªã„)
 		return STAGE_POKESEL_EXIT;
 
-	default:								//‚Â‚æ‚³‚ğ‚İ‚é
+	default:								//ã¤ã‚ˆã•ã‚’ã¿ã‚‹
 		break;
 	}
 
-	//‘I‘ğ‚µ‚Ä‚¢‚éó‘Ô‚ğAƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‚ğŒÄ‚ñ‚¾‚ ‚Æ‚É•œ‹A‚³‚¹‚é‚½‚ß‚É•K—v
-	MI_CpuCopy8( pld->in_num, wk->sel, STAGE_ENTRY_POKE_MAX );	//Œ»İ‘I‚Î‚ê‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ğ•Û‘¶
+	//é¸æŠã—ã¦ã„ã‚‹çŠ¶æ…‹ã‚’ã€ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å‘¼ã‚“ã ã‚ã¨ã«å¾©å¸°ã•ã›ã‚‹ãŸã‚ã«å¿…è¦
+	MI_CpuCopy8( pld->in_num, wk->sel, STAGE_ENTRY_POKE_MAX );	//ç¾åœ¨é¸ã°ã‚Œã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’ä¿å­˜
 
-	//ƒ|ƒWƒVƒ‡ƒ“‚ğ•Û‘¶
+	//ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’ä¿å­˜
 	wk->pos = pld->ret_sel;
 
 	sys_FreeMemoryEz(pld);
@@ -561,7 +561,7 @@ static int BtlStage_PokeListWait( STAGE_POKESEL_EVENT* wk, FIELDSYS_WORK* fsys )
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒXƒe[ƒW@ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXŒÄ‚Ño‚µ
+ *	@brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€€ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å‘¼ã³å‡ºã—
  */
 //--------------------------------------------------------------------------------------------
 static int BtlStage_PokeStatusCall(STAGE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,int heapID )
@@ -570,20 +570,20 @@ static int BtlStage_PokeStatusCall(STAGE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,i
 	SAVEDATA* sv;
 
 	static const u8 PST_PageTbl[] = {
-		PST_PAGE_INFO,			//uƒ|ƒPƒ‚ƒ“‚¶‚å‚¤‚Ù‚¤v
-		PST_PAGE_MEMO,			//uƒgƒŒ[ƒi[ƒƒ‚v
-		PST_PAGE_PARAM,			//uƒ|ƒPƒ‚ƒ“‚Ì‚¤‚è‚å‚­v
-		PST_PAGE_CONDITION,		//uƒRƒ“ƒfƒBƒVƒ‡ƒ“v
-		PST_PAGE_B_SKILL,		//u‚½‚½‚©‚¤‚í‚´v
-		PST_PAGE_C_SKILL,		//uƒRƒ“ƒeƒXƒg‚í‚´v
-		PST_PAGE_RIBBON,		//u‚«‚Ë‚ñƒŠƒ{ƒ“v
-		PST_PAGE_RET,			//u‚à‚Ç‚év
+		PST_PAGE_INFO,			//ã€Œãƒã‚±ãƒ¢ãƒ³ã˜ã‚‡ã†ã»ã†ã€
+		PST_PAGE_MEMO,			//ã€Œãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒ¢ã€
+		PST_PAGE_PARAM,			//ã€Œãƒã‚±ãƒ¢ãƒ³ã®ã†ã‚Šã‚‡ãã€
+		PST_PAGE_CONDITION,		//ã€Œã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã€
+		PST_PAGE_B_SKILL,		//ã€ŒãŸãŸã‹ã†ã‚ã–ã€
+		PST_PAGE_C_SKILL,		//ã€Œã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚ã–ã€
+		PST_PAGE_RIBBON,		//ã€Œãã­ã‚“ãƒªãƒœãƒ³ã€
+		PST_PAGE_RET,			//ã€Œã‚‚ã©ã‚‹ã€
 		PST_PAGE_MAX
 	};
 	
 	sv = fsys->savedata;
 
-	//ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒX‚ğŒÄ‚Ño‚·
+	//ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å‘¼ã³å‡ºã™
 	psd = sys_AllocMemoryLo( heapID, sizeof(PSTATUS_DATA) );
 	MI_CpuClear8( psd,sizeof(PSTATUS_DATA) );
 
@@ -609,21 +609,21 @@ static int BtlStage_PokeStatusCall(STAGE_POKESEL_EVENT* wk,FIELDSYS_WORK* fsys,i
 
 //--------------------------------------------------------------------------------------------
 /**
- *	@brief	ƒoƒgƒ‹ƒXƒe[ƒW@ƒ|ƒPƒ‚ƒ“ƒXƒe[ƒ^ƒXI—¹‘Ò‚¿
+ *	@brief	ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸ã€€ãƒã‚±ãƒ¢ãƒ³ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çµ‚äº†å¾…ã¡
  */
 //--------------------------------------------------------------------------------------------
 static int BtlStage_PokeStatusWait( STAGE_POKESEL_EVENT* wk, FIELDSYS_WORK* fsys )
 {
 	PSTATUS_DATA* psd;
 
-	//ƒTƒuƒvƒƒZƒXI—¹‘Ò‚¿
+	//ã‚µãƒ–ãƒ—ãƒ­ã‚»ã‚¹çµ‚äº†å¾…ã¡
 	if( FieldEvent_Cmd_WaitSubProcEnd(fsys) ) {
 		return STAGE_POKESEL_PST_WAIT;
 	}
 
 	psd = *(wk->sp_wk);
 	
-	//Ø‚è‘Ö‚¦‚ç‚ê‚½ƒJƒŒƒ“ƒg‚ğ•Û‘¶‚·‚é
+	//åˆ‡ã‚Šæ›¿ãˆã‚‰ã‚ŒãŸã‚«ãƒ¬ãƒ³ãƒˆã‚’ä¿å­˜ã™ã‚‹
 	wk->pos = psd->pos;
 
 	sys_FreeMemoryEz( psd );
@@ -634,9 +634,9 @@ static int BtlStage_PokeStatusWait( STAGE_POKESEL_EVENT* wk, FIELDSYS_WORK* fsys
 
 //--------------------------------------------------------------------------------------------
 /**
- * ‘Sƒ|ƒPƒ‚ƒ“‚Ì˜AŸ”‚Ì‡Œv‚ğw’èƒoƒbƒtƒ@‚É“o˜^(u32)
+ * å…¨ãƒã‚±ãƒ¢ãƒ³ã®é€£å‹æ•°ã®åˆè¨ˆã‚’æŒ‡å®šãƒãƒƒãƒ•ã‚¡ã«ç™»éŒ²(u32)
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -646,8 +646,8 @@ BOOL EvCmdBattleStageNumberName( VM_MACHINE * core );
 
 
 typedef struct{
-	u32 total_num;			//ƒg[ƒ^ƒ‹ƒŒƒR[ƒh
-	u32 get_bp;				//–á‚¦‚éBP
+	u32 total_num;			//ãƒˆãƒ¼ã‚¿ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰
+	u32 get_bp;				//è²°ãˆã‚‹BP
 }STAGE_TOTAL_NUM_WORK;
 
 static const STAGE_TOTAL_NUM_WORK stage_total_num[] = {
@@ -723,15 +723,15 @@ BOOL EvCmdBattleStageNumberName( VM_MACHINE * core )
 	save_result = SAVE_RESULT_OK;
 	
 	if(SaveData_GetExtraInitFlag(fsys->savedata) == FALSE){
-		*ret_wk = 0;		//ƒŒƒR[ƒh‚È‚µ
-		return 0;	//ŠO•”ƒZ[ƒu‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Åƒf[ƒ^–³‚µ‚Æ”»’è
+		*ret_wk = 0;		//ãƒ¬ã‚³ãƒ¼ãƒ‰ãªã—
+		return 0;	//å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ã®ã§ãƒ‡ãƒ¼ã‚¿ç„¡ã—ã¨åˆ¤å®š
 	}
 
 	fes = FrontierEx_Load( fsys->savedata, HEAPID_EVENT, &load_result );
 	if( load_result != LOAD_RESULT_OK ){
-		num = 0;	//ƒZ[ƒu”j‰óorƒL[‚Æˆê’v‚µ‚È‚¢Aê‡‚ÍV‹Kƒf[ƒ^‚Æ‰ğß
+		num = 0;	//ã‚»ãƒ¼ãƒ–ç ´å£Šorã‚­ãƒ¼ã¨ä¸€è‡´ã—ãªã„ã€å ´åˆã¯æ–°è¦ãƒ‡ãƒ¼ã‚¿ã¨è§£é‡ˆ
 	}else{
-		//‘Sƒ|ƒPƒ‚ƒ“‚Ì˜AŸ”‚Ì‡Œv‚ğŒvZ
+		//å…¨ãƒã‚±ãƒ¢ãƒ³ã®é€£å‹æ•°ã®åˆè¨ˆã‚’è¨ˆç®—
 		for( i=0; i < MONSNO_END ;i++ ){
 			num += FrontierEx_StageRenshou_Get( fsys->savedata, fes, 
 												FREXID_STAGE_RENSHOU_SINGLE, i );
@@ -740,7 +740,7 @@ BOOL EvCmdBattleStageNumberName( VM_MACHINE * core )
 		}
 	}
 
-	//ƒfƒoƒbƒN//////////////////////////
+	//ãƒ‡ãƒãƒƒã‚¯//////////////////////////
 	//num = 100000;
 	////////////////////////////////////
 
@@ -750,14 +750,14 @@ BOOL EvCmdBattleStageNumberName( VM_MACHINE * core )
 		sys_FreeMemoryEz(fes);
 	}
 
-	//ƒg[ƒ^ƒ‹ƒŒƒR[ƒh‘ã“ü
+	//ãƒˆãƒ¼ã‚¿ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰ä»£å…¥
 	WORDSET_RegisterNumber( *wordset, idx_1, num, GetNumKeta(num), 
 							NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
 
 #if 1
-	get_bp	= 0;		//–á‚¦‚éBPƒ[ƒN
-	clear_lv= 0;		//ƒNƒŠƒA‚µ‚½LV‚ğ“ü‚ê‚éƒ[ƒN‚ğ‰Šú‰»
-	now_lv	= *lv_wk;	//Œ»İ‚ÌLV‚ğ‘Ş”ğ
+	get_bp	= 0;		//è²°ãˆã‚‹BPãƒ¯ãƒ¼ã‚¯
+	clear_lv= 0;		//ã‚¯ãƒªã‚¢ã—ãŸLVã‚’å…¥ã‚Œã‚‹ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ–
+	now_lv	= *lv_wk;	//ç¾åœ¨ã®LVã‚’é€€é¿
 	//OS_Printf( "*lv_wk = %d\n", *lv_wk );
 	
 	for( i= (*lv_wk); i < STAGE_TOTAL_NUM_TBL_MAX ;i++ ){
@@ -769,10 +769,10 @@ BOOL EvCmdBattleStageNumberName( VM_MACHINE * core )
 		}
 	}
 
-	//ƒŒƒR[ƒhXV
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰æ›´æ–°
 	RECORD_Add( SaveData_GetRecord(core->fsys->savedata), RECID_WIN_BP, get_bp );
 
-	//ƒoƒgƒ‹ƒ|ƒCƒ“ƒg‚ğ‰ÁZ‚·‚é
+	//ãƒãƒˆãƒ«ãƒã‚¤ãƒ³ãƒˆã‚’åŠ ç®—ã™ã‚‹
 	if( get_bp != 0 ){
 		TowerScoreData_SetBattlePoint(
 			SaveData_GetTowerScoreData(core->fsys->savedata),get_bp,BTWR_DATA_add);
@@ -783,31 +783,31 @@ BOOL EvCmdBattleStageNumberName( VM_MACHINE * core )
 #endif
 
 	if( num == 0 ){
-		*ret_wk = 0;		//ƒŒƒR[ƒh‚È‚µ
+		*ret_wk = 0;		//ãƒ¬ã‚³ãƒ¼ãƒ‰ãªã—
 	}else{
 		if( now_lv != (*lv_wk) ){
-			*ret_wk = 1;	//ƒŒƒR[ƒhXV
+			*ret_wk = 1;	//ãƒ¬ã‚³ãƒ¼ãƒ‰æ›´æ–°
 		}else{
-			*ret_wk = 2;	//ƒŒƒR[ƒhXV‚µ‚Ä‚È‚¢
+			*ret_wk = 2;	//ãƒ¬ã‚³ãƒ¼ãƒ‰æ›´æ–°ã—ã¦ãªã„
 		}
 
 		if( now_lv >= STAGE_TOTAL_NUM_TBL_MAX ){
-			*ret_wk = 3;	////‘S‚ÄƒQƒbƒg‚µ‚½
+			*ret_wk = 3;	////å…¨ã¦ã‚²ãƒƒãƒˆã—ãŸ
 			return 0;
 		}
 	}
 
-	//’´‚¦‚½ƒg[ƒ^ƒ‹ƒŒƒR[ƒh‚ÌLV‚Ì’l‚ğ‘ã“ü
+	//è¶…ãˆãŸãƒˆãƒ¼ã‚¿ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰ã®LVã®å€¤ã‚’ä»£å…¥
 	WORDSET_RegisterNumber( *wordset, idx_2, stage_total_num[clear_lv].total_num, 
 							GetNumKeta(stage_total_num[clear_lv].total_num), 
 							NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
 
-	//Ÿ‚Ìƒg[ƒ^ƒ‹ƒŒƒR[ƒh‚ÌLV‚Ì’l‚ğ‘ã“ü
+	//æ¬¡ã®ãƒˆãƒ¼ã‚¿ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰ã®LVã®å€¤ã‚’ä»£å…¥
 	WORDSET_RegisterNumber( *wordset, idx_3, stage_total_num[*lv_wk].total_num, 
 							GetNumKeta(stage_total_num[*lv_wk].total_num), 
 							NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
 
-	//–á‚¦‚éBP‘ã“ü
+	//è²°ãˆã‚‹BPä»£å…¥
 	WORDSET_RegisterNumber( *wordset, idx_4, get_bp, GetNumKeta(get_bp), 
 							NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
 	
@@ -816,13 +816,13 @@ BOOL EvCmdBattleStageNumberName( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒŒƒR[ƒh‚ª‚ ‚éƒ|ƒPƒ‚ƒ“”‚ğæ“¾
+ * ãƒ¬ã‚³ãƒ¼ãƒ‰ãŒã‚ã‚‹ãƒã‚±ãƒ¢ãƒ³æ•°ã‚’å–å¾—
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  *
- * ƒtƒ@ƒ“‚Åg—p(ƒVƒ“ƒOƒ‹Aƒ_ƒuƒ‹Aƒ}ƒ‹ƒ`‚ª‘ÎÛ)
+ * ãƒ•ã‚¡ãƒ³ã§ä½¿ç”¨(ã‚·ãƒ³ã‚°ãƒ«ã€ãƒ€ãƒ–ãƒ«ã€ãƒãƒ«ãƒãŒå¯¾è±¡)
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdBattleStageRecordPokeGet( VM_MACHINE * core );
@@ -839,25 +839,25 @@ BOOL EvCmdBattleStageRecordPokeGet( VM_MACHINE * core )
 	
 	if(SaveData_GetExtraInitFlag(fsys->savedata) == FALSE){
 		*ret_wk = 0;
-		return 0;	//ŠO•”ƒZ[ƒu‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Åƒf[ƒ^–³‚µ‚Æ”»’è
+		return 0;	//å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ã®ã§ãƒ‡ãƒ¼ã‚¿ç„¡ã—ã¨åˆ¤å®š
 	}
 
 	fes = FrontierEx_Load( fsys->savedata, HEAPID_EVENT, &load_result );
 	if( load_result != LOAD_RESULT_OK ){
-		count = 0;	//ƒZ[ƒu”j‰óorƒL[‚Æˆê’v‚µ‚È‚¢Aê‡‚ÍV‹Kƒf[ƒ^‚Æ‰ğß
+		count = 0;	//ã‚»ãƒ¼ãƒ–ç ´å£Šorã‚­ãƒ¼ã¨ä¸€è‡´ã—ãªã„ã€å ´åˆã¯æ–°è¦ãƒ‡ãƒ¼ã‚¿ã¨è§£é‡ˆ
 	}else{
 		for( i=0; i < MONSNO_END ;i++ ){
 			num = 0;
 
-			//ƒVƒ“ƒOƒ‹
+			//ã‚·ãƒ³ã‚°ãƒ«
 			num += FrontierEx_StageRenshou_Get( fsys->savedata, fes, 
 												FREXID_STAGE_RENSHOU_SINGLE, i );
 
-			//ƒ_ƒuƒ‹
+			//ãƒ€ãƒ–ãƒ«
 			num += FrontierEx_StageRenshou_Get( fsys->savedata, fes, 
 												FREXID_STAGE_RENSHOU_DOUBLE, i );
 
-			//ƒ}ƒ‹ƒ`
+			//ãƒãƒ«ãƒ
 			num += FrontierEx_StageRenshou_Get( fsys->savedata, fes, 
 												FREXID_STAGE_RENSHOU_MULTI, i );
 
@@ -870,7 +870,7 @@ BOOL EvCmdBattleStageRecordPokeGet( VM_MACHINE * core )
 		}
 	}
 
-	//ƒfƒoƒbƒN//////////////////////////
+	//ãƒ‡ãƒãƒƒã‚¯//////////////////////////
 	//count = 300;
 	////////////////////////////////////
 
@@ -886,9 +886,9 @@ BOOL EvCmdBattleStageRecordPokeGet( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ƒg[ƒ^ƒ‹ƒŒƒR[ƒh‚ğæ“¾(10000ˆÈã‚Í10000‚Æ‚µ‚Äæ“¾)
+ * ãƒˆãƒ¼ã‚¿ãƒ«ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—(10000ä»¥ä¸Šã¯10000ã¨ã—ã¦å–å¾—)
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  */
@@ -910,14 +910,14 @@ BOOL EvCmdBattleStageTotalRecordGetEx( VM_MACHINE * core )
 	
 	if(SaveData_GetExtraInitFlag(fsys->savedata) == FALSE){
 		*ret_wk = 0;
-		return 0;	//ŠO•”ƒZ[ƒu‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢‚Ì‚Åƒf[ƒ^–³‚µ‚Æ”»’è
+		return 0;	//å¤–éƒ¨ã‚»ãƒ¼ãƒ–ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„ã®ã§ãƒ‡ãƒ¼ã‚¿ç„¡ã—ã¨åˆ¤å®š
 	}
 
 	fes = FrontierEx_Load( fsys->savedata, HEAPID_EVENT, &load_result );
 	if( load_result != LOAD_RESULT_OK ){
-		num = 0;	//ƒZ[ƒu”j‰óorƒL[‚Æˆê’v‚µ‚È‚¢Aê‡‚ÍV‹Kƒf[ƒ^‚Æ‰ğß
+		num = 0;	//ã‚»ãƒ¼ãƒ–ç ´å£Šorã‚­ãƒ¼ã¨ä¸€è‡´ã—ãªã„ã€å ´åˆã¯æ–°è¦ãƒ‡ãƒ¼ã‚¿ã¨è§£é‡ˆ
 	}else{
-		//‘Sƒ|ƒPƒ‚ƒ“‚Ì˜AŸ”‚Ì‡Œv‚ğŒvZ
+		//å…¨ãƒã‚±ãƒ¢ãƒ³ã®é€£å‹æ•°ã®åˆè¨ˆã‚’è¨ˆç®—
 		for( i=0; i < MONSNO_END ;i++ ){
 			num += FrontierEx_StageRenshou_Get( fsys->savedata, fes, 
 												FREXID_STAGE_RENSHOU_SINGLE, i );
@@ -926,7 +926,7 @@ BOOL EvCmdBattleStageTotalRecordGetEx( VM_MACHINE * core )
 		}
 	}
 
-	//ƒfƒoƒbƒN//////////////////////////
+	//ãƒ‡ãƒãƒƒã‚¯//////////////////////////
 	//num = 100000;
 	////////////////////////////////////
 
@@ -936,7 +936,7 @@ BOOL EvCmdBattleStageTotalRecordGetEx( VM_MACHINE * core )
 		sys_FreeMemoryEz(fes);
 	}
 
-	//u32‚Å‚Íƒ[ƒN‚ªæ“¾‚Å‚«‚È‚¢‚Ì‚Å•K—v‚È’l‚Å•â³‚ğ‚©‚¯‚Ä‚µ‚Ü‚¤
+	//u32ã§ã¯ãƒ¯ãƒ¼ã‚¯ãŒå–å¾—ã§ããªã„ã®ã§å¿…è¦ãªå€¤ã§è£œæ­£ã‚’ã‹ã‘ã¦ã—ã¾ã†
 	if( num > 10000 ){
 		num = 10000;
 	}
@@ -947,13 +947,13 @@ BOOL EvCmdBattleStageTotalRecordGetEx( VM_MACHINE * core )
 
 //--------------------------------------------------------------------------------------------
 /**
- * TVFŒ»İ’§í’†‚Ìƒ|ƒPƒ‚ƒ“‚ÌŒ»İ‚Ì˜AŸ”‚ğƒ`ƒFƒbƒN
+ * TVï¼šç¾åœ¨æŒ‘æˆ¦ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ã®ç¾åœ¨ã®é€£å‹æ•°ã‚’ãƒã‚§ãƒƒã‚¯
  *
- * @param	core		‰¼‘zƒ}ƒVƒ“§Œä\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param	core		ä»®æƒ³ãƒã‚·ãƒ³åˆ¶å¾¡æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"0"
  *
- * ƒVƒ“ƒOƒ‹ŒÀ’è
+ * ã‚·ãƒ³ã‚°ãƒ«é™å®š
  */
 //--------------------------------------------------------------------------------------------
 BOOL EvCmdTVStageRensyouCheck( VM_MACHINE * core );
@@ -968,21 +968,21 @@ BOOL EvCmdTVStageRensyouCheck( VM_MACHINE * core )
 	//ps	= TVWORK_GetStageTemp(tvwk);
 	//if( ps->monsno != 0 ){
 
-	//’§í’†‚Ìƒ|ƒPƒ‚ƒ“ƒiƒ“ƒo[‚ğæ“¾
+	//æŒ‘æˆ¦ä¸­ã®ãƒã‚±ãƒ¢ãƒ³ãƒŠãƒ³ãƒãƒ¼ã‚’å–å¾—
 	before_monsno = FrontierRecord_Get(	SaveData_GetFrontier(core->fsys->savedata), 
 										StageScr_GetMonsNoRecordID(STAGE_TYPE_SINGLE),
 										FRONTIER_RECORD_NOT_FRIEND );
 
 	//if( ps->monsno == before_monsno ){
 	
-	//Œ»İ‚Ì˜AŸ”‚ğæ“¾
+	//ç¾åœ¨ã®é€£å‹æ•°ã‚’å–å¾—
 	num = FrontierRecord_Get(	SaveData_GetFrontier(core->fsys->savedata), 
 								StageScr_GetWinRecordID(STAGE_TYPE_SINGLE),
 								FRONTIER_RECORD_NOT_FRIEND );
 
 	*ret_wk = 0;
 	if( num == 50 ){
-		*ret_wk = 1;			//50˜AŸ‚µ‚Ä‚¢‚é(˜AŸ”‚ğ•Û‘¶‚µ‚Ä‚¢‚È‚¢‚Ì‚ÅˆÈã‚Í‚¾‚ß)
+		*ret_wk = 1;			//50é€£å‹ã—ã¦ã„ã‚‹(é€£å‹æ•°ã‚’ä¿å­˜ã—ã¦ã„ãªã„ã®ã§ä»¥ä¸Šã¯ã ã‚)
 	}
 
 	OS_Printf( "before_monsno = %d\n", before_monsno );

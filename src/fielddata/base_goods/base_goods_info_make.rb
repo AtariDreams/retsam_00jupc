@@ -1,12 +1,12 @@
 #
 #  base_goods_info_make.rb
 #
-#  g—p•û–@Fruby base_goods_info_make.rb <base_goods.txt>
-#         (’n‰º‘fŞ•\ ƒ^ƒu‹æØ‚è‚ÌƒeƒLƒXƒgƒtƒ@ƒCƒ‹)
+#  ä½¿ç”¨æ–¹æ³•ï¼šruby base_goods_info_make.rb <base_goods.txt>
+#         (åœ°ä¸‹ç´ æè¡¨ ã‚¿ãƒ–åŒºåˆ‡ã‚Šã®ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«)
 #
 
 
-#  ƒƒbƒZ[ƒW‚Ìƒf[ƒ^o—Í
+#  ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ‡ãƒ¼ã‚¿å‡ºåŠ›
 #
 def _changeMessageParam(gmmName,output,worldflg,lareflg)
   begin
@@ -20,21 +20,21 @@ def _changeMessageParam(gmmName,output,worldflg,lareflg)
   end
 end
 
-#  ŒğŠ·‘ÎÛ¤•i‚Ìƒf[ƒ^o—Í
+#  äº¤æ›å¯¾è±¡å•†å“ã®ãƒ‡ãƒ¼ã‚¿å‡ºåŠ›
 #
 def _changeStoneParam(stoneName, minNum, maxNum, output, count, money)
   begin
     stoneNo = 0
 	case stoneName
-	when "‚±‚ñ‚²‚¤ƒ_ƒ}"
+	when "ã“ã‚“ã”ã†ãƒ€ãƒ"
 	  stoneNo = 1
-	when "‚µ‚çƒ^ƒ}"
+	when "ã—ã‚‰ã‚¿ãƒ"
 	  stoneNo = 2
-	when "‚ ‚©‚¢ƒ^ƒ}"
+	when "ã‚ã‹ã„ã‚¿ãƒ"
 	  stoneNo = 3
-	when "‚ ‚¨‚¢ƒ^ƒ}"
+	when "ã‚ãŠã„ã‚¿ãƒ"
 	  stoneNo = 4
-	when "‚İ‚Ç‚èƒ_ƒ}"
+	when "ã¿ã©ã‚Šãƒ€ãƒ"
 	  stoneNo = 5
     when ""
 	  stoneNo = 0
@@ -56,18 +56,18 @@ def _changeStoneParam(stoneName, minNum, maxNum, output, count, money)
   end
 end
 
-## ƒƒCƒ“ƒ‹[ƒ`ƒ“
+## ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
 
 goods_list = open("goods_size_info.dat","w")
 goods_id_def = open("goods_id_def.h","w")
 
-goods_list.printf("//‚±‚Ìƒtƒ@ƒCƒ‹‚ÍƒRƒ“ƒo[ƒ^[‚É‚æ‚è¶¬‚³‚ê‚Ü‚· base_goods_info_make.rb\n");
-goods_list.printf("//’n‰º”é–§Šî’n‚ÌƒOƒbƒY‚Ì‚ ‚½‚è‚È‚Ç‚Ìƒf[ƒ^ƒtƒ@ƒCƒ‹‚Å‚·\n");
+goods_list.printf("//ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯ã‚³ãƒ³ãƒãƒ¼ã‚¿ãƒ¼ã«ã‚ˆã‚Šç”Ÿæˆã•ã‚Œã¾ã™ base_goods_info_make.rb\n");
+goods_list.printf("//åœ°ä¸‹ç§˜å¯†åŸºåœ°ã®ã‚°ãƒƒã‚ºã®ã‚ãŸã‚Šãªã©ã®ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã§ã™\n");
 goods_list.puts "static const GOODS_SIZE_INFO GoodsSizeInfo[] = "
 goods_list.puts "{"
 
-goods_id_def.printf("//‚±‚Ìƒtƒ@ƒCƒ‹‚ÍƒRƒ“ƒo[ƒ^[‚É‚æ‚è¶¬‚³‚ê‚Ü‚· base_goods_info_make.rb\n");
-goods_id_def.printf("//’n‰º”é–§Šî’n‚ÌƒOƒbƒY‚Ìí—Ş‚ğ’è‹`‚µ‚½ƒtƒ@ƒCƒ‹‚Å‚·\n");
+goods_id_def.printf("//ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯ã‚³ãƒ³ãƒãƒ¼ã‚¿ãƒ¼ã«ã‚ˆã‚Šç”Ÿæˆã•ã‚Œã¾ã™ base_goods_info_make.rb\n");
+goods_id_def.printf("//åœ°ä¸‹ç§˜å¯†åŸºåœ°ã®ã‚°ãƒƒã‚ºã®ç¨®é¡ã‚’å®šç¾©ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ã§ã™\n");
 goods_id_def.printf("#ifndef __GOODS_ID_DEF_H__\n");
 goods_id_def.printf("#define __GOODS_ID_DEF_H__\n\n");
 
@@ -78,10 +78,10 @@ count = 0;
 while f = ARGV.shift
 	file_name = f
 	csv_file = open(file_name,"r")
-	line = csv_file.gets    ## “ñs“Ç‚İ”ò‚Î‚µ
+	line = csv_file.gets    ## äºŒè¡Œèª­ã¿é£›ã°ã—
 	line = csv_file.gets
 
-	#ƒ_ƒ~[ì¬
+	#ãƒ€ãƒŸãƒ¼ä½œæˆ
 	goods_list.puts "\t{"
 	goods_list.puts "\t\t0,0,"
 	goods_list.printf "\t\t{"
@@ -92,7 +92,7 @@ while f = ARGV.shift
 	goods_list.printf "\t\t{0,0,0},\n"
 	goods_list.printf "\t\t{0},\n"
 	goods_list.printf "\t\t{0},{0},{0}\n"
-	goods_list.puts "\t},\t\t\t\t\t\t\t\t\t//0:ƒ_ƒ~["
+	goods_list.puts "\t},\t\t\t\t\t\t\t\t\t//0:ãƒ€ãƒŸãƒ¼"
 	
 	while line = csv_file.gets
 		if line =~/^#END/ then
@@ -109,7 +109,7 @@ while f = ARGV.shift
 		end
 		goods_id_def.printf("#define GOODS_%s	(%d) // %s\n", goods_str_id, count+1, name);
 
-		#c‰¡ƒTƒCƒY‚ğŒvZ	["", "\"", "‰¡•", ",", "c•", "\""]
+		#ç¸¦æ¨ªã‚µã‚¤ã‚ºã‚’è¨ˆç®—	["", "\"", "æ¨ªå¹…", ",", "ç¸¦å¹…", "\""]
 		size_str = column[10]
 		size_str_ary = size_str.split(/(")|(,)/)
 		width = size_str_ary[2].to_i

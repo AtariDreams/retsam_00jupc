@@ -16,22 +16,22 @@
 # small fix
 #
 # Revision 1.9  2006/12/11 09:25:23  okubata_ryoma
-# NitroSDK�̃��W���[�o�[�W�����A�b�v�ɂ��ύX
+# NitroSDKのメジャーバージョンアップによる変更
 #
 # Revision 1.8  2006/05/01 01:16:18  okubata_ryoma
-# CW�o�[�W������r���@�̕ύX�ɂƂ��Ȃ��ύX
+# CWバージョン比較方法の変更にともなう変更
 #
 # Revision 1.7  2005/09/17 05:52:46  yasu
-# �R���p�C���̃o�[�W�������� version.h �ɒǉ�
+# コンパイラのバージョン情報を version.h に追加
 #
 # Revision 1.6  2005/07/06 23:57:13  yasu
-# ����N�x�C��
+# 著作年度修正
 #
 # Revision 1.5  2005/07/06 13:20:56  yasu
-# SDK_VERSION_MAJOR �� NITROSDK_VERSION_MAJOR �ɕύX
+# SDK_VERSION_MAJOR を NITROSDK_VERSION_MAJOR に変更
 #
 # Revision 1.4  2005/07/06 13:16:55  yasu
-# SDK_VERSION_MAJOR �ɂ�� makefile �̑I��
+# SDK_VERSION_MAJOR による makefile の選択
 #
 # Revision 1.3  2004/09/17 11:23:31  yasu
 # update only newly build

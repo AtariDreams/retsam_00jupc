@@ -12,34 +12,34 @@
 
   $Log: dgt.h,v $
   Revision 1.10  2005/09/08 11:35:39  yasu
-  SDK_FROM_TOOL ‚Ì‘Î‰
+  SDK_FROM_TOOL ã®å¯¾å¿œ
 
   Revision 1.9  2005/07/14 02:49:03  seiki_masashi
-  ±×‚ÈC³
+  äº›ç´°ãªä¿®æ­£
 
   Revision 1.8  2005/07/14 02:32:02  seiki_masashi
-  ƒRƒ“ƒpƒCƒ‹ƒXƒCƒbƒ`‚Ì®—
+  ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¹ã‚¤ãƒƒãƒã®æ•´ç†
 
   Revision 1.7  2005/07/08 12:34:33  seiki_masashi
-  HASH2 ƒAƒ‹ƒSƒŠƒYƒ€‚Ì‚‘¬‰»
+  HASH2 ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã®é«˜é€ŸåŒ–
 
   Revision 1.6  2005/06/27 00:12:05  seiki_masashi
-  C ‚Ì•W€Œ^‚ÉC³
+  C ã®æ¨™æº–å‹ã«ä¿®æ­£
 
   Revision 1.5  2005/06/24 01:16:46  seiki_masashi
-  ‹ŒÀ‘•‚ğíœ
+  æ—§å®Ÿè£…ã‚’å‰Šé™¤
 
   Revision 1.4  2005/06/24 01:10:28  seiki_masashi
-  MD5 ‚ÌÀ‘•‚ğ•ÏX
+  MD5 ã®å®Ÿè£…ã‚’å¤‰æ›´
 
   Revision 1.3  2005/03/29 03:59:26  seiki_masashi
-  Copyright ‚ÌC³
+  Copyright ã®ä¿®æ­£
 
   Revision 1.2  2005/03/29 00:07:23  seiki_masashi
-  C ‚Ì•W€Œ^‚ÉC³
+  C ã®æ¨™æº–å‹ã«ä¿®æ­£
 
   Revision 1.1  2005/03/28 04:18:34  seiki_masashi
-  common.h ‚Ìˆê•”‚ğ dgt.h ‚ÉˆÚ“®
+  common.h ã®ä¸€éƒ¨ã‚’ dgt.h ã«ç§»å‹•
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -53,7 +53,7 @@
 extern "C" {
 #endif
 
-// ƒRƒ“ƒeƒLƒXƒg\‘¢‘Ì‚ÌéŒ¾
+// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆæ§‹é€ ä½“ã®å®£è¨€
 typedef struct DGTHash1Context
 {
     union
@@ -95,7 +95,7 @@ typedef struct DGTHash2Context
 #endif // defined(SDK_DGT_HASH2_CODE_SAFE) || defined(SDK_WIN32) || defined(SDK_FROM_TOOL)
 
 
-// Hash ‚ğZo
+// Hash ã‚’ç®—å‡º
 #ifdef SDK_DGT_HASH1_CODE_SAFE
 void DGT_Hash1Reset(DGTHash1Context*);
 void DGT_Hash1SetSource(DGTHash1Context*, unsigned char*, unsigned long);
@@ -117,71 +117,71 @@ void DGT_Hash2GetDigest(DGTHash2Context*, unsigned char* digest);
 #endif
 
 
-// HMAC‚ğZo
+// HMACã‚’ç®—å‡º
 void	DGT_Hash1CalcHmac(
-                    void*   digest,     //  ƒ_ƒCƒWƒFƒXƒgo—Í—Ìˆæ
-		    void*   bin_ptr,    //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-		    int     bin_len,    //  ƒf[ƒ^‚Ì’·‚³
-		    void*   key_ptr,    //  ƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
-		    int     key_len     //  ƒL[‚Ì’·‚³
+                    void*   digest,     //  ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆå‡ºåŠ›é ˜åŸŸ
+		    void*   bin_ptr,    //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+		    int     bin_len,    //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+		    void*   key_ptr,    //  ã‚­ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+		    int     key_len     //  ã‚­ãƒ¼ã®é•·ã•
 		    );
 
 void	DGT_Hash2CalcHmac(
-                    void*   digest,     //  ƒ_ƒCƒWƒFƒXƒgo—Í—Ìˆæ
-		    void*   bin_ptr,    //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-		    int     bin_len,    //  ƒf[ƒ^‚Ì’·‚³
-		    void*   key_ptr,    //  ƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
-		    int     key_len     //  ƒL[‚Ì’·‚³
+                    void*   digest,     //  ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆå‡ºåŠ›é ˜åŸŸ
+		    void*   bin_ptr,    //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+		    int     bin_len,    //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+		    void*   key_ptr,    //  ã‚­ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+		    int     key_len     //  ã‚­ãƒ¼ã®é•·ã•
 		    );
 
-//  RomHeaderAmainAsub‚Ì‚R—Ìˆæ‚©‚çHMAC’l‚ğ¶¬
+//  RomHeaderã€mainã€subã®ï¼“é ˜åŸŸã‹ã‚‰HMACå€¤ã‚’ç”Ÿæˆ
 int     DGT_Hash1CalcHmacForRms(
-                    void*   digest,     //  ¶¬ƒ_ƒCƒWƒFƒXƒg—Ìˆæ
-                    void*   romh_ptr,   //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     romh_len,   //  ƒf[ƒ^‚Ì’·‚³
-                    void*   mbin_ptr,   //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     mbin_len,   //  ƒf[ƒ^‚Ì’·‚³
-                    void*   sbin_ptr,   //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     sbin_len,   //  ƒf[ƒ^‚Ì’·‚³
-                    void*   key_ptr,    //  ƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     key_len     //  ƒL[‚Ì’·‚³
+                    void*   digest,     //  ç”Ÿæˆãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆé ˜åŸŸ
+                    void*   romh_ptr,   //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     romh_len,   //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                    void*   mbin_ptr,   //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     mbin_len,   //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                    void*   sbin_ptr,   //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     sbin_len,   //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                    void*   key_ptr,    //  ã‚­ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     key_len     //  ã‚­ãƒ¼ã®é•·ã•
                     );
 
 int     DGT_Hash2CalcHmacForRms(
-                    void*   digest,     //  ¶¬ƒ_ƒCƒWƒFƒXƒg—Ìˆæ
-                    void*   romh_ptr,   //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     romh_len,   //  ƒf[ƒ^‚Ì’·‚³
-                    void*   mbin_ptr,   //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     mbin_len,   //  ƒf[ƒ^‚Ì’·‚³
-                    void*   sbin_ptr,   //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     sbin_len,   //  ƒf[ƒ^‚Ì’·‚³
-                    void*   key_ptr,    //  ƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     key_len     //  ƒL[‚Ì’·‚³
+                    void*   digest,     //  ç”Ÿæˆãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆé ˜åŸŸ
+                    void*   romh_ptr,   //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     romh_len,   //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                    void*   mbin_ptr,   //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     mbin_len,   //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                    void*   sbin_ptr,   //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     sbin_len,   //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                    void*   key_ptr,    //  ã‚­ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     key_len     //  ã‚­ãƒ¼ã®é•·ã•
                     );
 
-//  RomHeaderAmainAsub‚Ì‚R—Ìˆæ‚©‚çHMAC’l‚ğŠm”F
+//  RomHeaderã€mainã€subã®ï¼“é ˜åŸŸã‹ã‚‰HMACå€¤ã‚’ç¢ºèª
 int     DGT_Hash1TestHmacForRms(
-                    void*   digest,     //  Šm”Fƒ_ƒCƒWƒFƒXƒg—Ìˆæ
-                    void*   romh_ptr,   //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     romh_len,   //  ƒf[ƒ^‚Ì’·‚³
-                    void*   mbin_ptr,   //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     mbin_len,   //  ƒf[ƒ^‚Ì’·‚³
-                    void*   sbin_ptr,   //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     sbin_len,   //  ƒf[ƒ^‚Ì’·‚³
-                    void*   key_ptr,    //  ƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     key_len     //  ƒL[‚Ì’·‚³
+                    void*   digest,     //  ç¢ºèªãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆé ˜åŸŸ
+                    void*   romh_ptr,   //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     romh_len,   //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                    void*   mbin_ptr,   //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     mbin_len,   //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                    void*   sbin_ptr,   //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     sbin_len,   //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                    void*   key_ptr,    //  ã‚­ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     key_len     //  ã‚­ãƒ¼ã®é•·ã•
                     );
 
 int     DGT_Hash2TestHmacForRms(
-                    void*   digest,     //  Šm”Fƒ_ƒCƒWƒFƒXƒg—Ìˆæ
-                    void*   romh_ptr,   //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     romh_len,   //  ƒf[ƒ^‚Ì’·‚³
-                    void*   mbin_ptr,   //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     mbin_len,   //  ƒf[ƒ^‚Ì’·‚³
-                    void*   sbin_ptr,   //  ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     sbin_len,   //  ƒf[ƒ^‚Ì’·‚³
-                    void*   key_ptr,    //  ƒL[‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                    int     key_len     //  ƒL[‚Ì’·‚³
+                    void*   digest,     //  ç¢ºèªãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆé ˜åŸŸ
+                    void*   romh_ptr,   //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     romh_len,   //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                    void*   mbin_ptr,   //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     mbin_len,   //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                    void*   sbin_ptr,   //  ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     sbin_len,   //  ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                    void*   key_ptr,    //  ã‚­ãƒ¼ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                    int     key_len     //  ã‚­ãƒ¼ã®é•·ã•
                     );
 
 int     DGT_SetOverlayTableMode( int flag );

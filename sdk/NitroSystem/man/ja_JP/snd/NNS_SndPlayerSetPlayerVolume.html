@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>NNS_SndPlayerSetPlayerVolume</title>
 <link rel="stylesheet" href="../css/nitro.css" type="text/css">
 <meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
@@ -11,13 +11,13 @@
 <div></div>
 </div>
 <h1>NNS_SndPlayerSetPlayerVolume</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 <dl>
 <dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
 <dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerSetPlayerVolume( int <var>playerNo</var>, int <var>volume</var> );</code><br></pre></dd>
 </dl>
 <div class="refsection" lang="ja"><a name="IDADMWT"></a>
-      <h2>����</h2>
+      <h2>引数</h2>
       
       <div class="variablelist">
 <table border="0">
@@ -25,11 +25,11 @@
 <tbody>
 <tr>
 <td><em><strong><code>playerNo</code></strong></em></td>
-<td>�v���C���[�ԍ��ł��B</td>
+<td>プレイヤー番号です。</td>
 </tr>
 <tr>
 <td><em><strong><code>volume</code></strong></em></td>
-<td>�{�����[���̒l�ł��B�l�͈̔͂́A0�`127�ł��B</td>
+<td>ボリュームの値です。値の範囲は、0〜127です。</td>
 </tr>
 </tbody>
 </table>
@@ -37,26 +37,26 @@
 
     </div>
 <div class="refsection" lang="ja"><a name="IDAZMWT"></a>
-      <h2>�Ԃ�l</h2>
+      <h2>返り値</h2>
 
-      <p>�Ȃ��B</p>
+      <p>なし。</p>
     </div>
 <div class="refsection" lang="ja"><a name="IDAANWT"></a>
-      <h2>����</h2>
+      <h2>説明</h2>
       <p>
-�w��v���C���[�̃{�����[����ݒ肵�܂��B
-�f�t�H���g�ł́A�ő��127���ݒ肳��Ă��܂��B
+指定プレイヤーのボリュームを設定します。
+デフォルトでは、最大の127が設定されています。
 </p>
 <p>
-���̊֐��Őݒ肳�ꂽ�{�����[���́A
-�w��v���C���[�ōĐ����̃V�[�P���X�y�сA�w��v���C���[�ł��ꂩ��Đ������S�ẴV�[�P���X�ɑ΂��Č��ʂ�����܂��B
-�܂��A���̂����Ȃ�{�����[���p�����[�^�Ƃ��Ɨ����Č��ʂ𔭊����A�����́A�ݐς��ĉe�����܂��B 
+この関数で設定されたボリュームは、
+指定プレイヤーで再生中のシーケンス及び、指定プレイヤーでこれから再生される全てのシーケンスに対して効果があります。
+また、他のいかなるボリュームパラメータとも独立して効果を発揮し、それらは、累積して影響します。 
 </p>
     </div>
-<h2>�Q��</h2>
-<p>�Ȃ��B</p>
-<h2>����</h2>
-<p>2005/04/13 ������������̖����悤�ɏC��<br>2005/03/17 ����<br></p>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2005/04/13 説明文を誤解の無いように修正<br>2005/03/17 初版<br></p>
 </div>
 </body>
 </html>

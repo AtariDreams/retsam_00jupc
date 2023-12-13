@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	scr_kaseki.h
- * @bfief	�X�N���v�g�R�}���h�F�J�Z�L����֘A
+ * @bfief	スクリプトコマンド：カセキ操作関連
  * @author	Tomomichi Ohta
  * @date	06.06.26
  */
@@ -11,16 +11,16 @@
 
 //============================================================================================
 //
-//	�v���O�����ł̂ݎQ�Ƃ����`
+//	プログラムでのみ参照する定義
 //
 //============================================================================================
-//__ASM_NO_DEF_����`����Ă���ꍇ�A�A�Z���u���\�[�X�Ȃ̂ňȉ��͖����ɂ���
+//__ASM_NO_DEF_が定義されている場合、アセンブラソースなので以下は無効にする
 #ifndef	__ASM_NO_DEF_
 extern BOOL EvCmdKasekiCount(VM_MACHINE * core);
 extern BOOL EvCmdItemNoToMonsNo(VM_MACHINE * core);
 extern BOOL EvCmdKasekiItemNo(VM_MACHINE * core);
 
-//���g�p
+//未使用
 extern BOOL EvCmdItemListSetProc(VM_MACHINE * core);
 extern BOOL EvCmdItemListGetResult(VM_MACHINE * core);
 

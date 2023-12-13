@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_cursor.c
- *	@brief		}ŠÓcursor“®ìƒVƒXƒeƒ€
+ *	@brief		å›³é‘‘cursorå‹•ä½œã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya takahashi
  *	@data		2006.03.02
  *
@@ -18,34 +18,34 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-//	cursorƒVƒXƒeƒ€
+//	cursorã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 typedef struct _ZKN_CURSOR {
 	const ZKN_CURSOR_ONEDATA* p_data;
@@ -58,7 +58,7 @@ typedef struct _ZKN_CURSOR {
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 static int inline GetNowIdx( const ZKN_CURSOR* cp_cursor );
@@ -74,11 +74,11 @@ static void ZknCursorContSetContID( ZKN_CURSOR* p_cursor, int param );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓCURSORƒVƒXƒeƒ€ƒ[ƒNŠm•Û
+ *	@brief	å›³é‘‘CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
  *
- *	@param	heap	ƒq[ƒv
+ *	@param	heap	ãƒ’ãƒ¼ãƒ—
  *
- *	@return	CURSORƒVƒXƒeƒ€ƒ[ƒN
+ *	@return	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 ZKN_CURSOR* ZKN_CURSOR_Alloc( int heap )
@@ -93,9 +93,9 @@ ZKN_CURSOR* ZKN_CURSOR_Alloc( int heap )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓCURSORƒVƒXƒeƒ€ƒ[ƒN”jŠü
+ *	@brief	å›³é‘‘CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ç ´æ£„
  *
- *	@param	p_cursor	CURSORƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	p_cursor	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
  *	@return	none
  */
@@ -107,12 +107,12 @@ void ZKN_CURSOR_Free( ZKN_CURSOR* p_cursor )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓCURSORƒVƒXƒeƒ€‰Šú‰»
+ *	@brief	å›³é‘‘CURSORã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- *	@param	p_cursor	CURSORƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cp_data		CURSORƒf[ƒ^
- *	@param	max_x		X•ûŒüƒf[ƒ^”
- *	@param	max_y		Y•ûŒüƒf[ƒ^”
+ *	@param	p_cursor	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cp_data		CURSORãƒ‡ãƒ¼ã‚¿
+ *	@param	max_x		Xæ–¹å‘ãƒ‡ãƒ¼ã‚¿æ•°
+ *	@param	max_y		Yæ–¹å‘ãƒ‡ãƒ¼ã‚¿æ•°
  *
  *	@return	none
  */
@@ -127,11 +127,11 @@ void ZKN_CURSOR_Init( ZKN_CURSOR* p_cursor, const ZKN_CURSOR_ONEDATA* cp_data, i
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	}ŠÓCURSORƒVƒXƒeƒ€ƒRƒ“ƒgƒ[ƒ‹
+ *	@brief	å›³é‘‘CURSORã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
  *
- *	@param	p_cursor	CURSORƒVƒXƒeƒ€ƒ[ƒN
- *	@param	cont		“®ìƒRƒ}ƒ“ƒh
- *	@param	param		“®ì’l
+ *	@param	p_cursor	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	cont		å‹•ä½œã‚³ãƒãƒ³ãƒ‰
+ *	@param	param		å‹•ä½œå€¤
  *
  *	@return	none	
  */
@@ -141,23 +141,23 @@ void ZKN_CURSOR_Cont( ZKN_CURSOR* p_cursor, int cont, int param )
 	int i;
 	
 	switch( cont ){
-	case ZKN_CURSOR_CONT_ADD_X:		// X•ûŒüˆÚ“®	
+	case ZKN_CURSOR_CONT_ADD_X:		// Xæ–¹å‘ç§»å‹•	
 		ZknCursorContAddX( p_cursor, param );
 		break;
 		
-	case ZKN_CURSOR_CONT_ADD_Y:		// Y•ûŒüˆÚ“®	
+	case ZKN_CURSOR_CONT_ADD_Y:		// Yæ–¹å‘ç§»å‹•	
 		ZknCursorContAddY( p_cursor, param );
 		break;
 		
-	case ZKN_CURSOR_CONT_SET_X:		// X•ûŒüİ’è	
+	case ZKN_CURSOR_CONT_SET_X:		// Xæ–¹å‘è¨­å®š	
 		ZknCursorContSetX( p_cursor, param );
 		break;
 		
-	case ZKN_CURSOR_CONT_SET_Y:		// Y•ûŒüİ’è	
+	case ZKN_CURSOR_CONT_SET_Y:		// Yæ–¹å‘è¨­å®š	
 		ZknCursorContSetY( p_cursor, param );
 		break;
 		
-	case ZKN_CURSOR_CONT_SET_CONTID:	// ŠÇ—ID‚ÌˆÊ’u‚ÉƒJ[ƒ\ƒ‹‚ğˆÚ“®
+	case ZKN_CURSOR_CONT_SET_CONTID:	// ç®¡ç†IDã®ä½ç½®ã«ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•
 		ZknCursorContSetContID( p_cursor, param );
 		break;
 	}
@@ -165,11 +165,11 @@ void ZKN_CURSOR_Cont( ZKN_CURSOR* p_cursor, int cont, int param )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»İ‚¢‚éˆÊ’u‚ÌŠÇ—ID‚ğæ“¾
+ *	@brief	ç¾åœ¨ã„ã‚‹ä½ç½®ã®ç®¡ç†IDã‚’å–å¾—
  *
- *	@param	cp_cursor	CURSORƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	cp_cursor	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	ŠÇ—ID
+ *	@return	ç®¡ç†ID
  */
 //-----------------------------------------------------------------------------
 int ZKN_CURSOR_GetContID( const ZKN_CURSOR* cp_cursor )
@@ -182,11 +182,11 @@ int ZKN_CURSOR_GetContID( const ZKN_CURSOR* cp_cursor )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»İCURSORˆÊ’u‚ÌÀ•W‚ğæ“¾
+ *	@brief	ç¾åœ¨CURSORä½ç½®ã®åº§æ¨™ã‚’å–å¾—
  *
- *	@param	cp_cursor	CURSORƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_x			XÀ•WŠi”[æ
- *	@param	p_y			YÀ•WŠi”[æ
+ *	@param	cp_cursor	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_x			Xåº§æ¨™æ ¼ç´å…ˆ
+ *	@param	p_y			Yåº§æ¨™æ ¼ç´å…ˆ
  *
  *	@return	none
  */
@@ -203,11 +203,11 @@ void ZKN_CURSOR_GetMat( const ZKN_CURSOR* cp_cursor, int* p_x, int* p_y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Œ»İCURSORˆÊ’u‚Ì—ÌˆæƒTƒCƒY‚ğæ“¾
+ *	@brief	ç¾åœ¨CURSORä½ç½®ã®é ˜åŸŸã‚µã‚¤ã‚ºã‚’å–å¾—
  *
- *	@param	cp_cursor	CURSORƒVƒXƒeƒ€ƒ[ƒN
- *	@param	p_x			XƒTƒCƒYŠi”[æ
- *	@param	p_y			YƒTƒCƒYŠi”[æ
+ *	@param	cp_cursor	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	p_x			Xã‚µã‚¤ã‚ºæ ¼ç´å…ˆ
+ *	@param	p_y			Yã‚µã‚¤ã‚ºæ ¼ç´å…ˆ
  *
  *	@return
  */
@@ -225,16 +225,16 @@ void ZKN_CURSOR_GetSize( const ZKN_CURSOR* cp_cursor, int* p_x, int* p_y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹‚Pƒf[ƒ^‚Ì“à—e‚ğŠi”[
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ï¼‘ãƒ‡ãƒ¼ã‚¿ã®å†…å®¹ã‚’æ ¼ç´
  *
- *	@param	p_data		Ši”[æ
- *	@param	x			‚˜À•W
- *	@param	y			‚™À•W
- *	@param	size_x		‚˜ƒTƒCƒY
- *	@param	size_y		‚™ƒTƒCƒY
- *	@param	movex_id	X•ûŒü“®ìID
- *	@param	movey_id	Y•ûŒü“®ìID
- *	@param	cont_id		ƒ†[ƒU[ŠÇ—ID
+ *	@param	p_data		æ ¼ç´å…ˆ
+ *	@param	x			ï½˜åº§æ¨™
+ *	@param	y			ï½™åº§æ¨™
+ *	@param	size_x		ï½˜ã‚µã‚¤ã‚º
+ *	@param	size_y		ï½™ã‚µã‚¤ã‚º
+ *	@param	movex_id	Xæ–¹å‘å‹•ä½œID
+ *	@param	movey_id	Yæ–¹å‘å‹•ä½œID
+ *	@param	cont_id		ãƒ¦ãƒ¼ã‚¶ãƒ¼ç®¡ç†ID
  *
  *	@return	none
  */
@@ -253,12 +253,12 @@ void ZKN_CURSOR_SetOneData( ZKN_CURSOR_ONEDATA* p_data, int x, int y, int size_x
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	4‹÷‚ÌÀ•W‚ğæ“¾
+ *	@brief	4éš…ã®åº§æ¨™ã‚’å–å¾—
  *
- *	@param	cp_cursor	ƒJ[ƒ\ƒ‹ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	way			ˆÊ’u 
- *	@param	p_x			‚˜À•WŠi”[æ
- *	@param	p_y			‚™À•WŠi”[æ
+ *	@param	cp_cursor	ã‚«ãƒ¼ã‚½ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	way			ä½ç½® 
+ *	@param	p_x			ï½˜åº§æ¨™æ ¼ç´å…ˆ
+ *	@param	p_y			ï½™åº§æ¨™æ ¼ç´å…ˆ
  *
  *	@return
  */
@@ -268,35 +268,35 @@ void ZKN_CURSOR_GetRectMat( const ZKN_CURSOR* cp_cursor, int way, int* p_x, int*
 	int x, y;
 	int size_x, size_y;
 
-	// À•W‚Ìæ“¾
+	// åº§æ¨™ã®å–å¾—
 	ZKN_CURSOR_GetMat( cp_cursor, &x, &y );
 
-	// ƒTƒCƒY‚Ìæ“¾
+	// ã‚µã‚¤ã‚ºã®å–å¾—
 	ZKN_CURSOR_GetSize( cp_cursor, &size_x, &size_y );
 
-	// À•W‚ğ‹‚ß‚é
+	// åº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	ZKN_CURSOR_UTIL_GetRectMat( way, p_x, p_y, x, y, size_x, size_y );
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒTƒCƒY‚Æ’†SÀ•W‚©‚çŠeˆÊ’u‚ÌÀ•W‚ğæ“¾
+ *	@brief	ã‚µã‚¤ã‚ºã¨ä¸­å¿ƒåº§æ¨™ã‹ã‚‰å„ä½ç½®ã®åº§æ¨™ã‚’å–å¾—
  *
- *	@param	way			•ûŒü
- *	@param	p_x			XÀ•WŠi”[æ
- *	@param	p_y			YÀ•WŠi”[æ
- *	@param	def_x		’†SX
- *	@param	def_y		’†SY
- *	@param	size_x		ƒTƒCƒYX
- *	@param	size_y		ƒTƒCƒYY
+ *	@param	way			æ–¹å‘
+ *	@param	p_x			Xåº§æ¨™æ ¼ç´å…ˆ
+ *	@param	p_y			Yåº§æ¨™æ ¼ç´å…ˆ
+ *	@param	def_x		ä¸­å¿ƒX
+ *	@param	def_y		ä¸­å¿ƒY
+ *	@param	size_x		ã‚µã‚¤ã‚ºX
+ *	@param	size_y		ã‚µã‚¤ã‚ºY
  *
  *	@return	none
  */
 //-----------------------------------------------------------------------------
 void ZKN_CURSOR_UTIL_GetRectMat( int way, int* p_x, int* p_y, int def_x, int def_y, int size_x, int size_y )
 {
-	// XÀ•Wİ’è
+	// Xåº§æ¨™è¨­å®š
 	if( (way == ZKN_CURSOR_MAT_TOP_LEFT) ||
 		(way == ZKN_CURSOR_MAT_BOTTOM_LEFT) ){
 		def_x -= size_x / 2;	
@@ -304,7 +304,7 @@ void ZKN_CURSOR_UTIL_GetRectMat( int way, int* p_x, int* p_y, int def_x, int def
 		def_x += size_x / 2;	
 	}
 	
-	// YÀ•Wİ’è
+	// Yåº§æ¨™è¨­å®š
 	if( (way == ZKN_CURSOR_MAT_TOP_LEFT) ||
 		(way == ZKN_CURSOR_MAT_TOP_RIGHT) ){
 		def_y -= size_y / 2;	
@@ -319,16 +319,16 @@ void ZKN_CURSOR_UTIL_GetRectMat( int way, int* p_x, int* p_y, int def_x, int def
 
 //-----------------------------------------------------------------------------
 /**
- *				ƒvƒ‰ƒCƒx[ƒgŠÖ”
+ *				ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆé–¢æ•°
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚Ìƒf[ƒ^”z—ñ—v‘f”‚ğæ“¾
+ *	@brief	ä»Šã®ãƒ‡ãƒ¼ã‚¿é…åˆ—è¦ç´ æ•°ã‚’å–å¾—
  *
- *	@param	cp_cursor	CURSORƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	cp_cursor	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *
- *	@return	”z—ñ—v‘f”
+ *	@return	é…åˆ—è¦ç´ æ•°
  */
 //-----------------------------------------------------------------------------
 static int inline GetNowIdx( const ZKN_CURSOR* cp_cursor )
@@ -343,15 +343,15 @@ static int inline GetNowIdx( const ZKN_CURSOR* cp_cursor )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	¡‚Ìƒf[ƒ^”z—ñ—v‘f”‚ğæ“¾
+ *	@brief	ä»Šã®ãƒ‡ãƒ¼ã‚¿é…åˆ—è¦ç´ æ•°ã‚’å–å¾—
  *
- *	@param	cp_cursor	CURSORƒVƒXƒeƒ€ƒ[ƒN
- *	@param	x			æ“¾‚µ‚½‚¢X
- *	@param	y			æ“¾‚µ‚½‚¢Y
+ *	@param	cp_cursor	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	x			å–å¾—ã—ãŸã„X
+ *	@param	y			å–å¾—ã—ãŸã„Y
  *
- *	Å‘åƒTƒCƒY‚Ícp_cursor‚Ì‚à‚Ì‚ğg—p‚·‚é
+ *	æœ€å¤§ã‚µã‚¤ã‚ºã¯cp_cursorã®ã‚‚ã®ã‚’ä½¿ç”¨ã™ã‚‹
  *
- *	@return	”z—ñ—v‘f”
+ *	@return	é…åˆ—è¦ç´ æ•°
  */
 //-----------------------------------------------------------------------------
 static int inline GetIdx( const ZKN_CURSOR* cp_cursor, int x, int y )
@@ -367,10 +367,10 @@ static int inline GetIdx( const ZKN_CURSOR* cp_cursor, int x, int y )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	X•ûŒü‚ÉCURSOR‚ğ“®‚©‚·
+ *	@brief	Xæ–¹å‘ã«CURSORã‚’å‹•ã‹ã™
  *
- *	@param	p_cursor	CURSORƒVƒXƒeƒ€ƒ[ƒN
- *	@param	param		“®‚©‚·’l	(-1 or 1)
+ *	@param	p_cursor	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		å‹•ã‹ã™å€¤	(-1 or 1)
  *	
  *	@return	none
  */
@@ -386,28 +386,28 @@ static void MoveXCursor( ZKN_CURSOR* p_cursor, int param )
 	
 	move_param = 0;
 
-	// İ’èÀ•W‚ğ‹‚ß‚é
+	// è¨­å®šåº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	do{
-		// ˆÚ“®‚³‚¹‚é’l‚ğŒvZ
+		// ç§»å‹•ã•ã›ã‚‹å€¤ã‚’è¨ˆç®—
 		move_param += param;
 		move_x = p_cursor->now_x + move_param;
 
-		// ‰¡Å‘å”ORÅ’á”‚ğ‰º‰ñ‚Á‚½‚çI‚í‚è
+		// æ¨ªæœ€å¤§æ•°ORæœ€ä½æ•°ã‚’ä¸‹å›ã£ãŸã‚‰çµ‚ã‚ã‚Š
 		if( (move_x < 0) || (move_x >= p_cursor->max_x) ){
 			break;
 		}
 
-		// ˆÚ“®‚³‚¹‚é‚Æ‚±‚ë‚Ìƒf[ƒ^‚ğæ“¾
+		// ç§»å‹•ã•ã›ã‚‹ã¨ã“ã‚ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 		data_idx = GetIdx( p_cursor, move_x, p_cursor->now_y );
 		p_data = &p_cursor->p_data[ data_idx ];
 
 	}while( p_data->movex_id == ZKN_CURSOR_MOVE_SKIP );
 
-	// X“®ì—LŒø”ÍˆÍ“à‚È‚ç’l‚ğİ’è
+	// Xå‹•ä½œæœ‰åŠ¹ç¯„å›²å†…ãªã‚‰å€¤ã‚’è¨­å®š
 	if( (move_x >= 0) && (move_x < p_cursor->max_x) ){
-		// ˆÚ“®‚µ‚Ä‘åä•v‚©ƒ`ƒFƒbƒN
+		// ç§»å‹•ã—ã¦å¤§ä¸ˆå¤«ã‹ãƒã‚§ãƒƒã‚¯
 		if( p_data->movex_id == ZKN_CURSOR_MOVE_NORMAL ){
-			// ’l‚ğ”½‰f
+			// å€¤ã‚’åæ˜ 
 			p_cursor->now_x = move_x;
 		}
 	}
@@ -415,10 +415,10 @@ static void MoveXCursor( ZKN_CURSOR* p_cursor, int param )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief@Y•ûŒü‚ÉCURSOR‚ğ“®‚©‚·
+ *	@briefã€€Yæ–¹å‘ã«CURSORã‚’å‹•ã‹ã™
  *
- *	@param	p_cursor	CURSORƒVƒXƒeƒ€ƒ[ƒN
- *	@param	param		“®‚©‚·’l	(-1 or 1)
+ *	@param	p_cursor	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		å‹•ã‹ã™å€¤	(-1 or 1)
  *	
  *	@return	none
  */
@@ -434,28 +434,28 @@ static void MoveYCursor( ZKN_CURSOR* p_cursor, int param )
 	
 	move_param = 0;
 
-	// İ’èÀ•W‚ğ‹‚ß‚é
+	// è¨­å®šåº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	do{
-		// ˆÚ“®‚³‚¹‚é’l‚ğŒvZ
+		// ç§»å‹•ã•ã›ã‚‹å€¤ã‚’è¨ˆç®—
 		move_param += param;
 		move_y = p_cursor->now_y + move_param;
 
-		// cÅ‘å”ORÅ’á”‚ğ‰º‰ñ‚Á‚½‚çI‚í‚è
+		// ç¸¦æœ€å¤§æ•°ORæœ€ä½æ•°ã‚’ä¸‹å›ã£ãŸã‚‰çµ‚ã‚ã‚Š
 		if( (move_y < 0) || (move_y >= p_cursor->max_y) ){
 			break;
 		}
 
-		// ˆÚ“®‚³‚¹‚é‚Æ‚±‚ë‚Ìƒf[ƒ^‚ğæ“¾
+		// ç§»å‹•ã•ã›ã‚‹ã¨ã“ã‚ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 		data_idx = GetIdx( p_cursor, p_cursor->now_x, move_y );
 		p_data = &p_cursor->p_data[ data_idx ];
 
 	}while( p_data->movey_id == ZKN_CURSOR_MOVE_SKIP );
 
-	// X“®ì—LŒø”ÍˆÍ“à‚È‚ç’l‚ğİ’è
+	// Xå‹•ä½œæœ‰åŠ¹ç¯„å›²å†…ãªã‚‰å€¤ã‚’è¨­å®š
 	if( (move_y >= 0) && (move_y < p_cursor->max_y) ){
-		// ˆÚ“®‚µ‚Ä‘åä•v‚©ƒ`ƒFƒbƒN
+		// ç§»å‹•ã—ã¦å¤§ä¸ˆå¤«ã‹ãƒã‚§ãƒƒã‚¯
 		if( p_data->movex_id == ZKN_CURSOR_MOVE_NORMAL ){
-			// ’l‚ğ”½‰f
+			// å€¤ã‚’åæ˜ 
 			p_cursor->now_y = move_y;
 		}
 	}
@@ -463,10 +463,10 @@ static void MoveYCursor( ZKN_CURSOR* p_cursor, int param )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	X•ûŒü‚Éparam‚Ì”‚¾‚¯i‚Ş
+ *	@brief	Xæ–¹å‘ã«paramã®æ•°ã ã‘é€²ã‚€
  *
- *	@param	p_cursor	CURSORƒVƒXƒeƒ€ƒ[ƒN
- *	@param	param		i‚ß‚é’l
+ *	@param	p_cursor	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		é€²ã‚ã‚‹å€¤
  *	
  *	@return	none
  */
@@ -477,7 +477,7 @@ static void ZknCursorContAddX( ZKN_CURSOR* p_cursor, int param )
 	int way;
 	int abs;
 	
-	// ƒvƒ‰ƒXƒ}ƒCƒiƒX‚ğ‹‚ß‚é
+	// ãƒ—ãƒ©ã‚¹ãƒã‚¤ãƒŠã‚¹ã‚’æ±‚ã‚ã‚‹
 	abs = MATH_ABS( param );
 	way = param / abs;
 	
@@ -488,10 +488,10 @@ static void ZknCursorContAddX( ZKN_CURSOR* p_cursor, int param )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	Y•ûŒü‚Éparam‚Ì”‚¾‚¯i‚Ş
+ *	@brief	Yæ–¹å‘ã«paramã®æ•°ã ã‘é€²ã‚€
  *
- *	@param	p_cursor	CURSORƒVƒXƒeƒ€ƒ[ƒN
- *	@param	param		i‚ß‚é’l
+ *	@param	p_cursor	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		é€²ã‚ã‚‹å€¤
  *	
  *	@return	none
  */
@@ -502,7 +502,7 @@ static void ZknCursorContAddY( ZKN_CURSOR* p_cursor, int param )
 	int way;
 	int abs;
 	
-	// ƒvƒ‰ƒXƒ}ƒCƒiƒX‚ğ‹‚ß‚é
+	// ãƒ—ãƒ©ã‚¹ãƒã‚¤ãƒŠã‚¹ã‚’æ±‚ã‚ã‚‹
 	abs = MATH_ABS( param );
 	way = param / abs;
 	
@@ -513,10 +513,10 @@ static void ZknCursorContAddY( ZKN_CURSOR* p_cursor, int param )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ˆÊ’u‚ğparam‚É‚·‚é
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’paramã«ã™ã‚‹
  *
- *	@param	p_cursor	CURSORˆÊ’u
- *	@param	param		İ’è’l
+ *	@param	p_cursor	CURSORä½ç½®
+ *	@param	param		è¨­å®šå€¤
  *	
  *	@return	none
  */
@@ -529,10 +529,10 @@ static void inline ZknCursorContSetX( ZKN_CURSOR* p_cursor, int param )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒJ[ƒ\ƒ‹ˆÊ’u‚ğparam‚É‚·‚é
+ *	@brief	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’paramã«ã™ã‚‹
  *
- *	@param	p_cursor	CURSORˆÊ’u
- *	@param	param		İ’è’l
+ *	@param	p_cursor	CURSORä½ç½®
+ *	@param	param		è¨­å®šå€¤
  *	
  *	@return	none
  */
@@ -545,10 +545,10 @@ static void inline ZknCursorContSetY( ZKN_CURSOR* p_cursor, int param )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	param‚ÌŠÇ—ID‚ÌCURSORˆÊ’u‚ÉˆÚ“®
+ *	@brief	paramã®ç®¡ç†IDã®CURSORä½ç½®ã«ç§»å‹•
  *
- *	@param	p_cursor	CURSORƒVƒXƒeƒ€ƒ[ƒN
- *	@param	param		ŠÇ—ID
+ *	@param	p_cursor	CURSORã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	param		ç®¡ç†ID
  *
  *	@return	none
  */

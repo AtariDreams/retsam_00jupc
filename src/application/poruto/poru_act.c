@@ -1,5 +1,5 @@
 /**
- *	@brief	ƒ|ƒ‹ƒg@ƒAƒNƒ^[ƒVƒXƒeƒ€
+ *	@brief	ãƒãƒ«ãƒˆã€€ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ 
  */
 
 #include "common.h"
@@ -25,7 +25,7 @@
 
 #define PORUC_ACTRES_MAX	(3)
 
-///ƒvƒƒgƒ^ƒCƒv
+///ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 void PoruCase_ActorInit(PORU_CASE_WORK *wk);
 void PoruCase_ActorRelease(PORU_CASE_WORK *wk);
 void PoruCase_ActorMain(PORU_CASE_WORK *wk);
@@ -35,50 +35,50 @@ void PoruCase_ActorInit(PORU_CASE_WORK *wk)
 {
 	initVramTransferManagerHeap(32,wk->heapID);
 
-	//ƒZƒ‹ƒAƒNƒ^[ƒVƒXƒeƒ€‰Šú‰»
+	//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	wk->pActSys = CATS_AllocMemory(wk->heapID);
 	wk->pActRes = CATS_ResourceCreate(wk->pActSys);
 
 	{
 		TCATS_OAM_INIT	coi = {
-			0,128,		///< ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJŽn/I—¹
-			0,32,		///< ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn/I—¹
-			0,128,		///< ƒTƒu	OAMŠÇ——ÌˆæEŠJŽn/I—¹
-			0,32,		///< ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn/I—¹
+			0,128,		///< ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			0,32,		///< ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			0,128,		///< ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
+			0,32,		///< ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹/çµ‚äº†
 		};
 		TCATS_CHAR_MANAGER_MAKE ccmm = {
-			PORUC_ACTRES_MAX,	//ID§Œä”
-			1024,	//ƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
-			1024,	//ƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
-			GX_OBJVRAMMODE_CHAR_1D_32K,	//ƒƒCƒ“OBJƒ‚[ƒhŽw’è
-			GX_OBJVRAMMODE_CHAR_1D_32K,	//ƒTƒuOBJƒ‚[ƒhŽw’è
+			PORUC_ACTRES_MAX,	//IDåˆ¶å¾¡æ•°
+			1024,	//ãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
+			1024,	//ã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
+			GX_OBJVRAMMODE_CHAR_1D_32K,	//ãƒ¡ã‚¤ãƒ³OBJãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
+			GX_OBJVRAMMODE_CHAR_1D_32K,	//ã‚µãƒ–OBJãƒ¢ãƒ¼ãƒ‰æŒ‡å®š
 		};
 
 		CATS_SystemInit( wk->pActSys, &coi, &ccmm, 32 );
 		CATS_ClactSetInit( wk->pActSys, wk->pActRes,PORUCASE_ACTMAX );
 
-		//OAM‰Šú‰»
+		//OAMåˆæœŸåŒ–
 		REND_OAM_UtilOamRamClear_Main(wk->heapID);
 		REND_OAM_UtilOamRamClear_Sub(wk->heapID);
 	}
 
 	{
 		TCATS_RESOURCE_FILE_LIST list = {
-			"data/porucase_chr.resdat",		// ƒLƒƒƒ‰ƒNƒ^
-			"data/porucase_pal.resdat",		// ƒpƒŒƒbƒg
-			"data/porucase_cell.resdat",	// ƒZƒ‹
-			"data/porucase_canm.resdat",	// ƒZƒ‹ƒAƒjƒ
-			NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹
-			NULL,						// ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
-			"data/porucase_celact.cldat"		// ƒwƒbƒ_[		
+			"data/porucase_chr.resdat",		// ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+			"data/porucase_pal.resdat",		// ãƒ‘ãƒ¬ãƒƒãƒˆ
+			"data/porucase_cell.resdat",	// ã‚»ãƒ«
+			"data/porucase_canm.resdat",	// ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			NULL,						// ãƒžãƒ«ãƒã‚»ãƒ«
+			NULL,						// ãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+			"data/porucase_celact.cldat"		// ãƒ˜ãƒƒãƒ€ãƒ¼		
 		};
 		CATS_ResourceLoadBinary( wk->pActSys, wk->pActRes, &list );
 	}
 
-	///ƒ|ƒ‹ƒgOAMƒ}ƒl[ƒWƒƒ‰Šú‰»
+	///ãƒãƒ«ãƒˆOAMãƒžãƒãƒ¼ã‚¸ãƒ£åˆæœŸåŒ–
 	wk->poruMan = PoruOam_SysInit(wk->heapID,1,1,PORUOAM_DRAW_MAIN,PORUOAM_CGXOFS_AUTO);
 
-	//’ÊM’†‚È‚ç’ÊMƒAƒCƒRƒ“•œ‹A
+	//é€šä¿¡ä¸­ãªã‚‰é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³å¾©å¸°
 	if(CommIsInitialize()){
 		WirelessIconEasy();
 	}

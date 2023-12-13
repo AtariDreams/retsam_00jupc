@@ -2,9 +2,9 @@
 /**
  *
  *@file		be_112.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			112�@�܂��т����܂��Ă����ƁA����̃g���[�i�[���|�P��������シ��x�ɑ���Ƀ_���[�W��^���邱�Ƃ��ł���
- *				 �g�����ɈЗ͂��傫���Ȃ��Ă����i�R�i�K�܂Łj
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			112　まきびしをまいておくと、相手のトレーナーがポケモンを交代する度に相手にダメージを与えることができる
+ *				 使う毎に威力が大きくなっていく（３段階まで）
  *
  *@author	HisashiSogabe
  *@data		2006.01.27

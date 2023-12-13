@@ -13,10 +13,10 @@
 #
 # $Log: Makefile,v $
 # Revision 1.3  2005/08/23 04:40:53  yasu
-# make install ‚É install æ‚ğw’è‚Å‚«‚é‚æ‚¤‚ÉC³
+# make install æ™‚ã« install å…ˆã‚’æŒ‡å®šã§ãã‚‹ã‚ˆã†ã«ä¿®æ­£
 #
 # Revision 1.2  2005/08/19 12:28:20  yasu
-# add-ins ‚ÌƒTƒ|[ƒg
+# add-ins ã®ã‚µãƒãƒ¼ãƒˆ
 #
 # $NoKeywords: $
 #----------------------------------------------------------------------------
@@ -24,8 +24,8 @@
 include	$(NITROWIFI_ROOT)/build/buildtools/commondefs
 
 #----------------------------------------------------------------------------
-#  install ‚µ‚½ƒ‰ƒCƒuƒ‰ƒŠ‚ª clobber ‚³‚ê‚é‚Ü‚¦‚É commondefs.add-ins.* ‚ğ
-#  íœ‚·‚é‚Æ•s“s‡‚ª‹N‚±‚é‚Ì‚ÅAŠY“–ƒtƒ@ƒCƒ‹‚ª‚ ‚é‚È‚ç clobber “®ì‚ğ’†~
+#  install ã—ãŸãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒ clobber ã•ã‚Œã‚‹ã¾ãˆã« commondefs.add-ins.* ã‚’
+#  å‰Šé™¤ã™ã‚‹ã¨ä¸éƒ½åˆãŒèµ·ã“ã‚‹ã®ã§ã€è©²å½“ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹ãªã‚‰ clobber å‹•ä½œã‚’ä¸­æ­¢
 #
 ifeq	($(MAKECMDGOALS),clobber)
 FILE_TESTEE	= $(NWIFI_ADDINS_ENV_LIBDIR)/$(firstword $(NWIFI_ADDINS_ENV_LIBS))

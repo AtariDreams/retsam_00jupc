@@ -1,6 +1,6 @@
  /**
  *	@file	mail.h
- *	@brief	ƒ[ƒ‹ƒVƒXƒeƒ€ƒwƒbƒ_
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ˜ãƒƒãƒ€
  *	@author	Miyuki Iwasaw
  *	@date	06.02.07
  */
@@ -8,71 +8,71 @@
 #ifndef _H_MAIL_H_
 #define _H_MAIL_H_
 
-//ƒ[ƒ‹ƒVƒXƒeƒ€@ƒpƒ‰ƒ[ƒ^ˆøŒp‚¬ƒ[ƒN
+//ãƒ¡ãƒ¼ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã€€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¼•ç¶™ããƒ¯ãƒ¼ã‚¯
 #include "application/mail/mail_param.h"
 
 /**
- *	@brief	ƒ[ƒ‹‰æ–ÊŒÄ‚Ño‚µƒ[ƒNì¬(Create)
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ç”»é¢å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ä½œæˆ(Create)
  *
- *	@retval	NULL	V‹Kì¬—Ìˆæ‚ª‚È‚¢
- *	@retval ƒ[ƒNƒ|ƒCƒ“ƒ^	ƒ[ƒ‹ì¬‰æ–ÊŒÄ‚Ño‚µ
+ *	@retval	NULL	æ–°è¦ä½œæˆé ˜åŸŸãŒãªã„
+ *	@retval ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿	ãƒ¡ãƒ¼ãƒ«ä½œæˆç”»é¢å‘¼ã³å‡ºã—
  */
 extern MAIL_PARAM* MailSys_GetWorkCreate(SAVEDATA* savedata,
 	MAILBLOCK_ID blockID,u8 poke_pos,u8 design,int heapID);
 
 /**
- *	@brief	ƒ[ƒ‹‰æ–ÊŒÄ‚Ño‚µƒ[ƒNì¬(View)
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ç”»é¢å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ä½œæˆ(View)
  *
- *	@retval	NULL	V‹Kì¬—Ìˆæ‚ª‚È‚¢
- *	@retval ƒ[ƒNƒ|ƒCƒ“ƒ^	ƒ[ƒ‹•`‰æ‰æ–ÊŒÄ‚Ño‚µ
+ *	@retval	NULL	æ–°è¦ä½œæˆé ˜åŸŸãŒãªã„
+ *	@retval ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿	ãƒ¡ãƒ¼ãƒ«æç”»ç”»é¢å‘¼ã³å‡ºã—
  */
 extern MAIL_PARAM* MailSys_GetWorkView(SAVEDATA* savedata,
 		MAILBLOCK_ID blockID,u16 dataID,int heapID);
 
 /**
- *	@brief	ƒ[ƒ‹‰æ–ÊŒÄ‚Ño‚µƒ[ƒNì¬(View/POKEMON_PARAM)
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ç”»é¢å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ä½œæˆ(View/POKEMON_PARAM)
  */
 extern MAIL_PARAM* MailSys_GetWorkViewPoke(SAVEDATA* savedata,POKEMON_PARAM* poke,int heapID);
 
 /**
- *	@brief	ƒ[ƒ‹‰æ–ÊŒÄ‚Ño‚µƒ[ƒNì¬(View/‹óƒ[ƒ‹ƒvƒŒƒrƒ…[)
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ç”»é¢å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ä½œæˆ(View/ç©ºãƒ¡ãƒ¼ãƒ«ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼)
  */
 extern MAIL_PARAM* MailSys_GetWorkViewPrev(SAVEDATA* savedata,u8 designNo,int heapID);
 
 
 /**
- *	@brief	’¼‘O‚Ìƒ‚ƒWƒ…[ƒ‹ŒÄ‚Ño‚µ‚Åƒf[ƒ^‚ªì¬‚³‚ê‚½‚©‚Ç‚¤‚©H
+ *	@brief	ç›´å‰ã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‘¼ã³å‡ºã—ã§ãƒ‡ãƒ¼ã‚¿ãŒä½œæˆã•ã‚ŒãŸã‹ã©ã†ã‹ï¼Ÿ
  */
 extern BOOL MailSys_IsDataCreate(MAIL_PARAM* wk);
 
 /**
- *	@brief	’¼‘O‚Ìƒ‚ƒWƒ…[ƒ‹ŒÄ‚Ño‚µ‚Åì¬‚³‚ê‚½ƒf[ƒ^‚ğƒZ[ƒuƒf[ƒ^‚É”½‰f
+ *	@brief	ç›´å‰ã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‘¼ã³å‡ºã—ã§ä½œæˆã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«åæ˜ 
  */
 extern int MailSys_PushDataToSave(MAIL_PARAM* wk,MAILBLOCK_ID blockID,u8 dataID);
 
 /**
- *	@brief	’¼‘O‚Ìƒ‚ƒWƒ…[ƒ‹ŒÄ‚Ño‚µ‚Åì¬‚³‚ê‚½ƒf[ƒ^‚ğƒZ[ƒuƒf[ƒ^‚É”½‰f(Poke)
+ *	@brief	ç›´å‰ã®ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‘¼ã³å‡ºã—ã§ä½œæˆã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã«åæ˜ (Poke)
  */
 extern int MailSys_PushDataToSavePoke(MAIL_PARAM* wk,POKEMON_PARAM* poke);
 
 /**
- *	@brief	ƒ[ƒ‹ƒ‚ƒWƒ…[ƒ‹ŒÄ‚Ño‚µƒ[ƒN‚ğ‰ğ•ú
+ *	@brief	ãƒ¡ãƒ¼ãƒ«ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«å‘¼ã³å‡ºã—ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾
  */
 extern void MailSys_ReleaseCallWork(MAIL_PARAM* wk);
 
 /**
- *	@brief	ƒ|ƒPƒ‚ƒ“ƒ[ƒ‹‚ğƒpƒ\ƒ[ƒ‹‚ÉˆÚ“®
+ *	@brief	ãƒã‚±ãƒ¢ãƒ³ãƒ¡ãƒ¼ãƒ«ã‚’ãƒ‘ã‚½ãƒ¡ãƒ¼ãƒ«ã«ç§»å‹•
  *
- *	@retval	MAILDATA_NULLID	‹ó‚«‚ª‚È‚¢‚Ì‚Å“]‘—‚Å‚«‚È‚¢
- *	@retval	"‚»‚Ì‘¼"@“]‘—‚µ‚½ƒf[ƒ^ID
+ *	@retval	MAILDATA_NULLID	ç©ºããŒãªã„ã®ã§è»¢é€ã§ããªã„
+ *	@retval	"ãã®ä»–"ã€€è»¢é€ã—ãŸãƒ‡ãƒ¼ã‚¿ID
  */
 extern int	MailSys_MoveMailPoke2Paso(MAIL_BLOCK* block,POKEMON_PARAM* poke,int heapID);
 
 /**
- *	@brief	ƒpƒ\ƒ[ƒ‹‚ğƒ|ƒPƒ‚ƒ“‚ÉˆÚ“®
+ *	@brief	ãƒ‘ã‚½ãƒ¡ãƒ¼ãƒ«ã‚’ãƒã‚±ãƒ¢ãƒ³ã«ç§»å‹•
  *
- *	@retval	MAILDATA_NULLID ID‚ª•s³‚È‚Ì‚Å‚È‚É‚à‚µ‚È‚©‚Á‚½
- *	@retval	"‚»‚Ì‘¼"@“]‘—‚µ‚½ƒf[ƒ^ID
+ *	@retval	MAILDATA_NULLID IDãŒä¸æ­£ãªã®ã§ãªã«ã‚‚ã—ãªã‹ã£ãŸ
+ *	@retval	"ãã®ä»–"ã€€è»¢é€ã—ãŸãƒ‡ãƒ¼ã‚¿ID
  */
 extern int	MailSys_MoveMailPaso2Poke(MAIL_BLOCK* block,u16 id,POKEMON_PARAM* poke,int heapID);
 

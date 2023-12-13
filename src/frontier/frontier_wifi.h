@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	frontier_wifi.h
- * @bfief	ƒtƒƒ“ƒeƒBƒAWiFió•t@ŒÄ‚Ño‚µ
+ * @bfief	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢WiFiå—ä»˜ã€€å‘¼ã³å‡ºã—
  * @author	Satoshi Nohara
  * @date	07.07.27
  */
@@ -16,7 +16,7 @@
 
 //============================================================================================
 //
-//	externéŒ¾
+//	externå®£è¨€
 //
 //============================================================================================
 extern FRONTIER_EX_PARAM* EvCmdFrontierSystemCall( FIELDSYS_WORK* fsys, void* work );
@@ -27,7 +27,7 @@ extern FRONTIER_EX_PARAM* EvCmdFrontierSystemCall( FIELDSYS_WORK* fsys, void* wo
 
 //============================================================================================
 //
-//	\‘¢‘Ì
+//	æ§‹é€ ä½“
 //
 //============================================================================================
 typedef struct{
@@ -36,25 +36,25 @@ typedef struct{
 	void* p_work;
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//’ÊM—pFƒf[ƒ^ƒoƒbƒtƒ@
+	//é€šä¿¡ç”¨ï¼šãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡
 	u16	send_buf[FRWIFI_COMM_BUF_LEN];
 
-	//’ÊM—pFŠî–{î•ñ
-	u8	pair_sex;											//«•Ê
-	u8	pair_retire_flag;									//ƒŠƒ^ƒCƒ„‚ğ‘I‚ñ‚¾‚©=1
+	//é€šä¿¡ç”¨ï¼šåŸºæœ¬æƒ…å ±
+	u8	pair_sex;											//æ€§åˆ¥
+	u8	pair_retire_flag;									//ãƒªã‚¿ã‚¤ãƒ¤ã‚’é¸ã‚“ã ã‹=1
 	STRCODE pair_name[PERSON_NAME_SIZE + EOM_SIZE];			//
 
-	//Q‰Á‚µ‚Ä‚¢‚éè‚¿ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’uî•ñ
+	//å‚åŠ ã—ã¦ã„ã‚‹æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®æƒ…å ±
 	u8	mine_poke_pos[FR_WIFI_COUNTER_ENTRY_POKE_MAX];
 
 	u8	pair_bf_no;
 	u8	recieve_count;
 
 	u8	dummy36;
-	u8	pair_game_continue;									//ƒp[ƒgƒi[‚ª‘±‚¯‚Ä—V‚Ô‚©
+	u8	pair_game_continue;									//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒç¶šã‘ã¦éŠã¶ã‹
 
-	u16 pair_rensyou;										//ƒp[ƒgƒi[‚Ì˜AŸ”ƒ`ƒFƒbƒN—p
-	u16	pair_stage_del;										//ƒp[ƒgƒi[‚ªƒXƒe[ƒW‹L˜^Á‚µ‚Ä‚æ‚¢‚©
+	u16 pair_rensyou;										//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®é€£å‹æ•°ãƒã‚§ãƒƒã‚¯ç”¨
+	u16	pair_stage_del;										//ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ãŒã‚¹ãƒ†ãƒ¼ã‚¸è¨˜éŒ²æ¶ˆã—ã¦ã‚ˆã„ã‹
 
 	u16 monsno[FR_WIFI_COUNTER_ENTRY_POKE_MAX];
 	u16 itemno[FR_WIFI_COUNTER_ENTRY_POKE_MAX];
@@ -62,13 +62,13 @@ typedef struct{
 	u16 pair_itemno[FR_WIFI_COUNTER_ENTRY_POKE_MAX];
 
 	//]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-	//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg—p
-	FIELDSYS_WORK* fsys;									//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgŒÄ‚Ño‚µ‚É•K—v
+	//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”¨
+	FIELDSYS_WORK* fsys;									//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—ã«å¿…è¦
 	u8	seq;
 	u8  next_seq;
-	u8	mode;												//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgƒ‚[ƒh
-	u8	pos;												//ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‚ÌŒ»İƒJ[ƒ\ƒ‹ˆÊ’u
-	u8	bf_no;												//{İNo
+	u8	mode;												//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆãƒ¢ãƒ¼ãƒ‰
+	u8	pos;												//ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã®ç¾åœ¨ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®
+	u8	bf_no;												//æ–½è¨­No
 	u8	sel[FR_WIFI_COUNTER_ENTRY_POKE_MAX];
 	PLIST_DATA* pld;
 	PSTATUS_DATA* psd;

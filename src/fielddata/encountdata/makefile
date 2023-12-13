@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  Cƒ\[ƒX->ƒoƒCƒiƒŠ[
+# Project:  Cã‚½ãƒ¼ã‚¹->ãƒã‚¤ãƒŠãƒªãƒ¼
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -20,12 +20,12 @@ PL_ENCOUNT_DATA =	PMPLencount.csv
 include	sourcefile.lst
 
 #----------------------------------------------------------------------------
-#	‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·‚ğ‰Â”\‚É‚·‚é‚½‚ß‚Ìİ’è
+#	ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã‚’å¯èƒ½ã«ã™ã‚‹ãŸã‚ã®è¨­å®š
 #----------------------------------------------------------------------------
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
-#‹¤’Ê•Ï”’è‹`
+#å…±é€šå¤‰æ•°å®šç¾©
 include $(DP_ROOT)/commondefs.GF
 
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
@@ -43,7 +43,7 @@ include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 #----------------------------------------------------------------------------
 #
 #----------------------------------------------------------------------------
-#Make‚Å¶¬‚³‚ê‚é*.bin‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.binã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(CONVSRCS:.c=.bin) $(CONVSRCS) $(D_TARGET_ARC) $(P_TARGET_ARC) $(TARGET_ARC) $(TARGET_ARC:.narc=.naix)
 
 LINCLUDES		= $(NITROSDK_ROOT)/include
@@ -52,7 +52,7 @@ LINCLUDES		+= $(DP_ROOT)/src/field
 LINCLUDES	+= $(dir $<)
 
 #----------------------------------------------------------------------------
-#	ƒc[ƒ‹‚Ö‚ÌƒpƒXw’è
+#	ãƒ„ãƒ¼ãƒ«ã¸ã®ãƒ‘ã‚¹æŒ‡å®š
 #----------------------------------------------------------------------------
 LISTMK		= $(DP_ROOT)/convert/eventdata/listmk.exe
 ELF2BIN		= $(DP_ROOT)/convert/eventdata/celf2bin.exe
@@ -61,62 +61,62 @@ CONVERTER	= $(DP_ROOT)/convert/encountdata/EncountConverter
 
 #----------------------------------------------------------------------------
 #
-#	ƒ‹[ƒ‹’è‹`
+#	ãƒ«ãƒ¼ãƒ«å®šç¾©
 #
 #----------------------------------------------------------------------------
 #do-build: $(D_TARGET_ARC) $(P_TARGET_ARC)
 do-build: $(PL_TARGET_ARC)
 
 $(D_TARGET_ARC): $(D_ENCOUNT_DATA)
-	$(MAKE) d_convert				#ƒ_ƒCƒA ƒRƒ“ƒo[ƒg‚µ‚Ä
-	$(MAKE) mklst				#ˆê——‚ğì¬‚µ‚Ä
-	$(MAKE) makebin				#‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·‚µ‚Ä
-	$(MAKE) d_makearc				#ƒ_ƒCƒA ƒA[ƒJƒCƒu‚É‚Ü‚Æ‚ß‚é
+	$(MAKE) d_convert				#ãƒ€ã‚¤ã‚¢ ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ã¦
+	$(MAKE) mklst				#ä¸€è¦§ã‚’ä½œæˆã—ã¦
+	$(MAKE) makebin				#ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã—ã¦
+	$(MAKE) d_makearc				#ãƒ€ã‚¤ã‚¢ ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«ã¾ã¨ã‚ã‚‹
 	
 $(PL_TARGET_ARC): $(PL_ENCOUNT_DATA)
-	$(MAKE) pl_convert				#ƒ_ƒCƒA ƒRƒ“ƒo[ƒg‚µ‚Ä
-	$(MAKE) mklst				#ˆê——‚ğì¬‚µ‚Ä
-	$(MAKE) makebin				#‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·‚µ‚Ä
-	$(MAKE) pl_makearc				#ƒ_ƒCƒA ƒA[ƒJƒCƒu‚É‚Ü‚Æ‚ß‚é
+	$(MAKE) pl_convert				#ãƒ€ã‚¤ã‚¢ ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ã¦
+	$(MAKE) mklst				#ä¸€è¦§ã‚’ä½œæˆã—ã¦
+	$(MAKE) makebin				#ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã—ã¦
+	$(MAKE) pl_makearc				#ãƒ€ã‚¤ã‚¢ ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«ã¾ã¨ã‚ã‚‹
 
 $(P_TARGET_ARC): $(P_ENCOUNT_DATA)
-	$(MAKE) p_convert				#ƒp[ƒ‹ ƒRƒ“ƒo[ƒg‚µ‚Ä
-	$(MAKE) mklst				#ˆê——‚ğì¬‚µ‚Ä
-	$(MAKE) makebin				#‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·‚µ‚Ä
-	$(MAKE) p_makearc				#ƒp[ƒ‹ ƒA[ƒJƒCƒu‚É‚Ü‚Æ‚ß‚é
+	$(MAKE) p_convert				#ãƒ‘ãƒ¼ãƒ« ã‚³ãƒ³ãƒãƒ¼ãƒˆã—ã¦
+	$(MAKE) mklst				#ä¸€è¦§ã‚’ä½œæˆã—ã¦
+	$(MAKE) makebin				#ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã—ã¦
+	$(MAKE) p_makearc				#ãƒ‘ãƒ¼ãƒ« ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã«ã¾ã¨ã‚ã‚‹
 
-#ƒRƒ“ƒo[ƒ^ŒÄ‚Ño‚µ
+#ã‚³ãƒ³ãƒãƒ¼ã‚¿å‘¼ã³å‡ºã—
 d_convert:
 	$(CONVERTER) $(D_ENCOUNT_DATA)
 	
-#ƒRƒ“ƒo[ƒ^ŒÄ‚Ño‚µ
+#ã‚³ãƒ³ãƒãƒ¼ã‚¿å‘¼ã³å‡ºã—
 pl_convert:
 	$(CONVERTER) $(PL_ENCOUNT_DATA)
 
-#ƒRƒ“ƒo[ƒ^ŒÄ‚Ño‚µ
+#ã‚³ãƒ³ãƒãƒ¼ã‚¿å‘¼ã³å‡ºã—
 p_convert:
 	$(CONVERTER) $(P_ENCOUNT_DATA)
 	
-#‘ÎÛƒ\[ƒXˆê——ì¬
+#å¯¾è±¡ã‚½ãƒ¼ã‚¹ä¸€è¦§ä½œæˆ
 mklst:
 	ls -1 *enc.c > temp
 	$(LISTMK) temp sourcefile.lst CONVSRCS
 	rm temp
 
-#‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·
+#ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›
 makebin: $(CONVSRCS:.c=.bin)
 
-#ƒA[ƒJƒCƒuì¬
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä½œæˆ
 d_makearc:
 	nnsarc -i -c -l -n $(TARGET_ARC) *.bin > d_arc_result.txt
 	d_copy.bat
 	
-#ƒA[ƒJƒCƒuì¬
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä½œæˆ
 pl_makearc:
 	nnsarc -i -c -l -n $(TARGET_ARC) *.bin > pl_arc_result.txt
 	pl_copy.bat
 	
-#ƒA[ƒJƒCƒuì¬
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä½œæˆ
 p_makearc:
 	nnsarc -i -c -l -n $(TARGET_ARC) *.bin > p_arc_result.txt
 	p_copy.bat

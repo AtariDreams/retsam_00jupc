@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	softsprite.h
- * @bfief	ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ðŽg—p‚µ‚½•\Ž¦ƒvƒƒOƒ‰ƒ€
+ * @bfief	ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’ä½¿ç”¨ã—ãŸè¡¨ç¤ºãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.06.08
  */
@@ -11,116 +11,116 @@
 #ifndef __SOFTSPRITE_H_
 #define __SOFTSPRITE_H_
 
-#define	SOFT_SPRITE_MAX			(4)		//“o˜^‚Å‚«‚éÅ‘å”
-#define SOFT_SPRITE_SIZE_X		(80)	//“Ç‚Ýž‚Þƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌXƒTƒCƒY
-#define SOFT_SPRITE_SIZE_Y		(80)	//“Ç‚Ýž‚Þƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌYƒTƒCƒY
+#define	SOFT_SPRITE_MAX			(4)		//ç™»éŒ²ã§ãã‚‹æœ€å¤§æ•°
+#define SOFT_SPRITE_SIZE_X		(80)	//èª­ã¿è¾¼ã‚€ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®Xã‚µã‚¤ã‚º
+#define SOFT_SPRITE_SIZE_Y		(80)	//èª­ã¿è¾¼ã‚€ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®Yã‚µã‚¤ã‚º
 
-#define SOFT_SPRITE_SHADOW_X	(64)	//‰e‚ÌXƒTƒCƒY
-#define SOFT_SPRITE_SHADOW_Y	(16)	//‰e‚ÌYƒTƒCƒY
+#define SOFT_SPRITE_SHADOW_X	(64)	//å½±ã®Xã‚µã‚¤ã‚º
+#define SOFT_SPRITE_SHADOW_Y	(16)	//å½±ã®Yã‚µã‚¤ã‚º
 
-#define SOFT_SPRITE_SRC_X		(160)	//“Ç‚Ýž‚Þƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌXƒTƒCƒY
-#define SOFT_SPRITE_SRC_Y		(80)	//“Ç‚Ýž‚Þƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌYƒTƒCƒY
+#define SOFT_SPRITE_SRC_X		(160)	//èª­ã¿è¾¼ã‚€ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®Xã‚µã‚¤ã‚º
+#define SOFT_SPRITE_SRC_Y		(80)	//èª­ã¿è¾¼ã‚€ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®Yã‚µã‚¤ã‚º
 
-#define SOFT_SPRITE_SRC_Y_OFS	(0x50)	//“Ç‚Ýž‚Þƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌYƒIƒtƒZƒbƒg
-#define SOFT_SPRITE_DEST_Y_OFS	(0x80)	//‘‚«ž‚Þƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌYƒIƒtƒZƒbƒg
+#define SOFT_SPRITE_SRC_Y_OFS	(0x50)	//èª­ã¿è¾¼ã‚€ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define SOFT_SPRITE_DEST_Y_OFS	(0x80)	//æ›¸ãè¾¼ã‚€ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-#define SOFT_SPRITE_DEST_CHR_OFS	(0x2800)	//‘‚«ž‚Þƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌYƒIƒtƒZƒbƒg
+#define SOFT_SPRITE_DEST_CHR_OFS	(0x2800)	//æ›¸ãè¾¼ã‚€ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-#define SOFT_SPRITE_DEST_OFS	(0x50)			//‘‚«ž‚Þƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌYƒIƒtƒZƒbƒg
-#define SOFT_SPRITE_DEST_OFS2	(0x2828)		//‘‚«ž‚Þƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg‚ÌYƒIƒtƒZƒbƒg
+#define SOFT_SPRITE_DEST_OFS	(0x50)			//æ›¸ãè¾¼ã‚€ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define SOFT_SPRITE_DEST_OFS2	(0x2828)		//æ›¸ãè¾¼ã‚€ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-#define	SOFT_SPRITE_SHADOW_OFS	(0x5050)		//‰e‚ð‘‚«ž‚ÞƒAƒhƒŒƒX‚ÌƒIƒtƒZƒbƒg
+#define	SOFT_SPRITE_SHADOW_OFS	(0x5050)		//å½±ã‚’æ›¸ãè¾¼ã‚€ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-#define SHADOW_OFS				(36)	///<ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚Ì‰e‚ÌƒIƒtƒZƒbƒg
-#define SOFT_SPRITE_SHADOW_PRI	(-1000)	///<ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚Ì‰e‚Ìƒvƒ‰ƒCƒIƒŠƒeƒB
+#define SHADOW_OFS				(36)	///<ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®å½±ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+#define SOFT_SPRITE_SHADOW_PRI	(-1000)	///<ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®å½±ã®ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
-#define	SS_ANM_SEQ_MAX			(10)	//ƒ\ƒtƒgƒXƒvƒ‰ƒCƒgƒAƒjƒMAX
+#define	SS_ANM_SEQ_MAX			(10)	//ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚¢ãƒ‹ãƒ¡MAX
 
-#define	SOFT_SPRITE_CHR_SIZE		(32*32*0x20)	//256x256‚ÌBMP—Ìˆæ‚Ì‘å‚«‚³•ª
-#define	SOFT_SPRITE_COL_SIZE		(0x20*6)		//ƒpƒŒƒbƒgƒTƒCƒY
-#define	SOFT_SPRITE_TRANS_COL_SIZE	(0x20*4)		//ƒpƒŒƒbƒg“]‘—ƒTƒCƒYi‰Šúó‘Ô‚Å‚ÍA‰e‚Ì•ª‚Í“]‘—‚µ‚È‚¢j
-#define	SOFT_SPRITE_AREA_H_SIZE		(32)			//256x256‚ÌBMP—Ìˆæ‚ÌYƒTƒCƒYiƒLƒƒƒ‰’PˆÊj
-#define	SOFT_SPRITE_AREA_W_SIZE		(32)			//256x256‚ÌBMP—Ìˆæ‚ÌXƒTƒCƒYiƒLƒƒƒ‰’PˆÊj
+#define	SOFT_SPRITE_CHR_SIZE		(32*32*0x20)	//256x256ã®BMPé ˜åŸŸã®å¤§ãã•åˆ†
+#define	SOFT_SPRITE_COL_SIZE		(0x20*6)		//ãƒ‘ãƒ¬ãƒƒãƒˆã‚µã‚¤ã‚º
+#define	SOFT_SPRITE_TRANS_COL_SIZE	(0x20*4)		//ãƒ‘ãƒ¬ãƒƒãƒˆè»¢é€ã‚µã‚¤ã‚ºï¼ˆåˆæœŸçŠ¶æ…‹ã§ã¯ã€å½±ã®åˆ†ã¯è»¢é€ã—ãªã„ï¼‰
+#define	SOFT_SPRITE_AREA_H_SIZE		(32)			//256x256ã®BMPé ˜åŸŸã®Yã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
+#define	SOFT_SPRITE_AREA_W_SIZE		(32)			//256x256ã®BMPé ˜åŸŸã®Xã‚µã‚¤ã‚ºï¼ˆã‚­ãƒ£ãƒ©å˜ä½ï¼‰
 
-///<ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒg•`‰æƒ‚[ƒh
+///<ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆæç”»ãƒ¢ãƒ¼ãƒ‰
 enum{
 	SS_DRAW_MODE_NORMAL=0,
-	SS_DRAW_MODE_NO_IDENTITY,		///<G3_Identity()‚ðŒÄ‚Î‚È‚¢	
+	SS_DRAW_MODE_NO_IDENTITY,		///<G3_Identity()ã‚’å‘¼ã°ãªã„	
 };
 
-///<VISIBLE_MODE ON/OFFƒtƒ‰ƒO
+///<VISIBLE_MODE ON/OFFãƒ•ãƒ©ã‚°
 #define	VISIBLE_ON	(1)
 #define	VISIBLE_OFF	(0)
 
-///<SS_PARA_SHADOW_SIZE’è‹`
-#define	SS_SHADOW_NONE		(0)		///<‰e‚È‚µ
-#define	SS_SHADOW_SMALL		(0)		///<‰e¬
-#define	SS_SHADOW_MEDIUM	(0)		///<‰e’†
-#define	SS_SHADOW_LARGE		(0)		///<‰e‘å
+///<SS_PARA_SHADOW_SIZEå®šç¾©
+#define	SS_SHADOW_NONE		(0)		///<å½±ãªã—
+#define	SS_SHADOW_SMALL		(0)		///<å½±å°
+#define	SS_SHADOW_MEDIUM	(0)		///<å½±ä¸­
+#define	SS_SHADOW_LARGE		(0)		///<å½±å¤§
 
-///<ss_system_flag’è‹`
-#define	SS_SYSTEM_FLAG_SHADOW_OFF	(0x00000001)	//‰e‚Ì‹@”\‚ðƒIƒt‚É‚·‚é
+///<ss_system_flagå®šç¾©
+#define	SS_SYSTEM_FLAG_SHADOW_OFF	(0x00000001)	//å½±ã®æ©Ÿèƒ½ã‚’ã‚ªãƒ•ã«ã™ã‚‹
 
-///<SoftSpriteParaCalc—pƒpƒ‰ƒ[ƒ^’è”’è‹`
+///<SoftSpriteParaCalcç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å®šæ•°å®šç¾©
 enum{
-	SS_PARA_POS_X=0,		// XÀ•W
-	SS_PARA_POS_Y,			// YÀ•W
-	SS_PARA_POS_Z,			// ZÀ•W
-	SS_PARA_POS_OX,			// XÀ•WƒIƒtƒZƒbƒg
-	SS_PARA_POS_OY,			// YÀ•WƒIƒtƒZƒbƒg
-	SS_PARA_POS_OZ,			// ZÀ•WƒIƒtƒZƒbƒg
-	SS_PARA_VANISH,			// ƒoƒjƒbƒVƒ…ƒtƒ‰ƒOi0:•\Ž¦@1:”ñ•\Ž¦j
-	SS_PARA_ROT_X,			// X•ûŒü‰ñ“]Šp“x
-	SS_PARA_ROT_Y,			// Y•ûŒü‰ñ“]Šp“x
-	SS_PARA_ROT_Z,			// Z•ûŒü‰ñ“]Šp“x
-	SS_PARA_ROT_CX,			// ‰ñ“]’†SXÀ•WƒIƒtƒZƒbƒg
-	SS_PARA_ROT_CY,			// ‰ñ“]’†SYÀ•WƒIƒtƒZƒbƒg
-	SS_PARA_AFF_X,			// X•ûŒüŠg‘åk¬—¦
-	SS_PARA_AFF_Y,			// Y•ûŒüŠg‘åk¬—¦
-	SS_PARA_VISIBLE,		// ƒrƒWƒuƒ‹ƒ‚[ƒhƒtƒ‰ƒOi0:OFF@1:ONj
-	SS_PARA_OFS_POS_X,		// ƒeƒNƒXƒ`ƒƒ‰ÂŽ‹”ÍˆÍ¶ãXÀ•W
-	SS_PARA_OFS_POS_Y,		// ƒeƒNƒXƒ`ƒƒ‰ÂŽ‹”ÍˆÍ¶ãYÀ•W
-	SS_PARA_OFS_SIZE_X,		// ƒeƒNƒXƒ`ƒƒ‰ÂŽ‹”ÍˆÍXƒTƒCƒY
-	SS_PARA_OFS_SIZE_Y,		// ƒeƒNƒXƒ`ƒƒ‰ÂŽ‹”ÍˆÍYƒTƒCƒY
-	SS_PARA_SHADOW_X,		// ‰eX
-	SS_PARA_SHADOW_Y,		// ‰eY
-	SS_PARA_SHADOW_OX,		// ‰eƒIƒtƒZƒbƒgX
-	SS_PARA_SHADOW_OY,		// ‰eƒIƒtƒZƒbƒgY
-	SS_PARA_ALPHA,			// Alpha’l
-	SS_PARA_DIFF_R,			// DiffR’l
-	SS_PARA_DIFF_G,			// DiffG’l
-	SS_PARA_DIFF_B,			// DiffB’l
-	SS_PARA_AMB_R,			// AmbR’l
-	SS_PARA_AMB_G,			// AmbG’l
-	SS_PARA_AMB_B,			// AmbB’l
-	SS_PARA_PAL_FADE,		// ƒpƒŒƒbƒgƒtƒF[ƒhƒtƒ‰ƒO
-	SS_PARA_PAL_RGB,		// ƒpƒŒƒbƒgƒtƒF[ƒh RGB’l
-	SS_PARA_PAL_START_EVY,	// ƒpƒŒƒbƒgƒtƒF[ƒh START_EVY’l
-	SS_PARA_PAL_END_EVY,	// ƒpƒŒƒbƒgƒtƒF[ƒh END_EVY’l
-	SS_PARA_PAL_WAIT,		// ƒpƒŒƒbƒgƒtƒF[ƒh WAIT’l
-	SS_PARA_H_FLIP,			// ¶‰E”½“]ƒtƒ‰ƒO
-	SS_PARA_V_FLIP,			// ã‰º”½“]ƒtƒ‰ƒO
-	SS_PARA_DRAW_STOP,		// ‹­§•`‰æƒXƒgƒbƒv
-	SS_PARA_ANM_PAT,		// ƒAƒjƒ[ƒVƒ‡ƒ“ƒpƒ^[ƒ“ƒiƒ“ƒo[
-	SS_PARA_ARC,			// ƒA[ƒJƒCƒo\‘¢‘Ì‚ÌƒAƒhƒŒƒX
-	SS_PARA_MOSAIC,			// ƒ‚ƒUƒCƒN’l
-	SS_PARA_SHADOW_HEIGHT,	// YÀ•WƒIƒtƒZƒbƒgi‰e‚©‚ç‚Ç‚ê‚¾‚¯•‚‚©‚·‚©j
-	SS_PARA_SHADOW_REQ,		// ‰e‚Ì—L–³
-	SS_PARA_SHADOW_X_REQ,	// ‰e‚ÌX•ûŒü‚Ì’Ç]—L–³
-	SS_PARA_SHADOW_Y_REQ,	// ‰e‚ÌY•ûŒü‚Ì’Ç]—L–³
-	SS_PARA_SHADOW_AFF_REQ,	// ‰e‚ÌŠgk‚Ì’Ç]—L–³
-	SS_PARA_SHADOW_SIZE,	// ‰e‚Ì‘å‚«‚³
+	SS_PARA_POS_X=0,		// Xåº§æ¨™
+	SS_PARA_POS_Y,			// Yåº§æ¨™
+	SS_PARA_POS_Z,			// Zåº§æ¨™
+	SS_PARA_POS_OX,			// Xåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	SS_PARA_POS_OY,			// Yåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	SS_PARA_POS_OZ,			// Zåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	SS_PARA_VANISH,			// ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°ï¼ˆ0:è¡¨ç¤ºã€€1:éžè¡¨ç¤ºï¼‰
+	SS_PARA_ROT_X,			// Xæ–¹å‘å›žè»¢è§’åº¦
+	SS_PARA_ROT_Y,			// Yæ–¹å‘å›žè»¢è§’åº¦
+	SS_PARA_ROT_Z,			// Zæ–¹å‘å›žè»¢è§’åº¦
+	SS_PARA_ROT_CX,			// å›žè»¢ä¸­å¿ƒXåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	SS_PARA_ROT_CY,			// å›žè»¢ä¸­å¿ƒYåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	SS_PARA_AFF_X,			// Xæ–¹å‘æ‹¡å¤§ç¸®å°çŽ‡
+	SS_PARA_AFF_Y,			// Yæ–¹å‘æ‹¡å¤§ç¸®å°çŽ‡
+	SS_PARA_VISIBLE,		// ãƒ“ã‚¸ãƒ–ãƒ«ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ï¼ˆ0:OFFã€€1:ONï¼‰
+	SS_PARA_OFS_POS_X,		// ãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²å·¦ä¸ŠXåº§æ¨™
+	SS_PARA_OFS_POS_Y,		// ãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²å·¦ä¸ŠYåº§æ¨™
+	SS_PARA_OFS_SIZE_X,		// ãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²Xã‚µã‚¤ã‚º
+	SS_PARA_OFS_SIZE_Y,		// ãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²Yã‚µã‚¤ã‚º
+	SS_PARA_SHADOW_X,		// å½±X
+	SS_PARA_SHADOW_Y,		// å½±Y
+	SS_PARA_SHADOW_OX,		// å½±ã‚ªãƒ•ã‚»ãƒƒãƒˆX
+	SS_PARA_SHADOW_OY,		// å½±ã‚ªãƒ•ã‚»ãƒƒãƒˆY
+	SS_PARA_ALPHA,			// Alphaå€¤
+	SS_PARA_DIFF_R,			// DiffRå€¤
+	SS_PARA_DIFF_G,			// DiffGå€¤
+	SS_PARA_DIFF_B,			// DiffBå€¤
+	SS_PARA_AMB_R,			// AmbRå€¤
+	SS_PARA_AMB_G,			// AmbGå€¤
+	SS_PARA_AMB_B,			// AmbBå€¤
+	SS_PARA_PAL_FADE,		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°
+	SS_PARA_PAL_RGB,		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ RGBå€¤
+	SS_PARA_PAL_START_EVY,	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ START_EVYå€¤
+	SS_PARA_PAL_END_EVY,	// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ END_EVYå€¤
+	SS_PARA_PAL_WAIT,		// ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ WAITå€¤
+	SS_PARA_H_FLIP,			// å·¦å³åè»¢ãƒ•ãƒ©ã‚°
+	SS_PARA_V_FLIP,			// ä¸Šä¸‹åè»¢ãƒ•ãƒ©ã‚°
+	SS_PARA_DRAW_STOP,		// å¼·åˆ¶æç”»ã‚¹ãƒˆãƒƒãƒ—
+	SS_PARA_ANM_PAT,		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‘ã‚¿ãƒ¼ãƒ³ãƒŠãƒ³ãƒãƒ¼
+	SS_PARA_ARC,			// ã‚¢ãƒ¼ã‚«ã‚¤ãƒæ§‹é€ ä½“ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+	SS_PARA_MOSAIC,			// ãƒ¢ã‚¶ã‚¤ã‚¯å€¤
+	SS_PARA_SHADOW_HEIGHT,	// Yåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆï¼ˆå½±ã‹ã‚‰ã©ã‚Œã ã‘æµ®ã‹ã™ã‹ï¼‰
+	SS_PARA_SHADOW_REQ,		// å½±ã®æœ‰ç„¡
+	SS_PARA_SHADOW_X_REQ,	// å½±ã®Xæ–¹å‘ã®è¿½å¾“æœ‰ç„¡
+	SS_PARA_SHADOW_Y_REQ,	// å½±ã®Yæ–¹å‘ã®è¿½å¾“æœ‰ç„¡
+	SS_PARA_SHADOW_AFF_REQ,	// å½±ã®æ‹¡ç¸®ã®è¿½å¾“æœ‰ç„¡
+	SS_PARA_SHADOW_SIZE,	// å½±ã®å¤§ãã•
 
 	SS_PARA_END
 };
 
-///<•\Ž¦—pƒ}ƒl[ƒWƒƒ\‘¢‘Ì
+///<è¡¨ç¤ºç”¨ãƒžãƒãƒ¼ã‚¸ãƒ£æ§‹é€ ä½“
 typedef struct soft_sprite_manager SOFT_SPRITE_MANAGER;
 
-///<•\Ž¦—p\‘¢‘Ì
+///<è¡¨ç¤ºç”¨æ§‹é€ ä½“
 typedef struct soft_sprite SOFT_SPRITE;
 
-///<ƒAƒjƒ[ƒVƒ‡ƒ“ƒe[ƒuƒ‹\‘¢‘Ì
+///<ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«æ§‹é€ ä½“
 typedef struct
 {
 	s8	patno;
@@ -130,7 +130,7 @@ typedef struct
 	
 } SOFT_SPRITE_ANIME;
 
-///< DP ‚Ü‚Å‚ÌƒAƒjƒƒe[ƒuƒ‹
+///< DP ã¾ã§ã®ã‚¢ãƒ‹ãƒ¡ãƒ†ãƒ¼ãƒ–ãƒ«
 typedef struct
 {
 	s8	patno;
@@ -138,97 +138,97 @@ typedef struct
 	
 } SOFT_SPRITE_ANIME_DP;
 
-///<ƒA[ƒJƒCƒo\‘¢‘Ì
+///<ã‚¢ãƒ¼ã‚«ã‚¤ãƒæ§‹é€ ä½“
 typedef struct
 {
-	u16	arc_no;			///<ƒLƒƒƒ‰ƒNƒ^‚ÌƒA[ƒJƒCƒoƒiƒ“ƒo[
-	u16	index_chr;		///<“Ç‚Ýž‚ÞƒLƒƒƒ‰ƒNƒ^ƒA[ƒJƒCƒo“à‚ÌINDEX
-	u16	index_pal;		///<“Ç‚Ýž‚ÞƒpƒŒƒbƒgƒA[ƒJƒCƒo“à‚ÌINDEX
-	u16	strike_mons;	///<ƒpƒbƒ`[ƒ‹‚Ì‚Ô‚¿‚È‚Ç‚ð¶¬‚·‚é‚©ƒtƒ‰ƒOiƒ|ƒPƒ‚ƒ“‚Ì‚Æ‚«ê—pj
-	u8	form_no;		///<Œ`‘Ô•Ï‰»Noiƒ~ƒmƒ€ƒbƒ`Aƒ~ƒmƒƒXAƒfƒIƒLƒVƒX‚È‚Ç—pj
+	u16	arc_no;			///<ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒãƒŠãƒ³ãƒãƒ¼
+	u16	index_chr;		///<èª­ã¿è¾¼ã‚€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚¢ãƒ¼ã‚«ã‚¤ãƒå†…ã®INDEX
+	u16	index_pal;		///<èª­ã¿è¾¼ã‚€ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ¼ã‚«ã‚¤ãƒå†…ã®INDEX
+	u16	strike_mons;	///<ãƒ‘ãƒƒãƒãƒ¼ãƒ«ã®ã¶ã¡ãªã©ã‚’ç”Ÿæˆã™ã‚‹ã‹ãƒ•ãƒ©ã‚°ï¼ˆãƒã‚±ãƒ¢ãƒ³ã®ã¨ãå°‚ç”¨ï¼‰
+	u8	form_no;		///<å½¢æ…‹å¤‰åŒ–Noï¼ˆãƒŸãƒŽãƒ ãƒƒãƒã€ãƒŸãƒŽãƒ¡ã‚¹ã€ãƒ‡ã‚ªã‚­ã‚·ã‚¹ãªã©ç”¨ï¼‰
 	u8	dummy[3];
-	u32	personal_rnd;	///<‚Ô‚¿‚ð¶¬‚·‚é‚½‚ß‚ÌŒÂ«—”
+	u32	personal_rnd;	///<ã¶ã¡ã‚’ç”Ÿæˆã™ã‚‹ãŸã‚ã®å€‹æ€§ä¹±æ•°
 }SOFT_SPRITE_ARC;
 
-///<‰e\‘¢‘Ì
+///<å½±æ§‹é€ ä½“
 typedef struct
 {
-	u16	shadow_req		:2;		///<‰e‚Ì—L‚è^–³‚µ
-	u16	shadow_x_req	:1;		///<‰e‚ÌX•ûŒü‚Ì’Ç]ON/OFF
-	u16	shadow_y_req	:1;		///<‰e‚ÌY•ûŒü‚Ì’Ç]ON/OFF
-	u16	shadow_aff_req	:1;		///<‰e‚ÌŠgk‚Ì’Ç]ON/OFF
-	u16	shadow_size		:2;		///<‰e‚Ì‘å‚«‚³
-	u16					:9;		///<‚ ‚Ü‚è
-	s8	shadow_height;			///<‰e‚©‚ç‚Ç‚ê‚¾‚¯•‚‚©‚·‚©
+	u16	shadow_req		:2;		///<å½±ã®æœ‰ã‚Šï¼ç„¡ã—
+	u16	shadow_x_req	:1;		///<å½±ã®Xæ–¹å‘ã®è¿½å¾“ON/OFF
+	u16	shadow_y_req	:1;		///<å½±ã®Yæ–¹å‘ã®è¿½å¾“ON/OFF
+	u16	shadow_aff_req	:1;		///<å½±ã®æ‹¡ç¸®ã®è¿½å¾“ON/OFF
+	u16	shadow_size		:2;		///<å½±ã®å¤§ãã•
+	u16					:9;		///<ã‚ã¾ã‚Š
+	s8	shadow_height;			///<å½±ã‹ã‚‰ã©ã‚Œã ã‘æµ®ã‹ã™ã‹
 	u8	dummy;
 
-	s16	shadow_x;			///<‰e‚ÌXÀ•W
-	s16	shadow_y;			///<‰e‚ÌYÀ•W
+	s16	shadow_x;			///<å½±ã®Xåº§æ¨™
+	s16	shadow_y;			///<å½±ã®Yåº§æ¨™
 
-	s16	shadow_ox;			///<‰e‚ÌXƒIƒtƒZƒbƒg
-	s16	shadow_oy;			///<‰e‚ÌYƒIƒtƒZƒbƒg
+	s16	shadow_ox;			///<å½±ã®Xã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	s16	shadow_oy;			///<å½±ã®Yã‚ªãƒ•ã‚»ãƒƒãƒˆ
 }SOFT_SPRITE_SHADOW;
 
-///<ƒ\ƒtƒgƒEƒGƒAƒXƒvƒ‰ƒCƒgƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+///<ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct
 {
-	s16	pos_x;				///<•\Ž¦XÀ•W
-	s16	pos_y;				///<•\Ž¦YÀ•W
+	s16	pos_x;				///<è¡¨ç¤ºXåº§æ¨™
+	s16	pos_y;				///<è¡¨ç¤ºYåº§æ¨™
 
-	int	pos_z;				///<•\Ž¦ZÀ•W
+	int	pos_z;				///<è¡¨ç¤ºZåº§æ¨™
 
-	s16	pos_ox;				///<•\Ž¦XÀ•WƒIƒtƒZƒbƒg
-	s16	pos_oy;				///<•\Ž¦YÀ•WƒIƒtƒZƒbƒg
+	s16	pos_ox;				///<è¡¨ç¤ºXåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	s16	pos_oy;				///<è¡¨ç¤ºYåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-	int	pos_oz;				///<•\Ž¦ZÀ•WƒIƒtƒZƒbƒg
+	int	pos_oz;				///<è¡¨ç¤ºZåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-	s16	aff_x;				///<X•ûŒüŠgk’l
-	s16	aff_y;				///<Y•ûŒüŠgk’l
+	s16	aff_x;				///<Xæ–¹å‘æ‹¡ç¸®å€¤
+	s16	aff_y;				///<Yæ–¹å‘æ‹¡ç¸®å€¤
 
-	u16	rot_x;				///<XŽ²‰ñ“]Šp“x
-	u16	rot_y;				///<yŽ²‰ñ“]Šp“x
-	u16	rot_z;				///<zŽ²‰ñ“]Šp“x
+	u16	rot_x;				///<Xè»¸å›žè»¢è§’åº¦
+	u16	rot_y;				///<yè»¸å›žè»¢è§’åº¦
+	u16	rot_z;				///<zè»¸å›žè»¢è§’åº¦
 	u16	seq_no;
 
-	s16	rot_cx;				///<‰ñ“]’†SXÀ•WƒIƒtƒZƒbƒg
-	s16	rot_cy;				///<‰ñ“]’†SYÀ•WƒIƒtƒZƒbƒg
+	s16	rot_cx;				///<å›žè»¢ä¸­å¿ƒXåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+	s16	rot_cy;				///<å›žè»¢ä¸­å¿ƒYåº§æ¨™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
-	u8	ofs_pos_x;			///<ƒeƒNƒXƒ`ƒƒ‰ÂŽ‹”ÍˆÍŽw’è¶ãXÀ•W
-	u8	ofs_pos_y;			///<ƒeƒNƒXƒ`ƒƒ‰ÂŽ‹”ÍˆÍŽw’è¶ãYÀ•W
-	u8	ofs_size_x;			///<ƒeƒNƒXƒ`ƒƒ‰ÂŽ‹”ÍˆÍŽw’èXƒTƒCƒY
-	u8	ofs_size_y;			///<ƒeƒNƒXƒ`ƒƒ‰ÂŽ‹”ÍˆÍŽw’èYƒTƒCƒY
+	u8	ofs_pos_x;			///<ãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²æŒ‡å®šå·¦ä¸ŠXåº§æ¨™
+	u8	ofs_pos_y;			///<ãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²æŒ‡å®šå·¦ä¸ŠYåº§æ¨™
+	u8	ofs_size_x;			///<ãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²æŒ‡å®šXã‚µã‚¤ã‚º
+	u8	ofs_size_y;			///<ãƒ†ã‚¯ã‚¹ãƒãƒ£å¯è¦–ç¯„å›²æŒ‡å®šYã‚µã‚¤ã‚º
 
-	u8	pal_start_evy;		///<ƒpƒŒƒbƒgƒtƒF[ƒh START_EVY’l
-	u8	pal_end_evy;		///<ƒpƒŒƒbƒgƒtƒF[ƒh END_EVY’l
-	u8	pal_wait;			///<ƒpƒŒƒbƒgƒtƒF[ƒh wait’l
-	u8	pal_wait_tmp;		///<ƒpƒŒƒbƒgƒtƒF[ƒh wait_tmp’l
+	u8	pal_start_evy;		///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ START_EVYå€¤
+	u8	pal_end_evy;		///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ END_EVYå€¤
+	u8	pal_wait;			///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ waitå€¤
+	u8	pal_wait_tmp;		///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ wait_tmpå€¤
 
-	u32	pal_rgb;			///<ƒpƒŒƒbƒgƒtƒF[ƒh RGB’l
+	u32	pal_rgb;			///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ RGBå€¤
 
-	u32	diff_r			:5;	///<DiffR’l
-	u32	diff_g			:5;	///<DiffG’l
-	u32	diff_b			:5;	///<DiffB’l
-	u32	amb_r			:5;	///<AmbR’l
-	u32	amb_g			:5;	///<AmbG’l
-	u32	amb_b			:5;	///<AmbB’l
+	u32	diff_r			:5;	///<DiffRå€¤
+	u32	diff_g			:5;	///<DiffGå€¤
+	u32	diff_b			:5;	///<DiffBå€¤
+	u32	amb_r			:5;	///<AmbRå€¤
+	u32	amb_g			:5;	///<AmbGå€¤
+	u32	amb_b			:5;	///<AmbBå€¤
 	u32					:2;
 
-	u32	vanish_flag		:1;	///<ƒoƒjƒbƒVƒ…ƒtƒ‰ƒO
-	u32	visible_flag	:1;	///<‰ÂŽ‹ƒ‚[ƒhƒtƒ‰ƒOi‚±‚ê‚ªON‚É‚È‚é‚Æaff_*‚ÌŽw’è‚ª–³Œø‚É‚È‚è‚Ü‚·j
-	u32	alpha			:5;	///<Alpha’l
+	u32	vanish_flag		:1;	///<ãƒãƒ‹ãƒƒã‚·ãƒ¥ãƒ•ãƒ©ã‚°
+	u32	visible_flag	:1;	///<å¯è¦–ãƒ¢ãƒ¼ãƒ‰ãƒ•ãƒ©ã‚°ï¼ˆã“ã‚ŒãŒONã«ãªã‚‹ã¨aff_*ã®æŒ‡å®šãŒç„¡åŠ¹ã«ãªã‚Šã¾ã™ï¼‰
+	u32	alpha			:5;	///<Alphaå€¤
 	u32	diff_amb_flag	:1;	///<Diffuse Ambient Flag
 	u32	spec_emi_flag	:1;	///<Specular Emission Flag
-	u32	h_flip			:1;	///<…•½”½“]
-	u32	v_flip			:1;	///<‚’¼”½“]
-	u32	draw_stop		:1;	///<‹­§•`‰æƒXƒgƒbƒv
-	u32	pal_fade		:1;	///<ƒpƒŒƒbƒgƒtƒF[ƒhƒ‚[ƒh
-	u32	mosaic			:4; ///<ƒ‚ƒUƒCƒN’l
+	u32	h_flip			:1;	///<æ°´å¹³åè»¢
+	u32	v_flip			:1;	///<åž‚ç›´åè»¢
+	u32	draw_stop		:1;	///<å¼·åˆ¶æç”»ã‚¹ãƒˆãƒƒãƒ—
+	u32	pal_fade		:1;	///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰
+	u32	mosaic			:4; ///<ãƒ¢ã‚¶ã‚¤ã‚¯å€¤
 	u32					:15;
 }SOFT_SPRITE_PARAM;
 
 typedef void (SOFT_SPRITE_MOVE_FUNC)(SOFT_SPRITE *ss,SOFT_SPRITE_PARAM *ssp);
 
-///<externéŒ¾
+///<externå®£è¨€
 extern	void		*SoftSpriteInit(int heap_id);
 extern	void		SoftSpriteMain(SOFT_SPRITE_MANAGER *ssm_p);
 extern	void		SoftSpriteEnd(SOFT_SPRITE_MANAGER *ssm_p);
@@ -288,7 +288,7 @@ extern void			SoftSpriteChrMask_ArcID(u8 *src, int arc_id);
 
 //----------------------------------------------------------------------
 /*
- *	ƒ\ƒtƒgƒXƒvƒ‰ƒCƒg‚ÌƒAƒjƒƒpƒ^[ƒ“‰ðÍ‚ðŠO•”‚©‚çs‚¤‚½‚ß‚ÌŽd‘g‚Ý
+ *	ã‚½ãƒ•ãƒˆã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã®ã‚¢ãƒ‹ãƒ¡ãƒ‘ã‚¿ãƒ¼ãƒ³è§£æžã‚’å¤–éƒ¨ã‹ã‚‰è¡Œã†ãŸã‚ã®ä»•çµ„ã¿
  */
 //----------------------------------------------------------------------
 

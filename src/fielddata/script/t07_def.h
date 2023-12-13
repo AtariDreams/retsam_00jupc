@@ -1,7 +1,7 @@
 #ifndef _T07_DEF_H_
 #define _T07_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_T07_WOMAN2A		(1)
 #define	SCRID_T07_WOMAN2B		(2)
 #define	SCRID_T07_WOMAN3		(3)
@@ -17,6 +17,6 @@
 #define	SCRID_T07_LEADER6		(13)
 #define	SCRID_T07_FLAG_CHANGE		(14)
 #define	SCRID_T07_SIGN3		(15)
-#define	SCRID_T07_DATA_MAX		(15)		//最大数
+#define	SCRID_T07_DATA_MAX		(15)		//譛螟ｧ謨ｰ
 
 #endif //_T07_DEF_H_

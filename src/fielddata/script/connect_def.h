@@ -1,7 +1,7 @@
 #ifndef _CONNECT_DEF_H_
 #define _CONNECT_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_CONNECT_OBJ_CHANGE		(9000)
 #define	SCRID_CONNECT_COLOSSEUM		(9001)
 #define	SCRID_CONNECT_COLOSSEUM_BATTLE_START		(9002)
@@ -19,6 +19,6 @@
 #define	SCRID_CONNECT_RECORD_RETURN		(9014)
 #define	SCRID_CONNECT_WIFI_RETURN		(9015)
 #define	SCRID_CONNECT_DAME_TAMAGO_MSG		(9016)
-#define	SCRID_CONNECT_DATA_MAX		(17)		//最大数
+#define	SCRID_CONNECT_DATA_MAX		(17)		//譛螟ｧ謨ｰ
 
 #endif //_CONNECT_DEF_H_

@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	backup_error.c
- * @brief	ƒoƒbƒNƒAƒbƒv”FŽ¯•s”\‰æ–Ê
+ * @brief	ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—èªè­˜ä¸èƒ½ç”»é¢
  * @author	
  * @date	
  */
@@ -38,17 +38,17 @@ extern void sleepFunc(void);
 //
 //
 //================================================================
-//‚a‚fƒRƒ“ƒgƒ[ƒ‹’è”
+//ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å®šæ•°
 #define BUERR_TEXT_FRAME	(GF_BGL_FRAME0_M)
 
-#define BUERR_NULL_PALETTE	( 0x6c21 )		//‚a‚fƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒpƒŒƒbƒg
+#define BUERR_NULL_PALETTE	( 0x6c21 )		//ï¼¢ï¼§ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ãƒ‘ãƒ¬ãƒƒãƒˆ
 
 #define	BUERR_TEXT_PALNUM	(1)
 #define BUERR_NWIN_CGXNUM	(512 - MENU_WIN_CGX_SIZ)
 #define BUERR_NWIN_PALNUM	(2)
 
-#define BUERR_STRBUF_SIZE	(0x180)	//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
-// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
+#define BUERR_STRBUF_SIZE	(0x180)	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	BUERR_WIN_PX		(3)
 #define	BUERR_WIN_PY		(3)
 #define	BUERR_WIN_SX		(26)
@@ -59,16 +59,16 @@ extern void sleepFunc(void);
 //================================================================
 //================================================================
 static const GF_BGL_DISPVRAM vramSetTable = {
-	GX_VRAM_BG_256_AB,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_SUB_BG_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-	GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_OBJ_NONE,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_SUB_OBJ_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-	GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-	GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-	GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+	GX_VRAM_BG_256_AB,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_SUB_BG_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+	GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_OBJ_NONE,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_SUB_OBJ_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+	GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+	GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+	GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 };
 
 static const GF_BGL_SYS_HEADER BGsys_data = {
@@ -81,16 +81,16 @@ static const GF_BGL_BGCNT_HEADER hd0 = {
 	GX_BG_SCRBASE_0x0000, GX_BG_CHARBASE_0x18000, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE
 };
 static const BMPWIN_DAT windata = {
-	BUERR_TEXT_FRAME,			//ƒEƒCƒ“ƒhƒEŽg—pƒtƒŒ[ƒ€
-	BUERR_WIN_PX,BUERR_WIN_PY,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚Ì¶ãXYÀ•W
-	BUERR_WIN_SX,BUERR_WIN_SY,	//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌXYƒTƒCƒY
-	BUERR_WIN_PAL,				//ƒEƒCƒ“ƒhƒE—Ìˆæ‚ÌƒpƒŒƒbƒgƒiƒ“ƒo[ 
-	BUERR_WIN_CGX,				//ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰—Ìˆæ‚ÌŠJŽnƒLƒƒƒ‰ƒNƒ^ƒiƒ“ƒo[
+	BUERR_TEXT_FRAME,			//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ä½¿ç”¨ãƒ•ãƒ¬ãƒ¼ãƒ 
+	BUERR_WIN_PX,BUERR_WIN_PY,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®å·¦ä¸ŠXYåº§æ¨™
+	BUERR_WIN_SX,BUERR_WIN_SY,	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®XYã‚µã‚¤ã‚º
+	BUERR_WIN_PAL,				//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é ˜åŸŸã®ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ 
+	BUERR_WIN_CGX,				//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©é ˜åŸŸã®é–‹å§‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒŠãƒ³ãƒãƒ¼
 };
 
 //=================================================================================================
 //
-// ˆêŠ‡ƒR[ƒ‹
+// ä¸€æ‹¬ã‚³ãƒ¼ãƒ«
 //
 //=================================================================================================
 void BackupErrorWarningCall( int heapID )
@@ -107,8 +107,8 @@ void BackupErrorWarningCall( int heapID )
 	WIPE_SetBrightness( WIPE_DISP_MAIN,WIPE_FADE_BLACK );
 	WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_BLACK );
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrSet( NULL,NULL );		// HBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrSet( NULL,NULL );		// HBlankã‚»ãƒƒãƒˆ
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -122,30 +122,30 @@ void BackupErrorWarningCall( int heapID )
 	GX_SetVisibleWnd( GX_WNDMASK_NONE ); 
 	GXS_SetVisibleWnd( GX_WNDMASK_NONE ); 
 
-	GF_Disp_SetBank( &vramSetTable );		//‚u‚q‚`‚lÝ’è
-	bgl = GF_BGL_BglIniAlloc( heapID );		//‚a‚fƒ‰ƒCƒuƒ‰ƒŠ—pƒƒ‚ƒŠŠm•Û
-	GF_BGL_InitBG( &BGsys_data );			// ‚a‚fƒVƒXƒeƒ€Ý’è
-	GF_BGL_BGControlSet( bgl, BUERR_TEXT_FRAME, &hd0, GF_BGL_MODE_TEXT );// ƒƒCƒ“‚a‚fƒVƒXƒeƒ€Ý’è
+	GF_Disp_SetBank( &vramSetTable );		//ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
+	bgl = GF_BGL_BglIniAlloc( heapID );		//ï¼¢ï¼§ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ãƒ¡ãƒ¢ãƒªç¢ºä¿
+	GF_BGL_InitBG( &BGsys_data );			// ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
+	GF_BGL_BGControlSet( bgl, BUERR_TEXT_FRAME, &hd0, GF_BGL_MODE_TEXT );// ãƒ¡ã‚¤ãƒ³ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 	GF_BGL_ScrClear( bgl, BUERR_TEXT_FRAME );	
-	//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒEƒLƒƒƒ‰•ƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	MenuWinGraphicSet( bgl, BUERR_TEXT_FRAME, BUERR_NWIN_CGXNUM, BUERR_NWIN_PALNUM, 0, heapID );
-	//ƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚ÝiƒVƒXƒeƒ€j
+	//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚·ã‚¹ãƒ†ãƒ ï¼‰
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, BUERR_TEXT_PALNUM * (2*16), heapID );
 
 	GF_BGL_ClearCharSet( BUERR_TEXT_FRAME, 32, 0, heapID );
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, BUERR_NULL_PALETTE );	//”wŒiF‰Šú‰»
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, BUERR_NULL_PALETTE );	//”wŒiF‰Šú‰»
-	//ƒƒbƒZ[ƒWƒf[ƒ^“Ç‚Ýž‚Ý
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, BUERR_NULL_PALETTE );	//èƒŒæ™¯è‰²åˆæœŸåŒ–
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, BUERR_NULL_PALETTE );	//èƒŒæ™¯è‰²åˆæœŸåŒ–
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	msgman = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_backup_error_dat, heapID );
 	msgstr = STRBUF_Create( BUERR_STRBUF_SIZE, heapID);
-	MSG_PrintInit();//ƒƒbƒZ[ƒW•\Ž¦ƒVƒXƒeƒ€‰Šú‰»
+	MSG_PrintInit();//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 		
-	GF_BGL_BmpWinAddEx( bgl, &msgwin,&windata );//ƒrƒbƒgƒ}ƒbƒvì¬
+	GF_BGL_BmpWinAddEx( bgl, &msgwin,&windata );//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½œæˆ
 	GF_BGL_BmpWinFill( &msgwin, FBMP_COL_WHITE, 0, 0, BUERR_WIN_SX*8, BUERR_WIN_SY*8 );
 	BmpMenuWinWrite( &msgwin, WINDOW_TRANS_ON, BUERR_NWIN_CGXNUM, BUERR_NWIN_PALNUM );
 	
-	MSGMAN_GetString( msgman, msgID, msgstr );	//•¶Žš—ñ‚ÌŽæ“¾
-	GF_STR_PrintSimple(	&msgwin, FONT_SYSTEM, msgstr, 0, 0, 0, NULL );//•¶Žš—ñ‚Ì•\Ž¦
+	MSGMAN_GetString( msgman, msgID, msgstr );	//æ–‡å­—åˆ—ã®å–å¾—
+	GF_STR_PrintSimple(	&msgwin, FONT_SYSTEM, msgstr, 0, 0, 0, NULL );//æ–‡å­—åˆ—ã®è¡¨ç¤º
 	STRBUF_Delete( msgstr );
 
 	GF_Disp_DispOn();
@@ -162,11 +162,11 @@ void BackupErrorWarningCall( int heapID )
 			break;
 		}
 #endif
-		OS_WaitIrq(TRUE, OS_IE_V_BLANK); 	// ‚uƒuƒ‰ƒ“ƒN‘Ò‚¿
+		OS_WaitIrq(TRUE, OS_IE_V_BLANK); 	// ï¼¶ãƒ–ãƒ©ãƒ³ã‚¯å¾…ã¡
 	}
 
 	GF_BGL_BmpWinDel(&msgwin);
-	MSGMAN_Delete( msgman );//ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	MSGMAN_Delete( msgman );//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 
 	GF_BGL_VisibleSet( GF_BGL_FRAME0_M, VISIBLE_OFF );
 	GF_BGL_VisibleSet( GF_BGL_FRAME1_M, VISIBLE_OFF );
@@ -195,17 +195,17 @@ void GbaCartridgeErrorWarningCall( int heapID )
 	STRBUF*				msgstr;
 	// tomoya takahashi 
 	/*
-	yƒ_ƒuƒ‹ƒXƒƒbƒgó‘Ô‚ÅAGBƒJ[ƒgƒŠƒbƒW‚ª“Ç‚Ýž‚ß‚È‚©‚Á‚½Û‚ÌƒeƒLƒX
-	ƒgz
+	ã€ãƒ€ãƒ–ãƒ«ã‚¹ãƒ­ãƒƒãƒˆçŠ¶æ…‹ã§AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãŒèª­ã¿è¾¼ã‚ãªã‹ã£ãŸéš›ã®ãƒ†ã‚­ã‚¹
+	ãƒˆã€‘
 
-	ƒ_ƒuƒ‹ƒXƒƒbƒgó‘Ô‚ÅAGBƒJ[ƒgƒŠƒbƒW‚ª“Ç‚Ýž‚ß‚È‚©‚Á‚½Û‚ÌƒGƒ‰[•\
-	Ž¦‚Í
-	uƒf[ƒ^‚ð@‚æ‚ß‚Ü‚¹‚ñ‚Å‚µ‚½
-	@‚Å‚ñ‚°‚ñ‚ð@‚«‚Á‚Ä
-	@ƒJ[ƒh‚ð@‚³‚µ‚±‚Ý‚È‚¨‚µ‚Ä‚­‚¾‚³‚¢v
-	‚Æ‚¢‚¤ƒeƒLƒXƒg‚ª•\Ž¦‚³‚ê‚Ü‚·‚ªAAGB‚ÍƒJ[ƒh‚Å‚Í‚È‚­ƒJ[ƒgƒŠƒbƒW‚Å
-	‚·B
-		‚É‘Îˆ
+	ãƒ€ãƒ–ãƒ«ã‚¹ãƒ­ãƒƒãƒˆçŠ¶æ…‹ã§AGBã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ãŒèª­ã¿è¾¼ã‚ãªã‹ã£ãŸéš›ã®ã‚¨ãƒ©ãƒ¼è¡¨
+	ç¤ºã¯
+	ã€Œãƒ‡ãƒ¼ã‚¿ã‚’ã€€ã‚ˆã‚ã¾ã›ã‚“ã§ã—ãŸ
+	ã€€ã§ã‚“ã’ã‚“ã‚’ã€€ãã£ã¦
+	ã€€ã‚«ãƒ¼ãƒ‰ã‚’ã€€ã•ã—ã“ã¿ãªãŠã—ã¦ãã ã•ã„ã€
+	ã¨ã„ã†ãƒ†ã‚­ã‚¹ãƒˆãŒè¡¨ç¤ºã•ã‚Œã¾ã™ãŒã€AGBã¯ã‚«ãƒ¼ãƒ‰ã§ã¯ãªãã‚«ãƒ¼ãƒˆãƒªãƒƒã‚¸ã§
+	ã™ã€‚
+		ã«å¯¾å‡¦
 	 */
 //	int msgID = error01;
 	int msgID = error02;
@@ -215,8 +215,8 @@ void GbaCartridgeErrorWarningCall( int heapID )
 	WIPE_SetBrightness( WIPE_DISP_MAIN,WIPE_FADE_BLACK );
 	WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_BLACK );
 
-	sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-	sys_HBlankIntrSet( NULL,NULL );		// HBlankƒZƒbƒg
+	sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+	sys_HBlankIntrSet( NULL,NULL );		// HBlankã‚»ãƒƒãƒˆ
 
 	GF_Disp_GX_VisibleControlInit();
 	GF_Disp_GXS_VisibleControlInit();
@@ -230,30 +230,30 @@ void GbaCartridgeErrorWarningCall( int heapID )
 	GX_SetVisibleWnd( GX_WNDMASK_NONE ); 
 	GXS_SetVisibleWnd( GX_WNDMASK_NONE ); 
 
-	GF_Disp_SetBank( &vramSetTable );		//‚u‚q‚`‚lÝ’è
-	bgl = GF_BGL_BglIniAlloc( heapID );		//‚a‚fƒ‰ƒCƒuƒ‰ƒŠ—pƒƒ‚ƒŠŠm•Û
-	GF_BGL_InitBG( &BGsys_data );			// ‚a‚fƒVƒXƒeƒ€Ý’è
-	GF_BGL_BGControlSet( bgl, BUERR_TEXT_FRAME, &hd0, GF_BGL_MODE_TEXT );// ƒƒCƒ“‚a‚fƒVƒXƒeƒ€Ý’è
+	GF_Disp_SetBank( &vramSetTable );		//ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
+	bgl = GF_BGL_BglIniAlloc( heapID );		//ï¼¢ï¼§ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ãƒ¡ãƒ¢ãƒªç¢ºä¿
+	GF_BGL_InitBG( &BGsys_data );			// ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
+	GF_BGL_BGControlSet( bgl, BUERR_TEXT_FRAME, &hd0, GF_BGL_MODE_TEXT );// ãƒ¡ã‚¤ãƒ³ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 	GF_BGL_ScrClear( bgl, BUERR_TEXT_FRAME );	
-	//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒEƒLƒƒƒ‰•ƒpƒŒƒbƒg“Ç‚Ýž‚Ý
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿
 	MenuWinGraphicSet( bgl, BUERR_TEXT_FRAME, BUERR_NWIN_CGXNUM, BUERR_NWIN_PALNUM, 0, heapID );
-	//ƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚ÝiƒVƒXƒeƒ€j
+	//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚·ã‚¹ãƒ†ãƒ ï¼‰
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, BUERR_TEXT_PALNUM * (2*16), heapID );
 
 	GF_BGL_ClearCharSet( BUERR_TEXT_FRAME, 32, 0, heapID );
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, BUERR_NULL_PALETTE );	//”wŒiF‰Šú‰»
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, BUERR_NULL_PALETTE );	//”wŒiF‰Šú‰»
-	//ƒƒbƒZ[ƒWƒf[ƒ^“Ç‚Ýž‚Ý
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, BUERR_NULL_PALETTE );	//èƒŒæ™¯è‰²åˆæœŸåŒ–
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, BUERR_NULL_PALETTE );	//èƒŒæ™¯è‰²åˆæœŸåŒ–
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	msgman = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_backup_error_dat, heapID );
 	msgstr = STRBUF_Create( BUERR_STRBUF_SIZE, heapID);
-	MSG_PrintInit();//ƒƒbƒZ[ƒW•\Ž¦ƒVƒXƒeƒ€‰Šú‰»
+	MSG_PrintInit();//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 		
-	GF_BGL_BmpWinAddEx( bgl, &msgwin,&windata );//ƒrƒbƒgƒ}ƒbƒvì¬
+	GF_BGL_BmpWinAddEx( bgl, &msgwin,&windata );//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½œæˆ
 	GF_BGL_BmpWinFill( &msgwin, FBMP_COL_WHITE, 0, 0, BUERR_WIN_SX*8, BUERR_WIN_SY*8 );
 	BmpMenuWinWrite( &msgwin, WINDOW_TRANS_ON, BUERR_NWIN_CGXNUM, BUERR_NWIN_PALNUM );
 	
-	MSGMAN_GetString( msgman, msgID, msgstr );	//•¶Žš—ñ‚ÌŽæ“¾
-	GF_STR_PrintSimple(	&msgwin, FONT_SYSTEM, msgstr, 0, 0, 0, NULL );//•¶Žš—ñ‚Ì•\Ž¦
+	MSGMAN_GetString( msgman, msgID, msgstr );	//æ–‡å­—åˆ—ã®å–å¾—
+	GF_STR_PrintSimple(	&msgwin, FONT_SYSTEM, msgstr, 0, 0, 0, NULL );//æ–‡å­—åˆ—ã®è¡¨ç¤º
 	STRBUF_Delete( msgstr );
 
 	GF_Disp_DispOn();
@@ -270,11 +270,11 @@ void GbaCartridgeErrorWarningCall( int heapID )
 			break;
 		}
 #endif
-		OS_WaitIrq(TRUE, OS_IE_V_BLANK); 	// ‚uƒuƒ‰ƒ“ƒN‘Ò‚¿
+		OS_WaitIrq(TRUE, OS_IE_V_BLANK); 	// ï¼¶ãƒ–ãƒ©ãƒ³ã‚¯å¾…ã¡
 	}
 
 	GF_BGL_BmpWinDel(&msgwin);
-	MSGMAN_Delete( msgman );//ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	MSGMAN_Delete( msgman );//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 
 	GF_BGL_VisibleSet( GF_BGL_FRAME0_M, VISIBLE_OFF );
 	GF_BGL_VisibleSet( GF_BGL_FRAME1_M, VISIBLE_OFF );

@@ -9,11 +9,11 @@
 	//.include	"../eventdata/zone_c07r0205evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c07r0205_sportsman
 _EVENT_DATA		ev_c07r0205_middlewoman2
@@ -44,27 +44,27 @@ ev_c07r0205_middlewoman2:
 ev_c07r0205_bigman1a:
 	_TALK_OBJ_START
 
-	/*‚·‚Å‚ÉƒAƒCƒeƒ€“üŽè‚µ‚Ä‚¢‚½‚ç*/
+	/*ã™ã§ã«ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	FE_C07R0205_ITEM_GET,ev_c07r0205_bigman1a_02
 
 	_TALK_KEYWAIT	msg_c07r0205_bigman1a_01
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_TEMP0,ITEM_KUTTUKIBARI
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾o—ˆ‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å‡ºæ¥ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c07r0205_bigman1a_item_event_fail
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
 	_FLAG_SET		FE_C07R0205_ITEM_GET
 	_JUMP			ev_c07r0205_bigman1a_02
 	_END
 
-/*‚·‚Å‚ÉƒAƒCƒeƒ€“üŽè‚µ‚Ä‚¢‚½‚ç*/
+/*ã™ã§ã«ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹ã—ã¦ã„ãŸã‚‰*/
 ev_c07r0205_bigman1a_02:
 	_TALKMSG		msg_c07r0205_bigman1a_02
 	_LAST_KEYWAIT
@@ -72,9 +72,9 @@ ev_c07r0205_bigman1a_02:
 	_TALK_OBJ_END
 	_END
 
-/*ƒAƒCƒeƒ€“üŽèŽ¸”s*/
+/*ã‚¢ã‚¤ãƒ†ãƒ å…¥æ‰‹å¤±æ•—*/
 ev_c07r0205_bigman1a_item_event_fail:
-	//ƒAƒCƒeƒ€Žæ“¾Ž¸”sƒCƒxƒ“ƒg(‹¤’ÊƒƒbƒZ[ƒW‚ðo‚·Aê—p‚ðŽg—p‚·‚é‚Æ‚«‚Í‚¢‚ç‚È‚¢)
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å¤±æ•—ã‚¤ãƒ™ãƒ³ãƒˆ(å…±é€šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™ã€å°‚ç”¨ã‚’ä½¿ç”¨ã™ã‚‹ã¨ãã¯ã„ã‚‰ãªã„)
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
 	_TALK_CLOSE
 	_TALK_OBJ_END
@@ -89,59 +89,59 @@ ev_c07r0205_bigman1b:
 	_END
 
 /********************************************************************/
-/*							ˆÄ“à”Â									*/
+/*							æ¡ˆå†…æ¿									*/
 /********************************************************************/
 ev_c07r0205_board_01:
 	_EASY_MSG		msg_c07r0205_board_01
 	_END
 
 /********************************************************************/
-/*							Ž©”Ì‹@									*/
+/*							è‡ªè²©æ©Ÿ									*/
 /*																	*/
 /*																	*/
-/*							SCWK_PARAM0Žg—p							*/
-/*							0:‚¨‚¢‚µ‚¢‚Ý‚¸							*/
-/*							1:ƒTƒCƒRƒ\[ƒ_							*/
-/*							2:ƒ~ƒbƒNƒXƒIƒŒ							*/
+/*							SCWK_PARAM0ä½¿ç”¨							*/
+/*							0:ãŠã„ã—ã„ã¿ãš							*/
+/*							1:ã‚µã‚¤ã‚³ã‚½ãƒ¼ãƒ€							*/
+/*							2:ãƒŸãƒƒã‚¯ã‚¹ã‚ªãƒ¬							*/
 /*																	*/
-/*							SCWK_PARAM1Žg—p							*/
-/*							ƒAƒCƒeƒ€”Ô†							*/
+/*							SCWK_PARAM1ä½¿ç”¨							*/
+/*							ã‚¢ã‚¤ãƒ†ãƒ ç•ªå·							*/
 /********************************************************************/
-#define PRICE_OISIIMIZU			200				/*‚¨‚¢‚µ‚¢‚Ý‚¸‚Ì’l’i*/
-#define PRICE_SAIKOSOODA		300				/*ƒTƒCƒRƒ\[ƒ_‚Ì’l’i*/
-#define PRICE_MIKKUSUORE		350				/*ƒ~ƒbƒNƒXƒIƒŒ‚Ì’l’i*/
+#define PRICE_OISIIMIZU			200				/*ãŠã„ã—ã„ã¿ãšã®å€¤æ®µ*/
+#define PRICE_SAIKOSOODA		300				/*ã‚µã‚¤ã‚³ã‚½ãƒ¼ãƒ€ã®å€¤æ®µ*/
+#define PRICE_MIKKUSUORE		350				/*ãƒŸãƒƒã‚¯ã‚¹ã‚ªãƒ¬ã®å€¤æ®µ*/
 
-#define ATARI_RND				64				//‚ ‚½‚è‚Ì—”i‚P^‚U‚Sj
+#define ATARI_RND				64				//ã‚ãŸã‚Šã®ä¹±æ•°ï¼ˆï¼‘ï¼ï¼–ï¼”ï¼‰
 
-#define NO_OISIIMIZU			0				/*‚¨‚¢‚µ‚¢‚Ý‚¸*/
-#define NO_SAIKOSOODA			1				/*ƒTƒCƒRƒ\[ƒ_*/
-#define NO_MIKKUSUORE			2				/*ƒ~ƒbƒNƒXƒIƒŒ*/
+#define NO_OISIIMIZU			0				/*ãŠã„ã—ã„ã¿ãš*/
+#define NO_SAIKOSOODA			1				/*ã‚µã‚¤ã‚³ã‚½ãƒ¼ãƒ€*/
+#define NO_MIKKUSUORE			2				/*ãƒŸãƒƒã‚¯ã‚¹ã‚ªãƒ¬*/
 
-#define JIHANKI_GOLD_WIN_POS_X	0				//Ž©”Ì‹@—p‚¨‹àprintƒEƒCƒ“ƒhƒE¶ã‚w
-#define JIHANKI_GOLD_WIN_POS_Y	0				//Ž©”Ì‹@—p‚¨‹àprintƒEƒCƒ“ƒhƒE¶ã‚x
+#define JIHANKI_GOLD_WIN_POS_X	0				//è‡ªè²©æ©Ÿç”¨ãŠé‡‘printã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å·¦ä¸Šï¼¸
+#define JIHANKI_GOLD_WIN_POS_Y	0				//è‡ªè²©æ©Ÿç”¨ãŠé‡‘printã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å·¦ä¸Šï¼¹
 
-#define JIHANKI_ITEM_WIN_POS_X	16				//ƒAƒCƒeƒ€‘I‘ðƒEƒCƒ“ƒhƒE¶ã‚w
-#define JIHANKI_ITEM_WIN_POS_Y	0				//ƒAƒCƒeƒ€‘I‘ðƒEƒCƒ“ƒhƒE¶ã‚x
+#define JIHANKI_ITEM_WIN_POS_X	16				//ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å·¦ä¸Šï¼¸
+#define JIHANKI_ITEM_WIN_POS_Y	0				//ã‚¢ã‚¤ãƒ†ãƒ é¸æŠžã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å·¦ä¸Šï¼¹
 
-#define NO_TEMOTI_GOLD			0				//ŽèŽ‚¿‹àprint(¦0ˆÈŠO‚Í_GODL_WIN_WRITE/_GOLD_WRITEŽ©‘Ì‚ª–¢‘Î‰ž)
+#define NO_TEMOTI_GOLD			0				//æ‰‹æŒã¡é‡‘print(â€»0ä»¥å¤–ã¯_GODL_WIN_WRITE/_GOLD_WRITEè‡ªä½“ãŒæœªå¯¾å¿œ)
 
 ev_c07r0205_vender:
 	_TALK_START
-	//h‚¶‚Ç‚¤@‚Í‚ñ‚Î‚¢‚«‚ª‚ ‚éh
+	//â€ã˜ã©ã†ã€€ã¯ã‚“ã°ã„ããŒã‚ã‚‹â€
 	_TALKMSG		msg_c07r0205_vender_01
 
 	_GOLD_WIN_WRITE		20,2
 
-	//¤•iƒŠƒXƒg
+	//å•†å“ãƒªã‚¹ãƒˆ
 	_JUMP			common_vm_02
 
-//ŒJ‚è•Ô‚µw“ü‚Ì‚½‚ßA‚P‚Æ‚Q‚É•ªŠ„
+//ç¹°ã‚Šè¿”ã—è³¼å…¥ã®ãŸã‚ã€ï¼‘ã¨ï¼’ã«åˆ†å‰²
 common_vm_02:
-	_BMPMENU_INIT		1,1,0,1,SCWK_PARAM0					//BƒLƒƒƒ“ƒZƒ‹—LŒø
+	_BMPMENU_INIT		1,1,0,1,SCWK_PARAM0					//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 	_BMPMENU_MAKE_LIST	msg_vm_01,0					//
 	_BMPMENU_MAKE_LIST	msg_vm_02,1					//
 	_BMPMENU_MAKE_LIST	msg_vm_03,2					//
-	_BMPMENU_MAKE_LIST	msg_vm_04,3					//‚â‚ß‚é
+	_BMPMENU_MAKE_LIST	msg_vm_04,3					//ã‚„ã‚ã‚‹
 	_BMPMENU_START
 
 	_SWITCH			SCWK_PARAM0
@@ -149,30 +149,30 @@ common_vm_02:
 	_CASE_JUMP		1,case1_vm_01
 	_CASE_JUMP		2,case2_vm_01
 
-	//”ƒ‚í‚È‚¢‚Æ‚«‚ÌƒƒbƒZ[ƒW
+	//è²·ã‚ãªã„ã¨ãã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	_TALKMSG		msg_c07r0205_vender_05
 	_JUMP			common_vm_end
 
-/*‚¨‚¢‚µ‚¢‚Ý‚¸*/
+/*ãŠã„ã—ã„ã¿ãš*/
 case0_vm_01:
-	//ƒAƒCƒeƒ€ƒiƒ“ƒo[ƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_PARAM1,ITEM_OISIIMIZU
 	_JUMP			common_vm_03
 
-/*ƒTƒCƒRƒ\[ƒ_*/
+/*ã‚µã‚¤ã‚³ã‚½ãƒ¼ãƒ€*/
 case1_vm_01:
-	//ƒAƒCƒeƒ€ƒiƒ“ƒo[ƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_PARAM1,ITEM_SAIKOSOODA
 	_JUMP			common_vm_03
 
-/*ƒ~ƒbƒNƒXƒIƒŒ*/
+/*ãƒŸãƒƒã‚¯ã‚¹ã‚ªãƒ¬*/
 case2_vm_01:
-	//ƒAƒCƒeƒ€ƒiƒ“ƒo[ƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã‚»ãƒƒãƒˆ
 	_LDVAL			SCWK_PARAM1,ITEM_MIKKUSUORE
 	_JUMP			common_vm_03
 
 
-//ŠŽ‹àƒ`ƒFƒbƒN
+//æ‰€æŒé‡‘ãƒã‚§ãƒƒã‚¯
 comp_gold_case_0:
 	_COMP_GOLD		SCWK_ANSWER,PRICE_OISIIMIZU
 	_RET
@@ -185,7 +185,7 @@ comp_gold_case_2:
 	_COMP_GOLD		SCWK_ANSWER,PRICE_MIKKUSUORE
 	_RET
 
-//‚¨‹à‚ðŒ¸‚ç‚·
+//ãŠé‡‘ã‚’æ¸›ã‚‰ã™
 sub_gold_case_0:
 	_RECORD_ADD_EX	RECID_SHOPPING_MONEY,PRICE_OISIIMIZU
 	_SUB_GOLD		PRICE_OISIIMIZU
@@ -201,20 +201,20 @@ sub_gold_case_2:
 	_SUB_GOLD		PRICE_MIKKUSUORE
 	_RET
 
-//w“üŽž‚Ì“ˆêˆ—
+//è³¼å…¥æ™‚ã®çµ±ä¸€å‡¦ç†
 common_vm_03:
 	_IFVAL_CALL		SCWK_PARAM0,EQ,NO_OISIIMIZU,comp_gold_case_0
 	_IFVAL_CALL		SCWK_PARAM0,EQ,NO_SAIKOSOODA,comp_gold_case_1
 	_IFVAL_CALL		SCWK_PARAM0,EQ,NO_MIKKUSUORE,comp_gold_case_2
 
-	//‚¨‹à‚ª‘«‚è‚È‚¢?
+	//ãŠé‡‘ãŒè¶³ã‚Šãªã„?
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,common_vm_not_enough_money
 
-	//ƒAƒCƒeƒ€‚ªŽæ‚ê‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ ãŒå–ã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_PARAM1,1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,common_vm_fail_item
 
-	//‚¨‹à‚ðŒ¸‚ç‚·i”„”ƒ¬—§j
+	//ãŠé‡‘ã‚’æ¸›ã‚‰ã™ï¼ˆå£²è²·æˆç«‹ï¼‰
 	_IFVAL_CALL		SCWK_PARAM0,EQ,NO_OISIIMIZU,sub_gold_case_0
 	_IFVAL_CALL		SCWK_PARAM0,EQ,NO_SAIKOSOODA,sub_gold_case_1
 	_IFVAL_CALL		SCWK_PARAM0,EQ,NO_MIKKUSUORE,sub_gold_case_2
@@ -223,53 +223,53 @@ common_vm_03:
 
 	_SE_PLAY		SE_JIHANKI
 
-	//xxxx‚ªo‚Ä‚«‚½B
+	//xxxxãŒå‡ºã¦ããŸã€‚
 	_ITEM_NAME	0,SCWK_PARAM1
 	_TALK_KEYWAIT	msg_c07r0205_vender_02
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDWK			SCWK_TEMP0,SCWK_PARAM1
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
-	//ƒnƒYƒŒ‚È‚ç’Êíˆ—
+	//ãƒã‚ºãƒ¬ãªã‚‰é€šå¸¸å‡¦ç†
 	_GET_RND		SCWK_ANSWER,ATARI_RND
 	_IFVAL_JUMP		SCWK_ANSWER,NE,0,common_vm_normal_ret
 
-	//ƒAƒCƒeƒ€‚ªŽæ‚ê‚é‚©ƒ`ƒFƒbƒN
+	//ã‚¢ã‚¤ãƒ†ãƒ ãŒå–ã‚Œã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	_ADD_ITEM_CHK	SCWK_PARAM1,1,SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,common_vm_fail_item
 
 	_SE_PLAY		SE_JIHANKI
 
-	//’Ç‰ÁOK(“–‚½‚èƒƒbƒZ[ƒWj
+	//è¿½åŠ OK(å½“ãŸã‚Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼‰
 	_ITEM_NAME	0,SCWK_PARAM1
 	_TALK_KEYWAIT	msg_c07r0205_vender_03
 
-	//ƒAƒCƒeƒ€–¼AŒÂ”‚ðƒZƒbƒg
+	//ã‚¢ã‚¤ãƒ†ãƒ åã€å€‹æ•°ã‚’ã‚»ãƒƒãƒˆ
 	_LDWK			SCWK_TEMP0,SCWK_PARAM1
 	_LDVAL			SCWK_TEMP1,1
 
-	//ƒAƒCƒeƒ€Žæ“¾¬Œ÷ƒCƒxƒ“ƒg(SCWK_TEMP0=ƒAƒCƒeƒ€ƒiƒ“ƒo[ASCWK_TEMP1=ŒÂ”‚ð‘ã“ü‚µ‚Ä‚¨‚­)
-	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*¥‚ ‚è*/
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æˆåŠŸã‚¤ãƒ™ãƒ³ãƒˆ(SCWK_TEMP0=ã‚¢ã‚¤ãƒ†ãƒ ãƒŠãƒ³ãƒãƒ¼ã€SCWK_TEMP1=å€‹æ•°ã‚’ä»£å…¥ã—ã¦ãŠã)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*â–¼ã‚ã‚Š*/
 
 	_JUMP			common_vm_normal_ret
 
-//‚à‚¤ˆê“x”ƒ‚¤‰æ–Ê‚Ö
+//ã‚‚ã†ä¸€åº¦è²·ã†ç”»é¢ã¸
 common_vm_normal_ret:
-	//h‚¶‚Ç‚¤@‚Í‚ñ‚Î‚¢‚«‚ª‚ ‚éh
+	//â€ã˜ã©ã†ã€€ã¯ã‚“ã°ã„ããŒã‚ã‚‹â€
 	_TALKMSG		msg_c07r0205_vender_01
 	_JUMP			common_vm_02
 
-//‚¨‹à‚ª‘«‚è‚È‚¢
+//ãŠé‡‘ãŒè¶³ã‚Šãªã„
 common_vm_not_enough_money:
 	_TALK_KEYWAIT	msg_c07r0205_vender_04
 	_JUMP			common_vm_end
 
-//Ž¸”sƒƒbƒZ[ƒW
+//å¤±æ•—ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 common_vm_fail_item:
-	//ƒAƒCƒeƒ€Žæ“¾Ž¸”sƒCƒxƒ“ƒg(‹¤’ÊƒƒbƒZ[ƒW‚ðo‚·Aê—p‚ðŽg—p‚·‚é‚Æ‚«‚Í‚¢‚ç‚È‚¢)
+	//ã‚¢ã‚¤ãƒ†ãƒ å–å¾—å¤±æ•—ã‚¤ãƒ™ãƒ³ãƒˆ(å…±é€šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã™ã€å°‚ç”¨ã‚’ä½¿ç”¨ã™ã‚‹ã¨ãã¯ã„ã‚‰ãªã„)
 	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
 	_TALK_CLOSE
 
@@ -278,7 +278,7 @@ common_vm_fail_item:
 	_TALK_END
 	_END
 
-//‹¤’ÊI—¹ˆ—
+//å…±é€šçµ‚äº†å‡¦ç†
 common_vm_end:
 	_LAST_KEYWAIT
 	_TALK_CLOSE

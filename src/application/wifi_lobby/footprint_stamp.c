@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	footprint_stamp.c
- * @brief	‘«Õƒ{[ƒh‚ÌƒXƒ^ƒ“ƒv“®ì
+ * @brief	è¶³è·¡ãƒœãƒ¼ãƒ‰ã®ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œ
  * @author	matsuda
- * @date	2008.01.20(“ú)
+ * @date	2008.01.20(æ—¥)
  */
 //==============================================================================
 #include "common.h"
@@ -16,7 +16,7 @@
 #include "graphic/footprint_board.naix"
 #include "footprint_stamp.h"
 #include "poketool/monsno.h"
-#include "poketool/pokefoot.h"	//POKEFOOT_ARC_CHAR_DMMY’è‹`‚Ìˆ×
+#include "poketool/pokefoot.h"	//POKEFOOT_ARC_CHAR_DMMYå®šç¾©ã®ç‚º
 #include "system/procsys.h"
 #include "application/footprint_main.h"
 #include "system/wipe.h"
@@ -29,45 +29,45 @@
 
 
 //==============================================================================
-//	ƒRƒ“ƒgƒ[ƒ‹ƒf[ƒ^
+//	ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 #include "footprint_stamp_control.dat"
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
-///˜A½ŠÇ—‚Ìƒ[ƒN”Ô†‚ğæ“¾‚µ‚Ä‚¢‚È‚¢ó‘Ô
+///é€£é–ç®¡ç†ã®ãƒ¯ãƒ¼ã‚¯ç•ªå·ã‚’å–å¾—ã—ã¦ã„ãªã„çŠ¶æ…‹
 #define CHAIN_WORK_NULL			(0xff)
 
-///ƒXƒ^ƒ“ƒv‚ÌZÀ•W
+///ã‚¹ã‚¿ãƒ³ãƒ—ã®Zåº§æ¨™
 #define STAMP_POS_Z		(FX32_ONE * 16)	//(FX32_CONST(100))
-///ƒXƒ^ƒ“ƒv‚ÌƒXƒP[ƒ‹
+///ã‚¹ã‚¿ãƒ³ãƒ—ã®ã‚¹ã‚±ãƒ¼ãƒ«
 #define STAMP_SCALE		(FX32_CONST(1.00f))
 
-///ƒXƒ^ƒ“ƒv‚ÌƒTƒCƒY(fx32)
+///ã‚¹ã‚¿ãƒ³ãƒ—ã®ã‚µã‚¤ã‚º(fx32)
 #define STAMP_SIZE			(FX32_ONE * 16 * 1)	//1grid(1gird=16unit)
-///ƒXƒ^ƒ“ƒv‚Ì”¼•ª‚ÌƒTƒCƒY
+///ã‚¹ã‚¿ãƒ³ãƒ—ã®åŠåˆ†ã®ã‚µã‚¤ã‚º
 #define STAMP_SIZE_HALF		(STAMP_SIZE / 2)
 
-///ƒXƒ^ƒ“ƒv“®ì‚ªƒVƒXƒeƒ€‚Ö•Ô‚·•Ô–
+///ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œãŒã‚·ã‚¹ãƒ†ãƒ ã¸è¿”ã™è¿”äº‹
 typedef enum{
-	RET_CONTINUE,		///<Œ»óˆÛ
-	RET_DELETE,			///<íœ—v‹
+	RET_CONTINUE,		///<ç¾çŠ¶ç¶­æŒ
+	RET_DELETE,			///<å‰Šé™¤è¦æ±‚
 }STAMP_RET;
 
-///‘«Õ‚ÌƒeƒNƒXƒ`ƒƒ[ƒTƒCƒY(byte)
+///è¶³è·¡ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ¼ã‚µã‚¤ã‚º(byte)
 #define FOOTMARK_TEXTURE_SIZE	(16*16/4)
 
-///ƒXƒ^ƒ“ƒv‚Åg—po—ˆ‚éƒ|ƒŠƒSƒ“ID‚ÌŠJn’l
+///ã‚¹ã‚¿ãƒ³ãƒ—ã§ä½¿ç”¨å‡ºæ¥ã‚‹ãƒãƒªã‚´ãƒ³IDã®é–‹å§‹å€¤
 #define STAMP_POLYGON_ID_START		(1)
-///ƒXƒ^ƒ“ƒv‚Åg—po—ˆ‚éƒ|ƒŠƒSƒ“ID‚ÌI—¹’l
+///ã‚¹ã‚¿ãƒ³ãƒ—ã§ä½¿ç”¨å‡ºæ¥ã‚‹ãƒãƒªã‚´ãƒ³IDã®çµ‚äº†å€¤
 #define STAMP_POLYGON_ID_END		(63)
-///ƒXƒ^ƒ“ƒv‚Åƒ|ƒŠƒSƒ“ID‚ÌŠm•Û‚É¸”s
+///ã‚¹ã‚¿ãƒ³ãƒ—ã§ãƒãƒªã‚´ãƒ³IDã®ç¢ºä¿ã«å¤±æ•—
 #define STAMP_POLYGON_ID_ERROR		(0xff)
 
 
-///ƒXƒ^ƒ“ƒv‚ªƒtƒŒ[ƒ€ƒAƒEƒg‚ÆŒ©‚È‚·À•W”ÍˆÍ
-///ƒ{[ƒh‚ª‰¡5ƒOƒŠƒbƒhAc3ƒOƒŠƒbƒh(1grid=16unit)‚Ìˆ×A‚»‚ê‚æ‚è­‚µ‘å‚«‚ß‚É‚µ‚Ä‚¢‚é
+///ã‚¹ã‚¿ãƒ³ãƒ—ãŒãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆã¨è¦‹ãªã™åº§æ¨™ç¯„å›²
+///ãƒœãƒ¼ãƒ‰ãŒæ¨ª5ã‚°ãƒªãƒƒãƒ‰ã€ç¸¦3ã‚°ãƒªãƒƒãƒ‰(1grid=16unit)ã®ç‚ºã€ãã‚Œã‚ˆã‚Šå°‘ã—å¤§ãã‚ã«ã—ã¦ã„ã‚‹
 static const struct{
 	fx32 left;
 	fx32 right;
@@ -81,32 +81,32 @@ static const struct{
 };
 
 //==============================================================================
-//	Œ^’è‹`
+//	å‹å®šç¾©
 //==============================================================================
-///ƒXƒ^ƒ“ƒv‚Ì“®ìŠÖ”‚ÌŒ^
+///ã‚¹ã‚¿ãƒ³ãƒ—ã®å‹•ä½œé–¢æ•°ã®å‹
 typedef STAMP_RET (* STAMP_MOVE_FUNC)(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move);
-///•`‰æÀs‘O‚És‚¤ŠÖ”‚ÌŒ^
+///æç”»å®Ÿè¡Œå‰ã«è¡Œã†é–¢æ•°ã®å‹
 typedef void ( *STAMP_DRAW_FUNC )(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move);
-///ƒXƒ^ƒ“ƒv‚Ì‚ ‚½‚è”»’èŠÖ”‚ÌŒ^
+///ã‚¹ã‚¿ãƒ³ãƒ—ã®ã‚ãŸã‚Šåˆ¤å®šé–¢æ•°ã®å‹
 typedef BOOL (* STAMP_HITCHECK)(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move,STAMP_MOVE_PTR target);
 
-///ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg‚Ì“®ìŠÖ”‚ÌŒ^
+///ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å‹•ä½œé–¢æ•°ã®å‹
 typedef BOOL (* SPECIAL_EFF_FUNC)(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF_CAMERA_PTR camera);
 
 //==============================================================================
-//	\‘¢‘Ì’è‹`
+//	æ§‹é€ ä½“å®šç¾©
 //==============================================================================
 //--------------------------------------------------------------
-//	“®ìƒe[ƒuƒ‹‚ÌŒ^
+//	å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«ã®å‹
 //--------------------------------------------------------------
-///“®ìƒe[ƒuƒ‹‚ÌŒ^
+///å‹•ä½œãƒ†ãƒ¼ãƒ–ãƒ«ã®å‹
 typedef struct{
-	STAMP_MOVE_FUNC move_func;			///<“®ìŠÖ”
-	STAMP_DRAW_FUNC draw_func;			///<“Æ©‚É•`‰æˆ—‚ğs‚¤ê‡w’è
-	STAMP_HITCHECK hitcheck_func;		///<ƒqƒbƒgƒ`ƒFƒbƒN
+	STAMP_MOVE_FUNC move_func;			///<å‹•ä½œé–¢æ•°
+	STAMP_DRAW_FUNC draw_func;			///<ç‹¬è‡ªã«æç”»å‡¦ç†ã‚’è¡Œã†å ´åˆæŒ‡å®š
+	STAMP_HITCHECK hitcheck_func;		///<ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
 }STAMP_MOVE_DATA_TBL;
 
-///ƒXƒ^ƒ“ƒv‚Ì“–‚½‚è”»’èƒ`ƒFƒbƒN—p‚ÌRECTŒ^
+///ã‚¹ã‚¿ãƒ³ãƒ—ã®å½“ãŸã‚Šåˆ¤å®šãƒã‚§ãƒƒã‚¯ç”¨ã®RECTå‹
 typedef struct{
 	fx32 left;
 	fx32 right;
@@ -115,32 +115,32 @@ typedef struct{
 }STAMP_HIT_RECT;
 
 //--------------------------------------------------------------
-//	Á–ÅƒGƒtƒFƒNƒg
+//	æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //--------------------------------------------------------------
-///Á–ÅƒGƒtƒFƒNƒgF‹¤’Ê‰Šú“®ì
+///æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šå…±é€šåˆæœŸå‹•ä½œ
 typedef struct{
 	s32 wait;
 	STAMP_HIT_RECT rect;
 }ERASE_EFF_INIT_MOVE;
 
-///Á–ÅƒGƒtƒFƒNƒgF‚É‚¶‚İ
+///æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã«ã˜ã¿
 typedef struct{
-	int alpha;			///<ƒAƒ‹ƒtƒ@’l
-	fx32 affine_xyz;	///<Šgk—¦
-	u8 seq;			///<ƒV[ƒPƒ“ƒX”Ô†
-	u8 polygon_id;		///<ƒ|ƒŠƒSƒ“ID
+	int alpha;			///<ã‚¢ãƒ«ãƒ•ã‚¡å€¤
+	fx32 affine_xyz;	///<æ‹¡ç¸®ç‡
+	u8 seq;			///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	u8 polygon_id;		///<ãƒãƒªã‚´ãƒ³ID
 	STAMP_HIT_RECT rect;
 }ERASE_EFF_NIJIMI;
 
-///Á–ÅƒGƒtƒFƒNƒgF‚Í‚¶‚¯
+///æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã¯ã˜ã‘
 typedef struct{
-	D3DOBJ		child_obj[HAJIKE_OBJ_CHILD_NUM];	///<•`‰æOBJ
+	D3DOBJ		child_obj[HAJIKE_OBJ_CHILD_NUM];	///<æç”»OBJ
 	u16 frame;
 	u8 seq;
-	STAMP_HIT_RECT rect[HAJIKE_OBJ_CHILD_NUM + 1];	// +1 = e‚Ì•ª
+	STAMP_HIT_RECT rect[HAJIKE_OBJ_CHILD_NUM + 1];	// +1 = è¦ªã®åˆ†
 }ERASE_EFF_HAJIKE;
 
-///Á–ÅƒGƒtƒFƒNƒgFƒWƒOƒUƒO
+///æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚¸ã‚°ã‚¶ã‚°
 typedef struct{
 	int seq;
 	int wait;
@@ -148,7 +148,7 @@ typedef struct{
 	STAMP_HIT_RECT rect;
 }ERASE_EFF_ZIGZAG;
 
-///Á–ÅƒGƒtƒFƒNƒgFÖs
+///æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šè›‡è¡Œ
 typedef struct{
 	int seq;
 	fx32 theta;
@@ -157,18 +157,18 @@ typedef struct{
 	STAMP_HIT_RECT rect;
 }ERASE_EFF_DAKOU;
 
-///Á–ÅƒGƒtƒFƒNƒgF‹OÕ
+///æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šè»Œè·¡
 typedef struct{
-	D3DOBJ		child_obj[KISEKI_OBJ_CHILD_NUM];	///<•`‰æOBJ
+	D3DOBJ		child_obj[KISEKI_OBJ_CHILD_NUM];	///<æç”»OBJ
 	u16 frame;
 	u8 drop_no;
-	u8 obj_hit;			///<TRUE:‘¼OBJ‚ÆÕ“Ë‚µ‚½
+	u8 obj_hit;			///<TRUE:ä»–OBJã¨è¡çªã—ãŸ
 	u8 polygon_id;
 	u8 seq;
 	STAMP_HIT_RECT rect;
 }ERASE_EFF_KISEKI;
 
-///Á–ÅƒGƒtƒFƒNƒgF—h‚ê
+///æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šæºã‚Œ
 typedef struct{
 	int seq;
 	fx32 theta;
@@ -176,37 +176,37 @@ typedef struct{
 	STAMP_HIT_RECT rect;
 }ERASE_EFF_YURE;
 
-///Á–ÅƒGƒtƒFƒNƒgFŠg‘å
+///æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šæ‹¡å¤§
 typedef struct{
-	fx32 affine_xyz;	///<Šgk—¦
+	fx32 affine_xyz;	///<æ‹¡ç¸®ç‡
 	u16 frame;
-	u8 seq;			///<ƒV[ƒPƒ“ƒX”Ô†
+	u8 seq;			///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 	STAMP_HIT_RECT rect;
 }ERASE_EFF_KAKUDAI;
 
-///Á–ÅƒGƒtƒFƒNƒgFƒuƒ‰[X
+///æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šãƒ–ãƒ©ãƒ¼X
 typedef struct{
-	D3DOBJ		child_obj[BRAR_X_OBJ_CHILD_NUM];	///<•`‰æOBJ
+	D3DOBJ		child_obj[BRAR_X_OBJ_CHILD_NUM];	///<æç”»OBJ
 	fx32 theta;
 	u16 alpha;
 	u8 polygon_id;
 	u8 seq;
-	STAMP_HIT_RECT rect[BRAR_X_OBJ_CHILD_NUM + 1];	// +1 = e‚Ì•ª
+	STAMP_HIT_RECT rect[BRAR_X_OBJ_CHILD_NUM + 1];	// +1 = è¦ªã®åˆ†
 }ERASE_EFF_BRAR_X;
 
-///Á–ÅƒGƒtƒFƒNƒgFƒuƒ‰[Y
+///æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šãƒ–ãƒ©ãƒ¼Y
 typedef struct{
-	D3DOBJ		child_obj[BRAR_Y_OBJ_CHILD_NUM];	///<•`‰æOBJ
+	D3DOBJ		child_obj[BRAR_Y_OBJ_CHILD_NUM];	///<æç”»OBJ
 	fx32 theta;
 	u16 alpha;
 	u8 polygon_id;
 	u8 seq;
-	STAMP_HIT_RECT rect[BRAR_Y_OBJ_CHILD_NUM + 1];	// +1 = e‚Ì•ª
+	STAMP_HIT_RECT rect[BRAR_Y_OBJ_CHILD_NUM + 1];	// +1 = è¦ªã®åˆ†
 }ERASE_EFF_BRAR_Y;
 
-///Á–ÅƒGƒtƒFƒNƒgF‚½‚ê
+///æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šãŸã‚Œ
 typedef struct{
-	fx32 affine_xyz;	///<Šgk—¦
+	fx32 affine_xyz;	///<æ‹¡ç¸®ç‡
 	u16 frame;
 	u8 seq;
 	STAMP_HIT_RECT rect;
@@ -214,7 +214,7 @@ typedef struct{
 
 //--------------------------------------------------------------
 /**
- * @brief	Á–ÅƒGƒtƒFƒNƒg“®ìƒ[ƒN
+ * @brief	æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œãƒ¯ãƒ¼ã‚¯
  */
 //--------------------------------------------------------------
 typedef union{
@@ -233,27 +233,27 @@ typedef union{
 
 
 //--------------------------------------------------------------
-//	ƒVƒXƒeƒ€
+//	ã‚·ã‚¹ãƒ†ãƒ 
 //--------------------------------------------------------------
-///ƒXƒ^ƒ“ƒv“®ì§Œäƒ[ƒN
+///ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œåˆ¶å¾¡ãƒ¯ãƒ¼ã‚¯
 typedef struct _STAMP_MOVE_WORK{
-	STAMP_PARAM param;		///<ƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^
+	STAMP_PARAM param;		///<ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
 	D3DOBJ_MDL	mdl;
 	D3DOBJ		obj;
 	
-	ERASE_EFF_WORK erase_eff;	///<Á–ÅƒGƒtƒFƒNƒg“®ìƒ[ƒN
+	ERASE_EFF_WORK erase_eff;	///<æ¶ˆæ»…ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œãƒ¯ãƒ¼ã‚¯
 	
-	u32 initialize:4;			///<TRUE:‰Šú‰»Š®—¹
-	u32 tex_load_req:4;			///<TRUE:ƒeƒNƒXƒ`ƒƒVRAM“]‘—ƒŠƒNƒGƒXƒg‚ğ”­s‚µ‚Ä‚¢‚é
-	u32 move_type:8;			///<“®ìƒ^ƒCƒv(MOVE_???)
-	u32 next_move_type:8;		///<“®ìƒ^ƒCƒv—\–ñ(˜A½”­¶‚Éˆø‚«Œp‚®“®ìƒ^ƒCƒv‚ªƒZƒbƒg‚³‚ê‚é)
-	u32 chain_work_no:8;		///<g—p‚µ‚Ä‚¢‚é˜A½ƒ[ƒN‚Ì”Ô†
+	u32 initialize:4;			///<TRUE:åˆæœŸåŒ–å®Œäº†
+	u32 tex_load_req:4;			///<TRUE:ãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMè»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’ç™ºè¡Œã—ã¦ã„ã‚‹
+	u32 move_type:8;			///<å‹•ä½œã‚¿ã‚¤ãƒ—(MOVE_???)
+	u32 next_move_type:8;		///<å‹•ä½œã‚¿ã‚¤ãƒ—äºˆç´„(é€£é–ç™ºç”Ÿæ™‚ã«å¼•ãç¶™ãå‹•ä½œã‚¿ã‚¤ãƒ—ãŒã‚»ãƒƒãƒˆã•ã‚Œã‚‹)
+	u32 chain_work_no:8;		///<ä½¿ç”¨ã—ã¦ã„ã‚‹é€£é–ãƒ¯ãƒ¼ã‚¯ã®ç•ªå·
 }STAMP_MOVE_WORK;
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static STAMP_MOVE_PTR Stamp_Create(FOOTPRINT_SYS_PTR fps, STAMP_SYSTEM_WORK *ssw, const STAMP_PARAM *param, ARCHANDLE *hdl_main, ARCHANDLE *hdl_mark, BOOL arceus_flg);
 static void Stamp_Free(STAMP_MOVE_PTR move);
@@ -321,9 +321,9 @@ static BOOL SpecialMove_BrarY(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF
 static BOOL SpecialMove_Tare(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF_CAMERA_PTR camera);
 
 //==============================================================================
-//	ƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+//	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 //==============================================================================
-///ƒXƒ^ƒ“ƒv“®ìŠÖ”ƒe[ƒuƒ‹		¦MOVE_TYPE_???‚Æ•À‚Ñ‚ğ“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆI
+///ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œé–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«		â€»MOVE_TYPE_???ã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼
 static const STAMP_MOVE_DATA_TBL StampMoveDataTbl[] = {
 	{StampMove_FirstWait,	NULL,					StampHitcheck_FirstWait},
 	{StampMove_Nijimi,		StampDraw_Nijimi,		StampHitcheck_Nijimi},
@@ -338,9 +338,9 @@ static const STAMP_MOVE_DATA_TBL StampMoveDataTbl[] = {
 	{StampMove_Tare,		NULL,					StampHitcheck_Tare},
 };
 
-///ƒXƒ^ƒ“ƒv‚ÌˆÚ“®ƒ^ƒCƒv  ¦StampMoveDataTblASpecialEffectDataTbl‚Æ•À‚Ñ‚ğ“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆI
+///ã‚¹ã‚¿ãƒ³ãƒ—ã®ç§»å‹•ã‚¿ã‚¤ãƒ—  â€»StampMoveDataTblã€SpecialEffectDataTblã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼
 enum{
-	MOVE_TYPE_FIRST_WAIT,	///<‰ŠúƒEƒFƒCƒg
+	MOVE_TYPE_FIRST_WAIT,	///<åˆæœŸã‚¦ã‚§ã‚¤ãƒˆ
 	MOVE_TYPE_NIJIMI,
 	MOVE_TYPE_HAJIKE,
 	MOVE_TYPE_ZIGZAG,
@@ -352,36 +352,36 @@ enum{
 	MOVE_TYPE_BRAR_Y,
 	MOVE_TYPE_TARE,
 };
-///«Ši‚©‚ç“®ìƒ^ƒCƒv‚ğæ‚èo‚·ƒe[ƒuƒ‹
+///æ€§æ ¼ã‹ã‚‰å‹•ä½œã‚¿ã‚¤ãƒ—ã‚’å–ã‚Šå‡ºã™ãƒ†ãƒ¼ãƒ–ãƒ«
 ALIGN4 static const u8 Seikaku_to_MoveType_Tbl[] = {
-	MOVE_TYPE_KISEKI,	//‚ª‚ñ‚Î‚è‚â
-	MOVE_TYPE_NIJIMI,	//‚³‚İ‚µ‚ª‚è
-	MOVE_TYPE_KISEKI,	//‚ä‚¤‚©‚ñ
-	MOVE_TYPE_YURE,		//‚¢‚¶‚Á‚Ï‚è
-	MOVE_TYPE_YURE,		//‚â‚ñ‚¿‚á
-	MOVE_TYPE_DAKOU,	//‚¸‚Ô‚Æ‚¢
-	MOVE_TYPE_ZIGZAG,	//‚·‚È‚¨
-	MOVE_TYPE_BRAR_Y,	//‚Ì‚ñ‚«
-	MOVE_TYPE_KAKUDAI,	//‚í‚ñ‚Ï‚­
-	MOVE_TYPE_BRAR_X,	//‚Ì‚¤‚Ä‚ñ‚«
-	MOVE_TYPE_NIJIMI,	//‚¨‚­‚Ñ‚å‚¤
-	MOVE_TYPE_KISEKI,	//‚¹‚Á‚©‚¿
-	MOVE_TYPE_ZIGZAG,	//‚Ü‚¶‚ß
-	MOVE_TYPE_BRAR_X,	//‚æ‚¤‚«
-	MOVE_TYPE_HAJIKE,	//‚Ş‚¶‚á‚«
-	MOVE_TYPE_TARE,		//‚Ğ‚©‚¦‚ß
-	MOVE_TYPE_DAKOU,	//‚¨‚Á‚Æ‚è
-	MOVE_TYPE_ZIGZAG,	//‚ê‚¢‚¹‚¢
-	MOVE_TYPE_BRAR_Y,	//‚Ä‚ê‚â
-	MOVE_TYPE_KAKUDAI,	//‚¤‚Á‚©‚è‚â
-	MOVE_TYPE_TARE,		//‚¨‚¾‚â‚©
-	MOVE_TYPE_DAKOU,	//‚¨‚Æ‚È‚µ‚¢
-	MOVE_TYPE_YURE,		//‚È‚Ü‚¢‚«
-	MOVE_TYPE_NIJIMI,	//‚µ‚ñ‚¿‚å‚¤
-	MOVE_TYPE_HAJIKE,	//‚«‚Ü‚®‚ê
+	MOVE_TYPE_KISEKI,	//ãŒã‚“ã°ã‚Šã‚„
+	MOVE_TYPE_NIJIMI,	//ã•ã¿ã—ãŒã‚Š
+	MOVE_TYPE_KISEKI,	//ã‚†ã†ã‹ã‚“
+	MOVE_TYPE_YURE,		//ã„ã˜ã£ã±ã‚Š
+	MOVE_TYPE_YURE,		//ã‚„ã‚“ã¡ã‚ƒ
+	MOVE_TYPE_DAKOU,	//ãšã¶ã¨ã„
+	MOVE_TYPE_ZIGZAG,	//ã™ãªãŠ
+	MOVE_TYPE_BRAR_Y,	//ã®ã‚“ã
+	MOVE_TYPE_KAKUDAI,	//ã‚ã‚“ã±ã
+	MOVE_TYPE_BRAR_X,	//ã®ã†ã¦ã‚“ã
+	MOVE_TYPE_NIJIMI,	//ãŠãã³ã‚‡ã†
+	MOVE_TYPE_KISEKI,	//ã›ã£ã‹ã¡
+	MOVE_TYPE_ZIGZAG,	//ã¾ã˜ã‚
+	MOVE_TYPE_BRAR_X,	//ã‚ˆã†ã
+	MOVE_TYPE_HAJIKE,	//ã‚€ã˜ã‚ƒã
+	MOVE_TYPE_TARE,		//ã²ã‹ãˆã‚
+	MOVE_TYPE_DAKOU,	//ãŠã£ã¨ã‚Š
+	MOVE_TYPE_ZIGZAG,	//ã‚Œã„ã›ã„
+	MOVE_TYPE_BRAR_Y,	//ã¦ã‚Œã‚„
+	MOVE_TYPE_KAKUDAI,	//ã†ã£ã‹ã‚Šã‚„
+	MOVE_TYPE_TARE,		//ãŠã ã‚„ã‹
+	MOVE_TYPE_DAKOU,	//ãŠã¨ãªã—ã„
+	MOVE_TYPE_YURE,		//ãªã¾ã„ã
+	MOVE_TYPE_NIJIMI,	//ã—ã‚“ã¡ã‚‡ã†
+	MOVE_TYPE_HAJIKE,	//ãã¾ãã‚Œ
 };
 
-///ƒXƒ^ƒ“ƒv‚ÌƒqƒbƒgƒTƒCƒY
+///ã‚¹ã‚¿ãƒ³ãƒ—ã®ãƒ’ãƒƒãƒˆã‚µã‚¤ã‚º
 static const STAMP_HIT_RECT StampDefaultHitRect[] = {
 	{-(STAMP_SIZE_HALF / 3), STAMP_SIZE_HALF / 3, STAMP_SIZE_HALF / 3, -(STAMP_SIZE_HALF / 3)},
 	{-(STAMP_SIZE_HALF / 2), STAMP_SIZE_HALF / 2, STAMP_SIZE_HALF / 2, -(STAMP_SIZE_HALF / 2)},
@@ -390,9 +390,9 @@ static const STAMP_HIT_RECT StampDefaultHitRect[] = {
 
 
 //--------------------------------------------------------------
-//	ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg‚Ì“®ìƒV[ƒPƒ“ƒXƒe[ƒuƒ‹
+//	ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------
-///ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg‚Ì“®ìƒV[ƒPƒ“ƒXƒe[ƒuƒ‹	¦MOVE_TYPE_???‚Æ•À‚Ñ‚ğ“¯‚¶‚É‚µ‚Ä‚¨‚­‚±‚ÆII
+///ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®å‹•ä½œã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«	â€»MOVE_TYPE_???ã¨ä¸¦ã³ã‚’åŒã˜ã«ã—ã¦ãŠãã“ã¨ï¼ï¼
 static const SPECIAL_EFF_FUNC SpecialEffectDataTbl[] = {
 	NULL,						//MOVE_TYPE_FIRST_WAIT
 	SpecialMove_Nijimi,         //MOVE_TYPE_NIJIMI
@@ -409,10 +409,10 @@ static const SPECIAL_EFF_FUNC SpecialEffectDataTbl[] = {
 
 
 //--------------------------------------------------------------
-//	ƒXƒ^ƒ“ƒv”z’uÀ•Wƒf[ƒ^
+//	ã‚¹ã‚¿ãƒ³ãƒ—é…ç½®åº§æ¨™ãƒ‡ãƒ¼ã‚¿
 //--------------------------------------------------------------
-#define STAMP_BASE_POS_OFFSET	(16)	//16ƒhƒbƒgŠÔŠu
-//16ƒhƒbƒgŠÔŠu
+#define STAMP_BASE_POS_OFFSET	(16)	//16ãƒ‰ãƒƒãƒˆé–“éš”
+//16ãƒ‰ãƒƒãƒˆé–“éš”
 static const s32 StampPosBaseX[] = {
 	-238076,
 	-209404,
@@ -433,7 +433,7 @@ static const s32 StampPosBaseX[] = {
 	235524,
 };
 
-//16ƒhƒbƒgŠÔŠu
+//16ãƒ‰ãƒƒãƒˆé–“éš”
 static const s32 StampPosBaseY[] = {
 	146191,
 	117519,
@@ -449,7 +449,7 @@ static const s32 StampPosBaseY[] = {
 };
 
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒO—p•Ï”
+//	ãƒ‡ãƒãƒƒã‚°ç”¨å¤‰æ•°
 //--------------------------------------------------------------
 #ifdef PM_DEBUG
 static struct{
@@ -463,15 +463,15 @@ static u8 debug_sp_eff = 0;
 
 //==============================================================================
 //
-//	ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€
+//	ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ 
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€‰Šú‰»
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   arceus_flg	ƒAƒ‹ƒZƒEƒXŒöŠJƒtƒ‰ƒO(TRUE:ŒöŠJOK)
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   arceus_flg	ã‚¢ãƒ«ã‚»ã‚¦ã‚¹å…¬é–‹ãƒ•ãƒ©ã‚°(TRUE:å…¬é–‹OK)
  */
 //--------------------------------------------------------------
 void StampSys_Init(STAMP_SYSTEM_WORK *ssw, BOOL arceus_flg)
@@ -503,9 +503,9 @@ void StampSys_Init(STAMP_SYSTEM_WORK *ssw, BOOL arceus_flg)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€‚ğ”jŠü
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ã‚’ç ´æ£„
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void StampSys_Exit(STAMP_SYSTEM_WORK *ssw)
@@ -524,15 +524,15 @@ void StampSys_Exit(STAMP_SYSTEM_WORK *ssw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv‚ğV‹Kì¬‚·‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ã‚’æ–°è¦ä½œæˆã™ã‚‹
  *
- * @param   ssw				ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   param			ƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^
- * @param   hdl_main		ƒƒCƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ö‚Ìƒnƒ“ƒhƒ‹
- * @param   hdl_mark		‘«ÕƒOƒ‰ƒtƒBƒbƒN‚Ö‚Ìƒnƒ“ƒhƒ‹
- * @param   arceus_flg		ƒAƒ‹ƒZƒEƒXŒöŠJƒtƒ‰ƒO(TRUE:ŒöŠJOK)
+ * @param   ssw				ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   param			ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+ * @param   hdl_main		ãƒ¡ã‚¤ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
+ * @param   hdl_mark		è¶³è·¡ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
+ * @param   arceus_flg		ã‚¢ãƒ«ã‚»ã‚¦ã‚¹å…¬é–‹ãƒ•ãƒ©ã‚°(TRUE:å…¬é–‹OK)
  *
- * @retval	TRUE:ì¬¬Œ÷B@FALSE:ì¬¸”s
+ * @retval	TRUE:ä½œæˆæˆåŠŸã€‚ã€€FALSE:ä½œæˆå¤±æ•—
  */
 //--------------------------------------------------------------
 BOOL StampSys_Add(FOOTPRINT_SYS_PTR fps, STAMP_SYSTEM_WORK *ssw, const STAMP_PARAM *param, ARCHANDLE *hdl_main, ARCHANDLE *hdl_mark, BOOL arceus_flg)
@@ -547,22 +547,22 @@ BOOL StampSys_Add(FOOTPRINT_SYS_PTR fps, STAMP_SYSTEM_WORK *ssw, const STAMP_PAR
 		if(ssw->move[i] == NULL){
 			ssw->move[i] = Stamp_Create(fps, ssw, param, hdl_main, hdl_mark, arceus_flg);
 			if(ssw->move[i] == NULL){
-				OS_TPrintf("ƒXƒ^ƒ“ƒv‚ÌV‹K“o˜^¸”sFƒeƒNƒXƒ`ƒƒ‚©ƒƒ‚ƒŠ‚ª‚¢‚Á‚Ï‚¢\n");
+				OS_TPrintf("ã‚¹ã‚¿ãƒ³ãƒ—ã®æ–°è¦ç™»éŒ²å¤±æ•—ï¼šãƒ†ã‚¯ã‚¹ãƒãƒ£ã‹ãƒ¡ãƒ¢ãƒªãŒã„ã£ã±ã„\n");
 				return FALSE;
 			}
 			return TRUE;
 		}
 	}
 	
-	OS_TPrintf("ƒXƒ^ƒ“ƒv‚ÌV‹K“o˜^¸”sF—Ìˆæ‚¢‚Á‚Ï‚¢‚¾‚Á‚½\n");
+	OS_TPrintf("ã‚¹ã‚¿ãƒ³ãƒ—ã®æ–°è¦ç™»éŒ²å¤±æ•—ï¼šé ˜åŸŸã„ã£ã±ã„ã ã£ãŸ\n");
 	return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvXVˆ—
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—æ›´æ–°å‡¦ç†
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void StampSys_Update(STAMP_SYSTEM_WORK *ssw, GF_CAMERA_PTR camera_ptr, int game_status, int board_type)
@@ -572,7 +572,7 @@ void StampSys_Update(STAMP_SYSTEM_WORK *ssw, GF_CAMERA_PTR camera_ptr, int game_
 	STAMP_RET ret;
 	BOOL sp_ret;
 	
-#ifdef PM_DEBUG		//ƒTƒEƒ“ƒhƒ`ƒFƒbƒN—p
+#ifdef PM_DEBUG		//ã‚µã‚¦ãƒ³ãƒ‰ãƒã‚§ãƒƒã‚¯ç”¨
 	if((sys.trg & PAD_BUTTON_A) && ssw->special_effect_type == 0){
 		MI_CpuClear8(&ssw->special_work, sizeof(STAMP_SPECIAL_WORK));
 		debug_sp_eff++;
@@ -581,19 +581,19 @@ void StampSys_Update(STAMP_SYSTEM_WORK *ssw, GF_CAMERA_PTR camera_ptr, int game_
 	}
 #endif
 
-	//ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg”­“®‘O‚Ì“®ì
+	//ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºå‹•å‰ã®å‹•ä½œ
 	if(ssw->special_effect_req != 0){
 		SpecialFlashEff(ssw, &ssw->flash_work, game_status, board_type);
 	}
 	
-	//ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg“®ì
+	//ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œ
 	if(ssw->special_effect_type != 0){
 		if(SpecialEffectDataTbl[ssw->special_effect_type](ssw, &ssw->special_work, camera_ptr) == TRUE){
 			ssw->special_effect_type = 0;
 		}
 	}
 	
-	//ƒXƒ^ƒ“ƒv“®ì
+	//ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œ
 	for(i = 0; i < STAMP_MAX; i++){
 		move = ssw->move[i];
 		if(move != NULL){
@@ -614,9 +614,9 @@ void StampSys_Update(STAMP_SYSTEM_WORK *ssw, GF_CAMERA_PTR camera_ptr, int game_
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv•`‰æ
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—æç”»
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void StampSys_ObjDraw(STAMP_SYSTEM_WORK *ssw)
@@ -645,9 +645,9 @@ void StampSys_ObjDraw(STAMP_SYSTEM_WORK *ssw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv‚Ìƒqƒbƒgƒ`ƒFƒbƒN
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ã®ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void StampSys_HitCheck(STAMP_SYSTEM_WORK *ssw)
@@ -657,24 +657,24 @@ void StampSys_HitCheck(STAMP_SYSTEM_WORK *ssw)
 	BOOL ret;
 	int sp_eff = 0;
 	
-	//ƒqƒbƒgƒ`ƒFƒbƒN‘ÎÛ‚Ìmoveƒ|ƒCƒ“ƒ^‚Ì‚İ‚ğ”²‚«o‚·
+	//ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯å¯¾è±¡ã®moveãƒã‚¤ãƒ³ã‚¿ã®ã¿ã‚’æŠœãå‡ºã™
 	move_max = 0;
 	normal_max = 0;
 	for(i = 0; i < STAMP_MAX; i++){
 		move = ssw->move[i];
 		if(move != NULL){
-			if(move->move_type != 0){	//Šù‚É“®ì‚µ‚Ä‚¢‚éƒXƒ^ƒ“ƒv
+			if(move->move_type != 0){	//æ—¢ã«å‹•ä½œã—ã¦ã„ã‚‹ã‚¹ã‚¿ãƒ³ãƒ—
 				ssw->hitcheck_move[move_max] = move;
 				move_max++;
 			}
-			else{	//‚Ü‚¾“®ì‘O‚ÌƒXƒ^ƒ“ƒv
+			else{	//ã¾ã å‹•ä½œå‰ã®ã‚¹ã‚¿ãƒ³ãƒ—
 				ssw->hitcheck_move[STAMP_MAX - 1 - normal_max] = move;
 				normal_max++;
 			}
 		}
 	}
 	
-	//ƒqƒbƒgƒ`ƒFƒbƒN
+	//ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯
 	for(normal_count = 0; normal_count < normal_max; normal_count++){
 		normal = ssw->hitcheck_move[STAMP_MAX - 1 - normal_count];
 		for(move_count = 0; move_count < move_max; move_count++){
@@ -686,20 +686,20 @@ void StampSys_HitCheck(STAMP_SYSTEM_WORK *ssw)
 					if(Stamp_ChainAdd(ssw, move->chain_work_no, move->move_type) == TRUE){
 						sp_eff++;
 					}
-					break;	//‚ ‚½‚è”»’è‚ª”­¶‚µ‚½‚Ì‚ÅŸ‚Ìƒm[ƒ}ƒ‹ƒXƒ^ƒ“ƒv‚Ì”»’è‚ÖB
+					break;	//ã‚ãŸã‚Šåˆ¤å®šãŒç™ºç”Ÿã—ãŸã®ã§æ¬¡ã®ãƒãƒ¼ãƒãƒ«ã‚¹ã‚¿ãƒ³ãƒ—ã®åˆ¤å®šã¸ã€‚
 				}
 			}
 		}
 	}
 	
-	//ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg”­“®ğŒ‚ğ–‚½‚µ‚Ä‚¢‚ê‚ÎƒXƒyƒVƒƒƒ‹”­“®
+	//ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºå‹•æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚Œã°ã‚¹ãƒšã‚·ãƒ£ãƒ«ç™ºå‹•
 	if(ssw->special_effect_req != 0 && ssw->special_effect_start_effect_end == TRUE){
 		for(i = 0; i < STAMP_MAX; i++){
 			move = ssw->move[i];
 			if(move != NULL && move->move_type != ssw->special_effect_req 
 					&& move->next_move_type != ssw->special_effect_req){
 				if(StampMoveTool_MoveTypeSet(move, ssw->special_effect_req) == FALSE){
-					//Šù‚É“®ì‚µ‚Ä‚¢‚éƒXƒ^ƒ“ƒv‚Ííœ‚·‚é
+					//æ—¢ã«å‹•ä½œã—ã¦ã„ã‚‹ã‚¹ã‚¿ãƒ³ãƒ—ã¯å‰Šé™¤ã™ã‚‹
 					Stamp_DeletePack(ssw, move, i);
 				}
 			}
@@ -710,10 +710,10 @@ void StampSys_HitCheck(STAMP_SYSTEM_WORK *ssw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvVwaitXVˆ—
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—Vwaitæ›´æ–°å‡¦ç†
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   game_status	ƒQ[ƒ€ƒXƒe[ƒ^ƒX
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   game_status	ã‚²ãƒ¼ãƒ ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
  */
 //--------------------------------------------------------------
 void StampSys_VWaitUpdate(STAMP_SYSTEM_WORK *ssw, int game_status)
@@ -724,14 +724,14 @@ void StampSys_VWaitUpdate(STAMP_SYSTEM_WORK *ssw, int game_status)
 	tex = ssw->load_tex;
 	for(i = 0; i < LOAD_TEX_BUFFER_MAX; i++){
 		if(*tex != NULL){
-			//DMA“]‘—‚·‚é‚Ì‚Åƒtƒ‰ƒbƒVƒ…‚·‚é
+			//DMAè»¢é€ã™ã‚‹ã®ã§ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã™ã‚‹
 			DC_FlushRange( *tex, (*tex)->header.size );
-			// VRAM‚Ö‚Ìƒ[ƒh
+			// VRAMã¸ã®ãƒ­ãƒ¼ãƒ‰
 			NNS_G3dTexLoad(*tex, TRUE);
 			NNS_G3dPlttLoad(*tex, TRUE);
 			
 			*tex = NULL;
-			OS_TPrintf("“]‘—‚µ‚½ %d\n", i);
+			OS_TPrintf("è»¢é€ã—ãŸ %d\n", i);
 		}
 		tex++;
 	}
@@ -745,21 +745,21 @@ void StampSys_VWaitUpdate(STAMP_SYSTEM_WORK *ssw, int game_status)
 
 //==============================================================================
 //
-//	ƒXƒ^ƒ“ƒv
+//	ã‚¹ã‚¿ãƒ³ãƒ—
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒ^ƒ“ƒv‚ğì¬‚·‚é
+ * @brief	ã‚¹ã‚¿ãƒ³ãƒ—ã‚’ä½œæˆã™ã‚‹
  *
- * @param	param			ƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	ssw				ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	hdl_main		‘«Õƒ{[ƒh‚ÌƒƒCƒ“narcƒtƒ@ƒCƒ‹‚Ìƒnƒ“ƒhƒ‹
- * @param	hdl_mark		‘«ÕƒOƒ‰ƒtƒBƒbƒN‚Ìnarcƒtƒ@ƒCƒ‹‚Ìƒnƒ“ƒhƒ‹
- * @param   arceus_flg		ƒAƒ‹ƒZƒEƒXŒöŠJƒtƒ‰ƒO(TRUE:ŒöŠJOK)
+ * @param	param			ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	ssw				ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	hdl_main		è¶³è·¡ãƒœãƒ¼ãƒ‰ã®ãƒ¡ã‚¤ãƒ³narcãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒãƒ³ãƒ‰ãƒ«
+ * @param	hdl_mark		è¶³è·¡ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®narcãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒãƒ³ãƒ‰ãƒ«
+ * @param   arceus_flg		ã‚¢ãƒ«ã‚»ã‚¦ã‚¹å…¬é–‹ãƒ•ãƒ©ã‚°(TRUE:å…¬é–‹OK)
  *
- * @retval	¶¬‚µ‚½ƒXƒ^ƒ“ƒv“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	¶¬o—ˆ‚È‚©‚Á‚½ê‡‚ÍNULL
+ * @retval	ç”Ÿæˆã—ãŸã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	ç”Ÿæˆå‡ºæ¥ãªã‹ã£ãŸå ´åˆã¯NULL
  */
 //--------------------------------------------------------------
 static STAMP_MOVE_PTR Stamp_Create(FOOTPRINT_SYS_PTR fps, STAMP_SYSTEM_WORK *ssw, const STAMP_PARAM *param, ARCHANDLE *hdl_main, ARCHANDLE *hdl_mark, BOOL arceus_flg)
@@ -778,17 +778,17 @@ static STAMP_MOVE_PTR Stamp_Create(FOOTPRINT_SYS_PTR fps, STAMP_SYSTEM_WORK *ssw
 		move->param.monsno = MONSNO_METAMON;
 	}
 	
-	//ƒ‚ƒfƒ‹ƒf[ƒ^“Ç‚İ‚İ
+	//ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	//D3DOBJ_MdlLoadH(&move->mdl, hdl_main, NARC_footprint_board_ashiato_nsbmd, HEAPID_FOOTPRINT);
 	mdl_ret = Stamp_MdlLoadH(ssw, &move->mdl, hdl_main, hdl_mark, &move->param, arceus_flg);
 	if(mdl_ret == FALSE){
 		return NULL;
 	}
 	
-	//ƒŒƒ“ƒ_[ƒIƒuƒWƒFƒNƒg‚É“o˜^
+	//ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç™»éŒ²
 	D3DOBJ_Init( &move->obj, &move->mdl );
 	
-	//À•Wİ’è
+	//åº§æ¨™è¨­å®š
 	Stamp_PosConvert(fps, param->x, param->y, &x, &y);
 	D3DOBJ_SetMatrix( &move->obj, x, y, STAMP_POS_Z);
 	D3DOBJ_SetScale(&move->obj, STAMP_SCALE, STAMP_SCALE, STAMP_SCALE);
@@ -799,51 +799,51 @@ static STAMP_MOVE_PTR Stamp_Create(FOOTPRINT_SYS_PTR fps, STAMP_SYSTEM_WORK *ssw
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒNƒXƒ`ƒƒƒf[ƒ^‚ğ‘«Õ‚É‘‚«Š·‚¦‚ÄVRAM“]‘—(ƒ‚ƒfƒ‹ƒf[ƒ^‚Ì“Ç‚İ‚İ‚È‚Ç‚às‚¤)
+ * @brief   ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿ã‚’è¶³è·¡ã«æ›¸ãæ›ãˆã¦VRAMè»¢é€(ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ãªã©ã‚‚è¡Œã†)
  *
- * @param   p_mdl			ƒ‚ƒfƒ‹ƒf[ƒ^‘ã“üæ
- * @param   hdl_main		ƒƒCƒ“ƒOƒ‰ƒtƒBƒbƒN‚Ö‚Ìƒnƒ“ƒhƒ‹
- * @param   hdl_mark		‘«ÕƒOƒ‰ƒtƒBƒbƒN‚Ö‚Ìƒnƒ“ƒhƒ‹
- * @param   param			ƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   arceus_flg		ƒAƒ‹ƒZƒEƒXŒöŠJƒtƒ‰ƒO(TRUE:ŒöŠJOK)
+ * @param   p_mdl			ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿ä»£å…¥å…ˆ
+ * @param   hdl_main		ãƒ¡ã‚¤ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
+ * @param   hdl_mark		è¶³è·¡ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
+ * @param   param			ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   arceus_flg		ã‚¢ãƒ«ã‚»ã‚¦ã‚¹å…¬é–‹ãƒ•ãƒ©ã‚°(TRUE:å…¬é–‹OK)
  * 
- * @retval	TRUE:¬Œ÷B@FALSE:¸”s
+ * @retval	TRUE:æˆåŠŸã€‚ã€€FALSE:å¤±æ•—
  *
- *	D3DOBJ_MdlLoadHŠÖ”‚Ì’†g‚ğ”²‚«o‚µ‚Ä•K—v‚È•”•ª‚ğƒJƒXƒ^ƒ}ƒCƒY‚µ‚½‚à‚Ì
+ *	D3DOBJ_MdlLoadHé–¢æ•°ã®ä¸­èº«ã‚’æŠœãå‡ºã—ã¦å¿…è¦ãªéƒ¨åˆ†ã‚’ã‚«ã‚¹ã‚¿ãƒã‚¤ã‚ºã—ãŸã‚‚ã®
  */
 //--------------------------------------------------------------
 static BOOL Stamp_MdlLoadH(STAMP_SYSTEM_WORK *ssw, D3DOBJ_MDL *p_mdl, ARCHANDLE *hdl_main, ARCHANDLE *hdl_mark, const STAMP_PARAM *param, BOOL arceus_flg)
 {
-	// ƒ‚ƒfƒ‹ÃŞ°À“Ç‚İ‚İ
+	// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	p_mdl->pResMdl = ArcUtil_HDL_Load(hdl_main, NARC_footprint_board_ashiato_nsbmd, 
 		FALSE, HEAPID_FOOTPRINT, ALLOC_TOP );
 
-	// ƒ‚ƒfƒ‹ƒf[ƒ^İ’è•ƒeƒNƒXƒ`ƒƒ“]‘—
+	// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿è¨­å®šï¼†ãƒ†ã‚¯ã‚¹ãƒãƒ£è»¢é€
 	{
 		BOOL vram_ret;
 
-		// ƒŠƒ\[ƒX“Ç‚İ‚İÏ‚İ‚Å‚ ‚é•K—v‚ª‚ ‚é
+		// ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿æ¸ˆã¿ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚‹
 		GF_ASSERT( p_mdl->pResMdl );
 		
-		// ƒ‚ƒfƒ‹ÃŞ°Àæ“¾
+		// ãƒ¢ãƒ‡ãƒ«ãƒ‡ãƒ¼ã‚¿å–å¾—
 		p_mdl->pModelSet	= NNS_G3dGetMdlSet( p_mdl->pResMdl );
 		p_mdl->pModel		= NNS_G3dGetMdlByIdx( p_mdl->pModelSet, 0 );
 		p_mdl->pMdlTex		= NNS_G3dGetTex( p_mdl->pResMdl );
 		
 		if( p_mdl->pMdlTex ){
-			//ƒeƒNƒXƒ`ƒƒ‘‚«Š·‚¦
+			//ãƒ†ã‚¯ã‚¹ãƒãƒ£æ›¸ãæ›ãˆ
 			Stamp_TexRewrite(p_mdl->pMdlTex, hdl_main, hdl_mark, param, arceus_flg);
 			
-			// ƒeƒNƒXƒ`ƒƒƒf[ƒ^“]‘—
+			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‡ãƒ¼ã‚¿è»¢é€
 			//LoadVRAMTexture( p_mdl->pMdlTex );
 			vram_ret = Stamp_MdlTexKeyAreaSecure(p_mdl->pMdlTex);
 			if(vram_ret == FALSE || Stamp_LoadTexDataSet(ssw, p_mdl->pMdlTex) == FALSE){
-				//VRAM or TCB‚ªŠm•Ûo—ˆ‚È‚¢ê‡‚ÍA‘S‚Ä‰ğ•ú‚·‚é
+				//VRAM or TCBãŒç¢ºä¿å‡ºæ¥ãªã„å ´åˆã¯ã€å…¨ã¦è§£æ”¾ã™ã‚‹
 				NNSG3dTexKey texKey;
 				NNSG3dTexKey tex4x4Key;
 				NNSG3dPlttKey plttKey;
 
-				//VramKey”jŠü
+				//VramKeyç ´æ£„
 				if(vram_ret == TRUE){
 					NNS_G3dTexReleaseTexKey(p_mdl->pMdlTex, &texKey, &tex4x4Key );
 					NNS_GfdFreeTexVram( texKey );
@@ -853,13 +853,13 @@ static BOOL Stamp_MdlLoadH(STAMP_SYSTEM_WORK *ssw, D3DOBJ_MDL *p_mdl, ARCHANDLE 
 					NNS_GfdFreePlttVram( plttKey );
 				}
 				
-				// ‘SƒŠƒ\[ƒX”jŠü
+				// å…¨ãƒªã‚½ãƒ¼ã‚¹ç ´æ£„
 				if(p_mdl->pResMdl){
 					sys_FreeMemoryEz( p_mdl->pResMdl );
 				}
 				memset( p_mdl, 0, sizeof(D3DOBJ_MDL) );
 
-				OS_TPrintf("!!!!!VRAM or TCB‚ÌŠm•Û¸”s!!!!!! vram_ret = %d\n", vram_ret);
+				OS_TPrintf("!!!!!VRAM or TCBã®ç¢ºä¿å¤±æ•—!!!!!! vram_ret = %d\n", vram_ret);
 				return FALSE;
 			}
 			
@@ -872,13 +872,13 @@ static BOOL Stamp_MdlLoadH(STAMP_SYSTEM_WORK *ssw, D3DOBJ_MDL *p_mdl, ARCHANDLE 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒNƒXƒ`ƒƒVwait“]‘—ƒŠƒNƒGƒXƒg‚ğİ’è‚·‚é
+ * @brief   ãƒ†ã‚¯ã‚¹ãƒãƒ£Vwaitè»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¨­å®šã™ã‚‹
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tex		“]‘—‚·‚éƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tex		è»¢é€ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:ƒŠƒNƒGƒXƒgó•t¬Œ÷
- * @retval  TRUE:ƒŠƒNƒGƒXƒgó•t¸”s
+ * @retval  TRUE:ãƒªã‚¯ã‚¨ã‚¹ãƒˆå—ä»˜æˆåŠŸ
+ * @retval  TRUE:ãƒªã‚¯ã‚¨ã‚¹ãƒˆå—ä»˜å¤±æ•—
  */
 //--------------------------------------------------------------
 static BOOL Stamp_LoadTexDataSet(STAMP_SYSTEM_WORK *ssw, NNSG3dResTex *tex)
@@ -891,19 +891,19 @@ static BOOL Stamp_LoadTexDataSet(STAMP_SYSTEM_WORK *ssw, NNSG3dResTex *tex)
 			return TRUE;
 		}
 	}
-//	GF_ASSERT(0);	//ƒeƒNƒXƒ`ƒƒVWait“]‘—ƒoƒbƒtƒ@‚ª‚¢‚Á‚Ï‚¢‚¾‚Á‚½
+//	GF_ASSERT(0);	//ãƒ†ã‚¯ã‚¹ãƒãƒ£VWaitè»¢é€ãƒãƒƒãƒ•ã‚¡ãŒã„ã£ã±ã„ã ã£ãŸ
 	return FALSE;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒNƒXƒ`ƒƒVwait“]‘—ƒŠƒNƒGƒXƒg‚ğ‰ğœ‚·‚é
+ * @brief   ãƒ†ã‚¯ã‚¹ãƒãƒ£Vwaitè»¢é€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è§£é™¤ã™ã‚‹
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   tex		“]‘—‚·‚éƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   tex		è»¢é€ã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:ƒŠƒNƒGƒXƒgó•t¬Œ÷
- * @retval  TRUE:ƒŠƒNƒGƒXƒgó•t¸”s
+ * @retval  TRUE:ãƒªã‚¯ã‚¨ã‚¹ãƒˆå—ä»˜æˆåŠŸ
+ * @retval  TRUE:ãƒªã‚¯ã‚¨ã‚¹ãƒˆå—ä»˜å¤±æ•—
  */
 //--------------------------------------------------------------
 static void Stamp_LoadTexDataFree(STAMP_SYSTEM_WORK *ssw, NNSG3dResTex *tex)
@@ -920,12 +920,12 @@ static void Stamp_LoadTexDataFree(STAMP_SYSTEM_WORK *ssw, NNSG3dResTex *tex)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒNƒXƒ`ƒƒ—ÌˆæŠm•Û•ƒŠƒ\[ƒX‚ÉƒL[‚ğƒZƒbƒg‚·‚é
+ * @brief   ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸç¢ºä¿ï¼†ãƒªã‚½ãƒ¼ã‚¹ã«ã‚­ãƒ¼ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   tex		ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tex		ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:Šm•Û¬Œ÷
- * @retval  FALSE:Šm•Û¸”s
+ * @retval  TRUE:ç¢ºä¿æˆåŠŸ
+ * @retval  FALSE:ç¢ºä¿å¤±æ•—
  */
 //--------------------------------------------------------------
 static BOOL Stamp_MdlTexKeyAreaSecure(NNSG3dResTex* tex)
@@ -936,34 +936,34 @@ static BOOL Stamp_MdlTexKeyAreaSecure(NNSG3dResTex* tex)
 
 	tex->texInfo.vramKey = 0;
 
-	// •K—v‚ÈƒTƒCƒY‚ğæ“¾
+	// å¿…è¦ãªã‚µã‚¤ã‚ºã‚’å–å¾—
     szTex    = NNS_G3dTexGetRequiredSize(tex);
     szPltt   = NNS_G3dPlttGetRequiredSize(tex);
 
-	// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg‚ÉŠm•Û
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆã«ç¢ºä¿
 	keyTex = NNS_GfdAllocTexVram(szTex, FALSE, 0);
     if (keyTex == NNS_GFD_ALLOC_ERROR_TEXKEY){
 		return FALSE;
 	}
 
-	// ‘¶İ‚·‚ê‚ÎƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg‚ÉŠm•Û
+	// å­˜åœ¨ã™ã‚Œã°ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆã«ç¢ºä¿
 	keyPltt = 
 		NNS_GfdAllocPlttVram(szPltt,
 							tex->tex4x4Info.flag & NNS_G3D_RESPLTT_USEPLTT4,
 							0);
 	if (keyPltt == NNS_GFD_ALLOC_ERROR_PLTTKEY){
-		NNS_GfdFreeTexVram(keyTex);	//æ‚ÉŠm•Û‚µ‚Ä‚¢‚½ƒeƒNƒXƒ`ƒƒVRAM‚ğ‰ğ•ú‚·‚é
+		NNS_GfdFreeTexVram(keyTex);	//å…ˆã«ç¢ºä¿ã—ã¦ã„ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£VRAMã‚’è§£æ”¾ã™ã‚‹
 		return FALSE;
 	}
 
-	// ƒL[‚ÌƒAƒTƒCƒ“
+	// ã‚­ãƒ¼ã®ã‚¢ã‚µã‚¤ãƒ³
 	NNS_G3dTexSetTexKey(tex, keyTex, 0);
 	NNS_G3dPlttSetPlttKey(tex, keyPltt);
 
 #if 0
-	//DMA“]‘—‚·‚é‚Ì‚Åƒtƒ‰ƒbƒVƒ…‚·‚é
+	//DMAè»¢é€ã™ã‚‹ã®ã§ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã™ã‚‹
 	DC_FlushRange( tex, tex->header.size );
-	// VRAM‚Ö‚Ìƒ[ƒh
+	// VRAMã¸ã®ãƒ­ãƒ¼ãƒ‰
 	NNS_G3dTexLoad(tex, TRUE);
 	NNS_G3dPlttLoad(tex, TRUE);
 #endif
@@ -973,12 +973,12 @@ static BOOL Stamp_MdlTexKeyAreaSecure(NNSG3dResTex* tex)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒNƒXƒ`ƒƒƒCƒ[ƒW‚ğw’èƒ|ƒPƒ‚ƒ“‚Ì‘«Õ‚É‘‚«Š·‚¦‚é
+ * @brief   ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æŒ‡å®šãƒã‚±ãƒ¢ãƒ³ã®è¶³è·¡ã«æ›¸ãæ›ãˆã‚‹
  *
- * @param   pTex			ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   hdl_mark		‘«ÕƒOƒ‰ƒtƒBƒbƒN‚ÌƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   param			ƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   arceus_flg		ƒAƒ‹ƒZƒEƒXŒöŠJ‹–‰Âƒtƒ‰ƒO(TRUE:ŒöŠJOK)
+ * @param   pTex			ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   hdl_mark		è¶³è·¡ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   param			ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   arceus_flg		ã‚¢ãƒ«ã‚»ã‚¦ã‚¹å…¬é–‹è¨±å¯ãƒ•ãƒ©ã‚°(TRUE:å…¬é–‹OK)
  */
 //--------------------------------------------------------------
 static void Stamp_TexRewrite(NNSG3dResTex *pTex, ARCHANDLE *hdl_main, ARCHANDLE *hdl_mark, const STAMP_PARAM *param, BOOL arceus_flg)
@@ -986,30 +986,30 @@ static void Stamp_TexRewrite(NNSG3dResTex *pTex, ARCHANDLE *hdl_main, ARCHANDLE 
 	u16 *pPalDest;
 	u8 *pDest, *pSrc;
 	enum{
-		AFTER_COLOR_NO = 1,	//F‚Â‚«‚ÌêŠ‚Í‘S‚Ä‚±‚ÌƒJƒ‰[”Ô†‚É•ÏŠ·‚·‚é
+		AFTER_COLOR_NO = 1,	//è‰²ã¤ãã®å ´æ‰€ã¯å…¨ã¦ã“ã®ã‚«ãƒ©ãƒ¼ç•ªå·ã«å¤‰æ›ã™ã‚‹
 	};
 	NNSG2dCharacterData *pChar;
 	int foot_disp;
 	
 	foot_disp = FootprintTool_FootDispCheck(param->monsno, param->form_no, arceus_flg);
 
-	pDest = (u8*)((u8*)pTex + pTex->texInfo.ofsTex);	//ƒeƒNƒXƒ`ƒƒ—Ìˆæ
+	pDest = (u8*)((u8*)pTex + pTex->texInfo.ofsTex);	//ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸ
 	if(foot_disp == TRUE){
-		pSrc = ArcUtil_HDL_Load(hdl_mark, POKEFOOT_ARC_CHAR_DMMY + param->monsno, //‘«Õ
+		pSrc = ArcUtil_HDL_Load(hdl_mark, POKEFOOT_ARC_CHAR_DMMY + param->monsno, //è¶³è·¡
 			TRUE, HEAPID_FOOTPRINT, ALLOC_BOTTOM);
 		NNS_G2dGetUnpackedCharacterData(pSrc, &pChar); 
 	}
 	else{
-		pSrc = ArcUtil_HDL_Load(hdl_main, NARC_footprint_board_wifi_mark_NCGR, //WIFIƒ}[ƒN
+		pSrc = ArcUtil_HDL_Load(hdl_main, NARC_footprint_board_wifi_mark_NCGR, //WIFIãƒãƒ¼ã‚¯
 			FALSE, HEAPID_FOOTPRINT, ALLOC_BOTTOM);
 		NNS_G2dGetUnpackedCharacterData(pSrc, &pChar);
 	}
 	
-	//ƒeƒNƒXƒ`ƒƒ—Ìˆæ‚ğ‘S‚ÄƒNƒŠƒA(‚ ‚ç‚©‚¶‚ß“ü‚Á‚Ä‚¢‚éƒ_ƒ~[‚Ì‘«Õƒf[ƒ^‚ğƒNƒŠƒA‚µ‚Ä‚¢‚é)
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸã‚’å…¨ã¦ã‚¯ãƒªã‚¢(ã‚ã‚‰ã‹ã˜ã‚å…¥ã£ã¦ã„ã‚‹ãƒ€ãƒŸãƒ¼ã®è¶³è·¡ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢ã—ã¦ã„ã‚‹)
 	MI_CpuClear16(pDest, FOOTMARK_TEXTURE_SIZE);
 
-	OS_TPrintf("ƒXƒ^ƒ“ƒv‚Ìmonsno = %d\n", param->monsno);
-	//2DƒOƒ‰ƒtƒBƒbƒN‚ğ•ÏŠ·‚µ‚È‚ª‚çƒeƒNƒXƒ`ƒƒ—Ìˆæ‚Éƒf[ƒ^‚ğ“ü‚ê‚é
+	OS_TPrintf("ã‚¹ã‚¿ãƒ³ãƒ—ã®monsno = %d\n", param->monsno);
+	//2Dã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’å¤‰æ›ã—ãªãŒã‚‰ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸã«ãƒ‡ãƒ¼ã‚¿ã‚’å…¥ã‚Œã‚‹
 	{
 		int x, y, i, s, w, dest_shift;
 		u8 *read_src, *read_data;
@@ -1022,7 +1022,7 @@ static void Stamp_TexRewrite(NNSG3dResTex *pTex, ARCHANDLE *hdl_main, ARCHANDLE 
 			switch(w){
 			case 0:
 				if(foot_disp == TRUE){
-					read_data = &read_src[0x20 * 4];	//128kƒ}ƒbƒsƒ“ƒO‚È‚Ì‚Å‹ó”’‚ª“ü‚Á‚Ä‚¢‚é
+					read_data = &read_src[0x20 * 4];	//128kãƒãƒƒãƒ”ãƒ³ã‚°ãªã®ã§ç©ºç™½ãŒå…¥ã£ã¦ã„ã‚‹
 				}
 				else{
 					read_data = &read_src[0x20 * 0];
@@ -1031,7 +1031,7 @@ static void Stamp_TexRewrite(NNSG3dResTex *pTex, ARCHANDLE *hdl_main, ARCHANDLE 
 				break;
 			case 1:
 				if(foot_disp == TRUE){
-					read_data = &read_src[0x20 * 5];	//128kƒ}ƒbƒsƒ“ƒO‚È‚Ì‚Å‹ó”’‚ª“ü‚Á‚Ä‚¢‚é
+					read_data = &read_src[0x20 * 5];	//128kãƒãƒƒãƒ”ãƒ³ã‚°ãªã®ã§ç©ºç™½ãŒå…¥ã£ã¦ã„ã‚‹
 				}
 				else{
 					read_data = &read_src[0x20 * 1];
@@ -1051,7 +1051,7 @@ static void Stamp_TexRewrite(NNSG3dResTex *pTex, ARCHANDLE *hdl_main, ARCHANDLE 
 				break;
 			case 3:
 				if(foot_disp == TRUE){
-					read_data = &read_src[0x20 * 1];	//128kƒ}ƒbƒsƒ“ƒO‚È‚Ì‚Å‹ó”’‚ª“ü‚Á‚Ä‚¢‚é
+					read_data = &read_src[0x20 * 1];	//128kãƒãƒƒãƒ”ãƒ³ã‚°ãªã®ã§ç©ºç™½ãŒå…¥ã£ã¦ã„ã‚‹
 				}
 				else{
 					read_data = &read_src[0x20 * 3];
@@ -1083,7 +1083,7 @@ static void Stamp_TexRewrite(NNSG3dResTex *pTex, ARCHANDLE *hdl_main, ARCHANDLE 
 		}
 	}
 
-	//‘«Õ‚ÌƒpƒŒƒbƒg•ÏX
+	//è¶³è·¡ã®ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
 	pPalDest = (u16*)((u8*)pTex + pTex->plttInfo.ofsPlttData);
 	pPalDest[1] = param->color;
 
@@ -1092,11 +1092,11 @@ static void Stamp_TexRewrite(NNSG3dResTex *pTex, ARCHANDLE *hdl_main, ARCHANDLE 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒNƒXƒ`ƒƒƒCƒ[ƒW‚ğˆê•”í‚é
+ * @brief   ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ä¸€éƒ¨å‰Šã‚‹
  *
- * @param   pTex			ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   hdl_mark		‘«ÕƒOƒ‰ƒtƒBƒbƒN‚ÌƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   param			ƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   pTex			ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   hdl_mark		è¶³è·¡ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   param			ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Stamp_TexDotErase(NNSG3dResTex *pTex, int move_type)
@@ -1104,7 +1104,7 @@ static void Stamp_TexDotErase(NNSG3dResTex *pTex, int move_type)
 	u16 *pDest;
 	int i;
 	
-	pDest = (u16*)((u8*)pTex + pTex->texInfo.ofsTex);	//ƒeƒNƒXƒ`ƒƒ—Ìˆæ
+	pDest = (u16*)((u8*)pTex + pTex->texInfo.ofsTex);	//ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸ
 	
 	switch(move_type){
 	case MOVE_TYPE_ZIGZAG:
@@ -1121,11 +1121,11 @@ static void Stamp_TexDotErase(NNSG3dResTex *pTex, int move_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒeƒNƒXƒ`ƒƒƒCƒ[ƒW‚ğƒhƒbƒg’PˆÊ‚Å‘€ì‚µAƒtƒŠƒbƒv‚·‚é
+ * @brief   ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’ãƒ‰ãƒƒãƒˆå˜ä½ã§æ“ä½œã—ã€ãƒ•ãƒªãƒƒãƒ—ã™ã‚‹
  *
- * @param   pTex			ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   hdl_mark		‘«ÕƒOƒ‰ƒtƒBƒbƒN‚ÌƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   param			ƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   pTex			ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   hdl_mark		è¶³è·¡ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   param			ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Stamp_TexDotFlip(NNSG3dResTex *pTex, int move_type)
@@ -1134,7 +1134,7 @@ static void Stamp_TexDotFlip(NNSG3dResTex *pTex, int move_type)
 	u32 *pSrc;
 	int x, y, dest_x, dest_y, data;
 	
-	pDest = (u32*)((u8*)pTex + pTex->texInfo.ofsTex);	//ƒeƒNƒXƒ`ƒƒ—Ìˆæ
+	pDest = (u32*)((u8*)pTex + pTex->texInfo.ofsTex);	//ãƒ†ã‚¯ã‚¹ãƒãƒ£é ˜åŸŸ
 	pSrc = sys_AllocMemory(HEAPID_FOOTPRINT, FOOTMARK_TEXTURE_SIZE);
 	MI_CpuCopy16(pDest, pSrc, FOOTMARK_TEXTURE_SIZE);
 	MI_CpuClear16(pDest, FOOTMARK_TEXTURE_SIZE);
@@ -1171,9 +1171,9 @@ static void Stamp_TexDotFlip(NNSG3dResTex *pTex, int move_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv‚ğ‰ğ•ú‚·‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ã‚’è§£æ”¾ã™ã‚‹
  *
- * @param   move		ƒXƒ^ƒ“ƒv“®ìƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Stamp_Free(STAMP_MOVE_PTR move)
@@ -1184,11 +1184,11 @@ static void Stamp_Free(STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv‚Ìíœ‚É•K—v‚Èˆ—‚ğ‚Ü‚Æ‚ß‚½‚à‚Ì
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ã®å‰Šé™¤ã«å¿…è¦ãªå‡¦ç†ã‚’ã¾ã¨ã‚ãŸã‚‚ã®
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   stamp_no	ƒXƒ^ƒ“ƒv”Ô†
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   stamp_no	ã‚¹ã‚¿ãƒ³ãƒ—ç•ªå·
  */
 //--------------------------------------------------------------
 static void Stamp_DeletePack(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move, int stamp_no)
@@ -1203,12 +1203,12 @@ static void Stamp_DeletePack(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move, int st
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒXƒ^ƒ“ƒv‚Ì2DÀ•W‚ğ3DÀ•W‚É•ÏŠ·‚·‚é
+ * @brief	ã‚¹ã‚¿ãƒ³ãƒ—ã®2Dåº§æ¨™ã‚’3Dåº§æ¨™ã«å¤‰æ›ã™ã‚‹
  *
- * @param	x			2DÀ•WX
- * @param	y			2DÀ•WY
- * @param	ret_x		X‚Ì•ÏŠ·À•W‘ã“üæ
- * @param	ret_y		Y‚Ì•ÏŠ·À•W‘ã“üæ
+ * @param	x			2Dåº§æ¨™X
+ * @param	y			2Dåº§æ¨™Y
+ * @param	ret_x		Xã®å¤‰æ›åº§æ¨™ä»£å…¥å…ˆ
+ * @param	ret_y		Yã®å¤‰æ›åº§æ¨™ä»£å…¥å…ˆ
  */
 //--------------------------------------------------------------
 static void Stamp_PosConvert(FOOTPRINT_SYS_PTR fps, int x, int y, fx32 *ret_x, fx32 *ret_y)
@@ -1233,7 +1233,7 @@ static void Stamp_PosConvert(FOOTPRINT_SYS_PTR fps, int x, int y, fx32 *ret_x, f
 	int tbl_no;
 	
 	tbl_no = x / STAMP_BASE_POS_OFFSET;
-	if(tbl_no >= NELEMS(StampPosBaseX)){	//ˆê‰
+	if(tbl_no >= NELEMS(StampPosBaseX)){	//ä¸€å¿œ
 		tbl_no = NELEMS(StampPosBaseX) - 1;
 	}
 	*ret_x = StampPosBaseX[tbl_no];
@@ -1243,7 +1243,7 @@ static void Stamp_PosConvert(FOOTPRINT_SYS_PTR fps, int x, int y, fx32 *ret_x, f
 	}
 
 	tbl_no = y / STAMP_BASE_POS_OFFSET;
-	if(tbl_no >= NELEMS(StampPosBaseY)){	//ˆê‰
+	if(tbl_no >= NELEMS(StampPosBaseY)){	//ä¸€å¿œ
 		tbl_no = NELEMS(StampPosBaseY) - 1;
 	}
 	*ret_y = StampPosBaseY[tbl_no];
@@ -1256,11 +1256,11 @@ static void Stamp_PosConvert(FOOTPRINT_SYS_PTR fps, int x, int y, fx32 *ret_x, f
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒŠƒSƒ“ID‚ğæ“¾‚·‚é
+ * @brief   ãƒãƒªã‚´ãƒ³IDã‚’å–å¾—ã™ã‚‹
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  ƒ|ƒŠƒSƒ“ID
+ * @retval  ãƒãƒªã‚´ãƒ³ID
  */
 //--------------------------------------------------------------
 static int Stamp_PolygonIDGet(STAMP_SYSTEM_WORK *ssw)
@@ -1281,16 +1281,16 @@ static int Stamp_PolygonIDGet(STAMP_SYSTEM_WORK *ssw)
 		}
 		k++;
 	}
-	OS_TPrintf("ƒ|ƒŠƒSƒ“ID‚ÌŠm•Û‚É¸”s\n");
+	OS_TPrintf("ãƒãƒªã‚´ãƒ³IDã®ç¢ºä¿ã«å¤±æ•—\n");
 	return STAMP_POLYGON_ID_ERROR;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒ|ƒŠƒSƒ“ID‚Ì‰ğ•ú‚ğs‚¤
+ * @brief   ãƒãƒªã‚´ãƒ³IDã®è§£æ”¾ã‚’è¡Œã†
  *
- * @param   ssw				ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   polygon_id		ƒ|ƒŠƒSƒ“ID
+ * @param   ssw				ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   polygon_id		ãƒãƒªã‚´ãƒ³ID
  */
 //--------------------------------------------------------------
 static void Stamp_PolygonIDFree(STAMP_SYSTEM_WORK *ssw, int polygon_id)
@@ -1309,11 +1309,11 @@ static void Stamp_PolygonIDFree(STAMP_SYSTEM_WORK *ssw, int polygon_id)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒqƒbƒg”ÍˆÍ‚ğì¬‚µ‚Ü‚·B
+ * @brief   ãƒ’ãƒƒãƒˆç¯„å›²ã‚’ä½œæˆã—ã¾ã™ã€‚
  *
- * @param   move			ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   rect			ƒqƒbƒg”ÍˆÍ‘ã“üæ
- * @param   affine_flag		TRUE:Šgk‚ğ‚µ‚Ä‚¢‚éBFALSE‚É‚·‚é‚ÆŠgk—¦‚ÌŒvZ‚ğÈ‚­ˆ×AŒy‚­‚È‚è‚Ü‚·
+ * @param   move			ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   rect			ãƒ’ãƒƒãƒˆç¯„å›²ä»£å…¥å…ˆ
+ * @param   affine_flag		TRUE:æ‹¡ç¸®ã‚’ã—ã¦ã„ã‚‹ã€‚FALSEã«ã™ã‚‹ã¨æ‹¡ç¸®ç‡ã®è¨ˆç®—ã‚’çœãç‚ºã€è»½ããªã‚Šã¾ã™
  */
 //--------------------------------------------------------------
 static void Stamp_HitRectCreate(D3DOBJ *obj, const STAMP_PARAM *param, STAMP_HIT_RECT *rect, int affine_flag)
@@ -1373,12 +1373,12 @@ static void Stamp_HitRectCreate(D3DOBJ *obj, const STAMP_PARAM *param, STAMP_HIT
 
 //--------------------------------------------------------------
 /**
- * @brief   ‹éŒ`“¯m‚Ì“–‚½‚è”»’èƒ`ƒFƒbƒN
+ * @brief   çŸ©å½¢åŒå£«ã®å½“ãŸã‚Šåˆ¤å®šãƒã‚§ãƒƒã‚¯
  *
- * @param   rect0		‹éŒ`‚P
- * @param   rect1		‹éŒ`‚Q
+ * @param   rect0		çŸ©å½¢ï¼‘
+ * @param   rect1		çŸ©å½¢ï¼’
  *
- * @retval  TRUE:ƒqƒbƒg—L‚èB@FALSE:ƒqƒbƒg–³‚µ
+ * @retval  TRUE:ãƒ’ãƒƒãƒˆæœ‰ã‚Šã€‚ã€€FALSE:ãƒ’ãƒƒãƒˆç„¡ã—
  */
 //--------------------------------------------------------------
 static BOOL Stamp_RectHitCheck(const STAMP_HIT_RECT *rect0, const STAMP_HIT_RECT *rect1)
@@ -1393,10 +1393,10 @@ static BOOL Stamp_RectHitCheck(const STAMP_HIT_RECT *rect0, const STAMP_HIT_RECT
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜A½ŠÇ—ƒ[ƒN”Ô†‚ğæ“¾‚·‚é
+ * @brief   é€£é–ç®¡ç†ãƒ¯ãƒ¼ã‚¯ç•ªå·ã‚’å–å¾—ã™ã‚‹
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Stamp_ChainWorkGet(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -1414,19 +1414,19 @@ static void Stamp_ChainWorkGet(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 		}
 		chain_work++;
 	}
-	GF_ASSERT(0);	//ƒ`ƒFƒCƒ“ƒ[ƒN‚ÌŠm•Û‚ªo—ˆ‚È‚©‚Á‚½
+	GF_ASSERT(0);	//ãƒã‚§ã‚¤ãƒ³ãƒ¯ãƒ¼ã‚¯ã®ç¢ºä¿ãŒå‡ºæ¥ãªã‹ã£ãŸ
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜A½ŠÇ—ƒ[ƒN‚ğQÆ‚µ‚Ä‚¢‚éƒXƒ^ƒ“ƒv‚ğ‘‚â‚·
+ * @brief   é€£é–ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã‚’å‚ç…§ã—ã¦ã„ã‚‹ã‚¹ã‚¿ãƒ³ãƒ—ã‚’å¢—ã‚„ã™
  *
- * @param   ssw					ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   chain_work_no		˜A½ƒ[ƒNŠÇ—”Ô†
- * @param   move_type			˜A½’†‚Ì“®ìƒ^ƒCƒv
+ * @param   ssw					ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   chain_work_no		é€£é–ãƒ¯ãƒ¼ã‚¯ç®¡ç†ç•ªå·
+ * @param   move_type			é€£é–ä¸­ã®å‹•ä½œã‚¿ã‚¤ãƒ—
  *
- * @retval  TRUE:ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg”­“®
- * @retval  FALSE:ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg‚Í”­“®‚µ‚Ä‚¢‚È‚¢
+ * @retval  TRUE:ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºå‹•
+ * @retval  FALSE:ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã¯ç™ºå‹•ã—ã¦ã„ãªã„
  */
 //--------------------------------------------------------------
 static int Stamp_ChainAdd(STAMP_SYSTEM_WORK *ssw, int chain_work_no, int move_type)
@@ -1437,7 +1437,7 @@ static int Stamp_ChainAdd(STAMP_SYSTEM_WORK *ssw, int chain_work_no, int move_ty
 	
 	ssw->chain_work[chain_work_no].chain++;
 	ssw->chain_work[chain_work_no].stamp_num++;
-	OS_TPrintf("%d˜A½! work_no = %d\n", ssw->chain_work[chain_work_no].chain, chain_work_no);
+	OS_TPrintf("%dé€£é–! work_no = %d\n", ssw->chain_work[chain_work_no].chain, chain_work_no);
 	
 	if(ssw->special_effect_type == 0 && ssw->special_effect_req == 0 
 			&& ssw->chain_work[chain_work_no].chain >= SpecialChainNum[ssw->player_max]){
@@ -1450,10 +1450,10 @@ static int Stamp_ChainAdd(STAMP_SYSTEM_WORK *ssw, int chain_work_no, int move_ty
 
 //--------------------------------------------------------------
 /**
- * @brief   ˜A½ŠÇ—ƒ[ƒN‚ğQÆ‚µ‚Ä‚¢‚éƒXƒ^ƒ“ƒv‚ğŒ¸‚ç‚·
+ * @brief   é€£é–ç®¡ç†ãƒ¯ãƒ¼ã‚¯ã‚’å‚ç…§ã—ã¦ã„ã‚‹ã‚¹ã‚¿ãƒ³ãƒ—ã‚’æ¸›ã‚‰ã™
  *
- * @param   ssw					ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   chain_work_no		˜A½ƒ[ƒNŠÇ—”Ô†
+ * @param   ssw					ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   chain_work_no		é€£é–ãƒ¯ãƒ¼ã‚¯ç®¡ç†ç•ªå·
  */
 //--------------------------------------------------------------
 static void Stamp_ChainSub(STAMP_SYSTEM_WORK *ssw, int chain_work_no)
@@ -1464,10 +1464,10 @@ static void Stamp_ChainSub(STAMP_SYSTEM_WORK *ssw, int chain_work_no)
 		return;
 	}
 	
-	//ƒXƒ^ƒ“ƒv‚ÍÁ‚¦‚Ä‚à˜A½‰ñ”‚Í‘±‚·‚é‚Ì‚ÅAQÆ‚µ‚Ä‚¢‚éƒXƒ^ƒ“ƒv”‚¾‚¯‚ğˆø‚­
+	//ã‚¹ã‚¿ãƒ³ãƒ—ã¯æ¶ˆãˆã¦ã‚‚é€£é–å›æ•°ã¯æŒç¶šã™ã‚‹ã®ã§ã€å‚ç…§ã—ã¦ã„ã‚‹ã‚¹ã‚¿ãƒ³ãƒ—æ•°ã ã‘ã‚’å¼•ã
 	temp = ssw->chain_work[chain_work_no].stamp_num;
 	temp--;
-	if(temp < 0){		//”O‚Ì‚½‚ß
+	if(temp < 0){		//å¿µã®ãŸã‚
 		GF_ASSERT(0);
 		temp = 0;
 	}
@@ -1476,9 +1476,9 @@ static void Stamp_ChainSub(STAMP_SYSTEM_WORK *ssw, int chain_work_no)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg‚Ìƒpƒ‰ƒ[ƒ^ƒZƒbƒg
+ * @brief   ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆ
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Special_EffectSet(STAMP_SYSTEM_WORK *ssw)
@@ -1491,23 +1491,23 @@ static void Special_EffectSet(STAMP_SYSTEM_WORK *ssw)
 
 //==============================================================================
 //
-//	“®ì
+//	å‹•ä½œ
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv“®ìƒ^ƒCƒv‚ğİ’è‚·‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œã‚¿ã‚¤ãƒ—ã‚’è¨­å®šã™ã‚‹
  *
- * @param   move			ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move_type		“®ìƒ^ƒCƒv
+ * @param   move			ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move_type		å‹•ä½œã‚¿ã‚¤ãƒ—
  *
- * @retval  TRUE:¬Œ÷B@FALSE:¸”s
+ * @retval  TRUE:æˆåŠŸã€‚ã€€FALSE:å¤±æ•—
  */
 //--------------------------------------------------------------
 static BOOL StampMoveTool_MoveTypeSet(STAMP_MOVE_PTR move, int move_type)
 {
 	if(move->move_type != 0 || move->next_move_type != 0 || move->initialize == 0){
-		return FALSE;	//Šù‚É‘¼‚ÌƒGƒtƒFƒNƒg“®ì‚ğ‚µ‚Ä‚¢‚é
+		return FALSE;	//æ—¢ã«ä»–ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œã‚’ã—ã¦ã„ã‚‹
 	}
 	move->next_move_type = move_type;
 	MI_CpuClear8(&move->erase_eff, sizeof(ERASE_EFF_WORK));
@@ -1516,9 +1516,9 @@ static BOOL StampMoveTool_MoveTypeSet(STAMP_MOVE_PTR move, int move_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^‚©‚ç“®ìƒ^ƒCƒv‚ğæ‚èo‚·
- * @param   param		ƒXƒ^ƒ“ƒvƒpƒ‰ƒ[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval  “®ìƒ^ƒCƒv
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‹ã‚‰å‹•ä½œã‚¿ã‚¤ãƒ—ã‚’å–ã‚Šå‡ºã™
+ * @param   param		ã‚¹ã‚¿ãƒ³ãƒ—ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval  å‹•ä½œã‚¿ã‚¤ãƒ—
  */
 //--------------------------------------------------------------
 static u8 StampMoveTool_MoveTypeGet(const STAMP_PARAM *param)
@@ -1531,12 +1531,12 @@ static u8 StampMoveTool_MoveTypeGet(const STAMP_PARAM *param)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv‰Šú“®ìFˆê’èŠÔŒo‚Á‚½‚çŠeƒGƒtƒFƒNƒg“®ì‚ÉˆÚs
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—åˆæœŸå‹•ä½œï¼šä¸€å®šæ™‚é–“çµŒã£ãŸã‚‰å„ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œã«ç§»è¡Œ
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ƒVƒXƒeƒ€‚Ö•Ô‚·•Ô–(RET_???)
+ * @retval	ã‚·ã‚¹ãƒ†ãƒ ã¸è¿”ã™è¿”äº‹(RET_???)
  */
 //--------------------------------------------------------------
 static STAMP_RET StampMove_FirstWait(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -1546,7 +1546,7 @@ static STAMP_RET StampMove_FirstWait(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move
 	init_move->wait++;
 	if(init_move->wait == 2){
 		Stamp_HitRectCreate(&move->obj, &move->param, &init_move->rect, FALSE);
-		D3DOBJ_SetDraw( &move->obj, TRUE );	//ƒeƒNƒXƒ`ƒƒ‚ªVBlank‚Å“]‘—‚³‚ê‚Ä‚©‚ç•`‰æON‚·‚é
+		D3DOBJ_SetDraw( &move->obj, TRUE );	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ãŒVBlankã§è»¢é€ã•ã‚Œã¦ã‹ã‚‰æç”»ONã™ã‚‹
 		move->initialize = TRUE;
 	}
 
@@ -1559,14 +1559,14 @@ static STAMP_RET StampMove_FirstWait(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒqƒbƒgƒ`ƒFƒbƒNFˆê’èŠÔŒo‚Á‚½‚çŠeƒGƒtƒFƒNƒg“®ì‚ÉˆÚs
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ï¼šä¸€å®šæ™‚é–“çµŒã£ãŸã‚‰å„ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå‹•ä½œã«ç§»è¡Œ
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   target		‚Ü‚¾ƒm[ƒ}ƒ‹ó‘Ô‚ÌƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   target		ã¾ã ãƒãƒ¼ãƒãƒ«çŠ¶æ…‹ã®ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚ ‚½‚è”»’è”­¶
- * @retval  FALSE:‚ ‚½‚è”»’è–³‚µ
+ * @retval  TRUE:ã‚ãŸã‚Šåˆ¤å®šç™ºç”Ÿ
+ * @retval  FALSE:ã‚ãŸã‚Šåˆ¤å®šç„¡ã—
  */
 //--------------------------------------------------------------
 static BOOL StampHitcheck_FirstWait(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STAMP_MOVE_PTR target)
@@ -1576,12 +1576,12 @@ static BOOL StampHitcheck_FirstWait(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv“®ìF3”{’ö“x‚ÉŠg‘å‚µ‚È‚ª‚ç”wŒi‚É™X‚É“§‰ß‚³‚êÁ‚¦‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œï¼š3å€ç¨‹åº¦ã«æ‹¡å¤§ã—ãªãŒã‚‰èƒŒæ™¯ã«å¾ã€…ã«é€éã•ã‚Œæ¶ˆãˆã‚‹
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ƒVƒXƒeƒ€‚Ö•Ô‚·•Ô–(RET_???)
+ * @retval	ã‚·ã‚¹ãƒ†ãƒ ã¸è¿”ã™è¿”äº‹(RET_???)
  */
 //--------------------------------------------------------------
 static STAMP_RET StampMove_Nijimi(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -1616,10 +1616,10 @@ static STAMP_RET StampMove_Nijimi(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv•`‰æ‘Oˆ—F3”{’ö“x‚ÉŠg‘å‚µ‚È‚ª‚ç”wŒi‚É™X‚É“§‰ß‚³‚êÁ‚¦‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—æç”»å‰å‡¦ç†ï¼š3å€ç¨‹åº¦ã«æ‹¡å¤§ã—ãªãŒã‚‰èƒŒæ™¯ã«å¾ã€…ã«é€éã•ã‚Œæ¶ˆãˆã‚‹
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void StampDraw_Nijimi(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -1636,14 +1636,14 @@ static void StampDraw_Nijimi(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒqƒbƒgƒ`ƒFƒbƒNF3”{’ö“x‚ÉŠg‘å‚µ‚È‚ª‚ç”wŒi‚É™X‚É“§‰ß‚³‚êÁ‚¦‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ï¼š3å€ç¨‹åº¦ã«æ‹¡å¤§ã—ãªãŒã‚‰èƒŒæ™¯ã«å¾ã€…ã«é€éã•ã‚Œæ¶ˆãˆã‚‹
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   target		‚Ü‚¾ƒm[ƒ}ƒ‹ó‘Ô‚ÌƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   target		ã¾ã ãƒãƒ¼ãƒãƒ«çŠ¶æ…‹ã®ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚ ‚½‚è”»’è”­¶
- * @retval  FALSE:‚ ‚½‚è”»’è–³‚µ
+ * @retval  TRUE:ã‚ãŸã‚Šåˆ¤å®šç™ºç”Ÿ
+ * @retval  FALSE:ã‚ãŸã‚Šåˆ¤å®šç„¡ã—
  */
 //--------------------------------------------------------------
 static BOOL StampHitcheck_Nijimi(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STAMP_MOVE_PTR target)
@@ -1659,13 +1659,13 @@ static BOOL StampHitcheck_Nijimi(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STA
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv“®ìF‘«Õ‚ª4•ªŠ„‚µA4‚Â‚ÌƒIƒuƒWƒFƒNƒg‚É‚È‚Äl•û‚É”ò‚ÑU‚Á‚ÄÁ‚¦‚é
- * 						ƒIƒuƒWƒFƒNƒg‚ÌˆÚ“®”ÍˆÍ‚ÍA‰Ÿ‚µ‚½“_‚©‚ç32ƒOƒŠƒbƒh’ö“x
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œï¼šè¶³è·¡ãŒ4åˆ†å‰²ã—ã€4ã¤ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ãªã¦å››æ–¹ã«é£›ã³æ•£ã£ã¦æ¶ˆãˆã‚‹
+ * 						ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç§»å‹•ç¯„å›²ã¯ã€æŠ¼ã—ãŸç‚¹ã‹ã‚‰32ã‚°ãƒªãƒƒãƒ‰ç¨‹åº¦
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ƒVƒXƒeƒ€‚Ö•Ô‚·•Ô–(RET_???)
+ * @retval	ã‚·ã‚¹ãƒ†ãƒ ã¸è¿”ã™è¿”äº‹(RET_???)
  */
 //--------------------------------------------------------------
 static STAMP_RET StampMove_Hajike(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -1684,16 +1684,16 @@ static STAMP_RET StampMove_Hajike(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 		hajike->seq++;
 		//break;
 	case 1:
-		//–{‘Ì‚Í¶ã
+		//æœ¬ä½“ã¯å·¦ä¸Š
 		D3DOBJ_GetMatrix(&move->obj, &fx_x, &fx_y, &fx_z);
 		D3DOBJ_SetMatrix(&move->obj, fx_x - HAJIKE_ADD_X, fx_y - HAJIKE_ADD_Y, fx_z);
-		//‰Eã
+		//å³ä¸Š
 		D3DOBJ_GetMatrix(&hajike->child_obj[0], &fx_x, &fx_y, &fx_z);
 		D3DOBJ_SetMatrix(&hajike->child_obj[0], fx_x + HAJIKE_ADD_X, fx_y - HAJIKE_ADD_Y, fx_z);
-		//¶‰º
+		//å·¦ä¸‹
 		D3DOBJ_GetMatrix(&hajike->child_obj[1], &fx_x, &fx_y, &fx_z);
 		D3DOBJ_SetMatrix(&hajike->child_obj[1], fx_x - HAJIKE_ADD_X, fx_y + HAJIKE_ADD_Y, fx_z);
-		//‰E‰º
+		//å³ä¸‹
 		D3DOBJ_GetMatrix(&hajike->child_obj[2], &fx_x, &fx_y, &fx_z);
 		D3DOBJ_SetMatrix(&hajike->child_obj[2], fx_x + HAJIKE_ADD_X, fx_y + HAJIKE_ADD_Y, fx_z);
 		
@@ -1712,11 +1712,11 @@ static STAMP_RET StampMove_Hajike(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv•`‰æ‘Oˆ—F‘«Õ‚ª4•ªŠ„‚µA4‚Â‚ÌƒIƒuƒWƒFƒNƒg‚É‚È‚Äl•û‚É”ò‚ÑU‚Á‚ÄÁ‚¦‚é
- * 						ƒIƒuƒWƒFƒNƒg‚ÌˆÚ“®”ÍˆÍ‚ÍA‰Ÿ‚µ‚½“_‚©‚ç32ƒOƒŠƒbƒh’ö“x
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—æç”»å‰å‡¦ç†ï¼šè¶³è·¡ãŒ4åˆ†å‰²ã—ã€4ã¤ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ãªã¦å››æ–¹ã«é£›ã³æ•£ã£ã¦æ¶ˆãˆã‚‹
+ * 						ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç§»å‹•ç¯„å›²ã¯ã€æŠ¼ã—ãŸç‚¹ã‹ã‚‰32ã‚°ãƒªãƒƒãƒ‰ç¨‹åº¦
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void StampDraw_Hajike(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -1732,15 +1732,15 @@ static void StampDraw_Hajike(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒqƒbƒgƒ`ƒFƒbƒNF‘«Õ‚ª4•ªŠ„‚µA4‚Â‚ÌƒIƒuƒWƒFƒNƒg‚É‚È‚Äl•û‚É”ò‚ÑU‚Á‚ÄÁ‚¦‚é
- * 						ƒIƒuƒWƒFƒNƒg‚ÌˆÚ“®”ÍˆÍ‚ÍA‰Ÿ‚µ‚½“_‚©‚ç32ƒOƒŠƒbƒh’ö“x
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ï¼šè¶³è·¡ãŒ4åˆ†å‰²ã—ã€4ã¤ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ãªã¦å››æ–¹ã«é£›ã³æ•£ã£ã¦æ¶ˆãˆã‚‹
+ * 						ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç§»å‹•ç¯„å›²ã¯ã€æŠ¼ã—ãŸç‚¹ã‹ã‚‰32ã‚°ãƒªãƒƒãƒ‰ç¨‹åº¦
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   target		‚Ü‚¾ƒm[ƒ}ƒ‹ó‘Ô‚ÌƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   target		ã¾ã ãƒãƒ¼ãƒãƒ«çŠ¶æ…‹ã®ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚ ‚½‚è”»’è”­¶
- * @retval  FALSE:‚ ‚½‚è”»’è–³‚µ
+ * @retval  TRUE:ã‚ãŸã‚Šåˆ¤å®šç™ºç”Ÿ
+ * @retval  FALSE:ã‚ãŸã‚Šåˆ¤å®šç„¡ã—
  */
 //--------------------------------------------------------------
 static BOOL StampHitcheck_Hajike(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STAMP_MOVE_PTR target)
@@ -1759,13 +1759,13 @@ static BOOL StampHitcheck_Hajike(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STA
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv“®ìFƒ^ƒbƒ`‚µ‚½“_‚©‚ç…•½-90“x‰ñ“]‚µA
- *						‚’¼‰E•ûŒü‚ÉÖsˆÚ“®‚µAƒtƒŒ[ƒ€ƒAƒEƒg‚·‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‹ã‚‰æ°´å¹³-90åº¦å›è»¢ã—ã€
+ *						å‚ç›´å³æ–¹å‘ã«è›‡è¡Œç§»å‹•ã—ã€ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆã™ã‚‹
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ƒVƒXƒeƒ€‚Ö•Ô‚·•Ô–(RET_???)
+ * @retval	ã‚·ã‚¹ãƒ†ãƒ ã¸è¿”ã™è¿”äº‹(RET_???)
  */
 //--------------------------------------------------------------
 static STAMP_RET StampMove_Zigzag(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -1811,7 +1811,7 @@ static STAMP_RET StampMove_Zigzag(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 		D3DOBJ_GetMatrix(&move->obj, &fx_x, &fx_y, &fx_z);
 		if(fx_x < StampFrameOutRect.left || fx_x > StampFrameOutRect.right
 				|| fx_y > StampFrameOutRect.top || fx_y < StampFrameOutRect.bottom){
-			//OS_TPrintf("ƒWƒOƒUƒOFƒtƒŒ[ƒ€ƒAƒEƒg x=%d, y=%d\n", fx_x, fx_y);
+			//OS_TPrintf("ã‚¸ã‚°ã‚¶ã‚°ï¼šãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ x=%d, y=%d\n", fx_x, fx_y);
 			return RET_DELETE;
 		}
 		
@@ -1834,15 +1834,15 @@ static STAMP_RET StampMove_Zigzag(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒqƒbƒgƒ`ƒFƒbƒNFƒ^ƒbƒ`‚µ‚½“_‚©‚ç…•½-90“x‰ñ“]‚µA
- *						‚’¼‰E•ûŒü‚ÉÖsˆÚ“®‚µAƒtƒŒ[ƒ€ƒAƒEƒg‚·‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‹ã‚‰æ°´å¹³-90åº¦å›è»¢ã—ã€
+ *						å‚ç›´å³æ–¹å‘ã«è›‡è¡Œç§»å‹•ã—ã€ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆã™ã‚‹
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   target		‚Ü‚¾ƒm[ƒ}ƒ‹ó‘Ô‚ÌƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   target		ã¾ã ãƒãƒ¼ãƒãƒ«çŠ¶æ…‹ã®ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚ ‚½‚è”»’è”­¶
- * @retval  FALSE:‚ ‚½‚è”»’è–³‚µ
+ * @retval  TRUE:ã‚ãŸã‚Šåˆ¤å®šç™ºç”Ÿ
+ * @retval  FALSE:ã‚ãŸã‚Šåˆ¤å®šç„¡ã—
  */
 //--------------------------------------------------------------
 static BOOL StampHitcheck_Zigzag(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STAMP_MOVE_PTR target)
@@ -1858,13 +1858,13 @@ static BOOL StampHitcheck_Zigzag(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STA
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv“®ìFƒ^ƒbƒ`‚µ‚½“_‚©‚ç…•½90“x‰ñ“]‚µA
- * 						‚’¼¶•ûŒü‚ÉÖsˆÚ“®‚µAƒtƒŒ[ƒ€ƒAƒEƒg‚·‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‹ã‚‰æ°´å¹³90åº¦å›è»¢ã—ã€
+ * 						å‚ç›´å·¦æ–¹å‘ã«è›‡è¡Œç§»å‹•ã—ã€ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆã™ã‚‹
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ƒVƒXƒeƒ€‚Ö•Ô‚·•Ô–(RET_???)
+ * @retval	ã‚·ã‚¹ãƒ†ãƒ ã¸è¿”ã™è¿”äº‹(RET_???)
  */
 //--------------------------------------------------------------
 static STAMP_RET StampMove_Dakou(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -1911,7 +1911,7 @@ static STAMP_RET StampMove_Dakou(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 		D3DOBJ_GetMatrix(&move->obj, &fx_x, &fx_y, &fx_z);
 		if(fx_x < StampFrameOutRect.left || fx_x > StampFrameOutRect.right
 				|| fx_y > StampFrameOutRect.top || fx_y < StampFrameOutRect.bottom){
-			//OS_TPrintf("ÖsFƒtƒŒ[ƒ€ƒAƒEƒg x=%d, y=%d\n", fx_x, fx_y);
+			//OS_TPrintf("è›‡è¡Œï¼šãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ x=%d, y=%d\n", fx_x, fx_y);
 			return RET_DELETE;
 		}
 		
@@ -1930,15 +1930,15 @@ static STAMP_RET StampMove_Dakou(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒqƒbƒgƒ`ƒFƒbƒNFƒ^ƒbƒ`‚µ‚½“_‚©‚ç…•½90“x‰ñ“]‚µA
- * 						‚’¼¶•ûŒü‚ÉÖsˆÚ“®‚µAƒtƒŒ[ƒ€ƒAƒEƒg‚·‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‹ã‚‰æ°´å¹³90åº¦å›è»¢ã—ã€
+ * 						å‚ç›´å·¦æ–¹å‘ã«è›‡è¡Œç§»å‹•ã—ã€ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆã™ã‚‹
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   target		‚Ü‚¾ƒm[ƒ}ƒ‹ó‘Ô‚ÌƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   target		ã¾ã ãƒãƒ¼ãƒãƒ«çŠ¶æ…‹ã®ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚ ‚½‚è”»’è”­¶
- * @retval  FALSE:‚ ‚½‚è”»’è–³‚µ
+ * @retval  TRUE:ã‚ãŸã‚Šåˆ¤å®šç™ºç”Ÿ
+ * @retval  FALSE:ã‚ãŸã‚Šåˆ¤å®šç„¡ã—
  */
 //--------------------------------------------------------------
 static BOOL StampHitcheck_Dakou(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STAMP_MOVE_PTR target)
@@ -1954,13 +1954,13 @@ static BOOL StampHitcheck_Dakou(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STAM
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv“®ìFƒ^ƒbƒ`‚µ‚½“_‚©‚çA‚’¼ã•ûŒü‚É‹OÕ‚ğc‚µ‚È‚ª‚çˆÚ“®AƒtƒŒ[ƒ€ƒAƒEƒg‚·‚é
- * 						ˆÚ“®’†A‘¼‚ÌƒIƒuƒWƒFƒNƒg‚ÆÚG‚·‚é‚Æ‚»‚±‚Å‘«Õ(+‹OÕ)‚ÍÁ‚¦‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‹ã‚‰ã€å‚ç›´ä¸Šæ–¹å‘ã«è»Œè·¡ã‚’æ®‹ã—ãªãŒã‚‰ç§»å‹•ã€ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆã™ã‚‹
+ * 						ç§»å‹•ä¸­ã€ä»–ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨æ¥è§¦ã™ã‚‹ã¨ãã“ã§è¶³è·¡(+è»Œè·¡)ã¯æ¶ˆãˆã‚‹
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ƒVƒXƒeƒ€‚Ö•Ô‚·•Ô–(RET_???)
+ * @retval	ã‚·ã‚¹ãƒ†ãƒ ã¸è¿”ã™è¿”äº‹(RET_???)
  */
 //--------------------------------------------------------------
 static STAMP_RET StampMove_Kiseki(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -1986,7 +1986,7 @@ static STAMP_RET StampMove_Kiseki(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 		if(fx_x < StampFrameOutRect.left || fx_x > StampFrameOutRect.right
 				|| fx_y > StampFrameOutRect.top || fx_y < StampFrameOutRect.bottom
 				|| kiseki->obj_hit == TRUE){
-			//OS_TPrintf("‹OÕFƒtƒŒ[ƒ€ƒAƒEƒg x=%d, y=%d\n", fx_x, fx_y);
+			//OS_TPrintf("è»Œè·¡ï¼šãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ x=%d, y=%d\n", fx_x, fx_y);
 			for(i = 0; i < KISEKI_OBJ_CHILD_NUM; i++){
 				D3DOBJ_SetDraw( &kiseki->child_obj[i], FALSE );
 			}
@@ -2018,12 +2018,12 @@ static STAMP_RET StampMove_Kiseki(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv•`‰æ‘Oˆ—Fƒ^ƒbƒ`‚µ‚½“_‚©‚çA‚’¼ã•ûŒü‚É‹OÕ‚ğc‚µ‚È‚ª‚çˆÚ“®A
- * 						ƒtƒŒ[ƒ€ƒAƒEƒg‚·‚éˆÚ“®’†A‘¼‚ÌƒIƒuƒWƒFƒNƒg‚ÆÚG‚·‚é‚Æ
- *						‚»‚±‚Å‘«Õ(+‹OÕ)‚ÍÁ‚¦‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—æç”»å‰å‡¦ç†ï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‹ã‚‰ã€å‚ç›´ä¸Šæ–¹å‘ã«è»Œè·¡ã‚’æ®‹ã—ãªãŒã‚‰ç§»å‹•ã€
+ * 						ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆã™ã‚‹ç§»å‹•ä¸­ã€ä»–ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨æ¥è§¦ã™ã‚‹ã¨
+ *						ãã“ã§è¶³è·¡(+è»Œè·¡)ã¯æ¶ˆãˆã‚‹
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void StampDraw_Kiseki(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -2031,7 +2031,7 @@ static void StampDraw_Kiseki(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 	ERASE_EFF_KISEKI *kiseki = &move->erase_eff.kiseki;
 	int i;
 	
-	//q
+	//å­
 	if(kiseki->polygon_id != STAMP_POLYGON_ID_ERROR){
 		NNS_G3dGlbPolygonAttr(0, 0, 0, kiseki->polygon_id, KISEKI_ALPHA, 0);
 		NNS_G3dMdlUseGlbPolygonID(move->mdl.pModel);
@@ -2041,7 +2041,7 @@ static void StampDraw_Kiseki(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 		D3DOBJ_Draw(&kiseki->child_obj[i]);
 	}
 	
-	//e	”¼“§–¾‚Ì”Z“x‚ğŒ³‚É–ß‚µ‚Ä‚©‚ç•`‰æ
+	//è¦ª	åŠé€æ˜ã®æ¿ƒåº¦ã‚’å…ƒã«æˆ»ã—ã¦ã‹ã‚‰æç”»
 	if(kiseki->polygon_id != STAMP_POLYGON_ID_ERROR){
 		NNS_G3dGlbPolygonAttr(0, 0, 0, kiseki->polygon_id, 31, 0);
 		NNS_G3dMdlUseGlbPolygonID(move->mdl.pModel);
@@ -2052,16 +2052,16 @@ static void StampDraw_Kiseki(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒqƒbƒgƒ`ƒFƒbƒNFƒ^ƒbƒ`‚µ‚½“_‚©‚çA‚’¼ã•ûŒü‚É‹OÕ‚ğc‚µ‚È‚ª‚çˆÚ“®A
- * 						ƒtƒŒ[ƒ€ƒAƒEƒg‚·‚éˆÚ“®’†A‘¼‚ÌƒIƒuƒWƒFƒNƒg‚ÆÚG‚·‚é‚Æ
- *						‚»‚±‚Å‘«Õ(+‹OÕ)‚ÍÁ‚¦‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‹ã‚‰ã€å‚ç›´ä¸Šæ–¹å‘ã«è»Œè·¡ã‚’æ®‹ã—ãªãŒã‚‰ç§»å‹•ã€
+ * 						ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆã™ã‚‹ç§»å‹•ä¸­ã€ä»–ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨æ¥è§¦ã™ã‚‹ã¨
+ *						ãã“ã§è¶³è·¡(+è»Œè·¡)ã¯æ¶ˆãˆã‚‹
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   target		‚Ü‚¾ƒm[ƒ}ƒ‹ó‘Ô‚ÌƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   target		ã¾ã ãƒãƒ¼ãƒãƒ«çŠ¶æ…‹ã®ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚ ‚½‚è”»’è”­¶
- * @retval  FALSE:‚ ‚½‚è”»’è–³‚µ
+ * @retval  TRUE:ã‚ãŸã‚Šåˆ¤å®šç™ºç”Ÿ
+ * @retval  FALSE:ã‚ãŸã‚Šåˆ¤å®šç„¡ã—
  */
 //--------------------------------------------------------------
 static BOOL StampHitcheck_Kiseki(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STAMP_MOVE_PTR target)
@@ -2077,13 +2077,13 @@ static BOOL StampHitcheck_Kiseki(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STA
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv“®ìFƒ^ƒbƒ`‚µ‚½“_‚©‚ç‚’¼‰º•ûŒü‚É‘«Õ‚ªA
- * 						¶‰E‚ÉU‚ê‚È‚ª‚çˆÚ“®‚µƒtƒŒ[ƒ€ƒAƒEƒg‚·‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‹ã‚‰å‚ç›´ä¸‹æ–¹å‘ã«è¶³è·¡ãŒã€
+ * 						å·¦å³ã«æŒ¯ã‚ŒãªãŒã‚‰ç§»å‹•ã—ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆã™ã‚‹
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ƒVƒXƒeƒ€‚Ö•Ô‚·•Ô–(RET_???)
+ * @retval	ã‚·ã‚¹ãƒ†ãƒ ã¸è¿”ã™è¿”äº‹(RET_???)
  */
 //--------------------------------------------------------------
 static STAMP_RET StampMove_Yure(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -2103,7 +2103,7 @@ static STAMP_RET StampMove_Yure(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 		D3DOBJ_GetMatrix(&move->obj, &fx_x, &fx_y, &fx_z);
 		if(fx_x < StampFrameOutRect.left || fx_x > StampFrameOutRect.right
 				|| fx_y > StampFrameOutRect.top || fx_y < StampFrameOutRect.bottom){
-			//OS_TPrintf("—h‚êFƒtƒŒ[ƒ€ƒAƒEƒg x=%d, y=%d\n", fx_x, fx_y);
+			//OS_TPrintf("æºã‚Œï¼šãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆ x=%d, y=%d\n", fx_x, fx_y);
 			return RET_DELETE;
 		}
 		
@@ -2122,15 +2122,15 @@ static STAMP_RET StampMove_Yure(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒqƒbƒgƒ`ƒFƒbƒNFƒ^ƒbƒ`‚µ‚½“_‚©‚ç‚’¼‰º•ûŒü‚É‘«Õ‚ªA
- * 						¶‰E‚ÉU‚ê‚È‚ª‚çˆÚ“®‚µƒtƒŒ[ƒ€ƒAƒEƒg‚·‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‹ã‚‰å‚ç›´ä¸‹æ–¹å‘ã«è¶³è·¡ãŒã€
+ * 						å·¦å³ã«æŒ¯ã‚ŒãªãŒã‚‰ç§»å‹•ã—ãƒ•ãƒ¬ãƒ¼ãƒ ã‚¢ã‚¦ãƒˆã™ã‚‹
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   target		‚Ü‚¾ƒm[ƒ}ƒ‹ó‘Ô‚ÌƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   target		ã¾ã ãƒãƒ¼ãƒãƒ«çŠ¶æ…‹ã®ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚ ‚½‚è”»’è”­¶
- * @retval  FALSE:‚ ‚½‚è”»’è–³‚µ
+ * @retval  TRUE:ã‚ãŸã‚Šåˆ¤å®šç™ºç”Ÿ
+ * @retval  FALSE:ã‚ãŸã‚Šåˆ¤å®šç„¡ã—
  */
 //--------------------------------------------------------------
 static BOOL StampHitcheck_Yure(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STAMP_MOVE_PTR target)
@@ -2146,12 +2146,12 @@ static BOOL StampHitcheck_Yure(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STAMP
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv“®ìFˆê‹C‚É4”{’ö“x(64x64)‚Ü‚ÅŠg‘å‚µ‚Ä‚©‚çˆêu‚ÅÁ‚¦‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œï¼šä¸€æ°—ã«4å€ç¨‹åº¦(64x64)ã¾ã§æ‹¡å¤§ã—ã¦ã‹ã‚‰ä¸€ç¬ã§æ¶ˆãˆã‚‹
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ƒVƒXƒeƒ€‚Ö•Ô‚·•Ô–(RET_???)
+ * @retval	ã‚·ã‚¹ãƒ†ãƒ ã¸è¿”ã™è¿”äº‹(RET_???)
  */
 //--------------------------------------------------------------
 static STAMP_RET StampMove_Kakudai(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -2179,14 +2179,14 @@ static STAMP_RET StampMove_Kakudai(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒqƒbƒgƒ`ƒFƒbƒNFˆê‹C‚É4”{’ö“x(64x64)‚Ü‚ÅŠg‘å‚µ‚Ä‚©‚çˆêu‚ÅÁ‚¦‚é
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ï¼šä¸€æ°—ã«4å€ç¨‹åº¦(64x64)ã¾ã§æ‹¡å¤§ã—ã¦ã‹ã‚‰ä¸€ç¬ã§æ¶ˆãˆã‚‹
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   target		‚Ü‚¾ƒm[ƒ}ƒ‹ó‘Ô‚ÌƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   target		ã¾ã ãƒãƒ¼ãƒãƒ«çŠ¶æ…‹ã®ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚ ‚½‚è”»’è”­¶
- * @retval  FALSE:‚ ‚½‚è”»’è–³‚µ
+ * @retval  TRUE:ã‚ãŸã‚Šåˆ¤å®šç™ºç”Ÿ
+ * @retval  FALSE:ã‚ãŸã‚Šåˆ¤å®šç„¡ã—
  */
 //--------------------------------------------------------------
 static BOOL StampHitcheck_Kakudai(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move,STAMP_MOVE_PTR target)
@@ -2202,12 +2202,12 @@ static BOOL StampHitcheck_Kakudai(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move,STA
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv“®ìFƒ^ƒbƒ`‚µ‚½“_‚ğ’†S‚É‰¡²‚Éƒuƒ‰[‚µ‚È‚ª‚ç™X‚ÉÁ‚¦‚éB”ÍˆÍ‚Í3”{’ö“x
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‚’ä¸­å¿ƒã«æ¨ªè»¸ã«ãƒ–ãƒ©ãƒ¼ã—ãªãŒã‚‰å¾ã€…ã«æ¶ˆãˆã‚‹ã€‚ç¯„å›²ã¯3å€ç¨‹åº¦
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ƒVƒXƒeƒ€‚Ö•Ô‚·•Ô–(RET_???)
+ * @retval	ã‚·ã‚¹ãƒ†ãƒ ã¸è¿”ã™è¿”äº‹(RET_???)
  */
 //--------------------------------------------------------------
 static STAMP_RET StampMove_BrarX(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -2274,10 +2274,10 @@ static STAMP_RET StampMove_BrarX(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv•`‰æ‘Oˆ—Fƒ^ƒbƒ`‚µ‚½“_‚ğ’†S‚É‰¡²‚Éƒuƒ‰[‚µ‚È‚ª‚ç™X‚ÉÁ‚¦‚éB”ÍˆÍ‚Í3”{’ö“x
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—æç”»å‰å‡¦ç†ï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‚’ä¸­å¿ƒã«æ¨ªè»¸ã«ãƒ–ãƒ©ãƒ¼ã—ãªãŒã‚‰å¾ã€…ã«æ¶ˆãˆã‚‹ã€‚ç¯„å›²ã¯3å€ç¨‹åº¦
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void StampDraw_BrarX(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -2299,15 +2299,15 @@ static void StampDraw_BrarX(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒqƒbƒgƒ`ƒFƒbƒNFƒ^ƒbƒ`‚µ‚½“_‚ğ’†S‚É‰¡²‚Éƒuƒ‰[‚µ‚È‚ª‚ç™X‚ÉÁ‚¦‚éB
- *									”ÍˆÍ‚Í3”{’ö“x
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‚’ä¸­å¿ƒã«æ¨ªè»¸ã«ãƒ–ãƒ©ãƒ¼ã—ãªãŒã‚‰å¾ã€…ã«æ¶ˆãˆã‚‹ã€‚
+ *									ç¯„å›²ã¯3å€ç¨‹åº¦
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   target		‚Ü‚¾ƒm[ƒ}ƒ‹ó‘Ô‚ÌƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   target		ã¾ã ãƒãƒ¼ãƒãƒ«çŠ¶æ…‹ã®ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚ ‚½‚è”»’è”­¶
- * @retval  FALSE:‚ ‚½‚è”»’è–³‚µ
+ * @retval  TRUE:ã‚ãŸã‚Šåˆ¤å®šç™ºç”Ÿ
+ * @retval  FALSE:ã‚ãŸã‚Šåˆ¤å®šç„¡ã—
  */
 //--------------------------------------------------------------
 static BOOL StampHitcheck_BrarX(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STAMP_MOVE_PTR target)
@@ -2326,12 +2326,12 @@ static BOOL StampHitcheck_BrarX(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STAM
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv“®ìFƒ^ƒbƒ`‚µ‚½“_‚ğ’†S‚Éc²‚Éƒuƒ‰[‚µ‚È‚ª‚ç™X‚ÉÁ‚¦‚éB”ÍˆÍ‚Í3”{’ö“x
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‚’ä¸­å¿ƒã«ç¸¦è»¸ã«ãƒ–ãƒ©ãƒ¼ã—ãªãŒã‚‰å¾ã€…ã«æ¶ˆãˆã‚‹ã€‚ç¯„å›²ã¯3å€ç¨‹åº¦
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ƒVƒXƒeƒ€‚Ö•Ô‚·•Ô–(RET_???)
+ * @retval	ã‚·ã‚¹ãƒ†ãƒ ã¸è¿”ã™è¿”äº‹(RET_???)
  */
 //--------------------------------------------------------------
 static STAMP_RET StampMove_BrarY(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -2398,10 +2398,10 @@ static STAMP_RET StampMove_BrarY(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv•`‰æ‘Oˆ—Fƒ^ƒbƒ`‚µ‚½“_‚ğ’†S‚Éc²‚Éƒuƒ‰[‚µ‚È‚ª‚ç™X‚ÉÁ‚¦‚éB”ÍˆÍ‚Í3”{’ö“x
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—æç”»å‰å‡¦ç†ï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‚’ä¸­å¿ƒã«ç¸¦è»¸ã«ãƒ–ãƒ©ãƒ¼ã—ãªãŒã‚‰å¾ã€…ã«æ¶ˆãˆã‚‹ã€‚ç¯„å›²ã¯3å€ç¨‹åº¦
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void StampDraw_BrarY(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -2423,15 +2423,15 @@ static void StampDraw_BrarY(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒqƒbƒgƒ`ƒFƒbƒNFƒ^ƒbƒ`‚µ‚½“_‚ğ’†S‚Éc²‚Éƒuƒ‰[‚µ‚È‚ª‚ç™X‚ÉÁ‚¦‚éB
- *									”ÍˆÍ‚Í3”{’ö“x
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‚’ä¸­å¿ƒã«ç¸¦è»¸ã«ãƒ–ãƒ©ãƒ¼ã—ãªãŒã‚‰å¾ã€…ã«æ¶ˆãˆã‚‹ã€‚
+ *									ç¯„å›²ã¯3å€ç¨‹åº¦
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   target		‚Ü‚¾ƒm[ƒ}ƒ‹ó‘Ô‚ÌƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   target		ã¾ã ãƒãƒ¼ãƒãƒ«çŠ¶æ…‹ã®ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚ ‚½‚è”»’è”­¶
- * @retval  FALSE:‚ ‚½‚è”»’è–³‚µ
+ * @retval  TRUE:ã‚ãŸã‚Šåˆ¤å®šç™ºç”Ÿ
+ * @retval  FALSE:ã‚ãŸã‚Šåˆ¤å®šç„¡ã—
  */
 //--------------------------------------------------------------
 static BOOL StampHitcheck_BrarY(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STAMP_MOVE_PTR target)
@@ -2450,13 +2450,13 @@ static BOOL StampHitcheck_BrarY(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move, STAM
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒv“®ìFƒ^ƒbƒ`‚µ‚½“_‚©‚ç‰º•ûŒü‚É64dot’ö“xŠg‘å‚µ‚ÄÁ‚¦‚éB
- * 							ƒyƒ“ƒL‚ª‚½‚ê‚é‚æ‚¤‚ÈƒCƒ[ƒW
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—å‹•ä½œï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‹ã‚‰ä¸‹æ–¹å‘ã«64dotç¨‹åº¦æ‹¡å¤§ã—ã¦æ¶ˆãˆã‚‹ã€‚
+ * 							ãƒšãƒ³ã‚­ãŒãŸã‚Œã‚‹ã‚ˆã†ãªã‚¤ãƒ¡ãƒ¼ã‚¸
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	ƒVƒXƒeƒ€‚Ö•Ô‚·•Ô–(RET_???)
+ * @retval	ã‚·ã‚¹ãƒ†ãƒ ã¸è¿”ã™è¿”äº‹(RET_???)
  */
 //--------------------------------------------------------------
 static STAMP_RET StampMove_Tare(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
@@ -2491,15 +2491,15 @@ static STAMP_RET StampMove_Tare(STAMP_SYSTEM_WORK *ssw, STAMP_MOVE_PTR move)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒ^ƒ“ƒvƒqƒbƒgƒ`ƒFƒbƒNFƒ^ƒbƒ`‚µ‚½“_‚©‚ç‰º•ûŒü‚É64dot’ö“xŠg‘å‚µ‚ÄÁ‚¦‚éB
- * 							ƒyƒ“ƒL‚ª‚½‚ê‚é‚æ‚¤‚ÈƒCƒ[ƒW
+ * @brief   ã‚¹ã‚¿ãƒ³ãƒ—ãƒ’ãƒƒãƒˆãƒã‚§ãƒƒã‚¯ï¼šã‚¿ãƒƒãƒã—ãŸç‚¹ã‹ã‚‰ä¸‹æ–¹å‘ã«64dotç¨‹åº¦æ‹¡å¤§ã—ã¦æ¶ˆãˆã‚‹ã€‚
+ * 							ãƒšãƒ³ã‚­ãŒãŸã‚Œã‚‹ã‚ˆã†ãªã‚¤ãƒ¡ãƒ¼ã‚¸
  *
- * @param   ssw			ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   move		ƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   target		‚Ü‚¾ƒm[ƒ}ƒ‹ó‘Ô‚ÌƒXƒ^ƒ“ƒv‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw			ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   move		ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   target		ã¾ã ãƒãƒ¼ãƒãƒ«çŠ¶æ…‹ã®ã‚¹ã‚¿ãƒ³ãƒ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:‚ ‚½‚è”»’è”­¶
- * @retval  FALSE:‚ ‚½‚è”»’è–³‚µ
+ * @retval  TRUE:ã‚ãŸã‚Šåˆ¤å®šç™ºç”Ÿ
+ * @retval  FALSE:ã‚ãŸã‚Šåˆ¤å®šç„¡ã—
  */
 //--------------------------------------------------------------
 static BOOL StampHitcheck_Tare(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move,STAMP_MOVE_PTR target)
@@ -2515,19 +2515,19 @@ static BOOL StampHitcheck_Tare(STAMP_SYSTEM_WORK *ssw,STAMP_MOVE_PTR move,STAMP_
 
 
 //==============================================================================
-//	ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg”­“®‘O‚Ìƒtƒ‰ƒbƒVƒ…
+//	ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºå‹•å‰ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg”­“®‘O‚Ìƒtƒ‰ƒbƒVƒ…ƒGƒtƒFƒNƒg
+ * @brief   ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™ºå‹•å‰ã®ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
  *
- * @param   ssw				ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   flash_work		ƒtƒ‰ƒbƒVƒ…ƒ[ƒN
- * @param   game_status		ƒQ[ƒ€ƒXƒe[ƒ^ƒX
- * @param   board_type		ƒ{[ƒhƒ^ƒCƒv
+ * @param   ssw				ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   flash_work		ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãƒ¯ãƒ¼ã‚¯
+ * @param   game_status		ã‚²ãƒ¼ãƒ ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+ * @param   board_type		ãƒœãƒ¼ãƒ‰ã‚¿ã‚¤ãƒ—
  *
- * @retval  TRUE:ƒGƒtƒFƒNƒgI—¹B
- * @retval  FALSE:ƒGƒtƒFƒNƒgŒp‘±’†
+ * @retval  TRUE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†ã€‚
+ * @retval  FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç¶™ç¶šä¸­
  */
 //--------------------------------------------------------------
 static BOOL SpecialFlashEff(STAMP_SYSTEM_WORK *ssw, SPECIAL_FLASH_WORK *flash_work, int game_status, int board_type)
@@ -2579,16 +2579,16 @@ static BOOL SpecialFlashEff(STAMP_SYSTEM_WORK *ssw, SPECIAL_FLASH_WORK *flash_wo
 }
 
 //==============================================================================
-//	ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒg
+//	ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgFƒJƒƒ‰‚ğƒO[ƒb‚ÆŠñ‚Á‚Ä–ß‚·
+ * @brief   ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚«ãƒ¡ãƒ©ã‚’ã‚°ãƒ¼ãƒƒã¨å¯„ã£ã¦æˆ»ã™
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sp		ƒXƒyƒVƒƒƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sp		ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹B@FALSE:ƒGƒtƒFƒNƒg’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­
  */
 //--------------------------------------------------------------
 static BOOL SpecialMove_Nijimi(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF_CAMERA_PTR camera_ptr)
@@ -2631,12 +2631,12 @@ static BOOL SpecialMove_Nijimi(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, G
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgFƒJƒƒ‰‰ñ“]
+ * @brief   ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚«ãƒ¡ãƒ©å›è»¢
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sp		ƒXƒyƒVƒƒƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sp		ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹B@FALSE:ƒGƒtƒFƒNƒg’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­
  */
 //--------------------------------------------------------------
 static BOOL SpecialMove_Hajike(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF_CAMERA_PTR camera_ptr)
@@ -2694,12 +2694,12 @@ static BOOL SpecialMove_Hajike(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, G
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgF‰æ–Ê‘S‘Ì‚ª‰E‚ÉŒX‚­
+ * @brief   ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šç”»é¢å…¨ä½“ãŒå³ã«å‚¾ã
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sp		ƒXƒyƒVƒƒƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sp		ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹B@FALSE:ƒGƒtƒFƒNƒg’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­
  */
 //--------------------------------------------------------------
 static BOOL SpecialMove_Zigzag(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF_CAMERA_PTR camera_ptr)
@@ -2745,12 +2745,12 @@ static BOOL SpecialMove_Zigzag(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, G
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgF‰æ–Ê‘S‘Ì‚ª¶‚ÉŒX‚­
+ * @brief   ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šç”»é¢å…¨ä½“ãŒå·¦ã«å‚¾ã
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sp		ƒXƒyƒVƒƒƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sp		ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹B@FALSE:ƒGƒtƒFƒNƒg’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­
  */
 //--------------------------------------------------------------
 static BOOL SpecialMove_Dakou(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF_CAMERA_PTR camera_ptr)
@@ -2796,12 +2796,12 @@ static BOOL SpecialMove_Dakou(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgF‰æ–Ê‘S‘Ì‚ªã‚ÉŒX‚­
+ * @brief   ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šç”»é¢å…¨ä½“ãŒä¸Šã«å‚¾ã
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sp		ƒXƒyƒVƒƒƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sp		ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹B@FALSE:ƒGƒtƒFƒNƒg’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­
  */
 //--------------------------------------------------------------
 static BOOL SpecialMove_Kiseki(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF_CAMERA_PTR camera_ptr)
@@ -2847,12 +2847,12 @@ static BOOL SpecialMove_Kiseki(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, G
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgF¶‰E‚Ì“®‚«‚¾‚¯—h‚êƒXƒ^ƒ“ƒv‚Ì“®‚«‚ğ‚·‚é
+ * @brief   ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šå·¦å³ã®å‹•ãã ã‘æºã‚Œã‚¹ã‚¿ãƒ³ãƒ—ã®å‹•ãã‚’ã™ã‚‹
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sp		ƒXƒyƒVƒƒƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sp		ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹B@FALSE:ƒGƒtƒFƒNƒg’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­
  */
 //--------------------------------------------------------------
 static BOOL SpecialMove_Yure(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF_CAMERA_PTR camera_ptr)
@@ -2891,12 +2891,12 @@ static BOOL SpecialMove_Yure(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF_
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgFƒJƒƒ‰‚ğ‚®[‚Á‚Æˆø‚¢‚Ä–ß‚·
+ * @brief   ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚«ãƒ¡ãƒ©ã‚’ããƒ¼ã£ã¨å¼•ã„ã¦æˆ»ã™
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sp		ƒXƒyƒVƒƒƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sp		ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹B@FALSE:ƒGƒtƒFƒNƒg’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­
  */
 //--------------------------------------------------------------
 static BOOL SpecialMove_Kakudai(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF_CAMERA_PTR camera_ptr)
@@ -2939,12 +2939,12 @@ static BOOL SpecialMove_Kakudai(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgFƒJƒƒ‰‚ğƒXƒ^ƒ“ƒv‚Æ“¯‚¶‚æ‚¤‚É“®‚©‚·
+ * @brief   ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚«ãƒ¡ãƒ©ã‚’ã‚¹ã‚¿ãƒ³ãƒ—ã¨åŒã˜ã‚ˆã†ã«å‹•ã‹ã™
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sp		ƒXƒyƒVƒƒƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sp		ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹B@FALSE:ƒGƒtƒFƒNƒg’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­
  */
 //--------------------------------------------------------------
 static BOOL SpecialMove_BrarX(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF_CAMERA_PTR camera_ptr)
@@ -2985,12 +2985,12 @@ static BOOL SpecialMove_BrarX(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgFƒJƒƒ‰‚ğƒXƒ^ƒ“ƒv‚Æ“¯‚¶‚æ‚¤‚É“®‚©‚·
+ * @brief   ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šã‚«ãƒ¡ãƒ©ã‚’ã‚¹ã‚¿ãƒ³ãƒ—ã¨åŒã˜ã‚ˆã†ã«å‹•ã‹ã™
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sp		ƒXƒyƒVƒƒƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sp		ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹B@FALSE:ƒGƒtƒFƒNƒg’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­
  */
 //--------------------------------------------------------------
 static BOOL SpecialMove_BrarY(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF_CAMERA_PTR camera_ptr)
@@ -3031,12 +3031,12 @@ static BOOL SpecialMove_BrarY(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒXƒyƒVƒƒƒ‹ƒGƒtƒFƒNƒgF‰æ–Ê‘S‘Ì‚ª‰º‚ÉŒX‚­
+ * @brief   ã‚¹ãƒšã‚·ãƒ£ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šç”»é¢å…¨ä½“ãŒä¸‹ã«å‚¾ã
  *
- * @param   ssw		ƒXƒ^ƒ“ƒvƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   sp		ƒXƒyƒVƒƒƒ‹ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   ssw		ã‚¹ã‚¿ãƒ³ãƒ—ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   sp		ã‚¹ãƒšã‚·ãƒ£ãƒ«ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  TRUE:I—¹B@FALSE:ƒGƒtƒFƒNƒg’†
+ * @retval  TRUE:çµ‚äº†ã€‚ã€€FALSE:ã‚¨ãƒ•ã‚§ã‚¯ãƒˆä¸­
  */
 //--------------------------------------------------------------
 static BOOL SpecialMove_Tare(STAMP_SYSTEM_WORK *ssw, STAMP_SPECIAL_WORK *sp, GF_CAMERA_PTR camera_ptr)

@@ -5,9 +5,9 @@ namespace AdminTool
 {
     public class DpwUtil
     {
-        // ‚±‚ê‚ğƒrƒ‹ƒh‚·‚é‚É‚Ídpwutil‚Ì“o˜^‚ª•K—vB
+        // ã“ã‚Œã‚’ãƒ“ãƒ«ãƒ‰ã™ã‚‹ã«ã¯dpwutilã®ç™»éŒ²ãŒå¿…è¦ã€‚
         // regsvr32 dpwutil.dll
-        // DPWUTILLib‚ÌQÆİ’è‚Å•ª—£‚ğtrue‚É‚µ‚Ä‚¢‚é‚Ì‚ÅA”z•zæ‚Å“o˜^‚ğ‚·‚é•K—v‚Í‚È‚¢
+        // DPWUTILLibã®å‚ç…§è¨­å®šã§åˆ†é›¢ã‚’trueã«ã—ã¦ã„ã‚‹ã®ã§ã€é…å¸ƒå…ˆã§ç™»éŒ²ã‚’ã™ã‚‹å¿…è¦ã¯ãªã„
         public static DPWUTILLib.Tools Tools = new DPWUTILLib.Tools();
         public static DPWUTILLib.PokemonChecker PokemonChecker = new DPWUTILLib.PokemonChecker();
         public static DPWUTILLib.Base64CoDec Base64CoDec = new DPWUTILLib.Base64CoDec();

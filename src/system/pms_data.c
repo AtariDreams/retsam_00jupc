@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	pms_data.c
- * @bfief	ŠÈˆÕ•¶ÍiŠÈˆÕ‰ï˜bƒf[ƒ^‚Æ’èŒ^•¶‚ğ‘g‚İ‡‚í‚¹‚½•¶Íj
+ * @bfief	ç°¡æ˜“æ–‡ç« ï¼ˆç°¡æ˜“ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã¨å®šå‹æ–‡ã‚’çµ„ã¿åˆã‚ã›ãŸæ–‡ç« ï¼‰
  * @author	taya
  * @date	05.02.03
  */
@@ -31,7 +31,7 @@
 
 //--------------------------------------------------------------
 /**
- *	’è”
+ *	å®šæ•°
  */
 //--------------------------------------------------------------
 #define SENTENCE_ID_DEFAULT		(0)
@@ -62,7 +62,7 @@ static u32 get_include_word_max( u32 sentence_type, u32 sentence_id );
 
 //------------------------------------------------------------------
 /**
- * ‹ó‚Ì•¶Í‚Æ‚µ‚ÄƒNƒŠƒA‚·‚é
+ * ç©ºã®æ–‡ç« ã¨ã—ã¦ã‚¯ãƒªã‚¢ã™ã‚‹
  *
  * @param   pms		
  *
@@ -83,9 +83,9 @@ void PMSDAT_Clear( PMS_DATA* pms )
 
 //------------------------------------------------------------------
 /**
- * “à—e‚Ì‚ ‚é•¶Í‚Æ‚µ‚Ä‰Šú‰»‚·‚é
+ * å†…å®¹ã®ã‚ã‚‹æ–‡ç« ã¨ã—ã¦åˆæœŸåŒ–ã™ã‚‹
  *
- * @param   pms		ŠÈˆÕ•¶Í\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   pms		ç°¡æ˜“æ–‡ç« æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -104,9 +104,9 @@ void PMSDAT_Init( PMS_DATA* pms, u32 sentence_type )
 
 //------------------------------------------------------------------
 /**
- * ƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒfƒtƒHƒ‹ƒg‚ ‚¢‚³‚Â‚Æ‚µ‚Ä‰Šú‰»‚·‚é
+ * ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚ã„ã•ã¤ã¨ã—ã¦åˆæœŸåŒ–ã™ã‚‹
  *
- * @param   pms		ŠÈˆÕ•¶Í\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   pms		ç°¡æ˜“æ–‡ç« æ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
  */
 //------------------------------------------------------------------
@@ -119,7 +119,7 @@ void PMSDAT_SetupDefaultUnionMessage( PMS_DATA* pms )
 
 //------------------------------------------------------------------
 /**
- * ƒoƒgƒ‹ƒ^ƒ[ƒfƒtƒHƒ‹ƒg‚ ‚¢‚³‚Â‚Æ‚µ‚Ä‰Šú‰»‚·‚é
+ * ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚ã„ã•ã¤ã¨ã—ã¦åˆæœŸåŒ–ã™ã‚‹
  *
  * @param   pms			
  * @param   msgType		
@@ -136,25 +136,25 @@ void PMSDAT_SetupDefaultBattleTowerMessage( PMS_DATA* pms, BTWR_PLAYER_MSG_ID ms
 		s16 word2_gmmID;
 		u16 word2_wordID;
 	}sentenceDataTbl[] = {
-		// BTWR_MSG_PLAYER_READY = ‘Îí‘O
+		// BTWR_MSG_PLAYER_READY = å¯¾æˆ¦å‰
 		{
 			PMS_TYPE_BATTLE_READY, pmss_ready_01,
 			NARC_msg_pms_word06_dat, pms_word06_08,
 			-1, 0,
 		},
-		// BTWR_MSG_PLAYER_WIN = Ÿ‚Á‚½
+		// BTWR_MSG_PLAYER_WIN = å‹ã£ãŸæ™‚
 		{
 			PMS_TYPE_BATTLE_WON, pmss_won_01,
 			NARC_msg_pms_word06_dat, pms_word06_34,
 			-1, 0,
 		},
-		// BTWR_MSG_PLAYER_LOSE = •‰‚¯‚½
+		// BTWR_MSG_PLAYER_LOSE = è² ã‘ãŸæ™‚
 		{
 			PMS_TYPE_BATTLE_LOST, pmss_lost_01,
 			NARC_msg_pms_word10_dat, pms_word10_11,
 			-1, 0,
 		},
-		// BTWR_MSG_LEADER = ƒŠ[ƒ_[‚É‚È‚Á‚½
+		// BTWR_MSG_LEADER = ãƒªãƒ¼ãƒ€ãƒ¼ã«ãªã£ãŸæ™‚
 		{
 			PMS_TYPE_BATTLE_WON, pmss_won_05,
 			NARC_msg_pms_word06_dat, pms_word06_02,
@@ -187,12 +187,12 @@ void PMSDAT_SetupDefaultBattleTowerMessage( PMS_DATA* pms, BTWR_PLAYER_MSG_ID ms
 
 //------------------------------------------------------------------
 /**
- * ŠÈˆÕ•¶Íƒf[ƒ^‚©‚çA‚»‚Ì‚Ü‚Ü•\¦‚Å‚«‚é•¶š—ñ‚ğ¶¬‚·‚é
+ * ç°¡æ˜“æ–‡ç« ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã€ãã®ã¾ã¾è¡¨ç¤ºã§ãã‚‹æ–‡å­—åˆ—ã‚’ç”Ÿæˆã™ã‚‹
  *
  * @param   pms		
  * @param   heapID		
  *
- * @retval  STRBUF*		•¶š—ñ
+ * @retval  STRBUF*		æ–‡å­—åˆ—
  */
 //------------------------------------------------------------------
 STRBUF* PMSDAT_ToString( const PMS_DATA* pms, u32 heapID )
@@ -227,8 +227,8 @@ STRBUF* PMSDAT_ToString( const PMS_DATA* pms, u32 heapID )
 
 //------------------------------------------------------------------
 /**
- * ŠÈˆÕ‰ï˜b•¶Íƒf[ƒ^‚©‚çAƒ^ƒO“WŠJ‘O‚Ì•¶š—ñ‚ğæ“¾
- * i‚¨‚»‚ç‚­‚±‚ê‚ğg‚¤‚Ì‚Í“ü—Í‰æ–Ê‚Ì‚İj
+ * ç°¡æ˜“ä¼šè©±æ–‡ç« ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰ã€ã‚¿ã‚°å±•é–‹å‰ã®æ–‡å­—åˆ—ã‚’å–å¾—
+ * ï¼ˆãŠãã‚‰ãã“ã‚Œã‚’ä½¿ã†ã®ã¯å…¥åŠ›ç”»é¢ã®ã¿ï¼‰
  *
  * @param   pms		
  * @param   heapID		
@@ -244,7 +244,7 @@ STRBUF*  PMSDAT_GetSourceString( const PMS_DATA* pms, u32 heapID )
 
 //------------------------------------------------------------------
 /**
- * ‹ó•¶Í‚É‚È‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+ * ç©ºæ–‡ç« ã«ãªã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param   pms		
  *
@@ -258,7 +258,7 @@ BOOL PMSDAT_IsEnabled( const PMS_DATA* pms )
 
 //------------------------------------------------------------------
 /**
- * •¶Í‚Æ‚µ‚ÄŠ®¬‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+ * æ–‡ç« ã¨ã—ã¦å®Œæˆã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
  * @param   pms		
  *
@@ -282,7 +282,7 @@ BOOL PMSDAT_IsComplete( const PMS_DATA* pms )
 
 //------------------------------------------------------------------
 /**
- * •¶Í‚ÉŠÜ‚Ü‚ê‚é’PŒê”‚ğ•Ô‚·
+ * æ–‡ç« ã«å«ã¾ã‚Œã‚‹å˜èªæ•°ã‚’è¿”ã™
  *
  * @param   sentence_type		
  * @param   sentence_id		
@@ -323,7 +323,7 @@ static u32 get_include_word_max( u32 sentence_type, u32 sentence_id )
 
 //------------------------------------------------------------------
 /**
- * ’PŒêƒiƒ“ƒo[‚ğ•Ô‚·
+ * å˜èªãƒŠãƒ³ãƒãƒ¼ã‚’è¿”ã™
  *
  * @param   pms		
  * @param   pos		
@@ -337,7 +337,7 @@ PMS_WORD  PMSDAT_GetWordNumber( const PMS_DATA* pms, int pos )
 }
 //------------------------------------------------------------------
 /**
- * İ’è‚³‚ê‚Ä‚¢‚é•¶Íƒ^ƒCƒv‚ğæ“¾
+ * è¨­å®šã•ã‚Œã¦ã„ã‚‹æ–‡ç« ã‚¿ã‚¤ãƒ—ã‚’å–å¾—
  *
  * @param   pms		
  *
@@ -350,7 +350,7 @@ u32  PMSDAT_GetSentenceType( const PMS_DATA* pms )
 }
 //------------------------------------------------------------------
 /**
- * İ’è‚³‚ê‚Ä‚¢‚é•¶ÍID‚ğ•Ô‚·
+ * è¨­å®šã•ã‚Œã¦ã„ã‚‹æ–‡ç« IDã‚’è¿”ã™
  *
  * @param   pms		
  *
@@ -364,12 +364,12 @@ u32 PMSDAT_GetSentenceID( const PMS_DATA* pms )
 
 //------------------------------------------------------------------
 /**
- * “à—e”äŠr
+ * å†…å®¹æ¯”è¼ƒ
  *
- * @param   pms1		•¶ÍŒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚P
- * @param   pms2		•¶ÍŒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^‚Q
+ * @param   pms1		æ–‡ç« å‹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ï¼‘
+ * @param   pms2		æ–‡ç« å‹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ï¼’
  *
- * @retval  BOOL		ˆê’v‚µ‚Ä‚¢‚ê‚ÎTRUE
+ * @retval  BOOL		ä¸€è‡´ã—ã¦ã„ã‚Œã°TRUE
  */
 //------------------------------------------------------------------
 BOOL PMSDAT_Compare( const PMS_DATA* pms1, const PMS_DATA* pms2 )
@@ -396,10 +396,10 @@ BOOL PMSDAT_Compare( const PMS_DATA* pms1, const PMS_DATA* pms2 )
 
 //------------------------------------------------------------------
 /**
- * •¶Íƒf[ƒ^‚ÌƒRƒs[
+ * æ–‡ç« ãƒ‡ãƒ¼ã‚¿ã®ã‚³ãƒ”ãƒ¼
  *
- * @param   dst		ƒRƒs[æƒ|ƒCƒ“ƒ^
- * @param   src		ƒRƒs[Œ³ƒ|ƒCƒ“ƒ^
+ * @param   dst		ã‚³ãƒ”ãƒ¼å…ˆãƒã‚¤ãƒ³ã‚¿
+ * @param   src		ã‚³ãƒ”ãƒ¼å…ƒãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 void PMSDAT_Copy( PMS_DATA* dst, const PMS_DATA* src )
@@ -413,7 +413,7 @@ u32 PMSDAT_GetSentenceIdMax( u32 sentence_type )
 {
 	if( sentence_type < NELEMS(SentenceDatID) )
 	{
-		// ‚Æ‚è‚ ‚¦‚¸Œ»ó‚Í‘Sƒ^ƒCƒv20ŒÂ‚É‚È‚Á‚Ä‚¢‚é‚Ì‚Å...
+		// ã¨ã‚Šã‚ãˆãšç¾çŠ¶ã¯å…¨ã‚¿ã‚¤ãƒ—20å€‹ã«ãªã£ã¦ã„ã‚‹ã®ã§...
 		return 20;
 	}
 	return 0;
@@ -436,7 +436,7 @@ void PMSDAT_SetWord( PMS_DATA* pms, u32 pos, PMS_WORD word )
 
 //------------------------------------------------------------------
 /**
- * g‚í‚È‚¢’PŒê—Ìˆæ‚ÍPMS_WORD_NULL‚ÅƒNƒŠƒA‚µ‚Ä‚¨‚­
+ * ä½¿ã‚ãªã„å˜èªé ˜åŸŸã¯PMS_WORD_NULLã§ã‚¯ãƒªã‚¢ã—ã¦ãŠã
  *
  * @param   pms		
  *
@@ -463,7 +463,7 @@ void PMSDAT_ClearUnnecessaryWord( PMS_DATA* pms )
 #ifdef PM_DEBUG
 void PMSDAT_SetDebug( PMS_DATA* pms )
 {
-	// “ü—Í‰æ–Ê‚ªŠ®¬‚·‚é‚Ü‚ÅA“K“–‚ÉÀ‘Ì‚ğ—^‚¦‚Ä‚¨‚­
+	// å…¥åŠ›ç”»é¢ãŒå®Œæˆã™ã‚‹ã¾ã§ã€é©å½“ã«å®Ÿä½“ã‚’ä¸ãˆã¦ãŠã
 
 	pms->sentence_type = PMS_TYPE_MAIL;
 	pms->sentence_id = 5;
@@ -474,7 +474,7 @@ void PMSDAT_SetDebug( PMS_DATA* pms )
 
 void PMSDAT_SetDebugRandom( PMS_DATA* pms )
 {
-	// ƒ‰ƒ“ƒ_ƒ€‚ÉŠÈˆÕ‰ï˜bƒf[ƒ^‚ğ‚Â‚Á‚±‚Ş
+	// ãƒ©ãƒ³ãƒ€ãƒ ã«ç°¡æ˜“ä¼šè©±ãƒ‡ãƒ¼ã‚¿ã‚’ã¤ã£ã“ã‚€
 
 	pms->sentence_type = gf_rand()%4;
 	pms->sentence_id = gf_rand()%5;

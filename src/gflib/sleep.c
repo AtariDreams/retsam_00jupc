@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	sleep.c
- * @brief	�X���[�v���[�h�ݒ�
+ * @brief	スリープモード設定
  * @author	Hiroyuki Nakamura
  * @date	2005.02.28
  */
@@ -17,39 +17,39 @@
 
 
 //============================================================================================
-//	�V���{����`
+//	シンボル定義
 //============================================================================================
 
 
 //============================================================================================
-//	�v���g�^�C�v�錾
+//	プロトタイプ宣言
 //============================================================================================
 static void CoverCloseCheckTask( TCB_PTR _tcb, void * work );
 
 
 //============================================================================================
-//	�ݒ�
+//	設定
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * �X���[�v�f�[�^�̈�m�ہA������
+ * スリープデータ領域確保、初期化
  *
- * @param	heap	�q�[�vID
+ * @param	heap	ヒープID
  *
- * @return	�X���[�v�f�[�^�̈�
+ * @return	スリープデータ領域
  */
 //--------------------------------------------------------------------------------------------
 GF_SLEEP_SYS * GF_SleepSystemInit( u32 heap )
 {
 	GF_SLEEP_SYS * dat = (GF_SLEEP_SYS *)sys_AllocMemory( heap, sizeof(GF_SLEEP_SYS) );
 
-#ifdef	OSP_ERR_SLEEPBUF_GET	// �X���[�v�p�̃o�b�t�@�m�ێ��s
+#ifdef	OSP_ERR_SLEEPBUF_GET	// スリープ用のバッファ確保失敗
 	if( dat == NULL ){
 		OS_Printf( "ERROR : GF_SleepSystemInit\n" );
 		return;
 	}
-#endif	// OSP_ERR_SLEEPBUF_GET	// �X���[�v�p�̃o�b�t�@�m�ێ��s
+#endif	// OSP_ERR_SLEEPBUF_GET	// スリープ用のバッファ確保失敗
 
 	memset( dat, 0, sizeof(GF_SLEEP_SYS) );
 	dat->heap = (u16)heap;
@@ -59,16 +59,16 @@ GF_SLEEP_SYS * GF_SleepSystemInit( u32 heap )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �V�X�e������
+ * システム消去
  *
- * @param	dat		�X���[�v�f�[�^
+ * @param	dat		スリープデータ
  *
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
 void GF_SleepSystemDelete( GF_SLEEP_SYS * dat )
 {
-#ifdef	OSP_ERR_SLEEP_DEL		// �X���[�v�p�̃o�b�t�@���m�ۂ��Ă��Ȃ�
+#ifdef	OSP_ERR_SLEEP_DEL		// スリープ用のバッファを確保していない
 	if( dat == NULL ){
 		OS_Printf( "ERROR : GF_SleepSystemDelete\n" );
 		return;
@@ -82,12 +82,12 @@ void GF_SleepSystemDelete( GF_SLEEP_SYS * dat )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �X���[�v�̃g���K�[�ݒ�
+ * スリープのトリガー設定
  *
- * @param	dat		�X���[�v�f�[�^
- * @param	trg		�X���[�v��Ԃ���̕��A�v��
- * @param	logic	�L�[�����݂ŕ��A����ꍇ�̃L�[�̑g�ݍ��킹�_��
- * @param	pat		�L�[�����݂ŕ��A����ꍇ�̃L�[
+ * @param	dat		スリープデータ
+ * @param	trg		スリープ状態からの復帰要因
+ * @param	logic	キー割込みで復帰する場合のキーの組み合わせ論理
+ * @param	pat		キー割込みで復帰する場合のキー
  *
  * @return	none
  */
@@ -101,21 +101,21 @@ void GF_SleepTriggerSet( GF_SLEEP_SYS * dat, PMWakeUpTrigger trg, PMLogic logic,
 
 //--------------------------------------------------------------------------------------------
 /**
- * �X���[�v�f�[�^�ݒ�
+ * スリープデータ設定
  *
- * @param	dat		�X���[�v�f�[�^
+ * @param	dat		スリープデータ
  *
  * @return	none
  *
- * @li	dat->hold : GF_SLEEP_MODE = ���X���[�v
- * @li	�X���[�v��s���ɂ���ɂ�GF_SleepModeSet(GF_SLEEP_HOLD)���ĂԂ���
+ * @li	dat->hold : GF_SLEEP_MODE = 即スリープ
+ * @li	スリープを不許可にするにはGF_SleepModeSet(GF_SLEEP_HOLD)を呼ぶこと
  */
 //--------------------------------------------------------------------------------------------
 void GF_SleepSystemSetAll( GF_SLEEP_SYS * dat )
 {
 	u16	init;
 
-#ifdef	OSP_ERR_SLEEP_SET		// �X���[�v�ݒ莸�s
+#ifdef	OSP_ERR_SLEEP_SET		// スリープ設定失敗
 	if( dat == NULL ){
 		OS_Printf( "ERROR : GF_SleepSystemSetAll\n" );
 		return;
@@ -139,9 +139,9 @@ void GF_SleepSystemSetAll( GF_SLEEP_SYS * dat )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ����؂�ւ�
+ * 動作切り替え
  *
- * @param	dat		�X���[�v�f�[�^
+ * @param	dat		スリープデータ
  *
  * @return	none
  */
@@ -154,10 +154,10 @@ void GF_GoSleepMode( GF_SLEEP_SYS * dat )
 
 //--------------------------------------------------------------------------------------------
 /**
- * ����؂�ւ�
+ * 動作切り替え
  *
- * @param	dat		�X���[�v�f�[�^
- * @param	flg		GF_SLEEP_MODE = ����, GF_SLEEP_HOLD = �s����
+ * @param	dat		スリープデータ
+ * @param	flg		GF_SLEEP_MODE = 許可, GF_SLEEP_HOLD = 不許可
  *
  * @return	none
  */
@@ -169,21 +169,21 @@ void GF_SleepModeSet( GF_SLEEP_SYS * dat, u8 flg )
 
 
 //============================================================================================
-//	�R�[���o�b�N
+//	コールバック
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * �R�[���o�b�N���Z�b�g
+ * コールバック情報セット
  *
- * @param	dat		�X���[�v�f�[�^
- * @param	info	�R�[���o�b�N���
- * @param	type	�ǉ��^�C�v ( GF_SLEEP_CB_BEFORE = �ڍs��, GF_SLEEP_CB_AFTER = ���A�� )
- * @param	mode	�ǉ����[�h ( GF_SLEEP_CB_BEFORE = �擪��, GF_SLEEP_CB_AFTER = ������ )
+ * @param	dat		スリープデータ
+ * @param	info	コールバック情報
+ * @param	type	追加タイプ ( GF_SLEEP_CB_BEFORE = 移行時, GF_SLEEP_CB_AFTER = 復帰時 )
+ * @param	mode	追加モード ( GF_SLEEP_CB_BEFORE = 先頭へ, GF_SLEEP_CB_AFTER = 末尾へ )
  *
  * @return	none
  *
- * @li	�����o�^�͖��Ή�
+ * @li	複数登録は未対応
  */
 //--------------------------------------------------------------------------------------------
 void GF_SleepCallBackAdd( GF_SLEEP_SYS * dat, PMSleepCallbackInfo * info, u8 type, u8 mode )
@@ -191,7 +191,7 @@ void GF_SleepCallBackAdd( GF_SLEEP_SYS * dat, PMSleepCallbackInfo * info, u8 typ
 	u8	i;
 
 	if( type == GF_SLEEP_CB_BEFORE ){
-#ifdef	OSP_ERR_SLEEP_CALLBACK_SET		// �R�[���o�b�N�ݒ莸�s
+#ifdef	OSP_ERR_SLEEP_CALLBACK_SET		// コールバック設定失敗
 		if( dat->b_info.callback != NULL ){
 			OS_Printf( "ERROR : GF_SleepCallBackAdd( GF_SLEEP_CB_BEFORE )\n" );
 			return;
@@ -205,7 +205,7 @@ void GF_SleepCallBackAdd( GF_SLEEP_SYS * dat, PMSleepCallbackInfo * info, u8 typ
 			PM_AppendPreSleepCallback( &dat->b_info );
 		}
 	}else{
-#ifdef	OSP_ERR_SLEEP_CALLBACK_SET		// �R�[���o�b�N�ݒ莸�s
+#ifdef	OSP_ERR_SLEEP_CALLBACK_SET		// コールバック設定失敗
 		if( dat->a_info.callback != NULL ){
 			OS_Printf( "ERROR : GF_SleepCallBackAdd( GF_SLEEP_CB_AFTER )\n" );
 			return;
@@ -223,10 +223,10 @@ void GF_SleepCallBackAdd( GF_SLEEP_SYS * dat, PMSleepCallbackInfo * info, u8 typ
 
 //--------------------------------------------------------------------------------------------
 /**
- * �R�[���o�b�N���폜
+ * コールバック情報削除
  *
- * @param	dat		�X���[�v�f�[�^
- * @param	id		�폜�^�C�v ( GF_SLEEP_CB_BEFORE = �ڍs��, GF_SLEEP_CB_AFTER = ���A�� )
+ * @param	dat		スリープデータ
+ * @param	id		削除タイプ ( GF_SLEEP_CB_BEFORE = 移行時, GF_SLEEP_CB_AFTER = 復帰時 )
  *
  * @return	none
  */
@@ -244,14 +244,14 @@ void GF_SleepCallBackDel( GF_SLEEP_SYS * dat, u8 id )
 
 
 //============================================================================================
-//	�{�̂̊J�ŃX���[�v
+//	本体の開閉でスリープ
 //============================================================================================
 
 //--------------------------------------------------------------------------------------------
 /**
- * �{�̂̊J�ŃX���[�v����^�X�N���Z�b�g
+ * 本体の開閉でスリープするタスクをセット
  *
- * @param	dat		�X���[�v�f�[�^
+ * @param	dat		スリープデータ
  *
  * @return	none
  */
@@ -271,7 +271,7 @@ void GF_SleepCoverCloseAdd( GF_SLEEP_SYS * dat )
 
 //--------------------------------------------------------------------------------------------
 /**
- * �{�̂̊J�ŃX���[�v����^�X�N
+ * 本体の開閉でスリープするタスク
  *
  * @param	none
  *

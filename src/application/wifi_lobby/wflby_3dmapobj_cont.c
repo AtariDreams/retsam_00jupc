@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_3dmapobj_cont.c
- *	@brief		�}�b�v�I�u�W�F�z�u�Ǘ�
+ *	@brief		マップオブジェ配置管理
  *	@author		tomoya takahashi
  *	@data		2007.11.14
  *
@@ -18,37 +18,37 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�R�[�f�B���O�K��
- *		���֐���
- *				�P�����ڂ͑啶������ȍ~�͏������ɂ���
- *		���ϐ���
- *				�E�ϐ�����
- *						const�ɂ� c_ ��t����
- *						static�ɂ� s_ ��t����
- *						�|�C���^�ɂ� p_ ��t����
- *						�S�č��킳��� csp_ �ƂȂ�
- *				�E�O���[�o���ϐ�
- *						�P�����ڂ͑啶��
- *				�E�֐����ϐ�
- *						�������Ɓh�Q�h�Ɛ������g�p���� �֐��̈���������Ɠ���
+ *					コーディング規約
+ *		●関数名
+ *				１文字目は大文字それ以降は小文字にする
+ *		●変数名
+ *				・変数共通
+ *						constには c_ を付ける
+ *						staticには s_ を付ける
+ *						ポインタには p_ を付ける
+ *						全て合わさると csp_ となる
+ *				・グローバル変数
+ *						１文字目は大文字
+ *				・関数内変数
+ *						小文字と”＿”と数字を使用する 関数の引数もこれと同じ
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	�z�u�I�u�W�F�o�^�ő吔
+///	配置オブジェ登録最大数
 //=====================================
 #define WFLBY_3DMAPOBJ_CONT_MAPOBJWK_MAX		( 128 )
 
 
 //-------------------------------------
-///	�z�u�I�u�W�F	�A�j��
+///	配置オブジェ	アニメ
 //=====================================
-#define WFLBY_3DMAPOBJ_CONT_ANM_MG_NUM	(3)		// �~�j�Q�[���̐�
-// �Ŕ�
+#define WFLBY_3DMAPOBJ_CONT_ANM_MG_NUM	(3)		// ミニゲームの数
+// 看板
 enum{
 	WFLBY_3DMAPOBJ_CONT_KANBAN_ANM_NONE,
 	WFLBY_3DMAPOBJ_CONT_KANBAN_ANM_REC_0,
@@ -63,14 +63,14 @@ enum{
 };
 #define WFLBY_3DMAPOBJ_CONT_KANBAN_ANM_ONEFRAME	( 4 )
 
-// ����
+// 銅像
 #define WFLBY_3DMAPOBJ_CONT_DOUZOU_ANM_RESTART_FRAME	( 0x2000 )
 //static int WFLBY_3DMAPOBJ_CONT_DOUZOU_ANM_RESTART_FRAME	= ( 0x2000 );
 #define WFLBY_3DMAPOBJ_CONT_DOUZOU_BIGFIRE_POS_OFS		( 8 )
 #define WFLBY_3DMAPOBJ_CONT_DOUZOU_BIGFIRE_POS_OFS_Z	( 20 )
 
-// �����v�ԉ�
-#define WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_NUM		( 24 )	// �ԉ΃I�u�W�F�̍ő吔
+// ランプ花火
+#define WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_NUM		( 24 )	// 花火オブジェの最大数
 enum{
 	WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONWAIT,
 	WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONSTART,
@@ -78,35 +78,35 @@ enum{
 	WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFFSTART,
 	WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFF,
 };
-#define WFLBY_3DMAPOBJ_CONT_HANABI_SPEED_END	( 0 )	// �ŏI�A�j���X�s�[�h
-#define WFLBY_3DMAPOBJ_CONT_HANABI_ALPHA_DEF	( 31 )	// ��{�ԉ΃A���t�@�l
-#define WFLBY_3DMAPOBJ_CONT_HANABI_COUNT_MAX	( 10 )	// �ԉ΂������Ă���J�E���g�l
-#define WFLBY_3DMAPOBJ_CONT_HANABI_SCALE_DIF	( FX32_CONST( 0.180f ) )// �傫�������������銄��
+#define WFLBY_3DMAPOBJ_CONT_HANABI_SPEED_END	( 0 )	// 最終アニメスピード
+#define WFLBY_3DMAPOBJ_CONT_HANABI_ALPHA_DEF	( 31 )	// 基本花火アルファ値
+#define WFLBY_3DMAPOBJ_CONT_HANABI_COUNT_MAX	( 10 )	// 花火が消えているカウント値
+#define WFLBY_3DMAPOBJ_CONT_HANABI_SCALE_DIF	( FX32_CONST( 0.180f ) )// 大きさを小さくする割合
 
-//  �Ŕ�
+//  看板
 #define WFLBY_3DMAPOBJ_CONT_KANBAN_ANM_MAX		( 28 )
 #define WFLBY_3DMAPOBJ_CONT_KANBAN_ANM_HALF		( WFLBY_3DMAPOBJ_CONT_KANBAN_ANM_MAX/2 )
 
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-///	���ԉ�	���[�N
+///	床花火	ワーク
 //=====================================
 typedef struct {
 	WFLBY_3DMAPOBJ_WK* p_hanabi;
 	u16	status;
 	s16	count;
-	fx32 start_speed;	// �J�n�A�j���X�s�[�h
+	fx32 start_speed;	// 開始アニメスピード
 } WFLBY_3DMAPOBJ_HANABIWK;
 
 
 //-------------------------------------
-///	�A�j���̕ύX�Ȃǂő��삷�����
+///	アニメの変更などで操作するもの
 //=====================================
 typedef struct {
 	WFLBY_3DMAPOBJ_WK* p_mgmachine[WFLBY_3DMAPOBJ_CONT_ANM_MG_NUM];
@@ -128,24 +128,24 @@ typedef struct {
 
 
 //-------------------------------------
-///	�V�X�e���\����
+///	システム構造体
 //=====================================
 typedef struct _WFLBY_3DMAPOBJ_CONT{
-	const WFLBY_MAPCONT*	cp_mapdata;		// �}�b�v�f�[�^
-	WFLBY_3DMAPOBJ*			p_mapobjsys;	// �z�u�I�u�W�F�V�X�e��
-	WFLBY_3DMAPOBJ_WK*		p_mapwkobj[ WFLBY_3DMAPOBJ_CONT_MAPOBJWK_MAX ];	// �z�u�I�u�W�F�z��
-	WFLBY_3DMAPOBJ_FLOAT*	p_mapfloat[ WFLBY_3DMAPOBJ_CONT_MAPOBJFLOAT_MAX ];	// �t���[�g�I�u�W�F
+	const WFLBY_MAPCONT*	cp_mapdata;		// マップデータ
+	WFLBY_3DMAPOBJ*			p_mapobjsys;	// 配置オブジェシステム
+	WFLBY_3DMAPOBJ_WK*		p_mapwkobj[ WFLBY_3DMAPOBJ_CONT_MAPOBJWK_MAX ];	// 配置オブジェ配列
+	WFLBY_3DMAPOBJ_FLOAT*	p_mapfloat[ WFLBY_3DMAPOBJ_CONT_MAPOBJFLOAT_MAX ];	// フロートオブジェ
 	WFLBY_3DMAPOBJ_ANMCONT	anmcont;
-	u8						season;			// �V�[�Y��
-	u8						room;			// ����
-	u8						objaddnum;		// �z�u�I�u�W�F�o�^��
-	u8						floataddnum;	// �t���[�g�o�^��
+	u8						season;			// シーズン
+	u8						room;			// 部屋
+	u8						objaddnum;		// 配置オブジェ登録数
+	u8						floataddnum;	// フロート登録数
 
 }WFLBY_3DMAPOBJ_CONT;
 
 
 //-------------------------------------
-///	�z�u���f���@�}�b�vID�ƃ��f��ID�̑Ή��\ 
+///	配置モデル　マップIDとモデルIDの対応表 
 //=====================================
 typedef struct {
 	u16 mapid;
@@ -154,7 +154,7 @@ typedef struct {
 
 
 //-------------------------------------
-///	�t���[�g�\���f�[�^
+///	フロート構成データ
 //=====================================
 typedef struct {
 	u16 floatnum;
@@ -165,11 +165,11 @@ typedef struct {
 
 //-----------------------------------------------------------------------------
 /**
- *			�f�[�^�֘A
+ *			データ関連
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	�z�u�I�u�W�F�f�[�^
+///	配置オブジェデータ
 //=====================================
 static const WFLBY_3DMAPOBJ_MAPDATA sc_WFLBY_3DMAPOBJ_CONT_WKDATA[] = {
 	{ WFLBY_MAPOBJID_DOUZOU00, WFLBY_3DMAPOBJ_BIGBRONZE },
@@ -209,32 +209,32 @@ static const WFLBY_3DMAPOBJ_MAPDATA sc_WFLBY_3DMAPOBJ_CONT_WKDATA[] = {
 	{ WFLBY_MAPOBJID_ANKETO_BOARD,	WFLBY_3DMAPOBJ_ANKETO },
 };
 
-// �傫�������p�ԉ΂̃I�t�Z�b�g�ݒ�
+// 大きい銅像用花火のオフセット設定
 #define WFLBY_3DMAPOBJ_CONT_DOUZOU00_FIRE_NUM	(2)
 static const s32 sc_WFLBY_3DMAPOBJ_CONT_DOUZOU00_FIRE_OFFS_X[ WFLBY_3DMAPOBJ_CONT_DOUZOU00_FIRE_NUM ] = {
-	// ����
+	// 左側
 	-11,
 
-	// �E��
+	// 右側
 	12,
 };
 #define WFLBY_3DMAPOBJ_CONT_DOUZOU00_FIRE_OFFS_Y	(-10)
 
 
 //-------------------------------------
-///	�t���[�g���Ȉʒu�f�[�^
+///	フロート座席位置データ
 //=====================================
 static const WF2DMAP_POS sc_WFLBY_3DMAPOBJ_CONT_FLOATSHEET_POS[ WFLBY_3DMAPOBJ_CONT_MAPOBJFLOAT_SHEET_MAX ] = {
 	{ -2,	10 },
 	{ 14,	10 },
 	{ 30,	10 },
 };
-#define WFLBY_3DMAPOBJ_CONT_FLOAT_Y	( FX32_CONST( 40 ) )	// �t���[�g����Y���Ђ傤
-#define WFLBY_3DMAPOBJ_CONT_FLOAT_X		( 0 )	// �y���W
-#define WFLBY_3DMAPOBJ_CONT_FLOAT_Z		( FX32_CONST( 40 ) )	// �y���W
+#define WFLBY_3DMAPOBJ_CONT_FLOAT_Y	( FX32_CONST( 40 ) )	// フロート座席Yざひょう
+#define WFLBY_3DMAPOBJ_CONT_FLOAT_X		( 0 )	// Ｚ座標
+#define WFLBY_3DMAPOBJ_CONT_FLOAT_Z		( FX32_CONST( 40 ) )	// Ｚ座標
 
 //-------------------------------------
-///	�t���[�g�\���f�[�^
+///	フロート構成データ
 //=====================================
 static const WFLBY_3DMAPOBJ_FLOAT_DATA sc_WFLBY_3DMAPOBJJ_CONT_FLOAT_DATA[ WFLBY_FLOAT_MAX ] = {
 	{ WFLBY_3DMAPOBJ_FLOAT_00, WFLBY_3DMAPOBJ_FLOAT_COL_00 },
@@ -253,7 +253,7 @@ static const WFLBY_3DMAPOBJ_FLOAT_DATA sc_WFLBY_3DMAPOBJJ_CONT_FLOAT_DATA[ WFLBY
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_3DOBJCONT_MAPOBJWK_CheckPosGrid( const WFLBY_3DMAPOBJ_WK* cp_wk, u8 gridx, u8 gridy );
@@ -270,7 +270,7 @@ static void WFLBY_3DMAPOBJ_DouzouAnm_PlaySpecial( WFLBY_3DMAPOBJ_CONT* p_sys, WF
 static void WFLBY_3DMAPOBJ_DouzouAnm_PlayAnm( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_3DMAPOBJ_WK* p_wk );
 
 
-// ���ԉ΃��[�N
+// 床花火ワーク
 static void WFLBY_3DMAPOBJ_HANABIWK_Init( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ_WK* p_hanabi );
 static void WFLBY_3DMAPOBJ_HANABIWK_Main( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys );
 static void WFLBY_3DMAPOBJ_HANABIWK_On( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys, fx32 speed );
@@ -280,29 +280,29 @@ static void WFLBY_3DMAPOBJ_HANABIWK_OffDraw( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLB
 static void WFLBY_3DMAPOBJ_HANABIWK_OffMoveStart( WFLBY_3DMAPOBJ_HANABIWK* p_wk );
 static BOOL WFLBY_3DMAPOBJ_HANABIWK_OffMove( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys );
 
-// �傫���ԉΗp
+// 大きい花火用
 static void WFLBY_3DMAPOBJ_HANABIWK_OnBig( WFLBY_3DMAPOBJ_HANABIWK* p_wk, fx32 speed );
 static void WFLBY_3DMAPOBJ_HANABIWK_MainBig( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys );
 static void WFLBY_3DMAPOBJ_HANABIWK_OnBigDraw( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys );
 
-// �����傫���ԉΗp�i�J�n��OnBig���g�p�j
+// 銅像大きい花火用（開始はOnBigを使用）
 static void WFLBY_3DMAPOBJ_HANABIWK_MainBrBig( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys );
 static void WFLBY_3DMAPOBJ_HANABIWK_OnBrBigDraw( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys );
 
-// �傫�������p�ԉ΍��W�ݒ�֐�
+// 大きい銅像用花火座標設定関数
 static void WFLBY_3DMAPOBJ_DOUZOU00_HANABI_SetPos( WFLBY_3DMAPOBJ_WK* p_hanabi, u32 mapid );
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�}�b�v�z�u�I�u�W�F�N�g�Ǘ��V�X�e��	������
+ *	@brief	マップ配置オブジェクト管理システム	初期化
  *
- *	@param	season	�V�[�Y��	
- *	@param	room	�����^�C�v
- *	@param	cp_map	�}�b�v�f�[�^
- *	@param	heapID	�q�[�vID
- *	@param	gheapID	�O���t�B�b�N�q�[�vID
+ *	@param	season	シーズン	
+ *	@param	room	部屋タイプ
+ *	@param	cp_map	マップデータ
+ *	@param	heapID	ヒープID
+ *	@param	gheapID	グラフィックヒープID
  *
- *	@return	�V�X�e�����[�N
+ *	@return	システムワーク
  */
 //-----------------------------------------------------------------------------
 WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_ROOM_TYPE room, const WFLBY_MAPCONT* cp_map, u32 heapID, u32 gheapID )
@@ -313,20 +313,20 @@ WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_RO
 	p_sys = sys_AllocMemory( heapID, sizeof(WFLBY_3DMAPOBJ_CONT) );
 	memset( p_sys, 0, sizeof(WFLBY_3DMAPOBJ_CONT) );
 
-	// �}�b�v�f�[�^�ۑ�
+	// マップデータ保存
 	p_sys->cp_mapdata = cp_map;
 
-	// �V�[�Y�������f�[�^�ۑ�
+	// シーズン部屋データ保存
 	p_sys->season	= season;
 	p_sys->room		= room;
 
-	// �z�u�I�u�W�F�V�X�e���쐬
+	// 配置オブジェシステム作成
 	p_sys->p_mapobjsys = WFLBY_3DMAPOBJ_Init( WFLBY_FLOAT_MAX, WFLBY_3DMAPOBJ_CONT_MAPOBJWK_MAX, heapID, gheapID );
 
-	// �z�u�I�u�W�F���\�[�X�ǂݍ���
+	// 配置オブジェリソース読み込み
 	WFLBY_3DMAPOBJ_ResLoad( p_sys->p_mapobjsys, room, season, heapID, gheapID );
 
-	// �z�u�I�u�W�F�N�g��o�^
+	// 配置オブジェクトを登録
 	{
 		int i;
 		u32 count;
@@ -337,13 +337,13 @@ WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_RO
 			while( WFLBY_MAPCONT_SarchObjID( p_sys->cp_mapdata, sc_WFLBY_3DMAPOBJ_CONT_WKDATA[i].mapid, &gridx, &gridy, count ) == TRUE ){
 
 
-				// �O���b�h�ʒu�ɓo�^
+				// グリッド位置に登録
 				p_sys->p_mapwkobj[ p_sys->objaddnum ] = WFLBY_3DMAPOBJ_WK_Add( 
 						p_sys->p_mapobjsys, sc_WFLBY_3DMAPOBJ_CONT_WKDATA[i].mdlid, gridx, gridy );
 
-				// �e���f���̏���������
+				// 各モデルの初期化処理
 				switch( sc_WFLBY_3DMAPOBJ_CONT_WKDATA[i].mdlid ){
-				// �~�j�Q�[��
+				// ミニゲーム
 				case WFLBY_3DMAPOBJ_MG_00:
 				case WFLBY_3DMAPOBJ_MG_01:
 				case WFLBY_3DMAPOBJ_MG_02:
@@ -351,7 +351,7 @@ WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_RO
 							p_sys->p_mapwkobj[ p_sys->objaddnum ], 
 							WFLBY_3DMAPOBJ_MG_ANM_ALL, WFLBY_3DMAPOBJ_WK_ANM_LOOP );	
 
-					// �~�j�Q�[���^�C�v�̂��ƂɐU�蕪����
+					// ミニゲームタイプのごとに振り分ける
 					p_sys->anmcont.p_mgmachine[ sc_WFLBY_3DMAPOBJ_CONT_WKDATA[i].mdlid-WFLBY_3DMAPOBJ_MG_00 ] = p_sys->p_mapwkobj[ p_sys->objaddnum ];
 					break;
 
@@ -367,13 +367,13 @@ WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_RO
 							WFLBY_3DMAPOBJ_BIGBRONZEZ_ANM_ALL02, WFLBY_3DMAPOBJ_WK_ANM_LOOP );	
 					break;
 				
-				// �Ŕ�
+				// 看板
 				case WFLBY_3DMAPOBJ_KANBAN:
-					// �Ƃ肠�������쒆�A�j����
+					// とりあえず動作中アニメも
 					WFLBY_3DMAPOBJ_WK_AddAnm( p_sys->p_mapobjsys, 
 							p_sys->p_mapwkobj[ p_sys->objaddnum ], 
 							WFLBY_3DMAPOBJ_KANBAN_ANM_LAMP, WFLBY_3DMAPOBJ_WK_ANM_NOAUTO );	
-					// �~�j�Q�[���^�C�v�̂��ƂɐU�蕪����
+					// ミニゲームタイプのごとに振り分ける
 					p_sys->anmcont.p_mgkanban[ sc_WFLBY_3DMAPOBJ_CONT_WKDATA[i].mapid-WFLBY_MAPOBJID_KANBAN00 ] = p_sys->p_mapwkobj[ p_sys->objaddnum ];
 					break;
 
@@ -385,7 +385,7 @@ WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_RO
 					break;
 
 	
-				// �ԉΗ�
+				// 花火類
 				case WFLBY_3DMAPOBJ_HANABI:
 					WFLBY_3DMAPOBJ_HANABIWK_Init( 
 							&p_sys->anmcont.hanabi[ p_sys->anmcont.hanabi_count ],
@@ -394,7 +394,7 @@ WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_RO
 					GF_ASSERT( p_sys->anmcont.hanabi_count <= WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_NUM );
 					WFLBY_3DMAPOBJ_WK_SetDraw( p_sys->p_mapwkobj[ p_sys->objaddnum ], FALSE );
 
-					// �傫�������p�̉ԉ΂͈ʒu�𒲐�����
+					// 大きい銅像用の花火は位置を調整する
 					if( (sc_WFLBY_3DMAPOBJ_CONT_WKDATA[i].mapid == WFLBY_MAPOBJID_DOUZOU00FIRE00) ||
 						(sc_WFLBY_3DMAPOBJ_CONT_WKDATA[i].mapid == WFLBY_MAPOBJID_DOUZOU00FIRE01) ){
 
@@ -412,7 +412,7 @@ WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_RO
 					GF_ASSERT( p_sys->anmcont.hanabi_count <= WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_NUM );
 					WFLBY_3DMAPOBJ_WK_SetDraw( p_sys->p_mapwkobj[ p_sys->objaddnum ], FALSE );
 
-					// �傫�������p�̉ԉ΂͈ʒu�𒲐�����
+					// 大きい銅像用の花火は位置を調整する
 					if( (sc_WFLBY_3DMAPOBJ_CONT_WKDATA[i].mapid == WFLBY_MAPOBJID_DOUZOU00FIRE00) ||
 						(sc_WFLBY_3DMAPOBJ_CONT_WKDATA[i].mapid == WFLBY_MAPOBJID_DOUZOU00FIRE01) ){
 
@@ -436,7 +436,7 @@ WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_RO
 					GF_ASSERT( p_sys->anmcont.brhanabibig_count <= WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_NUM );
 					WFLBY_3DMAPOBJ_WK_SetDraw( p_sys->p_mapwkobj[ p_sys->objaddnum ], FALSE );
 
-					// �ʒu�𒲐�
+					// 位置を調整
 					{
 						WF2DMAP_POS pos;
 						pos = WFLBY_3DMAPOBJ_WK_GetPos( p_sys->p_mapwkobj[ p_sys->objaddnum ] );
@@ -450,7 +450,7 @@ WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_RO
 
 				p_sys->objaddnum ++;
 
-				// ���Ԗڂ�OBJID��T����
+				// 何番目のOBJIDを探すか
 				count ++;
 
 			}
@@ -458,7 +458,7 @@ WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_RO
 	}
 
 
-	//  �t���[�g�̍쐬
+	//  フロートの作成
 	{	
 		VecFx32 matrix;
 		matrix.x	= WFLBY_3DMAPOBJ_CONT_FLOAT_X;
@@ -469,7 +469,7 @@ WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_RO
 					p_sys->p_mapobjsys, 
 					sc_WFLBY_3DMAPOBJJ_CONT_FLOAT_DATA[i].floatnum, sc_WFLBY_3DMAPOBJJ_CONT_FLOAT_DATA[i].col, &matrix );
 
-			// ��\��
+			// 非表示
 			WFLBY_3DMAPOBJ_FLOAT_SetDraw( p_sys->p_mapfloat[ i ], FALSE );
 		}
 		p_sys->floataddnum = WFLBY_FLOAT_MAX;
@@ -480,14 +480,14 @@ WFLBY_3DMAPOBJ_CONT* WFLBY_3DMAPOBJCONT_Init( WFLBY_SEASON_TYPE season, WFLBY_RO
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�}�b�v�I�u�W�F�Ǘ��V�X�e���j��
+ *	@brief	マップオブジェ管理システム破棄
  *
- *	@param	p_sys	���[�N
+ *	@param	p_sys	ワーク
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_Exit( WFLBY_3DMAPOBJ_CONT* p_sys )
 {
-	// �S�t���[�g�j��
+	// 全フロート破棄
 	{
 		int i;
 
@@ -496,7 +496,7 @@ void WFLBY_3DMAPOBJCONT_Exit( WFLBY_3DMAPOBJ_CONT* p_sys )
 		}
 	}
 	
-	// �S�I�u�W�F��j��
+	// 全オブジェを破棄
 	{
 		int i;
 		for( i=0; i<p_sys->objaddnum; i++ ){
@@ -504,21 +504,21 @@ void WFLBY_3DMAPOBJCONT_Exit( WFLBY_3DMAPOBJ_CONT* p_sys )
 		}
 	}
 
-	// �z�u�I�u�W�F���\�[�X�j��
+	// 配置オブジェリソース破棄
 	WFLBY_3DMAPOBJ_ResRelease( p_sys->p_mapobjsys );	
 
-	// �z�u�I�u�W�F�V�X�e���j��
+	// 配置オブジェシステム破棄
 	WFLBY_3DMAPOBJ_Exit( p_sys->p_mapobjsys );
 
-	// �������g��j��
+	// 自分自身を破棄
 	sys_FreeMemoryEz( p_sys );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���C������
+ *	@brief	メイン処理
  *
- *	@param	p_sys		���[�N
+ *	@param	p_sys		ワーク
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_Main( WFLBY_3DMAPOBJ_CONT* p_sys )
@@ -536,48 +536,48 @@ void WFLBY_3DMAPOBJCONT_Main( WFLBY_3DMAPOBJ_CONT* p_sys )
 	}
 #endif
 
-	// ���ԉ΃��[�N���C��
+	// 床花火ワークメイン
 	for( i=0; i<p_sys->anmcont.hanabi_count; i++ ){
 		WFLBY_3DMAPOBJ_HANABIWK_Main( &p_sys->anmcont.hanabi[i], p_sys->p_mapobjsys );
 	}
 
-	// ���ł��ԉ΃��[�N���C��
+	// 床でか花火ワークメイン
 	for( i=0; i<p_sys->anmcont.hanabibig_count; i++ ){
 		WFLBY_3DMAPOBJ_HANABIWK_MainBig( &p_sys->anmcont.hanabibig[i], p_sys->p_mapobjsys );
 	}
 
-	// �����ł��ԉ΃��[�N���C��
+	// 銅像でか花火ワークメイン
 	for( i=0; i<p_sys->anmcont.brhanabibig_count; i++ ){
 		WFLBY_3DMAPOBJ_HANABIWK_MainBrBig( &p_sys->anmcont.brhanabibig[i], p_sys->p_mapobjsys );
 	}
 	
-	// �z�u�I�u�W�F�V�X�e�����C��
+	// 配置オブジェシステムメイン
 	WFLBY_3DMAPOBJ_Main( p_sys->p_mapobjsys );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�`�揈��
+ *	@brief	描画処理
  *
- *	@param	p_sys	���[�N
+ *	@param	p_sys	ワーク
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_Draw( WFLBY_3DMAPOBJ_CONT* p_sys )
 {
-	// �z�u�I�u�W�F�V�X�e���`��
+	// 配置オブジェシステム描画
 	WFLBY_3DMAPOBJ_Draw( p_sys->p_mapobjsys );
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	VBlank����
+ *	@brief	VBlank処理
  *
- *	@param	p_sys	���[�N
+ *	@param	p_sys	ワーク
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_VBlank( WFLBY_3DMAPOBJ_CONT* p_sys )
 {
-	// �z�u�I�u�W�F�V�X�e��VBlank
+	// 配置オブジェシステムVBlank
 	WFLBY_3DMAPOBJ_VBlank( p_sys->p_mapobjsys );
 }
 
@@ -586,10 +586,10 @@ void WFLBY_3DMAPOBJCONT_VBlank( WFLBY_3DMAPOBJ_CONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t���[�g�̈ʒu���擾
+ *	@brief	フロートの位置を取得
  *
- *	@param	cp_sys		�V�X�e��
- *	@param	idx			�t���[�g�i���o�[
+ *	@param	cp_sys		システム
+ *	@param	idx			フロートナンバー
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_FLOAT_GetPos( const WFLBY_3DMAPOBJ_CONT* cp_sys, u32 idx, VecFx32* p_vec )
@@ -600,11 +600,11 @@ void WFLBY_3DMAPOBJCONT_FLOAT_GetPos( const WFLBY_3DMAPOBJ_CONT* cp_sys, u32 idx
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t���[�g�̈ʒu��ݒ�
+ *	@brief	フロートの位置を設定
  *
- *	@param	p_sys		�V�X�e��
- *	@param	idx			�t���[�g�i���o�[
- *	@param	x			x�ʒu
+ *	@param	p_sys		システム
+ *	@param	idx			フロートナンバー
+ *	@param	x			x位置
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_FLOAT_SetPos( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx, fx32 x )
@@ -621,11 +621,11 @@ void WFLBY_3DMAPOBJCONT_FLOAT_SetPos( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx, fx32 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t���[�g�I�t�Z�b�g���W��ݒ肵�܂��B	�G�t�F�N�g�ȂǂɎg�p���Ă�������
+ *	@brief	フロートオフセット座標を設定します。	エフェクトなどに使用してください
  *
- *	@param	p_sys		�V�X�e�����[�N
- *	@param	idx			�t���[�g�C���f�b�N�X
- *	@param	cp_vec		���W
+ *	@param	p_sys		システムワーク
+ *	@param	idx			フロートインデックス
+ *	@param	cp_vec		座標
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_FLOAT_SetOfsPos( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx, const VecFx32* cp_vec )
@@ -636,12 +636,12 @@ void WFLBY_3DMAPOBJCONT_FLOAT_SetOfsPos( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx, co
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t���[�g�̍��Ȃ̈ʒu���擾
+ *	@brief	フロートの座席の位置を取得
  *
- *	@param	cp_sys		�V�X�e��
- *	@param	idx			�t���[�g�i���o�[
- *	@param	no			���ȃi���o�[
- *	@param	p_vec		�ʒu�i�[��
+ *	@param	cp_sys		システム
+ *	@param	idx			フロートナンバー
+ *	@param	no			座席ナンバー
+ *	@param	p_vec		位置格納先
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_FLOAT_GetSheetPos( const WFLBY_3DMAPOBJ_CONT* cp_sys, u32 idx, u32 no, VecFx32* p_vec )
@@ -657,13 +657,13 @@ void WFLBY_3DMAPOBJCONT_FLOAT_GetSheetPos( const WFLBY_3DMAPOBJ_CONT* cp_sys, u3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t���[�g	Sound���A�j��	�J�n
+ *	@brief	フロート	Sound時アニメ	開始
  *
- *	@param	p_sys		�V�X�e��
- *	@param	idx			�C���f�b�N�X
+ *	@param	p_sys		システム
+ *	@param	idx			インデックス
  *
- *	@retval	TRUE		�A�j���ݒ�ł���
- *	@retval	FALSE		�A�j���ݒ�ł��Ȃ�����
+ *	@retval	TRUE		アニメ設定できた
+ *	@retval	FALSE		アニメ設定できなかった
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJCONT_FLOAT_SetAnmSound( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx )
@@ -674,13 +674,13 @@ BOOL WFLBY_3DMAPOBJCONT_FLOAT_SetAnmSound( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t���[�g	Body�A�j��	�J�n
+ *	@brief	フロート	Bodyアニメ	開始
  *
- *	@param	p_sys		�V�X�e��
- *	@param	idx			�C���f�b�N�X
+ *	@param	p_sys		システム
+ *	@param	idx			インデックス
  *
- *	@retval	TRUE		�A�j���ݒ�ł���
- *	@retval	FALSE		�A�j���ݒ�ł��Ȃ�����
+ *	@retval	TRUE		アニメ設定できた
+ *	@retval	FALSE		アニメ設定できなかった
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJCONT_FLOAT_SetAnmBody( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx )
@@ -691,11 +691,11 @@ BOOL WFLBY_3DMAPOBJCONT_FLOAT_SetAnmBody( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t���[�g�̕`��ݒ�
+ *	@brief	フロートの描画設定
  *
- *	@param	p_sys		�V�X�e��
- *	@param	idx			�C���f�b�N�X
- *	@param	flag		�t���O
+ *	@param	p_sys		システム
+ *	@param	idx			インデックス
+ *	@param	flag		フラグ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_FLOAT_SetDraw( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx, BOOL flag )
@@ -706,13 +706,13 @@ void WFLBY_3DMAPOBJCONT_FLOAT_SetDraw( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx, BOOL
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t���[�g�̕`��擾
+ *	@brief	フロートの描画取得
  *
- *	@param	cp_sys		�V�X�e��
- *	@param	idx			�C���f�b�N�X
+ *	@param	cp_sys		システム
+ *	@param	idx			インデックス
  *
- *	@retval	TRUE	�`�撆
- *	@retval	FALSE	�`��O
+ *	@retval	TRUE	描画中
+ *	@retval	FALSE	描画前
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJCONT_FLOAT_GetDraw( const WFLBY_3DMAPOBJ_CONT* cp_sys, u32 idx )
@@ -723,11 +723,11 @@ BOOL WFLBY_3DMAPOBJCONT_FLOAT_GetDraw( const WFLBY_3DMAPOBJ_CONT* cp_sys, u32 id
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	��]�p�x��ݒ肷��
+ *	@brief	回転角度を設定する
  *
- *	@param	p_sys		�V�X�e��
- *	@param	idx			�C���f�b�N�X
- *	@param	x			������]�p�x
+ *	@param	p_sys		システム
+ *	@param	idx			インデックス
+ *	@param	x			ｘ軸回転角度
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_FLOAT_SetRot( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx, u16 x )
@@ -738,13 +738,13 @@ void WFLBY_3DMAPOBJCONT_FLOAT_SetRot( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx, u16 x
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t���[�g�����A�j�������`�F�b�N
+ *	@brief	フロート音声アニメ中かチェック
  *
- *	@param	cp_sys		�V�X�e��
- *	@param	idx			�C���f�b�N�X
+ *	@param	cp_sys		システム
+ *	@param	idx			インデックス
  *
- *	@retval	TRUE	�����A�j��	�Đ���
- *	@retval	FALSE	�����A�j��	�Đ����ĂȂ�
+ *	@retval	TRUE	音声アニメ	再生中
+ *	@retval	FALSE	音声アニメ	再生してない
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJCONT_FLOAT_CheckAnmSound( const WFLBY_3DMAPOBJ_CONT* cp_sys, u32 idx )
@@ -755,13 +755,13 @@ BOOL WFLBY_3DMAPOBJCONT_FLOAT_CheckAnmSound( const WFLBY_3DMAPOBJ_CONT* cp_sys, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�t���[�g���̃A�j��	�Đ����`�F�b�N
+ *	@brief	フロート胴体アニメ	再生中チェック
  *
- *	@param	cp_sys		�V�X�e��
- *	@param	idx			�C���f�b�N�X
+ *	@param	cp_sys		システム
+ *	@param	idx			インデックス
  *
- *	@retval	TRUE	���̃A�j��	�Đ���
- *	@retval	FALSE	���̃A�j��	��~��
+ *	@retval	TRUE	胴体アニメ	再生中
+ *	@retval	FALSE	胴体アニメ	停止中
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJCONT_FLOAT_CheckAnmBody( const WFLBY_3DMAPOBJ_CONT* cp_sys, u32 idx )
@@ -773,9 +773,9 @@ BOOL WFLBY_3DMAPOBJCONT_FLOAT_CheckAnmBody( const WFLBY_3DMAPOBJ_CONT* cp_sys, u
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�}�b�v�|�[���\��
+ *	@brief	マップポール表示
  *
- *	@param	p_sys	�V�X�e�����[�N
+ *	@param	p_sys	システムワーク
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_MAP_OnPoll( WFLBY_3DMAPOBJ_CONT* p_sys )
@@ -785,9 +785,9 @@ void WFLBY_3DMAPOBJCONT_MAP_OnPoll( WFLBY_3DMAPOBJ_CONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�}�b�v�|�[���\���A�j�����Ȃ�����
+ *	@brief	マップポール表示アニメしなくする
  *
- *	@param	p_sys	�V�X�e�����[�N
+ *	@param	p_sys	システムワーク
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_MAP_OffPoll( WFLBY_3DMAPOBJ_CONT* p_sys )
@@ -798,11 +798,11 @@ void WFLBY_3DMAPOBJCONT_MAP_OffPoll( WFLBY_3DMAPOBJ_CONT* p_sys )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�����A�j���J�n
+ *	@brief	銅像アニメ開始
  *
- *	@param	p_sys	�V�X�e�����[�N
- *	@param	gridx	�O���b�h��
- *	@param	gridy	�O���b�h��
+ *	@param	p_sys	システムワーク
+ *	@param	gridx	グリッドｘ
+ *	@param	gridy	グリッドｙ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_MAP_StartDouzouAnm( WFLBY_3DMAPOBJ_CONT* p_sys, u8 gridx, u8 gridy )
@@ -812,15 +812,15 @@ void WFLBY_3DMAPOBJCONT_MAP_StartDouzouAnm( WFLBY_3DMAPOBJ_CONT* p_sys, u8 gridx
 	u32  mdltype;
 
 	
-	// �����̃��f���̈ʒu�𒲂ׁA�ʒu�̈�v���铺�����A�j��������
+	// 銅像のモデルの位置を調べ、位置の一致する銅像をアニメさせる
 	for( i=0; i<p_sys->objaddnum; i++ ){
 		result[0] = WFLBY_3DOBJCONT_MAPOBJWK_CheckPosGrid( p_sys->p_mapwkobj[i], gridx-1, gridy-1 );
 		result[1] = WFLBY_3DOBJCONT_MAPOBJWK_CheckPosGrid( p_sys->p_mapwkobj[i], gridx, gridy-1 );
 		if( (result[0] == TRUE) || (result[1] == TRUE) ){
-			// �������������`�F�b�N
+			// そいつが銅像かチェック
 			mdltype = WFLBY_3DMAPOBJ_WK_GetType( p_sys->p_mapwkobj[i] );
 			switch( mdltype ){
-			case WFLBY_3DMAPOBJ_SMALLBRONZE00:	// ���ꂼ��S�p�^�[��
+			case WFLBY_3DMAPOBJ_SMALLBRONZE00:	// それぞれ４パターン
 			case WFLBY_3DMAPOBJ_SMALLBRONZE01:	// 
 			case WFLBY_3DMAPOBJ_SMALLBRONZE02:	// 
 			case WFLBY_3DMAPOBJ_SMALLBRONZE03:	// 
@@ -840,10 +840,10 @@ void WFLBY_3DMAPOBJCONT_MAP_StartDouzouAnm( WFLBY_3DMAPOBJ_CONT* p_sys, u8 gridx
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�����ԉΐݒ�
+ *	@brief	銅像花火設定
  *
- *	@param	p_sys		�V�X�e��	
- *	@param	flag		�t���O
+ *	@param	p_sys		システム	
+ *	@param	flag		フラグ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_MAP_SetDouzouFire( WFLBY_3DMAPOBJ_CONT* p_sys, BOOL flag )
@@ -852,13 +852,13 @@ void WFLBY_3DMAPOBJCONT_MAP_SetDouzouFire( WFLBY_3DMAPOBJ_CONT* p_sys, BOOL flag
 	u32  mdltype;
 
 	
-	// �����̃��f���̈ʒu�𒲂ׁA�ʒu�̈�v���铺�����A�j��������
+	// 銅像のモデルの位置を調べ、位置の一致する銅像をアニメさせる
 	for( i=0; i<p_sys->objaddnum; i++ ){
-		// �������������`�F�b�N
+		// そいつが銅像かチェック
 		mdltype = WFLBY_3DMAPOBJ_WK_GetType( p_sys->p_mapwkobj[i] );
 		switch( mdltype ){
-		// �����̑���
-		case WFLBY_3DMAPOBJ_SMALLBRONZE00:	// ���ꂼ��S�p�^�[��
+		// 銅像の操作
+		case WFLBY_3DMAPOBJ_SMALLBRONZE00:	// それぞれ４パターン
 		case WFLBY_3DMAPOBJ_SMALLBRONZE01:	// 
 		case WFLBY_3DMAPOBJ_SMALLBRONZE02:	// 
 		case WFLBY_3DMAPOBJ_SMALLBRONZE03:	// 
@@ -868,9 +868,9 @@ void WFLBY_3DMAPOBJCONT_MAP_SetDouzouFire( WFLBY_3DMAPOBJ_CONT* p_sys, BOOL flag
 			break;
 
 
-		// �ԉ΂̑���
+		// 花火の操作
 		case WFLBY_3DMAPOBJ_BRHANABI:	
-			//  �ԉ΍Đ�
+			//  花火再生
 			if( flag==TRUE ){
 
 				WFLBY_3DMAPOBJ_WK_SetAnmSpeed( p_sys->p_mapwkobj[i], FX32_HALF );
@@ -914,10 +914,10 @@ void WFLBY_3DMAPOBJCONT_MAP_SetDouzouFire( WFLBY_3DMAPOBJ_CONT* p_sys, BOOL flag
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�����傫���ԉ΍Đ�
+ *	@brief	銅像大きい花火再生
  *
- *	@param	p_sys	���[�N
- *	@param	speed	�Đ��X�s�[�h
+ *	@param	p_sys	ワーク
+ *	@param	speed	再生スピード
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_MAP_SetDouzouBigFire( WFLBY_3DMAPOBJ_CONT* p_sys, fx32 speed )
@@ -926,7 +926,7 @@ void WFLBY_3DMAPOBJCONT_MAP_SetDouzouBigFire( WFLBY_3DMAPOBJ_CONT* p_sys, fx32 s
 	u32  mdltype;
 
 	
-	// �����̃��f���̈ʒu�𒲂ׁA�ʒu�̈�v���铺�����A�j��������
+	// 銅像のモデルの位置を調べ、位置の一致する銅像をアニメさせる
 	for( i=0; i<p_sys->anmcont.brhanabibig_count; i++ ){
 
 		WFLBY_3DMAPOBJ_HANABIWK_OnBig( &p_sys->anmcont.brhanabibig[i], speed );
@@ -935,9 +935,9 @@ void WFLBY_3DMAPOBJCONT_MAP_SetDouzouBigFire( WFLBY_3DMAPOBJ_CONT* p_sys, fx32 s
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�����̃��C�g��OFF�ɂ���
+ *	@brief	銅像のライトをOFFにする
  *
- *	@param	p_sys	���[�N
+ *	@param	p_sys	ワーク
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_MAP_OffDouzouLight( WFLBY_3DMAPOBJ_CONT* p_sys )
@@ -946,13 +946,13 @@ void WFLBY_3DMAPOBJCONT_MAP_OffDouzouLight( WFLBY_3DMAPOBJ_CONT* p_sys )
 	u32  mdltype;
 
 	
-	// �����̃��f���̈ʒu�𒲂ׁA�ʒu�̈�v���铺�����A�j��������
+	// 銅像のモデルの位置を調べ、位置の一致する銅像をアニメさせる
 	for( i=0; i<p_sys->objaddnum; i++ ){
-		// �������������`�F�b�N
+		// そいつが銅像かチェック
 		mdltype = WFLBY_3DMAPOBJ_WK_GetType( p_sys->p_mapwkobj[i] );
 		switch( mdltype ){
-		// �����̑���
-		case WFLBY_3DMAPOBJ_SMALLBRONZE00:	// ���ꂼ��S�p�^�[��
+		// 銅像の操作
+		case WFLBY_3DMAPOBJ_SMALLBRONZE00:	// それぞれ４パターン
 		case WFLBY_3DMAPOBJ_SMALLBRONZE01:	// 
 		case WFLBY_3DMAPOBJ_SMALLBRONZE02:	// 
 		case WFLBY_3DMAPOBJ_SMALLBRONZE03:	// 
@@ -966,13 +966,13 @@ void WFLBY_3DMAPOBJCONT_MAP_OffDouzouLight( WFLBY_3DMAPOBJ_CONT* p_sys )
 }
 
 
-// �����C�g
+// 床ライト
 //----------------------------------------------------------------------------
 /**
- *	@brief	�����C�g�ݒ�
+ *	@brief	床ライト設定
  *
- *	@param	p_sys	�V�X�e�����[�N
- *	@param	anm		�A�j���f�[�^
+ *	@param	p_sys	システムワーク
+ *	@param	anm		アニメデータ
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_MAP_SetFloorLight( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_3DMAPOBJ_CONT_LAMP_ANM anm )
@@ -981,55 +981,55 @@ void WFLBY_3DMAPOBJCONT_MAP_SetFloorLight( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_3DM
 	u32  mdltype;
 
 	
-	// �����v�̃��f���̈ʒu�𒲂ׁA�ʒu�̈�v���郉���v���A�j��������
+	// ランプのモデルの位置を調べ、位置の一致するランプをアニメさせる
 	for( i=0; i<p_sys->objaddnum; i++ ){
-		// �����������v���`�F�b�N
+		// そいつがランプかチェック
 		mdltype = WFLBY_3DMAPOBJ_WK_GetType( p_sys->p_mapwkobj[i] );
 		switch( mdltype ){
 		case WFLBY_3DMAPOBJ_LAMP00:
 		case WFLBY_3DMAPOBJ_LAMP01:
 
 			switch( anm ){
-			// �����o�Ă��Ȃ����
+			// 何も出ていない状態
 			case WFLBY_3DMAPOBJ_CONT_LAMP_NONE:	
 				WFLBY_3DMAPOBJ_WK_AddAnm( p_sys->p_mapobjsys, 
 						p_sys->p_mapwkobj[ i ], 
 						WFLBY_3DMAPOBJ_LAMP_ANM_ON, WFLBY_3DMAPOBJ_WK_ANM_NOAUTO );	
-				p_sys->anmcont.ramp_cont_yure = FALSE;	// ���Ȃ��߂��Ȃ�
+				p_sys->anmcont.ramp_cont_yure = FALSE;	// ゆれないめしない
 				break;
-			// NONE��������o����Ԃɂ���		���̌���A�j���ɂȂ�܂�
+			// NONEから光を出す状態にする		その後ゆれアニメになります
 			case WFLBY_3DMAPOBJ_CONT_LAMP_ON:	
 				WFLBY_3DMAPOBJ_WK_AddAnmAnmCallBack( p_sys->p_mapobjsys, 
 						p_sys->p_mapwkobj[ i ], 
 						WFLBY_3DMAPOBJ_LAMP_ANM_ON, WFLBY_3DMAPOBJ_WK_ANM_NOLOOP,
 						WFLBY_3DMAPOBJ_LAMP_YURE_SetCallBack );	
-				p_sys->anmcont.ramp_cont_yure = TRUE;	// ����
+				p_sys->anmcont.ramp_cont_yure = TRUE;	// ゆれる
 				break;
-			// �����o�Ă����Ԃ�����������B	���̌�NONE��ԂɂȂ�܂��B
+			// 光が出ている状態から光を消す。	その後NONE状態になります。
 			case WFLBY_3DMAPOBJ_CONT_LAMP_OFF:	
 				WFLBY_3DMAPOBJ_WK_AddAnmAnmCallBack( p_sys->p_mapobjsys, 
 						p_sys->p_mapwkobj[ i ], 
 						WFLBY_3DMAPOBJ_LAMP_ANM_ON, WFLBY_3DMAPOBJ_WK_ANM_BACKNOLOOP,
 						WFLBY_3DMAPOBJ_LAMP_NONE_SetCallBack );	
 
-				// ���A�j���͔j��
+				// 他アニメは破棄
 				WFLBY_3DMAPOBJ_WK_DelAnm( p_sys->p_mapobjsys, 
 						p_sys->p_mapwkobj[ i ], 
 						WFLBY_3DMAPOBJ_LAMP_ANM_YURE );	
-				p_sys->anmcont.ramp_cont_yure = FALSE;	// ���Ȃ�
+				p_sys->anmcont.ramp_cont_yure = FALSE;	// ゆれない
 				break;
-			// ���A�j��
+			// ゆれアニメ
 			case WFLBY_3DMAPOBJ_CONT_LAMP_YURE:	
-				// ���A�j���ݒ�
+				// ゆれアニメ設定
 				WFLBY_3DMAPOBJ_WK_AddAnm( p_sys->p_mapobjsys, 
 						p_sys->p_mapwkobj[ i ], 
 						WFLBY_3DMAPOBJ_LAMP_ANM_YURE, WFLBY_3DMAPOBJ_WK_ANM_LOOP );	
 
-				// ���A�j���͔j��
+				// 他アニメは破棄
 				WFLBY_3DMAPOBJ_WK_DelAnm( p_sys->p_mapobjsys, 
 						p_sys->p_mapwkobj[ i ], 
 						WFLBY_3DMAPOBJ_LAMP_ANM_ON );	
-				p_sys->anmcont.ramp_cont_yure = TRUE;	// ����
+				p_sys->anmcont.ramp_cont_yure = TRUE;	// ゆれる
 				break;
 			default:
 				break;
@@ -1044,12 +1044,12 @@ void WFLBY_3DMAPOBJCONT_MAP_SetFloorLight( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_3DM
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���A�j�������`�F�b�N
+ *	@brief	ゆれアニメ中かチェック
  *
- *	@param	cp_sys	�Ǘ��V�X�e��
+ *	@param	cp_sys	管理システム
  *
- *	@retval	TRUE	���A�j����
- *	@retval	FALSE	���A�j�����ĂȂ�
+ *	@retval	TRUE	ゆれアニメ中
+ *	@retval	FALSE	ゆれアニメしてない
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJCONT_MAP_CheckFloorLightYure( const WFLBY_3DMAPOBJ_CONT* cp_sys )
@@ -1059,11 +1059,11 @@ BOOL WFLBY_3DMAPOBJCONT_MAP_CheckFloorLightYure( const WFLBY_3DMAPOBJ_CONT* cp_s
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�����C�g�ԉΐݒ�
+ *	@brief	床ライト花火設定
  *
- *	@param	p_sys	�V�X�e�����[�N
- *	@param	flag	���邩������
- *	@param	speed	�X�s�[�h
+ *	@param	p_sys	システムワーク
+ *	@param	flag	つけるか消すか
+ *	@param	speed	スピード
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFire( WFLBY_3DMAPOBJ_CONT* p_sys, BOOL  flag, fx32 speed )
@@ -1071,7 +1071,7 @@ void WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFire( WFLBY_3DMAPOBJ_CONT* p_sys, BOOL 
 	int i;
 
 	
-	// �����̃��f���̈ʒu�𒲂ׁA�ʒu�̈�v���铺�����A�j��������
+	// 銅像のモデルの位置を調べ、位置の一致する銅像をアニメさせる
 	for( i=0; i<p_sys->anmcont.hanabi_count; i++ ){
 		
 		WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFireIdx( p_sys, i, flag, speed );
@@ -1080,15 +1080,15 @@ void WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFire( WFLBY_3DMAPOBJ_CONT* p_sys, BOOL 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉ�	�����ɔ���
+ *	@brief	床花火	ここに発射
  *
- *	@param	p_sys		�V�X�e�����[�N
- *	@param	idx			�C���f�b�N�X
- *	@param	flag		�t���O
- *	@param	speed		�X�s�[�h
+ *	@param	p_sys		システムワーク
+ *	@param	idx			インデックス
+ *	@param	flag		フラグ
+ *	@param	speed		スピード
  *
- *	@retval	TRUE	�ݒ�ł���
- *	@retval	FALSE	���̃C���f�b�N�X�̉ԉ΂͂Ȃ��i����ȍ~�̉ԉ΂͂Ȃ��j
+ *	@retval	TRUE	設定できた
+ *	@retval	FALSE	そのインデックスの花火はない（これ以降の花火はない）
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFireIdx( WFLBY_3DMAPOBJ_CONT* p_sys, u32 idx, BOOL  flag,  fx32 speed )
@@ -1114,10 +1114,10 @@ BOOL WFLBY_3DMAPOBJCONT_MAP_SetFloorLightFireIdx( WFLBY_3DMAPOBJ_CONT* p_sys, u3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉ�	�ł������̔���
+ *	@brief	床花火	でっかいの発射
  *
- *	@param	p_sys	�V�X�e��
- *	@param	speed	�Đ��X�s�[�h
+ *	@param	p_sys	システム
+ *	@param	speed	再生スピード
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_MAP_SetFloorLightBigFire( WFLBY_3DMAPOBJ_CONT* p_sys, fx32 speed )
@@ -1126,7 +1126,7 @@ void WFLBY_3DMAPOBJCONT_MAP_SetFloorLightBigFire( WFLBY_3DMAPOBJ_CONT* p_sys, fx
 	u32  mdltype;
 
 	
-	// �����̃��f���̈ʒu�𒲂ׁA�ʒu�̈�v���铺�����A�j��������
+	// 銅像のモデルの位置を調べ、位置の一致する銅像をアニメさせる
 	for( i=0; i<p_sys->anmcont.hanabibig_count; i++ ){
 		WFLBY_3DMAPOBJ_HANABIWK_OnBig( &p_sys->anmcont.hanabibig[i], speed );
 	}
@@ -1134,14 +1134,14 @@ void WFLBY_3DMAPOBJCONT_MAP_SetFloorLightBigFire( WFLBY_3DMAPOBJ_CONT* p_sys, fx
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�ŔA�j���̐ݒ�
+ *	@brief	看板アニメの設定
  *
- *	@param	p_sys		�V�X�e��
- *	@param	game		�Q�[���^�C�v
- *	@param	num			�ڑ��l��
- *	@param	recruit		���N���[�g
- *	@param	play		�V�ђ���
- *	@param	light		��������
+ *	@param	p_sys		システム
+ *	@param	game		ゲームタイプ
+ *	@param	num			接続人数
+ *	@param	recruit		リクルート
+ *	@param	play		遊び中か
+ *	@param	light		消灯中か
  */
 //-----------------------------------------------------------------------------
 void WFLBY_3DMAPOBJCONT_MAP_SetMGAnm( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_GAMETYPE game, u32 num, BOOL recruit, BOOL play, BOOL light )
@@ -1152,31 +1152,31 @@ void WFLBY_3DMAPOBJCONT_MAP_SetMGAnm( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_GAMETYPE
 	u32 idx;
 
 	
-	// �Q�[���^�C�v����~�j�Q�[���C���f�b�N�X�����߂�
+	// ゲームタイプからミニゲームインデックスを求める
 	idx = game - WFLBY_GAME_BALLSLOW;
 
 	p_machine	= p_sys->anmcont.p_mgmachine[ idx ];
 	p_kanban	= p_sys->anmcont.p_mgkanban[ idx ];
 
 
-	// ��W���V�ђ�
+	// 募集＆遊び中
 	if( (play == TRUE) || (recruit == TRUE) ){
-		// �~�j�Q�[���@�𓮍삳����
+		// ミニゲーム機を動作させる
 		if( WFLBY_3DMAPOBJ_WK_GetAnmFlag( p_machine, WFLBY_3DMAPOBJ_MG_ANM_MOVE ) == FALSE ){
-			// �Ƃ肠�������쒆�A�j����
+			// とりあえず動作中アニメも
 			WFLBY_3DMAPOBJ_WK_AddAnm( p_sys->p_mapobjsys, 
 					p_machine, 
 					WFLBY_3DMAPOBJ_MG_ANM_MOVE, WFLBY_3DMAPOBJ_WK_ANM_LOOP );	
 		}
 
-		// �Ŕ�
-		// �l���̃t���[������ݒ�
+		// 看板
+		// 人数のフレーム数を設定
 		if( play == TRUE ){
 			WFLBY_3DMAPOBJ_WK_SetAnmFrame( p_sys->p_mapobjsys, p_kanban, 
 					WFLBY_3DMAPOBJ_KANBAN_ANM_LAMP, 
 					FX32_CONST( (WFLBY_3DMAPOBJ_CONT_KANBAN_ANM_PLAY_0+num-1)*WFLBY_3DMAPOBJ_CONT_KANBAN_ANM_ONEFRAME ) );
 		}else{
-			// ��W���͓_�ł�����
+			// 募集中は点滅させる
 			p_sys->anmcont.kanban_count = (p_sys->anmcont.kanban_count + 1) % WFLBY_3DMAPOBJ_CONT_KANBAN_ANM_MAX;
 			if( p_sys->anmcont.kanban_count < WFLBY_3DMAPOBJ_CONT_KANBAN_ANM_HALF ){
 				WFLBY_3DMAPOBJ_WK_SetAnmFrame( p_sys->p_mapobjsys, p_kanban, 
@@ -1190,19 +1190,19 @@ void WFLBY_3DMAPOBJCONT_MAP_SetMGAnm( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_GAMETYPE
 		}
 	}else{
 
-		// ���ꂼ��̃A�j����ݒ肷��
-		// �d��OFF��
+		// それぞれのアニメを設定する
+		// 電源OFF時
 		if( light ){
 			WFLBY_3DMAPOBJ_WK_DelAnmAll( p_sys->p_mapobjsys, p_machine );
 			WFLBY_3DMAPOBJ_WK_DelAnmAll( p_sys->p_mapobjsys, p_kanban );
-			// ���C�g�t���O��OFF�ɂ���
+			// ライトフラグをOFFにする
 			WFLBY_3DMAPOBJ_WK_SetLightFlag( p_sys->p_mapobjsys, p_machine, 1<<WFLBY_DRAW_LIGHT_ROOM );
 		}else{
-			// �~�j�Q�[���̓I�u�W�F���Ƃ߂�
+			// ミニゲームはオブジェをとめる
 			WFLBY_3DMAPOBJ_WK_DelAnm( p_sys->p_mapobjsys, 
 					p_machine, WFLBY_3DMAPOBJ_MG_ANM_MOVE );	
 
-			// �Ŕ̓t���[���O�ɂ���
+			// 看板はフレーム０にする
 			WFLBY_3DMAPOBJ_WK_SetAnmFrame( p_sys->p_mapobjsys, p_kanban, 
 						WFLBY_3DMAPOBJ_KANBAN_ANM_LAMP, 0 );
 		}
@@ -1219,19 +1219,19 @@ void WFLBY_3DMAPOBJCONT_MAP_SetMGAnm( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_GAMETYPE
 
 //-----------------------------------------------------------------------------
 /**
- *			�v���C�x�[�g�֐�
+ *			プライベート関数
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
- *	@brief	�O���b�h�ƃI�u�W�F�̈ʒu����v���邩�`�F�b�N
+ *	@brief	グリッドとオブジェの位置が一致するかチェック
  *
- *	@param	cp_wk		���[�N
- *	@param	gridx		�O���b�h��
- *	@param	gridy		�O���b�h��
+ *	@param	cp_wk		ワーク
+ *	@param	gridx		グリッドｘ
+ *	@param	gridy		グリッドｙ
  *
- *	@retval	TRUE	���W�ƃO���b�h����v����
- *	@retval	FALSE	��v���Ȃ�
+ *	@retval	TRUE	座標とグリッドが一致する
+ *	@retval	FALSE	一致しない
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_3DOBJCONT_MAPOBJWK_CheckPosGrid( const WFLBY_3DMAPOBJ_WK* cp_wk, u8 gridx, u8 gridy )
@@ -1239,7 +1239,7 @@ static BOOL WFLBY_3DOBJCONT_MAPOBJWK_CheckPosGrid( const WFLBY_3DMAPOBJ_WK* cp_w
 	WF2DMAP_POS pos;
 	WF2DMAP_POS chk_pos;
 
-	// �O���b�h�����W�ɕϊ�
+	// グリッドを座標に変換
 	chk_pos.x = WF2DMAP_GRID2POS(gridx);
 	chk_pos.y = WF2DMAP_GRID2POS(gridy);
 	
@@ -1253,14 +1253,14 @@ static BOOL WFLBY_3DOBJCONT_MAPOBJWK_CheckPosGrid( const WFLBY_3DMAPOBJ_WK* cp_w
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�O���b�h�ʒu�ɂ���z�u�I�u�W�F���擾����
+ *	@brief	グリッド位置にいる配置オブジェを取得する
  *
- *	@param	p_sys		�V�X�e��
- *	@param	gridx		�O���b�h
+ *	@param	p_sys		システム
+ *	@param	gridx		グリッド
  *	@param	gridy 
  *
- *	@retval	NULL	���Ȃ�
- *	@retval	���̃O���b�h�ɂ��郏�[�N
+ *	@retval	NULL	いない
+ *	@retval	そのグリッドにいるワーク
  */
 //-----------------------------------------------------------------------------
 static WFLBY_3DMAPOBJ_WK* WFLBY_3DOBJCONT_MAPOBJWK_GetGridWk( WFLBY_3DMAPOBJ_CONT* p_sys, u8 gridx, u8 gridy )
@@ -1269,7 +1269,7 @@ static WFLBY_3DMAPOBJ_WK* WFLBY_3DOBJCONT_MAPOBJWK_GetGridWk( WFLBY_3DMAPOBJ_CON
 	BOOL result;
 
 	
-	// �����̃��f���̈ʒu�𒲂ׁA�ʒu�̈�v���铺�����A�j��������
+	// 銅像のモデルの位置を調べ、位置の一致する銅像をアニメさせる
 	for( i=0; i<p_sys->objaddnum; i++ ){
 		result = WFLBY_3DOBJCONT_MAPOBJWK_CheckPosGrid( p_sys->p_mapwkobj[i], gridx, gridy );
 		if( result == TRUE ){
@@ -1282,17 +1282,17 @@ static WFLBY_3DMAPOBJ_WK* WFLBY_3DOBJCONT_MAPOBJWK_GetGridWk( WFLBY_3DMAPOBJ_CON
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�����v�@���ݒ�R�[���o�b�N
+ *	@brief	ランプ　ゆれ設定コールバック
  *
- *	@param	p_sys		�V�X�e��
- *	@param	p_wk		���[�N
+ *	@param	p_sys		システム
+ *	@param	p_wk		ワーク
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_LAMP_YURE_SetCallBack( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk )
 {
 	u32 mdltype;
 	
-	// �I�u�W�F�^�C�v�������ƃ����v���`�F�b�N
+	// オブジェタイプがちゃんとランプかチェック
 	mdltype = WFLBY_3DMAPOBJ_WK_GetType( p_wk );
 	GF_ASSERT( (mdltype == WFLBY_3DMAPOBJ_LAMP00) || (mdltype == WFLBY_3DMAPOBJ_LAMP01) );
 	if( (mdltype == WFLBY_3DMAPOBJ_LAMP00) || (mdltype == WFLBY_3DMAPOBJ_LAMP01) ){
@@ -1304,17 +1304,17 @@ static void WFLBY_3DMAPOBJ_LAMP_YURE_SetCallBack( WFLBY_3DMAPOBJ* p_sys, WFLBY_3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�����v�Ȃ��A�j���ݒ�
+ *	@brief	ランプなしアニメ設定
  *
- *	@param	p_sys	�V�X�e��
- *	@param	p_wk	���[�N
+ *	@param	p_sys	システム
+ *	@param	p_wk	ワーク
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_LAMP_NONE_SetCallBack( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk )
 {
 	u32 mdltype;
 	
-	// �I�u�W�F�^�C�v�������ƃ����v���`�F�b�N
+	// オブジェタイプがちゃんとランプかチェック
 	mdltype = WFLBY_3DMAPOBJ_WK_GetType( p_wk );
 	GF_ASSERT( (mdltype == WFLBY_3DMAPOBJ_LAMP00) || (mdltype == WFLBY_3DMAPOBJ_LAMP01) );
 	if( (mdltype == WFLBY_3DMAPOBJ_LAMP00) || (mdltype == WFLBY_3DMAPOBJ_LAMP01) ){
@@ -1325,7 +1325,7 @@ static void WFLBY_3DMAPOBJ_LAMP_NONE_SetCallBack( WFLBY_3DMAPOBJ* p_sys, WFLBY_3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�\�����n�e�e����R�[���o�b�N
+ *	@brief	表示をＯＦＦするコールバック
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_LAMP_DrawOff_SetCallBack( WFLBY_3DMAPOBJ* p_sys, WFLBY_3DMAPOBJ_WK* p_wk )
@@ -1337,10 +1337,10 @@ static void WFLBY_3DMAPOBJ_LAMP_DrawOff_SetCallBack( WFLBY_3DMAPOBJ* p_sys, WFLB
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�����A�j���̍Đ�	�ʏ�
+ *	@brief	銅像アニメの再生	通常
  *
- *	@param	p_sys		�V�X�e�����[�N
- *	@param	p_wk		���[�N
+ *	@param	p_sys		システムワーク
+ *	@param	p_wk		ワーク
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_DouzouAnm_PlayNormal( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_3DMAPOBJ_WK* p_wk )
@@ -1349,61 +1349,61 @@ static void WFLBY_3DMAPOBJ_DouzouAnm_PlayNormal( WFLBY_3DMAPOBJ_CONT* p_sys, WFL
 	BOOL anm_start;
 	int i;
 
-	// �A�j���J�n
+	// アニメ開始
 	anm_start = FALSE;	
 
-	// �A�j�����J�n�����`�F�b�N
+	// アニメが開始中かチェック
 	if( WFLBY_3DMAPOBJ_WK_CheckAnm( p_sys->p_mapobjsys, p_wk, WFLBY_3DMAPOBJ_SMALLBRONZE_ANM_TOUCH ) == FALSE ){
-		anm_start = TRUE;	// ��΂ɃA�j���J�n
+		anm_start = TRUE;	// 絶対にアニメ開始
 	}else{
-		// �t���[�������K��̈ʒu�܂ōs���ĂȂ���΃A�j���J�n�����Ȃ�
+		// フレーム数が規定の位置まで行ってなければアニメ開始させない
 		anm_frame = WFLBY_3DMAPOBJ_WK_GetAnmFrame( p_wk, WFLBY_3DMAPOBJ_SMALLBRONZE_ANM_TOUCH );
 		if( anm_frame > WFLBY_3DMAPOBJ_CONT_DOUZOU_ANM_RESTART_FRAME ){
 			anm_start = TRUE;
 		}
 	}
 	
-	// anm_start��TRUE�Ȃ�A�j���Đ�
+	// anm_startがTRUEならアニメ再生
 	if( anm_start == TRUE ){
 		
-		// �����A�j���Đ�
+		// 銅像アニメ再生
 		WFLBY_3DMAPOBJ_DouzouAnm_PlayAnm( p_sys, p_wk );	
 
 
-		// �������쉹�ݒ�
+		// 銅像動作音設定
 		Snd_SePlay( WFLBY_SND_DOUZOU );
 	}
 }
-// ���ꕔ���p
+// 特殊部屋用
 static void WFLBY_3DMAPOBJ_DouzouAnm_PlaySpecial( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_3DMAPOBJ_WK* p_wk )
 {
 	BOOL anm_start;
 
-	// �A�j���J�n
+	// アニメ開始
 	anm_start = FALSE;	
 
-	// �A�j�����J�n�����`�F�b�N
+	// アニメが開始中かチェック
 	if( WFLBY_3DMAPOBJ_WK_CheckAnm( p_sys->p_mapobjsys, p_wk, WFLBY_3DMAPOBJ_SMALLBRONZE_ANM_TOUCH ) == FALSE ){
-		anm_start = TRUE;	// ��΂ɃA�j���J�n
+		anm_start = TRUE;	// 絶対にアニメ開始
 	}
 	
-	// anm_start��TRUE�Ȃ�A�j���Đ�
+	// anm_startがTRUEならアニメ再生
 	if( anm_start == TRUE ){
 
-		// �����A�j���Đ�
+		// 銅像アニメ再生
 		WFLBY_3DMAPOBJ_DouzouAnm_PlayAnm( p_sys, p_wk );	
 
-		// �������쉹�ݒ�
+		// 銅像動作音設定
 		Snd_SePlay( WFLBY_SND_DOUZOU2 );
 	}
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ۂɓ����A�j�����Đ�
+ *	@brief	実際に銅像アニメを再生
  *
- *	@param	p_sys		�V�X�e�����[�N
- *	@param	p_wk		�`�惏�[�N
+ *	@param	p_sys		システムワーク
+ *	@param	p_wk		描画ワーク
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_DouzouAnm_PlayAnm( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_3DMAPOBJ_WK* p_wk )
@@ -1421,10 +1421,10 @@ static void WFLBY_3DMAPOBJ_DouzouAnm_PlayAnm( WFLBY_3DMAPOBJ_CONT* p_sys, WFLBY_
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉΊǗ��V�X�e��	������
+ *	@brief	床花火管理システム	初期化
  *
- *	@param	p_wk		���[�N
- *	@param	p_hanabi	�ԉ΃��[�N
+ *	@param	p_wk		ワーク
+ *	@param	p_hanabi	花火ワーク
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_HANABIWK_Init( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ_WK* p_hanabi )
@@ -1435,43 +1435,43 @@ static void WFLBY_3DMAPOBJ_HANABIWK_Init( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉΊǗ��V�X�e��	���C��
+ *	@brief	床花火管理システム	メイン
  *
- *	@param	p_wk		���[�N
+ *	@param	p_wk		ワーク
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_HANABIWK_Main( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys )
 {
 	switch( p_wk->status ){
-	// �\���J�n�҂�
+	// 表示開始待ち
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONWAIT:
 		break;
 
-	// �\���J�n
+	// 表示開始
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONSTART:
 		WFLBY_3DMAPOBJ_HANABIWK_OnDraw( p_wk, p_mapobjsys );
 
 		p_wk->status = WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ON;
 		break;
 		
-	// �\����
+	// 表示中
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ON:
 		break;
 
-	// �\��OFF�J�n
+	// 表示OFF開始
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFFSTART:
 		WFLBY_3DMAPOBJ_HANABIWK_OffMoveStart( p_wk );
 		p_wk->status		= WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFF;
 		break;
 		
-	// �\��OFF
+	// 表示OFF
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFF:
 		if( WFLBY_3DMAPOBJ_HANABIWK_OffMove( p_wk, p_mapobjsys ) == TRUE ){
 
-			// �I��
+			// 終了
 			WFLBY_3DMAPOBJ_HANABIWK_OffDraw( p_wk, p_mapobjsys );
 
-			// �\���J�n�҂�������
+			// 表示開始待ち処理へ
 			p_wk->status = WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONWAIT;
 		}
 		break;
@@ -1483,65 +1483,65 @@ static void WFLBY_3DMAPOBJ_HANABIWK_Main( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉΊǗ��V�X�e��	�ԉΕ\���J�n
+ *	@brief	床花火管理システム	花火表示開始
  *
- *	@param	p_wk		���[�N
- *	@param	p_mapobjsys	�z�u�I�u�W�F�`��V�X�e��
- *	@param	speed		�A�j���X�s�[�h
+ *	@param	p_wk		ワーク
+ *	@param	p_mapobjsys	配置オブジェ描画システム
+ *	@param	speed		アニメスピード
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_HANABIWK_On( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys, fx32 speed )
 {
-	// �����\�����Ȃ牽�����Ȃ�
+	// もう表示中なら何もしない
 	if( (p_wk->status == WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONSTART) ||
 		(p_wk->status == WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ON) ){
 		return ;
 	}
 
-	// �j�����̏ꍇ�A�����I�ɔj������
+	// 破棄中の場合、強制的に破棄する
 	if( (p_wk->status == WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFFSTART) ||
 		(p_wk->status == WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFF) ){
 		WFLBY_3DMAPOBJ_HANABIWK_OffDraw( p_wk, p_mapobjsys );
 	}
 
-	// �\���J�n
+	// 表示開始
 	p_wk->status		= WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONSTART;
 	p_wk->start_speed	= speed;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉΊǗ��V�X�e��	�ԉΕ\���I��
+ *	@brief	床花火管理システム	花火表示終了
  *
- *	@param	p_wk		���[�N
+ *	@param	p_wk		ワーク
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_HANABIWK_Off( WFLBY_3DMAPOBJ_HANABIWK* p_wk )
 {
-	// �j�����Ȃ牽�����Ȃ�
+	// 破棄中なら何もしない
 	if( (p_wk->status == WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFFSTART) ||
 		(p_wk->status == WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFF) ){
 		return ;
 	}
 
-	// �`�悵�ĂȂ��Ȃ牽�����Ȃ�
+	// 描画してないなら何もしない
 	if( (p_wk->status == WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONSTART) ||
 		(p_wk->status == WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONWAIT) ){
 		p_wk->status = WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONWAIT;
 		return ;
 	}
 	
-	// �j��
+	// 破棄
 	p_wk->status = WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFFSTART;
 }
 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉΊǗ��V�X�e��	���ۂɉԉ΂�\������
+ *	@brief	床花火管理システム	実際に花火を表示する
  *	
- *	@param	p_wk		���[�N
- *	@param	p_mapobjsys	�z�u�I�u�W�F�`��Ǘ��V�X�e��
+ *	@param	p_wk		ワーク
+ *	@param	p_mapobjsys	配置オブジェ描画管理システム
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_HANABIWK_OnDraw( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys )
@@ -1563,10 +1563,10 @@ static void WFLBY_3DMAPOBJ_HANABIWK_OnDraw( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉΊǗ��V�X�e��	���ۂɉԉ΂�\������߂�
+ *	@brief	床花火管理システム	実際に花火を表示をやめる
  *	
- *	@param	p_wk		���[�N
- *	@param	p_mapobjsys	�z�u�I�u�W�F�`��Ǘ��V�X�e��
+ *	@param	p_wk		ワーク
+ *	@param	p_mapobjsys	配置オブジェ描画管理システム
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_HANABIWK_OffDraw( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys )
@@ -1590,9 +1590,9 @@ static void WFLBY_3DMAPOBJ_HANABIWK_OffDraw( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLB
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉΊǗ��V�X�e��	�ԉΏI������	������
+ *	@brief	床花火管理システム	花火終了動作	初期化
  *
- *	@param	p_wk	���[�N
+ *	@param	p_wk	ワーク
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_HANABIWK_OffMoveStart( WFLBY_3DMAPOBJ_HANABIWK* p_wk )
@@ -1602,13 +1602,13 @@ static void WFLBY_3DMAPOBJ_HANABIWK_OffMoveStart( WFLBY_3DMAPOBJ_HANABIWK* p_wk 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉΊǗ��V�X�e��	�ԉΏI������	���C��
+ *	@brief	床花火管理システム	花火終了動作	メイン
  *
- *	@param	p_wk		���[�N
- *	@param	p_mapobjsys	�z�u�I�u�W�F�Ǘ��V�X�e��
+ *	@param	p_wk		ワーク
+ *	@param	p_mapobjsys	配置オブジェ管理システム
  *
- *	@retval	TRUE	�I��
- *	@retval	FALSE	�r��
+ *	@retval	TRUE	終了
+ *	@retval	FALSE	途中
  */
 //-----------------------------------------------------------------------------
 static BOOL WFLBY_3DMAPOBJ_HANABIWK_OffMove( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys )
@@ -1616,7 +1616,7 @@ static BOOL WFLBY_3DMAPOBJ_HANABIWK_OffMove( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLB
 	if( p_wk->count < WFLBY_3DMAPOBJ_CONT_HANABI_COUNT_MAX ){
 		p_wk->count ++;
 
-		// �Đ��t���[���ݒ�
+		// 再生フレーム設定
 		{
 			fx32 dif_speed;
 			fx32 now_speed;
@@ -1627,7 +1627,7 @@ static BOOL WFLBY_3DMAPOBJ_HANABIWK_OffMove( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLB
 			WFLBY_3DMAPOBJ_WK_SetAnmSpeed( p_wk->p_hanabi, now_speed );
 		}
 
-		// �A���t�@�ݒ�
+		// アルファ設定
 		{
 			u32 alpha;
 
@@ -1636,7 +1636,7 @@ static BOOL WFLBY_3DMAPOBJ_HANABIWK_OffMove( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLB
 			WFLBY_3DMAPOBJ_WK_SetAlpha( p_wk->p_hanabi, alpha, WFLBY_3DMAPOBJ_CONT_HANABI_ALPHA_DEF );
 		}
 
-		// �X�P�[��
+		// スケール
 		{
 			fx32 scale;
 
@@ -1656,81 +1656,81 @@ static BOOL WFLBY_3DMAPOBJ_HANABIWK_OffMove( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLB
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉΊǗ��V�X�e��	�ԉ΂�\���J�n	�ł����ԉ�
+ *	@brief	床花火管理システム	花火を表示開始	でかい花火
  *
- *	@param	p_wk			���[�N
- *	@param	speed			�A�j���X�s�[�h
+ *	@param	p_wk			ワーク
+ *	@param	speed			アニメスピード
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_HANABIWK_OnBig( WFLBY_3DMAPOBJ_HANABIWK* p_wk, fx32 speed )
 {
-	// �����\�����Ȃ牽�����Ȃ�
+	// もう表示中なら何もしない
 	if( (p_wk->status == WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONSTART) ||
 		(p_wk->status == WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ON) ){
 		return ;
 	}
 
-	// �j�����̏ꍇ�͂��̂܂ܐV�����o�����Ⴄ
+	// 破棄中の場合はそのまま新しく出しちゃう
 /*	if( (p_wk->status == WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFFSTART) ||
 		(p_wk->status == WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFF) ){
 		return ;
 	}//*/
 
-	// �\���J�n
+	// 表示開始
 	p_wk->status		= WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONSTART;
 	p_wk->start_speed	= speed;
 }
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉΊǗ��V�X�e��	���C��
+ *	@brief	床花火管理システム	メイン
  *
- *	@param	p_wk		���[�N
- *	@param	p_mapobjsys �z�u�I�u�W�F�`��Ǘ��V�X�e��
+ *	@param	p_wk		ワーク
+ *	@param	p_mapobjsys 配置オブジェ描画管理システム
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_HANABIWK_MainBig( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys )
 {
 	switch( p_wk->status ){
-	// �\���J�n�҂�
+	// 表示開始待ち
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONWAIT:
 		break;
 
-	// �\���J�n
+	// 表示開始
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONSTART:
 		WFLBY_3DMAPOBJ_HANABIWK_OnBigDraw( p_wk, p_mapobjsys );
 
 		p_wk->status = WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ON;
 		break;
 		
-	// �\����
+	// 表示中
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ON:
-		// �A�j���̏I���҂�
+		// アニメの終了待ち
 		if( WFLBY_3DMAPOBJ_WK_CheckAnm( p_mapobjsys, p_wk->p_hanabi, 0 ) == FALSE ){
 
-			// �J�n�҂���
+			// 開始待ちへ
 			p_wk->status = WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFFSTART;
 		}
 		break;
 
-	// �\��OFF�J�n
+	// 表示OFF開始
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFFSTART:
 		WFLBY_3DMAPOBJ_HANABIWK_OffMoveStart( p_wk );
 		p_wk->status		= WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFF;
 		break;
 		
-	// �\��OFF
+	// 表示OFF
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFF:
 		if( WFLBY_3DMAPOBJ_HANABIWK_OffMove( p_wk, p_mapobjsys ) == TRUE ){
 
-			// �\��OFF�I��
+			// 表示OFF終了
 			WFLBY_3DMAPOBJ_WK_SetDraw( p_wk->p_hanabi, FALSE );
 
 			WFLBY_3DMAPOBJ_WK_ResetAlpha( p_wk->p_hanabi );
 
 			WFLBY_3DMAPOBJ_WK_SetScale( p_wk->p_hanabi, FX32_ONE, FX32_ONE, FX32_ONE );
 
-			// �\���J�n�҂�������
+			// 表示開始待ち処理へ
 			p_wk->status = WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONWAIT;
 		}
 		break;
@@ -1743,10 +1743,10 @@ static void WFLBY_3DMAPOBJ_HANABIWK_MainBig( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLB
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉΊǗ��V�X�e��	���ۂɉԉ΂�\���J�n	�ł����ԉ�
+ *	@brief	床花火管理システム	実際に花火を表示開始	でかい花火
  *	
- *	@param	p_wk		���[�N
- *	@param	p_mapobjsys	�z�u�I�u�W�F�`��Ǘ��V�X�e��
+ *	@param	p_wk		ワーク
+ *	@param	p_mapobjsys	配置オブジェ描画管理システム
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_HANABIWK_OnBigDraw( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys )
@@ -1767,54 +1767,54 @@ static void WFLBY_3DMAPOBJ_HANABIWK_OnBigDraw( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WF
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉΊǗ��V�X�e��	���C��		�����ł��ԉΗp
+ *	@brief	床花火管理システム	メイン		銅像でか花火用
  *
- *	@param	p_wk		���[�N
- *	@param	p_mapobjsys �z�u�I�u�W�F�`��Ǘ��V�X�e��
+ *	@param	p_wk		ワーク
+ *	@param	p_mapobjsys 配置オブジェ描画管理システム
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_HANABIWK_MainBrBig( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys )
 {
 	switch( p_wk->status ){
-	// �\���J�n�҂�
+	// 表示開始待ち
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONWAIT:
 		break;
 
-	// �\���J�n
+	// 表示開始
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONSTART:
 		WFLBY_3DMAPOBJ_HANABIWK_OnBrBigDraw( p_wk, p_mapobjsys );
 
 		p_wk->status = WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ON;
 		break;
 		
-	// �\����
+	// 表示中
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ON:
-		// �A�j���̏I���҂�
+		// アニメの終了待ち
 		if( WFLBY_3DMAPOBJ_WK_CheckAnm( p_mapobjsys, p_wk->p_hanabi, 0 ) == FALSE ){
 
-			// �J�n�҂���
+			// 開始待ちへ
 			p_wk->status = WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFFSTART;
 		}
 		break;
 
-	// �\��OFF�J�n
+	// 表示OFF開始
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFFSTART:
 		WFLBY_3DMAPOBJ_HANABIWK_OffMoveStart( p_wk );
 		p_wk->status		= WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFF;
 		break;
 		
-	// �\��OFF
+	// 表示OFF
 	case WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_OFF:
 		if( WFLBY_3DMAPOBJ_HANABIWK_OffMove( p_wk, p_mapobjsys ) == TRUE ){
 
-			// �\��OFF�I��
+			// 表示OFF終了
 			WFLBY_3DMAPOBJ_WK_SetDraw( p_wk->p_hanabi, FALSE );
 
 			WFLBY_3DMAPOBJ_WK_ResetAlpha( p_wk->p_hanabi );
 
 			WFLBY_3DMAPOBJ_WK_SetScale( p_wk->p_hanabi, FX32_ONE, FX32_ONE, FX32_ONE );
 
-			// �\���J�n�҂�������
+			// 表示開始待ち処理へ
 			p_wk->status = WFLBY_3DMAPOBJ_CONT_HANABI_OBJ_ST_ONWAIT;
 		}
 		break;
@@ -1827,17 +1827,17 @@ static void WFLBY_3DMAPOBJ_HANABIWK_MainBrBig( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WF
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	���ԉΊǗ��V�X�e��	���ۂɉԉ΂�\���J�n	�����ł����ԉ�
+ *	@brief	床花火管理システム	実際に花火を表示開始	銅像でかい花火
  *	
- *	@param	p_wk		���[�N
- *	@param	p_mapobjsys	�z�u�I�u�W�F�`��Ǘ��V�X�e��
+ *	@param	p_wk		ワーク
+ *	@param	p_mapobjsys	配置オブジェ描画管理システム
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_HANABIWK_OnBrBigDraw( WFLBY_3DMAPOBJ_HANABIWK* p_wk, WFLBY_3DMAPOBJ* p_mapobjsys )
 {
 	WFLBY_3DMAPOBJ_WK_SetAnmSpeed( p_wk->p_hanabi, p_wk->start_speed );
 	
-	//  �ԉ΍Đ�
+	//  花火再生
 	WFLBY_3DMAPOBJ_WK_AddAnm( p_mapobjsys, 
 			p_wk->p_hanabi, 
 			WFLBY_3DMAPOBJ_BRHANABIBIG_ANM_NICA, WFLBY_3DMAPOBJ_WK_ANM_NOLOOP );	
@@ -1856,10 +1856,10 @@ static void WFLBY_3DMAPOBJ_HANABIWK_OnBrBigDraw( WFLBY_3DMAPOBJ_HANABIWK* p_wk, 
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	�傫�������p�ԉ΍��W��ݒ肷��
+ *	@brief	大きい銅像用花火座標を設定する
  *
- *	@param	p_hanabi	�ԉ΃��[�N
- *	@param	mapid		�z�u�I�u�W�F�Ǘ�ID
+ *	@param	p_hanabi	花火ワーク
+ *	@param	mapid		配置オブジェ管理ID
  */
 //-----------------------------------------------------------------------------
 static void WFLBY_3DMAPOBJ_DOUZOU00_HANABI_SetPos( WFLBY_3DMAPOBJ_WK* p_hanabi, u32 mapid )

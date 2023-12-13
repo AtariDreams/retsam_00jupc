@@ -2,8 +2,8 @@
 /**
  *
  *@file		be_203.s
- *@brief	�퓬�V�[�P���X�iBattleEffect�j
- *			203�@�V�C�ɂ���ă^�C�v���ς��@�͂�F���@���߁F���@���Ȃ��炵�F��@�����F�X�@�V�C��Ԃ̎��A�З͂��{�ɂȂ�
+ *@brief	戦闘シーケンス（BattleEffect）
+ *			203　天気によってタイプが変わる　はれ：炎　あめ：水　すなあらし：岩　あられ：氷　天気状態の時、威力が倍になる
  *
  *@author	HisashiSogabe
  *@data		2006.02.09

@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_mapcont.c
- *	@brief		ƒ}ƒbƒvŠÇ—ƒVƒXƒeƒ€
+ *	@brief		ãƒãƒƒãƒ—ç®¡ç†ã‚·ã‚¹ãƒ†ãƒ 
  *	@author		tomoya	takahashi
  *	@data		2007.11.13
  *
@@ -20,24 +20,24 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 #define WFLBY_MAPCONT_PARAM_SHIFT	( 15 )
@@ -45,11 +45,11 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	ƒ}ƒbƒvƒVƒXƒeƒ€‰Šú‰»
+///	ãƒãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 //=====================================
 typedef struct _WFLBY_MAPCONT{
 	WF2DMAP_MAPSYS* p_map;	
@@ -57,18 +57,18 @@ typedef struct _WFLBY_MAPCONT{
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
-// ƒVƒXƒeƒ€ì¬
+// ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒvŠÇ—	‰Šú‰»
+ *	@brief	ãƒãƒƒãƒ—ç®¡ç†	åˆæœŸåŒ–
  *
- *	@param	heapID	ƒq[ƒvID
+ *	@param	heapID	ãƒ’ãƒ¼ãƒ—ID
  *
- *	@return	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@return	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 WFLBY_MAPCONT* WFLBY_MAPCONT_Init( u32 heapID )
@@ -78,10 +78,10 @@ WFLBY_MAPCONT* WFLBY_MAPCONT_Init( u32 heapID )
 
 	p_sys = sys_AllocMemory( heapID, sizeof(WFLBY_MAPCONT) );
 	
-	// ƒVƒXƒeƒ€ì¬
+	// ã‚·ã‚¹ãƒ†ãƒ ä½œæˆ
 	p_sys->p_map = WF2DMAP_MAPSysInit( WFLBY_MAPSIZE_X,  WFLBY_MAPSIZE_Y, heapID );
 	
-	// ƒ}ƒbƒvƒf[ƒ^‚Ì“Ç‚İ‚İ
+	// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 	p_mapdata = ArcUtil_Load( ARC_WFLBY_MAP, NARC_wflby_map_wflby_map_dat, FALSE, heapID, ALLOC_BOTTOM);
 	WF2DMAP_MAPSysDataSet( p_sys->p_map, p_mapdata );
 
@@ -92,9 +92,9 @@ WFLBY_MAPCONT* WFLBY_MAPCONT_Init( u32 heapID )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒvƒVƒXƒeƒ€‚Ì”jŠü
+ *	@brief	ãƒãƒƒãƒ—ã‚·ã‚¹ãƒ†ãƒ ã®ç ´æ£„
  *
- *	@param	p_sys	ƒVƒXƒeƒ€
+ *	@param	p_sys	ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 void WFLBY_MAPCONT_Exit( WFLBY_MAPCONT* p_sys )
@@ -103,12 +103,12 @@ void WFLBY_MAPCONT_Exit( WFLBY_MAPCONT* p_sys )
 	sys_FreeMemoryEz( p_sys );
 }
 
-// ƒ}ƒbƒv‚Ì‘å‚«‚³æ“¾
+// ãƒãƒƒãƒ—ã®å¤§ãã•å–å¾—
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒv‚Ì‘å‚«‚³‚ğæ“¾
+ *	@brief	ãƒãƒƒãƒ—ã®å¤§ãã•ã‚’å–å¾—
  *	
- *	@param	cp_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	cp_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  */
 //-----------------------------------------------------------------------------
 u16 WFLBY_MAPCONT_GridXGet( const WFLBY_MAPCONT* cp_sys )
@@ -120,16 +120,16 @@ u16 WFLBY_MAPCONT_GridYGet( const WFLBY_MAPCONT* cp_sys )
 	return WFLBY_MAPSIZE_Y;
 }
 
-// ƒ}ƒbƒvƒf[ƒ^æ“¾
+// ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿å–å¾—
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒvƒf[ƒ^‚Ìæ“¾
+ *	@brief	ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
  *
- *	@param	cp_sys	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	xgrid	‚˜ƒOƒŠƒbƒh
- *	@param	ygrid	‚™ƒOƒŠƒbƒh
+ *	@param	cp_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	xgrid	ï½˜ã‚°ãƒªãƒƒãƒ‰
+ *	@param	ygrid	ï½™ã‚°ãƒªãƒƒãƒ‰
  *
- *	@return	ƒ}ƒbƒvƒf[ƒ^
+ *	@return	ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 WF2DMAP_MAP WFLBY_MAPCONT_DataGet( const WFLBY_MAPCONT* cp_sys, u16 xgrid, u16 ygrid )
@@ -139,13 +139,13 @@ WF2DMAP_MAP WFLBY_MAPCONT_DataGet( const WFLBY_MAPCONT* cp_sys, u16 xgrid, u16 y
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“–‚½‚è”»’è‚Ì—L–³ƒ`ƒFƒbƒN
+ *	@brief	å½“ãŸã‚Šåˆ¤å®šã®æœ‰ç„¡ãƒã‚§ãƒƒã‚¯
  *
- *	@param	cp_sys	ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	xgrid	‚˜ƒOƒŠƒbƒh
- *	@param	ygrid	‚™ƒOƒŠƒbƒh
+ *	@param	cp_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	xgrid	ï½˜ã‚°ãƒªãƒƒãƒ‰
+ *	@param	ygrid	ï½™ã‚°ãƒªãƒƒãƒ‰
  *
- *	@return	ƒ}ƒbƒvƒf[ƒ^
+ *	@return	ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_MAPCONT_HitGet( const WFLBY_MAPCONT* cp_sys, u16 xgrid, u16 ygrid )
@@ -155,13 +155,13 @@ BOOL WFLBY_MAPCONT_HitGet( const WFLBY_MAPCONT* cp_sys, u16 xgrid, u16 ygrid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	MAPOBJIDæ“¾	
+ *	@brief	MAPOBJIDå–å¾—	
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	xgrid		‚˜ƒOƒŠƒbƒh
- *	@param	ygrid		‚™ƒOƒŠƒbƒh
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	xgrid		ï½˜ã‚°ãƒªãƒƒãƒ‰
+ *	@param	ygrid		ï½™ã‚°ãƒªãƒƒãƒ‰
  *
- *	@return	WFLBY_MAPOBJID_`
+ *	@return	WFLBY_MAPOBJID_ã€œ
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_MAPCONT_ObjIDGet( const WFLBY_MAPCONT* cp_sys, u16 xgrid, u16 ygrid )
@@ -173,13 +173,13 @@ u32 WFLBY_MAPCONT_ObjIDGet( const WFLBY_MAPCONT* cp_sys, u16 xgrid, u16 ygrid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	MAPEVIDæ“¾
+ *	@brief	MAPEVIDå–å¾—
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	xgrid		‚˜ƒOƒŠƒbƒh
- *	@param	ygrid		‚™ƒOƒŠƒbƒh
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	xgrid		ï½˜ã‚°ãƒªãƒƒãƒ‰
+ *	@param	ygrid		ï½™ã‚°ãƒªãƒƒãƒ‰
  *
- *	@return	WFLBY_MAPEVID_`
+ *	@return	WFLBY_MAPEVID_ã€œ
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_MAPCONT_EventGet( const WFLBY_MAPCONT* cp_sys, u16 xgrid, u16 ygrid )
@@ -192,16 +192,16 @@ u32 WFLBY_MAPCONT_EventGet( const WFLBY_MAPCONT* cp_sys, u16 xgrid, u16 ygrid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	OBJID‚ÌƒOƒŠƒbƒh‚ğŒŸõ‚·‚é
+ *	@brief	OBJIDã®ã‚°ãƒªãƒƒãƒ‰ã‚’æ¤œç´¢ã™ã‚‹
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€ƒ[ƒN
- *	@param	objid		ŒŸõOBJID
- *	@param	p_gridx		ƒOƒŠƒbƒhXŠi”[æ
- *	@param	p_gridy		ƒOƒŠƒbƒhYŠi”[æ
- *	@param	no			‰½ŒÂ–Ú‚Ìƒf[ƒ^‚©w’è	iOBJID‚Ìƒf[ƒ^‚Ìw’èŒÂ”ˆÊ’uj
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
+ *	@param	objid		æ¤œç´¢OBJID
+ *	@param	p_gridx		ã‚°ãƒªãƒƒãƒ‰Xæ ¼ç´å…ˆ
+ *	@param	p_gridy		ã‚°ãƒªãƒƒãƒ‰Yæ ¼ç´å…ˆ
+ *	@param	no			ä½•å€‹ç›®ã®ãƒ‡ãƒ¼ã‚¿ã‹æŒ‡å®š	ï¼ˆOBJIDã®ãƒ‡ãƒ¼ã‚¿ã®æŒ‡å®šå€‹æ•°ä½ç½®ï¼‰
  *
- *	@retval	TRUE	‚ ‚Á‚½
- *	@retval	FALSE	‚È‚©‚Á‚½
+ *	@retval	TRUE	ã‚ã£ãŸ
+ *	@retval	FALSE	ãªã‹ã£ãŸ
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_MAPCONT_SarchObjID( const WFLBY_MAPCONT* cp_sys, u32 objid, u16* p_gridx, u16* p_gridy, u32 no )
@@ -216,7 +216,7 @@ BOOL WFLBY_MAPCONT_SarchObjID( const WFLBY_MAPCONT* cp_sys, u32 objid, u16* p_gr
 			get_objid = WFLBY_MAPCONT_ObjIDGet( cp_sys, j, i );
 			if( get_objid == objid ){
 
-				// w’èŒÂ”ˆÊ’u‚©ƒ`ƒFƒbƒN
+				// æŒ‡å®šå€‹æ•°ä½ç½®ã‹ãƒã‚§ãƒƒã‚¯
 				if( count >= no ){
 					*p_gridx = j;
 					*p_gridy = i;
@@ -232,12 +232,12 @@ BOOL WFLBY_MAPCONT_SarchObjID( const WFLBY_MAPCONT* cp_sys, u32 objid, u16* p_gr
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒIƒuƒWƒFƒNƒgID‚Ì”‚ğ”‚¦‚é
+ *	@brief	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆIDã®æ•°ã‚’æ•°ãˆã‚‹
  *
- *	@param	cp_sys		ƒVƒXƒeƒ€
- *	@param	objid		ƒIƒuƒWƒFƒNƒgID
+ *	@param	cp_sys		ã‚·ã‚¹ãƒ†ãƒ 
+ *	@param	objid		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆID
  *
- *	@return	”
+ *	@return	æ•°
  */
 //-----------------------------------------------------------------------------
 u32 WFLBY_MAPCONT_CountObjID( const WFLBY_MAPCONT* cp_sys, u32 objid )
@@ -259,12 +259,12 @@ u32 WFLBY_MAPCONT_CountObjID( const WFLBY_MAPCONT* cp_sys, u32 objid )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ã‚Éæ‚Á‚½‚ç‹N“®‚·‚é‚Ì‚©ƒ`ƒFƒbƒN
+ *	@brief	ä¸Šã«ä¹—ã£ãŸã‚‰èµ·å‹•ã™ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	event	ƒCƒxƒ“ƒgNO
+ *	@param	event	ã‚¤ãƒ™ãƒ³ãƒˆNO
  *
- *	@retval	TRUE	‹N“®‚·‚é
- *	@retval	FALSE	‹N“®‚µ‚È‚¢
+ *	@retval	TRUE	èµ·å‹•ã™ã‚‹
+ *	@retval	FALSE	èµ·å‹•ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_MAPCONT_Event_CheckMount( u32 event )
@@ -315,12 +315,12 @@ BOOL WFLBY_MAPCONT_Event_CheckMount( u32 event )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ú‚Ì‘O‚Å‚»‚Ì•ûŒü‚ÉƒL[‚ğ‰Ÿ‚µ‚Ä‚¢‚½‚ç‹N“®‚·‚é‚Ì‚©ƒ`ƒFƒbƒN
+ *	@brief	ç›®ã®å‰ã§ãã®æ–¹å‘ã«ã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ã„ãŸã‚‰èµ·å‹•ã™ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	event	ƒCƒxƒ“ƒgNO
+ *	@param	event	ã‚¤ãƒ™ãƒ³ãƒˆNO
  *
- *	@retval	TRUE	‹N“®‚·‚é
- *	@retval	FALSE	‹N“®‚µ‚È‚¢
+ *	@retval	TRUE	èµ·å‹•ã™ã‚‹
+ *	@retval	FALSE	èµ·å‹•ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_MAPCONT_Event_CheckFrontKey( u32 event )
@@ -342,12 +342,12 @@ BOOL WFLBY_MAPCONT_Event_CheckFrontKey( u32 event )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	–Ú‚Ì‘O‚Å‚»‚Ì•ûŒü‚ğŒü‚¢‚ÄA‰Ÿ‚µ‚Ä‚¢‚½‚ç‹N“®‚·‚é‚Ì‚©ƒ`ƒFƒbƒN
+ *	@brief	ç›®ã®å‰ã§ãã®æ–¹å‘ã‚’å‘ã„ã¦AæŠ¼ã—ã¦ã„ãŸã‚‰èµ·å‹•ã™ã‚‹ã®ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	event	ƒCƒxƒ“ƒgNO
+ *	@param	event	ã‚¤ãƒ™ãƒ³ãƒˆNO
  *
- *	@retval	TRUE	‹N“®‚·‚é
- *	@retval	FALSE	‹N“®‚µ‚È‚¢
+ *	@retval	TRUE	èµ·å‹•ã™ã‚‹
+ *	@retval	FALSE	èµ·å‹•ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_MAPCONT_Event_CheckFrontDecide( u32 event )
@@ -373,12 +373,12 @@ BOOL WFLBY_MAPCONT_Event_CheckFrontDecide( u32 event )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	“º‘œƒCƒxƒ“ƒg‚ğ‹N“®‚·‚é‚©ƒ`ƒFƒbƒN
+ *	@brief	éŠ…åƒã‚¤ãƒ™ãƒ³ãƒˆã‚’èµ·å‹•ã™ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
  *
- *	@param	event		ƒCƒxƒ“ƒg
+ *	@param	event		ã‚¤ãƒ™ãƒ³ãƒˆ
  *
- *	@retval	TRUE	‹N“®‚·‚é
- *	@retval	FALSE	‹N“®‚µ‚È‚¢
+ *	@retval	TRUE	èµ·å‹•ã™ã‚‹
+ *	@retval	FALSE	èµ·å‹•ã—ãªã„
  */
 //-----------------------------------------------------------------------------
 BOOL WFLBY_MAPCONT_Event_CheckFrontDouzou( u32 event )
@@ -402,14 +402,14 @@ BOOL WFLBY_MAPCONT_Event_CheckFrontDouzou( u32 event )
 }
 
 
-//  o—ˆ‚é‚¾‚¯‚Â‚©‚í‚È‚¢‚Ù‚¤‚ª‚¢‚¢ŠÖ”
+//  å‡ºæ¥ã‚‹ã ã‘ã¤ã‹ã‚ãªã„ã»ã†ãŒã„ã„é–¢æ•°
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒ}ƒbƒvƒRƒAƒVƒXƒeƒ€æ“¾iwf2dmap_mapj
+ *	@brief	ãƒãƒƒãƒ—ã‚³ã‚¢ã‚·ã‚¹ãƒ†ãƒ å–å¾—ï¼ˆwf2dmap_mapï¼‰
  *
- *	@param	cp_sys	ƒVƒXƒeƒ€ƒ[ƒN
+ *	@param	cp_sys	ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯
  *	
- *	@return	ƒ}ƒbƒvƒRƒAƒVƒXƒeƒ€
+ *	@return	ãƒãƒƒãƒ—ã‚³ã‚¢ã‚·ã‚¹ãƒ†ãƒ 
  */
 //-----------------------------------------------------------------------------
 const WF2DMAP_MAPSYS* WFLBY_MAPCONT_GetMapCoreSys( const WFLBY_MAPCONT* cp_sys )

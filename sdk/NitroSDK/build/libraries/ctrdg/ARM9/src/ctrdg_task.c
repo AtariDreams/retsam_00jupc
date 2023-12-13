@@ -15,10 +15,10 @@
   indent source
 
   Revision 1.2  2006/04/07 03:26:35  okubata_ryoma
-  CTRDG_SetTaskThreadPriorityŠÖ”‚ğŒöŠJ
+  CTRDG_SetTaskThreadPriorityé–¢æ•°ã‚’å…¬é–‹
 
   Revision 1.1  2006/04/05 10:48:30  okubata_ryoma
-  AGBƒoƒbƒNƒAƒbƒvƒ‰ƒCƒuƒ‰ƒŠ‚ÌSDKû˜^‚Ì‚½‚ß‚Ì•ÏX
+  AGBãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®SDKåéŒ²ã®ãŸã‚ã®å¤‰æ›´
 
 
   $NoKeywords: $
@@ -40,33 +40,33 @@ u64     ctrdg_task_stack[CTRDG_TASK_STACK_SIZE / sizeof(u64)];
 /*---------------------------------------------------------------------------*
   Name:         CTRDGi_InitTaskThread
 
-  Description:  ƒ^ƒXƒNƒXƒŒƒbƒh‚ğ‹N“®‚·‚é.
+  Description:  ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·å‹•ã™ã‚‹.
                 
-  Arguments:    p_work     “à•”ƒ[ƒN—p‚Ìƒoƒbƒtƒ@.
-                           CTRDGi_EndTaskThread() Š®—¹‚Ü‚Å“à•”‚Åg—p‚³‚ê‚é.
+  Arguments:    p_work     å†…éƒ¨ãƒ¯ãƒ¼ã‚¯ç”¨ã®ãƒãƒƒãƒ•ã‚¡.
+                           CTRDGi_EndTaskThread() å®Œäº†æ™‚ã¾ã§å†…éƒ¨ã§ä½¿ç”¨ã•ã‚Œã‚‹.
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void CTRDGi_InitTaskThread(void *p_work)
 {
-    // IRQŠ„‚è‚İ‚Ì‹Ö~
+    // IRQå‰²ã‚Šè¾¼ã¿ã®ç¦æ­¢
     OSIntrMode bak_cpsr = OS_DisableInterrupts();
-    // ‚±‚Ì\‘¢‘Ì‚ªNULL‚È‚çƒXƒŒƒbƒhì¬
+    // ã“ã®æ§‹é€ ä½“ãŒNULLãªã‚‰ã‚¹ãƒ¬ãƒƒãƒ‰ä½œæˆ
     if (!ctrdgi_task_work)
     {
         CTRDGiTaskWork *const p = (CTRDGiTaskWork *) p_work;
 
-        // ƒXƒŒƒbƒh‚ª‰Šú‰»‚³‚ê‚Ä‚¢‚Äg—p‰Â”\‚©”»’f
+        // ã‚¹ãƒ¬ãƒƒãƒ‰ãŒåˆæœŸåŒ–ã•ã‚Œã¦ã„ã¦ä½¿ç”¨å¯èƒ½ã‹åˆ¤æ–­
         SDK_ASSERT(OS_IsThreadAvailable());
 
-        /* ƒ[ƒN\‘¢‘Ì, ƒXƒ^ƒbƒNƒoƒbƒtƒ@, ƒ^ƒXƒNƒXƒŒƒbƒh‚Ì€”õ */
-        // ‚±‚ê‚Å‚±‚Ì\‘¢‘Ì‚ªNULL‚Å‚È‚­‚È‚é‚Ì‚Åƒ^ƒXƒNƒXƒŒƒbƒh‚ÍV‚µ‚­ì‚ç‚ê‚È‚¢ 
+        /* ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“, ã‚¹ã‚¿ãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡, ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã®æº–å‚™ */
+        // ã“ã‚Œã§ã“ã®æ§‹é€ ä½“ãŒNULLã§ãªããªã‚‹ã®ã§ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã¯æ–°ã—ãä½œã‚‰ã‚Œãªã„ 
         ctrdgi_task_work = p;
-        // end_task‚Ì\‘¢‘Ì‚ğ‰Šú‰»
+        // end_taskã®æ§‹é€ ä½“ã‚’åˆæœŸåŒ–
         CTRDGi_InitTaskInfo(&p->end_task);
-        // ctrdgi_task_list\‘¢‘Ì‚ğ‰Šú‰»
+        // ctrdgi_task_listæ§‹é€ ä½“ã‚’åˆæœŸåŒ–
         CTRDGi_InitTaskInfo(&ctrdgi_task_list);
-        // ‘Ò‚Á‚Ä‚¢‚éƒ^ƒXƒNƒŠƒXƒg‚Í‚±‚Ì“_‚Å‚Í‚È‚¢‚Í‚¸‚È‚Ì‚ÅNULL‚ğ“ü‚ê‚é
+        // å¾…ã£ã¦ã„ã‚‹ã‚¿ã‚¹ã‚¯ãƒªã‚¹ãƒˆã¯ã“ã®æ™‚ç‚¹ã§ã¯ãªã„ã¯ãšãªã®ã§NULLã‚’å…¥ã‚Œã‚‹
         p->list = NULL;
 
         OS_CreateThread(p->th, CTRDGi_TaskThread, p,
@@ -74,18 +74,18 @@ void CTRDGi_InitTaskThread(void *p_work)
                         CTRDG_TASK_STACK_SIZE, CTRDG_TASK_PRIORITY_DEFAULT);
         OS_WakeupThreadDirect(p->th);
     }
-    // IRQŠ„‚è‚İ‹–‰Â‚ğ–ß‚·
+    // IRQå‰²ã‚Šè¾¼ã¿è¨±å¯ã‚’æˆ»ã™
     (void)OS_RestoreInterrupts(bak_cpsr);
 }
 
 /*---------------------------------------------------------------------------*
   Name:         CTRDGi_IsTaskAvailable
 
-  Description:  ƒ^ƒXƒNƒXƒŒƒbƒh‚ªŒ»İg—p‰Â”\‚©”»’è.
+  Description:  ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ãŒç¾åœ¨ä½¿ç”¨å¯èƒ½ã‹åˆ¤å®š.
                 
   Arguments:    None.
 
-  Returns:      Œ»İg—p‰Â”\‚È‚ç TRUE, ‚»‚¤‚Å‚È‚¢‚È‚ç FALSE.
+  Returns:      ç¾åœ¨ä½¿ç”¨å¯èƒ½ãªã‚‰ TRUE, ãã†ã§ãªã„ãªã‚‰ FALSE.
  *---------------------------------------------------------------------------*/
 BOOL CTRDGi_IsTaskAvailable(void)
 {
@@ -95,10 +95,10 @@ BOOL CTRDGi_IsTaskAvailable(void)
 /*---------------------------------------------------------------------------*
   Name:         CTRDGi_InitTaskInfo
 
-  Description:  ƒ^ƒXƒNî•ñ\‘¢‘Ì‚ğ‰Šú‰»‚·‚é.
-                g—p‚·‚é‘O‚É 1 ‰ñ‚¾‚¯ŒÄ‚Ño‚·•K—v‚ª‚ ‚é.
+  Description:  ã‚¿ã‚¹ã‚¯æƒ…å ±æ§‹é€ ä½“ã‚’åˆæœŸåŒ–ã™ã‚‹.
+                ä½¿ç”¨ã™ã‚‹å‰ã« 1 å›ã ã‘å‘¼ã³å‡ºã™å¿…è¦ãŒã‚ã‚‹.
 
-  Arguments:    pt         –¢‰Šú‰»‚Ìƒ^ƒXƒNî•ñ\‘¢‘Ì
+  Arguments:    pt         æœªåˆæœŸåŒ–ã®ã‚¿ã‚¹ã‚¯æƒ…å ±æ§‹é€ ä½“
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
@@ -111,11 +111,11 @@ void CTRDGi_InitTaskInfo(CTRDGTaskInfo * pt)
 /*---------------------------------------------------------------------------*
   Name:         CTRDGi_IsTaskBusy
 
-  Description:  ƒ^ƒXƒNî•ñ‚ªŒ»İg—p’†‚©”»’è.
+  Description:  ã‚¿ã‚¹ã‚¯æƒ…å ±ãŒç¾åœ¨ä½¿ç”¨ä¸­ã‹åˆ¤å®š.
                 
-  Arguments:    pt         ƒ^ƒXƒNî•ñ
+  Arguments:    pt         ã‚¿ã‚¹ã‚¯æƒ…å ±
 
-  Returns:      Œ»İg—p’†‚È‚ç TRUE, ‚»‚¤‚Å‚È‚¢‚È‚ç FALSE.
+  Returns:      ç¾åœ¨ä½¿ç”¨ä¸­ãªã‚‰ TRUE, ãã†ã§ãªã„ãªã‚‰ FALSE.
  *---------------------------------------------------------------------------*/
 BOOL CTRDGi_IsTaskBusy(volatile const CTRDGTaskInfo * pt)
 {
@@ -125,54 +125,54 @@ BOOL CTRDGi_IsTaskBusy(volatile const CTRDGTaskInfo * pt)
 static void CTRDGi_TaskThread(void *arg)
 {
     CTRDGiTaskWork *const p = (CTRDGiTaskWork *) arg;
-    // ƒXƒŒƒbƒh‚ğI—¹‚·‚é–½—ß‚ª‚­‚é‚Ü‚Åƒ‹[ƒv
+    // ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’çµ‚äº†ã™ã‚‹å‘½ä»¤ãŒãã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—
     for (;;)
     {
-        // \‘¢‘Ì‚ğ‰Šú‰»
+        // æ§‹é€ ä½“ã‚’åˆæœŸåŒ–
         CTRDGTaskInfo trg;
         MI_CpuClear8(&trg, sizeof(CTRDGTaskInfo));
-        /* Ÿ‚Ìƒ^ƒXƒN‚ğæ“¾ */
+        /* æ¬¡ã®ã‚¿ã‚¹ã‚¯ã‚’å–å¾— */
         {
-            // IRQŠ„‚è‚İ‹Ö~
+            // IRQå‰²ã‚Šè¾¼ã¿ç¦æ­¢
             OSIntrMode bak_cpsr = OS_DisableInterrupts();
-            /* ƒAƒCƒhƒ‹ó‘Ô‚È‚çƒXƒŠ[ƒv */
-            // ‘Ò‚Á‚Ä‚¢‚éƒ^ƒXƒNƒŠƒXƒg‚Éƒ^ƒXƒN‚ª‚­‚é‚Ü‚Åƒ‹[ƒv‚µ‚Ä‘Ò‚Â
+            /* ã‚¢ã‚¤ãƒ‰ãƒ«çŠ¶æ…‹ãªã‚‰ã‚¹ãƒªãƒ¼ãƒ— */
+            // å¾…ã£ã¦ã„ã‚‹ã‚¿ã‚¹ã‚¯ãƒªã‚¹ãƒˆã«ã‚¿ã‚¹ã‚¯ãŒãã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—ã—ã¦å¾…ã¤
             while (!p->list)
             {
                 OS_SleepThread(NULL);
             }
-            // ‘Ò‚¿‚Ìƒ^ƒXƒNƒŠƒXƒg‚Éƒ^ƒXƒN‚ª‚«‚½‚Ì‚ÅA‚»‚Ìƒ^ƒXƒNî•ñ\‘¢‘Ì‚ğtrg‚ÉƒRƒs[
+            // å¾…ã¡ã®ã‚¿ã‚¹ã‚¯ãƒªã‚¹ãƒˆã«ã‚¿ã‚¹ã‚¯ãŒããŸã®ã§ã€ãã®ã‚¿ã‚¹ã‚¯æƒ…å ±æ§‹é€ ä½“ã‚’trgã«ã‚³ãƒ”ãƒ¼
             trg = *p->list;
-            // IRQŠ„‚è‚İ‹–‰Â‚ğ–ß‚·
+            // IRQå‰²ã‚Šè¾¼ã¿è¨±å¯ã‚’æˆ»ã™
             (void)OS_RestoreInterrupts(bak_cpsr);
         }
-        /* ƒ^ƒXƒN‚ğÀs */
+        /* ã‚¿ã‚¹ã‚¯ã‚’å®Ÿè¡Œ */
         if (trg.task)
-            // ŠÖ”ƒ|ƒCƒ“ƒ^‚Åƒ^ƒXƒN‚ğÀsAˆø”‚Ítrg
+            // é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã§ã‚¿ã‚¹ã‚¯ã‚’å®Ÿè¡Œã€å¼•æ•°ã¯trg
             trg.result = (u32)(*trg.task) (&trg);
-        /* ƒ^ƒXƒNŠ®—¹ƒR[ƒ‹ƒoƒbƒNÀs */
-        // ‚±‚±‚É‚«‚Ä‚é‚Á‚Ä‚±‚Æ‚Íƒ^ƒXƒN‚ªI‚í‚Á‚Ä‚¢‚é‚Ì‚Åƒ^ƒXƒN‚ÌƒR[ƒ‹ƒoƒbƒN
+        /* ã‚¿ã‚¹ã‚¯å®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯å®Ÿè¡Œ */
+        // ã“ã“ã«ãã¦ã‚‹ã£ã¦ã“ã¨ã¯ã‚¿ã‚¹ã‚¯ãŒçµ‚ã‚ã£ã¦ã„ã‚‹ã®ã§ã‚¿ã‚¹ã‚¯ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
         {
-            // IRQŠ„‚è‚İ‹Ö~
+            // IRQå‰²ã‚Šè¾¼ã¿ç¦æ­¢
             OSIntrMode bak_cpsr = OS_DisableInterrupts();
-            // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğİ’è
+            // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’è¨­å®š
             CTRDG_TASK_FUNC callback = trg.callback;
 
-            // ƒ^ƒXƒN‚ªÀs’†‚Å‚Í‚È‚¢‚Í‚¸‚È‚Ì‚ÅFALSE
+            // ã‚¿ã‚¹ã‚¯ãŒå®Ÿè¡Œä¸­ã§ã¯ãªã„ã¯ãšãªã®ã§FALSE
             ctrdgi_task_list.busy = FALSE;
-            // ƒR[ƒ‹ƒoƒbƒNŠÖ”‚ª‚ ‚ê‚Î
+            // ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ãŒã‚ã‚Œã°
             if (callback)
-                // ŠÖ”ƒ|ƒCƒ“ƒ^‚ÅƒR[ƒ‹ƒoƒbƒNŠÖ”‚ğŒÄ‚ÔAˆø”‚Ítrg
+                // é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã§ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’å‘¼ã¶ã€å¼•æ•°ã¯trg
                 (void)(*callback) (&trg);
             /*
-             * I—¹—v‹‚È‚çŠ„‚è‚İ‹Ö~‚Ì‚Ü‚ÜƒXƒŒƒbƒhI—¹.
-             * (‚±‚Ì‹Ö~İ’è‚ÍƒRƒ“ƒeƒLƒXƒgØ‚è‘Ö‚¦‚ÌuŠÔ‚Ü‚Å—LŒø)
+             * çµ‚äº†è¦æ±‚ãªã‚‰å‰²ã‚Šè¾¼ã¿ç¦æ­¢ã®ã¾ã¾ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†.
+             * (ã“ã®ç¦æ­¢è¨­å®šã¯ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆåˆ‡ã‚Šæ›¿ãˆã®ç¬é–“ã¾ã§æœ‰åŠ¹)
              */
             //if (p->list == &p->end_task)
             if (ctrdgi_task_work == NULL)
                 break;
 
-            // ƒŠƒXƒg\‘¢‘Ì‚Ì‰Šú‰»
+            // ãƒªã‚¹ãƒˆæ§‹é€ ä½“ã®åˆæœŸåŒ–
             p->list = NULL;
 
             (void)OS_RestoreInterrupts(bak_cpsr);
@@ -186,17 +186,17 @@ static void CTRDGi_TaskThread(void *arg)
 /*---------------------------------------------------------------------------*
   Name:         CTRDGi_SetTask
 
-  Description:  ƒ^ƒXƒN‚ğ“à•”ƒXƒŒƒbƒh‚É’Ç‰Á‚·‚é.
+  Description:  ã‚¿ã‚¹ã‚¯ã‚’å†…éƒ¨ã‚¹ãƒ¬ãƒƒãƒ‰ã«è¿½åŠ ã™ã‚‹.
                 
-  Arguments:    pt         Œ»İg—p’†‚Å‚È‚¢ƒ^ƒXƒNî•ñ
-                task       ƒ^ƒXƒNŠÖ”
-                callback   ƒ^ƒXƒNŠ®—¹‚ÌƒR[ƒ‹ƒoƒbƒN (NULL ‚È‚ç–³‹)
+  Arguments:    pt         ç¾åœ¨ä½¿ç”¨ä¸­ã§ãªã„ã‚¿ã‚¹ã‚¯æƒ…å ±
+                task       ã‚¿ã‚¹ã‚¯é–¢æ•°
+                callback   ã‚¿ã‚¹ã‚¯å®Œäº†æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (NULL ãªã‚‰ç„¡è¦–)
 
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void CTRDGi_SetTask(CTRDGTaskInfo * pt, CTRDG_TASK_FUNC task, CTRDG_TASK_FUNC callback)
 {
-    // Œ»İ‚ÌƒXƒŒƒbƒh‚Ìƒ|ƒCƒ“ƒ^‚âA‘Ò‚¿ƒ^ƒXƒNƒŠƒXƒg‚È‚Ç‚Ì“ü‚Á‚½\‘¢‘Ì‚ğ“ü‚ê‚é
+    // ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒã‚¤ãƒ³ã‚¿ã‚„ã€å¾…ã¡ã‚¿ã‚¹ã‚¯ãƒªã‚¹ãƒˆãªã©ã®å…¥ã£ãŸæ§‹é€ ä½“ã‚’å…¥ã‚Œã‚‹
     CTRDGiTaskWork *const p_work = ctrdgi_task_work;
 
     SDK_ASSERT(pt != NULL);
@@ -207,30 +207,30 @@ void CTRDGi_SetTask(CTRDGTaskInfo * pt, CTRDG_TASK_FUNC task, CTRDG_TASK_FUNC ca
         OS_TPanic("CTRDGi_SetTask() failed! (task-thread is not available now)");
     }
 
-    // ‚à‚µƒXƒŒƒbƒh‚Ì’†‚Åƒ^ƒXƒN‚ªÀs’†‚È‚çƒ_ƒ
+    // ã‚‚ã—ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä¸­ã§ã‚¿ã‚¹ã‚¯ãŒå®Ÿè¡Œä¸­ãªã‚‰ãƒ€ãƒ¡
     if (ctrdgi_task_list.busy)
     {
         OS_TPanic("CTRDGi_SetTask() failed! (specified structure is busy)");
     }
 
-    /* ƒ^ƒXƒN’Ç‰Á */
+    /* ã‚¿ã‚¹ã‚¯è¿½åŠ  */
     {
-        // \‘¢‘Ì‚Éƒpƒ‰ƒ[ƒ^‚ğİ’è
+        // æ§‹é€ ä½“ã«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®š
         OSIntrMode bak_cpsr = OS_DisableInterrupts();
         pt->busy = TRUE;
         pt->task = task;
         pt->callback = callback;
-        /* ƒAƒCƒhƒ‹ó‘Ô‚ÌV‹Kƒ^ƒXƒN‚È‚çƒXƒŒƒbƒh‚ğ‹N“® */
+        /* ã‚¢ã‚¤ãƒ‰ãƒ«çŠ¶æ…‹ã®æ–°è¦ã‚¿ã‚¹ã‚¯ãªã‚‰ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·å‹• */
 
-        // ‚»‚Ìƒ^ƒXƒN‚ªI—¹ƒRƒ}ƒ“ƒh‚È‚ç
+        // ãã®ã‚¿ã‚¹ã‚¯ãŒçµ‚äº†ã‚³ãƒãƒ³ãƒ‰ãªã‚‰
         if (pt == &p_work->end_task)
         {
-            /* ‚±‚±‚©‚çƒ^ƒXƒNƒXƒŒƒbƒh‚Ì—˜—p‚ğ‹Ö~‚·‚é */
+            /* ã“ã“ã‹ã‚‰ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã®åˆ©ç”¨ã‚’ç¦æ­¢ã™ã‚‹ */
             ctrdgi_task_work = NULL;
         }
-        // ‘Ò‚¿ƒ^ƒXƒNƒŠƒXƒg‚É‚±‚Ìƒ^ƒXƒN‚Ì\‘¢‘Ì‚ğ“ü‚ê‚Äƒ^ƒXƒNƒXƒŒƒbƒh‚ğ‹N‚±‚·
+        // å¾…ã¡ã‚¿ã‚¹ã‚¯ãƒªã‚¹ãƒˆã«ã“ã®ã‚¿ã‚¹ã‚¯ã®æ§‹é€ ä½“ã‚’å…¥ã‚Œã¦ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ·ã“ã™
         ctrdgi_task_list = *pt;
-        // À‘Ì‚ÌƒAƒhƒŒƒX‚ğŠi”[‚·‚éB
+        // å®Ÿä½“ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æ ¼ç´ã™ã‚‹ã€‚
         p_work->list = &ctrdgi_task_list;
         OS_WakeupThreadDirect(p_work->th);
 
@@ -241,11 +241,11 @@ void CTRDGi_SetTask(CTRDGTaskInfo * pt, CTRDG_TASK_FUNC task, CTRDG_TASK_FUNC ca
 /*---------------------------------------------------------------------------*
   Name:         CTRDGi_EndTaskThread
 
-  Description:  ƒ^ƒXƒNƒXƒŒƒbƒh‚ğI—¹‚·‚é.
+  Description:  ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’çµ‚äº†ã™ã‚‹.
                 
-  Arguments:    callback   ƒ^ƒXƒNƒXƒŒƒbƒhI—¹‚ÌƒR[ƒ‹ƒoƒbƒN (NULL ‚È‚ç–³‹)
-                           ‚±‚ÌƒR[ƒ‹ƒoƒbƒN‚Íƒ^ƒXƒNƒXƒŒƒbƒhI—¹¡‘O‚Ìó‘Ô‚Å
-                           Š„‚è‚İ‚ğ‹Ö~‚µ‚½‚Ü‚ÜŒÄ‚Ño‚³‚ê‚é.
+  Arguments:    callback   ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ (NULL ãªã‚‰ç„¡è¦–)
+                           ã“ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã¯ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†å¯¸å‰ã®çŠ¶æ…‹ã§
+                           å‰²ã‚Šè¾¼ã¿ã‚’ç¦æ­¢ã—ãŸã¾ã¾å‘¼ã³å‡ºã•ã‚Œã‚‹.
   Returns:      None.
  *---------------------------------------------------------------------------*/
 void CTRDGi_EndTaskThread(CTRDG_TASK_FUNC callback)
@@ -261,9 +261,9 @@ void CTRDGi_EndTaskThread(CTRDG_TASK_FUNC callback)
 /*---------------------------------------------------------------------------*
   Name:         CTRDG_SetTaskThreadPriority
 
-  Description:  ƒ^ƒXƒNƒXƒŒƒbƒh‚Ì—Dæ“x‚ğ•ÏX‚·‚éB
+  Description:  ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆåº¦ã‚’å¤‰æ›´ã™ã‚‹ã€‚
                 
-  Arguments:    priority   ƒ^ƒXƒNƒXƒŒƒbƒh‚Ì—Dæ“x
+  Arguments:    priority   ã‚¿ã‚¹ã‚¯ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆåº¦
   
   Returns:      None.
  *---------------------------------------------------------------------------*/

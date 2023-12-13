@@ -1,7 +1,7 @@
 //====================================================================
 //								saisen
 //
-//	SCWK_ANSWER	���ʂ��擾���郏�[�N�Ƃ��Ďg�p
+//	SCWK_ANSWER	結果を取得するワークとして使用
 //====================================================================
 
 	.text
@@ -11,11 +11,11 @@
 	//.include	"../eventdata/zone_saisenevc.h"
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�{��
+//					     スクリプト本体
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     �X�N���v�g�e�[�u��
+//					     スクリプトテーブル
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_btl_searcher
 _EVENT_DATA_END
@@ -29,10 +29,10 @@ _EVENT_DATA_END
 
 
 /********************************************************************/
-//						�o�g���T�[�`���[	
+//						バトルサーチャー	
 /********************************************************************/
 ev_btl_searcher:
-	//_EVENT_START		/*�Ă�ł̓_���I�O���b�h�Ɏ��܂铮�삪�������Ȃ��̂ŁI*/
+	//_EVENT_START		/*呼んではダメ！グリッドに収まる動作が完了しないので！*/
 
 	_LDVAL			SCWK_ANSWER,0
 	_BTL_SEARCHER_EVENT_CALL	SCWK_ANSWER
@@ -44,35 +44,35 @@ ev_btl_searcher:
 	//_CASE_JUMP	3,ev_no_lottery
 	_JUMP			ev_no_lottery
 
-/*�o�b�e���[�����܂��Ă��āA��ʓ��Ƀg���[�i�[������*/
+/*バッテリーが溜まっていて、画面内にトレーナーもいる*/
 ev_ok_battery:
 	//_JUMP			common_btl_searcher_end
-	_EVENT_END		/*�|�[�Y����OBJ���Ăѓ��삳���邽�߂ɕK�v*/
+	_EVENT_END		/*ポーズしたOBJを再び動作させるために必要*/
 	_END
 
-/*�o�b�e���[�����܂��Ă��Ȃ�*/
+/*バッテリーが溜まっていない*/
 ev_no_battery:
 	_TALK_KEYWAIT	mes_saisen_01_01
 	_JUMP			common_btl_searcher_end
 
-/*��ʓ��Ƀg���[�i�[�����Ȃ�*/
+/*画面内にトレーナーがいない*/
 ev_no_trainer:
 	_TALK_KEYWAIT	mes_saisen_01_02
 	_JUMP			common_btl_searcher_end
 
-/*�킦��(����A�Đ�)�g���[�i�[�ɒN�����Ă͂܂�Ȃ�����*/
+/*戦える(初戦、再戦)トレーナーに誰も当てはまらなかった*/
 ev_no_lottery:
 	_TIME_WAIT		30,SCWK_ANSWER
 	_TALK_KEYWAIT	mes_saisen_01_03
 	_JUMP			common_btl_searcher_end
 
 //--------------------------------------------------------------------
-/*���ʏI������*/
+/*共通終了処理*/
 //--------------------------------------------------------------------
 common_btl_searcher_end:
 	_LAST_KEYWAIT
 	_TALK_CLOSE
-	_EVENT_END		/*�|�[�Y����OBJ���Ăѓ��삳���邽�߂ɕK�v*/
+	_EVENT_END		/*ポーズしたOBJを再び動作させるために必要*/
 	_END
 
 

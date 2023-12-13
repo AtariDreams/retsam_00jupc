@@ -12,16 +12,16 @@
 
   $Log: mb.h,v $
   Revision 1.58  2005/03/01 01:57:00  yosizaki
-  copyright の年を修正.
+  copyright 縺ｮ蟷ｴ繧剃ｿｮ豁｣.
 
   Revision 1.57  2005/02/28 05:26:02  yosizaki
   do-indent.
 
   Revision 1.56  2004/11/22 13:05:46  takano_makoto
-  mb_gameinfo.h mb_child.h mb_fake_child.hを追加
+  mb_gameinfo.h mb_child.h mb_fake_child.h繧定ｿｽ蜉
 
   Revision 1.55  2004/11/10 13:11:32  takano_makoto
-  mbフォルダを作成
+  mb繝輔か繝ｫ繝繧剃ｽ懈��
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/

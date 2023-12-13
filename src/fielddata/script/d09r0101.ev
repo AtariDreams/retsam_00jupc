@@ -9,11 +9,11 @@
 	.include	"../eventdata/zone_d09r0101evc.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_d09r0101_flag_change
 _EVENT_DATA		ev_d09r0101_bigman
@@ -24,12 +24,12 @@ _EVENT_DATA_END
 /*						FLAG_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_d09r0101_flag_change:
-	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D09R0101	//“’…
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D09R0101	//åˆ°ç€
 	
 	_IF_FLAGOFF_JUMP		SYS_FLAG_GAME_CLEAR,ev_d09r0101_fc_stopper_end
 	_ZENKOKU_ZUKAN_FLAG		FLAG_MODE_GET,LOCALWORK0
 	_IFVAL_JUMP				LOCALWORK0,EQ,0,ev_d09r0101_fc_stopper_end
-	//ƒQ[ƒ€ƒNƒŠƒA{‘S‘}ŠÓ“üè@ƒXƒgƒbƒp[‰ğœ
+	//ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ï¼‹å…¨å›½å›³é‘‘å…¥æ‰‹ã€€ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼è§£é™¤
 	_FLAG_SET				FV_D09R0101_BIGMAN
 ev_d09r0101_fc_stopper_end:
 
@@ -37,25 +37,25 @@ ev_d09r0101_fc_stopper_end:
 
 
 /********************************************************************/
-/*								‘å’j								*/
+/*								å¤§ç”·								*/
 /********************************************************************/
 ev_d09r0101_bigman:
 	_TALK_OBJ_START
 
-	/*ƒQ[ƒ€ƒNƒŠƒA‚µ‚Ä‚¢‚½‚ç*/
+	/*ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã—ã¦ã„ãŸã‚‰*/
 	_IF_FLAGON_JUMP	SYS_FLAG_GAME_CLEAR,ev_d09r0101_bigman_02
 
 	_TALK_KEYWAIT	msg_d09r0101_bigman_01
 	_JUMP			ev_d09r0101_bigman_end
 	_END
 
-/*ƒQ[ƒ€ƒNƒŠƒA‚µ‚Ä‚¢‚½‚ç*/
+/*ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã—ã¦ã„ãŸã‚‰*/
 ev_d09r0101_bigman_02:
 	_TALK_KEYWAIT	msg_d09r0101_bigman_02
 	_JUMP			ev_d09r0101_bigman_end
 	_END
 
-/*‹¤’ÊI—¹*/
+/*å…±é€šçµ‚äº†*/
 ev_d09r0101_bigman_end:
 	_LAST_KEYWAIT
 	_TALK_CLOSE

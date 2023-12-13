@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	battle_common.h
- * @bfief	í“¬—pƒ\[ƒX‚Ìƒwƒbƒ_‚ÅŽg—p‚·‚é’è”’è‹`‚Ì‚Ý‚ð’è‹`
+ * @bfief	æˆ¦é—˜ç”¨ã‚½ãƒ¼ã‚¹ã®ãƒ˜ãƒƒãƒ€ã§ä½¿ç”¨ã™ã‚‹å®šæ•°å®šç¾©ã®ã¿ã‚’å®šç¾©
  * @author	HisashiSogabe
  * @date	05.05.30
  */
@@ -13,140 +13,140 @@
 
 #define DEBUG_WIFIHISTORY
 
-///í“¬‚ÌƒT[ƒo[ƒo[ƒWƒ‡ƒ“
+///æˆ¦é—˜ã®ã‚µãƒ¼ãƒãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/28
-// ƒoƒgƒ‹ƒT[ƒo‚Ìƒo[ƒWƒ‡ƒ“‚ðƒAƒbƒv
+// ãƒãƒˆãƒ«ã‚µãƒ¼ãƒã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ã‚¢ãƒƒãƒ—
 #define BATTLE_SERVER_VERSION		(0x140)		//
-												//—š—ð
-												//0x100@‘“à”Å
-												//0x110@–k•Ä”Å
-												//0x120@‰¢B”Å
-												//0x130@ŠØ‘”Å
+												//å±¥æ­´
+												//0x100ã€€å›½å†…ç‰ˆ
+												//0x110ã€€åŒ—ç±³ç‰ˆ
+												//0x120ã€€æ¬§å·žç‰ˆ
+												//0x130ã€€éŸ“å›½ç‰ˆ
 // MatchComment: localization change was actually in fight.c in DP US,
 // but BATTLE_SERVER_VERSION was created in plat US
 // ----------------------------------------------------------------------------
 
 
 
-#define	BATTLE_TOWER_TRAINER_ID	(10000)				///<ƒoƒgƒ‹ƒ^ƒ[‚ÌƒgƒŒ[ƒi[ID
+#define	BATTLE_TOWER_TRAINER_ID	(10000)				///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ID
 
-//í“¬Ží•Êƒtƒ‰ƒOií“¬ƒVƒXƒeƒ€“à‚Ì”»•Ê‚ÅŽg—p‚µ‚Ä‚¢‚Ü‚·BattleParam‚Ìfight_type‚ÌŽw’è‚É‚ÍŽg‚í‚È‚¢‚Å‚­‚¾‚³‚¢j
+//æˆ¦é—˜ç¨®åˆ¥ãƒ•ãƒ©ã‚°ï¼ˆæˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ å†…ã®åˆ¤åˆ¥ã§ä½¿ç”¨ã—ã¦ã„ã¾ã™BattleParamã®fight_typeã®æŒ‡å®šã«ã¯ä½¿ã‚ãªã„ã§ãã ã•ã„ï¼‰
 #define	FIGHT_TYPE_1vs1			(0x00000000)		///<1vs1
-#define	FIGHT_TYPE_YASEI		(0x00000000)		///<–ì¶í1vs1
-#define	FIGHT_TYPE_TRAINER		(0x00000001)		///<ƒgƒŒ[ƒi[í
+#define	FIGHT_TYPE_YASEI		(0x00000000)		///<é‡Žç”Ÿæˆ¦1vs1
+#define	FIGHT_TYPE_TRAINER		(0x00000001)		///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦
 #define	FIGHT_TYPE_2vs2			(0x00000002)		///<2vs2
-#define	FIGHT_TYPE_SIO			(0x00000004)		///<’ÊM‘Îí
-#define	FIGHT_TYPE_MULTI		(0x00000008)		///<ƒ}ƒ‹ƒ`‘Îí
-#define	FIGHT_TYPE_TAG			(0x00000010)		///<ƒ^ƒbƒO
-#define	FIGHT_TYPE_SAFARI		(0x00000020)		///<ƒTƒtƒ@ƒŠƒ][ƒ“
-#define	FIGHT_TYPE_AI			(0x00000040)		///<AIƒ}ƒ‹ƒ`
-#define	FIGHT_TYPE_TOWER		(0x00000080)		///<ƒoƒgƒ‹ƒ^ƒ[
-#define	FIGHT_TYPE_MOVE			(0x00000100)		///<ˆÚ“®ƒ|ƒPƒ‚ƒ“
-#define	FIGHT_TYPE_POKE_PARK	(0x00000200)		///<ƒ|ƒPƒp[ƒN
-#define	FIGHT_TYPE_GET_DEMO		(0x00000400)		///<•ßŠlƒfƒ‚
+#define	FIGHT_TYPE_SIO			(0x00000004)		///<é€šä¿¡å¯¾æˆ¦
+#define	FIGHT_TYPE_MULTI		(0x00000008)		///<ãƒžãƒ«ãƒå¯¾æˆ¦
+#define	FIGHT_TYPE_TAG			(0x00000010)		///<ã‚¿ãƒƒã‚°
+#define	FIGHT_TYPE_SAFARI		(0x00000020)		///<ã‚µãƒ•ã‚¡ãƒªã‚¾ãƒ¼ãƒ³
+#define	FIGHT_TYPE_AI			(0x00000040)		///<AIãƒžãƒ«ãƒ
+#define	FIGHT_TYPE_TOWER		(0x00000080)		///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+#define	FIGHT_TYPE_MOVE			(0x00000100)		///<ç§»å‹•ãƒã‚±ãƒ¢ãƒ³
+#define	FIGHT_TYPE_POKE_PARK	(0x00000200)		///<ãƒã‚±ãƒ‘ãƒ¼ã‚¯
+#define	FIGHT_TYPE_GET_DEMO		(0x00000400)		///<æ•ç²ãƒ‡ãƒ¢
 
-#define	FIGHT_TYPE_DEBUG		(0x80000000)		///<ƒfƒoƒbƒOí“¬
+#define	FIGHT_TYPE_DEBUG		(0x80000000)		///<ãƒ‡ãƒãƒƒã‚°æˆ¦é—˜
 
-//í“¬Ží•Êƒtƒ‰ƒOi•K—v‚Èƒtƒ‰ƒO‚ðORÏ‚Ý‚Ì‚à‚ÌBattleParam‚Ìfight_typeŽw’è‚É‚Í‚±‚¿‚ç‚ðŽg‚Á‚Ä‚­‚¾‚³‚¢j
-#define	FIGHT_TYPE_1vs1_YASEI				(FIGHT_TYPE_1vs1|FIGHT_TYPE_YASEI)						///<1vs1–ì¶í
-#define	FIGHT_TYPE_2vs2_YASEI				(FIGHT_TYPE_2vs2|FIGHT_TYPE_MULTI|FIGHT_TYPE_AI)		///<2vs2–ì¶í
-#define	FIGHT_TYPE_1vs1_TRAINER				(FIGHT_TYPE_1vs1|FIGHT_TYPE_TRAINER)					///<1vs1ƒgƒŒ[ƒi[í
-#define	FIGHT_TYPE_2vs2_TRAINER				(FIGHT_TYPE_2vs2|FIGHT_TYPE_TRAINER)					///<2vs2ƒgƒŒ[ƒi[í
-#define	FIGHT_TYPE_1vs1_SIO					(FIGHT_TYPE_SIO|FIGHT_TYPE_TRAINER)						///<1vs1’ÊMƒgƒŒ[ƒi[í
-#define	FIGHT_TYPE_2vs2_SIO					(FIGHT_TYPE_1vs1_SIO|FIGHT_TYPE_2vs2)					///<2vs2’ÊMƒgƒŒ[ƒi[í
-#define	FIGHT_TYPE_MULTI_SIO				(FIGHT_TYPE_2vs2_SIO|FIGHT_TYPE_MULTI)					///<2vs2’ÊMƒgƒŒ[ƒi[í
-#define	FIGHT_TYPE_AI_MULTI					(FIGHT_TYPE_2vs2_TRAINER|FIGHT_TYPE_MULTI|FIGHT_TYPE_AI)///<2vs2AIƒ}ƒ‹ƒ`í
-#define	FIGHT_TYPE_BATTLE_TOWER_1vs1		(FIGHT_TYPE_1vs1_TRAINER|FIGHT_TYPE_TOWER)				///<1vs1ƒoƒgƒ‹ƒ^ƒ[í
-#define	FIGHT_TYPE_BATTLE_TOWER_2vs2		(FIGHT_TYPE_2vs2_TRAINER|FIGHT_TYPE_TOWER)				///<2vs2ƒoƒgƒ‹ƒ^ƒ[í
-#define	FIGHT_TYPE_BATTLE_TOWER_AI_MULTI	(FIGHT_TYPE_AI_MULTI|FIGHT_TYPE_TOWER)					///<ƒoƒgƒ‹ƒ^ƒ[AIƒ}ƒ‹ƒ`í
-#define	FIGHT_TYPE_BATTLE_TOWER_SIO_MULTI	(FIGHT_TYPE_MULTI_SIO|FIGHT_TYPE_TOWER)					///<ƒoƒgƒ‹ƒ^ƒ[’ÊMƒ}ƒ‹ƒ`í
-#define	FIGHT_TYPE_TAG_BATTLE				(FIGHT_TYPE_2vs2_TRAINER|FIGHT_TYPE_TAG)				///<ƒ^ƒbƒOƒoƒgƒ‹í
+//æˆ¦é—˜ç¨®åˆ¥ãƒ•ãƒ©ã‚°ï¼ˆå¿…è¦ãªãƒ•ãƒ©ã‚°ã‚’ORæ¸ˆã¿ã®ã‚‚ã®BattleParamã®fight_typeæŒ‡å®šã«ã¯ã“ã¡ã‚‰ã‚’ä½¿ã£ã¦ãã ã•ã„ï¼‰
+#define	FIGHT_TYPE_1vs1_YASEI				(FIGHT_TYPE_1vs1|FIGHT_TYPE_YASEI)						///<1vs1é‡Žç”Ÿæˆ¦
+#define	FIGHT_TYPE_2vs2_YASEI				(FIGHT_TYPE_2vs2|FIGHT_TYPE_MULTI|FIGHT_TYPE_AI)		///<2vs2é‡Žç”Ÿæˆ¦
+#define	FIGHT_TYPE_1vs1_TRAINER				(FIGHT_TYPE_1vs1|FIGHT_TYPE_TRAINER)					///<1vs1ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦
+#define	FIGHT_TYPE_2vs2_TRAINER				(FIGHT_TYPE_2vs2|FIGHT_TYPE_TRAINER)					///<2vs2ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦
+#define	FIGHT_TYPE_1vs1_SIO					(FIGHT_TYPE_SIO|FIGHT_TYPE_TRAINER)						///<1vs1é€šä¿¡ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦
+#define	FIGHT_TYPE_2vs2_SIO					(FIGHT_TYPE_1vs1_SIO|FIGHT_TYPE_2vs2)					///<2vs2é€šä¿¡ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦
+#define	FIGHT_TYPE_MULTI_SIO				(FIGHT_TYPE_2vs2_SIO|FIGHT_TYPE_MULTI)					///<2vs2é€šä¿¡ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æˆ¦
+#define	FIGHT_TYPE_AI_MULTI					(FIGHT_TYPE_2vs2_TRAINER|FIGHT_TYPE_MULTI|FIGHT_TYPE_AI)///<2vs2AIãƒžãƒ«ãƒæˆ¦
+#define	FIGHT_TYPE_BATTLE_TOWER_1vs1		(FIGHT_TYPE_1vs1_TRAINER|FIGHT_TYPE_TOWER)				///<1vs1ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æˆ¦
+#define	FIGHT_TYPE_BATTLE_TOWER_2vs2		(FIGHT_TYPE_2vs2_TRAINER|FIGHT_TYPE_TOWER)				///<2vs2ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æˆ¦
+#define	FIGHT_TYPE_BATTLE_TOWER_AI_MULTI	(FIGHT_TYPE_AI_MULTI|FIGHT_TYPE_TOWER)					///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼AIãƒžãƒ«ãƒæˆ¦
+#define	FIGHT_TYPE_BATTLE_TOWER_SIO_MULTI	(FIGHT_TYPE_MULTI_SIO|FIGHT_TYPE_TOWER)					///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼é€šä¿¡ãƒžãƒ«ãƒæˆ¦
+#define	FIGHT_TYPE_TAG_BATTLE				(FIGHT_TYPE_2vs2_TRAINER|FIGHT_TYPE_TAG)				///<ã‚¿ãƒƒã‚°ãƒãƒˆãƒ«æˆ¦
 
-///<ŒoŒ±’l‚ð‚à‚ç‚¦‚È‚¢FightType
+///<çµŒé¨“å€¤ã‚’ã‚‚ã‚‰ãˆãªã„FightType
 #define	FIGHT_TYPE_NO_EXP	(FIGHT_TYPE_SIO|FIGHT_TYPE_SAFARI|FIGHT_TYPE_TOWER|FIGHT_TYPE_POKE_PARK)
 
-///<}ŠÓ“o˜^‚ð‚µ‚È‚¢FightType
+///<å›³é‘‘ç™»éŒ²ã‚’ã—ãªã„FightType
 #define	FIGHT_TYPE_NO_ZUKAN	(FIGHT_TYPE_SIO|FIGHT_TYPE_TOWER)
 
-///<‚Ç‚ë‚Ú‚¤‚Å‚«‚éFightType
+///<ã©ã‚ã¼ã†ã§ãã‚‹FightType
 #define	FIGHT_TYPE_DOROBOU	(FIGHT_TYPE_SIO|FIGHT_TYPE_TOWER)
 
-///<•K‚¸“¦‚°‚ê‚éFightType
+///<å¿…ãšé€ƒã’ã‚Œã‚‹FightType
 #define	FIGHT_TYPE_ESCAPE	(FIGHT_TYPE_SIO|FIGHT_TYPE_SAFARI|FIGHT_TYPE_POKE_PARK|FIGHT_TYPE_TOWER)
 
-///<“ü‚ê‘Ö‚¦í‚É‚È‚ç‚È‚¢FightType
+///<å…¥ã‚Œæ›¿ãˆæˆ¦ã«ãªã‚‰ãªã„FightType
 #define	FIGHT_TYPE_NO_IREKAE	(FIGHT_TYPE_SIO|FIGHT_TYPE_2vs2|FIGHT_TYPE_TOWER)
 
-///<‚¨‚±‚Ã‚©‚¢‚ð‚à‚ç‚¦‚È‚¢FightType
+///<ãŠã“ã¥ã‹ã„ã‚’ã‚‚ã‚‰ãˆãªã„FightType
 #define	FIGHT_TYPE_NO_MONEY	(FIGHT_TYPE_TOWER)
 
-///<ƒoƒbƒWƒ`ƒFƒbƒN‚ð‚µ‚È‚¢FightType
+///<ãƒãƒƒã‚¸ãƒã‚§ãƒƒã‚¯ã‚’ã—ãªã„FightType
 #define	FIGHT_TYPE_NO_BADGE	(FIGHT_TYPE_SIO|FIGHT_TYPE_TOWER)
 
-///<ƒ|ƒPƒ‚ƒ“‚ÉƒAƒCƒeƒ€‚ðŽ‚½‚¹‚È‚¢FightType
+///<ãƒã‚±ãƒ¢ãƒ³ã«ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒãŸã›ãªã„FightType
 #define	FIGHT_TYPE_POKE_NO_HAVE_ITEM	(FIGHT_TYPE_TRAINER|FIGHT_TYPE_TOWER)
 
-///<ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒWƒ`ƒFƒbƒN‚ð‚µ‚È‚¢FightType
+///<ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ãƒã‚§ãƒƒã‚¯ã‚’ã—ãªã„FightType
 #define	FIGHT_TYPE_NO_FORM_CHG	(FIGHT_TYPE_SIO|FIGHT_TYPE_TOWER|FIGHT_TYPE_SAFARI|FIGHT_TYPE_POKE_PARK)
 
-///<ƒAƒCƒeƒ€AI‚ð‹N“®‚µ‚È‚¢FightType
+///<ã‚¢ã‚¤ãƒ†ãƒ AIã‚’èµ·å‹•ã—ãªã„FightType
 #define	FIGHT_TYPE_NO_ITEM_AI	(FIGHT_TYPE_SIO|FIGHT_TYPE_TOWER|FIGHT_TYPE_SAFARI|FIGHT_TYPE_AI|FIGHT_TYPE_POKE_PARK)
 
-///<‚Ç‚¤‚®‚ðŽg‚¦‚È‚¢FightType
+///<ã©ã†ãã‚’ä½¿ãˆãªã„FightType
 #define	FIGHT_TYPE_NO_ITEM_USE	(FIGHT_TYPE_SIO|FIGHT_TYPE_TOWER)
 
-///<ƒQ[ƒW‚Ì–îˆóƒAƒjƒ‚ð‚µ‚È‚¢FightType
+///<ã‚²ãƒ¼ã‚¸ã®çŸ¢å°ã‚¢ãƒ‹ãƒ¡ã‚’ã—ãªã„FightType
 #define	FIGHT_TYPE_NO_ARROW_ANIME	(FIGHT_TYPE_SAFARI|FIGHT_TYPE_POKE_PARK)
 
-///<“Á«‚ðƒZƒbƒg‚µ‚È‚¢FightType
+///<ç‰¹æ€§ã‚’ã‚»ãƒƒãƒˆã—ãªã„FightType
 #define	FIGHT_TYPE_NO_TOKUSEI	(FIGHT_TYPE_SAFARI|FIGHT_TYPE_POKE_PARK)
 
-///<ƒsƒ“ƒ`SEƒ`ƒFƒbƒN‚ð‚µ‚È‚¢FightType
+///<ãƒ”ãƒ³ãƒSEãƒã‚§ãƒƒã‚¯ã‚’ã—ãªã„FightType
 #define	FIGHT_TYPE_NO_PINCH_SE	(FIGHT_TYPE_SAFARI|FIGHT_TYPE_POKE_PARK)
 
-///<AIŒvŽZ‚ð‚·‚éFightType
+///<AIè¨ˆç®—ã‚’ã™ã‚‹FightType
 #define	FIGHT_TYPE_AI_CALC	(FIGHT_TYPE_TRAINER|FIGHT_TYPE_MOVE)
 
 ///<win_lose_flag
-#define	FIGHT_WIN					(0x01)		///í“¬Ÿ—˜
-#define	FIGHT_LOSE					(0x02)		///í“¬•‰‚¯
-#define	FIGHT_DRAW					(0x03)		///í“¬ˆø‚«•ª‚¯
-#define	FIGHT_POKE_GET				(0x04)		///ƒ|ƒPƒ‚ƒ“•ßŠl
-#define	FIGHT_ESCAPE				(0x05)		///“¦‚°‚½
-#define	FIGHT_ENEMY_ESCAPE			(0x06)		///‘ŠŽè‚ª“¦‚°‚½
+#define	FIGHT_WIN					(0x01)		///æˆ¦é—˜å‹åˆ©
+#define	FIGHT_LOSE					(0x02)		///æˆ¦é—˜è² ã‘
+#define	FIGHT_DRAW					(0x03)		///æˆ¦é—˜å¼•ãåˆ†ã‘
+#define	FIGHT_POKE_GET				(0x04)		///ãƒã‚±ãƒ¢ãƒ³æ•ç²
+#define	FIGHT_ESCAPE				(0x05)		///é€ƒã’ãŸ
+#define	FIGHT_ENEMY_ESCAPE			(0x06)		///ç›¸æ‰‹ãŒé€ƒã’ãŸ
 	
-#define	FIGHT_ESCAPE_SELECT_PAUSE	(0x40)		///“¦‚°‚é‚ð‘I‘ð
-#define	FIGHT_ESCAPE_SELECT			(0x80)		///“¦‚°‚é‚ð‘I‘ð
+#define	FIGHT_ESCAPE_SELECT_PAUSE	(0x40)		///é€ƒã’ã‚‹ã‚’é¸æŠž
+#define	FIGHT_ESCAPE_SELECT			(0x80)		///é€ƒã’ã‚‹ã‚’é¸æŠž
 
-#define	FIGHT_ESCAPE_SELECT_OFF		(0xc0^0xff)	///“¦‚°‚é‚ð‘I‘ð
+#define	FIGHT_ESCAPE_SELECT_OFF		(0xc0^0xff)	///é€ƒã’ã‚‹ã‚’é¸æŠž
 
 #ifdef PM_DEBUG
-#define	FIGHT_RESTART				(0x20)		///í“¬‚ðÅ‰‚©‚ç‚â‚è’¼‚·iƒfƒoƒbƒO—pj
+#define	FIGHT_RESTART				(0x20)		///æˆ¦é—˜ã‚’æœ€åˆã‹ã‚‰ã‚„ã‚Šç›´ã™ï¼ˆãƒ‡ãƒãƒƒã‚°ç”¨ï¼‰
 #endif
 
-//ƒoƒbƒO‰æ–ÊAƒŠƒXƒg‰æ–Ê‚És‚«—ˆŽž‚ÌƒtƒF[ƒhƒXƒs[ƒh
+//ãƒãƒƒã‚°ç”»é¢ã€ãƒªã‚¹ãƒˆç”»é¢ã«è¡Œãæ¥æ™‚ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¹ãƒ”ãƒ¼ãƒ‰
 #define	BATTLE_BAGLIST_FADE_SPEED	(-8)
 
-///<í“¬ƒVƒXƒeƒ€‚Ìƒ‚[ƒh
-#define	BW_PROC_MODE_FIGHT			(0)		///<í“¬’†
-#define	BW_PROC_MODE_NAMEIN			(1)		///<–¼‘O“ü—Í‰æ–Ê‚Ö
-#define	BW_PROC_MODE_NAMEIN_AFTER	(2)		///<–¼‘O“ü—Í‰æ–Ê‚Ö
-#define	BW_PROC_MODE_BAG_LIST		(3)		///<ƒoƒbƒO•ƒŠƒXƒg‰æ–Ê
+///<æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¢ãƒ¼ãƒ‰
+#define	BW_PROC_MODE_FIGHT			(0)		///<æˆ¦é—˜ä¸­
+#define	BW_PROC_MODE_NAMEIN			(1)		///<åå‰å…¥åŠ›ç”»é¢ã¸
+#define	BW_PROC_MODE_NAMEIN_AFTER	(2)		///<åå‰å…¥åŠ›ç”»é¢ã¸
+#define	BW_PROC_MODE_BAG_LIST		(3)		///<ãƒãƒƒã‚°ï¼†ãƒªã‚¹ãƒˆç”»é¢
 
-//POKEPARTY\‘¢‘Ì‚Ì”z—ñ‚Ì“Y‚¦Žš
-#define	POKEPARTY_MINE			(0)					///<Ž©•ª‚ÌŽèŽ‚¿
-#define	POKEPARTY_ENEMY			(1)					///<‘ŠŽè‚ÌŽèŽ‚¿
-#define	POKEPARTY_MINE_PAIR		(2)					///<ƒ}ƒ‹ƒ`‚ÌŽž‚Ìƒp[ƒgƒi[‚ÌŽèŽ‚¿
-#define	POKEPARTY_ENEMY_PAIR	(3)					///<ƒ}ƒ‹ƒ`‚ÌŽž‚Ìƒp[ƒgƒi[‚ÌŽèŽ‚¿
+//POKEPARTYæ§‹é€ ä½“ã®é…åˆ—ã®æ·»ãˆå­—
+#define	POKEPARTY_MINE			(0)					///<è‡ªåˆ†ã®æ‰‹æŒã¡
+#define	POKEPARTY_ENEMY			(1)					///<ç›¸æ‰‹ã®æ‰‹æŒã¡
+#define	POKEPARTY_MINE_PAIR		(2)					///<ãƒžãƒ«ãƒã®æ™‚ã®ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®æ‰‹æŒã¡
+#define	POKEPARTY_ENEMY_PAIR	(3)					///<ãƒžãƒ«ãƒã®æ™‚ã®ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ã®æ‰‹æŒã¡
 
-//COMMAND_SELECT‚Ìstatusƒpƒ‰ƒ[ƒ^‚ÌˆÓ–¡
-#define	COMSEL_STATUS_NONE		(0)		///<ƒ|ƒPƒ‚ƒ“‚ª‚¢‚È‚¢
-#define	COMSEL_STATUS_ALIVE		(1)		///<ƒ|ƒPƒ‚ƒ“‚ª‚¢‚éi‚¢‚«‚Ä‚éj
-#define	COMSEL_STATUS_DEAD		(2)		///<ƒ|ƒPƒ‚ƒ“‚ª‚¢‚éi‹Câj
-#define	COMSEL_STATUS_NG		(3)		///<ƒ|ƒPƒ‚ƒ“‚ª‚¢‚éiƒXƒe[ƒ^ƒXˆÙíj
+//COMMAND_SELECTã®statusãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®æ„å‘³
+#define	COMSEL_STATUS_NONE		(0)		///<ãƒã‚±ãƒ¢ãƒ³ãŒã„ãªã„
+#define	COMSEL_STATUS_ALIVE		(1)		///<ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ï¼ˆã„ãã¦ã‚‹ï¼‰
+#define	COMSEL_STATUS_DEAD		(2)		///<ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ï¼ˆæ°—çµ¶ï¼‰
+#define	COMSEL_STATUS_NG		(3)		///<ãƒã‚±ãƒ¢ãƒ³ãŒã„ã‚‹ï¼ˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ç•°å¸¸ï¼‰
 
-//ƒƒbƒZ[ƒW—p’PŒê“WŠJƒoƒbƒtƒ@’è‹`
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ç”¨å˜èªžå±•é–‹ãƒãƒƒãƒ•ã‚¡å®šç¾©
 #define	STR_TEMP_BUF0			(0)
 #define	STR_TEMP_BUF1			(1)
 #define	STR_TEMP_BUF2			(2)
@@ -154,56 +154,56 @@
 #define	STR_TEMP_BUF4			(4)
 #define	STR_TEMP_BUF5			(5)
 
-///<ŽxŽ‚·‚éƒNƒ‰ƒCƒAƒ“ƒgŽw’è
-#define	SIDE_ALL				(0x00)	///<‹N“®‚µ‚Ä‚¢‚éƒNƒ‰ƒCƒAƒ“ƒg‚·‚×‚Ä	
-#define	SIDE_ATTACK				(0x01)	///<UŒ‚‘¤ƒNƒ‰ƒCƒAƒ“ƒg
-#define	SIDE_DEFENCE			(0x02)	///<–hŒä‘¤ƒNƒ‰ƒCƒAƒ“ƒg
-#define	SIDE_MINE				(0x03)	///<Ž©•ª‘¤ƒNƒ‰ƒCƒAƒ“ƒg
-#define	SIDE_ENEMY				(0x04)	///<‘ŠŽè‘¤ƒNƒ‰ƒCƒAƒ“ƒg
-#define	SIDE_KIZETSU			(0x05)	///<‹Câ‚µ‚½ƒNƒ‰ƒCƒAƒ“ƒg
-#define	SIDE_RESHUFFLE			(0x06)	///<“ü‚ê‘Ö‚¦‚ð‘I‘ð‚µ‚½ƒNƒ‰ƒCƒAƒ“ƒg
-#define	SIDE_TSUIKA				(0x07)	///<’Ç‰ÁŒø‰Ê‚Ì‚ ‚Á‚½ƒNƒ‰ƒCƒAƒ“ƒg
-#define	SIDE_TOKUSEI			(0x08)	///<“Á«ƒ`ƒFƒbƒN‚ð‚µ‚ÄŽ‚Á‚Ä‚¢‚½ƒNƒ‰ƒCƒAƒ“ƒg
-#define	SIDE_MINE_1				(0x09)	///<Ž©•ª‘¤ƒNƒ‰ƒCƒAƒ“ƒg
-#define	SIDE_ENEMY_1			(0x0a)	///<‘ŠŽè‘¤ƒNƒ‰ƒCƒAƒ“ƒg
-#define	SIDE_MINE_2				(0x0b)	///<Ž©•ª‘¤ƒNƒ‰ƒCƒAƒ“ƒgi2vs2Žž‚Ìƒp[ƒgƒi[j
-#define	SIDE_ENEMY_2			(0x0c)	///<‘ŠŽè‘¤ƒNƒ‰ƒCƒAƒ“ƒgi2vs2Žž‚Ìƒp[ƒgƒi[j
-#define	SIDE_ATTACK_WORK		(0x0e)	///<UŒ‚‘¤ƒNƒ‰ƒCƒAƒ“ƒgƒ[ƒN(sp->attack_client_work)
-#define	SIDE_DEFENCE_WORK		(0x0f)	///<–hŒä‘¤ƒNƒ‰ƒCƒAƒ“ƒgƒ[ƒN(sp->defence_client_work)
-#define	SIDE_ATTACK_PAIR		(0x10)	///<UŒ‚‘¤ƒNƒ‰ƒCƒAƒ“ƒg‚Ìƒp[ƒgƒi[
-#define	SIDE_DEFENCE_PAIR		(0x11)	///<–hŒä‘¤ƒNƒ‰ƒCƒAƒ“ƒg‚Ìƒp[ƒgƒi[
-#define	SIDE_HUKITOBASI			(0x12)	///<‚Ó‚«‚Æ‚Î‚µŒÀ’è
-#define	SIDE_ATTACK_ENEMY		(0x13)	///<UŒ‚‘¤ƒNƒ‰ƒCƒAƒ“ƒg‚Ì‘ŠŽè
-#define	SIDE_DEFENCE_ENEMY		(0x14)	///<–hŒä‘¤ƒNƒ‰ƒCƒAƒ“ƒg‚Ì‘ŠŽè
-#define	SIDE_CLIENT_WORK		(0x15)	///<sp->client_work‚ðŽQÆ
-#define	SIDE_RESHUFFLE_AFTER	(0x16)	///<“ü‚ê‘Ö‚¦‚ð‘I‘ð‚µ‚½ƒNƒ‰ƒCƒAƒ“ƒgireshuffle_sel_mons_no‚ðŽQÆ‚·‚éj
+///<æ”¯æŒã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆæŒ‡å®š
+#define	SIDE_ALL				(0x00)	///<èµ·å‹•ã—ã¦ã„ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã™ã¹ã¦	
+#define	SIDE_ATTACK				(0x01)	///<æ”»æ’ƒå´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
+#define	SIDE_DEFENCE			(0x02)	///<é˜²å¾¡å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
+#define	SIDE_MINE				(0x03)	///<è‡ªåˆ†å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
+#define	SIDE_ENEMY				(0x04)	///<ç›¸æ‰‹å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
+#define	SIDE_KIZETSU			(0x05)	///<æ°—çµ¶ã—ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
+#define	SIDE_RESHUFFLE			(0x06)	///<å…¥ã‚Œæ›¿ãˆã‚’é¸æŠžã—ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
+#define	SIDE_TSUIKA				(0x07)	///<è¿½åŠ åŠ¹æžœã®ã‚ã£ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
+#define	SIDE_TOKUSEI			(0x08)	///<ç‰¹æ€§ãƒã‚§ãƒƒã‚¯ã‚’ã—ã¦æŒã£ã¦ã„ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
+#define	SIDE_MINE_1				(0x09)	///<è‡ªåˆ†å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
+#define	SIDE_ENEMY_1			(0x0a)	///<ç›¸æ‰‹å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ
+#define	SIDE_MINE_2				(0x0b)	///<è‡ªåˆ†å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆï¼ˆ2vs2æ™‚ã®ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ï¼‰
+#define	SIDE_ENEMY_2			(0x0c)	///<ç›¸æ‰‹å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆï¼ˆ2vs2æ™‚ã®ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼ï¼‰
+#define	SIDE_ATTACK_WORK		(0x0e)	///<æ”»æ’ƒå´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯(sp->attack_client_work)
+#define	SIDE_DEFENCE_WORK		(0x0f)	///<é˜²å¾¡å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆãƒ¯ãƒ¼ã‚¯(sp->defence_client_work)
+#define	SIDE_ATTACK_PAIR		(0x10)	///<æ”»æ’ƒå´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼
+#define	SIDE_DEFENCE_PAIR		(0x11)	///<é˜²å¾¡å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®ãƒ‘ãƒ¼ãƒˆãƒŠãƒ¼
+#define	SIDE_HUKITOBASI			(0x12)	///<ãµãã¨ã°ã—é™å®š
+#define	SIDE_ATTACK_ENEMY		(0x13)	///<æ”»æ’ƒå´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®ç›¸æ‰‹
+#define	SIDE_DEFENCE_ENEMY		(0x14)	///<é˜²å¾¡å´ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®ç›¸æ‰‹
+#define	SIDE_CLIENT_WORK		(0x15)	///<sp->client_workã‚’å‚ç…§
+#define	SIDE_RESHUFFLE_AFTER	(0x16)	///<å…¥ã‚Œæ›¿ãˆã‚’é¸æŠžã—ãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆï¼ˆreshuffle_sel_mons_noã‚’å‚ç…§ã™ã‚‹ï¼‰
 
-#define	SIDE_WORK				(0xff)	///<ƒ[ƒN‚ÉŠi”[‚³‚ê‚Ä‚¢‚é’l‚ðŽQÆ
+#define	SIDE_WORK				(0xff)	///<ãƒ¯ãƒ¼ã‚¯ã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹å€¤ã‚’å‚ç…§
 
 //=========================================================================
-//	ƒ|ƒPƒ‚ƒ“ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒrƒbƒgiAI‚ÌIF_COND‚Å‚àŽg—p‚·‚éj
+//	ãƒã‚±ãƒ¢ãƒ³ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ãƒ“ãƒƒãƒˆï¼ˆAIã®IF_CONDã§ã‚‚ä½¿ç”¨ã™ã‚‹ï¼‰
 //=========================================================================
 
-#define	CONDITION_NOCHECK			(0x00000000)				//ƒrƒbƒg‚Ìƒ`ƒFƒbƒN‚ð‚µ‚È‚¢
-#define	CONDITION_NEMURI			(0x00000007)				//–°‚è
-#define	CONDITION_DOKU				(0x00000008)				//“Å
-#define	CONDITION_YAKEDO			(0x00000010)				//‚â‚¯‚Ç
-#define	CONDITION_KOORI				(0x00000020)				//‚±‚¨‚è
-#define	CONDITION_MAHI				(0x00000040)				//‚Ü‚Ð
-#define	CONDITION_DOKUDOKU			(0x00000080)				//‚Ç‚­‚Ç‚­
-#define	CONDITION_DOKUDOKU_CNT		(0x00000f00)				//‚Ç‚­‚Ç‚­ƒJƒEƒ“ƒ^
+#define	CONDITION_NOCHECK			(0x00000000)				//ãƒ“ãƒƒãƒˆã®ãƒã‚§ãƒƒã‚¯ã‚’ã—ãªã„
+#define	CONDITION_NEMURI			(0x00000007)				//çœ ã‚Š
+#define	CONDITION_DOKU				(0x00000008)				//æ¯’
+#define	CONDITION_YAKEDO			(0x00000010)				//ã‚„ã‘ã©
+#define	CONDITION_KOORI				(0x00000020)				//ã“ãŠã‚Š
+#define	CONDITION_MAHI				(0x00000040)				//ã¾ã²
+#define	CONDITION_DOKUDOKU			(0x00000080)				//ã©ãã©ã
+#define	CONDITION_DOKUDOKU_CNT		(0x00000f00)				//ã©ãã©ãã‚«ã‚¦ãƒ³ã‚¿
 
-#define	CONDITION_SINKURO			(0x00000058)				//ƒVƒ“ƒNƒ
-#define	CONDITION_KARAGENKI			(0x000000d8)				//‚©‚ç‚°‚ñ‚«
-#define	CONDITION_DOKUALL			(0x00000f88)				//‚Ç‚­‘S•”
+#define	CONDITION_SINKURO			(0x00000058)				//ã‚·ãƒ³ã‚¯ãƒ­
+#define	CONDITION_KARAGENKI			(0x000000d8)				//ã‹ã‚‰ã’ã‚“ã
+#define	CONDITION_DOKUALL			(0x00000f88)				//ã©ãå…¨éƒ¨
 
-#define	CONDITION_NEMURI_OFF		(0x00000007^0xffffffff)		//–°‚è
-#define	CONDITION_DOKU_OFF			(0x00000008^0xffffffff)		//“Å
-#define	CONDITION_YAKEDO_OFF		(0x00000010^0xffffffff)		//‚â‚¯‚Ç
-#define	CONDITION_KOORI_OFF			(0x00000020^0xffffffff)		//‚±‚¨‚è
-#define	CONDITION_MAHI_OFF			(0x00000040^0xffffffff)		//‚Ü‚Ð
-#define	CONDITION_DOKUDOKU_CNT_OFF	(0x00000f00^0xffffffff)		//‚Ç‚­‚Ç‚­ƒJƒEƒ“ƒ^
-#define	CONDITION_KARAGENKI_OFF		(0x000000d8^0xffffffff)		//‚©‚ç‚°‚ñ‚«
+#define	CONDITION_NEMURI_OFF		(0x00000007^0xffffffff)		//çœ ã‚Š
+#define	CONDITION_DOKU_OFF			(0x00000008^0xffffffff)		//æ¯’
+#define	CONDITION_YAKEDO_OFF		(0x00000010^0xffffffff)		//ã‚„ã‘ã©
+#define	CONDITION_KOORI_OFF			(0x00000020^0xffffffff)		//ã“ãŠã‚Š
+#define	CONDITION_MAHI_OFF			(0x00000040^0xffffffff)		//ã¾ã²
+#define	CONDITION_DOKUDOKU_CNT_OFF	(0x00000f00^0xffffffff)		//ã©ãã©ãã‚«ã‚¦ãƒ³ã‚¿
+#define	CONDITION_KARAGENKI_OFF		(0x000000d8^0xffffffff)		//ã‹ã‚‰ã’ã‚“ã
 #define	CONDITION_POISON_OFF		((CONDITION_DOKU|CONDITION_DOKUDOKU|CONDITION_DOKUDOKU_CNT)^0xffffffff)
 
 #define	DOKUDOKU_COUNT				(0x00000100)
@@ -211,52 +211,52 @@
 #define	CONDITION_BAD				(0x000000ff)
 
 //=========================================================================
-//	ƒ|ƒPƒ‚ƒ“ƒRƒ“ƒfƒBƒVƒ‡ƒ“ƒrƒbƒgiAI‚ÌIF_COND2‚Å‚àŽg—p‚·‚éj
+//	ãƒã‚±ãƒ¢ãƒ³ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ãƒ“ãƒƒãƒˆï¼ˆAIã®IF_COND2ã§ã‚‚ä½¿ç”¨ã™ã‚‹ï¼‰
 //=========================================================================
 
-#define	CONDITION2_NOCHECK			(0x00000000)			//ƒrƒbƒg‚Ìƒ`ƒFƒbƒN‚ð‚µ‚È‚¢
-#define	CONDITION2_KONRAN			(0x00000007)			//‚±‚ñ‚ç‚ñ
-#define	CONDITION2_HIRUMU			(0x00000008)			//‚Ð‚é‚Þ
-#define	CONDITION2_SAWAGU			(0x00000070)			//‚³‚í‚®
-#define	CONDITION2_TRIATTACK		(0x00000080)			//ƒgƒ‰ƒCƒAƒ^ƒbƒN
-#define	CONDITION2_GAMAN			(0x00000300)			//‚ª‚Ü‚ñ
-#define	CONDITION2_ABARERU			(0x00000c00)			//‚ ‚Î‚ê‚é
-#define	CONDITION2_KEEP				(0x00001000)			//‚½‚ß
-#define	CONDITION2_SHIME			(0x0000e000)			//‚µ‚ß‚í‚´
-#define	CONDITION2_MEROMERO			(0x000f0000)			//ƒƒƒƒƒrƒbƒg
-#define	CONDITION2_KIAIDAME			(0x00100000)			//‚«‚ ‚¢‚¾‚ß
-#define	CONDITION2_HENSHIN			(0x00200000)			//‚Ö‚ñ‚µ‚ñ’†
-#define	CONDITION2_HANDOU			(0x00400000)			//‚Í‚ñ‚Ç‚¤’†
-#define	CONDITION2_IKARI			(0x00800000)			//‚¢‚©‚è
-#define	CONDITION2_MIGAWARI			(0x01000000)			//‚Ý‚ª‚í‚è
-#define	CONDITION2_MICHIDURE		(0x02000000)			//‚Ý‚¿‚Ã‚ê
-#define	CONDITION2_KUROIMANAZASHI	(0x04000000)			//‚­‚ë‚¢‚Ü‚È‚´‚µ
-#define	CONDITION2_AKUMU			(0x08000000)			//‚ ‚­‚Þ
-#define	CONDITION2_NOROI			(0x10000000)			//‚Ì‚ë‚¢
-#define	CONDITION2_MIYABURU			(0x20000000)			//‚Ý‚â‚Ô‚é
-#define	CONDITION2_MARUKUNARU		(0x40000000)			//‚Ü‚é‚­‚È‚é
-#define	CONDITION2_ICHAMON			(0x80000000)			//‚¢‚¿‚á‚à‚ñ
+#define	CONDITION2_NOCHECK			(0x00000000)			//ãƒ“ãƒƒãƒˆã®ãƒã‚§ãƒƒã‚¯ã‚’ã—ãªã„
+#define	CONDITION2_KONRAN			(0x00000007)			//ã“ã‚“ã‚‰ã‚“
+#define	CONDITION2_HIRUMU			(0x00000008)			//ã²ã‚‹ã‚€
+#define	CONDITION2_SAWAGU			(0x00000070)			//ã•ã‚ã
+#define	CONDITION2_TRIATTACK		(0x00000080)			//ãƒˆãƒ©ã‚¤ã‚¢ã‚¿ãƒƒã‚¯
+#define	CONDITION2_GAMAN			(0x00000300)			//ãŒã¾ã‚“
+#define	CONDITION2_ABARERU			(0x00000c00)			//ã‚ã°ã‚Œã‚‹
+#define	CONDITION2_KEEP				(0x00001000)			//ãŸã‚
+#define	CONDITION2_SHIME			(0x0000e000)			//ã—ã‚ã‚ã–
+#define	CONDITION2_MEROMERO			(0x000f0000)			//ãƒ¡ãƒ­ãƒ¡ãƒ­ãƒ“ãƒƒãƒˆ
+#define	CONDITION2_KIAIDAME			(0x00100000)			//ãã‚ã„ã ã‚
+#define	CONDITION2_HENSHIN			(0x00200000)			//ã¸ã‚“ã—ã‚“ä¸­
+#define	CONDITION2_HANDOU			(0x00400000)			//ã¯ã‚“ã©ã†ä¸­
+#define	CONDITION2_IKARI			(0x00800000)			//ã„ã‹ã‚Š
+#define	CONDITION2_MIGAWARI			(0x01000000)			//ã¿ãŒã‚ã‚Š
+#define	CONDITION2_MICHIDURE		(0x02000000)			//ã¿ã¡ã¥ã‚Œ
+#define	CONDITION2_KUROIMANAZASHI	(0x04000000)			//ãã‚ã„ã¾ãªã–ã—
+#define	CONDITION2_AKUMU			(0x08000000)			//ã‚ãã‚€
+#define	CONDITION2_NOROI			(0x10000000)			//ã®ã‚ã„
+#define	CONDITION2_MIYABURU			(0x20000000)			//ã¿ã‚„ã¶ã‚‹
+#define	CONDITION2_MARUKUNARU		(0x40000000)			//ã¾ã‚‹ããªã‚‹
+#define	CONDITION2_ICHAMON			(0x80000000)			//ã„ã¡ã‚ƒã‚‚ã‚“
 
-#define	CONDITION2_KONRAN_OFF		(0x00000007^0xffffffff)	//‚±‚ñ‚ç‚ñ
-#define	CONDITION2_HIRUMU_OFF		(0x00000008^0xffffffff)	//‚Ð‚é‚Þ
-#define	CONDITION2_SAWAGU_OFF		(0x00000070^0xffffffff)	//‚³‚í‚®
-#define	CONDITION2_TRIATTACK_OFF	(0x00000080^0xffffffff)	//ƒgƒ‰ƒCƒAƒ^ƒbƒN
-#define	CONDITION2_GAMAN_OFF		(0x00000300^0xffffffff)	//‚ª‚Ü‚ñ
-#define	CONDITION2_ABARERU_OFF		(0x00000c00^0xffffffff)	//‚ ‚Î‚ê‚é
-#define	CONDITION2_KEEP_OFF			(0x00001000^0xffffffff)	//‚½‚ß
-#define	CONDITION2_SHIME_OFF		(0x0000e000^0xffffffff)	//‚µ‚ß‚í‚´
-#define	CONDITION2_MEROMERO_OFF		(0x000f0000^0xffffffff)	//ƒƒƒƒƒrƒbƒg
-#define	CONDITION2_KIAIDAME_OFF		(0x00100000^0xffffffff)	//‚«‚ ‚¢‚¾‚ß
-#define	CONDITION2_HENSHIN_OFF		(0x00200000^0xffffffff)	//‚Ö‚ñ‚µ‚ñ’†
-#define	CONDITION2_HANDOU_OFF		(0x00400000^0xffffffff)	//‚Í‚ñ‚Ç‚¤’†
-#define	CONDITION2_IKARI_OFF		(0x00800000^0xffffffff)	//‚¢‚©‚è
-#define	CONDITION2_MIGAWARI_OFF		(0x01000000^0xffffffff)	//‚Ý‚ª‚í‚è
-#define	CONDITION2_MICHIDURE_OFF	(0x02000000^0xffffffff)	//‚Ý‚¿‚Ã‚ê
-#define	CONDITION2_KUROIMANAZASHI_OFF (0x04000000^0xffffffff)	//‚­‚ë‚¢‚Ü‚È‚´‚µ
-#define	CONDITION2_AKUMU_OFF		(0x08000000^0xffffffff)	//‚ ‚­‚Þ
-#define	CONDITION2_NOROI_OFF		(0x10000000^0xffffffff)	//‚Ì‚ë‚¢
-#define	CONDITION2_MIYABURU_OFF		(0x20000000^0xffffffff)	//‚Ý‚â‚Ô‚é
-#define	CONDITION2_ICHAMON_OFF		(0x80000000^0xffffffff)	//‚¢‚¿‚á‚à‚ñ
+#define	CONDITION2_KONRAN_OFF		(0x00000007^0xffffffff)	//ã“ã‚“ã‚‰ã‚“
+#define	CONDITION2_HIRUMU_OFF		(0x00000008^0xffffffff)	//ã²ã‚‹ã‚€
+#define	CONDITION2_SAWAGU_OFF		(0x00000070^0xffffffff)	//ã•ã‚ã
+#define	CONDITION2_TRIATTACK_OFF	(0x00000080^0xffffffff)	//ãƒˆãƒ©ã‚¤ã‚¢ã‚¿ãƒƒã‚¯
+#define	CONDITION2_GAMAN_OFF		(0x00000300^0xffffffff)	//ãŒã¾ã‚“
+#define	CONDITION2_ABARERU_OFF		(0x00000c00^0xffffffff)	//ã‚ã°ã‚Œã‚‹
+#define	CONDITION2_KEEP_OFF			(0x00001000^0xffffffff)	//ãŸã‚
+#define	CONDITION2_SHIME_OFF		(0x0000e000^0xffffffff)	//ã—ã‚ã‚ã–
+#define	CONDITION2_MEROMERO_OFF		(0x000f0000^0xffffffff)	//ãƒ¡ãƒ­ãƒ¡ãƒ­ãƒ“ãƒƒãƒˆ
+#define	CONDITION2_KIAIDAME_OFF		(0x00100000^0xffffffff)	//ãã‚ã„ã ã‚
+#define	CONDITION2_HENSHIN_OFF		(0x00200000^0xffffffff)	//ã¸ã‚“ã—ã‚“ä¸­
+#define	CONDITION2_HANDOU_OFF		(0x00400000^0xffffffff)	//ã¯ã‚“ã©ã†ä¸­
+#define	CONDITION2_IKARI_OFF		(0x00800000^0xffffffff)	//ã„ã‹ã‚Š
+#define	CONDITION2_MIGAWARI_OFF		(0x01000000^0xffffffff)	//ã¿ãŒã‚ã‚Š
+#define	CONDITION2_MICHIDURE_OFF	(0x02000000^0xffffffff)	//ã¿ã¡ã¥ã‚Œ
+#define	CONDITION2_KUROIMANAZASHI_OFF (0x04000000^0xffffffff)	//ãã‚ã„ã¾ãªã–ã—
+#define	CONDITION2_AKUMU_OFF		(0x08000000^0xffffffff)	//ã‚ãã‚€
+#define	CONDITION2_NOROI_OFF		(0x10000000^0xffffffff)	//ã®ã‚ã„
+#define	CONDITION2_MIYABURU_OFF		(0x20000000^0xffffffff)	//ã¿ã‚„ã¶ã‚‹
+#define	CONDITION2_ICHAMON_OFF		(0x80000000^0xffffffff)	//ã„ã¡ã‚ƒã‚‚ã‚“
 
 #define	CONDITION2_BATON_TOUCH_ON	(CONDITION2_KIAIDAME|CONDITION2_KUROIMANAZASHI|\
 									 CONDITION2_KONRAN|CONDITION2_NOROI|CONDITION2_MIGAWARI)
@@ -277,83 +277,83 @@
 #define	MEROMERO_SHIFT				(16)
 #define	HOROBINOUTA_SHIFT			(30)
 
-#define	KOBAN_MAX					(0xffff)		//‚Ë‚±‚É‚±‚Î‚ñ‚Å‚à‚ç‚¦‚é‚¨‹à‚ÌMAX
+#define	KOBAN_MAX					(0xffff)		//ã­ã“ã«ã“ã°ã‚“ã§ã‚‚ã‚‰ãˆã‚‹ãŠé‡‘ã®MAX
 
 //======================================================================================================
 
-#define	HP_KETA_MAX			(3)		///<HP‚ÌÅ‘åŒ…”
-#define	LEVEL_KETA_MAX		(3)		///<ƒŒƒxƒ‹‚ÌÅ‘åŒ…”
+#define	HP_KETA_MAX			(3)		///<HPã®æœ€å¤§æ¡æ•°
+#define	LEVEL_KETA_MAX		(3)		///<ãƒ¬ãƒ™ãƒ«ã®æœ€å¤§æ¡æ•°
 
-#define	BATTLE_MESSAGE_BUF_SIZE		(2*160)		///<í“¬—pƒƒbƒZ[ƒW“WŠJ—ÌˆæƒTƒCƒYi‚P‚U‚O•¶Žš•ªj
-#define	BATTLE_STR_TEMP_BUF_SIZE	(2*20)		///<í“¬—pƒ^ƒO“WŠJ—ÌˆæƒTƒCƒYi‚Q‚O•¶Žš•ªj
+#define	BATTLE_MESSAGE_BUF_SIZE		(2*160)		///<æˆ¦é—˜ç”¨ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±•é–‹é ˜åŸŸã‚µã‚¤ã‚ºï¼ˆï¼‘ï¼–ï¼æ–‡å­—åˆ†ï¼‰
+#define	BATTLE_STR_TEMP_BUF_SIZE	(2*20)		///<æˆ¦é—˜ç”¨ã‚¿ã‚°å±•é–‹é ˜åŸŸã‚µã‚¤ã‚ºï¼ˆï¼’ï¼æ–‡å­—åˆ†ï¼‰
 
-#define	WAZA_TEMOTI_MAX		(4)		///<1‘Ì‚Ìƒ|ƒPƒ‚ƒ“‚ª‚à‚Ä‚é‹Z‚ÌÅ‘å’l
-#define	POKEMON_TEMOTI_MAX	(6)		///<ŽèŽ‚¿‚ÉŽ‚Ä‚éƒ|ƒPƒ‚ƒ“‚ÌÅ‘å’l
-#define	POKEMON_ABIRITY_MAX	(8)		///<ƒ|ƒPƒ‚ƒ“‚Ì”\—Í’lŽí—Þ‚ÌÅ‘å’l
-#define	ID_MAX				(4)		///<’ÊMIDMAX
-#define	CLIENT_MAX			(4)		///<“¯Žž‚É‹N“®‚·‚éƒNƒ‰ƒCƒAƒ“ƒg‚ÌÅ‘å”
-#define	SERVER_QUE_MAX		(16)	///<ƒNƒ‰ƒCƒAƒ“ƒg‚Ö‚Ì–½—ßƒLƒ…[‚ÌÅ‘å”i4‚Å‚Íâ‘Î‘«‚è‚È‚¢j
-#define	BUF_SIZE			(256)	///<ƒT[ƒoAƒNƒ‰ƒCƒAƒ“ƒg‚Ì–½—ßA‰ž“šŠi”[ƒoƒbƒtƒ@‚ÌƒTƒCƒY
+#define	WAZA_TEMOTI_MAX		(4)		///<1ä½“ã®ãƒã‚±ãƒ¢ãƒ³ãŒã‚‚ã¦ã‚‹æŠ€ã®æœ€å¤§å€¤
+#define	POKEMON_TEMOTI_MAX	(6)		///<æ‰‹æŒã¡ã«æŒã¦ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æœ€å¤§å€¤
+#define	POKEMON_ABIRITY_MAX	(8)		///<ãƒã‚±ãƒ¢ãƒ³ã®èƒ½åŠ›å€¤ç¨®é¡žã®æœ€å¤§å€¤
+#define	ID_MAX				(4)		///<é€šä¿¡IDMAX
+#define	CLIENT_MAX			(4)		///<åŒæ™‚ã«èµ·å‹•ã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®æœ€å¤§æ•°
+#define	SERVER_QUE_MAX		(16)	///<ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã¸ã®å‘½ä»¤ã‚­ãƒ¥ãƒ¼ã®æœ€å¤§æ•°ï¼ˆ4ã§ã¯çµ¶å¯¾è¶³ã‚Šãªã„ï¼‰
+#define	BUF_SIZE			(256)	///<ã‚µãƒ¼ãƒã€ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®å‘½ä»¤ã€å¿œç­”æ ¼ç´ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
 
-#define	NONE_CLIENT_NO		(0xff)	///<ŠeClientNoŠi”[ƒ[ƒN‚Ì‰Šú’l
+#define	NONE_CLIENT_NO		(0xff)	///<å„ClientNoæ ¼ç´ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸå€¤
 
-#define GROUND_MINE			(0)		///<Ž©•ª‘¤’n–Ê
-#define GROUND_ENEMY		(1)		///<“G‘¤’n–Ê
-#define GROUND_MAX			(2)		///<’n–Ê‚ÌÅ‘å”
+#define GROUND_MINE			(0)		///<è‡ªåˆ†å´åœ°é¢
+#define GROUND_ENEMY		(1)		///<æ•µå´åœ°é¢
+#define GROUND_MAX			(2)		///<åœ°é¢ã®æœ€å¤§æ•°
 
-#define	BATTLE_ALLOC_SIZE	(0xb0000)	///<í“¬‚ÅŽg—p‚·‚éƒq[ƒvƒTƒCƒY
+#define	BATTLE_ALLOC_SIZE	(0xb0000)	///<æˆ¦é—˜ã§ä½¿ç”¨ã™ã‚‹ãƒ’ãƒ¼ãƒ—ã‚µã‚¤ã‚º
 
-#define BATTLE_VRAM_TRANSFER_TASK_NUM	(64)	///<Vram“]‘—ƒ}ƒl[ƒWƒƒ[ƒ^ƒXƒN”
+#define BATTLE_VRAM_TRANSFER_TASK_NUM	(64)	///<Vramè»¢é€ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚¿ã‚¹ã‚¯æ•°
 
-#define	BATTLE_SIO_BUF_SIZE	(0x1000)	///<í“¬’ÊM—pƒoƒbƒtƒ@ƒTƒCƒY
+#define	BATTLE_SIO_BUF_SIZE	(0x1000)	///<æˆ¦é—˜é€šä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-#define	EXCHR_BUFFER_SIZE	(32*10*10)	///<‹ZƒGƒtƒFƒNƒg—pƒLƒƒƒ‰“WŠJƒoƒbƒtƒ@ƒTƒCƒY
+#define	EXCHR_BUFFER_SIZE	(32*10*10)	///<æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚­ãƒ£ãƒ©å±•é–‹ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
-#define BATTLE_3DBG_PRIORITY		(1)//Œ³X(2)	///<3D–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
-#define BATTLE_BGPRI_WINDOW			(0)	///<ƒEƒBƒ“ƒhƒE–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
-#define BATTLE_BGPRI_EFFECT			(1)	///<ƒGƒtƒFƒNƒg–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
-#define BATTLE_BGPRI_BACKGROUND		(3)	///<”wŒi–Ê‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB
+#define BATTLE_3DBG_PRIORITY		(1)//å…ƒã€…(2)	///<3Dé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+#define BATTLE_BGPRI_WINDOW			(0)	///<ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦é¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+#define BATTLE_BGPRI_EFFECT			(1)	///<ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+#define BATTLE_BGPRI_BACKGROUND		(3)	///<èƒŒæ™¯é¢ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 
-#define BATTLE_FRAME_WINDOW			(GF_BGL_FRAME1_M)	///<ƒtƒŒ[ƒ€–ÊFƒEƒBƒ“ƒhƒE
-#define BATTLE_FRAME_EFFECT			(GF_BGL_FRAME2_M)	///<ƒtƒŒ[ƒ€–ÊFƒGƒtƒFƒNƒg
-#define BATTLE_FRAME_BACKGROUND		(GF_BGL_FRAME3_M)	///<ƒtƒŒ[ƒ€–ÊF”wŒi
+#define BATTLE_FRAME_WINDOW			(GF_BGL_FRAME1_M)	///<ãƒ•ãƒ¬ãƒ¼ãƒ é¢ï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+#define BATTLE_FRAME_EFFECT			(GF_BGL_FRAME2_M)	///<ãƒ•ãƒ¬ãƒ¼ãƒ é¢ï¼šã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+#define BATTLE_FRAME_BACKGROUND		(GF_BGL_FRAME3_M)	///<ãƒ•ãƒ¬ãƒ¼ãƒ é¢ï¼šèƒŒæ™¯
 
-#define BATTLE_BGNO_WINDOW			(1)					///<BG”Ô†FƒEƒBƒ“ƒhƒE
-#define BATTLE_BGNO_EFFECT			(2)					///<BG”Ô†FƒGƒtƒFƒNƒg
-#define BATTLE_BGNO_BACKGROUND		(3)					///<BG”Ô†F”wŒi
+#define BATTLE_BGNO_WINDOW			(1)					///<BGç•ªå·ï¼šã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
+#define BATTLE_BGNO_EFFECT			(2)					///<BGç•ªå·ï¼šã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+#define BATTLE_BGNO_BACKGROUND		(3)					///<BGç•ªå·ï¼šèƒŒæ™¯
 
-//HPƒQ[ƒW‚ªƒXƒ‰ƒCƒhƒCƒ“‚µ‚Ä‚­‚é‚Ü‚Å‚ÌƒEƒGƒCƒg
+//HPã‚²ãƒ¼ã‚¸ãŒã‚¹ãƒ©ã‚¤ãƒ‰ã‚¤ãƒ³ã—ã¦ãã‚‹ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
 #define	HP_GAUGE_IN_WAIT			(4)
 
-//‹Z‚Ì•ª—Þ‚ÉŠÖ‚·‚é’è‹`
-#define	KIND_BUTSURI	(0)			///<•¨—UŒ‚
-#define	KIND_TOKUSYU	(1)			///<“ÁŽêUŒ‚
-#define	KIND_HENKA		(2)			///<ó‘Ô•Ï‰»
+//æŠ€ã®åˆ†é¡žã«é–¢ã™ã‚‹å®šç¾©
+#define	KIND_BUTSURI	(0)			///<ç‰©ç†æ”»æ’ƒ
+#define	KIND_TOKUSYU	(1)			///<ç‰¹æ®Šæ”»æ’ƒ
+#define	KIND_HENKA		(2)			///<çŠ¶æ…‹å¤‰åŒ–
 
-//‹Z‚ÌŒø‰Ê”ÍˆÍ‚ÉŠÖ‚·‚é’è‹`
-#define	RANGE_NORMAL		(0x0000)		//Ž©•ªˆÈŠO‚Ì3‘Ì
-#define	RANGE_NONE			(0x0001)		//‘I‘ð‚È‚µ
-#define	RANGE_RANDOM		(0x0002)		//ƒ‰ƒ“ƒ_ƒ€
-#define	RANGE_DOUBLE		(0x0004)		//‚Q‘Ì‚É“–‚½‚é
-#define	RANGE_TRIPLE		(0x0008)		//Ž©•ªˆÈŠO3‘Ì‚É“–‚½‚é
-#define	RANGE_MINE			(0x0010)		//Ž©•ª‘I‘ð
-#define	RANGE_MINE_DOUBLE	(0x0020)		//Ž©•ª‚Q‘Ì‘I‘ð
-#define	RANGE_FIELD			(0x0040)		//ê‚É‚©‚©‚é
-#define	RANGE_MAKIBISHI		(0x0080)		//‚Ü‚«‚Ñ‚µê—p
-#define	RANGE_TEDASUKE		(0x0100)		//‚Ä‚¾‚·‚¯ê—p
-#define	RANGE_TUBOWOTUKU	(0x0200)		//‚Â‚Ú‚ð‚Â‚­ê—p
-#define	RANGE_SAKIDORI		(0x0400)		//‚³‚«‚Ç‚èê—p
+//æŠ€ã®åŠ¹æžœç¯„å›²ã«é–¢ã™ã‚‹å®šç¾©
+#define	RANGE_NORMAL		(0x0000)		//è‡ªåˆ†ä»¥å¤–ã®3ä½“
+#define	RANGE_NONE			(0x0001)		//é¸æŠžãªã—
+#define	RANGE_RANDOM		(0x0002)		//ãƒ©ãƒ³ãƒ€ãƒ 
+#define	RANGE_DOUBLE		(0x0004)		//ï¼’ä½“ã«å½“ãŸã‚‹
+#define	RANGE_TRIPLE		(0x0008)		//è‡ªåˆ†ä»¥å¤–3ä½“ã«å½“ãŸã‚‹
+#define	RANGE_MINE			(0x0010)		//è‡ªåˆ†é¸æŠž
+#define	RANGE_MINE_DOUBLE	(0x0020)		//è‡ªåˆ†ï¼’ä½“é¸æŠž
+#define	RANGE_FIELD			(0x0040)		//å ´ã«ã‹ã‹ã‚‹
+#define	RANGE_MAKIBISHI		(0x0080)		//ã¾ãã³ã—å°‚ç”¨
+#define	RANGE_TEDASUKE		(0x0100)		//ã¦ã ã™ã‘å°‚ç”¨
+#define	RANGE_TUBOWOTUKU	(0x0200)		//ã¤ã¼ã‚’ã¤ãå°‚ç”¨
+#define	RANGE_SAKIDORI		(0x0400)		//ã•ãã©ã‚Šå°‚ç”¨
 
 #define	RANGE_NO_DIR	(RANGE_DOUBLE|RANGE_NONE|RANGE_MINE|RANGE_RANDOM|RANGE_TRIPLE|RANGE_FIELD)
 
 #define	RANGE_MINE_DIR	(RANGE_NONE|RANGE_MINE|RANGE_FIELD|RANGE_TUBOWOTUKU)
 
-//‹ZŠo‚¦‚ÉŠÖ‚·‚é’è‹`
-#define	NO_WAZA_OBOE		(0x0000)		//‹Z‚ðŠo‚¦‚È‚©‚Á‚½
-#define	NO_WAZA_SET			(0xffff)		//‹Z‚ÌƒZƒbƒg‚ª‚Å‚«‚È‚©‚Á‚½‚Æ‚«‚Ì•Ô‚è’l
-#define	SAME_WAZA_SET		(0xfffe)		//‚·‚Å‚ÉŠo‚¦‚Ä‚¢‚½‹Z‚Ì‚Æ‚«‚Ì•Ô‚è’l
+//æŠ€è¦šãˆã«é–¢ã™ã‚‹å®šç¾©
+#define	NO_WAZA_OBOE		(0x0000)		//æŠ€ã‚’è¦šãˆãªã‹ã£ãŸ
+#define	NO_WAZA_SET			(0xffff)		//æŠ€ã®ã‚»ãƒƒãƒˆãŒã§ããªã‹ã£ãŸã¨ãã®è¿”ã‚Šå€¤
+#define	SAME_WAZA_SET		(0xfffe)		//ã™ã§ã«è¦šãˆã¦ã„ãŸæŠ€ã®ã¨ãã®è¿”ã‚Šå€¤
 
-//ƒ|ƒPƒ‚ƒ“‚â‹Z‚Ìƒ^ƒCƒv’è‹`
+//ãƒã‚±ãƒ¢ãƒ³ã‚„æŠ€ã®ã‚¿ã‚¤ãƒ—å®šç¾©
 #define	NORMAL_TYPE			(0)
 #define	BATTLE_TYPE			(1)
 #define	HIKOU_TYPE			(2)
@@ -375,20 +375,20 @@
 
 #define	POKE_WAZA_TYPE_MAX	(17)
 
-///<’ÊM‘ÎíˆÈŠO‚Å‚Ì‹N“®‚³‚ê‚½ƒNƒ‰ƒCƒAƒ“ƒg‚ÌClientNo’è‹`
+///<é€šä¿¡å¯¾æˆ¦ä»¥å¤–ã§ã®èµ·å‹•ã•ã‚ŒãŸã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®ClientNoå®šç¾©
 #define	CLIENT_NO_MINE		(0)
 #define	CLIENT_NO_ENEMY		(1)
 #define	CLIENT_NO_MINE2		(2)
 #define	CLIENT_NO_ENEMY2	(3)
 
-//ƒ|ƒPƒ‚ƒ“‚Ì—§‚¿ˆÊ’uŽw’è(1vs1)
+//ãƒã‚±ãƒ¢ãƒ³ã®ç«‹ã¡ä½ç½®æŒ‡å®š(1vs1)
 //			 BB
 //
 //	 AA
-//ƒ|ƒPƒ‚ƒ“‚Ì—§‚¿ˆÊ’uŽw’è(2vs2)
+//ãƒã‚±ãƒ¢ãƒ³ã®ç«‹ã¡ä½ç½®æŒ‡å®š(2vs2)
 //			D	B
 //
-//	A@C
+//	Aã€€C
 #define	CLIENT_TYPE_AA	(0)
 #define	CLIENT_TYPE_BB	(1)
 
@@ -397,12 +397,12 @@
 #define	CLIENT_TYPE_C	(4)
 #define	CLIENT_TYPE_D	(5)
 
-#define	CLIENT_ENEMY_FLAG	(0x01)	///<client_type‚Ì1bit–Ú‚ª—§‚Á‚Ä‚¢‚ê‚Î“G‘¤‚¾‚Æ”»’f‚Å‚«‚é
+#define	CLIENT_ENEMY_FLAG	(0x01)	///<client_typeã®1bitç›®ãŒç«‹ã£ã¦ã„ã‚Œã°æ•µå´ã ã¨åˆ¤æ–­ã§ãã‚‹
 
 #define	CLIENT_TYPE_MAX		(6)
-#define	CLIENT_TYPE_NONE	(0xff)	///<ClientType‚È‚µ
+#define	CLIENT_TYPE_NONE	(0xff)	///<ClientTypeãªã—
 
-//ƒgƒŒ[ƒi[‚Ì—§‚¿ˆÊ’ui’ÊM•”‰®“àj
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ç«‹ã¡ä½ç½®ï¼ˆé€šä¿¡éƒ¨å±‹å†…ï¼‰
 //
 //	A		B
 //
@@ -413,12 +413,12 @@
 #define	TRAINER_STAND_C		(2)
 #define	TRAINER_STAND_D		(3)
 
-//ƒNƒ‰ƒCƒAƒ“ƒg‚Ì‹N“®ó‘Ôƒtƒ‰ƒO
-#define	CLIENT_BOOT_NORMAL	(0x00)	///<’Êí‹N“®
-#define	CLIENT_BOOT_AI		(0x01)	///<AI‹N“®
-#define	CLIENT_BOOT_SIO		(0x02)	///<’ÊM‚ÌƒNƒ[ƒ“‹N“®
+//ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®èµ·å‹•çŠ¶æ…‹ãƒ•ãƒ©ã‚°
+#define	CLIENT_BOOT_NORMAL	(0x00)	///<é€šå¸¸èµ·å‹•
+#define	CLIENT_BOOT_AI		(0x01)	///<AIèµ·å‹•
+#define	CLIENT_BOOT_SIO		(0x02)	///<é€šä¿¡ã®ã‚¯ãƒ­ãƒ¼ãƒ³èµ·å‹•
 
-//ƒGƒ“ƒJƒEƒ“ƒgŽž‚Ì‰ŠúˆÊ’u
+//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæ™‚ã®åˆæœŸä½ç½®
 #define	ENCOUNT_X_TYPE_AA	(256+80)
 #define	ENCOUNT_Y_TYPE_AA	(104+8)
 #define	ENCOUNT_Z_TYPE_AA	(-0x200)
@@ -443,7 +443,7 @@
 #define	ENCOUNT_Y_TYPE_D	(ENCOUNT_Y_TYPE_B - 8)
 #define	ENCOUNT_Z_TYPE_D	(ENCOUNT_Z_TYPE_BB)
 
-//“oêŽž‚ÌˆÊ’u(1vs1)
+//ç™»å ´æ™‚ã®ä½ç½®(1vs1)
 #define	APPEAR_X_TYPE_AA	(64)
 #define	APPEAR_Y_TYPE_AA	(104+8)
 #define	APPEAR_Z_TYPE_AA	(ENCOUNT_Z_TYPE_AA)
@@ -452,7 +452,7 @@
 #define	APPEAR_Y_TYPE_BB	(48)
 #define	APPEAR_Z_TYPE_BB	(ENCOUNT_Z_TYPE_BB)
 
-//“oêŽž‚ÌˆÊ’u(2vs2)
+//ç™»å ´æ™‚ã®ä½ç½®(2vs2)
 #define	APPEAR_X_TYPE_A	(40)
 #define	APPEAR_Y_TYPE_A	(ENCOUNT_Y_TYPE_A)
 #define	APPEAR_Z_TYPE_A	(ENCOUNT_Z_TYPE_A)
@@ -469,7 +469,7 @@
 #define	APPEAR_Y_TYPE_D	(ENCOUNT_Y_TYPE_D)
 #define	APPEAR_Z_TYPE_D	(ENCOUNT_Z_TYPE_D)
 
-//ƒXƒ‰ƒCƒhIN‚Ì‰ŠúˆÊ’u
+//ã‚¹ãƒ©ã‚¤ãƒ‰INã®åˆæœŸä½ç½®
 #define	SLIDEIN_X_TYPE_AA	(-80)
 #define	SLIDEIN_Y_TYPE_AA	(ENCOUNT_Y_TYPE_AA)
 #define	SLIDEIN_Z_TYPE_AA	(ENCOUNT_Z_TYPE_AA)
@@ -477,162 +477,162 @@
 #define	SLIDEIN_Y_TYPE_BB	(ENCOUNT_Y_TYPE_BB)
 #define	SLIDEIN_Z_TYPE_BB	(ENCOUNT_Z_TYPE_AA)
 
-//ƒgƒŒ[ƒi[ƒƒbƒZ[ƒWƒAƒNƒVƒ‡ƒ“Žž‚ÌˆÊ’u
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¢ã‚¯ã‚·ãƒ§ãƒ³æ™‚ã®ä½ç½®
 #define	MSG_X_TYPE_AA	(32)
 #define	MSG_X_TYPE_BB	(256-32)
 
-//“oêƒGƒtƒFƒNƒg‚ÌŠgk’l
-#define	AFF_APPEAR_X_S	(0x000)		///<¬‚³‚¢‚Æ‚«
-#define	AFF_APPEAR_Y_S	(0x000)		///<¬‚³‚¢‚Æ‚«
-#define	AFF_APPEAR_X_B	(0x100)		///<Œ³‚Ì‘å‚«‚³
-#define	AFF_APPEAR_Y_B	(0x100)		///<Œ³‚Ì‘å‚«‚³
+//ç™»å ´ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®æ‹¡ç¸®å€¤
+#define	AFF_APPEAR_X_S	(0x000)		///<å°ã•ã„ã¨ã
+#define	AFF_APPEAR_Y_S	(0x000)		///<å°ã•ã„ã¨ã
+#define	AFF_APPEAR_X_B	(0x100)		///<å…ƒã®å¤§ãã•
+#define	AFF_APPEAR_Y_B	(0x100)		///<å…ƒã®å¤§ãã•
 
-//‰æ–ÊŠO‚ÌˆÊ’u
+//ç”»é¢å¤–ã®ä½ç½®
 #define	FRAME_OUT_X_L	(-40)
 #define	FRAME_OUT_X_R	(256+40)
 
-//ƒ{[ƒ‹‚ð“Š‚°‚éˆÊ’u
+//ãƒœãƒ¼ãƒ«ã‚’æŠ•ã’ã‚‹ä½ç½®
 #define	BALL_THROW_X_L	(-20)
 #define	BALL_THROW_X_R	(256-48)
 
-//ƒ|ƒPƒ‚ƒ“‘I‘ðŽž‚É1‘Ì–Ú‘I‘ð‚ª‚È‚¢’è‹`
+//ãƒã‚±ãƒ¢ãƒ³é¸æŠžæ™‚ã«1ä½“ç›®é¸æŠžãŒãªã„å®šç¾©
 #define	NO_DOUBLE_SEL	(6)
 
 //=========================================================================
-//		HPƒQ[ƒW‚Å‚ÌƒXƒe[ƒ^ƒX•\Ž¦—p’è‹`
+//		HPã‚²ãƒ¼ã‚¸ã§ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºç”¨å®šç¾©
 //=========================================================================
-///< ŒŸõ—p ___STATUS_EFFECT____
-#define	STATUS_NORMAL	(0)		//ó‘ÔˆÙí‚È‚µ
-#define	STATUS_NEMURI	(1)		//–°‚è
-#define	STATUS_DOKU		(2)		//“Å
-#define	STATUS_YAKEDO	(3)		//‚â‚¯‚Ç
-#define	STATUS_KOORI	(4)		//‚±‚¨‚è
-#define	STATUS_MAHI		(5)		//‚Ü‚Ð
+///< æ¤œç´¢ç”¨ ___STATUS_EFFECT____
+#define	STATUS_NORMAL	(0)		//çŠ¶æ…‹ç•°å¸¸ãªã—
+#define	STATUS_NEMURI	(1)		//çœ ã‚Š
+#define	STATUS_DOKU		(2)		//æ¯’
+#define	STATUS_YAKEDO	(3)		//ã‚„ã‘ã©
+#define	STATUS_KOORI	(4)		//ã“ãŠã‚Š
+#define	STATUS_MAHI		(5)		//ã¾ã²
 
 // =========================================
 //
-// ƒXƒe[ƒ^ƒXƒGƒtƒFƒNƒg’è‹`(•\Ž¦‚Ì˜A”Ô‚ðˆø‚«Œp‚®)
+// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå®šç¾©(è¡¨ç¤ºã®é€£ç•ªã‚’å¼•ãç¶™ã)
 //
 // =========================================
-#define	STATUS_KONRAN			(6)		///< ‚±‚ñ‚ç‚ñ
-#define	STATUS_MEROMERO			(7)		///< ƒƒƒƒ
+#define	STATUS_KONRAN			(6)		///< ã“ã‚“ã‚‰ã‚“
+#define	STATUS_MEROMERO			(7)		///< ãƒ¡ãƒ­ãƒ¡ãƒ­
 
 #define	STATUS_LVUP				(8)		///< LvUp
-#define	STATUS_ITEM_TR			(9)		///< ƒgƒŒ[ƒi[ ƒAƒCƒeƒ€
-#define	STATUS_ITEM_POKE		(10)	///< oƒ|ƒPƒ‚ƒ“ ‚«‚Ì‚Ý
-#define	STATUS_REA				(11)	///< oƒŒƒAƒGƒtƒFƒNƒg
+#define	STATUS_ITEM_TR			(9)		///< ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ ã‚¢ã‚¤ãƒ†ãƒ 
+#define	STATUS_ITEM_POKE		(10)	///< oãƒã‚±ãƒ¢ãƒ³ ãã®ã¿
+#define	STATUS_REA				(11)	///< oãƒ¬ã‚¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
-///< ”\—Í
-#define STATUS_EFF_UP			(12)	///< ”\—Íã¸
-#define STATUS_EFF_DOWN			(13)	///< ”\—Í‰º~
-#define STATUS_EFF_RECOVER		(14)	///< ‰ñ•œ
-#define STATUS_EFF_MIGAWARI_OUT	(15)	///< o‰æ–ÊŠO‚É
-#define STATUS_EFF_MIGAWARI_IN	(16)	///< o‰æ–Ê“à‚É
-#define STATUS_EFF_ITEM_POUCH	(17)	///< oƒGƒlƒR‚µ‚Á‚Û‚ÆƒsƒbƒslŒ`
+///< èƒ½åŠ›
+#define STATUS_EFF_UP			(12)	///< èƒ½åŠ›ä¸Šæ˜‡
+#define STATUS_EFF_DOWN			(13)	///< èƒ½åŠ›ä¸‹é™
+#define STATUS_EFF_RECOVER		(14)	///< å›žå¾©
+#define STATUS_EFF_MIGAWARI_OUT	(15)	///< oç”»é¢å¤–ã«
+#define STATUS_EFF_MIGAWARI_IN	(16)	///< oç”»é¢å†…ã«
+#define STATUS_EFF_ITEM_POUCH	(17)	///< oã‚¨ãƒã‚³ã—ã£ã½ã¨ãƒ”ãƒƒãƒ”äººå½¢
 
-///< “V‹CiSTART‚ÆEND‚ÍAƒGƒtƒFƒNƒg‹N“®Žž‚ÌHPƒQ[ƒWON/OFF‚ð”ÍˆÍ‚Å”»’è‚·‚é‚½‚ß‚É—p‚¢‚Ä‚¢‚éj
-#define STATUS_WEATHER_START	(18)	///< “VŒóƒGƒtƒFƒNƒgŠJŽnƒiƒ“ƒo[
-#define STATUS_WEATHER_MIST		(18)	///< “VŒó –¶
-#define STATUS_WEATHER_RAIN		(19)	///< “VŒó ‰J
-#define STATUS_WEATHER_ICE		(20)	///< “VŒó ‚ ‚ç‚ê
-#define STATUS_WEATHER_SAND		(21)	///< “VŒó »‚ ‚ç‚µ
-#define STATUS_WEATHER_SUN		(22)	///< “VŒó ‚Ð‚´‚µ
-#define STATUS_WEATHER_END		(22)	///< “VŒóƒGƒtƒFƒNƒgI—¹ƒiƒ“ƒo[
+///< å¤©æ°—ï¼ˆSTARTã¨ENDã¯ã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆèµ·å‹•æ™‚ã®HPã‚²ãƒ¼ã‚¸ON/OFFã‚’ç¯„å›²ã§åˆ¤å®šã™ã‚‹ãŸã‚ã«ç”¨ã„ã¦ã„ã‚‹ï¼‰
+#define STATUS_WEATHER_START	(18)	///< å¤©å€™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹ãƒŠãƒ³ãƒãƒ¼
+#define STATUS_WEATHER_MIST		(18)	///< å¤©å€™ éœ§
+#define STATUS_WEATHER_RAIN		(19)	///< å¤©å€™ é›¨
+#define STATUS_WEATHER_ICE		(20)	///< å¤©å€™ ã‚ã‚‰ã‚Œ
+#define STATUS_WEATHER_SAND		(21)	///< å¤©å€™ ç ‚ã‚ã‚‰ã—
+#define STATUS_WEATHER_SUN		(22)	///< å¤©å€™ ã²ã–ã—
+#define STATUS_WEATHER_END		(22)	///< å¤©å€™ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†ãƒŠãƒ³ãƒãƒ¼
 
-///< ‚»‚Ì‘¼
-#define STATUS_ACTION_DOLL_ON	(25)	///< o“®‚« ‚Ý‚ª‚í‚è‚¨‚¿‚Ä‚­‚é
-#define STATUS_ACTION_DOLL_OFF	(26)	///< “®‚« ‚Ý‚ª‚í‚èOFF
-#define STATUS_ACTION_JOY		(27)	///< “®‚« ‚¿‚å‚¢‚¿‚å‚¢
-#define STATUS_ACTION_EAT		(28)	///< “®‚« ƒpƒNƒpƒN
-#define STATUS_ACTION_ANGER		(29)	///< “®‚« ƒsƒLƒsƒL
+///< ãã®ä»–
+#define STATUS_ACTION_DOLL_ON	(25)	///< oå‹•ã ã¿ãŒã‚ã‚ŠãŠã¡ã¦ãã‚‹
+#define STATUS_ACTION_DOLL_OFF	(26)	///< å‹•ã ã¿ãŒã‚ã‚ŠOFF
+#define STATUS_ACTION_JOY		(27)	///< å‹•ã ã¡ã‚‡ã„ã¡ã‚‡ã„
+#define STATUS_ACTION_EAT		(28)	///< å‹•ã ãƒ‘ã‚¯ãƒ‘ã‚¯
+#define STATUS_ACTION_ANGER		(29)	///< å‹•ã ãƒ”ã‚­ãƒ”ã‚­
 
-///< ƒ^[ƒ“‚²‚Æ
-#define STATUS_DAMAGE_NOROI		(30)	///< ƒ^[ƒ“ ‚Ì‚ë‚¢
-#define STATUS_DAMAGE_AKUMU		(31)	///< ƒ^[ƒ“ ‚ ‚­‚Þ
-#define STATUS_DAMAGE_YADORIGI	(32)	///< ƒ^[ƒ“ ‚â‚Ç‚è‚¬
-#define STATUS_DAMAGE_SIMETUKE	(33)	///< ƒ^[ƒ“ ‚µ‚ß‚Â‚¯‚é
-#define STATUS_DAMAGE_MAKITUKU	(34)	///< ƒ^[ƒ“ ‚Ü‚«‚Â‚­
-#define STATUS_DAMAGE_HONOO		(35)	///< ƒ^[ƒ“ ‚Ù‚Ì‚¨‚Ì‚¤‚¸
-#define STATUS_DAMAGE_MAGUMA	(36)	///< ƒ^[ƒ“ ƒ}ƒOƒ}ƒXƒg[ƒ€
-#define STATUS_DAMAGE_KARA		(37)	///< ƒ^[ƒ“ ‚©‚ç‚Å‚Í‚³‚Þ
-#define STATUS_DAMAGE_UZUSIO	(38)	///< ƒ^[ƒ“ ‚¤‚¸‚µ‚¨
-#define STATUS_DAMAGE_SUNA		(39)	///< ƒ^[ƒ“ ‚·‚È‚¶‚²‚­
-#define STATUS_DAMAGE_NEWOHARU	(40)	///< ƒ^[ƒ“ ‚Ë‚ð‚Í‚é
+///< ã‚¿ãƒ¼ãƒ³ã”ã¨
+#define STATUS_DAMAGE_NOROI		(30)	///< ã‚¿ãƒ¼ãƒ³ ã®ã‚ã„
+#define STATUS_DAMAGE_AKUMU		(31)	///< ã‚¿ãƒ¼ãƒ³ ã‚ãã‚€
+#define STATUS_DAMAGE_YADORIGI	(32)	///< ã‚¿ãƒ¼ãƒ³ ã‚„ã©ã‚ŠãŽ
+#define STATUS_DAMAGE_SIMETUKE	(33)	///< ã‚¿ãƒ¼ãƒ³ ã—ã‚ã¤ã‘ã‚‹
+#define STATUS_DAMAGE_MAKITUKU	(34)	///< ã‚¿ãƒ¼ãƒ³ ã¾ãã¤ã
+#define STATUS_DAMAGE_HONOO		(35)	///< ã‚¿ãƒ¼ãƒ³ ã»ã®ãŠã®ã†ãš
+#define STATUS_DAMAGE_MAGUMA	(36)	///< ã‚¿ãƒ¼ãƒ³ ãƒžã‚°ãƒžã‚¹ãƒˆãƒ¼ãƒ 
+#define STATUS_DAMAGE_KARA		(37)	///< ã‚¿ãƒ¼ãƒ³ ã‹ã‚‰ã§ã¯ã•ã‚€
+#define STATUS_DAMAGE_UZUSIO	(38)	///< ã‚¿ãƒ¼ãƒ³ ã†ãšã—ãŠ
+#define STATUS_DAMAGE_SUNA		(39)	///< ã‚¿ãƒ¼ãƒ³ ã™ãªã˜ã”ã
+#define STATUS_DAMAGE_NEWOHARU	(40)	///< ã‚¿ãƒ¼ãƒ³ ã­ã‚’ã¯ã‚‹
 
 //=========================================================================
-//		CL_ACT—p‚Ì’è”’è‹`
+//		CL_ACTç”¨ã®å®šæ•°å®šç¾©
 //=========================================================================
 
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEŠJŽn
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define BATTLE_OAM_START_MAIN			(0)
-///ƒƒCƒ“	OAMŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define BATTLE_OAM_END_MAIN				(128)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define BATTLE_OAM_AFFINE_START_MAIN	(0)
-///ƒƒCƒ“	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ãƒ¡ã‚¤ãƒ³	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define BATTLE_OAM_AFFINE_END_MAIN		(32)
-///ƒTƒu	OAMŠÇ——ÌˆæEŠJŽn
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define BATTLE_OAM_START_SUB			(0)
-///ƒTƒu	OAMŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	OAMç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define BATTLE_OAM_END_SUB				(128)
-///ƒTƒu ƒAƒtƒBƒ“ŠÇ——ÌˆæEŠJŽn
+///ã‚µãƒ– ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»é–‹å§‹
 #define BATTLE_OAM_AFFINE_START_SUB		(0)
-///ƒTƒu	ƒAƒtƒBƒ“ŠÇ——ÌˆæEI—¹
+///ã‚µãƒ–	ã‚¢ãƒ•ã‚£ãƒ³ç®¡ç†é ˜åŸŸãƒ»çµ‚äº†
 #define BATTLE_OAM_AFFINE_END_SUB		(32)
 
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒLƒƒƒ‰ƒNƒ^IDŠÇ—”(ã‰æ–Ê{‰º‰æ–Ê)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šã‚­ãƒ£ãƒ©ã‚¯ã‚¿IDç®¡ç†æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define BATTLE_CHAR_MAX					(48 + 48)
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒƒCƒ“‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šãƒ¡ã‚¤ãƒ³ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define BATTLE_CHAR_VRAMSIZE_MAIN		(1024 * 0x40)	//64K
-///ƒLƒƒƒ‰ƒ}ƒl[ƒWƒƒFƒTƒu‰æ–ÊƒTƒCƒY(byte’PˆÊ)
+///ã‚­ãƒ£ãƒ©ãƒžãƒãƒ¼ã‚¸ãƒ£ï¼šã‚µãƒ–ç”»é¢ã‚µã‚¤ã‚º(byteå˜ä½)
 #define BATTLE_CHAR_VRAMSIZE_SUB		(512 * 0x20)	//32K
 
-///ƒƒCƒ“‰æ–Ê{ƒTƒu‰æ–Ê‚ÅŽg—p‚·‚éƒAƒNƒ^[‘”
-#define BATTLE_ACTOR_MAX				(64 + 64)	//ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê
+///ãƒ¡ã‚¤ãƒ³ç”»é¢ï¼‹ã‚µãƒ–ç”»é¢ã§ä½¿ç”¨ã™ã‚‹ã‚¢ã‚¯ã‚¿ãƒ¼ç·æ•°
+#define BATTLE_ACTOR_MAX				(64 + 64)	//ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢
 
-///ƒTƒuƒT[ƒtƒF[ƒXY(fx32)
+///ã‚µãƒ–ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹Y(fx32)
 #define BATTLE_SUB_ACTOR_DISTANCE		((192 + 80) << FX32_SHIFT)
-///ƒTƒuƒT[ƒtƒF[ƒXY(int)
+///ã‚µãƒ–ã‚µãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹Y(int)
 #define BATTLE_SUB_ACTOR_DISTANCE_INTEGER		(BATTLE_SUB_ACTOR_DISTANCE >> FX32_SHIFT)
 
-///OBJ‚ÅŽg—p‚·‚éƒpƒŒƒbƒg–{”(ã‰æ–Ê{‰º‰æ–Ê)
+///OBJã§ä½¿ç”¨ã™ã‚‹ãƒ‘ãƒ¬ãƒƒãƒˆæœ¬æ•°(ä¸Šç”»é¢ï¼‹ä¸‹ç”»é¢)
 #define BATTLE_OAM_PLTT_MAX				(16 + 16)
 
-///“]‘—ƒ‚[ƒh 3D = 0 main = 1 sub = 2 main/sub = 3
+///è»¢é€ãƒ¢ãƒ¼ãƒ‰ 3D = 0 main = 1 sub = 2 main/sub = 3
 #define BATTLE_OAM_VRAM_TRANS			(3)
 
-///OAMƒŠƒ\[ƒXFƒLƒƒƒ‰“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚­ãƒ£ãƒ©ç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define BATTLE_OAMRESOURCE_CHAR_MAX			(BATTLE_CHAR_MAX)
-///OAMƒŠƒ\[ƒXFƒpƒŒƒbƒg“o˜^Å‘å”(ƒƒCƒ“‰æ–Ê + ƒTƒu‰æ–Ê)
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒ‘ãƒ¬ãƒƒãƒˆç™»éŒ²æœ€å¤§æ•°(ãƒ¡ã‚¤ãƒ³ç”»é¢ + ã‚µãƒ–ç”»é¢)
 #define BATTLE_OAMRESOURCE_PLTT_MAX			(BATTLE_OAM_PLTT_MAX)
-///OAMƒŠƒ\[ƒXFƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define BATTLE_OAMRESOURCE_CELL_MAX			(64)
-///OAMƒŠƒ\[ƒXFƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define BATTLE_OAMRESOURCE_CELLANM_MAX		(64)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒžãƒ«ãƒã‚»ãƒ«ç™»éŒ²æœ€å¤§æ•°
 #define BATTLE_OAMRESOURCE_MCELL_MAX		(8)
-///OAMƒŠƒ\[ƒXFƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ“o˜^Å‘å”
+///OAMãƒªã‚½ãƒ¼ã‚¹ï¼šãƒžãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡ç™»éŒ²æœ€å¤§æ•°
 #define BATTLE_OAMRESOURCE_MCELLANM_MAX		(8)
 
-///OBJƒpƒŒƒbƒgFPFDŠÇ—–{”(ƒpƒŒƒbƒg’PˆÊ)
-#define BATTLE_MAIN_OBJPAL_NUM				(16 - 2)	//-2 = ’ÊMƒAƒCƒRƒ“{ƒ[ƒJƒ‰ƒCƒY—p
-///OBJƒpƒŒƒbƒgFPFDŠÇ—–{”(ƒJƒ‰[’PˆÊ)
+///OBJãƒ‘ãƒ¬ãƒƒãƒˆï¼šPFDç®¡ç†æœ¬æ•°(ãƒ‘ãƒ¬ãƒƒãƒˆå˜ä½)
+#define BATTLE_MAIN_OBJPAL_NUM				(16 - 2)	//-2 = é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ï¼‹ãƒ­ãƒ¼ã‚«ãƒ©ã‚¤ã‚ºç”¨
+///OBJãƒ‘ãƒ¬ãƒƒãƒˆï¼šPFDç®¡ç†æœ¬æ•°(ã‚«ãƒ©ãƒ¼å˜ä½)
 #define BATTLE_MAIN_OBJPAL_COLOR_NUM		(BATTLE_MAIN_OBJPAL_NUM * 16)
-///OBJƒpƒŒƒbƒgFƒoƒCƒgƒTƒCƒY
+///OBJãƒ‘ãƒ¬ãƒƒãƒˆï¼šãƒã‚¤ãƒˆã‚µã‚¤ã‚º
 #define BATTLE_MAIN_OBJPAL_SIZE				(BATTLE_MAIN_OBJPAL_COLOR_NUM * sizeof(u16))
-///OBJƒpƒŒƒbƒgFƒtƒF[ƒhbit
+///OBJãƒ‘ãƒ¬ãƒƒãƒˆï¼šãƒ•ã‚§ãƒ¼ãƒ‰bit
 #define BATTLE_MAIN_OBJPAL_FADEBIT			(0x3fff)
 
 //==============================================================================
-//	ƒpƒŒƒbƒg“WŠJêŠ’è‹`
+//	ãƒ‘ãƒ¬ãƒƒãƒˆå±•é–‹å ´æ‰€å®šç¾©
 //==============================================================================
-///ƒGƒtƒFƒNƒgBGƒpƒŒƒbƒg‚O
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGãƒ‘ãƒ¬ãƒƒãƒˆï¼
 #define BATTLE_PAL_EFF_0				(8)
-///ƒGƒtƒFƒNƒgBGƒpƒŒƒbƒg‚P
+///ã‚¨ãƒ•ã‚§ã‚¯ãƒˆBGãƒ‘ãƒ¬ãƒƒãƒˆï¼‘
 #define BATTLE_PAL_EFF_1				(9)
 
 //=========================================================================
-//		i‰»ðŒ’è‹`
+//		é€²åŒ–æ¡ä»¶å®šç¾©
 //=========================================================================
 //
 #define	SHINKA_NONE					(0)
@@ -667,78 +667,78 @@
 //		battle_status_flag
 //=========================================================================
 
-#define	BATTLE_STATUS_FLAG_FIRST_BATTLE			(0x00000001)	///<Å‰‚Ìƒfƒ‚í“¬
-#define	BATTLE_STATUS_FLAG_MITSUNURI_BATTLE		(0x00000002)	///<‚Ý‚Â‚Ê‚è‚Å‚ÌƒGƒ“ƒJƒEƒ“ƒg
-#define	BATTLE_STATUS_FLAG_NO_ESCAPE_YASEI		(0x00000004)	///<–ì¶í‚Å‚à‚É‚°‚ê‚È‚¢
-#define	BATTLE_STATUS_FLAG_DENSETSU_BATTLE		(0x00000008)	///<“`àŒn‚Æ‚ÌƒGƒ“ƒJƒEƒ“ƒg
-#define	BATTLE_STATUS_FLAG_REC_BATTLE			(0x00000010)	///<˜^‰æÄ¶
-#define	BATTLE_STATUS_FLAG_REC_CHILD			(0x00000020)	///<˜^‰æŽž‚ÉƒT[ƒo‚ª‹N“®‚µ‚Ä‚¢‚È‚©‚Á‚½‘¤
-#define	BATTLE_STATUS_FLAG_HAKAI_GIRA_BATTLE	(0x00000040)	///<”j‚ê‚½¢ŠE‚ÌƒMƒ‰ƒeƒBƒií
-#define	BATTLE_STATUS_FLAG_YABURETA_SEKAI		(0x00000080)	///<”j‚ê‚½¢ŠE‚Å‚Ìí“¬
+#define	BATTLE_STATUS_FLAG_FIRST_BATTLE			(0x00000001)	///<æœ€åˆã®ãƒ‡ãƒ¢æˆ¦é—˜
+#define	BATTLE_STATUS_FLAG_MITSUNURI_BATTLE		(0x00000002)	///<ã¿ã¤ã¬ã‚Šã§ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
+#define	BATTLE_STATUS_FLAG_NO_ESCAPE_YASEI		(0x00000004)	///<é‡Žç”Ÿæˆ¦ã§ã‚‚ã«ã’ã‚Œãªã„
+#define	BATTLE_STATUS_FLAG_DENSETSU_BATTLE		(0x00000008)	///<ä¼èª¬ç³»ã¨ã®ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆ
+#define	BATTLE_STATUS_FLAG_REC_BATTLE			(0x00000010)	///<éŒ²ç”»å†ç”Ÿ
+#define	BATTLE_STATUS_FLAG_REC_CHILD			(0x00000020)	///<éŒ²ç”»æ™‚ã«ã‚µãƒ¼ãƒãŒèµ·å‹•ã—ã¦ã„ãªã‹ã£ãŸå´
+#define	BATTLE_STATUS_FLAG_HAKAI_GIRA_BATTLE	(0x00000040)	///<ç ´ã‚ŒãŸä¸–ç•Œã®ã‚®ãƒ©ãƒ†ã‚£ãƒŠæˆ¦
+#define	BATTLE_STATUS_FLAG_YABURETA_SEKAI		(0x00000080)	///<ç ´ã‚ŒãŸä¸–ç•Œã§ã®æˆ¦é—˜
 
-#define	BATTLE_STATUS_FLAG_DEBUG_BIT			(0xf0000000)	///<ƒfƒoƒbƒO—pƒtƒ‰ƒOiƒT[ƒoƒo[ƒWƒ‡ƒ“j
-#define	BATTLE_STATUS_FLAG_COM_SELECT			(0x08000000)	///<ƒfƒoƒbƒO—pƒtƒ‰ƒO
-#define	BATTLE_STATUS_FLAG_AUTO_BATTLE			(0x04000000)	///<ƒfƒoƒbƒO—pƒtƒ‰ƒO
-#define	BATTLE_STATUS_FLAG_NO_HP_DEC			(0x02000000)	///<ƒfƒoƒbƒO—pƒtƒ‰ƒO
-#define	BATTLE_STATUS_FLAG_NO_PP_DEC			(0x01000000)	///<ƒfƒoƒbƒO—pƒtƒ‰ƒO
-
-//=========================================================================
-//		HP‰ñ•œŒnƒAƒCƒeƒ€—p’è‹`
-//=========================================================================
-#define	HP_MAX_RECOVER				(255)		//HP‘S‰ñ•œ
-#define	HP_HALF_RECOVER				(254)		//HP”¼‰ñ•œ
-#define	HP_25PER_RECOVER			(253)		//HPMAX‚Ì25%‰ñ•œ
+#define	BATTLE_STATUS_FLAG_DEBUG_BIT			(0xf0000000)	///<ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ•ãƒ©ã‚°ï¼ˆã‚µãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼‰
+#define	BATTLE_STATUS_FLAG_COM_SELECT			(0x08000000)	///<ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ•ãƒ©ã‚°
+#define	BATTLE_STATUS_FLAG_AUTO_BATTLE			(0x04000000)	///<ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ•ãƒ©ã‚°
+#define	BATTLE_STATUS_FLAG_NO_HP_DEC			(0x02000000)	///<ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ•ãƒ©ã‚°
+#define	BATTLE_STATUS_FLAG_NO_PP_DEC			(0x01000000)	///<ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ•ãƒ©ã‚°
 
 //=========================================================================
-//		ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒtƒ‰ƒO
+//		HPå›žå¾©ç³»ã‚¢ã‚¤ãƒ†ãƒ ç”¨å®šç¾©
 //=========================================================================
-#define	REGULATION_FLAG_LITTLE_CUP	(0x00000001)	//ƒŠƒgƒ‹ƒJƒbƒvƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“
+#define	HP_MAX_RECOVER				(255)		//HPå…¨å›žå¾©
+#define	HP_HALF_RECOVER				(254)		//HPåŠå›žå¾©
+#define	HP_25PER_RECOVER			(253)		//HPMAXã®25%å›žå¾©
 
-//ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒgŽž‚ÌƒEƒGƒCƒgŽw’è
-#define	SCROLL_TIME			(33)	///(44)	///<”wŒi‚ªƒXƒNƒ[ƒ‹‚·‚éŽžŠÔ
-#define	ENCOUNT_START_WAIT	(28)	///(56)	///<ƒGƒ“ƒJƒEƒ“ƒgƒGƒtƒFƒNƒg‚ª‹N“®‚µ‚Ä‚©‚çA’n–Ê‚ÌƒXƒNƒ[ƒ‹‚ªŽn‚Ü‚é‚Ü‚Å‚ÌƒEƒGƒCƒg
+//=========================================================================
+//		ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°
+//=========================================================================
+#define	REGULATION_FLAG_LITTLE_CUP	(0x00000001)	//ãƒªãƒˆãƒ«ã‚«ãƒƒãƒ—ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³
+
+//ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆæ™‚ã®ã‚¦ã‚¨ã‚¤ãƒˆæŒ‡å®š
+#define	SCROLL_TIME			(33)	///(44)	///<èƒŒæ™¯ãŒã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹æ™‚é–“
+#define	ENCOUNT_START_WAIT	(28)	///(56)	///<ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒèµ·å‹•ã—ã¦ã‹ã‚‰ã€åœ°é¢ã®ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãŒå§‹ã¾ã‚‹ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
 
 #define	ENCOUNT_WAIT			(SCROLL_TIME+ENCOUNT_START_WAIT)
-#define	ENCOUNT_WAIT_ENEMY		(112)	//(56)	//‘ŠŽè‘¤‚ÌPokemonAppear‚©‚çHPƒQ[ƒW‚ª•\Ž¦‚³‚ê‚é‚Ü‚Å‚ÌƒEƒGƒCƒg
-#define	ENCOUNT_WAIT_MINE		(96)	//(48)	//Ž©•ª‘¤‚ÌPokemonAppear‚©‚çHPƒQ[ƒW‚ª•\Ž¦‚³‚ê‚é‚Ü‚Å‚ÌƒEƒGƒCƒg
-#define	ENCOUNT_WAIT_RESHUFFLE	(72)	//(36)	//PokemonAppear‚©‚çHPƒQ[ƒW‚ª•\Ž¦‚³‚ê‚é‚Ü‚Å‚ÌƒEƒGƒCƒgi“ü‚ê‘Ö‚¦Žžj
+#define	ENCOUNT_WAIT_ENEMY		(112)	//(56)	//ç›¸æ‰‹å´ã®PokemonAppearã‹ã‚‰HPã‚²ãƒ¼ã‚¸ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
+#define	ENCOUNT_WAIT_MINE		(96)	//(48)	//è‡ªåˆ†å´ã®PokemonAppearã‹ã‚‰HPã‚²ãƒ¼ã‚¸ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆ
+#define	ENCOUNT_WAIT_RESHUFFLE	(72)	//(36)	//PokemonAppearã‹ã‚‰HPã‚²ãƒ¼ã‚¸ãŒè¡¨ç¤ºã•ã‚Œã‚‹ã¾ã§ã®ã‚¦ã‚¨ã‚¤ãƒˆï¼ˆå…¥ã‚Œæ›¿ãˆæ™‚ï¼‰
 
 //=========================================================================
-//ƒAƒZƒ“ƒuƒ‰‚Åinclude‚³‚ê‚Ä‚¢‚éê‡‚ÍA‰º‚ÌéŒ¾‚ð–³Ž‹‚Å‚«‚é‚æ‚¤‚Éifndef‚ÅˆÍ‚ñ‚Å‚ ‚é
+//ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã§includeã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã€ä¸‹ã®å®£è¨€ã‚’ç„¡è¦–ã§ãã‚‹ã‚ˆã†ã«ifndefã§å›²ã‚“ã§ã‚ã‚‹
 #ifndef	__ASM_NO_DEF_
 
-//CT_AppearPosGet‚Ìpos_id’è‹`
+//CT_AppearPosGetã®pos_idå®šç¾©
 enum{
 	POS_ID_X=0,
 	POS_ID_Y,
 	POS_ID_Z
 };
 
-//ƒNƒ‰ƒCƒAƒ“ƒg‚©‚ç‚Ì•Ô“šƒR[ƒh
+//ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‹ã‚‰ã®è¿”ç­”ã‚³ãƒ¼ãƒ‰
 enum{
 	SELECT_FIGHT_COMMAND=1,
 	SELECT_ITEM_COMMAND,
 	SELECT_POKEMON_COMMAND,
 	SELECT_ESCAPE_COMMAND,
-	SELECT_DEBUG_ESCAPE_COMMAND,		//ƒfƒoƒbƒO—p‚É‹­§“I‚É“¦‚°‚éƒRƒ}ƒ“ƒh
-	SELECT_DEBUG_WIN_ESCAPE_COMMAND,	//ƒfƒoƒbƒO—p‚É‹­§“I‚É“¦‚°‚éƒRƒ}ƒ“ƒh
-	//ƒTƒtƒ@ƒŠ‚Ìê‡
+	SELECT_DEBUG_ESCAPE_COMMAND,		//ãƒ‡ãƒãƒƒã‚°ç”¨ã«å¼·åˆ¶çš„ã«é€ƒã’ã‚‹ã‚³ãƒžãƒ³ãƒ‰
+	SELECT_DEBUG_WIN_ESCAPE_COMMAND,	//ãƒ‡ãƒãƒƒã‚°ç”¨ã«å¼·åˆ¶çš„ã«é€ƒã’ã‚‹ã‚³ãƒžãƒ³ãƒ‰
+	//ã‚µãƒ•ã‚¡ãƒªã®å ´åˆ
 	SELECT_SAFARI_BALL = SELECT_FIGHT_COMMAND,
 	SELECT_SAFARI_ESA = SELECT_ITEM_COMMAND,
 	SELECT_SAFARI_DORO = SELECT_POKEMON_COMMAND,
 	SELECT_SAFARI_ESCAPE = SELECT_ESCAPE_COMMAND,
 	SELECT_SAFARI_YOUSUMI,
-	//ƒ|ƒPƒp[ƒN‚Ìê‡
+	//ãƒã‚±ãƒ‘ãƒ¼ã‚¯ã®å ´åˆ
 	SELECT_POKEPARK_BALL = SELECT_FIGHT_COMMAND,
 	SELECT_POKEPARK_ESCAPE = SELECT_ESCAPE_COMMAND,
 	
-	//‹Z‘I‘ð
+	//æŠ€é¸æŠž
 	SELECT_SKILL_1 = 1,
 	SELECT_SKILL_2,
 	SELECT_SKILL_3,
 	SELECT_SKILL_4,
 
-	//ƒ|ƒPƒ‚ƒ“‘I‘ð(ƒŠƒXƒg)
+	//ãƒã‚±ãƒ¢ãƒ³é¸æŠž(ãƒªã‚¹ãƒˆ)
 	SELECT_POKE_1 = 1,
 	SELECT_POKE_2,
 	SELECT_POKE_3,
@@ -746,7 +746,7 @@ enum{
 	SELECT_POKE_5,
 	SELECT_POKE_6,
 
-	//ƒ|ƒPƒ‚ƒ“‘I‘ð(‹Zƒ^[ƒQƒbƒg)	Œã‚ë‚ÌƒAƒ‹ƒtƒ@ƒxƒbƒg‚ÍƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv‚ÌˆÊ’u‚É‘Î‰ž
+	//ãƒã‚±ãƒ¢ãƒ³é¸æŠž(æŠ€ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ)	å¾Œã‚ã®ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆã¯ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã®ä½ç½®ã«å¯¾å¿œ
 	SELECT_TARGET_A = 1,
 	SELECT_TARGET_B,
 	SELECT_TARGET_C,
@@ -755,32 +755,32 @@ enum{
 	SELECT_CANCEL=0xff
 };
 
-//i‰»ðŒ
+//é€²åŒ–æ¡ä»¶
 enum{
-	LEVELUP_SHINKA=0,		//ƒŒƒxƒ‹ƒAƒbƒv‚É‚æ‚éi‰»
-	TUUSHIN_SHINKA,			//’ÊM‚É‚æ‚éi‰»
-	ITEM_SHINKA,			//ƒAƒCƒeƒ€‚É‚æ‚éi‰»
-	ITEM_SHINKA_CHECK,		//ƒAƒCƒeƒ€‚É‚æ‚éi‰»i‚©‚í‚ç‚¸‚Ì‚¢‚µ‚ð‘•”õ‚µ‚Ä‚¢‚Ä‚àƒ`ƒFƒbƒN‚Í‚·‚éj
+	LEVELUP_SHINKA=0,		//ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã«ã‚ˆã‚‹é€²åŒ–
+	TUUSHIN_SHINKA,			//é€šä¿¡ã«ã‚ˆã‚‹é€²åŒ–
+	ITEM_SHINKA,			//ã‚¢ã‚¤ãƒ†ãƒ ã«ã‚ˆã‚‹é€²åŒ–
+	ITEM_SHINKA_CHECK,		//ã‚¢ã‚¤ãƒ†ãƒ ã«ã‚ˆã‚‹é€²åŒ–ï¼ˆã‹ã‚ã‚‰ãšã®ã„ã—ã‚’è£…å‚™ã—ã¦ã„ã¦ã‚‚ãƒã‚§ãƒƒã‚¯ã¯ã™ã‚‹ï¼‰
 };
 
-#define	POKE_LEVEL_MAX		(100)		//ƒŒƒxƒ‹MAX
-#define	SHINKA_FRIEND		(220)		//i‰»‚É•K—v‚È‚È‚Â‚«“x
-#define	FRIEND_MAX			(255)		//‚È‚Â‚«“xMAX’l
-#define	STYLE_MAX			(255)		//‚©‚Á‚±‚æ‚³MAX’l
-#define	BEAUTIFUL_MAX		(255)		//‚¤‚Â‚­‚µ‚³MAX’l
-#define	CUTE_MAX			(255)		//‚©‚í‚¢‚³MAX’l
-#define	CLEVER_MAX			(255)		//‚©‚µ‚±‚³MAX’l
-#define	STRONG_MAX			(255)		//‚½‚­‚Ü‚µ‚³MAX’l
-#define	FUR_MAX				(255)		//–Ñ‰MAX’l
-#define	PP_COUNT_MAX		(3)			//pp_countMAX’l
-#define	POW_RND_MAX			(31)		//ƒpƒ[—”MAX’l
+#define	POKE_LEVEL_MAX		(100)		//ãƒ¬ãƒ™ãƒ«MAX
+#define	SHINKA_FRIEND		(220)		//é€²åŒ–ã«å¿…è¦ãªãªã¤ãåº¦
+#define	FRIEND_MAX			(255)		//ãªã¤ãåº¦MAXå€¤
+#define	STYLE_MAX			(255)		//ã‹ã£ã“ã‚ˆã•MAXå€¤
+#define	BEAUTIFUL_MAX		(255)		//ã†ã¤ãã—ã•MAXå€¤
+#define	CUTE_MAX			(255)		//ã‹ã‚ã„ã•MAXå€¤
+#define	CLEVER_MAX			(255)		//ã‹ã—ã“ã•MAXå€¤
+#define	STRONG_MAX			(255)		//ãŸãã¾ã—ã•MAXå€¤
+#define	FUR_MAX				(255)		//æ¯›è‰¶MAXå€¤
+#define	PP_COUNT_MAX		(3)			//pp_countMAXå€¤
+#define	POW_RND_MAX			(31)		//ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°MAXå€¤
 
-//ƒGƒtƒFƒNƒgƒR[ƒ‹—p‚Ìƒtƒ‰ƒO
-#define	EFFTYPE_WAZA		(0)			//‹ZƒGƒtƒFƒNƒg
-#define	EFFTYPE_STATUS		(1)			//ƒXƒe[ƒ^ƒXƒGƒtƒFƒNƒg
+//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚³ãƒ¼ãƒ«ç”¨ã®ãƒ•ãƒ©ã‚°
+#define	EFFTYPE_WAZA		(0)			//æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+#define	EFFTYPE_STATUS		(1)			//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
 //============================================================================================
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //============================================================================================
 
 typedef struct _POKEPARTY POKEPARTY;
@@ -793,52 +793,52 @@ typedef struct PERAPVOICE	PERAPVOICE;
 typedef struct _CONFIG	CONFIG;
 typedef struct _POKETCH_DATA POKETCH_DATA;
 
-///<ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“‚ÌƒT[ƒo—p\‘¢‘Ì
+///<æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ã‚µãƒ¼ãƒç”¨æ§‹é€ ä½“
 typedef struct pokemon_server_param POKEMON_SERVER_PARAM;
 
-///<‘Îí˜^‰æ—pƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<å¯¾æˆ¦éŒ²ç”»ç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct record_param RECORD_PARAM;
 
-///<‘Îí˜^‰æ—pƒf[ƒ^\‘¢‘ÌéŒ¾
+///<å¯¾æˆ¦éŒ²ç”»ç”¨ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef u8 REC_DATA;
 
-///<í“¬ƒVƒXƒeƒ€ƒ[ƒN\‘¢‘Ì
+///<æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct battle_work BATTLE_WORK;
 
-///<ƒT[ƒo—pƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<ã‚µãƒ¼ãƒç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct server_param SERVER_PARAM;
 
-///<ƒNƒ‰ƒCƒAƒ“ƒg—pƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct client_param CLIENT_PARAM;
 
-///<FieldCondition—pƒJƒEƒ“ƒ^\‘¢‘ÌéŒ¾
+///<FieldConditionç”¨ã‚«ã‚¦ãƒ³ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct field_condition_count FIELD_CONDITION_COUNT;
 
-///<SideCondition—pƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<SideConditionç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct side_condition_work	SIDE_CONDITION_WORK;
 
-///<OneTurnFlag—pƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<OneTurnFlagç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct one_turn_flag	ONE_TURN_FLAG;
 
-///<OneSelfTurnFlag—pƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<OneSelfTurnFlagç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct one_self_turn_flag	ONE_SELF_TURN_FLAG;
 
-///<WazaOutCheckFlag—pƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<WazaOutCheckFlagç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct waza_out_check_flag	WAZA_OUT_CHECK_FLAG;
 
-///<‹ZŒø‰Ê—pƒpƒ‰ƒ[ƒ^\‘¢‘ÌéŒ¾
+///<æŠ€åŠ¹æžœç”¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“å®£è¨€
 typedef struct waza_kouka_work	WAZA_KOUKA_WORK;
 
-///<SkillIntp‚ÅŽg—p‚³‚ê‚éƒ^ƒXƒN—pƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+///<SkillIntpã§ä½¿ç”¨ã•ã‚Œã‚‹ã‚¿ã‚¹ã‚¯ç”¨ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
 typedef	struct tcb_skill_intp_work	TCB_SKILL_INTP_WORK;
 
-///<ƒƒbƒZ[ƒW•\Ž¦—pƒ[ƒN\‘¢‘Ì
+///<ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct message_param_data MESSAGE_PARAM_DATA;
 
-///<i‰»ƒfƒ‚ƒ[ƒN\‘¢‘Ì
+///<é€²åŒ–ãƒ‡ãƒ¢ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct shinka_work SHINKA_WORK;
 
-///<ƒgƒŒ[ƒi[AI\‘¢‘Ì
+///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼AIæ§‹é€ ä½“
 typedef struct ai_work_tbl AI_WORK_TBL;
 
 #include "poketool/poke_tool.h"
@@ -849,30 +849,30 @@ typedef struct ai_work_tbl AI_WORK_TBL;
 #include "savedata/fnote_mem.h"
 #include "battle/battle_cursor_disp.h"
 
-#ifndef	__ASM_NO_DEF_	// «‚±‚êˆÈ~‚ÍAƒAƒZƒ“ƒuƒ‰‚Å‚Í–³Ž‹
+#ifndef	__ASM_NO_DEF_	// â†“ã“ã‚Œä»¥é™ã¯ã€ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã§ã¯ç„¡è¦–
 #include "savedata/wifihistory.h"
 #include "savedata/friendlist.h"
 #endif
 
-//ƒgƒŒ[ƒi[ƒf[ƒ^ƒpƒ‰ƒ[ƒ^
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
-	u8			data_type;					//ƒf[ƒ^ƒ^ƒCƒv
-	u8			tr_type;					//ƒgƒŒ[ƒi[•ª—Þ
-	u8			tr_gra;						//ƒgƒŒ[ƒi[ƒOƒ‰ƒtƒBƒbƒN
-	u8			poke_count;					//ŠŽƒ|ƒPƒ‚ƒ“”
+	u8			data_type;					//ãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—
+	u8			tr_type;					//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼åˆ†é¡ž
+	u8			tr_gra;						//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯
+	u8			poke_count;					//æ‰€æŒãƒã‚±ãƒ¢ãƒ³æ•°
 
-	u16			use_item[4];				//Žg—p“¹‹ï
+	u16			use_item[4];				//ä½¿ç”¨é“å…·
 
-	u32			aibit;						//AIƒpƒ^[ƒ“
-	u32			fight_type;					//í“¬ƒ^ƒCƒvi1vs1or2vs2j
+	u32			aibit;						//AIãƒ‘ã‚¿ãƒ¼ãƒ³
+	u32			fight_type;					//æˆ¦é—˜ã‚¿ã‚¤ãƒ—ï¼ˆ1vs1or2vs2ï¼‰
 
-	STRCODE		name[BUFLEN_PERSON_NAME];	//ƒgƒŒ[ƒi[–¼
+	STRCODE		name[BUFLEN_PERSON_NAME];	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼å
 	PMS_DATA	win_word;
 	PMS_DATA	lose_word;
 }TRAINER_DATA;
 
 
-//ƒgƒŒ[ƒi[Ž‚¿ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 enum{
 	DATATYPE_NORMAL=0,
 	DATATYPE_WAZA,
@@ -880,104 +880,104 @@ enum{
 	DATATYPE_MULTI
 };
 
-//ƒgƒŒ[ƒi[Ž‚¿ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^iƒf[ƒ^ƒ^ƒCƒvƒm[ƒ}ƒ‹j
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ãƒŽãƒ¼ãƒžãƒ«ï¼‰
 typedef	struct
 {
-	u16		pow;			//ƒZƒbƒg‚·‚éƒpƒ[—”(u8‚ÅOK‚¾‚¯‚Ç4ƒoƒCƒg‹«ŠE‘Îôj
-	u16		level;			//ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
-	u16		monsno;			//ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“
-	u16		custom;			//ƒZƒbƒg‚·‚éƒJƒXƒ^ƒ€ƒ{[ƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX
+	u16		pow;			//ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°(u8ã§OKã ã‘ã©4ãƒã‚¤ãƒˆå¢ƒç•Œå¯¾ç­–ï¼‰
+	u16		level;			//ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
+	u16		monsno;			//ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³
+	u16		custom;			//ã‚»ãƒƒãƒˆã™ã‚‹ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 }POKEDATA_TYPE_NORMAL;
 
-//ƒgƒŒ[ƒi[Ž‚¿ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^iƒf[ƒ^ƒ^ƒCƒv‹Zj
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—æŠ€ï¼‰
 typedef	struct
 {
-	u16		pow;			//ƒZƒbƒg‚·‚éƒpƒ[—”(u8‚ÅOK‚¾‚¯‚Ç4ƒoƒCƒg‹«ŠE‘Îôj
-	u16		level;			//ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
-	u16		monsno;			//ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“
-	u16		waza[4];		//Ž‚Á‚Ä‚é‹Z
-	u16		custom;			//ƒZƒbƒg‚·‚éƒJƒXƒ^ƒ€ƒ{[ƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX
+	u16		pow;			//ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°(u8ã§OKã ã‘ã©4ãƒã‚¤ãƒˆå¢ƒç•Œå¯¾ç­–ï¼‰
+	u16		level;			//ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
+	u16		monsno;			//ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³
+	u16		waza[4];		//æŒã£ã¦ã‚‹æŠ€
+	u16		custom;			//ã‚»ãƒƒãƒˆã™ã‚‹ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 }POKEDATA_TYPE_WAZA;
 
-//ƒgƒŒ[ƒi[Ž‚¿ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^iƒf[ƒ^ƒ^ƒCƒvƒAƒCƒeƒ€j
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ã‚¢ã‚¤ãƒ†ãƒ ï¼‰
 typedef	struct
 {
-	u16		pow;			//ƒZƒbƒg‚·‚éƒpƒ[—”(u8‚ÅOK‚¾‚¯‚Ç4ƒoƒCƒg‹«ŠE‘Îôj
-	u16		level;			//ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
-	u16		monsno;			//ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“
-	u16		itemno;			//ƒZƒbƒg‚·‚éƒAƒCƒeƒ€
-	u16		custom;			//ƒZƒbƒg‚·‚éƒJƒXƒ^ƒ€ƒ{[ƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX
+	u16		pow;			//ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°(u8ã§OKã ã‘ã©4ãƒã‚¤ãƒˆå¢ƒç•Œå¯¾ç­–ï¼‰
+	u16		level;			//ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
+	u16		monsno;			//ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³
+	u16		itemno;			//ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ 
+	u16		custom;			//ã‚»ãƒƒãƒˆã™ã‚‹ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 }POKEDATA_TYPE_ITEM;
 
-//ƒgƒŒ[ƒi[Ž‚¿ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ[ƒ^iƒf[ƒ^ƒ^ƒCƒvƒ}ƒ‹ƒ`j
+//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆãƒ‡ãƒ¼ã‚¿ã‚¿ã‚¤ãƒ—ãƒžãƒ«ãƒï¼‰
 typedef	struct
 {
-	u16		pow;			//ƒZƒbƒg‚·‚éƒpƒ[—”(u8‚ÅOK‚¾‚¯‚Ç4ƒoƒCƒg‹«ŠE‘Îôj
-	u16		level;			//ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“‚ÌƒŒƒxƒ‹
-	u16		monsno;			//ƒZƒbƒg‚·‚éƒ|ƒPƒ‚ƒ“
-	u16		itemno;			//ƒZƒbƒg‚·‚éƒAƒCƒeƒ€
-	u16		waza[4];		//Ž‚Á‚Ä‚é‹Z
-	u16		custom;			//ƒZƒbƒg‚·‚éƒJƒXƒ^ƒ€ƒ{[ƒ‹‚ÌƒCƒ“ƒfƒbƒNƒX
+	u16		pow;			//ã‚»ãƒƒãƒˆã™ã‚‹ãƒ‘ãƒ¯ãƒ¼ä¹±æ•°(u8ã§OKã ã‘ã©4ãƒã‚¤ãƒˆå¢ƒç•Œå¯¾ç­–ï¼‰
+	u16		level;			//ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒ¬ãƒ™ãƒ«
+	u16		monsno;			//ã‚»ãƒƒãƒˆã™ã‚‹ãƒã‚±ãƒ¢ãƒ³
+	u16		itemno;			//ã‚»ãƒƒãƒˆã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ 
+	u16		waza[4];		//æŒã£ã¦ã‚‹æŠ€
+	u16		custom;			//ã‚»ãƒƒãƒˆã™ã‚‹ã‚«ã‚¹ã‚¿ãƒ ãƒœãƒ¼ãƒ«ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 }POKEDATA_TYPE_MULTI;
 
 typedef struct
 {
-	int		total_turn;		//‘ƒ^[ƒ“”
-	int		total_hinshi;	//‘•mŽ€”
-	int		total_damage;	//‘ƒ_ƒ[ƒW”
+	int		total_turn;		//ç·ã‚¿ãƒ¼ãƒ³æ•°
+	int		total_hinshi;	//ç·ç€•æ­»æ•°
+	int		total_damage;	//ç·ãƒ€ãƒ¡ãƒ¼ã‚¸æ•°
 }BATTLE_TOWER_RECORD;
 
-//í“¬ŠJŽnƒpƒ‰ƒ[ƒ^
+//æˆ¦é—˜é–‹å§‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
-	u32					fight_type;					///<í“¬Ží•Êƒtƒ‰ƒO
-	POKEPARTY			*poke_party[CLIENT_MAX];	///<ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	int					win_lose_flag;				///<Ÿ‚¿•‰‚¯ƒtƒ‰ƒO
-	int					trainer_id[CLIENT_MAX];		///<ƒgƒŒ[ƒi[‚ÌID
-	TRAINER_DATA		trainer_data[CLIENT_MAX];	///<ƒgƒŒ[ƒi[ƒf[ƒ^
-	MYSTATUS			*my_status[CLIENT_MAX];		///<Ž©ƒLƒƒƒ‰ƒf[ƒ^
-	MYITEM				*my_item;					///<Ž‚¿ƒAƒCƒeƒ€ƒf[ƒ^
-	BAG_CURSOR			*bag_cursor;				///<ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ƒf[ƒ^
-	ZUKAN_WORK			*zw;						///<}ŠÓƒ[ƒN
-	BOX_DATA			*box;						///<ƒ{ƒbƒNƒXƒf[ƒ^
-	PERAPVOICE			*poke_voice[CLIENT_MAX];	///<ƒ|ƒPƒ‚ƒ“‚Ì–Â‚«ºƒf[ƒ^
-	POKETCH_DATA		*poketch_data;				///<ƒ|ƒPƒbƒ`ƒf[ƒ^
+	u32					fight_type;					///<æˆ¦é—˜ç¨®åˆ¥ãƒ•ãƒ©ã‚°
+	POKEPARTY			*poke_party[CLIENT_MAX];	///<æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	int					win_lose_flag;				///<å‹ã¡è² ã‘ãƒ•ãƒ©ã‚°
+	int					trainer_id[CLIENT_MAX];		///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ID
+	TRAINER_DATA		trainer_data[CLIENT_MAX];	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	MYSTATUS			*my_status[CLIENT_MAX];		///<è‡ªã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿
+	MYITEM				*my_item;					///<æŒã¡ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+	BAG_CURSOR			*bag_cursor;				///<ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+	ZUKAN_WORK			*zw;						///<å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+	BOX_DATA			*box;						///<ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+	PERAPVOICE			*poke_voice[CLIENT_MAX];	///<ãƒã‚±ãƒ¢ãƒ³ã®é³´ãå£°ãƒ‡ãƒ¼ã‚¿
+	POKETCH_DATA		*poketch_data;				///<ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿
 #ifdef DEBUG_WIFIHISTORY
-	WIFI_HISTORY		*wifihistory;				///<¢ŠE’ÊM—š—ðƒf[ƒ^
+	WIFI_HISTORY		*wifihistory;				///<ä¸–ç•Œé€šä¿¡å±¥æ­´ãƒ‡ãƒ¼ã‚¿
 #endif
-	CONFIG				*config;					///<ƒQ[ƒ€ƒRƒ“ƒtƒBƒO
-	TVWATCH_BATTLE_WORK * TVWatchBattleWork;		///<ƒeƒŒƒrF•ßŠl”Ô‘g—p
-	BATTLE_TOWER_RECORD	btr;						///<ƒoƒgƒ‹ƒ^ƒ[¬Ñ—pƒ[ƒN
-	RECORD				*record;					///<ƒJƒEƒ“ƒgƒAƒbƒvƒ[ƒN
-	FNOTE_DATA			*fnote_data;				///<–`Œ¯ƒm[ƒgƒ[ƒN
-	FRIEND_LIST			*friendlist;				///<‚Æ‚à‚¾‚¿ƒOƒ‹[ƒvƒ|ƒCƒ“ƒ^
-	int					bg_id;						///<”wŒiID
-	int					ground_id;					///<’nŒ`ID
-	int					place_id;					///<’nˆæ–¼ID
-	int					zone_id;					///<ƒ][ƒ“ID
-	int					time_zone;					///<ŽžŠÔ‘Ñ’è‹`
-	int					shinka_place_mode;			///<êŠi‰»î•ñiSHINKA_PLACE`j
-	int					contest_see_flag;			///<ƒRƒ“ƒeƒXƒg‚ðŒ©‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int					mizuki_flag;				///<ƒ~ƒYƒL‚É‚ ‚Á‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-//	EVENT_DATA			event_data;					///<ƒCƒxƒ“ƒgƒf[ƒ^
-//	TIME				time;						///<ŽžŠÔ
-	int					get_pokemon_client;			///<•ßŠl‚µ‚½ƒ|ƒPƒ‚ƒ“‚ÌClientNoiPOKEPARTY_ENEMY‚©POKEPARTY_ENEMY_PAIRj
-	int					weather;					///<“VŒó
-	int					level_up_flag;				///<ƒŒƒxƒ‹ƒAƒbƒv‚µ‚½ƒ|ƒPƒ‚ƒ“ƒtƒ‰ƒOii‰»ƒ`ƒFƒbƒN‚ð‚·‚éj
-	u32					server_version[CLIENT_MAX];	///<í“¬ƒT[ƒoƒvƒƒOƒ‰ƒ€‚Ìƒo[ƒWƒ‡ƒ“i’ÊM‘ÎíŽž‚ÉŽg—pj
-	u32					battle_status_flag;			///<í“¬“à•ªŠò—pƒtƒ‰ƒO
-	int					safari_ball;				///<ƒTƒtƒ@ƒŠƒ{[ƒ‹‚Ì”
-	u32					regulation_flag;			///<ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒtƒ‰ƒO
-	void				*work;						///<”Ä—p“I‚ÉŽg—p‚·‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^ƒ[ƒN
-	u32					rand;						///<í“¬ê—p—”‚ÌŽí
-	int					comm_stand_no[CLIENT_MAX];	///<’ÊM‘Îí•”‰®‚Å‚ÌŽ©•ª‚Ì—§‚¿ˆÊ’u
-	u16					comm_id;					///<Ž©•ª‚Ì’ÊMID
-	u8					rec_mode;					///<˜^‰æƒ‚[ƒh
-	u8					dummy;						///<ƒpƒfƒBƒ“ƒO
-	int					total_turn;					///<í“¬‚É‚©‚©‚Á‚½ƒ^[ƒ“”
-	BATTLE_CURSOR_DISP	*battle_cursor;				///<í“¬‚ÌƒJ[ƒ\ƒ‹‰Šú•\Ž¦ó‘Ô
-	u8					voice_waza_param[CLIENT_MAX];	///<‚Øƒ‰ƒbƒvƒ{ƒCƒX‚Ì‚¨‚µ‚á‚×‚èŽž‚Ìƒpƒ‰ƒ[ƒ^i˜^‰æƒf[ƒ^Ä¶Žž‚ÉŽg—pj
-	SAVEDATA			*savedata;					///<’ÊM‘ÎíŽžAŸ”s‰æ–Ê‚Å˜^‰æƒZ[ƒu‚·‚é‚Ì‚ÉŽg—p
-	u32					battle_rec_stop_flag;		///<‘Îí˜^‰æÄ¶’†’fƒtƒ‰ƒO
+	CONFIG				*config;					///<ã‚²ãƒ¼ãƒ ã‚³ãƒ³ãƒ•ã‚£ã‚°
+	TVWATCH_BATTLE_WORK * TVWatchBattleWork;		///<ãƒ†ãƒ¬ãƒ“ï¼šæ•ç²ç•ªçµ„ç”¨
+	BATTLE_TOWER_RECORD	btr;						///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æˆç¸¾ç”¨ãƒ¯ãƒ¼ã‚¯
+	RECORD				*record;					///<ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+	FNOTE_DATA			*fnote_data;				///<å†’é™ºãƒŽãƒ¼ãƒˆãƒ¯ãƒ¼ã‚¯
+	FRIEND_LIST			*friendlist;				///<ã¨ã‚‚ã ã¡ã‚°ãƒ«ãƒ¼ãƒ—ãƒã‚¤ãƒ³ã‚¿
+	int					bg_id;						///<èƒŒæ™¯ID
+	int					ground_id;					///<åœ°å½¢ID
+	int					place_id;					///<åœ°åŸŸåID
+	int					zone_id;					///<ã‚¾ãƒ¼ãƒ³ID
+	int					time_zone;					///<æ™‚é–“å¸¯å®šç¾©
+	int					shinka_place_mode;			///<å ´æ‰€é€²åŒ–æƒ…å ±ï¼ˆSHINKA_PLACEã€œï¼‰
+	int					contest_see_flag;			///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚’è¦‹ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int					mizuki_flag;				///<ãƒŸã‚ºã‚­ã«ã‚ã£ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+//	EVENT_DATA			event_data;					///<ã‚¤ãƒ™ãƒ³ãƒˆãƒ‡ãƒ¼ã‚¿
+//	TIME				time;						///<æ™‚é–“
+	int					get_pokemon_client;			///<æ•ç²ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ClientNoï¼ˆPOKEPARTY_ENEMYã‹POKEPARTY_ENEMY_PAIRï¼‰
+	int					weather;					///<å¤©å€™
+	int					level_up_flag;				///<ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒ•ãƒ©ã‚°ï¼ˆé€²åŒ–ãƒã‚§ãƒƒã‚¯ã‚’ã™ã‚‹ï¼‰
+	u32					server_version[CLIENT_MAX];	///<æˆ¦é—˜ã‚µãƒ¼ãƒãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼ˆé€šä¿¡å¯¾æˆ¦æ™‚ã«ä½¿ç”¨ï¼‰
+	u32					battle_status_flag;			///<æˆ¦é—˜å†…åˆ†å²ç”¨ãƒ•ãƒ©ã‚°
+	int					safari_ball;				///<ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã®æ•°
+	u32					regulation_flag;			///<ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°
+	void				*work;						///<æ±Žç”¨çš„ã«ä½¿ç”¨ã™ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¯ãƒ¼ã‚¯
+	u32					rand;						///<æˆ¦é—˜å°‚ç”¨ä¹±æ•°ã®ç¨®
+	int					comm_stand_no[CLIENT_MAX];	///<é€šä¿¡å¯¾æˆ¦éƒ¨å±‹ã§ã®è‡ªåˆ†ã®ç«‹ã¡ä½ç½®
+	u16					comm_id;					///<è‡ªåˆ†ã®é€šä¿¡ID
+	u8					rec_mode;					///<éŒ²ç”»ãƒ¢ãƒ¼ãƒ‰
+	u8					dummy;						///<ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
+	int					total_turn;					///<æˆ¦é—˜ã«ã‹ã‹ã£ãŸã‚¿ãƒ¼ãƒ³æ•°
+	BATTLE_CURSOR_DISP	*battle_cursor;				///<æˆ¦é—˜ã®ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸè¡¨ç¤ºçŠ¶æ…‹
+	u8					voice_waza_param[CLIENT_MAX];	///<ãºãƒ©ãƒƒãƒ—ãƒœã‚¤ã‚¹ã®ãŠã—ã‚ƒã¹ã‚Šæ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆéŒ²ç”»ãƒ‡ãƒ¼ã‚¿å†ç”Ÿæ™‚ã«ä½¿ç”¨ï¼‰
+	SAVEDATA			*savedata;					///<é€šä¿¡å¯¾æˆ¦æ™‚ã€å‹æ•—ç”»é¢ã§éŒ²ç”»ã‚»ãƒ¼ãƒ–ã™ã‚‹ã®ã«ä½¿ç”¨
+	u32					battle_rec_stop_flag;		///<å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­æ–­ãƒ•ãƒ©ã‚°
 }BATTLE_PARAM;
 
 
@@ -986,73 +986,73 @@ typedef struct{
 	BATTLE_PARAM		*bp;
 	GF_BGL_INI			*bgl;
 	GF_BGL_BMPWIN		*win;
-	PALETTE_FADE_PTR	pfd;									///<ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	FRIEND_LIST			*recv_flist[4];							///<ƒtƒŒƒ“ƒhƒŠƒXƒgŽóMƒoƒbƒtƒ@iŽóMŒã‚É‰ð•új
-	u8					sio_send_buffer[BATTLE_SIO_BUF_SIZE];	///<’ÊM‘—Mƒoƒbƒtƒ@
+	PALETTE_FADE_PTR	pfd;									///<ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	FRIEND_LIST			*recv_flist[4];							///<ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚¹ãƒˆå—ä¿¡ãƒãƒƒãƒ•ã‚¡ï¼ˆå—ä¿¡å¾Œã«è§£æ”¾ï¼‰
+	u8					sio_send_buffer[BATTLE_SIO_BUF_SIZE];	///<é€šä¿¡é€ä¿¡ãƒãƒƒãƒ•ã‚¡
 	u8					send_count;
 	u8					seq_no;
-	u16					time_out_count;							///<’ÊMƒ^ƒCƒ€ƒAƒEƒg—pƒJƒEƒ“ƒ^
-	void				*time_icon;								///<’ÊM‘Ò‹@’†‚ÌŽžŒvƒAƒCƒRƒ“ƒ^ƒXƒN
+	u16					time_out_count;							///<é€šä¿¡ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆç”¨ã‚«ã‚¦ãƒ³ã‚¿
+	void				*time_icon;								///<é€šä¿¡å¾…æ©Ÿä¸­ã®æ™‚è¨ˆã‚¢ã‚¤ã‚³ãƒ³ã‚¿ã‚¹ã‚¯
 }BATTLE_SIO_WORK;
 
-//í“¬˜^‰æ—p‚ÉƒJƒXƒ^ƒ}ƒCƒY‚³‚ê‚½í“¬ŠJŽnƒpƒ‰ƒ[ƒ^
+//æˆ¦é—˜éŒ²ç”»ç”¨ã«ã‚«ã‚¹ã‚¿ãƒžã‚¤ã‚ºã•ã‚ŒãŸæˆ¦é—˜é–‹å§‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 typedef struct{
-	u32					fight_type;					///<í“¬Ží•Êƒtƒ‰ƒO
-	int					win_lose_flag;				///<Ÿ‚¿•‰‚¯ƒtƒ‰ƒO
-	int					trainer_id[CLIENT_MAX];		///<ƒgƒŒ[ƒi[‚ÌID
-	TRAINER_DATA		trainer_data[CLIENT_MAX];	///<ƒgƒŒ[ƒi[ƒf[ƒ^
-	int					bg_id;						///<”wŒiID
-	int					ground_id;					///<’nŒ`ID
-	int					place_id;					///<’nˆæ–¼ID
-	int					zone_id;					///<ƒ][ƒ“ID
-	int					time_zone;					///<ŽžŠÔ‘Ñ’è‹`
-	int					shinka_place_mode;			///<êŠi‰»î•ñiSHINKA_PLACE`j
-	int					contest_see_flag;			///<ƒRƒ“ƒeƒXƒg‚ðŒ©‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int					mizuki_flag;				///<ƒ~ƒYƒL‚É‚ ‚Á‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int					get_pokemon_client;			///<•ßŠl‚µ‚½ƒ|ƒPƒ‚ƒ“‚ÌClientNoiPOKEPARTY_ENEMY‚©POKEPARTY_ENEMY_PAIRj
-	int					weather;					///<“VŒó
-	int					level_up_flag;				///<ƒŒƒxƒ‹ƒAƒbƒv‚µ‚½ƒ|ƒPƒ‚ƒ“ƒtƒ‰ƒOii‰»ƒ`ƒFƒbƒN‚ð‚·‚éj
-	u32					server_version[CLIENT_MAX];	///<í“¬ƒT[ƒoƒvƒƒOƒ‰ƒ€‚Ìƒo[ƒWƒ‡ƒ“i’ÊM‘ÎíŽž‚ÉŽg—pj
-	u32					battle_status_flag;			///<í“¬“à•ªŠò—pƒtƒ‰ƒO
-	int					safari_ball;				///<ƒTƒtƒ@ƒŠƒ{[ƒ‹‚Ì”
-	u32					regulation_flag;			///<ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒtƒ‰ƒO
-	u32					rand;						///<í“¬ê—p—”‚ÌŽí
-	int					comm_stand_no[CLIENT_MAX];	///<’ÊM‘Îí•”‰®‚Å‚ÌŽ©•ª‚Ì—§‚¿ˆÊ’u
-	u16					comm_id;					///<Ž©•ª‚Ì’ÊMID
-	u16					dummy;						///<ƒpƒfƒBƒ“ƒO
-	int					total_turn;					///<í“¬‚É‚©‚©‚Á‚½ƒ^[ƒ“”
-	u8					voice_waza_param[CLIENT_MAX];	///<‚Øƒ‰ƒbƒvƒ{ƒCƒX‚Ì‚¨‚µ‚á‚×‚èŽž‚Ìƒpƒ‰ƒ[ƒ^i˜^‰æƒf[ƒ^Ä¶Žž‚ÉŽg—pj
+	u32					fight_type;					///<æˆ¦é—˜ç¨®åˆ¥ãƒ•ãƒ©ã‚°
+	int					win_lose_flag;				///<å‹ã¡è² ã‘ãƒ•ãƒ©ã‚°
+	int					trainer_id[CLIENT_MAX];		///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã®ID
+	TRAINER_DATA		trainer_data[CLIENT_MAX];	///<ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿
+	int					bg_id;						///<èƒŒæ™¯ID
+	int					ground_id;					///<åœ°å½¢ID
+	int					place_id;					///<åœ°åŸŸåID
+	int					zone_id;					///<ã‚¾ãƒ¼ãƒ³ID
+	int					time_zone;					///<æ™‚é–“å¸¯å®šç¾©
+	int					shinka_place_mode;			///<å ´æ‰€é€²åŒ–æƒ…å ±ï¼ˆSHINKA_PLACEã€œï¼‰
+	int					contest_see_flag;			///<ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚’è¦‹ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int					mizuki_flag;				///<ãƒŸã‚ºã‚­ã«ã‚ã£ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int					get_pokemon_client;			///<æ•ç²ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ClientNoï¼ˆPOKEPARTY_ENEMYã‹POKEPARTY_ENEMY_PAIRï¼‰
+	int					weather;					///<å¤©å€™
+	int					level_up_flag;				///<ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã—ãŸãƒã‚±ãƒ¢ãƒ³ãƒ•ãƒ©ã‚°ï¼ˆé€²åŒ–ãƒã‚§ãƒƒã‚¯ã‚’ã™ã‚‹ï¼‰
+	u32					server_version[CLIENT_MAX];	///<æˆ¦é—˜ã‚µãƒ¼ãƒãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼ˆé€šä¿¡å¯¾æˆ¦æ™‚ã«ä½¿ç”¨ï¼‰
+	u32					battle_status_flag;			///<æˆ¦é—˜å†…åˆ†å²ç”¨ãƒ•ãƒ©ã‚°
+	int					safari_ball;				///<ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã®æ•°
+	u32					regulation_flag;			///<ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°
+	u32					rand;						///<æˆ¦é—˜å°‚ç”¨ä¹±æ•°ã®ç¨®
+	int					comm_stand_no[CLIENT_MAX];	///<é€šä¿¡å¯¾æˆ¦éƒ¨å±‹ã§ã®è‡ªåˆ†ã®ç«‹ã¡ä½ç½®
+	u16					comm_id;					///<è‡ªåˆ†ã®é€šä¿¡ID
+	u16					dummy;						///<ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°
+	int					total_turn;					///<æˆ¦é—˜ã«ã‹ã‹ã£ãŸã‚¿ãƒ¼ãƒ³æ•°
+	u8					voice_waza_param[CLIENT_MAX];	///<ãºãƒ©ãƒƒãƒ—ãƒœã‚¤ã‚¹ã®ãŠã—ã‚ƒã¹ã‚Šæ™‚ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ï¼ˆéŒ²ç”»ãƒ‡ãƒ¼ã‚¿å†ç”Ÿæ™‚ã«ä½¿ç”¨ï¼‰
 
-#if 0	//í“¬˜^‰æ‚ÌƒZ[ƒu‚É‚Í‚¢‚ç‚È‚¢‚à‚Ì
-	BATTLE_TOWER_RECORD	btr;						///<ƒoƒgƒ‹ƒ^ƒ[¬Ñ—pƒ[ƒN
-	POKEPARTY			*poke_party[CLIENT_MAX];	///<ŽèŽ‚¿ƒ|ƒPƒ‚ƒ“ƒf[ƒ^
-	MYSTATUS			*my_status[CLIENT_MAX];		///<Ž©ƒLƒƒƒ‰ƒf[ƒ^
-	MYITEM				*my_item;					///<Ž‚¿ƒAƒCƒeƒ€ƒf[ƒ^
-	BAG_CURSOR			*bag_cursor;				///<ƒoƒbƒO‚ÌƒJ[ƒ\ƒ‹ƒf[ƒ^
-	ZUKAN_WORK			*zw;						///<}ŠÓƒ[ƒN
-	BOX_DATA			*box;						///<ƒ{ƒbƒNƒXƒf[ƒ^
-	PERAPVOICE			*poke_voice[CLIENT_MAX];	///<ƒ|ƒPƒ‚ƒ“‚Ì–Â‚«ºƒf[ƒ^
-	POKETCH_DATA		*poketch_data;				///<ƒ|ƒPƒbƒ`ƒf[ƒ^
-	WIFI_HISTORY		*wifihistory;				///<¢ŠE’ÊM—š—ðƒf[ƒ^
-	CONFIG				*config;					///<ƒQ[ƒ€ƒRƒ“ƒtƒBƒO
-	TVWATCH_BATTLE_WORK * TVWatchBattleWork;		///<ƒeƒŒƒrF•ßŠl”Ô‘g—p
-	RECORD				*record;					///<ƒJƒEƒ“ƒgƒAƒbƒvƒ[ƒN
-	FNOTE_DATA			*fnote_data;				///<–`Œ¯ƒm[ƒgƒ[ƒN
-	FRIEND_LIST			*friendlist;				///<‚Æ‚à‚¾‚¿ƒOƒ‹[ƒvƒ|ƒCƒ“ƒ^
-	void				*work;						///<”Ä—p“I‚ÉŽg—p‚·‚é‚½‚ß‚Ìƒ|ƒCƒ“ƒ^ƒ[ƒN
-	BATTLE_CURSOR_DISP	*battle_cursor;				///<í“¬‚ÌƒJ[ƒ\ƒ‹‰Šú•\Ž¦ó‘Ô
-	SAVEDATA			*savedata;				///<’ÊM‘ÎíŽžAŸ”s‰æ–Ê‚Å˜^‰æƒZ[ƒu‚·‚é‚Ì‚ÉŽg—p
+#if 0	//æˆ¦é—˜éŒ²ç”»ã®ã‚»ãƒ¼ãƒ–ã«ã¯ã„ã‚‰ãªã„ã‚‚ã®
+	BATTLE_TOWER_RECORD	btr;						///<ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æˆç¸¾ç”¨ãƒ¯ãƒ¼ã‚¯
+	POKEPARTY			*poke_party[CLIENT_MAX];	///<æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒ‡ãƒ¼ã‚¿
+	MYSTATUS			*my_status[CLIENT_MAX];		///<è‡ªã‚­ãƒ£ãƒ©ãƒ‡ãƒ¼ã‚¿
+	MYITEM				*my_item;					///<æŒã¡ã‚¢ã‚¤ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿
+	BAG_CURSOR			*bag_cursor;				///<ãƒãƒƒã‚°ã®ã‚«ãƒ¼ã‚½ãƒ«ãƒ‡ãƒ¼ã‚¿
+	ZUKAN_WORK			*zw;						///<å›³é‘‘ãƒ¯ãƒ¼ã‚¯
+	BOX_DATA			*box;						///<ãƒœãƒƒã‚¯ã‚¹ãƒ‡ãƒ¼ã‚¿
+	PERAPVOICE			*poke_voice[CLIENT_MAX];	///<ãƒã‚±ãƒ¢ãƒ³ã®é³´ãå£°ãƒ‡ãƒ¼ã‚¿
+	POKETCH_DATA		*poketch_data;				///<ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿
+	WIFI_HISTORY		*wifihistory;				///<ä¸–ç•Œé€šä¿¡å±¥æ­´ãƒ‡ãƒ¼ã‚¿
+	CONFIG				*config;					///<ã‚²ãƒ¼ãƒ ã‚³ãƒ³ãƒ•ã‚£ã‚°
+	TVWATCH_BATTLE_WORK * TVWatchBattleWork;		///<ãƒ†ãƒ¬ãƒ“ï¼šæ•ç²ç•ªçµ„ç”¨
+	RECORD				*record;					///<ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ãƒ¯ãƒ¼ã‚¯
+	FNOTE_DATA			*fnote_data;				///<å†’é™ºãƒŽãƒ¼ãƒˆãƒ¯ãƒ¼ã‚¯
+	FRIEND_LIST			*friendlist;				///<ã¨ã‚‚ã ã¡ã‚°ãƒ«ãƒ¼ãƒ—ãƒã‚¤ãƒ³ã‚¿
+	void				*work;						///<æ±Žç”¨çš„ã«ä½¿ç”¨ã™ã‚‹ãŸã‚ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¯ãƒ¼ã‚¯
+	BATTLE_CURSOR_DISP	*battle_cursor;				///<æˆ¦é—˜ã®ã‚«ãƒ¼ã‚½ãƒ«åˆæœŸè¡¨ç¤ºçŠ¶æ…‹
+	SAVEDATA			*savedata;				///<é€šä¿¡å¯¾æˆ¦æ™‚ã€å‹æ•—ç”»é¢ã§éŒ²ç”»ã‚»ãƒ¼ãƒ–ã™ã‚‹ã®ã«ä½¿ç”¨
 #endif
 }REC_BATTLE_PARAM;
 
-//í“¬—pŠÖ”’è‹`
+//æˆ¦é—˜ç”¨é–¢æ•°å®šç¾©
 typedef	void	(*btFunc)(BATTLE_WORK *battle_work);
 typedef	void	(*svFunc)(BATTLE_WORK *battle_work,SERVER_PARAM *sp);
 typedef	void	(*clFunc)(BATTLE_WORK *battle_work,CLIENT_PARAM *cp);
 typedef	BOOL	(*siFunc)(BATTLE_WORK *battle_work,SERVER_PARAM *sp);
 typedef	void	(*aiFunc)(BATTLE_WORK *battle_work,SERVER_PARAM *sp);
 
-//abiritycnt‚É‚æ‚éƒpƒ‰ƒ[ƒ^‘Œ¸ƒe[ƒuƒ‹
+//abiritycntã«ã‚ˆã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¢—æ¸›ãƒ†ãƒ¼ãƒ–ãƒ«
 extern	const	u8	CondChgTable[][2];
 
 #endif	__ASM_NO_DEF_

@@ -3,7 +3,7 @@
 /**
  *
  *	@file		d_mori2.c
- *	@brief		X‚³‚ñ‚ÌƒfƒoƒbƒNƒƒjƒ…[í’“•”•ª
+ *	@brief		æ£®ã•ã‚“ã®ãƒ‡ãƒãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼å¸¸é§éƒ¨åˆ†
  *	@author		tomoya takahashi
  *	@data		2007.04.17
  *
@@ -55,49 +55,49 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒR[ƒfƒBƒ“ƒO‹K–ñ
- *		œŠÖ”–¼
- *				‚P•¶š–Ú‚Í‘å•¶š‚»‚êˆÈ~‚Í¬•¶š‚É‚·‚é
- *		œ•Ï”–¼
- *				E•Ï”‹¤’Ê
- *						const‚É‚Í c_ ‚ğ•t‚¯‚é
- *						static‚É‚Í s_ ‚ğ•t‚¯‚é
- *						ƒ|ƒCƒ“ƒ^‚É‚Í p_ ‚ğ•t‚¯‚é
- *						‘S‚Ä‡‚í‚³‚é‚Æ csp_ ‚Æ‚È‚é
- *				EƒOƒ[ƒoƒ‹•Ï”
- *						‚P•¶š–Ú‚Í‘å•¶š
- *				EŠÖ”“à•Ï”
- *						¬•¶š‚ÆhQh‚Æ”š‚ğg—p‚·‚é ŠÖ”‚Ìˆø”‚à‚±‚ê‚Æ“¯‚¶
+ *					ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°è¦ç´„
+ *		â—é–¢æ•°å
+ *				ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—ãã‚Œä»¥é™ã¯å°æ–‡å­—ã«ã™ã‚‹
+ *		â—å¤‰æ•°å
+ *				ãƒ»å¤‰æ•°å…±é€š
+ *						constã«ã¯ c_ ã‚’ä»˜ã‘ã‚‹
+ *						staticã«ã¯ s_ ã‚’ä»˜ã‘ã‚‹
+ *						ãƒã‚¤ãƒ³ã‚¿ã«ã¯ p_ ã‚’ä»˜ã‘ã‚‹
+ *						å…¨ã¦åˆã‚ã•ã‚‹ã¨ csp_ ã¨ãªã‚‹
+ *				ãƒ»ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ *						ï¼‘æ–‡å­—ç›®ã¯å¤§æ–‡å­—
+ *				ãƒ»é–¢æ•°å†…å¤‰æ•°
+ *						å°æ–‡å­—ã¨â€ï¼¿â€ã¨æ•°å­—ã‚’ä½¿ç”¨ã™ã‚‹ é–¢æ•°ã®å¼•æ•°ã‚‚ã“ã‚Œã¨åŒã˜
 */
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
-*/
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-/**
- *					\‘¢‘ÌéŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
+*/
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+/**
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
 /**
- *		–¼‘O“ü—ÍŒÄ‚Ño‚µƒeƒXƒg
+ *		åå‰å…¥åŠ›å‘¼ã³å‡ºã—ãƒ†ã‚¹ãƒˆ
  */
 //-----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 /**
  *
- *	@brief –¼‘O“ü—ÍŒÄ‚Ño‚µƒeƒXƒg
+ *	@brief åå‰å…¥åŠ›å‘¼ã³å‡ºã—ãƒ†ã‚¹ãƒˆ
  *
  *	@param	TCB_PTR tcb
  *	@param	work 
@@ -112,16 +112,16 @@ void TestNameIn_Call( TCB_PTR tcb, void* work )
 	TEST_PROC_WORK* wk = work;
 	
 	switch( wk->seq ){
-	case 0:		// ƒtƒF[ƒhƒAƒEƒg
+	case 0:		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		FieldSystemProc_SeqHoldEnd();		
 		wk->seq++;
 		break;
 
-	case 1:		// ƒtƒB[ƒ‹ƒh”jŠü
+	case 1:		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç ´æ£„
 		if(wk->sub == 0){
 			wk->sub++;
 
-			// –¼‘O“ü—Í—pˆø”ƒ[ƒNì¬
+			// åå‰å…¥åŠ›ç”¨å¼•æ•°ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 			wk->NameInParam = NameIn_ParamAllocMake(HEAPID_WORLD, NAMEIN_MYNAME 
 								/* NAMEIN_FRIENDNAME */ /*NAMEIN_FRIENDCODE*/ /*NAMEIN_POKEMON*/ , 
 								2, NAMEIN_PERSON_LENGTH, SaveData_GetConfig(wk->fsys->savedata) );
@@ -132,14 +132,14 @@ void TestNameIn_Call( TCB_PTR tcb, void* work )
 			wk->NameInParam->sex = MyStatus_GetMySex(SaveData_GetMyStatus(wk->fsys->savedata));
 			wk->NameInParam->boxdata = SaveData_GetBoxData(wk->fsys->savedata);
 			OS_Printf("BOXDATA Addr = %08x\n",wk->NameInParam->boxdata);
-			// –¼‘O“ü—ÍPROCì¬
+			// åå‰å…¥åŠ›PROCä½œæˆ
 			NameInput_SetProc( wk->fsys, wk->NameInParam );
 
 			GameSystem_FinishFieldProc( wk->fsys );
 
 		}else{
 
-			// I—¹‚ªŠ®—¹‚µ‚½‚©ƒ`ƒFƒbƒN
+			// çµ‚äº†ãŒå®Œäº†ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
 			if( FieldEvent_Cmd_WaitMapProcStart( wk->fsys ) == FALSE ){
 				wk->sub = 0;
 				wk->seq++;
@@ -147,28 +147,28 @@ void TestNameIn_Call( TCB_PTR tcb, void* work )
 		}
 		break;
 
-	case 2:		// –¼‘O“ü—Í‰Šú‰»
+	case 2:		// åå‰å…¥åŠ›åˆæœŸåŒ–
 		wk->seq++;
 		break;
-	case 3:		// –¼‘O“ü—ÍI—¹‘Ò‚¿
+	case 3:		// åå‰å…¥åŠ›çµ‚äº†å¾…ã¡
 		if( GameSystem_CheckSubProcExists( wk->fsys ) == FALSE ){
 			{
 				int i;
-				OS_Printf("‘‚¢‚½–¼‘O‚Í ");
+				OS_Printf("æ›¸ã„ãŸåå‰ã¯ ");
 				for(i=0;i<5;i++){
 					OS_Printf("%x",wk->NameInParam->str[i]);
 				}
 				OS_Printf("\n");
-				OS_Printf("ƒLƒƒƒ“ƒZƒ‹H = %d\n",wk->NameInParam->cancel);
+				OS_Printf("ã‚­ãƒ£ãƒ³ã‚»ãƒ«ï¼Ÿ = %d\n",wk->NameInParam->cancel);
 			}
 //			sys_FreeMemory( HEAPID_WORLD, wk->NameInParam );
 
-			// ‘‚¢‚½–¼‘O‚ğMYSTATUS‚É”½‰f‚³‚¹‚é
+			// æ›¸ã„ãŸåå‰ã‚’MYSTATUSã«åæ˜ ã•ã›ã‚‹
 			if(!wk->NameInParam->cancel){
 				MyStatus_SetMyName(SaveData_GetMyStatus(wk->fsys->savedata),wk->NameInParam->str);
 			}
 			NameIn_ParamDelete( wk->NameInParam );
-			// ƒtƒB[ƒ‹ƒh•œ‹A
+			// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°
 			GameSystem_CreateFieldProc( wk->fsys );
 			wk->seq++;
 
@@ -177,7 +177,7 @@ void TestNameIn_Call( TCB_PTR tcb, void* work )
 	case 4:
 		if( GameSystem_CheckFieldProcExists(wk->fsys) ){
 			FieldFadeWipeSet( FLD_DISP_BRIGHT_BLACKIN );
-			// ƒ^ƒXƒNI—¹
+			// ã‚¿ã‚¹ã‚¯çµ‚äº†
 			TCB_Delete( tcb );
 			sys_FreeMemoryEz( work );
 		}
@@ -188,7 +188,7 @@ void TestNameIn_Call( TCB_PTR tcb, void* work )
 
 //------------------------------------------------------------------
 /**
- * ŒğŠ·ƒŠƒXƒgŒÄ‚Ño‚µƒeƒXƒg
+ * äº¤æ›ãƒªã‚¹ãƒˆå‘¼ã³å‡ºã—ãƒ†ã‚¹ãƒˆ
  *
  * @param   tcb		
  * @param   work		
@@ -201,16 +201,16 @@ void TestTradeList_Call( TCB_PTR tcb, void* work )
 	TEST_PROC_WORK* wk = work;
 	
 	switch( wk->seq ){
-	case 0:		// ƒtƒF[ƒhƒAƒEƒg
+	case 0:		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		FieldSystemProc_SeqHoldEnd();		
 		wk->seq++;
 		break;
 
-	case 1:		// ƒtƒB[ƒ‹ƒh”jŠü
+	case 1:		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç ´æ£„
 		if(wk->sub == 0){
 			wk->sub++;
 
-			// ŒğŠ·ƒŠƒXƒgPROCì¬
+			// äº¤æ›ãƒªã‚¹ãƒˆPROCä½œæˆ
 //			TradeList_SetProc( wk->fsys );
 //			OekakiBoard_SetProc( wk->fsys );
 			Field_MySign_SetProc( wk->fsys );
@@ -219,16 +219,16 @@ void TestTradeList_Call( TCB_PTR tcb, void* work )
 
 		}else{
 
-			// I—¹‚ªŠ®—¹‚µ‚½‚©ƒ`ƒFƒbƒN
+			// çµ‚äº†ãŒå®Œäº†ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
 			if( FieldEvent_Cmd_WaitMapProcStart( wk->fsys ) == FALSE ){
 				wk->sub = 0;
 				wk->seq++;
 			}
 		}
 		break;
-	case 2:		// –¼‘O“ü—ÍI—¹‘Ò‚¿
+	case 2:		// åå‰å…¥åŠ›çµ‚äº†å¾…ã¡
 		if( GameSystem_CheckSubProcExists( wk->fsys ) == FALSE ){
-			// ƒtƒB[ƒ‹ƒh•œ‹A
+			// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°
 			GameSystem_CreateFieldProc( wk->fsys );
 			wk->seq++;
 
@@ -237,7 +237,7 @@ void TestTradeList_Call( TCB_PTR tcb, void* work )
 	case 3:
 		if( GameSystem_CheckFieldProcExists(wk->fsys) ){
 			FieldFadeWipeSet( FLD_DISP_BRIGHT_BLACKIN );
-			// ƒ^ƒXƒNI—¹
+			// ã‚¿ã‚¹ã‚¯çµ‚äº†
 			TCB_Delete( tcb );
 			sys_FreeMemoryEz( work );
 		}
@@ -247,7 +247,7 @@ void TestTradeList_Call( TCB_PTR tcb, void* work )
 
 //------------------------------------------------------------------
 /**
- * ¢ŠEŒğŠ·ŒÄ‚Ño‚µƒeƒXƒg
+ * ä¸–ç•Œäº¤æ›å‘¼ã³å‡ºã—ãƒ†ã‚¹ãƒˆ
  *
  * @param   tcb		
  * @param   work		
@@ -260,32 +260,32 @@ void TestWorldTrade_Call( TCB_PTR tcb, void* work )
 	TEST_PROC_WORK* wk = work;
 	
 	switch( wk->seq ){
-	case 0:		// ƒtƒF[ƒhƒAƒEƒg
+	case 0:		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
 		FieldSystemProc_SeqHoldEnd();		
 		wk->seq++;
 		break;
 
-	case 1:		// ƒtƒB[ƒ‹ƒh”jŠü
+	case 1:		// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ç ´æ£„
 		if(wk->sub == 0){
 			wk->sub++;
 
-			// ¢ŠEŒğŠ·PROCì¬
+			// ä¸–ç•Œäº¤æ›PROCä½œæˆ
 			Field_WorldTrade_SetProc( wk->fsys, 0 );
 
 			GameSystem_FinishFieldProc( wk->fsys );
 
 		}else{
 
-			// I—¹‚ªŠ®—¹‚µ‚½‚©ƒ`ƒFƒbƒN
+			// çµ‚äº†ãŒå®Œäº†ã—ãŸã‹ãƒã‚§ãƒƒã‚¯
 			if( FieldEvent_Cmd_WaitMapProcStart( wk->fsys ) == FALSE ){
 				wk->sub = 0;
 				wk->seq++;
 			}
 		}
 		break;
-	case 2:		// ¢ŠEŒğŠ·I—¹‘Ò‚¿
+	case 2:		// ä¸–ç•Œäº¤æ›çµ‚äº†å¾…ã¡
 		if( GameSystem_CheckSubProcExists( wk->fsys ) == FALSE ){
-			// ƒtƒB[ƒ‹ƒh•œ‹A
+			// ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¾©å¸°
 			GameSystem_CreateFieldProc( wk->fsys );
 			wk->seq++;
 
@@ -294,7 +294,7 @@ void TestWorldTrade_Call( TCB_PTR tcb, void* work )
 	case 3:
 		if( GameSystem_CheckFieldProcExists(wk->fsys) ){
 			FieldFadeWipeSet( FLD_DISP_BRIGHT_BLACKIN );
-			// ƒ^ƒXƒNI—¹
+			// ã‚¿ã‚¹ã‚¯çµ‚äº†
 			TCB_Delete( tcb );
 			sys_FreeMemoryEz( work );
 		}

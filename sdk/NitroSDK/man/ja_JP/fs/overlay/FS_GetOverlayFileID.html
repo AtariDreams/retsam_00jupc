@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>FS_GetOverlayFileID</title>
@@ -12,7 +12,7 @@
 <body>
 
 <h1 align="left">FS_GetOverlayFileID</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -22,31 +22,31 @@
   <br>
   </dd>
 </dl>
-<h2>����</h2>
+<h2>引数</h2>
 <TABLE border="1" width="100%">
   <TBODY>
     <TR>
       <TD width="13%"><EM><STRONG>p_ovi</STRONG></EM></TD>
-      <TD width="87%">�I�[�o�[���C���W���[���̏�񂪊i�[���ꂽ<A href="../fs_overlay_info_type.html">FSOverlayInfo</A>�\����</TD>
+      <TD width="87%">オーバーレイモジュールの情報が格納された<A href="../fs_overlay_info_type.html">FSOverlayInfo</A>構造体</TD>
     </TR>
   </TBODY>
 </TABLE>
 
-<h2>�Ԃ�l</h2>
-<p>�I�[�o�[���C���W���[���̃C���[�W���i�[���ꂽ�t�@�C����ID��Ԃ��܂��B</p>
+<h2>返り値</h2>
+<p>オーバーレイモジュールのイメージが格納されたファイルのIDを返します。</p>
 
-<H2>����</H2>
-<P>�I�[�o�[���C���W���[���̃C���[�W���i�[���ꂽ�t�@�C����ID���擾���܂��B<BR>
-<A href="FS_LoadOverlayInfo.html">FS_LoadOverlayInfo</A>�͓����I�ɂ��̃t�@�C������C���[�W�����[�h���܂��B<BR>
-�{�֐����Ԃ�ID���g�p���ăI�[�v�������t�@�C���̓f�B���N�g���K�w�ɂ���܂���̂ŁA<BR>
-<A href="../file/FS_GetPathName.html">FS_GetPathName</A>�֐����Ăяo���Ă����s���邱�Ƃɒ��ӂ��Ă��������B<BR>
+<H2>説明</H2>
+<P>オーバーレイモジュールのイメージが格納されたファイルのIDを取得します。<BR>
+<A href="FS_LoadOverlayInfo.html">FS_LoadOverlayInfo</A>は内部的にこのファイルからイメージをロードします。<BR>
+本関数が返すIDを使用してオープンしたファイルはディレクトリ階層にありませんので、<BR>
+<A href="../file/FS_GetPathName.html">FS_GetPathName</A>関数を呼び出しても失敗することに注意してください。<BR>
 <BR>
-<A href="FS_GetOverlayAddress.html">FS_GetOverlayAddress</A>�֐��œ�����A�h���X��<br>
-<A href="FS_ClearOverlayImage.html">FS_ClearOverlayImage</A>�֐��ŏ������������<br>
-���̊֐��Ŏ擾�����t�@�C��ID���g�p���ăt�@�C���𒼐ړǂݍ��ނ��Ƃɂ��A<br>
-�I�[�o�[���C�̃��[�h��񓯊��ɍs�����Ƃ��\�ł��B<br>
+<A href="FS_GetOverlayAddress.html">FS_GetOverlayAddress</A>関数で得られるアドレスを<br>
+<A href="FS_ClearOverlayImage.html">FS_ClearOverlayImage</A>関数で初期化した後に<br>
+この関数で取得したファイルIDを使用してファイルを直接読み込むことにより、<br>
+オーバーレイのロードを非同期に行うことが可能です。<br>
 <br>
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p><CODE>
 <A href="../fs_overlay_info_type.html">FSOverlayInfo</A>
 <br>
@@ -57,11 +57,11 @@
 <A href="FS_StartOverlay.html">FS_StartOverlay</A>
 </CODE></p>
 
-<H2>����</H2>
+<H2>履歴</H2>
 <P>
-2004/11/17 FS_RegisterOverlayToDebugger�֐��p�~�Ɋւ���L�q�C��<BR>
-2004/10/19 FS_RegisterOverlayToDebugger�֐��Ɋւ���L�q�ǉ�<BR>
-2004/06/11 ����<BR>
+2004/11/17 FS_RegisterOverlayToDebugger関数廃止に関する記述修正<BR>
+2004/10/19 FS_RegisterOverlayToDebugger関数に関する記述追加<BR>
+2004/06/11 初版<BR>
 </P>
 </body>
 </html>

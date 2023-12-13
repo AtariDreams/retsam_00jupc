@@ -1,7 +1,7 @@
 #ifndef _FLD_ITEM_DEF_H_
 #define _FLD_ITEM_DEF_H_
 
-//スクリプトデータID定義 
+//繧ｹ繧ｯ繝ｪ繝励ヨ繝�繝ｼ繧ｿID螳夂ｾｩ 
 #define	SCRID_FLD_ITEM_0		(7000)
 #define	SCRID_FLD_ITEM_1		(7001)
 #define	SCRID_FLD_ITEM_2		(7002)
@@ -330,6 +330,6 @@
 #define	SCRID_FLD_ITEM_326		(7325)
 #define	SCRID_FLD_ITEM_327		(7326)
 #define	SCRID_FLD_ITEM2		(7327)
-#define	SCRID_FLD_ITEM_DATA_MAX		(328)		//最大数
+#define	SCRID_FLD_ITEM_DATA_MAX		(328)		//譛螟ｧ謨ｰ
 
 #endif //_FLD_ITEM_DEF_H_

@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	factory_ball.c
- * @brief	uƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[vƒ{[ƒ‹
+ * @brief	ã€Œãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼ã€ãƒœãƒ¼ãƒ«
  * @author	Satoshi Nohara
  * @date	2007.03.14
  */
@@ -18,24 +18,24 @@
 
 //==============================================================================================
 //
-//	\‘¢‘ÌéŒ¾
+//	æ§‹é€ ä½“å®£è¨€
 //
 //==============================================================================================
-//ƒ{[ƒ‹OBJ
+//ãƒœãƒ¼ãƒ«OBJ
 struct _FACTORY_BALL{
-	u16	decide_flag;				//Œˆ’è‚µ‚½ƒtƒ‰ƒO
+	u16	decide_flag;				//æ±ºå®šã—ãŸãƒ•ãƒ©ã‚°
 	u16	dmy;						//
-	int	init_x;						//‰ŠúˆÊ’u
-	int	init_y;						//‰ŠúˆÊ’u
-	CLACT_WORK_PTR p_clact;			//ƒZƒ‹ƒAƒNƒ^[ƒ[ƒNƒ|ƒCƒ“ƒ^
+	int	init_x;						//åˆæœŸä½ç½®
+	int	init_y;						//åˆæœŸä½ç½®
+	CLACT_WORK_PTR p_clact;			//ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ¯ãƒ¼ã‚¯ãƒã‚¤ãƒ³ã‚¿
 };
 
-#define FACTORY_BALL_OFFSET_X	(248)//(216)		//ƒŒƒ“ƒ^ƒ‹ƒ{[ƒ‹Å‰‚Ì‰E‚Ö‰B‚·ƒIƒtƒZƒbƒg
+#define FACTORY_BALL_OFFSET_X	(248)//(216)		//ãƒ¬ãƒ³ã‚¿ãƒ«ãƒœãƒ¼ãƒ«æœ€åˆã®å³ã¸éš ã™ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 
 
 //==============================================================================================
 //
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //
 //==============================================================================================
 FACTORY_BALL*	FactoryBall_Create( FACTORY_CLACT* factory_clact, int x, int y, u32 heapID );
@@ -59,38 +59,38 @@ void			FactoryBall_PalChg( FACTORY_BALL* wk, u32 pal );
 
 //==============================================================================================
 //
-//	ŠÖ”
+//	é–¢æ•°
 //
 //==============================================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹OBJì¬
+ * @brief	ãƒœãƒ¼ãƒ«OBJä½œæˆ
  *
- * @param	factory_clact	FACTORY_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	data_index		ƒf[ƒ^index
- * @param	heapID			ƒq[ƒvID
+ * @param	factory_clact	FACTORY_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	data_index		ãƒ‡ãƒ¼ã‚¿index
+ * @param	heapID			ãƒ’ãƒ¼ãƒ—ID
  *
- * @retval	"FACTORY_BALLƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^"
+ * @retval	"FACTORY_BALLãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿"
  */
 //--------------------------------------------------------------
 FACTORY_BALL* FactoryBall_Create( FACTORY_CLACT* factory_clact, int x, int y, u32 heapID )
 {
 	FACTORY_BALL* wk;
 
-	wk = sys_AllocMemory( heapID, sizeof(FACTORY_BALL) );		//ƒƒ‚ƒŠŠm•Û
+	wk = sys_AllocMemory( heapID, sizeof(FACTORY_BALL) );		//ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	memset( wk, 0, sizeof(FACTORY_BALL) );
 
-	wk->decide_flag	= 0;				//Œˆ’è‚µ‚½ƒtƒ‰ƒO
-	wk->init_x = x;						//‰ŠúˆÊ’u
-	wk->init_y = y;						//‰ŠúˆÊ’u
+	wk->decide_flag	= 0;				//æ±ºå®šã—ãŸãƒ•ãƒ©ã‚°
+	wk->init_x = x;						//åˆæœŸä½ç½®
+	wk->init_y = y;						//åˆæœŸä½ç½®
 
-	//Œ»óAƒ^ƒCƒv‚ÍŒÅ’è(data_no,anm_no,pri)
+	//ç¾çŠ¶ã€ã‚¿ã‚¤ãƒ—ã¯å›ºå®š(data_no,anm_no,pri)
 	wk->p_clact = FactoryClact_SetActor( factory_clact, 0, ANM_BALL_STOP, 0, 0, DISP_MAIN );
 
-	FactoryBall_SetPos( wk, x, y );		//À•WƒZƒbƒg
+	FactoryBall_SetPos( wk, x, y );		//åº§æ¨™ã‚»ãƒƒãƒˆ
 	
-	//ƒpƒŒƒbƒgƒiƒ“ƒo[‚ð•ÏX
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒŠãƒ³ãƒãƒ¼ã‚’å¤‰æ›´
 	CLACT_PaletteNoChg( wk->p_clact, PAL_BALL_STOP );
 
 	return wk;
@@ -98,9 +98,9 @@ FACTORY_BALL* FactoryBall_Create( FACTORY_CLACT* factory_clact, int x, int y, u3
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{[ƒ‹OBJƒ[ƒNíœ
+ * @brief	ãƒœãƒ¼ãƒ«OBJãƒ¯ãƒ¼ã‚¯å‰Šé™¤
  *
- * @param	wk		FACTORY_BALLƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_BALLãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	"NULL"
  */
@@ -109,7 +109,7 @@ void* FactoryBall_Delete( FACTORY_BALL* wk )
 {
 	CLACT_Delete( wk->p_clact );
 
-	//FACTORY_BALL‚Ìƒƒ“ƒo‚Åƒƒ‚ƒŠŠm•Û‚µ‚½‚à‚Ì‚ª‚ ‚Á‚½‚çŠJ•ú‚·‚é
+	//FACTORY_BALLã®ãƒ¡ãƒ³ãƒã§ãƒ¡ãƒ¢ãƒªç¢ºä¿ã—ãŸã‚‚ã®ãŒã‚ã£ãŸã‚‰é–‹æ”¾ã™ã‚‹
 
 	sys_FreeMemoryEz( wk );
 	return NULL;
@@ -117,10 +117,10 @@ void* FactoryBall_Delete( FACTORY_BALL* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒoƒjƒbƒVƒ…‘€ì
+ * @brief	ãƒãƒ‹ãƒƒã‚·ãƒ¥æ“ä½œ
  *
- * @param	wk		FACTORY_BALLŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	0:”ñ•`‰æ 1:ƒŒƒ“ƒ_ƒ‰•`‰æ	
+ * @param	wk		FACTORY_BALLåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	0:éžæç”» 1:ãƒ¬ãƒ³ãƒ€ãƒ©æç”»	
  *
  * @return	none
  */
@@ -133,9 +133,9 @@ void FactoryBall_Vanish( FACTORY_BALL* wk, int flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ˆÚ“®
+ * @brief	ç§»å‹•
  *
- * @param	wk		FACTORY_BALLŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_BALLåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -153,11 +153,11 @@ VecFx32 FactoryBall_Move( FACTORY_BALL* wk, int x, int y )
 
 //--------------------------------------------------------------
 /**
- * @brief	À•WƒZƒbƒg
+ * @brief	åº§æ¨™ã‚»ãƒƒãƒˆ
  *
- * @param	wk		FACTORY_BALLŒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param	x		XÀ•W
- * @param	y		YÀ•W
+ * @param	wk		FACTORY_BALLåž‹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	x		Xåº§æ¨™
+ * @param	y		Yåº§æ¨™
  *
  * @return	none
  */
@@ -169,7 +169,7 @@ void FactoryBall_SetPos( FACTORY_BALL* wk, int x, int y )
 	vec.x = (x * FX32_ONE);
 	vec.y = (y * FX32_ONE);
 
-	//vec.y += SUB_SURFACE_Y;						//1=ƒTƒu‰æ–Ê‚É•ÏX
+	//vec.y += SUB_SURFACE_Y;						//1=ã‚µãƒ–ç”»é¢ã«å¤‰æ›´
 
 	CLACT_SetMatrix( wk->p_clact, &vec );
 	return;
@@ -177,9 +177,9 @@ void FactoryBall_SetPos( FACTORY_BALL* wk, int x, int y )
 
 //--------------------------------------------------------------
 /**
- * @brief	À•WŽæ“¾
+ * @brief	åº§æ¨™å–å¾—
  *
- * @param	wk		FACTORY_BALLŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_BALLåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	none
  */
@@ -191,9 +191,9 @@ const VecFx32* FactoryBall_GetPos( FACTORY_BALL* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Œˆ’è‚µ‚½ƒtƒ‰ƒO‚Ìó‘Ô‚ðÝ’è
+ * @brief	æ±ºå®šã—ãŸãƒ•ãƒ©ã‚°ã®çŠ¶æ…‹ã‚’è¨­å®š
  *
- * @param	wk		FACTORY_BALLŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_BALLåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  * @param	sw		""
  *
  * @retval	none
@@ -207,9 +207,9 @@ void FactoryBall_SetDecideFlag( FACTORY_BALL* wk, u8 flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	Œˆ’è‚µ‚½ƒtƒ‰ƒO‚Ìó‘Ô‚ðŽæ“¾(ƒŒƒ“ƒ^ƒ‹ƒ‚[ƒhŽž‚µ‚©Žg—p•s‰Â)
+ * @brief	æ±ºå®šã—ãŸãƒ•ãƒ©ã‚°ã®çŠ¶æ…‹ã‚’å–å¾—(ãƒ¬ãƒ³ã‚¿ãƒ«ãƒ¢ãƒ¼ãƒ‰æ™‚ã—ã‹ä½¿ç”¨ä¸å¯)
  *
- * @param	wk		FACTORY_BALLŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_BALLåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	""
  */
@@ -221,16 +221,16 @@ u8 FactoryBall_GetDecideFlag( FACTORY_BALL* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
- * @param	wk		FACTORY_BALLŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_BALLåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	"FALSE = íœ‚µ‚Ä‚æ‚¢ATRUE = ‰½‚©‚µ‚ç‚Ìˆ—‚ðŒp‘±’†"
+ * @retval	"FALSE = å‰Šé™¤ã—ã¦ã‚ˆã„ã€TRUE = ä½•ã‹ã—ã‚‰ã®å‡¦ç†ã‚’ç¶™ç¶šä¸­"
  */
 //--------------------------------------------------------------
 BOOL FactoryBall_Main( FACTORY_BALL* wk )
 {
-	//ƒGƒ‰[‰ñ”ð
+	//ã‚¨ãƒ©ãƒ¼å›žé¿
 	//if( wk == NULL ){
 	//	return;
 	//}
@@ -240,9 +240,9 @@ BOOL FactoryBall_Main( FACTORY_BALL* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Œˆ’è‚µ‚½ó‘Ô‚É•ÏX
+ * @brief	æ±ºå®šã—ãŸçŠ¶æ…‹ã«å¤‰æ›´
  *
- * @param	factory_clact	FACTORY_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	factory_clact	FACTORY_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -255,9 +255,9 @@ void FactoryBall_Decide( FACTORY_BALL* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒLƒƒƒ“ƒZƒ‹ó‘Ô‚É•ÏX
+ * @brief	ã‚­ãƒ£ãƒ³ã‚»ãƒ«çŠ¶æ…‹ã«å¤‰æ›´
  *
- * @param	factory_clact	FACTORY_CLACTŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	factory_clact	FACTORY_CLACTåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	none
  */
@@ -270,11 +270,11 @@ void FactoryBall_Cancel( FACTORY_BALL* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	“üêˆÊ’u‚ÉƒZƒbƒg‚·‚é
+ * @brief	å…¥å ´ä½ç½®ã«ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param	wk		FACTORY_BALLŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_BALLåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return	"TRUE = “üêŠ®—¹AFALSE = ‚Ü‚¾"
+ * @return	"TRUE = å…¥å ´å®Œäº†ã€FALSE = ã¾ã "
  */
 //--------------------------------------------------------------
 void FactoryBall_Entrance( FACTORY_BALL* wk )
@@ -282,7 +282,7 @@ void FactoryBall_Entrance( FACTORY_BALL* wk )
 	VecFx32	vec;
 	const VecFx32* p_vec;
 
-	p_vec = FactoryBall_GetPos( wk );		//Œ»Ý‚ÌÀ•WŽæ“¾
+	p_vec = FactoryBall_GetPos( wk );		//ç¾åœ¨ã®åº§æ¨™å–å¾—
 
 	vec.x = ((p_vec->x / FX32_ONE)+FACTORY_BALL_OFFSET_X) * FX32_ONE;
 	vec.y = p_vec->y;
@@ -293,9 +293,9 @@ void FactoryBall_Entrance( FACTORY_BALL* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú XˆÊ’uŽæ“¾
+ * @brief	åˆæœŸ Xä½ç½®å–å¾—
  *
- * @param	wk		FACTORY_BALLŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_BALLåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"X"
  */
@@ -307,9 +307,9 @@ int FactoryBall_GetInitX( FACTORY_BALL* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú YˆÊ’uŽæ“¾
+ * @brief	åˆæœŸ Yä½ç½®å–å¾—
  *
- * @param	wk		FACTORY_BALLŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_BALLåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return	"X"
  */
@@ -321,12 +321,12 @@ int FactoryBall_GetInitY( FACTORY_BALL* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒ[ƒVƒ‡ƒ“’†‚©ƒ`ƒFƒbƒN
+ * @brief	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä¸­ã‹ãƒã‚§ãƒƒã‚¯
  *
- * @param	wk		FACTORY_BALLŒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_BALLåž‹ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval	TRUE	ƒAƒjƒ[ƒVƒ‡ƒ“’†
- * @retval	FALSE	ƒXƒgƒbƒv
+ * @retval	TRUE	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ä¸­
+ * @retval	FALSE	ã‚¹ãƒˆãƒƒãƒ—
  */
 //--------------------------------------------------------------
 BOOL FactoryBall_AnmActiveCheck( FACTORY_BALL* wk )
@@ -336,9 +336,9 @@ BOOL FactoryBall_AnmActiveCheck( FACTORY_BALL* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒØ‚è‘Ö‚¦
+ * @brief	ã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		FACTORY_BALLƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_BALLãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	"NULL"
  */
@@ -346,16 +346,16 @@ BOOL FactoryBall_AnmActiveCheck( FACTORY_BALL* wk )
 void FactoryBall_AnmChg( FACTORY_BALL* wk, u32 num )
 {
 	CLACT_SetAnmFrame( wk->p_clact, FX32_ONE );
-	//CLACT_AnmFrameSet( wk->p_clact, 0 );	//ƒAƒjƒ[ƒVƒ‡ƒ“ƒtƒŒ[ƒ€‚ðƒZƒbƒg
-	CLACT_AnmChg( wk->p_clact, num );		//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒV[ƒPƒ“ƒX‚ðƒ`ƒFƒ“ƒW‚·‚é
+	//CLACT_AnmFrameSet( wk->p_clact, 0 );	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ã‚»ãƒƒãƒˆ
+	CLACT_AnmChg( wk->p_clact, num );		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚’ãƒã‚§ãƒ³ã‚¸ã™ã‚‹
 	return;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒpƒŒƒbƒgØ‚è‘Ö‚¦
+ * @brief	ãƒ‘ãƒ¬ãƒƒãƒˆåˆ‡ã‚Šæ›¿ãˆ
  *
- * @param	wk		FACTORY_BALLƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
+ * @param	wk		FACTORY_BALLãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval	"NULL"
  */

@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	ending_cap_scene1.c
- * @brief	�L���v�`���V�[���P�F���C��
+ * @brief	キャプチャシーン１：メイン
  * @author	matsuda
- * @date	2008.04.12(�y)
+ * @date	2008.04.12(土)
  */
 //==============================================================================
 #include "common.h"
@@ -29,22 +29,22 @@
 
 
 //==============================================================================
-//	�萔��`
+//	定数定義
 //==============================================================================
-///���Ԗڂ܂ŃL���v�`���摜��\�����邩
+///何番目までキャプチャ画像を表示するか
 #define CAP_SCENE1_CAPTURE_NUM		(7)
-///�L���v�`���摜��؂�ւ���Ƃ��A�^���Âȉ�ʂł̑҂�����
+///キャプチャ画像を切り替えるとき、真っ暗な画面での待ち時間
 #define CAP_NEXT_WAIT				(30)
-///���t���[���Ԋu�ŃL���v�`���摜��ύX���Ă�����
+///何フレーム間隔でキャプチャ画像を変更していくか
 #define CAP_SCENE1_CHANGE_FRAME		((ENDING_COUNTER_CAP_SCENE1_END - ENDING_COUNTER_SCENE1_END - CAP_NEXT_WAIT * (CAP_SCENE1_CAPTURE_NUM-1)) / CAP_SCENE1_CAPTURE_NUM)
 
 
 //--------------------------------------------------------------
-//	�V�[��2�p
+//	シーン2用
 //--------------------------------------------------------------
-///���Ԗڂ܂ŃL���v�`���摜��\�����邩
+///何番目までキャプチャ画像を表示するか
 #define CAP_SCENE2_CAPTURE_NUM		(10)
-///���t���[���Ԋu�ŃL���v�`���摜��ύX���Ă�����
+///何フレーム間隔でキャプチャ画像を変更していくか
 #define CAP_SCENE2_CHANGE_FRAME		((ENDING_COUNTER_CAP_SCENE2_END - ENDING_COUNTER_SCENE2_END - CAP_NEXT_WAIT * (CAP_SCENE2_CAPTURE_NUM - CAP_SCENE1_CAPTURE_NUM-1)) / (CAP_SCENE2_CAPTURE_NUM - CAP_SCENE1_CAPTURE_NUM))
 
 
@@ -56,12 +56,12 @@
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   �V�[���P�F���C��
+ * @brief   シーン１：メイン
  *
- * @param   emw		�G���f�B���O���C�����[�N�ւ̃|�C���^
- * @param   sw		�V�[�����[�N�ւ̃|�C���^
+ * @param   emw		エンディングメインワークへのポインタ
+ * @param   sw		シーンワークへのポインタ
  *
- * @retval  TRUE:�I���B�@FALSE:�p����
+ * @retval  TRUE:終了。　FALSE:継続中
  */
 //--------------------------------------------------------------
 BOOL MapCapScene1_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw)
@@ -131,14 +131,14 @@ BOOL MapCapScene1_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw)
 
 //--------------------------------------------------------------
 /**
- * @brief   �V�[���Q�F���C��
+ * @brief   シーン２：メイン
  *
- * @param   emw		�G���f�B���O���C�����[�N�ւ̃|�C���^
- * @param   sw		�V�[�����[�N�ւ̃|�C���^
+ * @param   emw		エンディングメインワークへのポインタ
+ * @param   sw		シーンワークへのポインタ
  *
- * @retval  TRUE:�I���B�@FALSE:�p����
+ * @retval  TRUE:終了。　FALSE:継続中
  *
- * �V�[���P�ƈႤ�͎̂Q�Ƃ���CAP_SCENE1_CHANGE_FRAME, CAP_SCENE1_CAPTURE_NUM����
+ * シーン１と違うのは参照するCAP_SCENE1_CHANGE_FRAME, CAP_SCENE1_CAPTURE_NUMだけ
  */
 //--------------------------------------------------------------
 BOOL MapCapScene2_Main(ENDING_MAIN_WORK *emw, ENDING_SCENE_WORK *sw)

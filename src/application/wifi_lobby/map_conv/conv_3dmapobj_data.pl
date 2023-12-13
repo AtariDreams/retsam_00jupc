@@ -1,41 +1,41 @@
 ##################################################
 #		
-#	wflby_3dmapobj_data.dat‚©‚ç
-#	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^‚Ìƒe[ƒuƒ‹‚ðì¬‚·‚é
+#	wflby_3dmapobj_data.datã‹ã‚‰
+#	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã™ã‚‹
 #
 ##################################################
 
-@MODATA_FILE		= undef;		#ƒf[ƒ^ƒtƒ@ƒCƒ‹
-@GRA_NAIX_FILE		= undef;		#ƒOƒ‰ƒtƒBƒbƒNNAIXƒtƒ@ƒCƒ‹
-@OUTPUT_BUFF		= undef;		#‘‚«o‚·”Žš‚Ì”z—ñ
-$OUTPUT_BUFF_NUM	= 0;			#‘‚«o‚µƒoƒbƒtƒ@”
+@MODATA_FILE		= undef;		#ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«
+@GRA_NAIX_FILE		= undef;		#ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯NAIXãƒ•ã‚¡ã‚¤ãƒ«
+@OUTPUT_BUFF		= undef;		#æ›¸ãå‡ºã™æ•°å­—ã®é…åˆ—
+$OUTPUT_BUFF_NUM	= 0;			#æ›¸ãå‡ºã—ãƒãƒƒãƒ•ã‚¡æ•°
 
-$OUTPUT_STRUCT_MEMBER_NUM	= 109;	#‘‚«o‚·\‘¢‘Ì‚Ìƒƒ“ƒo”
+$OUTPUT_STRUCT_MEMBER_NUM	= 109;	#æ›¸ãå‡ºã™æ§‹é€ ä½“ã®ãƒ¡ãƒ³ãƒæ•°
 
-######“Ç‚Ýž‚Ýƒtƒ@ƒCƒ‹
+######èª­ã¿è¾¼ã¿ãƒ•ã‚¡ã‚¤ãƒ«
 $INPUT_MODATA		= "wflby_3dmapobj_data.c";
 $INPUT_NAIX			= "wifi_lobby.naix";
 $OUTPUT_FILE		= "wflby_3dmapobj_data";
 
 
 
-#ƒtƒ@ƒCƒ‹‚ðŠJ‚­
+#ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 &file_open();
 
-#NARC’è‹`•”•ª‚Ì”z—ñ‚ðì¬‚·‚é
+#NARCå®šç¾©éƒ¨åˆ†ã®é…åˆ—ã‚’ä½œæˆã™ã‚‹
 $return = &makeoutput_buff();
 if( $return == -1 ){
 	exit(1);
 }
 
 
-#‡”Ô‚É‘‚«o‚·
+#é †ç•ªã«æ›¸ãå‡ºã™
 &output_data();
 
 exit(0);
 
 
-#ƒtƒ@ƒCƒ‹‚ðŠJ‚­
+#ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
 sub file_open{
 	open( FILEIN, $INPUT_MODATA );
 	@MODATA_FILE = <FILEIN>;
@@ -46,7 +46,7 @@ sub file_open{
 	close( FILEIN );
 }
 
-#OUTPUT_BUFF‚ðì¬‚·‚é
+#OUTPUT_BUFFã‚’ä½œæˆã™ã‚‹
 sub makeoutput_buff{
 
 	my( $dat );
@@ -54,20 +54,20 @@ sub makeoutput_buff{
 	$OUTPUT_BUFF_NUM = 0;
 	
 	foreach $one ( @MODATA_FILE ){
-		#ƒXƒy[ƒXAƒ^ƒuA,\r\n‚ð”rœ
+		#ã‚¹ãƒšãƒ¼ã‚¹ã€ã‚¿ãƒ–ã€,\r\nã‚’æŽ’é™¤
 		$one =~ s/[\s\t,\r\n]//g;
 
-		#NARC‚ª•¶Žš“à‚É“ü‚Á‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+		#NARCãŒæ–‡å­—å†…ã«å…¥ã£ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 		if( $one =~ /NARC/ ){
-			#”Žš‚É•ÏŠ·‚µ‚Ä”z—ñ‚ÉŠi”[‚·‚é
+			#æ•°å­—ã«å¤‰æ›ã—ã¦é…åˆ—ã«æ ¼ç´ã™ã‚‹
 			$dat = &naix_idx_get( $one );
 			if( $dat >= 0 ){
 				$OUTPUT_BUFF[ $OUTPUT_BUFF_NUM ] = $dat;
 				$OUTPUT_BUFF_NUM ++;
 			}else{
-				return -1;	#’è‹`‚ª‚È‚¢
+				return -1;	#å®šç¾©ãŒãªã„
 			}
-		#”Žš‚ª•¶Žš—ñ“à‚É‚Í‚¢‚Á‚Ä‚¢‚È‚¢‚©ƒ`ƒFƒbƒN
+		#æ•°å­—ãŒæ–‡å­—åˆ—å†…ã«ã¯ã„ã£ã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
 		}elsif( $one =~ /^([0-9]+)/ ){
 			$OUTPUT_BUFF[ $OUTPUT_BUFF_NUM ] = $1;
 			$OUTPUT_BUFF_NUM ++;
@@ -75,7 +75,7 @@ sub makeoutput_buff{
 	}
 }
 
-#NARC‚Ì’è‹`‚Ì”Žš‚ð•Ô‚·
+#NARCã®å®šç¾©ã®æ•°å­—ã‚’è¿”ã™
 sub naix_idx_get{
 	my( $word ) = @_;
 	my( $count );
@@ -91,12 +91,12 @@ sub naix_idx_get{
 		$count ++;
 	}
 
-	print( "$word‚ª‚ ‚è‚Ü‚¹‚ñ\n" );
+	print( "$wordãŒã‚ã‚Šã¾ã›ã‚“\n" );
 	return -1;
 }
 
-#ƒtƒ@ƒCƒ‹‚ð‘‚«o‚·
-#‚P‚Â‚Ìƒf[ƒ^‚Í‚U‚Â‚Åo—ˆ‚Ä‚¢‚é‚Ì‚ÅA‚»‚ê‚²‚Æ‚É‘‚«o‚·
+#ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ›¸ãå‡ºã™
+#ï¼‘ã¤ã®ãƒ‡ãƒ¼ã‚¿ã¯ï¼–ã¤ã§å‡ºæ¥ã¦ã„ã‚‹ã®ã§ã€ãã‚Œã”ã¨ã«æ›¸ãå‡ºã™
 sub output_data{
 
 	my($i, $j, $idx, $count, $outfile_no, $outfile_num);

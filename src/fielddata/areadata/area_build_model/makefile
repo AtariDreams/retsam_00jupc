@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  ƒGƒŠƒA”z’uƒf[ƒ^ì¬
+# Project:  ã‚¨ãƒªã‚¢é…ç½®ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 # File:     Makefile
 #
 # Copyright 2005 GameFreak.inc  All rights reserved.
@@ -45,14 +45,14 @@ OBJTMP_IMD		= $(subst tmp/,,$(OBJTMP_IMDP))
 
 
 #----------------------------------------------------------------------------
-#	‚bƒ\[ƒX¨ƒoƒCƒiƒŠ•ÏŠ·‚ğ‰Â”\‚É‚·‚é‚½‚ß‚Ìİ’è
+#	ï¼£ã‚½ãƒ¼ã‚¹â†’ãƒã‚¤ãƒŠãƒªå¤‰æ›ã‚’å¯èƒ½ã«ã™ã‚‹ãŸã‚ã®è¨­å®š
 #----------------------------------------------------------------------------
 include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
 include g3_texlist
 
-#‹¤’Ê•Ï”’è‹`
+#å…±é€šå¤‰æ•°å®šç¾©
 include $(DP_ROOT)/commondefs.GF
 
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
@@ -62,7 +62,7 @@ include $(AREA_TABLE)
 #----------------------------------------------------------------------------
 #
 #----------------------------------------------------------------------------
-#Make‚Å¶¬‚³‚ê‚é*.bin‚Ímake clean‚Ìíœ‘ÎÛ‚É‚·‚é
+#Makeã§ç”Ÿæˆã•ã‚Œã‚‹*.binã¯make cleanã®å‰Šé™¤å¯¾è±¡ã«ã™ã‚‹
 LDIRT_CLEAN	= $(TARGET_ARC) $(BMTMP_DATP) $(BMTMP_BLFP) $(BMTMP_IMDP) $(BMTMP_BTXP) $(OBJTSET_ARC) $(OBJTSET_ARCI) $(OBJTSET_ARCLIST)
 
 LINCLUDES		= $(NITROSDK_ROOT)/include
@@ -71,7 +71,7 @@ LINCLUDES		+= $(DP_ROOT)/src/field
 LINCLUDES	+= $(dir $<)
 
 #----------------------------------------------------------------------------
-#	ƒc[ƒ‹‚Ö‚ÌƒpƒXw’è
+#	ãƒ„ãƒ¼ãƒ«ã¸ã®ãƒ‘ã‚¹æŒ‡å®š
 #----------------------------------------------------------------------------
 CSVCVTR	= $(DP_ROOT)/convert/exceltool/excelcommaconv.exe
 BMLISTCVTR	= $(DP_ROOT)/convert/mblist/mblistcmd.exe
@@ -87,56 +87,56 @@ G3DCVTR	= $(NITROSYSTEM_ROOT)/tools/win/bin/g3dcvtr.exe
 
 #----------------------------------------------------------------------------
 #
-#	ƒ‹[ƒ‹’è‹`
+#	ãƒ«ãƒ¼ãƒ«å®šç¾©
 #
 #----------------------------------------------------------------------------
 do-build: $(TARGET_ARC) $(OBJTSET_ARC)
 
 $(TARGET_ARC): $(ARCLIST) $(BUILD_MODEL) $(AREABM_LIST)
-	$(MAKE) csvconvert			#cvsƒRƒ“ƒo[ƒg
-	$(MAKE) bmlistcvtr			#ƒGƒŠƒA”z’uƒ‚ƒfƒ‹ƒŠƒXƒgƒf[ƒ^ƒRƒ“ƒo[ƒg
-	$(MAKE) makearc				#ƒGƒŠƒA“à”z’uƒ‚ƒfƒ‹ƒA[ƒJƒCƒu
+	$(MAKE) csvconvert			#cvsã‚³ãƒ³ãƒãƒ¼ãƒˆ
+	$(MAKE) bmlistcvtr			#ã‚¨ãƒªã‚¢é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒªã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+	$(MAKE) makearc				#ã‚¨ãƒªã‚¢å†…é…ç½®ãƒ¢ãƒ‡ãƒ«ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 
 $(OBJTSET_ARC):	$(BMTMP_TXTP) $(BUILD_MODEL_ARC)
-	$(MAKE) texset				#ƒGƒŠƒA”z’uƒ‚ƒfƒ‹ƒeƒNƒXƒ`ƒƒƒZƒbƒg¶¬
-#	$(MAKE) deltmpfile			#ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹íœ
+	$(MAKE) texset				#ã‚¨ãƒªã‚¢é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆç”Ÿæˆ
+#	$(MAKE) deltmpfile			#ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«å‰Šé™¤
 
-#ƒA[ƒJƒCƒuì¬
+#ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ä½œæˆ
 makearc:
 	nnsarc -i -c -l -n $(TARGET_ARC) -S $(ARCLIST)  > arc_result.txt
 
-#XLS‚ğCSV‚É•ÏŠ·
+#XLSã‚’CSVã«å¤‰æ›
 csvconvert:	$(AREABM_LIST:.xls=.msd)
 
-#ƒGƒŠƒA”z’uƒ‚ƒfƒ‹ƒeƒNƒXƒ`ƒƒƒZƒbƒg¶¬
+#ã‚¨ãƒªã‚¢é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆç”Ÿæˆ
 areaimd_texset:
 	ruby $(AREAIMD_CVTR) $(BUILD_MODEL) $(ARCLIST) $(OBJTSET_ARCLIST) $(TEXMAG_EXE) $(IMD_PATH) $(TEXSET_DMY)
 #	-rm $(OBJTMP_IMD)
 
-#ƒGƒŠƒA”z’uƒ‚ƒfƒ‹ƒeƒNƒXƒ`ƒƒƒZƒbƒgƒoƒCƒiƒŠ•ÏŠ·
+#ã‚¨ãƒªã‚¢é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆãƒã‚¤ãƒŠãƒªå¤‰æ›
 texset_cmv: $(OBJ_TEXSET:.imd=.nsbtx)
 
-#ƒGƒŠƒA”z’uƒ‚ƒfƒ‹ƒeƒNƒXƒ`ƒƒƒZƒbƒgƒoƒCƒiƒŠƒA[ƒJƒCƒu
+#ã‚¨ãƒªã‚¢é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆãƒã‚¤ãƒŠãƒªã‚¢ãƒ¼ã‚«ã‚¤ãƒ–
 texarc:
 	nnsarc -i -c -l -n $(OBJTSET_ARC) -S $(OBJTSET_ARCLIST) > arcres_tset.txt
 #	-rm $(OBJ_TEXSET) $(OBJ_ARCSET)
 
-#ƒGƒŠƒA”z’uƒ‚ƒfƒ‹ƒeƒNƒXƒ`ƒƒƒZƒbƒg¶¬Only
+#ã‚¨ãƒªã‚¢é…ç½®ãƒ¢ãƒ‡ãƒ«ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆç”ŸæˆOnly
 texset:
 	-$(RM) $(OBJTSET_ARC) $(OBJTSET_ARCI) $(OBJTSET_ARCLIST) $(BMTMP_IMDP) $(BMTMP_BTXP)
 	$(MAKE) areaimd_texset
 	$(MAKE) texset_cmv
 	$(MAKE) texarc
 
-#dat,blfƒtƒ@ƒCƒ‹ì¬
+#dat,blfãƒ•ã‚¡ã‚¤ãƒ«ä½œæˆ
 bmlistcvtr:
 	$(BMLISTCVTR) -m $(BUILD_MODEL) -o $(AREABM_TMPD) $(AREABM_LIST:.xls=.txt)
 
-#ƒeƒ“ƒ|ƒ‰ƒŠƒtƒ@ƒCƒ‹íœ
+#ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«å‰Šé™¤
 deltmpfile:
 	-rm $(BMTMP_TXTP)	
 	
-#•ÊƒfƒBƒŒƒNƒgƒŠbuild_model‚É‚ ‚éˆË‘¶ƒtƒ@ƒCƒ‹‚ª‚È‚¯‚ê‚Î¶¬
+#åˆ¥ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªbuild_modelã«ã‚ã‚‹ä¾å­˜ãƒ•ã‚¡ã‚¤ãƒ«ãŒãªã‘ã‚Œã°ç”Ÿæˆ
 $(BUILD_MODEL):
 	$(CSVCVTR) $(BUILD_MODEL:.txt=.xls)
 

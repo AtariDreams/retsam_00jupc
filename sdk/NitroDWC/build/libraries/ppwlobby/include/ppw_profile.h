@@ -14,7 +14,7 @@
 /**
  * @file
  *
- * @brief ƒ|ƒPƒ‚ƒ“ƒƒr[ƒ‰ƒCƒuƒ‰ƒŠ “à•”ŒöŠJƒwƒbƒ_
+ * @brief ãƒã‚±ãƒ¢ãƒ³ãƒ­ãƒ“ãƒ¼ãƒ©ã‚¤ãƒ–ãƒ©ãƒª å†…éƒ¨å…¬é–‹ãƒ˜ãƒƒãƒ€
  */
 
 #ifndef PPW_PROFILE_H_
@@ -23,22 +23,22 @@
 #include "dwci_lobbyData.h"
 class PPW_Lobby;
 
-// TODO: ©•ª‚Ìî•ñ‚Æ‘¼l‚Ìî•ñ‚ğ•ÊƒNƒ‰ƒX‚É‚·‚é
+// TODO: è‡ªåˆ†ã®æƒ…å ±ã¨ä»–äººã®æƒ…å ±ã‚’åˆ¥ã‚¯ãƒ©ã‚¹ã«ã™ã‚‹
 class PPW_LobbyInnerProfile : public DWCi_Base
 {
 public:
-    // ƒf[ƒ^Œ^’è‹`
-    // ƒVƒXƒeƒ€’è‹`ƒvƒƒtƒB[ƒ‹
+    // ãƒ‡ãƒ¼ã‚¿å‹å®šç¾©
+    // ã‚·ã‚¹ãƒ†ãƒ å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
     struct SystemProfile
     {
-        // ©“®“I‚É‘—óM‚·‚éƒVƒXƒeƒ€ŠÇ—î•ñ
-        // Q‰Á‚µ‚Ä‚¢‚éƒTƒuƒ`ƒƒƒ“ƒlƒ‹
+        // è‡ªå‹•çš„ã«é€å—ä¿¡ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ ç®¡ç†æƒ…å ±
+        // å‚åŠ ã—ã¦ã„ã‚‹ã‚µãƒ–ãƒãƒ£ãƒ³ãƒãƒ«
         PPW_LOBBY_CHANNEL_KIND subChannelKind;
         
-        // ƒƒr[‚É“ü‚Á‚½
+        // ãƒ­ãƒ“ãƒ¼ã«å…¥ã£ãŸæ™‚åˆ»
         s64 enterTime;
         
-        // ƒƒCƒ“ƒ`ƒƒƒ“ƒlƒ‹‚É“ü‚é€”õ‚ªŠ®—¹‚µ‚½‚©
+        // ãƒ¡ã‚¤ãƒ³ãƒãƒ£ãƒ³ãƒãƒ«ã«å…¥ã‚‹æº–å‚™ãŒå®Œäº†ã—ãŸã‹
         BOOL ready;
         
         SystemProfile()
@@ -49,7 +49,7 @@ public:
             enterTime = DWCi_Np_GetCurrentSecondByUTC();
         }
         
-        // ”äŠr‰‰Zq
+        // æ¯”è¼ƒæ¼”ç®—å­
         bool operator==(const SystemProfile& rhs) const
         {
             return memcmp(this, &rhs, sizeof(*this)) == 0;
@@ -64,7 +64,7 @@ public:
         }
     };
     
-    // ƒ†[ƒU’è‹`ƒf[ƒ^
+    // ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ‡ãƒ¼ã‚¿
     struct UserProfile
     {
         typedef std::vector<u8, DWCi_Allocator<u8> > DataType;
@@ -74,43 +74,43 @@ public:
             : data()
         {}
         
-        // ƒoƒCƒg—ñ‚©‚ç‚Ì¶¬
+        // ãƒã‚¤ãƒˆåˆ—ã‹ã‚‰ã®ç”Ÿæˆ
         UserProfile(const u8* _userProfile, u32 _userProfileSize)
         {
             data.assign(_userProfile, _userProfile + _userProfileSize);
         }
         
-        // ”äŠr‰‰Zq
+        // æ¯”è¼ƒæ¼”ç®—å­
         bool operator==(const UserProfile& rhs) const
         {
             return data.size() == rhs.data.size() && (data.empty() || memcmp(DWCi_GetVectorBuffer(data), DWCi_GetVectorBuffer(rhs.data), data.size()) == 0);
         }
     };
-    // ƒvƒƒtƒB[ƒ‹‚Ìó‘Ô
+    // ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®çŠ¶æ…‹
     enum STATE
     {
-        STATE_PREPARING,    // €”õ’†
-        STATE_DATARECVED,   // ƒf[ƒ^æ“¾Ï‚İ
-        STATE_READY,        // ƒf[ƒ^æ“¾Ï‚İ‚©‚Â€”õŠ®—¹óMÏ‚İ
-        STATE_ACTIVATED     // Ú‘±Š®—¹ƒR[ƒ‹ƒoƒbƒNƒR[ƒ‹Ï‚İ
+        STATE_PREPARING,    // æº–å‚™ä¸­
+        STATE_DATARECVED,   // ãƒ‡ãƒ¼ã‚¿å–å¾—æ¸ˆã¿
+        STATE_READY,        // ãƒ‡ãƒ¼ã‚¿å–å¾—æ¸ˆã¿ã‹ã¤æº–å‚™å®Œäº†å—ä¿¡æ¸ˆã¿
+        STATE_ACTIVATED     // æ¥ç¶šå®Œäº†ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚³ãƒ¼ãƒ«æ¸ˆã¿
     };
 private:
-    // ©“®“I‚É‘—óM‚·‚éƒVƒXƒeƒ€’è‹`ƒvƒƒtƒB[ƒ‹
+    // è‡ªå‹•çš„ã«é€å—ä¿¡ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
     DWCi_ChangeDetectable<SystemProfile> systemProfile;
     
-    // ©“®“I‚É‘—óM‚·‚éƒ†[ƒU’è‹`ƒvƒƒtƒB[ƒ‹
+    // è‡ªå‹•çš„ã«é€å—ä¿¡ã™ã‚‹ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
     DWCi_ChangeDetectable<UserProfile> userProfile;
     
     
-    // “à•”ˆ——pƒf[ƒ^
+    // å†…éƒ¨å‡¦ç†ç”¨ãƒ‡ãƒ¼ã‚¿
     
-    // ƒvƒƒtƒB[ƒ‹î•ñ“o˜^ó‹µ
+    // ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«æƒ…å ±ç™»éŒ²çŠ¶æ³
     STATE state;
     
-    // ƒ†ƒj[ƒNID
+    // ãƒ¦ãƒ‹ãƒ¼ã‚¯ID
     s32 pid;
     
-    // ‰Šú‰»‚³‚ê‚½‚©ƒ`ƒFƒbƒN—p
+    // åˆæœŸåŒ–ã•ã‚ŒãŸã‹ãƒã‚§ãƒƒã‚¯ç”¨
     BOOL systemProfileInitialized;
     BOOL userProfileInitialized;
     BOOL activated;
@@ -130,13 +130,13 @@ public:
     
     virtual ~PPW_LobbyInnerProfile(){};
     
-    // ”äŠr‰‰Zq
+    // æ¯”è¼ƒæ¼”ç®—å­
     bool operator<(const PPW_LobbyInnerProfile& rhs) const
     {
         return pid < rhs.pid;
     }
     
-    // find_if—pŠÖ”ƒIƒuƒWƒFƒNƒg
+    // find_ifç”¨é–¢æ•°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     struct Equal : public std::unary_function<PPW_LobbyInnerProfile*, bool>
     {
         const s32 pid;
@@ -151,11 +151,11 @@ public:
     };
 
     /** 
-     * @brief ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‹y‚ÑƒVƒXƒeƒ€‚ªî•ñ‚ğƒZƒbƒg‚µ‚Ü‚·B
+     * @brief ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åŠã³ã‚·ã‚¹ãƒ†ãƒ ãŒæƒ…å ±ã‚’ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
      * 
-     * @param[in] _userProfile ƒ†[ƒU’è‹`ƒvƒƒtƒB[ƒ‹ƒf[ƒ^B
-     * @param[in] _userProfileSize ƒ†[ƒU’è‹`ƒvƒƒtƒB[ƒ‹‚ÌŒÂ”B
-     * @param[in] force ‹­§“I‚É‘—M‚·‚é‚©B
+     * @param[in] _userProfile ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã€‚
+     * @param[in] _userProfileSize ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®å€‹æ•°ã€‚
+     * @param[in] force å¼·åˆ¶çš„ã«é€ä¿¡ã™ã‚‹ã‹ã€‚
      */
     void SetUserProfile(const u8* _userProfile, u32 _userProfileSize, BOOL force=FALSE)
     {
@@ -165,20 +165,20 @@ public:
     }
     
     /** 
-     * @brief ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ªî•ñ‚ğæ“¾‚µ‚Ü‚·B
+     * @brief ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãŒæƒ…å ±ã‚’å–å¾—ã—ã¾ã™ã€‚
      * 
-     * @param[in] _userProfile ƒ†[ƒU’è‹`ƒvƒƒtƒB[ƒ‹ƒf[ƒ^B
-     * @param[in] _userProfileSize ƒ†[ƒU’è‹`ƒvƒƒtƒB[ƒ‹‚ÌŒÂ”B
+     * @param[in] _userProfile ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‡ãƒ¼ã‚¿ã€‚
+     * @param[in] _userProfileSize ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã®å€‹æ•°ã€‚
      * 
-     * @retval TRUEB
-     * @retval FALSEB
+     * @retval TRUEã€‚
+     * @retval FALSEã€‚
      */
     BOOL GetUserProfile(u8* _userProfile, u32* _userProfileSize) const
     {
         UserProfile::DataType data = userProfile.Get().data;
         u32 orgSize = *_userProfileSize;
         
-        // ³‚µ‚¢ƒTƒCƒY‚ğ“`‚¦‚é
+        // æ­£ã—ã„ã‚µã‚¤ã‚ºã‚’ä¼ãˆã‚‹
         *_userProfileSize = data.size();
         
         if(*_userProfileSize == 0)
@@ -195,9 +195,9 @@ public:
     }
     
     /** 
-     * @brief ƒ†[ƒU’è‹`ƒvƒƒtƒB[ƒ‹‚ğ•ÏXŠm”F‚¹‚¸‚Éæ“¾‚µ‚Ü‚·B
+     * @brief ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å¤‰æ›´ç¢ºèªã›ãšã«å–å¾—ã—ã¾ã™ã€‚
      * 
-     * @retval ƒ†[ƒU’è‹`ƒvƒƒtƒB[ƒ‹B
+     * @retval ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã€‚
      */
     const UserProfile& GetUserProfile() const
     {
@@ -205,9 +205,9 @@ public:
     }
     
     /** 
-     * @brief  ƒ†[ƒUƒf[ƒ^‚ğ•ÏXŠm”FAæ“¾‚µ‚Ü‚·B
+     * @brief  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã‚’å¤‰æ›´ç¢ºèªã€å–å¾—ã—ã¾ã™ã€‚
      * 
-     * @retval ƒ†[ƒU’è‹`ƒvƒƒtƒB[ƒ‹B
+     * @retval ãƒ¦ãƒ¼ã‚¶å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã€‚
      */
     const UserProfile& GetUserProfileConfirm() const
     {
@@ -215,10 +215,10 @@ public:
     }
     
     /** 
-     * @brief  ƒ†[ƒUƒf[ƒ^‚ªXV‚³‚ê‚½‚©‚ğ’²‚×‚Ü‚·B
+     * @brief  ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ãŒæ›´æ–°ã•ã‚ŒãŸã‹ã‚’èª¿ã¹ã¾ã™ã€‚
      * 
-     * @retval TRUE XV‚³‚ê‚Ä‚¢‚éB
-     * @retval FALSE XV‚³‚ê‚Ä‚¢‚È‚¢B
+     * @retval TRUE æ›´æ–°ã•ã‚Œã¦ã„ã‚‹ã€‚
+     * @retval FALSE æ›´æ–°ã•ã‚Œã¦ã„ãªã„ã€‚
      */
     BOOL IsUserProfileUpdated() const
     {
@@ -226,9 +226,9 @@ public:
     }
     
     /** 
-     * @brief  ƒVƒXƒeƒ€’è‹`ƒvƒƒtƒB[ƒ‹‚ğ‘S‚ÄƒZƒbƒg‚µ‚Ü‚·B
+     * @brief  ã‚·ã‚¹ãƒ†ãƒ å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å…¨ã¦ã‚»ãƒƒãƒˆã—ã¾ã™ã€‚
      * 
-     * @param _systemProfile ƒVƒXƒeƒ€’è‹`ƒvƒƒtƒB[ƒ‹
+     * @param _systemProfile ã‚·ã‚¹ãƒ†ãƒ å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«
      */
     void SetSystemProfile(const SystemProfile& _systemProfile)
     {
@@ -237,9 +237,9 @@ public:
     }
     
     /** 
-     * @brief ƒVƒXƒeƒ€’è‹`ƒvƒƒtƒB[ƒ‹‚ğ•ÏXŠm”F‚¹‚¸‚Éæ“¾‚µ‚Ü‚·B
+     * @brief ã‚·ã‚¹ãƒ†ãƒ å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å¤‰æ›´ç¢ºèªã›ãšã«å–å¾—ã—ã¾ã™ã€‚
      * 
-     * @retval ƒVƒXƒeƒ€’è‹`ƒvƒƒtƒB[ƒ‹B
+     * @retval ã‚·ã‚¹ãƒ†ãƒ å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã€‚
      */
     const SystemProfile& GetSystemProfile() const
     {
@@ -247,9 +247,9 @@ public:
     }
     
     /** 
-     * @brief ƒVƒXƒeƒ€’è‹`ƒvƒƒtƒB[ƒ‹‚ğ•ÏXŠm”FAæ“¾‚µ‚Ü‚·B
+     * @brief ã‚·ã‚¹ãƒ†ãƒ å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å¤‰æ›´ç¢ºèªã€å–å¾—ã—ã¾ã™ã€‚
      * 
-     * @retval ƒVƒXƒeƒ€’è‹`ƒvƒƒtƒB[ƒ‹B
+     * @retval ã‚·ã‚¹ãƒ†ãƒ å®šç¾©ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã€‚
      */
     const SystemProfile& GetSystemProfileConfirm() const
     {
@@ -257,10 +257,10 @@ public:
     }
     
     /** 
-     * @brief ƒVƒXƒeƒ€ƒf[ƒ^‚ªXV‚³‚ê‚½‚©‚ğ’²‚×‚Ü‚·B
+     * @brief ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ãŒæ›´æ–°ã•ã‚ŒãŸã‹ã‚’èª¿ã¹ã¾ã™ã€‚
      * 
-     * @retval TRUE XV‚³‚ê‚Ä‚¢‚éB
-     * @retval FALSE XV‚³‚ê‚Ä‚¢‚È‚¢B
+     * @retval TRUE æ›´æ–°ã•ã‚Œã¦ã„ã‚‹ã€‚
+     * @retval FALSE æ›´æ–°ã•ã‚Œã¦ã„ãªã„ã€‚
      */
     BOOL IsSystemProfileUpdated() const
     {
@@ -268,7 +268,7 @@ public:
     }
     
     /** 
-     * @brief ƒ†[ƒUÚ‘±ƒR[ƒ‹ƒoƒbƒN‚ğŒÄ‚ñ‚¾‚±‚Æ‚ğ‹L˜^‚µ‚Ü‚·B
+     * @brief ãƒ¦ãƒ¼ã‚¶æ¥ç¶šã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’å‘¼ã‚“ã ã“ã¨ã‚’è¨˜éŒ²ã—ã¾ã™ã€‚
      */
     void Activate()
     {
@@ -276,10 +276,10 @@ public:
     }
     
     /** 
-     * @brief ƒ†[ƒUÚ‘±ƒR[ƒ‹ƒoƒbƒN‚ğƒR[ƒ‹Ï‚İ‚©‚ğ’²‚×‚Ü‚·B
+     * @brief ãƒ¦ãƒ¼ã‚¶æ¥ç¶šã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’ã‚³ãƒ¼ãƒ«æ¸ˆã¿ã‹ã‚’èª¿ã¹ã¾ã™ã€‚
      * 
-     * @retval TRUE ŒÄ‚ñ‚¾B
-     * @retval FALSE ‚Ü‚¾B
+     * @retval TRUE å‘¼ã‚“ã ã€‚
+     * @retval FALSE ã¾ã ã€‚
      */
     BOOL IsActivated() const
     {
@@ -287,9 +287,9 @@ public:
     }
     
     /** 
-     * @brief ó‘Ô‚ğæ“¾‚µ‚Ü‚·B
+     * @brief çŠ¶æ…‹ã‚’å–å¾—ã—ã¾ã™ã€‚
      * 
-     * @retval ƒXƒe[ƒgB
+     * @retval ã‚¹ãƒ†ãƒ¼ãƒˆã€‚
      */
     STATE GetState() const
     {
@@ -297,9 +297,9 @@ public:
     }
     
     /** 
-     * @brief pid‚ğæ“¾‚µ‚Ü‚·B
+     * @brief pidã‚’å–å¾—ã—ã¾ã™ã€‚
      * 
-     * @retval pidB
+     * @retval pidã€‚
      */
     s32 GetPid() const
     {
@@ -307,10 +307,10 @@ public:
     }
     
     /** 
-     * @brief ƒ†[ƒUƒf[ƒ^‚ÆƒVƒXƒeƒ€ƒf[ƒ^‚ğ‚·‚Å‚ÉóMÏ‚İ‚©B
+     * @brief ãƒ¦ãƒ¼ã‚¶ãƒ‡ãƒ¼ã‚¿ã¨ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ã™ã§ã«å—ä¿¡æ¸ˆã¿ã‹ã€‚
      * 
-     * @retval TRUE óMÏ‚İB
-     * @retval FALSE ‚Ü‚¾B
+     * @retval TRUE å—ä¿¡æ¸ˆã¿ã€‚
+     * @retval FALSE ã¾ã ã€‚
      */
     bool IsDataRecved() const
     {
@@ -336,10 +336,10 @@ public:
     }
     
     /** 
-     * @brief w’è‚µ‚½ƒ†[ƒU‚ªActivate‚³‚ê‚Ä‚¢‚é‚©’²‚×‚Ü‚·B
+     * @brief æŒ‡å®šã—ãŸãƒ¦ãƒ¼ã‚¶ãŒActivateã•ã‚Œã¦ã„ã‚‹ã‹èª¿ã¹ã¾ã™ã€‚
      * 
-     * @retval TRUE ƒAƒNƒeƒBƒx[ƒgÏ‚İB
-     * @retval FALSE ‚Ü‚¾B
+     * @retval TRUE ã‚¢ã‚¯ãƒ†ã‚£ãƒ™ãƒ¼ãƒˆæ¸ˆã¿ã€‚
+     * @retval FALSE ã¾ã ã€‚
      */
     BOOL IsActivatedProfile(s32 id)
     {
@@ -348,9 +348,9 @@ public:
     }
     
     /** 
-     * @brief ©•ª‚ÌƒvƒƒtƒB[ƒ‹‚ğæ“¾‚·‚éB
+     * @brief è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã‚’å–å¾—ã™ã‚‹ã€‚
      * 
-     * @retval ©•ª‚ÌƒvƒƒtƒB[ƒ‹B
+     * @retval è‡ªåˆ†ã®ãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«ã€‚
      */
     PPW_LobbyInnerProfile& GetMyProfile()
     {

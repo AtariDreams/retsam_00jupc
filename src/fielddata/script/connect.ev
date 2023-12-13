@@ -1,6 +1,6 @@
 //====================================================================
 //							connect
-//						’ÊMƒXƒNƒŠƒvƒg
+//						é€šä¿¡ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 //====================================================================
 
 	.text
@@ -9,7 +9,7 @@
 	.include	"../../../include/msgdata/msg_connect.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_connect_obj_change
 _EVENT_DATA		ev_connect_colosseum
@@ -28,18 +28,18 @@ _EVENT_DATA		ev_connect_union_return
 _EVENT_DATA		ev_connect_record_return
 _EVENT_DATA		ev_connect_wifi_return
 _EVENT_DATA		ev_connect_dame_tamago_msg
-_EVENT_DATA_END						//I—¹
+_EVENT_DATA_END						//çµ‚äº†
 
 
 /********************************************************************/
 /*						OBJ_CHANGE_LABEL 							*/
 /********************************************************************/
 ev_connect_obj_change:
-	//’ÊM•”‰®‚©‚ço‚Ä‚­‚é‚ÍålŒö‚ğƒoƒjƒbƒVƒ…‚·‚é
+	//é€šä¿¡éƒ¨å±‹ã‹ã‚‰å‡ºã¦ãã‚‹æ™‚ã¯ä¸»äººå…¬ã‚’ãƒãƒ‹ãƒƒã‚·ãƒ¥ã™ã‚‹
 	_IFVAL_CALL		WK_SCENE_COMM_ID,NE,SCR_COMM_ID_NOTHING,ev_connect_obj_change_vanish
 	_END
 
-//ƒI[ƒvƒjƒ“ƒO‰ïê‚ÅålŒö‚ğƒoƒjƒbƒVƒ…‚·‚é
+//ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ä¼šå ´ã§ä¸»äººå…¬ã‚’ãƒãƒ‹ãƒƒã‚·ãƒ¥ã™ã‚‹
 ev_connect_obj_change_vanish:
 	_OBJ_INVISIBLE	FLDOBJ_ID_PLAYER
 	_RET
@@ -47,11 +47,11 @@ ev_connect_obj_change_vanish:
 
 /********************************************************************/
 //
-/*					’ÊM•”‰®‚©‚ç–ß‚Á‚Ä‚­‚éˆ—						*/
+/*					é€šä¿¡éƒ¨å±‹ã‹ã‚‰æˆ»ã£ã¦ãã‚‹å‡¦ç†						*/
 //
-//	LOCALWORK0	ƒJƒEƒ“ƒ^[X
-//	LOCALWORK1	ƒJƒEƒ“ƒ^[Z
-//	LOCALWORK2	•”‰®‚ÌƒhƒAZ
+//	LOCALWORK0	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼X
+//	LOCALWORK1	ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼Z
+//	LOCALWORK2	éƒ¨å±‹ã®ãƒ‰ã‚¢Z
 //
 /********************************************************************/
 ev_connect_record_return:
@@ -70,11 +70,11 @@ ev_connect_union_return:
 	_JUMP			common_connect_return
 	_END
 
-/*‹¤’Ê•œ‹Aˆ—*/
+/*å…±é€šå¾©å¸°å‡¦ç†*/
 common_connect_return:
 	_EVENT_START
 
-	//’ÊM•”‰®‚ÌƒhƒA‚ªŠJ‚­
+	//é€šä¿¡éƒ¨å±‹ã®ãƒ‰ã‚¢ãŒé–‹ã
 	_SET_UP_DOOR_ANIME	0,0,LOCALWORK0,LOCALWORK2,77
 	_CALL			connect_door_open
 	_OBJ_VISIBLE	FLDOBJ_ID_PLAYER
@@ -85,21 +85,21 @@ common_connect_return:
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_connect_return_player_01
 	_OBJ_ANIME_WAIT
 
-	//ƒJƒEƒ“ƒ^[ŠJ‚­
+	//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é–‹ã
 	_SET_UP_DOOR_ANIME	0,0,LOCALWORK0,LOCALWORK1,77
 	_CALL			connect_door_open
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_connect_return_player_02
 	_OBJ_ANIME_WAIT
 	_CALL			connect_door_close
 
-	_FLAG_RESET	SYS_FLAG_COMM_COUNTER			//’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO(ƒVƒXƒeƒ€)
+	_FLAG_RESET	SYS_FLAG_COMM_COUNTER			//é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéãƒ•ãƒ©ã‚°(ã‚·ã‚¹ãƒ†ãƒ )
 	_LDVAL		WK_SCENE_COMM_ID,SCR_COMM_ID_NOTHING
 
 	_EVENT_END
 	_END
 
 //--------------------------------------------------------------------
-//ålŒö	ƒhƒA‚Ì•û‚Ö
+//ä¸»äººå…¬	ãƒ‰ã‚¢ã®æ–¹ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_connect_return_player_00
 	_ANIME_DATA	AC_WALK_D_8F,1
@@ -115,22 +115,22 @@ _ANIME_LABEL anm_connect_return_player_02
 
 //====================================================================
 //
-//							ƒRƒƒVƒAƒ€
+//							ã‚³ãƒ­ã‚·ã‚¢ãƒ 
 //
-//	SCWK_TEMP0	ƒoƒgƒ‹ƒ‚[ƒh
-//	SCWK_TEMP1	ƒoƒgƒ‹ƒ^ƒCƒv
+//	SCWK_TEMP0	ãƒãƒˆãƒ«ãƒ¢ãƒ¼ãƒ‰
+//	SCWK_TEMP1	ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—
 //====================================================================
-//#define DEBUG_CONNECT_WIN	//—LŒøF‚·‚®‚É’ÊM‚ğŠJn‚·‚éƒfƒoƒbƒN
+//#define DEBUG_CONNECT_WIN	//æœ‰åŠ¹ï¼šã™ãã«é€šä¿¡ã‚’é–‹å§‹ã™ã‚‹ãƒ‡ãƒãƒƒã‚¯
 
 /********************************************************************/
 //
-/*								ó•t								*/
+/*								å—ä»˜								*/
 //
 /********************************************************************/
 ev_connect_colosseum:
 	_TALK_OBJ_START
 
-	/*è‚¿‚Éƒ_ƒƒ^ƒ}ƒS‚ª‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*æ‰‹æŒã¡ã«ãƒ€ãƒ¡ã‚¿ãƒã‚´ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_DAME_TAMAGO_CHK_ALL	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,TRUE,ev_connect_dame_tamago
 
@@ -143,37 +143,37 @@ ev_connect_colosseum:
 	_JUMP			ev_connect_colosseum_menu_01
 	_END
 
-//‘I‘ğ01
+//é¸æŠ01
 ev_connect_colosseum_menu_01:
 	_TALKMSG		msg_connect_colosseum_02
 
-	_BMPLIST_INIT		1,1,1,1,SCWK_ANSWER					//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPLIST_MAKE_LIST	msg_ev_win_140,EV_WIN_TALK_MSG_NONE,EV_WIN_LIST_LABEL	//ƒ‰ƒxƒ‹
+	_BMPLIST_INIT		1,1,1,1,SCWK_ANSWER					//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPLIST_MAKE_LIST	msg_ev_win_140,EV_WIN_TALK_MSG_NONE,EV_WIN_LIST_LABEL	//ãƒ©ãƒ™ãƒ«
 	_BMPLIST_MAKE_LIST	msg_ev_win_007,EV_WIN_TALK_MSG_NONE,0
 	_BMPLIST_MAKE_LIST	msg_ev_win_008,EV_WIN_TALK_MSG_NONE,1
 	_BMPLIST_MAKE_LIST	msg_ev_win_009,EV_WIN_TALK_MSG_NONE,2
-	_BMPLIST_MAKE_LIST	msg_ev_win_141,EV_WIN_TALK_MSG_NONE,EV_WIN_LIST_LABEL	//ƒ‰ƒxƒ‹
+	_BMPLIST_MAKE_LIST	msg_ev_win_141,EV_WIN_TALK_MSG_NONE,EV_WIN_LIST_LABEL	//ãƒ©ãƒ™ãƒ«
 	_BMPLIST_MAKE_LIST	msg_ev_win_010,EV_WIN_TALK_MSG_NONE,3
 	_BMPLIST_MAKE_LIST	msg_ev_win_011,EV_WIN_TALK_MSG_NONE,4
 	_BMPLIST_MAKE_LIST	msg_ev_win_012,EV_WIN_TALK_MSG_NONE,5
 	_BMPLIST_START
 
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_connect_colosseum_01		//‚Ó‚½‚è	ƒVƒ“ƒOƒ‹ƒoƒgƒ‹
-	_CASE_JUMP		1,ev_connect_colosseum_02		//			ƒ_ƒuƒ‹ƒoƒgƒ‹
-	_CASE_JUMP		2,ev_connect_colosseum_03		//			ƒ~ƒbƒNƒXƒoƒgƒ‹
-	_CASE_JUMP		3,ev_connect_colosseum_04		//‚æ‚É‚ñ	ƒ}ƒ‹ƒ`ƒoƒgƒ‹
-	_CASE_JUMP		4,ev_connect_colosseum_guide	//à–¾‚Ö
+	_CASE_JUMP		0,ev_connect_colosseum_01		//ãµãŸã‚Š	ã‚·ãƒ³ã‚°ãƒ«ãƒãƒˆãƒ«
+	_CASE_JUMP		1,ev_connect_colosseum_02		//			ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
+	_CASE_JUMP		2,ev_connect_colosseum_03		//			ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«
+	_CASE_JUMP		3,ev_connect_colosseum_04		//ã‚ˆã«ã‚“	ãƒãƒ«ãƒãƒãƒˆãƒ«
+	_CASE_JUMP		4,ev_connect_colosseum_guide	//èª¬æ˜ã¸
 	_JUMP			ev_connect_common_cancel
 	_END
 
-//uà–¾v
+//ã€Œèª¬æ˜ã€
 ev_connect_colosseum_guide:
 	_TALK_KEYWAIT	msg_connect_colosseum_03
-	_JUMP			ev_connect_colosseum_menu_01	//‘I‘ğ01‚Ö
+	_JUMP			ev_connect_colosseum_menu_01	//é¸æŠ01ã¸
 	_END
 
-//u‚â‚ß‚évI—¹
+//ã€Œã‚„ã‚ã‚‹ã€çµ‚äº†
 ev_connect_common_cancel:
 	_TALK_KEYWAIT	msg_connect_rule_01
 	_LAST_KEYWAIT
@@ -182,12 +182,12 @@ ev_connect_common_cancel:
 	_END
 
 //--------------------------------------------------------------------
-//ƒoƒgƒ‹ƒ‚[ƒh‘I‘ğ‚µ‚½
+//ãƒãƒˆãƒ«ãƒ¢ãƒ¼ãƒ‰é¸æŠã—ãŸ
 //--------------------------------------------------------------------
 ev_connect_colosseum_01:
-	_LDVAL			SCWK_TEMP0,COMM_MODE_BATTLE_SINGLE		//1vs1 ƒoƒgƒ‹
+	_LDVAL			SCWK_TEMP0,COMM_MODE_BATTLE_SINGLE		//1vs1 ãƒãƒˆãƒ«
 
-	/*ƒ‹[ƒ‹ƒuƒbƒN‚ğ‚Â‚©‚¤H*/
+	/*ãƒ«ãƒ¼ãƒ«ãƒ–ãƒƒã‚¯ã‚’ã¤ã‹ã†ï¼Ÿ*/
 //	_TALKMSG		msg_connect_rulebook_17
 //	_YES_NO_WIN		SCWK_ANSWER
 //	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_connect_colosseum_reguration
@@ -197,13 +197,13 @@ ev_connect_colosseum_01:
 	_END
 
 ev_connect_colosseum_02:
-	_LDVAL			SCWK_TEMP0,COMM_MODE_BATTLE_DOUBLE		//1vs1 ƒ_ƒuƒ‹ƒoƒgƒ‹
-// ƒ|ƒPƒ‚ƒ“”ŒŸ¸
+	_LDVAL			SCWK_TEMP0,COMM_MODE_BATTLE_DOUBLE		//1vs1 ãƒ€ãƒ–ãƒ«ãƒãƒˆãƒ«
+// ãƒã‚±ãƒ¢ãƒ³æ•°æ¤œæŸ»
 	_GET_POKE_COUNT2		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,LT,2,ev_connect_colosseum_02_err
 	_JUMP           ev_connect_colosseum_reguration
 
-//ŒŸ¸•s‡Ši
+//æ¤œæŸ»ä¸åˆæ ¼
 ev_connect_colosseum_02_err:
 	_TALKMSG        msg_connect_colosseum_07
 	_LAST_KEYWAIT
@@ -212,13 +212,13 @@ ev_connect_colosseum_02_err:
 	_END
 
 ev_connect_colosseum_03:
-	_LDVAL			SCWK_TEMP0,COMM_MODE_BATTLE_MIX_1ON1	//1vs1 ƒ~ƒbƒNƒXƒoƒgƒ‹
+	_LDVAL			SCWK_TEMP0,COMM_MODE_BATTLE_MIX_1ON1	//1vs1 ãƒŸãƒƒã‚¯ã‚¹ãƒãƒˆãƒ«
 
 	_GET_POKE_COUNT2		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,LT,3,ev_connect_colosseum_03_err
 	_JUMP           ev_connect_colosseum_menu_03
 
-//ŒŸ¸•s‡Ši
+//æ¤œæŸ»ä¸åˆæ ¼
 ev_connect_colosseum_03_err:
 	_TALKMSG        msg_connect_colosseum_17
 	_LAST_KEYWAIT
@@ -227,13 +227,13 @@ ev_connect_colosseum_03_err:
 	_END
 
 ev_connect_colosseum_04:
-	_LDVAL			SCWK_TEMP0,COMM_MODE_BATTLE_MULTI		//2vs2 ƒ}ƒ‹ƒ`ƒoƒgƒ‹
+	_LDVAL			SCWK_TEMP0,COMM_MODE_BATTLE_MULTI		//2vs2 ãƒãƒ«ãƒãƒãƒˆãƒ«
 
 	_GET_POKE_COUNT2		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,LT,3,ev_connect_colosseum_04_err
 	_JUMP           ev_connect_colosseum_menu_03
 
-//ŒŸ¸•s‡Ši
+//æ¤œæŸ»ä¸åˆæ ¼
 ev_connect_colosseum_04_err:
 	_TALKMSG        msg_connect_colosseum_16
 	_LAST_KEYWAIT
@@ -241,7 +241,7 @@ ev_connect_colosseum_04_err:
 	_TALK_OBJ_END
 	_END
 
-/*ƒ‹[ƒ‹ƒuƒbƒN*/
+/*ãƒ«ãƒ¼ãƒ«ãƒ–ãƒƒã‚¯*/
 ev_connect_colosseum_reguration:
 	_REGULATION_LIST_CALL	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,REGULATION_RET_OK,ev_connect_colosseum_menu_03
@@ -249,14 +249,14 @@ ev_connect_colosseum_reguration:
 	_JUMP			ev_connect_common_cancel
 	_END
 
-//‘I‘ğ03
+//é¸æŠ03
 ev_connect_colosseum_menu_03:
 	_LDVAL			SCWK_TEMP1,COMM_REG_NORMAL
 	_JUMP			ev_connect_colosseum_menu_04
 	_END
 
 //--------------------------------------------------------------------
-//ƒoƒgƒ‹ƒ^ƒCƒv‘I‘ğ‚µ‚½
+//ãƒãƒˆãƒ«ã‚¿ã‚¤ãƒ—é¸æŠã—ãŸ
 //--------------------------------------------------------------------
 ev_connect_colosseum_11:
 	_LDVAL			SCWK_TEMP1,COMM_REG_NORMAL
@@ -283,96 +283,96 @@ ev_connect_colosseum_15:
 	_JUMP			ev_connect_colosseum_menu_04
 	_END
 
-//‘I‘ğ04
+//é¸æŠ04
 ev_connect_colosseum_menu_04:
-	// ‘Sƒ|ƒPƒ‚ƒ“‰ñ•œ
+	// å…¨ãƒã‚±ãƒ¢ãƒ³å›å¾©
 	_PC_KAIFUKU
 
-	//ŠeíƒGƒ‰[ƒ`ƒFƒbƒN
+	//å„ç¨®ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	//
 
-	//ƒZ[ƒu‚µ‚Ü‚·‚©H(LOCALWORK0‚ÉŒ‹‰Ê‚ª‘ã“ü‚³‚ê‚é)
+	//ã‚»ãƒ¼ãƒ–ã—ã¾ã™ã‹ï¼Ÿ(LOCALWORK0ã«çµæœãŒä»£å…¥ã•ã‚Œã‚‹)
 	_CHG_COMMON_SCR	SCRID_REPORT_CALL
 	_LDWK			SCWK_ANSWER,LOCALWORK0
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_connect_colosseum_menu_02	//¬Œ÷
-	_JUMP			ev_connect_common_cancel		//I—¹‚Ö
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_connect_colosseum_menu_02	//æˆåŠŸ
+	_JUMP			ev_connect_common_cancel		//çµ‚äº†ã¸
 
 /*
 	_TALKMSG		msg_connect_colosseum_10
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_connect_colosseum_menu_02
-	_JUMP			ev_connect_common_cancel		//I—¹‚Ö
+	_JUMP			ev_connect_common_cancel		//çµ‚äº†ã¸
 */
 	_END
 
 //--------------------------------------------------------------------
-//ƒOƒ‹[ƒvAƒŠ[ƒ_[‘I‘ğƒƒjƒ…[
+//ã‚°ãƒ«ãƒ¼ãƒ—ã€ãƒªãƒ¼ãƒ€ãƒ¼é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼
 //--------------------------------------------------------------------
 ev_connect_colosseum_menu_02:
-	//ƒoƒgƒ‹ƒ‚[ƒh(‚QlA‚Sl‚É‚æ‚Á‚Ä•ªŠò)
+	//ãƒãƒˆãƒ«ãƒ¢ãƒ¼ãƒ‰(ï¼’äººã€ï¼”äººã«ã‚ˆã£ã¦åˆ†å²)
 	_IFVAL_CALL		SCWK_TEMP0,EQ,COMM_MODE_BATTLE_SINGLE,	ev_connect_colosseum_num_2
 	_IFVAL_CALL		SCWK_TEMP0,EQ,COMM_MODE_BATTLE_DOUBLE,	ev_connect_colosseum_num_2
 	_IFVAL_CALL		SCWK_TEMP0,EQ,COMM_MODE_BATTLE_MIX_1ON1,ev_connect_colosseum_num_2
 	_IFVAL_CALL		SCWK_TEMP0,EQ,COMM_MODE_BATTLE_MULTI,	ev_connect_colosseum_num_4
 
-//ƒfƒoƒbƒNƒWƒƒƒ“ƒv—pƒ‰ƒxƒ‹
+//ãƒ‡ãƒãƒƒã‚¯ã‚¸ãƒ£ãƒ³ãƒ—ç”¨ãƒ©ãƒ™ãƒ«
 debug_ev_connect_colosseum_menu_02:
-	_BMPMENU_INIT		18,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
+	_BMPMENU_INIT		18,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
 	_BMPMENU_MAKE_LIST	msg_ev_win_014,0
 	_BMPMENU_MAKE_LIST	msg_ev_win_015,1
 	_BMPMENU_MAKE_LIST	msg_ev_win_006,2
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_connect_colosseum_21		//ƒOƒ‹[ƒv
-	_CASE_JUMP		1,ev_connect_colosseum_22		//ƒŠ[ƒ_[
-	_JUMP			ev_connect_common_cancel		//I—¹‚Ö
+	_CASE_JUMP		0,ev_connect_colosseum_21		//ã‚°ãƒ«ãƒ¼ãƒ—
+	_CASE_JUMP		1,ev_connect_colosseum_22		//ãƒªãƒ¼ãƒ€ãƒ¼
+	_JUMP			ev_connect_common_cancel		//çµ‚äº†ã¸
 	_END
 
-//‚Ó‚½‚è
+//ãµãŸã‚Š
 ev_connect_colosseum_num_2:
 	_TALKMSG		msg_connect_direct2_01
 	_RET
 
-//‚æ‚É‚ñ
+//ã‚ˆã«ã‚“
 ev_connect_colosseum_num_4:
 	_TALKMSG		msg_connect_direct4_01
 //	_TALKMSG		msg_connect_direct2_01
 	_RET
 
 //--------------------------------------------------------------------
-//ƒOƒ‹[ƒv
+//ã‚°ãƒ«ãƒ¼ãƒ—
 //--------------------------------------------------------------------
 ev_connect_colosseum_21:
-	//DSƒƒCƒ„ƒŒƒX’ÊM‚ğn‚ß‚Ü‚·‚©H
+	//DSãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã‚’å§‹ã‚ã¾ã™ã‹ï¼Ÿ
 	_TALKMSG		msg_connect_common_01
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_connect_colosseum_menu_02
 
 	_TALK_CLOSE
 
-	//e‹@‚ğ‘I‘ğ‚·‚éƒEƒBƒ“ƒhƒE‚ğŠJ‚­
+	//è¦ªæ©Ÿã‚’é¸æŠã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
 #ifdef DEBUG_CONNECT_WIN
 	_DEBUG_PARENT_WIN	SCWK_ANSWER
 #else
 	_SEL_PARENT_WIN	SCWK_TEMP0,SCWK_TEMP1,0,SCWK_ANSWER
 #endif
 
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_connect_group_cancel	//ƒLƒƒƒ“ƒZƒ‹
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_connect_group_error		//ƒGƒ‰[
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_DIFFER_REGULATION,ev_connect_group_differ  //ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ªˆá‚Á‚Ä‚¢‚½
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_connect_group_cancel	//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_connect_group_error		//ã‚¨ãƒ©ãƒ¼
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_DIFFER_REGULATION,ev_connect_group_differ  //ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãŒé•ã£ã¦ã„ãŸ
 
-	//‚»‚êˆÈŠO
-	_JUMP			ev_connect_colosseum_31										//¬Œ÷
+	//ãã‚Œä»¥å¤–
+	_JUMP			ev_connect_colosseum_31										//æˆåŠŸ
 	_END
 
-//ƒLƒƒƒ“ƒZƒ‹
+//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_connect_group_cancel:
 	_COMM_DIRECT_END
 	_JUMP			ev_connect_colosseum_menu_02
 	_END
 
-//ƒGƒ‰[
+//ã‚¨ãƒ©ãƒ¼
 ev_connect_group_error:
 	_COMM_DIRECT_END
 	_TALK_KEYWAIT	msg_connect_rule_02
@@ -381,7 +381,7 @@ ev_connect_group_error:
 	_TALK_OBJ_END
 	_END
 
-//ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ªˆá‚Á‚½
+//ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãŒé•ã£ãŸ
 ev_connect_group_differ:
 	_COMM_DIRECT_END
 	_TALK_KEYWAIT	msg_connect_rule_01
@@ -391,38 +391,38 @@ ev_connect_group_differ:
 	_END
 
 //--------------------------------------------------------------------
-//ƒŠ[ƒ_[
+//ãƒªãƒ¼ãƒ€ãƒ¼
 //--------------------------------------------------------------------
 ev_connect_colosseum_22:
-	//DSƒƒCƒ„ƒŒƒX’ÊM‚ğn‚ß‚Ü‚·‚©H
+	//DSãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã‚’å§‹ã‚ã¾ã™ã‹ï¼Ÿ
 	_TALKMSG		msg_connect_common_01
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_connect_colosseum_menu_02
 
 	_TALK_CLOSE
 
-	//q‹@‚ğ‘I‘ğ‚·‚éƒEƒBƒ“ƒhƒE‚ğŠJ‚­
+	//å­æ©Ÿã‚’é¸æŠã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‹ã
 #ifdef DEBUG_CONNECT_WIN
 	_DEBUG_CHILD_WIN	SCWK_ANSWER
 #else
 	_SEL_CHILD_WIN	SCWK_TEMP0,SCWK_TEMP1,0,SCWK_ANSWER
 #endif
 
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_connect_leader_cancel	//ƒLƒƒƒ“ƒZƒ‹
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_connect_leader_error	//ƒGƒ‰[
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_DIFFER_REGULATION,ev_connect_leader_differ  //ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ªˆá‚Á‚Ä‚¢‚½
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_connect_leader_cancel	//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_connect_leader_error	//ã‚¨ãƒ©ãƒ¼
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_DIFFER_REGULATION,ev_connect_leader_differ  //ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãŒé•ã£ã¦ã„ãŸ
 
-	//‚»‚êˆÈŠO
-	_JUMP			ev_connect_colosseum_31										//¬Œ÷
+	//ãã‚Œä»¥å¤–
+	_JUMP			ev_connect_colosseum_31										//æˆåŠŸ
 	_END
 
-//ƒLƒƒƒ“ƒZƒ‹
+//ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_connect_leader_cancel:
 	_COMM_DIRECT_END
 	_JUMP			ev_connect_colosseum_menu_02
 	_END
 
-//ƒGƒ‰[
+//ã‚¨ãƒ©ãƒ¼
 ev_connect_leader_error:
 	_COMM_DIRECT_END
 	_TALK_KEYWAIT	msg_connect_rule_02
@@ -431,7 +431,7 @@ ev_connect_leader_error:
 	_TALK_OBJ_END
 	_END
 
-//ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“‚ªˆá‚Á‚½
+//ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãŒé•ã£ãŸ
 ev_connect_leader_differ:
 	_COMM_DIRECT_END
 	_TALK_KEYWAIT	msg_connect_rule_01
@@ -442,95 +442,95 @@ ev_connect_leader_differ:
 
 
 //--------------------------------------------------------------------
-//¬Œ÷
+//æˆåŠŸ
 //--------------------------------------------------------------------
 ev_connect_colosseum_31:
-	_LDVAL			WK_SCENE_COMM_ID,SCR_COMM_ID_BATTLE	/*’ÊMó•tIDƒZƒbƒg*/
-	_FLAG_SET		SYS_FLAG_COMM_COUNTER				/*’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO(ƒVƒXƒeƒ€)*/
+	_LDVAL			WK_SCENE_COMM_ID,SCR_COMM_ID_BATTLE	/*é€šä¿¡å—ä»˜IDã‚»ãƒƒãƒˆ*/
+	_FLAG_SET		SYS_FLAG_COMM_COUNTER				/*é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéãƒ•ãƒ©ã‚°(ã‚·ã‚¹ãƒ†ãƒ )*/
 
-	//ƒoƒgƒ‹ŠJn
+	//ãƒãƒˆãƒ«é–‹å§‹
 
 	//_TALK_KEYWAIT	msg_connect_direct4_10
 	_TALKMSG_NOSKIP	msg_connect_direct4_10
 
-	/*ƒL[‘Ò‚¿@‚n‚q@ŠÔ‘Ò‚¿*/
+	/*ã‚­ãƒ¼å¾…ã¡ã€€ï¼¯ï¼²ã€€æ™‚é–“å¾…ã¡*/
 	_AB_KEY_TIME_WAIT	45
 
-	//’ÊM“¯Šú
+	//é€šä¿¡åŒæœŸ
 	_COMM_SYNCHRONIZE	DBC_TIM_BATTLE_ROOMIN
 
 	_TALK_CLOSE
 
-	//ƒhƒAƒAƒjƒ‚ğƒZƒbƒgƒAƒbƒv
+	//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	_SET_UP_DOOR_ANIME	0,0,13,5,77
 	_CALL			connect_door_open
 
-	//ålŒö@ƒhƒA‚Ì•û‚Ö
+	//ä¸»äººå…¬ã€€ãƒ‰ã‚¢ã®æ–¹ã¸
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_01_connect_colosseum_player
 	_OBJ_ANIME_WAIT
 
-	/*ƒhƒA‚ğ•Â‚ß‚é*/
+	/*ãƒ‰ã‚¢ã‚’é–‰ã‚ã‚‹*/
 	_CALL			connect_door_close
 
-	//ålŒö@ƒhƒA‚Ì•û‚Ö
+	//ä¸»äººå…¬ã€€ãƒ‰ã‚¢ã®æ–¹ã¸
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_01_connect_colosseum_player_02
 	_OBJ_ANIME_WAIT
 
-	//ƒhƒAƒAƒjƒ‚ğƒZƒbƒgƒAƒbƒv
+	//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	_SET_UP_DOOR_ANIME	0,0,13,2,77
 	_CALL			connect_door_open
 
-	//ålŒö@ƒhƒA‚Ì•û‚Ö
+	//ä¸»äººå…¬ã€€ãƒ‰ã‚¢ã®æ–¹ã¸
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_01_connect_colosseum_player_03
 	_OBJ_ANIME_WAIT
 
-	/*ƒhƒA‚ğ•Â‚ß‚é*/
+	/*ãƒ‰ã‚¢ã‚’é–‰ã‚ã‚‹*/
 	_CALL			connect_door_close
 
-	/*ƒ}ƒ‹ƒ`ƒoƒgƒ‹‚Ì‚ÍA‘JˆÚ‚·‚éƒ}ƒbƒv‚ğ•ÏX‚·‚é*/
+	/*ãƒãƒ«ãƒãƒãƒˆãƒ«ã®æ™‚ã¯ã€é·ç§»ã™ã‚‹ãƒãƒƒãƒ—ã‚’å¤‰æ›´ã™ã‚‹*/
 	_IFVAL_JUMP		SCWK_TEMP0,EQ,COMM_MODE_BATTLE_MULTI,ev_connect_colosseum_num_4_map
 
-	/*ƒ}ƒbƒv‘JˆÚæ‚ÌXÀ•W‚ğ©‹@‚ÌNET_ID‚ÅŒˆ’è‚·‚é*/
+	/*ãƒãƒƒãƒ—é·ç§»å…ˆã®Xåº§æ¨™ã‚’è‡ªæ©Ÿã®NET_IDã§æ±ºå®šã™ã‚‹*/
 	_COMM_GET_CURRENT_ID		SCWK_ANSWER
 	_ADD_WK						SCWK_ANSWER,7
 	_COLOSSEUM_MAP_CHANGE_IN	ZONE_ID_DIRECT2,0,SCWK_ANSWER,11,DIR_UP
 	_END
 
-/*ƒ}ƒ‹ƒ`ƒoƒgƒ‹‚Ì‚ÍA‘JˆÚ‚·‚éƒ}ƒbƒv‚ğ•ÏX‚·‚é*/
+/*ãƒãƒ«ãƒãƒãƒˆãƒ«ã®æ™‚ã¯ã€é·ç§»ã™ã‚‹ãƒãƒƒãƒ—ã‚’å¤‰æ›´ã™ã‚‹*/
 ev_connect_colosseum_num_4_map:
-	/*ƒ}ƒbƒv‘JˆÚæ‚ÌXÀ•W‚ğ©‹@‚ÌNET_ID‚ÅŒˆ’è‚·‚é*/
+	/*ãƒãƒƒãƒ—é·ç§»å…ˆã®Xåº§æ¨™ã‚’è‡ªæ©Ÿã®NET_IDã§æ±ºå®šã™ã‚‹*/
 	_COMM_GET_CURRENT_ID		SCWK_ANSWER
 	_ADD_WK						SCWK_ANSWER,6
 	_COLOSSEUM_MAP_CHANGE_IN	ZONE_ID_DIRECT4,0,SCWK_ANSWER,11,DIR_UP
 	_END
 
 connect_door_open:
-	_SEQ_OPEN_DOOR	77	//ƒhƒAŠJ‚¯‚é
-	_WAIT_3D_ANIME	77	//ƒAƒjƒI—¹‘Ò‚¿
+	_SEQ_OPEN_DOOR	77	//ãƒ‰ã‚¢é–‹ã‘ã‚‹
+	_WAIT_3D_ANIME	77	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
 	_RET
 
 connect_door_close:
-	_SEQ_CLOSE_DOOR	77	//ƒhƒA•Â‚ß‚é
-	_WAIT_3D_ANIME	77	//ƒAƒjƒI—¹‘Ò‚¿
-	_FREE_3D_ANIME	77	//ƒhƒAƒAƒjƒ‰ğ•ú
+	_SEQ_CLOSE_DOOR	77	//ãƒ‰ã‚¢é–‰ã‚ã‚‹
+	_WAIT_3D_ANIME	77	//ã‚¢ãƒ‹ãƒ¡çµ‚äº†å¾…ã¡
+	_FREE_3D_ANIME	77	//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡è§£æ”¾
 	_RET
 
 
 /********************************************************************/
 //
-//		‘å–ì‚³‚ñ‚Ì’ÊMƒvƒƒOƒ‰ƒ€‚©‚çŒÄ‚Î‚ê‚é(í“¬‚Ì‚İ)
+//		å¤§é‡ã•ã‚“ã®é€šä¿¡ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‹ã‚‰å‘¼ã°ã‚Œã‚‹(æˆ¦é—˜ã®ã¿)
 //
 /********************************************************************/
 ev_connect_colosseum_battle_start:
 	_DEBUG_SIO_ENCOUNT
 	
-	//í“¬I—¹ŒãA‚à‚¤ˆê“x’ÊM•à‚«‰ñ‚è‚ğŠJn
+	//æˆ¦é—˜çµ‚äº†å¾Œã€ã‚‚ã†ä¸€åº¦é€šä¿¡æ­©ãå›ã‚Šã‚’é–‹å§‹
 	_COMM_DIRECT_ENTER_BTL_ROOM
 
 	_END
 
 //--------------------------------------------------------------------
-//ålŒö	ƒhƒA‚Ì•û‚Ö
+//ä¸»äººå…¬	ãƒ‰ã‚¢ã®æ–¹ã¸
 //--------------------------------------------------------------------
 _ANIME_LABEL anm_01_connect_colosseum_player
 	_ANIME_DATA	AC_WALK_R_8F,1
@@ -549,142 +549,142 @@ _ANIME_LABEL anm_01_connect_colosseum_player_03
 
 //====================================================================
 //
-//							ƒ†ƒjƒIƒ“ƒ‹[ƒ€
+//							ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ 
 //
 //====================================================================
 
 /********************************************************************/
 //
-/*								ó•t								*/
+/*								å—ä»˜								*/
 //
 /********************************************************************/
 ev_connect_union:
 	_TALK_OBJ_START
 
-	/*è‚¿‚Éƒ_ƒƒ^ƒ}ƒS‚ª‚¢‚é‚©ƒ`ƒFƒbƒN*/
+	/*æ‰‹æŒã¡ã«ãƒ€ãƒ¡ã‚¿ãƒã‚´ãŒã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯*/
 	_DAME_TAMAGO_CHK_ALL	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,TRUE,ev_connect_dame_tamago
 
 	_JUMP			ev_connect_union_menu_01
 	_END
 
-//‘I‘ğ01
+//é¸æŠ01
 ev_connect_union_menu_01:
 	_TALKMSG		msg_connect_union_01
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_046,0			//‚Í‚¢
-	_BMPMENU_MAKE_LIST	msg_ev_win_047,1			//‚¢‚¢‚¦
-	_BMPMENU_MAKE_LIST	msg_ev_win_011,2			//à–¾
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_046,0			//ã¯ã„
+	_BMPMENU_MAKE_LIST	msg_ev_win_047,1			//ã„ã„ãˆ
+	_BMPMENU_MAKE_LIST	msg_ev_win_011,2			//èª¬æ˜
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,ev_connect_union_01			//‚Í‚¢
-	_CASE_JUMP		1,ev_connect_common_cancel		//‚¢‚¢‚¦
-	_CASE_JUMP		2,ev_connect_union_menu_guide	//à–¾‚Ö
+	_CASE_JUMP		0,ev_connect_union_01			//ã¯ã„
+	_CASE_JUMP		1,ev_connect_common_cancel		//ã„ã„ãˆ
+	_CASE_JUMP		2,ev_connect_union_menu_guide	//èª¬æ˜ã¸
 	_JUMP			ev_connect_common_cancel
 	_END
 
-//uà–¾v
+//ã€Œèª¬æ˜ã€
 ev_connect_union_menu_guide:
 	_TALKMSG		msg_connect_union_02
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_connect_union_01
-	_JUMP			ev_connect_common_cancel		//I—¹‚Ö
+	_JUMP			ev_connect_common_cancel		//çµ‚äº†ã¸
 	_END
 
-//ƒZ[ƒu
+//ã‚»ãƒ¼ãƒ–
 ev_connect_union_01:
-	_LDVAL			SCWK_TEMP0,COMM_MODE_UNION		//ƒ†ƒjƒIƒ“ƒ‹[ƒ€
-	// ‘Sƒ|ƒPƒ‚ƒ“‰ñ•œ
+	_LDVAL			SCWK_TEMP0,COMM_MODE_UNION		//ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ 
+	// å…¨ãƒã‚±ãƒ¢ãƒ³å›å¾©
 	_PC_KAIFUKU
 
-	//ŠeíƒGƒ‰[ƒ`ƒFƒbƒN
+	//å„ç¨®ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 	//
 
-	//DSƒƒCƒ„ƒŒƒX’ÊM‚ğn‚ß‚Ü‚·‚©H
+	//DSãƒ¯ã‚¤ãƒ¤ãƒ¬ã‚¹é€šä¿¡ã‚’å§‹ã‚ã¾ã™ã‹ï¼Ÿ
 	_TALKMSG		msg_connect_common_01
 	_YES_NO_WIN		SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_connect_common_cancel
 
-	/*‚Í‚Á‚«‚ñ‚¾‚Üƒ`ƒFƒbƒN*/
+	/*ã¯ã£ãã‚“ã ã¾ãƒã‚§ãƒƒã‚¯*/
 	_UNION_POKE_FORM_RETURN	SCWK_ANSWER
 	_IFVAL_JUMP		SCWK_ANSWER,EQ,0xff,ev_connect_union_gira_ng
 
-	_LDVAL			WK_SCENE_COMM_ID,SCR_COMM_ID_UNION	/*’ÊMó•tIDƒZƒbƒg*/
-	_FLAG_SET		SYS_FLAG_COMM_COUNTER				/*’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO(ƒVƒXƒeƒ€)*/
+	_LDVAL			WK_SCENE_COMM_ID,SCR_COMM_ID_UNION	/*é€šä¿¡å—ä»˜IDã‚»ãƒƒãƒˆ*/
+	_FLAG_SET		SYS_FLAG_COMM_COUNTER				/*é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéãƒ•ãƒ©ã‚°(ã‚·ã‚¹ãƒ†ãƒ )*/
 
-	//ƒZ[ƒu‚µ‚Ü‚·‚©H(LOCALWORK0‚ÉŒ‹‰Ê‚ª‘ã“ü‚³‚ê‚é)
+	//ã‚»ãƒ¼ãƒ–ã—ã¾ã™ã‹ï¼Ÿ(LOCALWORK0ã«çµæœãŒä»£å…¥ã•ã‚Œã‚‹)
 	_CHG_COMMON_SCR	SCRID_REPORT_CALL
 	_LDWK			SCWK_ANSWER,LOCALWORK0
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_connect_union_menu_03	//¬Œ÷
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_connect_union_menu_03	//æˆåŠŸ
 
-//ƒ†ƒjƒIƒ“ƒ‹[ƒ€ƒLƒƒƒ“ƒZƒ‹
+//ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 ev_connect_union_cancel:
 	_LDVAL			WK_SCENE_COMM_ID,SCR_COMM_ID_NOTHING
 	_FLAG_RESET		SYS_FLAG_COMM_COUNTER
 
 	_JUMP			ev_connect_common_cancel
 
-//¬Œ÷
+//æˆåŠŸ
 ev_connect_union_menu_03:
-	_LDVAL			WK_SCENE_COMM_ID,SCR_COMM_ID_UNION	/*’ÊMó•tIDƒZƒbƒg*/
-	_FLAG_SET		SYS_FLAG_COMM_COUNTER				/*’ÊMƒJƒEƒ“ƒ^[’Ê‰ßƒtƒ‰ƒO(ƒVƒXƒeƒ€)*/
+	_LDVAL			WK_SCENE_COMM_ID,SCR_COMM_ID_UNION	/*é€šä¿¡å—ä»˜IDã‚»ãƒƒãƒˆ*/
+	_FLAG_SET		SYS_FLAG_COMM_COUNTER				/*é€šä¿¡ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼é€šéãƒ•ãƒ©ã‚°(ã‚·ã‚¹ãƒ†ãƒ )*/
 
 	_TALK_KEYWAIT	msg_connect_union_07
 	_TALK_CLOSE
 
-	//ƒhƒAƒAƒjƒ‚ğƒZƒbƒgƒAƒbƒv
+	//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	_SET_UP_DOOR_ANIME	0,0,8,5,77
 	_CALL			connect_door_open
 
-	//ålŒö@ƒhƒA‚Ì•û‚Ö
+	//ä¸»äººå…¬ã€€ãƒ‰ã‚¢ã®æ–¹ã¸
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_01_connect_colosseum_player
 	_OBJ_ANIME_WAIT
 
-	/*ƒhƒA‚ğ•Â‚ß‚é*/
+	/*ãƒ‰ã‚¢ã‚’é–‰ã‚ã‚‹*/
 	_CALL			connect_door_close
 
-	//ålŒö@ƒhƒA‚Ì•û‚Ö
+	//ä¸»äººå…¬ã€€ãƒ‰ã‚¢ã®æ–¹ã¸
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_01_connect_colosseum_player_02
 	_OBJ_ANIME_WAIT
 
-	//ƒhƒAƒAƒjƒ‚ğƒZƒbƒgƒAƒbƒv
+	//ãƒ‰ã‚¢ã‚¢ãƒ‹ãƒ¡ã‚’ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 	_SET_UP_DOOR_ANIME	0,0,8,2,77
 	_CALL			connect_door_open
 
-	//ålŒö@ƒhƒA‚Ì•û‚Ö
+	//ä¸»äººå…¬ã€€ãƒ‰ã‚¢ã®æ–¹ã¸
 	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_01_connect_colosseum_player_03
 	_OBJ_ANIME_WAIT
 
-	/*ƒhƒA‚ğ•Â‚ß‚é*/
+	/*ãƒ‰ã‚¢ã‚’é–‰ã‚ã‚‹*/
 	_CALL			connect_door_close
 
 	_TALK_OBJ_END
-	_UNION_MAP_CHANGE		//ƒ†ƒjƒIƒ“ƒ‹[ƒ€‚ÖˆÚ“®’†I
+	_UNION_MAP_CHANGE		//ãƒ¦ãƒ‹ã‚ªãƒ³ãƒ«ãƒ¼ãƒ ã¸ç§»å‹•ä¸­ï¼
 	_END
 
-/*uƒoƒbƒN‚ª‚¢‚Á‚Ï‚¢B‚Í‚Á‚«‚ñ‚¾‚Ü‚ğŠO‚¹‚Ü‚¹‚ñv*/
+/*ã€Œãƒãƒƒã‚¯ãŒã„ã£ã±ã„ã€‚ã¯ã£ãã‚“ã ã¾ã‚’å¤–ã›ã¾ã›ã‚“ã€*/
 ev_connect_union_gira_ng:
 	_CHG_COMMON_SCR	SCRID_GIRA_ITEM_NG
 	_END
 
 
 //====================================================================
-//							ƒŒƒR[ƒhƒR[ƒi[
+//							ãƒ¬ã‚³ãƒ¼ãƒ‰ã‚³ãƒ¼ãƒŠãƒ¼
 //====================================================================
 ev_connect_record:
 	_END
 
 
 //====================================================================
-//							ƒRƒ“ƒeƒXƒg
+//							ã‚³ãƒ³ãƒ†ã‚¹ãƒˆ
 //====================================================================
 ev_connect_contest:
 	_END
 
 
 /********************************************************************/
-/*							ƒfƒoƒbƒN								*/
+/*							ãƒ‡ãƒãƒƒã‚¯								*/
 /********************************************************************/
 ev_connect_colosseum_debug_oya:
 	_END
@@ -701,7 +701,7 @@ ev_connect_contest_debug_ko:
 
 /********************************************************************/
 //
-/*				P2P‘Îíƒ}ƒbƒ`ƒ“ƒOƒ{[ƒh(ƒfƒoƒbƒN—p)					*/
+/*				P2På¯¾æˆ¦ãƒãƒƒãƒãƒ³ã‚°ãƒœãƒ¼ãƒ‰(ãƒ‡ãƒãƒƒã‚¯ç”¨)					*/
 //
 /********************************************************************/
 ev_connect_wifi_p2p_match:
@@ -715,7 +715,7 @@ ev_connect_wifi_p2p_match:
 
 /********************************************************************/
 //
-/*						ƒgƒŒ[ƒi[ƒTƒCƒ“							*/
+/*						ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚µã‚¤ãƒ³							*/
 //
 /********************************************************************/
 ev_connect_tsign:
@@ -729,26 +729,26 @@ ev_connect_tsign:
 
 ev_connect_tsign_menu:
 	_TALKMSG		msg_connect_tsign_02
-	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//BƒLƒƒƒ“ƒZƒ‹—LŒø
-	_BMPMENU_MAKE_LIST	msg_ev_win_046,0			//‚Í‚¢
-	_BMPMENU_MAKE_LIST	msg_ev_win_047,1			//‚¢‚¢‚¦
-	_BMPMENU_MAKE_LIST	msg_ev_win_011,2			//à–¾
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER			//Bã‚­ãƒ£ãƒ³ã‚»ãƒ«æœ‰åŠ¹
+	_BMPMENU_MAKE_LIST	msg_ev_win_046,0			//ã¯ã„
+	_BMPMENU_MAKE_LIST	msg_ev_win_047,1			//ã„ã„ãˆ
+	_BMPMENU_MAKE_LIST	msg_ev_win_011,2			//èª¬æ˜
 	_BMPMENU_START
 
 	_SWITCH			SCWK_ANSWER
-	_CASE_JUMP		0,yes_connect_tsign_01			//‚Í‚¢
-	_CASE_JUMP		1,no_connect_tsign_01			//‚¢‚¢‚¦
-	_CASE_JUMP		2,guide_connect_tsigh_01		//à–¾‚Ö
-	_JUMP			no_connect_tsign_01				//‚¢‚¢‚¦
+	_CASE_JUMP		0,yes_connect_tsign_01			//ã¯ã„
+	_CASE_JUMP		1,no_connect_tsign_01			//ã„ã„ãˆ
+	_CASE_JUMP		2,guide_connect_tsigh_01		//èª¬æ˜ã¸
+	_JUMP			no_connect_tsign_01				//ã„ã„ãˆ
 	_END
 
-/*à–¾*/
+/*èª¬æ˜*/
 guide_connect_tsigh_01:
 	_TALK_KEYWAIT	msg_connect_tsign_04
 	_JUMP			ev_connect_tsign_menu
 	_END
 
-/*u‚Í‚¢v*/
+/*ã€Œã¯ã„ã€*/
 yes_connect_tsign_01:
 	_TALK_CLOSE
 
@@ -764,7 +764,7 @@ yes_connect_tsign_01:
 	_JUMP			no_connect_tsign_01
 	_END
 
-/*u‚¢‚¢‚¦v*/
+/*ã€Œã„ã„ãˆã€*/
 no_connect_tsign_01:
 	_TALKMSG		msg_connect_tsign_03
 	_LAST_KEYWAIT
@@ -775,7 +775,7 @@ no_connect_tsign_01:
 
 /********************************************************************/
 //
-/*					è‚¿‚Éƒ_ƒƒ^ƒ}ƒS‚ª‚¢‚é						*/
+/*					æ‰‹æŒã¡ã«ãƒ€ãƒ¡ã‚¿ãƒã‚´ãŒã„ã‚‹æ™‚						*/
 //
 /********************************************************************/
 ev_connect_dame_tamago:
@@ -787,11 +787,11 @@ ev_connect_dame_tamago:
 
 
 /********************************************************************/
-/*				ƒ_ƒƒ^ƒ}ƒS‚ÌŒxƒƒbƒZ[ƒW(‹¤’ÊŒÄ‚Ño‚µ‚³‚ê‚é)@	*/
+/*				ãƒ€ãƒ¡ã‚¿ãƒã‚´ã®è­¦å‘Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(å…±é€šå‘¼ã³å‡ºã—ã•ã‚Œã‚‹)ã€€	*/
 /********************************************************************/
 ev_connect_dame_tamago_msg:
 	_CALL			ev_connect_dame_tamago_msg_sub
-	_CHG_LOCAL_SCR											//ƒ[ƒJƒ‹ƒXƒNƒŠƒvƒg‚ÉØ‚è‘Ö‚¦
+	_CHG_LOCAL_SCR											//ãƒ­ãƒ¼ã‚«ãƒ«ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«åˆ‡ã‚Šæ›¿ãˆ
 	_END
 	
 ev_connect_dame_tamago_msg_sub:

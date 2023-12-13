@@ -18,12 +18,12 @@
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitializePaletteTable
 
-  Description:  ƒpƒŒƒbƒg•ÏŠ·ƒe[ƒuƒ‹‚ğ‰Šú‰»‚µ‚Ü‚·
+  Description:  ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åˆæœŸåŒ–ã—ã¾ã™
                 
-  Arguments:    pPlttTbl:      [OUT] ƒpƒŒƒbƒgÀ‘Ì
+  Arguments:    pPlttTbl:      [OUT] ãƒ‘ãƒ¬ãƒƒãƒˆå®Ÿä½“
                 
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dInitializePaletteTable( NNSG2dPaletteSwapTable* pPlttTbl )
@@ -32,7 +32,7 @@ void NNS_G2dInitializePaletteTable( NNSG2dPaletteSwapTable* pPlttTbl )
     NNS_G2D_NULL_ASSERT( pPlttTbl );
     
     
-    // “ü‚ê‘Ö‚¦ ‚È‚µ ‚Éİ’è
+    // å…¥ã‚Œæ›¿ãˆ ãªã— ã«è¨­å®š
     for( i = 0; i < NNS_G2D_NUM_COLOR_PALETTE; i++ )
     {
         pPlttTbl->paletteIndex[i] = i;
@@ -42,13 +42,13 @@ void NNS_G2dInitializePaletteTable( NNSG2dPaletteSwapTable* pPlttTbl )
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitializePaletteTable
 
-  Description:  ƒpƒŒƒbƒg•ÏŠ·ƒe[ƒuƒ‹‚ğİ’è‚µ‚Ü‚·
+  Description:  ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’è¨­å®šã—ã¾ã™
                 
-  Arguments:    pPlttTbl:       [OUT] ƒpƒŒƒbƒgÀ‘Ì
-                beforeIdx:      [IN]  •ÏŠ·‘O‚ÌƒpƒŒƒbƒg”Ô†
-                afterIdx:       [IN]  •ÏŠ·Œã‚ÌƒpƒŒƒbƒg”Ô†
+  Arguments:    pPlttTbl:       [OUT] ãƒ‘ãƒ¬ãƒƒãƒˆå®Ÿä½“
+                beforeIdx:      [IN]  å¤‰æ›å‰ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+                afterIdx:       [IN]  å¤‰æ›å¾Œã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
                 
-  Returns:      ‚È‚µ
+  Returns:      ãªã—
   
  *---------------------------------------------------------------------------*/
 void NNS_G2dSetPaletteTableValue
@@ -68,12 +68,12 @@ void NNS_G2dSetPaletteTableValue
 /*---------------------------------------------------------------------------*
   Name:         NNS_G2dInitializePaletteTable
 
-  Description:  ƒpƒŒƒbƒg•ÏŠ·ƒe[ƒuƒ‹‚Ìİ’è‚ğæ“¾‚µ‚Ü‚·
+  Description:  ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›ãƒ†ãƒ¼ãƒ–ãƒ«ã®è¨­å®šã‚’å–å¾—ã—ã¾ã™
                 
-  Arguments:    pPlttTbl:      [IN]  ƒpƒŒƒbƒgÀ‘Ì
-                beforeIdx:     [IN]  •ÏŠ·‘O‚ÌƒpƒŒƒbƒg”Ô†
+  Arguments:    pPlttTbl:      [IN]  ãƒ‘ãƒ¬ãƒƒãƒˆå®Ÿä½“
+                beforeIdx:     [IN]  å¤‰æ›å‰ã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
                 
-  Returns:      •ÏŠ·Œã‚ÌƒpƒŒƒbƒg”Ô†
+  Returns:      å¤‰æ›å¾Œã®ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
   
  *---------------------------------------------------------------------------*/
 u16 NNS_G2dGetPaletteTableValue( const NNSG2dPaletteSwapTable* pPlttTbl, u16 beforeIdx )

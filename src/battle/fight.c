@@ -2,7 +2,7 @@
 //============================================================================================
 /**
  * @file	fight.c
- * @bfief	í“¬ƒƒCƒ“ƒvƒƒOƒ‰ƒ€
+ * @bfief	æˆ¦é—˜ãƒ¡ã‚¤ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @author	HisashiSogabe
  * @date	05.05.24
  */
@@ -86,8 +86,8 @@
 
 #ifdef DEBUG_ONLY_FOR_sogabe
 #include "src/battle/skill_intp.h"
-//#define MADOKA_DEBUG					//ƒI[ƒo[ƒŒƒCƒoƒO‚ÌŒŸØ
-#ifdef MADOKA_DEBUG					//ƒI[ƒo[ƒŒƒCƒoƒO‚ÌŒŸØ
+//#define MADOKA_DEBUG					//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒã‚°ã®æ¤œè¨¼
+#ifdef MADOKA_DEBUG					//ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ãƒã‚°ã®æ¤œè¨¼
 typedef struct{
 	int					cb_pos;
 	u8					command_buffer[64];
@@ -108,18 +108,18 @@ FS_EXTERN_OVERLAY(battle_ai);
 
 //============================================================================================
 /**
- * ’è”éŒ¾
+ * å®šæ•°å®£è¨€
  */
 //============================================================================================
 
 #define	HEAP_CHECK
 
-//#define DEBUG_PRINT			//ƒV[ƒPƒ“ƒX•\¦‚ğON
+//#define DEBUG_PRINT			//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹è¡¨ç¤ºã‚’ON
 
-#define	BATTLE_BMP_WIN_MAX		(3)		///<í“¬‚Åg—p‚·‚éBMPWIN‚ÌMAX
-#define	BATTLE_CELL_TRANS_MAX	(4)		///<í“¬‚Åg—p‚·‚éCellTrans‚ÌMAX
+#define	BATTLE_BMP_WIN_MAX		(3)		///<æˆ¦é—˜ã§ä½¿ç”¨ã™ã‚‹BMPWINã®MAX
+#define	BATTLE_CELL_TRANS_MAX	(4)		///<æˆ¦é—˜ã§ä½¿ç”¨ã™ã‚‹CellTransã®MAX
 
-#define BATTLE_BG1_V_START_OFFSET	( -51 )	///<í“¬ŠJn‚ÌBG1‚ÌVOFFSET‚Ì’l 
+#define BATTLE_BG1_V_START_OFFSET	( -51 )	///<æˆ¦é—˜é–‹å§‹æ™‚ã®BG1ã®VOFFSETã®å€¤ 
 
 enum {
 	SEQ_INIT = 0,
@@ -140,16 +140,16 @@ enum {
 	SEQ_EXIT
 };
 
-static	const	u32	BattleServerVersion=BATTLE_SERVER_VERSION;		//í“¬ƒT[ƒoƒo[ƒWƒ‡ƒ“
-													//—š—ğ
-													//0x100@‘“à”Å
-													//0x110@–k•Ä”Å
-													//0x120@‰¢B”Å
-													//0x130@ŠØ‘”Å
+static	const	u32	BattleServerVersion=BATTLE_SERVER_VERSION;		//æˆ¦é—˜ã‚µãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ§ãƒ³
+													//å±¥æ­´
+													//0x100ã€€å›½å†…ç‰ˆ
+													//0x110ã€€åŒ—ç±³ç‰ˆ
+													//0x120ã€€æ¬§å·ç‰ˆ
+													//0x130ã€€éŸ“å›½ç‰ˆ
 
 //============================================================================================
 /**
- * ƒvƒƒgƒ^ƒCƒvéŒ¾
+ * ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //============================================================================================
 
@@ -185,7 +185,7 @@ static	void	FightOBJEnd(BATTLE_WORK *bw);
 
 static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp);
 
-static	void	FightParticleInit(void);	//ƒp[ƒeƒBƒNƒ‹‰Šú‰»
+static	void	FightParticleInit(void);	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
 static	void	FightVBlank(void *work);
 static	void	FightSioVBlank(void *work);
 
@@ -210,7 +210,7 @@ vu32	battle_vblank_count=0;
 
 //============================================================================================
 /**
- * CL_ACT—pƒf[ƒ^
+ * CL_ACTç”¨ãƒ‡ãƒ¼ã‚¿
  */
 //============================================================================================
 
@@ -241,7 +241,7 @@ const TCATS_RESOURCE_NUM_LIST BattleResourceList = {
 //============================================================================================
 /**
  *
- *	í“¬PROCŠÖ”
+ *	æˆ¦é—˜PROCé–¢æ•°
  *
  * @param
  */
@@ -270,9 +270,9 @@ BOOL BattleSystemProc(PROC *proc,int * seq)
 		OS_Printf("SEQ_SIO_INIT\n");
 #endif
 		FightSioInit(proc,bp);
-		// ’n‹…‹V“o˜^
+		// åœ°çƒå„€ç™»éŒ²
         Comm_WifiHistoryCheck( bp->wifihistory );
-		//’ÊM‘Îí‰ñ”‚ğƒJƒEƒ“ƒgƒAƒbƒv
+		//é€šä¿¡å¯¾æˆ¦å›æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 		if(!CommStateIsWifiConnect()){
 			RECORD_Inc(bp->record,RECID_COMM_BATTLE);
 		}
@@ -388,7 +388,7 @@ BOOL BattleSystemProc(PROC *proc,int * seq)
 		if(FightWinLoseDemoMain(proc)==TRUE){
 			Overlay_UnloadID(FS_OVERLAY_ID(vs_demo));
 			sys_DeleteHeap(HEAPID_BATTLE);
-		#if 0	//ƒvƒ‰ƒ`ƒi‚Å‚ÍVS‰æ–Ê‚Å‚·‚é‚æ‚¤‚É‚µ‚½ 2008.04.24(–Ø) matsuda
+		#if 0	//ãƒ—ãƒ©ãƒãƒŠã§ã¯VSç”»é¢ã§ã™ã‚‹ã‚ˆã†ã«ã—ãŸ 2008.04.24(æœ¨) matsuda
 			CommTimingSyncStart( COMM_BATTLE_WIN_LOSE_WAIT_NUM );
 		#endif
 			*seq = SEQ_WIN_LOSE_WAIT;
@@ -398,7 +398,7 @@ BOOL BattleSystemProc(PROC *proc,int * seq)
 #ifdef DEBUG_PRINT
 		OS_Printf("SEQ_WIN_LOSE_WAIT\n");
 #endif
-	#if 0	//ƒvƒ‰ƒ`ƒi‚Å‚ÍVS‰æ–Ê‚Å‚·‚é‚æ‚¤‚É‚µ‚½ 2008.04.24(–Ø) matsuda
+	#if 0	//ãƒ—ãƒ©ãƒãƒŠã§ã¯VSç”»é¢ã§ã™ã‚‹ã‚ˆã†ã«ã—ãŸ 2008.04.24(æœ¨) matsuda
 		if(CommIsTimingSync( COMM_BATTLE_WIN_LOSE_WAIT_NUM )){
 			*seq = SEQ_EXIT;
 		}
@@ -456,7 +456,7 @@ BOOL BattleSystemProc(PROC *proc,int * seq)
 //============================================================================================
 /**
  *
- *	í“¬‰æ–Ê•Êˆ—„ˆÚˆ—iƒoƒbƒO‚Æ‚©ƒŠƒXƒg‚Æ‚©‚És‚­‚Æ‚«‚Éíœ‚·‚éŠÖ˜A‚ğ‚Ü‚Æ‚ß‚Ä‚ ‚éj
+ *	æˆ¦é—˜ç”»é¢åˆ¥å‡¦ç†æ¨ç§»å‡¦ç†ï¼ˆãƒãƒƒã‚°ã¨ã‹ãƒªã‚¹ãƒˆã¨ã‹ã«è¡Œãã¨ãã«å‰Šé™¤ã™ã‚‹é–¢é€£ã‚’ã¾ã¨ã‚ã¦ã‚ã‚‹ï¼‰
  *
  * @param
  */
@@ -467,10 +467,10 @@ void	FightScreenTransition(BATTLE_WORK *bw)
 
 	BINPUT_SystemFree(bw->bip);
 
-	//ƒTƒu‰æ–Ê
+	//ã‚µãƒ–ç”»é¢
 	BINPUT_FrameExit(bw->bgl);
 
-	//VRAM‰Šú‰»ƒŠƒNƒGƒXƒg
+	//VRAMåˆæœŸåŒ–ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	bw->bl_vram_init_req=1;
 
 //	FightBGEnd(bw->bgl);
@@ -481,11 +481,11 @@ void	FightScreenTransition(BATTLE_WORK *bw)
 
 //	DellVramTransferManager();
 
-	//ƒŠƒXƒgAƒoƒbƒO‰æ–Ê‚Å‚àƒ{ƒ^ƒ“ƒtƒHƒ“ƒg‚ğ•Ê‚Éƒ[ƒh‚·‚é‰Â”\«‚ª‚ ‚é‚Ì‚ÅUnload
+	//ãƒªã‚¹ãƒˆã€ãƒãƒƒã‚°ç”»é¢ã§ã‚‚ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆã‚’åˆ¥ã«ãƒ­ãƒ¼ãƒ‰ã™ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§Unload
 	FontProc_UnloadFont(FONT_BUTTON);
 	BattleWorkProcModeSet(bw,BW_PROC_MODE_BAG_LIST);
 
-	//ê–Ê‚É‚æ‚Á‚Äƒ[ƒh‚³‚ê‚Ä‚¢‚éƒvƒƒOƒ‰ƒ€‚ªˆá‚¤‚Ì‚Åƒtƒ‰ƒO‚É‚æ‚Á‚Ä•ªŠò
+	//å ´é¢ã«ã‚ˆã£ã¦ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¦ã„ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãŒé•ã†ã®ã§ãƒ•ãƒ©ã‚°ã«ã‚ˆã£ã¦åˆ†å²
 	if(bw->overlay_flag==FIGHT_OVERLAY_AI_TO_SKILL){
 		Overlay_UnloadID(FS_OVERLAY_ID(bc_common2));
 	}
@@ -498,7 +498,7 @@ void	FightScreenTransition(BATTLE_WORK *bw)
 //============================================================================================
 /**
  *
- *	í“¬‰æ–Êíœˆ—iƒoƒbƒO‚Æ‚©ƒŠƒXƒg‚Æ‚©‚És‚­‚Æ‚«‚Éíœ‚·‚éŠÖ˜A‚©‚ç•ª—£j
+ *	æˆ¦é—˜ç”»é¢å‰Šé™¤å‡¦ç†ï¼ˆãƒãƒƒã‚°ã¨ã‹ãƒªã‚¹ãƒˆã¨ã‹ã«è¡Œãã¨ãã«å‰Šé™¤ã™ã‚‹é–¢é€£ã‹ã‚‰åˆ†é›¢ï¼‰
  *
  * @param
  */
@@ -519,14 +519,14 @@ void	FightScreenEnd(BATTLE_WORK *bw)
 
 	DellVramTransferManager();
 
-	//ƒŠƒXƒgAƒoƒbƒO‰æ–Ê‚Å‚àƒ{ƒ^ƒ“ƒtƒHƒ“ƒg‚ğ•Ê‚Éƒ[ƒh‚·‚é‰Â”\«‚ª‚ ‚é‚Ì‚ÅUnload
+	//ãƒªã‚¹ãƒˆã€ãƒãƒƒã‚°ç”»é¢ã§ã‚‚ãƒœã‚¿ãƒ³ãƒ•ã‚©ãƒ³ãƒˆã‚’åˆ¥ã«ãƒ­ãƒ¼ãƒ‰ã™ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§Unload
 	FontProc_UnloadFont(FONT_BUTTON);
 }
 
 //============================================================================================
 /**
  *
- *	í“¬‰æ–Ê•œ‹Aˆ—
+ *	æˆ¦é—˜ç”»é¢å¾©å¸°å‡¦ç†
  *
  * @param
  */
@@ -537,7 +537,7 @@ void	FightScreenRecover(BATTLE_WORK *bw)
 	ARCHANDLE* hdl_obj;
 	
 	Overlay_UnloadID(FS_OVERLAY_ID(battle_bag_list));
-	//ê–Ê‚É‚æ‚Á‚Äƒ[ƒh‚·‚éƒvƒƒOƒ‰ƒ€‚ªˆá‚¤‚Ì‚Åƒtƒ‰ƒO‚É‚æ‚Á‚Ä•ªŠò
+	//å ´é¢ã«ã‚ˆã£ã¦ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãŒé•ã†ã®ã§ãƒ•ãƒ©ã‚°ã«ã‚ˆã£ã¦åˆ†å²
 	if(bw->overlay_flag==FIGHT_OVERLAY_AI_TO_SKILL){
 		Overlay_Load(FS_OVERLAY_ID(bc_common2), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 	}
@@ -551,36 +551,36 @@ void	FightScreenRecover(BATTLE_WORK *bw)
 	MI_CpuFill16((void*)GF_MMAP_SubBgPlttAddr(), 0x0000, GF_MMAP_SubBgPlttSize());
 
 
-	//í“¬“ü—Í‰æ–ÊƒVƒXƒeƒ€ƒ[ƒNŠm•Û
+	//æˆ¦é—˜å…¥åŠ›ç”»é¢ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 	hdl_bg  = ArchiveDataHandleOpen( ARC_BATT_BG,  HEAPID_BATTLE ); 
 	hdl_obj = ArchiveDataHandleOpen( ARC_BATT_OBJ, HEAPID_BATTLE );
 			
 	bw->bip = BINPUT_SystemInit(hdl_bg, hdl_obj, bw,BattleWorkMySexGet(bw,BattleWorkCommIDGet(bw)),
 		bw->battle_cursor);
 
-	//ƒŠƒXƒgAƒoƒbƒO‰æ–Ê‚ÅUnload‚³‚ê‚é‰Â”\«‚ª‚ ‚é‚Ì‚ÅƒtƒHƒ“ƒg‚ğÄƒ[ƒh
+	//ãƒªã‚¹ãƒˆã€ãƒãƒƒã‚°ç”»é¢ã§Unloadã•ã‚Œã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ãƒ•ã‚©ãƒ³ãƒˆã‚’å†ãƒ­ãƒ¼ãƒ‰
 	FontProc_LoadFont(FONT_BUTTON, HEAPID_BATTLE);
 
-	//VRAMİ’è‰Šú‰»ƒŠƒNƒGƒXƒg
+	//VRAMè¨­å®šåˆæœŸåŒ–ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	bw->vram_init_req=1;
 
 //	initVramTransferManagerHeap(BATTLE_VRAM_TRANSFER_TASK_NUM,HEAPID_BATTLE);
 //
 //	GF_Disp_GX_VisibleControlInit();
 
-	//VRAMİ’è
+	//VRAMè¨­å®š
 //	{
 //		GF_BGL_DISPVRAM vramSetTable = {
-//			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-//			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-//			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-//			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-//			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-//			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-//			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-//			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-//			GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-//			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+//			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+//			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+//			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+//			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+//			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+//			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+//			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+//			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+//			GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+//			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 //		};
 //		GF_Disp_SetBank( &vramSetTable );
 //
@@ -589,7 +589,7 @@ void	FightScreenRecover(BATTLE_WORK *bw)
 //		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
 //		MI_CpuClear32((void*)HW_DB_OBJ_VRAM, HW_DB_OBJ_VRAM_SIZE);
 //	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		BINPUT_DefaultFrameSet(bw->bgl);
 	}
@@ -609,7 +609,7 @@ void	FightScreenRecover(BATTLE_WORK *bw)
 //	CATS_ClactSetInit(bw->csp, bw->crp, BATTLE_ACTOR_MAX);
 //	CATS_ResourceManagerInit(bw->csp,bw->crp,&BattleResourceList);
 
-	//ƒTƒu‰æ–Ê		ƒAƒNƒ^[ƒVƒXƒeƒ€‚ªì‚ç‚ê‚Ä‚©‚çŒÄ‚ñ‚Å‚­‚¾‚³‚¢
+	//ã‚µãƒ–ç”»é¢		ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ãŒä½œã‚‰ã‚Œã¦ã‹ã‚‰å‘¼ã‚“ã§ãã ã•ã„
 	BINPUT_DefaultDataSet(bw->bip);
 	
 	BINPUT_CreateBG(hdl_bg, hdl_obj, bw->bip, BINPUT_TYPE_WALL, TRUE, NULL);
@@ -621,7 +621,7 @@ void	FightScreenRecover(BATTLE_WORK *bw)
 //	FightOBJCreate(bw);
 
 //	SoftSpriteRecover(bw->soft_sprite);
-	//‰ï˜bƒEƒCƒ“ƒhƒE‚ÌƒJ[ƒ\ƒ‹ƒLƒƒƒ‰‚ğÄ“]‘—
+	//ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ£ãƒ©ã‚’å†è»¢é€
 	PokeFontTrgCursorCgxSet(TALK_WIN_CGX_START);
 
 	FightMsgPrintModeSet(bw);
@@ -631,7 +631,7 @@ void	FightScreenRecover(BATTLE_WORK *bw)
 //============================================================================================
 /**
  *
- *	í“¬‰æ–Êíœˆ—iƒ|ƒPƒ‚ƒ“ƒQƒbƒg‚Ì}ŠÓ‰æ–Ê‚És‚­‚Æ‚«‚Éíœ‚·‚éj
+ *	æˆ¦é—˜ç”»é¢å‰Šé™¤å‡¦ç†ï¼ˆãƒã‚±ãƒ¢ãƒ³ã‚²ãƒƒãƒˆæ™‚ã®å›³é‘‘ç”»é¢ã«è¡Œãã¨ãã«å‰Šé™¤ã™ã‚‹ï¼‰
  *
  * @param
  */
@@ -655,7 +655,7 @@ void	FightScreenPokemonGetEnd(BATTLE_WORK *bw)
 //============================================================================================
 /**
  *
- *	ƒ|ƒPƒ‚ƒ“•ßŠl‰æ–Ê¶¬
+ *	ãƒã‚±ãƒ¢ãƒ³æ•ç²ç”»é¢ç”Ÿæˆ
  *
  * @param
  */
@@ -663,19 +663,19 @@ void	FightScreenPokemonGetEnd(BATTLE_WORK *bw)
 void	FightScreenPokemonGet(BATTLE_WORK *bw)
 {
 #if 0
-	//VRAMİ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
@@ -695,12 +695,12 @@ void	FightScreenPokemonGet(BATTLE_WORK *bw)
 	}
 #endif
 
-	// ƒuƒŒƒ“ƒhİ’è
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®š
 	{
 		bw->bld_init_req=1;
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_M
@@ -734,7 +734,7 @@ void	FightScreenPokemonGet(BATTLE_WORK *bw)
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
 
-	//”wŒiƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒh
+	//èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	{
 		WINTYPE	win_type;
 
@@ -751,7 +751,7 @@ void	FightScreenPokemonGet(BATTLE_WORK *bw)
 		ArcUtil_ScrnSet(ARC_BATT_BG,BATTLE_BG00_NSCR_BIN,bw->bgl,GF_BGL_FRAME3_M,0,0,1,HEAPID_BATTLE);
 	}
 
-	//ƒEƒCƒ“ƒhƒEƒ}ƒXƒNİ’è‚Ì‰Šú‰»
+	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯è¨­å®šã®åˆæœŸåŒ–
 	{
 		GX_SetVisibleWnd(GX_WNDMASK_NONE);
 		GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -765,7 +765,7 @@ void	FightScreenPokemonGet(BATTLE_WORK *bw)
 	GF_Disp_GXS_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_ON);
 	sys_VBlankFuncChange(FightVBlank,bw);
 
-	//VRAMİ’è‰Šú‰»ƒŠƒNƒGƒXƒg
+	//VRAMè¨­å®šåˆæœŸåŒ–ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	bw->vram_init_req=1;
 
 	GF_BGL_BmpWinAdd(bw->bgl,bw->win,GF_BGL_FRAME1_M,0x02,0x13,27,4,0x0b,TALK_WIN_CGX_SIZ+1);
@@ -777,12 +777,12 @@ void	FightScreenPokemonGet(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	í“¬ƒI[ƒo[ƒŒƒCØ‚è‘Ö‚¦
+ *	æˆ¦é—˜ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤åˆ‡ã‚Šæ›¿ãˆ
  *
- *	Wifi‚ÆAI‚ğ‹¤‘¶‚³‚¹‚é‚½‚ß‚ÉDP‚Å‚ÍWifi—Ìˆæ‚É’u‚¢‚Ä‚¢‚½AIƒ‹[ƒ`ƒ“‚ğƒI[ƒo[ƒŒƒC‚Åí“¬—Ìˆæ‚É’u‚­
+ *	Wifiã¨AIã‚’å…±å­˜ã•ã›ã‚‹ãŸã‚ã«DPã§ã¯Wifié ˜åŸŸã«ç½®ã„ã¦ã„ãŸAIãƒ«ãƒ¼ãƒãƒ³ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã§æˆ¦é—˜é ˜åŸŸã«ç½®ã
  
- * @param	bw		í“¬ƒVƒXƒeƒ€ƒ[ƒN‚Ìƒ|ƒCƒ“ƒ^
- * @param	flag	ƒI[ƒo[ƒŒƒCØ‚è‘Ö‚¦ƒtƒ‰ƒO
+ * @param	bw		æˆ¦é—˜ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	flag	ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤åˆ‡ã‚Šæ›¿ãˆãƒ•ãƒ©ã‚°
  */
 //============================================================================================
 void	FightOverlaySwitch(BATTLE_WORK *bw,int flag)
@@ -803,35 +803,35 @@ void	FightOverlaySwitch(BATTLE_WORK *bw,int flag)
 
 //============================================================================================
 /**
- *	ƒGƒ“ƒJƒEƒ“ƒg‚Ì”wŒiF‚Ì‰Šú’l
+ *	ã‚¨ãƒ³ã‚«ã‚¦ãƒ³ãƒˆæ™‚ã®èƒŒæ™¯è‰²ã®åˆæœŸå€¤
  *
  * @param
  */
 //============================================================================================
 static	const	int	EncountFirstColor[][3]={
-	{0x7b51,GX_RGB(30,17,0),GX_RGB(0,16,23)},				//BG_ID_BASIC			//‘Œ´
-	{0x7b51,GX_RGB(30,17,0),GX_RGB(0,16,23)},				//BG_ID_SEA				//ŠC
-	{0x7b51,GX_RGB(30,17,0),GX_RGB(0,16,23)},				//BG_ID_CITY			//ŠX
-	{GX_RGB(11,21,5),GX_RGB(11,21,5),GX_RGB(11,21,5)},		//BG_ID_FOREST			//X—Ñ
-	{0x7b51,GX_RGB(30,17,0),GX_RGB(0,16,23)},				//BG_ID_MOUNTAIN		//RŠx
-	{GX_RGB(31,26,31),GX_RGB(31,26,22),GX_RGB(24,22,22)},	//BG_ID_SNOW_MOUNTAIN	//áR
-	{0x7fff,0x7fff,0x7fff},									//BG_ID_ROOM_A			//º“à‚`
-	{0x7fff,0x7fff,0x7fff},									//BG_ID_ROOM_B			//º“à‚a
-	{0x7fff,0x7fff,0x7fff},									//BG_ID_ROOM_C			//º“à‚b
-	{GX_RGB(5,5,7),GX_RGB(5,5,7),GX_RGB(5,5,7)},			//BG_ID_CAVE_A			//“´ŒA‚`
-	{GX_RGB(5,5,7),GX_RGB(5,5,7),GX_RGB(5,5,7)},			//BG_ID_CAVE_B			//“´ŒA‚a
-	{GX_RGB(5,5,7),GX_RGB(5,5,7),GX_RGB(5,5,7)},			//BG_ID_CAVE_C			//“´ŒA‚b
-	{0x7fff,0x7fff,0x7fff},						//BG_ID_BIG_FOUR_A		//l“V‰¤A ƒvƒ‰ƒ`ƒi‚©‚ç’Ç‰Á
-	{0x7fff,0x7fff,0x7fff},									//BG_ID_BIG_FOUR_B		//l“V‰¤B
-	{0x7fff,0x7fff,0x7fff},									//BG_ID_BIG_FOUR_C		//l“V‰¤C
-	{0x7fff,0x7fff,0x7fff},									//BG_ID_BIG_FOUR_D		//l“V‰¤D
-	{0x7fff,0x7fff,0x7fff},									//BG_ID_CHAMPION		//ƒ`ƒƒƒ“ƒsƒIƒ“
-	{0x7fff,0x7fff,0x7fff},									//BG_ID_HAKAI			//”j‚ê‚½¢ŠE
-	{0x7fff,0x7fff,0x7fff},									//BG_ID_TOWER		//ƒoƒgƒ‹ƒ^ƒ[
-	{0x7fff,0x7fff,0x7fff},									//BG_ID_FACTORY	//ƒoƒgƒ‹ƒtƒ@ƒNƒgƒŠ[
-	{0x7fff,0x7fff,0x7fff},									//BG_ID_ROULETTE	//ƒoƒgƒ‹ƒ‹[ƒŒƒbƒg
-	{0x7fff,0x7fff,0x7fff},									//BG_ID_CASTLE		//ƒoƒgƒ‹ƒLƒƒƒbƒXƒ‹
-	{0x7fff,0x7fff,0x7fff},									//BG_ID_STAGE		//ƒoƒgƒ‹ƒXƒe[ƒW
+	{0x7b51,GX_RGB(30,17,0),GX_RGB(0,16,23)},				//BG_ID_BASIC			//è‰åŸ
+	{0x7b51,GX_RGB(30,17,0),GX_RGB(0,16,23)},				//BG_ID_SEA				//æµ·
+	{0x7b51,GX_RGB(30,17,0),GX_RGB(0,16,23)},				//BG_ID_CITY			//è¡—
+	{GX_RGB(11,21,5),GX_RGB(11,21,5),GX_RGB(11,21,5)},		//BG_ID_FOREST			//æ£®æ—
+	{0x7b51,GX_RGB(30,17,0),GX_RGB(0,16,23)},				//BG_ID_MOUNTAIN		//å±±å²³
+	{GX_RGB(31,26,31),GX_RGB(31,26,22),GX_RGB(24,22,22)},	//BG_ID_SNOW_MOUNTAIN	//é›ªå±±
+	{0x7fff,0x7fff,0x7fff},									//BG_ID_ROOM_A			//å®¤å†…ï¼¡
+	{0x7fff,0x7fff,0x7fff},									//BG_ID_ROOM_B			//å®¤å†…ï¼¢
+	{0x7fff,0x7fff,0x7fff},									//BG_ID_ROOM_C			//å®¤å†…ï¼£
+	{GX_RGB(5,5,7),GX_RGB(5,5,7),GX_RGB(5,5,7)},			//BG_ID_CAVE_A			//æ´çªŸï¼¡
+	{GX_RGB(5,5,7),GX_RGB(5,5,7),GX_RGB(5,5,7)},			//BG_ID_CAVE_B			//æ´çªŸï¼¢
+	{GX_RGB(5,5,7),GX_RGB(5,5,7),GX_RGB(5,5,7)},			//BG_ID_CAVE_C			//æ´çªŸï¼£
+	{0x7fff,0x7fff,0x7fff},						//BG_ID_BIG_FOUR_A		//å››å¤©ç‹A ãƒ—ãƒ©ãƒãƒŠã‹ã‚‰è¿½åŠ 
+	{0x7fff,0x7fff,0x7fff},									//BG_ID_BIG_FOUR_B		//å››å¤©ç‹B
+	{0x7fff,0x7fff,0x7fff},									//BG_ID_BIG_FOUR_C		//å››å¤©ç‹C
+	{0x7fff,0x7fff,0x7fff},									//BG_ID_BIG_FOUR_D		//å››å¤©ç‹D
+	{0x7fff,0x7fff,0x7fff},									//BG_ID_CHAMPION		//ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³
+	{0x7fff,0x7fff,0x7fff},									//BG_ID_HAKAI			//ç ´ã‚ŒãŸä¸–ç•Œ
+	{0x7fff,0x7fff,0x7fff},									//BG_ID_TOWER		//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼
+	{0x7fff,0x7fff,0x7fff},									//BG_ID_FACTORY	//ãƒãƒˆãƒ«ãƒ•ã‚¡ã‚¯ãƒˆãƒªãƒ¼
+	{0x7fff,0x7fff,0x7fff},									//BG_ID_ROULETTE	//ãƒãƒˆãƒ«ãƒ«ãƒ¼ãƒ¬ãƒƒãƒˆ
+	{0x7fff,0x7fff,0x7fff},									//BG_ID_CASTLE		//ãƒãƒˆãƒ«ã‚­ãƒ£ãƒƒã‚¹ãƒ«
+	{0x7fff,0x7fff,0x7fff},									//BG_ID_STAGE		//ãƒãƒˆãƒ«ã‚¹ãƒ†ãƒ¼ã‚¸
 };
 
 //============================================================================================
@@ -851,15 +851,15 @@ static	void	FightInit(PROC *proc)
 	MI_CpuFill16((void*)GF_MMAP_MainBgPlttAddr(), 0x0000, GF_MMAP_MainBgPlttSize());
 	MI_CpuFill16((void*)GF_MMAP_SubBgPlttAddr(), 0x0000, GF_MMAP_SubBgPlttSize());
 
-	//ƒZƒbƒgêŠ‚ğˆÚ“®
+	//ã‚»ãƒƒãƒˆå ´æ‰€ã‚’ç§»å‹•
 #if 0
-	//ƒ‰ƒ“ƒ_ƒ€‚Ìí‚ğ‘Ş”ğ
+	//ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã‚’é€€é¿
 	bw->seed_temp=gf_get_seed();
 
-	//ƒ‰ƒ“ƒ_ƒ€‚Ìí‚ğæ“¾
+	//ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã‚’å–å¾—
 	bw->rand = bp->rand;
 
-	//í“¬˜^‰æ‚Ì‚½‚ß‚Éƒ‰ƒ“ƒ_ƒ€‚Ìí‚ÍŠO‚©‚ç‚à‚ç‚¤‚æ‚¤‚É•ÏX
+	//æˆ¦é—˜éŒ²ç”»ã®ãŸã‚ã«ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã¯å¤–ã‹ã‚‰ã‚‚ã‚‰ã†ã‚ˆã†ã«å¤‰æ›´
 #elif 0
 	GF_RTC_GetDateTime(&date, &time);
 	bw->rand = date.year + date.month * 0x100 * date.day * 0x10000
@@ -867,11 +867,11 @@ static	void	FightInit(PROC *proc)
 		+ sys.vsync_counter;
 #endif
 
-	//3D•`‰æŒn‚Ì‰Šú‰»
+	//3Dæç”»ç³»ã®åˆæœŸåŒ–
 	//simple_3DBGInit(HEAPID_BATTLE);
 	bw->g3Dman = Fight_3D_Init();
 
-	sys_HBlankIntrStop();	//HBlankŠ„‚è‚İ’â~
+	sys_HBlankIntrStop();	//HBlankå‰²ã‚Šè¾¼ã¿åœæ­¢
 
 	FontProc_LoadFont(FONT_BUTTON, HEAPID_BATTLE);
 	if(bw->fight_type & FIGHT_TYPE_SAFARI){
@@ -881,7 +881,7 @@ static	void	FightInit(PROC *proc)
 	else{
 		bw->numfont_hp = NUMFONT_Create(0xe, 2, 0xf, HEAPID_BATTLE);
 	}
-#if 1	//ƒŒƒxƒ‹‚ànumfont_hp‚Æ“¯‚¶•¨‚ğg—p‚·‚é‚æ‚¤‚É‚È‚Á‚½ 2005.11.10(–Ø)	¦check
+#if 1	//ãƒ¬ãƒ™ãƒ«ã‚‚numfont_hpã¨åŒã˜ç‰©ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ãªã£ãŸ 2005.11.10(æœ¨)	â€»check
 	bw->numfont_lv = bw->numfont_hp;
 #else
 	bw->numfont_lv = NUMFONT_Create(0xe, 1, 0xf, HEAPID_BATTLE);
@@ -897,14 +897,14 @@ static	void	FightInit(PROC *proc)
 	bw->bgl=GF_BGL_BglIniAlloc(HEAPID_BATTLE);
 	bw->win=GF_BGL_BmpWinAllocGet(HEAPID_BATTLE,BATTLE_BMP_WIN_MAX);
 
-	//‹ZƒGƒtƒFƒNƒg—pƒLƒƒƒ‰“WŠJƒoƒbƒtƒ@‚ğŠm•Û
+	//æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚­ãƒ£ãƒ©å±•é–‹ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿
 	for(i=0;i<CLIENT_MAX;i++){
 		bw->exchr_param[i].exchr_buffer=sys_AllocMemory(HEAPID_BATTLE,EXCHR_BUFFER_SIZE);
 	}
 
 	initVramTransferManagerHeap(BATTLE_VRAM_TRANSFER_TASK_NUM,HEAPID_BATTLE);
 
-	//í“¬“ü—Í‰æ–ÊƒVƒXƒeƒ€ƒ[ƒNŠm•Û
+	//æˆ¦é—˜å…¥åŠ›ç”»é¢ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ç¢ºä¿
 	{		
 		ARCHANDLE* hdl_bg  = ArchiveDataHandleOpen( ARC_BATT_BG,  HEAPID_BATTLE ); 
 		ARCHANDLE* hdl_obj = ArchiveDataHandleOpen( ARC_BATT_OBJ, HEAPID_BATTLE );
@@ -924,7 +924,7 @@ static	void	FightInit(PROC *proc)
 
 	bw->csp=CATS_AllocMemory(HEAPID_BATTLE);
 	CATS_SystemInit(bw->csp,&BattleTcats,&BattleCcmm,BATTLE_OAM_PLTT_MAX);
-	//’ÊMƒAƒCƒRƒ“—p‚ÉƒLƒƒƒ‰•ƒpƒŒƒbƒg§ŒÀ
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ç”¨ã«ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆåˆ¶é™
 	CLACT_U_WmIcon_SetReserveAreaCharManager(NNS_G2D_VRAM_TYPE_2DMAIN, GX_OBJVRAMMODE_CHAR_1D_64K);
 	CLACT_U_WmIcon_SetReserveAreaPlttManager(NNS_G2D_VRAM_TYPE_2DMAIN);
 	bw->crp=CATS_ResourceCreate(bw->csp);
@@ -933,7 +933,7 @@ static	void	FightInit(PROC *proc)
 	CLACT_U_SetSubSurfaceMatrix(CATS_EasyRenderGet(bw->csp), 0, BATTLE_SUB_ACTOR_DISTANCE);
 
 	BINPUT_DefaultDataSet(bw->bip);
-	//ƒTƒu‰æ–Ê		ƒAƒNƒ^[ƒVƒXƒeƒ€‚ªì‚ç‚ê‚Ä‚©‚çŒÄ‚ñ‚Å‚­‚¾‚³‚¢
+	//ã‚µãƒ–ç”»é¢		ã‚¢ã‚¯ã‚¿ãƒ¼ã‚·ã‚¹ãƒ†ãƒ ãŒä½œã‚‰ã‚Œã¦ã‹ã‚‰å‘¼ã‚“ã§ãã ã•ã„
 	{
 		ARCHANDLE* hdl_bg;
 		ARCHANDLE* hdl_obj;
@@ -948,7 +948,7 @@ static	void	FightInit(PROC *proc)
 		ArchiveDataHandleClose( hdl_obj );
 	}
 #if 0
-#if 0	//ålŒö”wŒi‚Í•\¦‚µ‚È‚¢‚æ‚¤‚É‚µ‚½	2006.04.18(‰Î) matsuda
+#if 0	//ä¸»äººå…¬èƒŒæ™¯ã¯è¡¨ç¤ºã—ãªã„ã‚ˆã†ã«ã—ãŸ	2006.04.18(ç«) matsuda
 	BINPUT_CreateBG(bw->bip, BINPUT_TYPE_WALL_MISSING_PLAYER, TRUE, NULL);
 	BINPUT_PlayerBG_SetX(bw->bip, 256);
 	BINPUT_EffBGWallSet(bw->bip);
@@ -959,30 +959,30 @@ static	void	FightInit(PROC *proc)
 #endif
 
 	bw->soft_sprite=SoftSpriteInit(HEAPID_BATTLE);
-	SoftSpritePaletteTransParamSet(bw->soft_sprite,0,SOFT_SPRITE_COL_SIZE);	//‰e‚Ì•ª‚à“]‘—‚·‚é‚æ‚¤‚ÉƒTƒCƒY‚ğ•ÏX
+	SoftSpritePaletteTransParamSet(bw->soft_sprite,0,SOFT_SPRITE_COL_SIZE);	//å½±ã®åˆ†ã‚‚è»¢é€ã™ã‚‹ã‚ˆã†ã«ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
 
-	BattleWorkGaugeInit(bw);	//HPƒQ[ƒW‰Šú‰»
+	BattleWorkGaugeInit(bw);	//HPã‚²ãƒ¼ã‚¸åˆæœŸåŒ–
 
-	FightParticleInit();	//ƒp[ƒeƒBƒNƒ‹‰Šú‰»
+	FightParticleInit();	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
 	bw->wsp=WES_Create(HEAPID_BATTLE);
 
 	FightOBJCreate(bw);
 
-	InitTPSystem();			// ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€‰Šú‰»
+	InitTPSystem();			// ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	InitTPNoBuff(4);
 	
-	// –Â‚«º‚ğ2‚Â“¯‚ÉÄ¶o—ˆ‚éƒtƒ‰ƒOƒIƒ“
+	// é³´ãå£°ã‚’2ã¤åŒæ™‚ã«å†ç”Ÿå‡ºæ¥ã‚‹ãƒ•ãƒ©ã‚°ã‚ªãƒ³
 //	Snd_PMVoiceDoubleFlagSet( 1 );
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒì¬
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ä½œæˆ
 	bw->fight_msg=MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_fightmsg_dp_dat,HEAPID_BATTLE);
 	bw->attack_msg=MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_atkmsg_dat,HEAPID_BATTLE);
-	//’PŒêƒoƒbƒtƒ@ì¬
+	//å˜èªãƒãƒƒãƒ•ã‚¡ä½œæˆ
 	bw->wordset=WORDSET_Create(HEAPID_BATTLE);
 
 	bw->msg_buf=STRBUF_Create(BATTLE_MESSAGE_BUF_SIZE,HEAPID_BATTLE);
 	
-	//ƒpƒŒƒbƒgƒf[ƒ^‚ğ‘Ş”ğ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ã‚’é€€é¿
 	MI_CpuCopy16(PaletteWorkDefaultWorkGet(bw->pfd,FADE_MAIN_BG),&bw->push_bg_palette[0],0x20*7);
 	MI_CpuCopy16(PaletteWorkDefaultWorkGet(bw->pfd,FADE_MAIN_OBJ),&bw->push_obj_palette[0],0x20*7);
 
@@ -999,31 +999,31 @@ static	void	FightInit(PROC *proc)
 	PaletteWork_Clear(bw->pfd,FADE_SUB_BG,FADEBUF_TRANS,0x0000,0,255);
 	PaletteWork_Clear(bw->pfd,FADE_SUB_OBJ,FADEBUF_TRANS,0xffff,0,255);
 
-	//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE—pDSƒAƒCƒRƒ“ƒpƒŒƒbƒgƒAƒjƒ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ç”¨DSã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 	bw->msg_icon=MSG_DsIconFlashAdd(bw->pfd,MSG_DSI_MAINDISP,0x0b,HEAPID_BATTLE);
 	MSG_DsIconFlashReq(bw->msg_icon,MSG_DSI_REQ_STOP);
 
 	bw->update_tcb     = TCB_Add(FightUpdate, bw, TCBPRI_FIGHT_UPDATE);
 	bw->pinch_tcb      = TCB_Add(FightPinchSECheck, bw, TCBPRI_PINCH_SE_CHECK);
 
-	// í“¬ŠJn‚ÉƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE‚ğ‰º‚©‚çƒXƒNƒ[ƒ‹‚³‚¹‚éƒ^ƒXƒN‚Ì‹N“®
+	// æˆ¦é—˜é–‹å§‹æ™‚ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚’ä¸‹ã‹ã‚‰ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã•ã›ã‚‹ã‚¿ã‚¹ã‚¯ã®èµ·å‹•
 	bw->msgwinmove_tcb = VIntrTCB_Add( StartMsgWinMove, bw, TCBPRI_MSG_WIN_MOVE );
-	bw->bg1_scroll     = BATTLE_BG1_V_START_OFFSET;							// ƒXƒNƒ[ƒ‹‰Šú’l
+	bw->bg1_scroll     = BATTLE_BG1_V_START_OFFSET;							// ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«åˆæœŸå€¤
 
 
 
 	FightMsgPrintModeSet(bw);
 
-	//ƒoƒbƒO‰æ–ÊƒJ[ƒ\ƒ‹ˆÊ’u‚Ì‰Šú‰»
+	//ãƒãƒƒã‚°ç”»é¢ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã®åˆæœŸåŒ–
 	MyItem_BattleBagCursorPosInit(BattleWorkBagCursorGet(bw));
 
-	//ƒ|ƒPƒ‚ƒ“ƒvƒƒOƒ‰ƒ€ƒAƒjƒƒVƒXƒeƒ€ƒ[ƒN¶¬
+	//ãƒã‚±ãƒ¢ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯ç”Ÿæˆ
 	bw->pasp=PokeAnm_AllocMemory(HEAPID_BATTLE,CLIENT_MAX,0);
 
-	//ƒZƒ‹“]‘—ƒ}ƒl[ƒWƒƒ‚ÌŠm•Û
+	//ã‚»ãƒ«è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ã®ç¢ºä¿
 	bw->cell_trans=InitCellTransfer(BATTLE_CELL_TRANS_MAX,HEAPID_BATTLE);
 
-	//‚Øƒ‰ƒbƒv‚Ì‚¨‚µ‚á‚×‚è‹Zƒpƒ‰ƒ[ƒ^‚ğƒRƒs[
+	//ãºãƒ©ãƒƒãƒ—ã®ãŠã—ã‚ƒã¹ã‚ŠæŠ€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 	if(bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE){
 		for(i=0;i<CLIENT_MAX;i++){
 			bw->voice_waza_param[i]=bp->voice_waza_param[i];
@@ -1091,19 +1091,19 @@ static	void	FightEnd(PROC *proc)
 	BATTLE_PARAM	*bp=PROC_GetParentWork(proc);
 	int	i;
 
-	//‘Îí˜^‰æ—p‚Éƒ‰ƒ“ƒ_ƒ€‚Ìí‚ğ–ß‚µ‚Ä‚¨‚­
+	//å¯¾æˆ¦éŒ²ç”»ç”¨ã«ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã‚’æˆ»ã—ã¦ãŠã
 	bp->rand=bw->rand_temp;
 
-	//í“¬Œø‰Êƒtƒ‰ƒOƒRƒs[
+	//æˆ¦é—˜åŠ¹æœãƒ•ãƒ©ã‚°ã‚³ãƒ”ãƒ¼
 	bp->battle_status_flag=bw->battle_status_flag;
 
-	//˜^‰æƒf[ƒ^•Û‘¶
+	//éŒ²ç”»ãƒ‡ãƒ¼ã‚¿ä¿å­˜
 	if((bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE)==0){
 		BattleRec_BattleParamRec(bp);
 	}
 
-	//‘Îí˜^‰æÄ¶‚É•s³I—¹‚·‚é‚ÆAƒI[ƒo[ƒŒƒC—Ìˆæ‚Éƒƒ‚ƒŠŠJ•ú‚É•K—v‚ÈŠÖ”‚ª‚Ì‚ç‚È‚¢‚Æ‚«‚ª‚ ‚é‚Ì‚ÅA
-	//ƒ`ƒFƒbƒN‚µ‚ÄƒI[ƒo[ƒŒƒC‚ğØ‚è‘Ö‚¦‚é
+	//å¯¾æˆ¦éŒ²ç”»å†ç”Ÿæ™‚ã«ä¸æ­£çµ‚äº†ã™ã‚‹ã¨ã€ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤é ˜åŸŸã«ãƒ¡ãƒ¢ãƒªé–‹æ”¾ã«å¿…è¦ãªé–¢æ•°ãŒã®ã‚‰ãªã„ã¨ããŒã‚ã‚‹ã®ã§ã€
+	//ãƒã‚§ãƒƒã‚¯ã—ã¦ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
 	if(bw->overlay_flag!=FIGHT_OVERLAY_AI_TO_SKILL){
 		FightOverlaySwitch(bw,FIGHT_OVERLAY_AI_TO_SKILL);
 	}
@@ -1111,12 +1111,12 @@ static	void	FightEnd(PROC *proc)
 	WIPE_SetBrightness(WIPE_DISP_MAIN, WIPE_FADE_BLACK);
 	WIPE_SetBrightness(WIPE_DISP_SUB, WIPE_FADE_BLACK);
 
-	//ƒtƒHƒ‹ƒ€ƒ`ƒFƒ“ƒW‚·‚éƒ|ƒPƒ‚ƒ“‚Ìƒ`ƒFƒbƒN
+	//ãƒ•ã‚©ãƒ«ãƒ ãƒã‚§ãƒ³ã‚¸ã™ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒã‚§ãƒƒã‚¯
 	BattleWorkFormChgCheck(bw);
 
-	//TV”Ô‘gƒR[ƒ‹
-	//ƒQƒbƒg‚ÍA•ß‚Ü‚¦‚½ƒ|ƒPƒ‚ƒ“‚ÌPP
-	//‚»‚êˆÈŠO‚ÍA‘Îí‘Šè‚ÌPP
+	//TVç•ªçµ„ã‚³ãƒ¼ãƒ«
+	//ã‚²ãƒƒãƒˆæ™‚ã¯ã€æ•ã¾ãˆãŸãƒã‚±ãƒ¢ãƒ³ã®PP
+	//ãã‚Œä»¥å¤–ã¯ã€å¯¾æˆ¦ç›¸æ‰‹ã®PP
 	if(bw->win_lose_flag!=FIGHT_POKE_GET){
 		BattleWorkTVDataSet(bw,PokeParty_GetMemberPointer(bw->poke_party[CLIENT_NO_ENEMY],0));
 	}
@@ -1147,78 +1147,78 @@ static	void	FightEnd(PROC *proc)
 	}
 #endif
 
-	//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒEDSƒAƒCƒRƒ“ƒpƒŒƒbƒgƒAƒjƒŠJ•ú
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦DSã‚¢ã‚¤ã‚³ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡é–‹æ”¾
 	MSG_DsIconFlashDelete(bw->msg_icon);
 
-	//è‚¿ƒAƒCƒeƒ€ƒRƒs[
+	//æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ ã‚³ãƒ”ãƒ¼
 	MyItem_Copy(bw->my_item,bp->my_item);
 	sys_FreeMemoryEz(bw->my_item);
 
-	//}ŠÓƒ[ƒNƒRƒs[
+	//å›³é‘‘ãƒ¯ãƒ¼ã‚¯ã‚³ãƒ”ãƒ¼
 	ZukanWork_Copy(bw->zw,bp->zw);
 	sys_FreeMemoryEz(bw->zw);
 
-	//ƒ{ƒbƒNƒXƒRƒs[
+	//ãƒœãƒƒã‚¯ã‚¹ã‚³ãƒ”ãƒ¼
 	bp->box=bw->box;
 
-	//ƒoƒbƒOƒJ[ƒ\ƒ‹ƒRƒs[
+	//ãƒãƒƒã‚°ã‚«ãƒ¼ã‚½ãƒ«ã‚³ãƒ”ãƒ¼
 	bp->bag_cursor=bw->bag_cursor;
-	//í“¬ƒJ[ƒ\ƒ‹ƒRƒs[
+	//æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã‚³ãƒ”ãƒ¼
 	bp->battle_cursor=bw->battle_cursor;
 
-	//ƒ|ƒPƒbƒ`ƒf[ƒ^ƒRƒs[
+	//ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 	bp->poketch_data=bw->poketch_data;
 
-	///<ƒeƒŒƒrF•ßŠl”Ô‘g—pƒRƒs[
+	///<ãƒ†ãƒ¬ãƒ“ï¼šæ•ç²ç•ªçµ„ç”¨ã‚³ãƒ”ãƒ¼
 	bp->TVWatchBattleWork=bw->TVWatchBattleWork;
 
-	//ƒTƒtƒ@ƒŠƒ{[ƒ‹‚Ì”ƒRƒs[
+	//ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã®æ•°ã‚³ãƒ”ãƒ¼
 	bp->safari_ball=bw->safari_ball;
 
-	//Ÿ”sƒtƒ‰ƒOƒRƒs[
+	//å‹æ•—ãƒ•ãƒ©ã‚°ã‚³ãƒ”ãƒ¼
 	bp->win_lose_flag=bw->win_lose_flag&FIGHT_ESCAPE_SELECT_OFF;
 
-	//•ßŠl‚µ‚½ƒ|ƒPƒ‚ƒ“‚ÌClientNo‚ğƒRƒs[
+	//æ•ç²ã—ãŸãƒã‚±ãƒ¢ãƒ³ã®ClientNoã‚’ã‚³ãƒ”ãƒ¼
 	bp->get_pokemon_client=bw->get_pokemon_client;
 
-	//ƒŒƒxƒ‹ƒAƒbƒvƒ|ƒPƒ‚ƒ“î•ñƒRƒs[
+	//ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ãƒã‚±ãƒ¢ãƒ³æƒ…å ±ã‚³ãƒ”ãƒ¼
 	bp->level_up_flag=ST_ServerParamDataGet(bw,bw->server_param,ID_SP_level_up_pokemon,NULL);
 
-	//ƒoƒgƒ‹ƒ^ƒ[¬Ñ—pƒ[ƒNƒRƒs[
+	//ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼æˆç¸¾ç”¨ãƒ¯ãƒ¼ã‚¯ã‚³ãƒ”ãƒ¼
 	bp->btr.total_turn+=ST_ServerParamDataGet(bw,bw->server_param,ID_SP_total_turn,NULL);
 	bp->btr.total_hinshi+=(ST_ServerParamDataGet(bw,bw->server_param,ID_SP_total_hinshi,CLIENT_NO_MINE)+
 						   ST_ServerParamDataGet(bw,bw->server_param,ID_SP_total_hinshi,CLIENT_NO_MINE2));
 	bp->btr.total_damage+=(ST_ServerParamDataGet(bw,bw->server_param,ID_SP_total_damage,CLIENT_NO_MINE)+
 						   ST_ServerParamDataGet(bw,bw->server_param,ID_SP_total_damage,CLIENT_NO_MINE2));
 
-	//í“¬ƒ^[ƒ“”‚ğƒRƒs[
+	//æˆ¦é—˜ã‚¿ãƒ¼ãƒ³æ•°ã‚’ã‚³ãƒ”ãƒ¼
 	bp->total_turn=ST_ServerParamDataGet(bw,bw->server_param,ID_SP_total_turn,NULL);
 
-	//í“¬˜^‰æÄ¶’†’fƒtƒ‰ƒO‚ğƒRƒs[
+	//æˆ¦é—˜éŒ²ç”»å†ç”Ÿä¸­æ–­ãƒ•ãƒ©ã‚°ã‚’ã‚³ãƒ”ãƒ¼
 	bp->battle_rec_stop_flag=bw->battle_rec_stop_flag;
 
-	//‹ZƒGƒtƒFƒNƒg—pƒLƒƒƒ‰“WŠJƒoƒbƒtƒ@‚ğŠJ•ú
+	//æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ã‚­ãƒ£ãƒ©å±•é–‹ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾
 	for(i=0;i<CLIENT_MAX;i++){
 		sys_FreeMemoryEz(bw->exchr_param[i].exchr_buffer);
 	}
 
 	sys_FreeMemoryEz(bw->msg_buf);
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€íœ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	PaletteFadeWorkAllocFree(bw->pfd, FADE_MAIN_BG);
 	PaletteFadeWorkAllocFree(bw->pfd, FADE_SUB_BG);
 	PaletteFadeWorkAllocFree(bw->pfd, FADE_MAIN_OBJ);
 	PaletteFadeWorkAllocFree(bw->pfd, FADE_SUB_OBJ);
 	PaletteFadeFree(bw->pfd);
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒ‚Ìíœ
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ã®å‰Šé™¤
 	MSGMAN_Delete(bw->fight_msg);
 	MSGMAN_Delete(bw->attack_msg);
 
-	//’PŒêƒoƒbƒtƒ@íœ
+	//å˜èªãƒãƒƒãƒ•ã‚¡å‰Šé™¤
 	WORDSET_Delete(bw->wordset);
 
-	//ƒ|ƒPƒ‚ƒ“ƒvƒƒOƒ‰ƒ€ƒAƒjƒíœ
+	//ãƒã‚±ãƒ¢ãƒ³ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡å‰Šé™¤
 	PokeAnm_FreeMemory(bw->pasp);
 
 	Particle_SystemExitAll();
@@ -1232,12 +1232,12 @@ static	void	FightEnd(PROC *proc)
 
 	SoftSpriteEnd(bw->soft_sprite);
 
-	//–¼‘O“ü—Í‚ğ‚µ‚½Œã‚ÍAFightScreenEnd‚ğŒÄ‚Ô•K—v‚Í‚È‚µ
+	//åå‰å…¥åŠ›ã‚’ã—ãŸå¾Œã¯ã€FightScreenEndã‚’å‘¼ã¶å¿…è¦ã¯ãªã—
 	if(bw->proc_mode!=BW_PROC_MODE_NAMEIN_AFTER){
-		FightScreenEnd(bw);		//íœŠÖ˜A‚Ü‚Æ‚ß‚Ä‚ ‚éŠÖ”
+		FightScreenEnd(bw);		//å‰Šé™¤é–¢é€£ã¾ã¨ã‚ã¦ã‚ã‚‹é–¢æ•°
 	}
 
-	//‘—‚èƒJ[ƒ\ƒ‹ƒ‚[ƒh‚ğOFF
+	//é€ã‚Šã‚«ãƒ¼ã‚½ãƒ«ãƒ¢ãƒ¼ãƒ‰ã‚’OFF
 	MsgPrintSkipFlagSet(MSG_SKIP_OFF);
 	MsgPrintAutoFlagSet(MSG_AUTO_OFF);
 	MsgPrintTouchPanelFlagSet(MSG_TP_OFF);
@@ -1249,7 +1249,7 @@ static	void	FightEnd(PROC *proc)
 	sys_FreeMemoryEz(bw->pal_area);
 
 	NUMFONT_Delete(bw->numfont_hp);
-#if 1	//ƒŒƒxƒ‹‚ànumfont_hp‚Æ“¯‚¶•¨‚ğg—p‚·‚é‚æ‚¤‚É‚È‚Á‚½ 2005.11.10(–Ø)	¦check
+#if 1	//ãƒ¬ãƒ™ãƒ«ã‚‚numfont_hpã¨åŒã˜ç‰©ã‚’ä½¿ç”¨ã™ã‚‹ã‚ˆã†ã«ãªã£ãŸ 2005.11.10(æœ¨)	â€»check
 	;
 #else
 	NUMFONT_Delete(bw->numfont_lv);
@@ -1259,27 +1259,27 @@ static	void	FightEnd(PROC *proc)
 	TCB_Delete(bw->update_tcb);
 	TCB_Delete(bw->pinch_tcb);
 
-	StopTP();		//ƒ^ƒbƒ`ƒpƒlƒ‹‚ÌI—¹
+	StopTP();		//ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã®çµ‚äº†
 
-	//3D•`‰æŒn‚Ì‰Šú‰»
+	//3Dæç”»ç³»ã®åˆæœŸåŒ–
 //	simple_3DBGExit();
 	Fight_3D_Exit(bw->g3Dman);
 
-	//‘Ş”ğ‚µ‚½—”‚Ìí‚ğ–ß‚·
+	//é€€é¿ã—ãŸä¹±æ•°ã®ç¨®ã‚’æˆ»ã™
 	gf_srand(bw->seed_temp);
 
-	//ƒsƒ“ƒ`SE‚ª‚È‚Á‚Ä‚¢‚½‚ç~‚ß‚é
+	//ãƒ”ãƒ³ãƒSEãŒãªã£ã¦ã„ãŸã‚‰æ­¢ã‚ã‚‹
 	if(BattleWorkPinchSEFlagGet(bw)){
 		Snd_SeStopBySeqNo(BSE_PINCH,0);
 	}
 
-	//ƒZƒ‹“]‘—ƒ}ƒl[ƒWƒƒ‚ÌŠJ•ú
+	//ã‚»ãƒ«è»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ã®é–‹æ”¾
 	DeleteCellTransfer(bw->cell_trans);
 	
-	// –Â‚«º‚ğ2‚Â“¯Ä¶o—ˆ‚éƒtƒ‰ƒOƒIƒt
+	// é³´ãå£°ã‚’2ã¤åŒæ™‚å†ç”Ÿå‡ºæ¥ã‚‹ãƒ•ãƒ©ã‚°ã‚ªãƒ•
 //	Snd_PMVoiceDoubleFlagSet( 0 );
 
-	//‘Îí˜^‰æÄ¶’†’f‚È‚çƒ}ƒXƒ^[ƒ{ƒŠƒ…[ƒ€‚ğ–ß‚·
+	//å¯¾æˆ¦éŒ²ç”»å†ç”Ÿä¸­æ–­ãªã‚‰ãƒã‚¹ã‚¿ãƒ¼ãƒœãƒªãƒ¥ãƒ¼ãƒ ã‚’æˆ»ã™
 	if(BattleWorkBattleRecStopFlagGet(bw)){
 		Snd_SetMasterVolume(127);
 	}
@@ -1299,7 +1299,7 @@ static	void	FightEnd(PROC *proc)
 
 //============================================================================================
 /**
- *	í“¬”wŒi‰æ–Ê‰Šú‰»•‰æ–Ê¶¬
+ *	æˆ¦é—˜èƒŒæ™¯ç”»é¢åˆæœŸåŒ–ï¼†ç”»é¢ç”Ÿæˆ
  */
 //============================================================================================
 static	void	FightBGCreate(BATTLE_WORK *bw, GF_BGL_INI *bgl)
@@ -1308,23 +1308,23 @@ static	void	FightBGCreate(BATTLE_WORK *bw, GF_BGL_INI *bgl)
 	WIPE_ResetBrightness(WIPE_DISP_MAIN);
 	WIPE_ResetBrightness(WIPE_DISP_SUB);
 
-	//VRAMİ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -1339,12 +1339,12 @@ static	void	FightBGCreate(BATTLE_WORK *bw, GF_BGL_INI *bgl)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	// ƒuƒŒƒ“ƒhİ’è
+	// ãƒ–ãƒ¬ãƒ³ãƒ‰è¨­å®š
 	{
 		bw->bld_init_req=1;
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat[] = {
 			///<FRAME1_M
@@ -1377,12 +1377,12 @@ static	void	FightBGCreate(BATTLE_WORK *bw, GF_BGL_INI *bgl)
 		G2_SetBG0Priority(BATTLE_3DBG_PRIORITY);
 		GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
 	}
-	//ƒTƒu‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ã‚µãƒ–ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		BINPUT_DefaultFrameSet(bgl);
 	}
 
-	//”wŒiƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒh
+	//èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	{
 		WINTYPE	win_type;
 
@@ -1399,7 +1399,7 @@ static	void	FightBGCreate(BATTLE_WORK *bw, GF_BGL_INI *bgl)
 		ArcUtil_ScrnSet(ARC_BATT_BG,BATTLE_BG00_NSCR_BIN,bgl,GF_BGL_FRAME3_M,0,0,1,HEAPID_BATTLE);
 	}
 
-	//ƒEƒCƒ“ƒhƒEƒ}ƒXƒNİ’è‚Ì‰Šú‰»
+	//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒã‚¹ã‚¯è¨­å®šã®åˆæœŸåŒ–
 	{
 		GX_SetVisibleWnd(GX_WNDMASK_NONE);
 		GXS_SetVisibleWnd(GX_WNDMASK_NONE);
@@ -1417,7 +1417,7 @@ static	void	FightBGCreate(BATTLE_WORK *bw, GF_BGL_INI *bgl)
 
 //============================================================================================
 /**
- *	í“¬OBJ‰æ–Ê‰Šú‰»•‰æ–Ê¶¬
+ *	æˆ¦é—˜OBJç”»é¢åˆæœŸåŒ–ï¼†ç”»é¢ç”Ÿæˆ
  */
 //============================================================================================
 static	void	FightOBJCreate(BATTLE_WORK *bw)
@@ -1433,7 +1433,7 @@ static	void	FightOBJCreate(BATTLE_WORK *bw)
 	Ground_ActorResourceSet(&bw->ground[GROUND_MINE],bw,GROUND_TYPE_NORMAL_MINE, ground_id);
 	Ground_ActorResourceSet(&bw->ground[GROUND_ENEMY], bw, GROUND_TYPE_NORMAL_ENEMY, ground_id);
 
-	//ƒ{[ƒ‹ƒŠƒ\[ƒX‚Ìæ“Ç‚İ
+	//ãƒœãƒ¼ãƒ«ãƒªã‚½ãƒ¼ã‚¹ã®å…ˆèª­ã¿
 	sp=BattleWorkServerParamGet(bw);
 	for(i=0;i<bw->client_set_max;i++){
 		sel_mons_no=ST_ServerParamDataGet(bw,sp,ID_SP_sel_mons_no,i);
@@ -1441,13 +1441,13 @@ static	void	FightOBJCreate(BATTLE_WORK *bw)
 		ClientBMInit(bw,bw->client_param[i],PokeParaGet(pp,ID_PARA_get_ball,NULL),sel_mons_no);
 	}
 
-	//’ÊMƒAƒCƒRƒ“‚Ì‹N“®
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã®èµ·å‹•
 	FightWirelessIconSet();
 }
 
 //============================================================================================
 /**
- *	í“¬”wŒi‰æ–ÊI—¹ˆ—
+ *	æˆ¦é—˜èƒŒæ™¯ç”»é¢çµ‚äº†å‡¦ç†
  */
 //============================================================================================
 static	void	FightBGEnd(GF_BGL_INI *bgl)
@@ -1457,20 +1457,20 @@ static	void	FightBGEnd(GF_BGL_INI *bgl)
 	GF_BGL_BGControlExit(bgl, GF_BGL_FRAME1_M );
 	GF_BGL_BGControlExit(bgl, GF_BGL_FRAME2_M );
 	GF_BGL_BGControlExit(bgl, GF_BGL_FRAME3_M );
-	//ƒTƒu‰æ–Ê
+	//ã‚µãƒ–ç”»é¢
 	BINPUT_FrameExit(bgl);
 }
 
 //============================================================================================
 /**
- *	í“¬OBJ‰æ–ÊI—¹ˆ—
+ *	æˆ¦é—˜OBJç”»é¢çµ‚äº†å‡¦ç†
  */
 //============================================================================================
 static	void	FightOBJEnd(BATTLE_WORK *bw)
 {
 	int	i;
 
-//íœ
+//å‰Šé™¤
 //	for(i=0;i<GROUND_MAX;i++){
 //	  Ground_ActorResourceDel(&bw->ground[i]);
 //	}
@@ -1478,16 +1478,16 @@ static	void	FightOBJEnd(BATTLE_WORK *bw)
 
 //============================================================================================
 /**
- *	í“¬ƒ‹[ƒ`ƒ“ŒQ‹N“®ƒpƒ‰ƒ[ƒ^ƒe[ƒuƒ‹
+ *	æˆ¦é—˜ãƒ«ãƒ¼ãƒãƒ³ç¾¤èµ·å‹•ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 //============================================================================================
-//1vs1ƒf[ƒ^
+//1vs1ãƒ‡ãƒ¼ã‚¿
 static	const	u8 ClientTypeTable1vs1[]={
 	{CLIENT_TYPE_AA},
 	{CLIENT_TYPE_BB},
 };
 
-//’ÊM1vs1ƒf[ƒ^
+//é€šä¿¡1vs1ãƒ‡ãƒ¼ã‚¿
 static	const	u8 ClientTypeTableSIO1vs1[][2]={
 	{
 	{CLIENT_TYPE_AA},
@@ -1499,7 +1499,7 @@ static	const	u8 ClientTypeTableSIO1vs1[][2]={
 	},
 };
 
-//2vs2ƒf[ƒ^
+//2vs2ãƒ‡ãƒ¼ã‚¿
 static	const	u8 ClientTypeTable2vs2[]={
 	{CLIENT_TYPE_A},
 	{CLIENT_TYPE_B},
@@ -1507,7 +1507,7 @@ static	const	u8 ClientTypeTable2vs2[]={
 	{CLIENT_TYPE_D},
 };
 
-//’ÊM2vs2ƒf[ƒ^
+//é€šä¿¡2vs2ãƒ‡ãƒ¼ã‚¿
 static	const	u8 ClientTypeTableSIO2vs2[][4]={
 	{
 	{CLIENT_TYPE_A},
@@ -1523,44 +1523,44 @@ static	const	u8 ClientTypeTableSIO2vs2[][4]={
 	}
 };
 
-//’ÊMMultiƒf[ƒ^
+//é€šä¿¡Multiãƒ‡ãƒ¼ã‚¿
 static	const	u8 ClientTypeTableSIOMulti[][4]={
-	//—§‚¿ˆÊ’u0
+	//ç«‹ã¡ä½ç½®0
 	{
-	{CLIENT_TYPE_A},	//—§‚¿ˆÊ’u0
-	{CLIENT_TYPE_D},	//—§‚¿ˆÊ’u1
-	{CLIENT_TYPE_C},	//—§‚¿ˆÊ’u2
-	{CLIENT_TYPE_B},	//—§‚¿ˆÊ’u3
+	{CLIENT_TYPE_A},	//ç«‹ã¡ä½ç½®0
+	{CLIENT_TYPE_D},	//ç«‹ã¡ä½ç½®1
+	{CLIENT_TYPE_C},	//ç«‹ã¡ä½ç½®2
+	{CLIENT_TYPE_B},	//ç«‹ã¡ä½ç½®3
 	},
-	//—§‚¿ˆÊ’u1
+	//ç«‹ã¡ä½ç½®1
 	{
-	{CLIENT_TYPE_B},	//—§‚¿ˆÊ’u0
-	{CLIENT_TYPE_C},	//—§‚¿ˆÊ’u1
-	{CLIENT_TYPE_D},	//—§‚¿ˆÊ’u2
-	{CLIENT_TYPE_A},	//—§‚¿ˆÊ’u3
+	{CLIENT_TYPE_B},	//ç«‹ã¡ä½ç½®0
+	{CLIENT_TYPE_C},	//ç«‹ã¡ä½ç½®1
+	{CLIENT_TYPE_D},	//ç«‹ã¡ä½ç½®2
+	{CLIENT_TYPE_A},	//ç«‹ã¡ä½ç½®3
 	},
-	//—§‚¿ˆÊ’u2
+	//ç«‹ã¡ä½ç½®2
 	{
-	{CLIENT_TYPE_A},	//—§‚¿ˆÊ’u0
-	{CLIENT_TYPE_D},	//—§‚¿ˆÊ’u1
-	{CLIENT_TYPE_C},	//—§‚¿ˆÊ’u2
-	{CLIENT_TYPE_B},	//—§‚¿ˆÊ’u3
+	{CLIENT_TYPE_A},	//ç«‹ã¡ä½ç½®0
+	{CLIENT_TYPE_D},	//ç«‹ã¡ä½ç½®1
+	{CLIENT_TYPE_C},	//ç«‹ã¡ä½ç½®2
+	{CLIENT_TYPE_B},	//ç«‹ã¡ä½ç½®3
 	},
-	//—§‚¿ˆÊ’u3
+	//ç«‹ã¡ä½ç½®3
 	{
-	{CLIENT_TYPE_B},	//—§‚¿ˆÊ’u0
-	{CLIENT_TYPE_C},	//—§‚¿ˆÊ’u1
-	{CLIENT_TYPE_D},	//—§‚¿ˆÊ’u2
-	{CLIENT_TYPE_A},	//—§‚¿ˆÊ’u3
+	{CLIENT_TYPE_B},	//ç«‹ã¡ä½ç½®0
+	{CLIENT_TYPE_C},	//ç«‹ã¡ä½ç½®1
+	{CLIENT_TYPE_D},	//ç«‹ã¡ä½ç½®2
+	{CLIENT_TYPE_A},	//ç«‹ã¡ä½ç½®3
 	},
 };
 
 //============================================================================================
 /**
- *	í“¬ƒ‹[ƒ`ƒ“ŒQ‹N“®
+ *	æˆ¦é—˜ãƒ«ãƒ¼ãƒãƒ³ç¾¤èµ·å‹•
  *
- * @param[in]	battle_work	í“¬ƒ[ƒN\‘¢‘Ì
- * @param[in]	bp			í“¬ƒpƒ‰ƒ[ƒ^\‘¢‘Ì
+ * @param[in]	battle_work	æˆ¦é—˜ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
+ * @param[in]	bp			æˆ¦é—˜ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ§‹é€ ä½“
  */
 //============================================================================================
 static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
@@ -1573,23 +1573,23 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 	bw->fight_type=bp->fight_type;
 
 	for(i=0;i<CLIENT_MAX;i++){
-		//ƒ}ƒCƒXƒe[ƒ^ƒXì¬
+		//ãƒã‚¤ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ä½œæˆ
 		bw->my_status[i]=MyStatus_AllocWork(HEAPID_BATTLE);
 		MyStatus_Copy(bp->my_status[i],bw->my_status[i]);
-		//ƒ|ƒPƒ‚ƒ“–Â‚«ºƒf[ƒ^ì¬
+		//ãƒã‚±ãƒ¢ãƒ³é³´ãå£°ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 		bw->poke_voice[i]=bp->poke_voice[i];
 	}
 
-	//’ÊMŠÖ˜Aî•ñ‚ğƒRƒs[
+	//é€šä¿¡é–¢é€£æƒ…å ±ã‚’ã‚³ãƒ”ãƒ¼
 	bw->comm_id=bp->comm_id;
 	for(i=0;i<CLIENT_MAX;i++){
 		bw->comm_stand_no[i]=bp->comm_stand_no[i];
 	}
 
-	//ƒ‰ƒ“ƒ_ƒ€‚Ìí‚ğ‘Ş”ğ
+	//ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã‚’é€€é¿
 	bw->seed_temp=gf_get_seed();
 
-	//ƒ‰ƒ“ƒ_ƒ€‚Ìí‚ğæ“¾(ServerInit‚æ‚è‘O‚ÉƒR[ƒ‹‚·‚é•K—v‚ª‚ ‚éj
+	//ãƒ©ãƒ³ãƒ€ãƒ ã®ç¨®ã‚’å–å¾—(ServerInitã‚ˆã‚Šå‰ã«ã‚³ãƒ¼ãƒ«ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ï¼‰
 	bw->rand = bp->rand;
 	bw->rand_temp = bp->rand;
 
@@ -1598,75 +1598,75 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 #endif
 
 #ifndef MADOKA_DEBUG
-	//í“¬Œø‰Êƒtƒ‰ƒOƒRƒs[
+	//æˆ¦é—˜åŠ¹æœãƒ•ãƒ©ã‚°ã‚³ãƒ”ãƒ¼
 	bw->battle_status_flag=bp->battle_status_flag;
 #else
-	//í“¬Œø‰Êƒtƒ‰ƒOƒRƒs[
+	//æˆ¦é—˜åŠ¹æœãƒ•ãƒ©ã‚°ã‚³ãƒ”ãƒ¼
 	bw->battle_status_flag=bp->battle_status_flag|BATTLE_STATUS_FLAG_COM_SELECT;
 	dcb_p->cb_pos=0;
 #endif
 
-	//è‚¿ƒAƒCƒeƒ€ì¬
+	//æ‰‹æŒã¡ã‚¢ã‚¤ãƒ†ãƒ ä½œæˆ
 	bw->my_item=MyItem_AllocWork(HEAPID_BATTLE);
 	MyItem_Copy(bp->my_item,bw->my_item);
 
-	//}ŠÓƒ[ƒNì¬
+	//å›³é‘‘ãƒ¯ãƒ¼ã‚¯ä½œæˆ
 	bw->zw=ZukanWork_AllocWork(HEAPID_BATTLE);
 	ZukanWork_Copy(bp->zw,bw->zw);
 
-	//ƒ{ƒbƒNƒXƒRƒs[
+	//ãƒœãƒƒã‚¯ã‚¹ã‚³ãƒ”ãƒ¼
 	bw->box=bp->box;
 
-	//ƒRƒ“ƒtƒBƒOƒRƒs[
+	//ã‚³ãƒ³ãƒ•ã‚£ã‚°ã‚³ãƒ”ãƒ¼
 	bw->config=bp->config;
 
-	// ‚Æ‚à‚¾‚¿ƒOƒ‹[ƒvƒ|ƒCƒ“ƒ^ƒRƒs[
+	// ã¨ã‚‚ã ã¡ã‚°ãƒ«ãƒ¼ãƒ—ãƒã‚¤ãƒ³ã‚¿ã‚³ãƒ”ãƒ¼
 	bw->friendlist = bp->friendlist;
 
-	//ƒoƒbƒOƒJ[ƒ\ƒ‹ƒRƒs[
+	//ãƒãƒƒã‚°ã‚«ãƒ¼ã‚½ãƒ«ã‚³ãƒ”ãƒ¼
 	bw->bag_cursor=bp->bag_cursor;
 	
-	//í“¬ƒJ[ƒ\ƒ‹ƒRƒs[
+	//æˆ¦é—˜ã‚«ãƒ¼ã‚½ãƒ«ã‚³ãƒ”ãƒ¼
 	bw->battle_cursor=bp->battle_cursor;
 
-	//ƒ|ƒPƒbƒ`ƒf[ƒ^ƒRƒs[
+	//ãƒã‚±ãƒƒãƒãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼
 	bw->poketch_data=bp->poketch_data;
 
-	//êŠi‰»î•ñƒRƒs[
+	//å ´æ‰€é€²åŒ–æƒ…å ±ã‚³ãƒ”ãƒ¼
 	bw->shinka_place_mode=bp->shinka_place_mode;
 
-	///<ƒeƒŒƒrF•ßŠl”Ô‘g—pƒRƒs[
+	///<ãƒ†ãƒ¬ãƒ“ï¼šæ•ç²ç•ªçµ„ç”¨ã‚³ãƒ”ãƒ¼
 	bw->TVWatchBattleWork=bp->TVWatchBattleWork;
 
-	//ƒTƒtƒ@ƒŠƒ{[ƒ‹‚Ì”ƒRƒs[
+	//ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã®æ•°ã‚³ãƒ”ãƒ¼
 	bw->safari_ball=bp->safari_ball;
 
-	//’nŒ`IDŒnƒRƒs[
+	//åœ°å½¢IDç³»ã‚³ãƒ”ãƒ¼
 	bw->ground_id=bp->ground_id;
 	bw->bg_id=bp->bg_id;
 	bw->place_id=bp->place_id;
 
-	//ŠÔ‘ÑƒRƒs[
+	//æ™‚é–“å¸¯ã‚³ãƒ”ãƒ¼
 	bw->time_zone=bp->time_zone;
 
-	//ƒŒƒMƒ…ƒŒ[ƒVƒ‡ƒ“ƒtƒ‰ƒOƒRƒs[
+	//ãƒ¬ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°ã‚³ãƒ”ãƒ¼
 	bw->regulation_flag=bp->regulation_flag;
 
-	//ƒRƒ“ƒeƒXƒg‚ğŒ©‚½‚©‚Ç‚¤‚©ƒtƒ‰ƒOƒRƒs[
+	//ã‚³ãƒ³ãƒ†ã‚¹ãƒˆã‚’è¦‹ãŸã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°ã‚³ãƒ”ãƒ¼
 	bw->contest_see_flag=bp->contest_see_flag;
 
-	//ƒ~ƒYƒL‚É‚ ‚Á‚½‚©‚Ç‚¤‚©ƒtƒ‰ƒOƒRƒs[
+	//ãƒŸã‚ºã‚­ã«ã‚ã£ãŸã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°ã‚³ãƒ”ãƒ¼
 	bw->mizuki_flag=bp->mizuki_flag;
 
-	//ƒtƒB[ƒ‹ƒh“VŒó‚ğƒRƒs[
+	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å¤©å€™ã‚’ã‚³ãƒ”ãƒ¼
 	bw->weather=bp->weather;
 
-	//ƒJƒEƒ“ƒgƒAƒbƒv—pƒ[ƒN‚ğƒRƒs[
+	//ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ç”¨ãƒ¯ãƒ¼ã‚¯ã‚’ã‚³ãƒ”ãƒ¼
 	bw->record=bp->record;
-	//ƒŒƒR[ƒh‚ªNULL‚¾‚Æ‚Ü‚¸‚¢‚Ì‚ÅAƒAƒT[ƒg
+	//ãƒ¬ã‚³ãƒ¼ãƒ‰ãŒNULLã ã¨ã¾ãšã„ã®ã§ã€ã‚¢ã‚µãƒ¼ãƒˆ
 	GF_ASSERT(bp->record!=NULL);
 
-	//ƒgƒŒ[ƒi[ID‚ğƒZƒbƒg
+	//ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼IDã‚’ã‚»ãƒƒãƒˆ
 	for(i=0;i<CLIENT_MAX;i++){
 		bw->trainer_id[i]=bp->trainer_id[i];
 		bw->trainer_data[i]=bp->trainer_data[i];
@@ -1680,7 +1680,7 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 
 	{
 		int	sex;
-		//«•Ê•sˆê’v‚È‚à‚Ì‚ğ•â³‚·‚éˆ—
+		//æ€§åˆ¥ä¸ä¸€è‡´ãªã‚‚ã®ã‚’è£œæ­£ã™ã‚‹å‡¦ç†
 		for(i=0;i<CLIENT_MAX;i++){
 			for(j=0;j<PokeParty_GetPokeCount(bp->poke_party[i]);j++){
 				pp=PokeParty_GetMemberPointer(bp->poke_party[i],j);
@@ -1690,14 +1690,14 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 		}
 	}
 
-	//’ÊM‘Îí
+	//é€šä¿¡å¯¾æˆ¦
 	if(bw->fight_type&FIGHT_TYPE_SIO){
 		CommCommandBattleInitialize(bw);
 		{
 			u8	sio_id=BattleWorkCommIDGet(bw);
 			int	cnt;
 
-			//ƒT[ƒo‹N“®ƒ`ƒFƒbƒN
+			//ã‚µãƒ¼ãƒèµ·å‹•ãƒã‚§ãƒƒã‚¯
 			FightSioServerBootCheck(bw,bp);
 
 			if(bw->fight_type&FIGHT_TYPE_TOWER){
@@ -1707,9 +1707,9 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 					bw->client_param[i]=ClientInit(bw,&fsbp);
 				}
 				bw->client_set_max=i;
-				//è‚¿ƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+				//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 				for(i=0;i<CLIENT_MAX;i++){
-					//client_param‚ª‚·‚×‚Ä¶¬‚³‚ê‚È‚¢‚ÆŒÄ‚×‚È‚¢‚Ì‚ÅA•Êƒ‹[ƒv‚Ì’†‚ÉˆÚ“®
+					//client_paramãŒã™ã¹ã¦ç”Ÿæˆã•ã‚Œãªã„ã¨å‘¼ã¹ãªã„ã®ã§ã€åˆ¥ãƒ«ãƒ¼ãƒ—ã®ä¸­ã«ç§»å‹•
 					CT_UISet(bw,bw->client_param[i]);
 					PokeParty_Copy(bp->poke_party[i],bw->poke_party[i]);
 				}
@@ -1733,9 +1733,9 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 					bw->client_param[i]=ClientInit(bw,&fsbp);
 				}
 				bw->client_set_max=i;
-				//è‚¿ƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+				//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 				for(i=0;i<CLIENT_MAX;i++){
-					//client_param‚ª‚·‚×‚Ä¶¬‚³‚ê‚È‚¢‚ÆŒÄ‚×‚È‚¢‚Ì‚ÅA•Êƒ‹[ƒv‚Ì’†‚ÉˆÚ“®
+					//client_paramãŒã™ã¹ã¦ç”Ÿæˆã•ã‚Œãªã„ã¨å‘¼ã¹ãªã„ã®ã§ã€åˆ¥ãƒ«ãƒ¼ãƒ—ã®ä¸­ã«ç§»å‹•
 					CT_UISet(bw,bw->client_param[i]);
 					PokeParty_Copy(bp->poke_party[i],bw->poke_party[i]);
 				}
@@ -1761,7 +1761,7 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 					CT_UISet(bw,bw->client_param[i]);
 				}
 				bw->client_set_max=i;
-				//è‚¿ƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+				//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 				for(i=0;i<CLIENT_MAX;i++){
 					PokeParty_Copy(bp->poke_party[i],bw->poke_party[i]);
 				}
@@ -1796,7 +1796,7 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 					CT_UISet(bw,bw->client_param[i]);
 				}
 				bw->client_set_max=i;
-				//è‚¿ƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+				//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 				for(i=0;i<CLIENT_MAX;i++){
 					PokeParty_Copy(bp->poke_party[i],bw->poke_party[i]);
 					for(j=0;j<PokeParty_GetPokeCount(bw->poke_party[i]);j++){
@@ -1813,7 +1813,7 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 		}
 		ST_ServerListRowInit(bw,bw->server_param);
 	}
-	//ƒ^ƒbƒOƒoƒgƒ‹
+	//ã‚¿ãƒƒã‚°ãƒãƒˆãƒ«
 	else if(bw->fight_type&FIGHT_TYPE_TAG){
 		{
 			int	sel_mons_no;
@@ -1825,7 +1825,7 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 				CT_UISet(bw,bw->client_param[i]);
 			}
 			bw->client_set_max=i;
-			//è‚¿ƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+			//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 			for(i=0;i<CLIENT_MAX;i++){
 				PokeParty_Copy(bp->poke_party[i],bw->poke_party[i]);
 			}
@@ -1857,7 +1857,7 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 		ST_ServerListRowInit(bw,bw->server_param);
 		bw->server_flag=1;
 	}
-	//AIƒ}ƒ‹ƒ`
+	//AIãƒãƒ«ãƒ
 	else if(bw->fight_type&FIGHT_TYPE_MULTI){
 		for(i=0;i<CLIENT_MAX;i++){
 			fsbp.client_no=i;
@@ -1866,7 +1866,7 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 			CT_UISet(bw,bw->client_param[i]);
 		}
 		bw->client_set_max=i;
-		//è‚¿ƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+		//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 		for(i=0;i<CLIENT_MAX;i++){
 			PokeParty_Copy(bp->poke_party[i],bw->poke_party[i]);
 		}
@@ -1884,7 +1884,7 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 		ST_ServerListRowInit(bw,bw->server_param);
 		bw->server_flag=1;
 	}
-	//2vs2‚Å‹N“®
+	//2vs2ã§èµ·å‹•
 	else if(bw->fight_type&FIGHT_TYPE_2vs2){
 		for(i=0;i<CLIENT_MAX;i++){
 			fsbp.client_no=i;
@@ -1893,7 +1893,7 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 			CT_UISet(bw,bw->client_param[i]);
 		}
 		bw->client_set_max=i;
-		//è‚¿ƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+		//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 		for(i=0;i<CLIENT_MAX;i++){
 			PokeParty_Copy(bp->poke_party[i],bw->poke_party[i]);
 		}
@@ -1921,7 +1921,7 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 		ST_ServerListRowInit(bw,bw->server_param);
 		bw->server_flag=1;
 	}
-	//1vs1‚Å‹N“®
+	//1vs1ã§èµ·å‹•
 	else{
 		for(i=0;i<2;i++){
 			fsbp.client_no=i;
@@ -1930,7 +1930,7 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 			CT_UISet(bw,bw->client_param[i]);
 		}
 		bw->client_set_max=i;
-		//è‚¿ƒ|ƒPƒ‚ƒ“ƒZƒbƒg
+		//æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã‚»ãƒƒãƒˆ
 		for(i=0;i<CLIENT_MAX;i++){
 			PokeParty_Copy(bp->poke_party[i],bw->poke_party[i]);
 			for(j=0;j<PokeParty_GetPokeCount(bw->poke_party[i]);j++){
@@ -1947,13 +1947,13 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 		bw->server_flag=1;
 	}
 
-	//ƒ|ƒPƒp[ƒN‚Ì‚ÍA‘Šè‚ÌƒgƒŒ[ƒi[ƒf[ƒ^‚Ì–¼‘O‚Ée‚Ì–¼‘O‚ğ“ü‚ê‚Ä‚¨‚­
+	//ãƒã‚±ãƒ‘ãƒ¼ã‚¯ã®æ™‚ã¯ã€ç›¸æ‰‹ã®ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ã®åå‰ã«è¦ªã®åå‰ã‚’å…¥ã‚Œã¦ãŠã
 	if(bw->fight_type&FIGHT_TYPE_POKE_PARK){
 		pp=PokeParty_GetMemberPointer(bw->poke_party[CLIENT_NO_ENEMY],0);
 		PokeParaGet(pp,ID_PARA_oyaname,(u8 *)&bw->trainer_data[CLIENT_NO_ENEMY].name);
 	}
 
-	//ƒ{ƒXíQ‰Á‚Ì‚È‚Â‚«“xŒvZ
+	//ãƒœã‚¹æˆ¦å‚åŠ ã®ãªã¤ãåº¦è¨ˆç®—
 	if(bw->fight_type&FIGHT_TYPE_TRAINER){
 		if((BossTrTypeCheck(bw->trainer_data[CLIENT_NO_ENEMY].tr_type)==TRUE)||
 		   (BossTrTypeCheck(bw->trainer_data[CLIENT_NO_ENEMY2].tr_type)==TRUE)){
@@ -1972,7 +1972,7 @@ static	void	FightSystemBoot(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒgƒŒ[ƒi[ƒ^ƒCƒv‚ªƒ{ƒXƒNƒ‰ƒX‚©ƒ`ƒFƒbƒN
+ * @brief   ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ã‚¿ã‚¤ãƒ—ãŒãƒœã‚¹ã‚¯ãƒ©ã‚¹ã‹ãƒã‚§ãƒƒã‚¯
  */
 //--------------------------------------------------------------
 static	BOOL	BossTrTypeCheck(u16 tr_type)
@@ -1999,7 +1999,7 @@ static	BOOL	BossTrTypeCheck(u16 tr_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬—p3DBG‰Šú‰»ŠÖ”
+ * @brief   æˆ¦é—˜ç”¨3DBGåˆæœŸåŒ–é–¢æ•°
  */
 //--------------------------------------------------------------
 static GF_G3DMAN * Fight_3D_Init(void)
@@ -2013,28 +2013,28 @@ static GF_G3DMAN * Fight_3D_Init(void)
 
 static void FightSimpleSetUp(void)
 {
-	// ‚R‚cg—p–Ê‚Ìİ’è(•\¦•ƒvƒ‰ƒCƒIƒŠƒeƒB[)
+	// ï¼“ï¼¤ä½¿ç”¨é¢ã®è¨­å®š(è¡¨ç¤ºï¼†ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£ãƒ¼)
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0, VISIBLE_ON );
     G2_SetBG0Priority(1);
 
-	// Šeí•`‰æƒ‚[ƒh‚Ìİ’è(ƒVƒF[ƒh•ƒAƒ“ƒ`ƒGƒCƒŠƒAƒX•”¼“§–¾)
+	// å„ç¨®æç”»ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š(ã‚·ã‚§ãƒ¼ãƒ‰ï¼†ã‚¢ãƒ³ãƒã‚¨ã‚¤ãƒªã‚¢ã‚¹ï¼†åŠé€æ˜)
     G3X_SetShading( GX_SHADING_TOON );
     G3X_AntiAlias( TRUE );
-	G3X_AlphaTest( FALSE, 0 );	// ƒAƒ‹ƒtƒ@ƒeƒXƒg@@ƒIƒt
-	G3X_AlphaBlend( TRUE );		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh@ƒIƒ“
+	G3X_AlphaTest( FALSE, 0 );	// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ†ã‚¹ãƒˆã€€ã€€ã‚ªãƒ•
+	G3X_AlphaBlend( TRUE );		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ã€€ã‚ªãƒ³
 	G3X_EdgeMarking( FALSE );
 	G3X_SetFog( FALSE, GX_FOGBLEND_COLOR_ALPHA, GX_FOGSLOPE_0x8000, 0 );
 
-	// ƒNƒŠƒAƒJƒ‰[‚Ìİ’è
+	// ã‚¯ãƒªã‚¢ã‚«ãƒ©ãƒ¼ã®è¨­å®š
     G3X_SetClearColor(GX_RGB(0,0,0),0,0x7fff,63,FALSE);	//color,alpha,depth,polygonID,fog
 
-	// ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     G3_ViewPort(0, 0, 255, 191);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬—p3DBGI—¹ˆ—
+ * @brief   æˆ¦é—˜ç”¨3DBGçµ‚äº†å‡¦ç†
  *
  * @param   g3Dman		
  */
@@ -2046,24 +2046,24 @@ static void Fight_3D_Exit(GF_G3DMAN *g3Dman)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬—pƒp[ƒeƒBƒNƒ‹‰Šú‰»
+ * @brief   æˆ¦é—˜ç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åˆæœŸåŒ–
  */
 //--------------------------------------------------------------
 static	void	FightParticleInit(void)
 {
 	//--------------------------------------------------------------
-	//	‰Šú‰»
+	//	åˆæœŸåŒ–
 	//--------------------------------------------------------------
 #if 0
-	// ƒ}ƒl[ƒWƒƒ‚ªƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg‚ğw’èƒXƒƒbƒg•ªŠÇ—‚Å‚«‚é‚æ‚¤‚É‚µ‚Ä
-	// ƒfƒtƒHƒ‹ƒgƒ}ƒl[ƒWƒƒ‚É‚·‚éB
+	// ãƒãƒãƒ¼ã‚¸ãƒ£ãŒãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆã‚’æŒ‡å®šã‚¹ãƒ­ãƒƒãƒˆåˆ†ç®¡ç†ã§ãã‚‹ã‚ˆã†ã«ã—ã¦
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã«ã™ã‚‹ã€‚
 	NNS_GfdInitFrmTexVramManager(2, TRUE);
 		
-	// ƒ}ƒl[ƒWƒƒ‚ªƒpƒŒƒbƒg‚ğ32KB•ªŠÇ—‚Å‚«‚é‚æ‚¤‚É‚µ‚Ä
-	// ƒfƒtƒHƒ‹ƒgƒ}ƒl[ƒWƒƒ‚É‚·‚éB
+	// ãƒãƒãƒ¼ã‚¸ãƒ£ãŒãƒ‘ãƒ¬ãƒƒãƒˆã‚’32KBåˆ†ç®¡ç†ã§ãã‚‹ã‚ˆã†ã«ã—ã¦
+	// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ã«ã™ã‚‹ã€‚
 	NNS_GfdInitFrmPlttVramManager(0x8000, TRUE);
 
-	//ƒ|ƒPƒ‚ƒ“‚Åg—p‚·‚é•ª‚ğŠm•Û
+	//ãƒã‚±ãƒ¢ãƒ³ã§ä½¿ç”¨ã™ã‚‹åˆ†ã‚’ç¢ºä¿
 	NNS_GfdAllocFrmTexVram(0x4000, 0, 0);
 	NNS_GfdAllocFrmPlttVram(0x20 * 4, 0, NNS_GFD_ALLOC_FROM_LOW);
 #else
@@ -2071,28 +2071,28 @@ static	void	FightParticleInit(void)
 	NNSGfdPlttKey pltt_key;
 	u32 tex_addrs, pltt_addrs;
 	
-	//ƒ|ƒPƒ‚ƒ“‚Åg—p‚·‚é•ª‚ğŠm•Û
+	//ãƒã‚±ãƒ¢ãƒ³ã§ä½¿ç”¨ã™ã‚‹åˆ†ã‚’ç¢ºä¿
 	tex_key = NNS_GfdAllocTexVram(0x2000 * CLIENT_MAX, 0, 0);
-	pltt_key = NNS_GfdAllocPlttVram(0x20 * (CLIENT_MAX+2), 0, 0);		//‰e‚Ì•ª‚à’Ç‰Á
+	pltt_key = NNS_GfdAllocPlttVram(0x20 * (CLIENT_MAX+2), 0, 0);		//å½±ã®åˆ†ã‚‚è¿½åŠ 
 	
 	GF_ASSERT(tex_key != NNS_GFD_ALLOC_ERROR_TEXKEY);
 	GF_ASSERT(pltt_key != NNS_GFD_ALLOC_ERROR_PLTTKEY);
 	tex_addrs = NNS_GfdGetTexKeyAddr(tex_key);
 	pltt_addrs = NNS_GfdGetPlttKeyAddr(pltt_key);
 	#ifdef DEBUG_ONLY_FOR_matsuda
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒeƒNƒXƒ`ƒƒVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", tex_addrs);
-	OS_TPrintf("ƒ|ƒPƒ‚ƒ“—p‚ÉŠm•Û‚µ‚½ƒpƒŒƒbƒgVram‚Ìæ“ªƒAƒhƒŒƒX%d\n", pltt_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ†ã‚¯ã‚¹ãƒãƒ£Vramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", tex_addrs);
+	OS_TPrintf("ãƒã‚±ãƒ¢ãƒ³ç”¨ã«ç¢ºä¿ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆVramã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ï¼%d\n", pltt_addrs);
 	#endif
 #endif
-	//ƒp[ƒeƒBƒNƒ‹ƒVƒXƒeƒ€ƒ[ƒN‰Šú‰»
+	//ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚·ã‚¹ãƒ†ãƒ ãƒ¯ãƒ¼ã‚¯åˆæœŸåŒ–
 	Particle_SystemWorkInit();
 }
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
- * @param	work	VBLank‚É‚Íˆø”‚ª•K—v‚È‚Ì‚Å’è‹`‚µ‚Ä‚ ‚é‚ªÀÛ‚É‚ÍNULL‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚ÅAƒAƒNƒZƒX‚Í‹Ö~I
+ * @param	work	VBLankã«ã¯å¼•æ•°ãŒå¿…è¦ãªã®ã§å®šç¾©ã—ã¦ã‚ã‚‹ãŒå®Ÿéš›ã«ã¯NULLãŒå…¥ã£ã¦ã„ã‚‹ã®ã§ã€ã‚¢ã‚¯ã‚»ã‚¹ã¯ç¦æ­¢ï¼
  *
  * @retval	none	
  *
@@ -2102,8 +2102,8 @@ static	void	FightVBlank(void *work)
 {
 	BATTLE_WORK *bw = work;
 
-	//—”‚Ì•Î‚è‚ğ‚È‚­‚·‚½‚ß‚ÉAƒ‰ƒ“ƒ_ƒ€‚ğŒÄ‚ñ‚Å‚¨‚­
-//	gf_rand();		//‘Îí˜^‰æ‚ª‚ ‚é‚Ì‚ÅAŒÄ‚ñ‚Å‚à–³‘Ê‚É‚È‚Á‚½
+	//ä¹±æ•°ã®åã‚Šã‚’ãªãã™ãŸã‚ã«ã€ãƒ©ãƒ³ãƒ€ãƒ ã‚’å‘¼ã‚“ã§ãŠã
+//	gf_rand();		//å¯¾æˆ¦éŒ²ç”»ãŒã‚ã‚‹ã®ã§ã€å‘¼ã‚“ã§ã‚‚ç„¡é§„ã«ãªã£ãŸ
 
 	if(bw->bld_init_req){
 		bw->bld_init_req=0;
@@ -2114,16 +2114,16 @@ static	void	FightVBlank(void *work)
 		bw->vram_init_req=0;
 		{
 			GF_BGL_DISPVRAM vramSetTable = {
-				GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-				GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-				GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-				GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-				GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-				GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-				GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-				GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-				GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-				GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+				GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+				GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+				GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+				GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+				GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+				GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+				GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+				GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+				GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+				GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 			};
 			GF_Disp_SetBank( &vramSetTable );
 		}
@@ -2132,16 +2132,16 @@ static	void	FightVBlank(void *work)
 		bw->bl_vram_init_req=0;
 		{
 			GF_BGL_DISPVRAM	tbl = {
-				GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-				GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-				GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-				GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-				GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-				GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-				GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-				GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-				GX_VRAM_TEX_0_B,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-				GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+				GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+				GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+				GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+				GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+				GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+				GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+				GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+				GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+				GX_VRAM_TEX_0_B,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+				GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 			};
 			GF_Disp_SetBank( &tbl );
 		}
@@ -2149,7 +2149,7 @@ static	void	FightVBlank(void *work)
 
 	SoftSpriteTextureTrans(bw->soft_sprite);
 	
-	DoVramTransferManager();	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	DoVramTransferManager();	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 	CATS_RenderOamTrans();
 	PaletteFadeTrans(bw->pfd);
 
@@ -2164,9 +2164,9 @@ static	void	FightVBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief	VBLANKŠÖ”
+ * @brief	VBLANKé–¢æ•°
  *
- * @param	work	VBLank‚É‚Íˆø”‚ª•K—v‚È‚Ì‚Å’è‹`‚µ‚Ä‚ ‚é‚ªÀÛ‚É‚ÍNULL‚ª“ü‚Á‚Ä‚¢‚é‚Ì‚ÅAƒAƒNƒZƒX‚Í‹Ö~I
+ * @param	work	VBLankã«ã¯å¼•æ•°ãŒå¿…è¦ãªã®ã§å®šç¾©ã—ã¦ã‚ã‚‹ãŒå®Ÿéš›ã«ã¯NULLãŒå…¥ã£ã¦ã„ã‚‹ã®ã§ã€ã‚¢ã‚¯ã‚»ã‚¹ã¯ç¦æ­¢ï¼
  *
  * @retval	none	
  *
@@ -2178,7 +2178,7 @@ static	void	FightSioVBlank(void *work)
 
 	PaletteFadeTrans(bsw->pfd);
 
-	DoVramTransferManager();	// Vram“]‘—ƒ}ƒl[ƒWƒƒ[Às
+	DoVramTransferManager();	// Vramè»¢é€ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å®Ÿè¡Œ
 
 	GF_BGL_VBlankFunc( bsw->bgl );
 
@@ -2187,9 +2187,9 @@ static	void	FightSioVBlank(void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒƒCƒ“ƒ‹[ƒv‚ÌÅŒã‚És‚¤ƒVƒXƒeƒ€ŠÖ˜A‚ÌXVˆ—
+ * @brief   ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã®æœ€å¾Œã«è¡Œã†ã‚·ã‚¹ãƒ†ãƒ é–¢é€£ã®æ›´æ–°å‡¦ç†
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		bw
  */
 //--------------------------------------------------------------
@@ -2197,11 +2197,11 @@ static void FightUpdate(TCB_PTR tcb, void *work)
 {
 	BATTLE_WORK *bw = work;
 
-	//’ÊMƒGƒ‰[ŠÄ‹
+	//é€šä¿¡ã‚¨ãƒ©ãƒ¼ç›£è¦–
 	CommErrorCheck(HEAPID_BATTLE,bw->bgl);
 	
 	if((bw->proc_mode==BW_PROC_MODE_FIGHT)||(bw->proc_mode==BW_PROC_MODE_BAG_LIST)){
-//‚½‚ß‚µ‚ÉŒã‚ë‚ÉˆÚ“®
+//ãŸã‚ã—ã«å¾Œã‚ã«ç§»å‹•
 //		SoftSpriteMain(bw->soft_sprite);
 		if(bw->proc_mode==BW_PROC_MODE_FIGHT){
 			BattleParticle_Main();
@@ -2212,14 +2212,14 @@ static void FightUpdate(TCB_PTR tcb, void *work)
 		GF_G3_RequestSwapBuffers(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 	}
 
-#ifdef PM_DEBUG		//ƒ|ƒŠƒSƒ“‚Ìƒ‰ƒCƒ“ƒYƒI[ƒo[ƒ`ƒFƒbƒN
+#ifdef PM_DEBUG		//ãƒãƒªã‚´ãƒ³ã®ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ãƒã‚§ãƒƒã‚¯
 	if(G3X_IsLineBufferUnderflow() != 0){
-		OS_TPrintf("--------------ƒ‰ƒCƒ“ƒYƒI[ƒo[”­¶II----------\n");
-		//GF_ASSERT(0 && "ƒ‰ƒCƒ“ƒYƒI[ƒo[‚ª”­¶‚µ‚Ü‚µ‚½");
+		OS_TPrintf("--------------ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ç™ºç”Ÿï¼ï¼----------\n");
+		//GF_ASSERT(0 && "ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸ");
 		G3X_ResetLineBufferUnderflow();
 	}
 	else if(G3X_GetRenderedLineCount() < 10){
-		OS_TPrintf("========== ƒ‰ƒCƒ“ƒYƒI[ƒo[‚ª”­¶‚µ‚»‚¤‚Å‚·c Count = %d\n", 
+		OS_TPrintf("========== ãƒ©ã‚¤ãƒ³ã‚ºã‚ªãƒ¼ãƒãƒ¼ãŒç™ºç”Ÿã—ãã†ã§ã™â€¦ Count = %d\n", 
 			G3X_GetRenderedLineCount());
 	}
 #endif
@@ -2227,9 +2227,9 @@ static void FightUpdate(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒsƒ“ƒ`SE‚Ìƒ`ƒFƒbƒN
+ * @brief   ãƒ”ãƒ³ãƒSEã®ãƒã‚§ãƒƒã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		bw
  */
 //--------------------------------------------------------------
@@ -2286,7 +2286,7 @@ static void FightPinchSECheck(TCB_PTR tcb, void *work)
 		BattleWorkPinchSEFlagSet(bw,0);
 	}
 
-	//ƒsƒ“ƒ`SE‚Íƒ‹[ƒv‚Å‚Í‚È‚¢‚Ì‚ÅAÄƒR[ƒ‹‚ğ‚·‚é
+	//ãƒ”ãƒ³ãƒSEã¯ãƒ«ãƒ¼ãƒ—ã§ã¯ãªã„ã®ã§ã€å†ã‚³ãƒ¼ãƒ«ã‚’ã™ã‚‹
 	if(BattleWorkPinchSEFlagGet(bw)){
 		wait=BattleWorkPinchSEWaitGet(bw);
 		if(Snd_SePlayCheck(BSE_PINCH)==FALSE){
@@ -2303,8 +2303,8 @@ static void FightPinchSECheck(TCB_PTR tcb, void *work)
 
 //------------------------------------------------------------------
 /**
- * @brief   í“¬ŠJn‚ÉƒEƒCƒ“ƒhƒE–Ê‚ª‰º‚©‚çŒ»‚ê‚é‚æ‚¤‚É‚·‚é
- * 			BG1OFFSET‚Ì’l‚ª‚O‚É‚È‚Á‚½‚çI—¹i©E‚µ‚Ü‚·j
+ * @brief   æˆ¦é—˜é–‹å§‹æ™‚ã«ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦é¢ãŒä¸‹ã‹ã‚‰ç¾ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹
+ * 			BG1OFFSETã®å€¤ãŒï¼ã«ãªã£ãŸã‚‰çµ‚äº†ï¼ˆè‡ªæ®ºã—ã¾ã™ï¼‰
  *
  *
  * @param   tcb		
@@ -2330,7 +2330,7 @@ static void StartMsgWinMove( TCB_PTR tcb, void *work )
 /**
  * @brief   
  *
- * ProcData‚Åw’è‚µ‚½ˆÈŠO‚ÌƒI[ƒo[ƒŒƒC‚Ìƒ[ƒh‚ğs‚¤
+ * ProcDataã§æŒ‡å®šã—ãŸä»¥å¤–ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ¬ã‚¤ã®ãƒ­ãƒ¼ãƒ‰ã‚’è¡Œã†
  *
  */
 //--------------------------------------------------------------
@@ -2343,9 +2343,9 @@ static void NitroStaticInit(void)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊM‘Îí‚Ì‘Îí‘Oè‚¿ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•\¦ƒ‹[ƒ`ƒ“
+ * @brief   é€šä¿¡å¯¾æˆ¦æ™‚ã®å¯¾æˆ¦å‰æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆè¡¨ç¤ºãƒ«ãƒ¼ãƒãƒ³
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		bw
  */
 //--------------------------------------------------------------
@@ -2370,23 +2370,23 @@ static	void	FightSioInit(PROC *proc,BATTLE_PARAM *bp)
 
 	GF_Disp_GX_VisibleControlInit();
 
-	//VRAMİ’è
+	//VRAMè¨­å®š
 	{
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_A,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_32_H,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_64_E,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_16_I,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_01_BC,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_01_FG			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_A,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_32_H,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_64_E,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_16_I,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_01_BC,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_01_FG			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 
-		//VRAMƒNƒŠƒA
+		//VRAMã‚¯ãƒªã‚¢
 		MI_CpuClear32((void*)HW_BG_VRAM, HW_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_DB_BG_VRAM, HW_DB_BG_VRAM_SIZE);
 		MI_CpuClear32((void*)HW_OBJ_VRAM, HW_OBJ_VRAM_SIZE);
@@ -2402,7 +2402,7 @@ static	void	FightSioInit(PROC *proc,BATTLE_PARAM *bp)
 		GF_BGL_InitBG( &BGsys_data );
 	}
 
-	//ƒƒCƒ“‰æ–ÊƒtƒŒ[ƒ€İ’è
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ãƒ¬ãƒ¼ãƒ è¨­å®š
 	{
 		GF_BGL_BGCNT_HEADER TextBgCntDat = {
 			0, 0, 0x0800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
@@ -2413,7 +2413,7 @@ static	void	FightSioInit(PROC *proc,BATTLE_PARAM *bp)
 		GF_BGL_ScrClear(bsw->bgl, GF_BGL_FRAME1_M );
 	}
 
-	//”wŒiƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒ[ƒh
+	//èƒŒæ™¯ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ­ãƒ¼ãƒ‰
 	{
 		WINTYPE	win_type;
 
@@ -2435,7 +2435,7 @@ static	void	FightSioInit(PROC *proc,BATTLE_PARAM *bp)
 	GF_BGL_BmpWinDataFill(bsw->win,0xff);
 	BmpTalkWinWrite(bsw->win,WINDOW_TRANS_ON,TALK_WIN_CGX_START,TALK_WIN_PAL_NO);
 
-	//ƒƒbƒZ[ƒW•\¦
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 	{
 		MSGDATA_MANAGER		*msg_m;
 		STRBUF				*msg_buf;
@@ -2447,7 +2447,7 @@ static	void	FightSioInit(PROC *proc,BATTLE_PARAM *bp)
 		MSGMAN_GetString(msg_m,TaikiMsg,msg_buf);
 		GF_STR_PrintSimple(bsw->win,FONT_TALK,msg_buf,0,0,NULL,NULL);
 
-		//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠÖ˜Aíœ
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£é–¢é€£å‰Šé™¤
 		STRBUF_Delete(msg_buf);
 		MSGMAN_Delete(msg_m);
 	}
@@ -2458,7 +2458,7 @@ static	void	FightSioInit(PROC *proc,BATTLE_PARAM *bp)
 
 	bsw->time_icon=TimeWaitIconAdd(bsw->win,TALK_WIN_CGX_START);
 
-	//’ÊMƒAƒCƒRƒ“‚Ì‹N“®
+	//é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³ã®èµ·å‹•
 	FightWirelessIconSet();
 }
 
@@ -2506,7 +2506,7 @@ static	BOOL	FightSioMain(PROC *proc)
 	BATTLE_SIO_WORK	*bsw=PROC_GetWork(proc);
 	BOOL			ret;
 
-	//’ÊMƒGƒ‰[ŠÄ‹
+	//é€šä¿¡ã‚¨ãƒ©ãƒ¼ç›£è¦–
 	CommErrorCheck(HEAPID_BATTLE,bsw->bgl);
 
 	ret=FALSE;
@@ -2514,11 +2514,11 @@ static	BOOL	FightSioMain(PROC *proc)
 	switch(bsw->seq_no){
 	case FSM_SEQ_FADE_INIT:
 		WIPE_ResetBrightness(WIPE_DISP_MAIN);
-		CommSetWifiBothNetAndVChat(TRUE); // í“¬‚Ì’ÊM‚ğ”ñ“¯Šú‚©‚ç“¯Šú‚É•Ï‚¦‚é
+		CommSetWifiBothNetAndVChat(TRUE); // æˆ¦é—˜ã®é€šä¿¡ã‚’éåŒæœŸã‹ã‚‰åŒæœŸã«å¤‰ãˆã‚‹
 		bsw->seq_no++;
 		break;
 	case FSM_SEQ_FADE_WAIT:
-		if(PaletteFadeCheck(bsw->pfd)==0){	//‹P“x•ÏXƒtƒF[ƒhI—¹‘Ò‚¿‚µ‚ÄFXíœ
+		if(PaletteFadeCheck(bsw->pfd)==0){	//è¼åº¦å¤‰æ›´ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡ã—ã¦è‰²ã€…å‰Šé™¤
 			bsw->seq_no++;
 		}
 		break;
@@ -2535,7 +2535,7 @@ static	BOOL	FightSioMain(PROC *proc)
 		else{
 			bsw->time_out_count++;
 			if(bsw->time_out_count>SERVER_QUE_TIME_OUT){
-				OS_Printf("í“¬ŠJn‘Oƒ^ƒCƒ€ƒAƒEƒg”­¶\n");
+				OS_Printf("æˆ¦é—˜é–‹å§‹å‰ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆç™ºç”Ÿ\n");
 				CommStateSetError(COMM_ERROR_RESET_SAVEPOINT);
 			}
 		}
@@ -2586,21 +2586,21 @@ static	BOOL	FightSioMain(PROC *proc)
 		break;
 	case FSM_SEQ_SEND_POKE_VOICE:
 		if(CommCommandBattleSendPokeVoiceWait(bsw)==TRUE){
-			OS_Printf("ƒyƒ‰ƒbƒvƒ{ƒCƒXóM‘Ò‚¿\n");
+			OS_Printf("ãƒšãƒ©ãƒƒãƒ—ãƒœã‚¤ã‚¹å—ä¿¡å¾…ã¡\n");
 			bsw->seq_no++;
 		}
 		break;
 
 	case FSM_SEQ_SEND_FRIEND_LIST_MAKE:
 		if(CommCommandBattleSendFriendListMake(bsw)==TRUE){
-			OS_Printf("‚Æ‚à‚¾‚¿ƒOƒ‹[ƒvƒf[ƒ^ì¬I—¹\n");
+			OS_Printf("ã¨ã‚‚ã ã¡ã‚°ãƒ«ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿ä½œæˆçµ‚äº†\n");
 			CommTimingSyncStart( COMM_BATTLE_FLIST_SYNC_NUM );
 			bsw->seq_no++;
 		}
 		break;
 	case FSM_SEQ_SEND_FRIEND_LIST:
 		if(CommCommandBattleSendFriendListWait(bsw)==TRUE){
-			OS_Printf("‚Æ‚à‚¾‚¿ƒOƒ‹[ƒvƒf[ƒ^óM\n");
+			OS_Printf("ã¨ã‚‚ã ã¡ã‚°ãƒ«ãƒ¼ãƒ—ãƒ‡ãƒ¼ã‚¿å—ä¿¡\n");
 			bsw->seq_no++;
 		}
 		break;
@@ -2609,10 +2609,10 @@ static	BOOL	FightSioMain(PROC *proc)
 	case FSM_SEQ_SEND_TOWER_TR_DATA1_MAKE:
 		if((bsw->bp->fight_type&FIGHT_TYPE_TOWER)==0){
 			bsw->seq_no=FSM_SEQ_SEND_DATA_END;
-			OS_Printf("ƒgƒŒ[ƒi[ƒf[ƒ^ì¬\n");
+			OS_Printf("ãƒˆãƒ¬ãƒ¼ãƒŠãƒ¼ãƒ‡ãƒ¼ã‚¿ä½œæˆ\n");
 		}
 		else{
-			//q‹@‘¤‚©‚ç‚Í‘—M‚µ‚È‚¢
+			//å­æ©Ÿå´ã‹ã‚‰ã¯é€ä¿¡ã—ãªã„
 			if(CommGetCurrentID()){
 				CommTimingSyncStart( COMM_BATTLE_TTDATA1_SYNC_NUM );
 				bsw->seq_no++;
@@ -2625,7 +2625,7 @@ static	BOOL	FightSioMain(PROC *proc)
 		break;
 	case FSM_SEQ_SEND_TOWER_TR_DATA1:
 		bsw->send_count=1;
-		//q‹@‘¤‚©‚ç‚Í‘—M‚µ‚È‚¢
+		//å­æ©Ÿå´ã‹ã‚‰ã¯é€ä¿¡ã—ãªã„
 		if(CommGetCurrentID()){
 			if(CommIsTimingSync(COMM_BATTLE_TTDATA1_SYNC_NUM)==TRUE){
 				bsw->seq_no++;
@@ -2636,7 +2636,7 @@ static	BOOL	FightSioMain(PROC *proc)
 		}
 		break;
 	case FSM_SEQ_SEND_TOWER_TR_DATA2_MAKE:
-		//q‹@‘¤‚©‚ç‚Í‘—M‚µ‚È‚¢
+		//å­æ©Ÿå´ã‹ã‚‰ã¯é€ä¿¡ã—ãªã„
 		if(CommGetCurrentID()){
 			CommTimingSyncStart( COMM_BATTLE_TTDATA2_SYNC_NUM );
 			bsw->seq_no++;
@@ -2648,7 +2648,7 @@ static	BOOL	FightSioMain(PROC *proc)
 		break;
 	case FSM_SEQ_SEND_TOWER_TR_DATA2:
 		bsw->send_count=1;
-		//q‹@‘¤‚©‚ç‚Í‘—M‚µ‚È‚¢
+		//å­æ©Ÿå´ã‹ã‚‰ã¯é€ä¿¡ã—ãªã„
 		if(CommGetCurrentID()){
 			if(CommIsTimingSync(COMM_BATTLE_TTDATA2_SYNC_NUM)==TRUE){
 				bsw->seq_no++;
@@ -2659,7 +2659,7 @@ static	BOOL	FightSioMain(PROC *proc)
 		}
 		break;
 	case FSM_SEQ_SEND_TOWER_POKE_DATA1_MAKE:
-		//q‹@‘¤‚©‚ç‚Í‘—M‚µ‚È‚¢
+		//å­æ©Ÿå´ã‹ã‚‰ã¯é€ä¿¡ã—ãªã„
 		if(CommGetCurrentID()){
 			CommTimingSyncStart( COMM_BATTLE_TPDATA1_SYNC_NUM );
 			bsw->seq_no++;
@@ -2671,7 +2671,7 @@ static	BOOL	FightSioMain(PROC *proc)
 		break;
 	case FSM_SEQ_SEND_TOWER_POKE_DATA1:
 		bsw->send_count=1;
-		//q‹@‘¤‚©‚ç‚Í‘—M‚µ‚È‚¢
+		//å­æ©Ÿå´ã‹ã‚‰ã¯é€ä¿¡ã—ãªã„
 		if(CommGetCurrentID()){
 			if(CommIsTimingSync(COMM_BATTLE_TPDATA1_SYNC_NUM)==TRUE){
 				bsw->seq_no++;
@@ -2682,7 +2682,7 @@ static	BOOL	FightSioMain(PROC *proc)
 		}
 		break;
 	case FSM_SEQ_SEND_TOWER_POKE_DATA2_MAKE:
-		//q‹@‘¤‚©‚ç‚Í‘—M‚µ‚È‚¢
+		//å­æ©Ÿå´ã‹ã‚‰ã¯é€ä¿¡ã—ãªã„
 		if(CommGetCurrentID()){
 			CommTimingSyncStart( COMM_BATTLE_TPDATA2_SYNC_NUM );
 			bsw->seq_no++;
@@ -2694,7 +2694,7 @@ static	BOOL	FightSioMain(PROC *proc)
 		break;
 	case FSM_SEQ_SEND_TOWER_POKE_DATA2:
 		bsw->send_count=1;
-		//q‹@‘¤‚©‚ç‚Í‘—M‚µ‚È‚¢
+		//å­æ©Ÿå´ã‹ã‚‰ã¯é€ä¿¡ã—ãªã„
 		if(CommGetCurrentID()){
 			if(CommIsTimingSync(COMM_BATTLE_TPDATA2_SYNC_NUM)==TRUE){
 				bsw->seq_no++;
@@ -2734,16 +2734,16 @@ static	BOOL	FightSioMain(PROC *proc)
 		else{
 			bsw->time_out_count++;
 			if(bsw->time_out_count>SERVER_QUE_TIME_OUT){
-				OS_Printf("í“¬ŠJn‘Oƒ^ƒCƒ€ƒAƒEƒg”­¶\n");
+				OS_Printf("æˆ¦é—˜é–‹å§‹å‰ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆç™ºç”Ÿ\n");
 				CommStateSetError(COMM_ERROR_RESET_SAVEPOINT);
 			}
 		}
 		break;
 	case FSM_SEQ_SEND_DATA_END:
-		if(PaletteFadeCheck(bsw->pfd)==0){	//‹P“x•ÏXƒtƒF[ƒhI—¹‘Ò‚¿‚µ‚ÄFXíœ
+		if(PaletteFadeCheck(bsw->pfd)==0){	//è¼åº¦å¤‰æ›´ãƒ•ã‚§ãƒ¼ãƒ‰çµ‚äº†å¾…ã¡ã—ã¦è‰²ã€…å‰Šé™¤
 			ret=TRUE;
 			TimeWaitIconDel(bsw->time_icon);
-			CommSetWifiBothNetAndVChat(FALSE); // í“¬‚Ì’ÊM‚ğ“¯Šú‚©‚ç”ñ“¯Šú‚É•Ï‚¦‚é
+			CommSetWifiBothNetAndVChat(FALSE); // æˆ¦é—˜ã®é€šä¿¡ã‚’åŒæœŸã‹ã‚‰éåŒæœŸã«å¤‰ãˆã‚‹
 		}
 		break;
 	}
@@ -2759,7 +2759,7 @@ static	void	FightSioEnd(PROC *proc)
 
 	WIPE_SetBrightness(WIPE_DISP_MAIN, WIPE_FADE_BLACK);
 
-	//ƒpƒŒƒbƒgƒtƒF[ƒhƒVƒXƒeƒ€íœ
+	//ãƒ‘ãƒ¬ãƒƒãƒˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚·ã‚¹ãƒ†ãƒ å‰Šé™¤
 	PaletteFadeWorkAllocFree(bsw->pfd, FADE_MAIN_BG);
 	PaletteFadeFree(bsw->pfd);
 
@@ -2775,7 +2775,7 @@ static	void	FightSioEnd(PROC *proc)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊM‘ÎíŠJn‘Oƒfƒ‚iƒ}ƒ‹ƒ`‚Ìƒ|ƒPƒ‚ƒ“ƒŠƒXƒg•\¦j
+ * @brief   é€šä¿¡å¯¾æˆ¦é–‹å§‹å‰ãƒ‡ãƒ¢ï¼ˆãƒãƒ«ãƒæ™‚ã®ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆè¡¨ç¤ºï¼‰
  */
 //--------------------------------------------------------------
 static	BOOL	FightListDemoInit(PROC *proc)
@@ -2788,7 +2788,7 @@ static	BOOL	FightListDemoInit(PROC *proc)
 
 	FightSystemBoot(bw,bp);
 
-	//’ÊM‘Îí‚Å‚È‚¯‚ê‚Îƒfƒ‚‚Í‚È‚µAƒoƒgƒ‹ƒ^ƒ[‚à‚È‚µA‘Îí˜^‰æÄ¶‚à‚È‚µ
+	//é€šä¿¡å¯¾æˆ¦ã§ãªã‘ã‚Œã°ãƒ‡ãƒ¢ã¯ãªã—ã€ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚‚ãªã—ã€å¯¾æˆ¦éŒ²ç”»å†ç”Ÿã‚‚ãªã—
 	if(((bw->fight_type&FIGHT_TYPE_SIO)==0)||
 	    (bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE)||
 		(bw->fight_type&FIGHT_TYPE_TOWER)){
@@ -2796,10 +2796,10 @@ static	BOOL	FightListDemoInit(PROC *proc)
 		return FALSE;
 	}
 
-	//ƒfƒ‚ƒvƒƒOƒ‰ƒ€‚ğƒ[ƒh
+	//ãƒ‡ãƒ¢ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ãƒ­ãƒ¼ãƒ‰
 	Overlay_Load(FS_OVERLAY_ID(vs_demo), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 
-	//ƒ}ƒ‹ƒ`‚Å‚Í‚È‚¢‚Íƒfƒ‚‚È‚µ
+	//ãƒãƒ«ãƒã§ã¯ãªã„æ™‚ã¯ãƒ‡ãƒ¢ãªã—
 	if((bw->fight_type&FIGHT_TYPE_MULTI)==0){
 		return FALSE;
 	}
@@ -2809,7 +2809,7 @@ static	BOOL	FightListDemoInit(PROC *proc)
 
 	sio_id=CommGetCurrentID();
 
-	//ƒ}ƒ‹ƒ`‘Îí
+	//ãƒãƒ«ãƒå¯¾æˆ¦
 	switch(CommGetStandNo(sio_id)){
 	case 0:
 	case 3:
@@ -2860,7 +2860,7 @@ static	BOOL	FightListDemoMain(PROC *proc)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊM‘ÎíŠJn‘Oƒfƒ‚
+ * @brief   é€šä¿¡å¯¾æˆ¦é–‹å§‹å‰ãƒ‡ãƒ¢
  */
 //--------------------------------------------------------------
 static	BOOL	FightMenuDemoInit(PROC *proc)
@@ -2870,7 +2870,7 @@ static	BOOL	FightMenuDemoInit(PROC *proc)
 	u8	sio_id;
 	int	i;
 
-	//’ÊM‘Îí‚Å‚È‚¯‚ê‚Îƒfƒ‚‚Í‚È‚µAƒoƒgƒ‹ƒ^ƒ[‚à‚È‚µA‘Îí˜^‰æÄ¶‚à‚È‚µ
+	//é€šä¿¡å¯¾æˆ¦ã§ãªã‘ã‚Œã°ãƒ‡ãƒ¢ã¯ãªã—ã€ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚‚ãªã—ã€å¯¾æˆ¦éŒ²ç”»å†ç”Ÿã‚‚ãªã—
 	if(((bw->fight_type&FIGHT_TYPE_SIO)==0)||
 	    (bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE)||
 		(bw->fight_type&FIGHT_TYPE_TOWER)){
@@ -2883,7 +2883,7 @@ static	BOOL	FightMenuDemoInit(PROC *proc)
 	bw->vdd=sys_AllocMemory(HEAPID_BATTLE,sizeof(VS_DEMO_DATA));
 	MI_CpuClearFast(bw->vdd,sizeof(VS_DEMO_DATA));
 
-	//ƒ}ƒ‹ƒ`‘Îí
+	//ãƒãƒ«ãƒå¯¾æˆ¦
 	if(bw->fight_type&FIGHT_TYPE_MULTI){
 		for(i=0;i<CLIENT_MAX;i++){
 			bw->vdd->pp[CommGetStandNo(i)]=bw->poke_party[i];
@@ -2929,7 +2929,7 @@ static	BOOL	FightMenuDemoMain(PROC *proc)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊM‘ÎíŒ‹‰Êƒfƒ‚
+ * @brief   é€šä¿¡å¯¾æˆ¦çµæœãƒ‡ãƒ¢
  */
 //--------------------------------------------------------------
 static	BOOL	FightWinLoseDemoInit(PROC *proc)
@@ -2939,7 +2939,7 @@ static	BOOL	FightWinLoseDemoInit(PROC *proc)
 	u8	sio_id;
 	int	i;
 
-	//’ÊM‘Îí‚Å‚È‚¯‚ê‚Îƒfƒ‚‚Í‚È‚µAƒoƒgƒ‹ƒ^ƒ[‚à‚È‚µA˜^‰æÄ¶‚à‚È‚µ
+	//é€šä¿¡å¯¾æˆ¦ã§ãªã‘ã‚Œã°ãƒ‡ãƒ¢ã¯ãªã—ã€ãƒãƒˆãƒ«ã‚¿ãƒ¯ãƒ¼ã‚‚ãªã—ã€éŒ²ç”»å†ç”Ÿã‚‚ãªã—
 	if(((bp->fight_type&FIGHT_TYPE_SIO)==0)||
 	    (bp->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE)||
 		(bp->fight_type&FIGHT_TYPE_TOWER)){
@@ -2948,7 +2948,7 @@ static	BOOL	FightWinLoseDemoInit(PROC *proc)
 
 	sio_id=CommGetCurrentID();
 
-	//ƒfƒ‚ƒvƒƒOƒ‰ƒ€‚ğƒ[ƒh
+	//ãƒ‡ãƒ¢ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ãƒ­ãƒ¼ãƒ‰
 	Overlay_Load(FS_OVERLAY_ID(vs_demo), OVERLAY_LOAD_NOT_SYNCHRONIZE);
 
 	vdd=sys_AllocMemory(HEAPID_BATTLE,sizeof(VS_DEMO_DATA));
@@ -2984,7 +2984,7 @@ static	BOOL	FightWinLoseDemoInit(PROC *proc)
 		break;
 	}
 
-	//ƒ}ƒ‹ƒ`‘Îí
+	//ãƒãƒ«ãƒå¯¾æˆ¦
 	if(bp->fight_type&FIGHT_TYPE_MULTI){
 		for(i=0;i<CLIENT_MAX;i++){
 			vdd->pp[CommGetStandNo(i)]=bp->poke_party[i];
@@ -3016,7 +3016,7 @@ static	BOOL	FightWinLoseDemoInit(PROC *proc)
 		}
 	}
 
-	//˜^‰æ‹L˜^ƒ‚[ƒh
+	//éŒ²ç”»è¨˜éŒ²ãƒ¢ãƒ¼ãƒ‰
 	vdd->rec_mode = bp->rec_mode;
 	
 	VSDemo_TaskAdd(vdd);
@@ -3045,14 +3045,14 @@ static	BOOL	FightWinLoseDemoMain(PROC *proc)
 
 //--------------------------------------------------------------
 /**
- * @brief   í“¬‚Ì‘—‚èƒJ[ƒ\ƒ‹ƒ‚[ƒh‚Ìİ’è
+ * @brief   æˆ¦é—˜æ™‚ã®é€ã‚Šã‚«ãƒ¼ã‚½ãƒ«ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
  */
 //--------------------------------------------------------------
 static void	FightMsgPrintModeSet(BATTLE_WORK *bw)
 {
 	if((bw->fight_type&(FIGHT_TYPE_SIO|FIGHT_TYPE_GET_DEMO))||
 	   (bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE)){
-		//•¶šƒL[‘—‚è‚ğAUTO‚É
+		//æ–‡å­—ã‚­ãƒ¼é€ã‚Šã‚’AUTOã«
 		MsgPrintAutoFlagSet(MSG_AUTO_ON);
         // MatchComment --------------
         // new localization change
@@ -3069,7 +3069,7 @@ static void	FightMsgPrintModeSet(BATTLE_WORK *bw)
 
 //--------------------------------------------------------------
 /**
- * @brief   ’ÊM‘Îí‚ÌƒT[ƒo‹N“®ƒ`ƒFƒbƒN
+ * @brief   é€šä¿¡å¯¾æˆ¦æ™‚ã®ã‚µãƒ¼ãƒèµ·å‹•ãƒã‚§ãƒƒã‚¯
  */
 //--------------------------------------------------------------
 static	void	FightSioServerBootCheck(BATTLE_WORK *bw,BATTLE_PARAM *bp)
@@ -3079,7 +3079,7 @@ static	void	FightSioServerBootCheck(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 	int	id[CLIENT_MAX];
 	int	version[CLIENT_MAX];
 
-	//˜^‰æÄ¶‚ÍAí‚ÉƒT[ƒo‚ğ‹N“®
+	//éŒ²ç”»å†ç”Ÿæ™‚ã¯ã€å¸¸ã«ã‚µãƒ¼ãƒã‚’èµ·å‹•
 	if(bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE){
 		bw->server_flag=1;
 		return;
@@ -3137,7 +3137,7 @@ static	void	FightSioServerBootCheck(BATTLE_WORK *bw,BATTLE_PARAM *bp)
 
 //--------------------------------------------------------------
 /**
- * @brief	í“¬‚Å‚Ì’ÊMƒAƒCƒRƒ“•\¦	2008.05.15 goto
+ * @brief	æˆ¦é—˜ã§ã®é€šä¿¡ã‚¢ã‚¤ã‚³ãƒ³è¡¨ç¤º	2008.05.15 goto
  *
  * @param	none	
  *

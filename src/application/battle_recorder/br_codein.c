@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	codein_pv.c
- * @brief	•¶š“ü—ÍƒCƒ“ƒ^[ƒtƒF[ƒX
+ * @brief	æ–‡å­—å…¥åŠ›ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
  * @author	goto
- * @date	2007.07.11(…)
+ * @date	2007.07.11(æ°´)
  *
- * ‚±‚±‚ÉFX‚È‰ğà“™‚ğ‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -41,7 +41,7 @@ static inline void CODE_HitRectSet( BR_CODEIN_WORK* wk, int no, s16 sx, s16 sy )
 
 //--------------------------------------------------------------
 /**
- * @brief	CODEIN_PARAM ‚Ìƒ[ƒN‚ğì¬‚·‚é
+ * @brief	CODEIN_PARAM ã®ãƒ¯ãƒ¼ã‚¯ã‚’ä½œæˆã™ã‚‹
  *
  * @param	heap_id	
  * @param	word_len	
@@ -74,7 +74,7 @@ BR_CODEIN_PARAM* BRCodeInput_ParamCreate( int heap_id, int word_len, int block[]
 
 //--------------------------------------------------------------
 /**
- * @brief	CODEIN_PARAM ‚Ìƒ[ƒN‚ğ‰ğ•ú
+ * @brief	CODEIN_PARAM ã®ãƒ¯ãƒ¼ã‚¯ã‚’è§£æ”¾
  *
  * @param	codein_param	
  *
@@ -93,7 +93,7 @@ void BRCodeInput_ParamDelete( BR_CODEIN_PARAM* codein_param )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒH[ƒJƒXƒZƒbƒg‚µ‚ÄŠg‘åk¬‘ÎÛ‚ğİ’è‚·‚é
+ * @brief	ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚»ãƒƒãƒˆã—ã¦æ‹¡å¤§ç¸®å°å¯¾è±¡ã‚’è¨­å®šã™ã‚‹
  *
  * @param	next_focus	
  *
@@ -124,7 +124,7 @@ void BRCI_pv_FocusSet( BR_CODEIN_WORK* wk, int next_focus )
 
 //--------------------------------------------------------------
 /**
- * @brief	Šeíƒf[ƒ^‚ğ‰Šú‰»‚·‚é
+ * @brief	å„ç¨®ãƒ‡ãƒ¼ã‚¿ã‚’åˆæœŸåŒ–ã™ã‚‹
  *
  * @param	wk	
  *
@@ -136,10 +136,10 @@ void BRCI_pv_ParamInit( BR_CODEIN_WORK* wk )
 {
 	int i;
 	
-	///< Touch ƒpƒlƒ‹ƒ‚[ƒh
+	///< Touch ãƒ‘ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰
 	wk->sys.touch = TRUE;
 	
-	///< block table ‚Ìì¬
+	///< block table ã®ä½œæˆ
 	{
 		wk->b_tbl[ 0 ][ 0 ] = 0;
 		wk->b_tbl[ 0 ][ 1 ] = wk->param.block[ 0 ];
@@ -148,15 +148,15 @@ void BRCI_pv_ParamInit( BR_CODEIN_WORK* wk )
 		wk->b_tbl[ 2 ][ 0 ] = wk->param.block[ 0 ] + wk->param.block[ 1 ];
 		wk->b_tbl[ 2 ][ 1 ] = wk->param.block[ 0 ] + wk->param.block[ 1 ] + wk->param.block[ 2 ];
 	}		
-	///< focus‚Ìİ’è
+	///< focusã®è¨­å®š
 	BRCI_pv_FocusSet( wk, 1 );
 
-	///< block ‘”‚©‚çcode‚ÌÅ‘å”‚ğ‹‚ß‚é
+	///< block ç·æ•°ã‹ã‚‰codeã®æœ€å¤§æ•°ã‚’æ±‚ã‚ã‚‹
 	for ( i = 0; i < CODE_BLOCK_MAX; i++ ){		
 		wk->code_max += wk->param.block[ i ];
 	}
 	
-	///< table ì¬
+	///< table ä½œæˆ
 	{
 		int sw = 0;
 		const x_tbl[][ CODE_BLOCK_MAX ] = {
@@ -173,7 +173,7 @@ void BRCI_pv_ParamInit( BR_CODEIN_WORK* wk )
 		wk->x_tbl[ i ] = x_tbl[ sw ][ i - 1 ];
 	}
 	
-	///< code—ñ“à‚Å‚Ìbar‚ÌˆÊ’u
+	///< codeåˆ—å†…ã§ã®barã®ä½ç½®
 	{
 		int pos = 0;			
 		for ( i = 0; i < BAR_OAM_MAX; i++ ){
@@ -184,7 +184,7 @@ void BRCI_pv_ParamInit( BR_CODEIN_WORK* wk )
 		}
 	}
 	
-	///< ƒOƒ‹[ƒv‚Ìİ’è
+	///< ã‚°ãƒ«ãƒ¼ãƒ—ã®è¨­å®š
 	{
 		int j;
 		int bno = 0;
@@ -205,7 +205,7 @@ void BRCI_pv_ParamInit( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒV[ƒPƒ“ƒXØ‚è‘Ö‚¦
+ * @brief	ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	wk	
  * @param	seq	
@@ -224,7 +224,7 @@ void BRCI_pv_SeqChange( BR_CODEIN_WORK* wk, int seq )
 
 //--------------------------------------------------------------
 /**
- * @brief	‰Šú‰»
+ * @brief	åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -253,7 +253,7 @@ BOOL BRCI_pv_MainInit( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹
+ * @brief	çµ‚äº†
  *
  * @param	wk	
  *
@@ -274,7 +274,7 @@ BOOL BRCI_pv_MainEnd( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	“ü—Í
+ * @brief	å…¥åŠ›
  *
  * @param	wk	
  *
@@ -300,7 +300,7 @@ BOOL BRCI_pv_MainInput( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒtƒH[ƒJƒX‚ÌˆÚ“®
+ * @brief	ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã®ç§»å‹•
  *
  * @param	wk	
  *
@@ -319,11 +319,11 @@ BOOL BRCI_pv_MainFocusMove( BR_CODEIN_WORK* wk )
 	};
 
 	switch( wk->gene_seq ){
-	///< Šg‘åk¬‘O”¼
+	///< æ‹¡å¤§ç¸®å°å‰åŠ
 	case 0:
 		BRCI_pv_disp_CurOAM_Visible( wk, 0, FALSE );
 		{
-			///< ƒR[ƒh•”•ª‚Ìˆ—
+			///< ã‚³ãƒ¼ãƒ‰éƒ¨åˆ†ã®å‡¦ç†
 			for ( i = 0; i < wk->code_max; i++ ){
 				
 				if ( wk->code[ i ].move_wk.wait == 0 ){ continue; }
@@ -345,21 +345,21 @@ BOOL BRCI_pv_MainFocusMove( BR_CODEIN_WORK* wk )
 				}
 			}
 			
-			///< ƒo[•”•ª‚Ìˆ—
+			///< ãƒãƒ¼éƒ¨åˆ†ã®å‡¦ç†
 			for ( i = 0; i < BAR_OAM_MAX; i++ ){
 				if ( wk->bar[ i ].move_wk.wait == 0 ){ continue; }
 				CATS_ObjectPosMoveCap( wk->bar[ i ].cap, wk->bar[ i ].move_wk.x, wk->bar[ i ].move_wk.y );
 				wk->bar[ i ].move_wk.wait--;
 			}
 			
-			///< ”»’è
+			///< åˆ¤å®š
 			if ( wk->code[ 0 ].move_wk.wait == 0 ){
 				for ( i = wk->ls; i < wk->le; i++ ){
-					CATS_ObjectAnimeSeqSetCap( wk->code[ i ].cap, BRCI_pv_disp_CodeAnimeGet( wk->code[ i ].state, wk->code[ i ].size ) );///< anime pat ‚ğ 3 ‚ÉB
+					CATS_ObjectAnimeSeqSetCap( wk->code[ i ].cap, BRCI_pv_disp_CodeAnimeGet( wk->code[ i ].state, wk->code[ i ].size ) );///< anime pat ã‚’ 3 ã«ã€‚
 					CATS_ObjectUpdateCap( wk->code[ i ].cap );
 				}
 				for ( i = wk->ss; i < wk->se; i++ ){
-					CATS_ObjectAnimeSeqSetCap( wk->code[ i ].cap, BRCI_pv_disp_CodeAnimeGet( wk->code[ i ].state, wk->code[ i ].size ) );///< anime pat ‚ğ 3 ‚ÉB
+					CATS_ObjectAnimeSeqSetCap( wk->code[ i ].cap, BRCI_pv_disp_CodeAnimeGet( wk->code[ i ].state, wk->code[ i ].size ) );///< anime pat ã‚’ 3 ã«ã€‚
 					CATS_ObjectUpdateCap( wk->code[ i ].cap );
 				}
 				wk->gene_seq++;
@@ -368,7 +368,7 @@ BOOL BRCI_pv_MainFocusMove( BR_CODEIN_WORK* wk )
 		}
 		break;
 		
-	///< Šg‘åk¬Œã”¼
+	///< æ‹¡å¤§ç¸®å°å¾ŒåŠ
 	case 1:
 		for ( i = wk->ls; i < wk->le; i++ ){
 			if ( wk->code[ i ].move_wk.scale == SCALE_CNT_F ){
@@ -393,9 +393,9 @@ BOOL BRCI_pv_MainFocusMove( BR_CODEIN_WORK* wk )
 		}
 		break;
 	
-	///< I—¹
+	///< çµ‚äº†
 	default:
-		BRCI_pv_disp_HitTableSet( wk );				///< “–‚½‚è”»’è‚Ìƒe[ƒuƒ‹XV
+		BRCI_pv_disp_HitTableSet( wk );				///< å½“ãŸã‚Šåˆ¤å®šã®ãƒ†ãƒ¼ãƒ–ãƒ«æ›´æ–°
 		
 		if ( wk->state.work == 0 ){
 			BRCI_pv_disp_CurBar_PosSet( wk, BRCI_pv_FocusTopSerach( wk, wk->state.target ) );
@@ -419,7 +419,7 @@ BOOL BRCI_pv_MainFocusMove( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ŠÖ”ƒe[ƒuƒ‹
+ * @brief	é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«
  *
  * @param	BRCI_pv_MainTable[]	
  *
@@ -437,11 +437,11 @@ static BOOL (* const BRCI_pv_MainTable[])( BR_CODEIN_WORK* wk ) = {
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒƒCƒ“
+ * @brief	ãƒ¡ã‚¤ãƒ³
  *
  * @param	wk	
  *
- * @retval	BOOL	TRUE = I—¹
+ * @retval	BOOL	TRUE = çµ‚äº†
  *
  */
 //--------------------------------------------------------------
@@ -460,7 +460,7 @@ BOOL BRCI_pv_MainUpdate( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	I—¹
+ * @brief	çµ‚äº†
  *
  * @param	wk	
  *
@@ -507,7 +507,7 @@ void BRCI_pv_Input_End( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	–ß‚é
+ * @brief	æˆ»ã‚‹
  *
  * @param	wk	
  *
@@ -516,7 +516,7 @@ void BRCI_pv_Input_End( BR_CODEIN_WORK* wk )
  */
 //--------------------------------------------------------------
 void BRCI_pv_Input_back( BR_CODEIN_WORK* wk )
-{	///< –ß‚é
+{	///< æˆ»ã‚‹
 					
 	int cur_p;
 	int now_g;
@@ -568,7 +568,7 @@ void BRCI_pv_Input_back( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒ^ƒ“—pƒ}ƒl[ƒWƒƒ[İ’è
+ * @brief	ãƒœã‚¿ãƒ³ç”¨ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼è¨­å®š
  *
  * @param	wk	
  *
@@ -580,13 +580,13 @@ void BRCI_pv_ButtonManagerInit( BR_CODEIN_WORK* wk )
 {
 	int i;
 	
-	///< ƒR[ƒh‚Ì“–‚½‚è”»’è
+	///< ã‚³ãƒ¼ãƒ‰ã®å½“ãŸã‚Šåˆ¤å®š
 	for ( i = 0; i < eHRT_CODE_11 + 1; i ++ ){
 				
 		wk->code[ i ].hit = &wk->sys.rht[ i ];
 	}
 	
-	///< ƒ{ƒ^ƒ“•”•ª‚Ì“–‚½‚è”»’è
+	///< ãƒœã‚¿ãƒ³éƒ¨åˆ†ã®å½“ãŸã‚Šåˆ¤å®š
 	{
 		///< x, y, sx, sy,
 		const s16 tbl[][ 4 ] = {
@@ -623,7 +623,7 @@ void BRCI_pv_ButtonManagerInit( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒ{ƒ^ƒ“—pƒ}ƒl[ƒWƒƒ[ƒR[ƒ‹ƒoƒbƒN
+ * @brief	ãƒœã‚¿ãƒ³ç”¨ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
  *
  * @param	button	
  * @param	event	
@@ -637,39 +637,39 @@ void BRCI_pv_ButtonManagerCallBack( u32 button, u32 event, void* work )
 {
 	BR_CODEIN_WORK* wk = work;
 	
-	///< “ü—Í‚¶‚á‚È‚¯‚ê‚Î”ò‚Î‚·
+	///< å…¥åŠ›ã˜ã‚ƒãªã‘ã‚Œã°é£›ã°ã™
 	if ( wk->seq != eSEQ_INPUT ){ return; }
 	
-	///< Touch ‚¶‚á–³‚¯‚ê‚Î Touch ‚É‚µ‚Ä”ò‚Î‚·
+	///< Touch ã˜ã‚ƒç„¡ã‘ã‚Œã° Touch ã«ã—ã¦é£›ã°ã™
 	if ( wk->sys.touch != TRUE ){
 		 wk->sys.touch = TRUE;
 	}
 	
 	if ( event == BMN_EVENT_TOUCH ){
 		
-		///< •¶š“ü—Í•”•ª‚ª‰Ÿ‚³‚ê‚½
+		///< æ–‡å­—å…¥åŠ›éƒ¨åˆ†ãŒæŠ¼ã•ã‚ŒãŸ
 		if ( button >= eHRT_CODE_0 && button <= eHRT_CODE_11 ){
 			
 		//	OS_Printf( "button = %3d\n", button );
 			
 			if ( wk->code[ button ].size == TRUE ){
-				///< “ü—Í•”•ª‚ÌˆÚ“®
+				///< å…¥åŠ›éƒ¨åˆ†ã®ç§»å‹•
 				
 				wk->state.param		= eSTATE_CUR_MOVE;
 				wk->state.target	= button;
 			}
 			else {
-				///< ŠgkƒJƒŒƒ“ƒgˆÚ“®‘€ì
+				///< æ‹¡ç¸®ã‚«ãƒ¬ãƒ³ãƒˆç§»å‹•æ“ä½œ
 				
 				wk->state.param		= eSTATE_FOCUS_MOVE;
 				wk->state.target	= wk->code[ button ].group;
 			}
 			Snd_SePlay( eBR_SND_TOUCH );
 		}
-		///< ‚»‚Ì‘¼‚Ìƒ{ƒ^ƒ“
+		///< ãã®ä»–ã®ãƒœã‚¿ãƒ³
 		else {
 			
-			///< ƒL[ˆÊ’u‚É‚à•ÏŠ·
+			///< ã‚­ãƒ¼ä½ç½®ã«ã‚‚å¤‰æ›
 			if ( button == eHRT_BACK ){
 				wk->cur[ 1 ].move_wk.x = 0;
 				wk->cur[ 1 ].move_wk.y = 2;
@@ -683,7 +683,7 @@ void BRCI_pv_ButtonManagerCallBack( u32 button, u32 event, void* work )
 				wk->cur[ 1 ].move_wk.y = ( button - eHRT_NUM_0 ) / 5;
 			}
 			
-			///< ”šƒpƒlƒ‹
+			///< æ•°å­—ãƒ‘ãƒãƒ«
 			if ( button >= eHRT_NUM_0 && button <= eHRT_NUM_9 ){
 				
 				int cur_p;
@@ -698,7 +698,7 @@ void BRCI_pv_ButtonManagerCallBack( u32 button, u32 event, void* work )
 				
 				CATS_ObjectAnimeSeqSetCap( wk->code[ cur_p ].cap, BRCI_pv_disp_CodeAnimeGet( wk->code[ cur_p ].state, wk->code[ cur_p ].size ) );
 				
-				///< ƒJ[ƒ\ƒ‹
+				///< ã‚«ãƒ¼ã‚½ãƒ«
 				BRCI_pv_disp_CurOAM_Visible( wk, 1, TRUE );
 				BRCI_pv_disp_CurSQ_PosSet( wk, button - eHRT_NUM_0 );
 				BRCI_pv_disp_CurOAM_Visible( wk, 1, FALSE );
@@ -734,13 +734,13 @@ void BRCI_pv_ButtonManagerCallBack( u32 button, u32 event, void* work )
 				///< back End
 				
 				if ( button == eHRT_BACK ){
-					///< –ß‚é
+					///< æˆ»ã‚‹
 					Snd_SePlay( eBR_SND_TOUCH );
 				//	TouchAction( wk->br_work );
 					BRCI_pv_Input_back( wk );
 				}
 				else {
-					///< Œˆ’è
+					///< æ±ºå®š
 					Snd_SePlay( eBR_SND_TOUCH );
 				//	TouchAction( wk->br_work );
 					BRCI_pv_Input_End( wk );					
@@ -753,7 +753,7 @@ void BRCI_pv_ButtonManagerCallBack( u32 button, u32 event, void* work )
 
 //--------------------------------------------------------------
 /**
- * @brief	ó‘Ô‚ÌXVˆ—
+ * @brief	çŠ¶æ…‹ã®æ›´æ–°å‡¦ç†
  *
  * @param	wk	
  *
@@ -768,20 +768,20 @@ void BRCI_pv_StateUpdate( BR_CODEIN_WORK* wk )
 	case eSTATE_INPUT:
 		break;
 	
-	///< ƒtƒH[ƒJƒX‚ğˆÚ“®‚·‚é
+	///< ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’ç§»å‹•ã™ã‚‹
 	case eSTATE_FOCUS_MOVE:
-		BRCI_pv_FocusSet( wk, wk->state.target );				///< Ÿ‚ÌƒtƒH[ƒJƒXİ’è
-		BRCI_pv_disp_SizeFlagSet( wk );						///< ƒTƒCƒYİ’è
-		BRCI_pv_disp_MovePosSet( wk, eMPS_MOVE_SET );			///< ˆÚ“®’nİ’è
+		BRCI_pv_FocusSet( wk, wk->state.target );				///< æ¬¡ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®š
+		BRCI_pv_disp_SizeFlagSet( wk );						///< ã‚µã‚¤ã‚ºè¨­å®š
+		BRCI_pv_disp_MovePosSet( wk, eMPS_MOVE_SET );			///< ç§»å‹•åœ°è¨­å®š
 		
 		BRCI_pv_SeqChange( wk, eSEQ_FOCUS_MOVE );		
 		wk->state.param	= eSTATE_BLANK;
 		break;
 	
-	///< “ü—ÍˆÊ’u‚ğˆÚ“®‚·‚é
+	///< å…¥åŠ›ä½ç½®ã‚’ç§»å‹•ã™ã‚‹
 	case eSTATE_CUR_MOVE:
 		
-		BRCI_pv_disp_CurBar_PosSet( wk, wk->state.target );	///< ƒJ[ƒ\ƒ‹ˆÊ’u‚ğ•ÏX
+		BRCI_pv_disp_CurBar_PosSet( wk, wk->state.target );	///< ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å¤‰æ›´
 		BRCI_pv_StateInit( wk );
 		break;
 	
@@ -793,7 +793,7 @@ void BRCI_pv_StateUpdate( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ó‘Ô‚Ì‰Šú‰»
+ * @brief	çŠ¶æ…‹ã®åˆæœŸåŒ–
  *
  * @param	wk	
  *
@@ -811,7 +811,7 @@ void BRCI_pv_StateInit( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‘ÎÛƒtƒH[ƒJƒX‚Ìæ“ªƒuƒƒbƒN‚ğæ“¾
+ * @brief	å¯¾è±¡ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã®å…ˆé ­ãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—
  *
  * @param	wk	
  * @param	next	
@@ -837,7 +837,7 @@ int BRCI_pv_FocusTopSerach( BR_CODEIN_WORK* wk, int next )
 
 //--------------------------------------------------------------
 /**
- * @brief	‘ÎÛƒtƒH[ƒJƒX‚ÌÅŒã”öƒuƒƒbƒN‚ğæ“¾
+ * @brief	å¯¾è±¡ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã®æœ€å¾Œå°¾ãƒ–ãƒ­ãƒƒã‚¯ã‚’å–å¾—
  *
  * @param	wk	
  * @param	next	
@@ -872,7 +872,7 @@ int BRCI_pv_FocusBottomSerach( BR_CODEIN_WORK* wk, int next )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒR[ƒh—pƒf[ƒ^“Ç‚İ‚İ
+ * @brief	ã‚³ãƒ¼ãƒ‰ç”¨ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
  *
  * @param	wk	
  *
@@ -920,7 +920,7 @@ void BRCI_pv_disp_CodeRes_Load( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	‚à‚ë‚à‚ë‰ğ•ú
+ * @brief	ã‚‚ã‚ã‚‚ã‚è§£æ”¾
  *
  * @param	wk	
  *
@@ -963,7 +963,7 @@ void BRCI_pv_disp_CodeRes_Delete( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒR[ƒhOAMì¬
+ * @brief	ã‚³ãƒ¼ãƒ‰OAMä½œæˆ
  *
  * @param	wk	
  *
@@ -1027,7 +1027,7 @@ void BRCI_pv_disp_CodeOAM_Create( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OAM‚Ìì¬
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OAMã®ä½œæˆ
  *
  * @param	wk	
  *
@@ -1093,7 +1093,7 @@ void BRCI_pv_disp_CurOAM_Create( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	Button OAM ì¬
+ * @brief	Button OAM ä½œæˆ
  *
  * @param	wk	
  *
@@ -1105,7 +1105,7 @@ void BRCI_pv_disp_CurOAM_Create( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹OAM‚ÌONOFF
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«OAMã®ONOFF
  *
  * @param	wk	
  * @param	no	
@@ -1130,7 +1130,7 @@ void BRCI_pv_disp_CurOAM_Visible( BR_CODEIN_WORK* wk, int no, BOOL flag )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹‚ÌONOFFæ“¾
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ã®ONOFFå–å¾—
  *
  * @param	wk	
  * @param	no	
@@ -1151,7 +1151,7 @@ BOOL BRCI_pv_disp_CurOAM_VisibleGet( BR_CODEIN_WORK* wk, int no )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒØ‚è‘Ö‚¦
+ * @brief	ã‚¢ãƒ‹ãƒ¡åˆ‡ã‚Šæ›¿ãˆ
  *
  * @param	wk	
  * @param	no	
@@ -1169,7 +1169,7 @@ void BRCI_pv_disp_CurOAM_AnimeChange( BR_CODEIN_WORK* wk, int no, int anime )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ğ“ü—ÍˆÊ’u‚É
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‚’å…¥åŠ›ä½ç½®ã«
  *
  * @param	wk	
  * @param	id	
@@ -1193,7 +1193,7 @@ void BRCI_pv_disp_CurBar_PosSet( BR_CODEIN_WORK* wk, int id )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹ˆÊ’u‚ğƒpƒlƒ‹‚É
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ãƒ‘ãƒãƒ«ã«
  *
  * @param	wk	
  * @param	id	
@@ -1236,7 +1236,7 @@ void BRCI_pv_disp_CurSQ_PosSetEx( BR_CODEIN_WORK* wk, int id, int cur_id )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒJ[ƒ\ƒ‹XV
+ * @brief	ã‚«ãƒ¼ã‚½ãƒ«æ›´æ–°
  *
  * @param	wk	
  *
@@ -1303,7 +1303,7 @@ void BRCI_pv_disp_CurUpdate( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒAƒjƒƒR[ƒh‚ğæ“¾
+ * @brief	ã‚¢ãƒ‹ãƒ¡ã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
  *
  * @param	state	
  * @param	size	TRUE = Large
@@ -1328,7 +1328,7 @@ int BRCI_pv_disp_CodeAnimeGet( int state, BOOL size )
 
 //--------------------------------------------------------------
 /**
- * @brief	ƒTƒCƒYƒtƒ‰ƒO‚Ìİ’è
+ * @brief	ã‚µã‚¤ã‚ºãƒ•ãƒ©ã‚°ã®è¨­å®š
  *
  * @param	wk	
  *
@@ -1355,7 +1355,7 @@ void BRCI_pv_disp_SizeFlagSet( BR_CODEIN_WORK* wk )
 
 //--------------------------------------------------------------
 /**
- * @brief	ˆÚ“®æ‚ÌˆÊ’u‚ğİ’è‚·‚é
+ * @brief	ç§»å‹•å…ˆã®ä½ç½®ã‚’è¨­å®šã™ã‚‹
  *
  * @param	wk	
  * @param	mode	0 = set 1 = move_wk set
@@ -1443,7 +1443,7 @@ void BRCI_pv_disp_MovePosSet( BR_CODEIN_WORK* wk, int mode )
 
 //--------------------------------------------------------------
 /**
- * @brief	“–‚½‚è”»’è‚Ìì¬
+ * @brief	å½“ãŸã‚Šåˆ¤å®šã®ä½œæˆ
  *
  * @param	wk	
  * @param	no	
@@ -1468,7 +1468,7 @@ static inline void CODE_HitRectSet( BR_CODEIN_WORK* wk, int no, s16 sx, s16 sy )
 	code->hit->rect.bottom	= y + sy;
 	code->hit->rect.right	= x + sx;
 	
-	///< ¶’[‚ª‰Ÿ‚µ‚É‚­‚¢‚Ì‚ÅA4ƒhƒbƒgL‚°‚Æ‚­
+	///< å·¦ç«¯ãŒæŠ¼ã—ã«ãã„ã®ã§ã€4ãƒ‰ãƒƒãƒˆåºƒã’ã¨ã
 	if ( no == 0 ){
 		code->hit->rect.left -= 4;
 	}
@@ -1477,7 +1477,7 @@ static inline void CODE_HitRectSet( BR_CODEIN_WORK* wk, int no, s16 sx, s16 sy )
 
 //--------------------------------------------------------------
 /**
- * @brief	“–‚½‚è”»’è‚Ìİ’è
+ * @brief	å½“ãŸã‚Šåˆ¤å®šã®è¨­å®š
  *
  * @param	wk	
  *

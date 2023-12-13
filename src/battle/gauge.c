@@ -1,9 +1,9 @@
 //==============================================================================
 /**
  * @file	gauge.c
- * @brief	í“¬‰æ–ÊFHPƒQ[ƒW
+ * @brief	æˆ¦é—˜ç”»é¢ï¼šHPã‚²ãƒ¼ã‚¸
  * @author	matsuda
- * @date	2005.09.27(‰Î)
+ * @date	2005.09.27(ç«)
  */
 //==============================================================================
 #include "common.h"
@@ -25,63 +25,63 @@
 
 
 //==============================================================================
-//	’è”’è‹`
+//	å®šæ•°å®šç¾©
 //==============================================================================
 
 //--------------------------------------------------------------
 //	
 //--------------------------------------------------------------
 enum{
-	GAUGE_REQ_HP,		///<HPƒo[‘‚«‚İƒŠƒNƒGƒXƒg
-	GAUGE_REQ_EXP,		///<EXPƒo[‘‚«‚İƒŠƒNƒGƒXƒg
+	GAUGE_REQ_HP,		///<HPãƒãƒ¼æ›¸ãè¾¼ã¿ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	GAUGE_REQ_EXP,		///<EXPãƒãƒ¼æ›¸ãè¾¼ã¿ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 };
 
-///ƒQ[ƒWƒAƒNƒ^[ƒ\ƒtƒgƒvƒ‰ƒCƒIƒŠƒeƒB
+///ã‚²ãƒ¼ã‚¸ã‚¢ã‚¯ã‚¿ãƒ¼ã‚½ãƒ•ãƒˆãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 enum{
 	SOFTPRI_START = 10,
 	
-	SOFTPRI_NAME_AA,	///<AA—pƒ|ƒPƒ‚ƒ“–¼
+	SOFTPRI_NAME_AA,	///<AAç”¨ãƒã‚±ãƒ¢ãƒ³å
 	SOFTPRI_NAME_BB,
 	SOFTPRI_NAME_A,
 	SOFTPRI_NAME_B,
 	SOFTPRI_NAME_C,
 	SOFTPRI_NAME_D,
 
-	SOFTPRI_ARROW_AA,	///<AA—pƒQ[ƒW–îˆó
-	SOFTPRI_ARROW_BB,	///<BB—pƒQ[ƒW–îˆó
+	SOFTPRI_ARROW_AA,	///<AAç”¨ã‚²ãƒ¼ã‚¸çŸ¢å°
+	SOFTPRI_ARROW_BB,	///<BBç”¨ã‚²ãƒ¼ã‚¸çŸ¢å°
 	SOFTPRI_ARROW_B,
 	SOFTPRI_ARROW_C,
 	SOFTPRI_ARROW_D,
 	SOFTPRI_ARROW_A,
 
-	SOFTPRI_GAUGE_AA,	///<AA—pƒQ[ƒW–{‘Ì
-	SOFTPRI_GAUGE_BB,	///<BB—pƒQ[ƒW–{‘Ì
+	SOFTPRI_GAUGE_AA,	///<AAç”¨ã‚²ãƒ¼ã‚¸æœ¬ä½“
+	SOFTPRI_GAUGE_BB,	///<BBç”¨ã‚²ãƒ¼ã‚¸æœ¬ä½“
 	SOFTPRI_GAUGE_B,
 	SOFTPRI_GAUGE_C,
 	SOFTPRI_GAUGE_D,
 	SOFTPRI_GAUGE_A,
 };
 
-///–îˆó‚ÌƒQ[ƒW–{‘Ì‚Ì’†S‚©‚ç‚Ì•\¦ƒIƒtƒZƒbƒgÀ•WY
+///çŸ¢å°ã®ã‚²ãƒ¼ã‚¸æœ¬ä½“ã®ä¸­å¿ƒã‹ã‚‰ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™Y
 #define ARROW_OFFSET_Y		(0)
 
-///ƒQ[ƒW‚ğ‰æ–ÊŠO‚É‚Á‚Ä‚¢‚­‚ÌƒIƒtƒZƒbƒgX
+///ã‚²ãƒ¼ã‚¸ã‚’ç”»é¢å¤–ã«æŒã£ã¦ã„ãæ™‚ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆX
 #define GAUGE_SCROLL_OUT_OFFSET_X		(160)
-///ƒQ[ƒW‚ğ‰æ–ÊŠO‚É‚Á‚Ä‚¢‚­‚ÌƒIƒtƒZƒbƒgY
+///ã‚²ãƒ¼ã‚¸ã‚’ç”»é¢å¤–ã«æŒã£ã¦ã„ãæ™‚ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆY
 #define GAUGE_SCROLL_OUT_OFFSET_Y		(0)
-///ƒQ[ƒWƒXƒNƒ[ƒ‹‚Ì‘¬“xX
+///ã‚²ãƒ¼ã‚¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ™‚ã®é€Ÿåº¦X
 #define GAUGE_SCROLL_SP_X		(24)	//(12)
 
-///ƒQ[ƒWSinƒJ[ƒu‚Ì•b‰ÁZ’l
+///ã‚²ãƒ¼ã‚¸Sinã‚«ãƒ¼ãƒ–ã®ç§’åŠ ç®—å€¤
 #define GAUGE_SIN_SEC_ADD		(20)
-///ƒQ[ƒWSinƒJ[ƒu‚Ì‚Ó‚è•Y(fx32)
+///ã‚²ãƒ¼ã‚¸Sinã‚«ãƒ¼ãƒ–ã®ãµã‚Šå¹…Y(fx32)
 #define GAUGE_SIN_FURIHABA_Y	(0x1800)
 
 
 //==============================================================================
-//	–îˆóƒIƒtƒZƒbƒgÀ•W
+//	çŸ¢å°ã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™
 //==============================================================================
-///–îˆó‚ÌƒQ[ƒW–{‘Ì‚Ì’†S‚©‚ç‚Ì•\¦ƒIƒtƒZƒbƒgÀ•WX
+///çŸ¢å°ã®ã‚²ãƒ¼ã‚¸æœ¬ä½“ã®ä¸­å¿ƒã‹ã‚‰ã®è¡¨ç¤ºã‚ªãƒ•ã‚»ãƒƒãƒˆåº§æ¨™X
 ALIGN4 static const s8 ArrowOffsetPosX[] = {
 	72,		//AA
 	0,			//BB
@@ -92,300 +92,300 @@ ALIGN4 static const s8 ArrowOffsetPosX[] = {
 };
 
 //==============================================================================
-//	ƒp[ƒc•`‰æ
+//	ãƒ‘ãƒ¼ãƒ„æç”»
 //==============================================================================
 typedef struct{
-	u16 pos;		///“]‘—ˆÊ’u(ƒoƒCƒgƒIƒtƒZƒbƒg)
-	u16 size;		///“]‘—ƒTƒCƒY
+	u16 pos;		///è»¢é€ä½ç½®(ãƒã‚¤ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆ)
+	u16 size;		///è»¢é€ã‚µã‚¤ã‚º
 }PARTS_TRANS_PARAM;
 
 //--------------------------------------------------------------
-//	–¼‘O
+//	åå‰
 //--------------------------------------------------------------
-///–¼‘O‚ÌXƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)B@¦*.NCEƒtƒ@ƒCƒ‹‚Åİ’è‚µ‚Ä‚¢‚é‰¡‚ÌƒLƒƒƒ‰”‚ğ‹L“ü
+///åå‰ã®Xã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)ã€‚ã€€â€»*.NCEãƒ•ã‚¡ã‚¤ãƒ«ã§è¨­å®šã—ã¦ã„ã‚‹æ¨ªã®ã‚­ãƒ£ãƒ©æ•°ã‚’è¨˜å…¥
 #define NAME_SIZE_X		(8)
-///–¼‘O‚ÌYƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)B@¦*.NCEƒtƒ@ƒCƒ‹‚Åİ’è‚µ‚Ä‚¢‚éc‚ÌƒLƒƒƒ‰”‚ğ‹L“ü
+///åå‰ã®Yã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)ã€‚ã€€â€»*.NCEãƒ•ã‚¡ã‚¤ãƒ«ã§è¨­å®šã—ã¦ã„ã‚‹ç¸¦ã®ã‚­ãƒ£ãƒ©æ•°ã‚’è¨˜å…¥
 #define NAME_SIZE_Y		(2)
-///–¼‘OCGXƒIƒtƒZƒbƒg
+///åå‰CGXã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define NAME_CHAR_OFFSET	(0)
-///–¼‘OƒLƒƒƒ‰ƒNƒ^[‚ÌƒoƒCƒgƒTƒCƒY
+///åå‰ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
 #define NAME_BYTE_SIZE		(NAME_SIZE_X * NAME_SIZE_Y * 0x20)
 
-//–¼‘O•`‰æˆÊ’u
+//åå‰æç”»ä½ç½®
 static const PARTS_TRANS_PARAM NameTrans[][4] = {
 	{//GAUGE_TYPE_AA
-		{0x13 * 0x20, 5 * 0x20},		///<1–‡–ÚOAMFã’i
-		{0x1b * 0x20, 5 * 0x20},		///<1–‡–ÚOAMF‰º’i
-		{0x50 * 0x20, 3 * 0x20},		///<2–‡–ÚOAMFã’i
-		{0x58 * 0x20, 3 * 0x20},		///<2–‡–ÚOAMF‰º’i
+		{0x13 * 0x20, 5 * 0x20},		///<1æšç›®OAMï¼šä¸Šæ®µ
+		{0x1b * 0x20, 5 * 0x20},		///<1æšç›®OAMï¼šä¸‹æ®µ
+		{0x50 * 0x20, 3 * 0x20},		///<2æšç›®OAMï¼šä¸Šæ®µ
+		{0x58 * 0x20, 3 * 0x20},		///<2æšç›®OAMï¼šä¸‹æ®µ
 	},
 	{//GAUGE_TYPE_BB
-		{0x11 * 0x20, 7 * 0x20},		///<1–‡–ÚOAMFã’i
-		{0x19 * 0x20, 7 * 0x20},		///<1–‡–ÚOAMF‰º’i
-		{0x50 * 0x20, 1 * 0x20},		///<2–‡–ÚOAMFã’i
-		{0x58 * 0x20, 1 * 0x20},		///<2–‡–ÚOAMF‰º’i
+		{0x11 * 0x20, 7 * 0x20},		///<1æšç›®OAMï¼šä¸Šæ®µ
+		{0x19 * 0x20, 7 * 0x20},		///<1æšç›®OAMï¼šä¸‹æ®µ
+		{0x50 * 0x20, 1 * 0x20},		///<2æšç›®OAMï¼šä¸Šæ®µ
+		{0x58 * 0x20, 1 * 0x20},		///<2æšç›®OAMï¼šä¸‹æ®µ
 	},
 	{//GAUGE_TYPE_A
-		{0x12 * 0x20, 6 * 0x20},		///<1–‡–ÚOAMFã’i
-		{0x1a * 0x20, 6 * 0x20},		///<1–‡–ÚOAMF‰º’i
-		{0x50 * 0x20, 2 * 0x20},		///<2–‡–ÚOAMFã’i
-		{0x58 * 0x20, 2 * 0x20},		///<2–‡–ÚOAMF‰º’i
+		{0x12 * 0x20, 6 * 0x20},		///<1æšç›®OAMï¼šä¸Šæ®µ
+		{0x1a * 0x20, 6 * 0x20},		///<1æšç›®OAMï¼šä¸‹æ®µ
+		{0x50 * 0x20, 2 * 0x20},		///<2æšç›®OAMï¼šä¸Šæ®µ
+		{0x58 * 0x20, 2 * 0x20},		///<2æšç›®OAMï¼šä¸‹æ®µ
 	},
 	{//GAUGE_TYPE_B
-		{0x11 * 0x20, 7 * 0x20},		///<1–‡–ÚOAMFã’i
-		{0x19 * 0x20, 7 * 0x20},		///<1–‡–ÚOAMF‰º’i
-		{0x50 * 0x20, 1 * 0x20},		///<2–‡–ÚOAMFã’i
-		{0x58 * 0x20, 1 * 0x20},		///<2–‡–ÚOAMF‰º’i
+		{0x11 * 0x20, 7 * 0x20},		///<1æšç›®OAMï¼šä¸Šæ®µ
+		{0x19 * 0x20, 7 * 0x20},		///<1æšç›®OAMï¼šä¸‹æ®µ
+		{0x50 * 0x20, 1 * 0x20},		///<2æšç›®OAMï¼šä¸Šæ®µ
+		{0x58 * 0x20, 1 * 0x20},		///<2æšç›®OAMï¼šä¸‹æ®µ
 	},
 	{//GAUGE_TYPE_C
-		{0x12 * 0x20, 6 * 0x20},		///<1–‡–ÚOAMFã’i
-		{0x1a * 0x20, 6 * 0x20},		///<1–‡–ÚOAMF‰º’i
-		{0x50 * 0x20, 2 * 0x20},		///<2–‡–ÚOAMFã’i
-		{0x58 * 0x20, 2 * 0x20},		///<2–‡–ÚOAMF‰º’i
+		{0x12 * 0x20, 6 * 0x20},		///<1æšç›®OAMï¼šä¸Šæ®µ
+		{0x1a * 0x20, 6 * 0x20},		///<1æšç›®OAMï¼šä¸‹æ®µ
+		{0x50 * 0x20, 2 * 0x20},		///<2æšç›®OAMï¼šä¸Šæ®µ
+		{0x58 * 0x20, 2 * 0x20},		///<2æšç›®OAMï¼šä¸‹æ®µ
 	},
 	{//GAUGE_TYPE_D
-		{0x11 * 0x20, 7 * 0x20},		///<1–‡–ÚOAMFã’i
-		{0x19 * 0x20, 7 * 0x20},		///<1–‡–ÚOAMF‰º’i
-		{0x50 * 0x20, 1 * 0x20},		///<2–‡–ÚOAMFã’i
-		{0x58 * 0x20, 1 * 0x20},		///<2–‡–ÚOAMF‰º’i
+		{0x11 * 0x20, 7 * 0x20},		///<1æšç›®OAMï¼šä¸Šæ®µ
+		{0x19 * 0x20, 7 * 0x20},		///<1æšç›®OAMï¼šä¸‹æ®µ
+		{0x50 * 0x20, 1 * 0x20},		///<2æšç›®OAMï¼šä¸Šæ®µ
+		{0x58 * 0x20, 1 * 0x20},		///<2æšç›®OAMï¼šä¸‹æ®µ
 	},
 };
 
-///–¼‘O•`‰æˆÊ’u‚Ì”wŒiF”Ô†
+///åå‰æç”»ä½ç½®ã®èƒŒæ™¯è‰²ç•ªå·
 #define NAME_BACK_COLOR		(0xf)
-///–¼‘O‚Ì•¶šF
+///åå‰ã®æ–‡å­—è‰²
 #define NAME_FONT_COLOR		(GF_PRINTCOLOR_MAKE(0xe, 2, NAME_BACK_COLOR))
 
 //--------------------------------------------------------------
-//	ƒŒƒxƒ‹•¶š
+//	ãƒ¬ãƒ™ãƒ«æ–‡å­—
 //--------------------------------------------------------------
-//ƒŒƒxƒ‹•¶š•`‰æˆÊ’u
+//ãƒ¬ãƒ™ãƒ«æ–‡å­—æç”»ä½ç½®
 static const PARTS_TRANS_PARAM LvFontTrans[][2] = {
 	{//GAUGE_TYPE_AA
-		{0x53 * 0x20, 2 * 0x20},		///<1–‡–ÚOAM
-		{0x5B * 0x20, 2 * 0x20},		///<2–‡–ÚOAM
+		{0x53 * 0x20, 2 * 0x20},		///<1æšç›®OAM
+		{0x5B * 0x20, 2 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_BB
-		{0x51 * 0x20, 2 * 0x20},		///<1–‡–ÚOAM
-		{0x59 * 0x20, 2 * 0x20},		///<2–‡–ÚOAM
+		{0x51 * 0x20, 2 * 0x20},		///<1æšç›®OAM
+		{0x59 * 0x20, 2 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_A
-		{0x52 * 0x20, 2 * 0x20},		///<1–‡–ÚOAM
-		{0x5a * 0x20, 2 * 0x20},		///<2–‡–ÚOAM
+		{0x52 * 0x20, 2 * 0x20},		///<1æšç›®OAM
+		{0x5a * 0x20, 2 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_B
-		{0x51 * 0x20, 2 * 0x20},		///<1–‡–ÚOAM
-		{0x59 * 0x20, 2 * 0x20},		///<2–‡–ÚOAM
+		{0x51 * 0x20, 2 * 0x20},		///<1æšç›®OAM
+		{0x59 * 0x20, 2 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_C
-		{0x52 * 0x20, 2 * 0x20},		///<1–‡–ÚOAM
-		{0x5a * 0x20, 2 * 0x20},		///<2–‡–ÚOAM
+		{0x52 * 0x20, 2 * 0x20},		///<1æšç›®OAM
+		{0x5a * 0x20, 2 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_D
-		{0x51 * 0x20, 2 * 0x20},		///<1–‡–ÚOAM
-		{0x59 * 0x20, 2 * 0x20},		///<2–‡–ÚOAM
+		{0x51 * 0x20, 2 * 0x20},		///<1æšç›®OAM
+		{0x59 * 0x20, 2 * 0x20},		///<2æšç›®OAM
 	},
 };
 
 //--------------------------------------------------------------
-//	ƒŒƒxƒ‹
+//	ãƒ¬ãƒ™ãƒ«
 //--------------------------------------------------------------
-//ƒŒƒxƒ‹•`‰æˆÊ’u
+//ãƒ¬ãƒ™ãƒ«æç”»ä½ç½®
 static const PARTS_TRANS_PARAM LvTrans[][2] = {
 	{//GAUGE_TYPE_AA
-		{0x55 * 0x20, 3 * 0x20},		///<1–‡–ÚOAM
-		{0x5d * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+		{0x55 * 0x20, 3 * 0x20},		///<1æšç›®OAM
+		{0x5d * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_BB
-		{0x53 * 0x20, 3 * 0x20},		///<1–‡–ÚOAM
-		{0x5b * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+		{0x53 * 0x20, 3 * 0x20},		///<1æšç›®OAM
+		{0x5b * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_A
-		{0x54 * 0x20, 3 * 0x20},		///<1–‡–ÚOAM
-		{0x5c * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+		{0x54 * 0x20, 3 * 0x20},		///<1æšç›®OAM
+		{0x5c * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_B
-		{0x53 * 0x20, 3 * 0x20},		///<1–‡–ÚOAM
-		{0x5b * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+		{0x53 * 0x20, 3 * 0x20},		///<1æšç›®OAM
+		{0x5b * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_C
-		{0x54 * 0x20, 3 * 0x20},		///<1–‡–ÚOAM
-		{0x5c * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+		{0x54 * 0x20, 3 * 0x20},		///<1æšç›®OAM
+		{0x5c * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_D
-		{0x53 * 0x20, 3 * 0x20},		///<1–‡–ÚOAM
-		{0x5b * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+		{0x53 * 0x20, 3 * 0x20},		///<1æšç›®OAM
+		{0x5b * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	},
 };
 
-///ƒŒƒxƒ‹•`‰æˆÊ’u‚Ì”wŒiF”Ô†
+///ãƒ¬ãƒ™ãƒ«æç”»ä½ç½®ã®èƒŒæ™¯è‰²ç•ªå·
 #define LEVEL_BACK_COLOR		(NAME_BACK_COLOR)
-///ƒŒƒxƒ‹‚Ì•¶šF
+///ãƒ¬ãƒ™ãƒ«ã®æ–‡å­—è‰²
 #define LEVEL_FONT_COLOR		(NAME_FONT_COLOR)
 
 //--------------------------------------------------------------
-//	Œ»İHP
+//	ç¾åœ¨HP
 //--------------------------------------------------------------
-//Œ»İHP•`‰æˆÊ’u
+//ç¾åœ¨HPæç”»ä½ç½®
 static const PARTS_TRANS_PARAM HPTrans[][2] = {
 	{//GAUGE_TYPE_AA
-		{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
-		{0x68 * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+		{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
+		{0x68 * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_BB
-		{0x31 * 0x20, 3 * 0x20},			///<1–‡–ÚOAM
-		{0, 0 * 0x20},					///<2–‡–ÚOAM
+		{0x31 * 0x20, 3 * 0x20},			///<1æšç›®OAM
+		{0, 0 * 0x20},					///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_A
-		{0, 0 * 0x20},		///<1–‡–ÚOAM
-		{0x60 * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+		{0, 0 * 0x20},		///<1æšç›®OAM
+		{0x60 * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_B
-		{0x31 * 0x20, 3 * 0x20},			///<1–‡–ÚOAM
-		{0, 0 * 0x20},					///<2–‡–ÚOAM
+		{0x31 * 0x20, 3 * 0x20},			///<1æšç›®OAM
+		{0, 0 * 0x20},					///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_C
-		{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
-		{0x60 * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+		{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
+		{0x60 * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_D
-		{0x31 * 0x20, 3 * 0x20},			///<1–‡–ÚOAM
-		{0, 0 * 0x20},					///<2–‡–ÚOAM
+		{0x31 * 0x20, 3 * 0x20},			///<1æšç›®OAM
+		{0, 0 * 0x20},					///<2æšç›®OAM
 	},
 };
 
-///Œ»İHP•`‰æˆÊ’u‚Ì”wŒiF”Ô†
+///ç¾åœ¨HPæç”»ä½ç½®ã®èƒŒæ™¯è‰²ç•ªå·
 #define HP_BACK_COLOR		(NAME_BACK_COLOR)
-///Œ»İHP‚Ì•¶šF
+///ç¾åœ¨HPã®æ–‡å­—è‰²
 #define HP_FONT_COLOR		(GF_PRINTCOLOR_MAKE(0xe, 2, HP_BACK_COLOR))
 
 //--------------------------------------------------------------
-//	Å‘åHP
+//	æœ€å¤§HP
 //--------------------------------------------------------------
-//Å‘åHP•`‰æˆÊ’u
+//æœ€å¤§HPæç”»ä½ç½®
 static const PARTS_TRANS_PARAM HPMaxTrans[] = {
 	//GAUGE_TYPE_AA
-	{0x6c * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+	{0x6c * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	//GAUGE_TYPE_BB
-	{0x35 * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+	{0x35 * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	//GAUGE_TYPE_A
-	{0x64 * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+	{0x64 * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	//GAUGE_TYPE_B
-	{0x35 * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+	{0x35 * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	//GAUGE_TYPE_C
-	{0x64 * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+	{0x64 * 0x20, 3 * 0x20},		///<2æšç›®OAM
 	//GAUGE_TYPE_D
-	{0x35 * 0x20, 3 * 0x20},		///<2–‡–ÚOAM
+	{0x35 * 0x20, 3 * 0x20},		///<2æšç›®OAM
 };
 
-///Å‘åHP•`‰æˆÊ’u‚Ì”wŒiF”Ô†
+///æœ€å¤§HPæç”»ä½ç½®ã®èƒŒæ™¯è‰²ç•ªå·
 #define HPMAX_BACK_COLOR		(HP_BACK_COLOR)
-///Å‘åHP‚Ì•¶šF
+///æœ€å¤§HPã®æ–‡å­—è‰²
 #define HPMAX_FONT_COLOR		(HP_FONT_COLOR)
 
 //--------------------------------------------------------------
-//	ƒfƒoƒbƒO”’l
+//	ãƒ‡ãƒãƒƒã‚°æ•°å€¤
 //--------------------------------------------------------------
 #ifdef PM_DEBUG
 #define DEBUG_NUM_KETA_MAX		(8)
 static const PARTS_TRANS_PARAM DebugNumTrans[] = {
 	//GAUGE_TYPE_AA
-	{0x78 * 0x20, DEBUG_NUM_KETA_MAX * 0x20},		///<2–‡–ÚOAM
+	{0x78 * 0x20, DEBUG_NUM_KETA_MAX * 0x20},		///<2æšç›®OAM
 	//GAUGE_TYPE_BB
-	{0x78 * 0x20, DEBUG_NUM_KETA_MAX * 0x20},		///<2–‡–ÚOAM
+	{0x78 * 0x20, DEBUG_NUM_KETA_MAX * 0x20},		///<2æšç›®OAM
 	//GAUGE_TYPE_A
-	{0x78 * 0x20, DEBUG_NUM_KETA_MAX * 0x20},		///<2–‡–ÚOAM
+	{0x78 * 0x20, DEBUG_NUM_KETA_MAX * 0x20},		///<2æšç›®OAM
 	//GAUGE_TYPE_B
-	{0x78 * 0x20, DEBUG_NUM_KETA_MAX * 0x20},		///<2–‡–ÚOAM
+	{0x78 * 0x20, DEBUG_NUM_KETA_MAX * 0x20},		///<2æšç›®OAM
 	//GAUGE_TYPE_C
-	{0x78 * 0x20, DEBUG_NUM_KETA_MAX * 0x20},		///<2–‡–ÚOAM
+	{0x78 * 0x20, DEBUG_NUM_KETA_MAX * 0x20},		///<2æšç›®OAM
 	//GAUGE_TYPE_D
-	{0x78 * 0x20, DEBUG_NUM_KETA_MAX * 0x20},		///<2–‡–ÚOAM
+	{0x78 * 0x20, DEBUG_NUM_KETA_MAX * 0x20},		///<2æšç›®OAM
 };
 #endif
 
 //--------------------------------------------------------------
-//	HPƒo[
+//	HPãƒãƒ¼
 //--------------------------------------------------------------
-//HPƒo[•`‰æˆÊ’u
+//HPãƒãƒ¼æç”»ä½ç½®
 static const PARTS_TRANS_PARAM HPBarTrans[][2] = {
 	{//GAUGE_TYPE_AA
-		{0x27 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
-		{0x61 * 0x20, 6 * 0x20},		///<2–‡–ÚOAM
+		{0x27 * 0x20, 0 * 0x20},		///<1æšç›®OAM
+		{0x61 * 0x20, 6 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_BB
-		{0x27 * 0x20, 1 * 0x20},		///<1–‡–ÚOAM
-		{0x60 * 0x20, 5 * 0x20},		///<2–‡–ÚOAM
+		{0x27 * 0x20, 1 * 0x20},		///<1æšç›®OAM
+		{0x60 * 0x20, 5 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_A
-		{0x27 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
-		{0x60 * 0x20, 6 * 0x20},		///<2–‡–ÚOAM
+		{0x27 * 0x20, 0 * 0x20},		///<1æšç›®OAM
+		{0x60 * 0x20, 6 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_B
-		{0x27 * 0x20, 1 * 0x20},		///<1–‡–ÚOAM
-		{0x60 * 0x20, 5 * 0x20},		///<2–‡–ÚOAM
+		{0x27 * 0x20, 1 * 0x20},		///<1æšç›®OAM
+		{0x60 * 0x20, 5 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_C
-		{0x27 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
-		{0x60 * 0x20, 6 * 0x20},		///<2–‡–ÚOAM
+		{0x27 * 0x20, 0 * 0x20},		///<1æšç›®OAM
+		{0x60 * 0x20, 6 * 0x20},		///<2æšç›®OAM
 	},
 	{//GAUGE_TYPE_D
-		{0x27 * 0x20, 1 * 0x20},		///<1–‡–ÚOAM
-		{0x60 * 0x20, 5 * 0x20},		///<2–‡–ÚOAM
+		{0x27 * 0x20, 1 * 0x20},		///<1æšç›®OAM
+		{0x60 * 0x20, 5 * 0x20},		///<2æšç›®OAM
 	},
 };
 
-///HPƒo[•`‰æˆÊ’u‚Ì”wŒiF”Ô†
+///HPãƒãƒ¼æç”»ä½ç½®ã®èƒŒæ™¯è‰²ç•ªå·
 #define HPBAR_BACK_COLOR		(HP_BACK_COLOR)
-///HPƒo[‚Ì•¶šF
+///HPãƒãƒ¼ã®æ–‡å­—è‰²
 #define HPBAR_FONT_COLOR		(HP_FONT_COLOR)
 
 //--------------------------------------------------------------
-//	ŒoŒ±’lƒo[
+//	çµŒé¨“å€¤ãƒãƒ¼
 //--------------------------------------------------------------
-//EXPƒo[•`‰æˆÊ’u(ƒVƒ“ƒOƒ‹Eƒ_ƒuƒ‹E–¡•ûE“G‹¤’Ê)
+//EXPãƒãƒ¼æç”»ä½ç½®(ã‚·ãƒ³ã‚°ãƒ«ãƒ»ãƒ€ãƒ–ãƒ«ãƒ»å‘³æ–¹ãƒ»æ•µå…±é€š)
 enum{
-	EXPBAR_FAST_HIGH = 0x33 * 0x20,		///<EXPƒo[F1–‡–Ú‚ÌOAM‚Ì•`‰æŠJnˆÊ’u
-	EXPBAR_SECOND_HIGH = 0x70 * 0x20,	///<EXPƒo[F2–‡–Ú‚ÌOAM‚Ì•`‰æŠJnˆÊ’u
+	EXPBAR_FAST_HIGH = 0x33 * 0x20,		///<EXPãƒãƒ¼ï¼š1æšç›®ã®OAMã®æç”»é–‹å§‹ä½ç½®
+	EXPBAR_SECOND_HIGH = 0x70 * 0x20,	///<EXPãƒãƒ¼ï¼š2æšç›®ã®OAMã®æç”»é–‹å§‹ä½ç½®
 	
-	EXPBAR_NEXT_OAM = 5,		///<1–‡–Ú‚ÌOAM‚ª‚ÂEXPƒo[‚ÌƒLƒƒƒ‰”
+	EXPBAR_NEXT_OAM = 5,		///<1æšç›®ã®OAMãŒæŒã¤EXPãƒãƒ¼ã®ã‚­ãƒ£ãƒ©æ•°
 };
 
 //--------------------------------------------------------------
-//	«•Ê
+//	æ€§åˆ¥
 //--------------------------------------------------------------
-//«•Ê“]‘—ˆÊ’u
+//æ€§åˆ¥è»¢é€ä½ç½®
 static const PARTS_TRANS_PARAM SexTrans[][2] = {
 	{//GAUGE_TYPE_AA
-		{0x52 * 0x20, 1 * 0x20},		///<ã’i
-		{0x5a * 0x20, 1 * 0x20},		///<‰º’i
+		{0x52 * 0x20, 1 * 0x20},		///<ä¸Šæ®µ
+		{0x5a * 0x20, 1 * 0x20},		///<ä¸‹æ®µ
 	},
 	{//GAUGE_TYPE_BB
-		{0x50 * 0x20, 1 * 0x20},		///<ã’i
-		{0x58 * 0x20, 1 * 0x20},		///<‰º’i
+		{0x50 * 0x20, 1 * 0x20},		///<ä¸Šæ®µ
+		{0x58 * 0x20, 1 * 0x20},		///<ä¸‹æ®µ
 	},
 	{//GAUGE_TYPE_A
-		{0x51 * 0x20, 1 * 0x20},		///<ã’i
-		{0x59 * 0x20, 1 * 0x20},		///<‰º’i
+		{0x51 * 0x20, 1 * 0x20},		///<ä¸Šæ®µ
+		{0x59 * 0x20, 1 * 0x20},		///<ä¸‹æ®µ
 	},
 	{//GAUGE_TYPE_B
-		{0x51 * 0x20, 1 * 0x20},		///<ã’i
-		{0x59 * 0x20, 1 * 0x20},		///<‰º’i
+		{0x51 * 0x20, 1 * 0x20},		///<ä¸Šæ®µ
+		{0x59 * 0x20, 1 * 0x20},		///<ä¸‹æ®µ
 	},
 	{//GAUGE_TYPE_C
-		{0x52 * 0x20, 1 * 0x20},		///<ã’i
-		{0x5a * 0x20, 1 * 0x20},		///<‰º’i
+		{0x52 * 0x20, 1 * 0x20},		///<ä¸Šæ®µ
+		{0x5a * 0x20, 1 * 0x20},		///<ä¸‹æ®µ
 	},
 	{//GAUGE_TYPE_D
-		{0x50 * 0x20, 1 * 0x20},		///<ã’i
-		{0x58 * 0x20, 1 * 0x20},		///<‰º’i
+		{0x50 * 0x20, 1 * 0x20},		///<ä¸Šæ®µ
+		{0x58 * 0x20, 1 * 0x20},		///<ä¸‹æ®µ
 	},
 };
 
 //--------------------------------------------------------------
-//	ƒQƒbƒgÏ‚İƒ}[ƒN
+//	ã‚²ãƒƒãƒˆæ¸ˆã¿ãƒãƒ¼ã‚¯
 //--------------------------------------------------------------
-//ƒQƒbƒgÏ‚İƒ}[ƒN“]‘—ˆÊ’u
+//ã‚²ãƒƒãƒˆæ¸ˆã¿ãƒãƒ¼ã‚¯è»¢é€ä½ç½®
 static const PARTS_TRANS_PARAM GetBallTrans[] = {
 	//GAUGE_TYPE_AA
 	{0x23 * 0x20, 1 * 0x20},
@@ -402,9 +402,9 @@ static const PARTS_TRANS_PARAM GetBallTrans[] = {
 };
 
 //--------------------------------------------------------------
-//	ó‘ÔˆÙí
+//	çŠ¶æ…‹ç•°å¸¸
 //--------------------------------------------------------------
-//ó‘ÔˆÙí“]‘—ˆÊ’u
+//çŠ¶æ…‹ç•°å¸¸è»¢é€ä½ç½®
 static const PARTS_TRANS_PARAM StatusTrans[] = {
 	//GAUGE_TYPE_AA
 	{0x24 * 0x20, 3 * 0x20},
@@ -422,113 +422,113 @@ static const PARTS_TRANS_PARAM StatusTrans[] = {
 
 
 //--------------------------------------------------------------
-//	ƒTƒtƒ@ƒŠƒ{[ƒ‹
+//	ã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«
 //--------------------------------------------------------------
-///uƒTƒtƒ@ƒŠƒ{[ƒ‹v‚ÌXƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)B@¦*.NCEƒtƒ@ƒCƒ‹‚Åİ’è‚µ‚Ä‚¢‚é‰¡‚ÌƒLƒƒƒ‰”‚ğ‹L“ü
+///ã€Œã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã€ã®Xã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)ã€‚ã€€â€»*.NCEãƒ•ã‚¡ã‚¤ãƒ«ã§è¨­å®šã—ã¦ã„ã‚‹æ¨ªã®ã‚­ãƒ£ãƒ©æ•°ã‚’è¨˜å…¥
 #define SAFARIBALL_SIZE_X		(13)
-///uƒTƒtƒ@ƒŠƒ{[ƒ‹v‚ÌYƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)B@¦*.NCEƒtƒ@ƒCƒ‹‚Åİ’è‚µ‚Ä‚¢‚éc‚ÌƒLƒƒƒ‰”‚ğ‹L“ü
+///ã€Œã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã€ã®Yã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)ã€‚ã€€â€»*.NCEãƒ•ã‚¡ã‚¤ãƒ«ã§è¨­å®šã—ã¦ã„ã‚‹ç¸¦ã®ã‚­ãƒ£ãƒ©æ•°ã‚’è¨˜å…¥
 #define SAFARIBALL_SIZE_Y		(2)
-///uƒTƒtƒ@ƒŠƒ{[ƒ‹vCGXƒIƒtƒZƒbƒg
+///ã€Œã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã€CGXã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define SAFARIBALL_CHAR_OFFSET	(0)
-///uƒTƒtƒ@ƒŠƒ{[ƒ‹vƒLƒƒƒ‰ƒNƒ^[‚ÌƒoƒCƒgƒTƒCƒY
+///ã€Œã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
 #define SAFARIBALL_BYTE_SIZE		(SAFARIBALL_SIZE_X * SAFARIBALL_SIZE_Y * 0x20)
 
-//uƒTƒtƒ@ƒŠƒ{[ƒ‹v•`‰æˆÊ’u
+//ã€Œã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã€æç”»ä½ç½®
 static const PARTS_TRANS_PARAM SafariballTrans[4] = {
-	{0x12 * 0x20, 6 * 0x20},		///<1–‡–ÚOAMFã’i
-	{0x1a * 0x20, 6 * 0x20},		///<1–‡–ÚOAMF‰º’i
-	{0x50 * 0x20, 7 * 0x20},		///<2–‡–ÚOAMFã’i
-	{0x58 * 0x20, 7 * 0x20},		///<2–‡–ÚOAMF‰º’i
+	{0x12 * 0x20, 6 * 0x20},		///<1æšç›®OAMï¼šä¸Šæ®µ
+	{0x1a * 0x20, 6 * 0x20},		///<1æšç›®OAMï¼šä¸‹æ®µ
+	{0x50 * 0x20, 7 * 0x20},		///<2æšç›®OAMï¼šä¸Šæ®µ
+	{0x58 * 0x20, 7 * 0x20},		///<2æšç›®OAMï¼šä¸‹æ®µ
 };
 
-///uƒTƒtƒ@ƒŠƒ{[ƒ‹v•`‰æˆÊ’u‚Ì”wŒiF”Ô†
+///ã€Œã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã€æç”»ä½ç½®ã®èƒŒæ™¯è‰²ç•ªå·
 #define SAFARIBALL_BACK_COLOR		(0xf)
-///uƒTƒtƒ@ƒŠƒ{[ƒ‹v‚Ì•¶šF
+///ã€Œã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã€ã®æ–‡å­—è‰²
 #define SAFARIBALL_FONT_COLOR		(GF_PRINTCOLOR_MAKE(0xe, 2, SAFARIBALL_BACK_COLOR))
 
 
 //--------------------------------------------------------------
-//	‚Ì‚±‚è@››‚±
+//	ã®ã“ã‚Šã€€â—‹â—‹ã“
 //--------------------------------------------------------------
-///u‚Ì‚±‚è@››‚±v‚ÌXƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)B@¦*.NCEƒtƒ@ƒCƒ‹‚Åİ’è‚µ‚Ä‚¢‚é‰¡‚ÌƒLƒƒƒ‰”‚ğ‹L“ü
+///ã€Œã®ã“ã‚Šã€€â—‹â—‹ã“ã€ã®Xã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)ã€‚ã€€â€»*.NCEãƒ•ã‚¡ã‚¤ãƒ«ã§è¨­å®šã—ã¦ã„ã‚‹æ¨ªã®ã‚­ãƒ£ãƒ©æ•°ã‚’è¨˜å…¥
 #define NOKORI_SIZE_X		(13)
-///u‚Ì‚±‚è@››‚±v‚ÌYƒTƒCƒY(ƒLƒƒƒ‰’PˆÊ)B@¦*.NCEƒtƒ@ƒCƒ‹‚Åİ’è‚µ‚Ä‚¢‚éc‚ÌƒLƒƒƒ‰”‚ğ‹L“ü
+///ã€Œã®ã“ã‚Šã€€â—‹â—‹ã“ã€ã®Yã‚µã‚¤ã‚º(ã‚­ãƒ£ãƒ©å˜ä½)ã€‚ã€€â€»*.NCEãƒ•ã‚¡ã‚¤ãƒ«ã§è¨­å®šã—ã¦ã„ã‚‹ç¸¦ã®ã‚­ãƒ£ãƒ©æ•°ã‚’è¨˜å…¥
 #define NOKORI_SIZE_Y		(2)
-///u‚Ì‚±‚è@››‚±vCGXƒIƒtƒZƒbƒg
+///ã€Œã®ã“ã‚Šã€€â—‹â—‹ã“ã€CGXã‚ªãƒ•ã‚»ãƒƒãƒˆ
 #define NOKORI_CHAR_OFFSET	(0)
-///u‚Ì‚±‚è@››‚±vƒLƒƒƒ‰ƒNƒ^[‚ÌƒoƒCƒgƒTƒCƒY
+///ã€Œã®ã“ã‚Šã€€â—‹â—‹ã“ã€ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
 #define NOKORI_BYTE_SIZE		(NOKORI_SIZE_X * NOKORI_SIZE_Y * 0x20)
 
-//u‚Ì‚±‚è@››‚±v•`‰æˆÊ’u
+//ã€Œã®ã“ã‚Šã€€â—‹â—‹ã“ã€æç”»ä½ç½®
 static const PARTS_TRANS_PARAM NokoriTrans[4] = {
-	{0x22 * 0x20, 6 * 0x20},		///<1–‡–ÚOAMFã’i
-	{0x2a * 0x20, 6 * 0x20},		///<1–‡–ÚOAMF‰º’i
-	{0x60 * 0x20, 7 * 0x20},		///<2–‡–ÚOAMFã’i
-	{0x68 * 0x20, 7 * 0x20},		///<2–‡–ÚOAMF‰º’i
+	{0x22 * 0x20, 6 * 0x20},		///<1æšç›®OAMï¼šä¸Šæ®µ
+	{0x2a * 0x20, 6 * 0x20},		///<1æšç›®OAMï¼šä¸‹æ®µ
+	{0x60 * 0x20, 7 * 0x20},		///<2æšç›®OAMï¼šä¸Šæ®µ
+	{0x68 * 0x20, 7 * 0x20},		///<2æšç›®OAMï¼šä¸‹æ®µ
 };
 
-///u‚Ì‚±‚è@››‚±v•`‰æˆÊ’u‚Ì”wŒiF”Ô†
+///ã€Œã®ã“ã‚Šã€€â—‹â—‹ã“ã€æç”»ä½ç½®ã®èƒŒæ™¯è‰²ç•ªå·
 #define NOKORI_BACK_COLOR		(0xf)
-///u‚Ì‚±‚è@››‚±v‚Ì•¶šF
+///ã€Œã®ã“ã‚Šã€€â—‹â—‹ã“ã€ã®æ–‡å­—è‰²
 #define NOKORI_FONT_COLOR		(GF_PRINTCOLOR_MAKE(0xe, 2, NOKORI_BACK_COLOR))
 
-///u‚Ì‚±‚è@››‚±v‚Ì”’lŒ…”
+///ã€Œã®ã“ã‚Šã€€â—‹â—‹ã“ã€ã®æ•°å€¤æ¡æ•°
 #define NOKORI_SAFARI_NUM_KETA		(2)
 
 //--------------------------------------------------------------
-//	2vs2ƒQ[ƒW‚ÌHP”’l•\¦ƒ‚[ƒh
+//	2vs2ã‚²ãƒ¼ã‚¸ã®HPæ•°å€¤è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰
 //--------------------------------------------------------------
-//HPƒo[‚Ì“ª•`‰æˆÊ’u
+//HPãƒãƒ¼ã®é ­æç”»ä½ç½®
 static const PARTS_TRANS_PARAM HPBarHeadTrans[] = {
 	//GAUGE_TYPE_AA
-	{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
+	{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_BB
-	{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
+	{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_A
-	{0x26 * 0x20, 2 * 0x20},		///<1–‡–ÚOAM
+	{0x26 * 0x20, 2 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_B
-	{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
+	{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_C
-	{0x26 * 0x20, 2 * 0x20},		///<1–‡–ÚOAM
+	{0x26 * 0x20, 2 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_D
-	{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
+	{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
 };
 
-//HPƒo[‚ÌŠW•`‰æˆÊ’u
+//HPãƒãƒ¼ã®è“‹æç”»ä½ç½®
 static const PARTS_TRANS_PARAM HPBarCapTrans[] = {
 	//GAUGE_TYPE_AA
-	{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
+	{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_BB
-	{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
+	{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_A
-	{0x66 * 0x20, 1 * 0x20},		///<1–‡–ÚOAM
+	{0x66 * 0x20, 1 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_B
-	{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
+	{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_C
-	{0x66 * 0x20, 1 * 0x20},		///<1–‡–ÚOAM
+	{0x66 * 0x20, 1 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_D
-	{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
+	{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
 };
 
-//HP‚ÌƒXƒ‰ƒbƒVƒ…•`‰æˆÊ’u(2vs2ƒQ[ƒW‚Ì”’lƒ‚[ƒh‚Ì—p)
+//HPã®ã‚¹ãƒ©ãƒƒã‚·ãƒ¥æç”»ä½ç½®(2vs2ã‚²ãƒ¼ã‚¸ã®æ•°å€¤ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ç”¨)
 static const PARTS_TRANS_PARAM HPSlashTrans[] = {
 	//GAUGE_TYPE_AA
-	{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
+	{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_BB
-	{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
+	{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_A
-	{0x63 * 0x20, 1 * 0x20},		///<1–‡–ÚOAM
+	{0x63 * 0x20, 1 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_B
-	{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
+	{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_C
-	{0x63 * 0x20, 1 * 0x20},		///<1–‡–ÚOAM
+	{0x63 * 0x20, 1 * 0x20},		///<1æšç›®OAM
 	//GAUGE_TYPE_D
-	{0 * 0x20, 0 * 0x20},		///<1–‡–ÚOAM
+	{0 * 0x20, 0 * 0x20},		///<1æšç›®OAM
 };
 
 
 //==============================================================================
-//	ƒvƒƒgƒ^ƒCƒvéŒ¾
+//	ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 //==============================================================================
 static s32 GaugeOBJ(GAUGE_WORK *gauge, int req_data);
 static s32 GaugeProc(s32 MaxHP, s32 NowHP, s32 beHP, s32 *HP_Work, u8 GaugeMax, u16 add_dec);
@@ -563,171 +563,171 @@ static void Gauge_ArrowEnableSet(GAUGE_WORK *gauge, int enable);
 
 
 //==============================================================================
-//	ƒf[ƒ^
+//	ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
-///AA—pƒQ[ƒWƒAƒNƒ^[ƒwƒbƒ_
+///AAç”¨ã‚²ãƒ¼ã‚¸ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S GaugeObjParam_aa = {
 	192,112 + 4, 0,		//x, y, z
-	0, SOFTPRI_GAUGE_AA, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		SINGLE_GAGE2_NCGR_BIN,	//ƒLƒƒƒ‰
-		PLTTID_GAUGE,	//ƒpƒŒƒbƒg
-		SINGLE_GAGE2_NCER_BIN,	//ƒZƒ‹
-		SINGLE_GAGE2_NANR_BIN,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_GAUGE_AA, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		SINGLE_GAGE2_NCGR_BIN,	//ã‚­ãƒ£ãƒ©
+		PLTTID_GAUGE,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		SINGLE_GAGE2_NCER_BIN,	//ã‚»ãƒ«
+		SINGLE_GAGE2_NANR_BIN,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	GAUGE_DEFAULT_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	GAUGE_DEFAULT_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///BB—pƒQ[ƒWƒAƒNƒ^[ƒwƒbƒ_
+///BBç”¨ã‚²ãƒ¼ã‚¸ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S GaugeObjParam_bb = {
 	64-6,40-4, 0,		//x, y, z
-	0, SOFTPRI_GAUGE_BB, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		SINGLE_GAGE1_NCGR_BIN,	//ƒLƒƒƒ‰
-		PLTTID_GAUGE,	//ƒpƒŒƒbƒg
-		SINGLE_GAGE1_NCER_BIN,	//ƒZƒ‹
-		SINGLE_GAGE1_NANR_BIN,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_GAUGE_BB, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		SINGLE_GAGE1_NCGR_BIN,	//ã‚­ãƒ£ãƒ©
+		PLTTID_GAUGE,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		SINGLE_GAGE1_NCER_BIN,	//ã‚»ãƒ«
+		SINGLE_GAGE1_NANR_BIN,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	GAUGE_DEFAULT_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	GAUGE_DEFAULT_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///A—pƒQ[ƒWƒAƒNƒ^[ƒwƒbƒ_
+///Aç”¨ã‚²ãƒ¼ã‚¸ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S GaugeObjParam_a = {
 	192,96 + 7, 0,		//x, y, z
-	0, SOFTPRI_GAUGE_A, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		DOUBLE_GAGE3_NCGR_BIN,	//ƒLƒƒƒ‰
-		PLTTID_GAUGE,	//ƒpƒŒƒbƒg
-		DOUBLE_GAGE3_NCER_BIN,	//ƒZƒ‹
-		DOUBLE_GAGE3_NANR_BIN,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_GAUGE_A, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		DOUBLE_GAGE3_NCGR_BIN,	//ã‚­ãƒ£ãƒ©
+		PLTTID_GAUGE,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		DOUBLE_GAGE3_NCER_BIN,	//ã‚»ãƒ«
+		DOUBLE_GAGE3_NANR_BIN,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	GAUGE_DEFAULT_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	GAUGE_DEFAULT_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///B—pƒQ[ƒWƒAƒNƒ^[ƒwƒbƒ_
+///Bç”¨ã‚²ãƒ¼ã‚¸ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S GaugeObjParam_b = {
 	64,19-3, 0,		//x, y, z
-	0, SOFTPRI_GAUGE_B, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		DOUBLE_GAGE1_NCGR_BIN,	//ƒLƒƒƒ‰
-		PLTTID_GAUGE,	//ƒpƒŒƒbƒg
-		DOUBLE_GAGE1_NCER_BIN,	//ƒZƒ‹
-		DOUBLE_GAGE1_NANR_BIN,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_GAUGE_B, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		DOUBLE_GAGE1_NCGR_BIN,	//ã‚­ãƒ£ãƒ©
+		PLTTID_GAUGE,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		DOUBLE_GAGE1_NCER_BIN,	//ã‚»ãƒ«
+		DOUBLE_GAGE1_NANR_BIN,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	GAUGE_DEFAULT_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	GAUGE_DEFAULT_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///C—pƒQ[ƒWƒAƒNƒ^[ƒwƒbƒ_
+///Cç”¨ã‚²ãƒ¼ã‚¸ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S GaugeObjParam_c = {
 	192+6,128+4, 0,		//x, y, z
-	0, SOFTPRI_GAUGE_C, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		DOUBLE_GAGE4_NCGR_BIN,	//ƒLƒƒƒ‰
-		PLTTID_GAUGE,	//ƒpƒŒƒbƒg
-		DOUBLE_GAGE4_NCER_BIN,	//ƒZƒ‹
-		DOUBLE_GAGE4_NANR_BIN,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_GAUGE_C, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		DOUBLE_GAGE4_NCGR_BIN,	//ã‚­ãƒ£ãƒ©
+		PLTTID_GAUGE,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		DOUBLE_GAGE4_NCER_BIN,	//ã‚»ãƒ«
+		DOUBLE_GAGE4_NANR_BIN,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	GAUGE_DEFAULT_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	GAUGE_DEFAULT_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///D—pƒQ[ƒWƒAƒNƒ^[ƒwƒbƒ_
+///Dç”¨ã‚²ãƒ¼ã‚¸ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S GaugeObjParam_d = {
 	64-6,48-3, 0,		//x, y, z
-	0, SOFTPRI_GAUGE_D, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		DOUBLE_GAGE2_NCGR_BIN,	//ƒLƒƒƒ‰
-		PLTTID_GAUGE,	//ƒpƒŒƒbƒg
-		DOUBLE_GAGE2_NCER_BIN,	//ƒZƒ‹
-		DOUBLE_GAGE2_NANR_BIN,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_GAUGE_D, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		DOUBLE_GAGE2_NCGR_BIN,	//ã‚­ãƒ£ãƒ©
+		PLTTID_GAUGE,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		DOUBLE_GAGE2_NCER_BIN,	//ã‚»ãƒ«
+		DOUBLE_GAGE2_NANR_BIN,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	GAUGE_DEFAULT_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	GAUGE_DEFAULT_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///AA—pƒQ[ƒW–îˆóƒAƒNƒ^[ƒwƒbƒ_
+///AAç”¨ã‚²ãƒ¼ã‚¸çŸ¢å°ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S ArrowParam_aa = {
 	0,0, 0,		//x, y, z
-	0, SOFTPRI_ARROW_AA, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		SINGLE_ARROW_ANIMATION2_NCGR_BIN,	//ƒLƒƒƒ‰
-		PLTTID_GAUGE,	//ƒpƒŒƒbƒg
-		SINGLE_ARROW_ANIMATION2_NCER_BIN,	//ƒZƒ‹
-		SINGLE_ARROW_ANIMATION2_NANR_BIN,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_ARROW_AA, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		SINGLE_ARROW_ANIMATION2_NCGR_BIN,	//ã‚­ãƒ£ãƒ©
+		PLTTID_GAUGE,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		SINGLE_ARROW_ANIMATION2_NCER_BIN,	//ã‚»ãƒ«
+		SINGLE_ARROW_ANIMATION2_NANR_BIN,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	GAUGE_DEFAULT_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	GAUGE_DEFAULT_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///BB—pƒQ[ƒW–îˆóƒAƒNƒ^[ƒwƒbƒ_
+///BBç”¨ã‚²ãƒ¼ã‚¸çŸ¢å°ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S ArrowParam_bb = {
 	0, 0, 0,		//x, y, z
-	0, SOFTPRI_ARROW_BB, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		SINGLE_ARROW_ANIMATION1_NCGR_BIN,	//ƒLƒƒƒ‰
-		PLTTID_GAUGE,	//ƒpƒŒƒbƒg
-		SINGLE_ARROW_ANIMATION1_NCER_BIN,	//ƒZƒ‹
-		SINGLE_ARROW_ANIMATION1_NANR_BIN,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_ARROW_BB, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		SINGLE_ARROW_ANIMATION1_NCGR_BIN,	//ã‚­ãƒ£ãƒ©
+		PLTTID_GAUGE,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		SINGLE_ARROW_ANIMATION1_NCER_BIN,	//ã‚»ãƒ«
+		SINGLE_ARROW_ANIMATION1_NANR_BIN,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	GAUGE_DEFAULT_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	GAUGE_DEFAULT_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
-///ƒTƒtƒ@ƒŠ—pƒQ[ƒWƒAƒNƒ^[ƒwƒbƒ_
+///ã‚µãƒ•ã‚¡ãƒªç”¨ã‚²ãƒ¼ã‚¸ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€
 static const TCATS_OBJECT_ADD_PARAM_S GaugeObjParam_Safari = {
 	192,112 + 4, 0,		//x, y, z
-	0, SOFTPRI_GAUGE_AA, 0,		//ƒAƒjƒ”Ô†A—Dæ‡ˆÊAƒpƒŒƒbƒg”Ô†
-	NNS_G2D_VRAM_TYPE_2DMAIN,		//•`‰æƒGƒŠƒA
-	{	//g—pƒŠƒ\[ƒXIDƒe[ƒuƒ‹
-		SAFARI_GAUGE_NCGR_BIN,	//ƒLƒƒƒ‰
-		PLTTID_GAUGE_SAFARI,	//ƒpƒŒƒbƒg
-		SAFARI_GAUGE_NCER_BIN,	//ƒZƒ‹
-		SAFARI_GAUGE_NANR_BIN,	//ƒZƒ‹ƒAƒjƒ
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹
-		CLACT_U_HEADER_DATA_NONE,		//ƒ}ƒ‹ƒ`ƒZƒ‹ƒAƒjƒ
+	0, SOFTPRI_GAUGE_AA, 0,		//ã‚¢ãƒ‹ãƒ¡ç•ªå·ã€å„ªå…ˆé †ä½ã€ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	NNS_G2D_VRAM_TYPE_2DMAIN,		//æç”»ã‚¨ãƒªã‚¢
+	{	//ä½¿ç”¨ãƒªã‚½ãƒ¼ã‚¹IDãƒ†ãƒ¼ãƒ–ãƒ«
+		SAFARI_GAUGE_NCGR_BIN,	//ã‚­ãƒ£ãƒ©
+		PLTTID_GAUGE_SAFARI,	//ãƒ‘ãƒ¬ãƒƒãƒˆ
+		SAFARI_GAUGE_NCER_BIN,	//ã‚»ãƒ«
+		SAFARI_GAUGE_NANR_BIN,	//ã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«
+		CLACT_U_HEADER_DATA_NONE,		//ãƒãƒ«ãƒã‚»ãƒ«ã‚¢ãƒ‹ãƒ¡
 	},
-	GAUGE_DEFAULT_BGPRI,			//BGƒvƒ‰ƒCƒIƒŠƒeƒB
-	0,			//Vram“]‘—ƒtƒ‰ƒO
+	GAUGE_DEFAULT_BGPRI,			//BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
+	0,			//Vramè»¢é€ãƒ•ãƒ©ã‚°
 };
 
 
 //==============================================================================
-//	ŠO•”ƒf[ƒ^
+//	å¤–éƒ¨ãƒ‡ãƒ¼ã‚¿
 //==============================================================================
 #include "gage_parts_txt.dat"
 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌƒŠƒ\[ƒX“Ç‚İ‚İ
+ * @brief   ã‚²ãƒ¼ã‚¸ã®ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
  * @param   gauge		
  */
@@ -736,7 +736,7 @@ void Gauge_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE* hdl, PALE
 {
 	const TCATS_OBJECT_ADD_PARAM_S *obj_head;
 	
-	//ƒŠƒ\[ƒX“Ç‚İ‚İ
+	//ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	obj_head = Sub_GaugeObjHeadGet(gauge_type);
 	
 	CATS_LoadResourceCharArcH(csp, crp, hdl, obj_head->id[CLACT_U_CHAR_RES], 1, 
@@ -751,7 +751,7 @@ void Gauge_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE* hdl, PALE
 	CATS_LoadResourceCellAnmArcH(csp, crp, hdl, 
 		obj_head->id[CLACT_U_CELLANM_RES], 1, obj_head->id[CLACT_U_CELLANM_RES]);
 
-	//ƒGƒtƒFƒNƒg—pƒpƒŒƒbƒgƒZƒbƒg
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨ãƒ‘ãƒ¬ãƒƒãƒˆã‚»ãƒƒãƒˆ
 	CATS_LoadResourcePlttWorkArcH(pfd, FADE_MAIN_OBJ, csp, crp, 
 		hdl, GAGE_PALETTE_NCLR, 0, 
 		1, NNS_G2D_VRAM_TYPE_2DMAIN, PLTTID_GAUGE_EFF);
@@ -764,9 +764,9 @@ void Gauge_ResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE* hdl, PALE
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW–îˆó‚ÌƒŠƒ\[ƒX“Ç‚İ‚İ
+ * @brief   ã‚²ãƒ¼ã‚¸çŸ¢å°ã®ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
  *
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Gauge_ArrowResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDLE* hdl, PALETTE_FADE_PTR pfd, 
@@ -774,7 +774,7 @@ static void Gauge_ArrowResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDL
 {
 	const TCATS_OBJECT_ADD_PARAM_S *obj_head;
 	
-	//ƒŠƒ\[ƒX“Ç‚İ‚İ
+	//ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	obj_head = Sub_ArrowObjHeadGet(gauge_type);
 	if(obj_head != NULL){
 		CATS_LoadResourceCharArcH(csp, crp, hdl, obj_head->id[CLACT_U_CHAR_RES], 
@@ -794,11 +794,11 @@ static void Gauge_ArrowResourceLoad(CATS_SYS_PTR csp, CATS_RES_PTR crp, ARCHANDL
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌƒAƒNƒ^[‚ğ¶¬‚·‚é
+ * @brief   ã‚²ãƒ¼ã‚¸ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
  *
  * @param   gauge		
  *
- * æ‚ÉƒŠƒ\[ƒX‚ª“Ç‚İ‚Ü‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * å…ˆã«ãƒªã‚½ãƒ¼ã‚¹ãŒèª­ã¿è¾¼ã¾ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 CATS_ACT_PTR Gauge_ActorSet(CATS_SYS_PTR csp, CATS_RES_PTR crp, int gauge_type)
@@ -815,8 +815,8 @@ CATS_ACT_PTR Gauge_ActorSet(CATS_SYS_PTR csp, CATS_RES_PTR crp, int gauge_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW–îˆó‚ÌƒAƒNƒ^[‚ğ¶¬‚·‚é
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸çŸ¢å°ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static CATS_ACT_PTR Gauge_ArrowActorSet(CATS_SYS_PTR csp, CATS_RES_PTR crp, int gauge_type)
@@ -837,16 +837,16 @@ static CATS_ACT_PTR Gauge_ArrowActorSet(CATS_SYS_PTR csp, CATS_RES_PTR crp, int 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚Ìƒp[ƒc(HPƒo[Aó‘ÔˆÙí“™)‚ğ•`‰æ‚·‚é
+ * @brief   ã‚²ãƒ¼ã‚¸ã®ãƒ‘ãƒ¼ãƒ„(HPãƒãƒ¼ã€çŠ¶æ…‹ç•°å¸¸ç­‰)ã‚’æç”»ã™ã‚‹
  *
- * @param   gauge			ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   hp				•\¦‚·‚éHP(Calc“™‚Å“r’†Œo‰ß‚ğ•\¦‚·‚é•K—v‚ª‚ ‚é‚Ì‚ÅHP‚¾‚¯‚Íˆø”w’è)
- * @param   draw_flag		•`‰æ‚·‚éƒp[ƒc‚Ìƒtƒ‰ƒO(GAUGE_DRAW_???) ¦ƒrƒbƒgw’è(•¡”w’è‰Â)
+ * @param   gauge			ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   hp				è¡¨ç¤ºã™ã‚‹HP(Calcç­‰ã§é€”ä¸­çµŒéã‚’è¡¨ç¤ºã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã®ã§HPã ã‘ã¯å¼•æ•°æŒ‡å®š)
+ * @param   draw_flag		æç”»ã™ã‚‹ãƒ‘ãƒ¼ãƒ„ã®ãƒ•ãƒ©ã‚°(GAUGE_DRAW_???) â€»ãƒ“ãƒƒãƒˆæŒ‡å®š(è¤‡æ•°æŒ‡å®šå¯)
  *
- * ‚±‚ÌŠÖ”‚ÍÄ•`‰æ—p‚Å‚·BHP‰ÁŒ¸Zˆ—‚Ì‘‚«Š·‚¦‚Ég—p‚·‚é‚à‚Ì‚Å‚Í‚ ‚è‚Ü‚¹‚ñB
- * HP‰ÁŒ¸Z‚Ì‘‚«Š·‚¦‚ğs‚¤ê‡‚ÍGauge_CalcHPŠÖ”‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢B
+ * ã“ã®é–¢æ•°ã¯å†æç”»ç”¨ã§ã™ã€‚HPåŠ æ¸›ç®—å‡¦ç†ã®æ›¸ãæ›ãˆã«ä½¿ç”¨ã™ã‚‹ã‚‚ã®ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
+ * HPåŠ æ¸›ç®—ã®æ›¸ãæ›ãˆã‚’è¡Œã†å ´åˆã¯Gauge_CalcHPé–¢æ•°ã‚’ä½¿ç”¨ã—ã¦ãã ã•ã„ã€‚
  * 
- * Ä•`‰æ‚·‚éƒtƒ‰ƒO‚É‚æ‚Á‚Ä‚Íì‹Æ—pƒ[ƒN‚Ì‰Šú‰»‚às‚¢‚Ü‚·
+ * å†æç”»ã™ã‚‹ãƒ•ãƒ©ã‚°ã«ã‚ˆã£ã¦ã¯ä½œæ¥­ç”¨ãƒ¯ãƒ¼ã‚¯ã®åˆæœŸåŒ–ã‚‚è¡Œã„ã¾ã™
  */
 //--------------------------------------------------------------
 void Gauge_PartsDraw(GAUGE_WORK *gauge, u32 hp, u32 draw_flag)
@@ -858,7 +858,7 @@ void Gauge_PartsDraw(GAUGE_WORK *gauge, u32 hp, u32 draw_flag)
 	
 	draw_backup = draw_flag;
 	
-	//•s—v‚Èƒrƒbƒg‚ğ—‚Æ‚·
+	//ä¸è¦ãªãƒ“ãƒƒãƒˆã‚’è½ã¨ã™
 	if(gauge->type == GAUGE_TYPE_SAFARI){
 		draw_flag &= GAUGE_DRAW_ALL_SAFARI;
 	}
@@ -873,7 +873,7 @@ void Gauge_PartsDraw(GAUGE_WORK *gauge, u32 hp, u32 draw_flag)
 	case GAUGE_TYPE_B:
 	case GAUGE_TYPE_D:
 		draw_flag &= GAUGE_DRAW_ALL ^ (GAUGE_DRAW_HPNUM | GAUGE_DRAW_HPNUMMAX | GAUGE_DRAW_EXP);
-		status_getball = TRUE;	//ƒXƒe[ƒ^ƒX•\¦‚ªƒm[ƒ}ƒ‹•`‰æ‚ÌAƒQƒbƒgÏ‚İƒ{[ƒ‹•\¦‚·‚é
+		status_getball = TRUE;	//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤ºãŒãƒãƒ¼ãƒãƒ«æç”»ã®æ™‚ã€ã‚²ãƒƒãƒˆæ¸ˆã¿ãƒœãƒ¼ãƒ«è¡¨ç¤ºã™ã‚‹
 	#ifdef PM_DEBUG
 		if(gauge->debug_hp_put == TRUE){
 			if(draw_backup & GAUGE_DRAW_HPNUM){
@@ -888,10 +888,10 @@ void Gauge_PartsDraw(GAUGE_WORK *gauge, u32 hp, u32 draw_flag)
 	case GAUGE_TYPE_A:
 	case GAUGE_TYPE_C:
 		draw_flag &= GAUGE_DRAW_ALL ^ (GAUGE_DRAW_EXP | GAUGE_DRAW_GETBALL);
-		if(gauge->num_mode == FALSE){	//HP•\¦Fƒo[
+		if(gauge->num_mode == FALSE){	//HPè¡¨ç¤ºï¼šãƒãƒ¼
 			draw_flag &= GAUGE_DRAW_ALL ^ (GAUGE_DRAW_HPNUM | GAUGE_DRAW_HPNUMMAX);
 		}
-		else{	//HP•\¦F”’l
+		else{	//HPè¡¨ç¤ºï¼šæ•°å€¤
 			draw_flag &= GAUGE_DRAW_ALL ^ (GAUGE_DRAW_HPBAR);
 		}
 		break;
@@ -938,7 +938,7 @@ void Gauge_PartsDraw(GAUGE_WORK *gauge, u32 hp, u32 draw_flag)
 		GaugeOBJ(gauge, GAUGE_REQ_EXP);
 	}
 	
-#if 0	//uLVv•¶š‚Æ“‡ 2006.04.19(…)
+#if 0	//ã€ŒLVã€æ–‡å­—ã¨çµ±åˆ 2006.04.19(æ°´)
 	if(draw_flag & GAUGE_DRAW_SEX){
 		GaugeParts_SexDraw(gauge);
 	}
@@ -954,7 +954,7 @@ void Gauge_PartsDraw(GAUGE_WORK *gauge, u32 hp, u32 draw_flag)
 		case STATUS_NORMAL:
 			GaugeParts_StatusDraw(gauge, GP_NON_STATUS);
 			
-		#if 0	//ƒŒƒCƒAƒEƒg“I‚Éó‘ÔˆÙí‚Ì‚Å‚àƒQƒbƒgƒ}[ƒN‚ğÁ‚³‚È‚­‚Ä‚æ‚­‚È‚Á‚½ 2006.04.19(…)
+		#if 0	//ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆçš„ã«çŠ¶æ…‹ç•°å¸¸ã®æ™‚ã§ã‚‚ã‚²ãƒƒãƒˆãƒãƒ¼ã‚¯ã‚’æ¶ˆã•ãªãã¦ã‚ˆããªã£ãŸ 2006.04.19(æ°´)
 			if(status_getball == TRUE){
 				GaugeParts_GetBallDraw(gauge);
 			}
@@ -989,8 +989,8 @@ void Gauge_PartsDraw(GAUGE_WORK *gauge, u32 hp, u32 draw_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌƒAƒNƒ^[‚ğíœ‚·‚é
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Gauge_ActorDel(GAUGE_WORK *gauge)
@@ -1009,8 +1009,8 @@ void Gauge_ActorDel(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW–îˆó‚ÌƒAƒNƒ^[‚ğíœ‚·‚é
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸çŸ¢å°ã®ã‚¢ã‚¯ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Gauge_ArrowActorDel(GAUGE_WORK *gauge)
@@ -1024,8 +1024,8 @@ static void Gauge_ArrowActorDel(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌƒŠƒ\[ƒX‚ğ‰ğ•ú‚·‚é
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Gauge_ResourceFree(GAUGE_WORK *gauge)
@@ -1039,7 +1039,7 @@ void Gauge_ResourceFree(GAUGE_WORK *gauge)
 	csp = BattleWorkCATS_SYS_PTRGet(gauge->bw);
 	crp = BattleWorkCATS_RES_PTRGet(gauge->bw);
 
-	//ƒŠƒ\[ƒX‰ğ•ú
+	//ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	CATS_FreeResourceChar(crp, obj_head->id[CLACT_U_CHAR_RES]);
 //	CATS_FreeResourcePltt(crp, PLTTID_GAUGE);
 	CATS_FreeResourceCell(crp, obj_head->id[CLACT_U_CELL_RES]);
@@ -1048,8 +1048,8 @@ void Gauge_ResourceFree(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW–îˆó‚ÌƒŠƒ\[ƒX‚ğ‰ğ•ú‚·‚é
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸çŸ¢å°ã®ãƒªã‚½ãƒ¼ã‚¹ã‚’è§£æ”¾ã™ã‚‹
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Gauge_ArrowResourceFree(GAUGE_WORK *gauge)
@@ -1066,7 +1066,7 @@ static void Gauge_ArrowResourceFree(GAUGE_WORK *gauge)
 	csp = BattleWorkCATS_SYS_PTRGet(gauge->bw);
 	crp = BattleWorkCATS_RES_PTRGet(gauge->bw);
 
-	//ƒŠƒ\[ƒX‰ğ•ú
+	//ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾
 	CATS_FreeResourceChar(crp, obj_head->id[CLACT_U_CHAR_RES]);
 //	CATS_FreeResourcePltt(crp, PLTTID_GAUGE);
 	CATS_FreeResourceCell(crp, obj_head->id[CLACT_U_CELL_RES]);
@@ -1076,8 +1076,8 @@ static void Gauge_ArrowResourceFree(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌƒAƒNƒ^[“o˜^‚ÆƒŠƒ\[ƒX“o˜^‚ğƒZƒbƒg‚É‚µ‚½‚à‚Ì
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ã®ã‚¢ã‚¯ã‚¿ãƒ¼ç™»éŒ²ã¨ãƒªã‚½ãƒ¼ã‚¹ç™»éŒ²ã‚’ã‚»ãƒƒãƒˆã«ã—ãŸã‚‚ã®
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Gauge_ActorResourceSet(GAUGE_WORK *gauge)
@@ -1100,10 +1100,10 @@ void Gauge_ActorResourceSet(GAUGE_WORK *gauge)
 	gauge->cap = Gauge_ActorSet(csp, crp, gauge->type);
 //	Gauge_PartsDraw(gauge, gauge->hp, GAUGE_DRAW_ALL);
 	
-	//–îˆó
+	//çŸ¢å°
 	Gauge_ArrowResourceLoad(csp, crp, hdl, pfd, gauge->type);
 //	gauge->arrow_cap = Gauge_ArrowActorSet(csp, crp, gauge->type);
-	//–îˆó‚ÌÀ•WƒZƒbƒg
+	//çŸ¢å°ã®åº§æ¨™ã‚»ãƒƒãƒˆ
 	if(gauge->arrow_cap != NULL){
 		CATS_ObjectPosSet(gauge->arrow_cap->act, obj_head->x - ArrowOffsetPosX[gauge->type], 
 			obj_head->y + ARROW_OFFSET_Y);
@@ -1114,25 +1114,25 @@ void Gauge_ActorResourceSet(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌƒAƒNƒ^[íœ‚ÆƒŠƒ\[ƒX‰ğ•ú‚ğƒZƒbƒg‚É‚µ‚½‚à‚Ì
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ã®ã‚¢ã‚¯ã‚¿ãƒ¼å‰Šé™¤ã¨ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾ã‚’ã‚»ãƒƒãƒˆã«ã—ãŸã‚‚ã®
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Gauge_ActorResourceDel(GAUGE_WORK *gauge)
 {
-	//ƒQ[ƒW–{‘Ì
+	//ã‚²ãƒ¼ã‚¸æœ¬ä½“
 	Gauge_ActorDel(gauge);
 	Gauge_ResourceFree(gauge);
-	//–îˆó
+	//çŸ¢å°
 	Gauge_ArrowActorDel(gauge);
 	Gauge_ArrowResourceFree(gauge);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   2vs2AHP•\¦‚ğƒo[•\¦‚Æ”’l•\¦‚ÉØ‚è‘Ö‚¦‚é
+ * @brief   2vs2æ™‚ã€HPè¡¨ç¤ºã‚’ãƒãƒ¼è¡¨ç¤ºã¨æ•°å€¤è¡¨ç¤ºã«åˆ‡ã‚Šæ›¿ãˆã‚‹
  *
- * @param   gauge			ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   gauge			ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Gauge_NumModeChange(GAUGE_WORK *gauge)
@@ -1154,9 +1154,9 @@ void Gauge_NumModeChange(GAUGE_WORK *gauge)
 	obj_vram = G2_GetOBJCharPtr();
 	image = CLACT_ImageProxyGet(gauge->cap->act);
 
-	if(gauge->num_mode == TRUE){	//”’lƒ‚[ƒh
-		//HPƒo[‚Ì“ª‚ÆŠW‚ğÁ‹
-	#if 0	//platinum‚Å•ÏX 2007.04.19(–Ø) matsuda
+	if(gauge->num_mode == TRUE){	//æ•°å€¤ãƒ¢ãƒ¼ãƒ‰
+		//HPãƒãƒ¼ã®é ­ã¨è“‹ã‚’æ¶ˆå»
+	#if 0	//platinumã§å¤‰æ›´ 2007.04.19(æœ¨) matsuda
 		parts = GetGaugePartsAdrs(GP_HPBAR_HEAD_CLEAR);
 		MI_CpuCopy16(parts, (void*)((u32)obj_vram + HPBarHeadTrans[gauge->type].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
@@ -1166,7 +1166,7 @@ void Gauge_NumModeChange(GAUGE_WORK *gauge)
 //		MI_CpuCopy16(parts, (void*)((u32)obj_vram + HPBarHeadTrans[gauge->type].pos
 //			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 //			0x20);
-		//HPƒ‰ƒCƒ“‚ÌØ‚ê’[‚ğ•`‰æ
+		//HPãƒ©ã‚¤ãƒ³ã®åˆ‡ã‚Œç«¯ã‚’æç”»
 		parts = GetGaugePartsAdrs(GP_HPBAR_NUM_LEFT);
 		MI_CpuCopy16(parts, (void*)((u32)obj_vram + HPBarHeadTrans[gauge->type].pos + 0x20
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
@@ -1176,36 +1176,36 @@ void Gauge_NumModeChange(GAUGE_WORK *gauge)
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			0x20);
 	#endif
-		//Œ»İHP‚ÆÅ‘åHP‚ÌŠÔ‚ÌƒXƒ‰ƒbƒVƒ…‚ğ•`‰æ
+		//ç¾åœ¨HPã¨æœ€å¤§HPã®é–“ã®ã‚¹ãƒ©ãƒƒã‚·ãƒ¥ã‚’æç”»
 		parts = GetGaugePartsAdrs(GP_SLASH);
 		MI_CpuCopy16(parts, (void*)((u32)obj_vram + HPSlashTrans[gauge->type].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			HPSlashTrans[gauge->type].size);
 		
-		//”’l•`‰æ
+		//æ•°å€¤æç”»
 		Gauge_PartsDraw(gauge, gauge->hp, GAUGE_DRAW_HPNUM | GAUGE_DRAW_HPNUMMAX);
 	}
-	else{	//ƒo[ƒ‚[ƒh
-		//HPƒo[‚Ì“ª‚ğ•`‰æ
+	else{	//ãƒãƒ¼ãƒ¢ãƒ¼ãƒ‰
+		//HPãƒãƒ¼ã®é ­ã‚’æç”»
 		parts = GetGaugePartsAdrs(GP_HPBAR_HEAD);
 		MI_CpuCopy16(parts, (void*)((u32)obj_vram + HPBarHeadTrans[gauge->type].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			HPBarHeadTrans[gauge->type].size);
 
-		//HPƒo[‚ÌŠW‚ğ•`‰æ
+		//HPãƒãƒ¼ã®è“‹ã‚’æç”»
 		parts = GetGaugePartsAdrs(GP_HPBAR_CAP);
 		MI_CpuCopy16(parts, (void*)((u32)obj_vram + HPBarCapTrans[gauge->type].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			HPBarCapTrans[gauge->type].size);
 
-		//HPƒ‰ƒCƒ“‚ÌØ‚ê’[‚ğŒ³‚É–ß‚·
-		//¶‘¤‚ÍHPBAR_HEAD‚Åã‘‚«‚³‚ê‚é‚Ì‚ÅA‰E‘¤‚Ì‚İ•`‰æ‚·‚é
+		//HPãƒ©ã‚¤ãƒ³ã®åˆ‡ã‚Œç«¯ã‚’å…ƒã«æˆ»ã™
+		//å·¦å´ã¯HPBAR_HEADã§ä¸Šæ›¸ãã•ã‚Œã‚‹ã®ã§ã€å³å´ã®ã¿æç”»ã™ã‚‹
 		parts = GetGaugePartsAdrs(GP_HPBAR_CLEAR);
 		MI_CpuCopy16(parts, (void*)((u32)obj_vram + HPBarCapTrans[gauge->type].pos + 0x20
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			0x20);
 		
-		//HPƒo[•`‰æ
+		//HPãƒãƒ¼æç”»
 		Gauge_PartsDraw(gauge, gauge->hp, GAUGE_DRAW_HPBAR);
 	}
 }
@@ -1213,12 +1213,12 @@ void Gauge_NumModeChange(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   HPƒo[‚ÌŒvZ‚ğŠJn‚·‚é‘O‚Éì‹Æ—pƒ[ƒN“™‚Ì‰Šú‰»‚ğs‚¤
+ * @brief   HPãƒãƒ¼ã®è¨ˆç®—ã‚’é–‹å§‹ã™ã‚‹å‰ã«ä½œæ¥­ç”¨ãƒ¯ãƒ¼ã‚¯ç­‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
  *
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   damage		ƒ_ƒ[ƒW(ƒ}ƒCƒiƒX‚Åƒ_ƒ[ƒWAƒvƒ‰ƒX‚È‚ç‰ñ•œ)
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   damage		ãƒ€ãƒ¡ãƒ¼ã‚¸(ãƒã‚¤ãƒŠã‚¹ã§ãƒ€ãƒ¡ãƒ¼ã‚¸ã€ãƒ—ãƒ©ã‚¹ãªã‚‰å›å¾©)
  *
- * Gauge_CalcHP‚ğÀs‚·‚é‘O‚É•K‚¸ŒÄ‚Ño‚µ‚Ä’u‚­•K—v‚ª‚ ‚è‚Ü‚·B
+ * Gauge_CalcHPã‚’å®Ÿè¡Œã™ã‚‹å‰ã«å¿…ãšå‘¼ã³å‡ºã—ã¦ç½®ãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void Gauge_InitCalcHP(GAUGE_WORK *gauge, int damage)
@@ -1232,7 +1232,7 @@ void Gauge_InitCalcHP(GAUGE_WORK *gauge, int damage)
 		damage -= (gauge->hp + damage) - gauge->hpmax;
 	}
 	
-	//-- ‹ŒƒQ[ƒWŒvZƒ‹[ƒ`ƒ“‚É‡‚í‚¹‚é‚½‚ßA³•‰‚Ì‹t“]‚È‚Ç‚ğs‚¤ --//
+	//-- æ—§ã‚²ãƒ¼ã‚¸è¨ˆç®—ãƒ«ãƒ¼ãƒãƒ³ã«åˆã‚ã›ã‚‹ãŸã‚ã€æ­£è² ã®é€†è»¢ãªã©ã‚’è¡Œã† --//
 	gauge->damage = -damage;
 	if(gauge->hp < 0){
 		gauge->hp = 0;
@@ -1244,39 +1244,39 @@ void Gauge_InitCalcHP(GAUGE_WORK *gauge, int damage)
 
 //--------------------------------------------------------------
 /**
- * @brief   HPƒo[‚ÌŒvZ‚Æ‘‚«‚İ‚ğs‚¤
+ * @brief   HPãƒãƒ¼ã®è¨ˆç®—ã¨æ›¸ãè¾¼ã¿ã‚’è¡Œã†
  *
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  -1=I—¹B@-1ˆÈŠO=ŒvZ“r’†‚Ì”š(‰æ–Ê‚É•\¦‚·‚é”’l)
+ * @retval  -1=çµ‚äº†ã€‚ã€€-1ä»¥å¤–=è¨ˆç®—é€”ä¸­ã®æ•°å­—(ç”»é¢ã«è¡¨ç¤ºã™ã‚‹æ•°å€¤)
  *
- * Gauge_InitCalcHP‚ğæ‚ÉŒÄ‚ñ‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * Gauge_InitCalcHPã‚’å…ˆã«å‘¼ã‚“ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 s32 Gauge_CalcHP(GAUGE_WORK *gauge)
 {
 	s32 calc_hp;
 	
-	calc_hp = GaugeOBJ(gauge, GAUGE_REQ_HP);	//ŒvZ•ƒo[‘‚«‚İ
+	calc_hp = GaugeOBJ(gauge, GAUGE_REQ_HP);	//è¨ˆç®—ï¼†ãƒãƒ¼æ›¸ãè¾¼ã¿
 	if(calc_hp == -1){
-		//ŒvZI—¹‚ÉƒQ[ƒWƒ[ƒN‚Ìhpƒpƒ‰ƒ[ƒ^‚ğÅV‚Ì’l(ƒ_ƒ[ƒWŒvZŒã)‚ÅXV‚µ‚Ä‚¨‚­
+		//è¨ˆç®—çµ‚äº†æ™‚ã«ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã®hpãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æœ€æ–°ã®å€¤(ãƒ€ãƒ¡ãƒ¼ã‚¸è¨ˆç®—å¾Œ)ã§æ›´æ–°ã—ã¦ãŠã
 		gauge->hp -= gauge->damage;
-		Gauge_PartsDraw(gauge, gauge->hp, GAUGE_DRAW_HPNUM);	//”’l‘‚«‚İ
+		Gauge_PartsDraw(gauge, gauge->hp, GAUGE_DRAW_HPNUM);	//æ•°å€¤æ›¸ãè¾¼ã¿
 	}
 	else{
-		Gauge_PartsDraw(gauge, calc_hp, GAUGE_DRAW_HPNUM);	//”’l‘‚«‚İ
+		Gauge_PartsDraw(gauge, calc_hp, GAUGE_DRAW_HPNUM);	//æ•°å€¤æ›¸ãè¾¼ã¿
 	}
 	return calc_hp;
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   EXPƒo[‚ÌŒvZ‚ğŠJn‚·‚é‘O‚Éì‹Æ—pƒ[ƒN“™‚Ì‰Šú‰»‚ğs‚¤
+ * @brief   EXPãƒãƒ¼ã®è¨ˆç®—ã‚’é–‹å§‹ã™ã‚‹å‰ã«ä½œæ¥­ç”¨ãƒ¯ãƒ¼ã‚¯ç­‰ã®åˆæœŸåŒ–ã‚’è¡Œã†
  *
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   add_exp		‰ÁZ‚·‚éEXP’l
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   add_exp		åŠ ç®—ã™ã‚‹EXPå€¤
  *
- * Gauge_CalcEXP‚ğÀs‚·‚é‘O‚É•K‚¸ŒÄ‚Ño‚µ‚Ä’u‚­•K—v‚ª‚ ‚è‚Ü‚·B
+ * Gauge_CalcEXPã‚’å®Ÿè¡Œã™ã‚‹å‰ã«å¿…ãšå‘¼ã³å‡ºã—ã¦ç½®ãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void Gauge_InitCalcEXP(GAUGE_WORK *gauge, int add_exp)
@@ -1290,7 +1290,7 @@ void Gauge_InitCalcEXP(GAUGE_WORK *gauge, int add_exp)
 		add_exp -= (gauge->exp + add_exp) - gauge->max_exp;
 	}
 
-	//-- ‹ŒƒQ[ƒWŒvZƒ‹[ƒ`ƒ“‚É‡‚í‚¹‚é‚½‚ßA³•‰‚Ì‹t“]‚È‚Ç‚ğs‚¤ --//
+	//-- æ—§ã‚²ãƒ¼ã‚¸è¨ˆç®—ãƒ«ãƒ¼ãƒãƒ³ã«åˆã‚ã›ã‚‹ãŸã‚ã€æ­£è² ã®é€†è»¢ãªã©ã‚’è¡Œã† --//
 	gauge->add_exp = -add_exp;
 	if(gauge->exp < 0){
 		gauge->exp = 0;
@@ -1302,13 +1302,13 @@ void Gauge_InitCalcEXP(GAUGE_WORK *gauge, int add_exp)
 
 //--------------------------------------------------------------
 /**
- * @brief   EXPƒo[‚ÌŒvZ‚Æ‘‚«‚İ‚ğs‚¤
+ * @brief   EXPãƒãƒ¼ã®è¨ˆç®—ã¨æ›¸ãè¾¼ã¿ã‚’è¡Œã†
  *
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @retval  -1=I—¹B@-1ˆÈŠO=ŒvZ“r’†‚Ì”š(‰æ–Ê‚É•\¦‚·‚é”’l)
+ * @retval  -1=çµ‚äº†ã€‚ã€€-1ä»¥å¤–=è¨ˆç®—é€”ä¸­ã®æ•°å­—(ç”»é¢ã«è¡¨ç¤ºã™ã‚‹æ•°å€¤)
  *
- * Gauge_InitCalcEXP‚ğæ‚ÉŒÄ‚ñ‚Å‚ ‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ * Gauge_InitCalcEXPã‚’å…ˆã«å‘¼ã‚“ã§ã‚ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 s32 Gauge_CalcEXP(GAUGE_WORK *gauge)
@@ -1317,7 +1317,7 @@ s32 Gauge_CalcEXP(GAUGE_WORK *gauge)
 	
 	calc_exp = GaugeOBJ(gauge, GAUGE_REQ_EXP);
 	if(calc_exp == -1){
-		//ŒvZI—¹‚ÉƒQ[ƒWƒ[ƒN‚Ìexpƒpƒ‰ƒ[ƒ^‚ğÅV‚Ì’l(ƒ_ƒ[ƒWŒvZŒã)‚ÅXV‚µ‚Ä‚¨‚­
+		//è¨ˆç®—çµ‚äº†æ™‚ã«ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã®expãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æœ€æ–°ã®å€¤(ãƒ€ãƒ¡ãƒ¼ã‚¸è¨ˆç®—å¾Œ)ã§æ›´æ–°ã—ã¦ãŠã
 		gauge->exp -= gauge->add_exp;
 	}
 	return calc_exp;
@@ -1325,8 +1325,8 @@ s32 Gauge_CalcEXP(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   –îˆóƒAƒjƒŠJn
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   çŸ¢å°ã‚¢ãƒ‹ãƒ¡é–‹å§‹
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Gauge_AnimeStart(GAUGE_WORK *gauge)
@@ -1343,8 +1343,8 @@ void Gauge_AnimeStart(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   –îˆóƒAƒjƒ’â~
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   çŸ¢å°ã‚¢ãƒ‹ãƒ¡åœæ­¢
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Gauge_AnimeStop(GAUGE_WORK *gauge)
@@ -1360,10 +1360,10 @@ void Gauge_AnimeStop(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌBGƒvƒ‰ƒCƒIƒŠƒeƒB•ÏX
+ * @brief   ã‚²ãƒ¼ã‚¸ã®BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£å¤‰æ›´
  *
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   bg_pri		BGƒvƒ‰ƒCƒIƒŠƒeƒB
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   bg_pri		BGãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
  */
 //--------------------------------------------------------------
 void Gauge_BGPriSet(GAUGE_WORK *gauge, int bg_pri)
@@ -1379,17 +1379,17 @@ void Gauge_BGPriSet(GAUGE_WORK *gauge, int bg_pri)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW–îˆó‚Ì•\¦E”ñ•\¦ƒZƒbƒg
+ * @brief   ã‚²ãƒ¼ã‚¸çŸ¢å°ã®è¡¨ç¤ºãƒ»éè¡¨ç¤ºã‚»ãƒƒãƒˆ
  *
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   enable		CATS_ENABLE_TRUE(•\¦) or CATS_ENABLE_FALSE(”ñ•\¦)
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   enable		CATS_ENABLE_TRUE(è¡¨ç¤º) or CATS_ENABLE_FALSE(éè¡¨ç¤º)
  */
 //--------------------------------------------------------------
 static void Gauge_ArrowEnableSet(GAUGE_WORK *gauge, int enable)
 {
 	if(gauge->arrow_cap != NULL){
 		if((BattleWorkFightTypeGet(gauge->bw) & FIGHT_TYPE_NO_ARROW_ANIME) && enable == CATS_ENABLE_TRUE){
-			;		//ƒTƒtƒ@ƒŠAƒ|ƒPƒp[ƒN‚È‚ç–îˆó•\¦ó‘Ô‚É‚Í‚µ‚È‚¢
+			;		//ã‚µãƒ•ã‚¡ãƒªã€ãƒã‚±ãƒ‘ãƒ¼ã‚¯ãªã‚‰çŸ¢å°è¡¨ç¤ºçŠ¶æ…‹ã«ã¯ã—ãªã„
 		}
 		else{
 			CATS_ObjectEnableCap(gauge->arrow_cap, enable);
@@ -1399,10 +1399,10 @@ static void Gauge_ArrowEnableSet(GAUGE_WORK *gauge, int enable)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚Ì•\¦E”ñ•\¦ƒZƒbƒg
+ * @brief   ã‚²ãƒ¼ã‚¸ã®è¡¨ç¤ºãƒ»éè¡¨ç¤ºã‚»ãƒƒãƒˆ
  *
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   enable		CATS_ENABLE_TRUE(•\¦) or CATS_ENABLE_FALSE(”ñ•\¦)
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   enable		CATS_ENABLE_TRUE(è¡¨ç¤º) or CATS_ENABLE_FALSE(éè¡¨ç¤º)
  */
 //--------------------------------------------------------------
 void Gauge_EnableSet(GAUGE_WORK *gauge, int enable)
@@ -1417,13 +1417,13 @@ void Gauge_EnableSet(GAUGE_WORK *gauge, int enable)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÉƒIƒtƒZƒbƒgƒ|ƒWƒVƒ‡ƒ“‚ğƒZƒbƒg‚·‚é
+ * @brief   ã‚²ãƒ¼ã‚¸ã«ã‚ªãƒ•ã‚»ãƒƒãƒˆãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
  *
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   x			ƒIƒtƒZƒbƒgX
- * @param   y			ƒIƒtƒZƒbƒgY
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   x			ã‚ªãƒ•ã‚»ãƒƒãƒˆX
+ * @param   y			ã‚ªãƒ•ã‚»ãƒƒãƒˆY
  *
- * ’Êí‚Ì’èˆÊ’u‚©‚ç‚ÌƒIƒtƒZƒbƒg‚É‚È‚è‚Ü‚·B
+ * é€šå¸¸ã®å®šä½ç½®ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã«ãªã‚Šã¾ã™ã€‚
  */
 //--------------------------------------------------------------
 void Gauge_OffsetPosSet(GAUGE_WORK *gauge, int x, int y)
@@ -1443,12 +1443,12 @@ void Gauge_OffsetPosSet(GAUGE_WORK *gauge, int x, int y)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒXƒNƒ[ƒ‹INEOUTƒGƒtƒFƒNƒg‚ğ‹N“®‚·‚é
+ * @brief   ã‚²ãƒ¼ã‚¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«INãƒ»OUTã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’èµ·å‹•ã™ã‚‹
  *
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   in_out		ƒXƒNƒ[ƒ‹•ûŒü(GAUGE_SCROLL_IN or GAUGE_SCROLL_OUT)
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   in_out		ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ–¹å‘(GAUGE_SCROLL_IN or GAUGE_SCROLL_OUT)
  *
- * ƒGƒtƒFƒNƒgI—¹‚ÉAgauge->eff_wait_in_out‚ÉTRUE‚ªƒZƒbƒg‚³‚ê‚Ü‚·
+ * ã‚¨ãƒ•ã‚§ã‚¯ãƒˆçµ‚äº†æ™‚ã«ã€gauge->eff_wait_in_outã«TRUEãŒã‚»ãƒƒãƒˆã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------
 void Gauge_ScrollEffectSet(GAUGE_WORK *gauge, int in_out)
@@ -1481,10 +1481,10 @@ void Gauge_ScrollEffectSet(GAUGE_WORK *gauge, int in_out)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒXƒNƒ[ƒ‹À“®ìƒ^ƒXƒN
+ * @brief   ã‚²ãƒ¼ã‚¸ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«å®Ÿå‹•ä½œã‚¿ã‚¹ã‚¯
  *
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		GAUGE_WORK‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		GAUGE_WORKã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void Gauge_ScrollInOut(TCB_PTR tcb, void *work)
@@ -1550,12 +1550,12 @@ static void Gauge_ScrollInOut(TCB_PTR tcb, void *work)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌƒfƒoƒbƒOHP•\¦ƒtƒ‰ƒO‚ğ”½“]‚·‚é
+ * @brief   ã‚²ãƒ¼ã‚¸ã®ãƒ‡ãƒãƒƒã‚°HPè¡¨ç¤ºãƒ•ãƒ©ã‚°ã‚’åè»¢ã™ã‚‹
  *
- * @param   gauge		ƒQ[ƒW[ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   put			TRUE:•\¦B@FALSE:”ñ•\¦
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¼ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   put			TRUE:è¡¨ç¤ºã€‚ã€€FALSE:éè¡¨ç¤º
  *
- * PM_DEBUG‚ª—LŒø‚Å‚È‚¢ê‡‚Í‰½‚àˆ—‚µ‚Ü‚¹‚ñB
+ * PM_DEBUGãŒæœ‰åŠ¹ã§ãªã„å ´åˆã¯ä½•ã‚‚å‡¦ç†ã—ã¾ã›ã‚“ã€‚
  */
 //--------------------------------------------------------------
 void Gauge_DebugHPPutFlagFlip(GAUGE_WORK *gauge)
@@ -1570,13 +1570,13 @@ void Gauge_DebugHPPutFlagFlip(GAUGE_WORK *gauge)
 
 //==============================================================================
 //
-//	ƒp[ƒc•`‰æ
+//	ãƒ‘ãƒ¼ãƒ„æç”»
 //
 //==============================================================================
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒp[ƒc•`‰æF–¼‘O
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ï¼šåå‰
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void GaugeParts_NameDraw(GAUGE_WORK *gauge)
@@ -1595,7 +1595,7 @@ static void GaugeParts_NameDraw(GAUGE_WORK *gauge)
 	msg_man = BattleWorkFightMsgGet(gauge->bw);
 	wordset = BattleWorkWORDSETGet(gauge->bw);
 	
-	//•¶š—ñ“WŠJ
+	//æ–‡å­—åˆ—å±•é–‹
 	monsname_p = STRBUF_Create(BUFLEN_GAUGE_POKESELENAME, HEAPID_BATTLE);
 	monsname_src = MSGMAN_AllocString(msg_man, TargetPokemonMsg);
 	pp = BattleWorkPokemonParamGet(gauge->bw, gauge->client_no, gauge->sel_mons_no);
@@ -1603,13 +1603,13 @@ static void GaugeParts_NameDraw(GAUGE_WORK *gauge)
 	WORDSET_RegisterPokeNickName(wordset, 0, ppp);
 	WORDSET_ExpandStr(wordset, monsname_p, monsname_src);
 	
-	//ƒoƒbƒtƒ@‚ÉBMPƒf[ƒ^“WŠJ
+	//ãƒãƒƒãƒ•ã‚¡ã«BMPãƒ‡ãƒ¼ã‚¿å±•é–‹
 	GF_BGL_BmpWinObjAdd(bgl, &bmpwin, NAME_SIZE_X, NAME_SIZE_Y, 
 		NAME_CHAR_OFFSET, NAME_BACK_COLOR);
 	GF_STR_PrintExpand(&bmpwin, FONT_SYSTEM, monsname_p, 0, 0, MSG_NO_PUT, NAME_FONT_COLOR, GAUGE_FONT_MARGIN, 0, NULL);
 	buf = bmpwin.chrbuf;
 	
-	//Œ`¬‚³‚ê‚½•¶šƒoƒbƒtƒ@‚ğVRAM‚É’¼‘‚«
+	//å½¢æˆã•ã‚ŒãŸæ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚’VRAMã«ç›´æ›¸ã
 	{
 		void *obj_vram;
 		u8 *high, *low;
@@ -1618,14 +1618,14 @@ static void GaugeParts_NameDraw(GAUGE_WORK *gauge)
 		image = CLACT_ImageProxyGet(gauge->cap->act);
 		high = buf;
 		low = &buf[NAME_SIZE_X * 0x20];
-		//¶‘¤
+		//å·¦å´
 		MI_CpuCopy16(high, (void*)((u32)obj_vram + NameTrans[gauge->type][0].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			NameTrans[gauge->type][0].size);
 		MI_CpuCopy16(low, (void*)((u32)obj_vram + NameTrans[gauge->type][1].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			NameTrans[gauge->type][1].size);
-		//‰E‘¤
+		//å³å´
 		MI_CpuCopy16(&high[NameTrans[gauge->type][0].size], 
 			(void*)((u32)obj_vram + NameTrans[gauge->type][2].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
@@ -1636,14 +1636,14 @@ static void GaugeParts_NameDraw(GAUGE_WORK *gauge)
 			NameTrans[gauge->type][3].size);
 	}
 	
-	//BMPƒf[ƒ^‰ğ•ú
+	//BMPãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	GF_BGL_BmpWinDel(&bmpwin);
-	//•¶š—ñƒoƒbƒtƒ@‰ğ•ú
+	//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡è§£æ”¾
 	STRBUF_Delete(monsname_p);
 	STRBUF_Delete(monsname_src);
 	
 #if 0
-	//“]‘—
+	//è»¢é€
 	image = CLACT_ImageProxyGet(gauge->cap->act);
 	AddVramTransferManager(
 		NNS_GFD_DST_2D_OBJ_CHAR_MAIN,
@@ -1656,8 +1656,8 @@ static void GaugeParts_NameDraw(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒp[ƒc•`‰æFƒŒƒxƒ‹
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ï¼šãƒ¬ãƒ™ãƒ«
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void GaugeParts_LevelFontDraw(GAUGE_WORK *gauge)
@@ -1682,14 +1682,14 @@ static void GaugeParts_LevelFontDraw(GAUGE_WORK *gauge)
 	level_buf = GetGaugePartsAdrs(gp);
 	level_top_buf = GetGaugePartsAdrs(gp_top);
 	
-	//Œ`¬‚³‚ê‚½•¶šƒoƒbƒtƒ@‚ğVRAM‚É’¼‘‚«
+	//å½¢æˆã•ã‚ŒãŸæ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚’VRAMã«ç›´æ›¸ã
 	{
 		void *obj_vram;
 		
 		obj_vram = G2_GetOBJCharPtr();
 		image = CLACT_ImageProxyGet(gauge->cap->act);
 		
-		//o—ˆã‚ª‚Á‚½‚à‚Ì‚ğVram‚Ö‘‚«–ß‚·
+		//å‡ºæ¥ä¸ŠãŒã£ãŸã‚‚ã®ã‚’Vramã¸æ›¸ãæˆ»ã™
 		MI_CpuCopy16(level_top_buf, (void*)((u32)obj_vram + LvFontTrans[gauge->type][0].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			LvFontTrans[gauge->type][0].size);
@@ -1701,8 +1701,8 @@ static void GaugeParts_LevelFontDraw(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒp[ƒc•`‰æFƒŒƒxƒ‹
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ï¼šãƒ¬ãƒ™ãƒ«
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void GaugeParts_LevelDraw(GAUGE_WORK *gauge)
@@ -1711,7 +1711,7 @@ static void GaugeParts_LevelDraw(GAUGE_WORK *gauge)
 	NNSG2dImageProxy * image;
 	int size, i, t, k;
 	
-	//“WŠJ—ÌˆæŠm•Û
+	//å±•é–‹é ˜åŸŸç¢ºä¿
 	size = LEVEL_KETA_MAX * 0x20;
 	level_buf = sys_AllocMemory(HEAPID_BATTLE, size);
 	dest_buf = sys_AllocMemory(HEAPID_BATTLE, size * 2);
@@ -1720,7 +1720,7 @@ static void GaugeParts_LevelDraw(GAUGE_WORK *gauge)
 	NUMFONT_WriteNumberCGXOnly(BattleWorkGF_BGL_NumFontLVGet(gauge->bw),
 		gauge->level, LEVEL_KETA_MAX, NUMFONT_MODE_LEFT, level_buf);
 	
-	//Œ`¬‚³‚ê‚½•¶šƒoƒbƒtƒ@‚ğVRAM‚É’¼‘‚«
+	//å½¢æˆã•ã‚ŒãŸæ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚’VRAMã«ç›´æ›¸ã
 	{
 		void *obj_vram;
 		u8 *high, *low;
@@ -1728,7 +1728,7 @@ static void GaugeParts_LevelDraw(GAUGE_WORK *gauge)
 		obj_vram = G2_GetOBJCharPtr();
 		image = CLACT_ImageProxyGet(gauge->cap->act);
 
-		//Vram‚©‚çƒƒ‚ƒŠ—Ìˆæ‚Éˆê“xƒRƒs[
+		//Vramã‹ã‚‰ãƒ¡ãƒ¢ãƒªé ˜åŸŸã«ä¸€åº¦ã‚³ãƒ”ãƒ¼
 		MI_CpuCopy16((void*)((u32)obj_vram + LvTrans[gauge->type][0].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			dest_buf, LvTrans[gauge->type][0].size);
@@ -1736,7 +1736,7 @@ static void GaugeParts_LevelDraw(GAUGE_WORK *gauge)
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			&dest_buf[size], LvTrans[gauge->type][1].size);
 
-		//ƒƒ‚ƒŠ—Ìˆæ‚ÉƒRƒs[‚µ‚½‚à‚Ì‚É”šƒtƒHƒ“ƒg‚ğ‘‚«‚İ
+		//ãƒ¡ãƒ¢ãƒªé ˜åŸŸã«ã‚³ãƒ”ãƒ¼ã—ãŸã‚‚ã®ã«æ•°å­—ãƒ•ã‚©ãƒ³ãƒˆã‚’æ›¸ãè¾¼ã¿
 		k = 0;
 		for(t = 0; t < size; t += 32){
 			for(i = 0; i < 16; i++){
@@ -1746,7 +1746,7 @@ static void GaugeParts_LevelDraw(GAUGE_WORK *gauge)
 			}
 			k += 16;
 		}
-		//o—ˆã‚ª‚Á‚½‚à‚Ì‚ğVram‚Ö‘‚«–ß‚·
+		//å‡ºæ¥ä¸ŠãŒã£ãŸã‚‚ã®ã‚’Vramã¸æ›¸ãæˆ»ã™
 		high = dest_buf;
 		low = &dest_buf[size];
 		MI_CpuCopy16(high, (void*)((u32)obj_vram + LvTrans[gauge->type][0].pos
@@ -1757,16 +1757,16 @@ static void GaugeParts_LevelDraw(GAUGE_WORK *gauge)
 			LvTrans[gauge->type][1].size);
 	}
 	
-	//“WŠJ—Ìˆæ‰ğ•ú
+	//å±•é–‹é ˜åŸŸè§£æ”¾
 	sys_FreeMemoryEz(level_buf);
 	sys_FreeMemoryEz(dest_buf);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒp[ƒc•`‰æFŒ»İHP
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   hp			•\¦‚·‚éHP
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ï¼šç¾åœ¨HP
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   hp			è¡¨ç¤ºã™ã‚‹HP
  */
 //--------------------------------------------------------------
 static void GaugeParts_HPDraw(GAUGE_WORK *gauge, u32 hp)
@@ -1774,14 +1774,14 @@ static void GaugeParts_HPDraw(GAUGE_WORK *gauge, u32 hp)
 	u8 *alloc_buf;
 	NNSG2dImageProxy * image;
 	
-	//“WŠJ—ÌˆæŠm•Û
+	//å±•é–‹é ˜åŸŸç¢ºä¿
 	alloc_buf = sys_AllocMemory(HEAPID_BATTLE, HP_KETA_MAX * 0x20);
 	MI_CpuFill8(alloc_buf, HP_BACK_COLOR | (HP_BACK_COLOR << 4), HP_KETA_MAX * 0x20);
 	
 	NUMFONT_WriteNumberCGXOnly(BattleWorkGF_BGL_NumFontHPGet(gauge->bw),
 		hp, HP_KETA_MAX, NUMFONT_MODE_SPACE, alloc_buf);
 	
-	//Œ`¬‚³‚ê‚½•¶šƒoƒbƒtƒ@‚ğVRAM‚É’¼‘‚«
+	//å½¢æˆã•ã‚ŒãŸæ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚’VRAMã«ç›´æ›¸ã
 	{
 		void *obj_vram;
 		u8 *high;
@@ -1789,25 +1789,25 @@ static void GaugeParts_HPDraw(GAUGE_WORK *gauge, u32 hp)
 		obj_vram = G2_GetOBJCharPtr();
 		image = CLACT_ImageProxyGet(gauge->cap->act);
 		high = alloc_buf;
-		//1–‡–Ú‘‚«‚İ
+		//1æšç›®æ›¸ãè¾¼ã¿
 		MI_CpuCopy16(high, (void*)((u32)obj_vram + HPTrans[gauge->type][0].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			HPTrans[gauge->type][0].size);
-		//2–‡–Ú‘‚«‚İ
+		//2æšç›®æ›¸ãè¾¼ã¿
 		MI_CpuCopy16(&high[HPTrans[gauge->type][0].size], 
 			(void*)((u32)obj_vram + HPTrans[gauge->type][1].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			HPTrans[gauge->type][1].size);
 	}
 	
-	//“WŠJ—Ìˆæ‰ğ•ú
+	//å±•é–‹é ˜åŸŸè§£æ”¾
 	sys_FreeMemoryEz(alloc_buf);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒp[ƒc•`‰æFŒ»İHP
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ï¼šç¾åœ¨HP
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void GaugeParts_HPMaxDraw(GAUGE_WORK *gauge)
@@ -1815,14 +1815,14 @@ static void GaugeParts_HPMaxDraw(GAUGE_WORK *gauge)
 	u8 *alloc_buf;
 	NNSG2dImageProxy * image;
 	
-	//“WŠJ—ÌˆæŠm•Û
+	//å±•é–‹é ˜åŸŸç¢ºä¿
 	alloc_buf = sys_AllocMemory(HEAPID_BATTLE, HP_KETA_MAX * 0x20);
 	MI_CpuFill8(alloc_buf, HPMAX_BACK_COLOR | (HPMAX_BACK_COLOR << 4), HP_KETA_MAX * 0x20);
 	
 	NUMFONT_WriteNumberCGXOnly(BattleWorkGF_BGL_NumFontHPGet(gauge->bw),
 		gauge->hpmax, HP_KETA_MAX, NUMFONT_MODE_LEFT, alloc_buf);
 	
-	//Œ`¬‚³‚ê‚½•¶šƒoƒbƒtƒ@‚ğVRAM‚É’¼‘‚«
+	//å½¢æˆã•ã‚ŒãŸæ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚’VRAMã«ç›´æ›¸ã
 	{
 		void *obj_vram;
 		u8 *high;
@@ -1830,20 +1830,20 @@ static void GaugeParts_HPMaxDraw(GAUGE_WORK *gauge)
 		obj_vram = G2_GetOBJCharPtr();
 		image = CLACT_ImageProxyGet(gauge->cap->act);
 		high = alloc_buf;
-		//‘‚«‚İ
+		//æ›¸ãè¾¼ã¿
 		MI_CpuCopy16(high, (void*)((u32)obj_vram + HPMaxTrans[gauge->type].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			HPMaxTrans[gauge->type].size);
 	}
 	
-	//“WŠJ—Ìˆæ‰ğ•ú
+	//å±•é–‹é ˜åŸŸè§£æ”¾
 	sys_FreeMemoryEz(alloc_buf);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒp[ƒc•`‰æF«•Ê
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ï¼šæ€§åˆ¥
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void GaugeParts_SexDraw(GAUGE_WORK *gauge)
@@ -1861,14 +1861,14 @@ static void GaugeParts_SexDraw(GAUGE_WORK *gauge)
 		parts_sex = GetGaugePartsAdrs(GP_SEX_UNK);
 	}
 	
-	//Œ`¬‚³‚ê‚½•¶šƒoƒbƒtƒ@‚ğVRAM‚É’¼‘‚«
+	//å½¢æˆã•ã‚ŒãŸæ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚’VRAMã«ç›´æ›¸ã
 	{
 		void *obj_vram;
 		
 		obj_vram = G2_GetOBJCharPtr();
 		image = CLACT_ImageProxyGet(gauge->cap->act);
 		
-		//‘‚«‚İ
+		//æ›¸ãè¾¼ã¿
 		MI_CpuCopy16(parts_sex, (void*)((u32)obj_vram + SexTrans[gauge->type][0].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			SexTrans[gauge->type][0].size);
@@ -1880,8 +1880,8 @@ static void GaugeParts_SexDraw(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒp[ƒc•`‰æFƒQƒbƒgÏ‚İƒ}[ƒN
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ï¼šã‚²ãƒƒãƒˆæ¸ˆã¿ãƒãƒ¼ã‚¯
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void GaugeParts_GetBallDraw(GAUGE_WORK *gauge)
@@ -1896,14 +1896,14 @@ static void GaugeParts_GetBallDraw(GAUGE_WORK *gauge)
 		parts_ball = GetGaugePartsAdrs(GP_NON_GETBALL);
 	}
 	
-	//Œ`¬‚³‚ê‚½•¶šƒoƒbƒtƒ@‚ğVRAM‚É’¼‘‚«
+	//å½¢æˆã•ã‚ŒãŸæ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚’VRAMã«ç›´æ›¸ã
 	{
 		void *obj_vram;
 		
 		obj_vram = G2_GetOBJCharPtr();
 		image = CLACT_ImageProxyGet(gauge->cap->act);
 		
-		//‘‚«‚İ
+		//æ›¸ãè¾¼ã¿
 		MI_CpuCopy16(parts_ball, (void*)((u32)obj_vram + GetBallTrans[gauge->type].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			GetBallTrans[gauge->type].size);
@@ -1912,8 +1912,8 @@ static void GaugeParts_GetBallDraw(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒp[ƒc•`‰æF–ƒáƒ
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ï¼šéº»ç—º
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void GaugeParts_StatusDraw(GAUGE_WORK *gauge, int gp_num)
@@ -1923,14 +1923,14 @@ static void GaugeParts_StatusDraw(GAUGE_WORK *gauge, int gp_num)
 	
 	parts_status = GetGaugePartsAdrs(gp_num);
 	
-	//Œ`¬‚³‚ê‚½•¶šƒoƒbƒtƒ@‚ğVRAM‚É’¼‘‚«
+	//å½¢æˆã•ã‚ŒãŸæ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚’VRAMã«ç›´æ›¸ã
 	{
 		void *obj_vram;
 		
 		obj_vram = G2_GetOBJCharPtr();
 		image = CLACT_ImageProxyGet(gauge->cap->act);
 		
-		//‘‚«‚İ
+		//æ›¸ãè¾¼ã¿
 		MI_CpuCopy16(parts_status, (void*)((u32)obj_vram + StatusTrans[gauge->type].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			StatusTrans[gauge->type].size);
@@ -1939,8 +1939,8 @@ static void GaugeParts_StatusDraw(GAUGE_WORK *gauge, int gp_num)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒp[ƒc•`‰æFuƒTƒtƒ@ƒŠƒ{[ƒ‹v
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ï¼šã€Œã‚µãƒ•ã‚¡ãƒªãƒœãƒ¼ãƒ«ã€
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   draw_flag
  */
 //--------------------------------------------------------------
@@ -1956,7 +1956,7 @@ static void GaugeParts_SafariballDraw(GAUGE_WORK *gauge, u32 draw_flag)
 	bgl = BattleWorkGF_BGL_INIGet(gauge->bw);
 	msg_man = BattleWorkFightMsgGet(gauge->bw);
 	
-	//•¶š—ñ“WŠJ
+	//æ–‡å­—åˆ—å±•é–‹
 	if(draw_flag & GAUGE_DRAW_SAFARIBALL){
 		str_src = MSGMAN_AllocString(msg_man, SafariBallMsg);
 	}
@@ -1964,13 +1964,13 @@ static void GaugeParts_SafariballDraw(GAUGE_WORK *gauge, u32 draw_flag)
 		str_src = MSGMAN_AllocString(msg_man, ParkBallMsg);
 	}
 	
-	//ƒoƒbƒtƒ@‚ÉBMPƒf[ƒ^“WŠJ
+	//ãƒãƒƒãƒ•ã‚¡ã«BMPãƒ‡ãƒ¼ã‚¿å±•é–‹
 	GF_BGL_BmpWinObjAdd(bgl, &bmpwin, SAFARIBALL_SIZE_X, SAFARIBALL_SIZE_Y, 
 		SAFARIBALL_CHAR_OFFSET, SAFARIBALL_BACK_COLOR);
 	GF_STR_PrintExpand(&bmpwin, FONT_SYSTEM, str_src, 0, 0, MSG_NO_PUT, SAFARIBALL_FONT_COLOR, GAUGE_FONT_MARGIN, 0, NULL);
 	buf = bmpwin.chrbuf;
 	
-	//Œ`¬‚³‚ê‚½•¶šƒoƒbƒtƒ@‚ğVRAM‚É’¼‘‚«
+	//å½¢æˆã•ã‚ŒãŸæ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚’VRAMã«ç›´æ›¸ã
 	{
 		void *obj_vram;
 		u8 *high, *low;
@@ -1979,14 +1979,14 @@ static void GaugeParts_SafariballDraw(GAUGE_WORK *gauge, u32 draw_flag)
 		image = CLACT_ImageProxyGet(gauge->cap->act);
 		high = buf;
 		low = &buf[SAFARIBALL_SIZE_X * 0x20];
-		//¶‘¤
+		//å·¦å´
 		MI_CpuCopy16(high, (void*)((u32)obj_vram + SafariballTrans[0].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			SafariballTrans[0].size);
 		MI_CpuCopy16(low, (void*)((u32)obj_vram + SafariballTrans[1].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			SafariballTrans[1].size);
-		//‰E‘¤
+		//å³å´
 		MI_CpuCopy16(&high[SafariballTrans[0].size], 
 			(void*)((u32)obj_vram + SafariballTrans[2].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
@@ -1997,16 +1997,16 @@ static void GaugeParts_SafariballDraw(GAUGE_WORK *gauge, u32 draw_flag)
 			SafariballTrans[3].size);
 	}
 	
-	//BMPƒf[ƒ^‰ğ•ú
+	//BMPãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	GF_BGL_BmpWinDel(&bmpwin);
-	//•¶š—ñƒoƒbƒtƒ@‰ğ•ú
+	//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡è§£æ”¾
 	STRBUF_Delete(str_src);
 }
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒp[ƒc•`‰æFu‚Ì‚±‚è@››‚±v
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ï¼šã€Œã®ã“ã‚Šã€€â—‹â—‹ã“ã€
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   draw_flag
  */
 //--------------------------------------------------------------
@@ -2024,7 +2024,7 @@ static void GaugeParts_SafariNokoriDraw(GAUGE_WORK *gauge, u32 draw_flag)
 	msg_man = BattleWorkFightMsgGet(gauge->bw);
 	wordset = BattleWorkWORDSETGet(gauge->bw);
 	
-	//•¶š—ñ“WŠJ
+	//æ–‡å­—åˆ—å±•é–‹
 	nokori_p = STRBUF_Create(BUFLEN_GAUGE_SAFARI_NOKORI, HEAPID_BATTLE);
 	if(draw_flag & GAUGE_DRAW_SAFARIBALL){
 		nokori_src = MSGMAN_AllocString(msg_man, SafariNokoriMsg);
@@ -2036,13 +2036,13 @@ static void GaugeParts_SafariNokoriDraw(GAUGE_WORK *gauge, u32 draw_flag)
 		NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
 	WORDSET_ExpandStr(wordset, nokori_p, nokori_src);
 	
-	//ƒoƒbƒtƒ@‚ÉBMPƒf[ƒ^“WŠJ
+	//ãƒãƒƒãƒ•ã‚¡ã«BMPãƒ‡ãƒ¼ã‚¿å±•é–‹
 	GF_BGL_BmpWinObjAdd(bgl, &bmpwin, NOKORI_SIZE_X, NOKORI_SIZE_Y, 
 		NOKORI_CHAR_OFFSET, NOKORI_BACK_COLOR);
 	GF_STR_PrintExpand(&bmpwin, FONT_SYSTEM, nokori_p, 0, 0, MSG_NO_PUT, NOKORI_FONT_COLOR, GAUGE_FONT_MARGIN, 0, NULL);
 	buf = bmpwin.chrbuf;
 	
-	//Œ`¬‚³‚ê‚½•¶šƒoƒbƒtƒ@‚ğVRAM‚É’¼‘‚«
+	//å½¢æˆã•ã‚ŒãŸæ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚’VRAMã«ç›´æ›¸ã
 	{
 		void *obj_vram;
 		u8 *high, *low;
@@ -2051,14 +2051,14 @@ static void GaugeParts_SafariNokoriDraw(GAUGE_WORK *gauge, u32 draw_flag)
 		image = CLACT_ImageProxyGet(gauge->cap->act);
 		high = buf;
 		low = &buf[NOKORI_SIZE_X * 0x20];
-		//¶‘¤
+		//å·¦å´
 		MI_CpuCopy16(high, (void*)((u32)obj_vram + NokoriTrans[0].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			NokoriTrans[0].size);
 		MI_CpuCopy16(low, (void*)((u32)obj_vram + NokoriTrans[1].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			NokoriTrans[1].size);
-		//‰E‘¤
+		//å³å´
 		MI_CpuCopy16(&high[NokoriTrans[0].size], 
 			(void*)((u32)obj_vram + NokoriTrans[2].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
@@ -2069,14 +2069,14 @@ static void GaugeParts_SafariNokoriDraw(GAUGE_WORK *gauge, u32 draw_flag)
 			NokoriTrans[3].size);
 	}
 	
-	//BMPƒf[ƒ^‰ğ•ú
+	//BMPãƒ‡ãƒ¼ã‚¿è§£æ”¾
 	GF_BGL_BmpWinDel(&bmpwin);
-	//•¶š—ñƒoƒbƒtƒ@‰ğ•ú
+	//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡è§£æ”¾
 	STRBUF_Delete(nokori_p);
 	STRBUF_Delete(nokori_src);
 	
 #if 0
-	//“]‘—
+	//è»¢é€
 	image = CLACT_ImageProxyGet(gauge->cap->act);
 	AddVramTransferManager(
 		NNS_GFD_DST_2D_OBJ_CHAR_MAIN,
@@ -2089,9 +2089,9 @@ static void GaugeParts_SafariNokoriDraw(GAUGE_WORK *gauge, u32 draw_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒp[ƒc•`‰æFƒfƒoƒbƒO—p‚Ì”’l•`‰æ
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   num			•\¦‚·‚é”’l
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒ‘ãƒ¼ãƒ„æç”»ï¼šãƒ‡ãƒãƒƒã‚°ç”¨ã®æ•°å€¤æç”»
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   num			è¡¨ç¤ºã™ã‚‹æ•°å€¤
  */
 //--------------------------------------------------------------
 void GaugeParts_DebugNumDraw(GAUGE_WORK *gauge, u32 num)
@@ -2104,14 +2104,14 @@ void GaugeParts_DebugNumDraw(GAUGE_WORK *gauge, u32 num)
 		return;
 	}
 	
-	//“WŠJ—ÌˆæŠm•Û
+	//å±•é–‹é ˜åŸŸç¢ºä¿
 	alloc_buf = sys_AllocMemory(HEAPID_BATTLE, DEBUG_NUM_KETA_MAX * 0x20);
 	MI_CpuFill8(alloc_buf, HP_BACK_COLOR | (HP_BACK_COLOR << 4), DEBUG_NUM_KETA_MAX * 0x20);
 	
 	NUMFONT_WriteNumberCGXOnly(BattleWorkGF_BGL_NumFontHPGet(gauge->bw),
 		num, DEBUG_NUM_KETA_MAX, NUMFONT_MODE_LEFT, alloc_buf);
 	
-	//Œ`¬‚³‚ê‚½•¶šƒoƒbƒtƒ@‚ğVRAM‚É’¼‘‚«
+	//å½¢æˆã•ã‚ŒãŸæ–‡å­—ãƒãƒƒãƒ•ã‚¡ã‚’VRAMã«ç›´æ›¸ã
 	{
 		void *obj_vram;
 		u8 *high;
@@ -2119,13 +2119,13 @@ void GaugeParts_DebugNumDraw(GAUGE_WORK *gauge, u32 num)
 		obj_vram = G2_GetOBJCharPtr();
 		image = CLACT_ImageProxyGet(gauge->cap->act);
 		high = alloc_buf;
-		//1–‡–Ú‘‚«‚İ
+		//1æšç›®æ›¸ãè¾¼ã¿
 		MI_CpuCopy16(high, (void*)((u32)obj_vram + DebugNumTrans[gauge->type].pos
 			+ image->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), 
 			DebugNumTrans[gauge->type].size);
 	}
 	
-	//“WŠJ—Ìˆæ‰ğ•ú
+	//å±•é–‹é ˜åŸŸè§£æ”¾
 	sys_FreeMemoryEz(alloc_buf);
 #endif
 }
@@ -2138,18 +2138,18 @@ void GaugeParts_DebugNumDraw(GAUGE_WORK *gauge, u32 num)
 
 //==============================================================================
 //
-//	‹ŒFƒQ[ƒWŒvZƒ‹[ƒ`ƒ“	(ƒGƒƒ‰ƒ‹ƒh‚©‚çˆÚA)
+//	æ—§ï¼šã‚²ãƒ¼ã‚¸è¨ˆç®—ãƒ«ãƒ¼ãƒãƒ³	(ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰ã‹ã‚‰ç§»æ¤)
 //
 //==============================================================================
 
 //--------------------------------------------------------------
 /**
- * @brief   HPƒQ[ƒW‚Ìƒo[‚Ì•”•ª‚ğ‘‚«‚İ
+ * @brief   HPã‚²ãƒ¼ã‚¸ã®ãƒãƒ¼ã®éƒ¨åˆ†ã‚’æ›¸ãè¾¼ã¿
  *
- * @param   gauge			ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   gauge			ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   req_data		GAUGE_REQ_???
  *
- * @retval  -1=I—¹B@-1ˆÈŠO=ŒvZ“r’†‚Ì”š(‰æ–Ê‚É•\¦‚·‚é”’l)
+ * @retval  -1=çµ‚äº†ã€‚ã€€-1ä»¥å¤–=è¨ˆç®—é€”ä¸­ã®æ•°å­—(ç”»é¢ã«è¡¨ç¤ºã™ã‚‹æ•°å€¤)
  */
 //--------------------------------------------------------------
 static s32 GaugeOBJ(GAUGE_WORK *gauge, int req_data)
@@ -2157,13 +2157,13 @@ static s32 GaugeOBJ(GAUGE_WORK *gauge, int req_data)
 	s32 temp;
 	s32 dotto_offset;
 	
-	//ƒQ[ƒWŒvZ
+	//ã‚²ãƒ¼ã‚¸è¨ˆç®—
 	if(req_data == GAUGE_REQ_HP){
 		temp = GaugeProc(gauge->hpmax, gauge->hp, gauge->damage, 
 			&gauge->hp_work, BAR_HP_CHARMAX, 1);
 	}
 	else{	//GAUGE_REQ_EXP
-		//EXP¹Ş°¼Ş‚ÍŒvZ”’l‚ª‘å‚«‚¢‚Ì‚ÅAÄŞ¯Ä‚ÌµÌ¾¯Ä‚©‚ç‰½Sync‚ÅI‚í‚ç‚¹‚é‚©‚ğŒˆ‚ß‚é
+		//EXPã‚²ãƒ¼ã‚¸ã¯è¨ˆç®—æ•°å€¤ãŒå¤§ãã„ã®ã§ã€ãƒ‰ãƒƒãƒˆã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã‹ã‚‰ä½•Syncã§çµ‚ã‚ã‚‰ã›ã‚‹ã‹ã‚’æ±ºã‚ã‚‹
 		dotto_offset = DottoOffsetCalc(gauge->exp, gauge->add_exp, gauge->max_exp,
 				BAR_EXP_CHARMAX);
 		if(dotto_offset == 0)
@@ -2173,9 +2173,9 @@ static s32 GaugeOBJ(GAUGE_WORK *gauge, int req_data)
 				&gauge->exp_work, BAR_EXP_CHARMAX, dotto_offset);
 	}
 	
-	//ƒQ[ƒW•`‰æ
+	//ã‚²ãƒ¼ã‚¸æç”»
 	if(req_data == GAUGE_REQ_HP && gauge->num_mode == TRUE){
-		;	//HP”š•\¦ƒ‚[ƒh‚È‚ç‚ÎƒQ[ƒW•`‰æ‚Ís‚í‚È‚¢
+		;	//HPæ•°å­—è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰ãªã‚‰ã°ã‚²ãƒ¼ã‚¸æç”»ã¯è¡Œã‚ãªã„
 	}
 	else{
 		PutGaugeOBJ(gauge, req_data);
@@ -2195,9 +2195,9 @@ static s32 GaugeOBJ(GAUGE_WORK *gauge, int req_data)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒo[•`‰æ
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒãƒ¼æç”»
  *
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   req			GAUGE_REQ_???
  */
 //--------------------------------------------------------------
@@ -2221,7 +2221,7 @@ static void PutGaugeOBJ(GAUGE_WORK *gauge, u8 req)
 		put_dot = PutGaugeProc(gauge->hpmax, gauge->hp, gauge->damage,
 			 &gauge->hp_work, gauge_chr, BAR_HP_CHARMAX);
 
-		//ƒQ[ƒW‚Ì•\¦ƒhƒbƒg”‚©‚çF‚Æƒp[ƒcƒAƒhƒŒƒX‚ğæ“¾
+		//ã‚²ãƒ¼ã‚¸ã®è¡¨ç¤ºãƒ‰ãƒƒãƒˆæ•°ã‹ã‚‰è‰²ã¨ãƒ‘ãƒ¼ãƒ„ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 		{
 			int dotto_color;
 			
@@ -2305,28 +2305,28 @@ static void PutGaugeOBJ(GAUGE_WORK *gauge, u8 req)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒo[ŒvZ
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒãƒ¼è¨ˆç®—
  *
- * @param   MaxHP		Å‘åHP
- * @param   NowHP		Œ»İHP(ŒvZ‘O‚ÌHP)
- * @param   beHP		ƒ_ƒ[ƒW(-‚Åƒ_ƒ[ƒWA+‚È‚ç‰ñ•œ)
- * @param   HP_Work		ì‹Æ—pƒ[ƒN
- * @param   GaugeMax	ƒQ[ƒW‚ÌƒLƒƒƒ‰ƒNƒ^”
- * @param   add_dec		¹Ş°¼Ş‚ğ‰ÁŒ¸Z‚µ‚Ä‚¢‚­’l GaugeDotto‚ªGaugeMaxˆÈ‰º‚Ìê‡‚Í–³‹‚·‚é
+ * @param   MaxHP		æœ€å¤§HP
+ * @param   NowHP		ç¾åœ¨HP(è¨ˆç®—å‰ã®HP)
+ * @param   beHP		ãƒ€ãƒ¡ãƒ¼ã‚¸(-ã§ãƒ€ãƒ¡ãƒ¼ã‚¸ã€+ãªã‚‰å›å¾©)
+ * @param   HP_Work		ä½œæ¥­ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param   GaugeMax	ã‚²ãƒ¼ã‚¸ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ•°
+ * @param   add_dec		ã‚²ãƒ¼ã‚¸ã‚’åŠ æ¸›ç®—ã—ã¦ã„ãå€¤ GaugeDottoãŒGaugeMaxä»¥ä¸‹ã®å ´åˆã¯ç„¡è¦–ã™ã‚‹
  *
- * @retval  -1 = I—¹	‚»‚êˆÈŠOFŒvZ“r’†‚Ì”š(‰æ–Ê‚Éo‚·”’l)
+ * @retval  -1 = çµ‚äº†	ãã‚Œä»¥å¤–ï¼šè¨ˆç®—é€”ä¸­ã®æ•°å­—(ç”»é¢ã«å‡ºã™æ•°å€¤)
  */
 //--------------------------------------------------------------
 static s32 GaugeProc(s32 MaxHP, s32 NowHP, s32 beHP, s32 *HP_Work, u8 GaugeMax, u16 add_dec)
 {
-	s32 endHP;	//2002.09.14(“y)
+	s32 endHP;	//2002.09.14(åœŸ)
 	s32 ret;
 	u8 GaugeMaxDot;
 	s32 add_hp;
 	
 	GaugeMaxDot = GaugeMax * GAUGE_DOTTO;
 	
-	//-- HP_Work‚ªHP_WORK_INIT_VALUE‚Ì‚Í‰‰ñ‚È‚Ì‚Åƒ[ƒN‚ğ‰Šú‰» --//
+	//-- HP_WorkãŒHP_WORK_INIT_VALUEã®æ™‚ã¯åˆå›ãªã®ã§ãƒ¯ãƒ¼ã‚¯ã‚’åˆæœŸåŒ– --//
 	if(*HP_Work == HP_WORK_INIT_VALUE){
 		if(MaxHP < GaugeMaxDot){
 			*HP_Work = NowHP << 8;
@@ -2336,14 +2336,14 @@ static s32 GaugeProc(s32 MaxHP, s32 NowHP, s32 beHP, s32 *HP_Work, u8 GaugeMax, 
 		}
 	}
 
-	//-- I—¹Áª¯¸ --//
+	//-- çµ‚äº†ãƒã‚§ãƒƒã‚¯ --//
 	endHP = NowHP - beHP;
 	if(endHP < 0)
 		endHP = 0;
 	else if(endHP > MaxHP)
 		endHP = MaxHP;
 	
-	if(MaxHP < GaugeMaxDot){			//«­”•”•ª‚àÁª¯¸
+	if(MaxHP < GaugeMaxDot){			//â†“å°‘æ•°éƒ¨åˆ†ã‚‚ãƒã‚§ãƒƒã‚¯
 		if(endHP == (*HP_Work >> 8) && (*HP_Work & 0xff) == 0)
 			return (-1);
 	}
@@ -2351,36 +2351,36 @@ static s32 GaugeProc(s32 MaxHP, s32 NowHP, s32 beHP, s32 *HP_Work, u8 GaugeMax, 
 		if(endHP == *HP_Work)
 			return (-1);
 	}
-	//-- I—¹Áª¯¸I—¹ --//
+	//-- çµ‚äº†ãƒã‚§ãƒƒã‚¯çµ‚äº† --//
 	
 	if(MaxHP < GaugeMaxDot){
 		add_hp = MaxHP * 0x100 / GaugeMaxDot;
-		if(beHP < 0){	//¹Ş°¼Ş‰ñ•œ
+		if(beHP < 0){	//ã‚²ãƒ¼ã‚¸å›å¾©
 			*HP_Work += add_hp;
 			ret = *HP_Work >> 8;
-			if(ret >= endHP){	//­”‚ğˆµ‚Á‚Ä‚¢‚é‚Ì‚Åµ°ÊŞ°ÌÛ°Áª¯¸
+			if(ret >= endHP){	//å°‘æ•°ã‚’æ‰±ã£ã¦ã„ã‚‹ã®ã§ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ãƒã‚§ãƒƒã‚¯
 				*HP_Work = endHP << 8;
 				ret = endHP;
 			}
 		}
-		else{					//¹Ş°¼ŞŒ¸­
+		else{					//ã‚²ãƒ¼ã‚¸æ¸›å°‘
 			*HP_Work -= add_hp;
 			ret = *HP_Work >> 8;
-			if((*HP_Work & 0xff) > 0)	//­”•”•ª‚ª‚ ‚é‚È‚ç­”ŒJ‚èã‚°‚Å•\¦
+			if((*HP_Work & 0xff) > 0)	//å°‘æ•°éƒ¨åˆ†ãŒã‚ã‚‹ãªã‚‰å°‘æ•°ç¹°ã‚Šä¸Šã’ã§è¡¨ç¤º
 				ret++;
-			if(ret <= endHP){	//­”‚ğˆµ‚Á‚Ä‚¢‚é‚Ì‚Åµ°ÊŞ°ÌÛ°Áª¯¸
+			if(ret <= endHP){	//å°‘æ•°ã‚’æ‰±ã£ã¦ã„ã‚‹ã®ã§ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ãƒã‚§ãƒƒã‚¯
 				*HP_Work = endHP << 8;
 				ret = endHP;
 			}
 		}
 	}
 	else{
-		if(beHP < 0){		//¹Ş°¼Ş‰ñ•œ
+		if(beHP < 0){		//ã‚²ãƒ¼ã‚¸å›å¾©
 			*HP_Work += add_dec;
 			if(*HP_Work > endHP)
 				*HP_Work = endHP;
 		}
-		else{				//¹Ş°¼ŞŒ¸­
+		else{				//ã‚²ãƒ¼ã‚¸æ¸›å°‘
 			*HP_Work -= add_dec;
 			if(*HP_Work < endHP)
 				*HP_Work = endHP;
@@ -2392,25 +2392,25 @@ static s32 GaugeProc(s32 MaxHP, s32 NowHP, s32 beHP, s32 *HP_Work, u8 GaugeMax, 
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW•\¦ŒvZ
+ * @brief   ã‚²ãƒ¼ã‚¸è¡¨ç¤ºè¨ˆç®—
  *
- * @param   MaxHP		Å‘åHP
- * @param   NowHP		Œ»İHP(ŒvZ‘O‚ÌHP)
- * @param   beHP		ƒ_ƒ[ƒW(-‚Åƒ_ƒ[ƒWA+‚È‚ç‰ñ•œ)
- * @param   HP_Work		ì‹Æ—pƒ[ƒN
- * @param   gauge_chr	ƒQ[ƒW•\¦Œ‹‰Ê‘ã“üæ(GaugeMax•ª‚Ì”z—ñ—v‘f”‚ª•K—v)
- * @param   GaugeMax	ƒQ[ƒW‚ÌƒLƒƒƒ‰ƒNƒ^”
+ * @param   MaxHP		æœ€å¤§HP
+ * @param   NowHP		ç¾åœ¨HP(è¨ˆç®—å‰ã®HP)
+ * @param   beHP		ãƒ€ãƒ¡ãƒ¼ã‚¸(-ã§ãƒ€ãƒ¡ãƒ¼ã‚¸ã€+ãªã‚‰å›å¾©)
+ * @param   HP_Work		ä½œæ¥­ç”¨ãƒ¯ãƒ¼ã‚¯
+ * @param   gauge_chr	ã‚²ãƒ¼ã‚¸è¡¨ç¤ºçµæœä»£å…¥å…ˆ(GaugeMaxåˆ†ã®é…åˆ—è¦ç´ æ•°ãŒå¿…è¦)
+ * @param   GaugeMax	ã‚²ãƒ¼ã‚¸ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ•°
  *
- * @retval  •\¦‚·‚éƒhƒbƒg”
+ * @retval  è¡¨ç¤ºã™ã‚‹ãƒ‰ãƒƒãƒˆæ•°
  *
- * gauge_chr‚É“ü‚é’l‚ÍA0:‹ó‚Á‚Û‚Ì¹Ş°¼Ş  1:1ÄŞ¯Ä‚Ì¹Ş°¼Ş 2:2ÄŞ¯Ä‚Ì¹Ş°¼Ş ¥¥¥ 8:8ÄŞ¯Ä(–Àİ)‚Ì¹Ş°¼Ş
+ * gauge_chrã«å…¥ã‚‹å€¤ã¯ã€0:ç©ºã£ã½ã®ã‚²ãƒ¼ã‚¸  1:1ãƒ‰ãƒƒãƒˆã®ã‚²ãƒ¼ã‚¸ 2:2ãƒ‰ãƒƒãƒˆã®ã‚²ãƒ¼ã‚¸ ãƒ»ãƒ»ãƒ» 8:8ãƒ‰ãƒƒãƒˆ(æº€ã‚¿ãƒ³)ã®ã‚²ãƒ¼ã‚¸
  */
 //--------------------------------------------------------------
 static u8 PutGaugeProc(s32 MaxHP, s32 NowHP, s32 beHP, s32 *HP_Work, u8 *gauge_chr, u8 GaugeMax)
 {
 	int i;
 	u32 GaugeMaxDot;
-	u32 put_dot, dot_ret;		//•\¦‚·‚éÄŞ¯Ä”
+	u32 put_dot, dot_ret;		//è¡¨ç¤ºã™ã‚‹ãƒ‰ãƒƒãƒˆæ•°
 	s32 AfterHP;
 	
 	AfterHP = NowHP - beHP;
@@ -2422,19 +2422,19 @@ static u8 PutGaugeProc(s32 MaxHP, s32 NowHP, s32 beHP, s32 *HP_Work, u8 *gauge_c
 	}
 
 	GaugeMaxDot = GAUGE_DOTTO * GaugeMax;
-	for(i = 0; i < GaugeMax; i++){	//‹ó”’¹Ş°¼Ş‚Å‰Šú‰»
+	for(i = 0; i < GaugeMax; i++){	//ç©ºç™½ã‚²ãƒ¼ã‚¸ã§åˆæœŸåŒ–
 		gauge_chr[i] = 0;
 	}
 
-	//¦¦‚±‚±‚Ìƒhƒbƒgæ“¾‚ÌŒvZ®‚ğ•ÏX‚µ‚½‚çGetNumDotto‚ÌŒvZ®‚à•ÏX‚·‚é‚±‚Æ!!
-	if(MaxHP < GaugeMaxDot){	// by 2002.07.11(–Ø) matsuda
+	//â€»â€»ã“ã“ã®ãƒ‰ãƒƒãƒˆå–å¾—ã®è¨ˆç®—å¼ã‚’å¤‰æ›´ã—ãŸã‚‰GetNumDottoã®è¨ˆç®—å¼ã‚‚å¤‰æ›´ã™ã‚‹ã“ã¨!!
+	if(MaxHP < GaugeMaxDot){	// by 2002.07.11(æœ¨) matsuda
 		put_dot = (*HP_Work * GaugeMaxDot / MaxHP) >> 8;
 	}
 	else{
 		put_dot = *HP_Work * GaugeMaxDot / MaxHP;
 	}
 	dot_ret = put_dot;
-	//ÄŞ¯ÄŒvZ‚Å‚Í0‚Å‚àAÀÛ‚ÌHP‚ª1ˆÈã‚ ‚é‚È‚ç1ÄŞ¯Ä‚Ì¹Ş°¼Ş‚ğ•\¦‚·‚é
+	//ãƒ‰ãƒƒãƒˆè¨ˆç®—ã§ã¯0ã§ã‚‚ã€å®Ÿéš›ã®HPãŒ1ä»¥ä¸Šã‚ã‚‹ãªã‚‰1ãƒ‰ãƒƒãƒˆã®ã‚²ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹
 	if(put_dot == 0 && AfterHP > 0){
 		gauge_chr[0] = 1;
 		dot_ret = 1;
@@ -2446,7 +2446,7 @@ static u8 PutGaugeProc(s32 MaxHP, s32 NowHP, s32 beHP, s32 *HP_Work, u8 *gauge_c
 			}
 			else{
 				gauge_chr[i] = put_dot;
-				break;	//ÄŞ¯Ä‚ªs‚«‚½‚Ì‚Å”²‚¯‚é
+				break;	//ãƒ‰ãƒƒãƒˆãŒå°½ããŸã®ã§æŠœã‘ã‚‹
 			}
 		}
 	}
@@ -2455,14 +2455,14 @@ static u8 PutGaugeProc(s32 MaxHP, s32 NowHP, s32 beHP, s32 *HP_Work, u8 *gauge_c
 
 //--------------------------------------------------------------
 /**
- * @brief   ¹Ş°¼ŞŒvZ‘O‚ÆŒvZŒã‚ÌÅI“I‚ÈÄŞ¯Ä‚Ì·•ª‚ğ‹‚ß‚é
+ * @brief   ã‚²ãƒ¼ã‚¸è¨ˆç®—å‰ã¨è¨ˆç®—å¾Œã®æœ€çµ‚çš„ãªãƒ‰ãƒƒãƒˆã®å·®åˆ†ã‚’æ±‚ã‚ã‚‹
  *
- * @param   nowHP		Œ»İHP(ŒvZ‘O‚ÌHP)
- * @param   beHP		ƒ_ƒ[ƒW(-‚Åƒ_ƒ[ƒWA+‚È‚ç‰ñ•œ)
- * @param   MaxHP		Å‘åHP
- * @param   GaugeMax	ƒQ[ƒW‚ÌƒLƒƒƒ‰ƒNƒ^”
+ * @param   nowHP		ç¾åœ¨HP(è¨ˆç®—å‰ã®HP)
+ * @param   beHP		ãƒ€ãƒ¡ãƒ¼ã‚¸(-ã§ãƒ€ãƒ¡ãƒ¼ã‚¸ã€+ãªã‚‰å›å¾©)
+ * @param   MaxHP		æœ€å¤§HP
+ * @param   GaugeMax	ã‚²ãƒ¼ã‚¸ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿æ•°
  *
- * @retval  ƒhƒbƒg·•ª
+ * @retval  ãƒ‰ãƒƒãƒˆå·®åˆ†
  */
 //--------------------------------------------------------------
 static u32 DottoOffsetCalc(s32 nowHP, s32 beHP, s32 MaxHP, u8 GaugeMax)
@@ -2485,9 +2485,9 @@ static u32 DottoOffsetCalc(s32 nowHP, s32 beHP, s32 MaxHP, u8 GaugeMax)
 
 //--------------------------------------------------------------
 /**
- * @brief   w’èƒp[ƒc‚ÌƒOƒ‰ƒtƒBƒbƒNƒAƒhƒŒƒX‚ğæ“¾‚·‚é
- * @param   parts_num		ƒp[ƒc”Ô†
- * @retval  ƒp[ƒc‚ÌƒOƒ‰ƒtƒBƒbƒNƒAƒhƒŒƒX
+ * @brief   æŒ‡å®šãƒ‘ãƒ¼ãƒ„ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—ã™ã‚‹
+ * @param   parts_num		ãƒ‘ãƒ¼ãƒ„ç•ªå·
+ * @retval  ãƒ‘ãƒ¼ãƒ„ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹
  */
 //--------------------------------------------------------------
 static const u8 * GetGaugePartsAdrs(int parts_num)
@@ -2497,9 +2497,9 @@ static const u8 * GetGaugePartsAdrs(int parts_num)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv‚©‚çƒQ[ƒWƒ^ƒCƒv‚ğæ‚èo‚·
- * @param   client_type		ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv
- * @retval  ƒQ[ƒWƒ^ƒCƒv
+ * @brief   ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ã‹ã‚‰ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—ã‚’å–ã‚Šå‡ºã™
+ * @param   client_type		ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—
+ * @retval  ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
  */
 //--------------------------------------------------------------
 u8 Gauge_TypeGet(int client_type, u32 fight_type)
@@ -2524,7 +2524,7 @@ u8 Gauge_TypeGet(int client_type, u32 fight_type)
 	case CLIENT_TYPE_D:
 		return GAUGE_TYPE_D;
 	default:
-		GF_ASSERT(0);// && "—pˆÓ‚³‚ê‚Ä‚¢‚È‚¢ƒNƒ‰ƒCƒAƒ“ƒgƒ^ƒCƒv‚ª“n‚³‚ê‚Ä‚¢‚Ü‚·");
+		GF_ASSERT(0);// && "ç”¨æ„ã•ã‚Œã¦ã„ãªã„ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚¿ã‚¤ãƒ—ãŒæ¸¡ã•ã‚Œã¦ã„ã¾ã™");
 		return NULL;
 	}
 	return 0;
@@ -2532,16 +2532,16 @@ u8 Gauge_TypeGet(int client_type, u32 fight_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒ^ƒCƒv‚©‚çƒQ[ƒW–{‘Ì‚ÌƒAƒNƒ^[ƒwƒbƒ_ƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
- * @param   gauge_type		ƒQ[ƒWƒ^ƒCƒv
- * @retval  ƒAƒNƒ^[ƒwƒbƒ_ƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—ã‹ã‚‰ã‚²ãƒ¼ã‚¸æœ¬ä½“ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
+ * @param   gauge_type		ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
+ * @retval  ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static const TCATS_OBJECT_ADD_PARAM_S * Sub_GaugeObjHeadGet(u8 gauge_type)
 {
 	const TCATS_OBJECT_ADD_PARAM_S *obj_head;
 
-	//ƒŠƒ\[ƒX“Ç‚İ‚İ
+	//ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	switch(gauge_type){
 	case GAUGE_TYPE_AA:
 		obj_head = &GaugeObjParam_aa;
@@ -2566,7 +2566,7 @@ static const TCATS_OBJECT_ADD_PARAM_S * Sub_GaugeObjHeadGet(u8 gauge_type)
 		obj_head = &GaugeObjParam_Safari;
 		break;
 	default:
-		GF_ASSERT(0);// && "—pˆÓ‚³‚ê‚Ä‚¢‚È‚¢ƒQ[ƒWƒ^ƒCƒv‚ª“n‚³‚ê‚Ä‚¢‚Ü‚·");
+		GF_ASSERT(0);// && "ç”¨æ„ã•ã‚Œã¦ã„ãªã„ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—ãŒæ¸¡ã•ã‚Œã¦ã„ã¾ã™");
 		return NULL;
 	}
 	return obj_head;
@@ -2574,16 +2574,16 @@ static const TCATS_OBJECT_ADD_PARAM_S * Sub_GaugeObjHeadGet(u8 gauge_type)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒ^ƒCƒv‚©‚ç–îˆó‚ÌƒAƒNƒ^[ƒwƒbƒ_ƒ|ƒCƒ“ƒ^‚ğæ“¾‚·‚é
- * @param   gauge_type		ƒQ[ƒWƒ^ƒCƒv
- * @retval  ƒAƒNƒ^[ƒwƒbƒ_ƒ|ƒCƒ“ƒ^(–îˆó‚ª•K—v‚È‚¢ƒ^ƒCƒv‚Ìê‡‚ÍNULL)
+ * @brief   ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—ã‹ã‚‰çŸ¢å°ã®ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã™ã‚‹
+ * @param   gauge_type		ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—
+ * @retval  ã‚¢ã‚¯ã‚¿ãƒ¼ãƒ˜ãƒƒãƒ€ãƒã‚¤ãƒ³ã‚¿(çŸ¢å°ãŒå¿…è¦ãªã„ã‚¿ã‚¤ãƒ—ã®å ´åˆã¯NULL)
  */
 //--------------------------------------------------------------
 static const TCATS_OBJECT_ADD_PARAM_S * Sub_ArrowObjHeadGet(u8 gauge_type)
 {
 	const TCATS_OBJECT_ADD_PARAM_S *obj_head;
 
-	//ƒŠƒ\[ƒX“Ç‚İ‚İ
+	//ãƒªã‚½ãƒ¼ã‚¹èª­ã¿è¾¼ã¿
 	switch(gauge_type){
 	case GAUGE_TYPE_AA:
 	case GAUGE_TYPE_A:
@@ -2592,12 +2592,12 @@ static const TCATS_OBJECT_ADD_PARAM_S * Sub_ArrowObjHeadGet(u8 gauge_type)
 	case GAUGE_TYPE_PARK:
 		obj_head = &ArrowParam_aa;
 		break;
-	case GAUGE_TYPE_BB:		//“G‘¤‚Í–îˆó•K—v‚È‚µ
+	case GAUGE_TYPE_BB:		//æ•µå´ã¯çŸ¢å°å¿…è¦ãªã—
 	case GAUGE_TYPE_B:
 	case GAUGE_TYPE_D:
 		return NULL;
 	default:
-		GF_ASSERT(0);// && "—pˆÓ‚³‚ê‚Ä‚¢‚È‚¢ƒQ[ƒWƒ^ƒCƒv‚ª“n‚³‚ê‚Ä‚¢‚Ü‚·");
+		GF_ASSERT(0);// && "ç”¨æ„ã•ã‚Œã¦ã„ãªã„ã‚²ãƒ¼ã‚¸ã‚¿ã‚¤ãƒ—ãŒæ¸¡ã•ã‚Œã¦ã„ã¾ã™");
 		return NULL;
 	}
 	return obj_head;
@@ -2609,37 +2609,37 @@ static const TCATS_OBJECT_ADD_PARAM_S * Sub_ArrowObjHeadGet(u8 gauge_type)
 
 //==============================================================================
 //
-//	ƒGƒtƒFƒNƒgŠÖ˜AFƒŒƒxƒ‹ƒAƒbƒv
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–¢é€£ï¼šãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—
 //
 //==============================================================================
-///ƒQ[ƒWƒŒƒxƒ‹ƒAƒbƒvFEVY‰ÁZ’l
+///ã‚²ãƒ¼ã‚¸ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ï¼šEVYåŠ ç®—å€¤
 #define GAUGE_LEVELUP_ADD_EVY		(2)
-///ƒQ[ƒWƒŒƒxƒ‹ƒAƒbƒvFEVYƒ}ƒbƒNƒX’l
+///ã‚²ãƒ¼ã‚¸ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ï¼šEVYãƒãƒƒã‚¯ã‚¹å€¤
 #define GAUGE_LEVELUP_EVY_MAX		(10)
-///ƒQ[ƒWƒŒƒxƒ‹ƒAƒbƒvFƒJƒ‰[•ÏXŠJnˆÊ’u(ƒJƒ‰[’PˆÊ)
+///ã‚²ãƒ¼ã‚¸ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ï¼šã‚«ãƒ©ãƒ¼å¤‰æ›´é–‹å§‹ä½ç½®(ã‚«ãƒ©ãƒ¼å˜ä½)
 #define GAUGE_LEVELUP_COLOR_NO		0//(NAME_BACK_COLOR)
-///ƒQ[ƒWƒŒƒxƒ‹ƒAƒbƒvFƒJƒ‰[•ÏX‚·‚éF‚Ì”
+///ã‚²ãƒ¼ã‚¸ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ï¼šã‚«ãƒ©ãƒ¼å¤‰æ›´ã™ã‚‹è‰²ã®æ•°
 #define GAUGE_LEVELUP_COLOR_NUM		16//(1)
-///ƒQ[ƒWƒŒƒxƒ‹ƒAƒbƒvF•ÏXŒã‚ÌƒJƒ‰[
+///ã‚²ãƒ¼ã‚¸ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ï¼šå¤‰æ›´å¾Œã®ã‚«ãƒ©ãƒ¼
 #define GAUGE_LEVELUP_COLOR			(0x73a5)
 
-///ƒQ[ƒWƒŒƒxƒ‹ƒAƒbƒvƒGƒtƒFƒNƒg—p\‘¢‘Ì
+///ã‚²ãƒ¼ã‚¸ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”¨æ§‹é€ ä½“
 typedef struct{
-	GAUGE_WORK *gauge;		///<ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u8 *end_flag;			///<I—¹Œã‚Ìƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
-	u8 seq;					///<ƒV[ƒPƒ“ƒX”Ô†
-	u8 pal_no;				///<ƒpƒŒƒbƒg”Ô†
-	s8 evy;					///<Œ»İEVY’l
+	GAUGE_WORK *gauge;		///<ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 *end_flag;			///<çµ‚äº†å¾Œã®ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+	u8 seq;					///<ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
+	u8 pal_no;				///<ãƒ‘ãƒ¬ãƒƒãƒˆç•ªå·
+	s8 evy;					///<ç¾åœ¨EVYå€¤
 }GAUGE_LEVELUP_EFF_WORK;
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒŒƒxƒ‹ƒAƒbƒvƒGƒtƒFƒNƒgŠJn
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–‹å§‹
  *
- * @param   gauge			ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   end_flag		I—¹ƒtƒ‰ƒO‚ğƒZƒbƒg‚·‚éƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @param   gauge			ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   end_flag		çµ‚äº†ãƒ•ãƒ©ã‚°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒGƒtƒFƒNƒg‚ªI—¹‚·‚é‚Æend_flag‚É“n‚µ‚½ƒ[ƒN‚ÉTRUE‚ªƒZƒbƒg‚³‚ê‚Ü‚·
+ * ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚äº†ã™ã‚‹ã¨end_flagã«æ¸¡ã—ãŸãƒ¯ãƒ¼ã‚¯ã«TRUEãŒã‚»ãƒƒãƒˆã•ã‚Œã¾ã™
  */
 //--------------------------------------------------------------
 void Gauge_LevelUpEffectStart(GAUGE_WORK *gauge, u8 *end_flag)
@@ -2659,8 +2659,8 @@ void Gauge_LevelUpEffectStart(GAUGE_WORK *gauge, u8 *end_flag)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒWƒŒƒxƒ‹ƒAƒbƒvƒGƒtƒFƒNƒgFƒƒCƒ“ƒ^ƒXƒN
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼šãƒ¡ã‚¤ãƒ³ã‚¿ã‚¹ã‚¯
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
  * @param   work		GAUGE_LEVELUP_EFF_WORK
  */
 //--------------------------------------------------------------
@@ -2720,21 +2720,21 @@ static void GaugeLevelUpEffTask(TCB_PTR tcb, void *work)
 
 //==============================================================================
 //
-//	ƒGƒtƒFƒNƒgŠÖ˜AF“Á’è‚ÌƒQ[ƒW‚ÌƒJƒ‰[‚ğˆÃ‚­‚·‚é
+//	ã‚¨ãƒ•ã‚§ã‚¯ãƒˆé–¢é€£ï¼šç‰¹å®šã®ã‚²ãƒ¼ã‚¸ã®ã‚«ãƒ©ãƒ¼ã‚’æš—ãã™ã‚‹
 //
 //==============================================================================
-///ƒQ[ƒW‚ÌF‚ğ•F‚É‚µ‚½‚ÌEVY’l
+///ã‚²ãƒ¼ã‚¸ã®è‰²ã‚’é»’è‰²ã«ã—ãŸæ™‚ã®EVYå€¤
 #define GAUGE_COLOR_BACK_EVY		(8)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌF‚ğ•F‚É‚·‚é
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ã®è‰²ã‚’é»’è‰²ã«ã™ã‚‹
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Gauge_ColorBlackSet(GAUGE_WORK *gauge)
 {
-#if 1		//F•Ï‚¦‚Í‚µ‚È‚­‚È‚Á‚½ 2006.04.11(‰Î)
+#if 1		//è‰²å¤‰ãˆã¯ã—ãªããªã£ãŸ 2006.04.11(ç«)
 	return;
 #else
 	CATS_RES_PTR crp;
@@ -2756,13 +2756,13 @@ void Gauge_ColorBlackSet(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌF‚ğŒ³‚É–ß‚µ‚½
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ã®è‰²ã‚’å…ƒã«æˆ»ã—ãŸ
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Gauge_ColorNormalSet(GAUGE_WORK *gauge)
 {
-#if 1	//F•Ï‚¦‚Í‚µ‚È‚­‚È‚Á‚½ 2006.04.11(‰Î)
+#if 1	//è‰²å¤‰ãˆã¯ã—ãªããªã£ãŸ 2006.04.11(ç«)
 	return;
 #else
 	CATS_RES_PTR crp;
@@ -2786,8 +2786,8 @@ void Gauge_ColorNormalSet(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌSinƒJ[ƒuƒGƒtƒFƒNƒg‚ğƒZƒbƒg‚·‚é
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ã®Sinã‚«ãƒ¼ãƒ–ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Gauge_SinCurveSet(GAUGE_WORK *gauge)
@@ -2802,8 +2802,8 @@ void Gauge_SinCurveSet(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌSinƒJ[ƒuƒGƒtƒFƒNƒg‚ğ’â~‚³‚¹‚é
- * @param   gauge		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ã®Sinã‚«ãƒ¼ãƒ–ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’åœæ­¢ã•ã›ã‚‹
+ * @param   gauge		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 void Gauge_SinCurveStop(GAUGE_WORK *gauge)
@@ -2818,9 +2818,9 @@ void Gauge_SinCurveStop(GAUGE_WORK *gauge)
 
 //--------------------------------------------------------------
 /**
- * @brief   ƒQ[ƒW‚ÌSinƒJ[ƒuƒƒCƒ““®ì
- * @param   tcb			TCB‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param   work		ƒQ[ƒWƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief   ã‚²ãƒ¼ã‚¸ã®Sinã‚«ãƒ¼ãƒ–ãƒ¡ã‚¤ãƒ³å‹•ä½œ
+ * @param   tcb			TCBã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param   work		ã‚²ãƒ¼ã‚¸ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 static void GaugeSinCurveMain(TCB_PTR tcb, void *work)

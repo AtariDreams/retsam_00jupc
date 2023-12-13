@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_fontoam.h
- *	@brief		�ӂ����OAM�쐬�V�X�e��
+ *	@brief		ふぉんとOAM作成システム
  *	@author		tomoya takahashi
  *	@data		2006.01.23
  *
@@ -25,18 +25,18 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
 //	
-//	�}�Ӄt�H���gOAM�f�[�^
+//	図鑑フォントOAMデータ
 //	
 //=====================================
 typedef struct {
@@ -46,7 +46,7 @@ typedef struct {
 
 //-------------------------------------
 //	
-//	�}�Ӄt�H���gOAM�V�X�e��
+//	図鑑フォントOAMシステム
 //	
 //=====================================
 typedef struct _ZKN_FONTOAM_SYS* ZKN_FONTOAM_SYS_PTR;
@@ -54,42 +54,42 @@ typedef const struct _ZKN_FONTOAM_SYS* CONST_ZKN_FONTOAM_SYS_PTR;
 
 //-------------------------------------
 //	
-//	�}�Ӄt�H���gOAM�V�X�e���������֐�
+//	図鑑フォントOAMシステム初期化関数
 //	
 //=====================================
 typedef struct {
-	CLACT_SET_PTR clact_set;	// �g�p����Z���A�N�^�[�Z�b�g
-	GF_BGL_INI*		p_bg;		// bg�V�X�e��
-	int work_num;		// �o�^�ő吔
-	int heap;			// �q�[�v
+	CLACT_SET_PTR clact_set;	// 使用するセルアクターセット
+	GF_BGL_INI*		p_bg;		// bgシステム
+	int work_num;		// 登録最大数
+	int heap;			// ヒープ
 } ZKN_FONTOAM_SYS_INIT;
 
 
 //-------------------------------------
 //	
-//	�t�H���g�f�[�^�o�^�\����
+//	フォントデータ登録構造体
 //	
 //=====================================
 typedef struct {
-	ZKN_FONTOAM_SYS_PTR zkn_fontoam;	// fontoam�V�X�e��
-	const GF_BGL_BMPWIN*	p_bmp;		// �r�b�g�}�b�v�f�[�^
-	const NNSG2dImagePaletteProxy* pltt;// �Z���Q�Ɛ�p���b�g�v���N�V
-	CONST_CLACT_WORK_PTR	parent;		// �e�̃A�N�^�[		����Ȃ��Ƃ�NULL	�i�{�^���Ȃǁj
-	int					x;				// �o�^�����W		�e�A�N�^�[������Ƃ��͐e����̃I�t�Z�b�g�����W	(dot�P��)
-	int					y;				// �o�^�����W		�e�A�N�^�[������Ƃ��͐e����̃I�t�Z�b�g�����W	(dot�P��)
-	int					bg_pri;			// bg�D�揇��
-	int					soft_pri;		// �\�t�g�D�揇��
-	int					draw_area;		// �\����
+	ZKN_FONTOAM_SYS_PTR zkn_fontoam;	// fontoamシステム
+	const GF_BGL_BMPWIN*	p_bmp;		// ビットマップデータ
+	const NNSG2dImagePaletteProxy* pltt;// セル参照先パレットプロクシ
+	CONST_CLACT_WORK_PTR	parent;		// 親のアクター		いらないときNULL	（ボタンなど）
+	int					x;				// 登録ｘ座標		親アクターがあるときは親からのオフセットｙ座標	(dot単位)
+	int					y;				// 登録ｙ座標		親アクターがあるときは親からのオフセットｙ座標	(dot単位)
+	int					bg_pri;			// bg優先順位
+	int					soft_pri;		// ソフト優先順位
+	int					draw_area;		// 表示先
 	/*
-		NNS_G2D_VRAM_TYPE_2DMAIN    �Q�c�O���t�B�b�N�X�G���W���`�p
-		NNS_G2D_VRAM_TYPE_2DSUB     �Q�c�O���t�B�b�N�X�G���W���a�p*/
-	int					heap;			// �g�p����q�[�v	
+		NNS_G2D_VRAM_TYPE_2DMAIN    ２ＤグラフィックスエンジンＡ用
+		NNS_G2D_VRAM_TYPE_2DSUB     ２ＤグラフィックスエンジンＢ用*/
+	int					heap;			// 使用するヒープ	
 } ZKN_FONTOAM_INIT;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 GLOBAL ZKN_FONTOAM_SYS_PTR ZKN_FONTOAM_InitSys( const ZKN_FONTOAM_SYS_INIT* cp_init );
@@ -104,8 +104,8 @@ GLOBAL GF_BGL_BMPWIN* ZKN_FONTOAM_GetBmp( ZKN_FONTOAM_SYS_PTR fontoam_sys, int b
 GLOBAL void ZKN_FONTOAM_DeleteBmp( GF_BGL_BMPWIN* win );
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/15
-// ZKN_FONTOAM_PrintBmpStr(), ZKN_FONTOAM_PrintBmpStrBuf() �̕Ԓl��
-// void ����`�悵��������̒����i�s�N�Z���P�ʁj��Ԃ��悤�ɕύX
+// ZKN_FONTOAM_PrintBmpStr(), ZKN_FONTOAM_PrintBmpStrBuf() の返値を
+// void から描画した文字列の長さ（ピクセル単位）を返すように変更
 GLOBAL u32 ZKN_FONTOAM_PrintBmpStr( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN* win, u32 dataid, u32 msgid, int bmp_x, int bmp_y );
 // ----------------------------------------------------------------------------
 GLOBAL void ZKN_FONTOAM_PrintBmpStrCenter( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN* win, u32 dataid, u32 msgid );

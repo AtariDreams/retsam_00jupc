@@ -3,7 +3,7 @@
 	
 	The main entry points for the Profiler.
 	
-	Copyright © 1996-2003 Metrowerks Corporation.  All rights reserved.
+	Copyright 1996-2003 Metrowerks Corporation.  All rights reserved.
  */
 
 #ifndef __PROFILER__

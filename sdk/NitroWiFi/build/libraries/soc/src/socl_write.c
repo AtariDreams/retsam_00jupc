@@ -12,110 +12,110 @@
 
   $Log: socl_write.c,v $
   Revision 1.35  2007/06/20 09:04:26  yasu
-  ƒRƒlƒNƒVƒ‡ƒ“‚Ì•sˆÓ‚Ì’fâ‚Ì‘Î‰
+  ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã®ä¸æ„ã®æ–­çµ¶ã®å¯¾å¿œ
 
   Revision 1.34  2006/03/10 09:22:19  kitase_hirotake
   INDENT SOURCE
 
   Revision 1.33  2006/01/17 07:26:22  yasu
-  ’˜ì”N“x 2005->2006 •ÏX
+  è‘—ä½œå¹´åº¦ 2005->2006 å¤‰æ›´
 
   Revision 1.32  2006/01/17 07:24:36  yasu
-  TCP BLOCK Write ‚É‚¨‚¯‚é•s‹ï‡‚ÌC³‚ÌÄ’Ç‰Á
-  BLOCK ƒ‚[ƒh”»’è—p‚Ìƒ}ƒNƒ‚Ì“±“ü
+  TCP BLOCK Write ã«ãŠã‘ã‚‹ä¸å…·åˆã®ä¿®æ­£ã®å†è¿½åŠ 
+  BLOCK ãƒ¢ãƒ¼ãƒ‰åˆ¤å®šç”¨ã®ãƒã‚¯ãƒ­ã®å°å…¥
 
   Revision 1.31  2005/10/20 09:08:14  yasu
-  ‘—M¸”s‚É‚¨‚¢‚Ä Write ƒoƒbƒtƒ@‚ğŠJ•ú‚µ‚Ä‚¢‚È‚¢•s‹ï‡C³
+  é€ä¿¡å¤±æ•—æ™‚ã«ãŠã„ã¦ Write ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾ã—ã¦ã„ãªã„ä¸å…·åˆä¿®æ­£
 
   Revision 1.30  2005/10/18 06:12:44  terui
-  TCP‘—MƒXƒ‹[ƒvƒbƒgŒüã‚ÉŠÖ˜A‚·‚é•ÏX
+  TCPé€ä¿¡ã‚¹ãƒ«ãƒ¼ãƒ—ãƒƒãƒˆå‘ä¸Šã«é–¢é€£ã™ã‚‹å¤‰æ›´
 
   Revision 1.29  2005/09/19 15:11:37  yasu
-  Closing ó‘Ô‚ğ’Ç‰Á‚µ‚½•”•ª‚Ì”÷’²®
+  Closing çŠ¶æ…‹ã‚’è¿½åŠ ã—ãŸéƒ¨åˆ†ã®å¾®èª¿æ•´
 
   Revision 1.28  2005/09/19 14:08:29  yasu
-  Closing ó‘Ô‚ğ’Ç‰Á‚µ‚½
+  Closing çŠ¶æ…‹ã‚’è¿½åŠ ã—ãŸ
 
   Revision 1.27  2005/09/19 04:51:49  seiki_masashi
   small fix
 
   Revision 1.26  2005/09/17 11:54:52  yasu
-  typo C³
+  typo ä¿®æ­£
 
   Revision 1.25  2005/09/17 10:14:00  yasu
-  SocWrite ‚ÌƒGƒ‰[‚Ìƒnƒ“ƒhƒŠƒ“ƒN‚ğŒµ‚µ‚­‚µ‚½
+  SocWrite ã®ã‚¨ãƒ©ãƒ¼æ™‚ã®ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚¯ã‚’å³ã—ãã—ãŸ
 
   Revision 1.24  2005/09/13 07:27:06  yada
   applied for connect() on UDP
 
   Revision 1.23  2005/09/08 05:35:34  yasu
-  ƒ\ƒPƒbƒgƒfƒXƒNƒŠƒvƒ^‚ª—LŒø’l‚Å‚ ‚é‚©‚Ç‚¤‚©‚Ì”»’è‚ğ SOCL ‘¤‚Ås‚È‚¤‚±‚Æ‚É‚·‚é
+  ã‚½ã‚±ãƒƒãƒˆãƒ‡ã‚¹ã‚¯ãƒªãƒ—ã‚¿ãŒæœ‰åŠ¹å€¤ã§ã‚ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šã‚’ SOCL å´ã§è¡Œãªã†ã“ã¨ã«ã™ã‚‹
 
   Revision 1.22  2005/08/24 09:25:13  yasu
-  SOCL_SocketIsInvalid ’Ç‰Á
+  SOCL_SocketIsInvalid è¿½åŠ 
 
   Revision 1.21  2005/08/11 10:06:09  yasu
-  write ‚Å‚Ì UDP ƒoƒCƒ“ƒhŒ‹‰Ê‚ğ CPS ‘w‚É”½‰f‚³‚¹‚é
+  write ã§ã® UDP ãƒã‚¤ãƒ³ãƒ‰çµæœã‚’ CPS å±¤ã«åæ˜ ã•ã›ã‚‹
 
   Revision 1.20  2005/08/11 07:56:32  yasu
-  UDP ‚Ì Write ‚É–¾¦“I‚É Eƒ|[ƒg‚ğæ“¾‚·‚é
+  UDP ã® Write æ™‚ã«æ˜ç¤ºçš„ã« Eãƒãƒ¼ãƒˆã‚’å–å¾—ã™ã‚‹
 
   Revision 1.19  2005/08/11 07:30:03  yasu
-  Write ƒRƒ}ƒ“ƒh‚ÌƒpƒCƒv‘—M‚ÌƒGƒ‰[ƒnƒ“ƒhƒŠƒ“ƒO‚ÌC³
+  Write ã‚³ãƒãƒ³ãƒ‰ã®ãƒ‘ã‚¤ãƒ—é€ä¿¡æ™‚ã®ã‚¨ãƒ©ãƒ¼ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã®ä¿®æ­£
 
   Revision 1.18  2005/08/11 05:08:51  yasu
-  ƒŠƒ“ƒOƒoƒbƒtƒ@ŠÇ—‚ÌC³
+  ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ç®¡ç†ã®ä¿®æ­£
 
   Revision 1.17  2005/08/10 12:34:04  yasu
-  ƒoƒbƒtƒ@‚Ì‘€ì•ÏX
+  ãƒãƒƒãƒ•ã‚¡ã®æ“ä½œå¤‰æ›´
 
   Revision 1.16  2005/08/10 04:51:12  yasu
-  ƒŠƒ“ƒOƒoƒbƒtƒ@ full ‚Ìˆ—C³
+  ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ full æ™‚ã®å‡¦ç†ä¿®æ­£
 
   Revision 1.15  2005/08/09 12:27:12  yasu
-  ƒŠƒ“ƒOƒoƒbƒtƒ@‚©‚ç‚Ìƒf[ƒ^ƒRƒs[ˆ—‚ÌC³
+  ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ”ãƒ¼å‡¦ç†ã®ä¿®æ­£
 
   Revision 1.14  2005/08/09 07:43:29  yasu
-  LANG=en ‚Å‚ÌƒRƒ“ƒpƒCƒ‹‘Î‰
+  LANG=en ã§ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«å¯¾å¿œ
 
   Revision 1.13  2005/08/09 04:31:10  yasu
-  ASSERT ˆ—‚Ì³‹U”»’è‚ÌC³
+  ASSERT å‡¦ç†ã®æ­£å½åˆ¤å®šã®ä¿®æ­£
 
   Revision 1.12  2005/08/09 03:20:39  yasu
-  ¬“ü‚µ‚Ä‚¢‚½ƒfƒoƒbƒNƒƒbƒZ[ƒWíœ
+  æ··å…¥ã—ã¦ã„ãŸãƒ‡ãƒãƒƒã‚¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‰Šé™¤
 
   Revision 1.11  2005/08/09 01:21:02  yasu
-  sndbuf ƒTƒCƒY‚Ì§ŒÀˆ—‚ÌC³
+  sndbuf ã‚µã‚¤ã‚ºã®åˆ¶é™å‡¦ç†ã®ä¿®æ­£
 
   Revision 1.10  2005/08/08 14:16:36  yasu
-  TCP ‚Ì send ˆ—‚Ì‘Î‰
+  TCP ã® send å‡¦ç†ã®å¯¾å¿œ
 
   Revision 1.9  2005/08/01 07:02:50  seiki_masashi
-  non-blocking ‚Éƒoƒbƒtƒ@‚Ì‹ó‚«‚ª‚È‚¢ê‡‚É EWOULDBLOCK ‚ğ•Ô‚·‚æ‚¤‚ÉC³
+  non-blocking æ™‚ã«ãƒãƒƒãƒ•ã‚¡ã®ç©ºããŒãªã„å ´åˆã« EWOULDBLOCK ã‚’è¿”ã™ã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.8  2005/08/01 04:55:25  yasu
-  SOCL_Write ‚Ì•Ô’l‚ÌC³
+  SOCL_Write ã®è¿”å€¤ã®ä¿®æ­£
 
   Revision 1.7  2005/07/30 22:30:14  yasu
-  ƒfƒ‚‚ª“®‚­‚æ‚¤‚ÉC³
+  ãƒ‡ãƒ¢ãŒå‹•ãã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.6  2005/07/30 15:30:52  yasu
-  ƒRƒ}ƒ“ƒhƒpƒCƒv•ª—£‚É‚Æ‚à‚È‚¤C³
+  ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—åˆ†é›¢ã«ã¨ã‚‚ãªã†ä¿®æ­£
 
   Revision 1.5  2005/07/28 11:16:12  yasu
-  ‹¤—L‰Â”\‚ÈƒR[ƒh‚ğØ‚èo‚µ‚ÄŠÖ”‚Ö
+  å…±æœ‰å¯èƒ½ãªã‚³ãƒ¼ãƒ‰ã‚’åˆ‡ã‚Šå‡ºã—ã¦é–¢æ•°ã¸
 
   Revision 1.4  2005/07/27 12:19:00  yasu
-  sendto ‚Ì’Ç‰Á
+  sendto ã®è¿½åŠ 
 
   Revision 1.3  2005/07/25 10:15:01  yasu
-  SOC ƒ‰ƒCƒuƒ‰ƒŠ‚Ì’Ç‰Á
+  SOC ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®è¿½åŠ 
 
   Revision 1.2  2005/07/22 12:44:56  yasu
-  ”ñ“¯Šúˆ—‰¼À‘•
+  éåŒæœŸå‡¦ç†ä»®å®Ÿè£…
 
   Revision 1.1  2005/07/19 14:06:33  yasu
-  SOCL_Read/Write ’Ç‰Á
+  SOCL_Read/Write è¿½åŠ 
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -134,19 +134,19 @@ static int  SOCLi_GetOptimumSendBufLen(int);
 /*---------------------------------------------------------------------------*
   Name:         SOCL_Write
 
-  Description:  ƒ\ƒPƒbƒg‚©‚çƒf[ƒ^‚ğ‘—‚è‚Ü‚·D
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚Šã¾ã™ï¼
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer          ‘—Mƒf[ƒ^
-                buffer_len      ‘—Mƒf[ƒ^‚Ì’·‚³
-                remote_port     ‘—MæƒzƒXƒg port
-                remote_ip       ‘—MæƒzƒXƒg ip
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer          é€ä¿¡ãƒ‡ãƒ¼ã‚¿
+                buffer_len      é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                remote_port     é€ä¿¡å…ˆãƒ›ã‚¹ãƒˆ port
+                remote_ip       é€ä¿¡å…ˆãƒ›ã‚¹ãƒˆ ip
 
-                remote_port/remote_ip ‚Í Connect ‚ğs‚È‚Á‚Ä‚¢‚È‚¢ UDP ‚Ìê‡
-                ‚Ì‚İ—LŒø. TCP ‚â Connect ‚ğs‚È‚Á‚½ UDP ‚Ìê‡‚Í’l‚Í–³‹‚³‚ê‚é
+                remote_port/remote_ip ã¯ Connect ã‚’è¡Œãªã£ã¦ã„ãªã„ UDP ã®å ´åˆ
+                ã®ã¿æœ‰åŠ¹. TCP ã‚„ Connect ã‚’è¡Œãªã£ãŸ UDP ã®å ´åˆã¯å€¤ã¯ç„¡è¦–ã•ã‚Œã‚‹
 
-  Returns:      ³‚Ì’l: óM‚µ‚½ƒƒbƒZ[ƒW‚ÌƒoƒCƒg”
-                •‰‚Ì’l: ƒGƒ‰[
+  Returns:      æ­£ã®å€¤: å—ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒã‚¤ãƒˆæ•°
+                è² ã®å€¤: ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 int SOCL_Write(int s, const void* buffer, int buffer_len, u16 remote_port, SOCLInAddr remote_ip)
 {
@@ -156,16 +156,16 @@ int SOCL_Write(int s, const void* buffer, int buffer_len, u16 remote_port, SOCLI
 /*---------------------------------------------------------------------------*
   Name:         SOCL_WriteNoBlock
 
-  Description:  ƒ\ƒPƒbƒg‚©‚ç NOBLOCK ƒ‚[ƒh‚Åƒf[ƒ^‚ğ‘—‚è‚Ü‚·D
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‹ã‚‰ NOBLOCK ãƒ¢ãƒ¼ãƒ‰ã§ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚Šã¾ã™ï¼
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer          ‘—Mƒf[ƒ^
-                buffer_len      ‘—Mƒf[ƒ^‚Ì’·‚³
-                remote_port     ‘—MæƒzƒXƒg port (UDP ‚Ì‚İ—LŒø)
-                remote_ip       ‘—MæƒzƒXƒg ip   (UDP ‚Ì‚İ—LŒø)
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer          é€ä¿¡ãƒ‡ãƒ¼ã‚¿
+                buffer_len      é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                remote_port     é€ä¿¡å…ˆãƒ›ã‚¹ãƒˆ port (UDP ã®ã¿æœ‰åŠ¹)
+                remote_ip       é€ä¿¡å…ˆãƒ›ã‚¹ãƒˆ ip   (UDP ã®ã¿æœ‰åŠ¹)
 
-  Returns:      ³‚Ì’l: ‘—M‚µ‚½ƒƒbƒZ[ƒW‚ÌƒoƒCƒg”
-                •‰‚Ì’l: ƒGƒ‰[
+  Returns:      æ­£ã®å€¤: é€ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒã‚¤ãƒˆæ•°
+                è² ã®å€¤: ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 int SOCL_WriteNoBlock(int s, const void* buffer, int buffer_len, u16 remote_port, SOCLInAddr remote_ip)
 {
@@ -175,16 +175,16 @@ int SOCL_WriteNoBlock(int s, const void* buffer, int buffer_len, u16 remote_port
 /*---------------------------------------------------------------------------*
   Name:         SOCL_WriteBlock
 
-  Description:  ƒ\ƒPƒbƒg‚©‚ç BLOCK ƒ‚[ƒh‚Åƒf[ƒ^‚ğ‘—‚è‚Ü‚·D
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‹ã‚‰ BLOCK ãƒ¢ãƒ¼ãƒ‰ã§ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚Šã¾ã™ï¼
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer          ‘—Mƒf[ƒ^
-                buffer_len      ‘—Mƒf[ƒ^‚Ì’·‚³
-                remote_port     ‘—MæƒzƒXƒg port (UDP ‚Ì‚İ—LŒø)
-                remote_ip       ‘—MæƒzƒXƒg ip   (UDP ‚Ì‚İ—LŒø)
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer          é€ä¿¡ãƒ‡ãƒ¼ã‚¿
+                buffer_len      é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                remote_port     é€ä¿¡å…ˆãƒ›ã‚¹ãƒˆ port (UDP ã®ã¿æœ‰åŠ¹)
+                remote_ip       é€ä¿¡å…ˆãƒ›ã‚¹ãƒˆ ip   (UDP ã®ã¿æœ‰åŠ¹)
 
-  Returns:      ³‚Ì’l: ‘—M‚µ‚½ƒƒbƒZ[ƒW‚ÌƒoƒCƒg”
-                •‰‚Ì’l: ƒGƒ‰[
+  Returns:      æ­£ã®å€¤: é€ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒã‚¤ãƒˆæ•°
+                è² ã®å€¤: ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 int SOCL_WriteBlock(int s, const void* buffer, int buffer_len, u16 remote_port, SOCLInAddr remote_ip)
 {
@@ -194,20 +194,20 @@ int SOCL_WriteBlock(int s, const void* buffer, int buffer_len, u16 remote_port, 
 /*---------------------------------------------------------------------------*
   Name:         SOCL_WriteTo
 
-  Description:  ƒ\ƒPƒbƒg‚©‚çƒf[ƒ^‚ğ‘—‚è‚Ü‚·D
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚Šã¾ã™ï¼
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer          ‘—Mƒf[ƒ^
-                buffer_len      ‘—Mƒf[ƒ^‚Ì’·‚³
-                remote_port     ‘—MæƒzƒXƒg port
-                remote_ip       ‘—MæƒzƒXƒg ip
-                flag            ‘—Mƒtƒ‰ƒO
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer          é€ä¿¡ãƒ‡ãƒ¼ã‚¿
+                buffer_len      é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                remote_port     é€ä¿¡å…ˆãƒ›ã‚¹ãƒˆ port
+                remote_ip       é€ä¿¡å…ˆãƒ›ã‚¹ãƒˆ ip
+                flag            é€ä¿¡ãƒ•ãƒ©ã‚°
 
-                remote_port/remote_ip ‚Í Connect ‚ğs‚È‚Á‚Ä‚¢‚È‚¢ UDP ‚Ìê‡
-                ‚Ì‚İ—LŒø. TCP ‚â Connect ‚ğs‚È‚Á‚½ UDP ‚Ìê‡‚Í’l‚Í–³‹‚³‚ê‚é
+                remote_port/remote_ip ã¯ Connect ã‚’è¡Œãªã£ã¦ã„ãªã„ UDP ã®å ´åˆ
+                ã®ã¿æœ‰åŠ¹. TCP ã‚„ Connect ã‚’è¡Œãªã£ãŸ UDP ã®å ´åˆã¯å€¤ã¯ç„¡è¦–ã•ã‚Œã‚‹
 
-  Returns:      ³‚Ì’l: óM‚µ‚½ƒƒbƒZ[ƒW‚ÌƒoƒCƒg”
-                •‰‚Ì’l: ƒGƒ‰[
+  Returns:      æ­£ã®å€¤: å—ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒã‚¤ãƒˆæ•°
+                è² ã®å€¤: ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 int SOCL_WriteTo(int s, const void* buffer, int buffer_len, u16 remote_port, SOCLInAddr remote_ip, int flags)
 {
@@ -218,26 +218,26 @@ int SOCL_WriteTo(int s, const void* buffer, int buffer_len, u16 remote_port, SOC
 
     if (SOCL_SocketIsInvalid(socket))
     {
-        return SOCL_EINVAL;     // ‹K’èŠO‚Ì’l
+        return SOCL_EINVAL;     // è¦å®šå¤–ã®å€¤
     }
 
     if (!SOCL_SocketIsCreated(socket))
     {
-        return SOCL_ENETRESET;  // ‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¢
+        return SOCL_ENETRESET;  // åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã„
     }
 
     if (SOCL_SocketIsTCP(socket) && (!SOCL_SocketIsConnected(socket) || SOCL_SocketIsClosing(socket)))
     {
-        return SOCL_ENOTCONN;   // Ú‘±‚µ‚Ä‚¢‚È‚¢
+        return SOCL_ENOTCONN;   // æ¥ç¶šã—ã¦ã„ãªã„
     }
 
     SDK_ASSERT(buffer && buffer_len);
     send_pipe = socket->send_pipe;
-    SDK_ASSERT(send_pipe);      // ‰Šú‰»‚Ì‚³‚ê•û‚ª‚¨‚©‚µ‚¢
+    SDK_ASSERT(send_pipe);      // åˆæœŸåŒ–ã®ã•ã‚Œæ–¹ãŒãŠã‹ã—ã„
 
     //
-    // Lock ‚ğ‚©‚¯‚Ä‘¼‚ÌƒXƒŒƒbƒh‚©‚ç‚ÌƒAƒNƒZƒX‚ğ”rœ‚·‚éD
-    // “Á‚Éƒoƒbƒtƒ@‚Ì“à•”‚ÉƒAƒNƒZƒX‚·‚éˆ—‚Í’ˆÓ[‚­”r‘¼‚ğ‚©‚¯‚é•K—v‚ ‚è
+    // Lock ã‚’ã‹ã‘ã¦ä»–ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‹ã‚‰ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’æ’é™¤ã™ã‚‹ï¼
+    // ç‰¹ã«ãƒãƒƒãƒ•ã‚¡ã®å†…éƒ¨ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹å‡¦ç†ã¯æ³¨æ„æ·±ãæ’ä»–ã‚’ã‹ã‘ã‚‹å¿…è¦ã‚ã‚Š
     //
     if ((flags & SOCL_MSG_DONTWAIT) || SOCL_SocketIsNoBlock(socket))
     {
@@ -263,16 +263,16 @@ int SOCL_WriteTo(int s, const void* buffer, int buffer_len, u16 remote_port, SOC
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_WriteBuffer
 
-  Description:  WRITE ˆ—‚ğŠJn‚µ‚Ü‚·D‚½‚¾‚µ”r‘¼§Œä‚Ís‚È‚í‚ê‚Ä‚¢‚Ü‚¹‚ñD
+  Description:  WRITE å‡¦ç†ã‚’é–‹å§‹ã—ã¾ã™ï¼ãŸã ã—æ’ä»–åˆ¶å¾¡ã¯è¡Œãªã‚ã‚Œã¦ã„ã¾ã›ã‚“ï¼
 
-  Arguments:    socket          ƒ\ƒPƒbƒg
-                buffer          ƒRƒs[ƒf[ƒ^
-                buffer_len      ƒRƒs[ƒf[ƒ^‚Ì’·‚³
-                remote_port     ‘—MæƒzƒXƒg port (UDP ‚Ì‚İ—LŒø)
-                remote_ip       ‘—MæƒzƒXƒg ip   (UDP ‚Ì‚İ—LŒø)
-                flag_block      BLOCK ‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+  Arguments:    socket          ã‚½ã‚±ãƒƒãƒˆ
+                buffer          ã‚³ãƒ”ãƒ¼ãƒ‡ãƒ¼ã‚¿
+                buffer_len      ã‚³ãƒ”ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                remote_port     é€ä¿¡å…ˆãƒ›ã‚¹ãƒˆ port (UDP ã®ã¿æœ‰åŠ¹)
+                remote_ip       é€ä¿¡å…ˆãƒ›ã‚¹ãƒˆ ip   (UDP ã®ã¿æœ‰åŠ¹)
+                flag_block      BLOCK ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
 
-  Returns:      ƒRƒs[‚Å‚«‚½ƒf[ƒ^’· (0 ‚È‚ç¸”s)
+  Returns:      ã‚³ãƒ”ãƒ¼ã§ããŸãƒ‡ãƒ¼ã‚¿é•· (0 ãªã‚‰å¤±æ•—)
  *---------------------------------------------------------------------------*/
 static int SOCLi_WriteBuffer(SOCLSocket*  socket, const u8*  buffer, s32 buffer_len, u16 remote_port,
                              SOCLInAddr remote_ip, s32 flag_block)
@@ -288,19 +288,19 @@ static int SOCLi_WriteBuffer(SOCLSocket*  socket, const u8*  buffer, s32 buffer_
 #endif
     int result;
 
-    SDK_ASSERT(send_pipe);              // ‰Šú‰»‚Ì‚³‚ê•û‚ª‚¨‚©‚µ‚¢
-    SDK_ASSERT(send_pipe->exe_socket);  // ‰Šú‰»‚Ì‚³‚ê•û‚ª‚¨‚©‚µ‚¢
+    SDK_ASSERT(send_pipe);              // åˆæœŸåŒ–ã®ã•ã‚Œæ–¹ãŒãŠã‹ã—ã„
+    SDK_ASSERT(send_pipe->exe_socket);  // åˆæœŸåŒ–ã®ã•ã‚Œæ–¹ãŒãŠã‹ã—ã„
 
-    // ‘—MƒXƒƒbƒg(sndbuf)‚Ìƒoƒbƒtƒ@ƒTƒCƒY‚ğæ“¾‚·‚é
+    // é€ä¿¡ã‚¹ãƒ­ãƒƒãƒˆ(sndbuf)ã®ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
     sndbuf_len = (s32) send_pipe->exe_socket->cps_socket.sndbuf.size;
 
     if (SOCL_SocketIsUDP(socket))
     {
         sndbuf_len -= SOCL_UDP_SNDBUF_NOCOPY_OFFSET;
 
-        // UDP ‚Ìê‡Asndbuf/wrtbuf ‚ÌƒTƒCƒY‚æ‚è‚à“]‘—ƒTƒCƒY‚ª‘å‚«‚¢ê‡‚Í
-        // “]‘—•s‰Â
-        // SEND PIPE ‚ÉÚ‘±‚³‚ê‚Ä‚¢‚é CPS ƒ\ƒPƒbƒg‚Ì sndbuf ƒTƒCƒY‚ğŠm”F‚·‚é
+        // UDP ã®å ´åˆã€sndbuf/wrtbuf ã®ã‚µã‚¤ã‚ºã‚ˆã‚Šã‚‚è»¢é€ã‚µã‚¤ã‚ºãŒå¤§ãã„å ´åˆã¯
+        // è»¢é€ä¸å¯
+        // SEND PIPE ã«æ¥ç¶šã•ã‚Œã¦ã„ã‚‹ CPS ã‚½ã‚±ãƒƒãƒˆã® sndbuf ã‚µã‚¤ã‚ºã‚’ç¢ºèªã™ã‚‹
         SDK_ASSERT(sndbuf_len >= 0);
 
         if (buffer_len > sndbuf_len)
@@ -308,21 +308,21 @@ static int SOCLi_WriteBuffer(SOCLSocket*  socket, const u8*  buffer, s32 buffer_
             return SOCL_EMSGSIZE;
         }
 
-        // UDP ‚Ì“]‘—‚Íˆê“x‚Ås‚È‚í‚ê‚é‚½‚ßƒf[ƒ^‚ğŠm•Û‚Å‚«‚é\•ª‚È‘å‚«‚³‚Ì
-        // ƒoƒbƒtƒ@‚ª•K—v
+        // UDP ã®è»¢é€ã¯ä¸€åº¦ã§è¡Œãªã‚ã‚Œã‚‹ãŸã‚ãƒ‡ãƒ¼ã‚¿ã‚’ç¢ºä¿ã§ãã‚‹ååˆ†ãªå¤§ãã•ã®
+        // ãƒãƒƒãƒ•ã‚¡ãŒå¿…è¦
         buffer_min = buffer_len;
     }
     else
     {
         sndbuf_len -= SOCL_TCP_SNDBUF_NOCOPY_OFFSET;
 
-        // TCP ‚Ì“]‘—‚Ìê‡‚Íƒoƒbƒtƒ@‚ª­‚È‚¯‚ê‚Î•ªŠ„‚·‚é
-        // 2‚Â‚Ìƒ|ƒŠƒV[‚ª‚ ‚é
+        // TCP ã®è»¢é€ã®å ´åˆã¯ãƒãƒƒãƒ•ã‚¡ãŒå°‘ãªã‘ã‚Œã°åˆ†å‰²ã™ã‚‹
+        // 2ã¤ã®ãƒãƒªã‚·ãƒ¼ãŒã‚ã‚‹
 #ifdef SDK_TCPSEND_DOIT_SOON
-        // NOBLOCK ‚É­‚µ‚Å‚àƒoƒbƒtƒ@‚ª‹ó‚¯‚Î‹l‚ß‚Ş
+        // NOBLOCK æ™‚ã«å°‘ã—ã§ã‚‚ãƒãƒƒãƒ•ã‚¡ãŒç©ºã‘ã°è©°ã‚è¾¼ã‚€
         buffer_min = (!SOCL_FLAGISBLOCK(flag_block)) ? 1 : MATH_MIN(buffer_len, sndbuf_len);
 #else
-        // NOBLOCK ‚Å‚à‹l‚ß‚Ü‚È‚¢
+        // NOBLOCK æ™‚ã§ã‚‚è©°ã‚è¾¼ã¾ãªã„
         buffer_min = MATH_MIN(buffer_len, sndbuf_len);
 #endif
     }
@@ -332,13 +332,13 @@ static int SOCLi_WriteBuffer(SOCLSocket*  socket, const u8*  buffer, s32 buffer_
     while (buffer_len > 0)
     {
         //
-        // ƒoƒbƒtƒ@‚ğŠm•Û‚·‚é
-        //   BLOCK   ‚ÍÅ’á‚Å‚à buffer_min ‚¾‚¯‚Ì‘å‚«‚³‚ª•Ô‚é‚Ü‚Å BLOCK ‚·‚é
-        //   NOBLOCK ‚Í buffer_min ‚¾‚¯‚Ì‘å‚«‚³‚ğæ“¾‚Å‚«‚È‚¯‚ê‚Î 0 ‚Å•Ô‚é
+        // ãƒãƒƒãƒ•ã‚¡ã‚’ç¢ºä¿ã™ã‚‹
+        //   BLOCK   æ™‚ã¯æœ€ä½ã§ã‚‚ buffer_min ã ã‘ã®å¤§ãã•ãŒè¿”ã‚‹ã¾ã§ BLOCK ã™ã‚‹
+        //   NOBLOCK æ™‚ã¯ buffer_min ã ã‘ã®å¤§ãã•ã‚’å–å¾—ã§ããªã‘ã‚Œã° 0 ã§è¿”ã‚‹
         write_len = SOCLi_AllocWriteBuffer(socket, buffer_len, buffer_min, &wrtbuf_in, flag_block);
 
         //
-        // Šm•Û‚Å‚«‚½‚çƒRƒ}ƒ“ƒhˆ—ŠJn
+        // ç¢ºä¿ã§ããŸã‚‰ã‚³ãƒãƒ³ãƒ‰å‡¦ç†é–‹å§‹
         //
         if (write_len > 0)
         {
@@ -346,7 +346,7 @@ static int SOCLi_WriteBuffer(SOCLSocket*  socket, const u8*  buffer, s32 buffer_
 
             if (result <= 0)
             {
-                // SOCLi_ExecWriteCommand ‚ª ERROR ‚É‚È‚é‚Ì‚Í NOBLOCK ‚Ì‚İ
+                // SOCLi_ExecWriteCommand ãŒ ERROR ã«ãªã‚‹ã®ã¯ NOBLOCK æ™‚ã®ã¿
                 return SOCL_EWOULDBLOCK;
             }
 
@@ -356,13 +356,13 @@ static int SOCLi_WriteBuffer(SOCLSocket*  socket, const u8*  buffer, s32 buffer_
         }
 
         //
-        // NoBlock ‚È‚çƒ‹[ƒvˆê‰ñ‚ÅI—¹
+        // NoBlock ãªã‚‰ãƒ«ãƒ¼ãƒ—ä¸€å›ã§çµ‚äº†
         //
         if (!SOCL_FLAGISBLOCK(flag_block))
         {
             if (write_len <= 0)
             {
-                // ƒoƒbƒtƒ@‚É‹ó‚«‚ª‚È‚¢‚±‚Æ‚ğ’Ê’m
+                // ãƒãƒƒãƒ•ã‚¡ã«ç©ºããŒãªã„ã“ã¨ã‚’é€šçŸ¥
                 return SOCL_EWOULDBLOCK;
             }
             break;
@@ -375,18 +375,18 @@ static int SOCLi_WriteBuffer(SOCLSocket*  socket, const u8*  buffer, s32 buffer_
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_AllocWriteBuffer
 
-  Description:  “]‘——pƒoƒbƒtƒ@‚Æ‚µ‚ÄŠm•Û‰Â”\‚ÈƒTƒCƒY‚ğæ“¾‚µ‚Ü‚·D
+  Description:  è»¢é€ç”¨ãƒãƒƒãƒ•ã‚¡ã¨ã—ã¦ç¢ºä¿å¯èƒ½ãªã‚µã‚¤ã‚ºã‚’å–å¾—ã—ã¾ã™ï¼
 
-                —v‹‚µ‚½’·‚³‚Ìƒoƒbƒtƒ@‚ªŠm•Û‰Â”\‚É‚È‚é‚Ü‚Å BLOCK ‚µ‚Ü‚·D
-                0 ‚ğw’è‚µ‚½ê‡‚Í NOBLOCK ‚Ìˆµ‚¢‚É‚È‚è‚Ü‚·D
+                è¦æ±‚ã—ãŸé•·ã•ã®ãƒãƒƒãƒ•ã‚¡ãŒç¢ºä¿å¯èƒ½ã«ãªã‚‹ã¾ã§ BLOCK ã—ã¾ã™ï¼
+                0 ã‚’æŒ‡å®šã—ãŸå ´åˆã¯ NOBLOCK ã®æ‰±ã„ã«ãªã‚Šã¾ã™ï¼
 
-  Arguments:    socket               ƒ\ƒPƒbƒg
-                max_size             æ“¾‚·‚éƒoƒbƒtƒ@‚ÌÅ‘å
-                min_size             æ“¾‚·‚éƒoƒbƒtƒ@‚ÌÅ¬
-                wrtbuf_in_ptr        ƒoƒbƒtƒ@‚Ì“ü—Íæ“ª
-                flag_block           æ“¾‚Å‚«‚é‚Ü‚Å BLOCK ‚·‚éH
+  Arguments:    socket               ã‚½ã‚±ãƒƒãƒˆ
+                max_size             å–å¾—ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®æœ€å¤§
+                min_size             å–å¾—ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®æœ€å°
+                wrtbuf_in_ptr        ãƒãƒƒãƒ•ã‚¡ã®å…¥åŠ›å…ˆé ­
+                flag_block           å–å¾—ã§ãã‚‹ã¾ã§ BLOCK ã™ã‚‹ï¼Ÿ
 
-  Returns:      Šm•Û‰Â”\‚Èƒoƒbƒtƒ@’·
+  Returns:      ç¢ºä¿å¯èƒ½ãªãƒãƒƒãƒ•ã‚¡é•·
  *---------------------------------------------------------------------------*/
 static s32 SOCLi_AllocWriteBuffer(SOCLSocket* socket, s32 max_size, s32 min_size, s32* wrtbuf_in_ptr, s32 flag_block)
 {
@@ -401,9 +401,9 @@ static s32 SOCLi_AllocWriteBuffer(SOCLSocket* socket, s32 max_size, s32 min_size
     SDK_ASSERT(wrtbuf_size >= min_size);
 
     //
-    // ‚à‚µÅ‘åƒTƒCƒY‚ÆÅ¬ƒTƒCƒY‚ª–µ‚‚µ‚Ä‚¢‚½‚çÅ‘åƒTƒCƒY‚ğ—Dæ
-    // Å‘åƒTƒCƒYˆÈã‚Ìƒf[ƒ^‚Íâ‘Î‚É•K—v‚Å‚È‚¢
-    // Å¬ƒTƒCƒY‚Í“]‘—Œø—¦‚ğŒüã‚·‚é‚½‚ß‚Ìİ’è‚Å‚ ‚é‚½‚ß
+    // ã‚‚ã—æœ€å¤§ã‚µã‚¤ã‚ºã¨æœ€å°ã‚µã‚¤ã‚ºãŒçŸ›ç›¾ã—ã¦ã„ãŸã‚‰æœ€å¤§ã‚µã‚¤ã‚ºã‚’å„ªå…ˆ
+    // æœ€å¤§ã‚µã‚¤ã‚ºä»¥ä¸Šã®ãƒ‡ãƒ¼ã‚¿ã¯çµ¶å¯¾ã«å¿…è¦ã§ãªã„
+    // æœ€å°ã‚µã‚¤ã‚ºã¯è»¢é€åŠ¹ç‡ã‚’å‘ä¸Šã™ã‚‹ãŸã‚ã®è¨­å®šã§ã‚ã‚‹ãŸã‚
     //
     if (min_size > max_size)
     {
@@ -411,8 +411,8 @@ static s32 SOCLi_AllocWriteBuffer(SOCLSocket* socket, s32 max_size, s32 min_size
     }
 
     //
-    // ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^‚ğæ“¾
-    //   wrtbuf_in ‚ª“ü—Í‘¤/wrtbuf_out ‚ªo—Í‘¤
+    // ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
+    //   wrtbuf_in ãŒå…¥åŠ›å´/wrtbuf_out ãŒå‡ºåŠ›å´
     //
     enable = OS_DisableInterrupts();
     while (1)
@@ -420,8 +420,8 @@ static s32 SOCLi_AllocWriteBuffer(SOCLSocket* socket, s32 max_size, s32 min_size
         free_size = SOCLi_GetWriteBufferFreeSize(socket);
 
         //
-        // ƒoƒbƒtƒ@’·‚ª\•ª‚É‚ ‚éê‡‚ÍI—¹
-        // max_size ‚ğ’´‚¦‚È‚¢‚æ‚¤‚ÉãŒÀ‚ğİ’è‚·‚é
+        // ãƒãƒƒãƒ•ã‚¡é•·ãŒååˆ†ã«ã‚ã‚‹å ´åˆã¯çµ‚äº†
+        // max_size ã‚’è¶…ãˆãªã„ã‚ˆã†ã«ä¸Šé™ã‚’è¨­å®šã™ã‚‹
         //
         if (free_size >= min_size)
         {
@@ -435,7 +435,7 @@ static s32 SOCLi_AllocWriteBuffer(SOCLSocket* socket, s32 max_size, s32 min_size
         }
 
         //
-        // NOBLOCK ‚È‚ç BLOCK ‚¹‚¸‚Éæ“¾ƒTƒCƒY 0 ‚ÅI—¹
+        // NOBLOCK ãªã‚‰ BLOCK ã›ãšã«å–å¾—ã‚µã‚¤ã‚º 0 ã§çµ‚äº†
         //
         if (!SOCL_FLAGISBLOCK(flag_block))
         {
@@ -444,29 +444,29 @@ static s32 SOCLi_AllocWriteBuffer(SOCLSocket* socket, s32 max_size, s32 min_size
         }
 
         //
-        // ƒoƒbƒtƒ@‚ª\•ª‚É“¾‚ç‚ê‚È‚¢‚Æ‚«‚Íƒoƒbƒtƒ@‚ª‹ó‚­‚Ü‚Å‘Ò‚Â
-        //   ƒTƒCƒY‚ª‘«‚è‚È‚¢‚±‚Æ‚Ì”»’f‚ÌŠJn‚©‚ç SleepThread “à‚Å
-        //   ƒoƒbƒtƒ@‹ó‚«‘Ò‚¿‚É“ü‚é‚Ü‚Å‚Í WriteCallBack ‚ª‘–‚ç‚È‚¢
-        //   ‚æ‚¤‚É‚µ‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+        // ãƒãƒƒãƒ•ã‚¡ãŒååˆ†ã«å¾—ã‚‰ã‚Œãªã„ã¨ãã¯ãƒãƒƒãƒ•ã‚¡ãŒç©ºãã¾ã§å¾…ã¤
+        //   ã‚µã‚¤ã‚ºãŒè¶³ã‚Šãªã„ã“ã¨ã®åˆ¤æ–­ã®é–‹å§‹ã‹ã‚‰ SleepThread å†…ã§
+        //   ãƒãƒƒãƒ•ã‚¡ç©ºãå¾…ã¡ã«å…¥ã‚‹ã¾ã§ã¯ WriteCallBack ãŒèµ°ã‚‰ãªã„
+        //   ã‚ˆã†ã«ã—ãªã‘ã‚Œã°ãªã‚‰ãªã„
         //
         OS_SleepThread(&send_pipe->buffer.waiting);
 
     }
     (void)OS_RestoreInterrupts(enable);
 
-    // ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ì‹ó‚«—Ìˆæ‚ğ•Ô‚·
+    // ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®ç©ºãé ˜åŸŸã‚’è¿”ã™
     return free_size;
 }
 
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_GetWriteBufferFreeSize
 
-  Description:  ‹ó‚«ƒoƒbƒtƒ@—Ê‚ğ•Ô‚µ‚Ü‚·.
-                ‚±‚ÌŠÖ”‚ÍŠ„‚è‚İ‹Ö~ó‘Ô‚ÅŒÄ‚Î‚ê‚È‚¯‚ê‚Î‚¢‚¯‚Ü‚¹‚ñD
+  Description:  ç©ºããƒãƒƒãƒ•ã‚¡é‡ã‚’è¿”ã—ã¾ã™.
+                ã“ã®é–¢æ•°ã¯å‰²ã‚Šè¾¼ã¿ç¦æ­¢çŠ¶æ…‹ã§å‘¼ã°ã‚Œãªã‘ã‚Œã°ã„ã‘ã¾ã›ã‚“ï¼
 
-  Arguments:    socket                ƒ\ƒPƒbƒg
+  Arguments:    socket                ã‚½ã‚±ãƒƒãƒˆ
 
-  Returns:      ‹ó‚«ƒoƒbƒtƒ@ƒTƒCƒY
+  Returns:      ç©ºããƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 s32 SOCLi_GetWriteBufferFreeSize(SOCLSocket* socket)
 {
@@ -494,18 +494,18 @@ s32 SOCLi_GetWriteBufferFreeSize(SOCLSocket* socket)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_ExecWriteCommand
 
-  Description:  WRITE ˆ—‚ğŠJn‚µ‚Ü‚·D‚½‚¾‚µ”r‘¼§Œä‚Ís‚È‚í‚ê‚Ä‚¢‚Ü‚¹‚ñD
-                ‚Ü‚½–‘O‚ÉƒŠƒ“ƒOƒoƒbƒtƒ@‚Öƒf[ƒ^‚ğƒRƒs[‚Å‚«‚é‚±‚Æ‚ğŠm”F‚µ‚Ä
-                ‚¨‚­•K—v‚ª‚ ‚è‚Ü‚·D
+  Description:  WRITE å‡¦ç†ã‚’é–‹å§‹ã—ã¾ã™ï¼ãŸã ã—æ’ä»–åˆ¶å¾¡ã¯è¡Œãªã‚ã‚Œã¦ã„ã¾ã›ã‚“ï¼
+                ã¾ãŸäº‹å‰ã«ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã¸ãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼ã§ãã‚‹ã“ã¨ã‚’ç¢ºèªã—ã¦
+                ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™ï¼
 
-  Arguments:    socket                ƒ\ƒPƒbƒg
-                buffer                ƒRƒs[ƒf[ƒ^
-                buffer_len            ƒRƒs[ƒf[ƒ^‚Ì’·‚³
-                wrtbuf_in             ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ö‚Ì“Š“üˆÊ’u
-                remote_port           ‘—MæƒzƒXƒg port (UDP ‚Ì‚İ—LŒø)
-                remote_ip             ‘—MæƒzƒXƒg ip   (UDP ‚Ì‚İ—LŒø)
+  Arguments:    socket                ã‚½ã‚±ãƒƒãƒˆ
+                buffer                ã‚³ãƒ”ãƒ¼ãƒ‡ãƒ¼ã‚¿
+                buffer_len            ã‚³ãƒ”ãƒ¼ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+                wrtbuf_in             ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã¸ã®æŠ•å…¥ä½ç½®
+                remote_port           é€ä¿¡å…ˆãƒ›ã‚¹ãƒˆ port (UDP ã®ã¿æœ‰åŠ¹)
+                remote_ip             é€ä¿¡å…ˆãƒ›ã‚¹ãƒˆ ip   (UDP ã®ã¿æœ‰åŠ¹)
 
-  Returns:      ƒRƒs[‚Å‚«‚½ƒf[ƒ^’· (0 ‚È‚ç¸”s)
+  Returns:      ã‚³ãƒ”ãƒ¼ã§ããŸãƒ‡ãƒ¼ã‚¿é•· (0 ãªã‚‰å¤±æ•—)
  *---------------------------------------------------------------------------*/
 static int SOCLi_ExecWriteCommand(SOCLSocket*  socket, const u8*  buffer, s32 buffer_len, s32 wrtbuf_in, u16 remote_port,
                                   SOCLInAddr remote_ip, s32 flag_block)
@@ -521,10 +521,10 @@ static int SOCLi_ExecWriteCommand(SOCLSocket*  socket, const u8*  buffer, s32 bu
     OS_TPrintf("socket=%08x exe_socket=%08x\n", socket, send_pipe->exe_socket);
 #endif
 
-    // ‘—MƒXƒŒƒbƒh‚ÉƒRƒ}ƒ“ƒh‚ğ“Š‚°AƒR[ƒ‹ƒoƒbƒNŠÖ”“à•”‚Å CPS_Write ‚ğ
-    // ‹N“®‚·‚éD
-    //    ƒRƒ}ƒ“ƒhƒpƒPƒbƒg‚ğæ“¾‚·‚é‚Ì‚Í flag_block ‚ÉŠî‚Ã‚¢‚½ƒ‚[ƒh‚Å
-    //    ˆ—‚·‚é‚ªAwrite ‚Ìˆ—‚ÉŠÖ‚µ‚Ä‚Í NORESULT ‚Ås‚È‚¤D
+    // é€ä¿¡ã‚¹ãƒ¬ãƒƒãƒ‰ã«ã‚³ãƒãƒ³ãƒ‰ã‚’æŠ•ã’ã€ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°å†…éƒ¨ã§ CPS_Write ã‚’
+    // èµ·å‹•ã™ã‚‹ï¼
+    //    ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã‚’å–å¾—ã™ã‚‹ã®ã¯ flag_block ã«åŸºã¥ã„ãŸãƒ¢ãƒ¼ãƒ‰ã§
+    //    å‡¦ç†ã™ã‚‹ãŒã€write ã®å‡¦ç†ã«é–¢ã—ã¦ã¯ NORESULT ã§è¡Œãªã†ï¼
     //
     command = SOCLi_CreateCommandPacket(SOCLi_WriteCallBack, send_pipe->exe_socket, flag_block);
     if (NULL == command)
@@ -544,9 +544,9 @@ static int SOCLi_ExecWriteCommand(SOCLSocket*  socket, const u8*  buffer, s32 bu
     wrtbuf = (u8*)send_pipe->buffer.area.data;
     wrtbuf_size = (s32) send_pipe->buffer.area.size;
 
-    // ƒf[ƒ^‚ğ‡‚É WriteBuffer ‚Ö“]‘—‚·‚é
-    //    ‚Pƒ`ƒƒƒ“ƒN‚Å‘—‚ê‚éê‡‚Æ‚Qƒ`ƒƒƒ“ƒN‚É•ª‚¯‚È‚¢‚Æ‚¢‚¯‚È‚¢ê‡‚É
-    //    ‘Î‰‚·‚éD
+    // ãƒ‡ãƒ¼ã‚¿ã‚’é †ã« WriteBuffer ã¸è»¢é€ã™ã‚‹
+    //    ï¼‘ãƒãƒ£ãƒ³ã‚¯ã§é€ã‚Œã‚‹å ´åˆã¨ï¼’ãƒãƒ£ãƒ³ã‚¯ã«åˆ†ã‘ãªã„ã¨ã„ã‘ãªã„å ´åˆã«
+    //    å¯¾å¿œã™ã‚‹ï¼
     //
     if (wrtbuf_in + buffer_len < wrtbuf_size)
     {
@@ -571,33 +571,33 @@ static int SOCLi_ExecWriteCommand(SOCLSocket*  socket, const u8*  buffer, s32 bu
 
     MI_CpuCopy8(buffer, command->write.buffer1, (u32) command->write.buffer1_len);
 
-    // ƒŠƒ“ƒOƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^‚ğˆÚ“®‚³‚¹‚é
+    // ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿ã‚’ç§»å‹•ã•ã›ã‚‹
     saved_send_buffer_in = send_pipe->buffer.in;
     send_pipe->buffer.in = command->write.wrtbuf_after = (u16) wrtbuf_in;
 
     //
-    // Connect ‚³‚ê‚Ä‚¢‚È‚¢ UDP ’ÊM‚Å‚ ‚èA‘—‚èæ‚ª write ‚Ìˆø”‚Å
-    // w’è‚³‚ê‚Ä‚¢‚éê‡‚ÍA‘—‚è‘Šèæ‚ğƒRƒ}ƒ“ƒhƒpƒPƒbƒg‚Éw’è‚·‚é
+    // Connect ã•ã‚Œã¦ã„ãªã„ UDP é€šä¿¡ã§ã‚ã‚Šã€é€ã‚Šå…ˆãŒ write ã®å¼•æ•°ã§
+    // æŒ‡å®šã•ã‚Œã¦ã„ã‚‹å ´åˆã¯ã€é€ã‚Šç›¸æ‰‹å…ˆã‚’ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã«æŒ‡å®šã™ã‚‹
     //
-    // UDP ‚©
+    // UDP ã‹
     if (SOCL_SocketIsUDP(socket))
     {
         if (socket->local_port == 0)
         {
-            socket->local_port = CPS_SocGetEport(); // bind ‚³‚ê‚Ä‚È‚¢‚È‚çƒoƒCƒ“ƒh‚·‚é
+            socket->local_port = CPS_SocGetEport(); // bind ã•ã‚Œã¦ãªã„ãªã‚‰ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹
             socket->cps_socket.local_port = socket->local_port;
         }
 
         command->write.local_port = socket->local_port;
 
-        // connect ‚³‚ê‚Ä‚¢‚È‚¢ UDP
+        // connect ã•ã‚Œã¦ã„ãªã„ UDP
         if (socket->remote_ip == 0 || remote_ip != 0)
         {
             command->write.remote_ip = remote_ip;
             command->write.remote_port = remote_port;
         }
 
-        // connect ‚³‚ê‚Ä‚¢‚é UDP
+        // connect ã•ã‚Œã¦ã„ã‚‹ UDP
         else
         {
             command->write.remote_ip = socket->remote_ip;
@@ -606,15 +606,15 @@ static int SOCLi_ExecWriteCommand(SOCLSocket*  socket, const u8*  buffer, s32 bu
     }
     else
     {
-        command->write.remote_ip = 0;               // Bind ‚È‚µ
+        command->write.remote_ip = 0;               // Bind ãªã—
     }
 
     result = SOCLi_ExecCommandPacketInSendPipe(send_pipe->exe_socket, command);
 
     if (result != SOCL_ESUCCESS)
     {
-        // ¸”s‚·‚é‚Ì‚Í NOBLOCK ‚Ì‚Æ‚«
-        // •Ô’l‚ğ 0 ‚É‚µAƒoƒbƒtƒ@‚ğŠJ•ú‚·‚é
+        // å¤±æ•—ã™ã‚‹ã®ã¯ NOBLOCK ã®ã¨ã
+        // è¿”å€¤ã‚’ 0 ã«ã—ã€ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾ã™ã‚‹
         send_pipe->buffer.in = saved_send_buffer_in;
         buffer_len = 0;
     }
@@ -625,12 +625,12 @@ static int SOCLi_ExecWriteCommand(SOCLSocket*  socket, const u8*  buffer, s32 bu
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_WriteCallBack
 
-  Description:  WRITE ˆ—‚ÌƒR[ƒ‹ƒoƒbƒND
+  Description:  WRITE å‡¦ç†ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ï¼
 
-  Arguments:    arg   ƒRƒ}ƒ“ƒhƒpƒPƒbƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    arg   ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚±ãƒƒãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
 
-  Returns:      ³‚Ì’l: ‘—M‚µ‚½ƒƒbƒZ[ƒW‚ÌƒoƒCƒg”
-                •‰‚Ì’l: ƒGƒ‰[
+  Returns:      æ­£ã®å€¤: é€ä¿¡ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒã‚¤ãƒˆæ•°
+                è² ã®å€¤: ã‚¨ãƒ©ãƒ¼
  *---------------------------------------------------------------------------*/
 static int SOCLi_WriteCallBack(void* arg)
 {
@@ -645,10 +645,10 @@ static int SOCLi_WriteCallBack(void* arg)
 
     SDK_ASSERT(send_pipe);
 
-    if ((!SOCL_SocketIsTCP(socket)) || SOCL_SocketIsConnected(socket))  // Closing ‚Ìê‡‚Íˆ—‘±s‚·‚é
+    if ((!SOCL_SocketIsTCP(socket)) || SOCL_SocketIsConnected(socket))  // Closing ã®å ´åˆã¯å‡¦ç†ç¶šè¡Œã™ã‚‹
     {
-        // remote_ip ‚Éw’è‚ª‚ ‚Á‚½‚Æ‚«‚ÍABind ˆ—‚ğs‚È‚¤
-        //   ‚±‚ê‚Í UDP Ú‘±‚Ìê‡‚Ég—p‚·‚é
+        // remote_ip ã«æŒ‡å®šãŒã‚ã£ãŸã¨ãã¯ã€Bind å‡¦ç†ã‚’è¡Œãªã†
+        //   ã“ã‚Œã¯ UDP æ¥ç¶šã®å ´åˆã«ä½¿ç”¨ã™ã‚‹
         if (cpacket->remote_ip)
         {
 #ifdef SDK_MY_DEBUG
@@ -658,10 +658,10 @@ static int SOCLi_WriteCallBack(void* arg)
         }
 
         //
-        // ƒŠƒ“ƒOƒoƒbƒtƒ@‚©‚ç‚Ìƒf[ƒ^‚Ìæ‚èo‚µD
-        // ©—Í‚Å sndbuf ‚ÉƒRƒs[‚µ‚Ä‚©‚ç SocWrite ŠÖ”‚ğŒÄ‚Ño‚·D
-        // message queue ‚É‚æ‚Á‚ÄƒVƒŠƒAƒ‰ƒCƒY‚³‚ê‚Ä‚¢‚é‚½‚ßAmutex ‚È‚µ‚Å‚à sndbuf ‚Ì
-        // ”r‘¼‚ª‚È‚³‚ê‚Ä‚¢‚é
+        // ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã®å–ã‚Šå‡ºã—ï¼
+        // è‡ªåŠ›ã§ sndbuf ã«ã‚³ãƒ”ãƒ¼ã—ã¦ã‹ã‚‰ SocWrite é–¢æ•°ã‚’å‘¼ã³å‡ºã™ï¼
+        // message queue ã«ã‚ˆã£ã¦ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚ºã•ã‚Œã¦ã„ã‚‹ãŸã‚ã€mutex ãªã—ã§ã‚‚ sndbuf ã®
+        // æ’ä»–ãŒãªã•ã‚Œã¦ã„ã‚‹
         //
 #ifdef SDK_MY_DEBUG
         OS_TPrintf("WriteCallBack-WRITE 1: %08x %d\n", cpacket->buffer1, cpacket->buffer1_len);
@@ -678,7 +678,7 @@ static int SOCLi_WriteCallBack(void* arg)
 #if SOCL_OPTIMIZE_TCP_SEND
         if (SOCL_SocketIsTCP(socket))
         {
-            /* ‘—MƒXƒ‹[ƒvƒbƒg‚ğŒüã‚³‚¹‚é‚½‚ßAˆê“x‚É‘—M‚ğ‚İ‚éƒf[ƒ^ƒTƒCƒY‚ğÅ“K‰» */
+            /* é€ä¿¡ã‚¹ãƒ«ãƒ¼ãƒ—ãƒƒãƒˆã‚’å‘ä¸Šã•ã›ã‚‹ãŸã‚ã€ä¸€åº¦ã«é€ä¿¡ã‚’è©¦ã¿ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’æœ€é©åŒ– */
             sndbuf_len = SOCLi_GetOptimumSendBufLen((int)socket->cps_socket.sndbuf.size - sndbuf_offset);
         }
         else
@@ -710,14 +710,14 @@ static int SOCLi_WriteCallBack(void* arg)
 
             if (result <= 0)
             {
-                // Ú‘±‚ªØ‚ê‚½ê‡
+                // æ¥ç¶šãŒåˆ‡ã‚ŒãŸå ´åˆ
                 if (SOCL_SocketIsTCP(socket))
                 {
-                    // ‚à‚¤ˆê“xƒRƒlƒNƒg‚©‚çˆ—‚ğ‚·‚é•K—v‚ª‚ ‚éD
+                    // ã‚‚ã†ä¸€åº¦ã‚³ãƒã‚¯ãƒˆã‹ã‚‰å‡¦ç†ã‚’ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ï¼
                     socket->state &= ~(SOCL_STATUS_CONNECTING | SOCL_STATUS_CONNECTED | SOCL_STATUS_CLOSING);
-                    socket->state |=  SOCL_STATUS_RESET;  // Ú‘±Ø‚ê‚ğ READ ‘¤‚É’m‚ç‚¹‚é‚½‚ß‚Ìƒtƒ‰ƒO
+                    socket->state |=  SOCL_STATUS_RESET;  // æ¥ç¶šåˆ‡ã‚Œã‚’ READ å´ã«çŸ¥ã‚‰ã›ã‚‹ãŸã‚ã®ãƒ•ãƒ©ã‚°
                     
-                    // ƒuƒƒbƒN‰ğœ
+                    // ãƒ–ãƒ­ãƒƒã‚¯è§£é™¤
                     CPS_TcpClose();
                 }
 
@@ -730,16 +730,16 @@ static int SOCLi_WriteCallBack(void* arg)
     }
     else
     {
-        copied = SOCL_ETIMEDOUT;    // “r’†‚ÅÚ‘±‚ªØ‚ê‚Ä‚¢‚é
+        copied = SOCL_ETIMEDOUT;    // é€”ä¸­ã§æ¥ç¶šãŒåˆ‡ã‚Œã¦ã„ã‚‹
     }
 
 #ifdef SDK_MY_DEBUG
     OS_TPrintf("WriteCallBack-WRITE.copied=%d\n", copied);
 #endif
 
-    // ƒŠƒ“ƒOƒoƒbƒtƒ@‚ğŠJ•ú‚µAŠJ•ú‘Ò‚¿‚É‚È‚Á‚Ä‚¢‚éƒXƒŒƒbƒh‚ª‚¢‚½‚ç‹N‚±‚·
-    // ‚±‚ÌƒƒbƒZ[ƒW‚ğó‚¯æ‚é‚½‚ß‚É‚ÍA”r‘¼ˆ—‚É‹C‚ğ‚Â‚¯‚é‚±‚Æ
-    // ƒGƒ‰[‚ª‹N‚«‚Ä‚àƒoƒbƒtƒ@‚ğ‹ó‚¯‚é
+    // ãƒªãƒ³ã‚°ãƒãƒƒãƒ•ã‚¡ã‚’é–‹æ”¾ã—ã€é–‹æ”¾å¾…ã¡ã«ãªã£ã¦ã„ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ãŒã„ãŸã‚‰èµ·ã“ã™
+    // ã“ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ã‘å–ã‚‹ãŸã‚ã«ã¯ã€æ’ä»–å‡¦ç†ã«æ°—ã‚’ã¤ã‘ã‚‹ã“ã¨
+    // ã‚¨ãƒ©ãƒ¼ãŒèµ·ãã¦ã‚‚ãƒãƒƒãƒ•ã‚¡ã‚’ç©ºã‘ã‚‹
     send_pipe->buffer.out = cpacket->wrtbuf_after;
     OS_WakeupThread(&send_pipe->buffer.waiting);
 
@@ -751,12 +751,12 @@ static int SOCLi_WriteCallBack(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_GetOptimumSendBufLen
 
-  Description:  TCP‘—MAÅ“K‚ÈƒXƒ‹[ƒvƒbƒg‚ğ“¾‚é‚½‚ß‚ÉCPS_SocWrite‚É—^‚¦‚é
-                ‘—Mƒf[ƒ^ƒTƒCƒY‚ğæ“¾‚·‚éB
+  Description:  TCPé€ä¿¡æ™‚ã€æœ€é©ãªã‚¹ãƒ«ãƒ¼ãƒ—ãƒƒãƒˆã‚’å¾—ã‚‹ãŸã‚ã«CPS_SocWriteã«ä¸ãˆã‚‹
+                é€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹ã€‚
 
-  Arguments:    len - ãŒÀƒTƒCƒY‚ğw’è‚·‚éB
+  Arguments:    len - ä¸Šé™ã‚µã‚¤ã‚ºã‚’æŒ‡å®šã™ã‚‹ã€‚
 
-  Returns:      int - Å“K‚È‘—Mƒf[ƒ^ƒTƒCƒY‚ğ•Ô‚·B
+  Returns:      int - æœ€é©ãªé€ä¿¡ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’è¿”ã™ã€‚
  *---------------------------------------------------------------------------*/
 static int SOCLi_GetOptimumSendBufLen(int len)
 {
@@ -798,12 +798,12 @@ static int SOCLi_GetOptimumSendBufLen(int len)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_MemCpy
 
-  Description:  2 ‚Â‚Ìƒoƒbƒtƒ@‚É‚Ü‚½‚ª‚Á‚Ä‚¢‚éƒf[ƒ^‚Ì COPY ˆ—
+  Description:  2 ã¤ã®ãƒãƒƒãƒ•ã‚¡ã«ã¾ãŸãŒã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã® COPY å‡¦ç†
 
-  Arguments:    socket  ƒ\ƒPƒbƒg
-                cpacket ƒoƒbƒtƒ@ƒf[ƒ^‚Ìƒpƒ‰ƒ[ƒ^
+  Arguments:    socket  ã‚½ã‚±ãƒƒãƒˆ
+                cpacket ãƒãƒƒãƒ•ã‚¡ãƒ‡ãƒ¼ã‚¿ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 
-  Returns:      ³ or 0: ‘—M‚µ‚½ƒf[ƒ^‚ÌƒoƒCƒg”
+  Returns:      æ­£ or 0: é€ä¿¡ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒˆæ•°
  *---------------------------------------------------------------------------*/
 static int SOCLi_MemCpy(u8* sndbuf_ptr, int sndbuf_len, SOCLiCommandWrite* cpacket)
 {
@@ -812,19 +812,19 @@ static int SOCLi_MemCpy(u8* sndbuf_ptr, int sndbuf_len, SOCLiCommandWrite* cpack
 
     if (buffer1_len > sndbuf_len)
     {
-        // buffer1 ‚Ìˆê•”‚Å‘«‚è‚éê‡
+        // buffer1 ã®ä¸€éƒ¨ã§è¶³ã‚Šã‚‹å ´åˆ
         buffer1_len = sndbuf_len;
         buffer2_len = 0;
     }
     else if (buffer2_len > sndbuf_len - buffer1_len)
     {
-        // buffer1 ‘S•”‚Æ buffer2 ‚Ìˆê•”‚Å‘«‚è‚éê‡
+        // buffer1 å…¨éƒ¨ã¨ buffer2 ã®ä¸€éƒ¨ã§è¶³ã‚Šã‚‹å ´åˆ
         buffer2_len = sndbuf_len - buffer1_len;
     }
     else
     {
-        // buffer1 ‘S•”‚Æ buffer2 ‘S•”‚Å‚à‘«‚è‚È‚¢ê‡
-        // ‚»‚Ì‚Ü‚Ü buffer1_len, buffer2_len ‚Å‚n‚j
+        // buffer1 å…¨éƒ¨ã¨ buffer2 å…¨éƒ¨ã§ã‚‚è¶³ã‚Šãªã„å ´åˆ
+        // ãã®ã¾ã¾ buffer1_len, buffer2_len ã§ï¼¯ï¼«
     }
 
     if (buffer1_len > 0)

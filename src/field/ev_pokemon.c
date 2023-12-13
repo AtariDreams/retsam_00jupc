@@ -1,7 +1,7 @@
 //===========================================================================
 /**
  * @file	ev_pokemon.c
- * @brief	ƒCƒxƒ“ƒgƒ\[ƒXFƒ|ƒPƒ‚ƒ“ŠÖ˜A
+ * @brief	ã‚¤ãƒ™ãƒ³ãƒˆã‚½ãƒ¼ã‚¹ï¼šãƒã‚±ãƒ¢ãƒ³é–¢é€£
  * @author	tamada GAME FREAK Inc.
  * @date	2005.12.18
  */
@@ -17,7 +17,7 @@
 #include "savedata/get_poke.h"
 
 #include "ev_pokemon.h"
-#include "battle/battle_common.h"		//CONDITION_`
+#include "battle/battle_common.h"		//CONDITION_ã€œ
 #include "sodateya.h"
 
 #include "itemtool/itemsym.h"
@@ -27,13 +27,13 @@
 typedef void(* ITL_FUNC)(POKEMON_PARAM * poke, void *);
 //------------------------------------------------------------------
 /**
- * @brief	è‚¿‘S•”‚Ö‚Ì‘€ì‚ğˆêŠ‡‚Ås‚¤
- * @param	party		è‚¿ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	func		‘€ìŠÖ”‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	work		ƒ[ƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æ‰‹æŒã¡å…¨éƒ¨ã¸ã®æ“ä½œã‚’ä¸€æ‹¬ã§è¡Œã†
+ * @param	party		æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	func		æ“ä½œé–¢æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	work		ãƒ¯ãƒ¼ã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * ƒ^ƒ}ƒS‚Å‚à‚È‚­A‹Câ‚µ‚Ä‚à‚¢‚È‚¢ƒ|ƒPƒ‚ƒ“‚É‘Î‚µ‘€ìŠÖ”‚ğŒÄ‚Ño‚·B
- * ‘¬“x“xŠO‹B‚½‚Ô‚ñƒƒ‚ƒŠŒø—¦‚ª‚æ‚­‚È‚é‚Í‚¸B
+ * ã‚¿ãƒã‚´ã§ã‚‚ãªãã€æ°—çµ¶ã—ã¦ã‚‚ã„ãªã„ãƒã‚±ãƒ¢ãƒ³ã«å¯¾ã—æ“ä½œé–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
+ * é€Ÿåº¦åº¦å¤–è¦–ã€‚ãŸã¶ã‚“ãƒ¡ãƒ¢ãƒªåŠ¹ç‡ãŒã‚ˆããªã‚‹ã¯ãšã€‚
  */
 //------------------------------------------------------------------
 void EvPoke_Itelator(POKEPARTY * party, ITL_FUNC func, void * work)
@@ -55,11 +55,11 @@ void EvPoke_Itelator(POKEPARTY * party, ITL_FUNC func, void * work)
 #endif
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚ªí“¬‰Â”\‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
- * @param	pp		‘ÎÛƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL	TRUE‚Ì‚Æ‚«Aí“¬‰Â”\
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ãŒæˆ¦é—˜å¯èƒ½ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯
+ * @param	pp		å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL	TRUEã®ã¨ãã€æˆ¦é—˜å¯èƒ½
  *
- * •m€‚Å‚àƒ^ƒ}ƒS‚Å‚à‚È‚¯‚ê‚ÎTRUE‚ğ•Ô‚·
+ * ç€•æ­»ã§ã‚‚ã‚¿ãƒã‚´ã§ã‚‚ãªã‘ã‚Œã°TRUEã‚’è¿”ã™
  */
 //------------------------------------------------------------------
 BOOL EvPoke_EnableBattle(POKEMON_PARAM * pp)
@@ -115,13 +115,13 @@ BOOL EvPoke_Add(int heapID, SAVEDATA * sv, u16 monsno, u8 level,
 
 //------------------------------------------------------------------
 /**
- * @brief	è‚¿‚Éƒ^ƒ}ƒS‚ğ‰Á‚¦‚é
+ * @brief	æ‰‹æŒã¡ã«ã‚¿ãƒã‚´ã‚’åŠ ãˆã‚‹
  * @param	heapID
  * @param	sv
  * @param	monsno
  * @param	eventflg
- * @param	type      ¶‚Ü‚ê‚½êŠƒ^ƒCƒv  placename.hQÆ
- * @param	index     ¶‚Ü‚ê‚½êŠindex
+ * @param	type      ç”Ÿã¾ã‚ŒãŸå ´æ‰€ã‚¿ã‚¤ãƒ—  placename.hå‚ç…§
+ * @param	index     ç”Ÿã¾ã‚ŒãŸå ´æ‰€index
  * @retval	TRUE
  * @retval	FALSE
  * 
@@ -144,11 +144,11 @@ BOOL EvPoke_AddTamago(int heapID, SAVEDATA * sv, u16 monsno, u8 eventflg, PLACEN
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒ‚ƒ“‚É‚í‚´‚ğƒZƒbƒg‚·‚é
- * @param	party		POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	poke_pos	ƒ|ƒPƒ‚ƒ“‚ÌˆÊ’ui‚O`‚Uj
- * @param	waza_pos	‚í‚´‚ğƒZƒbƒg‚·‚éêŠi‚O`‚Rj
- * @param	waza_no		‚í‚´‚Ìí—Ş
+ * @brief	ãƒã‚±ãƒ¢ãƒ³ã«ã‚ã–ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+ * @param	party		POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	poke_pos	ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®ï¼ˆï¼ã€œï¼–ï¼‰
+ * @param	waza_pos	ã‚ã–ã‚’ã‚»ãƒƒãƒˆã™ã‚‹å ´æ‰€ï¼ˆï¼ã€œï¼“ï¼‰
+ * @param	waza_no		ã‚ã–ã®ç¨®é¡
  */
 //------------------------------------------------------------------
 void EvPoke_ChangeWaza(POKEPARTY * party, int poke_pos, int waza_pos, u16 waza_no)
@@ -159,13 +159,13 @@ void EvPoke_ChangeWaza(POKEPARTY * party, int poke_pos, int waza_pos, u16 waza_n
 
 //------------------------------------------------------------------
 /**
- * @brief	è‚¿ƒ|ƒPƒ‚ƒ“‚Ì‚í‚´ƒ`ƒFƒbƒN
- * @param	party		POKEPARTY\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	waza_no		‚í‚´‚Ìí—Ş
- * @retval	0-5			‚Á‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ÌˆÊ’u
- * @retval	0xff		‚Á‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ª‚¢‚È‚¢
+ * @brief	æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã®ã‚ã–ãƒã‚§ãƒƒã‚¯
+ * @param	party		POKEPARTYæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	waza_no		ã‚ã–ã®ç¨®é¡
+ * @retval	0-5			æŒã£ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ä½ç½®
+ * @retval	0xff		æŒã£ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ãŒã„ãªã„
  *
- * è‚¿ƒ|ƒPƒ‚ƒ“‚Éw’è‚µ‚½‚í‚´‚ğ‚Á‚Ä‚¢‚é‚à‚Ì‚ª‚¢‚é‚©‚Ç‚¤‚©‚ğ•Ô‚·B
+ * æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã«æŒ‡å®šã—ãŸã‚ã–ã‚’æŒã£ã¦ã„ã‚‹ã‚‚ã®ãŒã„ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™ã€‚
  */
 //------------------------------------------------------------------
 int EvPoke_CheckWaza(POKEPARTY * party, u16 waza_no)
@@ -178,17 +178,17 @@ int EvPoke_CheckWaza(POKEPARTY * party, u16 waza_no)
 	for (i = 0; i<max; i++){
 		poke = PokeParty_GetMemberPointer(party, i);
 
-		//‚½‚Ü‚²ƒ`ƒFƒbƒN
+		//ãŸã¾ã”ãƒã‚§ãƒƒã‚¯
 		if( PokeParaGet( poke, ID_PARA_tamago_flag, NULL ) != 0 ){
 			continue;
 		}
-		//ƒƒUƒŠƒXƒg‚©‚çƒ`ƒFƒbƒN
+		//ãƒ¯ã‚¶ãƒªã‚¹ãƒˆã‹ã‚‰ãƒã‚§ãƒƒã‚¯
 		if( (PokeParaGet( poke, ID_PARA_waza1, NULL ) == waza_no)
 				||(PokeParaGet( poke, ID_PARA_waza2, NULL ) == waza_no)
 				||(PokeParaGet( poke, ID_PARA_waza3, NULL ) == waza_no)
 				||(PokeParaGet( poke, ID_PARA_waza4, NULL ) == waza_no)
 			){
-			return i;		//‚Á‚Ä‚¢‚éƒ|ƒPƒ‚ƒ“‚ÌƒŠƒXƒgã‚Ì•À‚Ñ‚ğ•Ô‚·
+			return i;		//æŒã£ã¦ã„ã‚‹ãƒã‚±ãƒ¢ãƒ³ã®ãƒªã‚¹ãƒˆä¸Šã®ä¸¦ã³ã‚’è¿”ã™
 			break;
 		}
 	}
@@ -197,9 +197,9 @@ int EvPoke_CheckWaza(POKEPARTY * party, u16 waza_no)
 
 //------------------------------------------------------------------
 /**
- * @brief	í‚¦‚éƒ|ƒPƒ‚ƒ“‚Ì”‚ğ”‚¦‚é
- * @param	party	POKEPARTY‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	int		í‚¦‚éƒ|ƒPƒ‚ƒ“‚Ì”
+ * @brief	æˆ¦ãˆã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ•°ã‚’æ•°ãˆã‚‹
+ * @param	party	POKEPARTYã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	int		æˆ¦ãˆã‚‹ãƒã‚±ãƒ¢ãƒ³ã®æ•°
  */
 //------------------------------------------------------------------
 int EvPoke_CountLivingPokemon(const POKEPARTY * party)
@@ -229,9 +229,9 @@ int EvPoke_CountLivingPokemon(const POKEPARTY * party)
 
 //------------------------------------------------------------------
 /**
- * @brief	ƒ|ƒPƒp[ƒeƒB‚Ì’†‚Ìí‚¦‚éƒ|ƒPƒ‚ƒ“‚ğ•Ô‚·(æ“ª‚©‚ç’²‚×‚ÄAn‚ß‚Éˆø‚Á‚©‚©‚Á‚½‚â‚Â‚ğ•Ô‚·)
- * @param	party	POKEPARTY‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	pp		ƒ|ƒPƒ‚ƒ“ƒpƒ‰ƒ€ƒ|ƒCƒ“ƒ^
+ * @brief	ãƒã‚±ãƒ‘ãƒ¼ãƒ†ã‚£ã®ä¸­ã®æˆ¦ãˆã‚‹ãƒã‚±ãƒ¢ãƒ³ã‚’è¿”ã™(å…ˆé ­ã‹ã‚‰èª¿ã¹ã¦ã€å§‹ã‚ã«å¼•ã£ã‹ã‹ã£ãŸã‚„ã¤ã‚’è¿”ã™)
+ * @param	party	POKEPARTYã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	pp		ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ©ãƒ ãƒã‚¤ãƒ³ã‚¿
  */
 //------------------------------------------------------------------
 POKEMON_PARAM *EvPoke_GetLivingPokemonTop(const POKEPARTY * party)
@@ -252,9 +252,9 @@ POKEMON_PARAM *EvPoke_GetLivingPokemonTop(const POKEPARTY * party)
 
 //--------------------------------------------------------------
 /**
- * @brief	æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^æ“¾
- * @param	party	POKEPARTY‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	ƒ^ƒ}ƒS‚ğ‚Ì‚¼‚¢‚½æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿å–å¾—
+ * @param	party	POKEPARTYã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	ã‚¿ãƒã‚´ã‚’ã®ãã„ãŸå…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
  */
 //--------------------------------------------------------------
 POKEMON_PARAM * EvPoke_GetPokemonTop(const POKEPARTY * party)
@@ -275,9 +275,9 @@ POKEMON_PARAM * EvPoke_GetPokemonTop(const POKEPARTY * party)
 
 //------------------------------------------------------------------
 /**
- * @brief	2vs2‘Îí‚ª‰Â”\‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
- * @param	party	POKEPARTY‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @return	BOOL	TRUE‚Ì‚Æ‚«A2vs2‘Îí‚Å‚«‚é
+ * @brief	2vs2å¯¾æˆ¦ãŒå¯èƒ½ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
+ * @param	party	POKEPARTYã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return	BOOL	TRUEã®ã¨ãã€2vs2å¯¾æˆ¦ã§ãã‚‹
  */
 //------------------------------------------------------------------
 BOOL EvPoke_Enable2vs2Battle(const POKEPARTY * party)
@@ -293,10 +293,10 @@ BOOL EvPoke_Enable2vs2Battle(const POKEPARTY * party)
 //===========================================================================
 //------------------------------------------------------------------
 /**
- * @brief	è‚¿ƒ|ƒPƒ‚ƒ“‘S•”‚ÉƒVƒ“ƒIƒEƒ`ƒƒƒ“ƒsƒIƒ“ƒŠƒ{ƒ“‚ğƒZƒbƒg
- * @param	party	POKEPARTY‚Ö‚Ìƒ|ƒCƒ“ƒ^
+ * @brief	æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³å…¨éƒ¨ã«ã‚·ãƒ³ã‚ªã‚¦ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ãƒªãƒœãƒ³ã‚’ã‚»ãƒƒãƒˆ
+ * @param	party	POKEPARTYã¸ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * “a“°“ü‚è‚ÌÛ‚ÉŒÄ‚Ño‚³‚ê‚é
+ * æ®¿å ‚å…¥ã‚Šã®éš›ã«å‘¼ã³å‡ºã•ã‚Œã‚‹
  */
 //------------------------------------------------------------------
 void EvPoke_SetChampionRibbon(POKEPARTY * party)
@@ -318,12 +318,12 @@ void EvPoke_SetChampionRibbon(POKEPARTY * party)
 
 //------------------------------------------------------------------
 /**
- * @brief	“Åƒ_ƒ[ƒWƒ`ƒFƒbƒN
- * @param	party		è‚¿ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @param	placeID		’nˆæID
- * @retval	FLD_POISON_DEAD			ƒ|ƒPƒ‚ƒ“‚ª‹Câ‚µ‚½
- * @retval	FLD_POISON_DAMAGE		ƒ|ƒPƒ‚ƒ“‚ªƒ_ƒ[ƒW‚ğó‚¯‚½
- * @retval	FLD_POISON_NODAMAGE		ƒ|ƒPƒ‚ƒ“‚Íƒ_ƒ[ƒW‚ğó‚¯‚È‚©‚Á‚½
+ * @brief	æ¯’ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒã‚§ãƒƒã‚¯
+ * @param	party		æ‰‹æŒã¡ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param	placeID		åœ°åŸŸID
+ * @retval	FLD_POISON_DEAD			ãƒã‚±ãƒ¢ãƒ³ãŒæ°—çµ¶ã—ãŸ
+ * @retval	FLD_POISON_DAMAGE		ãƒã‚±ãƒ¢ãƒ³ãŒãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãŸ
+ * @retval	FLD_POISON_NODAMAGE		ãƒã‚±ãƒ¢ãƒ³ã¯ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãªã‹ã£ãŸ
  */
 //------------------------------------------------------------------
 FLD_POISON_STAT EvPoke_PoisonDamage(POKEPARTY * party, u16 placeID)
@@ -344,7 +344,7 @@ FLD_POISON_STAT EvPoke_PoisonDamage(POKEPARTY * party, u16 placeID)
 				PokeParaPut(pp, ID_PARA_hp, &hp);
 				if (hp == 1) {
 					dead_count ++;
-					FriendCalc( pp, FRIEND_DOKU_HINSHI, placeID);	// ‚È‚Â‚«‚ÇŒvZ
+					FriendCalc( pp, FRIEND_DOKU_HINSHI, placeID);	// ãªã¤ãã©è¨ˆç®—
 				}
 				poison_count ++;
 			}
@@ -362,13 +362,13 @@ FLD_POISON_STAT EvPoke_PoisonDamage(POKEPARTY * party, u16 placeID)
 
 //------------------------------------------------------------------
 /**
- * @brief	“Å‚É‚æ‚é‹Câ”F’è
- * @param	pp			ƒ|ƒPƒ‚ƒ“‚Ö‚Ìƒ|ƒCƒ“ƒ^
- * @retval	TRUE		“Å‚Å‹Câ‚µ‚½
- * @retval	FALSE		‹Câ‚µ‚Ä‚¢‚È‚¢
+ * @brief	æ¯’ã«ã‚ˆã‚‹æ°—çµ¶èªå®š
+ * @param	pp			ãƒã‚±ãƒ¢ãƒ³ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @retval	TRUE		æ¯’ã§æ°—çµ¶ã—ãŸ
+ * @retval	FALSE		æ°—çµ¶ã—ã¦ã„ãªã„
  *
- * “Åó‘Ô‚Å‚©‚ÂHP‚ª‚O‚Ìƒ|ƒPƒ‚ƒ“‚ğ‚Ç‚­‹Câ‚Æ‚İ‚È‚·B
- * ‚»‚ÌÛ‚ÉƒRƒ“ƒfƒBƒVƒ‡ƒ“‚ğƒNƒŠƒA‚·‚éB
+ * æ¯’çŠ¶æ…‹ã§ã‹ã¤HPãŒï¼ã®ãƒã‚±ãƒ¢ãƒ³ã‚’ã©ãæ°—çµ¶ã¨ã¿ãªã™ã€‚
+ * ãã®éš›ã«ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
  */
 //------------------------------------------------------------------
 BOOL EvPoke_ApprovePoisonDead(POKEMON_PARAM * pp)

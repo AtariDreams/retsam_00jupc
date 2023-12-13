@@ -1,9 +1,9 @@
 /**
  *	@file	comm_command_nutmixer.c
- *	@brief	–Ø‚ÌÀƒ~ƒLƒT[@’ÊMƒRƒ}ƒ“ƒhƒe[ƒuƒ‹
+ *	@brief	æœ¨ã®å®ŸãƒŸã‚­ã‚µãƒ¼ã€€é€šä¿¡ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«
  *	@author	Miyuki Iwasawa
  *	@date	06.04.06
- *	@data	06.05.23	tomoya •ÏX
+ *	@data	06.05.23	tomoya å¤‰æ›´
  */
 
 #include "common.h"
@@ -14,30 +14,30 @@
 #include "include/savedata/poruto_util.h"
 
 
-// ‘Î‰‚·‚éƒR[ƒ‹ƒoƒbƒNŠÖ”
+// å¯¾å¿œã™ã‚‹ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°
 static const CommPacketTbl _CommNutMixerPacketTbl[] = {
 	//-------------------------------------
-	//@ƒQ[ƒ€—p
+	//ã€€ã‚²ãƒ¼ãƒ ç”¨
 	//=====================================
-	// “¯Šú—p	
-	{ CommNutMixerGameSysStart, CommNutMixerGetZeroSize, NULL },			///< ƒ~ƒLƒT[ŠJn			e[„q
-	{ CommNutMixerGameEnd, CommNutMixerGetZeroSize, NULL },			///< ƒQ[ƒ€I—¹				e[„q
-	// ƒf[ƒ^óM—p
-	{ CommNutMixerGameBeforeDataKo, CommNutMixerGetGameBeforeKoSize, NULL },		///< ƒvƒŒƒCƒ„[–¼		e[„q
-	{ CommNutMixerGameBeforeData, CommNutMixerGetGameBeforeSize, NULL },		///< ƒvƒŒƒCƒ„[–¼		q[„e
-	{ CommNutMixerGameData, CommNutMixerGetGameSize, NULL },		///< ƒQ[ƒ€ƒf[ƒ^		eƒ[„q
-	{ CommNutMixerGameResultData, CommNutMixerGetGameResultSize, NULL },	///< Œ‹‰Êƒf[ƒ^			e[„q
-	{ CommNutMixerPorutoData, PorutoData_GetWorkSize, NULL },	///< ƒ|ƒ‹ƒgƒf[ƒ^			e[„q
-	{ CommNutMixerGameNextDataKo, CommNutMixerGetOneSize, NULL },	///< 	ƒQ[ƒ€I—¹ƒf[ƒ^	e[„q
-	{ CommNutMixerGameNextData, CommNutMixerGetOneSize, NULL },		///< ƒQ[ƒ€I—¹ƒf[ƒ^		q[„e
-	{ CommNutMixerOyaGameData, CommNutMixerGetOyaGameSize, NULL },		///< ƒQ[ƒ€ƒf[ƒ^		e[„q
-	{ CommNutMixerKoGameData, CommNutMixerGetKoGameSize, NULL },		///< ƒQ[ƒ€ƒf[ƒ^		eƒ[q
+	// åŒæœŸç”¨	
+	{ CommNutMixerGameSysStart, CommNutMixerGetZeroSize, NULL },			///< ãƒŸã‚­ã‚µãƒ¼é–‹å§‹			è¦ªãƒ¼ï¼å­
+	{ CommNutMixerGameEnd, CommNutMixerGetZeroSize, NULL },			///< ã‚²ãƒ¼ãƒ çµ‚äº†				è¦ªãƒ¼ï¼å­
+	// ãƒ‡ãƒ¼ã‚¿å—ä¿¡ç”¨
+	{ CommNutMixerGameBeforeDataKo, CommNutMixerGetGameBeforeKoSize, NULL },		///< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å		è¦ªãƒ¼ï¼å­
+	{ CommNutMixerGameBeforeData, CommNutMixerGetGameBeforeSize, NULL },		///< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å		å­ãƒ¼ï¼è¦ª
+	{ CommNutMixerGameData, CommNutMixerGetGameSize, NULL },		///< ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿		è¦ªï¼œãƒ¼ï¼å­
+	{ CommNutMixerGameResultData, CommNutMixerGetGameResultSize, NULL },	///< çµæœãƒ‡ãƒ¼ã‚¿			è¦ªãƒ¼ï¼å­
+	{ CommNutMixerPorutoData, PorutoData_GetWorkSize, NULL },	///< ãƒãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿			è¦ªãƒ¼ï¼å­
+	{ CommNutMixerGameNextDataKo, CommNutMixerGetOneSize, NULL },	///< 	ã‚²ãƒ¼ãƒ çµ‚äº†ãƒ‡ãƒ¼ã‚¿	è¦ªãƒ¼ï¼å­
+	{ CommNutMixerGameNextData, CommNutMixerGetOneSize, NULL },		///< ã‚²ãƒ¼ãƒ çµ‚äº†ãƒ‡ãƒ¼ã‚¿		å­ãƒ¼ï¼è¦ª
+	{ CommNutMixerOyaGameData, CommNutMixerGetOyaGameSize, NULL },		///< ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿		è¦ªãƒ¼ï¼å­
+	{ CommNutMixerKoGameData, CommNutMixerGetKoGameSize, NULL },		///< ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿		è¦ªï¼œãƒ¼å­
 
 };
 
 //----------------------------------------------------------------------------
 /**
- *	@brief		ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹‚ğæ“¾
+ *	@brief		ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’å–å¾—
  */
 //-----------------------------------------------------------------------------
 const CommPacketTbl* NutMixer_CommCommandTclGet( void )
@@ -47,7 +47,7 @@ const CommPacketTbl* NutMixer_CommCommandTclGet( void )
 
 //----------------------------------------------------------------------------
 /**
- *	@brief	ƒRƒ}ƒ“ƒhƒe[ƒuƒ‹—v‘f”‚ğæ“¾
+ *	@brief	ã‚³ãƒãƒ³ãƒ‰ãƒ†ãƒ¼ãƒ–ãƒ«è¦ç´ æ•°ã‚’å–å¾—
  */
 //-----------------------------------------------------------------------------
 int NutMixer_CommCommandTblNumGet( void )

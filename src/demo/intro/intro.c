@@ -1,7 +1,7 @@
 //==============================================================================================
 /**
  * @file	intro.c
- * @brief	ƒQ[ƒ€ŠJŽn“±“üƒfƒ‚
+ * @brief	ã‚²ãƒ¼ãƒ é–‹å§‹å°Žå…¥ãƒ‡ãƒ¢
  * @author	
  * @date	
  */
@@ -51,9 +51,9 @@
 //
 //================================================================
 //----------------------------------
-//’è”éŒ¾
+//å®šæ•°å®£è¨€
 //----------------------------------
-// ‚o‚q‚n‚bƒƒCƒ“ƒV[ƒPƒ“ƒX
+// ï¼°ï¼²ï¼¯ï¼£ãƒ¡ã‚¤ãƒ³ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 enum {
 	INTRO_SEQ_INIT = 0,
 	INTRO_SEQ_MAIN,
@@ -65,31 +65,31 @@ enum {
 };
 
 //----------------------------------
-//Œ^éŒ¾
+//åž‹å®£è¨€
 //----------------------------------
-///	ƒ^ƒCƒgƒ‹‘S‘Ì§Œä—pƒ[ƒN\‘¢‘Ì
+///	ã‚¿ã‚¤ãƒˆãƒ«å…¨ä½“åˆ¶å¾¡ç”¨ãƒ¯ãƒ¼ã‚¯æ§‹é€ ä½“
 typedef struct INTRO_DEMO_WORK_tag
 {
 	int					heapID; 
-	SAVEDATA*			sv;			//ƒZ[ƒuƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	CONFIG*				config;		//ƒRƒ“ƒtƒBƒOƒ|ƒCƒ“ƒ^
+	SAVEDATA*			sv;			//ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	CONFIG*				config;		//ã‚³ãƒ³ãƒ•ã‚£ã‚°ãƒã‚¤ãƒ³ã‚¿
 
 	int					subseq;
 	int					subnextseq;
 	PROC*				subproc;
 
-	//‚a‚fƒVƒXƒeƒ€ŠÖ˜A
+	//ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ é–¢é€£
 	GF_BGL_INI*			bgl;
 	GF_BGL_BMPWIN		msgwin;
 
-	//‚a‚l‚oƒŠƒXƒgƒVƒXƒeƒ€ŠÖ˜A
+	//ï¼¢ï¼­ï¼°ãƒªã‚¹ãƒˆã‚·ã‚¹ãƒ†ãƒ é–¢é€£
 	int					listseq;
 	GF_BGL_BMPWIN		listwin;
 	BMPLIST_WORK*		list;
 	BMP_MENULIST_DATA*	listdata;
 	int					listres;
 
-	//ƒƒbƒZ[ƒWƒ}ƒl[ƒWƒƒŠÖ˜A
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒžãƒãƒ¼ã‚¸ãƒ£é–¢é€£
 	MSGDATA_MANAGER*	msgman;
 	int					msgseq;
 	int					guideseq;
@@ -98,80 +98,80 @@ typedef struct INTRO_DEMO_WORK_tag
 	void*				msgicon;
 	WORDSET*			wordset;
 
-	//‚Í‚¢E‚¢‚¢‚¦ƒ^ƒbƒ`ƒpƒlƒ‹ŠÖ˜A
+	//ã¯ã„ãƒ»ã„ã„ãˆã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é–¢é€£
 	TOUCH_SW_SYS*		tpSWsys;
 
-	//–¼‘O“ü—ÍƒTƒu‚o‚q‚n‚bŠÖ˜A
+	//åå‰å…¥åŠ›ã‚µãƒ–ï¼°ï¼²ï¼¯ï¼£é–¢é€£
 	TCB_PTR				namein_task; 
 	NAMEIN_PARAM*		myname;
 	NAMEIN_PARAM*		rivalname;
 
-	//”¼“§–¾ƒtƒF[ƒhŠÖ”
+	//åŠé€æ˜Žãƒ•ã‚§ãƒ¼ãƒ‰é–¢æ•°
 	int					alphafadeseq;
 	int					alphaev1;
 	int					alphaev2;
 
-	//“à•”ˆ—«•Ê•ªŠò—p
+	//å†…éƒ¨å‡¦ç†æ€§åˆ¥åˆ†å²ç”¨
 	u32					mysex;
 
-	//ƒV[ƒ“Ý’èƒ‚[ƒh—p
+	//ã‚·ãƒ¼ãƒ³è¨­å®šãƒ¢ãƒ¼ãƒ‰ç”¨
 	u8					maindisp_mode;
 	u8					ppl1disp_mode;
 	u8					ppl2disp_mode;
 	u8					subdisp_mode;
 
-	//ŽålŒö‚a‚fƒAƒjƒ—p
+	//ä¸»äººå…¬ï¼¢ï¼§ã‚¢ãƒ‹ãƒ¡ç”¨
 	u8					bganime_count_male;
 	u8					bganime_count_wait_male;
 	u8					bganime_count_female;
 	u8					bganime_count_wait_female;
 
-	//ƒEƒGƒCƒgƒJƒEƒ“ƒ^[
+	//ã‚¦ã‚¨ã‚¤ãƒˆã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 	int					wait;
-	//”Ä—pƒ[ƒN
+	//æ±Žç”¨ãƒ¯ãƒ¼ã‚¯
 	int					work[9];
 
-	// PLATINUM‚Å’Ç‰Á‚µ‚½AƒJƒ‰[buffer
+	// PLATINUMã§è¿½åŠ ã—ãŸã€ã‚«ãƒ©ãƒ¼buffer
 	u16*				p_poke_colbuf;
 	u16*				p_poke_colbuf_wk;
 }INTRO_DEMO_WORK;
 
 //----------------------------------
-//’è”éŒ¾
+//å®šæ•°å®£è¨€
 //----------------------------------
-//ƒƒbƒZ[ƒWŠÖ”“®ìŽw’è’è‹`
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢æ•°å‹•ä½œæŒ‡å®šå®šç¾©
 enum {
 	A_BUTTON_WAIT = 0,
 	A_BUTTON_NOWAIT,
 };
 
-//ƒƒbƒZ[ƒWŠÖ”ƒV[ƒPƒ“ƒXƒiƒ“ƒo[’è‹`
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢æ•°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼å®šç¾©
 enum{
 	MSGSET = 0,
 	MSGDRAW,
 	MSGWAIT,
 };
 
-//ƒƒbƒZ[ƒWŠÖ”“®ìŽw’è’è‹`
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸é–¢æ•°å‹•ä½œæŒ‡å®šå®šç¾©
 enum {
 	B_BUTTON_ENABLE = 0,
 	B_BUTTON_DISABLE,
 };
 
-//ƒŠƒXƒgŠÖ”ƒV[ƒPƒ“ƒXƒiƒ“ƒo[’è‹`
+//ãƒªã‚¹ãƒˆé–¢æ•°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼å®šç¾©
 enum {
 	LISTSET = 0,
 	LISTSELECT,
 };
 
-//ƒŠƒXƒgƒ^ƒCƒv
+//ãƒªã‚¹ãƒˆã‚¿ã‚¤ãƒ—
 typedef enum {
 	LISTTYPE_YESNO = 0,
 	LISTTYPE_MENU,
 	LISTTYPE_NAME,
 }INTRO_LISTTYPE;
 
-//ƒKƒCƒhŠÖ”ƒV[ƒPƒ“ƒXƒiƒ“ƒo[’è‹`
+//ã‚¬ã‚¤ãƒ‰é–¢æ•°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼å®šç¾©
 enum{
 	GUIDESET = 0,
 	GUIDEDISPON,
@@ -181,18 +181,18 @@ enum{
 	GUIDEEND,
 };
 
-//ƒKƒCƒhƒ^ƒCƒv
+//ã‚¬ã‚¤ãƒ‰ã‚¿ã‚¤ãƒ—
 typedef enum {
 	GUIDETYPE_OPERA = 0,
 	GUIDETYPE_GUIDE,
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/03/26
-	// ƒ^ƒbƒ`ƒXƒNƒŠ[ƒ“‚Ì‘€ìà–¾‚Í•\Ž¦‚ÌcˆÊ’u‚ðŽ©“®’²®‚·‚é‚æ‚¤‚É•ÏX
+	// ã‚¿ãƒƒãƒã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®æ“ä½œèª¬æ˜Žã¯è¡¨ç¤ºã®ç¸¦ä½ç½®ã‚’è‡ªå‹•èª¿æ•´ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 	GUIDETYPE_TOUCH,
 	// ----------------------------------------------------------------------------
 }INTRO_GUIDETYPE;
 
-//”wŒiƒ‚[ƒhÝ’è(MainDisp)
+//èƒŒæ™¯ãƒ¢ãƒ¼ãƒ‰è¨­å®š(MainDisp)
 enum {
 	BGTYPE_MAIN_NULL = 0,
 	BGTYPE_MAIN_TUTORIAL1,
@@ -202,7 +202,7 @@ enum {
 	BGTYPE_MAIN_END,
 };
 
-//l•¨ƒ‚[ƒhÝ’è(MainDisp)
+//äººç‰©ãƒ¢ãƒ¼ãƒ‰è¨­å®š(MainDisp)
 enum {
 	BGTYPE_MPPL_NULL = 0,
 	BGTYPE_MPPL_DOCTOR,
@@ -219,7 +219,7 @@ enum {
 	BGTYPE_MPPL_END,
 };
 
-//”wŒiƒ‚[ƒhÝ’è(SubDisp)
+//èƒŒæ™¯ãƒ¢ãƒ¼ãƒ‰è¨­å®š(SubDisp)
 enum {
 	BGTYPE_SUB_NULL = 0,
 	BGTYPE_SUB_TUTORIALBALL,
@@ -229,7 +229,7 @@ enum {
 	BGTYPE_SUB_END,
 };
 
-//”¼“§–¾ƒtƒF[ƒhŠÖ”ƒV[ƒPƒ“ƒXƒiƒ“ƒo[’è‹`
+//åŠé€æ˜Žãƒ•ã‚§ãƒ¼ãƒ‰é–¢æ•°ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ãƒŠãƒ³ãƒãƒ¼å®šç¾©
 enum {
 	ALPHAFADEINIT = 0,
 	ALPHAFADEIN,
@@ -237,13 +237,13 @@ enum {
 	ALPHAFADEEND,
 };
 
-//”¼“§–¾ƒtƒF[ƒhƒ‚[ƒh’è‹`
+//åŠé€æ˜Žãƒ•ã‚§ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰å®šç¾©
 enum {
 	ALPHA_FADEIN = 0,
 	ALPHA_FADEOUT,
 };
 
-//ƒXƒNƒ[ƒ‹ƒ‚[ƒh’è‹`
+//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ¢ãƒ¼ãƒ‰å®šç¾©
 enum {
 	SCROLL_CENTER = 0,
 	SCROLL_RIGHT,
@@ -252,17 +252,17 @@ enum {
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/20
-// •\Ž¦‚ÌcˆÊ’u‚ðŽ©“®’²®‚·‚é‚æ‚¤‚É•ÏX
+// è¡¨ç¤ºã®ç¸¦ä½ç½®ã‚’è‡ªå‹•èª¿æ•´ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 #define GUIDE_WIN_CENTER_Y		(12)
 // ----------------------------------------------------------------------------
 
 //----------------------------------
-//ŠO•”ŠÖ”’è‹`
+//å¤–éƒ¨é–¢æ•°å®šç¾©
 //----------------------------------
 extern void	Main_SetNextProc(FSOverlayID ov_id, const PROC_DATA * proc_data);
 
 //----------------------------------
-//ŠÖ”éŒ¾
+//é–¢æ•°å®£è¨€
 //----------------------------------
 PROC_RESULT Intro_Init( PROC * proc, int * seq );
 PROC_RESULT Intro_Main( PROC * proc, int * seq );
@@ -285,7 +285,7 @@ static void Intro_GraphicLoadSceneBTN( INTRO_DEMO_WORK* wk );
 
 static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk );
 //----------------------------------
-//ƒ}ƒNƒéŒ¾
+//ãƒžã‚¯ãƒ­å®£è¨€
 //----------------------------------
 #define KEYTRG( pattern )	( ( sys.trg & ( pattern ) ) == ( pattern ) )
 #define KEYCNT( pattern )	( ( sys.cont & ( pattern ) ) == ( pattern ) )
@@ -317,7 +317,7 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk );
 	FRAME_OFF( GF_BGL_FRAME3_S )	\
 }
 
-//‚a‚fƒRƒ“ƒgƒ[ƒ‹’è”
+//ï¼¢ï¼§ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«å®šæ•°
 #define INTRO_TEXT_M_FRAME	(GF_BGL_FRAME0_M)
 #define INTRO_PPL1_M_FRAME	(GF_BGL_FRAME1_M)
 #define INTRO_PPL2_M_FRAME	(GF_BGL_FRAME2_M)
@@ -328,14 +328,14 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk );
 #define INTRO_PBTN_S_FRAME	(GF_BGL_FRAME2_S)
 #define INTRO_BACK_S_FRAME	(GF_BGL_FRAME3_S)
 
-//‚»‚Ì‘¼
+//ãã®ä»–
 //#define INTRO_MONSNO ( MONSNO_GONBE )
-#define INTRO_MONSNO ( MONSNO_MIMITTO )	// PLATINUM‚Åƒ~ƒ~ƒƒ‹‚É•ÏX
+#define INTRO_MONSNO ( MONSNO_MIMITTO )	// PLATINUMã§ãƒŸãƒŸãƒ­ãƒ«ã«å¤‰æ›´
 
 #define MSGSPD		( CONFIG_GetMsgPrintSpeed( wk->config ))
 //=================================================================================================
 //
-// ‚o‚q‚n‚b’è‹`ƒe[ƒuƒ‹
+// ï¼°ï¼²ï¼¯ï¼£å®šç¾©ãƒ†ãƒ¼ãƒ–ãƒ«
 //
 //=================================================================================================
 const PROC_DATA IntroProcData = {
@@ -358,7 +358,7 @@ static const PROC_DATA IntroTVProcData = {
 
 //================================================================
 //----------------------------------
-//‚o‚q‚n‚b‰Šú‰»
+//ï¼°ï¼²ï¼¯ï¼£åˆæœŸåŒ–
 //----------------------------------
 PROC_RESULT Intro_Init(PROC * proc, int * seq)
 {
@@ -385,8 +385,8 @@ PROC_RESULT Intro_Init(PROC * proc, int * seq)
 	wk->subdisp_mode	= BGTYPE_SUB_NULL;
 	wk->wait			= 0;
 
-	// PLATINUM‚Å’Ç‰Á
-	// ƒ|ƒPƒ‚ƒ“—pƒJƒ‰[buffer
+	// PLATINUMã§è¿½åŠ 
+	// ãƒã‚±ãƒ¢ãƒ³ç”¨ã‚«ãƒ©ãƒ¼buffer
 	wk->p_poke_colbuf	= sys_AllocMemory( heapID, 0x20 );
 	wk->p_poke_colbuf_wk= sys_AllocMemory( heapID, 0x20 );
 
@@ -394,7 +394,7 @@ PROC_RESULT Intro_Init(PROC * proc, int * seq)
 }
 
 //----------------------------------
-//‚o‚q‚n‚bƒƒCƒ“
+//ï¼°ï¼²ï¼¯ï¼£ãƒ¡ã‚¤ãƒ³
 //----------------------------------
 PROC_RESULT Intro_Main(PROC * proc, int* seq)
 {
@@ -402,13 +402,13 @@ PROC_RESULT Intro_Main(PROC * proc, int* seq)
 	PROC_RESULT result = PROC_RES_CONTINUE;
 
 	switch( *seq ){
-	// ‰æ–Ê‰Šú‰»
+	// ç”»é¢åˆæœŸåŒ–
 	case INTRO_SEQ_INIT:
 		WIPE_SetBrightness( WIPE_DISP_MAIN,WIPE_FADE_BLACK );
 		WIPE_SetBrightness( WIPE_DISP_SUB,WIPE_FADE_BLACK );
 
-		sys_VBlankFuncChange( NULL, NULL );	// VBlankƒZƒbƒg
-		sys_HBlankIntrSet( NULL,NULL );		// HBlankƒZƒbƒg
+		sys_VBlankFuncChange( NULL, NULL );	// VBlankã‚»ãƒƒãƒˆ
+		sys_HBlankIntrSet( NULL,NULL );		// HBlankã‚»ãƒƒãƒˆ
 
 		GF_Disp_GX_VisibleControlInit();
 		GF_Disp_GXS_VisibleControlInit();
@@ -426,7 +426,7 @@ PROC_RESULT Intro_Main(PROC * proc, int* seq)
 		*seq = INTRO_SEQ_MAIN;
 		break;
 
-	// ƒƒCƒ“ƒ‹[ƒv
+	// ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
 	case INTRO_SEQ_MAIN:
 		if( Intro_Seq_introduction( wk ) == TRUE ){
 			FADE( WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, wk->heapID )
@@ -438,7 +438,7 @@ PROC_RESULT Intro_Main(PROC * proc, int* seq)
 		}
 		break;
 
-	// I—¹
+	// çµ‚äº†
 	case INTRO_SEQ_EXIT:
 		if(WIPE_SYS_EndCheck() == TRUE){
 			Intro_MsgDataRelease( wk );
@@ -450,7 +450,7 @@ PROC_RESULT Intro_Main(PROC * proc, int* seq)
 		}
 		break;
 
-	// ƒTƒu‚o‚q‚n‚bŒÄ‚Ño‚µ
+	// ã‚µãƒ–ï¼°ï¼²ï¼¯ï¼£å‘¼ã³å‡ºã—
 	case INTRO_SEQ_SUBPROC_CALL:
 		if(WIPE_SYS_EndCheck() == TRUE){
 			Intro_MsgDataRelease( wk );
@@ -462,7 +462,7 @@ PROC_RESULT Intro_Main(PROC * proc, int* seq)
 		}
 		break;
 
-	// ƒTƒu‚o‚q‚n‚bI—¹‘Ò‚¿
+	// ã‚µãƒ–ï¼°ï¼²ï¼¯ï¼£çµ‚äº†å¾…ã¡
 	case INTRO_SEQ_SUBPROC_WAIT:
 		if( ProcMain( wk->subproc ) == TRUE ){
 			PROC_Delete( wk->subproc );
@@ -472,7 +472,7 @@ PROC_RESULT Intro_Main(PROC * proc, int* seq)
 		}
 		break;
 
-	// ƒTƒu‚o‚q‚n‚b‚æ‚è•œ‹A
+	// ã‚µãƒ–ï¼°ï¼²ï¼¯ï¼£ã‚ˆã‚Šå¾©å¸°
 	case INTRO_SEQ_SUBPROC_END:
 
 		*seq = INTRO_SEQ_INIT;
@@ -482,7 +482,7 @@ PROC_RESULT Intro_Main(PROC * proc, int* seq)
 }
 
 //----------------------------------
-//‚o‚q‚n‚bI—¹
+//ï¼°ï¼²ï¼¯ï¼£çµ‚äº†
 //----------------------------------
 PROC_RESULT Intro_Exit(PROC * proc, int * seq)
 {
@@ -490,11 +490,11 @@ PROC_RESULT Intro_Exit(PROC * proc, int * seq)
 	int heapID = wk->heapID;
 
 
-	// PLATINUM‚Å’Ç‰Á‚µ‚½ƒJƒ‰[buffer‚ð”jŠü
+	// PLATINUMã§è¿½åŠ ã—ãŸã‚«ãƒ©ãƒ¼bufferã‚’ç ´æ£„
 	sys_FreeMemoryEz( wk->p_poke_colbuf );
 	sys_FreeMemoryEz( wk->p_poke_colbuf_wk );
 
-	//ƒpƒ‰ƒ[ƒ^Ý’è	ŽålŒö‚Ì–¼‘O•«•Ê
+	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š	ä¸»äººå…¬ã®åå‰ï¼†æ€§åˆ¥
 	MyStatus_SetMyNameFromString( SaveData_GetMyStatus(wk->sv), wk->myname->strbuf );
 	MyStatus_SetMySex( SaveData_GetMyStatus(wk->sv), wk->myname->info );
 	{
@@ -515,7 +515,7 @@ PROC_RESULT Intro_Exit(PROC * proc, int * seq)
 
 
 //----------------------------------
-//‚u‚a‚k‚`‚m‚jŠÖ”
+//ï¼¶ï¼¢ï¼¬ï¼¡ï¼®ï¼«é–¢æ•°
 //----------------------------------
 static void Intro_VBlank(void* work)
 {
@@ -526,11 +526,11 @@ static void Intro_VBlank(void* work)
 
 
 //----------------------------------
-//ƒ[ƒJƒ‹ŠÖ”iƒ^ƒbƒ`ƒpƒlƒ‹ŠÖ˜Aj
+//ãƒ­ãƒ¼ã‚«ãƒ«é–¢æ•°ï¼ˆã‚¿ãƒƒãƒãƒ‘ãƒãƒ«é–¢é€£ï¼‰
 //----------------------------------
 #define BALLSW_CENTER_X	(128)
 #define BALLSW_CENTER_Y	(100)
-//ƒ{[ƒ‹‰‰o—p( return : TRUE or FALSE )
+//ãƒœãƒ¼ãƒ«æ¼”å‡ºç”¨( return : TRUE or FALSE )
 static BOOL TouchPanel_BallEffect( void )
 {
 	BOOL result = FALSE;
@@ -558,47 +558,47 @@ static BOOL TouchPanel_BallEffect( void )
 
 
 //----------------------------------
-//‚u‚q‚`‚lÝ’è
+//ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
 //----------------------------------
-#define INTRO_NULL_PALETTE	( 0x0000 )		//‚a‚fƒoƒbƒNƒOƒ‰ƒEƒ“ƒhƒpƒŒƒbƒg
+#define INTRO_NULL_PALETTE	( 0x0000 )		//ï¼¢ï¼§ãƒãƒƒã‚¯ã‚°ãƒ©ã‚¦ãƒ³ãƒ‰ãƒ‘ãƒ¬ãƒƒãƒˆ
 #define PALSIZE				( 2*16 )
 
-// ƒpƒŒƒbƒgÝ’è(ƒƒCƒ“‰æ–Ê)
-#define INTRO_BACKPLT_M_NUM		( 0 )			//’Êí”wŒiiˆÈ‰º‚R–{•ªƒf[ƒ^ƒZƒbƒgj
-#define INTRO_TUTPLT_M_NUM		( 1 )			//ƒ`ƒ…[ƒgƒŠƒAƒ‹”wŒi
-#define INTRO_GUIDEPLT_M_NUM	( 2 )			//‚Ú‚¤‚¯‚ñƒKƒCƒh”wŒi
-#define INTRO_MWINPLT_M_NUM		( 3 )			//ƒVƒXƒeƒ€ƒƒjƒ…[ƒEƒCƒ“ƒhƒE
-#define INTRO_TWINPLT_M_NUM		( 4 )			//‰ï˜bƒEƒCƒ“ƒhƒE
-#define	INTRO_SYSFNTPLT_M_NUM	( 5 )			//ƒVƒXƒeƒ€ƒrƒbƒgƒ}ƒbƒv
-#define	INTRO_TKFNTPLT_M_NUM	( 6 )			//‰ï˜bƒrƒbƒgƒ}ƒbƒv
-#define	INTRO_PPL1PLT_M_NUM		( 7 )			//l•¨‚a‚f‚P
-#define	INTRO_PPL2PLT_M_NUM		( 8 )			//l•¨‚a‚f‚Q
-#define	INTRO_PPLNULLPLT_M_NUM	( 9 )			//l•¨ƒGƒtƒFƒNƒg
+// ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š(ãƒ¡ã‚¤ãƒ³ç”»é¢)
+#define INTRO_BACKPLT_M_NUM		( 0 )			//é€šå¸¸èƒŒæ™¯ï¼ˆä»¥ä¸‹ï¼“æœ¬åˆ†ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼‰
+#define INTRO_TUTPLT_M_NUM		( 1 )			//ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«èƒŒæ™¯
+#define INTRO_GUIDEPLT_M_NUM	( 2 )			//ã¼ã†ã‘ã‚“ã‚¬ã‚¤ãƒ‰èƒŒæ™¯
+#define INTRO_MWINPLT_M_NUM		( 3 )			//ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define INTRO_TWINPLT_M_NUM		( 4 )			//ä¼šè©±ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+#define	INTRO_SYSFNTPLT_M_NUM	( 5 )			//ã‚·ã‚¹ãƒ†ãƒ ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
+#define	INTRO_TKFNTPLT_M_NUM	( 6 )			//ä¼šè©±ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—
+#define	INTRO_PPL1PLT_M_NUM		( 7 )			//äººç‰©ï¼¢ï¼§ï¼‘
+#define	INTRO_PPL2PLT_M_NUM		( 8 )			//äººç‰©ï¼¢ï¼§ï¼’
+#define	INTRO_PPLNULLPLT_M_NUM	( 9 )			//äººç‰©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
-// ƒpƒŒƒbƒgÝ’è(ƒTƒu‰æ–Ê)
-#define INTRO_BACKPLT_S_NUM		( 0 )			//’Êí”wŒiiˆÈ‰º‚T–{•ªƒf[ƒ^ƒZƒbƒgj
-#define INTRO_BALLPLT_S_NUM		( 1 )			//ƒ{[ƒ‹”wŒi
-#define INTRO_GUIDEPLT_S_NUM	( 2 )			//‚Ú‚¤‚¯‚ñƒKƒCƒh”wŒi
-#define INTRO_TUTPLT_S_NUM		( 3 )			//ƒ`ƒ…[ƒgƒŠƒAƒ‹”wŒi
-#define INTRO_TUTYNPLT_S_NUM	( 4 )			//ƒ`ƒ…[ƒgƒŠƒAƒ‹u‚Í‚¢E‚¢‚¢‚¦v”wŒi
-#define	INTRO_BTNYNPLT_S_NUM	( 5 )			//ƒ{ƒ^ƒ“u‚Í‚¢E‚¢‚¢‚¦viˆÈ‰º‚Q–{•ªƒf[ƒ^ƒZƒbƒgj
-#define	INTRO_BTNYNPLT2_S_NUM	( 6 )			//ƒ{ƒ^ƒ“u‚Í‚¢E‚¢‚¢‚¦v
-#define	INTRO_BTNBALLPLT_S_NUM	( 7 )			//ƒ{ƒ^ƒ“ƒ{[ƒ‹iˆÈ‰º‚R–{•ªƒf[ƒ^ƒZƒbƒgj
-#define	INTRO_BTNBALLPLT1_S_NUM	( 8 )			//ƒ{ƒ^ƒ“ƒ{[ƒ‹
-#define	INTRO_BTNBALLPLT2_S_NUM	( 9 )			//ƒ{ƒ^ƒ“ƒ{[ƒ‹
-#define	INTRO_PPL1PLT_S_NUM		( 10 )			//l•¨‚a‚f‚P
-#define	INTRO_PPL2PLT_S_NUM		( 11 )			//l•¨‚a‚f‚Q
-#define	INTRO_PPLNULLPLT_S_NUM	( 10 )			//l•¨ƒGƒtƒFƒNƒg
+// ãƒ‘ãƒ¬ãƒƒãƒˆè¨­å®š(ã‚µãƒ–ç”»é¢)
+#define INTRO_BACKPLT_S_NUM		( 0 )			//é€šå¸¸èƒŒæ™¯ï¼ˆä»¥ä¸‹ï¼•æœ¬åˆ†ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼‰
+#define INTRO_BALLPLT_S_NUM		( 1 )			//ãƒœãƒ¼ãƒ«èƒŒæ™¯
+#define INTRO_GUIDEPLT_S_NUM	( 2 )			//ã¼ã†ã‘ã‚“ã‚¬ã‚¤ãƒ‰èƒŒæ™¯
+#define INTRO_TUTPLT_S_NUM		( 3 )			//ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«èƒŒæ™¯
+#define INTRO_TUTYNPLT_S_NUM	( 4 )			//ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ã€Œã¯ã„ãƒ»ã„ã„ãˆã€èƒŒæ™¯
+#define	INTRO_BTNYNPLT_S_NUM	( 5 )			//ãƒœã‚¿ãƒ³ã€Œã¯ã„ãƒ»ã„ã„ãˆã€ï¼ˆä»¥ä¸‹ï¼’æœ¬åˆ†ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼‰
+#define	INTRO_BTNYNPLT2_S_NUM	( 6 )			//ãƒœã‚¿ãƒ³ã€Œã¯ã„ãƒ»ã„ã„ãˆã€
+#define	INTRO_BTNBALLPLT_S_NUM	( 7 )			//ãƒœã‚¿ãƒ³ãƒœãƒ¼ãƒ«ï¼ˆä»¥ä¸‹ï¼“æœ¬åˆ†ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆï¼‰
+#define	INTRO_BTNBALLPLT1_S_NUM	( 8 )			//ãƒœã‚¿ãƒ³ãƒœãƒ¼ãƒ«
+#define	INTRO_BTNBALLPLT2_S_NUM	( 9 )			//ãƒœã‚¿ãƒ³ãƒœãƒ¼ãƒ«
+#define	INTRO_PPL1PLT_S_NUM		( 10 )			//äººç‰©ï¼¢ï¼§ï¼‘
+#define	INTRO_PPL2PLT_S_NUM		( 11 )			//äººç‰©ï¼¢ï¼§ï¼’
+#define	INTRO_PPLNULLPLT_S_NUM	( 10 )			//äººç‰©ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 
-// ‰ï˜bƒEƒBƒ“ƒhƒEƒLƒƒƒ‰iwindow.hŽQÆj
+// ä¼šè©±ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼ˆwindow.hå‚ç…§ï¼‰
 #define INTRO_TWINCHR_SIZ	( TALK_WIN_CGX_SIZ )
 #define INTRO_TWINCHR_NUM	( 0x400-INTRO_TWINCHR_SIZ )
 
-// ƒƒjƒ…[ƒEƒBƒ“ƒhƒEƒLƒƒƒ‰iwindow.hŽQÆj
+// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼ˆwindow.hå‚ç…§ï¼‰
 #define INTRO_MWINCHR_SIZ	( MENU_WIN_CGX_SIZ )
 #define INTRO_MWINCHR_NUM	( INTRO_TWINCHR_NUM - INTRO_MWINCHR_SIZ )
 
-// ƒVƒXƒeƒ€‚ÅŽg—p‚³‚ê‚Ä‚¢‚éƒLƒƒƒ‰ƒNƒ^[ŠJŽnˆÊ’u
+// ã‚·ã‚¹ãƒ†ãƒ ã§ä½¿ç”¨ã•ã‚Œã¦ã„ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼é–‹å§‹ä½ç½®
 #define INTRO_TEXTSYSCHAR_END	( INTRO_MWINCHR_NUM )
 
 #define BGCONTSET( frame, scr, cgx ){									\
@@ -610,65 +610,65 @@ static BOOL TouchPanel_BallEffect( void )
 
 static void Intro_VramBankSet( INTRO_DEMO_WORK* wk )
 {
-	{ //‚u‚q‚`‚lÝ’è
+	{ //ï¼¶ï¼²ï¼¡ï¼­è¨­å®š
 		GF_BGL_DISPVRAM vramSetTable = {
-			GX_VRAM_BG_128_B,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_BGEXTPLTT_NONE,			// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_BG_128_C,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBG
-			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌBGŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_OBJ_NONE,				// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_OBJEXTPLTT_NONE,		// ƒƒCƒ“2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_SUB_OBJ_NONE,			// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJ
-			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ƒTƒu2DƒGƒ“ƒWƒ“‚ÌOBJŠg’£ƒpƒŒƒbƒg
-			GX_VRAM_TEX_NONE,				// ƒeƒNƒXƒ`ƒƒƒCƒ[ƒWƒXƒƒbƒg
-			GX_VRAM_TEXPLTT_NONE			// ƒeƒNƒXƒ`ƒƒƒpƒŒƒbƒgƒXƒƒbƒg
+			GX_VRAM_BG_128_B,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_BGEXTPLTT_NONE,			// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_BG_128_C,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BG
+			GX_VRAM_SUB_BGEXTPLTT_NONE,		// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®BGæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_OBJ_NONE,				// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_OBJEXTPLTT_NONE,		// ãƒ¡ã‚¤ãƒ³2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_SUB_OBJ_NONE,			// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJ
+			GX_VRAM_SUB_OBJEXTPLTT_NONE,	// ã‚µãƒ–2Dã‚¨ãƒ³ã‚¸ãƒ³ã®OBJæ‹¡å¼µãƒ‘ãƒ¬ãƒƒãƒˆ
+			GX_VRAM_TEX_NONE,				// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚¹ãƒ­ãƒƒãƒˆ
+			GX_VRAM_TEXPLTT_NONE			// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ‘ãƒ¬ãƒƒãƒˆã‚¹ãƒ­ãƒƒãƒˆ
 		};
 		GF_Disp_SetBank( &vramSetTable );
 	}
 
-	{ //‚a‚fƒ‰ƒCƒuƒ‰ƒŠ—pƒƒ‚ƒŠŠm•Û
+	{ //ï¼¢ï¼§ãƒ©ã‚¤ãƒ–ãƒ©ãƒªç”¨ãƒ¡ãƒ¢ãƒªç¢ºä¿
 		wk->bgl = GF_BGL_BglIniAlloc(wk->heapID);
 	}
 
-	{ // ‚a‚fƒVƒXƒeƒ€Ý’è
+	{ // ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		GF_BGL_SYS_HEADER BGsys_data = {
 			GX_DISPMODE_GRAPHICS,GX_BGMODE_0,GX_BGMODE_0,GX_BG0_AS_2D
 		};	
 		GF_BGL_InitBG( &BGsys_data );
 	}
-	{ // ƒƒCƒ“‚a‚fƒVƒXƒeƒ€Ý’è
+	{ // ãƒ¡ã‚¤ãƒ³ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		GF_BGL_BGCNT_HEADER header = {	0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 										0, 0, GX_BG_EXTPLTT_01, 1, 0, 0, FALSE };
-		// ƒeƒLƒXƒg‚a‚fÝ’è(BG0)
+		// ãƒ†ã‚­ã‚¹ãƒˆï¼¢ï¼§è¨­å®š(BG0)
 		BGCONTSET( INTRO_TEXT_M_FRAME, GX_BG_SCRBASE_0x7800, GX_BG_CHARBASE_0x18000 )
-		// l•¨‚P‚a‚fÝ’è(BG1)
+		// äººç‰©ï¼‘ï¼¢ï¼§è¨­å®š(BG1)
 		BGCONTSET( INTRO_PPL1_M_FRAME, GX_BG_SCRBASE_0x7000, GX_BG_CHARBASE_0x14000 )
-		// l•¨‚Q‚a‚fÝ’è(BG2)
+		// äººç‰©ï¼’ï¼¢ï¼§è¨­å®š(BG2)
 		BGCONTSET( INTRO_PPL2_M_FRAME, GX_BG_SCRBASE_0x6800, GX_BG_CHARBASE_0x10000 )
-		// ”wŒi‚a‚fÝ’è(BG3)
+		// èƒŒæ™¯ï¼¢ï¼§è¨­å®š(BG3)
 		BGCONTSET( INTRO_BACK_M_FRAME, GX_BG_SCRBASE_0x6000, GX_BG_CHARBASE_0x0c000 )
 
-		//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒEƒLƒƒƒ‰•ƒpƒŒƒbƒg“Ç‚Ýž‚ÝiƒEƒCƒ“ƒhƒEŠO‘¤j
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å¤–å´ï¼‰
 		TalkWinGraphicSet(	wk->bgl, INTRO_TEXT_M_FRAME, INTRO_TWINCHR_NUM, INTRO_TWINPLT_M_NUM,
 							0, wk->heapID);
-		//ƒƒjƒ…[ƒEƒCƒ“ƒhƒEƒLƒƒƒ‰•ƒpƒŒƒbƒg“Ç‚Ýž‚ÝiƒEƒCƒ“ƒhƒEŠO‘¤j
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚­ãƒ£ãƒ©ï¼†ãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦å¤–å´ï¼‰
 		MenuWinGraphicSet(	wk->bgl,INTRO_TEXT_M_FRAME, INTRO_MWINCHR_NUM,INTRO_MWINPLT_M_NUM,
 							0,wk->heapID);
-		//ƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚ÝiƒVƒXƒeƒ€j
+		//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆã‚·ã‚¹ãƒ†ãƒ ï¼‰
 		SystemFontPaletteLoad( PALTYPE_MAIN_BG, INTRO_SYSFNTPLT_M_NUM*PALSIZE, wk->heapID );
-		//ƒtƒHƒ“ƒgƒpƒŒƒbƒg“Ç‚Ýž‚Ýi‰ï˜bj
+		//ãƒ•ã‚©ãƒ³ãƒˆãƒ‘ãƒ¬ãƒƒãƒˆèª­ã¿è¾¼ã¿ï¼ˆä¼šè©±ï¼‰
 		TalkFontPaletteLoad( PALTYPE_MAIN_BG, INTRO_TKFNTPLT_M_NUM*PALSIZE, wk->heapID );
 	}
-	{ // ƒTƒu‚a‚fƒVƒXƒeƒ€Ý’è
+	{ // ã‚µãƒ–ï¼¢ï¼§ã‚·ã‚¹ãƒ†ãƒ è¨­å®š
 		GF_BGL_BGCNT_HEADER header = {	0, 0, 0x800, 0, GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
 										0, 0, GX_BG_EXTPLTT_01, 0, 0, 0, FALSE };
-		// ƒeƒLƒXƒg‚a‚fÝ’è(BG0)
+		// ãƒ†ã‚­ã‚¹ãƒˆï¼¢ï¼§è¨­å®š(BG0)
 		BGCONTSET( INTRO_TEXT_S_FRAME, GX_BG_SCRBASE_0x7800, GX_BG_CHARBASE_0x18000 )
-		// ‚Í‚¢E‚¢‚¢‚¦‚a‚fÝ’è(BG1)
+		// ã¯ã„ãƒ»ã„ã„ãˆï¼¢ï¼§è¨­å®š(BG1)
 		BGCONTSET( INTRO_PPL1_S_FRAME, GX_BG_SCRBASE_0x7000, GX_BG_CHARBASE_0x14000 )
-		// ƒ{[ƒ‹‚a‚fÝ’è(BG2)
+		// ãƒœãƒ¼ãƒ«ï¼¢ï¼§è¨­å®š(BG2)
 		BGCONTSET( INTRO_PBTN_S_FRAME, GX_BG_SCRBASE_0x6800, GX_BG_CHARBASE_0x10000 )
-		// ”wŒi‚a‚fÝ’è(BG3)
+		// èƒŒæ™¯ï¼¢ï¼§è¨­å®š(BG3)
 		BGCONTSET( INTRO_BACK_S_FRAME, GX_BG_SCRBASE_0x6000, GX_BG_CHARBASE_0x0c000 )
 	}
 	FRAME_ALLOFF
@@ -695,13 +695,13 @@ static void Intro_VramBankRelease( INTRO_DEMO_WORK* wk )
 
 
 //----------------------------------
-//ƒƒbƒZ[ƒWÝ’è
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¨­å®š
 //----------------------------------
 static void Intro_MsgDataSet( INTRO_DEMO_WORK* wk )
 {
-	//ƒƒbƒZ[ƒWƒf[ƒ^“Ç‚Ýž‚Ý
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿
 	wk->msgman = MSGMAN_Create(MSGMAN_TYPE_DIRECT,ARC_MSG,NARC_msg_intro_dat,wk->heapID );
-	//ƒƒbƒZ[ƒW•\Ž¦ƒVƒXƒeƒ€‰Šú‰»
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºã‚·ã‚¹ãƒ†ãƒ åˆæœŸåŒ–
 	MSG_PrintInit();
 	wk->msgicon = MSG_DsIconFlashAdd( NULL, MSG_DSI_MAINDISP, INTRO_TKFNTPLT_M_NUM, wk->heapID );
 	wk->wordset = WORDSET_Create( wk->heapID );
@@ -716,28 +716,28 @@ static void Intro_MsgDataRelease( INTRO_DEMO_WORK* wk )
 	WORDSET_Delete( wk->wordset );
 //	MSG_DsIconFlashReq( wk->msgicon, MSG_DSI_REQ_FREE );
 	MSG_DsIconFlashDelete( wk->msgicon );
-	//ƒƒbƒZ[ƒWƒf[ƒ^”jŠü
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ‡ãƒ¼ã‚¿ç ´æ£„
 	MSGMAN_Delete(wk->msgman);
 }
 
 
 //----------------------------------
-//ƒCƒ“ƒ^[ƒtƒF[ƒXÝ’è
+//ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹è¨­å®š
 //----------------------------------
 static void Intro_InterFaceSet( INTRO_DEMO_WORK* wk )
 {
-	//‚Í‚¢E‚¢‚¢‚¦ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€“Ç‚Ýž‚Ý
+	//ã¯ã„ãƒ»ã„ã„ãˆã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ èª­ã¿è¾¼ã¿
 	wk->tpSWsys = TOUCH_SW_AllocWork( wk->heapID );
 }
 
 static void Intro_InterFaceRelease( INTRO_DEMO_WORK* wk )
 {
-	//‚Í‚¢E‚¢‚¢‚¦ƒ^ƒbƒ`ƒpƒlƒ‹ƒVƒXƒeƒ€”jŠü
+	//ã¯ã„ãƒ»ã„ã„ãˆã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„
 	TOUCH_SW_FreeWork( wk->tpSWsys );
 }
 
 //----------------------------------
-//”¼“§–¾ƒtƒF[ƒhƒCƒ“ƒAƒEƒgi‚a‚f‚OC‚PC‚Q‚É‘Î‚µ‚ÄB‚a‚f‚R–Êi”wŒij‚ð‘ÎÛ‚É‚·‚éj
+//åŠé€æ˜Žãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆï¼ˆï¼¢ï¼§ï¼ï¼Œï¼‘ï¼Œï¼’ã«å¯¾ã—ã¦ã€‚ï¼¢ï¼§ï¼“é¢ï¼ˆèƒŒæ™¯ï¼‰ã‚’å¯¾è±¡ã«ã™ã‚‹ï¼‰
 //----------------------------------
 #define ALPHASET( plane, side ){														\
 	if( side == 0 ){																	\
@@ -830,7 +830,7 @@ static BOOL Intro_AlphaFade( INTRO_DEMO_WORK * wk,int frame, int type )
 }
 
 //----------------------------------
-//ŠÈˆÕƒEƒFƒCƒg
+//ç°¡æ˜“ã‚¦ã‚§ã‚¤ãƒˆ
 //----------------------------------
 static BOOL Intro_Wait( INTRO_DEMO_WORK * wk, int wait )
 {
@@ -844,7 +844,7 @@ static BOOL Intro_Wait( INTRO_DEMO_WORK * wk, int wait )
 }
 
 //----------------------------------
-//‚a‚fƒXƒNƒŠ[ƒ“ƒpƒŒƒbƒg•ÏX
+//ï¼¢ï¼§ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆå¤‰æ›´
 //----------------------------------
 static void Intro_BGscrPalChange( INTRO_DEMO_WORK * wk, int frame, int pal )
 {
@@ -853,13 +853,13 @@ static void Intro_BGscrPalChange( INTRO_DEMO_WORK * wk, int frame, int pal )
 }
 
 //----------------------------------
-//‚a‚l‚oƒEƒCƒ“ƒhƒEÝ’è
+//ï¼¢ï¼­ï¼°ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦è¨­å®š
 //----------------------------------
-#define INTRO_STRBUF_SIZE		(0x400)	//ƒƒbƒZ[ƒWƒoƒbƒtƒ@ƒTƒCƒY
+#define INTRO_STRBUF_SIZE		(0x400)	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
 
 #define DOTSIZE					(8)
 
-// ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒEifldbmp.hŽQÆA‚b‚f‚wˆÈŠOƒtƒB[ƒ‹ƒh‚Æ“¯‚¶FƒRƒƒ“ƒg‚Í”’lj
+// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆfldbmp.hå‚ç…§ã€ï¼£ï¼§ï¼¸ä»¥å¤–ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¨åŒã˜ï¼šã‚³ãƒ¡ãƒ³ãƒˆã¯æ•°å€¤ï¼‰
 #define	INTRO_MSG_WIN_PX		(2)
 #define	INTRO_MSG_WIN_PY		(19)
 #define	INTRO_MSG_WIN_SX		(27)
@@ -867,7 +867,7 @@ static void Intro_BGscrPalChange( INTRO_DEMO_WORK * wk, int frame, int pal )
 #define	INTRO_MSG_WIN_PAL		(INTRO_TKFNTPLT_M_NUM)
 #define	INTRO_MSG_WIN_CGX		(INTRO_TEXTSYSCHAR_END-(INTRO_MSG_WIN_SX*INTRO_MSG_WIN_SY))
 
-// ‚Í‚¢/‚¢‚¢‚¦ƒEƒBƒ“ƒhƒEifldbmp.hŽQÆA‚b‚f‚wˆÈŠOƒtƒB[ƒ‹ƒh‚Æ“¯‚¶FƒRƒƒ“ƒg‚Í”’lj
+// ã¯ã„/ã„ã„ãˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ï¼ˆfldbmp.hå‚ç…§ã€ï¼£ï¼§ï¼¸ä»¥å¤–ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¨åŒã˜ï¼šã‚³ãƒ¡ãƒ³ãƒˆã¯æ•°å€¤ï¼‰
 #define	INTRO_YESNO_WIN_PX		(2)
 #define	INTRO_YESNO_WIN_PY		(3)
 #define	INTRO_YESNO_WIN_SX		(6)
@@ -875,7 +875,7 @@ static void Intro_BGscrPalChange( INTRO_DEMO_WORK * wk, int frame, int pal )
 #define	INTRO_YESNO_WIN_PAL		(INTRO_SYSFNTPLT_M_NUM)
 #define	INTRO_YESNO_WIN_CGX		(INTRO_MSG_WIN_CGX-(INTRO_YESNO_WIN_SX*INTRO_YESNO_WIN_SY))
 
-// ƒƒCƒ“ƒƒjƒ…[ƒEƒBƒ“ƒhƒE
+// ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	INTRO_MENU_WIN_PX		(1)
 #define	INTRO_MENU_WIN_PY		(3)
 #define	INTRO_MENU_WIN_SX		(16)
@@ -883,7 +883,7 @@ static void Intro_BGscrPalChange( INTRO_DEMO_WORK * wk, int frame, int pal )
 #define	INTRO_MENU_WIN_PAL		(INTRO_SYSFNTPLT_M_NUM)
 #define	INTRO_MENU_WIN_CGX		(INTRO_MSG_WIN_CGX-(INTRO_MENU_WIN_SX*INTRO_MENU_WIN_SY))
 
-// –¼‘OƒŠƒXƒgƒEƒBƒ“ƒhƒE
+// åå‰ãƒªã‚¹ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	INTRO_NAME_WIN_PX		(2)
 #define	INTRO_NAME_WIN_PY		(3)
 #define	INTRO_NAME_WIN_SX		(14)
@@ -891,7 +891,7 @@ static void Intro_BGscrPalChange( INTRO_DEMO_WORK * wk, int frame, int pal )
 #define	INTRO_NAME_WIN_PAL		(INTRO_SYSFNTPLT_M_NUM)
 #define	INTRO_NAME_WIN_CGX		(INTRO_MSG_WIN_CGX-(INTRO_NAME_WIN_SX*INTRO_NAME_WIN_SY))
 
-// ƒIƒyƒŒ[ƒVƒ‡ƒ“ƒEƒBƒ“ƒhƒE
+// ã‚ªãƒšãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	INTRO_OPERA_WIN_PX		(8)
 #define	INTRO_OPERA_WIN_PY		(0)
 #define	INTRO_OPERA_WIN_SX		(24)
@@ -899,7 +899,7 @@ static void Intro_BGscrPalChange( INTRO_DEMO_WORK * wk, int frame, int pal )
 #define	INTRO_OPERA_WIN_PAL		(INTRO_SYSFNTPLT_M_NUM)
 #define	INTRO_OPERA_WIN_CGX		(INTRO_MSG_WIN_CGX-(INTRO_OPERA_WIN_SX*INTRO_OPERA_WIN_SY))
 
-// ƒKƒCƒhƒEƒBƒ“ƒhƒE
+// ã‚¬ã‚¤ãƒ‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 #define	INTRO_GUIDE_WIN_PX		(4)
 #define	INTRO_GUIDE_WIN_PY		(0)
 #define	INTRO_GUIDE_WIN_SX		(24)
@@ -907,7 +907,7 @@ static void Intro_BGscrPalChange( INTRO_DEMO_WORK * wk, int frame, int pal )
 #define	INTRO_GUIDE_WIN_PAL		(INTRO_SYSFNTPLT_M_NUM)
 #define	INTRO_GUIDE_WIN_CGX		(INTRO_MSG_WIN_CGX-(INTRO_GUIDE_WIN_SX*INTRO_GUIDE_WIN_SY))
 
-//ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒg\‘¢‘Ì
+//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆæ§‹é€ ä½“
 typedef struct INTRO_BMPLIST_tag
 {
 	u32 msgID;
@@ -958,7 +958,7 @@ static const INTRO_BMPLIST_TBL name_list_p[] = {
 };
 
 //----------------------------------
-//ƒƒbƒZ[ƒW•\Ž¦
+//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
 //----------------------------------
 static BOOL Intro_MsgPrint( INTRO_DEMO_WORK * wk,u32 msgID, int button_mode )
 {
@@ -966,21 +966,21 @@ static BOOL Intro_MsgPrint( INTRO_DEMO_WORK * wk,u32 msgID, int button_mode )
 
 	switch(wk->msgseq){
 	case MSGSET:
-		//ƒrƒbƒgƒ}ƒbƒvì¬
+		//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½œæˆ
 		GF_BGL_BmpWinAddEx(wk->bgl,&wk->msgwin,&msg_windata );
-		//‰ŠúƒNƒŠƒA
+		//åˆæœŸã‚¯ãƒªã‚¢
 		GF_BGL_BmpWinFill(&wk->msgwin,FBMP_COL_WHITE,0,0,
 						INTRO_MSG_WIN_SX*DOTSIZE,INTRO_MSG_WIN_SY*DOTSIZE);
-		//ƒƒbƒZ[ƒWƒEƒCƒ“ƒhƒE‰Šú•\Ž¦
+		//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦åˆæœŸè¡¨ç¤º
 		BmpTalkWinWrite(&wk->msgwin,WINDOW_TRANS_ON,INTRO_TWINCHR_NUM,INTRO_TWINPLT_M_NUM);
 
-		MsgPrintSkipFlagSet( MSG_SKIP_ON );		// ƒƒbƒZ[ƒWƒXƒLƒbƒv—LŒø
-		MsgPrintAutoFlagSet( MSG_AUTO_OFF );	// ƒƒbƒZ[ƒWƒI[ƒg‘—‚è–³Œø
+		MsgPrintSkipFlagSet( MSG_SKIP_ON );		// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚¹ã‚­ãƒƒãƒ—æœ‰åŠ¹
+		MsgPrintAutoFlagSet( MSG_AUTO_OFF );	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚ªãƒ¼ãƒˆé€ã‚Šç„¡åŠ¹
 
-		//•¶Žš—ñ‚ÌŽæ“¾
+		//æ–‡å­—åˆ—ã®å–å¾—
 		{
 			STRBUF*	msg_tmp = STRBUF_Create( INTRO_STRBUF_SIZE, wk->heapID );
-			//•¶Žš—ñƒoƒbƒtƒ@‚Ìì¬
+			//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 			wk->msgstr = STRBUF_Create(INTRO_STRBUF_SIZE, wk->heapID);	
 
 			MSGMAN_GetString( wk->msgman, msgID, msg_tmp );
@@ -989,14 +989,14 @@ static BOOL Intro_MsgPrint( INTRO_DEMO_WORK * wk,u32 msgID, int button_mode )
 			WORDSET_ExpandStr( wk->wordset, wk->msgstr, msg_tmp );
 			STRBUF_Delete( msg_tmp );
 		}
-		//•¶Žš—ñ‚Ì•\Ž¦
+		//æ–‡å­—åˆ—ã®è¡¨ç¤º
 		wk->msgID = GF_STR_PrintSimple(&wk->msgwin,FONT_TALK,wk->msgstr,0,0,MSGSPD,NULL);
 
 		wk->msgseq = MSGDRAW;
 		break;
 
 	case MSGDRAW:
-		//•¶Žš—ñ•`‰æ‘Ò‚¿
+		//æ–‡å­—åˆ—æç”»å¾…ã¡
 		if(!(GF_MSG_PrintEndCheck(wk->msgID))){
 			STRBUF_Delete(wk->msgstr);
 			wk->msgseq = MSGWAIT;
@@ -1004,7 +1004,7 @@ static BOOL Intro_MsgPrint( INTRO_DEMO_WORK * wk,u32 msgID, int button_mode )
 		break;
 
 	case MSGWAIT:
-		//I—¹‘Ò‚¿
+		//çµ‚äº†å¾…ã¡
 		if( ( button_mode != A_BUTTON_WAIT )||( KEYTRG( PAD_BUTTON_A )) ){
 			GF_BGL_BmpWinDel(&wk->msgwin);
 			wk->msgseq = MSGSET;
@@ -1015,17 +1015,17 @@ static BOOL Intro_MsgPrint( INTRO_DEMO_WORK * wk,u32 msgID, int button_mode )
 }
 
 //----------------------------------
-//ƒŠƒXƒg•\Ž¦—pƒR[ƒ‹ƒoƒbƒN
+//ãƒªã‚¹ãƒˆè¡¨ç¤ºç”¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
 //----------------------------------
 static void Intro_BmpListMoveSeCall(BMPLIST_WORK * wk,u32 param,u8 mode)
 {
-	if( mode == 0 ){//‰Šú‰»Žž‚Í–Â‚ç‚³‚È‚¢
+	if( mode == 0 ){//åˆæœŸåŒ–æ™‚ã¯é³´ã‚‰ã•ãªã„
 		Snd_SePlay( SEQ_SE_DP_SELECT );
 	}
 }
 
 //----------------------------------
-//ƒŠƒXƒg•\Ž¦:BmpListÝ’èŽQÆ
+//ãƒªã‚¹ãƒˆè¡¨ç¤º:BmpListè¨­å®šå‚ç…§
 //----------------------------------
 static BOOL Intro_BmpList( INTRO_DEMO_WORK * wk, INTRO_LISTTYPE type, int button_mode )
 {
@@ -1060,27 +1060,27 @@ static BOOL Intro_BmpList( INTRO_DEMO_WORK * wk, INTRO_LISTTYPE type, int button
 			}
 			break;
 		}
-		//ƒƒjƒ…[ƒrƒbƒgƒ}ƒbƒv’Ç‰Á
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—è¿½åŠ 
 		GF_BGL_BmpWinAddEx( wk->bgl, &wk->listwin, windata );
-		//ƒƒjƒ…[ƒŠƒXƒg—p•¶Žš—ñƒoƒbƒtƒ@ì¬
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ä½œæˆ
 		wk->listdata = BMP_MENULIST_Create( count, wk->heapID );
-		//ƒƒjƒ…[ƒŠƒXƒg—p•¶Žš—ñƒoƒbƒtƒ@Žæ“¾
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚¹ãƒˆç”¨æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡å–å¾—
 		for( i=0; i<count; i++ ){
 			BMP_MENULIST_AddArchiveString(wk->listdata,wk->msgman,list[i].msgID,list[i].retID);
 		}
-		//ƒƒjƒ…[ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgƒwƒbƒ_ì¬
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆãƒ˜ãƒƒãƒ€ä½œæˆ
 		listheader_tmp = listheader_default;
 		listheader_tmp.list	= wk->listdata;
 		listheader_tmp.count = count;
 		listheader_tmp.line = count;
 		listheader_tmp.call_back = Intro_BmpListMoveSeCall;
 		listheader_tmp.win  = &wk->listwin;
-		//ƒƒjƒ…[ƒrƒbƒgƒ}ƒbƒvƒŠƒXƒgì¬
+		//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ãƒªã‚¹ãƒˆä½œæˆ
 		wk->list = BmpListSet(&listheader_tmp,0,0,wk->heapID);
 	
-		//ƒEƒCƒ“ƒhƒEiŠO˜gj•`‰æ
+		//ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ï¼ˆå¤–æž ï¼‰æç”»
 		BmpMenuWinWrite(listheader_tmp.win,WINDOW_TRANS_OFF,INTRO_MWINCHR_NUM,INTRO_MWINPLT_M_NUM);
-		//‚u‚q‚`‚l“]‘—
+		//ï¼¶ï¼²ï¼¡ï¼­è»¢é€
 		GF_BGL_BmpWinOn( &wk->listwin );
 
 		wk->listseq = LISTSELECT;
@@ -1094,7 +1094,7 @@ static BOOL Intro_BmpList( INTRO_DEMO_WORK * wk, INTRO_LISTTYPE type, int button
 		if((wk->listres == BMPLIST_CANCEL)&&(button_mode == B_BUTTON_DISABLE)){
 				break;
 		}
-		//‘I‘ðƒŠƒXƒgíœˆ—
+		//é¸æŠžãƒªã‚¹ãƒˆå‰Šé™¤å‡¦ç†
 		BmpMenuWinClear( &wk->listwin, WINDOW_TRANS_ON );
 		GF_BGL_BmpWinDel( &wk->listwin );
 		BmpListExit( wk->list, NULL, NULL );
@@ -1109,7 +1109,7 @@ static BOOL Intro_BmpList( INTRO_DEMO_WORK * wk, INTRO_LISTTYPE type, int button
 }
 
 //----------------------------------
-//ƒKƒCƒh•\Ž¦
+//ã‚¬ã‚¤ãƒ‰è¡¨ç¤º
 //----------------------------------
 static BOOL Intro_GuidePrint
 			( INTRO_DEMO_WORK * wk,u32 msgID, INTRO_GUIDETYPE type, int pos_y, int siz_y )
@@ -1120,18 +1120,18 @@ static BOOL Intro_GuidePrint
 	switch(wk->guideseq){
 	case GUIDESET:
 		FRAME_OFF( INTRO_TEXT_M_FRAME )
-		//•¶Žš—ñƒoƒbƒtƒ@‚Ìì¬
+		//æ–‡å­—åˆ—ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 		wk->msgstr = STRBUF_Create(INTRO_STRBUF_SIZE, wk->heapID);	
-		//•¶Žš—ñ‚ÌŽæ“¾
+		//æ–‡å­—åˆ—ã®å–å¾—
 		MSGMAN_GetString(wk->msgman,msgID,wk->msgstr);
 
-		//ƒrƒbƒgƒ}ƒbƒvì¬•‰ŠúƒNƒŠƒA
+		//ãƒ“ãƒƒãƒˆãƒžãƒƒãƒ—ä½œæˆï¼†åˆæœŸã‚¯ãƒªã‚¢
 		if( type == GUIDETYPE_GUIDE ){
-			//‚Ú‚¤‚¯‚ñƒKƒCƒh—p
+			//ã¼ã†ã‘ã‚“ã‚¬ã‚¤ãƒ‰ç”¨
 			windata = guide_windata;
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2006/11/20
-			// •\Ž¦‚ÌcˆÊ’u‚ðŽ©“®’²®‚·‚é‚æ‚¤‚É•ÏX
+			// è¡¨ç¤ºã®ç¸¦ä½ç½®ã‚’è‡ªå‹•èª¿æ•´ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 			{
                 // MatchComment: FontProc_GetPrintLineNum -> STRBUF_GetLines
 				u32 linenum = STRBUF_GetLines(wk->msgstr);
@@ -1142,15 +1142,15 @@ static BOOL Intro_GuidePrint
 			GF_BGL_BmpWinAddEx(wk->bgl,&wk->msgwin,&windata );
 			GF_BGL_BmpWinFill(&wk->msgwin,0,0,0,
 						INTRO_GUIDE_WIN_SX*DOTSIZE,INTRO_GUIDE_WIN_SY*DOTSIZE);
-			//•¶Žš—ñ‚Ì•\Ž¦
+			//æ–‡å­—åˆ—ã®è¡¨ç¤º
 			GF_STR_PrintColor(&wk->msgwin,FONT_SYSTEM,wk->msgstr,0,0,0,
 							GF_PRINTCOLOR_MAKE(1, 2, 0),NULL);
 		} else {
-			//‘€ìà–¾—p
+			//æ“ä½œèª¬æ˜Žç”¨
 			windata = opera_windata;
 			// ----------------------------------------------------------------------------
 			// localize_spec_mark(LANG_ALL) imatake 2007/03/26
-			// ƒ^ƒbƒ`ƒXƒNƒŠ[ƒ“‚Ì‘€ìà–¾‚Í•\Ž¦‚ÌcˆÊ’u‚ðŽ©“®’²®‚·‚é‚æ‚¤‚É•ÏX
+			// ã‚¿ãƒƒãƒã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®æ“ä½œèª¬æ˜Žã¯è¡¨ç¤ºã®ç¸¦ä½ç½®ã‚’è‡ªå‹•èª¿æ•´ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 			if ( type == GUIDETYPE_TOUCH ) {
                 // MatchComment: FontProc_GetPrintLineNum -> STRBUF_GetLines
 				u32 linenum = STRBUF_GetLines(wk->msgstr);
@@ -1164,7 +1164,7 @@ static BOOL Intro_GuidePrint
 			GF_BGL_BmpWinAddEx(wk->bgl,&wk->msgwin,&windata );
 			GF_BGL_BmpWinFill(&wk->msgwin,0,0,0,
 						INTRO_OPERA_WIN_SX*DOTSIZE,INTRO_OPERA_WIN_SY*DOTSIZE);
-			//•¶Žš—ñ‚Ì•\Ž¦
+			//æ–‡å­—åˆ—ã®è¡¨ç¤º
 			GF_STR_PrintColor(&wk->msgwin,FONT_SYSTEM,wk->msgstr,0,0,0,
 							GF_PRINTCOLOR_MAKE(15, 2, 0),NULL);
 		}
@@ -1173,7 +1173,7 @@ static BOOL Intro_GuidePrint
 		break;
 
 	case GUIDEDISPON:
-		//‚u‚q‚`‚l“]‘—
+		//ï¼¶ï¼²ï¼¡ï¼­è»¢é€
 		GF_BGL_BmpWinOn( &wk->msgwin );
 		wk->guideseq = GUIDEFADEIN;
 		break;
@@ -1185,7 +1185,7 @@ static BOOL Intro_GuidePrint
 		break;
 
 	case GUIDEWAIT:
-		//I—¹‘Ò‚¿
+		//çµ‚äº†å¾…ã¡
 		if( (KEYTRG( PAD_BUTTON_A ))||(KEYTRG( PAD_BUTTON_B )) ){
 			Snd_SePlay( SEQ_SE_DP_SELECT );
 			wk->guideseq = GUIDEFADEOUT;
@@ -1209,24 +1209,24 @@ static BOOL Intro_GuidePrint
 }
 
 //----------------------------------
-//ƒOƒ‰ƒtƒBƒbƒN“Ç‚Ýž‚Ý
-//¦”wŒi‚ÍƒXƒNƒŠ[ƒ“A
-//	l•¨‚ÍƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^{ƒpƒŒƒbƒgA
-//	ƒ{ƒ^ƒ“‚ÍƒXƒNƒŠ[ƒ“{ƒLƒƒƒ‰ƒNƒ^[ƒf[ƒ^‚É‚æ‚Á‚Ä•Ï‰»
+//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿
+//â€»èƒŒæ™¯ã¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã€
+//	äººç‰©ã¯ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ï¼‹ãƒ‘ãƒ¬ãƒƒãƒˆã€
+//	ãƒœã‚¿ãƒ³ã¯ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ï¼‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ‡ãƒ¼ã‚¿ã«ã‚ˆã£ã¦å¤‰åŒ–
 //----------------------------------
 static void Intro_GraphicLoad( INTRO_DEMO_WORK* wk )
 {
 
-	//ƒƒCƒ“‰æ–Ê”wŒiƒLƒƒƒ‰ƒNƒ^[
+	//ãƒ¡ã‚¤ãƒ³ç”»é¢èƒŒæ™¯ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼
 	ArcUtil_BgCharSet(	ARC_INTRO, NARC_intro_back_m_NCGR,
 						wk->bgl, INTRO_BACK_M_FRAME, 0, 0, 0, wk->heapID );
-	//NULLƒLƒƒƒ‰Ý’è
+	//NULLã‚­ãƒ£ãƒ©è¨­å®š
 	GF_BGL_ClearCharSet( INTRO_TEXT_M_FRAME, 32, 0, wk->heapID );
 
-	//ƒTƒu‰æ–Ê”wŒiƒLƒƒƒ‰ƒNƒ^[
+	//ã‚µãƒ–ç”»é¢èƒŒæ™¯ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼
 	ArcUtil_BgCharSet(	ARC_INTRO, NARC_intro_back_s_NCGR,
 						wk->bgl, INTRO_BACK_S_FRAME, 0, 0, 0, wk->heapID );
-	{//ƒpƒŒƒbƒgiƒo[ƒWƒ‡ƒ“‚É‚æ‚Á‚Ä•Ï‰»j
+	{//ãƒ‘ãƒ¬ãƒƒãƒˆï¼ˆãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«ã‚ˆã£ã¦å¤‰åŒ–ï¼‰
 		int palIDm,palIDs;
 
 		if( CasetteVersion == VERSION_PLATINUM){
@@ -1248,13 +1248,13 @@ static void Intro_GraphicLoad( INTRO_DEMO_WORK* wk )
 	Intro_GraphicLoadScenePPL( wk );
 	Intro_GraphicLoadSceneS( wk );
 
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, INTRO_NULL_PALETTE );	//”wŒiF‰Šú‰»
-	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, INTRO_NULL_PALETTE );	//”wŒiF‰Šú‰»
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, INTRO_NULL_PALETTE );	//èƒŒæ™¯è‰²åˆæœŸåŒ–
+	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, INTRO_NULL_PALETTE );	//èƒŒæ™¯è‰²åˆæœŸåŒ–
 }
 
 
 //----------------------------------
-//ƒOƒ‰ƒtƒBƒbƒNƒV[ƒ“Ø‚è‘Ö‚¦“Ç‚Ýž‚ÝiƒƒCƒ“”wŒij
+//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆèª­ã¿è¾¼ã¿ï¼ˆãƒ¡ã‚¤ãƒ³èƒŒæ™¯ï¼‰
 //----------------------------------
 static void Intro_GraphicLoadSceneM( INTRO_DEMO_WORK* wk )
 {
@@ -1273,11 +1273,11 @@ static void Intro_GraphicLoadSceneM( INTRO_DEMO_WORK* wk )
 
 
 //----------------------------------
-//ƒOƒ‰ƒtƒBƒbƒNƒV[ƒ“Ø‚è‘Ö‚¦“Ç‚Ýž‚ÝiƒƒCƒ“l•¨j
+//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆèª­ã¿è¾¼ã¿ï¼ˆãƒ¡ã‚¤ãƒ³äººç‰©ï¼‰
 //----------------------------------
 static void Intro_GraphicLoadScenePPL( INTRO_DEMO_WORK* wk )
 {
-	int	dataIDTbl[][2] = {	{ 0, 0 },	//“Ç‚Ýž‚Ý‚È‚µ
+	int	dataIDTbl[][2] = {	{ 0, 0 },	//èª­ã¿è¾¼ã¿ãªã—
 							{ NARC_intro_doctor_NCGR,		NARC_intro_doctor_NCLR },
 							{ NARC_intro_hero_0_NCGR,		NARC_intro_hero_NCLR },
 							{ NARC_intro_hero_1_NCGR,		NARC_intro_hero_NCLR },
@@ -1310,7 +1310,7 @@ static void Intro_GraphicLoadScenePPL( INTRO_DEMO_WORK* wk )
 }
 
 //----------------------------------
-//ƒOƒ‰ƒtƒBƒbƒNƒV[ƒ“Ø‚è‘Ö‚¦“Ç‚Ýž‚ÝiƒTƒu”wŒij
+//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚·ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆèª­ã¿è¾¼ã¿ï¼ˆã‚µãƒ–èƒŒæ™¯ï¼‰
 //----------------------------------
 static void Intro_GraphicLoadSceneS( INTRO_DEMO_WORK* wk )
 {
@@ -1334,7 +1334,7 @@ static void Intro_GraphicLoadSceneS( INTRO_DEMO_WORK* wk )
 }
 
 //----------------------------------
-//ƒOƒ‰ƒtƒBƒbƒN“Ç‚Ýž‚Ýiƒ|ƒPƒ‚ƒ“j
+//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿ï¼ˆãƒã‚±ãƒ¢ãƒ³ï¼‰
 //----------------------------------
 #define MONSDATASIZE	( 10*10 )
 static const u8 monscr_tbl[] = {
@@ -1357,8 +1357,8 @@ static const u16 monpal_null_tbl[] = {
 //	0x54d9,0x54d9,0x54d9,0x54d9,0x54d9,0x54d9,0x54d9,0x54d9,
 };
 
-// PLATINUM‚Å‚Â‚¢‚©
-// ƒpƒŒƒbƒgƒJƒ‰[•ÏXF
+// PLATINUMã§ã¤ã„ã‹
+// ãƒ‘ãƒ¬ãƒƒãƒˆã‚«ãƒ©ãƒ¼å¤‰æ›´è‰²
 #define PL_MONS_PAL_CHANGE				( 0x6a3c )
 #define PL_MONS_PAL_CHANGE_EVY_START	( 16 )
 #define PL_MONS_PAL_CHANGE_EVY_END		( 0 )
@@ -1375,7 +1375,7 @@ static void Intro_GraphicLoadScenePOKE( INTRO_DEMO_WORK* wk )
 	int pal_m = INTRO_PPL2PLT_M_NUM;
 	int pal_s = INTRO_PPL1PLT_S_NUM;
 
-	//ƒA[ƒJƒCƒuƒtƒ@ƒCƒ‹î•ñŽæ“¾
+	//ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±å–å¾—
 	PokeGraArcDataGet( &ssa, INTRO_MONSNO, PARA_MALE, PARA_FRONT, PARA_NORMAL, 0, 0 );
 
 	monsscr = sys_AllocMemory( wk->heapID, MONSDATASIZE*2 );
@@ -1386,16 +1386,16 @@ static void Intro_GraphicLoadScenePOKE( INTRO_DEMO_WORK* wk )
 	monscgx = ChangesInto_BattlePokeData_Alloc( ssa.arc_no, ssa.index_chr, wk->heapID );
 	monspal = ChangesInto_BattlePokePalData_Alloc( ssa.arc_no, ssa.index_pal, wk->heapID );
 
-	// Œ³ƒf[ƒ^‚ðƒRƒs[
+	// å…ƒãƒ‡ãƒ¼ã‚¿ã‚’ã‚³ãƒ”ãƒ¼
 	MI_CpuCopy32( monspal, wk->p_poke_colbuf, 0x20 );
 
-	// ”½‰fƒJƒ‰[‚ðì¬
+	// åæ˜ ã‚«ãƒ©ãƒ¼ã‚’ä½œæˆ
 	ColorConceChange(wk->p_poke_colbuf, monspal, 1, PL_MONS_PAL_CHANGE_EVY_START, PL_MONS_PAL_CHANGE);
 	
 
 	GF_BGL_ScrFill( wk->bgl, frame_m, 0, 0, 0, 32, 24, pal_m); 
 //	GF_BGL_ScrWrite( wk->bgl, frame_m, monsscr, 11, 11, 10, 10 ); 
-//	PLATINUM‚Å•\Ž¦ˆÊ’u‚ð‚à‚¤­‚µã‚É•ÏX
+//	PLATINUMã§è¡¨ç¤ºä½ç½®ã‚’ã‚‚ã†å°‘ã—ä¸Šã«å¤‰æ›´
 	GF_BGL_ScrWrite( wk->bgl, frame_m, monsscr, 11, 9, 10, 10 ); 
 	Intro_BGscrPalChange( wk, frame_m, pal_m );
 	GF_BGL_ClearCharSet( frame_m, 32, 0, wk->heapID );
@@ -1416,26 +1416,26 @@ static void Intro_GraphicLoadScenePOKE( INTRO_DEMO_WORK* wk )
 
 
 //----------------------------------
-//ƒOƒ‰ƒtƒBƒbƒN“Ç‚Ýž‚ÝiƒTƒuƒ{ƒ^ƒ“j
+//ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯èª­ã¿è¾¼ã¿ï¼ˆã‚µãƒ–ãƒœã‚¿ãƒ³ï¼‰
 //----------------------------------
 static void Intro_GraphicLoadSceneBTN( INTRO_DEMO_WORK* wk )
 {
-	//ƒTƒuƒ{ƒ^ƒ“ƒXƒNƒŠ[ƒ“
+	//ã‚µãƒ–ãƒœã‚¿ãƒ³ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
 	ArcUtil_ScrnSet(	ARC_INTRO, NARC_intro_button_s_ball_NSCR,
 						wk->bgl, INTRO_PBTN_S_FRAME, 0, 0, 0, wk->heapID );
 	Intro_BGscrPalChange( wk, INTRO_PBTN_S_FRAME, INTRO_BTNBALLPLT2_S_NUM );
 	ArcUtil_PalSet(		ARC_INTRO, NARC_intro_button_s_NCLR, PALTYPE_SUB_BG, 
 						INTRO_BTNBALLPLT_S_NUM * PALSIZE, PALSIZE * 3, wk->heapID );
 
-	//NULLƒLƒƒƒ‰Ý’è
+	//NULLã‚­ãƒ£ãƒ©è¨­å®š
 	GF_BGL_ClearCharSet( INTRO_PBTN_S_FRAME, 32, 0, wk->heapID );
-	//ƒ{ƒ^ƒ“ŒÂ‘Ì“Ç‚Ýž‚Ý
+	//ãƒœã‚¿ãƒ³å€‹ä½“èª­ã¿è¾¼ã¿
 	ArcUtil_BgCharSet(	ARC_INTRO, NARC_intro_ball_button_0_NCGR,
 						wk->bgl, INTRO_PBTN_S_FRAME, 0x20, 0, 0, wk->heapID );
 }
 
 //----------------------------------
-//ƒXƒNƒ[ƒ‹iƒƒCƒ“l•¨j
+//ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ï¼ˆãƒ¡ã‚¤ãƒ³äººç‰©ï¼‰
 //----------------------------------
 static BOOL Intro_PPLScroll( INTRO_DEMO_WORK * wk,int frame, int type )
 {
@@ -1474,7 +1474,7 @@ static BOOL Intro_PPLScroll( INTRO_DEMO_WORK * wk,int frame, int type )
 
 
 //----------------------------------
-//ƒAƒjƒ[ƒVƒ‡ƒ“iŽålŒöj
+//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ï¼ˆä¸»äººå…¬ï¼‰
 //----------------------------------
 static void Intro_MineAnimeInit( INTRO_DEMO_WORK * wk )
 {
@@ -1491,7 +1491,7 @@ static void Intro_MineAnime( INTRO_DEMO_WORK * wk )
 			wk->bganime_count_wait_male--;
 		} else {
 			wk->bganime_count_male++;
-			wk->bganime_count_male &= 3;	//‚SŽí—Þ
+			wk->bganime_count_male &= 3;	//ï¼”ç¨®é¡ž
 			wk->bganime_count_wait_male = 4;
 		}
 		G2_SetBlendAlpha( GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, 6, 10 );
@@ -1506,7 +1506,7 @@ static void Intro_MineAnime( INTRO_DEMO_WORK * wk )
 			wk->bganime_count_wait_female--;
 		} else {
 			wk->bganime_count_female++;
-			wk->bganime_count_female &= 3;	//‚SŽí—Þ
+			wk->bganime_count_female &= 3;	//ï¼”ç¨®é¡ž
 			wk->bganime_count_wait_female = 4;
 		}
 		G2_SetBlendAlpha( GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG3, 6, 10 );
@@ -1527,7 +1527,7 @@ static void Intro_MineAnimeEnd( INTRO_DEMO_WORK * wk )
 
 
 //----------------------------------
-//k¬ƒAƒjƒ[ƒVƒ‡ƒ“iŽålŒöj
+//ç¸®å°ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ï¼ˆä¸»äººå…¬ï¼‰
 //----------------------------------
 static void Intro_MineAnimeMinInit( INTRO_DEMO_WORK * wk )
 {
@@ -1573,8 +1573,8 @@ static BOOL Intro_MineMinAnime( INTRO_DEMO_WORK * wk )
 
 
 //----------------------------------
-//ƒ|ƒPƒ‚ƒ““oê‰‰o
-//ƒpƒŒƒbƒgƒAƒjƒ
+//ãƒã‚±ãƒ¢ãƒ³ç™»å ´æ¼”å‡º
+//ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 //----------------------------------
 #define PL_MONS_POKE_PAL_ANM_COUNT_DIV	( 3 )
 #define PL_MONS_POKE_PAL_ANM_COUNT_MAX	( PL_MONS_PAL_CHANGE_EVY_START * PL_MONS_POKE_PAL_ANM_COUNT_DIV )
@@ -1582,7 +1582,7 @@ static void Intro_GraphicPalAnmPOKE( INTRO_DEMO_WORK* wk )
 {
 	if( wk->work[8] > 0 ){
 		wk->work[8]--;
-		// ”½‰fƒJƒ‰[‚ðì¬
+		// åæ˜ ã‚«ãƒ©ãƒ¼ã‚’ä½œæˆ
 		ColorConceChange(wk->p_poke_colbuf, wk->p_poke_colbuf_wk, 1, 
 				wk->work[8] / PL_MONS_POKE_PAL_ANM_COUNT_DIV, PL_MONS_PAL_CHANGE);
 		
@@ -1593,7 +1593,7 @@ static void Intro_GraphicPalAnmPOKE( INTRO_DEMO_WORK* wk )
 
 
 //----------------------------------
-//ƒ|ƒPƒ‚ƒ““oê‰‰o
+//ãƒã‚±ãƒ¢ãƒ³ç™»å ´æ¼”å‡º
 //----------------------------------
 #define POKE_FSTPOSY	(-8*13)
 #define POKE_TOPPOSY	(8*14)
@@ -1615,8 +1615,8 @@ static BOOL Intro_PokeScroll( INTRO_DEMO_WORK * wk, int* seq )
 		wk->work[6] = FIRSTSPEED;
 		wk->work[7] = 0;
 		
-		// PLATINUM‚Å‚Â‚¢‚©
-		// ƒ|ƒPƒ‚ƒ“ƒpƒŒƒbƒgƒAƒjƒ
+		// PLATINUMã§ã¤ã„ã‹
+		// ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 		wk->work[8] = PL_MONS_POKE_PAL_ANM_COUNT_MAX;
 		*seq = 1;
 		break;
@@ -1638,7 +1638,7 @@ static BOOL Intro_PokeScroll( INTRO_DEMO_WORK * wk, int* seq )
 			} else {
 				FRAME_OFF( INTRO_PPL1_S_FRAME )
 //				wk->work[7] = 30;
-				// PLATINUM‚Åã‚Éƒ|ƒPƒ‚ƒ“‚ªo‚Ä‚­‚é‚Ü‚Å‚ÌŽžŠÔ‚ð•ÏX
+				// PLATINUMã§ä¸Šã«ãƒã‚±ãƒ¢ãƒ³ãŒå‡ºã¦ãã‚‹ã¾ã§ã®æ™‚é–“ã‚’å¤‰æ›´
 				wk->work[7] = 0;
 				*seq = 2;
 			}
@@ -1694,7 +1694,7 @@ static BOOL Intro_PokeScroll( INTRO_DEMO_WORK * wk, int* seq )
 		}
 		break;
 
-	// ƒ~ƒ~ƒƒ‹‚ÍŒ³‹C‚ÈƒCƒ[ƒW‚È‚Ì‚ÅƒSƒ“ƒx‚æ‚è‚Í‚Ë‚é
+	// ãƒŸãƒŸãƒ­ãƒ«ã¯å…ƒæ°—ãªã‚¤ãƒ¡ãƒ¼ã‚¸ãªã®ã§ã‚´ãƒ³ãƒ™ã‚ˆã‚Šã¯ã­ã‚‹
 	case 4:
 		{
 			int scrx = GF_BGL_ScrollGetX( wk->bgl, INTRO_PPL2_M_FRAME );
@@ -1721,8 +1721,8 @@ static BOOL Intro_PokeScroll( INTRO_DEMO_WORK * wk, int* seq )
 		}
 		break;
 
-	// PLATINUM‚©‚ç’Ç‰Á
-	// ƒ~ƒ~ƒƒ‹‚É‚È‚Á‚½‚Ì‚ÅŒ³‹C‚É“®‚­
+	// PLATINUMã‹ã‚‰è¿½åŠ 
+	// ãƒŸãƒŸãƒ­ãƒ«ã«ãªã£ãŸã®ã§å…ƒæ°—ã«å‹•ã
 	case 5:
 		{
 			int scrx = GF_BGL_ScrollGetX( wk->bgl, INTRO_PPL2_M_FRAME );
@@ -1751,17 +1751,17 @@ static BOOL Intro_PokeScroll( INTRO_DEMO_WORK * wk, int* seq )
 		Snd_PMVoicePlay( INTRO_MONSNO, 0 );
 				
 
-		// PLATINUM‚Åíœ
-		// ƒ|ƒPƒ‚ƒ“‚ðƒpƒŒƒbƒgƒAƒjƒ‚³‚¹‚é‚Æ‚«‚É
-		// ‚·‚Å‚É‚»‚ÌƒpƒŒƒbƒg‚ðŽQÆ‚µ‚Ä‚¢‚éˆ×
+		// PLATINUMã§å‰Šé™¤
+		// ãƒã‚±ãƒ¢ãƒ³ã‚’ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡ã•ã›ã‚‹ã¨ãã«
+		// ã™ã§ã«ãã®ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å‚ç…§ã—ã¦ã„ã‚‹ç‚º
 //		Intro_BGscrPalChange( wk, INTRO_PPL2_M_FRAME, INTRO_PPL2PLT_M_NUM );
 		result = TRUE;
 		break;
 	}
 
 
-	// PLATINUM‚Å‚Â‚¢‚©
-	// ƒ|ƒPƒ‚ƒ“ƒpƒŒƒbƒgƒAƒjƒ
+	// PLATINUMã§ã¤ã„ã‹
+	// ãƒã‚±ãƒ¢ãƒ³ãƒ‘ãƒ¬ãƒƒãƒˆã‚¢ãƒ‹ãƒ¡
 	Intro_GraphicPalAnmPOKE( wk );
 	
 	return result;
@@ -1781,7 +1781,7 @@ static void Intro_PokeScrollEnd( INTRO_DEMO_WORK * wk )
 //
 //
 //
-//ƒV[ƒPƒ“ƒX
+//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹
 //
 //
 //
@@ -1864,7 +1864,7 @@ enum{
 };
 
 //----------------------------------
-//“±“ü
+//å°Žå…¥
 //----------------------------------
 static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 {
@@ -1874,8 +1874,8 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 
 //----------------------------------
 	case SEQ_0_0_00:
-		//PLAYER_BGM‚Åƒ^ƒCƒgƒ‹AƒI[ƒvƒjƒ“ƒO‚ð–Â‚ç‚·‚æ‚¤‚É‚·‚é
-		Snd_DataSetByScene( SND_SCENE_OPENING, SEQ_OPENING, 1 );	//ƒI[ƒvƒjƒ“ƒO‹ÈÄ¶
+		//PLAYER_BGMã§ã‚¿ã‚¤ãƒˆãƒ«ã€ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ã‚’é³´ã‚‰ã™ã‚ˆã†ã«ã™ã‚‹
+		Snd_DataSetByScene( SND_SCENE_OPENING, SEQ_OPENING, 1 );	//ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°æ›²å†ç”Ÿ
 		Snd_BgmStop( SEQ_OPENING, 0 );
 
 		FRAME_ON( INTRO_TEXT_M_FRAME )
@@ -1938,14 +1938,14 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 	case SEQ_1_4_01:
 		if( Intro_BmpList( wk, LISTTYPE_MENU, B_BUTTON_DISABLE ) == TRUE ){
 			switch( wk->listres ){
-			case 1:	//‘€ì•û–@
+			case 1:	//æ“ä½œæ–¹æ³•
 				SUBNEXTSEQ_SET( SEQ_1_4_02, SEQ_2_1_00 )
 				break;
-			case 2:	//‚Ú‚¤‚¯‚ñƒKƒCƒh
+			case 2:	//ã¼ã†ã‘ã‚“ã‚¬ã‚¤ãƒ‰
 				SUBNEXTSEQ_SET( SEQ_1_4_02, SEQ_4_1_00 )
 				INTRO_TEXT_FRAME_CLEAR
 				break;
-			case 3:	//I—¹
+			case 3:	//çµ‚äº†
 				SUBSEQ_SET( SEQ_5_1_00 )
 				break;
 			}
@@ -1994,7 +1994,7 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 	case SEQ_2_2_01:
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2006/11/20
-		// Yƒ{ƒ^ƒ“‚Ìà–¾•\Ž¦ƒGƒŠƒA‚ð‰º‚É1s•ªŠg’£
+		// Yãƒœã‚¿ãƒ³ã®èª¬æ˜Žè¡¨ç¤ºã‚¨ãƒªã‚¢ã‚’ä¸‹ã«1è¡Œåˆ†æ‹¡å¼µ
 		if( Intro_GuidePrint( wk, msg_operation_02, GUIDETYPE_OPERA, 7, 12 ) == TRUE ){
 		// ----------------------------------------------------------------------------
 			SUBSEQ_SET( SEQ_2_3_00 )
@@ -2010,7 +2010,7 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 	case SEQ_2_3_01:
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/03/26
-		// ƒ^ƒbƒ`ƒXƒNƒŠ[ƒ“‚Ì‘€ìà–¾‚Í•\Ž¦‚ÌcˆÊ’u‚ðŽ©“®’²®‚·‚é‚æ‚¤‚É•ÏX
+		// ã‚¿ãƒƒãƒã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®æ“ä½œèª¬æ˜Žã¯è¡¨ç¤ºã®ç¸¦ä½ç½®ã‚’è‡ªå‹•èª¿æ•´ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 		if( Intro_GuidePrint( wk, msg_operation_03, GUIDETYPE_TOUCH, 4, 12 ) == TRUE ){
 		// ----------------------------------------------------------------------------
 			SUBSEQ_SET( SEQ_2_4_00 )
@@ -2027,7 +2027,7 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 	case SEQ_2_4_01:
 		// ----------------------------------------------------------------------------
 		// localize_spec_mark(LANG_ALL) imatake 2007/03/26
-		// ƒ^ƒbƒ`ƒXƒNƒŠ[ƒ“‚Ì‘€ìà–¾‚Í•\Ž¦‚ÌcˆÊ’u‚ðŽ©“®’²®‚·‚é‚æ‚¤‚É•ÏX
+		// ã‚¿ãƒƒãƒã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®æ“ä½œèª¬æ˜Žã¯è¡¨ç¤ºã®ç¸¦ä½ç½®ã‚’è‡ªå‹•èª¿æ•´ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´
 		if( Intro_GuidePrint( wk, msg_operation_04, GUIDETYPE_TOUCH, 4, 10 ) == TRUE ){
 		// ----------------------------------------------------------------------------
 			SUBSEQ_SET( SEQ_2_4_02 )
@@ -2075,10 +2075,10 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 
 	case SEQ_2_5_03:
 		switch( TOUCH_SW_MainMC( wk->tpSWsys ) ){
-		case TOUCH_SW_RET_YES:	//‚Í‚¢
+		case TOUCH_SW_RET_YES:	//ã¯ã„
 			SUBSEQ_SET( SEQ_2_5_04 )
 			break;
-		case TOUCH_SW_RET_NO:	//‚¢‚¢‚¦
+		case TOUCH_SW_RET_NO:	//ã„ã„ãˆ
 			SUBSEQ_SET( SEQ_2_5_06 )
 			break;
 		}
@@ -2244,12 +2244,12 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 
 	case SEQ_5_2_04:
 		if( TouchPanel_BallEffect() == TRUE ){
-			wk->work[0] = 0;	//ƒ{[ƒ‹ƒXƒCƒbƒ`ƒAƒjƒƒiƒ“ƒo[
-			wk->work[1] = 0;	//ƒ{[ƒ‹ƒXƒCƒbƒ`ƒAƒjƒƒJƒEƒ“ƒ^
+			wk->work[0] = 0;	//ãƒœãƒ¼ãƒ«ã‚¹ã‚¤ãƒƒãƒã‚¢ãƒ‹ãƒ¡ãƒŠãƒ³ãƒãƒ¼
+			wk->work[1] = 0;	//ãƒœãƒ¼ãƒ«ã‚¹ã‚¤ãƒƒãƒã‚¢ãƒ‹ãƒ¡ã‚«ã‚¦ãƒ³ã‚¿
 			INTRO_TEXT_FRAME_CLEAR
-			SUBSEQ_SET( SEQ_5_2_05 ) //ƒ^ƒbƒ`ƒpƒlƒ‹‚Åƒ{[ƒ‹‚Ìƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚½
+			SUBSEQ_SET( SEQ_5_2_05 ) //ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«ã§ãƒœãƒ¼ãƒ«ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸ
 		} else if( sys.trg ){
-			SUBSEQ_SET( SEQ_5_3_00 ) //‚»‚êˆÈŠO‚ÌƒL[
+			SUBSEQ_SET( SEQ_5_3_00 ) //ãã‚Œä»¥å¤–ã®ã‚­ãƒ¼
 		}
 		break;
 
@@ -2267,11 +2267,11 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 
 					SUBSEQ_SET( SEQ_5_4_00 )
 				} else {
-					//ƒ{ƒ^ƒ“ŒÂ‘Ì“Ç‚Ýž‚Ý
+					//ãƒœã‚¿ãƒ³å€‹ä½“èª­ã¿è¾¼ã¿
 					ArcUtil_BgCharSet(	ARC_INTRO, ballAnimeTbl[ wk->work[0] ],
 										wk->bgl, INTRO_PBTN_S_FRAME, 0x20, 0, 0, wk->heapID );
 					wk->work[0]++;
-					wk->work[1] = 4;	//ƒ{[ƒ‹ƒXƒCƒbƒ`ƒAƒjƒƒJƒEƒ“ƒ^
+					wk->work[1] = 4;	//ãƒœãƒ¼ãƒ«ã‚¹ã‚¤ãƒƒãƒã‚¢ãƒ‹ãƒ¡ã‚«ã‚¦ãƒ³ã‚¿
 				}
 			}
 		}
@@ -2397,7 +2397,7 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 
 	case SEQ_6_1_03:
 		if( Intro_MsgPrint( wk, msg_opening_10, A_BUTTON_NOWAIT ) == TRUE ){
-			wk->mysex = PM_MALE;	//‰Šú‰»
+			wk->mysex = PM_MALE;	//åˆæœŸåŒ–
 			SUBSEQ_SET( SEQ_6_1_04 )
 		}
 		break;
@@ -2406,7 +2406,7 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 		if( KEYTRG( PAD_BUTTON_A ) ){
 			wk->alphaev1 = 6;
 			wk->alphaev2 = 10;
-			wk->alphafadeseq = ALPHAFADEOUT;	//–³—‚â‚è‚¾‚¯‚Ç‚Ü‚ ‚¢‚¢‚©
+			wk->alphafadeseq = ALPHAFADEOUT;	//ç„¡ç†ã‚„ã‚Šã ã‘ã©ã¾ã‚ã„ã„ã‹
 			if( wk->mysex == PM_MALE ){
 				SUBSEQ_SET( SEQ_6_2_00 )
 			} else {
@@ -2454,7 +2454,7 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 		break;
 
 //----------------------------------
-	case SEQ_6_4_00:	//6-2,6-3‚©‚ç‚Ì”h¶
+	case SEQ_6_4_00:	//6-2,6-3ã‹ã‚‰ã®æ´¾ç”Ÿ
 		{
 			u32 msgID;
 
@@ -2472,10 +2472,10 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 	case SEQ_6_4_01:
 		if( Intro_BmpList( wk, LISTTYPE_YESNO, B_BUTTON_ENABLE ) == TRUE ){
 			switch( wk->listres ){
-			case 1:	//‚Í‚¢
+			case 1:	//ã¯ã„
 				SUBSEQ_SET( SEQ_7_1_00 )
 				break;
-			case 2:	//‚¢‚¢‚¦
+			case 2:	//ã„ã„ãˆ
 			case BMPLIST_CANCEL:
 				INTRO_TEXT_FRAME_CLEAR
 				SUBSEQ_SET( SEQ_6_4_02 )
@@ -2555,10 +2555,10 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 		if( Intro_BmpList( wk, LISTTYPE_YESNO, B_BUTTON_ENABLE ) == TRUE ){
 			INTRO_TEXT_FRAME_CLEAR
 			switch( wk->listres ){
-			case 1:	//‚Í‚¢
+			case 1:	//ã¯ã„
 				SUBNEXTSEQ_SET( SEQ_7_3_02, SEQ_8_1_00 )
 				break;
-			case 2:	//‚¢‚¢‚¦
+			case 2:	//ã„ã„ãˆ
 			case BMPLIST_CANCEL:
 				STRBUF_Clear( wk->myname->strbuf );
 				SUBNEXTSEQ_SET( SEQ_7_3_02, SEQ_6_1_00 )
@@ -2633,13 +2633,13 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 	case SEQ_8_2_04:
 		if( Intro_BmpList( wk, LISTTYPE_NAME, B_BUTTON_DISABLE ) == TRUE ){
 			switch( wk->listres ){
-			case 1:	//‚¶‚Ô‚ñ‚Å‚«‚ß‚é
+			case 1:	//ã˜ã¶ã‚“ã§ãã‚ã‚‹
 				SUBSEQ_SET( SEQ_8_3_00 )
 				break;
-			case 2:	//ƒfƒtƒHƒ‹ƒg‚P
-			case 3:	//ƒfƒtƒHƒ‹ƒg‚Q
-			case 4:	//ƒfƒtƒHƒ‹ƒg‚R
-			case 5:	//ƒfƒtƒHƒ‹ƒg‚S
+			case 2:	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼‘
+			case 3:	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼’
+			case 4:	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼“
+			case 5:	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼”
 				{
 					u32 msgID;
 
@@ -2648,7 +2648,7 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 					} else {
 						msgID = name_list_p[ wk->listres - 1 ].msgID;
 					}
-					//•¶Žš—ñ‚ÌŽæ“¾
+					//æ–‡å­—åˆ—ã®å–å¾—
 					{
 						STRBUF* str = MSGMAN_AllocString( wk->msgman, msgID );
 						STRBUF_Copy( wk->rivalname->strbuf, str );
@@ -2699,11 +2699,11 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 	case SEQ_8_4_01:
 		if( Intro_BmpList( wk, LISTTYPE_YESNO, B_BUTTON_ENABLE ) == TRUE ){
 			switch( wk->listres ){
-			case 1:	//‚Í‚¢
+			case 1:	//ã¯ã„
 				INTRO_TEXT_FRAME_CLEAR
 				SUBSEQ_SET( SEQ_8_4_02 )
 				break;
-			case 2:	//‚¢‚¢‚¦
+			case 2:	//ã„ã„ãˆ
 			case BMPLIST_CANCEL:
 				STRBUF_Clear( wk->rivalname->strbuf );
 				SUBSEQ_SET( SEQ_8_2_02 )

@@ -10,40 +10,40 @@
 	.include	"../../field/scr_ribbon.h"
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒg–{‘Ì
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆæœ¬ä½“
 //--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-//					     ƒXƒNƒŠƒvƒgƒe[ƒuƒ‹
+//					     ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ†ãƒ¼ãƒ–ãƒ«
 //--------------------------------------------------------------------
 _EVENT_DATA		ev_c08r0201_week
 _EVENT_DATA_END
 
 /********************************************************************/
-/*							‚¨Ÿ­—ŽŽo‚³‚ñ							*/
-/*	SCWK_PARAM2 = æ“ªƒ|ƒPƒ‚ƒ“‚ÌŽèŽ‚¿”Ô†							*/
+/*							ãŠæ´’è½å§‰ã•ã‚“							*/
+/*	SCWK_PARAM2 = å…ˆé ­ãƒã‚±ãƒ¢ãƒ³ã®æ‰‹æŒã¡ç•ªå·							*/
 /********************************************************************/
 ev_c08r0201_week:
 	_TALK_OBJ_START
 
-	//¡“úƒŠƒ{ƒ“‚ð–á‚Á‚Ä‚¢‚é
+	//ä»Šæ—¥ãƒªãƒœãƒ³ã‚’è²°ã£ã¦ã„ã‚‹
 	_IF_FLAGON_JUMP		TMFLG_C08R0201_RIBBON_GET,ev_c08r0201_week_chk_01
 
-	//‰“ú
+	//åˆæ—¥
 	_IF_FLAGON_JUMP		TMFLG_C08R0201_FIRST_DAY,ev_c08r0201_week_02
 
-	//‰‰ñ
+	//åˆå›ž
 	_IF_FLAGOFF_JUMP		FE_C08R0201_WEEK_TALK,ev_c08r0201_week_01
 
-	//æ“ªƒ|ƒPƒ‚ƒ“”Ô†Žæ“¾
+	//å…ˆé ­ãƒã‚±ãƒ¢ãƒ³ç•ªå·å–å¾—
 	_FRONT_POKEMON		SCWK_PARAM2
 
-	//—j“ú‚²‚Æ‚ÌƒŠƒ{ƒ“‚ðŽ‚Á‚Ä‚¢‚é
+	//æ›œæ—¥ã”ã¨ã®ãƒªãƒœãƒ³ã‚’æŒã£ã¦ã„ã‚‹
 	_CALL		ev_c08r0201_week_rbbon_chk
-	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c08r0201_week_09			//Ž‚Á‚Ä‚¢‚é
-	_JUMP							ev_c08r0201_week_chk_02			//Ž‚Á‚Ä‚¢‚È‚¢iŠÈˆÕ‰ï˜b‚Öj
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c08r0201_week_09			//æŒã£ã¦ã„ã‚‹
+	_JUMP							ev_c08r0201_week_chk_02			//æŒã£ã¦ã„ãªã„ï¼ˆç°¡æ˜“ä¼šè©±ã¸ï¼‰
 
-//‰‰ñ
+//åˆå›ž
 ev_c08r0201_week_01:
 	_FLAG_SET			FE_C08R0201_WEEK_TALK
 	_FLAG_SET			TMFLG_C08R0201_FIRST_DAY	
@@ -55,7 +55,7 @@ ev_c08r0201_week_01:
 	_END
 
 
-//‰“ú
+//åˆæ—¥
 ev_c08r0201_week_02:
 	_TALKMSG		msg_c08r0201_week_02
 	_LAST_KEYWAIT
@@ -63,16 +63,16 @@ ev_c08r0201_week_02:
 	_TALK_OBJ_END
 	_END
 
-//æ“ª‚Ìƒ|ƒPƒ‚ƒ“‚ª—j“ú‚²‚Æ‚ÌƒŠƒ{ƒ“‚ðŽ‚Á‚Ä‚¢‚é
+//å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ãŒæ›œæ—¥ã”ã¨ã®ãƒªãƒœãƒ³ã‚’æŒã£ã¦ã„ã‚‹
 ev_c08r0201_week_chk_01:
-//060529C³ ƒŠƒ{ƒ“‚ð–á‚Á‚½“ú‚ÍAu‚ ‚·‚à‚Ü‚½...v‚Ì‚Ý‚É•ÏXi²“¡‚³‚ñ‚©‚ç‚ÌŽwŽ¦‚Å‚·j
+//060529ä¿®æ­£ ãƒªãƒœãƒ³ã‚’è²°ã£ãŸæ—¥ã¯ã€ã€Œã‚ã™ã‚‚ã¾ãŸ...ã€ã®ã¿ã«å¤‰æ›´ï¼ˆä½è—¤ã•ã‚“ã‹ã‚‰ã®æŒ‡ç¤ºã§ã™ï¼‰
 //	_CALL		ev_c08r0201_week_rbbon_chk
-//	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c08r0201_week_09			//Ž‚Á‚Ä‚¢‚é
-	_JUMP								ev_c08r0201_week_08			//Ž‚Á‚Ä‚¢‚È‚¢
+//	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c08r0201_week_09			//æŒã£ã¦ã„ã‚‹
+	_JUMP								ev_c08r0201_week_08			//æŒã£ã¦ã„ãªã„
 
-//ƒŠƒ{ƒ“‚ª‚ ‚é‚©‚Ìƒ`ƒFƒbƒN@SCWK_ANSWER 0:‚È‚µ 1:‚ ‚è
+//ãƒªãƒœãƒ³ãŒã‚ã‚‹ã‹ã®ãƒã‚§ãƒƒã‚¯ã€€SCWK_ANSWER 0:ãªã— 1:ã‚ã‚Š
 ev_c08r0201_week_rbbon_chk:
-	//—j“úƒ`ƒFƒbƒN
+	//æ›œæ—¥ãƒã‚§ãƒƒã‚¯
 	_CHK_WEEK	SCWK_ANSWER
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,RTC_WEEK_SUNDAY,ev_c08r0201_week_sunday_ribbon_chk
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,RTC_WEEK_MONDAY,ev_c08r0201_week_monday_ribbon_chk
@@ -83,42 +83,42 @@ ev_c08r0201_week_rbbon_chk:
 	_JUMP										ev_c08r0201_week_saturday_ribbon_chk
 
 ev_c08r0201_week_sunday_ribbon_chk:
-	//‚É‚Á‚±ƒŠƒ{ƒ“
+	//ã«ã£ã“ãƒªãƒœãƒ³
 	_CHK_RIBBON		SCWK_ANSWER,SCWK_PARAM2,RIBBON_SINOU_NIKKO_RIBBON
 	_RET
 
 ev_c08r0201_week_monday_ribbon_chk:
-	//‚µ‚á‚Á‚«ƒŠƒ{ƒ“
+	//ã—ã‚ƒã£ããƒªãƒœãƒ³
 	_CHK_RIBBON		SCWK_ANSWER,SCWK_PARAM2,RIBBON_SINOU_SYAKKI_RIBBON
 	_RET
 
 ev_c08r0201_week_tuesday_ribbon_chk:
-	//‚Ç‚Á‚«ƒŠƒ{ƒ“
+	//ã©ã£ããƒªãƒœãƒ³
 	_CHK_RIBBON		SCWK_ANSWER,SCWK_PARAM2,RIBBON_SINOU_DOKKI_RIBBON
 	_RET
 
 ev_c08r0201_week_wednesday_ribbon_chk:
-	//‚µ‚å‚ñ‚ÚƒŠƒ{ƒ“
+	//ã—ã‚‡ã‚“ã¼ãƒªãƒœãƒ³
 	_CHK_RIBBON		SCWK_ANSWER,SCWK_PARAM2,RIBBON_SINOU_SYONBO_RIBBON
 	_RET
 
 ev_c08r0201_week_thursday_ribbon_chk:
-	//‚¤‚Á‚©ƒŠƒ{ƒ“
+	//ã†ã£ã‹ãƒªãƒœãƒ³
 	_CHK_RIBBON		SCWK_ANSWER,SCWK_PARAM2,RIBBON_SINOU_UKKA_RIBBON
 	_RET
 
 ev_c08r0201_week_friday_ribbon_chk:
-	//‚·‚Á‚«ƒŠƒ{ƒ“
+	//ã™ã£ããƒªãƒœãƒ³
 	_CHK_RIBBON		SCWK_ANSWER,SCWK_PARAM2,RIBBON_SINOU_SUKKI_RIBBON
 	_RET
 
 ev_c08r0201_week_saturday_ribbon_chk:
-	//‚®‚Á‚·ƒŠƒ{ƒ“
+	//ãã£ã™ãƒªãƒœãƒ³
 	_CHK_RIBBON		SCWK_ANSWER,SCWK_PARAM2,RIBBON_SINOU_GUSSU_RIBBON
 	_RET
 
 
-//Žæ“¾Žž‚Ì‹¤’ÊI—¹ƒƒbƒZ[ƒW
+//å–å¾—æ™‚ã®å…±é€šçµ‚äº†ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 ev_c08r0201_week_common_ribbon_get_01:
 	_POKEMON_NAME	1,SCWK_PARAM2
 	_PLAYER_NAME	2
@@ -134,7 +134,7 @@ ev_c08r0201_week_common_ribbon_get_01:
 	_JUMP				ev_c08r0201_week_08
 
 
-//ƒŠƒ{ƒ“‚ð–á‚Á‚½“ú
+//ãƒªãƒœãƒ³ã‚’è²°ã£ãŸæ—¥
 ev_c08r0201_week_08:
 	_TALKMSG		msg_c08r0201_week_08
 	_LAST_KEYWAIT
@@ -142,7 +142,7 @@ ev_c08r0201_week_08:
 	_TALK_OBJ_END
 	_END
 
-//ƒŠƒ{ƒ“‚ð–á‚Á‚½“ú‚ÅAæ“ª‚Ìƒ|ƒPƒ‚ƒ“‚ªƒŠƒ{ƒ“‚ð‚»‚Ì—j“ú‚ÌƒŠƒ{ƒ“‚ðŽ‚Á‚Ä‚¢‚é
+//ãƒªãƒœãƒ³ã‚’è²°ã£ãŸæ—¥ã§ã€å…ˆé ­ã®ãƒã‚±ãƒ¢ãƒ³ãŒãƒªãƒœãƒ³ã‚’ãã®æ›œæ—¥ã®ãƒªãƒœãƒ³ã‚’æŒã£ã¦ã„ã‚‹
 ev_c08r0201_week_09:
 	_POKEMON_NAME	1,SCWK_PARAM2
 	_TALKMSG		msg_c08r0201_week_09
@@ -153,9 +153,9 @@ ev_c08r0201_week_09:
 
 
 
-//—j“úƒ`ƒFƒbƒN
+//æ›œæ—¥ãƒã‚§ãƒƒã‚¯
 ev_c08r0201_week_chk_02:
-	//—j“úƒ`ƒFƒbƒN
+	//æ›œæ—¥ãƒã‚§ãƒƒã‚¯
 	_CHK_WEEK	SCWK_ANSWER
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,RTC_WEEK_SUNDAY,ev_c08r0201_week_sunday
 	_IFVAL_JUMP	SCWK_ANSWER,EQ,RTC_WEEK_MONDAY,ev_c08r0201_week_monday
@@ -183,7 +183,7 @@ ev_c08r0201_week_sunday:
 
 	_PMS_BUF			0,SCWK_PARAM0
 	_TALK_KEYWAIT		msg_c08r0201_week_21
-	//ƒŠƒ{ƒ“ƒQƒbƒg
+	//ãƒªãƒœãƒ³ã‚²ãƒƒãƒˆ
 	_FLAG_SET			TMFLG_C08R0201_RIBBON_GET
 
 	_SET_RIBBON			SCWK_PARAM2,RIBBON_SINOU_NIKKO_RIBBON
@@ -214,7 +214,7 @@ ev_c08r0201_week_monday:
 
 	_TALK_KEYWAIT		msg_c08r0201_week_04
 
-	//ƒŠƒ{ƒ“ƒQƒbƒg
+	//ãƒªãƒœãƒ³ã‚²ãƒƒãƒˆ
 	_FLAG_SET			TMFLG_C08R0201_RIBBON_GET
 
 	_SET_RIBBON			SCWK_PARAM2,RIBBON_SINOU_SYAKKI_RIBBON
@@ -244,7 +244,7 @@ ev_c08r0201_week_tuesday:
 
 	_TALK_KEYWAIT		msg_c08r0201_week_11
 
-	//ƒŠƒ{ƒ“ƒQƒbƒg
+	//ãƒªãƒœãƒ³ã‚²ãƒƒãƒˆ
 	_FLAG_SET			TMFLG_C08R0201_RIBBON_GET
 
 	_SET_RIBBON			SCWK_PARAM2,RIBBON_SINOU_DOKKI_RIBBON
@@ -273,7 +273,7 @@ ev_c08r0201_week_wednesday:
 
 	_TALK_KEYWAIT		msg_c08r0201_week_13
 
-	//ƒŠƒ{ƒ“ƒQƒbƒg
+	//ãƒªãƒœãƒ³ã‚²ãƒƒãƒˆ
 	_FLAG_SET			TMFLG_C08R0201_RIBBON_GET
 
 	_SET_RIBBON			SCWK_PARAM2,RIBBON_SINOU_SYONBO_RIBBON
@@ -303,7 +303,7 @@ ev_c08r0201_week_thursday:
 
 	_TALK_KEYWAIT		msg_c08r0201_week_15
 
-	//ƒŠƒ{ƒ“ƒQƒbƒg
+	//ãƒªãƒœãƒ³ã‚²ãƒƒãƒˆ
 	_FLAG_SET			TMFLG_C08R0201_RIBBON_GET
 
 	_SET_RIBBON			SCWK_PARAM2,RIBBON_SINOU_UKKA_RIBBON
@@ -333,7 +333,7 @@ ev_c08r0201_week_friday:
 
 	_TALK_KEYWAIT		msg_c08r0201_week_17
 
-	//ƒŠƒ{ƒ“ƒQƒbƒg
+	//ãƒªãƒœãƒ³ã‚²ãƒƒãƒˆ
 	_FLAG_SET			TMFLG_C08R0201_RIBBON_GET
 
 	_SET_RIBBON			SCWK_PARAM2,RIBBON_SINOU_SUKKI_RIBBON
@@ -363,7 +363,7 @@ ev_c08r0201_week_saturday:
 
 	_TALK_KEYWAIT		msg_c08r0201_week_19
 
-	//ƒŠƒ{ƒ“ƒQƒbƒg
+	//ãƒªãƒœãƒ³ã‚²ãƒƒãƒˆ
 	_FLAG_SET			TMFLG_C08R0201_RIBBON_GET
 
 	_SET_RIBBON			SCWK_PARAM2,RIBBON_SINOU_GUSSU_RIBBON

@@ -15,43 +15,43 @@
   INDENT SOURCE
 
   Revision 1.13  2006/01/13 07:26:50  yasu
-  SOCL ŠÖ”‚Ìƒpƒ‰ƒ[ƒ^’²®
+  SOCL é–¢æ•°ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿èª¿æ•´
 
   Revision 1.12  2005/09/27 14:18:09  yasu
-  SOC_Close ‚Ì”ñ“¯Šú“®ìƒTƒ|[ƒg
+  SOC_Close ã®éåŒæœŸå‹•ä½œã‚µãƒãƒ¼ãƒˆ
 
   Revision 1.11  2005/08/25 08:27:38  yasu
-  UDP óM‚É‚¨‚¯‚éƒoƒbƒtƒ@ƒŠƒ“ƒOˆ—’Ç‰Á
+  UDP å—ä¿¡ã«ãŠã‘ã‚‹ãƒãƒƒãƒ•ã‚¡ãƒªãƒ³ã‚°å‡¦ç†è¿½åŠ 
 
   Revision 1.10  2005/08/18 13:18:49  yasu
-  ƒ\ƒPƒbƒgƒŠƒ“ƒNƒŠƒXƒg‚É‚æ‚é cleanup ˆ—‚Ì’Ç‰Á
+  ã‚½ã‚±ãƒƒãƒˆãƒªãƒ³ã‚¯ãƒªã‚¹ãƒˆã«ã‚ˆã‚‹ cleanup å‡¦ç†ã®è¿½åŠ 
 
   Revision 1.9  2005/08/13 08:02:39  yasu
-  consumed_min §Œä‚Ì’Ç‰Á
+  consumed_min åˆ¶å¾¡ã®è¿½åŠ 
 
   Revision 1.8  2005/08/10 09:30:57  seiki_masashi
-  SSL ‚ÌƒTƒ|[ƒg‚ğ’Ç‰Á
+  SSL ã®ã‚µãƒãƒ¼ãƒˆã‚’è¿½åŠ 
 
   Revision 1.7  2005/07/30 22:30:14  yasu
-  ƒfƒ‚‚ª“®‚­‚æ‚¤‚ÉC³
+  ãƒ‡ãƒ¢ãŒå‹•ãã‚ˆã†ã«ä¿®æ­£
 
   Revision 1.6  2005/07/30 15:30:08  yasu
-  ƒRƒ}ƒ“ƒhƒpƒCƒv•ª—£‚É‚Æ‚à‚È‚¤C³
+  ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—åˆ†é›¢ã«ã¨ã‚‚ãªã†ä¿®æ­£
 
   Revision 1.5  2005/07/27 12:20:33  yasu
-  ƒoƒbƒtƒ@ƒTƒCƒY 0 ‚Ì‚Íƒ|ƒCƒ“ƒ^‚à NULL ‚Æ‚·‚é
+  ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º 0 ã®æ™‚ã¯ãƒã‚¤ãƒ³ã‚¿ã‚‚ NULL ã¨ã™ã‚‹
 
   Revision 1.4  2005/07/23 14:16:49  yasu
-  Debug ƒƒbƒZ[ƒW‚ğ‰B“½
+  Debug ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’éš åŒ¿
 
   Revision 1.3  2005/07/22 12:44:56  yasu
-  ”ñ“¯Šúˆ—‰¼À‘•
+  éåŒæœŸå‡¦ç†ä»®å®Ÿè£…
 
   Revision 1.2  2005/07/19 14:06:33  yasu
-  SOCL_Read/Write ’Ç‰Á
+  SOCL_Read/Write è¿½åŠ 
 
   Revision 1.1  2005/07/18 13:16:28  yasu
-  ‘—MóMƒXƒŒƒbƒh‚ğì¬‚·‚é
+  é€ä¿¡å—ä¿¡ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½œæˆã™ã‚‹
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
@@ -69,21 +69,21 @@ static u8*          SOCLi_InitCommandPipe(u8*  ptr, SOCLiSocketCommandPipe*  pip
 /*---------------------------------------------------------------------------*
   Name:         SOCL_CreateSocket
 
-  Description:  ƒ\ƒPƒbƒg‚ğì¬‚·‚éD
-                “Æ©‚ÌƒCƒ“ƒ^[ƒtƒFƒCƒX‚ğg—p‚µ‚Ä‚¢‚éD
-                ƒƒ‚ƒŠ—˜—p‚ÉŠÖ‚·‚é×‚©‚Èİ’è‚ª‰Â”\D
+  Description:  ã‚½ã‚±ãƒƒãƒˆã‚’ä½œæˆã™ã‚‹ï¼
+                ç‹¬è‡ªã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹ï¼
+                ãƒ¡ãƒ¢ãƒªåˆ©ç”¨ã«é–¢ã™ã‚‹ç´°ã‹ãªè¨­å®šãŒå¯èƒ½ï¼
 
-  Arguments:    param           Ú×‚Èİ’èƒpƒ‰ƒ[ƒ^
-                                SDK ‚Å—pˆÓ‚µ‚Ä‚¢‚éƒfƒtƒHƒ‹ƒg‚Í 
-                                TCP ‚Ìê‡: &SOCLSocketParamTCP
-                                UDP ‚Ìê‡: &SOCLSocketParamUDP*
+  Arguments:    param           è©³ç´°ãªè¨­å®šãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+                                SDK ã§ç”¨æ„ã—ã¦ã„ã‚‹ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ 
+                                TCP ã®å ´åˆ: &SOCLSocketParamTCP
+                                UDP ã®å ´åˆ: &SOCLSocketParamUDP*
   
-  Returns:      ³‚Ì’l: ƒ\ƒPƒbƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^
-                •‰    : ƒGƒ‰[
-                Œ»óƒTƒ|[ƒg‚µ‚Ä‚¢‚éƒGƒ‰[’l‚ÍˆÈ‰º
-                  SOCL_ENOMEM    : ƒƒ‚ƒŠ[•s‘«
-                ƒGƒ‰[’l‚Í’Ç‰Á‚³‚ê‚éê‡‚ª‚ ‚é‚½‚ßA‘¼‚Ì•‰‚Ì’l‚à‘S‚Ä”Ä—p
-                ƒGƒ‰[‚Æ‚µ‚Äˆµ‚¤‚±‚ÆD
+  Returns:      æ­£ã®å€¤: ã‚½ã‚±ãƒƒãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿
+                è²     : ã‚¨ãƒ©ãƒ¼
+                ç¾çŠ¶ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã‚¨ãƒ©ãƒ¼å€¤ã¯ä»¥ä¸‹
+                  SOCL_ENOMEM    : ãƒ¡ãƒ¢ãƒªãƒ¼ä¸è¶³
+                ã‚¨ãƒ©ãƒ¼å€¤ã¯è¿½åŠ ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚‹ãŸã‚ã€ä»–ã®è² ã®å€¤ã‚‚å…¨ã¦æ±ç”¨
+                ã‚¨ãƒ©ãƒ¼ã¨ã—ã¦æ‰±ã†ã“ã¨ï¼
  *---------------------------------------------------------------------------*/
 int SOCL_CreateSocket(const SOCLSocketParam* param)
 {
@@ -93,22 +93,22 @@ int SOCL_CreateSocket(const SOCLSocketParam* param)
 
     SDK_ASSERT(param != NULL);
 
-    // ƒ\ƒPƒbƒg‚Ì—Ìˆæ‚ğŠm•Û‚µAƒ\ƒPƒbƒgˆ—‚ğs‚È‚¤‚½‚ß‚ÌƒXƒŒƒbƒh‚ğ‘–‚ç‚¹‚é
-    // SOCLSocket “à‚Ì’l‚ğ‘¼‚ÌƒXƒŒƒbƒh‚ª‘‚«Š·‚¦‚é‚Ì‚ÍAƒ\ƒPƒbƒgì¬‚Æ”pŠü
-    // ‚Ì‚İ‚Æ‚·‚éD
+    // ã‚½ã‚±ãƒƒãƒˆã®é ˜åŸŸã‚’ç¢ºä¿ã—ã€ã‚½ã‚±ãƒƒãƒˆå‡¦ç†ã‚’è¡Œãªã†ãŸã‚ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’èµ°ã‚‰ã›ã‚‹
+    // SOCLSocket å†…ã®å€¤ã‚’ä»–ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒæ›¸ãæ›ãˆã‚‹ã®ã¯ã€ã‚½ã‚±ãƒƒãƒˆä½œæˆã¨å»ƒæ£„æ™‚
+    // ã®ã¿ã¨ã™ã‚‹ï¼
     socket = SOCLi_StartupSocket(param);
     if (socket == NULL)
     {
         return SOCL_ENOMEM;
     }
 
-    // ƒ\ƒPƒbƒg‰Šú‰»ƒRƒ}ƒ“ƒh‚ğ‘—‚èƒR[ƒ‹ƒoƒbƒN‚ğ‹N“®‚³‚¹A
-    // ˆ—Š®—¹‚ğ‘Ò‚ÂDcommand —Ìˆæ‚ÍŠ®—¹‚É‚Í“à•”‚ÅŠJ•ú‚³‚ê‚Ä‚¢‚éD
+    // ã‚½ã‚±ãƒƒãƒˆåˆæœŸåŒ–ã‚³ãƒãƒ³ãƒ‰ã‚’é€ã‚Šã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’èµ·å‹•ã•ã›ã€
+    // å‡¦ç†å®Œäº†ã‚’å¾…ã¤ï¼command é ˜åŸŸã¯å®Œäº†æ™‚ã«ã¯å†…éƒ¨ã§é–‹æ”¾ã•ã‚Œã¦ã„ã‚‹ï¼
     command = SOCLi_CreateCommandPacket(SOCLi_CreateSocketCallBack, socket, OS_MESSAGE_BLOCK);
 
-    // ì¬‚Æ”jŠü‚Ìê‡‚Í Ctrl Pipe ‚ÖƒRƒ}ƒ“ƒh‚ğ‘—‚é
-    // ’Êí‚Í Recv Pipe ‚ª Ctrl Pipe ‚Éİ’è‚³‚ê‚Ä‚¢‚é(UDP Send ‚Ì‚Æ‚«‚Í—áŠO)
-    // SOCLi_CreateSocketCallBack ‚Í•K‚¸ SUCCESS ‚Å•Ô‚é
+    // ä½œæˆã¨ç ´æ£„ã®å ´åˆã¯ Ctrl Pipe ã¸ã‚³ãƒãƒ³ãƒ‰ã‚’é€ã‚‹
+    // é€šå¸¸ã¯ Recv Pipe ãŒ Ctrl Pipe ã«è¨­å®šã•ã‚Œã¦ã„ã‚‹(UDP Send ã®ã¨ãã¯ä¾‹å¤–)
+    // SOCLi_CreateSocketCallBack ã¯å¿…ãš SUCCESS ã§è¿”ã‚‹
     result = SOCLi_ExecCommandPacketInCtrlPipe(socket, command);
     SDK_ASSERT(result >= 0);
 
@@ -118,11 +118,11 @@ int SOCL_CreateSocket(const SOCLSocketParam* param)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_CreateSocketCallBack
 
-  Description:  Create ˆ—‚ÌƒR[ƒ‹ƒoƒbƒN
+  Description:  Create å‡¦ç†ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯
   
-  Arguments:    arg  ƒRƒ}ƒ“ƒhƒuƒƒbƒN‚Ö‚Ìƒ|ƒCƒ“ƒ^
+  Arguments:    arg  ã‚³ãƒãƒ³ãƒ‰ãƒ–ãƒ­ãƒƒã‚¯ã¸ã®ãƒã‚¤ãƒ³ã‚¿
   
-  Returns:      SOCLi_ExecCommand* ‚É“n‚³‚ê‚é’l
+  Returns:      SOCLi_ExecCommand* ã«æ¸¡ã•ã‚Œã‚‹å€¤
  *---------------------------------------------------------------------------*/
 static int SOCLi_CreateSocketCallBack(void* arg)
 {
@@ -184,19 +184,19 @@ static int SOCLi_CreateSocketCallBack(void* arg)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_StartupSocket
 
-  Description:  ƒ\ƒPƒbƒg—p‚Ì—Ìˆæ‚ğæ“¾‚·‚é
-                ˆÈ‰º‚Ì—Ìˆæ‚ğ˜A‘±‚µ‚½ƒƒ‚ƒŠƒ}ƒbƒvã‚ÉŠm•Û‚·‚é
+  Description:  ã‚½ã‚±ãƒƒãƒˆç”¨ã®é ˜åŸŸã‚’å–å¾—ã™ã‚‹
+                ä»¥ä¸‹ã®é ˜åŸŸã‚’é€£ç¶šã—ãŸãƒ¡ãƒ¢ãƒªãƒãƒƒãƒ—ä¸Šã«ç¢ºä¿ã™ã‚‹
   
-                —Ìˆæ
+                é ˜åŸŸ
                 --------------------------------------------------------
-                SOCL ƒ\ƒPƒbƒg—Ìˆæ
-                CPS  ƒ\ƒPƒbƒg—p‚Ìƒoƒbƒtƒ@
-                óM—pƒXƒŒƒbƒh‚Ìƒoƒbƒtƒ@
-                ‘—M—pƒXƒŒƒbƒh‚Ìƒoƒbƒtƒ@
+                SOCL ã‚½ã‚±ãƒƒãƒˆé ˜åŸŸ
+                CPS  ã‚½ã‚±ãƒƒãƒˆç”¨ã®ãƒãƒƒãƒ•ã‚¡
+                å—ä¿¡ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒãƒƒãƒ•ã‚¡
+                é€ä¿¡ç”¨ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒãƒƒãƒ•ã‚¡
 
-  Arguments:    param  ƒpƒ‰ƒ[ƒ^
+  Arguments:    param  ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
   
-  Returns:      Šm•Û‚µ‚½ƒ\ƒPƒbƒgî•ñ—Ìˆæ‚Ìƒ|ƒCƒ“ƒ^
+  Returns:      ç¢ºä¿ã—ãŸã‚½ã‚±ãƒƒãƒˆæƒ…å ±é ˜åŸŸã®ãƒã‚¤ãƒ³ã‚¿
  *---------------------------------------------------------------------------*/
 static SOCLSocket* SOCLi_StartupSocket(const SOCLSocketParam* param)
 {
@@ -204,7 +204,7 @@ static SOCLSocket* SOCLi_StartupSocket(const SOCLSocketParam* param)
     u32         size;
     OSIntrMode  enable;
 
-    // •K—v‚Èƒƒ‚ƒŠƒTƒCƒY‚ğ‹‚ß‚é
+    // å¿…è¦ãªãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã‚‹
     size = SOCLi_GetSizeSocket(param);
 
     enable = OS_DisableInterrupts();
@@ -212,13 +212,13 @@ static SOCLSocket* SOCLi_StartupSocket(const SOCLSocketParam* param)
 
     if (socket)
     {
-        // ˆê’U 0 ƒNƒŠƒA‚·‚é
+        // ä¸€æ—¦ 0 ã‚¯ãƒªã‚¢ã™ã‚‹
         MI_CpuClear8(socket, size);
 
-        // ƒƒ‚ƒŠ‚ğ‡‚ÉŠ„‚èU‚é
+        // ãƒ¡ãƒ¢ãƒªã‚’é †ã«å‰²ã‚ŠæŒ¯ã‚‹
         (void)SOCLi_InitSocket(socket, param);
 
-        // ƒŠƒ“ƒN‚ÌƒŠƒXƒg‚Ö‚Ì“o˜^
+        // ãƒªãƒ³ã‚¯ã®ãƒªã‚¹ãƒˆã¸ã®ç™»éŒ²
         SOCLi_SocketRegister(socket);
     }
 
@@ -230,11 +230,11 @@ static SOCLSocket* SOCLi_StartupSocket(const SOCLSocketParam* param)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_GetSizeSocket
   
-  Description:  SOCKET ‚É•K—v‚Èƒƒ‚ƒŠƒTƒCƒY‚ğ•Ô‚·
+  Description:  SOCKET ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚’è¿”ã™
   
-  Arguments:    param  ƒ\ƒPƒbƒg¶¬‚Ìƒpƒ‰ƒ[ƒ^
+  Arguments:    param  ã‚½ã‚±ãƒƒãƒˆç”Ÿæˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
   
-  Returns:      SOCKET ‚É•K—v‚È—Ìˆæ‚ÌƒTƒCƒY
+  Returns:      SOCKET ã«å¿…è¦ãªé ˜åŸŸã®ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 static u32 SOCLi_GetSizeSocket(const SOCLSocketParam* param)
 {
@@ -242,7 +242,7 @@ static u32 SOCLi_GetSizeSocket(const SOCLSocketParam* param)
 
     size = SOCLi_ROUNDUP4(sizeof(SOCLSocket));
 
-    // óM‹@”\‚ÉŠÖ‚µ‚Ä•K—v‚Èƒƒ‚ƒŠ
+    // å—ä¿¡æ©Ÿèƒ½ã«é–¢ã—ã¦å¿…è¦ãªãƒ¡ãƒ¢ãƒª
     if (param->buffer.rcvbuf_size)
     {
         size += SOCLi_ROUNDUP4(sizeof(SOCLiSocketRecvCommandPipe));
@@ -251,7 +251,7 @@ static u32 SOCLi_GetSizeSocket(const SOCLSocketParam* param)
         size += SOCLi_GetSizeCommandPipe(&param->recv_pipe);
     }
 
-    // ‘—M‹@”\‚ÉŠÖ‚µ‚Ä•K—v‚Èƒƒ‚ƒŠ
+    // é€ä¿¡æ©Ÿèƒ½ã«é–¢ã—ã¦å¿…è¦ãªãƒ¡ãƒ¢ãƒª
     if (param->buffer.sndbuf_size)
     {
         size += SOCLi_ROUNDUP4(sizeof(SOCLiSocketSendCommandPipe));
@@ -267,11 +267,11 @@ static u32 SOCLi_GetSizeSocket(const SOCLSocketParam* param)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_GetSizeCommandPipe
   
-  Description:  Command Pipe ‚É•K—v‚Èƒƒ‚ƒŠƒTƒCƒY‚ğ•Ô‚·
+  Description:  Command Pipe ã«å¿…è¦ãªãƒ¡ãƒ¢ãƒªã‚µã‚¤ã‚ºã‚’è¿”ã™
   
-  Arguments:    param  Command Pipe¶¬‚Ìƒpƒ‰ƒ[ƒ^
+  Arguments:    param  Command Pipeç”Ÿæˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
   
-  Returns:      Command Pipe ‚É•K—v‚È—Ìˆæ‚ÌƒTƒCƒY
+  Returns:      Command Pipe ã«å¿…è¦ãªé ˜åŸŸã®ã‚µã‚¤ã‚º
  *---------------------------------------------------------------------------*/
 static u32 SOCLi_GetSizeCommandPipe(const SOCLSocketCommandPipeParam* param)
 {
@@ -286,12 +286,12 @@ static u32 SOCLi_GetSizeCommandPipe(const SOCLSocketCommandPipeParam* param)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_InitSocket
   
-  Description:  SOCKET ‚ğ‰Šú‰»‚·‚é
+  Description:  SOCKET ã‚’åˆæœŸåŒ–ã™ã‚‹
 
-  Arguments:    socket  ‘ÎÛ‚Ìƒ\ƒPƒbƒg‚Ì—Ìˆæ(0 ƒNƒŠƒA‚³‚ê‚Ä‚¢‚é‚±‚Æ)
-                param   ‰Šú‰»ƒpƒ‰ƒ[ƒ^
+  Arguments:    socket  å¯¾è±¡ã®ã‚½ã‚±ãƒƒãƒˆã®é ˜åŸŸ(0 ã‚¯ãƒªã‚¢ã•ã‚Œã¦ã„ã‚‹ã“ã¨)
+                param   åˆæœŸåŒ–ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
   
-  Returns:      SOCKET ‚Ì—Ìˆæ‚ÌŸ‚Ìƒ|ƒCƒ“ƒ^
+  Returns:      SOCKET ã®é ˜åŸŸã®æ¬¡ã®ãƒã‚¤ãƒ³ã‚¿
  *---------------------------------------------------------------------------*/
 static u8* SOCLi_InitSocket(SOCLSocket* socket, const SOCLSocketParam* param)
 {
@@ -304,7 +304,7 @@ static u8* SOCLi_InitSocket(SOCLSocket* socket, const SOCLSocketParam* param)
     ptr = (u8*)socket;
     ptr = ptr + SOCLi_ROUNDUP4(sizeof(SOCLSocket));
 
-    // óM‹@”\‚ÉŠÖ‚·‚é‰Šú‰»
+    // å—ä¿¡æ©Ÿèƒ½ã«é–¢ã™ã‚‹åˆæœŸåŒ–
     if (param->buffer.rcvbuf_size)
     {
         SOCLiSocketRecvCommandPipe*     pipe = (SOCLiSocketRecvCommandPipe*)ptr;
@@ -323,14 +323,14 @@ static u8* SOCLi_InitSocket(SOCLSocket* socket, const SOCLSocketParam* param)
         OS_InitThreadQueue(&pipe->udpdata.waiting);
     }
 
-    // ‘—M‹@”\‚ÉŠÖ‚·‚é‰Šú‰»
+    // é€ä¿¡æ©Ÿèƒ½ã«é–¢ã™ã‚‹åˆæœŸåŒ–
     if (param->buffer.sndbuf_size)
     {
         SOCLiSocketSendCommandPipe*     pipe = (SOCLiSocketSendCommandPipe*)ptr;
 
         // Send Command Pipe
-        socket->send_pipe = pipe;   // ƒ\ƒPƒbƒg‚ÆƒpƒCƒv‚Ì‘ŠŒİƒŠƒ“ƒN
-        pipe->exe_socket = socket;  //   Send Pipe ‹¤—L‚É—LŒø
+        socket->send_pipe = pipe;   // ã‚½ã‚±ãƒƒãƒˆã¨ãƒ‘ã‚¤ãƒ—ã®ç›¸äº’ãƒªãƒ³ã‚¯
+        pipe->exe_socket = socket;  //   Send Pipe å…±æœ‰æ™‚ã«æœ‰åŠ¹
         ptr += SOCLi_ROUNDUP4(sizeof(SOCLiSocketSendCommandPipe));
         ptr = SOCLi_InitCommandPipe(ptr, &pipe->h, &param->send_pipe);
 
@@ -342,7 +342,7 @@ static u8* SOCLi_InitSocket(SOCLSocket* socket, const SOCLSocketParam* param)
     }
     else
     {
-        // Send Pipe ‚ğ‹¤—L‚·‚é
+        // Send Pipe ã‚’å…±æœ‰ã™ã‚‹
         socket->send_pipe = ((SOCLSocket*)SOCLiUDPSendSocket)->send_pipe;
     }
 
@@ -352,17 +352,17 @@ static u8* SOCLi_InitSocket(SOCLSocket* socket, const SOCLSocketParam* param)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_InitSocketBuffer
   
-  Description:  SOCKET “à‚Ìƒoƒbƒtƒ@‚ğ‰Šú‰»‚·‚é
+  Description:  SOCKET å†…ã®ãƒãƒƒãƒ•ã‚¡ã‚’åˆæœŸåŒ–ã™ã‚‹
 
-  Arguments:    ptr     ƒoƒbƒtƒ@—p‚ÉŠm•Û‚³‚ê‚½ƒƒ‚ƒŠ
-                buf     ƒoƒbƒtƒ@\‘¢‘Ì
-                size    ƒoƒbƒtƒ@ƒTƒCƒY
+  Arguments:    ptr     ãƒãƒƒãƒ•ã‚¡ç”¨ã«ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒª
+                buf     ãƒãƒƒãƒ•ã‚¡æ§‹é€ ä½“
+                size    ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
   
-  Returns:      ƒoƒbƒtƒ@‚Ì—Ìˆæ‚ÌŸ‚É—˜—p‰Â”\‚Èƒ|ƒCƒ“ƒ^
+  Returns:      ãƒãƒƒãƒ•ã‚¡ã®é ˜åŸŸã®æ¬¡ã«åˆ©ç”¨å¯èƒ½ãªãƒã‚¤ãƒ³ã‚¿
  *---------------------------------------------------------------------------*/
 static u8* SOCLi_InitSocketBuffer(u8* ptr, CPSSocBuf* buf, u32 size)
 {
-    buf->data = size ? ptr : NULL;  // 0 ‚È‚ç NULL ‚ğİ’è
+    buf->data = size ? ptr : NULL;  // 0 ãªã‚‰ NULL ã‚’è¨­å®š
     buf->size = size;
     return ptr + SOCLi_RoundUp4(size);
 }
@@ -370,24 +370,24 @@ static u8* SOCLi_InitSocketBuffer(u8* ptr, CPSSocBuf* buf, u32 size)
 /*---------------------------------------------------------------------------*
   Name:         SOCLi_InitCommandPipe
   
-  Description:  ƒRƒ}ƒ“ƒhƒpƒCƒv‚ğ‰Šú‰»‚·‚é
+  Description:  ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—ã‚’åˆæœŸåŒ–ã™ã‚‹
 
-  Arguments:    ptr     ƒRƒ}ƒ“ƒhƒpƒCƒv“à‚Ìƒoƒbƒtƒ@—p‚ÉŠm•Û‚³‚ê‚½ƒƒ‚ƒŠ
-                buf     ƒoƒbƒtƒ@\‘¢‘Ì
-                size    ƒoƒbƒtƒ@ƒTƒCƒY
+  Arguments:    ptr     ã‚³ãƒãƒ³ãƒ‰ãƒ‘ã‚¤ãƒ—å†…ã®ãƒãƒƒãƒ•ã‚¡ç”¨ã«ç¢ºä¿ã•ã‚ŒãŸãƒ¡ãƒ¢ãƒª
+                buf     ãƒãƒƒãƒ•ã‚¡æ§‹é€ ä½“
+                size    ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚º
   
-  Returns:      ptr ‚ÌŸ‚É—˜—p‰Â”\‚Èƒ|ƒCƒ“ƒ^
+  Returns:      ptr ã®æ¬¡ã«åˆ©ç”¨å¯èƒ½ãªãƒã‚¤ãƒ³ã‚¿
  *---------------------------------------------------------------------------*/
 static u8* SOCLi_InitCommandPipe(u8* ptr, SOCLiSocketCommandPipe* pipe, const SOCLSocketCommandPipeParam* param)
 {
     OSMessage*  messages;
     u8*         stack_bottom;
 
-    // ƒƒ‚ƒŠ‚ÌŠ„‚èU‚è
+    // ãƒ¡ãƒ¢ãƒªã®å‰²ã‚ŠæŒ¯ã‚Š
     messages = (OSMessage*)ptr;
     stack_bottom = ptr + SOCLi_GetSizeCommandPipe(param);
 
-    // Še—Ìˆæ‚Ì‰Šú‰»
+    // å„é ˜åŸŸã®åˆæœŸåŒ–
     OS_InitMessageQueue(&pipe->queue, messages, param->queue_max);
 
     OS_InitMutex(&pipe->in_use);

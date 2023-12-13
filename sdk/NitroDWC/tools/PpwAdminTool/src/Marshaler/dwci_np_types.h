@@ -62,7 +62,7 @@ typedef signed long long int s64;
     typedef volatile f32 vf32;
 
     /*
-    io_register_list_XX.h‚Åg—p‚·‚éƒ}ƒNƒ‚ÆŒ^
+    io_register_list_XX.hã§ä½¿ç”¨ã™ã‚‹ãƒã‚¯ãƒ­ã¨å‹
     */
 
     typedef u8 REGType8;
@@ -123,25 +123,25 @@ typedef signed long long int s64;
 #endif
 
 
-/* static inline ‚ğ inline ‚É‚µ‚ÄAƒR[ƒhƒTƒCƒY‚ğíŒ¸‚µ‚½‚¢ê‡‚ÍAƒ}ƒNƒ SDK_INLINE ‚ğ•ÏX‚µ‚Ä‚­‚¾‚³‚¢B
-   (static inline ‚ğ inline ‚É‚µ‚½ŠÖ”‚ÉéŒ¾‚ª‚ ‚éê‡‚ÍASDK_DECL_INLINE ‚à•ÏX‚µ‚Ä‚­‚¾‚³‚¢B)
-   •ÏX‚µ‚½ê‡‚Íƒ‰ƒCƒuƒ‰ƒŠ‚ğÄƒrƒ‹ƒh‚µ‚Ä‚­‚¾‚³‚¢B
+/* static inline ã‚’ inline ã«ã—ã¦ã€ã‚³ãƒ¼ãƒ‰ã‚µã‚¤ã‚ºã‚’å‰Šæ¸›ã—ãŸã„å ´åˆã¯ã€ãƒã‚¯ãƒ­ SDK_INLINE ã‚’å¤‰æ›´ã—ã¦ãã ã•ã„ã€‚
+   (static inline ã‚’ inline ã«ã—ãŸé–¢æ•°ã«å®£è¨€ãŒã‚ã‚‹å ´åˆã¯ã€SDK_DECL_INLINE ã‚‚å¤‰æ›´ã—ã¦ãã ã•ã„ã€‚)
+   å¤‰æ›´ã—ãŸå ´åˆã¯ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’å†ãƒ“ãƒ«ãƒ‰ã—ã¦ãã ã•ã„ã€‚
 
-   ‚½‚¾‚µAinline ŠÖ”‚ÌÀ‘Ì‰»‚Ì•s‹ï‡‚ªC³‚³‚ê‚½ƒo[ƒWƒ‡ƒ“‚ÌƒRƒ“ƒpƒCƒ‰‚ğg—p‚µ‚Ä‚¢‚Ä
-   ‚»‚Ì•s‹ï‡‚ğ‰ñ”ğ‚·‚é‚½‚ß‚É inline ‚ğ static inline ‚É‚µ‚Ä‚¢‚½ŠÖ”‚Ìê‡‚Ì‚İ
-   ‚±‚Ìƒ}ƒNƒ‚ğg—p‚µ‚Ä static inline ‚ğ inline ‚É•ÏX‚·‚é‚ÆƒR[ƒhƒTƒCƒY‚ğíŒ¸‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+   ãŸã ã—ã€inline é–¢æ•°ã®å®Ÿä½“åŒ–ã®ä¸å…·åˆãŒä¿®æ­£ã•ã‚ŒãŸãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ã‚’ä½¿ç”¨ã—ã¦ã„ã¦
+   ãã®ä¸å…·åˆã‚’å›é¿ã™ã‚‹ãŸã‚ã« inline ã‚’ static inline ã«ã—ã¦ã„ãŸé–¢æ•°ã®å ´åˆã®ã¿
+   ã“ã®ãƒã‚¯ãƒ­ã‚’ä½¿ç”¨ã—ã¦ static inline ã‚’ inline ã«å¤‰æ›´ã™ã‚‹ã¨ã‚³ãƒ¼ãƒ‰ã‚µã‚¤ã‚ºã‚’å‰Šæ¸›ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
 
-   ’ˆÓF‚±‚Ìƒ}ƒNƒ‚ÍŒ»’iŠK‚Å‚ÍAFX_, VEC_, MTX_ ƒVƒŠ[ƒY‚Ì‚İ—LŒø‚Æ‚È‚Á‚Ä‚¢‚Ü‚·B*/
+   æ³¨æ„ï¼šã“ã®ãƒã‚¯ãƒ­ã¯ç¾æ®µéšã§ã¯ã€FX_, VEC_, MTX_ ã‚·ãƒªãƒ¼ã‚ºã®ã¿æœ‰åŠ¹ã¨ãªã£ã¦ã„ã¾ã™ã€‚*/
 #define SDK_INLINE      static inline
 #define SDK_DECL_INLINE static
 
-/// 1970”N‚©‚ç‚ÌŒo‰ß•b”
+/// 1970å¹´ã‹ã‚‰ã®çµŒéç§’æ•°
 typedef s64 DWCUtcTime;
 
 //---- unit of tick
 typedef u32 DWCTick;
 
-// C•W€‚Ìtm‚ÆŒİŠ·«‚Ì‚ ‚éŒ^
+// Cæ¨™æº–ã®tmã¨äº’æ›æ€§ã®ã‚ã‚‹å‹
 typedef struct
 {
     int	tm_sec;

@@ -12,7 +12,7 @@
 
   $Log: types.h,v $
   Revision 1.40  2006/09/08 00:47:41  okubata_ryoma
-  enumsalwaysint‚ªgcc‚©‚çinclude‚³‚ê‚Ä‚¢‚éê‡‚Í—LŒø‚É‚È‚ç‚È‚¢‚æ‚¤‚É•ÏX
+  enumsalwaysintãŒgccã‹ã‚‰includeã•ã‚Œã¦ã„ã‚‹å ´åˆã¯æœ‰åŠ¹ã«ãªã‚‰ãªã„ã‚ˆã†ã«å¤‰æ›´
 
   Revision 1.39  2006/09/07 06:22:28  okubata_ryoma
   add #pragma enumsalwaysint on
@@ -27,19 +27,19 @@
   do-indent
 
   Revision 1.35  2005/11/14 05:17:25  okubata_ryoma
-  ”÷C³
+  å¾®ä¿®æ­£
 
   Revision 1.33  2005/09/05 01:39:14  yasu
-  SDK_BOOL_ALREADY_DEFINED_@‚Ì’Ç‰Á
+  SDK_BOOL_ALREADY_DEFINED_ã€€ã®è¿½åŠ 
 
   Revision 1.32  2005/06/23 12:16:27  yasu
-  SDK_LITTLE_ENDIAN ’è‹`‚Ì’Ç‰Á
+  SDK_LITTLE_ENDIAN å®šç¾©ã®è¿½åŠ 
 
   Revision 1.31  2005/03/04 10:13:03  yasu
-  ƒRƒ“ƒpƒCƒ‰ˆË‘¶•”•ª‚ğğŒ•ª‚¯
+  ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ä¾å­˜éƒ¨åˆ†ã‚’æ¡ä»¶åˆ†ã‘
 
   Revision 1.30  2005/03/01 01:57:00  yosizaki
-  copyright ‚Ì”N‚ğC³.
+  copyright ã®å¹´ã‚’ä¿®æ­£.
 
   Revision 1.29  2005/02/28 05:26:02  yosizaki
   do-indent.
@@ -69,44 +69,44 @@
   add f32, vf32
 
   Revision 1.21  2003/12/02 12:09:22  yasu
-  ƒAƒZƒ“ƒuƒ‰‚Ì‘g‚İ‚İƒvƒŠƒvƒƒZƒbƒT‚ª #<SPACE> ‚ğƒRƒƒ“ƒg‹‚µ‚Ä‚µ‚Ü‚¤‚±‚Æ‚Ì‘Îˆ
+  ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã®çµ„ã¿è¾¼ã¿ãƒ—ãƒªãƒ—ãƒ­ã‚»ãƒƒã‚µãŒ #<SPACE> ã‚’ã‚³ãƒ¡ãƒ³ãƒˆè¦–ã—ã¦ã—ã¾ã†ã“ã¨ã®å¯¾å‡¦
 
   Revision 1.20  2003/11/27 06:35:17  yada
-  comment’ù³
+  commentè¨‚æ­£
 
   Revision 1.19  2003/11/11 09:14:41  nishida_kenji
-  RegTypeNNvŒ^‚ğtypedef
+  RegTypeNNvå‹ã‚’typedef
 
   Revision 1.18  2003/11/11 06:10:18  nishida_kenji
-  ŒÅ’è¬”‚âs—ñ‚ğgx/gxcommon.h‚ÉˆÚ“®
+  å›ºå®šå°æ•°ã‚„è¡Œåˆ—ã‚’gx/gxcommon.hã«ç§»å‹•
 
   Revision 1.17  2003/11/11 05:46:19  yada
-  BOOL, TRUE, FALSE ‚ğ’Ç‰ÁBINLINE, SDK_ASSERT() ‚ğ•ª—£B
+  BOOL, TRUE, FALSE ã‚’è¿½åŠ ã€‚INLINE, SDK_ASSERT() ã‚’åˆ†é›¢ã€‚
 
   Revision 1.16  2003/11/11 04:12:52  nishida_kenji
-  fx16rs‚Ì’Ç‰Á
+  fx16rsã®è¿½åŠ 
 
   Revision 1.15  2003/11/05 07:40:40  yasu
-  VecFx16 ‚Ì padding Œx‚ğ–Ù‚ç‚¹‚½
+  VecFx16 ã® padding è­¦å‘Šã‚’é»™ã‚‰ã›ãŸ
 
   Revision 1.14  2003/11/04 12:04:59  yasu
-  aligned ‚Ì’Ç‰Á@‚½‚¾‚µ CW ‚Ì‚İ
+  aligned ã®è¿½åŠ ã€€ãŸã ã— CW ã®ã¿
 
   Revision 1.13  2003/11/04 11:45:20  yasu
-  NULL ‚È‚Ç‚Ì’Ç‰Á
+  NULL ãªã©ã®è¿½åŠ 
 
   Revision 1.12  2003/11/04 09:37:03  yada
-  REG_BASE ŠO‚µ‚Ü‚µ‚½B
+  REG_BASE å¤–ã—ã¾ã—ãŸã€‚
 
   Revision 1.11  2003/11/04 04:52:20  Nishida_Kenji
-  ƒrƒbƒgƒtƒB[ƒ‹ƒh‚ğ~‚ß‚é
+  ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’æ­¢ã‚ã‚‹
 
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
 #ifndef NITRO_TYPES_H_
 #define NITRO_TYPES_H_
 
-// enum ‚Í int Œ^‚Æ“¯‚¶ƒTƒCƒY‚Å‚È‚¢‚Æ SDK ‚ª³í‚É“®ì‚µ‚È‚¢‚½‚ß
+// enum ã¯ int å‹ã¨åŒã˜ã‚µã‚¤ã‚ºã§ãªã„ã¨ SDK ãŒæ­£å¸¸ã«å‹•ä½œã—ãªã„ãŸã‚
 #ifdef __MWERKS__
 #pragma enumsalwaysint on
 #endif
@@ -157,7 +157,7 @@ typedef float f32;
 typedef volatile f32 vf32;
 
 /*
-    io_register_list_XX.h‚Åg—p‚·‚éƒ}ƒNƒ‚ÆŒ^
+    io_register_list_XX.hã§ä½¿ç”¨ã™ã‚‹ãƒã‚¯ãƒ­ã¨å‹
  */
 
 typedef u8 REGType8;
@@ -222,15 +222,15 @@ typedef int BOOL;
 #endif //SDK_ASM
 
 
-/* static inline ‚ğ inline ‚É‚µ‚ÄAƒR[ƒhƒTƒCƒY‚ğíŒ¸‚µ‚½‚¢ê‡‚ÍAƒ}ƒNƒ SDK_INLINE ‚ğ•ÏX‚µ‚Ä‚­‚¾‚³‚¢B
-   (static inline ‚ğ inline ‚É‚µ‚½ŠÖ”‚ÉéŒ¾‚ª‚ ‚éê‡‚ÍASDK_DECL_INLINE ‚à•ÏX‚µ‚Ä‚­‚¾‚³‚¢B)
-   •ÏX‚µ‚½ê‡‚Íƒ‰ƒCƒuƒ‰ƒŠ‚ğÄƒrƒ‹ƒh‚µ‚Ä‚­‚¾‚³‚¢B 
+/* static inline ã‚’ inline ã«ã—ã¦ã€ã‚³ãƒ¼ãƒ‰ã‚µã‚¤ã‚ºã‚’å‰Šæ¸›ã—ãŸã„å ´åˆã¯ã€ãƒã‚¯ãƒ­ SDK_INLINE ã‚’å¤‰æ›´ã—ã¦ãã ã•ã„ã€‚
+   (static inline ã‚’ inline ã«ã—ãŸé–¢æ•°ã«å®£è¨€ãŒã‚ã‚‹å ´åˆã¯ã€SDK_DECL_INLINE ã‚‚å¤‰æ›´ã—ã¦ãã ã•ã„ã€‚)
+   å¤‰æ›´ã—ãŸå ´åˆã¯ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’å†ãƒ“ãƒ«ãƒ‰ã—ã¦ãã ã•ã„ã€‚ 
    
-   ‚½‚¾‚µAinline ŠÖ”‚ÌÀ‘Ì‰»‚Ì•s‹ï‡‚ªC³‚³‚ê‚½ƒo[ƒWƒ‡ƒ“‚ÌƒRƒ“ƒpƒCƒ‰‚ğg—p‚µ‚Ä‚¢‚Ä
-   ‚»‚Ì•s‹ï‡‚ğ‰ñ”ğ‚·‚é‚½‚ß‚É inline ‚ğ static inline ‚É‚µ‚Ä‚¢‚½ŠÖ”‚Ìê‡‚Ì‚İ
-   ‚±‚Ìƒ}ƒNƒ‚ğg—p‚µ‚Ä static inline ‚ğ inline ‚É•ÏX‚·‚é‚ÆƒR[ƒhƒTƒCƒY‚ğíŒ¸‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+   ãŸã ã—ã€inline é–¢æ•°ã®å®Ÿä½“åŒ–ã®ä¸å…·åˆãŒä¿®æ­£ã•ã‚ŒãŸãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ã‚’ä½¿ç”¨ã—ã¦ã„ã¦
+   ãã®ä¸å…·åˆã‚’å›é¿ã™ã‚‹ãŸã‚ã« inline ã‚’ static inline ã«ã—ã¦ã„ãŸé–¢æ•°ã®å ´åˆã®ã¿
+   ã“ã®ãƒã‚¯ãƒ­ã‚’ä½¿ç”¨ã—ã¦ static inline ã‚’ inline ã«å¤‰æ›´ã™ã‚‹ã¨ã‚³ãƒ¼ãƒ‰ã‚µã‚¤ã‚ºã‚’å‰Šæ¸›ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚
    
-   ’ˆÓF‚±‚Ìƒ}ƒNƒ‚ÍŒ»’iŠK‚Å‚ÍAFX_, VEC_, MTX_ ƒVƒŠ[ƒY‚Ì‚İ—LŒø‚Æ‚È‚Á‚Ä‚¢‚Ü‚·B*/
+   æ³¨æ„ï¼šã“ã®ãƒã‚¯ãƒ­ã¯ç¾æ®µéšã§ã¯ã€FX_, VEC_, MTX_ ã‚·ãƒªãƒ¼ã‚ºã®ã¿æœ‰åŠ¹ã¨ãªã£ã¦ã„ã¾ã™ã€‚*/
 #define SDK_INLINE      static inline
 #define SDK_DECL_INLINE static
 

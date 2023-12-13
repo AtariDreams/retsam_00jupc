@@ -1,7 +1,7 @@
 //============================================================================================
 /**
  * @file	field_camera.c
- * @bfief	ƒtƒB[ƒ‹ƒhƒJƒƒ‰
+ * @bfief	ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚«ãƒ¡ãƒ©
  * @author	GAME FREAK inc.
  */
 //============================================================================================
@@ -27,7 +27,7 @@ typedef	struct	{
 }FLD_CAMERA_PARAM;
 
 static const FLD_CAMERA_PARAM FieldCameraData[] = {
-	{							//	0	’Êí
+	{							//	0	é€šå¸¸
 		0x29aec1,
 		{
 			-0x29fe,0,0
@@ -37,7 +37,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 150,
 		FX32_ONE * 900
 	},
-	{							//	1	…ƒWƒ€
+	{							//	1	æ°´ã‚¸ãƒ 
 		0x29aec1,
 		{
 			-0x309e,0,0
@@ -47,7 +47,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 150,
 		FX32_ONE * 900
 	},
-	{							//	2	Å‰‚ÌŒÎ
+	{							//	2	æœ€åˆã®æ¹–
 		0x20374c,
 		{
 			-0x26de,0,0
@@ -57,7 +57,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 150,
 		FX32_ONE * 900
 	},
-	{							//	3	|ƒWƒ€
+	{							//	3	é‹¼ã‚¸ãƒ 
 		0x29aec1,
 		{
 			-0x29fe,0,0
@@ -67,7 +67,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 150,
 		FX32_ONE * 900
 	},
-	{							//	4	‰®“ài³Ë‰ej
+	{							//	4	å±‹å†…ï¼ˆæ­£å°„å½±ï¼‰
 		0x61b89b,
 		{
 			-0x239e,0,0
@@ -78,7 +78,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 1735
 	},
 
-	{							//	5	ƒeƒ“ƒKƒ“ƒUƒ“R’¸
+	{							//	5	ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å±±é ‚
 		0x13c805,
 		{
 			-0x29fd,0,0
@@ -89,7 +89,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 1008
 	},
 
-	{							//	6	ƒeƒ“ƒKƒ“ƒUƒ“ŠO‰ñ‚è1
+	{							//	6	ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å¤–å›ã‚Š1
 		0x3628df,
 		{
 			-0x33fd,0,0
@@ -100,7 +100,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 1221
 	},
 
-	{							//	7	ƒeƒ“ƒKƒ“ƒUƒ“ŠO‰ñ‚è2
+	{							//	7	ãƒ†ãƒ³ã‚¬ãƒ³ã‚¶ãƒ³å¤–å›ã‚Š2
 		0x29aec1,
 		{
 			-0x29fd,0,0
@@ -111,7 +111,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 1031
 	},
 
-	{							//	8	‰ÎR‰œ
+	{							//	8	ç«å±±å¥¥
 		0x296ec1,
 		{
 			-0x321d,0,0
@@ -122,7 +122,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 1034
 	},
 
-	{							//	9	ŠâƒWƒ€
+	{							//	9	å²©ã‚¸ãƒ 
 		0x1659ac,
 		{
 			-0x1cdd,0,0
@@ -133,7 +133,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 900
 	},
 
-	{							//	10	Ši“¬ƒWƒ€
+	{							//	10	æ ¼é—˜ã‚¸ãƒ 
 		0x4b25b1,
 		{
 			-0x2b3d,0,0
@@ -144,7 +144,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 1746
 	},
 
-	{							//	11	ƒiƒMƒTƒVƒeƒB/223”Ô…“¹/ƒ`ƒƒƒ“ƒsƒIƒ“ƒŠ[ƒO
+	{							//	11	ãƒŠã‚®ã‚µã‚·ãƒ†ã‚£/223ç•ªæ°´é“/ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ãƒªãƒ¼ã‚°
 		0x2a3d55,
 		{
 			-0x291d,0,0
@@ -155,7 +155,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 1127
 	},
 
-	{							//	12	“´ŒA
+	{							//	12	æ´çªŸ
 		0x23e93f,
 		{
 			-0x2cfd,0,0
@@ -166,7 +166,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 900
 	},
 
-	{							//	13	zR
+	{							//	13	é‰±å±±
 		0x20374c,
 		{
 			-0x21fd,0,0
@@ -177,7 +177,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 900
 	},
 
-	{							//	14	‚Í‚¶‚Ü‚è‚Ì‚Ü
+	{							//	14	ã¯ã˜ã¾ã‚Šã®ã¾
 		0xa9765,
 		{
 			-0x37bc,0,0
@@ -188,7 +188,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 1008
 	},
 
-	{							//	15	ƒGƒCƒ`ŒÎê—pƒJƒƒ‰
+	{							//	15	ã‚¨ã‚¤ãƒæ¹–å°‚ç”¨ã‚«ãƒ¡ãƒ©
 		0x28dedf,
 		{
 			-0x26de,0,0
@@ -199,7 +199,7 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 		FX32_ONE * 900
 	},
 
-	{							//	16	ƒtƒƒ“ƒeƒBƒAó•t
+	{							//	16	ãƒ•ãƒ­ãƒ³ãƒ†ã‚£ã‚¢å—ä»˜
 		0x14aec0,
 		{
 			-(0x10000-0xd602),0,0
@@ -215,12 +215,12 @@ static const FLD_CAMERA_PARAM FieldCameraData[] = {
 
 //==============================================================================
 /**
- * ƒtƒB[ƒ‹ƒhã‚Ås‚¤ƒJƒƒ‰İ’è
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¸Šã§è¡Œã†ã‚«ãƒ¡ãƒ©è¨­å®š
  *
- * @param   Hero			å‚ÉƒGƒŠƒAØ‚è‘Ö‚¦‚É‘Î‰‚µ‚½ƒJƒƒ‰‚ªİ’è‚³‚ê‚é
- * @param	repw			ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
- * @param   AreaCamera		å‚ÉƒGƒŠƒAØ‚è‘Ö‚¦‚É‘Î‰‚µ‚½ƒJƒƒ‰‚ªİ’è‚³‚ê‚é
- * @param	inDelayFlg		‚™²’x‰„‚ğs‚¤‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+ * @param   Hero			ä¸»ã«ã‚¨ãƒªã‚¢åˆ‡ã‚Šæ›¿ãˆæ™‚ã«å¯¾å¿œã—ãŸã‚«ãƒ¡ãƒ©ãŒè¨­å®šã•ã‚Œã‚‹
+ * @param	repw			ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
+ * @param   AreaCamera		ä¸»ã«ã‚¨ãƒªã‚¢åˆ‡ã‚Šæ›¿ãˆæ™‚ã«å¯¾å¿œã—ãŸã‚«ãƒ¡ãƒ©ãŒè¨­å®šã•ã‚Œã‚‹
+ * @param	inDelayFlg		ï½™è»¸é…å»¶ã‚’è¡Œã†ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
  *
  * @retval  none		
  */
@@ -231,30 +231,30 @@ void FieldCameraInit(	const VecFx32 *inTarget,
 						const BOOL inDelayFlg)
 {
 
-	//ƒJƒƒ‰ƒZƒbƒg
+	//ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 	const VecFx32 *target = inTarget;
 	const FLD_CAMERA_PARAM * camera_param = &FieldCameraData[AreaCamera];
 
 	GF_ASSERT(AreaCamera < NELEMS(FieldCameraData));
 
-	repw->camera_ptr = GFC_AllocCamera(HEAPID_FIELD);//ƒtƒB[ƒ‹ƒhƒJƒƒ‰ƒƒ‚ƒŠŠm•Û
+	repw->camera_ptr = GFC_AllocCamera(HEAPID_FIELD);//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚«ãƒ¡ãƒ©ãƒ¡ãƒ¢ãƒªç¢ºä¿
 	
-	//ƒJƒƒ‰ƒZƒbƒg
+	//ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 	GFC_InitCameraTDA( target,
-				camera_param->Distance,	// ‹——£
+				camera_param->Distance,	// è·é›¢
 				&camera_param->Angle,	//
-				camera_param->PerspWay,	// “ŠË‰e‚ÌŠp“x
+				camera_param->PerspWay,	// æŠ•å°„å½±ã®è§’åº¦
 				camera_param->View,
 				TRUE,
 				repw->camera_ptr
 				);
-	//ƒJƒƒ‰‚Ì—LŒø‰»
+	//ã‚«ãƒ¡ãƒ©ã®æœ‰åŠ¹åŒ–
 	GFC_AttachCamera(repw->camera_ptr);
-	//ƒjƒAEƒtƒ@[İ’è
+	//ãƒ‹ã‚¢ãƒ»ãƒ•ã‚¡ãƒ¼è¨­å®š
 	GFC_SetCameraClip(camera_param->Near, camera_param->Far,repw->camera_ptr);
 	
 	if (inDelayFlg){
-		//ƒJƒƒ‰ƒgƒŒ[ƒXƒf[ƒ^ƒZƒbƒgƒAƒbƒv
+		//ã‚«ãƒ¡ãƒ©ãƒˆãƒ¬ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		GFC_AllocTraceData(	FIELD_CAMERA_TRACE_BUFF, FIELD_CAMERA_DELAY,
 							CAM_TRACE_MASK_Y, HEAPID_FIELD, repw->camera_ptr);
 	}
@@ -262,24 +262,24 @@ void FieldCameraInit(	const VecFx32 *inTarget,
 
 //==============================================================================
 /**
- * ƒtƒB[ƒ‹ƒhãƒJƒƒ‰‚Ì‰ğ•ú
+ * ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ä¸Šã‚«ãƒ¡ãƒ©ã®è§£æ”¾
  *
- * @param   repw		ƒtƒB[ƒ‹ƒhƒVƒXƒeƒ€ƒ|ƒCƒ“ƒ^
+ * @param   repw		ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚·ã‚¹ãƒ†ãƒ ãƒã‚¤ãƒ³ã‚¿
  *
  * @retval  none		
  */
 //==============================================================================
 void FieldCameraEnd(FIELDSYS_WORK * repw)
 {
-	GFC_PurgeCamera();						//ƒJƒƒ‰‚ÌØ‚è—£‚µi–³Œø‰»j
+	GFC_PurgeCamera();						//ã‚«ãƒ¡ãƒ©ã®åˆ‡ã‚Šé›¢ã—ï¼ˆç„¡åŠ¹åŒ–ï¼‰
 		
-	GFC_FreeTraceData(repw->camera_ptr);	//ƒJƒƒ‰ƒgƒŒ[ƒXƒf[ƒ^‰ğ•ú
-	GFC_FreeCamera(repw->camera_ptr);		//ƒtƒB[ƒ‹ƒhƒJƒƒ‰ƒƒ‚ƒŠ‰ğ•ú
+	GFC_FreeTraceData(repw->camera_ptr);	//ã‚«ãƒ¡ãƒ©ãƒˆãƒ¬ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿è§£æ”¾
+	GFC_FreeCamera(repw->camera_ptr);		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚«ãƒ¡ãƒ©ãƒ¡ãƒ¢ãƒªè§£æ”¾
 }
 
 
 //==============================================================================
-//	ƒfƒoƒbƒO—pŠÖ”
+//	ãƒ‡ãƒãƒƒã‚°ç”¨é–¢æ•°
 //==============================================================================
 #ifdef PM_DEBUG		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 int Debug_FieldCameraTblNumGet(void)
@@ -289,27 +289,27 @@ int Debug_FieldCameraTblNumGet(void)
 
 void Debug_FieldCameraTblPtrGet(const VecFx32 *inTarget, GF_CAMERA_PTR camera_ptr, int AreaCamera)
 {
-	//ƒJƒƒ‰ƒZƒbƒg
+	//ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 	const VecFx32 *target = inTarget;
 	const FLD_CAMERA_PARAM * camera_param = &FieldCameraData[AreaCamera];
 
 	GF_ASSERT(AreaCamera < NELEMS(FieldCameraData));
 
-	//ƒJƒƒ‰ƒZƒbƒg
+	//ã‚«ãƒ¡ãƒ©ã‚»ãƒƒãƒˆ
 	GFC_InitCameraTDA( target,
-				camera_param->Distance,	// ‹——£
+				camera_param->Distance,	// è·é›¢
 				&camera_param->Angle,	//
-				camera_param->PerspWay,	// “ŠË‰e‚ÌŠp“x
+				camera_param->PerspWay,	// æŠ•å°„å½±ã®è§’åº¦
 				camera_param->View,
 				TRUE,
 				camera_ptr
 				);
 
-	//ƒjƒAEƒtƒ@[İ’è
+	//ãƒ‹ã‚¢ãƒ»ãƒ•ã‚¡ãƒ¼è¨­å®š
 	GFC_SetCameraClip(camera_param->Near, camera_param->Far, camera_ptr);
 	
 //	if (inDelayFlg){
-		//ƒJƒƒ‰ƒgƒŒ[ƒXƒf[ƒ^ƒZƒbƒgƒAƒbƒv
+		//ã‚«ãƒ¡ãƒ©ãƒˆãƒ¬ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 //		GFC_AllocTraceData(	FIELD_CAMERA_TRACE_BUFF, FIELD_CAMERA_DELAY,
 //							CAM_TRACE_MASK_Y, HEAPID_FIELD, camera_ptr);
 //	}

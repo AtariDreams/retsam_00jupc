@@ -1,11 +1,11 @@
 //==============================================================================
 /**
  * @file	we_def.h
- * @brief	‹ZƒGƒtƒFƒNƒgƒ}ƒNƒ’è‹`
+ * @brief	æŠ€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒžã‚¯ãƒ­å®šç¾©
  * @author	goto
  * @date	2005.11.18
  *
- * ‚±‚±‚ÉFX‚È‰ðà“™‚ð‘‚¢‚Ä‚à‚æ‚¢
+ * ã“ã“ã«è‰²ã€…ãªè§£èª¬ç­‰ã‚’æ›¸ã„ã¦ã‚‚ã‚ˆã„
  *
  */
 //==============================================================================
@@ -20,16 +20,16 @@
 #define	WT_BF_3DFRAME		(3)
 #define	WT_BF_NONE			(0xFF)
 
-// ¦ xxx.s ‚Å‚àŽQÆ‚·‚é‚Ì‚Å enum ‹ÖŽ~
-#define EFF_ARC_ID_BASE		(5000)				///< ƒA[ƒNID‚ª”í‚ç‚È‚¢‚æ‚¤‚É
-#define BALL_ARC_ID_BASE	(6000)				///< ƒA[ƒNID‚ª”í‚ç‚È‚¢‚æ‚¤‚É
+// â€» xxx.s ã§ã‚‚å‚ç…§ã™ã‚‹ã®ã§ enum ç¦æ­¢
+#define EFF_ARC_ID_BASE		(5000)				///< ã‚¢ãƒ¼ã‚¯IDãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«
+#define BALL_ARC_ID_BASE	(6000)				///< ã‚¢ãƒ¼ã‚¯IDãŒè¢«ã‚‰ãªã„ã‚ˆã†ã«
 #define OAM_DROP_ID			(55555)
 
 #define WP_DEF_CENTER_X		(0)
 #define WP_DEF_CENTER_Y		(3200)
 #define WP_DEF_CENTER_Z		(0)
 
-#define WP_AXIS_DEF_X		(3176)				///< Šî–{•ûŒüŽ²
+#define WP_AXIS_DEF_X		(3176)				///< åŸºæœ¬æ–¹å‘è»¸
 #define WP_AXIS_DEF_Y		(1960)
 #define WP_AXIS_DEF_Z		(-296)
 #define WP_REVERCE_DEF_FLG	(0)
@@ -42,9 +42,9 @@
 	{ 2336, 1440,  736, OPERATOR_EX_REVERCE_ON, }, D
 	{ 1888, 1856, 1760, OPERATOR_EX_REVERCE_ON, },
 	
-	•ûŒü = (5984, 2496, 3064)
+	æ–¹å‘ = (5984, 2496, 3064)
 */
-#define WP_POS_REVERSE_NONE	(0)					/// EX_DATA ‚ÌŠg’£
+#define WP_POS_REVERSE_NONE	(0)					/// EX_DATA ã®æ‹¡å¼µ
 #define WP_POS_REVERSE_X	(1)
 #define WP_POS_REVERSE_Y	(2)
 #define WP_POS_REVERSE_Z	(3)
@@ -53,14 +53,14 @@
 #define WP_POS_REVERSE_YZ	(6)
 #define WP_POS_REVERSE_ALL	(7)
 
-#define WE_CAMERA_TYPE_PERSPECTIV	(0)			///< “§Ž‹ŽË‰e
-#define WE_CAMERA_TYPE_ORTHO		(1)			///< ³ŽË‰e
+#define WE_CAMERA_TYPE_PERSPECTIV	(0)			///< é€è¦–å°„å½±
+#define WE_CAMERA_TYPE_ORTHO		(1)			///< æ­£å°„å½±
 
 #define WE_MASK_ALL (GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | \
 					 GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ)
 // -----------------------------------------
 //
-//	 wsp_steff.c‚Åˆµ‚¤‹¤’Ê’è‹`‚Ý‚½‚¢‚È
+//	â–¡wsp_steff.cã§æ‰±ã†å…±é€šå®šç¾©ã¿ãŸã„ãª
 //
 // -----------------------------------------
 #define STEFF_GRA_UP		(0)
@@ -70,7 +70,7 @@
 
 // -----------------------------------------
 //
-//	 .s‚Åˆµ‚¤‹¤’Ê’è‹`‚Ý‚½‚¢‚È
+//	â–¡.sã§æ‰±ã†å…±é€šå®šç¾©ã¿ãŸã„ãª
 //
 // -----------------------------------------
 #define WE_MOVE_X_VAL_DEF	(24)
@@ -97,7 +97,7 @@
 
 // -----------------------------------------
 //
-//	ƒJƒ‰[ƒtƒF[ƒh—p
+//	ã‚«ãƒ©ãƒ¼ãƒ•ã‚§ãƒ¼ãƒ‰ç”¨
 //
 // -----------------------------------------
 #define WEDEF_BACKGROUND_PAL	(0xFF)
@@ -129,34 +129,34 @@
 
 // -----------------------------------------
 //
-//	‚æ‚­Žg‚¤‚à‚Ì‚ð‚Ü‚Æ‚ß‚é‚Æ‚«‚ÉA‘ÎÛ‚ðŽw’è‚·‚é—p
+//	ã‚ˆãä½¿ã†ã‚‚ã®ã‚’ã¾ã¨ã‚ã‚‹ã¨ãã«ã€å¯¾è±¡ã‚’æŒ‡å®šã™ã‚‹ç”¨
 //
 // -----------------------------------------
-#define WE_POKE_DATA_MAX	(4)								///< ƒ|ƒPƒ‚ƒ“Å‘å4•C
+#define WE_POKE_DATA_MAX	(4)								///< ãƒã‚±ãƒ¢ãƒ³æœ€å¤§4åŒ¹
 
 #define WE_TOOL_C0			(0x0002)						///< CAP-ID_0
 #define WE_TOOL_C1			(0x0004)						///< CAP-ID_1
 #define WE_TOOL_C2			(0x0008)						///< CAP-ID_2
 #define WE_TOOL_C3			(0x0010)						///< CAP-ID_3
-#define WE_TOOL_M1			(0x0002)						///< UŒ‚ƒ|ƒPƒ‚ƒ“
-#define WE_TOOL_M2			(0x0004)						///< UŒ‚ƒ|ƒPƒ‚ƒ“‚Ì‘Š•û
-#define WE_TOOL_E1			(0x0008)						///< ‘ÎÛƒ|ƒPƒ‚ƒ“
-#define WE_TOOL_E2			(0x0010)						///< ‘ÎÛƒ|ƒPƒ‚ƒ“‚Ì‘Š•û
-#define WE_TOOL_OTHER		(0x0020)						///< Ž©•ªˆÈŠO
-#define WE_TOOL_STAGE		(0x0040)						///< ‚·‚×‚Ä
-#define WE_TOOL_TMS			(WE_TOOL_M1 | WE_TOOL_M2)		///< UŒ‚ƒ|ƒPƒ‚ƒ“‘¤
-#define WE_TOOL_TES			(WE_TOOL_E1 | WE_TOOL_E2)		///< ‘ÎÛƒ|ƒPƒ‚ƒ“‘¤
-#define WE_TOOL_TALL		(WE_TOOL_TMS | WE_TOOL_TES)		///< ‚·‚×‚Ä
+#define WE_TOOL_M1			(0x0002)						///< æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³
+#define WE_TOOL_M2			(0x0004)						///< æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ–¹
+#define WE_TOOL_E1			(0x0008)						///< å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³
+#define WE_TOOL_E2			(0x0010)						///< å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ–¹
+#define WE_TOOL_OTHER		(0x0020)						///< è‡ªåˆ†ä»¥å¤–
+#define WE_TOOL_STAGE		(0x0040)						///< ã™ã¹ã¦
+#define WE_TOOL_TMS			(WE_TOOL_M1 | WE_TOOL_M2)		///< æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³å´
+#define WE_TOOL_TES			(WE_TOOL_E1 | WE_TOOL_E2)		///< å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³å´
+#define WE_TOOL_TALL		(WE_TOOL_TMS | WE_TOOL_TES)		///< ã™ã¹ã¦
 
-#define WE_TOOL_SSP			(0x0100)						///< SSP‚É‘Î‚µ‚Ä
-#define WE_TOOL_CAP			(0x0200)						///< CAP‚É‘Î‚µ‚Ä
-#define WE_TOOL_BG			(0x0400)						///< BG‚É‘Î‚µ‚Ä
-#define WE_TOOL_NOT_DF		(0x0800)						///< DF‚Æˆê’v‚µ‚È‚¢‚à‚Ì‚¾‚¯
+#define WE_TOOL_SSP			(0x0100)						///< SSPã«å¯¾ã—ã¦
+#define WE_TOOL_CAP			(0x0200)						///< CAPã«å¯¾ã—ã¦
+#define WE_TOOL_BG			(0x0400)						///< BGã«å¯¾ã—ã¦
+#define WE_TOOL_NOT_DF		(0x0800)						///< DFã¨ä¸€è‡´ã—ãªã„ã‚‚ã®ã ã‘
 
-#define WE_TOOL_A			(WE_TOOL_M1 | WE_TOOL_NOT_DF)	///< UŒ‚ƒ|ƒPƒ‚ƒ“
-#define WE_TOOL_C			(WE_TOOL_M2 | WE_TOOL_NOT_DF)	///< UŒ‚ƒ|ƒPƒ‚ƒ“‚Ì‘Š•û
-#define WE_TOOL_B			(WE_TOOL_E1 | WE_TOOL_NOT_DF)	///< ‘ÎÛƒ|ƒPƒ‚ƒ“
-#define WE_TOOL_D			(WE_TOOL_E2 | WE_TOOL_NOT_DF)	///< ‘ÎÛƒ|ƒPƒ‚ƒ“‚Ì‘Š•û
+#define WE_TOOL_A			(WE_TOOL_M1 | WE_TOOL_NOT_DF)	///< æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³
+#define WE_TOOL_C			(WE_TOOL_M2 | WE_TOOL_NOT_DF)	///< æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ–¹
+#define WE_TOOL_B			(WE_TOOL_E1 | WE_TOOL_NOT_DF)	///< å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³
+#define WE_TOOL_D			(WE_TOOL_E2 | WE_TOOL_NOT_DF)	///< å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ–¹
 
 #define WE_HENSIN_DF		(0)
 #define WE_HENSIN_AT		(1)
@@ -166,10 +166,10 @@
 
 // -----------------------------------------
 //
-//	”wŒiØ‚è‘Ö‚¦—p
+//	èƒŒæ™¯åˆ‡ã‚Šæ›¿ãˆç”¨
 //
 // -----------------------------------------
-#define WEDEF_HAIKEI_SHIFT		(16)						///< shift—p
+#define WEDEF_HAIKEI_SHIFT		(16)						///< shiftç”¨
 #define WEDEF_BIT(n)			(n << 1)
 #define WEDEF_BIT_SHIFT(n)		(n >> 1)
 #define WEDEF_HAIKEI_SBIT(n)	(WEDEF_BIT(n) << WEDEF_HAIKEI_SHIFT)
@@ -178,7 +178,7 @@
 
 // -----------------------------------------
 //
-//	  Ø‚è‘Ö‚¦”wŒiID
+//	â–¡ åˆ‡ã‚Šæ›¿ãˆèƒŒæ™¯ID
 //
 // -----------------------------------------
 #define BG_ID_025	(0)
@@ -242,26 +242,26 @@
 
 #define BG_ID_019	( BG_ID_327 )
 
-// ŒÃ‚¢’è‹` ¦ Žg—p‹ÖŽ~ ¦
-#define WEDEF_HAIKEI_000		(0)							///< —¬ü
-#define WEDEF_HAIKEI_001		(1)							///< ”g‚Ì‚è
-#define WEDEF_HAIKEI_002		(2)							///< ‚Ó‚Ô‚«
-#define WEDEF_HAIKEI_003		(3)							///< ’n‹…“Š‚°
-#define WEDEF_HAIKEI_004		(4)							///< ƒTƒCƒR
-#define WEDEF_HAIKEI_005		(5)							///< ’nŠ„‚ê
-#define WEDEF_HAIKEI_006		(6)							///< ŒŽ
+// å¤ã„å®šç¾© â€» ä½¿ç”¨ç¦æ­¢ â€»
+#define WEDEF_HAIKEI_000		(0)							///< æµç·š
+#define WEDEF_HAIKEI_001		(1)							///< æ³¢ã®ã‚Š
+#define WEDEF_HAIKEI_002		(2)							///< ãµã¶ã
+#define WEDEF_HAIKEI_003		(3)							///< åœ°çƒæŠ•ã’
+#define WEDEF_HAIKEI_004		(4)							///< ã‚µã‚¤ã‚³
+#define WEDEF_HAIKEI_005		(5)							///< åœ°å‰²ã‚Œ
+#define WEDEF_HAIKEI_006		(6)							///< æœˆ
 
-// V‚µ‚¢’è‹`
-#define WEDEF_HAIKEI_STREAM		(0)							///< —¬ü
-#define WEDEF_HAIKEI_SURFIN		(1)							///< ”g‚Ì‚è
-#define WEDEF_HAIKEI_BLIZZARD	(2)							///< ‚Ó‚Ô‚«
-#define WEDEF_HAIKEI_EARTH		(3)							///< ’n‹…“Š‚°
-#define WEDEF_HAIKEI_PSY		(4)							///< ƒTƒCƒR
-#define WEDEF_HAIKEI_CRACK		(5)							///< ’nŠ„‚ê
-#define WEDEF_HAIKEI_MOON		(6)							///< ŒŽ			236
-#define WEDEF_HAIKEI_BLUESKY	(7)							///< ‚»‚ç		288
-#define WEDEF_HAIKEI_COSMOS		(8)							///< ‰F’ˆ		322
-#define WEDEF_HAIKEI_WIREROOM	(9)							///< ƒƒCƒ„[	433
+// æ–°ã—ã„å®šç¾©
+#define WEDEF_HAIKEI_STREAM		(0)							///< æµç·š
+#define WEDEF_HAIKEI_SURFIN		(1)							///< æ³¢ã®ã‚Š
+#define WEDEF_HAIKEI_BLIZZARD	(2)							///< ãµã¶ã
+#define WEDEF_HAIKEI_EARTH		(3)							///< åœ°çƒæŠ•ã’
+#define WEDEF_HAIKEI_PSY		(4)							///< ã‚µã‚¤ã‚³
+#define WEDEF_HAIKEI_CRACK		(5)							///< åœ°å‰²ã‚Œ
+#define WEDEF_HAIKEI_MOON		(6)							///< æœˆ			236
+#define WEDEF_HAIKEI_BLUESKY	(7)							///< ãã‚‰		288
+#define WEDEF_HAIKEI_COSMOS		(8)							///< å®‡å®™		322
+#define WEDEF_HAIKEI_WIREROOM	(9)							///< ãƒ¯ã‚¤ãƒ¤ãƒ¼	433
 #define WEDEF_HAIKEI_434		(10)	// o
 #define WEDEF_HAIKEI_344		(11)
 #define WEDEF_HAIKEI_370		(12)
@@ -277,31 +277,31 @@
 #define WEDEF_HAIKEI_087		(22)	///< 
 #define WEDEF_HAIKEI_352		(23)	///< 
 #define WEDEF_HAIKEI_330		(24)	///< 
-#define WEDEF_HAIKEI_416		(25)	///< ƒMƒKƒCƒ“ƒpƒNƒg
-#define WEDEF_HAIKEI_438		(26)	///< ƒpƒ[ƒEƒBƒbƒv
-#define WEDEF_HAIKEI_452		(27)	///< ƒEƒbƒhƒnƒ“ƒ}[
-#define WEDEF_HAIKEI_076		(28)	///< ƒ\[ƒ‰[ƒr[ƒ€
-#define WEDEF_HAIKEI_143		(29)	///< ƒSƒbƒhƒo[ƒh
-#define WEDEF_HAIKEI_308		(30)	///< ƒnƒCƒhƒƒJƒmƒ“
-#define WEDEF_HAIKEI_413		(31)	///< ƒuƒŒƒCƒuƒo[ƒh
-#define WEDEF_HAIKEI_264		(32)	///< ‚«‚ ‚¢ƒpƒ“ƒ`‚Æ‚©
-#define WEDEF_HAIKEI_171		(33)	///< ‚ ‚­‚Þ
-#define WEDEF_HAIKEI_093		(34)	///< ‚Ë‚ñ‚è‚«
-#define WEDEF_HAIKEI_127		(35)	///< ‚½‚«‚Ì‚Ú‚è
-#define WEDEF_HAIKEI_056		(36)	///< ƒnƒCƒhƒƒ|ƒ“ƒv
-#define WEDEF_HAIKEI_296		(37)	///< ƒ~ƒXƒgƒ{[ƒ‹
-#define WEDEF_HAIKEI_396		(38)	///< ‚Í‚Ç‚¤‚¾‚ñ
-#define WEDEF_HAIKEI_411		(39)	///< ‚«‚ ‚¢‚¾‚Ü
-#define WEDEF_HAIKEI_441		(40)	///< ƒ_ƒXƒgƒVƒ…[ƒg
-#define WEDEF_HAIKEI_437		(41)	///< ƒŠ[ƒtƒXƒg[ƒ€
-#define WEDEF_HAIKEI_439		(42)	///< ‚ª‚ñ‚¹‚«‚Ù‚¤
-#define WEDEF_HAIKEI_457		(43)	///< ‚à‚ë‚Í‚Ì‚¸‚Â‚«
-#define WEDEF_HAIKEI_460		(44)	///< ƒo[ƒXƒgƒGƒR[
-#define WEDEF_HAIKEI_461		(45)	///< ‚Ý‚©‚Ã‚«‚Ì‚Ü‚¢
-#define WEDEF_HAIKEI_463		(46)	///< ƒ}ƒOƒ}ƒXƒg[ƒ€
-#define WEDEF_HAIKEI_464		(47)	///< ƒ_[ƒNƒz[ƒ‹
-#define WEDEF_HAIKEI_465		(48)	///< ƒV[ƒhƒtƒŒƒA
-#define WEDEF_HAIKEI_467		(49)	///< ƒVƒƒƒh[ƒ_ƒCƒu
+#define WEDEF_HAIKEI_416		(25)	///< ã‚®ã‚¬ã‚¤ãƒ³ãƒ‘ã‚¯ãƒˆ
+#define WEDEF_HAIKEI_438		(26)	///< ãƒ‘ãƒ¯ãƒ¼ã‚¦ã‚£ãƒƒãƒ—
+#define WEDEF_HAIKEI_452		(27)	///< ã‚¦ãƒƒãƒ‰ãƒãƒ³ãƒžãƒ¼
+#define WEDEF_HAIKEI_076		(28)	///< ã‚½ãƒ¼ãƒ©ãƒ¼ãƒ“ãƒ¼ãƒ 
+#define WEDEF_HAIKEI_143		(29)	///< ã‚´ãƒƒãƒ‰ãƒãƒ¼ãƒ‰
+#define WEDEF_HAIKEI_308		(30)	///< ãƒã‚¤ãƒ‰ãƒ­ã‚«ãƒŽãƒ³
+#define WEDEF_HAIKEI_413		(31)	///< ãƒ–ãƒ¬ã‚¤ãƒ–ãƒãƒ¼ãƒ‰
+#define WEDEF_HAIKEI_264		(32)	///< ãã‚ã„ãƒ‘ãƒ³ãƒã¨ã‹
+#define WEDEF_HAIKEI_171		(33)	///< ã‚ãã‚€
+#define WEDEF_HAIKEI_093		(34)	///< ã­ã‚“ã‚Šã
+#define WEDEF_HAIKEI_127		(35)	///< ãŸãã®ã¼ã‚Š
+#define WEDEF_HAIKEI_056		(36)	///< ãƒã‚¤ãƒ‰ãƒ­ãƒãƒ³ãƒ—
+#define WEDEF_HAIKEI_296		(37)	///< ãƒŸã‚¹ãƒˆãƒœãƒ¼ãƒ«
+#define WEDEF_HAIKEI_396		(38)	///< ã¯ã©ã†ã ã‚“
+#define WEDEF_HAIKEI_411		(39)	///< ãã‚ã„ã ã¾
+#define WEDEF_HAIKEI_441		(40)	///< ãƒ€ã‚¹ãƒˆã‚·ãƒ¥ãƒ¼ãƒˆ
+#define WEDEF_HAIKEI_437		(41)	///< ãƒªãƒ¼ãƒ•ã‚¹ãƒˆãƒ¼ãƒ 
+#define WEDEF_HAIKEI_439		(42)	///< ãŒã‚“ã›ãã»ã†
+#define WEDEF_HAIKEI_457		(43)	///< ã‚‚ã‚ã¯ã®ãšã¤ã
+#define WEDEF_HAIKEI_460		(44)	///< ãƒãƒ¼ã‚¹ãƒˆã‚¨ã‚³ãƒ¼
+#define WEDEF_HAIKEI_461		(45)	///< ã¿ã‹ã¥ãã®ã¾ã„
+#define WEDEF_HAIKEI_463		(46)	///< ãƒžã‚°ãƒžã‚¹ãƒˆãƒ¼ãƒ 
+#define WEDEF_HAIKEI_464		(47)	///< ãƒ€ãƒ¼ã‚¯ãƒ›ãƒ¼ãƒ«
+#define WEDEF_HAIKEI_465		(48)	///< ã‚·ãƒ¼ãƒ‰ãƒ•ãƒ¬ã‚¢
+#define WEDEF_HAIKEI_467		(49)	///< ã‚·ãƒ£ãƒ‰ãƒ¼ãƒ€ã‚¤ãƒ–
 #define WEDEF_HAIKEI_AAA		(41)	///< 
 #define WEDEF_HAIKEI_BBB		(41)	///< 
 #define WEDEF_HAIKEI_CCC		(41)	///< 
@@ -311,54 +311,54 @@
 
 // -----------------------------------------
 //
-//	  Ø‚è‘Ö‚¦“®ìƒ‚[ƒh		(‰ºˆÊ16bit)
+//	â–¡ åˆ‡ã‚Šæ›¿ãˆå‹•ä½œãƒ¢ãƒ¼ãƒ‰		(ä¸‹ä½16bit)
 //
 // -----------------------------------------
-#define WEDEF_HAIKEI_MODE_BLEND		(0)						///< ƒuƒŒƒ“ƒh
-#define WEDEF_HAIKEI_MODE_FADE		(1)						///< ƒtƒF[ƒh
-#define WEDEF_HAIKEI_MODE_NONE		(2)						///< ‚È‚µ
-#define WEDEF_HAIKEI_MODE_END		(3)						///< END’è‹` ‘‚¦‚½‚çXVI
+#define WEDEF_HAIKEI_MODE_BLEND		(0)						///< ãƒ–ãƒ¬ãƒ³ãƒ‰
+#define WEDEF_HAIKEI_MODE_FADE		(1)						///< ãƒ•ã‚§ãƒ¼ãƒ‰
+#define WEDEF_HAIKEI_MODE_NONE		(2)						///< ãªã—
+#define WEDEF_HAIKEI_MODE_END		(3)						///< ENDå®šç¾© å¢—ãˆãŸã‚‰æ›´æ–°ï¼
 
-#define WEDEF_HAIKEI_RC_MODE_BLEND	(0)						///< •œ‹AƒuƒŒƒ“ƒh
-#define WEDEF_HAIKEI_RC_MODE_FADE	(1)						///< •œ‹AƒtƒF[ƒh
-#define WEDEF_HAIKEI_RC_MODE_NONE	(2)						///< ‚È‚µ
+#define WEDEF_HAIKEI_RC_MODE_BLEND	(0)						///< å¾©å¸°ãƒ–ãƒ¬ãƒ³ãƒ‰
+#define WEDEF_HAIKEI_RC_MODE_FADE	(1)						///< å¾©å¸°ãƒ•ã‚§ãƒ¼ãƒ‰
+#define WEDEF_HAIKEI_RC_MODE_NONE	(2)						///< ãªã—
 
 
 // -----------------------------------------
 //
-//	  Ø‚è‘Ö‚¦Žž‚ÌƒTƒuƒVƒXƒeƒ€	(ãˆÊ16bit)
+//	â–¡ åˆ‡ã‚Šæ›¿ãˆæ™‚ã®ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ 	(ä¸Šä½16bit)
 //
-//	[ I/O ] ŠJŽnE•œ‹A‚Ç‚¿‚ç‚Å‚àŽw’è‰Â”\ 
-//	[  I  ] ŠJŽn—p
-//	[  O  ] I—¹—p
+//	[ I/O ] é–‹å§‹ãƒ»å¾©å¸°ã©ã¡ã‚‰ã§ã‚‚æŒ‡å®šå¯èƒ½ 
+//	[  I  ] é–‹å§‹ç”¨
+//	[  O  ] çµ‚äº†ç”¨
 //
-//	[  I  ] ‚Æ [  O  ] ‚Ì¬Ý‚Í“®ì•Ûá‚È‚µ
+//	[  I  ] ã¨ [  O  ] ã®æ··åœ¨ã¯å‹•ä½œä¿éšœãªã—
 //
 //
-//	WORK_SET ‚Æ‘g‚Ý‡‚í‚¹‚ÄŽg—p
-//	index	’l‚ÌˆÓ–¡
-//	  0		XƒXƒs[ƒh
-//	  1		YƒXƒs[ƒh
-//	  6		“G–¡•û‚ÅƒXƒs[ƒh”½“]‚·‚é‚© 			‚·‚é 	!= 0
-//	  7		“G–¡•û‚ÅƒXƒNƒŠ[ƒ“‚ªØ‚è‘Ö‚í‚é‚©	•Ï‚í‚é	!= 0
+//	WORK_SET ã¨çµ„ã¿åˆã‚ã›ã¦ä½¿ç”¨
+//	index	å€¤ã®æ„å‘³
+//	  0		Xã‚¹ãƒ”ãƒ¼ãƒ‰
+//	  1		Yã‚¹ãƒ”ãƒ¼ãƒ‰
+//	  6		æ•µå‘³æ–¹ã§ã‚¹ãƒ”ãƒ¼ãƒ‰åè»¢ã™ã‚‹ã‹ 			ã™ã‚‹ 	!= 0
+//	  7		æ•µå‘³æ–¹ã§ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ãŒåˆ‡ã‚Šæ›¿ã‚ã‚‹ã‹	å¤‰ã‚ã‚‹	!= 0
 //
 // -----------------------------------------
-#define WEDEF_HAIKEI_SBIT_MAX			(7)						///< ãˆÊBit‚ÌÅ‘å”
+#define WEDEF_HAIKEI_SBIT_MAX			(7)						///< ä¸Šä½Bitã®æœ€å¤§æ•°
 
-#define WEDEF_HAIKEI_SBIT_NONE			(0x0000)<<WEDEF_HAIKEI_SHIFT	///< [ I/O ] ‰½‚à‚È‚µ
-#define WEDEF_HAIKEI_SBIT_MOVE			(0x0002)<<WEDEF_HAIKEI_SHIFT	///< [  I  ] ”wŒi‚ª“®‚­
-#define WEDEF_HAIKEI_SBIT_STOP			(0x0004)<<WEDEF_HAIKEI_SHIFT	///< [  O  ] ”wŒi‚ªŽ~‚Ü‚é
-#define WEDEF_HAIKEI_SBIT_EXIT			(0x0008)<<WEDEF_HAIKEI_SHIFT	///< [  O  ] ƒTƒuƒVƒXƒeƒ€‚Ì’âŽ~
-#define WEDEF_HAIKEI_SBIT_NONE_DROP		(0x0010)<<WEDEF_HAIKEI_SHIFT	///< [ I/0 ] ƒhƒƒbƒv‚È‚µ
-#define WEDEF_HAIKEI_SBIT_LASTER		(0x0020)<<WEDEF_HAIKEI_SHIFT	///< [  I  ] ƒ‰ƒXƒ^[
-#define WEDEF_HAIKEI_SBIT_LASTER_STOP	(0x0040)<<WEDEF_HAIKEI_SHIFT	///< [  0  ] ƒ‰ƒXƒ^[’âŽ~
+#define WEDEF_HAIKEI_SBIT_NONE			(0x0000)<<WEDEF_HAIKEI_SHIFT	///< [ I/O ] ä½•ã‚‚ãªã—
+#define WEDEF_HAIKEI_SBIT_MOVE			(0x0002)<<WEDEF_HAIKEI_SHIFT	///< [  I  ] èƒŒæ™¯ãŒå‹•ã
+#define WEDEF_HAIKEI_SBIT_STOP			(0x0004)<<WEDEF_HAIKEI_SHIFT	///< [  O  ] èƒŒæ™¯ãŒæ­¢ã¾ã‚‹
+#define WEDEF_HAIKEI_SBIT_EXIT			(0x0008)<<WEDEF_HAIKEI_SHIFT	///< [  O  ] ã‚µãƒ–ã‚·ã‚¹ãƒ†ãƒ ã®åœæ­¢
+#define WEDEF_HAIKEI_SBIT_NONE_DROP		(0x0010)<<WEDEF_HAIKEI_SHIFT	///< [ I/0 ] ãƒ‰ãƒ­ãƒƒãƒ—ãªã—
+#define WEDEF_HAIKEI_SBIT_LASTER		(0x0020)<<WEDEF_HAIKEI_SHIFT	///< [  I  ] ãƒ©ã‚¹ã‚¿ãƒ¼
+#define WEDEF_HAIKEI_SBIT_LASTER_STOP	(0x0040)<<WEDEF_HAIKEI_SHIFT	///< [  0  ] ãƒ©ã‚¹ã‚¿ãƒ¼åœæ­¢
 
-///< “ÁŽêƒXƒNƒ[ƒ‹
-#define WEDEF_HAIKEI_SBIT_DEF_BG_MOVE	(0x0080)<<WEDEF_HAIKEI_SHIFT	///< [  I  ] ”wŒiæsƒXƒNƒ[ƒ‹
+///< ç‰¹æ®Šã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
+#define WEDEF_HAIKEI_SBIT_DEF_BG_MOVE	(0x0080)<<WEDEF_HAIKEI_SHIFT	///< [  I  ] èƒŒæ™¯å…ˆè¡Œã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 
-#define WEDEF_HAIKEI_SBIT_END	WEDEF_HAIKEI_SBIT(WEDEF_HAIKEI_SBIT_MAX)///< END’è‹`
+#define WEDEF_HAIKEI_SBIT_END	WEDEF_HAIKEI_SBIT(WEDEF_HAIKEI_SBIT_MAX)///< ENDå®šç¾©
 
-///< ’l•ÏX—pindex
+///< å€¤å¤‰æ›´ç”¨index
 #define WEDEF_GP_INDEX_SPEED_X		(0)
 #define WEDEF_GP_INDEX_SPEED_Y		(1)
 #define WEDEF_GP_INDEX_BGPOS_X		(2)
@@ -366,10 +366,10 @@
 #define WEDEF_GP_INDEX_FADE_TYPE	(4)
 #define WEDEF_GP_INDEX_FADE_VALUE	(5)
 #define WEDEF_GP_INDEX_SPEED_R		(6)
-#define WEDEF_GP_INDEX_SCREEN_R		(7)		///< 0 = –³‚µ 1 = UŒ‚‘ÎÛ 2 = Ž©•ª
+#define WEDEF_GP_INDEX_SCREEN_R		(7)		///< 0 = ç„¡ã— 1 = æ”»æ’ƒå¯¾è±¡ 2 = è‡ªåˆ†
 
 // --------------------
-// ƒfƒtƒHƒXƒNƒ[ƒ‹ƒpƒ‰ƒ[ƒ^[
+// ãƒ‡ãƒ•ã‚©ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 // --------------------
 #define WEDEF_HAIKEI_HI_SPEED_X		(-64)	/// +64
 #define WEDEF_HAIKEI_SPEED_X		(-32)	/// +32
@@ -384,10 +384,10 @@
 
 // -----------------------------------------
 //
-//	OAM—p‚Ì’è‹`
+//	OAMç”¨ã®å®šç¾©
 //
 // -----------------------------------------
-#define WEDEF_OAM_CAP_ID_0	(0)				///< OAM‚ÌCAP-ID
+#define WEDEF_OAM_CAP_ID_0	(0)				///< OAMã®CAP-ID
 #define WEDEF_OAM_CAP_ID_1	(1)
 #define WEDEF_OAM_CAP_ID_2	(2)
 #define WEDEF_OAM_CAP_ID_3	(3)
@@ -400,59 +400,59 @@
 
 // -----------------------------------------
 //
-//	ƒ|ƒPƒ‚ƒ“OAMƒhƒƒbƒv‚È‚Ç‚É—˜—p
+//	ãƒã‚±ãƒ¢ãƒ³OAMãƒ‰ãƒ­ãƒƒãƒ—ãªã©ã«åˆ©ç”¨
 //
 // -----------------------------------------
 
-#define WEDEF_DROP_M1		(0)				///< UŒ‚ƒ|ƒPƒ‚ƒ“
-#define WEDEF_DROP_E1		(1)				///< ‘ÎÛƒ|ƒPƒ‚ƒ“
-#define WEDEF_DROP_M2		(2)				///< UŒ‚ƒ|ƒPƒ‚ƒ“‚Ì‘Š•û
-#define WEDEF_DROP_E2		(3)				///< ‘ÎÛƒ|ƒPƒ‚ƒ“‚Ì‘Š•û
+#define WEDEF_DROP_M1		(0)				///< æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³
+#define WEDEF_DROP_E1		(1)				///< å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³
+#define WEDEF_DROP_M2		(2)				///< æ”»æ’ƒãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ–¹
+#define WEDEF_DROP_E2		(3)				///< å¯¾è±¡ãƒã‚±ãƒ¢ãƒ³ã®ç›¸æ–¹
 #define WEDEF_DROP_A		(4)
 #define WEDEF_DROP_B		(5)
 #define WEDEF_DROP_C		(6)
 #define WEDEF_DROP_D		(7)
 
-#define WEDEF_POKE_RES_0	(0)				///< Žg—pƒ|ƒPƒ‚ƒ“ƒŠƒ\[ƒX”Ô†
+#define WEDEF_POKE_RES_0	(0)				///< ä½¿ç”¨ãƒã‚±ãƒ¢ãƒ³ãƒªã‚½ãƒ¼ã‚¹ç•ªå·
 #define WEDEF_POKE_RES_1	(1)
 #define WEDEF_POKE_RES_2	(2)
 #define WEDEF_POKE_RES_3	(3)
 #define WEDEF_POKE_RES_EX	(4)
 
-#define WEDEF_POKE_AUTO_ON	(1)				///< ƒXƒvƒ‰ƒCƒg‚ð’Ç]‚·‚é
+#define WEDEF_POKE_AUTO_ON	(1)				///< ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’è¿½å¾“ã™ã‚‹
 #define WEDEF_POKE_AUTO_OFF	(0)
 
-#define WEDEF_POKE_CAP_ID_0	(0)				///< ƒ|ƒPƒ‚ƒ“‚ÌCAP-ID
+#define WEDEF_POKE_CAP_ID_0	(0)				///< ãƒã‚±ãƒ¢ãƒ³ã®CAP-ID
 #define WEDEF_POKE_CAP_ID_1	(1)
 #define WEDEF_POKE_CAP_ID_2	(2)
 #define WEDEF_POKE_CAP_ID_3	(3)
 #define WEDEF_POKE_CAP_ID_EX	(4)
 
-#define WEDEF_AM_STOP_CAP_0	(0)				///< Ž©“®’Ç”ö‚ðON‚É‚µ‚½CAP-IDƒtƒ‰ƒO
+#define WEDEF_AM_STOP_CAP_0	(0)				///< è‡ªå‹•è¿½å°¾ã‚’ONã«ã—ãŸCAP-IDãƒ•ãƒ©ã‚°
 #define WEDEF_AM_STOP_CAP_1	(1)
 #define WEDEF_AM_STOP_CAP_2	(2)
 #define WEDEF_AM_STOP_CAP_3	(3)
-#define WEDEF_AM_STOP_BG	(4)				///< BG‚ÌŽ©“®’Ç”ö’âŽ~ƒtƒ‰ƒO
+#define WEDEF_AM_STOP_BG	(4)				///< BGã®è‡ªå‹•è¿½å°¾åœæ­¢ãƒ•ãƒ©ã‚°
 #define WEDEF_AUTO_MOVE_MAX	(5)
 
-#define WEDEF_BG_POKE_COL_POS	(BATTLE_PAL_EFF_0*16)		///< ƒ|ƒPƒ‚ƒ“‚ÌƒpƒŒƒbƒg
-#define WEDEF_BG_DATA_COL_POS	(BATTLE_PAL_EFF_1*16)		///< ”wŒi‚ÌƒpƒŒƒbƒg
+#define WEDEF_BG_POKE_COL_POS	(BATTLE_PAL_EFF_0*16)		///< ãƒã‚±ãƒ¢ãƒ³ã®ãƒ‘ãƒ¬ãƒƒãƒˆ
+#define WEDEF_BG_DATA_COL_POS	(BATTLE_PAL_EFF_1*16)		///< èƒŒæ™¯ã®ãƒ‘ãƒ¬ãƒƒãƒˆ
 
 // -----------------------------------------
 //
-//	  LCDÀ•W ‚Æ ƒp[ƒeƒBƒNƒ‹—p‚ÌLCDÀ•W
+//	â–¡ LCDåº§æ¨™ ã¨ ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç”¨ã®LCDåº§æ¨™
 //
 // -----------------------------------------
 
-///< ƒp[ƒeƒBƒNƒ‹—p‚Ì LCD ƒTƒCƒY
+///< ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ç”¨ã® LCD ã‚µã‚¤ã‚º
 ///< x = 44032 y = 33024
 #define PT_LCD_L		(-22016)				///< left
 #define PT_LCD_R		(+22016)				///< right
 #define PT_LCD_T		(+16512)				///< top
 #define PT_LCD_B		(-16512)				///< buttom
-#define PT_LCD_DOT		(172)					///< 1dot ‚ ‚½‚è 1pt pos
+#define PT_LCD_DOT		(172)					///< 1dot ã‚ãŸã‚Š 1pt pos
 
-#define PT_LCD_PTP_CHG(x)	(x * PT_LCD_DOT)	///< 1ƒhƒbƒg‚ð‚¨‚æ‚»ƒp[ƒeƒBƒNƒ‹À•W‚É’¼‚·
+#define PT_LCD_PTP_CHG(x)	(x * PT_LCD_DOT)	///< 1ãƒ‰ãƒƒãƒˆã‚’ãŠã‚ˆããƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«åº§æ¨™ã«ç›´ã™
 
 #endif
 

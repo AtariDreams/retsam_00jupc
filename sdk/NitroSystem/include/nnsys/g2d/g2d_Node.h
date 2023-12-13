@@ -44,9 +44,9 @@ typedef enum NNSG2dNodeType
 //------------------------------------------------------------------------------
 typedef struct NNSG2dNode
 {
-    void*                   pContent;   // ŠÖ˜A•t‚¯‚³‚ê‚½ •`‰æÀ‘Ì
-    NNSG2dNodeType          type;       // ŠÖ˜A•t‚¯‚³‚ê‚½ •`‰æÀ‘Ì‚Ìí—Ş
-    BOOL                    bVisible;   // ‰Â‹ƒtƒ‰ƒO
+    void*                   pContent;   // é–¢é€£ä»˜ã‘ã•ã‚ŒãŸ æç”»å®Ÿä½“
+    NNSG2dNodeType          type;       // é–¢é€£ä»˜ã‘ã•ã‚ŒãŸ æç”»å®Ÿä½“ã®ç¨®é¡
+    BOOL                    bVisible;   // å¯è¦–ãƒ•ãƒ©ã‚°
     NNSG2dSRTControl        srtCtrl;    // Scale Rotate Translate
     
 }NNSG2dNode;
@@ -56,7 +56,7 @@ void NNSi_G2dInitializeNode( NNSG2dNode* pNode, NNSG2dNodeType type );
 
 
 //------------------------------------------------------------------------------
-// inline ŠÖ”
+// inline é–¢æ•°
 //------------------------------------------------------------------------------
 NNS_G2D_INLINE void NNSi_G2dSetNodeVisibleFlag( NNSG2dNode* pNode, BOOL bVisible )
 {

@@ -2,7 +2,7 @@
 /**
  *
  *	@file		zkn_drawglb.h
- *	@brief		}ŠÓ•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+ *	@brief		å›³é‘‘æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
  *	@author		tomoya takahashi
  *	@data		2006.01.19
  *
@@ -14,7 +14,7 @@
 #include "include/application/zukanlist/zkn_defain.h"
 
 
-// •`‰æŠÖŒW
+// æç”»é–¢ä¿‚
 #include "include/gflib/bg_system.h"
 #include "include/system/clact_util.h"
 #include "include/system/softsprite.h"
@@ -35,23 +35,23 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-//	3Dƒ|ƒPƒ‚ƒ“ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^	
+//	3Dãƒã‚±ãƒ¢ãƒ³ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿	
 //=====================================
-#define ZKN_DRAWGLB_POKEGRA_NUM		(4)		// ‚·‚ª‚½‰æ–Ê‚Å‚S‚Â•K—v
+#define ZKN_DRAWGLB_POKEGRA_NUM		(4)		// ã™ãŒãŸç”»é¢ã§ï¼”ã¤å¿…è¦
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
 */
 //-----------------------------------------------------------------------------
 
 //-------------------------------------
-//	À•WŽ©“®“®ìƒ[ƒN
+//	åº§æ¨™è‡ªå‹•å‹•ä½œãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
 	int x;
@@ -69,125 +69,125 @@ typedef struct {
 
 
 //-------------------------------------
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Æ}ŠÓƒf[ƒ^‰æ–Ê‚Å‹¤’Ê‚ÉŽg—p‚·‚é
-//	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^\‘¢‘Ì
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã¨å›³é‘‘ãƒ‡ãƒ¼ã‚¿ç”»é¢ã§å…±é€šã«ä½¿ç”¨ã™ã‚‹
+//	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 //=====================================
 typedef struct {
-	// ƒ|ƒPƒ‚ƒ“ƒŠƒXƒgA}ŠÓƒf[ƒ^‰æ–Ê
-	// ƒŠƒXƒgOAMƒf[ƒ^
-	CLACT_WORK_PTR pokelist_tbl;	// ƒe[ƒuƒ‹•”•ª
-	CLACT_WORK_PTR pokelist_icon;	// ƒAƒCƒRƒ“
-	ZKN_FONTOAM_DATA* p_pokename;	// –¼‘OOAM	
-	CLACT_U_RES_OBJ_PTR pokelist_res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// ƒŠƒ\[ƒXƒIƒuƒWƒF”
+	// ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆã€å›³é‘‘ãƒ‡ãƒ¼ã‚¿ç”»é¢
+	// ãƒªã‚¹ãƒˆOAMãƒ‡ãƒ¼ã‚¿
+	CLACT_WORK_PTR pokelist_tbl;	// ãƒ†ãƒ¼ãƒ–ãƒ«éƒ¨åˆ†
+	CLACT_WORK_PTR pokelist_icon;	// ã‚¢ã‚¤ã‚³ãƒ³
+	ZKN_FONTOAM_DATA* p_pokename;	// åå‰OAM	
+	CLACT_U_RES_OBJ_PTR pokelist_res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§æ•°
 
-	VecFx32		matrix;				// ‘S‘Ì‚ð“®‚©‚¹‚éÀ•W
+	VecFx32		matrix;				// å…¨ä½“ã‚’å‹•ã‹ã›ã‚‹åº§æ¨™
 
-	int mons_no;		// Œ»ÝÝ’è‚³‚ê‚Ä‚¢‚éƒ‚ƒ“ƒXƒ^[ƒiƒ“ƒo[i‘S‘j
+	int mons_no;		// ç¾åœ¨è¨­å®šã•ã‚Œã¦ã„ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒŠãƒ³ãƒãƒ¼ï¼ˆå…¨å›½ï¼‰
 	u32 zkn_mode;
 } ZKN_POKELIST_DATA_OAM_DATA;
 
 
 //-------------------------------------
-//	ƒtƒF[ƒhƒCƒ“ƒAƒEƒgƒuƒŒƒ“ƒhƒVƒXƒeƒ€
+//	ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã‚¢ã‚¦ãƒˆãƒ–ãƒ¬ãƒ³ãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
 //=====================================
 enum{
 	ZKN_UTIL_FADE_MAIN,
 	ZKN_UTIL_FADE_SUB,
 };
 typedef struct {
-	int disp_flag;		// ƒƒCƒ“ƒTƒu
+	int disp_flag;		// ãƒ¡ã‚¤ãƒ³ã‚µãƒ–
 	
-	u32	plane1;			// ‘æ‚P‘ÎÌ–Ê
-	u32	plane2;			// ‘æ‚Q‘ÎÌ–Ê	–³ðŒ‚ÅBD‚Í‰Á‚¦‚ç‚ê‚Ü‚·
-	int	brightness_s;	// ƒuƒ‰ƒCƒgƒlƒXŠJŽn
-	int brightness_dis;	// ƒuƒ‰ƒCƒgƒlƒXI—¹
-	int alpha_s;		// ŠJŽnƒ¿’l
-	int alpha_dis;		// I—¹‚Ü‚Å‚Ì’l
-	int count_max;		// Å‘åƒJƒEƒ“ƒg”
-	int count;			// Œ»ÝƒJƒEƒ“ƒg’l
+	u32	plane1;			// ç¬¬ï¼‘å¯¾ç§°é¢
+	u32	plane2;			// ç¬¬ï¼’å¯¾ç§°é¢	ç„¡æ¡ä»¶ã§BDã¯åŠ ãˆã‚‰ã‚Œã¾ã™
+	int	brightness_s;	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹é–‹å§‹
+	int brightness_dis;	// ãƒ–ãƒ©ã‚¤ãƒˆãƒã‚¹çµ‚äº†
+	int alpha_s;		// é–‹å§‹Î±å€¤
+	int alpha_dis;		// çµ‚äº†ã¾ã§ã®å€¤
+	int count_max;		// æœ€å¤§ã‚«ã‚¦ãƒ³ãƒˆæ•°
+	int count;			// ç¾åœ¨ã‚«ã‚¦ãƒ³ãƒˆå€¤
 } ZKN_UTIL_FADE_SYS;
 
 //-------------------------------------
-//	ƒJ[ƒ\ƒ‹ƒIƒuƒWƒFƒNƒg
+//	ã‚«ãƒ¼ã‚½ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 //=====================================
 typedef struct {
-	CLACT_WORK_PTR cursor[ ZKN_CURROS_MAT_RECT_NUM ];	// ƒJ[ƒ\ƒ‹
-	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// ƒŠƒ\[ƒXƒIƒuƒWƒF
-	int x;	// ‚wÀ•W
-	int y;	// ‚xÀ•W
-	int size_x;	// ‚wƒTƒCƒY
-	int size_y;	// ‚xƒTƒCƒY
+	CLACT_WORK_PTR cursor[ ZKN_CURROS_MAT_RECT_NUM ];	// ã‚«ãƒ¼ã‚½ãƒ«
+	CLACT_U_RES_OBJ_PTR res_obj[ ZKN_CLACT_RES_OBJ_NUM_DEF ];	// ãƒªã‚½ãƒ¼ã‚¹ã‚ªãƒ–ã‚¸ã‚§
+	int x;	// ï¼¸åº§æ¨™
+	int y;	// ï¼¹åº§æ¨™
+	int size_x;	// ï¼¸ã‚µã‚¤ã‚º
+	int size_y;	// ï¼¹ã‚µã‚¤ã‚º
 
-	BOOL anm_stop;	// ƒAƒjƒƒXƒgƒbƒvƒtƒ‰ƒO
-	int anm_count;	// ƒAƒjƒƒJƒEƒ“ƒg
+	BOOL anm_stop;	// ã‚¢ãƒ‹ãƒ¡ã‚¹ãƒˆãƒƒãƒ—ãƒ•ãƒ©ã‚°
+	int anm_count;	// ã‚¢ãƒ‹ãƒ¡ã‚«ã‚¦ãƒ³ãƒˆ
 } ZKN_UTIL_CURSOR_OBJ;
 
 //-------------------------------------
-//	ƒJ[ƒ\ƒ‹ƒIƒuƒWƒFƒNƒg@À•W•ÏX“®ìƒAƒjƒƒ[ƒN
+//	ã‚«ãƒ¼ã‚½ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã€€åº§æ¨™å¤‰æ›´å‹•ä½œã‚¢ãƒ‹ãƒ¡ãƒ¯ãƒ¼ã‚¯
 //=====================================
 typedef struct {
-	ZKN_UTIL_CURSOR_OBJ* p_cursor;		// ƒJ[ƒ\ƒ‹ƒIƒuƒWƒFƒNƒg
-	ZKN_UTIL_MOVE_WORK mat_move;		// À•W“®ì—p
-	ZKN_UTIL_MOVE_WORK size_move;		// ƒTƒCƒY“®ì—p
+	ZKN_UTIL_CURSOR_OBJ* p_cursor;		// ã‚«ãƒ¼ã‚½ãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	ZKN_UTIL_MOVE_WORK mat_move;		// åº§æ¨™å‹•ä½œç”¨
+	ZKN_UTIL_MOVE_WORK size_move;		// ã‚µã‚¤ã‚ºå‹•ä½œç”¨
 
-	int ta_x;		// ¡‚Ìƒ^[ƒQƒbƒg‚˜À•W
-	int ta_y;		// ¡‚Ìƒ^[ƒQƒbƒg‚™À•W
-	int ta_size_x;	// ¡‚Ìƒ^[ƒQƒbƒg‚˜ƒTƒCƒY
-	int ta_size_y;	// ¡‚Ìƒ^[ƒQƒbƒg‚™ƒTƒCƒY
+	int ta_x;		// ä»Šã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆï½˜åº§æ¨™
+	int ta_y;		// ä»Šã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆï½™åº§æ¨™
+	int ta_size_x;	// ä»Šã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆï½˜ã‚µã‚¤ã‚º
+	int ta_size_y;	// ä»Šã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆï½™ã‚µã‚¤ã‚º
 
-	BOOL move_stop;	// “®ìƒXƒgƒbƒv
+	BOOL move_stop;	// å‹•ä½œã‚¹ãƒˆãƒƒãƒ—
 } ZKN_UTIL_CURSOR_OBJ_MOVE;
 
 
 //-------------------------------------
-//	}ŠÓ•`‰æƒOƒ[ƒoƒ‹ƒf[ƒ^
+//	å›³é‘‘æç”»ã‚°ãƒ­ãƒ¼ãƒãƒ«ãƒ‡ãƒ¼ã‚¿
 //
-//	‘S‘Ì‚ÅŽg—p‚·‚é‚à‚Ì@
-//	•¡”ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ŠÔ‚Å‹¤—L‚µ‚½‚¢ƒŠƒ\[ƒXƒf[ƒ^
-//	‚È‚Ç‚ðŠi”[
+//	å…¨ä½“ã§ä½¿ç”¨ã™ã‚‹ã‚‚ã®ã€€
+//	è¤‡æ•°ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³é–“ã§å…±æœ‰ã—ãŸã„ãƒªã‚½ãƒ¼ã‚¹ãƒ‡ãƒ¼ã‚¿
+//	ãªã©ã‚’æ ¼ç´
 //=====================================
 typedef struct {
 	// BGL
-	GF_BGL_INI*	p_bg;					// ‚‚‚‡ŠÇ—
-	GF_BGL_BMPWIN bmp_mfont;			// ƒƒCƒ“‰æ–ÊƒtƒHƒ“ƒg•`‰æ—p
+	GF_BGL_INI*	p_bg;					// ï½‚ï½‡ç®¡ç†
+	GF_BGL_BMPWIN bmp_mfont;			// ãƒ¡ã‚¤ãƒ³ç”»é¢ãƒ•ã‚©ãƒ³ãƒˆæç”»ç”¨
 	
 	// OAM
-	CLACT_U_EASYRENDER_DATA	oam_rend;	// oamƒŒƒ“ƒ_ƒ‰[ƒf[ƒ^
-	CLACT_SET_PTR			clact_set;	// ƒZƒ‹ƒAƒNƒ^[ƒZƒbƒg
-	CLACT_U_RES_MANAGER_PTR	res_manager[ ZKN_CLACT_RES_MANAGER_NUM ];	// ƒŠƒ\[ƒXƒ}ƒl[ƒWƒƒ
+	CLACT_U_EASYRENDER_DATA	oam_rend;	// oamãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿
+	CLACT_SET_PTR			clact_set;	// ã‚»ãƒ«ã‚¢ã‚¯ã‚¿ãƒ¼ã‚»ãƒƒãƒˆ
+	CLACT_U_RES_MANAGER_PTR	res_manager[ ZKN_CLACT_RES_MANAGER_NUM ];	// ãƒªã‚½ãƒ¼ã‚¹ãƒžãƒãƒ¼ã‚¸ãƒ£
 
 	// FONTOAM
 	ZKN_FONTOAM_SYS_PTR fontoam_sys;
 	
-	// 3Dƒ|ƒPƒ‚ƒ“
-	SOFT_SPRITE_MANAGER* soft_sprite_man;	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒgƒ}ƒl[ƒWƒƒ
-	SOFT_SPRITE*		 soft_sprite[ ZKN_DRAWGLB_POKEGRA_NUM ];	// ‘I‘ð’†‚Ìƒ|ƒPƒ‚ƒ“‚Ìƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+	// 3Dãƒã‚±ãƒ¢ãƒ³
+	SOFT_SPRITE_MANAGER* soft_sprite_man;	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆãƒžãƒãƒ¼ã‚¸ãƒ£
+	SOFT_SPRITE*		 soft_sprite[ ZKN_DRAWGLB_POKEGRA_NUM ];	// é¸æŠžä¸­ã®ãƒã‚±ãƒ¢ãƒ³ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 
-	// ƒ\ƒtƒgƒEƒFƒAƒXƒvƒ‰ƒCƒg
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆ
 	SWSP_SYS_PTR	swsp_sys;
 
-	// fadeƒVƒXƒeƒ€
+	// fadeã‚·ã‚¹ãƒ†ãƒ 
 	ZKN_UTIL_FADE_SYS	fade;
 	ZKN_UTIL_FADE_SYS	fade_sub;
 
-//	ƒ|ƒPƒ‚ƒ“ƒŠƒXƒg‰æ–Ê‚Æ}ŠÓƒf[ƒ^‰æ–Ê‚Å‹¤’Ê‚ÉŽg—p‚·‚é
-//	ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^\‘¢‘Ì
+//	ãƒã‚±ãƒ¢ãƒ³ãƒªã‚¹ãƒˆç”»é¢ã¨å›³é‘‘ãƒ‡ãƒ¼ã‚¿ç”»é¢ã§å…±é€šã«ä½¿ç”¨ã™ã‚‹
+//	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 	ZKN_POKELIST_DATA_OAM_DATA pokelist_data_draw;
 
-	// }ŠÓƒJ[ƒ\ƒ‹•`‰æƒf[ƒ^
+	// å›³é‘‘ã‚«ãƒ¼ã‚½ãƒ«æç”»ãƒ‡ãƒ¼ã‚¿
 	ZKN_UTIL_CURSOR_OBJ cursor;
-	ZKN_UTIL_CURSOR_OBJ_MOVE cursor_move;	// À•W•ÏX“®ìƒ[ƒN
-	TCB_PTR	cursor_anm_tcb;		// ƒAƒjƒ
-	TCB_PTR cursor_move_tcb;	// À•W•ÏX“®ì
+	ZKN_UTIL_CURSOR_OBJ_MOVE cursor_move;	// åº§æ¨™å¤‰æ›´å‹•ä½œãƒ¯ãƒ¼ã‚¯
+	TCB_PTR	cursor_anm_tcb;		// ã‚¢ãƒ‹ãƒ¡
+	TCB_PTR cursor_move_tcb;	// åº§æ¨™å¤‰æ›´å‹•ä½œ
 
-	// ƒOƒ‰ƒtƒBƒbƒNƒf[ƒ^ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹
+	// ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒ¼ã‚¿ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«
 	ARCHANDLE* p_graphic_arc_handl;
 } ZKN_GLB_DRAWDATA;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 */
 //-----------------------------------------------------------------------------
 GLOBAL void ZKN_GlbDrawDataInit( ZKN_GLB_DRAWDATA* p_draw, int heap );
@@ -219,7 +219,7 @@ GLOBAL void ZKN_GlbPokeNameTblObjModeSet( const ZKN_GLB_DRAWDATA* p_draw, GXOamM
 GLOBAL void ZKN_GlbPokeNameTblBGPriSet( const ZKN_GLB_DRAWDATA* p_draw, int pri );
 GLOBAL void ZKN_GlbPokeNameTblDrawFlagSet( const ZKN_GLB_DRAWDATA* p_draw, BOOL flag );
 
-// í“¬Œã}ŠÓ‰æ–Ê—p‚ÌŠÖ”
+// æˆ¦é—˜å¾Œå›³é‘‘ç”»é¢ç”¨ã®é–¢æ•°
 GLOBAL void ZKN_GlbPokeNameTblSet_Minute( ZKN_POKELIST_DATA_OAM_DATA* p_data, ZKN_FONTOAM_INIT* p_fontoam_init, int char_size, int mons_no, u32 zkn_mode );
 GLOBAL void ZKN_GlbPokeNameTblResLoad_Minute( ZKN_POKELIST_DATA_OAM_DATA* p_data, CLACT_U_RES_MANAGER_PTR* pp_res_manager, int heap, ARCHANDLE* p_handle );
 GLOBAL void ZKN_GlbPokeNameTblResRelease_Minute( ZKN_POKELIST_DATA_OAM_DATA* p_data, CLACT_U_RES_MANAGER_PTR* pp_res_manager );
@@ -248,8 +248,8 @@ GLOBAL void ZKN_UTIL_CursorSetMatrixNotAnm( ZKN_GLB_DRAWDATA* p_draw, int def_x,
 GLOBAL void ZKN_UTIL_MoveReq( ZKN_UTIL_MOVE_WORK* p_work, int s_x, int e_x, int s_y, int e_y, int count_max );
 GLOBAL BOOL ZKN_UTIL_MoveMain( ZKN_UTIL_MOVE_WORK* p_work );
 
-// ƒA[ƒJƒCƒuƒnƒ“ƒhƒ‹‚ðŽg—p‚µ‚½“Ç‚Ýž‚Ý
-// “Ç‚Ýž‚Ýˆ—‚‘¬‰»‚Ì‚½‚ß
+// ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãƒãƒ³ãƒ‰ãƒ«ã‚’ä½¿ç”¨ã—ãŸèª­ã¿è¾¼ã¿
+// èª­ã¿è¾¼ã¿å‡¦ç†é«˜é€ŸåŒ–ã®ãŸã‚
 GLOBAL ARCHANDLE* ZKN_GLBDATA_ArcHandlGet( ZKN_GLB_DRAWDATA* p_draw );
 GLOBAL void* ZKN_GLBDATA_Arc_Load(ZKN_GLB_DRAWDATA* p_draw, u32 dataIdx, BOOL compressedFlag, u32 heapID);
 GLOBAL u32 ZKN_GLBDATA_BgCharSet(ZKN_GLB_DRAWDATA* p_draw, u32 dataIdx, GF_BGL_INI* bgl, u32 frm, u32 offs, u32 transSize, BOOL compressedFlag, u32 heapID);

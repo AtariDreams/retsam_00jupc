@@ -3,7 +3,7 @@
  *	GAME FREAK inc.
  *
  *	@file		wflby_timeevent.h
- *	@brief		�^�C���C�x���g
+ *	@brief		タイムイベント
  *	@author		tomoya takahshi
  *	@data		2008.01.26
  *
@@ -17,34 +17,34 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					�萔�錾
+ *					定数宣言
 */
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
- *					�\���̐錾
+ *					構造体宣言
 */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-///	�^�C���C�x���g���[�N
+///	タイムイベントワーク
 //=====================================
 typedef struct _WFLBY_TIMEEVENT WFLBY_TIMEEVENT;
 
 
 //-----------------------------------------------------------------------------
 /**
- *					�v���g�^�C�v�錾
+ *					プロトタイプ宣言
 */
 //-----------------------------------------------------------------------------
 extern WFLBY_TIMEEVENT* WFLBY_TIMEEVENT_Init( u32 heapID, WFLBY_ROOMWK* p_rmwk );
 extern void WFLBY_TIMEEVENT_Exit( WFLBY_TIMEEVENT* p_wk );
 extern void WFLBY_TIMEEVENT_Main( WFLBY_TIMEEVENT* p_wk );
 
-// �t���[�g
+// フロート
 extern BOOL WFLBY_TIMEEVENT_FLOAT_CheckAnm( const WFLBY_TIMEEVENT* cp_wk, u32 floatidx, WFLBY_FLOAT_ANM_TYPE anmidx );
 
-// �ԉ�SE��~
+// 花火SE停止
 extern void WFLBY_TIMEEVENT_FIRE_StopSe( WFLBY_TIMEEVENT* p_wk );
 
 #endif		// __WFLBY_TIMEEVENT_H__

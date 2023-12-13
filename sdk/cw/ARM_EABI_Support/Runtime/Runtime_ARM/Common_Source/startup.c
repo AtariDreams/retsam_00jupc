@@ -1,5 +1,5 @@
 /* Metrowerks ARM Runtime Support Library 
- * Copyright © 1995-2002 Metrowerks Corporation. All rights reserved. 
+ * Copyright 1995-2002 Metrowerks Corporation. All rights reserved. 
  * 
  * $Date: 2004/10/29 21:53:16 $ 
  * $Revision: 1.5 $ 

@@ -47,41 +47,41 @@ typedef enum OAM_FLIP
 
 //------------------------------------------------------------------------------
 // Renderer 2DMatrix Cache 
-// ���ۂ� 2D Graphics Enigine �ւ� Affine �p�����[�^�o�^�� �L���V������������ʂ����܂��B
-// �d������ �o�^�� ���s���ꂸ�ߋ��̓o�^���ʂ��Ԃ���܂��B
+// 実際の 2D Graphics Enigine への Affine パラメータ登録を キャシュする役割を果たします。
+// 重複する 登録は 実行されず過去の登録結果が返されます。
 // 
-// ����ɂ���āA���� NNSG2dRndCore2DMtxCache Index �� �w�肵���ꍇ 
-// ���� Affine �p�����[�^ ���Q�Ƃ��邱�ƂƂȂ�܂��B
+// これによって、同一 NNSG2dRndCore2DMtxCache Index を 指定した場合 
+// 同一 Affine パラメータ を参照することとなります。
 //
-// affineIndex �� �K��l�� Affine �p�����[�^�o�^ ���Ȃ���Ă��Ȃ��Ƃ����Ӗ��� 
-// MtxCache_NOT_AVAILABLE �������܂��B
+// affineIndex は 規定値で Affine パラメータ登録 がなされていないという意味の 
+// MtxCache_NOT_AVAILABLE を持ちます。
 // 
-// �K��l �ւ� ���Z�b�g �� NNS_G2dEndRendering() �ŌĂ΂�� NNSi_G2dMCMCleanupMtxCache() �ɂ���čs���܂��B
-// �܂�AAffine�p�����[�^�����L�\�Ȃ̂� 
-// ���� NNS_G2dBeginRendering() NNS_G2dEndRendering() �u���b�N�� �Ɍ����邱�ƂƂȂ�܂��B
+// 規定値 への リセット は NNS_G2dEndRendering() で呼ばれる NNSi_G2dMCMCleanupMtxCache() によって行われます。
+// つまり、Affineパラメータを共有可能なのは 
+// 同一 NNS_G2dBeginRendering() NNS_G2dEndRendering() ブロック内 に限られることとなります。
 //
 // 
-// �{���W���[���̓����_�����W���[�����璼�ڑ��삳��邱�Ƃ͂Ȃ��A
-// RendererMtxState ���W���[�����\�b�h�o�R�ő��삳��܂��B
+// 本モジュールはレンダラモジュールから直接操作されることはなく、
+// RendererMtxState モジュールメソッド経由で操作されます。
 //
 //
-// �֐����� NNSi_RMC.....()          
+// 関数命名 NNSi_RMC.....()          
 static NNSG2dRndCore2DMtxCache             mtxCacheBuffer_[G2Di_NUM_MTX_CACHE];
 
 //------------------------------------------------------------------------------
-// �ǉ��ϐ��FNNSG2dRndCore2DMtxCache�����[�U����B�����邽�߂ɓ���
+// 追加変数：NNSG2dRndCore2DMtxCacheをユーザから隠蔽するために導入
 static u16                          currentMtxCachePos_ = 0;
 
 
 
 //------------------------------------------------------------------------------
-// ���W���[����������֐�
+// モジュール内部限定関数
 //------------------------------------------------------------------------------
 
 
 
 //------------------------------------------------------------------------------
-// ���W���[���O�����J�֐�
+// モジュール外部公開関数
 //------------------------------------------------------------------------------
 NNS_G2D_INLINE void NNSi_RMCInitMtxCache()
 {
@@ -97,7 +97,7 @@ NNS_G2D_INLINE void NNSi_RMCResetMtxCache()
 {
     int i;
     //
-    // �g�p�����Ƃ���܂ŁA����������
+    // 使用したところまで、初期化する
     //
     for( i = 0; i < currentMtxCachePos_; i++ )
     {
@@ -107,7 +107,7 @@ NNS_G2D_INLINE void NNSi_RMCResetMtxCache()
 }
 
 //------------------------------------------------------------------------------
-// �C���f�b�N�X�ōs��L���b�V�����擾����
+// インデックスで行列キャッシュを取得する
 NNS_G2D_INLINE NNSG2dRndCore2DMtxCache* NNSi_RMCGetMtxCacheByIdx( u16 idx )
 {
     NNS_G2D_MINMAX_ASSERT( idx, 0, G2Di_NUM_MTX_CACHE - 1);
@@ -115,7 +115,7 @@ NNS_G2D_INLINE NNSG2dRndCore2DMtxCache* NNSi_RMCGetMtxCacheByIdx( u16 idx )
 }             
 
 //------------------------------------------------------------------------------
-// �V���ɂЂƂs��L���b�V�����g�p����
+// 新たにひとつ行列キャッシュを使用する
 NNS_G2D_INLINE u16 NNSi_RMCUseNewMtxCache()
 {
     const u16 ret = currentMtxCachePos_;
@@ -124,7 +124,7 @@ NNS_G2D_INLINE u16 NNSi_RMCUseNewMtxCache()
     {
        currentMtxCachePos_++;
     }else{
-       // �s��L���b�V���̌͊�
+       // 行列キャッシュの枯渇
        NNS_G2D_WARNING( FALSE, "MtxCache is running out. G2d ignores the user request"
                                ", and uses MtxCache-Idx = 31.");
     }

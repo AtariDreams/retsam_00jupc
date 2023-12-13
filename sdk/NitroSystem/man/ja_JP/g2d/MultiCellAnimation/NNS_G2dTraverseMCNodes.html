@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>NNS_G2dTraverseMCNodes</title>
@@ -11,7 +11,7 @@
 
 <body>
 <h1 align="left">NNS_G2dTraverseMCNodes</h1>
-<h2>�\��</h2>
+<h2>構文</h2>
 
 <dl>
   <dd>
@@ -26,32 +26,32 @@ void NNS_G2dTraverseMCNodes
 
   </CODE></pre>
   </dd>
-</dl><h2>����</h2>
+</dl><h2>引数</h2>
 
 <table border="1" width="100%">
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pMCellInst</font></strong></em></td>
-    <td width="87%">[IN] �}���`�Z������</td>
+    <td width="87%">[IN] マルチセル実体</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">pCBFunc</font></strong></em></td>
-    <td width="87%">[IN] �}���`�Z�����̊e�m�[�h�ɂ��ČĂяo�����R�[���o�b�N�֐�</td>
+    <td width="87%">[IN] マルチセル内の各ノードについて呼び出されるコールバック関数</td>
   </tr>
   <tr>
     <td width="13%"><em><strong><font face="Courier New">userParamater</font></strong></em></td>
-    <td width="87%">[IN] �R�[���o�b�N�֐��̑�P�����Ƃ��ēn�����A���[�U�����R�Ɏg�p����p�����[�^</td>
+    <td width="87%">[IN] コールバック関数の第１引数として渡される、ユーザが自由に使用するパラメータ</td>
   </tr>
   </table>
-<h2>�Ԃ�l</h2>
-<p>�Ȃ��B<BR>
+<h2>返り値</h2>
+<p>なし。<BR>
 </p>
-<H2>����</H2>
+<H2>説明</H2>
 <P>
-�}���`�Z�����\������m�[�h�ɂ��āA���������񂵂Ȃ���A<BR>
-�e�m�[�h���A�Z���A�j���[�V�����A�m�[�h�ԍ��������ɃR�[���o�b�N�֐��Ăяo�����s���܂��B<BR>
-�Z���A�j���[�V�����P�ʂŏ�����s���ANNS_G2dTraverseMCCellAnims()���p�ӂ���Ă��܂��B<BR>
+マルチセルを構成するノードについて、それらを巡回しながら、<BR>
+各ノード情報、セルアニメーション、ノード番号を引数にコールバック関数呼び出しを行います。<BR>
+セルアニメーション単位で巡回を行う、NNS_G2dTraverseMCCellAnims()も用意されています。<BR>
 <BR>
-NNSG2dMCTraverseNodeCallBack �̒�`���ȉ��ɂ��߂��܂��B<BR>
+NNSG2dMCTraverseNodeCallBack の定義を以下にしめします。<BR>
 <pre>
 typedef BOOL (*NNSG2dMCTraverseNodeCallBack)
 ( 
@@ -60,24 +60,24 @@ typedef BOOL (*NNSG2dMCTraverseNodeCallBack)
     NNSG2dCellAnimation*                pCellAnim, 
     u16                                 nodeIdx 
 ); 
-�R�[���o�b�N�Ăяo���𒆒f�������ꍇ�́A�R�[���o�b�N�֐�����FALSE��Ԃ��悤�ɂ��Ă��������B
+コールバック呼び出しを中断したい場合は、コールバック関数内でFALSEを返すようにしてください。
 
 </pre>
 <BR>
-���ӁF<BR>
-���̂̎�ނ�NNS_G2D_MCTYPE_DONOT_SHARE_CELLANIM�ŏ��������ꂽ�}���`�Z���̏ꍇ�A<BR>
-���[�U���m�[�h����SRT�i�X�P�[���A��]�A�ړ��j���ȂǂɕύX�������邱�Ƃ��o���܂��B<BR>
-�������A�{�֐��̃R�[���o�b�N�Ăяo���ň����Ƃ��ēn�����m�[�h���́A�ÓI�f�[�^���\�[�X�ł���A<BR>
-�������������[�U�ύX�����f����Ă��Ȃ��f�[�^�ƂȂ�܂��B<BR>
+注意：<BR>
+実体の種類がNNS_G2D_MCTYPE_DONOT_SHARE_CELLANIMで初期化されたマルチセルの場合、<BR>
+ユーザがノード情報のSRT（スケール、回転、移動）情報などに変更を加えることが出来ます。<BR>
+しかし、本関数のコールバック呼び出しで引数として渡されるノード情報は、静的データリソースであり、<BR>
+そういったユーザ変更が反映されていないデータとなります。<BR>
 
 </p>
 
-<h2>�Q��</h2>
+<h2>参照</h2>
 <p>
 <CODE><A href="NNS_G2dTraverseMCCellAnims.html">NNS_G2dTraverseMCCellAnims</A><br></CODE>
 
 </p>
-<H2>����</H2>
-<P>2005/09/01 ����</P>
+<H2>履歴</H2>
+<P>2005/09/01 初版</P>
 </body>
 </html>

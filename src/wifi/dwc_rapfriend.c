@@ -7,25 +7,25 @@
 #include "savedata/wifilist.h"
 #include "gflib/strbuf_family.h"
 
-// ƒtƒŒƒ“ƒhƒŠƒXƒg‚ÌƒTƒCƒY
+// ãƒ•ãƒ¬ãƒ³ãƒ‰ãƒªã‚¹ãƒˆã®ã‚µã‚¤ã‚º
 #define FRIENDLIST_MAXSIZE 32
 
 //==============================================================================
 /**
- * ‚·‚Å‚É“¯‚¶l‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¢‚©B
- * @param   pSaveData ƒtƒŒƒ“ƒhŠÖŒW‚ª‚Í‚¢‚Á‚Ä‚¢‚éƒZ[ƒuƒf[ƒ^
- * @param   index “¯‚¶ƒf[ƒ^‚ªŒ©‚Â‚©‚Á‚½‚Æ‚«‚ÌA‚»‚ÌêŠB
- * @param         Œ©‚Â‚©‚ç‚È‚¢ê‡‚Í‹ó‚¢‚Ä‚¢‚é‚Æ‚±‚ë‚ğ•Ô‚·
- * @param         ‚Ç‚±‚à‹ó‚¢‚Ä‚¢‚È‚¢ê‡‚ÍA-1 
- * @retval  DWCFRIEND_INLIST c ‚·‚Å‚ÉA“¯‚¶ƒf[ƒ^‚ªƒŠƒXƒgã‚É‚ ‚éB‚±‚Ìê‡‚Í‰½‚à‚·‚é•K—v‚È‚µB
- * @retval  DWCFRIEND_OVERWRITE c ‚·‚Å‚ÉA“¯‚¶ƒf[ƒ^‚ªƒŠƒXƒgã‚É‚ ‚é‚ªAã‘‚«‚·‚é‚±‚Æ‚ª–]‚Ü‚µ‚¢ê‡B
- * @retval  DWCFRIEND_NODATA c “¯‚¶ƒf[ƒ^‚ÍƒŠƒXƒgã‚É‚È‚¢B
- * @retval  DWCFRIEND_INVALID c ó‚¯æ‚Á‚½DWCFriendData‚ªˆÙíB
+ * ã™ã§ã«åŒã˜äººãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã„ã‹ã€‚
+ * @param   pSaveData ãƒ•ãƒ¬ãƒ³ãƒ‰é–¢ä¿‚ãŒã¯ã„ã£ã¦ã„ã‚‹ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param   index åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè¦‹ã¤ã‹ã£ãŸã¨ãã®ã€ãã®å ´æ‰€ã€‚
+ * @param         è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯ç©ºã„ã¦ã„ã‚‹ã¨ã“ã‚ã‚’è¿”ã™
+ * @param         ã©ã“ã‚‚ç©ºã„ã¦ã„ãªã„å ´åˆã¯ã€-1 
+ * @retval  DWCFRIEND_INLIST â€¦ ã™ã§ã«ã€åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒãƒªã‚¹ãƒˆä¸Šã«ã‚ã‚‹ã€‚ã“ã®å ´åˆã¯ä½•ã‚‚ã™ã‚‹å¿…è¦ãªã—ã€‚
+ * @retval  DWCFRIEND_OVERWRITE â€¦ ã™ã§ã«ã€åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒãƒªã‚¹ãƒˆä¸Šã«ã‚ã‚‹ãŒã€ä¸Šæ›¸ãã™ã‚‹ã“ã¨ãŒæœ›ã¾ã—ã„å ´åˆã€‚
+ * @retval  DWCFRIEND_NODATA â€¦ åŒã˜ãƒ‡ãƒ¼ã‚¿ã¯ãƒªã‚¹ãƒˆä¸Šã«ãªã„ã€‚
+ * @retval  DWCFRIEND_INVALID â€¦ å—ã‘å–ã£ãŸDWCFriendDataãŒç•°å¸¸ã€‚
  */
 //==============================================================================
 int dwc_checkfriendByToken(SAVEDATA* pSaveData, DWCFriendData *data, int *index)
 {
-	// ‚·‚Å‚É“¯‚¶l‚ª“o˜^‚µ‚Ä‚¢‚È‚¢‚©ŒŸõ
+	// ã™ã§ã«åŒã˜äººãŒç™»éŒ²ã—ã¦ã„ãªã„ã‹æ¤œç´¢
 	int i;
     DWCUserData *myUserData = WifiList_GetMyUserInfo(SaveData_GetWifiListData(pSaveData));
     DWCFriendData *keyList  = WifiList_GetDwcDataPtr(SaveData_GetWifiListData(pSaveData),0);
@@ -38,14 +38,14 @@ int dwc_checkfriendByToken(SAVEDATA* pSaveData, DWCFriendData *data, int *index)
 
 		if( DWC_IsEqualFriendData( data, keyList + i ) ) 
 		{
-			// ‘S‚­“¯‚¶ƒf[ƒ^‚ª”­Œ©B
+			// å…¨ãåŒã˜ãƒ‡ãƒ¼ã‚¿ãŒç™ºè¦‹ã€‚
 			*index = i;
 			return DWCFRIEND_INLIST;
 		}
 		else if( DWC_GetGsProfileId(myUserData,data) > 0 && DWC_GetGsProfileId(myUserData,data) == DWC_GetGsProfileId(myUserData,keyList + i) ) 
 		{
-			// ƒtƒŒƒ“ƒhƒR[ƒh‚Å“o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ª‚ ‚éB
-			// ‚±‚Ìê‡‚ÍAã‘‚«‚µ‚Ä‚à‚ç‚¤‚±‚Æ‚ğ„§B
+			// ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰ã§ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã€‚
+			// ã“ã®å ´åˆã¯ã€ä¸Šæ›¸ãã—ã¦ã‚‚ã‚‰ã†ã“ã¨ã‚’æ¨å¥¨ã€‚
 			*index = i;
 			return DWCFRIEND_OVERWRITE;
 		}
@@ -55,31 +55,31 @@ int dwc_checkfriendByToken(SAVEDATA* pSaveData, DWCFriendData *data, int *index)
 		}
 	}
 	
-	// ƒŠƒXƒg‚É‚È‚µB
+	// ãƒªã‚¹ãƒˆã«ãªã—ã€‚
 	return DWCFRIEND_NODATA;
 }
 
 //==============================================================================
 /**
- * ‚·‚Å‚É“¯‚¶l‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¢‚©B
- * @param   pSaveData ƒtƒŒƒ“ƒhŠÖŒW‚ª‚Í‚¢‚Á‚Ä‚¢‚éƒZ[ƒuƒf[ƒ^
- * @param   index “¯‚¶ƒf[ƒ^‚ªŒ©‚Â‚©‚Á‚½‚Æ‚«‚ÌA‚»‚ÌêŠB
- * @param         Œ©‚Â‚©‚ç‚È‚¢ê‡‚Í‹ó‚¢‚Ä‚¢‚é‚Æ‚±‚ë‚ğ•Ô‚·
- * @param         ‚Ç‚±‚à‹ó‚¢‚Ä‚¢‚È‚¢ê‡‚ÍA-1 
- * @retval  DWCFRIEND_INLIST c ‚·‚Å‚ÉA“¯‚¶ƒf[ƒ^‚ªƒŠƒXƒgã‚É‚ ‚éB
- * @retval  DWCFRIEND_NODATA c “¯‚¶ƒf[ƒ^‚ÍƒŠƒXƒgã‚É‚È‚¢B
- * @retval  DWCFRIEND_INVALID c ó‚¯æ‚Á‚½friend_keya‚ª³‚µ‚­‚È‚¢B
+ * ã™ã§ã«åŒã˜äººãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã„ã‹ã€‚
+ * @param   pSaveData ãƒ•ãƒ¬ãƒ³ãƒ‰é–¢ä¿‚ãŒã¯ã„ã£ã¦ã„ã‚‹ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿
+ * @param   index åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒè¦‹ã¤ã‹ã£ãŸã¨ãã®ã€ãã®å ´æ‰€ã€‚
+ * @param         è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã¯ç©ºã„ã¦ã„ã‚‹ã¨ã“ã‚ã‚’è¿”ã™
+ * @param         ã©ã“ã‚‚ç©ºã„ã¦ã„ãªã„å ´åˆã¯ã€-1 
+ * @retval  DWCFRIEND_INLIST â€¦ ã™ã§ã«ã€åŒã˜ãƒ‡ãƒ¼ã‚¿ãŒãƒªã‚¹ãƒˆä¸Šã«ã‚ã‚‹ã€‚
+ * @retval  DWCFRIEND_NODATA â€¦ åŒã˜ãƒ‡ãƒ¼ã‚¿ã¯ãƒªã‚¹ãƒˆä¸Šã«ãªã„ã€‚
+ * @retval  DWCFRIEND_INVALID â€¦ å—ã‘å–ã£ãŸfriend_keyaãŒæ­£ã—ããªã„ã€‚
  */
 //==============================================================================
 int dwc_checkFriendCodeByToken(SAVEDATA* pSaveData, u64 friend_key, int *index)
 {
-	// ‚·‚Å‚É“¯‚¶l‚ª“o˜^‚µ‚Ä‚¢‚È‚¢‚©ŒŸõ
+	// ã™ã§ã«åŒã˜äººãŒç™»éŒ²ã—ã¦ã„ãªã„ã‹æ¤œç´¢
 	int i;
     DWCUserData *myUserData = WifiList_GetMyUserInfo(SaveData_GetWifiListData(pSaveData));
     DWCFriendData *keyList  = WifiList_GetDwcDataPtr(SaveData_GetWifiListData(pSaveData),0);
     DWCFriendData token;
 
-    // —F’B“o˜^Œ®‚ª³‚µ‚¢‚©‚Ç‚¤‚©”»’è
+    // å‹é”ç™»éŒ²éµãŒæ­£ã—ã„ã‹ã©ã†ã‹åˆ¤å®š
     if( !DWC_CheckFriendKey( myUserData, friend_key ) ) return DWCFRIEND_INVALID;
     DWC_CreateFriendKeyToken( &token, friend_key );   
     if( DWC_GetGsProfileId(myUserData, &token) <= 0 ) return DWCFRIEND_INVALID;
@@ -89,7 +89,7 @@ int dwc_checkFriendCodeByToken(SAVEDATA* pSaveData, u64 friend_key, int *index)
 	{
 		if( DWC_GetGsProfileId(myUserData, &token) == DWC_GetGsProfileId(myUserData, keyList + i) ) 
 		{
-			// “o˜^‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ª‚ ‚éB
+			// ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã€‚
 			*index = i;
 			return DWCFRIEND_INLIST;
 		}
@@ -99,13 +99,13 @@ int dwc_checkFriendCodeByToken(SAVEDATA* pSaveData, u64 friend_key, int *index)
 		}
 	}
 	
-	// ƒŠƒXƒg‚É‚È‚µB
+	// ãƒªã‚¹ãƒˆã«ãªã—ã€‚
 	return DWCFRIEND_NODATA;	
 }
 
 //------------------------------------------------------------------
 /**
- * $brief   Ú‘±‚µ‚Ä‚¢‚él‚ÌƒtƒŒƒ“ƒhƒR[ƒhŒŸ¸  “o˜^‚·‚él‚ªŒ©‚Â‚©‚Á‚½‚ç“o˜^
+ * $brief   æ¥ç¶šã—ã¦ã„ã‚‹äººã®ãƒ•ãƒ¬ãƒ³ãƒ‰ã‚³ãƒ¼ãƒ‰æ¤œæŸ»  ç™»éŒ²ã™ã‚‹äººãŒè¦‹ã¤ã‹ã£ãŸã‚‰ç™»éŒ²
             WIFINOTE_MODE_AUTOINPUT_CHECK
  * @param   wk		
  * @param   seq		
@@ -131,23 +131,23 @@ BOOL dwc_friendAutoInputCheck( SAVEDATA* pSaveData, int* netIDList, int heapID)
 
         OHNO_PRINT("%d check  \n",netIDList[i]);
 
-        GF_ASSERT_RETURN(netIDList[i] != DWCFRIEND_INVALID, FALSE);  // ó‚¯æ‚èƒf[ƒ^‚ÉˆÙí‚ª‚ ‚é
+        GF_ASSERT_RETURN(netIDList[i] != DWCFRIEND_INVALID, FALSE);  // å—ã‘å–ã‚Šãƒ‡ãƒ¼ã‚¿ã«ç•°å¸¸ãŒã‚ã‚‹
 
-        if(netIDList[i] == DWCFRIEND_INLIST){ //“¯ˆê
+        if(netIDList[i] == DWCFRIEND_INLIST){ //åŒä¸€
             dwc_friendWrite(pSaveData, i, pos, heapID, 2);
             CommInfoWriteResult( pSaveData );
         }
-        else if(netIDList[i] == DWCFRIEND_OVERWRITE){ //ã‘‚«
+        else if(netIDList[i] == DWCFRIEND_OVERWRITE){ //ä¸Šæ›¸ã
             if(!CommStateIsWifiConnect()){
                 dwc_friendWrite(pSaveData, i, pos, heapID, 1);
                 MI_CpuCopy8(pFriend, &keyList[pos], sizeof(DWCFriendData));
-                OHNO_PRINT("FriendDataã‘‚«‚µ‚Ü‚µ‚½ %d \n",pos);
+                OHNO_PRINT("FriendDataä¸Šæ›¸ãã—ã¾ã—ãŸ %d \n",pos);
                 CommInfoWriteResult( pSaveData );
             }
         }
         else if(netIDList[i] == DWCFRIEND_NODATA){
             hit = TRUE;
-            OHNO_PRINT("“o˜^ŠJn\n");
+            OHNO_PRINT("ç™»éŒ²é–‹å§‹\n");
         }
     }
     return  hit;
@@ -155,7 +155,7 @@ BOOL dwc_friendAutoInputCheck( SAVEDATA* pSaveData, int* netIDList, int heapID)
 
 //------------------------------------------------------------------
 /**
- * $brief   –³ü—p“o˜^ŠÖ”
+ * $brief   ç„¡ç·šç”¨ç™»éŒ²é–¢æ•°
  * @param   wk		
  * @param   seq		
  * @retval  int 	
@@ -174,7 +174,7 @@ void dwc_friendWrite(SAVEDATA* pSaveData, int netID, int addListIndex, int heapI
         pFriend = CommInfoGetDWCFriendCode(netID);
         MI_CpuCopy8(pFriend, keyList, sizeof(DWCFriendData));
     }
-    if(overWrite == 0){  // ã‘‚«‚É‚Í–¼‘O‚ğ‘‚«Š·‚¦‚È‚¢
+    if(overWrite == 0){  // ä¸Šæ›¸ãæ™‚ã«ã¯åå‰ã‚’æ›¸ãæ›ãˆãªã„
         pBuf = MyStatus_CreateNameString(pMyStatus, heapID);
         WifiList_SetFriendName(pList, addListIndex, pBuf);
         STRBUF_Delete(pBuf);
@@ -182,7 +182,7 @@ void dwc_friendWrite(SAVEDATA* pSaveData, int netID, int addListIndex, int heapI
         WifiList_SetFriendInfo(pList, addListIndex, WIFILIST_FRIEND_ID, MyStatus_GetID(pMyStatus));
     }
     else if(overWrite == 1){
-        // ã‘‚«‚¾‚¯‚Ç«•Ê‚ª‚Ü‚¾–³‚¢ó‘Ô‚Ìê‡‘‚­
+        // ä¸Šæ›¸ãã ã‘ã©æ€§åˆ¥ãŒã¾ã ç„¡ã„çŠ¶æ…‹ã®å ´åˆæ›¸ã
         if(WifiList_GetFriendInfo(pList,addListIndex,WIFILIST_FRIEND_SEX) == PM_NEUTRAL){
             WifiList_SetFriendInfo(pList, addListIndex, WIFILIST_FRIEND_SEX, MyStatus_GetMySex(pMyStatus));
             WifiList_SetFriendInfo(pList, addListIndex, WIFILIST_FRIEND_ID, MyStatus_GetID(pMyStatus));
@@ -199,9 +199,9 @@ void dwc_friendWrite(SAVEDATA* pSaveData, int netID, int addListIndex, int heapI
 
 //==============================================================================
 /**
- *  netID‚©‚çWifiList‚Ì‡”Ô‚ğ•Ô‚·
+ *  netIDã‹ã‚‰WifiListã®é †ç•ªã‚’è¿”ã™
  * @param   netID   id
- * @retval  WifiList‚Ì‡”Ô
+ * @retval  WifiListã®é †ç•ª
  */
 //==============================================================================
 int dwc_SearchNetID2WifiListIndex(SAVEDATA* pSaveData,int netID)

@@ -2,11 +2,11 @@
 /**
  *
  *@file		touchpanel_draw.h
- *@brief	ƒ^ƒbƒ`ƒpƒlƒ‹î•ñ‚ğ•\¦‚·‚é
+ *@brief	ã‚¿ãƒƒãƒãƒ‘ãƒãƒ«æƒ…å ±ã‚’è¡¨ç¤ºã™ã‚‹
  *@author	tomoya takahashi
  *@data		2005.03.29
  *
- *	gflib/touchpanel_system‚©‚çˆÚA
+ *	gflib/touchpanel_systemã‹ã‚‰ç§»æ¤
  *
  */
 //]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
@@ -24,57 +24,57 @@
 
 //-----------------------------------------------------------------------------
 /**
- *					’è”éŒ¾
+ *					å®šæ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
-#define		TP_WIN_CGX		( 1024 )		// ƒEƒBƒ“ƒhƒEİ’è‚Ì’l
+#define		TP_WIN_CGX		( 1024 )		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¨­å®šã®å€¤
 
 //-----------------------------------------------------------------------------
 /**
- *					\‘¢‘ÌéŒ¾
+ *					æ§‹é€ ä½“å®£è¨€
  */
 //-----------------------------------------------------------------------------
 //-------------------------------------
-/// ƒuƒ‰ƒVƒf[ƒ^\‘¢‘Ì
+/// ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“
 typedef struct
 {
-	u16* pCharData;			// ƒuƒ‰ƒVƒf[ƒ^			
+	u16* pCharData;			// ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿			
 				
-	u16 SizeX;				// ƒTƒCƒYX
-	u16 SizeY;				// ƒTƒCƒYY
+	u16 SizeX;				// ã‚µã‚¤ã‚ºX
+	u16 SizeY;				// ã‚µã‚¤ã‚ºY
 } TP_BRUSH_DATA;
 
 
 //----------------------------------------------------------------------------
 /**
- *					ƒvƒƒgƒ^ƒCƒvéŒ¾
+ *					ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
  */
 //-----------------------------------------------------------------------------
-/// ƒ^ƒbƒ`ƒyƒ“î•ñ‚ğ“n‚µ‚Ä•`‰æ‚·‚éƒVƒXƒeƒ€
-GLOBAL void DrawTPInit( GF_BGL_INI* bgl, int gf_bgl_frame, u32 width, u32 height, u32 x, u32 y, const u16* p_pltt, int heap );	// •`‰æİ’èŠÖ”
-GLOBAL void DrawTPDelete(GF_BGL_INI* bgl, u16 pltt );							// •`‰æƒVƒXƒeƒ€”jŠüŠÖ”
-GLOBAL void DrawTPChgPltt( int gf_bgl_frame, const u16* p_pltt );									// ƒpƒŒƒbƒg‚ğ•Ï‚¦‚é
-GLOBAL void DrawTP(GF_BGL_INI* bgl, TPData* pBuff, u32 size, TP_BRUSH_DATA brush_data, u16 check_num );	// ƒTƒCƒY‚ÌTPƒf[ƒ^‚ğ•`‰æ‚·‚é
+/// ã‚¿ãƒƒãƒãƒšãƒ³æƒ…å ±ã‚’æ¸¡ã—ã¦æç”»ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ 
+GLOBAL void DrawTPInit( GF_BGL_INI* bgl, int gf_bgl_frame, u32 width, u32 height, u32 x, u32 y, const u16* p_pltt, int heap );	// æç”»è¨­å®šé–¢æ•°
+GLOBAL void DrawTPDelete(GF_BGL_INI* bgl, u16 pltt );							// æç”»ã‚·ã‚¹ãƒ†ãƒ ç ´æ£„é–¢æ•°
+GLOBAL void DrawTPChgPltt( int gf_bgl_frame, const u16* p_pltt );									// ãƒ‘ãƒ¬ãƒƒãƒˆã‚’å¤‰ãˆã‚‹
+GLOBAL void DrawTP(GF_BGL_INI* bgl, TPData* pBuff, u32 size, TP_BRUSH_DATA brush_data, u16 check_num );	// ã‚µã‚¤ã‚ºã®TPãƒ‡ãƒ¼ã‚¿ã‚’æç”»ã™ã‚‹
 GLOBAL void DrawTPInOut(GF_BGL_INI* bgl, TPData* pBuff, u32 size, TP_BRUSH_DATA in_brush_data, TP_BRUSH_DATA out_brush_data,
-						 u16 check_num, TP_PICTURE_DATA* pData );						// “àŠO”»’è‚ğ‚·‚é•`‰æ
+						 u16 check_num, TP_PICTURE_DATA* pData );						// å†…å¤–åˆ¤å®šã‚’ã™ã‚‹æç”»
 GLOBAL u32 DrawTPSync(GF_BGL_INI* bgl, TPData* pBuff, u32 size, TP_BRUSH_DATA brush_data, u16 check_num, u16 sync, u32* p_count );
-GLOBAL void DrawTPLine(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA brush_data, u16 check_num );			// ü‚ğ•`‰æ
+GLOBAL void DrawTPLine(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA brush_data, u16 check_num );			// ç·šã‚’æç”»
 GLOBAL void DrawTPLineInOut(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA in_brush_data, TP_BRUSH_DATA out_brush_data,
-							 u16 check_num, TP_PICTURE_DATA* pData );					// “àŠO”»’è‚ğ‚·‚é•`‰æ
-GLOBAL void DrawTPPoint(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA brush_data );						// “_‚ğ•`‰æ
-GLOBAL void DrawTPClean(GF_BGL_INI* bgl, u16 pltt_num );						// ƒNƒŠƒA
-GLOBAL void DrawTPPaste( GF_BGL_INI* bgl );								// ÀÛ‚É‰æ–Ê‚É•`‰æ(ã‚ÌŠÖ”‚ğg—p‚µ‚½Õ‚É
-																// s‚¤•K—v‚ª‚ ‚é)
-GLOBAL void DrawTPOldMatDest( void );							// •Û‘¶‚µ‚Ä‚¢‚é‚P‚Â‘O‚ÌÀ—p‚ğ”jŠü‚·‚é
-																// V‚µ‚­ü‚ğ•`‚­‚Æ‚«‚Ég—p‚·‚é
-GLOBAL void MakeTPBrush( TP_BRUSH_DATA* p_brush, u16 pltt, u16 size_x, u16 size_y, int heap );			// ƒuƒ‰ƒVƒf[ƒ^‚ğì¬
-GLOBAL void MakeTPGraphicBrush( TP_BRUSH_DATA* p_brush, const u16* p_char, u16 size_x, u16 size_y, int heap );	// ŠG‚Ìƒuƒ‰ƒVƒf[ƒ^‚ğì¬
-GLOBAL void DestTPBrush( TP_BRUSH_DATA* p_brush );		// ƒuƒ‰ƒVƒf[ƒ^‚ğ”jŠü
+							 u16 check_num, TP_PICTURE_DATA* pData );					// å†…å¤–åˆ¤å®šã‚’ã™ã‚‹æç”»
+GLOBAL void DrawTPPoint(GF_BGL_INI* bgl, TPData Buff, TP_BRUSH_DATA brush_data );						// ç‚¹ã‚’æç”»
+GLOBAL void DrawTPClean(GF_BGL_INI* bgl, u16 pltt_num );						// ã‚¯ãƒªã‚¢
+GLOBAL void DrawTPPaste( GF_BGL_INI* bgl );								// å®Ÿéš›ã«ç”»é¢ã«æç”»(ä¸Šã®é–¢æ•°ã‚’ä½¿ç”¨ã—ãŸè·¡ã«
+																// è¡Œã†å¿…è¦ãŒã‚ã‚‹)
+GLOBAL void DrawTPOldMatDest( void );							// ä¿å­˜ã—ã¦ã„ã‚‹ï¼‘ã¤å‰ã®åº§ç”¨ã‚’ç ´æ£„ã™ã‚‹
+																// æ–°ã—ãç·šã‚’æãã¨ãã«ä½¿ç”¨ã™ã‚‹
+GLOBAL void MakeTPBrush( TP_BRUSH_DATA* p_brush, u16 pltt, u16 size_x, u16 size_y, int heap );			// ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
+GLOBAL void MakeTPGraphicBrush( TP_BRUSH_DATA* p_brush, const u16* p_char, u16 size_x, u16 size_y, int heap );	// çµµã®ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆ
+GLOBAL void DestTPBrush( TP_BRUSH_DATA* p_brush );		// ãƒ–ãƒ©ã‚·ãƒ‡ãƒ¼ã‚¿ã‚’ç ´æ£„
 
 
 //----------------------------------------------------------------------------
 /**
- *					ƒOƒ[ƒoƒ‹•Ï”éŒ¾
+ *					ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€
  */
 //-----------------------------------------------------------------------------
 
